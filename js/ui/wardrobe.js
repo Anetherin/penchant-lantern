@@ -34,15 +34,17 @@ function openWardrobe(id){
     else if(o.owner) act = `<span class="muted">${spUnlocked(w)?'':'🔒 trust 60'}</span>`;
     else act = `<button class="sm" onclick="buyOutfit('${id}','${k}')" ${S.gold<o.cost?'disabled':''}>Buy ${fmt(o.cost)}</button>`;
     const tag = o.owner ? (k.startsWith('sig_')?' <span class="tag">Signature</span>':' <span class="tag">Special</span>') : (BASE_OUTFITS[k]?' <span class="muted">(basic)</span>':'');
-    return `<tr><td>${esc(o.label)}${tag}${o.lewd?` <span class="muted">(lewd ${o.lewd}+)</span>`:''}</td><td>${o.style===w.style?'<b class="good">'+o.style+'</b>':o.style}</td><td class="muted">${bonusText(o.bonus)}</td><td>${act}</td></tr>`;
+    const n = imgCountFor(w, `o:${k}:`);
+    return `<tr><td>${esc(o.label)}${tag}${o.lewd?` <span class="muted">(lewd ${o.lewd}+)</span>`:''}${n?` <span class="tag hid" title="Saved images with this outfit">📷 ${n}</span>`:''}</td><td>${o.style===w.style?'<b class="good">'+o.style+'</b>':o.style}</td><td class="muted">${bonusText(o.bonus)}</td><td>${act}</td></tr>`;
   }).join('') + (w.customOutfit ? `<tr><td>Her own outfit <span class="muted">(custom)</span></td><td>—</td><td class="muted">—</td><td>${w.outfit==='custom'?'<span class="good">Wearing</span>':`<button class="sm" onclick="equipOutfit('${id}','custom')">Wear</button>`}</td></tr>` : '');
   const urows = Object.entries(UNDER).map(([k,u])=>{
     const owned = w.ownedUnder.includes(k), wearing = w.under===k, ok = underOK(w,k);
     const act = wearing ? '<span class="good">Wearing</span>' : `<button class="sm" onclick="buyUnder('${id}','${k}')" ${(!owned && S.gold<u.cost) || !ok ?'disabled':''} ${ok?'':'title="Not comfortable yet"'}>${owned||!u.cost?'Wear':'Buy '+fmt(u.cost)}</button>`;
-    return `<tr><td>${esc(u.label)}${u.lewd?` <span class="muted">(lewd ${u.lewd}+)</span>`:''}</td><td>${u.style===w.style?'<b class="good">'+u.style+'</b>':u.style}</td><td class="muted">${bonusText(u.bonus)}</td><td>${act}</td></tr>`;
+    const n = imgCountFor(w, `u:${k}`);
+    return `<tr><td>${esc(u.label)}${u.lewd?` <span class="muted">(lewd ${u.lewd}+)</span>`:''}${n?` <span class="tag hid" title="Saved images with these undergarments">📷 ${n}</span>`:''}</td><td>${u.style===w.style?'<b class="good">'+u.style+'</b>':u.style}</td><td class="muted">${bonusText(u.bonus)}</td><td>${act}</td></tr>`;
   }).join('');
   modal(`<h2>${esc(w.name)}'s Wardrobe</h2>
-    <p class="muted">Style: <b>${w.style}</b> · Favorite color: ${sw(w.favColor)}<b>${w.favColor}</b>. Wearing her style and her favorite color keeps her happier each week.</p>
+    <p class="muted">Style: <b>${w.style}</b> · Favorite color: ${sw(w.favColor)}<b>${w.favColor}</b>. Wearing her style and her favorite color keeps her happier each week. 📷 = saved images with that item (images are saved per outfit and color).</p>
     <div class="row"><b>Outfit:</b> ${esc(cur.label)} ${usesColor(cur)?`· Color ${colorSel('outColor', w.outColor)}`:'<span class="muted">(fixed colors)</span>'}</div>
     <div class="row"><b>Undergarments:</b> ${esc(cu.label)} ${w.under!=='none'&&usesColor(cu)?`· Color ${colorSel('underColor', w.underColor)}`:''}</div>
     <h3>Outfits</h3><table><tr><th>Outfit</th><th>Style</th><th>Bonuses</th><th></th></tr>${rows}</table>

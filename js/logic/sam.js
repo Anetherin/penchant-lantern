@@ -51,6 +51,8 @@ function samWork(kind){
 function samRest(){
   if(S.ap<=0) return toast('No actions left this week.');
   S.ap--; S.sam.energy = Math.min(100, S.sam.energy+50); samLog('Rested'); save(); render();
+  const v = restVisitor();
+  if(v) return restEncounter(v);
   showResult('Nap Time', 'Sam takes a long nap. In his dreams, a truck honks at him. He wakes up and decides not to think about it.\n\nEnergy +50');
 }
 function samChat(id){
@@ -87,12 +89,13 @@ function samDate(id, k){
   if(has(w,'Greedy') && k==='shopping') w.mood = clamp(w.mood+6);
   samStat('charm',1); samXP(5); samLog(`${d.label} with ${w.name}`); checkUnlocks();
   save(); render(); closeModal();
-  const sparks = w.trust>=60 && w.mood>=70 && m>=1 && getActs().some(a=>canSam(w,a.id)) && Math.random()<0.45;
+  const sparks = w.trust>=60 && w.mood>=70 && m>=1 && getActs().some(a=>canSam(w,a.id)) && Math.random() < 0.35 + Math.max(0, w.lust-50)/100;
   const txt = d.text(w) + pNote(w, d.like==='private'?'private':d.like) + `\n\n${cost?'−'+fmt(cost)+' · ':''}Trust +${tg.toFixed(1)}${d.energy?' · She feels rested':''}`;
   modal(`<h2>${esc(d.label)} with ${esc(w.name)}</h2><div id="resImg"></div><p class="story">${esc(txt)}</p>
-    ${sparks?`<p class="story pink">On the way back, ${esc(w.name)} slips her hand into Sam's and doesn't let go. At her door, she hesitates. "...Do you want to come in?"</p>`:''}
+    ${sparks?`<div id="propAi"><p class="story pink">On the way back, ${esc(w.name)} slips her hand into Sam's and doesn't let go. At her door, she hesitates. "...Do you want to come in?"</p></div>`:''}
     <div class="row">${sparks?`<button class="primary" onclick="privateMenu('${id}',true)">Go inside (private time, no extra action)</button><button onclick="closeModal()">Say goodnight</button>`:`<button class="primary" onclick="closeModal()">OK</button>`}</div>`);
-  showImg('resImg', w.id, 'sam_date');
+  showImg('resImg', w.id, 'date_'+k);
+  if(sparks && SET.ai.on && getTextPlugin()) aiWrite('propAi', 'proposition', w.id, {scene:'date_'+k, date:d.label.toLowerCase(), forSam:true});
 }
 function samGift(id){
   const w = findW(id); if(!w) return; if(S.gold<60) return toast('A nice gift costs 60g.');
@@ -112,7 +115,7 @@ function samTrain(id){
     const g = (6 + S.sam.technique/20) * tm;
     growAct(w, act, g); w.lewd = clamp(w.lewd + 1.5*lewdMult(w)); w.energy = clamp(w.energy-12, 0, maxEnergy(w));
     if(w.dislike===act) w.mood = clamp(w.mood-4);
-    samStat('technique',2); samXP(5); w.privateCount++; samLog(`Practiced ${actLabel(act)} with ${w.name}`); checkUnlocks();
+    samStat('technique',2); samXP(5); w.privateCount++; w._samTime=(w._samTime||0)+1; samLog(`Practiced ${actLabel(act)} with ${w.name}`); checkUnlocks();
     save(); render(); closeModal();
     return showResult(`Practice: ${actLabel(act)}`, `${w.name} decides Sam's education is a shared project. They practice ${actLabel(act).toLowerCase()} until both of them are confident in the technique. Sam takes notes afterward. She finds this hilarious.\n\n${actLabel(act)} skill +${Math.round(g)} · Lewdness + · Sam's Technique +2`, w.id, 'samact:'+act, {kind:'train', act, scene:'samact:'+act, forSam:true});
   }
@@ -137,13 +140,19 @@ function samPrivate(id, act, free){
   const w = findW(id); if(!w) return;
   if(!canSam(w,act)) return toast(`${w.name} isn't comfortable with that yet.`);
   if(free){ if(S.sam.energy<15) return toast('Sam is too tired.'); S.sam.energy -= 15; } else if(!useAP(30)) return;
+  const text = privateCore(w, act);
+  checkUnlocks(); save(); render(); closeModal();
+  showResult(`Private Time with ${w.name}`, text, w.id, 'samact:'+act, {kind:'private', act, scene:'samact:'+act, forSam:true});
+}
+// Shared effects of private time with Sam (used by the action, encounters, and reckless nights). Returns the story text.
+function privateCore(w, act){
   const stretch = samStance(w,act)==='ask';
   const fromLewd = !stretch && w.lewd >= w.trust;
   growAct(w, act, (4 + S.sam.technique/20) * (S.past==='massage'?1.3:1));
   if(stretch){ w.lewd = clamp(w.lewd + 4*lewdMult(w)); } else if(fromLewd) w.lewd = clamp(w.lewd + 2*lewdMult(w)); else gainTrust(w, 2);
   w.mood = clamp(w.mood + (stretch?1:6)*pm(w,'private') + (w.fav===act?6:0) - (w.dislike===act?6:0)); w.energy = clamp(w.energy-15, 0, maxEnergy(w));
   if(w.lovers===act) gainTrust(w, 2);
-  samStat('technique',3); samXP(5); w.privateCount++;
+  samStat('technique',3); samXP(5); w.privateCount++; w._samTime = (w._samTime||0) + 1;
   samLog(`Private time with ${w.name} [${actLabel(act)}]`);
   let text;
   if(S.sam.first){
@@ -162,8 +171,7 @@ function samPrivate(id, act, free){
   text += pNote(w,'private');
   if(stretch) text += `\n\n(This was a stretch for ${w.name}. She did it for Sam, and it's a little less of a stretch now.)`;
   text += `\n\n[${actLabel(act)}] skill + · ${stretch||fromLewd?'Lewdness':'Trust'} + · Sam's Technique +3`;
-  checkUnlocks(); save(); render(); closeModal();
-  showResult(`Private Time with ${w.name}`, text, w.id, 'samact:'+act, {kind:'private', act, scene:'samact:'+act, forSam:true});
+  return text;
 }
 function samGuild(){
   if(!useAP(20)) return;

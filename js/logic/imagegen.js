@@ -19,7 +19,16 @@ function findAny(id){
   if(!S) return null;
   return S.workers.find(w=>w.id===id) || S.candidates.find(w=>w.id===id) || NPCS[id] || LIB.find(w=>w.id===id) || null;
 }
-const imgKey = (w,scene,cloth) => `${w.id}|${scene}|${cloth}`;
+// Images are saved per scene + clothing state + what she's wearing, so each outfit gets its own pictures.
+function lookKey(w, cloth){
+  if(w.male || !w.outfit) return '';
+  const o = `o:${w.outfit}:${usesColor(getOutfit(w))?w.outColor:''}`;
+  const u = w.under==='none' ? 'u:none' : `u:${w.under}:${usesColor(getUnder(w))?w.underColor:''}`;
+  return cloth==='nude' ? '-' : cloth==='under' ? u : cloth==='partial' ? o+'+'+u : o;
+}
+const imgKey = (w,scene,cloth) => { const l = lookKey(w,cloth); return `${w.id}|${scene}|${cloth}` + (l?'|'+l:''); };
+const legacyKey = (w,scene,cloth) => `${w.id}|${scene}|${cloth}`;
+function imgCountFor(w, prefix){ let n=0; const p1 = `${w.id}|`; IMGKEYS.forEach(k=>{ if(k.startsWith(p1) && k.includes('|'+prefix)) n++; }); return n; }
 async function saveImage(key, url, w, scene){
   const small = await shrink(url, 768, 0.88);
   if(!small){ toast('Couldn\'t read that image to save it. Download it, then use ⬆ Upload.'); return false; }
@@ -30,16 +39,18 @@ async function saveImage(key, url, w, scene){
 async function showImg(boxId, id, scene, cloth, mode){
   const box = $('#'+boxId); const w = findAny(id); if(!box || !w) return;
   cloth = cloth || defaultCloth(w, scene);
-  const key = imgKey(w, scene, cloth);
+  let key = imgKey(w, scene, cloth);
   box.dataset.key = key;
   const prompt = buildPrompt(w, scene, cloth);
-  const saved = mode==='new' ? null : await imgGet(key);
+  let saved = mode==='new' ? null : await imgGet(key), legacy = false;
+  if(!saved && mode!=='new' && key!==legacyKey(w,scene,cloth)){ saved = await imgGet(legacyKey(w,scene,cloth)); if(saved){ legacy = true; } }
   if(box.dataset.key !== key) return;
+  const newKey = key; if(legacy) key = legacyKey(w,scene,cloth);
   box.innerHTML = '';
   const wrap = document.createElement('div'); wrap.className='imgbox'; box.appendChild(wrap);
   const A = `'${boxId}','${id}','${scene}','${cloth}'`;
-  if(saved){ wrap.innerHTML = `<img src="${saved}" alt="">`; }
-  else if(mode==='new' || mode==='auto'){ generateInto(wrap, w, key, prompt, scene, mode==='new', boxId, id, cloth); }
+  if(saved){ wrap.innerHTML = `<img src="${saved}" alt="">` + (legacy?`<div class="imgph small">Saved before outfits were tracked. Regenerate to save one for her current outfit.</div>`:''); }
+  else if(mode==='new' || mode==='auto'){ generateInto(wrap, w, newKey, prompt, scene, mode==='new', boxId, id, cloth); }
   else wrap.innerHTML = `<div class="imgph">No saved image for this scene yet.</div>`;
   const bar = document.createElement('div'); bar.className='row';
   bar.innerHTML = `<button class="sm" onclick="showImg(${A},'new')">🎨 ${saved?'Regenerate':'Generate'}</button>

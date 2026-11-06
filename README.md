@@ -25,7 +25,9 @@ optional text generation (`ai-text-plugin`).
    ai = {import:ai-text-plugin}
    ```
 2. HTML panel: paste the contents of `perchance/panel.html`.
-3. Push to `main`. GitHub Pages serves the files and the shim loads them on every page load.
+3. GitHub Pages must be on: repo **Settings → Pages → Build and deployment → Deploy from a branch → `main` / `(root)`**.
+   (Pages on a *private* repo needs a paid GitHub plan; on the free plan, make the repo public.)
+   After that, every push to `main` goes live within a minute or two, and the shim picks it up on the next page load.
 
 Saves, settings, scene snippets and generated images live in the browser's storage on the
 Perchance page, not in this repo.

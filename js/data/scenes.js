@@ -18,6 +18,12 @@ const SCENES = {
   shower:       {label:'Mishap: Caught bathing', snip:'mishap', comp:'startled, clutching a towel to her chest, deeply blushing, wet hair', setting:'steamy wooden washroom'},
   walkin:       {label:'Mishap: Walked in on Sam', snip:'mishap', comp:'standing frozen in a doorway, hand over her mouth, wide-eyed and blushing, peeking through her fingers', setting:'steamy wooden washroom'},
   sam_date:     {label:'With Sam: Date', sam:true, comp:'sharing a meal at a candlelit table, laughing together', setting:'small cozy fantasy restaurant'},
+  date_walk:    {label:'Date: Market walk', sam:true, comp:'strolling arm in arm through a busy market, laughing', setting:'colorful fantasy market street with stalls and lanterns'},
+  date_picnic:  {label:'Date: Picnic', sam:true, comp:'sitting together on a picnic blanket, sharing food, relaxed', setting:'grassy riverbank under a willow tree, golden afternoon light'},
+  date_dinner:  {label:'Date: Dinner', sam:true, comp:'sharing a candlelit dinner, leaning toward each other, smiling', setting:'small cozy fantasy restaurant, warm candlelight'},
+  date_theater: {label:'Date: Theater', sam:true, comp:'seated side by side in a theater box, watching the stage, her hand on his arm', setting:'ornate fantasy theater, red velvet seats, stage lights'},
+  date_shopping:{label:'Date: Shopping', sam:true, comp:'holding up a new purchase and showing it off happily', setting:'elegant fantasy boutique full of fabrics and jewelry'},
+  date_springs: {label:'Date: Hot springs', sam:true, snip:'bath', comp:'relaxing together in a steaming outdoor hot spring, flushed and content', setting:'mountain hot spring among rocks and snow-dusted pines'},
   sam_training: {label:'With Sam: Training', sam:true, comp:'practicing together, Sam taking notes in a notebook', setting:'practice room', house:true}
 };
 SCENES.job_companion = SCENES.companion;

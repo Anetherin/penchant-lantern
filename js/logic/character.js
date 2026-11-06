@@ -117,6 +117,7 @@ function ensureWorker(w){
   if(w.privateCount===undefined) w.privateCount = 0;
   if(w.dates===undefined) w.dates = 0;
   if(w.autoRest===undefined) w.autoRest = true;
+  if(w.lust===undefined) w.lust = clamp(Math.round(30 + w.lewd*0.4 + ri(-10,10)));
   if(JOBS[w.job]===undefined) w.job = (w.job==='intimate'||w.job==='specialty') ? 'courtesan' : 'rest';
   return w;
 }
@@ -179,3 +180,10 @@ function makeNamed(key, asPartner){
   return w;
 }
 const isHired = key => S && (S.workers.some(w=>w.key===key) || S.candidates.some(w=>w.key===key));
+
+// Lust: her current appetite. It builds every week (faster for lewder ladies) and is spent by
+// services and time with Sam. Very high lust can lead to reckless choices; very low lust means
+// she isn't in the mood for the heavier services.
+const LUST_LOW = 20, LUST_HIGH = 85;
+const notInMood = (w, act) => act && w.lust < LUST_LOW && ((actById(act)||{}).energy||10) >= 9;
+function lustLabel(w){ return w.lust>=LUST_HIGH ? 'restless' : w.lust>=60 ? 'eager' : w.lust<LUST_LOW ? 'not in the mood' : 'content'; }

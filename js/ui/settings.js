@@ -22,10 +22,11 @@ function viewSettings(){
     <div class="row"><input id="na_label" placeholder="Label"><input id="na_th" type="number" placeholder="Lewdness line (e.g. 65)"><input id="na_price" type="number" placeholder="Price (e.g. 130)"><button onclick="addAct()">Add category</button></div></section>
   <section class="card"><h2>AI Text</h2><p class="muted">Optional. Uses Perchance's text plugin to write scenes for reports, private time and training, and backstories for generic characters. Only backstories are kept; scenes are written on the spot. Image prompts stay programmatic. Plugin: ${getTextPlugin()?'<span class="good">connected</span>':'<span class="warn">not connected (add <code>ai = {import:ai-text-plugin}</code> to the lists panel)</span>'}</p>
     <div class="row"><label class="chk"><input type="checkbox" id="ai_on" ${SET.ai.on?'checked':''}> Enable AI text buttons (✨)</label>
-      <label class="chk"><input type="checkbox" id="ai_auto" ${SET.ai.auto?'checked':''}> Write automatically (private time, training, new hires' backstories)</label></div>
+      <label class="chk"><input type="checkbox" id="ai_auto" ${SET.ai.auto?'checked':''}> Write scenes automatically (private time, training, encounters, date invitations)</label>
+      <label class="chk"><input type="checkbox" id="ai_bs" ${SET.ai.autoBackstory!==false?'checked':''}> Write backstories for generic characters automatically</label></div>
     <label class="muted" style="display:block;margin:6px 0">Style guidance <span class="muted">(inserted as {guidance}: tone, length, how descriptive, etc.)</span><textarea id="ai_guid">${esc(SET.ai.guidance||'')}</textarea></label>
     ${Object.keys(DEFAULT_AI_TPL).map(k=>`<label class="muted" style="display:block;margin:6px 0">Template: <b>${k}</b> <button class="sm" onclick="$('#ai_t_${k}').value=DEFAULT_AI_TPL['${k}']">Reset</button><textarea id="ai_t_${k}" style="min-height:90px">${esc(aiTpl(k))}</textarea></label>`).join('')}
-    <p class="muted">Placeholders: {name} {race} {age} {appearance} {clothing} {outfit} {personality} {traits} {trust} {lewd} {mood} {service} {stance} {client} {setting} {house} {relationship} {guidance} {hook} {backstory}</p>
+    <p class="muted">Placeholders: {name} {race} {age} {appearance} {clothing} {outfit} {personality} {traits} {trust} {lewd} {mood} {service} {stance} {client} {setting} {house} {relationship} {guidance} {hook} {backstory} {date} {situation} {lust}</p>
     <div class="row"><button class="primary" onclick="saveAiUI()">Save AI settings</button></div></section>
   <section class="card"><h2>Images</h2><p class="muted">Generated and uploaded images live in this browser. Export them to back up or move them to another browser.</p>
     <div class="row"><button onclick="exportImages()">⬇ Export images</button><button onclick="importImages()">⬆ Import images</button><button onclick="cleanImages()">Clean up unused images</button></div></section>
@@ -37,7 +38,7 @@ function saveSettingsUI(){
   SET.autoPortrait = $('#s_auto').checked; SET.libraryInPool = $('#s_lib').checked; saveSettings(); toast('Settings saved.');
 }
 function saveAiUI(){
-  SET.ai.on = $('#ai_on').checked; SET.ai.auto = $('#ai_auto').checked; SET.ai.guidance = $('#ai_guid').value;
+  SET.ai.on = $('#ai_on').checked; SET.ai.auto = $('#ai_auto').checked; SET.ai.autoBackstory = $('#ai_bs').checked; SET.ai.guidance = $('#ai_guid').value;
   Object.keys(DEFAULT_AI_TPL).forEach(k=>{ const v = $('#ai_t_'+k).value; SET.ai.tpl[k] = (v.trim()===DEFAULT_AI_TPL[k]) ? '' : v; });
   saveSettings(); toast('AI settings saved.'); render();
 }

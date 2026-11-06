@@ -11,7 +11,7 @@ function ageLook(w){
 }
 function raceLook(w){ if(w.race==='beastkin'){ const s=w.sub||'fox'; return `beastkin woman with ${s} ears and a ${s} tail`; } return (RACES[w.race]||RACES.human).look; }
 function clothText(w, cloth, scene){
-  if((scene==='bath'||scene==='shower') && cloth==='dressed') return 'wrapped only in a white towel';
+  if((scene==='bath'||scene==='shower'||scene==='date_springs') && cloth==='dressed') return 'wrapped only in a white towel';
   const T = Object.assign({}, DEFAULT_CLOTH_TEXT, Object.fromEntries(Object.entries(SET.clothText||{}).filter(([k,v])=>v)));
   let t = T[cloth];
   if(!t && cloth==='nude') t = T.partial;

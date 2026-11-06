@@ -46,7 +46,7 @@ function hire(id){
   delete c.signing; c.job='rest'; c.contract=12; c.keep=false; c.seen={}; c.house = curH().id;
   S.workers.push(c); checkUnlocks(true); samXP(3);
   note(`${c.name} joins ${curH().name}.`); save(); render();
-  if(SET.ai.on && SET.ai.auto && !c.named && !c.aiBackstory){ c.aiBackstory = true; const tmp = document.createElement('div'); tmp.id='aiTmp'; tmp.style.display='none'; document.body.appendChild(tmp); aiBackstory('aiTmp', c.id).then(()=>tmp.remove()); }
+  if(SET.ai.on && SET.ai.autoBackstory!==false && !c.named && !c.aiBackstory){ c.aiBackstory = true; const tmp = document.createElement('div'); tmp.id='aiTmp'; tmp.style.display='none'; document.body.appendChild(tmp); aiBackstory('aiTmp', c.id).then(()=>tmp.remove()); }
 }
 function dismiss(id){
   const w = findW(id); if(!w) return;

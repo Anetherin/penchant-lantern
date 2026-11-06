@@ -35,7 +35,7 @@ const KEY_SAVE='gilded_lantern_save_v1', KEY_SET='gilded_lantern_settings_v1', K
 const _ss = store.get(KEY_SET) || {};
 let SET = Object.assign({}, DEFAULT_SETTINGS, _ss);
 SET.snippets = Object.assign({}, _ss.snippets||{}); SET.clothText = Object.assign({}, _ss.clothText||{}); SET.customActs = (_ss.customActs||[]).slice();
-SET.ai = Object.assign({on:false, auto:false, guidance:''}, _ss.ai||{}); SET.ai.tpl = Object.assign({}, (_ss.ai&&_ss.ai.tpl)||{});
+SET.ai = Object.assign({}, DEFAULT_SETTINGS.ai, _ss.ai||{}); SET.ai.tpl = Object.assign({}, (_ss.ai&&_ss.ai.tpl)||{});
 let LIB = store.get(KEY_LIB) || [];
 let S = null;
 let TAB='house', SHEET=null, MODAL_LOCK=false, CDRAFT=null, EDIT=null, EVQ=[], CUR_EV=null, ROSTER_FILTER='cur', SETUP=null;
@@ -47,8 +47,10 @@ function idbOpen(){ return new Promise(res=>{ try{ const r = indexedDB.open('gil
   r.onsuccess = ()=>{ DB=r.result; res(DB); }; r.onerror = ()=>res(null); }catch(e){ res(null); } }); }
 function idbReq(st, mode, fn){ return new Promise(res=>{ if(!DB) return res(null); try{ const tx=DB.transaction(st,mode); const q=fn(tx.objectStore(st)); tx.oncomplete=()=>res(q?q.result:null); tx.onerror=()=>res(null); tx.onabort=()=>res(null); }catch(e){ res(null); } }); }
 const imgGet = k => idbReq('imgs','readonly',s=>s.get(k));
-const imgPut = (k,v) => idbReq('imgs','readwrite',s=>s.put(v,k));
-const imgDel = k => idbReq('imgs','readwrite',s=>s.delete(k));
+let IMGKEYS = new Set();
+const imgPut = (k,v) => { IMGKEYS.add(k); return idbReq('imgs','readwrite',s=>s.put(v,k)); };
+const imgDel = k => { IMGKEYS.delete(k); return idbReq('imgs','readwrite',s=>s.delete(k)); };
+const imgKeysAll = () => idbReq('imgs','readonly',s=>s.getAllKeys());
 function idbAll(st){ return new Promise(res=>{ const out={}; if(!DB) return res(out); try{ const c=DB.transaction(st,'readonly').objectStore(st).openCursor(); c.onsuccess=()=>{ const cur=c.result; if(cur){ out[cur.key]=cur.value; cur.continue(); } else res(out); }; c.onerror=()=>res(out); }catch(e){ res(out); } }); }
 function shrink(src, max, q){ return new Promise(res=>{ const im=new Image(); im.crossOrigin='anonymous';
   im.onload=()=>{ const s=Math.min(1, max/Math.max(im.width,im.height)); const c=document.createElement('canvas'); c.width=Math.round(im.width*s); c.height=Math.round(im.height*s); c.getContext('2d').drawImage(im,0,0,c.width,c.height); try{ res(c.toDataURL('image/jpeg',q)); }catch(e){ res(src.startsWith('data:')?src:null); } };

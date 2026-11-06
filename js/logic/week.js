@@ -49,9 +49,10 @@ function simHouse(h, R){
     let act = null, outcome = 'comp';
     if(want){
       pr.props++;
-      if(w.menu.includes(want) && canClient(w,want)){ act = want; outcome='yes'; pr.acc++; }
+      if(w.menu.includes(want) && canClient(w,want) && !notInMood(w,want)){ act = want; outcome='yes'; pr.acc++; }
+      else if(notInMood(w,want)){ pr.notMood = (pr.notMood||0)+1; outcome='no'; }
       else {
-        const alt = w.menu.filter(id=>canClient(w,id) && actById(id) && actById(id).price<=actById(want).price).sort((a,b)=>actById(b).price-actById(a).price)[0];
+        const alt = w.menu.filter(id=>canClient(w,id) && !notInMood(w,id) && actById(id) && actById(id).price<=actById(want).price).sort((a,b)=>actById(b).price-actById(a).price)[0];
         if(alt && Math.random()<0.55){ act = alt; outcome='alt'; pr.acc++; } else outcome='no';
       }
     }
@@ -89,7 +90,7 @@ function simHouse(h, R){
       const n = Math.round(visitors * PROP_RATE[j] * (0.4 + appeal(w)/100) * ob(w,'propose') * rnd(0.6,1.4));
       for(let i=0;i<n;i++){
         const cls = pickClass(h), want = pickWant(cls); pr.props++;
-        const ok = w.offDuty && w.menu.includes(want) && canClient(w,want) && w.energy - actCost(w,want) > maxEnergy(w)*0.2;
+        const ok = w.offDuty && w.menu.includes(want) && canClient(w,want) && !notInMood(w,want) && w.energy - actCost(w,want) > maxEnergy(w)*0.2;
         if(ok){
           const inc = Math.round(actById(want).price * P.mult * 0.8 * (0.6+qualityOf(w,want)*0.9) * cls.mult);
           pr.acc++; pr.acts[want]=(pr.acts[want]||0)+1; pr.earned+=inc; hr.income+=inc; R.led.offduty+=inc;
@@ -173,6 +174,11 @@ function endWeek(){
       if(w.job!=='rest' && w.energy < maxEnergy(w)*0.35){ w.prevJob = w.job; w.job = 'rest'; log(`😴 ${w.name} is worn out and will rest next week.`); }
       else if(w.job==='rest' && w.prevJob && w.energy >= maxEnergy(w)*0.85){ const pj = w.prevJob; delete w.prevJob; if(!canDo(w,pj)){ w.job = pj; log(`💪 ${w.name} is rested and back to work as ${JOBS[pj].label}.`); } }
     }
+    // lust builds up, and is spent by services and time with Sam
+    const nActs = Object.values(pr.acts).reduce((a,b)=>a+b,0);
+    w.lust = clamp(w.lust + 6 + w.lewd/12 + ((has(w,'Eager')||has(w,'Exhibitionist'))?3:0) + (w.race==='demon'?4:0) + (w.job==='rest'?3:0)
+      - nActs*3 - (pr.acts[w.fav]||0)*2 - (w._samTime||0)*12);
+    w._samTime = 0; pr.lust = Math.round(w.lust);
     pr.e1 = Math.round(w.energy); pr.m1 = Math.round(w.mood);
     w.earnedLast = pr.earned;
     if(w.mood<15 && !has(w,'Loyal') && !isFree(w) && !w.locked && !has(w,'Devoted')){ w.unhappy=(w.unhappy||0)+1; if(w.unhappy>=2) leaving.push(w); else log(`😠 ${w.name} is miserable. If nothing changes, she'll leave.`); }
@@ -201,6 +207,7 @@ function endWeek(){
     const need = STORY_REP[h.story.beat]||0, gap = h.story.beat===0 ? 2 : 3;
     if(S.week - Math.max(h.since||1, h.story.wk||0) >= gap && h.rep>=need){ const b = h.story.beat; EVQ.push(()=>{ if(h.story.beat!==b) return null; const ev = st.beats[b](h); if(ev) ev.title = `${st.title} (${b+1}/${st.beats.length})`; return ev; }); }
   });
+  queueEncounters();
   renew.forEach(w=>EVQ.push(()=>evRenew(w)));
   if(Math.random()<0.6){ const ev = pickRandomEvent(); if(ev) EVQ.push(ev); }
   if(S.flags.poachCD>0) S.flags.poachCD--;
@@ -246,7 +253,7 @@ function showReport(R, fromWeek){
       const svc = Object.entries(p.acts).map(([id,n])=>`<span class="tag act">${esc(actLabel(id))} ×${n}</span>`).join('') + (p.comp?`<span class="tag">Companionship ×${p.comp}</span>`:'');
       const hls = R.hl.map((h,i)=>({h,i})).filter(x=>x.h.wid===p.id).map(({h,i})=>`<div class="hl">${esc(h.text)} ${findAny(p.id)?`<button class="sm" onclick="showImg('hl${i}','${p.id}','${h.scene}',null,'auto')">🎨</button>${aiBtn('hla'+i,'scene',p.id,{act:h.act,cls:h.cls,scene:h.scene})}`:''}<div id="hla${i}"></div><div id="hl${i}" class="hlimg"></div></div>`).join('');
       return `<div class="rep-w"><div class="head">${w.design?avatarHTML(w):''}<div><b>${esc(p.name)}</b> · ${JOBS[p.job]?JOBS[p.job].label:p.job}${p.earned?` · earned <b>${fmt(p.earned)}</b>`:''}
-        <div class="muted">${p.served?`${p.served} client${p.served>1?'s':''} · `:''}${p.props?`propositioned ${p.props}× · accepted ${p.acc} · `:''}${p.reluct?`<span class="pink">${p.reluct} as a favor</span> · `:''}Energy ${p.e0}→${p.e1} · Mood ${p.m0}→${p.m1}${p.slept?` · slept: ${p.slept}`:''}</div>
+        <div class="muted">${p.served?`${p.served} client${p.served>1?'s':''} · `:''}${p.props?`propositioned ${p.props}× · accepted ${p.acc} · `:''}${p.reluct?`<span class="pink">${p.reluct} as a favor</span> · `:''}${p.notMood?`<span class="warn">not in the mood ×${p.notMood}</span> · `:''}Energy ${p.e0}→${p.e1} · Mood ${p.m0}→${p.m1}${p.slept?` · slept: ${p.slept}`:''}${p.lust!==undefined?` · lust ${p.lust}`:''}</div>
         <div>${svc}</div></div></div>${hls}</div>`;
     }).join('');
   }).join('');

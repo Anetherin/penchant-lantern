@@ -97,4 +97,5 @@ function openCand(id){
     <div class="status"><h3>[ STATUS ] ${esc(c.name)}</h3><div class="muted">${raceLabel(c)} · Age ${c.age} · ${esc(c.personality)} · Style: ${c.style}</div><p class="story" id="bs_${c.id}">${esc(c.backstory)}</p>${SET.ai.on&&!c.named?`<button class="sm" onclick="aiBackstory('bs_${c.id}','${c.id}')">✨ Write a backstory</button>`:''}<div>${traitTags(c)}</div>
     <div class="muted">Wears: ${esc(getOutfit(c).label)}</div></div></div>`, {wide:true});
   showImg('sheetImg', c.id, 'portrait', 'dressed', SET.autoPortrait ? 'auto' : undefined);
+  if(SET.ai.on && SET.ai.autoBackstory!==false && !c.named && !c.aiBackstory && getTextPlugin()){ c.aiBackstory = true; aiBackstory('bs_'+c.id, c.id); }
 }

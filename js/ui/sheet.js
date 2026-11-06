@@ -5,7 +5,7 @@ function sheetScenes(w){
   if(SCENES['job_'+w.job] && w.job!=='rest' && w.job!=='companion') out.push('job_'+w.job);
   out.push('companion');
   if(houseOf(w).up.bath) out.push('bath');
-  out.push('sam_date','sam_training','shower','walkin');
+  out.push('sam_date', ...Object.keys(DATES).map(k=>'date_'+k), 'sam_training','shower','walkin');
   getActs().forEach(a=>{ if(canClient(w,a.id)) out.push('act:'+a.id); });
   getActs().forEach(a=>{ if(canSam(w,a.id)) out.push('samact:'+a.id); });
   return out;
@@ -49,7 +49,7 @@ function refreshSheetInfo(){
     <p class="story" style="margin:6px 0" id="bs_${w.id}">${esc(w.backstory)}</p>${SET.ai.on&&!w.named?`<button class="sm" onclick="if(confirm('Replace her backstory with a new AI-written one?'))aiBackstory('bs_${w.id}','${w.id}')">✨ Rewrite backstory</button>`:''}<div>${traitTags(w)}</div>${arcTxt}
     <div class="sgrid" style="margin-top:8px">${STAT_KEYS.map(s=>`<div><span>${s.toUpperCase()}</span><b>${sv(w,w.stats[s],true)}</b></div>`).join('')}</div>
     <div class="sgrid" style="margin-top:6px">${TECH_KEYS.map(s=>`<div><span>${TECH_LABEL[s].toUpperCase()}</span><b>${sv(w,w.tech[s],true)}</b></div>`).join('')}<div><span>POPULARITY</span><b>${Math.round(w.popularity)}</b></div></div>
-    <div style="margin-top:8px">${bar('Energy',w.energy,maxEnergy(w),'e')}${bar('Mood',w.mood,100,'m')}${bar('Trust',w.trust,100,'t')}${k?bar('Lewdness',w.lewd,100,'l'):'<div class="muted">Lewdness: ? (Appraisal Lv 2 or more trust)</div>'}${bar('Health',w.health,100,'h')}</div>
+    <div style="margin-top:8px">${bar('Energy',w.energy,maxEnergy(w),'e')}${bar('Mood',w.mood,100,'m')}${bar('Trust',w.trust,100,'t')}${k?bar('Lewdness',w.lewd,100,'l'):'<div class="muted">Lewdness: ? (Appraisal Lv 2 or more trust)</div>'}${k?bar('Lust ('+lustLabel(w)+')',w.lust,100,'p'):''}${bar('Health',w.health,100,'h')}</div>
     <div class="muted" style="margin-top:6px">Race perk: <b>${RACE_PERK[w.race]?RACE_PERK[w.race].label:''}</b>: ${RACE_PERK[w.race]?RACE_PERK[w.race].desc:''}</div>
     <div class="muted">Comfortable up to: <b>${CLOTH.find(c=>c.id===cl).label}</b> with clients · <b>${CLOTH.find(c=>c.id===cs).label}</b> with Sam</div>
     ${persLine(w)}${(HOUSES[houseOf(w).id].minPop||0) > w.popularity ? `<div class="warn">⚠️ Below ${esc(houseOf(w).name)}'s standard (popularity ${HOUSES[houseOf(w).id].minPop}). Escort clients pay less and complain.</div>`:''}</div>

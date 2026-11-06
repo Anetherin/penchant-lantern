@@ -18,6 +18,7 @@ ${p?p.name+' is at his side. '+NAMED[p.key].partnerStory:''}</p>
 async function init(){
   await idbOpen();
   const th = await idbAll('thumbs'); THUMBS = th || {};
+  IMGKEYS = new Set((await imgKeysAll()) || []);
   S = store.get(KEY_SAVE);
   if(!S || !Array.isArray(S.workers)){ S = null; startSetup(); }
   else { migrate(S); save(); render(); }

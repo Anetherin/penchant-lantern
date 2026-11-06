@@ -81,6 +81,7 @@ table{border-collapse:collapse;width:100%;font-size:13px}td,th{border-bottom:1px
 .pick{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:10px;cursor:pointer}
 .pick:hover{border-color:var(--gold2)}
 .pick.sel{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold) inset}
+.bar.p span{background:#c0567a}
 </style>
 </head>
 <body>
@@ -129,13 +130,16 @@ const DEFAULT_SETTINGS = {
   negative: "child, minor, teen, loli, young-looking, school uniform, lowres, bad anatomy, extra fingers, watermark, text, signature",
   resolution: "512x768", autoPortrait: true, libraryInPool: true,
   snippets: {}, clothText: {}, customActs: [],
-  ai: {on:false, auto:false, guidance:'', tpl:{}}
+  ai: {on:true, auto:true, autoBackstory:true, guidance:'', tpl:{}}
 };
 // AI text templates (Perchance ai-text-plugin). {placeholders} are filled from the game. Edit in Settings → AI Text.
 const DEFAULT_AI_TPL = {
   scene: "Write a short scene (about 120 words, third person, past tense) for a fantasy isekai pleasure-house game. {name} is a {race} working at {house}: {appearance}. She is wearing {clothing}. Personality: {personality}. Her client: {client}. Service: {service}, which is {stance}. Setting: {setting}. {guidance} All characters are consenting adults. Output only the scene.",
   private: "Write a short scene (about 150 words, third person, past tense) for a fantasy isekai pleasure-house game. Sam Takahashi is a kind, slightly nerdy young man reincarnated from Japan who now runs {house}. {name} is a {race}: {appearance}. She is wearing {clothing}. Personality: {personality}. Their relationship: {relationship} (her trust in Sam: {trust}/100). They spend private time together: {service}, which for her is {stance}. Setting: {setting}. {guidance} Both are consenting adults. Output only the scene.",
   train: "Write a short scene (about 120 words, third person, past tense) for a fantasy isekai pleasure-house game. Sam Takahashi, a kind, nerdy young man from another world, helps {name} ({race}, {personality}) practice {service}. Their relationship: {relationship}. Setting: {setting}. Include Sam taking notes, which she finds funny. {guidance} Both are consenting adults. Output only the scene.",
+  proposition: "Write 2-4 sentences (third person, present tense, including her spoken words) for a fantasy isekai romance game: at the end of a date ({date}), {name} ({race}, {personality}) invites Sam Takahashi, the kind, nerdy otherworlder who runs {house}, into her room. Their relationship: {relationship}. Her mood is high and she's {lust}. {guidance} Both are consenting adults. Output only the passage.",
+  encounter: "Write a short scene (about 120 words, third person, past tense) for a fantasy isekai pleasure-house game. {situation} {name} is a {race}: {appearance}, wearing {clothing}. Personality: {personality}. Relationship with Sam Takahashi (a kind, nerdy otherworlder who runs {house}): {relationship}. What happens: {service}, which for her is {stance}. {guidance} Both are consenting adults. Output only the scene.",
+  reckless: "Write a short scene (about 120 words, third person, past tense) for a fantasy isekai pleasure-house game. {name} ({race}, {personality}), who works at {house}, has been {lust} for days and finally acts on it impulsively: {situation} Appearance: {appearance}, wearing {clothing}. {guidance} All characters are consenting adults. Output only the scene.",
   backstory: "Write a 3-4 sentence backstory for {name}, a {age}-year-old {race} woman in a fantasy world who has just taken a job at a pleasure house in the frontier town of Hollowmere. Appearance: {appearance}. Personality: {personality}. Traits: {traits}. Why she came: {hook}. Third person, no lists, no title. Output only the backstory."
 };
 const SAM_DESC = "a young adult Japanese man in his mid-twenties, short dark brown hair, thin build, kind and slightly awkward expression, grey hoodie under a simple traveler's cloak";
@@ -178,7 +182,7 @@ const KEY_SAVE='gilded_lantern_save_v1', KEY_SET='gilded_lantern_settings_v1', K
 const _ss = store.get(KEY_SET) || {};
 let SET = Object.assign({}, DEFAULT_SETTINGS, _ss);
 SET.snippets = Object.assign({}, _ss.snippets||{}); SET.clothText = Object.assign({}, _ss.clothText||{}); SET.customActs = (_ss.customActs||[]).slice();
-SET.ai = Object.assign({on:false, auto:false, guidance:''}, _ss.ai||{}); SET.ai.tpl = Object.assign({}, (_ss.ai&&_ss.ai.tpl)||{});
+SET.ai = Object.assign({}, DEFAULT_SETTINGS.ai, _ss.ai||{}); SET.ai.tpl = Object.assign({}, (_ss.ai&&_ss.ai.tpl)||{});
 let LIB = store.get(KEY_LIB) || [];
 let S = null;
 let TAB='house', SHEET=null, MODAL_LOCK=false, CDRAFT=null, EDIT=null, EVQ=[], CUR_EV=null, ROSTER_FILTER='cur', SETUP=null;
@@ -190,8 +194,10 @@ function idbOpen(){ return new Promise(res=>{ try{ const r = indexedDB.open('gil
   r.onsuccess = ()=>{ DB=r.result; res(DB); }; r.onerror = ()=>res(null); }catch(e){ res(null); } }); }
 function idbReq(st, mode, fn){ return new Promise(res=>{ if(!DB) return res(null); try{ const tx=DB.transaction(st,mode); const q=fn(tx.objectStore(st)); tx.oncomplete=()=>res(q?q.result:null); tx.onerror=()=>res(null); tx.onabort=()=>res(null); }catch(e){ res(null); } }); }
 const imgGet = k => idbReq('imgs','readonly',s=>s.get(k));
-const imgPut = (k,v) => idbReq('imgs','readwrite',s=>s.put(v,k));
-const imgDel = k => idbReq('imgs','readwrite',s=>s.delete(k));
+let IMGKEYS = new Set();
+const imgPut = (k,v) => { IMGKEYS.add(k); return idbReq('imgs','readwrite',s=>s.put(v,k)); };
+const imgDel = k => { IMGKEYS.delete(k); return idbReq('imgs','readwrite',s=>s.delete(k)); };
+const imgKeysAll = () => idbReq('imgs','readonly',s=>s.getAllKeys());
 function idbAll(st){ return new Promise(res=>{ const out={}; if(!DB) return res(out); try{ const c=DB.transaction(st,'readonly').objectStore(st).openCursor(); c.onsuccess=()=>{ const cur=c.result; if(cur){ out[cur.key]=cur.value; cur.continue(); } else res(out); }; c.onerror=()=>res(out); }catch(e){ res(out); } }); }
 function shrink(src, max, q){ return new Promise(res=>{ const im=new Image(); im.crossOrigin='anonymous';
   im.onload=()=>{ const s=Math.min(1, max/Math.max(im.width,im.height)); const c=document.createElement('canvas'); c.width=Math.round(im.width*s); c.height=Math.round(im.height*s); c.getContext('2d').drawImage(im,0,0,c.width,c.height); try{ res(c.toDataURL('image/jpeg',q)); }catch(e){ res(src.startsWith('data:')?src:null); } };
@@ -492,6 +498,12 @@ const SCENES = {
   shower:       {label:'Mishap: Caught bathing', snip:'mishap', comp:'startled, clutching a towel to her chest, deeply blushing, wet hair', setting:'steamy wooden washroom'},
   walkin:       {label:'Mishap: Walked in on Sam', snip:'mishap', comp:'standing frozen in a doorway, hand over her mouth, wide-eyed and blushing, peeking through her fingers', setting:'steamy wooden washroom'},
   sam_date:     {label:'With Sam: Date', sam:true, comp:'sharing a meal at a candlelit table, laughing together', setting:'small cozy fantasy restaurant'},
+  date_walk:    {label:'Date: Market walk', sam:true, comp:'strolling arm in arm through a busy market, laughing', setting:'colorful fantasy market street with stalls and lanterns'},
+  date_picnic:  {label:'Date: Picnic', sam:true, comp:'sitting together on a picnic blanket, sharing food, relaxed', setting:'grassy riverbank under a willow tree, golden afternoon light'},
+  date_dinner:  {label:'Date: Dinner', sam:true, comp:'sharing a candlelit dinner, leaning toward each other, smiling', setting:'small cozy fantasy restaurant, warm candlelight'},
+  date_theater: {label:'Date: Theater', sam:true, comp:'seated side by side in a theater box, watching the stage, her hand on his arm', setting:'ornate fantasy theater, red velvet seats, stage lights'},
+  date_shopping:{label:'Date: Shopping', sam:true, comp:'holding up a new purchase and showing it off happily', setting:'elegant fantasy boutique full of fabrics and jewelry'},
+  date_springs: {label:'Date: Hot springs', sam:true, snip:'bath', comp:'relaxing together in a steaming outdoor hot spring, flushed and content', setting:'mountain hot spring among rocks and snow-dusted pines'},
   sam_training: {label:'With Sam: Training', sam:true, comp:'practicing together, Sam taking notes in a notebook', setting:'practice room', house:true}
 };
 SCENES.job_companion = SCENES.companion;
@@ -748,6 +760,7 @@ function ensureWorker(w){
   if(w.privateCount===undefined) w.privateCount = 0;
   if(w.dates===undefined) w.dates = 0;
   if(w.autoRest===undefined) w.autoRest = true;
+  if(w.lust===undefined) w.lust = clamp(Math.round(30 + w.lewd*0.4 + ri(-10,10)));
   if(JOBS[w.job]===undefined) w.job = (w.job==='intimate'||w.job==='specialty') ? 'courtesan' : 'rest';
   return w;
 }
@@ -811,6 +824,13 @@ function makeNamed(key, asPartner){
 }
 const isHired = key => S && (S.workers.some(w=>w.key===key) || S.candidates.some(w=>w.key===key));
 
+// Lust: her current appetite. It builds every week (faster for lewder ladies) and is spent by
+// services and time with Sam. Very high lust can lead to reckless choices; very low lust means
+// she isn't in the mood for the heavier services.
+const LUST_LOW = 20, LUST_HIGH = 85;
+const notInMood = (w, act) => act && w.lust < LUST_LOW && ((actById(act)||{}).energy||10) >= 9;
+function lustLabel(w){ return w.lust>=LUST_HIGH ? 'restless' : w.lust>=60 ? 'eager' : w.lust<LUST_LOW ? 'not in the mood' : 'content'; }
+
 /* ---- js/logic/prompts.js ---- */
 'use strict';
 /* =====================================================================
@@ -825,7 +845,7 @@ function ageLook(w){
 }
 function raceLook(w){ if(w.race==='beastkin'){ const s=w.sub||'fox'; return `beastkin woman with ${s} ears and a ${s} tail`; } return (RACES[w.race]||RACES.human).look; }
 function clothText(w, cloth, scene){
-  if((scene==='bath'||scene==='shower') && cloth==='dressed') return 'wrapped only in a white towel';
+  if((scene==='bath'||scene==='shower'||scene==='date_springs') && cloth==='dressed') return 'wrapped only in a white towel';
   const T = Object.assign({}, DEFAULT_CLOTH_TEXT, Object.fromEntries(Object.entries(SET.clothText||{}).filter(([k,v])=>v)));
   let t = T[cloth];
   if(!t && cloth==='nude') t = T.partial;
@@ -874,7 +894,7 @@ function aiCtx(w, x={}){
     service: x.act ? actLabel(x.act) : (x.label || 'drinks and conversation'),
     stance: x.act ? ((x.forSam ? samStance(w,x.act) : clientStance(w,x.act))==='ask' ? 'a stretch for her: she does it because she trusts Sam, a little past her comfort zone' : 'something she genuinely enjoys') : 'easy and pleasant for her',
     client: x.cls ? pick(CLIENT_DESC[x.cls]) : 'a regular client', setting: sceneInfo(scene, w).setting,
-    house: S ? houseOf(w).name : 'the pleasure house', relationship: rel, guidance: SET.ai.guidance||'', hook: x.hook || pick(HOOKS), backstory: w.backstory||''
+    house: S ? houseOf(w).name : 'the pleasure house', relationship: rel, date: x.date||'a date', situation: x.situation||'', lust: lustLabel ? ({restless:'restless with desire', eager:'eager', content:'in a good mood', 'not in the mood':'calm'})[lustLabel(w)] : 'in a good mood', guidance: SET.ai.guidance||'', hook: x.hook || pick(HOOKS), backstory: w.backstory||''
   };
 }
 const fillTpl = (t, c) => t.replace(/\{(\w+)\}/g, (m,k)=> c[k]!==undefined ? String(c[k]) : m);
@@ -926,7 +946,16 @@ function findAny(id){
   if(!S) return null;
   return S.workers.find(w=>w.id===id) || S.candidates.find(w=>w.id===id) || NPCS[id] || LIB.find(w=>w.id===id) || null;
 }
-const imgKey = (w,scene,cloth) => `${w.id}|${scene}|${cloth}`;
+// Images are saved per scene + clothing state + what she's wearing, so each outfit gets its own pictures.
+function lookKey(w, cloth){
+  if(w.male || !w.outfit) return '';
+  const o = `o:${w.outfit}:${usesColor(getOutfit(w))?w.outColor:''}`;
+  const u = w.under==='none' ? 'u:none' : `u:${w.under}:${usesColor(getUnder(w))?w.underColor:''}`;
+  return cloth==='nude' ? '-' : cloth==='under' ? u : cloth==='partial' ? o+'+'+u : o;
+}
+const imgKey = (w,scene,cloth) => { const l = lookKey(w,cloth); return `${w.id}|${scene}|${cloth}` + (l?'|'+l:''); };
+const legacyKey = (w,scene,cloth) => `${w.id}|${scene}|${cloth}`;
+function imgCountFor(w, prefix){ let n=0; const p1 = `${w.id}|`; IMGKEYS.forEach(k=>{ if(k.startsWith(p1) && k.includes('|'+prefix)) n++; }); return n; }
 async function saveImage(key, url, w, scene){
   const small = await shrink(url, 768, 0.88);
   if(!small){ toast('Couldn\'t read that image to save it. Download it, then use ⬆ Upload.'); return false; }
@@ -937,16 +966,18 @@ async function saveImage(key, url, w, scene){
 async function showImg(boxId, id, scene, cloth, mode){
   const box = $('#'+boxId); const w = findAny(id); if(!box || !w) return;
   cloth = cloth || defaultCloth(w, scene);
-  const key = imgKey(w, scene, cloth);
+  let key = imgKey(w, scene, cloth);
   box.dataset.key = key;
   const prompt = buildPrompt(w, scene, cloth);
-  const saved = mode==='new' ? null : await imgGet(key);
+  let saved = mode==='new' ? null : await imgGet(key), legacy = false;
+  if(!saved && mode!=='new' && key!==legacyKey(w,scene,cloth)){ saved = await imgGet(legacyKey(w,scene,cloth)); if(saved){ legacy = true; } }
   if(box.dataset.key !== key) return;
+  const newKey = key; if(legacy) key = legacyKey(w,scene,cloth);
   box.innerHTML = '';
   const wrap = document.createElement('div'); wrap.className='imgbox'; box.appendChild(wrap);
   const A = `'${boxId}','${id}','${scene}','${cloth}'`;
-  if(saved){ wrap.innerHTML = `<img src="${saved}" alt="">`; }
-  else if(mode==='new' || mode==='auto'){ generateInto(wrap, w, key, prompt, scene, mode==='new', boxId, id, cloth); }
+  if(saved){ wrap.innerHTML = `<img src="${saved}" alt="">` + (legacy?`<div class="imgph small">Saved before outfits were tracked. Regenerate to save one for her current outfit.</div>`:''); }
+  else if(mode==='new' || mode==='auto'){ generateInto(wrap, w, newKey, prompt, scene, mode==='new', boxId, id, cloth); }
   else wrap.innerHTML = `<div class="imgph">No saved image for this scene yet.</div>`;
   const bar = document.createElement('div'); bar.className='row';
   bar.innerHTML = `<button class="sm" onclick="showImg(${A},'new')">🎨 ${saved?'Regenerate':'Generate'}</button>
@@ -1053,7 +1084,7 @@ function migrate(s){
     (s.workers||[]).concat(s.candidates||[]).forEach(w=>{ if(w.key && ['kaede','yui','nerys','elowen','adelheid','marisol','natsuki','kanako','mio'].includes(w.key)) w.arc = [0,1,3,6][w.arc||0] ?? 0; });
     s.houses.forEach(h=>{ if(h.story) h.story.beat = [0,2,3,4][h.story.beat] ?? h.story.beat; });
   }
-  s.v = 7; s.flags = Object.assign({partnerCD:3}, s.flags||{});
+  s.v = 8; s.flags = Object.assign({partnerCD:3}, s.flags||{});
   s.sam.lvl = s.sam.lvl || 1; s.sam.xp = s.sam.xp || 0;
   s.houses.forEach(h=>{ h.since = h.since || 1; h.story = h.story || {beat:0,wk:0}; h.bonus = h.bonus || {};
     if(h.quarters===undefined){ h.quarters = Math.max(HOUSES[h.id].quarters, Math.ceil((s.workers||[]).filter(w=>w.house===h.id).length/2)); h.beds = HOUSES[h.id].beds; }
@@ -1157,7 +1188,7 @@ function hire(id){
   delete c.signing; c.job='rest'; c.contract=12; c.keep=false; c.seen={}; c.house = curH().id;
   S.workers.push(c); checkUnlocks(true); samXP(3);
   note(`${c.name} joins ${curH().name}.`); save(); render();
-  if(SET.ai.on && SET.ai.auto && !c.named && !c.aiBackstory){ c.aiBackstory = true; const tmp = document.createElement('div'); tmp.id='aiTmp'; tmp.style.display='none'; document.body.appendChild(tmp); aiBackstory('aiTmp', c.id).then(()=>tmp.remove()); }
+  if(SET.ai.on && SET.ai.autoBackstory!==false && !c.named && !c.aiBackstory){ c.aiBackstory = true; const tmp = document.createElement('div'); tmp.id='aiTmp'; tmp.style.display='none'; document.body.appendChild(tmp); aiBackstory('aiTmp', c.id).then(()=>tmp.remove()); }
 }
 function dismiss(id){
   const w = findW(id); if(!w) return;
@@ -1257,15 +1288,17 @@ function openWardrobe(id){
     else if(o.owner) act = `<span class="muted">${spUnlocked(w)?'':'🔒 trust 60'}</span>`;
     else act = `<button class="sm" onclick="buyOutfit('${id}','${k}')" ${S.gold<o.cost?'disabled':''}>Buy ${fmt(o.cost)}</button>`;
     const tag = o.owner ? (k.startsWith('sig_')?' <span class="tag">Signature</span>':' <span class="tag">Special</span>') : (BASE_OUTFITS[k]?' <span class="muted">(basic)</span>':'');
-    return `<tr><td>${esc(o.label)}${tag}${o.lewd?` <span class="muted">(lewd ${o.lewd}+)</span>`:''}</td><td>${o.style===w.style?'<b class="good">'+o.style+'</b>':o.style}</td><td class="muted">${bonusText(o.bonus)}</td><td>${act}</td></tr>`;
+    const n = imgCountFor(w, `o:${k}:`);
+    return `<tr><td>${esc(o.label)}${tag}${o.lewd?` <span class="muted">(lewd ${o.lewd}+)</span>`:''}${n?` <span class="tag hid" title="Saved images with this outfit">📷 ${n}</span>`:''}</td><td>${o.style===w.style?'<b class="good">'+o.style+'</b>':o.style}</td><td class="muted">${bonusText(o.bonus)}</td><td>${act}</td></tr>`;
   }).join('') + (w.customOutfit ? `<tr><td>Her own outfit <span class="muted">(custom)</span></td><td>—</td><td class="muted">—</td><td>${w.outfit==='custom'?'<span class="good">Wearing</span>':`<button class="sm" onclick="equipOutfit('${id}','custom')">Wear</button>`}</td></tr>` : '');
   const urows = Object.entries(UNDER).map(([k,u])=>{
     const owned = w.ownedUnder.includes(k), wearing = w.under===k, ok = underOK(w,k);
     const act = wearing ? '<span class="good">Wearing</span>' : `<button class="sm" onclick="buyUnder('${id}','${k}')" ${(!owned && S.gold<u.cost) || !ok ?'disabled':''} ${ok?'':'title="Not comfortable yet"'}>${owned||!u.cost?'Wear':'Buy '+fmt(u.cost)}</button>`;
-    return `<tr><td>${esc(u.label)}${u.lewd?` <span class="muted">(lewd ${u.lewd}+)</span>`:''}</td><td>${u.style===w.style?'<b class="good">'+u.style+'</b>':u.style}</td><td class="muted">${bonusText(u.bonus)}</td><td>${act}</td></tr>`;
+    const n = imgCountFor(w, `u:${k}`);
+    return `<tr><td>${esc(u.label)}${u.lewd?` <span class="muted">(lewd ${u.lewd}+)</span>`:''}${n?` <span class="tag hid" title="Saved images with these undergarments">📷 ${n}</span>`:''}</td><td>${u.style===w.style?'<b class="good">'+u.style+'</b>':u.style}</td><td class="muted">${bonusText(u.bonus)}</td><td>${act}</td></tr>`;
   }).join('');
   modal(`<h2>${esc(w.name)}'s Wardrobe</h2>
-    <p class="muted">Style: <b>${w.style}</b> · Favorite color: ${sw(w.favColor)}<b>${w.favColor}</b>. Wearing her style and her favorite color keeps her happier each week.</p>
+    <p class="muted">Style: <b>${w.style}</b> · Favorite color: ${sw(w.favColor)}<b>${w.favColor}</b>. Wearing her style and her favorite color keeps her happier each week. 📷 = saved images with that item (images are saved per outfit and color).</p>
     <div class="row"><b>Outfit:</b> ${esc(cur.label)} ${usesColor(cur)?`· Color ${colorSel('outColor', w.outColor)}`:'<span class="muted">(fixed colors)</span>'}</div>
     <div class="row"><b>Undergarments:</b> ${esc(cu.label)} ${w.under!=='none'&&usesColor(cu)?`· Color ${colorSel('underColor', w.underColor)}`:''}</div>
     <h3>Outfits</h3><table><tr><th>Outfit</th><th>Style</th><th>Bonuses</th><th></th></tr>${rows}</table>
@@ -1327,6 +1360,8 @@ function samWork(kind){
 function samRest(){
   if(S.ap<=0) return toast('No actions left this week.');
   S.ap--; S.sam.energy = Math.min(100, S.sam.energy+50); samLog('Rested'); save(); render();
+  const v = restVisitor();
+  if(v) return restEncounter(v);
   showResult('Nap Time', 'Sam takes a long nap. In his dreams, a truck honks at him. He wakes up and decides not to think about it.\n\nEnergy +50');
 }
 function samChat(id){
@@ -1363,12 +1398,13 @@ function samDate(id, k){
   if(has(w,'Greedy') && k==='shopping') w.mood = clamp(w.mood+6);
   samStat('charm',1); samXP(5); samLog(`${d.label} with ${w.name}`); checkUnlocks();
   save(); render(); closeModal();
-  const sparks = w.trust>=60 && w.mood>=70 && m>=1 && getActs().some(a=>canSam(w,a.id)) && Math.random()<0.45;
+  const sparks = w.trust>=60 && w.mood>=70 && m>=1 && getActs().some(a=>canSam(w,a.id)) && Math.random() < 0.35 + Math.max(0, w.lust-50)/100;
   const txt = d.text(w) + pNote(w, d.like==='private'?'private':d.like) + `\n\n${cost?'−'+fmt(cost)+' · ':''}Trust +${tg.toFixed(1)}${d.energy?' · She feels rested':''}`;
   modal(`<h2>${esc(d.label)} with ${esc(w.name)}</h2><div id="resImg"></div><p class="story">${esc(txt)}</p>
-    ${sparks?`<p class="story pink">On the way back, ${esc(w.name)} slips her hand into Sam's and doesn't let go. At her door, she hesitates. "...Do you want to come in?"</p>`:''}
+    ${sparks?`<div id="propAi"><p class="story pink">On the way back, ${esc(w.name)} slips her hand into Sam's and doesn't let go. At her door, she hesitates. "...Do you want to come in?"</p></div>`:''}
     <div class="row">${sparks?`<button class="primary" onclick="privateMenu('${id}',true)">Go inside (private time, no extra action)</button><button onclick="closeModal()">Say goodnight</button>`:`<button class="primary" onclick="closeModal()">OK</button>`}</div>`);
-  showImg('resImg', w.id, 'sam_date');
+  showImg('resImg', w.id, 'date_'+k);
+  if(sparks && SET.ai.on && getTextPlugin()) aiWrite('propAi', 'proposition', w.id, {scene:'date_'+k, date:d.label.toLowerCase(), forSam:true});
 }
 function samGift(id){
   const w = findW(id); if(!w) return; if(S.gold<60) return toast('A nice gift costs 60g.');
@@ -1388,7 +1424,7 @@ function samTrain(id){
     const g = (6 + S.sam.technique/20) * tm;
     growAct(w, act, g); w.lewd = clamp(w.lewd + 1.5*lewdMult(w)); w.energy = clamp(w.energy-12, 0, maxEnergy(w));
     if(w.dislike===act) w.mood = clamp(w.mood-4);
-    samStat('technique',2); samXP(5); w.privateCount++; samLog(`Practiced ${actLabel(act)} with ${w.name}`); checkUnlocks();
+    samStat('technique',2); samXP(5); w.privateCount++; w._samTime=(w._samTime||0)+1; samLog(`Practiced ${actLabel(act)} with ${w.name}`); checkUnlocks();
     save(); render(); closeModal();
     return showResult(`Practice: ${actLabel(act)}`, `${w.name} decides Sam's education is a shared project. They practice ${actLabel(act).toLowerCase()} until both of them are confident in the technique. Sam takes notes afterward. She finds this hilarious.\n\n${actLabel(act)} skill +${Math.round(g)} · Lewdness + · Sam's Technique +2`, w.id, 'samact:'+act, {kind:'train', act, scene:'samact:'+act, forSam:true});
   }
@@ -1413,13 +1449,19 @@ function samPrivate(id, act, free){
   const w = findW(id); if(!w) return;
   if(!canSam(w,act)) return toast(`${w.name} isn't comfortable with that yet.`);
   if(free){ if(S.sam.energy<15) return toast('Sam is too tired.'); S.sam.energy -= 15; } else if(!useAP(30)) return;
+  const text = privateCore(w, act);
+  checkUnlocks(); save(); render(); closeModal();
+  showResult(`Private Time with ${w.name}`, text, w.id, 'samact:'+act, {kind:'private', act, scene:'samact:'+act, forSam:true});
+}
+// Shared effects of private time with Sam (used by the action, encounters, and reckless nights). Returns the story text.
+function privateCore(w, act){
   const stretch = samStance(w,act)==='ask';
   const fromLewd = !stretch && w.lewd >= w.trust;
   growAct(w, act, (4 + S.sam.technique/20) * (S.past==='massage'?1.3:1));
   if(stretch){ w.lewd = clamp(w.lewd + 4*lewdMult(w)); } else if(fromLewd) w.lewd = clamp(w.lewd + 2*lewdMult(w)); else gainTrust(w, 2);
   w.mood = clamp(w.mood + (stretch?1:6)*pm(w,'private') + (w.fav===act?6:0) - (w.dislike===act?6:0)); w.energy = clamp(w.energy-15, 0, maxEnergy(w));
   if(w.lovers===act) gainTrust(w, 2);
-  samStat('technique',3); samXP(5); w.privateCount++;
+  samStat('technique',3); samXP(5); w.privateCount++; w._samTime = (w._samTime||0) + 1;
   samLog(`Private time with ${w.name} [${actLabel(act)}]`);
   let text;
   if(S.sam.first){
@@ -1438,8 +1480,7 @@ function samPrivate(id, act, free){
   text += pNote(w,'private');
   if(stretch) text += `\n\n(This was a stretch for ${w.name}. She did it for Sam, and it's a little less of a stretch now.)`;
   text += `\n\n[${actLabel(act)}] skill + · ${stretch||fromLewd?'Lewdness':'Trust'} + · Sam's Technique +3`;
-  checkUnlocks(); save(); render(); closeModal();
-  showResult(`Private Time with ${w.name}`, text, w.id, 'samact:'+act, {kind:'private', act, scene:'samact:'+act, forSam:true});
+  return text;
 }
 function samGuild(){
   if(!useAP(20)) return;
@@ -1514,9 +1555,10 @@ function simHouse(h, R){
     let act = null, outcome = 'comp';
     if(want){
       pr.props++;
-      if(w.menu.includes(want) && canClient(w,want)){ act = want; outcome='yes'; pr.acc++; }
+      if(w.menu.includes(want) && canClient(w,want) && !notInMood(w,want)){ act = want; outcome='yes'; pr.acc++; }
+      else if(notInMood(w,want)){ pr.notMood = (pr.notMood||0)+1; outcome='no'; }
       else {
-        const alt = w.menu.filter(id=>canClient(w,id) && actById(id) && actById(id).price<=actById(want).price).sort((a,b)=>actById(b).price-actById(a).price)[0];
+        const alt = w.menu.filter(id=>canClient(w,id) && !notInMood(w,id) && actById(id) && actById(id).price<=actById(want).price).sort((a,b)=>actById(b).price-actById(a).price)[0];
         if(alt && Math.random()<0.55){ act = alt; outcome='alt'; pr.acc++; } else outcome='no';
       }
     }
@@ -1554,7 +1596,7 @@ function simHouse(h, R){
       const n = Math.round(visitors * PROP_RATE[j] * (0.4 + appeal(w)/100) * ob(w,'propose') * rnd(0.6,1.4));
       for(let i=0;i<n;i++){
         const cls = pickClass(h), want = pickWant(cls); pr.props++;
-        const ok = w.offDuty && w.menu.includes(want) && canClient(w,want) && w.energy - actCost(w,want) > maxEnergy(w)*0.2;
+        const ok = w.offDuty && w.menu.includes(want) && canClient(w,want) && !notInMood(w,want) && w.energy - actCost(w,want) > maxEnergy(w)*0.2;
         if(ok){
           const inc = Math.round(actById(want).price * P.mult * 0.8 * (0.6+qualityOf(w,want)*0.9) * cls.mult);
           pr.acc++; pr.acts[want]=(pr.acts[want]||0)+1; pr.earned+=inc; hr.income+=inc; R.led.offduty+=inc;
@@ -1638,6 +1680,11 @@ function endWeek(){
       if(w.job!=='rest' && w.energy < maxEnergy(w)*0.35){ w.prevJob = w.job; w.job = 'rest'; log(`😴 ${w.name} is worn out and will rest next week.`); }
       else if(w.job==='rest' && w.prevJob && w.energy >= maxEnergy(w)*0.85){ const pj = w.prevJob; delete w.prevJob; if(!canDo(w,pj)){ w.job = pj; log(`💪 ${w.name} is rested and back to work as ${JOBS[pj].label}.`); } }
     }
+    // lust builds up, and is spent by services and time with Sam
+    const nActs = Object.values(pr.acts).reduce((a,b)=>a+b,0);
+    w.lust = clamp(w.lust + 6 + w.lewd/12 + ((has(w,'Eager')||has(w,'Exhibitionist'))?3:0) + (w.race==='demon'?4:0) + (w.job==='rest'?3:0)
+      - nActs*3 - (pr.acts[w.fav]||0)*2 - (w._samTime||0)*12);
+    w._samTime = 0; pr.lust = Math.round(w.lust);
     pr.e1 = Math.round(w.energy); pr.m1 = Math.round(w.mood);
     w.earnedLast = pr.earned;
     if(w.mood<15 && !has(w,'Loyal') && !isFree(w) && !w.locked && !has(w,'Devoted')){ w.unhappy=(w.unhappy||0)+1; if(w.unhappy>=2) leaving.push(w); else log(`😠 ${w.name} is miserable. If nothing changes, she'll leave.`); }
@@ -1666,6 +1713,7 @@ function endWeek(){
     const need = STORY_REP[h.story.beat]||0, gap = h.story.beat===0 ? 2 : 3;
     if(S.week - Math.max(h.since||1, h.story.wk||0) >= gap && h.rep>=need){ const b = h.story.beat; EVQ.push(()=>{ if(h.story.beat!==b) return null; const ev = st.beats[b](h); if(ev) ev.title = `${st.title} (${b+1}/${st.beats.length})`; return ev; }); }
   });
+  queueEncounters();
   renew.forEach(w=>EVQ.push(()=>evRenew(w)));
   if(Math.random()<0.6){ const ev = pickRandomEvent(); if(ev) EVQ.push(ev); }
   if(S.flags.poachCD>0) S.flags.poachCD--;
@@ -1711,7 +1759,7 @@ function showReport(R, fromWeek){
       const svc = Object.entries(p.acts).map(([id,n])=>`<span class="tag act">${esc(actLabel(id))} ×${n}</span>`).join('') + (p.comp?`<span class="tag">Companionship ×${p.comp}</span>`:'');
       const hls = R.hl.map((h,i)=>({h,i})).filter(x=>x.h.wid===p.id).map(({h,i})=>`<div class="hl">${esc(h.text)} ${findAny(p.id)?`<button class="sm" onclick="showImg('hl${i}','${p.id}','${h.scene}',null,'auto')">🎨</button>${aiBtn('hla'+i,'scene',p.id,{act:h.act,cls:h.cls,scene:h.scene})}`:''}<div id="hla${i}"></div><div id="hl${i}" class="hlimg"></div></div>`).join('');
       return `<div class="rep-w"><div class="head">${w.design?avatarHTML(w):''}<div><b>${esc(p.name)}</b> · ${JOBS[p.job]?JOBS[p.job].label:p.job}${p.earned?` · earned <b>${fmt(p.earned)}</b>`:''}
-        <div class="muted">${p.served?`${p.served} client${p.served>1?'s':''} · `:''}${p.props?`propositioned ${p.props}× · accepted ${p.acc} · `:''}${p.reluct?`<span class="pink">${p.reluct} as a favor</span> · `:''}Energy ${p.e0}→${p.e1} · Mood ${p.m0}→${p.m1}${p.slept?` · slept: ${p.slept}`:''}</div>
+        <div class="muted">${p.served?`${p.served} client${p.served>1?'s':''} · `:''}${p.props?`propositioned ${p.props}× · accepted ${p.acc} · `:''}${p.reluct?`<span class="pink">${p.reluct} as a favor</span> · `:''}${p.notMood?`<span class="warn">not in the mood ×${p.notMood}</span> · `:''}Energy ${p.e0}→${p.e1} · Mood ${p.m0}→${p.m1}${p.slept?` · slept: ${p.slept}`:''}${p.lust!==undefined?` · lust ${p.lust}`:''}</div>
         <div>${svc}</div></div></div>${hls}</div>`;
     }).join('');
   }).join('');
@@ -1746,10 +1794,13 @@ function showEvent(ev){
 }
 function evChoice(i){
   const ev = CUR_EV; if(!ev) return;
-  const res = ev.choices[i].fx() || '';
+  const out = ev.choices[i].fx() || '';
+  const res = typeof out==='object' ? (out.text||'') : out;
   checkUnlocks(); save(); render();
-  $('#evChoices').innerHTML = `<button class="primary" onclick="closeModal();runQueue()">Continue</button>`;
-  $('#evRes').innerHTML = res ? `<p class="story"><i>${esc(res)}</i></p>` : '';
+  $('#evChoices').innerHTML = `${out.ai?aiBtn('evAi', out.ai.kind, out.ai.wid, out.ai):''}<button class="primary" onclick="closeModal();runQueue()">Continue</button>`;
+  $('#evRes').innerHTML = (res ? `<p class="story"><i>${esc(res)}</i></p>` : '') + (out.ai?'<div id="evAi"></div>':'') + (out.img?'<div id="evResImg"></div>':'');
+  if(out.img) showImg('evResImg', out.img.wid, out.img.scene, out.img.cloth);
+  if(out.ai && SET.ai.on && SET.ai.auto) aiWrite('evAi', out.ai.kind, out.ai.wid, out.ai);
 }
 
 /* ---- js/stories/houses.js ---- */
@@ -2129,7 +2180,95 @@ function storyCard(h){
 
 /* ---- js/events/encounters.js ---- */
 'use strict';
-// (encounters added in the next step)
+/* =====================================================================
+   CHANCE ENCOUNTERS & RECKLESS NIGHTS
+   - Late-night visits: ladies who aren't seeing clients this week (resting or on staff jobs),
+     with enough trust, lewdness and lust, may come looking for Sam.
+   - Rest visits: when Sam rests, someone may join him.
+   - Reckless nights: when lust runs very high, a lewd lady acts on it, either pulling Sam
+     away (draining his energy) or freelancing with clients off the books.
+   Every outcome is consensual; "reckless" means impulsive, not unwilling.
+   ===================================================================== */
+const bestSamAct = w => (w.fav && canSam(w,w.fav) && samStance(w,w.fav)==='yes') ? w.fav
+  : (getActs().filter(a=>samStance(w,a.id)==='yes').sort((a,b)=>b.th-a.th)[0] || getActs().find(a=>canSam(w,a.id)) || {}).id;
+const idleForClients = w => JOBS[w.job] && JOBS[w.job].cat!=='escort';
+function canVisit(w, trustMin, lewdMin, lustMin){
+  return w.trust>=trustMin && w.lewd>=lewdMin && w.lust>=lustMin && w.energy>=maxEnergy(w)*0.3 && !!bestSamAct(w);
+}
+// one shared result: run privateCore without spending an action
+function encounterResult(w, act, intro, kind, situation, drain){
+  if(drain) S.sam.energy = Math.max(0, S.sam.energy - drain);
+  const text = intro + '\n\n' + privateCore(w, act);
+  w.lust = clamp(w.lust - 25);
+  samLog(`${kind==='reckless'?'Swept off by':'A visit from'} ${w.name}`);
+  return {text, img:{wid:w.id, scene:'samact:'+act}, ai:{kind, wid:w.id, act, scene:'samact:'+act, forSam:true, situation}};
+}
+
+/* ---------- Sam rests ---------- */
+function restVisitor(){
+  const c = S.workers.filter(w=>canVisit(w, 55, 40, 40));
+  if(!c.length || Math.random() > 0.35) return null;
+  return weighted(c, w=>w.trust + w.lust);
+}
+function restEncounter(w){
+  const act = bestSamAct(w);
+  modal(`<h2>Nap Time... Interrupted</h2><div id="resImg"></div>
+    <p class="story">Sam is halfway to sleep when the door creaks. ${esc(w.name)} slips in, closes it behind her, and sits on the edge of the bed. "You looked lonely," she says. She does not look like she came here to sleep.</p>
+    <div id="resAi"></div>
+    <div class="row"><button class="primary" onclick="restAccept('${w.id}','${act}')">Make room for her</button><button onclick="restDecline('${w.id}')">"I really do need the nap"</button></div>`);
+  showImg('resImg', w.id, 'casual');
+}
+function restAccept(id, act){
+  const w = findW(id); if(!w) return;
+  const out = encounterResult(w, act, `${w.name} curls up next to him. The nap does not happen. Sam does not mind.`, 'encounter', 'Sam was trying to take a nap; she slipped into his room uninvited.', 10);
+  checkUnlocks(); save(); render();
+  showResult(`A Visit from ${w.name}`, out.text + '\n\n(Sam still got some rest: Energy +40 overall)', w.id, out.img.scene, out.ai);
+}
+function restDecline(id){
+  const w = findW(id); if(!w) return;
+  w.mood = clamp(w.mood - 2); save(); render();
+  showResult('Nap Time', `${w.name} pouts, then tucks the blanket around him and leaves. Sam sleeps like a rock.\n\nEnergy +50`);
+}
+
+/* ---------- weekly ---------- */
+function queueEncounters(){
+  let used = 0;
+  // reckless nights first (very high lust)
+  shuffle(S.workers).forEach(w=>{
+    if(used>=1 || w.lust < LUST_HIGH || w.lewd < 50 || Math.random() > 0.35) return;
+    used++; const id = w.id; EVQ.push(()=>evReckless(findW(id)));
+  });
+  // late-night visits from ladies who weren't seeing clients
+  const c = S.workers.filter(w=>idleForClients(w) && canVisit(w, 60, 45, 55));
+  if(c.length && used<2 && Math.random() < 0.12 + 0.05*c.length){ const w = pick(c), id = w.id; EVQ.push(()=>evLateVisit(findW(id))); }
+}
+function evLateVisit(w){
+  if(!w || !canVisit(w, 60, 45, 40)) return null;
+  const act = bestSamAct(w);
+  return {title:'A Knock After Midnight', who:w.id, scene:'casual', text:pick([
+      `Sam is doing the books by candlelight when ${w.name} knocks. She hasn't seen a single client all week, and she's clearly been thinking about something. "Busy?"`,
+      `${w.name} appears in Sam's doorway in her nightclothes, holding two cups of tea she clearly has no intention of drinking.`,
+      `A note slides under Sam's door: "Still awake? Come find out." It's in ${w.name}'s handwriting.`]),
+    choices:[
+      {label:'Let her in', fx(){ return encounterResult(w, act, `${w.name} doesn't wait for an answer. The candle burns all the way down.`, 'encounter', 'Late at night, she came to his door on her own initiative.'); }},
+      {label:'Not tonight', fx(){ w.mood = clamp(w.mood-4); w.lust = clamp(w.lust-5); return `${w.name} smiles a little ruefully. "Your loss, boss."`; }}]};
+}
+function evReckless(w){
+  if(!w || w.lust < LUST_HIGH-10) return null;
+  const act = bestSamAct(w), h = houseOf(w);
+  if(act && w.trust>=40 && Math.random()<0.55){
+    return {title:`${w.name} Can't Wait`, who:w.id, scene:'casual', text:`${w.name} has been restless for days, and tonight she's done waiting. She catches Sam in the hallway between errands, pushes him into the nearest storeroom, and locks the door behind them.`,
+      choices:[
+        {label:'Go along with it', fx(){ return encounterResult(w, act, `It is not quick. Sam emerges much later, extremely tired. (Sam's energy −35)`, 'reckless', 'She ambushed Sam in a storeroom after days of pent-up desire.', 35); }},
+        {label:'"Not here, not now"', fx(){ w.mood = clamp(w.mood-6); w.lust = clamp(w.lust-8); return `${w.name} lets him go with a frustrated groan. She is going to be distracted all week.`; }}]};
+  }
+  // freelancing: took clients off the books
+  const n = ri(2,4), cut = Math.round(n * rnd(15,30) * (1 + (h?h.rep:10)/100));
+  return {title:`${w.name} Freelances`, who:w.id, scene:'companion', text:`On her night off, ${w.name} got restless, went down to the lounge, and quietly took ${n} clients of her own choosing. Off the books. She's back now, glowing, slightly guilty, and holding out an envelope: ${fmt(cut)}.`,
+    choices:[
+      {label:'Take the money and let it slide', fx(){ S.gold += cut; w.energy = clamp(w.energy-25, 0, maxEnergy(w)); w.lust = clamp(w.lust-45); w.mood = clamp(w.mood+6); if(h) h.rep = clamp(h.rep-1); return {text:`+${fmt(cut)}. She's thrilled. One of the clients complained about the "irregular service," though (−1 reputation).`, ai:{kind:'reckless', wid:w.id, scene:'companion', situation:`on her night off she slipped down to the lounge and took ${n} clients of her own choosing, off the books.`}}; }},
+      {label:'Talk to her about it', fx(){ S.gold += cut; w.energy = clamp(w.energy-25, 0, maxEnergy(w)); w.lust = clamp(w.lust-45); gainTrust(w, 2); w.mood = clamp(w.mood-3); return `+${fmt(cut)}. Sam explains why the house needs to know who's where. She listens. She also asks to work more evenings.`; }}]};
+}
 
 /* ---- js/events/random.js ---- */
 'use strict';
@@ -2405,6 +2544,7 @@ function openCand(id){
     <div class="status"><h3>[ STATUS ] ${esc(c.name)}</h3><div class="muted">${raceLabel(c)} · Age ${c.age} · ${esc(c.personality)} · Style: ${c.style}</div><p class="story" id="bs_${c.id}">${esc(c.backstory)}</p>${SET.ai.on&&!c.named?`<button class="sm" onclick="aiBackstory('bs_${c.id}','${c.id}')">✨ Write a backstory</button>`:''}<div>${traitTags(c)}</div>
     <div class="muted">Wears: ${esc(getOutfit(c).label)}</div></div></div>`, {wide:true});
   showImg('sheetImg', c.id, 'portrait', 'dressed', SET.autoPortrait ? 'auto' : undefined);
+  if(SET.ai.on && SET.ai.autoBackstory!==false && !c.named && !c.aiBackstory && getTextPlugin()){ c.aiBackstory = true; aiBackstory('bs_'+c.id, c.id); }
 }
 
 /* ---- js/ui/sheet.js ---- */
@@ -2415,7 +2555,7 @@ function sheetScenes(w){
   if(SCENES['job_'+w.job] && w.job!=='rest' && w.job!=='companion') out.push('job_'+w.job);
   out.push('companion');
   if(houseOf(w).up.bath) out.push('bath');
-  out.push('sam_date','sam_training','shower','walkin');
+  out.push('sam_date', ...Object.keys(DATES).map(k=>'date_'+k), 'sam_training','shower','walkin');
   getActs().forEach(a=>{ if(canClient(w,a.id)) out.push('act:'+a.id); });
   getActs().forEach(a=>{ if(canSam(w,a.id)) out.push('samact:'+a.id); });
   return out;
@@ -2459,7 +2599,7 @@ function refreshSheetInfo(){
     <p class="story" style="margin:6px 0" id="bs_${w.id}">${esc(w.backstory)}</p>${SET.ai.on&&!w.named?`<button class="sm" onclick="if(confirm('Replace her backstory with a new AI-written one?'))aiBackstory('bs_${w.id}','${w.id}')">✨ Rewrite backstory</button>`:''}<div>${traitTags(w)}</div>${arcTxt}
     <div class="sgrid" style="margin-top:8px">${STAT_KEYS.map(s=>`<div><span>${s.toUpperCase()}</span><b>${sv(w,w.stats[s],true)}</b></div>`).join('')}</div>
     <div class="sgrid" style="margin-top:6px">${TECH_KEYS.map(s=>`<div><span>${TECH_LABEL[s].toUpperCase()}</span><b>${sv(w,w.tech[s],true)}</b></div>`).join('')}<div><span>POPULARITY</span><b>${Math.round(w.popularity)}</b></div></div>
-    <div style="margin-top:8px">${bar('Energy',w.energy,maxEnergy(w),'e')}${bar('Mood',w.mood,100,'m')}${bar('Trust',w.trust,100,'t')}${k?bar('Lewdness',w.lewd,100,'l'):'<div class="muted">Lewdness: ? (Appraisal Lv 2 or more trust)</div>'}${bar('Health',w.health,100,'h')}</div>
+    <div style="margin-top:8px">${bar('Energy',w.energy,maxEnergy(w),'e')}${bar('Mood',w.mood,100,'m')}${bar('Trust',w.trust,100,'t')}${k?bar('Lewdness',w.lewd,100,'l'):'<div class="muted">Lewdness: ? (Appraisal Lv 2 or more trust)</div>'}${k?bar('Lust ('+lustLabel(w)+')',w.lust,100,'p'):''}${bar('Health',w.health,100,'h')}</div>
     <div class="muted" style="margin-top:6px">Race perk: <b>${RACE_PERK[w.race]?RACE_PERK[w.race].label:''}</b>: ${RACE_PERK[w.race]?RACE_PERK[w.race].desc:''}</div>
     <div class="muted">Comfortable up to: <b>${CLOTH.find(c=>c.id===cl).label}</b> with clients · <b>${CLOTH.find(c=>c.id===cs).label}</b> with Sam</div>
     ${persLine(w)}${(HOUSES[houseOf(w).id].minPop||0) > w.popularity ? `<div class="warn">⚠️ Below ${esc(houseOf(w).name)}'s standard (popularity ${HOUSES[houseOf(w).id].minPop}). Escort clients pay less and complain.</div>`:''}</div>
@@ -2647,10 +2787,11 @@ function viewSettings(){
     <div class="row"><input id="na_label" placeholder="Label"><input id="na_th" type="number" placeholder="Lewdness line (e.g. 65)"><input id="na_price" type="number" placeholder="Price (e.g. 130)"><button onclick="addAct()">Add category</button></div></section>
   <section class="card"><h2>AI Text</h2><p class="muted">Optional. Uses Perchance's text plugin to write scenes for reports, private time and training, and backstories for generic characters. Only backstories are kept; scenes are written on the spot. Image prompts stay programmatic. Plugin: ${getTextPlugin()?'<span class="good">connected</span>':'<span class="warn">not connected (add <code>ai = {import:ai-text-plugin}</code> to the lists panel)</span>'}</p>
     <div class="row"><label class="chk"><input type="checkbox" id="ai_on" ${SET.ai.on?'checked':''}> Enable AI text buttons (✨)</label>
-      <label class="chk"><input type="checkbox" id="ai_auto" ${SET.ai.auto?'checked':''}> Write automatically (private time, training, new hires' backstories)</label></div>
+      <label class="chk"><input type="checkbox" id="ai_auto" ${SET.ai.auto?'checked':''}> Write scenes automatically (private time, training, encounters, date invitations)</label>
+      <label class="chk"><input type="checkbox" id="ai_bs" ${SET.ai.autoBackstory!==false?'checked':''}> Write backstories for generic characters automatically</label></div>
     <label class="muted" style="display:block;margin:6px 0">Style guidance <span class="muted">(inserted as {guidance}: tone, length, how descriptive, etc.)</span><textarea id="ai_guid">${esc(SET.ai.guidance||'')}</textarea></label>
     ${Object.keys(DEFAULT_AI_TPL).map(k=>`<label class="muted" style="display:block;margin:6px 0">Template: <b>${k}</b> <button class="sm" onclick="$('#ai_t_${k}').value=DEFAULT_AI_TPL['${k}']">Reset</button><textarea id="ai_t_${k}" style="min-height:90px">${esc(aiTpl(k))}</textarea></label>`).join('')}
-    <p class="muted">Placeholders: {name} {race} {age} {appearance} {clothing} {outfit} {personality} {traits} {trust} {lewd} {mood} {service} {stance} {client} {setting} {house} {relationship} {guidance} {hook} {backstory}</p>
+    <p class="muted">Placeholders: {name} {race} {age} {appearance} {clothing} {outfit} {personality} {traits} {trust} {lewd} {mood} {service} {stance} {client} {setting} {house} {relationship} {guidance} {hook} {backstory} {date} {situation} {lust}</p>
     <div class="row"><button class="primary" onclick="saveAiUI()">Save AI settings</button></div></section>
   <section class="card"><h2>Images</h2><p class="muted">Generated and uploaded images live in this browser. Export them to back up or move them to another browser.</p>
     <div class="row"><button onclick="exportImages()">⬇ Export images</button><button onclick="importImages()">⬆ Import images</button><button onclick="cleanImages()">Clean up unused images</button></div></section>
@@ -2662,7 +2803,7 @@ function saveSettingsUI(){
   SET.autoPortrait = $('#s_auto').checked; SET.libraryInPool = $('#s_lib').checked; saveSettings(); toast('Settings saved.');
 }
 function saveAiUI(){
-  SET.ai.on = $('#ai_on').checked; SET.ai.auto = $('#ai_auto').checked; SET.ai.guidance = $('#ai_guid').value;
+  SET.ai.on = $('#ai_on').checked; SET.ai.auto = $('#ai_auto').checked; SET.ai.autoBackstory = $('#ai_bs').checked; SET.ai.guidance = $('#ai_guid').value;
   Object.keys(DEFAULT_AI_TPL).forEach(k=>{ const v = $('#ai_t_'+k).value; SET.ai.tpl[k] = (v.trim()===DEFAULT_AI_TPL[k]) ? '' : v; });
   saveSettings(); toast('AI settings saved.'); render();
 }
@@ -2744,6 +2885,7 @@ ${p?p.name+' is at his side. '+NAMED[p.key].partnerStory:''}</p>
 async function init(){
   await idbOpen();
   const th = await idbAll('thumbs'); THUMBS = th || {};
+  IMGKEYS = new Set((await imgKeysAll()) || []);
   S = store.get(KEY_SAVE);
   if(!S || !Array.isArray(S.workers)){ S = null; startSetup(); }
   else { migrate(S); save(); render(); }
