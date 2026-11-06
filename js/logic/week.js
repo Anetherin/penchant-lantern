@@ -41,7 +41,7 @@ function simHouse(h, R){
   const capc = {}; escorts.forEach(w=>capc[w.id] = 10);
   // max lust: some ladies spend part of a night alone instead (costs energy, fewer clients)
   W.forEach(w=>{
-    if(w.lust < LUST_HIGH || Math.random() >= soloChance(w)) return;
+    if(w.lust < LUST_HIGH || has(w,'Devoted') || Math.random() >= soloChance(w)) return;   // lovers wait for Sam
     const pr = R.per[w.id]; pr.solo = true;
     w.energy = Math.max(0, w.energy - Math.round(maxEnergy(w)*0.15)); w.lust = clamp(w.lust - 40); w.mood = clamp(w.mood + 3);
     if(capc[w.id]!==undefined) capc[w.id] = 6;
@@ -186,6 +186,7 @@ function endWeek(){
     const nActs = Object.values(pr.acts).reduce((a,b)=>a+b,0);
     w.lust = clamp(w.lust + 6 + w.lewd/12 + ((has(w,'Eager')||has(w,'Exhibitionist'))?3:0) + (w.race==='demon'?4:0) + (w.job==='rest'?3:0)
       - nActs*3 - (pr.acts[w.fav]||0)*2 - (w._samTime||0)*12);
+    if(has(w,'Devoted') && !w._samTime && w.lust >= LUST_HIGH){ w.mood = clamp(w.mood - 4); pr.missed = true; }
     w._samTime = 0; pr.lust = Math.round(w.lust);
     pr.e1 = Math.round(w.energy); pr.m1 = Math.round(w.mood);
     w.earnedLast = pr.earned;
@@ -261,7 +262,7 @@ function showReport(R, fromWeek){
       const svc = Object.entries(p.acts).map(([id,n])=>`<span class="tag act">${esc(actLabel(id))} ×${n}</span>`).join('') + (p.comp?`<span class="tag">Companionship ×${p.comp}</span>`:'');
       const hls = R.hl.map((h,i)=>({h,i})).filter(x=>x.h.wid===p.id).map(({h,i})=>`<div class="hl">${esc(h.text)} ${findAny(p.id)?`<button class="sm" onclick="showImg('hl${i}','${p.id}','${h.scene}',null,'auto')">🎨</button>${aiBtn('hla'+i,'scene',p.id,{act:h.act,cls:h.cls,scene:h.scene})}`:''}<div id="hla${i}"></div><div id="hl${i}" class="hlimg"></div></div>`).join('');
       return `<div class="rep-w"><div class="head">${w.design?avatarHTML(w):''}<div><b>${esc(p.name)}</b> · ${JOBS[p.job]?JOBS[p.job].label:p.job}${p.earned?` · earned <b>${fmt(p.earned)}</b>`:''}
-        <div class="muted">${p.served?`${p.served} client${p.served>1?'s':''} · `:''}${p.props?`propositioned ${p.props}× · accepted ${p.acc} · `:''}${p.reluct?`<span class="pink">${p.reluct} as a favor</span> · `:''}${p.notMood?`<span class="warn">not in the mood ×${p.notMood}</span> · `:''}Energy ${p.e0}→${p.e1} · Mood ${p.m0}→${p.m1}${p.slept?` · slept: ${p.slept}`:''}${p.solo?' · <span class="pink">a night to herself</span>':''}${p.lust!==undefined?` · lust ${p.lust}`:''}</div>
+        <div class="muted">${p.served?`${p.served} client${p.served>1?'s':''} · `:''}${p.props?`propositioned ${p.props}× · accepted ${p.acc} · `:''}${p.reluct?`<span class="pink">${p.reluct} as a favor</span> · `:''}${p.notMood?`<span class="warn">not in the mood ×${p.notMood}</span> · `:''}Energy ${p.e0}→${p.e1} · Mood ${p.m0}→${p.m1}${p.slept?` · slept: ${p.slept}`:''}${p.solo?' · <span class="pink">a night to herself</span>':''}${p.missed?' · <span class="warn">missed Sam</span>':''}${p.lust!==undefined?` · lust ${p.lust}`:''}</div>
         <div>${svc}</div></div></div>${hls}</div>`;
     }).join('');
   }).join('');

@@ -52,9 +52,12 @@ function restDecline(id){
 /* ---------- weekly ---------- */
 function queueEncounters(){
   let used = 0;
-  // reckless nights first (very high lust)
+  // lovers at high lust come looking for Sam (they wait for him rather than going it alone)
+  const lovers = S.workers.filter(w=>has(w,'Devoted') && w.lust>=LUST_HIGH && w.energy>=maxEnergy(w)*0.2 && bestSamAct(w));
+  if(lovers.length && Math.random() < 0.75){ const id = pick(lovers).id; used++; EVQ.push(()=>evLoverWaiting(findW(id))); }
+  // reckless nights (very high lust)
   shuffle(S.workers).forEach(w=>{
-    if(used>=1 || w.lust < LUST_HIGH || w.lewd < 50 || Math.random() > 0.35) return;
+    if(used>=1 || has(w,'Devoted') || w.lust < LUST_HIGH || w.lewd < 50 || Math.random() > 0.35) return;
     used++; const id = w.id; EVQ.push(()=>evReckless(findW(id)));
   });
   // late-night visits from ladies who weren't seeing clients
@@ -68,6 +71,14 @@ function evLateVisit(w){
     choices:[
       {label:'Let her in', fx(){ return encounterResult(w, act, `${w.name} doesn't wait for an answer. The candle burns all the way down.`, 'encounter', 'Late at night, she came to his door on her own initiative.'); }},
       {label:'Not tonight', fx(){ w.mood = clamp(w.mood-4); w.lust = clamp(w.lust-5); return `${w.name} smiles a little ruefully. "Your loss, boss."`; }}]};
+}
+function evLoverWaiting(w){
+  if(!w || !has(w,'Devoted')) return null;
+  const act = bestSamAct(w); if(!act) return null;
+  return {title:`${w.name} Has Been Waiting`, who:w.id, scene:'casual', text:flavor('lover_waiting', w),
+    choices:[
+      {label:'Go to her', fx(){ return encounterResult(w, act, flavor('lover_reunion', w), 'encounter', 'She is his lover and had been waiting for him all week; she came to his room.'); }},
+      {label:'"Tomorrow, I promise"', fx(){ w.mood = clamp(w.mood-5); w.lust = clamp(w.lust-5); return `${w.name} sighs and kisses his cheek. "You'd better mean it."`; }}]};
 }
 function evReckless(w){
   if(!w || w.lust < LUST_HIGH-10) return null;

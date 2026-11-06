@@ -67,5 +67,25 @@
       "He promised to come back next week.",
       "He told three friends about her before he got home."
     ]
+  },
+  "lover_waiting": {
+    "_note": "Opening line when a lover (Devoted) at max lust comes to Sam instead of handling it herself.",
+    "_default": [
+      "{name} is sitting on the edge of Sam's bed when he gets back, shoes off, very much not reading the book in her lap. \"You've been busy all week,\" she says. \"I've been patient.\"",
+      "Sam finds a note on his desk in {name}'s handwriting: \"My room. Tonight. Don't make me come get you.\""
+    ],
+    "Shy but earnest": [
+      "{name} hovers in Sam's doorway, fidgeting with her sleeve. \"I, um. I waited. For you. All week.\" She's bright red."
+    ],
+    "Proud and sharp-tongued": [
+      "{name} corners Sam in the hall. \"I don't beg,\" she says. \"So you're going to notice on your own that it's been a week.\""
+    ]
+  },
+  "lover_reunion": {
+    "_note": "First line of the scene when Sam goes to a lover who's been waiting.",
+    "_default": [
+      "She pulls him in by the collar and doesn't let go for a long time.",
+      "\"Finally,\" she breathes, and the door clicks shut behind them."
+    ]
   }
 }
