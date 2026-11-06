@@ -6,5 +6,5 @@
 // Named characters live in data/characters.json.
 const NAMED = Object.fromEntries(Object.entries(noMeta(needData('characters'))).map(([k,c])=>{ const {outfits, ...rest} = c; return [k, rest]; }));
 const PARTNERS = Object.keys(NAMED).filter(k=>NAMED[k].role==='partner');
-/* ARCS are defined with the story events below. */
+/* ARCS: partner romance arcs, loaded from data/arcs.json in js/stories/partners.js. */
 let ARCS;

@@ -12,9 +12,11 @@ const ACTS = needData('services').services;
 const SCENE_SNIPPETS = noMeta(needData('snippets').scenes);
 // Clothing state wording (data/snippets.json → clothing). {outfit} and {underwear} are filled in from her wardrobe.
 const DEFAULT_CLOTH_TEXT = noMeta(needData('snippets').clothing);
-// AI text templates (data/ai-templates.json). {placeholders} are filled from the game.
-const AI_FILE = needData('ai-templates');
+// AI text prompts (data/ai-prompts.json). {placeholders} are filled from the game.
+const AI_FILE = needData('ai-prompts');
 const DEFAULT_AI_TPL = Object.fromEntries(Object.entries(noMeta(AI_FILE)).filter(([k])=>k!=='guidance'));
+// Tuning numbers (data/balance.json).
+const BAL = needData('balance');
 // Short random text lines (data/flavor.json).
 const FLAVOR = noMeta(needData('flavor'));
 const DEFAULT_SETTINGS = {

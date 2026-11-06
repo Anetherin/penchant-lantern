@@ -94,7 +94,7 @@ function agendaHTML(){
   const worn = W.filter(w=>w.job!=='rest' && w.energy < maxEnergy(w)*0.3);
   const unhappy = W.filter(w=>w.mood < 25);
   const ending = W.filter(w=>!isFree(w) && !w.locked && w.contract<=2);
-  const neglected = W.filter(w=>has(w,'Devoted') && (w.neglect||0)>=1);
+  const neglected = W.filter(w=>has(w,'Devoted') && (w.neglect||0) >= Math.max(1, BAL.lovers.neglectWeeks-1));
   if(waiting.length) lines.push(`💗 Waiting for Sam: ${list(waiting)}`);
   if(neglected.length) lines.push(`💔 Feeling neglected: ${list(neglected)}`);
   if(restless.length) lines.push(`🔥 Restless: ${list(restless)}`);

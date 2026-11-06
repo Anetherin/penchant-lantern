@@ -58,12 +58,7 @@ const PRICES = [
   {label:'Cheap',mult:0.7,demand:1.3},{label:'Fair',mult:1.0,demand:1.0},{label:'Premium',mult:1.4,demand:0.8},
   {label:'Luxury',mult:1.9,demand:0.6},{label:'Exclusive',mult:2.6,demand:0.42}];
 const CLASSES = [{id:'commoner',label:'Commoner',mult:0.5},{id:'adventurer',label:'Adventurer',mult:0.8},{id:'merchant',label:'Merchant',mult:1.2},{id:'noble',label:'Noble',mult:2.0}];
-const CLIENT_DESC = {
-  commoner:['a nervous carpenter','a dockworker with his week\'s pay','a farmer in town for market day','a mild-mannered scribe','a blacksmith still smelling of the forge'],
-  adventurer:['a scarred lancer fresh from the dungeon','a boisterous swordsman celebrating a bounty','a quiet elven archer','a mage still smelling of smoke','a bearded axeman with a fresh bandage'],
-  merchant:['a spice merchant from the coast','a jeweler with soft hands and a heavy purse','a caravan master','a silk trader who haggles over everything'],
-  noble:['a silver-haired viscount','a masked noble who gave no name','a baron\'s bored second son','a knight-commander out of uniform']
-};
+const CLIENT_DESC = needData('people').clients;
 // cls = clientele weights [commoner, adventurer, merchant, noble]
 const HOUSES = {
   lantern: {size:9, quarters:1, beds:1, name:'The Gilded Lantern', loc:'Old Town', npc:'mira', rooms:2, tier:0, up:{}, demand:1.0, cls:[1,1,1,1], upkeep:40, debt:15000, cost:6000, rep:10, starter:true,

@@ -43,8 +43,8 @@ function simHouse(h, R){
   W.forEach(w=>{
     if(w.lust < LUST_HIGH || has(w,'Devoted') || Math.random() >= soloChance(w)) return;   // lovers wait for Sam
     const pr = R.per[w.id]; pr.solo = true;
-    w.energy = Math.max(0, w.energy - Math.round(maxEnergy(w)*0.15)); w.lust = clamp(w.lust - 40); w.mood = clamp(w.mood + 3);
-    if(capc[w.id]!==undefined) capc[w.id] = 6;
+    w.energy = Math.max(0, w.energy - Math.round(maxEnergy(w)*BAL.solo.energyCost)); w.lust = clamp(w.lust - BAL.solo.lustDrop); w.mood = clamp(w.mood + 3);
+    if(capc[w.id]!==undefined) capc[w.id] = Math.min(capc[w.id], BAL.solo.clientCap);
     R.hl.push({wid:w.id, text:flavor('solo', w), act:null, scene:'solo'});
   });
   const roomM = ROOM_MULT[h.tier];
@@ -198,7 +198,7 @@ function endWeek(){
     const nActs = Object.values(pr.acts).reduce((a,b)=>a+b,0);
     w.lust = clamp(w.lust + 6 + w.lewd/12 + ((has(w,'Eager')||has(w,'Exhibitionist'))?3:0) + (w.race==='demon'?4:0) + (w.job==='rest'?3:0)
       - nActs*3 - (pr.acts[w.fav]||0)*2 - (w._samTime||0)*12);
-    if(has(w,'Devoted') && !w._samTime && w.lust >= LUST_HIGH){ w.mood = clamp(w.mood - 4); pr.missed = true; }
+    if(has(w,'Devoted') && !w._samTime && w.lust >= LUST_HIGH){ w.mood = clamp(w.mood - BAL.lovers.missedMood); pr.missed = true; }
     if(has(w,'Devoted')) w.neglect = w._samTime ? 0 : (w.neglect||0) + 1;   // weeks in a row without Sam
     w._samTime = 0; pr.lust = Math.round(w.lust);
     pr.e1 = Math.round(w.energy); pr.m1 = Math.round(w.mood);

@@ -9,9 +9,10 @@ optional text generation (`ai-text-plugin`).
 - `loader.js`: injects the stylesheet and page markup, then loads every script in `js/` **in order**.
   The scripts are classic (non-module) scripts that share globals, so order matters; the list lives in `loader.js`.
 - `data/*.json`: **the files you edit by hand.** Scene snippets and clothing wording (`snippets.json`), services (`services.json`),
-  personalities with their solo/modest odds (`personalities.json`), AI text templates and style guidance (`ai-templates.json`),
+  personalities with their solo/modest odds (`personalities.json`), AI text prompts and style guidance (`ai-prompts.json`),
   random flavor lines per personality (`flavor.json`), named characters and their outfits (`characters.json`),
-  and regular clients: names, quirks and their event text (`regulars.json`). Each file starts with a `_readme` explaining its fields.
+  regular clients: names, quirks and their event text (`regulars.json`), partner romance arcs (`arcs.json`),
+  clothing and colors (`wardrobe.json`), races, names and appearance pools (`people.json`), and tuning numbers (`balance.json`). Each file starts with a `_readme` explaining its fields.
   If the page says a file isn't valid JSON, look for a missing comma or quote. `node tools/fmt-json.mjs` tidies them.
 - `css/style.css`: all styles.
 - `js/core`: config (your scene snippets, service categories, defaults) and utilities/storage.
@@ -35,7 +36,7 @@ optional text generation (`ai-text-plugin`).
    After that, every push to `main` goes live within a minute or two, and the shim picks it up on the next page load.
 
 Saves, settings and generated images live in the browser's storage on the Perchance page, not in this repo.
-Scene snippets, templates and flavor text live in `data/`, so anyone who can see the repo can read them.
+Scene snippets, AI prompts and flavor text live in `data/`, so anyone who can see the repo can read them.
 
 ## Development
 

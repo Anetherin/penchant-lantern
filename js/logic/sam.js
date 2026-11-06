@@ -193,3 +193,27 @@ function samGuild(){
   samXP(4); samLog('Visited the Adventurers\' Guild'); save(); render();
   showResult('The Adventurers\' Guild', text, wid, scene);
 }
+
+/* ---------- ending things / trying again ---------- */
+function endLovers(id){
+  const w = findW(id); if(!w || !has(w,'Devoted')) return;
+  if(!confirm(`End things with ${w.name}? She'll stay on at the house, but it will hurt.`)) return;
+  const B = BAL.breakup, starter = w.key && w.key===S.partner;
+  w.traits = w.traits.filter(t=>t!=='Devoted'); w.exLover = true; w.rekindleWk = S.week; w.neglect = 0;
+  w.mood = clamp(w.mood + B.mood); w.trust = clamp(w.trust + B.trust * (has(w,'Loyal') ? 0.5 : 1));
+  if(!starter){ w.isPartner = false; w.wage = wageFor(w); w.contract = 12; }
+  samLog(`Ended things with ${w.name}`); save(); render(); closeModal();
+  showResult(`${w.name}`, flavor('breakup', w) + `\n\n(No longer Devoted. Mood ${B.mood}, trust ${Math.round(B.trust*(has(w,'Loyal')?0.5:1))}.${starter?' She still works without wages.':` She now draws a wage of ${fmt(w.wage)}/wk on a 12-week contract.`})`, w.id, 'portrait', {kind:'breakup', wid:w.id});
+}
+function rekindle(id){
+  const w = findW(id), B = BAL.breakup; if(!w || !w.exLover || has(w,'Devoted')) return;
+  if(w.trust < B.rekindleTrust) return toast(`${w.name} isn't ready for that conversation.`);
+  if(S.week - (w.rekindleWk||0) < B.rekindleCooldown) return toast(`Too soon. Give her a few more weeks.`);
+  if(!useAP(15)) return;
+  w.rekindleWk = S.week;
+  const yes = Math.random() < B.rekindleChance + (w.mood-50)/200 + (has(w,'Romantic')?0.1:0);
+  if(yes){ w.traits.push('Devoted'); w.exLover = false; w.isPartner = true; w.wage = 0; w.contract = 999; w.mood = clamp(w.mood+10); }
+  else w.mood = clamp(w.mood-3);
+  samLog(`Asked ${w.name} to try again`); save(); render(); closeModal();
+  showResult(yes ? `${w.name}, Again` : `Not Yet`, flavor(yes ? 'rekindle_yes' : 'rekindle_no', w) + (yes ? `\n\n(${w.name} is Sam's lover again.)` : ''), w.id, yes ? 'sam_date' : 'portrait');
+}

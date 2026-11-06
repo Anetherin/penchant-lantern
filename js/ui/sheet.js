@@ -67,7 +67,7 @@ function refreshSheetInfo(){
     <div class="row"><button onclick="samChat('${w.id}')">💬 Chat</button><button onclick="dateMenu('${w.id}')">🌙 Date…</button><button onclick="samGift('${w.id}')">🎁 Gift (60g)</button></div>
     <div class="row"><select id="trainSel">${TECH_KEYS.map(s=>`<option value="${s}">${TECH_LABEL[s]}</option>`).join('')}${getActs().filter(a=>canSam(w,a.id)).map(a=>`<option value="act:${a.id}">Practice: ${esc(a.label)}</option>`).join('')}</select><button onclick="samTrain('${w.id}')">📚 Train</button>
       <button onclick="privateMenu('${w.id}')" ${anySam?'':'disabled title="She isn\'t comfortable with that yet."'}>🕯️ Private time</button></div>
-    <div class="row"><button onclick="editWorker('${w.id}')">✏️ Edit design</button>${w.isPartner||w.locked?'':`<button onclick="dismiss('${w.id}')">Dismiss</button>`}</div>`;
+    <div class="row"><button onclick="editWorker('${w.id}')">✏️ Edit design</button>${w.isPartner||w.locked?'':`<button onclick="dismiss('${w.id}')">Dismiss</button>`}${has(w,'Devoted')?`<button onclick="endLovers('${w.id}')">💔 End things</button>`:''}${w.exLover&&!has(w,'Devoted')?`<button onclick="rekindle('${w.id}')" ${w.trust<BAL.breakup.rekindleTrust?`disabled title="She needs trust ${BAL.breakup.rekindleTrust}+"`:''}>💞 Ask her back</button>`:''}</div>`;
 }
 function persLine(w){
   const P = PERS[w.personality];

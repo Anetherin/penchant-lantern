@@ -41,7 +41,7 @@
   ];
   window.HOLLOWMERE_FILES = FILES;
   // Editable data, loaded before any script runs. Each becomes window.PL_DATA['<name>'].
-  var DATA_FILES = ['services', 'personalities', 'characters', 'regulars', 'snippets', 'ai-templates', 'flavor'];
+  var DATA_FILES = ['balance', 'services', 'personalities', 'people', 'wardrobe', 'characters', 'arcs', 'regulars', 'snippets', 'ai-prompts', 'flavor'];
   window.HOLLOWMERE_DATA = DATA_FILES;
 
   var MARKUP = [

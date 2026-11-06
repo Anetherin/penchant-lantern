@@ -104,10 +104,10 @@ const PRICKLY = ['Proud and sharp-tongued','Hot-blooded and competitive','Myster
 function queueLoverDynamics(){
   const L = S.workers.filter(w=>has(w,'Devoted'));
   if(L.length < 2) return 0;
-  const left = L.filter(w=>(w.neglect||0) >= 2).sort((a,b)=>b.neglect-a.neglect)[0], fav = L.filter(w=>!w.neglect);
-  if(left && fav.length && Math.random() < 0.6){ const a = left.id, b = pick(fav).id; EVQ.push(()=>evLoverJealous(findW(a), findW(b))); return 1; }
-  const pair = L.filter(w=>!w.neglect && w.trust>=85 && w.lust>=60 && w.energy>=maxEnergy(w)*0.3 && bestSamAct(w));
-  if(pair.length >= 2 && Math.random() < 0.15){ const [a,b] = shuffle(pair); const ia=a.id, ib=b.id; EVQ.push(()=>evLoverShared(findW(ia), findW(ib))); return 1; }
+  const left = L.filter(w=>(w.neglect||0) >= BAL.lovers.neglectWeeks).sort((a,b)=>b.neglect-a.neglect)[0], fav = L.filter(w=>!w.neglect);
+  if(left && fav.length && Math.random() < BAL.lovers.jealousyChance){ const a = left.id, b = pick(fav).id; EVQ.push(()=>evLoverJealous(findW(a), findW(b))); return 1; }
+  const pair = L.filter(w=>!w.neglect && w.trust>=BAL.lovers.sharedMinTrust && w.lust>=60 && w.energy>=maxEnergy(w)*0.3 && bestSamAct(w));
+  if(pair.length >= 2 && Math.random() < BAL.lovers.sharedChance){ const [a,b] = shuffle(pair); const ia=a.id, ib=b.id; EVQ.push(()=>evLoverShared(findW(ia), findW(ib))); return 1; }
   return 0;
 }
 function evLoverJealous(w, o){
@@ -130,6 +130,6 @@ function evLoverShared(a, b){
         const ta = privateCore(a, bestSamAct(a)), tb = privateCore(b, bestSamAct(b));
         [a,b].forEach(w=>{ w.lust = clamp(w.lust-30); w.mood = clamp(w.mood+5); gainTrust(w,2); });
         samLog(`A night with ${a.name} and ${b.name}`);
-        return {text:`Nobody gets much sleep. (Sam's energy −30)\n\n${ta.split('\n\n').pop()}\n${tb.split('\n\n').pop()}`, img:{wid:a.id, scene:'samact:'+bestSamAct(a)}, ai:{kind:'encounter', wid:a.id, act:bestSamAct(a), scene:'samact:'+bestSamAct(a), forSam:true, situation:`She and ${b.name}, both his lovers and on good terms with each other, came to his room together.`}}; }},
+        return {text:`Nobody gets much sleep. (Sam's energy −30)\n\n${ta.split('\n\n').pop()}\n${tb.split('\n\n').pop()}`, img:{wid:a.id, scene:'samact:'+bestSamAct(a)}, ai:{kind:'shared', wid:a.id, other:b.id, act:bestSamAct(a), scene:'samact:'+bestSamAct(a), forSam:true}}; }},
       {label:'"One at a time, please"', fx(){ a.mood = clamp(a.mood-1); b.mood = clamp(b.mood-1); return `They exchange a look, decide he's adorable, and agree to take turns. Sam is not sure he won anything.`; }}]};
 }

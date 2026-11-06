@@ -196,7 +196,7 @@ const isHired = key => S && (S.workers.some(w=>w.key===key) || S.candidates.some
 // Lust: her current appetite. It builds every week (faster for lewder ladies) and is spent by
 // services and time with Sam. Very high lust can lead to reckless choices; very low lust means
 // she isn't in the mood for the heavier services.
-const LUST_LOW = 20, LUST_HIGH = 85;
+const LUST_LOW = BAL.lust.low, LUST_HIGH = BAL.lust.high;
 const notInMood = (w, act) => act && w.lust < LUST_LOW && ((actById(act)||{}).energy||10) >= 9;
 // At max lust some ladies take care of it themselves (data/personalities.json → solo).
 function soloChance(w){ const P = PERS[w.personality]||{}; return Math.max(0.05, Math.min(0.9, (P.solo ?? 0.3) + (has(w,'Shy')?0.15:0) + (has(w,'Modest')?0.1:0) - (has(w,'Eager')?0.15:0) - (has(w,'Exhibitionist')?0.1:0))); }

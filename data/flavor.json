@@ -158,5 +158,36 @@
     "_default": [
       "There's a knock at Sam's door. It's {name}. Then a second knock: {other}, right behind her. They look at each other, then at Sam, and seem to reach an understanding without him."
     ]
-  }
+  },
+  "breakup": {
+    "_note": "When Sam ends things with a lover. She stays on at the house.",
+    "_default": [
+      "{name} listens without interrupting. \"Okay,\" she says finally. \"I'll be fine. Just... give me some time.\""
+    ],
+    "Shy but earnest": [
+      "{name} nods too fast and says she understands, then excuses herself. Nobody sees her for the rest of the day."
+    ],
+    "Proud and sharp-tongued": [
+      "\"Fine,\" {name} says crisply. \"Your loss.\" She makes it all the way to the hallway before her voice cracks."
+    ],
+    "Warm and motherly": [
+      "{name} squeezes his hand. \"You're allowed to change your mind, love. I'm not going anywhere.\" She cries later, alone."
+    ],
+    "Hot-blooded and competitive": [
+      "{name} throws a cup at the wall. Then she apologizes to the cup. Then she leaves."
+    ],
+    "Laid-back and lazy": [
+      "{name} shrugs a little too casually. \"Sure. Whatever works.\" She doesn't come down for dinner."
+    ],
+    "Mysterious and aloof": [
+      "{name} says nothing at all. She just looks at him for a long moment, then nods once and goes."
+    ]
+  },
+  "rekindle_yes": {
+    "_note": "When an ex-lover agrees to try again.",
+    "_default": [
+      "{name} pretends to think about it for exactly three seconds. \"Took you long enough.\""
+    ]
+  },
+  "rekindle_no": {"_note":"When an ex-lover isn't ready to try again.","_default":["{name} smiles, a little sadly. \"Not yet. Ask me again sometime.\""]}
 }
