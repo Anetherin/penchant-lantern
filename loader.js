@@ -39,6 +39,9 @@
     'js/main.js'
   ];
   window.HOLLOWMERE_FILES = FILES;
+  // Editable data, loaded before any script runs. Each becomes window.PL_DATA['<name>'].
+  var DATA_FILES = ['services', 'personalities', 'snippets', 'ai-templates', 'flavor'];
+  window.HOLLOWMERE_DATA = DATA_FILES;
 
   var MARKUP = [
     '<header id="hdr"></header>',
@@ -57,15 +60,27 @@
   if(!document.getElementById('app')) document.body.insertAdjacentHTML('beforeend', MARKUP);
 
   var failed = false;
-  FILES.forEach(function(f){
+  function fail(msg){
+    if(failed) return; failed = true;
+    var v = document.getElementById('view');
+    if(v) v.innerHTML = '<p style="padding:20px;color:#e86b84">' + msg + '</p>';
+  }
+  window.PL_DATA = window.PL_DATA || {};
+  Promise.all(DATA_FILES.map(function(n){
+    if(window.PL_DATA[n]) return null;   // already inlined (single-file build)
+    return fetch(BASE + 'data/' + n + '.json?v=' + V).then(function(r){
+      if(!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    }).then(function(d){ window.PL_DATA[n] = d; }, function(e){
+      throw new Error('<code>data/' + n + '.json</code>: ' + (e instanceof SyntaxError ? 'not valid JSON (' + e.message + '). Check for a missing comma or quote.' : e.message));
+    });
+  })).then(loadScripts, function(e){ fail('Couldn\'t load ' + e.message); });
+
+  function loadScripts(){ FILES.forEach(function(f){
     var s = document.createElement('script');
     s.src = BASE + f + '?v=' + V;
     s.async = false;            // keep execution order
-    s.onerror = function(){
-      if(failed) return; failed = true;
-      var v = document.getElementById('view');
-      if(v) v.innerHTML = '<p style="padding:20px;color:#e86b84">Couldn\'t load <code>' + f + '</code> from ' + BASE + '. Is GitHub Pages enabled for the repo?</p>';
-    };
+    s.onerror = function(){ fail('Couldn\'t load <code>' + f + '</code> from ' + BASE + '. Is GitHub Pages enabled for the repo?'); };
     document.body.appendChild(s);
-  });
+  }); }
 })();

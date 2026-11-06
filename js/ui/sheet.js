@@ -51,7 +51,7 @@ function refreshSheetInfo(){
     <div class="sgrid" style="margin-top:6px">${TECH_KEYS.map(s=>`<div><span>${TECH_LABEL[s].toUpperCase()}</span><b>${sv(w,w.tech[s],true)}</b></div>`).join('')}<div><span>POPULARITY</span><b>${Math.round(w.popularity)}</b></div></div>
     <div style="margin-top:8px">${bar('Energy',w.energy,maxEnergy(w),'e')}${bar('Mood',w.mood,100,'m')}${bar('Trust',w.trust,100,'t')}${k?bar('Lewdness',w.lewd,100,'l'):'<div class="muted">Lewdness: ? (Appraisal Lv 2 or more trust)</div>'}${k?bar('Lust ('+lustLabel(w)+')',w.lust,100,'p'):''}${bar('Health',w.health,100,'h')}</div>
     <div class="muted" style="margin-top:6px">Race perk: <b>${RACE_PERK[w.race]?RACE_PERK[w.race].label:''}</b>: ${RACE_PERK[w.race]?RACE_PERK[w.race].desc:''}</div>
-    <div class="muted">Comfortable up to: <b>${CLOTH.find(c=>c.id===cl).label}</b> with clients · <b>${CLOTH.find(c=>c.id===cs).label}</b> with Sam</div>
+    <div class="muted">Comfortable up to: <b>${CLOTH.find(c=>c.id===cl).label}</b> with clients · <b>${CLOTH.find(c=>c.id===cs).label}</b> with Sam${has(w,'Modest')?`<br><span class="pink">Modest:</span> ${esc(flavor('modest', w))}`:''}</div>
     ${persLine(w)}${(HOUSES[houseOf(w).id].minPop||0) > w.popularity ? `<div class="warn">⚠️ Below ${esc(houseOf(w).name)}'s standard (popularity ${HOUSES[houseOf(w).id].minPop}). Escort clients pay less and complain.</div>`:''}</div>
     <div class="row" style="margin-top:8px">👗 <b>${esc(o.label)}</b>${usesColor(o)?` ${sw(w.outColor)}${w.outColor}`:''} · 🩲 ${esc(u.label)}${w.under!=='none'&&usesColor(u)?` ${sw(w.underColor)}${w.underColor}`:''} <button class="sm" onclick="openWardrobe('${w.id}')">Wardrobe</button></div>
     <h3 style="margin-top:10px">Services</h3>

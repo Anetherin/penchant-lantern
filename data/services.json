@@ -1,0 +1,15 @@
+{
+  "_readme": [
+    "Service categories. th = lewdness needed for her to enjoy it (trust can stretch her up to 25 below), price = base fee, energy = cost to her.",
+    "comp = the image-prompt wording for the scene. Add your own by adding an entry with a new id; everyone gets a random skill and comfort level for it."
+  ],
+  "services": [
+    {"id":"caress","label":"Kissing & touching","th":25,"price":24,"energy":6,"comp":"embracing and kissing passionately"},
+    {"id":"manual","label":"Manual","th":32,"price":32,"energy":7,"comp":"intimate moment"},
+    {"id":"oral","label":"Oral","th":42,"price":44,"energy":9,"comp":"intimate moment"},
+    {"id":"paizuri","label":"Paizuri","th":45,"price":46,"energy":9,"comp":"intimate moment"},
+    {"id":"missionary","label":"Missionary","th":52,"price":58,"energy":11,"comp":"intimate moment, lying on the bed"},
+    {"id":"cowgirl","label":"Cowgirl","th":56,"price":64,"energy":12,"comp":"intimate moment, on the bed"},
+    {"id":"doggy","label":"Doggy","th":60,"price":64,"energy":12,"comp":"intimate moment, on the bed"}
+  ]
+}

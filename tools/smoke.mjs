@@ -27,6 +27,16 @@ const BOT = `async (weeks) => {
   return { week: S.week, workers: S.workers.length, gold: Math.round(S.gold) };
 }`;
 
+// tiny static server: the split version fetches data/*.json, which browsers block on file://
+import http from 'node:http';
+const TYPES = {'.html':'text/html','.js':'text/javascript','.css':'text/css','.json':'application/json'};
+const server = http.createServer((q, r) => {
+  if (q.url === '/favicon.ico') { r.writeHead(204); return r.end(); }
+  const f = path.join(root, decodeURIComponent(q.url.split('?')[0]));
+  if (!f.startsWith(root) || !fs.existsSync(f) || fs.statSync(f).isDirectory()) { r.writeHead(404); return r.end(); }
+  r.writeHead(200, {'content-type': TYPES[path.extname(f)] || 'application/octet-stream'}); fs.createReadStream(f).pipe(r);
+}).listen(0);
+const PORT = server.address().port;
 const browser = await pw.chromium.launch(process.env.CHROME ? { executablePath: process.env.CHROME } : {});
 let failed = false;
 for (const target of ['index.html', 'dist/hollowmere-nights.html']) {
@@ -37,11 +47,11 @@ for (const target of ['index.html', 'dist/hollowmere-nights.html']) {
   page.on('pageerror', e => errors.push(e.message));
   page.on('console', m => { if (m.type() === 'error') errors.push(m.text()); });
   page.on('dialog', d => d.accept());
-  await page.goto('file://' + file);
+  await page.goto(`http://localhost:${PORT}/${target}`);
   const res = await page.evaluate(`(${BOT})(${WEEKS})`);
   console.log(`${target}: reached week ${res.week}, ${res.workers} workers, ${res.gold}g. ${errors.length ? 'ERRORS:\n  ' + errors.slice(0, 8).join('\n  ') : 'no errors'}`);
   if (errors.length) failed = true;
   await page.close();
 }
-await browser.close();
+await browser.close(); server.close();
 process.exit(failed ? 1 : 0);

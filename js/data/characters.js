@@ -33,7 +33,8 @@ const EYES = ['amber','green','emerald','blue','ice-blue','violet','grey','brown
 const SKINS = ['fair','pale','porcelain','olive','tan','sun-kissed','brown','dark brown'];
 const DEMON_SKINS = ['lavender-tinted','ash-grey','pale blue-tinted'];
 const FEATURES = ['a beauty mark under one eye','light freckles','a small scar on her cheek','an elegant tattoo on her shoulder','gold hoop earrings','a velvet choker','a confident smirk','long eyelashes','a flower in her hair','a thin scar across her arm','painted nails','an ornate hair pin'];
-const PERSONALITIES = ['Cheerful and teasing','Calm and elegant','Shy but earnest','Proud and sharp-tongued','Laid-back and lazy','Bold and flirtatious','Bookish and curious','Warm and motherly','Mysterious and aloof','Hot-blooded and competitive'];
+const PERS = noMeta(needData('personalities'));
+const PERSONALITIES = Object.keys(PERS);
 const HOOKS = ['a failed merchant venture left her looking for steady coin','her adventuring party disbanded and she wanted a change','she ran from an arranged marriage','she wants to save enough to open her own tea house','she is simply curious about the work, and the pay is good','she lost her position in a noble household','she sends money home to her family','she loves the nightlife and the people','she is searching for a missing sister and needs coin and contacts','she got bored of farm life'];
 const GIFTS = ['a silk ribbon','a bottle of elven wine','a hand-drawn sketch (it is not good)','a hair comb from the market','a small music box','a box of honey cakes','a pair of earrings'];
 
@@ -51,23 +52,11 @@ const TRAITS = {
   'Loyal':{desc:'Rarely loses trust; hard to poach.'},
   'Exhibitionist':{desc:'Dancing raises lewdness faster; comfortable with less clothing.', hidden:true},
   'Night Owl':{desc:'Recovers energy faster.', hidden:true},
+  'Modest':{desc:'Keeps her clothes on no matter how lewd she gets: they get pulled aside, not taken off.', personal:true},
   'Devoted':{desc:'Sam\'s lover. Never leaves; more willing with Sam; mood stays up.', story:true},
   'Oblivious':{desc:'Thinks of Sam as the boy from next door. Far less willing with him until her story moves along.', story:true}
 };
-// Personalities: what she enjoys doing with Sam, and which jobs she likes or dislikes.
-// likes/dislikes: chat, dinner, gift, train, private. trust = multiplier on trust Sam earns. lewd = lewdness growth.
-const PERS = {
-  'Cheerful and teasing':       {likes:['chat','gift','walk'], dislikes:['train','theater'],   jobsUp:['bartender','companion','reception'], jobsDown:['maid','security'], trust:1.1, lewd:1.05},
-  'Calm and elegant':           {likes:['dinner','train','theater'], dislikes:['walk'],    jobsUp:['madame','companion','dancer'],      jobsDown:['bartender','maid'], trust:1.0, lewd:0.95},
-  'Shy but earnest':            {likes:['chat','train','walk'], dislikes:['dinner'],  jobsUp:['maid','reception'],                 jobsDown:['dancer','courtesan'], trust:1.2, lewd:0.85},
-  'Proud and sharp-tongued':    {likes:['gift','theater'],  dislikes:['chat','walk'],    jobsUp:['madame','security','courtesan'],    jobsDown:['maid'], trust:0.85, lewd:1.0},
-  'Laid-back and lazy':         {likes:['chat','private'],  dislikes:['train','walk'],   jobsUp:['companion','bath'],                 jobsDown:['security','maid'], trust:1.0, lewd:1.05},
-  'Bold and flirtatious':       {likes:['private','dinner'],dislikes:['train'],   jobsUp:['courtesan','dancer','bartender'],   jobsDown:['maid','reception'], trust:1.0, lewd:1.2},
-  'Bookish and curious':        {likes:['train','chat','theater'], dislikes:['gift'],    jobsUp:['reception','madame'],               jobsDown:['security','dancer'], trust:1.05, lewd:1.0},
-  'Warm and motherly':          {likes:['dinner','chat','walk'], dislikes:[],          jobsUp:['madame','bath','maid'],             jobsDown:['security'], trust:1.1, lewd:0.95},
-  'Mysterious and aloof':       {likes:['gift','private','theater'], dislikes:['chat'],    jobsUp:['dancer','companion'],               jobsDown:['reception'], trust:0.8, lewd:1.0},
-  'Hot-blooded and competitive':{likes:['train','dinner'],  dislikes:['gift','theater'],    jobsUp:['security','bartender','dancer'],    jobsDown:['reception','maid'], trust:1.0, lewd:1.05}
-};
+// Personalities live in data/personalities.json (see PERS above).
 const ACT_WORD = {chat:'chats',dinner:'dinners',gift:'gifts',train:'training',private:'private time',walk:'walks',theater:'the theater'};
 function pm(w,a){ const P = PERS[w.personality]; if(!P) return 1; return P.likes.includes(a) ? 1.5 : P.dislikes.includes(a) ? 0.5 : 1; }
 const pTrust = w => (PERS[w.personality]||{}).trust || 1;

@@ -9,24 +9,15 @@ function viewSettings(){
       <label class="chk"><input type="checkbox" id="s_auto" ${SET.autoPortrait?'checked':''}> Auto-generate a portrait when someone has none saved</label>
       <label class="chk"><input type="checkbox" id="s_lib" ${SET.libraryInPool?'checked':''}> Library characters appear as candidates</label></div>
     <div class="row"><button class="primary" onclick="saveSettingsUI()">Save settings</button><span class="muted">Image plugin: ${getPlugin()?'<span class="good">connected</span>':'<span class="warn">not connected</span>'} · Image storage: ${DB?'<span class="good">ready</span>':'<span class="warn">unavailable</span>'}</span></div></section>
-  <section class="card"><h2>Scene Snippets</h2><p class="muted">Your own text, appended to the prompt for that scene. Empty slots use the default prompt only. Saved in this browser, separate from your save file.</p>
-    ${getActs().map(a=>`<label class="muted" style="display:block;margin:6px 0">Service: ${esc(a.label)} <code>act_${a.id}</code><textarea id="snip_act_${a.id}">${esc(SET.snippets['act_'+a.id]||'')}</textarea></label>`).join('')}
-    <label class="muted" style="display:block;margin:6px 0">All POV scenes with Sam <code>pov</code><textarea id="snip_pov">${esc(SET.snippets.pov||'')}</textarea></label>
-    <label class="muted" style="display:block;margin:6px 0">Bath <code>bath</code><textarea id="snip_bath">${esc(SET.snippets.bath||'')}</textarea></label>
-    <label class="muted" style="display:block;margin:6px 0">Story mishaps (shower / walk-in) <code>mishap</code><textarea id="snip_mishap">${esc(SET.snippets.mishap||'')}</textarea></label>
-    <h3>Clothing states</h3><p class="muted"><code>{outfit}</code> and <code>{underwear}</code> are replaced with what she's wearing (commando becomes "bare skin, nothing underneath"). "Undressed" falls back to "Partly undressed" while empty.</p>
-    ${CLOTH.map(c=>`<label class="muted" style="display:block;margin:6px 0">${c.label} <span class="muted">(lewd ${c.lv}+)</span><textarea id="cloth_${c.id}">${esc(T[c.id]||'')}</textarea></label>`).join('')}
-    <div class="row"><button class="primary" onclick="saveSnippetsUI()">Save snippets</button><button onclick="exportBox('snippets')">Export snippets</button><button onclick="importBox('snippets')">Import snippets</button></div></section>
-  <section class="card"><h2>Services</h2><p class="muted">Built-in categories are set in the code (ACTS). Add your own here; everyone gets a random skill and comfort level for them.</p>
-    ${(SET.customActs||[]).map((a,i)=>`<div class="row"><b>${esc(a.label)}</b> <span class="muted">needs ${a.th} · ${fmt(a.price)}</span><button class="sm" onclick="delAct(${i})">Remove</button></div>`).join('')}
-    <div class="row"><input id="na_label" placeholder="Label"><input id="na_th" type="number" placeholder="Lewdness line (e.g. 65)"><input id="na_price" type="number" placeholder="Price (e.g. 130)"><button onclick="addAct()">Add category</button></div></section>
+  <section class="card"><h2>Text &amp; Data Files</h2><p class="muted">Scene snippets, clothing wording, services, personalities, AI templates and flavor lines live in the repo's <code>data/</code> folder. Edit them on GitHub; changes show up a minute or two after you push (reload the page).</p>
+    <ul class="muted" style="margin:6px 0 6px 18px">${(window.HOLLOWMERE_DATA||Object.keys(DATA)).map(n=>`<li><code>data/${n}.json</code> ${DATA[n]?'<span class="good">loaded</span>':'<span class="warn">missing</span>'}</li>`).join('')}</ul>
+    ${browserEdits().n ? `<p><span class="warn">${browserEdits().n} older edit${browserEdits().n>1?'s':''} saved in this browser still override the files</span> (${browserEdits().what.join(', ')}). Export them merged into the file format, paste into the repo, then clear them here.</p>
+    <div class="row"><button onclick="exportEdits()">Export browser edits as JSON</button><button onclick="clearEdits()">Clear browser edits</button></div>` : '<p class="muted">No browser overrides: the files are in charge.</p>'}</section>
   <section class="card"><h2>AI Text</h2><p class="muted">Optional. Uses Perchance's text plugin to write scenes for reports, private time and training, and backstories for generic characters. Only backstories are kept; scenes are written on the spot. Image prompts stay programmatic. Plugin: ${getTextPlugin()?'<span class="good">connected</span>':'<span class="warn">not connected (add <code>ai = {import:ai-text-plugin}</code> to the lists panel)</span>'}</p>
     <div class="row"><label class="chk"><input type="checkbox" id="ai_on" ${SET.ai.on?'checked':''}> Enable AI text buttons (✨)</label>
       <label class="chk"><input type="checkbox" id="ai_auto" ${SET.ai.auto?'checked':''}> Write scenes automatically (private time, training, encounters, date invitations)</label>
       <label class="chk"><input type="checkbox" id="ai_bs" ${SET.ai.autoBackstory!==false?'checked':''}> Write backstories for generic characters automatically</label></div>
-    <label class="muted" style="display:block;margin:6px 0">Style guidance <span class="muted">(inserted as {guidance}: tone, length, how descriptive, etc.)</span><textarea id="ai_guid">${esc(SET.ai.guidance||'')}</textarea></label>
-    ${Object.keys(DEFAULT_AI_TPL).map(k=>`<label class="muted" style="display:block;margin:6px 0">Template: <b>${k}</b> <button class="sm" onclick="$('#ai_t_${k}').value=DEFAULT_AI_TPL['${k}']">Reset</button><textarea id="ai_t_${k}" style="min-height:90px">${esc(aiTpl(k))}</textarea></label>`).join('')}
-    <p class="muted">Placeholders: {name} {race} {age} {appearance} {clothing} {outfit} {personality} {traits} {trust} {lewd} {mood} {service} {stance} {client} {setting} {house} {relationship} {guidance} {hook} {backstory} {date} {situation} {lust}</p>
+    <p class="muted">Templates and style guidance are in <code>data/ai-templates.json</code>.</p>
     <div class="row"><button class="primary" onclick="saveAiUI()">Save AI settings</button></div></section>
   <section class="card"><h2>Images</h2><p class="muted">Generated and uploaded images live in this browser. Export them to back up or move them to another browser.</p>
     <div class="row"><button onclick="exportImages()">⬇ Export images</button><button onclick="importImages()">⬆ Import images</button><button onclick="cleanImages()">Clean up unused images</button></div></section>
@@ -38,24 +29,29 @@ function saveSettingsUI(){
   SET.autoPortrait = $('#s_auto').checked; SET.libraryInPool = $('#s_lib').checked; saveSettings(); toast('Settings saved.');
 }
 function saveAiUI(){
-  SET.ai.on = $('#ai_on').checked; SET.ai.auto = $('#ai_auto').checked; SET.ai.autoBackstory = $('#ai_bs').checked; SET.ai.guidance = $('#ai_guid').value;
-  Object.keys(DEFAULT_AI_TPL).forEach(k=>{ const v = $('#ai_t_'+k).value; SET.ai.tpl[k] = (v.trim()===DEFAULT_AI_TPL[k]) ? '' : v; });
+  SET.ai.on = $('#ai_on').checked; SET.ai.auto = $('#ai_auto').checked; SET.ai.autoBackstory = $('#ai_bs').checked;
   saveSettings(); toast('AI settings saved.'); render();
 }
-function saveSnippetsUI(){
-  getActs().forEach(a=>{ const e=$('#snip_act_'+a.id); if(e) SET.snippets['act_'+a.id]=e.value; });
-  ['pov','bath','mishap'].forEach(k=>{ const e=$('#snip_'+k); if(e) SET.snippets[k]=e.value; });
-  CLOTH.forEach(c=>{ const e=$('#cloth_'+c.id); if(e) SET.clothText[c.id] = e.value===DEFAULT_CLOTH_TEXT[c.id] ? '' : e.value; });
-  saveSettings(); toast('Snippets saved.');
+// Older versions kept snippets/templates in the browser. They still override the data files until cleared.
+function browserEdits(){
+  const nz = o => Object.entries(o||{}).filter(([k,v])=>v && String(v).trim());
+  const sn = nz(SET.snippets), cl = nz(SET.clothText), tp = nz(SET.ai.tpl), g = (SET.ai.guidance||'').trim(), ca = SET.customActs||[];
+  const what = [sn.length&&`${sn.length} scene snippet${sn.length>1?'s':''}`, cl.length&&'clothing wording', (tp.length||g)&&'AI templates', ca.length&&`${ca.length} custom service${ca.length>1?'s':''}`].filter(Boolean);
+  return {n: sn.length + cl.length + tp.length + (g?1:0) + ca.length, what, sn, cl, tp, g, ca};
 }
-function addAct(){
-  const label = cleanText($('#na_label').value), th = clamp(parseInt($('#na_th').value)||60), price = Math.max(10, parseInt($('#na_price').value)||100);
-  if(!label) return toast('Give it a label.');
-  const id = 'c' + hashStr(label + Date.now()).toString(36);
-  SET.customActs.push({id, label, th, price, energy:11, comp:'intimate moment'}); saveSettings();
-  S.workers.concat(S.candidates).forEach(ensureWorker); save(); toast(`${label} added.`); render();
+function exportEdits(){
+  const e = browserEdits(), out = {};
+  if(e.sn.length || e.cl.length) out['data/snippets.json'] = Object.assign({}, DATA.snippets, {scenes:Object.assign({}, DATA.snippets.scenes, Object.fromEntries(e.sn)), clothing:Object.assign({}, DATA.snippets.clothing, Object.fromEntries(e.cl))});
+  if(e.tp.length || e.g) out['data/ai-templates.json'] = Object.assign({}, DATA['ai-templates'], Object.fromEntries(e.tp), e.g?{guidance:e.g}:{});
+  if(e.ca.length) out['data/services.json'] = Object.assign({}, DATA.services, {services: DATA.services.services.concat(e.ca)});
+  const txt = Object.entries(out).map(([k,v])=>`===== ${k} (replace the whole file) =====\n${JSON.stringify(v,null,2)}`).join('\n\n');
+  modal(`<h2>Your browser edits</h2><p class="muted">Each block is the full file with your edits merged in. Paste it over that file in the repo, push, then come back and clear the browser edits.</p><textarea id="exp" style="min-height:260px">${esc(txt)}</textarea>
+    <div class="row"><button class="primary" onclick="try{navigator.clipboard.writeText($('#exp').value);toast('Copied.')}catch(e){toast('Select and copy manually.')}">Copy</button><button onclick="dlText($('#exp').value,'hollowmere-browser-edits.txt')">Download file</button></div>`);
 }
-function delAct(i){ if(!confirm('Remove this category?')) return; const a = SET.customActs.splice(i,1)[0]; saveSettings(); S.workers.forEach(w=>{ w.menu=w.menu.filter(x=>x!==a.id); }); save(); render(); }
+function clearEdits(){
+  if(!confirm('Clear the snippets, clothing wording, AI templates and custom services saved in this browser? The data files take over. Export first if you haven\'t.')) return;
+  SET.snippets = {}; SET.clothText = {}; SET.ai.tpl = {}; SET.ai.guidance = ''; SET.customActs = []; saveSettings(); toast('Cleared. The data files are in charge now.'); render();
+}
 function exportBox(kind){
   const data = kind==='save' ? S : kind==='lib' ? LIB : {snippets:SET.snippets, clothText:SET.clothText, customActs:SET.customActs};
   modal(`<h2>Export ${kind}</h2><p class="muted">Copy this text and keep it somewhere safe.</p><textarea id="exp" style="min-height:200px">${esc(JSON.stringify(data))}</textarea>

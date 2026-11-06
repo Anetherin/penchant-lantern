@@ -64,10 +64,7 @@ function queueEncounters(){
 function evLateVisit(w){
   if(!w || !canVisit(w, 60, 45, 40)) return null;
   const act = bestSamAct(w);
-  return {title:'A Knock After Midnight', who:w.id, scene:'casual', text:pick([
-      `Sam is doing the books by candlelight when ${w.name} knocks. She hasn't seen a single client all week, and she's clearly been thinking about something. "Busy?"`,
-      `${w.name} appears in Sam's doorway in her nightclothes, holding two cups of tea she clearly has no intention of drinking.`,
-      `A note slides under Sam's door: "Still awake? Come find out." It's in ${w.name}'s handwriting.`]),
+  return {title:'A Knock After Midnight', who:w.id, scene:'casual', text:flavor('late_visit', w),
     choices:[
       {label:'Let her in', fx(){ return encounterResult(w, act, `${w.name} doesn't wait for an answer. The candle burns all the way down.`, 'encounter', 'Late at night, she came to his door on her own initiative.'); }},
       {label:'Not tonight', fx(){ w.mood = clamp(w.mood-4); w.lust = clamp(w.lust-5); return `${w.name} smiles a little ruefully. "Your loss, boss."`; }}]};

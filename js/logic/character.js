@@ -67,9 +67,12 @@ function clothOK(w,c,withSam){
   return clothLimit(w,withSam) >= CLOTH.find(x=>x.id===c).lv;
 }
 function maxCloth(w, withSam){ return [...CLOTH].reverse().find(c=>clothOK(w,c.id,withSam)).id; }
+// Modest ladies keep their clothes on by default (pulled aside); you can still pick another state by hand.
+const clothCap = (w, c) => has(w,'Modest') && CLOTH.findIndex(x=>x.id===c) > 1 ? 'partial' : c;
 function defaultCloth(w, scene){
-  if(scene.startsWith('act:')) return maxCloth(w,false);
-  if(scene.startsWith('samact:')) return maxCloth(w,true);
+  if(scene.startsWith('act:')) return clothCap(w, maxCloth(w,false));
+  if(scene.startsWith('samact:')) return clothCap(w, maxCloth(w,true));
+  if(scene==='solo') return clothCap(w, maxCloth(w,false));
   if(scene==='bath') return clothOK(w,'nude',false) ? 'nude' : 'dressed';
   return 'dressed';
 }
@@ -98,6 +101,8 @@ function ensureWorker(w){
   if(w.offDuty===undefined) w.offDuty = false;
   if(!w.style) w.style = pick(STYLES);
   if(!w.favColor) w.favColor = pick(COLOR_KEYS);
+  // Modest: rolled once per lady from her personality (data/personalities.json → modest)
+  if(w._mr===undefined){ w._mr = 1; if(!has(w,'Modest') && !has(w,'Exhibitionist') && Math.random() < ((PERS[w.personality]||{}).modest||0)) (w.traits = w.traits||[]).push('Modest'); }
   w.design = w.design || {};
   // wardrobe migration / defaults
   if(!w.owned) w.owned = [];
@@ -146,7 +151,7 @@ function genWorker(opts={}){
     popularity:ri(0,12), lewd:ri(5,60), trust:ri(5,22), mood:ri(52,70), energy:100, health:100,
     wage:0, contract:12, job:'rest', house:null, seed:ri(1,999999999), imgVar:{}, seen:{}, unhappy:0, earnedLast:0, privateCount:0
   };
-  const vis = Object.keys(TRAITS).filter(t=>!TRAITS[t].hidden && !TRAITS[t].story);
+  const vis = Object.keys(TRAITS).filter(t=>!TRAITS[t].hidden && !TRAITS[t].story && !TRAITS[t].personal);
   const n = Math.random()<0.5 ? 1 : 2;
   while(w.traits.length<n){ const t=pick(vis); if(!w.traits.includes(t) && !(t==='Shy'&&has(w,'Eager')) && !(t==='Eager'&&has(w,'Shy'))) w.traits.push(t); }
   if(Math.random()<0.25) w.traits.push(pick(['Exhibitionist','Night Owl']));
@@ -186,4 +191,6 @@ const isHired = key => S && (S.workers.some(w=>w.key===key) || S.candidates.some
 // she isn't in the mood for the heavier services.
 const LUST_LOW = 20, LUST_HIGH = 85;
 const notInMood = (w, act) => act && w.lust < LUST_LOW && ((actById(act)||{}).energy||10) >= 9;
+// At max lust some ladies take care of it themselves (data/personalities.json → solo).
+function soloChance(w){ const P = PERS[w.personality]||{}; return Math.max(0.05, Math.min(0.9, (P.solo ?? 0.3) + (has(w,'Shy')?0.15:0) + (has(w,'Modest')?0.1:0) - (has(w,'Eager')?0.15:0) - (has(w,'Exhibitionist')?0.1:0))); }
 function lustLabel(w){ return w.lust>=LUST_HIGH ? 'restless' : w.lust>=60 ? 'eager' : w.lust<LUST_LOW ? 'not in the mood' : 'content'; }

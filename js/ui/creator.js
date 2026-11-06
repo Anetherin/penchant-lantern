@@ -63,7 +63,7 @@ function readCreator(){
   w.under = g('c_un') || w.under; w.customUnder = cleanText(g('c_unc')); w.underColor = g('c_ucol') || w.underColor;
   if(w.under==='custom' && !w.customUnder) w.customUnder = 'simple lace underwear';
   if(w.under!=='custom' && !w.ownedUnder.includes(w.under)) w.ownedUnder.push(w.under);
-  w.traits = [...document.querySelectorAll('.c_trait:checked')].map(x=>x.value).concat((w.traits||[]).filter(t=>TRAITS[t]&&TRAITS[t].story));
+  w._mr = 1; w.traits = [...document.querySelectorAll('.c_trait:checked')].map(x=>x.value).concat((w.traits||[]).filter(t=>TRAITS[t]&&TRAITS[t].story));
   STAT_KEYS.forEach(k=>w.stats[k]=clamp(parseInt(g('c_s_'+k))||0));
   TECH_KEYS.forEach(k=>w.tech[k]=clamp(parseInt(g('c_t_'+k))||0));
   w.popularity = clamp(parseInt(g('c_pop'))||0); w.lewd = clamp(parseInt(g('c_lewd'))||0); w.trust = clamp(parseInt(g('c_trust'))||0);

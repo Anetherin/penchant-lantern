@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Hollowmere Nights</title>
-<!-- Built from github.com/Topofira/penchant-lantern by tools/build.mjs. Lists panel: t2i = {import:text-to-image-plugin} / ai = {import:ai-text-plugin} -->
+<!-- Built from github.com/Anetherin/penchant-lantern by tools/build.mjs. Lists panel: t2i = {import:text-to-image-plugin} / ai = {import:ai-text-plugin} -->
 <style>
 :root{--bg:#141019;--panel:#1f1826;--panel2:#2a2133;--ink:#efe6f3;--muted:#a898b3;--gold:#e6b85c;--gold2:#b8862f;--red:#e86b84;--green:#6fd39a;--blue:#6ab0ff;--pink:#e58fb8;--line:#3a2e45}
 *{box-sizing:border-box}
@@ -93,6 +93,7 @@ table{border-collapse:collapse;width:100%;font-size:13px}td,th{border-bottom:1px
 <input type="file" id="upFile" accept="image/*" style="display:none">
 <input type="file" id="upJson" accept=".json,application/json" style="display:none">
 <script>
+window.PL_DATA = {"services":{"_readme":["Service categories. th = lewdness needed for her to enjoy it (trust can stretch her up to 25 below), price = base fee, energy = cost to her.","comp = the image-prompt wording for the scene. Add your own by adding an entry with a new id; everyone gets a random skill and comfort level for it."],"services":[{"id":"caress","label":"Kissing & touching","th":25,"price":24,"energy":6,"comp":"embracing and kissing passionately"},{"id":"manual","label":"Manual","th":32,"price":32,"energy":7,"comp":"intimate moment"},{"id":"oral","label":"Oral","th":42,"price":44,"energy":9,"comp":"intimate moment"},{"id":"paizuri","label":"Paizuri","th":45,"price":46,"energy":9,"comp":"intimate moment"},{"id":"missionary","label":"Missionary","th":52,"price":58,"energy":11,"comp":"intimate moment, lying on the bed"},{"id":"cowgirl","label":"Cowgirl","th":56,"price":64,"energy":12,"comp":"intimate moment, on the bed"},{"id":"doggy","label":"Doggy","th":60,"price":64,"energy":12,"comp":"intimate moment, on the bed"}]},"personalities":{"_readme":["One entry per personality. Generic ladies pick one at random; the creator lists them all. Add your own by adding a new key.","likes/dislikes: chat, dinner, gift, train, private, walk, theater (things Sam does with her). jobsUp/jobsDown: job ids she likes or dislikes.","trust: multiplier on trust Sam earns. lewd: multiplier on lewdness growth.","solo: chance (0-1) that at max lust she takes care of it herself instead of acting on it with someone. Costs her energy and fewer clients that night.","modest: chance (0-1) a new lady with this personality gets the Modest trait: she keeps her clothes on (pulled aside) no matter how lewd she is."],"Cheerful and teasing":{"likes":["chat","gift","walk"],"dislikes":["train","theater"],"jobsUp":["bartender","companion","reception"],"jobsDown":["maid","security"],"trust":1.1,"lewd":1.05,"solo":0.25,"modest":0.05},"Calm and elegant":{"likes":["dinner","train","theater"],"dislikes":["walk"],"jobsUp":["madame","companion","dancer"],"jobsDown":["bartender","maid"],"trust":1,"lewd":0.95,"solo":0.5,"modest":0.4},"Shy but earnest":{"likes":["chat","train","walk"],"dislikes":["dinner"],"jobsUp":["maid","reception"],"jobsDown":["dancer","courtesan"],"trust":1.2,"lewd":0.85,"solo":0.7,"modest":0.5},"Proud and sharp-tongued":{"likes":["gift","theater"],"dislikes":["chat","walk"],"jobsUp":["madame","security","courtesan"],"jobsDown":["maid"],"trust":0.85,"lewd":1,"solo":0.55,"modest":0.35},"Laid-back and lazy":{"likes":["chat","private"],"dislikes":["train","walk"],"jobsUp":["companion","bath"],"jobsDown":["security","maid"],"trust":1,"lewd":1.05,"solo":0.6,"modest":0.15},"Bold and flirtatious":{"likes":["private","dinner"],"dislikes":["train"],"jobsUp":["courtesan","dancer","bartender"],"jobsDown":["maid","reception"],"trust":1,"lewd":1.2,"solo":0.15,"modest":0},"Bookish and curious":{"likes":["train","chat","theater"],"dislikes":["gift"],"jobsUp":["reception","madame"],"jobsDown":["security","dancer"],"trust":1.05,"lewd":1,"solo":0.55,"modest":0.25},"Warm and motherly":{"likes":["dinner","chat","walk"],"dislikes":[],"jobsUp":["madame","bath","maid"],"jobsDown":["security"],"trust":1.1,"lewd":0.95,"solo":0.35,"modest":0.2},"Mysterious and aloof":{"likes":["gift","private","theater"],"dislikes":["chat"],"jobsUp":["dancer","companion"],"jobsDown":["reception"],"trust":0.8,"lewd":1,"solo":0.6,"modest":0.4},"Hot-blooded and competitive":{"likes":["train","dinner"],"dislikes":["gift","theater"],"jobsUp":["security","bartender","dancer"],"jobsDown":["reception","maid"],"trust":1,"lewd":1.05,"solo":0.3,"modest":0.1}},"snippets":{"_readme":["Your own text, appended to the image prompt for that scene. Empty = default prompt only.","scenes: act_<serviceId> for each service, pov (every Sam/POV scene), bath, mishap (shower / walk-in), solo (a lady alone in her room at max lust).","clothing: how each clothing state is described. {outfit} and {underwear} are filled in from her wardrobe; commando becomes \"bare skin, nothing underneath\". nude falls back to partial while empty.","clothing.aside / aside_commando: used for Modest ladies during services, when her clothes are pulled aside instead of taken off."],"scenes":{"act_caress":"","act_manual":"","act_oral":"","act_paizuri":"","act_missionary":"","act_cowgirl":"","act_doggy":"","pov":"","bath":"","mishap":"","solo":""},"clothing":{"dressed":"wearing {outfit}","partial":"wearing {outfit}, partially undressed, clothes loosened and slipping off to show {underwear}","under":"wearing only {underwear}","nude":"","aside":"still wearing {outfit}, her clothes pulled aside rather than taken off, {underwear} pushed aside","aside_commando":"still wearing {outfit}, her clothes pulled aside rather than taken off, nothing underneath"}},"ai-templates":{"_readme":["AI text templates (Perchance ai-text-plugin). {placeholders} are filled in by the game.","Placeholders: {name} {race} {age} {appearance} {clothing} {outfit} {personality} {traits} {trust} {lewd} {mood} {service} {stance} {client} {setting} {house} {relationship} {guidance} {hook} {backstory} {date} {situation} {lust}","guidance is inserted wherever {guidance} appears: tone, length, how descriptive, etc."],"guidance":"","scene":"Write a short scene (about 120 words, third person, past tense) for a fantasy isekai pleasure-house game. {name} is a {race} working at {house}: {appearance}. She is wearing {clothing}. Personality: {personality}. Her client: {client}. Service: {service}, which is {stance}. Setting: {setting}. {guidance} All characters are consenting adults. Output only the scene.","private":"Write a short scene (about 150 words, third person, past tense) for a fantasy isekai pleasure-house game. Sam Takahashi is a kind, slightly nerdy young man reincarnated from Japan who now runs {house}. {name} is a {race}: {appearance}. She is wearing {clothing}. Personality: {personality}. Their relationship: {relationship} (her trust in Sam: {trust}/100). They spend private time together: {service}, which for her is {stance}. Setting: {setting}. {guidance} Both are consenting adults. Output only the scene.","train":"Write a short scene (about 120 words, third person, past tense) for a fantasy isekai pleasure-house game. Sam Takahashi, a kind, nerdy young man from another world, helps {name} ({race}, {personality}) practice {service}. Their relationship: {relationship}. Setting: {setting}. Include Sam taking notes, which she finds funny. {guidance} Both are consenting adults. Output only the scene.","proposition":"Write 2-4 sentences (third person, present tense, including her spoken words) for a fantasy isekai romance game: at the end of a date ({date}), {name} ({race}, {personality}) invites Sam Takahashi, the kind, nerdy otherworlder who runs {house}, into her room. Their relationship: {relationship}. Her mood is high and she's {lust}. {guidance} Both are consenting adults. Output only the passage.","encounter":"Write a short scene (about 120 words, third person, past tense) for a fantasy isekai pleasure-house game. {situation} {name} is a {race}: {appearance}, wearing {clothing}. Personality: {personality}. Relationship with Sam Takahashi (a kind, nerdy otherworlder who runs {house}): {relationship}. What happens: {service}, which for her is {stance}. {guidance} Both are consenting adults. Output only the scene.","reckless":"Write a short scene (about 120 words, third person, past tense) for a fantasy isekai pleasure-house game. {name} ({race}, {personality}), who works at {house}, has been {lust} for days and finally acts on it impulsively: {situation} Appearance: {appearance}, wearing {clothing}. {guidance} All characters are consenting adults. Output only the scene.","backstory":"Write a 3-4 sentence backstory for {name}, a {age}-year-old {race} woman in a fantasy world who has just taken a job at a pleasure house in the frontier town of Hollowmere. Appearance: {appearance}. Personality: {personality}. Traits: {traits}. Why she came: {hook}. Third person, no lists, no title. Output only the backstory."},"flavor":{"_readme":["Short text lines the game picks from at random. No AI needed. Each section has a _default list; add a list under a personality name to give that personality its own lines.","Placeholders: {name}, {house}, plus any extra ones noted for the section. Add as many lines as you like."],"solo":{"_note":"Report line when a lady at max lust spends part of her night alone in her room instead. Shown in the weekly report.","_default":["{name} disappeared to her room early one night and didn't come back down for a long while. She seemed a lot calmer afterward.","{name} locked her door for most of an evening. She came out flushed, relaxed, and tired."],"Shy but earnest":["{name} excused herself early one night, too embarrassed to say why. She avoided everyone's eyes at breakfast.","{name} spent an evening shut in her room with the curtains drawn. She insists she was reading."],"Bookish and curious":["{name} took a novel of the steamier sort up to her room and was not seen again that night.","{name} called it 'research' and locked her door. She came out with a very satisfied look and ink on her fingers."],"Mysterious and aloof":["{name} vanished one evening without explanation. When she returned, she was smiling to herself and offered none."],"Proud and sharp-tongued":["{name} decided she didn't need anyone's help with her problem, thank you, and took the evening to herself.","{name} snapped at two clients, then went to her room and slammed the door. An hour later she came out in a far better mood."],"Laid-back and lazy":["{name} figured the easiest solution was the one that didn't involve getting out of bed. She skipped most of one evening."],"Calm and elegant":["{name} retired early one evening for 'a long bath'. It was a very long bath."]},"modest":{"_note":"Shown on her sheet when she has the Modest trait.","_default":["She keeps her clothes on. When things get intimate, they get pulled aside, not taken off."]},"late_visit":{"_note":"Opening line when a lady knocks on Sam's door late at night.","_default":["Sam is doing the books by candlelight when {name} knocks. She hasn't seen a single client all week, and she's clearly been thinking about something. \"Busy?\"","{name} appears in Sam's doorway in her nightclothes, holding two cups of tea she clearly has no intention of drinking.","A note slides under Sam's door: \"Still awake? Come find out.\" It's in {name}'s handwriting."],"Shy but earnest":["There's a very quiet knock. {name} is standing in the hall, red to the ears, and has clearly rehearsed what she wants to say. She forgets all of it."],"Bold and flirtatious":["{name} doesn't knock. She just leans in Sam's doorway until he notices her. \"You work too hard, boss.\""]},"client_yes":{"_note":"Second half of a report highlight when a client got the service he asked for.","_default":["They disappeared upstairs for most of the evening.","He came downstairs an hour later looking dazed and very satisfied.","The door stayed closed a long time. He tipped generously.","She came back down first, humming. He followed, red-faced and grinning."]},"client_company":{"_note":"Second half of a report highlight when a client only wanted her company.","_default":["He left lighter in the purse and very happy about it.","He promised to come back next week.","He told three friends about her before he got home."]}}};
 window.PL_PLUGINS = { t2i: (typeof t2i!=='undefined')?t2i:null, ai: (typeof ai!=='undefined')?ai:null };
 </script>
 <script>
@@ -100,47 +101,28 @@ window.PL_PLUGINS = { t2i: (typeof t2i!=='undefined')?t2i:null, ai: (typeof ai!=
 'use strict';
 /* =====================================================================
    USER CONFIG
+   Editable text and numbers live in data/*.json (loaded by loader.js into window.PL_DATA).
    ===================================================================== */
-// Your own scene text, appended to the generated prompt. Settings → Scene Snippets overrides these.
-// Keys: act_<serviceId> for each service category, "pov" (added to every Sam/POV scene), "bath".
-const SCENE_SNIPPETS = {
-  act_caress:"", act_manual:"", act_oral:"", act_paizuri:"",
-  act_missionary:"", act_cowgirl:"", act_doggy:"",
-  pov:"", bath:"", mishap:""
-};
-// Service categories. th = lewdness needed for her to enjoy it (trust can stretch her up to 25 below), price = base fee. Add more in Settings → Services.
-const ACTS = [
-  {id:'caress',     label:'Kissing & touching', th:25, price:24, energy:6,  comp:'embracing and kissing passionately'},
-  {id:'manual',     label:'Manual',             th:32, price:32, energy:7,  comp:'intimate moment'},
-  {id:'oral',       label:'Oral',               th:42, price:44, energy:9,  comp:'intimate moment'},
-  {id:'paizuri',    label:'Paizuri',            th:45, price:46, energy:9,  comp:'intimate moment'},
-  {id:'missionary', label:'Missionary',         th:52, price:58, energy:11, comp:'intimate moment, lying on the bed'},
-  {id:'cowgirl',    label:'Cowgirl',            th:56, price:64, energy:12, comp:'intimate moment, on the bed'},
-  {id:'doggy',      label:'Doggy',              th:60, price:64, energy:12, comp:'intimate moment, on the bed'}
-];
-// Clothing states, in order. {outfit} and {underwear} are filled in from her wardrobe.
-const DEFAULT_CLOTH_TEXT = {
-  dressed: "wearing {outfit}",
-  partial: "wearing {outfit}, partially undressed, clothes loosened and slipping off to show {underwear}",
-  under:   "wearing only {underwear}",
-  nude:    ""   // fill in yourself; empty falls back to "partial"
-};
+const DATA = window.PL_DATA || {};
+function needData(k){ if(!DATA[k]) throw new Error(`data/${k}.json didn't load.`); return DATA[k]; }
+const noMeta = o => Object.fromEntries(Object.entries(o||{}).filter(([k])=>!k.startsWith('_')));
+// Service categories (data/services.json). Custom ones added in old versions of Settings still work.
+const ACTS = needData('services').services;
+// Your own scene text, appended to the generated prompt (data/snippets.json → scenes).
+const SCENE_SNIPPETS = noMeta(needData('snippets').scenes);
+// Clothing state wording (data/snippets.json → clothing). {outfit} and {underwear} are filled in from her wardrobe.
+const DEFAULT_CLOTH_TEXT = noMeta(needData('snippets').clothing);
+// AI text templates (data/ai-templates.json). {placeholders} are filled from the game.
+const AI_FILE = needData('ai-templates');
+const DEFAULT_AI_TPL = Object.fromEntries(Object.entries(noMeta(AI_FILE)).filter(([k])=>k!=='guidance'));
+// Short random text lines (data/flavor.json).
+const FLAVOR = noMeta(needData('flavor'));
 const DEFAULT_SETTINGS = {
   style: "anime style, detailed fantasy illustration, isekai, soft cinematic lighting, high quality",
   negative: "child, minor, teen, loli, young-looking, school uniform, lowres, bad anatomy, extra fingers, watermark, text, signature",
   resolution: "512x768", autoPortrait: true, libraryInPool: true,
   snippets: {}, clothText: {}, customActs: [],
   ai: {on:true, auto:true, autoBackstory:true, guidance:'', tpl:{}}
-};
-// AI text templates (Perchance ai-text-plugin). {placeholders} are filled from the game. Edit in Settings → AI Text.
-const DEFAULT_AI_TPL = {
-  scene: "Write a short scene (about 120 words, third person, past tense) for a fantasy isekai pleasure-house game. {name} is a {race} working at {house}: {appearance}. She is wearing {clothing}. Personality: {personality}. Her client: {client}. Service: {service}, which is {stance}. Setting: {setting}. {guidance} All characters are consenting adults. Output only the scene.",
-  private: "Write a short scene (about 150 words, third person, past tense) for a fantasy isekai pleasure-house game. Sam Takahashi is a kind, slightly nerdy young man reincarnated from Japan who now runs {house}. {name} is a {race}: {appearance}. She is wearing {clothing}. Personality: {personality}. Their relationship: {relationship} (her trust in Sam: {trust}/100). They spend private time together: {service}, which for her is {stance}. Setting: {setting}. {guidance} Both are consenting adults. Output only the scene.",
-  train: "Write a short scene (about 120 words, third person, past tense) for a fantasy isekai pleasure-house game. Sam Takahashi, a kind, nerdy young man from another world, helps {name} ({race}, {personality}) practice {service}. Their relationship: {relationship}. Setting: {setting}. Include Sam taking notes, which she finds funny. {guidance} Both are consenting adults. Output only the scene.",
-  proposition: "Write 2-4 sentences (third person, present tense, including her spoken words) for a fantasy isekai romance game: at the end of a date ({date}), {name} ({race}, {personality}) invites Sam Takahashi, the kind, nerdy otherworlder who runs {house}, into her room. Their relationship: {relationship}. Her mood is high and she's {lust}. {guidance} Both are consenting adults. Output only the passage.",
-  encounter: "Write a short scene (about 120 words, third person, past tense) for a fantasy isekai pleasure-house game. {situation} {name} is a {race}: {appearance}, wearing {clothing}. Personality: {personality}. Relationship with Sam Takahashi (a kind, nerdy otherworlder who runs {house}): {relationship}. What happens: {service}, which for her is {stance}. {guidance} Both are consenting adults. Output only the scene.",
-  reckless: "Write a short scene (about 120 words, third person, past tense) for a fantasy isekai pleasure-house game. {name} ({race}, {personality}), who works at {house}, has been {lust} for days and finally acts on it impulsively: {situation} Appearance: {appearance}, wearing {clothing}. {guidance} All characters are consenting adults. Output only the scene.",
-  backstory: "Write a 3-4 sentence backstory for {name}, a {age}-year-old {race} woman in a fantasy world who has just taken a job at a pleasure house in the frontier town of Hollowmere. Appearance: {appearance}. Personality: {personality}. Traits: {traits}. Why she came: {hook}. Third person, no lists, no title. Output only the backstory."
 };
 const SAM_DESC = "a young adult Japanese man in his mid-twenties, short dark brown hair, thin build, kind and slightly awkward expression, grey hoodie under a simple traveler's cloak";
 
@@ -178,6 +160,13 @@ const store = {
   set(k,v){ try{ localStorage.setItem(k, JSON.stringify(v)); return true; }catch(e){ return false; } },
   del(k){ try{ localStorage.removeItem(k); }catch(e){} }
 };
+// Random line from data/flavor.json: her personality's list if it has one, else _default. {name}/{house} filled in.
+function flavor(sec, w, extra={}){
+  const F = FLAVOR[sec] || {}, list = (w && Array.isArray(F[w.personality]) && F[w.personality].length) ? F[w.personality] : (F._default||[]);
+  if(!list.length) return '';
+  const c = Object.assign({name: w ? w.name : '', house: (w && typeof S!=='undefined' && S && typeof houseOf==='function' && houseOf(w)) ? houseOf(w).name : 'the house'}, extra);
+  return pick(list).replace(/\{(\w+)\}/g, (m,k)=> c[k]!==undefined ? String(c[k]) : m);
+}
 const KEY_SAVE='gilded_lantern_save_v1', KEY_SET='gilded_lantern_settings_v1', KEY_LIB='gilded_lantern_library_v1';
 const _ss = store.get(KEY_SET) || {};
 let SET = Object.assign({}, DEFAULT_SETTINGS, _ss);
@@ -240,7 +229,8 @@ const EYES = ['amber','green','emerald','blue','ice-blue','violet','grey','brown
 const SKINS = ['fair','pale','porcelain','olive','tan','sun-kissed','brown','dark brown'];
 const DEMON_SKINS = ['lavender-tinted','ash-grey','pale blue-tinted'];
 const FEATURES = ['a beauty mark under one eye','light freckles','a small scar on her cheek','an elegant tattoo on her shoulder','gold hoop earrings','a velvet choker','a confident smirk','long eyelashes','a flower in her hair','a thin scar across her arm','painted nails','an ornate hair pin'];
-const PERSONALITIES = ['Cheerful and teasing','Calm and elegant','Shy but earnest','Proud and sharp-tongued','Laid-back and lazy','Bold and flirtatious','Bookish and curious','Warm and motherly','Mysterious and aloof','Hot-blooded and competitive'];
+const PERS = noMeta(needData('personalities'));
+const PERSONALITIES = Object.keys(PERS);
 const HOOKS = ['a failed merchant venture left her looking for steady coin','her adventuring party disbanded and she wanted a change','she ran from an arranged marriage','she wants to save enough to open her own tea house','she is simply curious about the work, and the pay is good','she lost her position in a noble household','she sends money home to her family','she loves the nightlife and the people','she is searching for a missing sister and needs coin and contacts','she got bored of farm life'];
 const GIFTS = ['a silk ribbon','a bottle of elven wine','a hand-drawn sketch (it is not good)','a hair comb from the market','a small music box','a box of honey cakes','a pair of earrings'];
 
@@ -258,23 +248,11 @@ const TRAITS = {
   'Loyal':{desc:'Rarely loses trust; hard to poach.'},
   'Exhibitionist':{desc:'Dancing raises lewdness faster; comfortable with less clothing.', hidden:true},
   'Night Owl':{desc:'Recovers energy faster.', hidden:true},
+  'Modest':{desc:'Keeps her clothes on no matter how lewd she gets: they get pulled aside, not taken off.', personal:true},
   'Devoted':{desc:'Sam\'s lover. Never leaves; more willing with Sam; mood stays up.', story:true},
   'Oblivious':{desc:'Thinks of Sam as the boy from next door. Far less willing with him until her story moves along.', story:true}
 };
-// Personalities: what she enjoys doing with Sam, and which jobs she likes or dislikes.
-// likes/dislikes: chat, dinner, gift, train, private. trust = multiplier on trust Sam earns. lewd = lewdness growth.
-const PERS = {
-  'Cheerful and teasing':       {likes:['chat','gift','walk'], dislikes:['train','theater'],   jobsUp:['bartender','companion','reception'], jobsDown:['maid','security'], trust:1.1, lewd:1.05},
-  'Calm and elegant':           {likes:['dinner','train','theater'], dislikes:['walk'],    jobsUp:['madame','companion','dancer'],      jobsDown:['bartender','maid'], trust:1.0, lewd:0.95},
-  'Shy but earnest':            {likes:['chat','train','walk'], dislikes:['dinner'],  jobsUp:['maid','reception'],                 jobsDown:['dancer','courtesan'], trust:1.2, lewd:0.85},
-  'Proud and sharp-tongued':    {likes:['gift','theater'],  dislikes:['chat','walk'],    jobsUp:['madame','security','courtesan'],    jobsDown:['maid'], trust:0.85, lewd:1.0},
-  'Laid-back and lazy':         {likes:['chat','private'],  dislikes:['train','walk'],   jobsUp:['companion','bath'],                 jobsDown:['security','maid'], trust:1.0, lewd:1.05},
-  'Bold and flirtatious':       {likes:['private','dinner'],dislikes:['train'],   jobsUp:['courtesan','dancer','bartender'],   jobsDown:['maid','reception'], trust:1.0, lewd:1.2},
-  'Bookish and curious':        {likes:['train','chat','theater'], dislikes:['gift'],    jobsUp:['reception','madame'],               jobsDown:['security','dancer'], trust:1.05, lewd:1.0},
-  'Warm and motherly':          {likes:['dinner','chat','walk'], dislikes:[],          jobsUp:['madame','bath','maid'],             jobsDown:['security'], trust:1.1, lewd:0.95},
-  'Mysterious and aloof':       {likes:['gift','private','theater'], dislikes:['chat'],    jobsUp:['dancer','companion'],               jobsDown:['reception'], trust:0.8, lewd:1.0},
-  'Hot-blooded and competitive':{likes:['train','dinner'],  dislikes:['gift','theater'],    jobsUp:['security','bartender','dancer'],    jobsDown:['reception','maid'], trust:1.0, lewd:1.05}
-};
+// Personalities live in data/personalities.json (see PERS above).
 const ACT_WORD = {chat:'chats',dinner:'dinners',gift:'gifts',train:'training',private:'private time',walk:'walks',theater:'the theater'};
 function pm(w,a){ const P = PERS[w.personality]; if(!P) return 1; return P.likes.includes(a) ? 1.5 : P.dislikes.includes(a) ? 0.5 : 1; }
 const pTrust = w => (PERS[w.personality]||{}).trust || 1;
@@ -504,6 +482,7 @@ const SCENES = {
   date_theater: {label:'Date: Theater', sam:true, comp:'seated side by side in a theater box, watching the stage, her hand on his arm', setting:'ornate fantasy theater, red velvet seats, stage lights'},
   date_shopping:{label:'Date: Shopping', sam:true, comp:'holding up a new purchase and showing it off happily', setting:'elegant fantasy boutique full of fabrics and jewelry'},
   date_springs: {label:'Date: Hot springs', sam:true, snip:'bath', comp:'relaxing together in a steaming outdoor hot spring, flushed and content', setting:'mountain hot spring among rocks and snow-dusted pines'},
+  solo:         {label:'Alone in her room', snip:'solo', comp:'alone on her bed, flushed, eyes half closed, lost in thought', setting:'her private bedroom, curtains drawn, a single candle'},
   sam_training: {label:'With Sam: Training', sam:true, comp:'practicing together, Sam taking notes in a notebook', setting:'practice room', house:true}
 };
 SCENES.job_companion = SCENES.companion;
@@ -710,9 +689,12 @@ function clothOK(w,c,withSam){
   return clothLimit(w,withSam) >= CLOTH.find(x=>x.id===c).lv;
 }
 function maxCloth(w, withSam){ return [...CLOTH].reverse().find(c=>clothOK(w,c.id,withSam)).id; }
+// Modest ladies keep their clothes on by default (pulled aside); you can still pick another state by hand.
+const clothCap = (w, c) => has(w,'Modest') && CLOTH.findIndex(x=>x.id===c) > 1 ? 'partial' : c;
 function defaultCloth(w, scene){
-  if(scene.startsWith('act:')) return maxCloth(w,false);
-  if(scene.startsWith('samact:')) return maxCloth(w,true);
+  if(scene.startsWith('act:')) return clothCap(w, maxCloth(w,false));
+  if(scene.startsWith('samact:')) return clothCap(w, maxCloth(w,true));
+  if(scene==='solo') return clothCap(w, maxCloth(w,false));
   if(scene==='bath') return clothOK(w,'nude',false) ? 'nude' : 'dressed';
   return 'dressed';
 }
@@ -741,6 +723,8 @@ function ensureWorker(w){
   if(w.offDuty===undefined) w.offDuty = false;
   if(!w.style) w.style = pick(STYLES);
   if(!w.favColor) w.favColor = pick(COLOR_KEYS);
+  // Modest: rolled once per lady from her personality (data/personalities.json → modest)
+  if(w._mr===undefined){ w._mr = 1; if(!has(w,'Modest') && !has(w,'Exhibitionist') && Math.random() < ((PERS[w.personality]||{}).modest||0)) (w.traits = w.traits||[]).push('Modest'); }
   w.design = w.design || {};
   // wardrobe migration / defaults
   if(!w.owned) w.owned = [];
@@ -789,7 +773,7 @@ function genWorker(opts={}){
     popularity:ri(0,12), lewd:ri(5,60), trust:ri(5,22), mood:ri(52,70), energy:100, health:100,
     wage:0, contract:12, job:'rest', house:null, seed:ri(1,999999999), imgVar:{}, seen:{}, unhappy:0, earnedLast:0, privateCount:0
   };
-  const vis = Object.keys(TRAITS).filter(t=>!TRAITS[t].hidden && !TRAITS[t].story);
+  const vis = Object.keys(TRAITS).filter(t=>!TRAITS[t].hidden && !TRAITS[t].story && !TRAITS[t].personal);
   const n = Math.random()<0.5 ? 1 : 2;
   while(w.traits.length<n){ const t=pick(vis); if(!w.traits.includes(t) && !(t==='Shy'&&has(w,'Eager')) && !(t==='Eager'&&has(w,'Shy'))) w.traits.push(t); }
   if(Math.random()<0.25) w.traits.push(pick(['Exhibitionist','Night Owl']));
@@ -829,6 +813,8 @@ const isHired = key => S && (S.workers.some(w=>w.key===key) || S.candidates.some
 // she isn't in the mood for the heavier services.
 const LUST_LOW = 20, LUST_HIGH = 85;
 const notInMood = (w, act) => act && w.lust < LUST_LOW && ((actById(act)||{}).energy||10) >= 9;
+// At max lust some ladies take care of it themselves (data/personalities.json → solo).
+function soloChance(w){ const P = PERS[w.personality]||{}; return Math.max(0.05, Math.min(0.9, (P.solo ?? 0.3) + (has(w,'Shy')?0.15:0) + (has(w,'Modest')?0.1:0) - (has(w,'Eager')?0.15:0) - (has(w,'Exhibitionist')?0.1:0))); }
 function lustLabel(w){ return w.lust>=LUST_HIGH ? 'restless' : w.lust>=60 ? 'eager' : w.lust<LUST_LOW ? 'not in the mood' : 'content'; }
 
 /* ---- js/logic/prompts.js ---- */
@@ -850,6 +836,10 @@ function clothText(w, cloth, scene){
   let t = T[cloth];
   if(!t && cloth==='nude') t = T.partial;
   const ut = underText(w);
+  // Modest ladies during intimate scenes: clothes pulled aside rather than removed
+  if(has(w,'Modest') && (cloth==='dressed'||cloth==='partial') && /^(act:|samact:|solo$)/.test(scene||'')){
+    t = (!ut && T.aside_commando) || T.aside || t;
+  }
   return (t||T.dressed).replace(/\{outfit\}/g, outfitText(w)).replace(/\{underwear\}/g, ut || 'bare skin, nothing underneath');
 }
 function charDesc(w){
@@ -894,7 +884,7 @@ function aiCtx(w, x={}){
     service: x.act ? actLabel(x.act) : (x.label || 'drinks and conversation'),
     stance: x.act ? ((x.forSam ? samStance(w,x.act) : clientStance(w,x.act))==='ask' ? 'a stretch for her: she does it because she trusts Sam, a little past her comfort zone' : 'something she genuinely enjoys') : 'easy and pleasant for her',
     client: x.cls ? pick(CLIENT_DESC[x.cls]) : 'a regular client', setting: sceneInfo(scene, w).setting,
-    house: S ? houseOf(w).name : 'the pleasure house', relationship: rel, date: x.date||'a date', situation: x.situation||'', lust: lustLabel ? ({restless:'restless with desire', eager:'eager', content:'in a good mood', 'not in the mood':'calm'})[lustLabel(w)] : 'in a good mood', guidance: SET.ai.guidance||'', hook: x.hook || pick(HOOKS), backstory: w.backstory||''
+    house: S ? houseOf(w).name : 'the pleasure house', relationship: rel, date: x.date||'a date', situation: x.situation||'', lust: lustLabel ? ({restless:'restless with desire', eager:'eager', content:'in a good mood', 'not in the mood':'calm'})[lustLabel(w)] : 'in a good mood', guidance: SET.ai.guidance||AI_FILE.guidance||'', hook: x.hook || pick(HOOKS), backstory: w.backstory||''
   };
 }
 const fillTpl = (t, c) => t.replace(/\{(\w+)\}/g, (m,k)=> c[k]!==undefined ? String(c[k]) : m);
@@ -1084,7 +1074,7 @@ function migrate(s){
     (s.workers||[]).concat(s.candidates||[]).forEach(w=>{ if(w.key && ['kaede','yui','nerys','elowen','adelheid','marisol','natsuki','kanako','mio'].includes(w.key)) w.arc = [0,1,3,6][w.arc||0] ?? 0; });
     s.houses.forEach(h=>{ if(h.story) h.story.beat = [0,2,3,4][h.story.beat] ?? h.story.beat; });
   }
-  s.v = 8; s.flags = Object.assign({partnerCD:3}, s.flags||{});
+  s.v = 9; s.flags = Object.assign({partnerCD:3}, s.flags||{});
   s.sam.lvl = s.sam.lvl || 1; s.sam.xp = s.sam.xp || 0;
   s.houses.forEach(h=>{ h.since = h.since || 1; h.story = h.story || {beat:0,wk:0}; h.bonus = h.bonus || {};
     if(h.quarters===undefined){ h.quarters = Math.max(HOUSES[h.id].quarters, Math.ceil((s.workers||[]).filter(w=>w.house===h.id).length/2)); h.beds = HOUSES[h.id].beds; }
@@ -1522,8 +1512,8 @@ function hlText(w, e){
     if(e.act) return `${cap(who)} propositioned ${N} ${where}, asking for ${lab}. She thought about it for exactly one second, then took his hand and led him upstairs.`;
     return `${cap(who)} propositioned ${N} ${where}, asking for ${lab}. She turned him down${w.offDuty?'':' (she isn\'t taking propositions on this job)'}.`;
   }
-  if(!e.want) return `${cap(who)} spent the evening with ${N} in the lounge: wine, conversation, and a lot of laughing. ${pick(['He left lighter in the purse and very happy about it.','He promised to come back next week.','He told three friends about her before he got home.'])}`;
-  if(e.outcome==='yes') return `${cap(who)} asked for ${N}, and for ${lab}. ${pick(['They disappeared upstairs for most of the evening.','He came downstairs an hour later looking dazed and very satisfied.','The door stayed closed a long time. He tipped generously.','She came back down first, humming. He followed, red-faced and grinning.'])}`;
+  if(!e.want) return `${cap(who)} spent the evening with ${N} in the lounge: wine, conversation, and a lot of laughing. ${flavor('client_company', w)}`;
+  if(e.outcome==='yes') return `${cap(who)} asked for ${N}, and for ${lab}. ${flavor('client_yes', w)}`;
   if(e.outcome==='alt') return `${cap(who)} asked ${N} for ${lab}. She said no to that, but offered ${actLabel(e.act)} instead, and he happily took it.`;
   return `${cap(who)} asked ${N} for ${lab}. She politely declined, and he settled for her company over a bottle of wine.`;
 }
@@ -1545,6 +1535,14 @@ function simHouse(h, R){
   demand = W.length ? Math.max(1, Math.round(demand)) : 0;
   const escorts = W.filter(w=>JOBS[w.job].cat==='escort');
   const capc = {}; escorts.forEach(w=>capc[w.id] = 10);
+  // max lust: some ladies spend part of a night alone instead (costs energy, fewer clients)
+  W.forEach(w=>{
+    if(w.lust < LUST_HIGH || Math.random() >= soloChance(w)) return;
+    const pr = R.per[w.id]; pr.solo = true;
+    w.energy = Math.max(0, w.energy - Math.round(maxEnergy(w)*0.15)); w.lust = clamp(w.lust - 40); w.mood = clamp(w.mood + 3);
+    if(capc[w.id]!==undefined) capc[w.id] = 6;
+    R.hl.push({wid:w.id, text:flavor('solo', w), act:null, scene:'solo'});
+  });
   const roomM = ROOM_MULT[h.tier];
   for(let i=0;i<demand;i++){
     const avail = escorts.filter(w=>R.per[w.id].served < capc[w.id]);
@@ -1759,7 +1757,7 @@ function showReport(R, fromWeek){
       const svc = Object.entries(p.acts).map(([id,n])=>`<span class="tag act">${esc(actLabel(id))} ×${n}</span>`).join('') + (p.comp?`<span class="tag">Companionship ×${p.comp}</span>`:'');
       const hls = R.hl.map((h,i)=>({h,i})).filter(x=>x.h.wid===p.id).map(({h,i})=>`<div class="hl">${esc(h.text)} ${findAny(p.id)?`<button class="sm" onclick="showImg('hl${i}','${p.id}','${h.scene}',null,'auto')">🎨</button>${aiBtn('hla'+i,'scene',p.id,{act:h.act,cls:h.cls,scene:h.scene})}`:''}<div id="hla${i}"></div><div id="hl${i}" class="hlimg"></div></div>`).join('');
       return `<div class="rep-w"><div class="head">${w.design?avatarHTML(w):''}<div><b>${esc(p.name)}</b> · ${JOBS[p.job]?JOBS[p.job].label:p.job}${p.earned?` · earned <b>${fmt(p.earned)}</b>`:''}
-        <div class="muted">${p.served?`${p.served} client${p.served>1?'s':''} · `:''}${p.props?`propositioned ${p.props}× · accepted ${p.acc} · `:''}${p.reluct?`<span class="pink">${p.reluct} as a favor</span> · `:''}${p.notMood?`<span class="warn">not in the mood ×${p.notMood}</span> · `:''}Energy ${p.e0}→${p.e1} · Mood ${p.m0}→${p.m1}${p.slept?` · slept: ${p.slept}`:''}${p.lust!==undefined?` · lust ${p.lust}`:''}</div>
+        <div class="muted">${p.served?`${p.served} client${p.served>1?'s':''} · `:''}${p.props?`propositioned ${p.props}× · accepted ${p.acc} · `:''}${p.reluct?`<span class="pink">${p.reluct} as a favor</span> · `:''}${p.notMood?`<span class="warn">not in the mood ×${p.notMood}</span> · `:''}Energy ${p.e0}→${p.e1} · Mood ${p.m0}→${p.m1}${p.slept?` · slept: ${p.slept}`:''}${p.solo?' · <span class="pink">a night to herself</span>':''}${p.lust!==undefined?` · lust ${p.lust}`:''}</div>
         <div>${svc}</div></div></div>${hls}</div>`;
     }).join('');
   }).join('');
@@ -2245,10 +2243,7 @@ function queueEncounters(){
 function evLateVisit(w){
   if(!w || !canVisit(w, 60, 45, 40)) return null;
   const act = bestSamAct(w);
-  return {title:'A Knock After Midnight', who:w.id, scene:'casual', text:pick([
-      `Sam is doing the books by candlelight when ${w.name} knocks. She hasn't seen a single client all week, and she's clearly been thinking about something. "Busy?"`,
-      `${w.name} appears in Sam's doorway in her nightclothes, holding two cups of tea she clearly has no intention of drinking.`,
-      `A note slides under Sam's door: "Still awake? Come find out." It's in ${w.name}'s handwriting.`]),
+  return {title:'A Knock After Midnight', who:w.id, scene:'casual', text:flavor('late_visit', w),
     choices:[
       {label:'Let her in', fx(){ return encounterResult(w, act, `${w.name} doesn't wait for an answer. The candle burns all the way down.`, 'encounter', 'Late at night, she came to his door on her own initiative.'); }},
       {label:'Not tonight', fx(){ w.mood = clamp(w.mood-4); w.lust = clamp(w.lust-5); return `${w.name} smiles a little ruefully. "Your loss, boss."`; }}]};
@@ -2601,7 +2596,7 @@ function refreshSheetInfo(){
     <div class="sgrid" style="margin-top:6px">${TECH_KEYS.map(s=>`<div><span>${TECH_LABEL[s].toUpperCase()}</span><b>${sv(w,w.tech[s],true)}</b></div>`).join('')}<div><span>POPULARITY</span><b>${Math.round(w.popularity)}</b></div></div>
     <div style="margin-top:8px">${bar('Energy',w.energy,maxEnergy(w),'e')}${bar('Mood',w.mood,100,'m')}${bar('Trust',w.trust,100,'t')}${k?bar('Lewdness',w.lewd,100,'l'):'<div class="muted">Lewdness: ? (Appraisal Lv 2 or more trust)</div>'}${k?bar('Lust ('+lustLabel(w)+')',w.lust,100,'p'):''}${bar('Health',w.health,100,'h')}</div>
     <div class="muted" style="margin-top:6px">Race perk: <b>${RACE_PERK[w.race]?RACE_PERK[w.race].label:''}</b>: ${RACE_PERK[w.race]?RACE_PERK[w.race].desc:''}</div>
-    <div class="muted">Comfortable up to: <b>${CLOTH.find(c=>c.id===cl).label}</b> with clients · <b>${CLOTH.find(c=>c.id===cs).label}</b> with Sam</div>
+    <div class="muted">Comfortable up to: <b>${CLOTH.find(c=>c.id===cl).label}</b> with clients · <b>${CLOTH.find(c=>c.id===cs).label}</b> with Sam${has(w,'Modest')?`<br><span class="pink">Modest:</span> ${esc(flavor('modest', w))}`:''}</div>
     ${persLine(w)}${(HOUSES[houseOf(w).id].minPop||0) > w.popularity ? `<div class="warn">⚠️ Below ${esc(houseOf(w).name)}'s standard (popularity ${HOUSES[houseOf(w).id].minPop}). Escort clients pay less and complain.</div>`:''}</div>
     <div class="row" style="margin-top:8px">👗 <b>${esc(o.label)}</b>${usesColor(o)?` ${sw(w.outColor)}${w.outColor}`:''} · 🩲 ${esc(u.label)}${w.under!=='none'&&usesColor(u)?` ${sw(w.underColor)}${w.underColor}`:''} <button class="sm" onclick="openWardrobe('${w.id}')">Wardrobe</button></div>
     <h3 style="margin-top:10px">Services</h3>
@@ -2730,7 +2725,7 @@ function readCreator(){
   w.under = g('c_un') || w.under; w.customUnder = cleanText(g('c_unc')); w.underColor = g('c_ucol') || w.underColor;
   if(w.under==='custom' && !w.customUnder) w.customUnder = 'simple lace underwear';
   if(w.under!=='custom' && !w.ownedUnder.includes(w.under)) w.ownedUnder.push(w.under);
-  w.traits = [...document.querySelectorAll('.c_trait:checked')].map(x=>x.value).concat((w.traits||[]).filter(t=>TRAITS[t]&&TRAITS[t].story));
+  w._mr = 1; w.traits = [...document.querySelectorAll('.c_trait:checked')].map(x=>x.value).concat((w.traits||[]).filter(t=>TRAITS[t]&&TRAITS[t].story));
   STAT_KEYS.forEach(k=>w.stats[k]=clamp(parseInt(g('c_s_'+k))||0));
   TECH_KEYS.forEach(k=>w.tech[k]=clamp(parseInt(g('c_t_'+k))||0));
   w.popularity = clamp(parseInt(g('c_pop'))||0); w.lewd = clamp(parseInt(g('c_lewd'))||0); w.trust = clamp(parseInt(g('c_trust'))||0);
@@ -2774,24 +2769,15 @@ function viewSettings(){
       <label class="chk"><input type="checkbox" id="s_auto" ${SET.autoPortrait?'checked':''}> Auto-generate a portrait when someone has none saved</label>
       <label class="chk"><input type="checkbox" id="s_lib" ${SET.libraryInPool?'checked':''}> Library characters appear as candidates</label></div>
     <div class="row"><button class="primary" onclick="saveSettingsUI()">Save settings</button><span class="muted">Image plugin: ${getPlugin()?'<span class="good">connected</span>':'<span class="warn">not connected</span>'} · Image storage: ${DB?'<span class="good">ready</span>':'<span class="warn">unavailable</span>'}</span></div></section>
-  <section class="card"><h2>Scene Snippets</h2><p class="muted">Your own text, appended to the prompt for that scene. Empty slots use the default prompt only. Saved in this browser, separate from your save file.</p>
-    ${getActs().map(a=>`<label class="muted" style="display:block;margin:6px 0">Service: ${esc(a.label)} <code>act_${a.id}</code><textarea id="snip_act_${a.id}">${esc(SET.snippets['act_'+a.id]||'')}</textarea></label>`).join('')}
-    <label class="muted" style="display:block;margin:6px 0">All POV scenes with Sam <code>pov</code><textarea id="snip_pov">${esc(SET.snippets.pov||'')}</textarea></label>
-    <label class="muted" style="display:block;margin:6px 0">Bath <code>bath</code><textarea id="snip_bath">${esc(SET.snippets.bath||'')}</textarea></label>
-    <label class="muted" style="display:block;margin:6px 0">Story mishaps (shower / walk-in) <code>mishap</code><textarea id="snip_mishap">${esc(SET.snippets.mishap||'')}</textarea></label>
-    <h3>Clothing states</h3><p class="muted"><code>{outfit}</code> and <code>{underwear}</code> are replaced with what she's wearing (commando becomes "bare skin, nothing underneath"). "Undressed" falls back to "Partly undressed" while empty.</p>
-    ${CLOTH.map(c=>`<label class="muted" style="display:block;margin:6px 0">${c.label} <span class="muted">(lewd ${c.lv}+)</span><textarea id="cloth_${c.id}">${esc(T[c.id]||'')}</textarea></label>`).join('')}
-    <div class="row"><button class="primary" onclick="saveSnippetsUI()">Save snippets</button><button onclick="exportBox('snippets')">Export snippets</button><button onclick="importBox('snippets')">Import snippets</button></div></section>
-  <section class="card"><h2>Services</h2><p class="muted">Built-in categories are set in the code (ACTS). Add your own here; everyone gets a random skill and comfort level for them.</p>
-    ${(SET.customActs||[]).map((a,i)=>`<div class="row"><b>${esc(a.label)}</b> <span class="muted">needs ${a.th} · ${fmt(a.price)}</span><button class="sm" onclick="delAct(${i})">Remove</button></div>`).join('')}
-    <div class="row"><input id="na_label" placeholder="Label"><input id="na_th" type="number" placeholder="Lewdness line (e.g. 65)"><input id="na_price" type="number" placeholder="Price (e.g. 130)"><button onclick="addAct()">Add category</button></div></section>
+  <section class="card"><h2>Text &amp; Data Files</h2><p class="muted">Scene snippets, clothing wording, services, personalities, AI templates and flavor lines live in the repo's <code>data/</code> folder. Edit them on GitHub; changes show up a minute or two after you push (reload the page).</p>
+    <ul class="muted" style="margin:6px 0 6px 18px">${(window.HOLLOWMERE_DATA||Object.keys(DATA)).map(n=>`<li><code>data/${n}.json</code> ${DATA[n]?'<span class="good">loaded</span>':'<span class="warn">missing</span>'}</li>`).join('')}</ul>
+    ${browserEdits().n ? `<p><span class="warn">${browserEdits().n} older edit${browserEdits().n>1?'s':''} saved in this browser still override the files</span> (${browserEdits().what.join(', ')}). Export them merged into the file format, paste into the repo, then clear them here.</p>
+    <div class="row"><button onclick="exportEdits()">Export browser edits as JSON</button><button onclick="clearEdits()">Clear browser edits</button></div>` : '<p class="muted">No browser overrides: the files are in charge.</p>'}</section>
   <section class="card"><h2>AI Text</h2><p class="muted">Optional. Uses Perchance's text plugin to write scenes for reports, private time and training, and backstories for generic characters. Only backstories are kept; scenes are written on the spot. Image prompts stay programmatic. Plugin: ${getTextPlugin()?'<span class="good">connected</span>':'<span class="warn">not connected (add <code>ai = {import:ai-text-plugin}</code> to the lists panel)</span>'}</p>
     <div class="row"><label class="chk"><input type="checkbox" id="ai_on" ${SET.ai.on?'checked':''}> Enable AI text buttons (✨)</label>
       <label class="chk"><input type="checkbox" id="ai_auto" ${SET.ai.auto?'checked':''}> Write scenes automatically (private time, training, encounters, date invitations)</label>
       <label class="chk"><input type="checkbox" id="ai_bs" ${SET.ai.autoBackstory!==false?'checked':''}> Write backstories for generic characters automatically</label></div>
-    <label class="muted" style="display:block;margin:6px 0">Style guidance <span class="muted">(inserted as {guidance}: tone, length, how descriptive, etc.)</span><textarea id="ai_guid">${esc(SET.ai.guidance||'')}</textarea></label>
-    ${Object.keys(DEFAULT_AI_TPL).map(k=>`<label class="muted" style="display:block;margin:6px 0">Template: <b>${k}</b> <button class="sm" onclick="$('#ai_t_${k}').value=DEFAULT_AI_TPL['${k}']">Reset</button><textarea id="ai_t_${k}" style="min-height:90px">${esc(aiTpl(k))}</textarea></label>`).join('')}
-    <p class="muted">Placeholders: {name} {race} {age} {appearance} {clothing} {outfit} {personality} {traits} {trust} {lewd} {mood} {service} {stance} {client} {setting} {house} {relationship} {guidance} {hook} {backstory} {date} {situation} {lust}</p>
+    <p class="muted">Templates and style guidance are in <code>data/ai-templates.json</code>.</p>
     <div class="row"><button class="primary" onclick="saveAiUI()">Save AI settings</button></div></section>
   <section class="card"><h2>Images</h2><p class="muted">Generated and uploaded images live in this browser. Export them to back up or move them to another browser.</p>
     <div class="row"><button onclick="exportImages()">⬇ Export images</button><button onclick="importImages()">⬆ Import images</button><button onclick="cleanImages()">Clean up unused images</button></div></section>
@@ -2803,24 +2789,29 @@ function saveSettingsUI(){
   SET.autoPortrait = $('#s_auto').checked; SET.libraryInPool = $('#s_lib').checked; saveSettings(); toast('Settings saved.');
 }
 function saveAiUI(){
-  SET.ai.on = $('#ai_on').checked; SET.ai.auto = $('#ai_auto').checked; SET.ai.autoBackstory = $('#ai_bs').checked; SET.ai.guidance = $('#ai_guid').value;
-  Object.keys(DEFAULT_AI_TPL).forEach(k=>{ const v = $('#ai_t_'+k).value; SET.ai.tpl[k] = (v.trim()===DEFAULT_AI_TPL[k]) ? '' : v; });
+  SET.ai.on = $('#ai_on').checked; SET.ai.auto = $('#ai_auto').checked; SET.ai.autoBackstory = $('#ai_bs').checked;
   saveSettings(); toast('AI settings saved.'); render();
 }
-function saveSnippetsUI(){
-  getActs().forEach(a=>{ const e=$('#snip_act_'+a.id); if(e) SET.snippets['act_'+a.id]=e.value; });
-  ['pov','bath','mishap'].forEach(k=>{ const e=$('#snip_'+k); if(e) SET.snippets[k]=e.value; });
-  CLOTH.forEach(c=>{ const e=$('#cloth_'+c.id); if(e) SET.clothText[c.id] = e.value===DEFAULT_CLOTH_TEXT[c.id] ? '' : e.value; });
-  saveSettings(); toast('Snippets saved.');
+// Older versions kept snippets/templates in the browser. They still override the data files until cleared.
+function browserEdits(){
+  const nz = o => Object.entries(o||{}).filter(([k,v])=>v && String(v).trim());
+  const sn = nz(SET.snippets), cl = nz(SET.clothText), tp = nz(SET.ai.tpl), g = (SET.ai.guidance||'').trim(), ca = SET.customActs||[];
+  const what = [sn.length&&`${sn.length} scene snippet${sn.length>1?'s':''}`, cl.length&&'clothing wording', (tp.length||g)&&'AI templates', ca.length&&`${ca.length} custom service${ca.length>1?'s':''}`].filter(Boolean);
+  return {n: sn.length + cl.length + tp.length + (g?1:0) + ca.length, what, sn, cl, tp, g, ca};
 }
-function addAct(){
-  const label = cleanText($('#na_label').value), th = clamp(parseInt($('#na_th').value)||60), price = Math.max(10, parseInt($('#na_price').value)||100);
-  if(!label) return toast('Give it a label.');
-  const id = 'c' + hashStr(label + Date.now()).toString(36);
-  SET.customActs.push({id, label, th, price, energy:11, comp:'intimate moment'}); saveSettings();
-  S.workers.concat(S.candidates).forEach(ensureWorker); save(); toast(`${label} added.`); render();
+function exportEdits(){
+  const e = browserEdits(), out = {};
+  if(e.sn.length || e.cl.length) out['data/snippets.json'] = Object.assign({}, DATA.snippets, {scenes:Object.assign({}, DATA.snippets.scenes, Object.fromEntries(e.sn)), clothing:Object.assign({}, DATA.snippets.clothing, Object.fromEntries(e.cl))});
+  if(e.tp.length || e.g) out['data/ai-templates.json'] = Object.assign({}, DATA['ai-templates'], Object.fromEntries(e.tp), e.g?{guidance:e.g}:{});
+  if(e.ca.length) out['data/services.json'] = Object.assign({}, DATA.services, {services: DATA.services.services.concat(e.ca)});
+  const txt = Object.entries(out).map(([k,v])=>`===== ${k} (replace the whole file) =====\n${JSON.stringify(v,null,2)}`).join('\n\n');
+  modal(`<h2>Your browser edits</h2><p class="muted">Each block is the full file with your edits merged in. Paste it over that file in the repo, push, then come back and clear the browser edits.</p><textarea id="exp" style="min-height:260px">${esc(txt)}</textarea>
+    <div class="row"><button class="primary" onclick="try{navigator.clipboard.writeText($('#exp').value);toast('Copied.')}catch(e){toast('Select and copy manually.')}">Copy</button><button onclick="dlText($('#exp').value,'hollowmere-browser-edits.txt')">Download file</button></div>`);
 }
-function delAct(i){ if(!confirm('Remove this category?')) return; const a = SET.customActs.splice(i,1)[0]; saveSettings(); S.workers.forEach(w=>{ w.menu=w.menu.filter(x=>x!==a.id); }); save(); render(); }
+function clearEdits(){
+  if(!confirm('Clear the snippets, clothing wording, AI templates and custom services saved in this browser? The data files take over. Export first if you haven\'t.')) return;
+  SET.snippets = {}; SET.clothText = {}; SET.ai.tpl = {}; SET.ai.guidance = ''; SET.customActs = []; saveSettings(); toast('Cleared. The data files are in charge now.'); render();
+}
 function exportBox(kind){
   const data = kind==='save' ? S : kind==='lib' ? LIB : {snippets:SET.snippets, clothText:SET.clothText, customActs:SET.customActs};
   modal(`<h2>Export ${kind}</h2><p class="muted">Copy this text and keep it somewhere safe.</p><textarea id="exp" style="min-height:200px">${esc(JSON.stringify(data))}</textarea>

@@ -16,6 +16,10 @@ function clothText(w, cloth, scene){
   let t = T[cloth];
   if(!t && cloth==='nude') t = T.partial;
   const ut = underText(w);
+  // Modest ladies during intimate scenes: clothes pulled aside rather than removed
+  if(has(w,'Modest') && (cloth==='dressed'||cloth==='partial') && /^(act:|samact:|solo$)/.test(scene||'')){
+    t = (!ut && T.aside_commando) || T.aside || t;
+  }
   return (t||T.dressed).replace(/\{outfit\}/g, outfitText(w)).replace(/\{underwear\}/g, ut || 'bare skin, nothing underneath');
 }
 function charDesc(w){

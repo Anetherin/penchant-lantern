@@ -16,8 +16,8 @@ function hlText(w, e){
     if(e.act) return `${cap(who)} propositioned ${N} ${where}, asking for ${lab}. She thought about it for exactly one second, then took his hand and led him upstairs.`;
     return `${cap(who)} propositioned ${N} ${where}, asking for ${lab}. She turned him down${w.offDuty?'':' (she isn\'t taking propositions on this job)'}.`;
   }
-  if(!e.want) return `${cap(who)} spent the evening with ${N} in the lounge: wine, conversation, and a lot of laughing. ${pick(['He left lighter in the purse and very happy about it.','He promised to come back next week.','He told three friends about her before he got home.'])}`;
-  if(e.outcome==='yes') return `${cap(who)} asked for ${N}, and for ${lab}. ${pick(['They disappeared upstairs for most of the evening.','He came downstairs an hour later looking dazed and very satisfied.','The door stayed closed a long time. He tipped generously.','She came back down first, humming. He followed, red-faced and grinning.'])}`;
+  if(!e.want) return `${cap(who)} spent the evening with ${N} in the lounge: wine, conversation, and a lot of laughing. ${flavor('client_company', w)}`;
+  if(e.outcome==='yes') return `${cap(who)} asked for ${N}, and for ${lab}. ${flavor('client_yes', w)}`;
   if(e.outcome==='alt') return `${cap(who)} asked ${N} for ${lab}. She said no to that, but offered ${actLabel(e.act)} instead, and he happily took it.`;
   return `${cap(who)} asked ${N} for ${lab}. She politely declined, and he settled for her company over a bottle of wine.`;
 }
@@ -39,6 +39,14 @@ function simHouse(h, R){
   demand = W.length ? Math.max(1, Math.round(demand)) : 0;
   const escorts = W.filter(w=>JOBS[w.job].cat==='escort');
   const capc = {}; escorts.forEach(w=>capc[w.id] = 10);
+  // max lust: some ladies spend part of a night alone instead (costs energy, fewer clients)
+  W.forEach(w=>{
+    if(w.lust < LUST_HIGH || Math.random() >= soloChance(w)) return;
+    const pr = R.per[w.id]; pr.solo = true;
+    w.energy = Math.max(0, w.energy - Math.round(maxEnergy(w)*0.15)); w.lust = clamp(w.lust - 40); w.mood = clamp(w.mood + 3);
+    if(capc[w.id]!==undefined) capc[w.id] = 6;
+    R.hl.push({wid:w.id, text:flavor('solo', w), act:null, scene:'solo'});
+  });
   const roomM = ROOM_MULT[h.tier];
   for(let i=0;i<demand;i++){
     const avail = escorts.filter(w=>R.per[w.id].served < capc[w.id]);
@@ -253,7 +261,7 @@ function showReport(R, fromWeek){
       const svc = Object.entries(p.acts).map(([id,n])=>`<span class="tag act">${esc(actLabel(id))} ×${n}</span>`).join('') + (p.comp?`<span class="tag">Companionship ×${p.comp}</span>`:'');
       const hls = R.hl.map((h,i)=>({h,i})).filter(x=>x.h.wid===p.id).map(({h,i})=>`<div class="hl">${esc(h.text)} ${findAny(p.id)?`<button class="sm" onclick="showImg('hl${i}','${p.id}','${h.scene}',null,'auto')">🎨</button>${aiBtn('hla'+i,'scene',p.id,{act:h.act,cls:h.cls,scene:h.scene})}`:''}<div id="hla${i}"></div><div id="hl${i}" class="hlimg"></div></div>`).join('');
       return `<div class="rep-w"><div class="head">${w.design?avatarHTML(w):''}<div><b>${esc(p.name)}</b> · ${JOBS[p.job]?JOBS[p.job].label:p.job}${p.earned?` · earned <b>${fmt(p.earned)}</b>`:''}
-        <div class="muted">${p.served?`${p.served} client${p.served>1?'s':''} · `:''}${p.props?`propositioned ${p.props}× · accepted ${p.acc} · `:''}${p.reluct?`<span class="pink">${p.reluct} as a favor</span> · `:''}${p.notMood?`<span class="warn">not in the mood ×${p.notMood}</span> · `:''}Energy ${p.e0}→${p.e1} · Mood ${p.m0}→${p.m1}${p.slept?` · slept: ${p.slept}`:''}${p.lust!==undefined?` · lust ${p.lust}`:''}</div>
+        <div class="muted">${p.served?`${p.served} client${p.served>1?'s':''} · `:''}${p.props?`propositioned ${p.props}× · accepted ${p.acc} · `:''}${p.reluct?`<span class="pink">${p.reluct} as a favor</span> · `:''}${p.notMood?`<span class="warn">not in the mood ×${p.notMood}</span> · `:''}Energy ${p.e0}→${p.e1} · Mood ${p.m0}→${p.m1}${p.slept?` · slept: ${p.slept}`:''}${p.solo?' · <span class="pink">a night to herself</span>':''}${p.lust!==undefined?` · lust ${p.lust}`:''}</div>
         <div>${svc}</div></div></div>${hls}</div>`;
     }).join('');
   }).join('');

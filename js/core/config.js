@@ -1,46 +1,27 @@
 'use strict';
 /* =====================================================================
    USER CONFIG
+   Editable text and numbers live in data/*.json (loaded by loader.js into window.PL_DATA).
    ===================================================================== */
-// Your own scene text, appended to the generated prompt. Settings → Scene Snippets overrides these.
-// Keys: act_<serviceId> for each service category, "pov" (added to every Sam/POV scene), "bath".
-const SCENE_SNIPPETS = {
-  act_caress:"", act_manual:"", act_oral:"", act_paizuri:"",
-  act_missionary:"", act_cowgirl:"", act_doggy:"",
-  pov:"", bath:"", mishap:""
-};
-// Service categories. th = lewdness needed for her to enjoy it (trust can stretch her up to 25 below), price = base fee. Add more in Settings → Services.
-const ACTS = [
-  {id:'caress',     label:'Kissing & touching', th:25, price:24, energy:6,  comp:'embracing and kissing passionately'},
-  {id:'manual',     label:'Manual',             th:32, price:32, energy:7,  comp:'intimate moment'},
-  {id:'oral',       label:'Oral',               th:42, price:44, energy:9,  comp:'intimate moment'},
-  {id:'paizuri',    label:'Paizuri',            th:45, price:46, energy:9,  comp:'intimate moment'},
-  {id:'missionary', label:'Missionary',         th:52, price:58, energy:11, comp:'intimate moment, lying on the bed'},
-  {id:'cowgirl',    label:'Cowgirl',            th:56, price:64, energy:12, comp:'intimate moment, on the bed'},
-  {id:'doggy',      label:'Doggy',              th:60, price:64, energy:12, comp:'intimate moment, on the bed'}
-];
-// Clothing states, in order. {outfit} and {underwear} are filled in from her wardrobe.
-const DEFAULT_CLOTH_TEXT = {
-  dressed: "wearing {outfit}",
-  partial: "wearing {outfit}, partially undressed, clothes loosened and slipping off to show {underwear}",
-  under:   "wearing only {underwear}",
-  nude:    ""   // fill in yourself; empty falls back to "partial"
-};
+const DATA = window.PL_DATA || {};
+function needData(k){ if(!DATA[k]) throw new Error(`data/${k}.json didn't load.`); return DATA[k]; }
+const noMeta = o => Object.fromEntries(Object.entries(o||{}).filter(([k])=>!k.startsWith('_')));
+// Service categories (data/services.json). Custom ones added in old versions of Settings still work.
+const ACTS = needData('services').services;
+// Your own scene text, appended to the generated prompt (data/snippets.json → scenes).
+const SCENE_SNIPPETS = noMeta(needData('snippets').scenes);
+// Clothing state wording (data/snippets.json → clothing). {outfit} and {underwear} are filled in from her wardrobe.
+const DEFAULT_CLOTH_TEXT = noMeta(needData('snippets').clothing);
+// AI text templates (data/ai-templates.json). {placeholders} are filled from the game.
+const AI_FILE = needData('ai-templates');
+const DEFAULT_AI_TPL = Object.fromEntries(Object.entries(noMeta(AI_FILE)).filter(([k])=>k!=='guidance'));
+// Short random text lines (data/flavor.json).
+const FLAVOR = noMeta(needData('flavor'));
 const DEFAULT_SETTINGS = {
   style: "anime style, detailed fantasy illustration, isekai, soft cinematic lighting, high quality",
   negative: "child, minor, teen, loli, young-looking, school uniform, lowres, bad anatomy, extra fingers, watermark, text, signature",
   resolution: "512x768", autoPortrait: true, libraryInPool: true,
   snippets: {}, clothText: {}, customActs: [],
   ai: {on:true, auto:true, autoBackstory:true, guidance:'', tpl:{}}
-};
-// AI text templates (Perchance ai-text-plugin). {placeholders} are filled from the game. Edit in Settings → AI Text.
-const DEFAULT_AI_TPL = {
-  scene: "Write a short scene (about 120 words, third person, past tense) for a fantasy isekai pleasure-house game. {name} is a {race} working at {house}: {appearance}. She is wearing {clothing}. Personality: {personality}. Her client: {client}. Service: {service}, which is {stance}. Setting: {setting}. {guidance} All characters are consenting adults. Output only the scene.",
-  private: "Write a short scene (about 150 words, third person, past tense) for a fantasy isekai pleasure-house game. Sam Takahashi is a kind, slightly nerdy young man reincarnated from Japan who now runs {house}. {name} is a {race}: {appearance}. She is wearing {clothing}. Personality: {personality}. Their relationship: {relationship} (her trust in Sam: {trust}/100). They spend private time together: {service}, which for her is {stance}. Setting: {setting}. {guidance} Both are consenting adults. Output only the scene.",
-  train: "Write a short scene (about 120 words, third person, past tense) for a fantasy isekai pleasure-house game. Sam Takahashi, a kind, nerdy young man from another world, helps {name} ({race}, {personality}) practice {service}. Their relationship: {relationship}. Setting: {setting}. Include Sam taking notes, which she finds funny. {guidance} Both are consenting adults. Output only the scene.",
-  proposition: "Write 2-4 sentences (third person, present tense, including her spoken words) for a fantasy isekai romance game: at the end of a date ({date}), {name} ({race}, {personality}) invites Sam Takahashi, the kind, nerdy otherworlder who runs {house}, into her room. Their relationship: {relationship}. Her mood is high and she's {lust}. {guidance} Both are consenting adults. Output only the passage.",
-  encounter: "Write a short scene (about 120 words, third person, past tense) for a fantasy isekai pleasure-house game. {situation} {name} is a {race}: {appearance}, wearing {clothing}. Personality: {personality}. Relationship with Sam Takahashi (a kind, nerdy otherworlder who runs {house}): {relationship}. What happens: {service}, which for her is {stance}. {guidance} Both are consenting adults. Output only the scene.",
-  reckless: "Write a short scene (about 120 words, third person, past tense) for a fantasy isekai pleasure-house game. {name} ({race}, {personality}), who works at {house}, has been {lust} for days and finally acts on it impulsively: {situation} Appearance: {appearance}, wearing {clothing}. {guidance} All characters are consenting adults. Output only the scene.",
-  backstory: "Write a 3-4 sentence backstory for {name}, a {age}-year-old {race} woman in a fantasy world who has just taken a job at a pleasure house in the frontier town of Hollowmere. Appearance: {appearance}. Personality: {personality}. Traits: {traits}. Why she came: {hook}. Third person, no lists, no title. Output only the backstory."
 };
 const SAM_DESC = "a young adult Japanese man in his mid-twenties, short dark brown hair, thin build, kind and slightly awkward expression, grey hoodie under a simple traveler's cloak";

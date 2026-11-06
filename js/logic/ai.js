@@ -17,7 +17,7 @@ function aiCtx(w, x={}){
     service: x.act ? actLabel(x.act) : (x.label || 'drinks and conversation'),
     stance: x.act ? ((x.forSam ? samStance(w,x.act) : clientStance(w,x.act))==='ask' ? 'a stretch for her: she does it because she trusts Sam, a little past her comfort zone' : 'something she genuinely enjoys') : 'easy and pleasant for her',
     client: x.cls ? pick(CLIENT_DESC[x.cls]) : 'a regular client', setting: sceneInfo(scene, w).setting,
-    house: S ? houseOf(w).name : 'the pleasure house', relationship: rel, date: x.date||'a date', situation: x.situation||'', lust: lustLabel ? ({restless:'restless with desire', eager:'eager', content:'in a good mood', 'not in the mood':'calm'})[lustLabel(w)] : 'in a good mood', guidance: SET.ai.guidance||'', hook: x.hook || pick(HOOKS), backstory: w.backstory||''
+    house: S ? houseOf(w).name : 'the pleasure house', relationship: rel, date: x.date||'a date', situation: x.situation||'', lust: lustLabel ? ({restless:'restless with desire', eager:'eager', content:'in a good mood', 'not in the mood':'calm'})[lustLabel(w)] : 'in a good mood', guidance: SET.ai.guidance||AI_FILE.guidance||'', hook: x.hook || pick(HOOKS), backstory: w.backstory||''
   };
 }
 const fillTpl = (t, c) => t.replace(/\{(\w+)\}/g, (m,k)=> c[k]!==undefined ? String(c[k]) : m);

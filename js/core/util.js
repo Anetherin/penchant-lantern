@@ -31,6 +31,13 @@ const store = {
   set(k,v){ try{ localStorage.setItem(k, JSON.stringify(v)); return true; }catch(e){ return false; } },
   del(k){ try{ localStorage.removeItem(k); }catch(e){} }
 };
+// Random line from data/flavor.json: her personality's list if it has one, else _default. {name}/{house} filled in.
+function flavor(sec, w, extra={}){
+  const F = FLAVOR[sec] || {}, list = (w && Array.isArray(F[w.personality]) && F[w.personality].length) ? F[w.personality] : (F._default||[]);
+  if(!list.length) return '';
+  const c = Object.assign({name: w ? w.name : '', house: (w && typeof S!=='undefined' && S && typeof houseOf==='function' && houseOf(w)) ? houseOf(w).name : 'the house'}, extra);
+  return pick(list).replace(/\{(\w+)\}/g, (m,k)=> c[k]!==undefined ? String(c[k]) : m);
+}
 const KEY_SAVE='gilded_lantern_save_v1', KEY_SET='gilded_lantern_settings_v1', KEY_LIB='gilded_lantern_library_v1';
 const _ss = store.get(KEY_SET) || {};
 let SET = Object.assign({}, DEFAULT_SETTINGS, _ss);

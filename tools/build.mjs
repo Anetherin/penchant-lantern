@@ -7,6 +7,8 @@ const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..')
 const loader = fs.readFileSync(path.join(root, 'loader.js'), 'utf8');
 const files = [...loader.matchAll(/^\s*'(js\/[^']+\.js)',?$/gm)].map(m => m[1]);
 const markup = [...loader.match(/var MARKUP = \[([\s\S]*?)\]\.join/)[1].matchAll(/'((?:[^'\\]|\\.)*)'/g)].map(m => m[1].replace(/\\'/g, "'")).join('\n');
+const dataNames = [...loader.match(/var DATA_FILES = \[([^\]]*)\]/)[1].matchAll(/'([^']+)'/g)].map(m => m[1]);
+const data = Object.fromEntries(dataNames.map(n => [n, JSON.parse(fs.readFileSync(path.join(root, 'data', n + '.json'), 'utf8'))]));
 const css = fs.readFileSync(path.join(root, 'css/style.css'), 'utf8');
 const js = files.map(f => `/* ---- ${f} ---- */\n` + fs.readFileSync(path.join(root, f), 'utf8')).join('\n');
 const html = `<!DOCTYPE html>
@@ -15,13 +17,14 @@ const html = `<!DOCTYPE html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Hollowmere Nights</title>
-<!-- Built from github.com/Topofira/penchant-lantern by tools/build.mjs. Lists panel: t2i = {import:text-to-image-plugin} / ai = {import:ai-text-plugin} -->
+<!-- Built from github.com/Anetherin/penchant-lantern by tools/build.mjs. Lists panel: t2i = {import:text-to-image-plugin} / ai = {import:ai-text-plugin} -->
 <style>
 ${css}</style>
 </head>
 <body>
 ${markup}
 <script>
+window.PL_DATA = ${JSON.stringify(data).replace(/<\//g, '<\\/')};
 window.PL_PLUGINS = { t2i: (typeof t2i!=='undefined')?t2i:null, ai: (typeof ai!=='undefined')?ai:null };
 </script>
 <script>
@@ -32,4 +35,4 @@ ${js}
 `;
 fs.mkdirSync(path.join(root, 'dist'), { recursive: true });
 fs.writeFileSync(path.join(root, 'dist/hollowmere-nights.html'), html);
-console.log(`Built dist/hollowmere-nights.html from ${files.length} scripts (${(html.length/1024).toFixed(0)} KB)`);
+console.log(`Built dist/hollowmere-nights.html from ${files.length} scripts + ${dataNames.length} data files (${(html.length/1024).toFixed(0)} KB)`);

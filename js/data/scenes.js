@@ -24,6 +24,7 @@ const SCENES = {
   date_theater: {label:'Date: Theater', sam:true, comp:'seated side by side in a theater box, watching the stage, her hand on his arm', setting:'ornate fantasy theater, red velvet seats, stage lights'},
   date_shopping:{label:'Date: Shopping', sam:true, comp:'holding up a new purchase and showing it off happily', setting:'elegant fantasy boutique full of fabrics and jewelry'},
   date_springs: {label:'Date: Hot springs', sam:true, snip:'bath', comp:'relaxing together in a steaming outdoor hot spring, flushed and content', setting:'mountain hot spring among rocks and snow-dusted pines'},
+  solo:         {label:'Alone in her room', snip:'solo', comp:'alone on her bed, flushed, eyes half closed, lost in thought', setting:'her private bedroom, curtains drawn, a single candle'},
   sam_training: {label:'With Sam: Training', sam:true, comp:'practicing together, Sam taking notes in a notebook', setting:'practice room', house:true}
 };
 SCENES.job_companion = SCENES.companion;

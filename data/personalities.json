@@ -1,0 +1,109 @@
+{
+  "_readme": [
+    "One entry per personality. Generic ladies pick one at random; the creator lists them all. Add your own by adding a new key.",
+    "likes/dislikes: chat, dinner, gift, train, private, walk, theater (things Sam does with her). jobsUp/jobsDown: job ids she likes or dislikes.",
+    "trust: multiplier on trust Sam earns. lewd: multiplier on lewdness growth.",
+    "solo: chance (0-1) that at max lust she takes care of it herself instead of acting on it with someone. Costs her energy and fewer clients that night.",
+    "modest: chance (0-1) a new lady with this personality gets the Modest trait: she keeps her clothes on (pulled aside) no matter how lewd she is."
+  ],
+  "Cheerful and teasing": {
+    "likes": ["chat","gift","walk"],
+    "dislikes": ["train","theater"],
+    "jobsUp": ["bartender","companion","reception"],
+    "jobsDown": ["maid","security"],
+    "trust": 1.1,
+    "lewd": 1.05,
+    "solo": 0.25,
+    "modest": 0.05
+  },
+  "Calm and elegant": {
+    "likes": ["dinner","train","theater"],
+    "dislikes": ["walk"],
+    "jobsUp": ["madame","companion","dancer"],
+    "jobsDown": ["bartender","maid"],
+    "trust": 1,
+    "lewd": 0.95,
+    "solo": 0.5,
+    "modest": 0.4
+  },
+  "Shy but earnest": {
+    "likes": ["chat","train","walk"],
+    "dislikes": ["dinner"],
+    "jobsUp": ["maid","reception"],
+    "jobsDown": ["dancer","courtesan"],
+    "trust": 1.2,
+    "lewd": 0.85,
+    "solo": 0.7,
+    "modest": 0.5
+  },
+  "Proud and sharp-tongued": {
+    "likes": ["gift","theater"],
+    "dislikes": ["chat","walk"],
+    "jobsUp": ["madame","security","courtesan"],
+    "jobsDown": ["maid"],
+    "trust": 0.85,
+    "lewd": 1,
+    "solo": 0.55,
+    "modest": 0.35
+  },
+  "Laid-back and lazy": {
+    "likes": ["chat","private"],
+    "dislikes": ["train","walk"],
+    "jobsUp": ["companion","bath"],
+    "jobsDown": ["security","maid"],
+    "trust": 1,
+    "lewd": 1.05,
+    "solo": 0.6,
+    "modest": 0.15
+  },
+  "Bold and flirtatious": {
+    "likes": ["private","dinner"],
+    "dislikes": ["train"],
+    "jobsUp": ["courtesan","dancer","bartender"],
+    "jobsDown": ["maid","reception"],
+    "trust": 1,
+    "lewd": 1.2,
+    "solo": 0.15,
+    "modest": 0
+  },
+  "Bookish and curious": {
+    "likes": ["train","chat","theater"],
+    "dislikes": ["gift"],
+    "jobsUp": ["reception","madame"],
+    "jobsDown": ["security","dancer"],
+    "trust": 1.05,
+    "lewd": 1,
+    "solo": 0.55,
+    "modest": 0.25
+  },
+  "Warm and motherly": {
+    "likes": ["dinner","chat","walk"],
+    "dislikes": [],
+    "jobsUp": ["madame","bath","maid"],
+    "jobsDown": ["security"],
+    "trust": 1.1,
+    "lewd": 0.95,
+    "solo": 0.35,
+    "modest": 0.2
+  },
+  "Mysterious and aloof": {
+    "likes": ["gift","private","theater"],
+    "dislikes": ["chat"],
+    "jobsUp": ["dancer","companion"],
+    "jobsDown": ["reception"],
+    "trust": 0.8,
+    "lewd": 1,
+    "solo": 0.6,
+    "modest": 0.4
+  },
+  "Hot-blooded and competitive": {
+    "likes": ["train","dinner"],
+    "dislikes": ["gift","theater"],
+    "jobsUp": ["security","bartender","dancer"],
+    "jobsDown": ["reception","maid"],
+    "trust": 1,
+    "lewd": 1.05,
+    "solo": 0.3,
+    "modest": 0.1
+  }
+}

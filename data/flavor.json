@@ -1,0 +1,71 @@
+{
+  "_readme": [
+    "Short text lines the game picks from at random. No AI needed. Each section has a _default list; add a list under a personality name to give that personality its own lines.",
+    "Placeholders: {name}, {house}, plus any extra ones noted for the section. Add as many lines as you like."
+  ],
+  "solo": {
+    "_note": "Report line when a lady at max lust spends part of her night alone in her room instead. Shown in the weekly report.",
+    "_default": [
+      "{name} disappeared to her room early one night and didn't come back down for a long while. She seemed a lot calmer afterward.",
+      "{name} locked her door for most of an evening. She came out flushed, relaxed, and tired."
+    ],
+    "Shy but earnest": [
+      "{name} excused herself early one night, too embarrassed to say why. She avoided everyone's eyes at breakfast.",
+      "{name} spent an evening shut in her room with the curtains drawn. She insists she was reading."
+    ],
+    "Bookish and curious": [
+      "{name} took a novel of the steamier sort up to her room and was not seen again that night.",
+      "{name} called it 'research' and locked her door. She came out with a very satisfied look and ink on her fingers."
+    ],
+    "Mysterious and aloof": [
+      "{name} vanished one evening without explanation. When she returned, she was smiling to herself and offered none."
+    ],
+    "Proud and sharp-tongued": [
+      "{name} decided she didn't need anyone's help with her problem, thank you, and took the evening to herself.",
+      "{name} snapped at two clients, then went to her room and slammed the door. An hour later she came out in a far better mood."
+    ],
+    "Laid-back and lazy": [
+      "{name} figured the easiest solution was the one that didn't involve getting out of bed. She skipped most of one evening."
+    ],
+    "Calm and elegant": [
+      "{name} retired early one evening for 'a long bath'. It was a very long bath."
+    ]
+  },
+  "modest": {
+    "_note": "Shown on her sheet when she has the Modest trait.",
+    "_default": [
+      "She keeps her clothes on. When things get intimate, they get pulled aside, not taken off."
+    ]
+  },
+  "late_visit": {
+    "_note": "Opening line when a lady knocks on Sam's door late at night.",
+    "_default": [
+      "Sam is doing the books by candlelight when {name} knocks. She hasn't seen a single client all week, and she's clearly been thinking about something. \"Busy?\"",
+      "{name} appears in Sam's doorway in her nightclothes, holding two cups of tea she clearly has no intention of drinking.",
+      "A note slides under Sam's door: \"Still awake? Come find out.\" It's in {name}'s handwriting."
+    ],
+    "Shy but earnest": [
+      "There's a very quiet knock. {name} is standing in the hall, red to the ears, and has clearly rehearsed what she wants to say. She forgets all of it."
+    ],
+    "Bold and flirtatious": [
+      "{name} doesn't knock. She just leans in Sam's doorway until he notices her. \"You work too hard, boss.\""
+    ]
+  },
+  "client_yes": {
+    "_note": "Second half of a report highlight when a client got the service he asked for.",
+    "_default": [
+      "They disappeared upstairs for most of the evening.",
+      "He came downstairs an hour later looking dazed and very satisfied.",
+      "The door stayed closed a long time. He tipped generously.",
+      "She came back down first, humming. He followed, red-faced and grinning."
+    ]
+  },
+  "client_company": {
+    "_note": "Second half of a report highlight when a client only wanted her company.",
+    "_default": [
+      "He left lighter in the purse and very happy about it.",
+      "He promised to come back next week.",
+      "He told three friends about her before he got home."
+    ]
+  }
+}
