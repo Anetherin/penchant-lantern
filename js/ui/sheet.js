@@ -40,7 +40,7 @@ function refreshSheetInfo(){
       <td>${STANCE[sst]}</td>
       <td><input type="checkbox" ${on?'checked':''} ${cc?'':'disabled'} onchange="toggleMenu('${w.id}','${a.id}',this.checked)"></td></tr>`;
   }).join('');
-  const cl = maxCloth(w,false), cs = maxCloth(w,true);
+  const cl = comfortCloth(w,false,true), cs = comfortCloth(w,true,true);
   const o = getOutfit(w), u = getUnder(w);
   const anySam = getActs().some(a=>canSam(w,a.id));
   const arcTxt = ARCS[w.key] ? `<div class="pink">♥ Story: ${(w.arc||0)>=ARCS[w.key].length ? 'Lovers' : `chapter ${w.arc||0}/${ARCS[w.key].length}${(w.arc||0)<ARCS[w.key].length?` <span class="muted">(next: ${ARCS[w.key][w.arc||0].title})</span>`:''}`}${!w.arc&&w.trust<40?' <span class="muted">(begins once she trusts Sam: 40)</span>':''}</div>` : '';

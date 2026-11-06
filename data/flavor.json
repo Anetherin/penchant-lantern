@@ -34,7 +34,7 @@
   "modest": {
     "_note": "Shown on her sheet when she has the Modest trait.",
     "_default": [
-      "She keeps her clothes on. When things get intimate, they get pulled aside, not taken off."
+      "She'd rather keep her clothes on. When things get intimate, they get pulled aside instead, though the lewder she gets (and the more she trusts Sam), the more comes off."
     ]
   },
   "late_visit": {
@@ -86,6 +86,77 @@
     "_default": [
       "She pulls him in by the collar and doesn't let go for a long time.",
       "\"Finally,\" she breathes, and the door clicks shut behind them."
+    ]
+  },
+  "good_night": {
+    "_note": "Report line after a week where her clients loved her.",
+    "_default": [
+      "{name} had a great week and knows it. She's in a very good mood."
+    ],
+    "Cheerful and teasing": [
+      "{name} spent breakfast bragging about her week to anyone who'd listen, with impressions of her clients."
+    ],
+    "Shy but earnest": [
+      "{name} didn't say much, but she kept smiling to herself all week. Someone said she did well and she turned bright red."
+    ],
+    "Proud and sharp-tongued": [
+      "{name} reminded everyone, twice, that she is the best in the house. Nobody argued."
+    ],
+    "Hot-blooded and competitive": [
+      "{name} has started keeping a tally of satisfied clients on the kitchen wall. She's winning."
+    ],
+    "Bookish and curious": [
+      "{name} has notes on what worked this week. Detailed notes. She'd like to discuss them."
+    ],
+    "Warm and motherly": [
+      "{name}'s clients left happy, and she made a point of making sure the other girls did too."
+    ],
+    "Mysterious and aloof": ["{name} said nothing about her week. Her clients said plenty."],
+    "Laid-back and lazy": [
+      "{name} had a good week with surprisingly little effort, which she considers the ideal week."
+    ]
+  },
+  "bad_night": {
+    "_note": "Report line after a rough week with unhappy or difficult clients.",
+    "_default": [
+      "{name} had a rough week. A couple of clients left unhappy, and so did she."
+    ],
+    "Shy but earnest": [
+      "{name} had a bad client this week and has been very quiet since. She keeps apologizing for nothing."
+    ],
+    "Proud and sharp-tongued": [
+      "Two of {name}'s clients complained. {name} complained louder, and is now refusing to speak to anyone."
+    ],
+    "Hot-blooded and competitive": [
+      "{name} took a bad week personally. She's been training twice as hard out of spite."
+    ],
+    "Cheerful and teasing": [
+      "{name} laughed off a bad client, but the jokes have been a little thinner this week."
+    ],
+    "Laid-back and lazy": ["{name} had a bad week and shrugged it off. Mostly."],
+    "Mysterious and aloof": [
+      "Something about this week bothered {name}. She won't say what."
+    ]
+  },
+  "lover_jealous": {
+    "_note": "When one of Sam's lovers has been left out for weeks while another hasn't. {other} = the other lover.",
+    "_default": [
+      "{name} has noticed exactly how many evenings Sam has spent with {other} lately, and exactly how many he's spent with her. She'd like to talk."
+    ],
+    "Shy but earnest": [
+      "{name} hasn't said anything. She's just been very quiet whenever {other} is around, and Sam finally notices."
+    ],
+    "Proud and sharp-tongued": [
+      "\"I'm not jealous,\" {name} announces, apropos of nothing, while glaring at {other} across the room."
+    ],
+    "Hot-blooded and competitive": [
+      "{name} has started treating {other} like a rival. Breakfast has become very tense."
+    ]
+  },
+  "lover_shared": {
+    "_note": "When two happy lovers come to Sam's room together. {other} = the second lover.",
+    "_default": [
+      "There's a knock at Sam's door. It's {name}. Then a second knock: {other}, right behind her. They look at each other, then at Sam, and seem to reach an understanding without him."
     ]
   }
 }

@@ -51,10 +51,12 @@ function restDecline(id){
 
 /* ---------- weekly ---------- */
 function queueEncounters(){
-  let used = 0;
+  let used = queueRegularDrama() ? 1 : 0;
   // lovers at high lust come looking for Sam (they wait for him rather than going it alone)
   const lovers = S.workers.filter(w=>has(w,'Devoted') && w.lust>=LUST_HIGH && w.energy>=maxEnergy(w)*0.2 && bestSamAct(w));
   if(lovers.length && Math.random() < 0.75){ const id = pick(lovers).id; used++; EVQ.push(()=>evLoverWaiting(findW(id))); }
+  // two or more lovers: jealousy when one is left out, or a shared night when everyone's happy
+  if(used<2) used += queueLoverDynamics();
   // reckless nights (very high lust)
   shuffle(S.workers).forEach(w=>{
     if(used>=1 || has(w,'Devoted') || w.lust < LUST_HIGH || w.lewd < 50 || Math.random() > 0.35) return;
@@ -95,4 +97,39 @@ function evReckless(w){
     choices:[
       {label:'Take the money and let it slide', fx(){ S.gold += cut; w.energy = clamp(w.energy-25, 0, maxEnergy(w)); w.lust = clamp(w.lust-45); w.mood = clamp(w.mood+6); if(h) h.rep = clamp(h.rep-1); return {text:`+${fmt(cut)}. She's thrilled. One of the clients complained about the "irregular service," though (−1 reputation).`, ai:{kind:'reckless', wid:w.id, scene:'companion', situation:`on her night off she slipped down to the lounge and took ${n} clients of her own choosing, off the books.`}}; }},
       {label:'Talk to her about it', fx(){ S.gold += cut; w.energy = clamp(w.energy-25, 0, maxEnergy(w)); w.lust = clamp(w.lust-45); gainTrust(w, 2); w.mood = clamp(w.mood-3); return `+${fmt(cut)}. Sam explains why the house needs to know who's where. She listens. She also asks to work more evenings.`; }}]};
+}
+
+/* ---------- lovers: jealousy & harmony ---------- */
+const PRICKLY = ['Proud and sharp-tongued','Hot-blooded and competitive','Mysterious and aloof'];
+function queueLoverDynamics(){
+  const L = S.workers.filter(w=>has(w,'Devoted'));
+  if(L.length < 2) return 0;
+  const left = L.filter(w=>(w.neglect||0) >= 2).sort((a,b)=>b.neglect-a.neglect)[0], fav = L.filter(w=>!w.neglect);
+  if(left && fav.length && Math.random() < 0.6){ const a = left.id, b = pick(fav).id; EVQ.push(()=>evLoverJealous(findW(a), findW(b))); return 1; }
+  const pair = L.filter(w=>!w.neglect && w.trust>=85 && w.lust>=60 && w.energy>=maxEnergy(w)*0.3 && bestSamAct(w));
+  if(pair.length >= 2 && Math.random() < 0.15){ const [a,b] = shuffle(pair); const ia=a.id, ib=b.id; EVQ.push(()=>evLoverShared(findW(ia), findW(ib))); return 1; }
+  return 0;
+}
+function evLoverJealous(w, o){
+  if(!w || !o) return null;
+  const easy = !PRICKLY.includes(w.personality) && !PRICKLY.includes(o.personality) && w.trust>=85 && o.trust>=85;
+  return {title:`${w.name} Feels Left Out`, who:w.id, scene:'casual', text:flavor('lover_jealous', w, {other:o.name}),
+    choices:[
+      {label:'Make it up to her (−20 energy, 40g)', fx(){ S.sam.energy = Math.max(0, S.sam.energy-20); S.gold -= 40; w.neglect = 0; w.mood = clamp(w.mood+8); gainTrust(w,2); w._samTime = (w._samTime||0)+1; return `Sam takes ${w.name} out for the evening and doesn't talk about work once. She forgives him somewhere around dessert.`; }},
+      {label:`Talk to her and ${o.name} together`, fx(){
+        if(easy){ gainTrust(w,2); gainTrust(o,2); w.neglect = 0; w.mood = clamp(w.mood+4); o.mood = clamp(o.mood+2); return `It's awkward for about five minutes. Then ${o.name} laughs, ${w.name} laughs, and the three of them end up drafting a schedule. It has a lot of hearts on it.`; }
+        w.mood = clamp(w.mood-5); o.mood = clamp(o.mood-4); return `That went badly. ${w.name} and ${o.name} are now very politely not speaking to each other, or to Sam.`; }},
+      {label:'Let it blow over', fx(){ w.mood = clamp(w.mood-8); w.trust = clamp(w.trust-3); return `${w.name} stops bringing it up. That's worse.`; }}]};
+}
+function evLoverShared(a, b){
+  if(!a || !b) return null;
+  return {title:'A Knock, Twice', who:a.id, scene:'casual', text:flavor('lover_shared', a, {other:b.name}),
+    choices:[
+      {label:'Let them both in', fx(){
+        S.sam.energy = Math.max(0, S.sam.energy-30);
+        const ta = privateCore(a, bestSamAct(a)), tb = privateCore(b, bestSamAct(b));
+        [a,b].forEach(w=>{ w.lust = clamp(w.lust-30); w.mood = clamp(w.mood+5); gainTrust(w,2); });
+        samLog(`A night with ${a.name} and ${b.name}`);
+        return {text:`Nobody gets much sleep. (Sam's energy −30)\n\n${ta.split('\n\n').pop()}\n${tb.split('\n\n').pop()}`, img:{wid:a.id, scene:'samact:'+bestSamAct(a)}, ai:{kind:'encounter', wid:a.id, act:bestSamAct(a), scene:'samact:'+bestSamAct(a), forSam:true, situation:`She and ${b.name}, both his lovers and on good terms with each other, came to his room together.`}}; }},
+      {label:'"One at a time, please"', fx(){ a.mood = clamp(a.mood-1); b.mood = clamp(b.mood-1); return `They exchange a look, decide he's adorable, and agree to take turns. Sam is not sure he won anything.`; }}]};
 }

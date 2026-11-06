@@ -10,7 +10,7 @@ function pickClass(h){
 function pickWant(cls){ return weighted(getActs(), a=>(cls.id==='commoner' ? 90/a.price : cls.id==='noble' ? a.price/80 : 1) * (a.id==='caress'?0.6:1)).id; }
 function qualityOf(w, act){ return act ? (actSkill(w,act)*0.5 + w.stats.beauty*0.3 + w.stats.charm*0.2)/100 : (w.tech.service*0.5 + w.stats.beauty*0.25 + w.stats.charm*0.25)/100; }
 function hlText(w, e){
-  const who = pick(CLIENT_DESC[e.cls]), N = w.name, lab = e.want ? actLabel(e.want) : '';
+  const who = e.reg ? `${e.reg}, one of the regulars,` : pick(CLIENT_DESC[e.cls]), N = w.name, lab = e.want ? actLabel(e.want) : '';
   if(e.where){
     const where = PROP_WHERE[e.where];
     if(e.act) return `${cap(who)} propositioned ${N} ${where}, asking for ${lab}. She thought about it for exactly one second, then took his hand and led him upstairs.`;
@@ -48,10 +48,12 @@ function simHouse(h, R){
     R.hl.push({wid:w.id, text:flavor('solo', w), act:null, scene:'solo'});
   });
   const roomM = ROOM_MULT[h.tier];
+  const regs = demand ? regularsVisiting(h) : []; let bestNew = null;
   for(let i=0;i<demand;i++){
     const avail = escorts.filter(w=>R.per[w.id].served < capc[w.id]);
     if(!avail.length){ hr.turned++; continue; }
-    const w = weighted(avail, x=>5+appeal(x)), cls = pickClass(h), pr = R.per[w.id];
+    const reg = regs.shift() || null, fw = reg && avail.find(x=>x.id===reg.fav);   // regulars ask for their favorite
+    const w = fw || weighted(avail, x=>5+appeal(x)), cls = reg ? (CLASSES.find(c=>c.id===reg.cls)||pickClass(h)) : pickClass(h), pr = R.per[w.id];
     if(w.race!=='demon' && w.energy < maxEnergy(w)*0.2){ hr.turned++; continue; }  // she stops taking clients when she's running on empty
     const want = Math.random() < (w.job==='courtesan'?0.85:0.3) ? pickWant(cls) : null;
     let act = null, outcome = 'comp';
@@ -71,8 +73,9 @@ function simHouse(h, R){
     if(cls.id==='noble') cm *= (has(w,'Elegant')?1.3:1) * (0.7 + w.stats.refinement/170);
     const base = act ? actById(act).price * roomM * ob(w,'courtesan') : 20 * ob(w,'companion');
     const below = Math.max(0, (HD.minPop||0) - w.popularity);
-    const inc = Math.round(base * P.mult * (0.6+q*0.9) * cm * (1+madF*0.15) * (has(w,'Ambitious')?1.1:1) * (1+recF*0.05) * (below?0.75:1));
+    const inc = Math.round(base * P.mult * (0.6+q*0.9) * cm * (1+madF*0.15) * (has(w,'Ambitious')?1.1:1) * (1+recF*0.05) * (below?0.75:1) * (reg ? (regQuirk(reg).tip||1) : 1));
     const sat = clamp(- below*0.5 + q*100 + 6 + rnd(-15,15) + h.tier*5 - (h.price-1)*6 + (h.up.bath?4:0) + recF*4 + (outcome==='yes'?8:outcome==='alt'?3:outcome==='no'?-8:0));
+    pr.satSum = (pr.satSum||0) + sat; if(sat<30) pr.low = (pr.low||0)+1;
     hr.income += inc; R.led.escort += inc; pr.served++; pr.earned += inc; hr.served++; hr.sat += sat;
     w.popularity = clamp(w.popularity + (sat-45)/50);
     if(act){
@@ -81,8 +84,10 @@ function simHouse(h, R){
       if(reluct){ w.mood -= 2; pr.reluct = (pr.reluct||0)+1; }
       if(w.fav===act) w.mood += 1.5; if(w.dislike===act) w.mood -= 2.5;
     } else { pr.comp++; grow(w,'service',0.5); w.energy -= ecost; }
-    pr.enc.push({cls:cls.id, want, act, outcome});
+    pr.enc.push({cls:cls.id, want, act, outcome, reg: reg ? reg.name : null});
+    if(reg) regAfter(reg, w, sat, inc); else if(sat>=75 && (!bestNew || sat>bestNew.sat)) bestNew = {sat, w, cls};
   }
+  maybeNewRegular(h, bestNew, R);
   const visitors = hr.served + hr.turned*0.5 + danceDraw*2;
   W.forEach(w=>{
     const j = w.job, pr = R.per[w.id];
@@ -182,18 +187,26 @@ function endWeek(){
       if(w.job!=='rest' && w.energy < maxEnergy(w)*0.35){ w.prevJob = w.job; w.job = 'rest'; log(`😴 ${w.name} is worn out and will rest next week.`); }
       else if(w.job==='rest' && w.prevJob && w.energy >= maxEnergy(w)*0.85){ const pj = w.prevJob; delete w.prevJob; if(!canDo(w,pj)){ w.job = pj; log(`💪 ${w.name} is rested and back to work as ${JOBS[pj].label}.`); } }
     }
+    // how she took the week's clients, by personality (data/personalities.json goodNight/badNight, flavor good_night/bad_night)
+    if(pr.served >= 2){
+      const avg = pr.satSum/pr.served, P = PERS[w.personality]||{};
+      const kind = avg>=72 && !pr.low ? 'good' : (pr.low>=2 || avg<38) ? 'bad' : null;
+      if(kind){ w.mood = clamp(w.mood + (kind==='good' ? (P.goodNight??3) : (P.badNight??-3))); pr.night = kind;
+        if(Math.random()<0.6) R.hl.push({wid:w.id, text:flavor(kind+'_night', w), act:null, scene:'casual'}); }
+    }
     // lust builds up, and is spent by services and time with Sam
     const nActs = Object.values(pr.acts).reduce((a,b)=>a+b,0);
     w.lust = clamp(w.lust + 6 + w.lewd/12 + ((has(w,'Eager')||has(w,'Exhibitionist'))?3:0) + (w.race==='demon'?4:0) + (w.job==='rest'?3:0)
       - nActs*3 - (pr.acts[w.fav]||0)*2 - (w._samTime||0)*12);
     if(has(w,'Devoted') && !w._samTime && w.lust >= LUST_HIGH){ w.mood = clamp(w.mood - 4); pr.missed = true; }
+    if(has(w,'Devoted')) w.neglect = w._samTime ? 0 : (w.neglect||0) + 1;   // weeks in a row without Sam
     w._samTime = 0; pr.lust = Math.round(w.lust);
     pr.e1 = Math.round(w.energy); pr.m1 = Math.round(w.mood);
     w.earnedLast = pr.earned;
     if(w.mood<15 && !has(w,'Loyal') && !isFree(w) && !w.locked && !has(w,'Devoted')){ w.unhappy=(w.unhappy||0)+1; if(w.unhappy>=2) leaving.push(w); else log(`😠 ${w.name} is miserable. If nothing changes, she'll leave.`); }
     else w.unhappy = 0;
     if(!isFree(w) && !w.locked){ w.contract--; if(w.contract<=0 && !leaving.includes(w)) renew.push(w); }
-    const enc = pr.enc.slice().sort(()=>Math.random()-0.5).sort((a,b)=>(b.act?2:b.want?0:1)-(a.act?2:a.want?0:1));
+    const enc = pr.enc.slice().sort(()=>Math.random()-0.5).sort((a,b)=>(b.act?2:b.want?0:1)+(b.reg?2:0)-(a.act?2:a.want?0:1)-(a.reg?2:0));
     enc.slice(0,2).forEach(e=>R.hl.push({wid:w.id, text:hlText(w,e), act:e.act||null, cls:e.cls, scene: e.act ? 'act:'+e.act : e.where ? 'job_'+e.where : 'companion'}));
     delete pr.enc;
     // romance arcs
@@ -262,7 +275,7 @@ function showReport(R, fromWeek){
       const svc = Object.entries(p.acts).map(([id,n])=>`<span class="tag act">${esc(actLabel(id))} ×${n}</span>`).join('') + (p.comp?`<span class="tag">Companionship ×${p.comp}</span>`:'');
       const hls = R.hl.map((h,i)=>({h,i})).filter(x=>x.h.wid===p.id).map(({h,i})=>`<div class="hl">${esc(h.text)} ${findAny(p.id)?`<button class="sm" onclick="showImg('hl${i}','${p.id}','${h.scene}',null,'auto')">🎨</button>${aiBtn('hla'+i,'scene',p.id,{act:h.act,cls:h.cls,scene:h.scene})}`:''}<div id="hla${i}"></div><div id="hl${i}" class="hlimg"></div></div>`).join('');
       return `<div class="rep-w"><div class="head">${w.design?avatarHTML(w):''}<div><b>${esc(p.name)}</b> · ${JOBS[p.job]?JOBS[p.job].label:p.job}${p.earned?` · earned <b>${fmt(p.earned)}</b>`:''}
-        <div class="muted">${p.served?`${p.served} client${p.served>1?'s':''} · `:''}${p.props?`propositioned ${p.props}× · accepted ${p.acc} · `:''}${p.reluct?`<span class="pink">${p.reluct} as a favor</span> · `:''}${p.notMood?`<span class="warn">not in the mood ×${p.notMood}</span> · `:''}Energy ${p.e0}→${p.e1} · Mood ${p.m0}→${p.m1}${p.slept?` · slept: ${p.slept}`:''}${p.solo?' · <span class="pink">a night to herself</span>':''}${p.missed?' · <span class="warn">missed Sam</span>':''}${p.lust!==undefined?` · lust ${p.lust}`:''}</div>
+        <div class="muted">${p.served?`${p.served} client${p.served>1?'s':''} · `:''}${p.props?`propositioned ${p.props}× · accepted ${p.acc} · `:''}${p.reluct?`<span class="pink">${p.reluct} as a favor</span> · `:''}${p.notMood?`<span class="warn">not in the mood ×${p.notMood}</span> · `:''}Energy ${p.e0}→${p.e1} · Mood ${p.m0}→${p.m1}${p.slept?` · slept: ${p.slept}`:''}${p.solo?' · <span class="pink">a night to herself</span>':''}${p.missed?' · <span class="warn">missed Sam</span>':''}${p.night==='good'?' · <span class="good">great week</span>':p.night==='bad'?' · <span class="warn">rough week</span>':''}${p.lust!==undefined?` · lust ${p.lust}`:''}</div>
         <div>${svc}</div></div></div>${hls}</div>`;
     }).join('');
   }).join('');

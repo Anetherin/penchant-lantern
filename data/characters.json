@@ -1,0 +1,1017 @@
+{
+  "_readme": [
+    "Named characters. The key (e.g. \"mira\") is her id; keep it lowercase with no spaces.",
+    "role: house (comes with a house; the house in js/data/economy.js names her as npc), partner (starter choice, later shows up looking for work), story (joins through a house story), guild (Adventurers Guild), drifter (no strings: turns up among candidates now and then). Add new ladies as drifter or partner.",
+    "personality must match a key in personalities.json. traits from the trait list (Shy, Eager, Ambitious, Party Animal, Former Adventurer, Elegant, Lazy, Tough, Romantic, Greedy, Loyal, Exhibitionist, Night Owl, Modest).",
+    "fav / dislike / lovers: service ids from services.json (lovers = what she enjoys only with Sam once she is his lover), or null.",
+    "partnerTrust / partnerLewd / partnerStory: only for partners. backstory is shown on her sheet.",
+    "design: appearance used for image prompts. under/underColor: undergarments id (plain, lace, silk, sports, corset, sheer, none) and color.",
+    "outfits: sig_<key> is her starting outfit; sp_<key> unlocks at trust 60 or as a lover. prompt is the image wording; bonus multiplies income for jobs or client classes.",
+    "Partners only get a romance story if one exists in js/stories/partners.js; without one they still work, just without the arc."
+  ],
+  "mira": {
+    "role": "house",
+    "job": "madame",
+    "name": "Mira Ashdown",
+    "race": "human",
+    "age": 31,
+    "personality": "Warm and motherly",
+    "traits": ["Loyal","Elegant"],
+    "style": "Elegant",
+    "favColor": "burgundy",
+    "fav": "cowgirl",
+    "dislike": null,
+    "lovers": "missionary",
+    "backstory": "Mira kept the Gilded Lantern running for the old owner until he vanished. She isn't sure what to make of the skinny stranger with the deed, but she's staying. For now.",
+    "design": {"build":"curvy","hairStyle":"long wavy","hairColor":"auburn","eyes":"warm brown","skin":"fair","features":"a beauty mark beside her lips"},
+    "under": "lace",
+    "underColor": "burgundy",
+    "stats": {"beauty":62,"charm":66,"refinement":62,"stamina":45,"strength":25,"agility":35},
+    "tech": {"service":50,"dance":20,"bar":35,"combat":5,"manage":58},
+    "actSkill": 40,
+    "popularity": 20,
+    "lewd": 36,
+    "trust": 34,
+    "outfits": {
+      "sig_mira": {
+        "label": "Hostess gown",
+        "style": "Elegant",
+        "prompt": "an elegant burgundy dress with a black lace shawl",
+        "bonus": {"madame":1.3,"companion":1.1}
+      },
+      "sp_mira": {
+        "label": "Midnight silk gown",
+        "style": "Elegant",
+        "prompt": "a midnight-blue silk gown with a plunging back and sapphire jewelry",
+        "bonus": {"noble":1.3,"courtesan":1.15}
+      }
+    }
+  },
+  "cecile": {
+    "role": "house",
+    "job": "maid",
+    "name": "Cecile Fairbanks",
+    "race": "human",
+    "age": 33,
+    "personality": "Calm and elegant",
+    "traits": ["Loyal","Elegant"],
+    "style": "Elegant",
+    "favColor": "black",
+    "fav": "missionary",
+    "dislike": "doggy",
+    "lovers": "oral",
+    "backstory": "Head maid of Castle Rosenhal for twelve years and three owners. She runs the castle like a clock and considers Sam her newest project.",
+    "design": {
+      "build": "tall and lean",
+      "hairStyle": "neat chignon",
+      "hairColor": "dark brown",
+      "eyes": "grey",
+      "skin": "pale",
+      "features": "a stern mouth that rarely, but devastatingly, smiles"
+    },
+    "under": "silk",
+    "underColor": "black",
+    "stats": {"beauty":64,"charm":50,"refinement":80,"stamina":55,"strength":30,"agility":45},
+    "tech": {"service":72,"dance":30,"bar":30,"combat":15,"manage":60},
+    "actSkill": 25,
+    "popularity": 15,
+    "lewd": 22,
+    "trust": 30,
+    "outfits": {
+      "sig_cecile": {
+        "label": "Head maid uniform",
+        "style": "Elegant",
+        "prompt": "a long black head-maid dress with crisp white apron and a ring of brass keys",
+        "bonus": {"maid":1.4,"reception":1.15}
+      },
+      "sp_cecile": {
+        "label": "Off-duty corset dress",
+        "style": "Elegant",
+        "prompt": "a dark green corset dress with lace sleeves",
+        "bonus": {"noble":1.2,"companion":1.15}
+      }
+    }
+  },
+  "tsubaki": {
+    "role": "house",
+    "job": "bath",
+    "name": "Tsubaki",
+    "race": "human",
+    "age": 29,
+    "personality": "Cheerful and teasing",
+    "traits": ["Party Animal","Night Owl"],
+    "style": "Exotic",
+    "favColor": "red",
+    "fav": "paizuri",
+    "dislike": null,
+    "lovers": "missionary",
+    "backstory": "Tsubaki came from the eastern isles to run the springs for her late aunt. She knows every guest's name and every guest's bath temperature.",
+    "design": {
+      "build": "voluptuous",
+      "hairStyle": "long black hair in a loose side braid",
+      "hairColor": "black",
+      "eyes": "dark brown",
+      "skin": "warm fair",
+      "features": "a camellia hair ornament"
+    },
+    "under": "plain",
+    "underColor": "white",
+    "stats": {"beauty":66,"charm":64,"refinement":45,"stamina":60,"strength":30,"agility":45},
+    "tech": {"service":62,"dance":25,"bar":40,"combat":10,"manage":35},
+    "actSkill": 35,
+    "popularity": 18,
+    "lewd": 42,
+    "trust": 28,
+    "outfits": {
+      "sig_tsubaki": {"label":"Onsen yukata","style":"Elegant","prompt":"an indigo yukata with a red obi, sleeves tied back","bonus":{"bath":1.35}},
+      "sp_tsubaki": {
+        "label": "Festival kimono",
+        "style": "Exotic",
+        "prompt": "a vivid festival kimono patterned with camellias",
+        "bonus": {"companion":1.2,"merchant":1.15}
+      }
+    }
+  },
+  "vesper": {
+    "role": "house",
+    "job": "companion",
+    "name": "Lady Vesper",
+    "race": "spirit",
+    "age": 312,
+    "personality": "Mysterious and aloof",
+    "traits": ["Exhibitionist","Elegant"],
+    "style": "Elegant",
+    "favColor": "lavender",
+    "fav": "caress",
+    "dislike": "manual",
+    "lovers": "cowgirl",
+    "backstory": "Vesper has haunted the manor for three centuries and was delighted to finally have company. She doesn't remember how she died and finds the question rude.",
+    "design": {
+      "build": "slender",
+      "hairStyle": "very long flowing",
+      "hairColor": "silver",
+      "eyes": "pale violet",
+      "skin": "moon-pale",
+      "features": "a faint glow and drifting hair as if underwater"
+    },
+    "under": "silk",
+    "underColor": "lavender",
+    "stats": {"beauty":76,"charm":55,"refinement":70,"stamina":50,"strength":10,"agility":55},
+    "tech": {"service":40,"dance":60,"bar":10,"combat":20,"manage":30},
+    "actSkill": 30,
+    "popularity": 12,
+    "lewd": 45,
+    "trust": 20,
+    "outfits": {
+      "sig_vesper": {
+        "label": "Mourning gown",
+        "style": "Elegant",
+        "prompt": "an antique black lace mourning gown with a sheer veil",
+        "bonus": {"noble":1.15,"dancer":1.15}
+      },
+      "sp_vesper": {
+        "label": "Spectral silks",
+        "style": "Revealing",
+        "prompt": "flowing translucent pale silks that drift like smoke",
+        "bonus": {"dancer":1.3,"propose":1.2}
+      }
+    }
+  },
+  "hilde": {
+    "role": "house",
+    "job": "bartender",
+    "name": "Hilde Ironsong",
+    "race": "dwarf",
+    "age": 87,
+    "personality": "Hot-blooded and competitive",
+    "traits": ["Party Animal","Tough"],
+    "style": "Cute",
+    "favColor": "emerald",
+    "fav": "cowgirl",
+    "dislike": null,
+    "lovers": null,
+    "backstory": "A brewmaster who lost her brewery in a drinking contest with a giant. She wants a bar to run and doesn't much care what goes on upstairs, though she's not opposed to finding out.",
+    "design": {
+      "build": "stocky and muscular",
+      "hairStyle": "thick braided",
+      "hairColor": "red",
+      "eyes": "grey",
+      "skin": "ruddy fair",
+      "features": "brass rings in her braids and freckled forearms"
+    },
+    "under": "plain",
+    "underColor": "ivory",
+    "stats": {"beauty":52,"charm":56,"refinement":25,"stamina":75,"strength":75,"agility":35},
+    "tech": {"service":35,"dance":15,"bar":72,"combat":40,"manage":30},
+    "actSkill": 20,
+    "popularity": 10,
+    "lewd": 40,
+    "trust": 20,
+    "outfits": {
+      "sig_hilde": {
+        "label": "Brewmaster's bodice",
+        "style": "Cute",
+        "prompt": "a laced brown bodice, rolled linen sleeves and a leather apron",
+        "bonus": {"bartender":1.3}
+      },
+      "sp_hilde": {
+        "label": "Festival dirndl",
+        "style": "Cute",
+        "prompt": "a bright green festival dirndl with a low-cut bodice",
+        "bonus": {"bartender":1.2,"propose":1.2,"commoner":1.15}
+      }
+    }
+  },
+  "sylphine": {
+    "role": "house",
+    "job": "dancer",
+    "name": "Sylphine Moonwhisper",
+    "race": "elf",
+    "age": 146,
+    "personality": "Bookish and curious",
+    "traits": ["Party Animal","Romantic"],
+    "style": "Exotic",
+    "favColor": "silver",
+    "fav": "caress",
+    "dislike": "paizuri",
+    "lovers": "missionary",
+    "backstory": "A dancer who left the elven conservatory to perform for \"people who actually clap.\" She treats every night at the Pavilion like opening night.",
+    "design": {
+      "build": "slender and toned",
+      "hairStyle": "long straight",
+      "hairColor": "silver-white",
+      "eyes": "ice-blue",
+      "skin": "porcelain",
+      "features": "silver anklets and a crescent-moon tattoo on her hip"
+    },
+    "under": "sheer",
+    "underColor": "silver",
+    "stats": {"beauty":74,"charm":58,"refinement":70,"stamina":50,"strength":20,"agility":75},
+    "tech": {"service":35,"dance":75,"bar":15,"combat":10,"manage":20},
+    "actSkill": 20,
+    "popularity": 20,
+    "lewd": 30,
+    "trust": 22,
+    "outfits": {
+      "sig_sylphine": {"label":"Moonpetal dress","style":"Exotic","prompt":"a flowing white dress of layered petal-shaped silk","bonus":{"dancer":1.3}},
+      "sp_sylphine": {
+        "label": "Starlight silks",
+        "style": "Revealing",
+        "prompt": "sheer midnight silks embroidered with tiny silver stars",
+        "bonus": {"dancer":1.2,"noble":1.2}
+      }
+    }
+  },
+  "zaria": {
+    "role": "house",
+    "job": "courtesan",
+    "name": "Zaria Nightbloom",
+    "race": "demon",
+    "age": 188,
+    "personality": "Bold and flirtatious",
+    "traits": ["Eager","Ambitious"],
+    "style": "Revealing",
+    "favColor": "crimson",
+    "fav": "doggy",
+    "dislike": "caress",
+    "lovers": null,
+    "backstory": "Zaria ran the Veil's floor long before the deed changed hands. She thinks humans are adorable and Sam is the most adorable one yet.",
+    "design": {
+      "build": "voluptuous",
+      "hairStyle": "long curly",
+      "hairColor": "black with crimson tips",
+      "eyes": "gold with slit pupils",
+      "skin": "lavender-tinted",
+      "features": "long curved horns and a heart-tipped tail"
+    },
+    "under": "corset",
+    "underColor": "black",
+    "stats": {"beauty":72,"charm":62,"refinement":35,"stamina":65,"strength":40,"agility":55},
+    "tech": {"service":45,"dance":45,"bar":30,"combat":30,"manage":30},
+    "actSkill": 60,
+    "popularity": 25,
+    "lewd": 72,
+    "trust": 15,
+    "outfits": {
+      "sig_zaria": {
+        "label": "Crimson harness dress",
+        "style": "Revealing",
+        "prompt": "a crimson dress with a strappy black leather harness",
+        "bonus": {"courtesan":1.2,"adventurer":1.1}
+      },
+      "sp_zaria": {
+        "label": "Infernal regalia",
+        "style": "Revealing",
+        "prompt": "black and gold infernal regalia with a high collar and very little else",
+        "bonus": {"courtesan":1.3,"propose":1.2}
+      }
+    }
+  },
+  "bettina": {
+    "role": "house",
+    "job": "reception",
+    "name": "Bettina Krumm",
+    "race": "human",
+    "age": 35,
+    "personality": "Warm and motherly",
+    "traits": ["Loyal","Greedy"],
+    "style": "Cute",
+    "favColor": "navy",
+    "fav": "missionary",
+    "dislike": null,
+    "lovers": "oral",
+    "backstory": "Bettina has run the Wayfarer's front desk for a decade. She can tell where a traveler is from by their boots and how much they'll spend by their hat.",
+    "design": {
+      "build": "soft and curvy",
+      "hairStyle": "honey-brown hair in a practical bun",
+      "hairColor": "honey brown",
+      "eyes": "hazel",
+      "skin": "rosy fair",
+      "features": "laugh lines and a pencil tucked behind one ear"
+    },
+    "under": "plain",
+    "underColor": "white",
+    "stats": {"beauty":56,"charm":66,"refinement":45,"stamina":55,"strength":35,"agility":30},
+    "tech": {"service":70,"dance":15,"bar":45,"combat":10,"manage":55},
+    "actSkill": 30,
+    "popularity": 15,
+    "lewd": 30,
+    "trust": 30,
+    "outfits": {
+      "sig_bettina": {
+        "label": "Innkeeper's apron dress",
+        "style": "Cute",
+        "prompt": "a sturdy blue dress with a flour-dusted white apron",
+        "bonus": {"reception":1.3,"merchant":1.1}
+      },
+      "sp_bettina": {"label":"Sunday best","style":"Elegant","prompt":"a fitted plum dress with a cameo brooch","bonus":{"companion":1.2,"merchant":1.2}}
+    }
+  },
+  "kaede": {
+    "role": "partner",
+    "job": "security",
+    "name": "Kaede",
+    "race": "beastkin",
+    "sub": "fox",
+    "age": 24,
+    "personality": "Bold and flirtatious",
+    "traits": ["Former Adventurer","Eager"],
+    "style": "Sporty",
+    "favColor": "red",
+    "fav": "doggy",
+    "dislike": "missionary",
+    "lovers": "oral",
+    "partnerTrust": 75,
+    "backstory": "Kaede's adventuring party split after a dungeon run went sideways. She took a room at the Lantern \"temporarily\" and found she likes the work, and the pay.",
+    "partnerStory": "In his first hour in this world, Sam stumbled into a goblin ambush and, almost entirely by accident, saved a fox-eared adventurer's life. Kaede has decided she owes him. She has also decided he's cute.",
+    "design": {
+      "build": "athletic",
+      "hairStyle": "high ponytail",
+      "hairColor": "copper",
+      "eyes": "golden",
+      "skin": "sun-kissed",
+      "features": "a thin scar on her shoulder"
+    },
+    "under": "sports",
+    "underColor": "black",
+    "stats": {"beauty":62,"charm":50,"refinement":20,"stamina":70,"strength":55,"agility":70},
+    "tech": {"service":25,"dance":30,"bar":15,"combat":60,"manage":5},
+    "actSkill": 20,
+    "popularity": 15,
+    "lewd": 56,
+    "trust": 22,
+    "outfits": {
+      "sig_kaede": {
+        "label": "Adventurer's leathers",
+        "style": "Sporty",
+        "prompt": "a fitted leather vest, wrap skirt and arm guards",
+        "bonus": {"security":1.25,"adventurer":1.2}
+      },
+      "sp_kaede": {
+        "label": "Shrine maiden garb",
+        "style": "Exotic",
+        "prompt": "a red and white shrine maiden outfit with detached sleeves",
+        "bonus": {"companion":1.2,"noble":1.1}
+      }
+    }
+  },
+  "yui": {
+    "role": "partner",
+    "job": "reception",
+    "name": "Yui Mori",
+    "race": "human",
+    "age": 26,
+    "personality": "Bookish and curious",
+    "traits": ["Romantic","Ambitious"],
+    "style": "Elegant",
+    "favColor": "navy",
+    "fav": "missionary",
+    "dislike": null,
+    "lovers": "cowgirl",
+    "partnerTrust": 82,
+    "backstory": "A woman who insists she's \"from very far away,\" knows suspicious amounts about spreadsheets, and gets weirdly emotional about instant noodles.",
+    "partnerStory": "Yui sat at the next desk over in Sam's old office. They were crossing the same street when the truck came. She woke up in this world a week before him and is VERY relieved to see a familiar face.",
+    "design": {
+      "build": "slender",
+      "hairStyle": "black bob-cut",
+      "hairColor": "black",
+      "eyes": "dark brown",
+      "skin": "fair",
+      "features": "thin-framed glasses and a nervous habit of pushing them up"
+    },
+    "under": "plain",
+    "underColor": "sky blue",
+    "stats": {"beauty":60,"charm":58,"refinement":50,"stamina":40,"strength":20,"agility":40},
+    "tech": {"service":55,"dance":10,"bar":20,"combat":5,"manage":65},
+    "actSkill": 5,
+    "popularity": 10,
+    "lewd": 20,
+    "trust": 30,
+    "outfits": {
+      "sig_yui": {
+        "label": "Office clothes from Earth",
+        "style": "Elegant",
+        "prompt": "a white button-up blouse, grey pencil skirt, black tights and thin-framed glasses",
+        "bonus": {"reception":1.2,"merchant":1.2}
+      },
+      "sp_yui": {
+        "label": "Adventurer \"cosplay\"",
+        "style": "Sporty",
+        "prompt": "a deliberately cliché fantasy adventurer outfit with a short cape and thigh-high boots",
+        "bonus": {"adventurer":1.25,"propose":1.15}
+      }
+    }
+  },
+  "nerys": {
+    "role": "partner",
+    "job": "courtesan",
+    "name": "Nerys",
+    "race": "demon",
+    "age": 205,
+    "personality": "Proud and sharp-tongued",
+    "traits": ["Eager","Exhibitionist"],
+    "style": "Revealing",
+    "favColor": "purple",
+    "fav": "cowgirl",
+    "dislike": "caress",
+    "lovers": "missionary",
+    "partnerTrust": 60,
+    "backstory": "A succubus who claims she is \"between contracts\" and absolutely not lonely.",
+    "partnerStory": "Nerys was mid-summoning when Sam fell out of the sky and landed in her circle. The contract bound itself to him instead. She is furious about it. Mostly.",
+    "design": {
+      "build": "statuesque",
+      "hairStyle": "long straight",
+      "hairColor": "deep violet",
+      "eyes": "magenta",
+      "skin": "pale blue-tinted",
+      "features": "small bat wings, curled horns and a slender tail"
+    },
+    "under": "none",
+    "underColor": "black",
+    "stats": {"beauty":76,"charm":60,"refinement":40,"stamina":60,"strength":30,"agility":55},
+    "tech": {"service":35,"dance":45,"bar":20,"combat":25,"manage":15},
+    "actSkill": 55,
+    "popularity": 15,
+    "lewd": 82,
+    "trust": 15,
+    "outfits": {
+      "sig_nerys": {
+        "label": "Succubus attire",
+        "style": "Revealing",
+        "prompt": "a black leather corset, thigh-high boots and long gloves",
+        "bonus": {"courtesan":1.2,"propose":1.2}
+      },
+      "sp_nerys": {
+        "label": "\"Disguise\": librarian",
+        "style": "Elegant",
+        "prompt": "a prim high-collared librarian dress and glasses, barely hiding her horns",
+        "bonus": {"noble":1.2,"companion":1.2}
+      }
+    }
+  },
+  "elowen": {
+    "role": "partner",
+    "job": "companion",
+    "name": "Elowen Dawnleaf",
+    "race": "elf",
+    "age": 118,
+    "personality": "Shy but earnest",
+    "traits": ["Shy","Romantic"],
+    "style": "Elegant",
+    "favColor": "emerald",
+    "fav": "caress",
+    "dislike": "doggy",
+    "lovers": "missionary",
+    "partnerTrust": 78,
+    "backstory": "A wandering elven healer who came to town to study human medicine and stayed because, she says, \"the patients are interesting.\"",
+    "partnerStory": "Elowen found Sam unconscious on the road after his arrival and nursed him back to health for three days. She still checks his temperature when he looks pale.",
+    "design": {
+      "build": "slender",
+      "hairStyle": "long braided",
+      "hairColor": "honey blonde",
+      "eyes": "green",
+      "skin": "fair",
+      "features": "freckles and a sprig of rosemary in her braid"
+    },
+    "under": "plain",
+    "underColor": "white",
+    "stats": {"beauty":70,"charm":52,"refinement":65,"stamina":45,"strength":15,"agility":45},
+    "tech": {"service":58,"dance":30,"bar":10,"combat":10,"manage":30},
+    "actSkill": 0,
+    "popularity": 10,
+    "lewd": 12,
+    "trust": 25,
+    "outfits": {
+      "sig_elowen": {
+        "label": "Healer's robes",
+        "style": "Elegant",
+        "prompt": "soft white healer's robes with green embroidery and a satchel of herbs",
+        "bonus": {"companion":1.1,"reception":1.1}
+      },
+      "sp_elowen": {
+        "label": "Forest silk dress",
+        "style": "Exotic",
+        "prompt": "a light leaf-green silk dress woven with tiny flowers",
+        "bonus": {"noble":1.2,"companion":1.2}
+      }
+    }
+  },
+  "adelheid": {
+    "role": "partner",
+    "job": "security",
+    "name": "Dame Adelheid Valk",
+    "race": "human",
+    "age": 28,
+    "personality": "Proud and sharp-tongued",
+    "traits": ["Loyal","Tough"],
+    "style": "Sporty",
+    "favColor": "navy",
+    "fav": "missionary",
+    "dislike": "manual",
+    "lovers": "cowgirl",
+    "partnerTrust": 95,
+    "partnerLewd": 5,
+    "backstory": "A knight of the Radiant Order with very firm opinions about honor and a well-hidden soft spot for romance novels.",
+    "partnerStory": "When the Radiant Order foretold a hero from another world, Adelheid swore her sword and life to him before he ever arrived. She takes this extremely seriously. Sam would like her to take it slightly less seriously.",
+    "design": {
+      "build": "tall and athletic",
+      "hairStyle": "short, slightly messy",
+      "hairColor": "platinum blonde",
+      "eyes": "steel blue",
+      "skin": "fair",
+      "features": "a scar through one eyebrow"
+    },
+    "under": "sports",
+    "underColor": "white",
+    "stats": {"beauty":64,"charm":42,"refinement":50,"stamina":75,"strength":72,"agility":55},
+    "tech": {"service":25,"dance":10,"bar":15,"combat":75,"manage":30},
+    "actSkill": 0,
+    "popularity": 12,
+    "lewd": 15,
+    "trust": 25,
+    "outfits": {
+      "sig_adelheid": {
+        "label": "Retainer's half-plate",
+        "style": "Sporty",
+        "prompt": "polished silver half-plate armor over a blue tabard bearing a sun crest",
+        "bonus": {"security":1.4}
+      },
+      "sp_adelheid": {
+        "label": "Off-duty doublet",
+        "style": "Sporty",
+        "prompt": "a fitted navy doublet, white shirt open at the collar, and riding boots",
+        "bonus": {"companion":1.15,"adventurer":1.2}
+      }
+    }
+  },
+  "natsuki": {
+    "role": "partner",
+    "job": "security",
+    "name": "Natsuki Hayama",
+    "race": "human",
+    "age": 25,
+    "personality": "Hot-blooded and competitive",
+    "traits": ["Former Adventurer","Loyal"],
+    "style": "Sporty",
+    "favColor": "sky blue",
+    "fav": "cowgirl",
+    "dislike": null,
+    "lovers": "missionary",
+    "partnerTrust": 95,
+    "partnerLewd": 6,
+    "backstory": "A sword-swinging adventurer from \"very far away\" who eats like a horse and fights like three of them.",
+    "partnerStory": "Natsuki was Sam's childhood friend back home. She vanished three years ago and nobody ever found her. Turns out she's been here the whole time, carving out a name as an adventurer. She cried when she saw him. Then she punched him.",
+    "design": {
+      "build": "athletic",
+      "hairStyle": "short messy",
+      "hairColor": "chestnut",
+      "eyes": "amber",
+      "skin": "lightly tanned",
+      "features": "a sticking plaster on her cheek and a confident grin"
+    },
+    "under": "sports",
+    "underColor": "sky blue",
+    "stats": {"beauty":64,"charm":55,"refinement":25,"stamina":72,"strength":60,"agility":68},
+    "tech": {"service":25,"dance":20,"bar":20,"combat":65,"manage":15},
+    "actSkill": 0,
+    "popularity": 15,
+    "lewd": 10,
+    "trust": 25,
+    "outfits": {
+      "sig_natsuki": {
+        "label": "Veteran adventurer gear",
+        "style": "Sporty",
+        "prompt": "a worn blue scarf, fitted leather armor and a katana at her hip",
+        "bonus": {"security":1.3,"adventurer":1.2}
+      },
+      "sp_natsuki": {
+        "label": "Summer festival yukata",
+        "style": "Cute",
+        "prompt": "a bright orange summer festival yukata with a goldfish pattern",
+        "bonus": {"companion":1.2,"commoner":1.15}
+      }
+    }
+  },
+  "kanako": {
+    "role": "partner",
+    "job": "bartender",
+    "name": "Kanako Ishida",
+    "race": "human",
+    "age": 29,
+    "personality": "Warm and motherly",
+    "traits": ["Oblivious","Elegant"],
+    "style": "Elegant",
+    "favColor": "burgundy",
+    "fav": "missionary",
+    "dislike": null,
+    "lovers": "oral",
+    "partnerTrust": 90,
+    "partnerLewd": 22,
+    "backstory": "A former snack-bar hostess with a laugh you can hear from the street and opinions about everyone's love life but her own.",
+    "partnerStory": "Kanako lived in the apartment next door to Sam for six years. She fed him when he forgot to eat and teased him mercilessly. He had a hopeless crush on her the entire time; she thought of him as the boy next door. The truck, it turns out, was very efficient.",
+    "design": {
+      "build": "voluptuous",
+      "hairStyle": "long wavy, usually pinned up",
+      "hairColor": "dark brown",
+      "eyes": "warm brown",
+      "skin": "fair",
+      "features": "a beauty mark under her left eye and red lipstick"
+    },
+    "under": "lace",
+    "underColor": "burgundy",
+    "stats": {"beauty":70,"charm":72,"refinement":50,"stamina":50,"strength":25,"agility":35},
+    "tech": {"service":58,"dance":25,"bar":60,"combat":5,"manage":45},
+    "actSkill": 10,
+    "popularity": 15,
+    "lewd": 30,
+    "trust": 28,
+    "outfits": {
+      "sig_kanako": {
+        "label": "Snack-bar mama outfit",
+        "style": "Elegant",
+        "prompt": "a fitted wine-red cocktail dress with a cardigan over her shoulders",
+        "bonus": {"bartender":1.25,"companion":1.1}
+      },
+      "sp_kanako": {
+        "label": "Date-night dress",
+        "style": "Elegant",
+        "prompt": "a sleek black off-shoulder dress she bought \"just in case\"",
+        "bonus": {"companion":1.2,"noble":1.15}
+      }
+    }
+  },
+  "mio": {
+    "role": "partner",
+    "job": "companion",
+    "name": "Mio Kurosawa",
+    "race": "human",
+    "age": 22,
+    "personality": "Bold and flirtatious",
+    "traits": ["Eager","Romantic"],
+    "style": "Cute",
+    "favColor": "pink",
+    "fav": "paizuri",
+    "dislike": null,
+    "lovers": null,
+    "partnerTrust": 85,
+    "partnerLewd": 58,
+    "backstory": "Enthusiastic, impulsive, and completely untrained at everything. She makes up for it by refusing to give up.",
+    "partnerStory": "Mio is the younger sister of Sam's best friend Kenta. She's had a crush on Sam for years and was, by her own account, \"just walking by\" the crosswalk that day. She has decided this is fate.",
+    "design": {
+      "build": "curvy",
+      "hairStyle": "twin-tailed",
+      "hairColor": "dyed pink-blonde",
+      "eyes": "brown",
+      "skin": "fair",
+      "features": "a star-shaped hair clip and a mischievous grin"
+    },
+    "under": "lace",
+    "underColor": "pink",
+    "stats": {"beauty":68,"charm":60,"refinement":20,"stamina":55,"strength":20,"agility":50},
+    "tech": {"service":8,"dance":12,"bar":5,"combat":3,"manage":3},
+    "actSkill": 0,
+    "popularity": 8,
+    "lewd": 58,
+    "trust": 30,
+    "outfits": {
+      "sig_mio": {
+        "label": "Hoodie and shorts",
+        "style": "Cute",
+        "prompt": "an oversized pink hoodie, denim shorts and sneakers",
+        "bonus": {"commoner":1.15,"propose":1.1}
+      },
+      "sp_mio": {
+        "label": "\"Grown-up\" outfit",
+        "style": "Revealing",
+        "prompt": "a daring black lace-up dress she picked out to prove a point",
+        "bonus": {"courtesan":1.2,"propose":1.2}
+      }
+    }
+  },
+  "marisol": {
+    "role": "partner",
+    "job": "reception",
+    "name": "Marisol Vey",
+    "race": "human",
+    "age": 24,
+    "personality": "Hot-blooded and competitive",
+    "traits": ["Ambitious","Loyal"],
+    "style": "Cute",
+    "favColor": "gold",
+    "fav": "cowgirl",
+    "dislike": null,
+    "lovers": "missionary",
+    "partnerTrust": 70,
+    "backstory": "The old owner's daughter. Smart, stubborn, and determined to prove she could have run the place herself.",
+    "partnerStory": "Marisol's father vanished and left the deed, and the debt, to \"whoever shows up.\" That turned out to be Sam. Instead of fighting him for it, she decided to make sure he doesn't ruin it.",
+    "design": {
+      "build": "curvy",
+      "hairStyle": "long curly",
+      "hairColor": "dark brown",
+      "eyes": "amber",
+      "skin": "olive",
+      "features": "gold hoop earrings and ink-stained fingers"
+    },
+    "under": "lace",
+    "underColor": "gold",
+    "stats": {"beauty":62,"charm":62,"refinement":45,"stamina":50,"strength":25,"agility":40},
+    "tech": {"service":50,"dance":20,"bar":30,"combat":10,"manage":62},
+    "actSkill": 5,
+    "popularity": 12,
+    "lewd": 25,
+    "trust": 28,
+    "outfits": {
+      "sig_marisol": {
+        "label": "Merchant's daughter dress",
+        "style": "Cute",
+        "prompt": "a practical but pretty mustard-yellow dress with a ledger tucked under her arm",
+        "bonus": {"merchant":1.2,"reception":1.1}
+      },
+      "sp_marisol": {
+        "label": "Heiress gown",
+        "style": "Elegant",
+        "prompt": "a gold-trimmed heiress gown she swore she would never wear",
+        "bonus": {"noble":1.25,"madame":1.2}
+      }
+    }
+  },
+  "seraphine": {
+    "role": "story",
+    "job": "companion",
+    "name": "Lady Seraphine Rosenhal",
+    "race": "human",
+    "age": 27,
+    "personality": "Proud and sharp-tongued",
+    "traits": ["Elegant","Loyal"],
+    "style": "Elegant",
+    "favColor": "gold",
+    "fav": "missionary",
+    "dislike": "doggy",
+    "lovers": "oral",
+    "backstory": "The last of the Rosenhals: no money, a title worth nothing, and a castle that now belongs to a commoner in a hoodie. She knows every noble in the kingdom and exactly how to host them.",
+    "design": {
+      "build": "slender",
+      "hairStyle": "long golden hair in an old-fashioned updo",
+      "hairColor": "golden blonde",
+      "eyes": "sapphire",
+      "skin": "porcelain",
+      "features": "a family signet ring she never takes off"
+    },
+    "under": "silk",
+    "underColor": "ivory",
+    "stats": {"beauty":78,"charm":60,"refinement":88,"stamina":40,"strength":15,"agility":40},
+    "tech": {"service":55,"dance":50,"bar":10,"combat":10,"manage":60},
+    "actSkill": 10,
+    "popularity": 30,
+    "lewd": 15,
+    "trust": 30,
+    "outfits": {
+      "sig_seraphine": {
+        "label": "Faded court silks",
+        "style": "Elegant",
+        "prompt": "an old-fashioned but immaculate gold-embroidered court dress, slightly faded",
+        "bonus": {"noble":1.35,"companion":1.1}
+      },
+      "sp_seraphine": {
+        "label": "Rosenhal ball gown",
+        "style": "Elegant",
+        "prompt": "a breathtaking crimson ball gown with the Rosenhal rose crest",
+        "bonus": {"noble":1.3,"madame":1.2}
+      }
+    }
+  },
+  "ilyana": {
+    "role": "story",
+    "job": "madame",
+    "name": "Lady Ilyana Silverbough",
+    "race": "elf",
+    "age": 260,
+    "personality": "Calm and elegant",
+    "traits": ["Elegant","Romantic"],
+    "style": "Elegant",
+    "favColor": "silver",
+    "fav": "caress",
+    "dislike": "manual",
+    "lovers": "missionary",
+    "backstory": "The Pavilion's elven patroness for a century. She decided she would rather be part of it than own it from afar.",
+    "design": {
+      "build": "tall and lean",
+      "hairStyle": "very long silver hair woven with tiny pearls",
+      "hairColor": "silver",
+      "eyes": "pale gold",
+      "skin": "porcelain",
+      "features": "a serene smile that misses nothing"
+    },
+    "under": "silk",
+    "underColor": "silver",
+    "stats": {"beauty":82,"charm":62,"refinement":90,"stamina":40,"strength":15,"agility":50},
+    "tech": {"service":60,"dance":60,"bar":20,"combat":10,"manage":70},
+    "actSkill": 35,
+    "popularity": 35,
+    "lewd": 28,
+    "trust": 30,
+    "outfits": {
+      "sig_ilyana": {
+        "label": "Patroness robes",
+        "style": "Elegant",
+        "prompt": "layered silver-grey elven robes with moon-lily embroidery",
+        "bonus": {"madame":1.3,"noble":1.15}
+      },
+      "sp_ilyana": {
+        "label": "Moonsilk gown",
+        "style": "Revealing",
+        "prompt": "a gown of shimmering moonsilk that is more light than fabric",
+        "bonus": {"noble":1.3,"courtesan":1.15}
+      }
+    }
+  },
+  "ines": {
+    "role": "story",
+    "job": "security",
+    "name": "Ines Varga",
+    "race": "human",
+    "age": 30,
+    "personality": "Hot-blooded and competitive",
+    "traits": ["Former Adventurer","Tough"],
+    "style": "Sporty",
+    "favColor": "black",
+    "fav": "doggy",
+    "dislike": "caress",
+    "lovers": "missionary",
+    "backstory": "A former ghost hunter who came to exorcise Hollowmere Manor and stayed to make amends. She still sleeps with a silver dagger under her pillow, out of habit.",
+    "design": {
+      "build": "toned",
+      "hairStyle": "short, sharp black bob",
+      "hairColor": "black",
+      "eyes": "grey-green",
+      "skin": "olive",
+      "features": "a thin scar along her jaw and silver charm earrings"
+    },
+    "under": "sports",
+    "underColor": "black",
+    "stats": {"beauty":62,"charm":45,"refinement":40,"stamina":70,"strength":65,"agility":65},
+    "tech": {"service":20,"dance":10,"bar":20,"combat":70,"manage":30},
+    "actSkill": 15,
+    "popularity": 10,
+    "lewd": 20,
+    "trust": 25,
+    "outfits": {
+      "sig_ines": {
+        "label": "Ghost-hunter's coat",
+        "style": "Sporty",
+        "prompt": "a long black hunter's coat with silver buckles and a bandolier of charms",
+        "bonus": {"security":1.35}
+      },
+      "sp_ines": {
+        "label": "Duelist's outfit",
+        "style": "Sporty",
+        "prompt": "a silver-trimmed duelist's jacket, white shirt and tall boots",
+        "bonus": {"adventurer":1.2,"security":1.2}
+      }
+    }
+  },
+  "vharra": {
+    "role": "story",
+    "job": "courtesan",
+    "name": "Vharra",
+    "race": "demon",
+    "age": 300,
+    "personality": "Bold and flirtatious",
+    "traits": ["Ambitious","Greedy"],
+    "style": "Revealing",
+    "favColor": "emerald",
+    "fav": "cowgirl",
+    "dislike": "caress",
+    "lovers": null,
+    "backstory": "The Underdistrict's landlord, until she got bored of collecting rent and decided it would be more fun to make it.",
+    "design": {
+      "build": "voluptuous",
+      "hairStyle": "long braided",
+      "hairColor": "jet black with green streaks",
+      "eyes": "emerald with slit pupils",
+      "skin": "dark grey",
+      "features": "four curling horns and gold piercings"
+    },
+    "under": "corset",
+    "underColor": "emerald",
+    "stats": {"beauty":76,"charm":66,"refinement":50,"stamina":65,"strength":45,"agility":50},
+    "tech": {"service":45,"dance":40,"bar":30,"combat":40,"manage":60},
+    "actSkill": 65,
+    "popularity": 30,
+    "lewd": 75,
+    "trust": 10,
+    "outfits": {
+      "sig_vharra": {
+        "label": "Landlord's silks",
+        "style": "Revealing",
+        "prompt": "draped emerald silks with heavy gold chains and rings",
+        "bonus": {"courtesan":1.2,"merchant":1.2}
+      },
+      "sp_vharra": {
+        "label": "Underdistrict regalia",
+        "style": "Revealing",
+        "prompt": "black and emerald infernal regalia with a jeweled collar",
+        "bonus": {"courtesan":1.3,"propose":1.2}
+      }
+    }
+  },
+  "rhoswen": {
+    "role": "guild",
+    "job": "companion",
+    "name": "Rhoswen",
+    "race": "elf",
+    "age": 212,
+    "personality": "Calm and elegant",
+    "traits": ["Elegant","Shy"],
+    "style": "Elegant",
+    "favColor": "emerald",
+    "fav": "caress",
+    "dislike": "doggy",
+    "lovers": "missionary",
+    "backstory": "A noble elf who walked away from a stifling court to see how humans actually live. Curious, very proper, and quietly thrilled to be somewhere scandalous.",
+    "design": {
+      "build": "tall and lean",
+      "hairStyle": "long straight",
+      "hairColor": "platinum blonde",
+      "eyes": "emerald",
+      "skin": "porcelain",
+      "features": "a delicate silver circlet"
+    },
+    "under": "silk",
+    "underColor": "white",
+    "stats": {"beauty":80,"charm":50,"refinement":85,"stamina":35,"strength":20,"agility":50},
+    "tech": {"service":40,"dance":55,"bar":10,"combat":15,"manage":40},
+    "actSkill": 5,
+    "popularity": 10,
+    "lewd": 14,
+    "trust": 10,
+    "outfits": {"sig_rhoswen":{"label":"Court gown","style":"Elegant","prompt":"a flowing pale-green silk court gown","bonus":{"noble":1.3,"dancer":1.1}}}
+  },
+  "hanna": {
+    "role": "guild",
+    "job": "reception",
+    "name": "Hanna Weiss",
+    "race": "human",
+    "age": 27,
+    "personality": "Cheerful and teasing",
+    "traits": ["Romantic"],
+    "style": "Cute",
+    "favColor": "sky blue",
+    "fav": "paizuri",
+    "dislike": null,
+    "lovers": "missionary",
+    "backstory": "The Adventurers' Guild's most efficient receptionist and its biggest gossip. She's been dying for an excuse to see the inside of a pleasure house.",
+    "design": {"build":"curvy","hairStyle":"shoulder-length","hairColor":"honey blonde","eyes":"blue","skin":"fair","features":"freckles across her nose"},
+    "under": "lace",
+    "underColor": "sky blue",
+    "stats": {"beauty":58,"charm":68,"refinement":45,"stamina":50,"strength":25,"agility":40},
+    "tech": {"service":70,"dance":20,"bar":30,"combat":10,"manage":50},
+    "actSkill": 15,
+    "popularity": 25,
+    "lewd": 28,
+    "trust": 30,
+    "outfits": {
+      "sig_hanna": {"label":"Guild uniform","style":"Cute","prompt":"a neat guild uniform with a short blue cape","bonus":{"reception":1.25,"adventurer":1.15}}
+    }
+  }
+}

@@ -4,7 +4,8 @@
     "likes/dislikes: chat, dinner, gift, train, private, walk, theater (things Sam does with her). jobsUp/jobsDown: job ids she likes or dislikes.",
     "trust: multiplier on trust Sam earns. lewd: multiplier on lewdness growth.",
     "solo: chance (0-1) that at max lust she takes care of it herself instead of acting on it with someone. Costs her energy and fewer clients that night.",
-    "modest: chance (0-1) a new lady with this personality gets the Modest trait: she keeps her clothes on (pulled aside) no matter how lewd she is."
+    "modest: chance (0-1) a new lady with this personality gets the Modest trait: she undresses less than her lewdness would allow (clothes pulled aside), loosening as lewdness and trust with Sam rise.",
+    "goodNight / badNight: mood change after a week where clients loved her / a rough week with bad clients."
   ],
   "Cheerful and teasing": {
     "likes": ["chat","gift","walk"],
@@ -14,7 +15,9 @@
     "trust": 1.1,
     "lewd": 1.05,
     "solo": 0.25,
-    "modest": 0.05
+    "modest": 0.05,
+    "goodNight": 3,
+    "badNight": -2
   },
   "Calm and elegant": {
     "likes": ["dinner","train","theater"],
@@ -24,7 +27,9 @@
     "trust": 1,
     "lewd": 0.95,
     "solo": 0.5,
-    "modest": 0.4
+    "modest": 0.4,
+    "goodNight": 2,
+    "badNight": -2
   },
   "Shy but earnest": {
     "likes": ["chat","train","walk"],
@@ -34,7 +39,9 @@
     "trust": 1.2,
     "lewd": 0.85,
     "solo": 0.7,
-    "modest": 0.5
+    "modest": 0.5,
+    "goodNight": 4,
+    "badNight": -6
   },
   "Proud and sharp-tongued": {
     "likes": ["gift","theater"],
@@ -44,7 +51,9 @@
     "trust": 0.85,
     "lewd": 1,
     "solo": 0.55,
-    "modest": 0.35
+    "modest": 0.35,
+    "goodNight": 2,
+    "badNight": -5
   },
   "Laid-back and lazy": {
     "likes": ["chat","private"],
@@ -54,7 +63,9 @@
     "trust": 1,
     "lewd": 1.05,
     "solo": 0.6,
-    "modest": 0.15
+    "modest": 0.15,
+    "goodNight": 1,
+    "badNight": -1
   },
   "Bold and flirtatious": {
     "likes": ["private","dinner"],
@@ -64,7 +75,9 @@
     "trust": 1,
     "lewd": 1.2,
     "solo": 0.15,
-    "modest": 0
+    "modest": 0,
+    "goodNight": 3,
+    "badNight": -2
   },
   "Bookish and curious": {
     "likes": ["train","chat","theater"],
@@ -74,7 +87,9 @@
     "trust": 1.05,
     "lewd": 1,
     "solo": 0.55,
-    "modest": 0.25
+    "modest": 0.25,
+    "goodNight": 3,
+    "badNight": -3
   },
   "Warm and motherly": {
     "likes": ["dinner","chat","walk"],
@@ -84,7 +99,9 @@
     "trust": 1.1,
     "lewd": 0.95,
     "solo": 0.35,
-    "modest": 0.2
+    "modest": 0.2,
+    "goodNight": 3,
+    "badNight": -3
   },
   "Mysterious and aloof": {
     "likes": ["gift","private","theater"],
@@ -94,7 +111,9 @@
     "trust": 0.8,
     "lewd": 1,
     "solo": 0.6,
-    "modest": 0.4
+    "modest": 0.4,
+    "goodNight": 1,
+    "badNight": -1
   },
   "Hot-blooded and competitive": {
     "likes": ["train","dinner"],
@@ -104,6 +123,8 @@
     "trust": 1,
     "lewd": 1.05,
     "solo": 0.3,
-    "modest": 0.1
+    "modest": 0.1,
+    "goodNight": 5,
+    "badNight": -4
   }
 }

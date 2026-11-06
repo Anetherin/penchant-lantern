@@ -10,7 +10,8 @@ optional text generation (`ai-text-plugin`).
   The scripts are classic (non-module) scripts that share globals, so order matters; the list lives in `loader.js`.
 - `data/*.json`: **the files you edit by hand.** Scene snippets and clothing wording (`snippets.json`), services (`services.json`),
   personalities with their solo/modest odds (`personalities.json`), AI text templates and style guidance (`ai-templates.json`),
-  and random flavor lines per personality (`flavor.json`). Each file starts with a `_readme` explaining its fields.
+  random flavor lines per personality (`flavor.json`), named characters and their outfits (`characters.json`),
+  and regular clients: names, quirks and their event text (`regulars.json`). Each file starts with a `_readme` explaining its fields.
   If the page says a file isn't valid JSON, look for a missing comma or quote. `node tools/fmt-json.mjs` tidies them.
 - `css/style.css`: all styles.
 - `js/core`: config (your scene snippets, service categories, defaults) and utilities/storage.

@@ -61,7 +61,7 @@ function migrate(s){
     (s.workers||[]).concat(s.candidates||[]).forEach(w=>{ if(w.key && ['kaede','yui','nerys','elowen','adelheid','marisol','natsuki','kanako','mio'].includes(w.key)) w.arc = [0,1,3,6][w.arc||0] ?? 0; });
     s.houses.forEach(h=>{ if(h.story) h.story.beat = [0,2,3,4][h.story.beat] ?? h.story.beat; });
   }
-  s.v = 9; s.flags = Object.assign({partnerCD:3}, s.flags||{});
+  s.v = 10; s.regulars = s.regulars || []; s.flags = Object.assign({partnerCD:3}, s.flags||{});
   s.sam.lvl = s.sam.lvl || 1; s.sam.xp = s.sam.xp || 0;
   s.houses.forEach(h=>{ h.since = h.since || 1; h.story = h.story || {beat:0,wk:0}; h.bonus = h.bonus || {};
     if(h.quarters===undefined){ h.quarters = Math.max(HOUSES[h.id].quarters, Math.ceil((s.workers||[]).filter(w=>w.house===h.id).length/2)); h.beds = HOUSES[h.id].beds; }
@@ -92,6 +92,9 @@ function refreshCandidates(extra=0, quality=1){
     const open = PARTNERS.filter(k=>!isHired(k));
     if(open.length){ const k = pick(open); const c = makeNamed(k); c.signing = signingFor(c); S.candidates.push(c); S.flags.partnerCD = 5; addLog(`${c.name} is looking for work. (Candidates)`); }
   }
+  // drifters (data/characters.json role "drifter") wander in now and then
+  const drift = Object.keys(NAMED).filter(k=>NAMED[k].role==='drifter' && !isHired(k));
+  if(drift.length && Math.random()<0.15){ const c = makeNamed(pick(drift)); c.signing = signingFor(c); S.candidates.push(c); addLog(`${c.name} is looking for work. (Candidates)`); }
 }
 function addCandidates(n, quality=1){ for(let i=0;i<n;i++){ const c=genWorker({quality}); c.signing=signingFor(c); S.candidates.push(c); } }
 function checkUnlocks(silent, sink){

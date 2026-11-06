@@ -67,12 +67,18 @@ function clothOK(w,c,withSam){
   return clothLimit(w,withSam) >= CLOTH.find(x=>x.id===c).lv;
 }
 function maxCloth(w, withSam){ return [...CLOTH].reverse().find(c=>clothOK(w,c.id,withSam)).id; }
-// Modest ladies keep their clothes on by default (pulled aside); you can still pick another state by hand.
-const clothCap = (w, c) => has(w,'Modest') && CLOTH.findIndex(x=>x.id===c) > 1 ? 'partial' : c;
+// Modest ladies would rather keep their clothes on: during intimate scenes their comfort line sits w.modesty
+// points lower (clothes pulled aside at worst). Lewdness still pushes it down, and with Sam, trust does too.
+function comfortCloth(w, withSam, intimate){
+  if(!has(w,'Modest')) return maxCloth(w, withSam);
+  const lim = clothLimit(w, withSam) - (w.modesty||30) + (withSam ? w.trust*0.25 : 0);
+  const c = ([...CLOTH].reverse().find(x=>lim>=x.lv && !(x.id==='under' && w.under==='none'))||CLOTH[0]).id;
+  return intimate && c==='dressed' ? 'partial' : c;
+}
 function defaultCloth(w, scene){
-  if(scene.startsWith('act:')) return clothCap(w, maxCloth(w,false));
-  if(scene.startsWith('samact:')) return clothCap(w, maxCloth(w,true));
-  if(scene==='solo') return clothCap(w, maxCloth(w,false));
+  if(scene.startsWith('act:')) return comfortCloth(w, false, true);
+  if(scene.startsWith('samact:')) return comfortCloth(w, true, true);
+  if(scene==='solo') return comfortCloth(w, false, true);
   if(scene==='bath') return clothOK(w,'nude',false) ? 'nude' : 'dressed';
   return 'dressed';
 }
@@ -103,6 +109,7 @@ function ensureWorker(w){
   if(!w.favColor) w.favColor = pick(COLOR_KEYS);
   // Modest: rolled once per lady from her personality (data/personalities.json → modest)
   if(w._mr===undefined){ w._mr = 1; if(!has(w,'Modest') && !has(w,'Exhibitionist') && Math.random() < ((PERS[w.personality]||{}).modest||0)) (w.traits = w.traits||[]).push('Modest'); }
+  if(has(w,'Modest') && w.modesty===undefined) w.modesty = ri(20,45);
   w.design = w.design || {};
   // wardrobe migration / defaults
   if(!w.owned) w.owned = [];

@@ -46,6 +46,12 @@ function render(){
   $('#view').innerHTML = v();
   $('#endBtn').disabled = S.over;
 }
+function regularsCard(h){
+  const rs = (S.regulars||[]).filter(r=>r.house===h.id);
+  if(!rs.length) return '';
+  return `<section class="card"><h2>Regulars</h2>${rs.map(r=>{ const q = regQuirk(r), f = r.fav && findW(r.fav);
+    return `<div style="margin:4px 0"><b>${esc(r.name)}</b> <span class="tag" title="${esc(q.desc)}">${esc(q.label)}</span> <span class="muted">${(CLASSES.find(c=>c.id===r.cls)||{}).label||''} · ${r.visits} visit${r.visits===1?'':'s'} · spent ${fmt(r.spent)}${f?` · asks for <b>${esc(f.name)}</b>`:''}${r.loyalty<=-2?' · <span class="warn">losing interest</span>':''}</span></div>`; }).join('')}</section>`;
+}
 function viewHouse(){
   const h = curH(), D = HOUSES[h.id], nd = nextDue(), used = S.workers.filter(w=>w.house===h.id && w.job==='courtesan').length;
   const amen = Object.keys(UPGRADES).filter(k=>h.up[k]).map(k=>UPGRADES[k].label).join(', ') || 'none';
@@ -59,6 +65,7 @@ function viewHouse(){
       <div class="muted">Clientele: ${CLASSES.map((c,i)=>D.cls[i]>=1.3?`<b>${c.label}s ↑</b>`:D.cls[i]<=0.5?`${c.label}s ↓`:'').filter(Boolean).join(', ')||'balanced'}</div></div>
       <p class="muted">Higher prices earn more per client but draw fewer of them, unless reputation is high.</p></section>
     ${storyCard(h)}
+    ${regularsCard(h)}
     <section class="card"><h2>Positions</h2><div class="grid2">${Object.entries(JOBS).filter(([k])=>k!=='rest').map(([k,J])=>{ const ws=S.workers.filter(w=>w.house===h.id && w.job===k), mx=slotsFor(h,k); return mx||ws.length?`<div><b>${J.label}</b> <span class="muted">${ws.length}/${mx}</span>${ws.length?': '+ws.map(w=>esc(w.name)).join(', '):''}</div>`:''; }).join('')}
       ${S.workers.filter(w=>w.house===h.id && w.job==='rest').length?`<div><b>Resting</b>: ${S.workers.filter(w=>w.house===h.id && w.job==='rest').map(w=>esc(w.name)).join(', ')}</div>`:''}</div></section>
     <section class="card"><h2>Debt to the Vane Credit House</h2>
@@ -77,9 +84,29 @@ function workerCard(w, showHouse){
       <div class="row" onclick="event.stopPropagation()"><select onchange="setJob('${w.id}',this.value)">${jobOptions(w)}</select>
       <span class="muted">Lewd ${wl}${w.prevJob?' · 😴 auto-resting':''}</span><span class="muted">· ${isFree(w)?'no wage':fmt(w.wage)+'/wk'}</span></div><div>${menu}</div></div></div>`;
 }
+// "This week" at a glance: who needs attention before you end the week.
+function agendaHTML(){
+  const nm = w => `<a href="#" onclick="openSheet('${w.id}');return false">${esc(w.name.split(' ')[0])}</a>`;
+  const list = (ws) => ws.map(nm).join(', ');
+  const W = S.workers, lines = [];
+  const waiting = W.filter(w=>has(w,'Devoted') && w.lust>=LUST_HIGH);
+  const restless = W.filter(w=>!has(w,'Devoted') && w.lust>=LUST_HIGH);
+  const worn = W.filter(w=>w.job!=='rest' && w.energy < maxEnergy(w)*0.3);
+  const unhappy = W.filter(w=>w.mood < 25);
+  const ending = W.filter(w=>!isFree(w) && !w.locked && w.contract<=2);
+  const neglected = W.filter(w=>has(w,'Devoted') && (w.neglect||0)>=1);
+  if(waiting.length) lines.push(`💗 Waiting for Sam: ${list(waiting)}`);
+  if(neglected.length) lines.push(`💔 Feeling neglected: ${list(neglected)}`);
+  if(restless.length) lines.push(`🔥 Restless: ${list(restless)}`);
+  if(worn.length) lines.push(`😴 Worn out: ${list(worn)}`);
+  if(unhappy.length) lines.push(`😠 Unhappy: ${list(unhappy)}`);
+  if(ending.length) lines.push(`📜 Contract ending: ${ending.map(w=>`${nm(w)} (${w.contract} wk)`).join(', ')}`);
+  lines.push(`🧑 Sam: ${S.ap} action${S.ap===1?'':'s'} left · energy ${Math.round(S.sam.energy)}`);
+  return `<section class="card agenda"><h3 style="margin:0 0 4px">This week</h3>${lines.map(l=>`<div>${l}</div>`).join('')}</section>`;
+}
 function viewRoster(){
   const all = ROSTER_FILTER==='all', list = all ? S.workers : S.workers.filter(w=>w.house===curH().id);
-  return `${houseTabs(true)}<section class="card"><h2>Roster (${list.length})</h2><p class="muted">Tap someone to open her status window, services, wardrobe and images.</p>
+  return `${houseTabs(true)}${agendaHTML()}<section class="card"><h2>Roster (${list.length})</h2><p class="muted">Tap someone to open her status window, services, wardrobe and images.</p>
     <div class="grid">${list.map(w=>workerCard(w, all)).join('') || '<span class="muted">No one works here. Visit Recruit, or move someone over from her sheet.</span>'}</div></section>`;
 }
 function viewRecruit(){

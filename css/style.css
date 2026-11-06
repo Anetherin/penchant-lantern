@@ -74,3 +74,4 @@ table{border-collapse:collapse;width:100%;font-size:13px}td,th{border-bottom:1px
 .pick:hover{border-color:var(--gold2)}
 .pick.sel{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold) inset}
 .bar.p span{background:#c0567a}
+.agenda div{margin:2px 0}.agenda a{color:inherit;text-decoration:underline dotted}
