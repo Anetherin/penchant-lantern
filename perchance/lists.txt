@@ -1,0 +1,2 @@
+t2i = {import:text-to-image-plugin}
+ai = {import:ai-text-plugin}

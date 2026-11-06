@@ -1,0 +1,83 @@
+'use strict';
+function getPlugin(){
+  const P = window.PL_PLUGINS; if(P && typeof P.t2i === 'function') return P.t2i;
+  try{ if(typeof t2i === 'function') return t2i; }catch(e){}
+  if(typeof window.t2i === 'function') return window.t2i;
+  return null;
+}
+function extractUrl(d){
+  if(!d) return null;
+  if(typeof d==='string') return /^(data:image|blob:|https?:)/.test(d) ? d : null;
+  for(const k of ['dataUrl','dataURL','imageDataUrl','imageUrl','url','src']) if(typeof d[k]==='string' && /^(data:image|blob:|https?:)/.test(d[k])) return d[k];
+  for(const k of ['canvas','imageCanvas']) if(d[k] && d[k].toDataURL){ try{ return d[k].toDataURL('image/jpeg',0.92); }catch(e){} }
+  if(d.image && d.image.src) return d.image.src;
+  return null;
+}
+function findAny(id){
+  if(id==='draft') return CDRAFT;
+  if(SETUP && SETUP.prev && SETUP.prev[id]) return SETUP.prev[id];
+  if(!S) return null;
+  return S.workers.find(w=>w.id===id) || S.candidates.find(w=>w.id===id) || NPCS[id] || LIB.find(w=>w.id===id) || null;
+}
+const imgKey = (w,scene,cloth) => `${w.id}|${scene}|${cloth}`;
+async function saveImage(key, url, w, scene){
+  const small = await shrink(url, 768, 0.88);
+  if(!small){ toast('Couldn\'t read that image to save it. Download it, then use ⬆ Upload.'); return false; }
+  await imgPut(key, small);
+  if(w && w.id!=='draft' && (scene==='portrait' || !THUMBS[w.id])) await setThumb(w.id, small);
+  return true;
+}
+async function showImg(boxId, id, scene, cloth, mode){
+  const box = $('#'+boxId); const w = findAny(id); if(!box || !w) return;
+  cloth = cloth || defaultCloth(w, scene);
+  const key = imgKey(w, scene, cloth);
+  box.dataset.key = key;
+  const prompt = buildPrompt(w, scene, cloth);
+  const saved = mode==='new' ? null : await imgGet(key);
+  if(box.dataset.key !== key) return;
+  box.innerHTML = '';
+  const wrap = document.createElement('div'); wrap.className='imgbox'; box.appendChild(wrap);
+  const A = `'${boxId}','${id}','${scene}','${cloth}'`;
+  if(saved){ wrap.innerHTML = `<img src="${saved}" alt="">`; }
+  else if(mode==='new' || mode==='auto'){ generateInto(wrap, w, key, prompt, scene, mode==='new', boxId, id, cloth); }
+  else wrap.innerHTML = `<div class="imgph">No saved image for this scene yet.</div>`;
+  const bar = document.createElement('div'); bar.className='row';
+  bar.innerHTML = `<button class="sm" onclick="showImg(${A},'new')">🎨 ${saved?'Regenerate':'Generate'}</button>
+    <button class="sm" onclick="uploadImg(${A})">⬆ Upload</button>
+    ${saved?`<button class="sm" onclick="downloadImg('${key}','${esc(w.name).replace(/'/g,'')}')">⬇ Save file</button>${id!=='draft'?`<button class="sm" onclick="useAvatar('${key}','${id}')">👤 Avatar</button>`:''}<button class="sm" onclick="deleteImg('${key}',${A})">🗑</button>`:''}`;
+  box.appendChild(bar);
+  const det = document.createElement('details'); det.className='prompt'; if(!getPlugin()&&!saved) det.open = true;
+  det.innerHTML = `<summary class="muted">Prompt</summary><textarea readonly>${esc(prompt)}</textarea>`;
+  const cb = document.createElement('button'); cb.className='sm'; cb.textContent='Copy prompt';
+  cb.onclick = ()=>{ try{ navigator.clipboard.writeText(prompt); toast('Prompt copied.'); }catch(e){ toast('Select the text and copy manually.'); } };
+  det.appendChild(cb); box.appendChild(det);
+}
+function generateInto(wrap, w, key, prompt, scene, reroll, boxId, id, cloth){
+  const plug = getPlugin();
+  if(!plug){ wrap.innerHTML = `<div class="imgph">🎨 Image generator not connected.<br>In Perchance, add <code>t2i = {import:text-to-image-plugin}</code> to the lists panel.<br>You can still ⬆ Upload an image, or copy the prompt.</div>`; return; }
+  w.imgVar = w.imgVar || {};
+  if(reroll) w.imgVar[key] = (w.imgVar[key]||0) + 1;
+  const seed = ((w.seed||1) + (w.imgVar[key]||0)*7919) % 2147483647;
+  let done = false;
+  const onFinish = async (data)=>{
+    if(done) return; const url = extractUrl(data); if(!url) return; done = true;
+    if(await saveImage(key, url, w, scene)){ toast('Image saved.'); const b=$('#'+boxId); if(b && b.dataset.key===key) showImg(boxId, id, scene, cloth); }
+  };
+  try{
+    const r = plug({prompt, negativePrompt:SET.negative, seed, resolution:SET.resolution, onFinish});
+    const html = (r && typeof r==='object' && 'evaluateItem' in r) ? r.evaluateItem : String(r);
+    wrap.innerHTML = html + `<div class="imgph small">Generating… it saves automatically when finished. If it doesn't, use the image's own download button, then ⬆ Upload.</div>`;
+  }catch(e){ wrap.innerHTML = `<div class="imgph">Image plugin error: ${esc(e.message)}</div>`; }
+  if(S && w.id!=='draft') save();
+}
+function uploadImg(boxId, id, scene, cloth){
+  const inp = $('#upFile'); inp.value='';
+  inp.onchange = ()=>{ const f = inp.files[0]; if(!f) return; const fr = new FileReader();
+    fr.onload = async ()=>{ const w=findAny(id); if(!w) return; if(await saveImage(imgKey(w,scene,cloth), fr.result, w, scene)){ toast('Image saved.'); showImg(boxId,id,scene,cloth); } };
+    fr.readAsDataURL(f); };
+  inp.click();
+}
+async function downloadImg(key, name){ const d = await imgGet(key); if(!d) return; const a=document.createElement('a'); a.href=d; a.download=`${name||'image'}-${key.split('|').slice(1).join('-').replace(/[^a-z0-9-]/gi,'_')}.jpg`; document.body.appendChild(a); a.click(); a.remove(); }
+async function useAvatar(key, id){ const d = await imgGet(key); if(d){ await setThumb(id, d); toast('Avatar updated.'); } }
+async function deleteImg(key, boxId, id, scene, cloth){ if(!confirm('Delete this saved image?')) return; await imgDel(key); showImg(boxId,id,scene,cloth); }
+function avatarHTML(w){ return THUMBS[w.id] ? `<div class="avatar"><img src="${THUMBS[w.id]}" alt=""></div>` : `<div class="avatar" style="background:${hairHex(w)}">${esc(initials(w.name))}</div>`; }

@@ -1,0 +1,100 @@
+'use strict';
+/* =====================================================================
+   UI
+   ===================================================================== */
+function modal(html, opts={}){
+  MODAL_LOCK = !!opts.lock;
+  const b = $('#modalBox'); b.className = 'modal-box' + (opts.wide?' wide':'');
+  b.innerHTML = (MODAL_LOCK?'':'<button class="xbtn" onclick="closeModal()">✕</button>') + html;
+  $('#modal').classList.remove('hidden');
+}
+function closeModal(){ $('#modal').classList.add('hidden'); MODAL_LOCK=false; SHEET=null; }
+function toast(t){ const box=$('#toast'); while(box.children.length>=4) box.firstChild.remove(); const d=document.createElement('div'); d.textContent=t; box.appendChild(d); setTimeout(()=>d.remove(), 3400); }
+function showResult(title, text, wid, scene, ai){
+  modal(`<h2>${esc(title)}</h2>${wid&&scene?`<div id="resImg"></div>`:''}<p class="story">${esc(text)}</p>${ai&&SET.ai.on?`<div id="resAi"></div>`:''}<div class="row">${ai?aiBtn('resAi', ai.kind, wid, ai):''}<button class="primary" onclick="closeModal()">OK</button></div>`);
+  $('#modal').scrollTop = 0;
+  if(wid && scene) showImg('resImg', wid, scene, null, SET.autoPortrait && scene==='portrait' ? 'auto' : undefined);
+  if(ai && SET.ai.on && SET.ai.auto) aiWrite('resAi', ai.kind, wid, ai);
+}
+const HAIR_HEX = {black:'#3a3a44','dark brown':'#5a3d2b',chestnut:'#7b4a2c',auburn:'#8e3b23',red:'#b8342c',copper:'#c4672e',blonde:'#e3c56a','honey blonde':'#d9a94e','platinum blonde':'#efe6c8',silver:'#cfd3dc',white:'#f2f2f2','ash grey':'#9a9a9a',pink:'#f0a0c0',lavender:'#b9a2e0',teal:'#3fa9a0','deep blue':'#3a5bb0',crimson:'#a3203a'};
+const hairHex = w => HAIR_HEX[((w.design&&w.design.hairColor)||'').toLowerCase()] || '#b99';
+const initials = n => String(n||'?').split(' ').map(x=>x[0]).join('').slice(0,2).toUpperCase();
+const raceLabel = w => (RACES[w.race]||RACES.human).label + (w.sub?` (${w.sub})`:'');
+function bar(label, v, max, cls){ const p = Math.round(clamp(v/max*100)); return `<div class="bar ${cls}" title="${label}: ${Math.round(v)}/${max}"><span style="width:${p}%"></span><em>${label} ${Math.round(v)}</em></div>`; }
+function knows(w, employee){ return S.sam.appraisal>=2 || (employee && w.trust>=30); }
+function knowsPrefs(w){ return S.sam.appraisal>=3 || w.trust>=40; }
+function grade(v){ return v>=85?'S':v>=70?'A':v>=55?'B':v>=40?'C':v>=25?'D':'E'; }
+function sv(w, v, employee){ return knows(w,employee) ? Math.round(v) : grade(v); }
+function traitTags(w){ return (w.traits||[]).filter(t=>!TRAITS[t]||!TRAITS[t].hidden||S.sam.appraisal>=3).map(t=>`<span class="tag ${TRAITS[t]&&TRAITS[t].hidden?'hid':''} ${TRAITS[t]&&TRAITS[t].story?'act':''}" title="${esc(TRAITS[t]?TRAITS[t].desc:'')}">${esc(t)}</span>`).join(' '); }
+function jobOptions(w){ return Object.entries(JOBS).map(([k,J])=>{ const why = k===w.job ? null : canDo(w,k); return `<option value="${k}" ${k===w.job?'selected':''} ${why?'disabled':''}>${why?'🔒 ':''}${J.label}</option>`; }).join(''); }
+function houseTabs(withAll){
+  return `<div class="hsel">${withAll?`<button class="sm ${ROSTER_FILTER==='all'?'on':''}" onclick="ROSTER_FILTER='all';render()">All houses</button>`:''}${S.houses.map(h=>`<button class="sm ${(S.cur===h.id && (!withAll||ROSTER_FILTER!=='all'))?'on':''}" onclick="S.cur='${h.id}';ROSTER_FILTER='cur';render()">${esc(h.name)} <span class="muted">(${S.workers.filter(w=>w.house===h.id).length})</span></button>`).join('')}</div>`;
+}
+function renderHeader(){
+  const nd = nextDue();
+  $('#hdr').innerHTML = `<div class="brand">🏮 Hollowmere Nights</div><div class="hstats">
+    <span>📅 Week <b>${S.week}</b></span><span>💰 <b>${fmt(S.gold)}</b></span><span>⭐ Renown <b>${Math.round(S.rep)}</b></span>
+    <span>📜 <b>${fmt(nd.amount)}</b> due wk ${nd.week}${nd.week===S.week?' <span class="warn">(this week!)</span>':''}</span>
+    <span>⚡ Sam Lv <b>${S.sam.lvl||1}</b> · AP <b>${S.ap}/${apMax()}</b></span><button class="sm" onclick="if(confirm('Start a new game? Your current save will be erased.'))restart()">↻ New game</button></div>`;
+}
+const TABS = [['house','🏠 Houses'],['roster','👥 Roster'],['recruit','📝 Recruit'],['sam','🧑 Sam'],['upgrades','🔨 Upgrades'],['creator','✏️ Creator'],['log','📖 Log'],['settings','⚙️ Settings']];
+function render(){
+  if(!S) return;
+  renderHeader();
+  $('#tabs').innerHTML = TABS.map(([k,l])=>`<button class="${TAB===k?'on':''}" onclick="TAB='${k}';render()">${l}</button>`).join('');
+  const v = {house:viewHouse, roster:viewRoster, recruit:viewRecruit, sam:viewSam, upgrades:viewUpgrades, creator:viewCreator, log:viewLog, settings:viewSettings}[TAB];
+  $('#view').innerHTML = v();
+  $('#endBtn').disabled = S.over;
+}
+function viewHouse(){
+  const h = curH(), D = HOUSES[h.id], nd = nextDue(), used = S.workers.filter(w=>w.house===h.id && w.job==='courtesan').length;
+  const amen = Object.keys(UPGRADES).filter(k=>h.up[k]).map(k=>UPGRADES[k].label).join(', ') || 'none';
+  const staff = Object.entries(JOBS).map(([k,J])=>{ const ws=S.workers.filter(w=>w.house===h.id && w.job===k); return ws.length?`<div><b>${J.label}</b>: ${ws.map(w=>esc(w.name)).join(', ')}</div>`:''; }).join('');
+  const L = S.lastReport, lh = L && L.houses ? L.houses.find(x=>x.id===h.id) : null;
+  return `${houseTabs(false)}<section class="card"><h2>${esc(h.name)} <span class="tag house">${D.loc}</span></h2><p class="muted">${D.desc}</p><div class="grid2">
+      <div>Reputation: <b>${Math.round(h.rep)}</b></div><div>Building: <b>${roomsUsed(h)}/${houseSize(h)}</b> rooms used</div>
+      <div>Bedrooms: <b>${used}/${h.rooms}</b> in use · ${ROOM_NAMES[h.tier]}</div><div>Staff beds: <b>${sleepers(h).length}/${bedsFor(h)}</b> · ${BEDS[h.beds||0].label}${sleepers(h).length>bedsFor(h)?' <span class="warn">(not enough!)</span>':''}</div>
+      <div>Pricing: <select onchange="setPrice(+this.value)">${PRICES.map((p,i)=>`<option value="${i}" ${i===h.price?'selected':''}>${p.label}</option>`).join('')}</select></div>
+      <div>Amenities: ${amen}</div>${D.minPop?`<div class="muted">Standard: escorts need popularity ${D.minPop}+</div>`:''}
+      <div class="muted">Clientele: ${CLASSES.map((c,i)=>D.cls[i]>=1.3?`<b>${c.label}s ↑</b>`:D.cls[i]<=0.5?`${c.label}s ↓`:'').filter(Boolean).join(', ')||'balanced'}</div></div>
+      <p class="muted">Higher prices earn more per client but draw fewer of them, unless reputation is high.</p></section>
+    ${storyCard(h)}
+    <section class="card"><h2>Positions</h2><div class="grid2">${Object.entries(JOBS).filter(([k])=>k!=='rest').map(([k,J])=>{ const ws=S.workers.filter(w=>w.house===h.id && w.job===k), mx=slotsFor(h,k); return mx||ws.length?`<div><b>${J.label}</b> <span class="muted">${ws.length}/${mx}</span>${ws.length?': '+ws.map(w=>esc(w.name)).join(', '):''}</div>`:''; }).join('')}
+      ${S.workers.filter(w=>w.house===h.id && w.job==='rest').length?`<div><b>Resting</b>: ${S.workers.filter(w=>w.house===h.id && w.job==='rest').map(w=>esc(w.name)).join(', ')}</div>`:''}</div></section>
+    <section class="card"><h2>Debt to the Vane Credit House</h2>
+      <div>Remaining: <b>${fmt(S.debt.remaining)}</b> · Next payment: <b>${fmt(nd.amount)}</b> at the end of week ${nd.week} ${nd.week===S.week?'<span class="warn">(this week!)</span>':''}</div>
+      <div>Strikes: ${'❌'.repeat(S.debt.strikes)}${'▫️'.repeat(Math.max(0,3-S.debt.strikes))}</div>
+      <div class="row"><input id="payamt" type="number" min="1" placeholder="Amount"><button onclick="payExtra()">Pay extra</button></div></section>
+    <section class="card"><h2>Last Week</h2>${lh?`<div class="grid2"><div>Clients here: <b>${lh.served}</b>${lh.turned?` (${lh.turned} turned away)`:''}</div><div>Income here: <b>${fmt(lh.income)}</b> · Upkeep <b>${fmt(lh.upkeep)}</b></div><div>Satisfaction: <b>${Math.round(lh.avgSat)}</b></div><div>All houses net: <b>${fmt(L.income-L.wages-L.upkeep)}</b></div></div><div class="row"><button onclick="showReport(S.lastReport,false)">📋 Full report</button></div>`:'<span class="muted">No report yet. Assign jobs, then End Week.</span>'}</section>`;
+}
+function workerCard(w, showHouse){
+  const wl = knows(w,true) ? Math.round(w.lewd) : '?';
+  const menu = w.job==='courtesan' || w.offDuty || w.job==='companion' ? (w.menu.length ? w.menu.map(a=>`<span class="tag act">${esc(actLabel(a))}</span>`).join('') : '<span class="muted">No services on menu</span>') : '';
+  return `<div class="wcard" onclick="openSheet('${w.id}')">${avatarHTML(w)}
+    <div class="winfo"><div class="wname">${esc(w.name)}${w.named?' <span class="tag">★</span>':''}${w.isPartner?' <span class="tag act">♥ Partner</span>':''}${showHouse?` <span class="tag house">${esc(houseOf(w).name)}</span>`:''}</div>
+      <div class="muted">${raceLabel(w)} · ${esc(w.personality)}</div>
+      ${bar('Energy',w.energy,maxEnergy(w),'e')}${bar('Mood',w.mood,100,'m')}${bar('Trust',w.trust,100,'t')}
+      <div class="row" onclick="event.stopPropagation()"><select onchange="setJob('${w.id}',this.value)">${jobOptions(w)}</select>
+      <span class="muted">Lewd ${wl}${w.prevJob?' · 😴 auto-resting':''}</span><span class="muted">· ${isFree(w)?'no wage':fmt(w.wage)+'/wk'}</span></div><div>${menu}</div></div></div>`;
+}
+function viewRoster(){
+  const all = ROSTER_FILTER==='all', list = all ? S.workers : S.workers.filter(w=>w.house===curH().id);
+  return `${houseTabs(true)}<section class="card"><h2>Roster (${list.length})</h2><p class="muted">Tap someone to open her status window, services, wardrobe and images.</p>
+    <div class="grid">${list.map(w=>workerCard(w, all)).join('') || '<span class="muted">No one works here. Visit Recruit, or move someone over from her sheet.</span>'}</div></section>`;
+}
+function viewRecruit(){
+  const cards = S.candidates.map(c=>`<div class="wcard" style="cursor:default">${avatarHTML(c)}
+    <div class="winfo"><div class="wname">${esc(c.name)}${c.named?' <span class="tag">★</span>':''}${ARCS[c.key]?' <span class="tag act">♥ story</span>':''}</div>
+    <div class="muted">${raceLabel(c)} · ${esc(c.personality)} · Style: ${c.style}</div><div>${traitTags(c)}</div>
+    <div class="sgrid" style="margin:6px 0">${STAT_KEYS.map(k=>`<div><span>${k.slice(0,4).toUpperCase()}</span><b>${sv(c,c.stats[k],false)}</b></div>`).join('')}<div><span>LEWD</span><b>${S.sam.appraisal>=2?Math.round(c.lewd):'?'}</b></div><div><span>BEST</span><b>${TECH_LABEL[TECH_KEYS.reduce((a,k)=>c.tech[k]>c.tech[a]?k:a,'service')]}</b></div></div>
+    <div class="row"><span>Wage <b>${fmt(c.wage)}</b>/wk · Signing <b>${fmt(c.signing||0)}</b></span></div>
+    <div class="row"><button class="primary" onclick="hire('${c.id}')">Hire for ${esc(curH().name)}</button><button onclick="openCand('${c.id}')">Details</button></div></div></div>`).join('');
+  return `${houseTabs(false)}<section class="card"><h2>Candidates</h2><p class="muted">New faces arrive each week. Hires join the selected house. Sam's [Appraisal] Lv ${S.sam.appraisal} ${S.sam.appraisal<2?'shows letter grades only.':'shows exact stats.'}</p><div class="grid">${cards||'<span class="muted">Nobody this week.</span>'}</div></section>`;
+}
+function openCand(id){
+  const c = S.candidates.find(x=>x.id===id); if(!c) return;
+  modal(`<div class="sheet"><div><div id="sheetImg"></div></div>
+    <div class="status"><h3>[ STATUS ] ${esc(c.name)}</h3><div class="muted">${raceLabel(c)} · Age ${c.age} · ${esc(c.personality)} · Style: ${c.style}</div><p class="story" id="bs_${c.id}">${esc(c.backstory)}</p>${SET.ai.on&&!c.named?`<button class="sm" onclick="aiBackstory('bs_${c.id}','${c.id}')">✨ Write a backstory</button>`:''}<div>${traitTags(c)}</div>
+    <div class="muted">Wears: ${esc(getOutfit(c).label)}</div></div></div>`, {wide:true});
+  showImg('sheetImg', c.id, 'portrait', 'dressed', SET.autoPortrait ? 'auto' : undefined);
+}

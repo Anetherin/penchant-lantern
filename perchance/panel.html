@@ -1,0 +1,19 @@
+<!-- ===== Paste this whole block into the Perchance HTML panel. ===== -->
+<!-- Lists panel needs:
+       t2i = {import:text-to-image-plugin}
+       ai = {import:ai-text-plugin}
+-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+  // Hand Perchance's plugins to the game (they only exist on the Perchance side).
+  window.PL_PLUGINS = {
+    t2i: (typeof t2i !== 'undefined') ? t2i : null,
+    ai:  (typeof ai  !== 'undefined') ? ai  : null
+  };
+  // Load the game from GitHub Pages. The timestamp skips stale caches so new pushes show up right away.
+  (function(){
+    var s = document.createElement('script');
+    s.src = 'https://topofira.github.io/penchant-lantern/loader.js?v=' + Date.now();
+    document.body.appendChild(s);
+  })();
+</script>
