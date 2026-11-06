@@ -8,7 +8,8 @@
     "  bondMin / bondMax / kind: requirements on their bond (kind 'mentor' means a mentors b). sameHouse defaults to true. weight = how often it's picked among eligible ones.",
     "  title / text use {a} and {b} for their names; text can be a list to pick from. scene = image scene (shown for a). ai = prompt key from ai-prompts.json for the ✨ button.",
     "  choices: label, res (result text), and effects: a / b {mood, trust, lewd, lust, energy, popularity, grow:{service:3}, lesson:true (b improves at a's best service)},",
-    "  bond (change), gold, rep, samEnergy, sam:{technique:2}, private:[\"a\",\"b\"] (counts as private time with Sam for them), roll:0.5 with else:{...} (a coin flip), needsGold (choice only offered if Sam can pay)."
+    "  bond (change), gold, rep, samEnergy, sam:{technique:2}, private:[\"a\",\"b\"] (counts as private time with Sam for them), roll:0.5 with else:{...} (a coin flip), needsGold (choice only offered if Sam can pay).",
+    "Shared scenes with a dynamic: a choice with acts:true becomes one choice per service both ladies are comfortable doing with Sam. The result text is the dynamic's line for that service, then res. The dynamic also adds its own effects: collaborative (bond up, extra mood if it's her favorite), competitive (skill at that service decides a winner), lesson (b improves at that service, a a little), curious (b's trust grows; stretching raises her lewdness). In a lesson, a is the teacher, and only services she's better at than b are offered."
   ],
   "eventChance": 0.3,
   "sharedChance": 0.2,
@@ -231,13 +232,14 @@
       ],
       "choices": [
         {
-          "label": "Let them both in",
+          "label": "{act}",
           "private": ["a","b"],
           "samEnergy": -30,
           "a": {"lust":-30,"mood":5},
           "b": {"lust":-30,"mood":5},
           "bond": 8,
-          "res": "Nobody gets much sleep. (Sam's energy −30)"
+          "res": "Nobody gets much sleep. (Sam's energy −30)",
+          "acts": true
         },
         {
           "label": "\"One at a time, please\"",
@@ -245,7 +247,8 @@
           "b": {"mood":-1},
           "res": "They exchange a look, decide he's adorable, and agree to take turns. Sam is not sure he won anything."
         }
-      ]
+      ],
+      "dynamic": "collaborative"
     },
     {
       "id": "rivals",
@@ -261,22 +264,13 @@
       ],
       "choices": [
         {
-          "label": "Refuse to pick a winner",
+          "label": "{act}",
           "private": ["a","b"],
           "samEnergy": -40,
           "a": {"lust":-35},
           "b": {"lust":-35},
-          "roll": 0.5,
-          "bond": 15,
-          "res": "It is a very long night. By morning they've called it a draw, and they're looking at each other with something like respect. (Sam's energy −40)",
-          "else": {
-            "private": ["a","b"],
-            "samEnergy": -40,
-            "a": {"lust":-35,"mood":-2},
-            "b": {"lust":-35,"mood":-2},
-            "bond": -5,
-            "res": "It is a very long night. Both of them leave convinced they won and furious the other one thinks so too. (Sam's energy −40)"
-          }
+          "res": "It is a very long night. (Sam's energy −40)",
+          "acts": true
         },
         {
           "label": "Send them both away",
@@ -285,7 +279,8 @@
           "bond": 3,
           "res": "They leave together, united for once, in being annoyed with Sam."
         }
-      ]
+      ],
+      "dynamic": "competitive"
     },
     {
       "id": "friend_invite",
@@ -301,16 +296,18 @@
       ],
       "choices": [
         {
-          "label": "Invite them in",
+          "label": "{act}",
           "private": ["a","b"],
           "samEnergy": -30,
           "a": {"mood":4},
           "b": {"trust":5,"mood":4},
           "bond": 6,
-          "res": "{b} looks at Sam differently afterward. So does {a}, come to think of it. (Sam's energy −30)"
+          "res": "{b} looks at Sam differently afterward. So does {a}, come to think of it. (Sam's energy −30)",
+          "acts": true
         },
         {"label":"\"Maybe another time\"","b":{"mood":-2},"res":"{b} laughs it off, a little relieved and a little disappointed."}
-      ]
+      ],
+      "dynamic": "curious"
     },
     {
       "id": "lesson",
@@ -326,16 +323,18 @@
       ],
       "choices": [
         {
-          "label": "Volunteer",
+          "label": "{act}",
           "private": ["a","b"],
           "samEnergy": -25,
-          "b": {"lesson":true,"mood":3},
+          "b": {"mood":3},
           "sam": {"technique":2},
           "bond": 6,
-          "res": "{b} is a quick study. {a} is a demanding teacher. Sam is a very tired visual aid. (Sam's energy −25)"
+          "res": "Sam is a very tired visual aid. (Sam's energy −25)",
+          "acts": true
         },
         {"label":"\"I have paperwork\"","res":"{a} sighs. \"Fine. We'll use a pillow.\""}
-      ]
+      ],
+      "dynamic": "lesson"
     },
     {
       "id": "bath",
@@ -361,5 +360,46 @@
         {"label":"Keep walking","a":{"mood":-1},"b":{"mood":-1},"res":"Their laughter follows him down the hall."}
       ]
     }
-  ]
+  ],
+  "dynamics": {
+    "_note": "How a shared scene plays out depends on the ladies' bond (the scene's dynamic) and on the service Sam picks. Text uses {a}, {b}, {act}. Per-service lines override _default; add any service id from services.json. prompt is inserted into the AI prompt as {dynamic} and into the image prompt.",
+    "collaborative": {
+      "label": "together",
+      "prompt": "the two women share him affectionately, in sync with each other",
+      "_default": "{a} and {b} share him easily, as affectionate with each other as with Sam.",
+      "caress": "An unhurried tangle of kisses, three ways. Nobody is keeping score.",
+      "cowgirl": "{a} and {b} take turns, holding hands across him for balance and laughing when they get it wrong.",
+      "oral": "They work together, trading places and glances, very pleased with themselves.",
+      "missionary": "{b} stays curled at Sam's side the whole time, murmuring encouragement to {a}."
+    },
+    "competitive": {
+      "label": "a contest",
+      "prompt": "the two rivals compete for his attention, each trying to outdo the other",
+      "_default": "Every moment is a contest. Each of them is determined to be the one he remembers.",
+      "oral": "It turns into a contest almost at once: who can make him lose his composure first.",
+      "cowgirl": "They argue over whose turn it is, then over who's doing it better.",
+      "paizuri": "A matter of pride, apparently. Both of them take it extremely seriously.",
+      "caress": "Even the kissing becomes a competition. Sam is not sure how."
+    },
+    "lesson": {
+      "label": "a lesson",
+      "prompt": "the experienced woman demonstrates and coaches the less experienced one",
+      "_default": "{a} demonstrates, then talks {b} through it step by step, correcting her with a teacher's patience.",
+      "oral": "{a} demonstrates, then coaches {b} through it, with notes. Many notes.",
+      "cowgirl": "{a} guides {b}'s hips with her hands and counts the rhythm under her breath.",
+      "manual": "{a} positions {b}'s hands and walks her through it like a fencing lesson."
+    },
+    "curious": {
+      "label": "a first time",
+      "prompt": "the lover gently guides her nervous, curious friend",
+      "_default": "{a} takes the lead, and {b} follows, nervous at first and then not at all.",
+      "caress": "{b} starts out shy. {a} kisses her first, then Sam, and that settles it.",
+      "oral": "{a} shows her friend how it's done. {b} is a quick study, and very curious."
+    }
+  },
+  "competition": {
+    "_note": "After a competitive scene: who did better, judged by each lady's skill at that service plus luck. {w} = winner, {l} = the other.",
+    "close": "Too close to call. They glare at each other, then, grudgingly, laugh. (bond +8)",
+    "win": "{w} wins, by her own account. {l} disputes this loudly. (bond −4)"
+  }
 }

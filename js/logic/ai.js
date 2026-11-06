@@ -12,7 +12,7 @@ function aiCtx(w, x={}){
   const rel = has(w,'Devoted') ? 'lovers' : w.isPartner ? 'close companions, with feelings between them' : w.trust>=60 ? 'close and trusting' : w.trust>=30 ? 'friendly employer and employee' : 'new employer and employee, still a little guarded';
   const o = x.other ? findAny(x.other) : null;
   return {
-    other: o ? o.name : '', otherDesc: o ? `${raceLabel(o).toLowerCase()}, ${cleanText(charDesc(o).split(', ').slice(1).join(', '))}, ${(o.personality||'').toLowerCase()}` : '',
+    dynamic: x.dynamic || '', other: o ? o.name : '', otherDesc: o ? `${raceLabel(o).toLowerCase()}, ${cleanText(charDesc(o).split(', ').slice(1).join(', '))}, ${(o.personality||'').toLowerCase()}` : '',
     name:w.name, race:raceLabel(w).toLowerCase(), age:w.age, appearance:cleanText(charDesc(w).split(', ').slice(1).join(', ')),
     clothing:cleanText(clothText(w, cloth, scene)), outfit:outfitText(w), personality:(w.personality||'').toLowerCase(),
     traits:(w.traits||[]).join(', ')||'none', trust:Math.round(w.trust), lewd:Math.round(w.lewd), mood:Math.round(w.mood),

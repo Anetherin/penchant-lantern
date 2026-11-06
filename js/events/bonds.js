@@ -66,6 +66,7 @@ function bondPairOK(d, a, b){
   const o = bondOf(a,b);
   if(d.bondMin!==undefined && o.v < d.bondMin) return false;
   if(d.bondMax!==undefined && o.v > d.bondMax) return false;
+  if(d.dynamic==='lesson' && !getActs().some(x=>canSam(a,x.id) && canSam(b,x.id) && actSkill(a,x.id) > actSkill(b,x.id))) return false;
   if(d.kind){ if(o.kind!==d.kind) return false; if(d.kind==='mentor' && o.from!==a.id) return false; }
   return bondReqOK(a, d.a) && bondReqOK(b, d.b);
 }
@@ -92,7 +93,16 @@ const bondFill = (t, a, b) => String(Array.isArray(t) ? pick(t) : (t||'')).repla
 function evBond(id, aId, bId, shared){
   const d = (shared ? BONDS.shared : BONDS.events).find(x=>x.id===id), a = findW(aId), b = findW(bId);
   if(!d || !a || !b || !bondPairOK(d, a, b)) return null;
-  const choices = d.choices.filter(c=>!c.needsGold || S.gold >= c.needsGold).map(c=>({label:bondFill(c.label, a, b), fx(){ return applyBondChoice(c, a, b, d); }}));
+  const choices = [];
+  d.choices.filter(c=>!c.needsGold || S.gold >= c.needsGold).forEach(c=>{
+    if(!c.acts) return choices.push({label:bondFill(c.label, a, b), fx(){ return applyBondChoice(c, a, b, d); }});
+    // one choice per service both of them will do with Sam
+    duoActs(a, b).filter(act=>d.dynamic!=='lesson' || actSkill(a,act) > actSkill(b,act)).forEach(act=>{
+      const st = [a,b].filter(w=>samStance(w,act)==='ask').map(w=>w.name.split(' ')[0]);
+      choices.push({label: actLabel(act) + (st.length ? ` (a stretch for ${st.join(' and ')})` : ''), fx(){ return applyBondChoice(c, a, b, d, act); }});
+    });
+  });
+  if(!choices.length) return null;
   return {title:bondFill(d.title, a, b), who:a.id, scene:d.scene||'casual', text:bondFill(d.text, a, b), choices};
 }
 function bondFx(w, e, partner){
@@ -106,7 +116,25 @@ function bondFx(w, e, partner){
   if(e.grow) Object.entries(e.grow).forEach(([k,n])=>grow(w, k, n));
   if(e.lesson && partner){ const act = bestSamAct(partner) || partner.fav; if(act && w.acts[act]) growAct(w, act, 6); }
 }
-function applyBondChoice(c, a, b, d){
+// services both will do with Sam, best-liked first
+const duoActs = (a, b) => getActs().filter(x=>canSam(a,x.id) && canSam(b,x.id)).map(x=>x.id)
+  .sort((x,y)=>((samStance(a,y)==='yes')+(samStance(b,y)==='yes')) - ((samStance(a,x)==='yes')+(samStance(b,x)==='yes')));
+const dynLine = (dyn, act, a, b) => { const D = (BONDS.dynamics||{})[dyn] || {}; return bondFill(String(D[act] || D._default || ''), a, b).replace(/\{act\}/g, actLabel(act||'')); };
+// what the bond dynamic adds on top of the choice's own effects
+function dynamicFx(dyn, act, a, b){
+  const fn = w => w.name.split(' ')[0];
+  if(dyn==='collaborative'){ addBond(a, b, 6); [a,b].forEach(w=>{ if(w.fav===act) w.mood = clamp(w.mood+4); }); return ''; }
+  if(dyn==='competitive'){
+    const sa = actSkill(a,act) + rnd(0,25), sb = actSkill(b,act) + rnd(0,25), C = BONDS.competition || {};
+    if(Math.abs(sa-sb) < 8){ addBond(a, b, 8); return C.close || ''; }
+    const [W, L] = sa > sb ? [a,b] : [b,a]; W.mood = clamp(W.mood+5); L.mood = clamp(L.mood-3); growAct(L, act, 3); addBond(a, b, -4);
+    return String(C.win||'').replace(/\{w\}/g, fn(W)).replace(/\{l\}/g, fn(L));
+  }
+  if(dyn==='lesson'){ growAct(b, act, 8); growAct(a, act, 2); addBond(a, b, 5); return `(${fn(b)} improves at ${actLabel(act)}.)`; }
+  if(dyn==='curious'){ gainTrust(b, 5); if(samStance(b,act)==='ask') b.lewd = clamp(b.lewd + 3*lewdMult(b)); addBond(a, b, 6); return ''; }
+  return '';
+}
+function applyBondChoice(c, a, b, d, chosenAct){
   if(c.roll!==undefined && Math.random() >= c.roll && c.else) c = Object.assign({}, c.else);
   if(c.gold) S.gold += c.gold;
   if(c.rep){ const h = houseOf(a); if(h) h.rep = clamp(h.rep + c.rep); }
@@ -115,12 +143,16 @@ function applyBondChoice(c, a, b, d){
   bondFx(a, c.a, b); bondFx(b, c.b, a);
   if(c.bond) addBond(a, b, c.bond);
   let text = bondFill(c.res, a, b), img = null, ai = null;
+  const dyn = chosenAct && d.dynamic;
+  if(dyn){ const line = dynLine(dyn, chosenAct, a, b); if(line) text = line + '\n\n' + text; }
   if(c.private && c.private.length){
-    const notes = c.private.map(r=>{ const w = r==='a' ? a : b, act = bestSamAct(w); if(!act) return ''; const t = privateCore(w, act); return t.split('\n\n').pop(); }).filter(Boolean);
+    const notes = c.private.map(r=>{ const w = r==='a' ? a : b, act = chosenAct || bestSamAct(w); if(!act || !canSam(w,act)) return ''; const t = privateCore(w, act); return `${w.name.split(' ')[0]}: ${t.split('\n\n').pop()}`; }).filter(Boolean);
+    if(dyn){ const extra = dynamicFx(dyn, chosenAct, a, b); if(extra) text += '\n\n' + extra; }
     if(notes.length) text += '\n\n' + notes.join('\n');
     samLog(`A night with ${a.name} and ${b.name}`);
-    const act = bestSamAct(a); if(act) img = {wid:a.id, scene:'samact:'+act};
-    if(d.ai) ai = {kind:d.ai, wid:a.id, other:b.id, act, scene:'samact:'+act, forSam:true};
+    const act = chosenAct || bestSamAct(a);
+    if(act){ const sc = chosenAct ? `duo:${act}:${b.id}${dyn?':'+dyn:''}` : 'samact:'+act; img = {wid:a.id, scene:sc};
+      if(d.ai) ai = {kind:d.ai, wid:a.id, other:b.id, act, scene:sc, forSam:true, dynamic: dyn ? ((BONDS.dynamics[dyn]||{}).prompt||'') : ''}; }
   } else if(d.ai){ ai = {kind:d.ai, wid:a.id, other:b.id, scene:d.scene||'casual'}; }
   return {text, img, ai};
 }

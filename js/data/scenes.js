@@ -34,6 +34,11 @@ const actLabel = id => { const a = actById(id); return a ? a.label : id; };
 function sceneInfo(k, w){
   const h = w && S ? houseOf(w) : null, HD = h ? HOUSES[h.id] : null;
   if(k.startsWith('act:')){ const a=actById(k.slice(4)); return {label:'Client: '+actLabel(k.slice(4)), comp:(a&&a.comp)||'intimate moment', setting:ROOM_SETTING(h), client:'with an adult male client', snip:'act_'+k.slice(4)}; }
+  if(k.startsWith('duo:')){ const [, id, oid, dyn] = k.split(':'), a = actById(id), o = findAny(oid);
+    const D = dyn && typeof BONDS!=='undefined' ? (BONDS.dynamics[dyn]||{}) : {};
+    return {label:'Sam & two: '+actLabel(id), pov:true, sam:true, comp:[(a&&a.comp)||'intimate moment', 'two women together with the viewer', D.prompt].filter(Boolean).join(', '),
+      setting:'Sam\'s modest bedroom lit by a single lantern', snip:'act_'+id, snip2:'duo',
+      client: o ? `the second woman: ${charDesc(o)}, ${clothText(o, defaultCloth(o, 'samact:'+id), 'samact:'+id)}` : ''}; }
   if(k.startsWith('samact:')){ const a=actById(k.slice(7)); return {label:'Sam: '+actLabel(k.slice(7)), pov:true, sam:true, comp:((a&&a.comp)||'intimate moment')+', looking at the viewer', setting:'Sam\'s modest bedroom lit by a single lantern', snip:'act_'+k.slice(7)}; }
   const sc = Object.assign({}, SCENES[k] || SCENES.portrait);
   if(sc.house && HD) sc.setting = sc.setting + ', ' + HD.setting;

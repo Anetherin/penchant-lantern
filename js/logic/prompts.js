@@ -17,7 +17,7 @@ function clothText(w, cloth, scene){
   if(!t && cloth==='nude') t = T.partial;
   const ut = underText(w);
   // Modest ladies during intimate scenes: clothes pulled aside rather than removed
-  if(has(w,'Modest') && (cloth==='dressed'||cloth==='partial') && /^(act:|samact:|solo$)/.test(scene||'')){
+  if(has(w,'Modest') && (cloth==='dressed'||cloth==='partial') && /^(act:|samact:|duo:|solo$)/.test(scene||'')){
     t = (!ut && T.aside_commando) || T.aside || t;
   }
   return (t||T.dressed).replace(/\{outfit\}/g, outfitText(w)).replace(/\{underwear\}/g, ut || 'bare skin, nothing underneath');
@@ -40,6 +40,7 @@ function buildPrompt(w, sceneKey, cloth){
   if(sc.client) parts.push(sc.client);
   parts.push(sc.comp, sc.setting);
   if(sc.snip) parts.push(getSnippet(sc.snip));
+  if(sc.snip2) parts.push(getSnippet(sc.snip2));
   if(sc.pov) parts.push(getSnippet('pov'));
   return cleanText(parts.filter(Boolean).join(', '));
 }

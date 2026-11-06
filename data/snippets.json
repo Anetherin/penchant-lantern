@@ -1,7 +1,7 @@
 {
   "_readme": [
     "Your own text, appended to the image prompt for that scene. Empty = default prompt only.",
-    "scenes: act_<serviceId> for each service, pov (every Sam/POV scene), bath, mishap (shower / walk-in), solo (a lady alone in her room at max lust).",
+    "scenes: act_<serviceId> for each service, pov (every Sam/POV scene), bath, mishap (shower / walk-in), solo (a lady alone at max lust), duo (added to every shared scene with two ladies, after the service's own snippet).",
     "clothing: how each clothing state is described. {outfit} and {underwear} are filled in from her wardrobe; commando becomes \"bare skin, nothing underneath\". nude falls back to partial while empty.",
     "clothing.aside / aside_commando: used for Modest ladies during services, when her clothes are pulled aside instead of taken off."
   ],
@@ -16,7 +16,8 @@
     "pov": "",
     "bath": "",
     "mishap": "",
-    "solo": ""
+    "solo": "",
+    "duo": ""
   },
   "clothing": {
     "dressed": "wearing {outfit}",

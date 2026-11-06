@@ -77,7 +77,7 @@ function comfortCloth(w, withSam, intimate){
 }
 function defaultCloth(w, scene){
   if(scene.startsWith('act:')) return comfortCloth(w, false, true);
-  if(scene.startsWith('samact:')) return comfortCloth(w, true, true);
+  if(scene.startsWith('samact:') || scene.startsWith('duo:')) return comfortCloth(w, true, true);
   if(scene==='solo') return comfortCloth(w, false, true);
   if(scene==='bath') return clothOK(w,'nude',false) ? 'nude' : 'dressed';
   return 'dressed';
