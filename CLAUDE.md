@@ -7,6 +7,7 @@
   script runs, and `tools/build.mjs` inlines them. New data file → add it to DATA_FILES. Keep `_readme` keys current.
   Logic-heavy content (random events, house stories, encounter choices) stays in JS; their effects are code.
   Partner arcs (`data/arcs.json`) use a small declarative effect schema, resolved by `resolveEff()` in `js/stories/partners.js`.
+  Bond events and shared scenes (`data/bonds.json`) are resolved by `applyBondChoice()` in `js/events/bonds.js`.
   Run `node tools/fmt-json.mjs` after editing data files programmatically.
 - Image prompts are always built programmatically (`js/logic/prompts.js`). The user writes any explicit wording
   themselves in `data/snippets.json` / `data/ai-prompts.json`; Claude doesn't author it. All characters are adults;

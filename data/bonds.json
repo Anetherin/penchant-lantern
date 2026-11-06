@@ -1,0 +1,365 @@
+{
+  "_readme": [
+    "Bonds between the ladies: a value from -100 (bitter rivals) to 100 (inseparable), plus an optional kind for special relationships.",
+    "Named ladies start with the bonds listed under 'bonds' in characters.json. Everyone else starts at 0 and drifts while they share a house (see drift).",
+    "labels: how a bond shows on her sheet. kinds: special relationships (mentor is one-way: the lady who lists it mentors the other).",
+    "events: things that happen between two ladies. shared: scenes where two ladies spend the night with Sam. Both use the same format:",
+    "  a / b: requirements for each lady: devoted (true/false), trustMin, lewdMin, moodMin, moodBelow, lustMin, energyBelow / energyAbove (share of max energy), working (not resting), intimate (comfortable with private time with Sam).",
+    "  bondMin / bondMax / kind: requirements on their bond (kind 'mentor' means a mentors b). sameHouse defaults to true. weight = how often it's picked among eligible ones.",
+    "  title / text use {a} and {b} for their names; text can be a list to pick from. scene = image scene (shown for a). ai = prompt key from ai-prompts.json for the ✨ button.",
+    "  choices: label, res (result text), and effects: a / b {mood, trust, lewd, lust, energy, popularity, grow:{service:3}, lesson:true (b improves at a's best service)},",
+    "  bond (change), gold, rep, samEnergy, sam:{technique:2}, private:[\"a\",\"b\"] (counts as private time with Sam for them), roll:0.5 with else:{...} (a coin flip), needsGold (choice only offered if Sam can pay)."
+  ],
+  "eventChance": 0.3,
+  "sharedChance": 0.2,
+  "drift": {"sameHouse":1,"warmPair":1,"pricklyPair":-1,"decayDifferentHouse":0.5},
+  "warm": ["Warm and motherly","Cheerful and teasing","Laid-back and lazy","Shy but earnest"],
+  "prickly": ["Proud and sharp-tongued","Hot-blooded and competitive","Mysterious and aloof"],
+  "labels": [
+    {"min":70,"label":"Inseparable from"},
+    {"min":40,"label":"Friends with"},
+    {"min":20,"label":"Friendly with"},
+    {"max":-50,"label":"Can't stand"},
+    {"max":-20,"label":"Rivals with"}
+  ],
+  "kinds": {
+    "mentor": {"from":"Mentor to","to":"Learning from"},
+    "home": {"from":"Fellow otherworlder with","to":"Fellow otherworlder with"},
+    "comrades": {"from":"Old comrades with","to":"Old comrades with"}
+  },
+  "events": [
+    {
+      "id": "cover_shift",
+      "bondMin": 40,
+      "weight": 2,
+      "a": {"working":true,"energyBelow":0.35},
+      "b": {"working":true,"energyAbove":0.6},
+      "title": "{b} Covers for {a}",
+      "scene": "casual",
+      "text": [
+        "{a} is dead on her feet. {b} has already offered to take her clients tonight, and is now looking at Sam for permission."
+      ],
+      "choices": [
+        {
+          "label": "Let her",
+          "a": {"energy":25,"mood":4},
+          "b": {"energy":-15,"mood":2},
+          "bond": 6,
+          "res": "{a} sleeps for twelve hours. She brings {b} breakfast in bed the next morning."
+        },
+        {
+          "label": "Send them both to bed",
+          "a": {"energy":20},
+          "b": {"mood":2},
+          "bond": 2,
+          "res": "The house runs a little short tonight. Neither of them complains."
+        }
+      ]
+    },
+    {
+      "id": "girls_night",
+      "bondMin": 40,
+      "weight": 2,
+      "a": {"moodBelow":70},
+      "b": {},
+      "title": "A Night Out",
+      "scene": "casual",
+      "text": [
+        "{a} and {b} want a night off together: the night market, too much wine, and absolutely no clients. They'd love it if Sam paid."
+      ],
+      "choices": [
+        {
+          "label": "Cover the tab (40g)",
+          "needsGold": 40,
+          "gold": -40,
+          "a": {"mood":10,"trust":2},
+          "b": {"mood":10,"trust":2},
+          "bond": 8,
+          "res": "They come back at dawn arm in arm, singing, with a souvenir for Sam that he does not understand."
+        },
+        {
+          "label": "They can go on their own coin",
+          "a": {"mood":5},
+          "b": {"mood":5},
+          "bond": 5,
+          "res": "They go anyway. They have a wonderful time and don't bring Sam anything."
+        }
+      ]
+    },
+    {
+      "id": "kitchen_feud",
+      "bondMax": -20,
+      "weight": 3,
+      "a": {},
+      "b": {},
+      "title": "{a} and {b} Are at It Again",
+      "scene": "casual",
+      "text": [
+        "The shouting in the kitchen is about a missing hairbrush. It is not really about the hairbrush.",
+        "{a} and {b} have stopped speaking to each other and started speaking through the other girls, which is worse."
+      ],
+      "choices": [
+        {
+          "label": "Sit them both down",
+          "roll": 0.55,
+          "bond": 15,
+          "a": {"trust":2},
+          "b": {"trust":2},
+          "res": "It takes an hour and a pot of tea, but by the end they're grudgingly laughing about it.",
+          "else": {"bond":-5,"a":{"mood":-3},"b":{"mood":-3},"res":"It ends with both of them storming out of different doors. Progress, of a sort."}
+        },
+        {"label":"Split up their shifts","a":{"mood":-2},"b":{"mood":-2},"bond":2,"res":"They see less of each other. It helps a little."},
+        {
+          "label": "Let them sort it out",
+          "roll": 0.5,
+          "bond": 10,
+          "res": "They have it out in the yard. Afterward they're sharing a bottle on the steps like nothing happened.",
+          "else": {"bond":-10,"a":{"energy":-5},"b":{"energy":-5},"res":"They have it out in the yard. Nobody wins. The hairbrush is never found."}
+        }
+      ]
+    },
+    {
+      "id": "stolen_client",
+      "bondMax": -10,
+      "weight": 2,
+      "a": {"working":true},
+      "b": {"working":true},
+      "title": "A Stolen Client",
+      "scene": "companion",
+      "text": [
+        "{a} insists {b} stole one of her regulars on purpose. {b} insists he just has taste."
+      ],
+      "choices": [
+        {
+          "label": "Side with {a}",
+          "a": {"trust":3,"mood":3},
+          "b": {"trust":-4,"mood":-4},
+          "bond": -8,
+          "res": "{a} is vindicated. {b} is going to remember this."
+        },
+        {"label":"Side with {b}","b":{"trust":3,"mood":3},"a":{"trust":-4,"mood":-4},"bond":-8,"res":"{b} smirks. {a} is going to remember this."},
+        {
+          "label": "\"He can see you both\"",
+          "a": {"popularity":2},
+          "b": {"popularity":2},
+          "bond": -2,
+          "res": "The client is thrilled. The two of them are less thrilled, but the money's good."
+        }
+      ]
+    },
+    {
+      "id": "mentoring",
+      "kind": "mentor",
+      "weight": 3,
+      "a": {"working":true},
+      "b": {"working":true},
+      "title": "{a} Takes {b} Under Her Wing",
+      "scene": "casual",
+      "text": [
+        "{a} has noticed {b} struggling with some of the finer points of the work, and offers to teach her."
+      ],
+      "choices": [
+        {
+          "label": "Pay for proper lessons (30g)",
+          "needsGold": 30,
+          "gold": -30,
+          "b": {"grow":{"service":6},"mood":3},
+          "a": {"mood":2},
+          "bond": 6,
+          "res": "A week of lessons. {b} carries herself differently by the end of it."
+        },
+        {"label":"Let them work it out","b":{"grow":{"service":3}},"bond":4,"res":"{a} teaches between shifts. {b} picks up a few tricks."}
+      ]
+    },
+    {
+      "id": "home_cooking",
+      "kind": "home",
+      "weight": 3,
+      "a": {},
+      "b": {},
+      "title": "A Taste of Home",
+      "scene": "sam_date",
+      "text": [
+        "{a} and {b} have spent all afternoon trying to recreate a dish from back home with ingredients that are almost, but not quite, right. They want Sam to judge."
+      ],
+      "choices": [
+        {
+          "label": "\"It's perfect\"",
+          "a": {"mood":8,"trust":2},
+          "b": {"mood":8,"trust":2},
+          "bond": 8,
+          "res": "It is not perfect. It's close enough that all three of them go quiet for a minute."
+        },
+        {
+          "label": "Be honest",
+          "a": {"mood":3,"trust":3},
+          "b": {"mood":3,"trust":3},
+          "bond": 5,
+          "res": "\"Needs soy sauce,\" Sam says. They both groan. They spend the next week trying to invent soy sauce."
+        }
+      ]
+    },
+    {
+      "id": "inseparable",
+      "bondMin": 70,
+      "weight": 1,
+      "a": {},
+      "b": {},
+      "title": "Two of a Kind",
+      "scene": "casual",
+      "text": [
+        "{a} and {b} have started finishing each other's sentences. The other girls find it unsettling. The clients find it charming."
+      ],
+      "choices": [
+        {"label":"Book them as a pair","a":{"popularity":4},"b":{"popularity":4},"bond":3,"res":"Word gets around. They're the talk of the house."},
+        {"label":"Leave them be","a":{"mood":4},"b":{"mood":4},"bond":3,"res":"They're happy. That's enough."}
+      ]
+    }
+  ],
+  "shared": [
+    {
+      "id": "lovers",
+      "bondMin": 0,
+      "weight": 3,
+      "ai": "shared",
+      "a": {"devoted":true,"trustMin":85,"lustMin":60,"intimate":true},
+      "b": {"devoted":true,"trustMin":85,"lustMin":60,"intimate":true},
+      "title": "A Knock, Twice",
+      "scene": "casual",
+      "text": [
+        "There's a knock at Sam's door. It's {a}. Then a second knock: {b}, right behind her. They look at each other, then at Sam, and seem to reach an understanding without him."
+      ],
+      "choices": [
+        {
+          "label": "Let them both in",
+          "private": ["a","b"],
+          "samEnergy": -30,
+          "a": {"lust":-30,"mood":5},
+          "b": {"lust":-30,"mood":5},
+          "bond": 8,
+          "res": "Nobody gets much sleep. (Sam's energy −30)"
+        },
+        {
+          "label": "\"One at a time, please\"",
+          "a": {"mood":-1},
+          "b": {"mood":-1},
+          "res": "They exchange a look, decide he's adorable, and agree to take turns. Sam is not sure he won anything."
+        }
+      ]
+    },
+    {
+      "id": "rivals",
+      "bondMax": -20,
+      "weight": 3,
+      "ai": "shared_rivals",
+      "a": {"devoted":true,"lustMin":60,"intimate":true},
+      "b": {"devoted":true,"lustMin":60,"intimate":true},
+      "title": "Who Does He Like Best?",
+      "scene": "casual",
+      "text": [
+        "{a} and {b} have decided to settle their rivalry the obvious way, and Sam is the obvious judge. Neither of them is willing to leave first."
+      ],
+      "choices": [
+        {
+          "label": "Refuse to pick a winner",
+          "private": ["a","b"],
+          "samEnergy": -40,
+          "a": {"lust":-35},
+          "b": {"lust":-35},
+          "roll": 0.5,
+          "bond": 15,
+          "res": "It is a very long night. By morning they've called it a draw, and they're looking at each other with something like respect. (Sam's energy −40)",
+          "else": {
+            "private": ["a","b"],
+            "samEnergy": -40,
+            "a": {"lust":-35,"mood":-2},
+            "b": {"lust":-35,"mood":-2},
+            "bond": -5,
+            "res": "It is a very long night. Both of them leave convinced they won and furious the other one thinks so too. (Sam's energy −40)"
+          }
+        },
+        {
+          "label": "Send them both away",
+          "a": {"mood":-4},
+          "b": {"mood":-4},
+          "bond": 3,
+          "res": "They leave together, united for once, in being annoyed with Sam."
+        }
+      ]
+    },
+    {
+      "id": "friend_invite",
+      "bondMin": 40,
+      "weight": 2,
+      "ai": "shared_friend",
+      "a": {"devoted":true,"trustMin":80,"intimate":true},
+      "b": {"devoted":false,"trustMin":70,"lewdMin":50,"intimate":true},
+      "title": "{a} Brings a Friend",
+      "scene": "casual",
+      "text": [
+        "{a} shows up at Sam's door with {b} in tow. \"She's been curious,\" {a} says. {b} goes pink, but doesn't deny it."
+      ],
+      "choices": [
+        {
+          "label": "Invite them in",
+          "private": ["a","b"],
+          "samEnergy": -30,
+          "a": {"mood":4},
+          "b": {"trust":5,"mood":4},
+          "bond": 6,
+          "res": "{b} looks at Sam differently afterward. So does {a}, come to think of it. (Sam's energy −30)"
+        },
+        {"label":"\"Maybe another time\"","b":{"mood":-2},"res":"{b} laughs it off, a little relieved and a little disappointed."}
+      ]
+    },
+    {
+      "id": "lesson",
+      "bondMin": 20,
+      "weight": 2,
+      "ai": "shared_lesson",
+      "a": {"trustMin":70,"lewdMin":55,"intimate":true},
+      "b": {"trustMin":60,"lewdMin":45,"intimate":true},
+      "title": "A Practical Lesson",
+      "scene": "casual",
+      "text": [
+        "{a} has been teaching {b} the finer points of the work, and has decided theory only goes so far. She'd like to borrow Sam for a demonstration."
+      ],
+      "choices": [
+        {
+          "label": "Volunteer",
+          "private": ["a","b"],
+          "samEnergy": -25,
+          "b": {"lesson":true,"mood":3},
+          "sam": {"technique":2},
+          "bond": 6,
+          "res": "{b} is a quick study. {a} is a demanding teacher. Sam is a very tired visual aid. (Sam's energy −25)"
+        },
+        {"label":"\"I have paperwork\"","res":"{a} sighs. \"Fine. We'll use a pillow.\""}
+      ]
+    },
+    {
+      "id": "bath",
+      "bondMin": 30,
+      "weight": 2,
+      "ai": "shared_bath",
+      "a": {"trustMin":60,"lewdMin":35},
+      "b": {"trustMin":60,"lewdMin":35},
+      "title": "Room for One More",
+      "scene": "bath",
+      "text": [
+        "{a} and {b} are soaking in the bath after a long week, and they've noticed Sam walking past the door for the third time. \"Oh, just get in.\""
+      ],
+      "choices": [
+        {
+          "label": "Get in",
+          "samEnergy": 10,
+          "a": {"mood":6,"trust":2,"lust":-10},
+          "b": {"mood":6,"trust":2,"lust":-10},
+          "bond": 5,
+          "res": "Mostly they talk. Mostly. Sam comes out pink and more relaxed than he's been in weeks. (Sam's energy +10)"
+        },
+        {"label":"Keep walking","a":{"mood":-1},"b":{"mood":-1},"res":"Their laughter follows him down the hall."}
+      ]
+    }
+  ]
+}

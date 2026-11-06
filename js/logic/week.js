@@ -229,6 +229,7 @@ function endWeek(){
     const need = STORY_REP[h.story.beat]||0, gap = h.story.beat===0 ? 2 : 3;
     if(S.week - Math.max(h.since||1, h.story.wk||0) >= gap && h.rep>=need){ const b = h.story.beat; EVQ.push(()=>{ if(h.story.beat!==b) return null; const ev = st.beats[b](h); if(ev) ev.title = `${st.title} (${b+1}/${st.beats.length})`; return ev; }); }
   });
+  seedBonds(); driftBonds();
   queueEncounters();
   renew.forEach(w=>EVQ.push(()=>evRenew(w)));
   if(Math.random()<0.6){ const ev = pickRandomEvent(); if(ev) EVQ.push(ev); }

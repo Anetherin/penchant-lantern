@@ -3,11 +3,11 @@
     "Tuning numbers. Change them and reload; no code needed.",
     "lust: low = below this she turns down the heavier services; high = 'restless' (solo nights, reckless nights, lovers come looking for Sam).",
     "solo: energyCost = share of her max energy a solo night costs; clientCap = most clients she'll see that week afterward; lustDrop = how much it lowers her lust.",
-    "lovers: neglectWeeks = weeks in a row without Sam before she feels left out (when another lover isn't); missedMood = mood lost each week she's restless and Sam doesn't see her; jealousyChance / sharedChance = weekly odds of those events; sharedMinTrust = trust both need for a shared night.",
+    "lovers: neglectWeeks = weeks in a row without Sam before she feels left out (when another lover isn't); missedMood = mood lost each week she's restless and Sam doesn't see her; jealousyChance = weekly odds of that event. Shared scenes are tuned in bonds.json.",
     "breakup: mood / trust = what ending it costs her (Loyal ladies lose half the trust); rekindleTrust = trust she needs before Sam can ask her back; rekindleChance = base odds she says yes (better if she's happy); rekindleCooldown = weeks between attempts."
   ],
   "lust": {"low":20,"high":85},
   "solo": {"energyCost":0.15,"clientCap":6,"lustDrop":40},
-  "lovers": {"neglectWeeks":4,"missedMood":4,"jealousyChance":0.6,"sharedChance":0.15,"sharedMinTrust":85},
+  "lovers": {"neglectWeeks":4,"missedMood":4,"jealousyChance":0.6},
   "breakup": {"mood":-20,"trust":-10,"rekindleTrust":80,"rekindleChance":0.55,"rekindleCooldown":4}
 }

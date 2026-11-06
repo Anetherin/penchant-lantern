@@ -61,7 +61,7 @@ function migrate(s){
     (s.workers||[]).concat(s.candidates||[]).forEach(w=>{ if(w.key && ['kaede','yui','nerys','elowen','adelheid','marisol','natsuki','kanako','mio'].includes(w.key)) w.arc = [0,1,3,6][w.arc||0] ?? 0; });
     s.houses.forEach(h=>{ if(h.story) h.story.beat = [0,2,3,4][h.story.beat] ?? h.story.beat; });
   }
-  s.v = 10; s.regulars = s.regulars || []; s.flags = Object.assign({partnerCD:3}, s.flags||{});
+  s.v = 11; s.regulars = s.regulars || []; s.bonds = s.bonds || {}; s.flags = Object.assign({partnerCD:3}, s.flags||{});
   s.sam.lvl = s.sam.lvl || 1; s.sam.xp = s.sam.xp || 0;
   s.houses.forEach(h=>{ h.since = h.since || 1; h.story = h.story || {beat:0,wk:0}; h.bonus = h.bonus || {};
     if(h.quarters===undefined){ h.quarters = Math.max(HOUSES[h.id].quarters, Math.ceil((s.workers||[]).filter(w=>w.house===h.id).length/2)); h.beds = HOUSES[h.id].beds; }

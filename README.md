@@ -12,6 +12,7 @@ optional text generation (`ai-text-plugin`).
   personalities with their solo/modest odds (`personalities.json`), AI text prompts and style guidance (`ai-prompts.json`),
   random flavor lines per personality (`flavor.json`), named characters and their outfits (`characters.json`),
   regular clients: names, quirks and their event text (`regulars.json`), partner romance arcs (`arcs.json`),
+  bonds between the ladies with their events and shared scenes (`bonds.json`),
   clothing and colors (`wardrobe.json`), races, names and appearance pools (`people.json`), and tuning numbers (`balance.json`). Each file starts with a `_readme` explaining its fields.
   If the page says a file isn't valid JSON, look for a missing comma or quote. `node tools/fmt-json.mjs` tidies them.
 - `css/style.css`: all styles.

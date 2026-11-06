@@ -30,6 +30,7 @@
     'js/stories/partners.js',
     'js/stories/house-extras.js',
     'js/events/regulars.js',
+    'js/events/bonds.js',
     'js/events/encounters.js',
     'js/events/random.js',
     'js/setup.js',
@@ -41,7 +42,7 @@
   ];
   window.HOLLOWMERE_FILES = FILES;
   // Editable data, loaded before any script runs. Each becomes window.PL_DATA['<name>'].
-  var DATA_FILES = ['balance', 'services', 'personalities', 'people', 'wardrobe', 'characters', 'arcs', 'regulars', 'snippets', 'ai-prompts', 'flavor'];
+  var DATA_FILES = ['balance', 'services', 'personalities', 'people', 'wardrobe', 'characters', 'arcs', 'regulars', 'bonds', 'snippets', 'ai-prompts', 'flavor'];
   window.HOLLOWMERE_DATA = DATA_FILES;
 
   var MARKUP = [
