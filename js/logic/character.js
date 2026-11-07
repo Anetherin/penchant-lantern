@@ -75,9 +75,15 @@ function comfortCloth(w, withSam, intimate){
   const c = ([...CLOTH].reverse().find(x=>lim>=x.lv && !(x.id==='under' && w.under==='none'))||CLOTH[0]).id;
   return intimate && c==='dressed' ? 'partial' : c;
 }
+// a service's minCloth (services.json) raises the default up to "partly undressed" always, further only if she's comfortable
+function actCloth(w, id, withSam){
+  const c = comfortCloth(w, withSam, true), a = actById(id) || {}, ix = x => CLOTH.findIndex(y=>y.id===x);
+  const m = ix(a.minCloth || 'dressed'); if(m < 0) return c;
+  return CLOTH[Math.max(ix(c), Math.min(m, has(w,'Modest') ? 1 : (clothOK(w, CLOTH[m].id, withSam) ? m : 1)))].id;
+}
 function defaultCloth(w, scene){
-  if(scene.startsWith('act:')) return comfortCloth(w, false, true);
-  if(scene.startsWith('samact:') || scene.startsWith('duo:')) return comfortCloth(w, true, true);
+  if(scene.startsWith('act:')) return actCloth(w, scene.split(':')[1], false);
+  if(scene.startsWith('samact:') || scene.startsWith('duo:')) return actCloth(w, scene.split(':')[1], true);
   if(scene==='solo') return comfortCloth(w, false, true);
   if(scene==='bath') return clothOK(w,'nude',false) ? 'nude' : 'dressed';
   return 'dressed';

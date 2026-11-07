@@ -1,0 +1,112 @@
+{
+  "_readme": [
+    "Date types (Sam's Date… menu). Add a new key to add a date.",
+    "label, cost (gold), energy (Sam's energy it takes), trust / mood (base gains), like (which personality like it counts as: walk, dinner, theater, gift, private, chat, train), restores (her energy +), greedyMood (extra mood for Greedy ladies).",
+    "intro + one of lines make the result text ({name} = her name). past: a different version when Sam's backstory matches (cost, trustMult, intro, lines).",
+    "image: the date's image scene (comp, setting, snip). It's available as date_<key> in the image menu."
+  ],
+  "walk": {
+    "label": "Walk through the market",
+    "cost": 0,
+    "energy": 15,
+    "trust": 2,
+    "mood": 6,
+    "like": "walk",
+    "intro": "Sam and {name} wander the market stalls.",
+    "lines": [
+      "She haggles a merchant down to half price just to show off.",
+      "They split a skewer of something that is definitely not chicken.",
+      "She drags him to every single fabric stall."
+    ],
+    "image": {"comp":"strolling arm in arm through a busy market, laughing","setting":"colorful fantasy market street with stalls and lanterns"}
+  },
+  "picnic": {
+    "label": "Picnic by the river",
+    "cost": 15,
+    "energy": 20,
+    "trust": 3,
+    "mood": 9,
+    "like": "walk",
+    "intro": "A blanket, a basket, and the river sliding by.",
+    "lines": ["She falls asleep on his shoulder.","They watch the two moons come up early.","A duck steals a sandwich. She laughs until she cries."],
+    "image": {
+      "comp": "sitting together on a picnic blanket, sharing food, relaxed",
+      "setting": "grassy riverbank under a willow tree, golden afternoon light"
+    }
+  },
+  "dinner": {
+    "label": "Dinner at the Lark & Kettle",
+    "cost": 25,
+    "energy": 20,
+    "trust": 3.5,
+    "mood": 10,
+    "like": "dinner",
+    "intro": "",
+    "lines": [
+      "She orders for both of them after watching him squint at the menu.",
+      "He tells her about ramen. She makes him promise to recreate it someday.",
+      "She laughs so hard at one of his stories that wine comes out of her nose. They agree never to speak of it."
+    ],
+    "past": {
+      "cook": {
+        "cost": 0,
+        "trustMult": 1.25,
+        "intro": "Sam cooks for {name} in the kitchen after closing.",
+        "lines": ["She has thirds.","She tries to get the recipe out of him and fails.","She says it's the best thing she's eaten in this world."]
+      }
+    },
+    "image": {"comp":"sharing a candlelit dinner, leaning toward each other, smiling","setting":"small cozy fantasy restaurant, warm candlelight"}
+  },
+  "theater": {
+    "label": "A night at the theater",
+    "cost": 60,
+    "energy": 25,
+    "trust": 4,
+    "mood": 12,
+    "like": "theater",
+    "intro": "The Hollowmere Players are doing a tragedy.",
+    "lines": [
+      "She cries through the whole third act and denies it afterward.",
+      "Sam falls asleep in act two. She pokes him awake, grinning.",
+      "She whispers commentary the entire time. It is better than the play."
+    ],
+    "image": {
+      "comp": "seated side by side in a theater box, watching the stage, her hand on his arm",
+      "setting": "ornate fantasy theater, red velvet seats, stage lights"
+    }
+  },
+  "shopping": {
+    "label": "Shopping (she picks something)",
+    "cost": 100,
+    "energy": 20,
+    "trust": 2,
+    "mood": 18,
+    "like": "gift",
+    "greedyMood": 6,
+    "intro": "{name} drags Sam through every boutique in Old Town.",
+    "lines": [
+      "She comes out with a ridiculous hat.",
+      "She comes out with a silk scarf.",
+      "She comes out with a pair of earrings she \"absolutely needed.\"",
+      "She comes out with perfume that smells like rain."
+    ],
+    "image": {"comp":"holding up a new purchase and showing it off happily","setting":"elegant fantasy boutique full of fabrics and jewelry"}
+  },
+  "springs": {
+    "label": "Day at the hot springs",
+    "cost": 80,
+    "energy": 30,
+    "trust": 4.5,
+    "mood": 14,
+    "like": "private",
+    "restores": 25,
+    "intro": "A whole day of steam, warm water, and doing nothing.",
+    "lines": ["{name} comes back pink-cheeked and completely relaxed."],
+    "image": {
+      "snip": "bath",
+      "comp": "relaxing together in a steaming outdoor hot spring, flushed and content",
+      "setting": "mountain hot spring among rocks and snow-dusted pines",
+      "towel": true
+    }
+  }
+}

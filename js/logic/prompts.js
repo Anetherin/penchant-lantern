@@ -11,7 +11,7 @@ function ageLook(w){
 }
 function raceLook(w){ if(w.race==='beastkin'){ const s=w.sub||'fox'; return `beastkin woman with ${s} ears and a ${s} tail`; } return (RACES[w.race]||RACES.human).look; }
 function clothText(w, cloth, scene){
-  if((scene==='bath'||scene==='shower'||scene==='date_springs') && cloth==='dressed') return 'wrapped only in a white towel';
+  if(cloth==='dressed' && scene && SCENES[scene] && SCENES[scene].towel) return 'wrapped only in a white towel';
   const T = Object.assign({}, DEFAULT_CLOTH_TEXT, Object.fromEntries(Object.entries(SET.clothText||{}).filter(([k,v])=>v)));
   let t = T[cloth];
   if(!t && cloth==='nude') t = T.partial;
@@ -28,7 +28,8 @@ function charDesc(w){
     (d.hairStyle||d.hairColor) && `${d.hairStyle||''} ${d.hairColor||''} hair`, d.eyes && `${d.eyes} eyes`,
     d.skin && `${d.skin} skin`, d.features].filter(Boolean).join(', ');
 }
-const getSnippet = k => (SET.snippets[k] || SCENE_SNIPPETS[k] || '').trim();
+// act_<id> snippets now live on the service (image.extra); older browser edits still win
+const getSnippet = k => { const a = k.startsWith('act_') && actById(k.slice(4)); return (SET.snippets[k] || (a && a.image && a.image.extra) || SCENE_SNIPPETS[k] || '').trim(); };
 function buildPrompt(w, sceneKey, cloth){
   const sc = sceneInfo(sceneKey, w);
   if(w.male) return cleanText([SET.style, 'adult man', w.look, 'upper body portrait, looking at viewer', 'dramatic lighting'].join(', '));

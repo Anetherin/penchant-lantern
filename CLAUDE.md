@@ -5,7 +5,8 @@
 - Every top-level name is global across files; avoid name clashes (grep before adding).
 - Editable text/numbers live in `data/*.json`; `loader.js` (DATA_FILES) fetches them into `window.PL_DATA` before any
   script runs, and `tools/build.mjs` inlines them. New data file → add it to DATA_FILES. Keep `_readme` keys current.
-  Logic-heavy content (random events, house stories, encounter choices) stays in JS; their effects are code.
+  Logic-heavy content (house stories, encounter choices) stays in JS. Random events keep their logic in
+  `js/events/random.js` but take all wording from `data/events.json` via `ET(...)`.
   Partner arcs (`data/arcs.json`) use a small declarative effect schema, resolved by `resolveEff()` in `js/stories/partners.js`.
   Bond events and shared scenes (`data/bonds.json`) are resolved by `applyBondChoice()` in `js/events/bonds.js`.
   Run `node tools/fmt-json.mjs` after editing data files programmatically.

@@ -8,12 +8,25 @@ optional text generation (`ai-text-plugin`).
 
 - `loader.js`: injects the stylesheet and page markup, then loads every script in `js/` **in order**.
   The scripts are classic (non-module) scripts that share globals, so order matters; the list lives in `loader.js`.
-- `data/*.json`: **the files you edit by hand.** Scene snippets and clothing wording (`snippets.json`), services (`services.json`),
-  personalities with their solo/modest odds (`personalities.json`), AI text prompts and style guidance (`ai-prompts.json`),
-  random flavor lines per personality (`flavor.json`), named characters and their outfits (`characters.json`),
-  regular clients: names, quirks and their event text (`regulars.json`), partner romance arcs (`arcs.json`),
-  bonds between the ladies with their events and shared scenes (`bonds.json`),
-  clothing and colors (`wardrobe.json`), races, names and appearance pools (`people.json`), and tuning numbers (`balance.json`). Each file starts with a `_readme` explaining its fields.
+- `data/*.json`: **the files you edit by hand.** Each starts with a `_readme` explaining its fields.
+  | File | What's in it |
+  |---|---|
+  | `services.json` | Services: thresholds, prices, AI description, image poses per context (client / Sam / two ladies), report lines |
+  | `snippets.json` | Your own image wording for POV, bath, mishap, solo and duo scenes, and how each clothing state is described |
+  | `ai-prompts.json` | The prompts sent to the AI text plugin, plus style guidance |
+  | `characters.json` | Named ladies, their outfits and starting bonds |
+  | `arcs.json` | Partner romance arcs |
+  | `bonds.json` | Bonds between ladies, their events, shared scenes and dynamics |
+  | `regulars.json` | Regular clients: names, quirks, event text |
+  | `personalities.json` | Personalities and what they like |
+  | `people.json` | Races, names, appearance pools, hooks, gifts, client descriptions |
+  | `wardrobe.json` | Outfits, undergarments, colors |
+  | `scenes.json` / `dates.json` | Image scenes and backdrops; date types with their text and images |
+  | `economy.json` | Jobs, job slots, houses, upgrades, prices, client classes (and what they ask for), Sam's past lives |
+  | `events.json` | The words for random events, chats and gifts |
+  | `flavor.json` | Random lines per personality |
+  | `balance.json` | Tuning numbers: lust, solo nights, lovers, breakups |
+
   If the page says a file isn't valid JSON, look for a missing comma or quote. `node tools/fmt-json.mjs` tidies them.
 - `css/style.css`: all styles.
 - `js/core`: config (your scene snippets, service categories, defaults) and utilities/storage.

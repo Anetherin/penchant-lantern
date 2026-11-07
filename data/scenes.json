@@ -1,0 +1,82 @@
+{
+  "_readme": [
+    "Image scenes (backdrops) for portraits, jobs, mishaps and time with Sam. Service scenes are built from services.json; date scenes come from dates.json.",
+    "Each scene: label (shown in the image menu), comp (pose/framing), setting (backdrop), and optional flags: house (adds the house's own setting), sam (Sam is in it), pov (first person), client (who else is in it), snip (a snippets.json slot to append), towel (\"dressed\" means wrapped in a towel here).",
+    "Add a new key to add a scene; it shows up in the scene picker on her sheet.",
+    "rooms: client room by room tier (shabby, comfortable, lavish, opulent). samRoom: where Sam's private scenes happen. clientPhrase: who's with her in client scenes. duoPhrase: added to scenes with two ladies."
+  ],
+  "scenes": {
+    "portrait": {"label":"Portrait","comp":"upper body portrait, looking at viewer, gentle smile","setting":"warm softly blurred background"},
+    "casual": {"label":"Casual","comp":"full body, relaxed pose","setting":"cozy lounge, warm lantern light","house":true},
+    "job_madame": {"label":"Work: Madame","comp":"standing confidently holding a ledger","setting":"elegant reception hall","house":true},
+    "job_reception": {
+      "label": "Work: Reception",
+      "comp": "smiling behind a polished wooden counter, welcoming guests",
+      "setting": "lantern-lit entrance hall",
+      "house": true
+    },
+    "job_security": {"label":"Work: Security","comp":"standing guard with arms crossed, short sword at her hip","setting":"doorway at night","house":true},
+    "job_bartender": {
+      "label": "Work: Bar",
+      "comp": "pouring drinks behind the bar, playful wink",
+      "setting": "lively fantasy tavern bar, bottles on shelves, warm light"
+    },
+    "job_dancer": {
+      "label": "Work: Stage",
+      "comp": "dancing gracefully on a small stage, dynamic pose, flowing fabric",
+      "setting": "candlelit stage, audience in silhouette"
+    },
+    "job_bath": {"label":"Work: Bathhouse","comp":"attending guests, carrying towels, cheeky smile","setting":"steamy tiled fantasy bathhouse"},
+    "job_maid": {"label":"Work: Maid","comp":"tidying up with a feather duster, cheerful","setting":"polished hallway","house":true},
+    "companion": {
+      "label": "Companion",
+      "comp": "sitting close beside a well-dressed client, sharing wine, flirtatious smile",
+      "setting": "private booth in a lounge",
+      "client": "with a well-dressed adult man",
+      "house": true
+    },
+    "job_courtesan": {"label":"Work: Courtesan","comp":"lounging invitingly, alluring smile","setting":"velvet lounge, warm candlelight","house":true},
+    "bath": {"label":"Bath","snip":"bath","comp":"relaxing in a steaming bath","setting":"tiled fantasy bathhouse, steam everywhere","towel":true},
+    "shower": {
+      "label": "Mishap: Caught bathing",
+      "snip": "mishap",
+      "comp": "startled, clutching a towel to her chest, deeply blushing, wet hair",
+      "setting": "steamy wooden washroom",
+      "towel": true
+    },
+    "walkin": {
+      "label": "Mishap: Walked in on Sam",
+      "snip": "mishap",
+      "comp": "standing frozen in a doorway, hand over her mouth, wide-eyed and blushing, peeking through her fingers",
+      "setting": "steamy wooden washroom"
+    },
+    "sam_date": {
+      "label": "With Sam: Date",
+      "sam": true,
+      "comp": "sharing a meal at a candlelit table, laughing together",
+      "setting": "small cozy fantasy restaurant"
+    },
+    "solo": {
+      "label": "Alone in her room",
+      "snip": "solo",
+      "comp": "alone on her bed, flushed, eyes half closed, lost in thought",
+      "setting": "her private bedroom, curtains drawn, a single candle"
+    },
+    "sam_training": {
+      "label": "With Sam: Training",
+      "sam": true,
+      "comp": "practicing together, Sam taking notes in a notebook",
+      "setting": "practice room",
+      "house": true
+    }
+  },
+  "rooms": [
+    "a small shabby room with a creaky bed and a single candle",
+    "a comfortable private room with warm lamplight",
+    "a lavish bedroom with silk sheets and candlelight",
+    "an opulent suite with a canopy bed and rich fabrics"
+  ],
+  "samRoom": "Sam's modest bedroom lit by a single lantern",
+  "clientPhrase": "with an adult male client",
+  "duoPhrase": "two women together with the viewer"
+}

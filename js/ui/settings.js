@@ -41,9 +41,12 @@ function browserEdits(){
 }
 function exportEdits(){
   const e = browserEdits(), out = {};
-  if(e.sn.length || e.cl.length) out['data/snippets.json'] = Object.assign({}, DATA.snippets, {scenes:Object.assign({}, DATA.snippets.scenes, Object.fromEntries(e.sn)), clothing:Object.assign({}, DATA.snippets.clothing, Object.fromEntries(e.cl))});
+  const snAct = e.sn.filter(([k])=>k.startsWith('act_')), snOther = e.sn.filter(([k])=>!k.startsWith('act_'));
+  if(snOther.length || e.cl.length) out['data/snippets.json'] = Object.assign({}, DATA.snippets, {scenes:Object.assign({}, DATA.snippets.scenes, Object.fromEntries(snOther)), clothing:Object.assign({}, DATA.snippets.clothing, Object.fromEntries(e.cl))});
   if(e.tp.length || e.g) out['data/ai-prompts.json'] = Object.assign({}, DATA['ai-prompts'], Object.fromEntries(e.tp), e.g?{guidance:e.g}:{});
-  if(e.ca.length) out['data/services.json'] = Object.assign({}, DATA.services, {services: DATA.services.services.concat(e.ca)});
+  if(e.ca.length || snAct.length){ const sv = JSON.parse(JSON.stringify(DATA.services.services.concat(e.ca)));
+    snAct.forEach(([k,v])=>{ const a = sv.find(x=>x.id===k.slice(4)); if(a){ a.image = a.image || {}; a.image.extra = v; } });
+    out['data/services.json'] = Object.assign({}, DATA.services, {services: sv}); }
   const txt = Object.entries(out).map(([k,v])=>`===== ${k} (replace the whole file) =====\n${JSON.stringify(v,null,2)}`).join('\n\n');
   modal(`<h2>Your browser edits</h2><p class="muted">Each block is the full file with your edits merged in. Paste it over that file in the repo, push, then come back and clear the browser edits.</p><textarea id="exp" style="min-height:260px">${esc(txt)}</textarea>
     <div class="row"><button class="primary" onclick="try{navigator.clipboard.writeText($('#exp').value);toast('Copied.')}catch(e){toast('Select and copy manually.')}">Copy</button><button onclick="dlText($('#exp').value,'hollowmere-browser-edits.txt')">Download file</button></div>`);

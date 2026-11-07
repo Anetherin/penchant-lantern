@@ -7,7 +7,7 @@ function pickClass(h){
   const ws = [Math.max(3,50-10*p), 30 + (S.flags.guild?8:0), 15+4*p+(h.up.lounge?6:0), Math.max(1, 5+4*p+h.rep/10+(h.up.lounge?6:0))];
   return weighted(CLASSES, c=>{ const i=CLASSES.indexOf(c); return ws[i]*cw[i]*(c.id==='merchant'&&h.bonus&&h.bonus.merchant||1); });
 }
-function pickWant(cls){ return weighted(getActs(), a=>(cls.id==='commoner' ? 90/a.price : cls.id==='noble' ? a.price/80 : 1) * (a.id==='caress'?0.6:1)).id; }
+function pickWant(cls){ return weighted(getActs(), a=>(cls.id==='commoner' ? 90/a.price : cls.id==='noble' ? a.price/80 : 1) * (a.id==='caress'?0.6:1) * ((cls.wants||{})[a.id] ?? 1)).id; }
 function qualityOf(w, act){ return act ? (actSkill(w,act)*0.5 + w.stats.beauty*0.3 + w.stats.charm*0.2)/100 : (w.tech.service*0.5 + w.stats.beauty*0.25 + w.stats.charm*0.25)/100; }
 function hlText(w, e){
   const who = e.reg ? `${e.reg}, one of the regulars,` : pick(CLIENT_DESC[e.cls]), N = w.name, lab = e.want ? actLabel(e.want) : '';
@@ -17,7 +17,7 @@ function hlText(w, e){
     return `${cap(who)} propositioned ${N} ${where}, asking for ${lab}. She turned him down${w.offDuty?'':' (she isn\'t taking propositions on this job)'}.`;
   }
   if(!e.want) return `${cap(who)} spent the evening with ${N} in the lounge: wine, conversation, and a lot of laughing. ${flavor('client_company', w)}`;
-  if(e.outcome==='yes') return `${cap(who)} asked for ${N}, and for ${lab}. ${flavor('client_yes', w)}`;
+  if(e.outcome==='yes') return `${cap(who)} asked for ${N}, and for ${lab}. ${(actById(e.act)&&actById(e.act).report&&actById(e.act).report.length) ? pick(actById(e.act).report) : flavor('client_yes', w)}`;
   if(e.outcome==='alt') return `${cap(who)} asked ${N} for ${lab}. She said no to that, but offered ${actLabel(e.act)} instead, and he happily took it.`;
   return `${cap(who)} asked ${N} for ${lab}. She politely declined, and he settled for her company over a bottle of wine.`;
 }

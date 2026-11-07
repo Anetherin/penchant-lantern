@@ -1,15 +1,123 @@
 {
   "_readme": [
-    "Service categories. th = lewdness needed for her to enjoy it (trust can stretch her up to 25 below), price = base fee, energy = cost to her.",
-    "comp = the image-prompt wording for the scene. Add your own by adding an entry with a new id; everyone gets a random skill and comfort level for it."
+    "Service categories. Add your own by adding an entry with a new id; everyone gets a random skill and comfort level for it.",
+    "th = lewdness she needs to enjoy it (trust can stretch her up to 25 below). price = base fee. energy = what it costs her.",
+    "desc = what the service is, in plain words; the AI prompts get \"label (desc)\" as {service} so the AI knows what you mean.",
+    "minCloth = the least undressed she'll be in images of it by default (dressed, partial, under, nude). Above partial it only applies if she's comfortable that far; Modest ladies still keep things pulled aside.",
+    "image.client / image.sam / image.duo = pose and framing for client scenes, Sam's first-person scenes, and scenes with two ladies. Each is a list: one is picked at random per image, so add variants. image.extra is added to every image of this service (this replaces the old act_<id> snippets).",
+    "report = lines for the weekly report when a client got this service (one is picked at random; empty falls back to flavor.json client_yes)."
   ],
   "services": [
-    {"id":"caress","label":"Kissing & touching","th":25,"price":24,"energy":6,"comp":"embracing and kissing passionately"},
-    {"id":"manual","label":"Manual","th":32,"price":32,"energy":7,"comp":"intimate moment"},
-    {"id":"oral","label":"Oral","th":42,"price":44,"energy":9,"comp":"intimate moment"},
-    {"id":"paizuri","label":"Paizuri","th":45,"price":46,"energy":9,"comp":"intimate moment"},
-    {"id":"missionary","label":"Missionary","th":52,"price":58,"energy":11,"comp":"intimate moment, lying on the bed"},
-    {"id":"cowgirl","label":"Cowgirl","th":56,"price":64,"energy":12,"comp":"intimate moment, on the bed"},
-    {"id":"doggy","label":"Doggy","th":60,"price":64,"energy":12,"comp":"intimate moment, on the bed"}
+    {
+      "id": "caress",
+      "label": "Kissing & touching",
+      "th": 25,
+      "price": 24,
+      "energy": 6,
+      "desc": "kissing and touching",
+      "minCloth": "dressed",
+      "image": {
+        "client": ["embracing and kissing passionately"],
+        "sam": ["embracing and kissing passionately, looking at the viewer"],
+        "duo": ["embracing and kissing passionately"],
+        "extra": ""
+      },
+      "report": [
+        "They spent most of the evening wrapped up together on a lounge sofa, and he left grinning."
+      ]
+    },
+    {
+      "id": "manual",
+      "label": "Manual",
+      "th": 32,
+      "price": 32,
+      "energy": 7,
+      "desc": "using her hands",
+      "minCloth": "partial",
+      "image": {"client":["intimate moment"],"sam":["intimate moment, looking at the viewer"],"duo":["intimate moment"],"extra":""},
+      "report": [
+        "It didn't take long. He left looking dazed and tipped well for it."
+      ]
+    },
+    {
+      "id": "oral",
+      "label": "Oral",
+      "th": 42,
+      "price": 44,
+      "energy": 9,
+      "desc": "using her mouth",
+      "minCloth": "partial",
+      "image": {"client":["intimate moment"],"sam":["intimate moment, looking at the viewer"],"duo":["intimate moment"],"extra":""},
+      "report": [
+        "He came back downstairs looking like he'd seen the face of a god."
+      ]
+    },
+    {
+      "id": "paizuri",
+      "label": "Paizuri",
+      "th": 45,
+      "price": 46,
+      "energy": 9,
+      "desc": "using her breasts",
+      "minCloth": "partial",
+      "image": {"client":["intimate moment"],"sam":["intimate moment, looking at the viewer"],"duo":["intimate moment"],"extra":""},
+      "report": [
+        "He talked about it at the bar afterward, at length, to anyone who'd listen."
+      ]
+    },
+    {
+      "id": "missionary",
+      "label": "Missionary",
+      "th": 52,
+      "price": 58,
+      "energy": 11,
+      "desc": "sex, him on top",
+      "minCloth": "partial",
+      "image": {
+        "client": ["intimate moment, lying on the bed"],
+        "sam": ["intimate moment, lying on the bed, looking at the viewer"],
+        "duo": ["intimate moment, lying on the bed"],
+        "extra": ""
+      },
+      "report": [
+        "The door stayed closed a long time. He left smiling and walked into a pillar."
+      ]
+    },
+    {
+      "id": "cowgirl",
+      "label": "Cowgirl",
+      "th": 56,
+      "price": 64,
+      "energy": 12,
+      "desc": "sex, her on top",
+      "minCloth": "partial",
+      "image": {
+        "client": ["intimate moment, on the bed"],
+        "sam": ["intimate moment, on the bed, looking at the viewer"],
+        "duo": ["intimate moment, on the bed"],
+        "extra": ""
+      },
+      "report": [
+        "She came back down first, humming. He followed much later, red-faced and grinning."
+      ]
+    },
+    {
+      "id": "doggy",
+      "label": "Doggy",
+      "th": 60,
+      "price": 64,
+      "energy": 12,
+      "desc": "sex from behind",
+      "minCloth": "partial",
+      "image": {
+        "client": ["intimate moment, on the bed"],
+        "sam": ["intimate moment, on the bed, looking at the viewer"],
+        "duo": ["intimate moment, on the bed"],
+        "extra": ""
+      },
+      "report": [
+        "The bed upstairs creaked for most of the hour. He tipped extra on the way out."
+      ]
+    }
   ]
 }

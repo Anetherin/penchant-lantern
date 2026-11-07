@@ -1,0 +1,142 @@
+{
+  "_readme": [
+    "The words for the random events, plus a few of Sam's everyday actions. When each event can happen and what its choices do stay in js/events/random.js.",
+    "Any text can be a single string or a list (one is picked at random). Placeholders are filled in by the game: {name} = the lady involved, plus the extras listed in each event's _vars.",
+    "Keep the choice keys as they are (they're how the code finds them); change the label and result wording freely."
+  ],
+  "haunt": {
+    "_vars": "{house}, {ghost} (the resident ghost, if hired)",
+    "title": "{house}: Things That Go Bump",
+    "text": [
+      "Every candle in the east wing lights itself at midnight. Three guests faint. Four ask if they can book that room again.",
+      "A portrait in the hallway has started winking at guests. Business is up.",
+      "Something rearranged all the furniture in the lounge overnight. Into a much better layout, honestly."
+    ],
+    "lean": {"label":"Lean into it","res":"Word spreads. Thrill-seekers line up. +reputation."},
+    "exorcist": {
+      "label": "Call an exorcist (60g)",
+      "res": "The exorcist leaves in tears.",
+      "resGhost": "The exorcist leaves in tears. {ghost} is offended you asked.",
+      "broke": "You can't afford one."
+    }
+  },
+  "dayoff": {
+    "title": "A Small Request",
+    "text": "{name} catches Sam in the hallway. \"Could I take a few days off? I'm running on fumes.\"",
+    "yes": {"label":"Of course","res":"{name} looks relieved. \"Thanks, boss.\""},
+    "no": {"label":"Not this week","resSoft":"{name} says she understands. She looks very tired.","res":"{name} nods stiffly and goes back to work."}
+  },
+  "noble": {
+    "_vars": "{gold} (the fee)",
+    "title": "A Noble Invitation",
+    "text": "A messenger in house livery requests {name}'s company for a private dinner at a nobleman's estate. The offered fee: {gold}.",
+    "ask": {
+      "label": "Ask her if she wants to go",
+      "res": "{name} agrees and returns the next morning with the fee and a smug smile. +{gold}, +renown.",
+      "pass": "{name} politely passes. Sam sends regrets. She appreciates being asked."
+    },
+    "decline": {"label":"Decline politely","res":"The messenger sniffs and leaves."}
+  },
+  "guild": {
+    "_vars": "{gold} (the fee)",
+    "title": "Guild Celebration",
+    "text": "Hanna sends word: a party just cleared a dungeon floor and wants company for their victory feast. They asked for {name} by name. Fee: {gold}.",
+    "send": {"label":"Send {name}","res":"It goes great. {name} comes back with the fee and three new admirers. +{gold}."},
+    "pass": {"label":"Pass this time","res":"Hanna sends back a sad-face doodle."}
+  },
+  "taunt": {
+    "title": "The Velvet Thorn",
+    "text": "A tall demon woman in red velvet sweeps into the lobby and looks around like she's pricing the furniture. \"Lady Isolde Thorne, of the Velvet Thorn. I came to see what the newcomer bought.\" Her gaze settles on Sam's hoodie. \"...Charming.\"",
+    "banter": {
+      "label": "Banter back",
+      "win": "Sam lands a surprisingly good comeback. Isolde laughs despite herself. Word gets around. +renown.",
+      "lose": "Sam's comeback arrives about ten seconds late. Isolde is already gone."
+    },
+    "polite": {"label":"Stay polite","res":"\"We'll see how long you last,\" she says, and leaves."}
+  },
+  "poach": {
+    "title": "An Offer from the Thorn",
+    "text": "{name} admits Isolde Thorne offered her a position at the Velvet Thorn, with better pay. She hasn't decided.",
+    "raise": {"label":"Offer a raise (+30%)","res":"{name} stays. \"Okay. You actually value me. Noted.\""},
+    "talk": {"label":"Talk it through","stay":"They talk for an hour. {name} decides she'd rather stay.","go":"{name} hugs Sam goodbye. She's going."},
+    "choose": {"label":"Let her choose","stay":"{name} turns Isolde down.","go":"{name} takes the offer."}
+  },
+  "lucky": {
+    "_vars": "{gold}",
+    "title": "Lucky Break",
+    "text": [
+      "A regular leaves a coin purse \"as a tip.\" It holds {gold}.",
+      "Sam finds {gold} hidden behind a loose brick in the cellar. The old owner had secrets.",
+      "A merchant pays {gold} for the ugliest painting in the house. Nobody asks why."
+    ],
+    "ok": {"label":"Nice"}
+  },
+  "inspector": {
+    "_vars": "{gold} (the fee), {fine} (if the argument goes badly)",
+    "title": "The Inspector",
+    "text": "A city inspector with a clipboard announces Sam owes \"licensing fees.\" He says {gold}, but he sounds like he's improvising.",
+    "pay": {"label":"Pay {gold}","res":"He leaves satisfied."},
+    "argue": {
+      "label": "Argue the paperwork",
+      "win": "Sam cites three ordinances that don't exist with total confidence. The inspector leaves, confused. No fee.",
+      "lose": "It does not go well. {fine} and a lecture."
+    }
+  },
+  "friends": {
+    "_vars": "{other} (the second lady)",
+    "title": "Friends",
+    "text": "{name} and {other} have started taking their breaks together. Things feel a bit warmer.",
+    "ok": {"label":"Good to hear"}
+  },
+  "quiet": {
+    "title": "A Quiet Moment",
+    "text": "{name} finds Sam on the back steps after closing and sits next to him. \"You know, you're not what I expected. In a good way.\"",
+    "stay": {"label":"Stay and talk","res":"They watch the two moons rise."}
+  },
+  "knock": {
+    "title": "A Knock at the Door",
+    "text": "Late at night there's a knock on Sam's door. It's {name}, leaning on the frame. \"So I hear the new boss has never... you know.\" She grins. \"That's just sad. Want a tour?\"",
+    "in": {
+      "label": "Let her in",
+      "first": "{name} turns out to be a patient and extremely amused teacher. Sam turns out to be a quick study. The door closes.",
+      "res": "The door closes."
+    },
+    "no": {"label":"Politely decline","res":"{name} laughs. \"Offer stands, boss.\""}
+  },
+  "raise": {
+    "_vars": "{wage} (current), {newWage}",
+    "title": "Raise Request",
+    "text": "{name} plants herself in front of Sam's desk. \"I'm worth more than {wage} a week, and we both know it. {newWage}.\"",
+    "agree": {"label":"Agree ({newWage}/wk)","res":"\"Pleasure doing business.\""},
+    "refuse": {"label":"Refuse","resProud":"{name} stares at Sam for a long, cold moment. She won't forget this.","res":"{name} leaves without a word."}
+  },
+  "incident": {
+    "_vars": "{house}, {guard} (her security, if any), {gold} (damage)",
+    "title": "Trouble at {house}",
+    "text": "A drunk adventurer starts shoving furniture and shouting about a refund for a service he never actually paid for.",
+    "guard": {"label":"Let {guard} handle it","res":"{guard} throws him out in about four seconds. The regulars applaud."},
+    "sam": {
+      "label": "Sam steps in",
+      "win": "Sam talks him down. Mostly by being so polite it's confusing. +reputation.",
+      "lose": "Sam takes a punch, then the drunk falls asleep on his own. Sam gets a black eye and a lot of sympathy."
+    },
+    "pay": {"label":"Pay for the damage","res":"Broken chairs and a cracked mirror: {gold}."}
+  },
+  "chat": {
+    "_note": "What Sam and a lady talk about when he chats with her. home is used for ladies from Sam's old world.",
+    "topics": [
+      "about her hometown",
+      "about the strangest client of the week",
+      "about Sam's old world. She refuses to believe in trains",
+      "over tea in the kitchen",
+      "about what she wants to do with her life",
+      "about whether \"isekai\" is a real word (she insists it is not)"
+    ],
+    "home": ["about home, and what they miss most"]
+  },
+  "gift": {
+    "_note": "When Sam gives a lady a gift. The gift itself comes from people.json gifts.",
+    "greedy": ["Her eyes light up immediately."],
+    "normal": ["She smiles and tucks it away carefully."]
+  }
+}

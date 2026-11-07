@@ -57,40 +57,34 @@ function samRest(){
 }
 function samChat(id){
   const w = findW(id); if(!w || !useAP(15)) return;
-  const topics = ['about her hometown','about the strangest client of the week','about Sam\'s old world. She refuses to believe in trains','over tea in the kitchen','about what she wants to do with her life','about whether "isekai" is a real word (she insists it is not)'];
   const m = pm(w,'chat'), tg = gainTrust(w, rnd(1.5,3.5) * (has(w,'Romantic')?1.4:1) * (has(w,'Shy')?1.2:1) * m);
   w.mood = clamp(w.mood + 4*m - (m<1?3:0)); samStat('charm',1); samXP(5); samLog(`Chatted with ${w.name}`); checkUnlocks();
   save(); render(); closeModal();
-  showResult(`Chatting with ${w.name}`, `Sam and ${w.name} talk ${['yui','natsuki','kanako','mio'].includes(w.key)?'about home, and what they miss most':pick(topics)}.${pNote(w,'chat')}\n\nTrust +${tg.toFixed(1)}`, w.id, 'casual');
+  showResult(`Chatting with ${w.name}`, `Sam and ${w.name} talk ${ET('chat', NAMED[w.key] && Object.values(NAMED[w.key].bonds||{}).some(x=>x.kind==='home') || ['yui','natsuki','kanako','mio'].includes(w.key) ? 'home' : 'topics')}.${pNote(w,'chat')}\n\nTrust +${tg.toFixed(1)}`, w.id, 'casual');
 }
-const DATES = {
-  walk:    {label:'Walk through the market', cost:0,   ap:15, trust:2,   mood:6,  like:'walk',    text:w=>`Sam and ${w.name} wander the market stalls. ${pick(['She haggles a merchant down to half price just to show off.','They split a skewer of something that is definitely not chicken.','She drags him to every single fabric stall.'])}`},
-  picnic:  {label:'Picnic by the river',     cost:15,  ap:20, trust:3,   mood:9,  like:'walk',    text:w=>`A blanket, a basket, and the river sliding by. ${pick(['She falls asleep on his shoulder.','They watch the two moons come up early.','A duck steals a sandwich. She laughs until she cries.'])}`},
-  dinner:  {label:'Dinner at the Lark & Kettle', cost:25, ap:20, trust:3.5, mood:10, like:'dinner', text:w=> S.past==='cook' ? `Sam cooks for ${w.name} in the kitchen after closing. ${pick(['She has thirds.','She tries to get the recipe out of him and fails.','She says it\'s the best thing she\'s eaten in this world.'])}` : `${pick(['She orders for both of them after watching him squint at the menu.','He tells her about ramen. She makes him promise to recreate it someday.','She laughs so hard at one of his stories that wine comes out of her nose. They agree never to speak of it.'])}`},
-  theater: {label:'A night at the theater',  cost:60,  ap:25, trust:4,   mood:12, like:'theater', text:w=>`The Hollowmere Players are doing a tragedy. ${pick(['She cries through the whole third act and denies it afterward.','Sam falls asleep in act two. She pokes him awake, grinning.','She whispers commentary the entire time. It is better than the play.'])}`},
-  shopping:{label:'Shopping (she picks something)', cost:100, ap:20, trust:2, mood:18, like:'gift', text:w=>`${w.name} drags Sam through every boutique in Old Town and comes out with ${pick(['a ridiculous hat','a silk scarf','a pair of earrings she "absolutely needed"','perfume that smells like rain'])}.`},
-  springs: {label:'Day at the hot springs',  cost:80,  ap:30, trust:4.5, mood:14, like:'private', energy:25, text:w=>`A whole day of steam, warm water, and doing nothing. ${w.name} comes back pink-cheeked and completely relaxed.`}
-};
+// Date types live in data/dates.json (DATES is defined in js/data/scenes.js).
+const dateFor = (k) => { const d = DATES[k]; return Object.assign({}, d, (d.past && d.past[S.past]) || {}); };
+const dateText = (d, w) => [d.intro, pick(d.lines||[''])].filter(Boolean).join(' ').replace(/\{name\}/g, w.name);
 function dateMenu(id){
   const w = findW(id); if(!w) return;
   modal(`<h2>Take ${esc(w.name)} out</h2><p class="muted">Dates build trust and mood. What she enjoys depends on her personality. A great date at high trust might not end at her door.</p>
-    <table>${Object.entries(DATES).map(([k,d])=>{ const c = (k==='dinner'&&S.past==='cook')?0:d.cost, m = pm(w,d.like);
-      return `<tr><td><b>${d.label}</b>${m>1?' <span class="good">♥ she\'d love this</span>':m<1?' <span class="warn">not her thing</span>':''}</td><td>${c?fmt(c):'free'}</td><td class="muted">${d.ap} energy</td><td><button class="sm" onclick="samDate('${id}','${k}')" ${S.gold<c?'disabled':''}>Go</button></td></tr>`; }).join('')}</table>
+    <table>${Object.entries(DATES).map(([k,d])=>{ const c = dateFor(k).cost, m = pm(w,d.like);
+      return `<tr><td><b>${d.label}</b>${m>1?' <span class="good">♥ she\'d love this</span>':m<1?' <span class="warn">not her thing</span>':''}</td><td>${c?fmt(c):'free'}</td><td class="muted">${d.energy} energy</td><td><button class="sm" onclick="samDate('${id}','${k}')" ${S.gold<c?'disabled':''}>Go</button></td></tr>`; }).join('')}</table>
     <div class="row"><button onclick="openSheet('${id}')">Back</button></div>`);
 }
 function samDate(id, k){
-  const w = findW(id), d = DATES[k]; if(!w || !d) return;
-  const cost = (k==='dinner'&&S.past==='cook') ? 0 : d.cost;
+  const w = findW(id); if(!w || !DATES[k]) return; const d = dateFor(k);
+  const cost = d.cost||0;
   if(S.gold<cost) return toast('Not enough gold.');
-  if(!useAP(d.ap)) return; S.gold -= cost;
-  const m = pm(w,d.like), tg = gainTrust(w, d.trust * (has(w,'Romantic')?1.4:1) * (S.past==='cook'&&k==='dinner'?1.25:1) * m);
+  if(!useAP(d.energy)) return; S.gold -= cost;
+  const m = pm(w,d.like), tg = gainTrust(w, d.trust * (has(w,'Romantic')?1.4:1) * (d.trustMult||1) * m);
   w.mood = clamp(w.mood + d.mood*m - (m<1?3:0)); w.dates++;
-  if(d.energy) w.energy = clamp(w.energy + d.energy, 0, maxEnergy(w));
-  if(has(w,'Greedy') && k==='shopping') w.mood = clamp(w.mood+6);
+  if(d.restores) w.energy = clamp(w.energy + d.restores, 0, maxEnergy(w));
+  if(d.greedyMood && has(w,'Greedy')) w.mood = clamp(w.mood + d.greedyMood);
   samStat('charm',1); samXP(5); samLog(`${d.label} with ${w.name}`); checkUnlocks();
   save(); render(); closeModal();
   const sparks = w.trust>=60 && w.mood>=70 && m>=1 && getActs().some(a=>canSam(w,a.id)) && Math.random() < 0.35 + Math.max(0, w.lust-50)/100;
-  const txt = d.text(w) + pNote(w, d.like==='private'?'private':d.like) + `\n\n${cost?'−'+fmt(cost)+' · ':''}Trust +${tg.toFixed(1)}${d.energy?' · She feels rested':''}`;
+  const txt = dateText(d, w) + pNote(w, d.like==='private'?'private':d.like) + `\n\n${cost?'−'+fmt(cost)+' · ':''}Trust +${tg.toFixed(1)}${d.restores?' · She feels rested':''}`;
   modal(`<h2>${esc(d.label)} with ${esc(w.name)}</h2><div id="resImg"></div><p class="story">${esc(txt)}</p>
     ${sparks?`<div id="propAi"><p class="story pink">On the way back, ${esc(w.name)} slips her hand into Sam's and doesn't let go. At her door, she hesitates. "...Do you want to come in?"</p></div>`:''}
     <div class="row">${sparks?`<button class="primary" onclick="privateMenu('${id}',true)">Go inside (private time, no extra action)</button><button onclick="closeModal()">Say goodnight</button>`:`<button class="primary" onclick="closeModal()">OK</button>`}</div>`);
@@ -103,7 +97,7 @@ function samGift(id){
   const m = pm(w,'gift'), mg = Math.round((has(w,'Greedy') ? 20 : 12) * m);
   w.mood = clamp(w.mood+mg); gainTrust(w, 1.5*m); samXP(3); samLog(`Gave ${w.name} a gift`); checkUnlocks();
   save(); render(); closeModal();
-  showResult('A Gift', `Sam gives ${w.name} ${pick(GIFTS)}. ${has(w,'Greedy')?'Her eyes light up immediately.':'She smiles and tucks it away carefully.'}${pNote(w,'gift')}\n\n−60g · Mood +${mg}`, w.id, 'portrait');
+  showResult('A Gift', `Sam gives ${w.name} ${pick(GIFTS)}. ${ET('gift', has(w,'Greedy')?'greedy':'normal')}${pNote(w,'gift')}\n\n−60g · Mood +${mg}`, w.id, 'portrait');
 }
 function samTrain(id){
   const w = findW(id); if(!w) return;
