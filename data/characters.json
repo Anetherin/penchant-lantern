@@ -9,7 +9,8 @@
     "outfits: sig_<key> is her starting outfit; sp_<key> unlocks at trust 60 or as a lover. prompt is the image wording; bonus multiplies income for jobs or client classes.",
     "Partners only get a romance story if one exists in js/stories/partners.js; without one they still work, just without the arc.",
     "bonds: optional starting bonds with other named ladies: {\"otherKey\": {\"v\": 40, \"kind\": \"mentor\", \"note\": \"...\"}}. v from -100 (rivals) to 100. kind: mentor (she mentors them), home (both from Sam's old world), comrades. See bonds.json.",
-    "The Leaf drifters (hinata through konan) are adult, endgame-era takes on Naruto characters. Bonds between them assume they all know each other from back east."
+    "The Leaf drifters (hinata through konan) are adult, endgame-era takes on Naruto characters. Bonds between them assume they all know each other from back east.",
+    "The Naruto After drifters (mio_tanabe through tsubasa) are the user's OCs from Topofira/ai-crafting, taken from their adult Part III / Endgame designs only."
   ],
   "mira": {
     "role": "house",
@@ -1224,7 +1225,10 @@
         "bonus": {"companion":1.15,"merchant":1.2}
       }
     },
-    "bonds": {"hinata":{"v":30,"kind":"comrades","note":"Leaf comrades."}}
+    "bonds": {
+      "hinata": {"v":30,"kind":"comrades","note":"Leaf comrades."},
+      "juju": {"v":50,"kind":"mentor","note":"Juju is from her toolsmith line and calls her Great-Grandma Tenten. Tenten hates it."}
+    }
   },
   "temari": {
     "role": "drifter",
@@ -1271,7 +1275,10 @@
         "bonus": {"noble":1.2,"companion":1.15}
       }
     },
-    "bonds": {"ino":{"v":20,"note":"Rivals in sharp tongues."}}
+    "bonds": {
+      "ino": {"v":20,"note":"Rivals in sharp tongues."},
+      "nami": {"v":45,"kind":"mentor","note":"A fellow Sand wind user. Temari taught her the fans."}
+    }
   },
   "tsunade": {
     "role": "drifter",
@@ -1583,5 +1590,694 @@
         "bonus": {"noble":1.25,"companion":1.15}
       }
     }
+  },
+  "mio_tanabe": {
+    "role": "drifter",
+    "job": "companion",
+    "name": "Mio Tanabe",
+    "race": "human",
+    "age": 23,
+    "personality": "Bold and flirtatious",
+    "traits": ["Exhibitionist","Ambitious"],
+    "style": "Revealing",
+    "favColor": "wine",
+    "fav": "cowgirl",
+    "dislike": "manual",
+    "lovers": "caress",
+    "backstory": "A Suna medic from the Alliance villages across the eastern sea who once trained an entire rebel army's healers under the codename Star. Mio left that life behind but kept the coat, the dark lipstick and the habit of making sure every eye in the room lands on her.",
+    "design": {
+      "build": "curvy",
+      "hairStyle": "long, glossy and worn loose",
+      "hairColor": "pale teal",
+      "eyes": "clear green-grey",
+      "skin": "light warm",
+      "features": "dark smoky eye makeup, deep wine lips and a thin black choker with a small sand-symbol plate"
+    },
+    "under": "lace",
+    "underColor": "wine",
+    "stats": {"beauty":68,"charm":64,"refinement":50,"stamina":50,"strength":25,"agility":40},
+    "tech": {"service":55,"dance":25,"bar":20,"combat":25,"manage":35},
+    "actSkill": 45,
+    "popularity": 18,
+    "lewd": 58,
+    "trust": 20,
+    "outfits": {
+      "sig_mio_tanabe": {
+        "label": "Star's coat",
+        "style": "Revealing",
+        "prompt": "a long cream coat with deep-teal lining hanging open over a wine-colored lace-trimmed silk babydoll dress, sheer dark thigh-high stockings and black heeled boots",
+        "bonus": {"companion":1.25,"noble":1.15}
+      },
+      "sp_mio_tanabe": {
+        "label": "Suna medic whites",
+        "style": "Elegant",
+        "prompt": "a cream and sand-colored medic tunic with a deep-teal sash",
+        "bonus": {"reception":1.15,"commoner":1.2}
+      }
+    },
+    "bonds": {"maki":{"v":15,"note":"Mio borrowed half of Maki's playbook. Maki has noticed."}}
+  },
+  "emi": {
+    "role": "drifter",
+    "job": "security",
+    "name": "Emi Sato",
+    "race": "human",
+    "age": 24,
+    "personality": "Warm and motherly",
+    "traits": ["Loyal","Modest"],
+    "style": "Sporty",
+    "favColor": "slate",
+    "fav": "missionary",
+    "dislike": "paizuri",
+    "lovers": "caress",
+    "backstory": "An Ame jonin from the Alliance villages across the eastern sea, Emi is the person other shinobi are relieved to see arrive. Nothing about her is flashy; troublemakers simply find themselves stuck in place until she decides what to do with them.",
+    "design": {
+      "build": "tall, lean and athletic",
+      "hairStyle": "long ponytail with soft bangs",
+      "hairColor": "medium brown",
+      "eyes": "warm brown",
+      "skin": "fair",
+      "features": "a calm, composed face"
+    },
+    "under": "sports",
+    "underColor": "grey",
+    "stats": {"beauty":60,"charm":56,"refinement":45,"stamina":65,"strength":50,"agility":55},
+    "tech": {"service":35,"dance":10,"bar":25,"combat":60,"manage":50},
+    "actSkill": 25,
+    "popularity": 8,
+    "lewd": 28,
+    "trust": 30,
+    "outfits": {
+      "sig_emi": {
+        "label": "Ame field uniform",
+        "style": "Sporty",
+        "prompt": "a fitted charcoal short field jacket, muted blue-gray scarf, dark shorts over leggings, utility belt and gloves",
+        "bonus": {"security":1.3,"adventurer":1.15}
+      },
+      "sp_emi": {"label":"Off-duty wrap dress","style":"Cute","prompt":"a soft blue-gray knit wrap dress","bonus":{"companion":1.15,"commoner":1.15}}
+    },
+    "bonds": {
+      "hibiki": {"v":60,"kind":"comrades","note":"Squadmates since the Exam."},
+      "yori": {"v":25,"note":"Both from Ame. Emi is the only one who never loses track of her."}
+    }
+  },
+  "hibiki": {
+    "role": "drifter",
+    "job": "dancer",
+    "name": "Hibiki Hirano",
+    "race": "demon",
+    "age": 121,
+    "personality": "Cheerful and teasing",
+    "traits": ["Exhibitionist","Night Owl"],
+    "style": "Exotic",
+    "favColor": "plum",
+    "fav": "oral",
+    "dislike": "doggy",
+    "lovers": "cowgirl",
+    "backstory": "A bat-winged sound demon from the Sound village of the Alliance villages across the eastern sea who plays a chakra guitar strung with green light. Bubbly, theatrical and very happy to be stared at, she has turned the house stage into a nightly vampire-rock concert.",
+    "design": {
+      "build": "petite and very slender with long legs",
+      "hairStyle": "calf-length, thick and layered with bat-wing hair ornaments",
+      "hairColor": "dark plum with wine-red highlights",
+      "eyes": "vivid red-violet",
+      "skin": "fair",
+      "features": "a delicate refined face and silver filigree jewelry"
+    },
+    "under": "lace",
+    "underColor": "black",
+    "stats": {"beauty":68,"charm":66,"refinement":40,"stamina":50,"strength":20,"agility":65},
+    "tech": {"service":35,"dance":70,"bar":15,"combat":50,"manage":10},
+    "actSkill": 40,
+    "popularity": 25,
+    "lewd": 50,
+    "trust": 26,
+    "outfits": {
+      "sig_hibiki": {
+        "label": "Vampire-rockstar outfit",
+        "style": "Exotic",
+        "prompt": "a black, deep-plum and silver gothic outfit with an ornate choker, a narrow open front, detached sleeves, very short fitted bottoms under asymmetric skirt fragments and long split coat panels, tall gothic boots, a bat-winged electric guitar with glowing green strings",
+        "bonus": {"dancer":1.3,"commoner":1.15}
+      },
+      "sp_hibiki": {
+        "label": "Encore gown",
+        "style": "Elegant",
+        "prompt": "a backless black and plum gown with a bat-wing cape and red gemstone jewelry",
+        "bonus": {"noble":1.2,"courtesan":1.15}
+      }
+    },
+    "bonds": {"emi":{"v":60,"kind":"comrades","note":"Squadmates since the Exam."}}
+  },
+  "choko": {
+    "role": "drifter",
+    "job": "bartender",
+    "name": "Choko Tsu",
+    "race": "dwarf",
+    "age": 56,
+    "personality": "Hot-blooded and competitive",
+    "traits": ["Party Animal","Tough"],
+    "style": "Sporty",
+    "favColor": "rust",
+    "fav": "cowgirl",
+    "dislike": "caress",
+    "lovers": "missionary",
+    "backstory": "A dwarven sealing engineer from the Stone village of the Alliance villages across the eastern sea. Choko can lay a barrier in a heartbeat and has absolutely set the bar on fire twice. The flaming cocktails are now a house specialty.",
+    "design": {
+      "build": "very short and compact with a strong curvy build",
+      "hairStyle": "messy bun with abundant flyaways",
+      "hairColor": "blonde",
+      "eyes": "warm amber-brown",
+      "skin": "light tan",
+      "features": "ink seal arrays on her forearms and a cheerful soot smudge"
+    },
+    "under": "sports",
+    "underColor": "red",
+    "stats": {"beauty":60,"charm":60,"refinement":20,"stamina":70,"strength":60,"agility":55},
+    "tech": {"service":20,"dance":30,"bar":55,"combat":60,"manage":20},
+    "actSkill": 30,
+    "popularity": 16,
+    "lewd": 46,
+    "trust": 28,
+    "outfits": {
+      "sig_choko": {
+        "label": "Sealing engineer's gear",
+        "style": "Sporty",
+        "prompt": "an open cropped charcoal-and-rust field jacket over a low-neck rust-red crop top, high-waisted dark shorts, gloves and boots",
+        "bonus": {"bartender":1.25,"adventurer":1.2}
+      },
+      "sp_choko": {
+        "label": "Stone festival qipao",
+        "style": "Exotic",
+        "prompt": "a rust-red qipao with black seal-script embroidery",
+        "bonus": {"companion":1.15,"merchant":1.2}
+      }
+    },
+    "bonds": {"maki":{"v":55,"note":"Close friends since the Exam."},"saya":{"v":45,"kind":"comrades","note":"Old squadmates."}}
+  },
+  "saya": {
+    "role": "drifter",
+    "job": "reception",
+    "name": "Saya Aburame",
+    "race": "human",
+    "age": 24,
+    "personality": "Bookish and curious",
+    "traits": ["Elegant","Loyal"],
+    "style": "Elegant",
+    "favColor": "white",
+    "fav": "manual",
+    "dislike": "oral",
+    "lovers": "missionary",
+    "backstory": "An information specialist of the Leaf from the Alliance villages across the eastern sea, Saya keeps colonies of tiny beetles that quietly tell her everything happening in the building. She is quiet until a subject interests her, and then she is not quiet at all.",
+    "design": {
+      "build": "tall and elegant",
+      "hairStyle": "very long, straight and loose",
+      "hairColor": "dark",
+      "eyes": "dark, behind a sleek smoky purple-grey visor",
+      "skin": "fair",
+      "features": "an exceptionally beautiful, composed face"
+    },
+    "under": "silk",
+    "underColor": "charcoal",
+    "stats": {"beauty":72,"charm":55,"refinement":62,"stamina":50,"strength":35,"agility":55},
+    "tech": {"service":35,"dance":15,"bar":20,"combat":55,"manage":60},
+    "actSkill": 30,
+    "popularity": 14,
+    "lewd": 30,
+    "trust": 24,
+    "outfits": {
+      "sig_saya": {
+        "label": "Information commander",
+        "style": "Elegant",
+        "prompt": "a long fitted white field jacket worn open over a charcoal-black top with abstract web-like seams and mesh panels, fitted dark trousers, a smoky semi-translucent visor",
+        "bonus": {"reception":1.3,"merchant":1.15}
+      },
+      "sp_saya": {
+        "label": "Off-duty knit",
+        "style": "Elegant",
+        "prompt": "a long white knit dress with her visor pushed up into her hair",
+        "bonus": {"companion":1.15,"noble":1.15}
+      }
+    },
+    "bonds": {
+      "yukine": {"v":75,"note":"Best friends. Neither of them would ever say it out loud."},
+      "choko": {"v":45,"kind":"comrades","note":"Old squadmates."},
+      "nozomi": {"v":-20,"note":"Saya turned her away once and still is not sure she was wrong."}
+    }
+  },
+  "juju": {
+    "role": "drifter",
+    "job": "bath",
+    "name": "Juju",
+    "race": "human",
+    "age": 23,
+    "personality": "Cheerful and teasing",
+    "traits": ["Eager","Ambitious"],
+    "style": "Cute",
+    "favColor": "dark red",
+    "fav": "manual",
+    "dislike": "missionary",
+    "lovers": "cowgirl",
+    "backstory": "Heir to a toolsmith dynasty from the Leaf of the Alliance villages across the eastern sea. Juju can make any gadget sing, and she has already rebuilt the bathhouse boilers, pumps and steam vents. She thinks she's easy to get along with. Everyone else thinks she's a lot.",
+    "design": {
+      "build": "slender and athletic",
+      "hairStyle": "long twin tails beneath two round buns",
+      "hairColor": "chestnut brown",
+      "eyes": "brown",
+      "skin": "light warm",
+      "features": "integrated black forearm interfaces"
+    },
+    "under": "sports",
+    "underColor": "red",
+    "stats": {"beauty":64,"charm":58,"refinement":40,"stamina":55,"strength":30,"agility":60},
+    "tech": {"service":45,"dance":25,"bar":30,"combat":45,"manage":30},
+    "actSkill": 30,
+    "popularity": 14,
+    "lewd": 36,
+    "trust": 30,
+    "outfits": {
+      "sig_juju": {
+        "label": "Juju Special",
+        "style": "Cute",
+        "prompt": "a sleek cream-white, dark-red and black high-collar martial-arts bodysuit with gold hardware, and a short segmented mechanical tool-skirt of armored panels around her hips",
+        "bonus": {"bath":1.25,"merchant":1.15}
+      },
+      "sp_juju": {
+        "label": "Workshop cheongsam",
+        "style": "Exotic",
+        "prompt": "a cream and dark-red cheongsam with gold buttons and a tool belt",
+        "bonus": {"companion":1.15,"commoner":1.15}
+      }
+    },
+    "bonds": {
+      "hana": {"v":65,"note":"An intense friendship that started the moment they met."},
+      "saki": {"v":40,"note":"Friends who nearly broke over a prosthetic, and mended it."},
+      "nami": {"v":35,"kind":"comrades","note":"Old squadmates."}
+    }
+  },
+  "nami": {
+    "role": "drifter",
+    "job": "courtesan",
+    "name": "Nami Kazama",
+    "race": "human",
+    "age": 24,
+    "personality": "Laid-back and lazy",
+    "traits": ["Lazy","Eager"],
+    "style": "Exotic",
+    "favColor": "copper",
+    "fav": "cowgirl",
+    "dislike": "missionary",
+    "lovers": "oral",
+    "backstory": "A Sand village wind specialist from the Alliance villages across the eastern sea who can spend six hours perfecting a breeze and forget an appointment entirely. Nami is relaxed about attraction, allergic to defining her type, and refuses to tie back her hair.",
+    "design": {
+      "build": "tall and athletic",
+      "hairStyle": "extremely long, loose past the waist",
+      "hairColor": "copper red",
+      "eyes": "amber-brown",
+      "skin": "sandy tan",
+      "features": "a pair of folding metal fans"
+    },
+    "under": "none",
+    "underColor": "none",
+    "stats": {"beauty":70,"charm":58,"refinement":40,"stamina":60,"strength":35,"agility":65},
+    "tech": {"service":30,"dance":55,"bar":15,"combat":55,"manage":10},
+    "actSkill": 45,
+    "popularity": 20,
+    "lewd": 62,
+    "trust": 22,
+    "outfits": {
+      "sig_nami": {
+        "label": "Desert breeze layers",
+        "style": "Exotic",
+        "prompt": "an elegant pale sand and cream desert outfit of many overlapping long split panels, wraps, scarves and sashes with yellow-gold and muted-green accents",
+        "bonus": {"courtesan":1.25,"adventurer":1.1}
+      },
+      "sp_nami": {
+        "label": "Gold silk wrap",
+        "style": "Elegant",
+        "prompt": "a flowing pale gold silk wrap dress that moves with every breeze",
+        "bonus": {"noble":1.2,"companion":1.15}
+      }
+    },
+    "bonds": {"juju":{"v":35,"kind":"comrades","note":"Old squadmates."}}
+  },
+  "maki": {
+    "role": "drifter",
+    "job": "companion",
+    "name": "Maki Terumi",
+    "race": "human",
+    "age": 24,
+    "personality": "Calm and elegant",
+    "traits": ["Elegant","Romantic"],
+    "style": "Elegant",
+    "favColor": "navy",
+    "fav": "paizuri",
+    "dislike": "doggy",
+    "lovers": "missionary",
+    "backstory": "A Lava Release heir from the Mist of the Alliance villages across the eastern sea, Maki retired from field work and approaches life like an optimization problem: improve presentation, identify prospects, avoid wasted effort. She's learning that a résumé can't tell her whom she'll fall for.",
+    "design": {
+      "build": "slightly tall and curvy with a defined waist",
+      "hairStyle": "long, loose and beautifully styled",
+      "hairColor": "blonde",
+      "eyes": "grey-blue",
+      "skin": "light",
+      "features": "light, polished makeup"
+    },
+    "under": "silk",
+    "underColor": "navy",
+    "stats": {"beauty":72,"charm":68,"refinement":62,"stamina":50,"strength":35,"agility":45},
+    "tech": {"service":45,"dance":30,"bar":30,"combat":40,"manage":45},
+    "actSkill": 35,
+    "popularity": 20,
+    "lewd": 40,
+    "trust": 24,
+    "outfits": {
+      "sig_maki": {
+        "label": "Navy evening dress",
+        "style": "Elegant",
+        "prompt": "a fitted deep-navy dress with a plunging neckline, defined waist and high leg slit, understated jewelry",
+        "bonus": {"companion":1.25,"noble":1.2}
+      },
+      "sp_maki": {
+        "label": "Black satin cocktail dress",
+        "style": "Elegant",
+        "prompt": "a fitted black satin cocktail dress with silver jewelry",
+        "bonus": {"courtesan":1.15,"merchant":1.2}
+      }
+    },
+    "bonds": {
+      "mei": {"v":40,"note":"A distant Terumi cousin. Mei keeps offering marriage advice and Maki keeps taking notes."},
+      "choko": {"v":55,"note":"Close friends since the Exam."}
+    }
+  },
+  "saki": {
+    "role": "drifter",
+    "job": "dancer",
+    "name": "Saki Ito",
+    "race": "human",
+    "age": 23,
+    "personality": "Cheerful and teasing",
+    "traits": ["Tough","Night Owl"],
+    "style": "Sporty",
+    "favColor": "purple",
+    "fav": "manual",
+    "dislike": "paizuri",
+    "lovers": "caress",
+    "backstory": "A Sand village puppeteer from the Alliance villages across the eastern sea. Her right arm is a handcrafted prosthetic she controls with chakra, and she uses it to run marionette shows that leave the audience slack-jawed. She's sharper than she used to be, but very much alive.",
+    "design": {
+      "build": "short and wiry",
+      "hairStyle": "neat shoulder-length shag",
+      "hairColor": "vivid red",
+      "eyes": "amber-brown",
+      "skin": "light",
+      "features": "bold dark-purple geometric face paint and a cybernetic right forearm and hand with wood-and-metal puppet-craft joints"
+    },
+    "under": "sports",
+    "underColor": "purple",
+    "stats": {"beauty":58,"charm":58,"refinement":30,"stamina":55,"strength":40,"agility":60},
+    "tech": {"service":30,"dance":50,"bar":30,"combat":50,"manage":20},
+    "actSkill": 35,
+    "popularity": 15,
+    "lewd": 32,
+    "trust": 26,
+    "outfits": {
+      "sig_saki": {
+        "label": "Puppeteer's rig",
+        "style": "Sporty",
+        "prompt": "an open sleeveless black-charcoal mechanic vest over a fitted top, a long traditional split overskirt with dusty purple and pink cords, two small puppets on her belt",
+        "bonus": {"dancer":1.25,"commoner":1.15}
+      },
+      "sp_saki": {
+        "label": "Puppet-theater coat",
+        "style": "Exotic",
+        "prompt": "a purple and pink stage coat with marionette strings looped at the cuffs",
+        "bonus": {"merchant":1.15,"noble":1.15}
+      }
+    },
+    "bonds": {"juju":{"v":40,"note":"Friends who nearly broke over a prosthetic, and mended it."}}
+  },
+  "yori": {
+    "role": "drifter",
+    "job": "maid",
+    "name": "Yori Urahara",
+    "race": "human",
+    "age": 24,
+    "personality": "Mysterious and aloof",
+    "traits": ["Shy","Modest"],
+    "style": "Elegant",
+    "favColor": "charcoal",
+    "fav": "caress",
+    "dislike": "cowgirl",
+    "lovers": "missionary",
+    "backstory": "A rain-village illusionist from the Alliance villages across the eastern sea who works very hard at being overlooked. Clients forget she was ever in the room. The staff mostly do too, which is how she likes it. She still wears three small keepsakes in plain view.",
+    "design": {
+      "build": "average height, curvy beneath loose layers",
+      "hairStyle": "extremely long, mostly hidden under a hood",
+      "hairColor": "blue-purple",
+      "eyes": "striking grey",
+      "skin": "light",
+      "features": "a pale-jade disc pendant, a gold sun-engraved bangle and a plain dark-silver ring"
+    },
+    "under": "plain",
+    "underColor": "black",
+    "stats": {"beauty":70,"charm":45,"refinement":55,"stamina":50,"strength":30,"agility":60},
+    "tech": {"service":45,"dance":20,"bar":15,"combat":55,"manage":20},
+    "actSkill": 50,
+    "popularity": 5,
+    "lewd": 26,
+    "trust": 18,
+    "outfits": {
+      "sig_yori": {
+        "label": "Rain cloak",
+        "style": "Elegant",
+        "prompt": "a heavy ankle-length charcoal-blue rain cloak with the hood up, a very high collar and a plain cloth mask over her nose and mouth",
+        "bonus": {"maid":1.25,"adventurer":1.15}
+      },
+      "sp_yori": {
+        "label": "Unhooded",
+        "style": "Elegant",
+        "prompt": "a fitted dark blue-purple dress with her very long hair finally loose",
+        "bonus": {"noble":1.25,"companion":1.15}
+      }
+    },
+    "bonds": {"emi":{"v":25,"note":"Both from Ame."}}
+  },
+  "nozomi": {
+    "role": "drifter",
+    "job": "companion",
+    "name": "Nozomi Hoshino",
+    "race": "human",
+    "age": 25,
+    "personality": "Shy but earnest",
+    "traits": ["Romantic","Loyal"],
+    "style": "Cute",
+    "favColor": "green",
+    "fav": "missionary",
+    "dislike": "doggy",
+    "lovers": "caress",
+    "backstory": "A former sleeper agent from a small border state of the Alliance villages across the eastern sea, Nozomi falls hard for people after one kind gesture and knows it, so she keeps everyone at arm's length. She left the cause she was planted for. She's trying very hard not to fall for Sam and losing.",
+    "design": {
+      "build": "slender",
+      "hairStyle": "shoulder-length, half tied",
+      "hairColor": "chestnut",
+      "eyes": "soft brown-hazel",
+      "skin": "light-to-medium warm",
+      "features": "approachable girl-next-door prettiness"
+    },
+    "under": "plain",
+    "underColor": "cream",
+    "stats": {"beauty":64,"charm":62,"refinement":45,"stamina":50,"strength":30,"agility":50},
+    "tech": {"service":45,"dance":20,"bar":20,"combat":40,"manage":25},
+    "actSkill": 45,
+    "popularity": 10,
+    "lewd": 24,
+    "trust": 26,
+    "outfits": {
+      "sig_nozomi": {
+        "label": "Soft layers",
+        "style": "Cute",
+        "prompt": "a cream blouse and muted-green layered skirt with light practical gear",
+        "bonus": {"companion":1.25,"commoner":1.2}
+      },
+      "sp_nozomi": {"label":"Sundress","style":"Cute","prompt":"a pale green sundress with a cream cardigan","bonus":{"merchant":1.15,"noble":1.1}}
+    },
+    "bonds": {"yukine":{"v":30,"note":"Trust earned slowly, one mission at a time."},"saya":{"v":-20,"note":"Saya turned her away once."}}
+  },
+  "yukine": {
+    "role": "drifter",
+    "job": "madame",
+    "name": "Yukine Kitahashi",
+    "race": "elf",
+    "age": 112,
+    "personality": "Proud and sharp-tongued",
+    "traits": ["Elegant","Ambitious"],
+    "style": "Elegant",
+    "favColor": "ice blue",
+    "fav": "manual",
+    "dislike": "caress",
+    "lovers": "missionary",
+    "backstory": "Heir to an ice-wielding elven clan of the Snow country, Yukine led her people out when their home fell, and nobody has been able to tell her what to do since. Dry, sarcastic and quietly menacing, she runs a floor like an Ice Princess who is unquestionably in control.",
+    "design": {
+      "build": "tall, long-limbed and very slim",
+      "hairStyle": "extremely long thin low ponytail with a dusty-pink ribbon",
+      "hairColor": "near-black",
+      "eyes": "pale blue-grey",
+      "skin": "pale cool",
+      "features": "a delicate, slightly androgynous face"
+    },
+    "under": "silk",
+    "underColor": "white",
+    "stats": {"beauty":72,"charm":55,"refinement":66,"stamina":50,"strength":30,"agility":55},
+    "tech": {"service":30,"dance":35,"bar":20,"combat":60,"manage":60},
+    "actSkill": 35,
+    "popularity": 16,
+    "lewd": 28,
+    "trust": 20,
+    "outfits": {
+      "sig_yukine": {
+        "label": "Ice Princess",
+        "style": "Elegant",
+        "prompt": "a fitted sleeveless white, silver and ice-blue kimono-inspired tunic with a high collar, detached sleeves, short front over fitted shorts, tall white-and-black boots and floor-length split rear skirt panels with sakura blossoms at the hems",
+        "bonus": {"madame":1.3,"noble":1.15}
+      },
+      "sp_yukine": {
+        "label": "Snow kimono",
+        "style": "Elegant",
+        "prompt": "a white silk kimono with snowflake and sakura patterns and a dusty-pink obi",
+        "bonus": {"noble":1.25,"companion":1.15}
+      }
+    },
+    "bonds": {
+      "saya": {"v":75,"note":"Best friends. Neither of them would ever say it out loud."},
+      "hana": {"v":50,"kind":"comrades","note":"Squadmates who started out butting heads."}
+    }
+  },
+  "hana": {
+    "role": "drifter",
+    "job": "security",
+    "name": "Hana Sarutobi",
+    "race": "beastkin",
+    "sub": "cheetah",
+    "age": 24,
+    "personality": "Hot-blooded and competitive",
+    "traits": ["Tough","Former Adventurer"],
+    "style": "Sporty",
+    "favColor": "red",
+    "fav": "doggy",
+    "dislike": "caress",
+    "lovers": "cowgirl",
+    "backstory": "A cheetah-eared lightning sprinter from the Cloud village of the Alliance villages across the eastern sea, Hana is genuinely in love with fighting and fastest in any room. A red ribbon tying her hair once belonged to a cousin she lost.",
+    "design": {
+      "build": "average height, sprinter-athletic with powerful legs",
+      "hairStyle": "sleek high ponytail tied with a red ribbon",
+      "hairColor": "deep warm red",
+      "eyes": "amber-brown",
+      "skin": "warm brown",
+      "features": "a confident, energetic grin"
+    },
+    "under": "sports",
+    "underColor": "black",
+    "stats": {"beauty":64,"charm":55,"refinement":30,"stamina":75,"strength":55,"agility":80},
+    "tech": {"service":20,"dance":35,"bar":15,"combat":70,"manage":15},
+    "actSkill": 20,
+    "popularity": 15,
+    "lewd": 40,
+    "trust": 24,
+    "outfits": {
+      "sig_hana": {
+        "label": "Lightning gear",
+        "style": "Sporty",
+        "prompt": "a streamlined charcoal-black sleeveless combat top, close short combat bottoms, a deep-red sash, slim gloves and low ninja shoes",
+        "bonus": {"security":1.3,"adventurer":1.2}
+      },
+      "sp_hana": {"label":"Red qipao","style":"Exotic","prompt":"a deep-red sleeveless qipao with a high slit","bonus":{"companion":1.15,"merchant":1.15}}
+    },
+    "bonds": {
+      "juju": {"v":65,"note":"An intense friendship that started the moment they met."},
+      "yukine": {"v":50,"kind":"comrades","note":"Squadmates who started out butting heads."}
+    }
+  },
+  "shiori": {
+    "role": "drifter",
+    "job": "reception",
+    "name": "Shiori Amakawa",
+    "race": "human",
+    "age": 39,
+    "personality": "Mysterious and aloof",
+    "traits": ["Former Adventurer","Loyal"],
+    "style": "Elegant",
+    "favColor": "silver",
+    "fav": "missionary",
+    "dislike": "cowgirl",
+    "lovers": "caress",
+    "backstory": "Once the lead exam proctor for the Alliance villages across the eastern sea and a meticulous contingency planner, Shiori lost her husband and her best friend in the same war. She took the job because she needed something to do with her hands. The first signs of her picking herself back up are starting to show.",
+    "design": {
+      "build": "lean and mature-athletic",
+      "hairStyle": "long and messy, with heavy bangs over her left eye",
+      "hairColor": "silver-white",
+      "eyes": "blue-grey",
+      "skin": "pale",
+      "features": "a stern, cool face"
+    },
+    "under": "plain",
+    "underColor": "black",
+    "stats": {"beauty":64,"charm":45,"refinement":55,"stamina":55,"strength":45,"agility":55},
+    "tech": {"service":25,"dance":10,"bar":30,"combat":65,"manage":65},
+    "actSkill": 25,
+    "popularity": 8,
+    "lewd": 22,
+    "trust": 16,
+    "outfits": {
+      "sig_shiori": {"label":"Unkempt","style":"Elegant","prompt":"a loose dark sweater over worn dark trousers","bonus":{"reception":1.2,"commoner":1.15}},
+      "sp_shiori": {
+        "label": "Proctor's uniform",
+        "style": "Elegant",
+        "prompt": "a dark high-collared jonin uniform with a harness of colored cartridges",
+        "bonus": {"reception":1.3,"security":1.15}
+      }
+    },
+    "bonds": {
+      "mio_tanabe": {"v":40,"kind":"mentor","note":"Shiori mentored her squad. She worries about her."},
+      "saya": {"v":30,"kind":"mentor","note":"Shiori mentored her squad for a rotation."}
+    }
+  },
+  "tsubasa": {
+    "role": "drifter",
+    "job": "bath",
+    "name": "Tsubasa Noda",
+    "race": "human",
+    "age": 34,
+    "personality": "Bookish and curious",
+    "traits": ["Eager","Loyal"],
+    "style": "Elegant",
+    "favColor": "brown",
+    "fav": "oral",
+    "dislike": "caress",
+    "lovers": "missionary",
+    "backstory": "A Leaf researcher and former exam instructor from the Alliance villages across the eastern sea, Tsubasa looks like a friendly teacher. Her combat specialty is horrifyingly sticky chakra-laced saliva. She is extremely hygienic and refuses to let embarrassment stop her from mastering a useful skill.",
+    "design": {
+      "build": "slender",
+      "hairStyle": "shoulder-length",
+      "hairColor": "brown",
+      "eyes": "warm brown",
+      "skin": "fair",
+      "features": "rectangular glasses and a gentle smile"
+    },
+    "under": "plain",
+    "underColor": "white",
+    "stats": {"beauty":60,"charm":60,"refinement":55,"stamina":55,"strength":30,"agility":40},
+    "tech": {"service":55,"dance":10,"bar":20,"combat":45,"manage":40},
+    "actSkill": 40,
+    "popularity": 10,
+    "lewd": 40,
+    "trust": 28,
+    "outfits": {
+      "sig_tsubasa": {
+        "label": "Instructor's fieldwear",
+        "style": "Elegant",
+        "prompt": "modern dark professional fieldwear with a clipboard",
+        "bonus": {"bath":1.2,"merchant":1.15}
+      },
+      "sp_tsubasa": {"label":"Lab coat","style":"Elegant","prompt":"a crisp white lab coat over a fitted dark dress","bonus":{"bath":1.25,"noble":1.1}}
+    },
+    "bonds": {"saya":{"v":-10,"note":"Her demonstration once cost Saya five places in the rankings. Saya hasn't forgotten."}}
   }
 }
