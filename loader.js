@@ -32,6 +32,7 @@
     'js/stories/ngplus-houses.js',
     'js/events/regulars.js',
     'js/events/bonds.js',
+    'js/events/firsts.js',
     'js/events/encounters.js',
     'js/events/random.js',
     'js/setup.js',
@@ -44,7 +45,7 @@
   ];
   window.HOLLOWMERE_FILES = FILES;
   // Editable data, loaded before any script runs. Each becomes window.PL_DATA['<name>'].
-  var DATA_FILES = ['balance', 'economy', 'services', 'personalities', 'people', 'wardrobe', 'characters', 'guests', 'arcs', 'regulars', 'bonds', 'scenes', 'dates', 'events', 'snippets', 'ai-prompts', 'flavor'];
+  var DATA_FILES = ['balance', 'economy', 'services', 'personalities', 'people', 'wardrobe', 'characters', 'guests', 'arcs', 'regulars', 'bonds', 'scenes', 'dates', 'events', 'snippets', 'ai-prompts', 'flavor', 'firsts'];
   window.HOLLOWMERE_DATA = DATA_FILES;
 
   var MARKUP = [

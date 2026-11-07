@@ -286,5 +286,43 @@
       "{name} slept in every day this week and regrets nothing.",
       "{name} spent her week off wandering the market and came back with snacks for everyone."
     ]
+  },
+  "private_act": {
+    "_note": "A line for the service itself, after an encounter's or a first's own opening. Keyed by service id (services.json).",
+    "caress": [
+      "It stays slow and unhurried: long kisses, wandering hands, and neither of them in any hurry to stop.",
+      "They lose an hour to kissing like teenagers and don't regret a minute of it."
+    ],
+    "manual": [
+      "Her hands are clever and very sure of themselves. Sam's are learning fast.",
+      "She keeps her eyes on his face the whole time, enjoying every reaction."
+    ],
+    "oral": [
+      "She takes her time with him, plainly enjoying how quickly he loses the ability to form sentences.",
+      "Sam ends up staring at the ceiling, trying to remember his own name."
+    ],
+    "paizuri": [
+      "She has an idea, and is extremely pleased with herself about it. Sam is in no position to argue.",
+      "She's smug about it afterward. She's earned it."
+    ],
+    "missionary": [
+      "Afterward they lie tangled together, her head on his chest, listening to the house go quiet.",
+      "It's tender and a little clumsy and exactly right."
+    ],
+    "cowgirl": [
+      "She takes charge from the first minute and keeps it, and looks thoroughly smug about it afterward.",
+      "She sets the pace. Sam is very happy to let her."
+    ],
+    "doggy": [
+      "The bed creaks, the headboard knocks, and somebody next door bangs on the wall. Neither of them stops.",
+      "By the end she's laughing into the pillow and Sam can't feel his legs."
+    ]
+  },
+  "sam_first": {
+    "_note": "Added when a lady is Sam's first, past kissing.",
+    "_default": [
+      "It becomes clear about four seconds in that Sam's previous-life experience in this department is exactly zero. {name} looks absolutely delighted about this.",
+      "Somewhere in the middle of it, Sam realizes this is his first time in two lives. {name} realizes it too, and is very, very kind about it."
+    ]
   }
 }

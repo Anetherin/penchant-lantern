@@ -1,0 +1,1312 @@
+{
+  "_readme": [
+    "Firsts with Sam: until a lady has crossed a line with Sam, private time with him only offers services up to that point (services.json → tier: 1 kissing & touching, 2 hands & mouth, 3 everything). Clients aren't affected.",
+    "stages: the three lines. label shows on her sheet; situation is passed to the AI writer for that first.",
+    "paces: trust she needs for stage 1/2/3, and gap = weeks between her firsts. pentTrust: how much less trust a lady at max lust needs (she pushes past her own pace). holdWeeks: how long she waits after Sam says 'not yet'.",
+    "chance: odds per week that a ready lady's first happens on its own (pent = she's at max lust; init = she makes the first move; week = everyone else). It can also happen at the end of a good date, or from 'Take the next step' on her sheet.",
+    "characters.<key>: pace (fast/normal/slow), path (the stages her firsts reach, in order: [1,2,3], [1,3], [2,3] or [3]), init (makes the move herself), events keyed by stage, and optionally pent keyed by stage for when she can't wait. Guests from guests.json can be added here too, by key.",
+    "Event: title, text (the setup), image {comp, setting, sam, pov, towel} (a picture for this moment), go / goRes (crossing the line; then the service's own line and her reaction follow), wait / waitRes (Sam says not yet), optional act (which service to show; must be at that stage), optional situation (AI prompt context). {name} = her name.",
+    "templates: for ladies without their own. Keys 1, 2, 3, jump (from nothing straight past a first kiss), and pent_<key> versions. Optional pers / traits / race lists narrow a variant to matching ladies (they're picked more often when they match).",
+    "roll: how pace / path / init are rolled for ladies without their own (generic ladies at random; guests seeded by key so they're the same every game). mods by trait or personality add weight.",
+    "relaxed: the bath / walk-in beats of partner stories once she and Sam have reached stage relaxedAt: no more embarrassment. Choices use the arc effect schema (t/m/l, res with {N})."
+  ],
+  "stages": {
+    "1": {"label":"First kiss","situation":"This is their very first kiss; it stays at kissing and touching."},
+    "2": {"label":"Going further","situation":"This is the first time they've gone further than kissing, though not all the way."},
+    "3": {"label":"First night","situation":"This is their first night together."}
+  },
+  "paces": {"fast":{"trust":[15,25,35],"gap":0},"normal":{"trust":[30,45,60],"gap":2},"slow":{"trust":[45,60,75],"gap":3}},
+  "pentTrust": 15,
+  "holdWeeks": 2,
+  "chance": {"pent":0.5,"init":0.55,"week":0.25},
+  "defaults": {
+    "go": "Go with it",
+    "wait": "\"Let's not rush this.\"",
+    "waitRes": "{name} nods. She doesn't seem upset. If anything, she looks like she's already planning the next time."
+  },
+  "relaxedAt": 2,
+  "relaxed": {
+    "shower": {
+      "text": [
+        "Sam opens the washroom door and finds {name} in the tub. She doesn't so much as reach for a towel. \"Close the door,\" she says. \"From the inside.\"",
+        "{name} is soaking in the bath when Sam walks in by mistake. She just smiles and shifts over to make room."
+      ],
+      "choices": [
+        {"label":"Join her","t":2,"m":8,"l":2,"res":"The water's perfect. {N} says so, several times."},
+        {"label":"Leave her to her bath","t":1,"m":3,"res":"\"Spoilsport,\" {N} calls after him, fondly."}
+      ]
+    },
+    "walkin": {
+      "text": [
+        "{name} walks into the washroom while Sam's in the tub, doesn't even pause, and sits on the edge with her feet in the water. \"Scoot over.\"",
+        "{name} wanders in while Sam's bathing, hands him a towel he didn't ask for, and stays to chat like it's the most natural thing in the world. For them, it is."
+      ],
+      "choices": [
+        {"label":"Scoot over","t":2,"m":8,"l":2,"res":"There isn't really room for two. They make it work."},
+        {"label":"\"Some privacy?\"","t":1,"m":2,"res":"{N} laughs, kisses the top of his head, and leaves him to it."}
+      ]
+    }
+  },
+  "roll": {
+    "pace": {"fast":1,"normal":2,"slow":1},
+    "path": {"3":0.6,"1,2,3":4,"1,3":2,"2,3":1},
+    "init": 0.2,
+    "mods": {
+      "Shy": {"pace":{"slow":2},"path":{"3":-0.6,"2,3":-0.5},"init":-0.15},
+      "Eager": {"pace":{"fast":2},"path":{"3":1,"1,3":1},"init":0.25},
+      "Exhibitionist": {"pace":{"fast":1},"init":0.1},
+      "Modest": {"pace":{"slow":1},"path":{"3":-0.5}},
+      "Romantic": {"pace":{"normal":1},"path":{"1,2,3":1}},
+      "Slow to Warm": {"pace":{"slow":2}},
+      "Insatiable": {"pace":{"fast":1},"path":{"3":1},"init":0.2},
+      "Bold and flirtatious": {"pace":{"fast":1},"path":{"1,3":1},"init":0.3},
+      "Hot-blooded and competitive": {"path":{"3":0.5,"1,3":1},"init":0.25},
+      "Shy but earnest": {"pace":{"slow":1},"init":-0.1},
+      "Calm and elegant": {"pace":{"slow":0.5},"path":{"1,2,3":1}},
+      "Proud and sharp-tongued": {"pace":{"slow":0.5},"init":0.1},
+      "Cheerful and teasing": {"pace":{"fast":0.5},"init":0.15},
+      "Laid-back and lazy": {"path":{"2,3":1},"init":0.05},
+      "Mysterious and aloof": {"path":{"3":0.5,"2,3":1}},
+      "Warm and motherly": {"path":{"1,2,3":1}},
+      "Bookish and curious": {"pace":{"slow":0.5},"path":{"1,2,3":1}}
+    }
+  },
+  "templates": {
+    "1": [
+      {
+        "title": "{name}: A Quiet Moment",
+        "text": "Sam walks {name} back to her room after a long shift. At her door she stops, turns, and just looks at him for a moment, like she's deciding something.",
+        "image": {
+          "comp": "standing at her bedroom door, turned toward him, looking up at him with a soft hesitant smile",
+          "setting": "lantern-lit upstairs hallway at night",
+          "sam": true
+        },
+        "go": "Kiss her",
+        "goRes": "She meets him halfway. It's brief, and then it isn't.",
+        "wait": "Say goodnight",
+        "waitRes": "{name} smiles, a little disappointed, a little relieved. \"Goodnight, Sam.\""
+      },
+      {
+        "title": "{name}: Under the Eaves",
+        "text": "A sudden downpour traps Sam and {name} under the eaves out back. She's laughing, soaked, shoulder to shoulder with him, and then she isn't laughing anymore.",
+        "image": {
+          "comp": "sheltering under wooden eaves in the rain beside him, soaked and laughing, leaning closer",
+          "setting": "back alley in heavy rain, lantern light, wet cobbles",
+          "sam": true
+        },
+        "go": "Close the distance",
+        "goRes": "The rain doesn't stop. They don't notice.",
+        "wait": "Make a run for the door",
+        "waitRes": "They sprint inside, dripping. {name} keeps glancing at him all evening."
+      },
+      {
+        "title": "{name}: Bold Move",
+        "text": "{name} plants herself in front of Sam in the hallway. \"I'm going to kiss you now,\" she announces. \"Objections?\"",
+        "image": {
+          "comp": "blocking a hallway with hands on her hips, confident flirtatious grin, leaning toward him",
+          "setting": "lantern-lit hallway of a pleasure house",
+          "sam": true
+        },
+        "go": "\"None.\"",
+        "goRes": "\"Good,\" she says, and does. Thoroughly.",
+        "wait": "\"One objection...\"",
+        "waitRes": "\"Overruled. Later.\" She winks and saunters off.",
+        "pers": ["Bold and flirtatious","Hot-blooded and competitive"]
+      },
+      {
+        "title": "{name}: Very Brave",
+        "text": "{name} has been hovering near Sam all evening. Finally she tugs his sleeve, closes her eyes, and goes up on her toes, shaking a little.",
+        "image": {
+          "comp": "on tiptoe with eyes squeezed shut, tugging his sleeve, deeply blushing, trembling slightly",
+          "setting": "quiet corner of a lantern-lit lounge",
+          "sam": true
+        },
+        "go": "Kiss her gently",
+        "goRes": "It's barely a kiss. She looks like she might float away.",
+        "wait": "Squeeze her hand instead",
+        "waitRes": "She opens her eyes, mortified, then relieved. \"...Thank you. Next time. Maybe.\"",
+        "pers": ["Shy but earnest","Bookish and curious"]
+      },
+      {
+        "title": "{name}: A Gift for You",
+        "text": "{name} hands Sam a small wrapped package. While he fumbles with the ribbon she leans in and kisses his cheek. Then, considering, not his cheek.",
+        "image": {"comp":"leaning in to kiss him as he unwraps a small gift, playful sly smile","setting":"cozy lounge, warm lantern light","sam":true},
+        "go": "Forget the gift",
+        "goRes": "The gift is a bookmark. He doesn't find out until much later.",
+        "wait": "\"I should open this.\"",
+        "waitRes": "\"Open it, then.\" She laughs and leaves him to it.",
+        "pers": ["Cheerful and teasing","Warm and motherly"]
+      },
+      {
+        "title": "{name}: Elegant Timing",
+        "text": "{name} chooses her moment carefully: a balcony, a view, the last light of evening. \"I prefer not to leave these things to chance,\" she says.",
+        "image": {
+          "comp": "on a balcony at sunset, turning toward him with calm poise, one hand on the railing",
+          "setting": "balcony overlooking a fantasy town at sunset",
+          "sam": true
+        },
+        "go": "Kiss her",
+        "goRes": "It's exactly as composed and lovely as she planned. Then less composed.",
+        "wait": "\"Perhaps not yet.\"",
+        "waitRes": "\"Of course.\" She inclines her head, entirely unruffled. \"There will be other sunsets.\"",
+        "pers": ["Calm and elegant","Mysterious and aloof","Proud and sharp-tongued"]
+      }
+    ],
+    "2": [
+      {
+        "title": "{name}: Further",
+        "text": "{name} pulls Sam into her room after a long day and closes the door. \"I've been thinking about more than kissing,\" she admits. \"A lot more.\"",
+        "image": {
+          "comp": "leaning back against a closed door in a dim bedroom, pulling him close by his hoodie, heated eyes",
+          "setting": "small cozy bedroom at night, one candle",
+          "sam": true
+        },
+        "go": "Let her show you",
+        "goRes": "She has, in fact, been thinking about it a lot.",
+        "wait": "\"Kissing is nice too...\"",
+        "waitRes": "\"It is.\" She kisses him once more, slowly. \"Next time, though.\""
+      },
+      {
+        "title": "{name}: Late Night",
+        "text": "Sam can't sleep. Neither can {name}, apparently; she's sitting on the end of his bed when he looks up. \"I had an idea,\" she says.",
+        "image": {
+          "comp": "sitting on the end of a bed in the dark, leaning toward him with a sly smile, candle beside her",
+          "setting": "his bedroom late at night, one candle",
+          "sam": true
+        },
+        "go": "\"Tell me.\"",
+        "goRes": "She doesn't tell him. She demonstrates.",
+        "wait": "\"Tomorrow's a big day.\"",
+        "waitRes": "\"Boring.\" She tucks the blanket around him and leaves him wide awake."
+      },
+      {
+        "title": "{name}: Curious",
+        "text": "{name} has questions. Very specific questions. She asks them in a rush, red to the ears, and then: \"Could you... show me?\"",
+        "image": {
+          "comp": "sitting on a bed hugging a pillow, red to the ears, curious earnest eyes on him",
+          "setting": "quiet bedroom, afternoon light through curtains",
+          "sam": true
+        },
+        "go": "Show her",
+        "goRes": "She's a very attentive student.",
+        "wait": "\"One question at a time.\"",
+        "waitRes": "\"Right. Yes.\" She buries her face in the pillow.",
+        "pers": ["Shy but earnest","Bookish and curious"]
+      },
+      {
+        "title": "{name}: Not Done Yet",
+        "text": "{name} stops Sam mid-kiss. \"I'm not done,\" she says, and pushes him back onto the sofa.",
+        "image": {
+          "comp": "pushing him back onto a lounge sofa, standing over him with a challenging grin",
+          "setting": "empty lounge after hours, low lanterns",
+          "sam": true
+        },
+        "go": "\"Then keep going.\"",
+        "goRes": "She keeps going.",
+        "wait": "\"Someone might come in.\"",
+        "waitRes": "\"Coward.\" She laughs and drags him upstairs instead... to say goodnight. Pointedly.",
+        "pers": ["Bold and flirtatious","Hot-blooded and competitive","Cheerful and teasing"]
+      }
+    ],
+    "3": [
+      {
+        "title": "{name}: Stay Tonight",
+        "text": "{name} is waiting in Sam's room when he comes up, lamp turned low. \"I don't want to say goodnight at the door again,\" she says. \"Stay with me tonight.\"",
+        "image": {
+          "comp": "sitting on the edge of a bed in lamplight, holding out a hand to him, soft determined smile",
+          "setting": "his bedroom at night, lamp turned low",
+          "sam": true
+        },
+        "go": "Stay",
+        "goRes": "The lamp burns down. Neither of them gets up to refill it.",
+        "wait": "\"Not yet.\"",
+        "waitRes": "{name} nods slowly. \"Okay. But I'm not going anywhere.\""
+      },
+      {
+        "title": "{name}: The Whole Night",
+        "text": "{name} takes Sam's hand and leads him upstairs without a word. At her door she finally looks back. \"I'm sure,\" she says, before he can ask.",
+        "image": {
+          "comp": "leading him by the hand up a narrow staircase, looking back over her shoulder, sure gentle smile",
+          "setting": "narrow lantern-lit staircase at night",
+          "sam": true
+        },
+        "go": "Follow her",
+        "goRes": "The door closes behind them.",
+        "wait": "\"Are you really sure?\"",
+        "waitRes": "\"I said so.\" She sighs, fond. \"Ask me again next week, then. I'll say the same thing.\""
+      },
+      {
+        "title": "{name}: Done Waiting",
+        "text": "{name} kicks Sam's door shut behind her. \"I've been patient,\" she says. \"I'm finished being patient.\"",
+        "image": {"comp":"kicking a bedroom door shut, pulling off her outer layer, fierce grin","setting":"his bedroom at night","sam":true},
+        "go": "\"So am I.\"",
+        "goRes": "Neither of them is patient about it.",
+        "wait": "\"Patience is a virtue!\"",
+        "waitRes": "\"So is honesty.\" She grins and leaves. \"Honestly, you'll regret that.\"",
+        "pers": ["Bold and flirtatious","Hot-blooded and competitive"]
+      },
+      {
+        "title": "{name}: Gently",
+        "text": "{name} is nervous and won't pretend she isn't. \"I want this,\" she says, holding both his hands. \"Just... gently. Okay?\"",
+        "image": {"comp":"holding both of his hands beside a candlelit bed, nervous brave expression","setting":"small candlelit bedroom","sam":true},
+        "go": "\"Gently.\"",
+        "goRes": "It is gentle. It's also wonderful, and afterward she won't stop smiling.",
+        "wait": "\"We have all the time in the world.\"",
+        "waitRes": "She lets out a long breath and laughs. \"Okay. Okay. Thank you.\"",
+        "pers": ["Shy but earnest","Warm and motherly","Bookish and curious"]
+      },
+      {
+        "title": "{name}: An Invitation",
+        "text": "A note under Sam's door, in elegant handwriting: \"My room. Midnight. Don't be late.\" When he arrives, {name} is waiting, perfectly composed, except for her eyes.",
+        "image": {
+          "comp": "standing by a candlelit window at midnight in an elegant robe, perfectly composed, looking at him with intent",
+          "setting": "elegant bedroom at midnight, candles",
+          "sam": true
+        },
+        "go": "Accept the invitation",
+        "goRes": "Her composure lasts about a minute. It's a very good minute.",
+        "wait": "\"I came to say not yet.\"",
+        "waitRes": "\"Then thank you for being punctual.\" A faint smile. \"Another midnight.\"",
+        "pers": ["Calm and elegant","Mysterious and aloof","Proud and sharp-tongued"]
+      }
+    ],
+    "jump": [
+      {
+        "title": "{name}: All at Once",
+        "text": "{name} kisses Sam for the first time in the hallway, and then again, and then she's pulling him toward her door. \"I don't want to do this in pieces,\" she says.",
+        "image": {
+          "comp": "pulling him toward her bedroom door by the hand, flushed, kissing him over her shoulder",
+          "setting": "lantern-lit upstairs hallway at night",
+          "sam": true
+        },
+        "go": "Don't do it in pieces",
+        "goRes": "One kiss turns into a great deal more than a kiss.",
+        "wait": "\"Let's take it slower.\"",
+        "waitRes": "{name} stops, catches her breath, and laughs. \"...Okay. Slower. Annoyingly.\""
+      },
+      {
+        "title": "{name}: No Half Measures",
+        "text": "\"I don't do things halfway,\" {name} says, closing Sam's door behind her. \"Never have.\"",
+        "image": {"comp":"leaning back against a closed door, confident heated gaze at him","setting":"his bedroom at night, one lamp","sam":true},
+        "go": "\"Neither do I.\"",
+        "goRes": "She was telling the truth.",
+        "wait": "\"Maybe start with a quarter way?\"",
+        "waitRes": "She laughs. \"Fine. A quarter. For now.\"",
+        "pers": ["Bold and flirtatious","Hot-blooded and competitive","Laid-back and lazy","Mysterious and aloof"]
+      },
+      {
+        "title": "{name}: Something Shifts",
+        "text": "Sam is helping {name} carry linens upstairs when she drops them all, takes his face in her hands, and kisses him. When she pulls back, she doesn't let go. \"Come with me,\" she whispers.",
+        "image": {
+          "comp": "holding his face in her hands in a hallway, fallen linens around their feet, breathless",
+          "setting": "upstairs hallway, scattered white linens, lantern light",
+          "sam": true
+        },
+        "go": "Go with her",
+        "goRes": "The linens stay on the floor until morning.",
+        "wait": "\"The linens...\"",
+        "waitRes": "\"Forget the linens.\" But she lets him go, laughing. \"Next time, forget them faster.\""
+      }
+    ],
+    "pent_1": [
+      {
+        "title": "{name} Can't Stand It",
+        "text": "{name} has been restless for days and she's done hiding it. She catches Sam in the stairwell, pins him to the wall with both hands, and kisses him before he can say a word.",
+        "image": {
+          "comp": "pinning him against a stairwell wall with both hands, flushed, restless heated eyes",
+          "setting": "narrow lantern-lit stairwell",
+          "sam": true
+        },
+        "go": "Kiss her back",
+        "goRes": "When she finally lets him go, they're both out of breath.",
+        "wait": "Ease her back gently",
+        "waitRes": "She groans and thumps her forehead against his shoulder. \"Sorry. It's been a week.\""
+      }
+    ],
+    "pent_2": [
+      {
+        "title": "{name} Has Waited Long Enough",
+        "text": "Kissing isn't cutting it anymore, and {name} says so, at length, while pulling Sam into the nearest empty room.",
+        "image": {
+          "comp": "pulling him into an empty room by his hoodie, impatient flushed grin",
+          "setting": "small empty guest room, afternoon light",
+          "sam": true
+        },
+        "go": "Go with it",
+        "goRes": "She's very clear about what she wants. Sam is happy to oblige.",
+        "wait": "\"Hold on—\"",
+        "waitRes": "She lets go with a frustrated sigh. \"Fine. But I'm not waiting forever.\""
+      }
+    ],
+    "pent_3": [
+      {
+        "title": "{name} Has Had Enough",
+        "text": "{name} shows up at Sam's door at midnight, restless and done pretending otherwise. \"I've been lying awake for a week,\" she says. \"Let me in.\"",
+        "image": {
+          "comp": "standing in a doorway at midnight in a loose nightgown, restless heated eyes, one hand on the frame",
+          "setting": "dark hallway at midnight, candlelight",
+          "sam": true
+        },
+        "go": "Let her in",
+        "goRes": "Neither of them sleeps much.",
+        "wait": "\"Tomorrow, I promise.\"",
+        "waitRes": "She exhales hard. \"Tomorrow. I'm holding you to it.\""
+      }
+    ],
+    "pent_jump": [
+      {
+        "title": "{name} Can't Wait",
+        "text": "{name} has been climbing the walls for days. Tonight she corners Sam, kisses him for the very first time, and doesn't stop at kissing.",
+        "image": {"comp":"cornering him against a wall, kissing him hungrily, flushed restless expression","setting":"dim corridor late at night","sam":true},
+        "go": "Don't stop her",
+        "goRes": "First kiss, and then everything else, in about that order.",
+        "wait": "\"Whoa, whoa, slow down—\"",
+        "waitRes": "She stops, breathing hard. \"...Sorry. I've been going crazy.\" She doesn't look very sorry."
+      }
+    ]
+  },
+  "characters": {
+    "mira": {
+      "pace": "normal",
+      "path": [1,2,3],
+      "init": false,
+      "events": {
+        "1": {
+          "title": "After Hours",
+          "text": "Mira locks up, pours two glasses of wine, and slides one across the bar. \"I kept this place running for a man who never once asked how I was,\" she says. \"You ask every day. It's a problem, Sam. I've grown far too fond of you.\" She doesn't look away.",
+          "image": {
+            "comp": "leaning across the bar counter toward him after closing, two glasses of wine between them, soft fond smile",
+            "setting": "empty lantern-lit lounge after hours, chairs on tables",
+            "sam": true
+          },
+          "go": "Kiss her",
+          "goRes": "It's warm and unhurried, like she's been patient a long time and doesn't mind being patient a little longer.",
+          "wait": "\"I don't want to rush you.\"",
+          "waitRes": "Mira laughs softly. \"Rush me? Sweetheart, I'm not the one blushing.\" She ruffles his hair on the way upstairs."
+        },
+        "2": {
+          "title": "Put the Ledger Down",
+          "text": "Sam is still at the books past midnight when Mira takes the quill out of his hand. \"You work too hard. Let someone take care of you for once.\" She sits on the edge of the desk and pulls him closer by the front of his hoodie.",
+          "image": {
+            "comp": "sitting on the edge of a cluttered desk, ledger pushed aside, pulling him closer by his hoodie, warm smile",
+            "setting": "small office at midnight, candlelight, stacks of ledgers",
+            "sam": true
+          },
+          "go": "Let her",
+          "goRes": "She's very good at taking care of people. Sam learns exactly how good.",
+          "wait": "\"The books won't do themselves...\"",
+          "waitRes": "\"They will tomorrow.\" She sighs, kisses his forehead, and leaves the candle burning for him anyway."
+        },
+        "3": {
+          "title": "The Lamp in Her Window",
+          "text": "Mira's door is open and her lamp is lit when Sam comes upstairs. She's waiting in her robe, hair down for once. \"I've decided, Sam. I'd like you to stay tonight. All night.\"",
+          "image": {
+            "comp": "standing beside a lamplit bed in a dressing robe, hair down, holding out her hand to him",
+            "setting": "warm private bedroom above the lounge, lamplight",
+            "sam": true
+          },
+          "go": "Stay",
+          "goRes": "She takes his hand, draws him inside, and shuts the door on the rest of the world.",
+          "wait": "\"Are you sure?\"",
+          "waitRes": "\"I'm sure. Are you?\" She smiles when he hesitates. \"Then take a week. The lamp will still be on.\""
+        }
+      }
+    },
+    "cecile": {
+      "pace": "slow",
+      "path": [1,2,3],
+      "init": false,
+      "events": {
+        "1": {
+          "title": "Nine-Seventeen",
+          "text": "For twelve years, tea at Castle Rosenhal has been served at nine-fifteen exactly. Tonight Cecile is two minutes late. \"I was deciding something,\" she says, sets down the tray, and kisses Sam with the same precision she brings to everything. Then she checks her pocket watch.",
+          "image": {
+            "comp": "standing very close to him in a castle corridor, a tea tray set aside, pocket watch in hand, faint blush",
+            "setting": "moonlit stone corridor of an old castle",
+            "sam": true
+          },
+          "go": "Kiss her again",
+          "goRes": "\"That,\" says Cecile, slightly out of breath, \"was not on the schedule.\" She does not seem to mind.",
+          "wait": "\"Cecile, are you all right?\"",
+          "waitRes": "\"Perfectly.\" She straightens her apron. \"Forgive the lapse. It will not happen again.\" It will. She clearly knows it."
+        },
+        "2": {
+          "title": "The Linen Room",
+          "text": "Cecile asks Sam to help her inspect the linens. She locks the door behind them. \"This is not on the schedule,\" she says, unpinning her cap. \"I am aware.\"",
+          "image": {
+            "comp": "unpinning her maid cap in a narrow linen room, back against shelves of folded sheets, looking at him through her lashes",
+            "setting": "narrow castle linen room, folded sheets, one candle",
+            "sam": true
+          },
+          "go": "Help with the inspection",
+          "goRes": "It's quiet and careful and very, very thorough. Cecile does nothing by halves.",
+          "wait": "\"...The linens look fine.\"",
+          "waitRes": "\"They do.\" She pins her cap back on, perfectly composed except for her ears. \"Another time, then.\""
+        },
+        "3": {
+          "title": "Turndown Service",
+          "text": "Cecile turns down Sam's bed every night at ten. Tonight she folds the corner of the blanket, smooths it, and doesn't leave. \"I have run this castle for three owners,\" she says. \"I would like, for once, to be off duty.\"",
+          "image": {
+            "comp": "standing beside a turned-down four-poster bed, untying her apron, composed but blushing",
+            "setting": "grand castle bedroom, firelight, heavy curtains",
+            "sam": true
+          },
+          "go": "\"Then be off duty.\"",
+          "goRes": "She folds the apron neatly over a chair. It's the last neat thing that happens all night.",
+          "wait": "\"You don't owe me anything.\"",
+          "waitRes": "\"I know.\" She smiles, very slightly. \"That's what makes it a choice. Good night, Sam.\""
+        }
+      }
+    },
+    "tsubaki": {
+      "pace": "fast",
+      "path": [1,3],
+      "init": true,
+      "events": {
+        "1": {
+          "title": "House Rules",
+          "text": "After closing, Tsubaki drags Sam out to the outdoor spring. \"House rule: last one in pays a forfeit.\" She's already in. \"The forfeit is a kiss. I made the rules, so no arguing.\"",
+          "image": {
+            "comp": "sitting at the edge of an outdoor hot spring at night, leaning toward him with a teasing grin, wet hair",
+            "setting": "outdoor rock hot spring at night, steam, paper lanterns",
+            "sam": true,
+            "towel": true
+          },
+          "go": "Pay the forfeit",
+          "goRes": "Tsubaki collects with interest, then splashes him and swims off laughing.",
+          "wait": "\"I'll pay it later.\"",
+          "waitRes": "\"Interest accrues daily!\" she calls after him, delighted."
+        },
+        "3": {
+          "title": "Late Soak",
+          "text": "The springs are closed for the night. Tsubaki is waiting in the steam with two cups of warm sake. \"Closed means mine,\" she says. \"And tonight, yours. Get in before I change my mind.\" She is not going to change her mind.",
+          "image": {
+            "comp": "lounging in a steaming outdoor spring holding two cups of sake, beckoning him in, playful heated smile",
+            "setting": "secluded rock hot spring at night, steam, moonlight, lanterns",
+            "sam": true,
+            "towel": true
+          },
+          "go": "Get in",
+          "goRes": "The sake gets cold. Nobody notices.",
+          "wait": "\"I should check the boilers.\"",
+          "waitRes": "Tsubaki laughs so hard she slips under. \"The boilers! Fine, boss. Next time I'm not asking.\""
+        }
+      }
+    },
+    "vesper": {
+      "pace": "normal",
+      "path": [1,3],
+      "init": true,
+      "events": {
+        "1": {
+          "title": "Three Hundred Years",
+          "text": "Vesper drifts through Sam's wall at midnight and hovers at the foot of his bed. \"I've decided to find out whether I can still be kissed,\" she announces. \"It's been three hundred years. Hold very still.\"",
+          "image": {
+            "comp": "translucent and faintly glowing, floating close to him, cupping his face in her hands",
+            "setting": "dark manor bedroom, moonlight, dust motes in the air",
+            "sam": true
+          },
+          "go": "Hold very still",
+          "goRes": "It's cold for a heartbeat, then it isn't. Vesper pulls back, wide-eyed. \"Oh,\" she says. \"Oh, I remember now.\"",
+          "wait": "\"Maybe check with someone less nervous?\"",
+          "waitRes": "\"You're the only one who doesn't scream.\" She sighs dramatically and sinks into the floor. \"I'll haunt you about it.\""
+        },
+        "3": {
+          "title": "Solid",
+          "text": "Full moon. Vesper is more solid tonight than Sam has ever seen her: warm hands, a heartbeat she swears she can feel. \"I don't know how long it lasts,\" she whispers. \"Let's not waste a minute of it.\"",
+          "image": {
+            "comp": "glowing softly in moonlight, solid and warm, pulling him toward a canopy bed by both hands",
+            "setting": "old manor bedroom under a full moon, curtains stirring",
+            "sam": true
+          },
+          "go": "Don't waste a minute",
+          "goRes": "They don't. At dawn she fades back to mist, smiling.",
+          "wait": "\"Are you sure it's safe?\"",
+          "waitRes": "\"I'm dead, Sam. Safe is relative.\" She sighs. \"There'll be other moons.\""
+        }
+      }
+    },
+    "hilde": {
+      "pace": "normal",
+      "path": [3],
+      "init": true,
+      "events": {
+        "3": {
+          "title": "A Wager",
+          "text": "Hilde slams two tankards on the bar after closing. \"Drinking contest. Loser does whatever the winner says.\" Sam loses so badly it becomes a local legend. Hilde, barely tipsy, grins at him. \"Upstairs, boss. That's what I say.\"",
+          "image": {
+            "comp": "slamming an empty tankard on the bar, flushed and grinning triumphantly at him",
+            "setting": "empty tavern bar after closing, tankards everywhere",
+            "sam": true
+          },
+          "go": "Pay up",
+          "goRes": "Hilde doesn't believe in doing anything halfway, and she has very clear ideas about what she won.",
+          "wait": "\"I demand a rematch.\"",
+          "waitRes": "She laughs so hard she nearly falls off her stool. \"Fine. Rematch next week. Train up, boss.\""
+        }
+      }
+    },
+    "sylphine": {
+      "pace": "normal",
+      "path": [1,2,3],
+      "init": false,
+      "events": {
+        "1": {
+          "title": "After the Encore",
+          "text": "After the last show, Sylphine pulls Sam up onto the empty stage. \"You're always watching from the back. Come learn a step.\" He is terrible. She doesn't let go of his hands, and the step ends a lot closer than it started.",
+          "image": {
+            "comp": "dancing with him on an empty stage, foreheads almost touching, hands joined",
+            "setting": "candlelit stage after the show, empty seats in shadow",
+            "sam": true
+          },
+          "go": "Kiss her",
+          "goRes": "Sylphine laughs against his mouth. \"Terrible footwork. Excellent finish.\"",
+          "wait": "Step back",
+          "waitRes": "\"Coward,\" she says fondly, and spins away into the wings."
+        },
+        "2": {
+          "title": "Rehearsal",
+          "text": "Sylphine books the stage for a private rehearsal. \"I'm choreographing something new. It needs a partner.\" She hands Sam a page of notes. Most of them aren't about dancing.",
+          "image": {
+            "comp": "barefoot on an empty stage in a loose rehearsal dress, holding out a page of notes to him with a sly smile",
+            "setting": "dim rehearsal stage, a single candle, curtains drawn",
+            "sam": true
+          },
+          "go": "Read the notes",
+          "goRes": "The rehearsal runs very late. Sylphine is extremely thorough about blocking.",
+          "wait": "\"I don't think I can dance that.\"",
+          "waitRes": "\"Nobody can, yet.\" She tucks the page into his pocket. \"Practice.\""
+        },
+        "3": {
+          "title": "The Finale",
+          "text": "\"Every piece needs a finale,\" Sylphine says, standing in Sam's doorway with her hair loose and her shoes in her hand. \"I've been writing ours for weeks.\"",
+          "image": {
+            "comp": "standing in a bedroom doorway with her hair loose and her dancing shoes in one hand, soft determined smile",
+            "setting": "his bedroom at night, moonlight through the window",
+            "sam": true
+          },
+          "go": "Let her in",
+          "goRes": "It's the best thing she's ever choreographed. She says so, several times.",
+          "wait": "\"I'm not ready for the finale.\"",
+          "waitRes": "\"Then we'll keep rehearsing.\" She kisses his cheek and pads off down the hall."
+        }
+      }
+    },
+    "zaria": {
+      "pace": "fast",
+      "path": [1,3],
+      "init": true,
+      "events": {
+        "1": {
+          "title": "Adorable",
+          "text": "Zaria perches on the edge of Sam's desk. \"You blush every time I walk past. It's adorable. Humans are adorable.\" She leans down. \"Let's see what you do if I do this.\"",
+          "image": {
+            "comp": "perched on the edge of a desk, leaning down toward him with an amused predatory smile",
+            "setting": "plush velvet office, red lamplight",
+            "sam": true
+          },
+          "go": "Find out",
+          "goRes": "What he does is turn very red, which Zaria considers a complete success.",
+          "wait": "\"I have a meeting!\"",
+          "waitRes": "\"You don't.\" She lets him go anyway, laughing. \"Run, little human. I'll catch you later.\""
+        },
+        "3": {
+          "title": "Owner's Privilege",
+          "text": "\"I've run this floor for longer than you've been alive,\" Zaria says, closing the door of the Veil's best room behind them. \"Tonight I'm giving myself the night off. And I'm spending it on you.\"",
+          "image": {
+            "comp": "leaning back against a closed door in a lavish room, looking him over with a slow confident smile",
+            "setting": "the Veil's finest suite, silk drapes, red candlelight",
+            "sam": true
+          },
+          "go": "\"Yes, ma'am.\"",
+          "goRes": "She does, in fact, know exactly what she's doing. Every bit of it.",
+          "wait": "\"Can I owe you?\"",
+          "waitRes": "\"Everyone owes me something.\" She opens the door with a sigh. \"I'll add it to your tab.\""
+        }
+      }
+    },
+    "bettina": {
+      "pace": "normal",
+      "path": [1,2,3],
+      "init": false,
+      "events": {
+        "1": {
+          "title": "Boots",
+          "text": "\"I can tell where a man's been by his boots,\" Bettina says, not looking up from the ledger. \"Yours have been pacing in front of my desk for a week.\" Then she looks up. \"Well? Come here.\"",
+          "image": {
+            "comp": "leaning across the reception counter toward him, ledger pushed aside, knowing warm smile",
+            "setting": "inn entrance hall at night, lantern-lit wooden counter",
+            "sam": true
+          },
+          "go": "Go to her",
+          "goRes": "She kisses him across the counter like she's been planning the angle for days. She has.",
+          "wait": "\"I was just checking the bookings.\"",
+          "waitRes": "\"Mm-hm.\" Bettina goes back to her ledger, smiling. \"Bookings are open whenever you are.\""
+        },
+        "2": {
+          "title": "Stocktake",
+          "text": "Bettina asks Sam to help count linens in the stockroom. She's already counted them. \"Business is good,\" she says, shutting the door. \"So I'm taking a bonus.\"",
+          "image": {
+            "comp": "leaning against stacked crates in a stockroom, holding a clipboard, crooking a finger at him",
+            "setting": "cramped inn stockroom, shelves of linens, one lantern",
+            "sam": true
+          },
+          "go": "Pay the bonus",
+          "goRes": "Bettina is very particular about getting full value.",
+          "wait": "\"Bonuses are quarterly.\"",
+          "waitRes": "\"Cheapskate.\" She swats him with the clipboard, grinning."
+        },
+        "3": {
+          "title": "Checked In",
+          "text": "Bettina slides a room key across the desk. \"Room six. I've already checked us in. Don't make me refund it.\"",
+          "image": {
+            "comp": "sliding a brass room key across a counter toward him, eyebrow raised, playful smile",
+            "setting": "inn reception desk late at night, a single lamp",
+            "sam": true
+          },
+          "go": "Take the key",
+          "goRes": "Room six has the best bed in the Wayfarer. Bettina picked it personally.",
+          "wait": "\"Can I get a rain check?\"",
+          "waitRes": "\"No refunds,\" she says, but she tucks the key into his pocket anyway. \"It'll keep.\""
+        }
+      }
+    },
+    "kaede": {
+      "pace": "fast",
+      "path": [1,3],
+      "init": true,
+      "events": {
+        "1": {
+          "title": "Patching Up",
+          "text": "Kaede comes back from sparring with split knuckles. While Sam bandages her hand, her tail curls around his arm. Halfway through, she grabs his collar and kisses him. \"Don't make it weird,\" she says, ears flat.",
+          "image": {
+            "comp": "leaning in to kiss him while he bandages her hand, fox tail curled around his arm, ears flattened shyly",
+            "setting": "kitchen at night, a first-aid kit open on the table",
+            "sam": true
+          },
+          "go": "Don't make it weird",
+          "goRes": "He doesn't. He kisses her back, and her tail goes completely puffy.",
+          "wait": "\"...Kaede?\"",
+          "waitRes": "\"Forget it. Heat of battle.\" She's out the door before he can finish, tail lashing."
+        },
+        "3": {
+          "title": "No More Waiting",
+          "text": "Kaede climbs in through Sam's window at midnight. \"Adventurer rule,\" she says, kicking off her boots. \"If you want something, you clear the dungeon before someone else does.\"",
+          "image": {
+            "comp": "climbing in through a moonlit window, kicking off her boots, determined grin, ears perked",
+            "setting": "his bedroom at midnight, window open, moonlight",
+            "sam": true
+          },
+          "go": "\"Then clear it.\"",
+          "goRes": "She does. Thoroughly. With the same focus she brings to a boss fight.",
+          "wait": "\"That's what doors are for.\"",
+          "waitRes": "\"Doors are for people who knock.\" She climbs back out, grinning. \"Next time I'm not leaving.\""
+        }
+      }
+    },
+    "yui": {
+      "pace": "slow",
+      "path": [1,2,3],
+      "init": false,
+      "events": {
+        "1": {
+          "title": "Overtime",
+          "text": "It's late, the office is quiet, and Yui is holding a ledger to her chest like a shield. \"Back home, every time you covered my shift, I wanted to say something,\" she says. \"I never did. That was the first life.\"",
+          "image": {
+            "comp": "standing close to him in a small office at night, holding a ledger to her chest, nervously looking up at him",
+            "setting": "lamplit office, papers everywhere, late night",
+            "sam": true
+          },
+          "go": "Kiss her",
+          "goRes": "The ledger hits the floor. Neither of them picks it up for a while.",
+          "wait": "\"Yui, you don't have to...\"",
+          "waitRes": "\"I know.\" She smiles shakily. \"Maybe in a few more weeks I'll be brave enough to do it anyway.\""
+        },
+        "2": {
+          "title": "Second Life Rules",
+          "text": "Yui has written a list. It's titled SECOND LIFE RULES. Rule one is \"Say what you want.\" She hands it to Sam and stares fixedly at the wall while he reads rule two.",
+          "image": {
+            "comp": "sitting on the edge of a bed, staring at the wall with burning cheeks while he reads a handwritten list",
+            "setting": "small bedroom at night, a single candle",
+            "sam": true
+          },
+          "go": "Follow rule two",
+          "goRes": "It turns out to be a very good rule.",
+          "wait": "\"Maybe rule two can wait.\"",
+          "waitRes": "\"Right. Yes. Good.\" She takes the list back and adds a footnote. \"Pending.\""
+        },
+        "3": {
+          "title": "No Last Train",
+          "text": "\"In Tokyo I always had to catch the last train,\" Yui says at Sam's door. \"Every single night, I left.\" She takes a breath. \"There's no last train here.\"",
+          "image": {
+            "comp": "standing in a bedroom doorway at night, holding the door frame, shy brave smile",
+            "setting": "his bedroom at night, warm lamplight",
+            "sam": true
+          },
+          "go": "\"Then stay.\"",
+          "goRes": "She stays. In the morning she's still there, which is the whole point.",
+          "wait": "\"There will be other nights.\"",
+          "waitRes": "\"Yeah.\" She laughs a little. \"I'm getting good at not running for the train.\""
+        }
+      }
+    },
+    "nerys": {
+      "pace": "fast",
+      "path": [3],
+      "init": true,
+      "events": {
+        "3": {
+          "title": "Contract Terms",
+          "text": "Nerys sits on Sam's desk with the glowing contract unrolled across her lap. \"Clause forty-one,\" she reads. \"The bound party is entitled to reasonable sustenance.\" She looks at him over the scroll. \"I have been extremely, unreasonably patient.\"",
+          "image": {
+            "comp": "sitting on a desk with crossed legs, holding a glowing contract scroll, smirking down at him, bat wings spread",
+            "setting": "his study at night, candlelight, a magic circle glowing on the floor",
+            "sam": true
+          },
+          "go": "Read clause forty-two",
+          "goRes": "There is no clause forty-two. Nerys makes one up on the spot and then demonstrates it, in detail.",
+          "wait": "\"I'm still reading the fine print.\"",
+          "waitRes": "Nerys groans and flops backward across the desk. \"Humans. Fine. But I'm billing you for the wait.\""
+        }
+      }
+    },
+    "elowen": {
+      "pace": "slow",
+      "path": [1,2,3],
+      "init": false,
+      "events": {
+        "1": {
+          "title": "Check-Up",
+          "text": "Elowen insists on checking Sam's heartbeat. She presses her ear to his chest and goes very quiet. \"It's fast,\" she reports. Then, smaller: \"Mine is too.\" She kisses him so quickly he almost misses it, and hides her face in his shirt.",
+          "image": {
+            "comp": "leaning her ear against his chest, eyes closed, deeply blushing, healer's satchel on her shoulder",
+            "setting": "small infirmary room with herbs drying from the rafters",
+            "sam": true
+          },
+          "go": "Hold her",
+          "goRes": "He doesn't let go, and after a while she stops hiding.",
+          "wait": "\"Doctor, is it serious?\"",
+          "waitRes": "She makes a tiny strangled noise and flees to the herb garden. She's smiling, though."
+        },
+        "2": {
+          "title": "Bedside Manner",
+          "text": "Elowen has been reading. \"Human medical texts,\" she says, stacking them very neatly on Sam's desk, \"are quite detailed about... certain things. I'd like to check my understanding.\" Her ears are crimson.",
+          "image": {
+            "comp": "stacking medical books on a desk, crimson pointed ears, looking at him with nervous determination",
+            "setting": "small study lit by a candle, books and dried herbs",
+            "sam": true
+          },
+          "go": "Help her study",
+          "goRes": "She's a very diligent student, and she takes notes afterward. Sam finds this deeply familiar.",
+          "wait": "\"Maybe one chapter at a time.\"",
+          "waitRes": "\"Yes. Good. Methodical.\" She hugs the books to her chest and nods very fast."
+        },
+        "3": {
+          "title": "Starlight",
+          "text": "On the hill outside town, under the constellations of her homeland, Elowen spreads a blanket and takes Sam's hand. \"Elves wait a very long time for things,\" she says quietly. \"I'm finished waiting.\"",
+          "image": {
+            "comp": "sitting on a blanket under a sky full of stars, holding his hand, shy hopeful smile",
+            "setting": "grassy hilltop at night, sweeping starry sky, town lights far below",
+            "sam": true
+          },
+          "go": "Stay under the stars",
+          "goRes": "She names every star afterward, one by one, curled against him.",
+          "wait": "\"Let's not rush.\"",
+          "waitRes": "\"We won't.\" She leans her head on his shoulder. \"Elves are very good at not rushing.\""
+        }
+      }
+    },
+    "adelheid": {
+      "pace": "slow",
+      "path": [1,2,3],
+      "init": false,
+      "events": {
+        "1": {
+          "title": "Chapter Twelve",
+          "text": "Adelheid reads Sam a chapter of her romance novel aloud, \"for literary critique.\" In chapter twelve the knight kisses her lord. Adelheid stops reading, closes the book, and does it. Then she stands to attention, scarlet.",
+          "image": {
+            "comp": "standing stiffly in armor holding a closed romance novel, cheeks scarlet, kissing him with her eyes squeezed shut",
+            "setting": "spartan barracks room, a candle, a stack of romance novels",
+            "sam": true
+          },
+          "go": "Kiss her back",
+          "goRes": "\"That,\" she says hoarsely, \"was a dramatic reading.\" She does not let go of his hand.",
+          "wait": "\"Was that in the book?\"",
+          "waitRes": "\"It was IMPLIED.\" She marches out. The book stays behind, bookmarked."
+        },
+        "2": {
+          "title": "Chapter Twenty",
+          "text": "There's a new bookmark in the novel on Sam's pillow, at chapter twenty. A note in Adelheid's stiff handwriting: \"For critique. I await your report.\" She is standing outside his door. In armor. At attention.",
+          "image": {
+            "comp": "standing at attention outside a bedroom door in armor, staring straight ahead, deeply blushing",
+            "setting": "candlelit corridor at night",
+            "sam": true
+          },
+          "go": "Deliver the report in person",
+          "goRes": "Adelheid takes notes. For accuracy.",
+          "wait": "\"I'm still reading.\"",
+          "waitRes": "\"Of course. A thorough review takes time.\" She salutes and leaves very fast."
+        },
+        "3": {
+          "title": "The Final Chapter",
+          "text": "Adelheid has finished the novel. She sets it on Sam's table and unbuckles her gauntlets one at a time. \"In the books, the knight always waits for her lord to say something,\" she says. \"I am done waiting for you to say it.\"",
+          "image": {
+            "comp": "unbuckling her armored gauntlets beside a candlelit bed, steady determined gaze at him",
+            "setting": "his bedroom at night, candlelight, armor pieces on a chair",
+            "sam": true
+          },
+          "go": "\"Then I'll say it.\"",
+          "goRes": "The armor takes a long time to come off. Neither of them is in a hurry.",
+          "wait": "\"Your honor, Adelheid...\"",
+          "waitRes": "\"Is my own to give.\" She buckles the gauntlets back on, unoffended. \"When you're ready, my lord.\""
+        }
+      }
+    },
+    "natsuki": {
+      "pace": "normal",
+      "path": [1,3],
+      "init": true,
+      "events": {
+        "1": {
+          "title": "Winner's Prize",
+          "text": "Natsuki pins Sam in the training yard for the fifth time. \"Winner gets a prize,\" she announces, and kisses him before he can ask what the prize is. Then she looks shocked at herself.",
+          "image": {
+            "comp": "pinning him to the floor of a training yard, wooden sword tossed aside, flushed and grinning",
+            "setting": "dusty training yard at sunset",
+            "sam": true
+          },
+          "go": "Claim a rematch",
+          "goRes": "He loses the rematch on purpose. She knows. She claims the prize anyway.",
+          "wait": "\"Was that... in the rules?\"",
+          "waitRes": "\"My yard, my rules!\" She's gone, red to the ears, before he can sit up."
+        },
+        "3": {
+          "title": "Victory Feast",
+          "text": "Natsuki comes back from a dungeon job still buzzing, armor dented, bag of gold slung over one shoulder. She drops it at Sam's feet. \"I spent three years alone here. I'm done being careful.\"",
+          "image": {
+            "comp": "standing in a doorway in dented armor, dropping a bag of gold, flushed and fierce, sword still on her hip",
+            "setting": "his room at night, lamplight",
+            "sam": true
+          },
+          "go": "\"Welcome home.\"",
+          "goRes": "The armor ends up all over the floor. So does the gold.",
+          "wait": "\"Let me get you some food first.\"",
+          "waitRes": "\"FOOD. Okay. Good point.\" She eats like a horse and falls asleep on his shoulder. \"Tomorrow,\" she mumbles."
+        }
+      }
+    },
+    "kanako": {
+      "pace": "slow",
+      "path": [1,3],
+      "init": false,
+      "events": {
+        "1": {
+          "title": "Last Call",
+          "text": "After last call, Kanako pats Sam's cheek the way she always does. \"Look at you, all grown up.\" Her hand stays. She looks at it like it belongs to someone else. \"Oh,\" she says. \"Oh, I see.\" And she kisses him.",
+          "image": {
+            "comp": "leaning on the bar after closing, cupping his cheek, surprised soft expression",
+            "setting": "dim bar after last call, chairs on tables",
+            "sam": true
+          },
+          "go": "Kiss her back",
+          "goRes": "For once in her life, Kanako doesn't have a single thing to say.",
+          "wait": "\"Kanako... you've had a few.\"",
+          "waitRes": "\"I have.\" She laughs, a little shaky. \"Ask me again sober.\" She means it."
+        },
+        "3": {
+          "title": "Not the Boy Next Door",
+          "text": "\"I've called you Sammy for six years,\" Kanako says, closing his door behind her. \"Tonight I'm going to call you something else.\" For once, she's the one blushing.",
+          "image": {
+            "comp": "leaning against a closed bedroom door, blushing, warm teasing smile, hair let down",
+            "setting": "his bedroom at night, a single lamp",
+            "sam": true
+          },
+          "go": "\"Like what?\"",
+          "goRes": "She shows him instead of telling him. Kanako has always been better at showing.",
+          "wait": "\"Sammy's fine.\"",
+          "waitRes": "\"Coward.\" She ruffles his hair, fond. \"I'll ask again.\""
+        }
+      }
+    },
+    "mio": {
+      "pace": "fast",
+      "path": [1,2,3],
+      "init": true,
+      "events": {
+        "1": {
+          "title": "Like in the Dramas",
+          "text": "Mio drags Sam out into the rain with one umbrella. \"In every drama, the first kiss is in the rain. I've waited my whole life. Both lives.\" She stands on tiptoe. Then she makes him do a second take, for the lighting.",
+          "image": {
+            "comp": "under a shared umbrella in the rain, standing on tiptoe to kiss him, eyes shining",
+            "setting": "lantern-lit cobbled street in the rain at night",
+            "sam": true
+          },
+          "go": "Do the second take",
+          "goRes": "The second take is better. So is the third. The umbrella blows away and neither of them notices.",
+          "wait": "\"We're getting soaked!\"",
+          "waitRes": "\"That's the point!\" She laughs and drags him home anyway. \"Rain check. Literally.\""
+        },
+        "2": {
+          "title": "Episode Two",
+          "text": "\"In dramas, episode two is where it gets serious,\" Mio says, sitting cross-legged on Sam's bed in her pajamas. \"I've seen a lot of episode twos.\" She pats the blanket.",
+          "image": {
+            "comp": "sitting cross-legged on a bed in pajamas, patting the blanket beside her, mischievous excited grin",
+            "setting": "his bedroom at night, lamplight",
+            "sam": true
+          },
+          "go": "Start episode two",
+          "goRes": "Mio was underselling how many episode twos she's seen.",
+          "wait": "\"This is a slow-burn drama.\"",
+          "waitRes": "\"Ugh, those are the WORST.\" She pouts and steals his pillow."
+        },
+        "3": {
+          "title": "Season Finale",
+          "text": "Mio has made a sign. It says SEASON FINALE in very large letters. She's holding it in front of Sam's door. \"No more cliffhangers,\" she says. \"I'm a grown woman and I know what I want.\"",
+          "image": {"comp":"holding up a handmade sign in a doorway, nervous brave grin, hair down","setting":"his bedroom doorway at night","sam":true},
+          "go": "Let her in",
+          "goRes": "It's a very good finale. Mio gives it ten out of ten.",
+          "wait": "\"Save it for season two?\"",
+          "waitRes": "She groans and slides down the door frame. \"Fine. But the sign stays up.\""
+        }
+      }
+    },
+    "marisol": {
+      "pace": "normal",
+      "path": [1,2,3],
+      "init": false,
+      "events": {
+        "1": {
+          "title": "Terms",
+          "text": "Marisol slaps a contract on Sam's desk. \"Proposal: one kiss. Nonbinding.\" He starts to read it. She takes it back. \"Counteroffer: stop reading,\" she says, and closes the deal herself.",
+          "image": {
+            "comp": "leaning across a desk over a contract, pulling him in by his collar, smug triumphant smile",
+            "setting": "the owner's office, ledgers and contracts, lamplight",
+            "sam": true
+          },
+          "go": "Sign",
+          "goRes": "\"Pleasure doing business,\" she says against his mouth.",
+          "wait": "\"I'd like my lawyer present.\"",
+          "waitRes": "\"You don't HAVE a lawyer.\" She rolls up the contract and bops him with it. \"Offer stands.\""
+        },
+        "2": {
+          "title": "Revised Terms",
+          "text": "\"I've revised the terms,\" Marisol says, locking the office door. \"Section two. Considerably expanded.\" She tosses the contract over her shoulder without looking.",
+          "image": {
+            "comp": "tossing a contract over her shoulder, locked office door behind her, confident challenging smile",
+            "setting": "the owner's office at night",
+            "sam": true
+          },
+          "go": "Accept the revisions",
+          "goRes": "Marisol negotiates every single point. Sam loses all of them, happily.",
+          "wait": "\"I need time to review.\"",
+          "waitRes": "\"Forty-eight hours,\" she says. \"Then I'm renegotiating in person.\""
+        },
+        "3": {
+          "title": "Closing the Deal",
+          "text": "Marisol is sitting on Sam's bed with two glasses of her father's best wine, the bottle he swore he was saving. \"He saved it his whole life,\" she says. \"I'm done saving things.\"",
+          "image": {
+            "comp": "sitting on a bed holding two glasses of red wine, a dusty bottle beside her, warm resolute smile",
+            "setting": "his bedroom at night, lamplight",
+            "sam": true
+          },
+          "go": "Pour the wine",
+          "goRes": "They don't finish the wine. That's fine. Some things are better than saving.",
+          "wait": "\"Your father's wine?\"",
+          "waitRes": "\"He's not here.\" She drinks his glass too. \"Fine. Next time.\""
+        }
+      }
+    },
+    "seraphine": {
+      "pace": "slow",
+      "path": [1,3],
+      "init": false,
+      "events": {
+        "1": {
+          "title": "Noblesse Oblige",
+          "text": "Seraphine is teaching Sam etiquette. \"A lord kisses a lady's hand like so.\" He does. \"Adequate.\" She doesn't take her hand back. \"Now. Not the hand.\"",
+          "image": {
+            "comp": "standing in a faded grand hall, holding out her gloved hand to him, chin raised, cheeks pink",
+            "setting": "dusty ballroom of an old castle, tall windows, afternoon light",
+            "sam": true
+          },
+          "go": "\"Not the hand.\"",
+          "goRes": "\"...Acceptable,\" Seraphine manages. \"We'll practice further.\" They do.",
+          "wait": "Kiss her hand again",
+          "waitRes": "\"Coward.\" She sweeps out, but she's smiling."
+        },
+        "3": {
+          "title": "The Rosenhal Bed",
+          "text": "\"My family's bed is four hundred years old,\" Seraphine says, standing beside it in the castle's great chamber. \"Every Rosenhal has been miserable in it. I'd like it to have one good memory.\"",
+          "image": {
+            "comp": "standing beside an enormous antique four-poster bed, proud chin, blushing, letting her hair down",
+            "setting": "grand castle bedchamber, faded tapestries, firelight",
+            "sam": true
+          },
+          "go": "Give it a good memory",
+          "goRes": "It gets several.",
+          "wait": "\"You deserve more than a commoner.\"",
+          "waitRes": "\"I'll decide what I deserve.\" Her voice wobbles. \"Ask me again when you've stopped being an idiot.\""
+        }
+      }
+    },
+    "ilyana": {
+      "pace": "normal",
+      "path": [1,2,3],
+      "init": false,
+      "events": {
+        "1": {
+          "title": "A Century of Watching",
+          "text": "Ilyana and Sam watch the pavilion's lanterns come on from the balcony. \"I've watched lovers here for a hundred years,\" she says. \"I'd like to stop watching.\"",
+          "image": {
+            "comp": "on a balcony at dusk, turning toward him with a calm ancient gaze, lanterns glowing behind her",
+            "setting": "pavilion balcony at dusk, hundreds of paper lanterns lighting up",
+            "sam": true
+          },
+          "go": "Kiss her",
+          "goRes": "A century of practice shows. Sam forgets the lanterns entirely.",
+          "wait": "\"I'm just a human.\"",
+          "waitRes": "\"So were most of them.\" She smiles. \"I can wait. I'm very good at it.\""
+        },
+        "2": {
+          "title": "Lessons",
+          "text": "\"A century teaches you things,\" Ilyana says, closing the shutters of her study. \"I find I'd like to teach some of them to you.\"",
+          "image": {
+            "comp": "closing ornate shutters in a study, glancing over her shoulder at him with a serene knowing smile",
+            "setting": "elegant elven study, silk cushions, incense",
+            "sam": true
+          },
+          "go": "Be a good student",
+          "goRes": "Ilyana is an extremely patient teacher.",
+          "wait": "\"Maybe another time.\"",
+          "waitRes": "\"Of course.\" She opens the shutters again. \"I've waited a hundred years. Another week won't hurt.\""
+        },
+        "3": {
+          "title": "Lantern Night",
+          "text": "On the night of the lantern festival Ilyana lets her own lantern float away and takes Sam's hand. \"I've spent a century being the patroness,\" she says. \"Tonight I'd like to just be yours.\"",
+          "image": {
+            "comp": "releasing a paper lantern into the night sky, holding his hand, soft serene smile",
+            "setting": "pavilion garden at night during a lantern festival, lanterns rising",
+            "sam": true
+          },
+          "go": "\"Then be mine.\"",
+          "goRes": "Her rooms are full of lanterns. They burn all night.",
+          "wait": "Watch the lanterns",
+          "waitRes": "\"They're beautiful,\" she agrees, and leans on his shoulder. \"Next festival, then.\""
+        }
+      }
+    },
+    "ines": {
+      "pace": "normal",
+      "path": [1,3],
+      "init": true,
+      "events": {
+        "1": {
+          "title": "Something in the Dark",
+          "text": "Ines drags Sam on a midnight patrol for \"spectral activity.\" A shape lunges out of the dark (it's Vesper, giggling) and Ines grabs Sam so hard they both fall over. She's on top of him. Neither of them moves. She kisses him.",
+          "image": {
+            "comp": "sprawled on top of him on a dark manor floor, lantern rolling away, startled then determined",
+            "setting": "dark manor corridor at midnight, a fallen lantern, a faint ghostly glow",
+            "sam": true
+          },
+          "go": "Stay right there",
+          "goRes": "Somewhere a ghost cheers. Ines throws salt at it without looking.",
+          "wait": "\"I think the ghost's gone.\"",
+          "waitRes": "\"Right. Yes. Ghost.\" She scrambles up. \"Patrol continues. Separately.\""
+        },
+        "3": {
+          "title": "Salt Circle",
+          "text": "Ines draws a salt circle around Sam's bed, very seriously. \"Protection,\" she says. Then she steps inside it and closes the gap. \"Nobody gets in or out till morning.\"",
+          "image": {
+            "comp": "kneeling inside a circle of salt around a bed, holding a salt pouch, sly heated grin",
+            "setting": "candlelit manor bedroom, salt circle on the floorboards",
+            "sam": true
+          },
+          "go": "\"Nobody?\"",
+          "goRes": "Nobody. A ghost complains about it all night.",
+          "wait": "\"What about bathroom breaks?\"",
+          "waitRes": "She laughs so hard she breaks the circle. \"Fine. I'll redraw it next week.\""
+        }
+      }
+    },
+    "vharra": {
+      "pace": "fast",
+      "path": [3],
+      "init": true,
+      "events": {
+        "3": {
+          "title": "Rent Is Due",
+          "text": "Vharra summons Sam to her old landlord's office in the Underdistrict. She's lounging on a velvet chaise with an enormous ledger open to a page with his name on it. \"You've been living rent-free in my head for weeks,\" she says. \"Rent's due.\"",
+          "image": {
+            "comp": "lounging on a velvet chaise with a huge ledger, crooking a finger at him, greedy delighted smile, horns and gold jewelry",
+            "setting": "opulent underground office, gold coins, red lamplight",
+            "sam": true
+          },
+          "go": "Pay in full",
+          "goRes": "Vharra charges interest. Generous, compounding interest.",
+          "wait": "\"I'd like a payment plan.\"",
+          "waitRes": "\"Everyone does.\" She writes something in the ledger. \"Late fee.\""
+        }
+      }
+    },
+    "rhoswen": {
+      "pace": "slow",
+      "path": [1,2,3],
+      "init": false,
+      "events": {
+        "1": {
+          "title": "Field Study",
+          "text": "Rhoswen has a notebook titled HUMAN CUSTOMS. She opens it to a page that says only \"Kissing (?)\". \"I would like to observe this firsthand,\" she says, pen ready. \"For accuracy.\"",
+          "image": {
+            "comp": "holding an open notebook and quill, looking up at him with earnest scholarly curiosity and pink cheeks",
+            "setting": "quiet garden bench at dusk, roses",
+            "sam": true
+          },
+          "go": "Help her research",
+          "goRes": "She forgets to take notes. She asks to repeat the experiment.",
+          "wait": "\"Maybe a book would be better?\"",
+          "waitRes": "\"I have read the books.\" She closes the notebook, slightly put out. \"They were insufficient.\""
+        },
+        "2": {
+          "title": "Further Study",
+          "text": "The notebook has more pages now. Rhoswen hands it to Sam open to a list headed FURTHER QUESTIONS, then stares very hard at a vase.",
+          "image": {
+            "comp": "staring hard at a vase while holding out an open notebook to him, ears red to the tips",
+            "setting": "elegant guest room, afternoon light",
+            "sam": true
+          },
+          "go": "Answer her questions",
+          "goRes": "She has a great many follow-up questions.",
+          "wait": "\"One question at a time.\"",
+          "waitRes": "\"Of course. Methodology.\" She underlines something three times."
+        },
+        "3": {
+          "title": "Conclusions",
+          "text": "\"I have reached a conclusion,\" Rhoswen says, closing the notebook for good and setting it on Sam's nightstand. \"The study requires a final experiment. I would like it to be with you.\"",
+          "image": {
+            "comp": "setting a closed notebook on a nightstand, unpinning her elegant hair, calm but blushing",
+            "setting": "his bedroom at night, moonlight",
+            "sam": true
+          },
+          "go": "Conduct the experiment",
+          "goRes": "The results are conclusive. She writes them up the next morning and won't let anyone read them.",
+          "wait": "\"Are you certain?\"",
+          "waitRes": "\"I am never uncertain.\" Pause. \"Ask me again in a week.\""
+        }
+      }
+    },
+    "hanna": {
+      "pace": "normal",
+      "path": [1,2,3],
+      "init": false,
+      "events": {
+        "1": {
+          "title": "Gossip",
+          "text": "\"The whole guild thinks we're already together,\" Hanna says. \"I hate being wrong about gossip.\" She grabs Sam's collar over the counter. \"So I'm fixing it.\"",
+          "image": {
+            "comp": "grabbing his collar over a guild reception counter, freckled, mischievous grin",
+            "setting": "busy adventurers' guild hall, notice boards, afternoon",
+            "sam": true
+          },
+          "go": "Help her fix it",
+          "goRes": "Half the guild hall cheers. Somebody wins a bet.",
+          "wait": "\"Everyone's watching!\"",
+          "waitRes": "\"That's the POINT.\" She lets go, sighing. \"Fine. Somewhere private. Next time.\""
+        },
+        "2": {
+          "title": "Off the Record",
+          "text": "Hanna locks the guild's records room. \"Nothing that happens in here goes in the files,\" she says, which is a lie, because she files everything.",
+          "image": {
+            "comp": "leaning against tall shelves of scrolls in a records room, keys dangling from one finger, playful smile",
+            "setting": "guild records room, shelves of scrolls, a single lamp",
+            "sam": true
+          },
+          "go": "Go off the record",
+          "goRes": "Hanna keeps very good notes. Sam suspects there will be a file.",
+          "wait": "\"Someone might need a record.\"",
+          "waitRes": "\"Ugh, PROCEDURE.\" She unlocks the door. \"Fine. You owe me.\""
+        },
+        "3": {
+          "title": "Exclusive",
+          "text": "\"I've had the best gossip in Hollowmere for five years,\" Hanna says, kicking off her shoes in Sam's room. \"Tonight I'd like an exclusive.\"",
+          "image": {
+            "comp": "kicking off her shoes in a bedroom, freckled, grinning and a little nervous",
+            "setting": "his bedroom at night, lamplight",
+            "sam": true
+          },
+          "go": "Give her the exclusive",
+          "goRes": "She doesn't tell a soul. Everyone knows by lunchtime anyway.",
+          "wait": "\"Can it be embargoed?\"",
+          "waitRes": "\"Embargoed!\" She laughs. \"Fine. One week. Then it goes to print.\""
+        }
+      }
+    },
+    "rinna": {
+      "pace": "fast",
+      "path": [1,3],
+      "init": true,
+      "events": {
+        "1": {
+          "title": "Clear Skies",
+          "text": "Rinna takes Sam up to the deck of her grounded skyship at sunset. \"Sixty years flying, and I never once kissed anyone on deck,\" she says. \"Bad luck for sailors. But we're not flying.\"",
+          "image": {
+            "comp": "on the deck of a grounded wooden skyship at sunset, wind in her hair, pulling him close by his cloak",
+            "setting": "airship deck on a cliff edge at sunset, rigging and clouds",
+            "sam": true
+          },
+          "go": "Defy the bad luck",
+          "goRes": "The wind picks up. Neither of them notices.",
+          "wait": "\"Better safe than sorry.\"",
+          "waitRes": "\"Landlubber.\" She laughs and tosses him a rope to coil. \"Next clear sky, then.\""
+        },
+        "3": {
+          "title": "Shore Leave",
+          "text": "Rinna kicks open the captain's cabin of her old ship. \"Shore leave,\" she says. \"Captain's orders. You're coming aboard.\"",
+          "image": {
+            "comp": "standing in the doorway of a captain's cabin, coat thrown over her shoulder, wolfish grin",
+            "setting": "cozy wooden captain's cabin with a hammock and charts, lamplight",
+            "sam": true
+          },
+          "go": "\"Aye, captain.\"",
+          "goRes": "The ship rocks all night. It's on dry land.",
+          "wait": "\"I get seasick.\"",
+          "waitRes": "\"It's on a CLIFF.\" She cackles. \"Next week. Bring a bucket.\""
+        }
+      }
+    },
+    "maris": {
+      "pace": "normal",
+      "path": [2,3],
+      "init": true,
+      "events": {
+        "2": {
+          "title": "The Tide Pool",
+          "text": "Maris takes Sam down to the lowest pool in the Pearl Grotto, where the water glows. She guides his hand into it. \"Some things are easier to say without words,\" she murmurs, and doesn't say anything else for a long time.",
+          "image": {
+            "comp": "in a glowing tide pool in a sea cave, guiding his hand into the luminous water, half-lidded serene smile",
+            "setting": "sea cave grotto lit by glowing pearls and luminous water",
+            "sam": true,
+            "towel": true
+          },
+          "go": "Follow her lead",
+          "goRes": "The pearls dim, very slowly, as if they're being polite.",
+          "wait": "\"What is this place?\"",
+          "waitRes": "\"Older than your questions.\" She smiles and lets go of his hand. \"Come back when you're ready to stop asking.\""
+        },
+        "3": {
+          "title": "High Tide",
+          "text": "At the highest tide of the year the grotto floods to the ceiling with light. Maris waits for Sam on the pearl-crusted ledge. \"Once a year,\" she says. \"I've never wanted to share it before.\"",
+          "image": {
+            "comp": "waiting on a pearl-crusted ledge above glowing floodwater, holding out her hand to him",
+            "setting": "flooded sea cave at high tide, glowing water and pearls everywhere",
+            "sam": true,
+            "towel": true
+          },
+          "go": "Share it",
+          "goRes": "The tide goes out at dawn. So, eventually, do they.",
+          "wait": "\"I'll come next year.\"",
+          "waitRes": "\"Next year, then.\" She doesn't sound disappointed. She sounds like someone who has learned to wait."
+        }
+      }
+    }
+  }
+}

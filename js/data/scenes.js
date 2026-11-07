@@ -8,6 +8,9 @@ const DATES = noMeta(needData('dates'));
 const SCENES = Object.assign({}, SCENE_DATA.scenes);
 Object.entries(DATES).forEach(([k,d])=>{ SCENES['date_'+k] = Object.assign({label:'Date: '+d.label, sam:true}, d.image||{}); });
 SCENES.job_companion = SCENES.companion;
+// One-off image scenes for story moments (arc beats, events, firsts): {comp, setting} plus the usual flags (sam, pov,
+// house, towel). Registered under a stable key so the picture is saved per moment; they don't show in the sheet's picker.
+function dynScene(key, img){ if(!img || !img.comp) return null; SCENES[key] = Object.assign({label:'Story: '+(img.label||key)}, img); return key; }
 function getActs(){ return ACTS.concat(SET.customActs||[]); }
 const actById = id => getActs().find(a=>a.id===id);
 const actLabel = id => { const a = actById(id); return a ? a.label : id; };

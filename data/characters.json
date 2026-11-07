@@ -9,7 +9,8 @@
     "outfits: sig_<key> is her starting outfit; sp_<key> unlocks at trust 60 or as a lover. prompt is the image wording; bonus multiplies income for jobs or client classes.",
     "Partners only get a romance story if one exists in js/stories/partners.js; without one they still work, just without the arc.",
     "bonds: optional starting bonds with other named ladies: {\"otherKey\": {\"v\": 40, \"kind\": \"mentor\", \"note\": \"...\"}}. v from -100 (rivals) to 100. kind: mentor (she mentors them), home (both from Sam's old world), comrades. See bonds.json.",
-    "keepOn: optional {\"item\": \"...\", \"trust\": 90, \"aside\": true}. Until her trust reaches that, image prompts keep the item on; with aside the rest of her clothes only get pulled aside (js/logic/prompts.js keepOnRule). outfits.sp_<key>.unlock: optional trust needed for her special outfit instead of 60 (being a lover doesn't bypass it)."
+    "keepOn: optional {\"item\": \"...\", \"trust\": 90, \"aside\": true}. Until her trust reaches that, image prompts keep the item on; with aside the rest of her clothes only get pulled aside (js/logic/prompts.js keepOnRule). outfits.sp_<key>.unlock: optional trust needed for her special outfit instead of 60 (being a lover doesn't bypass it).",
+    "jobs: {likes:[...], dislikes:[...]} job ids she enjoys / would rather not do (mood each week, and she takes liked jobs at any trust). Ladies without it roll their own from personality and traits (balance.json → jobPrefs)."
   ],
   "mira": {
     "role": "house",
@@ -48,7 +49,8 @@
         "bonus": {"noble":1.3,"courtesan":1.15}
       }
     },
-    "bonds": {"bettina":{"v":35,"note":"Two old hands at running a front desk. They trade gossip by letter."}}
+    "bonds": {"bettina":{"v":35,"note":"Two old hands at running a front desk. They trade gossip by letter."}},
+    "jobs": {"likes":["madame","reception","maid"],"dislikes":["security"]}
   },
   "cecile": {
     "role": "house",
@@ -94,7 +96,8 @@
         "bonus": {"noble":1.2,"companion":1.15}
       }
     },
-    "bonds": {"seraphine":{"v":55,"note":"Ran the Rosenhal household for twelve years; Seraphine trusts her more than family."}}
+    "bonds": {"seraphine":{"v":55,"note":"Ran the Rosenhal household for twelve years; Seraphine trusts her more than family."}},
+    "jobs": {"likes":["maid","madame"],"dislikes":["dancer","bartender"]}
   },
   "tsubaki": {
     "role": "house",
@@ -134,7 +137,8 @@
         "prompt": "a vivid festival kimono patterned with camellias",
         "bonus": {"companion":1.2,"merchant":1.15}
       }
-    }
+    },
+    "jobs": {"likes":["bath","bartender"],"dislikes":["security","maid"]}
   },
   "vesper": {
     "role": "house",
@@ -179,7 +183,8 @@
         "prompt": "flowing translucent pale silks that drift like smoke",
         "bonus": {"dancer":1.3,"propose":1.2}
       }
-    }
+    },
+    "jobs": {"likes":["companion","dancer"],"dislikes":["reception","maid"]}
   },
   "hilde": {
     "role": "house",
@@ -224,7 +229,8 @@
         "prompt": "a bright green festival dirndl with a low-cut bodice",
         "bonus": {"bartender":1.2,"propose":1.2,"commoner":1.15}
       }
-    }
+    },
+    "jobs": {"likes":["bartender","security"],"dislikes":["companion","maid"]}
   },
   "sylphine": {
     "role": "house",
@@ -264,7 +270,8 @@
         "prompt": "sheer midnight silks embroidered with tiny silver stars",
         "bonus": {"dancer":1.2,"noble":1.2}
       }
-    }
+    },
+    "jobs": {"likes":["dancer","companion"],"dislikes":["security"]}
   },
   "zaria": {
     "role": "house",
@@ -310,7 +317,8 @@
         "bonus": {"courtesan":1.3,"propose":1.2}
       }
     },
-    "bonds": {"vharra":{"v":-30,"note":"Two demons who both think they run the Underdistrict."}}
+    "bonds": {"vharra":{"v":-30,"note":"Two demons who both think they run the Underdistrict."}},
+    "jobs": {"likes":["courtesan","madame"],"dislikes":["maid","reception"]}
   },
   "bettina": {
     "role": "house",
@@ -350,7 +358,8 @@
         "bonus": {"reception":1.3,"merchant":1.1}
       },
       "sp_bettina": {"label":"Sunday best","style":"Elegant","prompt":"a fitted plum dress with a cameo brooch","bonus":{"companion":1.2,"merchant":1.2}}
-    }
+    },
+    "jobs": {"likes":["reception","madame"],"dislikes":["dancer"]}
   },
   "kaede": {
     "role": "partner",
@@ -398,7 +407,8 @@
         "prompt": "a red and white shrine maiden outfit with detached sleeves",
         "bonus": {"companion":1.2,"noble":1.1}
       }
-    }
+    },
+    "jobs": {"likes":["security","bartender"],"dislikes":["maid","reception"]}
   },
   "yui": {
     "role": "partner",
@@ -446,7 +456,8 @@
         "bonus": {"adventurer":1.25,"propose":1.15}
       }
     },
-    "bonds": {"kanako":{"v":20,"kind":"home"},"mio":{"v":20,"kind":"home"}}
+    "bonds": {"kanako":{"v":20,"kind":"home"},"mio":{"v":20,"kind":"home"}},
+    "jobs": {"likes":["reception","madame"],"dislikes":["dancer","security"]}
   },
   "nerys": {
     "role": "partner",
@@ -493,7 +504,8 @@
         "prompt": "a prim high-collared librarian dress and glasses, barely hiding her horns",
         "bonus": {"noble":1.2,"companion":1.2}
       }
-    }
+    },
+    "jobs": {"likes":["courtesan","dancer"],"dislikes":["maid","reception"]}
   },
   "elowen": {
     "role": "partner",
@@ -540,7 +552,8 @@
         "prompt": "a light leaf-green silk dress woven with tiny flowers",
         "bonus": {"noble":1.2,"companion":1.2}
       }
-    }
+    },
+    "jobs": {"likes":["bath","companion","maid"],"dislikes":["dancer","security"]}
   },
   "adelheid": {
     "role": "partner",
@@ -589,7 +602,8 @@
         "bonus": {"companion":1.15,"adventurer":1.2}
       }
     },
-    "bonds": {"nerys":{"v":-40,"note":"A holy knight and a demon who both claim Sam. It goes about how you'd expect."}}
+    "bonds": {"nerys":{"v":-40,"note":"A holy knight and a demon who both claim Sam. It goes about how you'd expect."}},
+    "jobs": {"likes":["security"],"dislikes":["dancer","courtesan"]}
   },
   "natsuki": {
     "role": "partner",
@@ -643,7 +657,8 @@
       "kaede": {"v":-20,"kind":"comrades","note":"Two adventurers, one guard post, and a lot of opinions about swordwork."},
       "yui": {"v":20,"kind":"home"},
       "kanako": {"v":20,"kind":"home"}
-    }
+    },
+    "jobs": {"likes":["security","bartender"],"dislikes":["reception","maid"]}
   },
   "kanako": {
     "role": "partner",
@@ -692,7 +707,8 @@
         "bonus": {"companion":1.2,"noble":1.15}
       }
     },
-    "bonds": {"mio":{"v":25,"kind":"home"}}
+    "bonds": {"mio":{"v":25,"kind":"home"}},
+    "jobs": {"likes":["bartender","companion","madame"],"dislikes":["security"]}
   },
   "mio": {
     "role": "partner",
@@ -740,7 +756,8 @@
         "prompt": "a daring black lace-up dress she picked out to prove a point",
         "bonus": {"courtesan":1.2,"propose":1.2}
       }
-    }
+    },
+    "jobs": {"likes":["companion","dancer","bartender"],"dislikes":["reception"]}
   },
   "marisol": {
     "role": "partner",
@@ -787,7 +804,8 @@
         "prompt": "a gold-trimmed heiress gown she swore she would never wear",
         "bonus": {"noble":1.25,"madame":1.2}
       }
-    }
+    },
+    "jobs": {"likes":["reception","madame"],"dislikes":["maid"]}
   },
   "seraphine": {
     "role": "story",
@@ -832,7 +850,8 @@
         "prompt": "a breathtaking crimson ball gown with the Rosenhal rose crest",
         "bonus": {"noble":1.3,"madame":1.2}
       }
-    }
+    },
+    "jobs": {"likes":["companion","madame"],"dislikes":["maid","bartender"]}
   },
   "ilyana": {
     "role": "story",
@@ -878,7 +897,8 @@
         "bonus": {"noble":1.3,"courtesan":1.15}
       }
     },
-    "bonds": {"sylphine":{"v":40,"kind":"mentor","note":"The Pavilion's patroness has watched Sylphine dance for decades."}}
+    "bonds": {"sylphine":{"v":40,"kind":"mentor","note":"The Pavilion's patroness has watched Sylphine dance for decades."}},
+    "jobs": {"likes":["madame","companion","dancer"],"dislikes":["maid"]}
   },
   "ines": {
     "role": "story",
@@ -924,7 +944,8 @@
         "bonus": {"adventurer":1.2,"security":1.2}
       }
     },
-    "bonds": {"vesper":{"v":-40,"note":"She came to exorcise Vesper. Vesper has not forgotten."}}
+    "bonds": {"vesper":{"v":-40,"note":"She came to exorcise Vesper. Vesper has not forgotten."}},
+    "jobs": {"likes":["security","bartender"],"dislikes":["dancer"]}
   },
   "vharra": {
     "role": "story",
@@ -969,7 +990,8 @@
         "prompt": "black and emerald infernal regalia with a jeweled collar",
         "bonus": {"courtesan":1.3,"propose":1.2}
       }
-    }
+    },
+    "jobs": {"likes":["courtesan","madame"],"dislikes":["maid","security"]}
   },
   "rhoswen": {
     "role": "guild",
@@ -1001,7 +1023,8 @@
     "popularity": 10,
     "lewd": 14,
     "trust": 10,
-    "outfits": {"sig_rhoswen":{"label":"Court gown","style":"Elegant","prompt":"a flowing pale-green silk court gown","bonus":{"noble":1.3,"dancer":1.1}}}
+    "outfits": {"sig_rhoswen":{"label":"Court gown","style":"Elegant","prompt":"a flowing pale-green silk court gown","bonus":{"noble":1.3,"dancer":1.1}}},
+    "jobs": {"likes":["companion","reception"],"dislikes":["bartender","courtesan"]}
   },
   "hanna": {
     "role": "guild",
@@ -1032,7 +1055,8 @@
     "bonds": {
       "kaede": {"v":35,"note":"Hanna processed every one of Kaede's bounty claims, and gossiped about all of them."},
       "rhoswen": {"v":30,"note":"Guild friends."}
-    }
+    },
+    "jobs": {"likes":["reception","bartender"],"dislikes":["maid"]}
   },
   "rinna": {
     "role": "house",
@@ -1077,7 +1101,8 @@
         "prompt": "a daring off-shoulder pirate blouse tied at the waist, a sash and tight breeches",
         "bonus": {"bartender":1.2,"propose":1.2}
       }
-    }
+    },
+    "jobs": {"likes":["bartender","security"],"dislikes":["reception","maid"]}
   },
   "maris": {
     "role": "house",
@@ -1122,6 +1147,7 @@
         "prompt": "strands of glowing pearls and a sheer silver wrap",
         "bonus": {"bath":1.3,"propose":1.2}
       }
-    }
+    },
+    "jobs": {"likes":["bath","companion"],"dislikes":["reception"]}
   }
 }

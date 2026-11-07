@@ -7,9 +7,29 @@ const JOBS = ECON.jobs;
 // Trust she needs before she'll take a job she doesn't particularly like. Jobs she enjoys need none.
 const JOB_TRUST = ECON.jobTrust;
 function jobTrust(w, job){
-  const P = PERS[w.personality]||{jobsUp:[],jobsDown:[]};
-  if(P.jobsUp.includes(job)) return 0;
-  return (JOB_TRUST[job]||0) + (P.jobsDown.includes(job)?15:0);
+  if(jobLikes(w).includes(job)) return 0;
+  return (JOB_TRUST[job]||0) + (jobDislikes(w).includes(job)?15:0);
+}
+// Job preferences belong to each lady. Named ones have their own (characters.json / guests.json → jobs: {likes, dislikes});
+// everyone else rolls a set once: personality and traits tilt the odds, but there's real randomness (balance.json → jobPrefs).
+const jobLikes = w => w.jobLikes || (PERS[w.personality]||{}).jobsUp || [];
+const jobDislikes = w => w.jobDislikes || (PERS[w.personality]||{}).jobsDown || [];
+function rollJobPrefs(w){
+  const D = w.key && NAMED[w.key] && NAMED[w.key].jobs; delete w.jobs;
+  if(D){ w.jobLikes = (D.likes||[]).filter(j=>JOBS[j]); w.jobDislikes = (D.dislikes||[]).filter(j=>JOBS[j] && !w.jobLikes.includes(j)); return; }
+  const B = BAL.jobPrefs, P = PERS[w.personality]||{jobsUp:[],jobsDown:[]}, R = w.key ? seededRng(hashStr(w.key+':jobs')) : Math.random;
+  const all = Object.keys(JOBS).filter(j=>j!=='rest'), up = {}, down = {};
+  all.forEach(j=>{ up[j] = B.base; down[j] = B.base*0.6; });
+  P.jobsUp.forEach(j=>{ if(up[j]!==undefined) up[j] += B.personality; });
+  P.jobsDown.forEach(j=>{ if(down[j]!==undefined) down[j] += B.personality; });
+  (w.traits||[]).forEach(t=>{ const T = B.traits[t]; if(!T) return; (T.up||[]).forEach(j=>up[j] += B.trait); (T.down||[]).forEach(j=>down[j] += B.trait); });
+  if(w.job && up[w.job]!==undefined) up[w.job] += B.ownJob;
+  const roll = (W, max) => all.map(j=>({j, r: R() / Math.max(0.01, W[j])})).filter(x=>x.r < 1).sort((a,b)=>a.r-b.r).slice(0, max).map(x=>x.j);
+  const net = {}; all.forEach(j=>{ net[j] = up[j] - (down[j] - B.base*0.6) * 0.8; });   // what she's inclined against is less likely to be a favorite
+  let L = roll(net, B.maxLikes);
+  if(!L.length) L = [all.slice().sort((a,b)=>up[b]-up[a] || R()-0.5)[0]];
+  const Dl = roll(down, B.maxDislikes).filter(j=>!L.includes(j));
+  w.jobLikes = L; w.jobDislikes = Dl;
 }
 // Job positions per house. Escort slots: courtesans need a bedroom each; companions need lounge space.
 function slotsFor(h, job){

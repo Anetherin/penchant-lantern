@@ -4,7 +4,8 @@
     "Beat: title, scene (image scene: sam_date, shower, walkin, casual, portrait, bath, or final = her private scene with Sam), text, choices.",
     "Choice: label plus effects. t/m/l = trust/mood/lewdness change. res = result text ({N} = her name). hold:true = the beat comes back later instead of advancing.",
     "Extra effects: gold (negative = cost; add cantAfford:{...} for when Sam is short), sam:{strength:1} (Sam stat), energy:\"full\", health:20, grow:{service:6} (her skill).",
-    "Conditions: if:{lewd:40} (her stat at least that; also works for trust, mood) uses this choice's effects, otherwise the ones under else:{...}."
+    "Conditions: if:{lewd:40} (her stat at least that; also works for trust, mood) uses this choice's effects, otherwise the ones under else:{...}.",
+    "image (optional): {comp, setting, sam, towel} a picture for that beat instead of the generic scene. The scene key still decides bath/walk-in handling."
   ],
   "kaede": [
     {
@@ -14,7 +15,12 @@
       "choices": [
         {"label":"Stay with her","t":5,"m":8,"res":"Something between them shifts, just a little."},
         {"label":"Keep it light","t":1,"m":2,"res":"{N} smiles. Maybe next time."}
-      ]
+      ],
+      "image": {
+        "comp": "sitting on a rooftop at night bumping shoulders with him, holding a wine bottle, fox tail swishing",
+        "setting": "tiled rooftop over a fantasy town at night, stars, chimney smoke",
+        "sam": true
+      }
     },
     {
       "title": "Wrong Door",
@@ -32,7 +38,13 @@
           "else": {"t":-2,"m":-4,"res":"\"GET OUT.\" The towel hits him in the face."}
         },
         {"label":"Stand there like an idiot","m":3,"l":2,"res":"\"Take a picture, it lasts longer.\" Sam has no idea how she knows that phrase."}
-      ]
+      ],
+      "image": {
+        "comp": "frozen mid-towel in a washroom doorway, every hair on her fox tail standing straight up, wide-eyed",
+        "setting": "steamy wooden washroom",
+        "sam": false,
+        "towel": true
+      }
     },
     {
       "title": "Getting Closer",
@@ -41,7 +53,12 @@
       "choices": [
         {"label":"Stay with her","t":5,"m":8,"res":"Something between them shifts, just a little."},
         {"label":"Keep it light","t":1,"m":2,"res":"{N} smiles. Maybe next time."}
-      ]
+      ],
+      "image": {
+        "comp": "sitting on a kitchen table while he bandages her hand, grinning, fox tail brushing his arm",
+        "setting": "inn kitchen at night, a first-aid kit",
+        "sam": true
+      }
     },
     {
       "title": "The Old Party",
@@ -56,7 +73,12 @@
           "m": -10,
           "res": "She leaves for two days without a word. When she comes back, she doesn't mention it. Neither does he. It sits between them for a while."
         }
-      ]
+      ],
+      "image": {
+        "comp": "standing at a bar between him and a rugged adventurer in armor, arms crossed, looking at him and waiting",
+        "setting": "busy tavern bar, adventurers at tables",
+        "sam": true
+      }
     },
     {
       "title": "Rooftops",
@@ -76,7 +98,12 @@
           "l": 2,
           "res": "She sees right through it. She carries him anyway, the whole way home."
         }
-      ]
+      ],
+      "image": {
+        "comp": "leaping across rooftops at night, laughing back at the man clinging to a chimney",
+        "setting": "moonlit rooftops of a fantasy town",
+        "sam": true
+      }
     },
     {
       "title": "Together",
@@ -96,7 +123,12 @@
       "choices": [
         {"label":"Stay with her","t":5,"m":8,"res":"Something between them shifts, just a little."},
         {"label":"Keep it light","t":1,"m":2,"res":"{N} smiles. Maybe next time."}
-      ]
+      ],
+      "image": {
+        "comp": "sitting on back steps with him holding two steaming cups, laughing about home",
+        "setting": "back steps of an inn at night, lanterns, stars",
+        "sam": true
+      }
     },
     {
       "title": "Bath Time Budget Meeting",
@@ -111,7 +143,12 @@
           "res": "She stammers through the entire weekly budget review, right there, without once looking down. It's honestly impressive."
         },
         {"label":"Yell","t":-2,"m":-3,"res":"She flees, mortified, and avoids him for three days."}
-      ]
+      ],
+      "image": {
+        "comp": "standing in a washroom doorway clutching a ledger, staring fixedly at the ceiling, bright red",
+        "setting": "steamy wooden washroom, a man in the tub off-frame",
+        "sam": false
+      }
     },
     {
       "title": "Getting Closer",
@@ -120,7 +157,12 @@
       "choices": [
         {"label":"Stay with her","t":5,"m":8,"res":"Something between them shifts, just a little."},
         {"label":"Keep it light","t":1,"m":2,"res":"{N} smiles. Maybe next time."}
-      ]
+      ],
+      "image": {
+        "comp": "eating a terrible bowl of homemade ramen with him at a kitchen table, both laughing",
+        "setting": "small inn kitchen at night, pots and steam",
+        "sam": true
+      }
     },
     {
       "title": "The Way Home",
@@ -135,7 +177,8 @@
           "m": 8,
           "res": "She laughs and wipes her eyes. (The mage turns out to be a fraud. Neither of them is disappointed.)"
         }
-      ]
+      ],
+      "image": {"comp":"holding a crumpled flyer with shaking hands, looking up at him with teary eyes","setting":"quiet office at dusk","sam":true}
     },
     {
       "title": "Festival Night",
@@ -144,7 +187,12 @@
       "choices": [
         {"label":"Wear it like a hat, proudly","m":9,"t":2,"res":"She laughs so hard she has to sit down."},
         {"label":"Win her one back","t":3,"m":6,"res":"It takes eleven tries. She keeps the slightly-less-ugly griffin on her desk forever."}
-      ]
+      ],
+      "image": {
+        "comp": "at a harvest festival handing him an ugly stuffed wyvern prize, triumphant grin",
+        "setting": "harvest festival at night, game stalls, paper lanterns",
+        "sam": true
+      }
     },
     {
       "title": "Together",
@@ -164,7 +212,12 @@
       "choices": [
         {"label":"Stay with her","t":5,"m":8,"res":"Something between them shifts, just a little."},
         {"label":"Keep it light","t":1,"m":2,"res":"{N} smiles. Maybe next time."}
-      ]
+      ],
+      "image": {
+        "comp": "sitting very close to him on a sofa, arms crossed, sulking, wings folded, pretending not to care",
+        "setting": "dim lounge late at night",
+        "sam": true
+      }
     },
     {
       "title": "Oops",
@@ -179,7 +232,13 @@
           "res": "For once, SHE is the one who goes red. She recovers quickly. Mostly."
         },
         {"label":"Toss her a towel","m":2,"res":"She catches it with her tail and drapes it over his head instead."}
-      ]
+      ],
+      "image": {
+        "comp": "lounging in a bathtub, very obviously waiting, smirking at the viewer, not moving at all",
+        "setting": "steamy wooden washroom, candles",
+        "sam": false,
+        "towel": true
+      }
     },
     {
       "title": "Getting Closer",
@@ -188,7 +247,12 @@
       "choices": [
         {"label":"Stay with her","t":5,"m":8,"res":"Something between them shifts, just a little."},
         {"label":"Keep it light","t":1,"m":2,"res":"{N} smiles. Maybe next time."}
-      ]
+      ],
+      "image": {
+        "comp": "hiding a romance novel behind her back in a panic, throwing a pillow, flustered",
+        "setting": "plush lounge, cushions everywhere",
+        "sam": true
+      }
     },
     {
       "title": "Leash",
@@ -208,7 +272,12 @@
           "m": -12,
           "res": "She goes very still. \"You want me gone?\" It takes him a long, miserable hour to fix that."
         }
-      ]
+      ],
+      "image": {
+        "comp": "laughing off a sneering demon noble in a lounge, tight forced smile, tail lashing",
+        "setting": "velvet lounge full of guests, red lamplight",
+        "sam": false
+      }
     },
     {
       "title": "Night Market",
@@ -217,7 +286,12 @@
       "choices": [
         {"label":"Eat everything she hands you","m":9,"t":2,"res":"One of them makes his ears glow for an hour. She has never been happier."},
         {"label":"Buy her a hair ribbon","t":4,"m":6,"res":"She acts unimpressed. She wears it every day after."}
-      ]
+      ],
+      "image": {
+        "comp": "holding out a skewer of strange glowing snacks to him at a night market, delighted grin",
+        "setting": "underground night market, glowing stalls, crowds",
+        "sam": true
+      }
     },
     {
       "title": "Together",
@@ -237,7 +311,12 @@
       "choices": [
         {"label":"Stay with her","t":5,"m":8,"res":"Something between them shifts, just a little."},
         {"label":"Keep it light","t":1,"m":2,"res":"{N} smiles. Maybe next time."}
-      ]
+      ],
+      "image": {
+        "comp": "pressing a stethoscope-like charm to his chest, nervously babbling about herbs",
+        "setting": "small infirmary with herbs drying from the rafters",
+        "sam": true
+      }
     },
     {
       "title": "Tea Service",
@@ -254,7 +333,12 @@
           "res": "\"Not... all,\" she says faintly.",
           "else": {"m":-4,"l":2,"res":"She turns red to the tips of her ears and mutters something about anatomy textbooks."}
         }
-      ]
+      ],
+      "image": {
+        "comp": "dropping a tea tray in a doorway, hands over her face, peeking through her fingers",
+        "setting": "small bedroom, spilled tea on the floor",
+        "sam": false
+      }
     },
     {
       "title": "Getting Closer",
@@ -263,7 +347,12 @@
       "choices": [
         {"label":"Stay with her","t":5,"m":8,"res":"Something between them shifts, just a little."},
         {"label":"Keep it light","t":1,"m":2,"res":"{N} smiles. Maybe next time."}
-      ]
+      ],
+      "image": {
+        "comp": "placing a flower crown on his head in a meadow, holding the lopsided one he made her",
+        "setting": "wildflower meadow outside town walls, sunny afternoon",
+        "sam": true
+      }
     },
     {
       "title": "Burnout",
@@ -286,7 +375,12 @@
           "res": "One night a week, with help. She hugs him so hard his ribs creak.",
           "cantAfford": {"t":2,"m":2,"res":"You can't afford it. She thanks you for trying."}
         }
-      ]
+      ],
+      "image": {
+        "comp": "collapsed against kitchen cabinets, exhausted, healer's satchel spilled, the man kneeling beside her",
+        "setting": "inn kitchen at night",
+        "sam": true
+      }
     },
     {
       "title": "Starlight",
@@ -295,7 +389,12 @@
       "choices": [
         {"label":"Listen to every single one","t":4,"m":7,"res":"There are a lot of them. He doesn't mind."},
         {"label":"Make up a constellation for her","t":3,"m":8,"res":"\"The Clumsy Healer.\" She shoves him. She uses the name forever."}
-      ]
+      ],
+      "image": {
+        "comp": "pointing up at the night sky from a hilltop, naming constellations, the man beside her",
+        "setting": "grassy hilltop at night, sweeping starry sky",
+        "sam": true
+      }
     },
     {
       "title": "Together",
@@ -315,7 +414,12 @@
       "choices": [
         {"label":"Stay with her","t":5,"m":8,"res":"Something between them shifts, just a little."},
         {"label":"Keep it light","t":1,"m":2,"res":"{N} smiles. Maybe next time."}
-      ]
+      ],
+      "image": {
+        "comp": "in armor tasting food from his plate with great seriousness, napkin tucked in",
+        "setting": "inn dining room at dinner time",
+        "sam": true
+      }
     },
     {
       "title": "Rain Barrel",
@@ -325,7 +429,12 @@
         {"label":"Turn around immediately","t":3,"m":2,"res":"\"Thank you, my lord,\" she says, in a very small voice."},
         {"label":"Salute back","m":6,"t":1,"res":"She laughs: a real, startled laugh, the first he's ever heard from her."},
         {"label":"Stammer helplessly","m":3,"l":1,"res":"They stand there stammering at each other until a goose interrupts."}
-      ]
+      ],
+      "image": {
+        "comp": "snapping to attention beside a rain barrel, soaking wet, covering herself with one arm and saluting with the other",
+        "setting": "training yard behind an inn, afternoon",
+        "sam": false
+      }
     },
     {
       "title": "Getting Closer",
@@ -334,7 +443,12 @@
       "choices": [
         {"label":"Stay with her","t":5,"m":8,"res":"Something between them shifts, just a little."},
         {"label":"Keep it light","t":1,"m":2,"res":"{N} smiles. Maybe next time."}
-      ]
+      ],
+      "image": {
+        "comp": "pointing a sword at him while clutching a stack of romance novels to her chest, scarlet",
+        "setting": "spartan barracks room",
+        "sam": true
+      }
     },
     {
       "title": "The Report",
@@ -359,7 +473,8 @@
           "m": 5,
           "res": "Sam answers their questions himself, politely, for four hours. Adelheid stands beside him the entire time."
         }
-      ]
+      ],
+      "image": {"comp":"sitting at a desk staring at a blank page, quill frozen, troubled expression","setting":"barracks room by candlelight","sam":false}
     },
     {
       "title": "Swordplay",
@@ -388,7 +503,12 @@
       "choices": [
         {"label":"Stay with her","t":5,"m":8,"res":"Something between them shifts, just a little."},
         {"label":"Keep it light","t":1,"m":2,"res":"{N} smiles. Maybe next time."}
-      ]
+      ],
+      "image": {
+        "comp": "showing him old ledgers covered in her margin notes, leaning over a desk together",
+        "setting": "owner's office, stacks of ledgers, lamplight",
+        "sam": true
+      }
     },
     {
       "title": "Invoice Ambush",
@@ -398,7 +518,12 @@
         {"label":"Argue back from the tub","m":6,"t":2,"res":"He wins, for once. She claims it doesn't count."},
         {"label":"Ask for some privacy","t":1,"res":"She rolls her eyes, leaves the invoice on the stool, and shuts the door. Firmly."},
         {"label":"Splash her","m":8,"l":2,"res":"War is declared. The washroom floods. Mira is not amused."}
-      ]
+      ],
+      "image": {
+        "comp": "standing in a washroom doorway waving an invoice, mid-argument, not leaving",
+        "setting": "steamy wooden washroom, a man in the tub off-frame",
+        "sam": false
+      }
     },
     {
       "title": "Getting Closer",
@@ -407,7 +532,12 @@
       "choices": [
         {"label":"Stay with her","t":5,"m":8,"res":"Something between them shifts, just a little."},
         {"label":"Keep it light","t":1,"m":2,"res":"{N} smiles. Maybe next time."}
-      ]
+      ],
+      "image": {
+        "comp": "slapping a winning hand of cards on the table, laughing at his face",
+        "setting": "staff room at night, cards and coins on the table",
+        "sam": true
+      }
     },
     {
       "title": "A Letter",
@@ -429,7 +559,8 @@
           "cantAfford": {"t":2,"m":-2,"res":"You can't spare it. She understands. Mostly."}
         },
         {"label":"Help her write back","t":5,"m":3,"res":"It takes all night. The letter says no, kindly. She sleeps better than she has in years."}
-      ]
+      ],
+      "image": {"comp":"reading a letter with a stricken expression, his hand on her shoulder","setting":"owner's office at dusk","sam":true}
     },
     {
       "title": "Her Mother",
@@ -438,7 +569,12 @@
       "choices": [
         {"label":"Bring flowers","t":4,"m":6,"res":"She tells him three stories about her mother on the walk back. She has never told anyone."},
         {"label":"Just stand with her","t":5,"m":4,"res":"After a while she leans against his shoulder."}
-      ]
+      ],
+      "image": {
+        "comp": "standing at a small grave on a hill with him, holding wildflowers, quiet",
+        "setting": "hilltop graveyard above a fantasy town, overcast",
+        "sam": true
+      }
     },
     {
       "title": "Together",
@@ -458,7 +594,8 @@
       "choices": [
         {"label":"Stay with her","t":5,"m":8,"res":"Something between them shifts, just a little."},
         {"label":"Keep it light","t":1,"m":2,"res":"{N} smiles. Maybe next time."}
-      ]
+      ],
+      "image": {"comp":"showing him a scar on her arm, sitting on a fence, half-smiling","setting":"town wall walkway at sunset","sam":true}
     },
     {
       "title": "Incoming",
@@ -468,7 +605,13 @@
         {"label":"Duck","m":4,"res":"He doesn't duck fast enough. She feels terrible. She laughs anyway."},
         {"label":"Take it like a man","t":2,"m":6,"res":"Direct hit. \"Nice reflexes, hero,\" she says, sinking up to her nose in the water."},
         {"label":"Apologize through the door","t":2,"res":"\"Knock next time, idiot!\" She sounds like she's grinning."}
-      ]
+      ],
+      "image": {
+        "comp": "throwing a bar of soap at adventurer speed from a bath, furious and blushing",
+        "setting": "steamy wooden washroom",
+        "sam": false,
+        "towel": true
+      }
     },
     {
       "title": "Getting Closer",
@@ -477,7 +620,12 @@
       "choices": [
         {"label":"Stay with her","t":5,"m":8,"res":"Something between them shifts, just a little."},
         {"label":"Keep it light","t":1,"m":2,"res":"{N} smiles. Maybe next time."}
-      ]
+      ],
+      "image": {
+        "comp": "eating fish-shaped pastries at a street stall with him, cheeks full, going quiet",
+        "setting": "busy market street, food stalls, afternoon",
+        "sam": true
+      }
     },
     {
       "title": "Solo Run",
@@ -493,7 +641,8 @@
           "res": "He doesn't say anything. He doesn't have to. She leans her head against his."
         },
         {"label":"Make her promise","t":4,"m":2,"res":"\"Next time, you come with me,\" she says. \"Deal?\""}
-      ]
+      ],
+      "image": {"comp":"limping in with a broken arm in a sling and a sack of gold, defiant grin","setting":"inn entrance hall at night","sam":false}
     },
     {
       "title": "Fireworks",
@@ -502,7 +651,12 @@
       "choices": [
         {"label":"Hold her hand","t":4,"m":8,"res":"Her hand is shaking. Then it isn't."},
         {"label":"Tell her you missed her, all three years","t":6,"m":6,"res":"She punches his arm. Then she cries. Then she laughs."}
-      ]
+      ],
+      "image": {
+        "comp": "watching fireworks from the town wall with him, faces lit up",
+        "setting": "town wall at night, colorful fireworks over rooftops",
+        "sam": true
+      }
     },
     {
       "title": "Together",
@@ -522,7 +676,8 @@
       "choices": [
         {"label":"Stay with her","t":5,"m":8,"res":"Something between them shifts, just a little."},
         {"label":"Keep it light","t":1,"m":2,"res":"{N} smiles. Maybe next time."}
-      ]
+      ],
+      "image": {"comp":"ruffling his hair in front of the staff, laughing","setting":"lively bar during staff meeting","sam":true}
     },
     {
       "title": "Shampoo",
@@ -532,7 +687,12 @@
         {"label":"Insist she leave","t":2,"res":"\"So shy!\" she giggles, and goes."},
         {"label":"Act just as casual","m":5,"l":2,"res":"She falters. Just a little. Her eyes flick down, then away. Interesting."},
         {"label":"\"I'm a grown man, Kanako.\"","t":3,"m":-2,"res":"She stops mid-sentence. Looks at him. Leaves without a word."}
-      ]
+      ],
+      "image": {
+        "comp": "setting a shampoo bottle on the edge of a tub, chatting casually, not blinking",
+        "setting": "steamy wooden washroom, a man in the tub off-frame",
+        "sam": false
+      }
     },
     {
       "title": "Getting Closer",
@@ -541,7 +701,12 @@
       "choices": [
         {"label":"Stay with her","t":5,"m":8,"res":"Something between them shifts, just a little."},
         {"label":"Keep it light","t":1,"m":2,"res":"{N} smiles. Maybe next time."}
-      ]
+      ],
+      "image": {
+        "comp": "standing behind him after he's stepped in front of a drunk client, surprised soft expression",
+        "setting": "busy bar at night",
+        "sam": true
+      }
     },
     {
       "title": "Matchmaker",
@@ -556,7 +721,12 @@
           "res": "Kanako opens her mouth, closes it, and leaves. She doesn't sleep that night. Neither does he."
         },
         {"label":"Politely refuse","t":2,"res":"\"You're impossible,\" she sighs. She looks relieved."}
-      ]
+      ],
+      "image": {
+        "comp": "proudly presenting a nervous young woman at a dinner table to him, beaming matchmaker grin",
+        "setting": "small restaurant, candles",
+        "sam": true
+      }
     },
     {
       "title": "Last Call",
@@ -565,7 +735,12 @@
       "choices": [
         {"label":"Sing, badly","m":9,"t":3,"res":"She joins in. They are both terrible. It's the best night either of them has had in this world."},
         {"label":"Ask her to sing","t":4,"m":6,"res":"Her voice is soft. She sings the whole song looking at him."}
-      ]
+      ],
+      "image": {
+        "comp": "singing karaoke with a lute-playing bard in a tiny bar, the man laughing beside her",
+        "setting": "tiny cozy bar like a snack bar, warm lights",
+        "sam": true
+      }
     },
     {
       "title": "Together",
@@ -585,7 +760,8 @@
       "choices": [
         {"label":"Stay with her","t":5,"m":8,"res":"Something between them shifts, just a little."},
         {"label":"Keep it light","t":1,"m":2,"res":"{N} smiles. Maybe next time."}
-      ]
+      ],
+      "image": {"comp":"grinning up at him, pointing at him accusingly in mock blame","setting":"busy market street, afternoon","sam":true}
     },
     {
       "title": "What a Coincidence",
@@ -595,7 +771,13 @@
         {"label":"Leave","t":1,"m":-4,"res":"\"Coward!\" she yells after him."},
         {"label":"\"You're Kenta's sister.\"","t":-2,"m":-6,"res":"\"I KNOW whose sister I am.\" A sponge hits the door as it closes."},
         {"label":"Laugh","m":5,"t":2,"res":"She tries to stay offended. She can't."}
-      ]
+      ],
+      "image": {
+        "comp": "lounging in a bath, obviously waiting, fake-gasping with a hand over her mouth",
+        "setting": "steamy wooden washroom",
+        "sam": false,
+        "towel": true
+      }
     },
     {
       "title": "Getting Closer",
@@ -604,7 +786,8 @@
       "choices": [
         {"label":"Stay with her","t":5,"m":8,"res":"Something between them shifts, just a little."},
         {"label":"Keep it light","t":1,"m":2,"res":"{N} smiles. Maybe next time."}
-      ]
+      ],
+      "image": {"comp":"covered in flour holding a burnt tray, completely undeterred, thumbs up","setting":"inn kitchen in chaos","sam":true}
     },
     {
       "title": "Useless",
@@ -619,7 +802,8 @@
         },
         {"label":"Train her yourself","grow":{"service":6},"t":6,"m":6,"res":"Every evening for a week. She gets better. She gets a lot better."},
         {"label":"Tell her about your own failures","t":5,"m":8,"res":"He has many. By the end she's laughing through her tears."}
-      ]
+      ],
+      "image": {"comp":"crying in a linen closet hugging a stack of towels","setting":"cramped linen closet, a sliver of light","sam":false}
     },
     {
       "title": "Drama Date",
@@ -628,7 +812,8 @@
       "choices": [
         {"label":"Commit to every cliché","m":10,"t":3,"res":"He even trips into her arms at the end. On purpose. She nearly dies of happiness."},
         {"label":"Do it your own way","t":4,"m":5,"res":"A walk, a bakery, a quiet bench. \"...Okay,\" she admits. \"This is better.\""}
-      ]
+      ],
+      "image": {"comp":"running dramatically through the rain toward him holding an umbrella","setting":"lantern-lit street in the rain","sam":true}
     },
     {
       "title": "Together",

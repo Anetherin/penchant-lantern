@@ -4,7 +4,8 @@
     "Same fields as data/characters.json (no role). Keys must be unique across this file and characters.json. Bonds can point at anyone in either file.",
     "visits: chance = odds per week that a guest shows up, stayWeeks = how long she waits among the candidates, cooldownWeeks = how long before that same lady can turn up again.",
     "Packs can be switched off in Settings → Visiting characters.",
-    "All guests are adults: aged-up / endgame versions."
+    "All guests are adults: aged-up / endgame versions.",
+    "jobs: {likes, dislikes} job ids, same as characters.json."
   ],
   "visits": {"chance":0.3,"stayWeeks":2,"cooldownWeeks":8},
   "packs": {
@@ -58,7 +59,8 @@
             "kurenai": {"v":60,"kind":"mentor","note":"Kurenai was her first squad leader back in the Leaf."},
             "sakura": {"v":40,"kind":"comrades","note":"Leaf classmates."},
             "ino": {"v":35,"kind":"comrades","note":"Leaf classmates."}
-          }
+          },
+          "jobs": {"likes":["companion","maid","reception"],"dislikes":["dancer"]}
         },
         "sakura": {
           "job": "security",
@@ -107,7 +109,8 @@
             "tsunade": {"v":55,"note":"Tsunade taught her everything she knows, including how to drink."},
             "ino": {"v":45,"note":"Best friends and lifelong rivals, in that order."},
             "karin": {"v":-15,"note":"Old history over the same aloof man. Neither will admit it still stings."}
-          }
+          },
+          "jobs": {"likes":["security","bartender"],"dislikes":["maid","reception"]}
         },
         "ino": {
           "job": "dancer",
@@ -152,7 +155,8 @@
               "bonus": {"noble":1.25,"courtesan":1.15}
             }
           },
-          "bonds": {"sakura":{"v":45,"note":"Best friends and lifelong rivals, in that order."},"hinata":{"v":35,"kind":"comrades","note":"Leaf classmates."}}
+          "bonds": {"sakura":{"v":45,"note":"Best friends and lifelong rivals, in that order."},"hinata":{"v":35,"kind":"comrades","note":"Leaf classmates."}},
+          "jobs": {"likes":["dancer","courtesan"],"dislikes":["maid"]}
         },
         "tenten": {
           "job": "bartender",
@@ -200,7 +204,8 @@
           "bonds": {
             "hinata": {"v":30,"kind":"comrades","note":"Leaf comrades."},
             "juju": {"v":50,"kind":"mentor","note":"Juju is from her toolsmith line and calls her Great-Grandma Tenten. Tenten hates it."}
-          }
+          },
+          "jobs": {"likes":["bartender","security"],"dislikes":["maid"]}
         },
         "temari": {
           "job": "security",
@@ -249,7 +254,8 @@
           "bonds": {
             "ino": {"v":20,"note":"Rivals in sharp tongues."},
             "nami": {"v":45,"kind":"mentor","note":"A fellow Sand wind user. Temari taught her the fans."}
-          }
+          },
+          "jobs": {"likes":["security","madame","courtesan"],"dislikes":["maid"]}
         },
         "tsunade": {
           "job": "madame",
@@ -298,7 +304,8 @@
             "sakura": {"v":55,"kind":"mentor","note":"Her finest student."},
             "shizune": {"v":70,"kind":"mentor","note":"Her long-suffering assistant of twenty years."},
             "mei": {"v":25,"note":"Old colleagues from the village heads' council."}
-          }
+          },
+          "jobs": {"likes":["madame","courtesan"],"dislikes":["maid"]}
         },
         "shizune": {
           "job": "reception",
@@ -343,7 +350,8 @@
               "bonus": {"noble":1.2,"companion":1.1}
             }
           },
-          "bonds": {"tsunade":{"v":70,"note":"Twenty years of cleaning up after her."}}
+          "bonds": {"tsunade":{"v":70,"note":"Twenty years of cleaning up after her."}},
+          "jobs": {"likes":["reception","madame","maid"],"dislikes":["courtesan"]}
         },
         "kurenai": {
           "job": "companion",
@@ -384,7 +392,8 @@
           "bonds": {
             "hinata": {"v":60,"kind":"mentor","note":"She was Hinata's first squad leader back in the Leaf."},
             "anko": {"v":55,"note":"Drinking buddies for twenty years."}
-          }
+          },
+          "jobs": {"likes":["companion","dancer","madame"],"dislikes":["reception"]}
         },
         "anko": {
           "job": "courtesan",
@@ -424,7 +433,8 @@
             },
             "sp_anko": {"label":"Snake charmer silks","style":"Exotic","prompt":"violet silk wraps with gold snake armlets","bonus":{"dancer":1.2,"commoner":1.15}}
           },
-          "bonds": {"kurenai":{"v":55,"note":"Drinking buddies for twenty years."}}
+          "bonds": {"kurenai":{"v":55,"note":"Drinking buddies for twenty years."}},
+          "jobs": {"likes":["courtesan","bartender"],"dislikes":["reception","maid"]}
         },
         "karin": {
           "job": "bath",
@@ -469,7 +479,8 @@
               "bonus": {"merchant":1.2,"companion":1.15}
             }
           },
-          "bonds": {"sakura":{"v":-15,"note":"Old history over the same aloof man. Neither will admit it still stings."}}
+          "bonds": {"sakura":{"v":-15,"note":"Old history over the same aloof man. Neither will admit it still stings."}},
+          "jobs": {"likes":["bath","madame"],"dislikes":["maid"]}
         },
         "mei": {
           "job": "madame",
@@ -509,7 +520,8 @@
             },
             "sp_mei": {"label":"Lagoon silks","style":"Elegant","prompt":"a sheer sea-green gown with pearl strands","bonus":{"courtesan":1.2,"noble":1.2}}
           },
-          "bonds": {"tsunade":{"v":25,"note":"Old colleagues from the village heads' council."}}
+          "bonds": {"tsunade":{"v":25,"note":"Old colleagues from the village heads' council."}},
+          "jobs": {"likes":["madame","companion"],"dislikes":["maid","reception"]}
         },
         "konan": {
           "job": "dancer",
@@ -553,7 +565,8 @@
               "prompt": "a white dress that dissolves into folded paper wings at the shoulders",
               "bonus": {"noble":1.25,"companion":1.15}
             }
-          }
+          },
+          "jobs": {"likes":["dancer","companion"],"dislikes":["bartender"]}
         }
       }
     },
@@ -603,7 +616,8 @@
               "bonus": {"reception":1.15,"commoner":1.2}
             }
           },
-          "bonds": {"maki":{"v":15,"note":"Mio borrowed half of Maki's playbook. Maki has noticed."}}
+          "bonds": {"maki":{"v":15,"note":"Mio borrowed half of Maki's playbook. Maki has noticed."}},
+          "jobs": {"likes":["companion","dancer"],"dislikes":["maid"]}
         },
         "emi": {
           "job": "security",
@@ -646,7 +660,8 @@
           "bonds": {
             "hibiki": {"v":60,"kind":"comrades","note":"Squadmates since the Exam."},
             "yori": {"v":25,"note":"Both from Ame. Emi is the only one who never loses track of her."}
-          }
+          },
+          "jobs": {"likes":["security","maid","madame"],"dislikes":["dancer"]}
         },
         "hibiki": {
           "job": "dancer",
@@ -691,7 +706,8 @@
               "bonus": {"noble":1.2,"courtesan":1.15}
             }
           },
-          "bonds": {"emi":{"v":60,"kind":"comrades","note":"Squadmates since the Exam."}}
+          "bonds": {"emi":{"v":60,"kind":"comrades","note":"Squadmates since the Exam."}},
+          "jobs": {"likes":["dancer","bartender","companion"],"dislikes":["security"]}
         },
         "choko": {
           "job": "bartender",
@@ -736,7 +752,8 @@
               "bonus": {"companion":1.15,"merchant":1.2}
             }
           },
-          "bonds": {"maki":{"v":55,"note":"Close friends since the Exam."},"saya":{"v":45,"kind":"comrades","note":"Old squadmates."}}
+          "bonds": {"maki":{"v":55,"note":"Close friends since the Exam."},"saya":{"v":45,"kind":"comrades","note":"Old squadmates."}},
+          "jobs": {"likes":["bartender","dancer"],"dislikes":["maid"]}
         },
         "saya": {
           "job": "reception",
@@ -785,7 +802,8 @@
             "yukine": {"v":75,"note":"Best friends. Neither of them would ever say it out loud."},
             "choko": {"v":45,"kind":"comrades","note":"Old squadmates."},
             "nozomi": {"v":-20,"note":"Saya turned her away once and still is not sure she was wrong."}
-          }
+          },
+          "jobs": {"likes":["reception","madame"],"dislikes":["dancer"]}
         },
         "juju": {
           "job": "bath",
@@ -834,7 +852,8 @@
             "hana": {"v":65,"note":"An intense friendship that started the moment they met."},
             "saki": {"v":40,"note":"Friends who nearly broke over a prosthetic, and mended it."},
             "nami": {"v":35,"kind":"comrades","note":"Old squadmates."}
-          }
+          },
+          "jobs": {"likes":["bath","companion","reception"],"dislikes":["maid"]}
         },
         "nami": {
           "job": "courtesan",
@@ -879,7 +898,8 @@
               "bonus": {"noble":1.2,"companion":1.15}
             }
           },
-          "bonds": {"juju":{"v":35,"kind":"comrades","note":"Old squadmates."}}
+          "bonds": {"juju":{"v":35,"kind":"comrades","note":"Old squadmates."}},
+          "jobs": {"likes":["courtesan","bath","companion"],"dislikes":["maid","security"]}
         },
         "maki": {
           "job": "companion",
@@ -927,7 +947,8 @@
           "bonds": {
             "mei": {"v":40,"note":"A distant Terumi cousin. Mei keeps offering marriage advice and Maki keeps taking notes."},
             "choko": {"v":55,"note":"Close friends since the Exam."}
-          }
+          },
+          "jobs": {"likes":["companion","madame","dancer"],"dislikes":["bartender","maid"]}
         },
         "saki": {
           "job": "dancer",
@@ -972,7 +993,8 @@
               "bonus": {"merchant":1.15,"noble":1.15}
             }
           },
-          "bonds": {"juju":{"v":40,"note":"Friends who nearly broke over a prosthetic, and mended it."}}
+          "bonds": {"juju":{"v":40,"note":"Friends who nearly broke over a prosthetic, and mended it."}},
+          "jobs": {"likes":["dancer","bartender","companion"],"dislikes":["maid"]}
         },
         "yori": {
           "job": "maid",
@@ -1019,7 +1041,8 @@
             }
           },
           "bonds": {"emi":{"v":25,"note":"Both from Ame."}},
-          "keepOn": {"item":"her heavy hooded charcoal-blue rain cloak with the hood up and her plain cloth mask","trust":90,"aside":true}
+          "keepOn": {"item":"her heavy hooded charcoal-blue rain cloak with the hood up and her plain cloth mask","trust":90,"aside":true},
+          "jobs": {"likes":["maid","companion","dancer"],"dislikes":["reception"]}
         },
         "nozomi": {
           "job": "companion",
@@ -1059,7 +1082,8 @@
             },
             "sp_nozomi": {"label":"Sundress","style":"Cute","prompt":"a pale green sundress with a cream cardigan","bonus":{"merchant":1.15,"noble":1.1}}
           },
-          "bonds": {"yukine":{"v":30,"note":"Trust earned slowly, one mission at a time."},"saya":{"v":-20,"note":"Saya turned her away once."}}
+          "bonds": {"yukine":{"v":30,"note":"Trust earned slowly, one mission at a time."},"saya":{"v":-20,"note":"Saya turned her away once."}},
+          "jobs": {"likes":["companion","maid"],"dislikes":["courtesan"]}
         },
         "yukine": {
           "job": "madame",
@@ -1107,7 +1131,8 @@
           "bonds": {
             "saya": {"v":75,"note":"Best friends. Neither of them would ever say it out loud."},
             "hana": {"v":50,"kind":"comrades","note":"Squadmates who started out butting heads."}
-          }
+          },
+          "jobs": {"likes":["madame","courtesan"],"dislikes":["maid"]}
         },
         "hana": {
           "job": "security",
@@ -1151,7 +1176,8 @@
           "bonds": {
             "juju": {"v":65,"note":"An intense friendship that started the moment they met."},
             "yukine": {"v":50,"kind":"comrades","note":"Squadmates who started out butting heads."}
-          }
+          },
+          "jobs": {"likes":["security","bartender"],"dislikes":["maid"]}
         },
         "shiori": {
           "job": "reception",
@@ -1194,7 +1220,8 @@
           "bonds": {
             "mio_tanabe": {"v":40,"kind":"mentor","note":"Shiori mentored her squad. She worries about her."},
             "saya": {"v":30,"kind":"mentor","note":"Shiori mentored her squad for a rotation."}
-          }
+          },
+          "jobs": {"likes":["reception","security"],"dislikes":["courtesan","bath"]}
         },
         "tsubasa": {
           "job": "bath",
@@ -1234,7 +1261,8 @@
             },
             "sp_tsubasa": {"label":"Lab coat","style":"Elegant","prompt":"a crisp white lab coat over a fitted dark dress","bonus":{"bath":1.25,"noble":1.1}}
           },
-          "bonds": {"saya":{"v":-10,"note":"Her demonstration once cost Saya five places in the rankings. Saya hasn't forgotten."}}
+          "bonds": {"saya":{"v":-10,"note":"Her demonstration once cost Saya five places in the rankings. Saya hasn't forgotten."}},
+          "jobs": {"likes":["bath","security"],"dislikes":["dancer"]}
         },
         "kotone": {
           "job": "madame",
@@ -1274,7 +1302,8 @@
             },
             "sp_kotone": {"label":"Plum silk qipao","style":"Elegant","prompt":"a deep plum silk qipao with silver thread","bonus":{"noble":1.25,"companion":1.15}}
           },
-          "bonds": {"hibiki":{"v":20,"note":"Both from the Sound village. Hibiki is a little jealous; Kotone has no idea why."}}
+          "bonds": {"hibiki":{"v":20,"note":"Both from the Sound village. Hibiki is a little jealous; Kotone has no idea why."}},
+          "jobs": {"likes":["madame","maid"],"dislikes":["courtesan"]}
         },
         "tobari": {
           "job": "security",
@@ -1316,7 +1345,8 @@
             "hana": {"v":60,"note":"Sparring rivals and closest friends, no hidden resentment."},
             "ebina": {"v":30,"note":"Easy, low-maintenance training partners."},
             "saya": {"v":-10,"note":"Respects Saya. Would prefer the beetles stay off her."}
-          }
+          },
+          "jobs": {"likes":["security","bartender","maid"],"dislikes":["reception","bath"]}
         },
         "marina": {
           "job": "maid",
@@ -1361,7 +1391,8 @@
               "bonus": {"companion":1.15,"noble":1.15}
             }
           },
-          "bonds": {"maki":{"v":45,"note":"Friends through clothes. Marina will alter anything for Maki, then ask her who it's for."}}
+          "bonds": {"maki":{"v":45,"note":"Friends through clothes. Marina will alter anything for Maki, then ask her who it's for."}},
+          "jobs": {"likes":["maid","madame"],"dislikes":["dancer","security"]}
         },
         "ayano": {
           "job": "bartender",
@@ -1406,7 +1437,8 @@
               "bonus": {"companion":1.15,"merchant":1.15}
             }
           },
-          "bonds": {"juju":{"v":35,"note":"Old friends, though one was always training while the other was working."}}
+          "bonds": {"juju":{"v":35,"note":"Old friends, though one was always training while the other was working."}},
+          "jobs": {"likes":["bartender","companion"],"dislikes":["maid"]}
         },
         "kamiko": {
           "job": "courtesan",
@@ -1450,7 +1482,8 @@
               "prompt": "a black silk kimono with a grass-green obi, her uneven hair loose",
               "bonus": {"noble":1.25,"courtesan":1.1}
             }
-          }
+          },
+          "jobs": {"likes":["courtesan","security"],"dislikes":["maid"]}
         },
         "nai": {
           "job": "companion",
@@ -1495,7 +1528,8 @@
               "bonus": {"noble":1.2,"courtesan":1.15}
             }
           },
-          "bonds": {"ebina":{"v":45,"kind":"comrades","note":"Old squadmates."}}
+          "bonds": {"ebina":{"v":45,"kind":"comrades","note":"Old squadmates."}},
+          "jobs": {"likes":["companion","bath"],"dislikes":["security","maid"]}
         },
         "ebina": {
           "job": "dancer",
@@ -1536,7 +1570,8 @@
             "sp_ebina": {"label":"Beach day","style":"Revealing","prompt":"a black bikini top with a sheer black sarong","bonus":{"dancer":1.15,"commoner":1.2}}
           },
           "bonds": {"nai":{"v":45,"kind":"comrades","note":"Old squadmates."},"juju":{"v":40,"note":"Ebina just redirects Juju into the next drill."}},
-          "keepOn": {"item":"her opaque round black sunglasses","trust":90}
+          "keepOn": {"item":"her opaque round black sunglasses","trust":90},
+          "jobs": {"likes":["dancer","madame"],"dislikes":["security"]}
         }
       }
     },
@@ -1586,7 +1621,8 @@
               "bonus": {"courtesan":1.15,"noble":1.15}
             }
           },
-          "bonds": {"midna":{"v":40,"note":"An unlikely alliance from the twilight days."},"nabooru":{"v":25,"note":"Allies from the old kingdom."}}
+          "bonds": {"midna":{"v":40,"note":"An unlikely alliance from the twilight days."},"nabooru":{"v":25,"note":"Allies from the old kingdom."}},
+          "jobs": {"likes":["companion","madame","dancer"],"dislikes":["bartender","maid"]}
         },
         "midna": {
           "job": "courtesan",
@@ -1631,7 +1667,8 @@
               "bonus": {"dancer":1.2,"commoner":1.15}
             }
           },
-          "bonds": {"zelda":{"v":40,"note":"An unlikely alliance from the twilight days."}}
+          "bonds": {"zelda":{"v":40,"note":"An unlikely alliance from the twilight days."}},
+          "jobs": {"likes":["courtesan","reception"],"dislikes":["maid","security"]}
         },
         "malon": {
           "job": "bartender",
@@ -1675,7 +1712,8 @@
               "prompt": "a red and cream ruffled festival dress with flowers in her hair",
               "bonus": {"dancer":1.15,"merchant":1.15}
             }
-          }
+          },
+          "jobs": {"likes":["bartender","companion"],"dislikes":["bath"]}
         },
         "great_fairy": {
           "job": "bath",
@@ -1714,7 +1752,8 @@
               "bonus": {"bath":1.3,"courtesan":1.15}
             },
             "sp_great_fairy": {"label":"Petal gown","style":"Elegant","prompt":"a sheer gown woven from flower petals and ivy","bonus":{"noble":1.25,"courtesan":1.15}}
-          }
+          },
+          "jobs": {"likes":["bath","courtesan"],"dislikes":["reception"]}
         },
         "nabooru": {
           "job": "security",
@@ -1759,7 +1798,8 @@
               "bonus": {"noble":1.2,"dancer":1.15}
             }
           },
-          "bonds": {"zelda":{"v":25,"note":"Allies from the old kingdom."}}
+          "bonds": {"zelda":{"v":25,"note":"Allies from the old kingdom."}},
+          "jobs": {"likes":["security","courtesan"],"dislikes":["maid"]}
         }
       }
     },
@@ -1808,7 +1848,8 @@
               "prompt": "a flowing pale green silk gown with gold embroidery",
               "bonus": {"noble":1.25,"companion":1.15}
             }
-          }
+          },
+          "jobs": {"likes":["security","bartender"],"dislikes":["reception"]}
         },
         "rhea": {
           "job": "madame",
@@ -1853,7 +1894,8 @@
               "bonus": {"companion":1.2,"noble":1.15}
             }
           },
-          "bonds": {"manuela":{"v":20,"note":"Rhea keeps her employed. Manuela keeps her out of the wine."}}
+          "bonds": {"manuela":{"v":20,"note":"Rhea keeps her employed. Manuela keeps her out of the wine."}},
+          "jobs": {"likes":["madame","maid","bath"],"dislikes":["bartender"]}
         },
         "manuela": {
           "job": "dancer",
@@ -1898,7 +1940,8 @@
               "bonus": {"bath":1.2,"companion":1.15}
             }
           },
-          "bonds": {"rhea":{"v":20,"note":"Old employer."}}
+          "bonds": {"rhea":{"v":20,"note":"Old employer."}},
+          "jobs": {"likes":["dancer","bartender"],"dislikes":["maid"]}
         },
         "lethe": {
           "job": "security",
@@ -1939,7 +1982,8 @@
             },
             "sp_lethe": {"label":"Moonlit silks","style":"Exotic","prompt":"a deep purple silk wrap dress","bonus":{"companion":1.15,"noble":1.1}}
           },
-          "bonds": {"panne":{"v":30,"note":"Two shapeshifters who recognize each other."}}
+          "bonds": {"panne":{"v":30,"note":"Two shapeshifters who recognize each other."}},
+          "jobs": {"likes":["security","courtesan","madame"],"dislikes":["maid","bath"]}
         },
         "panne": {
           "job": "companion",
@@ -1980,7 +2024,8 @@
             },
             "sp_panne": {"label":"Moon festival dress","style":"Elegant","prompt":"a white and silver fur-trimmed gown","bonus":{"noble":1.2,"courtesan":1.15}}
           },
-          "bonds": {"lethe":{"v":30,"note":"Two shapeshifters who recognize each other."}}
+          "bonds": {"lethe":{"v":30,"note":"Two shapeshifters who recognize each other."}},
+          "jobs": {"likes":["companion","security"],"dislikes":["reception"]}
         }
       }
     },
@@ -2030,7 +2075,8 @@
               "bonus": {"courtesan":1.15,"noble":1.2}
             }
           },
-          "bonds": {"hsin":{"v":35,"note":"Two guardians of the same coast."}}
+          "bonds": {"hsin":{"v":35,"note":"Two guardians of the same coast."}},
+          "jobs": {"likes":["companion","madame","dancer"],"dislikes":["bartender"]}
         },
         "carlotta": {
           "job": "companion",
@@ -2074,7 +2120,8 @@
               "prompt": "a backless pale blue silk gown with silver jewelry",
               "bonus": {"noble":1.25,"courtesan":1.15}
             }
-          }
+          },
+          "jobs": {"likes":["companion","madame"],"dislikes":["maid","bartender"]}
         },
         "hsin": {
           "job": "dancer",
@@ -2115,7 +2162,8 @@
             },
             "sp_hsin": {"label":"Moonlit silk","style":"Exotic","prompt":"a sheer white and gold silk dancing dress","bonus":{"courtesan":1.15,"dancer":1.15}}
           },
-          "bonds": {"jinhsi":{"v":35,"note":"Two guardians of the same coast."}}
+          "bonds": {"jinhsi":{"v":35,"note":"Two guardians of the same coast."}},
+          "jobs": {"likes":["dancer","companion"],"dislikes":["reception"]}
         }
       }
     }

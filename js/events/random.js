@@ -10,30 +10,32 @@ function ET(...path){
 }
 function evHaunt(h){
   const v = S.workers.find(w=>w.key==='vesper'), V = {house:h.name, ghost: v ? v.name : ''};
-  return {title:ET('haunt','title',V), who: v?v.id:null, scene:'casual', text:ET('haunt','text',V),
+  return {title:ET('haunt','title',V), who: v?v.id:null, scene:evImg('haunt','casual'), text:ET('haunt','text',V),
     choices:[{label:ET('haunt','lean','label',V), fx(){ h.rep=clamp(h.rep+2); return ET('haunt','lean','res',V); }},
              {label:ET('haunt','exorcist','label',V), fx(){ if(S.gold<60) return ET('haunt','exorcist','broke',V); S.gold-=60; if(v) v.trust=clamp(v.trust-5); return v ? ET('haunt','exorcist','resGhost',V) : ET('haunt','exorcist','res',V); }}]};
 }
+// an event's own picture, if events.json gives it one (image: {comp, setting, sam}); otherwise the fallback scene
+const evImg = (k, fallback) => dynScene('ev_'+k, (EVT[k]||{}).image) || fallback;
 function pickRandomEvent(){ const opts = RANDOM_EVENTS.filter(e=>e.ok()); if(!opts.length) return null; const e = weighted(opts, e=>e.w); return ()=> e.ok() ? e.make() : null; }
 const anyW = f => S.workers.filter(f);
 const RANDOM_EVENTS = [
   {w:3, ok:()=>anyW(w=>w.mood<55 && w.job!=='rest').length>0, make(){
     const w = pick(anyW(x=>x.mood<55 && x.job!=='rest')), V = {name:w.name};
-    return {title:ET('dayoff','title',V), who:w.id, scene:'casual', text:ET('dayoff','text',V), choices:[
+    return {title:ET('dayoff','title',V), who:w.id, scene:evImg('dayoff','casual'), text:ET('dayoff','text',V), choices:[
       {label:ET('dayoff','yes','label',V), fx(){ w.energy=clamp(w.energy+30,0,maxEnergy(w)); w.mood=clamp(w.mood+10); w.trust=clamp(w.trust+5); return ET('dayoff','yes','res',V); }},
       {label:ET('dayoff','no','label',V), fx(){ const soft = ['Warm and motherly','Shy but earnest','Laid-back and lazy'].includes(w.personality); w.trust=clamp(w.trust-(soft?3:6)); w.mood=clamp(w.mood-5); return ET('dayoff','no', soft?'resSoft':'res', V); }}]};
   }},
   {w:2, ok:()=>S.rep>=20 && anyW(w=>w.stats.refinement>=45 && w.energy>=30).length>0, make(){
     const w = weighted(anyW(x=>x.stats.refinement>=45 && x.energy>=30), x=>x.stats.refinement);
     const pay = Math.round(150 + w.stats.refinement*3 + S.rep*2), V = {name:w.name, gold:fmt(pay)};
-    return {title:ET('noble','title',V), who:w.id, scene:'companion', text:ET('noble','text',V), choices:[
+    return {title:ET('noble','title',V), who:w.id, scene:evImg('noble','companion'), text:ET('noble','text',V), choices:[
       {label:ET('noble','ask','label',V), fx(){ if(w.lewd>=15 || w.trust>=30){ S.gold+=pay; w.popularity=clamp(w.popularity+5); w.energy=clamp(w.energy-25,0,maxEnergy(w)); S.rep=clamp(S.rep+2); return ET('noble','ask','res',V); } w.trust=clamp(w.trust+2); return ET('noble','ask','pass',V); }},
       {label:ET('noble','decline','label',V), fx(){ S.rep=clamp(S.rep-1); return ET('noble','decline','res',V); }}]};
   }},
   {w:2, ok:()=>S.flags.guild>=1 && anyW(w=>w.job!=='rest' && w.energy>=30).length>0, make(){
     const w = weighted(anyW(x=>x.job!=='rest' && x.energy>=30), x=>x.stats.charm+x.popularity);
     const pay = Math.round(rnd(120,240) * (1+S.rep/150)), V = {name:w.name, gold:fmt(pay)};
-    return {title:ET('guild','title',V), who:w.id, scene:'companion', text:ET('guild','text',V), choices:[
+    return {title:ET('guild','title',V), who:w.id, scene:evImg('guild','companion'), text:ET('guild','text',V), choices:[
       {label:ET('guild','send','label',V), fx(){ S.gold+=pay; w.energy=clamp(w.energy-20,0,maxEnergy(w)); w.popularity=clamp(w.popularity+4); w.mood=clamp(w.mood+5); return ET('guild','send','res',V); }},
       {label:ET('guild','pass','label',V), fx(){ return ET('guild','pass','res',V); }}]};
   }},
@@ -47,7 +49,7 @@ const RANDOM_EVENTS = [
     S.flags.poachCD = 8;
     const w = pick(anyW(x=>x.trust<50 && !has(x,'Loyal') && !isFree(x) && !x.locked)), V = {name:w.name};
     const leave = () => { S.workers=S.workers.filter(x=>x!==w); addLog(`${w.name} left for the Velvet Thorn.`); };
-    return {title:ET('poach','title',V), who:w.id, scene:'portrait', text:ET('poach','text',V), choices:[
+    return {title:ET('poach','title',V), who:w.id, scene:evImg('poach','portrait'), text:ET('poach','text',V), choices:[
       {label:ET('poach','raise','label',V), fx(){ w.wage=Math.round(w.wage*1.3); w.trust=clamp(w.trust+5); return ET('poach','raise','res',V); }},
       {label:ET('poach','talk','label',V), fx(){ if(Math.random() < (w.trust+w.mood)/130){ w.trust=clamp(w.trust+8); return ET('poach','talk','stay',V); } leave(); return ET('poach','talk','go',V); }},
       {label:ET('poach','choose','label',V), fx(){ if(Math.random() < w.trust/60+0.2) return ET('poach','choose','stay',V); leave(); return ET('poach','choose','go',V); }}]};
@@ -64,21 +66,15 @@ const RANDOM_EVENTS = [
   }},
   {w:1.5, ok:()=>S.workers.some(a=>S.workers.some(b=>a!==b && a.house===b.house)), make(){
     const a = pick(S.workers.filter(x=>S.workers.some(y=>y!==x && y.house===x.house))), b = pick(S.workers.filter(y=>y!==a && y.house===a.house)), V = {name:a.name, other:b.name};
-    return {title:ET('friends','title',V), who:a.id, scene:'casual', text:ET('friends','text',V), choices:[{label:ET('friends','ok','label',V), fx(){ a.mood=clamp(a.mood+8); b.mood=clamp(b.mood+8); addBond(a, b, 10); return ''; }}]};
+    return {title:ET('friends','title',V), who:a.id, scene:evImg('friends','casual'), text:ET('friends','text',V), choices:[{label:ET('friends','ok','label',V), fx(){ a.mood=clamp(a.mood+8); b.mood=clamp(b.mood+8); addBond(a, b, 10); return ''; }}]};
   }},
   {w:1.5, ok:()=>anyW(w=>w.trust>=60 && !ARCS[w.key]).length>0, make(){
     const w = pick(anyW(x=>x.trust>=60 && !ARCS[x.key])), V = {name:w.name};
-    return {title:ET('quiet','title',V), who:w.id, scene:'sam_date', text:ET('quiet','text',V), choices:[{label:ET('quiet','stay','label',V), fx(){ w.trust=clamp(w.trust+3); w.mood=clamp(w.mood+5); samStat('charm',1); return ET('quiet','stay','res',V); }}]};
-  }},
-  {w:1.5, ok:()=>anyW(w=>w.lewd>=45 && w.trust>=25 && w.privateCount===0).length>0, make(){
-    const w = pick(anyW(x=>x.lewd>=45 && x.trust>=25 && x.privateCount===0)), V = {name:w.name};
-    return {title:ET('knock','title',V), who:w.id, scene:'casual', text:ET('knock','text',V), choices:[
-      {label:ET('knock','in','label',V), fx(){ w.privateCount++; w.lewd=clamp(w.lewd+3); w.mood=clamp(w.mood+8); samStat('technique',3); if(S.sam.first){ S.sam.first=false; return ET('knock','in','first',V); } return ET('knock','in','res',V); }},
-      {label:ET('knock','no','label',V), fx(){ w.trust=clamp(w.trust+2); return ET('knock','no','res',V); }}]};
+    return {title:ET('quiet','title',V), who:w.id, scene:evImg('quiet','sam_date'), text:ET('quiet','text',V), choices:[{label:ET('quiet','stay','label',V), fx(){ w.trust=clamp(w.trust+3); w.mood=clamp(w.mood+5); samStat('charm',1); return ET('quiet','stay','res',V); }}]};
   }},
   {w:2.5, ok:()=>anyW(underpaid).length>0, make(){
     const w = pick(anyW(underpaid)); const nw = wageFor(w), V = {name:w.name, wage:fmt(w.wage), newWage:fmt(nw)};
-    return {title:ET('raise','title',V), who:w.id, scene:'portrait', text:ET('raise','text',V), choices:[
+    return {title:ET('raise','title',V), who:w.id, scene:evImg('raise','portrait'), text:ET('raise','text',V), choices:[
       {label:ET('raise','agree','label',V), fx(){ w.wage=nw; w.trust=clamp(w.trust+3); w.mood=clamp(w.mood+5); return ET('raise','agree','res',V); }},
       {label:ET('raise','refuse','label',V), fx(){ const pr = ['Proud and sharp-tongued','Hot-blooded and competitive'].includes(w.personality) ? 2 : 1; w.mood=clamp(w.mood-8*pr); w.trust=clamp(w.trust-4*pr); return ET('raise','refuse', pr>1?'resProud':'res', V); }}]};
   }}

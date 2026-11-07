@@ -186,7 +186,7 @@ function endWeek(){
     const work = pr.served + pr.acc - pr.comp*0.4, over = work - BAL.mood.overworkAt;
     if(over>0){ w.mood -= over*(has(w,'Lazy')?5:2.5); why(over>3 ? 'badly overworked' : 'a bit overworked', false); }
     if(!isFree(w) && w.wage < wageFor(w)*0.9){ w.mood -= 4; why('feels underpaid', false); }
-    const P = PERS[w.personality]; if(P){ if(P.jobsUp.includes(w.job)){ w.mood += 3; why('likes her job', true); } else if(P.jobsDown.includes(w.job)){ w.mood -= 3; why("doesn't like her job", false); } }
+    if(jobLikes(w).includes(w.job)){ w.mood += 3; why('likes her job', true); } else if(jobDislikes(w).includes(w.job)){ w.mood -= 3; why("doesn't like her job", false); }
     if(mad && w!==mad) w.mood += 3;
     if(h.up.bath) w.mood += 3;
     if(S.past==='cook') w.mood += 2;

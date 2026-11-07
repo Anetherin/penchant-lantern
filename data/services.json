@@ -5,7 +5,8 @@
     "desc = what the service is, in plain words; the AI prompts get \"label (desc)\" as {service} so the AI knows what you mean.",
     "minCloth = the least undressed she'll be in images of it by default (dressed, partial, under, nude). Above partial it only applies if she's comfortable that far; Modest ladies still keep things pulled aside.",
     "image.client / image.sam / image.duo = pose and framing for client scenes, Sam's first-person scenes, and scenes with two ladies. Each is a list: one is picked at random per image, so add variants. image.extra is added to every image of this service (this replaces the old act_<id> snippets).",
-    "report = lines for the weekly report when a client got this service (one is picked at random; empty falls back to flavor.json client_yes)."
+    "report = lines for the weekly report when a client got this service (one is picked at random; empty falls back to flavor.json client_yes).",
+    "tier: how far past the line it is with Sam (1 kissing & touching, 2 hands & mouth, 3 everything). Private time with Sam only offers services up to the tier she's crossed in her firsts (data/firsts.json). Custom services without a tier count as 1 below line 30, 2 below 50, else 3."
   ],
   "services": [
     {
@@ -24,7 +25,8 @@
       },
       "report": [
         "They spent most of the evening wrapped up together on a lounge sofa, and he left grinning."
-      ]
+      ],
+      "tier": 1
     },
     {
       "id": "manual",
@@ -46,7 +48,8 @@
       },
       "report": [
         "It didn't take long. He left looking dazed and tipped well for it."
-      ]
+      ],
+      "tier": 2
     },
     {
       "id": "oral",
@@ -68,7 +71,8 @@
       },
       "report": [
         "He came back downstairs looking like he'd seen the face of a god."
-      ]
+      ],
+      "tier": 2
     },
     {
       "id": "paizuri",
@@ -90,7 +94,8 @@
       },
       "report": [
         "He talked about it at the bar afterward, at length, to anyone who'd listen."
-      ]
+      ],
+      "tier": 2
     },
     {
       "id": "missionary",
@@ -112,7 +117,8 @@
       },
       "report": [
         "The door stayed closed a long time. He left smiling and walked into a pillar."
-      ]
+      ],
+      "tier": 3
     },
     {
       "id": "cowgirl",
@@ -134,7 +140,8 @@
       },
       "report": [
         "She came back down first, humming. He followed much later, red-faced and grinning."
-      ]
+      ],
+      "tier": 3
     },
     {
       "id": "doggy",
@@ -158,7 +165,8 @@
       },
       "report": [
         "The bed upstairs creaked for most of the hour. He tipped extra on the way out."
-      ]
+      ],
+      "tier": 3
     }
   ]
 }

@@ -3,7 +3,8 @@
     "Image scenes (backdrops) for portraits, jobs, mishaps and time with Sam. Service scenes are built from services.json; date scenes come from dates.json.",
     "Each scene: label (shown in the image menu), comp (pose/framing), setting (backdrop), and optional flags: house (adds the house's own setting), sam (Sam is in it), pov (first person), client (who else is in it), snip (a snippets.json slot to append), towel (\"dressed\" means wrapped in a towel here).",
     "Add a new key to add a scene; it shows up in the scene picker on her sheet.",
-    "rooms: client room by room tier (shabby, comfortable, lavish, opulent). samRoom: where Sam's private scenes happen. clientPhrase: who's with her in client scenes. duoPhrase: added to scenes with two ladies."
+    "rooms: client room by room tier (shabby, comfortable, lavish, opulent). samRoom: where Sam's private scenes happen. clientPhrase: who's with her in client scenes. duoPhrase: added to scenes with two ladies.",
+    "enc_* scenes are the intros of encounters (nap visits, late knocks, waiting lovers, the storeroom). bath_invite / bath_walkin_relaxed replace the mishap scenes once she and Sam are past that point. Story moments (arc beats, events, firsts) can bring their own image: {comp, setting, sam, pov} on the beat itself."
   ],
   "scenes": {
     "portrait": {"label":"Portrait","comp":"upper body portrait, looking at viewer, gentle smile","setting":"warm softly blurred background"},
@@ -65,9 +66,55 @@
     "sam_training": {
       "label": "With Sam: Training",
       "sam": true,
-      "comp": "practicing together, Sam taking notes in a notebook",
+      "comp": "practicing together, him taking notes in a notebook",
       "setting": "practice room",
       "house": true
+    },
+    "enc_rest": {
+      "label": "Encounter: Nap interrupted",
+      "pov": true,
+      "sam": true,
+      "comp": "sitting on the edge of the bed leaning over the viewer, sly knowing smile, one hand on the blanket",
+      "setting": "small bedroom in the afternoon, shutters half closed, warm striped light"
+    },
+    "enc_late": {
+      "label": "Encounter: Knock after midnight",
+      "pov": true,
+      "sam": true,
+      "comp": "standing in a half-open doorway at night holding a candle, looking at the viewer through her lashes",
+      "setting": "dark wooden hallway, candlelight, late night"
+    },
+    "enc_waiting": {
+      "label": "Encounter: She's been waiting",
+      "pov": true,
+      "sam": true,
+      "comp": "sitting on the viewer's bed with her legs crossed, arms folded, impatient pout turning into a smile",
+      "setting": "his bedroom at night, a single lamp"
+    },
+    "enc_reckless": {
+      "label": "Encounter: The storeroom",
+      "pov": true,
+      "sam": true,
+      "comp": "pinning the viewer against shelves, flushed, heated determined look, door locked behind her",
+      "setting": "cramped storeroom, crates and barrels, a single swinging lantern"
+    },
+    "enc_jealous": {
+      "label": "Encounter: Left out",
+      "comp": "sitting alone on a window seat hugging her knees, looking away, hurt expression",
+      "setting": "quiet upstairs landing at dusk",
+      "house": true
+    },
+    "bath_invite": {
+      "label": "Bath: Join me",
+      "snip": "bath",
+      "comp": "relaxing in a steaming bath, arm draped over the edge, beckoning the viewer in with a warm unbothered smile",
+      "setting": "tiled fantasy washroom, steam everywhere, candles",
+      "towel": true
+    },
+    "bath_walkin_relaxed": {
+      "label": "Bath: Walks in, unbothered",
+      "comp": "leaning in the washroom doorway with a towel over her shoulder, amused smile, looking at the viewer",
+      "setting": "steamy wooden washroom, a man in the tub off-frame"
     }
   },
   "rooms": [

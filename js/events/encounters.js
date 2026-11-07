@@ -9,15 +9,16 @@
    Every outcome is consensual; "reckless" means impulsive, not unwilling.
    ===================================================================== */
 const bestSamAct = w => (w.fav && canSam(w,w.fav) && samStance(w,w.fav)==='yes') ? w.fav
-  : (getActs().filter(a=>samStance(w,a.id)==='yes').sort((a,b)=>b.th-a.th)[0] || getActs().find(a=>canSam(w,a.id)) || {}).id;
+  : (getActs().filter(a=>canSam(w,a.id) && samStance(w,a.id)==='yes').sort((a,b)=>b.th-a.th)[0] || getActs().find(a=>canSam(w,a.id)) || {}).id;
 const idleForClients = w => JOBS[w.job] && JOBS[w.job].cat!=='escort';
 function canVisit(w, trustMin, lewdMin, lustMin){
   return w.trust>=trustMin && w.lewd>=lewdMin && w.lust>=lustMin && w.energy>=maxEnergy(w)*0.3 && !!bestSamAct(w);
 }
-// one shared result: run privateCore without spending an action
+// One shared result: run privateCore without spending an action. The encounter's own line leads, then the service's
+// own line (flavor.json → private_act) instead of the generic private-time text; the picture switches to the service.
 function encounterResult(w, act, intro, kind, situation, drain){
   if(drain) S.sam.energy = Math.max(0, S.sam.energy - drain);
-  const text = intro + '\n\n' + privateCore(w, act);   // privateCore spends her lust
+  const text = privateCore(w, act, {lead:intro});   // privateCore spends her lust
   samLog(`${kind==='reckless'?'Swept off by':'A visit from'} ${w.name}`);
   return {text, img:{wid:w.id, scene:'samact:'+act}, ai:{kind, wid:w.id, act, scene:'samact:'+act, forSam:true, situation}};
 }
@@ -34,7 +35,7 @@ function restEncounter(w){
     <p class="story">Sam is halfway to sleep when the door creaks. ${esc(w.name)} slips in, closes it behind her, and sits on the edge of the bed. "You looked lonely," she says. She does not look like she came here to sleep.</p>
     <div id="resAi"></div>
     <div class="row"><button class="primary" onclick="restAccept('${w.id}','${act}')">Make room for her</button><button onclick="restDecline('${w.id}')">"I really do need the nap"</button></div>`);
-  showImg('resImg', w.id, 'casual');
+  showImg('resImg', w.id, 'enc_rest');
 }
 function restAccept(id, act){
   const w = findW(id); if(!w) return;
@@ -51,6 +52,7 @@ function restDecline(id){
 /* ---------- weekly ---------- */
 function queueEncounters(){
   let used = queueRegularDrama() ? 1 : 0;
+  used += queueFirsts();   // a lady crossing a line with Sam (js/events/firsts.js)
   // lovers at high lust come looking for Sam (they wait for him rather than going it alone)
   const lovers = S.workers.filter(w=>has(w,'Devoted') && w.lust>=LUST_HIGH && w.energy>=maxEnergy(w)*0.2 && bestSamAct(w));
   if(lovers.length && Math.random() < 0.75){ const id = pick(lovers).id; used++; EVQ.push(()=>evLoverWaiting(findW(id))); }
@@ -70,7 +72,7 @@ function queueEncounters(){
 function evLateVisit(w){
   if(!w || !canVisit(w, 60, 45, 40)) return null;
   const act = bestSamAct(w);
-  return {title:'A Knock After Midnight', who:w.id, scene:'casual', text:flavor('late_visit', w),
+  return {title:'A Knock After Midnight', who:w.id, scene:'enc_late', text:flavor('late_visit', w),
     choices:[
       {label:'Let her in', fx(){ return encounterResult(w, act, `${w.name} doesn't wait for an answer. The candle burns all the way down.`, 'encounter', 'Late at night, she came to his door on her own initiative.'); }},
       {label:'Not tonight', fx(){ w.mood = clamp(w.mood-4); w.lust = clamp(w.lust-5); return `${w.name} smiles a little ruefully. "Your loss, boss."`; }}]};
@@ -78,7 +80,7 @@ function evLateVisit(w){
 function evLoverWaiting(w){
   if(!w || !has(w,'Devoted')) return null;
   const act = bestSamAct(w); if(!act) return null;
-  return {title:`${w.name} Has Been Waiting`, who:w.id, scene:'casual', text:flavor('lover_waiting', w),
+  return {title:`${w.name} Has Been Waiting`, who:w.id, scene:'enc_waiting', text:flavor('lover_waiting', w),
     choices:[
       {label:'Go to her', fx(){ return encounterResult(w, act, flavor('lover_reunion', w), 'encounter', 'She is his lover and had been waiting for him all week; she came to his room.'); }},
       {label:'"Tomorrow, I promise"', fx(){ w.mood = clamp(w.mood-5); w.lust = clamp(w.lust-5); return `${w.name} sighs and kisses his cheek. "You'd better mean it."`; }}]};
@@ -87,7 +89,7 @@ function evReckless(w){
   if(!w || w.lust < LUST_HIGH-10) return null;
   const act = bestSamAct(w), h = houseOf(w);
   if(act && w.trust>=40 && Math.random()<0.55){
-    return {title:`${w.name} Can't Wait`, who:w.id, scene:'casual', text:`${w.name} has been restless for days, and tonight she's done waiting. She catches Sam in the hallway between errands, pushes him into the nearest storeroom, and locks the door behind them.`,
+    return {title:`${w.name} Can't Wait`, who:w.id, scene:'enc_reckless', text:`${w.name} has been restless for days, and tonight she's done waiting. She catches Sam in the hallway between errands, pushes him into the nearest storeroom, and locks the door behind them.`,
       choices:[
         {label:'Go along with it', fx(){ return encounterResult(w, act, `It is not quick. Sam emerges much later, extremely tired. (Sam's energy −35)`, 'reckless', 'She ambushed Sam in a storeroom after days of pent-up desire.', 35); }},
         {label:'"Not here, not now"', fx(){ w.mood = clamp(w.mood-6); w.lust = clamp(w.lust-8); return `${w.name} lets him go with a frustrated groan. She is going to be distracted all week.`; }}]};
@@ -112,7 +114,7 @@ function queueLoverDynamics(){
 function evLoverJealous(w, o){
   if(!w || !o) return null;
   const easy = (!PRICKLY.includes(w.personality) && !PRICKLY.includes(o.personality) && w.trust>=85 && o.trust>=85) || bondV(w,o) >= 40;
-  return {title:`${w.name} Feels Left Out`, who:w.id, scene:'casual', text:flavor('lover_jealous', w, {other:o.name}),
+  return {title:`${w.name} Feels Left Out`, who:w.id, scene:'enc_jealous', text:flavor('lover_jealous', w, {other:o.name}),
     choices:[
       {label:'Make it up to her (−20 energy, 40g)', fx(){ S.sam.energy = Math.max(0, S.sam.energy-20); S.gold -= 40; w.neglect = 0; w.mood = clamp(w.mood+8); gainTrust(w,2); w._samTime = (w._samTime||0)+1; return `Sam takes ${w.name} out for the evening and doesn't talk about work once. She forgives him somewhere around dessert.`; }},
       {label:`Talk to her and ${o.name} together`, fx(){

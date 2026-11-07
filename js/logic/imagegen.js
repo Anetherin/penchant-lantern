@@ -36,15 +36,24 @@ async function saveImage(key, url, w, scene){
   if(w && w.id!=='draft' && (scene==='portrait' || !THUMBS[w.id])) await setThumb(w.id, small);
   return true;
 }
+// mode: 'new' = regenerate now; 'auto' = generate if nothing's saved; 'manual' = only on request.
+// Left out, it follows Settings (SET.autoImg). The weekly report passes 'auto' only when its 🎨 button is pressed.
+// Any image can be hidden; hidden boxes show a "Show image" button and don't generate (SET.imgHidden = start hidden).
 async function showImg(boxId, id, scene, cloth, mode){
   const box = $('#'+boxId); const w = findAny(id); if(!box || !w) return;
   cloth = cloth || defaultCloth(w, scene);
+  if(mode===undefined) mode = SET.autoImg===false ? 'manual' : 'auto';
+  if(mode==='manual') mode = undefined;
+  const A0 = `'${boxId}','${id}','${scene}','${cloth}'`;
+  if(box.dataset.hide ? box.dataset.hide==='1' : !!SET.imgHidden){
+    box.dataset.key = ''; box.innerHTML = `<div class="row imgshow"><button class="sm" onclick="toggleImg(${A0},false)">🖼 Show image</button></div>`; return;
+  }
   let key = imgKey(w, scene, cloth);
   box.dataset.key = key;
   const prompt = buildPrompt(w, scene, cloth);
   let saved = mode==='new' ? null : await imgGet(key), legacy = false;
   if(!saved && mode!=='new' && key!==legacyKey(w,scene,cloth)){ saved = await imgGet(legacyKey(w,scene,cloth)); if(saved){ legacy = true; } }
-  if(box.dataset.key !== key) return;
+  if(box.dataset.key !== key || !box.isConnected) return;   // the modal moved on while we were loading
   const newKey = key; if(legacy) key = legacyKey(w,scene,cloth);
   box.innerHTML = '';
   const wrap = document.createElement('div'); wrap.className='imgbox'; box.appendChild(wrap);
@@ -53,7 +62,7 @@ async function showImg(boxId, id, scene, cloth, mode){
   else if(mode==='new' || mode==='auto'){ generateInto(wrap, w, newKey, prompt, scene, mode==='new', boxId, id, cloth); }
   else wrap.innerHTML = `<div class="imgph">No saved image for this scene yet.</div>`;
   const bar = document.createElement('div'); bar.className='row';
-  bar.innerHTML = `<button class="sm" onclick="showImg(${A},'new')">🎨 ${saved?'Regenerate':'Generate'}</button>
+  bar.innerHTML = `<button class="sm" onclick="toggleImg(${A},true)" title="Hide this image">🙈 Hide</button><button class="sm" onclick="showImg(${A},'new')">🎨 ${saved?'Regenerate':'Generate'}</button>
     <button class="sm" onclick="uploadImg(${A})">⬆ Upload</button>
     ${saved?`<button class="sm" onclick="downloadImg('${key}','${esc(w.name).replace(/'/g,'')}')">⬇ Save file</button>${id!=='draft'?`<button class="sm" onclick="useAvatar('${key}','${id}')">👤 Avatar</button>`:''}<button class="sm" onclick="deleteImg('${key}',${A})">🗑</button>`:''}`;
   box.appendChild(bar);
@@ -90,5 +99,6 @@ function uploadImg(boxId, id, scene, cloth){
 }
 async function downloadImg(key, name){ const d = await imgGet(key); if(!d) return; const a=document.createElement('a'); a.href=d; a.download=`${name||'image'}-${key.split('|').slice(1).join('-').replace(/[^a-z0-9-]/gi,'_')}.jpg`; document.body.appendChild(a); a.click(); a.remove(); }
 async function useAvatar(key, id){ const d = await imgGet(key); if(d){ await setThumb(id, d); toast('Avatar updated.'); } }
-async function deleteImg(key, boxId, id, scene, cloth){ if(!confirm('Delete this saved image?')) return; await imgDel(key); showImg(boxId,id,scene,cloth); }
+async function deleteImg(key, boxId, id, scene, cloth){ if(!confirm('Delete this saved image?')) return; await imgDel(key); showImg(boxId,id,scene,cloth,'manual'); }
+function toggleImg(boxId, id, scene, cloth, hide){ const box = $('#'+boxId); if(!box) return; box.dataset.hide = hide ? '1' : '0'; showImg(boxId, id, scene, cloth, hide ? 'manual' : undefined); }
 function avatarHTML(w){ return THUMBS[w.id] ? `<div class="avatar"><img src="${THUMBS[w.id]}" alt=""></div>` : `<div class="avatar" style="background:${hairHex(w)}">${esc(initials(w.name))}</div>`; }

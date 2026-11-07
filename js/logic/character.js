@@ -43,7 +43,11 @@ function samStance(w,id){
 }
 function comfortOf(w,id){ const a = w.acts&&w.acts[id]; return (a?a.comfort:0) + (w.fav===id?10:0) - (w.dislike===id?15:0); }
 const canClient = (w,id) => clientStance(w,id) !== 'no';
-const canSam = (w,id) => samStance(w,id) !== 'no';
+// How far past the line a service is with Sam (services.json → tier). She has to have crossed that line with him first
+// (w.intim, raised by her firsts: js/events/firsts.js). samStance is still her comfort; this is whether it's happened yet.
+const actTier = id => { const a = actById(id) || {}; return a.tier || (a.th < 30 ? 1 : a.th < 50 ? 2 : 3); };
+const crossed = (w,id) => actTier(id) <= (w.intim||0);
+const canSam = (w,id) => crossed(w,id) && samStance(w,id) !== 'no';
 const STANCE = {yes:'<span class="good" title="She enjoys this">✓</span>', ask:'<span class="pink" title="She\'ll do it because she trusts Sam, but it costs her mood">~</span>', no:'<span class="muted" title="A line she won\'t cross yet">✗</span>'};
 const actSkill = (w,id) => (w.acts&&w.acts[id]) ? w.acts[id].skill : 0;
 
@@ -112,6 +116,11 @@ function ensureWorker(w){
   if(w.dislike===undefined){ let d=null; if(Math.random()<0.7){ do d=pick(ids); while(d===w.fav); } w.dislike=d; }
   if(w.lovers===undefined){ let l=null; if(Math.random()<0.45){ do l=pick(ids); while(l===w.fav); } w.lovers=l; }
   if(!w.menu) w.menu = [];
+  // firsts with Sam (js/events/firsts.js): her pace and path, and how far they've gone. Older saves where they'd
+  // already been together count as having crossed every line.
+  if(!w.firsts || !Array.isArray(w.firsts.path)) w.firsts = firstsProfile(w);
+  if(w.intim===undefined) w.intim = (w.privateCount>0 || has(w,'Devoted')) ? Math.max(...w.firsts.path) : 0;
+  if(!w.jobLikes) rollJobPrefs(w);
   if(w.offDuty===undefined) w.offDuty = false;
   if(!w.style) w.style = pick(STYLES);
   if(!w.favColor) w.favColor = pick(COLOR_KEYS);
@@ -197,6 +206,7 @@ function makeNamed(key, asPartner){
   if(asPartner){ w.isPartner = true; w.trust = D.partnerTrust; if(D.partnerLewd!==undefined) w.lewd = D.partnerLewd; w.mood = 75; w.backstory = D.partnerStory + '\n\n' + D.backstory; w.contract = 999; }
   else if(D.partnerStory){ w.backstory = D.partnerStory + '\n\n' + D.backstory; }
   if(ARCS[key]) w.arc = 0;
+  delete w.jobLikes; delete w.jobDislikes; delete w.firsts; delete w.intim;   // rolled for the generic base; hers come from her data
   ensureWorker(w);
   w.wage = wageFor(w); w.energy = maxEnergy(w);
   return w;

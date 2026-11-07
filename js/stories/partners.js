@@ -21,11 +21,17 @@ function applyEff(w, e){
 function evArc(w){
   const beats = ARCS[w.key]; if(!beats || !S.workers.includes(w)) return null;
   const i = w.arc||0; if(i>=beats.length) return null;
-  const b = beats[i], last = i===beats.length-1;
+  let b = beats[i]; const last = i===beats.length-1;
+  // bath / walk-in beats once they're well past being embarrassed about it (firsts.json → relaxed)
+  if((b.scene==='shower' || b.scene==='walkin') && (w.intim||0) >= FIRSTS.relaxedAt) b = relaxedMishap(w, b);
   let scene = b.scene, cloth = b.cloth;
-  if(scene==='final'){ const act = (w.fav && canSam(w,w.fav)) ? w.fav : (getActs().find(a=>canSam(w,a.id))||{id:'caress'}).id; scene = 'samact:'+act; cloth = undefined; }
+  if(b.image && scene!=='final') scene = dynScene(`arc_${w.key}_${i}`, b.image) || scene;
+  // the last beat crosses her next line with Sam if she's comfortable with it; the picture shows the furthest she'd go
+  const nx = last ? firstNext(w) : null, nxOk = nx && tierActs(w, nx).length;
+  if(scene==='final'){ const top = nxOk ? nx : (w.intim||0), pool = getActs().filter(a=>actTier(a.id)<=top && samStance(w,a.id)!=='no');
+    const act = (pool.find(a=>a.id===w.fav) || pool.sort((x,y)=>y.th-x.th)[0] || {id:'caress'}).id; scene = 'samact:'+act; cloth = undefined; }
   return {title:`${w.name}: ${b.title} (${i+1}/${beats.length})`, who:w.id, scene, cloth, text:b.text,
-    choices: b.choices.map(c=>({label:c.label, fx(){
+    choices: b.choices.map(c=>({label:fillF(c.label, w), fx(){
       const e = resolveEff(w, c);
       applyEff(w, e);
       let res = String(e.res||'').replace(/\{N\}/g, w.name);
@@ -33,6 +39,7 @@ function evArc(w){
       if(e.hold) return res;
       w.arc = i+1; samGainXP(last?40:15);
       if(w.arc>=4 && has(w,'Oblivious')){ w.traits = w.traits.filter(t=>t!=='Oblivious'); res += `\n\n(Something has changed in the way ${w.name} looks at Sam. Oblivious removed.)`; }
+      if(last && nxOk){ w.intim = nx; w.intimWk = S.week; res += `${res?'\n\n':''}♥ ${w.name} and Sam: ${stageName(nx)}.`; addLog(`${w.name} and Sam: ${stageName(nx)}.`); }
       if(last){ w.privateCount++; if(S.sam.first) S.sam.first=false; if(!has(w,'Devoted')) w.traits.push('Devoted'); w.isPartner = true; w.wage = 0; w.contract = 999;
         res = (res?res+'\n\n':'') + `${w.name} is now Sam's lover. (Devoted: never leaves, works without wages, more willing with Sam, and her mood stays up.)`; }
       return res;

@@ -24,6 +24,8 @@ const uid = () => 'w' + Date.now().toString(36) + Math.random().toString(36).sli
 const clone = o => JSON.parse(JSON.stringify(o));
 const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
 function weighted(arr, f){ const ws = arr.map(f); let t = ws.reduce((a,b)=>a+b,0)*Math.random(); for(let i=0;i<arr.length;i++){ t -= ws[i]; if(t<=0) return arr[i]; } return arr[arr.length-1]; }
+// small seeded random (mulberry32): same seed, same sequence
+function seededRng(seed){ let a = (seed>>>0) || 1; return ()=>{ a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a>>>15, 1 | a); t = t + Math.imul(t ^ t>>>7, 61 | t) ^ t; return ((t ^ t>>>14)>>>0) / 4294967296; }; }
 function hashStr(s){ let h=0; for(const c of String(s)) h=(h*31+c.charCodeAt(0))|0; return Math.abs(h); }
 
 const store = {

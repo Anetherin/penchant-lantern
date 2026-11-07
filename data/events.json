@@ -2,7 +2,8 @@
   "_readme": [
     "The words for the random events, plus a few of Sam's everyday actions. When each event can happen and what its choices do stay in js/events/random.js.",
     "Any text can be a single string or a list (one is picked at random). Placeholders are filled in by the game: {name} = the lady involved, plus the extras listed in each event's _vars.",
-    "Keep the choice keys as they are (they're how the code finds them); change the label and result wording freely."
+    "Keep the choice keys as they are (they're how the code finds them); change the label and result wording freely.",
+    "image (optional): {comp, setting, sam} a picture for that event instead of a generic scene."
   ],
   "haunt": {
     "_vars": "{house}, {ghost} (the resident ghost, if hired)",
@@ -18,13 +19,21 @@
       "res": "The exorcist leaves in tears.",
       "resGhost": "The exorcist leaves in tears. {ghost} is offended you asked.",
       "broke": "You can't afford one."
+    },
+    "image": {
+      "comp": "translucent ghostly woman drifting through a wall with a mischievous grin, guests fleeing in the background",
+      "setting": "lantern-lit lounge at night, cold blue glow"
     }
   },
   "dayoff": {
     "title": "A Small Request",
     "text": "{name} catches Sam in the hallway. \"Could I take a few days off? I'm running on fumes.\"",
     "yes": {"label":"Of course","res":"{name} looks relieved. \"Thanks, boss.\""},
-    "no": {"label":"Not this week","resSoft":"{name} says she understands. She looks very tired.","res":"{name} nods stiffly and goes back to work."}
+    "no": {"label":"Not this week","resSoft":"{name} says she understands. She looks very tired.","res":"{name} nods stiffly and goes back to work."},
+    "image": {
+      "comp": "slumped at a kitchen table with her head on her arms, tired eyes, untouched cup of tea",
+      "setting": "quiet staff kitchen in the early morning"
+    }
   },
   "noble": {
     "_vars": "{gold} (the fee)",
@@ -35,14 +44,22 @@
       "res": "{name} agrees and returns the next morning with the fee and a smug smile. +{gold}, +renown.",
       "pass": "{name} politely passes. Sam sends regrets. She appreciates being asked."
     },
-    "decline": {"label":"Decline politely","res":"The messenger sniffs and leaves."}
+    "decline": {"label":"Decline politely","res":"The messenger sniffs and leaves."},
+    "image": {
+      "comp": "on the arm of a richly dressed nobleman at a glittering party, poised elegant smile",
+      "setting": "opulent noble ballroom, chandeliers"
+    }
   },
   "guild": {
     "_vars": "{gold} (the fee)",
     "title": "Guild Celebration",
     "text": "Hanna sends word: a party just cleared a dungeon floor and wants company for their victory feast. They asked for {name} by name. Fee: {gold}.",
     "send": {"label":"Send {name}","res":"It goes great. {name} comes back with the fee and three new admirers. +{gold}."},
-    "pass": {"label":"Pass this time","res":"Hanna sends back a sad-face doodle."}
+    "pass": {"label":"Pass this time","res":"Hanna sends back a sad-face doodle."},
+    "image": {
+      "comp": "standing at a busy guild counter accepting a sealed contract, adventurers around her",
+      "setting": "bustling adventurers' guild hall, notice boards"
+    }
   },
   "taunt": {
     "title": "The Velvet Thorn",
@@ -59,7 +76,11 @@
     "text": "{name} admits Isolde Thorne offered her a position at the Velvet Thorn, with better pay. She hasn't decided.",
     "raise": {"label":"Offer a raise (+30%)","res":"{name} stays. \"Okay. You actually value me. Noted.\""},
     "talk": {"label":"Talk it through","stay":"They talk for an hour. {name} decides she'd rather stay.","go":"{name} hugs Sam goodbye. She's going."},
-    "choose": {"label":"Let her choose","stay":"{name} turns Isolde down.","go":"{name} takes the offer."}
+    "choose": {"label":"Let her choose","stay":"{name} turns Isolde down.","go":"{name} takes the offer."},
+    "image": {
+      "comp": "holding a fancy embossed letter, conflicted expression, glancing at a rival's calling card",
+      "setting": "quiet hallway, afternoon light"
+    }
   },
   "lucky": {
     "_vars": "{gold}",
@@ -86,29 +107,33 @@
     "_vars": "{other} (the second lady)",
     "title": "Friends",
     "text": "{name} and {other} have started taking their breaks together. Things feel a bit warmer.",
-    "ok": {"label":"Good to hear"}
+    "ok": {"label":"Good to hear"},
+    "image": {
+      "comp": "laughing with another woman over cards at a table, relaxed and happy",
+      "setting": "staff common room in the evening, warm lamplight",
+      "house": true
+    }
   },
   "quiet": {
     "title": "A Quiet Moment",
     "text": "{name} finds Sam on the back steps after closing and sits next to him. \"You know, you're not what I expected. In a good way.\"",
-    "stay": {"label":"Stay and talk","res":"They watch the two moons rise."}
-  },
-  "knock": {
-    "title": "A Knock at the Door",
-    "text": "Late at night there's a knock on Sam's door. It's {name}, leaning on the frame. \"So I hear the new boss has never... you know.\" She grins. \"That's just sad. Want a tour?\"",
-    "in": {
-      "label": "Let her in",
-      "first": "{name} turns out to be a patient and extremely amused teacher. Sam turns out to be a quick study. The door closes.",
-      "res": "The door closes."
-    },
-    "no": {"label":"Politely decline","res":"{name} laughs. \"Offer stands, boss.\""}
+    "stay": {"label":"Stay and talk","res":"They watch the two moons rise."},
+    "image": {
+      "comp": "sitting on the back steps next to him sharing a pot of tea, talking quietly, shoulders touching",
+      "setting": "back steps of an inn at dusk, lanterns coming on, town rooftops",
+      "sam": true
+    }
   },
   "raise": {
     "_vars": "{wage} (current), {newWage}",
     "title": "Raise Request",
     "text": "{name} plants herself in front of Sam's desk. \"I'm worth more than {wage} a week, and we both know it. {newWage}.\"",
     "agree": {"label":"Agree ({newWage}/wk)","res":"\"Pleasure doing business.\""},
-    "refuse": {"label":"Refuse","resProud":"{name} stares at Sam for a long, cold moment. She won't forget this.","res":"{name} leaves without a word."}
+    "refuse": {"label":"Refuse","resProud":"{name} stares at Sam for a long, cold moment. She won't forget this.","res":"{name} leaves without a word."},
+    "image": {
+      "comp": "standing in front of a desk with arms folded, determined expression, a list of her accomplishments in hand",
+      "setting": "small office, lamplight"
+    }
   },
   "incident": {
     "_vars": "{house}, {guard} (her security, if any), {gold} (damage)",

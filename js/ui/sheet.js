@@ -37,7 +37,7 @@ function refreshSheetInfo(){
     const pref = kp ? (w.fav===a.id?' <span title="Favorite" class="good">★</span>':'') + (w.dislike===a.id?' <span title="Dislikes" class="warn">✗</span>':'') + (w.lovers===a.id?' <span title="Lovers only: with clients only if very lewd" class="pink">♥</span>':'') : '';
     return `<tr><td>${esc(a.label)}${pref}</td><td>${sv(w,actSkill(w,a.id),true)}</td>
       <td>${cst==='no'&&kp&&w.lovers===a.id?'<span class="pink">♥ lovers</span>':STANCE[cst]}${k?` <span class="muted">${Math.round(inclination(w,a.id)-(w.lovers===a.id?30:0))}/${a.th}${cst==='ask'?'':cst==='no'&&inclination(w,a.id)-(w.lovers===a.id?30:0)>=a.th-ASK_BAND?` (trust ${trustNeed(a.th-inclination(w,a.id)+(w.lovers===a.id?30:0))})`:''}</span>`:''}</td>
-      <td>${STANCE[sst]}</td>
+      <td>${sst!=='no' && !crossed(w,a.id) ? `<span class="muted" title="She'd be comfortable with it, but she and Sam haven't crossed that line yet">🔒</span>` : STANCE[sst]}</td>
       <td><input type="checkbox" ${on?'checked':''} ${cc?'':'disabled'} onchange="toggleMenu('${w.id}','${a.id}',this.checked)"></td></tr>`;
   }).join('');
   const cl = comfortCloth(w,false,true), cs = comfortCloth(w,true,true);
@@ -46,7 +46,7 @@ function refreshSheetInfo(){
   const arcTxt = ARCS[w.key] ? `<div class="pink">♥ Story: ${(w.arc||0)>=ARCS[w.key].length ? 'Lovers' : `chapter ${w.arc||0}/${ARCS[w.key].length}${(w.arc||0)<ARCS[w.key].length?` <span class="muted">(next: ${ARCS[w.key][w.arc||0].title})</span>`:''}`}${!w.arc&&w.trust<40?' <span class="muted">(begins once she trusts Sam: 40)</span>':''}</div>` : '';
   box.innerHTML = `<div class="status"><h3>[ STATUS ] ${esc(w.name)}</h3>
     <div class="muted">${raceLabel(w)} · Age ${w.age} · ${esc(w.personality)} · Style: ${w.style} · ♥ ${sw(w.favColor)}${w.favColor}</div>
-    <p class="story" style="margin:6px 0" id="bs_${w.id}">${esc(w.backstory)}</p>${SET.ai.on&&!w.named?`<button class="sm" onclick="if(confirm('Replace her backstory with a new AI-written one?'))aiBackstory('bs_${w.id}','${w.id}')">✨ Rewrite backstory</button>`:''}<div>${traitTags(w)}</div>${arcTxt}${(()=>{ if(!S.workers.includes(w)) return ''; seedBonds(); const bl = bondLines(w); return bl.length ? `<div class="muted">🤝 ${bl.map(esc).join(' · ')}</div>` : ''; })()}
+    <p class="story" style="margin:6px 0" id="bs_${w.id}">${esc(w.backstory)}</p>${SET.ai.on&&!w.named?`<button class="sm" onclick="if(confirm('Replace her backstory with a new AI-written one?'))aiBackstory('bs_${w.id}','${w.id}')">✨ Rewrite backstory</button>`:''}<div>${traitTags(w)}</div>${arcTxt}${firstsLine(w)}${(()=>{ if(!S.workers.includes(w)) return ''; seedBonds(); const bl = bondLines(w); return bl.length ? `<div class="muted">🤝 ${bl.map(esc).join(' · ')}</div>` : ''; })()}
     <div class="sgrid" style="margin-top:8px">${STAT_KEYS.map(s=>`<div><span>${s.toUpperCase()}</span><b>${sv(w,w.stats[s],true)}</b></div>`).join('')}</div>
     <div class="sgrid" style="margin-top:6px">${TECH_KEYS.map(s=>`<div><span>${TECH_LABEL[s].toUpperCase()}</span><b>${sv(w,w.tech[s],true)}</b></div>`).join('')}<div><span>POPULARITY</span><b>${Math.round(w.popularity)}</b></div></div>
     <div style="margin-top:8px">${bar('Energy',w.energy,maxEnergy(w),'e')}${bar('Mood',w.mood,100,'m')}${bar('Trust',w.trust,100,'t')}${k?bar('Lewdness',w.lewd,100,'l'):'<div class="muted">Lewdness: ? (Appraisal Lv 2 or more trust)</div>'}${k?bar('Lust ('+lustLabel(w)+')',w.lust,100,'p'):''}${bar('Health',w.health,100,'h')}</div>
@@ -56,7 +56,7 @@ function refreshSheetInfo(){
     <div class="row" style="margin-top:8px">👗 <b>${esc(o.label)}</b>${usesColor(o)?` ${sw(w.outColor)}${w.outColor}`:''} · 🩲 ${esc(u.label)}${w.under!=='none'&&usesColor(u)?` ${sw(w.underColor)}${w.underColor}`:''} <button class="sm" onclick="openWardrobe('${w.id}')">Wardrobe</button></div>
     <h3 style="margin-top:10px">Services</h3>
     <table><tr><th>Service</th><th>Skill</th><th>Clients</th><th>Sam</th><th>Menu</th></tr>${rows}</table>
-    <div class="muted" style="font-size:12px">✓ she enjoys it · ~ she'll do it because she trusts Sam (costs mood; lewdness grows faster) · ✗ a line she won't cross yet. Numbers: her inclination / the service's line.<br>${kp?'★ favorite (mood +) · <span class="warn">✗</span> after a name = dislikes (mood −) · ♥ lovers only':'Her preferences show at trust 40 or Appraisal Lv 3.'} · Menu = what she offers clients.</div>
+    <div class="muted" style="font-size:12px">✓ she enjoys it · 🔒 (Sam) she'd be fine with it, but they haven't gotten that far yet · ~ she'll do it because she trusts Sam (costs mood; lewdness grows faster) · ✗ a line she won't cross yet. Numbers: her inclination / the service's line.<br>${kp?'★ favorite (mood +) · <span class="warn">✗</span> after a name = dislikes (mood −) · ♥ lovers only':'Her preferences show at trust 40 or Appraisal Lv 3.'} · Menu = what she offers clients.</div>
     <label class="chk" style="margin-top:4px"><input type="checkbox" ${w.offDuty?'checked':''} onchange="setOffDuty('${w.id}',this.checked)"> Accepts propositions (for menu services) while working other jobs</label>
     <label class="chk"><input type="checkbox" ${w.autoRest?'checked':''} onchange="setAutoRest('${w.id}',this.checked)"> Auto-rest when worn out (below 35% energy), back to work at 85%</label>
     <div class="row" style="margin-top:10px">Job <select onchange="setJob('${w.id}',this.value)">${jobOptions(w)}</select>
@@ -66,14 +66,13 @@ function refreshSheetInfo(){
     <h3 style="margin-top:10px">Time with Sam <span class="muted">(${S.ap} AP left)</span></h3>
     <div class="row"><button onclick="samChat('${w.id}')">💬 Chat</button><button onclick="dateMenu('${w.id}')">🌙 Date…</button><button onclick="samGift('${w.id}')">🎁 Gift (60g)</button></div>
     <div class="row"><select id="trainSel">${TECH_KEYS.map(s=>`<option value="${s}">${TECH_LABEL[s]}</option>`).join('')}${getActs().filter(a=>canSam(w,a.id)).map(a=>`<option value="act:${a.id}">Practice: ${esc(a.label)}</option>`).join('')}</select><button onclick="samTrain('${w.id}')">📚 Train</button>
-      <button onclick="privateMenu('${w.id}')" ${anySam?'':'disabled title="She isn\'t comfortable with that yet."'}>🕯️ Private time</button></div>
+      <button onclick="privateMenu('${w.id}')" ${anySam?'':`disabled title="${(w.intim||0)===0?'She and Sam haven\'t crossed that line yet.':'She isn\'t comfortable with that yet.'}"`}>🕯️ Private time</button></div>
     <div class="row"><button onclick="editWorker('${w.id}')">✏️ Edit design</button>${w.isPartner||w.locked?'':`<button onclick="dismiss('${w.id}')">Dismiss</button>`}${has(w,'Devoted')?`<button onclick="endLovers('${w.id}')">💔 End things</button>`:''}${w.exLover&&!has(w,'Devoted')?`<button onclick="rekindle('${w.id}')" ${w.trust<BAL.breakup.rekindleTrust?`disabled title="She needs trust ${BAL.breakup.rekindleTrust}+"`:''}>💞 Ask her back</button>`:''}</div>`;
 }
 function persLine(w){
-  const P = PERS[w.personality];
-  if(!P) return `<div class="muted">Custom personality: no special likes or dislikes.</div>`;
-  const J = a => a.map(j=>JOBS[j]?JOBS[j].label:j).join(', ');
-  return `<div class="muted">Jobs she'll do now: ${Object.keys(JOB_TRUST).filter(j=>w.trust>=jobTrust(w,j)).map(j=>JOBS[j].label).join(', ')||'none yet'}</div><div class="muted">Likes: <b>${P.likes.map(a=>ACT_WORD[a]).join(', ')}</b>${P.dislikes.length?` · Dislikes: <b>${P.dislikes.map(a=>ACT_WORD[a]).join(', ')}</b>`:''} · Enjoys working as: ${J(P.jobsUp)} · Dislikes: ${J(P.jobsDown)}</div>`;
+  const P = PERS[w.personality] || {likes:[], dislikes:[]};
+  const J = a => a.map(j=>JOBS[j]?JOBS[j].label:j).join(', ') || 'nothing in particular';
+  return `<div class="muted">Jobs she'll do now: ${Object.keys(JOB_TRUST).filter(j=>w.trust>=jobTrust(w,j)).map(j=>JOBS[j].label).join(', ')||'none yet'}</div><div class="muted">${P.likes.length?`Likes: <b>${P.likes.map(a=>ACT_WORD[a]).join(', ')}</b>`:''}${P.dislikes.length?` · Dislikes: <b>${P.dislikes.map(a=>ACT_WORD[a]).join(', ')}</b>`:''}</div><div class="muted">Enjoys working as: <b>${J(jobLikes(w))}</b>${jobDislikes(w).length?` · Would rather not: <b>${J(jobDislikes(w))}</b>`:''}</div>`;
 }
 function viewSam(){
   const s = S.sam;

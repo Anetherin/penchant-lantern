@@ -13,7 +13,7 @@ function toast(t){ const box=$('#toast'); while(box.children.length>=4) box.firs
 function showResult(title, text, wid, scene, ai){
   modal(`<h2>${esc(title)}</h2>${wid&&scene?`<div id="resImg"></div>`:''}<p class="story">${esc(text)}</p>${ai&&SET.ai.on?`<div id="resAi"></div>`:''}<div class="row">${ai?aiBtn('resAi', ai.kind, wid, ai):''}<button class="primary" onclick="closeModal()">OK</button></div>`);
   $('#modal').scrollTop = 0;
-  if(wid && scene) showImg('resImg', wid, scene, null, SET.autoPortrait && scene==='portrait' ? 'auto' : undefined);
+  if(wid && scene) showImg('resImg', wid, scene, null);
   if(ai && SET.ai.on && (SET.ai.auto || ai.auto)) aiWrite('resAi', ai.kind, wid, ai);
 }
 const HAIR_HEX = {black:'#3a3a44','dark brown':'#5a3d2b',chestnut:'#7b4a2c',auburn:'#8e3b23',red:'#b8342c',copper:'#c4672e',blonde:'#e3c56a','honey blonde':'#d9a94e','platinum blonde':'#efe6c8',silver:'#cfd3dc',white:'#f2f2f2','ash grey':'#9a9a9a',pink:'#f0a0c0',lavender:'#b9a2e0',teal:'#3fa9a0','deep blue':'#3a5bb0',crimson:'#a3203a'};

@@ -34,5 +34,30 @@
   "wages": {"askAt":0.85,"askAtAmbitious":0.95},
   "mood": {"restingPoint":50,"drift":0.2,"overworkAt":4},
   "income": {"escort":1.1},
-  "ngplus": {"debtShare":0.75,"perCycle":0.2,"purse":1000,"saleValue":0.5,"samKeep":1}
+  "ngplus": {"debtShare":0.75,"perCycle":0.2,"purse":1000,"saleValue":0.5,"samKeep":1},
+  "jobPrefs": {
+    "_note": "Rolled job likes/dislikes for generic ladies (and named ones without their own list). Each job's odds: base, plus personality (personalities.json jobsUp/jobsDown), plus trait for each matching trait below, plus ownJob for the job she arrives in. maxLikes/maxDislikes cap the lists.",
+    "base": 0.09,
+    "personality": 0.4,
+    "trait": 0.3,
+    "ownJob": 0.5,
+    "maxLikes": 3,
+    "maxDislikes": 2,
+    "traits": {
+      "Party Animal": {"up":["bartender","dancer"],"down":["maid"]},
+      "Tough": {"up":["security"]},
+      "Former Adventurer": {"up":["security"],"down":["maid"]},
+      "Elegant": {"up":["companion","madame"],"down":["bartender"]},
+      "Shy": {"up":["maid"],"down":["dancer","courtesan","reception"]},
+      "Exhibitionist": {"up":["dancer","courtesan","bath"]},
+      "Night Owl": {"up":["bartender","companion"],"down":["reception"]},
+      "Lazy": {"up":["bath","companion"],"down":["security","maid"]},
+      "Ambitious": {"up":["madame"],"down":["maid"]},
+      "Greedy": {"up":["courtesan","madame"]},
+      "Romantic": {"up":["companion"]},
+      "Eager": {"up":["courtesan","bath"]},
+      "Modest": {"up":["maid","reception"],"down":["dancer","courtesan"]},
+      "Loyal": {"up":["security","maid"]}
+    }
+  }
 }

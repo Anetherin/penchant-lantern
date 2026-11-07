@@ -63,6 +63,8 @@ function samChat(id){
   const topic = ET('chat', NAMED[w.key] && Object.values(NAMED[w.key].bonds||{}).some(x=>x.kind==='home') || ['yui','natsuki','kanako','mio'].includes(w.key) ? 'home' : 'topics');
   showResult(`Chatting with ${w.name}`, `Sam and ${w.name} talk ${topic}.${pNote(w,'chat')}\n\nTrust +${tg.toFixed(1)}`, w.id, null, {kind:'chat', scene:'casual', situation:topic, auto:true});
 }
+// a short line for the service itself, used after encounter and first-time openings (flavor.json → private_act)
+const actLine = act => { const L = (FLAVOR.private_act||{})[act]; return L && L.length ? pick(L) : ''; };
 // Date types live in data/dates.json (DATES is defined in js/data/scenes.js).
 const dateFor = (k) => { const d = DATES[k]; return Object.assign({}, d, (d.past && d.past[S.past]) || {}); };
 const dateText = (d, w) => [d.intro, pick(d.lines||[''])].filter(Boolean).join(' ').replace(/\{name\}/g, w.name);
@@ -84,11 +86,14 @@ function samDate(id, k){
   if(d.greedyMood && has(w,'Greedy')) w.mood = clamp(w.mood + d.greedyMood);
   samStat('charm',1); samXP(5); samLog(`${d.label} with ${w.name}`); checkUnlocks();
   save(); render(); closeModal();
-  const sparks = w.trust>=60 && w.mood>=70 && m>=1 && getActs().some(a=>canSam(w,a.id)) && Math.random() < 0.35 + Math.max(0, w.lust-50)/100;
+  // a good date can end with her next first (when she's ready), or an invitation inside (once they're past that)
+  const first = m>=1 && w.mood>=60 && firstReadyAny(w) && Math.random() < 0.5 + Math.max(0, w.lust-50)/100;
+  const sparks = !first && w.trust>=60 && w.mood>=70 && m>=1 && getActs().some(a=>canSam(w,a.id)) && Math.random() < 0.35 + Math.max(0, w.lust-50)/100;
   const txt = dateText(d, w) + pNote(w, d.like==='private'?'private':d.like) + `\n\n${cost?'−'+fmt(cost)+' · ':''}Trust +${tg.toFixed(1)}${d.restores?' · She feels rested':''}`;
   modal(`<h2>${esc(d.label)} with ${esc(w.name)}</h2><div id="resImg"></div><p class="story">${esc(txt)}</p>
     ${sparks?`<div id="propAi"><p class="story pink">On the way back, ${esc(w.name)} slips her hand into Sam's and doesn't let go. At her door, she hesitates. "...Do you want to come in?"</p></div>`:''}
-    <div class="row">${sparks?`<button class="primary" onclick="privateMenu('${id}',true)">Go inside (private time, no extra action)</button><button onclick="closeModal()">Say goodnight</button>`:`<button class="primary" onclick="closeModal()">OK</button>`}</div>`);
+    ${first?`<p class="story pink">On the way back, something has shifted between them. ${esc(w.name)} keeps finding reasons to stand a little closer.</p>`:''}
+    <div class="row">${first?`<button class="primary" onclick="firstFromDate('${id}')">♥ See where it goes</button><button onclick="closeModal()">Say goodnight</button>`:sparks?`<button class="primary" onclick="privateMenu('${id}',true)">Go inside (private time, no extra action)</button><button onclick="closeModal()">Say goodnight</button>`:`<button class="primary" onclick="closeModal()">OK</button>`}</div>`);
   showImg('resImg', w.id, 'date_'+k);
   if(sparks && SET.ai.on && getTextPlugin()) aiWrite('propAi', 'proposition', w.id, {scene:'date_'+k, date:d.label.toLowerCase(), forSam:true});
 }
@@ -125,9 +130,9 @@ function samTrain(id){
 function privateMenu(id, free){
   const w = findW(id); if(!w) return;
   const opts = getActs().filter(a=>canSam(w,a.id));
-  if(!opts.length) return toast(`${w.name} isn't comfortable with that yet.`);
+  if(!opts.length) return toast((w.intim||0)===0 ? `${w.name} and Sam haven't crossed that line yet.` : `${w.name} isn't comfortable with that yet.`);
   const kp = knowsPrefs(w);
-  modal(`<h2>Private time with ${esc(w.name)}</h2><p class="muted">What she's comfortable with, with you. ${kp?'★ = her favorite.':''}</p>
+  modal(`<h2>Private time with ${esc(w.name)}</h2><p class="muted">What she's comfortable with, with you, as far as you two have gone (${esc(stageName(w.intim)||'nothing yet')}). ${kp?'★ = her favorite.':''}</p>
     <div class="row">${opts.map(a=>`<button onclick="samPrivate('${id}','${a.id}',${free?'true':'false'})">${esc(a.label)}${kp&&w.fav===a.id?' ★':''}${samStance(w,a.id)==='ask'?' ~':''}</button>`).join('')}</div>
     <p class="muted">~ = she'll do it for Sam, but it's a stretch for her (less mood, more lewdness).</p>
     <div class="row"><button onclick="${free?'closeModal()':`openSheet('${id}')`}">Back</button></div>`);
@@ -140,8 +145,9 @@ function samPrivate(id, act, free){
   checkUnlocks(); save(); render(); closeModal();
   showResult(`Private Time with ${w.name}`, text, w.id, 'samact:'+act, {kind:'private', act, scene:'samact:'+act, forSam:true});
 }
-// Shared effects of private time with Sam (used by the action, encounters, and reckless nights). Returns the story text.
-function privateCore(w, act){
+// Shared effects of private time with Sam (used by the action, encounters, firsts and reckless nights). Returns the story text.
+// o.lead: the moment's own opening (encounters, firsts); it replaces the generic lines, and a short line for the service follows.
+function privateCore(w, act, o={}){
   const stretch = samStance(w,act)==='ask';
   const fromLewd = !stretch && w.lewd >= w.trust;
   const hot = lustBonus(w), ld = spendLust(w, BAL.lust.drop.private);
@@ -152,7 +158,10 @@ function privateCore(w, act){
   samStat('technique',3); samXP(5); w.privateCount++; w._samTime = (w._samTime||0) + 1;
   samLog(`Private time with ${w.name} [${actLabel(act)}]`);
   let text;
-  if(S.sam.first){
+  if(o.lead!==undefined){
+    text = [o.lead, actLine(act)].filter(Boolean).join('\n\n');
+    if(S.sam.first && actTier(act)>=2){ S.sam.first = false; text += `\n\n${pick(FLAVOR.sam_first._default).replace(/\{name\}/g, w.name)}`; }
+  } else if(S.sam.first && actTier(act)>=2){
     S.sam.first = false;
     text = `${w.name} takes Sam's hand and leads him upstairs. It becomes clear about four seconds in that his previous-life experience in this department is exactly zero.\n\n${w.name} looks absolutely delighted about this.\n\nThe door closes.`;
   } else if(w.privateCount===1){
@@ -163,7 +172,7 @@ function privateCore(w, act){
       `${w.name} insists Sam needs more practice. Sam, a diligent student, does not argue.`,
       `By the time they come downstairs, everyone has very carefully decided not to look at them.`]);
   }
-  if(w.lovers===act) text += `\n\n${w.name} wouldn't do this with a client. With Sam, it's different.`;
+  if(w.lovers===act && !o.first) text += `\n\n${w.name} wouldn't do this with a client. With Sam, it's different.`;
   if(w.fav===act && knowsPrefs(w)) text += `\n\n(Her favorite. She's in a very good mood afterward.)`;
   text += pNote(w,'private');
   if(stretch) text += `\n\n(This was a stretch for ${w.name}. She did it for Sam, and it's a little less of a stretch now.)`;

@@ -15,6 +15,10 @@
 - Image prompts are always built programmatically (`js/logic/prompts.js`). The user writes any explicit wording
   themselves in `data/snippets.json` / `data/ai-prompts.json`; Claude doesn't author it. All characters are adults;
   `cleanText` / `YOUTH_RE` guard prompts and AI output, so keep those checks in place.
+- Firsts with Sam: `js/events/firsts.js` + `data/firsts.json`. `canSam` = comfort (`samStance`) AND crossed (`actTier(id) <= w.intim`).
+  Every path that leads to private time (dates, encounters, arcs, bonds) goes through `canSam`/`bestSamAct`, so keep it that way.
+  Story moments can carry their own image `{comp, setting, sam}` → `dynScene(key, img)` (js/data/scenes.js).
+- Job preferences are per lady (`w.jobLikes`/`w.jobDislikes`; named ones from `jobs` in characters/guests.json, others rolled by `rollJobPrefs`).
 - New Game+ lives in `js/logic/ngplus.js` (tuning: `balance.json → ngplus`). Houses with `ngplus: true` in economy.json only appear
   from cycle 2; their stories are in `js/stories/ngplus-houses.js`. Debt payments count from `S.debt.start` (`debtWeek()`).
 - Save format migrations live in `migrate()` (`js/logic/state.js`); bump `S.v` when changing save shape.
