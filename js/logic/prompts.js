@@ -10,8 +10,21 @@ function ageLook(w){
   return 'in her thirties';
 }
 function raceLook(w){ if(w.race==='beastkin'){ const s=w.sub||'fox'; return `beastkin woman with ${s} ears and a ${s} tail`; } return (RACES[w.race]||RACES.human).look; }
+// keepOn (data/characters.json): something she won't take off until trust reaches keepOn.trust.
+// With aside:true it's a garment, so the rest of her clothes get pulled aside at most.
+function keepOnRule(w){ const k = w.key && NAMED[w.key] && NAMED[w.key].keepOn; return k && w.trust < (k.trust||90) ? k : null; }
 function clothText(w, cloth, scene){
-  if(cloth==='dressed' && scene && SCENES[scene] && SCENES[scene].towel) return 'wrapped only in a white towel';
+  const keep = keepOnRule(w);
+  if(keep) return clothTextBase(w, keep.aside && cloth!=='dressed' ? 'aside' : cloth, scene, keep.aside) + ', still keeping ' + keep.item + ' on';
+  return clothTextBase(w, cloth, scene);
+}
+function clothTextBase(w, cloth, scene, noTowel){
+  if(cloth==='aside'){
+    const T = Object.assign({}, DEFAULT_CLOTH_TEXT, Object.fromEntries(Object.entries(SET.clothText||{}).filter(([k,v])=>v)));
+    const ut = underText(w);
+    return ((!ut && T.aside_commando) || T.aside || T.partial || T.dressed).replace(/\{outfit\}/g, outfitText(w)).replace(/\{underwear\}/g, ut || 'bare skin, nothing underneath');
+  }
+  if(!noTowel && cloth==='dressed' && scene && SCENES[scene] && SCENES[scene].towel) return 'wrapped only in a white towel';
   const T = Object.assign({}, DEFAULT_CLOTH_TEXT, Object.fromEntries(Object.entries(SET.clothText||{}).filter(([k,v])=>v)));
   let t = T[cloth];
   if(!t && cloth==='nude') t = T.partial;

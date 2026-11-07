@@ -54,7 +54,9 @@ const usesColor = o => /\{color\}/.test(o.prompt||'');
 function outfitText(w){ return getOutfit(w).prompt.replace(/\{color\}/g, w.outColor||'black'); }
 function underText(w){ return w.under==='none' ? null : getUnder(w).prompt.replace(/\{color\}/g, w.underColor||'white'); }
 function ob(w,k){ return ((getOutfit(w).bonus||{})[k]||1) * ((getUnder(w).bonus||{})[k]||1); }
-function spUnlocked(w,k){ return w.trust>=60 || has(w,'Devoted'); }
+// sp_ outfits unlock at trust 60 (or as a lover); an outfit with its own "unlock" needs that trust, lover or not.
+function spTrust(w){ const o = WARDROBE['sp_'+w.key]; return (o && o.unlock) || 60; }
+function spUnlocked(w,k){ const o = WARDROBE['sp_'+w.key]; return (o && o.unlock) ? w.trust>=o.unlock : (w.trust>=60 || has(w,'Devoted')); }
 function wardrobeAvail(w){
   return Object.entries(WARDROBE).filter(([k,o])=>!o.owner || o.owner===w.key);
 }

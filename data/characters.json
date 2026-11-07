@@ -10,7 +10,8 @@
     "Partners only get a romance story if one exists in js/stories/partners.js; without one they still work, just without the arc.",
     "bonds: optional starting bonds with other named ladies: {\"otherKey\": {\"v\": 40, \"kind\": \"mentor\", \"note\": \"...\"}}. v from -100 (rivals) to 100. kind: mentor (she mentors them), home (both from Sam's old world), comrades. See bonds.json.",
     "The Leaf drifters (hinata through konan) are adult, endgame-era takes on Naruto characters. Bonds between them assume they all know each other from back east.",
-    "The Naruto After drifters (mio_tanabe through tsubasa) are the user's OCs from Topofira/ai-crafting, taken from their adult Part III / Endgame designs only."
+    "The Naruto After drifters (mio_tanabe through tsubasa) are the user's OCs from Topofira/ai-crafting, taken from their adult Part III / Endgame designs only.",
+    "keepOn: optional {\"item\": \"...\", \"trust\": 90, \"aside\": true}. Until her trust reaches that, image prompts keep the item on; with aside the rest of her clothes only get pulled aside (js/logic/prompts.js keepOnRule). outfits.sp_<key>.unlock: optional trust needed for her special outfit instead of 60 (being a lover doesn't bypass it)."
   ],
   "mira": {
     "role": "house",
@@ -1595,8 +1596,8 @@
     "role": "drifter",
     "job": "companion",
     "name": "Mio Tanabe",
-    "race": "human",
-    "age": 23,
+    "race": "elf",
+    "age": 118,
     "personality": "Bold and flirtatious",
     "traits": ["Exhibitionist","Ambitious"],
     "style": "Revealing",
@@ -1604,7 +1605,7 @@
     "fav": "cowgirl",
     "dislike": "manual",
     "lovers": "caress",
-    "backstory": "A Suna medic from the Alliance villages across the eastern sea who once trained an entire rebel army's healers under the codename Star. Mio left that life behind but kept the coat, the dark lipstick and the habit of making sure every eye in the room lands on her.",
+    "backstory": "An elven Suna medic from the Alliance villages across the eastern sea who once trained an entire rebel army's healers under the codename Star. Mio left that life behind but kept the coat, the dark lipstick and the habit of making sure every eye in the room lands on her.",
     "design": {
       "build": "curvy",
       "hairStyle": "long, glossy and worn loose",
@@ -1877,8 +1878,8 @@
     "role": "drifter",
     "job": "courtesan",
     "name": "Nami Kazama",
-    "race": "human",
-    "age": 24,
+    "race": "spirit",
+    "age": 184,
     "personality": "Laid-back and lazy",
     "traits": ["Lazy","Eager"],
     "style": "Exotic",
@@ -1886,7 +1887,7 @@
     "fav": "cowgirl",
     "dislike": "missionary",
     "lovers": "oral",
-    "backstory": "A Sand village wind specialist from the Alliance villages across the eastern sea who can spend six hours perfecting a breeze and forget an appointment entirely. Nami is relaxed about attraction, allergic to defining her type, and refuses to tie back her hair.",
+    "backstory": "A wind spirit who drifted out of the Sand village of the Alliance villages across the eastern sea, Nami can spend six hours perfecting a breeze and forget an appointment entirely. She's relaxed about attraction, allergic to defining her type, and refuses to tie back her hair.",
     "design": {
       "build": "tall and athletic",
       "hairStyle": "extremely long, loose past the waist",
@@ -2018,8 +2019,8 @@
     "role": "drifter",
     "job": "maid",
     "name": "Yori Urahara",
-    "race": "human",
-    "age": 24,
+    "race": "elf",
+    "age": 124,
     "personality": "Mysterious and aloof",
     "traits": ["Shy","Modest"],
     "style": "Elegant",
@@ -2027,7 +2028,7 @@
     "fav": "caress",
     "dislike": "cowgirl",
     "lovers": "missionary",
-    "backstory": "A rain-village illusionist from the Alliance villages across the eastern sea who works very hard at being overlooked. Clients forget she was ever in the room. The staff mostly do too, which is how she likes it. She still wears three small keepsakes in plain view.",
+    "backstory": "An elven illusionist from the rain village of the Alliance villages across the eastern sea who works very hard at being overlooked. Clients forget she was ever in the room, and so do most of the staff. Nobody has seen her without the hood and mask, and that won't change until she trusts someone completely.",
     "design": {
       "build": "average height, curvy beneath loose layers",
       "hairStyle": "extremely long, mostly hidden under a hood",
@@ -2055,10 +2056,12 @@
         "label": "Unhooded",
         "style": "Elegant",
         "prompt": "a fitted dark blue-purple dress with her very long hair finally loose",
-        "bonus": {"noble":1.25,"companion":1.15}
+        "bonus": {"noble":1.25,"companion":1.15},
+        "unlock": 90
       }
     },
-    "bonds": {"emi":{"v":25,"note":"Both from Ame."}}
+    "bonds": {"emi":{"v":25,"note":"Both from Ame."}},
+    "keepOn": {"item":"her heavy hooded charcoal-blue rain cloak with the hood up and her plain cloth mask","trust":90,"aside":true}
   },
   "nozomi": {
     "role": "drifter",
@@ -2105,8 +2108,8 @@
     "role": "drifter",
     "job": "madame",
     "name": "Yukine Kitahashi",
-    "race": "elf",
-    "age": 112,
+    "race": "spirit",
+    "age": 213,
     "personality": "Proud and sharp-tongued",
     "traits": ["Elegant","Ambitious"],
     "style": "Elegant",
@@ -2114,7 +2117,7 @@
     "fav": "manual",
     "dislike": "caress",
     "lovers": "missionary",
-    "backstory": "Heir to an ice-wielding elven clan of the Snow country, Yukine led her people out when their home fell, and nobody has been able to tell her what to do since. Dry, sarcastic and quietly menacing, she runs a floor like an Ice Princess who is unquestionably in control.",
+    "backstory": "A snow spirit and heir to the ice-wielding Kitahashi line of the Snow country, Yukine led her people out when their home fell, and nobody has been able to tell her what to do since. Dry, sarcastic and quietly menacing, she runs a floor like an Ice Princess who is unquestionably in control.",
     "design": {
       "build": "tall, long-limbed and very slim",
       "hairStyle": "extremely long thin low ponytail with a dusty-pink ribbon",
@@ -2279,5 +2282,314 @@
       "sp_tsubasa": {"label":"Lab coat","style":"Elegant","prompt":"a crisp white lab coat over a fitted dark dress","bonus":{"bath":1.25,"noble":1.1}}
     },
     "bonds": {"saya":{"v":-10,"note":"Her demonstration once cost Saya five places in the rankings. Saya hasn't forgotten."}}
+  },
+  "kotone": {
+    "role": "drifter",
+    "job": "madame",
+    "name": "Kotone Amagi",
+    "race": "demon",
+    "age": 131,
+    "personality": "Calm and elegant",
+    "traits": ["Loyal","Modest"],
+    "style": "Elegant",
+    "favColor": "plum",
+    "fav": "caress",
+    "dislike": "doggy",
+    "lovers": "cowgirl",
+    "backstory": "A blind demon sensor from the Sound village of the Alliance villages across the eastern sea. Kotone reads the house through its chakra: who is where, who is lying, which client is about to cause trouble. She coordinates a floor she has never seen better than most people who can.",
+    "design": {
+      "build": "tall, long-limbed and curvy",
+      "hairStyle": "very long, straight and loose",
+      "hairColor": "medium-to-dark brown",
+      "eyes": "hidden behind a blindfold",
+      "skin": "warm tan",
+      "features": "a dark cloth blindfold with a metal plate engraved with a quarter-note symbol across her eyes"
+    },
+    "under": "plain",
+    "underColor": "plum",
+    "stats": {"beauty":68,"charm":55,"refinement":58,"stamina":50,"strength":30,"agility":50},
+    "tech": {"service":35,"dance":20,"bar":25,"combat":45,"manage":62},
+    "actSkill": 35,
+    "popularity": 12,
+    "lewd": 26,
+    "trust": 24,
+    "outfits": {
+      "sig_kotone": {
+        "label": "Sound fieldwear",
+        "style": "Elegant",
+        "prompt": "a fitted sleeveless high-neck deep-plum tunic, loose charcoal-olive pants, a pale cloth sash and dark forearm wraps",
+        "bonus": {"madame":1.25,"adventurer":1.15}
+      },
+      "sp_kotone": {"label":"Plum silk qipao","style":"Elegant","prompt":"a deep plum silk qipao with silver thread","bonus":{"noble":1.25,"companion":1.15}}
+    },
+    "bonds": {"hibiki":{"v":20,"note":"Both from the Sound village. Hibiki is a little jealous; Kotone has no idea why."}}
+  },
+  "tobari": {
+    "role": "drifter",
+    "job": "security",
+    "name": "Tobari Senju",
+    "race": "human",
+    "age": 25,
+    "personality": "Hot-blooded and competitive",
+    "traits": ["Tough","Shy"],
+    "style": "Sporty",
+    "favColor": "navy",
+    "fav": "doggy",
+    "dislike": "caress",
+    "lovers": "missionary",
+    "backstory": "A Leaf clone specialist from the Alliance villages across the eastern sea with chakra reserves big enough to be a squad by herself. Tobari covers every door in the house at once. She talks her problems through with her own clones, which know far too much about who she likes.",
+    "design": {"build":"athletic","hairStyle":"short high ponytail","hairColor":"white","eyes":"red","skin":"pale","features":"a small white fur collar"},
+    "under": "sports",
+    "underColor": "navy",
+    "stats": {"beauty":64,"charm":48,"refinement":45,"stamina":70,"strength":55,"agility":70},
+    "tech": {"service":15,"dance":15,"bar":15,"combat":72,"manage":30},
+    "actSkill": 20,
+    "popularity": 12,
+    "lewd": 26,
+    "trust": 22,
+    "outfits": {
+      "sig_tobari": {
+        "label": "Senju fieldwear",
+        "style": "Sporty",
+        "prompt": "dark navy shinobi mesh and mail with fitted blue-black panels, a white fur collar trim, a belt of compact tool cartridges and dark trousers",
+        "bonus": {"security":1.3,"adventurer":1.15}
+      },
+      "sp_tobari": {
+        "label": "Fur-trimmed haori",
+        "style": "Elegant",
+        "prompt": "a blue haori trimmed with white fur over a fitted dark dress",
+        "bonus": {"noble":1.2,"companion":1.15}
+      }
+    },
+    "bonds": {
+      "hana": {"v":60,"note":"Sparring rivals and closest friends, no hidden resentment."},
+      "ebina": {"v":30,"note":"Easy, low-maintenance training partners."},
+      "saya": {"v":-10,"note":"Respects Saya. Would prefer the beetles stay off her."}
+    }
+  },
+  "marina": {
+    "role": "drifter",
+    "job": "maid",
+    "name": "Marina Shiraishi",
+    "race": "elf",
+    "age": 104,
+    "personality": "Bookish and curious",
+    "traits": ["Elegant","Night Owl"],
+    "style": "Cute",
+    "favColor": "navy",
+    "fav": "caress",
+    "dislike": "doggy",
+    "lovers": "missionary",
+    "backstory": "An elven seamstress from the Mist of the Alliance villages across the eastern sea who also happens to carry Nuibari, a legendary needle-sword that sews enemies to the ground. She mends every outfit in the house. The slightly creepy handmade dolls on her shelf look nothing like the staff, she insists.",
+    "design": {
+      "build": "average height, softly curved",
+      "hairStyle": "elaborate princess curls and ringlets",
+      "hairColor": "pale blonde",
+      "eyes": "pale blue",
+      "skin": "fair",
+      "features": "a sewing pouch at her hip"
+    },
+    "under": "lace",
+    "underColor": "cream",
+    "stats": {"beauty":68,"charm":58,"refinement":55,"stamina":45,"strength":35,"agility":50},
+    "tech": {"service":50,"dance":25,"bar":15,"combat":50,"manage":25},
+    "actSkill": 35,
+    "popularity": 12,
+    "lewd": 28,
+    "trust": 26,
+    "outfits": {
+      "sig_marina": {
+        "label": "Kiri seamstress",
+        "style": "Cute",
+        "prompt": "a fitted navy and blue-grey top with cream frilled edging and stitch details, a pleated skirt over fitted shorts, a long needle-like sword with trailing wire",
+        "bonus": {"maid":1.3,"merchant":1.1}
+      },
+      "sp_marina": {
+        "label": "Handmade frills",
+        "style": "Cute",
+        "prompt": "a cream and navy frilled dress she sewed herself",
+        "bonus": {"companion":1.15,"noble":1.15}
+      }
+    },
+    "bonds": {"maki":{"v":45,"note":"Friends through clothes. Marina will alter anything for Maki, then ask her who it's for."}}
+  },
+  "ayano": {
+    "role": "drifter",
+    "job": "bartender",
+    "name": "Ayano Ichiraku",
+    "race": "dwarf",
+    "age": 61,
+    "personality": "Cheerful and teasing",
+    "traits": ["Loyal","Eager"],
+    "style": "Cute",
+    "favColor": "red",
+    "fav": "oral",
+    "dislike": "doggy",
+    "lovers": "cowgirl",
+    "backstory": "A dwarven heir to the Ichiraku ramen line of the Leaf in the Alliance villages across the eastern sea, Ayano turned noodles into actual combat jutsu and is proud of it. She runs the kitchen bar, remembers every client's order, and hears all the gossip. People think they know her well. She knows them better.",
+    "design": {
+      "build": "short and stocky with a warm round figure",
+      "hairStyle": "long high ponytail",
+      "hairColor": "dark brown",
+      "eyes": "brown",
+      "skin": "light warm",
+      "features": "a warm, friendly face"
+    },
+    "under": "plain",
+    "underColor": "red",
+    "stats": {"beauty":60,"charm":66,"refinement":35,"stamina":65,"strength":50,"agility":45},
+    "tech": {"service":40,"dance":15,"bar":62,"combat":40,"manage":25},
+    "actSkill": 30,
+    "popularity": 16,
+    "lewd": 36,
+    "trust": 30,
+    "outfits": {
+      "sig_ayano": {
+        "label": "Ichiraku whites",
+        "style": "Cute",
+        "prompt": "a white sleeveless ramen-shop wrap tunic with red trim and a red waist sash, dark shorts and forearm wraps",
+        "bonus": {"bartender":1.3,"commoner":1.2}
+      },
+      "sp_ayano": {
+        "label": "Festival yukata",
+        "style": "Cute",
+        "prompt": "a red festival yukata patterned with tiny white ramen bowls",
+        "bonus": {"companion":1.15,"merchant":1.15}
+      }
+    },
+    "bonds": {"juju":{"v":35,"note":"Old friends, though one was always training while the other was working."}}
+  },
+  "kamiko": {
+    "role": "drifter",
+    "job": "courtesan",
+    "name": "Kamiko Kiruhara",
+    "race": "spirit",
+    "age": 192,
+    "personality": "Proud and sharp-tongued",
+    "traits": ["Former Adventurer","Tough"],
+    "style": "Exotic",
+    "favColor": "black",
+    "fav": "missionary",
+    "dislike": "caress",
+    "lovers": "doggy",
+    "backstory": "A wandering spirit from the Grass village of the Alliance villages across the eastern sea who fights with strands cut from her own hair. Levelheaded and polished, she has endless patience right up until she doesn't.",
+    "design": {
+      "build": "lean and athletic",
+      "hairStyle": "very long and straight with a visibly uneven, asymmetrical lower edge",
+      "hairColor": "black",
+      "eyes": "dark",
+      "skin": "pale",
+      "features": "a sharp, striking face and a small cutting blade at her hip"
+    },
+    "under": "silk",
+    "underColor": "black",
+    "stats": {"beauty":70,"charm":52,"refinement":58,"stamina":55,"strength":40,"agility":65},
+    "tech": {"service":40,"dance":40,"bar":15,"combat":60,"manage":20},
+    "actSkill": 40,
+    "popularity": 15,
+    "lewd": 40,
+    "trust": 20,
+    "outfits": {
+      "sig_kamiko": {
+        "label": "Wanderer's layers",
+        "style": "Exotic",
+        "prompt": "a broad conical straw traveling hat and layered muted olive, charcoal and black fieldwear with a draped weathered outer layer",
+        "bonus": {"courtesan":1.2,"adventurer":1.2}
+      },
+      "sp_kamiko": {
+        "label": "Black silk kimono",
+        "style": "Elegant",
+        "prompt": "a black silk kimono with a grass-green obi, her uneven hair loose",
+        "bonus": {"noble":1.25,"courtesan":1.1}
+      }
+    }
+  },
+  "nai": {
+    "role": "drifter",
+    "job": "companion",
+    "name": "Nai Utsuro",
+    "race": "demon",
+    "age": 143,
+    "personality": "Laid-back and lazy",
+    "traits": ["Night Owl","Eager"],
+    "style": "Elegant",
+    "favColor": "black",
+    "fav": "cowgirl",
+    "dislike": "manual",
+    "lovers": "missionary",
+    "backstory": "A demon from the tiny Village Hidden in the Void, somewhere in the Alliance villages across the eastern sea. Nai's eyes turn black when she looks hard at someone, and no jutsu works under that gaze. She looks ominous, smiles easily, and is friendlier than nearly anyone in the house.",
+    "design": {
+      "build": "graceful",
+      "hairStyle": "very long and perfectly straight",
+      "hairColor": "black",
+      "eyes": "dark, turning matte black when she focuses",
+      "skin": "pale",
+      "features": "a calm, pleasant smile"
+    },
+    "under": "lace",
+    "underColor": "black",
+    "stats": {"beauty":68,"charm":64,"refinement":50,"stamina":50,"strength":30,"agility":50},
+    "tech": {"service":50,"dance":30,"bar":20,"combat":45,"manage":15},
+    "actSkill": 40,
+    "popularity": 14,
+    "lewd": 44,
+    "trust": 26,
+    "outfits": {
+      "sig_nai": {
+        "label": "Void robe",
+        "style": "Elegant",
+        "prompt": "a loose black cross-front robe with wide sleeves sitting open over a fitted dark mesh underlayer, a dark sash with deep-red ties and flowing black hakama-like pants",
+        "bonus": {"companion":1.25,"noble":1.1}
+      },
+      "sp_nai": {
+        "label": "Black silk kimono dress",
+        "style": "Elegant",
+        "prompt": "a black silk kimono dress with a deep-red obi",
+        "bonus": {"noble":1.2,"courtesan":1.15}
+      }
+    },
+    "bonds": {"ebina":{"v":45,"kind":"comrades","note":"Old squadmates."}}
+  },
+  "ebina": {
+    "role": "drifter",
+    "job": "dancer",
+    "name": "Ebina",
+    "race": "human",
+    "age": 26,
+    "personality": "Bookish and curious",
+    "traits": ["Ambitious","Exhibitionist"],
+    "style": "Revealing",
+    "favColor": "black",
+    "fav": "manual",
+    "dislike": "caress",
+    "lovers": "doggy",
+    "backstory": "A Leaf fundamentals specialist from the Alliance villages across the eastern sea who turns free time into an itinerary. Ebina shows plenty of skin without a second thought but almost never lets anyone see her eyes. She also reads a frankly alarming amount of romance fiction about men.",
+    "design": {
+      "build": "fairly tall, lean and athletic",
+      "hairStyle": "loosely tied back",
+      "hairColor": "dark brown",
+      "eyes": "dark",
+      "skin": "light",
+      "features": "a dark bandanna over her hairline, a prominent nose and strong brows"
+    },
+    "under": "sports",
+    "underColor": "black",
+    "stats": {"beauty":60,"charm":55,"refinement":48,"stamina":60,"strength":45,"agility":60},
+    "tech": {"service":30,"dance":55,"bar":20,"combat":55,"manage":30},
+    "actSkill": 30,
+    "popularity": 14,
+    "lewd": 48,
+    "trust": 22,
+    "outfits": {
+      "sig_ebina": {
+        "label": "Cutout fieldwear",
+        "style": "Revealing",
+        "prompt": "a black cropped sleeveless top with geometric cutouts, fitted black shorts, mesh accents and a loose pale jacket off the shoulders",
+        "bonus": {"dancer":1.25,"adventurer":1.15}
+      },
+      "sp_ebina": {"label":"Beach day","style":"Revealing","prompt":"a black bikini top with a sheer black sarong","bonus":{"dancer":1.15,"commoner":1.2}}
+    },
+    "bonds": {"nai":{"v":45,"kind":"comrades","note":"Old squadmates."},"juju":{"v":40,"note":"Ebina just redirects Juju into the next drill."}},
+    "keepOn": {"item":"her opaque round black sunglasses","trust":90}
   }
 }

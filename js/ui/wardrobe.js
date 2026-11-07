@@ -3,7 +3,7 @@
 function buyOutfit(id, k){
   const w=findW(id), o=WARDROBE[k]; if(!w||!o) return;
   if(w.owned.includes(k)) return;
-  if(o.owner) return toast(spUnlocked(w) ? 'Already unlocked.' : `Unlocks at trust 60.`);
+  if(o.owner) return toast(spUnlocked(w) ? 'Already unlocked.' : `Unlocks at trust ${spTrust(w)}.`);
   if(S.gold < o.cost) return toast('Not enough gold.');
   S.gold -= o.cost; w.owned.push(k);
   if(o.style===w.style){ w.mood=clamp(w.mood+6); w.trust=clamp(w.trust+2); }
@@ -31,7 +31,7 @@ function openWardrobe(id){
     let act;
     if(wearing) act = '<span class="good">Wearing</span>';
     else if(owned) act = `<button class="sm" onclick="equipOutfit('${id}','${k}')" ${ok?'':'disabled title="Not comfortable yet"'}>Wear</button>`;
-    else if(o.owner) act = `<span class="muted">${spUnlocked(w)?'':'🔒 trust 60'}</span>`;
+    else if(o.owner) act = `<span class="muted">${spUnlocked(w)?'':'🔒 trust '+spTrust(w)}</span>`;
     else act = `<button class="sm" onclick="buyOutfit('${id}','${k}')" ${S.gold<o.cost?'disabled':''}>Buy ${fmt(o.cost)}</button>`;
     const tag = o.owner ? (k.startsWith('sig_')?' <span class="tag">Signature</span>':' <span class="tag">Special</span>') : (BASE_OUTFITS[k]?' <span class="muted">(basic)</span>':'');
     const n = imgCountFor(w, `o:${k}:`);
