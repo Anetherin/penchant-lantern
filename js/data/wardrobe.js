@@ -15,7 +15,7 @@ const SHOP_OUTFITS = WARDROBE_DATA.shop;
 // Signature outfits for named characters live with them in data/characters.json (outfits).
 // sig_ = starting outfit, sp_ = unlocks at trust 60 (or as a lover), or at its own "unlock" trust if set.
 const SIG_OUTFITS = {};
-Object.entries(noMeta(needData('characters'))).forEach(([k,c])=>Object.entries(c.outfits||{}).forEach(([ok,o])=>{ SIG_OUTFITS[ok] = Object.assign({owner:k}, o); }));
+Object.entries(charData()).forEach(([k,c])=>Object.entries(c.outfits||{}).forEach(([ok,o])=>{ SIG_OUTFITS[ok] = Object.assign({owner:k}, o); }));
 const WARDROBE = Object.assign({}, BASE_OUTFITS, SHOP_OUTFITS, SIG_OUTFITS);
 const UNDER = WARDROBE_DATA.under;
 const BONUS_LABEL = {maid:'Maid',reception:'Reception',bartender:'Bar',propose:'Propositions',security:'Security',adventurer:'Adventurer clients',noble:'Noble clients',merchant:'Merchant clients',commoner:'Commoner clients',companion:'Companion',dancer:'Dance',bath:'Bath',courtesan:'Courtesan',madame:'Madame'};

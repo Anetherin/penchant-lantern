@@ -9,6 +9,8 @@
   `js/events/random.js` but take all wording from `data/events.json` via `ET(...)`.
   Partner arcs (`data/arcs.json`) use a small declarative effect schema, resolved by `resolveEff()` in `js/stories/partners.js`.
   Bond events and shared scenes (`data/bonds.json`) are resolved by `applyBondChoice()` in `js/events/bonds.js`.
+  Crossover/visiting ladies live in `data/guests.json` (packs, merged into NAMED as role 'drifter' by `charData()` in
+  `js/core/config.js`); keys must stay unique across characters.json and guests.json.
   Run `node tools/fmt-json.mjs` after editing data files programmatically.
 - Image prompts are always built programmatically (`js/logic/prompts.js`). The user writes any explicit wording
   themselves in `data/snippets.json` / `data/ai-prompts.json`; Claude doesn't author it. All characters are adults;

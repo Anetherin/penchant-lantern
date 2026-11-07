@@ -65,7 +65,8 @@
     "beastkin": {"label":"Simple needs","desc":"Asks for 25% lower wages, recovers 15% more energy, and her lewdness grows 15% faster."},
     "demon": {"label":"Feeds on desire","desc":"Services cost her half the energy: she feeds on desire. Sleep does less for her."},
     "dwarf": {"label":"Hardy","desc":"+25 max energy and recovers 25% more from rest. Bartends 15% better. Expects 10% higher wages."},
-    "spirit": {"label":"Incorporeal","desc":"Needs no bed. Recovers a steady amount every week, anywhere."}
+    "spirit": {"label":"Incorporeal","desc":"Needs no bed. Recovers a steady amount every week, anywhere."},
+    "dragonkin": {"label":"Draconic","desc":"+15 max energy. Expects 15% higher wages."}
   },
   "propRate": {"bartender":0.07,"dancer":0.1,"bath":0.15,"reception":0.03,"maid":0.03},
   "propWhere": {

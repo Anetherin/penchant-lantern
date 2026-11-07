@@ -6,6 +6,15 @@
 const DATA = window.PL_DATA || {};
 function needData(k){ if(!DATA[k]) throw new Error(`data/${k}.json didn't load.`); return DATA[k]; }
 const noMeta = o => Object.fromEntries(Object.entries(o||{}).filter(([k])=>!k.startsWith('_')));
+// Named characters (data/characters.json) plus visiting guests (data/guests.json packs, role 'drifter').
+function charData(){
+  if(charData.c) return charData.c;
+  const out = Object.assign({}, noMeta(needData('characters')));
+  Object.entries(noMeta((DATA.guests||{}).packs)).forEach(([p,P])=>Object.entries(noMeta(P.characters)).forEach(([k,c])=>{ out[k] = Object.assign({role:'drifter', pack:p}, c); }));
+  return charData.c = out;
+}
+const GUEST_PACKS = noMeta((DATA.guests||{}).packs);
+const GUEST_VISITS = Object.assign({chance:0.3, stayWeeks:2, cooldownWeeks:8}, (DATA.guests||{}).visits);
 // Service categories (data/services.json). Custom ones added in old versions of Settings still work.
 const ACTS = needData('services').services;
 // Your own scene text, appended to the generated prompt (data/snippets.json → scenes).
@@ -22,7 +31,7 @@ const FLAVOR = noMeta(needData('flavor'));
 const DEFAULT_SETTINGS = {
   style: "anime style, detailed fantasy illustration, isekai, soft cinematic lighting, high quality",
   negative: "child, minor, teen, loli, young-looking, school uniform, lowres, bad anatomy, extra fingers, watermark, text, signature",
-  resolution: "512x768", autoPortrait: true, libraryInPool: true,
+  resolution: "512x768", autoPortrait: true, libraryInPool: true, packsOff: {},
   snippets: {}, clothText: {}, customActs: [],
   ai: {on:true, auto:true, autoBackstory:true, guidance:'', tpl:{}}
 };

@@ -2,7 +2,7 @@
 /* =====================================================================
    CHARACTER LOGIC
    ===================================================================== */
-const maxEnergy = w => Math.round(60 + w.stats.stamina*0.6 + (has(w,'Tough')?20:0) + (w.race==='dwarf'?25:0));
+const maxEnergy = w => Math.round(60 + w.stats.stamina*0.6 + (has(w,'Tough')?20:0) + (w.race==='dwarf'?25:0) + (w.race==='dragonkin'?15:0));
 // Energy per client: depends on the service, her stamina, and how she feels about it.
 function actCost(w, act){
   let c = act ? ((actById(act)||{}).energy || 10) : 5;
@@ -94,7 +94,7 @@ function wageFor(w){
   if(isFree(w)) return 0;
   const st = STAT_KEYS.reduce((a,k)=>a+w.stats[k],0)/6;
   const tc = Math.max(...TECH_KEYS.map(k=>w.tech[k]||0), ...Object.values(w.acts||{}).map(a=>a.skill*0.8));
-  return Math.round((8 + st*0.3 + tc*0.2 + w.popularity*0.3 + (has(w,'Ambitious')?8:0) + (has(w,'Greedy')?6:0)) * (w.race==='beastkin'?0.75:w.race==='dwarf'?1.1:1));
+  return Math.round((8 + st*0.3 + tc*0.2 + w.popularity*0.3 + (has(w,'Ambitious')?8:0) + (has(w,'Greedy')?6:0)) * (w.race==='beastkin'?0.75:w.race==='dwarf'?1.1:w.race==='dragonkin'?1.15:1));
 }
 function signingFor(w){ return Math.max(60, Math.round(w.wage * rnd(5,8) * (0.9 + (S?S.rep:10)/150))); }
 function grow(w,k,n){ n *= (w.race==='human'?1.15:1); w.tech[k] = clamp((w.tech[k]||0) + n*(1 - (w.tech[k]||0)/130)); }
@@ -155,7 +155,7 @@ function applyMods(w){
   w.lewd = clamp(w.lewd);
 }
 function genWorker(opts={}){
-  const race = opts.race || weighted(Object.keys(RACES), r=>({human:40,elf:15,beastkin:25,demon:10,dwarf:10,spirit:2}[r]));
+  const race = opts.race || weighted(Object.keys(RACES), r=>({human:40,elf:15,beastkin:25,demon:10,dwarf:10,spirit:2,dragonkin:2}[r]??0));
   const R = RACES[race], q = opts.quality || 1;
   const base = () => clamp(Math.round(rnd(15,55)*q));
   const w = {

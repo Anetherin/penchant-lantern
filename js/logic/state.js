@@ -79,7 +79,11 @@ function note(t){ addLog(t); toast(t); }
 const findW = id => S.workers.find(w=>w.id===id);
 
 function refreshCandidates(extra=0, quality=1){
-  S.candidates = S.candidates.filter(c=>c.keep);
+  // guests (drifters) wait stayWeeks among the candidates, then move on
+  S.candidates = S.candidates.filter(c=>{
+    if(c.key && NAMED[c.key] && NAMED[c.key].role==='drifter'){ if(c.stay===undefined) c.stay = 1; c.keep = false; if(--c.stay>0) return true; addLog(`${c.name} moved on.`); return false; }
+    return c.keep;
+  });
   const bonus = S.houses.reduce((a,h)=>a+(HOUSES[h.id].recruit||0),0);
   for(let i=0;i<3+extra+bonus;i++){ const c = genWorker({quality: quality*(0.85 + S.rep/200 + ((S.sam.lvl||1)-1)*0.02)}); c.signing = signingFor(c); S.candidates.push(c); }
   if(SET.libraryInPool && LIB.length && Math.random()<0.25){
@@ -92,9 +96,14 @@ function refreshCandidates(extra=0, quality=1){
     const open = PARTNERS.filter(k=>!isHired(k));
     if(open.length){ const k = pick(open); const c = makeNamed(k); c.signing = signingFor(c); S.candidates.push(c); S.flags.partnerCD = 5; addLog(`${c.name} is looking for work. (Candidates)`); }
   }
-  // drifters (data/characters.json role "drifter") wander in now and then
-  const drift = Object.keys(NAMED).filter(k=>NAMED[k].role==='drifter' && !isHired(k));
-  if(drift.length && Math.random()<0.15){ const c = makeNamed(pick(drift)); c.signing = signingFor(c); S.candidates.push(c); addLog(`${c.name} is looking for work. (Candidates)`); }
+  // drifters / visiting guests (data/guests.json) wander in now and then, stay a while, and can come back later
+  const seen = S.flags.guestSeen = S.flags.guestSeen || {}, V = GUEST_VISITS;
+  const drift = Object.keys(NAMED).filter(k=>NAMED[k].role==='drifter' && !isHired(k) && !(SET.packsOff||{})[NAMED[k].pack]
+    && S.week - (seen[k] ?? -999) >= V.stayWeeks + V.cooldownWeeks);
+  if(drift.length && Math.random()<V.chance){
+    const k = pick(drift), c = makeNamed(k); c.keep = false; c.stay = V.stayWeeks; seen[k] = S.week;
+    c.signing = signingFor(c); S.candidates.push(c); addLog(`${c.name} is passing through Hollowmere and looking for work. (Candidates)`);
+  }
 }
 function addCandidates(n, quality=1){ for(let i=0;i<n;i++){ const c=genWorker({quality}); c.signing=signingFor(c); S.candidates.push(c); } }
 function checkUnlocks(silent, sink){

@@ -22,6 +22,13 @@
       "look": "ghostly spirit woman with a faint pale glow and softly translucent edges",
       "mods": {"charm":5,"refinement":5,"strength":-10},
       "rare": true
+    },
+    "dragonkin": {
+      "label": "Dragonkin",
+      "age": [80,400],
+      "look": "dragonkin woman with small swept-back horns and a scaled dragon tail",
+      "mods": {"strength":5,"charm":5,"stamina":5,"agility":-5},
+      "rare": true
     }
   },
   "names": {
@@ -39,7 +46,11 @@
       "f": ["Brunna","Dagny","Thora","Ingrid","Gunnhild","Sigrun","Halla","Astrid"],
       "l": ["Stonebrew","Copperhand","Anvilheart","Deepbraid","Emberforge"]
     },
-    "spirit": {"f":["Lenore","Morwen","Isabeau","Ophelie","Wynne"]}
+    "spirit": {"f":["Lenore","Morwen","Isabeau","Ophelie","Wynne"]},
+    "dragonkin": {
+      "f": ["Aurelia","Seraxa","Vyrenne","Ishara","Kaelith","Moriel","Thessa","Zhaorin","Lianyu","Ysolde","Raskha","Velka"],
+      "l": ["Ashscale","Embercrest","Goldhorn","Stormwing","Jadeclaw","Duskmantle","Brightfang","Skyreach"]
+    }
   },
   "builds": ["slender","curvy","athletic","voluptuous","toned","tall and lean","soft and curvy","statuesque"],
   "hairStyles": ["long straight","long wavy","shoulder-length","bob-cut","high ponytail","braided","messy","side-swept","long curly","pixie-cut","half-up"],

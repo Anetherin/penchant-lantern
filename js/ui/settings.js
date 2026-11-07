@@ -9,6 +9,9 @@ function viewSettings(){
       <label class="chk"><input type="checkbox" id="s_auto" ${SET.autoPortrait?'checked':''}> Auto-generate a portrait when someone has none saved</label>
       <label class="chk"><input type="checkbox" id="s_lib" ${SET.libraryInPool?'checked':''}> Library characters appear as candidates</label></div>
     <div class="row"><button class="primary" onclick="saveSettingsUI()">Save settings</button><span class="muted">Image plugin: ${getPlugin()?'<span class="good">connected</span>':'<span class="warn">not connected</span>'} · Image storage: ${DB?'<span class="good">ready</span>':'<span class="warn">unavailable</span>'}</span></div></section>
+  ${Object.keys(GUEST_PACKS).length ? `<section class="card"><h2>Visiting characters</h2><p class="muted">Crossover guests from <code>data/guests.json</code> pass through as candidates now and then. Switch off any packs you don't want.</p>
+    <div class="row">${Object.entries(GUEST_PACKS).map(([k,P])=>`<label class="chk"><input type="checkbox" class="s_pack" data-pack="${esc(k)}" ${(SET.packsOff||{})[k]?'':'checked'}> ${esc(P.label||k)} <span class="muted">(${Object.keys(noMeta(P.characters)).length})</span></label>`).join('')}</div>
+    <div class="row"><button class="primary" onclick="savePacksUI()">Save</button></div></section>` : ''}
   <section class="card"><h2>Text &amp; Data Files</h2><p class="muted">Scene snippets, clothing wording, services, personalities, AI prompts and flavor lines live in the repo's <code>data/</code> folder. Edit them on GitHub; changes show up a minute or two after you push (reload the page).</p>
     <ul class="muted" style="margin:6px 0 6px 18px">${(window.HOLLOWMERE_DATA||Object.keys(DATA)).map(n=>`<li><code>data/${n}.json</code> ${DATA[n]?'<span class="good">loaded</span>':'<span class="warn">missing</span>'}</li>`).join('')}</ul>
     ${browserEdits().n ? `<p><span class="warn">${browserEdits().n} older edit${browserEdits().n>1?'s':''} saved in this browser still override the files</span> (${browserEdits().what.join(', ')}). Export them merged into the file format, paste into the repo, then clear them here.</p>
@@ -27,6 +30,10 @@ function viewSettings(){
 function saveSettingsUI(){
   SET.style = $('#s_style').value; SET.negative = $('#s_neg').value; SET.resolution = $('#s_res').value;
   SET.autoPortrait = $('#s_auto').checked; SET.libraryInPool = $('#s_lib').checked; saveSettings(); toast('Settings saved.');
+}
+function savePacksUI(){
+  SET.packsOff = {}; document.querySelectorAll('.s_pack').forEach(el=>{ if(!el.checked) SET.packsOff[el.dataset.pack] = true; });
+  saveSettings(); toast('Visiting characters saved.');
 }
 function saveAiUI(){
   SET.ai.on = $('#ai_on').checked; SET.ai.auto = $('#ai_auto').checked; SET.ai.autoBackstory = $('#ai_bs').checked;
