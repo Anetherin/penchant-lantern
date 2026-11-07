@@ -1865,7 +1865,7 @@
           "lovers": "caress",
           "backstory": "Once the archbishop of a great church in the warring continents beyond the southern straits, and something far older than any archbishop. Rhea is serene, maternal and terrifying in equal measure. She claims she is here to tend the faithful.",
           "design": {
-            "build": "tall and statuesque",
+            "build": "tall, curvy, and statuesque",
             "hairStyle": "very long, flowing",
             "hairColor": "mint green",
             "eyes": "pale green",
@@ -2002,8 +2002,8 @@
           "design": {
             "build": "tall, athletic and curvy",
             "hairStyle": "long and wild",
-            "hairColor": "silver-white",
-            "eyes": "red",
+            "hairColor": "brown",
+            "eyes": "brown",
             "skin": "dark brown",
             "features": "a fur-trimmed collar"
           },
@@ -2047,9 +2047,9 @@
           "backstory": "The dragon-blooded Magistrate of a great walled city in the sea-trade cities of the far east coast, Jinhsi carries the weight of her people with perfect composure. She came west on a diplomatic visit and keeps finding reasons not to leave.",
           "design": {
             "build": "slender and graceful",
-            "hairStyle": "very long, straight",
+            "hairStyle": "very long, high twintails",
             "hairColor": "white with gold ornaments",
-            "eyes": "golden",
+            "eyes": "lavender-grey",
             "skin": "fair",
             "features": "a gold dragon-horn hair ornament"
           },
@@ -2065,13 +2065,13 @@
             "sig_jinhsi": {
               "label": "Magistrate's robes",
               "style": "Elegant",
-              "prompt": "flowing white and gold layered robes with dragon embroidery and long sleeves",
+              "prompt": "high-collared black halter top trimmed in gold, white teal sashes, high waisted dark shorts, and sleek thigh-high boots",
               "bonus": {"companion":1.25,"noble":1.25}
             },
             "sp_jinhsi": {
-              "label": "Lantern festival qipao",
+              "label": "Spring festival qipao",
               "style": "Elegant",
-              "prompt": "a fitted white silk qipao with gold dragon embroidery",
+              "prompt": "a fitted pink silk qipao with gold dragon embroidery",
               "bonus": {"courtesan":1.15,"noble":1.2}
             }
           },
@@ -2087,15 +2087,15 @@
           "traits": ["Elegant","Ambitious"],
           "style": "Elegant",
           "favColor": "silver",
-          "fav": "paizuri",
-          "dislike": "manual",
+          "fav": "cowgirl",
+          "dislike": "paizuri",
           "lovers": "missionary",
           "backstory": "The second daughter of a powerful merchant family from the sea-trade cities of the far east coast, Carlotta collects art, settles disputes with an ornate pistol, and treats Sam's business as an investment she is still evaluating.",
           "design": {
-            "build": "slender and elegant",
-            "hairStyle": "long and softly curled",
+            "build": "slender, refined, and petite",
+            "hairStyle": "long and elegant",
             "hairColor": "silver",
-            "eyes": "pale blue",
+            "eyes": "vibrantly mixed pink teal", 
             "skin": "fair",
             "features": "an ornate crystal-accented pistol"
           },
@@ -2111,7 +2111,7 @@
             "sig_carlotta": {
               "label": "Montelli finery",
               "style": "Elegant",
-              "prompt": "an elegant white, black and gold outfit with a short cape and lace details",
+              "prompt": "a short, white, sleeveless dress with a high neckline, a vibrant magenta-colored cape, and thigh-high black boots",
               "bonus": {"companion":1.25,"merchant":1.25}
             },
             "sp_carlotta": {
@@ -2138,10 +2138,10 @@
           "lovers": "caress",
           "backstory": "The Heart Moon Fox, an ancient guardian spirit of a mountain city in the sea-trade cities of the far east coast, taking a mortal-sized shape for a while. Hsin dances under moonlight and answers questions with riddles.",
           "design": {
-            "build": "tall and graceful",
+            "build": "tall, voluptuous,and graceful",
             "hairStyle": "very long and flowing",
             "hairColor": "pale silver-white",
-            "eyes": "glowing yellow",
+            "eyes": "glowing red-yellow",
             "skin": "fair",
             "features": "gold ring ornaments that orbit her when she dances"
           },
@@ -2157,7 +2157,7 @@
             "sig_hsin": {
               "label": "Moon guardian robes",
               "style": "Exotic",
-              "prompt": "white and gold flowing robes with layered sleeves and gold rings at the hems",
+              "prompt": "black bodice with white and red flowing robes with detached sleeves and gold rings at the hems",
               "bonus": {"dancer":1.3,"noble":1.15}
             },
             "sp_hsin": {"label":"Moonlit silk","style":"Exotic","prompt":"a sheer white and gold silk dancing dress","bonus":{"courtesan":1.15,"dancer":1.15}}
