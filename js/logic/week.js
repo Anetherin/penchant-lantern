@@ -91,7 +91,7 @@ function simHouse(h, R){
     if(cls.id==='noble') cm *= (has(w,'Elegant')?1.3:1) * (0.7 + w.stats.refinement/170);
     const base = act ? actById(act).price * roomM * ob(w,'courtesan') : 20 * ob(w,'companion');
     const below = Math.max(0, (HD.minPop||0) - w.popularity);
-    const inc = Math.round(base * P.mult * (0.6+q*0.9) * cm * (1+madF*0.15) * (has(w,'Ambitious')?1.1:1) * (1+recF*0.05) * (below?0.75:1) * (reg ? (regQuirk(reg).tip||1) : 1));
+    const inc = Math.round(base * P.mult * (0.6+q*0.9) * cm * (1+madF*0.15) * (has(w,'Ambitious')?1.1:1) * (1+recF*0.05) * (below?0.75:1) * (reg ? (regQuirk(reg).tip||1) : 1) * BAL.income.escort);
     const sat = clamp(- below*0.5 + q*100 + 6 + rnd(-15,15) + h.tier*5 - (h.price-1)*6 + (h.up.bath?4:0) + recF*4 + (outcome==='yes'?8:outcome==='alt'?3:outcome==='no'?-8:0));
     pr.satSum = (pr.satSum||0) + sat; if(sat<30) pr.low = (pr.low||0)+1;
     hr.income += inc; R.led.escort += inc; pr.served++; pr.earned += inc; hr.served++; hr.sat += sat;
@@ -126,7 +126,7 @@ function simHouse(h, R){
         const cls = pickClass(h), want = pickWant(cls); pr.props++;
         const ok = w.offDuty && w.menu.includes(want) && canClient(w,want) && !notInMood(w,want) && w.energy - actCost(w,want) > maxEnergy(w)*0.2;
         if(ok){
-          const inc = Math.round(actById(want).price * P.mult * 0.8 * (0.6+qualityOf(w,want)*0.9) * cls.mult);
+          const inc = Math.round(actById(want).price * P.mult * 0.8 * (0.6+qualityOf(w,want)*0.9) * cls.mult * BAL.income.escort);
           pr.acc++; pr.acts[want]=(pr.acts[want]||0)+1; pr.earned+=inc; hr.income+=inc; R.led.offduty+=inc;
           w.energy -= actCost(w,want); w.lewd = clamp(w.lewd+0.3*lewdMult(w)); growAct(w,want,0.7);
         }
@@ -182,8 +182,8 @@ function endWeek(){
     if(w.job==='rest'){ w.mood += 8; w.health += 15; why('a week off', true); }
     w.health = clamp(w.health+5);
     if(w._bed===FLOOR_REST && w.race!=='spirit'){ w.mood -= 3; why('slept on the floor', false); }
-    w.mood += (55 + (has(w,'Loyal')?5:0) + (has(w,'Devoted')?10:0) - w.mood) * (w.race==='elf'?0.1:0.2);
-    const work = pr.served + pr.acc - pr.comp*0.4, over = work - 4;
+    w.mood += (BAL.mood.restingPoint + (has(w,'Loyal')?5:0) + (has(w,'Devoted')?10:0) - w.mood) * BAL.mood.drift * (w.race==='elf'?0.5:1);
+    const work = pr.served + pr.acc - pr.comp*0.4, over = work - BAL.mood.overworkAt;
     if(over>0){ w.mood -= over*(has(w,'Lazy')?5:2.5); why(over>3 ? 'badly overworked' : 'a bit overworked', false); }
     if(!isFree(w) && w.wage < wageFor(w)*0.9){ w.mood -= 4; why('feels underpaid', false); }
     const P = PERS[w.personality]; if(P){ if(P.jobsUp.includes(w.job)){ w.mood += 3; why('likes her job', true); } else if(P.jobsDown.includes(w.job)){ w.mood -= 3; why("doesn't like her job", false); } }

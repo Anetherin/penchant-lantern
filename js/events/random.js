@@ -76,13 +76,15 @@ const RANDOM_EVENTS = [
       {label:ET('knock','in','label',V), fx(){ w.privateCount++; w.lewd=clamp(w.lewd+3); w.mood=clamp(w.mood+8); samStat('technique',3); if(S.sam.first){ S.sam.first=false; return ET('knock','in','first',V); } return ET('knock','in','res',V); }},
       {label:ET('knock','no','label',V), fx(){ w.trust=clamp(w.trust+2); return ET('knock','no','res',V); }}]};
   }},
-  {w:2, ok:()=>anyW(w=>!isFree(w) && (has(w,'Ambitious')||has(w,'Greedy')) && w.wage < wageFor(w)*0.95).length>0, make(){
-    const w = pick(anyW(x=>!isFree(x) && (has(x,'Ambitious')||has(x,'Greedy')) && x.wage < wageFor(x)*0.95)); const nw = wageFor(w), V = {name:w.name, wage:fmt(w.wage), newWage:fmt(nw)};
+  {w:2.5, ok:()=>anyW(underpaid).length>0, make(){
+    const w = pick(anyW(underpaid)); const nw = wageFor(w), V = {name:w.name, wage:fmt(w.wage), newWage:fmt(nw)};
     return {title:ET('raise','title',V), who:w.id, scene:'portrait', text:ET('raise','text',V), choices:[
       {label:ET('raise','agree','label',V), fx(){ w.wage=nw; w.trust=clamp(w.trust+3); w.mood=clamp(w.mood+5); return ET('raise','agree','res',V); }},
       {label:ET('raise','refuse','label',V), fx(){ const pr = ['Proud and sharp-tongued','Hot-blooded and competitive'].includes(w.personality) ? 2 : 1; w.mood=clamp(w.mood-8*pr); w.trust=clamp(w.trust-4*pr); return ET('raise','refuse', pr>1?'resProud':'res', V); }}]};
   }}
 ];
+// she asks for a raise once her skills have outgrown her wage
+function underpaid(w){ const B = BAL.wages; return !isFree(w) && w.wage < wageFor(w) * ((has(w,'Ambitious')||has(w,'Greedy')) ? B.askAtAmbitious : B.askAt); }
 function evIncident(h){
   const sec = S.workers.find(w=>w.house===h.id && w.job==='security'), c = ri(60,120), V = {house:h.name, guard: sec ? sec.name : '', gold:fmt(c)};
   const ch = [
@@ -92,15 +94,28 @@ function evIncident(h){
   if(sec) ch.unshift({label:ET('incident','guard','label',V), fx(){ sec.trust=clamp(sec.trust+3); h.rep=clamp(h.rep+1); return ET('incident','guard','res',V); }});
   return {title:ET('incident','title',V), who:sec?sec.id:null, scene:'job_security', text:ET('incident','text',V), choices:ch};
 }
+// How keen she is to stay (0-1), from trust and mood. See data/balance.json → renewal.
+function renewWill(w, boost=0){ const B = BAL.renewal; return (w.trust*0.6 + w.mood*0.4)/100 + (has(w,'Loyal')?B.loyal:0) + boost; }
+function renewFee(w, wage, s){ const B = BAL.renewal; return s >= B.freeAt ? 0 : Math.round(wage * B.feeWeeks * Math.pow((B.freeAt - s)/B.freeAt, 1.2)); }
+// odds she says yes: certain above refuseBelow, falling toward 15% at zero
+const renewOdds = s => { const B = BAL.renewal; return s >= B.refuseBelow ? 1 : 0.15 + 0.85*Math.max(0,s)/B.refuseBelow; };
 function evRenew(w){
   if(!S.workers.includes(w) || isFree(w) || w.locked) return null;
-  const bonus = Math.round(w.wage*2);
-  return {title:'Contract Renewal', who:w.id, scene:'portrait', text:`${w.name}'s contract is up. Renewing for 12 weeks costs a ${fmt(bonus)} bonus.`, choices:[
-    {label:`Renew (${fmt(bonus)})`, fx(){ if(S.gold<bonus){ w.contract=4; return 'You can\'t afford it right now. She agrees to stay on for 4 more weeks while you sort it out.'; }
-      const ok = has(w,'Loyal') || Math.random() < clamp((w.trust + w.mood/2)/70, 0.2, 1);
-      if(ok){ S.gold-=bonus; w.contract=12; return `${w.name} signs again.`; }
-      w.contract=2; return `${w.name} hesitates. "I need a better offer." (She'll stay 2 more weeks. Try a raise or spending time with her.)`; }},
-    {label:`Raise +20% and renew (${fmt(bonus)})`, fx(){ if(S.gold<bonus){ w.contract=4; return 'You can\'t afford it right now. She\'ll stay 4 more weeks.'; } if(w.mood<20){ w.contract=2; return 'She\'s too unhappy to commit. Two more weeks.'; } S.gold-=bonus; w.wage=Math.round(w.wage*1.2); w.contract=12; w.trust=clamp(w.trust+4); return `${w.name} signs with a grin.`; }},
+  const B = BAL.renewal, market = Math.max(w.wage, wageFor(w)), raised = Math.round(market*(1+B.raise));
+  const s = renewWill(w), s2 = renewWill(w, B.raiseBoost), fee = renewFee(w, market, s), fee2 = renewFee(w, raised, s2);
+  const odds = has(w,'Loyal') ? 1 : renewOdds(s), odds2 = has(w,'Loyal') ? 1 : renewOdds(s2);
+  const mood = s >= B.freeAt ? `${w.name} is happy here and wants to stay. She'll sign again without a bonus.` : s >= B.refuseBelow ? `${w.name} is open to staying, for a signing bonus.` : `${w.name} has been thinking about leaving. She might not sign at all.`;
+  const pay = market > w.wage ? ` Her going rate has risen to ${fmt(market)}/wk (she's on ${fmt(w.wage)}/wk now).` : '';
+  const sign = (wage, f, od, extra) => () => {
+    if(S.gold < f){ w.contract=4; return 'You can\'t afford it right now. She agrees to stay on for 4 more weeks while you sort it out.'; }
+    if(Math.random() >= od){ w.contract=2; w.mood=clamp(w.mood-3); return `${w.name} shakes her head. "I don't think so." (She'll stay 2 more weeks. Spend time with her, or make a better offer.)`; }
+    S.gold -= f; w.wage = wage; w.contract = 12; if(extra) extra();
+    return `${w.name} signs again${f?'':', and waves off the bonus'}. (${fmt(wage)}/wk for 12 weeks${f?`, −${fmt(f)}`:''})`;
+  };
+  const oddsTxt = o => o < 1 ? `, ~${Math.round(o*100)}% she agrees` : '';
+  return {title:'Contract Renewal', who:w.id, scene:'portrait', text:`${w.name}'s contract is up.${pay}\n\n${mood}`, choices:[
+    {label:`Renew at ${fmt(market)}/wk (${fee?fmt(fee)+' bonus':'free'}${oddsTxt(odds)})`, fx: sign(market, fee, odds)},
+    {label:`Offer a raise: ${fmt(raised)}/wk (${fee2?fmt(fee2)+' bonus':'free'}${oddsTxt(odds2)})`, fx: sign(raised, fee2, odds2, ()=>{ w.trust=clamp(w.trust+4); w.mood=clamp(w.mood+4); })},
     {label:'Let her go', fx(){ S.workers=S.workers.filter(x=>x!==w); addLog(`${w.name}'s contract ended.`); return `${w.name} says goodbye.`; }}]};
 }
 function evStrike(){

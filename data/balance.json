@@ -9,7 +9,11 @@
     "lust.drop: how much each thing lowers it right away: client = per client service (+fav if it's her favorite), private = private time with Sam, train = practicing a service with Sam. Lewder ladies drop less per act (dropAtLewd0 → dropAtLewd100).",
     "lust.profile.floorPerLewd: her lust never falls below lewdness × this (a very lewd lady is never fully sated).",
     "lust.traits: Insatiable / Slow to Warm multipliers (build, drop), plus floor and max. Slow to Warm ladies top out below 'restless'. traitChance = odds a lady has the trait.",
-    "lust.bonus: extra mood/trust from private time with Sam when she's eager or restless (trainMult scales it for practice sessions); clientMood = mood per client service while eager."
+    "lust.bonus: extra mood/trust from private time with Sam when she's eager or restless (trainMult scales it for practice sessions); clientMood = mood per client service while eager.",
+    "renewal: her willingness = (trust×0.6 + mood×0.4)/100 (+loyal for Loyal ladies). At freeAt or above she re-signs for free; below that the fee scales up toward feeWeeks × her wage; below refuseBelow she's thinking of leaving and may say no. raise = size of the raise option; raiseBoost = how much it helps her willingness.",
+    "wages: contracts renew at her current going rate (wageFor, which rises with her skills and popularity). Between renewals she asks for a raise once her wage falls below askAt × her going rate (askAtAmbitious for Ambitious/Greedy).",
+    "mood: restingPoint = the mood she drifts back toward each week (drift = how fast); overworkAt = how many clients a week before she feels overworked.",
+    "income.escort: multiplier on all escort and off-duty service fees."
   ],
   "lust": {
     "low": 20,
@@ -24,5 +28,9 @@
   },
   "solo": {"energyCost":0.15,"clientCap":6,"lustDrop":40},
   "lovers": {"neglectWeeks":4,"missedMood":4,"jealousyChance":0.6},
-  "breakup": {"mood":-20,"trust":-10,"rekindleTrust":80,"rekindleChance":0.55,"rekindleCooldown":4}
+  "breakup": {"mood":-20,"trust":-10,"rekindleTrust":80,"rekindleChance":0.55,"rekindleCooldown":4},
+  "renewal": {"freeAt":0.85,"refuseBelow":0.3,"feeWeeks":6,"loyal":0.15,"raise":0.2,"raiseBoost":0.15},
+  "wages": {"askAt":0.85,"askAtAmbitious":0.95},
+  "mood": {"restingPoint":50,"drift":0.2,"overworkAt":4},
+  "income": {"escort":1.1}
 }
