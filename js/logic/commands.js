@@ -91,7 +91,7 @@ function buyUpgrade(k){
   if(k==='bar' && !S.flags.hilde && !isHired('hilde')){ S.flags.hilde=true; EVQ.push(evHilde); runQueue(); }
 }
 function buyHouse(id){
-  const D = HOUSES[id]; if(!D || H(id)) return;
+  const D = HOUSES[id]; if(!D || H(id) || !houseOffered(id)) return;
   if(D.premium && ((S.sam.lvl||1) < D.level || S.rep < D.renown)) return toast(`${D.name} won't sell to Sam yet. Needs Sam level ${D.level} and renown ${D.renown}.`);
   if(S.gold < D.cost) return toast('Not enough gold.');
   if(!confirm(`Buy ${D.name} for ${fmt(D.cost)}?`)) return;

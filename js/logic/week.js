@@ -260,7 +260,7 @@ function endWeek(){
   if(Math.random()<0.6){ const ev = pickRandomEvent(); if(ev) EVQ.push(ev); }
   if(S.flags.poachCD>0) S.flags.poachCD--;
 
-  if(S.week%4===0){
+  if(debtWeek()%4===0){
     const nd = nextDue();
     if(nd.amount>0){
       if(S.gold >= nd.amount){

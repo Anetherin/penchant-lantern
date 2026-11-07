@@ -10,7 +10,7 @@ function useAP(cost=20){
 }
 const samLog = t => S.samWeek.acts.push(t);
 const xpNeed = l => 60 + 40*l;
-const apMax = () => 3 + ((S.sam.lvl||1)>=5?1:0) + ((S.sam.lvl||1)>=10?1:0);
+const apMax = () => 3 + ((S.sam.lvl||1)>=5?1:0) + ((S.sam.lvl||1)>=10?1:0) + (hasBoon('ap')?1:0);
 function samGainXP(n){
   S.sam.xp = (S.sam.xp||0) + n; S.sam.lvl = S.sam.lvl || 1;
   while(S.sam.xp >= xpNeed(S.sam.lvl)){
@@ -196,7 +196,7 @@ function samGuild(){
 function endLovers(id){
   const w = findW(id); if(!w || !has(w,'Devoted')) return;
   if(!confirm(`End things with ${w.name}? She'll stay on at the house, but it will hurt.`)) return;
-  const B = BAL.breakup, starter = w.key && w.key===S.partner;
+  const B = BAL.breakup, starter = w.key && (S.partners||[S.partner]).includes(w.key);
   w.traits = w.traits.filter(t=>t!=='Devoted'); w.exLover = true; w.rekindleWk = S.week; w.neglect = 0;
   w.mood = clamp(w.mood + B.mood); w.trust = clamp(w.trust + B.trust * (has(w,'Loyal') ? 0.5 : 1));
   if(!starter){ w.isPartner = false; w.wage = wageFor(w); w.contract = 12; }

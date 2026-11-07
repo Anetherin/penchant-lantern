@@ -13,7 +13,8 @@
     "renewal: her willingness = (trust×0.6 + mood×0.4)/100 (+loyal for Loyal ladies). At freeAt or above she re-signs for free; below that the fee scales up toward feeWeeks × her wage; below refuseBelow she's thinking of leaving and may say no. raise = size of the raise option; raiseBoost = how much it helps her willingness.",
     "wages: contracts renew at her current going rate (wageFor, which rises with her skills and popularity). Between renewals she asks for a raise once her wage falls below askAt × her going rate (askAtAmbitious for Ambitious/Greedy).",
     "mood: restingPoint = the mood she drifts back toward each week (drift = how fast); overworkAt = how many clients a week before she feels overworked.",
-    "income.escort: multiplier on all escort and off-duty service fees."
+    "income.escort: multiplier on all escort and off-duty service fees.",
+    "ngplus: New Game+ (after paying off the debt). New debt = (your original house's debt + the new house's debt) × debtShare, +perCycle for each cycle after the second. purse = gold Sam keeps in hand; savings above it go straight to the new debt. Houses other than the original are sold for saleValue × their price, also paid toward the debt. samKeep = share of Sam's stats he keeps (1 = all)."
   ],
   "lust": {
     "low": 20,
@@ -32,5 +33,6 @@
   "renewal": {"freeAt":0.85,"refuseBelow":0.3,"feeWeeks":6,"loyal":0.15,"raise":0.2,"raiseBoost":0.15},
   "wages": {"askAt":0.85,"askAtAmbitious":0.95},
   "mood": {"restingPoint":50,"drift":0.2,"overworkAt":4},
-  "income": {"escort":1.1}
+  "income": {"escort":1.1},
+  "ngplus": {"debtShare":0.75,"perCycle":0.2,"purse":1000,"saleValue":0.5,"samKeep":1}
 }

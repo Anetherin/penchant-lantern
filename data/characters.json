@@ -1033,5 +1033,95 @@
       "kaede": {"v":35,"note":"Hanna processed every one of Kaede's bounty claims, and gossiped about all of them."},
       "rhoswen": {"v":30,"note":"Guild friends."}
     }
+  },
+  "rinna": {
+    "role": "house",
+    "job": "bartender",
+    "name": "Captain Rinna Galewright",
+    "race": "dragonkin",
+    "age": 142,
+    "personality": "Hot-blooded and competitive",
+    "traits": ["Former Adventurer","Party Animal"],
+    "style": "Sporty",
+    "favColor": "crimson",
+    "fav": null,
+    "dislike": null,
+    "lovers": null,
+    "backstory": "Rinna flew cargo (some of it legal) for sixty years before her ship ran aground on the cliffs. She built a bar around the wreck and never left. She still keeps the captain's hat.",
+    "design": {
+      "build": "tall and athletic",
+      "hairStyle": "windswept shoulder-length",
+      "hairColor": "copper",
+      "eyes": "amber with slit pupils",
+      "skin": "sun-bronzed",
+      "features": "small swept-back horns, a coppery scaled tail and a captain's tricorn hat"
+    },
+    "under": "sports",
+    "underColor": "black",
+    "stats": {"beauty":66,"charm":64,"refinement":30,"stamina":72,"strength":62,"agility":58},
+    "tech": {"service":35,"dance":25,"bar":62,"combat":55,"manage":45},
+    "actSkill": 40,
+    "popularity": 28,
+    "lewd": 45,
+    "trust": 15,
+    "outfits": {
+      "sig_rinna": {
+        "label": "Sky captain's coat",
+        "style": "Sporty",
+        "prompt": "a long weathered red captain's coat over a cropped shirt, fingerless gloves and tall boots",
+        "bonus": {"bartender":1.2,"adventurer":1.2}
+      },
+      "sp_rinna": {
+        "label": "Shore-leave finery",
+        "style": "Revealing",
+        "prompt": "a daring off-shoulder pirate blouse tied at the waist, a sash and tight breeches",
+        "bonus": {"bartender":1.2,"propose":1.2}
+      }
+    }
+  },
+  "maris": {
+    "role": "house",
+    "job": "bath",
+    "name": "Maris Tidewhisper",
+    "race": "elf",
+    "age": 310,
+    "personality": "Mysterious and aloof",
+    "traits": ["Elegant","Night Owl"],
+    "style": "Elegant",
+    "favColor": "teal",
+    "fav": null,
+    "dislike": null,
+    "lovers": null,
+    "backstory": "Maris has tended the Pearl Grotto longer than the harbor has had a name. She answers questions about her past with a smile and a different story every time.",
+    "design": {
+      "build": "slender and graceful",
+      "hairStyle": "very long and wavy",
+      "hairColor": "sea-green",
+      "eyes": "pale silver",
+      "skin": "fair with a faint pearlescent sheen",
+      "features": "long pointed ears hung with pearl earrings"
+    },
+    "under": "silk",
+    "underColor": "white",
+    "stats": {"beauty":80,"charm":60,"refinement":72,"stamina":50,"strength":30,"agility":55},
+    "tech": {"service":66,"dance":40,"bar":25,"combat":20,"manage":50},
+    "actSkill": 45,
+    "popularity": 32,
+    "lewd": 40,
+    "trust": 10,
+    "outfits": {
+      "sig_maris": {
+        "label": "Tidewoven robe",
+        "style": "Elegant",
+        "prompt": "a flowing translucent sea-green robe with pearl clasps",
+        "bonus": {"bath":1.3,"noble":1.2}
+      },
+      "sp_maris": {
+        "label": "Pearl regalia",
+        "style": "Revealing",
+        "prompt": "strands of glowing pearls and a sheer silver wrap",
+        "bonus": {"bath":1.3,"propose":1.2}
+      }
+    }
   }
 }

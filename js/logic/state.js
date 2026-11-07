@@ -23,7 +23,7 @@ const houseOf = w => (S && (H(w.house) || S.houses[0])) || null;
 function makeHouse(id){ const D = HOUSES[id]; return {id, name:D.name, rooms:D.rooms, quarters:D.quarters, beds:D.beds, tier:D.tier, up:clone(D.up), price:1, rep:D.rep, since:S?S.week:1, story:{beat:0,wk:0}, bonus:{}}; }
 function newGame(cfg){
   const HD = HOUSES[cfg.house];
-  S = { v:5, week:1, gold:600, rep:HD.rep, ap:3, cur:cfg.house, past:cfg.past, partner:cfg.partner,
+  S = { v:5, week:1, gold:600, rep:HD.rep, ap:3, cur:cfg.house, home:cfg.house, cycle:1, boons:[], past:cfg.past, partner:cfg.partner, partners:[cfg.partner],
     houses:[makeHouse(cfg.house)],
     sam:{energy:100, charm:20, business:35, strength:15, technique:0, appraisal:1, appXP:0, first:true, lvl:1, xp:0},
     samWeek:{security:0, books:false, income:0, acts:[]},
@@ -61,7 +61,8 @@ function migrate(s){
     (s.workers||[]).concat(s.candidates||[]).forEach(w=>{ if(w.key && ['kaede','yui','nerys','elowen','adelheid','marisol','natsuki','kanako','mio'].includes(w.key)) w.arc = [0,1,3,6][w.arc||0] ?? 0; });
     s.houses.forEach(h=>{ if(h.story) h.story.beat = [0,2,3,4][h.story.beat] ?? h.story.beat; });
   }
-  s.v = 11; s.regulars = s.regulars || []; s.bonds = s.bonds || {}; s.flags = Object.assign({partnerCD:3}, s.flags||{});
+  s.v = 12; s.home = s.home || (s.houses[0]||{}).id; s.cycle = s.cycle || 1; s.boons = s.boons || []; s.partners = s.partners || (s.partner ? [s.partner] : []);
+  s.regulars = s.regulars || []; s.bonds = s.bonds || {}; s.flags = Object.assign({partnerCD:3}, s.flags||{});
   s.sam.lvl = s.sam.lvl || 1; s.sam.xp = s.sam.xp || 0;
   s.houses.forEach(h=>{ h.since = h.since || 1; h.story = h.story || {beat:0,wk:0}; h.bonus = h.bonus || {};
     if(h.quarters===undefined){ h.quarters = Math.max(HOUSES[h.id].quarters, Math.ceil((s.workers||[]).filter(w=>w.house===h.id).length/2)); h.beds = HOUSES[h.id].beds; }
@@ -121,9 +122,11 @@ function checkUnlocks(silent, sink){
   if(sink){ msgs.forEach(m=>sink.push('🔓 '+m)); return; }
   if(msgs.length) toast(msgs[0] + (msgs.length>1 ? ` (+${msgs.length-1} more in the Log)` : ''));
 }
+// Payments every 4 weeks, counted from when this debt started (New Game+ restarts the schedule).
+const debtWeek = () => S.week - (S.debt.start||0);
 function nextDue(){
-  const wk = S.week%4===0 ? S.week : Math.ceil(S.week/4)*4;
+  const r = debtWeek(), wk = r%4===0 ? r : Math.ceil(r/4)*4;
   const inst = Math.round((220+130*(wk/4)) * S.debt.total/15470);
   const amount = wk>=52 ? S.debt.remaining : Math.min(S.debt.remaining, inst + S.debt.carry);
-  return {week:wk, amount};
+  return {week:wk + (S.debt.start||0), amount};
 }

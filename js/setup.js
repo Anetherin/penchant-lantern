@@ -10,7 +10,7 @@ function startSetup(){
 }
 function setupPick(k,v){ SETUP[k]=v; setupView(); }
 function setupNav(d){ SETUP.step = Math.max(0, Math.min(3, SETUP.step+d)); setupView(); }
-function setupReroll(){ if(SETUP.rerolled) return; SETUP.rerolled=true; SETUP.house=null; SETUP.offers = shuffle(Object.keys(HOUSES)).slice(0,4); setupView(); }
+function setupReroll(){ if(SETUP.rerolled) return; SETUP.rerolled=true; SETUP.house=null; SETUP.offers = shuffle(Object.keys(HOUSES).filter(k=>!HOUSES[k].ngplus)).slice(0,4); setupView(); }
 function previewBtn(key){ const id='n_'+key; return `<button class="sm" onclick="event.stopPropagation();showImg('pv_${key}','${id}','portrait','dressed',THUMBS['${id}']?undefined:'auto')">🎨 Portrait</button><div id="pv_${key}" style="max-width:260px" onclick="event.stopPropagation()"></div>`; }
 function miniAvatar(key){ const w = SETUP.prev['n_'+key]; return w ? avatarHTML(w) : ''; }
 function setupView(){

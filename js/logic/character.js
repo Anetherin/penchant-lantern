@@ -96,7 +96,7 @@ function wageFor(w){
   const tc = Math.max(...TECH_KEYS.map(k=>w.tech[k]||0), ...Object.values(w.acts||{}).map(a=>a.skill*0.8));
   return Math.round((8 + st*0.3 + tc*0.2 + w.popularity*0.3 + (has(w,'Ambitious')?8:0) + (has(w,'Greedy')?6:0)) * (w.race==='beastkin'?0.75:w.race==='dwarf'?1.1:w.race==='dragonkin'?1.15:1));
 }
-function signingFor(w){ return Math.max(60, Math.round(w.wage * rnd(5,8) * (0.9 + (S?S.rep:10)/150))); }
+function signingFor(w){ return Math.max(60, Math.round(w.wage * rnd(5,8) * (0.9 + (S?S.rep:10)/150) * (hasBoon('recruit')?0.75:1))); }
 function grow(w,k,n){ n *= (w.race==='human'?1.15:1); w.tech[k] = clamp((w.tech[k]||0) + n*(1 - (w.tech[k]||0)/130)); }
 function growAct(w,id,n){ if(!w.acts[id]) return; n *= (w.race==='human'?1.15:1); const s=w.acts[id].skill; w.acts[id].skill = clamp(s + n*(1 - s/130)); }
 function allNames(){ return S ? [...S.workers, ...S.candidates].map(w=>w.name) : []; }
