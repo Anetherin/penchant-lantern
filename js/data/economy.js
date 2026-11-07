@@ -23,7 +23,8 @@ const FLOOR_REST = ECON.floorRest;
 const AMENITY_SIZE = ECON.amenitySize;
 const houseSize = h => (HOUSES[h.id].size||9) + (h.annex?3:0);
 const roomsUsed = h => h.rooms + (h.quarters||0) + Object.keys(h.up||{}).filter(k=>h.up[k]).reduce((a,k)=>a+(AMENITY_SIZE[k]||1),0);
-const bedsFor = h => (h.quarters||0)*2;
+const bedsFor = h => (h.quarters||0)*2 + (h.extraBeds||0);
+const maxExtraBeds = h => (h.quarters||0)*2;   // each staff room fits up to 2 more (bunks, a cot by the window)
 const sleepers = h => S.workers.filter(w=>w.house===h.id && w.race!=='spirit');
 const RACE_PERK = ECON.racePerks;
 const PROP_RATE = ECON.propRate;

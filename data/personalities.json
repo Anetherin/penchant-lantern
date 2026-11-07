@@ -5,7 +5,8 @@
     "trust: multiplier on trust Sam earns. lewd: multiplier on lewdness growth.",
     "solo: chance (0-1) that at max lust she takes care of it herself instead of acting on it with someone. Costs her energy and fewer clients that night.",
     "modest: chance (0-1) a new lady with this personality gets the Modest trait: she undresses less than her lewdness would allow (clothes pulled aside), loosening as lewdness and trust with Sam rise.",
-    "goodNight / badNight: mood change after a week where clients loved her / a rough week with bad clients."
+    "goodNight / badNight: mood change after a week where clients loved her / a rough week with bad clients.",
+    "lustBuild: multiplier on how fast her lust builds each week."
   ],
   "Cheerful and teasing": {
     "likes": ["chat","gift","walk"],
@@ -17,7 +18,8 @@
     "solo": 0.25,
     "modest": 0.05,
     "goodNight": 3,
-    "badNight": -2
+    "badNight": -2,
+    "lustBuild": 1.05
   },
   "Calm and elegant": {
     "likes": ["dinner","train","theater"],
@@ -29,7 +31,8 @@
     "solo": 0.5,
     "modest": 0.4,
     "goodNight": 2,
-    "badNight": -2
+    "badNight": -2,
+    "lustBuild": 0.9
   },
   "Shy but earnest": {
     "likes": ["chat","train","walk"],
@@ -41,7 +44,8 @@
     "solo": 0.7,
     "modest": 0.5,
     "goodNight": 4,
-    "badNight": -6
+    "badNight": -6,
+    "lustBuild": 0.85
   },
   "Proud and sharp-tongued": {
     "likes": ["gift","theater"],
@@ -53,7 +57,8 @@
     "solo": 0.55,
     "modest": 0.35,
     "goodNight": 2,
-    "badNight": -5
+    "badNight": -5,
+    "lustBuild": 1
   },
   "Laid-back and lazy": {
     "likes": ["chat","private"],
@@ -65,7 +70,8 @@
     "solo": 0.6,
     "modest": 0.15,
     "goodNight": 1,
-    "badNight": -1
+    "badNight": -1,
+    "lustBuild": 1
   },
   "Bold and flirtatious": {
     "likes": ["private","dinner"],
@@ -77,7 +83,8 @@
     "solo": 0.15,
     "modest": 0,
     "goodNight": 3,
-    "badNight": -2
+    "badNight": -2,
+    "lustBuild": 1.2
   },
   "Bookish and curious": {
     "likes": ["train","chat","theater"],
@@ -89,7 +96,8 @@
     "solo": 0.55,
     "modest": 0.25,
     "goodNight": 3,
-    "badNight": -3
+    "badNight": -3,
+    "lustBuild": 1
   },
   "Warm and motherly": {
     "likes": ["dinner","chat","walk"],
@@ -101,7 +109,8 @@
     "solo": 0.35,
     "modest": 0.2,
     "goodNight": 3,
-    "badNight": -3
+    "badNight": -3,
+    "lustBuild": 0.95
   },
   "Mysterious and aloof": {
     "likes": ["gift","private","theater"],
@@ -113,7 +122,8 @@
     "solo": 0.6,
     "modest": 0.4,
     "goodNight": 1,
-    "badNight": -1
+    "badNight": -1,
+    "lustBuild": 0.9
   },
   "Hot-blooded and competitive": {
     "likes": ["train","dinner"],
@@ -125,6 +135,7 @@
     "solo": 0.3,
     "modest": 0.1,
     "goodNight": 5,
-    "badNight": -4
+    "badNight": -4,
+    "lustBuild": 1.15
   }
 }

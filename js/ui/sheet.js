@@ -102,11 +102,12 @@ function viewUpgrades(){
   return `${houseTabs(false)}<section class="card"><h2>Upgrades: ${esc(h.name)} <span class="muted">(${roomsUsed(h)}/${houseSize(h)} rooms)</span></h2><div class="grid">
     ${card('room',`Add Bedroom (${h.rooms})`,'One courtesan per bedroom. Takes 1 room. +12g/wk.',upgradeCost(h,'room'),false)}
     ${card('quarters',`Add Staff Quarters (${h.quarters||0})`,'Sleeps 2 staff. Without a bed, staff sleep on the floor (poor rest, −mood). Takes 1 room. +6g/wk.',upgradeCost(h,'quarters'),false)}
+    ${card('extraBed',`Add a Staff Bed (${bedsFor(h)} beds)`,`One more bed in the staff rooms, no extra space needed. Up to 2 extra per staff room (${h.extraBeds||0}/${maxExtraBeds(h)}). A bit cramped, but better than the floor. +3g/wk.`,upgradeCost(h,'extraBed'),(h.extraBeds||0)>=maxExtraBeds(h))}
     ${card('roomTier',`Refurbish Bedrooms (${ROOM_NAMES[h.tier]})`,'Higher service prices and satisfaction. Changes room scenes.',upgradeCost(h,'roomTier'),h.tier>=3)}
     ${card('beds',`Better Beds (${BEDS[h.beds||0].label})`,`Staff recover more energy. Next: ${BEDS[Math.min(3,(h.beds||0)+1)].label} (rest ${BEDS[Math.min(3,(h.beds||0)+1)].rest}). Proper beds keep a lady even at about 3–4 clients a week.`,upgradeCost(h,'beds'),(h.beds||0)>=3)}
     ${card('annex','Build an Annex','+3 rooms of space. +30g/wk.',upgradeCost(h,'annex'),!!h.annex)}
     ${Object.entries(UPGRADES).map(([k,u])=>card(k,`${u.label} <span class="muted">(${AMENITY_SIZE[k]} room${AMENITY_SIZE[k]>1?'s':''})</span>`,`${u.desc} (${D.up[k]?'built in':u.upkeep+'g/wk upkeep'})`,upgradeCost(h,k),!!h.up[k])).join('')}</div>
-    <p class="muted">Each construction project raises prices on the next by 12% (${S.built||0} built so far). Upkeep also rises with a house's reputation.</p>
+    <p class="muted">Building the same thing again costs 12% more each time (counted across all your houses); bedrooms, quarters and beds also scale with how many this house has. Upkeep also rises with a house's reputation.</p>
     <p>Space used: <b>${roomsUsed(h)}/${houseSize(h)}</b> rooms</p>
     <p class="muted">Outfits and undergarments are bought per lady, from her sheet → Wardrobe.</p></section>
     <section class="card"><h2>Properties for Sale</h2><p class="muted">Each house has its own clientele, reputation, staff, and resident.</p><div class="grid">${props||'<span class="muted">You own every house in Hollowmere!</span>'}</div></section>`;

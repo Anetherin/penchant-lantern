@@ -17,8 +17,7 @@ function canVisit(w, trustMin, lewdMin, lustMin){
 // one shared result: run privateCore without spending an action
 function encounterResult(w, act, intro, kind, situation, drain){
   if(drain) S.sam.energy = Math.max(0, S.sam.energy - drain);
-  const text = intro + '\n\n' + privateCore(w, act);
-  w.lust = clamp(w.lust - 25);
+  const text = intro + '\n\n' + privateCore(w, act);   // privateCore spends her lust
   samLog(`${kind==='reckless'?'Swept off by':'A visit from'} ${w.name}`);
   return {text, img:{wid:w.id, scene:'samact:'+act}, ai:{kind, wid:w.id, act, scene:'samact:'+act, forSam:true, situation}};
 }

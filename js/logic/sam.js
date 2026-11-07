@@ -60,7 +60,8 @@ function samChat(id){
   const m = pm(w,'chat'), tg = gainTrust(w, rnd(1.5,3.5) * (has(w,'Romantic')?1.4:1) * (has(w,'Shy')?1.2:1) * m);
   w.mood = clamp(w.mood + 4*m - (m<1?3:0)); samStat('charm',1); samXP(5); samLog(`Chatted with ${w.name}`); checkUnlocks();
   save(); render(); closeModal();
-  showResult(`Chatting with ${w.name}`, `Sam and ${w.name} talk ${ET('chat', NAMED[w.key] && Object.values(NAMED[w.key].bonds||{}).some(x=>x.kind==='home') || ['yui','natsuki','kanako','mio'].includes(w.key) ? 'home' : 'topics')}.${pNote(w,'chat')}\n\nTrust +${tg.toFixed(1)}`, w.id, 'casual');
+  const topic = ET('chat', NAMED[w.key] && Object.values(NAMED[w.key].bonds||{}).some(x=>x.kind==='home') || ['yui','natsuki','kanako','mio'].includes(w.key) ? 'home' : 'topics');
+  showResult(`Chatting with ${w.name}`, `Sam and ${w.name} talk ${topic}.${pNote(w,'chat')}\n\nTrust +${tg.toFixed(1)}`, w.id, null, {kind:'chat', scene:'casual', situation:topic, auto:true});
 }
 // Date types live in data/dates.json (DATES is defined in js/data/scenes.js).
 const dateFor = (k) => { const d = DATES[k]; return Object.assign({}, d, (d.past && d.past[S.past]) || {}); };
@@ -107,11 +108,12 @@ function samTrain(id){
     const act = k.slice(4); if(!canSam(w,act)) return toast(`${w.name} isn't comfortable with that yet.`);
     if(!useAP(25)) return;
     const g = (6 + S.sam.technique/20) * tm;
+    const hot = lustBonus(w, BAL.lust.bonus.trainMult), ld = spendLust(w, BAL.lust.drop.train);
     growAct(w, act, g); w.lewd = clamp(w.lewd + 1.5*lewdMult(w)); w.energy = clamp(w.energy-12, 0, maxEnergy(w));
     if(w.dislike===act) w.mood = clamp(w.mood-4);
     samStat('technique',2); samXP(5); w.privateCount++; w._samTime=(w._samTime||0)+1; samLog(`Practiced ${actLabel(act)} with ${w.name}`); checkUnlocks();
     save(); render(); closeModal();
-    return showResult(`Practice: ${actLabel(act)}`, `${w.name} decides Sam's education is a shared project. They practice ${actLabel(act).toLowerCase()} until both of them are confident in the technique. Sam takes notes afterward. She finds this hilarious.\n\n${actLabel(act)} skill +${Math.round(g)} · Lewdness + · Sam's Technique +2`, w.id, 'samact:'+act, {kind:'train', act, scene:'samact:'+act, forSam:true});
+    return showResult(`Practice: ${actLabel(act)}`, `${w.name} decides Sam's education is a shared project. They practice ${actLabel(act).toLowerCase()} until both of them are confident in the technique. Sam takes notes afterward. She finds this hilarious.${hot?'\n\n'+hot:''}\n\n${actLabel(act)} skill +${Math.round(g)} · Lewdness + · Lust −${ld} · Sam's Technique +2`, w.id, 'samact:'+act, {kind:'train', act, scene:'samact:'+act, forSam:true});
   }
   if(!useAP(25)) return;
   const map = {service:'charm', dance:'charm', bar:'charm', combat:'strength', manage:'business'};
@@ -142,6 +144,7 @@ function samPrivate(id, act, free){
 function privateCore(w, act){
   const stretch = samStance(w,act)==='ask';
   const fromLewd = !stretch && w.lewd >= w.trust;
+  const hot = lustBonus(w), ld = spendLust(w, BAL.lust.drop.private);
   growAct(w, act, (4 + S.sam.technique/20) * (S.past==='massage'?1.3:1));
   if(stretch){ w.lewd = clamp(w.lewd + 4*lewdMult(w)); } else if(fromLewd) w.lewd = clamp(w.lewd + 2*lewdMult(w)); else gainTrust(w, 2);
   w.mood = clamp(w.mood + (stretch?1:6)*pm(w,'private') + (w.fav===act?6:0) - (w.dislike===act?6:0)); w.energy = clamp(w.energy-15, 0, maxEnergy(w));
@@ -164,7 +167,8 @@ function privateCore(w, act){
   if(w.fav===act && knowsPrefs(w)) text += `\n\n(Her favorite. She's in a very good mood afterward.)`;
   text += pNote(w,'private');
   if(stretch) text += `\n\n(This was a stretch for ${w.name}. She did it for Sam, and it's a little less of a stretch now.)`;
-  text += `\n\n[${actLabel(act)}] skill + · ${stretch||fromLewd?'Lewdness':'Trust'} + · Sam's Technique +3`;
+  if(hot) text += `\n\n${hot}`;
+  text += `\n\n[${actLabel(act)}] skill + · ${stretch||fromLewd?'Lewdness':'Trust'} + · Lust −${ld} · Sam's Technique +3`;
   return text;
 }
 function samGuild(){

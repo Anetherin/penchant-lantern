@@ -1,7 +1,8 @@
 {
   "_readme": [
     "Short text lines the game picks from at random. No AI needed. Each section has a _default list; add a list under a personality name to give that personality its own lines.",
-    "Placeholders: {name}, {house}, plus any extra ones noted for the section. Add as many lines as you like."
+    "Placeholders: {name}, {house}, plus any extra ones noted for the section. Add as many lines as you like.",
+    "enc_* lines are short notes on how one client visit went for her (shown in the weekly report). job_* lines are report lines for the non-escort jobs."
   ],
   "solo": {
     "_note": "Report line when a lady at max lust spends part of her night alone in her room instead. Shown in the weekly report.",
@@ -189,5 +190,101 @@
       "{name} pretends to think about it for exactly three seconds. \"Took you long enough.\""
     ]
   },
-  "rekindle_no": {"_note":"When an ex-lover isn't ready to try again.","_default":["{name} smiles, a little sadly. \"Not yet. Ask me again sometime.\""]}
+  "rekindle_no": {"_note":"When an ex-lover isn't ready to try again.","_default":["{name} smiles, a little sadly. \"Not yet. Ask me again sometime.\""]},
+  "enc_fav": {
+    "_note": "Client asked for her favorite.",
+    "_default": ["She enjoyed that one.","Her favorite. She was humming afterward.","She came back downstairs smiling."]
+  },
+  "enc_dislike": {
+    "_note": "Client asked for something she dislikes but does.",
+    "_default": ["Not her favorite.","She got through it, but it's not her thing.","She was a little quiet afterward."]
+  },
+  "enc_stretch": {
+    "_note": "A service that's still a stretch for her with clients.",
+    "_default": ["A stretch for her. She did it anyway.","She wasn't sure about it, and it showed a little.","Outside her comfort zone, but she managed."]
+  },
+  "enc_eager": {
+    "_note": "She was in the mood (high lust).",
+    "_default": ["She'd been wanting it all week.","She was more into it than he was.","She was very much in the mood."]
+  },
+  "enc_glow": {
+    "_note": "Very satisfied client.",
+    "_default": ["He left glowing.","He's already asking when she's free next.","He tipped well and said so twice."]
+  },
+  "enc_flat": {"_note":"Unhappy client.","_default":["He left grumbling.","It didn't really click.","Neither of them enjoyed it much."]},
+  "enc_declined": {"_note":"She turned the request down.","_default":["She didn't mind saying no.","No hard feelings either way."]},
+  "enc_nomood": {
+    "_note": "She turned it down because she wasn't in the mood (low lust).",
+    "_default": ["She just wasn't in the mood.","Not tonight, she said."]
+  },
+  "job_bartender": {
+    "_note": "Weekly report line for a bartender.",
+    "_default": [
+      "{name} kept the drinks flowing at {house} and settled two arguments with a single raised eyebrow.",
+      "{name} invented a new cocktail this week. Half the regulars love it, the other half are scared of it.",
+      "{name} worked the bar all week and knows every regular's order by heart now."
+    ]
+  },
+  "job_dancer": {
+    "_note": "Weekly report line for a dancer.",
+    "_default": [
+      "{name}'s new routine had the lounge on its feet.",
+      "{name} danced every night this week. Someone threw flowers, which she pretended not to love.",
+      "A crowd gathered early for {name}'s set. The bar did well out of it."
+    ]
+  },
+  "job_bath": {
+    "_note": "Weekly report line for a bath attendant.",
+    "_default": [
+      "{name} kept the baths hot and the guests relaxed.",
+      "{name} has the guests so relaxed they forget to leave. She considers it a professional achievement.",
+      "Steam, scented oil, and {name}'s soft humming. The bathhouse was busy all week."
+    ]
+  },
+  "job_maid": {
+    "_note": "Weekly report line for a maid.",
+    "_default": [
+      "{name} scrubbed {house} until it shone. Guests noticed.",
+      "{name} found three lost earrings, a sword, and a love letter while cleaning. She returned all of them.",
+      "{name} reorganized the linen closet. Nobody asked her to. Everybody's grateful."
+    ]
+  },
+  "job_security": {
+    "_note": "Weekly report line for security.",
+    "_default": [
+      "{name} walked a drunk adventurer to the door without him even noticing he'd been thrown out.",
+      "A quiet week on watch for {name}. She suspects her reputation is doing half the work.",
+      "{name} stood by the door looking unimpressed all week. It worked."
+    ]
+  },
+  "job_madame": {
+    "_note": "Weekly report line for a madame.",
+    "_default": [
+      "{name} ran {house} like clockwork and kept everyone's schedules sane.",
+      "{name} smoothed over two complaints and a near-duel. Business as usual.",
+      "{name} checked in on every lady at least once this week. They noticed."
+    ]
+  },
+  "job_reception": {
+    "_note": "Weekly report line for a receptionist.",
+    "_default": [
+      "{name} greeted every guest by name by the end of the week.",
+      "{name} talked a nervous first-timer through the menu so gently he tipped her too.",
+      "The front desk at {house} has never been this organized. {name} is very proud."
+    ]
+  },
+  "job_companion": {
+    "_note": "Weekly report line for a companion with no clients.",
+    "_default": [
+      "A slow week for {name}. She spent it chatting with the others in the lounge."
+    ]
+  },
+  "job_rest": {
+    "_note": "Weekly report line for a lady resting.",
+    "_default": [
+      "{name} took the week off: long baths, long naps, and a book she's been meaning to finish.",
+      "{name} slept in every day this week and regrets nothing.",
+      "{name} spent her week off wandering the market and came back with snacks for everyone."
+    ]
+  }
 }

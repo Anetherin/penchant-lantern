@@ -1,12 +1,27 @@
 {
   "_readme": [
     "Tuning numbers. Change them and reload; no code needed.",
-    "lust: low = below this she turns down the heavier services; high = 'restless' (solo nights, reckless nights, lovers come looking for Sam).",
     "solo: energyCost = share of her max energy a solo night costs; clientCap = most clients she'll see that week afterward; lustDrop = how much it lowers her lust.",
     "lovers: neglectWeeks = weeks in a row without Sam before she feels left out (when another lover isn't); missedMood = mood lost each week she's restless and Sam doesn't see her; jealousyChance = weekly odds of that event. Shared scenes are tuned in bonds.json.",
-    "breakup: mood / trust = what ending it costs her (Loyal ladies lose half the trust); rekindleTrust = trust she needs before Sam can ask her back; rekindleChance = base odds she says yes (better if she's happy); rekindleCooldown = weeks between attempts."
+    "breakup: mood / trust = what ending it costs her (Loyal ladies lose half the trust); rekindleTrust = trust she needs before Sam can ask her back; rekindleChance = base odds she says yes (better if she's happy); rekindleCooldown = weeks between attempts.",
+    "lust: low = below this she turns down the heavier services; eager = she's in the mood (bonuses below); high = 'restless' (solo nights, reckless nights, lovers come looking for Sam).",
+    "lust.build: weekly gain = base + lewdness*perLewd (+eagerTrait for Eager/Exhibitionist, +demon, +resting), times her personality's lustBuild and trait multipliers.",
+    "lust.drop: how much each thing lowers it right away: client = per client service (+fav if it's her favorite), private = private time with Sam, train = practicing a service with Sam. Lewder ladies drop less per act (dropAtLewd0 → dropAtLewd100).",
+    "lust.profile.floorPerLewd: her lust never falls below lewdness × this (a very lewd lady is never fully sated).",
+    "lust.traits: Insatiable / Slow to Warm multipliers (build, drop), plus floor and max. Slow to Warm ladies top out below 'restless'. traitChance = odds a lady has the trait.",
+    "lust.bonus: extra mood/trust from private time with Sam when she's eager or restless (trainMult scales it for practice sessions); clientMood = mood per client service while eager."
   ],
-  "lust": {"low":20,"high":85},
+  "lust": {
+    "low": 20,
+    "high": 85,
+    "eager": 60,
+    "build": {"base":6,"perLewd":0.083,"eagerTrait":3,"demon":4,"resting":3},
+    "drop": {"client":4,"fav":2,"private":22,"train":12},
+    "profile": {"floorPerLewd":0.16,"dropAtLewd0":1.2,"dropAtLewd100":0.8},
+    "traits": {"Insatiable":{"build":1.6,"drop":0.6,"floor":25,"max":100},"Slow to Warm":{"build":0.55,"drop":1.4,"floor":0,"max":75}},
+    "traitChance": {"Insatiable":0.1,"Slow to Warm":0.1},
+    "bonus": {"eager":{"mood":4,"trust":0.5},"restless":{"mood":8,"trust":1.5},"trainMult":0.5,"clientMood":1}
+  },
   "solo": {"energyCost":0.15,"clientCap":6,"lustDrop":40},
   "lovers": {"neglectWeeks":4,"missedMood":4,"jealousyChance":0.6},
   "breakup": {"mood":-20,"trust":-10,"rekindleTrust":80,"rekindleChance":0.55,"rekindleCooldown":4}

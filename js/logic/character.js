@@ -114,6 +114,8 @@ function ensureWorker(w){
   if(!w.style) w.style = pick(STYLES);
   if(!w.favColor) w.favColor = pick(COLOR_KEYS);
   // Modest: rolled once per lady from her personality (data/personalities.json → modest)
+  if(w._lt===undefined){ w._lt = 1; w.traits = w.traits||[]; if(!w.named){ const tc = BAL.lust.traitChance||{}, r = Math.random();
+    if(r < (tc['Insatiable']||0)) w.traits.push('Insatiable'); else if(r < (tc['Insatiable']||0) + (tc['Slow to Warm']||0)) w.traits.push('Slow to Warm'); } }
   if(w._mr===undefined){ w._mr = 1; if(!has(w,'Modest') && !has(w,'Exhibitionist') && Math.random() < ((PERS[w.personality]||{}).modest||0)) (w.traits = w.traits||[]).push('Modest'); }
   if(has(w,'Modest') && w.modesty===undefined) w.modesty = ri(20,45);
   w.design = w.design || {};
@@ -206,4 +208,26 @@ const LUST_LOW = BAL.lust.low, LUST_HIGH = BAL.lust.high;
 const notInMood = (w, act) => act && w.lust < LUST_LOW && ((actById(act)||{}).energy||10) >= 9;
 // At max lust some ladies take care of it themselves (data/personalities.json → solo).
 function soloChance(w){ const P = PERS[w.personality]||{}; return Math.max(0.05, Math.min(0.9, (P.solo ?? 0.3) + (has(w,'Shy')?0.15:0) + (has(w,'Modest')?0.1:0) - (has(w,'Eager')?0.15:0) - (has(w,'Exhibitionist')?0.1:0))); }
-function lustLabel(w){ return w.lust>=LUST_HIGH ? 'restless' : w.lust>=60 ? 'eager' : w.lust<LUST_LOW ? 'not in the mood' : 'content'; }
+function lustLabel(w){ return w.lust>=LUST_HIGH ? 'restless' : w.lust>=LUST_EAGER ? 'eager' : w.lust<LUST_LOW ? 'not in the mood' : 'content'; }
+const LUST_EAGER = BAL.lust.eager || 60;
+// Her lust profile (data/balance.json → lust): weekly build, how much each act spends, floor and ceiling.
+function lustProfile(w){
+  const L = BAL.lust, B = L.build, Pf = L.profile, P = PERS[w.personality]||{};
+  const T = Object.entries(L.traits||{}).filter(([t])=>has(w,t)).map(([,v])=>v);
+  const tm = k => T.reduce((a,t)=>a*(t[k]??1), 1);
+  const build = (B.base + w.lewd*B.perLewd + ((has(w,'Eager')||has(w,'Exhibitionist'))?B.eagerTrait:0) + (w.race==='demon'?B.demon:0) + (w.job==='rest'?B.resting:0)) * (P.lustBuild||1) * tm('build');
+  const drop = (Pf.dropAtLewd0 + (Pf.dropAtLewd100 - Pf.dropAtLewd0) * w.lewd/100) * tm('drop');
+  const floor = Math.min(60, w.lewd*Pf.floorPerLewd + T.reduce((a,t)=>a+(t.floor||0), 0));
+  const max = T.reduce((a,t)=>Math.min(a, t.max??100), 100);
+  return {build, drop, floor:Math.round(floor), max};
+}
+const fitLust = w => { const p = lustProfile(w); w.lust = Math.max(Math.min(p.floor, p.max), Math.min(p.max, clamp(w.lust))); return w.lust; };
+// Spend lust (a service, private time...). Returns how much it actually went down.
+function spendLust(w, base){ const before = w.lust; w.lust = w.lust - base*lustProfile(w).drop; fitLust(w); return Math.round(before - w.lust); }
+// Bonus for time with Sam when she's in the mood. Call before spending lust.
+function lustBonus(w, mult=1){
+  const B = BAL.lust.bonus, b = w.lust>=LUST_HIGH ? B.restless : w.lust>=LUST_EAGER ? B.eager : null;
+  if(!b) return '';
+  w.mood = clamp(w.mood + b.mood*mult); if(b.trust) gainTrust(w, b.trust*mult);
+  return w.lust>=LUST_HIGH ? `${w.name} had been wanting this for days. (Mood +${Math.round(b.mood*mult)}, trust +)` : `${w.name} was very much in the mood. (Mood +${Math.round(b.mood*mult)})`;
+}

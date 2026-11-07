@@ -39,6 +39,8 @@ const TRAITS = {
   'Loyal':{desc:'Rarely loses trust; hard to poach.'},
   'Exhibitionist':{desc:'Dancing raises lewdness faster; comfortable with less clothing.', hidden:true},
   'Night Owl':{desc:'Recovers energy faster.', hidden:true},
+  'Insatiable':{desc:'Lust builds fast and never drops very far; her lust is spent more slowly.', hidden:true},
+  'Slow to Warm':{desc:'Lust builds slowly and is easily satisfied; she never gets restless.', hidden:true},
   'Modest':{desc:'Would rather keep her clothes on: they get pulled aside instead. Lewdness (and trust, with Sam) still brings more of them off.', personal:true},
   'Devoted':{desc:'Sam\'s lover. Never leaves; more willing with Sam; mood stays up.', story:true},
   'Oblivious':{desc:'Thinks of Sam as the boy from next door. Far less willing with him until her story moves along.', story:true}

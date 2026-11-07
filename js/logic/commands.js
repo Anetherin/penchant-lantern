@@ -57,13 +57,15 @@ function dismiss(id){
   S.workers.forEach(o=>o.trust=clamp(o.trust-2));
   addLog(`${w.name} was let go. The others noticed.`); closeModal(); save(); render();
 }
-// Every construction project makes the next one pricier (permits, contractors who've noticed you have money...).
+// Repeating the same kind of build gets pricier (count across all houses): permits, contractors who've noticed you have money...
+// Bedrooms, staff quarters and extra beds also scale with how many this house already has.
 function upgradeCost(h, k){
-  const infl = 1 + 0.12*(S.built||0);
+  const infl = 1 + 0.12*((S.builtBy||{})[k]||0);
   if(k==='room') return Math.round((250 + h.rooms*220) * infl);
   if(k==='quarters') return Math.round((200 + (h.quarters||0)*160) * infl);
   if(k==='roomTier') return Math.round((ROOM_TIER_COST[h.tier]||0) * infl);
-  if(k==='beds') return Math.round((BEDS[Math.min(3,(h.beds||0)+1)].cost) * Math.max(1,h.quarters||1) * infl);
+  if(k==='beds') return Math.round((BEDS[Math.min(3,(h.beds||0)+1)].cost) * Math.max(1,bedsFor(h)/2) * infl);
+  if(k==='extraBed') return Math.round((80 + (h.extraBeds||0)*60 + (BEDS[h.beds||0].cost||0)*0.25) * infl);
   if(k==='annex') return Math.round(2500 * infl);
   return Math.round((UPGRADES[k]?UPGRADES[k].cost:0) * infl);
 }
@@ -73,14 +75,16 @@ function buyUpgrade(k){
   else if(k==='roomTier'){ if(h.tier>=3) return toast('Bedrooms are already opulent.'); }
   else if(k==='beds'){ if((h.beds||0)>=3) return toast('Already the best beds in town.'); }
   else if(k==='annex'){ if(h.annex) return toast('Already expanded.'); }
+  else if(k==='extraBed'){ if((h.extraBeds||0) >= maxExtraBeds(h)) return toast('The staff rooms are full. Add staff quarters first.'); }
   else { if(h.up[k]) return; need = AMENITY_SIZE[k]||1; }
   if(need && roomsUsed(h) + need > houseSize(h)) return toast(`${h.name} is out of space (${roomsUsed(h)}/${houseSize(h)} rooms used).`);
   if(S.gold < cost) return toast('Not enough gold.');
-  S.gold -= cost; S.built = (S.built||0) + 1;
+  S.gold -= cost; S.built = (S.built||0) + 1; S.builtBy = S.builtBy||{}; S.builtBy[k] = (S.builtBy[k]||0) + 1;
   if(k==='room'){ h.rooms++; note(`${h.name}: a new bedroom is ready. (${h.rooms} total)`); }
   else if(k==='quarters'){ h.quarters=(h.quarters||0)+1; note(`${h.name}: new staff quarters. Beds for ${bedsFor(h)}.`); }
   else if(k==='roomTier'){ h.tier++; note(`${h.name}: bedrooms refurbished to ${ROOM_NAMES[h.tier]}.`); }
   else if(k==='beds'){ h.beds=(h.beds||0)+1; note(`${h.name}: staff now sleep on ${BEDS[h.beds].label.toLowerCase()}.`); }
+  else if(k==='extraBed'){ h.extraBeds=(h.extraBeds||0)+1; note(`${h.name}: another bed squeezed into the staff rooms. Beds for ${bedsFor(h)}.`); }
   else if(k==='annex'){ h.annex=true; note(`${h.name}: annex built (+3 rooms of space).`); }
   else { h.up[k]=true; note(`${h.name}: ${UPGRADES[k].label} built.`); }
   save(); render();
