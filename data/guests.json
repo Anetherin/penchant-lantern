@@ -2065,7 +2065,7 @@
             "sig_jinhsi": {
               "label": "Magistrate's robes",
               "style": "Elegant",
-              "prompt": "high-collared black halter top trimmed in gold, white teal sashes, high waisted dark shorts, and sleek thigh-high boots",
+              "prompt": "high-collared black halter top trimmed in gold, white teal sashes, high waisted dark shorts, and sleek thigh-high white boots",
               "bonus": {"companion":1.25,"noble":1.25}
             },
             "sp_jinhsi": {
@@ -2139,7 +2139,7 @@
           "backstory": "The Heart Moon Fox, an ancient guardian spirit of a mountain city in the sea-trade cities of the far east coast, taking a mortal-sized shape for a while. Hsin dances under moonlight and answers questions with riddles.",
           "design": {
             "build": "tall, voluptuous,and graceful",
-            "hairStyle": "very long and flowing",
+            "hairStyle": "ornate long ponytail",
             "hairColor": "pale silver-white",
             "eyes": "glowing red-yellow",
             "skin": "fair",
@@ -2157,7 +2157,7 @@
             "sig_hsin": {
               "label": "Moon guardian robes",
               "style": "Exotic",
-              "prompt": "black bodice with white and red flowing robes with detached sleeves and gold rings at the hems",
+              "prompt": "low cut black bodice with white and red flowing robes with detached sleeves and gold rings at the hems",
               "bonus": {"dancer":1.3,"noble":1.15}
             },
             "sp_hsin": {"label":"Moonlit silk","style":"Exotic","prompt":"a sheer white and gold silk dancing dress","bonus":{"courtesan":1.15,"dancer":1.15}}
