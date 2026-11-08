@@ -2065,7 +2065,7 @@
             "sig_jinhsi": {
               "label": "Magistrate's robes",
               "style": "Elegant",
-              "prompt": "high-collared black halter top trimmed in gold, white teal sashes, high waisted dark shorts, and sleek thigh-high white boots",
+              "prompt": "high-collared narrow black halter top trimmed in gold, white teal sashes, high waisted dark shorts, and sleek thigh-high white boots",
               "bonus": {"companion":1.25,"noble":1.25}
             },
             "sp_jinhsi": {
@@ -2095,12 +2095,12 @@
             "build": "slender, refined, and petite",
             "hairStyle": "long and elegant",
             "hairColor": "silver",
-            "eyes": "vibrantly mixed pink teal", 
+            "eyes": "light teal", 
             "skin": "fair",
-            "features": "an ornate crystal-accented pistol"
+            "features": "thin magenta headband and large ribbons"
           },
           "under": "lace",
-          "underColor": "white",
+          "underColor": "black",
           "stats": {"beauty":74,"charm":62,"refinement":74,"stamina":45,"strength":30,"agility":55},
           "tech": {"service":45,"dance":30,"bar":20,"combat":60,"manage":50},
           "actSkill": 30,
@@ -2111,7 +2111,7 @@
             "sig_carlotta": {
               "label": "Montelli finery",
               "style": "Elegant",
-              "prompt": "a short, white, sleeveless dress with a high neckline, a vibrant magenta-colored cape, and thigh-high black boots",
+              "prompt": "a short, white, sleeveless  flowing dress with a high neckline, a vibrant magenta-colored cape with teal lining, black gloves, and thigh-high black boots with magenta stockings",
               "bonus": {"companion":1.25,"merchant":1.25}
             },
             "sp_carlotta": {
@@ -2139,14 +2139,14 @@
           "backstory": "The Heart Moon Fox, an ancient guardian spirit of a mountain city in the sea-trade cities of the far east coast, taking a mortal-sized shape for a while. Hsin dances under moonlight and answers questions with riddles.",
           "design": {
             "build": "tall, voluptuous,and graceful",
-            "hairStyle": "ornate long ponytail",
+            "hairStyle": "ornate long bun ponytail",
             "hairColor": "pale silver-white",
             "eyes": "glowing red-yellow",
             "skin": "fair",
-            "features": "gold ring ornaments that orbit her when she dances"
+            "features": "heavy red eyeshadow, ornate red tattoos on her hands and thighs"
           },
           "under": "silk",
-          "underColor": "white",
+          "underColor": "black",
           "stats": {"beauty":76,"charm":60,"refinement":66,"stamina":55,"strength":30,"agility":70},
           "tech": {"service":30,"dance":70,"bar":10,"combat":50,"manage":30},
           "actSkill": 35,
@@ -2157,7 +2157,7 @@
             "sig_hsin": {
               "label": "Moon guardian robes",
               "style": "Exotic",
-              "prompt": "low cut black bodice with white and red flowing robes with detached sleeves and gold rings at the hems",
+              "prompt": "low cut black bodice with white and red flowing robes with detached sleeves ",
               "bonus": {"dancer":1.3,"noble":1.15}
             },
             "sp_hsin": {"label":"Moonlit silk","style":"Exotic","prompt":"a sheer white and gold silk dancing dress","bonus":{"courtesan":1.15,"dancer":1.15}}
