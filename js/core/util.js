@@ -3,7 +3,7 @@
    SAFETY FILTER — strips youth-coded terms from every image prompt and
    character text field. All characters are adults.
    ===================================================================== */
-const YOUTH_RE = /\b(child(ren|like|ish)?|kids?|loli(ta|con)?|shota(con)?|toddlers?|infants?|bab(y|ies)|pre-?teens?|teen(s|age|aged|ager|agers)?|underage|minors?|school ?girls?|school ?uniforms?|middle ?school|high ?school|elementary|little girls?|young girls?|girlish|tiny body|flat[- ]chest(ed)?|(1[0-7]|[1-9]) ?(yo|y\/o|years? old))\b/gi;
+const YOUTH_RE = /\b(child(ren|like|ish)?|kids?|loli(ta|con)?|shota(con)?|toddlers?|infants?|bab(y|ies)|pre-?teens?|underage|minors?|middle ?school|high ?school|elementary|little girls?|young girls?;
 function cleanText(s){
   return String(s ?? '').replace(YOUTH_RE,'').replace(/\s+,/g,',').replace(/,(\s*,)+/g,',')
     .replace(/\s{2,}/g,' ').replace(/^[,\s]+|[,\s]+$/g,'').trim();
