@@ -1,6 +1,6 @@
 {
   "_readme": [
-    "Races. label, age [min,max], look (image wording; null = built from the beastkin sub-type), mods (stat changes on the 0-100 scale, applied x10 at creation; a 'lewd' mod is added as-is, since lewdness stays 0-100), common (false = rare/exotic), weight (odds when a generic lady is rolled), names {f,l} (optional; otherwise people.json names), needs (house upgrade id required to recruit or assign her), wage (wage multiplier), fx (effect engine, see traits.json _readme), client {like, dislike, classLike}.",
+    "Races. label, age [min,max], look (image wording; null = built from the beastkin sub-type), mods (stat changes on the 0-100 scale, applied x10 at creation; a 'lewd' mod is added as-is, since lewdness stays 0-100), common (false = rare/exotic), weight (odds when a generic lady is rolled), names {f,l} (optional; otherwise people.json names), needs (house upgrade id required to recruit or assign her), wage (wage multiplier), signing (signing-bonus multiplier), fx (effect engine, see traits.json _readme), client {like, dislike, classLike}.",
     "client.like = chance per client to be an enthusiast for her race (fee x1.2, satisfaction +12). client.dislike = chance he is put off (satisfaction -15, and half the time he asks for someone else if anyone is free). classLike: extra like chance by client class.",
     "subs (beastkin): each with weight, mods, fx and optional label/look/client/age/names that override the race's. The former dragonkin is beastkin sub 'dragon'.",
     "Rules that are not simple numbers (demon feeding, android recharging, beastkin refusals, spirit bedlessness) live in code and read these entries.",
@@ -15,7 +15,8 @@
       "common": true,
       "weight": 40,
       "fx": {"trustGain":1.15,"skillGain":1.15},
-      "client": {"like":0.09,"dislike":0},
+      "client": {"like":0,"dislike":0},
+      "signing": 0.8,
       "alwaysLast": true
     },
     "elf": {

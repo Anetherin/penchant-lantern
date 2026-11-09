@@ -39,6 +39,18 @@
       "She'd rather keep her clothes on. When things get intimate, they get pulled aside instead, though the lewder she gets (and the more she trusts Sam), the more comes off."
     ]
   },
+  "again": {
+    "_default": [
+      "{name} is still breathing hard, and she hasn't let go of him. \"Again,\" she says. It isn't really a question.",
+      "{name} props herself up on one elbow and gives Sam a long, considering look. Apparently they're not finished."
+    ]
+  },
+  "again_beastkin": {
+    "_default": [
+      "{name}'s tail hasn't stopped moving. She nuzzles into Sam's neck, warm and insistent, and makes a small, needy sound that says she's nowhere near done.",
+      "{name} is up on her knees before Sam has caught his breath, ears forward, eyes bright. \"More,\" she says, and climbs back into his lap."
+    ]
+  },
   "late_visit": {
     "_note": "Opening line when a lady knocks on Sam's door late at night.",
     "_default": [

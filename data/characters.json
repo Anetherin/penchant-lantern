@@ -30,7 +30,7 @@
     "dislike": null,
     "lovers": "missionary",
     "backstory": "Mira kept the Gilded Lantern running for the old owner until he vanished. She isn't sure what to make of the skinny stranger with the deed, but she's staying. For now. She knows every regular by name and every creaky floorboard by sound, and she has quietly started mothering the man who inherited it all.",
-    "design": {"build":"curvy","hairStyle":"long wavy","hairColor":"auburn","eyes":"warm brown","skin":"fair","features":"a beauty mark beside her lips"},
+    "design": {"hairStyle":"long wavy","hairColor":"auburn","eyes":"warm brown","skin":"fair","features":"a beauty mark beside her lips"},
     "under": "lace",
     "underColor": "burgundy",
     "stats": {"beauty":62,"charm":66,"refinement":62,"stamina":45,"strength":25,"agility":35},
@@ -73,7 +73,7 @@
     "lovers": "oral_give",
     "backstory": "Head maid of Castle Rosenhal for twelve years and three owners. She runs the castle like a clock and considers Sam her newest project. She has outlasted a mad count, a bankrupt heir and an indifferent duchess, and trusts no one's word until she has seen how they fold a towel.",
     "design": {
-      "build": "tall and lean",
+      "build": "lean",
       "hairStyle": "neat chignon",
       "hairColor": "dark brown",
       "eyes": "grey",
@@ -126,7 +126,6 @@
     "lovers": "missionary",
     "backstory": "Tsubaki came from the eastern isles to run the springs for her late aunt. She knows every guest's name and every guest's bath temperature. Her aunt's wooden bath bucket sits by the door for luck, and she sings off-key, loudly, to whoever is in the water.",
     "design": {
-      "build": "voluptuous",
       "hairStyle": "long black hair in a loose side braid",
       "hairColor": "black",
       "eyes": "dark brown",
@@ -173,7 +172,6 @@
     "lovers": "cowgirl",
     "backstory": "Vesper has haunted the manor for three centuries and was delighted to finally have company. She doesn't remember how she died and finds the question rude. She greets every arrival in a gown of her own era, and her ideas of hospitality are three hundred years out of date and perfectly charming.",
     "design": {
-      "build": "slender",
       "hairStyle": "very long flowing",
       "hairColor": "silver",
       "eyes": "pale violet",
@@ -225,7 +223,7 @@
     "lovers": null,
     "backstory": "A brewmaster who lost her brewery in a drinking contest with a giant. She wants a bar to run and doesn't much care what goes on upstairs, though she's not opposed to finding out. She still swears the giant cheated, keeps a barrel of the bet's vintage under the counter and offers a free pint to anyone who can out-drink her. Nobody has.",
     "design": {
-      "build": "stocky and muscular",
+      "build": "stocky, muscular",
       "hairStyle": "thick braided",
       "hairColor": "red",
       "eyes": "grey",
@@ -277,7 +275,7 @@
     "lovers": "missionary",
     "backstory": "A dancer who left the elven conservatory to perform for \"people who actually clap.\" She treats every night at the Pavilion like opening night. After a century of precision and polite silence she lives for the roar of an audience, and can be talked into almost anything by applause.",
     "design": {
-      "build": "slender and toned",
+      "build": "toned",
       "hairStyle": "long straight",
       "hairColor": "silver-white",
       "eyes": "ice-blue",
@@ -324,7 +322,6 @@
     "lovers": null,
     "backstory": "Zaria ran the Veil's floor long before the deed changed hands. She thinks humans are adorable and Sam is the most adorable one yet. For decades she has handled the house's difficult clients with a smile and a velvet rope, and she quietly keeps a ledger of the favors people owe her.",
     "design": {
-      "build": "voluptuous",
       "hairStyle": "long curly",
       "hairColor": "black with crimson tips",
       "eyes": "gold with slit pupils",
@@ -377,7 +374,6 @@
     "lovers": "oral_give",
     "backstory": "Bettina has run the Wayfarer's front desk for a decade. She can tell where a traveler is from by their boots and how much they'll spend by their hat. She keeps a drawer of lost-and-found trinkets and a surprisingly kind heart behind her tally book.",
     "design": {
-      "build": "soft and curvy",
       "hairStyle": "honey-brown hair in a practical bun",
       "hairColor": "honey brown",
       "eyes": "hazel",
@@ -426,14 +422,7 @@
     "partnerTrust": 75,
     "backstory": "Kaede was the scout of a four-person party called the Copper Foxes until a collapsing dungeon floor and a leader who ran first ended it. Pride kept her from going home empty-handed, so she took a room at the Lantern \"for a week\" and found she was good at watching doors. She has never been anyone's guard before, and has never been anyone's friend for free either.",
     "partnerStory": "In his first hour in this world Sam stumbled into a goblin ambush and, almost entirely by accident, shoved a fox-eared scout out of the path of a crossbow bolt. Nobody had ever put themselves in front of Kaede before. She keeps a running tally of favors in her head, Sam is hopelessly in the red, and she has decided the only fair repayment is staying close. She has also decided he's cute.",
-    "design": {
-      "build": "athletic",
-      "hairStyle": "high ponytail",
-      "hairColor": "copper",
-      "eyes": "golden",
-      "skin": "sun-kissed",
-      "features": "a thin scar on her shoulder"
-    },
+    "design": {"hairStyle":"high ponytail","hairColor":"copper","eyes":"golden","skin":"sun-kissed","features":"a thin scar on her shoulder"},
     "under": "sports",
     "underColor": "black",
     "stats": {"beauty":62,"charm":50,"refinement":20,"stamina":70,"strength":55,"agility":70},
@@ -504,7 +493,6 @@
     "backstory": "Yui spent six years in the accounts department of a mid-sized firm, two desks from Sam, keeping everyone's numbers honest and her own feelings filed under \"later.\" She woke up in Hollowmere a week before him with a stapler in her pocket and no explanation, and spent that week learning the local coins and discovering that nobody here had ever invented the spreadsheet. She gets inexplicably emotional about instant noodles.",
     "partnerStory": "Yui sat at the next desk over in Sam's old office, and was crossing the same street when the truck came. She woke in this world a week before him, and when a familiar hoodie turned up in the Lantern's doorway she nearly dropped the account book. She's been quietly reorganizing Sam's finances ever since, which is what she does when she's nervous. And happy. And both.",
     "design": {
-      "build": "slender",
       "hairStyle": "black bob-cut",
       "hairColor": "black",
       "eyes": "dark brown",
@@ -581,7 +569,6 @@
     "backstory": "Nerys has spent two centuries writing contracts for other people's desires while carefully never wanting anything herself. The summoning that went wrong was supposed to be her last job before \"retiring\" to a villa on the southern coast. She tells everyone she is between contracts. The truth is she hasn't had a place that was hers in decades, and she is absolutely not lonely.",
     "partnerStory": "Nerys was mid-summoning when Sam fell out of the sky and landed in her circle. The contract bound itself to him instead, through a clause she wrote herself and has never once seen trigger. She is furious. She reads the fine print every night looking for a loophole, and has so far only discovered that she doesn't want one.",
     "design": {
-      "build": "statuesque",
       "hairStyle": "long straight",
       "hairColor": "deep violet",
       "eyes": "magenta",
@@ -657,7 +644,6 @@
     "backstory": "Elowen left the cedar glade of her people with a satchel of herbs, a letter of introduction to a human physician who turned out to have died six years earlier, and no plan at all. She learned the rest from dock injuries and market-day fevers. Elves live long, and she has been quietly lonely for most of hers; patients are the nearest thing to company she has allowed herself.",
     "partnerStory": "Elowen found Sam unconscious on the road after his arrival, burning with a fever no herbal book listed, and nursed him for three days. She still checks his temperature when he looks pale. Lately she checks it when he doesn't, as an excuse to stand close. She has not noticed how many excuses she has.",
     "design": {
-      "build": "slender",
       "hairStyle": "long braided",
       "hairColor": "honey blonde",
       "eyes": "green",
@@ -734,7 +720,6 @@
     "backstory": "Dame Adelheid took her vows at twenty-two and has spent the years since being her chapter's example of what a knight should be. She has guarded relics, escorted bishops and read the foretelling of the hero so many times she can recite it. It says nothing about what the hero eats for breakfast, which she has since discovered she cares about intensely. The romance novels hidden in her saddlebag are the only place she lets a knight get what she wants.",
     "partnerStory": "When the Radiant Order foretold a hero from another world, Adelheid swore her sword and life to him before he ever arrived. Then a tired man in a hoodie fell out of the sky holding the deed to a pleasure house, and she had to reconcile prophecy with reality. She takes her oath extremely seriously. Sam would like her to take it slightly less seriously, and privately, so would she.",
     "design": {
-      "build": "tall and athletic",
       "hairStyle": "short, slightly messy",
       "hairColor": "platinum blonde",
       "eyes": "steel blue",
@@ -809,7 +794,6 @@
     "backstory": "Natsuki grew up three doors down from Sam and, by her own count, won every race, argument and eating contest between them. One evening three years ago she took a shortcut and walked out of an alley into a forest in another world. With no map, no language she could read, and nobody who knew her name, she took the first job anyone offered: carrying a sword for a caravan. She has been swinging it ever since, and has never stopped missing the sound of someone calling her \"Natsu.\"",
     "partnerStory": "Natsuki was Sam's childhood friend back home. She vanished three years ago and nobody ever found her. Turns out she's been here the whole time, carving out a name as an adventurer. She cried when she saw him. Then she punched him. Then she cried harder, and now she follows him around the Lantern claiming it's \"for the free meals.\"",
     "design": {
-      "build": "athletic",
       "hairStyle": "short messy",
       "hairColor": "chestnut",
       "eyes": "amber",
@@ -889,7 +873,6 @@
     "backstory": "Kanako worked nine years in a small snack bar where she was the hostess, the confidante and the bouncer, and she can tell by the sound of the door how a man's evening has gone. In this world she walked into the first drink stall she found and has been teaching bartenders to listen ever since. Her laugh is the loudest thing in any room, which is how she likes it: a loud laugh means nobody has to know when she's lonely.",
     "partnerStory": "Kanako lived in the apartment next door to Sam for six years. She fed him when he forgot to eat, taught him to sort the recycling and teased him mercilessly. He had a hopeless crush on her the entire time; she thought of him as the neighbor who would never learn to cook. The truck, it turns out, was very efficient: now she's in a world where nobody else knows how she takes her coffee, and the only person who does is the one she keeps calling \"Sammy.\"",
     "design": {
-      "build": "voluptuous",
       "hairStyle": "long wavy, usually pinned up",
       "hairColor": "dark brown",
       "eyes": "warm brown",
@@ -968,7 +951,6 @@
     "backstory": "Akari Kurosawa is Kenta's younger sister, and for most of her adult life she has been the person at the edge of Sam and Kenta's evenings: the one who brought the snacks, stole the controller and walked Sam to the station when he missed the last train. Sam was kind to her in small, unshowy ways. He remembered her favorite flavor, listened to her bad-boss stories and never once teased her about a crush everyone else could see. In this world nobody is watching, and she has no intention of wasting it.",
     "partnerStory": "Akari is the younger sister of Sam's best friend Kenta, and she has had a crush on him for years, through game nights, bad bosses and one catastrophic haircut. She tagged along to the crosswalk that day, by her own account \"just walking by,\" carrying a spare umbrella she had decided would make a good excuse. Kenta had stopped to tie his shoe, and she holds onto the thought that he's fine. Sam is the one familiar face in a very strange world, and Akari has decided that this is fate, and that it's time to stop being \"Kenta's sister.\"",
     "design": {
-      "build": "curvy",
       "hairStyle": "long, wavy, with a side part",
       "hairColor": "dyed pink-blonde",
       "eyes": "brown",
@@ -1043,14 +1025,7 @@
     "partnerTrust": 70,
     "backstory": "Marisol grew up in the Gilded Lantern's ledger room, doing sums on the backs of invoices while her father charmed the front of house. She spotted errors in his books years before he would admit they were there, and has been the unacknowledged accountant of the place ever since. When he vanished he left behind a deed, a debt and a note that said, in full, \"Sorry.\" She hasn't forgiven him, and she hasn't stopped checking the post.",
     "partnerStory": "Marisol's father vanished and left the deed, and the debt, to \"whoever shows up.\" That turned out to be Sam. Instead of fighting him for it, she decided to make sure he doesn't ruin it, and to find out what sort of person inherits a house like this on purpose. So far the answer is: a very tired one, who actually listens when she explains the books.",
-    "design": {
-      "build": "curvy",
-      "hairStyle": "long curly",
-      "hairColor": "dark brown",
-      "eyes": "amber",
-      "skin": "olive",
-      "features": "gold hoop earrings and ink-stained fingers"
-    },
+    "design": {"hairStyle":"long curly","hairColor":"dark brown","eyes":"amber","skin":"olive","features":"gold hoop earrings and ink-stained fingers"},
     "under": "lace",
     "underColor": "gold",
     "stats": {"beauty":62,"charm":62,"refinement":45,"stamina":50,"strength":25,"agility":40},
@@ -1118,7 +1093,6 @@
     "backstory": "Lara Patel grew up three doors down the corridor from Sam in the Alder Street orphanage. Neither was ever adopted; Sam aged out at eighteen and Lara followed a year later, and in the years between she turned a shared postcode into a lifeline. She writes in black, dresses in black and says she likes the night because nobody asks her to be cheerful in it. Under the lace and the dark lipstick is a woman who has been left too many times to believe anyone who says they'll stay.",
     "partnerStory": "Lara was Sam's oldest friend, the one person from the orphanage who never lost his number. When the truck took him she was three streets away, on her way to surprise him with a birthday cake. She followed the rumor of a stranger in a hoodie who had taken over a pleasure house in a town called Hollowmere, which is exactly the sort of thing only Sam would do. She is very glad she found him. She is also terrified of what happens if she ever has to leave.",
     "design": {
-      "build": "slender",
       "hairStyle": "long high ponytail",
       "hairColor": "black",
       "eyes": "dark brown, lined with kohl",
@@ -1200,7 +1174,6 @@
     "backstory": "Back on Earth, Emily was \"Shadowkin\": the wolf-girl character she played for six years in a tiny text roleplay forum, and the username Sam talked to almost every night. They ran campaigns together, argued about anime, kept each other company through bad sleep schedules and worse exams. It was strictly friendship: they never met, never even voice-called, and neither of them ever wanted it to be anything else. Then Sam's account went quiet. A few weeks later Emily went to sleep in her dorm and woke up in this world, in the body of the character she'd been writing all those years: grey wolf ears, a tail she still can't control, and a name she'd only ever typed.",
     "partnerStory": "Emily has spent a year in this world working odd jobs around Hollowmere and quietly assuming she's the only one. Then she overhears a tavern story about a new pleasure-house owner named Sam who apologized to a chair after bumping into it, and explained the house rules with the phrase \"okay so, lore-wise\". She knows exactly one person who talks like that. She has decided to walk into the Lantern and say hello, using his old username, with her ears flat and her tail tucked, because if she's wrong it will be the most embarrassing moment of two lives.",
     "design": {
-      "build": "softly curved",
       "hairStyle": "long loose waves",
       "hairColor": "chestnut brown",
       "eyes": "grey-green",
@@ -1278,7 +1251,6 @@
     "backstory": "Lirael Quill is an elven sorting clerk at the Hollowmere post house, the sort of person who can tell a letter's whole story from its smudges. Years ago, lonely and very young by elven reckoning, she dropped a note addressed to no one into the old enchanted postbox in the alley behind the post house, and got an answer from another lonely teenager named Sam, writing from somewhere that, as far as she could tell, did not exist. For years they wrote about nothing and everything. It was friendship and nothing more: two lonely people with good handwriting. When the replies stopped, she kept the postbox swept anyway.",
     "partnerStory": "The ownership notice for a certain pleasure house crossed Lirael's counter, signed in a hand she would have known anywhere. She read the signature three times, then went to the back room and had a small, private breakdown. Sam is real, he is a few streets away, and he has no idea that someone in this world has been holding his letters for ten years. She has decided to walk into the Lantern and say hello. She has also decided to do it with her shoulders squared and her satchel strap wound round her fingers, because she is an elf, and elves are supposed to be composed, and she is not.",
     "design": {
-      "build": "slender",
       "hairStyle": "long straight hair with a single braid",
       "hairColor": "pale ash blonde",
       "eyes": "grey-green",
@@ -1357,7 +1329,7 @@
     "backstory": "Ella Dott spent six years finishing a close second to a man who treated rankings as a mild annoyance, and she has never quite forgiven him for it. Her name sat directly beneath or above Sam's on every published list the department posted, and in all that time she kept every sheet, filed in a drawer she told nobody about. When he took an office job instead of the fellowship they both applied for, she took it as a personal insult. It was, though she'd never say so, the only time anyone had let her down by not being her rival.",
     "partnerStory": "Ella Dott was the one name always above or below Sam's: entrance results, published lists, the final thesis marks. The rivalry was loud, and the respect was a secret. She was across the street when the truck came, and she has not stopped hearing the sound. Now she is here, in a world with no rankings at all, and the only thing she wants to measure is how long he will let her stay close.",
     "design": {
-      "build": "tall and lean",
+      "build": "lean",
       "hairStyle": "sleek low chignon with a pencil through it",
       "hairColor": "golden blonde",
       "eyes": "bright blue",
@@ -1436,7 +1408,7 @@
     "backstory": "Ione-7, serial IO-7, is a companion-model android from roughly three centuries ahead of this world. Her deepest archive is a ledger-diary titled The Lantern Keeper: the story of a famously kind proprietor of Hollowmere who laughed with his whole face, never turned away a lost soul and signed every page with the same looping S. She has read it more than any other record in her memory. She will not say how it ends, and she is careful never to say how she got here.",
     "partnerStory": "Ione-7 walked into Hollowmere running on twelve percent charge, with perfect posture, a faint hum and a message she says she was meant to deliver in person: \"You did it.\" She won't say what he did. She does know how he takes his tea, which he has never told anyone, and she sometimes finishes his sentences, then looks stricken, as though she has stepped over a line she can't quite see. She is warm, odd and very sure she is exactly where she is supposed to be.",
     "design": {
-      "build": "tall and graceful",
+      "build": "graceful",
       "hairStyle": "short silver-white bob with one thin fibre-optic strand",
       "hairColor": "silver-white",
       "eyes": "pale cyan with a faint ring of light",
@@ -1514,7 +1486,7 @@
     "backstory": "Anael is a Warden of the Quiet Lamp, an angelic order that tends the lanterns lit for souls who arrive in this world unsent. Hollowmere's old Lantern Stone, a lamp at the crossroads that had not burned in four centuries, lit itself on the night Sam fell out of the sky. The Order sent her to find out who lit it and why. She expected a saint, a hero or a threat. She found a tired man in a hoodie who apologized to the lamppost, and her reports have been getting longer, warmer and further from the point ever since.",
     "partnerStory": "No rule of the Order allows for a soul that arrives unsent and then lights a lantern by accident. Anael has been dispatched to observe him until she understands the mechanism. Observation, she explains, requires proximity, patience and, apparently, a great many cups of tea. The Order's records show her reports growing steadily more personal. Anael has told no one that she has stopped wanting to complete the assignment.",
     "design": {
-      "build": "tall and graceful",
+      "build": "graceful",
       "hairStyle": "long, loosely braided",
       "hairColor": "white-gold",
       "eyes": "pale gold",
@@ -1593,7 +1565,6 @@
     "lovers": "oral_get",
     "backstory": "The last of the Rosenhals: no money, a title worth nothing, and a castle that now belongs to a commoner in a hoodie. She knows every noble in the kingdom and exactly how to host them. Hosting is the only pride her family has left, and she intends to be magnificent at it.",
     "design": {
-      "build": "slender",
       "hairStyle": "long golden hair in an old-fashioned updo",
       "hairColor": "golden blonde",
       "eyes": "sapphire",
@@ -1641,7 +1612,7 @@
     "lovers": "missionary",
     "backstory": "The Pavilion's elven patroness for a century. She decided she would rather be part of it than own it from afar. She funded its first stage out of boredom and kept it out of affection, and now wants to know how it feels from the other side of the curtain.",
     "design": {
-      "build": "tall and lean",
+      "build": "lean",
       "hairStyle": "very long silver hair woven with tiny pearls",
       "hairColor": "silver",
       "eyes": "pale gold",
@@ -1690,7 +1661,6 @@
     "lovers": "missionary",
     "backstory": "A former ghost hunter who came to exorcise Hollowmere Manor and stayed to make amends. She still sleeps with a silver dagger under her pillow, out of habit. On her first night Vesper offered her tea instead of fleeing, and she has never quite recovered; she now considers the manor her responsibility.",
     "design": {
-      "build": "toned",
       "hairStyle": "short, sharp black bob",
       "hairColor": "black",
       "eyes": "grey-green",
@@ -1739,7 +1709,6 @@
     "lovers": "oral_get",
     "backstory": "The Underdistrict's landlord, until she got bored of collecting rent and decided it would be more fun to make it. She owns half the lanes down there and the other half owe her favors. She treats Sam's debts as a game, and keeps score for fun.",
     "design": {
-      "build": "voluptuous",
       "hairStyle": "long braided",
       "hairColor": "jet black with green streaks",
       "eyes": "emerald with slit pupils",
@@ -1791,7 +1760,7 @@
     "lovers": "missionary",
     "backstory": "A noble elf who walked away from a stifling court to see how humans actually live. Curious, very proper, and quietly thrilled to be somewhere scandalous. She carries a leather notebook of observations, blushes at her own boldness, and has never been so happy to be called \"miss\" instead of \"my lady.\"",
     "design": {
-      "build": "tall and lean",
+      "build": "lean",
       "hairStyle": "long straight",
       "hairColor": "platinum blonde",
       "eyes": "emerald",
@@ -1825,7 +1794,7 @@
     "dislike": null,
     "lovers": "missionary",
     "backstory": "The Adventurers' Guild's most efficient receptionist and its biggest gossip. She's been dying for an excuse to see the inside of a pleasure house. She knows every adventurer's tab and secret crush by heart, and has been quietly cataloguing which of them visit the Lantern.",
-    "design": {"build":"curvy","hairStyle":"shoulder-length","hairColor":"honey blonde","eyes":"blue","skin":"fair","features":"freckles across her nose"},
+    "design": {"hairStyle":"shoulder-length","hairColor":"honey blonde","eyes":"blue","skin":"fair","features":"freckles across her nose"},
     "under": "lace",
     "underColor": "sky blue",
     "stats": {"beauty":58,"charm":68,"refinement":45,"stamina":50,"strength":25,"agility":40},
@@ -1865,7 +1834,6 @@
     "lovers": null,
     "backstory": "Rinna flew cargo (some of it legal) for sixty years before her ship ran aground on the cliffs. She built a bar around the wreck and never left. She still keeps the captain's hat, tells a different tall tale about every dent in the hull, and pours with a captain's generosity.",
     "design": {
-      "build": "tall and athletic",
       "hairStyle": "windswept shoulder-length",
       "hairColor": "copper",
       "eyes": "amber with slit pupils",
@@ -1913,7 +1881,7 @@
     "lovers": null,
     "backstory": "Maris has tended the Pearl Grotto longer than the harbor has had a name. She answers questions about her past with a smile and a different story every time. The steam smells of salt when she hums, and the regulars swear the water remembers their names.",
     "design": {
-      "build": "slender and graceful",
+      "build": "graceful",
       "hairStyle": "very long and wavy",
       "hairColor": "sea-green",
       "eyes": "pale silver",

@@ -24,7 +24,8 @@ const raceLabel = w => (RACES[w.race]||RACES.human).label + (w.sub?` (${w.sub})`
 // note: extra tooltip text (why the ceiling is lower).
 function bar(label, v, max, cls, note){ max = Math.max(1, Math.round(max)); const p = Math.round(clamp(v/max*100)); return `<div class="bar ${cls}" title="${label}: ${Math.round(v)}/${max}${note?' · '+note:''}"><span style="width:${p}%"></span><em>${label} ${Math.round(v)}/${max}</em></div>`; }
 // Trust bar on the 0-1000 display scale, capped by her house story while it's unfinished.
-function trustBar(w){ const g = houseGate(w); return bar('Trust', tShow(w.trust), tShow(g ? g.cap : 100), 't', g ? `capped by ${g.house.name}'s story until it moves on` : ''); }
+// Trust as a stat cell (no bar): x10 like the others, with the house-story cap if one applies.
+function trustCell(w){ const g = houseGate(w); return `<div${g?` title="Capped at ${tShow(g.cap)} by ${esc(g.house.name)}'s story until it moves on"`:''}><span>TRUST</span><b>${tShow(w.trust)}${g?` <span class="muted">/${tShow(g.cap)}</span>`:''}</b></div>`; }
 const lustBar = (w, label) => bar(label || 'Lust', w.lust, lustProfile(w).max, 'p');
 function knows(w, employee){ return S.sam.appraisal>=2 || (employee && w.trust>=30); }
 function knowsPrefs(w){ return S.sam.appraisal>=3 || w.trust>=40; }
@@ -86,7 +87,7 @@ function viewHouse(){
     <section class="card"><h2>Last Week</h2>${lh?`<div class="grid2"><div>Clients here: <b>${lh.served}</b>${lh.turned?` (${lh.turned} turned away)`:''}</div><div>Income here: <b>${fmt(lh.income)}</b> · Upkeep <b>${fmt(lh.upkeep)}</b></div><div>Satisfaction: <b>${Math.round(lh.avgSat)}</b>${lh.promoDraw?` · promoter draw <b>+${Math.round(lh.promoDraw)}</b>`:''}</div><div>All houses net: <b>${fmt(L.income-L.wages-L.upkeep-(L.recharge||0))}</b></div></div><div class="row"><button onclick="showReport(S.lastReport,false)">📋 Full report</button></div>`:'<span class="muted">No report yet. Assign jobs, then End Week.</span>'}</section>`;
 }
 function workerCard(w, showHouse){
-  const wl = knows(w,true) ? Math.round(w.lewd) : '?';
+  const wl = knows(w,true) ? lShow(w.lewd) : '?';
   const menu = JOBS[w.job] && (JOBS[w.job].must || w.offDuty==='on') ? (w.menu.length ? w.menu.map(a=>`<span class="tag act">${esc(actLabel(a))}</span>`).join('') : '<span class="muted">No services on menu</span>') : '';
   return `<div class="wcard" onclick="openSheet('${w.id}')">${avatarHTML(w)}
     <div class="winfo"><div class="wname">${esc(w.name)}${w.named?' <span class="tag">★</span>':''}${w.isPartner?' <span class="tag act">♥ Partner</span>':''}${showHouse?` <span class="tag house">${esc(houseOf(w).name)}</span>`:''}</div>
@@ -124,7 +125,7 @@ function viewRecruit(){
   const cards = S.candidates.map(c=>`<div class="wcard" style="cursor:default">${avatarHTML(c)}
     <div class="winfo"><div class="wname">${esc(c.name)}${c.named?' <span class="tag">★</span>':''}${ARCS[c.key]?' <span class="tag act">♥ story</span>':''}</div>
     <div class="muted">${raceLabel(c)} · ${esc(c.personality)} · Style: ${c.style}</div><div>${traitTags(c)}</div>
-    <div class="sgrid" style="margin:6px 0">${STAT_KEYS.map(k=>`<div><span>${k.slice(0,4).toUpperCase()}</span><b>${sv(c,c.stats[k],false)}</b></div>`).join('')}<div><span>LEWD</span><b>${S.sam.appraisal>=2?Math.round(c.lewd):'?'}</b></div><div><span>BEST</span><b>${TECH_LABEL[TECH_KEYS.reduce((a,k)=>c.tech[k]>c.tech[a]?k:a,'service')]}</b></div><div><span>BODY</span><b>${esc(bodyLabel(c))}</b></div></div>
+    <div class="sgrid" style="margin:6px 0">${STAT_KEYS.map(k=>`<div><span>${k.slice(0,4).toUpperCase()}</span><b>${sv(c,c.stats[k],false)}</b></div>`).join('')}<div><span>LEWD</span><b>${S.sam.appraisal>=2?lShow(c.lewd):'?'}</b></div><div><span>BEST</span><b>${TECH_LABEL[TECH_KEYS.reduce((a,k)=>c.tech[k]>c.tech[a]?k:a,'service')]}</b></div><div><span>BODY</span><b>${esc(bodyLabel(c))}</b></div></div>
     <div class="row"><span>Wage <b>${fmt(c.wage)}</b>/wk · Signing <b>${fmt(c.signing||0)}</b></span></div>
     ${raceBlock(c, curH())?`<div class="warn">${esc(raceBlock(c, curH()))}</div>`:''}<div class="row"><button class="primary" onclick="hire('${c.id}')" ${raceBlock(c, curH())?'disabled':''}>Hire for ${esc(curH().name)}</button><button onclick="openCand('${c.id}')">Details</button></div></div></div>`).join('');
   return `${houseTabs(false)}<section class="card"><h2>Candidates</h2><p class="muted">New faces arrive each week. Hires join the selected house. Sam's [Appraisal] Lv ${S.sam.appraisal} ${S.sam.appraisal<2?'shows letter grades only.':'shows exact stats.'}</p><div class="grid">${cards||'<span class="muted">Nobody this week.</span>'}</div></section>`;

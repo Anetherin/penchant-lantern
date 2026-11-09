@@ -169,10 +169,10 @@ function wageFor(w){
   const sd = w.race==='beastkin' ? subData(w.race, w.sub) : null;
   return Math.round((8 + st*0.3 + tc*0.2 + w.popularity*0.3 + (has(w,'Ambitious')?8:0) + (has(w,'Greedy')?6:0)) * ((sd && sd.wage) ?? raceOf(w).wage ?? 1));
 }
-function signingFor(w){ return Math.max(60, Math.round(w.wage * rnd(5,8) * (0.9 + (S?S.rep:10)/150) * (hasBoon('recruit')?0.75:1))); }
+function signingFor(w){ return Math.max(60, Math.round(w.wage * rnd(5,8) * (raceOf(w).signing ?? 1) * (0.9 + (S?S.rep:10)/150) * (hasBoon('recruit')?0.75:1))); }
 // Skills work in 1000-units: n is the old 0-100 amount (x SKL), with a diminishing curve (1 - v/1300).
-function grow(w,k,n){ n *= SKL * fxMul(w,'skillGain') * trainBonus(w); w.tech[k] = clampK((w.tech[k]||0) + n*(1 - (w.tech[k]||0)/1300)); }
-function growAct(w,id,n){ id = actKey(id); if(!w.acts[id]) return; n *= SKL * fxMul(w,'skillGain') * trainBonus(w); const s=w.acts[id].skill; w.acts[id].skill = clampK(s + n*(1 - s/1300)); }
+function grow(w,k,n){ n *= SKL * fxMul(w,'skillGain'); w.tech[k] = clampK((w.tech[k]||0) + n*(1 - (w.tech[k]||0)/1300)); }
+function growAct(w,id,n){ id = actKey(id); if(!w.acts[id]) return; n *= SKL * fxMul(w,'skillGain'); const s=w.acts[id].skill; w.acts[id].skill = clampK(s + n*(1 - s/1300)); }
 function allNames(){ return S ? [...S.workers, ...S.candidates].map(w=>w.name) : []; }
 function genName(race, sub){
   const R = RACES[race] || {}, n = R.names || NAMES[race] || NAMES.human, SL = ((subData(race, sub)||{}).names||{}).l; let name, t=0;
@@ -202,7 +202,7 @@ function ensureWorker(w){
   // "Open to propositions": 'on' | 'ask' | 'off' (old saves stored true/false). Must-offer jobs ignore it.
   if(w.offDuty===undefined) w.offDuty = 'ask'; else if(w.offDuty===true) w.offDuty = 'on'; else if(w.offDuty===false) w.offDuty = 'off';
   if(w.samples===undefined) w.samples = false;
-  if(!['training','management','care'].includes(w.madameFocus)) w.madameFocus = 'management';
+  delete w.madameFocus;   // the madame has no focus options any more (she matches clients and coaches courtesans)
   if(!w.body) w.body = rollBody(w.race);
   w.counts = w.counts || {};
   if(!w.style) w.style = pick(STYLES);
@@ -270,6 +270,7 @@ function genWorker(opts={}){
   if(S && (S.cycle||1) >= 2 && Math.random() < 0.35){ const ng = Object.keys(TRAITS).filter(t=>TRAITS[t].gen && TRAITS[t].ngOnly && !w.traits.includes(t)); if(ng.length) w.traits.push(pick(ng)); }
   if(Math.random()<0.25) w.traits.push(pick(['Exhibitionist','Night Owl']));
   applyMods(w);
+  w.base0 = {trust:w.trust, lewd:w.lewd};   // where she began (New Game+ resets carried lovers to this)
   w.style = w.lewd>45 && Math.random()<0.5 ? 'Revealing' : pick(STYLES.slice(0,4));
   w.favColor = pick(COLOR_KEYS);
   // starting outfit in her style if possible
@@ -327,6 +328,8 @@ function lustProfile(w){
 }
 const fitLust = w => { const p = lustProfile(w); w.lust = Math.max(Math.min(p.floor, p.max), Math.min(p.max, clamp(w.lust, 0, p.max))); return w.lust; };
 // Spend lust (a service, private time...). Returns how much it actually went down.
+// How much Sam's time spends her lust: half at Technique 0, up to samMax at 100 (balance.json → lust.samRelease).
+const samRelease = () => { const R = BAL.lust.samRelease; return R.min + (R.max - R.min) * Math.min(100, S.sam.technique||0)/100; };
 function spendLust(w, base){ const before = w.lust; w.lust = w.lust - base*lustProfile(w).drop; fitLust(w); return Math.round(before - w.lust); }
 // Bonus for time with Sam when she's in the mood. Call before spending lust.
 function lustBonus(w, mult=1){

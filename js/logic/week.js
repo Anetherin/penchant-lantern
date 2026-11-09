@@ -55,8 +55,8 @@ function serveAct(w, a, o){
   if(dis){ moodAdd(w, -2.5); pr.disN = (pr.disN||0)+1; }
   if(eager && !o.reluct){ moodAdd(w, B.bonus.clientMood); pr.eagerN = (pr.eagerN||0)+1; }
   if(a.lust === undefined) spendLust(w, B.drop.client + (fav ? B.drop.fav : 0));
-  else if(a.lust >= 0){   // giving, kissing, massages: nothing for her to spend it on, so it builds (more the lewder she is)
-    w.lust += a.lust * (0.4 + w.lewd/100) * (fav?1.5:1) * (dis?0.6:1) * fxMul(w,'lustBuild'); fitLust(w);
+  else if(a.lust >= 0){   // giving, kissing, massages: with a client it's work, not foreplay. Only an insatiable lady (svcLustBuild fx) gets worked up by it.
+    if(fxHas(w,'svcLustBuild')){ w.lust += a.lust * (0.4 + w.lewd/100) * (fav?1.5:1) * (dis?0.6:1) * fxMul(w,'lustBuild'); fitLust(w); }
   } else {
     const k = (o.tech ?? 0.85) * (fav?1.5:1) * (dis?0.6:1) * fxSub(w,'actQuality',act);
     frustrated = !!a.finish && (o.tech ?? 0.85) * (w.lust/60) < SVC.frustrateAt;
@@ -190,14 +190,23 @@ Sam's Strength ${Math.round(S.sam.strength)}, Charm ${Math.round(S.sam.charm)}, 
       {label:'Let her handle it', fx(){ calls.forEach(stay); return `${names.join(', ')} got away from him, shaken. Word gets around that nobody came.`; }}
     ]};
 }
+// The madame coaches her courtesans: if she is clearly more popular (balance.json → jobs.madamePopGap), every service skill
+// (and Service) she is better at grows by madameCoach x the gap, rounded down (1000-unit skills: 1% of a 300-point gap = +3).
+function madameCoach(mad, w, pr){
+  const J = BAL.jobs; if(mad===w || mad.popularity < w.popularity + J.madamePopGap) return;
+  let n = 0;
+  Object.keys(w.acts||{}).forEach(id=>{ const m = mad.acts && mad.acts[id]; if(!m) return; const d = Math.floor((m.skill - w.acts[id].skill) * J.madameCoach); if(d > 0){ w.acts[id].skill = clampK(w.acts[id].skill + d); n++; } });
+  const ds = Math.floor(((mad.tech.service||0) - (w.tech.service||0)) * J.madameCoach); if(ds > 0){ w.tech.service = clampK(w.tech.service + ds); n++; }
+  if(n){ pr.coached = n; pr.why.push({t:`${mad.name} coached her`, good:true}); }
+}
 function simHouse(h, R){
   const HD = HOUSES[h.id], W = S.workers.filter(w=>w.house===h.id), P = PRICES[h.price], J = BAL.jobs, BP = BAL.props, TY = BAL.tidy;
   const hr = {id:h.id, name:h.name, income:0, served:0, turned:0, sat:0, upkeep:0, short:0, roomsUsed:0, roomCap:h.rooms*BAL.rooms.perRoom, tidy0:h.tidy ?? TY.start, tidy:h.tidy ?? TY.start, tidyFx:null,
     promoDraw:0, selfProps:0, accProps:0, stepIn:0, pushy:{total:0, security:0, sam:0, samfail:0, none:0, samcall:0}, calls:[]};
   const byJob = j => W.filter(w=>w.job===j);
   const jb = (w, j) => fxSub(w, 'jobBonus', j);
-  const mad = byJob('madame')[0], mgmt = !!mad && (mad.madameFocus||'management')==='management';
-  const madF = mad ? (0.5 + (s100(mad.tech.manage) + s100(mad.stats.charm))/200) * ob(mad,'madame') * jb(mad,'madame') * (mgmt ? 1 : 0.5) : 0;
+  const mad = byJob('madame')[0], mgmt = !!mad;   // the madame matches clients to the lady whose menu fits
+  const madF = mad ? (0.5 + (s100(mad.tech.manage) + s100(mad.stats.charm))/200) * ob(mad,'madame') * jb(mad,'madame') : 0;
   const danceDraw = byJob('dancer').reduce((a,w)=>a + (1 + w.popularity/30 + s100(w.tech.dance)/50)*ob(w,'dancer')*jb(w,'dancer'), 0);
   let secPow = byJob('security').reduce((a,w)=>a + (s100(w.tech.combat) + s100(w.stats.strength)*0.5 + fxAdd(w,'security'))*ob(w,'security')*jb(w,'security'), 0);
   if(h.up.guard) secPow *= 1.8;
@@ -297,7 +306,7 @@ function simHouse(h, R){
     X.rowdySum += cls.rowdy||0; X.rowdyN++;
     const lightOK = id => !helper || actTierOf(actById(id)) <= 1, fits = (x,id) => x.menu.includes(id) && canClient(x,id) && !nim(x,id) && lightOK(id);
     let want = Math.random() < (helper ? J.propWant.other : J.propWant.courtesan) ? pickWant(cls, w) : null, matched = false;
-    // a management-focus madame sends the client to the lady whose menu fits
+    // the madame sends the client to the lady whose menu fits
     if(want && mgmt && !helper && !fw){
       if(!fits(w,want)){ const alt = pool.filter(x=>fits(x,want)); if(alt.length) w = weighted(alt, x=>5+appeal(x)); }
       matched = fits(w,want);
@@ -352,6 +361,8 @@ function simHouse(h, R){
   const visitors = hr.served + hr.turned*0.5 + danceDraw*2;
   // --- staff output (reduced by the propositions she accepted this week, unless it's a must-offer role)
   let maidAdd = 0;
+  // one attendant per courtesan: the most popular courtesans get theirs first (balance.json → jobs.attendantOwn*)
+  const ownAtt = new Set(byJob('courtesan').sort((a,b)=>b.popularity-a.popularity).slice(0, attendants.length).map(w=>w.id));
   const bathers = Math.round((hr.served + hr.turned*0.5) * J.bathShare), baths = byJob('bath');
   W.forEach(w=>{
     const j = w.job, pr = R.per[w.id], om = outputMult(w, pr);
@@ -379,6 +390,8 @@ function simHouse(h, R){
     if(j==='promoter'){ grow(w,'service',2); statXP(w,'charm',1.5); }
     if(j==='attendant'){ grow(w,'service',1.5); statXP(w,'charm',1); statXP(w,'refinement',1); }
     if(j==='courtesan' && pr.served) statXP(w,'stamina', Math.min(3, pr.served*0.4));
+    if(j==='courtesan' && mad) madameCoach(mad, w, pr);
+    if(j==='courtesan' && ownAtt.has(w.id)){ moodAdd(w, J.attendantOwnMood); gainTrust(w, J.attendantOwnTrust); pr.why.push({t:'has her own attendant', good:true}); }
     if(JOBS[j].cat==='staff') w.energy -= JOBS[j].energy;
     if(pr.stepIn) (pr.notes = pr.notes||[]).push(flavor('stepped_in', w));
     if(pr.expectMiss) (pr.notes = pr.notes||[]).push(flavor('expect_miss', w));
@@ -435,7 +448,7 @@ function endWeek(){
     rest *= restMult(w) * (tfx ? tfx.rec : 1);
     let rec = w.job==='rest' ? rest*1.6 + (h.up.bath?10:0) : rest*(0.75 + 0.25*freeFrac);
     if(w.race==='spirit') rec = w.job==='rest' ? 55 : 30;
-    if(w.race==='demon') rec = w.job==='rest' ? rec*0.35 : 0;   // demons get nothing from sleep: they feed on desire instead (serveAct); on a week off, on men in town
+    if(w.race==='demon') rec = w.job==='rest' ? rec*0.35 : -SVC.demon.hunger;   // demons get nothing from sleep and burn energy every working week: they feed on desire instead (serveAct); on a week off, on men in town
     if(w.race==='demon' && w.job==='rest' && restless(w) && Math.random() < SVC.demon.restDrainChance){   // a restless one can overdo it, and the town notices
       S.rep = clamp(S.rep - SVC.demon.restRepDrain); pr.drains = (pr.drains||0)+1; (pr.notes = pr.notes||[]).push(flavor('rest_demon_drain', w));
       log(`😈 ${w.name} fed a little too hard on her week off. Talk around town is not kind (reputation −${SVC.demon.restRepDrain}).`); }
@@ -458,9 +471,7 @@ function endWeek(){
     if(over>0){ moodAdd(w, -over*(has(w,'Lazy')?5:2.5)); why(over>3 ? 'badly overworked' : 'a bit overworked', false); }
     if(!isFree(w) && w.wage < wageFor(w)*0.9){ moodAdd(w, -4); why('feels underpaid', false); }
     if(jobLikes(w).includes(w.job)){ moodAdd(w, 3); why('likes her job', true); } else if(jobDislikes(w).includes(w.job)){ moodAdd(w, -3); why("doesn't like her job", false); }
-    if(mad && w!==mad){ const mf = mad.madameFocus||'management'; moodAdd(w, mf==='management' ? 3 : 1.5);
-      // Care: she looks after the girls day by day, and they come to trust the house (and Sam) a little more
-      if(mf==='care'){ gainTrust(w, (BAL.trust ? BAL.trust.madameCare : 0.12) * 7 * (0.5 + s100(mad.tech.manage)/200) * ob(mad,'madame')); why(`${mad.name} looks after her`, true); } }
+    if(mad && w!==mad) moodAdd(w, 3);
     if(tfx){ moodAdd(w, tfx.mood); why(tfx.mood > 0 ? 'a spotless house' : 'a grubby house', tfx.mood > 0); }
     if(pr.accProp && !(JOBS[w.job]||{}).must) why(`propositions took ${Math.round((1-outputMult(w,pr))*100)}% of her work time`, false);
     if(pr.noRoom) why('no free room for a client', false);

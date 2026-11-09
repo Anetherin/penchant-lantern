@@ -36,13 +36,15 @@
   propositions from their menu; every other role accepts by `propDecide()` (week.js: lust, `w.offDuty` on/ask/off) and loses 8% output per accepted proposition (`outputMult`).
   Tunables are in balance.json (`jobs`, `rooms`, `tidy`, `rep`, `props`). Rooms: `h.rooms x 8` sessions/week (`X.roomOK/useRoom` in `simHouse`); `h.tidy` is kept by maids.
 - All services (escorts, propositions, reckless self-propositions) go through `runService()` -> `serveAct()`; refusals may trigger `pushyCheck()` (security, then Sam, then nobody).
-  Reputation gains use `repAdd(h, n)` (scaled by `repGain`); `w.samples` (promoter) and `w.madameFocus` ('training'|'management') are set from the sheet.
+  Reputation gains use `repAdd(h, n)` (scaled by `repGain`); `w.samples` (promoter) is set from the sheet. The madame has no focus options: she matches clients, shields moods and coaches courtesans she out-ranks (`madameCoach`). Attendant slots = courtesan slots; a courtesan with her own attendant gets mood + trust (`ownAtt` in simHouse).
 - Trust stays 0-100 internally and in data, but the UI shows it x10 (out of 1000): use `tShow(v)` / `tDelta(n)` (util.js) for any trust number shown to the player.
-  `minorTrust(w)` (balance.json → trust.minor) is the floor every activity with Sam builds. Madame focus: training | management | care (care = trust per day, trust.madameCare).
+  `minorTrust(w)` (balance.json → trust.minor) is the floor every activity with Sam builds. Lewdness also stays 0-100 internally but is shown x10 (`lShow`); trust and lewdness are stat cells, not bars (bars: energy, mood, lust, health).
+- Sam's house-wide actions: Make the rounds (trust/mood for everyone) and Hold a lesson (job skills for everyone in jobs using it); one-on-one training is services only. Sam's release scales with Technique (`samRelease`).
+- Lust: giving services build lust only with Sam (with clients only with the `svcLustBuild` fx). Ladies who come to Sam restless use `releaseSamAct` (services that spend lust); `wantsAgain`/`evAgain` offer another round (beastkin most). Demons burn `svc.demon.hunger` energy each working week.
 - NG+ extras: each cycle Sam takes a new house (`NGS.house`, debt x newHouseShare) and may add a past life (`S.pasts`; use `hasPast(k)` / `samPasts()` / `pastPick(map)`, never `S.past`).
-  Carried ladies gain `w.reborn` stacks (Reincarnated, `rebornFx` in fx.js, balance.json → ngplus.reborn).
+  Carried ladies gain `w.reborn` stacks (Reincarnated, `rebornFx` in fx.js, balance.json → ngplus.reborn) and reset trust/lewdness to where they began (`w.base0` for generics). The new house's full debt (x perCycle) joins the loan.
 - Pushy clients security can't handle become `samcall` and one `pushyEvent` decision after the report (step in / town watch / let her handle it).
-- Bars (`bar()`) fill to HER max (`trustBar`, `lustBar`). Bath scenes (`bath:true`) use the house bathhouse if built; only `bath:true` outfits stay on. `undress` on a scene sets invitation dress level.
+- Bars (`bar()`) fill to HER max (`lustBar`; trust is `trustCell`). Bath scenes (`bath:true`) use the house bathhouse if built; only `bath:true` outfits stay on. `undress` on a scene sets invitation dress level.
   AI text `{outcome}` comes from `aiOutcome()` + ai-prompts.json → outcomes (finish / satisfied / frustrated / demon feed & drain).
 - Save format migrations live in `migrate()` (`js/logic/state.js`); bump `S.v` when changing save shape.
 - After changes: `node tools/build.mjs && node tools/smoke.mjs 30` (Playwright; `CHROME=` for a custom browser).

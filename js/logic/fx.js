@@ -19,9 +19,9 @@ const raceOf = w => RACES[w && w.race] || RACES.human;
 // Reincarnated: every New Game+ a lady carries over adds a stack (w.reborn). balance.json → ngplus.reborn.
 function rebornFx(w){
   const n = w.reborn||0, R = (BAL.ngplus||{}).reborn; if(!n || !R) return null;
-  return {trustGain: 1 + (R.trust||0)*n, skillGain: 1 + (R.skill||0)*n, statGain: 1 + (R.stat||0)*n};
+  return {trustGain: 1 + (R.trust||0)*n, skillGain: 1 + (R.skill||0)*n, statGain: 1 + (R.stat||0)*n, lewdGain: 1 + (R.lewd||0)*n};
 }
-const rebornDesc = w => { const f = rebornFx(w); return f ? `Carried over ${w.reborn} time${w.reborn>1?'s':''}: trust grows ×${f.trustGain.toFixed(2)}, skills ×${f.skillGain.toFixed(2)}, stats ×${f.statGain.toFixed(2)} as fast.` : ''; };
+const rebornDesc = w => { const f = rebornFx(w); return f ? `Carried over ${w.reborn} time${w.reborn>1?'s':''}: trust grows ×${f.trustGain.toFixed(2)}, skills ×${f.skillGain.toFixed(2)}, stats ×${f.statGain.toFixed(2)}, lewdness ×${f.lewdGain.toFixed(2)} as fast.` : ''; };
 function fxSig(w){ return [w.race, w.sub, (w.traits||[]).join('|'), JSON.stringify(w.body||null), w.unique ? w.unique.name+'/'+JSON.stringify(w.unique.fx||null) : '', (w.ngPerks||[]).join('|'), w.reborn||0].join('~'); }
 function fxList(w){
   if(!w) return [];
@@ -60,10 +60,10 @@ const bodyLabel = w => { const b = bodyOf(w); return BODY_KEYS.map(k => (bodyOpt
 const lustHigh = w => fxHas(w, 'noReckless') ? 1e9 : LUST_HIGH + fxAdd(w, 'recklessAt');
 const restless = w => w.lust >= lustHigh(w);
 // Mood change scaled by moodDelta (events & work). Returns the applied change.
-// A management-focus madame in her house softens mood losses (balance.json → jobs.madameMoodLoss).
+// A madame in her house softens mood losses (balance.json → jobs.madameMoodLoss).
 function madameShield(w){
   if(typeof S==='undefined' || !S || !w.house) return 1;
-  return S.workers.some(x=>x!==w && x.house===w.house && x.job==='madame' && (x.madameFocus||'management')==='management') ? BAL.jobs.madameMoodLoss : 1;
+  return S.workers.some(x=>x!==w && x.house===w.house && x.job==='madame') ? BAL.jobs.madameMoodLoss : 1;
 }
 function moodAdd(w, n){ const before = w.mood; let d = n * fxMul(w, 'moodDelta'); if(d < 0) d *= madameShield(w); w.mood = clamp(w.mood + d); return w.mood - before; }
 // Sleep/rest recovery multiplier from fx, plus the house's amenities (hearth for dwarves).
@@ -79,17 +79,11 @@ function raceBlock(w, h){
   if(h.up && h.up[need]) return null;
   return `${w.name} needs a ${(UPGRADES[need]||{label:need}).label} in ${h.name}.`;
 }
-// Bonus to skill/stat gain from a madame running training in her house (w.madameFocus === 'training').
-function trainBonus(w){
-  if(typeof S==='undefined' || !S || !w.house) return 1;
-  const mad = S.workers.find(x => x.house===w.house && x.job==='madame' && x.madameFocus==='training' && x!==w);
-  return mad ? 1.25 + s100(mad.tech.manage)/200 : 1;
-}
 // Small natural stat growth from the job she does (1000-unit points). n is in the same units as grow().
 function statXP(w, key, n){
   if(!w.stats || w.stats[key]===undefined) return;
   const v = w.stats[key];
-  w.stats[key] = clampK(v + n * fxMul(w, 'statGain') * trainBonus(w) * Math.max(0.05, 1 - v/1300));
+  w.stats[key] = clampK(v + n * fxMul(w, 'statGain') * Math.max(0.05, 1 - v/1300));
 }
 
 /* ---------- counters (w.counts) and developable traits ---------- */

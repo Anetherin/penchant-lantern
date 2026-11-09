@@ -41,6 +41,22 @@ function samWork(kind){
     S.samWeek.books = true; samStat('business',2);
     title='Doing the Books'; text=`Sam rebuilds the ledger as a spreadsheet, by hand, on parchment. The staff watch with a mix of horror and respect.\n\nUpkeep reduced this week · Business +2`;
     samLog('Did the books');
+  } else if(kind==='rounds'){
+    // a word with everyone: small trust and mood for every lady in every house (balance.json → sam.rounds*)
+    const B = BAL.sam; let n = 0;
+    S.workers.forEach(w=>{ gainTrust(w, B.roundsTrust); moodAdd(w, B.roundsMood); n++; });
+    samStat('charm',1);
+    title='Making the Rounds'; text=`Sam walks through every house with a notebook, asking everyone how they're doing and actually writing down the answers. A leaky window gets fixed, someone's favorite tea gets restocked, and the whole staff notices that he noticed.\n\n${n} ladies: trust ${tDelta(B.roundsTrust)}, mood + · Charm +1`;
+    samLog('Made the rounds');
+  } else if(kind==='lesson'){
+    // a class for everyone whose job uses this skill (individual training is for services only)
+    const sel = $('#lessonSel'), k = sel ? sel.value : 'service', map = {service:'charm', dance:'charm', bar:'charm', combat:'strength', manage:'business'}, sk = map[k] || 'charm';
+    const who = S.workers.filter(w=>w.job!=='rest' && (JOBS[w.job]||{}).skill===k);
+    const g = (4 + S.sam[sk]/25) * BAL.sam.lessonShare * (hasPast('massage') ? 1.15 : 1);
+    who.forEach(w=>{ grow(w, k, g * pm(w,'train')); statXP(w, ({service:'charm', dance:'agility', bar:'charm', combat:'strength', manage:'refinement'})[k] || 'charm', g*0.4); minorTrust(w); });
+    samStat(sk,2);
+    title=`A Lesson: ${TECH_LABEL[k]}`; text = who.length ? `Sam gathers ${who.map(w=>w.name).join(', ')} for an afternoon on ${TECH_LABEL[k].toLowerCase()}. He brought handouts. Nobody asked for handouts.\n\n${TECH_LABEL[k]} +${Math.round(g*SKL)} each · Sam's ${cap(sk)} +2` : `Sam sets out chairs and handouts for a lesson on ${TECH_LABEL[k].toLowerCase()}. Nobody whose job uses it turns up. He reads the handout to himself.`;
+    samLog(`Taught a lesson in ${TECH_LABEL[k]}${who.length?` (${who.length})`:''}`);
   } else if(kind==='scout'){
     addCandidates(2, 1.1 + S.sam.business/400); samXP(10); samStat('charm',1);
     title='Scouting'; text=`Sam walks the market and the guild hall, quietly using [Appraisal] on anyone who looks like they might want a job.\n\n+2 candidates · Appraisal XP +10`;
@@ -164,7 +180,7 @@ function samTrain(id){
     const g = (6 + S.sam.technique/20) * tm;
     const hot = lustBonus(w, BAL.lust.bonus.trainMult), A = actById(act) || {};
     // giving services, kissing, massages build her lust (she isn't the one being pleased); the rest spend it
-    let ld; if((A.lust ?? -1) >= 0){ const l0 = w.lust; w.lust += Math.max(2, A.lust*3) * (0.4 + w.lewd/100) * fxMul(w,'lustBuild'); fitLust(w); ld = -Math.round(w.lust - l0); } else ld = spendLust(w, BAL.lust.drop.train);
+    let ld; if((A.lust ?? -1) >= 0){ const l0 = w.lust; w.lust += Math.max(2, A.lust*3) * (0.4 + w.lewd/100) * fxMul(w,'lustBuild'); fitLust(w); ld = -Math.round(w.lust - l0); } else ld = spendLust(w, BAL.lust.drop.train * samRelease());
     const tgp = minorTrust(w);
     growAct(w, act, g); statXP(w, 'stamina', 1); countUp(w, 'privateSam'); lewdUp(w, 1.5, svcLewdCap(act,'sam')); w.energy = clamp(w.energy-12, 0, maxEnergy(w));
     if(w.dislike===act) moodAdd(w, -4);
@@ -207,7 +223,7 @@ function privateCore(w, act, o={}){
   const hot = lustBonus(w);
   let ld;
   if(builds){ const l0 = w.lust; w.lust += Math.max(2, A.lust*3) * (0.4 + w.lewd/100) * fxMul(w,'lustBuild'); fitLust(w); ld = -Math.round(w.lust - l0); }
-  else ld = spendLust(w, BAL.lust.drop.private * (recv ? 1.8 : 1));   // receiving: a big drop in her lust
+  else ld = spendLust(w, BAL.lust.drop.private * (recv ? 1.8 : 1) * samRelease());   // receiving: a big drop in her lust; Sam's technique decides how much
   growAct(w, act, (4 + S.sam.technique/20) * (hasPast('massage')?1.3:1)); statXP(w, 'stamina', 0.8); countUp(w, 'privateSam');
   if(stretch){ lewdUp(w, 4, svcLewdCap(act,'sam') + BAL.lewd.stretchCap); minorTrust(w); } else if(fromLewd){ lewdUp(w, 2, svcLewdCap(act,'sam')); minorTrust(w, 2); } else gainTrust(w, 2);
   moodAdd(w, (stretch?1:6)*pm(w,'private') + (w.fav===act?6:0) - (w.dislike===act?6:0)); w.energy = clamp(w.energy-(recv ? 6 : 15), 0, maxEnergy(w));

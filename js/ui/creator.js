@@ -34,7 +34,7 @@ function viewCreator(){
     <h3 style="margin-top:10px">Body</h3><div class="form">${BODY_KEYS.map(k=>`<label>${cap(k)}<select id="c_b_${k}">${Object.entries(bodyOpts(k)).map(([id,o])=>`<option value="${id}" ${bodyOf(d)[k]===id?'selected':''}>${esc(o.label)}</option>`).join('')}</select></label>`).join('')}</div>
     <h3 style="margin-top:10px">Stats</h3><div class="form">${STAT_KEYS.map(k=>num('c_s_'+k,cap(k)+' /1000',d.stats[k],1000)).join('')}</div>
     <h3>Skills</h3><div class="form">${TECH_KEYS.map(k=>num('c_t_'+k,TECH_LABEL[k]+' /1000',d.tech[k],1000)).join('')}
-      ${num('c_pop','Popularity',d.popularity)}${num('c_lewd','Lewdness',d.lewd)}${num('c_trust','Trust (0-1000)',tShow(d.trust),1000)}</div>
+      ${num('c_pop','Popularity',d.popularity)}${num('c_lewd','Lewdness (0-1000)',lShow(d.lewd),1000)}${num('c_trust','Trust (0-1000)',tShow(d.trust),1000)}</div>
     <h3>Service preferences</h3><div class="form">${actSel('c_fav','Favorite',d.fav)}${actSel('c_dis','Dislikes',d.dislike)}${actSel('c_lov','Lovers only',d.lovers)}</div>
     <div class="form" style="margin-top:6px">${getActs().map(a=>num('c_a_'+a.id,a.label+' skill /1000',actSkill(d,a.id),1000)).join('')}</div>
     <label class="chk" style="margin-top:8px"><input type="checkbox" id="c_named" ${d.named?'checked':''}> Named character (★, stays in the candidate pool until hired)</label>
@@ -68,7 +68,7 @@ function readCreator(){
   STAT_KEYS.forEach(k=>w.stats[k]=clampK(parseInt(g('c_s_'+k))||0));
   TECH_KEYS.forEach(k=>w.tech[k]=clampK(parseInt(g('c_t_'+k))||0));
   w.body = Object.assign({}, bodyOf(w), Object.fromEntries(BODY_KEYS.map(k=>[k, g('c_b_'+k) || bodyOf(w)[k]])));
-  w.popularity = clamp(parseInt(g('c_pop'))||0); w.lewd = clamp(parseInt(g('c_lewd'))||0); w.trust = clamp((parseInt(g('c_trust'))||0)/TRUST_SHOW);
+  w.popularity = clamp(parseInt(g('c_pop'))||0); w.lewd = clamp((parseInt(g('c_lewd'))||0)/10); w.trust = clamp((parseInt(g('c_trust'))||0)/TRUST_SHOW);
   w.fav = g('c_fav')||null; w.dislike = g('c_dis')||null; w.lovers = g('c_lov')||null;
   if(w.dislike && w.dislike===w.fav) w.dislike = null;
   ensureWorker(w);

@@ -20,6 +20,8 @@ const shuffle = a => { const b=a.slice(); for(let i=b.length-1;i>0;i--){ const j
 const clamp = (v,a=0,b=100) => Math.max(a, Math.min(b, v));
 // Stats, skills and service skills run 0-1000 (SKL per 100-point step). Every formula that reads one goes through s100().
 // Trust is kept 0-100 internally (data files and thresholds use that scale) but shown to the player out of 1000.
+// Lewdness is 0-100 internally like trust, and shown x10 (out of 1000) like the other stats.
+const lShow = v => Math.round((v||0)*10);
 const TRUST_SHOW = 10; const tShow = v => Math.round((v||0)*TRUST_SHOW); const tDelta = v => { const n = (v||0)*TRUST_SHOW; return (n>=0?'+':'') + (Math.abs(n)<10 ? n.toFixed(1).replace(/\.0$/,'') : Math.round(n)); };
 const SKL = 10; const s100 = v => (v||0)/SKL; const clampK = v => Math.max(0, Math.min(1000, v));
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));

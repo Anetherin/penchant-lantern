@@ -34,7 +34,7 @@ function ngNumbers(boon, house){
   if(house===undefined && NGS) house = NGS.house;
   const B = BAL.ngplus, og = homeHouse(), cyc = (S.cycle||1) + 1, impr = improvementsValue(H(og));
   let base = HOUSES[og].debt * B.debtShare * (1 + B.perCycle*Math.max(0, cyc-2)), extra = impr * B.improveShare;
-  const nh = house && HOUSES[house] ? HOUSES[house].debt * (B.newHouseShare ?? 0.5) : 0;
+  const nh = house && HOUSES[house] ? HOUSES[house].debt * (B.newHouseShare ?? 1) * (1 + B.perCycle*Math.max(0, cyc-2)) : 0;
   let debt = base + extra + nh;
   if(boon==='grace') debt *= 0.85;
   debt = Math.round(debt);
@@ -68,10 +68,10 @@ function ngView(){
         <div class="pick ${NGS.partner==='none'?'sel':''}" onclick="ngPick('partner','none')"><b>No one new</b><div class="muted">Sam starts this chapter with ${lovers.length?'his lovers':'no one at his side'}.</div></div></div>`;
     ok = !!NGS.partner;
   } else if(cur==='New house'){
-    body = `<h2>A new deed</h2><p class="muted">The Credit House is happy to finance a second property. Sam keeps his home house and takes on one more; ${Math.round(BAL.ngplus.newHouseShare*100)}% of its listed debt joins the new loan, and its resident comes with it. ✦ houses only appear in New Game+.</p>
+    body = `<h2>A new deed</h2><p class="muted">The Credit House is happy to finance a second property. Sam keeps his home house and takes on one more; its full listed debt${(S.cycle||1)+1>2?` (plus ${Math.round(BAL.ngplus.perCycle*((S.cycle||1)-1)*100)}% for each cycle past the first)`:''} joins the new loan, and its resident comes with it. ✦ houses only appear in New Game+.</p>
       <div class="grid">${NGS.offers.map(k=>{ const D = HOUSES[k], n = NAMED[D.npc]; return `<div class="pick ${NGS.house===k?'sel':''}" onclick="ngPick('house','${k}')">
         <b>${D.ngplus?'✦ ':''}${D.name}</b> <span class="tag house">${D.loc}</span><div class="muted">${D.desc}</div>
-        <div style="margin-top:4px">Adds ${fmt(Math.round(D.debt*BAL.ngplus.newHouseShare))} debt · Rooms ${D.rooms} · ${n?esc(n.name)+' comes with it':''}</div></div>`; }).join('')}</div>`;
+        <div style="margin-top:4px">Adds ${fmt(ngNumbers(null, k).house)} debt · Rooms ${D.rooms} · ${n?esc(n.name)+' comes with it':''}</div></div>`; }).join('')}</div>`;
     ok = !!NGS.house;
   } else if(cur==='Another past life'){
     body = `<h2>Another life remembered</h2><p class="muted">Something from a life before the last one surfaces. Sam can add one more past life (its bonuses stack with what he already has), or keep things as they are.</p>
@@ -96,11 +96,11 @@ function ngView(){
     const leaving = S.workers.filter(w=>!lovers.includes(w));
     body = `<h2>Ready for round ${N.cycle}?</h2><div class="card">
       <b>Keeps:</b> ${esc(HDo.name)} with its rooms, upgrades and story, Sam's level, stats and Appraisal, the regulars there, your gold (see purse) and your image library.<br>
-      <b>Lovers who stay:</b> ${lovers.length ? lovers.map(w=>`${esc(w.name)}${NGS.perks[w.id]?` (${esc(NGS.perks[w.id])})`:''}`).join(', ') + '. They draw wages again; their skills and popularity start over, but what they feel for Sam stays.' : 'none. Only Devoted lovers come along.'}<br>
+      <b>Lovers who stay:</b> ${lovers.length ? lovers.map(w=>`${esc(w.name)}${NGS.perks[w.id]?` (${esc(NGS.perks[w.id])})`:''}`).join(', ') + '. They draw wages again; their skills, popularity, trust and lewdness start over (they\'re still his lovers, and Reincarnated makes the climb back faster).' : 'none. Only Devoted lovers come along.'}<br>
       <b>Leaving:</b> ${leaving.length ? `${leaving.length} ladies (${leaving.slice(0,8).map(w=>esc(w.name)).join(', ')}${leaving.length>8?', …':''}). Named ones can be met again, fresh.` : 'no one.'}<br>
       ${NGS.house?`<b>New house:</b> ${esc(HOUSES[NGS.house].name)} with ${esc((NAMED[HOUSES[NGS.house].npc]||{}).name||'its resident')}.<br>`:''}
       ${NGS.past&&NGS.past!=='none'?`<b>Another past life:</b> ${esc(PASTS[NGS.past].label)}.<br>`:''}
-      <b>Reincarnated:</b> every lady who stays gains a stack (faster trust, skill and stat growth).<br>
+      <b>Reincarnated:</b> every lady who stays gains a stack (faster trust, lewdness, skill and stat growth).<br>
       <b>New:</b> ${NGS.partner&&NGS.partner!=='none'?`${esc(NAMED[NGS.partner].name)} at Sam's side`:'no new partner'}${NGS.boon?`. Perk: <b>${NG_BOONS[NGS.boon].label}</b>`:''}. ✦ houses (and more) can be bought during the cycle.<br>
       ${N.sold.length?`<b>Sold to the Credit House:</b> ${N.sold.map(h=>esc(h.name)).join(', ')} (${fmt(N.sale)}).<br>`:''}
       <b>Debt:</b> ${fmt(N.debt)} (${esc(HDo.name)} ${fmt(N.base)} + your improvements ${fmt(N.impr)} × ${BAL.ngplus.improveShare} = ${fmt(N.extra)}${N.house?` + ${esc(HOUSES[NGS.house].name)} ${fmt(N.house)}`:''})${N.toDebt?`, minus ${fmt(N.toDebt)} paid from savings now = <b>${fmt(N.remaining)}</b>`:''}, due over 52 weeks.<br>
@@ -110,16 +110,22 @@ function ngView(){
   modal(`${nav}${body}<div class="row" style="margin-top:12px">${st>0?'<button onclick="ngNav(-1)">← Back</button>':'<button onclick="NGS=null;closeModal()">Not yet</button>'}${st<steps.length-1?`<button class="primary" onclick="ngNav(1)" ${ok?'':'disabled'}>Next →</button>`:`<button class="primary" onclick="ngBegin()">Begin New Game+</button>`}</div>`, {lock:true, wide:true});
 }
 // A carried lady starts over: stats, tech and act skills back to her starting values (named: from her data, same
-// conversion as makeNamed; generic: half of what she has), popularity 0. Trust, Devoted, intim, firsts, arc and bonds stay.
+// conversion as makeNamed; generic: half of what she has), popularity 0, and trust and lewdness back to where she began
+// (named: her data values; generic: w.base0 from when she was rolled, or balance.json → ngplus.baseTrust/baseLewd for old saves).
+// Her Reincarnated stacks make the climb back faster. Devoted, intim, firsts, arc and bonds stay.
 function ngReset(w){
+  const B = BAL.ngplus;
   if(w.key && NAMED[w.key]){
     const f = makeNamed(w.key);
     STAT_KEYS.forEach(k=>{ w.stats[k] = f.stats[k]; }); TECH_KEYS.forEach(k=>{ w.tech[k] = f.tech[k]; });
     Object.keys(w.acts||{}).forEach(id=>{ if(f.acts[id]) w.acts[id].skill = f.acts[id].skill; });
+    w.trust = f.trust; w.lewd = f.lewd;
   } else {
     STAT_KEYS.forEach(k=>{ w.stats[k] = clampK(Math.round(w.stats[k]*0.5)); }); TECH_KEYS.forEach(k=>{ w.tech[k] = clampK(Math.round((w.tech[k]||0)*0.5)); });
     Object.values(w.acts||{}).forEach(a=>{ a.skill = clampK(Math.round(a.skill*0.5)); });
+    const b = w.base0 || {}; w.trust = b.trust ?? (B.baseTrust ?? 15); w.lewd = Math.min(w.lewd, b.lewd ?? (B.baseLewd ?? 25));
   }
+  w.lust = Math.min(w.lust||0, LUST_EAGER);
   w.popularity = 0; w.arcWk = 0; w.earnedLast = 0; w.energy = maxEnergy(w);
 }
 function ngBegin(){
@@ -132,7 +138,7 @@ function ngBegin(){
     const p = C.perks[w.id]; if(p){ w.ngPerks = [...(w.ngPerks||[]), p]; }
     w.isPartner = false; w.free = false; w.contract = 12; w.house = og; if(w.locked && w.locked!==og) w.locked = null;
     ngReset(w); w.reborn = (w.reborn||0) + 1;
-    w.wage = wageFor(w);
+    w.wage = wageFor(w); if(w.job!=='rest') w.job = safeJob(w, w.job);
   });
   // everyone else leaves; named ladies go back to their pools, fresh (isHired is false for them again)
   const ids = new Set(lovers.map(w=>w.id));

@@ -145,7 +145,7 @@ const r1 = x => Math.round(x*10)/10;
 async function newPage() {
   const page = await browser.newPage(); const errors = [];
   page.on('pageerror', e => errors.push(e.message)); page.on('dialog', d => d.accept());
-  await page.goto(`http://localhost:${PORT}/index.html`); page.errors = errors; if (PATCH) await page.evaluate(`window.__PATCH=${JSON.stringify(PATCH)}`); return page;
+  await page.goto(`http://localhost:${PORT}/index.html`); page.errors = errors; if (PATCH) await page.evaluate(`window.__PATCH=${JSON.stringify(PATCH)}`); if (process.env.REP) await page.evaluate(`window.__REP=${+process.env.REP}`); if (process.env.NLADIES) await page.evaluate(`window.__NL=${+process.env.NLADIES}`); return page;
 }
 const out = {};
 if (MODE.includes('A')) {
@@ -172,13 +172,14 @@ if (MODE.includes('A')) {
   }
 }
 if (MODE.includes('B')) {
-  const GROUPS = [['human',''],['elf',''],['beastkin',''],['beastkin','fox'],['beastkin','cat'],['beastkin','wolf'],['beastkin','rabbit'],['beastkin','dragon'],['demon',''],['dwarf',''],['spirit',''],['angel',''],['android','']];
+  const GROUPS_ALL = [['human',''],['elf',''],['beastkin',''],['beastkin','fox'],['beastkin','cat'],['beastkin','wolf'],['beastkin','rabbit'],['beastkin','dragon'],['demon',''],['dwarf',''],['spirit',''],['angel',''],['android','']];
+  const GROUPS = process.env.GROUPS ? GROUPS_ALL.filter(g => process.env.GROUPS.split(',').includes(g[1] ? g[0]+'/'+g[1] : g[0])) : GROUPS_ALL;
   out.B = {};
   for (const [race, sub] of GROUPS) {
     const label = sub ? `${race}/${sub}` : race, ladies = [];
     for (let i = 0; i < RB; i++) {
       const page = await newPage();
-      try { const r = await page.evaluate(`(${BOT_B})('${race}','${sub}', 20, 6)`); ladies.push(...r.rows); } catch (e) { console.error(label, 'run failed', e.message.slice(0,200)); }
+      try { const r = await page.evaluate(`(${BOT_B})('${race}','${sub}', 20, ${+process.env.NLADIES||6})`); ladies.push(...r.rows); } catch (e) { console.error(label, 'run failed', e.message.slice(0,200)); }
       if (page.errors.length) console.error(label, 'page errors', page.errors.slice(0,2));
       await page.close();
     }
