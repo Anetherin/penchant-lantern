@@ -314,10 +314,11 @@ function rollJobPrefs(w){
   const Dl = roll(down, B.maxDislikes).filter(j=>!L.includes(j));
   w.jobLikes = L; w.jobDislikes = Dl;
 }
-// Job positions per house (data/economy.json → slots). Courtesans: 2 + bedrooms; attendants: one per 2 bedrooms (min 1);
+// Job positions per house (data/economy.json → slots). Courtesans: 2 + bedrooms; attendants: as many as courtesans ('as');
 // promoters and maids have no entry and are unlimited.
 function slotsFor(h, job){
   const d = ECON.slots[job]; if(!d) return 99;
+  if(d.as) return slotsFor(h, d.as);
   const u = h.up || {};
   let n = (d.base||0) + Object.entries(d).filter(([k])=>u[k] && !['base','perSize','perRoom','min','perRooms'].includes(k)).reduce((a,[,v])=>a+v,0) + (d.perSize ? Math.floor(houseSize(h)/d.perSize) : 0);
   if(d.perRoom) n += h.rooms * d.perRoom;
