@@ -2311,7 +2311,9 @@
             },
             "sp_hsin": {"label":"Moonlit silk","style":"Exotic","prompt":"a sheer white and gold silk dancing dress","bonus":{"courtesan":1.15,"dancer":1.15}}
           },
-          "bonds": {"jinhsi":{"v":35,"note":"Two guardians of the same coast."}},
+          "bonds": {"jinhsi":{"v":35,"note":"Two guardians of the same coast."},
+            "suoming":{"v":50,"kind":"mentor","note":"Her cute minister whom she trusts a great deal."}
+          },
           "jobs": {"likes":["dancer","courtesan"],"dislikes":["promoter"]},
           "body": {"bust":"large","height":"tall","figure":"curvy"},
           "unique": {
@@ -2469,7 +2471,7 @@
           },
           "bonds": {"suoming":{"v":25,"note":"Buling pokes the auditor; the auditor pretends not to mind."}},
           "jobs": {"likes":["attendant","promoter"],"dislikes":["security"]},
-          "body": {"bust":"small","height":"short","figure":"slim"},
+          "body": {"bust":"flat","height":"short","figure":"slim"},
           "unique": {
             "name": "Feng Shui Fortune",
             "desc": "Her talismans and rearranged furniture make the house feel luckier, drawing guests in.",
@@ -2519,9 +2521,11 @@
               "bonus": {"madame":1.15,"noble":1.2}
             }
           },
-          "bonds": {"buling":{"v":25,"note":"The auditor's one persistent finding: Buling."}},
+          "bonds": {"buling":{"v":25,"note":"The auditor's one persistent finding: Buling."},
+            "hsin":{"v":50,"kind":"mentor","note":"The sentinel she has sworn to watch over."}
+          },
           "jobs": {"likes":["madame","security"],"dislikes":["maid"]},
-          "body": {"bust":"small","height":"short","figure":"slim"},
+          "body": {"bust":"flat","height":"short","figure":"slim"},
           "unique": {
             "name": "Seal Master",
             "desc": "Centuries of command keep the house orderly and its staff in line.",
