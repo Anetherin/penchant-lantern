@@ -591,8 +591,8 @@
       "excl": []
     },
     "Nimble Fingers": {
-      "desc": "Hand work earns more: manual +12% quality, massage +6%.",
-      "fx": {"actQuality":{"manual":1.12,"massage_give":1.06}},
+      "desc": "Hand work earns more: manual (giving) +12% quality, massage +6%.",
+      "fx": {"actQuality":{"manual_give":1.12,"massage_give":1.06}},
       "gen": true,
       "hidden": false,
       "earn": null,
@@ -712,10 +712,10 @@
     },
     "Sure Hands": {
       "desc": "Manual services are 15% better.",
-      "fx": {"actQuality":{"manual":1.15}},
+      "fx": {"actQuality":{"manual_give":1.15}},
       "gen": false,
       "hidden": false,
-      "earn": {"count":"svcByAct.manual","at":25},
+      "earn": {"count":"svcByAct.manual_give","at":25},
       "ngOnly": false,
       "ngPerk": false,
       "excl": []

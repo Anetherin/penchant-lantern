@@ -1,20 +1,20 @@
 {
   "_readme": [
     "Bodies. w.body = {bust, height, figure}. Each option: label, img (neutral prompt words), weight (generic roll odds), fx (effect engine, see traits.json _readme).",
-    "Bust wording is left as TODO for you to fill in. 'flat' is empty on purpose: the safety filter strips that wording, so word it yourself if you want it. Anything starting with TODO is stripped from prompts.",
-    "raceSkew: per race, extra weight for options (e.g. dwarves tend to be short). defaults: used for named ladies without a body in their data."
+    "raceSkew: per race, extra weight for options (e.g. dwarves tend to be short). defaults: used for named ladies without a body in their data.",
+    "Bust img wording is plain and neutral; edit it freely. Anything starting with TODO is stripped from prompts."
   ],
   "defaults": {"bust":"medium","height":"average","figure":"slim"},
   "bust": {
-    "flat": {"label":"Flat","img":"flat chest","weight":1,"fx":{"actEnergy":0.92,"actBan":["paizuri"],"appeal":-2}},
-    "small": {"label":"Small","img":"small breasts","weight":3,"fx":{"actQuality":{"paizuri":0.8}}},
+    "flat": {"label":"Flat","img":"flat chest","weight":1,"fx":{"actEnergy":0.92,"actBan":["breast_give"],"appeal":-2}},
+    "small": {"label":"Small","img":"small breasts","weight":3,"fx":{"actQuality":{"breast_give":0.8}}},
     "medium": {"label":"Medium","img":"average sized breasts","weight":5,"fx":{}},
-    "large": {"label":"Large","img":"large breasts","weight":3,"fx":{"actQuality":{"paizuri":1.2},"appeal":3,"actEnergy":1.06}},
+    "large": {"label":"Large","img":"large breasts","weight":3,"fx":{"actQuality":{"breast_give":1.2},"appeal":3,"actEnergy":1.06}},
     "huge": {
       "label": "Huge",
       "img": "enormous breasts",
       "weight": 1,
-      "fx": {"actQuality":{"paizuri":1.35},"appeal":5,"actEnergy":1.12,"jobBonus":{"dancer":0.9}}
+      "fx": {"actQuality":{"breast_give":1.35},"appeal":5,"actEnergy":1.12,"jobBonus":{"dancer":0.9}}
     }
   },
   "height": {

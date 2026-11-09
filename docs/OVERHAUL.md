@@ -35,7 +35,7 @@ fxList(w)         -> array of fx objects (cache per week via w._fxv)
 fxMul(w, key)     -> product of numeric values (default 1)
 fxAdd(w, key)     -> sum (default 0)
 fxHas(w, key)     -> any truthy
-fxSub(w, key, id) -> for keyed maps, e.g. fxSub(w,'actQuality','paizuri') -> product
+fxSub(w, key, id) -> for keyed maps, e.g. fxSub(w,'actQuality','breast_give') -> product
 ```
 
 Vocabulary (only these keys; content authors use only these):
@@ -120,8 +120,8 @@ fee −40%), `chapel` Quiet Chapel (angels mood +4, house rep +0.2/wk if an ange
 android any); named ladies get it from data (`body` field; default medium/average/slim if missing).
 Each option: `label, img (neutral prompt words; bust words may be "TODO"), weight, fx`.
 
-* bust: flat (actEnergy .92, actBan [paizuri, breast_get? no — breast_get stays], appeal −2), small (actQuality paizuri .8),
-  medium (—), large (actQuality paizuri 1.2, appeal +3, actEnergy 1.06), huge (actQuality paizuri 1.35, appeal +5,
+* bust: flat (actEnergy .92, actBan [breast_give; breast_get stays], appeal −2), small (actQuality breast_give .8),
+  medium (—), large (actQuality breast_give 1.2, appeal +3, actEnergy 1.06), huge (actQuality breast_give 1.35, appeal +5,
   actEnergy 1.12, jobBonus dancer .9).
 * height: petite/short (jobBonus security .9, agility), average, tall (jobBonus dancer 1.08, security 1.08,
   classBonus noble 1.05).
@@ -140,18 +140,19 @@ merge into the list by their tier). New fields per service:
 * `dress` – `{"min":"dressed|partial|under|nude", "fullAt": lewd needed before images show her fully undressed}`.
   Replaces `minCloth` (keep reading old minCloth as `dress.min`).
 
-List (labels can be tweaked by the user):
+List (labels can be tweaked by the user). Two-way services are `<thing>_give` / `<thing>_get` pairs; old ids `manual`, `oral`,
+`paizuri` (and `caress`) are aliases handled by `actKey` / `migrateWorker`:
 
 | id | label | tier | th | price | energy | lust | finish | want | notes |
 |---|---|---|---|---|---|---|---|---|---|
 | kiss | Kissing | 1 | 20 | 18 | 4 | −2 | no | .8 | (the old *caress*, now kissing only; keep id `caress` as alias in migrate) dress min dressed, fullAt 95 |
 | massage_give | Massage (giving) | 1 | 10 | 22 | 7 | 0 | no | .9 | no happy end: no lust drop; bath attendants always offer it; dress min dressed, fullAt 85 |
 | massage_get | Massage (receiving) | 1 | 22 | 16 | 2 | +3 | no | .25 | client rubs her down; she regains 4 energy; mood +2 |
-| manual | Manual | 2 | 32 | 32 | 7 | −4 | yes | 1 | dress min partial |
+| manual_give | Manual (giving) | 2 | 32 | 32 | 7 | −4 | yes | 1 | dress min partial |
 | manual_get | Manual (receiving) | 2 | 30 | 24 | 3 | −10 | no | .3 | client pleasures her; great for her lust |
-| oral | Oral | 2 | 42 | 44 | 9 | −4 | yes | 1 | |
+| oral_give | Oral (giving) | 2 | 42 | 44 | 9 | −4 | yes | 1 | |
 | oral_get | Oral (receiving) | 2 | 40 | 34 | 3 | −14 | no | .3 | |
-| paizuri | Paizuri | 2 | 45 | 46 | 9 | −3 | yes | .8 | actBan for flat |
+| breast_give | Breast play (giving) | 2 | 45 | 46 | 9 | −3 | yes | .8 | actBan for flat |
 | breast_get | Breast play (receiving) | 2 | 34 | 26 | 3 | −8 | no | .3 | |
 | missionary/cowgirl/doggy | as now | 3 | as now | | | −8/−9/−9 | yes | 1 | |
 

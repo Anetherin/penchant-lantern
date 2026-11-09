@@ -53,7 +53,7 @@ function readCreator(){
   const w = CDRAFT ? clone(CDRAFT) : genWorker({race});
   w.race = race; w.sub = race==='beastkin' ? (cleanText(g('c_sub'))||'fox') : '';
   w.age = Math.max(R.age[0], parseInt(g('c_age'))||R.age[0]);
-  w.name = cleanText(g('c_name')) || genName(race);
+  w.name = cleanText(g('c_name')) || genName(race, w.sub);
   w.design = {build:cleanText(g('c_build')), hairStyle:cleanText(g('c_hairStyle')), hairColor:cleanText(g('c_hairColor')), eyes:cleanText(g('c_eyes')), skin:cleanText(g('c_skin')), features:cleanText(g('c_features'))};
   w.personality = cleanText(g('c_pers')) || pick(PERSONALITIES);
   w.backstory = cleanText(g('c_back'));

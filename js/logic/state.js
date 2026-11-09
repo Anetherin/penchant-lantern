@@ -47,14 +47,20 @@ function assignStart(w, job){
   w.job = job;
   if(MENU_JOBS.includes(job)) w.menu = getActs().filter(a=>clientStance(w,a.id)==='yes').map(a=>a.id);
 }
-// Older saves: stats, skills and service skills were 0-100 and are now 0-1000; caress became kiss; dragonkin became beastkin (dragon).
+// Older saves: stats, skills and service skills were 0-100 and are now 0-1000; caress became kiss, manual/oral/paizuri became
+// manual_give/oral_give/breast_give; dragonkin became beastkin (dragon).
 function scaleWorker(w){
   const K = v => clampK((v||0)*SKL + ri(0,SKL-1));
   STAT_KEYS.forEach(k=>{ if(w.stats) w.stats[k] = K(w.stats[k]); }); TECH_KEYS.forEach(k=>{ if(w.tech) w.tech[k] = K(w.tech[k]); });
   Object.values(w.acts||{}).forEach(a=>{ a.skill = K(a.skill); });
 }
 function migrateWorker(w){
-  if(w.acts && w.acts.caress){ w.acts.kiss = w.acts.kiss || w.acts.caress; delete w.acts.caress; }
+  // old service ids (caress, manual, oral, paizuri) -> current ids, everywhere a lady keys something by service
+  Object.entries(ACT_ALIAS).forEach(([o,n])=>{
+    if(w.acts && w.acts[o]){ w.acts[n] = w.acts[n] || w.acts[o]; delete w.acts[o]; }
+    const sb = w.counts && w.counts.svcByAct; if(sb && sb[o]!==undefined){ sb[n] = (sb[n]||0) + sb[o]; delete sb[o]; }
+    if(w.seen) ['c_','s_'].forEach(p=>{ if(w.seen[p+o]!==undefined){ w.seen[p+n] = w.seen[p+n] ?? w.seen[p+o]; delete w.seen[p+o]; } });
+  });
   ['fav','dislike','lovers'].forEach(k=>{ if(w[k]) w[k] = actKey(w[k]); });
   if(w.menu) w.menu = Array.from(new Set(w.menu.map(actKey)));
   if(w.race==='dragonkin'){ w.race = 'beastkin'; w.sub = 'dragon'; }
@@ -62,7 +68,6 @@ function migrateWorker(w){
   const JM = {companion:'courtesan', reception:'promoter'};
   if(JM[w.job]) w.job = JM[w.job]; if(JM[w.prevJob]) w.prevJob = JM[w.prevJob];
   ['jobLikes','jobDislikes'].forEach(k=>{ if(Array.isArray(w[k])) w[k] = Array.from(new Set(w[k].map(j=>JM[j]||j))); });
-  if(w.seen){ Object.keys(w.seen).forEach(k=>{ if(/^[cs]_caress$/.test(k)){ w.seen[k.replace('caress','kiss')] = w.seen[k]; delete w.seen[k]; } }); }
 }
 function migrate(s){
   const ov = s.v || 0;
@@ -82,7 +87,7 @@ function migrate(s){
   if(ov < 13) (s.workers||[]).concat(s.candidates||[]).forEach(scaleWorker);
   (s.workers||[]).concat(s.candidates||[]).forEach(migrateWorker);
   if(ov < 14) s.lastReport = null;
-  s.v = 15; s.houseWardrobe = s.houseWardrobe || []; s.houseUnder = s.houseUnder || []; s.home = s.home || (s.houses[0]||{}).id; s.cycle = s.cycle || 1; s.boons = s.boons || []; s.partners = s.partners || (s.partner ? [s.partner] : []);
+  s.v = 16; s.houseWardrobe = s.houseWardrobe || []; s.houseUnder = s.houseUnder || []; s.home = s.home || (s.houses[0]||{}).id; s.cycle = s.cycle || 1; s.boons = s.boons || []; s.partners = s.partners || (s.partner ? [s.partner] : []);
   s.regulars = s.regulars || []; s.bonds = s.bonds || {}; s.flags = Object.assign({partnerCD:3}, s.flags||{});
   s.sam.lvl = s.sam.lvl || 1; s.sam.xp = s.sam.xp || 0;
   s.houses.forEach(h=>{ if(h.tidy===undefined) h.tidy = BAL.tidy.start; h.since = h.since || 1; h.story = h.story || {beat:0,wk:0}; h.bonus = h.bonus || {}; if(h.spent===undefined) h.spent = 0;

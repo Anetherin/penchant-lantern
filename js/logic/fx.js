@@ -8,7 +8,7 @@
      fxMul(w,key)      -> product of numeric values (default 1)
      fxAdd(w,key)      -> sum (default 0)
      fxHas(w,key)      -> any truthy
-     fxSub(w,key,id)   -> keyed maps, e.g. fxSub(w,'actQuality','paizuri') -> product
+     fxSub(w,key,id)   -> keyed maps, e.g. fxSub(w,'actQuality','breast_give') -> product
      fxArr(w,key)      -> merged list (actBan)
    Everything that isn't a simple number (Modest, Devoted, Oblivious, Shy/Eager exclusivity, demon feeding,
    android recharging...) stays in code and reads has(w,...) / w.race.
@@ -86,7 +86,7 @@ function statXP(w, key, n){
 }
 
 /* ---------- counters (w.counts) and developable traits ---------- */
-// countUp(w,'svc'), countUp(w,'svcByAct.oral'), countUp(w,'jobWeeks.dancer', 1)
+// countUp(w,'svc'), countUp(w,'svcByAct.oral_give'), countUp(w,'jobWeeks.dancer', 1)
 function countUp(w, key, n=1){
   w.counts = w.counts || {};
   const p = String(key).split('.'); let o = w.counts;

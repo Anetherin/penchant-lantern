@@ -4,10 +4,11 @@
     "th = lewdness she needs to enjoy it (trust can stretch her up to 25 below). price = base fee. energy = what it costs her. desc = what the service is, in plain words; the AI prompts get \"label (desc)\" as {service}.",
     "lust = base change to HER lust per client (negative = drop, positive = rises). Real change = lust x client technique x (1.5 if favorite) x (0.6 if disliked) x her actQuality fx x her lust profile. finish = the client finishes (demon feeding; she can be left frustrated). want = relative odds clients ask for it. kind: give | receive | massage | kiss (receiving services: with Sam he does the work, low Sam energy, big drop in her lust, no demon drain).",
     "dress = {min: dressed|partial|under|nude, fullAt: lewdness she needs before images show her fully undressed}. Services whose min is 'dressed' (kissing, massage) stay dressed until her lewdness reaches fullAt. Older entries with minCloth still work (read as dress.min).",
-    "image.client / image.sam / image.duo = pose and framing for client scenes, Sam's first-person scenes, and scenes with two ladies. Each is a list: one is picked at random per image. image.extra is added to every image of this service. Anything starting with TODO is skipped when prompts are built: replace the TODO placeholders with your own wording.",
+    "image.client / image.sam / image.duo = pose and framing for client scenes, Sam's first-person scenes, and scenes with two ladies. Each is a list: one is picked at random per image. image.extra is added to every image of this service. Anything starting with TODO is skipped when prompts are built. Every service now has default wording; the receiving ones are written softly, so make them as explicit as you like.",
     "report = lines for the weekly report when a client got this service (one is picked at random; empty falls back to flavor.json client_yes).",
     "tier: how far past the line it is with Sam (1 kissing & touching, 2 hands & mouth, 3 everything). Private time with Sam only offers services up to the tier she's crossed in her firsts (data/firsts.json). Custom services without a tier count as 1 below line 30, 2 below 50, else 3.",
-    "The old id 'caress' is now 'kiss' (kept as an alias in code, so old data that says caress still works).",
+    "Naming: services that go both ways come in pairs, <thing>_give (she does it to him) and <thing>_get (he does it to her), labelled \"X (giving)\" / \"X (receiving)\". Positions (missionary, cowgirl, doggy) and kiss are single. Old ids still work as aliases in code: caress -> kiss, manual -> manual_give, oral -> oral_give, paizuri -> breast_give.",
+    "Scales: th and dress.fullAt are LEWDNESS thresholds, and lewdness stays 0-100 (like trust, mood and lust). Only stats, tech and service skills run 0-1000, so a two-digit th here is correct.",
     "energyBack / mood (optional): energy she regains and mood she gains from a service (massage_get)."
   ],
   "services": [
@@ -24,7 +25,17 @@
       "kind": "massage",
       "desc": "giving a massage",
       "dress": {"min":"dressed","fullAt":85},
-      "image": {"client":["TODO: your wording"],"sam":["TODO: your wording"],"duo":["TODO: your wording"],"extra":""},
+      "image": {
+        "client": ["massaging a man's shoulders as he lies face down on a bed","kneading a man's back, sitting beside him on a massage bed"],
+        "sam": [
+          "massaging the viewer's shoulders, leaning over him, pov",
+          "her hands on the viewer's chest, giving a massage, pov, looking at the viewer"
+        ],
+        "duo": [
+          "both massaging the viewer together, one at his shoulders, one at his back, pov"
+        ],
+        "extra": ""
+      },
       "report": [
         "He left loose-limbed and lighter in the shoulders, and tipped like a man reborn."
       ]
@@ -65,7 +76,14 @@
       "kind": "receive",
       "desc": "being given a massage",
       "dress": {"min":"dressed","fullAt":85},
-      "image": {"client":["TODO: your wording"],"sam":["TODO: your wording"],"duo":["TODO: your wording"],"extra":""},
+      "image": {
+        "client": ["lying face down on a bed while a man massages her back","lying on her stomach, a man's hands kneading her shoulders"],
+        "sam": [
+          "lying face down on a bed, the viewer's hands massaging her back, pov, looking back at the viewer"
+        ],
+        "duo": ["both lying side by side face down, being massaged, pov"],
+        "extra": ""
+      },
       "report": [
         "A rare request, and an easy hour: he did the work, and she mostly sighed."
       ],
@@ -85,12 +103,21 @@
       "kind": "receive",
       "desc": "being pleasured by hand",
       "dress": {"min":"partial","fullAt":60},
-      "image": {"client":["TODO: your wording"],"sam":["TODO: your wording"],"duo":["TODO: your wording"],"extra":""},
+      "image": {
+        "client": ["lying back on a bed, a man's hand between her thighs"],
+        "sam": [
+          "lying back on a bed, the viewer's hand between her thighs, pov, looking at the viewer"
+        ],
+        "duo": [
+          "both lying back side by side, the viewer's hands between their thighs, pov"
+        ],
+        "extra": ""
+      },
       "report": ["He was attentive and she did not complain. A quiet hour."]
     },
     {
-      "id": "manual",
-      "label": "Manual",
+      "id": "manual_give",
+      "label": "Manual (giving)",
       "tier": 2,
       "th": 32,
       "price": 32,
@@ -128,7 +155,16 @@
       "kind": "receive",
       "desc": "attention on her chest",
       "dress": {"min":"partial","fullAt":55},
-      "image": {"client":["TODO: your wording"],"sam":["TODO: your wording"],"duo":["TODO: your wording"],"extra":""},
+      "image": {
+        "client": ["a man embracing her from behind, his hands on her breasts"],
+        "sam": [
+          "the viewer's hands on her breasts, pov, looking at the viewer"
+        ],
+        "duo": [
+          "the viewer's hands on their breasts, sitting close together, pov"
+        ],
+        "extra": ""
+      },
       "report": [
         "He was unhurried and appreciative, and she was kind about it."
       ]
@@ -146,12 +182,23 @@
       "kind": "receive",
       "desc": "being pleasured with his mouth",
       "dress": {"min":"partial","fullAt":60},
-      "image": {"client":["TODO: your wording"],"sam":["TODO: your wording"],"duo":["TODO: your wording"],"extra":""},
+      "image": {
+        "client": [
+          "lying back on a bed, a man's head between her thighs, her fingers in his hair"
+        ],
+        "sam": [
+          "lying back on a bed, pov from between her thighs, her fingers in the viewer's hair, looking down at the viewer"
+        ],
+        "duo": [
+          "one lying back with the viewer between her thighs while the other kisses her, pov"
+        ],
+        "extra": ""
+      },
       "report": ["He took his time. She came downstairs flushed and unhurried."]
     },
     {
-      "id": "oral",
-      "label": "Oral",
+      "id": "oral_give",
+      "label": "Oral (giving)",
       "tier": 2,
       "th": 42,
       "price": 44,
@@ -177,8 +224,8 @@
       ]
     },
     {
-      "id": "paizuri",
-      "label": "Paizuri",
+      "id": "breast_give",
+      "label": "Breast play (giving)",
       "tier": 2,
       "th": 45,
       "price": 46,
@@ -187,7 +234,7 @@
       "finish": true,
       "want": 0.8,
       "kind": "give",
-      "desc": "using her breasts",
+      "desc": "using her breasts (paizuri)",
       "dress": {"min":"partial","fullAt":55},
       "image": {
         "client": ["a man's penis between her breasts, titjob"],

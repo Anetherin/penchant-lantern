@@ -1,8 +1,8 @@
 {
   "_readme": [
-    "Races. label, age [min,max], look (image wording; null = built from the beastkin sub-type), mods (stat changes on the 0-100 scale, applied x10 at creation), common (false = rare/exotic), weight (odds when a generic lady is rolled), names {f,l} (optional; otherwise people.json names), needs (house upgrade id required to recruit or assign her), wage (wage multiplier), fx (effect engine, see traits.json _readme), client {like, dislike, classLike}.",
+    "Races. label, age [min,max], look (image wording; null = built from the beastkin sub-type), mods (stat changes on the 0-100 scale, applied x10 at creation; a 'lewd' mod is added as-is, since lewdness stays 0-100), common (false = rare/exotic), weight (odds when a generic lady is rolled), names {f,l} (optional; otherwise people.json names), needs (house upgrade id required to recruit or assign her), wage (wage multiplier), fx (effect engine, see traits.json _readme), client {like, dislike, classLike}.",
     "client.like = chance per client to be an enthusiast for her race (fee x1.2, satisfaction +12). client.dislike = chance he is put off (satisfaction -15, and half the time he asks for someone else if anyone is free). classLike: extra like chance by client class.",
-    "subs (beastkin): each with weight, mods, fx and optional label/look/client/age that override the race's. The former dragonkin is beastkin sub 'dragon'.",
+    "subs (beastkin): each with weight, mods, fx and optional label/look/client/age/names that override the race's. The former dragonkin is beastkin sub 'dragon'.",
     "Rules that are not simple numbers (demon feeding, android recharging, beastkin refusals, spirit bedlessness) live in code and read these entries.",
     "alwaysLast: generic ladies of this race always get a last name. Beastkin subs may also set wage."
   ],
@@ -40,10 +40,30 @@
       "client": {"like":0.12,"dislike":0.04},
       "wage": 0.75,
       "subs": {
-        "fox": {"weight":1,"mods":{"charm":5},"fx":{"appeal":3}},
-        "cat": {"weight":1,"mods":{"agility":5},"fx":{"energyRec":1.1}},
-        "wolf": {"weight":1,"mods":{"stamina":5},"fx":{"trustGain":1.1}},
-        "rabbit": {"weight":1,"mods":{},"fx":{"lustBuild":1.25,"encore":0.1}},
+        "fox": {
+          "weight": 1,
+          "mods": {"charm":5},
+          "fx": {"appeal":3},
+          "names": {"l":["Redbrush","Foxglove","Emberbrush","Kuzunoha","Silvertail","Hazebrush","Lanternfox","of the Shrine Gate"]}
+        },
+        "cat": {
+          "weight": 1,
+          "mods": {"agility":5},
+          "fx": {"energyRec":1.1},
+          "names": {"l":["Velvetpaw","Whiskerwind","Softstep","Silkpaw","Sunwindow","Tallwhisker","Mousebane","of the Night Market"]}
+        },
+        "wolf": {
+          "weight": 1,
+          "mods": {"stamina":5},
+          "fx": {"trustGain":1.1},
+          "names": {"l":["Grayfang","Moonhowl","Ironpelt","Snowmane","Frostfang","Longrunner","Pinehollow","of the Northern Pack"]}
+        },
+        "rabbit": {
+          "weight": 1,
+          "mods": {},
+          "fx": {"lustBuild":1.25,"encore":0.1},
+          "names": {"l":["Thistledown","Clovermeadow","Quickfoot","Burrowell","Hareswift","Longear","Hollowbank","Dandelion"]}
+        },
         "dragon": {
           "weight": 0.15,
           "label": "dragon",
@@ -52,7 +72,8 @@
           "fx": {"maxEnergy":15},
           "client": {"like":0.2,"dislike":0.1},
           "age": [80,400],
-          "wage": 1.15
+          "wage": 1.15,
+          "names": {"l":["Ashscale","Embercrest","Goldhorn","Stormwing","Jadeclaw","Cloudcoil","Pearlscale","of the Eastern Sea"]}
         }
       }
     },

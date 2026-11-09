@@ -6,7 +6,7 @@
     "Packs can be switched off in Settings → Visiting characters.",
     "All guests are adults: aged-up / endgame versions.",
     "jobs: {likes, dislikes} job ids, same as characters.json.",
-    "Guests also carry body and unique (see characters.json _readme). The persona pack entry \"chono\" is a TODO template: fill in her backstory, design and outfits yourself."
+    "Guests also carry body and unique (see characters.json _readme)."
   ],
   "visits": {"chance":0.3,"stayWeeks":2,"cooldownWeeks":8},
   "packs": {
@@ -79,7 +79,7 @@
           "style": "Sporty",
           "favColor": "pink",
           "fav": "cowgirl",
-          "dislike": "oral",
+          "dislike": "oral_give",
           "lovers": "missionary",
           "backstory": "A field medic from the Leaf, a shinobi village across the eastern sea with a punch that has gone through walls (literally, ask the landlord). She left over a long-distance relationship that stayed long-distance, and is done waiting on anyone.",
           "design": {
@@ -130,9 +130,9 @@
           "traits": ["Exhibitionist","Party Animal"],
           "style": "Revealing",
           "favColor": "violet",
-          "fav": "paizuri",
+          "fav": "breast_give",
           "dislike": "kiss",
-          "lovers": "oral",
+          "lovers": "oral_give",
           "backstory": "The flower-shop heiress of the Leaf, a shinobi village across the eastern sea came west to open a shop of her own and got distracted by a city that actually appreciates her. She reads people like open books, which makes her terrifying at a card table.",
           "design": {
             "build": "slender hourglass",
@@ -178,8 +178,8 @@
           "traits": ["Tough","Former Adventurer"],
           "style": "Sporty",
           "favColor": "green",
-          "fav": "manual",
-          "dislike": "paizuri",
+          "fav": "manual_give",
+          "dislike": "breast_give",
           "lovers": "cowgirl",
           "backstory": "A dwarven weaponsmith raised among the shinobi of the Leaf, a shinobi village across the eastern sea, Tenten throws knives the way other people breathe. She's saving for her own forge and treats the bar like a target range: nothing slips past her.",
           "design": {
@@ -288,9 +288,9 @@
           "traits": ["Greedy","Party Animal"],
           "style": "Elegant",
           "favColor": "green",
-          "fav": "paizuri",
-          "dislike": "manual",
-          "lovers": "cowgirl",
+          "fav": "breast_give",
+          "dislike": "manual_give",
+          "lovers": "massage_get",
           "backstory": "Former head of the Leaf, a shinobi village across the eastern sea, a legendary healer and an even more legendary bad gambler. Tsunade fled west one step ahead of her creditors and would very much like a cut of the house's dice tables.",
           "design": {
             "build": "voluptuous with a very large bust",
@@ -392,8 +392,8 @@
           "traits": ["Elegant","Romantic"],
           "style": "Elegant",
           "favColor": "crimson",
-          "fav": "oral",
-          "dislike": "paizuri",
+          "fav": "oral_give",
+          "dislike": "breast_give",
           "lovers": "missionary",
           "backstory": "An illusionist of the Leaf, a shinobi village across the eastern sea whose crimson eyes make men forget what they were saying. Widowed young, she spent fifteen years putting everyone else first and is finally doing something for herself.",
           "design": {"build":"curvy","hairStyle":"long wild wavy","hairColor":"black","eyes":"crimson red","skin":"pale","features":"dark red lipstick"},
@@ -468,7 +468,11 @@
           "bonds": {"kurenai":{"v":55,"note":"Drinking buddies for twenty years."}},
           "jobs": {"likes":["courtesan","bartender"],"dislikes":["promoter","maid"]},
           "body": {"bust":"large","height":"average","figure":"curvy"},
-          "unique": {"name":"Snake's Appetite","desc":"She is always hungry for more, and not just for dango.","fx":{"encore":0.1,"actQuality":{"oral":1.2}}}
+          "unique": {
+            "name": "Snake's Appetite",
+            "desc": "She is always hungry for more, and not just for dango.",
+            "fx": {"encore":0.1,"actQuality":{"oral_give":1.2}}
+          }
         },
         "karin": {
           "job": "bath",
@@ -479,8 +483,8 @@
           "traits": ["Romantic","Ambitious"],
           "style": "Cute",
           "favColor": "red",
-          "fav": "manual",
-          "dislike": "oral",
+          "fav": "manual_give",
+          "dislike": "oral_give",
           "lovers": "kiss",
           "backstory": "A sensor and healer from the wandering Uzumaki clan, Karin can feel a person's life energy from across a room. She claims she's here strictly for the pay. She has also asked twice whether Sam is single.",
           "design": {
@@ -527,8 +531,8 @@
           "traits": ["Elegant","Romantic"],
           "style": "Elegant",
           "favColor": "blue",
-          "fav": "paizuri",
-          "dislike": "manual",
+          "fav": "breast_give",
+          "dislike": "manual_give",
           "lovers": "missionary",
           "backstory": "The former ruler of the Mist, a coastal shinobi state, retired with a fortune, an iron reputation, and no husband. Mei is very, very keen to fix that last one. Any joke about her age or marriage prospects ends badly.",
           "design": {
@@ -631,7 +635,7 @@
           "style": "Revealing",
           "favColor": "wine",
           "fav": "cowgirl",
-          "dislike": "manual",
+          "dislike": "manual_give",
           "lovers": "kiss",
           "backstory": "An elven Suna medic from the Alliance villages across the eastern sea who once trained an entire rebel army's healers under the codename Star. Mio left that life behind but kept the coat, the dark lipstick and the habit of making sure every eye in the room lands on her.",
           "design": {
@@ -683,7 +687,7 @@
           "style": "Sporty",
           "favColor": "slate",
           "fav": "missionary",
-          "dislike": "paizuri",
+          "dislike": "breast_give",
           "lovers": "kiss",
           "backstory": "An Ame jonin from the Alliance villages across the eastern sea, Emi is the person other shinobi are relieved to see arrive. Nothing about her is flashy; troublemakers simply find themselves stuck in place until she decides what to do with them.",
           "design": {
@@ -728,7 +732,7 @@
           "traits": ["Exhibitionist","Night Owl"],
           "style": "Exotic",
           "favColor": "plum",
-          "fav": "oral",
+          "fav": "oral_give",
           "dislike": "doggy",
           "lovers": "cowgirl",
           "backstory": "A bat-winged sound demon from the Sound village of the Alliance villages across the eastern sea who plays a chakra guitar strung with green light. Bubbly, theatrical and very happy to be stared at, she has turned the house stage into a nightly vampire-rock concert.",
@@ -828,8 +832,8 @@
           "traits": ["Elegant","Loyal"],
           "style": "Elegant",
           "favColor": "white",
-          "fav": "manual",
-          "dislike": "oral",
+          "fav": "manual_give",
+          "dislike": "oral_give",
           "lovers": "missionary",
           "backstory": "An information specialist of the Leaf from the Alliance villages across the eastern sea, Saya keeps colonies of tiny beetles that quietly tell her everything happening in the building. She is quiet until a subject interests her, and then she is not quiet at all.",
           "design": {
@@ -880,7 +884,7 @@
           "traits": ["Eager","Ambitious"],
           "style": "Cute",
           "favColor": "dark red",
-          "fav": "manual",
+          "fav": "manual_give",
           "dislike": "missionary",
           "lovers": "cowgirl",
           "backstory": "Heir to a toolsmith dynasty from the Leaf of the Alliance villages across the eastern sea. Juju can make any gadget sing, and she has already rebuilt the bathhouse boilers, pumps and steam vents. She thinks she's easy to get along with. Everyone else thinks she's a lot.",
@@ -932,9 +936,9 @@
           "traits": ["Lazy","Eager"],
           "style": "Exotic",
           "favColor": "copper",
-          "fav": "cowgirl",
+          "fav": "massage_get",
           "dislike": "missionary",
-          "lovers": "oral",
+          "lovers": "oral_give",
           "backstory": "A wind spirit who drifted out of the Sand village of the Alliance villages across the eastern sea, Nami can spend six hours perfecting a breeze and forget an appointment entirely. She's relaxed about attraction, allergic to defining her type, and refuses to tie back her hair.",
           "design": {
             "build": "tall and athletic",
@@ -980,7 +984,7 @@
           "traits": ["Elegant","Romantic"],
           "style": "Elegant",
           "favColor": "navy",
-          "fav": "paizuri",
+          "fav": "breast_give",
           "dislike": "doggy",
           "lovers": "missionary",
           "backstory": "A Lava Release heir from the Mist of the Alliance villages across the eastern sea, Maki retired from field work and approaches life like an optimization problem: improve presentation, identify prospects, avoid wasted effort. She's learning that a résumé can't tell her whom she'll fall for.",
@@ -1035,8 +1039,8 @@
           "traits": ["Tough","Night Owl"],
           "style": "Sporty",
           "favColor": "purple",
-          "fav": "manual",
-          "dislike": "paizuri",
+          "fav": "manual_give",
+          "dislike": "breast_give",
           "lovers": "kiss",
           "backstory": "A Sand village puppeteer's masterwork, built long ago and awakened years later: an android with a wooden-and-metal puppet-craft body and a talent for marionette shows that leave the audience slack-jawed. She runs her right arm with a wire-thin thread of chakra, and she's sharper than her makers expected, and very much alive.",
           "design": {
@@ -1075,7 +1079,7 @@
           "unique": {
             "name": "Puppet-Craft Arm",
             "desc": "A tireless mechanical arm with precise control.",
-            "fx": {"jobBonus":{"dancer":1.15},"actQuality":{"manual":1.2}}
+            "fx": {"jobBonus":{"dancer":1.15},"actQuality":{"manual_give":1.2}}
           }
         },
         "yori": {
@@ -1180,7 +1184,7 @@
           "traits": ["Elegant","Ambitious"],
           "style": "Elegant",
           "favColor": "ice blue",
-          "fav": "manual",
+          "fav": "manual_get",
           "dislike": "kiss",
           "lovers": "missionary",
           "backstory": "A snow spirit and heir to the ice-wielding Kitahashi line of the Snow country, Yukine led her people out when their home fell, and nobody has been able to tell her what to do since. Dry, sarcastic and quietly menacing, she runs a floor like an Ice Princess who is unquestionably in control.",
@@ -1324,7 +1328,7 @@
           "traits": ["Eager","Loyal"],
           "style": "Elegant",
           "favColor": "brown",
-          "fav": "oral",
+          "fav": "oral_give",
           "dislike": "kiss",
           "lovers": "missionary",
           "backstory": "A Leaf researcher and former exam instructor from the Alliance villages across the eastern sea, Tsubasa looks like a friendly teacher. Her combat specialty is horrifyingly sticky chakra-laced saliva. She is extremely hygienic and refuses to let embarrassment stop her from mastering a useful skill.",
@@ -1507,7 +1511,7 @@
           "traits": ["Loyal","Eager"],
           "style": "Cute",
           "favColor": "red",
-          "fav": "oral",
+          "fav": "oral_give",
           "dislike": "doggy",
           "lovers": "cowgirl",
           "backstory": "A dwarven heir to the Ichiraku ramen line of the Leaf in the Alliance villages across the eastern sea, Ayano turned noodles into actual combat jutsu and is proud of it. She runs the kitchen bar, remembers every client's order, and hears all the gossip. People think they know her well. She knows them better.",
@@ -1602,8 +1606,8 @@
           "traits": ["Night Owl","Eager"],
           "style": "Elegant",
           "favColor": "black",
-          "fav": "cowgirl",
-          "dislike": "manual",
+          "fav": "oral_get",
+          "dislike": "manual_give",
           "lovers": "missionary",
           "backstory": "A demon from the tiny Village Hidden in the Void, somewhere in the Alliance villages across the eastern sea. Nai's eyes turn black when she looks hard at someone, and no jutsu works under that gaze. She looks ominous, smiles easily, and is friendlier than nearly anyone in the house.",
           "design": {
@@ -1650,7 +1654,7 @@
           "traits": ["Ambitious","Exhibitionist"],
           "style": "Revealing",
           "favColor": "black",
-          "fav": "manual",
+          "fav": "manual_give",
           "dislike": "kiss",
           "lovers": "doggy",
           "backstory": "A Leaf fundamentals specialist from the Alliance villages across the eastern sea who turns free time into an itinerary. Ebina shows plenty of skin without a second thought but almost never lets anyone see her eyes. She also reads a frankly alarming amount of romance fiction about men.",
@@ -1749,7 +1753,7 @@
           "favColor": "teal",
           "fav": "cowgirl",
           "dislike": "missionary",
-          "lovers": "oral",
+          "lovers": "oral_give",
           "backstory": "The rightful queen of a realm of twilight, Midna spent a long stretch cursed into a tiny imp and enjoyed none of it. Back in her true form, she is tall, imperious and wickedly amused by everything, Sam very much included.",
           "design": {
             "build": "tall and willowy",
@@ -1842,9 +1846,9 @@
           "traits": ["Exhibitionist","Elegant"],
           "style": "Revealing",
           "favColor": "magenta",
-          "fav": "paizuri",
+          "fav": "breast_give",
           "dislike": "doggy",
-          "lovers": "cowgirl",
+          "lovers": "breast_get",
           "backstory": "A great fairy who used to live in a healing fountain and grant weary travelers their strength back. She has moved into the bathhouse, which she considers a fountain with better gossip, and her laugh echoes off the tiles.",
           "design": {
             "build": "very tall and voluptuous",
@@ -1938,7 +1942,7 @@
           "style": "Sporty",
           "favColor": "green",
           "fav": "cowgirl",
-          "dislike": "manual",
+          "dislike": "manual_give",
           "lovers": "missionary",
           "backstory": "A swordswoman of the open plains from the warring continents beyond the southern straits, Lyndis turned down a noble title once and would do it again. She hates being cooped up, which is why she patrols the roof.",
           "design": {
@@ -2032,7 +2036,7 @@
           "traits": ["Party Animal","Romantic"],
           "style": "Elegant",
           "favColor": "orange",
-          "fav": "paizuri",
+          "fav": "breast_give",
           "dislike": "kiss",
           "lovers": "missionary",
           "backstory": "A former opera diva and academy physician from the warring continents beyond the southern straits, Manuela is on the hunt for a husband and has a standing order at the bar. She can still bring a full house to tears with one aria.",
@@ -2227,8 +2231,8 @@
           "style": "Elegant",
           "favColor": "silver",
           "fav": "cowgirl",
-          "dislike": "paizuri",
-          "lovers": "missionary",
+          "dislike": "breast_give",
+          "lovers": "oral_get",
           "backstory": "The second daughter of a powerful merchant family from the sea-trade cities of the far east coast, Carlotta collects art, settles disputes with an ornate pistol, and treats Sam's business as an investment she is still evaluating.",
           "design": {
             "build": "slender, refined, and short",
@@ -2434,7 +2438,7 @@
           "traits": ["Tough","Night Owl"],
           "style": "Exotic",
           "favColor": "purple",
-          "fav": "manual",
+          "fav": "manual_give",
           "dislike": "doggy",
           "lovers": "missionary",
           "backstory": "The psychic Gym Leader of Saffron City, Sabrina grew up able to bend spoons and read minds, and learned early that most people prefer you stay quiet about it. She is deadpan, precise and secretly very fond of the dolls she collects. She came to Hollowmere because the street hums with so many unspoken thoughts that, for once, someone can help with them.",
@@ -2487,7 +2491,7 @@
           "style": "Elegant",
           "favColor": "black",
           "fav": "kiss",
-          "dislike": "manual",
+          "dislike": "manual_give",
           "lovers": "cowgirl",
           "backstory": "The reigning Champion of Sinnoh, Cynthia has fought, studied and traveled for years chasing legends, and has never once lost her composure while doing it. She digs up ruins in her spare time, is quietly obsessed with old myths, and treats Hollowmere as a fascinating new excavation site. Everyone who meets her seems to want to be near her afterward.",
           "design": {
@@ -2647,7 +2651,7 @@
           "style": "Revealing",
           "favColor": "pink",
           "fav": "kiss",
-          "dislike": "manual",
+          "dislike": "manual_give",
           "lovers": "cowgirl",
           "backstory": "Noriko Kashiwagi has spent most of her thirties dressing for an entrance and waiting for a man who deserves it. She is vain, funny, a little dramatic and in no way cruel, with a laugh that makes strangers smile and a talent for turning a bad day into a great story. She came to Hollowmere on the rumor that the people here appreciate good taste.",
           "design": {
@@ -2755,7 +2759,7 @@
           "favColor": "teal",
           "fav": "massage_give",
           "dislike": "doggy",
-          "lovers": "oral",
+          "lovers": "oral_get",
           "backstory": "Tae Takemi runs a back-alley clinic and a drip-feed of experimental medicines, and is the only doctor in the district who will see anyone, no questions asked. She is dry, blunt, a bit of a night owl and unfazed by blood, fever or anyone's vanity. She came to Hollowmere for the herbs, stayed for the tea, and has opinions about everybody's posture.",
           "design": {
             "build": "athletic",
@@ -2808,7 +2812,7 @@
           "traits": ["Ambitious","Tough"],
           "style": "Elegant",
           "favColor": "navy",
-          "fav": "manual",
+          "fav": "manual_give",
           "dislike": "doggy",
           "lovers": "missionary",
           "backstory": "A prosecutor with a reputation for never losing a case she's decided to win, Sae Niijima lives on strong coffee, long hours and the kind of control that exhausts people. She is exacting, fair and fiercely loyal to the family she raised, and she has begun to wonder what her life might look like if it had a day off. She is here on a sabbatical she insists is only to audit the books.",
@@ -2849,57 +2853,6 @@
             "name": "Cross-Examination",
             "desc": "Nothing gets past her scrutiny; she runs a tight house and lifts its standing.",
             "fx": {"jobBonus":{"madame":1.2},"rep":1.1}
-          }
-        },
-        "chono": {
-          "job": "attendant",
-          "name": "Chono-sensei",
-          "race": "human",
-          "age": 30,
-          "personality": "Calm and elegant",
-          "traits": ["Elegant","Loyal"],
-          "style": "Elegant",
-          "favColor": "teal",
-          "fav": "kiss",
-          "dislike": null,
-          "lovers": "missionary",
-          "backstory": "TODO: your backstory for Chono-sensei. (Placeholder: a quiet, capable newcomer with a story she hasn't told yet.)",
-          "design": {
-            "build": "average",
-            "hairStyle": "TODO: hair style (neutral default: shoulder-length)",
-            "hairColor": "TODO: hair color (neutral default: brown)",
-            "eyes": "TODO: eye color (neutral default: brown)",
-            "skin": "fair",
-            "features": "TODO: distinguishing features"
-          },
-          "under": "plain",
-          "underColor": "white",
-          "stats": {"beauty":60,"charm":55,"refinement":55,"stamina":50,"strength":30,"agility":50},
-          "tech": {"service":30,"dance":20,"bar":20,"combat":20,"manage":30},
-          "actSkill": 15,
-          "popularity": 10,
-          "lewd": 20,
-          "trust": 20,
-          "outfits": {
-            "sig_chono": {
-              "label": "Everyday outfit (TODO)",
-              "style": "Elegant",
-              "prompt": "TODO: describe her signature outfit (neutral default: a simple fitted blouse and skirt)",
-              "bonus": {"attendant":1.2}
-            },
-            "sp_chono": {
-              "label": "Evening outfit (TODO)",
-              "style": "Elegant",
-              "prompt": "TODO: describe her special outfit (neutral default: a simple evening dress)",
-              "bonus": {"noble":1.15,"courtesan":1.1}
-            }
-          },
-          "jobs": {"likes":["attendant"],"dislikes":["dancer"]},
-          "body": {"bust":"medium","height":"average","figure":"slim"},
-          "unique": {
-            "name": "TODO: unique trait",
-            "desc": "TODO: describe a trait that fits her. Placeholder: dependable and quick to learn.",
-            "fx": {"skillGain":1.1}
           }
         }
       }

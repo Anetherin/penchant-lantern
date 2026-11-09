@@ -68,7 +68,7 @@ const STANCE = {yes:'<span class="good" title="She enjoys this">✓</span>', ask
 const actSkill = (w,id) => (w.acts&&w.acts[actKey(id)]) ? w.acts[actKey(id)].skill : 0;
 
 /* ---------- wardrobe logic ---------- */
-// Scene keys can carry extras after the base: 'act:oral~lost_in_it~prop' (~expression, ~context). sceneParts splits them.
+// Scene keys can carry extras after the base: 'act:oral_give~lost_in_it~prop' (~expression, ~context). sceneParts splits them.
 function sceneParts(k){ const p = String(k||'').split('~'); return {base:p[0], expr:p[1]||'', ctx:p[2]||''}; }
 const sceneBase = k => sceneParts(k).base;
 const isSvcScene = k => /^(act:|samact:|duo:|solo$)/.test(sceneBase(k));
@@ -155,9 +155,11 @@ function signingFor(w){ return Math.max(60, Math.round(w.wage * rnd(5,8) * (0.9 
 function grow(w,k,n){ n *= SKL * fxMul(w,'skillGain') * trainBonus(w); w.tech[k] = clampK((w.tech[k]||0) + n*(1 - (w.tech[k]||0)/1300)); }
 function growAct(w,id,n){ id = actKey(id); if(!w.acts[id]) return; n *= SKL * fxMul(w,'skillGain') * trainBonus(w); const s=w.acts[id].skill; w.acts[id].skill = clampK(s + n*(1 - s/1300)); }
 function allNames(){ return S ? [...S.workers, ...S.candidates].map(w=>w.name) : []; }
-function genName(race){
-  const R = RACES[race] || {}, n = R.names || NAMES[race] || NAMES.human; let name, t=0;
-  do { name = pick(n.f) + (n.l && n.l.length && (R.alwaysLast || Math.random()<0.8) ? ' '+pick(n.l) : ''); t++; } while(allNames().includes(name) && t<25);
+function genName(race, sub){
+  const R = RACES[race] || {}, n = R.names || NAMES[race] || NAMES.human, SL = ((subData(race, sub)||{}).names||{}).l; let name, t=0;
+  // last names (or titles): the race's list, or half the time the beastkin sub's own list
+  const lastPool = () => (SL && SL.length && (!(n.l && n.l.length) || Math.random()<0.5)) ? SL : n.l;
+  do { const L = lastPool(); name = pick(n.f) + (L && L.length && (R.alwaysLast || Math.random()<0.8) ? ' '+pick(L) : ''); t++; } while(allNames().includes(name) && t<25);
   return name;
 }
 
@@ -233,7 +235,7 @@ function genWorker(opts={}){
   const base = () => clampK(K(rnd(15,55)*q));
   const sub = race==='beastkin' ? weighted(subNames(race), x=>(subData(race,x)||{}).weight ?? 1) : '';
   const w = {
-    id:uid(), name:genName(race), race, sub, age:ri(...((subData(race,sub)||{}).age || R.age)), named:false, keep:false, body:rollBody(race), counts:{},
+    id:uid(), name:genName(race, sub), race, sub, age:ri(...((subData(race,sub)||{}).age || R.age)), named:false, keep:false, body:rollBody(race), counts:{},
     design:{build:pick(BUILDS),hairStyle:pick(HAIR_STYLES),hairColor:pick(HAIR_COLORS),eyes:pick(EYES),
       skin: race==='demon'&&Math.random()<0.4 ? pick(DEMON_SKINS) : pick(SKINS), features:pick(FEATURES)},
     personality:pick(PERSONALITIES), backstory:'', traits:[],

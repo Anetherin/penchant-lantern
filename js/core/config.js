@@ -17,11 +17,15 @@ const GUEST_PACKS = noMeta((DATA.guests||{}).packs);
 const GUEST_VISITS = Object.assign({chance:0.3, stayWeeks:2, cooldownWeeks:8}, (DATA.guests||{}).visits);
 // Service categories (data/services.json). Custom ones added in old versions of Settings still work.
 const ACTS = needData('services').services;
-// The old service id 'caress' is now 'kiss'. Old data/saves that still say caress keep working through these.
-const ACT_ALIAS = {caress:'kiss'}, ACT_ALIAS_REV = {kiss:'caress'};
+// Old service ids -> current ones (services come in _give/_get pairs). Old data/saves that use them keep working through these.
+const ACT_ALIAS = {caress:'kiss', manual:'manual_give', oral:'oral_give', paizuri:'breast_give'};
+const ACT_ALIAS_REV = Object.fromEntries(Object.entries(ACT_ALIAS).map(([o,n])=>[n,o]));
 const actKey = id => ACT_ALIAS[id] || id;
 // a per-service lookup into a data map (flavor, dynamics...), falling back to the old id
 const byAct = (map, id) => (map||{})[id] ?? (map||{})[ACT_ALIAS_REV[id]];
+// Saved image keys / scene keys that still carry an old service id ('act:oral~lost', 'duo:paizuri:b', ...)
+const ACT_ALIAS_RE = new RegExp('((?:^|[|])(?:act|samact|duo):)(' + Object.keys(ACT_ALIAS).join('|') + ')(?=[~:|]|$)');
+const actKeyScene = k => String(k).replace(ACT_ALIAS_RE, (m, p, id) => p + ACT_ALIAS[id]);
 // Your own scene text, appended to the generated prompt (data/snippets.json → scenes).
 const SCENE_SNIPPETS = noMeta(needData('snippets').scenes);
 // Clothing state wording (data/snippets.json → clothing). {outfit} and {underwear} are filled in from her wardrobe.

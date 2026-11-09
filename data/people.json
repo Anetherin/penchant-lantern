@@ -2,7 +2,7 @@
   "_readme": [
     "Random generation pools for generic characters, plus a few lists of flavor.",
     "races.json can carry its own names (angel, android) which take precedence over this file; angel/android lists here are the fallback. android 'l' entries are model designations.",
-    "names: first (f) and last (l) names per race. builds/hairStyles/hairColors/eyes/skins/demonSkins/features: appearance picks for image prompts.",
+    "names: first (f) and last (l) names per race; every race has an l list (last names, house names or titles like 'of the Ninth Circle'). Beastkin subs in races.json can add their own l list (names.l), used instead of these half the time. builds/hairStyles/hairColors/eyes/skins/demonSkins/features: appearance picks for image prompts.",
     "hooks: why she came to Hollowmere (used in AI backstories). gifts: what Sam gives when he buys a gift. clients: how anonymous clients are described in reports, per client class."
   ],
   "names": {
@@ -253,6 +253,20 @@
         "Wisteria",
         "Yarrow",
         "Zinnia"
+      ],
+      "l": [
+        "Tallgrass",
+        "Thornpaw",
+        "Mosswhisker",
+        "Brightfur",
+        "Ashpelt",
+        "Swiftfoot",
+        "Duskmane",
+        "of the Long Meadow",
+        "of the Red Hollow",
+        "Brambleback",
+        "Fernhollow",
+        "Kestrel-clan"
       ]
     },
     "demon": {
@@ -296,6 +310,22 @@
         "Cindra",
         "Dagrun",
         "Elvyra"
+      ],
+      "l": [
+        "of the Ninth Circle",
+        "Duskbane",
+        "the Unbound",
+        "Hellebore",
+        "Thornheart",
+        "of House Malgrave",
+        "Cinderveil",
+        "Nightbloom",
+        "Vexmoor",
+        "the Gilded Sin",
+        "Ashenvow",
+        "Blackbriar",
+        "of the Ember Court",
+        "Sablethorn"
       ]
     },
     "dwarf": {
@@ -411,6 +441,20 @@
         "Perdita",
         "Rosamund",
         "Sorrel"
+      ],
+      "l": [
+        "of the Willow Well",
+        "the Lantern-Bound",
+        "Mistwalker",
+        "of the Drowned Bell",
+        "Hollowlight",
+        "the Unforgotten",
+        "Candlewick",
+        "of Ashgrove Chapel",
+        "Paleveil",
+        "the Quiet",
+        "Moth-and-Candle",
+        "of the Silent Mere"
       ]
     },
     "angel": {

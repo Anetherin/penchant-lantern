@@ -21,6 +21,9 @@ async function init(){
   IMGKEYS = new Set((await imgKeysAll()) || []);
   // the saved library was 0-100 before the 0-1000 stats change
   if(store.get('gilded_lantern_libv') !== 13){ LIB.forEach(w=>{ scaleWorker(w); migrateWorker(w); }); saveLib(); store.set('gilded_lantern_libv', 13); }
+  else LIB.forEach(migrateWorker);   // idempotent: picks up renamed service ids
+  // saved images keyed by an old service id ('act:oral', 'samact:paizuri', ...) move to the new id
+  for(const k of [...IMGKEYS]){ const nk = actKeyScene(k); if(nk!==k && !IMGKEYS.has(nk)){ const v = await imgGet(k); if(v){ await imgPut(nk, v); await imgDel(k); } } }
   S = store.get(KEY_SAVE);
   if(!S || !Array.isArray(S.workers)){ S = null; startSetup(); }
   else { migrate(S); save(); render(); }
