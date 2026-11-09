@@ -266,20 +266,6 @@
       "{name} checked in on every lady at least once this week. They noticed."
     ]
   },
-  "job_reception": {
-    "_note": "Weekly report line for a receptionist.",
-    "_default": [
-      "{name} greeted every guest by name by the end of the week.",
-      "{name} talked a nervous first-timer through the menu so gently he tipped her too.",
-      "The front desk at {house} has never been this organized. {name} is very proud."
-    ]
-  },
-  "job_companion": {
-    "_note": "Weekly report line for a companion with no clients.",
-    "_default": [
-      "A slow week for {name}. She spent it chatting with the others in the lounge."
-    ]
-  },
   "job_rest": {
     "_note": "Weekly report line for a lady resting.",
     "_default": [
@@ -342,5 +328,127 @@
     "_note": "Client who's uneasy around her kind.",
     "_default": ["He seemed ill at ease around her.","He kept glancing away. It wasn't her best night."]
   },
-  "encore": {"_note":"She wasn't done after the first round.","_default":["...and she wasn't done with him yet."]}
+  "encore": {"_note":"She wasn't done after the first round.","_default":["...and she wasn't done with him yet."]},
+  "job_promoter": {
+    "_note": "Weekly report line for a promoter (no samples).",
+    "_default": [
+      "{name} stood at the door of {house} all week, handing out flyers and smiling at everyone who slowed down.",
+      "{name} struck up conversations with half the street. A few of them even came inside.",
+      "{name} learned which tavern crowds are worth chatting up and which are just looking for a free drink."
+    ]
+  },
+  "job_promoter_samples": {
+    "_note": "Weekly report line for a promoter handing out free samples.",
+    "_default": [
+      "{name} handed out little teasers all week and left a trail of curious faces in her wake.",
+      "{name} gave away a lot of smiles and a few sample tastes. The queue at {house} grew.",
+      "{name} made the free samples sound irresistible. They were not wrong."
+    ]
+  },
+  "job_attendant": {
+    "_note": "Weekly report line for an attendant.",
+    "_default": [
+      "{name} kept the corridors of {house} moving: towels, wine, and a calm word when it was needed.",
+      "{name} spent the week making the courtesans' evenings easier. Nobody had to ask twice.",
+      "{name} refilled glasses, fetched shawls, and noticed everything."
+    ]
+  },
+  "job_courtesan": {
+    "_note": "Weekly report line for a courtesan who had no clients.",
+    "_default": [
+      "A quiet week for {name}. She wrote letters and rearranged her room twice.",
+      "{name} waited in the lounge all week. The clients simply did not come."
+    ]
+  },
+  "job_samples_rep_good": {
+    "_note": "Note when a promoter's samples raised the house's name.",
+    "_default": [
+      "{name}'s samples had the whole district talking about {house}."
+    ]
+  },
+  "job_samples_rep_bad": {
+    "_note": "Note when a promoter's samples cheapened the house.",
+    "_default": [
+      "{name}'s samples left people shrugging. {house} looked a little cheaper for it."
+    ]
+  },
+  "stepped_in": {
+    "_note": "Note when a madame or attendant took clients because the courtesans were swamped.",
+    "_default": [
+      "{name} stepped in when the courtesans were swamped and kept the evening running.",
+      "{name} took the overflow in the lounge so nobody had to be turned away."
+    ]
+  },
+  "pushy_security": {
+    "_note": "A client got pushy and security handled it. Non-graphic.",
+    "_default": [
+      "A client got pushy with {name}, and security walked him out.",
+      "Someone wouldn't take no from {name}. Security walked him out before it went further."
+    ]
+  },
+  "pushy_sam": {
+    "_note": "A client got pushy and Sam stepped in. Non-graphic.",
+    "_default": [
+      "A client got pushy with {name}. Sam stepped in and settled it.",
+      "A client wouldn't take no for an answer. Sam stepped in and walked him to the door."
+    ]
+  },
+  "pushy_samfail": {
+    "_note": "A client got pushy and Sam's attempt went badly. Non-graphic.",
+    "_default": [
+      "A client got pushy with {name}. Sam stepped in, and it went badly: a loud scene, a bruised ego, and a bad story about {house}."
+    ]
+  },
+  "pushy_none": {
+    "_note": "A client got pushy and nobody was there. Non-graphic.",
+    "_default": [
+      "A client got pushy with {name} and nobody was around to help. She got away from him, shaken.",
+      "{name} had to talk her way out of a client who wouldn't take no. Nobody was near."
+    ]
+  },
+  "enc_pushy_security": {"_default":["He got pushy; security walked him out."]},
+  "enc_pushy_sam": {"_default":["He got pushy; Sam stepped in."]},
+  "enc_pushy_samfail": {"_default":["He got pushy; Sam's intervention went badly."]},
+  "enc_pushy_none": {"_default":["He got pushy and nobody was there to help."]},
+  "self_prop": {
+    "_note": "A restless lady propositioned a client herself.",
+    "_default": [
+      "{name}, restless, picked out a client herself and he was not about to say no.",
+      "{name} caught a client's eye across the lounge and made the first move."
+    ]
+  },
+  "rooms_short": {
+    "_note": "Note: the house ran out of room sessions.",
+    "_default": [
+      "{house} ran short on rooms this week. More bedrooms would have meant more clients."
+    ]
+  },
+  "tidy_high": {"_note":"Weekly note when the house is spotless.","_default":["{house} is spotless, and everyone seems to breathe easier for it."]},
+  "tidy_low": {
+    "_note": "Weekly note when the house is getting shabby.",
+    "_default": [
+      "{house} is getting untidy. Guests have noticed, and so have the ladies."
+    ]
+  },
+  "tidy_bad": {"_note":"Weekly note when the house is a mess.","_default":["{house} is a mess. Guests wrinkle their noses and the ladies are miserable."]},
+  "expect_miss": {
+    "_note": "A client expected the attendant to offer, and she didn't.",
+    "_default": [
+      "A client seemed to expect {name} to make an offer. She didn't, and he left a little sour."
+    ]
+  },
+  "prop_accept_reluctant": {
+    "_note": "She accepted a proposition without much enthusiasm.",
+    "_default": [
+      "{name} said yes to a proposition she wasn't really in the mood for."
+    ]
+  },
+  "bath_massage": {
+    "_note": "Weekly line for a bath attendant who gave massages.",
+    "_default": [
+      "{name} offered every bather a massage, and most of them said yes."
+    ]
+  },
+  "enc_noroom": {"_note":"No free room for the client.","_default":["No room was free, so he went home disappointed."]},
+  "enc_expect": {"_note":"A client expected the attendant to make an offer.","_default":["He seemed to expect an offer and left a little sour."]}
 }

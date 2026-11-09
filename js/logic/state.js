@@ -20,10 +20,10 @@ function storyNpc(key){ const id='n_'+key; if(!NPCS[id]) NPCS[id] = makeNamed(ke
 const H = id => S.houses.find(h=>h.id===id);
 const curH = () => H(S.cur) || S.houses[0];
 const houseOf = w => (S && (H(w.house) || S.houses[0])) || null;
-function makeHouse(id){ const D = HOUSES[id]; return {id, name:D.name, rooms:D.rooms, quarters:D.quarters, beds:D.beds, tier:D.tier, up:clone(D.up), price:1, rep:D.rep, since:S?S.week:1, story:{beat:0,wk:0}, bonus:{}}; }
+function makeHouse(id){ const D = HOUSES[id]; return {id, name:D.name, rooms:D.rooms, quarters:D.quarters, beds:D.beds, tier:D.tier, up:clone(D.up), tidy:BAL.tidy.start, price:1, rep:D.rep, since:S?S.week:1, story:{beat:0,wk:0}, bonus:{}}; }
 function newGame(cfg){
   const HD = HOUSES[cfg.house];
-  S = { v:13, week:1, gold:600, rep:HD.rep, ap:3, cur:cfg.house, home:cfg.house, cycle:1, boons:[], past:cfg.past, partner:cfg.partner, partners:[cfg.partner],
+  S = { v:14, week:1, gold:600, rep:HD.rep, ap:3, cur:cfg.house, home:cfg.house, cycle:1, boons:[], past:cfg.past, partner:cfg.partner, partners:[cfg.partner],
     houses:[makeHouse(cfg.house)],
     sam:{energy:100, charm:20, business:35, strength:15, technique:0, appraisal:1, appXP:0, first:true, lvl:1, xp:0},
     samWeek:{security:0, books:false, income:0, acts:[]},
@@ -35,7 +35,7 @@ function newGame(cfg){
   const npc = makeNamed(HD.npc); npc.house = cfg.house; npc.locked = cfg.house; npc.contract = 999; npc.trust = clamp(npc.trust+10);
   const p = makeNamed(cfg.partner, true); p.house = cfg.house;
   S.workers.push(npc, p);
-  assignStart(npc, NAMED[HD.npc].job); assignStart(p, NAMED[cfg.partner].job==='courtesan' || JOBS[npc.job].cat!=='escort' ? (NAMED[cfg.partner].job==='courtesan'?'courtesan':'companion') : (['bartender','dancer','bath'].includes(NAMED[cfg.partner].job) ? NAMED[cfg.partner].job : 'companion'));
+  assignStart(npc, NAMED[HD.npc].job); assignStart(p, ['courtesan','bartender','dancer','bath'].includes(NAMED[cfg.partner].job) ? NAMED[cfg.partner].job : 'courtesan');
   refreshCandidates();
   checkUnlocks(true);
   addLog(`Sam Takahashi wakes up in Hollowmere with a deed to ${HD.name}, a debt, and a status window only he can see.`);
@@ -43,9 +43,9 @@ function newGame(cfg){
 }
 function assignStart(w, job){
   w.job = 'rest';
-  if(canDo(w, job)) job = 'companion';
+  job = safeJob(w, job);
   w.job = job;
-  if(job==='courtesan' || job==='companion') w.menu = getActs().filter(a=>clientStance(w,a.id)==='yes').map(a=>a.id);
+  if(MENU_JOBS.includes(job)) w.menu = getActs().filter(a=>clientStance(w,a.id)==='yes').map(a=>a.id);
 }
 // Older saves: stats, skills and service skills were 0-100 and are now 0-1000; caress became kiss; dragonkin became beastkin (dragon).
 function scaleWorker(w){
@@ -58,6 +58,10 @@ function migrateWorker(w){
   ['fav','dislike','lovers'].forEach(k=>{ if(w[k]) w[k] = actKey(w[k]); });
   if(w.menu) w.menu = Array.from(new Set(w.menu.map(actKey)));
   if(w.race==='dragonkin'){ w.race = 'beastkin'; w.sub = 'dragon'; }
+  // companion became courtesan, reception became promoter
+  const JM = {companion:'courtesan', reception:'promoter'};
+  if(JM[w.job]) w.job = JM[w.job]; if(JM[w.prevJob]) w.prevJob = JM[w.prevJob];
+  ['jobLikes','jobDislikes'].forEach(k=>{ if(Array.isArray(w[k])) w[k] = Array.from(new Set(w[k].map(j=>JM[j]||j))); });
   if(w.seen){ Object.keys(w.seen).forEach(k=>{ if(/^[cs]_caress$/.test(k)){ w.seen[k.replace('caress','kiss')] = w.seen[k]; delete w.seen[k]; } }); }
 }
 function migrate(s){
@@ -77,10 +81,11 @@ function migrate(s){
   }
   if(ov < 13) (s.workers||[]).concat(s.candidates||[]).forEach(scaleWorker);
   (s.workers||[]).concat(s.candidates||[]).forEach(migrateWorker);
-  s.v = 13; s.home = s.home || (s.houses[0]||{}).id; s.cycle = s.cycle || 1; s.boons = s.boons || []; s.partners = s.partners || (s.partner ? [s.partner] : []);
+  if(ov < 14) s.lastReport = null;
+  s.v = 14; s.home = s.home || (s.houses[0]||{}).id; s.cycle = s.cycle || 1; s.boons = s.boons || []; s.partners = s.partners || (s.partner ? [s.partner] : []);
   s.regulars = s.regulars || []; s.bonds = s.bonds || {}; s.flags = Object.assign({partnerCD:3}, s.flags||{});
   s.sam.lvl = s.sam.lvl || 1; s.sam.xp = s.sam.xp || 0;
-  s.houses.forEach(h=>{ h.since = h.since || 1; h.story = h.story || {beat:0,wk:0}; h.bonus = h.bonus || {};
+  s.houses.forEach(h=>{ if(h.tidy===undefined) h.tidy = BAL.tidy.start; h.since = h.since || 1; h.story = h.story || {beat:0,wk:0}; h.bonus = h.bonus || {};
     if(h.quarters===undefined){ h.quarters = Math.max(HOUSES[h.id].quarters, Math.ceil((s.workers||[]).filter(w=>w.house===h.id).length/2)); h.beds = HOUSES[h.id].beds; }
     (s.workers||[]).forEach(w=>{ if(w.key===HOUSES[h.id].npc){ w.locked = h.id; w.house = h.id; } }); });
   s.samWeek = Object.assign({security:0,books:false,income:0,acts:[]}, s.samWeek||{}); if(!s.samWeek.acts) s.samWeek.acts=[];

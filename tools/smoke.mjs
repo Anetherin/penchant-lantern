@@ -20,7 +20,7 @@ const BOT = `async (weeks) => {
     endWeek(); closeModal();
     let g = 0; while ((EVQ.length || CUR_EV) && g < 25) { if (CUR_EV) { evChoice(Math.floor(Math.random()*CUR_EV.choices.length)); CUR_EV = null; } closeModal(); runQueue(); g++; } closeModal();
     S.gold = Math.max(S.gold, 2000); S.debt.strikes = 0;
-    S.workers.forEach(w => { if (w.job === 'rest' && !w.prevJob && w.energy > maxEnergy(w)*0.6) { for (const j of ['courtesan','companion','bartender','maid']) { if (!canDo(w, j)) { setJob(w.id, j); break; } } } });
+    S.workers.forEach(w => { if (w.job === 'rest' && !w.prevJob && w.energy > maxEnergy(w)*0.6) { for (const j of ['courtesan','promoter','attendant','bartender','maid']) { if (!canDo(w, j)) { setJob(w.id, j); break; } } } });
     for (const t of TABS) { TAB = t[0]; render(); }
     openSheet(S.workers[0].id); openWardrobe(S.workers[0].id); closeModal();
   }

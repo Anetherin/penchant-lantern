@@ -2,7 +2,7 @@
 /* ---------- Character sheet ---------- */
 function sheetScenes(w){
   const out = ['portrait','casual'];
-  if(SCENES['job_'+w.job] && w.job!=='rest' && w.job!=='companion') out.push('job_'+w.job);
+  if(SCENES['job_'+w.job] && w.job!=='rest') out.push('job_'+w.job);
   out.push('companion');
   if(houseOf(w).up.bath) out.push('bath');
   out.push('sam_date', ...Object.keys(DATES).map(k=>'date_'+k), 'sam_training','shower','walkin');
@@ -60,7 +60,9 @@ function refreshSheetInfo(){
     <h3 style="margin-top:10px">Services</h3>
     <table><tr><th>Service</th><th>Skill</th><th>Clients</th><th>Sam</th><th>Menu</th></tr>${rows}</table>
     <div class="muted" style="font-size:12px">✓ she enjoys it · 🔒 (Sam) she'd be fine with it, but they haven't gotten that far yet · ~ she'll do it because she trusts Sam (costs mood; lewdness grows faster) · ✗ a line she won't cross yet. Numbers: her inclination / the service's line.<br>${kp?'★ favorite (mood +) · <span class="warn">✗</span> after a name = dislikes (mood −) · ♥ lovers only':'Her preferences show at trust 40 or Appraisal Lv 3.'} · Menu = what she offers clients.</div>
-    <label class="chk" style="margin-top:4px"><input type="checkbox" ${w.offDuty?'checked':''} onchange="setOffDuty('${w.id}',this.checked)"> Accepts propositions (for menu services) while working other jobs</label>
+    <div class="row" style="margin-top:4px" title="Clients may proposition her for menu services. Courtesans, dancers and bath attendants always serve them. Others: On = usually accepts, Ask me = she decides (lust and mood), Off = no (unless she is reckless). Each accepted proposition costs ${Math.round(BAL.props.penalty*100)}% of her main job's output (max ${Math.round(BAL.props.maxPenalty*100)}%).">Open to propositions ${JOBS[w.job].must ? '<span class="muted">always (this job offers its menu)</span>' : `<select onchange="setOffDuty('${w.id}',this.value)"><option value="on" ${w.offDuty==='on'?'selected':''}>On</option><option value="ask" ${w.offDuty==='ask'?'selected':''}>Ask me</option><option value="off" ${w.offDuty==='off'?'selected':''}>Off</option></select>`}</div>
+    ${w.job==='promoter' ? `<label class="chk"><input type="checkbox" ${w.samples&&!has(w,'Modest')?'checked':''} ${has(w,'Modest')?'disabled':''} onchange="setSamples('${w.id}',this.checked)"> Hand out free samples (bigger draw, tiring, can cheapen the house)${has(w,'Modest')?' <span class="muted">· too modest</span>':''}</label>` : ''}
+    ${w.job==='madame' ? `<div class="row">Focus <select onchange="setMadameFocus('${w.id}',this.value)"><option value="training" ${w.madameFocus==='training'?'selected':''}>Training (house ladies learn faster)</option><option value="management" ${w.madameFocus!=='training'?'selected':''}>Management (calmer moods, better matches)</option></select></div>` : ''}
     <label class="chk"><input type="checkbox" ${w.autoRest?'checked':''} onchange="setAutoRest('${w.id}',this.checked)"> Auto-rest when worn out (below 35% energy), back to work at 85%</label>
     <div class="row" style="margin-top:10px">Job <select onchange="setJob('${w.id}',this.value)">${jobOptions(w)}</select>
       ${w.locked?`<span class="tag house">🏠 Bound to ${esc(H(w.locked)?H(w.locked).name:'')}</span>`:''}${S.houses.length>1&&!w.locked?`House <select onchange="setHouse('${w.id}',this.value)">${S.houses.map(h=>`<option value="${h.id}" ${h.id===w.house?'selected':''}>${esc(h.name)}</option>`).join('')}</select>`:''}</div>

@@ -12,7 +12,7 @@
   "Cheerful and teasing": {
     "likes": ["chat","gift","walk"],
     "dislikes": ["train","theater"],
-    "jobsUp": ["bartender","companion","reception"],
+    "jobsUp": ["bartender"],
     "jobsDown": ["maid","security"],
     "trust": 1.1,
     "lewd": 1.05,
@@ -25,7 +25,7 @@
   "Calm and elegant": {
     "likes": ["dinner","train","theater"],
     "dislikes": ["walk"],
-    "jobsUp": ["madame","companion","dancer"],
+    "jobsUp": ["madame","dancer"],
     "jobsDown": ["bartender","maid"],
     "trust": 1,
     "lewd": 0.95,
@@ -38,7 +38,7 @@
   "Shy but earnest": {
     "likes": ["chat","train","walk"],
     "dislikes": ["dinner"],
-    "jobsUp": ["maid","reception"],
+    "jobsUp": ["maid"],
     "jobsDown": ["dancer","courtesan"],
     "trust": 1.2,
     "lewd": 0.85,
@@ -66,7 +66,7 @@
   "Laid-back and lazy": {
     "likes": ["chat","private"],
     "dislikes": ["train","walk"],
-    "jobsUp": ["companion","bath"],
+    "jobsUp": ["bath"],
     "jobsDown": ["security","maid"],
     "trust": 1,
     "lewd": 1.05,
@@ -80,7 +80,7 @@
     "likes": ["private","dinner"],
     "dislikes": ["train"],
     "jobsUp": ["courtesan","dancer","bartender"],
-    "jobsDown": ["maid","reception"],
+    "jobsDown": ["maid"],
     "trust": 1,
     "lewd": 1.2,
     "solo": 0.15,
@@ -93,7 +93,7 @@
   "Bookish and curious": {
     "likes": ["train","chat","theater"],
     "dislikes": ["gift"],
-    "jobsUp": ["reception","madame"],
+    "jobsUp": ["madame"],
     "jobsDown": ["security","dancer"],
     "trust": 1.05,
     "lewd": 1,
@@ -119,8 +119,8 @@
   "Mysterious and aloof": {
     "likes": ["gift","private","theater"],
     "dislikes": ["chat"],
-    "jobsUp": ["dancer","companion"],
-    "jobsDown": ["reception"],
+    "jobsUp": ["dancer"],
+    "jobsDown": [],
     "trust": 0.8,
     "lewd": 1,
     "solo": 0.6,
@@ -134,7 +134,7 @@
     "likes": ["train","dinner"],
     "dislikes": ["gift","theater"],
     "jobsUp": ["security","bartender","dancer"],
-    "jobsDown": ["reception","maid"],
+    "jobsDown": ["maid"],
     "trust": 1,
     "lewd": 1.05,
     "solo": 0.3,

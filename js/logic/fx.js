@@ -53,7 +53,12 @@ const bodyLabel = w => { const b = bodyOf(w); return BODY_KEYS.map(k => (bodyOpt
 const lustHigh = w => fxHas(w, 'noReckless') ? 1e9 : LUST_HIGH + fxAdd(w, 'recklessAt');
 const restless = w => w.lust >= lustHigh(w);
 // Mood change scaled by moodDelta (events & work). Returns the applied change.
-function moodAdd(w, n){ const before = w.mood, d = n * fxMul(w, 'moodDelta'); w.mood = clamp(w.mood + d); return w.mood - before; }
+// A management-focus madame in her house softens mood losses (balance.json → jobs.madameMoodLoss).
+function madameShield(w){
+  if(typeof S==='undefined' || !S || !w.house) return 1;
+  return S.workers.some(x=>x!==w && x.house===w.house && x.job==='madame' && (x.madameFocus||'management')==='management') ? BAL.jobs.madameMoodLoss : 1;
+}
+function moodAdd(w, n){ const before = w.mood; let d = n * fxMul(w, 'moodDelta'); if(d < 0) d *= madameShield(w); w.mood = clamp(w.mood + d); return w.mood - before; }
 // Sleep/rest recovery multiplier from fx, plus the house's amenities (hearth for dwarves).
 function restMult(w){
   let m = fxMul(w, 'energyRec');

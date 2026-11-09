@@ -115,6 +115,18 @@
       "label": "Bath: Walks in, unbothered",
       "comp": "leaning in the washroom doorway with a towel over her shoulder, amused smile, looking at the viewer",
       "setting": "steamy wooden washroom, a man in the tub off-frame"
+    },
+    "job_promoter": {
+      "label": "Work: Promoter",
+      "comp": "handing out flyers with a friendly smile, welcoming passers-by",
+      "setting": "lantern-lit street outside the house entrance",
+      "house": true
+    },
+    "job_attendant": {
+      "label": "Work: Attendant",
+      "comp": "carrying a tray of refreshments, attentive smile",
+      "setting": "warm lantern-lit corridor of a pleasure house",
+      "house": true
     }
   },
   "rooms": [

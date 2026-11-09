@@ -7,18 +7,22 @@ function canDo(w, job){
   const h = houseOf(w);
   if(job!=='rest' && w.health<30) return `${w.name} is too unwell to work.`;
   if(job!=='rest' && w.trust < jobTrust(w,job)) return `${w.name} doesn't trust Sam enough for that yet (needs trust ${jobTrust(w,job)}).`;
-  if(job==='courtesan' && !getActs().some(a=>canClient(w,a.id))) return `${w.name} isn't comfortable with that yet.`;
+  if(job==='courtesan' && !getActs().some(a=>clientStance(w,a.id,'courtesan')!=='no')) return `${w.name} isn't comfortable with that yet.`;
   if(J.needs && !h.up[J.needs]) return `${h.name} needs a ${UPGRADES[J.needs].label}.`;
   const used = S.workers.filter(x=>x!==w && x.house===h.id && x.job===job).length, max = slotsFor(h, job);
-  if(used >= max) return job==='courtesan' ? `No free bedrooms in ${h.name}.` : `No open ${J.label} positions in ${h.name} (${max}).`;
+  if(used >= max) return `No open ${J.label} positions in ${h.name} (${max}).`;
   return null;
 }
+// Jobs that offer a service menu (courtesans, and the must-offer staff roles).
+const MENU_JOBS = ['courtesan','dancer','bath'];
+// First job she can actually take: her preference, then the open-ended ones.
+function safeJob(w, pref){ for(const j of [pref,'courtesan','promoter','attendant','maid']) if(j && JOBS[j] && !canDo(w,j)) return j; return 'rest'; }
 function setJob(id, job){
   const w = findW(id); if(!w) return;
   const msg = canDo(w, job);
   if(msg) toast(msg); else {
     w.job = job;
-    if((job==='courtesan'||job==='companion') && !w.menu.length){ w.menu = getActs().filter(a=>clientStance(w,a.id)==='yes').map(a=>a.id); if(w.menu.length) toast(`${w.name}'s menu: ${w.menu.map(actLabel).join(', ')}. Add "~" favors on her sheet.`); }
+    if(MENU_JOBS.includes(job) && !w.menu.length){ w.menu = getActs().filter(a=>clientStance(w,a.id)==='yes').map(a=>a.id); if(w.menu.length) toast(`${w.name}'s menu: ${w.menu.map(actLabel).join(', ')}. Add "~" favors on her sheet.`); }
     save();
   }
   render(); refreshSheetInfo();
@@ -40,7 +44,9 @@ function toggleMenu(id, act, on){
 function setSvcOutfit(id, k){ const w=findW(id); if(!w) return; w.svcOutfit = k || ''; save(); refreshSheetInfo(); sheetImg(); }
 function setSvcLevel(id, k){ const w=findW(id); if(!w) return; w.svcLevel = k || 'auto'; save(); refreshSheetInfo(); fillCloth(); sheetImg(); }
 function setAutoRest(id, on){ const w=findW(id); if(!w) return; w.autoRest=!!on; if(!on) delete w.prevJob; save(); refreshSheetInfo(); }
-function setOffDuty(id, on){ const w=findW(id); if(!w) return; w.offDuty=!!on; save(); refreshSheetInfo(); }
+function setOffDuty(id, v){ const w=findW(id); if(!w) return; w.offDuty = v==='on'||v===true ? 'on' : v==='off'||v===false ? 'off' : 'ask'; save(); refreshSheetInfo(); }
+function setSamples(id, on){ const w=findW(id); if(!w) return; if(on && has(w,'Modest')) return toast(`${w.name} is too modest for handing out samples.`); w.samples=!!on; save(); refreshSheetInfo(); }
+function setMadameFocus(id, v){ const w=findW(id); if(!w) return; w.madameFocus = v==='training' ? 'training' : 'management'; save(); refreshSheetInfo(); }
 function setWage(id, v){ const w=findW(id); if(!w) return; if(isFree(w)) return toast(`${w.name} won't take a wage from you.`); w.wage=Math.max(0,Math.round(+v||0)); save(); refreshSheetInfo(); renderHeader(); }
 function setPrice(i){ curH().price = i; save(); render(); }
 function hire(id){
@@ -103,7 +109,7 @@ function buyHouse(id){
   S.gold -= D.cost; S.houses.push(makeHouse(id)); S.cur = id;
   note(`You now own ${D.name}!`);
   if(!isHired(D.npc)){
-    const n = makeNamed(D.npc); n.house = id; n.locked = id; n.contract = 999; n.job = canDo(n, NAMED[D.npc].job) ? 'companion' : NAMED[D.npc].job;
+    const n = makeNamed(D.npc); n.house = id; n.locked = id; n.contract = 999; n.job = safeJob(n, NAMED[D.npc].job); if(MENU_JOBS.includes(n.job)) n.menu = getActs().filter(a=>clientStance(n,a.id)==='yes').map(a=>a.id);
     S.workers.push(n); checkUnlocks(true);
     EVQ.push(()=>({title:`${D.name}`, who:n.id, scene:'portrait', text:`${n.name} is waiting at the door when Sam arrives with the deed.\n\n${n.backstory}\n\nShe comes with the place.`, choices:[{label:'Welcome aboard', fx(){ n.trust=clamp(n.trust+5); return ''; }}]}));
   }

@@ -84,10 +84,10 @@ function underpaid(w){ const B = BAL.wages; return !isFree(w) && w.wage < wageFo
 function evIncident(h){
   const sec = S.workers.find(w=>w.house===h.id && w.job==='security'), c = ri(60,120), V = {house:h.name, guard: sec ? sec.name : '', gold:fmt(c)};
   const ch = [
-    {label:ET('incident','sam','label',V), fx(){ if(S.sam.strength + S.sam.charm/2 + rnd(0,60) > 60){ h.rep=clamp(h.rep+2); samStat('strength',1); return ET('incident','sam','win',V); } S.sam.energy=Math.max(0,S.sam.energy-30); h.rep=clamp(h.rep-1); return ET('incident','sam','lose',V); }},
+    {label:ET('incident','sam','label',V), fx(){ if(S.sam.strength + S.sam.charm/2 + rnd(0,60) > 60){ repAdd(h, 2); samStat('strength',1); return ET('incident','sam','win',V); } S.sam.energy=Math.max(0,S.sam.energy-30); h.rep=clamp(h.rep-1); return ET('incident','sam','lose',V); }},
     {label:ET('incident','pay','label',V), fx(){ S.gold-=c; return ET('incident','pay','res',V); }}
   ];
-  if(sec) ch.unshift({label:ET('incident','guard','label',V), fx(){ sec.trust=clamp(sec.trust+3); h.rep=clamp(h.rep+1); return ET('incident','guard','res',V); }});
+  if(sec) ch.unshift({label:ET('incident','guard','label',V), fx(){ sec.trust=clamp(sec.trust+3); repAdd(h, 1); return ET('incident','guard','res',V); }});
   return {title:ET('incident','title',V), who:sec?sec.id:null, scene:'job_security', text:ET('incident','text',V), choices:ch};
 }
 // How keen she is to stay (0-1), from trust and mood. See data/balance.json → renewal.

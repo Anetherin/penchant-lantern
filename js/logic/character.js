@@ -27,11 +27,13 @@ const moodMod = w => (w.mood-50)/10;
 const ASK_BAND = 25;
 function inclination(w,id){ return w.lewd + comfortOf(w,id) + fxAdd(w,'willing') + moodMod(w); }
 const trustNeed = gap => Math.round(40 + gap*2);
-function clientStance(w,id){
+// Courtesans have the lowest comfort lines (balance.json → jobs.courtesanTh points lower). job defaults to her current one.
+const jobTh = (w, job) => (job || w.job)==='courtesan' ? BAL.jobs.courtesanTh : 0;
+function clientStance(w,id,job){
   const a = actById(id); if(!a || actBanned(w,id)) return 'no';
-  const inc = inclination(w,id) - (w.lovers===id ? 30 : 0);
-  if(inc >= a.th) return 'yes';
-  if(inc >= a.th - ASK_BAND && w.trust >= trustNeed(a.th - inc)) return 'ask';
+  const inc = inclination(w,id) - (w.lovers===id ? 30 : 0), th = a.th - jobTh(w, job);
+  if(inc >= th) return 'yes';
+  if(inc >= th - ASK_BAND && w.trust >= trustNeed(th - inc)) return 'ask';
   return 'no';
 }
 function samLean(w,id){ return inclination(w,id) + w.trust*0.3 + (w.lovers===id && w.trust>=40 ? 15 : 0) + (has(w,'Devoted')?20:0) - (has(w,'Oblivious')?45:0); }
@@ -59,7 +61,15 @@ function sceneParts(k){ const p = String(k||'').split('~'); return {base:p[0], e
 const sceneBase = k => sceneParts(k).base;
 const isSvcScene = k => /^(act:|samact:|duo:|solo$)/.test(sceneBase(k));
 // The outfit shown in a scene: her service outfit (sheet → wardrobe) in service scenes, otherwise her work outfit.
-function outfitKey(w, scene){ const k = w.svcOutfit; if(scene && k && isSvcScene(scene) && (k==='custom' ? w.customOutfit : (WARDROBE[k] && (w.owned||[]).includes(k)))) return k; return w.outfit; }
+function outfitKey(w, scene){
+  const k = w.svcOutfit; if(scene && k && isSvcScene(scene) && (k==='custom' ? w.customOutfit : (WARDROBE[k] && (w.owned||[]).includes(k)))) return k;
+  // a job outfit (w.jobOutfit[job]) or the job's uniform (wardrobe.json → uniform) is worn at work, never in service scenes
+  if(!(scene && isSvcScene(scene)) && w.job){
+    const jo = w.jobOutfit && w.jobOutfit[w.job]; if(jo && WARDROBE[jo]) return jo;
+    const u = UNIFORMS[w.job]; if(u && !(w.jobOutfit && w.jobOutfit[w.job]===''))  return u;
+  }
+  return w.outfit;
+}
 function getOutfit(w, scene){ const ok = outfitKey(w, scene); if(ok==='custom') return {label:'Her own outfit', style:w.style, prompt:w.customOutfit||'an elegant dress', bonus:{}, custom:true}; return WARDROBE[ok] || BASE_OUTFITS.b_corset; }
 function getUnder(w){ if(w.under==='custom') return {label:'Custom', prompt:w.customUnder||'simple lace underwear', bonus:{}, style:w.style}; return UNDER[w.under] || UNDER.plain; }
 const usesColor = o => /\{color\}/.test(o.prompt||'');
@@ -149,7 +159,10 @@ function ensureWorker(w){
   if(!w.firsts || !Array.isArray(w.firsts.path)) w.firsts = firstsProfile(w);
   if(w.intim===undefined) w.intim = (w.privateCount>0 || has(w,'Devoted')) ? Math.max(...w.firsts.path) : 0;
   if(!w.jobLikes) rollJobPrefs(w);
-  if(w.offDuty===undefined) w.offDuty = false;
+  // "Open to propositions": 'on' | 'ask' | 'off' (old saves stored true/false). Must-offer jobs ignore it.
+  if(w.offDuty===undefined) w.offDuty = 'ask'; else if(w.offDuty===true) w.offDuty = 'on'; else if(w.offDuty===false) w.offDuty = 'off';
+  if(w.samples===undefined) w.samples = false;
+  if(w.madameFocus!=='training' && w.madameFocus!=='management') w.madameFocus = 'management';
   if(!w.body) w.body = rollBody(w.race);
   w.counts = w.counts || {};
   if(!w.style) w.style = pick(STYLES);
@@ -164,7 +177,7 @@ function ensureWorker(w){
   if(!w.owned) w.owned = [];
   if(!w.outfit || (w.outfit!=='custom' && !WARDROBE[w.outfit])){
     if(w.design.outfit){ w.outfit='custom'; w.customOutfit=w.design.outfit; }
-    else { const b = pick(Object.keys(BASE_OUTFITS).filter(k=>k!=='b_robe' || w.lewd>=20)); w.outfit = b; }
+    else { const b = pick(plainBase().filter(k=>k!=='b_robe' || w.lewd>=20)); w.outfit = b; }
   }
   if(w.outfit && w.outfit!=='custom' && !w.owned.includes(w.outfit)) w.owned.push(w.outfit);
   if(!w.outColor) w.outColor = Math.random()<0.4 ? w.favColor : pick(COLOR_KEYS);
@@ -220,8 +233,8 @@ function genWorker(opts={}){
   w.style = w.lewd>45 && Math.random()<0.5 ? 'Revealing' : pick(STYLES.slice(0,4));
   w.favColor = pick(COLOR_KEYS);
   // starting outfit in her style if possible
-  const fits = Object.keys(BASE_OUTFITS).filter(k=>BASE_OUTFITS[k].style===w.style && w.lewd>=BASE_OUTFITS[k].lewd);
-  w.outfit = fits.length && Math.random()<0.7 ? pick(fits) : pick(Object.keys(BASE_OUTFITS).filter(k=>w.lewd>=BASE_OUTFITS[k].lewd));
+  const fits = plainBase().filter(k=>BASE_OUTFITS[k].style===w.style && w.lewd>=BASE_OUTFITS[k].lewd);
+  w.outfit = fits.length && Math.random()<0.7 ? pick(fits) : pick(plainBase().filter(k=>w.lewd>=BASE_OUTFITS[k].lewd));
   if(w.lewd>=45 && Math.random()<0.15){ w.under='none'; w.ownedUnder=['plain','none']; }
   ensureWorker(w);
   w.backstory = `${w.name} came to Hollowmere because ${pick(HOOKS)}.`;

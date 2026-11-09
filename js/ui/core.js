@@ -53,14 +53,19 @@ function regularsCard(h){
   return `<section class="card"><h2>Regulars</h2>${rs.map(r=>{ const q = regQuirk(r), f = r.fav && findW(r.fav);
     return `<div style="margin:4px 0"><b>${esc(r.name)}</b> <span class="tag" title="${esc(q.desc)}">${esc(q.label)}</span> <span class="muted">${(CLASSES.find(c=>c.id===r.cls)||{}).label||''} · ${r.visits} visit${r.visits===1?'':'s'} · spent ${fmt(r.spent)}${f?` · asks for <b>${esc(f.name)}</b>`:''}${r.loyalty<=-2?' · <span class="warn">losing interest</span>':''}</span></div>`; }).join('')}</section>`;
 }
+// Tidiness (h.tidy 0-100): label and colour class by tier (balance.json → tidy).
+function tidyTier(h){ const T = BAL.tidy, t = h.tidy ?? T.start; return t >= T.high ? 'high' : t < T.bad ? 'bad' : t < T.low ? 'low' : 'ok'; }
+const tidyLabel = h => ({high:'spotless: reputation, mood and rest all benefit', ok:'presentable', low:'getting shabby: reputation, mood and rest suffer', bad:'a mess: reputation, mood and rest suffer badly'})[tidyTier(h)];
+const tidyCls = h => ({high:'good', ok:'', low:'warn', bad:'warn'})[tidyTier(h)];
 function viewHouse(){
-  const h = curH(), D = HOUSES[h.id], nd = nextDue(), used = S.workers.filter(w=>w.house===h.id && w.job==='courtesan').length;
+  const h = curH(), D = HOUSES[h.id], nd = nextDue();
   const amen = Object.keys(UPGRADES).filter(k=>h.up[k]).map(k=>UPGRADES[k].label).join(', ') || 'none';
   const staff = Object.entries(JOBS).map(([k,J])=>{ const ws=S.workers.filter(w=>w.house===h.id && w.job===k); return ws.length?`<div><b>${J.label}</b>: ${ws.map(w=>esc(w.name)).join(', ')}</div>`:''; }).join('');
   const L = S.lastReport, lh = L && L.houses ? L.houses.find(x=>x.id===h.id) : null;
   return `${houseTabs(false)}<section class="card"><h2>${esc(h.name)} <span class="tag house">${D.loc}</span></h2><p class="muted">${D.desc}</p><div class="grid2">
       <div>Reputation: <b>${Math.round(h.rep)}</b></div><div>Building: <b>${roomsUsed(h)}/${houseSize(h)}</b> rooms used</div>
-      <div>Bedrooms: <b>${used}/${h.rooms}</b> in use · ${ROOM_NAMES[h.tier]}</div><div>Staff beds: <b>${sleepers(h).length}/${bedsFor(h)}</b> · ${BEDS[h.beds||0].label}${sleepers(h).length>bedsFor(h)?' <span class="warn">(not enough!)</span>':''}</div>
+      <div>Bedrooms: <b>${h.rooms}</b> · ${ROOM_NAMES[h.tier]} · <span title="Room services per week: ${BAL.rooms.perRoom} per bedroom">${h.rooms*BAL.rooms.perRoom} sessions/wk${lh&&lh.roomCap?` (last week ${lh.roomsUsed}/${lh.roomCap})`:''}</span></div>
+      <div>Tidiness: <b class="${tidyCls(h)}">${Math.round(h.tidy ?? BAL.tidy.start)}</b> <span class="muted">${tidyLabel(h)}</span></div><div>Staff beds: <b>${sleepers(h).length}/${bedsFor(h)}</b> · ${BEDS[h.beds||0].label}${sleepers(h).length>bedsFor(h)?' <span class="warn">(not enough!)</span>':''}</div>
       <div>Pricing: <select onchange="setPrice(+this.value)">${PRICES.map((p,i)=>`<option value="${i}" ${i===h.price?'selected':''}>${p.label}</option>`).join('')}</select></div>
       <div>Amenities: ${amen}</div>${D.minPop?`<div class="muted">Standard: escorts need popularity ${D.minPop}+</div>`:''}
       <div class="muted">Clientele: ${CLASSES.map((c,i)=>D.cls[i]>=1.3?`<b>${c.label}s ↑</b>`:D.cls[i]<=0.5?`${c.label}s ↓`:'').filter(Boolean).join(', ')||'balanced'}</div></div>
@@ -73,11 +78,11 @@ function viewHouse(){
       <div>Remaining: <b>${fmt(S.debt.remaining)}</b> · Next payment: <b>${fmt(nd.amount)}</b> at the end of week ${nd.week} ${nd.week===S.week?'<span class="warn">(this week!)</span>':''}</div>
       <div>Strikes: ${'❌'.repeat(S.debt.strikes)}${'▫️'.repeat(Math.max(0,3-S.debt.strikes))}</div>
       <div class="row"><input id="payamt" type="number" min="1" placeholder="Amount"><button onclick="payExtra()">Pay extra</button></div></section>
-    <section class="card"><h2>Last Week</h2>${lh?`<div class="grid2"><div>Clients here: <b>${lh.served}</b>${lh.turned?` (${lh.turned} turned away)`:''}</div><div>Income here: <b>${fmt(lh.income)}</b> · Upkeep <b>${fmt(lh.upkeep)}</b></div><div>Satisfaction: <b>${Math.round(lh.avgSat)}</b></div><div>All houses net: <b>${fmt(L.income-L.wages-L.upkeep-(L.recharge||0))}</b></div></div><div class="row"><button onclick="showReport(S.lastReport,false)">📋 Full report</button></div>`:'<span class="muted">No report yet. Assign jobs, then End Week.</span>'}</section>`;
+    <section class="card"><h2>Last Week</h2>${lh?`<div class="grid2"><div>Clients here: <b>${lh.served}</b>${lh.turned?` (${lh.turned} turned away)`:''}</div><div>Income here: <b>${fmt(lh.income)}</b> · Upkeep <b>${fmt(lh.upkeep)}</b></div><div>Satisfaction: <b>${Math.round(lh.avgSat)}</b>${lh.promoDraw?` · promoter draw <b>+${Math.round(lh.promoDraw)}</b>`:''}</div><div>All houses net: <b>${fmt(L.income-L.wages-L.upkeep-(L.recharge||0))}</b></div></div><div class="row"><button onclick="showReport(S.lastReport,false)">📋 Full report</button></div>`:'<span class="muted">No report yet. Assign jobs, then End Week.</span>'}</section>`;
 }
 function workerCard(w, showHouse){
   const wl = knows(w,true) ? Math.round(w.lewd) : '?';
-  const menu = w.job==='courtesan' || w.offDuty || w.job==='companion' ? (w.menu.length ? w.menu.map(a=>`<span class="tag act">${esc(actLabel(a))}</span>`).join('') : '<span class="muted">No services on menu</span>') : '';
+  const menu = JOBS[w.job] && (JOBS[w.job].must || w.offDuty==='on') ? (w.menu.length ? w.menu.map(a=>`<span class="tag act">${esc(actLabel(a))}</span>`).join('') : '<span class="muted">No services on menu</span>') : '';
   return `<div class="wcard" onclick="openSheet('${w.id}')">${avatarHTML(w)}
     <div class="winfo"><div class="wname">${esc(w.name)}${w.named?' <span class="tag">★</span>':''}${w.isPartner?' <span class="tag act">♥ Partner</span>':''}${showHouse?` <span class="tag house">${esc(houseOf(w).name)}</span>`:''}</div>
       <div class="muted">${raceLabel(w)} · ${esc(w.personality)}</div>

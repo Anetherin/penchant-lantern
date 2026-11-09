@@ -1,57 +1,90 @@
 {
   "_readme": [
     "Jobs, houses and money. Numbers here are the main balance levers.",
-    "jobs: label, cat (rest / staff / escort), energy (weekly cost), skill (which skill she uses), needs (amenity required), room (uses a bedroom), desc. jobTrust: trust she needs for a job she doesn't particularly like.",
-    "slots: positions per house: base, plus amounts for each amenity (bar, stage, guard, lounge, bath), perSize (one more per N building size). Courtesans always get one per bedroom.",
+    "jobs: label, cat (rest / staff / escort), energy (weekly cost), skill (which skill she uses), needs (amenity required), room (uses a bedroom), must (must-offer role: she serves propositions from her menu and expects them; other jobs choose, see data/balance.json → props), desc. jobTrust: trust she needs for a job she doesn't particularly like. Removed jobs: companion (now courtesan), reception (now promoter).",
+    "slots: positions per house. Keys: base, amenity ids (bar, stage, guard, lounge, bath), perSize (one more per N building size), perRoom (per bedroom), min / perRooms (one per N bedrooms, at least min). A job with no entry (promoter, maid) is unlimited. Courtesans: 2 + bedrooms.",
+    "propRate / propWhere: base chance per client visit that a staff job gets propositioned, and where it happens (reports). The bar, her propRate fx and her appeal multiply it. Courtesans are asked through the normal client flow (balance.json → jobs.propWant), so their entry is 0.",
+    "classes: client classes; mult = how much they pay; wants = how much more (or less) often they ask for a service, by service id; tech = mean technique (0.3-1.4); prop = chance a visiting client of this class makes a proposition to staff; rowdy = chance of bar trouble; reckless = how reckless/forceful (adds half to pushy; a Bar adds more); pushy = chance to try to force it after hearing no.",
+    "upgrades with a \"race\" field are race houses (tether = spirits, charger = androids, chapel, sigil, grove, hearth, den). Races with \"needs\" in races.json can't be recruited into or moved to a house without that upgrade. upgrades.mood (race houses): weekly mood bonus for ladies of that race working or living in the house.",
     "beds / floorRest: staff beds and how much they rest. amenitySize: building space each amenity takes. racePerks: shown on sheets (the effects live in data/races.json and code).",
-    "propRate / propWhere: chance per week that a staff job gets propositioned, and where it happens (used in reports). upgrades: amenities you can build.",
     "roomMult / roomNames / roomTierCost: client room tiers. prices: house price levels (mult = fee multiplier, demand = client multiplier).",
-    "classes: client classes; mult = how much they pay; wants = how much more (or less) often they ask for a service, by service id.",
     "houses: every house. cls = clientele weights [commoner, adventurer, merchant, noble]. npc = the named lady who comes with it (characters.json). setting = image backdrop. starter = pickable at the start; premium houses unlock with level / renown.",
     "pasts: Sam's past lives at the start; sam = his starting stat bonuses. Other past perks (cook's free dinners, massage training bonus) are in code.",
-    "upgrades with a \"race\" field are race houses (tether = spirits, charger = androids, chapel, sigil, grove, hearth, den). Races with \"needs\" in races.json can't be recruited into or moved to a house without that upgrade. classes: tech = mean technique of that class's clients (0.3-1.4 scale); wants keys use service ids.",
     "upgrades.mood (race houses): weekly mood bonus for ladies of that race working or living in the house."
   ],
   "jobs": {
     "rest": {"label":"Rest","cat":"rest","desc":"Recover energy, health and mood."},
-    "madame": {"label":"Madame","cat":"staff","energy":20,"skill":"manage","desc":"Raises everyone's mood and escort income in her house."},
-    "reception": {"label":"Receptionist","cat":"staff","energy":15,"skill":"service","desc":"More clients and better matches."},
-    "security": {"label":"Security","cat":"staff","energy":20,"skill":"combat","desc":"Prevents trouble. Builds trust."},
-    "bartender": {"label":"Bartender","cat":"staff","energy":20,"skill":"bar","desc":"Sells drinks. Half as good without a Bar. Gets propositioned."},
+    "madame": {
+      "label": "Madame",
+      "cat": "staff",
+      "energy": 20,
+      "skill": "manage",
+      "desc": "Runs the house. Training focus: house ladies learn faster. Management focus: calmer moods, better client matches. Steps in for overwhelmed courtesans; can be propositioned."
+    },
+    "promoter": {
+      "label": "Promoter",
+      "cat": "staff",
+      "energy": 15,
+      "skill": "service",
+      "desc": "Draws clients in. With free samples the draw is bigger, but it tires her and shows in the house's reputation. Unlimited positions."
+    },
+    "attendant": {
+      "label": "Attendant",
+      "cat": "staff",
+      "energy": 15,
+      "skill": "service",
+      "desc": "Helps the courtesans (they tire less, clients are happier) and steps in when they are swamped. Doesn't expect propositions, though some clients expect her to offer."
+    },
+    "security": {"label":"Security","cat":"staff","energy":20,"skill":"combat","desc":"Walks troublemakers out and handles pushy clients. Builds trust."},
+    "bartender": {
+      "label": "Bartender",
+      "cat": "staff",
+      "energy": 20,
+      "skill": "bar",
+      "desc": "Sells drinks. Half as good without a Bar. With a Bar the house gets more propositions, more rowdiness and more reckless clients."
+    },
     "dancer": {
       "label": "Dancer",
       "cat": "staff",
       "energy": 25,
       "skill": "dance",
       "needs": "stage",
-      "desc": "Draws crowds; builds popularity. Gets propositioned a lot."
+      "desc": "Draws crowds, earns tips, builds popularity. Expects propositions and serves them from her menu.",
+      "must": true
     },
     "bath": {
       "label": "Bath Attendant",
       "cat": "staff",
-      "energy": 20,
+      "energy": 12,
       "skill": "service",
       "needs": "bath",
-      "desc": "Tends the bathhouse. Gets propositioned constantly."
+      "desc": "Tends the bathhouse; always offers bathers a massage. Expects propositions and serves them from her menu.",
+      "must": true
     },
-    "maid": {"label":"Maid","cat":"staff","energy":15,"skill":"service","desc":"Keeps the house spotless (+reputation)."},
-    "companion": {
-      "label": "Companion",
+    "maid": {
+      "label": "Maid",
+      "cat": "staff",
+      "energy": 15,
+      "skill": "service",
+      "desc": "Keeps the house tidy (tidiness drives reputation, mood and rest). Wears a maid uniform while on the job. Unlimited positions."
+    },
+    "courtesan": {
+      "label": "Courtesan",
       "cat": "escort",
-      "desc": "Drinks and company in the lounge. No room needed. Clients may ask for more; she accepts anything on her menu."
-    },
-    "courtesan": {"label":"Courtesan","cat":"escort","room":true,"desc":"Advertises her service menu. Uses a room."}
+      "room": true,
+      "must": true,
+      "desc": "Offers her service menu to everyone. Lowest comfort lines, can work when not in the mood. Uses a room for services."
+    }
   },
-  "jobTrust": {"companion":15,"courtesan":30,"bartender":10,"reception":15,"maid":5,"security":20,"dancer":25,"bath":25,"madame":40},
+  "jobTrust": {"courtesan":30,"bartender":10,"promoter":10,"attendant":10,"maid":5,"security":20,"dancer":25,"bath":25,"madame":40},
   "slots": {
     "madame": {"base":1},
-    "reception": {"base":1},
     "security": {"base":1,"guard":2},
     "bartender": {"base":1,"bar":1},
     "dancer": {"base":0,"stage":2},
     "bath": {"base":0,"bath":2},
-    "maid": {"base":1,"perSize":6},
-    "companion": {"base":2,"lounge":3}
+    "courtesan": {"base":2,"perRoom":1},
+    "attendant": {"min":1,"perRooms":2}
   },
   "beds": [
     {"label":"Straw cots","rest":30,"cost":0},
@@ -86,13 +119,16 @@
       "desc": "Needs a Charging Alcove. Rest tops her up completely, but every recharge costs the house a fee. Lust builds slowly."
     }
   },
-  "propRate": {"bartender":0.07,"dancer":0.1,"bath":0.15,"reception":0.03,"maid":0.03},
+  "propRate": {"courtesan":0,"bartender":0.07,"dancer":0.1,"bath":0.15,"maid":0.03,"promoter":0.03,"attendant":0.05,"security":0.03,"madame":0.04},
   "propWhere": {
     "bartender": "at the bar",
     "dancer": "after her set on stage",
     "bath": "in the bathhouse",
-    "reception": "at the front desk",
-    "maid": "in the hallway"
+    "maid": "in the hallway",
+    "promoter": "at the front step",
+    "attendant": "in the corridor",
+    "security": "by the door",
+    "madame": "in her office"
   },
   "upgrades": {
     "bar": {"label":"Bar","cost":500,"upkeep":20,"desc":"Full bartender income."},
@@ -133,10 +169,40 @@
     {"label":"Exclusive","mult":2.6,"demand":0.42}
   ],
   "classes": [
-    {"id":"commoner","label":"Commoner","mult":0.5,"wants":{"kiss":1.2,"manual":1.2},"tech":0.8},
-    {"id":"adventurer","label":"Adventurer","mult":0.8,"wants":{"doggy":1.3,"cowgirl":1.2},"tech":0.9},
-    {"id":"merchant","label":"Merchant","mult":1.2,"wants":{"oral":1.2,"paizuri":1.2},"tech":0.85},
-    {"id":"noble","label":"Noble","mult":2,"wants":{"missionary":1.2,"kiss":1.1},"tech":1}
+    {
+      "id": "commoner",
+      "label": "Commoner",
+      "mult": 0.5,
+      "wants": {"kiss":1.2,"manual":1.2},
+      "tech": 0.8,
+      "prop": 0.8,
+      "rowdy": 0.06,
+      "reckless": 0.05,
+      "pushy": 0.08
+    },
+    {
+      "id": "adventurer",
+      "label": "Adventurer",
+      "mult": 0.8,
+      "wants": {"doggy":1.3,"cowgirl":1.2},
+      "tech": 0.9,
+      "prop": 1,
+      "rowdy": 0.14,
+      "reckless": 0.12,
+      "pushy": 0.14
+    },
+    {
+      "id": "merchant",
+      "label": "Merchant",
+      "mult": 1.2,
+      "wants": {"oral":1.2,"paizuri":1.2},
+      "tech": 0.85,
+      "prop": 0.7,
+      "rowdy": 0.04,
+      "reckless": 0.04,
+      "pushy": 0.05
+    },
+    {"id":"noble","label":"Noble","mult":2,"wants":{"missionary":1.2,"kiss":1.1},"tech":1,"prop":0.5,"rowdy":0.02,"reckless":0.03,"pushy":0.04}
   ],
   "houses": {
     "lantern": {

@@ -31,12 +31,15 @@ function rollJobPrefs(w){
   const Dl = roll(down, B.maxDislikes).filter(j=>!L.includes(j));
   w.jobLikes = L; w.jobDislikes = Dl;
 }
-// Job positions per house. Escort slots: courtesans need a bedroom each; companions need lounge space.
+// Job positions per house (data/economy.json → slots). Courtesans: 2 + bedrooms; attendants: one per 2 bedrooms (min 1);
+// promoters and maids have no entry and are unlimited.
 function slotsFor(h, job){
-  if(job==='courtesan') return h.rooms;
   const d = ECON.slots[job]; if(!d) return 99;
   const u = h.up || {};
-  return (d.base||0) + Object.entries(d).filter(([k])=>u[k] && !['base','perSize'].includes(k)).reduce((a,[,n])=>a+n,0) + (d.perSize ? Math.floor(houseSize(h)/d.perSize) : 0);
+  let n = (d.base||0) + Object.entries(d).filter(([k])=>u[k] && !['base','perSize','perRoom','min','perRooms'].includes(k)).reduce((a,[,v])=>a+v,0) + (d.perSize ? Math.floor(houseSize(h)/d.perSize) : 0);
+  if(d.perRoom) n += h.rooms * d.perRoom;
+  if(d.perRooms) n += Math.floor(h.rooms / d.perRooms);
+  return Math.max(d.min||0, n);
 }
 const BEDS = ECON.beds;
 const FLOOR_REST = ECON.floorRest;

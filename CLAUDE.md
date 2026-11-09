@@ -26,5 +26,10 @@
 - Effects engine: `js/logic/fx.js` (`fxMul/fxAdd/fxHas/fxSub/fxArr`) merges effects from traits (`data/traits.json`), race + beastkin
   sub (`data/races.json`), body (`data/body.json`), `w.unique` and `w.ngPerks`. Vocabulary is in the `_readme` of traits.json.
   Developable traits (`earn`) are checked weekly from `w.counts` (`countUp(w,key)`); the old service id `caress` is an alias of `kiss`.
+- Jobs (docs/OVERHAUL.md §5-6): `companion`/`reception` are gone (migrated to courtesan/promoter). Courtesan, dancer and bath are `must` (economy.json jobs): they serve
+  propositions from their menu; every other role accepts by `propDecide()` (week.js: lust, `w.offDuty` on/ask/off) and loses 8% output per accepted proposition (`outputMult`).
+  Tunables are in balance.json (`jobs`, `rooms`, `tidy`, `rep`, `props`). Rooms: `h.rooms x 8` sessions/week (`X.roomOK/useRoom` in `simHouse`); `h.tidy` is kept by maids.
+- All services (escorts, propositions, reckless self-propositions) go through `runService()` -> `serveAct()`; refusals may trigger `pushyCheck()` (security, then Sam, then nobody).
+  Reputation gains use `repAdd(h, n)` (scaled by `repGain`); `w.samples` (promoter) and `w.madameFocus` ('training'|'management') are set from the sheet.
 - Save format migrations live in `migrate()` (`js/logic/state.js`); bump `S.v` when changing save shape.
 - After changes: `node tools/build.mjs && node tools/smoke.mjs 30` (Playwright; `CHROME=` for a custom browser).

@@ -95,7 +95,7 @@ function ngBegin(){
   if(C.partner && C.partner!=='none'){
     const p = makeNamed(C.partner, true); p.house = C.house;
     if(C.boon==='devotion'){ p.trust = clamp(p.trust+15); p.lewd = clamp(p.lewd+10); }
-    S.workers.push(p); assignStart(p, NAMED[C.partner].job==='courtesan' ? 'courtesan' : ['bartender','dancer','bath'].includes(NAMED[C.partner].job) ? NAMED[C.partner].job : 'companion');
+    S.workers.push(p); assignStart(p, ['courtesan','bartender','dancer','bath'].includes(NAMED[C.partner].job) ? NAMED[C.partner].job : 'courtesan');
     S.partners = Array.from(new Set([...(S.partners||[S.partner]), C.partner])); S.partner = C.partner;
   }
   // Sam, money, debt
