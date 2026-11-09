@@ -209,7 +209,7 @@ function simHouse(h, R){
   hr.tidyFx = hr.tidy0 >= TY.high ? TY.fx.high : hr.tidy0 < TY.bad ? TY.fx.bad : hr.tidy0 < TY.low ? TY.fx.low : null;
   const repEff = h.rep*0.75 + S.rep*0.25;
   let dBase = (10 + repEff*0.4 + (h.up.lounge?4:0) + danceDraw*1.5) * HD.demand * (P.demand + (h.price>=2 ? repEff/250 : 0)) * rnd(0.85,1.15);
-  if(HD.haunted) dBase *= 0.45 + Math.min(1, h.rep/40)*0.8;
+  if(HD.haunted) dBase *= 0.45 + Math.min(1, h.rep/(HD.hauntRep||40))*0.8;
   dBase *= (h.bonus&&h.bonus.demand) || 1;
   const v0 = W.length ? Math.max(1, Math.round(dBase)) + danceDraw*2 : 0;   // expected visitors, for proposition rates
   const escorts = W.filter(w=>JOBS[w.job].cat==='escort');
