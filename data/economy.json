@@ -380,7 +380,7 @@
       "starter": true,
       "desc": "A caravan inn where every road meets. Travelers pay for room and board, the hearth puts every guest at ease, and there's a steady stream of job-seekers.",
       "setting": "cozy roadside inn room with a crackling hearth",
-      "lodging": 80,
+      "lodging": 140,
       "sat": 4
     },
     "skyhook": {
