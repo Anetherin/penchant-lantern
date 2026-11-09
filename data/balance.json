@@ -40,6 +40,12 @@
     "danceExhib": 90,
     "bath": 45
   },
+  "startLewd": {
+    "_note": "Generic ladies' starting lewdness: min + span x r^pow (r uniform 0-1). pow > 1 skews low. Race/sub mods still add on top.",
+    "min": 8,
+    "span": 47,
+    "pow": 1.5
+  },
   "lust": {
     "low": 20,
     "high": 85,

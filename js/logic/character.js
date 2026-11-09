@@ -260,7 +260,7 @@ function genWorker(opts={}){
     personality:pick(PERSONALITIES), backstory:'', traits:[],
     stats:{beauty:clampK(base()+100),charm:base(),refinement:base(),stamina:base(),strength:base(),agility:base()},
     tech:{service:K(ri(0,30)),dance:K(ri(0,25)),bar:K(ri(0,25)),combat:K(ri(0,20)),manage:K(ri(0,20))}, actSkill:ri(0,25),
-    popularity:ri(0,12), lewd:ri(5,60), trust:ri(5,22), mood:ri(52,70), energy:100, health:100,
+    popularity:ri(0,12), lewd:(()=>{ const L = BAL.startLewd; return L ? Math.round(L.min + L.span*Math.pow(Math.random(), L.pow)) : ri(5,60); })(), trust:ri(5,22), mood:ri(52,70), energy:100, health:100,
     wage:0, contract:12, job:'rest', house:null, seed:ri(1,999999999), imgVar:{}, seen:{}, unhappy:0, earnedLast:0, privateCount:0
   };
   const vis = Object.keys(TRAITS).filter(t=>TRAITS[t].gen && !TRAITS[t].ngOnly && !TRAITS[t].hidden && !TRAITS[t].story && !TRAITS[t].personal);

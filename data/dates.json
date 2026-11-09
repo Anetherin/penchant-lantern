@@ -8,7 +8,7 @@
     "What a date raises (all optional): stats {beauty|charm|refinement|stamina|strength|agility: n} (her stat XP, 1000 scale like training), skills {service|dance|bar|combat|manage: n} (her skill growth), sam {charm|business|strength|technique: n} (Sam's stats; default {charm:1}), pop (her popularity +n), lust (her lust +n, x her lustBuild), lewd + lewdCap (her lewdness +n with diminishing returns up to lewdCap, see balance.json lewd; more if she loves the date, less if not), gift: true (counts as a gift for her traits), trinket (0-1 chance Sam buys her a little something on the way: mood +5, counts as a gift).",
     "needsUp: an upgrade id the house must own for the date to appear (e.g. bath). needsIntim: the least intimacy stage she must have reached with Sam (w.intim) for it to be listed.",
     "special: 'chat' = the row runs the chat (trust, mood and energy here; random spread x0.6-1.4, Romantic/Shy bonuses, topics from events.json). special: 'nightin' = after the date, if she is comfortable with anything private, Sam can always go inside (no extra action); otherwise just a cosy evening.",
-    "spicy: [ {label, acts:[service ids], lewd (her least lewdness), gain, cap (lewdUp), risk (0-1 chance of being caught), lead (opening text, {name}), nude:true (no act: skinny dipping / figure study; needs her to be comfortable nude)} ]. Offered as 🔥 buttons after a good date (max 2). Costs Sam 12 energy, no action. With acts: a normal private-time scene (only services she's done with Sam: canSam) with that lead; the act is her favorite if listed, else the highest-th one she says yes to, else the first she's comfortable with."
+    "spicy: [ {label, acts:[service ids], lewd (her least lewdness), gain, cap (lewdUp), risk (0-1 chance of being caught), lead (opening text, {name}), nude:true (no act: skinny dipping / figure study; needs her to be comfortable nude), image:{comp, setting, replace} (the variant's own staging: setting is optional and falls back to the date's; for acts comp is added to the service pose, or replaces it with replace:true; nude variants use comp+setting as their own scene and keep the date image's undress/bath/away/swim flags)} ]. Offered as 🔥 buttons after a good date (max 2). Costs Sam 12 energy, no action. With acts: a normal private-time scene (only services she's done with Sam: canSam) with that lead; the act is her favorite if listed, else the highest-th one she says yes to, else the first she's comfortable with."
   ],
   "chat": {"label":"Just talk","cost":0,"energy":10,"trust":1.6,"mood":4,"like":"chat","special":"chat","intro":"","lines":[]},
   "walk": {
@@ -35,7 +35,11 @@
         "gain": 5,
         "cap": 95,
         "risk": 0.3,
-        "lead": "The market thins out, and {name} steers Sam into a narrow alley where the lanterns don't reach."
+        "lead": "The market thins out, and {name} steers Sam into a narrow alley where the lanterns don't reach.",
+        "image": {
+          "comp": "pressed against a brick wall in a dim narrow alley, glancing toward the street",
+          "setting": "narrow back alley behind a fantasy market at dusk, lantern glow at the far end, crates and hanging laundry"
+        }
       }
     ]
   },
@@ -65,7 +69,8 @@
         "gain": 2,
         "cap": 50,
         "risk": 0,
-        "lead": "The wind picks up, and {name} pulls the blanket over both of them. Under it, her hand finds Sam's, and the stars stop being the point."
+        "lead": "The wind picks up, and {name} pulls the blanket over both of them. Under it, her hand finds Sam's, and the stars stop being the point.",
+        "image": {"comp":"tangled together under a wool blanket on the rooftop, only their heads and shoulders showing, flushed and smiling","replace":true}
       }
     ]
   },
@@ -91,7 +96,11 @@
         "gain": 3,
         "cap": 65,
         "risk": 0.1,
-        "lead": "The willow hangs low enough to make a room of the riverbank. {name} looks at Sam, looks at the branches, and lets the picnic basket go unattended."
+        "lead": "The willow hangs low enough to make a room of the riverbank. {name} looks at Sam, looks at the branches, and lets the picnic basket go unattended.",
+        "image": {
+          "comp": "hidden under the drooping willow branches, the picnic blanket rumpled",
+          "setting": "inside the curtain of a willow tree by the river, dappled green light"
+        }
       }
     ]
   },
@@ -122,7 +131,11 @@
         "gain": 4,
         "cap": 75,
         "risk": 0.3,
-        "lead": "The music is loud enough to cover anything. {name} tugs Sam between two stalls, into a gap barely wide enough for the two of them."
+        "lead": "The music is loud enough to cover anything. {name} tugs Sam between two stalls, into a gap barely wide enough for the two of them.",
+        "image": {
+          "comp": "squeezed into a narrow gap between two game stalls, bunting overhead",
+          "setting": "cramped gap behind fair stalls at night, canvas walls, lantern light and crowd noise beyond"
+        }
       }
     ]
   },
@@ -154,7 +167,11 @@
         "gain": 3,
         "cap": 60,
         "risk": 0.25,
-        "lead": "{name} pulls Sam into the narrowest aisle, past the ladders, where the clerk can't see. \"We have to be very quiet,\" she whispers."
+        "lead": "{name} pulls Sam into the narrowest aisle, past the ladders, where the clerk can't see. \"We have to be very quiet,\" she whispers.",
+        "image": {
+          "comp": "pressed against tall bookshelves in a narrow aisle, a fallen book at their feet, trying to stay quiet",
+          "setting": "narrow aisle between towering archive shelves, dusty light, rolling ladders"
+        }
       }
     ]
   },
@@ -186,7 +203,11 @@
         "gain": 3,
         "cap": 75,
         "risk": 0.05,
-        "lead": "{name} leaves the path without explaining, and Sam follows. The clearing is quiet and sunny, and a long way from anyone."
+        "lead": "{name} leaves the path without explaining, and Sam follows. The clearing is quiet and sunny, and a long way from anyone.",
+        "image": {
+          "comp": "on a cloak spread over the grass in a sunny clearing",
+          "setting": "sunlit forest clearing off a mountain trail, pines and wildflowers"
+        }
       }
     ]
   },
@@ -220,7 +241,8 @@
         "gain": 3,
         "cap": 70,
         "risk": 0,
-        "lead": "{name} pins Sam flat for the last time and doesn't let him up. She doesn't seem to be thinking about the score anymore."
+        "lead": "{name} pins Sam flat for the last time and doesn't let him up. She doesn't seem to be thinking about the score anymore.",
+        "image": {"comp":"on the cushions on the floor, her on top, flushed and breathless from wrestling"}
       }
     ]
   },
@@ -255,7 +277,8 @@
         "gain": 2,
         "cap": 60,
         "risk": 0,
-        "lead": "\"You missed a spot,\" says {name}, and guides Sam's hands somewhere that isn't her shoulders."
+        "lead": "\"You missed a spot,\" says {name}, and guides Sam's hands somewhere that isn't her shoulders.",
+        "image": {"comp":"on the towels, oiled skin glistening in candlelight"}
       }
     ]
   },
@@ -290,7 +313,11 @@
         "gain": 3,
         "cap": 70,
         "risk": 0.25,
-        "lead": "The tablecloth hangs low and the waiter is busy. {name} keeps a perfectly composed face and a very busy hand."
+        "lead": "The tablecloth hangs low and the waiter is busy. {name} keeps a perfectly composed face and a very busy hand.",
+        "image": {
+          "comp": "seated side by side at a candlelit table, her face perfectly composed while her hand is hidden under the long tablecloth, his face flushed",
+          "replace": true
+        }
       }
     ]
   },
@@ -319,7 +346,11 @@
         "gain": 3,
         "cap": 70,
         "risk": 0.2,
-        "lead": "{name} drags Sam through a curtain into the coat room, where the music comes muffled and the door has no lock."
+        "lead": "{name} drags Sam through a curtain into the coat room, where the music comes muffled and the door has no lock.",
+        "image": {
+          "comp": "among hanging coats and cloaks in a cramped coat room, a curtain half drawn behind them",
+          "setting": "cramped coat room of a dance hall, rows of cloaks, muffled music, a single lantern"
+        }
       }
     ]
   },
@@ -349,7 +380,8 @@
         "gain": 3,
         "cap": 70,
         "risk": 0.1,
-        "lead": "The lights go down for the second act. {name}'s hand settles on Sam's thigh, and stays there, and then wanders."
+        "lead": "The lights go down for the second act. {name}'s hand settles on Sam's thigh, and stays there, and then wanders.",
+        "image": {"comp":"in the dark of a private theater box, the stage glowing far below"}
       }
     ]
   },
@@ -380,7 +412,11 @@
         "gain": 4,
         "cap": 90,
         "risk": 0.2,
-        "lead": "\"Help me with this clasp,\" says {name}, and pulls Sam into the changing room with her. The curtain swings shut behind them."
+        "lead": "\"Help me with this clasp,\" says {name}, and pulls Sam into the changing room with her. The curtain swings shut behind them.",
+        "image": {
+          "comp": "inside a curtained changing room, her reflection in a tall mirror, new clothes half on",
+          "setting": "small boutique changing room with a velvet curtain, tall mirror and a cushioned bench"
+        }
       }
     ]
   },
@@ -409,7 +445,11 @@
         "gain": 3,
         "cap": 80,
         "risk": 0.05,
-        "lead": "The attendant leaves them a private pool behind the rocks. {name} lets the steam hide her smile and slides closer through the water."
+        "lead": "The attendant leaves them a private pool behind the rocks. {name} lets the steam hide her smile and slides closer through the water.",
+        "image": {
+          "comp": "half-submerged in the steaming water of a private pool, steam curling around them",
+          "setting": "secluded private hot spring pool behind rocks, steam, snow-dusted pines"
+        }
       }
     ],
     "lust": 3,
@@ -446,7 +486,8 @@
         "gain": 3,
         "cap": 60,
         "risk": 0.05,
-        "lead": "{name} looks around the empty shore once, then leaves her clothes on a rock and wades in without them. \"Well?\" she calls back."
+        "lead": "{name} looks around the empty shore once, then leaves her clothes on a rock and wades in without them. \"Well?\" she calls back.",
+        "image": {"comp":"swimming bare in the clear lake, looking back over her shoulder at him, her clothes left on a rock"}
       },
       {
         "label": "More than swimming",
@@ -455,7 +496,8 @@
         "gain": 4,
         "cap": 90,
         "risk": 0.05,
-        "lead": "The water is cool and the grass is warm. {name} stops pretending they came here only to swim."
+        "lead": "The water is cool and the grass is warm. {name} stops pretending they came here only to swim.",
+        "image": {"comp":"on the warm grass at the water's edge, still wet from the lake"}
       }
     ]
   },
@@ -489,7 +531,8 @@
         "gain": 2,
         "cap": 65,
         "risk": 0,
-        "lead": "The water is warm and the lanterns are low. {name}'s hands stop scrubbing and start wandering, and she doesn't pretend otherwise."
+        "lead": "The water is warm and the lanterns are low. {name}'s hands stop scrubbing and start wandering, and she doesn't pretend otherwise.",
+        "image": {"comp":"close together in the steaming bath, hands under the water"}
       }
     ],
     "lust": 3
@@ -524,7 +567,8 @@
         "gain": 3,
         "cap": 65,
         "risk": 0,
-        "lead": "\"A real study needs less drapery,\" says {name}, and lets it fall. Sam's pencil stops moving."
+        "lead": "\"A real study needs less drapery,\" says {name}, and lets it fall. Sam's pencil stops moving.",
+        "image": {"comp":"posing nude on draped fabric while Sam sketches her, the sketchbook in his hands"}
       },
       {
         "label": "The sketch can wait",
@@ -533,7 +577,8 @@
         "gain": 3,
         "cap": 80,
         "risk": 0,
-        "lead": "Sam's drawing is going badly. {name} takes the pencil out of his hand, puts it on the easel, and the sketch waits."
+        "lead": "Sam's drawing is going badly. {name} takes the pencil out of his hand, puts it on the easel, and the sketch waits.",
+        "image": {"comp":"on the draped chaise beside the easel, charcoal sketches scattered on the floor"}
       }
     ]
   },

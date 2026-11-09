@@ -139,10 +139,11 @@ function samSpicy(id, k, i){
   const lead = sp.lead.replace(/\{name\}/g, w.name), act = sp.nude ? null : spicyAct(w, sp), label = sp.label.toLowerCase() + ' on a date (' + d.label.toLowerCase() + ')';
   let text, scene, ai;
   if(act){
-    text = privateCore(w, act, {lead}); lewdUp(w, sp.gain, sp.cap); scene = 'samact:'+act+'~~date_'+k;
+    text = privateCore(w, act, {lead}); lewdUp(w, sp.gain, sp.cap); scene = 'samact:'+act+'~~date_'+k+(sp.image ? '.'+i : '');
     ai = {kind:'private', act, scene, forSam:true, situation:label};
   } else {
     lewdUp(w, sp.gain, sp.cap); moodAdd(w, 4); w.lust += 6; fitLust(w); minorTrust(w); text = lead; scene = 'date_'+k;
+    if(sp.image && sp.image.comp){ const di = d.image || {}, im = {comp:sp.image.comp, setting:sp.image.setting || di.setting, sam:true}; ['undress','bath','away','swim'].forEach(f=>{ if(di[f] != null) im[f] = di[f]; }); scene = dynScene('date_'+k+'_sp'+i, Object.assign(im, {label:d.label+': '+sp.label})) || scene; }
     ai = {kind:'private', scene, forSam:true, situation:label, cloth:'nude'};
   }
   if(Math.random() < (sp.risk||0)){

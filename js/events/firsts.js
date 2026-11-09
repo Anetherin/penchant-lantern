@@ -17,6 +17,11 @@ const FIRST_CHARS = noMeta(FIRSTS.characters), FIRST_TPL = noMeta(FIRSTS.templat
 const firstPace = w => FIRSTS.paces[(w.firsts||{}).pace] || FIRSTS.paces.normal;
 const stageName = s => (FIRSTS.stages[s]||{}).label || '';
 const pentUp = w => restless(w);
+// trust she needs for stage s; lewdness eases it (firsts.json → lewdEase), restlessness (pent) eases it further
+function firstNeed(w, s, pent){
+  const E = FIRSTS.lewdEase || {from:25, per:0, max:0}, ease = clamp(E.per * ((w.lewd||0) - E.from), 0, E.max);
+  return firstPace(w).trust[s-1] - (pent ? FIRSTS.pentTrust : 0) - ease;
+}
 const fillF = (t, w) => String(t||'').replace(/\{name\}/g, w.name).replace(/\{N\}/g, w.name).replace(/\{house\}/g, (S && houseOf(w)) ? houseOf(w).name : 'the house');
 
 // Named ladies: their own pace/path. Guests: rolled once from personality and traits, the same every game (seeded by key).
@@ -30,6 +35,7 @@ function firstsProfile(w){
   const mods = [...(w.traits||[]), w.personality].map(m=>P.mods[m]).filter(Boolean);
   mods.forEach(M=>{ Object.entries(M.pace||{}).forEach(([k,v])=>pace[k]=(pace[k]||0)+v); Object.entries(M.path||{}).forEach(([k,v])=>path[k]=(path[k]||0)+v); });
   if(w.lewd>=60) pace.fast += 1; else if(w.lewd<20) pace.slow += 1;
+  if(P.lewdPath && w.lewd >= P.lewdPath.at) Object.entries(P.lewdPath.path).forEach(([k,v])=>path[k]=(path[k]||0)+v);
   const init = P.init + mods.reduce((a,M)=>a+(M.init||0),0);
   return {pace:wpick(pace), path:wpick(path).split(',').map(Number), init: R() < init};
 }
@@ -40,7 +46,7 @@ const tierActs = (w, s) => getActs().filter(a=>actTier(a.id)===s && samStance(w,
 function firstBlock(w, pent){
   const s = firstNext(w); if(!s) return 'done';
   if(!tierActs(w,s).length) return 'comfort';
-  const need = firstPace(w).trust[s-1] - (pent ? FIRSTS.pentTrust : 0);
+  const need = firstNeed(w, s, pent);
   if(w.trust < need) return 'trust';
   if(w.firstHold && S.week < w.firstHold) return 'wait';
   if(!pent && S.week - (w.intimWk ?? -99) < firstPace(w).gap) return 'wait';
@@ -59,8 +65,8 @@ function firstData(w, s, pent){
   }
   const base = (w.intim||0)===0 && s>1 ? 'jump' : String(s);
   const list = (pent && FIRST_TPL['pent_'+base]) || FIRST_TPL[base] || FIRST_TPL['1'];
-  const fits = list.map((v,i)=>({v,i})).filter(({v})=>(!v.pers || v.pers.includes(w.personality)) && (!v.traits || v.traits.some(t=>has(w,t))) && (!v.race || v.race.includes(w.race)));
-  const p = weighted(fits.length ? fits : list.map((v,i)=>({v,i})), x=>(x.v.pers||x.v.traits||x.v.race) ? 3 : 1);
+  const fits = list.map((v,i)=>({v,i})).filter(({v})=>(!v.pers || v.pers.includes(w.personality)) && (!v.traits || v.traits.some(t=>has(w,t))) && (!v.race || v.race.includes(w.race)) && (v.lewdMin==null || (w.lewd||0) >= v.lewdMin));
+  const p = weighted(fits.length ? fits : list.map((v,i)=>({v,i})), x=>(x.v.pers||x.v.traits||x.v.race||x.v.lewdMin!=null) ? 3 : 1);
   return {d:p.v, key:`first_t_${pent&&FIRST_TPL['pent_'+base]?'pent_':''}${base}_${p.i}`};
 }
 // the service shown when the line is crossed: hers if the scene names one, else her favorite at that stage, else the gentlest
@@ -123,9 +129,9 @@ function firstsLine(w){
   if(!S.workers.includes(w) || !w.firsts) return '';
   const cur = w.intim||0, s = firstNext(w), blk = s ? firstBlock(w, pentUp(w)) : 'done';
   const steps = w.firsts.path.map(x=>`<span class="${x<=cur?'pink':'muted'}">${x<=cur?'♥':'♡'} ${esc(stageName(x))}</span>`).join(' → ');
-  const kp = knowsPrefs(w), k = knows(w, true), P = firstPace(w);
+  const kp = knowsPrefs(w), k = knows(w, true);
   const why = !s ? '' : {comfort:`She isn't comfortable going that far with Sam yet.`,
-    trust:`She needs to trust Sam more first${k?` (${tShow(P.trust[s-1])}${pentUp(w)?`, or ${tShow(P.trust[s-1]-FIRSTS.pentTrust)} while she's this restless`:''})`:''}.`,
+    trust:`She needs to trust Sam more first${k?` (${tShow(firstNeed(w,s,false))}${pentUp(w)?`, or ${tShow(firstNeed(w,s,true))} while she's this restless`:''})`:''}.`,
     wait:'Give it a little time.'}[blk] || '';
   return `<div style="margin-top:4px">With Sam: ${steps}${kp?` <span class="muted">(${w.firsts.pace} pace${w.firsts.init?', makes the first move':''})</span>`:''}</div>`
     + (s ? (blk ? `<div class="muted">Next: ${esc(stageName(s))}. ${why}</div>` : `<div class="pink">${pentUp(w)&&!firstReady(w)?`She's restless enough not to wait.`:`She's ready for the next step.`} <button class="sm" onclick="firstFromSheet('${w.id}')">♥ Take the next step</button> <span class="muted">(1 action)</span></div>`) : '');

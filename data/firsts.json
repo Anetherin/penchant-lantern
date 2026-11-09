@@ -8,7 +8,10 @@
     "Event: title, text (the setup), image {comp, setting, sam, pov, towel} (a picture for this moment), go / goRes (crossing the line; then the service's own line and her reaction follow), wait / waitRes (Sam says not yet), optional act (which service to show; must be at that stage), optional situation (AI prompt context). {name} = her name.",
     "templates: for ladies without their own. Keys 1, 2, 3, jump (from nothing straight past a first kiss), and pent_<key> versions. Optional pers / traits / race lists narrow a variant to matching ladies (they're picked more often when they match).",
     "roll: how pace / path / init are rolled for ladies without their own (generic ladies at random; guests seeded by key so they're the same every game). mods by trait or personality add weight.",
-    "relaxed: the bath / walk-in beats of partner stories once she and Sam have reached stage relaxedAt: no more embarrassment. Choices use the arc effect schema (t/m/l, res with {N})."
+    "relaxed: the bath / walk-in beats of partner stories once she and Sam have reached stage relaxedAt: no more embarrassment. Choices use the arc effect schema (t/m/l, res with {N}).",
+    "lewdEase: lewdness eases the trust gate for her firsts. Trust needed for a stage drops by per x (lewd - from), at most max (live: uses her current lewdness; firstNeed() in firsts.js; combines with pentTrust).",
+    "roll.lewdPath: when a generic lady's lewdness is at least 'at' as her firsts are rolled, these weights are added to the path odds (on top of the existing lewd >= 60 fast / < 20 slow pace nudge).",
+    "templates: a variant may carry lewdMin (0-100): it only applies to ladies with lewdness >= lewdMin, and counts as a matching variant (picked more often). Variants without lewdMin stay usable for everyone."
   ],
   "stages": {
     "1": {"label":"First kiss","situation":"This is their very first kiss; it stays at kissing and touching."},
@@ -17,6 +20,7 @@
   },
   "paces": {"fast":{"trust":[15,25,35],"gap":0},"normal":{"trust":[30,45,60],"gap":2},"slow":{"trust":[45,60,75],"gap":3}},
   "pentTrust": 15,
+  "lewdEase": {"from":25,"per":0.5,"max":20},
   "holdWeeks": 2,
   "chance": {"pent":0.5,"init":0.55,"week":0.25},
   "defaults": {
@@ -69,7 +73,8 @@
       "Mysterious and aloof": {"path":{"3":0.5,"2,3":1}},
       "Warm and motherly": {"path":{"1,2,3":1}},
       "Bookish and curious": {"pace":{"slow":0.5},"path":{"1,2,3":1}}
-    }
+    },
+    "lewdPath": {"at":50,"path":{"3":0.5,"1,3":1}}
   },
   "templates": {
     "1": [
@@ -150,6 +155,20 @@
         "wait": "\"Perhaps not yet.\"",
         "waitRes": "\"Of course.\" She inclines her head, entirely unruffled. \"There will be other sunsets.\"",
         "pers": ["Calm and elegant","Mysterious and aloof","Proud and sharp-tongued"]
+      },
+      {
+        "title": "{name}: Off the Clock",
+        "lewdMin": 45,
+        "text": "{name} has spent the night smiling at strangers. Afterward she finds Sam in the kitchen and sits down across from him, chin in her hand. \"You know what's strange?\" she says. \"I've lost count of the men I've kissed this month. And I'm nervous.\"",
+        "image": {
+          "comp": "sitting across a small kitchen table late at night, chin in her hand, looking at him with a nervous, unguarded smile",
+          "setting": "house kitchen after closing, a single lantern, two cups of tea",
+          "sam": true
+        },
+        "go": "Kiss her",
+        "goRes": "It's nothing like work. She seems as surprised by that as he is.",
+        "wait": "\"Then let's not rush it\"",
+        "waitRes": "{name} laughs, relieved and a little disappointed. \"Nobody's ever said that to me before.\""
       }
     ],
     "2": [
@@ -206,6 +225,20 @@
         "wait": "\"Someone might come in.\"",
         "waitRes": "\"Coward.\" She laughs and drags him upstairs instead... to say goodnight. Pointedly.",
         "pers": ["Bold and flirtatious","Hot-blooded and competitive","Cheerful and teasing"]
+      },
+      {
+        "title": "{name}: Not Like Work",
+        "lewdMin": 45,
+        "text": "\"I know how to do this,\" {name} says, her hands at Sam's collar. \"I'm very good at it. That's the problem.\" She stops. \"With you I don't want to be good at it. I just want it to be us.\"",
+        "image": {
+          "comp": "standing close in her room, her hands resting on his collar, hesitating, eyes searching his face",
+          "setting": "her bedroom at night, soft lamplight, the door closed",
+          "sam": true
+        },
+        "go": "\"Then just be you\"",
+        "goRes": "She stops performing halfway through, starts laughing, and doesn't let go of him.",
+        "wait": "Not tonight",
+        "waitRes": "\"Okay,\" says {name}, and means it. She keeps her hands on his collar a while longer anyway."
       }
     ],
     "3": [
@@ -268,6 +301,20 @@
         "wait": "\"I came to say not yet.\"",
         "waitRes": "\"Then thank you for being punctual.\" A faint smile. \"Another midnight.\"",
         "pers": ["Calm and elegant","Mysterious and aloof","Proud and sharp-tongued"]
+      },
+      {
+        "title": "{name}: The One That Counts",
+        "lewdMin": 45,
+        "text": "{name} closes her door behind them and leans against it. \"Half this town thinks they know what I'm like in bed,\" she says. \"I want one person who doesn't have to guess.\"",
+        "image": {
+          "comp": "leaning back against her closed bedroom door, looking at him, vulnerable and certain",
+          "setting": "her bedroom late at night, a single candle",
+          "sam": true
+        },
+        "go": "Go to her",
+        "goRes": "None of it is new to her, and all of it is. She tells him so, afterward.",
+        "wait": "Hold her instead",
+        "waitRes": "They don't do anything but lie there. {name} says it's the most intimate night she's had in years."
       }
     ],
     "jump": [
@@ -306,6 +353,16 @@
         "goRes": "The linens stay on the floor until morning.",
         "wait": "\"The linens...\"",
         "waitRes": "\"Forget the linens.\" But she lets him go, laughing. \"Next time, forget them faster.\""
+      },
+      {
+        "title": "{name}: Skipping Ahead",
+        "lewdMin": 45,
+        "text": "\"I've never been good at the slow part,\" {name} admits, already pulling Sam toward her room. \"But I'm going to remember this one. Is that all right?\"",
+        "image": {"comp":"pulling him by the hand toward her room, laughing and a little shy","setting":"her bedroom doorway at night, lamplight","sam":true},
+        "go": "Go with her",
+        "goRes": "She does remember it. So does he.",
+        "wait": "\"Slow can be good too\"",
+        "waitRes": "{name} stops in the doorway, considers this, and kisses his cheek instead. \"Fine. Slow. Tomorrow.\""
       }
     ],
     "pent_1": [
