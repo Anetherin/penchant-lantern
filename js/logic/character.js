@@ -81,8 +81,15 @@ const actSkill = (w,id) => (w.acts&&w.acts[actKey(id)]) ? w.acts[actKey(id)].ski
 function sceneParts(k){ const p = String(k||'').split('~'); return {base:p[0], expr:p[1]||'', ctx:p[2]||''}; }
 const sceneBase = k => sceneParts(k).base;
 const isSvcScene = k => /^(act:|samact:|duo:|solo$)/.test(sceneBase(k));
+// Swim scenes (dates.json image "swim": true): she wears an owned bath-compatible outfit (swimsuit first), if she has one.
+function swimOutfit(w, scene){
+  if(!isSwimScene(scene)) return null;
+  const ok = k => WARDROBE[k] && WARDROBE[k].bath && ownsOutfit(w,k);
+  return ok('swimsuit') ? 'swimsuit' : (Object.keys(WARDROBE).find(ok) || null);
+}
 // The outfit shown in a scene: her service outfit (sheet → wardrobe) in service scenes, otherwise her work outfit.
 function outfitKey(w, scene){
+  const sw = swimOutfit(w, scene); if(sw) return sw;
   const k = w.svcOutfit; if(scene && k && isSvcScene(scene) && (k==='custom' ? w.customOutfit : (WARDROBE[k] && ownsOutfit(w,k)))) return k;
   // a job outfit (w.jobOutfit[job]) or the job's uniform (wardrobe.json → uniform) is worn at work, never in service scenes
   if(!(scene && isSvcScene(scene)) && w.job){

@@ -15,6 +15,8 @@ function raceLook(w){ if(w.race==='beastkin'){ const s=w.sub||'fox', sd = subDat
 function keepOnRule(w){ const k = w.key && NAMED[w.key] && NAMED[w.key].keepOn; return k && w.trust < (k.trust||90) ? k : null; }
 // A bathing scene (scenes.json / dates.json image: "bath": true, or the older "towel": true).
 const isBathScene = scene => { const sc = scene && SCENES[sceneBase(scene)]; return !!(sc && (sc.bath || sc.towel)); };
+// A swimming scene (dates.json image: "swim": true). Not a bath scene: no towel, stays where it is.
+const isSwimScene = scene => { const sc = scene && SCENES[sceneBase(scene)]; return !!(sc && sc.swim); };
 function clothText(w, cloth, scene){
   const keep = keepOnRule(w);
   if(keep) return clothTextBase(w, keep.aside && cloth!=='dressed' ? 'aside' : cloth, scene, keep.aside) + ', still keeping ' + keep.item + ' on';
@@ -25,6 +27,10 @@ function clothTextBase(w, cloth, scene, noTowel){
     const T = Object.assign({}, DEFAULT_CLOTH_TEXT, Object.fromEntries(Object.entries(SET.clothText||{}).filter(([k,v])=>v)));
     const ut = underText(w);
     return ((!ut && T.aside_commando) || T.aside || T.partial || T.dressed).replace(/\{outfit\}/g, outfitText(w, scene)).replace(/\{underwear\}/g, ut || 'bare skin, nothing underneath');
+  }
+  // Swim scenes: with a bath-compatible outfit (swimsuit...) she swims in it instead of clothes or underwear (nude stays nude)
+  if(cloth!=='nude' && swimOutfit(w, scene)){
+    return outfitText(w, scene);
   }
   // Bath scenes: only bath-compatible outfits (wardrobe.json "bath": true) stay on; otherwise a towel, her underwear, or nothing.
   if(!noTowel && isBathScene(scene)){

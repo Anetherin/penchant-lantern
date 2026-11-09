@@ -107,7 +107,7 @@
       "kind": "receive",
       "desc": "being pleasured by hand",
       "ask": {"client":"to touch her","lady":"asked him to touch her"},
-      "dress": {"min":"partial","fullAt":60},
+      "dress": {"min":"partial","fullAt":55},
       "image": {
         "client": ["lying back on a bed, a man's hand between her thighs"],
         "sam": [
@@ -189,7 +189,7 @@
       "kind": "receive",
       "desc": "being pleasured with his mouth",
       "ask": {"client":"to go down on her","lady":"asked him to go down on her"},
-      "dress": {"min":"partial","fullAt":60},
+      "dress": {"min":"partial","fullAt":55},
       "image": {
         "client": [
           "lying back on a bed, a man's head between her thighs, her fingers in his hair"

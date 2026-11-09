@@ -4,7 +4,7 @@
     "label, cost (gold), energy (Sam's energy it takes), trust / mood (base gains), like (which personality like it counts as: walk, dinner, theater, gift, private, chat, train; or an array: liked if any is liked, disliked only if all are), restores (her energy +), greedyMood (extra mood for Greedy ladies).",
     "intro + one of lines make the result text ({name} = her name). past: a different version when Sam's backstory matches (cost, trustMult, intro, lines).",
     "image: the date's image scene (comp, setting, snip). It's available as date_<key> in the image menu. A date without image (chat) has no scene.",
-    "image may also carry undress ('partial' or 'under': she is shown at most that undressed, within her comfort) and bath (true: a bathing scene; bath-compatible outfits, otherwise towel/undergarments/undressed).",
+    "image may also carry undress ('partial' or 'under': she is shown at most that undressed, within her comfort) and bath (true: a bathing scene; bath-compatible outfits, otherwise towel/undergarments/undressed). image may also carry away: true (an away bath/towel scene keeps its own setting instead of the house bathhouse) and swim: true (a swimming scene: if she owns a bath-compatible outfit, e.g. a swimsuit, she wears it while her dress level would be dressed or partial; it is not a bath scene).",
     "What a date raises (all optional): stats {beauty|charm|refinement|stamina|strength|agility: n} (her stat XP, 1000 scale like training), skills {service|dance|bar|combat|manage: n} (her skill growth), sam {charm|business|strength|technique: n} (Sam's stats; default {charm:1}), pop (her popularity +n), lust (her lust +n, x her lustBuild), lewd + lewdCap (her lewdness +n with diminishing returns up to lewdCap, see balance.json lewd; more if she loves the date, less if not), gift: true (counts as a gift for her traits), trinket (0-1 chance Sam buys her a little something on the way: mood +5, counts as a gift).",
     "needsUp: an upgrade id the house must own for the date to appear (e.g. bath). needsIntim: the least intimacy stage she must have reached with Sam (w.intim) for it to be listed.",
     "special: 'chat' = the row runs the chat (trust, mood and energy here; random spread x0.6-1.4, Romantic/Shy bonuses, topics from events.json). special: 'nightin' = after the date, if she is comfortable with anything private, Sam can always go inside (no extra action); otherwise just a cosy evening.",
@@ -43,10 +43,9 @@
     "label": "Stargazing on the rooftop",
     "cost": 0,
     "energy": 15,
-    "trust": 2.3,
+    "trust": 2.6,
     "mood": 7,
-    "like": "walk",
-    "lewd": 1,
+    "like": ["walk","private"],
     "intro": "Sam spreads a blanket on the roof after dark, and the two moons hang low over the city.",
     "lines": [
       "She traces the constellations and makes up her own names for them.",
@@ -57,8 +56,7 @@
       "comp": "lying together on a blanket, gazing at the night sky, her head on his shoulder",
       "setting": "rooftop at night under a sky full of stars and two moons, soft lantern glow"
     },
-    "lust": 4,
-    "lewdCap": 30,
+    "lust": 2,
     "spicy": [
       {
         "label": "Under the blanket",
@@ -147,7 +145,18 @@
     "image": {
       "comp": "reading together at a long table, heads bent over an old book, her finger on the page",
       "setting": "old city archive with tall shelves, ladders, dusty sunlight and stacks of scrolls"
-    }
+    },
+    "spicy": [
+      {
+        "label": "Between the stacks",
+        "acts": ["kiss","manual_give"],
+        "lewd": 35,
+        "gain": 3,
+        "cap": 60,
+        "risk": 0.25,
+        "lead": "{name} pulls Sam into the narrowest aisle, past the ladders, where the clerk can't see. \"We have to be very quiet,\" she whispers."
+      }
+    ]
   },
   "hike": {
     "label": "Hike to the dungeon overlook",
@@ -173,11 +182,80 @@
       {
         "label": "A clearing off the trail",
         "acts": ["missionary","cowgirl","oral_give"],
-        "lewd": 40,
+        "lewd": 45,
         "gain": 3,
         "cap": 75,
         "risk": 0.05,
         "lead": "{name} leaves the path without explaining, and Sam follows. The clearing is quiet and sunny, and a long way from anyone."
+      }
+    ]
+  },
+  "wrestle": {
+    "label": "Wrestling match (loser buys dinner)",
+    "cost": 0,
+    "energy": 22,
+    "trust": 2.6,
+    "mood": 9,
+    "like": ["train","chat"],
+    "lust": 5,
+    "lewd": 2,
+    "lewdCap": 40,
+    "stats": {"strength":1,"agility":1},
+    "sam": {"strength":1},
+    "intro": "Sam makes the mistake of saying he could take {name} in a fair fight. She clears the furniture.",
+    "lines": [
+      "She pins him in under a minute and sits on him until he admits it.",
+      "He wins one round by accident. She demands a rematch, then three more.",
+      "They end up in a breathless, laughing tangle on the floor, and nobody is keeping score anymore."
+    ],
+    "image": {
+      "comp": "wrestling playfully on a padded floor, tangled up and laughing, her pinning him down",
+      "setting": "room with the furniture pushed aside, cushions and a rug on the floor, warm lamplight"
+    },
+    "spicy": [
+      {
+        "label": "She pins him",
+        "acts": ["cowgirl","manual_give","kiss"],
+        "lewd": 35,
+        "gain": 3,
+        "cap": 70,
+        "risk": 0,
+        "lead": "{name} pins Sam flat for the last time and doesn't let him up. She doesn't seem to be thinking about the score anymore."
+      }
+    ]
+  },
+  "massage": {
+    "label": "Trade massages",
+    "cost": 5,
+    "energy": 15,
+    "trust": 2.4,
+    "mood": 10,
+    "like": ["private","chat"],
+    "restores": 20,
+    "lust": 4,
+    "lewd": 2,
+    "lewdCap": 40,
+    "sam": {"technique":1},
+    "intro": "Scented oil, a warm room, and a deal: Sam goes first, then it's her turn.",
+    "lines": [
+      "She critiques his technique the whole time, then falls asleep halfway through her turn.",
+      "She finds every knot in his shoulders and is smug about each one.",
+      "Neither of them talks much. Neither of them needs to."
+    ],
+    "image": {
+      "comp": "giving each other a relaxing oil massage, her lying on her front on a towel, his hands on her shoulders",
+      "setting": "warm candlelit room, towels, oil bottles, soft cushions",
+      "undress": "partial"
+    },
+    "spicy": [
+      {
+        "label": "Lower...",
+        "acts": ["manual_give","manual_get","oral_give","oral_get"],
+        "lewd": 30,
+        "gain": 2,
+        "cap": 60,
+        "risk": 0,
+        "lead": "\"You missed a spot,\" says {name}, and guides Sam's hands somewhere that isn't her shoulders."
       }
     ]
   },
@@ -208,7 +286,7 @@
       {
         "label": "Under the tablecloth",
         "acts": ["manual_get","manual_give"],
-        "lewd": 40,
+        "lewd": 45,
         "gain": 3,
         "cap": 70,
         "risk": 0.25,
@@ -320,7 +398,8 @@
       "snip": "bath",
       "comp": "relaxing together in a steaming outdoor hot spring, flushed and content",
       "setting": "mountain hot spring among rocks and snow-dusted pines",
-      "towel": true
+      "towel": true,
+      "away": true
     },
     "spicy": [
       {
@@ -332,7 +411,10 @@
         "risk": 0.05,
         "lead": "The attendant leaves them a private pool behind the rocks. {name} lets the steam hide her smile and slides closer through the water."
       }
-    ]
+    ],
+    "lust": 3,
+    "lewd": 2,
+    "lewdCap": 45
   },
   "lake": {
     "label": "Swim at the hidden lake",
@@ -351,7 +433,8 @@
     "image": {
       "comp": "swimming and playing in the water together, wet hair, laughing",
       "setting": "secluded forest lake with clear water, sunlight through the trees",
-      "undress": "under"
+      "undress": "under",
+      "swim": true
     },
     "lewdCap": 45,
     "stats": {"stamina":1},
@@ -368,7 +451,7 @@
       {
         "label": "More than swimming",
         "acts": ["missionary","cowgirl","doggy"],
-        "lewd": 50,
+        "lewd": 45,
         "gain": 4,
         "cap": 90,
         "risk": 0.05,
@@ -408,7 +491,8 @@
         "risk": 0,
         "lead": "The water is warm and the lanterns are low. {name}'s hands stop scrubbing and start wandering, and she doesn't pretend otherwise."
       }
-    ]
+    ],
+    "lust": 3
   },
   "posing": {
     "label": "Pose for Sam's sketchbook",
