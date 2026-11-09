@@ -12,9 +12,8 @@
   Crossover/visiting ladies live in `data/guests.json` (packs, merged into NAMED as role 'drifter' by `charData()` in
   `js/core/config.js`); keys must stay unique across characters.json and guests.json.
   Run `node tools/fmt-json.mjs` after editing data files programmatically.
-- Image prompts are always built programmatically (`js/logic/prompts.js`). The user writes any explicit wording
-  themselves in `data/snippets.json` / `data/ai-prompts.json`; Claude doesn't author it. All characters are adults;
-  `cleanText` / `YOUTH_RE` guard prompts and AI output, so keep those checks in place.
+- Image prompts are always built programmatically (`js/logic/prompts.js`). The user writes any explicit wording Claude is uncomfortable with
+  themselves in `data/snippets.json` / `data/ai-prompts.json`; All characters are adults;
 - Firsts with Sam: `js/events/firsts.js` + `data/firsts.json`. `canSam` = comfort (`samStance`) AND crossed (`actTier(id) <= w.intim`).
   Every path that leads to private time (dates, encounters, arcs, bonds) goes through `canSam`/`bestSamAct`, so keep it that way.
   Story moments can carry their own image `{comp, setting, sam}` → `dynScene(key, img)` (js/data/scenes.js).
