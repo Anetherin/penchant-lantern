@@ -37,7 +37,7 @@ const server = http.createServer((q, r) => {
   r.writeHead(200, {'content-type': TYPES[path.extname(f)] || 'application/octet-stream'}); fs.createReadStream(f).pipe(r);
 }).listen(0);
 const PORT = server.address().port;
-const browser = await pw.chromium.launch(process.env.CHROME ? { executablePath: process.env.CHROME } : {});
+const browser = await pw.chromium.launch(Object.assign({args:['--no-proxy-server']}, process.env.CHROME ? { executablePath: process.env.CHROME } : {}));
 let failed = false;
 for (const target of ['index.html', 'dist/hollowmere-nights.html']) {
   const file = path.join(root, target);
