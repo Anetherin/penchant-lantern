@@ -48,7 +48,9 @@ const BOT_A = `async (houseId, weeks) => {
   const h = S.houses[0], HD = HOUSES[houseId];
   const stat = { cost:HD.cost, debt:HD.debt, upkeep:HD.upkeep, size:HD.size, rooms:HD.rooms, quarters:HD.quarters, beds:HD.beds, demand:HD.demand };
   const wk0 = {rooms:h.rooms, quarters:h.quarters, beds:h.beds, size:houseSize(h), debt:S.debt.total, upkeepStat:HD.upkeep, demand:HD.demand, cls:HD.cls, hauntRep:HD.hauntRep, haunted:HD.haunted};
-  const snaps = {}, weekly = [], CP = [4,8,13,26,39,52]; let paidWeek = null, overWeek = null, hired = 0, quartersBought = 0, roomsBought = 0, bedsBought = 0, floorSum = 0;
+  const DG = {n:0, led:{}, cls:{}, upkeep:0, wages:0, income:0, served:0, turned:0, short:0, sat:0, repDelta:0, sam:0, accProps:0, selfProps:0, escorts:0, roomCap:0, roomsUsed:0, byAct:0};
+  const _pc = window.pickClass; if (!window.__pcw) { window.__pcw = true; window.pickClass = function(hh){ const c = _pc.apply(this, arguments); if (window.__CLS) window.__CLS[c.id] = (window.__CLS[c.id]||0)+1; return c; }; }
+  const HQ = []; const snaps = {}, weekly = [], CP = [4,8,13,26,39,52]; let paidWeek = null, overWeek = null, hired = 0, quartersBought = 0, roomsBought = 0, bedsBought = 0, floorSum = 0;
   const AMEN = [['bath','bath'],['dancer','stage'],['bartender','bar']];
   const cnt = j => S.workers.filter(x => x.job === j).length;
   const wantAmen = j => { const up = AMEN.find(a => a[0] === j); return up && h.up[up[1]]; };
@@ -80,21 +82,23 @@ const BOT_A = `async (houseId, weeks) => {
       }
       const c = S.candidates.filter(x => !raceBlock(x, h) && S.gold - x.signing >= reserve).sort((a,b)=>a.signing-b.signing)[0];
       if (!c) break;
-      hire(c.id); hired++; closeModal();
+      HQ.push({q:STAT_KEYS.reduce((a,k)=>a+s100(c.stats[k]),0)/6, wage:c.wage, sign:c.signing}); hire(c.id); hired++; closeModal();
     }
     jobs();
     let g2 = 0; while (S.ap > 0 && g2++ < 6) { if (S.sam.energy >= 25) samWork('bartend'); else samRest(); closeModal(); }
-    const wk = S.week;
+    const wk = S.week; const rep0 = h.rep; window.__CLS = {};
     endWeek(); closeModal(); resolveEvents();
     const R = S.lastReport;
     const net = R.income - R.wages - R.upkeep - (R.recharge||0);
     floorSum += R.houses.reduce((a,x)=>a+(x.floor?x.floor.length:0),0);
     weekly.push({wk, net:Math.round(net)});
+    if (wk >= 10 && wk <= 30) { const hh = R.houses[0]; DG.n++; for (const k in R.led) DG.led[k] = (DG.led[k]||0) + R.led[k]; for (const k in window.__CLS) DG.cls[k] = (DG.cls[k]||0) + window.__CLS[k];
+      DG.upkeep += R.upkeep; DG.wages += R.wages; DG.income += R.income; DG.served += hh.served; DG.turned += hh.turned; DG.short += hh.short; DG.sat += hh.avgSat; DG.repDelta += h.rep - rep0; DG.accProps += hh.accProps; DG.selfProps += hh.selfProps; DG.escorts += S.workers.filter(x=>x.job==='courtesan').length; for (const x of S.workers) DG['job.'+x.job] = (DG['job.'+x.job]||0)+1; DG.trustAvg = (DG.trustAvg||0) + S.workers.reduce((a,x)=>a+x.trust,0)/S.workers.length; DG.rested = (DG.rested||0)+0; DG.roomCap += hh.roomCap; DG.roomsUsed += hh.roomsUsed; DG.sam += R.led.sam; }
     if (S.debt.remaining <= 0 && paidWeek === null) paidWeek = wk;
     if (CP.includes(wk)) snaps[wk] = { gold:Math.round(S.gold), debt:Math.round(S.debt.remaining), rep:Math.round(h.rep*10)/10, staff:S.workers.length, income:Math.round(R.income), net:Math.round(net), turned:R.turned, rooms:h.rooms };
     if (S.over) overWeek = wk;
   }
-  return { wk0, stat, snaps, weekly, paidWeek, overWeek, strikes:S.debt.strikes, hired, quartersBought, roomsBought, bedsBought, floorSum, finalRooms:h.rooms };
+  return { DG, beat:h.story.beat, bonus:h.bonus, rep52:h.rep, HQ, wk0, stat, snaps, weekly, paidWeek, overWeek, strikes:S.debt.strikes, hired, quartersBought, roomsBought, bedsBought, floorSum, finalRooms:h.rooms };
 }`;
 
 const BOT_B = `async (race, sub, weeks, nLadies) => {
@@ -155,7 +159,9 @@ if (MODE.includes('A')) {
       if (page.errors.length) console.error(hid, 'page errors', page.errors.slice(0,2));
       await page.close();
     }
-    const sum = { stat: runs[0] && runs[0].stat, wk0: runs[0] && runs[0].wk0, n: runs.length, over: runs.filter(r=>r.overWeek).map(r=>r.overWeek), paid: runs.filter(r=>r.paidWeek).map(r=>r.paidWeek), checkpoints:{}, netAt:{}, hired:r1(mean(runs.map(r=>r.hired))), quarters:r1(mean(runs.map(r=>r.quartersBought))), roomsBought:r1(mean(runs.map(r=>r.roomsBought))), bedsBought:r1(mean(runs.map(r=>r.bedsBought))), floorPerWeek:r1(mean(runs.map(r=>r.floorSum/52))) };
+    const sum = { diag:(()=>{ const o = {}; const N = runs.reduce((a,r)=>a+r.DG.n,0)||1; const add = (t,k,v)=>t[k]=(t[k]||0)+v;
+      runs.forEach(r=>{ for (const [k,v] of Object.entries(r.DG)) { if (k==='led'||k==='cls') for (const [a,b] of Object.entries(v)) add(o,k+'.'+a,b); else if (k!=='n') add(o,k,v); } });
+      for (const k in o) o[k] = Math.round(o[k]/N*10)/10; o.beatMean = r1(mean(runs.map(r=>r.beat))); o.bonus = runs.map(r=>JSON.stringify(r.bonus)).filter((v,i,a)=>a.indexOf(v)===i).join(';'); o.feePerSvc = Math.round((o['led.escort']||0)/Math.max(1,o.served)*10)/10; return o; })(), hq:(()=>{ const a=runs.flatMap(r=>r.HQ); const m=k=>a.length?Math.round(a.reduce((x,y)=>x+y[k],0)/a.length*10)/10:0; return {n:a.length, q:m('q'), wage:m('wage'), sign:m('sign')}; })(), g52med:(()=>{ const v=runs.map(r=>(r.snaps[52]||{}).gold).filter(x=>x!==undefined).sort((a,b)=>a-b); return v.length?(v[(v.length-1>>1)]+v[v.length>>1])/2:null; })(), stat: runs[0] && runs[0].stat, wk0: runs[0] && runs[0].wk0, n: runs.length, over: runs.filter(r=>r.overWeek).map(r=>r.overWeek), paid: runs.filter(r=>r.paidWeek).map(r=>r.paidWeek), checkpoints:{}, netAt:{}, hired:r1(mean(runs.map(r=>r.hired))), quarters:r1(mean(runs.map(r=>r.quartersBought))), roomsBought:r1(mean(runs.map(r=>r.roomsBought))), bedsBought:r1(mean(runs.map(r=>r.bedsBought))), floorPerWeek:r1(mean(runs.map(r=>r.floorSum/52))) };
     for (const wk of [4,8,13,26,39,52]) {
       const s = runs.map(r => r.snaps[wk]).filter(Boolean);
       const f = k => s.length ? `${r1(mean(s.map(x=>x[k])))} [${Math.min(...s.map(x=>x[k]))}..${Math.max(...s.map(x=>x[k]))}]` : 'n/a(over)';
@@ -193,6 +199,6 @@ if (out.A) { const m = (c,wk,k) => c[wk][k].split(' ')[0];
   for (const [hid,s] of Object.entries(out.A)) console.log('wk0', hid, JSON.stringify(s.wk0));
   console.log('house | net5/15/30 | gold13/26/52 | rep52 | net52 | turned52 | staff52 | roomsBought | qtrs+beds | over | paid');
   for (const [hid, s] of Object.entries(out.A)) { const c = s.checkpoints, n = s.netAt;
-    console.log([hid, [5,15,30].map(w=>n[w].split(' ')[0]).join('/'), [13,26,52].map(w=>m(c,w,'gold')).join('/'), m(c,52,'rep'), m(c,52,'net'), m(c,52,'turned'), m(c,52,'staff'), s.roomsBought, s.quarters+'+'+s.bedsBought, s.over.length?s.over.join(','):'-', s.paid.length+'/'+s.n].join(' | ')); } }
+    console.log([hid, [5,15,30].map(w=>n[w].split(' ')[0]).join('/'), [13,26,52].map(w=>m(c,w,'gold')).join('/'), m(c,52,'rep'), m(c,52,'net'), m(c,52,'turned'), m(c,52,'staff'), 'med52gold='+s.g52med, 'hired q/wage/sign='+s.hq.q+'/'+s.hq.wage+'/'+s.hq.sign, s.roomsBought, s.quarters+'+'+s.bedsBought, s.over.length?s.over.join(','):'-', s.paid.length+'/'+s.n].join(' | ')); } }
 if (out.B) console.log(JSON.stringify(out.B));
 await browser.close(); server.close();

@@ -15,7 +15,7 @@
       "common": true,
       "weight": 40,
       "fx": {"trustGain":1.15,"skillGain":1.15},
-      "client": {"like":0.06,"dislike":0},
+      "client": {"like":0.09,"dislike":0},
       "alwaysLast": true
     },
     "elf": {
@@ -25,8 +25,8 @@
       "mods": {"refinement":10,"beauty":5,"stamina":-5},
       "common": true,
       "weight": 15,
-      "fx": {"moodDrift":0.5,"moodDelta":0.6},
-      "client": {"like":0.1,"dislike":0.05},
+      "fx": {"moodDrift":0.5,"moodDelta":0.6,"classBonus":{"noble":1.2,"merchant":1.05}},
+      "client": {"like":0.14,"dislike":0.04},
       "alwaysLast": true
     },
     "beastkin": {
@@ -38,7 +38,7 @@
       "weight": 25,
       "fx": {"recklessAt":-10,"lewdGain":1.15,"energyRec":1.15},
       "client": {"like":0.12,"dislike":0.04},
-      "wage": 0.75,
+      "wage": 0.85,
       "subs": {
         "fox": {
           "weight": 1,
@@ -84,7 +84,7 @@
       "mods": {"charm":5,"lewd":15},
       "common": false,
       "weight": 10,
-      "fx": {"lustMax":20,"lustBuild":1.3,"actEnergy":0.5},
+      "fx": {"lustMax":20,"lustBuild":1.3,"actEnergy":0.6},
       "client": {"like":0.25,"dislike":0.25}
     },
     "dwarf": {
@@ -106,7 +106,7 @@
       "mods": {"charm":5,"refinement":5,"strength":-10},
       "common": false,
       "weight": 2,
-      "fx": {"maxEnergy":-20,"moodDrift":1.6,"moodDelta":1.3},
+      "fx": {"maxEnergy":-10,"moodDrift":1.6,"moodDelta":1.3,"clientFee":1.12},
       "client": {"like":0.2,"dislike":0.2},
       "needs": "tether"
     },
@@ -124,10 +124,10 @@
       "label": "Android",
       "age": [22,95],
       "look": "android woman with fine seams at her joints and softly glowing eyes",
-      "mods": {"stamina":5,"refinement":5,"charm":-5},
+      "mods": {"stamina":5,"refinement":5,"charm":0},
       "common": false,
       "weight": 3,
-      "fx": {"lustBuild":0.8},
+      "fx": {"lustBuild":0.8,"skillGain":1.25,"clientFee":1.08},
       "client": {"like":0.2,"dislike":0.15},
       "needs": "charger"
     }

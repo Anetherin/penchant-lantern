@@ -329,7 +329,7 @@ function simHouse(h, R){
     const base = act ? actById(act).price * roomM * ob(w,'courtesan') : 20 * ob(w,'courtesan');
     const below = Math.max(0, (HD.minPop||0) - w.popularity);
     const inc = Math.round(base * P.mult * (0.6+q*0.9) * cm * (1+madF*0.15) * fxMul(w,'clientFee') * jb(w,w.job) * (react==='like' ? SVC.raceLikeFee : 1) * (below?0.75:1) * (reg ? (regQuirk(reg).tip||1) : 1) * BAL.income.escort);
-    const sat = clamp(- below*0.5 + q*100 + 6 + rnd(-15,15) + h.tier*5 - (h.price-1)*6 + (h.up.bath?4:0) + (w.job==='courtesan' && attendants.length ? J.attendantSat : 0) + (matched && outcome==='yes' ? J.madameMatchSat : 0) + (outcome==='yes'?8:outcome==='alt'?3:outcome==='no'?-8:0)
+    const sat = clamp(- below*0.5 + q*100 + 6 + rnd(-15,15) + h.tier*5 - (h.price-1)*6 + (h.up.bath?4:0) + (HD.sat||0) + (w.job==='courtesan' && attendants.length ? J.attendantSat : 0) + (matched && outcome==='yes' ? J.madameMatchSat : 0) + (outcome==='yes'?8:outcome==='alt'?3:outcome==='no'?-8:0)
       + (fxSub(w,'classBonus',cls.id)-1)*SVC.classBonusSat + (react==='like' ? SVC.raceLikeSat : react==='dislike' ? SVC.raceDislikeSat : 0));
     pr.satSum = (pr.satSum||0) + sat; if(sat<30) pr.low = (pr.low||0)+1;
     hr.income += inc; R.led.escort += inc; pr.served++; pr.earned += inc; hr.served++; hr.sat += sat;
@@ -394,6 +394,8 @@ function simHouse(h, R){
   up = Math.round(up * ((h.bonus&&h.bonus.upkeep)||1) * (1 + h.rep/150));
   hr.upkeep = up;
   if(h.bonus && h.bonus.charter){ hr.income += h.bonus.charter; R.led.bar += h.bonus.charter; }
+  // travelers' room & board (economy.json → houses.<id>.lodging), grows with reputation
+  if(HD.lodging){ const l = Math.round(HD.lodging * (1 + h.rep/50)); hr.income += l; R.led.bar += l; }
   const avg = hr.served ? hr.sat/hr.served : 50;
   // reputation: each lady's clients move it by (sat-50)/12 per client share, scaled by her rep fx. Gains are slower in a famous house.
   if(W.length){
