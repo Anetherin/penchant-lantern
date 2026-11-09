@@ -97,11 +97,7 @@
       "common": false,
       "weight": 3,
       "fx": {"lustMax":-30,"noReckless":true,"moodRest":5},
-      "client": {"like":0.25,"dislike":0.1,"classLike":{"noble":0.3}},
-      "names": {
-        "f": ["Seraphine","Cassiel","Aurelia","Miriel","Evanora","Galadia","Lucienne","Isaura"],
-        "l": ["Dawnwing","Brightwater","Halewing","Stillglass","Evenlight"]
-      }
+      "client": {"like":0.25,"dislike":0.1,"classLike":{"noble":0.3}}
     },
     "android": {
       "label": "Android",
@@ -112,8 +108,7 @@
       "weight": 3,
       "fx": {"lustBuild":0.8},
       "client": {"like":0.2,"dislike":0.15},
-      "needs": "charger",
-      "names": {"f":["Aiko","Nova","Lyra","Echo","Juno","Mica","Cinder","Vesper"],"l":["Unit 04","Series-9","Mk. III","Model R-12","Type S"]}
+      "needs": "charger"
     }
   }
 }
