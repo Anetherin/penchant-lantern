@@ -928,14 +928,14 @@
         }
       }
     },
-    "mio": {
+    "akari": {
       "pace": "fast",
       "path": [1,2,3],
       "init": true,
       "events": {
         "1": {
           "title": "Like in the Dramas",
-          "text": "Mio drags Sam out into the rain with one umbrella. \"In every drama, the first kiss is in the rain. I've waited my whole life. Both lives.\" She stands on tiptoe. Then she makes him do a second take, for the lighting.",
+          "text": "Akari drags Sam out into the rain with one umbrella. \"In every drama, the first kiss is in the rain. I've been practicing this scene for years.\" She stands on tiptoe. Then she makes him do a second take, for the lighting.",
           "image": {
             "comp": "under a shared umbrella in the rain, standing on tiptoe to kiss him, eyes shining",
             "setting": "lantern-lit cobbled street in the rain at night",
@@ -948,23 +948,23 @@
         },
         "2": {
           "title": "Episode Two",
-          "text": "\"In dramas, episode two is where it gets serious,\" Mio says, sitting cross-legged on Sam's bed in her pajamas. \"I've seen a lot of episode twos.\" She pats the blanket.",
+          "text": "\"In dramas, episode two is where it gets serious,\" Akari says, sitting cross-legged on Sam's bed in her pajamas. \"I've seen a lot of episode twos. I just never got to play one.\" She pats the blanket.",
           "image": {
             "comp": "sitting cross-legged on a bed in pajamas, patting the blanket beside her, mischievous excited grin",
             "setting": "his bedroom at night, lamplight",
             "sam": true
           },
           "go": "Start episode two",
-          "goRes": "Mio was underselling how many episode twos she's seen.",
+          "goRes": "Akari was underselling how many episode twos she's seen.",
           "wait": "\"This is a slow-burn drama.\"",
           "waitRes": "\"Ugh, those are the WORST.\" She pouts and steals his pillow."
         },
         "3": {
           "title": "Season Finale",
-          "text": "Mio has made a sign. It says SEASON FINALE in very large letters. She's holding it in front of Sam's door. \"No more cliffhangers,\" she says. \"I'm a grown woman and I know what I want.\"",
+          "text": "Akari has made a sign. It says SEASON FINALE in very large letters. She's holding it in front of Sam's door. \"No more cliffhangers,\" she says. \"I'm not Kenta's sister tonight. I'm a grown woman and I know what I want.\"",
           "image": {"comp":"holding up a handmade sign in a doorway, nervous brave grin, hair down","setting":"his bedroom doorway at night","sam":true},
           "go": "Let her in",
-          "goRes": "It's a very good finale. Mio gives it ten out of ten.",
+          "goRes": "It's a very good finale. Akari gives it ten out of ten.",
           "wait": "\"Save it for season two?\"",
           "waitRes": "She groans and slides down the door frame. \"Fine. But the sign stays up.\""
         }
@@ -1305,6 +1305,184 @@
           "goRes": "The tide goes out at dawn. So, eventually, do they.",
           "wait": "\"I'll come next year.\"",
           "waitRes": "\"Next year, then.\" She doesn't sound disappointed. She sounds like someone who has learned to wait."
+        }
+      }
+    },
+    "lara": {
+      "pace": "slow",
+      "path": [1,2,3],
+      "init": false,
+      "events": {
+        "1": {
+          "title": "The Longest Pause",
+          "text": "Lara is sorting linen when Sam comes in. She keeps her eyes on the pillowcases. \"I've thought about this for a very long time,\" she says, \"and I'm very frightened, and I'd like to anyway.\" She sets the linen down and looks up at him.",
+          "image": {
+            "comp": "standing close to him in a linen room, hands trembling slightly, looking up with shy resolve, lips parted",
+            "setting": "lamp-lit linen room at night",
+            "sam": true
+          },
+          "go": "Meet her halfway",
+          "goRes": "The kiss is soft and unsteady, and then not unsteady at all. She keeps her hand on his collar after.",
+          "wait": "\"Whenever you're ready.\"",
+          "waitRes": "She exhales, half relief, half disappointment, and nods. \"Thank you for asking. That helps more than you know.\""
+        },
+        "2": {
+          "title": "Lamp Out",
+          "text": "For once Lara turns the courtyard lamp off herself. \"I don't need it to find you,\" she says, small voice, steady hands. \"I'd like to try, if you're willing, going somewhere together without it.\" She takes his hand.",
+          "image": {
+            "comp": "holding his hand in a dark doorway, a single candle behind her, shy and brave",
+            "setting": "his doorway at night, candlelight",
+            "sam": true
+          },
+          "go": "Follow her",
+          "goRes": "The door closes. What they find in the dark is gentle and slow and kind.",
+          "wait": "\"Another night.\"",
+          "waitRes": "\"Another night,\" she repeats, as if testing the weight of it. She smiles. It holds."
+        },
+        "3": {
+          "title": "Staying",
+          "text": "Lara is waiting in Sam's room in a long black nightdress, hair down for once, the ponytail ribbon in her hand. \"If I stay tonight,\" she says, \"I want it to be because I want to. Not because I'm afraid to be in my own room alone.\" She sets the ribbon on his table.",
+          "image": {
+            "comp": "standing by his bed with her long dark hair loose, holding a black ribbon, looking steadily at him",
+            "setting": "his bedroom, moonlight through the window",
+            "sam": true
+          },
+          "go": "Let her stay",
+          "goRes": "The lamp goes out. In the morning she wakes before him and, for the first time, isn't afraid of the quiet.",
+          "wait": "\"Come back when you're sure.\"",
+          "waitRes": "\"I'm sure,\" she says softly. \"But I can wait until you are.\" She picks up the ribbon and leaves, steady on her feet."
+        }
+      }
+    },
+    "emily": {
+      "pace": "normal",
+      "path": [1,3],
+      "init": true,
+      "events": {
+        "1": {
+          "title": "Return to Sender",
+          "text": "Emily hands Sam an envelope with nothing written on it. Inside is a single line: \"I've wanted to do this since the second letter.\" Before he has finished reading, she has stepped close, ears flat, tail coiled, and kissed him as carefully as she seals an envelope.",
+          "image": {
+            "comp": "standing close to him having just kissed him, an unmarked envelope in her hand, ears flat, tail coiled, blushing",
+            "setting": "post house back room, shelves of letters",
+            "sam": true
+          },
+          "go": "Kiss her back",
+          "goRes": "He does, and her tail starts to thump against the shelves, scattering letters. Neither of them looks down.",
+          "wait": "\"Emily...\"",
+          "waitRes": "\"Oh. Oh.\" She steps back, ears pinned. \"I'll mark it 'undelivered' and try again later.\" She smiles shakily."
+        },
+        "3": {
+          "title": "Special Delivery",
+          "text": "Emily knocks on Sam's door at midnight, satchel on her shoulder, a ribbon of silver in her hair. \"I have something for you. It was addressed to you ten years ago. It has taken me this long to deliver it.\" She sets the satchel down and steps inside.",
+          "image": {
+            "comp": "standing in his doorway at midnight with a letter satchel over her shoulder, silver ribbon in her hair, resolute and shy",
+            "setting": "his bedroom doorway, lamp glow",
+            "sam": true
+          },
+          "go": "Let her in",
+          "goRes": "The door closes. Whatever she brought, he accepts it, and signs for it gladly.",
+          "wait": "\"Leave it on the table?\"",
+          "waitRes": "\"Of course.\" She smiles, ears drooping and rising again. \"But I'm not taking it back.\""
+        }
+      }
+    },
+    "ella": {
+      "pace": "normal",
+      "path": [1,3],
+      "init": false,
+      "events": {
+        "1": {
+          "title": "Point of Order",
+          "text": "Ella calls an emergency staff meeting and then dismisses everyone but Sam. \"I propose an amendment,\" she says, sliding the agenda aside. \"That we stop pretending this isn't happening.\" She takes his lapel and kisses him as precisely as she does everything else, then steps back for his response.",
+          "image": {
+            "comp": "holding the front of his jacket, having just kissed him, composed and flushed, an agenda in her other hand",
+            "setting": "empty meeting room, lamplight, papers on the table",
+            "sam": true
+          },
+          "go": "Second the motion",
+          "goRes": "He does. She notes, afterward, that he has scored very highly in the category she just invented.",
+          "wait": "\"Table it?\"",
+          "waitRes": "\"Tabled,\" she says, adjusting her cuffs with flawless composure. \"Until the next session. Don't be late.\""
+        },
+        "3": {
+          "title": "Final Round",
+          "text": "Ella is waiting in Sam's room with a chessboard set up and two glasses of wine. \"Winner chooses,\" she says. The board is nearly cleared; one move remains. She turns her king over with one finger before he can reach for his piece. \"I forfeit.\" She holds out her hand.",
+          "image": {
+            "comp": "standing beside a chessboard with a toppled king, one hand extended toward him, bright blue eyes steady",
+            "setting": "his bedroom, candlelight, chessboard on a low table",
+            "sam": true
+          },
+          "go": "Take her hand",
+          "goRes": "The door closes. By her own later assessment, there are no losers.",
+          "wait": "\"Play it out first.\"",
+          "waitRes": "\"Coward,\" she says fondly. She sets the king back upright. \"One more game, then. I will win.\""
+        }
+      }
+    },
+    "ione": {
+      "pace": "slow",
+      "path": [1,3],
+      "init": false,
+      "events": {
+        "1": {
+          "title": "Observation",
+          "text": "Ione stops beside Sam at the bar, status light glowing. \"I have observed that I enjoy looking at you,\" she says clinically. \"I have a hypothesis that doing something about that would be pleasant. May I test it?\" She does not wait for permission. She kisses him once, carefully, and holds still afterward to take measurements.",
+          "image": {
+            "comp": "leaning close to him having just kissed him, head tilted with scientific curiosity and a flush of gold at her temple",
+            "setting": "inn bar after closing, bottles gleaming",
+            "sam": true
+          },
+          "go": "Confirm the hypothesis",
+          "goRes": "He kisses her back. Her status light flares gold. \"Confirmed,\" she whispers. \"Repeat.\"",
+          "wait": "\"Give me a moment.\"",
+          "waitRes": "\"Of course,\" she says. \"I am very patient. It is, in fact, my principal feature.\" Her light is still gold."
+        },
+        "3": {
+          "title": "Unlogged",
+          "text": "Ione waits in Sam's room, sitting on the edge of the bed with perfect posture, the diary on the table. \"I have disabled the archive,\" she says. \"Everything that happens tonight is unlogged. Mine only.\" She holds out her hand. \"I would like this one to be mine.\"",
+          "image": {
+            "comp": "sitting on the edge of his bed with her hand held out to him, silver hair catching candlelight, a steady gold glow at her temple",
+            "setting": "his bedroom, candlelight",
+            "sam": true
+          },
+          "go": "Take her hand",
+          "goRes": "The light goes out. In the morning she tells him it is the only memory she hopes never to lose.",
+          "wait": "\"Another night.\"",
+          "waitRes": "\"The archive can wait,\" she says. \"The pause is not data I mind keeping.\" She leaves her hand on his for a moment longer."
+        }
+      }
+    },
+    "anael": {
+      "pace": "slow",
+      "path": [1,3],
+      "init": false,
+      "events": {
+        "1": {
+          "title": "A Matter of Plumage",
+          "text": "Anael finds Sam in the courtyard and, without a word, opens one wing and folds it gently around his shoulders. \"It is a gesture of protection among my order,\" she says, very correct. \"It is also, I am told, a gesture of something else.\" She leans in and kisses him, softly, and her halo brightens until the courtyard glows.",
+          "image": {
+            "comp": "enfolding him with one white wing, leaning in to kiss him, halo glowing, eyes closed",
+            "setting": "lantern-lit courtyard at dusk",
+            "sam": true
+          },
+          "go": "Stay in the wing",
+          "goRes": "He kisses her back. The lanterns along the wall flare gold, one after another, and neither notices.",
+          "wait": "\"Give me a moment.\"",
+          "waitRes": "\"Of course.\" The wing withdraws, tenderly, and her halo dims to a patient glow. \"I have waited three hundred years. A little longer is no burden.\""
+        },
+        "3": {
+          "title": "Lamp Out",
+          "text": "Anael is waiting in Sam's room with the window open and a single lamp lit. \"The Order lights a lantern for each soul it watches over,\" she says. \"This one is for you.\" She cups the flame, and with a breath, blows it out. \"I will not be watching tonight. Only with you.\"",
+          "image": {
+            "comp": "standing at his window in a soft white gown, wings half-open, a single lamp cupped in her hands",
+            "setting": "his bedroom at night, an open window, moonlight",
+            "sam": true
+          },
+          "go": "Take her hand",
+          "goRes": "The room goes dark and warm. In the morning there are white-gold feathers on the floor, and she does not tidy them.",
+          "wait": "\"Keep the lamp lit tonight.\"",
+          "waitRes": "\"As you wish.\" She relights it with a touch and settles in the chair, wings gently folded. \"I will wait.\""
         }
       }
     }
