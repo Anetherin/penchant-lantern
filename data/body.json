@@ -6,13 +6,13 @@
   ],
   "defaults": {"bust":"medium","height":"average","figure":"slim"},
   "bust": {
-    "flat": {"label":"Flat","img":"","weight":1,"fx":{"actEnergy":0.92,"actBan":["paizuri"],"appeal":-2}},
-    "small": {"label":"Small","img":"TODO: your wording","weight":3,"fx":{"actQuality":{"paizuri":0.8}}},
-    "medium": {"label":"Medium","img":"TODO: your wording","weight":5,"fx":{}},
-    "large": {"label":"Large","img":"TODO: your wording","weight":3,"fx":{"actQuality":{"paizuri":1.2},"appeal":3,"actEnergy":1.06}},
+    "flat": {"label":"Flat","img":"flat chest","weight":1,"fx":{"actEnergy":0.92,"actBan":["paizuri"],"appeal":-2}},
+    "small": {"label":"Small","img":"small breasts","weight":3,"fx":{"actQuality":{"paizuri":0.8}}},
+    "medium": {"label":"Medium","img":"average sized breasts","weight":5,"fx":{}},
+    "large": {"label":"Large","img":"large breasts","weight":3,"fx":{"actQuality":{"paizuri":1.2},"appeal":3,"actEnergy":1.06}},
     "huge": {
       "label": "Huge",
-      "img": "TODO: your wording",
+      "img": "enormous breasts",
       "weight": 1,
       "fx": {"actQuality":{"paizuri":1.35},"appeal":5,"actEnergy":1.12,"jobBonus":{"dancer":0.9}}
     }
