@@ -418,13 +418,13 @@ function endWeek(){
     if(has(w,'Devoted')) w.mood = Math.max(w.mood, 45);
     if(w.mood>65) w.trust += 0.5 * fxMul(w,'trustGain');
     if(w.mood<30 && !has(w,'Loyal') && !isFree(w)) w.trust -= 2;
-    w.trust = clamp(w.trust);
+    w.trust = clamp(w.trust); capTrust(w);
     if(w.health<30 && w.job!=='rest'){ w.job='rest'; log(`🤒 ${w.name} is unwell and will rest next week.`); }
     if(w.job!=='rest' && w.trust < jobTrust(w,w.job) - 5){ log(`${w.name} doesn't trust Sam enough to keep working as ${JOBS[w.job].label} and stepped down.`); w.job='rest'; delete w.prevJob; }
     const dropped = w.menu.filter(a=>!canClient(w,a));
     if(dropped.length){ w.menu = w.menu.filter(a=>canClient(w,a)); log(`${w.name} took ${dropped.map(actLabel).join(', ')} off her menu for now.`); }
     if(w.job==='courtesan' && !getActs().some(a=>canClient(w,a.id))){ w.job = safeJob(w, 'attendant'); log(`${w.name} isn't comfortable offering services right now and moved to ${(JOBS[w.job]||{label:'rest'}).label} work.`); }
-    if(!wardrobeOK(w,w.outfit)){ w.outfit = w.owned.find(k=>wardrobeOK(w,k)) || w.outfit; log(`${w.name} changed into something she's more comfortable in.`); }
+    if(!wardrobeOK(w,w.outfit)){ w.outfit = ownedOutfits(w).find(k=>wardrobeOK(w,k)) || w.outfit; log(`${w.name} changed into something she's more comfortable in.`); }
     if(!underOK(w,w.under)){ w.under='plain'; }
     // auto-rest
     if(w.autoRest){
@@ -455,7 +455,7 @@ function endWeek(){
     pr.encAll = pr.enc.map(e=>encLine(e)); delete pr.enc;
     earnCheck(w).forEach(t=>{ log(`✨ ${w.name} has developed a knack: ${t}. ${TRAITS[t].desc}`); addLog(`${w.name} developed the trait ${t}.`); });
     // romance arcs
-    if(ARCS[w.key] && (w.arc||0) < ARCS[w.key].length){
+    if(ARCS[w.key] && (w.arc||0) < ARCS[w.key].length && !houseGate(w)){
       const i = w.arc||0, need = [40,48,56,64,72,82][i], gap = i===0 ? 1 : i<3 ? 2 : 3;
       const extra = i===2 ? (w.dates>=1 || w.privateCount>=1) : i===4 ? (w.dates>=2) : i===5 ? (w.privateCount>=2) : true;
       if(w.trust>=need && S.week-(w.arcWk||0) >= gap && extra){ const at = i; EVQ.push(()=> (w.arc||0)===at ? evArc(w) : null); }

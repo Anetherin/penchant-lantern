@@ -90,7 +90,7 @@ function buyUpgrade(k){
   else { if(h.up[k]) return; need = AMENITY_SIZE[k]||1; }
   if(need && roomsUsed(h) + need > houseSize(h)) return toast(`${h.name} is out of space (${roomsUsed(h)}/${houseSize(h)} rooms used).`);
   if(S.gold < cost) return toast('Not enough gold.');
-  S.gold -= cost; S.built = (S.built||0) + 1; S.builtBy = S.builtBy||{}; S.builtBy[k] = (S.builtBy[k]||0) + 1;
+  S.gold -= cost; h.spent = (h.spent||0) + cost; S.built = (S.built||0) + 1; S.builtBy = S.builtBy||{}; S.builtBy[k] = (S.builtBy[k]||0) + 1;
   if(k==='room'){ h.rooms++; note(`${h.name}: a new bedroom is ready. (${h.rooms} total)`); }
   else if(k==='quarters'){ h.quarters=(h.quarters||0)+1; note(`${h.name}: new staff quarters. Beds for ${bedsFor(h)}.`); }
   else if(k==='roomTier'){ h.tier++; note(`${h.name}: bedrooms refurbished to ${ROOM_NAMES[h.tier]}.`); }
@@ -114,6 +114,12 @@ function buyHouse(id){
     EVQ.push(()=>({title:`${D.name}`, who:n.id, scene:'portrait', text:`${n.name} is waiting at the door when Sam arrives with the deed.\n\n${n.backstory}\n\nShe comes with the place.`, choices:[{label:'Welcome aboard', fx(){ n.trust=clamp(n.trust+5); return ''; }}]}));
   }
   save(); render(); runQueue();
+}
+// Pay the whole remaining debt at once: same win flow as the last regular payment (checkEnd sets S.won).
+function payOffDebt(){
+  const r = S.debt.remaining; if(r<=0 || S.gold < r) return toast('Not enough gold to pay it off.');
+  S.gold -= r; S.debt.remaining = 0; S.debt.carry = 0;
+  note(`Paid off the debt in full (${fmt(r)}).`); save(); render(); checkEnd();
 }
 function payExtra(){
   const el = $('#payamt'); const amt = Math.floor(+((el&&el.value)||0));

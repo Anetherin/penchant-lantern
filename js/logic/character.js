@@ -18,7 +18,19 @@ const appeal = w => s100(w.stats.beauty)*0.4 + s100(w.stats.charm)*0.3 + w.popul
 const lewdMult = w => fxMul(w,'lewdGain') * ((PERS[w.personality]||{}).lewd || 1) * ((S && HOUSES[(houseOf(w)||{}).id]||{}).lewdBoost || 1);
 const isFree = w => !!(w.isPartner || w.free);
 // Trust from Sam's attention: personality, race, and diminishing returns near the top.
-function gainTrust(w, n){ const g = n * pTrust(w) * (n>0 ? fxMul(w,'trustGain') : 1) * (n>0 ? Math.max(0.15, 1 - w.trust/140) : 1); w.trust = clamp(w.trust + g); return g; }
+function gainTrust(w, n){ const b = w.trust, g = n * pTrust(w) * (n>0 ? fxMul(w,'trustGain') : 1) * (n>0 ? Math.max(0.15, 1 - w.trust/140) : 1); w.trust = clamp(w.trust + g); capTrust(w); return w.trust - b; }
+// House-gated progress (docs/OVERHAUL.md §7): a lady who comes with a house (role 'house') can't trust Sam beyond
+// 35 + 15 x the house story's beat until that story is done (no cap if her house has no story or is complete).
+function houseGate(w){
+  if(typeof S==='undefined' || !S || !w || !w.key || !NAMED[w.key] || NAMED[w.key].role!=='house') return null;
+  const hid = Object.keys(HOUSES).find(k=>HOUSES[k].npc===w.key), st = hid && typeof STORIES!=='undefined' ? STORIES[hid] : null;
+  const h = hid && S.houses.find(x=>x.id===hid);
+  if(!st || !h || !h.story || h.story.beat >= st.beats.length) return null;
+  return {house:h, beat:h.story.beat, cap:BAL.houseGate.base + BAL.houseGate.perBeat*h.story.beat};
+}
+const houseTrustCap = w => { const g = houseGate(w); return g ? g.cap : 100; };
+function capTrust(w){ const c = houseTrustCap(w); if(w.trust > c) w.trust = c; return w.trust; }
+function enforceTrustCaps(){ if(typeof S!=='undefined' && S && S.workers) S.workers.forEach(capTrust); }
 const moodMod = w => (w.mood-50)/10;
 // CONSENT MODEL
 // inclination = her own appetite for a service (lewdness + likes + mood). That decides what she enjoys.
@@ -62,7 +74,7 @@ const sceneBase = k => sceneParts(k).base;
 const isSvcScene = k => /^(act:|samact:|duo:|solo$)/.test(sceneBase(k));
 // The outfit shown in a scene: her service outfit (sheet → wardrobe) in service scenes, otherwise her work outfit.
 function outfitKey(w, scene){
-  const k = w.svcOutfit; if(scene && k && isSvcScene(scene) && (k==='custom' ? w.customOutfit : (WARDROBE[k] && (w.owned||[]).includes(k)))) return k;
+  const k = w.svcOutfit; if(scene && k && isSvcScene(scene) && (k==='custom' ? w.customOutfit : (WARDROBE[k] && ownsOutfit(w,k)))) return k;
   // a job outfit (w.jobOutfit[job]) or the job's uniform (wardrobe.json → uniform) is worn at work, never in service scenes
   if(!(scene && isSvcScene(scene)) && w.job){
     const jo = w.jobOutfit && w.jobOutfit[w.job]; if(jo && WARDROBE[jo]) return jo;
@@ -82,6 +94,13 @@ function spUnlocked(w,k){ const o = WARDROBE['sp_'+w.key]; return (o && o.unlock
 function wardrobeAvail(w){
   return Object.entries(WARDROBE).filter(([k,o])=>!o.owner || o.owner===w.key);
 }
+// Ownership: her own pieces (gifts, signatures) plus the shared house wardrobe (S.houseWardrobe / S.houseUnder).
+const houseStock = () => (typeof S!=='undefined' && S && S.houseWardrobe) || [];
+const houseUnderStock = () => (typeof S!=='undefined' && S && S.houseUnder) || [];
+const ownsOutfit = (w,k) => (w.owned||[]).includes(k) || houseStock().includes(k);
+const ownsUnder = (w,k) => (w.ownedUnder||[]).includes(k) || houseUnderStock().includes(k);
+const ownedOutfits = w => Array.from(new Set([...(w.owned||[]), ...houseStock()])).filter(k=>WARDROBE[k]);
+const outfitCost = o => Math.max(0, Math.round((o.cost||0) * BAL.wardrobe.costMult));
 function wardrobeOK(w,k){ const o = k==='custom' ? {lewd:0} : WARDROBE[k]; return !!o && clothLimit(w,false) >= (o.lewd||0); }
 function underOK(w,k){ return !!UNDER[k] && clothLimit(w,false) >= UNDER[k].lewd || k==='custom'; }
 
@@ -179,11 +198,11 @@ function ensureWorker(w){
     if(w.design.outfit){ w.outfit='custom'; w.customOutfit=w.design.outfit; }
     else { const b = pick(plainBase().filter(k=>k!=='b_robe' || w.lewd>=20)); w.outfit = b; }
   }
-  if(w.outfit && w.outfit!=='custom' && !w.owned.includes(w.outfit)) w.owned.push(w.outfit);
+  if(w.outfit && w.outfit!=='custom' && !ownsOutfit(w,w.outfit)) w.owned.push(w.outfit);
   if(!w.outColor) w.outColor = Math.random()<0.4 ? w.favColor : pick(COLOR_KEYS);
   if(!w.ownedUnder) w.ownedUnder = ['plain'];
   if(!w.under){ if(w.design.underwear){ w.under='custom'; w.customUnder=w.design.underwear; } else w.under = pick(['plain','plain','lace','silk','sports']); }
-  if(w.under!=='custom' && !w.ownedUnder.includes(w.under)) w.ownedUnder.push(w.under);
+  if(w.under!=='custom' && !ownsUnder(w,w.under)) w.ownedUnder.push(w.under);
   if(!w.underColor) w.underColor = Math.random()<0.4 ? w.favColor : pick(COLOR_KEYS);
   delete w.design.outfit; delete w.design.underwear;
   if(!w.imgVar) w.imgVar = {};

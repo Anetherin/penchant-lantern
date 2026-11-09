@@ -4,7 +4,7 @@
    ===================================================================== */
 function startSetup(){
   SETUP = {step:0, past:null, house:null, partner:null, offers: Object.keys(HOUSES).filter(k=>HOUSES[k].starter), prev:{}};
-  Object.keys(NAMED).forEach(k=>{ if(NAMED[k].role==='house' || NAMED[k].role==='partner'){ const w = makeNamed(k, NAMED[k].role==='partner'); SETUP.prev[w.id] = w; } });
+  Object.keys(NAMED).forEach(k=>{ if(NAMED[k].role==='house' || (NAMED[k].role==='partner' && partnerOffered(k))){ const w = makeNamed(k, NAMED[k].role==='partner'); SETUP.prev[w.id] = w; } });
   $('#hdr').innerHTML = `<div class="brand">🏮 Hollowmere Nights</div>`; $('#tabs').innerHTML=''; $('#view').innerHTML=''; $('#endBtn').disabled = true;
   setupView();
 }
@@ -32,7 +32,7 @@ function setupView(){
     ok = !!SETUP.house;
   } else if(st===2){
     body = `<h2>Who's at Sam's side?</h2><p class="muted">Your partner works without wages and already trusts Sam. Each has her own romance story. The others may turn up later looking for paid work.</p>
-      <div class="grid">${PARTNERS.map(k=>{ const n=NAMED[k]; return `<div class="pick ${SETUP.partner===k?'sel':''}" onclick="setupPick('partner','${k}')">
+      <div class="grid">${PARTNERS.filter(partnerOffered).map(k=>{ const n=NAMED[k]; return `<div class="pick ${SETUP.partner===k?'sel':''}" onclick="setupPick('partner','${k}')">
         <div class="row">${miniAvatar(k)}<div><b>${n.name}</b> <span class="muted">${RACES[n.race].label}${n.sub?' ('+n.sub+')':''} · ${esc(n.personality)}</span><div class="muted">Trust ${n.partnerTrust} · Lewdness ${n.partnerLewd??n.lewd} · ${JOBS[n.job].label} · ${n.traits.join(', ')}</div></div></div>
         <div style="margin-top:4px">${esc(n.partnerStory)}</div>${previewBtn(k)}</div>`; }).join('')}</div>`;
     ok = !!SETUP.partner;

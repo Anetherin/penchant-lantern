@@ -19,8 +19,14 @@
   Every path that leads to private time (dates, encounters, arcs, bonds) goes through `canSam`/`bestSamAct`, so keep it that way.
   Story moments can carry their own image `{comp, setting, sam}` → `dynScene(key, img)` (js/data/scenes.js).
 - Job preferences are per lady (`w.jobLikes`/`w.jobDislikes`; named ones from `jobs` in characters/guests.json, others rolled by `rollJobPrefs`).
-- New Game+ lives in `js/logic/ngplus.js` (tuning: `balance.json → ngplus`). Houses with `ngplus: true` in economy.json only appear
-  from cycle 2; their stories are in `js/stories/ngplus-houses.js`. Debt payments count from `S.debt.start` (`debtWeek()`).
+- New Game+ lives in `js/logic/ngplus.js` (tuning: `balance.json → ngplus`). Sam keeps ONLY his home house (with its upgrades; `h.spent` tracks improvement
+  spending, new debt = home debt share + `spent` x `improveShare`); other houses are sold. Only Devoted lovers carry over (wages again, stats reset, popularity 0,
+  each picks one `ngPerk` trait stored in `w.ngPerks`); everyone else leaves and named ladies return to their pools. Houses with `ngplus: true` in economy.json
+  and partners with `ngplus: true` in characters.json only appear from cycle 2 (`houseOffered` / `partnerOffered`); house stories are in `js/stories/ngplus-houses.js`.
+  Debt payments count from `S.debt.start` (`debtWeek()`); `payOffDebt()` pays it all at once (same win flow via `checkEnd`).
+- House ladies (role `house`) are gated by their house story: `houseGate(w)` / `capTrust(w)` cap trust at 35 + 15 x beat (`balance.json → houseGate`), enforced in
+  `gainTrust`, endWeek and `save()`. Clothes: outfits Sam buys go to the shared `S.houseWardrobe` (underwear: `S.houseUnder`); use `ownsOutfit/ownsUnder`, never `w.owned` alone;
+  `giftHouseItem()` gives a piece to a lady (counts as a gift); prices go through `outfitCost()` (`balance.json → wardrobe`).
 - Stats, `tech` and service skills run 0-1000 (`SKL`, `s100(v)` back to the old 0-100 scale, `clampK`); data files stay 0-100 and
   are converted at creation (`genWorker`, `makeNamed`). Anything that reads a stat/skill in a formula goes through `s100()`.
 - Effects engine: `js/logic/fx.js` (`fxMul/fxAdd/fxHas/fxSub/fxArr`) merges effects from traits (`data/traits.json`), race + beastkin

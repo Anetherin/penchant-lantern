@@ -18,6 +18,22 @@ function evHaunt(h){
 const evImg = (k, fallback) => dynScene('ev_'+k, (EVT[k]||{}).image) || fallback;
 function pickRandomEvent(){ const opts = RANDOM_EVENTS.filter(e=>e.ok()); if(!opts.length) return null; const e = weighted(opts, e=>e.w); return ()=> e.ok() ? e.make() : null; }
 const anyW = f => S.workers.filter(f);
+// An outfit from the catalogue that fits her style and that she doesn't have yet (or any other if none fits).
+function eventOutfit(w){
+  const all = Object.keys(Object.assign({}, BASE_OUTFITS, SHOP_OUTFITS)).filter(k=>!WARDROBE[k].uniform && !WARDROBE[k].owner && !ownsOutfit(w,k));
+  const fit = all.filter(k=>WARDROBE[k].style===w.style);
+  const pool = fit.length ? fit : all; return pool.length ? pick(pool) : null;
+}
+// "Someone gave her an outfit" events (events.json outfit_market / outfit_regular / outfit_friend / outfit_made).
+function evOutfit(kind){
+  const w = pick(anyW(x=>eventOutfit(x))), k = eventOutfit(w), o = WARDROBE[k];
+  const mates = anyW(x=>x!==w && x.house===w.house), other = mates.length ? pick(mates) : null;
+  const V = {name:w.name, outfit:o.label, other: other ? other.name : 'a friend'}, key = 'outfit_'+kind;
+  return {title:ET(key,'title',V), who:w.id, scene:evImg(key,'casual'), text:ET(key,'text',V), choices:[
+    {label:ET(key,'keep','label',V), fx(){ w.owned.push(k); countUp(w,'gifts'); moodAdd(w, o.style===w.style ? 10 : 6); gainTrust(w, 1); return ET(key,'keep','res',V); }},
+    {label:ET(key,'share','label',V), fx(){ if(!S.houseWardrobe.includes(k)) S.houseWardrobe.push(k); moodAdd(w, 3); return ET(key,'share','res',V); }}]};
+}
+const OUTFIT_EVENTS = ['market','regular','friend','made'].map(kind => ({w:BAL.wardrobe.eventChance, ok:()=>anyW(x=>eventOutfit(x)).length>0 && (kind!=='friend' || S.workers.some(a=>S.workers.some(b=>a!==b && a.house===b.house))), make:()=>evOutfit(kind)}));
 const RANDOM_EVENTS = [
   {w:3, ok:()=>anyW(w=>w.mood<55 && w.job!=='rest').length>0, make(){
     const w = pick(anyW(x=>x.mood<55 && x.job!=='rest')), V = {name:w.name};
@@ -78,7 +94,7 @@ const RANDOM_EVENTS = [
       {label:ET('raise','agree','label',V), fx(){ w.wage=nw; w.trust=clamp(w.trust+3); moodAdd(w, 5); return ET('raise','agree','res',V); }},
       {label:ET('raise','refuse','label',V), fx(){ const pr = ['Proud and sharp-tongued','Hot-blooded and competitive'].includes(w.personality) ? 2 : 1; moodAdd(w, -(8*pr)); w.trust=clamp(w.trust-4*pr); return ET('raise','refuse', pr>1?'resProud':'res', V); }}]};
   }}
-];
+].concat(OUTFIT_EVENTS);
 // she asks for a raise once her skills have outgrown her wage
 function underpaid(w){ const B = BAL.wages; return !isFree(w) && w.wage < wageFor(w) * ((has(w,'Ambitious')||has(w,'Greedy')) ? B.askAtAmbitious : B.askAt); }
 function evIncident(h){
