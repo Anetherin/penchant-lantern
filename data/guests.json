@@ -2423,6 +2423,110 @@
             "desc": "A commanding presence that cows rowdy clients and gives her real security muscle.",
             "fx": {"security":15,"jobBonus":{"security":1.1}}
           }
+        },
+        "buling": {
+          "job": "attendant",
+          "name": "Buling",
+          "race": "human",
+          "age": 24,
+          "personality": "Playful trickster",
+          "traits": ["Natural Performer","Flirt"],
+          "style": "Cute",
+          "favColor": "pale blue",
+          "fav": "kiss",
+          "dislike": "oral_give",
+          "lovers": "cowgirl",
+          "backstory": "A Black Shores consultant and self-proclaimed \"Spiritchaser Taoist\" from the sea-trade cities of the far east coast, Buling is known for fortune-telling, feng shui and selling talismans on her travels. She wandered into the Lantern, announced that its feng shui was a disaster, and has been rearranging the furniture uninvited ever since.",
+          "design": {
+            "build": "short and slim",
+            "hairStyle": "shoulder-length with a short side ponytail tied with black ribbons",
+            "hairColor": "very pale blue",
+            "eyes": "bright yellow-gold",
+            "skin": "pale",
+            "features": "large black headphones with gold trim"
+          },
+          "under": "lace",
+          "underColor": "white",
+          "stats": {"beauty":68,"charm":72,"refinement":45,"stamina":50,"strength":25,"agility":65},
+          "tech": {"service":45,"dance":30,"bar":25,"combat":20,"manage":30},
+          "actSkill": 25,
+          "popularity": 28,
+          "lewd": 32,
+          "trust": 22,
+          "outfits": {
+            "sig_buling": {
+              "label": "Spiritchaser's dress",
+              "style": "Cute",
+              "prompt": "a very short white dress with an open ornate black vest and detached sleeves",
+              "bonus": {"attendant":1.2,"promoter":1.15}
+            },
+            "sp_buling": {
+              "label": "Talisman merchant",
+              "style": "Exotic",
+              "prompt": "a short red-and-gold tunic dress hung with paper talismans and tasseled charms, with a small brass compass at her hip",
+              "bonus": {"promoter":1.2,"merchant":1.15}
+            }
+          },
+          "bonds": {"suoming":{"v":25,"note":"Buling pokes the auditor; the auditor pretends not to mind."}},
+          "jobs": {"likes":["attendant","promoter"],"dislikes":["security"]},
+          "body": {"bust":"small","height":"short","figure":"slim"},
+          "unique": {
+            "name": "Feng Shui Fortune",
+            "desc": "Her talismans and rearranged furniture make the house feel luckier, drawing guests in.",
+            "fx": {"rep":1.05,"jobBonus":{"attendant":1.15,"promoter":1.1}}
+          }
+        },
+        "suoming": {
+          "job": "madame",
+          "name": "Suoming",
+          "race": "human",
+          "age": 215,
+          "personality": "Stoic and blunt",
+          "traits": ["Tough","Prim"],
+          "style": "Elegant",
+          "favColor": "red",
+          "fav": "kiss",
+          "dislike": "breast_give",
+          "lovers": "missionary",
+          "backstory": "Born in Huating, Mengzhou, in the sea-trade cities of the far east coast, Suoming founded the Ten Seals Covenant as its Seal Master to free her homeland from the Evil Miasma. A seal-binding keeps her from aging, which is how she is two centuries old and still looks about twenty-five. Later, by the Sentinel's decree, she served as Intendant of the Ministry of Sentinel Affairs, watching over all of Mengzhou. Now visiting the west, she inspects Sam's house like a ministry audit, clipboard-faced and unimpressed.",
+          "design": {
+            "build": "short and slim",
+            "hairStyle": "very very long, styled in twin bun pigtails with large gold bells",
+            "hairColor": "red",
+            "eyes": "red",
+            "skin": "pale",
+            "features": "large gold bells in her hair"
+          },
+          "under": "silk",
+          "underColor": "black",
+          "stats": {"beauty":70,"charm":42,"refinement":75,"stamina":55,"strength":40,"agility":55},
+          "tech": {"service":30,"dance":15,"bar":10,"combat":70,"manage":75},
+          "actSkill": 30,
+          "popularity": 26,
+          "lewd": 18,
+          "trust": 16,
+          "outfits": {
+            "sig_suoming": {
+              "label": "Seal Master's dress",
+              "style": "Elegant",
+              "prompt": "a very short little black dress with an open ornate black cape",
+              "bonus": {"madame":1.2,"security":1.15}
+            },
+            "sp_suoming": {
+              "label": "Ministry formal",
+              "style": "Elegant",
+              "prompt": "a crisp high-collared red-and-black ministry robe with gold clasps, a sealed scroll case at her belt",
+              "bonus": {"madame":1.15,"noble":1.2}
+            }
+          },
+          "bonds": {"buling":{"v":25,"note":"The auditor's one persistent finding: Buling."}},
+          "jobs": {"likes":["madame","security"],"dislikes":["maid"]},
+          "body": {"bust":"small","height":"short","figure":"slim"},
+          "unique": {
+            "name": "Seal Master",
+            "desc": "Centuries of command keep the house orderly and its staff in line.",
+            "fx": {"security":10,"jobBonus":{"madame":1.2}}
+          }
         }
       }
     },

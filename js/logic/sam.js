@@ -151,12 +151,20 @@ function samPrivate(id, act, free){
 function privateCore(w, act, o={}){
   const stretch = samStance(w,act)==='ask', A = actById(act) || {}, recv = A.kind==='receive';
   const fromLewd = !stretch && w.lewd >= w.trust;
-  const hot = lustBonus(w), ld = spendLust(w, BAL.lust.drop.private * (recv ? 1.8 : 1));   // receiving: a big drop in her lust
+  const builds = (A.lust ?? -1) >= 0;   // giving, kissing, massages: she isn't the one being pleased, so her lust rises (more the lewder she is)
+  const hot = lustBonus(w);
+  let ld;
+  if(builds){ const l0 = w.lust; w.lust += Math.max(2, A.lust*3) * (0.4 + w.lewd/100) * fxMul(w,'lustBuild'); fitLust(w); ld = -Math.round(w.lust - l0); }
+  else ld = spendLust(w, BAL.lust.drop.private * (recv ? 1.8 : 1));   // receiving: a big drop in her lust
   growAct(w, act, (4 + S.sam.technique/20) * (S.past==='massage'?1.3:1)); statXP(w, 'stamina', 0.8); countUp(w, 'privateSam');
   if(stretch){ w.lewd = clamp(w.lewd + 4*lewdMult(w)); } else if(fromLewd) w.lewd = clamp(w.lewd + 2*lewdMult(w)); else gainTrust(w, 2);
   moodAdd(w, (stretch?1:6)*pm(w,'private') + (w.fav===act?6:0) - (w.dislike===act?6:0)); w.energy = clamp(w.energy-(recv ? 6 : 15), 0, maxEnergy(w));
   let fed = '';
   if(w.race==='demon' && A.finish){ w.energy = clamp(w.energy + SVC.demon.samGain, 0, maxEnergy(w)); S.sam.energy = Math.max(0, S.sam.energy - SVC.demon.samExtra); fed = `\n\n(${w.name} fed on him. Sam is much more tired than usual. Energy +${SVC.demon.samGain} for her.)`; }
+  if(w.race==='demon' && A.kind==='kiss'){   // a kiss is a small sip; an eager demon draws harder
+    const D = SVC.demon, deep = w.lust >= LUST_EAGER, g = D.kissSam + (deep ? D.kissSamDraw : 0);
+    w.energy = clamp(w.energy + g, 0, maxEnergy(w)); S.sam.energy = Math.max(0, S.sam.energy - (deep ? D.kissSamCost : 0));
+    fed = `\n\n(${w.name} drinks a little of him with every kiss${deep ? ', and tonight she drinks deep. Sam is a bit lightheaded afterward' : ''}. Energy +${g} for her.)`; }
   if(w.lovers===act) gainTrust(w, 2);
   samStat('technique',3); samXP(5); w.privateCount++; w._samTime = (w._samTime||0) + 1;
   samLog(`Private time with ${w.name} [${actLabel(act)}]`);
@@ -181,8 +189,26 @@ function privateCore(w, act, o={}){
   if(stretch) text += `\n\n(This was a stretch for ${w.name}. She did it for Sam, and it's a little less of a stretch now.)`;
   if(hot) text += `\n\n${hot}`;
   text += fed;
-  text += `\n\n[${actLabel(act)}] skill + · ${stretch||fromLewd?'Lewdness':'Trust'} + · Lust −${ld} · Sam's Technique +3`;
+  text += `\n\n[${actLabel(act)}] skill + · ${stretch||fromLewd?'Lewdness':'Trust'} + · Lust ${ld < 0 ? '+'+(-ld) : '−'+ld} · Sam's Technique +3`;
+  // worked up by it, she may want more: something that actually spends it, if they've crossed that far
+  if(builds && !o.more && w.lust >= LUST_EAGER && w.lewd >= SVC.askMore.lewd){
+    const ids = getActs().filter(a=>(a.lust ?? -1) < 0 && canSam(w, a.id)).map(a=>a.id);
+    if(ids.length){ const id2 = ids.includes(w.lovers) ? w.lovers : ids.includes(w.fav) ? w.fav : pick(ids);
+      text += '\n\n' + privateCore(w, id2, {lead:`${w.name} isn't done. She pulls Sam closer and tells him, quietly and very clearly, what she wants next.`, more:true}); }
+  }
   return text;
+}
+// Demons: Sam pays for a stud for the night, so she can feed her fill without anyone getting hurt (once a week).
+function hireStud(id){
+  const w = findW(id), D = SVC.demon; if(!w || w.race!=='demon') return;
+  if(w._stud===S.week) return toast(`${w.name} has already had her night this week.`);
+  if(S.gold < D.studCost) return toast('Not enough gold.');
+  S.gold -= D.studCost; w._stud = S.week;
+  const g = Math.min(D.studGain, maxEnergy(w) - w.energy); w.energy = clamp(w.energy + D.studGain, 0, maxEnergy(w)); const ld = spendLust(w, D.studLust); moodAdd(w, 4); gainTrust(w, 1);
+  samLog(`Paid for a stud for ${w.name}`); save(); render(); closeModal();
+  showResult('A Night Off the Menu', pick([
+    `Sam quietly books ${w.name} a night with a broad-shouldered professional from across town who knows exactly what he's signing up for and is paid accordingly. She comes down to breakfast radiant. He leaves at noon, cheerful and very, very sleepy.`,
+    `Sam finds ${w.name} a willing stud for the night: a retired gladiator with stamina to spare and a fee to match. Nobody gets drained into a faint, nobody's reputation suffers, and ${w.name} hums all the next morning.`]) + `\n\nEnergy +${Math.round(g)} · Lust −${ld} · Mood + · Trust + · −${fmt(D.studCost)}`, w.id, 'casual', null);
 }
 function samGuild(){
   if(!useAP(20)) return;

@@ -1360,21 +1360,54 @@
       "init": true,
       "events": {
         "1": {
-          "title": "Return to Sender",
-          "text": "Emily hands Sam an envelope with nothing written on it. Inside is a single line: \"I've wanted to do this since the second letter.\" Before he has finished reading, she has stepped close, ears flat, tail coiled, and kissed him as carefully as she seals an envelope.",
+          "title": "No Longer Typing",
+          "text": "Emily has been typing-indicator nervous all evening: starting sentences, abandoning them, starting again. Finally she sets down her notebook. \"I've wanted to do this since about year four,\" she says. \"I never said, because it was a forum. And then because it was you.\" Before he can answer she has stepped close, ears flat, tail coiled, and kissed him like she's afraid the connection will drop.",
           "image": {
-            "comp": "standing close to him having just kissed him, an unmarked envelope in her hand, ears flat, tail coiled, blushing",
+            "comp": "standing close to him having just kissed him, glasses askew, notebook in hand, ears flat, tail coiled, blushing",
+            "setting": "quiet lounge after close, lamplight",
+            "sam": true
+          },
+          "go": "Kiss her back",
+          "goRes": "He does, and her tail starts to thump against the bookshelf behind her. Her glasses end up somewhere on the floor. Neither of them looks for them.",
+          "wait": "\"Emily...\"",
+          "waitRes": "\"Oh. Oh.\" She steps back, ears pinned. \"That's fine. That's totally fine. Message received. Retrying later.\" She smiles shakily."
+        },
+        "3": {
+          "title": "Log Off Together",
+          "text": "Emily knocks on Sam's door at midnight in her oversized hoodie, hood up so only the ears show. \"We used to say goodnight and then keep talking for three more hours,\" she says. \"I don't want to say goodnight through a door anymore.\" She pushes the hood back and steps inside.",
+          "image": {
+            "comp": "standing in his doorway at midnight in an oversized hoodie with the hood half down over her wolf ears, resolute and shy",
+            "setting": "his bedroom doorway, lamp glow",
+            "sam": true
+          },
+          "go": "Let her in",
+          "goRes": "The door closes. Nobody says goodnight for a long, long time.",
+          "wait": "\"Goodnight, Em.\"",
+          "waitRes": "\"gn,\" she says, ears drooping and rising again. \"But I'm not logging off for good.\""
+        }
+      }
+    },
+    "lirael": {
+      "pace": "normal",
+      "path": [1,3],
+      "init": true,
+      "events": {
+        "1": {
+          "title": "Return to Sender",
+          "text": "Lirael hands Sam an envelope with nothing written on it. Inside is a single line: \"I've wanted to do this since the second letter.\" Before he has finished reading, she has stepped close, the tips of her ears pink, and kissed him as carefully as she seals an envelope.",
+          "image": {
+            "comp": "standing close to him having just kissed him, an unmarked envelope in her hand, the tips of her ears pink, blushing",
             "setting": "post house back room, shelves of letters",
             "sam": true
           },
           "go": "Kiss her back",
-          "goRes": "He does, and her tail starts to thump against the shelves, scattering letters. Neither of them looks down.",
-          "wait": "\"Emily...\"",
-          "waitRes": "\"Oh. Oh.\" She steps back, ears pinned. \"I'll mark it 'undelivered' and try again later.\" She smiles shakily."
+          "goRes": "He does, and her elbow knocks against the shelves, scattering letters. Neither of them looks down.",
+          "wait": "\"Lirael...\"",
+          "waitRes": "\"Oh. Oh.\" She steps back, ears dipping. \"I'll mark it 'undelivered' and try again later.\" She smiles shakily."
         },
         "3": {
           "title": "Special Delivery",
-          "text": "Emily knocks on Sam's door at midnight, satchel on her shoulder, a ribbon of silver in her hair. \"I have something for you. It was addressed to you ten years ago. It has taken me this long to deliver it.\" She sets the satchel down and steps inside.",
+          "text": "Lirael knocks on Sam's door at midnight, satchel on her shoulder, a ribbon of silver in her hair. \"I have something for you. It was addressed to you ten years ago. It has taken me this long to deliver it.\" She sets the satchel down and steps inside.",
           "image": {
             "comp": "standing in his doorway at midnight with a letter satchel over her shoulder, silver ribbon in her hair, resolute and shy",
             "setting": "his bedroom doorway, lamp glow",
@@ -1383,7 +1416,7 @@
           "go": "Let her in",
           "goRes": "The door closes. Whatever she brought, he accepts it, and signs for it gladly.",
           "wait": "\"Leave it on the table?\"",
-          "waitRes": "\"Of course.\" She smiles, ears drooping and rising again. \"But I'm not taking it back.\""
+          "waitRes": "\"Of course.\" She smiles, ears dipping and lifting again. \"But I'm not taking it back.\""
         }
       }
     },

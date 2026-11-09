@@ -2,14 +2,15 @@
   "_readme": [
     "Service categories, ONE list sorted by tier then th. Add your own by adding an entry with a new id; everyone gets a random skill and comfort level for it (custom ones from Settings merge into the list by their tier).",
     "th = lewdness she needs to enjoy it (trust can stretch her up to 25 below). price = base fee. energy = what it costs her. desc = what the service is, in plain words; the AI prompts get \"label (desc)\" as {service}.",
-    "lust = base change to HER lust per client (negative = drop, positive = rises). Real change = lust x client technique x (1.5 if favorite) x (0.6 if disliked) x her actQuality fx x her lust profile. finish = the client finishes (demon feeding; she can be left frustrated). want = relative odds clients ask for it. kind: give | receive | massage | kiss (receiving services: with Sam he does the work, low Sam energy, big drop in her lust, no demon drain).",
+    "lust = base change to HER lust per client (negative = drop, positive = rises). Only being pleased (receiving services, positions) spends it; giving, kissing and massages build it, scaled by her lewdness: real rise = lust x (0.4 + lewdness/100) x (1.5 if favorite) x (0.6 if disliked) x her lustBuild fx. Drops: lust x client technique x (1.5 fav) x (0.6 disliked) x actQuality fx x her lust profile. finish = the client finishes (demon feeding; she can be left frustrated, but only by services that spend her lust). want = relative odds clients ask for it. kind: give | receive | massage | kiss (receiving services: with Sam he does the work, low Sam energy, big drop in her lust, no demon drain). A lady in the mood (lust >= lust.eager, lewdness >= balance.json svc.askMore.lewd) may ask for more after a service that builds lust: she offers a heavier one from her menu (balance.json svc.askMore).",
     "dress = {min: dressed|partial|under|nude, fullAt: lewdness she needs before images show her fully undressed}. Services whose min is 'dressed' (kissing, massage) stay dressed until her lewdness reaches fullAt. Older entries with minCloth still work (read as dress.min).",
     "image.client / image.sam / image.duo = pose and framing for client scenes, Sam's first-person scenes, and scenes with two ladies. Each is a list: one is picked at random per image. image.extra is added to every image of this service. Anything starting with TODO is skipped when prompts are built. Every service now has default wording; the receiving ones are written softly, so make them as explicit as you like.",
     "report = lines for the weekly report when a client got this service (one is picked at random; empty falls back to flavor.json client_yes).",
     "tier: how far past the line it is with Sam (1 kissing & touching, 2 hands & mouth, 3 everything). Private time with Sam only offers services up to the tier she's crossed in her firsts (data/firsts.json). Custom services without a tier count as 1 below line 30, 2 below 50, else 3.",
     "Naming: services that go both ways come in pairs, <thing>_give (she does it to him) and <thing>_get (he does it to her), labelled \"X (giving)\" / \"X (receiving)\". Positions (missionary, cowgirl, doggy) and kiss are single. Old ids still work as aliases in code: caress -> kiss, manual -> manual_give, oral -> oral_give, paizuri -> breast_give.",
     "Scales: th and dress.fullAt are LEWDNESS thresholds, and lewdness stays 0-100 (like trust, mood and lust). Only stats, tech and service skills run 0-1000, so a two-digit th here is correct.",
-    "energyBack / mood (optional): energy she regains and mood she gains from a service (massage_get)."
+    "energyBack / mood (optional): energy she regains and mood she gains from a service (massage_get).",
+    "ask = how the weekly report phrases it. client: what he asks for, after \"asked\" (\"asked for oral\", \"asked to go down on her\"). lady: what SHE does when she's the one offering, after \"she\" (\"she offered to go down on him\"). Custom services without ask fall back to their label."
   ],
   "services": [
     {
@@ -19,11 +20,12 @@
       "th": 10,
       "price": 22,
       "energy": 7,
-      "lust": 0,
+      "lust": 1,
       "finish": false,
       "want": 0.9,
       "kind": "massage",
       "desc": "giving a massage",
+      "ask": {"client":"for a massage","lady":"offered him a massage"},
       "dress": {"min":"dressed","fullAt":85},
       "image": {
         "client": ["massaging a man's shoulders as he lies face down on a bed","kneading a man's back, sitting beside him on a massage bed"],
@@ -47,11 +49,12 @@
       "th": 20,
       "price": 18,
       "energy": 4,
-      "lust": -2,
+      "lust": 2,
       "finish": false,
       "want": 0.8,
       "kind": "kiss",
       "desc": "kissing",
+      "ask": {"client":"for a kiss","lady":"kissed him first"},
       "dress": {"min":"dressed","fullAt":95},
       "image": {
         "client": ["embracing and kissing passionately"],
@@ -75,6 +78,7 @@
       "want": 0.25,
       "kind": "receive",
       "desc": "being given a massage",
+      "ask": {"client":"to give her a massage","lady":"asked him for a massage"},
       "dress": {"min":"dressed","fullAt":85},
       "image": {
         "client": ["lying face down on a bed while a man massages her back","lying on her stomach, a man's hands kneading her shoulders"],
@@ -102,6 +106,7 @@
       "want": 0.3,
       "kind": "receive",
       "desc": "being pleasured by hand",
+      "ask": {"client":"to touch her","lady":"asked him to touch her"},
       "dress": {"min":"partial","fullAt":60},
       "image": {
         "client": ["lying back on a bed, a man's hand between her thighs"],
@@ -122,11 +127,12 @@
       "th": 32,
       "price": 32,
       "energy": 7,
-      "lust": -4,
+      "lust": 2,
       "finish": true,
       "want": 1,
       "kind": "give",
       "desc": "using her hands",
+      "ask": {"client":"for a hand job","lady":"offered him a hand job"},
       "dress": {"min":"partial","fullAt":55},
       "image": {
         "client": ["her hands wrapped around a man's penis, handjob"],
@@ -154,6 +160,7 @@
       "want": 0.3,
       "kind": "receive",
       "desc": "attention on her chest",
+      "ask": {"client":"to play with her breasts","lady":"let him play with her breasts"},
       "dress": {"min":"partial","fullAt":55},
       "image": {
         "client": ["a man embracing her from behind, his hands on her breasts"],
@@ -181,6 +188,7 @@
       "want": 0.3,
       "kind": "receive",
       "desc": "being pleasured with his mouth",
+      "ask": {"client":"to go down on her","lady":"asked him to go down on her"},
       "dress": {"min":"partial","fullAt":60},
       "image": {
         "client": [
@@ -203,11 +211,12 @@
       "th": 42,
       "price": 44,
       "energy": 9,
-      "lust": -4,
+      "lust": 2,
       "finish": true,
       "want": 1,
       "kind": "give",
       "desc": "using her mouth",
+      "ask": {"client":"for oral","lady":"offered to go down on him"},
       "dress": {"min":"partial","fullAt":55},
       "image": {
         "client": ["her mouth sucking a man's penis, blowjob"],
@@ -230,11 +239,12 @@
       "th": 45,
       "price": 46,
       "energy": 9,
-      "lust": -3,
+      "lust": 2,
       "finish": true,
       "want": 0.8,
       "kind": "give",
       "desc": "using her breasts (paizuri)",
+      "ask": {"client":"for paizuri","lady":"offered him paizuri"},
       "dress": {"min":"partial","fullAt":55},
       "image": {
         "client": ["a man's penis between her breasts, titjob"],
@@ -262,6 +272,7 @@
       "want": 1,
       "kind": "give",
       "desc": "sex, him on top",
+      "ask": {"client":"to take her to bed","lady":"took him to bed"},
       "dress": {"min":"partial","fullAt":55},
       "image": {
         "client": ["getting fucked by a man"],
@@ -289,6 +300,7 @@
       "want": 1,
       "kind": "give",
       "desc": "sex, her on top",
+      "ask": {"client":"for her on top","lady":"offered to ride him"},
       "dress": {"min":"partial","fullAt":55},
       "image": {
         "client": ["fucking a man"],
@@ -316,6 +328,7 @@
       "want": 1,
       "kind": "give",
       "desc": "sex from behind",
+      "ask": {"client":"to take her from behind","lady":"let him take her from behind"},
       "dress": {"min":"partial","fullAt":55},
       "image": {
         "client": ["getting fucked from behind by a man"],

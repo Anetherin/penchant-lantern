@@ -1189,23 +1189,23 @@
     "sub": "wolf",
     "age": 25,
     "personality": "Bookish and curious",
-    "traits": ["Romantic","Shy"],
-    "style": "Elegant",
+    "traits": ["Studious","Shy"],
+    "style": "Cute",
     "favColor": "burgundy",
     "fav": "kiss",
     "dislike": "breast_give",
     "lovers": "missionary",
     "partnerTrust": 65,
     "partnerLewd": 30,
-    "backstory": "Emily Shadowkin is a wolf-kin sorting clerk at the Hollowmere post house, the sort of person who can tell a letter's whole story from its smudges. Years ago, as a lonely teenager, she dropped a note addressed to no one into the old enchanted postbox in the alley behind the post house, and got an answer from another lonely teenager named Sam, writing from somewhere that, as far as she could tell, did not exist. For years they wrote about nothing and everything. It was friendship and nothing more: two lonely people with good handwriting. When the replies stopped, she kept the postbox swept anyway.",
-    "partnerStory": "The ownership notice for a certain pleasure house crossed Emily's counter, signed in a hand she would have known anywhere. She read the signature three times, then went to the back room and had a small, private breakdown. Sam is real, he is a few streets away, and he has no idea that someone in this world has been holding his letters for ten years. She has decided to walk into the Lantern and say hello. She has also decided to do it with her ears flat and her tail tucked, because she is a wolf and nervous is allowed.",
+    "backstory": "Back on Earth, Emily was \"Shadowkin\": the wolf-girl character she played for six years in a tiny text roleplay forum, and the username Sam talked to almost every night. They ran campaigns together, argued about anime, kept each other company through bad sleep schedules and worse exams. It was strictly friendship: they never met, never even voice-called, and neither of them ever wanted it to be anything else. Then Sam's account went quiet. A few weeks later Emily went to sleep in her dorm and woke up in this world, in the body of the character she'd been writing all those years: grey wolf ears, a tail she still can't control, and a name she'd only ever typed.",
+    "partnerStory": "Emily has spent a year in this world working odd jobs around Hollowmere and quietly assuming she's the only one. Then she overhears a tavern story about a new pleasure-house owner named Sam who apologized to a chair after bumping into it, and explained the house rules with the phrase \"okay so, lore-wise\". She knows exactly one person who talks like that. She has decided to walk into the Lantern and say hello, using his old username, with her ears flat and her tail tucked, because if she's wrong it will be the most embarrassing moment of two lives.",
     "design": {
       "build": "softly curved",
       "hairStyle": "long loose waves",
       "hairColor": "chestnut brown",
       "eyes": "grey-green",
       "skin": "pale",
-      "features": "soft grey wolf ears, a bushy grey tail and a worn leather letter satchel"
+      "features": "soft grey wolf ears, a bushy grey tail, round glasses and a stack of hand-drawn character sheets"
     },
     "under": "silk",
     "underColor": "silver",
@@ -1217,19 +1217,97 @@
     "trust": 25,
     "outfits": {
       "sig_emily": {
+        "label": "Comfy hoodie",
+        "style": "Cute",
+        "prompt": "an oversized soft grey hoodie with the sleeves over her hands, a short pleated skirt and thigh-high socks",
+        "bonus": {"attendant":1.2,"commoner":1.15}
+      },
+      "sp_emily": {
+        "label": "Character cosplay",
+        "style": "Exotic",
+        "prompt": "a fantasy ranger outfit she sewed herself to match her old roleplay character: a short green tunic, leather bracers and a hooded half-cape cut to leave room for her tail",
+        "bonus": {"adventurer":1.2,"courtesan":1.1}
+      }
+    },
+    "bonds": {"kaede":{"v":20,"note":"Fox and wolf in one house: Kaede teases, Emily lets her (and takes notes for a character)."}},
+    "jobs": {"likes":["attendant","promoter"],"dislikes":["security","dancer"]},
+    "body": {"bust":"medium","height":"average","figure":"soft"},
+    "unique": {
+      "name": "Lore Keeper",
+      "desc": "She keeps a mental character sheet for every client, quirks and all, which smooths her work as an attendant.",
+      "fx": {"jobBonus":{"attendant":1.2,"promoter":1.1},"skillGain":1.1}
+    },
+    "vignettes": [
+      {
+        "title": "Old Handles",
+        "text": "Emily sets two mugs on the lounge table and slides one across. She's drawn on it in marker: his old username, badly, with a little wolf doodle beside it. \"I made us forum mugs,\" she says, very fast. \"Is that weird. That's weird.\" Sam turns his so the name faces him and says it's the best thing anyone has given him in this world. Her tail goes off like a metronome. She pretends not to notice and blows on her tea until her glasses fog up.",
+        "trust": 20
+      },
+      {
+        "title": "Lore Dump",
+        "text": "Emily has filled a notebook with everything she's worked out about this world: currencies, gods, which taverns water their ale, a hand-drawn map with a legend in two alphabets. \"I kept thinking, Sam would want to know the lore,\" she says. \"So I wrote it down for you. Just in case.\" He reads the first page. It's titled CAMPAIGN NOTES, SESSION 1, in the exact font she used to fake for their forum headers. He has to put it down for a second.",
+        "trust": 40
+      },
+      {
+        "title": "Character Sheet",
+        "text": "Emily hands Sam a character sheet for himself, complete with stats. Charm: decent. Strength: \"we'll get there\". Special ability: makes people feel less alone. \"You can contest the numbers,\" she says, \"but not that one. That one's canon. I have six years of chat logs as a source.\" She doesn't look at him while she says it, but her ears are tilted all the way toward him.",
+        "trust": 65
+      },
+      {
+        "title": "gm",
+        "text": "Every morning for six years, the first message in Sam's inbox was two letters: gm. This morning there's a scrap of paper under his door with the same two letters on it, and when he opens it Emily is standing there already, tail sweeping the floorboards, face scarlet. \"I know we live in the same building now,\" she says. \"I just didn't want to break the streak.\" He says gm back, out loud, and she laughs so hard she has to lean on the doorframe.",
+        "trust": 85
+      }
+    ]
+  },
+  "lirael": {
+    "role": "partner",
+    "job": "attendant",
+    "name": "Lirael Quill",
+    "race": "elf",
+    "age": 112,
+    "personality": "Bookish and curious",
+    "traits": ["Romantic","Shy"],
+    "style": "Elegant",
+    "favColor": "burgundy",
+    "fav": "kiss",
+    "dislike": "breast_give",
+    "lovers": "missionary",
+    "partnerTrust": 65,
+    "partnerLewd": 30,
+    "backstory": "Lirael Quill is an elven sorting clerk at the Hollowmere post house, the sort of person who can tell a letter's whole story from its smudges. Years ago, lonely and very young by elven reckoning, she dropped a note addressed to no one into the old enchanted postbox in the alley behind the post house, and got an answer from another lonely teenager named Sam, writing from somewhere that, as far as she could tell, did not exist. For years they wrote about nothing and everything. It was friendship and nothing more: two lonely people with good handwriting. When the replies stopped, she kept the postbox swept anyway.",
+    "partnerStory": "The ownership notice for a certain pleasure house crossed Lirael's counter, signed in a hand she would have known anywhere. She read the signature three times, then went to the back room and had a small, private breakdown. Sam is real, he is a few streets away, and he has no idea that someone in this world has been holding his letters for ten years. She has decided to walk into the Lantern and say hello. She has also decided to do it with her shoulders squared and her satchel strap wound round her fingers, because she is an elf, and elves are supposed to be composed, and she is not.",
+    "design": {
+      "build": "slender",
+      "hairStyle": "long straight hair with a single braid",
+      "hairColor": "pale ash blonde",
+      "eyes": "grey-green",
+      "skin": "fair",
+      "features": "long pointed elf ears, round reading spectacles and a worn leather letter satchel"
+    },
+    "under": "silk",
+    "underColor": "silver",
+    "stats": {"beauty":62,"charm":50,"refinement":55,"stamina":60,"strength":35,"agility":55},
+    "tech": {"service":20,"dance":10,"bar":10,"combat":25,"manage":35},
+    "actSkill": 5,
+    "popularity": 6,
+    "lewd": 28,
+    "trust": 25,
+    "outfits": {
+      "sig_lirael": {
         "label": "Post house uniform",
         "style": "Elegant",
         "prompt": "a fitted dark green postal jacket with brass buttons, a pleated skirt and a leather satchel",
         "bonus": {"attendant":1.2,"merchant":1.1}
       },
-      "sp_emily": {
+      "sp_lirael": {
         "label": "Full-moon dress",
         "style": "Elegant",
-        "prompt": "a flowing silver-grey dress with a deep-blue ribbon sash, cut to leave room for her tail",
+        "prompt": "a flowing silver-grey dress with a deep-blue ribbon sash",
         "bonus": {"noble":1.15,"courtesan":1.15}
       }
     },
-    "bonds": {"kaede":{"v":20,"note":"Fox and wolf in one house: Kaede teases, Emily lets her."}},
+    "bonds": {"kaede":{"v":20,"note":"Fox and elf in one house: Kaede teases, Lirael lets her."}},
     "jobs": {"likes":["attendant","promoter"],"dislikes":["security","dancer"]},
     "body": {"bust":"medium","height":"average","figure":"soft"},
     "unique": {
@@ -1240,22 +1318,22 @@
     "vignettes": [
       {
         "title": "The Shoebox",
-        "text": "Emily brings a battered shoebox to the lounge and sets it on the table as though it might bite. Inside are letters, hundreds, in tidy blue-black ink. She tells Sam what the old postbox is, how the letters began, how they stopped. \"I never knew your face,\" she says. \"I only knew you.\" Sam reads one at random and finds his own handwriting from years ago, and a joke he'd forgotten he made. He laughs. She laughs, relieved, wiping her eyes with a gloved wrist. \"You still write like that,\" she says. \"Same loops.\"",
+        "text": "Lirael brings a battered shoebox to the lounge and sets it on the table as though it might bite. Inside are letters, hundreds, in tidy blue-black ink. She tells Sam what the old postbox is, how the letters began, how they stopped. \"I never knew your face,\" she says. \"I only knew you.\" Sam reads one at random and finds his own handwriting from years ago, and a joke he'd forgotten he made. He laughs. She laughs, relieved, wiping her eyes with a gloved wrist. \"You still write like that,\" she says. \"Same loops.\"",
         "trust": 20
       },
       {
         "title": "Slant",
-        "text": "Emily can tell Sam's mood from the slant of his signature. Over a cup of tea she demonstrates, holding up a receipt: \"Tired, but pretending not to be. You always lean left when you're pretending.\" He tries to write a happy signature to fool her, and she studies it with the intensity of a jeweler. \"Better. But your S still wobbles.\" She taps it. \"That's the nervous part. Don't worry. It's my favorite part.\" She goes pink under her fur-soft ears and pretends to inspect the ink.",
+        "text": "Lirael can tell Sam's mood from the slant of his signature. Over a cup of tea she demonstrates, holding up a receipt: \"Tired, but pretending not to be. You always lean left when you're pretending.\" He tries to write a happy signature to fool her, and she studies it with the intensity of a jeweler. \"Better. But your S still wobbles.\" She taps it. \"That's the nervous part. Don't worry. It's my favorite part.\" She goes pink to the tips of her long ears and pretends to inspect the ink.",
         "trust": 40
       },
       {
         "title": "The Postbox",
-        "text": "At the full moon Emily takes Sam to the alley behind the post house, where an old iron postbox sits under a flickering lamp, humming faintly. She lays her palm against it. \"This is where it started.\" They write a note together, nothing important, a line each, and drop it in. The box shivers. Something rustles inside, and when Emily opens the hatch it holds a single pressed flower and a card in a hand neither recognizes: Delivered. She closes her fingers around the flower. \"I think it likes you,\" she whispers.",
+        "text": "At the full moon Lirael takes Sam to the alley behind the post house, where an old iron postbox sits under a flickering lamp, humming faintly. She lays her palm against it. \"This is where it started.\" They write a note together, nothing important, a line each, and drop it in. The box shivers. Something rustles inside, and when Lirael opens the hatch it holds a single pressed flower and a card in a hand neither recognizes: Delivered. She closes her fingers around the flower. \"I think it likes you,\" she whispers.",
         "trust": 65
       },
       {
         "title": "Good Morning",
-        "text": "Every morning for a week Sam has found a folded note slipped under his door. Today's is the shortest: Good morning. I'm just down the hall. He opens the door and finds Emily there already, tail sweeping the floorboards, a letter in each hand, face scarlet. \"I wrote to you for ten years,\" she says. \"I got used to having somewhere to send things.\" He takes both letters and reads them standing in the doorway, while she watches his face like a postmistress waiting for a reply.",
+        "text": "Every morning for a week Sam has found a folded note slipped under his door. Today's is the shortest: Good morning. I'm just down the hall. He opens the door and finds Lirael there already, fidgeting with her satchel strap, a letter in each hand, face scarlet. \"I wrote to you for ten years,\" she says. \"I got used to having somewhere to send things.\" He takes both letters and reads them standing in the doorway, while she watches his face like a postmistress waiting for a reply.",
         "trust": 85
       }
     ]

@@ -22,7 +22,10 @@
     "rep: positive reputation changes are scaled by max(gainMin, gainBase - rep/gainDiv). Losses are not.",
     "props: propositions. penalty/maxPenalty = main-job output lost per accepted proposition (non-must jobs). accept* = chance a non-must lady accepts (acceptBase + (lust-acceptLustMid)/100 + willing fx, +acceptEager when eager, +acceptReckless when reckless); onChance / offSlip = chance when \"Open to propositions\" is on / off-but-reckless; alt / altMust = chance of a counter-offer. attendantExpect = share of attendant propositions where the client expected her to offer (expectSat if she declines). self* = reckless ladies propositioning clients. Pushy resolution: security power vs a roll in securityRoll; else Sam (if his energy >= samEnergyMin) checks strength + charm/2 + roll(0..samRoll) >= samCheck; else none. Costs/mood effects follow.",
     "houseGate: ladies who come with a house (role 'house') can't trust Sam past base + perBeat x (that house's story beat) until the house story is finished. Arc beats for them wait for the story too.",
-    "wardrobe: costMult scales every outfit/underwear price (lower = easier to get clothes). eventChance = relative weight of each of the 'someone gave her an outfit' random events (data/events.json)."
+    "wardrobe: costMult scales every outfit/underwear price (lower = easier to get clothes). eventChance = relative weight of each of the 'someone gave her an outfit' random events (data/events.json).",
+    "svc.askMore: after a service that builds her lust (giving, kissing, massages), a lady with lust >= lust.eager and lewdness >= lewd may ask the client for more (chance), offering a heavier service from her menu that spends lust; it pays fee x its normal price.",
+    "svc.demon: kissFeed = energy a demon draws from a client's kiss; kissSam (+ kissSamDraw when she's eager, costing Sam kissSamCost extra) from Sam's. restDrainChance / restRepDrain: a restless demon on her week off may drain some poor man in town (town reputation loss; a Demon Sigil doesn't help outside). studCost / studGain / studLust: Sam pays for a stud for the night (sheet button, once a week).",
+    "jobs.bathJoinLewd / bathJoinFee: a bath attendant comfortable with massages and at least this lewd joins bathers in the water (bath massage, x fee), and may ask for more like anyone else."
   ],
   "lust": {
     "low": 20,
@@ -79,10 +82,26 @@
     "raceDislikeSat": -15,
     "raceDislikeSwitch": 0.5,
     "classBonusSat": 60,
-    "demon": {"feed":4,"feedReckless":9,"repDrain":0.4,"samGain":15,"samExtra":15},
+    "demon": {
+      "feed": 4,
+      "feedReckless": 9,
+      "repDrain": 0.4,
+      "samGain": 15,
+      "samExtra": 15,
+      "kissFeed": 2,
+      "kissSam": 5,
+      "kissSamDraw": 4,
+      "kissSamCost": 2,
+      "restDrainChance": 0.4,
+      "restRepDrain": 0.8,
+      "studCost": 120,
+      "studGain": 40,
+      "studLust": 15
+    },
     "android": {"fee":15,"perEnergy":0.4,"chargerDiscount":0.4},
     "refusalMood": 15,
-    "denHalves": true
+    "denHalves": true,
+    "askMore": {"lewd":45,"chance":0.35,"fee":0.7}
   },
   "jobs": {
     "courtesanTh": 15,
@@ -105,7 +124,9 @@
     "bathCap": 8,
     "bathShare": 0.4,
     "tipsBase": 0.6,
-    "danceRep": 0.1
+    "danceRep": 0.1,
+    "bathJoinLewd": 40,
+    "bathJoinFee": 1.4
   },
   "rooms": {"perRoom":8},
   "tidy": {

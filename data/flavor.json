@@ -242,6 +242,22 @@
       "Steam, scented oil, and {name}'s soft humming. The bathhouse was busy all week."
     ]
   },
+  "job_bath_joined": {
+    "_note": "Bath attendant comfortable enough to join bathers in the water (bath massage).",
+    "_default": [
+      "{name} didn't just tend the baths this week; she got in. Bath massages, in the water, became the most requested thing on the menu.",
+      "{name} spent most of the week in the hot water with the guests, working out knots. Nobody wanted to leave the pool.",
+      "Steam, scented oil, and {name} slipping into the water to give massages where they soak. Business was very good."
+    ]
+  },
+  "job_bath_more": {
+    "_note": "Bath attendant who joined bathers and, in the mood, offered them more.",
+    "_default": [
+      "{name} joined the bathers in the water, and once or twice the massage turned into something more, at her suggestion.",
+      "Bath massages in the water all week, and {name} was in such a mood that a few lucky guests got more than their backs worked on.",
+      "The baths were busy and so was {name}. When the mood took her, the massages didn't stay massages."
+    ]
+  },
   "job_maid": {
     "_note": "Weekly report line for a maid.",
     "_default": [
@@ -272,6 +288,14 @@
       "{name} took the week off: long baths, long naps, and a book she's been meaning to finish.",
       "{name} slept in every day this week and regrets nothing.",
       "{name} spent her week off wandering the market and came back with snacks for everyone."
+    ]
+  },
+  "job_rest_demon": {
+    "_note": "Weekly report line for a resting demon. Demons don't recover from sleep: on a week off they slip out and feed on men in town.",
+    "_default": [
+      "{name} took the week off, which for a demon means slipping out after dark and feeding on whichever men in town looked at her twice. She came back glowing.",
+      "{name} spent her week off in the taverns across town, sipping on strangers. Nobody she fed on remembers her name, which is the point.",
+      "{name} rested the demon way: a different tavern every night, a different admirer, and back home by dawn, much less hungry."
     ]
   },
   "private_act": {
@@ -319,6 +343,14 @@
   "enc_drained": {
     "_note": "A restless demon fed too eagerly.",
     "_default": ["He left pale and shaky.","He had to sit down for a while afterward.","He stumbled out looking decidedly drained."]
+  },
+  "rest_demon_drain": {
+    "_note": "A restless demon overdid it feeding in town on her week off (town reputation loss).",
+    "_default": [
+      "A dockhand she fed on had to be carried home. People are talking.",
+      "One of her admirers in town fainted in the street. Word got around about where she works.",
+      "She left a guardsman too dizzy to stand. That will be told around town for weeks."
+    ]
   },
   "enc_like": {
     "_note": "Client who's a fan of her kind.",

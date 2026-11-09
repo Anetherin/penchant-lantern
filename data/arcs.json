@@ -977,15 +977,151 @@
   ],
   "emily": [
     {
+      "title": "Username",
+      "scene": "sam_date",
+      "text": "Emily asks Sam to meet her on the bridge over the canal after close. She has clearly rehearsed this. \"Okay. So. This is going to sound insane,\" she says, and then she says his old forum username, out loud, in a world where nobody should know it. Her wolf ears are flat against her hair. \"Please tell me I didn't just say a random string of letters to a stranger.\"",
+      "choices": [
+        {
+          "label": "Say \"Shadowkin?\"",
+          "t": 5,
+          "m": 8,
+          "res": "She makes a noise he's only ever seen typed as a keysmash. Then she grabs his sleeve with both hands and doesn't let go for a while."
+        },
+        {
+          "label": "\"You still owe me the end of that campaign.\"",
+          "t": 4,
+          "m": 7,
+          "res": "\"It was YOUR turn to post!\" she says, outraged, and then starts crying and laughing at the same time."
+        }
+      ],
+      "image": {
+        "comp": "standing on a canal bridge at night, hands clasped, wolf ears flat, glasses, hopeful and terrified smile",
+        "setting": "stone bridge over a canal, lamplight on the water",
+        "sam": true
+      }
+    },
+    {
+      "title": "Bath Lag",
+      "scene": "shower",
+      "text": "Sam opens the washroom door and finds Emily in the tub, a notebook balanced on the rim, glasses fogged, talking to herself in what is unmistakably her old character's voice. She looks up. Her tail slaps the water. \"I was drafting dialogue,\" she says, mortified. \"Out loud. Like a normal person.\"",
+      "choices": [
+        {
+          "label": "Apologize and back out",
+          "t": 2,
+          "m": 3,
+          "res": "\"It's fine!\" she squeaks. That evening a note slides under his door: brb dying of embarrassment, signed with a tiny wolf doodle."
+        },
+        {
+          "label": "Answer in your old character's voice",
+          "t": 3,
+          "m": 7,
+          "l": 1,
+          "res": "She stares, then answers back, in character, and they finish the whole scene through the door with Sam politely facing the hallway. She laughs so hard the water sloshes."
+        },
+        {
+          "label": "Stand there, flustered",
+          "t": 1,
+          "m": 3,
+          "l": 2,
+          "res": "Her ears go straight back. \"Lag,\" she whispers. \"You're lagging. Please reconnect.\" He tries, fails, and she giggles into her hands."
+        }
+      ],
+      "image": {
+        "comp": "in a tub with a notebook on the rim, fogged glasses, wolf ears perked up in surprise, tail splashing",
+        "setting": "steamy wooden washroom",
+        "sam": false,
+        "towel": true
+      }
+    },
+    {
+      "title": "Session Zero",
+      "scene": "casual",
+      "text": "Emily talks Sam into running a campaign again, on paper, in the lounge after close. She has drawn dice faces on wooden cubes and character sheets for both of them. It's the same story they abandoned on the forum years ago, picked up mid-scene. Halfway through, her character says something to his that isn't in any of the old logs.",
+      "choices": [
+        {
+          "label": "Answer in character",
+          "t": 5,
+          "m": 8,
+          "res": "He does. She drops a die, picks it up, drops it again, and finally hides behind her character sheet with only her ears showing."
+        },
+        {"label":"Ask, out of character, if she meant it","t":4,"m":6,"l":1,"res":"\"OOC?\" she says, very small. \"...Yeah. OOC, I meant it.\""}
+      ],
+      "image": {
+        "comp": "sitting cross-legged on a sofa with hand-drawn character sheets and wooden dice, peeking over a sheet with a shy smile, tail swishing",
+        "setting": "cozy lounge after close, fireplace glow",
+        "sam": true
+      }
+    },
+    {
+      "title": "Last Seen",
+      "scene": "portrait",
+      "text": "Emily shows Sam a page from her notebook where she copied out, from memory, the last thing she ever sent him on the forum: \"you there?\" It was never answered. \"I kept checking for three weeks,\" she says quietly. \"Then I woke up here. Sometimes I think if I fall asleep wrong I'll wake up back in my dorm and you'll still be 'last seen' forever.\"",
+      "choices": [
+        {
+          "label": "\"I'm here.\"",
+          "t": 5,
+          "m": 6,
+          "res": "She reads his face like a chat window, waiting for the typing indicator. Then she nods, and holds his sleeve for a long time anyway."
+        },
+        {
+          "label": "Write the reply under it",
+          "t": 6,
+          "m": 5,
+          "res": "He takes her pencil and writes under her line: yeah. sorry for the lag. She presses the notebook to her chest and laughs wetly."
+        },
+        {
+          "label": "\"Let's not think about it.\"",
+          "t": -3,
+          "m": -6,
+          "res": "\"Right. Sure.\" Her ears droop. She spends the evening rereading her notebook alone."
+        }
+      ],
+      "image": {
+        "comp": "holding an open notebook toward him, ears drooped, tail low, glasses, fear in her eyes",
+        "setting": "lamp-lit lounge corner at night",
+        "sam": true
+      }
+    },
+    {
+      "title": "New Constellations",
+      "scene": "sam_date",
+      "text": "Under a full moon Emily takes Sam up onto the roof with a blanket and her notebook. None of the stars here match the ones back home, so she has been naming the constellations after their old campaign: the Cursed Lute, the Bard Who Never Posted, the Wolf and the Idiot. She lets her ears and tail relax. \"I figured,\" she says, \"if we're stuck here, we should at least have our own sky.\"",
+      "choices": [
+        {
+          "label": "Name one together",
+          "t": 4,
+          "m": 8,
+          "res": "They argue happily for an hour over a single cluster of stars and settle on The Streak. She writes it down in her best forum-header lettering."
+        },
+        {"label":"Ask which one is her","t":3,"m":6,"l":1,"res":"She points to two stars close together and doesn't explain. She doesn't have to."}
+      ],
+      "image": {
+        "comp": "lying on a blanket on a rooftop in moonlight pointing at the stars, notebook open, wolf ears relaxed, glancing at him with soft eyes",
+        "setting": "slate rooftop under a full moon, a lantern beside her",
+        "sam": true
+      }
+    },
+    {
+      "title": "Together",
+      "scene": "final",
+      "text": "Emily stops in the doorway of Sam's room, notebook hugged to her chest. \"For six years you were a username,\" she says. \"My favorite one. I never wanted more than that, and then I got a whole person, and it turns out I do.\" She is trembling, ears flat, tail wrapped around her own ankle. \"I'm bad at saying things out loud. So, short version.\" She takes his hand. \"Stay online.\" The door closes behind them.",
+      "choices": [
+        {"label":"Say yes","t":6,"m":12,"res":""},
+        {"label":"Not yet","t":1,"m":-3,"hold":true,"res":"{N} nods. \"I can wait. Just don't go idle on me.\""}
+      ]
+    }
+  ],
+  "lirael": [
+    {
       "title": "Opening Up",
       "scene": "sam_date",
-      "text": "Emily meets Sam at the old postbox in the alley after close. She takes a yellowed letter from her satchel: the very first one, addressed to \"Whoever finds this.\" She reads it aloud, in a voice that trembles at the end. \"I never thought anyone would write back.\" Her wolf ears are flat against her hair. \"And then you did.\"",
+      "text": "Lirael meets Sam at the old postbox in the alley after close. She takes a yellowed letter from her satchel: the very first one, addressed to \"Whoever finds this.\" She reads it aloud, in a voice that trembles at the end. \"I never thought anyone would write back.\" Her long ears are drooping. \"And then you did.\"",
       "choices": [
         {
           "label": "\"Thank you for writing first.\"",
           "t": 5,
           "m": 8,
-          "res": "Her tail thumps once against the cobbles, loud in the quiet. She covers her face."
+          "res": "Her satchel strap slips from her fingers and clinks against the cobbles, loud in the quiet. She covers her face."
         },
         {
           "label": "Take the letter and read your own reply",
@@ -995,7 +1131,7 @@
         }
       ],
       "image": {
-        "comp": "holding a yellowed letter against her chest beside an old iron postbox, wolf ears flat, shy and tearful smile",
+        "comp": "holding a yellowed letter against her chest beside an old iron postbox, long ears drooping, shy and tearful smile",
         "setting": "lamp-lit alley beside an old iron postbox at night",
         "sam": true
       }
@@ -1003,13 +1139,13 @@
     {
       "title": "Ink Stains",
       "scene": "shower",
-      "text": "Sam opens the washroom door and finds Emily in the tub, a stack of waterproofed letters balanced on the rim, reading with a soft smile. She looks up. Her tail slaps the water. \"I read them here,\" she says, mortified. \"It's the only quiet room in the building.\"",
+      "text": "Sam opens the washroom door and finds Lirael in the tub, a stack of waterproofed letters balanced on the rim, reading with a soft smile. She looks up. Her hand slaps the water. \"I read them here,\" she says, mortified. \"It's the only quiet room in the building.\"",
       "choices": [
         {
           "label": "Apologize and back out",
           "t": 2,
           "m": 3,
-          "res": "\"It's fine!\" she squeaks. She sends a note under his door that evening, three lines, signed with a tiny drawn wolf."
+          "res": "\"It's fine!\" she squeaks. She sends a note under his door that evening, three lines, signed with a tiny drawn quill."
         },
         {
           "label": "\"Which one are you on?\"",
@@ -1023,11 +1159,11 @@
           "t": 1,
           "m": 3,
           "l": 2,
-          "res": "Her ears go straight back. \"Please say something,\" she whispers. He tries, and fails, and she giggles into her hands."
+          "res": "The tips of her ears go pink. \"Please say something,\" she whispers. He tries, and fails, and she giggles into her hands."
         }
       ],
       "image": {
-        "comp": "reading a letter in a tub with a stack of letters on the rim, wolf ears perked up in surprise, tail splashing",
+        "comp": "reading a letter in a tub with a stack of letters on the rim, long ears perked up in surprise, hand splashing the water",
         "setting": "steamy wooden washroom",
         "sam": false,
         "towel": true
@@ -1036,13 +1172,13 @@
     {
       "title": "Getting Closer",
       "scene": "casual",
-      "text": "They fall into an easy habit: sitting at opposite ends of the lounge sofa, writing each other notes instead of talking, passing them across with their feet. It is a ridiculous, wonderful way to flirt. Emily's replies grow longer every night. Tonight's has a P.S. in very small letters.",
+      "text": "They fall into an easy habit: sitting at opposite ends of the lounge sofa, writing each other notes instead of talking, passing them across with their feet. It is a ridiculous, wonderful way to flirt. Lirael's replies grow longer every night. Tonight's has a P.S. in very small letters.",
       "choices": [
         {
           "label": "Stay with her",
           "t": 5,
           "m": 8,
-          "res": "He reads the P.S. aloud. She buries her face in a cushion, ears quivering, and writes back immediately."
+          "res": "He reads the P.S. aloud. She buries her face in a cushion, ears trembling, and writes back immediately."
         },
         {
           "label": "Write one back about how you feel",
@@ -1052,7 +1188,7 @@
         }
       ],
       "image": {
-        "comp": "curled at one end of a sofa writing a note on her knee, tail swishing, peeking over the paper with a shy smile",
+        "comp": "curled at one end of a sofa writing a note on her knee, one foot swinging, peeking over the paper with a shy smile",
         "setting": "cozy inn lounge, fireplace glow",
         "sam": true
       }
@@ -1060,7 +1196,7 @@
     {
       "title": "Wrong Address",
       "scene": "portrait",
-      "text": "A letter arrives for Sam with no stamp, no postmark, and an address in a handwriting he hasn't used in years: his own, from long ago. It reads: \"To whoever I become. I hope you're not lonely anymore.\" Emily reads over his shoulder and goes still. \"If a letter can cross,\" she says quietly, \"so can a person. What if the box takes you back?\"",
+      "text": "A letter arrives for Sam with no stamp, no postmark, and an address in a handwriting he hasn't used in years: his own, from long ago. It reads: \"To whoever I become. I hope you're not lonely anymore.\" Lirael reads over his shoulder and goes still. \"If a letter can cross,\" she says quietly, \"so can a person. What if the box takes you back?\"",
       "choices": [
         {"label":"\"I'm not going anywhere.\"","t":5,"m":6,"res":"She nods, and holds his sleeve for a long time anyway."},
         {
@@ -1076,16 +1212,12 @@
           "res": "\"You can't burn what's already happened,\" she says. She spends the night sweeping the postbox in silence."
         }
       ],
-      "image": {
-        "comp": "reading a letter over his shoulder, ears drooped, tail low, fear in her eyes",
-        "setting": "lamp-lit lounge corner at night",
-        "sam": true
-      }
+      "image": {"comp":"reading a letter over his shoulder, ears drooped, fear in her eyes","setting":"lamp-lit lounge corner at night","sam":true}
     },
     {
       "title": "Full Moon Post",
       "scene": "sam_date",
-      "text": "Under a full moon Emily takes Sam up onto the post house roof to sort the night's collection by lantern light. She lets her ears and tail relax. Between letters, she hums the tune she once wrote in the margin of her second note, and he realizes he's been humming it for years.",
+      "text": "Under a full moon Lirael takes Sam up onto the post house roof to sort the night's collection by lantern light. She lets her shoulders and ears relax. Between letters, she hums the tune she once wrote in the margin of her second note, and he realizes he's been humming it for years.",
       "choices": [
         {"label":"Hum along","t":4,"m":8,"res":"She stops sorting, and just listens, and then joins the harmony."},
         {
@@ -1096,7 +1228,7 @@
         }
       ],
       "image": {
-        "comp": "sitting on a post house roof in moonlight sorting letters, wolf ears relaxed, humming, glancing at him with soft eyes",
+        "comp": "sitting on a post house roof in moonlight sorting letters, long ears relaxed, humming, glancing at him with soft eyes",
         "setting": "slate rooftop under a full moon, a lantern beside her",
         "sam": true
       }
@@ -1104,7 +1236,7 @@
     {
       "title": "Together",
       "scene": "final",
-      "text": "Emily puts down her satchel in the doorway of Sam's room. \"For ten years I wrote to a name,\" she says. \"I'd like to meet the man.\" She is trembling, ears flat, tail wrapped around her own ankle. \"I'm not good at saying things out loud. So I'll say the short version.\" She takes his hand. \"Stay.\" The door closes behind them.",
+      "text": "Lirael puts down her satchel in the doorway of Sam's room. \"For ten years I wrote to a name,\" she says. \"I'd like to meet the man.\" She is trembling, ears dipping, one foot wrapped around her own ankle. \"I'm not good at saying things out loud. So I'll say the short version.\" She takes his hand. \"Stay.\" The door closes behind them.",
       "choices": [
         {"label":"Say yes","t":6,"m":12,"res":""},
         {"label":"Not yet","t":1,"m":-3,"hold":true,"res":"{N} nods. \"I can wait. Don't make it too long.\""}
