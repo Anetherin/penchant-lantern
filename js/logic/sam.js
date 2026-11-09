@@ -56,57 +56,102 @@ function samRest(){
   showResult('Nap Time', 'Sam takes a long nap. In his dreams, a truck honks at him. He wakes up and decides not to think about it.\n\nEnergy +50');
 }
 function samChat(id){
-  const w = findW(id); if(!w || !useAP(15)) return;
-  const m = pm(w,'chat'), tg = gainTrust(w, rnd(1.5,3.5) * (has(w,'Romantic')?1.4:1) * (has(w,'Shy')?1.2:1) * m);
-  moodAdd(w, 4*m - (m<1?3:0)); samStat('charm',1); samXP(5); samLog(`Chatted with ${w.name}`); checkUnlocks();
+  const w = findW(id), d = DATES.chat; if(!w || !useAP(d.energy)) return;
+  const m = pmAny(w,d.like), tg = gainTrust(w, d.trust * rnd(0.6,1.4) * (has(w,'Romantic')?1.4:1) * (has(w,'Shy')?1.2:1) * m);
+  moodAdd(w, d.mood*m - (m<1?3:0)); samStat('charm',1); samXP(5); samLog(`Chatted with ${w.name}`); checkUnlocks();
   save(); render(); closeModal();
   const topic = ET('chat', NAMED[w.key] && Object.values(NAMED[w.key].bonds||{}).some(x=>x.kind==='home') || ['yui','natsuki','kanako','akari','lara','ella'].includes(w.key) ? 'home' : 'topics');
-  showResult(`Chatting with ${w.name}`, `Sam and ${w.name} talk ${topic}.${pNote(w,'chat')}\n\nTrust ${tDelta(tg)}`, w.id, null, {kind:'chat', scene:'casual', situation:topic, auto:true});
+  showResult(`Chatting with ${w.name}`, `Sam and ${w.name} talk ${topic}.${pNote(w,d.like)}\n\nTrust ${tDelta(tg)}`, w.id, null, {kind:'chat', scene:'casual', situation:topic, auto:true});
 }
 // a short line for the service itself, used after encounter and first-time openings (flavor.json → private_act)
 const actLine = act => { const L = byAct(FLAVOR.private_act, act); return L && L.length ? pick(L) : ''; };
-// Date types live in data/dates.json (DATES is defined in js/data/scenes.js).
+// Date types live in data/dates.json (DATES is defined in js/data/scenes.js). Chat is the first one.
 const dateFor = (k) => { const d = DATES[k]; return Object.assign({}, d, (d.past && pastPick(d.past)) || {}); };
 const dateText = (d, w) => [d.intro, pick(d.lines||[''])].filter(Boolean).join(' ').replace(/\{name\}/g, w.name);
+const dateListed = (w, d) => !(d.needsUp && !(houseOf(w).up||{})[d.needsUp]) && !(d.needsIntim && (w.intim||0) < d.needsIntim);
+// a short "what it raises" hint built from the date's data
+function dateRaises(d){
+  const cp = s => s.charAt(0).toUpperCase() + s.slice(1), o = [];
+  Object.keys(d.stats||{}).forEach(k=>o.push(cp(k))); Object.keys(d.skills||{}).forEach(k=>o.push(TECH_LABEL[k]||cp(k)));
+  if(d.sam) Object.keys(d.sam).forEach(k=>o.push('Sam: '+cp(k)));
+  if(d.pop) o.push('Popularity'); if(d.lust) o.push('Lust'); if(d.lewd) o.push('Lewdness'); if(d.restores) o.push('Rest'); if(d.gift) o.push('Gift'); if(d.spicy) o.push('🔥');
+  return o.join(', ');
+}
 function dateMenu(id){
   const w = findW(id); if(!w) return;
   modal(`<h2>Take ${esc(w.name)} out</h2><p class="muted">Dates build trust and mood. What she enjoys depends on her personality. A great date at high trust might not end at her door.</p>
-    <table>${Object.entries(DATES).filter(([k,d])=>!d.needsUp || (houseOf(w).up||{})[d.needsUp]).map(([k,d])=>{ const c = dateFor(k).cost, m = pm(w,d.like);
-      return `<tr><td><b>${d.label}</b>${m>1?' <span class="good">♥ she\'d love this</span>':m<1?' <span class="warn">not her thing</span>':''}</td><td>${c?fmt(c):'free'}</td><td class="muted">${d.energy} energy</td><td><button class="sm" onclick="samDate('${id}','${k}')" ${S.gold<c?'disabled':''}>Go</button></td></tr>`; }).join('')}</table>
+    <table>${Object.entries(DATES).filter(([k,d])=>dateListed(w,d)).map(([k,d])=>{ const c = dateFor(k).cost, m = pmAny(w,d.like), r = dateRaises(d);
+      return `<tr><td><b>${d.label}</b>${m>1?' <span class="good">♥ she\'d love this</span>':m<1?' <span class="warn">not her thing</span>':''}${r?`<br><span class="muted">${esc(r)}</span>`:''}</td><td>${c?fmt(c):'free'}</td><td class="muted">${d.energy} energy</td><td><button class="sm" onclick="${d.special==='chat'?`samChat('${id}')`:`samDate('${id}','${k}')`}" ${S.gold<c?'disabled':''}>Go</button></td></tr>`; }).join('')}</table>
     <div class="row"><button onclick="openSheet('${id}')">Back</button></div>`);
 }
+// Daring variants offered on a date (dates.json → spicy). With acts: the one she'd do (favorite, else the highest-th she's keen on, else the first she's comfortable with).
+function spicyAct(w, sp){
+  const ok = (sp.acts||[]).filter(a=>canSam(w,a)); if(!ok.length) return null;
+  if(w.fav && ok.includes(w.fav)) return w.fav;
+  const yes = ok.filter(a=>samStance(w,a)==='yes').sort((a,b)=>((actById(b)||{}).th||0) - ((actById(a)||{}).th||0));
+  return yes[0] || ok[0];
+}
+const spicyOK = (w, sp) => w.lewd >= sp.lewd && (sp.nude ? comfortCloth(w, true, false)==='nude' : !!spicyAct(w, sp));
+const spicyBtns = (id, k, list) => list.map(([sp,i])=>`<button onclick="samSpicy('${id}','${k}',${i})">🔥 ${esc(sp.label)}</button>`).join('');
 function samDate(id, k){
   const w = findW(id); if(!w || !DATES[k]) return; const d = dateFor(k);
+  if(d.special==='chat') return samChat(id);
   const cost = d.cost||0;
   if(S.gold<cost) return toast('Not enough gold.');
-  if(d.needsUp && !(houseOf(w).up||{})[d.needsUp]) return toast(`${houseOf(w).name} needs a ${(UPGRADES[d.needsUp]||{label:d.needsUp}).label}.`);
+  if(!dateListed(w, d)) return toast(d.needsUp ? `${houseOf(w).name} needs a ${(UPGRADES[d.needsUp]||{label:d.needsUp}).label}.` : `${w.name} and Sam aren't there yet.`);
   if(!useAP(d.energy)) return; S.gold -= cost;
-  const m = pm(w,d.like), tg = gainTrust(w, d.trust * (has(w,'Romantic')?1.4:1) * (d.trustMult||1) * m);
+  const m = pmAny(w,d.like), tg = gainTrust(w, d.trust * (has(w,'Romantic')?1.4:1) * (d.trustMult||1) * m);
   moodAdd(w, d.mood*m - (m<1?3:0)); w.dates++;
-  const lg = d.lewd ? d.lewd * lewdMult(w) * (m>1 ? 1.25 : m<1 ? 0.6 : 1) : 0; if(lg) w.lewd = clamp(w.lewd + lg);
+  const lg = d.lewd ? lewdUp(w, d.lewd * (m>1 ? 1.25 : m<1 ? 0.6 : 1), d.lewdCap) : 0;
+  if(d.lust){ w.lust += d.lust * fxMul(w,'lustBuild'); fitLust(w); }
   if(d.restores) w.energy = clamp(w.energy + d.restores, 0, maxEnergy(w));
   if(d.greedyMood && has(w,'Greedy')) moodAdd(w, d.greedyMood);
-  samStat('charm',1); samXP(5); samLog(`${d.label} with ${w.name}`); checkUnlocks();
+  Object.entries(d.stats||{}).forEach(([s,n])=>statXP(w, s, n));
+  Object.entries(d.skills||{}).forEach(([s,n])=>grow(w, s, n));
+  if(d.pop) w.popularity = clamp(w.popularity + d.pop);
+  if(d.gift) countUp(w,'gifts');
+  let trinket = '';
+  if(d.trinket && Math.random() < d.trinket){ moodAdd(w, 5); countUp(w,'gifts'); trinket = `\n\nSam picks up ${pick(GIFTS)} for her on the way.`; }
+  Object.entries(d.sam||{charm:1}).forEach(([s,n])=>samStat(s, n)); samXP(5); samLog(`${d.label} with ${w.name}`); checkUnlocks();
   save(); render(); closeModal();
   // a good date can end with her next first (when she's ready), or an invitation inside (once they're past that)
+  const anyAct = getActs().some(a=>canSam(w,a.id));
   const first = m>=1 && w.mood>=60 && firstReadyAny(w) && Math.random() < 0.5 + Math.max(0, w.lust-50)/100;
-  const sparks = !first && w.trust>=60 && w.mood>=70 && m>=1 && getActs().some(a=>canSam(w,a.id)) && Math.random() < 0.35 + Math.max(0, w.lust-50)/100;
-  const txt = dateText(d, w) + pNote(w, d.like==='private'?'private':d.like) + `\n\n${cost?'−'+fmt(cost)+' · ':''}Trust ${tDelta(tg)}${lg?' · Lewdness +':''}${d.restores?' · She feels rested':''}`;
+  const nightIn = !first && d.special==='nightin' && anyAct;
+  const sparks = nightIn || (!first && w.trust>=60 && w.mood>=70 && m>=1 && anyAct && Math.random() < 0.35 + Math.max(0, w.lust-50)/100);
+  const spicy = !first && m>=1 && w.mood>=55 ? (d.spicy||[]).map((sp,i)=>[sp,i]).filter(([sp])=>spicyOK(w,sp)).slice(0,2) : [];
+  const txt = dateText(d, w) + trinket + pNote(w, d.like) + `\n\n${cost?'−'+fmt(cost)+' · ':''}Trust ${tDelta(tg)}${lg>0?' · Lewdness +':''}${d.restores?' · She feels rested':''}`;
+  const inviteTxt = nightIn ? `The fire burns low. ${w.name} looks up at Sam, and doesn't look away.` : `On the way back, ${w.name} slips her hand into Sam's and doesn't let go. At her door, she hesitates. "...Do you want to come in?"`;
   modal(`<h2>${esc(d.label)} with ${esc(w.name)}</h2><div id="resImg"></div><p class="story">${esc(txt)}</p>
-    ${sparks?`<div id="invImg"></div><div id="propAi"><p class="story pink">On the way back, ${esc(w.name)} slips her hand into Sam's and doesn't let go. At her door, she hesitates. "...Do you want to come in?"</p></div>`:''}
+    ${sparks?`<div id="invImg"></div><div id="propAi"><p class="story pink">${esc(inviteTxt)}</p></div>`:''}
     ${first?`<p class="story pink">On the way back, something has shifted between them. ${esc(w.name)} keeps finding reasons to stand a little closer.</p>`:''}
-    <div class="row">${first?`<button class="primary" onclick="firstFromDate('${id}')">♥ See where it goes</button><button onclick="closeModal()">Say goodnight</button>`:sparks?`<button class="primary" onclick="privateMenu('${id}',true)">Go inside (private time, no extra action)</button><button onclick="closeModal()">Say goodnight</button>`:`<button class="primary" onclick="closeModal()">OK</button>`}</div>`);
+    <div class="row">${first?`<button class="primary" onclick="firstFromDate('${id}')">♥ See where it goes</button><button onclick="closeModal()">Say goodnight</button>`:sparks?`<button class="primary" onclick="privateMenu('${id}',true)">Go inside (private time, no extra action)</button>${spicyBtns(id,k,spicy)}<button onclick="closeModal()">Say goodnight</button>`:`${spicyBtns(id,k,spicy)}<button class="primary" onclick="closeModal()">OK</button>`}</div>`);
   showImg('resImg', w.id, 'date_'+k);
   if(sparks) showImg('invImg', w.id, 'invite');
   if(sparks && SET.ai.on && getTextPlugin()) aiWrite('propAi', 'proposition', w.id, {scene:'invite', date:d.label.toLowerCase(), forSam:true});
 }
-function samGift(id){
-  const w = findW(id); if(!w) return; if(S.gold<60) return toast('A nice gift costs 60g.');
-  if(!useAP(10)) return; S.gold -= 60;
-  const m = pm(w,'gift'), mg = Math.round((has(w,'Greedy') ? 20 : 12) * m);
-  moodAdd(w, mg); gainTrust(w, 1.5*m); countUp(w,'gifts'); samXP(3); samLog(`Gave ${w.name} a gift`); checkUnlocks();
-  save(); render(); closeModal();
-  showResult('A Gift', `Sam gives ${w.name} ${pick(GIFTS)}. ${ET('gift', has(w,'Greedy')?'greedy':'normal')}${pNote(w,'gift')}\n\n−60g · Mood +${mg}`, w.id, 'portrait');
+// A daring variant on a date (costs Sam 12 energy, no action). Only through canSam: privateCore for acts, a nude scene otherwise.
+function samSpicy(id, k, i){
+  const w = findW(id), d = DATES[k], sp = d && (d.spicy||[])[i]; if(!w || !sp) return;
+  if(!spicyOK(w, sp)) return toast(`${w.name} isn't up for that.`);
+  if(S.sam.energy < 12) return toast('Sam is too tired.');
+  S.sam.energy -= 12;
+  const lead = sp.lead.replace(/\{name\}/g, w.name), act = sp.nude ? null : spicyAct(w, sp), label = sp.label.toLowerCase() + ' on a date (' + d.label.toLowerCase() + ')';
+  let text, scene, ai;
+  if(act){
+    text = privateCore(w, act, {lead}); lewdUp(w, sp.gain, sp.cap); scene = 'samact:'+act+'~~date_'+k;
+    ai = {kind:'private', act, scene, forSam:true, situation:label};
+  } else {
+    lewdUp(w, sp.gain, sp.cap); moodAdd(w, 4); w.lust += 6; fitLust(w); minorTrust(w); text = lead; scene = 'date_'+k;
+    ai = {kind:'private', scene, forSam:true, situation:label, cloth:'nude'};
+  }
+  if(Math.random() < (sp.risk||0)){
+    if(has(w,'Exhibitionist')){ moodAdd(w, 5); lewdUp(w, 2, 95); text += `\n\nSomeone saw. ${w.name} looks far too pleased about it.`; }
+    else { moodAdd(w, -5); text += `\n\nSomeone nearly walks in on them. ${w.name} is mortified, and laughing about it by the time they get home.`; }
+    repAdd(houseOf(w), 0.5);
+  }
+  samLog(`${sp.label} with ${w.name} (${d.label})`); checkUnlocks(); save(); render(); closeModal();
+  showResult(`${sp.label}: ${w.name}`, text, w.id, scene, ai);
 }
 function samTrain(id){
   const w = findW(id); if(!w) return;
@@ -120,7 +165,7 @@ function samTrain(id){
     // giving services, kissing, massages build her lust (she isn't the one being pleased); the rest spend it
     let ld; if((A.lust ?? -1) >= 0){ const l0 = w.lust; w.lust += Math.max(2, A.lust*3) * (0.4 + w.lewd/100) * fxMul(w,'lustBuild'); fitLust(w); ld = -Math.round(w.lust - l0); } else ld = spendLust(w, BAL.lust.drop.train);
     const tgp = minorTrust(w);
-    growAct(w, act, g); statXP(w, 'stamina', 1); countUp(w, 'privateSam'); w.lewd = clamp(w.lewd + 1.5*lewdMult(w)); w.energy = clamp(w.energy-12, 0, maxEnergy(w));
+    growAct(w, act, g); statXP(w, 'stamina', 1); countUp(w, 'privateSam'); lewdUp(w, 1.5, svcLewdCap(act,'sam')); w.energy = clamp(w.energy-12, 0, maxEnergy(w));
     if(w.dislike===act) moodAdd(w, -4);
     samStat('technique',2); samXP(5); w.privateCount++; w._samTime=(w._samTime||0)+1; samLog(`Practiced ${actLabel(act)} with ${w.name}`); checkUnlocks();
     save(); render(); closeModal();
@@ -163,7 +208,7 @@ function privateCore(w, act, o={}){
   if(builds){ const l0 = w.lust; w.lust += Math.max(2, A.lust*3) * (0.4 + w.lewd/100) * fxMul(w,'lustBuild'); fitLust(w); ld = -Math.round(w.lust - l0); }
   else ld = spendLust(w, BAL.lust.drop.private * (recv ? 1.8 : 1));   // receiving: a big drop in her lust
   growAct(w, act, (4 + S.sam.technique/20) * (hasPast('massage')?1.3:1)); statXP(w, 'stamina', 0.8); countUp(w, 'privateSam');
-  if(stretch){ w.lewd = clamp(w.lewd + 4*lewdMult(w)); minorTrust(w); } else if(fromLewd){ w.lewd = clamp(w.lewd + 2*lewdMult(w)); minorTrust(w, 2); } else gainTrust(w, 2);
+  if(stretch){ lewdUp(w, 4, svcLewdCap(act,'sam') + BAL.lewd.stretchCap); minorTrust(w); } else if(fromLewd){ lewdUp(w, 2, svcLewdCap(act,'sam')); minorTrust(w, 2); } else gainTrust(w, 2);
   moodAdd(w, (stretch?1:6)*pm(w,'private') + (w.fav===act?6:0) - (w.dislike===act?6:0)); w.energy = clamp(w.energy-(recv ? 6 : 15), 0, maxEnergy(w));
   let fed = '';
   if(w.race==='demon' && A.finish){ w.energy = clamp(w.energy + SVC.demon.samGain, 0, maxEnergy(w)); S.sam.energy = Math.max(0, S.sam.energy - SVC.demon.samExtra); fed = `\n\n(${w.name} fed on him. Sam is much more tired than usual. Energy +${SVC.demon.samGain} for her.)`; }

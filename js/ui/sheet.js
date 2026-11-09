@@ -5,7 +5,7 @@ function sheetScenes(w){
   if(SCENES['job_'+w.job] && w.job!=='rest') out.push('job_'+w.job);
   out.push('companion');
   if(houseOf(w).up.bath) out.push('bath');
-  out.push('sam_date', ...Object.keys(DATES).map(k=>'date_'+k), 'sam_training','shower','walkin');
+  out.push('sam_date', ...Object.keys(DATES).filter(k=>DATES[k].image).map(k=>'date_'+k), 'sam_training','shower','walkin');
   getActs().forEach(a=>{ if(canClient(w,a.id)) out.push('act:'+a.id); });
   getActs().forEach(a=>{ if(canSam(w,a.id)) out.push('samact:'+a.id); });
   return out;
@@ -69,7 +69,7 @@ function refreshSheetInfo(){
     <div class="row">${isFree(w)?`<span class="pink">${w.isPartner?'♥ Partner':'★ Devoted to the house'}: works without wages</span>`:`Wage <input type="number" value="${w.wage}" onchange="setWage('${w.id}',this.value)"> <span class="muted">(fair: ~${fmt(wageFor(w))}) · ${w.locked?'No contract (bound to the house)':'Contract '+w.contract+' wk'}</span>`}</div>
     <p class="muted" style="margin:2px 0">${esc(JOBS[w.job].desc)}</p>
     <h3 style="margin-top:10px">Time with Sam <span class="muted">(${S.ap} AP left)</span></h3>
-    <div class="row"><button onclick="samChat('${w.id}')">💬 Chat</button><button onclick="dateMenu('${w.id}')">🌙 Date…</button><button onclick="samGift('${w.id}')">🎁 Gift (60g)</button>${w.race==='demon'&&S.workers.includes(w)?`<button onclick="hireStud('${w.id}')" ${S.gold<SVC.demon.studCost||w._stud===S.week?'disabled':''} title="Pay a willing professional to be her meal for the night: lots of energy, no harm to anyone. Once a week.">🌹 Hire a stud (${fmt(SVC.demon.studCost)})</button>`:''}</div>
+    <div class="row"><button onclick="dateMenu('${w.id}')">🌙 Date / spend time…</button>${w.race==='demon'&&S.workers.includes(w)?`<button onclick="hireStud('${w.id}')" ${S.gold<SVC.demon.studCost||w._stud===S.week?'disabled':''} title="Pay a willing professional to be her meal for the night: lots of energy, no harm to anyone. Once a week.">🌹 Hire a stud (${fmt(SVC.demon.studCost)})</button>`:''}</div>
     <div class="row"><select id="trainSel">${TECH_KEYS.map(s=>`<option value="${s}">${TECH_LABEL[s]}</option>`).join('')}${getActs().filter(a=>canSam(w,a.id)).map(a=>`<option value="act:${a.id}">Practice: ${esc(a.label)}</option>`).join('')}</select><button onclick="samTrain('${w.id}')">📚 Train</button>
       <button onclick="privateMenu('${w.id}')" ${anySam?'':`disabled title="${(w.intim||0)===0?'She and Sam haven\'t crossed that line yet.':'She isn\'t comfortable with that yet.'}"`}>🕯️ Private time</button></div>
     <div class="row"><button onclick="editWorker('${w.id}')">✏️ Edit design</button>${w.isPartner||w.locked?'':`<button onclick="dismiss('${w.id}')">Dismiss</button>`}${has(w,'Devoted')?`<button onclick="endLovers('${w.id}')">💔 End things</button>`:''}${w.exLover&&!has(w,'Devoted')?`<button onclick="rekindle('${w.id}')" ${w.trust<BAL.breakup.rekindleTrust?`disabled title="She needs trust ${tShow(BAL.breakup.rekindleTrust)}+"`:''}>💞 Ask her back</button>`:''}</div>`;

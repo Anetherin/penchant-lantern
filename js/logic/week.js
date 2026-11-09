@@ -117,7 +117,7 @@ function propDecide(w, want, X){
 // propositions and reckless self-propositions alike. o = {tech, reluct, inc, ecost, led}.
 function runService(X, w, A, o){
   const pr = X.R.per[w.id], act = A.id, hr = X.hr;
-  pr.acts[act] = (pr.acts[act]||0)+1; growAct(w, act, 0.7); w.lewd = clamp(w.lewd + (o.reluct?0.6:0.3)*lewdMult(w));
+  pr.acts[act] = (pr.acts[act]||0)+1; growAct(w, act, 0.7); lewdUp(w, o.reluct?0.6:0.3, svcLewdCap(act,'client'));
   w.energy -= o.ecost; X.useRoom(w);
   const reck0 = restless(w);
   const ser = serveAct(w, A, {tech:o.tech, reluct:o.reluct, pr, h:X.h});
@@ -359,9 +359,9 @@ function simHouse(h, R){
     if(j==='dancer'){
       const tips = Math.round(visitors * J.tipsBase * (0.5 + w.popularity/100) * (0.5 + s100(w.stats.charm)/100) * Math.sqrt(P.mult) * ob(w,'dancer'));
       const inc = Math.round((12+w.popularity*0.8) * (0.5+s100(w.tech.dance)/100) * Math.sqrt(P.mult) * jb(w,'dancer') * ob(w,'dancer')) + tips;
-      hr.income+=inc; R.led.dance+=inc; pr.earned+=inc; w.popularity=clamp(w.popularity+2); repAdd(h, J.danceRep * (0.5 + w.popularity/100)); w.lewd=clamp(w.lewd + 0.5*(has(w,'Exhibitionist')?3:1)*lewdMult(w)); grow(w,'dance',2); statXP(w,'agility',1.5); statXP(w,'beauty',1); countUp(w,'dance',Math.max(1,Math.round(visitors/8))); }
+      hr.income+=inc; R.led.dance+=inc; pr.earned+=inc; w.popularity=clamp(w.popularity+2); repAdd(h, J.danceRep * (0.5 + w.popularity/100)); lewdUp(w, 0.5*(has(w,'Exhibitionist')?3:1), has(w,'Exhibitionist') ? BAL.lewd.danceExhib : BAL.lewd.dance); grow(w,'dance',2); statXP(w,'agility',1.5); statXP(w,'beauty',1); countUp(w,'dance',Math.max(1,Math.round(visitors/8))); }
     if(j==='bath'){
-      const inc = Math.round((8+visitors*1.2) * (0.5+(s100(w.tech.service)+s100(w.stats.beauty))/200) * jb(w,'bath') * ob(w,'bath')); hr.income+=inc; R.led.bath+=inc; pr.earned+=inc; grow(w,'service',1.5); w.lewd=clamp(w.lewd+0.5*lewdMult(w)); statXP(w,'stamina',1); statXP(w,'charm',1);
+      const inc = Math.round((8+visitors*1.2) * (0.5+(s100(w.tech.service)+s100(w.stats.beauty))/200) * jb(w,'bath') * ob(w,'bath')); hr.income+=inc; R.led.bath+=inc; pr.earned+=inc; grow(w,'service',1.5); lewdUp(w, 0.5, BAL.lewd.bath); statXP(w,'stamina',1); statXP(w,'charm',1);
       // always offers bathers a massage (no room needed); comfortable enough, she joins them in the water, and may offer more there
       const M = actById('massage_give'), nb = Math.min(J.bathCap, Math.round(bathers / Math.max(1, baths.length)));
       const joins = M && clientStance(w, M.id)==='yes' && w.lewd >= J.bathJoinLewd;

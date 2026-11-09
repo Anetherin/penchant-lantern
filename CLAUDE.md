@@ -46,3 +46,4 @@
   AI text `{outcome}` comes from `aiOutcome()` + ai-prompts.json → outcomes (finish / satisfied / frustrated / demon feed & drain).
 - Save format migrations live in `migrate()` (`js/logic/state.js`); bump `S.v` when changing save shape.
 - After changes: `node tools/build.mjs && node tools/smoke.mjs 30` (Playwright; `CHROME=` for a custom browser).
+- Lewdness gains go through `lewdUp(w, n, cap)` (`balance.json` → `lewd`; diminishing returns per source). Dates (`dates.json`): stats/skills/sam/pop/lust/lewdCap/gift/trinket/needsIntim/special/spicy (see its `_readme`); chat is a date, the 60g Gift action is gone (shopping + wardrobe gifts count as gifts). Spicy date variants go only through `canSam`/`privateCore` (`samSpicy` in `js/logic/sam.js`).

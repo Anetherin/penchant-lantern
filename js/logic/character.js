@@ -15,6 +15,13 @@ function actCost(w, act){
 }
 const clientCost = w => actCost(w, null) * 1.8;
 const appeal = w => s100(w.stats.beauty)*0.4 + s100(w.stats.charm)*0.3 + w.popularity*0.5 + fxAdd(w,'appeal');
+// Lewdness gain with diminishing returns: each source has a cap. Full gain below cap - band, half at the cap, nothing by cap + band.
+function lewdUp(w, n, cap){
+  const L = BAL.lewd, c = cap ?? L.softCap, t = Math.max(0, Math.min(1, (c + L.band - w.lewd) / (2*L.band)));
+  const boost = w.lewd < L.lowBoostBelow ? L.lowBoost : 1;          // shy beginners move a bit faster
+  const g = n * lewdMult(w) * t * boost; w.lewd = clamp(w.lewd + g); return g;
+}
+const svcLewdCap = (id, who) => ((actById(id)||{}).th ?? 30) + BAL.lewd.capOver[who];   // who: 'sam' | 'client'
 const lewdMult = w => fxMul(w,'lewdGain') * ((PERS[w.personality]||{}).lewd || 1) * ((S && HOUSES[(houseOf(w)||{}).id]||{}).lewdBoost || 1);
 const isFree = w => !!(w.isPartner || w.free);
 // Trust from Sam's attention: personality, race, and diminishing returns near the top.

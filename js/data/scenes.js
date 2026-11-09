@@ -6,7 +6,7 @@ const SCENE_DATA = needData('scenes');
 // Dates (data/dates.json); each brings its own image scene, date_<key>.
 const DATES = noMeta(needData('dates'));
 const SCENES = Object.assign({}, SCENE_DATA.scenes);
-Object.entries(DATES).forEach(([k,d])=>{ SCENES['date_'+k] = Object.assign({label:'Date: '+d.label, sam:true}, d.image||{}); });
+Object.entries(DATES).forEach(([k,d])=>{ if(d.image) SCENES['date_'+k] = Object.assign({label:'Date: '+d.label, sam:true}, d.image||{}); });
 // One-off image scenes for story moments (arc beats, events, firsts): {comp, setting} plus the usual flags (sam, pov,
 // house, towel). Registered under a stable key so the picture is saved per moment; they don't show in the sheet's picker.
 function dynScene(key, img){ if(!img || !img.comp) return null; SCENES[key] = Object.assign({label:'Story: '+(img.label||key)}, img); return key; }
@@ -27,6 +27,8 @@ function actPose(id, ctx){
   const a = actById(id) || {}, I = a.image || {}, list = [].concat(I[ctx] || I.client || a.comp || 'intimate moment').filter(x=>x && !isTodo(x));
   return pick(list.length ? list : ['intimate moment']);
 }
+// a Sam scene started on a date ('samact:<act>~~date_<key>') happens where the date was
+const dateSetting = ctx => { const d = ctx && ctx.startsWith('date_') && DATES[ctx.slice(5)]; return (d && d.image && d.image.setting) || SCENE_DATA.samRoom; };
 function sceneInfo(k, w){
   const h = w && S ? houseOf(w) : null, HD = h ? HOUSES[h.id] : null, P = sceneParts(k); k = P.base;
   if(k.startsWith('act:')){ return {label:'Client: '+actLabel(k.slice(4)), comp:actPose(k.slice(4),'client'), setting:ROOM_SETTING(h), client:SCENE_DATA.clientPhrase, snip:'act_'+k.slice(4), expr:exprText(P.expr, k.slice(4))}; }
@@ -35,7 +37,7 @@ function sceneInfo(k, w){
     return {label:'Sam & two: '+actLabel(id), pov:true, sam:true, comp:[actPose(id,'duo'), SCENE_DATA.duoPhrase, D.prompt].filter(Boolean).join(', '),
       setting:SCENE_DATA.samRoom, snip:'act_'+id, snip2:'duo',
       client: o ? `the second woman: ${charDesc(o)}, ${clothText(o, defaultCloth(o, 'samact:'+id), 'samact:'+id)}` : ''}; }
-  if(k.startsWith('samact:')){ const a=actById(k.slice(7)); return {label:'Sam: '+actLabel(k.slice(7)), pov:true, sam:true, comp:actPose(k.slice(7),'sam'), setting:SCENE_DATA.samRoom, snip:'act_'+k.slice(7)}; }
+  if(k.startsWith('samact:')){ const a=actById(k.slice(7)); return {label:'Sam: '+actLabel(k.slice(7)), pov:true, sam:true, comp:actPose(k.slice(7),'sam'), setting:dateSetting(P.ctx), snip:'act_'+k.slice(7)}; }
   const sc = Object.assign({}, SCENES[k] || SCENES.portrait);
   // bath scenes at home happen in the house's bathhouse when it has one (scenes.json → bathhouse); "away" keeps its own place
   if((sc.bath || sc.towel) && !sc.away && h && h.up && h.up.bath){ sc.setting = SCENE_DATA.bathhouse || sc.setting; sc.house = true; }

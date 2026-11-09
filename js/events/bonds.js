@@ -131,7 +131,7 @@ function dynamicFx(dyn, act, a, b){
     return String(C.win||'').replace(/\{w\}/g, fn(W)).replace(/\{l\}/g, fn(L));
   }
   if(dyn==='lesson'){ growAct(b, act, 8); growAct(a, act, 2); addBond(a, b, 5); return `(${fn(b)} improves at ${actLabel(act)}.)`; }
-  if(dyn==='curious'){ gainTrust(b, 5); if(samStance(b,act)==='ask') b.lewd = clamp(b.lewd + 3*lewdMult(b)); addBond(a, b, 6); return ''; }
+  if(dyn==='curious'){ gainTrust(b, 5); if(samStance(b,act)==='ask') lewdUp(b, 3, svcLewdCap(act,'sam') + BAL.lewd.stretchCap); addBond(a, b, 6); return ''; }
   return '';
 }
 function applyBondChoice(c, a, b, d, chosenAct){
