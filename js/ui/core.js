@@ -24,8 +24,9 @@ function bar(label, v, max, cls){ const p = Math.round(clamp(v/max*100)); return
 function knows(w, employee){ return S.sam.appraisal>=2 || (employee && w.trust>=30); }
 function knowsPrefs(w){ return S.sam.appraisal>=3 || w.trust>=40; }
 function grade(v){ return v>=85?'S':v>=70?'A':v>=55?'B':v>=40?'C':v>=25?'D':'E'; }
-function sv(w, v, employee){ return knows(w,employee) ? Math.round(v) : grade(v); }
-function traitTags(w){ return (w.traits||[]).filter(t=>!TRAITS[t]||!TRAITS[t].hidden||S.sam.appraisal>=3).map(t=>`<span class="tag ${TRAITS[t]&&TRAITS[t].hidden?'hid':''} ${TRAITS[t]&&TRAITS[t].story?'act':''}" title="${esc(TRAITS[t]?TRAITS[t].desc:'')}">${esc(t)}</span>`).join(' '); }
+// stats and skills run 0-1000; grades use the 0-100 scale
+function sv(w, v, employee){ return knows(w,employee) ? `${Math.round(v)}<span class="muted" style="font-size:.7em">/1000</span>` : grade(s100(v)); }
+function traitTags(w){ return (w.unique?`<span class="tag act" title="${esc(w.unique.desc||'')}">★ ${esc(w.unique.name)}</span> `:'') + (w.ngPerks||[]).map(t=>`<span class="tag act" title="${esc(TRAITS[t]?TRAITS[t].desc:'')}">✦ ${esc(t)}</span>`).join(' ') + ' ' + (w.traits||[]).filter(t=>!TRAITS[t]||!TRAITS[t].hidden||S.sam.appraisal>=3).map(t=>`<span class="tag ${TRAITS[t]&&TRAITS[t].hidden?'hid':''} ${TRAITS[t]&&TRAITS[t].story?'act':''}" title="${esc(TRAITS[t]?TRAITS[t].desc:'')}">${esc(t)}</span>`).join(' '); }
 function jobOptions(w){ return Object.entries(JOBS).map(([k,J])=>{ const why = k===w.job ? null : canDo(w,k); return `<option value="${k}" ${k===w.job?'selected':''} ${why?'disabled':''}>${why?'🔒 ':''}${J.label}</option>`; }).join(''); }
 function houseTabs(withAll){
   return `<div class="hsel">${withAll?`<button class="sm ${ROSTER_FILTER==='all'?'on':''}" onclick="ROSTER_FILTER='all';render()">All houses</button>`:''}${S.houses.map(h=>`<button class="sm ${(S.cur===h.id && (!withAll||ROSTER_FILTER!=='all'))?'on':''}" onclick="S.cur='${h.id}';ROSTER_FILTER='cur';render()">${esc(h.name)} <span class="muted">(${S.workers.filter(w=>w.house===h.id).length})</span></button>`).join('')}</div>`;
@@ -72,7 +73,7 @@ function viewHouse(){
       <div>Remaining: <b>${fmt(S.debt.remaining)}</b> · Next payment: <b>${fmt(nd.amount)}</b> at the end of week ${nd.week} ${nd.week===S.week?'<span class="warn">(this week!)</span>':''}</div>
       <div>Strikes: ${'❌'.repeat(S.debt.strikes)}${'▫️'.repeat(Math.max(0,3-S.debt.strikes))}</div>
       <div class="row"><input id="payamt" type="number" min="1" placeholder="Amount"><button onclick="payExtra()">Pay extra</button></div></section>
-    <section class="card"><h2>Last Week</h2>${lh?`<div class="grid2"><div>Clients here: <b>${lh.served}</b>${lh.turned?` (${lh.turned} turned away)`:''}</div><div>Income here: <b>${fmt(lh.income)}</b> · Upkeep <b>${fmt(lh.upkeep)}</b></div><div>Satisfaction: <b>${Math.round(lh.avgSat)}</b></div><div>All houses net: <b>${fmt(L.income-L.wages-L.upkeep)}</b></div></div><div class="row"><button onclick="showReport(S.lastReport,false)">📋 Full report</button></div>`:'<span class="muted">No report yet. Assign jobs, then End Week.</span>'}</section>`;
+    <section class="card"><h2>Last Week</h2>${lh?`<div class="grid2"><div>Clients here: <b>${lh.served}</b>${lh.turned?` (${lh.turned} turned away)`:''}</div><div>Income here: <b>${fmt(lh.income)}</b> · Upkeep <b>${fmt(lh.upkeep)}</b></div><div>Satisfaction: <b>${Math.round(lh.avgSat)}</b></div><div>All houses net: <b>${fmt(L.income-L.wages-L.upkeep-(L.recharge||0))}</b></div></div><div class="row"><button onclick="showReport(S.lastReport,false)">📋 Full report</button></div>`:'<span class="muted">No report yet. Assign jobs, then End Week.</span>'}</section>`;
 }
 function workerCard(w, showHouse){
   const wl = knows(w,true) ? Math.round(w.lewd) : '?';
@@ -89,15 +90,15 @@ function agendaHTML(){
   const nm = w => `<a href="#" onclick="openSheet('${w.id}');return false">${esc(w.name.split(' ')[0])}</a>`;
   const list = (ws) => ws.map(nm).join(', ');
   const W = S.workers, lines = [];
-  const waiting = W.filter(w=>has(w,'Devoted') && w.lust>=LUST_HIGH);
-  const restless = W.filter(w=>!has(w,'Devoted') && w.lust>=LUST_HIGH);
+  const waiting = W.filter(w=>has(w,'Devoted') && restless(w));
+  const restlessL = W.filter(w=>!has(w,'Devoted') && restless(w));
   const worn = W.filter(w=>w.job!=='rest' && w.energy < maxEnergy(w)*0.3);
   const unhappy = W.filter(w=>w.mood < 25);
   const ending = W.filter(w=>!isFree(w) && !w.locked && w.contract<=2);
   const neglected = W.filter(w=>has(w,'Devoted') && (w.neglect||0) >= Math.max(1, BAL.lovers.neglectWeeks-1));
   if(waiting.length) lines.push(`💗 Waiting for Sam: ${list(waiting)}`);
   if(neglected.length) lines.push(`💔 Feeling neglected: ${list(neglected)}`);
-  if(restless.length) lines.push(`🔥 Restless: ${list(restless)}`);
+  if(restlessL.length) lines.push(`🔥 Restless: ${list(restlessL)}`);
   if(worn.length) lines.push(`😴 Worn out: ${list(worn)}`);
   if(unhappy.length) lines.push(`😠 Unhappy: ${list(unhappy)}`);
   if(ending.length) lines.push(`📜 Contract ending: ${ending.map(w=>`${nm(w)} (${w.contract} wk)`).join(', ')}`);
@@ -113,9 +114,9 @@ function viewRecruit(){
   const cards = S.candidates.map(c=>`<div class="wcard" style="cursor:default">${avatarHTML(c)}
     <div class="winfo"><div class="wname">${esc(c.name)}${c.named?' <span class="tag">★</span>':''}${ARCS[c.key]?' <span class="tag act">♥ story</span>':''}</div>
     <div class="muted">${raceLabel(c)} · ${esc(c.personality)} · Style: ${c.style}</div><div>${traitTags(c)}</div>
-    <div class="sgrid" style="margin:6px 0">${STAT_KEYS.map(k=>`<div><span>${k.slice(0,4).toUpperCase()}</span><b>${sv(c,c.stats[k],false)}</b></div>`).join('')}<div><span>LEWD</span><b>${S.sam.appraisal>=2?Math.round(c.lewd):'?'}</b></div><div><span>BEST</span><b>${TECH_LABEL[TECH_KEYS.reduce((a,k)=>c.tech[k]>c.tech[a]?k:a,'service')]}</b></div></div>
+    <div class="sgrid" style="margin:6px 0">${STAT_KEYS.map(k=>`<div><span>${k.slice(0,4).toUpperCase()}</span><b>${sv(c,c.stats[k],false)}</b></div>`).join('')}<div><span>LEWD</span><b>${S.sam.appraisal>=2?Math.round(c.lewd):'?'}</b></div><div><span>BEST</span><b>${TECH_LABEL[TECH_KEYS.reduce((a,k)=>c.tech[k]>c.tech[a]?k:a,'service')]}</b></div><div><span>BODY</span><b>${esc(bodyLabel(c))}</b></div></div>
     <div class="row"><span>Wage <b>${fmt(c.wage)}</b>/wk · Signing <b>${fmt(c.signing||0)}</b></span></div>
-    <div class="row"><button class="primary" onclick="hire('${c.id}')">Hire for ${esc(curH().name)}</button><button onclick="openCand('${c.id}')">Details</button></div></div></div>`).join('');
+    ${raceBlock(c, curH())?`<div class="warn">${esc(raceBlock(c, curH()))}</div>`:''}<div class="row"><button class="primary" onclick="hire('${c.id}')" ${raceBlock(c, curH())?'disabled':''}>Hire for ${esc(curH().name)}</button><button onclick="openCand('${c.id}')">Details</button></div></div></div>`).join('');
   return `${houseTabs(false)}<section class="card"><h2>Candidates</h2><p class="muted">New faces arrive each week. Hires join the selected house. Sam's [Appraisal] Lv ${S.sam.appraisal} ${S.sam.appraisal<2?'shows letter grades only.':'shows exact stats.'}</p><div class="grid">${cards||'<span class="muted">Nobody this week.</span>'}</div></section>`;
 }
 function openCand(id){

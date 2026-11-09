@@ -32,7 +32,7 @@ function sheetImg(mode){ const s=$('#sceneSel'), c=$('#clothSel'); if(!s||!SHEET
 function refreshSheetInfo(){
   if(!SHEET) return; const w = findW(SHEET); const box = $('#sheetInfo'); if(!w || !box) return;
   const k = knows(w,true), kp = knowsPrefs(w);
-  const rows = getActs().map(a=>{
+  const rows = getActs().filter(a=>!actBanned(w,a.id)).map(a=>{
     const cst = clientStance(w,a.id), sst = samStance(w,a.id), cc = cst!=='no', on = w.menu.includes(a.id);
     const pref = kp ? (w.fav===a.id?' <span title="Favorite" class="good">★</span>':'') + (w.dislike===a.id?' <span title="Dislikes" class="warn">✗</span>':'') + (w.lovers===a.id?' <span title="Lovers only: with clients only if very lewd" class="pink">♥</span>':'') : '';
     return `<tr><td>${esc(a.label)}${pref}</td><td>${sv(w,actSkill(w,a.id),true)}</td>
@@ -47,6 +47,7 @@ function refreshSheetInfo(){
   box.innerHTML = `<div class="status"><h3>[ STATUS ] ${esc(w.name)}</h3>
     <div class="muted">${raceLabel(w)} · Age ${w.age} · ${esc(w.personality)} · Style: ${w.style} · ♥ ${sw(w.favColor)}${w.favColor}</div>
     <p class="story" style="margin:6px 0" id="bs_${w.id}">${esc(w.backstory)}</p>${SET.ai.on&&!w.named?`<button class="sm" onclick="if(confirm('Replace her backstory with a new AI-written one?'))aiBackstory('bs_${w.id}','${w.id}')">✨ Rewrite backstory</button>`:''}<div>${traitTags(w)}</div>${arcTxt}${firstsLine(w)}${(()=>{ if(!S.workers.includes(w)) return ''; seedBonds(); const bl = bondLines(w); return bl.length ? `<div class="muted">🤝 ${bl.map(esc).join(' · ')}</div>` : ''; })()}
+    <div class="muted">Body: ${esc(bodyLabel(w))}${w.unique?` · <span class="pink" title="${esc(w.unique.desc||'')}">★ ${esc(w.unique.name)}</span>`:''}</div>
     <div class="sgrid" style="margin-top:8px">${STAT_KEYS.map(s=>`<div><span>${s.toUpperCase()}</span><b>${sv(w,w.stats[s],true)}</b></div>`).join('')}</div>
     <div class="sgrid" style="margin-top:6px">${TECH_KEYS.map(s=>`<div><span>${TECH_LABEL[s].toUpperCase()}</span><b>${sv(w,w.tech[s],true)}</b></div>`).join('')}<div><span>POPULARITY</span><b>${Math.round(w.popularity)}</b></div></div>
     <div style="margin-top:8px">${bar('Energy',w.energy,maxEnergy(w),'e')}${bar('Mood',w.mood,100,'m')}${bar('Trust',w.trust,100,'t')}${k?bar('Lewdness',w.lewd,100,'l'):'<div class="muted">Lewdness: ? (Appraisal Lv 2 or more trust)</div>'}${k?bar('Lust ('+lustLabel(w)+')',w.lust,100,'p'):''}${bar('Health',w.health,100,'h')}</div>
@@ -54,6 +55,8 @@ function refreshSheetInfo(){
     <div class="muted">Comfortable up to: <b>${CLOTH.find(c=>c.id===cl).label}</b> with clients · <b>${CLOTH.find(c=>c.id===cs).label}</b> with Sam${has(w,'Modest')?`<br><span class="pink">Modest:</span> ${esc(flavor('modest', w))}`:''}</div>
     ${persLine(w)}${(HOUSES[houseOf(w).id].minPop||0) > w.popularity ? `<div class="warn">⚠️ Below ${esc(houseOf(w).name)}'s standard (popularity ${HOUSES[houseOf(w).id].minPop}). Escort clients pay less and complain.</div>`:''}</div>
     <div class="row" style="margin-top:8px">👗 <b>${esc(o.label)}</b>${usesColor(o)?` ${sw(w.outColor)}${w.outColor}`:''} · 🩲 ${esc(u.label)}${w.under!=='none'&&usesColor(u)?` ${sw(w.underColor)}${w.underColor}`:''} <button class="sm" onclick="openWardrobe('${w.id}')">Wardrobe</button></div>
+    <div class="row" title="How she looks in service images (visual only). The dress level can't go past what she's comfortable with.">🎀 Service outfit <select onchange="setSvcOutfit('${w.id}',this.value)"><option value="">Same as work</option>${(w.owned||[]).filter(k=>WARDROBE[k]).map(k=>`<option value="${k}" ${w.svcOutfit===k?'selected':''}>${esc(WARDROBE[k].label)}</option>`).join('')}${w.customOutfit?`<option value="custom" ${w.svcOutfit==='custom'?'selected':''}>Her own outfit</option>`:''}</select>
+      Dress level <select onchange="setSvcLevel('${w.id}',this.value)"><option value="auto">Auto</option>${CLOTH.map(c=>{ const ok = clothOK(w,c.id,true); return `<option value="${c.id}" ${(w.svcLevel||'auto')===c.id?'selected':''} ${ok?'':'disabled'}>${ok?'':'🔒 '}${c.label}</option>`; }).join('')}</select></div>
     <h3 style="margin-top:10px">Services</h3>
     <table><tr><th>Service</th><th>Skill</th><th>Clients</th><th>Sam</th><th>Menu</th></tr>${rows}</table>
     <div class="muted" style="font-size:12px">✓ she enjoys it · 🔒 (Sam) she'd be fine with it, but they haven't gotten that far yet · ~ she'll do it because she trusts Sam (costs mood; lewdness grows faster) · ✗ a line she won't cross yet. Numbers: her inclination / the service's line.<br>${kp?'★ favorite (mood +) · <span class="warn">✗</span> after a name = dislikes (mood −) · ♥ lovers only':'Her preferences show at trust 40 or Appraisal Lv 3.'} · Menu = what she offers clients.</div>
@@ -105,7 +108,7 @@ function viewUpgrades(){
     ${card('roomTier',`Refurbish Bedrooms (${ROOM_NAMES[h.tier]})`,'Higher service prices and satisfaction. Changes room scenes.',upgradeCost(h,'roomTier'),h.tier>=3)}
     ${card('beds',`Better Beds (${BEDS[h.beds||0].label})`,`Staff recover more energy. Next: ${BEDS[Math.min(3,(h.beds||0)+1)].label} (rest ${BEDS[Math.min(3,(h.beds||0)+1)].rest}). Proper beds keep a lady even at about 3–4 clients a week.`,upgradeCost(h,'beds'),(h.beds||0)>=3)}
     ${card('annex','Build an Annex','+3 rooms of space. +30g/wk.',upgradeCost(h,'annex'),!!h.annex)}
-    ${Object.entries(UPGRADES).map(([k,u])=>card(k,`${u.label} <span class="muted">(${AMENITY_SIZE[k]} room${AMENITY_SIZE[k]>1?'s':''})</span>`,`${u.desc} (${D.up[k]?'built in':u.upkeep+'g/wk upkeep'})`,upgradeCost(h,k),!!h.up[k])).join('')}</div>
+    ${Object.entries(UPGRADES).map(([k,u])=>card(k,`${u.label} <span class="muted">(${AMENITY_SIZE[k]} room${AMENITY_SIZE[k]>1?'s':''})</span>`,`${u.race?`<span class="tag act">for ${esc((RACES[u.race]||{label:u.race}).label.toLowerCase())}s</span> `:''}${u.desc} (${D.up[k]?'built in':u.upkeep+'g/wk upkeep'})`,upgradeCost(h,k),!!h.up[k])).join('')}</div>
     <p class="muted">Building the same thing again costs 12% more each time (counted across all your houses); bedrooms, quarters and beds also scale with how many this house has. Upkeep also rises with a house's reputation.</p>
     <p>Space used: <b>${roomsUsed(h)}/${houseSize(h)}</b> rooms</p>
     <p class="muted">Outfits and undergarments are bought per lady, from her sheet → Wardrobe.</p></section>

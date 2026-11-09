@@ -17,10 +17,20 @@ const GUEST_PACKS = noMeta((DATA.guests||{}).packs);
 const GUEST_VISITS = Object.assign({chance:0.3, stayWeeks:2, cooldownWeeks:8}, (DATA.guests||{}).visits);
 // Service categories (data/services.json). Custom ones added in old versions of Settings still work.
 const ACTS = needData('services').services;
+// The old service id 'caress' is now 'kiss'. Old data/saves that still say caress keep working through these.
+const ACT_ALIAS = {caress:'kiss'}, ACT_ALIAS_REV = {kiss:'caress'};
+const actKey = id => ACT_ALIAS[id] || id;
+// a per-service lookup into a data map (flavor, dynamics...), falling back to the old id
+const byAct = (map, id) => (map||{})[id] ?? (map||{})[ACT_ALIAS_REV[id]];
 // Your own scene text, appended to the generated prompt (data/snippets.json → scenes).
 const SCENE_SNIPPETS = noMeta(needData('snippets').scenes);
 // Clothing state wording (data/snippets.json → clothing). {outfit} and {underwear} are filled in from her wardrobe.
 const DEFAULT_CLOTH_TEXT = noMeta(needData('snippets').clothing);
+// Face wording for how she's taking a service (data/snippets.json → expressions / expressionsByAct). TODO placeholders are skipped.
+const SNIP_EXPR = noMeta(needData('snippets').expressions||{}), SNIP_EXPR_ACT = noMeta(needData('snippets').expressionsByAct||{});
+const isTodo = s => /^\s*TODO/i.test(String(s||''));
+const stripTodo = s => String(s||'').split(',').filter(x=>!isTodo(x)).join(',');
+function exprText(e, act){ if(!e) return ''; return [SNIP_EXPR[e], (SNIP_EXPR_ACT[actKey(act||'')]||{})[e]].filter(x=>x && !isTodo(x)).join(', '); }
 // AI text prompts (data/ai-prompts.json). {placeholders} are filled from the game.
 const AI_FILE = needData('ai-prompts');
 const DEFAULT_AI_TPL = Object.fromEntries(Object.entries(noMeta(AI_FILE)).filter(([k])=>k!=='guidance'));

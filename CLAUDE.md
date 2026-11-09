@@ -21,5 +21,10 @@
 - Job preferences are per lady (`w.jobLikes`/`w.jobDislikes`; named ones from `jobs` in characters/guests.json, others rolled by `rollJobPrefs`).
 - New Game+ lives in `js/logic/ngplus.js` (tuning: `balance.json → ngplus`). Houses with `ngplus: true` in economy.json only appear
   from cycle 2; their stories are in `js/stories/ngplus-houses.js`. Debt payments count from `S.debt.start` (`debtWeek()`).
+- Stats, `tech` and service skills run 0-1000 (`SKL`, `s100(v)` back to the old 0-100 scale, `clampK`); data files stay 0-100 and
+  are converted at creation (`genWorker`, `makeNamed`). Anything that reads a stat/skill in a formula goes through `s100()`.
+- Effects engine: `js/logic/fx.js` (`fxMul/fxAdd/fxHas/fxSub/fxArr`) merges effects from traits (`data/traits.json`), race + beastkin
+  sub (`data/races.json`), body (`data/body.json`), `w.unique` and `w.ngPerks`. Vocabulary is in the `_readme` of traits.json.
+  Developable traits (`earn`) are checked weekly from `w.counts` (`countUp(w,key)`); the old service id `caress` is an alias of `kiss`.
 - Save format migrations live in `migrate()` (`js/logic/state.js`); bump `S.v` when changing save shape.
 - After changes: `node tools/build.mjs && node tools/smoke.mjs 30` (Playwright; `CHROME=` for a custom browser).

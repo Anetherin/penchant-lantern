@@ -47,13 +47,13 @@ function evRegular(rid){
   if(r.quirk==='generous'){
     const g = ri(60,160);
     return Object.assign(base, {text:F(E.text,{gold:fmt(g)}), choices:[
-      {label:'Let her keep it', fx(){ w.mood = clamp(w.mood+8); gainTrust(w,2); return F(E.keep); }},
-      {label:'Sell it for the house', fx(){ S.gold += g; w.mood = clamp(w.mood-3); return F(E.split,{gold:fmt(g)}); }}]});
+      {label:'Let her keep it', fx(){ moodAdd(w, 8); gainTrust(w,2); return F(E.keep); }},
+      {label:'Sell it for the house', fx(){ S.gold += g; moodAdd(w, -3); return F(E.split,{gold:fmt(g)}); }}]});
   }
   if(r.quirk==='jealous'){
     const g = ri(80,200);
     return Object.assign(base, {text:F(E.text), choices:[
-      {label:`Take his money (${fmt(g)})`, fx(){ S.gold += g; w.mood = clamp(w.mood-3); r.loyalty++; return F(E.pay,{gold:fmt(g)}); }},
+      {label:`Take his money (${fmt(g)})`, fx(){ S.gold += g; moodAdd(w, -3); r.loyalty++; return F(E.pay,{gold:fmt(g)}); }},
       {label:'"She isn\'t yours"', fx(){ r.loyalty -= 3; gainTrust(w,2); if(r.loyalty<=-4) S.regulars = S.regulars.filter(x=>x!==r); return F(E.refuse); }},
       {label:'Let her handle it', fx(){ w.energy = clamp(w.energy-10, 0, maxEnergy(w)); r.loyalty++; return F(E.calm); }}]});
   }
@@ -61,7 +61,7 @@ function evRegular(rid){
     const g = ri(40,110), sec = S.workers.some(x=>x.house===r.house && x.job==='security');
     const ch = [
       {label:`Bill him for the night (${fmt(g)})`, fx(){ S.gold += g; w.energy = clamp(w.energy-15, 0, maxEnergy(w)); return F(E.charge,{gold:fmt(g)}); }},
-      {label:'Let it go', fx(){ S.gold += Math.round(g/3); w.energy = clamp(w.energy-15, 0, maxEnergy(w)); w.mood = clamp(w.mood-2); r.loyalty++; return F(E.letit); }}];
+      {label:'Let it go', fx(){ S.gold += Math.round(g/3); w.energy = clamp(w.energy-15, 0, maxEnergy(w)); moodAdd(w, -2); r.loyalty++; return F(E.letit); }}];
     if(sec) ch.splice(1, 0, {label:'Have security walk him out', fx(){ r.loyalty -= 2; gainTrust(w,1); return F(E.escort); }});
     return Object.assign(base, {text:F(E.text), choices:ch});
   }
@@ -71,9 +71,9 @@ function evRegular(rid){
     return Object.assign(base, {text:F(E.text,{gold:fmt(g)}), choices:[
       {label:'Let her decide', fx(){
         S.regulars = S.regulars.filter(x=>x!==r);
-        if(stays){ gainTrust(w,4); w.mood = clamp(w.mood+4); return F(E.stays); }
+        if(stays){ gainTrust(w,4); moodAdd(w, 4); return F(E.stays); }
         S.gold += g; S.workers = S.workers.filter(x=>x.id!==w.id); return F(E.goes,{gold:fmt(g)}); }},
-      {label:'Refuse the offer', fx(){ S.regulars = S.regulars.filter(x=>x!==r); w.mood = clamp(w.mood-2); return F(E.refuse); }}]});
+      {label:'Refuse the offer', fx(){ S.regulars = S.regulars.filter(x=>x!==r); moodAdd(w, -2); return F(E.refuse); }}]});
   }
   if(r.quirk==='talker'){
     return Object.assign(base, {text:F(E.text), choices:[

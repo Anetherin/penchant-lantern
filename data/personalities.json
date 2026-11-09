@@ -6,7 +6,8 @@
     "solo: chance (0-1) that at max lust she takes care of it herself instead of acting on it with someone. Costs her energy and fewer clients that night.",
     "modest: chance (0-1) a new lady with this personality gets the Modest trait: she undresses less than her lewdness would allow (clothes pulled aside), loosening as lewdness and trust with Sam rise.",
     "goodNight / badNight: mood change after a week where clients loved her / a rough week with bad clients.",
-    "lustBuild: multiplier on how fast her lust builds each week."
+    "lustBuild: multiplier on how fast her lust builds each week.",
+    "expr: optional map that shifts the expression she shows during services (bored / professional / into / lost) to another one (data/snippets.json → expressions), e.g. a shy lady is 'flustered' instead of 'into it'."
   ],
   "Cheerful and teasing": {
     "likes": ["chat","gift","walk"],
@@ -45,7 +46,8 @@
     "modest": 0.5,
     "goodNight": 4,
     "badNight": -6,
-    "lustBuild": 0.85
+    "lustBuild": 0.85,
+    "expr": {"into":"flustered","lost":"flustered"}
   },
   "Proud and sharp-tongued": {
     "likes": ["gift","theater"],
@@ -58,7 +60,8 @@
     "modest": 0.35,
     "goodNight": 2,
     "badNight": -5,
-    "lustBuild": 1
+    "lustBuild": 1,
+    "expr": {"into":"smug"}
   },
   "Laid-back and lazy": {
     "likes": ["chat","private"],
@@ -84,7 +87,8 @@
     "modest": 0,
     "goodNight": 3,
     "badNight": -2,
-    "lustBuild": 1.2
+    "lustBuild": 1.2,
+    "expr": {"professional":"smug"}
   },
   "Bookish and curious": {
     "likes": ["train","chat","theater"],
@@ -123,7 +127,8 @@
     "modest": 0.4,
     "goodNight": 1,
     "badNight": -1,
-    "lustBuild": 0.9
+    "lustBuild": 0.9,
+    "expr": {"into":"professional"}
   },
   "Hot-blooded and competitive": {
     "likes": ["train","dinner"],

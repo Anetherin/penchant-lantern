@@ -1,0 +1,37 @@
+{
+  "_readme": [
+    "Bodies. w.body = {bust, height, figure}. Each option: label, img (neutral prompt words), weight (generic roll odds), fx (effect engine, see traits.json _readme).",
+    "Bust wording is left as TODO for you to fill in. 'flat' is empty on purpose: the safety filter strips that wording, so word it yourself if you want it. Anything starting with TODO is stripped from prompts.",
+    "raceSkew: per race, extra weight for options (e.g. dwarves tend to be short). defaults: used for named ladies without a body in their data."
+  ],
+  "defaults": {"bust":"medium","height":"average","figure":"slim"},
+  "bust": {
+    "flat": {"label":"Flat","img":"","weight":1,"fx":{"actEnergy":0.92,"actBan":["paizuri"],"appeal":-2}},
+    "small": {"label":"Small","img":"TODO: your wording","weight":3,"fx":{"actQuality":{"paizuri":0.8}}},
+    "medium": {"label":"Medium","img":"TODO: your wording","weight":5,"fx":{}},
+    "large": {"label":"Large","img":"TODO: your wording","weight":3,"fx":{"actQuality":{"paizuri":1.2},"appeal":3,"actEnergy":1.06}},
+    "huge": {
+      "label": "Huge",
+      "img": "TODO: your wording",
+      "weight": 1,
+      "fx": {"actQuality":{"paizuri":1.35},"appeal":5,"actEnergy":1.12,"jobBonus":{"dancer":0.9}}
+    }
+  },
+  "height": {
+    "short": {"label":"Short","img":"short stature","weight":2,"fx":{"jobBonus":{"security":0.9}}},
+    "average": {"label":"Average","img":"","weight":6,"fx":{}},
+    "tall": {"label":"Tall","img":"tall","weight":2,"fx":{"jobBonus":{"dancer":1.08,"security":1.08},"classBonus":{"noble":1.05}}}
+  },
+  "figure": {
+    "slim": {"label":"Slim","img":"slim figure","weight":4,"fx":{"jobBonus":{"dancer":1.05}}},
+    "athletic": {"label":"Athletic","img":"athletic toned figure","weight":2,"fx":{"security":10,"maxEnergy":5}},
+    "curvy": {"label":"Curvy","img":"curvy figure","weight":3,"fx":{"appeal":3,"classBonus":{"merchant":1.05}}},
+    "soft": {"label":"Soft","img":"soft plump figure","weight":2,"fx":{"actQuality":{"massage_give":1.15},"maxEnergy":5,"jobBonus":{"bath":1.08}}}
+  },
+  "raceSkew": {
+    "dwarf": {"height":{"short":6},"figure":{"athletic":2,"soft":1}},
+    "elf": {"height":{"tall":3},"figure":{"slim":4}},
+    "beastkin": {"figure":{"athletic":1}},
+    "spirit": {"figure":{"slim":3}}
+  }
+}

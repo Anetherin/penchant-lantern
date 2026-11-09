@@ -6,7 +6,7 @@ function buyOutfit(id, k){
   if(o.owner) return toast(spUnlocked(w) ? 'Already unlocked.' : `Unlocks at trust ${spTrust(w)}.`);
   if(S.gold < o.cost) return toast('Not enough gold.');
   S.gold -= o.cost; w.owned.push(k);
-  if(o.style===w.style){ w.mood=clamp(w.mood+6); w.trust=clamp(w.trust+2); }
+  if(o.style===w.style){ moodAdd(w, 6); w.trust=clamp(w.trust+2); }
   if(wardrobeOK(w,k)) w.outfit = k;
   note(`Bought ${o.label} for ${w.name}.${o.style===w.style?' She loves it.':''}`); save(); render(); openWardrobe(id);
 }

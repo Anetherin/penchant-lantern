@@ -1,22 +1,47 @@
 {
   "_readme": [
-    "Service categories. Add your own by adding an entry with a new id; everyone gets a random skill and comfort level for it.",
-    "th = lewdness she needs to enjoy it (trust can stretch her up to 25 below). price = base fee. energy = what it costs her.",
-    "desc = what the service is, in plain words; the AI prompts get \"label (desc)\" as {service} so the AI knows what you mean.",
-    "minCloth = the least undressed she'll be in images of it by default (dressed, partial, under, nude). Above partial it only applies if she's comfortable that far; Modest ladies still keep things pulled aside.",
-    "image.client / image.sam / image.duo = pose and framing for client scenes, Sam's first-person scenes, and scenes with two ladies. Each is a list: one is picked at random per image, so add variants. image.extra is added to every image of this service (this replaces the old act_<id> snippets).",
+    "Service categories, ONE list sorted by tier then th. Add your own by adding an entry with a new id; everyone gets a random skill and comfort level for it (custom ones from Settings merge into the list by their tier).",
+    "th = lewdness she needs to enjoy it (trust can stretch her up to 25 below). price = base fee. energy = what it costs her. desc = what the service is, in plain words; the AI prompts get \"label (desc)\" as {service}.",
+    "lust = base change to HER lust per client (negative = drop, positive = rises). Real change = lust x client technique x (1.5 if favorite) x (0.6 if disliked) x her actQuality fx x her lust profile. finish = the client finishes (demon feeding; she can be left frustrated). want = relative odds clients ask for it. kind: give | receive | massage | kiss (receiving services: with Sam he does the work, low Sam energy, big drop in her lust, no demon drain).",
+    "dress = {min: dressed|partial|under|nude, fullAt: lewdness she needs before images show her fully undressed}. Services whose min is 'dressed' (kissing, massage) stay dressed until her lewdness reaches fullAt. Older entries with minCloth still work (read as dress.min).",
+    "image.client / image.sam / image.duo = pose and framing for client scenes, Sam's first-person scenes, and scenes with two ladies. Each is a list: one is picked at random per image. image.extra is added to every image of this service. Anything starting with TODO is skipped when prompts are built: replace the TODO placeholders with your own wording.",
     "report = lines for the weekly report when a client got this service (one is picked at random; empty falls back to flavor.json client_yes).",
-    "tier: how far past the line it is with Sam (1 kissing & touching, 2 hands & mouth, 3 everything). Private time with Sam only offers services up to the tier she's crossed in her firsts (data/firsts.json). Custom services without a tier count as 1 below line 30, 2 below 50, else 3."
+    "tier: how far past the line it is with Sam (1 kissing & touching, 2 hands & mouth, 3 everything). Private time with Sam only offers services up to the tier she's crossed in her firsts (data/firsts.json). Custom services without a tier count as 1 below line 30, 2 below 50, else 3.",
+    "The old id 'caress' is now 'kiss' (kept as an alias in code, so old data that says caress still works).",
+    "energyBack / mood (optional): energy she regains and mood she gains from a service (massage_get)."
   ],
   "services": [
     {
-      "id": "caress",
-      "label": "Kissing & touching",
-      "th": 25,
-      "price": 24,
-      "energy": 6,
-      "desc": "kissing and touching",
-      "minCloth": "dressed",
+      "id": "massage_give",
+      "label": "Massage (giving)",
+      "tier": 1,
+      "th": 10,
+      "price": 22,
+      "energy": 7,
+      "lust": 0,
+      "finish": false,
+      "want": 0.9,
+      "kind": "massage",
+      "desc": "giving a massage",
+      "dress": {"min":"dressed","fullAt":85},
+      "image": {"client":["TODO: your wording"],"sam":["TODO: your wording"],"duo":["TODO: your wording"],"extra":""},
+      "report": [
+        "He left loose-limbed and lighter in the shoulders, and tipped like a man reborn."
+      ]
+    },
+    {
+      "id": "kiss",
+      "label": "Kissing",
+      "tier": 1,
+      "th": 20,
+      "price": 18,
+      "energy": 4,
+      "lust": -2,
+      "finish": false,
+      "want": 0.8,
+      "kind": "kiss",
+      "desc": "kissing",
+      "dress": {"min":"dressed","fullAt":95},
       "image": {
         "client": ["embracing and kissing passionately"],
         "sam": ["embracing and kissing passionately, looking at the viewer"],
@@ -25,17 +50,57 @@
       },
       "report": [
         "They spent most of the evening wrapped up together on a lounge sofa, and he left grinning."
+      ]
+    },
+    {
+      "id": "massage_get",
+      "label": "Massage (receiving)",
+      "tier": 1,
+      "th": 22,
+      "price": 16,
+      "energy": 2,
+      "lust": 3,
+      "finish": false,
+      "want": 0.25,
+      "kind": "receive",
+      "desc": "being given a massage",
+      "dress": {"min":"dressed","fullAt":85},
+      "image": {"client":["TODO: your wording"],"sam":["TODO: your wording"],"duo":["TODO: your wording"],"extra":""},
+      "report": [
+        "A rare request, and an easy hour: he did the work, and she mostly sighed."
       ],
-      "tier": 1
+      "energyBack": 4,
+      "mood": 2
+    },
+    {
+      "id": "manual_get",
+      "label": "Manual (receiving)",
+      "tier": 2,
+      "th": 30,
+      "price": 24,
+      "energy": 3,
+      "lust": -10,
+      "finish": false,
+      "want": 0.3,
+      "kind": "receive",
+      "desc": "being pleasured by hand",
+      "dress": {"min":"partial","fullAt":60},
+      "image": {"client":["TODO: your wording"],"sam":["TODO: your wording"],"duo":["TODO: your wording"],"extra":""},
+      "report": ["He was attentive and she did not complain. A quiet hour."]
     },
     {
       "id": "manual",
       "label": "Manual",
+      "tier": 2,
       "th": 32,
       "price": 32,
       "energy": 7,
+      "lust": -4,
+      "finish": true,
+      "want": 1,
+      "kind": "give",
       "desc": "using her hands",
-      "minCloth": "partial",
+      "dress": {"min":"partial","fullAt":55},
       "image": {
         "client": ["her hands wrapped around a man's penis, handjob"],
         "sam": [
@@ -48,17 +113,55 @@
       },
       "report": [
         "It didn't take long. He left looking dazed and tipped well for it."
-      ],
-      "tier": 2
+      ]
+    },
+    {
+      "id": "breast_get",
+      "label": "Breast play (receiving)",
+      "tier": 2,
+      "th": 34,
+      "price": 26,
+      "energy": 3,
+      "lust": -8,
+      "finish": false,
+      "want": 0.3,
+      "kind": "receive",
+      "desc": "attention on her chest",
+      "dress": {"min":"partial","fullAt":55},
+      "image": {"client":["TODO: your wording"],"sam":["TODO: your wording"],"duo":["TODO: your wording"],"extra":""},
+      "report": [
+        "He was unhurried and appreciative, and she was kind about it."
+      ]
+    },
+    {
+      "id": "oral_get",
+      "label": "Oral (receiving)",
+      "tier": 2,
+      "th": 40,
+      "price": 34,
+      "energy": 3,
+      "lust": -14,
+      "finish": false,
+      "want": 0.3,
+      "kind": "receive",
+      "desc": "being pleasured with his mouth",
+      "dress": {"min":"partial","fullAt":60},
+      "image": {"client":["TODO: your wording"],"sam":["TODO: your wording"],"duo":["TODO: your wording"],"extra":""},
+      "report": ["He took his time. She came downstairs flushed and unhurried."]
     },
     {
       "id": "oral",
       "label": "Oral",
+      "tier": 2,
       "th": 42,
       "price": 44,
       "energy": 9,
+      "lust": -4,
+      "finish": true,
+      "want": 1,
+      "kind": "give",
       "desc": "using her mouth",
-      "minCloth": "partial",
+      "dress": {"min":"partial","fullAt":55},
       "image": {
         "client": ["her mouth sucking a man's penis, blowjob"],
         "sam": [
@@ -71,17 +174,21 @@
       },
       "report": [
         "He came back downstairs looking like he'd seen the face of a god."
-      ],
-      "tier": 2
+      ]
     },
     {
       "id": "paizuri",
       "label": "Paizuri",
+      "tier": 2,
       "th": 45,
       "price": 46,
       "energy": 9,
+      "lust": -3,
+      "finish": true,
+      "want": 0.8,
+      "kind": "give",
       "desc": "using her breasts",
-      "minCloth": "partial",
+      "dress": {"min":"partial","fullAt":55},
       "image": {
         "client": ["a man's penis between her breasts, titjob"],
         "sam": [
@@ -94,17 +201,21 @@
       },
       "report": [
         "He talked about it at the bar afterward, at length, to anyone who'd listen."
-      ],
-      "tier": 2
+      ]
     },
     {
       "id": "missionary",
       "label": "Missionary",
+      "tier": 3,
       "th": 52,
       "price": 58,
       "energy": 11,
+      "lust": -8,
+      "finish": true,
+      "want": 1,
+      "kind": "give",
       "desc": "sex, him on top",
-      "minCloth": "partial",
+      "dress": {"min":"partial","fullAt":55},
       "image": {
         "client": ["getting fucked by a man"],
         "sam": ["getting fucked by the viewer, pov, looking at the viewer"],
@@ -117,17 +228,21 @@
       },
       "report": [
         "The door stayed closed a long time. He left smiling and walked into a pillar."
-      ],
-      "tier": 3
+      ]
     },
     {
       "id": "cowgirl",
       "label": "Cowgirl",
+      "tier": 3,
       "th": 56,
       "price": 64,
       "energy": 12,
+      "lust": -9,
+      "finish": true,
+      "want": 1,
+      "kind": "give",
       "desc": "sex, her on top",
-      "minCloth": "partial",
+      "dress": {"min":"partial","fullAt":55},
       "image": {
         "client": ["fucking a man"],
         "sam": ["fucking the viewer, pov, looking at the viewer"],
@@ -140,17 +255,21 @@
       },
       "report": [
         "She came back down first, humming. He followed much later, red-faced and grinning."
-      ],
-      "tier": 3
+      ]
     },
     {
       "id": "doggy",
       "label": "Doggy",
+      "tier": 3,
       "th": 60,
       "price": 64,
       "energy": 12,
+      "lust": -9,
+      "finish": true,
+      "want": 1,
+      "kind": "give",
       "desc": "sex from behind",
-      "minCloth": "partial",
+      "dress": {"min":"partial","fullAt":55},
       "image": {
         "client": ["getting fucked from behind by a man"],
         "sam": [
@@ -165,8 +284,7 @@
       },
       "report": [
         "The bed upstairs creaked for most of the hour. He tipped extra on the way out."
-      ],
-      "tier": 3
+      ]
     }
   ]
 }

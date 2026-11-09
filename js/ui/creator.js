@@ -31,16 +31,17 @@ function viewCreator(){
     </div>
     <label class="muted" style="display:block;margin-top:8px">Backstory<textarea id="c_back">${esc(d.backstory)}</textarea></label>
     <div style="margin-top:8px"><b>Traits</b><br>${Object.keys(TRAITS).filter(t=>!TRAITS[t].story).map(t=>`<label class="chk"><input type="checkbox" class="c_trait" value="${esc(t)}" ${(d.traits||[]).includes(t)?'checked':''}>${esc(t)}</label>`).join('')}</div>
-    <h3 style="margin-top:10px">Stats</h3><div class="form">${STAT_KEYS.map(k=>num('c_s_'+k,cap(k),d.stats[k])).join('')}</div>
-    <h3>Skills</h3><div class="form">${TECH_KEYS.map(k=>num('c_t_'+k,TECH_LABEL[k],d.tech[k])).join('')}
+    <h3 style="margin-top:10px">Body</h3><div class="form">${BODY_KEYS.map(k=>`<label>${cap(k)}<select id="c_b_${k}">${Object.entries(bodyOpts(k)).map(([id,o])=>`<option value="${id}" ${bodyOf(d)[k]===id?'selected':''}>${esc(o.label)}</option>`).join('')}</select></label>`).join('')}</div>
+    <h3 style="margin-top:10px">Stats</h3><div class="form">${STAT_KEYS.map(k=>num('c_s_'+k,cap(k)+' /1000',d.stats[k],1000)).join('')}</div>
+    <h3>Skills</h3><div class="form">${TECH_KEYS.map(k=>num('c_t_'+k,TECH_LABEL[k]+' /1000',d.tech[k],1000)).join('')}
       ${num('c_pop','Popularity',d.popularity)}${num('c_lewd','Lewdness',d.lewd)}${num('c_trust','Trust',d.trust)}</div>
     <h3>Service preferences</h3><div class="form">${actSel('c_fav','Favorite',d.fav)}${actSel('c_dis','Dislikes',d.dislike)}${actSel('c_lov','Lovers only',d.lovers)}</div>
-    <div class="form" style="margin-top:6px">${getActs().map(a=>num('c_a_'+a.id,a.label+' skill',actSkill(d,a.id))).join('')}</div>
+    <div class="form" style="margin-top:6px">${getActs().map(a=>num('c_a_'+a.id,a.label+' skill /1000',actSkill(d,a.id),1000)).join('')}</div>
     <label class="chk" style="margin-top:8px"><input type="checkbox" id="c_named" ${d.named?'checked':''}> Named character (★, stays in the candidate pool until hired)</label>
     <div class="row" style="margin-top:10px"><button onclick="creatorRandom()">🎲 Randomize</button><button onclick="creatorPreview()">🎨 Preview portrait</button>
       ${EDIT?`<button class="primary" onclick="creatorSaveEdit()">Save changes</button><button onclick="cancelEdit()">Cancel</button>`:`<button class="primary" onclick="creatorAdd('roster')">Add to roster</button><button onclick="creatorAdd('pool')">Add to candidates</button><button onclick="creatorAdd('lib')">Save to library</button>`}</div>
     <div id="c_img" style="max-width:360px"></div>
-    ${dl('dl_sub',RACES.beastkin.subs)}${dl('dl_build',BUILDS)}${dl('dl_hs',HAIR_STYLES)}${dl('dl_hc',HAIR_COLORS)}${dl('dl_eyes',EYES)}${dl('dl_skin',SKINS.concat(DEMON_SKINS))}${dl('dl_feat',FEATURES)}${dl('dl_pers',PERSONALITIES)}
+    ${dl('dl_sub',subNames('beastkin'))}${dl('dl_build',BUILDS)}${dl('dl_hs',HAIR_STYLES)}${dl('dl_hc',HAIR_COLORS)}${dl('dl_eyes',EYES)}${dl('dl_skin',SKINS.concat(DEMON_SKINS))}${dl('dl_feat',FEATURES)}${dl('dl_pers',PERSONALITIES)}
   </section>
   <section class="card"><h2>Library (${LIB.length})</h2><p class="muted">Saved characters, shared across save files. ${SET.libraryInPool?'They sometimes show up as candidates.':''}</p>
     ${LIB.map((w,i)=>`<div class="row"><b>${esc(w.name)}</b> <span class="muted">${raceLabel(w)}</span>
@@ -64,13 +65,14 @@ function readCreator(){
   if(w.under==='custom' && !w.customUnder) w.customUnder = 'simple lace underwear';
   if(w.under!=='custom' && !w.ownedUnder.includes(w.under)) w.ownedUnder.push(w.under);
   w._mr = 1; w.traits = [...document.querySelectorAll('.c_trait:checked')].map(x=>x.value).concat((w.traits||[]).filter(t=>TRAITS[t]&&TRAITS[t].story));
-  STAT_KEYS.forEach(k=>w.stats[k]=clamp(parseInt(g('c_s_'+k))||0));
-  TECH_KEYS.forEach(k=>w.tech[k]=clamp(parseInt(g('c_t_'+k))||0));
+  STAT_KEYS.forEach(k=>w.stats[k]=clampK(parseInt(g('c_s_'+k))||0));
+  TECH_KEYS.forEach(k=>w.tech[k]=clampK(parseInt(g('c_t_'+k))||0));
+  w.body = Object.assign({}, bodyOf(w), Object.fromEntries(BODY_KEYS.map(k=>[k, g('c_b_'+k) || bodyOf(w)[k]])));
   w.popularity = clamp(parseInt(g('c_pop'))||0); w.lewd = clamp(parseInt(g('c_lewd'))||0); w.trust = clamp(parseInt(g('c_trust'))||0);
   w.fav = g('c_fav')||null; w.dislike = g('c_dis')||null; w.lovers = g('c_lov')||null;
   if(w.dislike && w.dislike===w.fav) w.dislike = null;
   ensureWorker(w);
-  getActs().forEach(a=>{ const v=parseInt(g('c_a_'+a.id)); if(!isNaN(v)) w.acts[a.id].skill = clamp(v); });
+  getActs().forEach(a=>{ const v=parseInt(g('c_a_'+a.id)); if(!isNaN(v)) w.acts[a.id].skill = clampK(v); });
   w.named = !!($('#c_named')&&$('#c_named').checked); w.keep = w.named;
   return w;
 }
@@ -79,7 +81,7 @@ function creatorPreview(){ const id = CDRAFT ? CDRAFT.id : null; CDRAFT = readCr
 function finalize(w){ w.id=uid(); w.wage=wageFor(w); w.energy=maxEnergy(w); w.mood=60; w.health=100; w.contract=12; w.job='rest'; w.seen={}; w.unhappy=0; w.privateCount=0; w.menu=[]; w.house=curH().id; delete w.key; delete w.isPartner; return w; }
 function creatorAdd(dest){
   const w = finalize(readCreator());
-  if(dest==='roster'){ S.workers.push(w); checkUnlocks(true); note(`${w.name} added to ${curH().name}.`); }
+  if(dest==='roster'){ const rb = raceBlock(w, curH()); if(rb) return toast(rb); S.workers.push(w); checkUnlocks(true); note(`${w.name} added to ${curH().name}.`); }
   else if(dest==='pool'){ w.signing = signingFor(w); w.keep = true; S.candidates.push(w); note(`${w.name} added to candidates.`); }
   else { LIB.push(w); saveLib(); note(`${w.name} saved to the library.`); }
   CDRAFT = null; save(); render();
@@ -87,10 +89,10 @@ function creatorAdd(dest){
 function creatorSaveEdit(){
   const t = findW(EDIT.id); if(!t){ cancelEdit(); return; }
   const w = readCreator();
-  ['name','race','sub','age','design','personality','backstory','traits','stats','tech','popularity','lewd','trust','named','style','fav','dislike','lovers','acts','favColor','outfit','customOutfit','outColor','under','customUnder','underColor','owned','ownedUnder'].forEach(k=>t[k]=clone(w[k]===undefined?null:w[k]));
+  ['name','race','sub','age','design','personality','backstory','traits','stats','tech','body','popularity','lewd','trust','named','style','fav','dislike','lovers','acts','favColor','outfit','customOutfit','outColor','under','customUnder','underColor','owned','ownedUnder'].forEach(k=>t[k]=clone(w[k]===undefined?null:w[k]));
   t.energy = Math.min(t.energy, maxEnergy(t)); t.menu = t.menu.filter(a=>canClient(t,a));
   EDIT = null; CDRAFT = null; checkUnlocks(); save(); note(`${t.name} updated. (Saved images keep their old look; regenerate them to update.)`); TAB='roster'; render();
 }
-function libTo(i, dest){ const w = finalize(ensureWorker(clone(LIB[i]))); if(dest==='roster'){ S.workers.push(w); checkUnlocks(true); } else { w.signing=signingFor(w); w.keep=true; S.candidates.push(w); } note(`${w.name} added to ${dest==='roster'?curH().name:'candidates'}.`); save(); render(); }
+function libTo(i, dest){ const w = finalize(ensureWorker(clone(LIB[i]))); if(dest==='roster'){ const rb = raceBlock(w, curH()); if(rb) return toast(rb); S.workers.push(w); checkUnlocks(true); } else { w.signing=signingFor(w); w.keep=true; S.candidates.push(w); } note(`${w.name} added to ${dest==='roster'?curH().name:'candidates'}.`); save(); render(); }
 function libLoad(i){ EDIT=null; CDRAFT = ensureWorker(clone(LIB[i])); render(); }
 function libDel(i){ if(!confirm(`Delete ${LIB[i].name} from the library?`)) return; LIB.splice(i,1); saveLib(); render(); }

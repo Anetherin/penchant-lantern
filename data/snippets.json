@@ -3,7 +3,8 @@
     "Your own text, appended to the image prompt for that scene. Empty = default prompt only.",
     "scenes: pov (every Sam/POV scene), bath, mishap (shower / walk-in), solo (a lady alone at max lust), duo (every shared scene with two ladies). Per-service wording now lives in services.json (image.extra).",
     "clothing: how each clothing state is described. {outfit} and {underwear} are filled in from her wardrobe; commando becomes \"bare skin, nothing underneath\". nude falls back to partial while empty.",
-    "clothing.aside / aside_commando: used for Modest ladies during services, when her clothes are pulled aside instead of taken off."
+    "clothing.aside / aside_commando: used for Modest ladies during services, when her clothes are pulled aside instead of taken off.",
+    "expressions: face wording for how she's taking a service (bored / professional / into it / lost in it, plus flustered and smug from personalities.json → expr). Added to client images. expressionsByAct: optional per-service wording, left as TODO for you; anything starting with TODO is skipped."
   ],
   "scenes": {"pov":"","bath":"","mishap":"","solo":"","duo":""},
   "clothing": {
@@ -13,5 +14,95 @@
     "nude": "fully nude, breasts and pubic hair on full display",
     "aside": "still wearing {outfit}, her clothes pulled aside, {underwear} visible but pushed aside to reveal her breasts and hairy pussy",
     "aside_commando": "still wearing {outfit}, her clothes pulled aside, to reveal her breasts and hairy pussy"
+  },
+  "expressions": {
+    "bored": "bored expression",
+    "professional": "polite professional smile",
+    "into": "soft smile, blushing",
+    "lost": "flushed face, half-lidded eyes, lost in the moment",
+    "flustered": "blushing, flustered",
+    "smug": "smug smile"
+  },
+  "expressionsByAct": {
+    "massage_get": {
+      "bored": "TODO: your wording",
+      "professional": "TODO: your wording",
+      "into": "TODO: your wording",
+      "lost": "TODO: your wording",
+      "flustered": "TODO: your wording",
+      "smug": "TODO: your wording"
+    },
+    "manual_get": {
+      "bored": "TODO: your wording",
+      "professional": "TODO: your wording",
+      "into": "TODO: your wording",
+      "lost": "TODO: your wording",
+      "flustered": "TODO: your wording",
+      "smug": "TODO: your wording"
+    },
+    "manual": {
+      "bored": "TODO: your wording",
+      "professional": "TODO: your wording",
+      "into": "TODO: your wording",
+      "lost": "TODO: your wording",
+      "flustered": "TODO: your wording",
+      "smug": "TODO: your wording"
+    },
+    "breast_get": {
+      "bored": "TODO: your wording",
+      "professional": "TODO: your wording",
+      "into": "TODO: your wording",
+      "lost": "TODO: your wording",
+      "flustered": "TODO: your wording",
+      "smug": "TODO: your wording"
+    },
+    "oral_get": {
+      "bored": "TODO: your wording",
+      "professional": "TODO: your wording",
+      "into": "TODO: your wording",
+      "lost": "TODO: your wording",
+      "flustered": "TODO: your wording",
+      "smug": "TODO: your wording"
+    },
+    "oral": {
+      "bored": "TODO: your wording",
+      "professional": "TODO: your wording",
+      "into": "TODO: your wording",
+      "lost": "TODO: your wording",
+      "flustered": "TODO: your wording",
+      "smug": "TODO: your wording"
+    },
+    "paizuri": {
+      "bored": "TODO: your wording",
+      "professional": "TODO: your wording",
+      "into": "TODO: your wording",
+      "lost": "TODO: your wording",
+      "flustered": "TODO: your wording",
+      "smug": "TODO: your wording"
+    },
+    "missionary": {
+      "bored": "TODO: your wording",
+      "professional": "TODO: your wording",
+      "into": "TODO: your wording",
+      "lost": "TODO: your wording",
+      "flustered": "TODO: your wording",
+      "smug": "TODO: your wording"
+    },
+    "cowgirl": {
+      "bored": "TODO: your wording",
+      "professional": "TODO: your wording",
+      "into": "TODO: your wording",
+      "lost": "TODO: your wording",
+      "flustered": "TODO: your wording",
+      "smug": "TODO: your wording"
+    },
+    "doggy": {
+      "bored": "TODO: your wording",
+      "professional": "TODO: your wording",
+      "into": "TODO: your wording",
+      "lost": "TODO: your wording",
+      "flustered": "TODO: your wording",
+      "smug": "TODO: your wording"
+    }
   }
 }

@@ -77,7 +77,7 @@ function importBox(kind){ modal(`<h2>Import ${kind}</h2><textarea id="imp" style
 function doImport(kind){
   let d; try{ d = JSON.parse($('#imp').value); }catch(e){ return toast('That text isn\'t valid.'); }
   if(kind==='save'){ if(!d || !Array.isArray(d.workers)) return toast('That doesn\'t look like a save.'); S = migrate(d); SETUP=null; save(); }
-  else if(kind==='lib'){ if(!Array.isArray(d)) return toast('That doesn\'t look like a library.'); LIB = d; saveLib(); }
+  else if(kind==='lib'){ if(!Array.isArray(d)) return toast('That doesn\'t look like a library.'); LIB = d; LIB.forEach(w=>{ if(w.stats && Math.max(...Object.values(w.stats))<=100){ scaleWorker(w); } migrateWorker(w); }); saveLib(); }
   else { if(typeof d!=='object' || Array.isArray(d)) return toast('That doesn\'t look like snippets.');
     if(d.snippets){ SET.snippets = d.snippets; SET.clothText = d.clothText||{}; SET.customActs = d.customActs||[]; } else SET.snippets = d; saveSettings(); }
   closeModal(); toast('Imported.'); render();

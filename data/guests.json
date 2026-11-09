@@ -2035,7 +2035,8 @@
         "jinhsi": {
           "job": "companion",
           "name": "Jinhsi",
-          "race": "dragonkin",
+          "race": "beastkin",
+          "sub": "dragon",
           "age": 114,
           "personality": "Calm and elegant",
           "traits": ["Elegant","Loyal"],
@@ -2095,7 +2096,7 @@
             "build": "slender, refined, and petite",
             "hairStyle": "long and elegant",
             "hairColor": "silver",
-            "eyes": "light teal", 
+            "eyes": "light teal",
             "skin": "fair",
             "features": "thin magenta headband and large ribbons"
           },

@@ -17,6 +17,7 @@
     'js/data/scenes.js',
     'js/data/named.js',
     'js/logic/character.js',
+    'js/logic/fx.js',
     'js/logic/prompts.js',
     'js/logic/ai.js',
     'js/logic/imagegen.js',
@@ -45,7 +46,7 @@
   ];
   window.HOLLOWMERE_FILES = FILES;
   // Editable data, loaded before any script runs. Each becomes window.PL_DATA['<name>'].
-  var DATA_FILES = ['balance', 'economy', 'services', 'personalities', 'people', 'wardrobe', 'characters', 'guests', 'arcs', 'regulars', 'bonds', 'scenes', 'dates', 'events', 'snippets', 'ai-prompts', 'flavor', 'firsts'];
+  var DATA_FILES = ['balance', 'economy', 'services', 'personalities', 'people', 'races', 'traits', 'body', 'wardrobe', 'characters', 'guests', 'arcs', 'regulars', 'bonds', 'scenes', 'dates', 'events', 'snippets', 'ai-prompts', 'flavor', 'firsts'];
   window.HOLLOWMERE_DATA = DATA_FILES;
 
   var MARKUP = [

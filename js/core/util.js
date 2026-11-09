@@ -18,6 +18,8 @@ const ri = (a,b) => Math.floor(rnd(a, b+1));
 const pick = a => a[Math.floor(Math.random()*a.length)];
 const shuffle = a => { const b=a.slice(); for(let i=b.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [b[i],b[j]]=[b[j],b[i]]; } return b; };
 const clamp = (v,a=0,b=100) => Math.max(a, Math.min(b, v));
+// Stats, skills and service skills run 0-1000 (SKL per 100-point step). Every formula that reads one goes through s100().
+const SKL = 10; const s100 = v => (v||0)/SKL; const clampK = v => Math.max(0, Math.min(1000, v));
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fmt = n => Math.round(n).toLocaleString() + 'g';
 const uid = () => 'w' + Date.now().toString(36) + Math.random().toString(36).slice(2,7);

@@ -1,36 +1,10 @@
 {
   "_readme": [
     "Random generation pools for generic characters, plus a few lists of flavor.",
-    "races: label, age range [min,max], look (image wording; null = built from the beastkin sub-type), mods (stat changes), subs (beastkin types), rare.",
+    "races moved to data/races.json (label, age, look, mods, fx, client...). names: first (f) and last (l) names per race; races.json can carry its own names (angel, android).",
     "names: first (f) and last (l) names per race. builds/hairStyles/hairColors/eyes/skins/demonSkins/features: appearance picks for image prompts.",
     "hooks: why she came to Hollowmere (used in AI backstories). gifts: what Sam gives when he buys a gift. clients: how anonymous clients are described in reports, per client class."
   ],
-  "races": {
-    "human": {"label":"Human","age":[21,34],"look":"human woman","mods":{"charm":5}},
-    "elf": {"label":"Elf","age":[90,380],"look":"elf woman with long pointed ears","mods":{"refinement":10,"beauty":5,"stamina":-5}},
-    "beastkin": {"label":"Beastkin","age":[20,32],"look":null,"mods":{"stamina":10,"agility":5,"refinement":-5},"subs":["fox","cat","wolf","rabbit"]},
-    "demon": {"label":"Demon","age":[110,320],"look":"demon woman with small curved horns and a slender spade-tipped tail","mods":{"charm":5,"lewd":15}},
-    "dwarf": {
-      "label": "Dwarf",
-      "age": [45,140],
-      "look": "stocky, muscular dwarf woman with mature features and strong shoulders",
-      "mods": {"strength":15,"stamina":5,"beauty":-5}
-    },
-    "spirit": {
-      "label": "Spirit",
-      "age": [150,600],
-      "look": "ghostly spirit woman with a faint pale glow and softly translucent edges",
-      "mods": {"charm":5,"refinement":5,"strength":-10},
-      "rare": true
-    },
-    "dragonkin": {
-      "label": "Dragonkin",
-      "age": [80,400],
-      "look": "dragonkin woman with small swept-back horns and a scaled dragon tail",
-      "mods": {"strength":5,"charm":5,"stamina":5,"agility":-5},
-      "rare": true
-    }
-  },
   "names": {
     "human": {
       "f": ["Elena","Brigid","Tessa","Lorna","Celia","Ada","Rosalind","Nell","Vera","Odette","Margo","Juna","Sabine","Corinne","Delphine","Imogen"],

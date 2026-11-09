@@ -2,7 +2,8 @@
   "_readme": [
     "Short text lines the game picks from at random. No AI needed. Each section has a _default list; add a list under a personality name to give that personality its own lines.",
     "Placeholders: {name}, {house}, plus any extra ones noted for the section. Add as many lines as you like.",
-    "enc_* lines are short notes on how one client visit went for her (shown in the weekly report). job_* lines are report lines for the non-escort jobs."
+    "enc_* lines are short notes on how one client visit went for her (shown in the weekly report). job_* lines are report lines for the non-escort jobs.",
+    "encore: the line added when a restless lady goes another round. enc_frustrated / enc_drained / enc_like / enc_put_off: extra visit notes."
   ],
   "solo": {
     "_note": "Report line when a lady at max lust spends part of her night alone in her room instead. Shown in the weekly report.",
@@ -324,5 +325,22 @@
       "It becomes clear about four seconds in that Sam's previous-life experience in this department is exactly zero. {name} looks absolutely delighted about this.",
       "Somewhere in the middle of it, Sam realizes this is his first time in two lives. {name} realizes it too, and is very, very kind about it."
     ]
-  }
+  },
+  "enc_frustrated": {
+    "_note": "A finishing service that left her wanting more.",
+    "_default": ["It left her a little frustrated.","She wanted more than he knew how to give.","Not quite what she was hoping for."]
+  },
+  "enc_drained": {
+    "_note": "A restless demon fed too eagerly.",
+    "_default": ["He left pale and shaky.","He had to sit down for a while afterward.","He stumbled out looking decidedly drained."]
+  },
+  "enc_like": {
+    "_note": "Client who's a fan of her kind.",
+    "_default": ["He admitted he'd been hoping for her specifically.","He was a fan from the moment he saw her."]
+  },
+  "enc_put_off": {
+    "_note": "Client who's uneasy around her kind.",
+    "_default": ["He seemed ill at ease around her.","He kept glancing away. It wasn't her best night."]
+  },
+  "encore": {"_note":"She wasn't done after the first round.","_default":["...and she wasn't done with him yet."]}
 }

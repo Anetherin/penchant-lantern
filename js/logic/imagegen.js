@@ -20,13 +20,13 @@ function findAny(id){
   return S.workers.find(w=>w.id===id) || S.candidates.find(w=>w.id===id) || NPCS[id] || LIB.find(w=>w.id===id) || null;
 }
 // Images are saved per scene + clothing state + what she's wearing, so each outfit gets its own pictures.
-function lookKey(w, cloth){
+function lookKey(w, cloth, scene){
   if(w.male || !w.outfit) return '';
-  const o = `o:${w.outfit}:${usesColor(getOutfit(w))?w.outColor:''}`;
+  const o = `o:${outfitKey(w, scene)}:${usesColor(getOutfit(w, scene))?w.outColor:''}`;
   const u = w.under==='none' ? 'u:none' : `u:${w.under}:${usesColor(getUnder(w))?w.underColor:''}`;
   return cloth==='nude' ? '-' : cloth==='under' ? u : cloth==='partial' ? o+'+'+u : o;
 }
-const imgKey = (w,scene,cloth) => { const l = lookKey(w,cloth); return `${w.id}|${scene}|${cloth}` + (l?'|'+l:''); };
+const imgKey = (w,scene,cloth) => { const l = lookKey(w,cloth,scene); return `${w.id}|${scene}|${cloth}` + (l?'|'+l:''); };
 const legacyKey = (w,scene,cloth) => `${w.id}|${scene}|${cloth}`;
 function imgCountFor(w, prefix){ let n=0; const p1 = `${w.id}|`; IMGKEYS.forEach(k=>{ if(k.startsWith(p1) && k.includes('|'+prefix)) n++; }); return n; }
 async function saveImage(key, url, w, scene){

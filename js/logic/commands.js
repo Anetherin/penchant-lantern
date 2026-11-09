@@ -26,6 +26,7 @@ function setJob(id, job){
 function setHouse(id, hid){
   const w = findW(id); if(!w || !H(hid)) return;
   if(w.locked && w.locked!==hid) return toast(`${w.name} belongs to ${H(w.locked).name}.`);
+  const rb = raceBlock(w, H(hid)); if(rb) return toast(rb);
   w.house = hid; if(canDo(w, w.job)) w.job = 'rest';
   note(`${w.name} moves to ${H(hid).name}.`); save(); render(); refreshSheetInfo();
 }
@@ -35,12 +36,16 @@ function toggleMenu(id, act, on){
   w.menu = w.menu.filter(x=>x!==act); if(on) w.menu.push(act);
   save(); refreshSheetInfo();
 }
+// Service outfit and dress level (sheet → wardrobe): how she looks in service images. Visual only.
+function setSvcOutfit(id, k){ const w=findW(id); if(!w) return; w.svcOutfit = k || ''; save(); refreshSheetInfo(); sheetImg(); }
+function setSvcLevel(id, k){ const w=findW(id); if(!w) return; w.svcLevel = k || 'auto'; save(); refreshSheetInfo(); fillCloth(); sheetImg(); }
 function setAutoRest(id, on){ const w=findW(id); if(!w) return; w.autoRest=!!on; if(!on) delete w.prevJob; save(); refreshSheetInfo(); }
 function setOffDuty(id, on){ const w=findW(id); if(!w) return; w.offDuty=!!on; save(); refreshSheetInfo(); }
 function setWage(id, v){ const w=findW(id); if(!w) return; if(isFree(w)) return toast(`${w.name} won't take a wage from you.`); w.wage=Math.max(0,Math.round(+v||0)); save(); refreshSheetInfo(); renderHeader(); }
 function setPrice(i){ curH().price = i; save(); render(); }
 function hire(id){
   const c = S.candidates.find(x=>x.id===id); if(!c) return;
+  const rb = raceBlock(c, curH()); if(rb) return toast(rb);
   if(S.gold < c.signing) return toast('Not enough gold for the signing bonus.');
   S.gold -= c.signing; S.candidates = S.candidates.filter(x=>x!==c);
   delete c.signing; c.job='rest'; c.contract=12; c.keep=false; c.seen={}; c.house = curH().id;
