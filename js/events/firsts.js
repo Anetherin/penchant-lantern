@@ -125,7 +125,7 @@ function firstsLine(w){
   const steps = w.firsts.path.map(x=>`<span class="${x<=cur?'pink':'muted'}">${x<=cur?'♥':'♡'} ${esc(stageName(x))}</span>`).join(' → ');
   const kp = knowsPrefs(w), k = knows(w, true), P = firstPace(w);
   const why = !s ? '' : {comfort:`She isn't comfortable going that far with Sam yet.`,
-    trust:`She needs to trust Sam more first${k?` (${P.trust[s-1]}${pentUp(w)?`, or ${P.trust[s-1]-FIRSTS.pentTrust} while she's this restless`:''})`:''}.`,
+    trust:`She needs to trust Sam more first${k?` (${tShow(P.trust[s-1])}${pentUp(w)?`, or ${tShow(P.trust[s-1]-FIRSTS.pentTrust)} while she's this restless`:''})`:''}.`,
     wait:'Give it a little time.'}[blk] || '';
   return `<div style="margin-top:4px">With Sam: ${steps}${kp?` <span class="muted">(${w.firsts.pace} pace${w.firsts.init?', makes the first move':''})</span>`:''}</div>`
     + (s ? (blk ? `<div class="muted">Next: ${esc(stageName(s))}. ${why}</div>` : `<div class="pink">${pentUp(w)&&!firstReady(w)?`She's restless enough not to wait.`:`She's ready for the next step.`} <button class="sm" onclick="firstFromSheet('${w.id}')">♥ Take the next step</button> <span class="muted">(1 action)</span></div>`) : '');

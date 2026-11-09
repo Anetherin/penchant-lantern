@@ -3,7 +3,7 @@
 function buyOutfit(id, k){
   const w=findW(id), o=WARDROBE[k]; if(!w||!o) return;
   if(ownsOutfit(w,k)) return;
-  if(o.owner) return toast(spUnlocked(w) ? 'Already unlocked.' : `Unlocks at trust ${spTrust(w)}.`);
+  if(o.owner) return toast(spUnlocked(w) ? 'Already unlocked.' : `Unlocks at trust ${tShow(spTrust(w))}.`);
   const cost = outfitCost(o);
   if(S.gold < cost) return toast('Not enough gold.');
   S.gold -= cost; S.houseWardrobe.push(k);   // outfits Sam buys go to the shared house wardrobe
@@ -44,7 +44,7 @@ function openWardrobe(id){
     let act;
     if(wearing) act = '<span class="good">Wearing</span>';
     else if(owned) act = `<button class="sm" onclick="equipOutfit('${id}','${k}')" ${ok?'':'disabled title="Not comfortable yet"'}>Wear</button>`;
-    else if(o.owner) act = `<span class="muted">${spUnlocked(w)?'':'🔒 trust '+spTrust(w)}</span>`;
+    else if(o.owner) act = `<span class="muted">${spUnlocked(w)?'':'🔒 trust '+tShow(spTrust(w))}</span>`;
     else act = `<button class="sm" onclick="buyOutfit('${id}','${k}')" ${S.gold<outfitCost(o)?'disabled':''}>Buy ${fmt(outfitCost(o))}</button>`;
     if(inHouse) act += ` <button class="sm" onclick="giftHouseItem('${id}','outfit','${k}')" title="Give it to her to keep. Counts as a gift (10 energy)">🎁 Gift</button>`;
     const tag = o.owner ? (k.startsWith('sig_')?' <span class="tag">Signature</span>':' <span class="tag">Special</span>') : (BASE_OUTFITS[k]?' <span class="muted">(basic)</span>':'');

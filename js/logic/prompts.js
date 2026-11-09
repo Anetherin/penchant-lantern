@@ -13,6 +13,8 @@ function raceLook(w){ if(w.race==='beastkin'){ const s=w.sub||'fox', sd = subDat
 // keepOn (data/characters.json): something she won't take off until trust reaches keepOn.trust.
 // With aside:true it's a garment, so the rest of her clothes get pulled aside at most.
 function keepOnRule(w){ const k = w.key && NAMED[w.key] && NAMED[w.key].keepOn; return k && w.trust < (k.trust||90) ? k : null; }
+// A bathing scene (scenes.json / dates.json image: "bath": true, or the older "towel": true).
+const isBathScene = scene => { const sc = scene && SCENES[sceneBase(scene)]; return !!(sc && (sc.bath || sc.towel)); };
 function clothText(w, cloth, scene){
   const keep = keepOnRule(w);
   if(keep) return clothTextBase(w, keep.aside && cloth!=='dressed' ? 'aside' : cloth, scene, keep.aside) + ', still keeping ' + keep.item + ' on';
@@ -24,7 +26,12 @@ function clothTextBase(w, cloth, scene, noTowel){
     const ut = underText(w);
     return ((!ut && T.aside_commando) || T.aside || T.partial || T.dressed).replace(/\{outfit\}/g, outfitText(w, scene)).replace(/\{underwear\}/g, ut || 'bare skin, nothing underneath');
   }
-  if(!noTowel && cloth==='dressed' && scene && SCENES[sceneBase(scene)] && SCENES[sceneBase(scene)].towel) return 'wrapped only in a white towel';
+  // Bath scenes: only bath-compatible outfits (wardrobe.json "bath": true) stay on; otherwise a towel, her underwear, or nothing.
+  if(!noTowel && isBathScene(scene)){
+    const T0 = Object.assign({}, DEFAULT_CLOTH_TEXT, Object.fromEntries(Object.entries(SET.clothText||{}).filter(([k,v])=>v)));
+    if(cloth==='dressed' && getOutfit(w, scene).bath) return outfitText(w, scene);
+    if(cloth==='dressed' || cloth==='partial') return cloth==='partial' && getOutfit(w, scene).bath ? (T0.partial||'').replace(/\{outfit\}/g, outfitText(w, scene)).replace(/\{underwear\}/g, underText(w) || 'bare skin, nothing underneath') : 'wrapped only in a white towel';
+  }
   const T = Object.assign({}, DEFAULT_CLOTH_TEXT, Object.fromEntries(Object.entries(SET.clothText||{}).filter(([k,v])=>v)));
   let t = T[cloth];
   if(!t && cloth==='nude') t = T.partial;
@@ -52,9 +59,11 @@ function buildPrompt(w, sceneKey, cloth){
   parts.push(charDesc(w), clothText(w, cloth, sceneKey));
   if(sc.sam && !sc.pov) parts.push('together with ' + SAM_DESC);
   if(sc.client) parts.push(sc.client);
-  parts.push(sc.comp, sc.expr, sc.setting);
+  // pose, expression and the service's own wording first, then where it happens
+  parts.push(sc.comp, sc.expr);
   if(sc.snip) parts.push(getSnippet(sc.snip));
   if(sc.snip2) parts.push(getSnippet(sc.snip2));
+  parts.push(sc.setting);
   if(sc.pov) parts.push(getSnippet('pov'));
   return cleanText(stripTodo(parts.filter(Boolean).join(', ')));
 }

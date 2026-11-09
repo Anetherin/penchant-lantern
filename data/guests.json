@@ -2311,8 +2311,9 @@
             },
             "sp_hsin": {"label":"Moonlit silk","style":"Exotic","prompt":"a sheer white and gold silk dancing dress","bonus":{"courtesan":1.15,"dancer":1.15}}
           },
-          "bonds": {"jinhsi":{"v":35,"note":"Two guardians of the same coast."},
-            "suoming":{"v":50,"kind":"mentor","note":"Her cute minister whom she trusts a great deal."}
+          "bonds": {
+            "jinhsi": {"v":35,"note":"Two guardians of the same coast."},
+            "suoming": {"v":50,"kind":"mentor","note":"Her cute minister whom she trusts a great deal."}
           },
           "jobs": {"likes":["dancer","courtesan"],"dislikes":["promoter"]},
           "body": {"bust":"large","height":"tall","figure":"curvy"},
@@ -2521,8 +2522,9 @@
               "bonus": {"madame":1.15,"noble":1.2}
             }
           },
-          "bonds": {"buling":{"v":25,"note":"The auditor's one persistent finding: Buling."},
-            "hsin":{"v":50,"kind":"mentor","note":"The sentinel she has sworn to watch over."}
+          "bonds": {
+            "buling": {"v":25,"note":"The auditor's one persistent finding: Buling."},
+            "hsin": {"v":50,"kind":"mentor","note":"The sentinel she has sworn to watch over."}
           },
           "jobs": {"likes":["madame","security"],"dislikes":["maid"]},
           "body": {"bust":"flat","height":"short","figure":"slim"},

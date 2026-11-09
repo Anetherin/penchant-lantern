@@ -37,7 +37,7 @@ const stripTodo = s => String(s||'').split(',').filter(x=>!isTodo(x)).join(',');
 function exprText(e, act){ if(!e) return ''; return [SNIP_EXPR[e], (SNIP_EXPR_ACT[actKey(act||'')]||{})[e]].filter(x=>x && !isTodo(x)).join(', '); }
 // AI text prompts (data/ai-prompts.json). {placeholders} are filled from the game.
 const AI_FILE = needData('ai-prompts');
-const DEFAULT_AI_TPL = Object.fromEntries(Object.entries(noMeta(AI_FILE)).filter(([k])=>k!=='guidance'));
+const DEFAULT_AI_TPL = Object.fromEntries(Object.entries(noMeta(AI_FILE)).filter(([k,v])=>k!=='guidance' && typeof v==='string'));
 // Tuning numbers (data/balance.json).
 const BAL = needData('balance');
 // Short random text lines (data/flavor.json).

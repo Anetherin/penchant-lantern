@@ -37,6 +37,8 @@ function sceneInfo(k, w){
       client: o ? `the second woman: ${charDesc(o)}, ${clothText(o, defaultCloth(o, 'samact:'+id), 'samact:'+id)}` : ''}; }
   if(k.startsWith('samact:')){ const a=actById(k.slice(7)); return {label:'Sam: '+actLabel(k.slice(7)), pov:true, sam:true, comp:actPose(k.slice(7),'sam'), setting:SCENE_DATA.samRoom, snip:'act_'+k.slice(7)}; }
   const sc = Object.assign({}, SCENES[k] || SCENES.portrait);
+  // bath scenes at home happen in the house's bathhouse when it has one (scenes.json → bathhouse); "away" keeps its own place
+  if((sc.bath || sc.towel) && !sc.away && h && h.up && h.up.bath){ sc.setting = SCENE_DATA.bathhouse || sc.setting; sc.house = true; }
   if(sc.house && HD) sc.setting = sc.setting + ', ' + HD.setting;
   return sc;
 }

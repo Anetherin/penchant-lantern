@@ -20,13 +20,18 @@ const HAIR_HEX = {black:'#3a3a44','dark brown':'#5a3d2b',chestnut:'#7b4a2c',aubu
 const hairHex = w => HAIR_HEX[((w.design&&w.design.hairColor)||'').toLowerCase()] || '#b99';
 const initials = n => String(n||'?').split(' ').map(x=>x[0]).join('').slice(0,2).toUpperCase();
 const raceLabel = w => (RACES[w.race]||RACES.human).label + (w.sub?` (${w.sub})`:'');
-function bar(label, v, max, cls){ const p = Math.round(clamp(v/max*100)); return `<div class="bar ${cls}" title="${label}: ${Math.round(v)}/${max}"><span style="width:${p}%"></span><em>${label} ${Math.round(v)}</em></div>`; }
+// v / max fills the bar; max is HER ceiling (max energy, lust max, house-gated trust...), so a full bar means she's at her limit.
+// note: extra tooltip text (why the ceiling is lower).
+function bar(label, v, max, cls, note){ max = Math.max(1, Math.round(max)); const p = Math.round(clamp(v/max*100)); return `<div class="bar ${cls}" title="${label}: ${Math.round(v)}/${max}${note?' · '+note:''}"><span style="width:${p}%"></span><em>${label} ${Math.round(v)}/${max}</em></div>`; }
+// Trust bar on the 0-1000 display scale, capped by her house story while it's unfinished.
+function trustBar(w){ const g = houseGate(w); return bar('Trust', tShow(w.trust), tShow(g ? g.cap : 100), 't', g ? `capped by ${g.house.name}'s story until it moves on` : ''); }
+const lustBar = (w, label) => bar(label || 'Lust', w.lust, lustProfile(w).max, 'p');
 function knows(w, employee){ return S.sam.appraisal>=2 || (employee && w.trust>=30); }
 function knowsPrefs(w){ return S.sam.appraisal>=3 || w.trust>=40; }
 function grade(v){ return v>=85?'S':v>=70?'A':v>=55?'B':v>=40?'C':v>=25?'D':'E'; }
 // stats and skills run 0-1000; grades use the 0-100 scale
 function sv(w, v, employee){ return knows(w,employee) ? `${Math.round(v)}<span class="muted" style="font-size:.7em">/1000</span>` : grade(s100(v)); }
-function traitTags(w){ return (w.unique?`<span class="tag act" title="${esc(w.unique.desc||'')}">★ ${esc(w.unique.name)}</span> `:'') + (w.ngPerks||[]).map(t=>`<span class="tag act" title="${esc(TRAITS[t]?TRAITS[t].desc:'')}">✦ ${esc(t)}</span>`).join(' ') + ' ' + (w.traits||[]).filter(t=>!TRAITS[t]||!TRAITS[t].hidden||S.sam.appraisal>=3).map(t=>`<span class="tag ${TRAITS[t]&&TRAITS[t].hidden?'hid':''} ${TRAITS[t]&&TRAITS[t].story?'act':''}" title="${esc(TRAITS[t]?TRAITS[t].desc:'')}">${esc(t)}</span>`).join(' '); }
+function traitTags(w){ return (w.reborn?`<span class="tag act" title="${esc(rebornDesc(w))}">♻ Reincarnated${w.reborn>1?' ×'+w.reborn:''}</span> `:'') + (w.unique?`<span class="tag act" title="${esc(w.unique.desc||'')}">★ ${esc(w.unique.name)}</span> `:'') + (w.ngPerks||[]).map(t=>`<span class="tag act" title="${esc(TRAITS[t]?TRAITS[t].desc:'')}">✦ ${esc(t)}</span>`).join(' ') + ' ' + (w.traits||[]).filter(t=>!TRAITS[t]||!TRAITS[t].hidden||S.sam.appraisal>=3).map(t=>`<span class="tag ${TRAITS[t]&&TRAITS[t].hidden?'hid':''} ${TRAITS[t]&&TRAITS[t].story?'act':''}" title="${esc(TRAITS[t]?TRAITS[t].desc:'')}">${esc(t)}</span>`).join(' '); }
 function jobOptions(w){ return Object.entries(JOBS).map(([k,J])=>{ const why = k===w.job ? null : canDo(w,k); return `<option value="${k}" ${k===w.job?'selected':''} ${why?'disabled':''}>${why?'🔒 ':''}${J.label}</option>`; }).join(''); }
 function houseTabs(withAll){
   return `<div class="hsel">${withAll?`<button class="sm ${ROSTER_FILTER==='all'?'on':''}" onclick="ROSTER_FILTER='all';render()">All houses</button>`:''}${S.houses.map(h=>`<button class="sm ${(S.cur===h.id && (!withAll||ROSTER_FILTER!=='all'))?'on':''}" onclick="S.cur='${h.id}';ROSTER_FILTER='cur';render()">${esc(h.name)} <span class="muted">(${S.workers.filter(w=>w.house===h.id).length})</span></button>`).join('')}</div>`;
@@ -86,7 +91,7 @@ function workerCard(w, showHouse){
   return `<div class="wcard" onclick="openSheet('${w.id}')">${avatarHTML(w)}
     <div class="winfo"><div class="wname">${esc(w.name)}${w.named?' <span class="tag">★</span>':''}${w.isPartner?' <span class="tag act">♥ Partner</span>':''}${showHouse?` <span class="tag house">${esc(houseOf(w).name)}</span>`:''}</div>
       <div class="muted">${raceLabel(w)} · ${esc(w.personality)}</div>
-      ${bar('Energy',w.energy,maxEnergy(w),'e')}${bar('Mood',w.mood,100,'m')}${knows(w,true)?bar('Lust',w.lust,100,'p'):''}${w.health<100?bar('Health',w.health,100,'h'):''}
+      ${bar('Energy',w.energy,maxEnergy(w),'e')}${bar('Mood',w.mood,100,'m')}${knows(w,true)?lustBar(w):''}${w.health<100?bar('Health',w.health,100,'h'):''}
       <div class="row" onclick="event.stopPropagation()"><select onchange="setJob('${w.id}',this.value)">${jobOptions(w)}</select>
       <span class="muted">Lewd ${wl}${w.prevJob?' · 😴 auto-resting':''}</span><span class="muted">· ${isFree(w)?'no wage':fmt(w.wage)+'/wk'}</span></div><div>${menu}</div></div></div>`;
 }

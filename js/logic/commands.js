@@ -6,7 +6,7 @@ function canDo(w, job){
   const J = JOBS[job]; if(!J) return 'Unknown job.';
   const h = houseOf(w);
   if(job!=='rest' && w.health<30) return `${w.name} is too unwell to work.`;
-  if(job!=='rest' && w.trust < jobTrust(w,job)) return `${w.name} doesn't trust Sam enough for that yet (needs trust ${jobTrust(w,job)}).`;
+  if(job!=='rest' && w.trust < jobTrust(w,job)) return `${w.name} doesn't trust Sam enough for that yet (needs trust ${tShow(jobTrust(w,job))}).`;
   if(job==='courtesan' && !getActs().some(a=>clientStance(w,a.id,'courtesan')!=='no')) return `${w.name} isn't comfortable with that yet.`;
   if(J.needs && !h.up[J.needs]) return `${h.name} needs a ${UPGRADES[J.needs].label}.`;
   const used = S.workers.filter(x=>x!==w && x.house===h.id && x.job===job).length, max = slotsFor(h, job);
@@ -46,7 +46,7 @@ function setSvcLevel(id, k){ const w=findW(id); if(!w) return; w.svcLevel = k ||
 function setAutoRest(id, on){ const w=findW(id); if(!w) return; w.autoRest=!!on; if(!on) delete w.prevJob; save(); refreshSheetInfo(); }
 function setOffDuty(id, v){ const w=findW(id); if(!w) return; w.offDuty = v==='on'||v===true ? 'on' : v==='off'||v===false ? 'off' : 'ask'; save(); refreshSheetInfo(); }
 function setSamples(id, on){ const w=findW(id); if(!w) return; if(on && has(w,'Modest')) return toast(`${w.name} is too modest for handing out samples.`); w.samples=!!on; save(); refreshSheetInfo(); }
-function setMadameFocus(id, v){ const w=findW(id); if(!w) return; w.madameFocus = v==='training' ? 'training' : 'management'; save(); refreshSheetInfo(); }
+function setMadameFocus(id, v){ const w=findW(id); if(!w) return; w.madameFocus = ['training','care'].includes(v) ? v : 'management'; save(); refreshSheetInfo(); }
 function setWage(id, v){ const w=findW(id); if(!w) return; if(isFree(w)) return toast(`${w.name} won't take a wage from you.`); w.wage=Math.max(0,Math.round(+v||0)); save(); refreshSheetInfo(); renderHeader(); }
 function setPrice(i){ curH().price = i; save(); render(); }
 function hire(id){

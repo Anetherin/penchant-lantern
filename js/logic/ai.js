@@ -22,13 +22,27 @@ function aiCtx(w, x={}){
     house: S ? houseOf(w).name : 'the pleasure house', relationship: rel, date: x.date||'a date', situation: x.situation||'', lust: lustLabel ? ({restless:'restless with desire', eager:'eager', content:'in a good mood', 'not in the mood':'calm'})[lustLabel(w)] : 'in a good mood', guidance: SET.ai.guidance||AI_FILE.guidance||'', hook: x.hook || pick(HOOKS), backstory: w.backstory||''
   };
 }
+// How a service ends, for {outcome} (data/ai-prompts.json → outcomes): did she finish, was she satisfied, did a demon feed.
+// x.note comes from the week's encounter (frustrated / drained); x.forSam = Sam is her partner.
+function aiOutcome(w, x){
+  const a = x.act && actById(x.act); if(!a) return '';
+  const O = AI_FILE.outcomes || {}, partner = x.forSam ? 'Sam' : 'her client', T = k => (O[k]||'').replace(/\{name\}/g, w.name).replace(/\{partner\}/g, partner);
+  const spends = (a.lust ?? -1) < 0, out = [];
+  if(w.race==='demon' && a.finish && a.kind!=='receive') out.push(T(x.note==='drained' || (!x.forSam && restless(w)) ? 'drain' : 'feed'));
+  else if(a.finish) out.push(T('finish'));
+  out.push(T(x.note==='frustrated' ? 'frustrated' : spends ? 'satisfied' : 'wanting'));
+  return out.filter(Boolean).join(' ');
+}
 const fillTpl = (t, c) => t.replace(/\{(\w+)\}/g, (m,k)=> c[k]!==undefined ? String(c[k]) : m);
 const YOUTH_TEST = new RegExp(YOUTH_RE.source, 'i');
 async function aiWrite(boxId, kind, wid, x={}){
   const box = $('#'+boxId), w = findAny(wid); if(!box || !w) return;
   const plug = getTextPlugin();
   if(!plug){ box.innerHTML = `<div class="muted">AI text isn't connected. In Perchance, add <code>ai = {import:ai-text-plugin}</code> to the lists panel.</div>`; return; }
-  const instruction = fillTpl(aiTpl(kind), aiCtx(w, x));
+  const tpl = aiTpl(kind), ctx = aiCtx(w, x);
+  ctx.outcome = aiOutcome(w, x);
+  if(ctx.outcome && !/\{outcome\}/.test(tpl)) ctx.guidance = [ctx.outcome, ctx.guidance].filter(Boolean).join(' ');
+  const instruction = fillTpl(tpl, ctx).replace(/\{outcome\}/g, '').replace(/ {2,}/g, ' ');
   box.innerHTML = `<div class="hl story muted">Writing…</div>`;
   const out = box.firstChild; let full = '';
   try{

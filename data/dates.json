@@ -3,7 +3,9 @@
     "Date types (Sam's Date… menu). Add a new key to add a date.",
     "label, cost (gold), energy (Sam's energy it takes), trust / mood (base gains), like (which personality like it counts as: walk, dinner, theater, gift, private, chat, train), restores (her energy +), greedyMood (extra mood for Greedy ladies).",
     "intro + one of lines make the result text ({name} = her name). past: a different version when Sam's backstory matches (cost, trustMult, intro, lines).",
-    "image: the date's image scene (comp, setting, snip). It's available as date_<key> in the image menu."
+    "image: the date's image scene (comp, setting, snip). It's available as date_<key> in the image menu.",
+    "Optional: lewd (lewdness she gains, 0-100 scale, typically 1-4); needsUp (an upgrade id the house must own for the date to appear, e.g. bath).",
+    "image may also carry undress ('partial' or 'under': she is shown at most that undressed, within her comfort) and bath (true: a bathing scene; bath-compatible outfits, otherwise towel/undergarments/undressed)."
   ],
   "walk": {
     "label": "Walk through the market",
@@ -107,6 +109,104 @@
       "comp": "relaxing together in a steaming outdoor hot spring, flushed and content",
       "setting": "mountain hot spring among rocks and snow-dusted pines",
       "towel": true
+    }
+  },
+  "stargazing": {
+    "label": "Stargazing on the rooftop",
+    "cost": 0,
+    "energy": 15,
+    "trust": 2.5,
+    "mood": 7,
+    "like": "walk",
+    "lewd": 1,
+    "intro": "Sam spreads a blanket on the roof after dark, and the two moons hang low over the city.",
+    "lines": [
+      "She traces the constellations and makes up her own names for them.",
+      "She tucks herself against his side when the night wind picks up.",
+      "They stay far longer than they meant to, talking quietly until the lanterns below go out."
+    ],
+    "image": {
+      "comp": "lying together on a blanket, gazing at the night sky, her head on his shoulder",
+      "setting": "rooftop at night under a sky full of stars and two moons, soft lantern glow"
+    }
+  },
+  "festival": {
+    "label": "Street fair and games",
+    "cost": 10,
+    "energy": 18,
+    "trust": 2.5,
+    "mood": 8,
+    "like": "chat",
+    "intro": "The street fair is in town, all bunting, music and noisy game stalls.",
+    "lines": [
+      "She wins a stuffed dragon at the ring toss and refuses to let Sam carry it.",
+      "They share candied nuts and gossip about every passerby.",
+      "She drags him into the dance circle, and he is terrible. She loves it."
+    ],
+    "image": {
+      "comp": "laughing together at a game stall, holding a prize and sweets",
+      "setting": "lively fantasy street fair at dusk with bunting, lanterns and game stalls"
+    }
+  },
+  "lake": {
+    "label": "Swim at the hidden lake",
+    "cost": 0,
+    "energy": 25,
+    "trust": 3.5,
+    "mood": 10,
+    "like": "private",
+    "lewd": 2,
+    "intro": "Sam knows a lake deep in the woods where nobody ever goes.",
+    "lines": [
+      "She wades in first and splashes him until he follows.",
+      "They float on their backs and say nothing for a long while.",
+      "She dries off in a sunny patch of grass, completely unbothered by his staring."
+    ],
+    "image": {
+      "comp": "swimming and playing in the water together, wet hair, laughing",
+      "setting": "secluded forest lake with clear water, sunlight through the trees",
+      "undress": "under"
+    }
+  },
+  "soak": {
+    "label": "Late soak in the bathhouse",
+    "cost": 0,
+    "energy": 20,
+    "trust": 4,
+    "mood": 11,
+    "like": "private",
+    "lewd": 3,
+    "needsUp": "bath",
+    "intro": "The last client has gone. Sam and {name} have the bathhouse to themselves.",
+    "lines": [
+      "She sinks into the water with a long sigh and drifts closer without a word.",
+      "He scrubs her back. She returns the favor, and takes her time.",
+      "They linger until the water cools and the lanterns burn low."
+    ],
+    "image": {
+      "comp": "soaking together in a steaming bath, relaxed and flushed, close to each other",
+      "setting": "steamy tiled bathhouse after hours, glowing lanterns, warm water",
+      "bath": true
+    }
+  },
+  "posing": {
+    "label": "Pose for Sam's sketchbook",
+    "cost": 20,
+    "energy": 20,
+    "trust": 3,
+    "mood": 9,
+    "like": "train",
+    "lewd": 3,
+    "intro": "Sam once took an art class. He is about to find out how much of it stuck.",
+    "lines": [
+      "She holds a pose with great dignity while he scowls at his page.",
+      "His drawing looks nothing like her. She frames it anyway.",
+      "She critiques his shading, then shifts the pose to see him blush."
+    ],
+    "image": {
+      "comp": "posing gracefully while Sam sketches her, a sketchbook in his hands",
+      "setting": "cozy sunlit room with an easel, charcoal sketches and drapery",
+      "undress": "partial"
     }
   }
 }

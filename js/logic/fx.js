@@ -16,7 +16,13 @@
 const FX_CACHE = new WeakMap();
 const bodyOf = w => Object.assign({}, BODY_DEF, (w && w.body) || {});
 const raceOf = w => RACES[w && w.race] || RACES.human;
-function fxSig(w){ return [w.race, w.sub, (w.traits||[]).join('|'), JSON.stringify(w.body||null), w.unique ? w.unique.name+'/'+JSON.stringify(w.unique.fx||null) : '', (w.ngPerks||[]).join('|')].join('~'); }
+// Reincarnated: every New Game+ a lady carries over adds a stack (w.reborn). balance.json → ngplus.reborn.
+function rebornFx(w){
+  const n = w.reborn||0, R = (BAL.ngplus||{}).reborn; if(!n || !R) return null;
+  return {trustGain: 1 + (R.trust||0)*n, skillGain: 1 + (R.skill||0)*n, statGain: 1 + (R.stat||0)*n};
+}
+const rebornDesc = w => { const f = rebornFx(w); return f ? `Carried over ${w.reborn} time${w.reborn>1?'s':''}: trust grows ×${f.trustGain.toFixed(2)}, skills ×${f.skillGain.toFixed(2)}, stats ×${f.statGain.toFixed(2)} as fast.` : ''; };
+function fxSig(w){ return [w.race, w.sub, (w.traits||[]).join('|'), JSON.stringify(w.body||null), w.unique ? w.unique.name+'/'+JSON.stringify(w.unique.fx||null) : '', (w.ngPerks||[]).join('|'), w.reborn||0].join('~'); }
 function fxList(w){
   if(!w) return [];
   const sig = fxSig(w), c = FX_CACHE.get(w);
@@ -24,6 +30,7 @@ function fxList(w){
   const list = [], add = f => { if(f && typeof f==='object') list.push(f); };
   (w.traits||[]).forEach(t => add(TRAITS[t] && TRAITS[t].fx));
   (w.ngPerks||[]).forEach(t => add(TRAITS[t] && TRAITS[t].fx));
+  const rb = rebornFx(w); if(rb) add(rb);
   const R = raceOf(w); add(R.fx);
   const sd = w.race==='beastkin' ? subData(w.race, w.sub) : null; if(sd) add(sd.fx);
   const b = bodyOf(w); BODY_KEYS.forEach(k => { const o = bodyOpts(k)[b[k]]; if(o) add(o.fx); });

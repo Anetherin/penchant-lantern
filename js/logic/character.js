@@ -19,6 +19,8 @@ const lewdMult = w => fxMul(w,'lewdGain') * ((PERS[w.personality]||{}).lewd || 1
 const isFree = w => !!(w.isPartner || w.free);
 // Trust from Sam's attention: personality, race, and diminishing returns near the top.
 function gainTrust(w, n){ const b = w.trust, g = n * pTrust(w) * (n>0 ? fxMul(w,'trustGain') : 1) * (n>0 ? Math.max(0.15, 1 - w.trust/140) : 1); w.trust = clamp(w.trust + g); capTrust(w); return w.trust - b; }
+// The least any activity with Sam builds (balance.json → trust.minor), so nothing they do together is wasted.
+const minorTrust = (w, mult=1) => gainTrust(w, (BAL.trust ? BAL.trust.minor : 0.3) * mult);
 // House-gated progress (docs/OVERHAUL.md §7): a lady who comes with a house (role 'house') can't trust Sam beyond
 // 35 + 15 x the house story's beat until that story is done (no cap if her house has no story or is complete).
 function houseGate(w){
@@ -88,7 +90,7 @@ const usesColor = o => /\{color\}/.test(o.prompt||'');
 function outfitText(w, scene){ return getOutfit(w, scene).prompt.replace(/\{color\}/g, w.outColor||'black'); }
 function underText(w){ return w.under==='none' ? null : getUnder(w).prompt.replace(/\{color\}/g, w.underColor||'white'); }
 function ob(w,k){ return ((getOutfit(w).bonus||{})[k]||1) * ((getUnder(w).bonus||{})[k]||1); }
-// sp_ outfits unlock at trust 60 (or as a lover); an outfit with its own "unlock" needs that trust, lover or not.
+// sp_ outfits unlock at trust 60 (600 as shown) (or as a lover); an outfit with its own "unlock" needs that trust, lover or not.
 function spTrust(w){ const o = WARDROBE['sp_'+w.key]; return (o && o.unlock) || 60; }
 function spUnlocked(w,k){ const o = WARDROBE['sp_'+w.key]; return (o && o.unlock) ? w.trust>=o.unlock : (w.trust>=60 || has(w,'Devoted')); }
 function wardrobeAvail(w){
@@ -141,6 +143,9 @@ function defaultCloth(w, scene){
   if(base.startsWith('samact:') || base.startsWith('duo:')) return actCloth(w, base.split(':')[1], true);
   if(base==='solo') return comfortCloth(w, false, true);
   if(base==='bath') return clothOK(w,'nude',false) ? 'nude' : 'dressed';
+  // invitations and the like (scenes.json / dates.json image "undress": "partial" | "under"): as far as that, within her comfort with Sam
+  const U = (SCENES[base]||{}).undress;
+  if(U){ const ix = x => CLOTH.findIndex(y=>y.id===x), cap = comfortCloth(w, true, false), lv = Math.min(ix(U), ix(cap)); return CLOTH[Math.max(0, lv)].id; }
   return 'dressed';
 }
 function wageFor(w){
@@ -183,7 +188,7 @@ function ensureWorker(w){
   // "Open to propositions": 'on' | 'ask' | 'off' (old saves stored true/false). Must-offer jobs ignore it.
   if(w.offDuty===undefined) w.offDuty = 'ask'; else if(w.offDuty===true) w.offDuty = 'on'; else if(w.offDuty===false) w.offDuty = 'off';
   if(w.samples===undefined) w.samples = false;
-  if(w.madameFocus!=='training' && w.madameFocus!=='management') w.madameFocus = 'management';
+  if(!['training','management','care'].includes(w.madameFocus)) w.madameFocus = 'management';
   if(!w.body) w.body = rollBody(w.race);
   w.counts = w.counts || {};
   if(!w.style) w.style = pick(STYLES);

@@ -431,6 +431,12 @@
       "A client got pushy with {name}. Sam stepped in, and it went badly: a loud scene, a bruised ego, and a bad story about {house}."
     ]
   },
+  "pushy_samcall": {
+    "_note": "A client got pushy, security could not handle it, and Sam was sent for (resolved by the player after the report). Non-graphic.",
+    "_default": [
+      "A client got pushy with {name}. Security couldn't handle him, and someone ran to fetch Sam."
+    ]
+  },
   "pushy_none": {
     "_note": "A client got pushy and nobody was there. Non-graphic.",
     "_default": [
@@ -442,6 +448,7 @@
   "enc_pushy_sam": {"_default":["He got pushy; Sam stepped in."]},
   "enc_pushy_samfail": {"_default":["He got pushy; Sam's intervention went badly."]},
   "enc_pushy_none": {"_default":["He got pushy and nobody was there to help."]},
+  "enc_pushy_samcall": {"_default":["He got pushy; security sent for Sam."]},
   "self_prop": {
     "_note": "A restless lady propositioned a client herself.",
     "_default": [

@@ -83,7 +83,7 @@ function encLine(e){
   const more = e.more ? `; then she ${askLady(e.more)}` : '';
   const what = e.self ? (e.act ? `she ${askLady(e.act)}${ex}${enc}${more}` : 'she asked; he passed')
     : !e.want ? 'company and wine' : e.outcome==='yes' ? `asked ${askClient(e.act)}${ex}${enc}${more}` : e.outcome==='alt' ? `asked ${askClient(e.want)}; she ${askLady(e.act)} instead${ex}${enc}${more}` : `asked ${askClient(e.want)}, declined`;
-  return {t:`${who}${where}: ${what}.`, note: e.note ? ENC_NOTE(e.note) : '', good: ['fav','eager','glow','pushy_security','pushy_sam'].includes(e.note), bad: ['dislike','stretch','flat','frustrated','drained','pushy_samfail','pushy_none','noroom','expect'].includes(e.note)};
+  return {t:`${who}${where}: ${what}.`, note: e.note ? ENC_NOTE(e.note) : '', good: ['fav','eager','glow','pushy_security','pushy_sam'].includes(e.note), bad: ['dislike','stretch','flat','frustrated','drained','pushy_samfail','pushy_none','pushy_samcall','noroom','expect'].includes(e.note)};
 }
 
 /* ---------- jobs, propositions & rough clients (docs/OVERHAUL.md §5-6) ---------- */
@@ -157,17 +157,43 @@ function pushyCheck(X, w, cls, pr){
   countUp(w,'rowdy'); pr.pushy = (pr.pushy||0)+1; hr.pushy.total++;
   if(X.secPow > rnd(BP.securityRoll[0], BP.securityRoll[1])){ res = 'security'; moodAdd(w, BP.secMood); }
   else if(S.sam.energy >= BP.samEnergyMin){
-    if(S.sam.strength + S.sam.charm/2 + rnd(0, BP.samRoll) >= BP.samCheck){ res = 'sam'; moodAdd(w, BP.samMood); w.trust = clamp(w.trust + BP.samTrust); S.sam.energy = Math.max(0, S.sam.energy - BP.samCost); }
-    else { res = 'samfail'; S.sam.energy = Math.max(0, S.sam.energy - BP.failCost); h.rep = clamp(h.rep - BP.failRep); moodAdd(w, -BP.failMood); }
+    // security couldn't handle it and Sam is around: someone runs to fetch him. What he does is the player's call
+    // (an event after the report, see pushyEvent); until then the incident is 'samcall'.
+    res = 'samcall'; (hr.calls = hr.calls||[]).push({wid:w.id, cls:cls.id||null, h:h.id});
   } else { res = 'none'; moodAdd(w, -BP.noneMood); h.rep = clamp(h.rep - BP.noneRep); }
   if(res==='security' || res==='sam') countUp(w,'rescued');
   hr.pushy[res]++; (pr.notes = pr.notes||[]).push(flavor('pushy_'+res, w));
   return res;
 }
+// Sam's answer to the pushy clients security couldn't handle this week (one event for all of them).
+function samStepIn(c){
+  const BP = BAL.props, w = findW(c.wid), h = H(c.h); if(!w || !h) return null;
+  if(S.sam.energy >= BP.samEnergyMin && S.sam.strength + S.sam.charm/2 + rnd(0, BP.samRoll) >= BP.samCheck){
+    moodAdd(w, BP.samMood); gainTrust(w, BP.samTrust); S.sam.energy = Math.max(0, S.sam.energy - BP.samCost); countUp(w,'rescued'); return 'sam'; }
+  S.sam.energy = Math.max(0, S.sam.energy - BP.failCost); h.rep = clamp(h.rep - BP.failRep); moodAdd(w, -BP.failMood); minorTrust(w); return 'samfail';
+}
+function pushyEvent(calls){
+  const BP = BAL.props, names = Array.from(new Set(calls.map(c=>(findW(c.wid)||{}).name).filter(Boolean)));
+  if(!names.length) return null;
+  const n = calls.length, fee = (BP.watchFee||40) * n, first = findW(calls[0].wid);
+  const stay = c => { const w = findW(c.wid), h = H(c.h); if(!w || !h) return; moodAdd(w, -BP.noneMood); h.rep = clamp(h.rep - BP.noneRep); };
+  return {title:'Trouble downstairs', who: first ? first.id : null, scene:'portrait',
+    text:`${n>1?`${n} times this week, a`:'A'} client got pushy with ${names.join(', ')}, and security couldn't handle it. Someone came running to fetch Sam.${S.samWeek.security?'':' (Sam wasn\'t standing watch.)'}
+
+Sam's Strength ${Math.round(S.sam.strength)}, Charm ${Math.round(S.sam.charm)}, energy ${Math.round(S.sam.energy)}.`,
+    choices:[
+      {label:'Step in yourself', fx(){ const r = calls.map(samStepIn), ok = r.filter(x=>x==='sam').length, bad = r.filter(x=>x==='samfail').length;
+        return `${ok?`Sam settled it ${ok>1?ok+' times':''} himself. ${names.length>1?'They':'She'} won't forget it.`:''}${bad?` ${bad>1?bad+' times':'Once'} it went badly: a loud scene and a bad story about the house.`:''}`.trim(); }},
+      {label:`Call the town watch (${fmt(fee)})`, fx(){ if(S.gold < fee){ calls.forEach(stay); return 'Sam can\'t cover the fee. By the time anyone comes, it\'s over. She got away from him, shaken.'; }
+        S.gold -= fee; calls.forEach(c=>{ const h = H(c.h); if(h) h.rep = clamp(h.rep - (BP.watchRep ?? 0.5)); const w = findW(c.wid); if(w) minorTrust(w); });
+        return `−${fmt(fee)}. The watch hauls him off. Not the house's proudest moment, but nobody got hurt.`; }},
+      {label:'Let her handle it', fx(){ calls.forEach(stay); return `${names.join(', ')} got away from him, shaken. Word gets around that nobody came.`; }}
+    ]};
+}
 function simHouse(h, R){
   const HD = HOUSES[h.id], W = S.workers.filter(w=>w.house===h.id), P = PRICES[h.price], J = BAL.jobs, BP = BAL.props, TY = BAL.tidy;
   const hr = {id:h.id, name:h.name, income:0, served:0, turned:0, sat:0, upkeep:0, short:0, roomsUsed:0, roomCap:h.rooms*BAL.rooms.perRoom, tidy0:h.tidy ?? TY.start, tidy:h.tidy ?? TY.start, tidyFx:null,
-    promoDraw:0, selfProps:0, accProps:0, stepIn:0, pushy:{total:0, security:0, sam:0, samfail:0, none:0}};
+    promoDraw:0, selfProps:0, accProps:0, stepIn:0, pushy:{total:0, security:0, sam:0, samfail:0, none:0, samcall:0}, calls:[]};
   const byJob = j => W.filter(w=>w.job===j);
   const jb = (w, j) => fxSub(w, 'jobBonus', j);
   const mad = byJob('madame')[0], mgmt = !!mad && (mad.madameFocus||'management')==='management';
@@ -430,14 +456,16 @@ function endWeek(){
     if(over>0){ moodAdd(w, -over*(has(w,'Lazy')?5:2.5)); why(over>3 ? 'badly overworked' : 'a bit overworked', false); }
     if(!isFree(w) && w.wage < wageFor(w)*0.9){ moodAdd(w, -4); why('feels underpaid', false); }
     if(jobLikes(w).includes(w.job)){ moodAdd(w, 3); why('likes her job', true); } else if(jobDislikes(w).includes(w.job)){ moodAdd(w, -3); why("doesn't like her job", false); }
-    if(mad && w!==mad) moodAdd(w, (mad.madameFocus||'management')==='management' ? 3 : 1.5);
+    if(mad && w!==mad){ const mf = mad.madameFocus||'management'; moodAdd(w, mf==='management' ? 3 : 1.5);
+      // Care: she looks after the girls day by day, and they come to trust the house (and Sam) a little more
+      if(mf==='care'){ gainTrust(w, (BAL.trust ? BAL.trust.madameCare : 0.12) * 7 * (0.5 + s100(mad.tech.manage)/200) * ob(mad,'madame')); why(`${mad.name} looks after her`, true); } }
     if(tfx){ moodAdd(w, tfx.mood); why(tfx.mood > 0 ? 'a spotless house' : 'a grubby house', tfx.mood > 0); }
     if(pr.accProp && !(JOBS[w.job]||{}).must) why(`propositions took ${Math.round((1-outputMult(w,pr))*100)}% of her work time`, false);
     if(pr.noRoom) why('no free room for a client', false);
     if(pr.offMood) why('worked while not in the mood', false);
     if(h.up.bath) moodAdd(w, 3);
     Object.keys(h.up).forEach(k=>{ const u = UPGRADES[k]; if(h.up[k] && u && u.race===w.race && u.mood) moodAdd(w, u.mood); });   // race houses (tether, chapel, grove, den)
-    if(S.past==='cook') moodAdd(w, 2);
+    if(hasPast('cook')) moodAdd(w, 2);
     const o = getOutfit(w); if(o.style===w.style){ moodAdd(w, 3); why('loves her outfit', true); }
     if(usesColor(o) && w.outColor===w.favColor) moodAdd(w, 2);
     if(w.under!=='none' && usesColor(getUnder(w)) && w.underColor===w.favColor) moodAdd(w, 1);
@@ -481,7 +509,7 @@ function endWeek(){
     else w.unhappy = 0;
     if(!isFree(w) && !w.locked){ w.contract--; if(w.contract<=0 && !leaving.includes(w)) renew.push(w); }
     const enc = pr.enc.slice().sort(()=>Math.random()-0.5).sort((a,b)=>(b.act?2:b.want?0:1)+(b.reg?2:0)-(a.act?2:a.want?0:1)-(a.reg?2:0));
-    enc.slice(0,2).forEach(e=>R.hl.push({wid:w.id, text:hlText(w,e) + (e.note ? ' ' + ENC_NOTE(e.note) : ''), act:e.act||null, cls:e.cls, scene: e.act ? 'act:'+e.act+'~'+(e.expr||'')+'~'+(e.ctx||'') : e.where ? 'job_'+e.where : 'companion'}));
+    enc.slice(0,2).forEach(e=>R.hl.push({wid:w.id, text:hlText(w,e) + (e.note ? ' ' + ENC_NOTE(e.note) : ''), act:e.act||null, cls:e.cls, note:e.note||null, scene: e.act ? 'act:'+e.act+'~'+(e.expr||'')+'~'+(e.ctx||'') : e.where ? 'job_'+e.where : 'companion'}));
     pr.encAll = pr.enc.map(e=>encLine(e)); delete pr.enc;
     earnCheck(w).forEach(t=>{ log(`✨ ${w.name} has developed a knack: ${t}. ${TRAITS[t].desc}`); addLog(`${w.name} developed the trait ${t}.`); });
     // romance arcs
@@ -497,8 +525,9 @@ function endWeek(){
     if(hr.short) log(`🚪 ${flavor('rooms_short', null, {house:hr.name})} (${hr.short} client${hr.short>1?'s':''} turned away; ${hr.roomsUsed}/${hr.roomCap} room sessions used.)`);
     const T = BAL.tidy, tk = hr.tidy >= T.high ? 'high' : hr.tidy < T.bad ? 'bad' : hr.tidy < T.low ? 'low' : null;
     if(tk) log(`${tk==='high'?'✨':'🧹'} ${flavor('tidy_'+tk, null, {house:hr.name})} (tidiness ${Math.round(hr.tidy)})`);
-    const pu = hr.pushy; if(pu && pu.total) log(`⚠️ ${hr.name}: ${pu.total} pushy client${pu.total>1?'s':''}. ${[pu.security&&`security walked ${pu.security} out`, pu.sam&&`Sam stepped in ${pu.sam}×`, pu.samfail&&`Sam's attempt went badly ${pu.samfail}×`, pu.none&&`nobody was there ${pu.none}×`].filter(Boolean).join(', ')}.`);
+    const pu = hr.pushy; if(pu && pu.total) log(`⚠️ ${hr.name}: ${pu.total} pushy client${pu.total>1?'s':''}. ${[pu.security&&`security walked ${pu.security} out`, pu.sam&&`Sam stepped in ${pu.sam}×`, pu.samfail&&`Sam's attempt went badly ${pu.samfail}×`, pu.samcall&&`security needed Sam ${pu.samcall}× (your call)`, pu.none&&`nobody was there ${pu.none}×`].filter(Boolean).join(', ')}.`);
   });
+  { const calls = (R.houses||[]).flatMap(hr=>hr.calls||[]); if(calls.length) EVQ.unshift(()=>pushyEvent(calls)); }
   (R.houses||[]).forEach(hr=>{ if(hr.floor && hr.floor.length) log(`🛏️ ${hr.name} is short on beds: ${hr.floor.join(', ')} slept on the floor. Build staff quarters or add staff beds.`); });
   R.avgSat = R.served ? satSum/R.served : 50;
   const avgRep = S.houses.reduce((a,h)=>a+h.rep,0)/S.houses.length, maxRep = Math.max(...S.houses.map(h=>h.rep));
@@ -531,7 +560,7 @@ function endWeek(){
     }
   }
   if(R.income - R.wages - R.upkeep > 0) samGainXP(Math.min(30, Math.round((R.income - R.wages - R.upkeep)/60)));
-  S.week++; S.ap = apMax(); S.sam.energy = Math.min(100, S.sam.energy + 40 + (S.past==='gym'?20:0));
+  S.week++; S.ap = apMax(); S.sam.energy = Math.min(100, S.sam.energy + 40 + (hasPast('gym')?20:0));
   S.samWeek = {security:0, books:false, income:0, acts:[]};
   refreshCandidates();
   checkUnlocks(false, R.lines);
@@ -557,7 +586,7 @@ function showReport(R, fromWeek){
     return `<h3 style="margin-top:12px">${esc(hh.name)}</h3>` + ps.map(p=>{
       const w = findAny(p.id) || {id:p.id, name:p.name};
       const svc = Object.entries(p.acts).map(([id,n])=>`<span class="tag act">${esc(actLabel(id))} ×${n}</span>`).join('') + (p.comp?`<span class="tag">Company ×${p.comp}</span>`:'') + (p.draw?`<span class="tag">Draw +${Math.round(p.draw)} clients${p.samples?' (samples)':''}</span>`:'') + (p.tidied?`<span class="tag">Tidied +${Math.round(p.tidied)}</span>`:'') + (p.stepIn?`<span class="tag">Stepped in ×${p.stepIn}</span>`:'') + (p.pushy?`<span class="tag">Pushy clients ×${p.pushy}</span>`:'');
-      const hls = R.hl.map((h,i)=>({h,i})).filter(x=>x.h.wid===p.id).map(({h,i})=>`<div class="hl">${esc(h.text)} ${findAny(p.id)?`<button class="sm" onclick="showImg('hl${i}','${p.id}','${h.scene}',null,'auto')">🎨</button>${h.noAi?'':aiBtn('hla'+i,'scene',p.id,{act:h.act,cls:h.cls,scene:h.scene})}`:''}<div id="hla${i}"></div><div id="hl${i}" class="hlimg"></div></div>`).join('')
+      const hls = R.hl.map((h,i)=>({h,i})).filter(x=>x.h.wid===p.id).map(({h,i})=>`<div class="hl">${esc(h.text)} ${findAny(p.id)?`<button class="sm" onclick="showImg('hl${i}','${p.id}','${h.scene}',null,'auto')">🎨</button>${h.noAi?'':aiBtn('hla'+i,'scene',p.id,{act:h.act,cls:h.cls,scene:h.scene,note:h.note||null})}`:''}<div id="hla${i}"></div><div id="hl${i}" class="hlimg"></div></div>`).join('')
         + (p.encAll && p.encAll.length > 2 ? `<details class="enc"><summary>All ${p.encAll.length} encounters</summary>${p.encAll.map(e=>`<div>${esc(e.t)}${e.note?` <span class="${e.good?'good':e.bad?'warn':'muted'}">${esc(e.note)}</span>`:''}</div>`).join('')}</details>` : '');
       return `<div class="rep-w"><div class="head">${w.design?avatarHTML(w):''}<div><b>${esc(p.name)}</b> · ${JOBS[p.job]?JOBS[p.job].label:p.job}${p.earned?` · earned <b>${fmt(p.earned)}</b>`:''}
         <div class="muted">${p.served?`${p.served} client${p.served>1?'s':''} · `:''}${p.props?`propositioned ${p.props}× · accepted ${p.acc} · `:''}${p.reluct?`<span class="pink">${p.reluct} as a favor</span> · `:''}${p.notMood?`<span class="warn">not in the mood ×${p.notMood}</span> · `:''}${p.noRoom?`<span class="warn">no room ×${p.noRoom}</span> · `:''}Energy ${p.e0}→${p.e1} · Mood ${p.m0}→${p.m1}${p.why&&p.why.length?` <span class="muted">(${p.why.map(x=>`<span class="${x.good?'good':'warn'}">${esc(x.t)}</span>`).join(', ')})</span>`:''}${p.slept?` · slept: ${p.slept}`:''}${p.solo?' · <span class="pink">a night to herself</span>':''}${p.missed?' · <span class="warn">missed Sam</span>':''}${p.night==='good'?' · <span class="good">great week</span>':p.night==='bad'?' · <span class="warn">rough week</span>':''}${p.lust!==undefined?` · lust ${p.l0!==undefined?p.l0+'→':''}${p.lust}`:''}</div>

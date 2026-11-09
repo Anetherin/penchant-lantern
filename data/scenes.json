@@ -4,7 +4,8 @@
     "Each scene: label (shown in the image menu), comp (pose/framing), setting (backdrop), and optional flags: house (adds the house's own setting), sam (Sam is in it), pov (first person), client (who else is in it), snip (a snippets.json slot to append), towel (\"dressed\" means wrapped in a towel here).",
     "Add a new key to add a scene; it shows up in the scene picker on her sheet.",
     "rooms: client room by room tier (shabby, comfortable, lavish, opulent). samRoom: where Sam's private scenes happen. clientPhrase: who's with her in client scenes. duoPhrase: added to scenes with two ladies.",
-    "enc_* scenes are the intros of encounters (nap visits, late knocks, waiting lovers, the storeroom). bath_invite / bath_walkin_relaxed replace the mishap scenes once she and Sam are past that point. Story moments (arc beats, events, firsts) can bring their own image: {comp, setting, sam, pov} on the beat itself."
+    "enc_* scenes are the intros of encounters (nap visits, late knocks, waiting lovers, the storeroom). bath_invite / bath_walkin_relaxed replace the mishap scenes once she and Sam are past that point. Story moments (arc beats, events, firsts) can bring their own image: {comp, setting, sam, pov} on the beat itself.",
+    "Scene flags: bath:true = a bathing scene (in the house bathhouse when the house has one, unless away:true; only wardrobe outfits with bath:true stay on, otherwise a towel, underwear or nothing). undress:\"partial\"|\"under\" = invitations and the like: she is shown at most that undressed, within her comfort with Sam. bathhouse = the setting used for bath scenes at a house with a Bathhouse."
   ],
   "scenes": {
     "portrait": {"label":"Portrait","comp":"upper body portrait, looking at viewer, gentle smile","setting":"warm softly blurred background"},
@@ -27,7 +28,7 @@
       "comp": "dancing gracefully on a small stage, dynamic pose, flowing fabric",
       "setting": "candlelit stage, audience in silhouette"
     },
-    "job_bath": {"label":"Work: Bathhouse","comp":"attending guests, carrying towels, cheeky smile","setting":"steamy tiled fantasy bathhouse"},
+    "job_bath": {"label":"Work: Bathhouse","comp":"attending guests, carrying towels, cheeky smile","setting":"steamy tiled fantasy bathhouse","bath":true},
     "job_maid": {"label":"Work: Maid","comp":"tidying up with a feather duster, cheerful","setting":"polished hallway","house":true},
     "companion": {
       "label": "Companion",
@@ -37,13 +38,21 @@
       "house": true
     },
     "job_courtesan": {"label":"Work: Courtesan","comp":"lounging invitingly, alluring smile","setting":"velvet lounge, warm candlelight","house":true},
-    "bath": {"label":"Bath","snip":"bath","comp":"relaxing in a steaming bath","setting":"tiled fantasy bathhouse, steam everywhere","towel":true},
+    "bath": {
+      "label": "Bath",
+      "snip": "bath",
+      "comp": "relaxing in a steaming bath",
+      "setting": "tiled fantasy bathhouse, steam everywhere",
+      "towel": true,
+      "bath": true
+    },
     "shower": {
       "label": "Mishap: Caught bathing",
       "snip": "mishap",
       "comp": "startled, clutching a towel to her chest, deeply blushing, wet hair",
       "setting": "steamy wooden washroom",
-      "towel": true
+      "towel": true,
+      "bath": true
     },
     "walkin": {
       "label": "Mishap: Walked in on Sam",
@@ -75,21 +84,24 @@
       "pov": true,
       "sam": true,
       "comp": "sitting on the edge of the bed leaning over the viewer, sly knowing smile, one hand on the blanket",
-      "setting": "small bedroom in the afternoon, shutters half closed, warm striped light"
+      "setting": "small bedroom in the afternoon, shutters half closed, warm striped light",
+      "undress": "partial"
     },
     "enc_late": {
       "label": "Encounter: Knock after midnight",
       "pov": true,
       "sam": true,
       "comp": "standing in a half-open doorway at night holding a candle, looking at the viewer through her lashes",
-      "setting": "dark wooden hallway, candlelight, late night"
+      "setting": "dark wooden hallway, candlelight, late night",
+      "undress": "partial"
     },
     "enc_waiting": {
       "label": "Encounter: She's been waiting",
       "pov": true,
       "sam": true,
       "comp": "sitting on the viewer's bed with her legs crossed, arms folded, impatient pout turning into a smile",
-      "setting": "his bedroom at night, a single lamp"
+      "setting": "his bedroom at night, a single lamp",
+      "undress": "partial"
     },
     "enc_reckless": {
       "label": "Encounter: The storeroom",
@@ -109,7 +121,8 @@
       "snip": "bath",
       "comp": "relaxing in a steaming bath, arm draped over the edge, beckoning the viewer in with a warm unbothered smile",
       "setting": "tiled fantasy washroom, steam everywhere, candles",
-      "towel": true
+      "towel": true,
+      "bath": true
     },
     "bath_walkin_relaxed": {
       "label": "Bath: Walks in, unbothered",
@@ -127,6 +140,14 @@
       "comp": "carrying a tray of refreshments, attentive smile",
       "setting": "warm lantern-lit corridor of a pleasure house",
       "house": true
+    },
+    "invite": {
+      "label": "Invitation: Come in?",
+      "pov": true,
+      "sam": true,
+      "undress": "under",
+      "comp": "standing in her half-open bedroom door at night, looking back at the viewer over her shoulder, inviting him in with a soft smile",
+      "setting": "dim bedroom doorway, warm candlelight spilling into the hallway"
     }
   },
   "rooms": [
@@ -137,5 +158,6 @@
   ],
   "samRoom": "Sam's modest bedroom lit by a single lantern",
   "clientPhrase": "with an adult male client",
-  "duoPhrase": "two women together with the viewer"
+  "duoPhrase": "two women together with the viewer",
+  "bathhouse": "the house's own bathhouse, steaming tiled pools, wooden buckets, soft lantern light through the steam"
 }

@@ -61,4 +61,9 @@ const CLASSES = ECON.classes;
 const CLIENT_DESC = needData('people').clients;
 // cls = clientele weights [commoner, adventurer, merchant, noble]
 const HOUSES = ECON.houses;
+// Sam's past lives: the one he picked at the start, plus one more per New Game+ cycle if he chooses (S.pasts).
+const samPasts = () => (typeof S!=='undefined' && S) ? (S.pasts && S.pasts.length ? S.pasts : (S.past ? [S.past] : [])) : [];
+const hasPast = k => samPasts().includes(k);
+// A per-past variant from a data map ({cook:{...}}): the first of Sam's past lives that has one.
+const pastPick = m => { const k = samPasts().find(p=>m && m[p]); return k ? m[k] : null; };
 const PASTS = Object.fromEntries(Object.entries(ECON.pasts).map(([k,p])=>[k, Object.assign({}, p, {fx: sam=>Object.entries(p.sam||{}).forEach(([st,n])=>{ sam[st] = (typeof sam[st]==='number' && !['appraisal','appXP'].includes(st)) ? sam[st]+n : Math.max(sam[st]||0, n); })})]));

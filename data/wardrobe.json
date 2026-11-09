@@ -5,7 +5,8 @@
     "bonus multiplies income: jobs (maid, promoter, attendant, bartender, dancer, bath, courtesan, madame, security), client classes (commoner, adventurer, merchant, noble) or propose (propositions).",
     "under: undergarments, same fields. Keep the ids plain and none; none (commando) is special-cased.",
     "Named ladies' signature outfits live with them in characters.json.",
-    "uniform: an outfit tagged with a job (b_maid) is never rolled for generic ladies; she wears it automatically while she holds that job, unless she has a job outfit set (w.jobOutfit[job])."
+    "uniform: an outfit tagged with a job (b_maid) is never rolled for generic ladies; she wears it automatically while she holds that job, unless she has a job outfit set (w.jobOutfit[job]).",
+    "bath: true marks an outfit that can be worn in bath scenes (e.g. yukata, swimsuit, bathrobe)."
   ],
   "base": {
     "b_corset": {
@@ -103,7 +104,15 @@
       "prompt": "flowing sheer {color} dancer's silks with gold coin jewelry",
       "bonus": {"dancer":1.3,"propose":1.1}
     },
-    "yukata": {"label":"Bath yukata","cost":140,"style":"Elegant","lewd":10,"prompt":"a loosely tied {color} cotton yukata","bonus":{"bath":1.25}},
+    "yukata": {
+      "label": "Bath yukata",
+      "cost": 140,
+      "style": "Elegant",
+      "lewd": 10,
+      "prompt": "a loosely tied {color} cotton yukata",
+      "bonus": {"bath":1.25},
+      "bath": true
+    },
     "bunny": {
       "label": "Bunny hostess suit",
       "cost": 260,
@@ -119,6 +128,32 @@
       "lewd": 50,
       "prompt": "a sheer {color} silk negligee",
       "bonus": {"courtesan":1.25,"propose":1.3}
+    },
+    "swimsuit": {
+      "label": "Bathing costume",
+      "cost": 120,
+      "style": "Sporty",
+      "lewd": 10,
+      "prompt": "a {color} one-piece bathing costume",
+      "bonus": {"bath":1.15},
+      "bath": true
+    },
+    "bathrobe": {"label":"Fluffy bathrobe","cost":120,"style":"Cute","lewd":0,"prompt":"a fluffy {color} bathhouse robe","bonus":{"bath":1.1},"bath":true},
+    "french_maid": {
+      "label": "French maid dress",
+      "cost": 180,
+      "style": "Cute",
+      "lewd": 20,
+      "prompt": "a short black-and-white French maid dress with a frilly apron and stockings",
+      "bonus": {"maid":1.35,"propose":1.1}
+    },
+    "sexy_maid": {
+      "label": "Sexy maid dress",
+      "cost": 240,
+      "style": "Revealing",
+      "lewd": 40,
+      "prompt": "a very short, low-cut black maid dress with a frilly apron and stockings",
+      "bonus": {"maid":1.25,"propose":1.25,"courtesan":1.05}
     }
   },
   "under": {

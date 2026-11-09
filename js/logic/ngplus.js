@@ -30,26 +30,30 @@ const improvementsValue = h => Math.round((h && h.spent) || 0);
 // Lovers (Devoted) are the only ladies who carry over.
 const carriedLovers = () => S.workers.filter(w=>has(w,'Devoted'));
 const NG_PERKS = () => Object.keys(TRAITS).filter(t=>TRAITS[t].ngPerk);
-function ngNumbers(boon){
+function ngNumbers(boon, house){
+  if(house===undefined && NGS) house = NGS.house;
   const B = BAL.ngplus, og = homeHouse(), cyc = (S.cycle||1) + 1, impr = improvementsValue(H(og));
   let base = HOUSES[og].debt * B.debtShare * (1 + B.perCycle*Math.max(0, cyc-2)), extra = impr * B.improveShare;
-  let debt = base + extra;
+  const nh = house && HOUSES[house] ? HOUSES[house].debt * (B.newHouseShare ?? 0.5) : 0;
+  let debt = base + extra + nh;
   if(boon==='grace') debt *= 0.85;
   debt = Math.round(debt);
   const sold = S.houses.filter(h=>h.id!==og), sale = Math.round(sold.reduce((a,h)=>a + HOUSES[h.id].cost*B.saleValue, 0));
   const funds = Math.max(0, S.gold) + sale;
   const toDebt = Math.min(Math.max(0, funds - B.purse), Math.round(debt/2));   // savings can cover up to half
   const purse = funds - toDebt + (boon==='purse' ? 2500 : 0);
-  return {debt, base:Math.round(base), impr, extra:Math.round(extra), sold, sale, toDebt, purse, remaining: debt - toDebt, cycle: cyc};
+  return {debt, house:Math.round(nh), base:Math.round(base), impr, extra:Math.round(extra), sold, sale, toDebt, purse, remaining: debt - toDebt, cycle: cyc};
 }
 function startNGPlus(){
   if(!S || !S.won) return toast('New Game+ unlocks once the debt is paid off.');
-  NGS = {step:0, partner:null, boon:null, perks:{}};
+  NGS = {step:0, partner:null, boon:null, perks:{}, house:null, past:null,
+    offers: shuffle(Object.keys(HOUSES).filter(k=>!H(k) && !HOUSES[k].premium && (!isNGHouse(k) || (S.cycle||1)+1 >= 2))).slice(0, BAL.ngplus.houseOffers||4)};
   ngView();
 }
 function ngPick(k, v){ NGS[k] = v; ngView(); }
 function ngPerkPick(wid, v){ if(v) NGS.perks[wid] = v; else delete NGS.perks[wid]; ngView(); }
-const ngSteps = () => ['New partner', 'Sam\'s perk', ...(carriedLovers().length ? ['Lovers\' perks'] : []), 'Begin'];
+const pastsLeft = () => Object.keys(PASTS).filter(k=>!hasPast(k));
+const ngSteps = () => ['New partner', ...(NGS && NGS.offers.length ? ['New house'] : []), 'Sam\'s perk', ...(pastsLeft().length ? ['Another past life'] : []), ...(carriedLovers().length ? ['Lovers\' perks'] : []), 'Begin'];
 function ngNav(d){ NGS.step = Math.max(0, Math.min(ngSteps().length-1, NGS.step + d)); ngView(); }
 function ngView(){
   const st = NGS.step, og = homeHouse(), steps = ngSteps(), cur = steps[st], lovers = carriedLovers();
@@ -59,10 +63,22 @@ function ngView(){
     const carried = new Set(lovers.map(w=>w.key).filter(Boolean)), free = PARTNERS.filter(k=>!carried.has(k));   // cycle 2+: NG+ partners included
     body = `<h2>A new partner</h2><p class="muted">Only Sam's lovers come with him, and they'll work for wages now. Pick someone new to start this chapter at his side. Partners marked ✦ come from Sam's old world and only arrive in New Game+.</p>
       <div class="grid">${free.map(k=>{ const n = NAMED[k]; return `<div class="pick ${NGS.partner===k?'sel':''}" onclick="ngPick('partner','${k}')">
-        <b>${n.ngplus?'✦ ':''}${n.name}</b> <span class="muted">${RACES[n.race].label}${n.sub?' ('+n.sub+')':''} · ${esc(n.personality)}</span><div class="muted">Trust ${n.partnerTrust} · ${JOBS[n.job].label} · ${n.traits.join(', ')}</div>
+        <b>${n.ngplus?'✦ ':''}${n.name}</b> <span class="muted">${RACES[n.race].label}${n.sub?' ('+n.sub+')':''} · ${esc(n.personality)}</span><div class="muted">Trust ${tShow(n.partnerTrust)} · ${JOBS[n.job].label} · ${n.traits.join(', ')}</div>
         <div style="margin-top:4px">${esc(n.partnerStory)}</div></div>`; }).join('')}
         <div class="pick ${NGS.partner==='none'?'sel':''}" onclick="ngPick('partner','none')"><b>No one new</b><div class="muted">Sam starts this chapter with ${lovers.length?'his lovers':'no one at his side'}.</div></div></div>`;
     ok = !!NGS.partner;
+  } else if(cur==='New house'){
+    body = `<h2>A new deed</h2><p class="muted">The Credit House is happy to finance a second property. Sam keeps his home house and takes on one more; ${Math.round(BAL.ngplus.newHouseShare*100)}% of its listed debt joins the new loan, and its resident comes with it. ✦ houses only appear in New Game+.</p>
+      <div class="grid">${NGS.offers.map(k=>{ const D = HOUSES[k], n = NAMED[D.npc]; return `<div class="pick ${NGS.house===k?'sel':''}" onclick="ngPick('house','${k}')">
+        <b>${D.ngplus?'✦ ':''}${D.name}</b> <span class="tag house">${D.loc}</span><div class="muted">${D.desc}</div>
+        <div style="margin-top:4px">Adds ${fmt(Math.round(D.debt*BAL.ngplus.newHouseShare))} debt · Rooms ${D.rooms} · ${n?esc(n.name)+' comes with it':''}</div></div>`; }).join('')}</div>`;
+    ok = !!NGS.house;
+  } else if(cur==='Another past life'){
+    body = `<h2>Another life remembered</h2><p class="muted">Something from a life before the last one surfaces. Sam can add one more past life (its bonuses stack with what he already has), or keep things as they are.</p>
+      <div class="grid">${pastsLeft().map(k=>{ const p = PASTS[k]; return `<div class="pick ${NGS.past===k?'sel':''}" onclick="ngPick('past','${k}')"><b>${p.label}</b><div class="muted">${p.desc}</div></div>`; }).join('')}
+        <div class="pick ${NGS.past==='none'?'sel':''}" onclick="ngPick('past','none')"><b>Nothing new</b><div class="muted">Sam stays who he is.</div></div></div>
+      <p class="muted">Already: ${samPasts().map(k=>PASTS[k]?PASTS[k].label:k).join(', ')}</p>`;
+    ok = !!NGS.past;
   } else if(cur==='Sam\'s perk'){
     const taken = S.boons||[];
     body = `<h2>What did Sam learn last time?</h2><p class="muted">Perks stack across cycles; each can be taken once.</p>
@@ -71,7 +87,7 @@ function ngView(){
   } else if(cur==='Lovers\' perks'){
     body = `<h2>What stays with them</h2><p class="muted">Each lover carries one perk into the new chapter. A perk can be taken once per lady and stacks across cycles.</p>
       ${lovers.map(w=>{ const left = NG_PERKS().filter(t=>!(w.ngPerks||[]).includes(t)), cp = NGS.perks[w.id];
-        return `<div class="card"><b>${esc(w.name)}</b> <span class="muted">${esc(w.personality)} · trust ${Math.round(w.trust)}${(w.ngPerks||[]).length?' · has: '+w.ngPerks.join(', '):''}</span>
+        return `<div class="card"><b>${esc(w.name)}</b> <span class="muted">${esc(w.personality)} · trust ${tShow(w.trust)}${(w.ngPerks||[]).length?' · has: '+w.ngPerks.join(', '):''}</span>
           <div class="row"><select onchange="ngPerkPick('${w.id}',this.value)"><option value="">Choose a perk…</option>${left.map(t=>`<option value="${esc(t)}" ${cp===t?'selected':''}>${esc(t)}</option>`).join('')}</select></div>
           <div class="muted">${cp ? esc(TRAITS[cp].desc||'') : (left.length ? '' : 'She has every perk already.')}</div></div>`; }).join('')}`;
     ok = lovers.every(w=>NGS.perks[w.id] || !NG_PERKS().some(t=>!(w.ngPerks||[]).includes(t)));
@@ -82,9 +98,12 @@ function ngView(){
       <b>Keeps:</b> ${esc(HDo.name)} with its rooms, upgrades and story, Sam's level, stats and Appraisal, the regulars there, your gold (see purse) and your image library.<br>
       <b>Lovers who stay:</b> ${lovers.length ? lovers.map(w=>`${esc(w.name)}${NGS.perks[w.id]?` (${esc(NGS.perks[w.id])})`:''}`).join(', ') + '. They draw wages again; their skills and popularity start over, but what they feel for Sam stays.' : 'none. Only Devoted lovers come along.'}<br>
       <b>Leaving:</b> ${leaving.length ? `${leaving.length} ladies (${leaving.slice(0,8).map(w=>esc(w.name)).join(', ')}${leaving.length>8?', …':''}). Named ones can be met again, fresh.` : 'no one.'}<br>
+      ${NGS.house?`<b>New house:</b> ${esc(HOUSES[NGS.house].name)} with ${esc((NAMED[HOUSES[NGS.house].npc]||{}).name||'its resident')}.<br>`:''}
+      ${NGS.past&&NGS.past!=='none'?`<b>Another past life:</b> ${esc(PASTS[NGS.past].label)}.<br>`:''}
+      <b>Reincarnated:</b> every lady who stays gains a stack (faster trust, skill and stat growth).<br>
       <b>New:</b> ${NGS.partner&&NGS.partner!=='none'?`${esc(NAMED[NGS.partner].name)} at Sam's side`:'no new partner'}${NGS.boon?`. Perk: <b>${NG_BOONS[NGS.boon].label}</b>`:''}. ✦ houses (and more) can be bought during the cycle.<br>
       ${N.sold.length?`<b>Sold to the Credit House:</b> ${N.sold.map(h=>esc(h.name)).join(', ')} (${fmt(N.sale)}).<br>`:''}
-      <b>Debt:</b> ${fmt(N.debt)} (${esc(HDo.name)} ${fmt(N.base)} + your improvements ${fmt(N.impr)} × ${BAL.ngplus.improveShare} = ${fmt(N.extra)})${N.toDebt?`, minus ${fmt(N.toDebt)} paid from savings now = <b>${fmt(N.remaining)}</b>`:''}, due over 52 weeks.<br>
+      <b>Debt:</b> ${fmt(N.debt)} (${esc(HDo.name)} ${fmt(N.base)} + your improvements ${fmt(N.impr)} × ${BAL.ngplus.improveShare} = ${fmt(N.extra)}${N.house?` + ${esc(HOUSES[NGS.house].name)} ${fmt(N.house)}`:''})${N.toDebt?`, minus ${fmt(N.toDebt)} paid from savings now = <b>${fmt(N.remaining)}</b>`:''}, due over 52 weeks.<br>
       <b>Purse:</b> ${fmt(N.purse)}</div>`;
     ok = true;
   }
@@ -105,14 +124,14 @@ function ngReset(w){
 }
 function ngBegin(){
   const C = NGS; if(!C || !C.boon && !Object.keys(NG_BOONS).every(k=>(S.boons||[]).includes(k))) return;
-  const B = BAL.ngplus, og = homeHouse(), HDo = HOUSES[og], N = ngNumbers(C.boon), lovers = carriedLovers();
+  const B = BAL.ngplus, og = homeHouse(), HDo = HOUSES[og], N = ngNumbers(C.boon, C.house), lovers = carriedLovers();
   if(lovers.some(w=>!C.perks[w.id] && NG_PERKS().some(t=>!(w.ngPerks||[]).includes(t)))) return;
   S.home = og; S.cycle = N.cycle;   // set first: generics rolled from here on can get ngOnly traits
   // lovers: wages again, perk, reset
   lovers.forEach(w=>{
     const p = C.perks[w.id]; if(p){ w.ngPerks = [...(w.ngPerks||[]), p]; }
     w.isPartner = false; w.free = false; w.contract = 12; w.house = og; if(w.locked && w.locked!==og) w.locked = null;
-    ngReset(w);
+    ngReset(w); w.reborn = (w.reborn||0) + 1;
     w.wage = wageFor(w);
   });
   // everyone else leaves; named ladies go back to their pools, fresh (isHired is false for them again)
@@ -125,6 +144,13 @@ function ngBegin(){
   // the home house's resident comes with the house: if she isn't a carried lover she's back, fresh
   if(!isHired(HDo.npc)){ const npc = makeNamed(HDo.npc); npc.house = og; npc.locked = og; npc.contract = 999; assignStart(npc, NAMED[HDo.npc].job); S.workers.push(npc); }
   S.cur = og;
+  // the new house and its resident
+  if(C.house && HOUSES[C.house] && !H(C.house)){
+    const D = HOUSES[C.house]; S.houses.push(makeHouse(C.house)); H(C.house).since = S.week;
+    if(!isHired(D.npc)){ const n = makeNamed(D.npc); n.house = C.house; n.locked = C.house; n.contract = 999; assignStart(n, NAMED[D.npc].job); S.workers.push(n); }
+  }
+  // another past life
+  if(C.past && C.past!=='none' && PASTS[C.past] && !hasPast(C.past)){ S.pasts = [...samPasts(), C.past]; PASTS[C.past].fx(S.sam); }
   if(C.partner && C.partner!=='none'){
     const p = makeNamed(C.partner, true); p.house = og;
     if(C.boon==='devotion'){ p.trust = clamp(p.trust+15); p.lewd = clamp(p.lewd+10); }
@@ -145,5 +171,5 @@ function ngBegin(){
   checkUnlocks(true);
   addLog(`New Game+ (cycle ${S.cycle}): Sam keeps ${HDo.name} and takes on a new debt of ${fmt(N.debt)}.`);
   NGS = null; save(); TAB = 'house'; render();
-  modal(`<h2>${esc(HDo.name)}</h2><p class="story">Marguerite Vane slides a fresh contract across the desk. "Paying off one house was impressive, Mr. Takahashi. Let's see you do it again, with a little less sentiment." She almost smiles again. It's starting to worry him.\n\nSam keeps ${esc(HDo.name)}${lovers.length?` and ${lovers.map(w=>esc(w.name)).join(', ')}`:''}. Everyone else has gone their own way. The new debt is ${fmt(N.remaining)}, due over the next 52 weeks.</p><div class="row"><button class="primary" onclick="closeModal()">Let's go</button></div>`);
+  modal(`<h2>${esc(HDo.name)}</h2><p class="story">Marguerite Vane slides a fresh contract across the desk. "Paying off one house was impressive, Mr. Takahashi. Let's see you do it again, with a little less sentiment." She almost smiles again. It's starting to worry him.\n\nSam keeps ${esc(HDo.name)}${C.house?`, takes on ${esc(HOUSES[C.house].name)}`:''}${lovers.length?` and ${lovers.map(w=>esc(w.name)).join(', ')}`:''}. Everyone else has gone their own way. The new debt is ${fmt(N.remaining)}, due over the next 52 weeks.</p><div class="row"><button class="primary" onclick="closeModal()">Let's go</button></div>`);
 }

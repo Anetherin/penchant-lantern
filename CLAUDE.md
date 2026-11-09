@@ -37,5 +37,12 @@
   Tunables are in balance.json (`jobs`, `rooms`, `tidy`, `rep`, `props`). Rooms: `h.rooms x 8` sessions/week (`X.roomOK/useRoom` in `simHouse`); `h.tidy` is kept by maids.
 - All services (escorts, propositions, reckless self-propositions) go through `runService()` -> `serveAct()`; refusals may trigger `pushyCheck()` (security, then Sam, then nobody).
   Reputation gains use `repAdd(h, n)` (scaled by `repGain`); `w.samples` (promoter) and `w.madameFocus` ('training'|'management') are set from the sheet.
+- Trust stays 0-100 internally and in data, but the UI shows it x10 (out of 1000): use `tShow(v)` / `tDelta(n)` (util.js) for any trust number shown to the player.
+  `minorTrust(w)` (balance.json → trust.minor) is the floor every activity with Sam builds. Madame focus: training | management | care (care = trust per day, trust.madameCare).
+- NG+ extras: each cycle Sam takes a new house (`NGS.house`, debt x newHouseShare) and may add a past life (`S.pasts`; use `hasPast(k)` / `samPasts()` / `pastPick(map)`, never `S.past`).
+  Carried ladies gain `w.reborn` stacks (Reincarnated, `rebornFx` in fx.js, balance.json → ngplus.reborn).
+- Pushy clients security can't handle become `samcall` and one `pushyEvent` decision after the report (step in / town watch / let her handle it).
+- Bars (`bar()`) fill to HER max (`trustBar`, `lustBar`). Bath scenes (`bath:true`) use the house bathhouse if built; only `bath:true` outfits stay on. `undress` on a scene sets invitation dress level.
+  AI text `{outcome}` comes from `aiOutcome()` + ai-prompts.json → outcomes (finish / satisfied / frustrated / demon feed & drain).
 - Save format migrations live in `migrate()` (`js/logic/state.js`); bump `S.v` when changing save shape.
 - After changes: `node tools/build.mjs && node tools/smoke.mjs 30` (Playwright; `CHROME=` for a custom browser).
