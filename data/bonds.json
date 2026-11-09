@@ -368,33 +368,36 @@
       "prompt": "the two women share him affectionately, in sync with each other",
       "_default": "{a} and {b} share him easily, as affectionate with each other as with Sam.",
       "caress": "An unhurried tangle of kisses, three ways. Nobody is keeping score.",
+      "kiss": "An unhurried tangle of kisses, three ways. Nobody is keeping score.",
       "cowgirl": "{a} and {b} take turns, holding hands across him for balance and laughing when they get it wrong.",
-      "oral": "They work together, trading places and glances, very pleased with themselves.",
+      "oral_give": "They work together, trading places and glances, very pleased with themselves.",
       "missionary": "{b} stays curled at Sam's side the whole time, murmuring encouragement to {a}."
     },
     "competitive": {
       "label": "a contest",
       "prompt": "the two rivals compete for his attention, each trying to outdo the other",
       "_default": "Every moment is a contest. Each of them is determined to be the one he remembers.",
-      "oral": "It turns into a contest almost at once: who can make him lose his composure first.",
+      "oral_give": "It turns into a contest almost at once: who can make him lose his composure first.",
       "cowgirl": "They argue over whose turn it is, then over who's doing it better.",
-      "paizuri": "A matter of pride, apparently. Both of them take it extremely seriously.",
-      "caress": "Even the kissing becomes a competition. Sam is not sure how."
+      "breast_give": "A matter of pride, apparently. Both of them take it extremely seriously.",
+      "caress": "Even the kissing becomes a competition. Sam is not sure how.",
+      "kiss": "Even the kissing becomes a competition. Sam is not sure how."
     },
     "lesson": {
       "label": "a lesson",
       "prompt": "the experienced woman demonstrates and coaches the less experienced one",
       "_default": "{a} demonstrates, then talks {b} through it step by step, correcting her with a teacher's patience.",
-      "oral": "{a} demonstrates, then coaches {b} through it, with notes. Many notes.",
+      "oral_give": "{a} demonstrates, then coaches {b} through it, with notes. Many notes.",
       "cowgirl": "{a} guides {b}'s hips with her hands and counts the rhythm under her breath.",
-      "manual": "{a} positions {b}'s hands and walks her through it like a fencing lesson."
+      "manual_give": "{a} positions {b}'s hands and walks her through it like a fencing lesson."
     },
     "curious": {
       "label": "a first time",
       "prompt": "the lover gently guides her nervous, curious friend",
       "_default": "{a} takes the lead, and {b} follows, nervous at first and then not at all.",
       "caress": "{b} starts out shy. {a} kisses her first, then Sam, and that settles it.",
-      "oral": "{a} shows her friend how it's done. {b} is a quick study, and very curious."
+      "kiss": "{b} starts out shy. {a} kisses her first, then Sam, and that settles it.",
+      "oral_give": "{a} shows her friend how it's done. {b} is a quick study, and very curious."
     }
   },
   "competition": {

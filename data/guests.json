@@ -5,7 +5,8 @@
     "visits: chance = odds per week that a guest shows up, stayWeeks = how long she waits among the candidates, cooldownWeeks = how long before that same lady can turn up again.",
     "Packs can be switched off in Settings → Visiting characters.",
     "All guests are adults: aged-up / endgame versions.",
-    "jobs: {likes, dislikes} job ids, same as characters.json."
+    "jobs: {likes, dislikes} job ids, same as characters.json.",
+    "Guests also carry body and unique (see characters.json _readme)."
   ],
   "visits": {"chance":0.3,"stayWeeks":2,"cooldownWeeks":8},
   "packs": {
@@ -13,7 +14,7 @@
       "label": "Naruto",
       "characters": {
         "hinata": {
-          "job": "companion",
+          "job": "courtesan",
           "name": "Hinata Hyuga",
           "race": "human",
           "age": 32,
@@ -21,7 +22,7 @@
           "traits": ["Shy","Loyal"],
           "style": "Elegant",
           "favColor": "lavender",
-          "fav": "caress",
+          "fav": "kiss",
           "dislike": "doggy",
           "lovers": "missionary",
           "backstory": "Heir to a proud clan of the Leaf, a shinobi village across the eastern sea, Hinata walked away from an arranged future to find out what she wants for herself. She stammers through introductions, then quietly outworks everyone in the house.",
@@ -46,7 +47,7 @@
               "label": "Clan kimono",
               "style": "Elegant",
               "prompt": "a lavender and cream layered kimono with a dark obi",
-              "bonus": {"companion":1.25,"noble":1.15}
+              "bonus": {"courtesan":1.25,"noble":1.15}
             },
             "sp_hinata": {
               "label": "Moonlit yukata",
@@ -57,10 +58,16 @@
           },
           "bonds": {
             "kurenai": {"v":60,"kind":"mentor","note":"Kurenai was her first squad leader back in the Leaf."},
-            "sakura": {"v":40,"kind":"comrades","note":"Leaf classmates."},
-            "ino": {"v":35,"kind":"comrades","note":"Leaf classmates."}
+            "sakura": {"v":40,"kind":"comrades","note":"Leaf peers."},
+            "ino": {"v":35,"kind":"comrades","note":"Leaf peers."}
           },
-          "jobs": {"likes":["companion","maid","reception"],"dislikes":["dancer"]}
+          "jobs": {"likes":["courtesan","maid","promoter"],"dislikes":["dancer"]},
+          "body": {"bust":"large","height":"average","figure":"curvy"},
+          "unique": {
+            "name": "Byakugan",
+            "desc": "Her gentle fingertips find every knot, and nothing escapes her sight.",
+            "fx": {"actQuality":{"massage_give":1.4},"security":15}
+          }
         },
         "sakura": {
           "job": "security",
@@ -72,7 +79,7 @@
           "style": "Sporty",
           "favColor": "pink",
           "fav": "cowgirl",
-          "dislike": "oral",
+          "dislike": "oral_give",
           "lovers": "missionary",
           "backstory": "A field medic from the Leaf, a shinobi village across the eastern sea with a punch that has gone through walls (literally, ask the landlord). She left over a long-distance relationship that stayed long-distance, and is done waiting on anyone.",
           "design": {
@@ -102,7 +109,7 @@
               "label": "Cherry blossom dress",
               "style": "Cute",
               "prompt": "a pale pink sundress with a cherry-blossom print",
-              "bonus": {"companion":1.15,"merchant":1.15}
+              "bonus": {"courtesan":1.15,"merchant":1.15}
             }
           },
           "bonds": {
@@ -110,7 +117,9 @@
             "ino": {"v":45,"note":"Best friends and lifelong rivals, in that order."},
             "karin": {"v":-15,"note":"Old history over the same aloof man. Neither will admit it still stings."}
           },
-          "jobs": {"likes":["security","bartender"],"dislikes":["maid","reception"]}
+          "jobs": {"likes":["security","bartender"],"dislikes":["maid","promoter"]},
+          "body": {"bust":"small","height":"average","figure":"athletic"},
+          "unique": {"name":"Medic's Hands","desc":"A field medic's strong, precise hands.","fx":{"actQuality":{"massage_give":1.25},"security":10}}
         },
         "ino": {
           "job": "dancer",
@@ -121,9 +130,9 @@
           "traits": ["Exhibitionist","Party Animal"],
           "style": "Revealing",
           "favColor": "violet",
-          "fav": "paizuri",
-          "dislike": "caress",
-          "lovers": "oral",
+          "fav": "breast_give",
+          "dislike": "kiss",
+          "lovers": "oral_give",
           "backstory": "The flower-shop heiress of the Leaf, a shinobi village across the eastern sea came west to open a shop of her own and got distracted by a city that actually appreciates her. She reads people like open books, which makes her terrifying at a card table.",
           "design": {
             "build": "slender hourglass",
@@ -155,8 +164,10 @@
               "bonus": {"noble":1.25,"courtesan":1.15}
             }
           },
-          "bonds": {"sakura":{"v":45,"note":"Best friends and lifelong rivals, in that order."},"hinata":{"v":35,"kind":"comrades","note":"Leaf classmates."}},
-          "jobs": {"likes":["dancer","courtesan"],"dislikes":["maid"]}
+          "bonds": {"sakura":{"v":45,"note":"Best friends and lifelong rivals, in that order."},"hinata":{"v":35,"kind":"comrades","note":"Leaf peers."}},
+          "jobs": {"likes":["dancer","courtesan"],"dislikes":["maid"]},
+          "body": {"bust":"medium","height":"average","figure":"slim"},
+          "unique": {"name":"Mind Reader","desc":"She reads clients like open books and charms them accordingly.","fx":{"clientFee":1.1,"appeal":3}}
         },
         "tenten": {
           "job": "bartender",
@@ -167,8 +178,8 @@
           "traits": ["Tough","Former Adventurer"],
           "style": "Sporty",
           "favColor": "green",
-          "fav": "manual",
-          "dislike": "paizuri",
+          "fav": "manual_give",
+          "dislike": "breast_give",
           "lovers": "cowgirl",
           "backstory": "A dwarven weaponsmith raised among the shinobi of the Leaf, a shinobi village across the eastern sea, Tenten throws knives the way other people breathe. She's saving for her own forge and treats the bar like a target range: nothing slips past her.",
           "design": {
@@ -198,29 +209,34 @@
               "label": "Festival qipao",
               "style": "Exotic",
               "prompt": "an emerald qipao with gold dragon embroidery",
-              "bonus": {"companion":1.15,"merchant":1.2}
+              "bonus": {"courtesan":1.15,"merchant":1.2}
             }
           },
           "bonds": {
             "hinata": {"v":30,"kind":"comrades","note":"Leaf comrades."},
             "juju": {"v":50,"kind":"mentor","note":"Juju is from her toolsmith line and calls her Great-Grandma Tenten. Tenten hates it."}
           },
-          "jobs": {"likes":["bartender","security"],"dislikes":["maid"]}
+          "jobs": {"likes":["bartender","security"],"dislikes":["maid"]},
+          "body": {"bust":"small ","height":"medium","figure":"athletic"},
+          "unique": {
+            "name": "Never Misses",
+            "desc": "Nothing slips past her, whether it's a thrown knife or a rowdy client.",
+            "fx": {"security":12,"jobBonus":{"bartender":1.1}}
+          }
         },
         "temari": {
           "job": "security",
           "name": "Temari",
-          "race": "beastkin",
-          "sub": "fennec fox",
+          "race": "human",
           "age": 32,
           "personality": "Proud and sharp-tongued",
           "traits": ["Tough","Loyal"],
           "style": "Sporty",
           "favColor": "teal",
           "fav": "doggy",
-          "dislike": "caress",
+          "dislike": "kiss",
           "lovers": "missionary",
-          "backstory": "A fennec-eared envoy from the desert sand-clans, Temari came to negotiate a trade treaty and stayed because the treaty requires a lot of supervising. She carries an enormous iron fan and isn't shy about using it on rowdy clients.",
+          "backstory": "An envoy from the desert sand-clans, Temari came to negotiate a trade treaty and stayed because the treaty requires a lot of supervising. She carries an enormous iron fan and isn't shy about using it on rowdy clients.",
           "design": {
             "build": "tall athletic",
             "hairStyle": "four short spiky tufts",
@@ -248,14 +264,20 @@
               "label": "Desert silks",
               "style": "Exotic",
               "prompt": "flowing sand-colored desert silks with a bronze waist chain",
-              "bonus": {"noble":1.2,"companion":1.15}
+              "bonus": {"noble":1.2,"courtesan":1.15}
             }
           },
           "bonds": {
             "ino": {"v":20,"note":"Rivals in sharp tongues."},
             "nami": {"v":45,"kind":"mentor","note":"A fellow Sand wind user. Temari taught her the fans."}
           },
-          "jobs": {"likes":["security","madame","courtesan"],"dislikes":["maid"]}
+          "jobs": {"likes":["security","madame","courtesan"],"dislikes":["maid"]},
+          "body": {"bust":"medium","height":"tall","figure":"athletic"},
+          "unique": {
+            "name": "Wind Scythe",
+            "desc": "Her great fan can clear a room, which rowdy clients quickly learn.",
+            "fx": {"security":12,"jobBonus":{"security":1.1}}
+          }
         },
         "tsunade": {
           "job": "madame",
@@ -266,9 +288,9 @@
           "traits": ["Greedy","Party Animal"],
           "style": "Elegant",
           "favColor": "green",
-          "fav": "paizuri",
-          "dislike": "manual",
-          "lovers": "cowgirl",
+          "fav": "breast_give",
+          "dislike": "manual_give",
+          "lovers": "massage_get",
           "backstory": "Former head of the Leaf, a shinobi village across the eastern sea, a legendary healer and an even more legendary bad gambler. Tsunade fled west one step ahead of her creditors and would very much like a cut of the house's dice tables.",
           "design": {
             "build": "voluptuous with a very large bust",
@@ -305,10 +327,12 @@
             "shizune": {"v":70,"kind":"mentor","note":"Her long-suffering assistant of twenty years."},
             "mei": {"v":25,"note":"Old colleagues from the village heads' council."}
           },
-          "jobs": {"likes":["madame","courtesan"],"dislikes":["maid"]}
+          "jobs": {"likes":["madame","courtesan"],"dislikes":["maid"]},
+          "body": {"bust":"huge","height":"tall","figure":"curvy"},
+          "unique": {"name":"Hundred Seals","desc":"The stored chakra of a legendary healer gives her an extra reserve of energy.","fx":{"energyBank":40}}
         },
         "shizune": {
-          "job": "reception",
+          "job": "promoter",
           "name": "Shizune",
           "race": "human",
           "age": 38,
@@ -318,7 +342,7 @@
           "favColor": "black",
           "fav": "missionary",
           "dislike": "doggy",
-          "lovers": "caress",
+          "lovers": "kiss",
           "backstory": "Tsunade's assistant from the Leaf, a shinobi village across the eastern sea, still chasing down her mentor's debts and her mentor's tab. Shizune keeps impeccable books and a pet piglet named Tonton, who has opinions about clients.",
           "design": {
             "build": "slim",
@@ -341,20 +365,26 @@
               "label": "Assistant's kimono",
               "style": "Elegant",
               "prompt": "a simple black kimono with a grey sash and pearl necklace",
-              "bonus": {"reception":1.3,"merchant":1.1}
+              "bonus": {"promoter":1.3,"merchant":1.1}
             },
             "sp_shizune": {
               "label": "Evening kimono",
               "style": "Elegant",
               "prompt": "a midnight blue kimono with silver crane embroidery",
-              "bonus": {"noble":1.2,"companion":1.1}
+              "bonus": {"noble":1.2,"courtesan":1.1}
             }
           },
           "bonds": {"tsunade":{"v":70,"note":"Twenty years of cleaning up after her."}},
-          "jobs": {"likes":["reception","madame","maid"],"dislikes":["courtesan"]}
+          "jobs": {"likes":["promoter","madame","maid"],"dislikes":["courtesan"]},
+          "body": {"bust":"small","height":"average","figure":"slim"},
+          "unique": {
+            "name": "Impeccable Books",
+            "desc": "Her record-keeping keeps the house orderly and its managers sharp.",
+            "fx": {"jobBonus":{"madame":1.15},"tidy":1.1}
+          }
         },
         "kurenai": {
-          "job": "companion",
+          "job": "courtesan",
           "name": "Kurenai Yuhi",
           "race": "human",
           "age": 39,
@@ -362,8 +392,8 @@
           "traits": ["Elegant","Romantic"],
           "style": "Elegant",
           "favColor": "crimson",
-          "fav": "oral",
-          "dislike": "paizuri",
+          "fav": "oral_give",
+          "dislike": "breast_give",
           "lovers": "missionary",
           "backstory": "An illusionist of the Leaf, a shinobi village across the eastern sea whose crimson eyes make men forget what they were saying. Widowed young, she spent fifteen years putting everyone else first and is finally doing something for herself.",
           "design": {"build":"curvy","hairStyle":"long wild wavy","hairColor":"black","eyes":"crimson red","skin":"pale","features":"dark red lipstick"},
@@ -380,7 +410,7 @@
               "label": "Bandage dress",
               "style": "Elegant",
               "prompt": "a wrapped white dress patterned with red roses and a single red sleeve",
-              "bonus": {"companion":1.25,"noble":1.15}
+              "bonus": {"courtesan":1.25,"noble":1.15}
             },
             "sp_kurenai": {
               "label": "Crimson illusion gown",
@@ -393,7 +423,9 @@
             "hinata": {"v":60,"kind":"mentor","note":"She was Hinata's first squad leader back in the Leaf."},
             "anko": {"v":55,"note":"Drinking buddies for twenty years."}
           },
-          "jobs": {"likes":["companion","dancer","madame"],"dislikes":["reception"]}
+          "jobs": {"likes":["courtesan","dancer","madame"],"dislikes":["promoter"]},
+          "body": {"bust":"medium","height":"tall","figure":"curvy"},
+          "unique": {"name":"Crimson Illusion","desc":"Her eyes make men forget what they were saying.","fx":{"appeal":4,"classBonus":{"noble":1.1}}}
         },
         "anko": {
           "job": "courtesan",
@@ -434,7 +466,13 @@
             "sp_anko": {"label":"Snake charmer silks","style":"Exotic","prompt":"violet silk wraps with gold snake armlets","bonus":{"dancer":1.2,"commoner":1.15}}
           },
           "bonds": {"kurenai":{"v":55,"note":"Drinking buddies for twenty years."}},
-          "jobs": {"likes":["courtesan","bartender"],"dislikes":["reception","maid"]}
+          "jobs": {"likes":["courtesan","bartender"],"dislikes":["promoter","maid"]},
+          "body": {"bust":"large","height":"average","figure":"curvy"},
+          "unique": {
+            "name": "Snake's Appetite",
+            "desc": "She is always hungry for more, and not just for dango.",
+            "fx": {"encore":0.1,"actQuality":{"oral_give":1.2}}
+          }
         },
         "karin": {
           "job": "bath",
@@ -445,9 +483,9 @@
           "traits": ["Romantic","Ambitious"],
           "style": "Cute",
           "favColor": "red",
-          "fav": "manual",
-          "dislike": "oral",
-          "lovers": "caress",
+          "fav": "manual_give",
+          "dislike": "oral_give",
+          "lovers": "kiss",
           "backstory": "A sensor and healer from the wandering Uzumaki clan, Karin can feel a person's life energy from across a room. She claims she's here strictly for the pay. She has also asked twice whether Sam is single.",
           "design": {
             "build": "slender",
@@ -476,11 +514,13 @@
               "label": "Librarian chic",
               "style": "Cute",
               "prompt": "a fitted pencil skirt, white blouse and red ribbon tie",
-              "bonus": {"merchant":1.2,"companion":1.15}
+              "bonus": {"merchant":1.2,"courtesan":1.15}
             }
           },
           "bonds": {"sakura":{"v":-15,"note":"Old history over the same aloof man. Neither will admit it still stings."}},
-          "jobs": {"likes":["bath","madame"],"dislikes":["maid"]}
+          "jobs": {"likes":["bath","madame"],"dislikes":["maid"]},
+          "body": {"bust":"small","height":"average","figure":"slim"},
+          "unique": {"name":"Sensor","desc":"She feels where tension and trouble are before they arrive.","fx":{"jobBonus":{"bath":1.15},"security":8}}
         },
         "mei": {
           "job": "madame",
@@ -491,8 +531,8 @@
           "traits": ["Elegant","Romantic"],
           "style": "Elegant",
           "favColor": "blue",
-          "fav": "paizuri",
-          "dislike": "manual",
+          "fav": "breast_give",
+          "dislike": "manual_give",
           "lovers": "missionary",
           "backstory": "The former ruler of the Mist, a coastal shinobi state, retired with a fortune, an iron reputation, and no husband. Mei is very, very keen to fix that last one. Any joke about her age or marriage prospects ends badly.",
           "design": {
@@ -521,28 +561,34 @@
             "sp_mei": {"label":"Lagoon silks","style":"Elegant","prompt":"a sheer sea-green gown with pearl strands","bonus":{"courtesan":1.2,"noble":1.2}}
           },
           "bonds": {"tsunade":{"v":25,"note":"Old colleagues from the village heads' council."}},
-          "jobs": {"likes":["madame","companion"],"dislikes":["maid","reception"]}
+          "jobs": {"likes":["madame","courtesan"],"dislikes":["maid","promoter"]},
+          "body": {"bust":"large","height":"tall","figure":"curvy"},
+          "unique": {
+            "name": "Lava and Mist",
+            "desc": "The poise of a former ruler: nobles and merchants alike feel obliged to be generous.",
+            "fx": {"classBonus":{"noble":1.15,"merchant":1.1}}
+          }
         },
         "konan": {
           "job": "dancer",
           "name": "Konan",
-          "race": "spirit",
+          "race": "angel",
           "age": 152,
           "personality": "Calm and elegant",
           "traits": ["Modest","Elegant"],
           "style": "Exotic",
           "favColor": "white",
-          "fav": "caress",
+          "fav": "kiss",
           "dislike": "doggy",
           "lovers": "missionary",
-          "backstory": "A spirit bound to paper and rain, Konan once led a band of rebels who called themselves angels. Now she folds paper flowers between dances and drifts around the house in quiet, rustling silence.",
+          "backstory": "An angel of paper and rain, Konan once led a band of rebels who called themselves angels, and found out later that the real thing is more complicated. Now she folds paper flowers between dances and drifts around the house in quiet, rustling silence.",
           "design": {
             "build": "slender",
             "hairStyle": "short with a white paper rose pinned in it",
             "hairColor": "blue-violet",
             "eyes": "amber with violet eye shadow",
             "skin": "pale",
-            "features": "a stud beneath her lower lip and paper butterflies that drift around her"
+            "features": "a stud beneath her lower lip, paper-white angel wings and paper butterflies that drift around her"
           },
           "under": "silk",
           "underColor": "white",
@@ -562,11 +608,17 @@
             "sp_konan": {
               "label": "Paper angel",
               "style": "Exotic",
-              "prompt": "a white dress that dissolves into folded paper wings at the shoulders",
-              "bonus": {"noble":1.25,"companion":1.15}
+              "prompt": "a white dress with folded paper wings at the shoulders",
+              "bonus": {"noble":1.25,"courtesan":1.15}
             }
           },
-          "jobs": {"likes":["dancer","companion"],"dislikes":["bartender"]}
+          "jobs": {"likes":["dancer","courtesan"],"dislikes":["bartender"]},
+          "body": {"bust":"medium","height":"average","figure":"slim"},
+          "unique": {
+            "name": "Paper Wings",
+            "desc": "She dances in a drift of folded paper that leaves audiences spellbound.",
+            "fx": {"jobBonus":{"dancer":1.2},"appeal":2}
+          }
         }
       }
     },
@@ -574,7 +626,7 @@
       "label": "Naruto After (OCs)",
       "characters": {
         "mio_tanabe": {
-          "job": "companion",
+          "job": "courtesan",
           "name": "Mio Tanabe",
           "race": "elf",
           "age": 118,
@@ -583,8 +635,8 @@
           "style": "Revealing",
           "favColor": "wine",
           "fav": "cowgirl",
-          "dislike": "manual",
-          "lovers": "caress",
+          "dislike": "manual_give",
+          "lovers": "kiss",
           "backstory": "An elven Suna medic from the Alliance villages across the eastern sea who once trained an entire rebel army's healers under the codename Star. Mio left that life behind but kept the coat, the dark lipstick and the habit of making sure every eye in the room lands on her.",
           "design": {
             "build": "curvy",
@@ -607,17 +659,23 @@
               "label": "Star's coat",
               "style": "Revealing",
               "prompt": "a long cream coat with deep-teal lining hanging open over a wine-colored lace-trimmed silk babydoll dress, sheer dark thigh-high stockings and black heeled boots",
-              "bonus": {"companion":1.25,"noble":1.15}
+              "bonus": {"courtesan":1.25,"noble":1.15}
             },
             "sp_mio_tanabe": {
               "label": "Suna medic whites",
               "style": "Elegant",
               "prompt": "a cream and sand-colored medic tunic with a deep-teal sash",
-              "bonus": {"reception":1.15,"commoner":1.2}
+              "bonus": {"promoter":1.15,"commoner":1.2}
             }
           },
           "bonds": {"maki":{"v":15,"note":"Mio borrowed half of Maki's playbook. Maki has noticed."}},
-          "jobs": {"likes":["companion","dancer"],"dislikes":["maid"]}
+          "jobs": {"likes":["courtesan","dancer"],"dislikes":["maid"]},
+          "body": {"bust":"medium","height":"average","figure":"curvy"},
+          "unique": {
+            "name": "Star's Coat",
+            "desc": "A field medic's hands and an entrance nobody can ignore.",
+            "fx": {"actQuality":{"massage_give":1.25},"appeal":3}
+          }
         },
         "emi": {
           "job": "security",
@@ -629,8 +687,8 @@
           "style": "Sporty",
           "favColor": "slate",
           "fav": "missionary",
-          "dislike": "paizuri",
-          "lovers": "caress",
+          "dislike": "breast_give",
+          "lovers": "kiss",
           "backstory": "An Ame jonin from the Alliance villages across the eastern sea, Emi is the person other shinobi are relieved to see arrive. Nothing about her is flashy; troublemakers simply find themselves stuck in place until she decides what to do with them.",
           "design": {
             "build": "tall, lean and athletic",
@@ -655,13 +713,15 @@
               "prompt": "a fitted charcoal short field jacket, muted blue-gray scarf, dark shorts over leggings, utility belt and gloves",
               "bonus": {"security":1.3,"adventurer":1.15}
             },
-            "sp_emi": {"label":"Off-duty wrap dress","style":"Cute","prompt":"a soft blue-gray knit wrap dress","bonus":{"companion":1.15,"commoner":1.15}}
+            "sp_emi": {"label":"Off-duty wrap dress","style":"Cute","prompt":"a soft blue-gray knit wrap dress","bonus":{"courtesan":1.15,"commoner":1.15}}
           },
           "bonds": {
             "hibiki": {"v":60,"kind":"comrades","note":"Squadmates since the Exam."},
             "yori": {"v":25,"note":"Both from Ame. Emi is the only one who never loses track of her."}
           },
-          "jobs": {"likes":["security","maid","madame"],"dislikes":["dancer"]}
+          "jobs": {"likes":["security","maid","madame"],"dislikes":["dancer"]},
+          "body": {"bust":"medium","height":"tall","figure":"athletic"},
+          "unique": {"name":"Stillness","desc":"Troublemakers seem to find themselves unable to move.","fx":{"security":15}}
         },
         "hibiki": {
           "job": "dancer",
@@ -672,12 +732,12 @@
           "traits": ["Exhibitionist","Night Owl"],
           "style": "Exotic",
           "favColor": "plum",
-          "fav": "oral",
+          "fav": "oral_give",
           "dislike": "doggy",
           "lovers": "cowgirl",
           "backstory": "A bat-winged sound demon from the Sound village of the Alliance villages across the eastern sea who plays a chakra guitar strung with green light. Bubbly, theatrical and very happy to be stared at, she has turned the house stage into a nightly vampire-rock concert.",
           "design": {
-            "build": "petite and very slender with long legs",
+            "build": "slender with long legs",
             "hairStyle": "calf-length, thick and layered with bat-wing hair ornaments",
             "hairColor": "dark plum with wine-red highlights",
             "eyes": "vivid red-violet",
@@ -707,7 +767,9 @@
             }
           },
           "bonds": {"emi":{"v":60,"kind":"comrades","note":"Squadmates since the Exam."}},
-          "jobs": {"likes":["dancer","bartender","companion"],"dislikes":["security"]}
+          "jobs": {"likes":["dancer","bartender","courtesan"],"dislikes":["security"]},
+          "body": {"bust":"flat","height":"short","figure":"slim"},
+          "unique": {"name":"Vampire-Rock Concert","desc":"Her stage shows are the talk of the town.","fx":{"jobBonus":{"dancer":1.25},"appeal":3}}
         },
         "choko": {
           "job": "bartender",
@@ -719,7 +781,7 @@
           "style": "Sporty",
           "favColor": "rust",
           "fav": "cowgirl",
-          "dislike": "caress",
+          "dislike": "kiss",
           "lovers": "missionary",
           "backstory": "A dwarven sealing engineer from the Stone village of the Alliance villages across the eastern sea. Choko can lay a barrier in a heartbeat and has absolutely set the bar on fire twice. The flaming cocktails are now a house specialty.",
           "design": {
@@ -749,14 +811,20 @@
               "label": "Stone festival qipao",
               "style": "Exotic",
               "prompt": "a rust-red qipao with black seal-script embroidery",
-              "bonus": {"companion":1.15,"merchant":1.2}
+              "bonus": {"courtesan":1.15,"merchant":1.2}
             }
           },
           "bonds": {"maki":{"v":55,"note":"Close friends since the Exam."},"saya":{"v":45,"kind":"comrades","note":"Old squadmates."}},
-          "jobs": {"likes":["bartender","dancer"],"dislikes":["maid"]}
+          "jobs": {"likes":["bartender","dancer"],"dislikes":["maid"]},
+          "body": {"bust":"large","height":"short","figure":"curvy"},
+          "unique": {
+            "name": "Flaming Cocktails",
+            "desc": "Her drinks arrive on fire, and so does the bar's reputation.",
+            "fx": {"jobBonus":{"bartender":1.25},"propRate":1.1}
+          }
         },
         "saya": {
-          "job": "reception",
+          "job": "promoter",
           "name": "Saya Aburame",
           "race": "human",
           "age": 24,
@@ -764,8 +832,8 @@
           "traits": ["Elegant","Loyal"],
           "style": "Elegant",
           "favColor": "white",
-          "fav": "manual",
-          "dislike": "oral",
+          "fav": "manual_give",
+          "dislike": "oral_give",
           "lovers": "missionary",
           "backstory": "An information specialist of the Leaf from the Alliance villages across the eastern sea, Saya keeps colonies of tiny beetles that quietly tell her everything happening in the building. She is quiet until a subject interests her, and then she is not quiet at all.",
           "design": {
@@ -789,13 +857,13 @@
               "label": "Information commander",
               "style": "Elegant",
               "prompt": "a long fitted white field jacket worn open over a charcoal-black top with abstract web-like seams and mesh panels, fitted dark trousers, a smoky semi-translucent visor",
-              "bonus": {"reception":1.3,"merchant":1.15}
+              "bonus": {"promoter":1.3,"merchant":1.15}
             },
             "sp_saya": {
               "label": "Off-duty knit",
               "style": "Elegant",
               "prompt": "a long white knit dress with her visor pushed up into her hair",
-              "bonus": {"companion":1.15,"noble":1.15}
+              "bonus": {"courtesan":1.15,"noble":1.15}
             }
           },
           "bonds": {
@@ -803,7 +871,9 @@
             "choko": {"v":45,"kind":"comrades","note":"Old squadmates."},
             "nozomi": {"v":-20,"note":"Saya turned her away once and still is not sure she was wrong."}
           },
-          "jobs": {"likes":["reception","madame"],"dislikes":["dancer"]}
+          "jobs": {"likes":["promoter","madame"],"dislikes":["dancer"]},
+          "body": {"bust":"large","height":"tall","figure":"slim"},
+          "unique": {"name":"Beetle Network","desc":"Tiny informants tell her everything that happens in the building.","fx":{"promote":1.15,"security":6}}
         },
         "juju": {
           "job": "bath",
@@ -814,7 +884,7 @@
           "traits": ["Eager","Ambitious"],
           "style": "Cute",
           "favColor": "dark red",
-          "fav": "manual",
+          "fav": "manual_give",
           "dislike": "missionary",
           "lovers": "cowgirl",
           "backstory": "Heir to a toolsmith dynasty from the Leaf of the Alliance villages across the eastern sea. Juju can make any gadget sing, and she has already rebuilt the bathhouse boilers, pumps and steam vents. She thinks she's easy to get along with. Everyone else thinks she's a lot.",
@@ -845,7 +915,7 @@
               "label": "Workshop cheongsam",
               "style": "Exotic",
               "prompt": "a cream and dark-red cheongsam with gold buttons and a tool belt",
-              "bonus": {"companion":1.15,"commoner":1.15}
+              "bonus": {"courtesan":1.15,"commoner":1.15}
             }
           },
           "bonds": {
@@ -853,7 +923,9 @@
             "saki": {"v":40,"note":"Friends who nearly broke over a prosthetic, and mended it."},
             "nami": {"v":35,"kind":"comrades","note":"Old squadmates."}
           },
-          "jobs": {"likes":["bath","companion","reception"],"dislikes":["maid"]}
+          "jobs": {"likes":["bath","courtesan","promoter"],"dislikes":["maid"]},
+          "body": {"bust":"small","height":"average","figure":"athletic"},
+          "unique": {"name":"Tinkerer","desc":"She rebuilt the bathhouse boilers and keeps everything running.","fx":{"jobBonus":{"bath":1.2},"energyRec":1.05}}
         },
         "nami": {
           "job": "courtesan",
@@ -864,9 +936,9 @@
           "traits": ["Lazy","Eager"],
           "style": "Exotic",
           "favColor": "copper",
-          "fav": "cowgirl",
+          "fav": "massage_get",
           "dislike": "missionary",
-          "lovers": "oral",
+          "lovers": "oral_give",
           "backstory": "A wind spirit who drifted out of the Sand village of the Alliance villages across the eastern sea, Nami can spend six hours perfecting a breeze and forget an appointment entirely. She's relaxed about attraction, allergic to defining her type, and refuses to tie back her hair.",
           "design": {
             "build": "tall and athletic",
@@ -895,14 +967,16 @@
               "label": "Gold silk wrap",
               "style": "Elegant",
               "prompt": "a flowing pale gold silk wrap dress that moves with every breeze",
-              "bonus": {"noble":1.2,"companion":1.15}
+              "bonus": {"noble":1.2,"courtesan":1.15}
             }
           },
           "bonds": {"juju":{"v":35,"kind":"comrades","note":"Old squadmates."}},
-          "jobs": {"likes":["courtesan","bath","companion"],"dislikes":["maid","security"]}
+          "jobs": {"likes":["courtesan","bath"],"dislikes":["maid","security"]},
+          "body": {"bust":"large","height":"tall","figure":"athletic"},
+          "unique": {"name":"Gentle Breeze","desc":"Her relaxed company eases tired bodies and tired moods.","fx":{"energyRec":1.15,"moodRest":3}}
         },
         "maki": {
-          "job": "companion",
+          "job": "courtesan",
           "name": "Maki Terumi",
           "race": "human",
           "age": 24,
@@ -910,7 +984,7 @@
           "traits": ["Elegant","Romantic"],
           "style": "Elegant",
           "favColor": "navy",
-          "fav": "paizuri",
+          "fav": "breast_give",
           "dislike": "doggy",
           "lovers": "missionary",
           "backstory": "A Lava Release heir from the Mist of the Alliance villages across the eastern sea, Maki retired from field work and approaches life like an optimization problem: improve presentation, identify prospects, avoid wasted effort. She's learning that a résumé can't tell her whom she'll fall for.",
@@ -935,7 +1009,7 @@
               "label": "Navy evening dress",
               "style": "Elegant",
               "prompt": "a fitted deep-navy dress with a plunging neckline, defined waist and high leg slit, understated jewelry",
-              "bonus": {"companion":1.25,"noble":1.2}
+              "bonus": {"courtesan":1.25,"noble":1.2}
             },
             "sp_maki": {
               "label": "Black satin cocktail dress",
@@ -948,21 +1022,27 @@
             "mei": {"v":40,"note":"A distant Terumi cousin. Mei keeps offering marriage advice and Maki keeps taking notes."},
             "choko": {"v":55,"note":"Close friends since the Exam."}
           },
-          "jobs": {"likes":["companion","madame","dancer"],"dislikes":["bartender","maid"]}
+          "jobs": {"likes":["courtesan","madame","dancer"],"dislikes":["bartender","maid"]},
+          "body": {"bust":"medium","height":"tall","figure":"curvy"},
+          "unique": {
+            "name": "Optimized Presentation",
+            "desc": "She has calculated exactly what makes a good impression.",
+            "fx": {"clientFee":1.08,"classBonus":{"noble":1.1}}
+          }
         },
         "saki": {
           "job": "dancer",
           "name": "Saki Ito",
-          "race": "human",
+          "race": "android",
           "age": 23,
           "personality": "Cheerful and teasing",
           "traits": ["Tough","Night Owl"],
           "style": "Sporty",
           "favColor": "purple",
-          "fav": "manual",
-          "dislike": "paizuri",
-          "lovers": "caress",
-          "backstory": "A Sand village puppeteer from the Alliance villages across the eastern sea. Her right arm is a handcrafted prosthetic she controls with chakra, and she uses it to run marionette shows that leave the audience slack-jawed. She's sharper than she used to be, but very much alive.",
+          "fav": "manual_give",
+          "dislike": "breast_give",
+          "lovers": "kiss",
+          "backstory": "A Sand village puppeteer's masterwork, built long ago and awakened years later: an android with a wooden-and-metal puppet-craft body and a talent for marionette shows that leave the audience slack-jawed. She runs her right arm with a wire-thin thread of chakra, and she's sharper than her makers expected, and very much alive.",
           "design": {
             "build": "short and wiry",
             "hairStyle": "neat shoulder-length shag",
@@ -994,7 +1074,13 @@
             }
           },
           "bonds": {"juju":{"v":40,"note":"Friends who nearly broke over a prosthetic, and mended it."}},
-          "jobs": {"likes":["dancer","bartender","companion"],"dislikes":["maid"]}
+          "jobs": {"likes":["dancer","bartender","courtesan"],"dislikes":["maid"]},
+          "body": {"bust":"small","height":"short","figure":"slim"},
+          "unique": {
+            "name": "Puppet-Craft Arm",
+            "desc": "A tireless mechanical arm with precise control.",
+            "fx": {"jobBonus":{"dancer":1.15},"actQuality":{"manual_give":1.2}}
+          }
         },
         "yori": {
           "job": "maid",
@@ -1005,7 +1091,7 @@
           "traits": ["Shy","Modest"],
           "style": "Elegant",
           "favColor": "charcoal",
-          "fav": "caress",
+          "fav": "kiss",
           "dislike": "cowgirl",
           "lovers": "missionary",
           "backstory": "An elven illusionist from the rain village of the Alliance villages across the eastern sea who works very hard at being overlooked. Clients forget she was ever in the room, and so do most of the staff. Nobody has seen her without the hood and mask, and that won't change until she trusts someone completely.",
@@ -1036,16 +1122,18 @@
               "label": "Unhooded",
               "style": "Elegant",
               "prompt": "a fitted dark blue-purple dress with her very long hair finally loose",
-              "bonus": {"noble":1.25,"companion":1.15},
+              "bonus": {"noble":1.25,"courtesan":1.15},
               "unlock": 90
             }
           },
           "bonds": {"emi":{"v":25,"note":"Both from Ame."}},
           "keepOn": {"item":"her heavy hooded charcoal-blue rain cloak with the hood up and her plain cloth mask","trust":90,"aside":true},
-          "jobs": {"likes":["maid","companion","dancer"],"dislikes":["reception"]}
+          "jobs": {"likes":["maid","courtesan","dancer"],"dislikes":["promoter"]},
+          "body": {"bust":"medium","height":"average","figure":"curvy"},
+          "unique": {"name":"Easily Forgotten","desc":"Clients forget she's there, but the rooms never get messy.","fx":{"tidy":1.25,"propRate":0.8}}
         },
         "nozomi": {
-          "job": "companion",
+          "job": "attendant",
           "name": "Nozomi Hoshino",
           "race": "human",
           "age": 25,
@@ -1055,7 +1143,7 @@
           "favColor": "green",
           "fav": "missionary",
           "dislike": "doggy",
-          "lovers": "caress",
+          "lovers": "kiss",
           "backstory": "A former sleeper agent from a small border state of the Alliance villages across the eastern sea, Nozomi falls hard for people after one kind gesture and knows it, so she keeps everyone at arm's length. She left the cause she was planted for. She's trying very hard not to fall for Sam and losing.",
           "design": {
             "build": "slender",
@@ -1063,7 +1151,7 @@
             "hairColor": "chestnut",
             "eyes": "soft brown-hazel",
             "skin": "light-to-medium warm",
-            "features": "approachable girl-next-door prettiness"
+            "features": "approachable, friendly prettiness"
           },
           "under": "plain",
           "underColor": "cream",
@@ -1078,12 +1166,14 @@
               "label": "Soft layers",
               "style": "Cute",
               "prompt": "a cream blouse and muted-green layered skirt with light practical gear",
-              "bonus": {"companion":1.25,"commoner":1.2}
+              "bonus": {"courtesan":1.25,"commoner":1.2}
             },
             "sp_nozomi": {"label":"Sundress","style":"Cute","prompt":"a pale green sundress with a cream cardigan","bonus":{"merchant":1.15,"noble":1.1}}
           },
           "bonds": {"yukine":{"v":30,"note":"Trust earned slowly, one mission at a time."},"saya":{"v":-20,"note":"Saya turned her away once."}},
-          "jobs": {"likes":["companion","maid"],"dislikes":["courtesan"]}
+          "jobs": {"likes":["attendant","maid"],"dislikes":["courtesan"]},
+          "body": {"bust":"medium","height":"average","figure":"slim"},
+          "unique": {"name":"Falls Fast","desc":"One kind gesture and she's loyal for life.","fx":{"trustGain":1.2,"lewdGain":1.1}}
         },
         "yukine": {
           "job": "madame",
@@ -1094,8 +1184,8 @@
           "traits": ["Elegant","Ambitious"],
           "style": "Elegant",
           "favColor": "ice blue",
-          "fav": "manual",
-          "dislike": "caress",
+          "fav": "manual_get",
+          "dislike": "kiss",
           "lovers": "missionary",
           "backstory": "A snow spirit and heir to the ice-wielding Kitahashi line of the Snow country, Yukine led her people out when their home fell, and nobody has been able to tell her what to do since. Dry, sarcastic and quietly menacing, she runs a floor like an Ice Princess who is unquestionably in control.",
           "design": {
@@ -1125,14 +1215,16 @@
               "label": "Snow kimono",
               "style": "Elegant",
               "prompt": "a white silk kimono with snowflake and sakura patterns and a dusty-pink obi",
-              "bonus": {"noble":1.25,"companion":1.15}
+              "bonus": {"noble":1.25,"courtesan":1.15}
             }
           },
           "bonds": {
             "saya": {"v":75,"note":"Best friends. Neither of them would ever say it out loud."},
             "hana": {"v":50,"kind":"comrades","note":"Squadmates who started out butting heads."}
           },
-          "jobs": {"likes":["madame","courtesan"],"dislikes":["maid"]}
+          "jobs": {"likes":["madame","courtesan"],"dislikes":["maid"]},
+          "body": {"bust":"small","height":"tall","figure":"slim"},
+          "unique": {"name":"Ice Princess","desc":"A chilly authority that makes staff and clients behave.","fx":{"security":8,"jobBonus":{"madame":1.15}}}
         },
         "hana": {
           "job": "security",
@@ -1145,7 +1237,7 @@
           "style": "Sporty",
           "favColor": "red",
           "fav": "doggy",
-          "dislike": "caress",
+          "dislike": "kiss",
           "lovers": "cowgirl",
           "backstory": "A cheetah-eared lightning sprinter from the Cloud village of the Alliance villages across the eastern sea, Hana is genuinely in love with fighting and fastest in any room. A red ribbon tying her hair once belonged to a cousin she lost.",
           "design": {
@@ -1171,16 +1263,18 @@
               "prompt": "a streamlined charcoal-black sleeveless combat top, close short combat bottoms, a deep-red sash, slim gloves and low ninja shoes",
               "bonus": {"security":1.3,"adventurer":1.2}
             },
-            "sp_hana": {"label":"Red qipao","style":"Exotic","prompt":"a deep-red sleeveless qipao with a high slit","bonus":{"companion":1.15,"merchant":1.15}}
+            "sp_hana": {"label":"Red qipao","style":"Exotic","prompt":"a deep-red sleeveless qipao with a high slit","bonus":{"courtesan":1.15,"merchant":1.15}}
           },
           "bonds": {
             "juju": {"v":65,"note":"An intense friendship that started the moment they met."},
             "yukine": {"v":50,"kind":"comrades","note":"Squadmates who started out butting heads."}
           },
-          "jobs": {"likes":["security","bartender"],"dislikes":["maid"]}
+          "jobs": {"likes":["security","bartender"],"dislikes":["maid"]},
+          "body": {"bust":"small","height":"average","figure":"athletic"},
+          "unique": {"name":"Lightning Sprinter","desc":"The fastest in any room, and she never seems to tire.","fx":{"maxEnergy":10,"security":8}}
         },
         "shiori": {
-          "job": "reception",
+          "job": "promoter",
           "name": "Shiori Amakawa",
           "race": "human",
           "age": 39,
@@ -1190,7 +1284,7 @@
           "favColor": "silver",
           "fav": "missionary",
           "dislike": "cowgirl",
-          "lovers": "caress",
+          "lovers": "kiss",
           "backstory": "Once the lead exam proctor for the Alliance villages across the eastern sea and a meticulous contingency planner, Shiori lost her husband and her best friend in the same war. She took the job because she needed something to do with her hands. The first signs of her picking herself back up are starting to show.",
           "design": {
             "build": "lean and mature-athletic",
@@ -1209,19 +1303,21 @@
           "lewd": 22,
           "trust": 16,
           "outfits": {
-            "sig_shiori": {"label":"Unkempt","style":"Elegant","prompt":"a loose dark sweater over worn dark trousers","bonus":{"reception":1.2,"commoner":1.15}},
+            "sig_shiori": {"label":"Unkempt","style":"Elegant","prompt":"a loose dark sweater over worn dark trousers","bonus":{"promoter":1.2,"commoner":1.15}},
             "sp_shiori": {
               "label": "Proctor's uniform",
               "style": "Elegant",
               "prompt": "a dark high-collared jonin uniform with a harness of colored cartridges",
-              "bonus": {"reception":1.3,"security":1.15}
+              "bonus": {"promoter":1.3,"security":1.15}
             }
           },
           "bonds": {
             "mio_tanabe": {"v":40,"kind":"mentor","note":"Shiori mentored her squad. She worries about her."},
             "saya": {"v":30,"kind":"mentor","note":"Shiori mentored her squad for a rotation."}
           },
-          "jobs": {"likes":["reception","security"],"dislikes":["courtesan","bath"]}
+          "jobs": {"likes":["promoter","security"],"dislikes":["courtesan","bath"]},
+          "body": {"bust":"medium","height":"average","figure":"athletic"},
+          "unique": {"name":"Contingency Plans","desc":"She has a plan for everything, and it shows at the door.","fx":{"security":10,"promote":1.1}}
         },
         "tsubasa": {
           "job": "bath",
@@ -1232,8 +1328,8 @@
           "traits": ["Eager","Loyal"],
           "style": "Elegant",
           "favColor": "brown",
-          "fav": "oral",
-          "dislike": "caress",
+          "fav": "oral_give",
+          "dislike": "kiss",
           "lovers": "missionary",
           "backstory": "A Leaf researcher and former exam instructor from the Alliance villages across the eastern sea, Tsubasa looks like a friendly teacher. Her combat specialty is horrifyingly sticky chakra-laced saliva. She is extremely hygienic and refuses to let embarrassment stop her from mastering a useful skill.",
           "design": {
@@ -1262,7 +1358,9 @@
             "sp_tsubasa": {"label":"Lab coat","style":"Elegant","prompt":"a crisp white lab coat over a fitted dark dress","bonus":{"bath":1.25,"noble":1.1}}
           },
           "bonds": {"saya":{"v":-10,"note":"Her demonstration once cost Saya five places in the rankings. Saya hasn't forgotten."}},
-          "jobs": {"likes":["bath","security"],"dislikes":["dancer"]}
+          "jobs": {"likes":["bath","security"],"dislikes":["dancer"]},
+          "body": {"bust":"medium","height":"average","figure":"slim"},
+          "unique": {"name":"Hygienic to a Fault","desc":"Spotless and thorough, to the delight of bathers.","fx":{"tidy":1.2,"jobBonus":{"bath":1.15}}}
         },
         "kotone": {
           "job": "madame",
@@ -1273,7 +1371,7 @@
           "traits": ["Loyal","Modest"],
           "style": "Elegant",
           "favColor": "plum",
-          "fav": "caress",
+          "fav": "kiss",
           "dislike": "doggy",
           "lovers": "cowgirl",
           "backstory": "A blind demon sensor from the Sound village of the Alliance villages across the eastern sea. Kotone reads the house through its chakra: who is where, who is lying, which client is about to cause trouble. She coordinates a floor she has never seen better than most people who can.",
@@ -1300,10 +1398,16 @@
               "prompt": "a fitted sleeveless high-neck deep-plum tunic, loose charcoal-olive pants, a pale cloth sash and dark forearm wraps",
               "bonus": {"madame":1.25,"adventurer":1.15}
             },
-            "sp_kotone": {"label":"Plum silk qipao","style":"Elegant","prompt":"a deep plum silk qipao with silver thread","bonus":{"noble":1.25,"companion":1.15}}
+            "sp_kotone": {"label":"Plum silk qipao","style":"Elegant","prompt":"a deep plum silk qipao with silver thread","bonus":{"noble":1.25,"courtesan":1.15}}
           },
           "bonds": {"hibiki":{"v":20,"note":"Both from the Sound village. Hibiki is a little jealous; Kotone has no idea why."}},
-          "jobs": {"likes":["madame","maid"],"dislikes":["courtesan"]}
+          "jobs": {"likes":["madame","maid"],"dislikes":["courtesan"]},
+          "body": {"bust":"large","height":"tall","figure":"curvy"},
+          "unique": {
+            "name": "Sees the House",
+            "desc": "She senses everyone in the building and coordinates the floor effortlessly.",
+            "fx": {"security":12,"jobBonus":{"madame":1.15}}
+          }
         },
         "tobari": {
           "job": "security",
@@ -1315,7 +1419,7 @@
           "style": "Sporty",
           "favColor": "navy",
           "fav": "doggy",
-          "dislike": "caress",
+          "dislike": "kiss",
           "lovers": "missionary",
           "backstory": "A Leaf clone specialist from the Alliance villages across the eastern sea with chakra reserves big enough to be a squad by herself. Tobari covers every door in the house at once. She talks her problems through with her own clones, which know far too much about who she likes.",
           "design": {"build":"athletic","hairStyle":"short high ponytail","hairColor":"white","eyes":"red","skin":"pale","features":"a small white fur collar"},
@@ -1338,7 +1442,7 @@
               "label": "Fur-trimmed haori",
               "style": "Elegant",
               "prompt": "a blue haori trimmed with white fur over a fitted dark dress",
-              "bonus": {"noble":1.2,"companion":1.15}
+              "bonus": {"noble":1.2,"courtesan":1.15}
             }
           },
           "bonds": {
@@ -1346,7 +1450,9 @@
             "ebina": {"v":30,"note":"Easy, low-maintenance training partners."},
             "saya": {"v":-10,"note":"Respects Saya. Would prefer the beetles stay off her."}
           },
-          "jobs": {"likes":["security","bartender","maid"],"dislikes":["reception","bath"]}
+          "jobs": {"likes":["security","bartender","maid"],"dislikes":["promoter","bath"]},
+          "body": {"bust":"medium","height":"average","figure":"athletic"},
+          "unique": {"name":"Clone Squad","desc":"Her clones cover every door, and her reserves seem endless.","fx":{"energyBank":25,"security":8}}
         },
         "marina": {
           "job": "maid",
@@ -1357,7 +1463,7 @@
           "traits": ["Elegant","Night Owl"],
           "style": "Cute",
           "favColor": "navy",
-          "fav": "caress",
+          "fav": "kiss",
           "dislike": "doggy",
           "lovers": "missionary",
           "backstory": "An elven seamstress from the Mist of the Alliance villages across the eastern sea who also happens to carry Nuibari, a legendary needle-sword that sews enemies to the ground. She mends every outfit in the house. The slightly creepy handmade dolls on her shelf look nothing like the staff, she insists.",
@@ -1388,11 +1494,13 @@
               "label": "Handmade frills",
               "style": "Cute",
               "prompt": "a cream and navy frilled dress she sewed herself",
-              "bonus": {"companion":1.15,"noble":1.15}
+              "bonus": {"courtesan":1.15,"noble":1.15}
             }
           },
           "bonds": {"maki":{"v":45,"note":"Friends through clothes. Marina will alter anything for Maki, then ask her who it's for."}},
-          "jobs": {"likes":["maid","madame"],"dislikes":["dancer","security"]}
+          "jobs": {"likes":["maid","madame"],"dislikes":["dancer","security"]},
+          "body": {"bust":"medium","height":"average","figure":"slim"},
+          "unique": {"name":"Mending Needle","desc":"She mends every outfit in the house, keeping everyone comfortable.","fx":{"tidy":1.15,"wardrobe":8}}
         },
         "ayano": {
           "job": "bartender",
@@ -1403,7 +1511,7 @@
           "traits": ["Loyal","Eager"],
           "style": "Cute",
           "favColor": "red",
-          "fav": "oral",
+          "fav": "oral_give",
           "dislike": "doggy",
           "lovers": "cowgirl",
           "backstory": "A dwarven heir to the Ichiraku ramen line of the Leaf in the Alliance villages across the eastern sea, Ayano turned noodles into actual combat jutsu and is proud of it. She runs the kitchen bar, remembers every client's order, and hears all the gossip. People think they know her well. She knows them better.",
@@ -1434,11 +1542,13 @@
               "label": "Festival yukata",
               "style": "Cute",
               "prompt": "a red festival yukata patterned with tiny white ramen bowls",
-              "bonus": {"companion":1.15,"merchant":1.15}
+              "bonus": {"courtesan":1.15,"merchant":1.15}
             }
           },
           "bonds": {"juju":{"v":35,"note":"Old friends, though one was always training while the other was working."}},
-          "jobs": {"likes":["bartender","companion"],"dislikes":["maid"]}
+          "jobs": {"likes":["bartender","courtesan"],"dislikes":["maid"]},
+          "body": {"bust":"large","height":"short","figure":"soft"},
+          "unique": {"name":"Order Memory","desc":"She remembers every client's order and gossip.","fx":{"jobBonus":{"bartender":1.2},"clientFee":1.05}}
         },
         "kamiko": {
           "job": "courtesan",
@@ -1450,7 +1560,7 @@
           "style": "Exotic",
           "favColor": "black",
           "fav": "missionary",
-          "dislike": "caress",
+          "dislike": "kiss",
           "lovers": "doggy",
           "backstory": "A wandering spirit from the Grass village of the Alliance villages across the eastern sea who fights with strands cut from her own hair. Levelheaded and polished, she has endless patience right up until she doesn't.",
           "design": {
@@ -1483,10 +1593,12 @@
               "bonus": {"noble":1.25,"courtesan":1.1}
             }
           },
-          "jobs": {"likes":["courtesan","security"],"dislikes":["maid"]}
+          "jobs": {"likes":["courtesan","security"],"dislikes":["maid"]},
+          "body": {"bust":"small","height":"tall","figure":"athletic"},
+          "unique": {"name":"Hair-Thread Poise","desc":"Polished and unflappable, right up until she isn't.","fx":{"security":10,"recklessAt":8}}
         },
         "nai": {
-          "job": "companion",
+          "job": "courtesan",
           "name": "Nai Utsuro",
           "race": "demon",
           "age": 143,
@@ -1494,8 +1606,8 @@
           "traits": ["Night Owl","Eager"],
           "style": "Elegant",
           "favColor": "black",
-          "fav": "cowgirl",
-          "dislike": "manual",
+          "fav": "oral_get",
+          "dislike": "manual_give",
           "lovers": "missionary",
           "backstory": "A demon from the tiny Village Hidden in the Void, somewhere in the Alliance villages across the eastern sea. Nai's eyes turn black when she looks hard at someone, and no jutsu works under that gaze. She looks ominous, smiles easily, and is friendlier than nearly anyone in the house.",
           "design": {
@@ -1519,7 +1631,7 @@
               "label": "Void robe",
               "style": "Elegant",
               "prompt": "a loose black cross-front robe with wide sleeves sitting open over a fitted dark mesh underlayer, a dark sash with deep-red ties and flowing black hakama-like pants",
-              "bonus": {"companion":1.25,"noble":1.1}
+              "bonus": {"courtesan":1.25,"noble":1.1}
             },
             "sp_nai": {
               "label": "Black silk kimono dress",
@@ -1529,7 +1641,9 @@
             }
           },
           "bonds": {"ebina":{"v":45,"kind":"comrades","note":"Old squadmates."}},
-          "jobs": {"likes":["companion","bath"],"dislikes":["security","maid"]}
+          "jobs": {"likes":["courtesan","bath"],"dislikes":["security","maid"]},
+          "body": {"bust":"medium","height":"average","figure":"slim"},
+          "unique": {"name":"Eyes of the Void","desc":"Her gaze unsettles troublemakers into good behavior.","fx":{"security":10,"moodDelta":0.85}}
         },
         "ebina": {
           "job": "dancer",
@@ -1540,8 +1654,8 @@
           "traits": ["Ambitious","Exhibitionist"],
           "style": "Revealing",
           "favColor": "black",
-          "fav": "manual",
-          "dislike": "caress",
+          "fav": "manual_give",
+          "dislike": "kiss",
           "lovers": "doggy",
           "backstory": "A Leaf fundamentals specialist from the Alliance villages across the eastern sea who turns free time into an itinerary. Ebina shows plenty of skin without a second thought but almost never lets anyone see her eyes. She also reads a frankly alarming amount of romance fiction about men.",
           "design": {
@@ -1571,7 +1685,9 @@
           },
           "bonds": {"nai":{"v":45,"kind":"comrades","note":"Old squadmates."},"juju":{"v":40,"note":"Ebina just redirects Juju into the next drill."}},
           "keepOn": {"item":"her opaque round black sunglasses","trust":90},
-          "jobs": {"likes":["dancer","madame"],"dislikes":["security"]}
+          "jobs": {"likes":["dancer","madame"],"dislikes":["security"]},
+          "body": {"bust":"medium","height":"tall","figure":"athletic"},
+          "unique": {"name":"Planned Itinerary","desc":"She plans her time perfectly and recovers well.","fx":{"energyRec":1.1,"jobBonus":{"dancer":1.1}}}
         }
       }
     },
@@ -1579,7 +1695,7 @@
       "label": "Zelda",
       "characters": {
         "zelda": {
-          "job": "companion",
+          "job": "courtesan",
           "name": "Princess Zelda",
           "race": "elf",
           "age": 128,
@@ -1587,7 +1703,7 @@
           "traits": ["Elegant","Loyal"],
           "style": "Elegant",
           "favColor": "lavender",
-          "fav": "caress",
+          "fav": "kiss",
           "dislike": "doggy",
           "lovers": "missionary",
           "backstory": "The princess of a kingdom of seven sages beyond the western mountains, whose realm once fell under a strange twilight. Zelda travels under a hooded cloak, carries herself like a queen anyway, and is studying how a business this odd stays solvent.",
@@ -1612,7 +1728,7 @@
               "label": "Royal gown",
               "style": "Elegant",
               "prompt": "a regal white and lavender gown with a royal-crest tabard, ornate gold shoulder pieces and long white gloves",
-              "bonus": {"companion":1.25,"noble":1.25}
+              "bonus": {"courtesan":1.25,"noble":1.25}
             },
             "sp_zelda": {
               "label": "Twilight cloak",
@@ -1622,7 +1738,9 @@
             }
           },
           "bonds": {"midna":{"v":40,"note":"An unlikely alliance from the twilight days."},"nabooru":{"v":25,"note":"Allies from the old kingdom."}},
-          "jobs": {"likes":["companion","madame","dancer"],"dislikes":["bartender","maid"]}
+          "jobs": {"likes":["courtesan","madame","dancer"],"dislikes":["bartender","maid"]},
+          "body": {"bust":"medium","height":"tall","figure":"slim"},
+          "unique": {"name":"Wisdom","desc":"A princess's sharp mind and graceful bearing.","fx":{"classBonus":{"noble":1.2},"skillGain":1.1}}
         },
         "midna": {
           "job": "courtesan",
@@ -1635,7 +1753,7 @@
           "favColor": "teal",
           "fav": "cowgirl",
           "dislike": "missionary",
-          "lovers": "oral",
+          "lovers": "oral_give",
           "backstory": "The rightful queen of a realm of twilight, Midna spent a long stretch cursed into a tiny imp and enjoyed none of it. Back in her true form, she is tall, imperious and wickedly amused by everything, Sam very much included.",
           "design": {
             "build": "tall and willowy",
@@ -1668,7 +1786,9 @@
             }
           },
           "bonds": {"zelda":{"v":40,"note":"An unlikely alliance from the twilight days."}},
-          "jobs": {"likes":["courtesan","reception"],"dislikes":["maid","security"]}
+          "jobs": {"likes":["courtesan","promoter"],"dislikes":["maid","security"]},
+          "body": {"bust":"medium","height":"tall","figure":"slim"},
+          "unique": {"name":"Twilight Mischief","desc":"Playful and magnetic, with a knack for getting what she wants.","fx":{"appeal":4,"propRate":1.15}}
         },
         "malon": {
           "job": "bartender",
@@ -1681,7 +1801,7 @@
           "favColor": "red",
           "fav": "missionary",
           "dislike": "doggy",
-          "lovers": "caress",
+          "lovers": "kiss",
           "backstory": "A rancher from a kingdom of seven sages beyond the western mountains who sings to her horses and has opinions about milk. Malon came to sell her family's dairy to the house bar and ended up running it.",
           "design": {
             "build": "curvy",
@@ -1713,7 +1833,9 @@
               "bonus": {"dancer":1.15,"merchant":1.15}
             }
           },
-          "jobs": {"likes":["bartender","companion"],"dislikes":["bath"]}
+          "jobs": {"likes":["bartender","courtesan"],"dislikes":["bath"]},
+          "body": {"bust":"large","height":"average","figure":"curvy"},
+          "unique": {"name":"Lon Lon Songs","desc":"Her rancher's songs cheer a room.","fx":{"jobBonus":{"bartender":1.15},"moodRest":4}}
         },
         "great_fairy": {
           "job": "bath",
@@ -1724,9 +1846,9 @@
           "traits": ["Exhibitionist","Elegant"],
           "style": "Revealing",
           "favColor": "magenta",
-          "fav": "paizuri",
+          "fav": "breast_give",
           "dislike": "doggy",
-          "lovers": "cowgirl",
+          "lovers": "breast_get",
           "backstory": "A great fairy who used to live in a healing fountain and grant weary travelers their strength back. She has moved into the bathhouse, which she considers a fountain with better gossip, and her laugh echoes off the tiles.",
           "design": {
             "build": "very tall and voluptuous",
@@ -1753,7 +1875,9 @@
             },
             "sp_great_fairy": {"label":"Petal gown","style":"Elegant","prompt":"a sheer gown woven from flower petals and ivy","bonus":{"noble":1.25,"courtesan":1.15}}
           },
-          "jobs": {"likes":["bath","courtesan"],"dislikes":["reception"]}
+          "jobs": {"likes":["bath","courtesan"],"dislikes":["promoter"]},
+          "body": {"bust":"huge","height":"tall","figure":"curvy"},
+          "unique": {"name":"Fountain's Blessing","desc":"Her bathwater restores weary guests.","fx":{"energyRec":1.2,"jobBonus":{"bath":1.2}}}
         },
         "nabooru": {
           "job": "security",
@@ -1765,7 +1889,7 @@
           "style": "Exotic",
           "favColor": "white",
           "fav": "cowgirl",
-          "dislike": "caress",
+          "dislike": "kiss",
           "lovers": "doggy",
           "backstory": "A desert warrior-thief and sage from a clan of women, Nabooru only ever stole from people who deserved it. She says the house security job is a vacation. Nobody has tried her.",
           "design": {
@@ -1799,7 +1923,9 @@
             }
           },
           "bonds": {"zelda":{"v":25,"note":"Allies from the old kingdom."}},
-          "jobs": {"likes":["security","courtesan"],"dislikes":["maid"]}
+          "jobs": {"likes":["security","courtesan"],"dislikes":["maid"]},
+          "body": {"bust":"large","height":"tall","figure":"athletic"},
+          "unique": {"name":"Thief's Pride","desc":"She can spot a hustle a mile away.","fx":{"security":12,"classBonus":{"adventurer":1.1}}}
         }
       }
     },
@@ -1816,7 +1942,7 @@
           "style": "Sporty",
           "favColor": "green",
           "fav": "cowgirl",
-          "dislike": "manual",
+          "dislike": "manual_give",
           "lovers": "missionary",
           "backstory": "A swordswoman of the open plains from the warring continents beyond the southern straits, Lyndis turned down a noble title once and would do it again. She hates being cooped up, which is why she patrols the roof.",
           "design": {
@@ -1846,10 +1972,12 @@
               "label": "Lady of the plains",
               "style": "Elegant",
               "prompt": "a flowing pale green silk gown with gold embroidery",
-              "bonus": {"noble":1.25,"companion":1.15}
+              "bonus": {"noble":1.25,"courtesan":1.15}
             }
           },
-          "jobs": {"likes":["security","bartender"],"dislikes":["reception"]}
+          "jobs": {"likes":["security","bartender"],"dislikes":["promoter"]},
+          "body": {"bust":"medium","height":"average","figure":"athletic"},
+          "unique": {"name":"Plains Swordswoman","desc":"A restless swordswoman who never tires of patrol.","fx":{"security":12,"maxEnergy":5}}
         },
         "rhea": {
           "job": "madame",
@@ -1862,7 +1990,7 @@
           "favColor": "white",
           "fav": "missionary",
           "dislike": "doggy",
-          "lovers": "caress",
+          "lovers": "kiss",
           "backstory": "Once the archbishop of a great church in the warring continents beyond the southern straits, and something far older than any archbishop. Rhea is serene, maternal and terrifying in equal measure. She claims she is here to tend the faithful.",
           "design": {
             "build": "tall, curvy, and statuesque",
@@ -1891,11 +2019,13 @@
               "label": "Garden dress",
               "style": "Elegant",
               "prompt": "a simple flowing white dress with fresh flowers in her hair",
-              "bonus": {"companion":1.2,"noble":1.15}
+              "bonus": {"courtesan":1.2,"noble":1.15}
             }
           },
           "bonds": {"manuela":{"v":20,"note":"Rhea keeps her employed. Manuela keeps her out of the wine."}},
-          "jobs": {"likes":["madame","maid","bath"],"dislikes":["bartender"]}
+          "jobs": {"likes":["madame","maid","bath"],"dislikes":["bartender"]},
+          "body": {"bust":"large","height":"tall","figure":"curvy"},
+          "unique": {"name":"Serene Presence","desc":"Her calm authority settles the whole floor.","fx":{"rep":1.2,"jobBonus":{"madame":1.15}}}
         },
         "manuela": {
           "job": "dancer",
@@ -1906,8 +2036,8 @@
           "traits": ["Party Animal","Romantic"],
           "style": "Elegant",
           "favColor": "orange",
-          "fav": "paizuri",
-          "dislike": "caress",
+          "fav": "breast_give",
+          "dislike": "kiss",
           "lovers": "missionary",
           "backstory": "A former opera diva and academy physician from the warring continents beyond the southern straits, Manuela is on the hunt for a husband and has a standing order at the bar. She can still bring a full house to tears with one aria.",
           "design": {
@@ -1937,11 +2067,13 @@
               "label": "Physician's coat",
               "style": "Elegant",
               "prompt": "a white physician's coat over a fitted low-cut black dress",
-              "bonus": {"bath":1.2,"companion":1.15}
+              "bonus": {"bath":1.2,"courtesan":1.15}
             }
           },
           "bonds": {"rhea":{"v":20,"note":"Old employer."}},
-          "jobs": {"likes":["dancer","bartender"],"dislikes":["maid"]}
+          "jobs": {"likes":["dancer","bartender"],"dislikes":["maid"]},
+          "body": {"bust":"large","height":"average","figure":"curvy"},
+          "unique": {"name":"Aria","desc":"A diva's voice and entrance.","fx":{"jobBonus":{"dancer":1.2},"appeal":3}}
         },
         "lethe": {
           "job": "security",
@@ -1980,13 +2112,15 @@
               "prompt": "a sleeveless orange and brown tunic with a waist wrap and arm guards",
               "bonus": {"security":1.3,"adventurer":1.2}
             },
-            "sp_lethe": {"label":"Moonlit silks","style":"Exotic","prompt":"a deep purple silk wrap dress","bonus":{"companion":1.15,"noble":1.1}}
+            "sp_lethe": {"label":"Moonlit silks","style":"Exotic","prompt":"a deep purple silk wrap dress","bonus":{"courtesan":1.15,"noble":1.1}}
           },
           "bonds": {"panne":{"v":30,"note":"Two shapeshifters who recognize each other."}},
-          "jobs": {"likes":["security","courtesan","madame"],"dislikes":["maid","bath"]}
+          "jobs": {"likes":["security","courtesan","madame"],"dislikes":["maid","bath"]},
+          "body": {"bust":"medium","height":"average","figure":"athletic"},
+          "unique": {"name":"Laguz Guard","desc":"A warrior's ferocity at the door.","fx":{"security":14}}
         },
         "panne": {
-          "job": "companion",
+          "job": "courtesan",
           "name": "Panne",
           "race": "beastkin",
           "sub": "rabbit",
@@ -1996,7 +2130,7 @@
           "style": "Exotic",
           "favColor": "white",
           "fav": "doggy",
-          "dislike": "caress",
+          "dislike": "kiss",
           "lovers": "cowgirl",
           "backstory": "The last of a rabbit shapeshifter people from the warring continents beyond the southern straits, Panne trusts very few humans and says so. The ones she does trust, she would die for.",
           "design": {
@@ -2020,12 +2154,14 @@
               "label": "Taguel garb",
               "style": "Exotic",
               "prompt": "a fitted dark bodysuit with white fur trim, a short tabard and fur boots",
-              "bonus": {"companion":1.2,"adventurer":1.2}
+              "bonus": {"courtesan":1.2,"adventurer":1.2}
             },
             "sp_panne": {"label":"Moon festival dress","style":"Elegant","prompt":"a white and silver fur-trimmed gown","bonus":{"noble":1.2,"courtesan":1.15}}
           },
           "bonds": {"lethe":{"v":30,"note":"Two shapeshifters who recognize each other."}},
-          "jobs": {"likes":["companion","security"],"dislikes":["reception"]}
+          "jobs": {"likes":["courtesan","security"],"dislikes":["promoter"]},
+          "body": {"bust":"small","height":"tall","figure":"athletic"},
+          "unique": {"name":"Guardian's Loyalty","desc":"Slow to trust, but fiercely devoted once she does.","fx":{"trustGain":1.15,"security":8}}
         }
       }
     },
@@ -2033,15 +2169,16 @@
       "label": "Wuthering Waves",
       "characters": {
         "jinhsi": {
-          "job": "companion",
+          "job": "courtesan",
           "name": "Jinhsi",
-          "race": "dragonkin",
+          "race": "beastkin",
+          "sub": "dragon",
           "age": 114,
           "personality": "Calm and elegant",
           "traits": ["Elegant","Loyal"],
           "style": "Elegant",
           "favColor": "gold",
-          "fav": "caress",
+          "fav": "kiss",
           "dislike": "doggy",
           "lovers": "missionary",
           "backstory": "The dragon-blooded Magistrate of a great walled city in the sea-trade cities of the far east coast, Jinhsi carries the weight of her people with perfect composure. She came west on a diplomatic visit and keeps finding reasons not to leave.",
@@ -2066,7 +2203,7 @@
               "label": "Magistrate's robes",
               "style": "Elegant",
               "prompt": "high-collared narrow black halter top trimmed in gold, white teal sashes, high waisted dark shorts, and sleek thigh-high white boots",
-              "bonus": {"companion":1.25,"noble":1.25}
+              "bonus": {"courtesan":1.25,"noble":1.25}
             },
             "sp_jinhsi": {
               "label": "Spring festival qipao",
@@ -2076,10 +2213,16 @@
             }
           },
           "bonds": {"hsin":{"v":35,"note":"Two guardians of the same coast."}},
-          "jobs": {"likes":["companion","madame","dancer"],"dislikes":["bartender"]}
+          "jobs": {"likes":["courtesan","madame","dancer"],"dislikes":["bartender"]},
+          "body": {"bust":"medium","height":"short","figure":"slim"},
+          "unique": {
+            "name": "Magistrate's Bearing",
+            "desc": "A magistrate's authority impresses nobles and settles the house.",
+            "fx": {"classBonus":{"noble":1.2},"rep":1.1}
+          }
         },
         "carlotta": {
-          "job": "companion",
+          "job": "courtesan",
           "name": "Carlotta Montelli",
           "race": "human",
           "age": 26,
@@ -2088,14 +2231,14 @@
           "style": "Elegant",
           "favColor": "silver",
           "fav": "cowgirl",
-          "dislike": "paizuri",
-          "lovers": "missionary",
+          "dislike": "breast_give",
+          "lovers": "oral_get",
           "backstory": "The second daughter of a powerful merchant family from the sea-trade cities of the far east coast, Carlotta collects art, settles disputes with an ornate pistol, and treats Sam's business as an investment she is still evaluating.",
           "design": {
-            "build": "slender, refined, and petite",
+            "build": "slender, refined, and short",
             "hairStyle": "long and elegant",
             "hairColor": "silver",
-            "eyes": "light teal", 
+            "eyes": "light teal",
             "skin": "fair",
             "features": "thin magenta headband and large ribbons"
           },
@@ -2112,7 +2255,7 @@
               "label": "Montelli finery",
               "style": "Elegant",
               "prompt": "a short, white, sleeveless  flowing dress with a high neckline, a vibrant magenta-colored cape with teal lining, black gloves, and thigh-high black boots with magenta stockings",
-              "bonus": {"companion":1.25,"merchant":1.25}
+              "bonus": {"courtesan":1.25,"merchant":1.25}
             },
             "sp_carlotta": {
               "label": "Gallery gown",
@@ -2121,7 +2264,13 @@
               "bonus": {"noble":1.25,"courtesan":1.15}
             }
           },
-          "jobs": {"likes":["companion","madame"],"dislikes":["maid","bartender"]}
+          "jobs": {"likes":["courtesan","madame"],"dislikes":["maid","bartender"]},
+          "body": {"bust":"small","height":"short","figure":"slim"},
+          "unique": {
+            "name": "Merchant's Pistol",
+            "desc": "A shrewd negotiator with a decorative but credible deterrent.",
+            "fx": {"classBonus":{"merchant":1.2},"security":6}
+          }
         },
         "hsin": {
           "job": "dancer",
@@ -2135,7 +2284,7 @@
           "favColor": "gold",
           "fav": "cowgirl",
           "dislike": "missionary",
-          "lovers": "caress",
+          "lovers": "kiss",
           "backstory": "The Heart Moon Fox, an ancient guardian spirit of a mountain city in the sea-trade cities of the far east coast, taking a mortal-sized shape for a while. Hsin dances under moonlight and answers questions with riddles.",
           "design": {
             "build": "tall, voluptuous,and graceful",
@@ -2163,7 +2312,548 @@
             "sp_hsin": {"label":"Moonlit silk","style":"Exotic","prompt":"a sheer white and gold silk dancing dress","bonus":{"courtesan":1.15,"dancer":1.15}}
           },
           "bonds": {"jinhsi":{"v":35,"note":"Two guardians of the same coast."}},
-          "jobs": {"likes":["dancer","companion"],"dislikes":["reception"]}
+          "jobs": {"likes":["dancer","courtesan"],"dislikes":["promoter"]},
+          "body": {"bust":"large","height":"tall","figure":"curvy"},
+          "unique": {
+            "name": "Moonlit Riddles",
+            "desc": "She dances under moonlight and enchants the wealthy.",
+            "fx": {"jobBonus":{"dancer":1.2},"classBonus":{"noble":1.1}}
+          }
+        },
+        "cartethyia": {
+          "job": "dancer",
+          "name": "Cartethyia",
+          "race": "angel",
+          "age": 412,
+          "personality": "Calm and elegant",
+          "traits": ["Elegant","Romantic"],
+          "style": "Elegant",
+          "favColor": "sky blue",
+          "fav": "kiss",
+          "dislike": "doggy",
+          "lovers": "missionary",
+          "backstory": "An angel of the tide from the sea-trade cities of the far east coast, Cartethyia has spent centuries as the voice that calms storms for fishing fleets. She sings in a clear, unhurried voice, carries a slender rapier she rarely draws, and is quietly overwhelmed by a city that never stops talking. She shares a name and an old, difficult history with the red-winged sovereign who sometimes walks beside her.",
+          "design": {
+            "build": "slender and graceful",
+            "hairStyle": "very long, loosely flowing",
+            "hairColor": "light blonde",
+            "eyes": "soft sea-blue",
+            "skin": "fair",
+            "features": "pointy elf ears and a pale blue laurel halo"
+          },
+          "under": "silk",
+          "underColor": "white",
+          "stats": {"beauty":74,"charm":55,"refinement":66,"stamina":45,"strength":30,"agility":58},
+          "tech": {"service":35,"dance":55,"bar":10,"combat":45,"manage":35},
+          "actSkill": 20,
+          "popularity": 12,
+          "lewd": 18,
+          "trust": 26,
+          "outfits": {
+            "sig_cartethyia": {
+              "label": "Tide-singer's gown",
+              "style": "Elegant",
+              "prompt": "short white vestments over a short, black dress, completely open chest, with blue gradient fabric flowing behind her",
+              "bonus": {"dancer":1.25,"noble":1.15}
+            },
+            "sp_cartethyia": {
+              "label": "Moonwater veils",
+              "style": "Exotic",
+              "prompt": "layers of translucent pale-blue veils over a fitted white dress, tiny pearls in her hair",
+              "bonus": {"noble":1.2,"courtesan":1.15}
+            }
+          },
+          "bonds": {"fleurdelys":{"v":15,"note":"Two names, one history, and very little to say to each other so far."}},
+          "jobs": {"likes":["dancer","attendant"],"dislikes":["security"]},
+          "body": {"bust":"small","height":"short","figure":"slim"},
+          "unique": {
+            "name": "Storm-Stilling Song",
+            "desc": "Her singing soothes a room, steadying moods and lifting her dancing.",
+            "fx": {"jobBonus":{"dancer":1.2},"moodDelta":0.85}
+          }
+        },
+        "fleurdelys": {
+          "job": "security",
+          "name": "Fleurdelys",
+          "race": "demon",
+          "age": 430,
+          "personality": "Proud and sharp-tongued",
+          "traits": ["Tough","Ambitious"],
+          "style": "Revealing",
+          "favColor": "crimson",
+          "fav": "doggy",
+          "dislike": "kiss",
+          "lovers": "cowgirl",
+          "backstory": "A crimson-winged sovereign from the far east coast's storm-wracked south, Fleurdelys is what remains when a gentle voice learns to hold a spear. She is regal, impatient, and aware that every room she enters is a battlefield with better decorations. She is not fond of the tide-singer who shares her name; she is very fond of a spirited argument and a strong drink.",
+          "design": {
+            "build": "tall and statuesque",
+            "hairStyle": "long flowing with a high crown braid",
+            "hairColor": "blonde with a subtle soft-blue gradient",
+            "eyes": "cold blue",
+            "skin": "fair",
+            "features": "a long golden horn and a crystal-blue crown of thorns"
+          },
+          "under": "lace",
+          "underColor": "black",
+          "stats": {"beauty":78,"charm":52,"refinement":58,"stamina":70,"strength":62,"agility":60},
+          "tech": {"service":30,"dance":30,"bar":25,"combat":70,"manage":40},
+          "actSkill": 30,
+          "popularity": 14,
+          "lewd": 40,
+          "trust": 18,
+          "outfits": {
+            "sig_fleurdelys": {
+              "label": "Martyr's gown",
+              "style": "Revealing",
+              "prompt": "short white vestments over a very short black dress, completely open chest, with blue  fabric flowing behind her",
+              "bonus": {"security":1.35,"adventurer":1.15}
+            },
+            "sp_fleurdelys": {
+              "label": "Court navy",
+              "style": "Revealing",
+              "prompt": "a deep blue silk gown with a high slit, gold jewelry and a sweeping black train",
+              "bonus": {"noble":1.25,"courtesan":1.2}
+            }
+          },
+          "bonds": {"cartethyia":{"v":15,"note":"Two names, one history, and very little to say to each other so far."}},
+          "jobs": {"likes":["security","courtesan"],"dislikes":["maid","dancer"]},
+          "body": {"bust":"huge","height":"tall","figure":"curvy"},
+          "unique": {
+            "name": "Sovereign's Spear",
+            "desc": "A commanding presence that cows rowdy clients and gives her real security muscle.",
+            "fx": {"security":15,"jobBonus":{"security":1.1}}
+          }
+        }
+      }
+    },
+    "pokemon": {
+      "label": "Pokémon",
+      "characters": {
+        "sabrina": {
+          "job": "security",
+          "name": "Sabrina",
+          "race": "human",
+          "age": 31,
+          "personality": "Mysterious and aloof",
+          "traits": ["Tough","Night Owl"],
+          "style": "Exotic",
+          "favColor": "purple",
+          "fav": "manual_give",
+          "dislike": "doggy",
+          "lovers": "missionary",
+          "backstory": "The psychic Gym Leader of Saffron City, Sabrina grew up able to bend spoons and read minds, and learned early that most people prefer you stay quiet about it. She is deadpan, precise and secretly very fond of the dolls she collects. She came to Hollowmere because the street hums with so many unspoken thoughts that, for once, someone can help with them.",
+          "design": {
+            "build": "slender",
+            "hairStyle": "long, straight and dark",
+            "hairColor": "dark teal-black",
+            "eyes": "violet",
+            "skin": "fair",
+            "features": "a calm, unblinking gaze and a faint smile that never quite reaches her eyes"
+          },
+          "under": "silk",
+          "underColor": "purple",
+          "stats": {"beauty":70,"charm":50,"refinement":65,"stamina":50,"strength":30,"agility":55},
+          "tech": {"service":35,"dance":20,"bar":15,"combat":60,"manage":45},
+          "actSkill": 20,
+          "popularity": 10,
+          "lewd": 24,
+          "trust": 18,
+          "outfits": {
+            "sig_sabrina": {
+              "label": "Psychic robes",
+              "style": "Exotic",
+              "prompt": "a fitted dark red and violet bodysuit with a flowing high-collared cape and a hairband",
+              "bonus": {"security":1.25,"merchant":1.1}
+            },
+            "sp_sabrina": {
+              "label": "Seer's evening wear",
+              "style": "Elegant",
+              "prompt": "a deep plum silk dress with long sleeves and a crescent moon brooch",
+              "bonus": {"noble":1.2,"courtesan":1.15}
+            }
+          },
+          "bonds": {"cynthia":{"v":30,"note":"Champion and Gym Leader; mutual, wary respect."}},
+          "jobs": {"likes":["security","madame"],"dislikes":["dancer","bartender"]},
+          "body": {"bust":"medium","height":"average","figure":"slim"},
+          "unique": {
+            "name": "Mind Reader",
+            "desc": "She reads trouble before it starts, strengthening security and settling pushy clients.",
+            "fx": {"security":12,"classBonus":{"noble":1.1}}
+          }
+        },
+        "cynthia": {
+          "job": "promoter",
+          "name": "Cynthia",
+          "race": "human",
+          "age": 33,
+          "personality": "Calm and elegant",
+          "traits": ["Elegant","Ambitious"],
+          "style": "Elegant",
+          "favColor": "black",
+          "fav": "kiss",
+          "dislike": "manual_give",
+          "lovers": "cowgirl",
+          "backstory": "The reigning Champion of Sinnoh, Cynthia has fought, studied and traveled for years chasing legends, and has never once lost her composure while doing it. She digs up ruins in her spare time, is quietly obsessed with old myths, and treats Hollowmere as a fascinating new excavation site. Everyone who meets her seems to want to be near her afterward.",
+          "design": {
+            "build": "tall and graceful",
+            "hairStyle": "very long and sleek, falling over one eye",
+            "hairColor": "platinum blonde",
+            "eyes": "grey",
+            "skin": "fair",
+            "features": "a confident, composed face and one eye hidden behind a fall of hair"
+          },
+          "under": "silk",
+          "underColor": "black",
+          "stats": {"beauty":80,"charm":66,"refinement":72,"stamina":55,"strength":40,"agility":55},
+          "tech": {"service":35,"dance":25,"bar":15,"combat":60,"manage":55},
+          "actSkill": 25,
+          "popularity": 20,
+          "lewd": 24,
+          "trust": 20,
+          "outfits": {
+            "sig_cynthia": {
+              "label": "Champion's coat",
+              "style": "Elegant",
+              "prompt": "a long black coat with a fur-trimmed collar over a fitted black dress, black boots and a gold hair ornament",
+              "bonus": {"promoter":1.3,"noble":1.2}
+            },
+            "sp_cynthia": {
+              "label": "Excavation gear",
+              "style": "Sporty",
+              "prompt": "a tailored khaki field jacket, fitted trousers, gloves and a trowel at her belt",
+              "bonus": {"adventurer":1.25,"merchant":1.1}
+            }
+          },
+          "bonds": {
+            "sabrina": {"v":30,"note":"Champion and Gym Leader; mutual, wary respect."},
+            "juniper": {"v":35,"kind":"mentor","note":"Cynthia shares ruins and legends with the professor, who loves every story."}
+          },
+          "jobs": {"likes":["promoter","madame"],"dislikes":["maid","bartender"]},
+          "body": {"bust":"large","height":"tall","figure":"slim"},
+          "unique": {"name":"Champion's Aura","desc":"Her fame brings people to the door and keeps them impressed.","fx":{"promote":1.3,"rep":1.1}}
+        },
+        "juniper": {
+          "job": "attendant",
+          "name": "Professor Juniper",
+          "race": "human",
+          "age": 32,
+          "personality": "Bookish and curious",
+          "traits": ["Romantic","Loyal"],
+          "style": "Elegant",
+          "favColor": "green",
+          "fav": "massage_give",
+          "dislike": "doggy",
+          "lovers": "missionary",
+          "backstory": "The Unova region's leading Pokémon professor, Juniper is cheerful, brilliant and chronically late, with a lab coat pocket full of sticky notes. She treats everyone as a fascinating specimen to be understood, but she is far kinder than any scientist should be. Hollowmere has turned out to be an excellent field site, and the guests excellent at fieldwork.",
+          "design": {
+            "build": "curvy",
+            "hairStyle": "medium, loose and wavy",
+            "hairColor": "chestnut brown",
+            "eyes": "warm brown",
+            "skin": "fair",
+            "features": "a warm smile and a sticky note stuck to her sleeve"
+          },
+          "under": "plain",
+          "underColor": "white",
+          "stats": {"beauty":66,"charm":62,"refinement":60,"stamina":50,"strength":30,"agility":50},
+          "tech": {"service":40,"dance":15,"bar":10,"combat":15,"manage":55},
+          "actSkill": 20,
+          "popularity": 12,
+          "lewd": 22,
+          "trust": 24,
+          "outfits": {
+            "sig_juniper": {
+              "label": "Professor's lab coat",
+              "style": "Elegant",
+              "prompt": "a long white lab coat over a green blouse and a knee-length skirt, a bundle of notebooks in her arms",
+              "bonus": {"attendant":1.25,"merchant":1.1}
+            },
+            "sp_juniper": {
+              "label": "Field day outfit",
+              "style": "Sporty",
+              "prompt": "a casual green and white field jacket with a satchel, short skirt and hiking boots",
+              "bonus": {"adventurer":1.2,"commoner":1.15}
+            }
+          },
+          "bonds": {"cynthia":{"v":35,"note":"Cynthia shares ruins and legends with the professor, who loves every story."}},
+          "jobs": {"likes":["attendant","bath"],"dislikes":["security"]},
+          "body": {"bust":"large","height":"average","figure":"curvy"},
+          "unique": {
+            "name": "Gentle Researcher",
+            "desc": "Her warmth and patience put clients at ease, easing the workload for everyone around her.",
+            "fx": {"jobBonus":{"attendant":1.2},"actQuality":{"massage_give":1.1}}
+          }
+        }
+      }
+    },
+    "persona": {
+      "label": "Persona",
+      "characters": {
+        "margaret": {
+          "job": "attendant",
+          "name": "Margaret",
+          "race": "spirit",
+          "age": 400,
+          "personality": "Mysterious and aloof",
+          "traits": ["Elegant","Loyal"],
+          "style": "Elegant",
+          "favColor": "blue",
+          "fav": "massage_give",
+          "dislike": "doggy",
+          "lovers": "kiss",
+          "backstory": "An attendant of the Velvet Room, an elegant space between dream and reality, Margaret has guided countless guests along their journeys and watched every one of them leave. She is polite, composed and a little wistful, and fond of tea, small experiments and any sentence that begins with \"Would you like to...\". She is curious what it feels like to stay.",
+          "design": {
+            "build": "tall and slender",
+            "hairStyle": "short and neat, tucked under a cap",
+            "hairColor": "white-silver",
+            "eyes": "golden",
+            "skin": "pale",
+            "features": "a calm, courteous expression and a large leather-bound book at her side"
+          },
+          "under": "plain",
+          "underColor": "blue",
+          "stats": {"beauty":72,"charm":54,"refinement":70,"stamina":50,"strength":25,"agility":45},
+          "tech": {"service":35,"dance":15,"bar":15,"combat":20,"manage":45},
+          "actSkill": 20,
+          "popularity": 8,
+          "lewd": 18,
+          "trust": 18,
+          "outfits": {
+            "sig_margaret": {
+              "label": "Velvet attendant uniform",
+              "style": "Elegant",
+              "prompt": "a fitted deep-blue attendant uniform with a short cape, a peaked cap, white gloves and black boots",
+              "bonus": {"attendant":1.25,"noble":1.15}
+            },
+            "sp_margaret": {
+              "label": "Off-duty blue dress",
+              "style": "Elegant",
+              "prompt": "a simple knee-length pale blue dress, white gloves and a small silver pin",
+              "bonus": {"merchant":1.1,"courtesan":1.15}
+            }
+          },
+          "bonds": {"takemi":{"v":20,"note":"Margaret finds the doctor's medical stories fascinating."}},
+          "jobs": {"likes":["attendant","bath"],"dislikes":["dancer"]},
+          "body": {"bust":"medium","height":"tall","figure":"slim"},
+          "unique": {
+            "name": "Velvet Hospitality",
+            "desc": "Impeccable manners and a faint, soothing hum that keep guests calm and helps her tidy.",
+            "fx": {"jobBonus":{"attendant":1.2},"tidy":1.15}
+          }
+        },
+        "kashiwagi": {
+          "job": "courtesan",
+          "name": "Noriko Kashiwagi",
+          "race": "human",
+          "age": 31,
+          "personality": "Bold and flirtatious",
+          "traits": ["Exhibitionist","Romantic"],
+          "style": "Revealing",
+          "favColor": "pink",
+          "fav": "kiss",
+          "dislike": "manual_give",
+          "lovers": "cowgirl",
+          "backstory": "Noriko Kashiwagi has spent most of her thirties dressing for an entrance and waiting for a man who deserves it. She is vain, funny, a little dramatic and in no way cruel, with a laugh that makes strangers smile and a talent for turning a bad day into a great story. She came to Hollowmere on the rumor that the people here appreciate good taste.",
+          "design": {
+            "build": "slender and curvy",
+            "hairStyle": "long, glossy and carefully curled",
+            "hairColor": "dark brown",
+            "eyes": "brown",
+            "skin": "fair",
+            "features": "flawless makeup and a mole beneath one eye"
+          },
+          "under": "lace",
+          "underColor": "pink",
+          "stats": {"beauty":70,"charm":66,"refinement":40,"stamina":48,"strength":25,"agility":50},
+          "tech": {"service":30,"dance":25,"bar":20,"combat":5,"manage":25},
+          "actSkill": 25,
+          "popularity": 16,
+          "lewd": 48,
+          "trust": 22,
+          "outfits": {
+            "sig_kashiwagi": {
+              "label": "Statement dress",
+              "style": "Revealing",
+              "prompt": "a daring wine-red dress with a deep neckline, heels, large earrings and a fur stole",
+              "bonus": {"courtesan":1.25,"merchant":1.15}
+            },
+            "sp_kashiwagi": {
+              "label": "Cafe date outfit",
+              "style": "Cute",
+              "prompt": "a pastel cardigan over a fitted pink dress, a handbag and heeled shoes",
+              "bonus": {"commoner":1.2,"propose":1.1}
+            }
+          },
+          "bonds": {"kawakami":{"v":25,"note":"Old acquaintances who commiserate over men and rent."}},
+          "jobs": {"likes":["courtesan","dancer"],"dislikes":["maid","security"]},
+          "body": {"bust":"medium","height":"average","figure":"curvy"},
+          "unique": {
+            "name": "Fabulous Entrance",
+            "desc": "She turns every arrival into an event, which draws clients and lifts the house's tone.",
+            "fx": {"appeal":5,"classBonus":{"merchant":1.1}}
+          }
+        },
+        "kawakami": {
+          "job": "maid",
+          "name": "Sadayo Kawakami",
+          "race": "human",
+          "age": 26,
+          "personality": "Cheerful and teasing",
+          "traits": ["Eager","Loyal"],
+          "style": "Cute",
+          "favColor": "pink",
+          "fav": "massage_give",
+          "dislike": "doggy",
+          "lovers": "cowgirl",
+          "backstory": "Sadayo Kawakami was a hardworking teacher who also kept up a string of side jobs: a maid cafe, a hostess bar, and one regrettable stretch as a paid companion, to cover debts she had no right to be carrying. She is bubbly and tired, easily moved, and utterly convinced that effort is the only thing she can control. Hollowmere is the first place that pays well enough that she can finally stop running.",
+          "design": {
+            "build": "slender and curvy",
+            "hairStyle": "shoulder-length with side-swept bangs",
+            "hairColor": "light brown",
+            "eyes": "brown",
+            "skin": "fair",
+            "features": "a warm, tired smile and a small beauty mark beneath her lip"
+          },
+          "under": "lace",
+          "underColor": "pink",
+          "stats": {"beauty":68,"charm":66,"refinement":48,"stamina":55,"strength":25,"agility":55},
+          "tech": {"service":40,"dance":25,"bar":20,"combat":5,"manage":30},
+          "actSkill": 30,
+          "popularity": 14,
+          "lewd": 40,
+          "trust": 26,
+          "outfits": {
+            "sig_kawakami": {
+              "label": "Maid cafe outfit",
+              "style": "Cute",
+              "prompt": "a frilly black and white maid dress with a lace apron, a headband and knee-high stockings",
+              "bonus": {"maid":1.3,"commoner":1.15}
+            },
+            "sp_kawakami": {
+              "label": "Weekend dress",
+              "style": "Elegant",
+              "prompt": "a soft cream cardigan, a floral skirt and low heels with a small shoulder bag",
+              "bonus": {"noble":1.1,"courtesan":1.15}
+            }
+          },
+          "bonds": {
+            "kashiwagi": {"v":25,"note":"Old acquaintances who commiserate over men and rent."},
+            "takemi": {"v":30,"note":"The doctor patched her up after a long run of overtime."}
+          },
+          "jobs": {"likes":["maid","courtesan"],"dislikes":["security"]},
+          "body": {"bust":"medium","height":"average","figure":"curvy"},
+          "unique": {
+            "name": "Side-Job Veteran",
+            "desc": "Years of juggling jobs make her an energetic, adaptable worker with cheerful stamina.",
+            "fx": {"maxEnergy":12,"jobBonus":{"maid":1.2}}
+          }
+        },
+        "takemi": {
+          "job": "bath",
+          "name": "Tae Takemi",
+          "race": "human",
+          "age": 29,
+          "personality": "Laid-back and lazy",
+          "traits": ["Tough","Night Owl"],
+          "style": "Sporty",
+          "favColor": "teal",
+          "fav": "massage_give",
+          "dislike": "doggy",
+          "lovers": "oral_get",
+          "backstory": "Tae Takemi runs a back-alley clinic and a drip-feed of experimental medicines, and is the only doctor in the district who will see anyone, no questions asked. She is dry, blunt, a bit of a night owl and unfazed by blood, fever or anyone's vanity. She came to Hollowmere for the herbs, stayed for the tea, and has opinions about everybody's posture.",
+          "design": {
+            "build": "athletic",
+            "hairStyle": "short, wavy and tousled",
+            "hairColor": "dark brown",
+            "eyes": "dark grey",
+            "skin": "fair",
+            "features": "a cigarette tucked behind her ear and a tired half-smile"
+          },
+          "under": "sports",
+          "underColor": "black",
+          "stats": {"beauty":70,"charm":52,"refinement":50,"stamina":62,"strength":40,"agility":55},
+          "tech": {"service":45,"dance":10,"bar":15,"combat":25,"manage":45},
+          "actSkill": 30,
+          "popularity": 10,
+          "lewd": 36,
+          "trust": 20,
+          "outfits": {
+            "sig_takemi": {
+              "label": "Clinic coat",
+              "style": "Sporty",
+              "prompt": "an open white doctor's coat over a fitted black top, jeans, a stethoscope around her neck",
+              "bonus": {"bath":1.25,"commoner":1.15}
+            },
+            "sp_takemi": {
+              "label": "Night-off leathers",
+              "style": "Revealing",
+              "prompt": "a fitted black leather jacket over a plain top, tight jeans and boots",
+              "bonus": {"adventurer":1.2,"courtesan":1.15}
+            }
+          },
+          "bonds": {
+            "kawakami": {"v":30,"note":"The doctor patched her up after a long run of overtime."},
+            "margaret": {"v":20,"note":"Margaret finds the doctor's medical stories fascinating."}
+          },
+          "jobs": {"likes":["bath","attendant"],"dislikes":["dancer"]},
+          "body": {"bust":"medium","height":"average","figure":"athletic"},
+          "unique": {
+            "name": "Doctor's Hands",
+            "desc": "Expert, no-nonsense hands make her massages unusually effective and she recovers quickly.",
+            "fx": {"actQuality":{"massage_give":1.35},"energyRec":1.08}
+          }
+        },
+        "sae": {
+          "job": "madame",
+          "name": "Sae Niijima",
+          "race": "human",
+          "age": 29,
+          "personality": "Proud and sharp-tongued",
+          "traits": ["Ambitious","Tough"],
+          "style": "Elegant",
+          "favColor": "navy",
+          "fav": "manual_give",
+          "dislike": "doggy",
+          "lovers": "missionary",
+          "backstory": "A prosecutor with a reputation for never losing a case she's decided to win, Sae Niijima lives on strong coffee, long hours and the kind of control that exhausts people. She is exacting, fair and fiercely loyal to the family she raised, and she has begun to wonder what her life might look like if it had a day off. She is here on a sabbatical she insists is only to audit the books.",
+          "design": {
+            "build": "tall and lean",
+            "hairStyle": "short, side-parted bob",
+            "hairColor": "dark brown",
+            "eyes": "red-brown",
+            "skin": "fair",
+            "features": "a sharp, focused gaze and a faint line of fatigue she hides well"
+          },
+          "under": "silk",
+          "underColor": "navy",
+          "stats": {"beauty":72,"charm":52,"refinement":72,"stamina":50,"strength":30,"agility":45},
+          "tech": {"service":30,"dance":10,"bar":15,"combat":25,"manage":70},
+          "actSkill": 20,
+          "popularity": 12,
+          "lewd": 18,
+          "trust": 18,
+          "outfits": {
+            "sig_sae": {
+              "label": "Prosecutor's suit",
+              "style": "Elegant",
+              "prompt": "a tailored charcoal skirt suit with a crisp white blouse, a slim tie and sharp heels",
+              "bonus": {"madame":1.3,"merchant":1.2}
+            },
+            "sp_sae": {
+              "label": "Coffee-house blouse",
+              "style": "Elegant",
+              "prompt": "a loose cream blouse, dark slacks and her sleeves rolled up, a steaming coffee cup in her hand",
+              "bonus": {"noble":1.15,"courtesan":1.15}
+            }
+          },
+          "bonds": {"takemi":{"v":20,"note":"A prosecutor and an unlicensed doctor. They keep their distance on principle."}},
+          "jobs": {"likes":["madame","promoter"],"dislikes":["dancer","bartender"]},
+          "body": {"bust":"medium","height":"tall","figure":"slim"},
+          "unique": {
+            "name": "Cross-Examination",
+            "desc": "Nothing gets past her scrutiny; she runs a tight house and lifts its standing.",
+            "fx": {"jobBonus":{"madame":1.2},"rep":1.1}
+          }
         }
       }
     }

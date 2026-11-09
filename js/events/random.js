@@ -18,25 +18,41 @@ function evHaunt(h){
 const evImg = (k, fallback) => dynScene('ev_'+k, (EVT[k]||{}).image) || fallback;
 function pickRandomEvent(){ const opts = RANDOM_EVENTS.filter(e=>e.ok()); if(!opts.length) return null; const e = weighted(opts, e=>e.w); return ()=> e.ok() ? e.make() : null; }
 const anyW = f => S.workers.filter(f);
+// An outfit from the catalogue that fits her style and that she doesn't have yet (or any other if none fits).
+function eventOutfit(w){
+  const all = Object.keys(Object.assign({}, BASE_OUTFITS, SHOP_OUTFITS)).filter(k=>!WARDROBE[k].uniform && !WARDROBE[k].owner && !ownsOutfit(w,k));
+  const fit = all.filter(k=>WARDROBE[k].style===w.style);
+  const pool = fit.length ? fit : all; return pool.length ? pick(pool) : null;
+}
+// "Someone gave her an outfit" events (events.json outfit_market / outfit_regular / outfit_friend / outfit_made).
+function evOutfit(kind){
+  const w = pick(anyW(x=>eventOutfit(x))), k = eventOutfit(w), o = WARDROBE[k];
+  const mates = anyW(x=>x!==w && x.house===w.house), other = mates.length ? pick(mates) : null;
+  const V = {name:w.name, outfit:o.label, other: other ? other.name : 'a friend'}, key = 'outfit_'+kind;
+  return {title:ET(key,'title',V), who:w.id, scene:evImg(key,'casual'), text:ET(key,'text',V), choices:[
+    {label:ET(key,'keep','label',V), fx(){ w.owned.push(k); countUp(w,'gifts'); moodAdd(w, o.style===w.style ? 10 : 6); gainTrust(w, 1); return ET(key,'keep','res',V); }},
+    {label:ET(key,'share','label',V), fx(){ if(!S.houseWardrobe.includes(k)) S.houseWardrobe.push(k); moodAdd(w, 3); return ET(key,'share','res',V); }}]};
+}
+const OUTFIT_EVENTS = ['market','regular','friend','made'].map(kind => ({w:BAL.wardrobe.eventChance, ok:()=>anyW(x=>eventOutfit(x)).length>0 && (kind!=='friend' || S.workers.some(a=>S.workers.some(b=>a!==b && a.house===b.house))), make:()=>evOutfit(kind)}));
 const RANDOM_EVENTS = [
   {w:3, ok:()=>anyW(w=>w.mood<55 && w.job!=='rest').length>0, make(){
     const w = pick(anyW(x=>x.mood<55 && x.job!=='rest')), V = {name:w.name};
     return {title:ET('dayoff','title',V), who:w.id, scene:evImg('dayoff','casual'), text:ET('dayoff','text',V), choices:[
-      {label:ET('dayoff','yes','label',V), fx(){ w.energy=clamp(w.energy+30,0,maxEnergy(w)); w.mood=clamp(w.mood+10); w.trust=clamp(w.trust+5); return ET('dayoff','yes','res',V); }},
-      {label:ET('dayoff','no','label',V), fx(){ const soft = ['Warm and motherly','Shy but earnest','Laid-back and lazy'].includes(w.personality); w.trust=clamp(w.trust-(soft?3:6)); w.mood=clamp(w.mood-5); return ET('dayoff','no', soft?'resSoft':'res', V); }}]};
+      {label:ET('dayoff','yes','label',V), fx(){ w.energy=clamp(w.energy+30,0,maxEnergy(w)); moodAdd(w, 10); w.trust=clamp(w.trust+5); return ET('dayoff','yes','res',V); }},
+      {label:ET('dayoff','no','label',V), fx(){ const soft = ['Warm and motherly','Shy but earnest','Laid-back and lazy'].includes(w.personality); w.trust=clamp(w.trust-(soft?3:6)); moodAdd(w, -5); return ET('dayoff','no', soft?'resSoft':'res', V); }}]};
   }},
-  {w:2, ok:()=>S.rep>=20 && anyW(w=>w.stats.refinement>=45 && w.energy>=30).length>0, make(){
-    const w = weighted(anyW(x=>x.stats.refinement>=45 && x.energy>=30), x=>x.stats.refinement);
-    const pay = Math.round(150 + w.stats.refinement*3 + S.rep*2), V = {name:w.name, gold:fmt(pay)};
+  {w:2, ok:()=>S.rep>=20 && anyW(w=>s100(w.stats.refinement)>=45 && w.energy>=30).length>0, make(){
+    const w = weighted(anyW(x=>s100(x.stats.refinement)>=45 && x.energy>=30), x=>s100(x.stats.refinement));
+    const pay = Math.round(150 + s100(w.stats.refinement)*3 + S.rep*2), V = {name:w.name, gold:fmt(pay)};
     return {title:ET('noble','title',V), who:w.id, scene:evImg('noble','companion'), text:ET('noble','text',V), choices:[
       {label:ET('noble','ask','label',V), fx(){ if(w.lewd>=15 || w.trust>=30){ S.gold+=pay; w.popularity=clamp(w.popularity+5); w.energy=clamp(w.energy-25,0,maxEnergy(w)); S.rep=clamp(S.rep+2); return ET('noble','ask','res',V); } w.trust=clamp(w.trust+2); return ET('noble','ask','pass',V); }},
       {label:ET('noble','decline','label',V), fx(){ S.rep=clamp(S.rep-1); return ET('noble','decline','res',V); }}]};
   }},
   {w:2, ok:()=>S.flags.guild>=1 && anyW(w=>w.job!=='rest' && w.energy>=30).length>0, make(){
-    const w = weighted(anyW(x=>x.job!=='rest' && x.energy>=30), x=>x.stats.charm+x.popularity);
+    const w = weighted(anyW(x=>x.job!=='rest' && x.energy>=30), x=>s100(x.stats.charm)+x.popularity);
     const pay = Math.round(rnd(120,240) * (1+S.rep/150)), V = {name:w.name, gold:fmt(pay)};
     return {title:ET('guild','title',V), who:w.id, scene:evImg('guild','companion'), text:ET('guild','text',V), choices:[
-      {label:ET('guild','send','label',V), fx(){ S.gold+=pay; w.energy=clamp(w.energy-20,0,maxEnergy(w)); w.popularity=clamp(w.popularity+4); w.mood=clamp(w.mood+5); return ET('guild','send','res',V); }},
+      {label:ET('guild','send','label',V), fx(){ S.gold+=pay; w.energy=clamp(w.energy-20,0,maxEnergy(w)); w.popularity=clamp(w.popularity+4); moodAdd(w, 5); return ET('guild','send','res',V); }},
       {label:ET('guild','pass','label',V), fx(){ return ET('guild','pass','res',V); }}]};
   }},
   {w:2, ok:()=>S.week>=5 && !S.flags.taunt, make(){
@@ -66,28 +82,28 @@ const RANDOM_EVENTS = [
   }},
   {w:1.5, ok:()=>S.workers.some(a=>S.workers.some(b=>a!==b && a.house===b.house)), make(){
     const a = pick(S.workers.filter(x=>S.workers.some(y=>y!==x && y.house===x.house))), b = pick(S.workers.filter(y=>y!==a && y.house===a.house)), V = {name:a.name, other:b.name};
-    return {title:ET('friends','title',V), who:a.id, scene:evImg('friends','casual'), text:ET('friends','text',V), choices:[{label:ET('friends','ok','label',V), fx(){ a.mood=clamp(a.mood+8); b.mood=clamp(b.mood+8); addBond(a, b, 10); return ''; }}]};
+    return {title:ET('friends','title',V), who:a.id, scene:evImg('friends','casual'), text:ET('friends','text',V), choices:[{label:ET('friends','ok','label',V), fx(){ moodAdd(a, 8); moodAdd(b, 8); addBond(a, b, 10); return ''; }}]};
   }},
   {w:1.5, ok:()=>anyW(w=>w.trust>=60 && !ARCS[w.key]).length>0, make(){
     const w = pick(anyW(x=>x.trust>=60 && !ARCS[x.key])), V = {name:w.name};
-    return {title:ET('quiet','title',V), who:w.id, scene:evImg('quiet','sam_date'), text:ET('quiet','text',V), choices:[{label:ET('quiet','stay','label',V), fx(){ w.trust=clamp(w.trust+3); w.mood=clamp(w.mood+5); samStat('charm',1); return ET('quiet','stay','res',V); }}]};
+    return {title:ET('quiet','title',V), who:w.id, scene:evImg('quiet','sam_date'), text:ET('quiet','text',V), choices:[{label:ET('quiet','stay','label',V), fx(){ w.trust=clamp(w.trust+3); moodAdd(w, 5); samStat('charm',1); return ET('quiet','stay','res',V); }}]};
   }},
   {w:2.5, ok:()=>anyW(underpaid).length>0, make(){
     const w = pick(anyW(underpaid)); const nw = wageFor(w), V = {name:w.name, wage:fmt(w.wage), newWage:fmt(nw)};
     return {title:ET('raise','title',V), who:w.id, scene:evImg('raise','portrait'), text:ET('raise','text',V), choices:[
-      {label:ET('raise','agree','label',V), fx(){ w.wage=nw; w.trust=clamp(w.trust+3); w.mood=clamp(w.mood+5); return ET('raise','agree','res',V); }},
-      {label:ET('raise','refuse','label',V), fx(){ const pr = ['Proud and sharp-tongued','Hot-blooded and competitive'].includes(w.personality) ? 2 : 1; w.mood=clamp(w.mood-8*pr); w.trust=clamp(w.trust-4*pr); return ET('raise','refuse', pr>1?'resProud':'res', V); }}]};
+      {label:ET('raise','agree','label',V), fx(){ w.wage=nw; w.trust=clamp(w.trust+3); moodAdd(w, 5); return ET('raise','agree','res',V); }},
+      {label:ET('raise','refuse','label',V), fx(){ const pr = ['Proud and sharp-tongued','Hot-blooded and competitive'].includes(w.personality) ? 2 : 1; moodAdd(w, -(8*pr)); w.trust=clamp(w.trust-4*pr); return ET('raise','refuse', pr>1?'resProud':'res', V); }}]};
   }}
-];
+].concat(OUTFIT_EVENTS);
 // she asks for a raise once her skills have outgrown her wage
 function underpaid(w){ const B = BAL.wages; return !isFree(w) && w.wage < wageFor(w) * ((has(w,'Ambitious')||has(w,'Greedy')) ? B.askAtAmbitious : B.askAt); }
 function evIncident(h){
   const sec = S.workers.find(w=>w.house===h.id && w.job==='security'), c = ri(60,120), V = {house:h.name, guard: sec ? sec.name : '', gold:fmt(c)};
   const ch = [
-    {label:ET('incident','sam','label',V), fx(){ if(S.sam.strength + S.sam.charm/2 + rnd(0,60) > 60){ h.rep=clamp(h.rep+2); samStat('strength',1); return ET('incident','sam','win',V); } S.sam.energy=Math.max(0,S.sam.energy-30); h.rep=clamp(h.rep-1); return ET('incident','sam','lose',V); }},
+    {label:ET('incident','sam','label',V), fx(){ if(S.sam.strength + S.sam.charm/2 + rnd(0,60) > 60){ repAdd(h, 2); samStat('strength',1); return ET('incident','sam','win',V); } S.sam.energy=Math.max(0,S.sam.energy-30); h.rep=clamp(h.rep-1); return ET('incident','sam','lose',V); }},
     {label:ET('incident','pay','label',V), fx(){ S.gold-=c; return ET('incident','pay','res',V); }}
   ];
-  if(sec) ch.unshift({label:ET('incident','guard','label',V), fx(){ sec.trust=clamp(sec.trust+3); h.rep=clamp(h.rep+1); return ET('incident','guard','res',V); }});
+  if(sec) ch.unshift({label:ET('incident','guard','label',V), fx(){ sec.trust=clamp(sec.trust+3); repAdd(h, 1); return ET('incident','guard','res',V); }});
   return {title:ET('incident','title',V), who:sec?sec.id:null, scene:'job_security', text:ET('incident','text',V), choices:ch};
 }
 // How keen she is to stay (0-1), from trust and mood. See data/balance.json → renewal.
@@ -104,14 +120,14 @@ function evRenew(w){
   const pay = market > w.wage ? ` Her going rate has risen to ${fmt(market)}/wk (she's on ${fmt(w.wage)}/wk now).` : '';
   const sign = (wage, f, od, extra) => () => {
     if(S.gold < f){ w.contract=4; return 'You can\'t afford it right now. She agrees to stay on for 4 more weeks while you sort it out.'; }
-    if(Math.random() >= od){ w.contract=2; w.mood=clamp(w.mood-3); return `${w.name} shakes her head. "I don't think so." (She'll stay 2 more weeks. Spend time with her, or make a better offer.)`; }
+    if(Math.random() >= od){ w.contract=2; moodAdd(w, -3); return `${w.name} shakes her head. "I don't think so." (She'll stay 2 more weeks. Spend time with her, or make a better offer.)`; }
     S.gold -= f; w.wage = wage; w.contract = 12; if(extra) extra();
     return `${w.name} signs again${f?'':', and waves off the bonus'}. (${fmt(wage)}/wk for 12 weeks${f?`, −${fmt(f)}`:''})`;
   };
   const oddsTxt = o => o < 1 ? `, ~${Math.round(o*100)}% she agrees` : '';
   return {title:'Contract Renewal', who:w.id, scene:'portrait', text:`${w.name}'s contract is up.${pay}\n\n${mood}`, choices:[
     {label:`Renew at ${fmt(market)}/wk (${fee?fmt(fee)+' bonus':'free'}${oddsTxt(odds)})`, fx: sign(market, fee, odds)},
-    {label:`Offer a raise: ${fmt(raised)}/wk (${fee2?fmt(fee2)+' bonus':'free'}${oddsTxt(odds2)})`, fx: sign(raised, fee2, odds2, ()=>{ w.trust=clamp(w.trust+4); w.mood=clamp(w.mood+4); })},
+    {label:`Offer a raise: ${fmt(raised)}/wk (${fee2?fmt(fee2)+' bonus':'free'}${oddsTxt(odds2)})`, fx: sign(raised, fee2, odds2, ()=>{ w.trust=clamp(w.trust+4); moodAdd(w, 4); })},
     {label:'Let her go', fx(){ S.workers=S.workers.filter(x=>x!==w); addLog(`${w.name}'s contract ended.`); return `${w.name} says goodbye.`; }}]};
 }
 function evStrike(){

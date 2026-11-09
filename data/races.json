@@ -1,0 +1,135 @@
+{
+  "_readme": [
+    "Races. label, age [min,max], look (image wording; null = built from the beastkin sub-type), mods (stat changes on the 0-100 scale, applied x10 at creation; a 'lewd' mod is added as-is, since lewdness stays 0-100), common (false = rare/exotic), weight (odds when a generic lady is rolled), names {f,l} (optional; otherwise people.json names), needs (house upgrade id required to recruit or assign her), wage (wage multiplier), fx (effect engine, see traits.json _readme), client {like, dislike, classLike}.",
+    "client.like = chance per client to be an enthusiast for her race (fee x1.2, satisfaction +12). client.dislike = chance he is put off (satisfaction -15, and half the time he asks for someone else if anyone is free). classLike: extra like chance by client class.",
+    "subs (beastkin): each with weight, mods, fx and optional label/look/client/age/names that override the race's. The former dragonkin is beastkin sub 'dragon'.",
+    "Rules that are not simple numbers (demon feeding, android recharging, beastkin refusals, spirit bedlessness) live in code and read these entries.",
+    "alwaysLast: generic ladies of this race always get a last name. Beastkin subs may also set wage."
+  ],
+  "races": {
+    "human": {
+      "label": "Human",
+      "age": [21,34],
+      "look": "human woman",
+      "mods": {"charm":5},
+      "common": true,
+      "weight": 40,
+      "fx": {"trustGain":1.15,"skillGain":1.15},
+      "client": {"like":0.06,"dislike":0},
+      "alwaysLast": true
+    },
+    "elf": {
+      "label": "Elf",
+      "age": [90,380],
+      "look": "elf woman with long pointed ears",
+      "mods": {"refinement":10,"beauty":5,"stamina":-5},
+      "common": true,
+      "weight": 15,
+      "fx": {"moodDrift":0.5,"moodDelta":0.6},
+      "client": {"like":0.1,"dislike":0.05},
+      "alwaysLast": true
+    },
+    "beastkin": {
+      "label": "Beastkin",
+      "age": [20,32],
+      "look": null,
+      "mods": {"stamina":10,"agility":5,"refinement":-5},
+      "common": true,
+      "weight": 25,
+      "fx": {"recklessAt":-10,"lewdGain":1.15,"energyRec":1.15},
+      "client": {"like":0.12,"dislike":0.04},
+      "wage": 0.75,
+      "subs": {
+        "fox": {
+          "weight": 1,
+          "mods": {"charm":5},
+          "fx": {"appeal":3},
+          "names": {"l":["Redbrush","Foxglove","Emberbrush","Kuzunoha","Silvertail","Hazebrush","Lanternfox","of the Shrine Gate"]}
+        },
+        "cat": {
+          "weight": 1,
+          "mods": {"agility":5},
+          "fx": {"energyRec":1.1},
+          "names": {"l":["Velvetpaw","Whiskerwind","Softstep","Silkpaw","Sunwindow","Tallwhisker","Mousebane","of the Night Market"]}
+        },
+        "wolf": {
+          "weight": 1,
+          "mods": {"stamina":5},
+          "fx": {"trustGain":1.1},
+          "names": {"l":["Grayfang","Moonhowl","Ironpelt","Snowmane","Frostfang","Longrunner","Pinehollow","of the Northern Pack"]}
+        },
+        "rabbit": {
+          "weight": 1,
+          "mods": {},
+          "fx": {"lustBuild":1.25,"encore":0.1},
+          "names": {"l":["Thistledown","Clovermeadow","Quickfoot","Burrowell","Hareswift","Longear","Hollowbank","Dandelion"]}
+        },
+        "dragon": {
+          "weight": 0.15,
+          "label": "dragon",
+          "look": "dragonkin woman with small swept-back horns and a scaled dragon tail",
+          "mods": {"strength":5,"stamina":10,"charm":5,"agility":-5},
+          "fx": {"maxEnergy":15},
+          "client": {"like":0.2,"dislike":0.1},
+          "age": [80,400],
+          "wage": 1.15,
+          "names": {"l":["Ashscale","Embercrest","Goldhorn","Stormwing","Jadeclaw","Cloudcoil","Pearlscale","of the Eastern Sea"]}
+        }
+      }
+    },
+    "demon": {
+      "label": "Demon",
+      "age": [110,320],
+      "look": "demon woman with small curved horns and a slender spade-tipped tail",
+      "mods": {"charm":5,"lewd":15},
+      "common": false,
+      "weight": 10,
+      "fx": {"lustMax":20,"lustBuild":1.3,"actEnergy":0.5},
+      "client": {"like":0.25,"dislike":0.25}
+    },
+    "dwarf": {
+      "label": "Dwarf",
+      "age": [45,140],
+      "look": "stocky, muscular dwarf woman with mature features and strong shoulders",
+      "mods": {"strength":15,"stamina":5,"beauty":-5},
+      "common": true,
+      "weight": 10,
+      "fx": {"maxEnergy":25,"energyRec":1.25,"lustBuild":0.75,"jobBonus":{"bartender":1.15}},
+      "client": {"like":0.1,"dislike":0.05},
+      "wage": 1.1,
+      "alwaysLast": true
+    },
+    "spirit": {
+      "label": "Spirit",
+      "age": [150,600],
+      "look": "ghostly spirit woman with a faint pale glow and softly translucent edges",
+      "mods": {"charm":5,"refinement":5,"strength":-10},
+      "common": false,
+      "weight": 2,
+      "fx": {"maxEnergy":-20,"moodDrift":1.6,"moodDelta":1.3},
+      "client": {"like":0.2,"dislike":0.2},
+      "needs": "tether"
+    },
+    "angel": {
+      "label": "Angel",
+      "age": [120,900],
+      "look": "angel woman with large white feathered wings and a faint golden halo",
+      "mods": {"refinement":10,"beauty":5,"strength":-5},
+      "common": false,
+      "weight": 3,
+      "fx": {"lustMax":-30,"noReckless":true,"moodRest":5},
+      "client": {"like":0.25,"dislike":0.1,"classLike":{"noble":0.3}}
+    },
+    "android": {
+      "label": "Android",
+      "age": [22,95],
+      "look": "android woman with fine seams at her joints and softly glowing eyes",
+      "mods": {"stamina":5,"refinement":5,"charm":-5},
+      "common": false,
+      "weight": 3,
+      "fx": {"lustBuild":0.8},
+      "client": {"like":0.2,"dislike":0.15},
+      "needs": "charger"
+    }
+  }
+}

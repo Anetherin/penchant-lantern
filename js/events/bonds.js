@@ -107,7 +107,7 @@ function evBond(id, aId, bId, shared){
 }
 function bondFx(w, e, partner){
   if(!e) return;
-  if(e.mood) w.mood = clamp(w.mood + e.mood);
+  if(e.mood) moodAdd(w, e.mood);
   if(e.trust) { if(e.trust>0) gainTrust(w, e.trust); else w.trust = clamp(w.trust + e.trust); }
   if(e.lewd) w.lewd = clamp(w.lewd + e.lewd);
   if(e.lust) w.lust = clamp((w.lust||0) + e.lust);
@@ -119,15 +119,15 @@ function bondFx(w, e, partner){
 // services both will do with Sam, best-liked first
 const duoActs = (a, b) => getActs().filter(x=>canSam(a,x.id) && canSam(b,x.id)).map(x=>x.id)
   .sort((x,y)=>((samStance(a,y)==='yes')+(samStance(b,y)==='yes')) - ((samStance(a,x)==='yes')+(samStance(b,x)==='yes')));
-const dynLine = (dyn, act, a, b) => { const D = (BONDS.dynamics||{})[dyn] || {}; return bondFill(String(D[act] || D._default || ''), a, b).replace(/\{act\}/g, actLabel(act||'')); };
+const dynLine = (dyn, act, a, b) => { const D = (BONDS.dynamics||{})[dyn] || {}; return bondFill(String(byAct(D, act) || D._default || ''), a, b).replace(/\{act\}/g, actLabel(act||'')); };
 // what the bond dynamic adds on top of the choice's own effects
 function dynamicFx(dyn, act, a, b){
   const fn = w => w.name.split(' ')[0];
-  if(dyn==='collaborative'){ addBond(a, b, 6); [a,b].forEach(w=>{ if(w.fav===act) w.mood = clamp(w.mood+4); }); return ''; }
+  if(dyn==='collaborative'){ addBond(a, b, 6); [a,b].forEach(w=>{ if(w.fav===act) moodAdd(w, 4); }); return ''; }
   if(dyn==='competitive'){
-    const sa = actSkill(a,act) + rnd(0,25), sb = actSkill(b,act) + rnd(0,25), C = BONDS.competition || {};
+    const sa = s100(actSkill(a,act)) + rnd(0,25), sb = s100(actSkill(b,act)) + rnd(0,25), C = BONDS.competition || {};
     if(Math.abs(sa-sb) < 8){ addBond(a, b, 8); return C.close || ''; }
-    const [W, L] = sa > sb ? [a,b] : [b,a]; W.mood = clamp(W.mood+5); L.mood = clamp(L.mood-3); growAct(L, act, 3); addBond(a, b, -4);
+    const [W, L] = sa > sb ? [a,b] : [b,a]; moodAdd(W, 5); moodAdd(L, -3); growAct(L, act, 3); addBond(a, b, -4);
     return String(C.win||'').replace(/\{w\}/g, fn(W)).replace(/\{l\}/g, fn(L));
   }
   if(dyn==='lesson'){ growAct(b, act, 8); growAct(a, act, 2); addBond(a, b, 5); return `(${fn(b)} improves at ${actLabel(act)}.)`; }

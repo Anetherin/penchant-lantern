@@ -1,0 +1,1037 @@
+{
+  "_readme": [
+    "Traits: desc (shown in tooltips), fx (merged into the effect engine, js/logic/fx.js), plus flags.",
+    "fx vocabulary (only these keys): maxEnergy(add) energyRec(mul) actEnergy(mul) actEnergyBy{service:mul} actQuality{service:mul} actBan[service ids] lustBuild(mul) lustDrop(mul) lustMax(add) lustFloor(add) recklessAt(add) noReckless(flag) moodDrift(mul) moodDelta(mul) moodRest(add) trustGain(mul) skillGain(mul) statGain(mul) lewdGain(mul) jobBonus{job:mul} clientFee(mul) classBonus{class:mul} appeal(add) propRate(mul) security(add) energyBank(add) wardrobe(add) willing(add) rep(mul) promote(mul) tidy(mul) encore(add).",
+    "gen: can be rolled for generic ladies. hidden: not shown until Appraisal Lv 3. story / personal: set by the game, not rolled. excl: traits she can't have together.",
+    "earn: lets a lady DEVELOP the trait. {count:'massage', at:40} (w.counts.<key>, e.g. svc, massage, dance, bar, promo, rowdy, rescued, encore, weeksWorked, privateSam, gifts, or svcByAct.<service id>, jobWeeks.<job id>), {stat:'popularity', at:70} (stats and skills are compared on the 0-100 scale), {trust:90}, {lewd:80}, {weeks:30} (total weeks worked), {job:'dancer', weeks:12}. Checked weekly; once eligible she has earnChance per week to develop it.",
+    "ngOnly: generic trait only rolled from cycle 2 (New Game+). ngPerk: offered to carried-over ladies in New Game+. Other agents will expand this catalogue: keep the schema.",
+    "Named ladies (characters.json / guests.json) may carry a personal 'unique': {name, desc, fx} (fx merged like a trait; shown on her sheet) and a 'body': {bust, height, figure} (ids from data/body.json; default medium / average / slim)."
+  ],
+  "traits": {
+    "Shy": {
+      "desc": "Lewdness grows slowly; trust grows faster; less comfortable undressing.",
+      "fx": {"lewdGain":0.5,"willing":-5,"wardrobe":-10},
+      "gen": true,
+      "excl": ["Eager"],
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false
+    },
+    "Eager": {
+      "desc": "+10 willingness; lewdness grows faster.",
+      "fx": {"lewdGain":1.25,"willing":8},
+      "gen": true,
+      "excl": ["Shy"],
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false
+    },
+    "Ambitious": {
+      "desc": "+10% escort income; expects higher pay.",
+      "fx": {"clientFee":1.1},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Party Animal": {
+      "desc": "Bonus as bartender or dancer.",
+      "fx": {"jobBonus":{"bartender":1.2}},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Former Adventurer": {
+      "desc": "Strong at security; adventurers love her.",
+      "fx": {"security":20,"classBonus":{"adventurer":1.3}},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Elegant": {
+      "desc": "Nobles pay more for her company.",
+      "fx": {"classBonus":{"noble":1.3}},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Lazy": {"desc":"Mood drops faster when overworked.","fx":{},"gen":true,"hidden":false,"earn":null,"ngOnly":false,"ngPerk":false,"excl":[]},
+    "Tough": {"desc":"+20 max energy.","fx":{"maxEnergy":20},"gen":true,"hidden":false,"earn":null,"ngOnly":false,"ngPerk":false,"excl":[]},
+    "Romantic": {"desc":"Time with Sam builds trust faster.","fx":{},"gen":true,"hidden":false,"earn":null,"ngOnly":false,"ngPerk":false,"excl":[]},
+    "Greedy": {
+      "desc": "Gifts and good earnings please her more; expects higher pay.",
+      "fx": {},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Loyal": {"desc":"Rarely loses trust; hard to poach.","fx":{},"gen":true,"hidden":false,"earn":null,"ngOnly":false,"ngPerk":false,"excl":[]},
+    "Exhibitionist": {
+      "desc": "Dancing raises lewdness faster; comfortable with less clothing; needs no room for services.",
+      "fx": {"jobBonus":{"dancer":1.2},"wardrobe":15},
+      "hidden": true,
+      "gen": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Night Owl": {"desc":"Recovers energy faster.","fx":{"energyRec":1.15},"hidden":true,"gen":false,"earn":null,"ngOnly":false,"ngPerk":false,"excl":[]},
+    "Insatiable": {
+      "desc": "Lust builds fast and never drops very far; her lust is spent more slowly.",
+      "fx": {"lustBuild":1.6,"lustDrop":0.6,"lustFloor":25},
+      "hidden": true,
+      "gen": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Slow to Warm": {
+      "desc": "Lust builds slowly and is easily satisfied; she never gets restless.",
+      "fx": {"lustBuild":0.55,"lustDrop":1.4,"lustMax":-25},
+      "hidden": true,
+      "gen": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Modest": {
+      "desc": "Would rather keep her clothes on: they get pulled aside instead. Lewdness (and trust, with Sam) still brings more of them off.",
+      "fx": {},
+      "personal": true,
+      "gen": false,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Devoted": {
+      "desc": "Sam's lover. Never leaves; more willing with Sam; mood stays up.",
+      "fx": {},
+      "story": true,
+      "gen": false,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Oblivious": {
+      "desc": "Thinks of Sam as the boy from next door. Far less willing with him until her story moves along.",
+      "fx": {},
+      "story": true,
+      "gen": false,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Skilled Hands": {
+      "desc": "Years of rubbing tired shoulders: her massages are in demand.",
+      "fx": {"actQuality":{"massage_give":1.15}},
+      "earn": {"count":"massage","at":40},
+      "gen": false,
+      "hidden": false,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Natural Performer": {
+      "desc": "The stage has stopped scaring her. People come to watch.",
+      "fx": {"jobBonus":{"dancer":1.1},"appeal":2},
+      "earn": {"count":"dance","at":30},
+      "gen": false,
+      "hidden": false,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Bar Veteran": {
+      "desc": "She can read a room, and a glass, from across the floor.",
+      "fx": {"jobBonus":{"bartender":1.1}},
+      "earn": {"count":"bar","at":30},
+      "gen": false,
+      "hidden": false,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Crowd Favorite": {
+      "desc": "Half the town knows her name.",
+      "fx": {"appeal":3,"clientFee":1.05},
+      "earn": {"stat":"popularity","at":70},
+      "gen": false,
+      "hidden": false,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Confidante": {
+      "desc": "She trusts Sam completely, and it shows: she settles easily.",
+      "fx": {"trustGain":1.1,"moodRest":3},
+      "earn": {"trust":90},
+      "gen": false,
+      "hidden": false,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Seasoned": {
+      "desc": "Thirty weeks on, nothing much surprises her.",
+      "fx": {"maxEnergy":10,"actEnergy":0.97},
+      "earn": {"weeks":30},
+      "gen": false,
+      "hidden": false,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Unflappable": {
+      "desc": "She has stared down enough pushy customers to take most things in stride.",
+      "fx": {"moodDelta":0.85},
+      "earn": {"count":"rowdy","at":5},
+      "gen": false,
+      "hidden": false,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Headliner": {
+      "desc": "A dozen weeks on stage and the house knows her act by heart.",
+      "fx": {"jobBonus":{"dancer":1.08},"rep":1.15},
+      "earn": {"job":"dancer","weeks":12},
+      "gen": false,
+      "hidden": false,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Hollowmere Veteran": {
+      "desc": "Back for another round: she knows how the house runs.",
+      "fx": {"maxEnergy":10,"clientFee":1.05},
+      "gen": true,
+      "ngOnly": true,
+      "hidden": false,
+      "earn": null,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Second Wind": {
+      "desc": "Carries a little extra energy into every week.",
+      "fx": {"energyBank":15},
+      "ngPerk": true,
+      "gen": false,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "excl": []
+    },
+    "Practiced": {
+      "desc": "Everything she does improves faster.",
+      "fx": {"skillGain":1.2,"statGain":1.2},
+      "ngPerk": true,
+      "gen": false,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "excl": []
+    },
+    "Beloved": {
+      "desc": "Settled, happy, and sure of her place.",
+      "fx": {"trustGain":1.2,"moodRest":4},
+      "ngPerk": true,
+      "gen": false,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "excl": []
+    },
+    "Quick Learner": {"desc":"Skills improve 15% faster.","fx":{"skillGain":1.15},"gen":true,"hidden":false,"earn":null,"ngOnly":false,"ngPerk":false,"excl":[]},
+    "Studious": {"desc":"Stats improve 15% faster.","fx":{"statGain":1.15},"gen":true,"hidden":false,"earn":null,"ngOnly":false,"ngPerk":false,"excl":[]},
+    "Charming": {
+      "desc": "Clients pick her more often (+3 appeal).",
+      "fx": {"appeal":3},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": ["Aloof"]
+    },
+    "Shrewd": {
+      "desc": "Services earn 8% more, but she takes slights to heart.",
+      "fx": {"clientFee":1.08,"moodDelta":1.1},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Sunny Disposition": {
+      "desc": "Her resting mood is 4 points higher.",
+      "fx": {"moodRest":4},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": ["Brooding"]
+    },
+    "Brooding": {
+      "desc": "Resting mood is 3 lower, but she trusts Sam 10% faster.",
+      "fx": {"moodRest":-3,"trustGain":1.1},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": ["Sunny Disposition"]
+    },
+    "Early Riser": {
+      "desc": "Recovers energy 10% faster.",
+      "fx": {"energyRec":1.1},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": ["Light Sleeper"]
+    },
+    "Light Sleeper": {
+      "desc": "Recovers energy 10% slower, but adds +8 to security.",
+      "fx": {"energyRec":0.9,"security":8},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": ["Early Riser"]
+    },
+    "Hardy": {"desc":"+12 max energy.","fx":{"maxEnergy":12},"gen":true,"hidden":false,"earn":null,"ngOnly":false,"ngPerk":false,"excl":["Delicate"]},
+    "Delicate": {
+      "desc": "-10 max energy; nobles pay 15% more for her company.",
+      "fx": {"maxEnergy":-10,"classBonus":{"noble":1.15}},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": ["Hardy","Tough"]
+    },
+    "Efficient": {
+      "desc": "Services cost 8% less energy.",
+      "fx": {"actEnergy":0.92},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Showy": {
+      "desc": "Dancing output +12%, promotion +8%.",
+      "fx": {"jobBonus":{"dancer":1.12},"promote":1.08},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Silver-Tongued": {
+      "desc": "Her promotion work draws 20% more.",
+      "fx": {"promote":1.2},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Tidy": {"desc":"Cleans 25% better.","fx":{"tidy":1.25},"gen":true,"hidden":false,"earn":null,"ngOnly":false,"ngPerk":false,"excl":["Slovenly"]},
+    "Slovenly": {
+      "desc": "Cleans 20% worse, but rests easier (+2 resting mood).",
+      "fx": {"tidy":0.8,"moodRest":2},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": ["Tidy"]
+    },
+    "Steady Nerves": {
+      "desc": "Mood changes are 10% smaller.",
+      "fx": {"moodDelta":0.9},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": ["Sensitive"]
+    },
+    "Sensitive": {
+      "desc": "Mood changes are 20% larger; trust grows 10% faster.",
+      "fx": {"moodDelta":1.2,"trustGain":1.1},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": ["Steady Nerves","Unflappable"]
+    },
+    "Level-Headed": {
+      "desc": "Mood returns to its resting point 30% faster.",
+      "fx": {"moodDrift":1.3},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Brave": {
+      "desc": "+10 security; bad news rattles her less.",
+      "fx": {"security":10,"moodDelta":0.95},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Prudent": {
+      "desc": "Becomes reckless later and builds lust 10% slower.",
+      "fx": {"recklessAt":10,"lustBuild":0.9},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": ["Reckless"]
+    },
+    "Reckless": {
+      "desc": "Becomes reckless sooner and sometimes asks for another round.",
+      "fx": {"recklessAt":-10,"encore":0.05},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": ["Prudent"]
+    },
+    "Warm-Hearted": {
+      "desc": "Trust grows 12% faster.",
+      "fx": {"trustGain":1.12},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": ["Guarded"]
+    },
+    "Guarded": {
+      "desc": "Trust grows 20% slower; bad moods bite less.",
+      "fx": {"trustGain":0.8,"moodDelta":0.9},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": ["Warm-Hearted"]
+    },
+    "Flirt": {
+      "desc": "Propositioned 20% more often, +2 appeal.",
+      "fx": {"propRate":1.2,"appeal":2},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": ["Aloof"]
+    },
+    "Aloof": {
+      "desc": "Propositioned 15% less often; nobles pay 10% more.",
+      "fx": {"propRate":0.85,"classBonus":{"noble":1.1}},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": ["Flirt","Charming"]
+    },
+    "Worldly": {
+      "desc": "Merchants pay 15% more, commoners 5% more.",
+      "fx": {"classBonus":{"merchant":1.15,"commoner":1.05}},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Country Charm": {
+      "desc": "Commoners pay 15% more.",
+      "fx": {"classBonus":{"commoner":1.15}},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Trade-Wise": {
+      "desc": "Merchants pay 20% more.",
+      "fx": {"classBonus":{"merchant":1.2}},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Graceful": {
+      "desc": "Dancing output +10%, a little more comfortable in a costume.",
+      "fx": {"jobBonus":{"dancer":1.1},"wardrobe":5},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Soothing Voice": {
+      "desc": "Better at attending and running the baths (+10% each).",
+      "fx": {"jobBonus":{"bath":1.1,"attendant":1.1}},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Brawler": {
+      "desc": "+15 security, but services cost 3% more energy.",
+      "fx": {"security":15,"actEnergy":1.03},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Organised": {
+      "desc": "Better at running the house (+12%) and tidying (+10%).",
+      "fx": {"jobBonus":{"madame":1.12},"tidy":1.1},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Warm Hospitality": {
+      "desc": "Attendant work +12%; house reputation +5%.",
+      "fx": {"jobBonus":{"attendant":1.12},"rep":1.05},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Scandalous": {
+      "desc": "Draws attention (+4 appeal), more comfortable undressing, but house reputation suffers 10%.",
+      "fx": {"appeal":4,"wardrobe":10,"rep":0.9},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": ["Prim"]
+    },
+    "Prim": {
+      "desc": "Keeps up appearances: house reputation +10%, lewdness grows 15% slower, less comfortable undressing.",
+      "fx": {"rep":1.1,"lewdGain":0.85,"wardrobe":-10},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": ["Scandalous","Exhibitionist"]
+    },
+    "Strong Back": {
+      "desc": "Giving massages and the missionary position cost less energy.",
+      "fx": {"actEnergyBy":{"massage_give":0.9,"missionary":0.95}},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Nimble Fingers": {
+      "desc": "Hand work earns more: manual (giving) +12% quality, massage +6%.",
+      "fx": {"actQuality":{"manual_give":1.12,"massage_give":1.06}},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Silken Kisses": {
+      "desc": "Kisses are 15% better received.",
+      "fx": {"actQuality":{"kiss":1.15}},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Good Rhythm": {
+      "desc": "Cowgirl +10% and doggy +5% quality.",
+      "fx": {"actQuality":{"cowgirl":1.1,"doggy":1.05}},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Slow Burn": {
+      "desc": "Lust builds 15% slower, but lewdness grows 10% faster.",
+      "fx": {"lustBuild":0.85,"lewdGain":1.1},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": ["Fiery"]
+    },
+    "Fiery": {
+      "desc": "Lust builds 20% faster and reaches +5 higher.",
+      "fx": {"lustBuild":1.2,"lustMax":5},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": ["Slow Burn"]
+    },
+    "Homebody": {
+      "desc": "Recovers energy 8% faster, but is propositioned 10% less.",
+      "fx": {"energyRec":1.08,"propRate":0.9},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Perfectionist": {
+      "desc": "Skills improve 10% faster; setbacks hit 10% harder.",
+      "fx": {"skillGain":1.1,"moodDelta":1.1},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": ["Lazy"]
+    },
+    "Gossip": {
+      "desc": "Spreads word of the house (+10% promotion) but not always kindly (reputation -5%).",
+      "fx": {"promote":1.1,"rep":0.95},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Bold Laugh": {
+      "desc": "Bartending +8%; her good humor props up her mood (+2 resting).",
+      "fx": {"jobBonus":{"bartender":1.08},"moodRest":2},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Iron Liver": {
+      "desc": "Sixty bar shifts' worth of practice: bartending +5%, +5 max energy.",
+      "fx": {"jobBonus":{"bartender":1.05},"maxEnergy":5},
+      "gen": false,
+      "hidden": false,
+      "earn": {"count":"bar","at":60},
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Pitch Perfect": {
+      "desc": "Her promotion work draws 15% more.",
+      "fx": {"promote":1.15},
+      "gen": false,
+      "hidden": false,
+      "earn": {"count":"promo","at":25},
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Guardian Instinct": {
+      "desc": "She has pulled people out of trouble before: +10 security, house reputation +5%.",
+      "fx": {"security":10,"rep":1.05},
+      "gen": false,
+      "hidden": false,
+      "earn": {"count":"rescued","at":3},
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Sure Hands": {
+      "desc": "Manual services are 15% better.",
+      "fx": {"actQuality":{"manual_give":1.15}},
+      "gen": false,
+      "hidden": false,
+      "earn": {"count":"svcByAct.manual_give","at":25},
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Practiced Kisses": {
+      "desc": "Kisses are 15% better received.",
+      "fx": {"actQuality":{"kiss":1.15}},
+      "gen": false,
+      "hidden": false,
+      "earn": {"count":"svcByAct.kiss","at":30},
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Tireless": {
+      "desc": "A hundred and twenty services in: each costs 7% less energy.",
+      "fx": {"actEnergy":0.93},
+      "gen": false,
+      "hidden": false,
+      "earn": {"count":"svc","at":120},
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Encore Favorite": {
+      "desc": "Clients ask for another round more often (+8%) and pick her (+2 appeal).",
+      "fx": {"encore":0.08,"appeal":2},
+      "gen": false,
+      "hidden": false,
+      "earn": {"count":"encore","at":6},
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Close Companion": {
+      "desc": "Evenings with Sam have made her at ease: trust grows 10% faster, resting mood +3.",
+      "fx": {"trustGain":1.1,"moodRest":3},
+      "gen": false,
+      "hidden": false,
+      "earn": {"count":"privateSam","at":10},
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Bath Whisperer": {
+      "desc": "Ten weeks in the baths: bath work +15%.",
+      "fx": {"jobBonus":{"bath":1.15}},
+      "gen": false,
+      "hidden": false,
+      "earn": {"job":"bath","weeks":10},
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "House Proud": {
+      "desc": "Ten weeks as a maid: cleans 20% better, maid work +10%.",
+      "fx": {"tidy":1.2,"jobBonus":{"maid":1.1}},
+      "gen": false,
+      "hidden": false,
+      "earn": {"job":"maid","weeks":10},
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Watchful": {
+      "desc": "Ten weeks on security: +12 security.",
+      "fx": {"security":12},
+      "gen": false,
+      "hidden": false,
+      "earn": {"job":"security","weeks":10},
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Steady Hostess": {
+      "desc": "Ten weeks running the house: madame work +15%.",
+      "fx": {"jobBonus":{"madame":1.15}},
+      "gen": false,
+      "hidden": false,
+      "earn": {"job":"madame","weeks":10},
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Practiced Charmer": {
+      "desc": "Ten weeks as a courtesan: courtesan work +12%, services earn 3% more.",
+      "fx": {"jobBonus":{"courtesan":1.12},"clientFee":1.03},
+      "gen": false,
+      "hidden": false,
+      "earn": {"job":"courtesan","weeks":10},
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Uninhibited": {
+      "desc": "Highly at ease with her own lewdness: more comfortable undressing and slightly more willing.",
+      "fx": {"wardrobe":10,"willing":5},
+      "gen": false,
+      "hidden": false,
+      "earn": {"lewd":85},
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": ["Prim","Shy"]
+    },
+    "Deja Vu": {
+      "desc": "Faces and rooms feel familiar: skills improve 10% faster, setbacks sting 5% less.",
+      "fx": {"skillGain":1.1,"moodDelta":0.95},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": true,
+      "ngPerk": false,
+      "excl": []
+    },
+    "A Life Remembered": {
+      "desc": "Recalls another life here: trust grows 10% faster, resting mood +2.",
+      "fx": {"trustGain":1.1,"moodRest":2},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": true,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Half-Remembered Dream": {
+      "desc": "Wakes with a sense she has done this before: recovers 5% faster, +2 appeal.",
+      "fx": {"energyRec":1.05,"appeal":2},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": true,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Familiar Faces": {
+      "desc": "She seems to know the regulars: commoners pay 10% more, propositioned 10% more.",
+      "fx": {"classBonus":{"commoner":1.1},"propRate":1.1},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": true,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Echo of Another Road": {
+      "desc": "Remembers old roads: +8 security, adventurers pay 10% more.",
+      "fx": {"security":8,"classBonus":{"adventurer":1.1}},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": true,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Quiet Knowing": {
+      "desc": "Little surprises her: mood changes 10% smaller, lust builds 5% slower.",
+      "fx": {"moodDelta":0.9,"lustBuild":0.95},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": true,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Borrowed Memories": {"desc":"Stats improve 12% faster.","fx":{"statGain":1.12},"gen":true,"hidden":false,"earn":null,"ngOnly":true,"ngPerk":false,"excl":[]},
+    "Second Chances": {
+      "desc": "+8 max energy; becomes reckless a little later.",
+      "fx": {"maxEnergy":8,"recklessAt":5},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": true,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Strange Comfort": {
+      "desc": "This place feels like home: resting mood +3, recovers 5% faster.",
+      "fx": {"moodRest":3,"energyRec":1.05},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": true,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Bond Remembered": {
+      "desc": "Remembers everything with Sam: trust grows 25% faster, slightly more willing.",
+      "fx": {"trustGain":1.25,"willing":5},
+      "gen": false,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": true,
+      "excl": []
+    },
+    "Steady Heart": {
+      "desc": "Mood changes are 20% smaller; resting mood +3.",
+      "fx": {"moodDelta":0.8,"moodRest":3},
+      "gen": false,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": true,
+      "excl": []
+    },
+    "Hollowmere Star": {
+      "desc": "Her name is known: +4 appeal, services earn 8% more.",
+      "fx": {"appeal":4,"clientFee":1.08},
+      "gen": false,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": true,
+      "excl": []
+    },
+    "Tireless Spirit": {
+      "desc": "+20 max energy; recovers 10% faster.",
+      "fx": {"maxEnergy":20,"energyRec":1.1},
+      "gen": false,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": true,
+      "excl": []
+    },
+    "Knows the Ropes": {
+      "desc": "Services cost 10% less energy; skills improve 10% faster.",
+      "fx": {"actEnergy":0.9,"skillGain":1.1},
+      "gen": false,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": true,
+      "excl": []
+    },
+    "House Favorite": {
+      "desc": "House reputation +15%; propositioned 10% more.",
+      "fx": {"rep":1.15,"propRate":1.1},
+      "gen": false,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": true,
+      "excl": []
+    },
+    "Golden Touch": {
+      "desc": "Nobles and merchants pay 10% more.",
+      "fx": {"classBonus":{"noble":1.1,"merchant":1.1}},
+      "gen": false,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": true,
+      "excl": []
+    },
+    "Settled Mind": {
+      "desc": "Never becomes reckless; mood returns to rest 20% faster.",
+      "fx": {"noReckless":true,"moodDrift":1.2},
+      "gen": false,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": true,
+      "excl": []
+    },
+    "Wellspring": {
+      "desc": "Carries 25 extra energy into each week.",
+      "fx": {"energyBank":25},
+      "gen": false,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": true,
+      "excl": []
+    },
+    "Fond Memories": {"desc":"Resting mood +6.","fx":{"moodRest":6},"gen":false,"hidden":false,"earn":null,"ngOnly":false,"ngPerk":true,"excl":[]},
+    "Born Teacher": {
+      "desc": "Madame work +15%, tidying +10%, skills improve 10% faster.",
+      "fx": {"jobBonus":{"madame":1.15},"tidy":1.1,"skillGain":1.1},
+      "gen": false,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": true,
+      "excl": []
+    },
+    "Old Flame": {
+      "desc": "Lewdness grows 20% faster; +8 willingness.",
+      "fx": {"lewdGain":1.2,"willing":8},
+      "gen": false,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": true,
+      "excl": []
+    },
+    "Guardian of the House": {
+      "desc": "+15 security; security work +15%.",
+      "fx": {"security":15,"jobBonus":{"security":1.15}},
+      "gen": false,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": true,
+      "excl": []
+    },
+    "Showstopper": {
+      "desc": "Dancing +12%, bartending +10%, +2 appeal.",
+      "fx": {"jobBonus":{"dancer":1.12,"bartender":1.1},"appeal":2},
+      "gen": false,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": true,
+      "excl": []
+    }
+  },
+  "earnChance": 0.35
+}

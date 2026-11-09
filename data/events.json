@@ -159,6 +159,61 @@
     ],
     "home": ["about home, and what they miss most"]
   },
+  "outfit_market": {
+    "_vars": "{name} = the lady, {outfit} = the outfit",
+    "title": "A Find at the Market",
+    "text": [
+      "{name} comes back from the market with a bundle under her arm. \"I found {outfit}. It was practically calling my name, and I got it for almost nothing.\"",
+      "{name} holds up {outfit}, still folded from the stall. \"Look what I found. The seller had no idea what it was worth.\""
+    ],
+    "keep": {"label":"\"It suits you.\"","res":["{name} beams. {outfit} is hers now.","She hugs the bundle to her chest. {outfit} is hers."]},
+    "share": {
+      "label": "\"Put it in the house wardrobe.\"",
+      "res": [
+        "{name} shrugs happily. \"Then everyone can borrow it.\" {outfit} joins the house wardrobe."
+      ]
+    }
+  },
+  "outfit_regular": {
+    "_vars": "{name} = the lady, {outfit} = the outfit",
+    "title": "A Present from a Regular",
+    "text": [
+      "A parcel arrives at the front desk, addressed to {name}. Inside is {outfit} and a note: \"For a lady with good taste. - an admirer.\"",
+      "One of {name}'s regulars has left a gift for her at the door: {outfit}, wrapped in tissue paper."
+    ],
+    "keep": {"label":"\"Keep it, it's yours.\"","res":["{name} tries it on in front of the mirror, delighted. {outfit} is hers."]},
+    "share": {
+      "label": "\"Let the house share it.\"",
+      "res": [
+        "{name} thinks about it, then nods. {outfit} goes into the house wardrobe, and the regular's note goes on the wall."
+      ]
+    }
+  },
+  "outfit_friend": {
+    "_vars": "{name} = the lady, {other} = her friend, {outfit} = the outfit",
+    "title": "Borrowed Finery",
+    "text": [
+      "{other} presses {outfit} into {name}'s hands. \"It never fit me right. You take it.\"",
+      "\"Try this on,\" says {other}, handing {name} {outfit}. \"I've had it for ages. It was made for someone with your look.\""
+    ],
+    "keep": {"label":"\"Take it, {name}.\"","res":["{name} thanks {other} twice. {outfit} is hers now."]},
+    "share": {
+      "label": "\"Hang it in the house wardrobe.\"",
+      "res": [
+        "{other} laughs. \"Fine, fine. Anyone can wear it, then.\" {outfit} joins the house wardrobe."
+      ]
+    }
+  },
+  "outfit_made": {
+    "_vars": "{name} = the lady, {outfit} = the outfit",
+    "title": "Handmade",
+    "text": [
+      "{name} spent her evenings with a needle and a bolt of cloth. She holds up the result: {outfit}. \"I made it myself. What do you think?\"",
+      "{name} lays something across the kitchen table, stitched by candlelight: {outfit}. \"It took a while, but I'm proud of it.\""
+    ],
+    "keep": {"label":"\"It's wonderful. Wear it.\"","res":["{name} glows. {outfit} is hers, and she made it."]},
+    "share": {"label":"\"Let the whole house enjoy it.\"","res":["{name} blushes and nods. {outfit} goes into the house wardrobe."]}
+  },
   "gift": {
     "_note": "When Sam gives a lady a gift. The gift itself comes from people.json gifts.",
     "greedy": ["Her eyes light up immediately."],

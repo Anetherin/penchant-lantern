@@ -11,8 +11,18 @@ const COLORS = needData('wardrobe').colors;
 const COLOR_KEYS = Object.keys(COLORS);
 const sw = c => `<span class="swatch" style="background:${COLORS[c]||'#888'}"></span>`;
 
-const RACES = PEOPLE.races;
+// Races live in data/races.json (people.json → races is only a fallback for older data).
+const RACE_FILE = DATA.races || {};
+const RACES = RACE_FILE.races ? noMeta(RACE_FILE.races) : PEOPLE.races;
 const NAMES = PEOPLE.names;
+// Bodies (data/body.json): w.body = {bust, height, figure}
+const BODY = needData('body');
+const BODY_KEYS = ['bust','height','figure'];
+const BODY_DEF = Object.assign({bust:'medium', height:'average', figure:'slim'}, BODY.defaults);
+const bodyOpts = k => noMeta(BODY[k]||{});
+// Beastkin sub-types (races.json → beastkin.subs; a plain list also works). Named ladies may have free-text subs (cheetah...).
+const subNames = race => { const s = (RACES[race]||{}).subs; return Array.isArray(s) ? s : Object.keys(s||{}); };
+const subData = (race, sub) => { const s = (RACES[race]||{}).subs; return (s && !Array.isArray(s) && s[sub]) || null; };
 const BUILDS = PEOPLE.builds;
 const HAIR_STYLES = PEOPLE.hairStyles;
 const HAIR_COLORS = PEOPLE.hairColors;
@@ -25,26 +35,10 @@ const PERSONALITIES = Object.keys(PERS);
 const HOOKS = PEOPLE.hooks;
 const GIFTS = PEOPLE.gifts;
 
-const TRAITS = {
-  'Shy':{desc:'Lewdness grows slowly; trust grows faster; less comfortable undressing.'},
-  'Eager':{desc:'+10 willingness; lewdness grows faster.'},
-  'Ambitious':{desc:'+10% escort income; expects higher pay.'},
-  'Party Animal':{desc:'Bonus as bartender or dancer.'},
-  'Former Adventurer':{desc:'Strong at security; adventurers love her.'},
-  'Elegant':{desc:'Nobles pay more for her company.'},
-  'Lazy':{desc:'Mood drops faster when overworked.'},
-  'Tough':{desc:'+20 max energy.'},
-  'Romantic':{desc:'Time with Sam builds trust faster.'},
-  'Greedy':{desc:'Gifts and good earnings please her more; expects higher pay.'},
-  'Loyal':{desc:'Rarely loses trust; hard to poach.'},
-  'Exhibitionist':{desc:'Dancing raises lewdness faster; comfortable with less clothing.', hidden:true},
-  'Night Owl':{desc:'Recovers energy faster.', hidden:true},
-  'Insatiable':{desc:'Lust builds fast and never drops very far; her lust is spent more slowly.', hidden:true},
-  'Slow to Warm':{desc:'Lust builds slowly and is easily satisfied; she never gets restless.', hidden:true},
-  'Modest':{desc:'Would rather keep her clothes on: they get pulled aside instead. Lewdness (and trust, with Sam) still brings more of them off.', personal:true},
-  'Devoted':{desc:'Sam\'s lover. Never leaves; more willing with Sam; mood stays up.', story:true},
-  'Oblivious':{desc:'Thinks of Sam as the boy from next door. Far less willing with him until her story moves along.', story:true}
-};
+// Traits live in data/traits.json (desc, fx, flags). The effect engine (js/logic/fx.js) reads their fx.
+const TRAIT_FILE = needData('traits');
+const TRAITS = noMeta(TRAIT_FILE.traits);
+const EARN_CHANCE = TRAIT_FILE.earnChance ?? 0.35;
 // Personalities live in data/personalities.json (see PERS above).
 const ACT_WORD = {chat:'chats',dinner:'dinners',gift:'gifts',train:'training',private:'private time',walk:'walks',theater:'the theater'};
 function pm(w,a){ const P = PERS[w.personality]; if(!P) return 1; return P.likes.includes(a) ? 1.5 : P.dislikes.includes(a) ? 0.5 : 1; }

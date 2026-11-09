@@ -16,7 +16,7 @@ const FIRSTS = needData('firsts');
 const FIRST_CHARS = noMeta(FIRSTS.characters), FIRST_TPL = noMeta(FIRSTS.templates);
 const firstPace = w => FIRSTS.paces[(w.firsts||{}).pace] || FIRSTS.paces.normal;
 const stageName = s => (FIRSTS.stages[s]||{}).label || '';
-const pentUp = w => w.lust >= LUST_HIGH;
+const pentUp = w => restless(w);
 const fillF = (t, w) => String(t||'').replace(/\{name\}/g, w.name).replace(/\{N\}/g, w.name).replace(/\{house\}/g, (S && houseOf(w)) ? houseOf(w).name : 'the house');
 
 // Named ladies: their own pace/path. Guests: rolled once from personality and traits, the same every game (seeded by key).
@@ -78,7 +78,7 @@ function firstEvent(w, how){
       {label: fillF(d.go || FIRSTS.defaults.go, w), fx(){ return firstCross(w, s, act, d); }},
       {label: fillF(d.wait || FIRSTS.defaults.wait, w), fx(){
         w.firstHold = S.week + FIRSTS.holdWeeks; gainTrust(w, 1);
-        if(pent){ w.mood = clamp(w.mood - 4); w.lust = clamp(w.lust - 10); }
+        if(pent){ moodAdd(w, -4); w.lust = clamp(w.lust - 10); }
         return fillF(d.waitRes || FIRSTS.defaults.waitRes, w); }}]};
 }
 function firstCross(w, s, act, d){

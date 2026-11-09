@@ -3,7 +3,8 @@
     "Your own text, appended to the image prompt for that scene. Empty = default prompt only.",
     "scenes: pov (every Sam/POV scene), bath, mishap (shower / walk-in), solo (a lady alone at max lust), duo (every shared scene with two ladies). Per-service wording now lives in services.json (image.extra).",
     "clothing: how each clothing state is described. {outfit} and {underwear} are filled in from her wardrobe; commando becomes \"bare skin, nothing underneath\". nude falls back to partial while empty.",
-    "clothing.aside / aside_commando: used for Modest ladies during services, when her clothes are pulled aside instead of taken off."
+    "clothing.aside / aside_commando: used for Modest ladies during services, when her clothes are pulled aside instead of taken off.",
+    "expressions: face wording for how she's taking a service (bored / professional / into it / lost in it, plus flustered and smug from personalities.json → expr). Added to client images. expressionsByAct: per-service face wording added on top of the general one (filled with neutral defaults; edit freely, anything starting with TODO is skipped)."
   ],
   "scenes": {"pov":"","bath":"","mishap":"","solo":"","duo":""},
   "clothing": {
@@ -13,5 +14,111 @@
     "nude": "fully nude, breasts and pubic hair on full display",
     "aside": "still wearing {outfit}, her clothes pulled aside, {underwear} visible but pushed aside to reveal her breasts and hairy pussy",
     "aside_commando": "still wearing {outfit}, her clothes pulled aside, to reveal her breasts and hairy pussy"
+  },
+  "expressions": {
+    "bored": "bored expression",
+    "professional": "polite professional smile",
+    "into": "soft smile, blushing",
+    "lost": "flushed face, half-lidded eyes, lost in the moment",
+    "flustered": "blushing, flustered",
+    "smug": "smug smile"
+  },
+  "expressionsByAct": {
+    "kiss": {
+      "bored": "eyes open, half-hearted kiss",
+      "professional": "practiced, gentle kiss",
+      "into": "eyes closed, melting into the kiss",
+      "lost": "breathless, clinging to him, lips swollen",
+      "flustered": "pink-cheeked, shy peck",
+      "smug": "smirking against his lips"
+    },
+    "massage_give": {
+      "bored": "distracted, kneading absently",
+      "professional": "focused, steady hands, calm smile",
+      "into": "humming softly as she works",
+      "lost": "leaning close, warm and attentive",
+      "flustered": "blushing, careful hands",
+      "smug": "knowing smile, confident hands"
+    },
+    "massage_get": {
+      "bored": "resting her chin on her arms, unimpressed",
+      "professional": "relaxed, polite smile",
+      "into": "eyes closed, content sigh",
+      "lost": "utterly melted, drowsy bliss",
+      "flustered": "blushing, peeking over her shoulder",
+      "smug": "lounging like a queen, smug smile"
+    },
+    "manual_give": {
+      "bored": "looking aside, idle",
+      "professional": "attentive, practiced smile",
+      "into": "biting her lip, eager",
+      "lost": "flushed, watching him intently",
+      "flustered": "blushing, glancing away shyly",
+      "smug": "teasing, smug smile"
+    },
+    "manual_get": {
+      "bored": "glancing away, patient",
+      "professional": "composed, quiet breaths",
+      "into": "lips parted, eyes half closed",
+      "lost": "head thrown back, gasping",
+      "flustered": "hiding her face, blushing hard",
+      "smug": "watching him with a teasing smile"
+    },
+    "breast_give": {
+      "bored": "looking aside, unimpressed",
+      "professional": "practiced, polite smile",
+      "into": "playful smile, looking up",
+      "lost": "flushed and breathless, eyes half closed",
+      "flustered": "blushing, embarrassed smile",
+      "smug": "proud, teasing smirk"
+    },
+    "breast_get": {
+      "bored": "arms loose, unbothered",
+      "professional": "calm, gracious smile",
+      "into": "soft sigh, eyes fluttering",
+      "lost": "arching, breathless",
+      "flustered": "covering her mouth, bright red",
+      "smug": "proud, smug smile"
+    },
+    "oral_give": {
+      "bored": "half-lidded, going through the motions",
+      "professional": "practiced, looking up politely",
+      "into": "eager, looking up at him",
+      "lost": "flushed, eyes glazed with desire",
+      "flustered": "blushing, eyes darting away",
+      "smug": "looking up with a smug glint"
+    },
+    "oral_get": {
+      "bored": "staring at the ceiling",
+      "professional": "composed, steady breathing",
+      "into": "fingers in his hair, lips parted",
+      "lost": "head back, eyes squeezed shut, gasping",
+      "flustered": "hiding behind her hands, blushing",
+      "smug": "looking down at him with a smug smile"
+    },
+    "missionary": {
+      "bored": "staring past him, unmoved",
+      "professional": "warm practiced smile",
+      "into": "arms around his neck, smiling",
+      "lost": "eyes rolled back, mouth open, flushed",
+      "flustered": "blushing, turning her face aside",
+      "smug": "pulling him closer with a smirk"
+    },
+    "cowgirl": {
+      "bored": "slow, distracted, looking away",
+      "professional": "steady rhythm, confident smile",
+      "into": "grinning, hands on his chest",
+      "lost": "head tipped back, flushed, breathless",
+      "flustered": "blushing, hair falling over her face",
+      "smug": "looking down at him, smug and in control"
+    },
+    "doggy": {
+      "bored": "resting on her elbows, bored",
+      "professional": "glancing back with a polite smile",
+      "into": "glancing back eagerly, biting her lip",
+      "lost": "face pressed into the sheets, gasping",
+      "flustered": "blushing, hiding her face in the pillow",
+      "smug": "looking back over her shoulder with a smirk"
+    }
   }
 }
