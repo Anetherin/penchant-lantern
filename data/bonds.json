@@ -368,6 +368,7 @@
       "prompt": "the two women share him affectionately, in sync with each other",
       "_default": "{a} and {b} share him easily, as affectionate with each other as with Sam.",
       "caress": "An unhurried tangle of kisses, three ways. Nobody is keeping score.",
+      "kiss": "An unhurried tangle of kisses, three ways. Nobody is keeping score.",
       "cowgirl": "{a} and {b} take turns, holding hands across him for balance and laughing when they get it wrong.",
       "oral": "They work together, trading places and glances, very pleased with themselves.",
       "missionary": "{b} stays curled at Sam's side the whole time, murmuring encouragement to {a}."
@@ -379,7 +380,8 @@
       "oral": "It turns into a contest almost at once: who can make him lose his composure first.",
       "cowgirl": "They argue over whose turn it is, then over who's doing it better.",
       "paizuri": "A matter of pride, apparently. Both of them take it extremely seriously.",
-      "caress": "Even the kissing becomes a competition. Sam is not sure how."
+      "caress": "Even the kissing becomes a competition. Sam is not sure how.",
+      "kiss": "Even the kissing becomes a competition. Sam is not sure how."
     },
     "lesson": {
       "label": "a lesson",
@@ -394,6 +396,7 @@
       "prompt": "the lover gently guides her nervous, curious friend",
       "_default": "{a} takes the lead, and {b} follows, nervous at first and then not at all.",
       "caress": "{b} starts out shy. {a} kisses her first, then Sam, and that settles it.",
+      "kiss": "{b} starts out shy. {a} kisses her first, then Sam, and that settles it.",
       "oral": "{a} shows her friend how it's done. {b} is a quick study, and very curious."
     }
   },
