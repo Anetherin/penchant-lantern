@@ -118,7 +118,7 @@
             "karin": {"v":-15,"note":"Old history over the same aloof man. Neither will admit it still stings."}
           },
           "jobs": {"likes":["security","bartender"],"dislikes":["maid","promoter"]},
-          "body": {"bust":"medium","height":"average","figure":"athletic"},
+          "body": {"bust":"small","height":"average","figure":"athletic"},
           "unique": {"name":"Medic's Hands","desc":"A field medic's strong, precise hands.","fx":{"actQuality":{"massage_give":1.25},"security":10}}
         },
         "ino": {
@@ -217,7 +217,7 @@
             "juju": {"v":50,"kind":"mentor","note":"Juju is from her toolsmith line and calls her Great-Grandma Tenten. Tenten hates it."}
           },
           "jobs": {"likes":["bartender","security"],"dislikes":["maid"]},
-          "body": {"bust":"medium","height":"short","figure":"athletic"},
+          "body": {"bust":"small ","height":"medium","figure":"athletic"},
           "unique": {
             "name": "Never Misses",
             "desc": "Nothing slips past her, whether it's a thrown knife or a rowdy client.",
@@ -515,7 +515,7 @@
           },
           "bonds": {"sakura":{"v":-15,"note":"Old history over the same aloof man. Neither will admit it still stings."}},
           "jobs": {"likes":["bath","madame"],"dislikes":["maid"]},
-          "body": {"bust":"medium","height":"average","figure":"slim"},
+          "body": {"bust":"small","height":"average","figure":"slim"},
           "unique": {"name":"Sensor","desc":"She feels where tension and trouble are before they arrive.","fx":{"jobBonus":{"bath":1.15},"security":8}}
         },
         "mei": {
@@ -764,7 +764,7 @@
           },
           "bonds": {"emi":{"v":60,"kind":"comrades","note":"Squadmates since the Exam."}},
           "jobs": {"likes":["dancer","bartender","courtesan"],"dislikes":["security"]},
-          "body": {"bust":"small","height":"average","figure":"slim"},
+          "body": {"bust":"flat","height":"short","figure":"slim"},
           "unique": {"name":"Vampire-Rock Concert","desc":"Her stage shows are the talk of the town.","fx":{"jobBonus":{"dancer":1.25},"appeal":3}}
         },
         "choko": {
@@ -868,7 +868,7 @@
             "nozomi": {"v":-20,"note":"Saya turned her away once and still is not sure she was wrong."}
           },
           "jobs": {"likes":["promoter","madame"],"dislikes":["dancer"]},
-          "body": {"bust":"medium","height":"tall","figure":"slim"},
+          "body": {"bust":"large","height":"tall","figure":"slim"},
           "unique": {"name":"Beetle Network","desc":"Tiny informants tell her everything that happens in the building.","fx":{"promote":1.15,"security":6}}
         },
         "juju": {
@@ -968,7 +968,7 @@
           },
           "bonds": {"juju":{"v":35,"kind":"comrades","note":"Old squadmates."}},
           "jobs": {"likes":["courtesan","bath"],"dislikes":["maid","security"]},
-          "body": {"bust":"medium","height":"tall","figure":"athletic"},
+          "body": {"bust":"large","height":"tall","figure":"athletic"},
           "unique": {"name":"Gentle Breeze","desc":"Her relaxed company eases tired bodies and tired moods.","fx":{"energyRec":1.15,"moodRest":3}}
         },
         "maki": {
@@ -1019,7 +1019,7 @@
             "choko": {"v":55,"note":"Close friends since the Exam."}
           },
           "jobs": {"likes":["courtesan","madame","dancer"],"dislikes":["bartender","maid"]},
-          "body": {"bust":"large","height":"tall","figure":"curvy"},
+          "body": {"bust":"medium","height":"tall","figure":"curvy"},
           "unique": {
             "name": "Optimized Presentation",
             "desc": "She has calculated exactly what makes a good impression.",
@@ -1071,7 +1071,7 @@
           },
           "bonds": {"juju":{"v":40,"note":"Friends who nearly broke over a prosthetic, and mended it."}},
           "jobs": {"likes":["dancer","bartender","courtesan"],"dislikes":["maid"]},
-          "body": {"bust":"small","height":"short","figure":"athletic"},
+          "body": {"bust":"small","height":"short","figure":"slim"},
           "unique": {
             "name": "Puppet-Craft Arm",
             "desc": "A tireless mechanical arm with precise control.",
@@ -1266,7 +1266,7 @@
             "yukine": {"v":50,"kind":"comrades","note":"Squadmates who started out butting heads."}
           },
           "jobs": {"likes":["security","bartender"],"dislikes":["maid"]},
-          "body": {"bust":"medium","height":"average","figure":"athletic"},
+          "body": {"bust":"small","height":"average","figure":"athletic"},
           "unique": {"name":"Lightning Sprinter","desc":"The fastest in any room, and she never seems to tire.","fx":{"maxEnergy":10,"security":8}}
         },
         "shiori": {
@@ -1495,7 +1495,7 @@
           },
           "bonds": {"maki":{"v":45,"note":"Friends through clothes. Marina will alter anything for Maki, then ask her who it's for."}},
           "jobs": {"likes":["maid","madame"],"dislikes":["dancer","security"]},
-          "body": {"bust":"medium","height":"average","figure":"soft"},
+          "body": {"bust":"medium","height":"average","figure":"slim"},
           "unique": {"name":"Mending Needle","desc":"She mends every outfit in the house, keeping everyone comfortable.","fx":{"tidy":1.15,"wardrobe":8}}
         },
         "ayano": {
@@ -1590,7 +1590,7 @@
             }
           },
           "jobs": {"likes":["courtesan","security"],"dislikes":["maid"]},
-          "body": {"bust":"medium","height":"average","figure":"athletic"},
+          "body": {"bust":"small","height":"tall","figure":"athletic"},
           "unique": {"name":"Hair-Thread Poise","desc":"Polished and unflappable, right up until she isn't.","fx":{"security":10,"recklessAt":8}}
         },
         "nai": {
@@ -2156,7 +2156,7 @@
           },
           "bonds": {"lethe":{"v":30,"note":"Two shapeshifters who recognize each other."}},
           "jobs": {"likes":["courtesan","security"],"dislikes":["promoter"]},
-          "body": {"bust":"large","height":"tall","figure":"curvy"},
+          "body": {"bust":"small","height":"tall","figure":"athletic"},
           "unique": {"name":"Guardian's Loyalty","desc":"Slow to trust, but fiercely devoted once she does.","fx":{"trustGain":1.15,"security":8}}
         }
       }
@@ -2210,7 +2210,7 @@
           },
           "bonds": {"hsin":{"v":35,"note":"Two guardians of the same coast."}},
           "jobs": {"likes":["courtesan","madame","dancer"],"dislikes":["bartender"]},
-          "body": {"bust":"medium","height":"tall","figure":"slim"},
+          "body": {"bust":"medium","height":"short","figure":"slim"},
           "unique": {
             "name": "Magistrate's Bearing",
             "desc": "A magistrate's authority impresses nobles and settles the house.",
@@ -2331,11 +2331,11 @@
           "backstory": "An angel of the tide from the sea-trade cities of the far east coast, Cartethyia has spent centuries as the voice that calms storms for fishing fleets. She sings in a clear, unhurried voice, carries a slender rapier she rarely draws, and is quietly overwhelmed by a city that never stops talking. She shares a name and an old, difficult history with the red-winged sovereign who sometimes walks beside her.",
           "design": {
             "build": "slender and graceful",
-            "hairStyle": "very long, loosely flowing with a silver-blue gradient",
-            "hairColor": "silver-white with pale blue tips",
+            "hairStyle": "very long, loosely flowing",
+            "hairColor": "light blonde",
             "eyes": "soft sea-blue",
             "skin": "fair",
-            "features": "pale feathered wings tinged with sea-foam blue and a delicate serene face"
+            "features": "pointy elf ears and a pale blue laurel halo"
           },
           "under": "silk",
           "underColor": "white",
@@ -2349,7 +2349,7 @@
             "sig_cartethyia": {
               "label": "Tide-singer's gown",
               "style": "Elegant",
-              "prompt": "a flowing white and sea-blue gown with sheer sleeves and a slender rapier at her hip",
+              "prompt": "short white vestments over a short, black dress, completely open chest, with blue gradient fabric flowing behind her",
               "bonus": {"dancer":1.25,"noble":1.15}
             },
             "sp_cartethyia": {
@@ -2361,7 +2361,7 @@
           },
           "bonds": {"fleurdelys":{"v":15,"note":"Two names, one history, and very little to say to each other so far."}},
           "jobs": {"likes":["dancer","attendant"],"dislikes":["security"]},
-          "body": {"bust":"small","height":"average","figure":"slim"},
+          "body": {"bust":"small","height":"short","figure":"slim"},
           "unique": {
             "name": "Storm-Stilling Song",
             "desc": "Her singing soothes a room, steadying moods and lifting her dancing.",
@@ -2384,10 +2384,10 @@
           "design": {
             "build": "tall and statuesque",
             "hairStyle": "long flowing with a high crown braid",
-            "hairColor": "deep crimson",
-            "eyes": "burning gold",
+            "hairColor": "blonde with a subtle soft-blue gradient",
+            "eyes": "cold blue",
             "skin": "fair",
-            "features": "curved dark horns, broad crimson wings and a tall, commanding presence"
+            "features": "a long golden horn and a crystal-blue crown of thorns"
           },
           "under": "lace",
           "underColor": "black",
@@ -2399,21 +2399,21 @@
           "trust": 18,
           "outfits": {
             "sig_fleurdelys": {
-              "label": "Sovereign's armor",
+              "label": "Martyr's gown",
               "style": "Revealing",
-              "prompt": "a close-fitting crimson and black armored bodysuit with a spiked pauldron and a long cape, a tall spear at her side",
+              "prompt": "short white vestments over a very short black dress, completely open chest, with blue  fabric flowing behind her",
               "bonus": {"security":1.35,"adventurer":1.15}
             },
             "sp_fleurdelys": {
-              "label": "Court crimson",
+              "label": "Court navy",
               "style": "Revealing",
-              "prompt": "a deep red silk gown with a high slit, gold jewelry and a sweeping black train",
+              "prompt": "a deep blue silk gown with a high slit, gold jewelry and a sweeping black train",
               "bonus": {"noble":1.25,"courtesan":1.2}
             }
           },
           "bonds": {"cartethyia":{"v":15,"note":"Two names, one history, and very little to say to each other so far."}},
           "jobs": {"likes":["security","courtesan"],"dislikes":["maid","dancer"]},
-          "body": {"bust":"large","height":"tall","figure":"athletic"},
+          "body": {"bust":"huge","height":"tall","figure":"curvy"},
           "unique": {
             "name": "Sovereign's Spear",
             "desc": "A commanding presence that cows rowdy clients and gives her real security muscle.",
