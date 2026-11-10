@@ -31,6 +31,7 @@ nav button{background:transparent}nav button.on{background:var(--panel2)}
 .tag{display:inline-block;font-size:.75em;padding:1px 6px;border-radius:9px;background:#3b2c18;color:var(--gold);border:1px solid var(--gold2);margin:1px 2px}
 .tag.hid{background:#1b2b40;color:var(--blue);border-color:var(--blue)}
 .tag.act{background:#3a1b2c;color:var(--pink);border-color:#8a4466}
+.tag.guest{background:#241f3a;color:#b9a6ff;border-color:#7a66c8}
 .tag.house{background:#1d2a22;color:var(--green);border-color:#3f8f6a}
 .bar{position:relative;height:15px;background:#120e16;border-radius:8px;overflow:hidden;margin:3px 0;border:1px solid var(--line)}
 .bar span{position:absolute;inset:0 auto 0 0;background:#6b5a7a}

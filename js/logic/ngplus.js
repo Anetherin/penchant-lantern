@@ -4,7 +4,9 @@
    Unlocks once the debt is paid (docs/OVERHAUL.md §9). Sam keeps ONLY his home house (rooms, tier, upgrades, beds,
    story progress), his level and stats. Of the ladies only Devoted lovers come along: they draw wages again, their
    stats / tech / act skills reset (named: to their data values, generic: 50%), popularity goes to 0, and each picks one
-   NG+ perk (traits.json ngPerk). Everyone else leaves (named ones return to their pools, fresh). Sam picks a new
+   NG+ perk (traits.json ngPerk). Non-lover guests and generic ladies at maxed trust become "old friends" (ngFriends): they get a Reincarnated
+   stack but no perk, wait in S.alumni and turn up among the candidates as EXTRA entries (inviteFriend in state.js; balance.json → ngplus.friends).
+   Everyone else leaves (named ones return to their pools, fresh). Sam picks a new
    partner from those not carried over (ngplus partners are offered from cycle 2) and a perk of his own.
    New debt = home debt x debtShare (+perCycle) + improvementsValue x improveShare. Other houses are sold toward it;
    NG+ houses can be bought during the cycle (houseOffered). Tuning: data/balance.json → ngplus.
@@ -29,6 +31,11 @@ const NG_BOONS = {
 const improvementsValue = h => Math.round((h && h.spent) || 0);
 // Lovers (Devoted) are the only ladies who carry over.
 const carriedLovers = () => S.workers.filter(w=>has(w,'Devoted'));
+// Old friends: non-lover guests (role 'drifter') and generic ladies at max trust. They come back as extra candidates (S.alumni), reborn but without a perk.
+function ngFriends(){
+  const F = BAL.ngplus.friends || {}, L = carriedLovers();
+  return S.workers.filter(w=>!L.includes(w) && !w.isPartner && w.trust >= (F.trust ?? 100) && ((!w.key && F.generics) || (isGuest(w) && F.guests)));
+}
 const NG_PERKS = () => Object.keys(TRAITS).filter(t=>TRAITS[t].ngPerk);
 function ngNumbers(boon, house){
   if(house===undefined && NGS) house = NGS.house;
@@ -61,7 +68,7 @@ function ngView(){
   let body = '', ok = false;
   if(cur==='New partner'){
     const carried = new Set(lovers.map(w=>w.key).filter(Boolean)), free = PARTNERS.filter(k=>!carried.has(k));   // cycle 2+: NG+ partners included
-    body = `<h2>A new partner</h2><p class="muted">Only Sam's lovers come with him, and they'll work for wages now. Pick someone new to start this chapter at his side. Partners marked ✦ come from Sam's old world and only arrive in New Game+.</p>
+    body = `<h2>A new partner</h2><p class="muted">Sam's lovers come with him, and they'll work for wages now (guests and ladies who trust him completely may look him up again later). Pick someone new to start this chapter at his side. Partners marked ✦ come from Sam's old world and only arrive in New Game+.</p>
       <div class="grid">${free.map(k=>{ const n = NAMED[k]; return `<div class="pick ${NGS.partner===k?'sel':''}" onclick="ngPick('partner','${k}')">
         <b>${n.ngplus?'✦ ':''}${n.name}</b> <span class="muted">${RACES[n.race].label}${n.sub?' ('+n.sub+')':''} · ${esc(n.personality)}</span><div class="muted">Trust ${tShow(n.partnerTrust)} · ${JOBS[n.job].label} · ${n.traits.join(', ')}</div>
         <div style="margin-top:4px">${esc(n.partnerStory)}</div></div>`; }).join('')}
@@ -93,10 +100,11 @@ function ngView(){
     ok = lovers.every(w=>NGS.perks[w.id] || !NG_PERKS().some(t=>!(w.ngPerks||[]).includes(t)));
   } else {
     const N = ngNumbers(NGS.boon), HDo = HOUSES[og];
-    const leaving = S.workers.filter(w=>!lovers.includes(w));
+    const friends = ngFriends(), leaving = S.workers.filter(w=>!lovers.includes(w) && !friends.includes(w));
     body = `<h2>Ready for round ${N.cycle}?</h2><div class="card">
       <b>Keeps:</b> ${esc(HDo.name)} with its rooms, upgrades and story, Sam's level, stats and Appraisal, the regulars there, your gold (see purse) and your image library.<br>
       <b>Lovers who stay:</b> ${lovers.length ? lovers.map(w=>`${esc(w.name)}${NGS.perks[w.id]?` (${esc(NGS.perks[w.id])})`:''}`).join(', ') + '. They draw wages again; their skills, popularity, trust and lewdness start over (they\'re still his lovers, and Reincarnated makes the climb back faster).' : 'none. Only Devoted lovers come along.'}<br>
+      ${friends.length?`<b>Old friends:</b> ${friends.map(w=>esc(w.name)).join(', ')}. They'll look Sam up again (Recruit), with a Reincarnated stack.<br>`:''}
       <b>Leaving:</b> ${leaving.length ? `${leaving.length} ladies (${leaving.slice(0,8).map(w=>esc(w.name)).join(', ')}${leaving.length>8?', …':''}). Named ones can be met again, fresh.` : 'no one.'}<br>
       ${NGS.house?`<b>New house:</b> ${esc(HOUSES[NGS.house].name)} with ${esc((NAMED[HOUSES[NGS.house].npc]||{}).name||'its resident')}.<br>`:''}
       ${NGS.past&&NGS.past!=='none'?`<b>Another past life:</b> ${esc(PASTS[NGS.past].label)}.<br>`:''}
@@ -130,7 +138,7 @@ function ngReset(w){
 }
 function ngBegin(){
   const C = NGS; if(!C || !C.boon && !Object.keys(NG_BOONS).every(k=>(S.boons||[]).includes(k))) return;
-  const B = BAL.ngplus, og = homeHouse(), HDo = HOUSES[og], N = ngNumbers(C.boon, C.house), lovers = carriedLovers();
+  const B = BAL.ngplus, og = homeHouse(), HDo = HOUSES[og], N = ngNumbers(C.boon, C.house), lovers = carriedLovers(), friends = ngFriends();
   if(lovers.some(w=>!C.perks[w.id] && NG_PERKS().some(t=>!(w.ngPerks||[]).includes(t)))) return;
   S.home = og; S.cycle = N.cycle;   // set first: generics rolled from here on can get ngOnly traits
   // lovers: wages again, perk, reset
@@ -142,6 +150,10 @@ function ngBegin(){
   });
   // everyone else leaves; named ladies go back to their pools, fresh (isHired is false for them again)
   const ids = new Set(lovers.map(w=>w.id));
+  friends.forEach(w=>{   // old friends wait in S.alumni; hire() sets job, contract, house and seen when she is signed again
+    ngReset(w); w.reborn = (w.reborn||0) + 1; w.free = false; w.isPartner = false; w.locked = null; w.job = 'rest'; w.contract = 12; w.house = og; w.seen = {}; w.wage = wageFor(w);
+  });
+  S.alumni = [...(S.alumni||[]), ...friends];
   S.workers = lovers; S.candidates = [];
   S.bonds = Object.fromEntries(Object.entries(S.bonds||{}).filter(([k])=>k.split('|').every(id=>ids.has(id))));
   S.regulars = (S.regulars||[]).filter(r=>r.house===og);
@@ -174,6 +186,7 @@ function ngBegin(){
   S.won = false; S.over = false; S.lastReport = null; EVQ = [];
   S.flags.partnerCD = 3; S.ap = apMax();
   refreshCandidates(C.boon==='recruit' ? 3 : 0, C.boon==='recruit' ? 1.15 : 1);
+  inviteFriend(true);   // the first week already shows an old friend
   checkUnlocks(true);
   addLog(`New Game+ (cycle ${S.cycle}): Sam keeps ${HDo.name} and takes on a new debt of ${fmt(N.debt)}.`);
   NGS = null; save(); TAB = 'house'; render();

@@ -32,6 +32,8 @@ function knowsPrefs(w){ return S.sam.appraisal>=3 || w.trust>=40; }
 function grade(v){ return v>=85?'S':v>=70?'A':v>=55?'B':v>=40?'C':v>=25?'D':'E'; }
 // stats and skills run 0-1000; grades use the 0-100 scale
 function sv(w, v, employee){ return knows(w,employee) ? `${Math.round(v)}<span class="muted" style="font-size:.7em">/1000</span>` : grade(s100(v)); }
+const isGuest = w => !!(w && w.key && NAMED[w.key] && NAMED[w.key].role==='drifter');
+const nameBadge = w => isGuest(w) ? `<span class="tag guest" title="Visiting guest${NAMED[w.key].pack && GUEST_PACKS[NAMED[w.key].pack] ? ' · '+esc(GUEST_PACKS[NAMED[w.key].pack].label||NAMED[w.key].pack) : ''}">☄</span>` : (w && w.named ? '<span class="tag">★</span>' : '');
 function traitTags(w){ return (w.reborn?`<span class="tag act" title="${esc(rebornDesc(w))}">♻ Reincarnated${w.reborn>1?' ×'+w.reborn:''}</span> `:'') + (w.unique?`<span class="tag act" title="${esc(w.unique.desc||'')}">★ ${esc(w.unique.name)}</span> `:'') + (w.ngPerks||[]).map(t=>`<span class="tag act" title="${esc(TRAITS[t]?TRAITS[t].desc:'')}">✦ ${esc(t)}</span>`).join(' ') + ' ' + (w.traits||[]).filter(t=>!TRAITS[t]||!TRAITS[t].hidden||S.sam.appraisal>=3).map(t=>`<span class="tag ${TRAITS[t]&&TRAITS[t].hidden?'hid':''} ${TRAITS[t]&&TRAITS[t].story?'act':''}" title="${esc(TRAITS[t]?TRAITS[t].desc:'')}">${esc(t)}</span>`).join(' '); }
 function jobOptions(w){ return Object.entries(JOBS).map(([k,J])=>{ const why = k===w.job ? null : canDo(w,k); return `<option value="${k}" ${k===w.job?'selected':''} ${why?'disabled':''}>${why?'🔒 ':''}${J.label}</option>`; }).join(''); }
 function houseTabs(withAll){
@@ -90,7 +92,7 @@ function workerCard(w, showHouse){
   const wl = knows(w,true) ? lShow(w.lewd) : '?';
   const menu = JOBS[w.job] && (JOBS[w.job].must || w.offDuty==='on') ? (w.menu.length ? w.menu.map(a=>`<span class="tag act">${esc(actLabel(a))}</span>`).join('') : '<span class="muted">No services on menu</span>') : '';
   return `<div class="wcard" onclick="openSheet('${w.id}')">${avatarHTML(w)}
-    <div class="winfo"><div class="wname">${esc(w.name)}${w.named?' <span class="tag">★</span>':''}${w.isPartner?' <span class="tag act">♥ Partner</span>':''}${showHouse?` <span class="tag house">${esc(houseOf(w).name)}</span>`:''}</div>
+    <div class="winfo"><div class="wname">${esc(w.name)}${nameBadge(w)}${w.isPartner?' <span class="tag act">♥ Partner</span>':''}${showHouse?` <span class="tag house">${esc(houseOf(w).name)}</span>`:''}</div>
       <div class="muted">${raceLabel(w)} · ${esc(w.personality)}</div>
       ${bar('Energy',w.energy,maxEnergy(w),'e')}${bar('Mood',w.mood,100,'m')}${knows(w,true)?lustBar(w):''}${w.health<100?bar('Health',w.health,100,'h'):''}
       <div class="row" onclick="event.stopPropagation()"><select onchange="setJob('${w.id}',this.value)">${jobOptions(w)}</select>
@@ -123,7 +125,7 @@ function viewRoster(){
 }
 function viewRecruit(){
   const cards = S.candidates.map(c=>`<div class="wcard" style="cursor:default">${avatarHTML(c)}
-    <div class="winfo"><div class="wname">${esc(c.name)}${c.named?' <span class="tag">★</span>':''}${ARCS[c.key]?' <span class="tag act">♥ story</span>':''}</div>
+    <div class="winfo"><div class="wname">${esc(c.name)}${nameBadge(c)}${c.friend?' <span class="tag act">♻ old friend</span>':''}${ARCS[c.key]?' <span class="tag act">♥ story</span>':''}</div>
     <div class="muted">${raceLabel(c)} · ${esc(c.personality)} · Style: ${c.style}</div><div>${traitTags(c)}</div>
     <div class="sgrid" style="margin:6px 0">${STAT_KEYS.map(k=>`<div><span>${k.slice(0,4).toUpperCase()}</span><b>${sv(c,c.stats[k],false)}</b></div>`).join('')}<div><span>LEWD</span><b>${S.sam.appraisal>=2?lShow(c.lewd):'?'}</b></div><div><span>BEST</span><b>${TECH_LABEL[TECH_KEYS.reduce((a,k)=>c.tech[k]>c.tech[a]?k:a,'service')]}</b></div><div><span>BODY</span><b>${esc(bodyLabel(c))}</b></div></div>
     <div class="row"><span>Wage <b>${fmt(c.wage)}</b>/wk · Signing <b>${fmt(c.signing||0)}</b></span></div>

@@ -20,7 +20,7 @@
 - Job preferences are per lady (`w.jobLikes`/`w.jobDislikes`; named ones from `jobs` in characters/guests.json, others rolled by `rollJobPrefs`).
 - New Game+ lives in `js/logic/ngplus.js` (tuning: `balance.json → ngplus`). Sam keeps ONLY his home house (with its upgrades; `h.spent` tracks improvement
   spending, new debt = home debt share + `spent` x `improveShare`); other houses are sold. Only Devoted lovers carry over (wages again, stats reset, popularity 0,
-  each picks one `ngPerk` trait stored in `w.ngPerks`); everyone else leaves and named ladies return to their pools. Houses with `ngplus: true` in economy.json
+  each picks one `ngPerk` trait stored in `w.ngPerks`); guests and generics at max trust become "old friends" (`ngFriends()`, parked in `S.alumni`, Reincarnated but no perk, turn up as EXTRA candidates via `inviteFriend()`; `balance.json → ngplus.friends`); everyone else leaves and named ladies return to their pools. Houses with `ngplus: true` in economy.json
   and partners with `ngplus: true` in characters.json only appear from cycle 2 (`houseOffered` / `partnerOffered`); house stories are in `js/stories/ngplus-houses.js`.
   Debt payments count from `S.debt.start` (`debtWeek()`); `payOffDebt()` pays it all at once (same win flow via `checkEnd`).
 - House ladies (role `house`) are gated by their house story: `houseGate(w)` / `capTrust(w)` cap trust at 35 + 15 x beat (`balance.json → houseGate`), enforced in

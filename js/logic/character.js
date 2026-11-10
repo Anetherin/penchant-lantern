@@ -173,7 +173,7 @@ function signingFor(w){ return Math.max(60, Math.round(w.wage * rnd(5,8) * (race
 // Skills work in 1000-units: n is the old 0-100 amount (x SKL), with a diminishing curve (1 - v/1300).
 function grow(w,k,n){ n *= SKL * fxMul(w,'skillGain'); w.tech[k] = clampK((w.tech[k]||0) + n*(1 - (w.tech[k]||0)/1300)); }
 function growAct(w,id,n){ id = actKey(id); if(!w.acts[id]) return; n *= SKL * fxMul(w,'skillGain'); const s=w.acts[id].skill; w.acts[id].skill = clampK(s + n*(1 - s/1300)); }
-function allNames(){ return S ? [...S.workers, ...S.candidates].map(w=>w.name) : []; }
+function allNames(){ return S ? [...S.workers, ...S.candidates, ...(S.alumni||[])].map(w=>w.name) : []; }
 function genName(race, sub){
   const R = RACES[race] || {}, n = R.names || NAMES[race] || NAMES.human, SL = ((subData(race, sub)||{}).names||{}).l; let name, t=0;
   // last names (or titles): the race's list, or half the time the beastkin sub's own list
@@ -306,7 +306,7 @@ function makeNamed(key, asPartner){
   w.wage = wageFor(w); w.energy = maxEnergy(w);
   return w;
 }
-const isHired = key => S && (S.workers.some(w=>w.key===key) || S.candidates.some(w=>w.key===key));
+const isHired = key => S && (S.workers.some(w=>w.key===key) || S.candidates.some(w=>w.key===key) || (S.alumni||[]).some(w=>w.key===key));
 
 // Lust: her current appetite. It builds every week (faster for lewder ladies) and is spent by
 // services and time with Sam. Very high lust can lead to reckless choices; very low lust means
