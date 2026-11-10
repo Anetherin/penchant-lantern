@@ -100,6 +100,34 @@ function buyUpgrade(k){
   save(); render();
   if(k==='bar' && !S.flags.hilde && !isHired('hilde')){ S.flags.hilde=true; EVQ.push(evHilde); runQueue(); }
 }
+// Demolish (balance.json → demolish): knocks down a built amenity, or the last bedroom / staff quarters above the house's starting count.
+// Costs share x the item's base price (no inflation), lowers h.spent by that base price (improvement value for NG+), never refunds.
+function demolishInfo(h, k){
+  const D = HOUSES[h.id], share = BAL.demolish.share;
+  let base = 0, why = '';
+  if(k==='room'){ base = 250 + (h.rooms-1)*220; if(h.rooms <= D.rooms) why = 'These are the rooms the house started with.'; }
+  else if(k==='quarters'){ base = 200 + ((h.quarters||0)-1)*160; if((h.quarters||0) <= D.quarters) why = 'These are the quarters the house started with.'; }
+  else if(UPGRADES[k]){
+    base = UPGRADES[k].cost; const jobOf = {bath:'bath', stage:'dancer', bar:'bartender'}[k];
+    if(!h.up[k]) why = 'Not built.';
+    else if((D.up||{})[k]) why = `${UPGRADES[k].label} came with the house.`;
+    else if(jobOf && S.workers.some(w=>w.house===h.id && w.job===jobOf)) why = `Someone still works as ${JOBS[jobOf].label} here. Move her to another job first.`;
+  } else why = 'Unknown.';
+  return {base, cost:Math.round(base*share), ok:!why, why};
+}
+function demolish(k){
+  const h = curH(), I = demolishInfo(h, k);
+  if(!I.ok) return toast(I.why);
+  if(S.gold < I.cost) return toast('Not enough gold to pay the demolition crew.');
+  const label = k==='room' ? 'a bedroom' : k==='quarters' ? 'a set of staff quarters' : `the ${UPGRADES[k].label}`;
+  if(!confirm(`Demolish ${label} in ${h.name}? It costs ${fmt(I.cost)} and nothing is refunded.`)) return;
+  S.gold -= I.cost; h.spent = Math.max(0, (h.spent||0) - I.base);
+  if(k==='room') h.rooms--;
+  else if(k==='quarters'){ h.quarters--; h.extraBeds = Math.min(h.extraBeds||0, maxExtraBeds(h)); }
+  else delete h.up[k];
+  note(`${h.name}: ${label} demolished (${fmt(I.cost)}).`);
+  save(); render();
+}
 function buyHouse(id){
   const D = HOUSES[id]; if(!D || H(id) || !houseOffered(id)) return;
   if(D.premium && ((S.sam.lvl||1) < D.level || S.rep < D.renown)) return toast(`${D.name} won't sell to Sam yet. Needs Sam level ${D.level} and renown ${D.renown}.`);

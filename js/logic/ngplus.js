@@ -1,8 +1,8 @@
 'use strict';
 /* =====================================================================
    NEW GAME+
-   Unlocks once the debt is paid (docs/OVERHAUL.md §9). Sam keeps his home house, the starter house of each cycle and any house whose
-   story is finished (rooms, tier, upgrades, beds, story progress) and his level; his stats and Appraisal are rebuilt (balance.json → ngplus.samReset). No gold carries over (purse = new-game gold). Of the ladies only Devoted lovers come along: they draw wages again, their
+   Unlocks once the debt is paid (docs/OVERHAUL.md §9). Sam always keeps his home house; the starter house of each cycle and any house whose
+   story is finished stay too unless he lets them go on the "Houses" step (NGS.keep) (rooms, tier, upgrades, beds, story progress) and his level; his stats and Appraisal are rebuilt (balance.json → ngplus.samReset). No gold carries over (purse = new-game gold). Of the ladies only Devoted lovers come along: they draw wages again, their
    stats / tech / act skills reset (named: to their data values, generic: 50%), popularity goes to 0, and each picks one
    NG+ perk (traits.json ngPerk). Non-lover guests and generic ladies at maxed trust become "old friends" (ngFriends): they get a Reincarnated
    stack but no perk, wait in S.alumni and turn up among the candidates as EXTRA entries (inviteFriend in state.js; balance.json → ngplus.friends).
@@ -21,7 +21,10 @@ const cycleTag = () => S && (S.cycle||1) > 1 ? `NG+${S.cycle>2 ? S.cycle-1 : ''}
 const homeHouse = () => S.home || S.houses[0].id;
 // Houses that stay with Sam in New Game+: his home, the starter house of every cycle (S.starters), and any house whose story is finished.
 const houseStoryDone = h => !!(h && STORIES[h.id] && h.story && h.story.beat >= STORIES[h.id].beats.length);
-const keptHouse = h => h.id===homeHouse() || (S.starters||[]).includes(h.id) || houseStoryDone(h);
+// The home house always stays; every other qualifying house (starter or story done) is an optional carry, chosen on the "Houses" step (NGS.keep, default true).
+const keepable = h => (S.starters||[]).includes(h.id) || houseStoryDone(h);
+const optionalHouses = () => S.houses.filter(h=>h.id!==homeHouse() && keepable(h));
+const keptHouse = h => h.id===homeHouse() || (keepable(h) && !(NGS && NGS.keep && NGS.keep[h.id]===false));
 const keptWhy = h => h.id===homeHouse() ? 'home' : (S.starters||[]).includes(h.id) ? 'starter' : 'story complete';
 const NG_BOONS = {
   purse:   {label:'Deep Pockets', desc:'Start with 2,500g extra in hand.'},
@@ -56,14 +59,15 @@ function ngNumbers(boon, house){
 }
 function startNGPlus(){
   if(!S || !S.won) return toast('New Game+ unlocks once the debt is paid off.');
-  NGS = {step:0, partner:null, boon:null, perks:{}, house:null, past:null,
+  NGS = {step:0, partner:null, keep:Object.fromEntries(optionalHouses().map(h=>[h.id,true])), boon:null, perks:{}, house:null, past:null,
     offers: shuffle(Object.keys(HOUSES).filter(k=>!H(k) && !HOUSES[k].premium && (!isNGHouse(k) || (S.cycle||1)+1 >= 2))).slice(0, BAL.ngplus.houseOffers||4)};
   ngView();
 }
+function ngKeep(id){ if(!NGS || !NGS.keep || !optionalHouses().some(h=>h.id===id)) return; NGS.keep[id] = NGS.keep[id]===false; ngView(); }
 function ngPick(k, v){ NGS[k] = v; ngView(); }
 function ngPerkPick(wid, v){ if(v) NGS.perks[wid] = v; else delete NGS.perks[wid]; ngView(); }
 const pastsLeft = () => Object.keys(PASTS).filter(k=>!hasPast(k));
-const ngSteps = () => ['New partner', ...(NGS && NGS.offers.length ? ['New house'] : []), 'Sam\'s perk', ...(pastsLeft().length ? ['Another past life'] : []), ...(carriedLovers().length ? ['Lovers\' perks'] : []), 'Begin'];
+const ngSteps = () => ['New partner', ...(optionalHouses().length ? ['Houses'] : []), ...(NGS && NGS.offers.length ? ['New house'] : []), 'Sam\'s perk', ...(pastsLeft().length ? ['Another past life'] : []), ...(carriedLovers().length ? ['Lovers\' perks'] : []), 'Begin'];
 function ngNav(d){ NGS.step = Math.max(0, Math.min(ngSteps().length-1, NGS.step + d)); ngView(); }
 function ngView(){
   const st = NGS.step, og = homeHouse(), steps = ngSteps(), cur = steps[st], lovers = carriedLovers();
@@ -77,6 +81,14 @@ function ngView(){
         <div style="margin-top:4px">${esc(n.partnerStory)}</div></div>`; }).join('')}
         <div class="pick ${NGS.partner==='none'?'sel':''}" onclick="ngPick('partner','none')"><b>No one new</b><div class="muted">Sam starts this chapter with ${lovers.length?'his lovers':'no one at his side'}.</div></div></div>`;
     ok = !!NGS.partner;
+  } else if(cur==='Houses'){
+    const B = BAL.ngplus;
+    body = `<h2>Which houses stay?</h2><p class="muted">${esc(HOUSES[og].name)} is Sam's home and always stays. These others can come along or be surrendered to the Credit House. Kept houses keep their rooms, upgrades, story and resident; what Sam spent on their improvements adds ${Math.round(B.improveShare*100)}% of its value to the new debt. Tap a house to switch.</p>
+      <div class="grid">${optionalHouses().map(h=>{ const on = NGS.keep[h.id]!==false, v = improvementsValue(h); return `<div class="pick ${on?'sel':''}" onclick="ngKeep('${h.id}')">
+        <b>${esc(h.name)}</b> <span class="tag ${on?'house':''}">${on?'Keep':'Surrender'}</span> <span class="muted">${keptWhy(h)}</span>
+        <div class="muted">Improvements ${fmt(v)} · adds ${fmt(Math.round(v*B.improveShare))} to the new debt</div>
+        <div style="margin-top:4px">${on?'Keeps its rooms, upgrades, story and resident.':'Handed back to the Credit House; its resident and regulars go too.'}</div></div>`; }).join('')}</div>`;
+    ok = true;
   } else if(cur==='New house'){
     body = `<h2>A new deed</h2><p class="muted">The Credit House is happy to finance a second property. Sam keeps his home house, his starter houses and any house whose story is finished, and takes on one more; its full listed debt${(S.cycle||1)+1>2?` (plus ${Math.round(BAL.ngplus.perCycle*((S.cycle||1)-1)*100)}% for each cycle past the first)`:''} joins the new loan, and its resident comes with it. ✦ houses only appear in New Game+.</p>
       <div class="grid">${NGS.offers.map(k=>{ const D = HOUSES[k], n = NAMED[D.npc]; return `<div class="pick ${NGS.house===k?'sel':''}" onclick="ngPick('house','${k}')">
