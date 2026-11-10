@@ -77,7 +77,7 @@ function samChat(id){
   moodAdd(w, d.mood*m - (m<1?3:0)); samStat('charm',1); samXP(5); samLog(`Chatted with ${w.name}`); checkUnlocks();
   save(); render(); closeModal();
   const topic = ET('chat', NAMED[w.key] && Object.values(NAMED[w.key].bonds||{}).some(x=>x.kind==='home') || ['yui','natsuki','kanako','akari','lara','ella'].includes(w.key) ? 'home' : 'topics');
-  showResult(`Chatting with ${w.name}`, `Sam and ${w.name} talk ${topic}.${pNote(w,d.like)}\n\nTrust ${tDelta(tg)}`, w.id, null, {kind:'chat', scene:'casual', situation:topic, auto:true});
+  showResult(`Chatting with ${w.name}`, `Sam and ${w.name} talk ${topic}.\n\nTrust ${tDelta(tg)}`, w.id, null);
 }
 // a short line for the service itself, used after encounter and first-time openings (flavor.json → private_act)
 const actLine = act => { const L = byAct(FLAVOR.private_act, act); return L && L.length ? pick(L) : ''; };
@@ -136,7 +136,7 @@ function samDate(id, k){
   const nightIn = !first && d.special==='nightin' && anyAct;
   const sparks = nightIn || (!first && w.trust>=60 && w.mood>=70 && m>=1 && anyAct && Math.random() < 0.35 + Math.max(0, w.lust-50)/100);
   const spicy = !first && m>=1 && w.mood>=55 ? (d.spicy||[]).map((sp,i)=>[sp,i]).filter(([sp])=>spicyOK(w,sp)).slice(0,2) : [];
-  const txt = dateText(d, w) + trinket + pNote(w, d.like) + `\n\n${cost?'−'+fmt(cost)+' · ':''}Trust ${tDelta(tg)}${lg>0?' · Lewdness +':''}${d.restores?' · She feels rested':''}`;
+  const txt = dateText(d, w) + trinket + `\n\n${cost?'−'+fmt(cost)+' · ':''}Trust ${tDelta(tg)}${lg>0?' · Lewdness +':''}${d.restores?' · She feels rested':''}`;
   const inviteTxt = nightIn ? `The fire burns low. ${w.name} looks up at Sam, and doesn't look away.` : `On the way back, ${w.name} slips her hand into Sam's and doesn't let go. At her door, she hesitates. "...Do you want to come in?"`;
   modal(`<h2>${esc(d.label)} with ${esc(w.name)}</h2><div id="resImg"></div><p class="story">${esc(txt)}</p>
     ${sparks?`<div id="invImg"></div><div id="propAi"><p class="story pink">${esc(inviteTxt)}</p></div>`:''}

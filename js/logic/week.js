@@ -76,15 +76,6 @@ function serveAct(w, a, o){
 }
 const ENC_NOTE = k => k ? flavor('enc_'+k) : '';
 const CLS_LABEL = id => ((CLASSES.find(c=>c.id===id)||{}).label || id);
-// one compact line per visit, for the full list in the report
-function encLine(e){
-  const who = e.reg ? `${e.reg} (regular)` : cap(CLS_LABEL(e.cls)), where = e.self ? ' (her own proposition)' : e.where ? ` ${PROP_WHERE[e.where]}` : '';
-  const ex = e.expr && EXPR_LABEL[e.expr] ? ` (${EXPR_LABEL[e.expr]})` : '', enc = e.encore ? ` + ${actLabel(e.encore)} again` : '';
-  const more = e.more ? `; then she ${askLady(e.more)}` : '';
-  const what = e.self ? (e.act ? `she ${askLady(e.act)}${ex}${enc}${more}` : 'she asked; he passed')
-    : !e.want ? 'company and wine' : e.outcome==='yes' ? `asked ${askClient(e.act)}${ex}${enc}${more}` : e.outcome==='alt' ? `asked ${askClient(e.want)}; she ${askLady(e.act)} instead${ex}${enc}${more}` : `asked ${askClient(e.want)}, declined`;
-  return {t:`${who}${where}: ${what}.`, note: e.note ? ENC_NOTE(e.note) : '', good: ['fav','eager','glow','pushy_security','pushy_sam'].includes(e.note), bad: ['dislike','stretch','flat','frustrated','drained','pushy_samfail','pushy_none','pushy_samcall','noroom','expect'].includes(e.note)};
-}
 
 /* ---------- jobs, propositions & rough clients (docs/OVERHAUL.md §5-6) ---------- */
 // Reputation gains get harder as the house grows: max(gainMin, gainBase - rep/gainDiv). Losses are unchanged.
@@ -523,7 +514,7 @@ function endWeek(){
     if(!isFree(w) && !w.locked){ w.contract--; if(w.contract<=0 && !leaving.includes(w)) renew.push(w); }
     const enc = pr.enc.slice().sort(()=>Math.random()-0.5).sort((a,b)=>(b.act?2:b.want?0:1)+(b.reg?2:0)-(a.act?2:a.want?0:1)-(a.reg?2:0));
     enc.slice(0,2).forEach(e=>R.hl.push({wid:w.id, text:hlText(w,e) + (e.note ? ' ' + ENC_NOTE(e.note) : ''), act:e.act||null, cls:e.cls, note:e.note||null, scene: e.act ? 'act:'+e.act+'~'+(e.expr||'')+'~'+(e.ctx||'') : e.where ? 'job_'+e.where : 'companion'}));
-    pr.encAll = pr.enc.map(e=>encLine(e)); delete pr.enc;
+    delete pr.enc;
     earnCheck(w).forEach(t=>{ log(`✨ ${w.name} has developed a knack: ${t}. ${TRAITS[t].desc}`); addLog(`${w.name} developed the trait ${t}.`); });
     // romance arcs
     if(ARCS[w.key] && (w.arc||0) < ARCS[w.key].length && !houseGate(w)){
@@ -599,8 +590,8 @@ function showReport(R, fromWeek){
     return `<h3 style="margin-top:12px">${esc(hh.name)}</h3>` + ps.map(p=>{
       const w = findAny(p.id) || {id:p.id, name:p.name};
       const svc = Object.entries(p.acts).map(([id,n])=>`<span class="tag act">${esc(actLabel(id))} ×${n}</span>`).join('') + (p.comp?`<span class="tag">Company ×${p.comp}</span>`:'') + (p.draw?`<span class="tag">Draw +${Math.round(p.draw)} clients${p.samples?' (samples)':''}</span>`:'') + (p.tidied?`<span class="tag">Tidied +${Math.round(p.tidied)}</span>`:'') + (p.stepIn?`<span class="tag">Stepped in ×${p.stepIn}</span>`:'') + (p.pushy?`<span class="tag">Pushy clients ×${p.pushy}</span>`:'');
-      const hls = R.hl.map((h,i)=>({h,i})).filter(x=>x.h.wid===p.id).map(({h,i})=>`<div class="hl">${esc(h.text)} ${findAny(p.id)?`<button class="sm" onclick="showImg('hl${i}','${p.id}','${h.scene}',null,'auto')">🎨</button>${h.noAi?'':aiBtn('hla'+i,'scene',p.id,{act:h.act,cls:h.cls,scene:h.scene,note:h.note||null})}`:''}<div id="hla${i}"></div><div id="hl${i}" class="hlimg"></div></div>`).join('')
-        + (p.encAll && p.encAll.length > 2 ? `<details class="enc"><summary>All ${p.encAll.length} encounters</summary>${p.encAll.map(e=>`<div>${esc(e.t)}${e.note?` <span class="${e.good?'good':e.bad?'warn':'muted'}">${esc(e.note)}</span>`:''}</div>`).join('')}</details>` : '');
+      const hls = R.hl.map((h,i)=>({h,i})).filter(x=>x.h.wid===p.id).map(({h,i})=>`<div class="hl">${esc(h.text)} ${findAny(p.id)?`<button class="sm" id="hl${i}_t" onclick="toggleImgBtn('hl${i}','${p.id}','${h.scene}')">🖼 Show image</button>`:''}<div id="hl${i}" class="hlimg" data-ext="1"></div></div>`).join('')
+        ;
       return `<div class="rep-w"><div class="head">${w.design?avatarHTML(w):''}<div><b>${esc(p.name)}</b> · ${JOBS[p.job]?JOBS[p.job].label:p.job}${p.earned?` · earned <b>${fmt(p.earned)}</b>`:''}
         <div class="muted">${p.served?`${p.served} client${p.served>1?'s':''} · `:''}${p.props?`propositioned ${p.props}× · accepted ${p.acc} · `:''}${p.reluct?`<span class="pink">${p.reluct} as a favor</span> · `:''}${p.notMood?`<span class="warn">not in the mood ×${p.notMood}</span> · `:''}${p.noRoom?`<span class="warn">no room ×${p.noRoom}</span> · `:''}Energy ${p.e0}→${p.e1} · Mood ${p.m0}→${p.m1}${p.why&&p.why.length?` <span class="muted">(${p.why.map(x=>`<span class="${x.good?'good':'warn'}">${esc(x.t)}</span>`).join(', ')})</span>`:''}${p.slept?` · slept: ${p.slept}`:''}${p.solo?' · <span class="pink">a night to herself</span>':''}${p.missed?' · <span class="warn">missed Sam</span>':''}${p.night==='good'?' · <span class="good">great week</span>':p.night==='bad'?' · <span class="warn">rough week</span>':''}${p.lust!==undefined?` · lust ${p.l0!==undefined?p.l0+'→':''}${p.lust}`:''}</div>
         <div>${svc}</div>${(p.notes||[]).map(n=>`<div class="muted">${esc(n)}</div>`).join('')}</div></div>${hls}</div>`;

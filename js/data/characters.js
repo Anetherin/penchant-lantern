@@ -46,5 +46,6 @@ function pm(w,a){ const P = PERS[w.personality]; if(!P) return 1; return P.likes
 function pmAny(w,a){ const l = [].concat(a); if(l.length===1) return pm(w,l[0]); const v = l.map(x=>pm(w,x)); return v.some(x=>x>1) ? 1.5 : v.every(x=>x<1) ? 0.5 : 1; }
 const likeId = (w,a) => { const l = [].concat(a); return l.find(x=>pm(w,x)>1) || l[0]; };
 const pTrust = w => (PERS[w.personality]||{}).trust || 1;
-const pNote = (w,a) => (a = likeId(w,a), pm(w,a)>1 ? `\n\n(${w.name} loves ${ACT_WORD[a]}.)` : pm(w,a)<1 ? `\n\n(${w.name} isn't big on ${ACT_WORD[a]}. It went okay, but not great.)` : '');
+// Only the "not big on it" note remains (no "loves X" line). Dates don't use it at all: the date menu already shows what she'd love.
+const pNote = (w,a) => (a = likeId(w,a), pm(w,a)<1 ? `\n\n(${w.name} isn't big on ${ACT_WORD[a]}. It went okay, but not great.)` : '');
 const has = (w,t) => (w.traits||[]).includes(t);

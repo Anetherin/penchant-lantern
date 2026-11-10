@@ -46,10 +46,12 @@ async function showImg(boxId, id, scene, cloth, mode){
   if(mode==='manual') mode = undefined;
   const A0 = `'${boxId}','${id}','${scene}','${cloth}'`;
   if(box.dataset.hide ? box.dataset.hide==='1' : !!SET.imgHidden){
-    box.dataset.key = ''; box.innerHTML = `<div class="row imgshow"><button class="sm" onclick="toggleImg(${A0},false)">🖼 Show image</button></div>`; return;
+    box.dataset.key = '';
+    if(box.dataset.ext){ box.innerHTML = ''; syncImgBtn(boxId); return; }   // an outside button (weekly report) does the showing
+    box.innerHTML = `<div class="row imgshow"><button class="sm" onclick="toggleImg(${A0},false)">🖼 Show image</button></div>`; return;
   }
   let key = imgKey(w, scene, cloth);
-  box.dataset.key = key;
+  box.dataset.key = key; syncImgBtn(boxId);
   const prompt = buildPrompt(w, scene, cloth);
   let saved = mode==='new' ? null : await imgGet(key), legacy = false;
   if(!saved && mode!=='new' && key!==legacyKey(w,scene,cloth)){ saved = await imgGet(legacyKey(w,scene,cloth)); if(saved){ legacy = true; } }
@@ -100,5 +102,8 @@ function uploadImg(boxId, id, scene, cloth){
 async function downloadImg(key, name){ const d = await imgGet(key); if(!d) return; const a=document.createElement('a'); a.href=d; a.download=`${name||'image'}-${key.split('|').slice(1).join('-').replace(/[^a-z0-9-]/gi,'_')}.jpg`; document.body.appendChild(a); a.click(); a.remove(); }
 async function useAvatar(key, id){ const d = await imgGet(key); if(d){ await setThumb(id, d); toast('Avatar updated.'); } }
 async function deleteImg(key, boxId, id, scene, cloth){ if(!confirm('Delete this saved image?')) return; await imgDel(key); showImg(boxId,id,scene,cloth,'manual'); }
+// A button outside the image box (weekly report highlights): "Show image" turns into "Hide image" once the image is up.
+function syncImgBtn(boxId){ const b = $('#'+boxId+'_t'), box = $('#'+boxId); if(b && box) b.textContent = box.dataset.key ? '🙈 Hide image' : '🖼 Show image'; }
+function toggleImgBtn(boxId, id, scene){ const box = $('#'+boxId); if(!box) return; const shown = !!box.dataset.key; box.dataset.hide = shown ? '1' : '0'; showImg(boxId, id, scene, null, shown ? 'manual' : 'auto'); }
 function toggleImg(boxId, id, scene, cloth, hide){ const box = $('#'+boxId); if(!box) return; box.dataset.hide = hide ? '1' : '0'; showImg(boxId, id, scene, cloth, hide ? 'manual' : undefined); }
 function avatarHTML(w){ return THUMBS[w.id] ? `<div class="avatar"><img src="${THUMBS[w.id]}" alt=""></div>` : `<div class="avatar" style="background:${hairHex(w)}">${esc(initials(w.name))}</div>`; }

@@ -74,9 +74,8 @@ function refreshSheetInfo(){
     <div class="row"><button onclick="editWorker('${w.id}')">✏️ Edit design</button>${w.isPartner||w.locked?'':`<button onclick="dismiss('${w.id}')">Dismiss</button>`}${has(w,'Devoted')?`<button onclick="endLovers('${w.id}')">💔 End things</button>`:''}${w.exLover&&!has(w,'Devoted')?`<button onclick="rekindle('${w.id}')" ${w.trust<BAL.breakup.rekindleTrust?`disabled title="She needs trust ${tShow(BAL.breakup.rekindleTrust)}+"`:''}>💞 Ask her back</button>`:''}</div>`;
 }
 function persLine(w){
-  const P = PERS[w.personality] || {likes:[], dislikes:[]};
   const J = a => a.map(j=>JOBS[j]?JOBS[j].label:j).join(', ') || 'nothing in particular';
-  return `<div class="muted">Jobs she'll do now: ${Object.keys(JOB_TRUST).filter(j=>w.trust>=jobTrust(w,j)).map(j=>JOBS[j].label).join(', ')||'none yet'}</div><div class="muted">${P.likes.length?`Likes: <b>${P.likes.map(a=>ACT_WORD[a]).join(', ')}</b>`:''}${P.dislikes.length?` · Dislikes: <b>${P.dislikes.map(a=>ACT_WORD[a]).join(', ')}</b>`:''}</div><div class="muted">Enjoys working as: <b>${J(jobLikes(w))}</b>${jobDislikes(w).length?` · Would rather not: <b>${J(jobDislikes(w))}</b>`:''}</div>`;
+  return `<div class="muted">Jobs she'll do now: ${Object.keys(JOB_TRUST).filter(j=>w.trust>=jobTrust(w,j)).map(j=>JOBS[j].label).join(', ')||'none yet'}</div><div class="muted">Enjoys working as: <b>${J(jobLikes(w))}</b>${jobDislikes(w).length?` · Would rather not: <b>${J(jobDislikes(w))}</b>`:''}</div>`;
 }
 // Everything Sam carries: his past lives, New Game+ perks, and the cycle he's on.
 function samPerksHTML(){
