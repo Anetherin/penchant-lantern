@@ -14,7 +14,7 @@
       "mods": {"charm":5},
       "common": true,
       "weight": 40,
-      "fx": {"trustGain":1.15,"skillGain":1.25,"statGain":1.3},
+      "fx": {"trustGain":1.25,"skillGain":1.25,"statGain":1.25,"lewdGain":1.25},
       "client": {"like":0,"dislike":0},
       "signing": 0.8,
       "alwaysLast": true
