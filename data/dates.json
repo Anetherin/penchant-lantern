@@ -5,7 +5,7 @@
     "intro + one of lines make the result text ({name} = her name). past: a different version when Sam's backstory matches (cost, trustMult, intro, lines).",
     "image: the date's image scene (comp, setting, snip). It's available as date_<key> in the image menu. A date without image (chat) has no scene.",
     "image may also carry undress ('partial' or 'under': she is shown at most that undressed, within her comfort) and bath (true: a bathing scene; bath-compatible outfits, otherwise towel/undergarments/undressed). image may also carry away: true (an away bath/towel scene keeps its own setting instead of the house bathhouse) and swim: true (a swimming scene: if she owns a bath-compatible outfit, e.g. a swimsuit, she wears it while her dress level would be dressed or partial; it is not a bath scene).",
-    "What a date raises (all optional): stats {beauty|charm|refinement|stamina|strength|agility: n} (her stat XP, 1000 scale like training), skills {service|dance|bar|combat|manage: n} (her skill growth), sam {charm|business|strength|technique: n} (Sam's stats; default {charm:1}), pop (her popularity +n), lust (her lust +n, x her lustBuild), lewd + lewdCap (her lewdness +n with diminishing returns up to lewdCap, see balance.json lewd; more if she loves the date, less if not), gift: true (counts as a gift for her traits), trinket (0-1 chance Sam buys her a little something on the way: mood +5, counts as a gift).",
+    "What a date raises (all optional): stats {beauty|charm|charisma|refinement|wits|stamina|strength|agility: n} (her stat XP, 1000 scale like training), skills {service|dance|bar|combat|manage: n} (her skill growth), sam {charm|business|strength|technique: n} (Sam's stats; default {charm:1}), pop (her popularity +n), lust (her lust +n, x her lustBuild), lewd + lewdCap (her lewdness +n with diminishing returns up to lewdCap, see balance.json lewd; more if she loves the date, less if not), gift: true (counts as a gift for her traits), trinket (0-1 chance Sam buys her a little something on the way: mood +5, counts as a gift).",
     "needsUp: an upgrade id the house must own for the date to appear (e.g. bath). needsIntim: the least intimacy stage she must have reached with Sam (w.intim) for it to be listed.",
     "special: 'chat' = the row runs the chat (trust, mood and energy here; random spread x0.6-1.4, Romantic/Shy bonuses, topics from events.json). special: 'nightin' = after the date, if she is comfortable with anything private, Sam can always go inside (no extra action); otherwise just a cosy evening.",
     "spicy: [ {label, acts:[service ids], lewd (her least lewdness), gain, cap (lewdUp), risk (0-1 chance of being caught), lead (opening text, {name}), nude:true (no act: skinny dipping / figure study; needs her to be comfortable nude), image:{comp, setting, replace} (the variant's own staging: setting is optional and falls back to the date's; for acts comp is added to the service pose, or replaces it with replace:true; nude variants use comp+setting as their own scene and keep the date image's undress/bath/away/swim flags)} ]. Offered as 🔥 buttons after a good date (max 2). Costs Sam 12 energy, no action. With acts: a normal private-time scene (only services she's done with Sam: canSam) with that lead; the act is her favorite if listed, else the highest-th one she says yes to, else the first she's comfortable with.",
@@ -141,7 +141,7 @@
       "comp": "laughing together at a game stall, holding a prize and sweets",
       "setting": "lively fantasy street fair at dusk with bunting, lanterns and game stalls"
     },
-    "stats": {"agility":1},
+    "stats": {"charisma":1},
     "pop": 1,
     "spicy": [
       {
@@ -167,7 +167,7 @@
     "mood": 6,
     "like": ["train","theater"],
     "skills": {"manage":1.5},
-    "stats": {"refinement":0.5},
+    "stats": {"wits":0.5},
     "sam": {"business":1},
     "intro": "The city archive smells of dust and old ink, and {name} is in her element.",
     "lines": [
@@ -393,7 +393,7 @@
       "comp": "seated side by side in a theater box, watching the stage, her hand on his arm",
       "setting": "ornate fantasy theater, red velvet seats, stage lights"
     },
-    "stats": {"refinement":1.5,"charm":0.5},
+    "stats": {"wits":1,"refinement":0.5,"charm":0.5},
     "spicy": [
       {
         "label": "In the dark of the box",

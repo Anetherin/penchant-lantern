@@ -1,6 +1,8 @@
 # Stat expansion: Charisma, Wits, and body stats in services
 
-Status: **spec agreed, not built yet.** Save version goes 26 → 27.
+Status: **build steps 1-4 done** (engine, formulas, clients, content). Only the balance pass (TODO at the bottom) remains. Save version 26 → 27.
+
+Step 4 deviations from the spec: earn conditions take a single condition, so Sharp Mind = 20 classroom lessons as a learner (new count key `lessons`, `classroomTeach`) and Magnetic / Light on Her Feet = `{job, weeks}` (promoter 25, dancer 30; the 'or' alternatives were dropped). Champion and Unbeaten also got +5 Agility, Storm-Rider +5 Agility. Dancer's silks already existed, so the new wardrobe items are Reading spectacles, Stage costume and Cozy knit dress; the silks, scholar's robes, statement gown, bunny suit, barmaid dirndl, vestments and livery had points moved (totals unchanged). The Pilgrim-at-the-Chapel event was not built.
 
 ## 1. The eight stats
 

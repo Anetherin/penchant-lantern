@@ -166,8 +166,8 @@
       "excl": []
     },
     "Natural Performer": {
-      "desc": "The stage has stopped scaring her. People come to watch.",
-      "fx": {"jobBonus":{"dancer":1.1},"appeal":2},
+      "desc": "The stage has stopped scaring her. People come to watch; +8 Charisma.",
+      "fx": {"jobBonus":{"dancer":1.1},"appeal":2,"stats":{"charisma":8}},
       "earn": {"count":"dance","at":30},
       "gen": false,
       "hidden": false,
@@ -186,8 +186,8 @@
       "excl": []
     },
     "Crowd Favorite": {
-      "desc": "Half the town knows her name.",
-      "fx": {"appeal":3,"clientFee":1.05},
+      "desc": "Half the town knows her name; +8 Charisma.",
+      "fx": {"appeal":3,"clientFee":1.05,"stats":{"charisma":8}},
       "earn": {"stat":"popularity","at":70},
       "gen": false,
       "hidden": false,
@@ -196,8 +196,8 @@
       "excl": []
     },
     "Confidante": {
-      "desc": "She trusts Sam completely, and it shows: she settles easily.",
-      "fx": {"trustGain":1.1,"moodRest":3},
+      "desc": "She trusts Sam completely, and it shows: she settles easily; +8 Charm.",
+      "fx": {"trustGain":1.1,"moodRest":3,"stats":{"charm":8}},
       "earn": {"trust":90},
       "gen": false,
       "hidden": false,
@@ -226,8 +226,8 @@
       "excl": []
     },
     "Headliner": {
-      "desc": "A dozen weeks on stage and the house knows her act by heart.",
-      "fx": {"jobBonus":{"dancer":1.08},"rep":1.15},
+      "desc": "A dozen weeks on stage and the house knows her act by heart; +5 Charisma.",
+      "fx": {"jobBonus":{"dancer":1.08},"rep":1.15,"stats":{"charisma":5}},
       "earn": {"job":"dancer","weeks":12},
       "gen": false,
       "hidden": false,
@@ -275,8 +275,26 @@
       "ngOnly": false,
       "excl": []
     },
-    "Quick Learner": {"desc":"Skills improve 15% faster.","fx":{"skillGain":1.15},"gen":true,"hidden":false,"earn":null,"ngOnly":false,"ngPerk":false,"excl":[]},
-    "Studious": {"desc":"Stats improve 15% faster.","fx":{"statGain":1.15},"gen":true,"hidden":false,"earn":null,"ngOnly":false,"ngPerk":false,"excl":[]},
+    "Quick Learner": {
+      "desc": "Skills improve 15% faster; +5 Wits.",
+      "fx": {"skillGain":1.15,"stats":{"wits":5}},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Studious": {
+      "desc": "Stats improve 15% faster; +8 Wits.",
+      "fx": {"statGain":1.15,"stats":{"wits":8}},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
     "Charming": {
       "desc": "Clients pick her more often (+3 appeal).",
       "fx": {"appeal":3},
@@ -288,8 +306,8 @@
       "excl": ["Aloof"]
     },
     "Shrewd": {
-      "desc": "Services earn 8% more, but she takes slights to heart.",
-      "fx": {"clientFee":1.08,"moodDelta":1.1},
+      "desc": "Services earn 8% more, but she takes slights to heart; +8 Wits.",
+      "fx": {"clientFee":1.08,"moodDelta":1.1,"stats":{"wits":8}},
       "gen": true,
       "hidden": false,
       "earn": null,
@@ -359,8 +377,8 @@
       "excl": []
     },
     "Showy": {
-      "desc": "Dancing output +12%, promotion +8%.",
-      "fx": {"jobBonus":{"dancer":1.12},"promote":1.08},
+      "desc": "Dancing output +12%, promotion +8%; +5 Charisma.",
+      "fx": {"jobBonus":{"dancer":1.12},"promote":1.08,"stats":{"charisma":5}},
       "gen": true,
       "hidden": false,
       "earn": null,
@@ -369,8 +387,8 @@
       "excl": []
     },
     "Silver-Tongued": {
-      "desc": "Her promotion work draws 20% more.",
-      "fx": {"promote":1.2},
+      "desc": "Her promotion work draws 20% more; +5 Charisma.",
+      "fx": {"promote":1.2,"stats":{"charisma":5}},
       "gen": true,
       "hidden": false,
       "earn": null,
@@ -410,8 +428,8 @@
       "excl": ["Steady Nerves","Unflappable"]
     },
     "Level-Headed": {
-      "desc": "Mood returns to its resting point 30% faster.",
-      "fx": {"moodDrift":1.3},
+      "desc": "Mood returns to its resting point 30% faster; +5 Wits.",
+      "fx": {"moodDrift":1.3,"stats":{"wits":5}},
       "gen": true,
       "hidden": false,
       "earn": null,
@@ -450,8 +468,8 @@
       "excl": ["Prudent"]
     },
     "Warm-Hearted": {
-      "desc": "Trust grows 12% faster.",
-      "fx": {"trustGain":1.12},
+      "desc": "Trust grows 12% faster; +8 Charm.",
+      "fx": {"trustGain":1.12,"stats":{"charm":8}},
       "gen": true,
       "hidden": false,
       "earn": null,
@@ -510,8 +528,8 @@
       "excl": []
     },
     "Trade-Wise": {
-      "desc": "Merchants pay 20% more.",
-      "fx": {"classBonus":{"merchant":1.2}},
+      "desc": "Merchants pay 20% more; +5 Wits.",
+      "fx": {"classBonus":{"merchant":1.2},"stats":{"wits":5}},
       "gen": true,
       "hidden": false,
       "earn": null,
@@ -520,8 +538,8 @@
       "excl": []
     },
     "Graceful": {
-      "desc": "Dancing output +10%, a little more comfortable in a costume.",
-      "fx": {"jobBonus":{"dancer":1.1},"wardrobe":5},
+      "desc": "Dancing output +10%, a little more comfortable in a costume; +8 Agility.",
+      "fx": {"jobBonus":{"dancer":1.1},"wardrobe":5,"stats":{"agility":8}},
       "gen": true,
       "hidden": false,
       "earn": null,
@@ -530,8 +548,8 @@
       "excl": []
     },
     "Soothing Voice": {
-      "desc": "Better at attending and running the baths (+10% each).",
-      "fx": {"jobBonus":{"bath":1.1,"attendant":1.1}},
+      "desc": "Better at attending and running the baths (+10% each); +5 Charm.",
+      "fx": {"jobBonus":{"bath":1.1,"attendant":1.1},"stats":{"charm":5}},
       "gen": true,
       "hidden": false,
       "earn": null,
@@ -550,8 +568,8 @@
       "excl": []
     },
     "Organised": {
-      "desc": "Better at running the house (+12%) and tidying (+10%).",
-      "fx": {"jobBonus":{"madame":1.12},"tidy":1.1},
+      "desc": "Better at running the house (+12%) and tidying (+10%); +5 Wits.",
+      "fx": {"jobBonus":{"madame":1.12},"tidy":1.1,"stats":{"wits":5}},
       "gen": true,
       "hidden": false,
       "earn": null,
@@ -600,8 +618,8 @@
       "excl": []
     },
     "Nimble Fingers": {
-      "desc": "Hand work earns more: manual (giving) +12% quality, massage +6%.",
-      "fx": {"actQuality":{"manual_give":1.12,"massage_give":1.06}},
+      "desc": "Hand work earns more: manual (giving) +12% quality, massage +6%; +3 Agility.",
+      "fx": {"actQuality":{"manual_give":1.12,"massage_give":1.06},"stats":{"agility":3}},
       "gen": true,
       "hidden": false,
       "earn": null,
@@ -620,8 +638,8 @@
       "excl": []
     },
     "Good Rhythm": {
-      "desc": "Cowgirl +10% and doggy +5% quality.",
-      "fx": {"actQuality":{"cowgirl":1.1,"doggy":1.05}},
+      "desc": "Cowgirl +10% and doggy +5% quality; +5 Agility.",
+      "fx": {"actQuality":{"cowgirl":1.1,"doggy":1.05},"stats":{"agility":5}},
       "gen": true,
       "hidden": false,
       "earn": null,
@@ -680,8 +698,8 @@
       "excl": []
     },
     "Bold Laugh": {
-      "desc": "Bartending +8%; her good humor props up her mood (+2 resting).",
-      "fx": {"jobBonus":{"bartender":1.08},"moodRest":2},
+      "desc": "Bartending +8%; her good humor props up her mood (+2 resting); +5 Charisma.",
+      "fx": {"jobBonus":{"bartender":1.08},"moodRest":2,"stats":{"charisma":5}},
       "gen": true,
       "hidden": false,
       "earn": null,
@@ -1042,8 +1060,8 @@
       "excl": []
     },
     "Good Listener": {
-      "desc": "Hosting work +12%; resting mood +1.",
-      "fx": {"jobBonus":{"host":1.12},"moodRest":1},
+      "desc": "Hosting work +12%; resting mood +1; +8 Charm.",
+      "fx": {"jobBonus":{"host":1.12},"moodRest":1,"stats":{"charm":8}},
       "gen": true,
       "hidden": false,
       "earn": null,
@@ -1062,8 +1080,8 @@
       "excl": []
     },
     "Attentive": {
-      "desc": "Attendant work +12%; hosting +5%.",
-      "fx": {"jobBonus":{"attendant":1.12,"host":1.05}},
+      "desc": "Attendant work +12%; hosting +5%; +5 Charm.",
+      "fx": {"jobBonus":{"attendant":1.12,"host":1.05},"stats":{"charm":5}},
       "gen": true,
       "hidden": false,
       "earn": null,
@@ -1162,8 +1180,8 @@
       "excl": []
     },
     "Town Crier": {
-      "desc": "Promoting +12%.",
-      "fx": {"promote":1.12},
+      "desc": "Promoting +12%; +8 Charisma.",
+      "fx": {"promote":1.12,"stats":{"charisma":8}},
       "gen": false,
       "hidden": false,
       "earn": {"job":"promoter","weeks":10},
@@ -1189,6 +1207,36 @@
       "earn": null,
       "ngOnly": false,
       "ngPerk": true,
+      "excl": []
+    },
+    "Sharp Mind": {
+      "desc": "Twenty classroom lessons sharpened her: +10 Wits.",
+      "fx": {"stats":{"wits":10}},
+      "gen": false,
+      "hidden": false,
+      "earn": {"count":"lessons","at":20},
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Magnetic": {
+      "desc": "Twenty-five weeks of drawing people in: +10 Charisma.",
+      "fx": {"stats":{"charisma":10}},
+      "gen": false,
+      "hidden": false,
+      "earn": {"job":"promoter","weeks":25},
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Light on Her Feet": {
+      "desc": "Thirty weeks of dancing, and she barely touches the floor: +10 Agility.",
+      "fx": {"stats":{"agility":10}},
+      "gen": false,
+      "hidden": false,
+      "earn": {"job":"dancer","weeks":30},
+      "ngOnly": false,
+      "ngPerk": false,
       "excl": []
     }
   },

@@ -227,7 +227,7 @@ function classroomTeach(h, W, t, tpr, R, hr){
     const d = Math.floor((ts - cur) * C.rate * tp * learnPower(w)); if(d <= 0) return;
     const nv = clampK(cur + d), got = nv - cur; if(got <= 0) return;
     if(TECH_LABEL[k]) w.tech[k] = nv; else w.acts[actKey(k)].skill = nv;
-    const pr = R.per[w.id]; pr.learned = got; pr.why.push({t:`${t.name} taught her ${subjectLabel(k).toLowerCase()}`, good:true}); n++; gain += got;
+    const pr = R.per[w.id]; pr.learned = got; pr.why.push({t:`${t.name} taught her ${subjectLabel(k).toLowerCase()}`, good:true}); n++; gain += got; countUp(w, 'lessons');
   });
   if(TECH_LABEL[k]) grow(t, k, C.teacherGrow); else growAct(t, k, C.teacherGrow);
   moodAdd(t, C.mood); gainTrust(t, C.trust); tpr.taught = n; if(n) countUp(t, 'taught', n); tpr.why.push({t:'taught the class', good:true});
