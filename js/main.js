@@ -26,6 +26,6 @@ async function init(){
   for(const k of [...IMGKEYS]){ const nk = actKeyScene(k); if(nk!==k && !IMGKEYS.has(nk)){ const v = await imgGet(k); if(v){ await imgPut(nk, v); await imgDel(k); } } }
   S = store.get(KEY_SAVE);
   if(!S || !Array.isArray(S.workers)){ S = null; startSetup(); }
-  else { migrate(S); save(); render(); }
+  else { migrate(S); save(); render(); if(S.ngSeed && S.won) startNGPlus(); }
 }
 init();

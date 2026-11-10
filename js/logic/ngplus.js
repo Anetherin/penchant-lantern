@@ -57,6 +57,23 @@ function ngNumbers(boon, house){
   const purse = B.purse + (boon==='purse' ? 2500 : 0);   // savings stay behind
   return {gross:debt, debt:Math.max(0, debt - sale), house:Math.round(nh), base:Math.round(base), impr, extra:Math.round(extra), sold, sale, purse, cycle: cyc};
 }
+// NG+ save: a trimmed copy of a won game holding only what New Game+ can carry (Devoted lovers, old friends, alumni, the
+// bonds between them, houses (kept ones carry, the rest count for the sale credit), Sam, pasts, boons, samUps, wardrobe).
+// Nothing is chosen yet: loading it opens the NG+ wizard (S.ngSeed), so one file can start the next cycle again and again.
+function ngSeed(){
+  if(!S || !S.won) return null;
+  const s = clone(S), keep = new Set([...carriedLovers(), ...ngFriends()].map(w=>w.id));
+  s.workers = s.workers.filter(w=>keep.has(w.id));
+  const ids = new Set([...keep, ...(s.alumni||[]).map(w=>w.id)]);
+  s.bonds = Object.fromEntries(Object.entries(s.bonds||{}).filter(([k])=>k.split('|').every(id=>ids.has(id))));
+  const kh = new Set([homeHouse(), ...S.houses.filter(keepable).map(h=>h.id)]);
+  s.regulars = (s.regulars||[]).filter(r=>kh.has(r.house));
+  if(s.sleepIn && !keep.has(s.sleepIn)) s.sleepIn = null;
+  s.candidates = []; s.lastReport = null; s.samWeek = {security:0, books:false, income:0, acts:[]};
+  s.log = [{wk:s.week, t:`New Game+ save: cycle ${s.cycle||1} cleared.`}];
+  s.ngSeed = true;
+  return s;
+}
 function startNGPlus(){
   if(!S || !S.won) return toast('New Game+ unlocks once the debt is paid off.');
   NGS = {step:0, partner:null, keep:Object.fromEntries(optionalHouses().map(h=>[h.id,true])), boon:null, perks:{}, house:null, past:null,
@@ -219,7 +236,7 @@ function ngBegin(){
   if(C.boon==='renown') S.rep = clamp(S.rep + 15);
   S.gold = N.purse;
   S.debt = {total:N.debt, remaining:N.debt, carry:0, strikes:0, start:S.week-1};
-  S.won = false; S.over = false; S.lastReport = null; EVQ = [];
+  S.won = false; S.over = false; S.lastReport = null; EVQ = []; delete S.ngSeed;
   S.flags.partnerCD = 3; S.ap = apMax();
   refreshCandidates(C.boon==='recruit' ? 3 : 0, C.boon==='recruit' ? 1.15 : 1);
   inviteFriend(true);   // the first week already shows an old friend

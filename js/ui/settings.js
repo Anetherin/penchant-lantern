@@ -27,7 +27,7 @@ function viewSettings(){
   <section class="card"><h2>Images</h2><p class="muted">Generated and uploaded images live in this browser. Export them to back up or move them to another browser.</p>
     <div class="row"><button onclick="exportImages()">⬇ Export images</button><button onclick="importImages()">⬆ Import images</button><button onclick="cleanImages()">Clean up unused images</button></div></section>
   <section class="card"><h2>Save File</h2><p class="muted">The game autosaves every week in this browser. Export to back up or move between browsers.</p>
-    <div class="row"><button onclick="save();toast('Saved.')">Save now</button><button onclick="exportBox('save')">Export save</button><button onclick="importBox('save')">Import save</button><button onclick="importSaveFile()">Import save file</button><button onclick="exportBox('lib')">Export library</button><button onclick="importBox('lib')">Import library</button><button onclick="if(confirm('Start over? Your current save will be erased.'))restart()">New game</button></div></section>`;
+    <div class="row"><button onclick="save();toast('Saved.')">Save now</button><button onclick="exportBox('save')">Export save</button>${S.won?'<button onclick="exportBox(\'ngplus\')" title="Only what New Game+ carries; loading it opens the New Game+ setup">Export NG+ save</button>':''}<button onclick="importBox('save')">Import save</button><button onclick="importSaveFile()">Import save file</button><button onclick="exportBox('lib')">Export library</button><button onclick="importBox('lib')">Import library</button><button onclick="if(confirm('Start over? Your current save will be erased.'))restart()">New game</button></div></section>`;
 }
 function saveSettingsUI(){
   SET.style = $('#s_style').value; SET.negative = $('#s_neg').value; SET.resolution = $('#s_res').value;
@@ -65,15 +65,17 @@ function clearEdits(){
   SET.snippets = {}; SET.clothText = {}; SET.ai.tpl = {}; SET.ai.guidance = ''; SET.customActs = []; saveSettings(); toast('Cleared. The data files are in charge now.'); render();
 }
 function exportBox(kind){
-  const data = kind==='save' ? S : kind==='lib' ? LIB : {snippets:SET.snippets, clothText:SET.clothText, customActs:SET.customActs};
-  modal(`<h2>Export ${kind}</h2><p class="muted">Copy this text and keep it somewhere safe.</p><textarea id="exp" style="min-height:200px">${esc(JSON.stringify(data))}</textarea>
-    <div class="row"><button class="primary" onclick="try{navigator.clipboard.writeText($('#exp').value);toast('Copied.')}catch(e){toast('Select and copy manually.')}">Copy</button><button onclick="dlText($('#exp').value,'hollowmere-${kind}.json')">Download file</button></div>`);
+  const data = kind==='save' ? S : kind==='ngplus' ? ngSeed() : kind==='lib' ? LIB : {snippets:SET.snippets, clothText:SET.clothText, customActs:SET.customActs};
+  if(!data) return toast('New Game+ unlocks once the debt is paid off.');
+  const fname = kind==='ngplus' ? `ngplus-c${(S.cycle||1)+1}` : kind;
+  modal(`<h2>Export ${kind==='ngplus'?'NG+ save':kind}</h2><p class="muted">${kind==='ngplus'?'Only what New Game+ carries forward: your lovers, old friends, kept houses, Sam and his perks. Import it any time (even on a fresh browser) to go straight to the New Game+ setup.':'Copy this text and keep it somewhere safe.'}</p><textarea id="exp" style="min-height:200px">${esc(JSON.stringify(data))}</textarea>
+    <div class="row"><button class="primary" onclick="try{navigator.clipboard.writeText($('#exp').value);toast('Copied.')}catch(e){toast('Select and copy manually.')}">Copy</button><button onclick="dlText($('#exp').value,'hollowmere-${fname}.json')">Download file</button></div>`);
 }
 function dlText(text, name){
   try{ const blob = new Blob([text],{type:'application/json'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=name; document.body.appendChild(a); a.click(); a.remove(); }
   catch(e){ toast('Download blocked here. Copy the text instead.'); }
 }
-function importBox(kind){ modal(`<h2>Import ${kind}</h2><textarea id="imp" style="min-height:200px" placeholder="Paste exported text here"></textarea><div class="row"><button class="primary" onclick="doImport('${kind}')">Import</button></div>`); }
+function importBox(kind){ modal(`<h2>Import ${kind}</h2><textarea id="imp" style="min-height:200px" placeholder="Paste exported text here (a full save or an NG+ save)"></textarea><div class="row">${SETUP?'<button onclick="setupView()">← Back</button>':''}<button class="primary" onclick="doImport('${kind}')">Import</button></div>`, {lock:!!SETUP}); }
 function importSaveFile(){
   const inp = $('#upJson'); inp.value='';
   inp.onchange = ()=>{ const f=inp.files[0]; if(!f) return; const fr=new FileReader();
@@ -89,6 +91,7 @@ function doImport(kind, text){
   else { if(typeof d!=='object' || Array.isArray(d)) return toast('That doesn\'t look like snippets.');
     if(d.snippets){ SET.snippets = d.snippets; SET.clothText = d.clothText||{}; SET.customActs = d.customActs||[]; } else SET.snippets = d; saveSettings(); }
   closeModal(); toast('Imported.'); render();
+  if(kind==='save' && S.ngSeed && S.won) startNGPlus();   // an NG+ save goes straight to the New Game+ setup
 }
 async function exportImages(){
   const imgs = await idbAll('imgs'), thumbs = await idbAll('thumbs');

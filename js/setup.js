@@ -20,6 +20,7 @@ function setupView(){
   let body = '', ok = false;
   if(st===0){
     body = `<h2>Who was Sam, before the truck?</h2><div class="grid">${Object.entries(PASTS).map(([k,p])=>`<div class="pick ${SETUP.past===k?'sel':''}" onclick="setupPick('past','${k}')"><b>${p.label}</b><div class="muted">${p.desc}</div></div>`).join('')}</div>`;
+    body += `<div class="row muted" style="margin-top:10px">Have a save (or an NG+ save) from somewhere else? <button class="sm" onclick="importSaveFile()">Load save file</button><button class="sm" onclick="importBox('save')">Paste save</button></div>`;
     ok = !!SETUP.past;
   } else if(st===1){
     body = `<h2>Which deed is in Sam's hand?</h2><p class="muted">Each house has its own clientele, debt, features, resident, and storyline. You can buy the others later, and premium houses unlock as Sam's level and renown grow.</p>
