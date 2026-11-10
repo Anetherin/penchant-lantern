@@ -17,8 +17,10 @@ function showEvent(ev){
 }
 function evChoice(i){
   const ev = CUR_EV; if(!ev) return;
+  EV_NOTES = [];
   const out = ev.choices[i].fx() || '';
-  const res = typeof out==='object' ? (out.text||'') : out;
+  let res = typeof out==='object' ? (out.text||'') : out;
+  if(EV_NOTES.length){ res = (res ? res + '\n\n' : '') + EV_NOTES.join('\n'); EV_NOTES = []; }
   checkUnlocks(); save(); render();
   $('#evChoices').innerHTML = `${out.ai?aiBtn('evAi', out.ai.kind, out.ai.wid, out.ai):''}<button class="primary" onclick="closeModal();runQueue()">Continue</button>`;
   $('#evRes').innerHTML = (res ? `<p class="story"><i>${esc(res)}</i></p>` : '') + (out.ai?'<div id="evAi"></div>':'') + (out.img?'<div id="evResImg"></div>':'');

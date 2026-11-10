@@ -45,6 +45,10 @@ function ngFriends(){
   return S.workers.filter(w=>!L.includes(w) && !w.isPartner && w.trust >= (F.trust ?? 100) && ((!w.key && F.generics) || (isGuest(w) && F.guests)));
 }
 const NG_PERKS = () => Object.keys(TRAITS).filter(t=>TRAITS[t].ngPerk);
+// House residents (HOUSES[id].npc) working for Sam whose house he keeps: they come back with it, reincarnated (no perk). Lovers are carried as lovers instead.
+// keep(h): which houses count (the NG+ save keeps every keepable house; the wizard asks keptHouse).
+const residentHouse = (w, keep) => w.key ? S.houses.find(h=>keep(h) && (HOUSES[h.id]||{}).npc===w.key) : null;
+const ngResidents = (keep = keptHouse) => S.workers.filter(w=>!has(w,'Devoted') && residentHouse(w, keep));
 function ngNumbers(boon, house){
   if(house===undefined && NGS) house = NGS.house;
   const B = BAL.ngplus, og = homeHouse(), cyc = (S.cycle||1) + 1, impr = S.houses.filter(keptHouse).reduce((a,h)=>a + improvementsValue(h), 0);
@@ -62,11 +66,11 @@ function ngNumbers(boon, house){
 // Nothing is chosen yet: loading it opens the NG+ wizard (S.ngSeed), so one file can start the next cycle again and again.
 function ngSeed(){
   if(!S || !S.won) return null;
-  const s = clone(S), keep = new Set([...carriedLovers(), ...ngFriends()].map(w=>w.id));
+  const kh = new Set([homeHouse(), ...S.houses.filter(keepable).map(h=>h.id)]);
+  const s = clone(S), keep = new Set([...carriedLovers(), ...ngFriends(), ...ngResidents(h=>kh.has(h.id))].map(w=>w.id));
   s.workers = s.workers.filter(w=>keep.has(w.id));
   const ids = new Set([...keep, ...(s.alumni||[]).map(w=>w.id)]);
   s.bonds = Object.fromEntries(Object.entries(s.bonds||{}).filter(([k])=>k.split('|').every(id=>ids.has(id))));
-  const kh = new Set([homeHouse(), ...S.houses.filter(keepable).map(h=>h.id)]);
   s.regulars = (s.regulars||[]).filter(r=>kh.has(r.house));
   if(s.sleepIn && !keep.has(s.sleepIn)) s.sleepIn = null;
   s.candidates = []; s.lastReport = null; s.samWeek = {security:0, books:false, income:0, acts:[]};
@@ -132,11 +136,12 @@ function ngView(){
     ok = lovers.every(w=>NGS.perks[w.id] || !NG_PERKS().some(t=>!(w.ngPerks||[]).includes(t)));
   } else {
     const N = ngNumbers(NGS.boon), HDo = HOUSES[og];
-    const friends = ngFriends(), leaving = S.workers.filter(w=>!lovers.includes(w) && !friends.includes(w));
+    const friends = ngFriends(), residents = ngResidents(), leaving = S.workers.filter(w=>!lovers.includes(w) && !friends.includes(w) && !residents.includes(w));
     body = `<h2>Ready for round ${N.cycle}?</h2><div class="card">
       <b>Keeps:</b> ${S.houses.filter(keptHouse).map(h=>`${esc(h.name)} (${keptWhy(h)})`).join(', ')}, each with its rooms, upgrades and story, Sam's level${BAL.ngplus.samReset.stats||BAL.ngplus.samReset.appraisal?'':', stats and Appraisal'}, the regulars there and your image library. Your savings stay behind.<br>
       ${BAL.ngplus.samReset.stats||BAL.ngplus.samReset.appraisal?`<b>Sam:</b> keeps his level (Lv ${S.sam.lvl||1}); ${[BAL.ngplus.samReset.stats&&'training and story stat gains',BAL.ngplus.samReset.appraisal&&'Appraisal'].filter(Boolean).join(' and ')} start over${BAL.ngplus.samReset.stats&&BAL.ngplus.carry?` (he keeps ${Math.round(BAL.ngplus.carry*100)}% of his trained stats)`:''}.<br>`:''}
-      <b>Lovers who stay:</b> ${lovers.length ? lovers.map(w=>`${esc(w.name)}${NGS.perks[w.id]?` (${esc(NGS.perks[w.id])})`:''}`).join(', ') + '. They draw wages again; their skills, popularity, trust and lewdness start over, keeping ' + Math.round((BAL.ngplus.carry||0)*100) + '% of the skills and stats they\'d built (they\'re still his lovers, and Reincarnated makes the climb back faster).' : 'none. Only Devoted lovers come along.'}<br>
+      <b>Lovers who stay:</b> ${lovers.length ? lovers.map(w=>`${esc(w.name)}${NGS.perks[w.id]?` (${esc(NGS.perks[w.id])})`:''}`).join(', ') + '. They draw wages again; their skills, popularity, trust and lewdness start over, keeping ' + Math.round((BAL.ngplus.carry||0)*100) + '% of the skills and stats they\'d built. Their romance with Sam starts over too: their story begins again at the first chapter, and so do the firsts (Reincarnated makes the climb back faster).' : 'none. Only Devoted lovers come along.'}<br>
+      ${residents.length?`<b>Back with their houses:</b> ${residents.map(w=>esc(w.name)).join(', ')}. They start over like the lovers (no perk), with a Reincarnated stack.<br>`:''}
       ${friends.length?`<b>Old friends:</b> ${friends.map(w=>esc(w.name)).join(', ')}. They'll look Sam up again (Recruit), with a Reincarnated stack.<br>`:''}
       <b>Leaving:</b> ${leaving.length ? `${leaving.length} ladies (${leaving.slice(0,8).map(w=>esc(w.name)).join(', ')}${leaving.length>8?', …':''}). Named ones can be met again, fresh.` : 'no one.'}<br>
       ${NGS.house?`<b>New house:</b> ${esc(HOUSES[NGS.house].name)} with ${esc((NAMED[HOUSES[NGS.house].npc]||{}).name||'its resident')}.<br>`:''}
@@ -154,7 +159,7 @@ function ngView(){
 // A carried lady starts over: stats, tech and act skills back to her starting values (named: from her data, same
 // conversion as makeNamed; generic: half of what she has), popularity 0, and trust and lewdness back to where she began
 // (named: her data values; generic: w.base0 from when she was rolled, or balance.json → ngplus.baseTrust/baseLewd for old saves).
-// Her Reincarnated stacks make the climb back faster. Devoted, intim, firsts, arc and bonds stay.
+// Her Reincarnated stacks make the climb back faster. Titles and bonds stay; a lover's romance resets separately (ngRomanceReset).
 // ngplus.carry (10%) of what she gained above that starting value stays with her (stats, job skills, service skills; not trust/lewdness).
 // Call after S.cycle is raised, so clampK already allows the new cycle's higher ceiling.
 const ngCarry = (now, start) => clampK(Math.round(start + (BAL.ngplus.carry||0) * Math.max(0, (now||0) - start)));
@@ -174,6 +179,18 @@ function ngReset(w){
   w.lust = Math.min(w.lust||0, LUST_EAGER);
   w.popularity = 0; w.arcWk = 0; w.earnedLast = 0; w.energy = maxEnergy(w);
 }
+// A carried lover's romance starts over with her trust (neither carries): no longer Devoted, her arc back to chapter 0,
+// firsts back to the start (w.intim 0; her path is fixed by her data), and the counters her arc checks (dates, private time).
+// A data trait the arc removes (Oblivious) comes back. Titles she earned stay, so replaying the arc can't grant its title twice.
+function ngRomanceReset(w){
+  w.traits = (w.traits||[]).filter(t=>t!=='Devoted');
+  if(ARCS[w.key]) w.arc = 0;
+  w.intim = 0; delete w.intimWk; w.firstHold = 0;
+  w.privateCount = 0; w.dates = 0; w.exLover = false; w.neglect = 0; delete w.rekindleWk;
+  const D = w.key && NAMED[w.key];
+  if(D && (D.traits||[]).includes('Oblivious') && !has(w,'Oblivious')) w.traits.push('Oblivious');
+  if(S.sleepIn === w.id) S.sleepIn = null;
+}
 function ngBegin(){
   const C = NGS; if(!C || !C.boon && !Object.keys(NG_BOONS).every(k=>(S.boons||[]).includes(k))) return;
   const B = BAL.ngplus, og = homeHouse(), HDo = HOUSES[og], N = ngNumbers(C.boon, C.house), lovers = carriedLovers(), friends = ngFriends();
@@ -184,16 +201,23 @@ function ngBegin(){
   lovers.forEach(w=>{
     const p = C.perks[w.id]; if(p){ w.ngPerks = [...(w.ngPerks||[]), p]; }
     w.isPartner = false; w.free = false; w.contract = 12; if(!keptIds.has(w.house)) w.house = og; if(w.locked && w.locked!==w.house) w.locked = null;
-    ngReset(w); w.reborn = (w.reborn||0) + 1;
+    ngReset(w); ngRomanceReset(w); w.reborn = (w.reborn||0) + 1;
     w.wage = wageFor(w); if(w.job!=='rest') w.job = safeJob(w, w.job);
   });
+  // residents of kept houses: back with their house, reincarnated (no perk); one freed by her house story stays wage-free
+  const residents = ngResidents();
+  residents.forEach(w=>{
+    const hid = residentHouse(w, keptHouse).id;
+    ngReset(w); w.reborn = (w.reborn||0) + 1; w.isPartner = false; w.house = hid; w.locked = hid; w.contract = 999;
+    w.wage = w.free ? 0 : wageFor(w); if(w.job!=='rest') w.job = safeJob(w, w.job);
+  });
   // everyone else leaves; named ladies go back to their pools, fresh (isHired is false for them again)
-  const ids = new Set(lovers.map(w=>w.id));
+  const ids = new Set([...lovers, ...residents].map(w=>w.id));
   friends.forEach(w=>{   // old friends wait in S.alumni; hire() sets job, contract, house and seen when she is signed again
     ngReset(w); w.reborn = (w.reborn||0) + 1; w.free = false; w.isPartner = false; w.locked = null; w.job = 'rest'; w.contract = 12; w.house = og; w.seen = {}; w.wage = wageFor(w);
   });
   S.alumni = [...(S.alumni||[]), ...friends];
-  S.workers = lovers; S.candidates = [];
+  S.workers = [...lovers, ...residents]; S.candidates = [];
   // bonds between two ladies who both reincarnate (lovers, old friends, alumni still waiting) carry over, faded to
   // ngplus.bonds.keep of their value (kind kept); everything else is dropped. b.past counts the lives it has survived.
   const BK = B.bonds || {}, reborn = new Set([...ids, ...(S.alumni||[]).map(w=>w.id), ...friends.map(w=>w.id)]);
@@ -204,7 +228,7 @@ function ngBegin(){
     return [k, n]; }).filter(([,o])=>o.v || o.kind));
   S.regulars = (S.regulars||[]).filter(r=>keptIds.has(r.house));
   S.houses = S.houses.filter(h=>keptIds.has(h.id));
-  // each kept house's resident comes with the house: if she isn't a carried lover she's back, fresh
+  // each kept house's resident comes with the house: if she wasn't working for Sam she's back, fresh
   S.houses.forEach(h=>{ const D = HOUSES[h.id]; if(D && D.npc && !isHired(D.npc)){ const npc = makeNamed(D.npc); npc.house = h.id; npc.locked = h.id; npc.contract = 999; assignStart(npc, NAMED[D.npc].job); S.workers.push(npc); } });
   S.cur = og;
   // the new house and its resident

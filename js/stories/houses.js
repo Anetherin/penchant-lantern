@@ -8,7 +8,10 @@ const pct = (v,dc) => clamp(Math.round(55 + (v + ((S&&S.sam.lvl)||1)*2 - 2 - dc)
 const rollP = p => Math.random()*100 < p;
 const resident = h => S.workers.find(w=>w.key===HOUSES[h.id].npc);
 const secOf = h => Math.max(0, ...S.workers.filter(w=>w.house===h.id && w.job==='security').map(w=>s100(w.tech.combat) + s100(statOf(w,'strength'))*0.3));
-function storyAdvance(h, xp=40){ h.story.beat++; h.story.wk = S.week; samGainXP(xp); }
+function storyAdvance(h, xp=40){
+  h.story.beat++; h.story.wk = S.week; samGainXP(xp);
+  if(houseStoryDone(h)){ const R = resident(h); if(R) EV_NOTES.push(...awardTitles(R, 'house', h.id)); }   // data/titles.json → house
+}
 const storyGap = h => BAL.houseGate.gap[Math.min(h.story.beat, BAL.houseGate.gap.length-1)];
 // A failed check comes back after houseGate.retry weeks (the wait check is week - story.wk >= gap, so shift wk by the difference).
 function storyRetry(h){ h.story.wk = S.week + BAL.houseGate.retry - storyGap(h); }

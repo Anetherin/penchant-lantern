@@ -41,7 +41,8 @@ function evArc(w){
       if(w.arc>=4 && has(w,'Oblivious')){ w.traits = w.traits.filter(t=>t!=='Oblivious'); res += `\n\n(Something has changed in the way ${w.name} looks at Sam. Oblivious removed.)`; }
       if(last && nxOk){ w.intim = nx; w.intimWk = S.week; res += `${res?'\n\n':''}♥ ${w.name} and Sam: ${stageName(nx)}.`; addLog(`${w.name} and Sam: ${stageName(nx)}.`); }
       if(last){ w.privateCount++; if(S.sam.first) S.sam.first=false; if(!has(w,'Devoted')) w.traits.push('Devoted'); w.isPartner = true; w.wage = 0; w.contract = 999;
-        res = (res?res+'\n\n':'') + `${w.name} is now Sam's lover. (Devoted: never leaves, works without wages, more willing with Sam, and her mood stays up.)`; }
+        res = (res?res+'\n\n':'') + `${w.name} is now Sam's lover. (Devoted: never leaves, works without wages, more willing with Sam, and her mood stays up.)`;
+        const tl = awardTitles(w, 'arc', w.key); if(tl.length) res += '\n\n' + tl.join('\n'); }
       return res;
     }}))};
 }

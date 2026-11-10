@@ -2,7 +2,7 @@
   "_readme": [
     "Titles: honorifics and ranks a lady can hold (js/logic/titles.js). She can hold several (w.titles); the one she goes by (w.titleId, picked on her sheet) is shown with her name and gives its perk. Titles stay with her through New Game+.",
     "label: how it reads. after: true = shown after her name ('Mira, Belle of Hollowmere'), otherwise in front ('Captain Rinna'). desc: the perk, in words (sheet tooltip and the 'earned a title' log line). fx: merged into the effect engine like a trait's (vocabulary: the _readme of traits.json).",
-    "How a title is gained: seed (only from data: characters.json / guests.json 'title', the label or the id), earn (checked weekly, then earnChance per week), event (granted by a random event in js/events/random.js, wording in events.json → title_<id>). A title can have several of these.",
+    "How a title is gained: seed (only from data: characters.json / guests.json 'title', the label or the id), earn (checked weekly, then earnChance per week), event (granted by a random event in js/events/random.js, wording in events.json → title_<id>), arc: '<lady key>' (granted when her romance arc in arcs.json completes), house: '<house id>' (granted to the house's resident when its story completes). A title she already holds is skipped. A title can have several of these.",
     "earn uses the traits.json earn conditions ({count, at}, {stat, at}, {trust}, {lewd}, {weeks}, {job, weeks}) plus {reborn: n} (carried over n times) and {all: [conditions]} (every one must hold).",
     "Creator ladies: a free-text title that matches a label here becomes that title (with its perk); anything else is a custom title with no perk."
   ],
@@ -63,20 +63,34 @@
       "fx": {"jobBonus":{"madame":1.1},"moodDelta":0.92},
       "seed": true
     },
-    "madame": {"label":"Madame","desc":"Runs a house 12% better as madame.","fx":{"jobBonus":{"madame":1.12}},"earn":{"job":"madame","weeks":20}},
+    "madame": {
+      "label": "Madame",
+      "desc": "Runs a house 12% better as madame.",
+      "fx": {"jobBonus":{"madame":1.12}},
+      "earn": {"job":"madame","weeks":20},
+      "house": "lantern"
+    },
     "prima": {
       "label": "Prima",
       "desc": "Dances 12% better, +2 appeal.",
       "fx": {"jobBonus":{"dancer":1.12},"appeal":2},
-      "earn": {"all":[{"job":"dancer","weeks":15},{"stat":"popularity","at":60}]}
+      "earn": {"all":[{"job":"dancer","weeks":15},{"stat":"popularity","at":60}]},
+      "house": "pavilion"
     },
     "grand": {
       "label": "Grand Courtesan",
       "desc": "Clients pay 8% more.",
       "fx": {"clientFee":1.08},
-      "earn": {"all":[{"job":"courtesan","weeks":20},{"count":"svc","at":250}]}
+      "earn": {"all":[{"job":"courtesan","weeks":20},{"count":"svc","at":250}]},
+      "house": "veil"
     },
-    "headmaid": {"label":"Head Maid","desc":"Keeps the house 20% tidier.","fx":{"tidy":1.2,"jobBonus":{"maid":1.05}},"earn":{"job":"maid","weeks":20}},
+    "headmaid": {
+      "label": "Head Maid",
+      "desc": "Keeps the house 20% tidier.",
+      "fx": {"tidy":1.2,"jobBonus":{"maid":1.05}},
+      "earn": {"job":"maid","weeks":20},
+      "house": "castle"
+    },
     "sister": {
       "label": "Sister",
       "desc": "Keeps the chapel 12% better, +2 resting mood.",
@@ -94,9 +108,10 @@
       "after": true,
       "desc": "Bartends 10% better, +5 max energy.",
       "fx": {"jobBonus":{"bartender":1.1},"maxEnergy":5},
-      "earn": {"count":"bar","at":100}
+      "earn": {"count":"bar","at":100},
+      "house": "tankard"
     },
-    "herald": {"label":"Herald","desc":"Promotes 15% better.","fx":{"promote":1.15},"earn":{"count":"promo","at":60}},
+    "herald": {"label":"Herald","desc":"Promotes 15% better.","fx":{"promote":1.15},"earn":{"count":"promo","at":60},"house":"wayfarer"},
     "belle": {"label":"Belle of Hollowmere","after":true,"desc":"+4 appeal.","fx":{"appeal":4},"earn":{"stat":"popularity","at":90}},
     "radiant": {
       "label": "the Radiant",
@@ -113,6 +128,72 @@
       "fx": {"trustGain":1.06,"skillGain":1.06},
       "earn": {"reborn":2}
     },
-    "festival": {"label":"Festival Queen","desc":"+3 appeal, promotes 8% better.","fx":{"appeal":3,"promote":1.08},"event":true}
+    "festival": {"label":"Festival Queen","desc":"+3 appeal, promotes 8% better.","fx":{"appeal":3,"promote":1.08},"event":true},
+    "copperfox": {"label":"the Copper Fox","after":true,"desc":"+6 security, +2 appeal.","fx":{"security":6,"appeal":2},"arc":"kaede"},
+    "treasurer": {"label":"Treasurer","desc":"Promotes 8% better; clients pay 4% more.","fx":{"jobBonus":{"promoter":1.08},"clientFee":1.04},"arc":"yui"},
+    "countess": {"label":"Countess","desc":"Nobles pay 12% more, +2 appeal.","fx":{"classBonus":{"noble":1.12},"appeal":2},"arc":"nerys"},
+    "healer": {"label":"Healer","desc":"+3 resting mood, recovers 6% more energy.","fx":{"moodRest":3,"energyRec":1.06},"arc":"elowen"},
+    "paladin": {"label":"Paladin","desc":"+10 security; bad news stings her less.","fx":{"security":10,"moodDelta":0.9},"arc":"adelheid"},
+    "unbeaten": {
+      "label": "the Unbeaten",
+      "after": true,
+      "desc": "+5 Strength, guards 8% better.",
+      "fx": {"stats":{"strength":5},"jobBonus":{"security":1.08}},
+      "arc": "natsuki"
+    },
+    "mama": {"label":"Mama","desc":"Bartends 10% better and hosts 8% better.","fx":{"jobBonus":{"bartender":1.1,"host":1.08}},"arc":"kanako"},
+    "undaunted": {
+      "label": "the Undaunted",
+      "after": true,
+      "desc": "Bad news stings her less; trust grows 5% faster.",
+      "fx": {"moodDelta":0.88,"trustGain":1.05},
+      "arc": "akari"
+    },
+    "steward": {
+      "label": "Steward",
+      "desc": "Promotes 8% better, runs a house 6% better as madame.",
+      "fx": {"jobBonus":{"promoter":1.08,"madame":1.06}},
+      "arc": "marisol"
+    },
+    "keeper": {
+      "label": "Keeper of Keys",
+      "after": true,
+      "desc": "Keeps the house 15% tidier, attends 6% better.",
+      "fx": {"tidy":1.15,"jobBonus":{"attendant":1.06}},
+      "arc": "lara"
+    },
+    "shadowkin": {
+      "label": "Shadowkin",
+      "after": true,
+      "desc": "Attends 8% better, passes on 8% more when teaching.",
+      "fx": {"jobBonus":{"attendant":1.08},"teach":1.08},
+      "arc": "emily"
+    },
+    "postmistress": {"label":"Postmistress","desc":"Promotes 10% better, passes on 5% more when teaching.","fx":{"promote":1.1,"teach":1.05},"arc":"lirael"},
+    "peerless": {"label":"the Peerless","after":true,"desc":"Skills grow 8% faster, stats 5%.","fx":{"skillGain":1.08,"statGain":1.05},"arc":"ella"},
+    "sommelier": {"label":"Sommelier","desc":"Bartends 12% better.","fx":{"jobBonus":{"bartender":1.12}},"arc":"ione"},
+    "warden": {"label":"Warden","desc":"Keeps the chapel 10% better, +2 resting mood.","fx":{"jobBonus":{"chapel":1.1},"moodRest":2},"arc":"anael"},
+    "springs": {"label":"Mistress of the Springs","after":true,"desc":"Bath work 12% better.","fx":{"jobBonus":{"bath":1.12}},"house":"onsen"},
+    "manor": {
+      "label": "Lady of the Manor",
+      "after": true,
+      "desc": "Adventurers pay 10% more; +6% reputation from her work.",
+      "fx": {"classBonus":{"adventurer":1.1},"rep":1.06},
+      "house": "hollow"
+    },
+    "stormrider": {
+      "label": "the Storm-Rider",
+      "after": true,
+      "desc": "+8 max energy, bartends 5% better.",
+      "fx": {"maxEnergy":8,"jobBonus":{"bartender":1.05}},
+      "house": "skyhook"
+    },
+    "tidekeeper": {
+      "label": "the Tide-Keeper",
+      "after": true,
+      "desc": "Bath work 10% better, +2 resting mood.",
+      "fx": {"jobBonus":{"bath":1.1},"moodRest":2},
+      "house": "pearl"
+    }
   }
 }

@@ -55,14 +55,25 @@ function titleEarnOK(w, e){
   if(e.reborn!==undefined) return (w.reborn||0) >= e.reborn;
   return earnEligible(w, e);
 }
-// Weekly (endWeek): titles she has grown into. Returns the announcement lines.
+// Titles a finished romance arc (arc: her key) or house story (house: house id) grants. Returns the announcement lines.
+const titlesFor = (kind, key) => Object.keys(TITLES).filter(id=>TITLES[id][kind]===key);
+const awardTitles = (w, kind, key) => titlesFor(kind, key).map(id=>giveTitle(w, id)).filter(Boolean);
+// Lines to show under the current event's result (evChoice clears it before a choice and appends it after): house stories
+// grant their title from storyAdvance, which can't add to the choice's own text.
+let EV_NOTES = [];
+// Weekly (endWeek): titles she has grown into, plus any finished arc / house story whose title she doesn't hold yet
+// (her house's story finished before she was hired, or before titles existed). Returns the announcement lines.
 function titleCheck(w){
   syncTitles(w);
-  return Object.keys(TITLES).map(id=>{
+  const out = Object.keys(TITLES).map(id=>{
     const T = TITLES[id]; if(!T.earn || w.titles.includes(id)) return '';
     if(!titleEarnOK(w, T.earn) || Math.random() >= TITLE_CHANCE) return '';
     return giveTitle(w, id);
   }).filter(Boolean);
+  if(w.key && ARCS[w.key] && (w.arc||0) >= ARCS[w.key].length) out.push(...awardTitles(w, 'arc', w.key));
+  const hh = w.key && S.houses.find(h=>(HOUSES[h.id]||{}).npc===w.key && houseStoryDone(h));
+  if(hh) out.push(...awardTitles(w, 'house', hh.id));
+  return out;
 }
 // Sheet: which title she goes by (when she holds any) and its perk.
 function titleRow(w){
