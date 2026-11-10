@@ -65,6 +65,22 @@
       "{name} doesn't knock. She just leans in Sam's doorway until he notices her. \"You work too hard, boss.\""
     ]
   },
+  "sleepin_evening": {
+    "_note": "Opening line when the lady sharing Sam's bed in the Owner's Suite proposes as they turn in. Edit freely.",
+    "_default": [
+      "The lamps are low in the Owner's Suite. {name} sits on the edge of the bed, unpinning her hair, and watches Sam over her shoulder. \"We could just sleep,\" she says. \"Or not.\"",
+      "{name} slides under the blanket and doesn't turn her back on him tonight. Her hand finds his. \"Stay up a little longer,\" she murmurs.",
+      "\"Long day,\" {name} says, curling against Sam's side in the dark. Her fingers start tracing slow circles on his chest. \"I have a better idea than sleeping.\""
+    ]
+  },
+  "sleepin_morning": {
+    "_note": "Opening line when the lady sharing Sam's bed wakes him in the morning with ideas of her own. Edit freely.",
+    "_default": [
+      "Sam wakes to gray morning light and {name} propped on one elbow beside him, smiling like she's been awake a while. \"Good morning,\" she says, and kisses him slowly.",
+      "Something warm presses against Sam's back, and {name}'s voice is a sleepy whisper at his ear. \"Don't get up yet. I've got plans for you.\"",
+      "{name} has already pulled the covers over both their heads. \"The house can wait,\" she says, \"for a little while.\""
+    ]
+  },
   "client_yes": {
     "_note": "Second half of a report highlight when a client got the service he asked for.",
     "_default": [
@@ -268,6 +284,14 @@
       "{name} joined the bathers in the water, and once or twice the massage turned into something more, at her suggestion.",
       "Bath massages in the water all week, and {name} was in such a mood that a few lucky guests got more than their backs worked on.",
       "The baths were busy and so was {name}. When the mood took her, the massages didn't stay massages."
+    ]
+  },
+  "job_teacher": {
+    "_note": "Weekly report line for the classroom teacher.",
+    "_default": [
+      "{name} ran the classroom at {house} with a ruler and endless patience. Notes were taken.",
+      "{name} drilled the house until the lesson stuck. Somebody asked for homework. {name} was delighted.",
+      "{name} wrote on the slate, pointed, and waited. By evening the whole house was practising."
     ]
   },
   "job_maid": {

@@ -16,7 +16,10 @@ const BOT = `async (weeks) => {
   for (let i = 0; i < weeks && !S.over; i++) {
     const p = S.workers.find(w => w.isPartner);
     if (p && S.ap > 0) { samDate(p.id, 'walk'); closeModal(); }
+    if (S.ap > 0) { samWork('rounds'); closeModal(); }
     if (S.ap > 0) { samRest(); closeModal(); }
+    if (i === 1) { S.gold = Math.max(S.gold, 9000); buyUpgrade('suite'); buySamUp('notebook'); closeModal(); }
+    throwFeast(BAL.feast.tiers[0].id); closeModal();
     endWeek(); closeModal();
     let g = 0; while ((EVQ.length || CUR_EV) && g < 25) { if (CUR_EV) { evChoice(Math.floor(Math.random()*CUR_EV.choices.length)); CUR_EV = null; } closeModal(); runQueue(); g++; } closeModal();
     S.gold = Math.max(S.gold, 2000); S.debt.strikes = 0;

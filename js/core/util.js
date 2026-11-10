@@ -23,7 +23,12 @@ const clamp = (v,a=0,b=100) => Math.max(a, Math.min(b, v));
 // Lewdness is 0-100 internally like trust, and shown x10 (out of 1000) like the other stats.
 const lShow = v => Math.round((v||0)*10);
 const TRUST_SHOW = 10; const tShow = v => Math.round((v||0)*TRUST_SHOW); const tDelta = v => { const n = (v||0)*TRUST_SHOW; return (n>=0?'+':'') + (Math.abs(n)<10 ? n.toFixed(1).replace(/\.0$/,'') : Math.round(n)); };
-const SKL = 10; const s100 = v => (v||0)/SKL; const clampK = v => Math.max(0, Math.min(1000, v));
+const SKL = 10; const s100 = v => (v||0)/SKL;
+// The stat/skill ceiling rises each New Game+ cycle (balance.json → ngplus.cap): 1000, 1100, 1200... Sam's 0-100 stats use a tenth of it.
+// Growth curves slow toward statCap() + 300 (was a fixed 1300), so the extra headroom is reachable but slow.
+const statCap = () => { const C = (typeof BAL!=='undefined' && BAL.ngplus && BAL.ngplus.cap) || {base:1000, perCycle:100}; return C.base + C.perCycle*Math.max(0, ((typeof S!=='undefined' && S && S.cycle)||1) - 1); };
+const samCap = () => statCap()/SKL, growDen = () => statCap() + 300;
+const clampK = v => Math.max(0, Math.min(statCap(), v));
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fmt = n => Math.round(n).toLocaleString() + 'g';
 const uid = () => 'w' + Date.now().toString(36) + Math.random().toString(36).slice(2,7);

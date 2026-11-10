@@ -1157,6 +1157,7 @@
   },
   "emily": {
     "role": "partner",
+    "ngplus": true,
     "job": "attendant",
     "name": "Emily Shadowkin",
     "race": "beastkin",
@@ -1172,7 +1173,7 @@
     "partnerTrust": 65,
     "partnerLewd": 30,
     "backstory": "Back on Earth, Emily was \"Shadowkin\": the wolf-girl character she played for six years in a tiny text roleplay forum, and the username Sam talked to almost every night. They ran campaigns together, argued about anime, kept each other company through bad sleep schedules and worse exams. It was strictly friendship: they never met, never even voice-called, and neither of them ever wanted it to be anything else. Then Sam's account went quiet. A few weeks later Emily went to sleep in her dorm and woke up in this world, in the body of the character she'd been writing all those years: grey wolf ears, a tail she still can't control, and a name she'd only ever typed.",
-    "partnerStory": "Emily has spent a year in this world working odd jobs around Hollowmere and quietly assuming she's the only one. Then she overhears a tavern story about a new pleasure-house owner named Sam who apologized to a chair after bumping into it, and explained the house rules with the phrase \"okay so, lore-wise\". She knows exactly one person who talks like that. She has decided to walk into the Lantern and say hello, using his old username, with her ears flat and her tail tucked, because if she's wrong it will be the most embarrassing moment of two lives.",
+    "partnerStory": "Emily has spent a year in this world working odd jobs around Hollowmere and quietly assuming she's the only one, right up until the guild started whispering about \"returners\". Then she overhears a tavern story about a pleasure-house owner named Sam who apologized to a chair after bumping into it, and explained the house rules with the phrase \"okay so, lore-wise\". She knows exactly one person who talks like that. She has decided to walk into his house and say hello, using his old username, with her ears flat and her tail tucked, because if she's wrong it will be the most embarrassing moment of two lives.",
     "design": {
       "hairStyle": "long loose waves",
       "hairColor": "chestnut brown",

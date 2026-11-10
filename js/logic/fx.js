@@ -65,13 +65,36 @@ function madameShield(w){
   if(typeof S==='undefined' || !S || !w.house) return 1;
   return S.workers.some(x=>x!==w && x.house===w.house && x.job==='madame') ? BAL.jobs.madameMoodLoss : 1;
 }
-function moodAdd(w, n){ const before = w.mood; let d = n * fxMul(w, 'moodDelta'); if(d < 0) d *= madameShield(w); w.mood = clamp(w.mood + d); return w.mood - before; }
-// Sleep/rest recovery multiplier from fx, plus the house's amenities (hearth for dwarves).
+function moodAdd(w, n){ const before = w.mood; let d = n * fxMul(w, 'moodDelta'); if(d < 0) d *= madameShield(w) * fxMul(w, 'moodLoss'); w.mood = clamp(w.mood + d); return w.mood - before; }
+// Sleep/rest recovery multiplier from fx, plus the house's amenities (garden; balance.json → amenities).
 function restMult(w){
   let m = fxMul(w, 'energyRec');
   const h = (typeof S!=='undefined' && S) ? houseOf(w) : null;
-  if(h && w.race==='dwarf' && h.up && h.up.hearth) m *= 1.1;
+  if(h && h.up && h.up.garden) m *= 1 + BAL.amenities.garden.rest * gardenMult(w);
   return m;
+}
+/* ---------- amenity helpers (data/balance.json → amenities) ---------- */
+// The garden's effect is doubled for elves.
+const gardenMult = w => w.race==='elf' ? BAL.amenities.garden.elfMult : 1;
+// Incense burner: mode 'calm' | 'aphro' of the lady's house (null without one). Beastkin feel it more strongly.
+function incenseMode(w){ const h = (typeof S!=='undefined' && S && w && w.house) ? houseOf(w) : null; return (h && h.up && h.up.incense) ? (h.incense || 'calm') : null; }
+// Multiplier for key ('pushy', 'lust', 'prop') from her house's incense: the factor's distance from 1, times her strength.
+function incenseMul(w, key){
+  const A = BAL.amenities.incense, m = incenseMode(w), f = m && A[m] ? A[m][key] : undefined; if(f === undefined) return 1;
+  return Math.max(0.1, 1 + (f - 1) * (w.race==='beastkin' ? A.beastMult : 1));
+}
+// The same for the house as a whole (client trouble, incidents): no race involved.
+function incenseHouseMul(h, key){ const A = BAL.amenities.incense, m = h && h.up && h.up.incense ? (h.incense || 'calm') : null, f = m && A[m] ? A[m][key] : undefined; return f === undefined ? 1 : f; }
+// True when her house burns calming incense (a refusal from Sam stings less; see refusalHit).
+const incenseCalmsRefusal = w => incenseMode(w) === 'calm';
+// Aphrodisiac incense: extra lewdness counted only for service-comfort checks (never stored).
+function lewdBoost(w){ return incenseMode(w) === 'aphro' ? BAL.amenities.incense.lewdDrop * (w.race==='beastkin' ? BAL.amenities.incense.beastMult : 1) : 0; }
+// Binding Sigil: demons in a house with one take this share of the usual energy from Sam.
+function sigilDrain(w){ const h = (typeof S!=='undefined' && S && w && w.house) ? houseOf(w) : null; return h && h.up && h.up.sigil ? BAL.amenities.sigil.samDrain : 1; }
+// Candidates of a race turn up more often while its house amenity (Tethering Stone: spirits, Charging Alcove: androids) stands in ANY house.
+function raceDraw(race){
+  const k = {spirit:'tether', android:'charger'}[race];
+  return (k && typeof S!=='undefined' && S && S.houses && S.houses.some(h=>h.up && h.up[k])) ? BAL.amenities.raceDraw : 1;
 }
 // Race gating: the upgrade she needs in her house (races.json → needs). Returns a message, or null if fine.
 function raceBlock(w, h){
@@ -83,7 +106,7 @@ function raceBlock(w, h){
 function statXP(w, key, n){
   if(!w.stats || w.stats[key]===undefined) return;
   const v = w.stats[key];
-  w.stats[key] = clampK(v + n * fxMul(w, 'statGain') * Math.max(0.05, 1 - v/1300));
+  w.stats[key] = clampK(v + n * fxMul(w, 'statGain') * Math.max(0.05, 1 - v/growDen()));
 }
 
 /* ---------- counters (w.counts) and developable traits ---------- */

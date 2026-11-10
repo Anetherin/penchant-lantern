@@ -20,15 +20,15 @@ function storyNpc(key){ const id='n_'+key; if(!NPCS[id]) NPCS[id] = makeNamed(ke
 const H = id => S.houses.find(h=>h.id===id);
 const curH = () => H(S.cur) || S.houses[0];
 const houseOf = w => (S && (H(w.house) || S.houses[0])) || null;
-function makeHouse(id){ const D = HOUSES[id]; return {id, name:D.name, rooms:D.rooms, quarters:D.quarters, beds:D.beds, tier:D.tier, up:clone(D.up), tidy:BAL.tidy.start, price:1, rep:D.rep, since:S?S.week:1, story:{beat:0,wk:0}, bonus:{}, spent:0}; }
+function makeHouse(id){ const D = HOUSES[id]; return {id, name:D.name, rooms:D.rooms, quarters:D.quarters, beds:D.beds, tier:D.tier, up:clone(D.up), tidy:BAL.tidy.start, price:1, rep:D.rep, since:S?S.week:1, story:{beat:0,wk:0}, bonus:{}, spent:0, decor:0, drinks:0, teachSkill:null, wsDisc:0, incense:'calm'}; }
 function newGame(cfg){
   const HD = HOUSES[cfg.house];
-  S = { v:17, houseWardrobe:[], houseUnder:[], week:1, gold:600, rep:HD.rep, ap:3, cur:cfg.house, home:cfg.house, cycle:1, boons:[], past:cfg.past, pasts:[cfg.past], partner:cfg.partner, partners:[cfg.partner],
+  S = { v:23, samHome:cfg.house, samUps:{}, starters:[cfg.house], houseWardrobe:[], houseUnder:[], week:1, gold:600, rep:HD.rep, ap:3, cur:cfg.house, home:cfg.house, cycle:1, boons:[], past:cfg.past, pasts:[cfg.past], partner:cfg.partner, partners:[cfg.partner],
     houses:[makeHouse(cfg.house)],
-    sam:{energy:100, charm:20, business:35, strength:15, technique:0, appraisal:1, appXP:0, first:true, lvl:1, xp:0},
+    sam:{energy:100, ...BAL.sam.base, appraisal:1, appXP:0, first:true, lvl:1, xp:0},
     samWeek:{security:0, books:false, income:0, acts:[]},
     debt:{total:HD.debt, remaining:HD.debt, carry:0, strikes:0},
-    workers:[], candidates:[], log:[],
+    workers:[], candidates:[], alumni:[], log:[],
     flags:{guild:0, hilde:false, taunt:false, poachCD:0, partnerCD:3}, lastReport:null, over:false, won:false };
   S.houses.forEach(h=>{ h.since = 1; h.story = {beat:0,wk:0}; });
   PASTS[cfg.past].fx(S.sam);
@@ -70,6 +70,7 @@ function migrateWorker(w){
   ['jobLikes','jobDislikes'].forEach(k=>{ if(Array.isArray(w[k])) w[k] = Array.from(new Set(w[k].map(j=>JM[j]||j))); });
 }
 function migrate(s){
+  s.alumni = s.alumni || [];
   const ov = s.v || 0;
   if(!s.houses){
     s.houses = [{id:'lantern', name:HOUSES.lantern.name, rooms:s.rooms||2, tier:s.roomTier||0, up:s.up||{}, price:s.price??1, rep:s.rep||10}];
@@ -81,14 +82,31 @@ function migrate(s){
   if(s.v<5) s.lastReport = null;
   if(s.v<6) s.built = s.built || 0;
   if(s.v<7){   // the partners that had arcs when v7 shipped ('mio' is what old saves carry; the data key is now 'akari'; later partners never existed in v<7 saves)
-    (s.workers||[]).concat(s.candidates||[]).forEach(w=>{ if(w.key && ['kaede','yui','nerys','elowen','adelheid','marisol','natsuki','kanako','mio','akari'].includes(w.key)) w.arc = [0,1,3,6][w.arc||0] ?? 0; });
+    (s.workers||[]).concat(s.candidates||[],s.alumni||[]).forEach(w=>{ if(w.key && ['kaede','yui','nerys','elowen','adelheid','marisol','natsuki','kanako','mio','akari'].includes(w.key)) w.arc = [0,1,3,6][w.arc||0] ?? 0; });
     s.houses.forEach(h=>{ if(h.story) h.story.beat = [0,2,3,4][h.story.beat] ?? h.story.beat; });
   }
-  if(ov < 13) (s.workers||[]).concat(s.candidates||[]).forEach(scaleWorker);
-  (s.workers||[]).concat(s.candidates||[]).forEach(migrateWorker);
+  if(ov < 13) (s.workers||[]).concat(s.candidates||[],s.alumni||[]).forEach(scaleWorker);
+  (s.workers||[]).concat(s.candidates||[],s.alumni||[]).forEach(migrateWorker);
   if(ov < 14) s.lastReport = null;
   s.pasts = Array.isArray(s.pasts) && s.pasts.length ? s.pasts : (s.past ? [s.past] : []);
-  s.v = 17; s.houseWardrobe = s.houseWardrobe || []; s.houseUnder = s.houseUnder || []; s.home = s.home || (s.houses[0]||{}).id; s.cycle = s.cycle || 1; s.boons = s.boons || []; s.partners = s.partners || (s.partner ? [s.partner] : []);
+  if(s.samUps && s.samUps.suite){ delete s.samUps.suite; const sh = (s.houses||[]).find(h=>h.id===(s.samHome||s.home)) || (s.houses||[])[0]; if(sh){ sh.up = sh.up || {}; sh.up.suite = true; } }
+  s.starters = s.starters || [s.home || (s.houses[0]||{}).id];
+  if(ov < 21){   // the Lounge is gone (Castle Rosenhal and the Pearl Grotto no longer start with one): refund what was paid for it once; bartenders need a Bar now
+    s.houses.forEach(h=>{ if(h.up && h.up.lounge){ delete h.up.lounge; if(!['castle','pearl'].includes(h.id)){ s.gold = (s.gold||0) + 1100; h.spent = Math.max(0, (h.spent||0) - 1100); (s.log = s.log||[]).unshift({wk:s.week, t:`${h.name}: the Lounge was removed from the game. The 1,100g it cost has been refunded.`}); } } });
+    (s.workers||[]).forEach(w=>{ const h = s.houses.find(x=>x.id===w.house); if(w.job==='bartender' && h && !(h.up||{}).bar) w.job = 'rest'; });
+  }
+  if(ov < 22){   // amenity rework: Moon Garden -> Garden, Grooming Den -> Incense Burner, Forge Hearth -> Workshop
+    const REN = {grove:'garden', den:'incense', hearth:'workshop'};
+    s.houses.forEach(h=>{ h.up = h.up || {}; Object.keys(REN).forEach(o=>{ if(h.up[o]){ delete h.up[o]; h.up[REN[o]] = true; } }); });
+    if(s.builtBy) Object.keys(REN).forEach(o=>{ if(s.builtBy[o]){ s.builtBy[REN[o]] = (s.builtBy[REN[o]]||0) + s.builtBy[o]; delete s.builtBy[o]; } });
+  }
+  if(ov < 23){   // Wine Cellar -> tiered Drinks upgrade (h.drinks 0-3); classroom + teacher
+    s.houses.forEach(h=>{ h.up = h.up || {}; if(h.up.cellar){ delete h.up.cellar; h.drinks = 2; } });
+    if(s.builtBy && s.builtBy.cellar){ s.builtBy.drinks = (s.builtBy.drinks||0) + s.builtBy.cellar; delete s.builtBy.cellar; }
+  }
+  s.houses.forEach(h=>{ if(h.drinks===undefined) h.drinks = 0; if(h.teachSkill===undefined) h.teachSkill = null; });
+  s.houses.forEach(h=>{ if(h.decor===undefined) h.decor = 0; if(h.wsDisc===undefined) h.wsDisc = 0; if(!h.incense) h.incense = 'calm'; });
+  s.v = 23; s.samUps = s.samUps || {}; s.houseWardrobe = s.houseWardrobe || []; s.houseUnder = s.houseUnder || []; s.home = s.home || (s.houses[0]||{}).id; s.samHome = s.samHome || s.home || (s.houses[0]||{}).id; s.cycle = s.cycle || 1; s.boons = s.boons || []; s.partners = s.partners || (s.partner ? [s.partner] : []);
   s.regulars = s.regulars || []; s.bonds = s.bonds || {}; s.flags = Object.assign({partnerCD:3}, s.flags||{});
   s.sam.lvl = s.sam.lvl || 1; s.sam.xp = s.sam.xp || 0;
   s.houses.forEach(h=>{ if(h.tidy===undefined) h.tidy = BAL.tidy.start; h.since = h.since || 1; h.story = h.story || {beat:0,wk:0}; h.bonus = h.bonus || {}; if(h.spent===undefined) h.spent = 0;
@@ -96,7 +114,7 @@ function migrate(s){
     if(h.quarters===undefined){ h.quarters = Math.max(HOUSES[h.id].quarters, Math.ceil((s.workers||[]).filter(w=>w.house===h.id).length/2)); h.beds = HOUSES[h.id].beds; }
     (s.workers||[]).forEach(w=>{ if(w.key===HOUSES[h.id].npc){ w.locked = h.id; w.house = h.id; } }); });
   s.samWeek = Object.assign({security:0,books:false,income:0,acts:[]}, s.samWeek||{}); if(!s.samWeek.acts) s.samWeek.acts=[];
-  (s.workers||[]).concat(s.candidates||[]).forEach(w=>{ if(w.key && NAMED[w.key] && (!w.outfit || w.outfit==='custom' || !WARDROBE[w.outfit])){ w.outfit='sig_'+w.key; w.owned=Array.from(new Set([...(w.owned||[]),'sig_'+w.key])); } ensureWorker(w); if(!w.house) w.house = s.houses[0].id; });
+  (s.workers||[]).concat(s.candidates||[],s.alumni||[]).forEach(w=>{ if(w.key && NAMED[w.key] && (!w.outfit || w.outfit==='custom' || !WARDROBE[w.outfit])){ w.outfit='sig_'+w.key; w.owned=Array.from(new Set([...(w.owned||[]),'sig_'+w.key])); } ensureWorker(w); if(!w.house) w.house = s.houses[0].id; });
   if(s.lastReport && !s.lastReport.v5) s.lastReport = null;
   return s;
 }
@@ -110,6 +128,7 @@ const findW = id => S.workers.find(w=>w.id===id);
 function refreshCandidates(extra=0, quality=1){
   // guests (drifters) wait stayWeeks among the candidates, then move on
   S.candidates = S.candidates.filter(c=>{
+    if(c.friend) return true;
     if(c.key && NAMED[c.key] && NAMED[c.key].role==='drifter'){ if(c.stay===undefined) c.stay = 1; c.keep = false; if(--c.stay>0) return true; addLog(`${c.name} moved on.`); return false; }
     return c.keep;
   });
@@ -119,6 +138,7 @@ function refreshCandidates(extra=0, quality=1){
     const src = pick(LIB);
     if(!allNames().includes(src.name)){ const c = ensureWorker(clone(src)); c.id=uid(); c.keep=false; c.signing=signingFor(c); S.candidates.push(c); }
   }
+  inviteFriend(false);
   // other partners occasionally turn up looking for work (paid, normal trust, still have their story)
   if(S.flags.partnerCD>0) S.flags.partnerCD--;
   else if(Math.random()<0.35){
@@ -133,6 +153,14 @@ function refreshCandidates(extra=0, quality=1){
     const k = pick(drift), c = makeNamed(k); c.keep = false; c.stay = V.stayWeeks; seen[k] = S.week;
     c.signing = signingFor(c); S.candidates.push(c); addLog(`${c.name} is passing through Hollowmere and looking for work. (Candidates)`);
   }
+}
+// NG+ old friends (S.alumni): one turns up among the candidates now and then, extra to the normal ones, and stays until hired.
+function inviteFriend(force){
+  const F = BAL.ngplus.friends || {}, al = S.alumni = S.alumni || [];
+  if(!al.length || S.candidates.filter(c=>c.friend).length >= (F.max||2) || !force && Math.random() >= (F.chance ?? 0.5)) return;
+  const c = pick(al); S.alumni = al.filter(x=>x!==c);
+  c.keep = true; c.friend = true; c.signing = signingFor(c); S.candidates.push(c);
+  addLog(`${c.name} remembers you from another life and is looking for work. (Candidates)`);
 }
 function addCandidates(n, quality=1){ for(let i=0;i<n;i++){ const c=genWorker({quality}); c.signing=signingFor(c); S.candidates.push(c); } }
 function checkUnlocks(silent, sink){
@@ -150,11 +178,12 @@ function checkUnlocks(silent, sink){
   if(sink){ msgs.forEach(m=>sink.push('🔓 '+m)); return; }
   if(msgs.length) toast(msgs[0] + (msgs.length>1 ? ` (+${msgs.length-1} more in the Log)` : ''));
 }
-// Payments every 4 weeks, counted from when this debt started (New Game+ restarts the schedule).
+// Payments (balance.json → debt) every `every` weeks, counted from when this debt started (New Game+ restarts the schedule).
+// Payment n is total x share_n; shares ramp linearly from 1 to `ramp` and sum to 1. The last one clears whatever remains.
 const debtWeek = () => S.week - (S.debt.start||0);
+function debtShares(){ const D = BAL.debt, n = D.payments, w = Array.from({length:n}, (_,i)=> n>1 ? 1 + (D.ramp-1)*i/(n-1) : 1), t = w.reduce((a,b)=>a+b, 0); return w.map(x=>x/t); }
 function nextDue(){
-  const r = debtWeek(), wk = r%4===0 ? r : Math.ceil(r/4)*4;
-  const inst = Math.round((220+130*(wk/4)) * S.debt.total/15470);
-  const amount = wk>=52 ? S.debt.remaining : Math.min(S.debt.remaining, inst + S.debt.carry);
-  return {week:wk + (S.debt.start||0), amount};
+  const D = BAL.debt, r = debtWeek(), k = Math.max(1, Math.ceil(r/D.every));
+  const amount = k>=D.payments ? S.debt.remaining : Math.min(S.debt.remaining, Math.round(S.debt.total*debtShares()[k-1]) + S.debt.carry);
+  return {week:k*D.every + (S.debt.start||0), amount, n:k};
 }

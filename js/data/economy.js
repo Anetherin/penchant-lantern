@@ -18,7 +18,7 @@ function rollJobPrefs(w){
   const D = w.key && NAMED[w.key] && NAMED[w.key].jobs; delete w.jobs;
   if(D){ w.jobLikes = (D.likes||[]).filter(j=>JOBS[j]); w.jobDislikes = (D.dislikes||[]).filter(j=>JOBS[j] && !w.jobLikes.includes(j)); return; }
   const B = BAL.jobPrefs, P = PERS[w.personality]||{jobsUp:[],jobsDown:[]}, R = w.key ? seededRng(hashStr(w.key+':jobs')) : Math.random;
-  const all = Object.keys(JOBS).filter(j=>j!=='rest'), up = {}, down = {};
+  const all = Object.keys(JOBS).filter(j=>j!=='rest' && !(JOBS[j].race && JOBS[j].race!==w.race)), up = {}, down = {};
   all.forEach(j=>{ up[j] = B.base; down[j] = B.base*0.6; });
   P.jobsUp.forEach(j=>{ if(up[j]!==undefined) up[j] += B.personality; });
   P.jobsDown.forEach(j=>{ if(down[j]!==undefined) down[j] += B.personality; });
@@ -45,11 +45,13 @@ function slotsFor(h, job){
 const BEDS = ECON.beds;
 const FLOOR_REST = ECON.floorRest;
 const AMENITY_SIZE = ECON.amenitySize;
+const DECOR = ECON.decor;
+const DRINKS = ECON.drinks;
 const houseSize = h => (HOUSES[h.id].size||9) + (h.annex?3:0);
-const roomsUsed = h => h.rooms + (h.quarters||0) + Object.keys(h.up||{}).filter(k=>h.up[k]).reduce((a,k)=>a+(AMENITY_SIZE[k]||1),0);
+const roomsUsed = h => h.rooms + (h.quarters||0) + Object.keys(h.up||{}).filter(k=>h.up[k]).reduce((a,k)=>a+(AMENITY_SIZE[k] ?? 1),0);
 const bedsFor = h => (h.quarters||0)*2 + (h.extraBeds||0);
 const maxExtraBeds = h => (h.quarters||0)*2;   // each staff room fits up to 2 more (bunks, a cot by the window)
-const sleepers = h => S.workers.filter(w=>w.house===h.id && w.race!=='spirit');
+const sleepers = h => S.workers.filter(w=>w.house===h.id && !['spirit','android'].includes(w.race));
 const RACE_PERK = ECON.racePerks;
 const PROP_RATE = ECON.propRate;
 const PROP_WHERE = ECON.propWhere;

@@ -27,7 +27,7 @@ function viewSettings(){
   <section class="card"><h2>Images</h2><p class="muted">Generated and uploaded images live in this browser. Export them to back up or move them to another browser.</p>
     <div class="row"><button onclick="exportImages()">⬇ Export images</button><button onclick="importImages()">⬆ Import images</button><button onclick="cleanImages()">Clean up unused images</button></div></section>
   <section class="card"><h2>Save File</h2><p class="muted">The game autosaves every week in this browser. Export to back up or move between browsers.</p>
-    <div class="row"><button onclick="save();toast('Saved.')">Save now</button><button onclick="exportBox('save')">Export save</button><button onclick="importBox('save')">Import save</button><button onclick="exportBox('lib')">Export library</button><button onclick="importBox('lib')">Import library</button><button onclick="if(confirm('Start over? Your current save will be erased.'))restart()">New game</button></div></section>`;
+    <div class="row"><button onclick="save();toast('Saved.')">Save now</button><button onclick="exportBox('save')">Export save</button><button onclick="importBox('save')">Import save</button><button onclick="importSaveFile()">Import save file</button><button onclick="exportBox('lib')">Export library</button><button onclick="importBox('lib')">Import library</button><button onclick="if(confirm('Start over? Your current save will be erased.'))restart()">New game</button></div></section>`;
 }
 function saveSettingsUI(){
   SET.style = $('#s_style').value; SET.negative = $('#s_neg').value; SET.resolution = $('#s_res').value;
@@ -74,8 +74,16 @@ function dlText(text, name){
   catch(e){ toast('Download blocked here. Copy the text instead.'); }
 }
 function importBox(kind){ modal(`<h2>Import ${kind}</h2><textarea id="imp" style="min-height:200px" placeholder="Paste exported text here"></textarea><div class="row"><button class="primary" onclick="doImport('${kind}')">Import</button></div>`); }
-function doImport(kind){
-  let d; try{ d = JSON.parse($('#imp').value); }catch(e){ return toast('That text isn\'t valid.'); }
+function importSaveFile(){
+  const inp = $('#upJson'); inp.value='';
+  inp.onchange = ()=>{ const f=inp.files[0]; if(!f) return; const fr=new FileReader();
+    fr.onload = ()=>doImport('save', String(fr.result));
+    fr.onerror = ()=>toast('Couldn\'t read that file.');
+    fr.readAsText(f); };
+  inp.click();
+}
+function doImport(kind, text){
+  let d; try{ d = JSON.parse(text ?? $('#imp').value); }catch(e){ return toast('That text isn\'t valid.'); }
   if(kind==='save'){ if(!d || !Array.isArray(d.workers)) return toast('That doesn\'t look like a save.'); S = migrate(d); SETUP=null; save(); }
   else if(kind==='lib'){ if(!Array.isArray(d)) return toast('That doesn\'t look like a library.'); LIB = d; LIB.forEach(w=>{ if(w.stats && Math.max(...Object.values(w.stats))<=100){ scaleWorker(w); } migrateWorker(w); }); saveLib(); }
   else { if(typeof d!=='object' || Array.isArray(d)) return toast('That doesn\'t look like snippets.');

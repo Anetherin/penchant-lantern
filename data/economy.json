@@ -2,11 +2,11 @@
   "_readme": [
     "Jobs, houses and money. Numbers here are the main balance levers.",
     "jobs: label, cat (rest / staff / escort), energy (weekly cost), skill (which skill she uses), needs (amenity required), room (uses a bedroom), must (must-offer role: she serves propositions from her menu and expects them; other jobs choose, see data/balance.json → props), desc. jobTrust: trust she needs for a job she doesn't particularly like. Removed jobs: companion (now courtesan), reception (now promoter).",
-    "slots: positions per house. Keys: base, amenity ids (bar, stage, guard, lounge, bath), perSize (one more per N building size), perRoom (per bedroom), min / perRooms (one per N bedrooms, at least min), as (same number as another job). A job with no entry (promoter, maid) is unlimited. Courtesans: 2 + bedrooms; attendants: one per courtesan position.",
+    "slots: positions per house. Keys: base, amenity ids (bar, stage, guard, bath), perSize (one more per N building size), perRoom (per bedroom), min / perRooms (one per N bedrooms, at least min), as (same number as another job). A job with no entry (promoter, maid) is unlimited. Courtesans: 2 + bedrooms; attendants: one per courtesan position.",
     "propRate / propWhere: base chance per client visit that a staff job gets propositioned, and where it happens (reports). The bar, her propRate fx and her appeal multiply it. Courtesans are asked through the normal client flow (balance.json → jobs.propWant), so their entry is 0.",
     "classes: client classes; mult = how much they pay; wants = how much more (or less) often they ask for a service, by service id; tech = mean technique (0.3-1.4); prop = chance a visiting client of this class makes a proposition to staff; rowdy = chance of bar trouble; reckless = how reckless/forceful (adds half to pushy; a Bar adds more); pushy = chance to try to force it after hearing no.",
-    "upgrades with a \"race\" field are race houses (tether = spirits, charger = androids, chapel, sigil, grove, hearth, den). Races with \"needs\" in races.json can't be recruited into or moved to a house without that upgrade. upgrades.mood (race houses): weekly mood bonus for ladies of that race working or living in the house.",
-    "beds / floorRest: staff beds and how much they rest. amenitySize: building space each amenity takes. racePerks: shown on sheets (the effects live in data/races.json and code).",
+    "upgrades with a \"race\" field are race houses (tether = spirits, charger = androids, chapel = angels, sigil = demons; the garden, incense burner, workshop, laundry, classroom have no race). amenity effect numbers are in balance.json → amenities. Races with \"needs\" in races.json can't be recruited into or moved to a house without that upgrade. upgrades.mood (race houses): weekly mood bonus for ladies of that race working or living in the house.",
+    "beds / floorRest: staff beds and how much they rest. amenitySize: building space each amenity takes (0 = takes no room). decor: house décor tiers (h.decor, label / cost; demand and upkeep per tier are in balance.json → amenities.decor). drinks: the bar's drinks menu tiers (h.drinks 0-3, needs the Bar, no room; income and proposition multipliers and upkeep per tier are in balance.json → amenities.drinks). classroom + teacher job: one teacher per house teaches a skill (h.teachSkill, null = her best tech skill) to the others (balance.json → amenities.classroom). A job with \"race\" is only for that race. An upgrade with \"needs\" requires another upgrade built first. racePerks: shown on sheets (the effects live in data/races.json and code).",
     "roomMult / roomNames / roomTierCost: client room tiers. prices: house price levels (mult = fee multiplier, demand = client multiplier).",
     "houses: every house. cls = clientele weights [commoner, adventurer, merchant, noble]. npc = the named lady who comes with it (characters.json). setting = image backdrop. starter = pickable at the start; premium houses unlock with level / renown.",
     "pasts: Sam's past lives at the start; sam = his starting stat bonuses. Other past perks (cook's free dinners, massage training bonus) are in code.",
@@ -43,7 +43,8 @@
       "cat": "staff",
       "energy": 20,
       "skill": "bar",
-      "desc": "Sells drinks. Half as good without a Bar. With a Bar the house gets more propositions, more rowdiness and more reckless clients."
+      "needs": "bar",
+      "desc": "Sells drinks. Needs a Bar. The house gets more propositions, more rowdiness and more reckless clients."
     },
     "dancer": {
       "label": "Dancer",
@@ -63,12 +64,29 @@
       "desc": "Tends the bathhouse; always offers bathers a massage. Expects propositions and serves them from her menu.",
       "must": true
     },
+    "teacher": {
+      "label": "Teacher",
+      "cat": "staff",
+      "energy": 18,
+      "skill": "service",
+      "needs": "classroom",
+      "desc": "Teaches one subject (a trade skill or a service, chosen below) to every lady in the house who is behind her in it. Humans learn faster. Takes no clients. One position."
+    },
     "maid": {
       "label": "Maid",
       "cat": "staff",
       "energy": 15,
       "skill": "service",
       "desc": "Keeps the house tidy (tidiness drives reputation, mood and rest). Wears a maid uniform while on the job. Unlimited positions."
+    },
+    "chapel": {
+      "label": "Chapel Keeper",
+      "cat": "staff",
+      "energy": 10,
+      "skill": "service",
+      "needs": "chapel",
+      "race": "angel",
+      "desc": "Angels only. Tends the Quiet Chapel: visitors come to her for comfort, not for service. Adds reputation and popularity, and visitors leave donations. Two positions."
     },
     "courtesan": {
       "label": "Courtesan",
@@ -78,13 +96,27 @@
       "desc": "Offers her service menu to everyone. Lowest comfort lines, can work when not in the mood. Uses a room for services."
     }
   },
-  "jobTrust": {"courtesan":30,"bartender":10,"promoter":10,"attendant":10,"maid":5,"security":20,"dancer":25,"bath":25,"madame":40},
+  "jobTrust": {
+    "chapel": 10,
+    "courtesan": 30,
+    "bartender": 10,
+    "teacher": 15,
+    "promoter": 10,
+    "attendant": 10,
+    "maid": 5,
+    "security": 20,
+    "dancer": 25,
+    "bath": 25,
+    "madame": 40
+  },
   "slots": {
     "madame": {"base":1},
     "security": {"base":1,"guard":2},
     "bartender": {"base":1,"bar":1},
+    "teacher": {"base":0,"classroom":1},
     "dancer": {"base":0,"stage":2},
     "bath": {"base":0,"bath":2},
+    "chapel": {"base":0,"chapel":2},
     "courtesan": {"base":2,"perRoom":1},
     "attendant": {"as":"courtesan"}
   },
@@ -95,7 +127,34 @@
     {"label":"Luxury beds","rest":70,"cost":2200}
   ],
   "floorRest": 18,
-  "amenitySize": {"bar":1,"stage":1,"guard":1,"lounge":1,"bath":2,"tether":1,"charger":1,"chapel":1,"sigil":1,"grove":1,"hearth":1,"den":1},
+  "amenitySize": {
+    "bar": 1,
+    "stage": 1,
+    "guard": 0,
+    "bath": 2,
+    "tether": 1,
+    "charger": 1,
+    "chapel": 1,
+    "sigil": 0,
+    "garden": 0,
+    "incense": 0,
+    "workshop": 0,
+    "laundry": 0,
+    "classroom": 1,
+    "suite": 1
+  },
+  "decor": [
+    {"label":"Bare walls","cost":0,"desc":"Plain plaster and whatever the last owner left."},
+    {"label":"Lanterns and a signboard","cost":300,"desc":"Warm lamps by the door and a sign people can actually read."},
+    {"label":"Paintings and drapes","cost":900,"desc":"Framed paintings, heavy curtains, a proper entrance hall."},
+    {"label":"Gilded décor","cost":2200,"desc":"Gilt mirrors, chandeliers and a doorman's carpet. Nobles take notice."}
+  ],
+  "drinks": [
+    {"label":"House ale","cost":0,"desc":"Watered-down ale and whatever is in the cask."},
+    {"label":"Good wine","cost":500,"desc":"A proper wine list and clean glasses."},
+    {"label":"Imported vintages","cost":1400,"desc":"Cellared vintages from across the sea, poured by the glass."},
+    {"label":"Dwarven spirits & elven wine","cost":3000,"desc":"Rare spirits and moon-ripened wine. Patrons linger, spend and get ideas."}
+  ],
   "racePerks": {
     "human": {"label":"Adaptable","desc":"Trust and skills grow 15% faster. A few clients are especially fond of her."},
     "elf": {"label":"Long-lived","desc":"Mood changes slowly, for better and worse."},
@@ -133,31 +192,69 @@
     "madame": "in her office"
   },
   "upgrades": {
-    "bar": {"label":"Bar","cost":500,"upkeep":20,"desc":"Full bartender income."},
+    "bar": {"label":"Bar","cost":500,"upkeep":20,"desc":"Unlocks the Bartender job."},
     "stage": {"label":"Stage","cost":900,"upkeep":25,"desc":"Unlocks the Dancer job."},
-    "guard": {"label":"Guard Post","cost":400,"upkeep":10,"desc":"Security is much more effective."},
-    "lounge": {"label":"Lounge","cost":1100,"upkeep":25,"desc":"+3 clients/week, more wealthy guests."},
+    "guard": {"label":"Guard Post","cost":400,"upkeep":10,"desc":"Security is much more effective. Takes no room."},
     "bath": {"label":"Bathhouse","cost":1400,"upkeep":30,"desc":"+mood, +satisfaction. Unlocks Bath Attendant job and bath scenes."},
-    "tether": {"label":"Tethering Stone","cost":600,"upkeep":12,"race":"spirit","desc":"Spirits can live and work here. Spirit mood +3.","mood":3},
-    "charger": {"label":"Charging Alcove","cost":700,"upkeep":14,"race":"android","desc":"Androids can live and work here. Recharge fee -40%."},
+    "tether": {
+      "label": "Tethering Stone",
+      "cost": 600,
+      "upkeep": 12,
+      "race": "spirit",
+      "desc": "Spirits can live and work here. Takes 1 room; while one stands (in any house), spirit candidates turn up more often."
+    },
+    "charger": {
+      "label": "Charging Alcove",
+      "cost": 700,
+      "upkeep": 14,
+      "race": "android",
+      "desc": "Androids can live and work here. Recharge fee -40%. Takes 1 room; while one stands (in any house), android candidates turn up more often."
+    },
     "chapel": {
       "label": "Quiet Chapel",
       "cost": 800,
       "upkeep": 16,
       "race": "angel",
-      "desc": "Angel mood +4; +0.2 reputation a week if an angel works here.",
+      "desc": "Angel mood +4. Unlocks the Chapel Keeper job (angels only, 2 positions): a keeper adds reputation and popularity each week, and visitors leave donations.",
       "mood": 4
     },
-    "sigil": {"label":"Binding Sigil","cost":650,"upkeep":12,"race":"demon","desc":"A demon's reckless drain costs no reputation."},
-    "grove": {"label":"Moon Garden","cost":550,"upkeep":10,"race":"elf","desc":"Elf mood +3.","mood":3},
-    "hearth": {"label":"Forge Hearth","cost":500,"upkeep":10,"race":"dwarf","desc":"Dwarves recover 10% more energy from rest."},
-    "den": {
-      "label": "Grooming Den",
+    "sigil": {
+      "label": "Binding Sigil",
+      "cost": 650,
+      "upkeep": 12,
+      "race": "demon",
+      "desc": "A demon's reckless drain costs no reputation, and demons in this house take only half as much energy from Sam. Takes no room."
+    },
+    "garden": {
+      "label": "Garden",
+      "cost": 550,
+      "upkeep": 10,
+      "desc": "Everyone in the house gains a little mood and rests a little better. Elves get double. Takes no room."
+    },
+    "incense": {
+      "label": "Incense Burner",
       "cost": 450,
       "upkeep": 8,
-      "race": "beastkin",
-      "desc": "Beastkin mood +3; being turned down by Sam stings half as much.",
-      "mood": 3
+      "desc": "Calm: fewer pushy clients and slower lust. Aphrodisiac: faster lust, bolder ladies, more propositions. Beastkin feel it 60% stronger. Takes no room."
+    },
+    "workshop": {
+      "label": "Workshop",
+      "cost": 500,
+      "upkeep": 10,
+      "desc": "Each dwarf living here (any job) shaves a little off the markup on your next build in this house, up to all of it. Resets after each purchase. Takes no room."
+    },
+    "laundry": {"label":"Laundry","cost":400,"upkeep":6,"desc":"The house gets messy more slowly. Takes no room."},
+    "classroom": {
+      "label": "Classroom",
+      "cost": 900,
+      "upkeep": 15,
+      "desc": "A teacher (one position) drills the house in one subject each week. Choose the subject on the house view or the teacher's sheet."
+    },
+    "suite": {
+      "label": "Owner's Suite",
+      "cost": 600,
+      "upkeep": 8,
+      "desc": "Sam's own room in this house. When he sleeps here, his bed is one tier better than the staff's."
     }
   },
   "roomMult": [1,1.25,1.6,2.1],
@@ -220,7 +317,7 @@
       "demand": 1,
       "cls": [1,1,1,1],
       "upkeep": 40,
-      "debt": 15000,
+      "debt": 37500,
       "cost": 6000,
       "rep": 10,
       "starter": true,
@@ -236,7 +333,7 @@
       "npc": "cecile",
       "rooms": 2,
       "tier": 1,
-      "up": {"lounge":true},
+      "up": {},
       "demand": 0.7,
       "cls": [0.15,0.4,1.4,2.6],
       "upkeep": 90,
@@ -263,7 +360,7 @@
       "demand": 1.2,
       "cls": [0.7,1.9,0.8,0.4],
       "upkeep": 45,
-      "debt": 13500,
+      "debt": 33800,
       "cost": 9000,
       "rep": 8,
       "starter": true,
@@ -283,7 +380,7 @@
       "demand": 0.75,
       "cls": [0.6,1.3,1,1.3],
       "upkeep": 40,
-      "debt": 15000,
+      "debt": 37500,
       "cost": 3500,
       "rep": 3,
       "haunted": true,
@@ -305,7 +402,7 @@
       "demand": 1.5,
       "cls": [2.2,1.3,0.5,0.05],
       "upkeep": 20,
-      "debt": 7000,
+      "debt": 27300,
       "cost": 2500,
       "rep": 8,
       "starter": true,
@@ -373,7 +470,7 @@
       "demand": 1.2,
       "cls": [0.9,1,1.6,0.9],
       "upkeep": 30,
-      "debt": 10000,
+      "debt": 32000,
       "cost": 6000,
       "rep": 10,
       "recruit": 1,
@@ -396,7 +493,7 @@
       "demand": 1.15,
       "cls": [0.5,1.6,1.5,0.7],
       "upkeep": 70,
-      "debt": 18000,
+      "debt": 45000,
       "cost": 13000,
       "rep": 18,
       "trouble": 1.3,
@@ -413,11 +510,11 @@
       "npc": "maris",
       "rooms": 2,
       "tier": 2,
-      "up": {"bath":true,"lounge":true},
+      "up": {"bath":true},
       "demand": 0.8,
       "cls": [0.2,0.6,1.3,2.2],
       "upkeep": 95,
-      "debt": 22000,
+      "debt": 55000,
       "cost": 16000,
       "rep": 22,
       "minPop": 30,

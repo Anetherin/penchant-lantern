@@ -15,9 +15,9 @@ function samGainXP(n){
   S.sam.xp = (S.sam.xp||0) + n; S.sam.lvl = S.sam.lvl || 1;
   while(S.sam.xp >= xpNeed(S.sam.lvl)){
     S.sam.xp -= xpNeed(S.sam.lvl); S.sam.lvl++;
-    ['charm','business','strength','technique'].forEach(k=>samStat(k,2));
+    ['charm','business','strength','technique'].forEach(k=>samStat(k,BAL.sam.perLevel));
     if(S.sam.lvl===5 || S.sam.lvl===10) S.ap++;
-    note(`⬆ Sam reached level ${S.sam.lvl}! All stats +2${S.sam.lvl===5||S.sam.lvl===10?', and +1 action per week':''}.`);
+    note(`⬆ Sam reached level ${S.sam.lvl}! All stats +${BAL.sam.perLevel}${S.sam.lvl===5||S.sam.lvl===10?', and +1 action per week':''}.`);
   }
 }
 function samXP(n){
@@ -25,58 +25,58 @@ function samXP(n){
   const lv = S.sam.appXP>=200 ? 3 : S.sam.appXP>=60 ? 2 : 1;
   if(lv > S.sam.appraisal){ S.sam.appraisal = lv; note(`[Appraisal] leveled up to Lv ${lv}! ${lv===2?'Exact stats and lewdness are now visible.':'Hidden traits and everyone\'s preferences are now visible.'}`); }
 }
-function samStat(k,n){ S.sam[k] = clamp(S.sam[k]+n); }
+function samStat(k,n){ S.sam[k] = clamp(S.sam[k]+n, 0, samCap()); }
 function samWork(kind){
   if(!useAP(25)) return;
   let title='', text='';
   if(kind==='bartend'){
-    const inc = Math.round((30 + S.sam.charm*1.2 + rnd(0,25)) * (hasPast('bartender')?1.5:1)); S.gold += inc; S.samWeek.income += inc; samStat('charm',2);
+    const inc = Math.round((30 + S.sam.charm*1.2 + rnd(0,25)) * (hasPast('bartender')?1.5:1) * (1 + samUpFx('bartend'))); S.gold += inc; S.samWeek.income += inc; samStat('charm',2);
     title='Behind the Bar'; text=`Sam pours drinks all evening. ${hasPast('bartender')?'Old habits: he flips a bottle and the whole room cheers.':'He over-explains the menu to everyone, but people seem to find it charming.'}\n\n+${fmt(inc)} · Charm +2`;
     samLog(`Tended bar (+${fmt(inc)})`);
   } else if(kind==='security'){
-    S.samWeek.security += 20 + S.sam.strength; samStat('strength',2);
-    title='On Watch'; text=`Sam makes the rounds of every house, looking as stern as a thin man in a hoodie can. Nobody starts anything, which he decides to count as a win.\n\nSecurity bonus in all houses this week · Strength +2`;
+    const sec = Math.round((20 + S.sam.strength) * (1 + samUpFx('watch'))); S.samWeek.security += sec; samStat('strength',2);
+    title='On Watch'; text=`Sam makes the rounds of every house, looking as stern as a thin man in a hoodie can. Nobody starts anything, which he decides to count as a win.\n\nSecurity bonus +${sec} in all houses this week · Strength +2`;
     samLog('Stood watch');
   } else if(kind==='books'){
     S.samWeek.books = true; samStat('business',2);
-    title='Doing the Books'; text=`Sam rebuilds the ledger as a spreadsheet, by hand, on parchment. The staff watch with a mix of horror and respect.\n\nUpkeep reduced this week · Business +2`;
+    title='Doing the Books'; text=`Sam rebuilds the ledger as a spreadsheet, by hand, on parchment. The staff watch with a mix of horror and respect.\n\nUpkeep reduced by ${Math.round((0.1 + S.sam.business*0.003 + samUpFx('books'))*100)}% this week · Business +2`;
     samLog('Did the books');
   } else if(kind==='rounds'){
     // a word with everyone: small trust and mood for every lady in every house (balance.json → sam.rounds*)
-    const B = BAL.sam; let n = 0;
-    S.workers.forEach(w=>{ gainTrust(w, B.roundsTrust); moodAdd(w, B.roundsMood); n++; });
+    const B = BAL.sam, rm = 1 + samUpFx('rounds'), rt = B.roundsTrust * rm, rmood = B.roundsMood * rm; let n = 0;
+    S.workers.forEach(w=>{ gainTrust(w, rt); moodAdd(w, rmood); n++; });
     samStat('charm',1);
-    title='Making the Rounds'; text=`Sam walks through every house with a notebook, asking everyone how they're doing and actually writing down the answers. A leaky window gets fixed, someone's favorite tea gets restocked, and the whole staff notices that he noticed.\n\n${n} ladies: trust ${tDelta(B.roundsTrust)}, mood + · Charm +1`;
+    title='Making the Rounds'; text=`Sam walks through every house with a notebook, asking everyone how they're doing and actually writing down the answers. A leaky window gets fixed, someone's favorite tea gets restocked, and the whole staff notices that he noticed.\n\n${n} ladies: trust ${tDelta(rt)}, mood +${Math.round(rmood*10)/10} · Charm +1`;
     samLog('Made the rounds');
   } else if(kind==='lesson'){
     // a class for everyone whose job uses this skill (individual training is for services only)
     const sel = $('#lessonSel'), k = sel ? sel.value : 'service', map = {service:'charm', dance:'charm', bar:'charm', combat:'strength', manage:'business'}, sk = map[k] || 'charm';
     const who = S.workers.filter(w=>w.job!=='rest' && (JOBS[w.job]||{}).skill===k);
-    const g = (4 + S.sam[sk]/25) * BAL.sam.lessonShare * (hasPast('massage') ? 1.15 : 1);
+    const g = (4 + S.sam[sk]/25) * BAL.sam.lessonShare * (hasPast('massage') ? 1.15 : 1) * (1 + samUpFx('lesson'));
     who.forEach(w=>{ grow(w, k, g * pm(w,'train')); statXP(w, ({service:'charm', dance:'agility', bar:'charm', combat:'strength', manage:'refinement'})[k] || 'charm', g*0.4); minorTrust(w); });
     samStat(sk,2);
     title=`A Lesson: ${TECH_LABEL[k]}`; text = who.length ? `Sam gathers ${who.map(w=>w.name).join(', ')} for an afternoon on ${TECH_LABEL[k].toLowerCase()}. He brought handouts. Nobody asked for handouts.\n\n${TECH_LABEL[k]} +${Math.round(g*SKL)} each · Sam's ${cap(sk)} +2` : `Sam sets out chairs and handouts for a lesson on ${TECH_LABEL[k].toLowerCase()}. Nobody whose job uses it turns up. He reads the handout to himself.`;
     samLog(`Taught a lesson in ${TECH_LABEL[k]}${who.length?` (${who.length})`:''}`);
   } else if(kind==='scout'){
-    addCandidates(2, 1.1 + S.sam.business/400); samXP(10); samStat('charm',1);
-    title='Scouting'; text=`Sam walks the market and the guild hall, quietly using [Appraisal] on anyone who looks like they might want a job.\n\n+2 candidates · Appraisal XP +10`;
+    const nc = 2 + Math.round(samUpFx('scout')); addCandidates(nc, 1.1 + S.sam.business/400); samXP(10); samStat('charm',1);
+    title='Scouting'; text=`Sam walks the market and the guild hall, quietly using [Appraisal] on anyone who looks like they might want a job.\n\n+${nc} candidates · Appraisal XP +10`;
     samLog('Scouted for recruits');
   }
   save(); render(); showResult(title, text);
 }
 function samRest(){
   if(S.ap<=0) return toast('No actions left this week.');
-  S.ap--; S.sam.energy = Math.min(100, S.sam.energy+50); samLog('Rested'); save(); render();
+  S.ap--; const nap = samRecover(BAL.samHome.nap); S.sam.energy = Math.min(100, S.sam.energy+nap); samLog('Rested'); save(); render();
   const v = restVisitor();
   if(v) return restEncounter(v);
-  showResult('Nap Time', 'Sam takes a long nap. In his dreams, a truck honks at him. He wakes up and decides not to think about it.\n\nEnergy +50');
+  showResult('Nap Time', 'Sam takes a long nap. In his dreams, a truck honks at him. He wakes up and decides not to think about it.\n\nEnergy +'+nap);
 }
 function samChat(id){
   const w = findW(id), d = DATES.chat; if(!w || !useAP(d.energy)) return;
   const m = pmAny(w,d.like), tg = gainTrust(w, d.trust * rnd(0.6,1.4) * (has(w,'Romantic')?1.4:1) * (has(w,'Shy')?1.2:1) * m);
   moodAdd(w, d.mood*m - (m<1?3:0)); samStat('charm',1); samXP(5); samLog(`Chatted with ${w.name}`); checkUnlocks();
   save(); render(); closeModal();
-  const topic = ET('chat', NAMED[w.key] && Object.values(NAMED[w.key].bonds||{}).some(x=>x.kind==='home') || ['yui','natsuki','kanako','akari','lara','ella'].includes(w.key) ? 'home' : 'topics');
+  const topic = ET('chat', NAMED[w.key] && Object.values(NAMED[w.key].bonds||{}).some(x=>x.kind==='home') || ['yui','natsuki','kanako','akari','lara','ella','emily'].includes(w.key) ? 'home' : (S.cycle||1)>=2 && Math.random()<0.3 ? 'ng' : 'topics');
   showResult(`Chatting with ${w.name}`, `Sam and ${w.name} talk ${topic}.\n\nTrust ${tDelta(tg)}`, w.id, null);
 }
 // a short line for the service itself, used after encounter and first-time openings (flavor.json → private_act)
@@ -228,10 +228,10 @@ function privateCore(w, act, o={}){
   if(stretch){ lewdUp(w, 4, svcLewdCap(act,'sam') + BAL.lewd.stretchCap); minorTrust(w); } else if(fromLewd){ lewdUp(w, 2, svcLewdCap(act,'sam')); minorTrust(w, 2); } else gainTrust(w, 2);
   moodAdd(w, (stretch?1:6)*pm(w,'private') + (w.fav===act?6:0) - (w.dislike===act?6:0)); w.energy = clamp(w.energy-(recv ? 6 : 15), 0, maxEnergy(w));
   let fed = '';
-  if(w.race==='demon' && A.finish){ w.energy = clamp(w.energy + SVC.demon.samGain, 0, maxEnergy(w)); S.sam.energy = Math.max(0, S.sam.energy - SVC.demon.samExtra); fed = `\n\n(${w.name} fed on him. Sam is much more tired than usual. Energy +${SVC.demon.samGain} for her.)`; }
+  if(w.race==='demon' && A.finish){ w.energy = clamp(w.energy + SVC.demon.samGain, 0, maxEnergy(w)); S.sam.energy = Math.max(0, S.sam.energy - Math.round(SVC.demon.samExtra * sigilDrain(w))); fed = `\n\n(${w.name} fed on him. Sam is much more tired than usual. Energy +${SVC.demon.samGain} for her.)`; }
   if(w.race==='demon' && A.kind==='kiss'){   // a kiss is a small sip; an eager demon draws harder
     const D = SVC.demon, deep = w.lust >= LUST_EAGER, g = D.kissSam + (deep ? D.kissSamDraw : 0);
-    w.energy = clamp(w.energy + g, 0, maxEnergy(w)); S.sam.energy = Math.max(0, S.sam.energy - (deep ? D.kissSamCost : 0));
+    w.energy = clamp(w.energy + g, 0, maxEnergy(w)); S.sam.energy = Math.max(0, S.sam.energy - (deep ? Math.round(D.kissSamCost * sigilDrain(w)) : 0));
     fed = `\n\n(${w.name} drinks a little of him with every kiss${deep ? ', and tonight she drinks deep. Sam is a bit lightheaded afterward' : ''}. Energy +${g} for her.)`; }
   if(w.lovers===act) gainTrust(w, 2);
   samStat('technique',3); samXP(5); w.privateCount++; w._samTime = (w._samTime||0) + 1;

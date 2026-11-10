@@ -37,6 +37,8 @@ function houseGate(w){
   if(!st || !h || !h.story || h.story.beat >= st.beats.length) return null;
   return {house:h, beat:h.story.beat, cap:BAL.houseGate.base + BAL.houseGate.perBeat*h.story.beat};
 }
+// Comfort of the staff quarters (bed level or bedroom tier, whichever is lower) against what a house this famous is expected to offer (balance.json → quarters).
+const housingComfort = h => Math.min(h.beds||0, h.tier||0), housingExpect = h => Math.min(3, Math.floor(h.rep/BAL.quarters.repPerLevel)), housingShort = h => Math.max(0, housingExpect(h) - housingComfort(h));
 const houseTrustCap = w => { const g = houseGate(w); return g ? g.cap : 100; };
 function capTrust(w){ const c = houseTrustCap(w); if(w.trust > c) w.trust = c; return w.trust; }
 function enforceTrustCaps(){ if(typeof S!=='undefined' && S && S.workers) S.workers.forEach(capTrust); }
@@ -46,7 +48,7 @@ const moodMod = w => (w.mood-50)/10;
 // Up to 25 below a service's line, she'll do it because Sam asked, if she trusts him enough (costs mood).
 // Further below that is a line she won't cross, whatever her trust.
 const ASK_BAND = 25;
-function inclination(w,id){ return w.lewd + comfortOf(w,id) + fxAdd(w,'willing') + moodMod(w); }
+function inclination(w,id){ return w.lewd + lewdBoost(w) + comfortOf(w,id) + fxAdd(w,'willing') + moodMod(w); }
 const trustNeed = gap => Math.round(40 + gap*2);
 // Courtesans have the lowest comfort lines (balance.json → jobs.courtesanTh points lower). job defaults to her current one.
 const jobTh = (w, job) => (job || w.job)==='courtesan' ? BAL.jobs.courtesanTh : 0;
@@ -170,10 +172,10 @@ function wageFor(w){
   return Math.round((8 + st*0.3 + tc*0.2 + w.popularity*0.3 + (has(w,'Ambitious')?8:0) + (has(w,'Greedy')?6:0)) * ((sd && sd.wage) ?? raceOf(w).wage ?? 1));
 }
 function signingFor(w){ return Math.max(60, Math.round(w.wage * rnd(5,8) * (raceOf(w).signing ?? 1) * (0.9 + (S?S.rep:10)/150) * (hasBoon('recruit')?0.75:1))); }
-// Skills work in 1000-units: n is the old 0-100 amount (x SKL), with a diminishing curve (1 - v/1300).
-function grow(w,k,n){ n *= SKL * fxMul(w,'skillGain'); w.tech[k] = clampK((w.tech[k]||0) + n*(1 - (w.tech[k]||0)/1300)); }
-function growAct(w,id,n){ id = actKey(id); if(!w.acts[id]) return; n *= SKL * fxMul(w,'skillGain'); const s=w.acts[id].skill; w.acts[id].skill = clampK(s + n*(1 - s/1300)); }
-function allNames(){ return S ? [...S.workers, ...S.candidates].map(w=>w.name) : []; }
+// Skills work in 1000-units: n is the old 0-100 amount (x SKL), with a diminishing curve (1 - v/growDen(), i.e. statCap() + 300).
+function grow(w,k,n){ n *= SKL * fxMul(w,'skillGain'); w.tech[k] = clampK((w.tech[k]||0) + n*(1 - (w.tech[k]||0)/growDen())); }
+function growAct(w,id,n){ id = actKey(id); if(!w.acts[id]) return; n *= SKL * fxMul(w,'skillGain'); const s=w.acts[id].skill; w.acts[id].skill = clampK(s + n*(1 - s/growDen())); }
+function allNames(){ return S ? [...S.workers, ...S.candidates, ...(S.alumni||[])].map(w=>w.name) : []; }
 function genName(race, sub){
   const R = RACES[race] || {}, n = R.names || NAMES[race] || NAMES.human, SL = ((subData(race, sub)||{}).names||{}).l; let name, t=0;
   // last names (or titles): the race's list, or half the time the beastkin sub's own list
@@ -248,7 +250,7 @@ function applyMods(w){
   w.lewd = clamp(w.lewd);
 }
 function genWorker(opts={}){
-  const race = opts.race || weighted(Object.keys(RACES), r=>RACES[r].weight ?? 0);
+  const race = opts.race || weighted(Object.keys(RACES), r=>(RACES[r].weight ?? 0) * raceDraw(r));
   const R = RACES[race], q = opts.quality || 1;
   const K = v => Math.round(v)*SKL + ri(0,SKL-1);   // a 0-100 value as 0-1000
   const base = () => clampK(K(rnd(15,55)*q));
@@ -306,7 +308,7 @@ function makeNamed(key, asPartner){
   w.wage = wageFor(w); w.energy = maxEnergy(w);
   return w;
 }
-const isHired = key => S && (S.workers.some(w=>w.key===key) || S.candidates.some(w=>w.key===key));
+const isHired = key => S && (S.workers.some(w=>w.key===key) || S.candidates.some(w=>w.key===key) || (S.alumni||[]).some(w=>w.key===key));
 
 // Lust: her current appetite. It builds every week (faster for lewder ladies) and is spent by
 // services and time with Sam. Very high lust can lead to reckless choices; very low lust means
@@ -320,7 +322,7 @@ const LUST_EAGER = BAL.lust.eager || 60;
 // Her lust profile (data/balance.json → lust): weekly build, how much each act spends, floor and ceiling.
 function lustProfile(w){
   const L = BAL.lust, B = L.build, Pf = L.profile, P = PERS[w.personality]||{};
-  const build = (B.base + w.lewd*B.perLewd + ((has(w,'Eager')||has(w,'Exhibitionist'))?B.eagerTrait:0) + (w.job==='rest'?B.resting:0)) * (P.lustBuild||1) * fxMul(w,'lustBuild');
+  const build = (B.base + w.lewd*B.perLewd + ((has(w,'Eager')||has(w,'Exhibitionist'))?B.eagerTrait:0) + (w.job==='rest'?B.resting:0)) * (P.lustBuild||1) * fxMul(w,'lustBuild') * incenseMul(w,'lust');
   const drop = (Pf.dropAtLewd0 + (Pf.dropAtLewd100 - Pf.dropAtLewd0) * w.lewd/100) * fxMul(w,'lustDrop');
   const max = 100 + fxAdd(w,'lustMax');
   const floor = Math.min(60, max, w.lewd*Pf.floorPerLewd + fxAdd(w,'lustFloor'));

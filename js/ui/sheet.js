@@ -43,7 +43,7 @@ function refreshSheetInfo(){
   const cl = comfortCloth(w,false,true), cs = comfortCloth(w,true,true);
   const o = getOutfit(w), u = getUnder(w);
   const anySam = getActs().some(a=>canSam(w,a.id));
-  const arcTxt = ARCS[w.key] ? `<div class="pink">♥ Story: ${(w.arc||0)>=ARCS[w.key].length ? 'Lovers' : `chapter ${w.arc||0}/${ARCS[w.key].length}${(w.arc||0)<ARCS[w.key].length?` <span class="muted">(next: ${ARCS[w.key][w.arc||0].title})</span>`:''}`}${!w.arc&&w.trust<40?' <span class="muted">(begins once she trusts Sam: 400)</span>':''}</div>` : '';
+  const arcTxt = ARCS[w.key] ? `<div class="pink">♥ Story: ${(w.arc||0)>=ARCS[w.key].length ? 'Lovers' : `chapter ${w.arc||0}/${ARCS[w.key].length}${(w.arc||0)<ARCS[w.key].length?` <span class="muted">(next: ${ARCS[w.key][w.arc||0].title})</span>`:''}`}${!w.arc&&w.trust<BAL.arcs.need[0]?` <span class="muted">(begins once she trusts Sam: ${tShow(BAL.arcs.need[0])})</span>`:''}</div>` : '';
   box.innerHTML = `<div class="status"><h3>[ STATUS ] ${esc(w.name)}</h3>
     <div class="muted">${raceLabel(w)} · Age ${w.age} · ${esc(w.personality)} · Style: ${w.style} · ♥ ${sw(w.favColor)}${w.favColor}</div>
     <p class="story" style="margin:6px 0" id="bs_${w.id}">${esc(w.backstory)}</p>${SET.ai.on&&!w.named?`<button class="sm" onclick="if(confirm('Replace her backstory with a new AI-written one?'))aiBackstory('bs_${w.id}','${w.id}')">✨ Rewrite backstory</button>`:''}<div>${traitTags(w)}</div>${arcTxt}${firstsLine(w)}${(()=>{ if(!S.workers.includes(w)) return ''; seedBonds(); const bl = bondLines(w); return bl.length ? `<div class="muted">🤝 ${bl.map(esc).join(' · ')}</div>` : ''; })()}
@@ -61,6 +61,7 @@ function refreshSheetInfo(){
     <table><tr><th>Service</th><th>Skill</th><th>Clients</th><th>Sam</th><th>Menu</th></tr>${rows}</table>
     <div class="muted" style="font-size:12px">✓ she enjoys it · 🔒 (Sam) she'd be fine with it, but they haven't gotten that far yet · ~ she'll do it because she trusts Sam (costs mood; lewdness grows faster) · ✗ a line she won't cross yet. Numbers: her inclination / the service's line (on the 0-1000 Lewdness scale; Skill is out of 1000 too).<br>${kp?'★ favorite (mood +) · <span class="warn">✗</span> after a name = dislikes (mood −) · ♥ lovers only':'Her preferences show at trust 400 or Appraisal Lv 3.'} · Menu = what she offers clients.</div>
     <div class="row" style="margin-top:4px" title="Clients may proposition her for menu services. Courtesans, dancers and bath attendants always serve them. Others: On = usually accepts, Ask me = she decides (lust and mood), Off = no (unless she is reckless). Each accepted proposition costs ${Math.round(BAL.props.penalty*100)}% of her main job's output (max ${Math.round(BAL.props.maxPenalty*100)}%).">Open to propositions ${JOBS[w.job].must ? '<span class="muted">always (this job offers its menu)</span>' : `<select onchange="setOffDuty('${w.id}',this.value)"><option value="on" ${w.offDuty==='on'?'selected':''}>On</option><option value="ask" ${w.offDuty==='ask'?'selected':''}>Ask me</option><option value="off" ${w.offDuty==='off'?'selected':''}>Off</option></select>`}</div>
+    ${w.job==='teacher' ? `<div class="row">Subject ${teachSelect(houseOf(w), w)}</div>` : ''}
     ${w.job==='promoter' ? `<label class="chk"><input type="checkbox" ${w.samples&&!has(w,'Modest')?'checked':''} ${has(w,'Modest')?'disabled':''} onchange="setSamples('${w.id}',this.checked)"> Hand out free samples (bigger draw, tiring, can cheapen the house)${has(w,'Modest')?' <span class="muted">· too modest</span>':''}</label>` : ''}
     <label class="chk"><input type="checkbox" ${w.autoRest?'checked':''} onchange="setAutoRest('${w.id}',this.checked)"> Auto-rest when worn out (below 35% energy), back to work at 85%</label>
     <div class="row" style="margin-top:10px">Job <select onchange="setJob('${w.id}',this.value)">${jobOptions(w)}</select>
@@ -98,27 +99,55 @@ function viewSam(){
       <div class="row"><button onclick="samWork('bartend')">🍺 Tend bar</button><button onclick="samWork('security')">🛡️ Stand watch</button><button onclick="samWork('books')">📒 Do the books</button><button onclick="samWork('scout')">🔍 Scout recruits</button><button onclick="samWork('rounds')">🚶 Make the rounds</button></div>
       <div class="row"><select id="lessonSel">${TECH_KEYS.map(s=>`<option value="${s}">${TECH_LABEL[s]}</option>`).join('')}</select><button onclick="samWork('lesson')">🎓 Hold a lesson</button></div>
       <p class="muted">Tend bar earns gold now (Charm). Watch reduces trouble in every house (Strength). Books cut upkeep (Business). Scouting adds candidates and Appraisal XP. Rounds: a little trust and mood for every lady. Lessons train everyone whose job uses that skill (one-on-one training is for services).</p></section>
-    <section class="card"><h2>Errands</h2><div class="row"><button onclick="samGuild()">⚔️ Adventurers' Guild</button><button onclick="samRest()">😴 Rest (+50 energy)</button></div></section>
+    <section class="card"><h2>Errands</h2><div class="row"><button onclick="samGuild()">⚔️ Adventurers' Guild</button><button onclick="samRest()">😴 Rest (+${samRecover(BAL.samHome.nap)} energy)</button></div></section>
+    ${samHomeCard()}
     <section class="card"><h2>Spend Time with Someone</h2><div class="grid">${S.workers.map(w=>workerCard(w, S.houses.length>1)).join('')}</div></section>`;
+}
+function sleepInRow(sh){
+  const L = S.workers.filter(w=>sleepInOK(w)), cur = sleepInLady();
+  return `<div class="row"><div style="flex:1">Shares his bed: <select onchange="setSleepIn(this.value)"><option value="">Nobody</option>${L.map(w=>`<option value="${w.id}" ${cur&&cur.id===w.id?'selected':''}>${esc(w.name)}</option>`).join('')}</select>
+    <div class="muted">One lady of this house (trust ${tShow(BAL.sleepIn.trust)}+) sleeps in the Owner's Suite: a little trust and mood each week, both rest better, and now and then she has ideas of her own. Changing is free, once a week.</div></div></div>`;
+}
+function samHomeCard(){
+  const sh = samHouse(), tier = samBedTier();
+  const upRow = ([k,u])=>`<div class="row"><div style="flex:1"><b>${esc(u.label)}</b> <span class="muted">${esc(u.desc)}${u.carry?'':' (left behind in New Game+)'}</span></div>${hasSamUp(k)?'<span class="tag act">✓ Owned</span>':`<button ${S.gold<u.cost?'disabled':''} onclick="buySamUp('${k}')">Buy · ${fmt(u.cost)}</button>`}</div>`;
+  const all = Object.entries(BAL.samUps), ups = all.filter(([k,u])=>!u.tool).map(upRow).join(''), tools = all.filter(([k,u])=>u.tool).map(upRow).join('');
+  const suite = hasSuite(sh);
+  return `<section class="card"><h2>Home</h2>
+    <div>Sam sleeps at <b>${esc(sh.name)}</b>${S.houses.length>1?` <select onchange="moveSam(this.value)">${S.houses.map(h=>`<option value="${h.id}" ${h.id===sh.id?'selected':''}>${esc(h.name)}</option>`).join('')}</select>`:''}</div>
+    <div>Bed: <b>${BEDS[tier].label}</b>${suite?' (+1 from the Owner\'s Suite)':''} · Weekly recovery: <b>+${samRecover(BAL.samHome.weekly) + (samUpFx('weekly')||0)}</b> energy</div>
+    <p class="muted">Late-night visits only come from ladies of this house${samReach()?' (not now: a Teleport Circle lets every house reach him)':''}. Moving is free, once a week.</p>${suite?'':`<p class="muted">Tip: build an Owner's Suite in ${esc(sh.name)} (House tab → Upgrades) for a better bed.</p>`}${suite?sleepInRow(sh):''}${ups}${tools?`<h3 style="margin:10px 0 4px">Tools of the trade</h3>${tools}`:''}</section>`;
+}
+function teachSelect(h, t){
+  const cur = h.teachSkill && (TECH_LABEL[h.teachSkill] || actById(h.teachSkill)) ? h.teachSkill : '';
+  return `<select onchange="setTeachSkill('${h.id}',this.value)"><option value="">Auto (${t ? esc(subjectLabel(teachSubject(h, t))) : 'her best skill'})</option>${TECH_KEYS.map(k=>`<option value="${k}" ${cur===k?'selected':''}>${TECH_LABEL[k]}</option>`).join('')}${getActs().map(a=>`<option value="${a.id}" ${cur===a.id?'selected':''}>${esc(a.label)}</option>`).join('')}</select>`;
 }
 function viewUpgrades(){
   const h = curH(), D = HOUSES[h.id];
-  const card = (k,label,desc,cost,done) => `<div class="wcard" style="cursor:default"><div class="winfo"><div class="wname">${label}</div><div class="muted">${desc}</div>
-    <div class="row">${done?'<span class="good">✓ Built</span>':`<button onclick="buyUpgrade('${k}')" ${S.gold<cost?'disabled':''}>Buy · ${fmt(cost)}</button>`}</div></div></div>`;
+  const dem = (k,built) => { const I = demolishInfo(h,k); return (built && I.ok) ? `<button style="font-size:12px;padding:3px 8px" title="Costs ${Math.round(BAL.demolish.share*100)}% of the base price; nothing is refunded." onclick="demolish('${k}')" ${S.gold<I.cost?'disabled':''}>Demolish · ${fmt(I.cost)}</button>` : ''; };
+  const card = (k,label,desc,cost,done,canDem,extra,blocked) => `<div class="wcard" style="cursor:default"><div class="winfo"><div class="wname">${label}</div><div class="muted">${desc}</div>
+    <div class="row">${done?'<span class="good">✓ Built</span>':`<button onclick="buyUpgrade('${k}')" ${S.gold<cost||blocked?'disabled':''}>Buy · ${fmt(cost)}</button>`}${dem(k, canDem)}${extra||''}</div></div></div>`;
+  const sizeTxt = k => { const n = AMENITY_SIZE[k] ?? 1; return n ? `${n} room${n>1?'s':''}` : 'no room'; };
+  const incSel = h.up.incense ? `<select onchange="setIncense(this.value)" title="Burner mode">${[['calm','Calm'],['aphro','Aphrodisiac']].map(([m,l])=>`<option value="${m}" ${(h.incense||'calm')===m?'selected':''}>${l}</option>`).join('')}</select>` : '';
+  const wsLine = h.up.workshop ? `<p class="muted">Workshop discount: <b>${Math.round(clamp(h.wsDisc||0,0,1)*100)}%</b> of the markup${S.workers.some(w=>w.house===h.id&&w.race==='dwarf')?'':' (no dwarf lives here, so it is not growing)'}.</p>` : '';
+  const dt = Math.min(3,(h.decor||0)+1), drt = Math.min(3,(h.drinks||0)+1), DR = BAL.amenities.drinks, dk = h.drinks||0;
   const props = Object.entries(HOUSES).filter(([k])=>!H(k) && houseOffered(k)).map(([k,P])=>{ const locked = P.premium && ((S.sam.lvl||1) < P.level || S.rep < P.renown);
     return `<div class="wcard" style="cursor:default">${miniNamedAvatar(P.npc)}<div class="winfo"><div class="wname">${P.name} <span class="tag house">${P.loc}</span>${P.premium?' <span class="tag act">Premium</span>':''}${P.ngplus?' <span class="tag act">✦ NG+</span>':''}</div><div class="muted">${P.desc}</div>
     <div class="muted">Comes with ${NAMED[P.npc].name}${isHired(P.npc)?' (already with you)':''} · Rooms ${P.rooms} · Upkeep ~${fmt(P.upkeep+15*P.rooms)}/wk${P.minPop?` · Escorts should have popularity ${P.minPop}+`:''}</div>
     ${P.premium?`<div class="${locked?'warn':'good'}">Requires Sam level ${P.level} (now ${S.sam.lvl||1}) and renown ${P.renown} (now ${Math.round(S.rep)})</div>`:''}
-    <div class="row"><button onclick="buyHouse('${k}')" ${S.gold<P.cost||locked?'disabled':''}>Buy · ${fmt(P.cost)}</button></div></div></div>`; }).join('');
+    <div class="row"><button onclick="buyHouse('${k}')" ${S.gold<houseCost(k)||locked?'disabled':''}>Buy · ${fmt(houseCost(k))}</button>${S.houses.length>1?`<span class="muted">base ${fmt(P.cost)} +${Math.round(BAL.houses.priceStep*100*(S.houses.length-1))}% for the ${S.houses.length} houses you own</span>`:''}</div></div></div>`; }).join('');
   return `${houseTabs(false)}<section class="card"><h2>Upgrades: ${esc(h.name)} <span class="muted">(${roomsUsed(h)}/${houseSize(h)} rooms)</span></h2><div class="grid">
-    ${card('room',`Add Bedroom (${h.rooms})`,'One courtesan per bedroom. Takes 1 room. +12g/wk.',upgradeCost(h,'room'),false)}
-    ${card('quarters',`Add Staff Quarters (${h.quarters||0})`,'Sleeps 2 staff. Without a bed, staff sleep on the floor (poor rest, −mood). Takes 1 room. +6g/wk.',upgradeCost(h,'quarters'),false)}
+    ${card('room',`Add Bedroom (${h.rooms})`,'One courtesan per bedroom. Takes 1 room. +12g/wk.',upgradeCost(h,'room'),false,h.rooms>D.rooms)}
+    ${card('quarters',`Add Staff Quarters (${h.quarters||0})`,'Sleeps 2 staff. Without a bed, staff sleep on the floor (poor rest, −mood). Takes 1 room. +6g/wk.',upgradeCost(h,'quarters'),false,(h.quarters||0)>D.quarters)}
     ${card('extraBed',`Add a Staff Bed (${bedsFor(h)} beds)`,`One more bed in the staff rooms, no extra space needed. Up to 2 extra per staff room (${h.extraBeds||0}/${maxExtraBeds(h)}). A bit cramped, but better than the floor. +3g/wk.`,upgradeCost(h,'extraBed'),(h.extraBeds||0)>=maxExtraBeds(h))}
     ${card('roomTier',`Refurbish Bedrooms (${ROOM_NAMES[h.tier]})`,'Higher service prices and satisfaction. Changes room scenes.',upgradeCost(h,'roomTier'),h.tier>=3)}
     ${card('beds',`Better Beds (${BEDS[h.beds||0].label})`,`Staff recover more energy. Next: ${BEDS[Math.min(3,(h.beds||0)+1)].label} (rest ${BEDS[Math.min(3,(h.beds||0)+1)].rest}). Proper beds keep a lady even at about 3–4 clients a week.`,upgradeCost(h,'beds'),(h.beds||0)>=3)}
     ${card('annex','Build an Annex','+3 rooms of space. +30g/wk.',upgradeCost(h,'annex'),!!h.annex)}
-    ${Object.entries(UPGRADES).map(([k,u])=>card(k,`${u.label} <span class="muted">(${AMENITY_SIZE[k]} room${AMENITY_SIZE[k]>1?'s':''})</span>`,`${u.race?`<span class="tag act">for ${esc((RACES[u.race]||{label:u.race}).label.toLowerCase())}s</span> `:''}${u.desc} (${D.up[k]?'built in':u.upkeep+'g/wk upkeep'})`,upgradeCost(h,k),!!h.up[k])).join('')}</div>
-    <p class="muted">Building the same thing again costs 12% more each time (counted across all your houses); bedrooms, quarters and beds also scale with how many this house has. Upkeep also rises with a house's reputation.</p>
+    ${card('decor',`Décor (${DECOR[h.decor||0].label}) <span class="muted">(no room)</span>`,`${DECOR[h.decor||0].desc} ${(h.decor||0)>=3?'':`Next: ${DECOR[dt].label}, clients ×${BAL.amenities.decor.demand[dt]} (now ×${BAL.amenities.decor.demand[h.decor||0]}). ${DECOR[dt].desc}`} (+${BAL.amenities.decor.upkeep}g/wk per tier)`,upgradeCost(h,'decor'),(h.decor||0)>=3)}
+    ${card('drinks',`Drinks (${DRINKS[dk].label}) <span class="muted">(no room)</span>`,`${DRINKS[dk].desc} ${dk>=3?'':`Next: ${DRINKS[drt].label}, bartender income ×${DR.bar[drt]} (now ×${DR.bar[dk]}), the bar's proposition boost ×${DR.props[drt]} (now ×${DR.props[dk]}). ${DRINKS[drt].desc}`} ${h.up.bar?'':'<span class="warn">Needs a Bar first.</span> '}(${DR.upkeep[dk]}g/wk now${dk>=3?'':`, ${DR.upkeep[drt]}g/wk next`})`,upgradeCost(h,'drinks'),dk>=3,false,'',!h.up.bar)}
+    ${Object.entries(UPGRADES).map(([k,u])=>{ const nd = u.needs && !h.up[u.needs] ? u.needs : null; return card(k,`${u.label} <span class="muted">(${sizeTxt(k)})</span>`,`${u.race?`<span class="tag act">for ${esc((RACES[u.race]||{label:u.race}).label.toLowerCase())}s</span> `:''}${u.desc}${nd?` <span class="warn">Needs a ${esc(UPGRADES[nd].label)} first.</span>`:''} (${D.up[k]?'built in':u.upkeep+'g/wk upkeep'})`,upgradeCost(h,k),!!h.up[k],!!h.up[k],k==='incense'?incSel:'',!!nd); }).join('')}</div>
+    ${wsLine}
+    <p class="muted">Building the same thing again costs 12% more each time (counted across all your houses); bedrooms, quarters and beds also scale with how many this house has. Upkeep also rises with a house's reputation. Demolishing something you built costs ${Math.round(BAL.demolish.share*100)}% of its base price (nothing is refunded); what a house started with stays.</p>
     <p>Space used: <b>${roomsUsed(h)}/${houseSize(h)}</b> rooms</p>
     <p class="muted">Outfits and undergarments are bought per lady, from her sheet → Wardrobe.</p></section>
     <section class="card"><h2>Properties for Sale</h2><p class="muted">Each house has its own clientele, reputation, staff, and resident.</p><div class="grid">${props||'<span class="muted">You own every house in Hollowmere!</span>'}</div></section>`;

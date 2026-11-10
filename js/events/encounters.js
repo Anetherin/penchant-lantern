@@ -33,7 +33,7 @@ function encounterResult(w, act, intro, kind, situation, drain){
 
 /* ---------- Sam rests ---------- */
 function restVisitor(){
-  const c = S.workers.filter(w=>canVisit(w, 55, 40, 40));
+  const c = S.workers.filter(w=>canVisit(w, 55, 40, 40) && nearSam(w));
   if(!c.length || Math.random() > 0.35) return null;
   return weighted(c, w=>w.trust + w.lust);
 }
@@ -49,19 +49,18 @@ function restAccept(id, act){
   const w = findW(id); if(!w) return;
   const out = encounterResult(w, act, `${w.name} curls up next to him. The nap does not happen. Sam does not mind.`, 'encounter', 'Sam was trying to take a nap; she slipped into his room uninvited.', 10);
   checkUnlocks(); save(); render();
-  showResult(`A Visit from ${w.name}`, out.text + '\n\n(Sam still got some rest: Energy +40 overall)', w.id, out.img.scene, out.ai);
+  showResult(`A Visit from ${w.name}`, out.text + '\n\n(Sam still got some rest: Energy +'+(samRecover(BAL.samHome.nap)-10)+' overall)', w.id, out.img.scene, out.ai);
 }
 function restDecline(id){
   const w = findW(id); if(!w) return;
   moodAdd(w, -2); save(); render();
-  showResult('Nap Time', `${w.name} pouts, then tucks the blanket around him and leaves. Sam sleeps like a rock.\n\nEnergy +50`);
+  showResult('Nap Time', `${w.name} pouts, then tucks the blanket around him and leaves. Sam sleeps like a rock.\n\nEnergy +${samRecover(BAL.samHome.nap)}`);
 }
 
 // Sam turns a restless lady down. Beastkin take it much harder (balance.json → svc.refusalMood; a Grooming Den halves it).
 function refusalHit(w, base){
-  if(w.race!=='beastkin') return moodAdd(w, -base);
-  const h = houseOf(w), n = SVC.refusalMood * (h && h.up && h.up.den ? 0.5 : 1);
-  return moodAdd(w, -n);
+  if(w.race!=='beastkin' || incenseCalmsRefusal(w)) return moodAdd(w, -base);   // calming incense: beastkin take it like anyone else
+  return moodAdd(w, -SVC.refusalMood);
 }
 const refusalNote = w => w.race==='beastkin' ? `\n\n(${w.name} takes being turned away hard. Mood drops a lot.)` : '';
 
@@ -70,7 +69,7 @@ function queueEncounters(){
   let used = queueRegularDrama() ? 1 : 0;
   used += queueFirsts();   // a lady crossing a line with Sam (js/events/firsts.js)
   // lovers at high lust come looking for Sam (they wait for him rather than going it alone)
-  const lovers = S.workers.filter(w=>has(w,'Devoted') && restless(w) && w.energy>=maxEnergy(w)*0.2 && releaseSamAct(w));
+  const lovers = S.workers.filter(w=>has(w,'Devoted') && restless(w) && w.energy>=maxEnergy(w)*0.2 && releaseSamAct(w) && nearSam(w));
   if(lovers.length && Math.random() < 0.75){ const id = pick(lovers).id; used++; EVQ.push(()=>evLoverWaiting(findW(id))); }
   // two or more lovers: jealousy when one is left out
   if(used<2) used += queueLoverDynamics();
@@ -81,8 +80,13 @@ function queueEncounters(){
     if(used>=1 || has(w,'Devoted') || !restless(w) || w.lewd < 50 || Math.random() > 0.35) return;
     used++; const id = w.id; EVQ.push(()=>evReckless(findW(id)));
   });
-  // late-night visits from ladies who weren't seeing clients
-  const c = S.workers.filter(w=>idleForClients(w) && canVisit(w, 60, 45, 55));
+  // the lady sharing Sam's bed in the Owner's Suite (home.js)
+  const sl = sleepInLady();
+  if(sl && used<2 && sl.lust >= LUST_EAGER && needSamAct(sl) && Math.random() < BAL.sleepIn.eventChance){
+    used++; const id = sl.id, morning = Math.random() < 0.5; EVQ.push(()=>evSleepIn(findW(id), morning));
+  }
+  // late-night visits from ladies who weren't seeing clients (not the one already in his bed)
+  const c = S.workers.filter(w=>idleForClients(w) && canVisit(w, 60, 45, 55) && nearSam(w) && !(restless(w) && sleepInLady() === w));
   if(c.length && used<2 && Math.random() < 0.12 + 0.05*c.length){ const w = pick(c), id = w.id; EVQ.push(()=>evLateVisit(findW(id))); }
 }
 function evLateVisit(w){
@@ -104,7 +108,7 @@ function evLoverWaiting(w){
 function evReckless(w){
   if(!w || w.lust < lustHigh(w)-10) return null;
   const act = releaseSamAct(w), h = houseOf(w);
-  if(act && w.trust>=40 && Math.random()<0.55){
+  if(act && w.trust>=40 && nearSam(w) && Math.random()<0.55){
     return {title:`${w.name} Can't Wait`, who:w.id, scene:'enc_reckless', text:`${w.name} has been restless for days, and tonight she's done waiting. She catches Sam in the hallway between errands, pushes him into the nearest storeroom, and locks the door behind them.`,
       choices:[
         {label:'Go along with it', fx(){ return encounterResult(w, act, `It is not quick. Sam emerges much later, extremely tired. (Sam's energy −35)`, 'reckless', 'She ambushed Sam in a storeroom after days of pent-up desire.', 35); }},
