@@ -21,5 +21,5 @@ const SIG_OUTFITS = {};
 Object.entries(charData()).forEach(([k,c])=>Object.entries(c.outfits||{}).forEach(([ok,o])=>{ SIG_OUTFITS[ok] = Object.assign({owner:k}, o); }));
 const WARDROBE = Object.assign({}, BASE_OUTFITS, SHOP_OUTFITS, SIG_OUTFITS);
 const UNDER = WARDROBE_DATA.under;
-const BONUS_LABEL = {maid:'Maid',promoter:'Promoter',attendant:'Attendant',bartender:'Bar',propose:'Propositions',security:'Security',adventurer:'Adventurer clients',noble:'Noble clients',merchant:'Merchant clients',commoner:'Commoner clients',dancer:'Dance',bath:'Bath',courtesan:'Courtesan',madame:'Madame'};
+const BONUS_LABEL = {maid:'Maid',promoter:'Promoter',attendant:'Attendant',host:'Host',bartender:'Bar',propose:'Propositions',security:'Security',adventurer:'Adventurer clients',noble:'Noble clients',merchant:'Merchant clients',commoner:'Commoner clients',dancer:'Dance',bath:'Bath',courtesan:'Courtesan',madame:'Madame'};
 const bonusText = b => Object.entries(b||{}).map(([k,v])=>`${BONUS_LABEL[k]||k} +${Math.round((v-1)*100)}%`).join(', ') || '—';

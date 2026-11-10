@@ -1,5 +1,10 @@
-// Balance simulation (no game files touched). Usage: node tools/balance-sim.mjs [A|B|AB] [runsA] [runsB]
-// Experiment A: per-house 52-week economy with a fixed bot. Experiment B: per-race courtesan groups, 20 weeks.
+// Balance simulation (no game files touched). Usage: node tools/balance-sim.mjs [A|B|M|AB...] [runsA] [runsB/runsM] [--patch file.json]
+// Experiment A: per-house 52-week economy with a fixed bot. Experiment B: per-race groups of NLADIES ladies in JOB, WEEKS weeks.
+// Experiment M: "mixed house": one lady per race group in ONE house (rooms 16, quarters 10), all in JOB; per-race results over runs (RB).
+// Env: JOB (default courtesan), WEEKS (20), NLADIES (B only, 6), RACES (filter, e.g. human,elf,beastkin/fox), REP (house rep, 60), OUT (output file stem),
+//   PAIRED=1 (B and M: every race gets identical seeded base rolls: lady k of run r is the same profile for all races; in M all ladies share one profile),
+//   TRAIN=<amount> (B and M: each week every lady gains <amount> (0-100 scale, before race growth bonuses) on 2 random stats and her main job skill; Sam makes the rounds if he has AP).
+// M does not report enthusiast share: R.per[].enc is deleted by endWeek before the report is stored.
 import { createRequire } from 'node:module';
 import path from 'node:path';
 import fs from 'node:fs';
@@ -10,7 +15,7 @@ const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..')
 const argv = process.argv.slice(2); let PATCH = null; const pi = argv.indexOf('--patch');
 if (pi >= 0) { PATCH = JSON.parse(fs.readFileSync(argv[pi+1], 'utf8')); argv.splice(pi, 2); }
 const MODE = argv[0] || 'AB', RA = +argv[1] || 8, RB = +argv[2] || 6;
-const OUTF = PATCH ? 'balance-sim.patched.out.json' : 'balance-sim.out.json';
+const OUTF = (process.env.OUT || (PATCH ? 'balance-sim.patched' : 'balance-sim')) + '.out.json';
 const TYPES = {'.html':'text/html','.js':'text/javascript','.css':'text/css','.json':'application/json'};
 const server = http.createServer((q, r) => {
   if (q.url === '/favicon.ico') { r.writeHead(204); return r.end(); }
@@ -24,6 +29,37 @@ const browser = await pw.chromium.launch({ args:['--no-proxy-server'], executabl
 const COMMON = `
 function deepMerge(t, p){ for (const k of Object.keys(p)) { if (p[k] && typeof p[k] === 'object' && !Array.isArray(p[k]) && t[k] && typeof t[k] === 'object') deepMerge(t[k], p[k]); else t[k] = p[k]; } }
 function applyPatch(P){ if (P.houses) deepMerge(HOUSES, P.houses); if (P.races) deepMerge(RACES, P.races); if (P.economy) deepMerge(ECON, P.economy); if (P.balance) deepMerge(BAL, P.balance); }
+function mulberry32(a){ return () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+// identical base profile for every race: same seeded draws in a fixed order, then race + beastkin sub mods on top
+function applyPaired(w, race, rng){
+  const u = (a, b) => a + rng()*(b-a), SD = race === 'beastkin' ? subData(race, w.sub) : null;
+  const mods = [RACES[race].mods, SD && SD.mods], mod = k => mods.reduce((a, M) => a + ((M||{})[k]||0), 0);
+  STAT_KEYS.forEach(k => { w.stats[k] = clampK(Math.round((u(25,55) + mod(k)) * SKL)); });
+  w.lewd = clamp(u(15,35) + mod('lewd'));
+  TECH_KEYS.forEach(k => { w.tech[k] = clampK(Math.round(u(10,30) * SKL)); });
+  getActs().forEach(a => { const v = u(5,25); if (w.acts[a.id]) w.acts[a.id].skill = clampK(Math.round(v * SKL)); });
+  w.popularity = 0; w.traits = []; w.lust = clamp(Math.round(30 + w.lewd*0.4)); w.energy = maxEnergy(w);
+  w.wage = wageFor(w); w.signingCost = signingFor(w);
+}
+function mkLady(race, sub, JOB, rng){
+  let w, tries = 0;
+  do { w = genWorker({race}); tries++; } while (sub && w.sub !== sub && tries < 400);
+  if (rng) applyPaired(w, race, rng);
+  w.signingCost = signingFor(w); w.house = 'lantern'; w.contract = 999; w.keep = true; w.trust = 100; w.job = 'rest';
+  S.workers.push(w);
+  w._order = [JOB];
+  const msg = canDo(w, JOB);
+  if (!msg) { w.job = JOB; if (!w.menu.length) w.menu = getActs().filter(a=>clientStance(w,a.id)==='yes').map(a=>a.id); }
+  else { w.job = JOB; w.menu = getActs().filter(a=>clientStance(w,a.id)!=='no').map(a=>a.id); w._forced = msg; }   // forced: she is not comfortable with anything yet
+  w.stat0 = Object.fromEntries(STAT_KEYS.map(k=>[k, s100(w.stats[k])])); w.lewd0 = w.lewd; w.beauty0 = s100(w.stats.beauty);
+  return w;
+}
+function trainWeek(group, JOB, amt){   // a player training everyone: 2 random stats + the job skill, and Sam making the rounds. amt is on the 0-100 scale for both
+  group.forEach(w => { if (!S.workers.includes(w)) return;
+    for (let n = 0; n < 2; n++) statXP(w, STAT_KEYS[Math.floor(Math.random()*STAT_KEYS.length)], amt*SKL);
+    grow(w, (JOBS[JOB]||{}).skill || 'service', amt); });
+  if (S.ap > 0 && S.sam.energy >= 25) { samWork('rounds'); closeModal(); }
+}
 const sleep0 = () => new Promise(r => setTimeout(r, 0));
 async function boot(){ await new Promise(r => { const t = setInterval(() => { if (typeof SETUP !== 'undefined' && (SETUP || S)) { clearInterval(t); r(); } }, 50); }); }
 function resolveEvents(){ let g = 0; while ((EVQ.length || CUR_EV) && g < 40) { if (CUR_EV) { evChoice(CUR_EV.title === 'Contract Renewal' ? 0 : Math.floor(Math.random()*CUR_EV.choices.length)); CUR_EV = null; } closeModal(); runQueue(); g++; } closeModal(); }
@@ -101,7 +137,7 @@ const BOT_A = `async (houseId, weeks) => {
   return { DG, beat:h.story.beat, bonus:h.bonus, rep52:h.rep, HQ, wk0, stat, snaps, weekly, paidWeek, overWeek, strikes:S.debt.strikes, hired, quartersBought, roomsBought, bedsBought, floorSum, finalRooms:h.rooms };
 }`;
 
-const BOT_B = `async (race, sub, weeks, nLadies) => {
+const BOT_B = `async (race, sub, weeks, nLadies, JOB, seed, TRAIN) => {
   ${COMMON}
   await boot();
   if (window.__PATCH) applyPatch(window.__PATCH);
@@ -111,33 +147,50 @@ const BOT_B = `async (race, sub, weeks, nLadies) => {
   S.workers = []; S.candidates = [];            // clean slate: only the test group
   h.up.tether = true; h.up.charger = true; h.rep = +(window.__REP||60); h.rooms = 8; h.quarters = 5; h.beds = 1;
   const group = [];
-  for (let i = 0; i < nLadies; i++) {
-    let w, tries = 0;
-    do { w = genWorker({race}); tries++; } while (sub && w.sub !== sub && tries < 400);
-    w.signingCost = signingFor(w); w.house = 'lantern'; w.contract = 999; w.keep = true; w.trust = 100; w.job = 'rest';
-    S.workers.push(w);
-    w._order = ['courtesan'];
-    const msg = canDo(w, 'courtesan');
-    if (!msg) { w.job = 'courtesan'; if (!w.menu.length) w.menu = getActs().filter(a=>clientStance(w,a.id)==='yes').map(a=>a.id); }
-    else { w.job = 'courtesan'; w.menu = getActs().filter(a=>clientStance(w,a.id)!=='no').map(a=>a.id); w._forced = msg; }   // forced: she is not comfortable with anything yet
-    w.stat0 = Object.fromEntries(STAT_KEYS.map(k=>[k, s100(w.stats[k])])); w.lewd0 = w.lewd; w.beauty0 = s100(w.stats.beauty);
-    group.push(w);
-  }
+  for (let i = 0; i < nLadies; i++) group.push(mkLady(race, sub, JOB, seed ? mulberry32(seed + i) : null));
   const rows = group.map(w => ({id:w.id, race:w.race, sub:w.sub, sign:w.signingCost, wage:w.wage, stats:w.stat0, lewd0:Math.round(w.lewd0), forced:w._forced||'', menu0:w.menu.length, weeks:[]}));
   for (let wk = 1; wk <= weeks; wk++) {
     S.gold = 100000; S.debt.strikes = 0; S.debt.remaining = 1e9;
     // lantern bots: rest logic on the group only
     group.forEach(w => { if (!S.workers.includes(w)) return; const mx = maxEnergy(w);
       if (w.job !== 'rest' && w.energy < mx*0.30) w.job = 'rest';
-      else if (w.job === 'rest' && w.energy > mx*0.60 && !canDo(w,'courtesan')) w.job = 'courtesan'; });
+      else if (w.job === 'rest' && w.energy > mx*0.60 && !canDo(w,JOB)) w.job = JOB; });
     const startJob = Object.fromEntries(group.map(w => [w.id, w.job]));
+    if (TRAIN) trainWeek(group, JOB, TRAIN);
     endWeek(); closeModal(); resolveEvents();
     const R = S.lastReport;
     group.forEach((w, i) => { const pr = R.per[w.id]; if (!pr) { rows[i].weeks.push(null); return; }
       rows[i].weeks.push({job:startJob[w.id], earned:Math.round(pr.earned), wage:w.wage, served:pr.served, props:pr.props||0, notMood:pr.notMood||0, reluct:pr.reluct||0, e0:pr.e0, e1:Math.round(w.energy), mood:Math.round(w.mood), lust:Math.round(w.lust||0), here:S.workers.includes(w)}); });
     if (S.workers.length < group.length) { /* someone left; keep going */ }
   }
+  group.forEach((w,i) => { rows[i].statGrow = STAT_KEYS.reduce((a,k)=>a+s100(w.stats[k])-w.stat0[k],0)/STAT_KEYS.length; const t=Object.values(w.tech||{}); rows[i].tech = t.length ? t.reduce((a,v)=>a+s100(v),0)/t.length : 0; const ac=Object.values(w.acts||{}); rows[i].actSk = ac.length ? ac.reduce((a,v)=>a+s100(v.skill||0),0)/ac.length : 0; rows[i].lewdEnd = w.lewd; rows[i].pop = s100(w.stats.popularity||0); });
   return { rows, houseIncome: null, left: group.filter(w=>!S.workers.includes(w)).length };
+}`;
+
+const BOT_M = `async (groups, weeks, JOB, seed, TRAIN) => {
+  ${COMMON}
+  await boot();
+  if (window.__PATCH) applyPatch(window.__PATCH);
+  store.del(KEY_SAVE); EVQ = []; CUR_EV = null;
+  newGame({past:'salaryman', house:'lantern', partner:'kaede'}); closeModal();
+  const h = S.houses[0];
+  S.workers = []; S.candidates = [];
+  h.up.tether = true; h.up.charger = true; h.rep = +(window.__REP||60); h.rooms = 16; h.quarters = 10; h.beds = 1;
+  const group = groups.map(([race, sub]) => { const w = mkLady(race, sub, JOB, seed ? mulberry32(seed) : null); w._label = sub ? race+'/'+sub : race; return w; });
+  const rows = group.map(w => ({label:w._label, sign:w.signingCost, wage:w.wage, forced:w._forced||'', weeks:[]}));
+  for (let wk = 1; wk <= weeks; wk++) {
+    S.gold = 100000; S.debt.strikes = 0; S.debt.remaining = 1e9;
+    group.forEach(w => { if (!S.workers.includes(w)) return; const mx = maxEnergy(w);
+      if (w.job !== 'rest' && w.energy < mx*0.30) w.job = 'rest';
+      else if (w.job === 'rest' && w.energy > mx*0.60 && !canDo(w,JOB)) w.job = JOB; });
+    const startJob = Object.fromEntries(group.map(w => [w.id, w.job]));
+    if (TRAIN) trainWeek(group, JOB, TRAIN);
+    endWeek(); closeModal(); resolveEvents();
+    const R = S.lastReport;
+    group.forEach((w, i) => { const pr = R.per[w.id]; if (!pr) { rows[i].weeks.push(null); return; }
+      rows[i].weeks.push({job:startJob[w.id], earned:Math.round(pr.earned), wage:w.wage, served:pr.served, e1:Math.round(w.energy), mood:Math.round(w.mood)}); });
+  }
+  return { rows, left: group.filter(w=>!S.workers.includes(w)).length };
 }`;
 
 const mean = a => a.length ? a.reduce((x,y)=>x+y,0)/a.length : NaN;
@@ -173,13 +226,13 @@ if (MODE.includes('A')) {
 }
 if (MODE.includes('B')) {
   const GROUPS_ALL = [['human',''],['elf',''],['beastkin',''],['beastkin','fox'],['beastkin','cat'],['beastkin','wolf'],['beastkin','rabbit'],['beastkin','dragon'],['demon',''],['dwarf',''],['spirit',''],['angel',''],['android','']];
-  const GROUPS = process.env.GROUPS ? GROUPS_ALL.filter(g => process.env.GROUPS.split(',').includes(g[1] ? g[0]+'/'+g[1] : g[0])) : GROUPS_ALL;
+  const GROUPS = process.env.RACES ? GROUPS_ALL.filter(g => process.env.RACES.split(',').includes(g[1] ? g[0]+'/'+g[1] : g[0])) : GROUPS_ALL;
   out.B = {};
   for (const [race, sub] of GROUPS) {
     const label = sub ? `${race}/${sub}` : race, ladies = [];
     for (let i = 0; i < RB; i++) {
       const page = await newPage();
-      try { const r = await page.evaluate(`(${BOT_B})('${race}','${sub}', 20, ${+process.env.NLADIES||6})`); ladies.push(...r.rows); } catch (e) { console.error(label, 'run failed', e.message.slice(0,200)); }
+      try { const r = await page.evaluate(`(${BOT_B})('${race}','${sub}', ${+process.env.WEEKS||20}, ${+process.env.NLADIES||6}, '${process.env.JOB||'courtesan'}', ${process.env.PAIRED ? (i+1)*1000 : 0}, ${+process.env.TRAIN||0})`); ladies.push(...r.rows); } catch (e) { console.error(label, 'run failed', e.message.slice(0,200)); }
       if (page.errors.length) console.error(label, 'page errors', page.errors.slice(0,2));
       await page.close();
     }
@@ -191,15 +244,33 @@ if (MODE.includes('B')) {
     out.B[label] = { ladies: ladies.length, sign: Math.round(mean(ladies.map(l=>l.sign))), wage0: Math.round(mean(ladies.map(l=>l.wage))), earned, wage, net: r1(earned - wage),
       restShare: r1(100*W.filter(x=>x.job==='rest').length/W.length), e1: per('e1'), mood: per('mood'), lust: per('lust'), served: per('served'), notMood: per('notMood'), reluct: per('reluct'),
       forced: ladies.filter(l=>l.forced).length, lewd0: r1(mean(ladies.map(l=>l.lewd0))), stats: st,
-      earnedWhenWorking: r1(mean(W.filter(x=>x.job!=='rest').map(x=>x.earned))) };
+      earnedWhenWorking: r1(mean(W.filter(x=>x.job!=='rest').map(x=>x.earned))), statGrow: r1(mean(ladies.map(l=>l.statGrow||0))), tech: r1(mean(ladies.map(l=>l.tech||0))), actSk: r1(mean(ladies.map(l=>l.actSk||0))), lewdEnd: r1(mean(ladies.map(l=>l.lewdEnd||0))), props: per('props'), left: 0 };
     console.error('B done', label);
   }
 }
-fs.writeFileSync(path.join(root, 'tools', OUTF), JSON.stringify(out));
+if (MODE.includes('M')) {
+  const GROUPS_ALL = [['human',''],['elf',''],['beastkin',''],['beastkin','fox'],['beastkin','cat'],['beastkin','wolf'],['beastkin','rabbit'],['beastkin','dragon'],['demon',''],['dwarf',''],['spirit',''],['angel',''],['android','']];
+  const GROUPS = process.env.RACES ? GROUPS_ALL.filter(g => process.env.RACES.split(',').includes(g[1] ? g[0]+'/'+g[1] : g[0])) : GROUPS_ALL;
+  const byLabel = {};
+  for (let i = 0; i < RB; i++) {
+    const page = await newPage();
+    try { const r = await page.evaluate(`(${BOT_M})(${JSON.stringify(GROUPS)}, ${+process.env.WEEKS||20}, '${process.env.JOB||'courtesan'}', ${process.env.PAIRED ? (i+1)*1000 : 0}, ${+process.env.TRAIN||0})`); r.rows.forEach(l => (byLabel[l.label] = byLabel[l.label] || []).push(l)); } catch (e) { console.error('M run failed', e.message.slice(0,200)); }
+    if (page.errors.length) console.error('M page errors', page.errors.slice(0,2));
+    await page.close(); console.error('M run', i+1);
+  }
+  out.M = {};
+  for (const [label, ladies] of Object.entries(byLabel)) {
+    const W = ladies.flatMap(l => l.weeks.filter(Boolean)), per = k => r1(mean(W.map(x=>x[k]))), earned = per('earned'), wage = per('wage');
+    out.M[label] = { runs: ladies.length, sign: Math.round(mean(ladies.map(l=>l.sign))), earned, served: per('served'), wage, net: r1(earned - wage), restShare: r1(100*W.filter(x=>x.job==='rest').length/W.length), mood: per('mood'), e1: per('e1'),
+      earnedWhenWorking: r1(mean(W.filter(x=>x.job!=='rest').map(x=>x.earned))), forced: ladies.filter(l=>l.forced).length };
+  }
+}
+fs.writeFileSync(path.resolve(root, 'tools', OUTF), JSON.stringify(out));
 if (out.A) { const m = (c,wk,k) => c[wk][k].split(' ')[0];
   for (const [hid,s] of Object.entries(out.A)) console.log('wk0', hid, JSON.stringify(s.wk0));
   console.log('house | net5/15/30 | gold13/26/52 | rep52 | net52 | turned52 | staff52 | roomsBought | qtrs+beds | over | paid');
   for (const [hid, s] of Object.entries(out.A)) { const c = s.checkpoints, n = s.netAt;
     console.log([hid, [5,15,30].map(w=>n[w].split(' ')[0]).join('/'), [13,26,52].map(w=>m(c,w,'gold')).join('/'), m(c,52,'rep'), m(c,52,'net'), m(c,52,'turned'), m(c,52,'staff'), 'med52gold='+s.g52med, 'hired q/wage/sign='+s.hq.q+'/'+s.hq.wage+'/'+s.hq.sign, s.roomsBought, s.quarters+'+'+s.bedsBought, s.over.length?s.over.join(','):'-', s.paid.length+'/'+s.n].join(' | ')); } }
 if (out.B) console.log(JSON.stringify(out.B));
+if (out.M) console.log(JSON.stringify(out.M));
 await browser.close(); server.close();

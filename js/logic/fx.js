@@ -140,9 +140,67 @@ function earnCheck(w){
   });
   return got;
 }
+// Class lookups for ladies' bonuses (classBonus / classLike / outfit bonus are keyed by the old four ids = tiers): the class id first, then its tier.
+function fxSubC(w, key, cls){
+  let m = 1; fxList(w).forEach(f => { const o = f[key]; if(!o || typeof o!=='object') return; const v = typeof o[cls.id]==='number' ? o[cls.id] : o[cls.tier]; if(typeof v==='number') m *= v; });
+  return m;
+}
+function obC(w, cls){ const a = ob(w, cls.id); return a !== 1 || cls.tier === cls.id ? a : ob(w, cls.tier); }
 // Her client reaction to her race (races.json → client): 'like' (enthusiast), 'dislike' (put off) or null.
-function raceReact(w, clsId){
+// A client with traits (balance.json → clients.traits) likes some ladies more: raises her like chance. `c` is a client object from makeClient or nothing.
+function raceReact(w, clsId, c){
   const R = raceOf(w), sd = w.race==='beastkin' ? subData(w.race, w.sub) : null, C = Object.assign({}, R.client||{}, (sd && sd.client) || {});
-  const like = ((C.classLike||{})[clsId]) ?? C.like ?? 0, dis = C.dislike ?? 0, r = Math.random();
+  const CL = C.classLike || {};
+  let like = (CL[clsId] ?? CL[clsTier(clsId)]) ?? C.like ?? 0; const dis = C.dislike ?? 0, r = Math.random();
+  if(c && c.traits) c.traits.forEach(t => { if(traitFits(t, w)) like = Math.max(like, t.like ?? 0); });
   return r < like ? 'like' : r < like + dis ? 'dislike' : null;
+}
+
+// Client traits (balance.json → clients.traits): every non-regular client rolls 1-3 (traitCount odds), weighted by trait w x the class's
+// traits weight, without replacement, skipping excl in either direction. Regulars get none (client = null everywhere).
+function makeClient(h, cls){
+  const C = BAL.clients, T = C.traits, odds = C.traitCount || [1], tr = [];
+  let r = Math.random(), n = 1; for(let i=0;i<odds.length;i++){ r -= odds[i]; if(r <= 0){ n = i + 1; break; } n = i + 1; }
+  let keys = Object.keys(T);
+  while(tr.length < n && keys.length){
+    const k = weighted(keys, x => (T[x].w ?? 1) * ((cls.traits||{})[x] ?? 1));
+    tr.push(Object.assign({id:k}, T[k]));
+    keys = keys.filter(x => x!==k && !(T[k].excl||[]).includes(x) && !(T[x].excl||[]).includes(k));
+  }
+  return {cls, traits: tr};
+}
+const boozeFactor = X => X && X.barN ? 1 + (X.h.drinks||0) * BAL.clients.boozeDrinks : 0;
+// Combine one key over his traits (X gives the bar for the booze parts): fee/prop/tips/compFee/pushyMult multiply, pushy/rowdy/selfAccept add.
+function cMul(c, key, X){
+  let m = 1; if(!c) return m; const f = boozeFactor(X);
+  c.traits.forEach(t => { if(t[key] != null) m *= t[key]; if(key==='prop' && f && t.booze && t.booze.prop != null) m *= 1 + (t.booze.prop - 1) * f; });
+  return m;
+}
+function cAdd(c, key, X){
+  let a = 0; if(!c) return a; const f = boozeFactor(X);
+  c.traits.forEach(t => { a += t[key] || 0; if(f && t.booze) a += (t.booze[key] || 0) * f; });
+  return a;
+}
+const cQual = (c, q) => c ? c.traits.reduce((m, t) => t.qualityFee ? m * (t.qualityFee[0] + q * t.qualityFee[1]) : m, 1) : 1;
+// Does her race (or 'race:sub'), a trait of hers or her restlessness match what this trait likes?
+function traitFits(t, w){
+  const L = t.likes; if(!L) return false;
+  return (L.races||[]).some(x => x===w.race || x===w.race+':'+w.sub) || (L.traits||[]).some(x => has(w, x)) || (!!L.restless && restless(w));
+}
+const clientDraw = (c, w) => c ? c.traits.reduce((m, t) => traitFits(t, w) ? m * (t.draw ?? 1) : m, 1) : 1;
+// Count a client's traits into the house report and the week's average tips multiplier.
+function noteClient(X, c){
+  if(!c) return; X.tipN = (X.tipN||0) + 1; X.tipSum = (X.tipSum||0) + cMul(c, 'tips', X);
+  c.traits.forEach(t => { if(t.hidden) return; const o = X.hr.ctraits = X.hr.ctraits || {}; o[t.id] = (o[t.id]||0) + 1; });
+}
+// Extra client trait helpers. cHas: has a trait with this key; cJob: x his chance to proposition staff of a job; cPatience: + chance to wait (incl. booze part);
+// cOpen: openness to a host's warm-up on a 0-1 scale (base 0.3 + the 'open' keys).
+const cHas = (c, key) => !!c && c.traits.some(t => t[key]);
+const cJob = (c, job) => c ? c.traits.reduce((m, t) => t.jobProp && t.jobProp[job] != null ? m * t.jobProp[job] : m, 1) : 1;
+const cPatience = (c, X) => cAdd(c, 'patience', X);
+const cOpen = c => 0.3 + cAdd(c, 'open');
+// Report segment: " · clients: 5 rowdy, 9 drinker" (top 3 traits by count).
+function ctraitsLine(hr){
+  const T = (BAL.clients && BAL.clients.traits) || {}, a = Object.keys(hr.ctraits||{}).sort((x,y)=>hr.ctraits[y]-hr.ctraits[x]).slice(0,3);
+  return a.length ? ` · clients: ${a.map(k=>hr.ctraits[k]+' '+String((T[k]&&T[k].label)||k).toLowerCase()).join(', ')}` : '';
 }

@@ -421,6 +421,14 @@
       "{name} refilled glasses, fetched shawls, and noticed everything."
     ]
   },
+  "job_host": {
+    "_note": "Weekly report line for a host.",
+    "_default": [
+      "{name} kept the lounge of {house} lively: stories, refilled glasses, and a warm smile for everyone waiting.",
+      "{name} made sure nobody waited alone at {house}. Conversation came easily to her.",
+      "{name} spent the week charming the guests in the lounge, one more round and one more story at a time."
+    ]
+  },
   "job_courtesan": {
     "_note": "Weekly report line for a courtesan who had no clients.",
     "_default": [

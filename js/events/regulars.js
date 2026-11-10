@@ -27,7 +27,7 @@ function regAfter(r, w, sat, inc){
 // a great visit may turn a client into a regular
 function maybeNewRegular(h, best, R){
   S.regulars = S.regulars || [];
-  if(!best || S.regulars.filter(r=>r.house===h.id).length >= (REG.maxPerHouse ?? 4) || Math.random() > 0.3) return;
+  if(!best || S.regulars.filter(r=>r.house===h.id).length >= (REG.maxPerHouse ?? 4) || Math.random() > 0.3 * (best.regM ?? 1)) return;
   const r = {id:uid(), name:regName(), cls:best.cls.id, house:h.id, fav:best.w.id, visits:1, loyalty:2, spent:0, quirk:pick(Object.keys(REG.quirks)), since:S.week};
   S.regulars.push(r);
   R.hl.push({wid:best.w.id, text:regFill(REG.events.new, r, best.w), act:null, scene:'companion'});

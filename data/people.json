@@ -800,7 +800,10 @@
       "a lamplighter off his rounds",
       "a tanner who apologizes for the smell",
       "a cheerful cooper",
-      "a weaver with ink-stained fingers"
+      "a weaver with ink-stained fingers",
+      "a cooper rolling his shoulders after a long week",
+      "a baker's hand off before dawn",
+      "a porter who has been saving up since spring"
     ],
     "adventurer": [
       "a scarred lancer fresh from the dungeon",
@@ -840,6 +843,78 @@
       "a diplomat who speaks four languages",
       "a gentleman scholar with a title",
       "an earl who refuses to be named"
+    ],
+    "farmhand": [
+      "a shy farmhand in his best shirt",
+      "a hay-dusted young man on his first trip to town",
+      "a shepherd's son, hat twisted in his hands",
+      "a miller's apprentice working up his nerve",
+      "a farmer's son with a week of saved coppers",
+      "a blushing ox-driver who can't meet anyone's eye",
+      "a beekeeper smelling faintly of honey",
+      "a quiet orchard hand with earth under his nails",
+      "a stable boy turned stable man, still unsure of himself",
+      "a young farmer who has rehearsed this the whole ride in"
+    ],
+    "sailor": [
+      "a sailor three days off a long voyage",
+      "a loud deckhand with salt in his beard",
+      "a ship's cook with a pocketful of shore pay",
+      "a ferry pilot grinning at everyone",
+      "a whaler with a tale for every scar",
+      "a rope-scarred rigger celebrating his berth",
+      "a bosun still walking like the floor might tilt",
+      "a dockside fisherman smelling of tar and brine",
+      "a cabin hand spending his whole first wage",
+      "a navigator who's had a little too much rum already"
+    ],
+    "mercenary": [
+      "a hard-eyed sellsword between contracts",
+      "a pike captain counting out his pay",
+      "a crossbowman who never sits with his back to the door",
+      "a scarred veteran of three border wars",
+      "a hired guard off a long caravan run",
+      "a cheerful free-lance with a bounty in his pocket",
+      "a duelist with a dented breastplate and a lazy smile",
+      "a quiet sergeant of a disbanded company",
+      "a bodyguard out of livery for the evening",
+      "a tired sellsword who just wants a soft bed"
+    ],
+    "artisan": [
+      "a goldsmith with ink-stained fingers",
+      "a potter with clay still under his nails",
+      "a cabinetmaker who inspects the furniture first",
+      "a glassblower with a burn-scarred forearm",
+      "a leatherworker who admires her boots",
+      "a tailor who notices what everyone is wearing",
+      "a luthier humming under his breath",
+      "a bookbinder with careful, patient hands",
+      "a clockmaker who checks the time twice",
+      "a weaver in town to deliver a commission"
+    ],
+    "scholar": [
+      "a bespectacled scholar from the academy",
+      "a junior archivist with an armful of notes",
+      "a lecturer on sabbatical, a little awkward about it",
+      "a young alchemist smelling of sulfur and mint",
+      "a cartographer who keeps losing his place mid-sentence",
+      "a library clerk who has read about this, at least",
+      "a visiting sage with a surprisingly warm laugh",
+      "a philosophy student working up to the question",
+      "a quiet translator of dead languages",
+      "a physician's apprentice trying not to diagnose anyone"
+    ],
+    "official": [
+      "a tax assessor out of his robes",
+      "a magistrate's clerk who insists on discretion",
+      "a quietly important man from the city office",
+      "a customs inspector with a rare free evening",
+      "a harbormaster who has never once been late",
+      "a tidy official with a ledger he can't quite put away",
+      "a guild registrar here on very private business",
+      "a provincial envoy between two appointments",
+      "a judge's secretary in an unmarked coat",
+      "a court archivist with a surprisingly dry wit"
     ]
   }
 }

@@ -15,7 +15,7 @@ function canDo(w, job){
   return null;
 }
 // Jobs that offer a service menu (courtesans, and the must-offer staff roles).
-const MENU_JOBS = ['courtesan','dancer','bath'];
+const MENU_JOBS = ['courtesan','dancer','bath','host'];
 // First job she can actually take: her preference, then the open-ended ones.
 function safeJob(w, pref){ for(const j of [pref,'courtesan','promoter','attendant','maid']) if(j && JOBS[j] && !canDo(w,j)) return j; return 'rest'; }
 function setJob(id, job){

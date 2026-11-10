@@ -62,7 +62,12 @@ const ROOM_TIER_COST = ECON.roomTierCost;
 const PRICES = ECON.prices;
 const CLASSES = ECON.classes;
 const CLIENT_DESC = needData('people').clients;
-// cls = clientele weights [commoner, adventurer, merchant, noble]
+// Client tiers (economy.json → tiers): the four groups houses' `cls` weights [commoner, adventurer, merchant, noble] index. Each class has a tier.
+const TIERS = ECON.tiers;
+const TIER_LABEL = id => ((CLASSES.find(c=>c.id===id)||{}).label || id);
+const clsTier = id => ((CLASSES.find(c=>c.id===id)||{}).tier || id);
+// Report wording for an anonymous client of a class (people.json → clients, else "a laborer").
+const clientWho = id => { const d = CLIENT_DESC[id]; return d && d.length ? pick(d) : 'a ' + TIER_LABEL(id).toLowerCase(); };
 const HOUSES = ECON.houses;
 // Sam's past lives: the one he picked at the start, plus one more per New Game+ cycle if he chooses (S.pasts).
 const samPasts = () => (typeof S!=='undefined' && S) ? (S.pasts && S.pasts.length ? S.pasts : (S.past ? [S.past] : [])) : [];
