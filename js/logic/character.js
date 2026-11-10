@@ -166,7 +166,7 @@ function defaultCloth(w, scene){
 }
 function wageFor(w){
   if(isFree(w)) return 0;
-  const st = STAT_KEYS.reduce((a,k)=>a+s100(statOf(w,k)),0)/6;
+  const st = STAT_KEYS.reduce((a,k)=>a+s100(statOf(w,k)),0)/STAT_KEYS.length;
   const tc = Math.max(...TECH_KEYS.map(k=>s100(w.tech[k]||0)), ...Object.values(w.acts||{}).map(a=>s100(a.skill)*0.8));
   const sd = w.race==='beastkin' ? subData(w.race, w.sub) : null;
   return Math.round((8 + st*0.3 + tc*0.2 + w.popularity*0.3 + (has(w,'Ambitious')?8:0) + (has(w,'Greedy')?6:0)) * ((sd && sd.wage) ?? raceOf(w).wage ?? 1));
@@ -248,6 +248,11 @@ function applyMods(w){
   TECH_KEYS.forEach(k=>w.tech[k]=clampK(Math.round(w.tech[k])));
   w.lewd = clamp(w.lewd);
 }
+// personality stat leans (personalities.json `stats`, 0-100 scale), baked into a new generic lady's trained stats
+function persLean(w, only){
+  const L = (PERS[w.personality]||{}).stats || {};
+  Object.entries(L).forEach(([k,v])=>{ if(w.stats[k]!==undefined && (!only || only.includes(k))) w.stats[k] = clampK(w.stats[k] + v*SKL); });
+}
 function genWorker(opts={}){
   const race = opts.race || weighted(Object.keys(RACES), r=>(RACES[r].weight ?? 0) * raceDraw(r));
   const R = RACES[race], q = opts.quality || 1;
@@ -259,7 +264,7 @@ function genWorker(opts={}){
     design:{build:pick(BUILDS),hairStyle:pick(HAIR_STYLES),hairColor:pick(HAIR_COLORS),eyes:pick(EYES),
       skin: race==='demon'&&Math.random()<0.4 ? pick(DEMON_SKINS) : pick(SKINS), features:pick(FEATURES)},
     personality:pick(PERSONALITIES), backstory:'', traits:[],
-    stats:{beauty:clampK(base()+100),charm:base(),refinement:base(),stamina:base(),strength:base(),agility:base()},
+    stats:{beauty:clampK(base()+100),charm:base(),charisma:base(),refinement:base(),wits:base(),stamina:base(),strength:base(),agility:base()},
     tech:{service:K(ri(0,30)),dance:K(ri(0,25)),bar:K(ri(0,25)),combat:K(ri(0,20)),manage:K(ri(0,20))}, actSkill:ri(0,25),
     popularity:ri(0,12), lewd:(()=>{ const L = BAL.startLewd; return L ? Math.round(L.min + L.span*Math.pow(Math.random(), L.pow)) : ri(5,60); })(), trust:ri(5,22), mood:ri(52,70), energy:100, health:100,
     wage:0, contract:12, job:'rest', house:null, seed:ri(1,999999999), imgVar:{}, seen:{}, unhappy:0, earnedLast:0, privateCount:0
@@ -270,6 +275,7 @@ function genWorker(opts={}){
   // from New Game+ cycle 2, generics can arrive with an ngOnly trait (one at 35%)
   if(S && (S.cycle||1) >= 2 && Math.random() < 0.35){ const ng = Object.keys(TRAITS).filter(t=>TRAITS[t].gen && TRAITS[t].ngOnly && !w.traits.includes(t)); if(ng.length) w.traits.push(pick(ng)); }
   if(Math.random()<0.25) w.traits.push(pick(['Exhibitionist','Night Owl']));
+  persLean(w);
   applyMods(w);
   w.base0 = {trust:w.trust, lewd:w.lewd};   // where she began (New Game+ resets carried lovers to this)
   w.style = w.lewd>45 && Math.random()<0.5 ? 'Revealing' : pick(STYLES.slice(0,4));
@@ -290,7 +296,7 @@ function makeNamed(key, asPartner){
   Object.assign(w, d); w.acts = {}; w.menu = []; w.counts = {};
   // character data is on the familiar 0-100 scale; stats and skills run 0-1000
   const K = v => Math.round(v)*SKL + ri(0,SKL-1);
-  STAT_KEYS.forEach(k=>{ w.stats[k] = clampK(K(d.stats[k] ?? 30)); }); TECH_KEYS.forEach(k=>{ w.tech[k] = clampK(K((d.tech||{})[k] ?? 10)); });
+  STAT_KEYS.forEach(k=>{ w.stats[k] = clampK(K(d.stats[k] ?? d.stats[STAT_FALLBACK[k]] ?? 30)); }); TECH_KEYS.forEach(k=>{ w.tech[k] = clampK(K((d.tech||{})[k] ?? 10)); });
   w.body = Object.assign({}, BODY_DEF, d.body || {});   // named ladies: from data, default medium / average / slim
   if(d.unique) w.unique = clone(d.unique);
   ['fav','dislike','lovers'].forEach(k=>{ if(w[k]) w[k] = actKey(w[k]); });

@@ -2,7 +2,10 @@
 /* =====================================================================
    DATA: characters
    ===================================================================== */
-const STAT_KEYS = ['beauty','charm','refinement','stamina','strength','agility'];
+const STAT_KEYS = ['beauty','charm','charisma','refinement','wits','stamina','strength','agility'];
+const STAT_SHORT = {beauty:'BEAU',charm:'CHRM',charisma:'CHAR',refinement:'REFI',wits:'WITS',stamina:'STAM',strength:'STR',agility:'AGIL'};
+// stats added after a lady's data was written fall back to an older stat (docs/STATS.md)
+const STAT_FALLBACK = {charisma:'charm', wits:'refinement'};
 const TECH_KEYS = ['service','dance','bar','combat','manage'];
 const TECH_LABEL = {service:'Hospitality',dance:'Dance',bar:'Bartending',combat:'Combat',manage:'Management'};
 const PEOPLE = needData('people');

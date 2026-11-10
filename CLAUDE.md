@@ -77,4 +77,4 @@
 
 ## Ideas for later
 
-- Stat expansion (Charisma + Wits, service body stats, client stat preferences, Bard/Pilgrim/Cleric classes): spec in `docs/STATS.md` (TODO there: balance pass).
+- Stat expansion: spec in `docs/STATS.md` (TODO there: balance pass). Step 1 done: 8 `STAT_KEYS` (+`STAT_SHORT` labels, `STAT_FALLBACK` charisma←charm / wits←refinement for data without them), personality `stats` leans (`persLean`), save v27. Named ladies seeded by `tools/seed-stats.mjs` (sidecar `tools/seeded-stats.json` marks seeded = safe to recompute; review table `tools/stat-review.csv`). Formulas still read the old stats until step 2.
