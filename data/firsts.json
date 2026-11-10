@@ -18,11 +18,11 @@
     "2": {"label":"Going further","situation":"This is the first time they've gone further than kissing, though not all the way."},
     "3": {"label":"First night","situation":"This is their first night together."}
   },
-  "paces": {"fast":{"trust":[15,25,35],"gap":0},"normal":{"trust":[30,45,60],"gap":2},"slow":{"trust":[45,60,75],"gap":3}},
+  "paces": {"fast":{"trust":[15,25,35],"gap":0},"normal":{"trust":[30,45,60],"gap":1},"slow":{"trust":[40,55,70],"gap":2}},
   "pentTrust": 15,
   "lewdEase": {"from":25,"per":0.5,"max":20},
   "holdWeeks": 2,
-  "chance": {"pent":0.5,"init":0.55,"week":0.25},
+  "chance": {"pent":0.5,"init":0.55,"week":0.35},
   "defaults": {
     "go": "Go with it",
     "wait": "\"Let's not rush this.\"",

@@ -15,9 +15,9 @@ function samGainXP(n){
   S.sam.xp = (S.sam.xp||0) + n; S.sam.lvl = S.sam.lvl || 1;
   while(S.sam.xp >= xpNeed(S.sam.lvl)){
     S.sam.xp -= xpNeed(S.sam.lvl); S.sam.lvl++;
-    ['charm','business','strength','technique'].forEach(k=>samStat(k,2));
+    ['charm','business','strength','technique'].forEach(k=>samStat(k,BAL.sam.perLevel));
     if(S.sam.lvl===5 || S.sam.lvl===10) S.ap++;
-    note(`⬆ Sam reached level ${S.sam.lvl}! All stats +2${S.sam.lvl===5||S.sam.lvl===10?', and +1 action per week':''}.`);
+    note(`⬆ Sam reached level ${S.sam.lvl}! All stats +${BAL.sam.perLevel}${S.sam.lvl===5||S.sam.lvl===10?', and +1 action per week':''}.`);
   }
 }
 function samXP(n){

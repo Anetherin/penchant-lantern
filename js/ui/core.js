@@ -72,7 +72,7 @@ function viewHouse(){
   const L = S.lastReport, lh = L && L.houses ? L.houses.find(x=>x.id===h.id) : null;
   return `${houseTabs(false)}<section class="card"><h2>${esc(h.name)} <span class="tag house">${D.loc}</span></h2><p class="muted">${D.desc}</p><div class="grid2">
       <div>Reputation: <b>${Math.round(h.rep)}</b></div><div>Building: <b>${roomsUsed(h)}/${houseSize(h)}</b> rooms used</div>
-      <div>Bedrooms: <b>${h.rooms}</b> · ${ROOM_NAMES[h.tier]} · <span title="Room services per week: ${BAL.rooms.perRoom} per bedroom">${h.rooms*BAL.rooms.perRoom} sessions/wk${lh&&lh.roomCap?` (last week ${lh.roomsUsed}/${lh.roomCap})`:''}</span></div>
+      <div>Bedrooms: <b>${h.rooms}</b> · ${ROOM_NAMES[h.tier]} · <span title="Room services per week: ${BAL.rooms.perRoom} per bedroom">${h.rooms*BAL.rooms.perRoom} sessions/wk${lh&&lh.roomCap?` (last week ${lh.roomsUsed}/${lh.roomCap})`:''}</span>${housingShort(h)?` · <span class="warn" title="Expected comfort ${housingExpect(h)} (beds and bedroom tier, 0-3) at this reputation; yours is ${housingComfort(h)}. Staff lose mood each week.">Staff expect better beds/rooms at this reputation</span>`:''}</div>
       <div>Tidiness: <b class="${tidyCls(h)}">${Math.round(h.tidy ?? BAL.tidy.start)}</b> <span class="muted">${tidyLabel(h)}</span></div><div>Staff beds: <b>${sleepers(h).length}/${bedsFor(h)}</b> · ${BEDS[h.beds||0].label}${sleepers(h).length>bedsFor(h)?' <span class="warn">(not enough!)</span>':''}</div>
       <div>Pricing: <select onchange="setPrice(+this.value)">${PRICES.map((p,i)=>`<option value="${i}" ${i===h.price?'selected':''}>${p.label}</option>`).join('')}</select></div>
       <div>Amenities: ${amen}</div>${D.minPop?`<div class="muted">Standard: escorts need popularity ${D.minPop}+</div>`:''}
@@ -84,7 +84,7 @@ function viewHouse(){
       ${S.workers.filter(w=>w.house===h.id && w.job==='rest').length?`<div><b>Resting</b>: ${S.workers.filter(w=>w.house===h.id && w.job==='rest').map(w=>esc(w.name)).join(', ')}</div>`:''}</div></section>
     <section class="card"><h2>Debt to the Vane Credit House</h2>
       <div>Remaining: <b>${fmt(S.debt.remaining)}</b> · Next payment: <b>${fmt(nd.amount)}</b> at the end of week ${nd.week} ${nd.week===S.week?'<span class="warn">(this week!)</span>':''}</div>
-      <div>Strikes: ${'❌'.repeat(S.debt.strikes)}${'▫️'.repeat(Math.max(0,3-S.debt.strikes))}</div>
+      <div>Strikes: ${'❌'.repeat(S.debt.strikes)}${'▫️'.repeat(Math.max(0,BAL.debt.strikes-S.debt.strikes))}</div>
       <div class="row"><input id="payamt" type="number" min="1" placeholder="Amount"><button onclick="payExtra()">Pay extra</button>${S.debt.remaining>0 && S.gold>=S.debt.remaining ? `<button class="primary" onclick="if(confirm('Pay off the whole debt (${fmt(S.debt.remaining)})?'))payOffDebt()">Pay off in full (${fmt(S.debt.remaining)})</button>` : ''}</div></section>
     <section class="card"><h2>Last Week</h2>${lh?`<div class="grid2"><div>Clients here: <b>${lh.served}</b>${lh.turned?` (${lh.turned} turned away)`:''}</div><div>Income here: <b>${fmt(lh.income)}</b> · Upkeep <b>${fmt(lh.upkeep)}</b></div><div>Satisfaction: <b>${Math.round(lh.avgSat)}</b>${lh.promoDraw?` · promoter draw <b>+${Math.round(lh.promoDraw)}</b>`:''}</div><div>All houses net: <b>${fmt(L.income-L.wages-L.upkeep-(L.recharge||0))}</b></div></div><div class="row"><button onclick="showReport(S.lastReport,false)">📋 Full report</button></div>`:'<span class="muted">No report yet. Assign jobs, then End Week.</span>'}</section>`;
 }

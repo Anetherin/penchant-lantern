@@ -9,7 +9,9 @@ const rollP = p => Math.random()*100 < p;
 const resident = h => S.workers.find(w=>w.key===HOUSES[h.id].npc);
 const secOf = h => Math.max(0, ...S.workers.filter(w=>w.house===h.id && w.job==='security').map(w=>s100(w.tech.combat) + s100(w.stats.strength)*0.3));
 function storyAdvance(h, xp=40){ h.story.beat++; h.story.wk = S.week; samGainXP(xp); }
-function storyRetry(h){ h.story.wk = S.week; }
+const storyGap = h => BAL.houseGate.gap[Math.min(h.story.beat, BAL.houseGate.gap.length-1)];
+// A failed check comes back after houseGate.retry weeks (the wait check is week - story.wk >= gap, so shift wk by the difference).
+function storyRetry(h){ h.story.wk = S.week + BAL.houseGate.retry - storyGap(h); }
 function check(label, stat, val, dc, win, lose){ const p = pct(val,dc); return {label:`${label} [${stat} ${p}%]`, fx(){ return rollP(p) ? win() : lose(); }}; }
 function pay(label, cost, h, win){ return {label:`${label} (${fmt(cost)})`, fx(){ if(S.gold<cost){ storyRetry(h); return 'You can\'t afford that right now. (This will come up again.)'; } S.gold-=cost; return win(); }}; }
 function freeResident(h){ const R = resident(h); if(!R) return ''; R.free = true; R.wage = 0; R.contract = 999; R.trust = clamp(R.trust+15); if(!has(R,'Loyal')) R.traits.push('Loyal'); return `\n\n(${R.name} now works without wages.)`; }

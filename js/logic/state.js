@@ -25,7 +25,7 @@ function newGame(cfg){
   const HD = HOUSES[cfg.house];
   S = { v:18, houseWardrobe:[], houseUnder:[], week:1, gold:600, rep:HD.rep, ap:3, cur:cfg.house, home:cfg.house, cycle:1, boons:[], past:cfg.past, pasts:[cfg.past], partner:cfg.partner, partners:[cfg.partner],
     houses:[makeHouse(cfg.house)],
-    sam:{energy:100, charm:20, business:35, strength:15, technique:0, appraisal:1, appXP:0, first:true, lvl:1, xp:0},
+    sam:{energy:100, ...BAL.sam.base, appraisal:1, appXP:0, first:true, lvl:1, xp:0},
     samWeek:{security:0, books:false, income:0, acts:[]},
     debt:{total:HD.debt, remaining:HD.debt, carry:0, strikes:0},
     workers:[], candidates:[], alumni:[], log:[],
@@ -161,11 +161,12 @@ function checkUnlocks(silent, sink){
   if(sink){ msgs.forEach(m=>sink.push('🔓 '+m)); return; }
   if(msgs.length) toast(msgs[0] + (msgs.length>1 ? ` (+${msgs.length-1} more in the Log)` : ''));
 }
-// Payments every 4 weeks, counted from when this debt started (New Game+ restarts the schedule).
+// Payments (balance.json → debt) every `every` weeks, counted from when this debt started (New Game+ restarts the schedule).
+// Payment n is total x share_n; shares ramp linearly from 1 to `ramp` and sum to 1. The last one clears whatever remains.
 const debtWeek = () => S.week - (S.debt.start||0);
+function debtShares(){ const D = BAL.debt, n = D.payments, w = Array.from({length:n}, (_,i)=> n>1 ? 1 + (D.ramp-1)*i/(n-1) : 1), t = w.reduce((a,b)=>a+b, 0); return w.map(x=>x/t); }
 function nextDue(){
-  const r = debtWeek(), wk = r%4===0 ? r : Math.ceil(r/4)*4;
-  const inst = Math.round((220+130*(wk/4)) * S.debt.total/15470);
-  const amount = wk>=52 ? S.debt.remaining : Math.min(S.debt.remaining, inst + S.debt.carry);
-  return {week:wk + (S.debt.start||0), amount};
+  const D = BAL.debt, r = debtWeek(), k = Math.max(1, Math.ceil(r/D.every));
+  const amount = k>=D.payments ? S.debt.remaining : Math.min(S.debt.remaining, Math.round(S.debt.total*debtShares()[k-1]) + S.debt.carry);
+  return {week:k*D.every + (S.debt.start||0), amount, n:k};
 }

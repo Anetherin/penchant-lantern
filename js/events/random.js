@@ -172,8 +172,8 @@ function evRenew(w){
 function evStrike(){
   const s = S.debt.strikes;
   return {title:'A Visit from the Vane Credit House', who:'npc_marguerite', scene:'portrait',
-    text: s>=3 ? `Marguerite Vane adjusts her monocle. "Three strikes, Mr. Takahashi. Your properties now belong to the Credit House."` : `Marguerite Vane adjusts her monocle. "You've missed a payment, Mr. Takahashi. Strike ${s} of three. The shortfall carries over, with interest. I'd hate to see you on the street. Truly."`,
-    choices:[{label: s>=3?'...':'Understood', fx(){ return ''; }}]};
+    text: s>=(BAL.debt.strikes||3) ? `Marguerite Vane adjusts her monocle. "Three strikes, Mr. Takahashi. Your properties now belong to the Credit House."` : `Marguerite Vane adjusts her monocle. "You've missed a payment, Mr. Takahashi. Strike ${s} of three. The shortfall carries over, with interest. I'd hate to see you on the street. Truly."`,
+    choices:[{label: s>=(BAL.debt.strikes||3)?'...':'Understood', fx(){ return ''; }}]};
 }
 function evHilde(){
   const h = makeNamed('hilde'); NPCS[h.id] = h;
@@ -183,7 +183,7 @@ function evHilde(){
 }
 function checkEnd(){
   if(!S) return;
-  if(S.debt.strikes>=3 && !S.over){
+  if(S.debt.strikes>=(BAL.debt.strikes||3) && !S.over){
     S.over = true; save();
     modal(`<h2>Game Over</h2><p class="story">The Credit House takes the deeds. Sam is out on the street with a hoodie, a status window, and a lot of feelings.\n\nYou lasted ${S.week-1} weeks.</p><div class="row"><button class="primary" onclick="restart()">New game</button></div>`, {lock:true});
   } else if(S.debt.remaining<=0 && !S.won){
