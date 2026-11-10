@@ -148,7 +148,7 @@
     "pay": {"label":"Pay for the damage","res":"Broken chairs and a cracked mirror: {gold}."}
   },
   "chat": {
-    "_note": "What Sam and a lady talk about when he chats with her. home is used for ladies from Sam's old world.",
+    "_note": "What Sam and a lady talk about when he chats with her. home is used for ladies from Sam's old world. ng is mixed in from New Game+ (cycle 2+).",
     "topics": [
       "about her hometown",
       "about the strangest client of the week",
@@ -157,7 +157,13 @@
       "about what she wants to do with her life",
       "about whether \"isekai\" is a real word (she insists it is not)"
     ],
-    "home": ["about home, and what they miss most"]
+    "home": ["about home, and what they miss most"],
+    "ng": [
+      "about the returners everyone at the guild is suddenly talking about",
+      "about whether she'd want to remember, if she came back",
+      "about the Lantern Stone, and why it keeps lighting",
+      "about a dream she keeps having where she already knows him"
+    ]
   },
   "outfit_market": {
     "_vars": "{name} = the lady, {outfit} = the outfit",
@@ -218,5 +224,81 @@
     "_note": "When Sam gives a lady a gift. The gift itself comes from people.json gifts.",
     "greedy": ["Her eyes light up immediately."],
     "normal": ["She smiles and tucks it away carefully."]
+  },
+  "returners": {
+    "_note": "New Game+ only (cycle 2+). Word spreads that people come back. {name} = a lady, {cycle} = the cycle number, {gold}.",
+    "rumor": {
+      "title": "A Word for It",
+      "text": [
+        "Hanna leans over the guild counter, far too pleased with herself. \"So there's a word going round. Returners. People who swear they've lived this year before. A smith on Copper Row who knew which blade would crack. A barmaid who greeted a stranger by name.\" She taps her quill against her teeth. \"You wouldn't know anything about that, would you, Mr. Takahashi?\"",
+        "A drunk at the bar is holding court: a man who woke up knowing the river would flood, and sold boats a week early. \"Returners,\" someone says, and three people at the next table go very quiet and very interested in their drinks."
+      ],
+      "listen": {
+        "label": "Ask what else people are saying",
+        "res": "More than you'd think. A healer in the Underdistrict, two sisters who run a stall by the gate, a knight who keeps calling his squire by the wrong name. Nobody agrees on why. Everyone agrees it's getting more common. (+renown)"
+      },
+      "deflect": {
+        "label": "Laugh it off",
+        "res": "\"Sounds exhausting,\" Sam says. The look he gets back says he isn't fooling anyone, but the conversation moves on."
+      },
+      "image": {
+        "comp": "leaning over a guild counter whispering gossip, quill in hand, conspiratorial grin",
+        "setting": "busy adventurers' guild hall, notice boards",
+        "sam": true
+      }
+    },
+    "deja": {
+      "title": "Déjà Vu",
+      "text": [
+        "{name} stops halfway through setting a table, a plate in each hand. \"I've done this before,\" she says slowly. \"Not this table. This moment. You were standing right there, and you said...\" She frowns. \"I don't remember what you said. Only that I liked it.\"",
+        "{name} wakes Sam before dawn, sitting on the end of his bed. \"I had the strangest dream. We'd already met. I already knew how you take your tea.\" She holds up the cup she brought him. It's exactly right."
+      ],
+      "truth": {
+        "label": "Tell her the truth",
+        "res": "It takes a while, and a second pot of tea. {name} doesn't laugh. \"That explains a lot,\" she says finally, and leans her head on his shoulder. \"Then I picked you twice. Good taste.\""
+      },
+      "smile": {
+        "label": "Say it's a good dream",
+        "res": "\"It is,\" {name} agrees, and doesn't push. But she keeps glancing at him for the rest of the day, like she's checking him against a memory."
+      },
+      "image": {"comp":"pausing mid-motion with a soft, puzzled, nostalgic smile, holding a teacup","setting":"quiet kitchen at dawn, pale window light"}
+    },
+    "familiar": {
+      "title": "A Familiar Face",
+      "text": [
+        "A grey-bearded merchant stops Sam at the door, squinting. \"We've met. I'd swear to it. You ran a place like this, and I left too large a tip because you remembered my wife's name.\" He presses a coin purse into Sam's hand. \"Call it making up for a life I can't quite recall.\" (+{gold})",
+        "A woman in travelling clothes orders a drink, takes one look at Sam, and laughs. \"It's you. The hoodie. You don't remember me, do you? Never mind. You were kind to me once, somewhere else.\" She overpays and won't take the change. (+{gold})"
+      ],
+      "ok": {"label":"Thank them"}
+    },
+    "lamp": {
+      "title": "The Lantern Stone",
+      "text": "Anael finds Sam at the crossroads after close. The old Lantern Stone is burning, steadier than before. \"It has been lit {cycle} times now,\" she says. \"The Order's records only allow for once. I have been instructed to file a correction.\" She looks at the flame, then at him. \"I have not decided what the correction should say.\"",
+      "stay": {
+        "label": "Stay with her a while",
+        "res": "They watch the flame until the bells ring midnight. When Anael finally writes her report, it is three pages long and none of it is about the lamp."
+      },
+      "ask": {
+        "label": "Ask what the Order thinks it means",
+        "res": "\"That souls who arrive unsent sometimes refuse to leave,\" Anael says. \"And that the world bends a little to keep them.\" A pause. \"The Order considers this a problem. I find I don't.\""
+      },
+      "image": {
+        "comp": "standing beside a glowing stone lantern at night, soft halo light, thoughtful expression, looking at him",
+        "setting": "quiet crossroads at midnight, ancient stone lantern burning",
+        "sam": true
+      }
+    },
+    "circle": {
+      "title": "The Returners' Circle",
+      "text": "A folded card arrives with no seal, only a hand-drawn lantern and an address above a teahouse. Inside: a dozen people who all, in one way or another, should not remember what they remember. A former schoolteacher. A sellsword who apologises to everyone. A woman who still checks her pockets for a phone. Someone hands Sam tea. \"Welcome back,\" they say, and it's clear they've said it many times before.",
+      "join": {
+        "label": "Become a regular",
+        "res": "The Circle meets on the last night of each month. People talk. Some of them are looking for work, and now they know where to find it. (+renown. Someone from Sam's old world is already waiting among your candidates.)"
+      },
+      "visit": {
+        "label": "Just stay for the tea",
+        "res": "It's good tea. Sam leaves with a full stomach and a strange, light feeling, like being remembered by strangers."
+      }
+    }
   }
 }

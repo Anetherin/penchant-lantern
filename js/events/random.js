@@ -34,6 +34,45 @@ function evOutfit(kind){
     {label:ET(key,'share','label',V), fx(){ if(!S.houseWardrobe.includes(k)) S.houseWardrobe.push(k); moodAdd(w, 3); return ET(key,'share','res',V); }}]};
 }
 const OUTFIT_EVENTS = ['market','regular','friend','made'].map(kind => ({w:BAL.wardrobe.eventChance, ok:()=>anyW(x=>eventOutfit(x)).length>0 && (kind!=='friend' || S.workers.some(a=>S.workers.some(b=>a!==b && a.house===b.house))), make:()=>evOutfit(kind)}));
+// New Game+ (cycle 2+): word spreads that people come back (events.json → returners). Flags are per cycle.
+const cyc = () => (S && S.cycle) || 1;
+const RET = (...a) => ET('returners', ...a);
+const ngPartnerOpen = () => PARTNERS.filter(k=>NAMED[k].ngplus && !isHired(k));
+const RETURNER_EVENTS = [
+  {w:2, ok:()=>cyc()>=2 && S.flags.rumorCy!==cyc() && debtWeek()>=3, make(){
+    S.flags.rumorCy = cyc();
+    const hw = S.workers.find(x=>x.key==='hanna'); if(!hw && !NPCS.npc_hanna && !isHired('hanna')){ const h = makeNamed('hanna'); h.id = 'npc_hanna'; NPCS.npc_hanna = h; }
+    return {title:RET('rumor','title'), who: hw ? hw.id : NPCS.npc_hanna ? 'npc_hanna' : null, scene:dynScene('ret_rumor', EVT.returners.rumor.image) || 'portrait', text:RET('rumor','text'), choices:[
+      {label:RET('rumor','listen','label'), fx(){ S.rep = clamp(S.rep+2); return RET('rumor','listen','res'); }},
+      {label:RET('rumor','deflect','label'), fx(){ return RET('rumor','deflect','res'); }}]};
+  }},
+  {w:1.5, ok:()=>cyc()>=2 && !(S.flags.dejaCD>S.week) && anyW(w=>w.reborn && !w.dejaTold).length>0, make(){
+    S.flags.dejaCD = S.week + 6;
+    const w = pick(anyW(x=>x.reborn && !x.dejaTold)), V = {name:w.name};
+    return {title:RET('deja','title',V), who:w.id, scene:dynScene('ret_deja', EVT.returners.deja.image) || 'casual', text:RET('deja','text',V), choices:[
+      {label:RET('deja','truth','label',V), fx(){ w.dejaTold = true; gainTrust(w, 4); moodAdd(w, 6); return RET('deja','truth','res',V); }},
+      {label:RET('deja','smile','label',V), fx(){ moodAdd(w, 3); return RET('deja','smile','res',V); }}]};
+  }},
+  {w:1, ok:()=>cyc()>=2 && !(S.flags.familiarCD>S.week), make(){
+    S.flags.familiarCD = S.week + 8;
+    const g = Math.round(rnd(80,200) * (1 + 0.25*(cyc()-2))), V = {gold:fmt(g)};
+    return {title:RET('familiar','title',V), text:RET('familiar','text',V), choices:[
+      {label:RET('familiar','ok','label',V), fx(){ S.gold += g; return ''; }}]};
+  }},
+  {w:2, ok:()=>cyc()>=2 && S.flags.lampCy!==cyc() && anyW(w=>w.key==='anael').length>0, make(){
+    S.flags.lampCy = cyc();
+    const w = anyW(x=>x.key==='anael')[0], V = {name:w.name, cycle:cyc()};
+    return {title:RET('lamp','title',V), who:w.id, scene:dynScene('ret_lamp', EVT.returners.lamp.image) || 'sam_date', text:RET('lamp','text',V), choices:[
+      {label:RET('lamp','stay','label',V), fx(){ gainTrust(w, 5); moodAdd(w, 6); return RET('lamp','stay','res',V); }},
+      {label:RET('lamp','ask','label',V), fx(){ gainTrust(w, 2); samStat('charm', 1); return RET('lamp','ask','res',V); }}]};
+  }},
+  {w:2, ok:()=>cyc()>=3 && !S.flags.circle && debtWeek()>=4, make(){
+    S.flags.circle = true;
+    return {title:RET('circle','title'), text:RET('circle','text'), choices:[
+      {label:RET('circle','join','label'), fx(){ S.rep = clamp(S.rep+4); const open = ngPartnerOpen(); if(open.length){ const c = makeNamed(pick(open)); c.signing = signingFor(c); S.candidates.push(c); addLog(`${c.name} found Sam through the Returners' Circle. (Candidates)`); } return RET('circle','join','res'); }},
+      {label:RET('circle','visit','label'), fx(){ S.sam.energy = Math.min(100, S.sam.energy+20); return RET('circle','visit','res'); }}]};
+  }}
+];
 const RANDOM_EVENTS = [
   {w:3, ok:()=>anyW(w=>w.mood<55 && w.job!=='rest').length>0, make(){
     const w = pick(anyW(x=>x.mood<55 && x.job!=='rest')), V = {name:w.name};
@@ -94,7 +133,7 @@ const RANDOM_EVENTS = [
       {label:ET('raise','agree','label',V), fx(){ w.wage=nw; w.trust=clamp(w.trust+3); moodAdd(w, 5); return ET('raise','agree','res',V); }},
       {label:ET('raise','refuse','label',V), fx(){ const pr = ['Proud and sharp-tongued','Hot-blooded and competitive'].includes(w.personality) ? 2 : 1; moodAdd(w, -(8*pr)); w.trust=clamp(w.trust-4*pr); return ET('raise','refuse', pr>1?'resProud':'res', V); }}]};
   }}
-].concat(OUTFIT_EVENTS);
+].concat(OUTFIT_EVENTS, RETURNER_EVENTS);
 // she asks for a raise once her skills have outgrown her wage
 function underpaid(w){ const B = BAL.wages; return !isFree(w) && w.wage < wageFor(w) * ((has(w,'Ambitious')||has(w,'Greedy')) ? B.askAtAmbitious : B.askAt); }
 function evIncident(h){
