@@ -10,7 +10,7 @@ const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..')
 const argv = process.argv.slice(2); let PATCH = null; const pi = argv.indexOf('--patch');
 if (pi >= 0) { PATCH = JSON.parse(fs.readFileSync(argv[pi+1], 'utf8')); argv.splice(pi, 2); }
 const MODE = argv[0] || 'AB', RA = +argv[1] || 8, RB = +argv[2] || 6;
-const OUTF = PATCH ? 'balance-sim.patched.out.json' : 'balance-sim.out.json';
+const OUTF = (process.env.OUT || (PATCH ? 'balance-sim.patched' : 'balance-sim')) + '.out.json';
 const TYPES = {'.html':'text/html','.js':'text/javascript','.css':'text/css','.json':'application/json'};
 const server = http.createServer((q, r) => {
   if (q.url === '/favicon.ico') { r.writeHead(204); return r.end(); }
@@ -101,7 +101,7 @@ const BOT_A = `async (houseId, weeks) => {
   return { DG, beat:h.story.beat, bonus:h.bonus, rep52:h.rep, HQ, wk0, stat, snaps, weekly, paidWeek, overWeek, strikes:S.debt.strikes, hired, quartersBought, roomsBought, bedsBought, floorSum, finalRooms:h.rooms };
 }`;
 
-const BOT_B = `async (race, sub, weeks, nLadies) => {
+const BOT_B = `async (race, sub, weeks, nLadies, JOB) => {
   ${COMMON}
   await boot();
   if (window.__PATCH) applyPatch(window.__PATCH);
@@ -116,10 +116,10 @@ const BOT_B = `async (race, sub, weeks, nLadies) => {
     do { w = genWorker({race}); tries++; } while (sub && w.sub !== sub && tries < 400);
     w.signingCost = signingFor(w); w.house = 'lantern'; w.contract = 999; w.keep = true; w.trust = 100; w.job = 'rest';
     S.workers.push(w);
-    w._order = ['courtesan'];
-    const msg = canDo(w, 'courtesan');
-    if (!msg) { w.job = 'courtesan'; if (!w.menu.length) w.menu = getActs().filter(a=>clientStance(w,a.id)==='yes').map(a=>a.id); }
-    else { w.job = 'courtesan'; w.menu = getActs().filter(a=>clientStance(w,a.id)!=='no').map(a=>a.id); w._forced = msg; }   // forced: she is not comfortable with anything yet
+    w._order = [JOB];
+    const msg = canDo(w, JOB);
+    if (!msg) { w.job = JOB; if (!w.menu.length) w.menu = getActs().filter(a=>clientStance(w,a.id)==='yes').map(a=>a.id); }
+    else { w.job = JOB; w.menu = getActs().filter(a=>clientStance(w,a.id)!=='no').map(a=>a.id); w._forced = msg; }   // forced: she is not comfortable with anything yet
     w.stat0 = Object.fromEntries(STAT_KEYS.map(k=>[k, s100(w.stats[k])])); w.lewd0 = w.lewd; w.beauty0 = s100(w.stats.beauty);
     group.push(w);
   }
@@ -129,7 +129,7 @@ const BOT_B = `async (race, sub, weeks, nLadies) => {
     // lantern bots: rest logic on the group only
     group.forEach(w => { if (!S.workers.includes(w)) return; const mx = maxEnergy(w);
       if (w.job !== 'rest' && w.energy < mx*0.30) w.job = 'rest';
-      else if (w.job === 'rest' && w.energy > mx*0.60 && !canDo(w,'courtesan')) w.job = 'courtesan'; });
+      else if (w.job === 'rest' && w.energy > mx*0.60 && !canDo(w,JOB)) w.job = JOB; });
     const startJob = Object.fromEntries(group.map(w => [w.id, w.job]));
     endWeek(); closeModal(); resolveEvents();
     const R = S.lastReport;
@@ -137,6 +137,7 @@ const BOT_B = `async (race, sub, weeks, nLadies) => {
       rows[i].weeks.push({job:startJob[w.id], earned:Math.round(pr.earned), wage:w.wage, served:pr.served, props:pr.props||0, notMood:pr.notMood||0, reluct:pr.reluct||0, e0:pr.e0, e1:Math.round(w.energy), mood:Math.round(w.mood), lust:Math.round(w.lust||0), here:S.workers.includes(w)}); });
     if (S.workers.length < group.length) { /* someone left; keep going */ }
   }
+  group.forEach((w,i) => { rows[i].statGrow = STAT_KEYS.reduce((a,k)=>a+s100(w.stats[k])-w.stat0[k],0)/STAT_KEYS.length; const t=Object.values(w.tech||{}); rows[i].tech = t.length ? t.reduce((a,v)=>a+s100(v),0)/t.length : 0; const ac=Object.values(w.acts||{}); rows[i].actSk = ac.length ? ac.reduce((a,v)=>a+s100(v.skill||0),0)/ac.length : 0; rows[i].lewdEnd = w.lewd; rows[i].pop = s100(w.stats.popularity||0); });
   return { rows, houseIncome: null, left: group.filter(w=>!S.workers.includes(w)).length };
 }`;
 
@@ -173,13 +174,13 @@ if (MODE.includes('A')) {
 }
 if (MODE.includes('B')) {
   const GROUPS_ALL = [['human',''],['elf',''],['beastkin',''],['beastkin','fox'],['beastkin','cat'],['beastkin','wolf'],['beastkin','rabbit'],['beastkin','dragon'],['demon',''],['dwarf',''],['spirit',''],['angel',''],['android','']];
-  const GROUPS = process.env.GROUPS ? GROUPS_ALL.filter(g => process.env.GROUPS.split(',').includes(g[1] ? g[0]+'/'+g[1] : g[0])) : GROUPS_ALL;
+  const GROUPS = process.env.RACES ? GROUPS_ALL.filter(g => process.env.RACES.split(',').includes(g[1] ? g[0]+'/'+g[1] : g[0])) : GROUPS_ALL;
   out.B = {};
   for (const [race, sub] of GROUPS) {
     const label = sub ? `${race}/${sub}` : race, ladies = [];
     for (let i = 0; i < RB; i++) {
       const page = await newPage();
-      try { const r = await page.evaluate(`(${BOT_B})('${race}','${sub}', 20, ${+process.env.NLADIES||6})`); ladies.push(...r.rows); } catch (e) { console.error(label, 'run failed', e.message.slice(0,200)); }
+      try { const r = await page.evaluate(`(${BOT_B})('${race}','${sub}', ${+process.env.WEEKS||20}, ${+process.env.NLADIES||6}, '${process.env.JOB||'courtesan'}')`); ladies.push(...r.rows); } catch (e) { console.error(label, 'run failed', e.message.slice(0,200)); }
       if (page.errors.length) console.error(label, 'page errors', page.errors.slice(0,2));
       await page.close();
     }
@@ -191,11 +192,11 @@ if (MODE.includes('B')) {
     out.B[label] = { ladies: ladies.length, sign: Math.round(mean(ladies.map(l=>l.sign))), wage0: Math.round(mean(ladies.map(l=>l.wage))), earned, wage, net: r1(earned - wage),
       restShare: r1(100*W.filter(x=>x.job==='rest').length/W.length), e1: per('e1'), mood: per('mood'), lust: per('lust'), served: per('served'), notMood: per('notMood'), reluct: per('reluct'),
       forced: ladies.filter(l=>l.forced).length, lewd0: r1(mean(ladies.map(l=>l.lewd0))), stats: st,
-      earnedWhenWorking: r1(mean(W.filter(x=>x.job!=='rest').map(x=>x.earned))) };
+      earnedWhenWorking: r1(mean(W.filter(x=>x.job!=='rest').map(x=>x.earned))), statGrow: r1(mean(ladies.map(l=>l.statGrow||0))), tech: r1(mean(ladies.map(l=>l.tech||0))), actSk: r1(mean(ladies.map(l=>l.actSk||0))), lewdEnd: r1(mean(ladies.map(l=>l.lewdEnd||0))), props: per('props'), left: 0 };
     console.error('B done', label);
   }
 }
-fs.writeFileSync(path.join(root, 'tools', OUTF), JSON.stringify(out));
+fs.writeFileSync(path.resolve(root, 'tools', OUTF), JSON.stringify(out));
 if (out.A) { const m = (c,wk,k) => c[wk][k].split(' ')[0];
   for (const [hid,s] of Object.entries(out.A)) console.log('wk0', hid, JSON.stringify(s.wk0));
   console.log('house | net5/15/30 | gold13/26/52 | rep52 | net52 | turned52 | staff52 | roomsBought | qtrs+beds | over | paid');
