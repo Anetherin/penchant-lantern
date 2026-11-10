@@ -634,6 +634,7 @@ function endWeek(){
     enc.slice(0,2).forEach(e=>R.hl.push({wid:w.id, text:hlText(w,e) + (e.note ? ' ' + ENC_NOTE(e.note) : ''), act:e.act||null, cls:e.cls, note:e.note||null, scene: e.act ? 'act:'+e.act+'~'+(e.expr||'')+'~'+(e.ctx||'') : e.where ? 'job_'+e.where : 'companion'}));
     delete pr.enc;
     earnCheck(w).forEach(t=>{ log(`✨ ${w.name} has developed a knack: ${t}. ${TRAITS[t].desc}`); addLog(`${w.name} developed the trait ${t}.`); });
+    titleCheck(w).forEach(log);
     // romance arcs
     if(ARCS[w.key] && (w.arc||0) < ARCS[w.key].length && !houseGate(w)){
       const i = w.arc||0, A = BAL.arcs, need = A.need[i], gap = A.gap[i];

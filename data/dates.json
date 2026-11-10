@@ -8,8 +8,27 @@
     "What a date raises (all optional): stats {beauty|charm|refinement|stamina|strength|agility: n} (her stat XP, 1000 scale like training), skills {service|dance|bar|combat|manage: n} (her skill growth), sam {charm|business|strength|technique: n} (Sam's stats; default {charm:1}), pop (her popularity +n), lust (her lust +n, x her lustBuild), lewd + lewdCap (her lewdness +n with diminishing returns up to lewdCap, see balance.json lewd; more if she loves the date, less if not), gift: true (counts as a gift for her traits), trinket (0-1 chance Sam buys her a little something on the way: mood +5, counts as a gift).",
     "needsUp: an upgrade id the house must own for the date to appear (e.g. bath). needsIntim: the least intimacy stage she must have reached with Sam (w.intim) for it to be listed.",
     "special: 'chat' = the row runs the chat (trust, mood and energy here; random spread x0.6-1.4, Romantic/Shy bonuses, topics from events.json). special: 'nightin' = after the date, if she is comfortable with anything private, Sam can always go inside (no extra action); otherwise just a cosy evening.",
-    "spicy: [ {label, acts:[service ids], lewd (her least lewdness), gain, cap (lewdUp), risk (0-1 chance of being caught), lead (opening text, {name}), nude:true (no act: skinny dipping / figure study; needs her to be comfortable nude), image:{comp, setting, replace} (the variant's own staging: setting is optional and falls back to the date's; for acts comp is added to the service pose, or replaces it with replace:true; nude variants use comp+setting as their own scene and keep the date image's undress/bath/away/swim flags)} ]. Offered as 🔥 buttons after a good date (max 2). Costs Sam 12 energy, no action. With acts: a normal private-time scene (only services she's done with Sam: canSam) with that lead; the act is her favorite if listed, else the highest-th one she says yes to, else the first she's comfortable with."
+    "spicy: [ {label, acts:[service ids], lewd (her least lewdness), gain, cap (lewdUp), risk (0-1 chance of being caught), lead (opening text, {name}), nude:true (no act: skinny dipping / figure study; needs her to be comfortable nude), image:{comp, setting, replace} (the variant's own staging: setting is optional and falls back to the date's; for acts comp is added to the service pose, or replaces it with replace:true; nude variants use comp+setting as their own scene and keep the date image's undress/bath/away/swim flags)} ]. Offered as 🔥 buttons after a good date (max 2). Costs Sam 12 energy, no action. With acts: a normal private-time scene (only services she's done with Sam: canSam) with that lead; the act is her favorite if listed, else the highest-th one she says yes to, else the first she's comfortable with.",
+    "home: true = the date happens at the house (rooftop, a room, the bathhouse). After a date with 🔥 options Sam picks a daring variant or calls it there (_after.away / _after.home: label of that button, home = text when the evening ends there, invite = text when she asks Sam in; {name}). Either way, if the evening sparks, a second screen offers private time or goodnight."
   ],
+  "_after": {
+    "away": {
+      "label": "🏠 Head home",
+      "home": [
+        "Sam walks {name} back. At her door she squeezes his hand, says goodnight, and slips inside.",
+        "They take the long way back, talking about nothing. At her door, {name} smiles and says goodnight."
+      ],
+      "invite": "On the way back, {name} slips her hand into Sam's and doesn't let go. At her door, she hesitates. \"...Do you want to come in?\""
+    },
+    "home": {
+      "label": "🕯 Leave it there",
+      "home": [
+        "They tidy up together. {name} yawns, says goodnight, and pads off to her room.",
+        "{name} stretches, thanks Sam for the evening, and heads up to bed."
+      ],
+      "invite": "The house has gone quiet. {name} lingers at the foot of the stairs, then looks back at Sam. \"...Walk me up?\""
+    }
+  },
   "chat": {"label":"Just talk","cost":0,"energy":10,"trust":1.6,"mood":4,"like":"chat","special":"chat","intro":"","lines":[]},
   "walk": {
     "label": "Walk through the market",
@@ -72,7 +91,8 @@
         "lead": "The wind picks up, and {name} pulls the blanket over both of them. Under it, her hand finds Sam's, and the stars stop being the point.",
         "image": {"comp":"tangled together under a wool blanket on the rooftop, only their heads and shoulders showing, flushed and smiling","replace":true}
       }
-    ]
+    ],
+    "home": true
   },
   "picnic": {
     "label": "Picnic by the river",
@@ -244,7 +264,8 @@
         "lead": "{name} pins Sam flat for the last time and doesn't let him up. She doesn't seem to be thinking about the score anymore.",
         "image": {"comp":"on the cushions on the floor, her on top, flushed and breathless from wrestling"}
       }
-    ]
+    ],
+    "home": true
   },
   "massage": {
     "label": "Trade massages",
@@ -280,7 +301,8 @@
         "lead": "\"You missed a spot,\" says {name}, and guides Sam's hands somewhere that isn't her shoulders.",
         "image": {"comp":"on the towels, oiled skin glistening in candlelight"}
       }
-    ]
+    ],
+    "home": true
   },
   "dinner": {
     "label": "Dinner at the Lark & Kettle",
@@ -535,7 +557,8 @@
         "image": {"comp":"close together in the steaming bath, hands under the water"}
       }
     ],
-    "lust": 3
+    "lust": 3,
+    "home": true
   },
   "posing": {
     "label": "Pose for Sam's sketchbook",
@@ -580,7 +603,8 @@
         "lead": "Sam's drawing is going badly. {name} takes the pencil out of his hand, puts it on the easel, and the sketch waits.",
         "image": {"comp":"on the draped chaise beside the easel, charcoal sketches scattered on the floor"}
       }
-    ]
+    ],
+    "home": true
   },
   "nightin": {
     "label": "A quiet night in",
@@ -602,6 +626,7 @@
       "comp": "sitting together on the floor by a fire under one blanket, glasses of wine, relaxed and close",
       "setting": "cozy bedroom with a fireplace, soft lamplight, rugs and cushions",
       "undress": "partial"
-    }
+    },
+    "home": true
   }
 }

@@ -134,17 +134,53 @@ function samDate(id, k){
   const anyAct = getActs().some(a=>canSam(w,a.id));
   const first = m>=1 && w.mood>=60 && firstReadyAny(w) && Math.random() < 0.5 + Math.max(0, w.lust-50)/100;
   const nightIn = !first && d.special==='nightin' && anyAct;
-  const sparks = nightIn || (!first && w.trust>=60 && w.mood>=70 && m>=1 && anyAct && Math.random() < 0.35 + Math.max(0, w.lust-50)/100);
-  const spicy = !first && m>=1 && w.mood>=55 ? (d.spicy||[]).map((sp,i)=>[sp,i]).filter(([sp])=>spicyOK(w,sp)).slice(0,2) : [];
+  const spicy = !first && !nightIn && m>=1 && w.mood>=55 ? (d.spicy||[]).map((sp,i)=>[sp,i]).filter(([sp])=>spicyOK(w,sp)).slice(0,2) : [];
+  // with 🔥 options the evening goes in two steps: the daring variant or calling it there, then (if it sparks) the invitation
+  const twoStep = spicy.length > 0;
+  DATE_AFTER = twoStep ? {id, k, m} : null;
+  const sparks = nightIn || (!first && !twoStep && dateSparks(w, m));
   const txt = dateText(d, w) + trinket + `\n\n${cost?'−'+fmt(cost)+' · ':''}Trust ${tDelta(tg)}${lg>0?' · Lewdness +':''}${d.restores?' · She feels rested':''}`;
-  const inviteTxt = nightIn ? `The fire burns low. ${w.name} looks up at Sam, and doesn't look away.` : `On the way back, ${w.name} slips her hand into Sam's and doesn't let go. At her door, she hesitates. "...Do you want to come in?"`;
+  const inviteTxt = nightIn ? `The fire burns low. ${w.name} looks up at Sam, and doesn't look away.` : dateAfterTxt(d, 'invite', w);
   modal(`<h2>${esc(d.label)} with ${esc(w.name)}</h2><div id="resImg"></div><p class="story">${esc(txt)}</p>
     ${sparks?`<div id="invImg"></div><div id="propAi"><p class="story pink">${esc(inviteTxt)}</p></div>`:''}
     ${first?`<p class="story pink">On the way back, something has shifted between them. ${esc(w.name)} keeps finding reasons to stand a little closer.</p>`:''}
-    <div class="row">${first?`<button class="primary" onclick="firstFromDate('${id}')">♥ See where it goes</button><button onclick="closeModal()">Say goodnight</button>`:sparks?`<button class="primary" onclick="privateMenu('${id}',true)">Go inside (private time, no extra action)</button>${spicyBtns(id,k,spicy)}<button onclick="closeModal()">Say goodnight</button>`:`${spicyBtns(id,k,spicy)}<button class="primary" onclick="closeModal()">OK</button>`}</div>`);
+    <div class="row">${first?`<button class="primary" onclick="firstFromDate('${id}')">♥ See where it goes</button><button onclick="closeModal()">Say goodnight</button>`
+      :twoStep?`${spicyBtns(id,k,spicy)}<button class="primary" onclick="dateHome('${id}')">${esc(dateAfter(d).label)}</button>`
+      :sparks?`<button class="primary" onclick="privateMenu('${id}',true)">Go inside (private time, no extra action)</button><button onclick="closeModal()">Say goodnight</button>`
+      :`<button class="primary" onclick="closeModal()">OK</button>`}</div>`, twoStep ? {lock:true} : {});
   showImg('resImg', w.id, 'date_'+k);
-  if(sparks) showImg('invImg', w.id, 'invite');
-  if(sparks && SET.ai.on && getTextPlugin()) aiWrite('propAi', 'proposition', w.id, {scene:'invite', date:d.label.toLowerCase(), forSam:true});
+  if(sparks) dateInviteFx(w, d);
+}
+// The second step after a date with 🔥 options (dates.json → _after): does the evening spark? Rolled when Sam gets there,
+// so a daring detour (more lust) can tip it. Same odds as a plain date otherwise.
+let DATE_AFTER = null;
+const DATE_AFTER_TXT = needData('dates')._after || {};
+const dateAfter = d => DATE_AFTER_TXT[d && d.home ? 'home' : 'away'] || {label:'Head home'};
+const dateAfterTxt = (d, key, w) => { const t = dateAfter(d)[key]; return String((Array.isArray(t) ? pick(t) : t) || '').replace(/\{name\}/g, w.name); };
+const dateSparks = (w, m) => w.trust>=60 && w.mood>=70 && m>=1 && getActs().some(a=>canSam(w,a.id)) && Math.random() < 0.35 + Math.max(0, w.lust-50)/100;
+function dateInviteFx(w, d){
+  showImg('invImg', w.id, 'invite');
+  if(SET.ai.on && getTextPlugin()) aiWrite('propAi', 'proposition', w.id, {scene:'invite', date:d.label.toLowerCase(), forSam:true});
+}
+// the invitation screen: private time or goodnight
+function dateInvite(w, d){
+  modal(`<h2>${esc(d.label)} with ${esc(w.name)}</h2><div id="invImg"></div><div id="propAi"><p class="story pink">${esc(dateAfterTxt(d, 'invite', w))}</p></div>
+    <div class="row"><button class="primary" onclick="privateMenu('${w.id}',true)">${d.home?'Go up with her':'Go inside'} (private time, no extra action)</button><button onclick="closeModal()">Say goodnight</button></div>`);
+  dateInviteFx(w, d);
+}
+// "Head home" / "Leave it there": the invitation if the evening sparks, otherwise a quiet goodnight
+function dateHome(id){
+  const A = DATE_AFTER, w = findW(id); DATE_AFTER = null;
+  if(!w || !A || A.id !== id) return closeModal();
+  const d = DATES[A.k];
+  if(dateSparks(w, A.m)) return dateInvite(w, d);
+  closeModal(); toast(dateAfterTxt(d, 'home', w));
+}
+// after the 🔥 variant's scene: on to the invitation, if the evening sparks
+function dateAfterSpicy(id){
+  const A = DATE_AFTER, w = findW(id); DATE_AFTER = null;
+  if(!w || !A || A.id !== id) return closeModal();
+  dateInvite(w, DATES[A.k]);
 }
 // A daring variant on a date (costs Sam 12 energy, no action). Only through canSam: privateCore for acts, a nude scene otherwise.
 function samSpicy(id, k, i){
@@ -168,7 +204,11 @@ function samSpicy(id, k, i){
     repAdd(houseOf(w), 0.5);
   }
   samLog(`${sp.label} with ${w.name} (${d.label})`); checkUnlocks(); save(); render(); closeModal();
-  showResult(`${sp.label}: ${w.name}`, text, w.id, scene, ai);
+  // the evening may not be over: if it sparks, the result screen leads on to the invitation; otherwise it ends here
+  const A = DATE_AFTER && DATE_AFTER.id===id && DATE_AFTER.k===k ? DATE_AFTER : null;
+  const more = A && dateSparks(w, A.m);
+  if(!more){ DATE_AFTER = null; text += '\n\n' + dateAfterTxt(d, 'home', w); }
+  showResult(`${sp.label}: ${w.name}`, text, w.id, scene, ai, more ? {label:'Continue ♥', onclick:`dateAfterSpicy('${id}')`} : null);
 }
 function samTrain(id){
   const w = findW(id); if(!w) return;

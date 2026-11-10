@@ -30,7 +30,8 @@ const statCap = () => { const C = (typeof BAL!=='undefined' && BAL.ngplus && BAL
 const samCap = () => statCap()/SKL, growDen = () => statCap() + 300;
 const clampK = v => Math.max(0, Math.min(statCap(), v));
 // A title (Lady, Dame, Captain, Professor...) is never part of the name: w.name is her name, w.title goes in front where she's shown formally.
-const titled = o => o ? ((o.title ? o.title + ' ' : '') + (o.name || '')) : '';
+// Titles marked after (data/titles.json) follow the name: 'Mira, Belle of Hollowmere'.
+const titled = o => { if(!o) return ''; const n = o.name || ''; if(!o.title) return n; const T = typeof TITLES!=='undefined' && o.titleId && TITLES[o.titleId]; return T && T.after ? `${n}, ${o.title}` : `${o.title} ${n}`; };
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fmt = n => Math.round(n).toLocaleString() + 'g';
 const uid = () => 'w' + Date.now().toString(36) + Math.random().toString(36).slice(2,7);

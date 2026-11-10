@@ -10,8 +10,9 @@ function modal(html, opts={}){
 }
 function closeModal(){ $('#modal').classList.add('hidden'); MODAL_LOCK=false; SHEET=null; }
 function toast(t){ const box=$('#toast'); while(box.children.length>=4) box.firstChild.remove(); const d=document.createElement('div'); d.textContent=t; box.appendChild(d); setTimeout(()=>d.remove(), 3400); }
-function showResult(title, text, wid, scene, ai){
-  modal(`<h2>${esc(title)}</h2>${wid&&scene?`<div id="resImg"></div>`:''}<p class="story">${esc(text)}</p>${ai&&SET.ai.on?`<div id="resAi"></div>`:''}<div class="row">${ai?aiBtn('resAi', ai.kind, wid, ai):''}<button class="primary" onclick="closeModal()">OK</button></div>`);
+// next (optional): {label, onclick} replaces OK with a button that leads on (e.g. a date's invitation after its 🔥 scene).
+function showResult(title, text, wid, scene, ai, next){
+  modal(`<h2>${esc(title)}</h2>${wid&&scene?`<div id="resImg"></div>`:''}<p class="story">${esc(text)}</p>${ai&&SET.ai.on?`<div id="resAi"></div>`:''}<div class="row">${ai?aiBtn('resAi', ai.kind, wid, ai):''}${next?`<button class="primary" onclick="${next.onclick}">${esc(next.label)}</button>`:`<button class="primary" onclick="closeModal()">OK</button>`}</div>`, next ? {lock:true} : {});
   $('#modal').scrollTop = 0;
   if(wid && scene) showImg('resImg', wid, scene, (ai&&ai.cloth)||null);
   if(ai && SET.ai.on && (SET.ai.auto || ai.auto)) aiWrite('resAi', ai.kind, wid, ai);

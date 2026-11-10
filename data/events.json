@@ -300,5 +300,49 @@
         "res": "It's good tea. Sam leaves with a full stomach and a strange, light feeling, like being remembered by strangers."
       }
     }
+  },
+  "title_patron": {
+    "_vars": "{house}",
+    "title": "A Patron's Favor",
+    "text": [
+      "A letter sealed in wax arrives for {name}. An old noble house she has charmed for months offers her a courtesy title: Lady {name}, with the household's name to back it.",
+      "An aging marchioness who never misses an evening at {house} has decided {name} deserves better than \"Miss\". The letters patent are already drawn up. All {name} has to do is accept."
+    ],
+    "accept": {
+      "label": "Accept graciously",
+      "res": "{name} accepts with a curtsy she has clearly practiced. The household sends flowers. The regulars start bowing, half as a joke, half not."
+    },
+    "decline": {
+      "label": "Ask for something practical instead",
+      "res": "{name} thanks the house warmly and asks whether the honor might come as a donation. It does: {gold}."
+    }
+  },
+  "title_fair": {
+    "_vars": "{gold} (entry fee)",
+    "title": "Crowning of the Street Fair",
+    "text": [
+      "The Hollowmere street fair crowns a queen every year, chosen by the crowd. Half the market thinks {name} should enter. The entry fee is {gold}.",
+      "Bunting goes up across the square for the fair's crowning. Someone has already scrawled {name}'s name on the voting board. Entering officially costs {gold}."
+    ],
+    "enter": {
+      "label": "Enter her ({gold})",
+      "win": "The crowd roars. {name} walks the length of the square under a crown of paper lanterns, waving like she was born to it.",
+      "lose": "{name} comes a close second, and spends the evening being bought drinks by everyone who voted for her anyway."
+    },
+    "skip": {"label":"Not this year","res":"{name} watches the crowning from the edge of the square and cheers for the winner."}
+  },
+  "title_arena": {
+    "_vars": "{gold} (prize)",
+    "title": "Challenge at the Guild Arena",
+    "text": [
+      "The Adventurers' Guild is holding an exhibition bout and an open challenge. Word is the prize is {gold}, and the winner gets to call herself Champion. {name} is already stretching.",
+      "An open tournament at the Guild arena: anyone can enter, the winner takes {gold} and the title of Champion. {name} wants in."
+    ],
+    "fight": {
+      "label": "Let her fight",
+      "win": "Three bouts, three wins. {name} limps home with the purse, a split lip, and a grin that will not go away.",
+      "lose": "{name} makes the final and loses it on a slip. She is furious, sore, and already planning a rematch."
+    },
+    "pass": {"label":"Not this time","res":"{name} grumbles, but sits in the stands and heckles the finalists with real expertise."}
   }
 }
