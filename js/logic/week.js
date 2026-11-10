@@ -15,8 +15,8 @@ const askClient = id => { const a = actById(id); return (a && a.ask && a.ask.cli
 const askLady = id => { const a = actById(id); return (a && a.ask && a.ask.lady) || 'offered ' + actLabel(id).toLowerCase(); };
 function pickWant(cls, w){ return weighted(getActs().filter(a=>!w || !actBanned(w, a.id)), a=>(cls.tier==='commoner' ? 90/a.price : cls.tier==='noble' ? a.price/80 : 1) * (a.want ?? 1) * ((cls.wants||{})[a.id] ?? 1)).id; }
 function qualityOf(w, act){
-  if(!act) return (s100(w.tech.service)*0.5 + s100(w.stats.beauty)*0.25 + s100(w.stats.charm)*0.25)/100;
-  return (s100(actSkill(w,act))*0.5 + s100(w.stats.beauty)*0.3 + s100(w.stats.charm)*0.2)/100 * fxSub(w,'actQuality',act);
+  if(!act) return (s100(w.tech.service)*0.5 + s100(statOf(w,'beauty'))*0.25 + s100(statOf(w,'charm'))*0.25)/100;
+  return (s100(actSkill(w,act))*0.5 + s100(statOf(w,'beauty'))*0.3 + s100(statOf(w,'charm'))*0.2)/100 * fxSub(w,'actQuality',act);
 }
 // How good this client is at it: 0.3-1.4 around his class's mean (data/economy.json → classes.tech). Regulars keep theirs.
 function clientTech(cls, reg, client){
@@ -196,8 +196,8 @@ function madameCoach(mad, w, pr){
 // Classroom: the teacher's subject is h.teachSkill (a TECH_KEYS skill or a service id); null/invalid = her best tech skill.
 // Every other lady in the house who is behind her gains floor(gap x amenities.classroom.rate x teacher x learner) (humans x humanMult), capped by clampK.
 // teacher = (base + Management x manageW + Refinement x refW) x outfit/job bonus x teach fx x her output; learner = learnBase + Refinement x learnRef, x learn fx.
-const teachPower = (t, pr) => { const C = BAL.amenities.classroom; return (C.base + s100(t.tech.manage)/100*C.manageW + s100(t.stats.refinement)/100*C.refW) * ob(t,'teacher') * jb0(t,'teacher') * fxMul(t,'teach') * (pr ? outputMult(t, pr) : 1); };
-const learnPower = w => { const C = BAL.amenities.classroom; return (C.learnBase + s100(w.stats.refinement)/100*C.learnRef) * fxMul(w,'learn') * (w.race==='human' ? C.humanMult : 1); };
+const teachPower = (t, pr) => { const C = BAL.amenities.classroom; return (C.base + s100(t.tech.manage)/100*C.manageW + s100(statOf(t,'refinement'))/100*C.refW) * ob(t,'teacher') * jb0(t,'teacher') * fxMul(t,'teach') * (pr ? outputMult(t, pr) : 1); };
+const learnPower = w => { const C = BAL.amenities.classroom; return (C.learnBase + s100(statOf(w,'refinement'))/100*C.learnRef) * fxMul(w,'learn') * (w.race==='human' ? C.humanMult : 1); };
 const jb0 = (w, j) => fxSub(w, 'jobBonus', j);
 const subjectLabel = k => TECH_LABEL[k] || (actById(k) ? actLabel(k) : k);
 const subjectSkill = (w, k) => TECH_LABEL[k] ? (w.tech[k]||0) : (w.acts && w.acts[actKey(k)] ? w.acts[actKey(k)].skill : null);
@@ -226,15 +226,15 @@ function simHouse(h, R){
   const byJob = j => W.filter(w=>w.job===j);
   const jb = (w, j) => fxSub(w, 'jobBonus', j);
   const mad = byJob('madame')[0], mgmt = !!mad;   // the madame matches clients to the lady whose menu fits
-  const madF = mad ? (0.5 + (s100(mad.tech.manage) + s100(mad.stats.charm))/200) * ob(mad,'madame') * jb(mad,'madame') : 0;
+  const madF = mad ? (0.5 + (s100(mad.tech.manage) + s100(statOf(mad,'charm')))/200) * ob(mad,'madame') * jb(mad,'madame') : 0;
   const danceDraw = byJob('dancer').reduce((a,w)=>a + (1 + w.popularity/30 + s100(w.tech.dance)/50)*ob(w,'dancer')*jb(w,'dancer'), 0);
-  let secPow = byJob('security').reduce((a,w)=>a + (s100(w.tech.combat) + s100(w.stats.strength)*0.5 + fxAdd(w,'security'))*ob(w,'security')*jb(w,'security'), 0);
+  let secPow = byJob('security').reduce((a,w)=>a + (s100(w.tech.combat) + s100(statOf(w,'strength'))*0.5 + fxAdd(w,'security'))*ob(w,'security')*jb(w,'security'), 0);
   if(h.up.guard) secPow *= 1.8;
   secPow += S.samWeek.security;
   const barN = h.up.bar ? byJob('bartender').length : 0, attendants = byJob('attendant');
   // attendants (balance.json → jobs.attendant*): her quality = Hospitality / Charm / Refinement x outfit/job bonus x output. The most popular courtesans
   // get their own attendant (best first); the rest share a fraction of the average. Help cuts the courtesan's energy cost and lifts her clients' satisfaction.
-  const attQ = x => clamp((s100(x.tech.service)*J.attendantSkillW + s100(x.stats.charm)*J.attendantCharmW + s100(x.stats.refinement)*J.attendantRefW)/100 * ob(x,'attendant') * jb(x,'attendant') * outputMult(x, R.per[x.id]), 0, J.attendantQMax);
+  const attQ = x => clamp((s100(x.tech.service)*J.attendantSkillW + s100(statOf(x,'charm'))*J.attendantCharmW + s100(statOf(x,'refinement'))*J.attendantRefW)/100 * ob(x,'attendant') * jb(x,'attendant') * outputMult(x, R.per[x.id]), 0, J.attendantQMax);
   const attSorted = attendants.slice().sort((a,b)=>attQ(b)-attQ(a)), ownAttMap = new Map();
   byJob('courtesan').sort((a,b)=>b.popularity-a.popularity).slice(0, attendants.length).forEach((c,i)=>ownAttMap.set(c.id, attSorted[i]));
   const attAvg = attendants.length ? attendants.reduce((a,x)=>a+attQ(x),0)/attendants.length : 0;
@@ -313,7 +313,7 @@ function simHouse(h, R){
   let promoDraw = 0;
   byJob('promoter').forEach(w=>{
     const pr = R.per[w.id], samples = w.samples && !has(w,'Modest');
-    let d = (J.promoterBase + (s100(w.stats.charm) + s100(w.tech.service))/J.promoterDiv) * ob(w,'promoter') * jb(w,'promoter') * fxMul(w,'promote') * outputMult(w, pr);
+    let d = (J.promoterBase + (s100(statOf(w,'charm')) + s100(w.tech.service))/J.promoterDiv) * ob(w,'promoter') * jb(w,'promoter') * fxMul(w,'promote') * outputMult(w, pr);
     if(samples){
       d *= J.samplesDraw; w.energy -= J.samplesEnergy; spendLust(w, J.samplesLust); pr.samples = true;
       const dr = (qualityOf(w) - 0.5) * J.samplesRep; if(dr > 0) repAdd(h, dr); else h.rep = clamp(h.rep + dr);
@@ -429,7 +429,7 @@ function simHouse(h, R){
     const tech = clientTech(cls, reg, client);
     const q = qualityOf(w, act) * (reluct?0.85:1);
     let cm = cls.mult * obC(w, cls) * fxSubC(w,'classBonus',cls);
-    if(cls.tier==='noble') cm *= (0.7 + s100(w.stats.refinement)/170);
+    if(cls.tier==='noble') cm *= (0.7 + s100(statOf(w,'refinement'))/170);
     const base = act ? actById(act).price * roomM * ob(w,'courtesan') : 20 * ob(w,'courtesan');
     const below = Math.max(0, (HD.minPop||0) - w.popularity);
     const inc = Math.round(base * P.mult * (0.6+q*0.9) * cm * (1+madF*0.15) * fxMul(w,'clientFee') * jb(w,w.job) * (react==='like' ? SVC.raceLikeFee : 1) * (below?0.75:1) * (reg ? (regQuirk(reg).tip||1) : 1) * cMul(client,'fee',X) * (act ? cQual(client,q) : cMul(client,'compFee',X)) * BAL.income.escort);
@@ -463,13 +463,13 @@ function simHouse(h, R){
   const bathers = Math.round((hr.served + hr.turned*0.5) * J.bathShare), baths = byJob('bath');
   W.forEach(w=>{
     const j = w.job, pr = R.per[w.id], om = outputMult(w, pr);
-    if(j==='bartender'){ const inc = Math.round((J.barBase + visitors*J.barPerVisitor) * (0.5+(s100(w.tech.bar)+s100(w.stats.charm))/200) * jb(w,'bartender') * (S.flags.ironsong?1.15:1) * ob(w,'bartender') * ((h.bonus&&h.bonus.bar)||1) * (BAL.amenities.drinks.bar[h.drinks||0] ?? 1) * om) + Math.round(visitors * (J.barTips||0) * (0.5 + w.popularity/100) * (0.5 + s100(w.stats.charm)/100) * om * (X.tipN ? X.tipSum / X.tipN : 1)); hr.income+=inc; R.led.bar+=inc; pr.earned+=inc; grow(w,'bar',2); statXP(w,'charm',1.5); countUp(w,'bar',Math.max(1,Math.round(visitors/8))); }
+    if(j==='bartender'){ const inc = Math.round((J.barBase + visitors*J.barPerVisitor) * (0.5+(s100(w.tech.bar)+s100(statOf(w,'charm')))/200) * jb(w,'bartender') * (S.flags.ironsong?1.15:1) * ob(w,'bartender') * ((h.bonus&&h.bonus.bar)||1) * (BAL.amenities.drinks.bar[h.drinks||0] ?? 1) * om) + Math.round(visitors * (J.barTips||0) * (0.5 + w.popularity/100) * (0.5 + s100(statOf(w,'charm'))/100) * om * (X.tipN ? X.tipSum / X.tipN : 1)); hr.income+=inc; R.led.bar+=inc; pr.earned+=inc; grow(w,'bar',2); statXP(w,'charm',1.5); countUp(w,'bar',Math.max(1,Math.round(visitors/8))); }
     if(j==='dancer'){
-      const tips = Math.round(visitors * J.tipsBase * (0.5 + w.popularity/100) * (0.5 + s100(w.stats.charm)/100) * Math.sqrt(P.mult) * ob(w,'dancer'));
+      const tips = Math.round(visitors * J.tipsBase * (0.5 + w.popularity/100) * (0.5 + s100(statOf(w,'charm'))/100) * Math.sqrt(P.mult) * ob(w,'dancer'));
       const inc = Math.round((12+w.popularity*0.8) * (0.5+s100(w.tech.dance)/100) * Math.sqrt(P.mult) * jb(w,'dancer') * ob(w,'dancer')) + tips;
       hr.income+=inc; R.led.dance+=inc; pr.earned+=inc; w.popularity=clamp(w.popularity+2); repAdd(h, J.danceRep * (0.5 + w.popularity/100)); lewdUp(w, 0.5*(has(w,'Exhibitionist')?3:1), has(w,'Exhibitionist') ? BAL.lewd.danceExhib : BAL.lewd.dance); grow(w,'dance',2); statXP(w,'agility',1.5); statXP(w,'beauty',1); countUp(w,'dance',Math.max(1,Math.round(visitors/8))); }
     if(j==='bath'){
-      const inc = Math.round((8+visitors*1.2) * (0.5+(s100(w.tech.service)+s100(w.stats.beauty))/200) * jb(w,'bath') * ob(w,'bath')); hr.income+=inc; R.led.bath+=inc; pr.earned+=inc; grow(w,'service',1.5); lewdUp(w, 0.5, BAL.lewd.bath); statXP(w,'stamina',1); statXP(w,'charm',1);
+      const inc = Math.round((8+visitors*1.2) * (0.5+(s100(w.tech.service)+s100(statOf(w,'beauty')))/200) * jb(w,'bath') * ob(w,'bath')); hr.income+=inc; R.led.bath+=inc; pr.earned+=inc; grow(w,'service',1.5); lewdUp(w, 0.5, BAL.lewd.bath); statXP(w,'stamina',1); statXP(w,'charm',1);
       // always offers bathers a massage (no room needed); comfortable enough, she joins them in the water, and may offer more there
       const M = actById('massage_give'), nb = Math.min(J.bathCap, Math.round(bathers / Math.max(1, baths.length)));
       const joins = M && clientStance(w, M.id)==='yes' && w.lewd >= J.bathJoinLewd;
@@ -483,7 +483,7 @@ function simHouse(h, R){
     }
     if(j==='maid'){ const add = (TY.maidBase + s100(w.tech.service)*TY.maidPerSkill) * ob(w,'maid') * jb(w,'maid') * fxMul(w,'tidy') * om; maidAdd += add; pr.tidied = add; grow(w,'service',1.5); statXP(w,'stamina',1.5); }
     if(j==='chapel'){   // tends visitors for free (no services); the chapel draws reputation, popularity and donations (balance.json → amenities.chapel)
-      const C = BAL.amenities.chapel, cb = jb(w,'chapel') * ob(w,'chapel'), don = Math.round(visitors * C.donation * (0.5 + s100(w.stats.charm)/100) * cb * om);
+      const C = BAL.amenities.chapel, cb = jb(w,'chapel') * ob(w,'chapel'), don = Math.round(visitors * C.donation * (0.5 + s100(statOf(w,'charm'))/100) * cb * om);
       hr.income += don; R.led.chapel += don; pr.earned += don; pr.tended = Math.round(visitors); hr.chapel = (hr.chapel||0) + don;
       repAdd(h, C.rep * cb); w.popularity = clamp(w.popularity + C.pop); moodAdd(w, C.mood); gainTrust(w, C.trust); grow(w,'service',1); statXP(w,'charm',1); pr.why.push({t:'tended the chapel', good:true});
     }

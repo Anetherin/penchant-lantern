@@ -22,4 +22,4 @@ Object.entries(charData()).forEach(([k,c])=>Object.entries(c.outfits||{}).forEac
 const WARDROBE = Object.assign({}, BASE_OUTFITS, SHOP_OUTFITS, SIG_OUTFITS);
 const UNDER = WARDROBE_DATA.under;
 const BONUS_LABEL = {maid:'Maid',promoter:'Promoter',attendant:'Attendant',host:'Host',teacher:'Teaching',chapel:'Chapel',bartender:'Bar',propose:'Propositions',security:'Security',adventurer:'Adventurer clients',noble:'Noble clients',merchant:'Merchant clients',commoner:'Commoner clients',dancer:'Dance',bath:'Bath',courtesan:'Courtesan',madame:'Madame'};
-const bonusText = b => Object.entries(b||{}).map(([k,v])=>`${BONUS_LABEL[k]||k} +${Math.round((v-1)*100)}%`).join(', ') || '—';
+const bonusText = (b, st) => Object.entries(b||{}).map(([k,v])=>`${BONUS_LABEL[k]||k} +${Math.round((v-1)*100)}%`).concat(Object.entries(st||{}).filter(([,v])=>v).map(([k,v])=>`${k.charAt(0).toUpperCase()+k.slice(1)} ${v>0?'+':'-'}${Math.abs(Math.round(v*SKL))}`)).join(', ') || '—';

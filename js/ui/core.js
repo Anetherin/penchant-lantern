@@ -32,6 +32,12 @@ function knowsPrefs(w){ return S.sam.appraisal>=3 || w.trust>=40; }
 function grade(v){ return v>=85?'S':v>=70?'A':v>=55?'B':v>=40?'C':v>=25?'D':'E'; }
 // stats and skills run 0-1000; grades use the 0-100 scale
 function sv(w, v, employee){ return knows(w,employee) ? `${Math.round(v)}<span class="muted" style="font-size:.7em">/${statCap()}</span>` : grade(s100(v)); }
+// a stat cell: effective value (trained + race/trait/clothing bonus) and, when known, a small muted +N with the sources in a tooltip
+function statCell(w, k, employee, label){
+  const b = Math.round(statBonus(w, k)), e = statOf(w, k), known = knows(w, employee);
+  const tip = known && b ? ` title="${esc(statBonusTip(w, k))}"` : '';
+  return `<div${tip}><span>${label}</span><b>${sv(w, e, employee)}${known && b ? ` <span class="muted" style="font-size:.7em">${b>0?'+':'-'}${Math.abs(b)}</span>` : ''}</b></div>`;
+}
 const isGuest = w => !!(w && w.key && NAMED[w.key] && NAMED[w.key].role==='drifter');
 const nameBadge = w => isGuest(w) ? `<span class="tag guest" title="Visiting guest${NAMED[w.key].pack && GUEST_PACKS[NAMED[w.key].pack] ? ' · '+esc(GUEST_PACKS[NAMED[w.key].pack].label||NAMED[w.key].pack) : ''}">☄</span>` : (w && w.named ? '<span class="tag">★</span>' : '');
 function traitTags(w){ return (w.reborn?`<span class="tag act" title="${esc(rebornDesc(w))}">♻ Reincarnated${w.reborn>1?' ×'+w.reborn:''}</span> `:'') + (w.unique?`<span class="tag act" title="${esc(w.unique.desc||'')}">★ ${esc(w.unique.name)}</span> `:'') + (w.ngPerks||[]).map(t=>`<span class="tag act" title="${esc(TRAITS[t]?TRAITS[t].desc:'')}">✦ ${esc(t)}</span>`).join(' ') + ' ' + (w.traits||[]).filter(t=>!TRAITS[t]||!TRAITS[t].hidden||S.sam.appraisal>=3).map(t=>`<span class="tag ${TRAITS[t]&&TRAITS[t].hidden?'hid':''} ${TRAITS[t]&&TRAITS[t].story?'act':''}" title="${esc(TRAITS[t]?TRAITS[t].desc:'')}">${esc(t)}</span>`).join(' '); }
@@ -132,7 +138,7 @@ function viewRecruit(){
   const cards = S.candidates.map(c=>`<div class="wcard" style="cursor:default">${avatarHTML(c)}
     <div class="winfo"><div class="wname">${esc(c.name)}${nameBadge(c)}${c.friend?' <span class="tag act">♻ old friend</span>':''}${ARCS[c.key]?' <span class="tag act">♥ story</span>':''}</div>
     <div class="muted">${raceLabel(c)} · ${esc(c.personality)} · Style: ${c.style}</div><div>${traitTags(c)}</div>
-    <div class="sgrid" style="margin:6px 0">${STAT_KEYS.map(k=>`<div><span>${k.slice(0,4).toUpperCase()}</span><b>${sv(c,c.stats[k],false)}</b></div>`).join('')}<div><span>LEWD</span><b>${S.sam.appraisal>=2?lShow(c.lewd):'?'}</b></div><div><span>BEST</span><b>${TECH_LABEL[TECH_KEYS.reduce((a,k)=>c.tech[k]>c.tech[a]?k:a,'service')]}</b></div><div><span>BODY</span><b>${esc(bodyLabel(c))}</b></div></div>
+    <div class="sgrid" style="margin:6px 0">${STAT_KEYS.map(k=>statCell(c,k,false,k.slice(0,4).toUpperCase())).join('')}<div><span>LEWD</span><b>${S.sam.appraisal>=2?lShow(c.lewd):'?'}</b></div><div><span>BEST</span><b>${TECH_LABEL[TECH_KEYS.reduce((a,k)=>c.tech[k]>c.tech[a]?k:a,'service')]}</b></div><div><span>BODY</span><b>${esc(bodyLabel(c))}</b></div></div>
     <div class="row"><span>Wage <b>${fmt(c.wage)}</b>/wk · Signing <b>${fmt(c.signing||0)}</b></span></div>
     ${raceBlock(c, curH())?`<div class="warn">${esc(raceBlock(c, curH()))}</div>`:''}<div class="row"><button class="primary" onclick="hire('${c.id}')" ${raceBlock(c, curH())?'disabled':''}>Hire for ${esc(curH().name)}</button><button onclick="openCand('${c.id}')">Details</button></div></div></div>`).join('');
   return `${houseTabs(false)}<section class="card"><h2>Candidates</h2><p class="muted">New faces arrive each week. Hires join the selected house. Sam's [Appraisal] Lv ${S.sam.appraisal} ${S.sam.appraisal<2?'shows letter grades only.':'shows exact stats.'}</p><div class="grid">${cards||'<span class="muted">Nobody this week.</span>'}</div></section>`;

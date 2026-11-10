@@ -1,7 +1,7 @@
 {
   "_readme": [
     "Traits: desc (shown in tooltips), fx (merged into the effect engine, js/logic/fx.js), plus flags.",
-    "fx vocabulary (only these keys): maxEnergy(add) energyRec(mul) actEnergy(mul) actEnergyBy{service:mul} actQuality{service:mul} actBan[service ids] lustBuild(mul) svcLustBuild(flag: giving services to clients build her lust) lustDrop(mul) lustMax(add) lustFloor(add) recklessAt(add) noReckless(flag) moodDrift(mul) moodDelta(mul) moodLoss(mul, only on negative mood changes) moodRest(add) trustGain(mul) skillGain(mul) statGain(mul) lewdGain(mul) jobBonus{job:mul} clientFee(mul) classBonus{class:mul} appeal(add) propRate(mul) security(add) energyBank(add) wardrobe(add) willing(add) rep(mul) promote(mul) tidy(mul) encore(add) teach(mul: how much she passes on when teaching a class or coaching as madame) learn(mul: how much she picks up from a teacher or the madame).",
+    "fx vocabulary (only these keys): maxEnergy(add) energyRec(mul) actEnergy(mul) actEnergyBy{service:mul} actQuality{service:mul} actBan[service ids] lustBuild(mul) svcLustBuild(flag: giving services to clients build her lust) lustDrop(mul) lustMax(add) lustFloor(add) recklessAt(add) noReckless(flag) moodDrift(mul) moodDelta(mul) moodLoss(mul, only on negative mood changes) moodRest(add) trustGain(mul) skillGain(mul) statGain(mul) lewdGain(mul) jobBonus{job:mul} clientFee(mul) classBonus{class:mul} appeal(add) propRate(mul) security(add) energyBank(add) wardrobe(add) willing(add) rep(mul) promote(mul) tidy(mul) encore(add) stats{stat:add, 0-100 scale; a bonus on top of her trained stats that can exceed the cap} teach(mul: how much she passes on when teaching a class or coaching as madame) learn(mul: how much she picks up from a teacher or the madame).",
     "gen: can be rolled for generic ladies. hidden: not shown until Appraisal Lv 3. story / personal: set by the game, not rolled. excl: traits she can't have together.",
     "earn: lets a lady DEVELOP the trait. {count:'massage', at:40} (w.counts.<key>, e.g. svc, massage, dance, bar, promo, rowdy, rescued, encore, weeksWorked, privateSam, gifts, or svcByAct.<service id>, jobWeeks.<job id>, warm = warm-ups given as a host, hosted = waiting clients entertained as a host, taught = ladies she taught or coached, +1 per lady per week as teacher or madame), {stat:'popularity', at:70} (stats and skills are compared on the 0-100 scale), {trust:90}, {lewd:80}, {weeks:30} (total weeks worked), {job:'dancer', weeks:12}. Checked weekly; once eligible she has earnChance per week to develop it.",
     "ngOnly: generic trait only rolled from cycle 2 (New Game+). ngPerk: offered to carried-over ladies in New Game+. Other agents will expand this catalogue: keep the schema.",
@@ -50,7 +50,7 @@
     },
     "Former Adventurer": {
       "desc": "Strong at security; adventurers love her.",
-      "fx": {"security":20,"classBonus":{"adventurer":1.3}},
+      "fx": {"security":20,"classBonus":{"adventurer":1.3},"stats":{"strength":10}},
       "gen": true,
       "hidden": false,
       "earn": null,
@@ -60,7 +60,7 @@
     },
     "Elegant": {
       "desc": "Nobles pay more for her company.",
-      "fx": {"classBonus":{"noble":1.3}},
+      "fx": {"classBonus":{"noble":1.3},"stats":{"refinement":10}},
       "gen": true,
       "hidden": false,
       "earn": null,
@@ -69,7 +69,16 @@
       "excl": []
     },
     "Lazy": {"desc":"Mood drops faster when overworked.","fx":{},"gen":true,"hidden":false,"earn":null,"ngOnly":false,"ngPerk":false,"excl":[]},
-    "Tough": {"desc":"+20 max energy.","fx":{"maxEnergy":20},"gen":true,"hidden":false,"earn":null,"ngOnly":false,"ngPerk":false,"excl":[]},
+    "Tough": {
+      "desc": "+20 max energy.",
+      "fx": {"maxEnergy":20,"stats":{"stamina":10}},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
     "Romantic": {"desc":"Time with Sam builds trust faster.","fx":{},"gen":true,"hidden":false,"earn":null,"ngOnly":false,"ngPerk":false,"excl":[]},
     "Greedy": {
       "desc": "Gifts and good earnings please her more; expects higher pay.",

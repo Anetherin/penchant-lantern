@@ -2,19 +2,19 @@
 /* =====================================================================
    CHARACTER LOGIC
    ===================================================================== */
-const maxEnergy = w => Math.max(20, Math.round(60 + s100(w.stats.stamina)*0.6 + fxAdd(w,'maxEnergy')));
+const maxEnergy = w => Math.max(20, Math.round(60 + s100(statOf(w,'stamina'))*0.6 + fxAdd(w,'maxEnergy')));
 // energy can be banked above max (energyBank fx); it is simply spent first
 const energyCap = w => maxEnergy(w) + fxAdd(w,'energyBank');
 // Energy per client: depends on the service, her stamina, and how she feels about it.
 function actCost(w, act){
   let c = act ? ((actById(act)||{}).energy || 10) : 5;
-  c *= 1.2 - s100(w.stats.stamina)/250;
+  c *= 1.2 - s100(statOf(w,'stamina'))/250;
   if(act){ if(w.fav===act) c *= 0.75; if(w.dislike===act) c *= 1.35; if(clientStance(w,act)==='ask') c *= 1.25; }
   c *= fxMul(w,'actEnergy') * (act ? fxSub(w,'actEnergyBy',act) : 1);
   return Math.max(1, c);
 }
 const clientCost = w => actCost(w, null) * 1.8;
-const appeal = w => s100(w.stats.beauty)*0.4 + s100(w.stats.charm)*0.3 + w.popularity*0.5 + fxAdd(w,'appeal');
+const appeal = w => s100(statOf(w,'beauty'))*0.4 + s100(statOf(w,'charm'))*0.3 + w.popularity*0.5 + fxAdd(w,'appeal');
 // Lewdness gain with diminishing returns: each source has a cap. Full gain below cap - band, half at the cap, nothing by cap + band.
 function lewdUp(w, n, cap){
   const L = BAL.lewd, c = cap ?? L.softCap, t = Math.max(0, Math.min(1, (c + L.band - w.lewd) / (2*L.band)));
@@ -166,7 +166,7 @@ function defaultCloth(w, scene){
 }
 function wageFor(w){
   if(isFree(w)) return 0;
-  const st = STAT_KEYS.reduce((a,k)=>a+s100(w.stats[k]),0)/6;
+  const st = STAT_KEYS.reduce((a,k)=>a+s100(statOf(w,k)),0)/6;
   const tc = Math.max(...TECH_KEYS.map(k=>s100(w.tech[k]||0)), ...Object.values(w.acts||{}).map(a=>s100(a.skill)*0.8));
   const sd = w.race==='beastkin' ? subData(w.race, w.sub) : null;
   return Math.round((8 + st*0.3 + tc*0.2 + w.popularity*0.3 + (has(w,'Ambitious')?8:0) + (has(w,'Greedy')?6:0)) * ((sd && sd.wage) ?? raceOf(w).wage ?? 1));
@@ -239,12 +239,10 @@ function ensureWorker(w){
 }
 function applyMods(w){
   const R = RACES[w.race], SD = w.race==='beastkin' ? subData(w.race, w.sub) : null;
-  // race and sub mods are on the 0-100 scale; stats and skills run 0-1000
-  [R.mods, SD && SD.mods].forEach(M=>Object.entries(M||{}).forEach(([k,v])=>{ if(k==='lewd') w.lewd += v; else if(w.stats[k]!==undefined) w.stats[k] += v*SKL; }));
-  if(has(w,'Elegant')) w.stats.refinement += 100;
-  if(has(w,'Former Adventurer')){ w.tech.combat += 250; w.stats.strength += 100; }
+  // race and sub stat mods and the Elegant / Former Adventurer / Tough stat boosts are a live bonus now (statBonus, fx.js); only lewdness is added here
+  [R.mods, SD && SD.mods].forEach(M=>{ if(M && M.lewd) w.lewd += M.lewd; });
+  if(has(w,'Former Adventurer')) w.tech.combat += 250;
   if(has(w,'Party Animal')){ w.tech.bar += 100; w.tech.dance += 100; }
-  if(has(w,'Tough')) w.stats.stamina += 100;
   STAT_KEYS.forEach(k=>w.stats[k]=clampK(Math.round(w.stats[k])));
   TECH_KEYS.forEach(k=>w.tech[k]=clampK(Math.round(w.tech[k])));
   w.lewd = clamp(w.lewd);
