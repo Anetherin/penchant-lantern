@@ -206,9 +206,10 @@ function makeClient(h, cls){
 }
 const boozeFactor = X => X && X.barN ? 1 + (X.h.drinks||0) * BAL.clients.boozeDrinks : 0;
 // Combine one key over his traits (X gives the bar for the booze parts): fee/prop/tips/compFee/pushyMult multiply, pushy/rowdy/selfAccept add.
-function cMul(c, key, X){
+// w (optional, for 'fee'): a trait with `cheat` (Cheapskate) loses that share of its fee penalty at her wits 100 (linear), so a sharp lady is cheated less.
+function cMul(c, key, X, w){
   let m = 1; if(!c) return m; const f = boozeFactor(X);
-  c.traits.forEach(t => { if(t[key] != null) m *= t[key]; if(key==='prop' && f && t.booze && t.booze.prop != null) m *= 1 + (t.booze.prop - 1) * f; });
+  c.traits.forEach(t => { if(t[key] != null) m *= (key==='fee' && w && t.cheat && t[key] < 1) ? 1 - (1 - t[key]) * (1 - t.cheat * s100(statOf(w,'wits'))/100) : t[key]; if(key==='prop' && f && t.booze && t.booze.prop != null) m *= 1 + (t.booze.prop - 1) * f; });
   return m;
 }
 function cAdd(c, key, X){

@@ -10,11 +10,12 @@ function actCost(w, act){
   let c = act ? ((actById(act)||{}).energy || 10) : 5;
   c *= 1.2 - s100(statOf(w,'stamina'))/250;
   if(act){ if(w.fav===act) c *= 0.75; if(w.dislike===act) c *= 1.35; if(clientStance(w,act)==='ask') c *= 1.25; }
+  if(act && BAL.svc.staminaEnergy !== false){ const st = (actById(act)||{}).stats; if(st && st.stamina) c *= 1.1 - s100(statOf(w,'stamina'))/500; }
   c *= fxMul(w,'actEnergy') * (act ? fxSub(w,'actEnergyBy',act) : 1);
   return Math.max(1, c);
 }
 const clientCost = w => actCost(w, null) * 1.8;
-const appeal = w => s100(statOf(w,'beauty'))*0.4 + s100(statOf(w,'charm'))*0.3 + w.popularity*0.5 + fxAdd(w,'appeal');
+const appeal = w => s100(statOf(w,'beauty'))*0.4 + s100(statOf(w,'charisma'))*0.2 + s100(statOf(w,'charm'))*0.1 + w.popularity*0.5 + fxAdd(w,'appeal');
 // Lewdness gain with diminishing returns: each source has a cap. Full gain below cap - band, half at the cap, nothing by cap + band.
 function lewdUp(w, n, cap){
   const L = BAL.lewd, c = cap ?? L.softCap, t = Math.max(0, Math.min(1, (c + L.band - w.lewd) / (2*L.band)));

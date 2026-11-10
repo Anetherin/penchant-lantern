@@ -77,4 +77,4 @@
 
 ## Ideas for later
 
-- Stat expansion: spec in `docs/STATS.md` (TODO there: balance pass). Step 1 done: 8 `STAT_KEYS` (+`STAT_SHORT` labels, `STAT_FALLBACK` charisma←charm / wits←refinement for data without them), personality `stats` leans (`persLean`), save v27. Named ladies seeded by `tools/seed-stats.mjs` (sidecar `tools/seeded-stats.json` marks seeded = safe to recompute; review table `tools/stat-review.csv`). Formulas still read the old stats until step 2.
+- Stat expansion: spec in `docs/STATS.md` (TODO there: balance pass). Step 1 done: 8 `STAT_KEYS` (+`STAT_SHORT` labels, `STAT_FALLBACK` charisma←charm / wits←refinement for data without them), personality `stats` leans (`persLean`), save v27. Named ladies seeded by `tools/seed-stats.mjs` (sidecar `tools/seeded-stats.json` marks seeded = safe to recompute; review table `tools/stat-review.csv`). Step 2 done: job formulas, service `stats` (`svcStat`), talk-down (`pushyCheck` → `talked`), agility for dancer/bartender/maid/security, Cheapskate `cheat` vs wits (`cMul(c,key,X,w)`). Next: step 3 (client stat preferences).

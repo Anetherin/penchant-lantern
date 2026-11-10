@@ -3,6 +3,7 @@
     "Service categories, ONE list sorted by tier then th. Add your own by adding an entry with a new id; everyone gets a random skill and comfort level for it (custom ones from Settings merge into the list by their tier).",
     "th = lewdness she needs to enjoy it (trust can stretch her up to 25 below). price = base fee. energy = what it costs her. desc = what the service is, in plain words; the AI prompts get \"label (desc)\" as {service}.",
     "lust = base change to HER lust per client (negative = drop, positive = rises). Only being pleased (receiving services, positions) spends it; giving, kissing and massages build it, scaled by her lewdness: real rise = lust x (0.4 + lewdness/100) x (1.5 if favorite) x (0.6 if disliked) x her lustBuild fx. Drops: lust x client technique x (1.5 fav) x (0.6 disliked) x actQuality fx x her lust profile. finish = the client finishes (demon feeding; she can be left frustrated, but only by services that spend her lust). want = relative odds clients ask for it. kind: give | receive | massage | kiss (receiving services: with Sam he does the work, low Sam energy, big drop in her lust, no demon drain). A lady in the mood (lust >= lust.eager, lewdness >= balance.json svc.askMore.lewd) may ask for more after a service that builds lust: she offers a heavier one from her menu (balance.json svc.askMore).",
+    "stats = optional {stat: weight} (weights sum to 1; stats are beauty, charm, charisma, refinement, wits, stamina, strength, agility): the service stat term (.15) of service quality is her weighted average of those stats; no stats (including custom services) = charm. Receiving services have none (she is not doing the work). If stamina is listed, her energy cost for it is also x (1.1 - stamina/500) (balance.json → svc.staminaEnergy).",
     "dress = {min: dressed|partial|under|nude, fullAt: lewdness she needs before images show her fully undressed}. Services whose min is 'dressed' (kissing, massage) stay dressed until her lewdness reaches fullAt. Older entries with minCloth still work (read as dress.min).",
     "image.client / image.sam / image.duo = pose and framing for client scenes, Sam's first-person scenes, and scenes with two ladies. Each is a list: one is picked at random per image. image.extra is added to every image of this service. Anything starting with TODO is skipped when prompts are built. Every service now has default wording; the receiving ones are written softly, so make them as explicit as you like.",
     "report = lines for the weekly report when a client got this service (one is picked at random; empty falls back to flavor.json client_yes).",
@@ -15,6 +16,7 @@
   "services": [
     {
       "id": "massage_give",
+      "stats": {"strength":0.5,"agility":0.5},
       "label": "Massage (giving)",
       "tier": 1,
       "th": 10,
@@ -44,6 +46,7 @@
     },
     {
       "id": "kiss",
+      "stats": {"charm":1},
       "label": "Kissing",
       "tier": 1,
       "th": 20,
@@ -122,6 +125,7 @@
     },
     {
       "id": "manual_give",
+      "stats": {"agility":1},
       "label": "Manual (giving)",
       "tier": 2,
       "th": 32,
@@ -206,6 +210,7 @@
     },
     {
       "id": "oral_give",
+      "stats": {"stamina":1},
       "label": "Oral (giving)",
       "tier": 2,
       "th": 42,
@@ -234,6 +239,7 @@
     },
     {
       "id": "breast_give",
+      "stats": {"stamina":1},
       "label": "Breast play (giving)",
       "tier": 2,
       "th": 45,
@@ -262,6 +268,7 @@
     },
     {
       "id": "missionary",
+      "stats": {"stamina":1},
       "label": "Missionary",
       "tier": 3,
       "th": 52,
@@ -290,6 +297,7 @@
     },
     {
       "id": "cowgirl",
+      "stats": {"agility":0.5,"stamina":0.5},
       "label": "Cowgirl",
       "tier": 3,
       "th": 56,
@@ -318,6 +326,7 @@
     },
     {
       "id": "doggy",
+      "stats": {"stamina":0.5,"strength":0.5},
       "label": "Doggy",
       "tier": 3,
       "th": 60,

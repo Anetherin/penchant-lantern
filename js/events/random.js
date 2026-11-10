@@ -52,11 +52,11 @@ const TITLE_EVENTS = [
   }},
   {w:1.2, ok:()=>titleFree() && S.week>=8 && anyW(fairOK).length>0, make(){
     S.flags.titleCD = S.week + 10;
-    const w = weighted(anyW(fairOK), x=>x.popularity + s100(statOf(x,'charm'))), fee = 50, V = {name:w.name, gold:fmt(fee)};
+    const w = weighted(anyW(fairOK), x=>x.popularity + s100(statOf(x,'charisma'))), fee = 50, V = {name:w.name, gold:fmt(fee)};
     return {title:ET('title_fair','title',V), who:w.id, scene:evImg('title_fair','casual'), text:ET('title_fair','text',V), choices:[
       {label:ET('title_fair','enter','label',V), fx(){
         if(S.gold < fee) return 'Sam can\'t cover the entry fee.'; S.gold -= fee;
-        const odds = clamp((s100(statOf(w,'charm')) + s100(statOf(w,'beauty')) + w.popularity) / 300 + fxAdd(w,'appeal')/40, 0.15, 0.85);
+        const odds = clamp((s100(statOf(w,'charisma')) + s100(statOf(w,'beauty')) + w.popularity) / 300 + fxAdd(w,'appeal')/40, 0.15, 0.85);
         if(Math.random() < odds){ w.popularity = clamp(w.popularity+6); moodAdd(w, 10); repAdd(houseOf(w), 2); return withTitle(ET('title_fair','enter','win',V), giveTitle(w,'festival')); }
         w.popularity = clamp(w.popularity+2); moodAdd(w, 2); return ET('title_fair','enter','lose',V); }},
       {label:ET('title_fair','skip','label',V), fx(){ return ET('title_fair','skip','res',V); }}]};
@@ -127,7 +127,7 @@ const RANDOM_EVENTS = [
       {label:ET('noble','decline','label',V), fx(){ S.rep=clamp(S.rep-1); return ET('noble','decline','res',V); }}]};
   }},
   {w:2, ok:()=>S.flags.guild>=1 && anyW(w=>w.job!=='rest' && w.energy>=30).length>0, make(){
-    const w = weighted(anyW(x=>x.job!=='rest' && x.energy>=30), x=>s100(statOf(x,'charm'))+x.popularity);
+    const w = weighted(anyW(x=>x.job!=='rest' && x.energy>=30), x=>s100(statOf(x,'charisma'))+x.popularity);
     const pay = Math.round(rnd(120,240) * (1+S.rep/150)), V = {name:w.name, gold:fmt(pay)};
     return {title:ET('guild','title',V), who:w.id, scene:evImg('guild','companion'), text:ET('guild','text',V), choices:[
       {label:ET('guild','send','label',V), fx(){ S.gold+=pay; w.energy=clamp(w.energy-20,0,maxEnergy(w)); w.popularity=clamp(w.popularity+4); moodAdd(w, 5); return ET('guild','send','res',V); }},

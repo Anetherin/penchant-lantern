@@ -36,7 +36,7 @@ All reads go through `statOf()` / `s100()` as now. Weights below are starting po
 | Promoter (week.js:316) | charm + service | **charisma** + service |
 | Noble client fee (week.js:432) | hard-coded refinement | removed; Noble class `stats` preference (§4) covers it |
 | Bartender (week.js:466) | bar + charm | bar + **charisma**; agility adds up to +10% visitors served (`jobs.barAgil`) |
-| Dancer (week.js:467-468) | income: dance; tips: charm | income: dance x (0.6 + **agility**/250); tips: **charisma**; popularity gain +1 at agility ≥ 60 |
+| Dancer (week.js:467-468) | income: dance; tips: charm | income: dance x (0.8 + **agility**/250) (×1.0 at agility 50); tips: **charisma**; popularity gain +1 at agility ≥ 60 |
 | Bath (week.js:472) | service + beauty | unchanged |
 | Chapel (week.js:486) | charm | unchanged (comfort is Charm) |
 | Host warm-up / waiting clients | — | `host.sat` x (0.6 + charm/125) |
@@ -66,7 +66,7 @@ Stat growth (`statXP`, week.js:492-496 and job blocks):
 | Security | agility .5, strength .5 |
 | Maid | agility .3 |
 | Chapel | charm 1 |
-| Bartender | charisma .5 |
+| Bartender | charisma 1.5, agility .3 (was charm 1.5) |
 
 ## 3. Service stats
 
