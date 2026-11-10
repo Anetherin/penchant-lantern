@@ -223,7 +223,30 @@ function traitFits(t, w){
   const L = t.likes; if(!L) return false;
   return (L.races||[]).some(x => x===w.race || x===w.race+':'+w.sub) || (L.traits||[]).some(x => has(w, x)) || (!!L.restless && restless(w));
 }
-const clientDraw = (c, w) => c ? c.traits.reduce((m, t) => traitFits(t, w) ? m * (t.draw ?? 1) : m, 1) : 1;
+// Stat preferences (STATS.md §4): `stats` {stat: weight} on his traits and his class. Score -0.5..1 = weighted average of how far her 0-100 stat sits above 50
+// (a flat 50 = 0). `cls` is the class object or id (regulars have c = null but still carry their class). 0 when nothing is preferred.
+function statPrefScore(c, w, cls){
+  if(typeof cls === 'string') cls = CLASSES.find(x => x.id === cls);
+  let sum = 0, tot = 0;
+  const add = m => { if(!m) return; Object.keys(m).forEach(k => { const wt = m[k]; if(!(wt > 0)) return; sum += wt * clamp((s100(statOf(w,k)) - 50) / 50, -0.5, 1); tot += wt; }); };
+  if(c && c.traits) c.traits.forEach(t => add(t.stats));
+  if(cls) add(cls.stats);
+  return tot ? sum / tot : 0;
+}
+// His satisfaction from stat taste (clients.statPref.sat x score) plus any trait `charmGate` {at, below, above} (charm under `at`: below, else above).
+function cStatSat(c, w, score){
+  let a = BAL.clients.statPref.sat * score;
+  if(c) c.traits.forEach(t => { const g = t.charmGate; if(g) a += s100(statOf(w,'charm')) < g.at ? g.below : g.above; });
+  return a;
+}
+// Draw: trait likes (draw) x stat taste. cls = his class object (so regulars' class taste counts too).
+const clientDraw = (c, w, cls) => (c ? c.traits.reduce((m, t) => traitFits(t, w) ? m * (t.draw ?? 1) : m, 1) : 1) * (1 + BAL.clients.statPref.draw * statPrefScore(c, w, cls || (c && c.cls)));
+// wantStats {stats, mult} on a trait: x that on his chance to ask for a service whose services.json stats include any of them.
+function cWantMul(c, act){
+  let m = 1; if(!c) return m; const st = act && act.stats;
+  c.traits.forEach(t => { const W = t.wantStats; if(W && st && W.stats.some(k => st[k])) m *= W.mult; });
+  return m;
+}
 // Count a client's traits into the house report and the week's average tips multiplier.
 function noteClient(X, c){
   if(!c) return; X.tipN = (X.tipN||0) + 1; X.tipSum = (X.tipSum||0) + cMul(c, 'tips', X);
