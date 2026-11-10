@@ -103,7 +103,7 @@ function workerCard(w, showHouse){
   const wl = knows(w,true) ? lShow(w.lewd) : '?';
   const menu = JOBS[w.job] && (JOBS[w.job].must || w.offDuty==='on') ? (w.menu.length ? w.menu.map(a=>`<span class="tag act">${esc(actLabel(a))}</span>`).join('') : '<span class="muted">No services on menu</span>') : '';
   return `<div class="wcard" onclick="openSheet('${w.id}')">${avatarHTML(w)}
-    <div class="winfo"><div class="wname">${esc(w.name)}${nameBadge(w)}${w.isPartner?' <span class="tag act">♥ Partner</span>':''}${showHouse?` <span class="tag house">${esc(houseOf(w).name)}</span>`:''}</div>
+    <div class="winfo"><div class="wname">${esc(titled(w))}${nameBadge(w)}${w.isPartner?' <span class="tag act">♥ Partner</span>':''}${showHouse?` <span class="tag house">${esc(houseOf(w).name)}</span>`:''}</div>
       <div class="muted">${raceLabel(w)} · ${esc(w.personality)}</div>
       ${bar('Energy',w.energy,maxEnergy(w),'e')}${bar('Mood',w.mood,100,'m')}${knows(w,true)?lustBar(w):''}${w.health<100?bar('Health',w.health,100,'h'):''}
       <div class="row" onclick="event.stopPropagation()"><select onchange="setJob('${w.id}',this.value)">${jobOptions(w)}</select>
@@ -136,7 +136,7 @@ function viewRoster(){
 }
 function viewRecruit(){
   const cards = S.candidates.map(c=>`<div class="wcard" style="cursor:default">${avatarHTML(c)}
-    <div class="winfo"><div class="wname">${esc(c.name)}${nameBadge(c)}${c.friend?' <span class="tag act">♻ old friend</span>':''}${ARCS[c.key]?' <span class="tag act">♥ story</span>':''}</div>
+    <div class="winfo"><div class="wname">${esc(titled(c))}${nameBadge(c)}${c.friend?' <span class="tag act">♻ old friend</span>':''}${ARCS[c.key]?' <span class="tag act">♥ story</span>':''}</div>
     <div class="muted">${raceLabel(c)} · ${esc(c.personality)} · Style: ${c.style}</div><div>${traitTags(c)}</div>
     <div class="sgrid" style="margin:6px 0">${STAT_KEYS.map(k=>statCell(c,k,false,k.slice(0,4).toUpperCase())).join('')}<div><span>LEWD</span><b>${S.sam.appraisal>=2?lShow(c.lewd):'?'}</b></div><div><span>BEST</span><b>${TECH_LABEL[TECH_KEYS.reduce((a,k)=>c.tech[k]>c.tech[a]?k:a,'service')]}</b></div><div><span>BODY</span><b>${esc(bodyLabel(c))}</b></div></div>
     <div class="row"><span>Wage <b>${fmt(c.wage)}</b>/wk · Signing <b>${fmt(c.signing||0)}</b></span></div>

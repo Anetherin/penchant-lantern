@@ -44,7 +44,7 @@ function refreshSheetInfo(){
   const o = getOutfit(w), u = getUnder(w);
   const anySam = getActs().some(a=>canSam(w,a.id));
   const arcTxt = ARCS[w.key] ? `<div class="pink">♥ Story: ${(w.arc||0)>=ARCS[w.key].length ? 'Lovers' : `chapter ${w.arc||0}/${ARCS[w.key].length}${(w.arc||0)<ARCS[w.key].length?` <span class="muted">(next: ${ARCS[w.key][w.arc||0].title})</span>`:''}`}${!w.arc&&w.trust<BAL.arcs.need[0]?` <span class="muted">(begins once she trusts Sam: ${tShow(BAL.arcs.need[0])})</span>`:''}</div>` : '';
-  box.innerHTML = `<div class="status"><h3>[ STATUS ] ${esc(w.name)}</h3>
+  box.innerHTML = `<div class="status"><h3>[ STATUS ] ${esc(titled(w))}</h3>
     <div class="muted">${raceLabel(w)} · Age ${w.age} · ${esc(w.personality)} · Style: ${w.style} · ♥ ${sw(w.favColor)}${w.favColor}</div>
     <p class="story" style="margin:6px 0" id="bs_${w.id}">${esc(w.backstory)}</p>${SET.ai.on&&!w.named?`<button class="sm" onclick="if(confirm('Replace her backstory with a new AI-written one?'))aiBackstory('bs_${w.id}','${w.id}')">✨ Rewrite backstory</button>`:''}<div>${traitTags(w)}</div>${arcTxt}${firstsLine(w)}${(()=>{ if(!S.workers.includes(w)) return ''; seedBonds(); const bl = bondLines(w); return bl.length ? `<div class="muted">🤝 ${bl.map(esc).join(' · ')}</div>` : ''; })()}
     <div class="muted">Body: ${esc(bodyLabel(w))}${w.unique?` · <span class="pink" title="${esc(w.unique.desc||'')}">★ ${esc(w.unique.name)}</span>`:''}</div>

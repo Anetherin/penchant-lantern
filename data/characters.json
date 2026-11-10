@@ -2,6 +2,7 @@
   "_readme": [
     "Named characters. The key (e.g. \"mira\") is her id; keep it lowercase with no spaces.",
     "role: house (comes with a house; the house in js/data/economy.js names her as npc), partner (starter choice, later shows up looking for work), story (joins through a house story), guild (Adventurers Guild), drifter (no strings: turns up among candidates now and then). Crossover guests live in data/guests.json instead.",
+    "name is her actual name only (first + family name, as she would be addressed by friends). title (optional) is an honorific or rank like Lady, Dame, Captain, Professor or Princess: shown in front of her name on cards and her sheet (titled(w)) and given to the AI as {title}/{fullname}, but never part of the name.",
     "personality must match a key in personalities.json. traits from the trait list (Shy, Eager, Ambitious, Party Animal, Former Adventurer, Elegant, Lazy, Tough, Romantic, Greedy, Loyal, Exhibitionist, Night Owl, Modest).",
     "fav / dislike / lovers: service ids from services.json (lovers = what she enjoys only with Sam once she is his lover), or null.",
     "partnerTrust / partnerLewd / partnerStory: only for partners. backstory is shown on her sheet.",
@@ -160,7 +161,8 @@
   "vesper": {
     "role": "house",
     "job": "courtesan",
-    "name": "Lady Vesper",
+    "title": "Lady",
+    "name": "Vesper",
     "race": "spirit",
     "age": 312,
     "personality": "Mysterious and aloof",
@@ -705,7 +707,8 @@
   "adelheid": {
     "role": "partner",
     "job": "security",
-    "name": "Dame Adelheid Valk",
+    "title": "Dame",
+    "name": "Adelheid Valk",
     "race": "human",
     "age": 28,
     "personality": "Proud and sharp-tongued",
@@ -1554,7 +1557,8 @@
   "seraphine": {
     "role": "story",
     "job": "courtesan",
-    "name": "Lady Seraphine Rosenhal",
+    "title": "Lady",
+    "name": "Seraphine Rosenhal",
     "race": "human",
     "age": 27,
     "personality": "Proud and sharp-tongued",
@@ -1601,7 +1605,8 @@
   "ilyana": {
     "role": "story",
     "job": "madame",
-    "name": "Lady Ilyana Silverbough",
+    "title": "Lady",
+    "name": "Ilyana Silverbough",
     "race": "elf",
     "age": 260,
     "personality": "Calm and elegant",
@@ -1822,7 +1827,8 @@
   "rinna": {
     "role": "house",
     "job": "bartender",
-    "name": "Captain Rinna Galewright",
+    "title": "Captain",
+    "name": "Rinna Galewright",
     "race": "beastkin",
     "sub": "dragon",
     "age": 142,

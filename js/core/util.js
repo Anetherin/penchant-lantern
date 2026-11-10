@@ -29,6 +29,8 @@ const SKL = 10; const s100 = v => (v||0)/SKL;
 const statCap = () => { const C = (typeof BAL!=='undefined' && BAL.ngplus && BAL.ngplus.cap) || {base:1000, perCycle:100}; return C.base + C.perCycle*Math.max(0, ((typeof S!=='undefined' && S && S.cycle)||1) - 1); };
 const samCap = () => statCap()/SKL, growDen = () => statCap() + 300;
 const clampK = v => Math.max(0, Math.min(statCap(), v));
+// A title (Lady, Dame, Captain, Professor...) is never part of the name: w.name is her name, w.title goes in front where she's shown formally.
+const titled = o => o ? ((o.title ? o.title + ' ' : '') + (o.name || '')) : '';
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fmt = n => Math.round(n).toLocaleString() + 'g';
 const uid = () => 'w' + Date.now().toString(36) + Math.random().toString(36).slice(2,7);

@@ -48,6 +48,9 @@
 - Bars (`bar()`) fill to HER max (`lustBar`; trust is `trustCell`). Bath scenes (`bath:true`) use the house bathhouse if built; only `bath:true` outfits stay on. `undress` on a scene sets invitation dress level.
   AI text `{outcome}` comes from `aiOutcome()` + ai-prompts.json → outcomes (finish / satisfied / frustrated / demon feed & drain).
 - Save format migrations live in `migrate()` (`js/logic/state.js`); bump `S.v` when changing save shape.
+- Titles: `w.name` is only her name; an honorific/rank (Lady, Dame, Captain, Professor, Princess) lives in `title` (characters/guests.json, creator field, `w.title`).
+  Show it with `titled(w)` (util.js) on cards, her sheet and pick lists; plain `w.name` everywhere else (logs, events, first names via `name.split(' ')[0]`).
+  AI templates get `{title}` and `{fullname}` (used where a template first introduces her). Save v25: `migrateWorker` splits old baked-in titles off named ladies.
 - After changes: `node tools/build.mjs && node tools/smoke.mjs 30` (Playwright; `CHROME=` for a custom browser).
 - Lewdness gains go through `lewdUp(w, n, cap)` (`balance.json` → `lewd`; diminishing returns per source). Dates (`dates.json`): stats/skills/sam/pop/lust/lewdCap/gift/trinket/needsIntim/special/spicy (see its `_readme`); chat is a date, the 60g Gift action is gone (shopping + wardrobe gifts count as gifts). Spicy date variants go only through `canSam`/`privateCore` (`samSpicy` in `js/logic/sam.js`).
 - Late-game pressure: `clients.pickFrom/pickPer` lower client satisfaction at high reputation; `quarters` (`housingShort(h)` in character.js) costs staff mood when beds/bedroom tier lag the house's fame. Romance arc trust/gap/extras are in `balance.json → arcs`.
@@ -70,5 +73,7 @@
 - Stat bonus layer (`statBonus/statBonusParts/statOf` in `js/logic/fx.js`): `w.stats` is her TRAINED base (clampK-capped, grown by `statXP`, reset by NG+). Race/beastkin-sub `mods` (races.json, except `lewd`, which is still added at creation), `fx.stats` (traits, perks, body, unique; the Elegant/Former Adventurer/Tough boosts live there) and the `stats` on her worn outfit and underwear are a live bonus on top (0-100 x `SKL`), computed on the fly, never stored, and may exceed `statCap()`. Every gameplay read of a stat (formulas, checks, earn conditions) must go through `statOf(w,k)`; raw `w.stats` stays only in growth, creation, NG+ resets, migrations and the creator. `statBonusParts` feeds the "+N" tooltip on the sheet/candidate cards (`statCell` in ui/core.js). Save v24 subtracted the old baked mods from generic ladies (`!w.key`).
 
 ## Ideas for later
+
+- Titles: ways to earn them in play (e.g. Madame after a long run as madame, Dame from a chapel/knightly arc, Captain from guard work, a noble title from a house story or a patron) and small bonuses per title (fx entries, e.g. +noble client draw for Lady, +security for Captain, +teaching for Professor). Needs a title table in data (label + fx + how it's earned) and the fx engine to merge `w.title`'s effects.
 
 - Possible new stats: Wits (learning, teaching, madame coaching; Refinement stands in for now) and Empathy (attending, hosting, chapel, madame; Hospitality + Charm stand in for now). Adding one means a value for every named lady, the creator, the sheet, prompts if relevant, and a save migration.

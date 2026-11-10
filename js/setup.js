@@ -28,13 +28,13 @@ function setupView(){
         <b>${D.name}</b> <span class="tag house">${D.loc}</span><div class="muted">${D.desc}</div>
         <div style="margin-top:4px">Debt <b>${fmt(D.debt)}</b> · Rooms ${D.rooms} (${ROOM_NAMES[D.tier]}) ${Object.keys(D.up).map(u=>`<span class="tag">${UPGRADES[u].label}</span>`).join('')}</div>
         <div class="muted">Clientele: ${TIERS.map((t,i)=>D.cls[i]>=1.3?`<b>${TIER_LABEL(t)}s ↑</b>`:D.cls[i]<=0.5?`${TIER_LABEL(t)}s ↓`:'').filter(Boolean).join(', ')||'balanced'}</div>
-        <div class="row" style="margin-top:6px">${miniAvatar(D.npc)}<div><b>${n.name}</b> · ${JOBS[n.job].label}<div class="muted">${esc(n.personality)}</div></div></div>${previewBtn(D.npc)}</div>`; }).join('')}</div>
+        <div class="row" style="margin-top:6px">${miniAvatar(D.npc)}<div><b>${esc(titled(n))}</b> · ${JOBS[n.job].label}<div class="muted">${esc(n.personality)}</div></div></div>${previewBtn(D.npc)}</div>`; }).join('')}</div>
 `;
     ok = !!SETUP.house;
   } else if(st===2){
     body = `<h2>Who's at Sam's side?</h2><p class="muted">Your partner works without wages and already trusts Sam. Each has her own romance story. The others may turn up later looking for paid work.</p>
       <div class="grid">${PARTNERS.filter(partnerOffered).map(k=>{ const n=NAMED[k]; return `<div class="pick ${SETUP.partner===k?'sel':''}" onclick="setupPick('partner','${k}')">
-        <div class="row">${miniAvatar(k)}<div><b>${n.name}</b> <span class="muted">${RACES[n.race].label}${n.sub?' ('+n.sub+')':''} · ${esc(n.personality)}</span><div class="muted">Trust ${tShow(n.partnerTrust)} · Lewdness ${lShow(n.partnerLewd??n.lewd)} · ${JOBS[n.job].label} · ${n.traits.join(', ')}</div></div></div>
+        <div class="row">${miniAvatar(k)}<div><b>${esc(titled(n))}</b> <span class="muted">${RACES[n.race].label}${n.sub?' ('+n.sub+')':''} · ${esc(n.personality)}</span><div class="muted">Trust ${tShow(n.partnerTrust)} · Lewdness ${lShow(n.partnerLewd??n.lewd)} · ${JOBS[n.job].label} · ${n.traits.join(', ')}</div></div></div>
         <div style="margin-top:4px">${esc(n.partnerStory)}</div>${previewBtn(k)}</div>`; }).join('')}</div>`;
     ok = !!SETUP.partner;
   } else {
