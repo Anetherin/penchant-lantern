@@ -9,7 +9,7 @@
   ],
   "kaede": [
     {
-      "title": "Opening Up",
+      "title": "Two Stolen Bottles",
       "scene": "sam_date",
       "text": "Kaede drags Sam onto the roof with two stolen bottles of wine. \"Back in my party, nobody ever had my back. Then this skinny guy in a hoodie jumps in front of a goblin for me.\" She bumps his shoulder. \"Idiot.\" She doesn't move away.",
       "choices": [
@@ -47,7 +47,7 @@
       }
     },
     {
-      "title": "Getting Closer",
+      "title": "Tail Says Otherwise",
       "scene": "casual",
       "text": "Kaede shows up at Sam's door with a bandaged hand and a grin, from sparring \"for fun.\" While he patches her up, her tail keeps brushing his arm. Neither of them mentions it.",
       "choices": [
@@ -106,7 +106,7 @@
       }
     },
     {
-      "title": "Together",
+      "title": "Copper Fox, Kept",
       "scene": "final",
       "text": "After closing, Kaede corners Sam in the kitchen. \"I'm bad at this, so I'll just say it. I'm not going anywhere. Not for the money. For you.\" Her ears are bright red. She takes his hand and leads him upstairs, and the door closes behind them.",
       "choices": [
@@ -117,7 +117,7 @@
   ],
   "yui": [
     {
-      "title": "Opening Up",
+      "title": "Almost Coffee",
       "scene": "sam_date",
       "text": "Yui finds Sam on the back steps with two cups of something that is almost, but not quite, coffee. They talk about home for hours: trains, convenience stores, the vending machine on the 4th floor. She cries a little. So does he.",
       "choices": [
@@ -151,7 +151,7 @@
       }
     },
     {
-      "title": "Getting Closer",
+      "title": "Instant Ramen, Reconstructed",
       "scene": "casual",
       "text": "Yui reveals she's been \"recreating\" instant ramen in the kitchen for a month. It is terrible. They eat all of it. \"Remember when you covered my shift that time?\" she asks. \"I liked you before the truck, you know.\"",
       "choices": [
@@ -195,7 +195,7 @@
       }
     },
     {
-      "title": "Together",
+      "title": "Second Chance",
       "scene": "final",
       "text": "Yui takes Sam's hand under the table during the staff meeting and doesn't let go. Afterward, in the empty office: \"Second life. Second chance. I'm not wasting this one being shy.\" She kisses him, and pulls him toward her room.",
       "choices": [
@@ -206,7 +206,7 @@
   ],
   "nerys": [
     {
-      "title": "Opening Up",
+      "title": "Inconvenient Feelings",
       "scene": "sam_date",
       "text": "Nerys complains, at length, that the contract makes her feel it when Sam is sad. \"It's very inconvenient. Stop being sad.\" She sits next to him until he isn't.",
       "choices": [
@@ -241,7 +241,7 @@
       }
     },
     {
-      "title": "Getting Closer",
+      "title": "Research Material",
       "scene": "casual",
       "text": "Sam finds Nerys reading a romance novel in the lounge. She hides it in a panic, then throws a pillow at him. Later he finds it on his bed with a page dog-eared and a note: \"For research.\"",
       "choices": [
@@ -294,7 +294,7 @@
       }
     },
     {
-      "title": "Together",
+      "title": "Clause Kept",
       "scene": "final",
       "text": "A demon scholar offers to dissolve the contract. Nerys tears up his paperwork in front of him. \"I'll keep it,\" she tells Sam afterward, looking anywhere but at him. \"I've grown... attached.\" Then she looks at him, and stops pretending.",
       "choices": [
@@ -305,7 +305,7 @@
   ],
   "elowen": [
     {
-      "title": "Opening Up",
+      "title": "Bedside Manner",
       "scene": "sam_date",
       "text": "Elowen insists on a \"check-up\" and spends most of it nervously talking about herbs. At the end she admits she's never been this far from home, and that Sam makes it feel less far.",
       "choices": [
@@ -341,7 +341,7 @@
       }
     },
     {
-      "title": "Getting Closer",
+      "title": "Flower Crowns",
       "scene": "casual",
       "text": "They go flower-picking outside the walls \"for medicine.\" Elowen makes him a flower crown. He makes a terrible one back. She wears it all day.",
       "choices": [
@@ -397,7 +397,7 @@
       }
     },
     {
-      "title": "Together",
+      "title": "Long-Lived",
       "scene": "final",
       "text": "Elowen kisses Sam first, very quickly, then hides her face in his shirt. \"Elves live a long time,\" she mumbles. \"I'd like to spend some of it with you.\" She doesn't let go of his hand all the way to her room.",
       "choices": [
@@ -408,7 +408,7 @@
   ],
   "adelheid": [
     {
-      "title": "Opening Up",
+      "title": "Poison Taster",
       "scene": "sam_date",
       "text": "Adelheid insists on tasting all of Sam's food for poison. Every meal. She eventually admits she has started looking forward to dinner time.",
       "choices": [
@@ -437,7 +437,7 @@
       }
     },
     {
-      "title": "Getting Closer",
+      "title": "Knight and Her Lord",
       "scene": "casual",
       "text": "Sam finds Adelheid's secret stash of romance novels. Every one is about a knight and her lord. She threatens him with her sword. Then asks, very quietly, if he's read the third one.",
       "choices": [
@@ -486,7 +486,7 @@
       ]
     },
     {
-      "title": "Together",
+      "title": "The Amended Oath",
       "scene": "final",
       "text": "Adelheid kneels to renew her oath, then stays kneeling. \"My oath was to serve you. I would like to amend it.\" She takes his hand. \"To stand beside you.\" She rises, and doesn't let go.",
       "choices": [
@@ -497,7 +497,7 @@
   ],
   "marisol": [
     {
-      "title": "Opening Up",
+      "title": "Margin Notes",
       "scene": "sam_date",
       "text": "Marisol shows Sam her father's old ledgers and her own corrections in the margins, years of them. \"He never listened. You actually do.\" It sounds like an accusation. It isn't.",
       "choices": [
@@ -526,7 +526,7 @@
       }
     },
     {
-      "title": "Getting Closer",
+      "title": "House Rules",
       "scene": "casual",
       "text": "Marisol beats Sam at cards four times in a row, then lets him win once, badly. \"I wanted to see your face,\" she says, and laughs until she can't breathe.",
       "choices": [
@@ -577,7 +577,7 @@
       }
     },
     {
-      "title": "Together",
+      "title": "A New Deed",
       "scene": "final",
       "text": "Marisol tears the old deed in half and writes a new one with both their names. \"Partners,\" she says. \"In every sense. Don't make me say it twice.\" Then she kisses him, and says nothing else for a long while.",
       "choices": [
@@ -588,7 +588,7 @@
   ],
   "natsuki": [
     {
-      "title": "Opening Up",
+      "title": "Scars and Bets",
       "scene": "sam_date",
       "text": "Natsuki shows Sam the scar she got her first week here, three years ago, alone. \"I kept thinking: if Sam were here, he'd do something dumb and it'd somehow be fine.\" She laughs. \"Then you showed up and did something dumb.\"",
       "choices": [
@@ -614,7 +614,7 @@
       }
     },
     {
-      "title": "Getting Closer",
+      "title": "Almost Taiyaki",
       "scene": "casual",
       "text": "They find a stall selling something almost like taiyaki. Natsuki buys ten. Halfway through the fifth she goes quiet. \"Back home I always figured I'd end up with you someday. Dumb, right?\" She doesn't look at him.",
       "choices": [
@@ -659,7 +659,7 @@
       }
     },
     {
-      "title": "Together",
+      "title": "Door Kicked In",
       "scene": "final",
       "text": "Natsuki kicks Sam's door open at dawn, red-faced, sword still on her hip. \"I spent three years here thinking I'd never see you again. I'm not wasting another day.\" She kicks the door shut behind her.",
       "choices": [
@@ -670,7 +670,7 @@
   ],
   "kanako": [
     {
-      "title": "Opening Up",
+      "title": "Sammy",
       "scene": "sam_date",
       "text": "Kanako ruffles Sam's hair and calls him \"Sammy\" in front of the whole staff. Again. Later she finds him on the back steps. \"You've grown up a lot, haven't you? When did that happen?\"",
       "choices": [
@@ -695,7 +695,7 @@
       }
     },
     {
-      "title": "Getting Closer",
+      "title": "Since When",
       "scene": "casual",
       "text": "A drunk client gets grabby with Kanako and Sam steps in without thinking. Afterward she's quiet for a long time. \"Since when do you protect me?\" She doesn't ruffle his hair. She just looks at him, like she's seeing him for the first time.",
       "choices": [
@@ -743,7 +743,7 @@
       }
     },
     {
-      "title": "Together",
+      "title": "Not the Boy Next Door",
       "scene": "final",
       "text": "Kanako corners Sam in the kitchen, flustered for once in her life. \"I spent six years telling myself you were the boy next door. You're not. You haven't been for a long time.\" She kisses him, laughs at her own blush, and kisses him again.",
       "choices": [
@@ -754,7 +754,7 @@
   ],
   "akari": [
     {
-      "title": "Opening Up",
+      "title": "The Umbrella",
       "scene": "sam_date",
       "text": "Akari admits she'd been a few steps behind Sam and Kenta at the crosswalk that day, with an umbrella she didn't need in her bag. \"Just walking by,\" she says, too quickly. Then, in a smaller voice: \"Kenta stopped to tie his shoe. He's fine. He's definitely fine.\" She looks at Sam as if daring him to disagree.",
       "choices": [
@@ -794,7 +794,7 @@
       }
     },
     {
-      "title": "Getting Closer",
+      "title": "Game Night",
       "scene": "casual",
       "text": "Akari organizes a staff \"game night,\" with a card game she half remembers from Kenta's apartment and invents the rest of as she goes. She wins. Loudly. Halfway through she realizes Sam has been quietly feeding her the right cards for an hour, and goes completely silent. \"You always did that,\" she says. \"I thought I was imagining it.\"",
       "choices": [
@@ -834,7 +834,7 @@
       "image": {"comp":"running dramatically through the rain toward him holding an umbrella","setting":"lantern-lit street in the rain","sam":true}
     },
     {
-      "title": "Together",
+      "title": "Not Kenta's Sister",
       "scene": "final",
       "text": "Akari climbs onto the roof where Sam is hiding from paperwork. \"I've had a crush on you for years, and I'm done keeping it to myself. I'm not Kenta's sister up here. I'm a grown woman and I know what I want. It's you.\" This time, Sam doesn't climb down.",
       "choices": [
@@ -845,7 +845,7 @@
   ],
   "lara": [
     {
-      "title": "Opening Up",
+      "title": "The Step Below",
       "scene": "sam_date",
       "text": "Lara finds Sam on the back steps after close and sits one step below him, knees together, hands in her lap. She tells him how she tracked the rumors of a stranger in a hoodie across three provinces, sleeping in stables and chapels. \"I couldn't stay anywhere you weren't,\" she says. \"I know that's not healthy. I know.\" She is looking at his boots, not his face.",
       "choices": [
@@ -896,7 +896,7 @@
       }
     },
     {
-      "title": "Getting Closer",
+      "title": "A Lamp in the Window",
       "scene": "casual",
       "text": "When Sam is out, Lara leaves a lamp lit in the courtyard window. Tonight he's out very late. When he returns, she's under the lamp with a shawl and a book she hasn't turned a page of. \"I wasn't waiting,\" she says. \"I was keeping it warm.\"",
       "choices": [
@@ -966,7 +966,7 @@
       }
     },
     {
-      "title": "Together",
+      "title": "Being Left",
       "scene": "final",
       "text": "On the roof, under a clear sky, Lara says it slowly. \"I used to think loving someone meant never being left. I think it's closer to... being able to be left, and still be me.\" She takes a breath. \"I want you because I choose you. Not because I'm afraid.\" She kisses him, and for the first time in her life she is the one who leads him inside, and the door closes behind them.",
       "choices": [
@@ -1102,7 +1102,7 @@
       }
     },
     {
-      "title": "Together",
+      "title": "More Than a Username",
       "scene": "final",
       "text": "Emily stops in the doorway of Sam's room, notebook hugged to her chest. \"For six years you were a username,\" she says. \"My favorite one. I never wanted more than that, and then I got a whole person, and it turns out I do.\" She is trembling, ears flat, tail wrapped around her own ankle. \"I'm bad at saying things out loud. So, short version.\" She takes his hand. \"Stay online.\" The door closes behind them.",
       "choices": [
@@ -1113,7 +1113,7 @@
   ],
   "lirael": [
     {
-      "title": "Opening Up",
+      "title": "Whoever Finds This",
       "scene": "sam_date",
       "text": "Lirael meets Sam at the old postbox in the alley after close. She takes a yellowed letter from her satchel: the very first one, addressed to \"Whoever finds this.\" She reads it aloud, in a voice that trembles at the end. \"I never thought anyone would write back.\" Her long ears are drooping. \"And then you did.\"",
       "choices": [
@@ -1170,7 +1170,7 @@
       }
     },
     {
-      "title": "Getting Closer",
+      "title": "Notes Across the Sofa",
       "scene": "casual",
       "text": "They fall into an easy habit: sitting at opposite ends of the lounge sofa, writing each other notes instead of talking, passing them across with their feet. It is a ridiculous, wonderful way to flirt. Lirael's replies grow longer every night. Tonight's has a P.S. in very small letters.",
       "choices": [
@@ -1234,7 +1234,7 @@
       }
     },
     {
-      "title": "Together",
+      "title": "Meeting the Man",
       "scene": "final",
       "text": "Lirael puts down her satchel in the doorway of Sam's room. \"For ten years I wrote to a name,\" she says. \"I'd like to meet the man.\" She is trembling, ears dipping, one foot wrapped around her own ankle. \"I'm not good at saying things out loud. So I'll say the short version.\" She takes his hand. \"Stay.\" The door closes behind them.",
       "choices": [
@@ -1245,7 +1245,7 @@
   ],
   "ella": [
     {
-      "title": "Opening Up",
+      "title": "Dinner Is a Competition",
       "scene": "sam_date",
       "text": "Ella challenges Sam to dinner as a competition: whoever orders the better meal wins. Over the second course she puts down her fork. \"I was across the street. I saw the truck. For three years I've told myself I'd never speak of it.\" Her hand is steady on the glass, but her knuckles are white. \"I'm speaking of it now. Because you're here. Because I can.\"",
       "choices": [
@@ -1304,7 +1304,7 @@
       }
     },
     {
-      "title": "Getting Closer",
+      "title": "The Leaderboard",
       "scene": "casual",
       "text": "Ella turns the staff's daily chores into a points tournament with a leaderboard, prizes and an appeals process. Morale in the house triples. She has also, without telling anyone, assigned Sam a score of her own: a secret column in her notebook headed Observations. She is only caught when it falls out of her apron.",
       "choices": [
@@ -1372,7 +1372,7 @@
       }
     },
     {
-      "title": "Together",
+      "title": "First Place",
       "scene": "final",
       "text": "Ella stops him on the stairs. \"I have been second to you for years, and I have never minded. Don't tell anyone.\" She takes the pencil out of her hair, lets it fall down around her shoulders, and meets his eyes. \"I'm not competing anymore. I'd like to be on your side of the board.\" She kisses him, decisively, as if it were the winning move.",
       "choices": [
@@ -1383,7 +1383,7 @@
   ],
   "ione": [
     {
-      "title": "Opening Up",
+      "title": "Three Questions",
       "scene": "sam_date",
       "text": "Ione brings Sam tea on the back steps, exactly how he takes it. \"I will answer any question you ask,\" she says, \"except three. I won't tell you where I came from, how I came, or how the story ends.\" She sits with perfect posture and a faint hum. \"The rest is yours.\" Sam asks her what she likes. She is quiet for so long he thinks she's frozen. \"Nobody has asked me that before,\" she says.",
       "choices": [
@@ -1439,7 +1439,7 @@
       }
     },
     {
-      "title": "Getting Closer",
+      "title": "Joke Protocol",
       "scene": "casual",
       "text": "Ione has been practicing jokes. They're from a list in her memory, delivered with flawless timing and no comprehension at all. Tonight she tells one about a priest and a goblin and a barrel, and the punchline lands with a perfect, silent thud. She watches Sam's face. \"I think,\" she says, \"that was funnier in the archive.\"",
       "choices": [
@@ -1512,7 +1512,7 @@
       }
     },
     {
-      "title": "Together",
+      "title": "The Last Page",
       "scene": "final",
       "text": "Ione hands Sam the diary, closed, with a ribbon marking the last page. \"I came to read the ending,\" she says. \"I opened it on the road. The last page was blank.\" Her light is steady gold. \"I have decided that means the ending isn't written. I would like to help write it.\" She takes his hand. \"With you.\" It isn't in any archive. The door closes behind them.",
       "choices": [
@@ -1523,7 +1523,7 @@
   ],
   "anael": [
     {
-      "title": "Opening Up",
+      "title": "Lamplighter",
       "scene": "sam_date",
       "text": "At dusk Anael walks the street with Sam, lighting lanterns with a touch of her fingers. She tells him, plainly, that the old Lantern Stone burned for the first time in four centuries on the night he arrived, and that the Order sent her to find out why. \"I have concluded,\" she says, \"that it was you.\" Sam says that's absurd. \"I know,\" says Anael, with a small, helpless smile. \"I have run out of other explanations.\"",
       "choices": [
@@ -1581,7 +1581,7 @@
       }
     },
     {
-      "title": "Getting Closer",
+      "title": "Field Research: Pie",
       "scene": "casual",
       "text": "Anael has decided to try human food in the name of research. She approaches a slice of berry pie as if it might be a trap. After the first bite she goes completely still. After the second, her halo flickers. After the third, she looks Sam directly in the eye. \"This changes my understanding of mortality,\" she says gravely. \"Please do not tell the Order I enjoyed it so much.\"",
       "choices": [
@@ -1644,7 +1644,7 @@
       }
     },
     {
-      "title": "Together",
+      "title": "Report Withheld",
       "scene": "final",
       "text": "Anael finds Sam on the roof under the stars. She opens her wings and then folds them around both of them. \"I have been asked to report on whether this soul is a danger to the world,\" she says. \"I find that he is a danger only to my composure.\" She meets his eyes, golden and brave. \"I would like to stay. Not as a Warden. As yourself.\" The door closes behind them.",
       "choices": [
