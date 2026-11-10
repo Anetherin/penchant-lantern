@@ -3955,7 +3955,7 @@ function checkEnd(){
     modal(`<h2>Game Over</h2><p class="story">The Credit House takes the deeds. Sam is out on the street with a hoodie, a status window, and a lot of feelings.\n\nYou lasted ${S.week-1} weeks.</p><div class="row"><button class="primary" onclick="restart()">New game</button></div>`, {lock:true});
   } else if(S.debt.remaining<=0 && !S.won){
     S.won = true; save();
-    modal(`<h2>Debt Paid! 🎉</h2><p class="story">Marguerite Vane stamps the final receipt. "Paid in full. I confess, Mr. Takahashi, I had money on you failing." She almost smiles.\n\nEverything you've built is yours, free and clear.\n\nNew Game+ is now unlocked: keep ${HOUSES[homeHouse()].name}, your partner and your progress, and take on a second house with a bigger debt. You can start it now or any time later from the top bar.</p><div class="row"><button onclick="closeModal()">Keep playing</button><button class="primary" onclick="startNGPlus()">New Game+…</button></div>`);
+    modal(`<h2>Debt Paid! 🎉</h2><p class="story">Marguerite Vane stamps the final receipt. "Paid in full. I confess, Mr. Takahashi, I had money on you failing." She almost smiles.\n\nEverything you've built is yours, free and clear.\n\nNew Game+ is now unlocked: keep ${HOUSES[homeHouse()].name}, your partner and your progress, and take on a second house with a bigger debt. You can start it now or any time later from the top bar.</p><div class="row"><button onclick="closeModal()">Keep playing</button><button onclick="exportBox('ngplus')" title="Only what New Game+ carries; load it any time to start the next cycle again">Export NG+ save</button><button class="primary" onclick="startNGPlus()">New Game+…</button></div>`);
   }
 }
 function restart(){ store.del(KEY_SAVE); EVQ=[]; S=null; closeModal(); TAB='house'; startSetup(); }
@@ -3983,6 +3983,7 @@ function setupView(){
   let body = '', ok = false;
   if(st===0){
     body = `<h2>Who was Sam, before the truck?</h2><div class="grid">${Object.entries(PASTS).map(([k,p])=>`<div class="pick ${SETUP.past===k?'sel':''}" onclick="setupPick('past','${k}')"><b>${p.label}</b><div class="muted">${p.desc}</div></div>`).join('')}</div>`;
+    body += `<div class="row muted" style="margin-top:10px">Have a save (or an NG+ save) from somewhere else? <button class="sm" onclick="importSaveFile()">Load save file</button><button class="sm" onclick="importBox('save')">Paste save</button></div>`;
     ok = !!SETUP.past;
   } else if(st===1){
     body = `<h2>Which deed is in Sam's hand?</h2><p class="muted">Each house has its own clientele, debt, features, resident, and storyline. You can buy the others later, and premium houses unlock as Sam's level and renown grow.</p>
@@ -4070,6 +4071,23 @@ function ngNumbers(boon, house){
   const sold = S.houses.filter(h=>!keptHouse(h)), sale = Math.round(sold.reduce((a,h)=>a + HOUSES[h.id].cost*B.saleValue, 0));   // surrendered houses reduce the debt; no gold changes hands
   const purse = B.purse + (boon==='purse' ? 2500 : 0);   // savings stay behind
   return {gross:debt, debt:Math.max(0, debt - sale), house:Math.round(nh), base:Math.round(base), impr, extra:Math.round(extra), sold, sale, purse, cycle: cyc};
+}
+// NG+ save: a trimmed copy of a won game holding only what New Game+ can carry (Devoted lovers, old friends, alumni, the
+// bonds between them, houses (kept ones carry, the rest count for the sale credit), Sam, pasts, boons, samUps, wardrobe).
+// Nothing is chosen yet: loading it opens the NG+ wizard (S.ngSeed), so one file can start the next cycle again and again.
+function ngSeed(){
+  if(!S || !S.won) return null;
+  const s = clone(S), keep = new Set([...carriedLovers(), ...ngFriends()].map(w=>w.id));
+  s.workers = s.workers.filter(w=>keep.has(w.id));
+  const ids = new Set([...keep, ...(s.alumni||[]).map(w=>w.id)]);
+  s.bonds = Object.fromEntries(Object.entries(s.bonds||{}).filter(([k])=>k.split('|').every(id=>ids.has(id))));
+  const kh = new Set([homeHouse(), ...S.houses.filter(keepable).map(h=>h.id)]);
+  s.regulars = (s.regulars||[]).filter(r=>kh.has(r.house));
+  if(s.sleepIn && !keep.has(s.sleepIn)) s.sleepIn = null;
+  s.candidates = []; s.lastReport = null; s.samWeek = {security:0, books:false, income:0, acts:[]};
+  s.log = [{wk:s.week, t:`New Game+ save: cycle ${s.cycle||1} cleared.`}];
+  s.ngSeed = true;
+  return s;
 }
 function startNGPlus(){
   if(!S || !S.won) return toast('New Game+ unlocks once the debt is paid off.');
@@ -4233,7 +4251,7 @@ function ngBegin(){
   if(C.boon==='renown') S.rep = clamp(S.rep + 15);
   S.gold = N.purse;
   S.debt = {total:N.debt, remaining:N.debt, carry:0, strikes:0, start:S.week-1};
-  S.won = false; S.over = false; S.lastReport = null; EVQ = [];
+  S.won = false; S.over = false; S.lastReport = null; EVQ = []; delete S.ngSeed;
   S.flags.partnerCD = 3; S.ap = apMax();
   refreshCandidates(C.boon==='recruit' ? 3 : 0, C.boon==='recruit' ? 1.15 : 1);
   inviteFriend(true);   // the first week already shows an old friend
@@ -4686,7 +4704,7 @@ function viewSettings(){
   <section class="card"><h2>Images</h2><p class="muted">Generated and uploaded images live in this browser. Export them to back up or move them to another browser.</p>
     <div class="row"><button onclick="exportImages()">⬇ Export images</button><button onclick="importImages()">⬆ Import images</button><button onclick="cleanImages()">Clean up unused images</button></div></section>
   <section class="card"><h2>Save File</h2><p class="muted">The game autosaves every week in this browser. Export to back up or move between browsers.</p>
-    <div class="row"><button onclick="save();toast('Saved.')">Save now</button><button onclick="exportBox('save')">Export save</button><button onclick="importBox('save')">Import save</button><button onclick="importSaveFile()">Import save file</button><button onclick="exportBox('lib')">Export library</button><button onclick="importBox('lib')">Import library</button><button onclick="if(confirm('Start over? Your current save will be erased.'))restart()">New game</button></div></section>`;
+    <div class="row"><button onclick="save();toast('Saved.')">Save now</button><button onclick="exportBox('save')">Export save</button>${S.won?'<button onclick="exportBox(\'ngplus\')" title="Only what New Game+ carries; loading it opens the New Game+ setup">Export NG+ save</button>':''}<button onclick="importBox('save')">Import save</button><button onclick="importSaveFile()">Import save file</button><button onclick="exportBox('lib')">Export library</button><button onclick="importBox('lib')">Import library</button><button onclick="if(confirm('Start over? Your current save will be erased.'))restart()">New game</button></div></section>`;
 }
 function saveSettingsUI(){
   SET.style = $('#s_style').value; SET.negative = $('#s_neg').value; SET.resolution = $('#s_res').value;
@@ -4724,15 +4742,17 @@ function clearEdits(){
   SET.snippets = {}; SET.clothText = {}; SET.ai.tpl = {}; SET.ai.guidance = ''; SET.customActs = []; saveSettings(); toast('Cleared. The data files are in charge now.'); render();
 }
 function exportBox(kind){
-  const data = kind==='save' ? S : kind==='lib' ? LIB : {snippets:SET.snippets, clothText:SET.clothText, customActs:SET.customActs};
-  modal(`<h2>Export ${kind}</h2><p class="muted">Copy this text and keep it somewhere safe.</p><textarea id="exp" style="min-height:200px">${esc(JSON.stringify(data))}</textarea>
-    <div class="row"><button class="primary" onclick="try{navigator.clipboard.writeText($('#exp').value);toast('Copied.')}catch(e){toast('Select and copy manually.')}">Copy</button><button onclick="dlText($('#exp').value,'hollowmere-${kind}.json')">Download file</button></div>`);
+  const data = kind==='save' ? S : kind==='ngplus' ? ngSeed() : kind==='lib' ? LIB : {snippets:SET.snippets, clothText:SET.clothText, customActs:SET.customActs};
+  if(!data) return toast('New Game+ unlocks once the debt is paid off.');
+  const fname = kind==='ngplus' ? `ngplus-c${(S.cycle||1)+1}` : kind;
+  modal(`<h2>Export ${kind==='ngplus'?'NG+ save':kind}</h2><p class="muted">${kind==='ngplus'?'Only what New Game+ carries forward: your lovers, old friends, kept houses, Sam and his perks. Import it any time (even on a fresh browser) to go straight to the New Game+ setup.':'Copy this text and keep it somewhere safe.'}</p><textarea id="exp" style="min-height:200px">${esc(JSON.stringify(data))}</textarea>
+    <div class="row"><button class="primary" onclick="try{navigator.clipboard.writeText($('#exp').value);toast('Copied.')}catch(e){toast('Select and copy manually.')}">Copy</button><button onclick="dlText($('#exp').value,'hollowmere-${fname}.json')">Download file</button></div>`);
 }
 function dlText(text, name){
   try{ const blob = new Blob([text],{type:'application/json'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=name; document.body.appendChild(a); a.click(); a.remove(); }
   catch(e){ toast('Download blocked here. Copy the text instead.'); }
 }
-function importBox(kind){ modal(`<h2>Import ${kind}</h2><textarea id="imp" style="min-height:200px" placeholder="Paste exported text here"></textarea><div class="row"><button class="primary" onclick="doImport('${kind}')">Import</button></div>`); }
+function importBox(kind){ modal(`<h2>Import ${kind}</h2><textarea id="imp" style="min-height:200px" placeholder="Paste exported text here (a full save or an NG+ save)"></textarea><div class="row">${SETUP?'<button onclick="setupView()">← Back</button>':''}<button class="primary" onclick="doImport('${kind}')">Import</button></div>`, {lock:!!SETUP}); }
 function importSaveFile(){
   const inp = $('#upJson'); inp.value='';
   inp.onchange = ()=>{ const f=inp.files[0]; if(!f) return; const fr=new FileReader();
@@ -4748,6 +4768,7 @@ function doImport(kind, text){
   else { if(typeof d!=='object' || Array.isArray(d)) return toast('That doesn\'t look like snippets.');
     if(d.snippets){ SET.snippets = d.snippets; SET.clothText = d.clothText||{}; SET.customActs = d.customActs||[]; } else SET.snippets = d; saveSettings(); }
   closeModal(); toast('Imported.'); render();
+  if(kind==='save' && S.ngSeed && S.won) startNGPlus();   // an NG+ save goes straight to the New Game+ setup
 }
 async function exportImages(){
   const imgs = await idbAll('imgs'), thumbs = await idbAll('thumbs');
@@ -4803,7 +4824,7 @@ async function init(){
   for(const k of [...IMGKEYS]){ const nk = actKeyScene(k); if(nk!==k && !IMGKEYS.has(nk)){ const v = await imgGet(k); if(v){ await imgPut(nk, v); await imgDel(k); } } }
   S = store.get(KEY_SAVE);
   if(!S || !Array.isArray(S.workers)){ S = null; startSetup(); }
-  else { migrate(S); save(); render(); }
+  else { migrate(S); save(); render(); if(S.ngSeed && S.won) startNGPlus(); }
 }
 init();
 
