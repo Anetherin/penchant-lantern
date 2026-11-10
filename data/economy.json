@@ -166,28 +166,37 @@
     {"label":"Dwarven spirits & elven wine","cost":3000,"desc":"Rare spirits and moon-ripened wine. Patrons linger, spend and get ideas."}
   ],
   "racePerks": {
-    "human": {"label":"Adaptable","desc":"Trust and skills grow 15% faster. A few clients are especially fond of her."},
-    "elf": {"label":"Long-lived","desc":"Mood changes slowly, for better and worse."},
+    "human": {
+      "label": "Adaptable",
+      "desc": "Trust, skills, stats and lewdness grow 25% faster; learns 50% more in the classroom. Signing bonuses are 20% lower."
+    },
+    "elf": {
+      "label": "Long-lived",
+      "desc": "Mood changes slowly and settles slowly, for better and worse. Nobles pay 20% more, merchants 5%. Thrives in a garden."
+    },
     "beastkin": {
       "label": "Simple needs",
-      "desc": "Asks for 25% lower wages, recovers 15% more energy, and her lewdness grows 15% faster. Gets restless sooner, and takes it hard when Sam turns her down."
+      "desc": "Asks for 15% lower wages, recovers 15% more energy and her lewdness grows 15% faster. Gets restless sooner, feels incense more strongly, and takes it hard when Sam turns her down."
     },
     "demon": {
       "label": "Feeds on desire",
-      "desc": "Services cost half the energy, and clients who finish feed her. Sleep does nothing for her. Restless, she can drain a client dry. Higher lust ceiling."
+      "desc": "Services cost 40% less energy, and clients who finish feed her. Sleep does little for her and a working week burns energy. Restless, she can drain a client dry. Higher lust ceiling (+20), lust builds 30% faster."
     },
     "dwarf": {
       "label": "Hardy",
-      "desc": "+25 max energy, recovers 25% more from rest, builds lust more slowly. Bartends 15% better. Expects 10% higher wages."
+      "desc": "+25 max energy, recovers 25% more from rest, builds lust 25% more slowly. Bartends 15% better. A house with a Workshop gets cheaper to improve while dwarves live there."
     },
     "spirit": {
       "label": "Incorporeal",
-      "desc": "Needs no bed and a Tethering Stone to live here. Recovers a steady amount every week. Moods swing hard. -20 max energy."
+      "desc": "Needs no bed, but needs a Tethering Stone to live here. Recovers a steady amount every week. Moods swing hard but settle fast. Adventurers pay 30% more and seek her out."
     },
-    "angel": {"label":"Serene","desc":"Lower lust ceiling, never reckless, a higher resting mood. Nobles are especially fond of her."},
+    "angel": {
+      "label": "Serene",
+      "desc": "Lower lust ceiling (-30), never reckless, resting mood +5. Can keep a Quiet Chapel (Chapel Keeper). Nobles are especially fond of her."
+    },
     "android": {
       "label": "Rechargeable",
-      "desc": "Needs a Charging Alcove. Rest tops her up completely, but every recharge costs the house a fee. Lust builds slowly."
+      "desc": "Needs a Charging Alcove and no bed. Rest charges her to full, but each recharge costs the house a fee. Skills grow 25% faster, +10 max energy, bad moods hit 40% softer, lust builds slowly. Merchants pay 20% more."
     }
   },
   "propRate": {

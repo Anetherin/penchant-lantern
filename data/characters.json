@@ -149,7 +149,7 @@
         "bonus": {"courtesan":1.2,"merchant":1.15}
       }
     },
-    "jobs": {"likes":["bath","bartender"],"dislikes":["security","maid"]},
+    "jobs": {"likes":["bath","host","bartender"],"dislikes":["security","maid"]},
     "body": {"bust":"large","height":"average","figure":"curvy"},
     "unique": {
       "name": "Knows Every Guest",
@@ -522,7 +522,7 @@
       }
     },
     "bonds": {"kanako":{"v":20,"kind":"home"},"akari":{"v":20,"kind":"home"}},
-    "jobs": {"likes":["promoter","madame"],"dislikes":["dancer","security"]},
+    "jobs": {"likes":["promoter","teacher","madame"],"dislikes":["dancer","security"]},
     "body": {"bust":"small","height":"average","figure":"slim"},
     "unique": {
       "name": "Spreadsheet Wizardry",
@@ -902,12 +902,12 @@
       }
     },
     "bonds": {"akari":{"v":25,"kind":"home"}},
-    "jobs": {"likes":["bartender","courtesan","madame"],"dislikes":["security"]},
+    "jobs": {"likes":["bartender","host","courtesan"],"dislikes":["security"]},
     "body": {"bust":"large","height":"average","figure":"soft"},
     "unique": {
       "name": "Snack-Bar Mama",
-      "desc": "A hostess who can read a room and a man's mood from the doorway.",
-      "fx": {"jobBonus":{"bartender":1.2},"appeal":2}
+      "desc": "A hostess who can read a room and a man's mood from the doorway. Hosting comes naturally.",
+      "fx": {"jobBonus":{"bartender":1.2,"host":1.15},"appeal":2}
     },
     "vignettes": [
       {
@@ -1204,7 +1204,7 @@
       }
     },
     "bonds": {"kaede":{"v":20,"note":"Fox and wolf in one house: Kaede teases, Emily lets her (and takes notes for a character)."}},
-    "jobs": {"likes":["attendant","promoter"],"dislikes":["security","dancer"]},
+    "jobs": {"likes":["attendant","teacher","promoter"],"dislikes":["security","dancer"]},
     "body": {"bust":"medium","height":"average","figure":"soft"},
     "unique": {
       "name": "Lore Keeper",
@@ -1281,7 +1281,7 @@
       }
     },
     "bonds": {"kaede":{"v":20,"note":"Fox and elf in one house: Kaede teases, Lirael lets her."}},
-    "jobs": {"likes":["attendant","promoter"],"dislikes":["security","dancer"]},
+    "jobs": {"likes":["teacher","attendant","promoter"],"dislikes":["security","dancer"]},
     "body": {"bust":"medium","height":"average","figure":"soft"},
     "unique": {
       "name": "Postmistress's Memory",
@@ -1521,7 +1521,7 @@
       "adelheid": {"v":25,"note":"Two believers in an order who both have a weakness for the same hero."},
       "konan": {"v":25,"note":"Konan's rebels called themselves angels. Anael finds this adorable."}
     },
-    "jobs": {"likes":["madame","attendant"],"dislikes":["bartender","dancer"]},
+    "jobs": {"likes":["chapel","madame","attendant"],"dislikes":["bartender","dancer"]},
     "body": {"bust":"medium","height":"tall","figure":"curvy"},
     "unique": {
       "name": "Warden's Light",
@@ -1811,7 +1811,7 @@
       "kaede": {"v":35,"note":"Hanna processed every one of Kaede's bounty claims, and gossiped about all of them."},
       "rhoswen": {"v":30,"note":"Guild friends."}
     },
-    "jobs": {"likes":["promoter","bartender"],"dislikes":["maid"]},
+    "jobs": {"likes":["promoter","host","bartender"],"dislikes":["maid"]},
     "body": {"bust":"medium","height":"average","figure":"curvy"},
     "unique": {
       "name": "Guild Gossip",

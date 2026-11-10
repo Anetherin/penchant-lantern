@@ -21,6 +21,11 @@ function seedBonds(){
       const k = bkey(a,b); if(S.bonds[k] && S.bonds[k].seeded) return;
       S.bonds[k] = {v: s.v||0, seeded:true}; if(s.kind){ S.bonds[k].kind = s.kind; S.bonds[k].from = a.id; } }); });
 }
+// the starting bond two named ladies have in their data (either side may list it), by bond key; 0 if none
+function seedBondV(k){
+  const [a, b] = k.split('|').map(id=>[...S.workers, ...(S.alumni||[])].find(w=>w.id===id)); if(!a || !b || !a.key || !b.key) return 0;
+  const s = ((NAMED[a.key]||{}).bonds||{})[b.key] || ((NAMED[b.key]||{}).bonds||{})[a.key]; return s ? (s.v||0) : 0;
+}
 // weekly drift: housemates warm up (or grate on each other); bonds between ladies in different houses fade slowly
 function driftBonds(){
   const D = BONDS.drift, W = S.workers;

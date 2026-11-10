@@ -4,7 +4,8 @@
     "client.like = chance per client to be an enthusiast for her race (fee x1.2, satisfaction +12). client.dislike = chance he is put off (satisfaction -15, and half the time he asks for someone else if anyone is free). classLike: extra like chance by client class.",
     "subs (beastkin): each with weight, mods, fx and optional label/look/client/age/names that override the race's. The former dragonkin is beastkin sub 'dragon'.",
     "Rules that are not simple numbers (demon feeding, android recharging, beastkin refusals, spirit bedlessness) live in code and read these entries.",
-    "alwaysLast: generic ladies of this race always get a last name. Beastkin subs may also set wage."
+    "alwaysLast: generic ladies of this race always get a last name. Beastkin subs may also set wage.",
+    "perk on a beastkin sub: {label, desc} display text for that sub's fx and wage (shown on her sheet)."
   ],
   "races": {
     "human": {
@@ -45,25 +46,29 @@
           "weight": 1,
           "mods": {"charm":10,"beauty":5},
           "fx": {"appeal":3},
-          "names": {"l":["Redbrush","Foxglove","Emberbrush","Kuzunoha","Silvertail","Hazebrush","Lanternfox","of the Shrine Gate"]}
+          "names": {"l":["Redbrush","Foxglove","Emberbrush","Kuzunoha","Silvertail","Hazebrush","Lanternfox","of the Shrine Gate"]},
+          "perk": {"label":"Fox's charm","desc":"+3 appeal."}
         },
         "cat": {
           "weight": 1,
           "mods": {"agility":10,"charm":5},
           "fx": {"energyRec":1.1},
-          "names": {"l":["Velvetpaw","Whiskerwind","Softstep","Silkpaw","Sunwindow","Tallwhisker","Mousebane","of the Night Market"]}
+          "names": {"l":["Velvetpaw","Whiskerwind","Softstep","Silkpaw","Sunwindow","Tallwhisker","Mousebane","of the Night Market"]},
+          "perk": {"label":"Cat's rest","desc":"Recovers 10% more energy."}
         },
         "wolf": {
           "weight": 1,
           "mods": {"stamina":10,"strength":5},
           "fx": {"trustGain":1.1},
-          "names": {"l":["Grayfang","Moonhowl","Ironpelt","Snowmane","Frostfang","Longrunner","Pinehollow","of the Northern Pack"]}
+          "names": {"l":["Grayfang","Moonhowl","Ironpelt","Snowmane","Frostfang","Longrunner","Pinehollow","of the Northern Pack"]},
+          "perk": {"label":"Wolf's loyalty","desc":"Trust grows 10% faster."}
         },
         "rabbit": {
           "weight": 1,
           "mods": {"agility":5,"charm":5,"beauty":5},
           "fx": {"lustBuild":1.25,"encore":0.1},
-          "names": {"l":["Thistledown","Clovermeadow","Quickfoot","Burrowell","Hareswift","Longear","Hollowbank","Dandelion"]}
+          "names": {"l":["Thistledown","Clovermeadow","Quickfoot","Burrowell","Hareswift","Longear","Hollowbank","Dandelion"]},
+          "perk": {"label":"Rabbit's heat","desc":"Lust builds 25% faster and she is more likely to want another round."}
         },
         "dragon": {
           "weight": 0.15,
@@ -74,7 +79,8 @@
           "client": {"like":0.2,"dislike":0.1},
           "age": [80,400],
           "wage": 1.15,
-          "names": {"l":["Ashscale","Embercrest","Goldhorn","Stormwing","Jadeclaw","Cloudcoil","Pearlscale","of the Eastern Sea"]}
+          "names": {"l":["Ashscale","Embercrest","Goldhorn","Stormwing","Jadeclaw","Cloudcoil","Pearlscale","of the Eastern Sea"]},
+          "perk": {"label":"Dragon's might","desc":"+15 max energy. Asks 15% more wages. Rarer."}
         }
       }
     },
@@ -92,7 +98,7 @@
       "label": "Dwarf",
       "age": [45,140],
       "look": "stocky, muscular dwarf woman with mature features and strong shoulders",
-      "mods": {"strength":15,"stamina":5,"beauty":-5},
+      "mods": {"strength":10,"stamina":5,"beauty":-5},
       "common": true,
       "weight": 10,
       "fx": {"maxEnergy":25,"energyRec":1.25,"lustBuild":0.75,"jobBonus":{"bartender":1.15}},

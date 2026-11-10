@@ -182,6 +182,7 @@ function ngBegin(){
   const BK = B.bonds || {}, reborn = new Set([...ids, ...(S.alumni||[]).map(w=>w.id), ...friends.map(w=>w.id)]);
   S.bonds = Object.fromEntries(Object.entries(S.bonds||{}).filter(([k])=>k.split('|').every(id=>reborn.has(id))).map(([k,o])=>{
     const n = Object.assign({}, o, {v: Math.round((o.v||0) * (BK.keep ?? 0.5)), past: (o.past||0) + 1});
+    if(o.seeded) n.v = Math.max(n.v, seedBondV(k));   // a bond written into their data never fades below that
     if(BK.kinds === false) delete n.kind;
     return [k, n]; }).filter(([,o])=>o.v || o.kind));
   S.regulars = (S.regulars||[]).filter(r=>keptIds.has(r.house));

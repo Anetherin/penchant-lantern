@@ -42,7 +42,9 @@
     "samHome: Sam sleeps in one house (S.samHome, default his home house). His weekly recovery (weekly) and naps (nap) scale with that house's staff bed quality: x rest/ref (economy.json beds). Late-night encounters only come from ladies in his house unless he has a 'reach' upgrade or boon. samUps: things Sam can buy (Sam tab); carry = kept in New Game+; fx: bedTier (+tiers for Sam's own bed), weekly (+energy every week), reach (ladies from every house can visit him at night); tool fx (summed by samUpFx, each boosts one Sam-tab action): bartend (+share of Tend bar income), watch (+share of Stand watch security), books (extra upkeep cut, as a fraction, on top of Do the books), rounds (+share of Make the rounds trust and mood), lesson (+share of Hold a lesson skill gains), scout (+candidates from Scout recruits). Sam's Owner's Suite is a house amenity (economy.json → upgrades.suite): +1 bed tier when he sleeps in that house.",
     "clients.traits: every client (not regulars) rolls 1-3 traits (clients.traitCount = odds of 1/2/3), weighted by w x his class's traits weight (economy.json → classes.traits), skipping excl. hidden: not shown in the report. Keys (all optional): prop (x his chance to want a service / proposition staff), pushy (+ chance he won't take no), pushyMult (x that), rowdy (+ house incident pressure), booze {prop, pushy, rowdy, patience} (added while a bartender works, x (1 + drinks tier x boozeDrinks)), tips (x bar tips), fee (x what he pays), compFee (x when he only wants company), qualityFee [a,b] (fee x (a + quality x b)), selfAccept (+ chance he says yes to a restless lady), likes {races ('beastkin:<sub>' ok), traits (lady traits), restless} with like (enthusiast chance) and draw (pick weight; without a madame only x^nativeMatch), patience (+ chance to wait), open (+ openness to a host's warm-up), thirsty (always wants a service; unserved: thirsty.sat and thirsty.rep), acceptHost (chance he'd rather the host finish him than wait), tech (+ his technique), satAdd (+ satisfaction), hostLike (x host satisfaction bonus), jobProp {job: x his propositions to that job}, stageSpend (x stage spending while waiting), gossip (x his rep effect, clients.gossip.rep per point of satisfaction away from 50), regular (x chance he becomes a regular). Client traits never reach image prompts or AI text.",
     "clients.nativeMatch: without a madame clients mostly take whoever is free: appeal and race/trait draw count only to this power. clients.wait: with a madame, a client whose best match is busy (chance (load - busyAt) / (1 - busyAt), load = her clients so far / her weekly cap of 10, so nobody is busy before busyAt) waits with chance base + his patience + house comfort (garden, decorPer x decor tier, tidy when tidy, bath, open bar, open stage, hostPer x working hosts), capped at max; waiting costs sat (a host offsets it); else he takes someone else, or leaves (leaveSat) if nobody is free. Waiting clients spend barSpend at an open bar / stageSpend at a staffed stage. clients.host: each host entertains perWeek x (1 + service skill/100 x skillPer x 10) waiting clients per week (x outfit/job bonus x her output after accepted propositions; each accepted proposition costs propCost, a warm-up or entertaining 1 each), +sat (+satSkill x quality); clients at least fluffOpen open (0.3 + the open of his traits) get a warm-up (her menu or what she is comfortable with, from kiss / massage / manual / oral / breast give; not if she is set to Off) (a light service in the open, never finished): +fluffSat (+fluffSkill x quality) on his courtesan visit, tip fluffFee x service price, at most fluffMax per client; a client with acceptHost may have her finish him instead (finishShare of a normal fee, costs finishCost of her capacity); accepted propositions cost propCost. thirsty / gossip: see clients.traits.",
-    "ngplus.bonds: when two ladies both reincarnate (carried lovers, old friends, or alumni still waiting to be re-hired), their bond carries into the next cycle at keep x its value (0.5 = halved; 1 = untouched; 0 = reset), and its kind (mentor, comrades, ...) stays unless kinds is false. The sheet marks such bonds '(from a past life)'. Bonds with anyone else are dropped as before."
+    "ngplus.bonds: when two ladies both reincarnate (carried lovers, old friends, or alumni still waiting to be re-hired), their bond carries into the next cycle at keep x its value (0.5 = halved; 1 = untouched; 0 = reset), and its kind (mentor, comrades, ...) stays unless kinds is false. The sheet marks such bonds '(from a past life)'. Bonds with anyone else are dropped as before.",
+    "jobs.attendant*: an attendant's quality = (Hospitality x attendantSkillW + Charm x attendantCharmW + Refinement x attendantRefW)/100 x outfit/job bonus x her output, capped at attendantQMax (an average attendant is about 0.5, a top one 1+). The most popular courtesans each get their own attendant (best attendant first); the others share attendantShared x the average quality. A courtesan's service energy cost x (1 - help x attendantEnergyPer, never below attendantEnergyMin) and her clients' satisfaction + help x attendantSatPer; her own attendant also gives her attendantOwnMood / attendantOwnTrust x (0.5 + quality/2). Low-skill attendants mostly just step in when the courtesans are swamped.",
+    "amenities.classroom (teaching formula): each lady behind the teacher gains floor(gap x rate x teacher x learner). teacher = (base + Management/100 x manageW + Refinement/100 x refW) x outfit/job bonus (teacher) x her teach fx x her output; learner = (learnBase + Refinement/100 x learnRef) x her learn fx (x humanMult for humans). An average teacher and learner come to about 1. The madame's coaching (jobs.madameCoach) also uses her teach fx and the learner's learn fx."
   ],
   "lewd": {
     "_note": "Lewdness diminishing returns (lewdUp). Each source has a cap: full gain below cap-band, half at the cap, none past cap+band. Services: cap = service th + capOver. softCap: default cap for sources without one; past it only daring dates, traits and stories push her further.",
@@ -117,7 +119,7 @@
       "Tough": {"up":["security"]},
       "Former Adventurer": {"up":["security"],"down":["maid"]},
       "Elegant": {"up":["madame"],"down":["bartender"]},
-      "Shy": {"up":["maid"],"down":["dancer","courtesan"]},
+      "Shy": {"up":["maid"],"down":["dancer","courtesan","host"]},
       "Exhibitionist": {"up":["dancer","courtesan","bath"]},
       "Night Owl": {"up":["bartender"]},
       "Lazy": {"up":["bath"],"down":["security","maid"]},
@@ -126,7 +128,19 @@
       "Romantic": {},
       "Eager": {"up":["courtesan","bath"]},
       "Modest": {"up":["maid"],"down":["dancer","courtesan"]},
-      "Loyal": {"up":["security","maid"]}
+      "Loyal": {"up":["security","maid"]},
+      "Charming": {"up":["host"]},
+      "Flirt": {"up":["host"]},
+      "Studious": {"up":["teacher"]},
+      "Organised": {"up":["teacher"]},
+      "Warm Hospitality": {"up":["attendant","host"]},
+      "Soothing Voice": {"up":["attendant","bath"]},
+      "Aloof": {"down":["host"]},
+      "Good Listener": {"up":["host"]},
+      "Patient Tutor": {"up":["teacher"]},
+      "Attentive": {"up":["attendant","host"]},
+      "Devout": {"up":["chapel"]},
+      "Eager Student": {"up":["teacher"]}
     }
   },
   "svc": {
@@ -173,8 +187,6 @@
     "samplesEnergy": 10,
     "samplesLust": 3,
     "samplesRep": 0.6,
-    "attendantEnergy": 0.92,
-    "attendantSat": 4,
     "attendantOwnMood": 5,
     "attendantOwnTrust": 0.3,
     "madameMoodLoss": 0.7,
@@ -195,7 +207,15 @@
     "tipsBase": 0.6,
     "danceRep": 0.1,
     "bathJoinLewd": 40,
-    "bathJoinFee": 1.4
+    "bathJoinFee": 1.4,
+    "attendantSkillW": 0.6,
+    "attendantCharmW": 0.25,
+    "attendantRefW": 0.15,
+    "attendantQMax": 1.6,
+    "attendantShared": 0.3,
+    "attendantEnergyPer": 0.12,
+    "attendantEnergyMin": 0.8,
+    "attendantSatPer": 7
   },
   "rooms": {"perRoom":8},
   "tidy": {
@@ -423,7 +443,7 @@
     "workshop": {"perDwarf":0.04},
     "laundry": {"decay":0.6},
     "drinks": {"bar":[1,1.25,1.5,2],"props":[1,1.15,1.35,1.6],"upkeep":[0,4,8,14]},
-    "classroom": {"rate":0.02,"humanMult":1.5,"teacherGrow":1.5,"mood":1,"trust":0.3},
+    "classroom": {"rate":0.02,"humanMult":1.5,"teacherGrow":1.5,"mood":1,"trust":0.3,"base":0.6,"manageW":0.5,"refW":0.3,"learnBase":0.85,"learnRef":0.3},
     "decor": {"demand":[1,1.06,1.105,1.13],"noble":2,"upkeep":5}
   },
   "houses": {"priceStep":0.25},
