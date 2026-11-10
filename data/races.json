@@ -107,7 +107,7 @@
       "mods": {"charm":5,"refinement":5,"strength":-10},
       "common": false,
       "weight": 2,
-      "fx": {"maxEnergy":-10,"moodDrift":1.6,"moodDelta":1.3,"clientFee":1.12},
+      "fx": {"moodDrift":1.6,"moodDelta":1.3,"clientFee":1.12},
       "client": {"like":0.2,"dislike":0.2},
       "needs": "tether"
     },
@@ -128,7 +128,7 @@
       "mods": {"stamina":5,"refinement":5,"charm":0},
       "common": false,
       "weight": 3,
-      "fx": {"lustBuild":0.8,"skillGain":1.25,"clientFee":1.08},
+      "fx": {"maxEnergy":10,"moodLoss":0.6,"lustBuild":0.8,"skillGain":1.25,"clientFee":1.08},
       "client": {"like":0.2,"dislike":0.15},
       "needs": "charger"
     }

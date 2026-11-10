@@ -20,10 +20,10 @@ function storyNpc(key){ const id='n_'+key; if(!NPCS[id]) NPCS[id] = makeNamed(ke
 const H = id => S.houses.find(h=>h.id===id);
 const curH = () => H(S.cur) || S.houses[0];
 const houseOf = w => (S && (H(w.house) || S.houses[0])) || null;
-function makeHouse(id){ const D = HOUSES[id]; return {id, name:D.name, rooms:D.rooms, quarters:D.quarters, beds:D.beds, tier:D.tier, up:clone(D.up), tidy:BAL.tidy.start, price:1, rep:D.rep, since:S?S.week:1, story:{beat:0,wk:0}, bonus:{}, spent:0, decor:0, wsDisc:0, incense:'calm'}; }
+function makeHouse(id){ const D = HOUSES[id]; return {id, name:D.name, rooms:D.rooms, quarters:D.quarters, beds:D.beds, tier:D.tier, up:clone(D.up), tidy:BAL.tidy.start, price:1, rep:D.rep, since:S?S.week:1, story:{beat:0,wk:0}, bonus:{}, spent:0, decor:0, drinks:0, teachSkill:null, wsDisc:0, incense:'calm'}; }
 function newGame(cfg){
   const HD = HOUSES[cfg.house];
-  S = { v:22, samHome:cfg.house, samUps:{}, starters:[cfg.house], houseWardrobe:[], houseUnder:[], week:1, gold:600, rep:HD.rep, ap:3, cur:cfg.house, home:cfg.house, cycle:1, boons:[], past:cfg.past, pasts:[cfg.past], partner:cfg.partner, partners:[cfg.partner],
+  S = { v:23, samHome:cfg.house, samUps:{}, starters:[cfg.house], houseWardrobe:[], houseUnder:[], week:1, gold:600, rep:HD.rep, ap:3, cur:cfg.house, home:cfg.house, cycle:1, boons:[], past:cfg.past, pasts:[cfg.past], partner:cfg.partner, partners:[cfg.partner],
     houses:[makeHouse(cfg.house)],
     sam:{energy:100, ...BAL.sam.base, appraisal:1, appXP:0, first:true, lvl:1, xp:0},
     samWeek:{security:0, books:false, income:0, acts:[]},
@@ -100,8 +100,13 @@ function migrate(s){
     s.houses.forEach(h=>{ h.up = h.up || {}; Object.keys(REN).forEach(o=>{ if(h.up[o]){ delete h.up[o]; h.up[REN[o]] = true; } }); });
     if(s.builtBy) Object.keys(REN).forEach(o=>{ if(s.builtBy[o]){ s.builtBy[REN[o]] = (s.builtBy[REN[o]]||0) + s.builtBy[o]; delete s.builtBy[o]; } });
   }
+  if(ov < 23){   // Wine Cellar -> tiered Drinks upgrade (h.drinks 0-3); classroom + teacher
+    s.houses.forEach(h=>{ h.up = h.up || {}; if(h.up.cellar){ delete h.up.cellar; h.drinks = 2; } });
+    if(s.builtBy && s.builtBy.cellar){ s.builtBy.drinks = (s.builtBy.drinks||0) + s.builtBy.cellar; delete s.builtBy.cellar; }
+  }
+  s.houses.forEach(h=>{ if(h.drinks===undefined) h.drinks = 0; if(h.teachSkill===undefined) h.teachSkill = null; });
   s.houses.forEach(h=>{ if(h.decor===undefined) h.decor = 0; if(h.wsDisc===undefined) h.wsDisc = 0; if(!h.incense) h.incense = 'calm'; });
-  s.v = 22; s.samUps = s.samUps || {}; s.houseWardrobe = s.houseWardrobe || []; s.houseUnder = s.houseUnder || []; s.home = s.home || (s.houses[0]||{}).id; s.samHome = s.samHome || s.home || (s.houses[0]||{}).id; s.cycle = s.cycle || 1; s.boons = s.boons || []; s.partners = s.partners || (s.partner ? [s.partner] : []);
+  s.v = 23; s.samUps = s.samUps || {}; s.houseWardrobe = s.houseWardrobe || []; s.houseUnder = s.houseUnder || []; s.home = s.home || (s.houses[0]||{}).id; s.samHome = s.samHome || s.home || (s.houses[0]||{}).id; s.cycle = s.cycle || 1; s.boons = s.boons || []; s.partners = s.partners || (s.partner ? [s.partner] : []);
   s.regulars = s.regulars || []; s.bonds = s.bonds || {}; s.flags = Object.assign({partnerCD:3}, s.flags||{});
   s.sam.lvl = s.sam.lvl || 1; s.sam.xp = s.sam.xp || 0;
   s.houses.forEach(h=>{ if(h.tidy===undefined) h.tidy = BAL.tidy.start; h.since = h.since || 1; h.story = h.story || {beat:0,wk:0}; h.bonus = h.bonus || {}; if(h.spent===undefined) h.spent = 0;

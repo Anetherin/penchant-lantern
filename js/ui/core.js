@@ -85,7 +85,7 @@ function viewHouse(){
     ${feastCard(h)}
     ${storyCard(h)}
     ${regularsCard(h)}
-    <section class="card"><h2>Positions</h2><div class="grid2">${Object.entries(JOBS).filter(([k])=>k!=='rest').map(([k,J])=>{ const ws=S.workers.filter(w=>w.house===h.id && w.job===k), mx=slotsFor(h,k); return mx||ws.length?`<div><b>${J.label}</b> <span class="muted">${ws.length}/${mx}</span>${ws.length?': '+ws.map(w=>esc(w.name)).join(', '):''}</div>`:''; }).join('')}
+    <section class="card"><h2>Positions</h2>${h.up.classroom ? `<div class="row">📚 Classroom subject ${teachSelect(h, S.workers.find(w=>w.house===h.id && w.job==='teacher'))}</div>` : ''}<div class="grid2">${Object.entries(JOBS).filter(([k])=>k!=='rest').map(([k,J])=>{ const ws=S.workers.filter(w=>w.house===h.id && w.job===k), mx=slotsFor(h,k); return mx||ws.length?`<div><b>${J.label}</b> <span class="muted">${ws.length}/${mx}</span>${ws.length?': '+ws.map(w=>esc(w.name)).join(', '):''}</div>`:''; }).join('')}
       ${S.workers.filter(w=>w.house===h.id && w.job==='rest').length?`<div><b>Resting</b>: ${S.workers.filter(w=>w.house===h.id && w.job==='rest').map(w=>esc(w.name)).join(', ')}</div>`:''}</div></section>
     <section class="card"><h2>Debt to the Vane Credit House</h2>
       <div>Remaining: <b>${fmt(S.debt.remaining)}</b> · Next payment: <b>${fmt(nd.amount)}</b> at the end of week ${nd.week} ${nd.week===S.week?'<span class="warn">(this week!)</span>':''}</div>

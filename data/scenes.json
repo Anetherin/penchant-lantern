@@ -29,6 +29,12 @@
       "setting": "candlelit stage, audience in silhouette"
     },
     "job_bath": {"label":"Work: Bathhouse","comp":"attending guests, carrying towels, cheeky smile","setting":"steamy tiled fantasy bathhouse","bath":true},
+    "job_teacher": {
+      "label": "Work: Teacher",
+      "comp": "teaching at a slate board with a pointer, patient smile",
+      "setting": "cozy classroom with desks",
+      "house": true
+    },
     "job_maid": {"label":"Work: Maid","comp":"tidying up with a feather duster, cheerful","setting":"polished hallway","house":true},
     "companion": {
       "label": "Companion",

@@ -190,6 +190,28 @@ function madameCoach(mad, w, pr){
   const ds = Math.floor(((mad.tech.service||0) - (w.tech.service||0)) * J.madameCoach); if(ds > 0){ w.tech.service = clampK(w.tech.service + ds); n++; }
   if(n){ pr.coached = n; pr.why.push({t:`${mad.name} coached her`, good:true}); }
 }
+// Classroom: the teacher's subject is h.teachSkill (a TECH_KEYS skill or a service id); null/invalid = her best tech skill.
+// Every other lady in the house who is behind her gains floor(gap x amenities.classroom.rate) (humans x humanMult), capped by clampK.
+const subjectLabel = k => TECH_LABEL[k] || (actById(k) ? actLabel(k) : k);
+const subjectSkill = (w, k) => TECH_LABEL[k] ? (w.tech[k]||0) : (w.acts && w.acts[actKey(k)] ? w.acts[actKey(k)].skill : null);
+function teachSubject(h, t){
+  const k = h.teachSkill;
+  if(k && (TECH_LABEL[k] || (actById(k) && subjectSkill(t, k) !== null))) return TECH_LABEL[k] ? k : actKey(k);
+  return TECH_KEYS.reduce((a,x)=>(t.tech[x]||0) > (t.tech[a]||0) ? x : a, TECH_KEYS[0]);
+}
+function classroomTeach(h, W, t, tpr, R, hr){
+  const C = BAL.amenities.classroom, k = teachSubject(h, t), ts = subjectSkill(t, k) || 0; let n = 0, gain = 0;
+  W.forEach(w=>{
+    if(w===t) return; const cur = subjectSkill(w, k); if(cur === null) return;
+    const d = Math.floor((ts - cur) * C.rate * (w.race==='human' ? C.humanMult : 1)); if(d <= 0) return;
+    const nv = clampK(cur + d), got = nv - cur; if(got <= 0) return;
+    if(TECH_LABEL[k]) w.tech[k] = nv; else w.acts[actKey(k)].skill = nv;
+    const pr = R.per[w.id]; pr.learned = got; pr.why.push({t:`${t.name} taught her ${subjectLabel(k).toLowerCase()}`, good:true}); n++; gain += got;
+  });
+  if(TECH_LABEL[k]) grow(t, k, C.teacherGrow); else growAct(t, k, C.teacherGrow);
+  moodAdd(t, C.mood); gainTrust(t, C.trust); tpr.taught = n; tpr.why.push({t:'taught the class', good:true});
+  hr.classroom = {teacher:t.name, subject:subjectLabel(k), n, gain};
+}
 function simHouse(h, R){
   const HD = HOUSES[h.id], W = S.workers.filter(w=>w.house===h.id), P = PRICES[h.price], J = BAL.jobs, BP = BAL.props, TY = BAL.tidy;
   const hr = {id:h.id, name:h.name, income:0, served:0, turned:0, sat:0, upkeep:0, short:0, roomsUsed:0, roomCap:h.rooms*BAL.rooms.perRoom, tidy0:h.tidy ?? TY.start, tidy:h.tidy ?? TY.start, tidyFx:null,
@@ -203,6 +225,7 @@ function simHouse(h, R){
   if(h.up.guard) secPow *= 1.8;
   secPow += S.samWeek.security;
   const barN = h.up.bar ? byJob('bartender').length : 0, attendants = byJob('attendant'), attM = attendants.length ? J.attendantEnergy : 1;
+  const barBoost = 1 + Math.min(barN, J.barPropsMax) * J.barProps * (BAL.amenities.drinks.props[h.drinks||0] ?? 1);   // the bar loosens purses and inhibitions (balance.json → jobs.barProps, amenities.drinks.props)
   const X = {h, hr, R, P, secPow, barN, mgmt, rowdySum:0, rowdyN:0, expectMiss:0};
   X.roomOK = w => has(w,'Exhibitionist') || hr.roomsUsed < hr.roomCap;
   X.useRoom = w => { if(!has(w,'Exhibitionist')) hr.roomsUsed++; };
@@ -230,7 +253,7 @@ function simHouse(h, R){
   W.forEach(w=>{
     const j = w.job, rate = PROP_RATE[j]; if(!rate) return;
     const pr = R.per[w.id], must = !!JOBS[j].must;
-    const n = Math.round(v0 * rate * (1 + barN*J.barProp) * fxMul(w,'propRate') * incenseMul(w,'prop') * (0.4 + appeal(w)/100) * ob(w,'propose') * rnd(0.6,1.4));
+    const n = Math.round(v0 * rate * barBoost * fxMul(w,'propRate') * incenseMul(w,'prop') * (0.4 + appeal(w)/100) * ob(w,'propose') * rnd(0.6,1.4));
     for(let i=0;i<n;i++){
       const cls = pickClass(h); if(Math.random() > (cls.prop ?? 1)) continue;
       const want = pickWant(cls, w), expects = j==='attendant' && Math.random() < BP.attendantExpect; pr.props++;
@@ -297,7 +320,7 @@ function simHouse(h, R){
     const cls = reg ? (CLASSES.find(c=>c.id===reg.cls)||pickClass(h)) : pickClass(h);
     X.rowdySum += cls.rowdy||0; X.rowdyN++;
     const lightOK = id => !helper || actTierOf(actById(id)) <= 1, fits = (x,id) => x.menu.includes(id) && canClient(x,id) && !nim(x,id) && lightOK(id);
-    let want = Math.random() < (helper ? J.propWant.other : J.propWant.courtesan) ? pickWant(cls, w) : null, matched = false;
+    let want = Math.random() < Math.min(1, (helper ? J.propWant.other : J.propWant.courtesan) * barBoost) ? pickWant(cls, w) : null, matched = false;
     // the madame sends the client to the lady whose menu fits
     if(want && mgmt && !helper && !fw){
       if(!fits(w,want)){ const alt = pool.filter(x=>fits(x,want)); if(alt.length) w = weighted(alt, x=>5+appeal(x)); }
@@ -358,7 +381,7 @@ function simHouse(h, R){
   const bathers = Math.round((hr.served + hr.turned*0.5) * J.bathShare), baths = byJob('bath');
   W.forEach(w=>{
     const j = w.job, pr = R.per[w.id], om = outputMult(w, pr);
-    if(j==='bartender'){ const inc = Math.round((10+visitors*1.5) * (0.5+(s100(w.tech.bar)+s100(w.stats.charm))/200) * jb(w,'bartender') * (S.flags.ironsong?1.15:1) * ob(w,'bartender') * ((h.bonus&&h.bonus.bar)||1) * (h.up.cellar ? 1 + BAL.amenities.cellar.bar : 1) * om); hr.income+=inc; R.led.bar+=inc; pr.earned+=inc; grow(w,'bar',2); statXP(w,'charm',1.5); countUp(w,'bar',Math.max(1,Math.round(visitors/8))); }
+    if(j==='bartender'){ const inc = Math.round((J.barBase + visitors*J.barPerVisitor) * (0.5+(s100(w.tech.bar)+s100(w.stats.charm))/200) * jb(w,'bartender') * (S.flags.ironsong?1.15:1) * ob(w,'bartender') * ((h.bonus&&h.bonus.bar)||1) * (BAL.amenities.drinks.bar[h.drinks||0] ?? 1) * om) + Math.round(visitors * (J.barTips||0) * (0.5 + w.popularity/100) * (0.5 + s100(w.stats.charm)/100) * om); hr.income+=inc; R.led.bar+=inc; pr.earned+=inc; grow(w,'bar',2); statXP(w,'charm',1.5); countUp(w,'bar',Math.max(1,Math.round(visitors/8))); }
     if(j==='dancer'){
       const tips = Math.round(visitors * J.tipsBase * (0.5 + w.popularity/100) * (0.5 + s100(w.stats.charm)/100) * Math.sqrt(P.mult) * ob(w,'dancer'));
       const inc = Math.round((12+w.popularity*0.8) * (0.5+s100(w.tech.dance)/100) * Math.sqrt(P.mult) * jb(w,'dancer') * ob(w,'dancer')) + tips;
@@ -382,6 +405,7 @@ function simHouse(h, R){
       hr.income += don; R.led.chapel += don; pr.earned += don; pr.tended = Math.round(visitors); hr.chapel = (hr.chapel||0) + don;
       repAdd(h, C.rep); w.popularity = clamp(w.popularity + C.pop); moodAdd(w, C.mood); gainTrust(w, C.trust); grow(w,'service',1); statXP(w,'charm',1); pr.why.push({t:'tended the chapel', good:true});
     }
+    if(j==='teacher') classroomTeach(h, W, w, pr, R, hr);
     if(j==='security'){ grow(w,'combat',1.5); w.trust = clamp(w.trust+0.3); statXP(w,'strength',1.5); }
     if(j==='madame'){ grow(w,'manage',2); statXP(w,'refinement',1.5); }
     if(j==='promoter'){ grow(w,'service',2); statXP(w,'charm',1.5); }
@@ -399,7 +423,7 @@ function simHouse(h, R){
   const rowdyF = X.rowdyN ? clamp(X.rowdySum / X.rowdyN / 0.07, 0.5, 2) : 1;
   if(W.length && Math.random() < clamp((0.12 + demand/120 - secPow/250) * (HD.trouble||1) * rowdyF * (1 + barN*J.barRowdy) * incenseHouseMul(h,'pushy'), 0.03, 0.6)) EVQ.push(()=>evIncident(h));
   if(HD.haunted && Math.random()<0.15) EVQ.push(()=>evHaunt(h));
-  let up = HD.upkeep + 12*h.rooms + 6*(h.quarters||0) + h.tier*20 + (h.beds||0)*4*bedsFor(h) + (h.extraBeds||0)*3 + (h.annex?30:0) + (h.decor||0)*BAL.amenities.decor.upkeep + Object.keys(h.up).filter(k=>h.up[k] && !HD.up[k]).reduce((a,k)=>a+(UPGRADES[k].upkeep||0), 0);
+  let up = HD.upkeep + 12*h.rooms + 6*(h.quarters||0) + h.tier*20 + (h.beds||0)*4*bedsFor(h) + (h.extraBeds||0)*3 + (h.annex?30:0) + (h.decor||0)*BAL.amenities.decor.upkeep + (h.up.bar ? (BAL.amenities.drinks.upkeep[h.drinks||0]||0) : 0) + Object.keys(h.up).filter(k=>h.up[k] && !HD.up[k]).reduce((a,k)=>a+(UPGRADES[k].upkeep||0), 0);
   if(S.samWeek.books) up = Math.round(up * (1 - (0.1 + S.sam.business*0.003 + samUpFx('books'))));
   up = Math.round(up * ((h.bonus&&h.bonus.upkeep)||1) * (1 + h.rep/150));
   hr.upkeep = up;
@@ -419,7 +443,7 @@ function simHouse(h, R){
   if(h.up.workshop) h.wsDisc = Math.min(1, (h.wsDisc||0) + W.filter(w=>w.race==='dwarf').length * BAL.amenities.workshop.perDwarf);
   // who has a bed tonight
   let beds = bedsFor(h); hr.floor = [];
-  S.workers.filter(w=>w.house===h.id && w.race!=='spirit').sort((a,b)=>(b.isPartner||b.locked?1:0)-(a.isPartner||a.locked?1:0)).forEach(w=>{ if(beds>0){ beds--; w._bed = BEDS[h.beds||0].rest; } else { w._bed = FLOOR_REST; hr.floor.push(w.name); } });
+  S.workers.filter(w=>w.house===h.id && !['spirit','android'].includes(w.race)).sort((a,b)=>(b.isPartner||b.locked?1:0)-(a.isPartner||a.locked?1:0)).forEach(w=>{ if(beds>0){ beds--; w._bed = BEDS[h.beds||0].rest; } else { w._bed = FLOOR_REST; hr.floor.push(w.name); } });
   hr.avgSat = avg; hr.rep = h.rep;
   return hr;
 }
@@ -445,7 +469,7 @@ function endWeek(){
     let rest = (w._bed ?? BEDS[h.beds||0].rest);
     rest *= restMult(w) * (tfx ? tfx.rec : 1);
     let rec = w.job==='rest' ? rest*1.6 + (h.up.bath?10:0) : rest*(0.75 + 0.25*freeFrac);
-    if(w.race==='spirit') rec = w.job==='rest' ? 55 : 30;
+    if(w.race==='spirit') rec = w.job==='rest' ? SVC.spirit.restRec : SVC.spirit.workRec;
     if(w.race==='demon') rec = w.job==='rest' ? rec*0.35 : -SVC.demon.hunger;   // demons get nothing from sleep and burn energy every working week: they feed on desire instead (serveAct); on a week off, on men in town
     if(w.race==='demon' && w.job==='rest' && restless(w) && Math.random() < SVC.demon.restDrainChance){   // a restless one can overdo it, and the town notices
       S.rep = clamp(S.rep - SVC.demon.restRepDrain); pr.drains = (pr.drains||0)+1; (pr.notes = pr.notes||[]).push(flavor('rest_demon_drain', w));
@@ -463,7 +487,7 @@ function endWeek(){
     if(pr.reluct) why('did a few things as a favor', false);
     if(w.job==='rest'){ moodAdd(w, 8); w.health += 15; why('a week off', true); }
     w.health = clamp(w.health+5);
-    if(w._bed===FLOOR_REST && w.race!=='spirit'){ moodAdd(w, -3); why('slept on the floor', false); }
+    if(w._bed===FLOOR_REST && !['spirit','android'].includes(w.race)){ moodAdd(w, -3); why('slept on the floor', false); }
     else if(housingShort(h) && !['spirit','android','demon'].includes(w.race)){ moodAdd(w, -BAL.quarters.moodPer*housingShort(h)); why('expects better quarters in a house this famous', false); }
     w.mood += (BAL.mood.restingPoint + fxAdd(w,'moodRest') + (has(w,'Loyal')?5:0) + (has(w,'Devoted')?10:0) - w.mood) * BAL.mood.drift * fxMul(w,'moodDrift');
     const work = pr.served + pr.acc - pr.comp*0.4, over = work - BAL.mood.overworkAt;
@@ -538,6 +562,7 @@ function endWeek(){
     if(hr.short) log(`🚪 ${flavor('rooms_short', null, {house:hr.name})} (${hr.short} client${hr.short>1?'s':''} turned away; ${hr.roomsUsed}/${hr.roomCap} room sessions used.)`);
     const T = BAL.tidy, tk = hr.tidy >= T.high ? 'high' : hr.tidy < T.bad ? 'bad' : hr.tidy < T.low ? 'low' : null;
     if(tk) log(`${tk==='high'?'✨':'🧹'} ${flavor('tidy_'+tk, null, {house:hr.name})} (tidiness ${Math.round(hr.tidy)})`);
+    if(hr.classroom) log(`📚 Classroom: ${hr.classroom.teacher} taught ${hr.classroom.subject.toLowerCase()} to ${hr.classroom.n} lad${hr.classroom.n===1?'y':'ies'}.`);
     const pu = hr.pushy; if(pu && pu.total) log(`⚠️ ${hr.name}: ${pu.total} pushy client${pu.total>1?'s':''}. ${[pu.security&&`security walked ${pu.security} out`, pu.sam&&`Sam stepped in ${pu.sam}×`, pu.samfail&&`Sam's attempt went badly ${pu.samfail}×`, pu.samcall&&`security needed Sam ${pu.samcall}× (your call)`, pu.none&&`nobody was there ${pu.none}×`].filter(Boolean).join(', ')}.`);
   });
   { const calls = (R.houses||[]).flatMap(hr=>hr.calls||[]); if(calls.length) EVQ.unshift(()=>pushyEvent(calls)); }
@@ -599,7 +624,7 @@ function showReport(R, fromWeek){
     if(!ps.length) return '';
     return `<h3 style="margin-top:12px">${esc(hh.name)}</h3>` + ps.map(p=>{
       const w = findAny(p.id) || {id:p.id, name:p.name};
-      const svc = Object.entries(p.acts).map(([id,n])=>`<span class="tag act">${esc(actLabel(id))} ×${n}</span>`).join('') + (p.comp?`<span class="tag">Company ×${p.comp}</span>`:'') + (p.draw?`<span class="tag">Draw +${Math.round(p.draw)} clients${p.samples?' (samples)':''}</span>`:'') + (p.tidied?`<span class="tag">Tidied +${Math.round(p.tidied)}</span>`:'') + (p.tended?`<span class="tag">Tended ~${p.tended} visitors</span>`:'') + (p.stepIn?`<span class="tag">Stepped in ×${p.stepIn}</span>`:'') + (p.pushy?`<span class="tag">Pushy clients ×${p.pushy}</span>`:'');
+      const svc = Object.entries(p.acts).map(([id,n])=>`<span class="tag act">${esc(actLabel(id))} ×${n}</span>`).join('') + (p.comp?`<span class="tag">Company ×${p.comp}</span>`:'') + (p.draw?`<span class="tag">Draw +${Math.round(p.draw)} clients${p.samples?' (samples)':''}</span>`:'') + (p.tidied?`<span class="tag">Tidied +${Math.round(p.tidied)}</span>`:'') + (p.tended?`<span class="tag">Tended ~${p.tended} visitors</span>`:'') + (p.taught!==undefined?`<span class="tag">Taught ${p.taught}</span>`:'') + (p.learned?`<span class="tag">Learned +${p.learned}</span>`:'') + (p.stepIn?`<span class="tag">Stepped in ×${p.stepIn}</span>`:'') + (p.pushy?`<span class="tag">Pushy clients ×${p.pushy}</span>`:'');
       const hls = R.hl.map((h,i)=>({h,i})).filter(x=>x.h.wid===p.id).map(({h,i})=>`<div class="hl">${esc(h.text)} ${findAny(p.id)?`<button class="sm" id="hl${i}_t" onclick="toggleImgBtn('hl${i}','${p.id}','${h.scene}')">🖼 Show image</button>`:''}<div id="hl${i}" class="hlimg" data-ext="1"></div></div>`).join('')
         ;
       return `<div class="rep-w"><div class="head">${w.design?avatarHTML(w):''}<div><b>${esc(p.name)}</b> · ${JOBS[p.job]?JOBS[p.job].label:p.job}${p.earned?` · earned <b>${fmt(p.earned)}</b>`:''}

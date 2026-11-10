@@ -65,7 +65,7 @@ function madameShield(w){
   if(typeof S==='undefined' || !S || !w.house) return 1;
   return S.workers.some(x=>x!==w && x.house===w.house && x.job==='madame') ? BAL.jobs.madameMoodLoss : 1;
 }
-function moodAdd(w, n){ const before = w.mood; let d = n * fxMul(w, 'moodDelta'); if(d < 0) d *= madameShield(w); w.mood = clamp(w.mood + d); return w.mood - before; }
+function moodAdd(w, n){ const before = w.mood; let d = n * fxMul(w, 'moodDelta'); if(d < 0) d *= madameShield(w) * fxMul(w, 'moodLoss'); w.mood = clamp(w.mood + d); return w.mood - before; }
 // Sleep/rest recovery multiplier from fx, plus the house's amenities (garden; balance.json → amenities).
 function restMult(w){
   let m = fxMul(w, 'energyRec');

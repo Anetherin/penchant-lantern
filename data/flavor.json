@@ -286,6 +286,14 @@
       "The baths were busy and so was {name}. When the mood took her, the massages didn't stay massages."
     ]
   },
+  "job_teacher": {
+    "_note": "Weekly report line for the classroom teacher.",
+    "_default": [
+      "{name} ran the classroom at {house} with a ruler and endless patience. Notes were taken.",
+      "{name} drilled the house until the lesson stuck. Somebody asked for homework. {name} was delighted.",
+      "{name} wrote on the slate, pointed, and waited. By evening the whole house was practising."
+    ]
+  },
   "job_maid": {
     "_note": "Weekly report line for a maid.",
     "_default": [

@@ -46,6 +46,7 @@ function setSvcOutfit(id, k){ const w=findW(id); if(!w) return; w.svcOutfit = k 
 function setSvcLevel(id, k){ const w=findW(id); if(!w) return; w.svcLevel = k || 'auto'; save(); refreshSheetInfo(); fillCloth(); sheetImg(); }
 function setAutoRest(id, on){ const w=findW(id); if(!w) return; w.autoRest=!!on; if(!on) delete w.prevJob; save(); refreshSheetInfo(); }
 function setOffDuty(id, v){ const w=findW(id); if(!w) return; w.offDuty = v==='on'||v===true ? 'on' : v==='off'||v===false ? 'off' : 'ask'; save(); refreshSheetInfo(); }
+function setTeachSkill(hid, v){ const h = H(hid); if(!h) return; h.teachSkill = v || null; save(); render(); refreshSheetInfo(); }
 function setSamples(id, on){ const w=findW(id); if(!w) return; if(on && has(w,'Modest')) return toast(`${w.name} is too modest for handing out samples.`); w.samples=!!on; save(); refreshSheetInfo(); }
 function setWage(id, v){ const w=findW(id); if(!w) return; if(isFree(w)) return toast(`${w.name} won't take a wage from you.`); w.wage=Math.max(0,Math.round(+v||0)); save(); refreshSheetInfo(); renderHeader(); }
 function setPrice(i){ curH().price = i; save(); render(); }
@@ -80,6 +81,7 @@ function upgradeCost(h, k){
   else if(k==='extraBed') base = 80 + (h.extraBeds||0)*60 + (BEDS[h.beds||0].cost||0)*0.25;
   else if(k==='annex') base = 2500;
   else if(k==='decor') base = (DECOR[Math.min(3,(h.decor||0)+1)]||{}).cost || 0;
+  else if(k==='drinks') base = (DRINKS[Math.min(3,(h.drinks||0)+1)]||{}).cost || 0;
   else base = UPGRADES[k] ? UPGRADES[k].cost : 0;
   // Workshop: the markup (inflation) is trimmed by h.wsDisc, never below the base price
   const disc = h.up && h.up.workshop ? clamp(h.wsDisc||0, 0, 1) : 0;
@@ -92,6 +94,7 @@ function buyUpgrade(k){
   else if(k==='beds'){ if((h.beds||0)>=3) return toast('Already the best beds in town.'); }
   else if(k==='annex'){ if(h.annex) return toast('Already expanded.'); }
   else if(k==='decor'){ if((h.decor||0)>=3) return toast('The house is already as grand as it gets.'); }
+  else if(k==='drinks'){ if(!h.up.bar) return toast('The drinks menu needs a Bar first.'); if((h.drinks||0)>=3) return toast('The bar already pours the best in Hollowmere.'); }
   else if(k==='extraBed'){ if((h.extraBeds||0) >= maxExtraBeds(h)) return toast('The staff rooms are full. Add staff quarters first.'); }
   else { if(h.up[k]) return; need = AMENITY_SIZE[k] ?? 1; const nd = UPGRADES[k] && UPGRADES[k].needs; if(nd && !h.up[nd]) return toast(`${UPGRADES[k].label} needs a ${UPGRADES[nd].label} first.`); }
   if(need && roomsUsed(h) + need > houseSize(h)) return toast(`${h.name} is out of space (${roomsUsed(h)}/${houseSize(h)} rooms used).`);
@@ -104,6 +107,7 @@ function buyUpgrade(k){
   else if(k==='extraBed'){ h.extraBeds=(h.extraBeds||0)+1; note(`${h.name}: another bed squeezed into the staff rooms. Beds for ${bedsFor(h)}.`); }
   else if(k==='annex'){ h.annex=true; note(`${h.name}: annex built (+3 rooms of space).`); }
   else if(k==='decor'){ h.decor=(h.decor||0)+1; note(`${h.name}: redecorated (${DECOR[h.decor].label}).`); }
+  else if(k==='drinks'){ h.drinks=(h.drinks||0)+1; note(`${h.name}: the bar now serves ${DRINKS[h.drinks].label.toLowerCase()}.`); }
   else if(k==='incense'){ h.up[k]=true; h.incense='calm'; note(`${h.name}: ${UPGRADES[k].label} built.`); }
   else { h.up[k]=true; note(`${h.name}: ${UPGRADES[k].label} built.`); }
   save(); render();
@@ -117,10 +121,10 @@ function demolishInfo(h, k){
   if(k==='room'){ base = 250 + (h.rooms-1)*220; if(h.rooms <= D.rooms) why = 'These are the rooms the house started with.'; }
   else if(k==='quarters'){ base = 200 + ((h.quarters||0)-1)*160; if((h.quarters||0) <= D.quarters) why = 'These are the quarters the house started with.'; }
   else if(UPGRADES[k]){
-    base = UPGRADES[k].cost; const jobOf = {bath:'bath', stage:'dancer', bar:'bartender', chapel:'chapel'}[k];
+    base = UPGRADES[k].cost; const jobOf = {bath:'bath', stage:'dancer', bar:'bartender', chapel:'chapel', classroom:'teacher'}[k];
     if(!h.up[k]) why = 'Not built.';
     else if((D.up||{})[k]) why = `${UPGRADES[k].label} came with the house.`;
-    else if(k==='bar' && h.up.cellar) why = `The ${UPGRADES.cellar.label} needs the Bar. Demolish the cellar first.`;
+    else if(k==='bar' && (h.drinks||0) > 0) why = `The Bar's drinks menu (${DRINKS[h.drinks].label}) is stocked above the standard house ale, so the Bar can't be torn out.`;
     else if(jobOf && S.workers.some(w=>w.house===h.id && w.job===jobOf)) why = `Someone still works as ${JOBS[jobOf].label} here. Move her to another job first.`;
   } else why = 'Unknown.';
   return {base, cost:Math.round(base*share), ok:!why, why};
