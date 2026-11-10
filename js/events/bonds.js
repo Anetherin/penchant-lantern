@@ -41,6 +41,7 @@ function bondLines(w){
     if(b.kind && BONDS.kinds[b.kind]){ const K = BONDS.kinds[b.kind]; out.push(`${b.from===w.id ? K.from : K.to} ${o.name}`); }
     const L = BONDS.labels.find(l=>(l.min!==undefined && b.v>=l.min) || (l.max!==undefined && b.v<=l.max));
     if(L && !(b.kind && b.v>=0)) out.push(`${L.label} ${o.name}`);
+    if(b.past && out.length && (b.kind || L)) out[out.length-1] += ' (from a past life)';
   });
   return out;
 }
