@@ -147,6 +147,12 @@
       "setting": "warm lantern-lit corridor of a pleasure house",
       "house": true
     },
+    "job_host": {
+      "label": "Work: Host",
+      "comp": "chatting warmly with guests, holding a glass of wine, friendly smile",
+      "setting": "cozy lantern-lit lounge of a pleasure house",
+      "house": true
+    },
     "invite": {
       "label": "Invitation: Come in?",
       "pov": true,
