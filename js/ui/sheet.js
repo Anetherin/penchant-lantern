@@ -98,8 +98,17 @@ function viewSam(){
       <div class="row"><button onclick="samWork('bartend')">🍺 Tend bar</button><button onclick="samWork('security')">🛡️ Stand watch</button><button onclick="samWork('books')">📒 Do the books</button><button onclick="samWork('scout')">🔍 Scout recruits</button><button onclick="samWork('rounds')">🚶 Make the rounds</button></div>
       <div class="row"><select id="lessonSel">${TECH_KEYS.map(s=>`<option value="${s}">${TECH_LABEL[s]}</option>`).join('')}</select><button onclick="samWork('lesson')">🎓 Hold a lesson</button></div>
       <p class="muted">Tend bar earns gold now (Charm). Watch reduces trouble in every house (Strength). Books cut upkeep (Business). Scouting adds candidates and Appraisal XP. Rounds: a little trust and mood for every lady. Lessons train everyone whose job uses that skill (one-on-one training is for services).</p></section>
-    <section class="card"><h2>Errands</h2><div class="row"><button onclick="samGuild()">⚔️ Adventurers' Guild</button><button onclick="samRest()">😴 Rest (+50 energy)</button></div></section>
+    <section class="card"><h2>Errands</h2><div class="row"><button onclick="samGuild()">⚔️ Adventurers' Guild</button><button onclick="samRest()">😴 Rest (+${samRecover(BAL.samHome.nap)} energy)</button></div></section>
+    ${samHomeCard()}
     <section class="card"><h2>Spend Time with Someone</h2><div class="grid">${S.workers.map(w=>workerCard(w, S.houses.length>1)).join('')}</div></section>`;
+}
+function samHomeCard(){
+  const sh = samHouse(), tier = samBedTier();
+  const ups = Object.entries(BAL.samUps).map(([k,u])=>`<div class="row"><div style="flex:1"><b>${esc(u.label)}</b> <span class="muted">${esc(u.desc)}${u.carry?'':' (left behind in New Game+)'}</span></div>${hasSamUp(k)?'<span class="tag act">✓ Owned</span>':`<button ${S.gold<u.cost?'disabled':''} onclick="buySamUp('${k}')">Buy · ${fmt(u.cost)}</button>`}</div>`).join('');
+  return `<section class="card"><h2>Home</h2>
+    <div>Sam sleeps at <b>${esc(sh.name)}</b>${S.houses.length>1?` <select onchange="moveSam(this.value)">${S.houses.map(h=>`<option value="${h.id}" ${h.id===sh.id?'selected':''}>${esc(h.name)}</option>`).join('')}</select>`:''}</div>
+    <div>Bed: <b>${BEDS[tier].label}</b> · Weekly recovery: <b>+${samRecover(BAL.samHome.weekly) + (samUpFx('weekly')||0)}</b> energy</div>
+    <p class="muted">Late-night visits only come from ladies of this house${samReach()?' (not now: a Teleport Circle lets every house reach him)':''}. Moving is free, once a week.</p>${ups}</section>`;
 }
 function viewUpgrades(){
   const h = curH(), D = HOUSES[h.id];

@@ -565,7 +565,7 @@ function endWeek(){
     }
   }
   if(R.income - R.wages - R.upkeep > 0) samGainXP(Math.min(30, Math.round((R.income - R.wages - R.upkeep)/60)));
-  S.week++; S.ap = apMax(); S.sam.energy = Math.min(100, S.sam.energy + 40 + (hasPast('gym')?20:0));
+  S.week++; S.ap = apMax(); S.sam.energy = Math.min(100, S.sam.energy + samRecover(BAL.samHome.weekly) + (samUpFx('weekly')||0) + (hasPast('gym')?20:0));
   S.samWeek = {security:0, books:false, income:0, acts:[]};
   refreshCandidates();
   checkUnlocks(false, R.lines);

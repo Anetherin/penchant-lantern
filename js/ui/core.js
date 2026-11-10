@@ -31,7 +31,7 @@ function knows(w, employee){ return S.sam.appraisal>=2 || (employee && w.trust>=
 function knowsPrefs(w){ return S.sam.appraisal>=3 || w.trust>=40; }
 function grade(v){ return v>=85?'S':v>=70?'A':v>=55?'B':v>=40?'C':v>=25?'D':'E'; }
 // stats and skills run 0-1000; grades use the 0-100 scale
-function sv(w, v, employee){ return knows(w,employee) ? `${Math.round(v)}<span class="muted" style="font-size:.7em">/1000</span>` : grade(s100(v)); }
+function sv(w, v, employee){ return knows(w,employee) ? `${Math.round(v)}<span class="muted" style="font-size:.7em">/${statCap()}</span>` : grade(s100(v)); }
 const isGuest = w => !!(w && w.key && NAMED[w.key] && NAMED[w.key].role==='drifter');
 const nameBadge = w => isGuest(w) ? `<span class="tag guest" title="Visiting guest${NAMED[w.key].pack && GUEST_PACKS[NAMED[w.key].pack] ? ' · '+esc(GUEST_PACKS[NAMED[w.key].pack].label||NAMED[w.key].pack) : ''}">☄</span>` : (w && w.named ? '<span class="tag">★</span>' : '');
 function traitTags(w){ return (w.reborn?`<span class="tag act" title="${esc(rebornDesc(w))}">♻ Reincarnated${w.reborn>1?' ×'+w.reborn:''}</span> `:'') + (w.unique?`<span class="tag act" title="${esc(w.unique.desc||'')}">★ ${esc(w.unique.name)}</span> `:'') + (w.ngPerks||[]).map(t=>`<span class="tag act" title="${esc(TRAITS[t]?TRAITS[t].desc:'')}">✦ ${esc(t)}</span>`).join(' ') + ' ' + (w.traits||[]).filter(t=>!TRAITS[t]||!TRAITS[t].hidden||S.sam.appraisal>=3).map(t=>`<span class="tag ${TRAITS[t]&&TRAITS[t].hidden?'hid':''} ${TRAITS[t]&&TRAITS[t].story?'act':''}" title="${esc(TRAITS[t]?TRAITS[t].desc:'')}">${esc(t)}</span>`).join(' '); }
@@ -65,6 +65,10 @@ function regularsCard(h){
 function tidyTier(h){ const T = BAL.tidy, t = h.tidy ?? T.start; return t >= T.high ? 'high' : t < T.bad ? 'bad' : t < T.low ? 'low' : 'ok'; }
 const tidyLabel = h => ({high:'spotless: reputation, mood and rest all benefit', ok:'presentable', low:'getting shabby: reputation, mood and rest suffer', bad:'a mess: reputation, mood and rest suffer badly'})[tidyTier(h)];
 const tidyCls = h => ({high:'good', ok:'', low:'warn', bad:'warn'})[tidyTier(h)];
+function feastCard(h){
+  const n = S.workers.filter(w=>w.house===h.id).length, done = h.feastWk === S.week;
+  return `<section class="card"><h2>Throw a feast</h2><div class="row">${BAL.feast.tiers.map(t=>`<button ${done||!n||S.gold<t.cost*n?'disabled':''} onclick="throwFeast('${t.id}')">${esc(t.label)} · ${fmt(t.cost*n)}</button>`).join('')}</div>${done?'<p class="muted">Already feasted this week.</p>':'<p class="muted">Once a week per house, no action. Trust and mood for every lady living here.</p>'}</section>`;
+}
 function viewHouse(){
   const h = curH(), D = HOUSES[h.id], nd = nextDue();
   const amen = Object.keys(UPGRADES).filter(k=>h.up[k]).map(k=>UPGRADES[k].label).join(', ') || 'none';
@@ -78,6 +82,7 @@ function viewHouse(){
       <div>Amenities: ${amen}</div>${D.minPop?`<div class="muted">Standard: escorts need popularity ${D.minPop}+</div>`:''}
       <div class="muted">Clientele: ${CLASSES.map((c,i)=>D.cls[i]>=1.3?`<b>${c.label}s ↑</b>`:D.cls[i]<=0.5?`${c.label}s ↓`:'').filter(Boolean).join(', ')||'balanced'}</div></div>
       <p class="muted">Higher prices earn more per client but draw fewer of them, unless reputation is high.</p></section>
+    ${feastCard(h)}
     ${storyCard(h)}
     ${regularsCard(h)}
     <section class="card"><h2>Positions</h2><div class="grid2">${Object.entries(JOBS).filter(([k])=>k!=='rest').map(([k,J])=>{ const ws=S.workers.filter(w=>w.house===h.id && w.job===k), mx=slotsFor(h,k); return mx||ws.length?`<div><b>${J.label}</b> <span class="muted">${ws.length}/${mx}</span>${ws.length?': '+ws.map(w=>esc(w.name)).join(', '):''}</div>`:''; }).join('')}

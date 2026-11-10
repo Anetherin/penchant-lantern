@@ -17,6 +17,8 @@ const BOT = `async (weeks) => {
     const p = S.workers.find(w => w.isPartner);
     if (p && S.ap > 0) { samDate(p.id, 'walk'); closeModal(); }
     if (S.ap > 0) { samRest(); closeModal(); }
+    if (i === 1) { buySamUp('suite'); closeModal(); }
+    throwFeast(BAL.feast.tiers[0].id); closeModal();
     endWeek(); closeModal();
     let g = 0; while ((EVQ.length || CUR_EV) && g < 25) { if (CUR_EV) { evChoice(Math.floor(Math.random()*CUR_EV.choices.length)); CUR_EV = null; } closeModal(); runQueue(); g++; } closeModal();
     S.gold = Math.max(S.gold, 2000); S.debt.strikes = 0;

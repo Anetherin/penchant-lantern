@@ -32,7 +32,10 @@
     "debt: 'payments' payments every 'every' weeks from when the debt started (NG+ restarts it). Payment n = total x share_n; shares ramp linearly from 1 to 'ramp' (the last is ramp x the first) and sum to 1, so there is no balloon; the last payment clears whatever remains (penalties included). A missed payment adds penalty x its amount to the debt and carries over to the next; 'strikes' misses end the game.",
     "clients: pickier customers as a house gets famous: satisfaction loses (effective reputation - pickFrom) x pickPer.",
     "quarters: staff expect better lodging as the house gets famous: expected comfort = floor(house rep / repPerLevel), max 3; comfort = min(bed level, bedroom refurbishment tier). Each level short costs moodPer mood a week (not for ladies who don't sleep, nor those already on the floor).",
-    "arcs: romance arcs. need[i] = trust for beat i, gap[i] = weeks since her last beat. Extras: beat 2 needs a date or private time with Sam, dates['4'] dates for beat 4, private['5'] private times for beat 5."
+    "arcs: romance arcs. need[i] = trust for beat i, gap[i] = weeks since her last beat. Extras: beat 2 needs a date or private time with Sam, dates['4'] dates for beat 4, private['5'] private times for beat 5.",
+    "ngplus.carry: share of what a carried lady (lover or old friend) gained in stats, job skills and service skills above her starting values that she keeps into the next cycle; Sam keeps the same share of his training/story stat gains. ngplus.cap: stats and skills top out at base + perCycle x (cycle-1) (ladies 1000, 1100, 1200...; Sam's 0-100 stats use a tenth of that). Trust, lewdness, mood, energy and health are unaffected.",
+    "feast: Throw a feast (house tab), once per house per week, no action. Each tier: cost per lady in that house, trust (0-100 scale, still capped by house stories) and mood each lady gets. Wording is in each tier's text.",
+    "samHome: Sam sleeps in one house (S.samHome, default his home house). His weekly recovery (weekly) and naps (nap) scale with that house's staff bed quality: x rest/ref (economy.json beds). Late-night encounters only come from ladies in his house unless he has a 'reach' upgrade or boon. samUps: things Sam can buy (Sam tab); carry = kept in New Game+; fx: bedTier (+tiers for Sam's own bed), weekly (+energy every week), reach (ladies from every house can visit him at night)."
   ],
   "lewd": {
     "_note": "Lewdness diminishing returns (lewdUp). Each source has a cap: full gain below cap-band, half at the cap, none past cap+band. Services: cap = service th + capOver. softCap: default cap for sources without one; past it only daring dates, traits and stories push her further.",
@@ -88,7 +91,9 @@
     "houseOffers": 4,
     "reborn": {"trust":0.5,"skill":0.25,"stat":0.25,"lewd":0.25},
     "friends": {"trust":100,"guests":true,"generics":true,"chance":0.5,"max":2},
-    "samReset": {"stats":true,"appraisal":true}
+    "samReset": {"stats":true,"appraisal":true},
+    "carry": 0.1,
+    "cap": {"base":1000,"perCycle":100}
   },
   "jobPrefs": {
     "_note": "Rolled job likes/dislikes for generic ladies (and named ones without their own list). Each job's odds: base, plus personality (personalities.json jobsUp/jobsDown), plus trait for each matching trait below, plus ownJob for the job she arrives in. maxLikes/maxDislikes cap the lists.",
@@ -232,5 +237,57 @@
   "debt": {"every":4,"payments":13,"ramp":8,"penalty":0.1,"strikes":3},
   "clients": {"pickFrom":30,"pickPer":0.3},
   "quarters": {"repPerLevel":25,"moodPer":2},
-  "arcs": {"need":[35,42,50,58,66,75],"gap":[1,1,1,2,2,2],"dates":{"2":1,"4":1},"private":{"5":1}}
+  "arcs": {"need":[35,42,50,58,66,75],"gap":[1,1,1,2,2,2],"dates":{"2":1,"4":1},"private":{"5":1}},
+  "feast": {
+    "tiers": [
+      {
+        "id": "supper",
+        "label": "Family supper",
+        "cost": 50,
+        "trust": 1,
+        "mood": 6,
+        "text": "Sam cooks (badly) and buys the rest (well). {house} eats together for once. Nobody talks about work."
+      },
+      {
+        "id": "banquet",
+        "label": "Banquet",
+        "cost": 100,
+        "trust": 2,
+        "mood": 10,
+        "text": "Roast, three kinds of pie and a cask of something sweet. The {house} staff toast Sam twice and mean it once."
+      },
+      {
+        "id": "gala",
+        "label": "Grand feast",
+        "cost": 200,
+        "trust": 3,
+        "mood": 16,
+        "text": "Musicians, a hired cook and a cake taller than Sam. {house} talks about it for weeks."
+      }
+    ]
+  },
+  "samHome": {"ref":42,"weekly":40,"nap":50},
+  "samUps": {
+    "suite": {
+      "label": "Private Suite",
+      "cost": 600,
+      "carry": true,
+      "desc": "A proper room of his own: Sam sleeps one bed tier better than the staff of the house he lives in.",
+      "fx": {"bedTier":1}
+    },
+    "coffee": {
+      "label": "Otherworld Coffee Maker",
+      "cost": 900,
+      "carry": true,
+      "desc": "He rebuilt a drip machine from memory and two dwarven pipes. +10 energy every week.",
+      "fx": {"weekly":10}
+    },
+    "circle": {
+      "label": "Teleport Circle",
+      "cost": 2500,
+      "carry": false,
+      "desc": "A chalk circle in every house that the Credit House does not know about. Ladies from any of his houses can find Sam at night. Left behind in New Game+.",
+      "fx": {"reach":true}
+    }
+  }
 }

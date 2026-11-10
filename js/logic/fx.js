@@ -83,7 +83,7 @@ function raceBlock(w, h){
 function statXP(w, key, n){
   if(!w.stats || w.stats[key]===undefined) return;
   const v = w.stats[key];
-  w.stats[key] = clampK(v + n * fxMul(w, 'statGain') * Math.max(0.05, 1 - v/1300));
+  w.stats[key] = clampK(v + n * fxMul(w, 'statGain') * Math.max(0.05, 1 - v/growDen()));
 }
 
 /* ---------- counters (w.counts) and developable traits ---------- */

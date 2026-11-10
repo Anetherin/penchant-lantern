@@ -25,7 +25,8 @@ const NG_BOONS = {
   renown:  {label:'A Name in Hollowmere', desc:'+15 renown, and the new house opens with +10 reputation.'},
   recruit: {label:'Friends at the Guild', desc:'3 extra candidates now; signing bonuses are 25% cheaper from now on.'},
   grace:   {label:'Lenient Lender', desc:'The new debt is 15% smaller.'},
-  devotion:{label:'Old Flame', desc:'Your new partner starts with +15 trust and +10 lewdness.'}
+  devotion:{label:'Old Flame', desc:'Your new partner starts with +15 trust and +10 lewdness.'},
+  clone:   {label:'Shadow Clone', desc:'Sam learned to be in two places at once. Ladies from every house can find him at night, not just the house he sleeps in.'}
 };
 // What was spent on the home house's rooms, tiers, quarters, beds, annex and upgrades (tracked in h.spent by buyUpgrade).
 const improvementsValue = h => Math.round((h && h.spent) || 0);
@@ -101,13 +102,14 @@ function ngView(){
     const friends = ngFriends(), leaving = S.workers.filter(w=>!lovers.includes(w) && !friends.includes(w));
     body = `<h2>Ready for round ${N.cycle}?</h2><div class="card">
       <b>Keeps:</b> ${esc(HDo.name)} with its rooms, upgrades and story, Sam's level${BAL.ngplus.samReset.stats||BAL.ngplus.samReset.appraisal?'':', stats and Appraisal'}, the regulars there and your image library. Your savings stay behind.<br>
-      ${BAL.ngplus.samReset.stats||BAL.ngplus.samReset.appraisal?`<b>Sam:</b> keeps his level (Lv ${S.sam.lvl||1}); ${[BAL.ngplus.samReset.stats&&'training and story stat gains',BAL.ngplus.samReset.appraisal&&'Appraisal'].filter(Boolean).join(' and ')} start over.<br>`:''}
-      <b>Lovers who stay:</b> ${lovers.length ? lovers.map(w=>`${esc(w.name)}${NGS.perks[w.id]?` (${esc(NGS.perks[w.id])})`:''}`).join(', ') + '. They draw wages again; their skills, popularity, trust and lewdness start over (they\'re still his lovers, and Reincarnated makes the climb back faster).' : 'none. Only Devoted lovers come along.'}<br>
+      ${BAL.ngplus.samReset.stats||BAL.ngplus.samReset.appraisal?`<b>Sam:</b> keeps his level (Lv ${S.sam.lvl||1}); ${[BAL.ngplus.samReset.stats&&'training and story stat gains',BAL.ngplus.samReset.appraisal&&'Appraisal'].filter(Boolean).join(' and ')} start over${BAL.ngplus.samReset.stats&&BAL.ngplus.carry?` (he keeps ${Math.round(BAL.ngplus.carry*100)}% of his trained stats)`:''}.<br>`:''}
+      <b>Lovers who stay:</b> ${lovers.length ? lovers.map(w=>`${esc(w.name)}${NGS.perks[w.id]?` (${esc(NGS.perks[w.id])})`:''}`).join(', ') + '. They draw wages again; their skills, popularity, trust and lewdness start over, keeping ' + Math.round((BAL.ngplus.carry||0)*100) + '% of the skills and stats they\'d built (they\'re still his lovers, and Reincarnated makes the climb back faster).' : 'none. Only Devoted lovers come along.'}<br>
       ${friends.length?`<b>Old friends:</b> ${friends.map(w=>esc(w.name)).join(', ')}. They'll look Sam up again (Recruit), with a Reincarnated stack.<br>`:''}
       <b>Leaving:</b> ${leaving.length ? `${leaving.length} ladies (${leaving.slice(0,8).map(w=>esc(w.name)).join(', ')}${leaving.length>8?', …':''}). Named ones can be met again, fresh.` : 'no one.'}<br>
       ${NGS.house?`<b>New house:</b> ${esc(HOUSES[NGS.house].name)} with ${esc((NAMED[HOUSES[NGS.house].npc]||{}).name||'its resident')}.<br>`:''}
       ${NGS.past&&NGS.past!=='none'?`<b>Another past life:</b> ${esc(PASTS[NGS.past].label)}.<br>`:''}
       <b>Reincarnated:</b> every lady who stays gains a stack (faster trust, lewdness, skill and stat growth).<br>
+      <b>Higher ceiling:</b> stats and skills can now reach ${BAL.ngplus.cap.base + BAL.ngplus.cap.perCycle*(N.cycle-1)} (Sam's ${(BAL.ngplus.cap.base + BAL.ngplus.cap.perCycle*(N.cycle-1))/SKL}).<br>
       <b>New:</b> ${NGS.partner&&NGS.partner!=='none'?`${esc(NAMED[NGS.partner].name)} at Sam's side`:'no new partner'}${NGS.boon?`. Perk: <b>${NG_BOONS[NGS.boon].label}</b>`:''}. ✦ houses (and more) can be bought during the cycle.<br>
       ${N.sold.length?`<b>${N.sale?'Sold to the Credit House':'Surrendered to the Credit House'}:</b> ${N.sold.map(h=>esc(h.name)).join(', ')}${N.sale?` (${fmt(N.sale)}, off the debt)`:''}.<br>`:''}
       <b>Debt:</b> ${fmt(N.debt)} (${esc(HDo.name)} ${fmt(N.base)} + your improvements ${fmt(N.impr)} × ${BAL.ngplus.improveShare} = ${fmt(N.extra)}${N.house?` + ${esc(HOUSES[NGS.house].name)} ${fmt(N.house)}`:''})${N.sale?`, minus ${fmt(N.sale)} for the sold houses`:''}, due over ${BAL.debt.payments*BAL.debt.every} weeks.<br>
@@ -120,16 +122,20 @@ function ngView(){
 // conversion as makeNamed; generic: half of what she has), popularity 0, and trust and lewdness back to where she began
 // (named: her data values; generic: w.base0 from when she was rolled, or balance.json → ngplus.baseTrust/baseLewd for old saves).
 // Her Reincarnated stacks make the climb back faster. Devoted, intim, firsts, arc and bonds stay.
+// ngplus.carry (10%) of what she gained above that starting value stays with her (stats, job skills, service skills; not trust/lewdness).
+// Call after S.cycle is raised, so clampK already allows the new cycle's higher ceiling.
+const ngCarry = (now, start) => clampK(Math.round(start + (BAL.ngplus.carry||0) * Math.max(0, (now||0) - start)));
 function ngReset(w){
   const B = BAL.ngplus;
   if(w.key && NAMED[w.key]){
     const f = makeNamed(w.key);
-    STAT_KEYS.forEach(k=>{ w.stats[k] = f.stats[k]; }); TECH_KEYS.forEach(k=>{ w.tech[k] = f.tech[k]; });
-    Object.keys(w.acts||{}).forEach(id=>{ if(f.acts[id]) w.acts[id].skill = f.acts[id].skill; });
+    STAT_KEYS.forEach(k=>{ w.stats[k] = ngCarry(w.stats[k], f.stats[k]); }); TECH_KEYS.forEach(k=>{ w.tech[k] = ngCarry(w.tech[k], f.tech[k]); });
+    Object.keys(w.acts||{}).forEach(id=>{ if(f.acts[id]) w.acts[id].skill = ngCarry(w.acts[id].skill, f.acts[id].skill); });
     w.trust = f.trust; w.lewd = f.lewd;
   } else {
-    STAT_KEYS.forEach(k=>{ w.stats[k] = clampK(Math.round(w.stats[k]*0.5)); }); TECH_KEYS.forEach(k=>{ w.tech[k] = clampK(Math.round((w.tech[k]||0)*0.5)); });
-    Object.values(w.acts||{}).forEach(a=>{ a.skill = clampK(Math.round(a.skill*0.5)); });
+    const half = v => Math.round((v||0)*0.5);
+    STAT_KEYS.forEach(k=>{ w.stats[k] = ngCarry(w.stats[k], half(w.stats[k])); }); TECH_KEYS.forEach(k=>{ w.tech[k] = ngCarry(w.tech[k], half(w.tech[k])); });
+    Object.values(w.acts||{}).forEach(a=>{ a.skill = ngCarry(a.skill, half(a.skill)); });
     const b = w.base0 || {}; w.trust = b.trust ?? (B.baseTrust ?? 15); w.lewd = Math.min(w.lewd, b.lewd ?? (B.baseLewd ?? 25));
   }
   w.lust = Math.min(w.lust||0, LUST_EAGER);
@@ -177,11 +183,15 @@ function ngBegin(){
   S.partners = Array.from(new Set([...(S.partners||[]).filter(k=>S.workers.some(w=>w.key===k)), ...(C.partner && C.partner!=='none' ? [C.partner] : [])]));
   const h0 = H(og); if(C.boon==='renown') h0.rep = clamp(h0.rep + 10);
   // Sam, money, debt
+  const samOld = Object.fromEntries(Object.keys(BAL.sam.base).map(k=>[k, S.sam[k]||0]));
   if(B.samReset.stats){   // base + perLevel x (lvl-1), then every past life's bonuses again
-    const lv = (S.sam.lvl||1) - 1; Object.entries(BAL.sam.base).forEach(([k,v])=>{ S.sam[k] = clamp(v + BAL.sam.perLevel*lv); });
+    const lv = (S.sam.lvl||1) - 1; Object.entries(BAL.sam.base).forEach(([k,v])=>{ S.sam[k] = clamp(v + BAL.sam.perLevel*lv, 0, samCap()); });
   }
   if(B.samReset.appraisal){ S.sam.appraisal = 1; S.sam.appXP = 0; }
   if(B.samReset.stats || B.samReset.appraisal) samPasts().forEach(k=>{ if(PASTS[k]) PASTS[k].fx(S.sam); });
+  if(B.samReset.stats) Object.keys(samOld).forEach(k=>{ S.sam[k] = clamp(Math.round(S.sam[k] + (B.carry||0)*Math.max(0, samOld[k] - S.sam[k])), 0, samCap()); });   // he keeps ngplus.carry of what he'd trained
+  // Sam's own things (balance.json → samUps): the ones without carry stay behind; he sleeps at his home house again
+  S.samUps = Object.fromEntries(Object.entries(S.samUps||{}).filter(([k,v])=>v && (BAL.samUps[k]||{}).carry)); S.samHome = og;
   S.boons = S.boons || []; if(C.boon && !S.boons.includes(C.boon)) S.boons.push(C.boon);
   if(C.boon==='renown') S.rep = clamp(S.rep + 15);
   S.gold = N.purse;

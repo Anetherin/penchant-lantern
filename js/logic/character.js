@@ -172,9 +172,9 @@ function wageFor(w){
   return Math.round((8 + st*0.3 + tc*0.2 + w.popularity*0.3 + (has(w,'Ambitious')?8:0) + (has(w,'Greedy')?6:0)) * ((sd && sd.wage) ?? raceOf(w).wage ?? 1));
 }
 function signingFor(w){ return Math.max(60, Math.round(w.wage * rnd(5,8) * (raceOf(w).signing ?? 1) * (0.9 + (S?S.rep:10)/150) * (hasBoon('recruit')?0.75:1))); }
-// Skills work in 1000-units: n is the old 0-100 amount (x SKL), with a diminishing curve (1 - v/1300).
-function grow(w,k,n){ n *= SKL * fxMul(w,'skillGain'); w.tech[k] = clampK((w.tech[k]||0) + n*(1 - (w.tech[k]||0)/1300)); }
-function growAct(w,id,n){ id = actKey(id); if(!w.acts[id]) return; n *= SKL * fxMul(w,'skillGain'); const s=w.acts[id].skill; w.acts[id].skill = clampK(s + n*(1 - s/1300)); }
+// Skills work in 1000-units: n is the old 0-100 amount (x SKL), with a diminishing curve (1 - v/growDen(), i.e. statCap() + 300).
+function grow(w,k,n){ n *= SKL * fxMul(w,'skillGain'); w.tech[k] = clampK((w.tech[k]||0) + n*(1 - (w.tech[k]||0)/growDen())); }
+function growAct(w,id,n){ id = actKey(id); if(!w.acts[id]) return; n *= SKL * fxMul(w,'skillGain'); const s=w.acts[id].skill; w.acts[id].skill = clampK(s + n*(1 - s/growDen())); }
 function allNames(){ return S ? [...S.workers, ...S.candidates, ...(S.alumni||[])].map(w=>w.name) : []; }
 function genName(race, sub){
   const R = RACES[race] || {}, n = R.names || NAMES[race] || NAMES.human, SL = ((subData(race, sub)||{}).names||{}).l; let name, t=0;

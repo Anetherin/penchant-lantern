@@ -25,7 +25,7 @@ function samXP(n){
   const lv = S.sam.appXP>=200 ? 3 : S.sam.appXP>=60 ? 2 : 1;
   if(lv > S.sam.appraisal){ S.sam.appraisal = lv; note(`[Appraisal] leveled up to Lv ${lv}! ${lv===2?'Exact stats and lewdness are now visible.':'Hidden traits and everyone\'s preferences are now visible.'}`); }
 }
-function samStat(k,n){ S.sam[k] = clamp(S.sam[k]+n); }
+function samStat(k,n){ S.sam[k] = clamp(S.sam[k]+n, 0, samCap()); }
 function samWork(kind){
   if(!useAP(25)) return;
   let title='', text='';
@@ -66,10 +66,10 @@ function samWork(kind){
 }
 function samRest(){
   if(S.ap<=0) return toast('No actions left this week.');
-  S.ap--; S.sam.energy = Math.min(100, S.sam.energy+50); samLog('Rested'); save(); render();
+  S.ap--; const nap = samRecover(BAL.samHome.nap); S.sam.energy = Math.min(100, S.sam.energy+nap); samLog('Rested'); save(); render();
   const v = restVisitor();
   if(v) return restEncounter(v);
-  showResult('Nap Time', 'Sam takes a long nap. In his dreams, a truck honks at him. He wakes up and decides not to think about it.\n\nEnergy +50');
+  showResult('Nap Time', 'Sam takes a long nap. In his dreams, a truck honks at him. He wakes up and decides not to think about it.\n\nEnergy +'+nap);
 }
 function samChat(id){
   const w = findW(id), d = DATES.chat; if(!w || !useAP(d.energy)) return;

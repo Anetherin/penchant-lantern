@@ -51,3 +51,8 @@
 - After changes: `node tools/build.mjs && node tools/smoke.mjs 30` (Playwright; `CHROME=` for a custom browser).
 - Lewdness gains go through `lewdUp(w, n, cap)` (`balance.json` → `lewd`; diminishing returns per source). Dates (`dates.json`): stats/skills/sam/pop/lust/lewdCap/gift/trinket/needsIntim/special/spicy (see its `_readme`); chat is a date, the 60g Gift action is gone (shopping + wardrobe gifts count as gifts). Spicy date variants go only through `canSam`/`privateCore` (`samSpicy` in `js/logic/sam.js`).
 - Late-game pressure: `clients.pickFrom/pickPer` lower client satisfaction at high reputation; `quarters` (`housingShort(h)` in character.js) costs staff mood when beds/bedroom tier lag the house's fame. Romance arc trust/gap/extras are in `balance.json → arcs`.
+- NG+ carryover & ceiling: carried ladies keep `ngplus.carry` (10%) of their stat/skill gains above their starting values (`ngCarry` in ngplus.js); Sam keeps the same share of trained stats.
+  `statCap()` (util.js) = `ngplus.cap.base` + `perCycle` x (cycle-1); `clampK` and Sam's `samStat` (`samCap()` = statCap/10) use it, growth curves slow toward `growDen()` = cap + 300. Never hard-code 1000/1300.
+- Sam's home (`js/logic/home.js`): Sam sleeps at `S.samHome` (`samHouse()`, one move per week); his weekly recovery and naps scale with that house's bed rest (`samRecover`, balance.json → samHome).
+  Late-night encounters (rest visits, lovers waiting, late visits, storeroom reckless nights) only involve ladies `nearSam(w)` unless `samReach()` (Teleport Circle upgrade or Shadow Clone boon).
+  Sam's purchasable things: balance.json → samUps (`fx`: bedTier/weekly/reach; `carry` = kept in NG+). Feasts: `throwFeast()` once per house per week, no action (balance.json → feast).
