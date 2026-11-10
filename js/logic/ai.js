@@ -13,7 +13,7 @@ function aiCtx(w, x={}){
   const o = x.other ? findAny(x.other) : null;
   return {
     dynamic: x.dynamic || '', other: o ? o.name : '', otherDesc: o ? `${raceLabel(o).toLowerCase()}, ${cleanText(charDesc(o).split(', ').slice(1).join(', '))}, ${(o.personality||'').toLowerCase()}` : '',
-    name:w.name, race:raceLabel(w).toLowerCase(), age:w.age, appearance:cleanText(charDesc(w).split(', ').slice(1).join(', ')),
+    name:w.name, title:w.title||'', fullname:titled(w), race:raceLabel(w).toLowerCase(), age:w.age, appearance:cleanText(charDesc(w).split(', ').slice(1).join(', ')),
     clothing:cleanText(clothText(w, cloth, scene)), outfit:outfitText(w), personality:(w.personality||'').toLowerCase(),
     traits:(w.traits||[]).join(', ')||'none', trust:Math.round(w.trust), lewd:Math.round(w.lewd), mood:Math.round(w.mood),
     service: x.act ? (actById(x.act)&&actById(x.act).desc ? `${actLabel(x.act)} (${actById(x.act).desc})` : actLabel(x.act)) : (x.label || 'drinks and conversation'),

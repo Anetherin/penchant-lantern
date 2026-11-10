@@ -15,7 +15,7 @@ function viewCreator(){
   return `<section class="card"><h2>${EDIT?'Edit Character':'Character Creator'}</h2>
     <p class="muted">Make any character: recruitable, named, or a library template. All characters are adults; ages below a race's minimum are raised automatically.</p>
     <div class="form">
-      ${f('c_name','Name',d.name)}
+      ${f('c_title','Title (optional)',d.title||'','dl_title')}${f('c_name','Name',d.name)}<datalist id="dl_title">${['Lady','Dame','Captain','Professor','Doctor','Princess','Sister','Mistress','Madam'].map(t=>`<option value="${t}">`).join('')}</datalist>
       <label>Race<select id="c_race" onchange="$('#c_subw').style.display=this.value==='beastkin'?'':'none'">${Object.entries(RACES).map(([k,r])=>`<option value="${k}" ${k===d.race?'selected':''}>${r.label}</option>`).join('')}</select></label>
       <label id="c_subw" style="${d.race==='beastkin'?'':'display:none'}">Beast type<input id="c_sub" value="${esc(d.sub||'fox')}" list="dl_sub"></label>
       ${num('c_age','Age',d.age,0)}
@@ -54,6 +54,7 @@ function readCreator(){
   w.race = race; w.sub = race==='beastkin' ? (cleanText(g('c_sub'))||'fox') : '';
   w.age = Math.max(R.age[0], parseInt(g('c_age'))||R.age[0]);
   w.name = cleanText(g('c_name')) || genName(race, w.sub);
+  w.title = cleanText(g('c_title') || '') || undefined;
   w.design = {build:cleanText(g('c_build')), hairStyle:cleanText(g('c_hairStyle')), hairColor:cleanText(g('c_hairColor')), eyes:cleanText(g('c_eyes')), skin:cleanText(g('c_skin')), features:cleanText(g('c_features'))};
   w.personality = cleanText(g('c_pers')) || pick(PERSONALITIES);
   w.backstory = cleanText(g('c_back'));
@@ -89,7 +90,7 @@ function creatorAdd(dest){
 function creatorSaveEdit(){
   const t = findW(EDIT.id); if(!t){ cancelEdit(); return; }
   const w = readCreator();
-  ['name','race','sub','age','design','personality','backstory','traits','stats','tech','body','popularity','lewd','trust','named','style','fav','dislike','lovers','acts','favColor','outfit','customOutfit','outColor','under','customUnder','underColor','owned','ownedUnder'].forEach(k=>t[k]=clone(w[k]===undefined?null:w[k]));
+  ['name','title','race','sub','age','design','personality','backstory','traits','stats','tech','body','popularity','lewd','trust','named','style','fav','dislike','lovers','acts','favColor','outfit','customOutfit','outColor','under','customUnder','underColor','owned','ownedUnder'].forEach(k=>t[k]=clone(w[k]===undefined?null:w[k]));
   t.energy = Math.min(t.energy, maxEnergy(t)); t.menu = t.menu.filter(a=>canClient(t,a));
   EDIT = null; CDRAFT = null; checkUnlocks(); save(); note(`${t.name} updated. (Saved images keep their old look; regenerate them to update.)`); TAB='roster'; render();
 }

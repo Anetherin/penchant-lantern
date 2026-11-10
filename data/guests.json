@@ -278,7 +278,8 @@
         },
         "tsunade": {
           "job": "madame",
-          "name": "Lady Tsunade",
+          "title": "Lady",
+          "name": "Tsunade Senju",
           "race": "elf",
           "age": 168,
           "personality": "Proud and sharp-tongued",
@@ -1668,7 +1669,8 @@
       "characters": {
         "zelda": {
           "job": "courtesan",
-          "name": "Princess Zelda",
+          "title": "Princess",
+          "name": "Zelda",
           "race": "elf",
           "age": 128,
           "personality": "Calm and elegant",
@@ -1944,7 +1946,8 @@
         },
         "rhea": {
           "job": "madame",
-          "name": "Lady Rhea",
+          "title": "Lady",
+          "name": "Rhea",
           "race": "spirit",
           "age": 598,
           "personality": "Warm and motherly",
@@ -2588,7 +2591,8 @@
         },
         "juniper": {
           "job": "attendant",
-          "name": "Professor Juniper",
+          "title": "Professor",
+          "name": "Aurea Juniper",
           "race": "human",
           "age": 32,
           "personality": "Bookish and curious",
