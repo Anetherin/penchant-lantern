@@ -3,7 +3,7 @@
 // Experiment M: "mixed house": one lady per race group in ONE house (rooms 16, quarters 10), all in JOB; per-race results over runs (RB).
 // Env: JOB (default courtesan), WEEKS (20), NLADIES (B only, 6), RACES (filter, e.g. human,elf,beastkin/fox), REP (house rep, 60), OUT (output file stem),
 //   PAIRED=1 (B and M: every race gets identical seeded base rolls: lady k of run r is the same profile for all races; in M all ladies share one profile),
-//   TRAIN=<amount> (B and M: each week every lady gets statXP on 2 random stats + grow(main job skill, amount/2), Sam makes the rounds if he has AP).
+//   TRAIN=<amount> (B and M: each week every lady gains <amount> (0-100 scale, before race growth bonuses) on 2 random stats and her main job skill; Sam makes the rounds if he has AP).
 // M does not report enthusiast share: R.per[].enc is deleted by endWeek before the report is stored.
 import { createRequire } from 'node:module';
 import path from 'node:path';
