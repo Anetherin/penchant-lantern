@@ -140,9 +140,19 @@ function earnCheck(w){
   });
   return got;
 }
+// Client tastes: rolled per client from his class; tasteFits = does her race (or 'beastkin:<sub>') match.
+function pickTaste(clsId){
+  const T = (BAL.clients && BAL.clients.tastes) || {};
+  for(const k of Object.keys(T)){ const t = T[k]; if(Math.random() < ((t.chance||{})[clsId] ?? 0)) return Object.assign({id:k}, t); }
+  return null;
+}
+const tasteFits = (t, w) => !!t && (t.likes||[]).some(x => x===w.race || x===w.race+':'+w.sub);
+const tasteDraw = (t, w) => tasteFits(t, w) ? (t.draw ?? 1) : 1;
 // Her client reaction to her race (races.json → client): 'like' (enthusiast), 'dislike' (put off) or null.
-function raceReact(w, clsId){
+// A client with a taste (balance.json → clients.tastes) likes some races more: raises her like chance.
+function raceReact(w, clsId, taste){
   const R = raceOf(w), sd = w.race==='beastkin' ? subData(w.race, w.sub) : null, C = Object.assign({}, R.client||{}, (sd && sd.client) || {});
-  const like = ((C.classLike||{})[clsId]) ?? C.like ?? 0, dis = C.dislike ?? 0, r = Math.random();
+  let like = ((C.classLike||{})[clsId]) ?? C.like ?? 0; const dis = C.dislike ?? 0, r = Math.random();
+  if(tasteFits(taste, w)) like = Math.max(like, taste.like ?? 0);
   return r < like ? 'like' : r < like + dis ? 'dislike' : null;
 }

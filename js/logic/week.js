@@ -316,8 +316,9 @@ function simHouse(h, R){
     if(!pool.length){ pool = helpers.filter(helperOK); helper = true; }
     if(!pool.length){ hr.turned++; continue; }
     const reg = regs.shift() || null, fw = reg && pool.find(x=>x.id===reg.fav);   // regulars ask for their favorite
-    let w = fw || weighted(pool, x=>5+appeal(x));
-    const cls = reg ? (CLASSES.find(c=>c.id===reg.cls)||pickClass(h)) : pickClass(h);
+    const cls = reg ? (CLASSES.find(c=>c.id===reg.cls)||pickClass(h)) : pickClass(h), taste = reg ? null : pickTaste(cls.id);
+    let w = fw || weighted(pool, x=>(5+appeal(x)) * tasteDraw(taste, x));
+    if(taste) hr.tastes = (hr.tastes||0) + 1;
     X.rowdySum += cls.rowdy||0; X.rowdyN++;
     const lightOK = id => !helper || actTierOf(actById(id)) <= 1, fits = (x,id) => x.menu.includes(id) && canClient(x,id) && !nim(x,id) && lightOK(id);
     let want = Math.random() < Math.min(1, (helper ? J.propWant.other : J.propWant.courtesan) * barBoost) ? pickWant(cls, w) : null, matched = false;
@@ -327,10 +328,10 @@ function simHouse(h, R){
       matched = fits(w,want);
     }
     // clients who are fans of her kind, or put off by it (data/races.json → client)
-    let react = raceReact(w, cls.id);
+    let react = raceReact(w, cls.id, taste);
     if(react==='dislike' && !reg && Math.random() < SVC.raceDislikeSwitch){
       const alt = pool.filter(x=>x!==w);
-      if(alt.length){ w = weighted(alt, x=>5+appeal(x)); react = raceReact(w, cls.id); if(react==='dislike') react = null; if(want && !fits(w,want)) matched = false; }
+      if(alt.length){ w = weighted(alt, x=>(5+appeal(x)) * tasteDraw(taste, x)); react = raceReact(w, cls.id, taste); if(react==='dislike') react = null; if(want && !fits(w,want)) matched = false; }
     }
     const pr = R.per[w.id];
     let act = null, outcome = 'comp';
