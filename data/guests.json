@@ -323,7 +323,7 @@
             "shizune": {"v":70,"kind":"mentor","note":"Her long-suffering assistant of twenty years."},
             "mei": {"v":25,"note":"Old colleagues from the village heads' council."}
           },
-          "jobs": {"likes":["madame","courtesan"],"dislikes":["maid"]},
+          "jobs": {"likes":["madame","teacher","courtesan"],"dislikes":["maid"]},
           "body": {"bust":"huge","height":"tall","figure":"curvy"},
           "unique": {"name":"Hundred Seals","desc":"The stored chakra of a legendary healer gives her an extra reserve of energy.","fx":{"energyBank":40}}
         },
@@ -364,7 +364,7 @@
             }
           },
           "bonds": {"tsunade":{"v":70,"note":"Twenty years of cleaning up after her."}},
-          "jobs": {"likes":["promoter","madame","maid"],"dislikes":["courtesan"]},
+          "jobs": {"likes":["promoter","madame","teacher"],"dislikes":["courtesan"]},
           "body": {"bust":"small","height":"average","figure":"slim"},
           "unique": {
             "name": "Impeccable Books",
@@ -412,7 +412,7 @@
             "hinata": {"v":60,"kind":"mentor","note":"She was Hinata's first squad leader back in the Leaf."},
             "anko": {"v":55,"note":"Drinking buddies for twenty years."}
           },
-          "jobs": {"likes":["courtesan","dancer","madame"],"dislikes":["promoter"]},
+          "jobs": {"likes":["courtesan","dancer","teacher"],"dislikes":["promoter"]},
           "body": {"bust":"medium","height":"tall","figure":"curvy"},
           "unique": {"name":"Crimson Illusion","desc":"Her eyes make men forget what they were saying.","fx":{"appeal":4,"classBonus":{"noble":1.1}}}
         },
@@ -1518,7 +1518,7 @@
             }
           },
           "bonds": {"juju":{"v":35,"note":"Old friends, though one was always training while the other was working."}},
-          "jobs": {"likes":["bartender","courtesan"],"dislikes":["maid"]},
+          "jobs": {"likes":["bartender","host","courtesan"],"dislikes":["maid"]},
           "body": {"bust":"large","height":"short","figure":"soft"},
           "unique": {"name":"Order Memory","desc":"She remembers every client's order and gossip.","fx":{"jobBonus":{"bartender":1.2},"clientFee":1.05}}
         },
@@ -1757,7 +1757,7 @@
             }
           },
           "bonds": {"zelda":{"v":40,"note":"An unlikely alliance from the twilight days."}},
-          "jobs": {"likes":["courtesan","promoter"],"dislikes":["maid","security"]},
+          "jobs": {"likes":["courtesan","host","promoter"],"dislikes":["maid","security"]},
           "body": {"bust":"medium","height":"tall","figure":"slim"},
           "unique": {"name":"Twilight Mischief","desc":"Playful and magnetic, with a knack for getting what she wants.","fx":{"appeal":4,"propRate":1.15}}
         },
@@ -1803,7 +1803,7 @@
               "bonus": {"dancer":1.15,"merchant":1.15}
             }
           },
-          "jobs": {"likes":["bartender","courtesan"],"dislikes":["bath"]},
+          "jobs": {"likes":["bartender","host","courtesan"],"dislikes":["bath"]},
           "body": {"bust":"large","height":"average","figure":"curvy"},
           "unique": {"name":"Lon Lon Songs","desc":"Her rancher's songs cheer a room.","fx":{"jobBonus":{"bartender":1.15},"moodRest":4}}
         },
@@ -1985,7 +1985,7 @@
             }
           },
           "bonds": {"manuela":{"v":20,"note":"Rhea keeps her employed. Manuela keeps her out of the wine."}},
-          "jobs": {"likes":["madame","maid","bath"],"dislikes":["bartender"]},
+          "jobs": {"likes":["madame","teacher","bath"],"dislikes":["bartender"]},
           "body": {"bust":"large","height":"tall","figure":"curvy"},
           "unique": {"name":"Serene Presence","desc":"Her calm authority settles the whole floor.","fx":{"rep":1.2,"jobBonus":{"madame":1.15}}}
         },
@@ -2026,7 +2026,7 @@
             }
           },
           "bonds": {"rhea":{"v":20,"note":"Old employer."}},
-          "jobs": {"likes":["dancer","bartender"],"dislikes":["maid"]},
+          "jobs": {"likes":["dancer","teacher","bartender"],"dislikes":["maid"]},
           "body": {"bust":"large","height":"average","figure":"curvy"},
           "unique": {"name":"Aria","desc":"A diva's voice and entrance.","fx":{"jobBonus":{"dancer":1.2},"appeal":3}}
         },
@@ -2315,7 +2315,7 @@
             }
           },
           "bonds": {"fleurdelys":{"v":15,"note":"Two names, one history, and very little to say to each other so far."}},
-          "jobs": {"likes":["dancer","attendant"],"dislikes":["security"]},
+          "jobs": {"likes":["dancer","chapel","attendant"],"dislikes":["security"]},
           "body": {"bust":"small","height":"short","figure":"slim"},
           "unique": {
             "name": "Storm-Stilling Song",
@@ -2471,7 +2471,7 @@
             "buling": {"v":25,"note":"The auditor's one persistent finding: Buling."},
             "hsin": {"v":50,"kind":"mentor","note":"The sentinel she has sworn to watch over."}
           },
-          "jobs": {"likes":["madame","security"],"dislikes":["maid"]},
+          "jobs": {"likes":["madame","security"],"dislikes":["maid","host"]},
           "body": {"bust":"flat","height":"short","figure":"slim"},
           "unique": {
             "name": "Seal Master",
@@ -2599,13 +2599,7 @@
           "dislike": "doggy",
           "lovers": "missionary",
           "backstory": "The Unova region's leading Pokémon professor, Juniper is cheerful, brilliant and chronically late, with a lab coat pocket full of sticky notes. She treats everyone as a fascinating specimen to be understood, but she is far kinder than any scientist should be. Hollowmere has turned out to be an excellent field site, and the guests excellent at fieldwork.",
-          "design": {
-            "hairStyle": "short poofy bun",
-            "hairColor": "honey brown",
-            "eyes": "emerald",
-            "skin": "fair",
-            "features": "distinctive red rectangular earrings"
-          },
+          "design": {"hairStyle":"short poofy bun","hairColor":"honey brown","eyes":"emerald","skin":"fair","features":"distinctive red rectangular earrings"},
           "under": "plain",
           "underColor": "white",
           "stats": {"beauty":66,"charm":62,"refinement":60,"stamina":50,"strength":30,"agility":50},
@@ -2629,12 +2623,12 @@
             }
           },
           "bonds": {"cynthia":{"v":35,"note":"Cynthia shares ruins and legends with the professor, who loves every story."}},
-          "jobs": {"likes":["attendant","bath"],"dislikes":["security"]},
+          "jobs": {"likes":["teacher","attendant","bath"],"dislikes":["security"]},
           "body": {"bust":"large","height":"average","figure":"curvy"},
           "unique": {
             "name": "Gentle Researcher",
-            "desc": "Her warmth and patience put clients at ease, easing the workload for everyone around her.",
-            "fx": {"jobBonus":{"attendant":1.2},"actQuality":{"massage_give":1.1}}
+            "desc": "Her warmth and patience put clients at ease, easing the workload for everyone around her. Teaches well too.",
+            "fx": {"jobBonus":{"attendant":1.2,"teacher":1.15},"actQuality":{"massage_give":1.1}}
           }
         }
       }
@@ -2685,12 +2679,12 @@
             }
           },
           "bonds": {"takemi":{"v":20,"note":"Margaret finds the doctor's medical stories fascinating."}},
-          "jobs": {"likes":["attendant","bath"],"dislikes":["dancer"]},
+          "jobs": {"likes":["attendant","host","bath"],"dislikes":["dancer"]},
           "body": {"bust":"medium","height":"tall","figure":"slim"},
           "unique": {
             "name": "Velvet Hospitality",
-            "desc": "Impeccable manners and a faint, soothing hum that keep guests calm and helps her tidy.",
-            "fx": {"jobBonus":{"attendant":1.2},"tidy":1.15}
+            "desc": "Impeccable manners and a faint, soothing hum that keep guests calm and helps her tidy. A gracious host.",
+            "fx": {"jobBonus":{"attendant":1.2,"host":1.1},"tidy":1.15}
           }
         },
         "kashiwagi": {
@@ -2736,7 +2730,7 @@
             }
           },
           "bonds": {"kawakami":{"v":25,"note":"Old acquaintances who commiserate over men and rent."}},
-          "jobs": {"likes":["courtesan","dancer"],"dislikes":["maid","security"]},
+          "jobs": {"likes":["courtesan","dancer","host"],"dislikes":["maid","security"]},
           "body": {"bust":"medium","height":"average","figure":"curvy"},
           "unique": {
             "name": "Fabulous Entrance",
@@ -2790,12 +2784,12 @@
             "kashiwagi": {"v":25,"note":"Old acquaintances who commiserate over men and rent."},
             "takemi": {"v":30,"note":"The doctor patched her up after a long run of overtime."}
           },
-          "jobs": {"likes":["maid","courtesan"],"dislikes":["security"]},
+          "jobs": {"likes":["teacher","maid","courtesan"],"dislikes":["security"]},
           "body": {"bust":"medium","height":"average","figure":"curvy"},
           "unique": {
             "name": "Side-Job Veteran",
-            "desc": "Years of juggling jobs make her an energetic, adaptable worker with cheerful stamina.",
-            "fx": {"maxEnergy":12,"jobBonus":{"maid":1.2}}
+            "desc": "Years of juggling jobs make her an energetic, adaptable worker with cheerful stamina. Also a patient teacher.",
+            "fx": {"maxEnergy":12,"jobBonus":{"maid":1.2,"teacher":1.2}}
           }
         },
         "takemi": {

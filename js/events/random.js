@@ -80,15 +80,15 @@ const RANDOM_EVENTS = [
       {label:ET('dayoff','yes','label',V), fx(){ w.energy=clamp(w.energy+30,0,maxEnergy(w)); moodAdd(w, 10); w.trust=clamp(w.trust+5); return ET('dayoff','yes','res',V); }},
       {label:ET('dayoff','no','label',V), fx(){ const soft = ['Warm and motherly','Shy but earnest','Laid-back and lazy'].includes(w.personality); w.trust=clamp(w.trust-(soft?3:6)); moodAdd(w, -5); return ET('dayoff','no', soft?'resSoft':'res', V); }}]};
   }},
-  {w:2, ok:()=>S.rep>=20 && anyW(w=>s100(w.stats.refinement)>=45 && w.energy>=30).length>0, make(){
-    const w = weighted(anyW(x=>s100(x.stats.refinement)>=45 && x.energy>=30), x=>s100(x.stats.refinement));
-    const pay = Math.round(150 + s100(w.stats.refinement)*3 + S.rep*2), V = {name:w.name, gold:fmt(pay)};
+  {w:2, ok:()=>S.rep>=20 && anyW(w=>s100(statOf(w,'refinement'))>=45 && w.energy>=30).length>0, make(){
+    const w = weighted(anyW(x=>s100(statOf(x,'refinement'))>=45 && x.energy>=30), x=>s100(statOf(x,'refinement')));
+    const pay = Math.round(150 + s100(statOf(w,'refinement'))*3 + S.rep*2), V = {name:w.name, gold:fmt(pay)};
     return {title:ET('noble','title',V), who:w.id, scene:evImg('noble','companion'), text:ET('noble','text',V), choices:[
       {label:ET('noble','ask','label',V), fx(){ if(w.lewd>=15 || w.trust>=30){ S.gold+=pay; w.popularity=clamp(w.popularity+5); w.energy=clamp(w.energy-25,0,maxEnergy(w)); S.rep=clamp(S.rep+2); return ET('noble','ask','res',V); } w.trust=clamp(w.trust+2); return ET('noble','ask','pass',V); }},
       {label:ET('noble','decline','label',V), fx(){ S.rep=clamp(S.rep-1); return ET('noble','decline','res',V); }}]};
   }},
   {w:2, ok:()=>S.flags.guild>=1 && anyW(w=>w.job!=='rest' && w.energy>=30).length>0, make(){
-    const w = weighted(anyW(x=>x.job!=='rest' && x.energy>=30), x=>s100(x.stats.charm)+x.popularity);
+    const w = weighted(anyW(x=>x.job!=='rest' && x.energy>=30), x=>s100(statOf(x,'charm'))+x.popularity);
     const pay = Math.round(rnd(120,240) * (1+S.rep/150)), V = {name:w.name, gold:fmt(pay)};
     return {title:ET('guild','title',V), who:w.id, scene:evImg('guild','companion'), text:ET('guild','text',V), choices:[
       {label:ET('guild','send','label',V), fx(){ S.gold+=pay; w.energy=clamp(w.energy-20,0,maxEnergy(w)); w.popularity=clamp(w.popularity+4); moodAdd(w, 5); return ET('guild','send','res',V); }},

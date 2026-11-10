@@ -43,6 +43,40 @@ function fxAdd(w, key){ let a = 0; fxList(w).forEach(f => { if(typeof f[key]==='
 function fxHas(w, key){ return fxList(w).some(f => !!f[key]); }
 function fxSub(w, key, id){ let m = 1; fxList(w).forEach(f => { const o = f[key]; if(o && typeof o==='object' && typeof o[id]==='number') m *= o[id]; }); return m; }
 function fxArr(w, key){ const out = []; fxList(w).forEach(f => { if(Array.isArray(f[key])) out.push(...f[key]); }); return out; }
+/* ---------- stat bonus layer ----------
+   w.stats is her TRAINED base (capped by clampK, grown by statXP, reset by New Game+). Race / beastkin-sub mods, fx.stats (traits,
+   perks...) and the stats on her worn outfit and underwear are a live bonus on top (0-100 scale x SKL) that may exceed statCap().
+   Every gameplay read of a stat goes through statOf(). Nothing statBonus calls may read statOf. */
+const wornStat = (it, k) => (it && it.stats && typeof it.stats[k]==='number') ? it.stats[k] : 0;
+function statBonus(w, k){
+  if(!w) return 0;
+  let n = 0;
+  fxList(w).forEach(f => { if(f.stats && typeof f.stats[k]==='number') n += f.stats[k]; });
+  const R = RACES[w.race], SD = w.race==='beastkin' ? subData(w.race, w.sub) : null;
+  if(R && R.mods && typeof R.mods[k]==='number') n += R.mods[k];
+  if(SD && SD.mods && typeof SD.mods[k]==='number') n += SD.mods[k];
+  n += wornStat(getOutfit(w), k) + wornStat(getUnder(w), k);
+  return n * SKL;
+}
+// [[label, amount on the 1000 scale], ...] for the tooltip; the sources match statBonus
+function statBonusParts(w, k){
+  const out = [], add = (label, v) => { if(typeof v==='number' && v) out.push([label, v*SKL]); };
+  if(!w) return out;
+  const fxs = f => f && f.stats ? f.stats[k] : 0;
+  (w.traits||[]).forEach(t => add(t, fxs(TRAITS[t] && TRAITS[t].fx)));
+  (w.ngPerks||[]).forEach(t => add(t, fxs(TRAITS[t] && TRAITS[t].fx)));
+  const rb = rebornFx(w); if(rb) add('Reincarnated', fxs(rb));
+  const R = RACES[w.race], SD = w.race==='beastkin' ? subData(w.race, w.sub) : null;
+  if(R){ add(R.label || w.race, R.mods && R.mods[k]); add(R.label || w.race, fxs(R.fx)); }
+  if(SD){ add(SD.label || w.sub, SD.mods && SD.mods[k]); add(SD.label || w.sub, fxs(SD.fx)); }
+  const b = bodyOf(w); BODY_KEYS.forEach(bk => { const o = bodyOpts(bk)[b[bk]]; if(o) add('Body', fxs(o.fx)); });
+  if(w.unique) add(w.unique.name || 'Unique', fxs(w.unique.fx));
+  const o = getOutfit(w), u = getUnder(w);
+  add('Outfit', wornStat(o, k)); add('Underwear', wornStat(u, k));
+  return out;
+}
+const statOf = (w, k) => Math.max(0, ((w && w.stats && w.stats[k]) || 0) + statBonus(w, k));
+const statBonusTip = (w, k) => statBonusParts(w, k).map(([l, v]) => `${l} ${v>0?'+':''}${Math.round(v)}`).join(', ');
 const actBanned = (w, id) => fxArr(w, 'actBan').includes(actKey(id));
 
 /* ---------- bodies ---------- */
@@ -122,7 +156,7 @@ function countOf(w, key){ let o = w.counts || {}; for(const k of String(key).spl
 function earnEligible(w, e){
   if(!e) return false;
   if(e.count) return countOf(w, e.count) >= (e.at||1);
-  if(e.stat){ const v = w.stats && w.stats[e.stat]!==undefined ? s100(w.stats[e.stat]) : w.tech && w.tech[e.stat]!==undefined ? s100(w.tech[e.stat]) : (w[e.stat]||0); return v >= (e.at||0); }
+  if(e.stat){ const v = w.stats && w.stats[e.stat]!==undefined ? s100(statOf(w, e.stat)) : w.tech && w.tech[e.stat]!==undefined ? s100(w.tech[e.stat]) : (w[e.stat]||0); return v >= (e.at||0); }
   if(e.trust!==undefined) return w.trust >= e.trust;
   if(e.lewd!==undefined) return w.lewd >= e.lewd;
   if(e.job) return countOf(w, 'jobWeeks.'+e.job) >= (e.weeks||1);

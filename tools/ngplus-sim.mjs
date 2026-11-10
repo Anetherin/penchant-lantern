@@ -3,11 +3,12 @@ import { createRequire } from 'node:module';
 import path from 'node:path';
 import fs from 'node:fs';
 import http from 'node:http';
+import os from 'node:os';
 const require = createRequire(import.meta.url);
 let pw; try { pw = require('playwright'); } catch { pw = require(process.env.PLAYWRIGHT_PATH || '/opt/node-tools/node_modules/playwright'); }
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
 const RUNS = +process.argv[2] || 3, CONC = +process.argv[3] || 3;
-const OUT = '/tmp/claude-0/-home-claude/ce41c959-7e73-5bff-96ff-56566e33f4c9/scratchpad/ngplus-sim.out.json';
+const OUT = process.env.OUT || path.join(os.tmpdir(), 'ngplus-sim.out.json');
 const TYPES = {'.html':'text/html','.js':'text/javascript','.css':'text/css','.json':'application/json'};
 const server = http.createServer((q, r) => {
   if (q.url === '/favicon.ico') { r.writeHead(204); return r.end(); }

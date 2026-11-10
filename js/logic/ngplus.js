@@ -177,7 +177,14 @@ function ngBegin(){
   });
   S.alumni = [...(S.alumni||[]), ...friends];
   S.workers = lovers; S.candidates = [];
-  S.bonds = Object.fromEntries(Object.entries(S.bonds||{}).filter(([k])=>k.split('|').every(id=>ids.has(id))));
+  // bonds between two ladies who both reincarnate (lovers, old friends, alumni still waiting) carry over, faded to
+  // ngplus.bonds.keep of their value (kind kept); everything else is dropped. b.past counts the lives it has survived.
+  const BK = B.bonds || {}, reborn = new Set([...ids, ...(S.alumni||[]).map(w=>w.id), ...friends.map(w=>w.id)]);
+  S.bonds = Object.fromEntries(Object.entries(S.bonds||{}).filter(([k])=>k.split('|').every(id=>reborn.has(id))).map(([k,o])=>{
+    const n = Object.assign({}, o, {v: Math.round((o.v||0) * (BK.keep ?? 0.5)), past: (o.past||0) + 1});
+    if(o.seeded) n.v = Math.max(n.v, seedBondV(k));   // a bond written into their data never fades below that
+    if(BK.kinds === false) delete n.kind;
+    return [k, n]; }).filter(([,o])=>o.v || o.kind));
   S.regulars = (S.regulars||[]).filter(r=>keptIds.has(r.house));
   S.houses = S.houses.filter(h=>keptIds.has(h.id));
   // each kept house's resident comes with the house: if she isn't a carried lover she's back, fresh

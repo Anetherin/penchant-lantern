@@ -1,9 +1,9 @@
 {
   "_readme": [
     "Traits: desc (shown in tooltips), fx (merged into the effect engine, js/logic/fx.js), plus flags.",
-    "fx vocabulary (only these keys): maxEnergy(add) energyRec(mul) actEnergy(mul) actEnergyBy{service:mul} actQuality{service:mul} actBan[service ids] lustBuild(mul) svcLustBuild(flag: giving services to clients build her lust) lustDrop(mul) lustMax(add) lustFloor(add) recklessAt(add) noReckless(flag) moodDrift(mul) moodDelta(mul) moodLoss(mul, only on negative mood changes) moodRest(add) trustGain(mul) skillGain(mul) statGain(mul) lewdGain(mul) jobBonus{job:mul} clientFee(mul) classBonus{class:mul} appeal(add) propRate(mul) security(add) energyBank(add) wardrobe(add) willing(add) rep(mul) promote(mul) tidy(mul) encore(add).",
+    "fx vocabulary (only these keys): maxEnergy(add) energyRec(mul) actEnergy(mul) actEnergyBy{service:mul} actQuality{service:mul} actBan[service ids] lustBuild(mul) svcLustBuild(flag: giving services to clients build her lust) lustDrop(mul) lustMax(add) lustFloor(add) recklessAt(add) noReckless(flag) moodDrift(mul) moodDelta(mul) moodLoss(mul, only on negative mood changes) moodRest(add) trustGain(mul) skillGain(mul) statGain(mul) lewdGain(mul) jobBonus{job:mul} clientFee(mul) classBonus{class:mul} appeal(add) propRate(mul) security(add) energyBank(add) wardrobe(add) willing(add) rep(mul) promote(mul) tidy(mul) encore(add) stats{stat:add, 0-100 scale; a bonus on top of her trained stats that can exceed the cap} teach(mul: how much she passes on when teaching a class or coaching as madame) learn(mul: how much she picks up from a teacher or the madame).",
     "gen: can be rolled for generic ladies. hidden: not shown until Appraisal Lv 3. story / personal: set by the game, not rolled. excl: traits she can't have together.",
-    "earn: lets a lady DEVELOP the trait. {count:'massage', at:40} (w.counts.<key>, e.g. svc, massage, dance, bar, promo, rowdy, rescued, encore, weeksWorked, privateSam, gifts, or svcByAct.<service id>, jobWeeks.<job id>), {stat:'popularity', at:70} (stats and skills are compared on the 0-100 scale), {trust:90}, {lewd:80}, {weeks:30} (total weeks worked), {job:'dancer', weeks:12}. Checked weekly; once eligible she has earnChance per week to develop it.",
+    "earn: lets a lady DEVELOP the trait. {count:'massage', at:40} (w.counts.<key>, e.g. svc, massage, dance, bar, promo, rowdy, rescued, encore, weeksWorked, privateSam, gifts, or svcByAct.<service id>, jobWeeks.<job id>, warm = warm-ups given as a host, hosted = waiting clients entertained as a host, taught = ladies she taught or coached, +1 per lady per week as teacher or madame), {stat:'popularity', at:70} (stats and skills are compared on the 0-100 scale), {trust:90}, {lewd:80}, {weeks:30} (total weeks worked), {job:'dancer', weeks:12}. Checked weekly; once eligible she has earnChance per week to develop it.",
     "ngOnly: generic trait only rolled from cycle 2 (New Game+). ngPerk: offered to carried-over ladies in New Game+. Other agents will expand this catalogue: keep the schema.",
     "Named ladies (characters.json / guests.json) may carry a personal 'unique': {name, desc, fx} (fx merged like a trait; shown on her sheet) and a 'body': {bust, height, figure} (ids from data/body.json; default medium / average / slim)."
   ],
@@ -39,8 +39,8 @@
       "excl": []
     },
     "Party Animal": {
-      "desc": "Bonus as bartender or dancer.",
-      "fx": {"jobBonus":{"bartender":1.2}},
+      "desc": "Bartending +20%, dancing +10%.",
+      "fx": {"jobBonus":{"bartender":1.2,"dancer":1.1}},
       "gen": true,
       "hidden": false,
       "earn": null,
@@ -50,7 +50,7 @@
     },
     "Former Adventurer": {
       "desc": "Strong at security; adventurers love her.",
-      "fx": {"security":20,"classBonus":{"adventurer":1.3}},
+      "fx": {"security":20,"classBonus":{"adventurer":1.3},"stats":{"strength":10}},
       "gen": true,
       "hidden": false,
       "earn": null,
@@ -60,7 +60,7 @@
     },
     "Elegant": {
       "desc": "Nobles pay more for her company.",
-      "fx": {"classBonus":{"noble":1.3}},
+      "fx": {"classBonus":{"noble":1.3},"stats":{"refinement":10}},
       "gen": true,
       "hidden": false,
       "earn": null,
@@ -69,7 +69,16 @@
       "excl": []
     },
     "Lazy": {"desc":"Mood drops faster when overworked.","fx":{},"gen":true,"hidden":false,"earn":null,"ngOnly":false,"ngPerk":false,"excl":[]},
-    "Tough": {"desc":"+20 max energy.","fx":{"maxEnergy":20},"gen":true,"hidden":false,"earn":null,"ngOnly":false,"ngPerk":false,"excl":[]},
+    "Tough": {
+      "desc": "+20 max energy.",
+      "fx": {"maxEnergy":20,"stats":{"stamina":10}},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
     "Romantic": {"desc":"Time with Sam builds trust faster.","fx":{},"gen":true,"hidden":false,"earn":null,"ngOnly":false,"ngPerk":false,"excl":[]},
     "Greedy": {
       "desc": "Gifts and good earnings please her more; expects higher pay.",
@@ -993,8 +1002,8 @@
     },
     "Fond Memories": {"desc":"Resting mood +6.","fx":{"moodRest":6},"gen":false,"hidden":false,"earn":null,"ngOnly":false,"ngPerk":true,"excl":[]},
     "Born Teacher": {
-      "desc": "Madame work +15%, tidying +10%, skills improve 10% faster.",
-      "fx": {"jobBonus":{"madame":1.15},"tidy":1.1,"skillGain":1.1},
+      "desc": "Teaches and coaches 25% more, as teacher or madame; madame work +10%; skills improve 10% faster.",
+      "fx": {"jobBonus":{"madame":1.1},"teach":1.25,"skillGain":1.1},
       "gen": false,
       "hidden": false,
       "earn": null,
@@ -1025,6 +1034,156 @@
     "Showstopper": {
       "desc": "Dancing +12%, bartending +10%, +2 appeal.",
       "fx": {"jobBonus":{"dancer":1.12,"bartender":1.1},"appeal":2},
+      "gen": false,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": true,
+      "excl": []
+    },
+    "Good Listener": {
+      "desc": "Hosting work +12%; resting mood +1.",
+      "fx": {"jobBonus":{"host":1.12},"moodRest":1},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Patient Tutor": {
+      "desc": "Passes on 15% more when teaching or coaching; teacher work +10%.",
+      "fx": {"teach":1.15,"jobBonus":{"teacher":1.1}},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Attentive": {
+      "desc": "Attendant work +12%; hosting +5%.",
+      "fx": {"jobBonus":{"attendant":1.12,"host":1.05}},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Devout": {
+      "desc": "Chapel work +15%, resting mood +2. Only matters for an angel keeping the chapel, but it is fine on anyone.",
+      "fx": {"jobBonus":{"chapel":1.15},"moodRest":2},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Eager Student": {
+      "desc": "Picks up 20% more from a teacher or the madame.",
+      "fx": {"learn":1.2},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": ["Lazy"]
+    },
+    "Practiced Host": {
+      "desc": "Hosting work +12%.",
+      "fx": {"jobBonus":{"host":1.12}},
+      "gen": false,
+      "hidden": false,
+      "earn": {"job":"host","weeks":10},
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Warm-Up Artist": {
+      "desc": "Hosting work +6%, +2 appeal.",
+      "fx": {"jobBonus":{"host":1.06},"appeal":2},
+      "gen": false,
+      "hidden": false,
+      "earn": {"count":"warm","at":40},
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Schoolmistress": {
+      "desc": "Passes on 15% more when teaching or coaching.",
+      "fx": {"teach":1.15},
+      "gen": false,
+      "hidden": false,
+      "earn": {"job":"teacher","weeks":10},
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Mentor's Eye": {
+      "desc": "Passes on 10% more when teaching or coaching; skills improve 5% faster.",
+      "fx": {"teach":1.1,"skillGain":1.05},
+      "gen": false,
+      "hidden": false,
+      "earn": {"count":"taught","at":40},
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Right Hand": {
+      "desc": "Attendant work +15%.",
+      "fx": {"jobBonus":{"attendant":1.15}},
+      "gen": false,
+      "hidden": false,
+      "earn": {"job":"attendant","weeks":10},
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Quiet Grace": {
+      "desc": "Chapel work +15%, resting mood +3.",
+      "fx": {"jobBonus":{"chapel":1.15},"moodRest":3},
+      "gen": false,
+      "hidden": false,
+      "earn": {"job":"chapel","weeks":10},
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Barkeep's Calm": {
+      "desc": "Bartending +8%; bad and good mood swings 5% smaller.",
+      "fx": {"jobBonus":{"bartender":1.08},"moodDelta":0.95},
+      "gen": false,
+      "hidden": false,
+      "earn": {"job":"bartender","weeks":10},
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Town Crier": {
+      "desc": "Promoting +12%.",
+      "fx": {"promote":1.12},
+      "gen": false,
+      "hidden": false,
+      "earn": {"job":"promoter","weeks":10},
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Headmistress": {
+      "desc": "Passes on 25% more when teaching or coaching; teacher work +15%.",
+      "fx": {"teach":1.25,"jobBonus":{"teacher":1.15}},
+      "gen": false,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": true,
+      "excl": []
+    },
+    "Perfect Hostess": {
+      "desc": "Hosting and attendant work +15%, +2 appeal.",
+      "fx": {"jobBonus":{"host":1.15,"attendant":1.15},"appeal":2},
       "gen": false,
       "hidden": false,
       "earn": null,
