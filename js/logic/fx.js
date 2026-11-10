@@ -149,10 +149,49 @@ function pickTaste(clsId){
 const tasteFits = (t, w) => !!t && (t.likes||[]).some(x => x===w.race || x===w.race+':'+w.sub);
 const tasteDraw = (t, w) => tasteFits(t, w) ? (t.draw ?? 1) : 1;
 // Her client reaction to her race (races.json → client): 'like' (enthusiast), 'dislike' (put off) or null.
-// A client with a taste (balance.json → clients.tastes) likes some races more: raises her like chance.
-function raceReact(w, clsId, taste){
+// A client with a taste or traits (balance.json → clients.tastes / clients.traits) likes some ladies more: raises her like chance.
+// `c` is a client object from makeClient, a plain taste (old callers) or nothing.
+function raceReact(w, clsId, c){
   const R = raceOf(w), sd = w.race==='beastkin' ? subData(w.race, w.sub) : null, C = Object.assign({}, R.client||{}, (sd && sd.client) || {});
   let like = ((C.classLike||{})[clsId]) ?? C.like ?? 0; const dis = C.dislike ?? 0, r = Math.random();
+  const taste = c && c.traits ? c.taste : c;
   if(tasteFits(taste, w)) like = Math.max(like, taste.like ?? 0);
+  if(c && c.traits) c.traits.forEach(t => { if(traitFits(t, w)) like = Math.max(like, t.like ?? 0); });
   return r < like ? 'like' : r < like + dis ? 'dislike' : null;
+}
+
+// Client traits (balance.json → clients.traits): rolled per client by class, regulars get none (client = null everywhere).
+function makeClient(h, cls){
+  const T = (BAL.clients && BAL.clients.traits) || {}, max = (BAL.clients && BAL.clients.maxTraits) ?? 2, traits = [];
+  for(const k of Object.keys(T)){ if(traits.length >= max) break; if(Math.random() < ((T[k].chance||{})[cls.id] ?? 0)) traits.push(Object.assign({id:k}, T[k])); }
+  return {cls, taste: pickTaste(cls.id), traits};
+}
+const boozeFactor = X => X && X.barN ? 1 + (X.h.drinks||0) * BAL.clients.boozeDrinks : 0;
+// Combine one key over his traits (X gives the bar for the booze parts): fee/prop/tips/compFee/pushyMult multiply, pushy/rowdy/selfAccept add.
+function cMul(c, key, X){
+  let m = 1; if(!c) return m; const f = boozeFactor(X);
+  c.traits.forEach(t => { if(t[key] != null) m *= t[key]; if(key==='prop' && f && t.booze && t.booze.prop != null) m *= 1 + (t.booze.prop - 1) * f; });
+  return m;
+}
+function cAdd(c, key, X){
+  let a = 0; if(!c) return a; const f = boozeFactor(X);
+  c.traits.forEach(t => { a += t[key] || 0; if(f && t.booze) a += (t.booze[key] || 0) * f; });
+  return a;
+}
+const cQual = (c, q) => c ? c.traits.reduce((m, t) => t.qualityFee ? m * (t.qualityFee[0] + q * t.qualityFee[1]) : m, 1) : 1;
+// Does her race (or 'race:sub'), a trait of hers or her restlessness match what this trait likes?
+function traitFits(t, w){
+  const L = t.likes; if(!L) return false;
+  return (L.races||[]).some(x => x===w.race || x===w.race+':'+w.sub) || (L.traits||[]).some(x => has(w, x)) || (!!L.restless && restless(w));
+}
+const clientDraw = (c, w) => c ? c.traits.reduce((m, t) => traitFits(t, w) ? m * (t.draw ?? 1) : m, tasteDraw(c.taste, w)) : 1;
+// Count a client's traits into the house report and the week's average tips multiplier.
+function noteClient(X, c){
+  if(!c) return; X.tipN = (X.tipN||0) + 1; X.tipSum = (X.tipSum||0) + cMul(c, 'tips', X);
+  c.traits.forEach(t => { const o = X.hr.ctraits = X.hr.ctraits || {}; o[t.id] = (o[t.id]||0) + 1; });
+}
+// Report segment: " · clients: 5 rowdy, 9 drinker" (top 3 traits by count).
+function ctraitsLine(hr){
+  const T = (BAL.clients && BAL.clients.traits) || {}, a = Object.keys(hr.ctraits||{}).sort((x,y)=>hr.ctraits[y]-hr.ctraits[x]).slice(0,3);
+  return a.length ? ` · clients: ${a.map(k=>hr.ctraits[k]+' '+String((T[k]&&T[k].label)||k).toLowerCase()).join(', ')}` : '';
 }
