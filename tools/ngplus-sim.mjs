@@ -24,9 +24,9 @@ const BOT = `async (houseId, boon, maxWeeks) => {
   const AMEN = [['bath','bath'],['dancer','stage'],['bartender','bar']];
   const CP = [4,8,13,26,39,52];
   async function cycle(label, maxWeeks){
-    const start = { debt:S.debt.total, remaining:S.debt.remaining, gold:Math.round(S.gold), samLvl:S.sam.lvl||1, workers:S.workers.length, houses:S.houses.map(h=>h.id), cycle:S.cycle||1, week0:S.week };
+    const start = { debt:S.debt.total, gold:Math.round(S.gold), samLvl:S.sam.lvl||1, workers:S.workers.length, houses:S.houses.map(h=>h.id), cycle:S.cycle||1, week0:S.week };
     const weekly = [], snaps = {}, pays = [], staff = [];
-    let paidWeek = null, overWeek = null, hired = 0, bought = 0, shortcut = null;
+    let endWeekNo = null, hired = 0, bought = 0;
     const cnt = (h, j) => S.workers.filter(x => x.house === h.id && x.job === j).length;
     const wantAmen = (h, j) => { const up = AMEN.find(a => a[0] === j); return up && h.up[up[1]]; };
     const assign = (h, w) => { for (const j of ['bath','dancer','bartender','courtesan','promoter','attendant','maid']) {
@@ -65,33 +65,33 @@ const BOT = `async (houseId, boon, maxWeeks) => {
       S.cur = S.houses[0].id;
       let g2 = 0; while (S.ap > 0 && g2++ < 6) { if (S.sam.energy >= 25) samWork('bartend'); else samRest(); closeModal(); }
       const wk = i + 1, dw = debtWeek();
-      if (dw % 4 === 0) { const nd = nextDue(); if (nd.amount > 0) pays.push({wk, amount:nd.amount, gold:Math.round(S.gold)}); }
-      endWeek(); closeModal(); resolveEvents();
+      let due = null;
+      if (dw % BAL.debt.every === 0) { const nd = nextDue(); if (nd.amount > 0) due = { amount:nd.amount, n:nd.n, strikes0:S.debt.strikes, rem0:S.debt.remaining }; }
+      endWeek();
+      if (due) {   // gold right after endWeek (before event choices): paid -> add the payment back; missed -> unchanged
+        const paid = S.debt.strikes === due.strikes0;
+        const before = Math.round(S.gold + (paid ? due.amount : 0));
+        pays.push({ wk, n:due.n, amount:due.amount, gold:before, margin:before - due.amount, paid });
+      }
+      closeModal(); resolveEvents();
       const R = S.lastReport;
       const net = R.income - R.wages - R.upkeep - (R.recharge||0);
       weekly.push(Math.round(net));
       if (CP.includes(wk) || wk%13===0) { snaps[wk] = { gold:Math.round(S.gold), debt:Math.round(S.debt.remaining), staff:S.workers.length, net:Math.round(net), strikes:S.debt.strikes }; }
       if (wk % 8 === 0) staff.push([wk, S.workers.length]);
-      if (S.debt.remaining <= 0 && paidWeek === null) paidWeek = wk;
-      if (S.over) overWeek = wk;
+      if (S.over || S.won) endWeekNo = wk;
     }
-    const won = !!S.won, over = !!S.over, strikesEnd = S.debt.strikes, weeksPlayed = weekly.length;
-    if (!S.won) {
-      // shortcut so NG+ can still be tested
-      if (S.over) { S.over = false; S.debt.strikes = 0; closeModal(); shortcut = 'revived-from-gameover; '; }
-      const rem = S.debt.remaining;
-      if (S.gold < rem) { shortcut = (shortcut||'') + 'gold-set-to-debt(' + Math.round(rem) + ' vs had ' + Math.round(S.gold) + ')'; S.gold = rem; }
-      else shortcut = (shortcut||'') + 'payOffDebt-with-own-gold';
-      payOffDebt(); closeModal();
-    }
-    const pk = weekly.map((_, k) => k < 3 ? null : (weekly[k]+weekly[k-1]+weekly[k-2]+weekly[k-3])/4).filter(x => x !== null);
-    return { label, start, weekly, snaps, pays, staff, paidWeek, overWeek, won, over, strikesEnd, weeksPlayed, hired, bought, shortcut, peakNet4: pk.length ? Math.round(Math.max(...pk)) : null, peakNet: Math.max(...weekly), forcedWon: !!S.won };
+    const won = !!S.won, over = !!S.over, finished = won || over, weeksPlayed = weekly.length;
+    const minM = (arr) => arr.length ? Math.min(...arr.map(p => p.margin)) : null;
+    const early = pays.filter(p => p.n <= 5);
+    return { label, start, weekly, snaps, pays, staff, won, over, finished, endWeek:endWeekNo, strikesEnd:S.debt.strikes, weeksPlayed, hired, bought,
+      misses: pays.filter(p => !p.paid).length, minMarginEarly:minM(early), minMarginAll:minM(pays), goldEnd:Math.round(S.gold), peakNet: weekly.length ? Math.max(...weekly) : null };
   }
   await boot();
   store.del(KEY_SAVE); EVQ = []; CUR_EV = null;
   newGame({past:'salaryman', house:houseId, partner:'kaede'}); closeModal();
   const c1 = await cycle('c1', maxWeeks);
-  if (!S.won) return { c1, error:'not won after forced payoff' };
+  if (!c1.won) return { c1, note: c1.over ? 'c1 game over' : 'c1 not finished' };
   closeModal();
   const goldAtWin = Math.round(S.gold);
   startNGPlus();
@@ -99,7 +99,7 @@ const BOT = `async (houseId, boon, maxWeeks) => {
   const free = PARTNERS.filter(k => !carriedLovers().some(w=>w.key===k));
   NGS.partner = free[0] || 'none'; NGS.boon = boon; NGS.house = NGS.offers[0] || null; NGS.past = 'none';
   carriedLovers().forEach(w => { const p = NG_PERKS().find(t => !(w.ngPerks||[]).includes(t)); if (p) NGS.perks[w.id] = p; });
-  const N = ngNumbers(NGS.boon, NGS.house); before.N = {debt:N.debt, house:N.house, base:N.base, impr:N.impr, extra:N.extra, toDebt:N.toDebt, remaining:N.remaining, purse:N.purse, sale:N.sale};
+  const N = ngNumbers(NGS.boon, NGS.house); before.N = {debt:N.debt, house:N.house, base:N.base, impr:N.impr, extra:N.extra, purse:N.purse, sale:N.sale};
   before.partner = NGS.partner; before.newHouse = NGS.house; before.offers = NGS.offers.slice();
   ngBegin(); closeModal(); resolveEvents();
   before.cycleAfter = S.cycle; before.housesAfter = S.houses.map(h=>h.id); before.workersAfter = S.workers.length;
@@ -112,11 +112,11 @@ async function one(hid, boon) {
   page.on('pageerror', e => errors.push(e.message)); page.on('dialog', d => d.accept());
   page.on('console', m => { if (m.type()==='error') errors.push('console: '+m.text().slice(0,200)); });
   await page.goto(`http://localhost:${PORT}/index.html`);
-  let res; try { res = await page.evaluate(`(${BOT})('${hid}','${boon}',104)`); } catch (e) { res = { error: e.message.slice(0,400) }; }
+  let res; try { res = await page.evaluate(`(${BOT})('${hid}','${boon}',70)`); } catch (e) { res = { error: e.message.slice(0,400) }; }
   res.errors = errors; res.house = hid; res.boon = boon;
   await page.close(); return res;
 }
-const HS = (process.env.HOUSES || 'lantern,tankard,wayfarer').split(','), BS = (process.env.BOONS || 'purse,ap').split(',');
+const HS = (process.env.HOUSES || 'lantern,tankard,wayfarer').split(','), BS = (process.env.BOONS || 'ap').split(',');
 const jobs = []; for (const h of HS) for (const b of BS) for (let i = 0; i < RUNS; i++) jobs.push([h, b]);
 const results = []; let idx = 0; const t0 = Date.now();
 await Promise.all(Array.from({length: CONC}, async () => { while (idx < jobs.length) { const [h, b] = jobs[idx++]; const r = await one(h, b); results.push(r); fs.writeFileSync(OUT, JSON.stringify(results)); console.error(`done ${h}/${b} (${results.length}/${jobs.length}) ${Math.round((Date.now()-t0)/1000)}s ${r.error||''}`); } }));

@@ -71,13 +71,13 @@
   "renewal": {"freeAt":0.85,"refuseBelow":0.3,"feeWeeks":6,"loyal":0.15,"raise":0.2,"raiseBoost":0.15},
   "wages": {"askAt":0.85,"askAtAmbitious":0.95},
   "mood": {"restingPoint":50,"drift":0.2,"overworkAt":4},
-  "income": {"escort":1.1},
+  "income": {"escort":1.25},
   "trust": {
     "_note": "Trust is 0-100 here (shown to the player x10, out of 1000). minor = the least any time with Sam builds (practice, private time, anything that gave none).",
     "minor": 0.3
   },
   "ngplus": {
-    "debtShare": 0.75,
+    "debtShare": 0.7,
     "perCycle": 0.2,
     "purse": 600,
     "saleValue": 0,
@@ -229,7 +229,7 @@
   },
   "houseGate": {"base":40,"perBeat":20,"gap":[2,2,2],"retry":2},
   "wardrobe": {"costMult":0.7,"eventChance":1.2},
-  "debt": {"every":4,"payments":13,"ramp":2,"penalty":0.1,"strikes":3},
+  "debt": {"every":4,"payments":13,"ramp":8,"penalty":0.1,"strikes":3},
   "clients": {"pickFrom":30,"pickPer":0.3},
   "quarters": {"repPerLevel":25,"moodPer":2},
   "arcs": {"need":[35,42,50,58,66,75],"gap":[1,1,1,2,2,2],"dates":{"2":1,"4":1},"private":{"5":1}}
