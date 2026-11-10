@@ -2,8 +2,8 @@
 /* =====================================================================
    EFFECT ENGINE
    One merged effect map per lady, from: her traits (data/traits.json), race + beastkin sub (data/races.json),
-   body (data/body.json), her personal unique trait (w.unique, copied from characters/guests data) and
-   New Game+ perks (w.ngPerks, ids in traits.json). Vocabulary: see the _readme in data/traits.json.
+   body (data/body.json), her personal unique trait (w.unique, copied from characters/guests data),
+   New Game+ perks (w.ngPerks, ids in traits.json) and the title she goes by (w.titleId, data/titles.json). Vocabulary: see the _readme in data/traits.json.
      fxList(w)         -> array of fx objects
      fxMul(w,key)      -> product of numeric values (default 1)
      fxAdd(w,key)      -> sum (default 0)
@@ -22,7 +22,7 @@ function rebornFx(w){
   return {trustGain: 1 + (R.trust||0)*n, skillGain: 1 + (R.skill||0)*n, statGain: 1 + (R.stat||0)*n, lewdGain: 1 + (R.lewd||0)*n};
 }
 const rebornDesc = w => { const f = rebornFx(w); return f ? `Carried over ${w.reborn} time${w.reborn>1?'s':''}: trust grows ×${f.trustGain.toFixed(2)}, skills ×${f.skillGain.toFixed(2)}, stats ×${f.statGain.toFixed(2)}, lewdness ×${f.lewdGain.toFixed(2)} as fast.` : ''; };
-function fxSig(w){ return [w.race, w.sub, (w.traits||[]).join('|'), JSON.stringify(w.body||null), w.unique ? w.unique.name+'/'+JSON.stringify(w.unique.fx||null) : '', (w.ngPerks||[]).join('|'), w.reborn||0].join('~'); }
+function fxSig(w){ return [w.race, w.sub, (w.traits||[]).join('|'), JSON.stringify(w.body||null), w.unique ? w.unique.name+'/'+JSON.stringify(w.unique.fx||null) : '', (w.ngPerks||[]).join('|'), w.reborn||0, w.titleId||''].join('~'); }
 function fxList(w){
   if(!w) return [];
   const sig = fxSig(w), c = FX_CACHE.get(w);
@@ -35,6 +35,7 @@ function fxList(w){
   const sd = w.race==='beastkin' ? subData(w.race, w.sub) : null; if(sd) add(sd.fx);
   const b = bodyOf(w); BODY_KEYS.forEach(k => { const o = bodyOpts(k)[b[k]]; if(o) add(o.fx); });
   if(w.unique) add(w.unique.fx);
+  const tt = w.titleId && typeof TITLES!=='undefined' && TITLES[w.titleId]; if(tt) add(tt.fx);   // only the title she goes by
   FX_CACHE.set(w, {sig, wk: (typeof S!=='undefined' && S ? S.week : 0), list});
   return list;
 }

@@ -235,6 +235,7 @@ function ensureWorker(w){
   if(w.autoRest===undefined) w.autoRest = true;
   if(w.lust===undefined) w.lust = clamp(Math.round(30 + w.lewd*0.4 + ri(-10,10)));
   if(JOBS[w.job]===undefined) w.job = (w.job==='intimate'||w.job==='specialty') ? 'courtesan' : 'rest';
+  if(typeof syncTitles==='function') syncTitles(w);   // titles (data/titles.json): her data seed, old saves' w.title
   return w;
 }
 function applyMods(w){
@@ -302,6 +303,7 @@ function makeNamed(key, asPartner){
   else if(D.partnerStory){ w.backstory = D.partnerStory + '\n\n' + D.backstory; }
   if(ARCS[key]) w.arc = 0;
   delete w.jobLikes; delete w.jobDislikes; delete w.firsts; delete w.intim;   // rolled for the generic base; hers come from her data
+  delete w.titleId; w.titles = [];   // the generic base's; syncTitles takes hers from her data
   ensureWorker(w);
   w.wage = wageFor(w); w.energy = maxEnergy(w);
   return w;

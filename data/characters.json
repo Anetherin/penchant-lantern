@@ -2,7 +2,7 @@
   "_readme": [
     "Named characters. The key (e.g. \"mira\") is her id; keep it lowercase with no spaces.",
     "role: house (comes with a house; the house in js/data/economy.js names her as npc), partner (starter choice, later shows up looking for work), story (joins through a house story), guild (Adventurers Guild), drifter (no strings: turns up among candidates now and then). Crossover guests live in data/guests.json instead.",
-    "name is her actual name only (first + family name, as she would be addressed by friends). title (optional) is an honorific or rank like Lady, Dame, Captain, Professor or Princess: shown in front of her name on cards and her sheet (titled(w)) and given to the AI as {title}/{fullname}, but never part of the name.",
+    "name is her actual name only (first + family name, as she would be addressed by friends). title (optional) is an honorific or rank like Lady, Dame, Captain, Professor or Princess: shown in front of her name on cards and her sheet (titled(w)) and given to the AI as {title}/{fullname}, but never part of the name. It is a title from data/titles.json (its label or id), so it carries that title's perk; she can earn more in play.",
     "personality must match a key in personalities.json. traits from the trait list (Shy, Eager, Ambitious, Party Animal, Former Adventurer, Elegant, Lazy, Tough, Romantic, Greedy, Loyal, Exhibitionist, Night Owl, Modest).",
     "fav / dislike / lovers: service ids from services.json (lovers = what she enjoys only with Sam once she is his lover), or null.",
     "partnerTrust / partnerLewd / partnerStory: only for partners. backstory is shown on her sheet.",

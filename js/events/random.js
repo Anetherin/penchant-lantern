@@ -34,6 +34,45 @@ function evOutfit(kind){
     {label:ET(key,'share','label',V), fx(){ if(!S.houseWardrobe.includes(k)) S.houseWardrobe.push(k); moodAdd(w, 3); return ET(key,'share','res',V); }}]};
 }
 const OUTFIT_EVENTS = ['market','regular','friend','made'].map(kind => ({w:BAL.wardrobe.eventChance, ok:()=>anyW(x=>eventOutfit(x)).length>0 && (kind!=='friend' || S.workers.some(a=>S.workers.some(b=>a!==b && a.house===b.house))), make:()=>evOutfit(kind)}));
+// Events that can grant a title (data/titles.json; wording events.json → title_patron / title_fair / title_arena).
+// One title event at a time across all three (S.flags.titleCD).
+const titleFree = () => !(S.flags.titleCD > S.week);
+const lacks = (w, id) => !(w.titles||[]).includes(id);
+const patronOK = w => lacks(w,'lady') && s100(statOf(w,'refinement'))>=60 && w.popularity>=50;
+const fairOK = w => lacks(w,'festival') && w.popularity>=35 && w.job!=='rest';
+const arenaOK = w => lacks(w,'champion') && (s100(w.tech.combat||0) + s100(statOf(w,'strength')))/2 >= 50 && w.energy>=40;
+const withTitle = (txt, line) => line ? txt + '\n\n' + line : txt;
+const TITLE_EVENTS = [
+  {w:1, ok:()=>titleFree() && S.week>=12 && S.rep>=40 && anyW(patronOK).length>0, make(){
+    S.flags.titleCD = S.week + 10;
+    const w = weighted(anyW(patronOK), x=>s100(statOf(x,'refinement'))+x.popularity), g = ri(150,300), V = {name:w.name, house:houseOf(w).name, gold:fmt(g)};
+    return {title:ET('title_patron','title',V), who:w.id, scene:evImg('title_patron','portrait'), text:ET('title_patron','text',V), choices:[
+      {label:ET('title_patron','accept','label',V), fx(){ moodAdd(w, 8); repAdd(houseOf(w), 1); return withTitle(ET('title_patron','accept','res',V), giveTitle(w,'lady')); }},
+      {label:ET('title_patron','decline','label',V), fx(){ S.gold += g; moodAdd(w, 3); return ET('title_patron','decline','res',V); }}]};
+  }},
+  {w:1.2, ok:()=>titleFree() && S.week>=8 && anyW(fairOK).length>0, make(){
+    S.flags.titleCD = S.week + 10;
+    const w = weighted(anyW(fairOK), x=>x.popularity + s100(statOf(x,'charm'))), fee = 50, V = {name:w.name, gold:fmt(fee)};
+    return {title:ET('title_fair','title',V), who:w.id, scene:evImg('title_fair','casual'), text:ET('title_fair','text',V), choices:[
+      {label:ET('title_fair','enter','label',V), fx(){
+        if(S.gold < fee) return 'Sam can\'t cover the entry fee.'; S.gold -= fee;
+        const odds = clamp((s100(statOf(w,'charm')) + s100(statOf(w,'beauty')) + w.popularity) / 300 + fxAdd(w,'appeal')/40, 0.15, 0.85);
+        if(Math.random() < odds){ w.popularity = clamp(w.popularity+6); moodAdd(w, 10); repAdd(houseOf(w), 2); return withTitle(ET('title_fair','enter','win',V), giveTitle(w,'festival')); }
+        w.popularity = clamp(w.popularity+2); moodAdd(w, 2); return ET('title_fair','enter','lose',V); }},
+      {label:ET('title_fair','skip','label',V), fx(){ return ET('title_fair','skip','res',V); }}]};
+  }},
+  {w:1, ok:()=>titleFree() && S.week>=10 && anyW(arenaOK).length>0, make(){
+    S.flags.titleCD = S.week + 10;
+    const w = weighted(anyW(arenaOK), x=>s100(x.tech.combat||0)+s100(statOf(x,'strength'))), prize = ri(200,400), V = {name:w.name, gold:fmt(prize)};
+    return {title:ET('title_arena','title',V), who:w.id, scene:evImg('title_arena','casual'), text:ET('title_arena','text',V), choices:[
+      {label:ET('title_arena','fight','label',V), fx(){
+        w.energy = clamp(w.energy-30, 0, maxEnergy(w));
+        const odds = clamp((s100(w.tech.combat||0) + s100(statOf(w,'strength')) + s100(statOf(w,'agility'))) / 270, 0.15, 0.85);
+        if(Math.random() < odds){ S.gold += prize; w.popularity = clamp(w.popularity+5); moodAdd(w, 10); grow(w,'combat',3); return withTitle(ET('title_arena','fight','win',V), giveTitle(w,'champion')); }
+        moodAdd(w, -4); grow(w,'combat',2); return ET('title_arena','fight','lose',V); }},
+      {label:ET('title_arena','pass','label',V), fx(){ moodAdd(w, -2); return ET('title_arena','pass','res',V); }}]};
+  }}
+];
 // New Game+ (cycle 2+): word spreads that people come back (events.json → returners). Flags are per cycle.
 const cyc = () => (S && S.cycle) || 1;
 const RET = (...a) => ET('returners', ...a);
@@ -133,7 +172,7 @@ const RANDOM_EVENTS = [
       {label:ET('raise','agree','label',V), fx(){ w.wage=nw; w.trust=clamp(w.trust+3); moodAdd(w, 5); return ET('raise','agree','res',V); }},
       {label:ET('raise','refuse','label',V), fx(){ const pr = ['Proud and sharp-tongued','Hot-blooded and competitive'].includes(w.personality) ? 2 : 1; moodAdd(w, -(8*pr)); w.trust=clamp(w.trust-4*pr); return ET('raise','refuse', pr>1?'resProud':'res', V); }}]};
   }}
-].concat(OUTFIT_EVENTS, RETURNER_EVENTS);
+].concat(OUTFIT_EVENTS, RETURNER_EVENTS, TITLE_EVENTS);
 // she asks for a raise once her skills have outgrown her wage
 function underpaid(w){ const B = BAL.wages; return !isFree(w) && w.wage < wageFor(w) * ((has(w,'Ambitious')||has(w,'Greedy')) ? B.askAtAmbitious : B.askAt); }
 function evIncident(h){
