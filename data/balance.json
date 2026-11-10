@@ -40,8 +40,8 @@
     "ngplus.carry: share of what a carried lady (lover or old friend) gained in stats, job skills and service skills above her starting values that she keeps into the next cycle; Sam keeps the same share of his training/story stat gains. ngplus.cap: stats and skills top out at base + perCycle x (cycle-1) (ladies 1000, 1100, 1200...; Sam's 0-100 stats use a tenth of that). Trust, lewdness, mood, energy and health are unaffected.",
     "feast: Throw a feast (house tab), once per house per week, no action. Each tier: cost per lady in that house, trust (0-100 scale, still capped by house stories) and mood each lady gets. Wording is in each tier's text.",
     "samHome: Sam sleeps in one house (S.samHome, default his home house). His weekly recovery (weekly) and naps (nap) scale with that house's staff bed quality: x rest/ref (economy.json beds). Late-night encounters only come from ladies in his house unless he has a 'reach' upgrade or boon. samUps: things Sam can buy (Sam tab); carry = kept in New Game+; fx: bedTier (+tiers for Sam's own bed), weekly (+energy every week), reach (ladies from every house can visit him at night); tool fx (summed by samUpFx, each boosts one Sam-tab action): bartend (+share of Tend bar income), watch (+share of Stand watch security), books (extra upkeep cut, as a fraction, on top of Do the books), rounds (+share of Make the rounds trust and mood), lesson (+share of Hold a lesson skill gains), scout (+candidates from Scout recruits). Sam's Owner's Suite is a house amenity (economy.json → upgrades.suite): +1 bed tier when he sleeps in that house.",
-    "clients.tastes: per-client race tastes. chance = odds by client class (tastes are tried in order; most clients have none). likes = race ids, or 'beastkin:<sub>' for one beastkin kind. A client with a taste picks a courtesan whose race he likes with x draw weight, and becomes an enthusiast for her (fee x svc.raceLikeFee, +svc.raceLikeSat) with chance 'like' if that beats her race's own client.like. Regulars keep their favorite and roll no taste.",
-    "clients.traits: per-client behaviour, rolled independently by class (chance), at most maxTraits each; regulars roll none. Keys (all optional): prop (x his chance to want a service / proposition staff), pushy (+ chance he won't take no), pushyMult (x that chance), rowdy (+ to the house's incident pressure), booze {prop, pushy, rowdy} (added on top while a bartender works, x (1 + drinks tier x boozeDrinks)), tips (x bar tips from him), fee (x what he pays), compFee (x when he only wants company), qualityFee [a,b] (fee x (a + quality x b)), selfAccept (+ chance he says yes when a restless lady propositions him), likes {races (ids or 'beastkin:<sub>'), traits (lady traits), restless (true: likes a lady in the mood)} with like (enthusiast chance) and draw (pick weight) like clients.tastes. Client traits never reach image prompts or AI text."
+    "clients.traits: every client (not regulars) rolls 1-3 traits (clients.traitCount = odds of 1/2/3), weighted by w x his class's traits weight (economy.json → classes.traits), skipping excl. hidden: not shown in the report. Keys (all optional): prop (x his chance to want a service / proposition staff), pushy (+ chance he won't take no), pushyMult (x that), rowdy (+ house incident pressure), booze {prop, pushy, rowdy, patience} (added while a bartender works, x (1 + drinks tier x boozeDrinks)), tips (x bar tips), fee (x what he pays), compFee (x when he only wants company), qualityFee [a,b] (fee x (a + quality x b)), selfAccept (+ chance he says yes to a restless lady), likes {races ('beastkin:<sub>' ok), traits (lady traits), restless} with like (enthusiast chance) and draw (pick weight; without a madame only x^nativeMatch), patience (+ chance to wait), open (+ openness to a host's warm-up), thirsty (always wants a service; unserved: thirsty.sat and thirsty.rep), acceptHost (chance he'd rather the host finish him than wait), tech (+ his technique), satAdd (+ satisfaction), hostLike (x host satisfaction bonus), jobProp {job: x his propositions to that job}, stageSpend (x stage spending while waiting), gossip (x his rep effect, clients.gossip.rep per point of satisfaction away from 50), regular (x chance he becomes a regular). Client traits never reach image prompts or AI text.",
+    "clients.nativeMatch: without a madame clients mostly take whoever is free: appeal and race/trait draw count only to this power. clients.wait: with a madame, a client whose best match is busy (chance her load x busyAt... see code) waits with chance base + his patience + house comfort (garden, decorPer x decor tier, tidy when tidy, bath, open bar, open stage, hostPer x working hosts), capped at max; waiting costs sat (a host offsets it); else he takes someone else, or leaves (leaveSat) if nobody is free. Waiting clients spend barSpend at an open bar / stageSpend at a staffed stage. clients.host: each host entertains perWeek x (1 + skill x skillPer) waiting clients, +sat (+satSkill x quality); clients at least fluffOpen open get a warm-up (a light service in the open, never finished): +fluffSat (+fluffSkill x quality) on his courtesan visit, tip fluffFee x service price, at most fluffMax per client; a client with acceptHost may have her finish him instead (finishShare of a normal fee, costs finishCost of her capacity); accepted propositions cost propCost. thirsty / gossip: see clients.traits."
   ],
   "lewd": {
     "_note": "Lewdness diminishing returns (lewdUp). Each source has a cap: full gain below cap-band, half at the cap, none past cap+band. Services: cap = service th + capOver. softCap: default cap for sources without one; past it only daring dates, traits and stories push her further.",
@@ -250,69 +250,135 @@
   "clients": {
     "pickFrom": 30,
     "pickPer": 0.3,
-    "tastes": {
-      "vanilla": {"label":"Vanilla","chance":{"commoner":0.35,"adventurer":0.2,"merchant":0.3,"noble":0.2},"likes":["human"],"like":0.45,"draw":2},
-      "exotic": {
-        "label": "Exotic",
-        "chance": {"commoner":0.06,"adventurer":0.12,"merchant":0.15,"noble":0.2},
-        "likes": ["elf","demon","spirit","angel","android","beastkin:dragon"],
-        "like": 0.4,
-        "draw": 1.8
-      },
-      "wild": {"label":"Wild","chance":{"commoner":0.1,"adventurer":0.2,"merchant":0.05,"noble":0.03},"likes":["beastkin","dwarf"],"like":0.4,"draw":1.8}
-    },
-    "maxTraits": 2,
     "boozeDrinks": 0.25,
     "traits": {
       "rowdy": {
         "label": "Rowdy",
-        "chance": {"commoner":0.12,"adventurer":0.3,"merchant":0.04,"noble":0.02},
+        "w": 1,
         "prop": 1.4,
         "pushy": 0.12,
         "rowdy": 0.1,
+        "patience": -0.15,
         "booze": {"prop":1.15,"pushy":0.08,"rowdy":0.06},
         "likes": {"races":["beastkin","demon","dwarf"],"traits":["Brawler","Reckless","Flirt","Scandalous","Former Adventurer"]},
         "like": 0.35,
-        "draw": 1.6
+        "draw": 1.6,
+        "excl": ["shy","prude"]
       },
       "drinker": {
         "label": "Drinker",
-        "chance": {"commoner":0.25,"adventurer":0.3,"merchant":0.2,"noble":0.15},
+        "w": 2,
         "tips": 2.5,
-        "booze": {"prop":1.25,"pushy":0.05,"rowdy":0.06},
+        "patience": 0.05,
+        "jobProp": {"bartender":1.3},
+        "booze": {"prop":1.25,"pushy":0.05,"rowdy":0.06,"patience":0.1},
         "likes": {"races":["dwarf"],"traits":["Party Animal","Bar Veteran"]},
         "like": 0.3,
         "draw": 1.4
       },
       "shy": {
         "label": "Shy",
-        "chance": {"commoner":0.15,"adventurer":0.05,"merchant":0.15,"noble":0.12},
+        "w": 1,
         "prop": 0.45,
         "pushyMult": 0.3,
         "selfAccept": 0.25,
+        "open": -0.15,
         "likes": {"restless":true,"traits":["Flirt","Eager","Charming"]},
         "like": 0.4,
-        "draw": 1.5
+        "draw": 1.5,
+        "excl": ["rowdy"]
       },
       "romantic": {
         "label": "Romantic",
-        "chance": {"commoner":0.08,"adventurer":0.06,"merchant":0.1,"noble":0.15},
+        "w": 0.8,
         "prop": 0.6,
         "compFee": 1.3,
+        "patience": 0.1,
         "likes": {"races":["elf","angel","spirit"],"traits":["Sunny Disposition","Soothing Voice","Warm Hospitality"]},
         "like": 0.35,
         "draw": 1.5
       },
-      "generous": {"label":"Generous","chance":{"commoner":0.03,"adventurer":0.08,"merchant":0.15,"noble":0.2},"fee":1.2,"tips":1.5},
+      "generous": {"label":"Generous","w":0.7,"fee":1.2,"tips":1.5,"excl":["cheapskate"]},
+      "bigSpender": {"label":"Big Spender","w":0.3,"fee":1.35,"tips":2,"excl":["cheapskate","generous"]},
+      "cheapskate": {"label":"Cheapskate","w":0.9,"fee":0.8,"tips":0.5,"excl":["generous","bigSpender"]},
       "connoisseur": {
         "label": "Connoisseur",
-        "chance": {"commoner":0.02,"adventurer":0.02,"merchant":0.1,"noble":0.2},
+        "w": 0.5,
         "qualityFee": [0.7,0.6],
+        "patience": 0.2,
         "likes": {"races":["elf","angel","android"],"traits":["Elegant","Skilled Hands","Silken Kisses","Nimble Fingers"]},
         "like": 0.3,
         "draw": 1.4
-      }
-    }
+      },
+      "thirsty": {"label":"Thirsty","w":0.7,"thirsty":true,"open":0.3,"patience":-0.1,"acceptHost":0.5,"excl":["prude","lonely"]},
+      "patient": {"label":"Patient","w":0.9,"hidden":true,"patience":0.5,"excl":["impatient"]},
+      "impatient": {"label":"Impatient","w":0.9,"patience":-0.5,"excl":["patient"]},
+      "chatty": {"label":"Chatty","w":0.8,"hidden":true,"compFee":1.15,"patience":0.15,"hostLike":1.5,"jobProp":{"host":1.5}},
+      "dancerFan": {
+        "label": "Dancer Fan",
+        "w": 0.5,
+        "patience": 0.1,
+        "stageSpend": 2,
+        "jobProp": {"dancer":2},
+        "likes": {"traits":["Natural Performer","Headliner","Graceful","Showy","Exhibitionist"]},
+        "like": 0.3,
+        "draw": 1.3
+      },
+      "bather": {"label":"Bath Lover","w":0.5,"hidden":true,"jobProp":{"bath":2},"patience":0.05},
+      "gossip": {"label":"Gossip","w":0.6,"hidden":true,"gossip":2},
+      "loyal": {"label":"Loyal","w":0.6,"hidden":true,"regular":2},
+      "firstTimer": {"label":"First-Timer","w":0.6,"tech":-0.3,"open":0.1,"acceptHost":0.6,"satAdd":5,"excl":["connoisseur"]},
+      "adventurous": {"label":"Adventurous","w":0.6,"hidden":true,"open":0.4,"excl":["prude"]},
+      "prude": {"label":"Prude","w":0.5,"hidden":true,"open":-0.4,"prop":0.8,"excl":["adventurous","thirsty","rowdy"]},
+      "lonely": {"label":"Lonely","w":0.5,"hidden":true,"prop":0.7,"compFee":1.2,"regular":1.5,"hostLike":1.3},
+      "discreet": {"label":"Discreet","w":0.4,"hidden":true,"fee":1.1,"patience":-0.1,"jobProp":{"bartender":0.5,"dancer":0.5,"host":0.5}},
+      "vanilla": {"label":"Vanilla","w":3,"hidden":true,"likes":{"races":["human"]},"like":0.45,"draw":2,"excl":["exotic","wild"]},
+      "exotic": {
+        "label": "Exotic",
+        "w": 1,
+        "hidden": true,
+        "likes": {"races":["elf","demon","spirit","angel","android","beastkin:dragon"]},
+        "like": 0.4,
+        "draw": 1.8,
+        "excl": ["vanilla","wild"]
+      },
+      "wild": {"label":"Wild","w":1,"hidden":true,"likes":{"races":["beastkin","dwarf"]},"like":0.4,"draw":1.8,"excl":["vanilla","exotic"]}
+    },
+    "traitCount": [0.45,0.35,0.2],
+    "nativeMatch": 0.3,
+    "wait": {
+      "base": 0.35,
+      "max": 0.95,
+      "garden": 0.08,
+      "decorPer": 0.05,
+      "tidy": 0.06,
+      "bath": 0.05,
+      "bar": 0.08,
+      "stage": 0.08,
+      "hostPer": 0.12,
+      "busyAt": 0.35,
+      "sat": -8,
+      "leaveSat": -20,
+      "barSpend": 6,
+      "stageSpend": 5
+    },
+    "host": {
+      "perWeek": 10,
+      "skillPer": 0.08,
+      "sat": 6,
+      "satSkill": 10,
+      "fluffOpen": 0.35,
+      "fluffSat": 8,
+      "fluffSkill": 10,
+      "fluffMax": 2,
+      "fluffFee": 0.15,
+      "finishShare": 0.5,
+      "finishCost": 3,
+      "propCost": 2,
+      "lust": 2
+    },
+    "thirsty": {"sat":-20,"rep":0.15},
+    "gossip": {"rep":0.004}
   },
   "quarters": {"repPerLevel":25,"moodPer":2},
   "arcs": {"need":[35,42,50,58,66,75],"gap":[1,1,1,2,2,2],"dates":{"2":1,"4":1},"private":{"5":1}},
