@@ -77,4 +77,4 @@
 
 ## Ideas for later
 
-- Possible new stats: Wits (learning, teaching, madame coaching; Refinement stands in for now) and Empathy (attending, hosting, chapel, madame; Hospitality + Charm stand in for now). Adding one means a value for every named lady, the creator, the sheet, prompts if relevant, and a save migration.
+- Stat expansion (Charisma + Wits, service body stats, client stat preferences, Bard/Pilgrim/Cleric classes): spec in `docs/STATS.md` (TODO there: balance pass).
