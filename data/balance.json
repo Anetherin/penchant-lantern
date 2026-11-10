@@ -1,6 +1,9 @@
 {
   "_readme": [
+    "sleepIn: the lady who shares Sam's bed in an Owner's Suite (Sam tab → Home). trust = minimum trust; weekly: trustGain, mood, rest (her energy), samRest (Sam's energy); eventChance = odds per week of an evening/morning proposal when she is eager.",
     "Tuning numbers. Change them and reload; no code needed.",
+    "amenities: effect numbers for the house amenities (data/economy.json → upgrades has cost, upkeep and wording; amenitySize has the rooms). raceDraw = multiplier on that race's weight when candidates are rolled, while a Tethering Stone (spirit) or Charging Alcove (android) is built in ANY house. sigil.samDrain = share of the usual energy a demon takes from Sam in a house with the sigil. chapel: a Chapel Keeper (angels, 2 per house) adds rep (reputation, scaled by repGain) and pop (popularity) each week, gets mood and trust, and visitors leave donations = visitors x donation x (0.5 + charm/100). garden: mood each week and rest multiplier (+5%) for everyone in the house, elves get elfMult times both. incense: mode calm or aphro (h.incense); calm.pushy = multiplier on pushy-client and incident chance, calm.lust / aphro.lust on weekly lust build, aphro.prop on propositions to staff; beastMult = how much stronger beastkin feel it (the factor's distance from 1 is multiplied by it); lewdDrop = points added to her lewdness for service-comfort checks under aphro (never stored). workshop.perDwarf = share of the build markup removed per dwarf in the house each week (h.wsDisc, max 1, reset on any purchase). laundry.decay = multiplier on weekly tidiness loss. cellar.bar = bonus on bartender income. decor: demand[tier] multiplies client demand, noble = extra weight for noble clients at the top tier, upkeep = gold per tier per week.",
+    "houses: priceStep = each house you already own beyond the first adds this share of the base price to the next house you buy (HOUSES[id].cost x (1 + priceStep x (owned - 1))). New Game+ new-house debt is not affected.",
     "solo: energyCost = share of her max energy a solo night costs; clientCap = most clients she'll see that week afterward; lustDrop = how much it lowers her lust.",
     "lovers: neglectWeeks = weeks in a row without Sam before she feels left out (when another lover isn't); missedMood = mood lost each week she's restless and Sam doesn't see her; jealousyChance = weekly odds of that event. Shared scenes are tuned in bonds.json.",
     "breakup: mood / trust = what ending it costs her (Loyal ladies lose half the trust); rekindleTrust = trust she needs before Sam can ask her back; rekindleChance = base odds she says yes (better if she's happy); rekindleCooldown = weeks between attempts.",
@@ -190,8 +193,8 @@
     "start": 70,
     "perService": 0.5,
     "perVisitor": 0.1,
-    "maidBase": 12,
-    "maidPerSkill": 0.25,
+    "maidBase": 5.5,
+    "maidPerSkill": 0.12,
     "high": 75,
     "low": 45,
     "bad": 20,
@@ -269,6 +272,19 @@
     ]
   },
   "samHome": {"ref":42,"weekly":40,"nap":50},
+  "sleepIn": {"trust":70,"trustGain":0.6,"mood":4,"rest":8,"samRest":5,"eventChance":0.5},
+  "amenities": {
+    "raceDraw": 2,
+    "sigil": {"samDrain":0.5},
+    "chapel": {"rep":0.3,"pop":2,"donation":1.8,"mood":2,"trust":0.3},
+    "garden": {"mood":1,"rest":0.05,"elfMult":2},
+    "incense": {"beastMult":1.6,"lewdDrop":5,"calm":{"pushy":0.6,"lust":0.8},"aphro":{"lust":1.25,"prop":1.2}},
+    "workshop": {"perDwarf":0.04},
+    "laundry": {"decay":0.6},
+    "cellar": {"bar":0.2},
+    "decor": {"demand":[1,1.05,1.1,1.16],"noble":4,"upkeep":5}
+  },
+  "houses": {"priceStep":0.25},
   "samUps": {
     "coffee": {
       "label": "Otherworld Coffee Maker",

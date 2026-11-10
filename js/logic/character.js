@@ -48,7 +48,7 @@ const moodMod = w => (w.mood-50)/10;
 // Up to 25 below a service's line, she'll do it because Sam asked, if she trusts him enough (costs mood).
 // Further below that is a line she won't cross, whatever her trust.
 const ASK_BAND = 25;
-function inclination(w,id){ return w.lewd + comfortOf(w,id) + fxAdd(w,'willing') + moodMod(w); }
+function inclination(w,id){ return w.lewd + lewdBoost(w) + comfortOf(w,id) + fxAdd(w,'willing') + moodMod(w); }
 const trustNeed = gap => Math.round(40 + gap*2);
 // Courtesans have the lowest comfort lines (balance.json → jobs.courtesanTh points lower). job defaults to her current one.
 const jobTh = (w, job) => (job || w.job)==='courtesan' ? BAL.jobs.courtesanTh : 0;
@@ -250,7 +250,7 @@ function applyMods(w){
   w.lewd = clamp(w.lewd);
 }
 function genWorker(opts={}){
-  const race = opts.race || weighted(Object.keys(RACES), r=>RACES[r].weight ?? 0);
+  const race = opts.race || weighted(Object.keys(RACES), r=>(RACES[r].weight ?? 0) * raceDraw(r));
   const R = RACES[race], q = opts.quality || 1;
   const K = v => Math.round(v)*SKL + ri(0,SKL-1);   // a 0-100 value as 0-1000
   const base = () => clampK(K(rnd(15,55)*q));
@@ -322,7 +322,7 @@ const LUST_EAGER = BAL.lust.eager || 60;
 // Her lust profile (data/balance.json → lust): weekly build, how much each act spends, floor and ceiling.
 function lustProfile(w){
   const L = BAL.lust, B = L.build, Pf = L.profile, P = PERS[w.personality]||{};
-  const build = (B.base + w.lewd*B.perLewd + ((has(w,'Eager')||has(w,'Exhibitionist'))?B.eagerTrait:0) + (w.job==='rest'?B.resting:0)) * (P.lustBuild||1) * fxMul(w,'lustBuild');
+  const build = (B.base + w.lewd*B.perLewd + ((has(w,'Eager')||has(w,'Exhibitionist'))?B.eagerTrait:0) + (w.job==='rest'?B.resting:0)) * (P.lustBuild||1) * fxMul(w,'lustBuild') * incenseMul(w,'lust');
   const drop = (Pf.dropAtLewd0 + (Pf.dropAtLewd100 - Pf.dropAtLewd0) * w.lewd/100) * fxMul(w,'lustDrop');
   const max = 100 + fxAdd(w,'lustMax');
   const floor = Math.min(60, max, w.lewd*Pf.floorPerLewd + fxAdd(w,'lustFloor'));

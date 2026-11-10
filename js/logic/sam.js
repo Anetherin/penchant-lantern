@@ -228,10 +228,10 @@ function privateCore(w, act, o={}){
   if(stretch){ lewdUp(w, 4, svcLewdCap(act,'sam') + BAL.lewd.stretchCap); minorTrust(w); } else if(fromLewd){ lewdUp(w, 2, svcLewdCap(act,'sam')); minorTrust(w, 2); } else gainTrust(w, 2);
   moodAdd(w, (stretch?1:6)*pm(w,'private') + (w.fav===act?6:0) - (w.dislike===act?6:0)); w.energy = clamp(w.energy-(recv ? 6 : 15), 0, maxEnergy(w));
   let fed = '';
-  if(w.race==='demon' && A.finish){ w.energy = clamp(w.energy + SVC.demon.samGain, 0, maxEnergy(w)); S.sam.energy = Math.max(0, S.sam.energy - SVC.demon.samExtra); fed = `\n\n(${w.name} fed on him. Sam is much more tired than usual. Energy +${SVC.demon.samGain} for her.)`; }
+  if(w.race==='demon' && A.finish){ w.energy = clamp(w.energy + SVC.demon.samGain, 0, maxEnergy(w)); S.sam.energy = Math.max(0, S.sam.energy - Math.round(SVC.demon.samExtra * sigilDrain(w))); fed = `\n\n(${w.name} fed on him. Sam is much more tired than usual. Energy +${SVC.demon.samGain} for her.)`; }
   if(w.race==='demon' && A.kind==='kiss'){   // a kiss is a small sip; an eager demon draws harder
     const D = SVC.demon, deep = w.lust >= LUST_EAGER, g = D.kissSam + (deep ? D.kissSamDraw : 0);
-    w.energy = clamp(w.energy + g, 0, maxEnergy(w)); S.sam.energy = Math.max(0, S.sam.energy - (deep ? D.kissSamCost : 0));
+    w.energy = clamp(w.energy + g, 0, maxEnergy(w)); S.sam.energy = Math.max(0, S.sam.energy - (deep ? Math.round(D.kissSamCost * sigilDrain(w)) : 0));
     fed = `\n\n(${w.name} drinks a little of him with every kiss${deep ? ', and tonight she drinks deep. Sam is a bit lightheaded afterward' : ''}. Energy +${g} for her.)`; }
   if(w.lovers===act) gainTrust(w, 2);
   samStat('technique',3); samXP(5); w.privateCount++; w._samTime = (w._samTime||0) + 1;

@@ -102,6 +102,11 @@ function viewSam(){
     ${samHomeCard()}
     <section class="card"><h2>Spend Time with Someone</h2><div class="grid">${S.workers.map(w=>workerCard(w, S.houses.length>1)).join('')}</div></section>`;
 }
+function sleepInRow(sh){
+  const L = S.workers.filter(w=>sleepInOK(w)), cur = sleepInLady();
+  return `<div class="row"><div style="flex:1">Shares his bed: <select onchange="setSleepIn(this.value)"><option value="">Nobody</option>${L.map(w=>`<option value="${w.id}" ${cur&&cur.id===w.id?'selected':''}>${esc(w.name)}</option>`).join('')}</select>
+    <div class="muted">One lady of this house (trust ${tShow(BAL.sleepIn.trust)}+) sleeps in the Owner's Suite: a little trust and mood each week, both rest better, and now and then she has ideas of her own. Changing is free, once a week.</div></div></div>`;
+}
 function samHomeCard(){
   const sh = samHouse(), tier = samBedTier();
   const upRow = ([k,u])=>`<div class="row"><div style="flex:1"><b>${esc(u.label)}</b> <span class="muted">${esc(u.desc)}${u.carry?'':' (left behind in New Game+)'}</span></div>${hasSamUp(k)?'<span class="tag act">✓ Owned</span>':`<button ${S.gold<u.cost?'disabled':''} onclick="buySamUp('${k}')">Buy · ${fmt(u.cost)}</button>`}</div>`;
@@ -110,18 +115,22 @@ function samHomeCard(){
   return `<section class="card"><h2>Home</h2>
     <div>Sam sleeps at <b>${esc(sh.name)}</b>${S.houses.length>1?` <select onchange="moveSam(this.value)">${S.houses.map(h=>`<option value="${h.id}" ${h.id===sh.id?'selected':''}>${esc(h.name)}</option>`).join('')}</select>`:''}</div>
     <div>Bed: <b>${BEDS[tier].label}</b>${suite?' (+1 from the Owner\'s Suite)':''} · Weekly recovery: <b>+${samRecover(BAL.samHome.weekly) + (samUpFx('weekly')||0)}</b> energy</div>
-    <p class="muted">Late-night visits only come from ladies of this house${samReach()?' (not now: a Teleport Circle lets every house reach him)':''}. Moving is free, once a week.</p>${suite?'':`<p class="muted">Tip: build an Owner's Suite in ${esc(sh.name)} (House tab → Upgrades) for a better bed.</p>`}${ups}${tools?`<h3 style="margin:10px 0 4px">Tools of the trade</h3>${tools}`:''}</section>`;
+    <p class="muted">Late-night visits only come from ladies of this house${samReach()?' (not now: a Teleport Circle lets every house reach him)':''}. Moving is free, once a week.</p>${suite?'':`<p class="muted">Tip: build an Owner's Suite in ${esc(sh.name)} (House tab → Upgrades) for a better bed.</p>`}${suite?sleepInRow(sh):''}${ups}${tools?`<h3 style="margin:10px 0 4px">Tools of the trade</h3>${tools}`:''}</section>`;
 }
 function viewUpgrades(){
   const h = curH(), D = HOUSES[h.id];
   const dem = (k,built) => { const I = demolishInfo(h,k); return (built && I.ok) ? `<button style="font-size:12px;padding:3px 8px" title="Costs ${Math.round(BAL.demolish.share*100)}% of the base price; nothing is refunded." onclick="demolish('${k}')" ${S.gold<I.cost?'disabled':''}>Demolish · ${fmt(I.cost)}</button>` : ''; };
-  const card = (k,label,desc,cost,done,canDem) => `<div class="wcard" style="cursor:default"><div class="winfo"><div class="wname">${label}</div><div class="muted">${desc}</div>
-    <div class="row">${done?'<span class="good">✓ Built</span>':`<button onclick="buyUpgrade('${k}')" ${S.gold<cost?'disabled':''}>Buy · ${fmt(cost)}</button>`}${dem(k, canDem)}</div></div></div>`;
+  const card = (k,label,desc,cost,done,canDem,extra,blocked) => `<div class="wcard" style="cursor:default"><div class="winfo"><div class="wname">${label}</div><div class="muted">${desc}</div>
+    <div class="row">${done?'<span class="good">✓ Built</span>':`<button onclick="buyUpgrade('${k}')" ${S.gold<cost||blocked?'disabled':''}>Buy · ${fmt(cost)}</button>`}${dem(k, canDem)}${extra||''}</div></div></div>`;
+  const sizeTxt = k => { const n = AMENITY_SIZE[k] ?? 1; return n ? `${n} room${n>1?'s':''}` : 'no room'; };
+  const incSel = h.up.incense ? `<select onchange="setIncense(this.value)" title="Burner mode">${[['calm','Calm'],['aphro','Aphrodisiac']].map(([m,l])=>`<option value="${m}" ${(h.incense||'calm')===m?'selected':''}>${l}</option>`).join('')}</select>` : '';
+  const wsLine = h.up.workshop ? `<p class="muted">Workshop discount: <b>${Math.round(clamp(h.wsDisc||0,0,1)*100)}%</b> of the markup${S.workers.some(w=>w.house===h.id&&w.race==='dwarf')?'':' (no dwarf lives here, so it is not growing)'}.</p>` : '';
+  const dt = Math.min(3,(h.decor||0)+1);
   const props = Object.entries(HOUSES).filter(([k])=>!H(k) && houseOffered(k)).map(([k,P])=>{ const locked = P.premium && ((S.sam.lvl||1) < P.level || S.rep < P.renown);
     return `<div class="wcard" style="cursor:default">${miniNamedAvatar(P.npc)}<div class="winfo"><div class="wname">${P.name} <span class="tag house">${P.loc}</span>${P.premium?' <span class="tag act">Premium</span>':''}${P.ngplus?' <span class="tag act">✦ NG+</span>':''}</div><div class="muted">${P.desc}</div>
     <div class="muted">Comes with ${NAMED[P.npc].name}${isHired(P.npc)?' (already with you)':''} · Rooms ${P.rooms} · Upkeep ~${fmt(P.upkeep+15*P.rooms)}/wk${P.minPop?` · Escorts should have popularity ${P.minPop}+`:''}</div>
     ${P.premium?`<div class="${locked?'warn':'good'}">Requires Sam level ${P.level} (now ${S.sam.lvl||1}) and renown ${P.renown} (now ${Math.round(S.rep)})</div>`:''}
-    <div class="row"><button onclick="buyHouse('${k}')" ${S.gold<P.cost||locked?'disabled':''}>Buy · ${fmt(P.cost)}</button></div></div></div>`; }).join('');
+    <div class="row"><button onclick="buyHouse('${k}')" ${S.gold<houseCost(k)||locked?'disabled':''}>Buy · ${fmt(houseCost(k))}</button>${S.houses.length>1?`<span class="muted">base ${fmt(P.cost)} +${Math.round(BAL.houses.priceStep*100*(S.houses.length-1))}% for the ${S.houses.length} houses you own</span>`:''}</div></div></div>`; }).join('');
   return `${houseTabs(false)}<section class="card"><h2>Upgrades: ${esc(h.name)} <span class="muted">(${roomsUsed(h)}/${houseSize(h)} rooms)</span></h2><div class="grid">
     ${card('room',`Add Bedroom (${h.rooms})`,'One courtesan per bedroom. Takes 1 room. +12g/wk.',upgradeCost(h,'room'),false,h.rooms>D.rooms)}
     ${card('quarters',`Add Staff Quarters (${h.quarters||0})`,'Sleeps 2 staff. Without a bed, staff sleep on the floor (poor rest, −mood). Takes 1 room. +6g/wk.',upgradeCost(h,'quarters'),false,(h.quarters||0)>D.quarters)}
@@ -129,7 +138,9 @@ function viewUpgrades(){
     ${card('roomTier',`Refurbish Bedrooms (${ROOM_NAMES[h.tier]})`,'Higher service prices and satisfaction. Changes room scenes.',upgradeCost(h,'roomTier'),h.tier>=3)}
     ${card('beds',`Better Beds (${BEDS[h.beds||0].label})`,`Staff recover more energy. Next: ${BEDS[Math.min(3,(h.beds||0)+1)].label} (rest ${BEDS[Math.min(3,(h.beds||0)+1)].rest}). Proper beds keep a lady even at about 3–4 clients a week.`,upgradeCost(h,'beds'),(h.beds||0)>=3)}
     ${card('annex','Build an Annex','+3 rooms of space. +30g/wk.',upgradeCost(h,'annex'),!!h.annex)}
-    ${Object.entries(UPGRADES).map(([k,u])=>card(k,`${u.label} <span class="muted">(${AMENITY_SIZE[k]} room${AMENITY_SIZE[k]>1?'s':''})</span>`,`${u.race?`<span class="tag act">for ${esc((RACES[u.race]||{label:u.race}).label.toLowerCase())}s</span> `:''}${u.desc} (${D.up[k]?'built in':u.upkeep+'g/wk upkeep'})`,upgradeCost(h,k),!!h.up[k],!!h.up[k])).join('')}</div>
+    ${card('decor',`Décor (${DECOR[h.decor||0].label}) <span class="muted">(no room)</span>`,`${DECOR[h.decor||0].desc} ${(h.decor||0)>=3?'':`Next: ${DECOR[dt].label}, clients ×${BAL.amenities.decor.demand[dt]} (now ×${BAL.amenities.decor.demand[h.decor||0]}). ${DECOR[dt].desc}`} (+${BAL.amenities.decor.upkeep}g/wk per tier)`,upgradeCost(h,'decor'),(h.decor||0)>=3)}
+    ${Object.entries(UPGRADES).map(([k,u])=>{ const nd = u.needs && !h.up[u.needs] ? u.needs : null; return card(k,`${u.label} <span class="muted">(${sizeTxt(k)})</span>`,`${u.race?`<span class="tag act">for ${esc((RACES[u.race]||{label:u.race}).label.toLowerCase())}s</span> `:''}${u.desc}${nd?` <span class="warn">Needs a ${esc(UPGRADES[nd].label)} first.</span>`:''} (${D.up[k]?'built in':u.upkeep+'g/wk upkeep'})`,upgradeCost(h,k),!!h.up[k],!!h.up[k],k==='incense'?incSel:'',!!nd); }).join('')}</div>
+    ${wsLine}
     <p class="muted">Building the same thing again costs 12% more each time (counted across all your houses); bedrooms, quarters and beds also scale with how many this house has. Upkeep also rises with a house's reputation. Demolishing something you built costs ${Math.round(BAL.demolish.share*100)}% of its base price (nothing is refunded); what a house started with stays.</p>
     <p>Space used: <b>${roomsUsed(h)}/${houseSize(h)}</b> rooms</p>
     <p class="muted">Outfits and undergarments are bought per lady, from her sheet → Wardrobe.</p></section>

@@ -59,9 +59,8 @@ function restDecline(id){
 
 // Sam turns a restless lady down. Beastkin take it much harder (balance.json → svc.refusalMood; a Grooming Den halves it).
 function refusalHit(w, base){
-  if(w.race!=='beastkin') return moodAdd(w, -base);
-  const h = houseOf(w), n = SVC.refusalMood * (h && h.up && h.up.den ? 0.5 : 1);
-  return moodAdd(w, -n);
+  if(w.race!=='beastkin' || incenseCalmsRefusal(w)) return moodAdd(w, -base);   // calming incense: beastkin take it like anyone else
+  return moodAdd(w, -SVC.refusalMood);
 }
 const refusalNote = w => w.race==='beastkin' ? `\n\n(${w.name} takes being turned away hard. Mood drops a lot.)` : '';
 
@@ -81,8 +80,13 @@ function queueEncounters(){
     if(used>=1 || has(w,'Devoted') || !restless(w) || w.lewd < 50 || Math.random() > 0.35) return;
     used++; const id = w.id; EVQ.push(()=>evReckless(findW(id)));
   });
-  // late-night visits from ladies who weren't seeing clients
-  const c = S.workers.filter(w=>idleForClients(w) && canVisit(w, 60, 45, 55) && nearSam(w));
+  // the lady sharing Sam's bed in the Owner's Suite (home.js)
+  const sl = sleepInLady();
+  if(sl && used<2 && sl.lust >= LUST_EAGER && needSamAct(sl) && Math.random() < BAL.sleepIn.eventChance){
+    used++; const id = sl.id, morning = Math.random() < 0.5; EVQ.push(()=>evSleepIn(findW(id), morning));
+  }
+  // late-night visits from ladies who weren't seeing clients (not the one already in his bed)
+  const c = S.workers.filter(w=>idleForClients(w) && canVisit(w, 60, 45, 55) && nearSam(w) && !(restless(w) && sleepInLady() === w));
   if(c.length && used<2 && Math.random() < 0.12 + 0.05*c.length){ const w = pick(c), id = w.id; EVQ.push(()=>evLateVisit(findW(id))); }
 }
 function evLateVisit(w){

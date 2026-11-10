@@ -5,6 +5,7 @@
 function canDo(w, job){
   const J = JOBS[job]; if(!J) return 'Unknown job.';
   const h = houseOf(w);
+  if(J.race && w.race!==J.race) return `Only ${(RACES[J.race]||{label:J.race}).label.toLowerCase()}s can work as ${J.label}.`;
   if(job!=='rest' && w.health<30) return `${w.name} is too unwell to work.`;
   if(job!=='rest' && w.trust < jobTrust(w,job)) return `${w.name} doesn't trust Sam enough for that yet (needs trust ${tShow(jobTrust(w,job))}).`;
   if(job==='courtesan' && !getActs().some(a=>clientStance(w,a.id,'courtesan')!=='no')) return `${w.name} isn't comfortable with that yet.`;
@@ -71,13 +72,18 @@ function dismiss(id){
 // Bedrooms, staff quarters and extra beds also scale with how many this house already has.
 function upgradeCost(h, k){
   const infl = 1 + 0.12*((S.builtBy||{})[k]||0);
-  if(k==='room') return Math.round((250 + h.rooms*220) * infl);
-  if(k==='quarters') return Math.round((200 + (h.quarters||0)*160) * infl);
-  if(k==='roomTier') return Math.round((ROOM_TIER_COST[h.tier]||0) * infl);
-  if(k==='beds') return Math.round((BEDS[Math.min(3,(h.beds||0)+1)].cost) * Math.max(1,bedsFor(h)/2) * infl);
-  if(k==='extraBed') return Math.round((80 + (h.extraBeds||0)*60 + (BEDS[h.beds||0].cost||0)*0.25) * infl);
-  if(k==='annex') return Math.round(2500 * infl);
-  return Math.round((UPGRADES[k]?UPGRADES[k].cost:0) * infl);
+  let base;
+  if(k==='room') base = 250 + h.rooms*220;
+  else if(k==='quarters') base = 200 + (h.quarters||0)*160;
+  else if(k==='roomTier') base = ROOM_TIER_COST[h.tier]||0;
+  else if(k==='beds') base = BEDS[Math.min(3,(h.beds||0)+1)].cost * Math.max(1,bedsFor(h)/2);
+  else if(k==='extraBed') base = 80 + (h.extraBeds||0)*60 + (BEDS[h.beds||0].cost||0)*0.25;
+  else if(k==='annex') base = 2500;
+  else if(k==='decor') base = (DECOR[Math.min(3,(h.decor||0)+1)]||{}).cost || 0;
+  else base = UPGRADES[k] ? UPGRADES[k].cost : 0;
+  // Workshop: the markup (inflation) is trimmed by h.wsDisc, never below the base price
+  const disc = h.up && h.up.workshop ? clamp(h.wsDisc||0, 0, 1) : 0;
+  return Math.round(base + base*(infl-1)*(1-disc));
 }
 function buyUpgrade(k){
   const h = curH(); let cost = upgradeCost(h,k), need = 0;
@@ -85,17 +91,20 @@ function buyUpgrade(k){
   else if(k==='roomTier'){ if(h.tier>=3) return toast('Bedrooms are already opulent.'); }
   else if(k==='beds'){ if((h.beds||0)>=3) return toast('Already the best beds in town.'); }
   else if(k==='annex'){ if(h.annex) return toast('Already expanded.'); }
+  else if(k==='decor'){ if((h.decor||0)>=3) return toast('The house is already as grand as it gets.'); }
   else if(k==='extraBed'){ if((h.extraBeds||0) >= maxExtraBeds(h)) return toast('The staff rooms are full. Add staff quarters first.'); }
-  else { if(h.up[k]) return; need = AMENITY_SIZE[k]||1; }
+  else { if(h.up[k]) return; need = AMENITY_SIZE[k] ?? 1; const nd = UPGRADES[k] && UPGRADES[k].needs; if(nd && !h.up[nd]) return toast(`${UPGRADES[k].label} needs a ${UPGRADES[nd].label} first.`); }
   if(need && roomsUsed(h) + need > houseSize(h)) return toast(`${h.name} is out of space (${roomsUsed(h)}/${houseSize(h)} rooms used).`);
   if(S.gold < cost) return toast('Not enough gold.');
-  S.gold -= cost; h.spent = (h.spent||0) + cost; S.built = (S.built||0) + 1; S.builtBy = S.builtBy||{}; S.builtBy[k] = (S.builtBy[k]||0) + 1;
+  S.gold -= cost; h.spent = (h.spent||0) + cost; h.wsDisc = 0; S.built = (S.built||0) + 1; S.builtBy = S.builtBy||{}; S.builtBy[k] = (S.builtBy[k]||0) + 1;
   if(k==='room'){ h.rooms++; note(`${h.name}: a new bedroom is ready. (${h.rooms} total)`); }
   else if(k==='quarters'){ h.quarters=(h.quarters||0)+1; note(`${h.name}: new staff quarters. Beds for ${bedsFor(h)}.`); }
   else if(k==='roomTier'){ h.tier++; note(`${h.name}: bedrooms refurbished to ${ROOM_NAMES[h.tier]}.`); }
   else if(k==='beds'){ h.beds=(h.beds||0)+1; note(`${h.name}: staff now sleep on ${BEDS[h.beds].label.toLowerCase()}.`); }
   else if(k==='extraBed'){ h.extraBeds=(h.extraBeds||0)+1; note(`${h.name}: another bed squeezed into the staff rooms. Beds for ${bedsFor(h)}.`); }
   else if(k==='annex'){ h.annex=true; note(`${h.name}: annex built (+3 rooms of space).`); }
+  else if(k==='decor'){ h.decor=(h.decor||0)+1; note(`${h.name}: redecorated (${DECOR[h.decor].label}).`); }
+  else if(k==='incense'){ h.up[k]=true; h.incense='calm'; note(`${h.name}: ${UPGRADES[k].label} built.`); }
   else { h.up[k]=true; note(`${h.name}: ${UPGRADES[k].label} built.`); }
   save(); render();
   if(k==='bar' && !S.flags.hilde && !isHired('hilde')){ S.flags.hilde=true; EVQ.push(evHilde); runQueue(); }
@@ -108,9 +117,10 @@ function demolishInfo(h, k){
   if(k==='room'){ base = 250 + (h.rooms-1)*220; if(h.rooms <= D.rooms) why = 'These are the rooms the house started with.'; }
   else if(k==='quarters'){ base = 200 + ((h.quarters||0)-1)*160; if((h.quarters||0) <= D.quarters) why = 'These are the quarters the house started with.'; }
   else if(UPGRADES[k]){
-    base = UPGRADES[k].cost; const jobOf = {bath:'bath', stage:'dancer', bar:'bartender'}[k];
+    base = UPGRADES[k].cost; const jobOf = {bath:'bath', stage:'dancer', bar:'bartender', chapel:'chapel'}[k];
     if(!h.up[k]) why = 'Not built.';
     else if((D.up||{})[k]) why = `${UPGRADES[k].label} came with the house.`;
+    else if(k==='bar' && h.up.cellar) why = `The ${UPGRADES.cellar.label} needs the Bar. Demolish the cellar first.`;
     else if(jobOf && S.workers.some(w=>w.house===h.id && w.job===jobOf)) why = `Someone still works as ${JOBS[jobOf].label} here. Move her to another job first.`;
   } else why = 'Unknown.';
   return {base, cost:Math.round(base*share), ok:!why, why};
@@ -128,12 +138,16 @@ function demolish(k){
   note(`${h.name}: ${label} demolished (${fmt(I.cost)}).`);
   save(); render();
 }
+// A house gets pricier with every one you already own (balance.json → houses.priceStep).
+const houseCost = id => Math.round(HOUSES[id].cost * (1 + BAL.houses.priceStep * Math.max(0, S.houses.length - 1)));
+function setIncense(mode){ const h = curH(); if(!h.up.incense || !['calm','aphro'].includes(mode)) return; h.incense = mode; save(); render(); }
 function buyHouse(id){
   const D = HOUSES[id]; if(!D || H(id) || !houseOffered(id)) return;
   if(D.premium && ((S.sam.lvl||1) < D.level || S.rep < D.renown)) return toast(`${D.name} won't sell to Sam yet. Needs Sam level ${D.level} and renown ${D.renown}.`);
-  if(S.gold < D.cost) return toast('Not enough gold.');
-  if(!confirm(`Buy ${D.name} for ${fmt(D.cost)}?`)) return;
-  S.gold -= D.cost; S.houses.push(makeHouse(id)); S.cur = id;
+  const cost = houseCost(id);
+  if(S.gold < cost) return toast('Not enough gold.');
+  if(!confirm(`Buy ${D.name} for ${fmt(cost)}?${S.houses.length>1 ? ` (base ${fmt(D.cost)}, +${Math.round(BAL.houses.priceStep*100)}% for each house you already own beyond the first)` : ''}`)) return;
+  S.gold -= cost; S.houses.push(makeHouse(id)); S.cur = id;
   note(`You now own ${D.name}!`);
   if(!isHired(D.npc)){
     const n = makeNamed(D.npc); n.house = id; n.locked = id; n.contract = 999; n.job = safeJob(n, NAMED[D.npc].job); if(MENU_JOBS.includes(n.job)) n.menu = getActs().filter(a=>clientStance(n,a.id)==='yes').map(a=>a.id);
