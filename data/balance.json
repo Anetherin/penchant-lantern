@@ -14,21 +14,25 @@
     "wages: contracts renew at her current going rate (wageFor, which rises with her skills and popularity). Between renewals she asks for a raise once her wage falls below askAt × her going rate (askAtAmbitious for Ambitious/Greedy).",
     "mood: restingPoint = the mood she drifts back toward each week (drift = how fast); overworkAt = how many clients a week before she feels overworked.",
     "income.escort: multiplier on all escort and off-duty service fees.",
-    "ngplus: New Game+ (after paying off the debt). Sam keeps ONLY his home house (rooms, tier, upgrades, beds); other houses are sold for saleValue x their price, paid toward the debt. New debt = home house debt x debtShare x (1 + perCycle for each cycle after the second) + improvementsValue x improveShare (improvementsValue = gold spent on rooms, tiers, quarters, beds, annex and upgrades in the home house, tracked in h.spent). purse = gold Sam keeps in hand; savings above it go straight to the new debt (up to half of it). samKeep = share of Sam's stats he keeps (1 = all). Only Devoted lovers come along (they draw wages again, stats reset: named ones to their data values, generic ones to 50%, popularity 0, trust and lewdness back to where they started: named from data, generic from when they were rolled, else baseTrust/baseLewd) and each picks one NG+ perk (traits.json ngPerk). NG+ houses (economy.json ngplus) and NG+ partners (characters.json ngplus) only appear from cycle 2; NG+ houses are bought during the cycle.Sam also takes a new house each cycle (houseOffers deeds, no premium ones; its debt x newHouseShare x (1 + perCycle for each cycle after the second) joins the new debt; its resident comes along) and may add one more past life (economy.json pasts, each once). reborn: every lady who carries over gains a stack of the Reincarnated perk (w.reborn): trust gain x (1 + trust x stacks), skill gain x (1 + skill x stacks), stat gain x (1 + stat x stacks), lewdness gain x (1 + lewd x stacks).",
+    "ngplus: New Game+ (after paying off the debt). Sam keeps ONLY his home house (rooms, tier, upgrades, beds); other houses are sold for saleValue x their price (0 = surrendered), which reduces the new debt instead of adding gold. New debt = home house debt x debtShare x (1 + perCycle for each cycle after the second) + improvementsValue x improveShare (improvementsValue = gold spent on rooms, tiers, quarters, beds, annex and upgrades in the home house, tracked in h.spent). purse = Sam's starting gold (same as a new game; his savings stay behind; the Deep Pockets perk adds 2,500). samReset: stats = Sam keeps his level but his stats are rebuilt as sam.base + sam.perLevel x (level-1) + his past lives; appraisal = Appraisal level and XP start over (past lives such as otaku re-apply their floor). Only Devoted lovers come along (they draw wages again, stats reset: named ones to their data values, generic ones to 50%, popularity 0, trust and lewdness back to where they started: named from data, generic from when they were rolled, else baseTrust/baseLewd) and each picks one NG+ perk (traits.json ngPerk). NG+ houses (economy.json ngplus) and NG+ partners (characters.json ngplus) only appear from cycle 2; NG+ houses are bought during the cycle.Sam also takes a new house each cycle (houseOffers deeds, no premium ones; its debt x newHouseShare x (1 + perCycle for each cycle after the second) joins the new debt; its resident comes along) and may add one more past life (economy.json pasts, each once). reborn: every lady who carries over gains a stack of the Reincarnated perk (w.reborn): trust gain x (1 + trust x stacks), skill gain x (1 + skill x stacks), stat gain x (1 + stat x stacks), lewdness gain x (1 + lewd x stacks).",
     "svc: per-service rules. tech* = the range of a client's technique; frustrateAt = a finishing service leaves her frustrated when technique x (her lust/60) is below this (her lust rises by frustrateLust). encore* = chance (+ her encore fx) and fee share of a reckless lady's second round. race* = enthusiast / put-off clients (data/races.json client). demon: demons don't sleep: each working week costs them hunger energy, and they gain energy per finishing service (feed, or feedReckless when restless, which costs house reputation repDrain unless the house has a Binding Sigil); with Sam she gains samGain and Sam loses samExtra more energy. android: recharge fee (fee + perEnergy x energy restored; the Charging Alcove takes chargerDiscount off). refusalMood = beastkin mood loss when Sam turns down a restless request (a Grooming Den halves it).",
     "jobs: courtesanTh = how many points lower a courtesan's comfort lines sit; propWant = chance a client asks for a service (courtesans vs. everyone else who steps in); promoter draw = promoterBase + (charm+service)/promoterDiv clients, samples multiply it (samplesDraw) and cost samplesEnergy energy and samplesLust lust, rep change = (quality-0.5) x samplesRep; attendant: courtesans spend attendantEnergy x energy and clients are attendantSat happier; a house can have as many attendants as courtesan positions, and each courtesan with her own attendant (most popular first) gets attendantOwnMood mood and attendantOwnTrust trust a week; madame: cuts the house's mood losses to madameMoodLoss, matches clients to a fitting lady (+madameMatchSat sat), and coaches courtesans she out-ranks by madamePopGap popularity: each skill she is better at grows by madameCoach x the difference (rounded down); stepIn* = how many clients a madame/attendant takes when courtesans are swamped and the energy she needs; bar*: each bartender with a Bar adds this to the house proposition rate (barProp), rowdy chance (barRowdy) and client recklessness (barReckless); bath*: massage offers to bathers (bathShare of visitors, bathCap each); tipsBase / danceRep: dancer tips and reputation.",
     "rooms.perRoom: room-service sessions per bedroom per week; Exhibitionist ladies don't use a room.",
     "tidy: starting value, losses (perService room service, perVisitor), maid gain per week = (maidBase + service skill x maidPerSkill) x outfit bonus x her tidy fx, and the three effect tiers (rep per week, mood, energy recovery multiplier) at high (>=75), low (<45) and bad (<20).",
     "rep: positive reputation changes are scaled by max(gainMin, gainBase - rep/gainDiv). Losses are not.",
     "props: propositions. penalty/maxPenalty = main-job output lost per accepted proposition (non-must jobs). accept* = chance a non-must lady accepts (acceptBase + (lust-acceptLustMid)/100 + willing fx, +acceptEager when eager, +acceptReckless when reckless); onChance / offSlip = chance when \"Open to propositions\" is on / off-but-reckless; alt / altMust = chance of a counter-offer. attendantExpect = share of attendant propositions where the client expected her to offer (expectSat if she declines). self* = reckless ladies propositioning clients. Pushy resolution: security power vs a roll in securityRoll; else Sam (if his energy >= samEnergyMin) checks strength + charm/2 + roll(0..samRoll) >= samCheck; else none. Costs/mood effects follow. When security fails a pushy client and Sam has the energy, he is sent for and the player decides after the report (one event for the week): step in (the old samCheck roll), call the town watch (watchFee per incident, watchRep reputation each), or let her handle it (none penalties).",
-    "houseGate: ladies who come with a house (role 'house') can't trust Sam past base + perBeat x (that house's story beat) until the house story is finished. Arc beats for them wait for the story too.",
+    "houseGate: ladies who come with a house (role 'house') can't trust Sam past base + perBeat x (that house's story beat) until the house story is finished (3 beats: 40 + 20 x 3 = 100). Arc beats for them wait for the story too. gap = weeks before beat 1 / 2 / 3 can start (first, later, later); retry = weeks before a beat comes back after a failed check.",
     "wardrobe: costMult scales every outfit/underwear price (lower = easier to get clothes). eventChance = relative weight of each of the 'someone gave her an outfit' random events (data/events.json).",
     "svc.askMore: after a service that builds her lust (giving, kissing, massages), a lady with lust >= lust.eager and lewdness >= lewd may ask the client for more (chance), offering a heavier service from her menu that spends lust; it pays fee x its normal price.",
     "svc.demon: kissFeed = energy a demon draws from a client's kiss; kissSam (+ kissSamDraw when she's eager, costing Sam kissSamCost extra) from Sam's. restDrainChance / restRepDrain: a restless demon on her week off may drain some poor man in town (town reputation loss; a Demon Sigil doesn't help outside). studCost / studGain / studLust: Sam pays for a stud for the night (sheet button, once a week).",
     "again: after a visit or encounter, a lady who is still worked up may want another round (chance by race, other = everyone else except spirits, + her encore fx; beastkin only need to be eager, others nearly restless). samCost = Sam's energy; mood = her mood gain (twice for beastkin). Once a week each. Ladies who come to Sam because they are restless only pick services that spend lust (releaseSamAct).",
-    "sam: Sam's house-wide actions. roundsTrust / roundsMood = what Making the rounds gives every lady (trust is 0-100 here, so 0.4 shows as 4); lessonShare = share of a one-on-one training gain that each lady in a lesson gets.",
+    "sam: Sam's house-wide actions. roundsTrust / roundsMood = what Making the rounds gives every lady (trust is 0-100 here, so 0.4 shows as 4); lessonShare = share of a one-on-one training gain that each lady in a lesson gets. base = Sam's starting stats in a new game (and the base for the NG+ rebuild); perLevel = each stat gained per level (samGainXP).",
     "lewd: lewdness gains go through lewdUp(w, n, cap) (character.js): see its _note. Dates add their own caps (dates.json lewdCap, spicy cap).",
-    "jobs.bathJoinLewd / bathJoinFee: a bath attendant comfortable with massages and at least this lewd joins bathers in the water (bath massage, x fee), and may ask for more like anyone else."
+    "jobs.bathJoinLewd / bathJoinFee: a bath attendant comfortable with massages and at least this lewd joins bathers in the water (bath massage, x fee), and may ask for more like anyone else.",
+    "debt: 'payments' payments every 'every' weeks from when the debt started (NG+ restarts it). Payment n = total x share_n; shares ramp linearly from 1 to 'ramp' (the last is ramp x the first) and sum to 1, so there is no balloon; the last payment clears whatever remains (penalties included). A missed payment adds penalty x its amount to the debt and carries over to the next; 'strikes' misses end the game.",
+    "clients: pickier customers as a house gets famous: satisfaction loses (effective reputation - pickFrom) x pickPer.",
+    "quarters: staff expect better lodging as the house gets famous: expected comfort = floor(house rep / repPerLevel), max 3; comfort = min(bed level, bedroom refurbishment tier). Each level short costs moodPer mood a week (not for ladies who don't sleep, nor those already on the floor).",
+    "arcs: romance arcs. need[i] = trust for beat i, gap[i] = weeks since her last beat. Extras: beat 2 needs a date or private time with Sam, dates['4'] dates for beat 4, private['5'] private times for beat 5."
   ],
   "lewd": {
     "_note": "Lewdness diminishing returns (lewdUp). Each source has a cap: full gain below cap-band, half at the cap, none past cap+band. Services: cap = service th + capOver. softCap: default cap for sources without one; past it only daring dates, traits and stories push her further.",
@@ -61,7 +65,7 @@
   },
   "solo": {"energyCost":0.15,"clientCap":6,"lustDrop":40},
   "again": {"beastkin":0.6,"other":0.2,"samCost":20,"mood":3},
-  "sam": {"roundsTrust":0.4,"roundsMood":1.5,"lessonShare":0.6},
+  "sam": {"roundsTrust":0.4,"roundsMood":1.5,"lessonShare":0.6,"base":{"charm":20,"business":35,"strength":15,"technique":0},"perLevel":2},
   "lovers": {"neglectWeeks":4,"missedMood":4,"jealousyChance":0.6},
   "breakup": {"mood":-20,"trust":-10,"rekindleTrust":80,"rekindleChance":0.55,"rekindleCooldown":4},
   "renewal": {"freeAt":0.85,"refuseBelow":0.3,"feeWeeks":6,"loyal":0.15,"raise":0.2,"raiseBoost":0.15},
@@ -75,15 +79,15 @@
   "ngplus": {
     "debtShare": 0.75,
     "perCycle": 0.2,
-    "purse": 1000,
-    "saleValue": 0.5,
-    "samKeep": 1,
+    "purse": 600,
+    "saleValue": 0,
     "improveShare": 0.6,
     "newHouseShare": 1,
     "baseTrust": 15,
     "baseLewd": 25,
     "houseOffers": 4,
-    "reborn": {"trust":0.5,"skill":0.25,"stat":0.25,"lewd":0.25}
+    "reborn": {"trust":0.5,"skill":0.25,"stat":0.25,"lewd":0.25},
+    "samReset": {"stats":true,"appraisal":true}
   },
   "jobPrefs": {
     "_note": "Rolled job likes/dislikes for generic ladies (and named ones without their own list). Each job's odds: base, plus personality (personalities.json jobsUp/jobsDown), plus trait for each matching trait below, plus ownJob for the job she arrives in. maxLikes/maxDislikes cap the lists.",
@@ -222,6 +226,10 @@
     "noneRep": 1,
     "maxPushy": 0.7
   },
-  "houseGate": {"base":35,"perBeat":15},
-  "wardrobe": {"costMult":0.7,"eventChance":1.2}
+  "houseGate": {"base":40,"perBeat":20,"gap":[2,2,2],"retry":2},
+  "wardrobe": {"costMult":0.7,"eventChance":1.2},
+  "debt": {"every":4,"payments":13,"ramp":2,"penalty":0.1,"strikes":3},
+  "clients": {"pickFrom":30,"pickPer":0.3},
+  "quarters": {"repPerLevel":25,"moodPer":2},
+  "arcs": {"need":[35,42,50,58,66,75],"gap":[1,1,1,2,2,2],"dates":{"2":1,"4":1},"private":{"5":1}}
 }

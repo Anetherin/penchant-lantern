@@ -329,7 +329,7 @@ function simHouse(h, R){
     const base = act ? actById(act).price * roomM * ob(w,'courtesan') : 20 * ob(w,'courtesan');
     const below = Math.max(0, (HD.minPop||0) - w.popularity);
     const inc = Math.round(base * P.mult * (0.6+q*0.9) * cm * (1+madF*0.15) * fxMul(w,'clientFee') * jb(w,w.job) * (react==='like' ? SVC.raceLikeFee : 1) * (below?0.75:1) * (reg ? (regQuirk(reg).tip||1) : 1) * BAL.income.escort);
-    const sat = clamp(- below*0.5 + q*100 + 6 + rnd(-15,15) + h.tier*5 - (h.price-1)*6 + (h.up.bath?4:0) + (HD.sat||0) + (w.job==='courtesan' && attendants.length ? J.attendantSat : 0) + (matched && outcome==='yes' ? J.madameMatchSat : 0) + (outcome==='yes'?8:outcome==='alt'?3:outcome==='no'?-8:0)
+    const sat = clamp(- below*0.5 - Math.max(0, repEff - BAL.clients.pickFrom)*BAL.clients.pickPer + q*100 + 6 + rnd(-15,15) + h.tier*5 - (h.price-1)*6 + (h.up.bath?4:0) + (HD.sat||0) + (w.job==='courtesan' && attendants.length ? J.attendantSat : 0) + (matched && outcome==='yes' ? J.madameMatchSat : 0) + (outcome==='yes'?8:outcome==='alt'?3:outcome==='no'?-8:0)
       + (fxSub(w,'classBonus',cls.id)-1)*SVC.classBonusSat + (react==='like' ? SVC.raceLikeSat : react==='dislike' ? SVC.raceDislikeSat : 0));
     pr.satSum = (pr.satSum||0) + sat; if(sat<30) pr.low = (pr.low||0)+1;
     hr.income += inc; R.led.escort += inc; pr.served++; pr.earned += inc; hr.served++; hr.sat += sat;
@@ -457,6 +457,7 @@ function endWeek(){
     if(w.job==='rest'){ moodAdd(w, 8); w.health += 15; why('a week off', true); }
     w.health = clamp(w.health+5);
     if(w._bed===FLOOR_REST && w.race!=='spirit'){ moodAdd(w, -3); why('slept on the floor', false); }
+    else if(housingShort(h) && !['spirit','android','demon'].includes(w.race)){ moodAdd(w, -BAL.quarters.moodPer*housingShort(h)); why('expects better quarters in a house this famous', false); }
     w.mood += (BAL.mood.restingPoint + fxAdd(w,'moodRest') + (has(w,'Loyal')?5:0) + (has(w,'Devoted')?10:0) - w.mood) * BAL.mood.drift * fxMul(w,'moodDrift');
     const work = pr.served + pr.acc - pr.comp*0.4, over = work - BAL.mood.overworkAt;
     if(over>0){ moodAdd(w, -over*(has(w,'Lazy')?5:2.5)); why(over>3 ? 'badly overworked' : 'a bit overworked', false); }
@@ -518,8 +519,8 @@ function endWeek(){
     earnCheck(w).forEach(t=>{ log(`✨ ${w.name} has developed a knack: ${t}. ${TRAITS[t].desc}`); addLog(`${w.name} developed the trait ${t}.`); });
     // romance arcs
     if(ARCS[w.key] && (w.arc||0) < ARCS[w.key].length && !houseGate(w)){
-      const i = w.arc||0, need = [40,48,56,64,72,82][i], gap = i===0 ? 1 : i<3 ? 2 : 3;
-      const extra = i===2 ? (w.dates>=1 || w.privateCount>=1) : i===4 ? (w.dates>=2) : i===5 ? (w.privateCount>=2) : true;
+      const i = w.arc||0, A = BAL.arcs, need = A.need[i], gap = A.gap[i];
+      const extra = i===2 ? ((w.dates||0)>=A.dates[2] || (w.privateCount||0)>=1) : i===4 ? (w.dates||0)>=A.dates[4] : i===5 ? (w.privateCount||0)>=A.private[5] : true;
       if(w.trust>=need && S.week-(w.arcWk||0) >= gap && extra){ const at = i; EVQ.push(()=> (w.arc||0)===at ? evArc(w) : null); }
     }
   });
@@ -540,7 +541,7 @@ function endWeek(){
 
   S.houses.forEach(h=>{
     const st = STORIES[h.id]; if(!st || !h.story || h.story.beat>=st.beats.length) return;
-    const need = STORY_REP[h.story.beat]||0, gap = h.story.beat===0 ? 2 : 3;
+    const need = STORY_REP[h.story.beat]||0, gap = storyGap(h);
     if(S.week - Math.max(h.since||1, h.story.wk||0) >= gap && h.rep>=need){ const b = h.story.beat; EVQ.push(()=>{ if(h.story.beat!==b) return null; const ev = st.beats[b](h); if(ev) ev.title = `${st.title} (${b+1}/${st.beats.length})`; return ev; }); }
   });
   seedBonds(); driftBonds();
@@ -549,16 +550,16 @@ function endWeek(){
   if(Math.random()<0.6){ const ev = pickRandomEvent(); if(ev) EVQ.push(ev); }
   if(S.flags.poachCD>0) S.flags.poachCD--;
 
-  if(debtWeek()%4===0){
+  if(debtWeek()%BAL.debt.every===0){
     const nd = nextDue();
     if(nd.amount>0){
       if(S.gold >= nd.amount){
         S.gold -= nd.amount; S.debt.remaining -= nd.amount; S.debt.carry = 0;
         log(`📜 Paid ${fmt(nd.amount)} to the Vane Credit House. Remaining: ${fmt(S.debt.remaining)}.`);
       } else {
-        S.debt.strikes++; const pen = Math.round(nd.amount*0.1);
+        S.debt.strikes++; const pen = Math.round(nd.amount*BAL.debt.penalty);
         S.debt.carry = Math.min(S.debt.remaining + pen, nd.amount + pen); S.debt.remaining += pen;
-        log(`❌ Missed a debt payment! Strike ${S.debt.strikes}/3. A ${fmt(pen)} penalty was added.`);
+        log(`❌ Missed a debt payment! Strike ${S.debt.strikes}/${BAL.debt.strikes}. A ${fmt(pen)} penalty was added.`);
         EVQ.push(evStrike);
       }
     }

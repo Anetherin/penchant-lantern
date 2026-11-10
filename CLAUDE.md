@@ -19,11 +19,12 @@
   Story moments can carry their own image `{comp, setting, sam}` → `dynScene(key, img)` (js/data/scenes.js).
 - Job preferences are per lady (`w.jobLikes`/`w.jobDislikes`; named ones from `jobs` in characters/guests.json, others rolled by `rollJobPrefs`).
 - New Game+ lives in `js/logic/ngplus.js` (tuning: `balance.json → ngplus`). Sam keeps ONLY his home house (with its upgrades; `h.spent` tracks improvement
-  spending, new debt = home debt share + `spent` x `improveShare`); other houses are sold. Only Devoted lovers carry over (wages again, stats reset, popularity 0,
+  spending, new debt = home debt share + `spent` x `improveShare`); other houses are surrendered (`saleValue` x cost reduces the debt; no gold carries over: purse = `ngplus.purse` + 2,500 with the purse boon).
+  Sam keeps his level but (`ngplus.samReset`) his stats are rebuilt from `sam.base` + `sam.perLevel` x (lvl-1) + `PASTS[k].fx` for each past, and Appraisal restarts. Only Devoted lovers carry over (wages again, stats reset, popularity 0,
   each picks one `ngPerk` trait stored in `w.ngPerks`); everyone else leaves and named ladies return to their pools. Houses with `ngplus: true` in economy.json
   and partners with `ngplus: true` in characters.json only appear from cycle 2 (`houseOffered` / `partnerOffered`); house stories are in `js/stories/ngplus-houses.js`.
-  Debt payments count from `S.debt.start` (`debtWeek()`); `payOffDebt()` pays it all at once (same win flow via `checkEnd`).
-- House ladies (role `house`) are gated by their house story: `houseGate(w)` / `capTrust(w)` cap trust at 35 + 15 x beat (`balance.json → houseGate`), enforced in
+  Debt (`balance.json → debt`): `nextDue()` gives ramped payments (`debtShares()`, sum to total, last clears the rest, no balloon), counted from `S.debt.start` (`debtWeek()`); `payOffDebt()` pays it all at once (same win flow via `checkEnd`).
+- House ladies (role `house`) are gated by their house story: `houseGate(w)` / `capTrust(w)` cap trust at `base` + `perBeat` x beat (`balance.json → houseGate`, also `gap`/`retry` waits via `storyGap`/`storyRetry`), enforced in
   `gainTrust`, endWeek and `save()`. Clothes: outfits Sam buys go to the shared `S.houseWardrobe` (underwear: `S.houseUnder`); use `ownsOutfit/ownsUnder`, never `w.owned` alone;
   `giftHouseItem()` gives a piece to a lady (counts as a gift); prices go through `outfitCost()` (`balance.json → wardrobe`).
 - Stats, `tech` and service skills run 0-1000 (`SKL`, `s100(v)` back to the old 0-100 scale, `clampK`); data files stay 0-100 and
@@ -49,3 +50,4 @@
 - Save format migrations live in `migrate()` (`js/logic/state.js`); bump `S.v` when changing save shape.
 - After changes: `node tools/build.mjs && node tools/smoke.mjs 30` (Playwright; `CHROME=` for a custom browser).
 - Lewdness gains go through `lewdUp(w, n, cap)` (`balance.json` → `lewd`; diminishing returns per source). Dates (`dates.json`): stats/skills/sam/pop/lust/lewdCap/gift/trinket/needsIntim/special/spicy (see its `_readme`); chat is a date, the 60g Gift action is gone (shopping + wardrobe gifts count as gifts). Spicy date variants go only through `canSam`/`privateCore` (`samSpicy` in `js/logic/sam.js`).
+- Late-game pressure: `clients.pickFrom/pickPer` lower client satisfaction at high reputation; `quarters` (`housingShort(h)` in character.js) costs staff mood when beds/bedroom tier lag the house's fame. Romance arc trust/gap/extras are in `balance.json → arcs`.

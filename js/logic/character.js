@@ -37,6 +37,8 @@ function houseGate(w){
   if(!st || !h || !h.story || h.story.beat >= st.beats.length) return null;
   return {house:h, beat:h.story.beat, cap:BAL.houseGate.base + BAL.houseGate.perBeat*h.story.beat};
 }
+// Comfort of the staff quarters (bed level or bedroom tier, whichever is lower) against what a house this famous is expected to offer (balance.json → quarters).
+const housingComfort = h => Math.min(h.beds||0, h.tier||0), housingExpect = h => Math.min(3, Math.floor(h.rep/BAL.quarters.repPerLevel)), housingShort = h => Math.max(0, housingExpect(h) - housingComfort(h));
 const houseTrustCap = w => { const g = houseGate(w); return g ? g.cap : 100; };
 function capTrust(w){ const c = houseTrustCap(w); if(w.trust > c) w.trust = c; return w.trust; }
 function enforceTrustCaps(){ if(typeof S!=='undefined' && S && S.workers) S.workers.forEach(capTrust); }
