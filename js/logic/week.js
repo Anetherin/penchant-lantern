@@ -255,7 +255,7 @@ function simHouse(h, R){
     const pr = R.per[w.id], must = !!JOBS[j].must;
     const n = Math.round(v0 * rate * barBoost * fxMul(w,'propRate') * incenseMul(w,'prop') * (0.4 + appeal(w)/100) * ob(w,'propose') * rnd(0.6,1.4));
     for(let i=0;i<n;i++){
-      const cls = pickClass(h), client = makeClient(h, cls); noteClient(X, client); if(Math.random() > clamp((cls.prop ?? 1) * cMul(client,'prop',X), 0, 1)) continue;
+      const cls = pickClass(h), client = makeClient(h, cls); if(Math.random() > clamp((cls.prop ?? 1) * cMul(client,'prop',X), 0, 1)) continue; noteClient(X, client);
       const want = pickWant(cls, w), expects = j==='attendant' && Math.random() < BP.attendantExpect; pr.props++;
       const dec = propDecide(w, want, X), e = {cls:cls.id, want, act:null, outcome:'no', where:j, note:null, expr:null, ctx:'prop'};
       if(dec.kind === 'no'){
