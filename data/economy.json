@@ -95,7 +95,7 @@
     {"label":"Luxury beds","rest":70,"cost":2200}
   ],
   "floorRest": 18,
-  "amenitySize": {"bar":1,"stage":1,"guard":1,"lounge":1,"bath":2,"tether":1,"charger":1,"chapel":1,"sigil":1,"grove":1,"hearth":1,"den":1},
+  "amenitySize": {"bar":1,"stage":1,"guard":1,"lounge":1,"bath":2,"tether":1,"charger":1,"chapel":1,"sigil":1,"grove":1,"hearth":1,"den":1,"suite":1},
   "racePerks": {
     "human": {"label":"Adaptable","desc":"Trust and skills grow 15% faster. A few clients are especially fond of her."},
     "elf": {"label":"Long-lived","desc":"Mood changes slowly, for better and worse."},
@@ -158,6 +158,12 @@
       "race": "beastkin",
       "desc": "Beastkin mood +3; being turned down by Sam stings half as much.",
       "mood": 3
+    },
+    "suite": {
+      "label": "Owner's Suite",
+      "cost": 600,
+      "upkeep": 8,
+      "desc": "Sam's own room in this house. When he sleeps here, his bed is one tier better than the staff's."
     }
   },
   "roomMult": [1,1.25,1.6,2.1],

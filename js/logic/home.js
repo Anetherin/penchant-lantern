@@ -8,7 +8,8 @@ function samUpFx(key){
 }
 const samReach = () => !!(samUpFx('reach') || hasBoon('clone'));
 const nearSam = w => samReach() || !!(w && w.house === samHouse().id);
-const samBedTier = () => Math.min(3, (samHouse().beds||0) + (samUpFx('bedTier')||0));
+const hasSuite = h => !!(h && h.up && h.up.suite);
+const samBedTier = () => Math.min(3, (samHouse().beds||0) + (hasSuite(samHouse()) ? 1 : 0) + (samUpFx('bedTier')||0));
 const samBedRest = () => BEDS[samBedTier()].rest;
 const samRecover = base => Math.round(base * samBedRest() / BAL.samHome.ref);
 function moveSam(id){

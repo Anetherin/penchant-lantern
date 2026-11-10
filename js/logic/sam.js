@@ -30,36 +30,36 @@ function samWork(kind){
   if(!useAP(25)) return;
   let title='', text='';
   if(kind==='bartend'){
-    const inc = Math.round((30 + S.sam.charm*1.2 + rnd(0,25)) * (hasPast('bartender')?1.5:1)); S.gold += inc; S.samWeek.income += inc; samStat('charm',2);
+    const inc = Math.round((30 + S.sam.charm*1.2 + rnd(0,25)) * (hasPast('bartender')?1.5:1) * (1 + samUpFx('bartend'))); S.gold += inc; S.samWeek.income += inc; samStat('charm',2);
     title='Behind the Bar'; text=`Sam pours drinks all evening. ${hasPast('bartender')?'Old habits: he flips a bottle and the whole room cheers.':'He over-explains the menu to everyone, but people seem to find it charming.'}\n\n+${fmt(inc)} · Charm +2`;
     samLog(`Tended bar (+${fmt(inc)})`);
   } else if(kind==='security'){
-    S.samWeek.security += 20 + S.sam.strength; samStat('strength',2);
-    title='On Watch'; text=`Sam makes the rounds of every house, looking as stern as a thin man in a hoodie can. Nobody starts anything, which he decides to count as a win.\n\nSecurity bonus in all houses this week · Strength +2`;
+    const sec = Math.round((20 + S.sam.strength) * (1 + samUpFx('watch'))); S.samWeek.security += sec; samStat('strength',2);
+    title='On Watch'; text=`Sam makes the rounds of every house, looking as stern as a thin man in a hoodie can. Nobody starts anything, which he decides to count as a win.\n\nSecurity bonus +${sec} in all houses this week · Strength +2`;
     samLog('Stood watch');
   } else if(kind==='books'){
     S.samWeek.books = true; samStat('business',2);
-    title='Doing the Books'; text=`Sam rebuilds the ledger as a spreadsheet, by hand, on parchment. The staff watch with a mix of horror and respect.\n\nUpkeep reduced this week · Business +2`;
+    title='Doing the Books'; text=`Sam rebuilds the ledger as a spreadsheet, by hand, on parchment. The staff watch with a mix of horror and respect.\n\nUpkeep reduced by ${Math.round((0.1 + S.sam.business*0.003 + samUpFx('books'))*100)}% this week · Business +2`;
     samLog('Did the books');
   } else if(kind==='rounds'){
     // a word with everyone: small trust and mood for every lady in every house (balance.json → sam.rounds*)
-    const B = BAL.sam; let n = 0;
-    S.workers.forEach(w=>{ gainTrust(w, B.roundsTrust); moodAdd(w, B.roundsMood); n++; });
+    const B = BAL.sam, rm = 1 + samUpFx('rounds'), rt = B.roundsTrust * rm, rmood = B.roundsMood * rm; let n = 0;
+    S.workers.forEach(w=>{ gainTrust(w, rt); moodAdd(w, rmood); n++; });
     samStat('charm',1);
-    title='Making the Rounds'; text=`Sam walks through every house with a notebook, asking everyone how they're doing and actually writing down the answers. A leaky window gets fixed, someone's favorite tea gets restocked, and the whole staff notices that he noticed.\n\n${n} ladies: trust ${tDelta(B.roundsTrust)}, mood + · Charm +1`;
+    title='Making the Rounds'; text=`Sam walks through every house with a notebook, asking everyone how they're doing and actually writing down the answers. A leaky window gets fixed, someone's favorite tea gets restocked, and the whole staff notices that he noticed.\n\n${n} ladies: trust ${tDelta(rt)}, mood +${Math.round(rmood*10)/10} · Charm +1`;
     samLog('Made the rounds');
   } else if(kind==='lesson'){
     // a class for everyone whose job uses this skill (individual training is for services only)
     const sel = $('#lessonSel'), k = sel ? sel.value : 'service', map = {service:'charm', dance:'charm', bar:'charm', combat:'strength', manage:'business'}, sk = map[k] || 'charm';
     const who = S.workers.filter(w=>w.job!=='rest' && (JOBS[w.job]||{}).skill===k);
-    const g = (4 + S.sam[sk]/25) * BAL.sam.lessonShare * (hasPast('massage') ? 1.15 : 1);
+    const g = (4 + S.sam[sk]/25) * BAL.sam.lessonShare * (hasPast('massage') ? 1.15 : 1) * (1 + samUpFx('lesson'));
     who.forEach(w=>{ grow(w, k, g * pm(w,'train')); statXP(w, ({service:'charm', dance:'agility', bar:'charm', combat:'strength', manage:'refinement'})[k] || 'charm', g*0.4); minorTrust(w); });
     samStat(sk,2);
     title=`A Lesson: ${TECH_LABEL[k]}`; text = who.length ? `Sam gathers ${who.map(w=>w.name).join(', ')} for an afternoon on ${TECH_LABEL[k].toLowerCase()}. He brought handouts. Nobody asked for handouts.\n\n${TECH_LABEL[k]} +${Math.round(g*SKL)} each · Sam's ${cap(sk)} +2` : `Sam sets out chairs and handouts for a lesson on ${TECH_LABEL[k].toLowerCase()}. Nobody whose job uses it turns up. He reads the handout to himself.`;
     samLog(`Taught a lesson in ${TECH_LABEL[k]}${who.length?` (${who.length})`:''}`);
   } else if(kind==='scout'){
-    addCandidates(2, 1.1 + S.sam.business/400); samXP(10); samStat('charm',1);
-    title='Scouting'; text=`Sam walks the market and the guild hall, quietly using [Appraisal] on anyone who looks like they might want a job.\n\n+2 candidates · Appraisal XP +10`;
+    const nc = 2 + Math.round(samUpFx('scout')); addCandidates(nc, 1.1 + S.sam.business/400); samXP(10); samStat('charm',1);
+    title='Scouting'; text=`Sam walks the market and the guild hall, quietly using [Appraisal] on anyone who looks like they might want a job.\n\n+${nc} candidates · Appraisal XP +10`;
     samLog('Scouted for recruits');
   }
   save(); render(); showResult(title, text);

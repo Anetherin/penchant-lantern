@@ -104,11 +104,13 @@ function viewSam(){
 }
 function samHomeCard(){
   const sh = samHouse(), tier = samBedTier();
-  const ups = Object.entries(BAL.samUps).map(([k,u])=>`<div class="row"><div style="flex:1"><b>${esc(u.label)}</b> <span class="muted">${esc(u.desc)}${u.carry?'':' (left behind in New Game+)'}</span></div>${hasSamUp(k)?'<span class="tag act">✓ Owned</span>':`<button ${S.gold<u.cost?'disabled':''} onclick="buySamUp('${k}')">Buy · ${fmt(u.cost)}</button>`}</div>`).join('');
+  const upRow = ([k,u])=>`<div class="row"><div style="flex:1"><b>${esc(u.label)}</b> <span class="muted">${esc(u.desc)}${u.carry?'':' (left behind in New Game+)'}</span></div>${hasSamUp(k)?'<span class="tag act">✓ Owned</span>':`<button ${S.gold<u.cost?'disabled':''} onclick="buySamUp('${k}')">Buy · ${fmt(u.cost)}</button>`}</div>`;
+  const all = Object.entries(BAL.samUps), ups = all.filter(([k,u])=>!u.tool).map(upRow).join(''), tools = all.filter(([k,u])=>u.tool).map(upRow).join('');
+  const suite = hasSuite(sh);
   return `<section class="card"><h2>Home</h2>
     <div>Sam sleeps at <b>${esc(sh.name)}</b>${S.houses.length>1?` <select onchange="moveSam(this.value)">${S.houses.map(h=>`<option value="${h.id}" ${h.id===sh.id?'selected':''}>${esc(h.name)}</option>`).join('')}</select>`:''}</div>
-    <div>Bed: <b>${BEDS[tier].label}</b> · Weekly recovery: <b>+${samRecover(BAL.samHome.weekly) + (samUpFx('weekly')||0)}</b> energy</div>
-    <p class="muted">Late-night visits only come from ladies of this house${samReach()?' (not now: a Teleport Circle lets every house reach him)':''}. Moving is free, once a week.</p>${ups}</section>`;
+    <div>Bed: <b>${BEDS[tier].label}</b>${suite?' (+1 from the Owner\'s Suite)':''} · Weekly recovery: <b>+${samRecover(BAL.samHome.weekly) + (samUpFx('weekly')||0)}</b> energy</div>
+    <p class="muted">Late-night visits only come from ladies of this house${samReach()?' (not now: a Teleport Circle lets every house reach him)':''}. Moving is free, once a week.</p>${suite?'':`<p class="muted">Tip: build an Owner's Suite in ${esc(sh.name)} (House tab → Upgrades) for a better bed.</p>`}${ups}${tools?`<h3 style="margin:10px 0 4px">Tools of the trade</h3>${tools}`:''}</section>`;
 }
 function viewUpgrades(){
   const h = curH(), D = HOUSES[h.id];
