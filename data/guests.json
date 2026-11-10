@@ -2600,11 +2600,11 @@
           "lovers": "missionary",
           "backstory": "The Unova region's leading Pokémon professor, Juniper is cheerful, brilliant and chronically late, with a lab coat pocket full of sticky notes. She treats everyone as a fascinating specimen to be understood, but she is far kinder than any scientist should be. Hollowmere has turned out to be an excellent field site, and the guests excellent at fieldwork.",
           "design": {
-            "hairStyle": "medium, loose and wavy",
-            "hairColor": "chestnut brown",
-            "eyes": "warm brown",
+            "hairStyle": "short poofy bun",
+            "hairColor": "honey brown",
+            "eyes": "emerald",
             "skin": "fair",
-            "features": "a warm smile and a sticky note stuck to her sleeve"
+            "features": "distinctive red rectangular earrings"
           },
           "under": "plain",
           "underColor": "white",
@@ -2618,7 +2618,7 @@
             "sig_juniper": {
               "label": "Professor's lab coat",
               "style": "Elegant",
-              "prompt": "a long white lab coat over a green blouse and a knee-length skirt, a bundle of notebooks in her arms",
+              "prompt": "a long pale blue lab coat over a white blouse and a green knee-length skirt",
               "bonus": {"attendant":1.25,"merchant":1.1}
             },
             "sp_juniper": {
