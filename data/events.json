@@ -344,5 +344,63 @@
       "lose": "{name} makes the final and loses it on a slip. She is furious, sore, and already planning a rematch."
     },
     "pass": {"label":"Not this time","res":"{name} grumbles, but sits in the stands and heckles the finalists with real expertise."}
+  },
+  "riddle": {
+    "_vars": "{gold} (the prize)",
+    "title": "Riddle Night",
+    "text": [
+      "A travelling scholar has set up at the Hollowmere tavern with a purse of coins and a stack of riddles. \"Anyone who can best me wins the pot,\" she announces. The regulars have already started whispering that {name} is the clever one. Prize: {gold}.",
+      "Chalk riddles cover the tavern's slate boards tonight, and the patrons are placing bets. Someone shouts {name}'s name from the back. The pot is {gold}."
+    ],
+    "send": {
+      "label": "Send {name}",
+      "win": "{name} takes the last riddle with a grin and the whole tavern cheers. She comes home with the pot and a few new admirers. +{gold}.",
+      "lose": "The final riddle trips her up, and the scholar looks almost apologetic. {name} laughs it off, but she is a little quiet on the walk home."
+    },
+    "decline": {"label":"Stay in tonight","res":"{name} hears about the contest the next morning and pretends she didn't mind missing it."},
+    "image": {
+      "comp": "leaning over a table with a thoughtful smile, a chalk riddle on a slate board in front of her",
+      "setting": "lively tavern in the evening, patrons gathered round, warm lamplight"
+    }
+  },
+  "tears": {
+    "_vars": "{other} (the lady who comforts her)",
+    "title": "Tears in the Hall",
+    "text": [
+      "Sam finds {name} sitting alone at the end of the hallway, trying very hard not to cry. It has clearly been a hard night. {other} has noticed too, and hovers nearby, unsure whether to step in.",
+      "A long week has caught up with {name}, and she is quietly wiping her eyes in the staff common room. {other} is watching from the doorway with a worried look."
+    ],
+    "comfort": {
+      "label": "Let {other} sit with her",
+      "res": "{other} sits down, says almost nothing, and just stays. By the end of the night both of them are smiling a little. They seem closer for it."
+    },
+    "sam": {
+      "label": "Sam sits with her himself",
+      "res": "Sam brings tea and listens until she runs out of words. {name} leans on his shoulder for a while, and thanks him quietly."
+    },
+    "leave": {"label":"Leave her be","res":"Sam gives her space. By morning she is composed again, but she doesn't quite meet his eyes."},
+    "image": {
+      "comp": "two women sitting side by side, one wiping her eyes while the other gently rests a hand on her shoulder",
+      "setting": "staff common room in the evening, warm lamplight",
+      "house": true
+    }
+  },
+  "bardduel": {
+    "_vars": "{gold} (the prize), {bard} (the bard's name)",
+    "title": "A Bard's Challenge",
+    "text": [
+      "A travelling bard named {bard} strolls into the house and loudly proclaims that she has yet to meet a performer who can out-sing her. The regulars point straight at {name}. Prize: {gold}.",
+      "{bard}, a bard just passing through, has been entertaining the common room all evening. Now she is calling for a duel of song and wit, and {name} is the obvious answer. The wager is {gold}."
+    ],
+    "accept": {
+      "label": "Accept for {name}",
+      "win": "The room goes quiet, then erupts. {name} turns the bard's own verse back on her and takes the crowd with her. {bard} bows with a laugh and pays up. +{gold}.",
+      "lose": "{bard} is simply too polished tonight. {name} bows gracefully and shakes her hand, but the house's name takes a small bruise."
+    },
+    "decline": {"label":"Politely refuse","res":"{bard} shrugs, plays a song for her supper, and moves on to the next town."},
+    "image": {
+      "comp": "standing tall on a small stage mid-song, facing a travelling bard with a lute, crowd cheering",
+      "setting": "lively stage in a pleasure house common room, lanterns and a crowd"
+    }
   }
 }

@@ -915,6 +915,46 @@
       "a provincial envoy between two appointments",
       "a judge's secretary in an unmarked coat",
       "a court archivist with a surprisingly dry wit"
+    ],
+    "bard": [
+      "a travelling bard with a lute and a ready grin",
+      "a minstrel fresh off a tavern stage",
+      "a balladeer collecting stories for his next song",
+      "a juggler-poet in a patched cloak",
+      "a court singer between engagements",
+      "a storyteller who hums while he talks",
+      "a fiddler with rosin on his fingers",
+      "a skald who won't stop gesturing"
+    ],
+    "pilgrim": [
+      "a road-weary pilgrim with a staff and dusty hem",
+      "a pilgrim on his way to the far shrine",
+      "a quiet traveller with a wooden prayer token",
+      "a pilgrim who keeps glancing at the door",
+      "a footsore penitent looking for kindness",
+      "a gentle old wanderer with a worn satchel",
+      "a young pilgrim who has not spoken to anyone in days",
+      "a shrine-goer far from home"
+    ],
+    "cleric": [
+      "a cleric in plain clothes who asked for discretion",
+      "a quiet priest with his holy symbol tucked away",
+      "a temple scribe who avoids eye contact",
+      "an abbey brother out on errands",
+      "a young acolyte, flushed and guilty",
+      "a hospitaller with tired, kind eyes",
+      "a monk who lost an argument with himself",
+      "a chaplain very careful about who sees him"
+    ],
+    "watchman": [
+      "a town watchman off shift, helmet under his arm",
+      "a gate guard still smelling of the night air",
+      "a night-patrol sergeant unwinding",
+      "a city watchman with a dented truncheon",
+      "a wall sentry who earned his evening",
+      "a constable who knows half the street",
+      "a barracks guardsman with a week of pay",
+      "a bridge warden grinning at the staff"
     ]
   }
 }

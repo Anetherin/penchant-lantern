@@ -1,0 +1,91 @@
+file,key,name,personality,traits,job,charm,refinement,charisma,wits
+"characters.json","mira","Mira Ashdown","Warm and motherly","Loyal;Elegant","madame",66,62,66,67
+"characters.json","cecile","Cecile Fairbanks","Calm and elegant","Loyal;Elegant","maid",50,80,50,80
+"characters.json","tsubaki","Tsubaki","Cheerful and teasing","Party Animal;Night Owl","bath",64,45,72,45
+"characters.json","vesper","Vesper","Mysterious and aloof","Exhibitionist;Elegant","courtesan",55,70,61,74
+"characters.json","hilde","Hilde Ironsong","Hot-blooded and competitive","Party Animal;Tough","bartender",56,25,62,25
+"characters.json","sylphine","Sylphine Moonwhisper","Bookish and curious","Party Animal;Romantic","dancer",58,70,62,82
+"characters.json","zaria","Zaria Nightbloom","Bold and flirtatious","Eager;Ambitious","courtesan",62,35,72,35
+"characters.json","bettina","Bettina Krumm","Warm and motherly","Loyal;Greedy","promoter",66,45,71,45
+"characters.json","kaede","Kaede","Bold and flirtatious","Former Adventurer;Eager","security",50,20,65,20
+"characters.json","yui","Yui Mori","Bookish and curious","Romantic;Ambitious","promoter",58,50,57,62
+"characters.json","nerys","Nerys","Proud and sharp-tongued","Eager;Exhibitionist","courtesan",60,40,64,48
+"characters.json","elowen","Elowen Dawnleaf","Shy but earnest","Shy;Romantic","courtesan",52,65,44,65
+"characters.json","adelheid","Adelheid Valk","Proud and sharp-tongued","Loyal;Tough","security",42,50,46,58
+"characters.json","natsuki","Natsuki Hayama","Hot-blooded and competitive","Former Adventurer;Loyal","security",55,25,61,25
+"characters.json","kanako","Kanako Ishida","Warm and motherly","Oblivious;Elegant","bartender",72,50,72,50
+"characters.json","akari","Akari Kurosawa","Bold and flirtatious","Eager;Romantic","courtesan",60,20,70,20
+"characters.json","marisol","Marisol Vey","Hot-blooded and competitive","Ambitious;Loyal","promoter",62,45,73,45
+"characters.json","lara","Lara Patel","Shy but earnest","Loyal;Night Owl","maid",40,45,32,45
+"characters.json","emily","Emily Shadowkin","Bookish and curious","Studious;Shy","attendant",50,55,44,74
+"characters.json","lirael","Lirael Quill","Bookish and curious","Romantic;Shy","attendant",50,55,44,75
+"characters.json","ella","Ella Dott","Hot-blooded and competitive","Ambitious;Romantic","promoter",55,70,66,70
+"characters.json","ione","Ione-7","Mysterious and aloof","Loyal;Romantic","bartender",55,65,61,69
+"characters.json","anael","Anael Hallowell","Calm and elegant","Elegant;Romantic","madame",60,75,60,80
+"characters.json","seraphine","Seraphine Rosenhal","Proud and sharp-tongued","Elegant;Loyal","courtesan",60,88,64,95
+"characters.json","ilyana","Ilyana Silverbough","Calm and elegant","Elegant;Romantic","madame",62,90,62,95
+"characters.json","ines","Ines Varga","Hot-blooded and competitive","Former Adventurer;Tough","security",45,40,51,40
+"characters.json","vharra","Vharra","Bold and flirtatious","Ambitious;Greedy","courtesan",66,50,76,50
+"characters.json","rhoswen","Rhoswen","Calm and elegant","Elegant;Shy","attendant",50,85,50,88
+"characters.json","hanna","Hanna Weiss","Cheerful and teasing","Romantic","promoter",68,45,81,45
+"characters.json","rinna","Rinna Galewright","Hot-blooded and competitive","Former Adventurer;Party Animal","bartender",64,30,75,30
+"characters.json","maris","Maris Tidewhisper","Mysterious and aloof","Elegant;Night Owl","bath",60,72,66,76
+"guests.json","hinata","Hinata Hyuga","Shy but earnest","Shy;Loyal","courtesan",58,55,50,55
+"guests.json","sakura","Sakura Haruno","Hot-blooded and competitive","Tough;Ambitious","security",48,40,54,40
+"guests.json","ino","Ino Yamanaka","Bold and flirtatious","Exhibitionist;Party Animal","dancer",68,45,83,45
+"guests.json","tenten","Tenten","Cheerful and teasing","Tough;Former Adventurer","bartender",52,25,60,25
+"guests.json","temari","Temari","Proud and sharp-tongued","Tough;Loyal","security",45,45,49,53
+"guests.json","tsunade","Tsunade Senju","Proud and sharp-tongued","Greedy;Party Animal","madame",62,58,66,71
+"guests.json","shizune","Shizune","Calm and elegant","Loyal;Modest","promoter",55,60,60,60
+"guests.json","kurenai","Kurenai Yuhi","Mysterious and aloof","Elegant;Romantic","courtesan",66,62,72,66
+"guests.json","anko","Anko Mitarashi","Bold and flirtatious","Eager;Night Owl","courtesan",60,25,70,25
+"guests.json","karin","Karin Uzumaki","Proud and sharp-tongued","Romantic;Ambitious","bath",50,45,54,53
+"guests.json","mei","Mei Terumi","Bold and flirtatious","Elegant;Romantic","madame",70,68,80,73
+"guests.json","konan","Konan","Calm and elegant","Modest;Elegant","dancer",52,62,57,62
+"guests.json","mio_tanabe","Mio Tanabe","Bold and flirtatious","Exhibitionist;Ambitious","courtesan",64,50,74,50
+"guests.json","emi","Emi Sato","Warm and motherly","Loyal;Modest","security",56,45,56,45
+"guests.json","hibiki","Hibiki Hirano","Cheerful and teasing","Exhibitionist;Night Owl","dancer",66,40,79,40
+"guests.json","choko","Choko Tsu","Hot-blooded and competitive","Party Animal;Tough","bartender",60,20,66,25
+"guests.json","saya","Saya Aburame","Bookish and curious","Elegant;Loyal","promoter",55,62,54,74
+"guests.json","juju","Juju","Cheerful and teasing","Eager;Ambitious","bath",58,40,66,40
+"guests.json","nami","Nami Kazama","Laid-back and lazy","Lazy;Eager","courtesan",58,40,58,37
+"guests.json","maki","Maki Terumi","Calm and elegant","Elegant;Romantic","courtesan",68,62,68,62
+"guests.json","saki","Saki Ito","Cheerful and teasing","Tough;Night Owl","dancer",58,30,71,30
+"guests.json","yori","Yori Urahara","Mysterious and aloof","Shy;Modest","maid",45,55,51,59
+"guests.json","nozomi","Nozomi Hoshino","Shy but earnest","Romantic;Loyal","attendant",62,45,54,48
+"guests.json","yukine","Yukine Kitahashi","Proud and sharp-tongued","Elegant;Ambitious","madame",55,66,59,79
+"guests.json","hana","Hana Sarutobi","Hot-blooded and competitive","Tough;Former Adventurer","security",55,30,61,30
+"guests.json","shiori","Shiori Amakawa","Mysterious and aloof","Former Adventurer;Loyal","promoter",45,55,56,59
+"guests.json","tsubasa","Tsubasa Noda","Bookish and curious","Eager;Loyal","bath",60,55,54,67
+"guests.json","kotone","Kotone Amagi","Calm and elegant","Loyal;Modest","madame",55,58,55,63
+"guests.json","tobari","Tobari Senju","Hot-blooded and competitive","Tough;Shy","security",48,45,54,45
+"guests.json","marina","Marina Shiraishi","Bookish and curious","Elegant;Night Owl","maid",58,55,52,67
+"guests.json","ayano","Ayano Ichiraku","Cheerful and teasing","Loyal;Eager","bartender",66,35,74,35
+"guests.json","kamiko","Kamiko Kiruhara","Proud and sharp-tongued","Former Adventurer;Tough","courtesan",52,58,56,66
+"guests.json","nai","Nai Utsuro","Laid-back and lazy","Night Owl;Eager","courtesan",64,50,64,47
+"guests.json","ebina","Ebina","Bookish and curious","Ambitious;Exhibitionist","dancer",55,48,54,60
+"guests.json","zelda","Zelda","Calm and elegant","Elegant;Loyal","courtesan",62,72,67,72
+"guests.json","midna","Midna","Cheerful and teasing","Exhibitionist;Ambitious","courtesan",70,60,83,60
+"guests.json","malon","Malon","Cheerful and teasing","Loyal;Romantic","bartender",66,35,74,35
+"guests.json","great_fairy","The Great Fairy","Bold and flirtatious","Exhibitionist;Elegant","bath",72,55,82,55
+"guests.json","nabooru","Nabooru","Proud and sharp-tongued","Tough;Former Adventurer","security",58,40,62,48
+"guests.json","lyn","Lyn","Hot-blooded and competitive","Loyal;Tough","security",60,48,66,48
+"guests.json","rhea","Rhea","Warm and motherly","Elegant;Loyal","madame",66,75,66,80
+"guests.json","manuela","Manuela Casagranda","Bold and flirtatious","Party Animal;Romantic","dancer",70,55,85,55
+"guests.json","lethe","Lethe","Proud and sharp-tongued","Tough;Former Adventurer","security",45,30,49,38
+"guests.json","panne","Panne","Mysterious and aloof","Loyal;Former Adventurer","courtesan",50,40,56,44
+"guests.json","jinhsi","Jinhsi","Calm and elegant","Elegant;Loyal","courtesan",64,72,64,72
+"guests.json","carlotta","Carlotta Montelli","Proud and sharp-tongued","Elegant;Ambitious","courtesan",62,74,66,82
+"guests.json","hsin","Hsin","Mysterious and aloof","Elegant;Night Owl","dancer",60,66,71,70
+"guests.json","cartethyia","Cartethyia","Calm and elegant","Elegant;Romantic","dancer",55,66,60,66
+"guests.json","fleurdelys","Fleurdelys","Proud and sharp-tongued","Tough;Ambitious","security",52,58,61,66
+"guests.json","buling","Buling","Playful trickster","Natural Performer;Flirt","attendant",72,45,80,54
+"guests.json","suoming","Suoming","Stoic and blunt","Tough;Prim","madame",42,75,42,82
+"guests.json","sabrina","Sabrina","Mysterious and aloof","Tough;Night Owl","security",50,65,61,69
+"guests.json","cynthia","Cynthia","Calm and elegant","Elegant;Ambitious","promoter",66,72,71,72
+"guests.json","juniper","Aurea Juniper","Bookish and curious","Romantic;Loyal","attendant",62,60,56,75
+"guests.json","margaret","Margaret","Mysterious and aloof","Elegant;Loyal","attendant",54,70,60,77
+"guests.json","kashiwagi","Noriko Kashiwagi","Bold and flirtatious","Exhibitionist;Romantic","courtesan",66,40,76,40
+"guests.json","kawakami","Sadayo Kawakami","Cheerful and teasing","Eager;Loyal","maid",66,48,74,48
+"guests.json","takemi","Tae Takemi","Laid-back and lazy","Tough;Night Owl","bath",52,50,52,47
+"guests.json","sae","Sae Niijima","Proud and sharp-tongued","Ambitious;Tough","madame",52,72,56,85

@@ -52,11 +52,11 @@ const TITLE_EVENTS = [
   }},
   {w:1.2, ok:()=>titleFree() && S.week>=8 && anyW(fairOK).length>0, make(){
     S.flags.titleCD = S.week + 10;
-    const w = weighted(anyW(fairOK), x=>x.popularity + s100(statOf(x,'charm'))), fee = 50, V = {name:w.name, gold:fmt(fee)};
+    const w = weighted(anyW(fairOK), x=>x.popularity + s100(statOf(x,'charisma'))), fee = 50, V = {name:w.name, gold:fmt(fee)};
     return {title:ET('title_fair','title',V), who:w.id, scene:evImg('title_fair','casual'), text:ET('title_fair','text',V), choices:[
       {label:ET('title_fair','enter','label',V), fx(){
         if(S.gold < fee) return 'Sam can\'t cover the entry fee.'; S.gold -= fee;
-        const odds = clamp((s100(statOf(w,'charm')) + s100(statOf(w,'beauty')) + w.popularity) / 300 + fxAdd(w,'appeal')/40, 0.15, 0.85);
+        const odds = clamp((s100(statOf(w,'charisma')) + s100(statOf(w,'beauty')) + w.popularity) / 300 + fxAdd(w,'appeal')/40, 0.15, 0.85);
         if(Math.random() < odds){ w.popularity = clamp(w.popularity+6); moodAdd(w, 10); repAdd(houseOf(w), 2); return withTitle(ET('title_fair','enter','win',V), giveTitle(w,'festival')); }
         w.popularity = clamp(w.popularity+2); moodAdd(w, 2); return ET('title_fair','enter','lose',V); }},
       {label:ET('title_fair','skip','label',V), fx(){ return ET('title_fair','skip','res',V); }}]};
@@ -127,11 +127,42 @@ const RANDOM_EVENTS = [
       {label:ET('noble','decline','label',V), fx(){ S.rep=clamp(S.rep-1); return ET('noble','decline','res',V); }}]};
   }},
   {w:2, ok:()=>S.flags.guild>=1 && anyW(w=>w.job!=='rest' && w.energy>=30).length>0, make(){
-    const w = weighted(anyW(x=>x.job!=='rest' && x.energy>=30), x=>s100(statOf(x,'charm'))+x.popularity);
+    const w = weighted(anyW(x=>x.job!=='rest' && x.energy>=30), x=>s100(statOf(x,'charisma'))+x.popularity);
     const pay = Math.round(rnd(120,240) * (1+S.rep/150)), V = {name:w.name, gold:fmt(pay)};
     return {title:ET('guild','title',V), who:w.id, scene:evImg('guild','companion'), text:ET('guild','text',V), choices:[
       {label:ET('guild','send','label',V), fx(){ S.gold+=pay; w.energy=clamp(w.energy-20,0,maxEnergy(w)); w.popularity=clamp(w.popularity+4); moodAdd(w, 5); return ET('guild','send','res',V); }},
       {label:ET('guild','pass','label',V), fx(){ return ET('guild','pass','res',V); }}]};
+  }},
+  {w:2, ok:()=>anyW(w=>w.job!=='rest' && w.energy>=25).length>0, make(){
+    const w = weighted(anyW(x=>x.job!=='rest' && x.energy>=25), x=>5+s100(statOf(x,'wits')));
+    const gold = Math.round(rnd(100,200) * (1+S.rep/150)), V = {name:w.name, gold:fmt(gold)};
+    return {title:ET('riddle','title',V), who:w.id, scene:evImg('riddle','casual'), text:ET('riddle','text',V), choices:[
+      {label:ET('riddle','send','label',V), fx(){
+        w.energy = clamp(w.energy-15, 0, maxEnergy(w));
+        const odds = clamp(0.15 + s100(statOf(w,'wits'))/120 + s100(statOf(w,'refinement'))/400, 0.15, 0.85);
+        if(Math.random() < odds){ S.gold += gold; w.popularity = clamp(w.popularity+4); moodAdd(w, 6); statXP(w, 'wits', 3); return ET('riddle','send','win',V); }
+        moodAdd(w, -3); statXP(w, 'wits', 1); return ET('riddle','send','lose',V); }},
+      {label:ET('riddle','decline','label',V), fx(){ return ET('riddle','decline','res',V); }}]};
+  }},
+  {w:2, ok:()=>anyW(a=>a.mood<50).some(a=>S.workers.some(b=>b!==a && b.house===a.house && b.mood>=40)), make(){
+    const a = pick(anyW(x=>x.mood<50 && S.workers.some(b=>b!==x && b.house===x.house && b.mood>=40)));
+    const b = weighted(S.workers.filter(y=>y!==a && y.house===a.house && y.mood>=40), y=>5+s100(statOf(y,'charm'))), V = {name:a.name, other:b.name};
+    return {title:ET('tears','title',V), who:a.id, scene:evImg('tears','casual'), text:ET('tears','text',V), choices:[
+      {label:ET('tears','comfort','label',V), fx(){ moodAdd(a, 10); moodAdd(b, 4); gainTrust(a, 2); gainTrust(b, 1); addBond(a, b, 8 + Math.round(s100(statOf(b,'charm'))/20)); return ET('tears','comfort','res',V); }},
+      {label:ET('tears','sam','label',V), fx(){ moodAdd(a, 8); gainTrust(a, 4); return ET('tears','sam','res',V); }},
+      {label:ET('tears','leave','label',V), fx(){ moodAdd(a, -6); return ET('tears','leave','res',V); }}]};
+  }},
+  {w:2, ok:()=>S.houses.some(h=>h.up && (h.up.stage || h.up.bar)) && anyW(w=>w.energy>=30 && w.job!=='rest' && houseOf(w) && houseOf(w).up && (houseOf(w).up.stage || houseOf(w).up.bar)).length>0, make(){
+    const score = x => s100(statOf(x,'charisma')) + s100(x.tech.dance||0);
+    const w = weighted(anyW(x=>x.energy>=30 && x.job!=='rest' && houseOf(x) && houseOf(x).up && (houseOf(x).up.stage || houseOf(x).up.bar)), x=>5+score(x));
+    const gold = Math.round(rnd(120,220) * (1+S.rep/150)), V = {name:w.name, gold:fmt(gold), bard:pick(['Lyric','Odalys','Pip','Marrow','Tamsin','Fenwick'])};
+    return {title:ET('bardduel','title',V), who:w.id, scene:evImg('bardduel','casual'), text:ET('bardduel','text',V), choices:[
+      {label:ET('bardduel','accept','label',V), fx(){
+        w.energy = clamp(w.energy-20, 0, maxEnergy(w)); const h = houseOf(w);
+        const odds = clamp(0.15 + score(w)/280 + w.popularity/400, 0.15, 0.85);
+        if(Math.random() < odds){ S.gold += gold; w.popularity = clamp(w.popularity+5); moodAdd(w, 8); repAdd(h, 2); return ET('bardduel','accept','win',V); }
+        moodAdd(w, -3); repAdd(h, -1); return ET('bardduel','accept','lose',V); }},
+      {label:ET('bardduel','decline','label',V), fx(){ return ET('bardduel','decline','res',V); }}]};
   }},
   {w:2, ok:()=>S.week>=5 && !S.flags.taunt, make(){
     S.flags.taunt = true;

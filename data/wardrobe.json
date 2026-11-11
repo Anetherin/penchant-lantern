@@ -7,7 +7,7 @@
     "Named ladies' signature outfits live with them in characters.json.",
     "uniform: an outfit tagged with a job (b_maid) is never rolled for generic ladies; she wears it automatically while she holds that job, unless she has a job outfit set (w.jobOutfit[job]).",
     "bath: true marks an outfit that can be worn in bath scenes (e.g. yukata, swimsuit, bathrobe).",
-    "stats: optional {stat:n} on an outfit or undergarment (0-100 scale; beauty, charm, refinement, stamina, strength, agility). A bonus on top of her trained stats that may exceed the cap. bonus keys also include host, teacher and chapel."
+    "stats: optional {stat:n} on an outfit or undergarment (0-100 scale; beauty, charm, charisma, refinement, wits, stamina, strength, agility). A bonus on top of her trained stats that may exceed the cap. bonus keys also include host, teacher and chapel."
   ],
   "base": {
     "b_corset": {
@@ -110,7 +110,7 @@
       "lewd": 10,
       "prompt": "a low-cut {color} barmaid dirndl with a laced bodice",
       "bonus": {"bartender":1.25,"propose":1.2},
-      "stats": {"charm":3,"stamina":2}
+      "stats": {"charisma":2,"charm":1,"stamina":2}
     },
     "armor": {
       "label": "Leather armor",
@@ -146,7 +146,7 @@
       "lewd": 35,
       "prompt": "flowing sheer {color} dancer's silks with gold coin jewelry",
       "bonus": {"dancer":1.3,"propose":1.1},
-      "stats": {"agility":4,"beauty":3}
+      "stats": {"agility":4,"charisma":3}
     },
     "yukata": {
       "label": "Bath yukata",
@@ -165,7 +165,7 @@
       "lewd": 30,
       "prompt": "a {color} bunny hostess suit with bunny-ear headband and fishnet stockings",
       "bonus": {"bartender":1.1,"propose":1.2,"courtesan":1.2},
-      "stats": {"beauty":3,"charm":3}
+      "stats": {"beauty":3,"charisma":3}
     },
     "negligee": {
       "label": "Sheer negligee",
@@ -230,7 +230,7 @@
       "lewd": 0,
       "prompt": "long {color} scholar's robes with a pinned collar and a satchel strap",
       "bonus": {"teacher":1.25,"madame":1.05},
-      "stats": {"refinement":5}
+      "stats": {"wits":3,"refinement":2}
     },
     "livery": {
       "label": "Attendant's livery",
@@ -239,7 +239,7 @@
       "lewd": 0,
       "prompt": "a neat {color} attendant's livery with a short jacket, ribbon and white gloves",
       "bonus": {"attendant":1.25,"courtesan":1.05},
-      "stats": {"refinement":3,"stamina":2}
+      "stats": {"refinement":3,"agility":2}
     },
     "vestments": {
       "label": "Chapel vestments",
@@ -248,7 +248,7 @@
       "lewd": 0,
       "prompt": "flowing white chapel vestments with {color} trim and a slim silver pendant",
       "bonus": {"chapel":1.3,"noble":1.05},
-      "stats": {"charm":3,"refinement":2}
+      "stats": {"charm":3,"wits":2}
     },
     "lounge": {
       "label": "Lounge silks",
@@ -266,7 +266,7 @@
       "lewd": 0,
       "prompt": "a dramatic {color} statement gown with a long train and bold jewelry",
       "bonus": {"courtesan":1.05},
-      "stats": {"beauty":6,"charm":6,"refinement":4}
+      "stats": {"beauty":6,"charisma":3,"charm":3,"refinement":4}
     },
     "training": {
       "label": "Training gear",
@@ -276,6 +276,33 @@
       "prompt": "a fitted {color} training top and trousers with wrapped wrists",
       "bonus": {"security":1.05},
       "stats": {"strength":5,"stamina":5,"agility":4}
+    },
+    "spectacles": {
+      "label": "Reading spectacles",
+      "cost": 90,
+      "style": "Elegant",
+      "lewd": 0,
+      "prompt": "a pair of thin {color}-framed reading spectacles worn with a neat high-collared blouse and a long skirt",
+      "bonus": {"teacher":1.1,"madame":1.03},
+      "stats": {"wits":5}
+    },
+    "stagecoat": {
+      "label": "Stage costume",
+      "cost": 220,
+      "style": "Exotic",
+      "lewd": 15,
+      "prompt": "a sparkling {color} stage costume with a short cape and ribbon trim",
+      "bonus": {"dancer":1.2,"promoter":1.1},
+      "stats": {"charisma":4,"agility":2}
+    },
+    "cozy": {
+      "label": "Cozy knit dress",
+      "cost": 100,
+      "style": "Cute",
+      "lewd": 0,
+      "prompt": "a soft {color} knitted dress with a thick scarf and fuzzy slippers",
+      "bonus": {"commoner":1.1,"host":1.08},
+      "stats": {"charm":4}
     }
   },
   "under": {

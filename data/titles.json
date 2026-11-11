@@ -31,15 +31,15 @@
     },
     "professor": {
       "label": "Professor",
-      "desc": "Passes on 20% more when teaching or coaching.",
-      "fx": {"teach":1.2},
+      "desc": "Passes on 20% more when teaching or coaching, +6 Wits.",
+      "fx": {"teach":1.2,"stats":{"wits":6}},
       "seed": true,
       "earn": {"all":[{"job":"teacher","weeks":12},{"count":"taught","at":50}]}
     },
     "doctor": {
       "label": "Doctor",
-      "desc": "Recovers 6% more energy and settles into a better mood (+2 resting mood).",
-      "fx": {"energyRec":1.06,"moodRest":2},
+      "desc": "Recovers 6% more energy and settles into a better mood (+2 resting mood), +5 Wits.",
+      "fx": {"energyRec":1.06,"moodRest":2,"stats":{"wits":5}},
       "seed": true
     },
     "princess": {"label":"Princess","desc":"+3 appeal; nobles pay 10% more.","fx":{"appeal":3,"classBonus":{"noble":1.1}},"seed":true},
@@ -52,15 +52,15 @@
     },
     "champion": {
       "label": "Champion",
-      "desc": "+2 appeal, +5 Strength, stats grow 8% faster.",
-      "fx": {"appeal":2,"stats":{"strength":5},"statGain":1.08},
+      "desc": "+2 appeal, +5 Strength, +5 Agility, stats grow 8% faster.",
+      "fx": {"appeal":2,"stats":{"strength":5,"agility":5},"statGain":1.08},
       "seed": true,
       "event": true
     },
     "magistrate": {
       "label": "Magistrate",
-      "desc": "Runs a house 10% better as madame; steadier moods.",
-      "fx": {"jobBonus":{"madame":1.1},"moodDelta":0.92},
+      "desc": "Runs a house 10% better as madame; steadier moods, +6 Wits.",
+      "fx": {"jobBonus":{"madame":1.1},"moodDelta":0.92,"stats":{"wits":6}},
       "seed": true
     },
     "madame": {
@@ -72,8 +72,8 @@
     },
     "prima": {
       "label": "Prima",
-      "desc": "Dances 12% better, +2 appeal.",
-      "fx": {"jobBonus":{"dancer":1.12},"appeal":2},
+      "desc": "Dances 12% better, +2 appeal, +6 Charisma.",
+      "fx": {"jobBonus":{"dancer":1.12},"appeal":2,"stats":{"charisma":6}},
       "earn": {"all":[{"job":"dancer","weeks":15},{"stat":"popularity","at":60}]},
       "house": "pavilion"
     },
@@ -93,14 +93,14 @@
     },
     "sister": {
       "label": "Sister",
-      "desc": "Keeps the chapel 12% better, +2 resting mood.",
-      "fx": {"jobBonus":{"chapel":1.12},"moodRest":2},
+      "desc": "Keeps the chapel 12% better, +2 resting mood, +5 Charm.",
+      "fx": {"jobBonus":{"chapel":1.12},"moodRest":2,"stats":{"charm":5}},
       "earn": {"job":"chapel","weeks":15}
     },
     "hostess": {
       "label": "Hostess",
-      "desc": "Hosts 12% better and waiting clients like her.",
-      "fx": {"jobBonus":{"host":1.12},"appeal":1},
+      "desc": "Hosts 12% better and waiting clients like her, +5 Charm.",
+      "fx": {"jobBonus":{"host":1.12},"appeal":1,"stats":{"charm":5}},
       "earn": {"count":"hosted","at":120}
     },
     "taps": {
@@ -111,8 +111,20 @@
       "earn": {"count":"bar","at":100},
       "house": "tankard"
     },
-    "herald": {"label":"Herald","desc":"Promotes 15% better.","fx":{"promote":1.15},"earn":{"count":"promo","at":60},"house":"wayfarer"},
-    "belle": {"label":"Belle of Hollowmere","after":true,"desc":"+4 appeal.","fx":{"appeal":4},"earn":{"stat":"popularity","at":90}},
+    "herald": {
+      "label": "Herald",
+      "desc": "Promotes 15% better, +6 Charisma.",
+      "fx": {"promote":1.15,"stats":{"charisma":6}},
+      "earn": {"count":"promo","at":60},
+      "house": "wayfarer"
+    },
+    "belle": {
+      "label": "Belle of Hollowmere",
+      "after": true,
+      "desc": "+4 appeal, +6 Charisma.",
+      "fx": {"appeal":4,"stats":{"charisma":6}},
+      "earn": {"stat":"popularity","at":90}
+    },
     "radiant": {
       "label": "the Radiant",
       "after": true,
@@ -128,20 +140,40 @@
       "fx": {"trustGain":1.06,"skillGain":1.06},
       "earn": {"reborn":2}
     },
-    "festival": {"label":"Festival Queen","desc":"+3 appeal, promotes 8% better.","fx":{"appeal":3,"promote":1.08},"event":true},
+    "festival": {
+      "label": "Festival Queen",
+      "desc": "+3 appeal, promotes 8% better, +6 Charisma.",
+      "fx": {"appeal":3,"promote":1.08,"stats":{"charisma":6}},
+      "event": true
+    },
     "copperfox": {"label":"the Copper Fox","after":true,"desc":"+6 security, +2 appeal.","fx":{"security":6,"appeal":2},"arc":"kaede"},
-    "treasurer": {"label":"Treasurer","desc":"Promotes 8% better; clients pay 4% more.","fx":{"jobBonus":{"promoter":1.08},"clientFee":1.04},"arc":"yui"},
+    "treasurer": {
+      "label": "Treasurer",
+      "desc": "Promotes 8% better; clients pay 4% more, +5 Wits.",
+      "fx": {"jobBonus":{"promoter":1.08},"clientFee":1.04,"stats":{"wits":5}},
+      "arc": "yui"
+    },
     "countess": {"label":"Countess","desc":"Nobles pay 12% more, +2 appeal.","fx":{"classBonus":{"noble":1.12},"appeal":2},"arc":"nerys"},
-    "healer": {"label":"Healer","desc":"+3 resting mood, recovers 6% more energy.","fx":{"moodRest":3,"energyRec":1.06},"arc":"elowen"},
+    "healer": {
+      "label": "Healer",
+      "desc": "+3 resting mood, recovers 6% more energy, +6 Charm.",
+      "fx": {"moodRest":3,"energyRec":1.06,"stats":{"charm":6}},
+      "arc": "elowen"
+    },
     "paladin": {"label":"Paladin","desc":"+10 security; bad news stings her less.","fx":{"security":10,"moodDelta":0.9},"arc":"adelheid"},
     "unbeaten": {
       "label": "the Unbeaten",
       "after": true,
-      "desc": "+5 Strength, guards 8% better.",
-      "fx": {"stats":{"strength":5},"jobBonus":{"security":1.08}},
+      "desc": "+5 Strength, +5 Agility, guards 8% better.",
+      "fx": {"stats":{"strength":5,"agility":5},"jobBonus":{"security":1.08}},
       "arc": "natsuki"
     },
-    "mama": {"label":"Mama","desc":"Bartends 10% better and hosts 8% better.","fx":{"jobBonus":{"bartender":1.1,"host":1.08}},"arc":"kanako"},
+    "mama": {
+      "label": "Mama",
+      "desc": "Bartends 10% better and hosts 8% better, +6 Charm.",
+      "fx": {"jobBonus":{"bartender":1.1,"host":1.08},"stats":{"charm":6}},
+      "arc": "kanako"
+    },
     "undaunted": {
       "label": "the Undaunted",
       "after": true,
@@ -184,8 +216,8 @@
     "stormrider": {
       "label": "the Storm-Rider",
       "after": true,
-      "desc": "+8 max energy, bartends 5% better.",
-      "fx": {"maxEnergy":8,"jobBonus":{"bartender":1.05}},
+      "desc": "+8 max energy, bartends 5% better, +5 Agility.",
+      "fx": {"maxEnergy":8,"jobBonus":{"bartender":1.05},"stats":{"agility":5}},
       "house": "skyhook"
     },
     "tidekeeper": {

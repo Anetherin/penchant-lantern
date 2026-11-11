@@ -455,6 +455,13 @@
       "{name} took the overflow in the lounge so nobody had to be turned away."
     ]
   },
+  "pushy_talked": {
+    "_note": "A client got pushy and she talked him down herself. Non-graphic.",
+    "_default": [
+      "A client got pushy with {name}, but she kept her head and talked him down before it went any further.",
+      "Someone wouldn't take no from {name}. A calm word and a steady look, and he backed off."
+    ]
+  },
   "pushy_security": {
     "_note": "A client got pushy and security handled it. Non-graphic.",
     "_default": [
@@ -488,6 +495,7 @@
       "{name} had to talk her way out of a client who wouldn't take no. Nobody was near."
     ]
   },
+  "enc_pushy_talked": {"_default":["He got pushy; she talked him down."]},
   "enc_pushy_security": {"_default":["He got pushy; security walked him out."]},
   "enc_pushy_sam": {"_default":["He got pushy; Sam stepped in."]},
   "enc_pushy_samfail": {"_default":["He got pushy; Sam's intervention went badly."]},
