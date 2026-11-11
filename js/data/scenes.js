@@ -41,6 +41,10 @@ function sceneInfo(k, w){
     return {label:'Sam & two: '+actLabel(id), pov:true, sam:true, comp:[actPose(id,'duo'), SCENE_DATA.duoPhrase, D.prompt].filter(Boolean).join(', '),
       setting:SCENE_DATA.samRoom, snip:'act_'+id, snip2:'duo',
       client: o ? (()=>{ const oc = defaultCloth(o, 'samact:'+id); return `the second woman: ${charDesc(o, oc, 'samact:'+id)}, ${clothText(o, oc, 'samact:'+id).replace(/\{pubic\}/g, pubicText(o))}`; })() : ''}; }
+  // two women together (the goddess with a lady): pair:<service>:<fem|futa>:<other id>; poses from services.json image.fem / image.futa
+  if(k.startsWith('pair:')){ const [, id, mode, oid] = k.split(':'), o = findAny(oid);
+    return {label:'Two women: '+actLabel(id), comp:actPose(id, mode==='futa' ? 'futa' : 'fem'), setting:ROOM_SETTING(h), snip:'act_'+id,
+      client: o ? (()=>{ const oc = defaultCloth(o, k); return `the other woman: ${charDesc(o, oc, k)}, ${clothText(o, oc, k).replace(/\{pubic\}/g, pubicText(o))}`; })() : ''}; }
   // Sam's demonstration class: seen from the room, Sam is the man, the other ladies watch (scenes.json → demoRoom / people.demo)
   // group nights (sam.js samOrgy): the first lady in full, the others briefly (scenes.json → orgyPose / orgyRoom / people.orgy)
   if(k.startsWith('orgy:')){ const os = k.slice(5).split(',').map(findAny).filter(o=>o && w && o.id!==w.id);

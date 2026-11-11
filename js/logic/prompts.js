@@ -85,7 +85,7 @@ const getSnippet = k => { const a = k.startsWith('act_') && actById(k.slice(4));
 // Services whose picture shows her bare between the legs (services.json → image.exposed); pubic hair is named for those
 // unless the clothing wording already covers it.
 const exposedAct = id => !!(((actById(id)||{}).image||{}).exposed);
-function sceneAct(sceneKey){ const b = sceneBase(sceneKey); return b.startsWith('act:') ? b.slice(4) : /^(samact|duo|demo):/.test(b) ? b.split(':')[1] : null; }
+function sceneAct(sceneKey){ const b = sceneBase(sceneKey); return b.startsWith('act:') ? b.slice(4) : /^(samact|duo|pair|demo):/.test(b) ? b.split(':')[1] : null; }
 function buildPrompt(w, sceneKey, cloth){
   const sc = sceneInfo(sceneKey, w);
   if(w.male) return cleanText([SET.style, 'adult man', w.look, 'upper body portrait, looking at viewer', 'dramatic lighting'].join(', '));
@@ -97,8 +97,8 @@ function buildPrompt(w, sceneKey, cloth){
   // intimate scenes lead with who is in the picture and what they're doing: image models weigh the start of a prompt most, and a long
   // description first lets the pose drift to whatever the model draws most often
   if(svc){
-    const n = sceneBase(sceneKey).startsWith('orgy:') ? (PP.orgy||'').replace('{n}', sceneBase(sceneKey).slice(5).split(',').length) : sceneBase(sceneKey).startsWith('duo:') ? PP.duo : sceneBase(sceneKey).startsWith('demo:') ? PP.demo : sc.pov ? PP.pov : sc.client ? PP.client : PP.solo;
-    const duo = /^(duo|orgy):/.test(sceneBase(sceneKey));   // a duo's "client" is the second woman's full description: it goes after hers
+    const n = sceneBase(sceneKey).startsWith('orgy:') ? (PP.orgy||'').replace('{n}', sceneBase(sceneKey).slice(5).split(',').length) : sceneBase(sceneKey).startsWith('duo:') ? PP.duo : sceneBase(sceneKey).startsWith('pair:') ? (PP['pair_' + sceneBase(sceneKey).split(':')[2]] || PP.pair_fem) : sceneBase(sceneKey).startsWith('demo:') ? PP.demo : sc.pov ? PP.pov : sc.client ? PP.client : PP.solo;
+    const duo = /^(duo|pair|orgy):/.test(sceneBase(sceneKey));   // a duo's "client" is the second woman's full description: it goes after hers
     parts.push(n, sc.pov && "first-person POV, from the viewer's perspective", !duo && sc.client, sc.comp, sc.snip && getSnippet(sc.snip), sc.snip2 && getSnippet(sc.snip2));
     parts.push(charDesc(w, cloth, sceneKey), clothes, duo && sc.client, sc.expr, sc.setting);
     if(sc.pov) parts.push(getSnippet('pov'));

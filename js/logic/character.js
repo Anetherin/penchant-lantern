@@ -83,7 +83,7 @@ const actSkill = (w,id) => (w.acts&&w.acts[actKey(id)]) ? w.acts[actKey(id)].ski
 // Scene keys can carry extras after the base: 'act:oral_give~lost_in_it~prop' (~expression, ~context). sceneParts splits them.
 function sceneParts(k){ const p = String(k||'').split('~'); return {base:p[0], expr:p[1]||'', ctx:p[2]||''}; }
 const sceneBase = k => sceneParts(k).base;
-const isSvcScene = k => /^(act:|samact:|duo:|demo:|orgy:|solo$)/.test(sceneBase(k));
+const isSvcScene = k => /^(act:|samact:|duo:|pair:|demo:|orgy:|solo$)/.test(sceneBase(k));
 // Swim scenes (dates.json image "swim": true): she wears an owned bath-compatible outfit (swimsuit first), if she has one.
 function swimOutfit(w, scene){
   if(!isSwimScene(scene)) return null;
@@ -312,6 +312,7 @@ function makeNamed(key, asPartner){
   const w = genWorker({race:D.race});
   const d = clone(D);
   Object.assign(w, d); w.acts = {}; w.menu = []; w.counts = {};
+  delete w.goddess;   // her remarks about this lady stay in the data (goddess.js)
   // character data is on the familiar 0-100 scale; stats and skills run 0-1000
   const K = v => Math.round(v)*SKL + ri(0,SKL-1);
   STAT_KEYS.forEach(k=>{ w.stats[k] = clampK(K(d.stats[k] ?? d.stats[STAT_FALLBACK[k]] ?? 30)); }); TECH_KEYS.forEach(k=>{ w.tech[k] = clampK(K((d.tech||{})[k] ?? 10)); });

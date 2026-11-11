@@ -171,7 +171,8 @@ function pushyCheck(X, w, cls, pr, client){
   if(Math.random() >= chance) return null;
   const h = X.h, hr = X.hr; let res;
   countUp(w,'rowdy'); pr.pushy = (pr.pushy||0)+1; hr.pushy.total++;
-  if(Math.random() < (s100(statOf(w,'wits'))*0.6 + s100(statOf(w,'charm'))*0.4)/100 * (BP.talkDown ?? 0.35)){ res = 'talked'; moodAdd(w, BP.talkMood ?? -2); }
+  if(goddessGuard(h)){ res = 'security'; moodAdd(w, 2); }   // the goddess was watching this house (goddess.js)
+  else if(Math.random() < (s100(statOf(w,'wits'))*0.6 + s100(statOf(w,'charm'))*0.4)/100 * (BP.talkDown ?? 0.35)){ res = 'talked'; moodAdd(w, BP.talkMood ?? -2); }
   else if(X.secPow > rnd(BP.securityRoll[0], BP.securityRoll[1])){ res = 'security'; moodAdd(w, BP.secMood); }
   // security couldn't handle it and Sam is around: someone runs to fetch him, and he steps in there and then
   else if(S.sam.energy >= BP.samEnergyMin) res = samRescue(w, h);
@@ -596,6 +597,7 @@ function endWeek(){
   if(!S || S.over || EVQ.length) return;
   closeModal();
   S.workers.forEach(ensureWorker);
+  goddessPlan();   // her actions this week (goddess.js), before the houses run
   const R = {v3:true, v5:true, v6:true, week:S.week, lines:[], per:{}, hl:[], houses:[], income:0, wages:0, upkeep:0, recharge:0, served:0, turned:0, selfProps:0,
     led:{escort:0, offduty:0, bar:0, dance:0, bath:0, chapel:0, host:0, sam:S.samWeek.income}, samActs:S.samWeek.acts.slice()};
   S.workers.forEach(w=>R.per[w.id]={id:w.id, name:w.name, job:w.job, house:w.house, served:0, comp:0, acts:{}, props:0, acc:0, earned:0, e0:Math.round(w.energy), m0:Math.round(w.mood), l0:Math.round(w.lust||0), enc:[], why:[], notes:[]});
@@ -728,6 +730,7 @@ function endWeek(){
   });
   seedBonds(); driftBonds();
   sleepInWeek(R);
+  goddessAfter(R);
   queueEncounters();
   renew.forEach(w=>EVQ.push(()=>evRenew(w)));
   if(Math.random()<0.6){ const ev = pickRandomEvent(); if(ev) EVQ.push(ev); }

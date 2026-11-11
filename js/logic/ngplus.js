@@ -211,6 +211,7 @@ function ngBegin(){
   const B = BAL.ngplus, og = homeHouse(), HDo = HOUSES[og], N = ngNumbers(C.boon, C.house), lovers = carriedLovers(), friends = ngFriends();
   if(lovers.some(w=>!C.perks[w.id] && NG_PERKS().some(t=>!(w.ngPerks||[]).includes(t)))) return;
   const keptIds = new Set(S.houses.filter(keptHouse).map(h=>h.id));   // before S.houses is trimmed
+  const gInfo = {weeks: S.week - ((S.debt && S.debt.start) || 0), planned: ((S.debt && S.debt.payments) || BAL.debt.payments) * BAL.debt.every, house:C.house, partner:C.partner, past:C.past, lovers: lovers.map(w=>w.name.split(' ')[0])};   // for the goddess (goddess.js)
   S.home = og; S.cycle = N.cycle;   // set first: generics rolled from here on can get ngOnly traits
   S.boons = S.boons || []; if(C.boon && !S.boons.includes(C.boon)) S.boons.push(C.boon);   // early, so Old Loyalties / Vivid Memories apply to this cycle's carries
   // lovers: wages again, perk, reset
@@ -286,5 +287,6 @@ function ngBegin(){
   checkUnlocks(true);
   addLog(`New Game+ (cycle ${S.cycle}): Sam keeps ${HDo.name} and takes on a new debt of ${fmt(N.debt)}.`);
   NGS = null; save(); TAB = 'house'; render();
-  modal(`<h2>${esc(HDo.name)}</h2><p class="story">Marguerite Vane slides a fresh contract across the desk. "Paying off one house was impressive, Mr. Takahashi. Let's see you do it again, with a little less sentiment." She almost smiles again. It's starting to worry him.\n\nSam keeps ${esc(HDo.name)}${C.house?`, takes on ${esc(HOUSES[C.house].name)}`:''}${lovers.length?` and ${lovers.map(w=>esc(w.name)).join(', ')}`:''}. Everyone else has gone their own way. The new debt is ${fmt(N.debt)}, due over the next ${S.debt.payments*BAL.debt.every} weeks.</p><div class="row"><button class="primary" onclick="closeModal()">Let's go</button></div>`);
+  const vane = () => modal(`<h2>${esc(HDo.name)}</h2><p class="story">Marguerite Vane slides a fresh contract across the desk. "Paying off one house was impressive, Mr. Takahashi. Let's see you do it again, with a little less sentiment." She almost smiles again. It's starting to worry him.\n\nSam keeps ${esc(HDo.name)}${C.house?`, takes on ${esc(HOUSES[C.house].name)}`:''}${lovers.length?` and ${lovers.map(w=>esc(w.name)).join(', ')}`:''}. Everyone else has gone their own way. The new debt is ${fmt(N.debt)}, due over the next ${S.debt.payments*BAL.debt.every} weeks.</p><div class="row"><button class="primary" onclick="closeModal()">Let's go</button></div>`);
+  goddessRebirth(gInfo, vane);
 }

@@ -16,7 +16,8 @@
     "vignettes: partners only. [{title, text, trust}] short slice-of-life 'Moments' on her sheet, each unlocked when her trust with Sam reaches that number.",
     "unique: {name, desc, fx} her personal semi-unique trait. fx uses only the effect keys from docs/OVERHAUL.md section 2 (maxEnergy, actQuality, jobBonus, security, energyBank, ...). Service ids: kiss, massage_give, massage_get, manual_give, manual_get, oral_give, oral_get, breast_give, breast_get, missionary, cowgirl, doggy (old ids manual/oral/paizuri/caress still work). fav/lovers can be a receiving service (*_get): she likes being on the other end.",
     "body: {bust: flat|small|medium|large|huge, height: short|average|tall, figure: slim|athletic|curvy|soft}. Used for image wording and body effects (docs/OVERHAUL.md section 3). Job ids are courtesan, madame, promoter, maid, bartender, attendant, dancer, bath, security.",
-    "design.features: what stays on her body undressed (marks, ears, horns, jewelry). design.gear: worn or carried items (gloves, hats, collars, weapons, bags, pets): only in pictures where she is dressed and it isn't an intimate scene. design.build: only wording the body figure doesn't already say (it is merged into one body phrase). design.pubic: optional pubic hair wording for her alone."
+    "design.features: what stays on her body undressed (marks, ears, horns, jewelry). design.gear: worn or carried items (gloves, hats, collars, weapons, bags, pets): only in pictures where she is dressed and it isn't an intimate scene. design.build: only wording the body figure doesn't already say (it is merged into one body phrase). design.pubic: optional pubic hair wording for her alone.",
+    "goddess {hand, comment} (partners): how the goddess had a hand in Sam meeting her, and her remark about her (js/logic/goddess.js)."
   ],
   "mira": {
     "role": "house",
@@ -476,7 +477,11 @@
         "text": "Kaede pulls a dented copper badge from her pack, the crest of the Copper Foxes, and turns it over in her fingers. \"Kept it for years. Thought I'd go back and throw it in the leader's face.\" She presses it into Sam's palm instead. \"I don't need it anymore. I've got a new party, and it's a terrible one. Skinny leader. Zero combat skills. No loot.\" Her ears are flat with embarrassment; her tail is wrapped all the way around his wrist.",
         "trust": 85
       }
-    ]
+    ],
+    "goddess": {
+      "hand": "Seliora flicked a goblin ambush onto the road a few steps in front of a certain fox-eared scout, and made sure Sam would stumble in at exactly the wrong, right moment. A favor had to start somewhere, after all.",
+      "comment": "\"The scout who keeps tallies?\" {goddess} wrinkles her nose. \"She's counting favors. I'm counting her.\""
+    }
   },
   "yui": {
     "role": "partner",
@@ -553,7 +558,11 @@
         "text": "Yui presses a small brass key into Sam's hand: the ledger room, her room, her whole carefully ordered kingdom. \"I want you to know where everything is. In case I'm ever not here.\" Sam starts to protest, and she shakes her head. \"I woke up alone for a week, Sam. I'm not saying I'm going anywhere. I'm saying I'd like to be someone who trusts people with the key.\" He closes his fingers around it. She straightens her glasses, then takes them off entirely, which is the bravest thing he has ever seen her do.",
         "trust": 85
       }
-    ]
+    ],
+    "goddess": {
+      "hand": "Sam never saw the accountant two desks over cross the street with him. {goddess} did, and she nudged Yui's fall a week early so she could arrive first and find her feet.",
+      "comment": "\"Yui, from the office.\" {goddess} sounds odd. \"I let her come. She's tidy, and she knows you in ways I can't. That last part is annoying.\""
+    }
   },
   "nerys": {
     "role": "partner",
@@ -628,7 +637,11 @@
         "text": "Late at night Nerys confesses that every contract she's ever written contains a hidden \"Clause Zero\": the demon may leave at any time, no penalty. \"Nobody ever read that far,\" she says. \"I wrote it so I'd always have a way out. I've never used it.\" She turns the scroll over. Sam's contract has the clause too, in her tidy hand. Beneath it, newly scratched out, are three words she tried to write and couldn't. She tears the corner off. \"Don't read the fine print,\" she tells him, and kisses him so he won't ask.",
         "trust": 85
       }
-    ]
+    ],
+    "goddess": {
+      "hand": "The summoning circle was Nerys's own; the hole in the sky above it was {goddess}'s. Seliora aimed Sam's fall at the exact spot, and she's smug that the contract clause she never saw trigger did so.",
+      "comment": "\"A contract devil, hm.\" {goddess} laughs. \"She's read the fine print. I wrote the clause she missed. Don't tell her.\""
+    }
   },
   "elowen": {
     "role": "partner",
@@ -703,7 +716,11 @@
         "text": "For the first time in years Elowen is writing to her glade. She reads Sam a draft: it begins with the dock and the herbs and the tiresome stairs at the Lantern, and ends with a line that makes her hand shake on the page. \"I am not far from home anymore.\" She doesn't ask Sam what he thinks. She seals the letter with her own wax and hands it to him to post, a gesture that, among her people, means \"I trust you with who I am.\" He holds it carefully, like something alive.",
         "trust": 85
       }
-    ]
+    ],
+    "goddess": {
+      "hand": "Elowen didn't just happen to be on that stretch of road. {goddess} left a fever on the wind, dropped Sam where a healer would find him, and let two lonely people do the rest.",
+      "comment": "\"The healer. Three days she nursed you.\" {goddess} sniffs. \"I only helped a little. And I'm entirely not jealous of her cool hands on your forehead.\""
+    }
   },
   "adelheid": {
     "role": "partner",
@@ -777,7 +794,11 @@
         "text": "At dusk Adelheid sits in the yard polishing her breastplate piece by piece, and tonight, for the first time, she has set aside the rest of it too: the gauntlets, the greaves, even the formal tabard. She is just a woman in a linen shirt with nicks and scars on her hands. \"I have never been unarmored in front of anyone I wasn't guarding,\" she says. Sam sits down beside her without speaking. After a while she leans, very slightly, until her shoulder meets his. Neither of them is guarding anything.",
         "trust": 85
       }
-    ]
+    ],
+    "goddess": {
+      "hand": "The Order's foretelling of a hero was no accident: {goddess} whispered it into a vision, years early. She only left out the hoodie, and that, she admits, is her favorite part.",
+      "comment": "\"The knight.\" {goddess} bursts out laughing. \"I promised her a hero. She got you. I'm not sorry. Her oath is delightful. Be gentle with it.\""
+    }
   },
   "natsuki": {
     "role": "partner",
@@ -856,7 +877,11 @@
         "text": "Late at night, on the town wall, Natsuki starts humming a melody from the summer festivals of home. Sam knows it. He hums the second line, and she falls silent, then takes the next one a little too fast, and they carry it to the end in two unsteady voices. When the song is over she doesn't say anything. She just puts her head on his shoulder like she has done a thousand times, and he can feel her shaking with laughter or something else. Neither of them says which.",
         "trust": 85
       }
-    ]
+    ],
+    "goddess": {
+      "hand": "Natsuki's shortcut through the alley was no shortcut: {goddess} opened a door three years early, and left it ajar with a lantern on the far side so the girl would last until Sam came.",
+      "comment": "\"The sword-girl who punched you.\" {goddess} smirks. \"Good. Someone should. She's very loyal, and I've started watching for her fists.\""
+    }
   },
   "kanako": {
     "role": "partner",
@@ -934,7 +959,11 @@
         "text": "Kanako has hung a small brass chime over the bar door, the same as the one at her old snack bar. \"I could always tell who came in by the sound,\" she says. \"Drunks, regulars, trouble.\" She turns to Sam. \"And you. I knew your footsteps in the hallway for six years, Sam. I knew when you were sad. I knew when you'd stopped eating.\" The chime rings softly in the draft. \"I just didn't know what to call it. I think I do now.\" She sets down the glass, and doesn't tease him at all.",
         "trust": 85
       }
-    ]
+    ],
+    "goddess": {
+      "hand": "{goddess} put Kanako at the right drink stall in the right town, and left a particular recipe on her tongue. Some people deserve to be found by a neighbor who knows how they take their coffee.",
+      "comment": "\"Kanako. Sammy.\" {goddess} mimics the voice and wrinkles her nose. \"A nickname, from a woman who knows what you eat for breakfast. I'm taking notes.\""
+    }
   },
   "akari": {
     "role": "partner",
@@ -1011,7 +1040,11 @@
         "text": "Akari waits up for Sam with a pot of tea and no prank, which alone should have been a warning. She sits cross-legged on the floor and tells him plainly what she wants: not the thrill of the chase, not to win a bet with herself, just him, over breakfasts and bad days and everything between. Her hands are trembling around the cup. \"I'm not Kenta's sister right now,\" she says. \"I'm just a woman who's very sure.\" Sam sets his tea aside and takes the cup from her hands, so she can't hide behind it.",
         "trust": 85
       }
-    ]
+    ],
+    "goddess": {
+      "hand": "Akari wasn't meant to cross that street. {goddess} lengthened the walk signal by one second, which is how a spare umbrella and an old crush ended up in the same world as Sam.",
+      "comment": "\"Kenta's little sister.\" {goddess} looks at her nails. \"Young, and brave. I let her come because she asked. That's a rule I don't have, and I'm already regretting it.\""
+    }
   },
   "marisol": {
     "role": "partner",
@@ -1076,7 +1109,11 @@
         "text": "Marisol drags Sam out at dawn to look at the Lantern's old painted sign, weathered nearly to blankness. \"Father wouldn't let me touch it. Said the name was his.\" She hands him a pot of gold paint and a brush. Sam asks what she wants it to say. She takes a long breath, looks at the sign, then at him. \"Sam and Marisol, partners.\" Her hand is steady, and she holds the ladder while he paints the first letter. By the second, she has climbed up beside him to correct his serifs.",
         "trust": 85
       }
-    ]
+    ],
+    "goddess": {
+      "hand": "{goddess} steered the old owner out of the picture, politely, then steered a tired stranger to the deed. She wanted the Lantern to have someone who'd listen to its books.",
+      "comment": "\"The accountant's daughter.\" {goddess} nods slowly. \"She forgave nobody and taught you everything. I hate how much I like her.\""
+    }
   },
   "lara": {
     "role": "partner",
@@ -1157,7 +1194,11 @@
         "text": "Lara has dug up a corner of the courtyard and planted night-blooming flowers: moonflowers, evening primrose, white nicotiana. She shows Sam the first bloom opening in the dusk, then tells him, carefully, that she started it before she knew he would be home to see it. \"It's mine,\" she says. \"I wanted to say that out loud.\" She slips her hand into his. \"Two things are true. I'm glad you're here. And I'd still have planted it.\" It is the most confident thing she has ever said.",
         "trust": 85
       }
-    ]
+    ],
+    "goddess": {
+      "hand": "A rumor of a hoodied stranger in Hollowmere drifted to Lara on a very particular wind. {goddess} sent it. She doesn't like it when the ones who are left behind stay that way.",
+      "comment": "\"Lara, the orphanage girl.\" {goddess} says it softly, for once. \"She's been left too often. Don't be one more. I mean it.\""
+    }
   },
   "emily": {
     "role": "partner",
@@ -1237,7 +1278,11 @@
         "text": "Every morning for six years, the first message in Sam's inbox was two letters: gm. This morning there's a scrap of paper under his door with the same two letters on it, and when he opens it Emily is standing there already, tail sweeping the floorboards, face scarlet. \"I know we live in the same building now,\" she says. \"I just didn't want to break the streak.\" He says gm back, out loud, and she laughs so hard she has to lean on the doorframe.",
         "trust": 85
       }
-    ]
+    ],
+    "goddess": {
+      "hand": "Emily woke in her character's body because {goddess} heard a lonely wolf-girl typing into the night and decided the story was worth a real ending. The rumor that led her to Sam was a bonus.",
+      "comment": "\"The wolf-girl. Shadowkin.\" {goddess} laughs. \"Six years of campaigns, and you never once noticed. I did. I'm very proud of myself.\""
+    }
   },
   "lirael": {
     "role": "partner",
@@ -1315,7 +1360,11 @@
         "text": "Every morning for a week Sam has found a folded note slipped under his door. Today's is the shortest: Good morning. I'm just down the hall. He opens the door and finds Lirael there already, fidgeting with her satchel strap, a letter in each hand, face scarlet. \"I wrote to you for ten years,\" she says. \"I got used to having somewhere to send things.\" He takes both letters and reads them standing in the doorway, while she watches his face like a postmistress waiting for a reply.",
         "trust": 85
       }
-    ]
+    ],
+    "goddess": {
+      "hand": "The postbox in the alley was old, enchanted and not very quiet. {goddess} stirred it ten years ago, once, so two lonely teenagers could find each other. She's been waiting for the ownership notice ever since.",
+      "comment": "\"Lirael, the letter girl.\" {goddess} smiles. \"Ten years of letters, and you never thought to wonder who carried them. I did. It was a pleasure.\""
+    }
   },
   "ella": {
     "role": "partner",
@@ -1395,7 +1444,11 @@
         "text": "Ella sets up a chess board in the courtyard at dusk, as they have done a dozen times, and plays a flawless game. In the end she has him cornered and a winning move available. She stares at the board, then deliberately offers the draw. Sam blinks. \"Ella?\" \"I never wanted to beat you,\" she says, steady-eyed, face flushed. \"I wanted you to look at me.\" She knocks over her own king, gently, with one finger, so that it clinks against his, and neither of them picks them up.",
         "trust": 85
       }
-    ]
+    ],
+    "goddess": {
+      "hand": "{goddess} could have saved Ella from the crosswalk. She didn't. Her rival was the only person who'd pushed Sam his whole life, and a world without rankings seemed wrong for either of them.",
+      "comment": "\"Ella, the runner-up.\" {goddess} smiles thinly. \"She kept all your sheets in a drawer. I read them. We both know exactly what that means.\""
+    }
   },
   "ione": {
     "role": "partner",
@@ -1474,7 +1527,11 @@
         "text": "Something Sam says is simply funny, an offhand remark about a client's hat, and Ione laughs. It's not a polite laugh or a studied one. It's startled and bright and too loud, and she claps a hand to her mouth in alarm, status light flaring gold. \"That wasn't in the diary,\" she whispers. \"None of this is in the diary. Sam, I don't know what happens next.\" She says it like a confession and like a gift, hands trembling, a smile spreading across her face that she hasn't yet learned to hide.",
         "trust": 85
       }
-    ]
+    ],
+    "goddess": {
+      "hand": "{goddess} reached three centuries forward, picked one particular android off a charging dock and pointed her backwards. Some stories need their reader to meet the author. She will not say more.",
+      "comment": "\"The android with the diary.\" {goddess} pauses. \"She's read how it ends. I haven't. If she tells you, don't tell me. ...Tell me.\""
+    }
   },
   "anael": {
     "role": "partner",
@@ -1556,7 +1613,11 @@
         "text": "Anael lets Sam read her latest report to the Order. After four pages of tidy notation on lamp-lore, the final page contains one sentence in her formal hand. \"Recommend this subject not be disturbed. Recommend I not be recalled.\" He reads it twice. She stands very straight, wings folded, hands clasped. \"It is the first time in three hundred and eighty-nine years I have written a request,\" she says. \"I would like to know whether I am permitted to make it.\" He says that she is. Her halo flares like a sunrise.",
         "trust": 85
       }
-    ]
+    ],
+    "goddess": {
+      "hand": "Sam is the unsent soul the Order is hunting, because {goddess} never sent him: she plucked him out of line. The Lantern Stone burned out of sheer surprise. Anael just happens to be the one who found it.",
+      "comment": "\"An angel, writing reports.\" {goddess} laughs. \"About me, in a roundabout way. Her handwriting's gotten warmer. I'm not jealous, I'm a professional.\""
+    }
   },
   "seraphine": {
     "role": "story",
