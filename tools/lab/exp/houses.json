@@ -1,0 +1,9 @@
+{
+  "desc": "Benchmark: a full first cycle from each starting house (Kaede, salaryman, default policy). Phase entry weeks: mid = 5 ladies in the house, late = no space left.",
+  "scenario": "campaign",
+  "weeks": 104,
+  "runs": 12,
+  "baseline": false,
+  "each": { "start.house": ["lantern", "castle", "onsen", "hollow", "tankard", "pavilion", "veil", "wayfarer"] },
+  "breakdown": []
+}
