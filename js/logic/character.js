@@ -83,7 +83,7 @@ const actSkill = (w,id) => (w.acts&&w.acts[actKey(id)]) ? w.acts[actKey(id)].ski
 // Scene keys can carry extras after the base: 'act:oral_give~lost_in_it~prop' (~expression, ~context). sceneParts splits them.
 function sceneParts(k){ const p = String(k||'').split('~'); return {base:p[0], expr:p[1]||'', ctx:p[2]||''}; }
 const sceneBase = k => sceneParts(k).base;
-const isSvcScene = k => /^(act:|samact:|duo:|solo$)/.test(sceneBase(k));
+const isSvcScene = k => /^(act:|samact:|duo:|demo:|solo$)/.test(sceneBase(k));
 // Swim scenes (dates.json image "swim": true): she wears an owned bath-compatible outfit (swimsuit first), if she has one.
 function swimOutfit(w, scene){
   if(!isSwimScene(scene)) return null;
@@ -160,7 +160,7 @@ function actCloth(w, id, withSam, ctx){
 // underwear she wears (the image key includes them). Fully dressed only when nothing more is possible. Her own svcLevel choice wins.
 // balance.json → samCloth: weights per level.
 function samSceneCloth(w, scene){
-  const b = sceneBase(scene); if(!(b.startsWith('samact:') || b.startsWith('duo:'))) return null;
+  const b = sceneBase(scene); if(!/^(samact|duo|demo):/.test(b)) return null;
   if(w.svcLevel && w.svcLevel!=='auto') return null;
   const ix = x => CLOTH.findIndex(y=>y.id===x), act = b.split(':')[1], a = actById(act) || {}, D = a.dress || {};
   const top = ix(actCloth(w, act, true)), lo = Math.min(top, Math.max(0, ix(D.min || a.minCloth || 'dressed')));
@@ -172,7 +172,7 @@ function samSceneCloth(w, scene){
 function defaultCloth(w, scene){
   const P = sceneParts(scene), base = P.base;
   if(base.startsWith('act:')) return actCloth(w, base.split(':')[1], false, P.ctx);
-  if(base.startsWith('samact:') || base.startsWith('duo:')) return actCloth(w, base.split(':')[1], true);
+  if(base.startsWith('samact:') || base.startsWith('duo:') || base.startsWith('demo:')) return actCloth(w, base.split(':')[1], true);
   if(base==='solo') return comfortCloth(w, false, true);
   if(base==='bath') return clothOK(w,'nude',false) ? 'nude' : 'dressed';
   // invitations and the like (scenes.json / dates.json image "undress": "partial" | "under"): as far as that, within her comfort with Sam

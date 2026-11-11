@@ -49,4 +49,5 @@ const DEFAULT_SETTINGS = {
   snippets: {}, clothText: {}, customActs: [],
   ai: {on:true, auto:true, autoBackstory:true, guidance:'', tpl:{}}
 };
-const SAM_DESC = "a young adult Japanese man in his mid-twenties, short dark brown hair, thin build, kind and slightly awkward expression, grey hoodie under a simple traveler's cloak";
+const SAM_LOOK = "a young adult Japanese man in his mid-twenties, short dark brown hair, thin build, kind and slightly awkward expression";   // Sam without clothes (intimate scenes)
+const SAM_DESC = SAM_LOOK + ", grey hoodie under a simple traveler's cloak";

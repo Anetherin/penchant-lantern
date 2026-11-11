@@ -41,6 +41,8 @@ function sceneInfo(k, w){
     return {label:'Sam & two: '+actLabel(id), pov:true, sam:true, comp:[actPose(id,'duo'), SCENE_DATA.duoPhrase, D.prompt].filter(Boolean).join(', '),
       setting:SCENE_DATA.samRoom, snip:'act_'+id, snip2:'duo',
       client: o ? (()=>{ const oc = defaultCloth(o, 'samact:'+id); return `the second woman: ${charDesc(o, oc, 'samact:'+id)}, ${clothText(o, oc, 'samact:'+id).replace(/\{pubic\}/g, pubicText(o))}`; })() : ''}; }
+  // Sam's demonstration class: seen from the room, Sam is the man, the other ladies watch (scenes.json → demoRoom / people.demo)
+  if(k.startsWith('demo:')){ const id = k.slice(5); return {label:'Demonstration: '+actLabel(id), sam:true, comp:actPose(id,'demo'), client:'the man is ' + SAM_LOOK, setting:SCENE_DATA.demoRoom || 'a candlelit parlor, other women watching', snip:'act_'+id}; }
   if(k.startsWith('samact:')){ const a=actById(k.slice(7)); return {label:'Sam: '+actLabel(k.slice(7)), pov:true, sam:true, comp:(()=>{ const c = dateCtx(P.ctx), pose = actPose(k.slice(7),'sam'), si = c && c.sp && c.sp.image; return si && si.comp ? (si.replace ? si.comp : pose + ', ' + si.comp) : pose; })(), setting:dateSetting(P.ctx), snip:'act_'+k.slice(7)}; }
   const sc = Object.assign({}, SCENES[k] || SCENES.portrait);
   // bath scenes at home happen in the house's bathhouse when it has one (scenes.json → bathhouse); "away" keeps its own place

@@ -3,7 +3,8 @@
     "Short text lines the game picks from at random. No AI needed. Each section has a _default list; add a list under a personality name to give that personality its own lines.",
     "Placeholders: {name}, {house}, plus any extra ones noted for the section. Add as many lines as you like.",
     "enc_* lines are short notes on how one client visit went for her (shown in the weekly report). job_* lines are report lines for the non-escort jobs.",
-    "encore: the line added when a restless lady goes another round. enc_frustrated / enc_drained / enc_like / enc_put_off: extra visit notes."
+    "encore: the line added when a restless lady goes another round. enc_frustrated / enc_drained / enc_like / enc_put_off: extra visit notes.",
+    "demo_lead / demo_watch: Sam's demonstration lesson ({name} = his partner). Templates; rewrite freely."
   ],
   "solo": {
     "_note": "Report line when a lady at max lust spends part of her night alone in her room instead. Shown in the weekly report.",
@@ -632,6 +633,20 @@
     "doggy": [
       "{name} turns over onto her hands and knees and looks back at him over her shoulder.",
       "She rolls onto her front and looks back at him with a grin."
+    ]
+  },
+  "demo_lead": {
+    "_default": [
+      "Sam claps his hands for attention and announces a practical lesson. {name} stands up before he can ask, already untying something. \"Pay attention, everyone,\" she says. \"He gets nervous when nobody takes notes.\"",
+      "The parlor is full, the cushions are claimed, and {name} is in the middle of it all with Sam, explaining each step as they go like it's the most normal thing in the world. Sam's ears are bright red. Nobody looks away.",
+      "{name} volunteers so fast that a couple of the others laugh. She takes Sam's hand, turns to the room, and says, \"Right. Watch closely, this is the part everyone gets wrong.\""
+    ]
+  },
+  "demo_watch": {
+    "_default": [
+      "By the end, the room is very quiet and very warm. Several of the ladies have taken notes. Some of them are fanning themselves with the notes.",
+      "Afterward nobody quite meets anybody's eyes, and everyone has questions. A lot of questions.",
+      "There's scattered applause. Someone asks if there'll be a follow-up class. Several people ask, actually."
     ]
   }
 }

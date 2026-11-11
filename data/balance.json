@@ -78,7 +78,7 @@
     "bonus": {"eager":{"mood":4,"trust":0.5},"restless":{"mood":8,"trust":1.5},"trainMult":0.5,"clientMood":1}
   },
   "train": {
-    "_note": "One-on-one training on her sheet (samTrain), no pickers. stat: Sam coaches every stat her job uses (stat.byJob weights, default for jobs not listed); each gains (base + Sam Wits x perWits) x Wits bonus x weight x spread, in 0-1000 stat units (diminishing near the cap). skill: every trade skill; her job's skill (Hospitality without one) gets the full gain, the others x others; scales with Technique; warms her up (lust, x her lewdness, and lewd lewdness while her lewdness is below lewdCap). service: practice of every service she does with Sam (canSam), each grows (base + Technique x perTech) x share; lust and lewdness as with skill (svcLust / lewd), lustBonus x BAL.lust.bonus.trainMult. energy = Sam's, herEnergy = hers.",
+    "_note": "One-on-one training on her sheet (samTrain), no pickers. stat: Sam coaches every stat her job uses (stat.byJob weights, default for jobs not listed); each gains (base + Sam Wits x perWits) x Wits bonus x weight x spread (0-1000 units, diminishing near the cap). skill: every trade skill; her job's skill (Hospitality without one) gets the full gain, the others x others; scales with Technique; no lust or lewdness. service: practice of every service she does with Sam (canSam), each (base + Technique x perTech) x share; warms her up (svcLust x her lewdness, lewd lewdness while her lewdness is below lewdCap). broad: jobs that learn a bit of everything (madame, teacher): stats not in their list at weight stat, other skills at skillOthers instead of skill.others, and in classes every other skill at lesson x the class gain. energy = Sam's, herEnergy = hers.",
     "stat": {
       "base": 12,
       "perWits": 0.2,
@@ -101,8 +101,9 @@
         "default": {"beauty":0.4,"charm":0.4,"charisma":0.4,"refinement":0.4,"wits":0.4,"stamina":0.4,"strength":0.4,"agility":0.4}
       }
     },
-    "skill": {"energy":30,"herEnergy":14,"lust":4,"lewd":1.5,"lewdCap":50,"others":0.35},
-    "service": {"energy":30,"herEnergy":16,"base":6,"perTech":0.05,"share":0.4,"svcLust":6,"lewd":2}
+    "skill": {"energy":30,"herEnergy":14,"others":0.35},
+    "service": {"energy":30,"herEnergy":16,"base":6,"perTech":0.05,"share":0.4,"svcLust":6,"lewd":2,"lewdCap":50},
+    "broad": {"jobs":["madame","teacher"],"stat":0.4,"skillOthers":0.6,"lesson":0.3}
   },
   "solo": {"energyCost":0.15,"clientCap":6,"lustDrop":40},
   "again": {"beastkin":0.6,"other":0.2,"samCost":20,"mood":3},
@@ -598,5 +599,10 @@
   "samCloth": {
     "_note": "Pictures of time with Sam roll how undressed she is each time (samSceneCloth): every level from the service minimum (never fully dressed when more is possible) up to what she is comfortable with, by these weights; her top level counts double. Each level, outfit and underwear set saves its own picture.",
     "weights": {"partial":1,"under":1,"nude":2}
+  },
+  "lessons": {
+    "_note": "Sam's classes (Sam tab; each costs an action). stat: everyone working trains the stats her job uses at share x a one-on-one gain. skill: everyone working learns her job's skill (sam.lessonShare). demo: a demonstration with a partner Sam picks: she has to be open to it (lewdness >= openLewd, or Exhibitionist; never Modest) and does her favorite or furthest service with him (privateCore); everyone else watching learns that service (watchSkill x a practice gain) and warms up (watchLust x her lewdness, watchLewd lewdness up to that service's client line). The partner's demos count (counts.demos) toward Exhibitionist.",
+    "stat": {"share":0.5},
+    "demo": {"energy":30,"openLewd":45,"watchSkill":0.5,"watchLust":8,"watchLewd":1.5,"modestMood":-3}
   }
 }

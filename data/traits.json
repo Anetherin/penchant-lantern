@@ -96,7 +96,7 @@
       "fx": {"jobBonus":{"dancer":1.2},"wardrobe":15},
       "hidden": true,
       "gen": false,
-      "earn": null,
+      "earn": {"count":"demos","at":3},
       "ngOnly": false,
       "ngPerk": false,
       "excl": []
