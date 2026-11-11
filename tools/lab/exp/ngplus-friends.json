@@ -1,0 +1,9 @@
+{
+  "desc": "NG+ old friends: generics at max trust come back as extra candidates (1 lover). Wayfarer, Seasoned Owner.",
+  "scenario": "ngplus", "runs": 12,
+  "ng": { "house": "wayfarer", "past": "none", "boon": "ap", "lovers": 1 },
+  "variants": [ {"name": "base"} ],
+  "each": { "ng.friends": [0, 2, 4] },
+  "columns": ["c1won", "ngDebt", "ngStaff", "winWeek", "net", "missed", "staff", "sat", "left", "over"],
+  "breakdown": []
+}

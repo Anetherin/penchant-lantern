@@ -20,11 +20,11 @@
     "demolish: share = fraction of an item's base price (no inflation) it costs to demolish a built amenity, or the last bedroom / staff quarters above the house's starting count. Frees the space, lowers h.spent by the base price, never refunds. Built-in amenities can't be demolished; neither can the Bathhouse, Stage or Bar while someone holds the job that needs it.",
     "ngplus: New Game+ (after paying off the debt). Sam always keeps his home house; his starter houses (S.starters: the first house plus the new house taken each cycle) and any house whose story is finished are kept by default but the player can surrender them on the Houses step (NGS.keep) (rooms, tier, upgrades, beds); other houses are sold for saleValue x their price (0 = surrendered), which reduces the new debt instead of adding gold. New debt = home house debt x debtShare x (1 + perCycle for each cycle after the second) + improvementsValue x improveShare (improvementsValue = gold spent on rooms, tiers, quarters, beds, annex and upgrades in all kept houses, tracked in h.spent). purse = Sam's starting gold (same as a new game; his savings stay behind; the Deep Pockets perk adds 2,500). samReset: stats = Sam keeps his level but his stats are rebuilt as sam.base + sam.perLevel x (level-1) + his past lives; appraisal = Appraisal level and XP start over (past lives such as otaku re-apply their floor). Only Devoted lovers come along (they draw wages again, stats reset: named ones to their data values, generic ones to 50%, popularity 0, trust and lewdness back to where they started: named from data, generic from when they were rolled, else baseTrust/baseLewd) and each picks one NG+ perk (traits.json ngPerk). NG+ houses (economy.json ngplus) and NG+ partners (characters.json ngplus) only appear from cycle 2; NG+ houses are bought during the cycle.Sam also takes a new house each cycle (houseOffers deeds, no premium ones; its debt x newHouseShare x (1 + perCycle for each cycle after the second) joins the new debt; its resident comes along) and may add one more past life (economy.json pasts, each once). reborn: every lady who carries over gains a stack of the Reincarnated perk (w.reborn): trust gain x (1 + trust x stacks), skill gain x (1 + skill x stacks), stat gain x (1 + stat x stacks), lewdness gain x (1 + lewd x stacks). friends: old friends: non-lover guests (guests) and generic ladies (generics) whose trust is at least trust (0-100 internal, 100 = maxed) also get a Reincarnated stack but no perk, and wait in S.alumni; each weekly candidate refresh one of them turns up among the candidates with probability chance (extra to the normal candidates, at most max at a time, and she stays until hired). The first NG+ week always shows one.",
     "svc: per-service rules. staminaEnergy = services whose services.json stats list stamina cost her energy x (1.1 - stamina/500) on top of the usual stamina discount (false = off). tech* = the range of a client's technique; frustrateAt = a finishing service leaves her frustrated when technique x (her lust/60) is below this (her lust rises by frustrateLust). encore* = chance (+ her encore fx) and fee share of a reckless lady's second round. race* = enthusiast / put-off clients (data/races.json client). demon: demons don't sleep: each working week costs them hunger energy, and they gain energy per finishing service (feed, or feedReckless when restless, which costs house reputation repDrain unless the house has a Binding Sigil); with Sam she gains samGain and Sam loses samExtra more energy. android: recharge fee (fee + perEnergy x energy restored; the Charging Alcove takes chargerDiscount off). refusalMood = beastkin mood loss when Sam turns down a restless request (a Grooming Den halves it).",
-    "jobs: barAgil = bartender income x (1 + barAgil x Agility/100), i.e. up to +10% more visitors served. attendantWitsW (was attendantRefW) = Wits weight of an attendant. courtesanTh = how many points lower a courtesan's comfort lines sit; propWant = chance a client asks for a service (courtesans vs. everyone else who steps in); promoter draw = promoterBase + (charm+service)/promoterDiv clients, samples multiply it (samplesDraw), cost samplesEnergy energy, and she gives samplesMin-samplesMax light services from her client menu for free (kiss, massage, hands, breasts, mouth; half energy, no fee or room; shown in the report; samplesLust lust if none fit), rep change = (quality-0.5) x samplesRep; attendant: courtesans spend attendantEnergy x energy and clients are attendantSat happier; a house can have as many attendants as courtesan positions, and each courtesan with her own attendant (most popular first) gets attendantOwnMood mood and attendantOwnTrust trust a week; madame: cuts the house's mood losses to madameMoodLoss, matches clients to a fitting lady (+madameMatchSat sat), and coaches courtesans she out-ranks by madamePopGap popularity: each skill she is better at grows by madameCoach x the difference (rounded down); stepIn* = how many clients a madame/attendant takes when courtesans are swamped and the energy she needs; bar*: each active bartender (max barPropsMax) with a Bar raises the house proposition rate by barProps (x amenities.drinks.props[h.drinks]; applies to propositions to staff and to the share of clients who ask a courtesan for a service), and adds rowdy chance (barRowdy) and client recklessness (barReckless); a bartender earns (barBase + visitors x barPerVisitor) x skill/charm x amenities.drinks.bar[h.drinks], plus tips = visitors x barTips x (0.5 + popularity/100) x (0.5 + charm/100); bath*: massage offers to bathers (bathShare of visitors, bathCap each); tipsBase / danceRep: dancer tips and reputation.",
+    "jobs: barAgil = bartender income x (1 + barAgil x Agility/100), i.e. up to +10% more visitors served. attendantWitsW (was attendantRefW) = Wits weight of an attendant. courtesanTh = how many points lower a courtesan's comfort lines sit; propWant = chance a client asks for a service (courtesans vs. everyone else who steps in); promoter draw = promoterBase + (charm+service)/promoterDiv clients, samples multiply it (samplesDraw), cost samplesEnergy energy, and she gives samplesMin-samplesMax light services from her client menu for free (kiss, massage, hands, breasts, mouth; half energy, no fee or room; shown in the report; samplesLust lust if none fit), rep change = (quality-0.5) x samplesRep; attendant: courtesans spend attendantEnergy x energy and clients are attendantSat happier; a house can have as many attendants as courtesan positions, and each courtesan with her own attendant (most popular first) gets attendantOwnMood mood and attendantOwnTrust trust a week; madame: cuts the house's mood losses to madameMoodLoss, matches clients to a fitting lady (+madameMatchSat sat), and coaches courtesans she out-ranks by madamePopGap popularity: each skill she is better at grows by madameCoach x the difference (rounded down); stepIn* = how many clients a madame/attendant takes when courtesans are swamped and the energy she needs; bar*: each active bartender (max barPropsMax) with a Bar raises the house proposition rate by barProps (x amenities.drinks.props[h.drinks]; applies to propositions to staff and to the share of clients who ask a courtesan for a service), and adds rowdy chance (barRowdy) and client recklessness (barReckless); a bartender earns (barBase + visitors x barPerVisitor) x skill/charm x amenities.drinks.bar[h.drinks], plus tips = visitors x barTips x (0.5 + popularity/100) x (0.5 + charm/100); bath*: massage offers to bathers (bathShare of visitors, bathCap each); tipsBase / danceRep: dancer tips and reputation. promoterBase/promoterDiv: promoter draw = base + (Charisma + Hospitality)/div; x (1 + promoterLowRep x (1 - rep/promoterRepRef)) while the house is little known; the 2nd/3rd promoter x promoterStack^k; each drawn client also spreads the name (repAdd promoterRep x draw).",
     "rooms.perRoom: room-service sessions per bedroom per week; Exhibitionist ladies don't use a room.",
-    "tidy: maidPerAgil = extra tidiness per point of the maid's Agility (0-100; an agility-50 maid adds about 8% over an average one). starting value, losses (perService room service, perVisitor), maid gain per week = (maidBase + service skill x maidPerSkill) x outfit bonus x her tidy fx, and the three effect tiers (rep per week, mood, energy recovery multiplier) at high (>=75), low (<45) and bad (<20).",
+    "tidy: maidPerAgil = extra tidiness per point of the maid's Agility (0-100; an agility-50 maid adds about 8% over an average one). starting value, losses (perService room service, perVisitor), maid gain per week = (maidBase + service skill x maidPerSkill) x outfit bonus x her tidy fx, and the three effect tiers (rep per week, mood, energy recovery multiplier) at high (>=75), low (<45) and bad (<20). maidEase/maidMax: a maid's weekly gain is x (100 - tidiness)/maidEase (at most maidMax), so maids hold a house around a level instead of pinning it at 100: one average maid keeps a 6-8 lady house near 70. Bands: high (>= high) small bonus, neutral up to there, low (< low), bad (< bad) costs reputation, mood, rest and client satisfaction (fx.*.sat).",
     "rep: positive reputation changes are scaled by max(gainMin, gainBase - rep/gainDiv). Losses are not.",
-    "props: propositions. talkDown = pushy-client chance she talks him down herself before security is tried: (Wits x .6 + Charm x .4)/100 x talkDown; talkMood = her mood change when she has to (negative). penalty/maxPenalty = main-job output lost per accepted proposition (non-must jobs). accept* = chance a non-must lady accepts (acceptBase + (lust-acceptLustMid)/100 + willing fx, +acceptEager when eager, +acceptReckless when reckless); onChance / offSlip = chance when \"Open to propositions\" is on / off-but-reckless; alt / altMust = chance of a counter-offer. attendantExpect = share of attendant propositions where the client expected her to offer (expectSat if she declines). self* = reckless ladies propositioning clients. Pushy resolution: security power vs a roll in securityRoll; else Sam (if his energy >= samEnergyMin) checks strength + charm/2 + roll(0..samRoll) >= samCheck; else none. Costs/mood effects follow. When security fails a pushy client and Sam has the energy, he is sent for and the player decides after the report (one event for the week): step in (the old samCheck roll), call the town watch (watchFee per incident, watchRep reputation each), or let her handle it (none penalties).",
+    "props: propositions. talkDown = pushy-client chance she talks him down herself before security is tried: (Wits x .6 + Charm x .4)/100 x talkDown; talkMood = her mood change when she has to (negative). penalty/maxPenalty = main-job output lost per accepted proposition (non-must jobs). accept* = chance a non-must lady accepts (acceptBase + (lust-acceptLustMid)/100 + willing fx, +acceptEager when eager, +acceptReckless when reckless); onChance / offSlip = chance when \"Open to propositions\" is on / off-but-reckless; alt / altMust = chance of a counter-offer. attendantExpect = share of attendant propositions where the client expected her to offer (expectSat if she declines). self* = reckless ladies propositioning clients. Pushy resolution: security power vs a roll in securityRoll; else Sam (if his energy >= samEnergyMin) checks strength + charm/2 + roll(0..samRoll) >= samCheck; else none. Costs/mood effects follow. When security fails a pushy client and Sam has the energy, he is sent for and the player decides after the report (one event for the week): step in (the old samCheck roll), call the town watch (watchFee per incident, watchRep reputation each), or let her handle it (none penalties). nights: nights in a working week. A pushy client nobody stops (Sam too tired, or his step-in fails) ends her night: escorts lose nightCap clients of the week, everyone else 1/nights of her job's output and that share of the week's propositions. Sam steps in on the spot when he has samEnergyMin energy (Strength + Charm/2 + samRoll vs samCheck, +watchBonus if he stood watch); there is no more after-report event.",
     "houseGate: ladies who come with a house (role 'house') can't trust Sam past base + perBeat x (that house's story beat) until the house story is finished (3 beats: 40 + 20 x 3 = 100). Arc beats for them wait for the story too. gap = weeks before beat 1 / 2 / 3 can start (first, later, later); retry = weeks before a beat comes back after a failed check.",
     "wardrobe: costMult scales every outfit/underwear price (lower = easier to get clothes). eventChance = relative weight of each of the 'someone gave her an outfit' random events (data/events.json).",
     "svc.askMore: after a service that builds her lust (giving, kissing, massages), a lady with lust >= lust.eager and lewdness >= lewd may ask the client for more (chance), offering a heavier service from her menu that spends lust; it pays fee x its normal price.",
@@ -128,8 +128,8 @@
   },
   "demolish": {"share":0.25},
   "ngplus": {
-    "debtShare": 0.7,
-    "perCycle": 0.2,
+    "debtShare": 0.9,
+    "perCycle": 0.35,
     "purse": 600,
     "saleValue": 0,
     "improveShare": 0.6,
@@ -223,8 +223,8 @@
   "jobs": {
     "courtesanTh": 15,
     "propWant": {"courtesan":0.85,"other":0.3},
-    "promoterBase": 2,
-    "promoterDiv": 25,
+    "promoterBase": 3,
+    "promoterDiv": 15,
     "samplesDraw": 1.6,
     "samplesMin": 1,
     "samplesMax": 3,
@@ -260,7 +260,11 @@
     "attendantShared": 0.3,
     "attendantEnergyPer": 0.12,
     "attendantEnergyMin": 0.8,
-    "attendantSatPer": 7
+    "attendantSatPer": 7,
+    "promoterLowRep": 1,
+    "promoterRepRef": 60,
+    "promoterStack": 0.6,
+    "promoterRep": 0.03
   },
   "rooms": {"perRoom":8},
   "tidy": {
@@ -270,10 +274,16 @@
     "maidBase": 5.5,
     "maidPerSkill": 0.12,
     "maidPerAgil": 0.0165,
-    "high": 75,
-    "low": 45,
-    "bad": 20,
-    "fx": {"high":{"rep":0.3,"mood":2,"rec":1.05},"low":{"rep":-0.4,"mood":-2,"rec":0.95},"bad":{"rep":-1,"mood":-5,"rec":0.9}}
+    "high": 80,
+    "low": 50,
+    "bad": 30,
+    "fx": {
+      "high": {"rep":0.2,"mood":2,"rec":1.05,"sat":2,"demand":1.03},
+      "low": {"rep":-0.3,"mood":-2,"rec":0.97,"sat":-3,"demand":0.95},
+      "bad": {"rep":-1.5,"mood":-6,"rec":0.9,"sat":-10,"demand":0.8}
+    },
+    "maidEase": 35,
+    "maidMax": 1.5
   },
   "rep": {"gainBase":1.5,"gainDiv":60,"gainMin":0.2},
   "props": {
@@ -312,11 +322,14 @@
     "failMood": 4,
     "noneMood": 10,
     "noneRep": 1,
-    "maxPushy": 0.7
+    "maxPushy": 0.7,
+    "nights": 6,
+    "nightCap": 2,
+    "watchBonus": 15
   },
   "houseGate": {"base":40,"perBeat":20,"gap":[2,2,2],"retry":2},
   "wardrobe": {"costMult":0.7,"eventChance":1.2},
-  "debt": {"every":4,"payments":13,"ramp":8,"penalty":0.1,"strikes":3,"ngplus":{"fewer":2,"minPayments":9,"flatter":2.5,"minRamp":3}},
+  "debt": {"every":4,"payments":13,"ramp":8,"penalty":0.1,"strikes":3,"ngplus":{"fewer":0,"minPayments":9,"flatter":0,"minRamp":3}},
   "clients": {
     "pickFrom": 30,
     "pickPer": 0.3,

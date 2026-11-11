@@ -13,6 +13,9 @@ export function metrics(r){
   Object.assign(m, { total: mean(W.map(x => x.net + x.sam)), net: avg('net'), income: avg('income'), wages: avg('wages'), upkeep: avg('upkeep'), sam: avg('sam'), served: avg('served'), turned: avg('turned'), sat: avg('sat'),
     mood: avg('mood'), trust: last.trust, gold: last.gold, debt: last.debt, rep: last.rep, repGain: last.rep - (first.rep - 0), staff: last.staff,
     missed: W.reduce((a, x) => a + x.missed, 0), left: W.reduce((a, x) => a + x.left, 0), over: last.over ? 1 : 0, won: last.won ? 1 : 0 });
+  const H0 = W.map(x => (x.houses || [])[0]).filter(Boolean), hav = k => mean(H0.map(x => x[k]).filter(Number.isFinite));
+  m.tidy = hav('tidy'); m.tidyEnd = (H0.at(-1) || {}).tidy; m.promo = hav('promo'); m.lost = hav('lost');
+  m.pushy = mean(H0.map(x => x.pushy ? x.pushy.total : 0)); m.unhandled = mean(H0.map(x => x.pushy ? (x.pushy.none || 0) + (x.pushy.samfail || 0) + (x.pushy.samcall || 0) : 0));
   // money made per working generic lady-week (earned - wage)
   const per = W.flatMap(x => x.per || []).filter(p => p.job !== 'rest' && !p.key);
   m.perLady = mean(per.map(p => p.earned - p.wage));
@@ -24,6 +27,8 @@ export function metrics(r){
     m.netEarly = seg(0, ph.mid ?? 1e9); m.netMid = ph.mid ? seg(ph.mid, ph.late ?? 1e9) : NaN; m.netLate = ph.late ? seg(ph.late, 1e9) : NaN;
     const at = k => (W.find(x => x.wk === k) || {}).gold; m.gold13 = at(13); m.gold26 = at(26); m.gold52 = at(52);
     if (r.info && r.info.ng) { m.ngDebt = r.info.ng.debtTotal; m.ngStaff = r.info.ng.staff; m.c1won = r.info.c1won; m.lovers = r.info.ng.lovers; }
+    (r.info && r.info.cyc || []).forEach(c => { m['c' + c.cycle + 'len'] = c.len ?? NaN; m['c' + c.cycle + 'debt'] = c.debtTotal; m['c' + c.cycle + 'staff'] = c.staff; m['c' + c.cycle + 'over'] = c.over ? 1 : 0; m['c' + c.cycle + 'lovers'] = c.lovers; });
+    if (r.info && r.info.cyc && r.info.cyc.length) { const c = r.info.cyc[0]; m.winWeek = c.len ?? NaN; }
   }
   return m;
 }
@@ -41,10 +46,10 @@ function breakdown(runs, key){
 
 const COLS = {
   campaign: ['winWeek', 'midAt', 'lateAt', 'netEarly', 'netMid', 'netLate', 'gold26', 'gold52', 'missed', 'rep', 'staff', 'sat', 'left', 'over'],
-  ngplus: ['c1won', 'lovers', 'ngDebt', 'ngStaff', 'winWeek', 'net', 'missed', 'gold', 'staff', 'sat', 'left', 'over'],
+  ngplus: ['c1won', 'lovers', 'ngDebt', 'ngStaff', 'winWeek', 'net', 'missed', 'staff', 'sat', 'left', 'over'],
   phase: ['total', 'net', 'sam', 'income', 'wages', 'perLady', 'gold', 'repGain', 'served', 'turned', 'sat', 'mood', 'left', 'missed']
 };
-const DELTA = { campaign: ['winWeek', 'netMid', 'netLate', 'gold26'], ngplus: ['winWeek', 'net', 'gold'], phase: ['total', 'net', 'perLady', 'repGain', 'sat', 'left'] };
+const DELTA = { campaign: ['winWeek', 'netMid', 'netLate', 'gold26'], ngplus: ['winWeek', 'net', 'over'], phase: ['total', 'net', 'perLady', 'repGain', 'sat', 'left'] };
 
 export function report(spec, variants, results, stamp){
   const sc = spec.scenario || 'campaign', kind = COLS[sc] ? sc : 'phase';

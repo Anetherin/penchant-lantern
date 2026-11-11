@@ -1,0 +1,49 @@
+{
+  "desc": "NG+ over several cycles (cycles 2-5): new house = the best one offered (LAB.HOUSE_RANK), Seasoned Owner first then the next untaken boon, no new past; bot's natural lovers. keep: all kept houses (default) vs only the home house. cN* = cycle N: length in weeks, debt, starting staff, game over.",
+  "scenario": "ngplus",
+  "runs": 12,
+  "cycles": 4,
+  "ng": {
+    "past": "none",
+    "boon": "ap",
+    "house": "best"
+  },
+  "variants": [
+    {
+      "name": "base"
+    }
+  ],
+  "each": {
+    "ng.keep": [
+      "all",
+      "home"
+    ]
+  },
+  "columns": [
+    "c1won",
+    "c2len",
+    "c3len",
+    "c4len",
+    "c5len",
+    "c2debt",
+    "c3debt",
+    "c4debt",
+    "c5debt",
+    "c2staff",
+    "c3staff",
+    "c4staff",
+    "c5staff",
+    "c2over",
+    "c3over",
+    "c4over",
+    "c5over"
+  ],
+  "delta": [
+    "c2len",
+    "c3len",
+    "c4len",
+    "c5len",
+    "c4over"
+  ],
+  "breakdown": []
+}
