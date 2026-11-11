@@ -65,16 +65,19 @@ function manageJobs(h){
   const mine = staffIn(h), cnt = j => mine.filter(x => x.job === j).length;
   mine.forEach(w => { if (w.job !== 'rest' && w.energy < maxEnergy(w) * 0.30) w.job = 'rest'; });
   // locked ladies (job experiments) go back to their job as soon as they're rested
-  mine.forEach(w => { if (w._lock && w.job === 'rest' && w.energy > maxEnergy(w) * 0.6) { if (!tryJob(w, w._lock) && w._force) w.job = w._lock; } });
+  // locked ladies (job experiments) take their job whenever they can; until then they're assigned like everyone else
+  mine.forEach(w => { if (!w._lock || w.job === w._lock) return; const rested = w.job !== 'rest' || w.energy > maxEnergy(w) * 0.6; if (!rested) return;
+    const was = w.job; w.job = 'rest'; if (!tryJob(w, w._lock)) { if (w._force) w.job = w._lock; else w.job = was; } });
+  const free = w => !w._lock || w.job !== w._lock;
   // one lady on each amenity job the house has (from anyone rested and not locked)
   for (const j of Object.keys(AMEN)) { if (!h.up[AMEN[j]] || cnt(j) >= 1 || j === 'chapel' || j === 'teacher') continue;
-    const pool = mine.filter(w => !w._lock && !AMEN[w.job] && !canDo(w, j));
+    const pool = mine.filter(w => free(w) && !AMEN[w.job] && !canDo(w, j));
     pool.sort((a, b) => (a.job === 'rest' ? 0 : 1) - (b.job === 'rest' ? 0 : 1) || b.energy - a.energy);
     if (pool.length && (pool[0].job !== 'rest' || pool[0].energy > maxEnergy(pool[0]) * 0.6)) tryJob(pool[0], j); }
-  mine.forEach(w => { if (w._lock || w.job !== 'rest' || w.energy <= maxEnergy(w) * 0.6) return;
+  mine.forEach(w => { if (!free(w) || w.job !== 'rest' || w.energy <= maxEnergy(w) * 0.6) return;
     for (const j of jobOrder(h, cnt)) { if (AMEN[j] && (!h.up[AMEN[j]] || cnt(j) >= 1)) continue; if (tryJob(w, j)) return; } });
   if (P.resort) { const T = staffIn(h).length >= P.targetsAt ? (P.targets || {}) : {};
-    mine.forEach(w => { if (w._lock || !['promoter', 'maid', 'attendant'].includes(w.job) || cnt(w.job) <= (T[w.job] || 0)) return;
+    mine.forEach(w => { if (!free(w) || !['promoter', 'maid', 'attendant'].includes(w.job) || cnt(w.job) <= (T[w.job] || 0)) return;
       const was = w.job; w.job = 'rest'; if (!tryJob(w, 'courtesan')) w.job = was; }); }
 }
 function hireScore(c){ return P.hire === 'best' ? STAT_KEYS.reduce((a, k) => a + s100(c.stats[k]), 0) / Math.max(50, c.signing) : -c.signing; }
@@ -85,7 +88,8 @@ function manageHouse(h){
     for (const k of P.amenities) { if (h.up[k] || !UPGRADES[k]) continue; const need = AMENITY_SIZE[k] ?? 1;
       if (roomsUsed(h) + need > houseSize(h)) continue; if (S.gold < upgradeCost(h, k) * 1.2 + reserveGold()) break;
       buyUpgrade(k); quiet(); break; } }
-  if (P.hireRace) { const R = P.hireRace.split('/'); S.candidates = S.candidates.filter(c => c.race === R[0] && (!R[1] || c.sub === R[1]));
+  if (P.hireRace) { const R = P.hireRace.split('/'), need = (RACES[R[0]] || {}).needs;
+    if (need && !h.up[need] && S.gold >= upgradeCost(h, need) + P.reserve) { buyUpgrade(need); quiet(); } S.candidates = S.candidates.filter(c => c.race === R[0] && (!R[1] || c.sub === R[1]));
     while (S.candidates.length < 3) { let c, t = 0; do { c = genWorker({ race: R[0] }); } while (R[1] && c.sub !== R[1] && ++t < 200); c.signing = signingFor(c); S.candidates.push(c); } }
   for (let g = 0; g < 6; g++) {
     if (staffIn(h).length >= P.maxStaff) break;

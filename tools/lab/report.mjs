@@ -10,7 +10,7 @@ export function metrics(r){
   const m = { weeks: W.length };
   if (!W.length) return m;
   const avg = k => mean(W.map(x => x[k]));
-  Object.assign(m, { net: avg('net'), income: avg('income'), wages: avg('wages'), upkeep: avg('upkeep'), sam: avg('sam'), served: avg('served'), turned: avg('turned'), sat: avg('sat'),
+  Object.assign(m, { total: mean(W.map(x => x.net + x.sam)), net: avg('net'), income: avg('income'), wages: avg('wages'), upkeep: avg('upkeep'), sam: avg('sam'), served: avg('served'), turned: avg('turned'), sat: avg('sat'),
     mood: avg('mood'), trust: last.trust, gold: last.gold, debt: last.debt, rep: last.rep, repGain: last.rep - (first.rep - 0), staff: last.staff,
     missed: W.reduce((a, x) => a + x.missed, 0), left: W.reduce((a, x) => a + x.left, 0), over: last.over ? 1 : 0, won: last.won ? 1 : 0 });
   // money made per working generic lady-week (earned - wage)
@@ -42,9 +42,9 @@ function breakdown(runs, key){
 const COLS = {
   campaign: ['winWeek', 'midAt', 'lateAt', 'netEarly', 'netMid', 'netLate', 'gold26', 'gold52', 'missed', 'rep', 'staff', 'sat', 'left', 'over'],
   ngplus: ['c1won', 'lovers', 'ngDebt', 'ngStaff', 'winWeek', 'net', 'missed', 'gold', 'staff', 'sat', 'left', 'over'],
-  phase: ['net', 'income', 'wages', 'perLady', 'gold', 'repGain', 'served', 'turned', 'sat', 'mood', 'left', 'missed']
+  phase: ['total', 'net', 'sam', 'income', 'wages', 'perLady', 'gold', 'repGain', 'served', 'turned', 'sat', 'mood', 'left', 'missed']
 };
-const DELTA = { campaign: ['winWeek', 'netMid', 'netLate', 'gold52'], ngplus: ['winWeek', 'net', 'gold'], phase: ['net', 'perLady', 'repGain', 'sat', 'left'] };
+const DELTA = { campaign: ['winWeek', 'netMid', 'netLate', 'gold26'], ngplus: ['winWeek', 'net', 'gold'], phase: ['total', 'net', 'perLady', 'repGain', 'sat', 'left'] };
 
 export function report(spec, variants, results, stamp){
   const sc = spec.scenario || 'campaign', kind = COLS[sc] ? sc : 'phase';

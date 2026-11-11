@@ -1,0 +1,18 @@
+{
+  "desc": "Support staff: how many maids/promoters the player keeps (everyone else courtesan-first). Policy applies from week 1, measured per phase.",
+  "scenario": "mid",
+  "weeks": 12,
+  "runs": 16,
+  "by": { "scenario": ["mid", "late"] },
+  "variants": [ {"name": "base"} ],
+  "each": { "policy.targets": [
+    {"name": "none", "maid": 0, "promoter": 0},
+    {"name": "maid only", "maid": 1, "promoter": 0},
+    {"name": "promoter only", "maid": 0, "promoter": 1},
+    {"name": "2 promoters + maid", "maid": 1, "promoter": 2},
+    {"name": "2 maids + promoter", "maid": 2, "promoter": 1},
+    {"name": "+ security", "maid": 1, "promoter": 1, "security": 1},
+    {"name": "+ host", "maid": 1, "promoter": 1, "host": 1}
+  ] },
+  "breakdown": []
+}
