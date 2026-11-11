@@ -17,10 +17,13 @@
       "scout",
       "rounds",
       "lesson",
+      "date",
+      "rest",
+      "statclass",
       "trainStat",
       "trainSkill",
-      "date",
-      "rest"
+      "trainService",
+      "demo"
     ]
   },
   "columns": [

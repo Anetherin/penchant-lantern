@@ -285,7 +285,7 @@ function samTrain(id, mode='skill'){
   }
   // every trade skill, hands-on: her job's skill (Hospitality without one) at full strength, the rest x skill.others
   if(!useAP(SK.energy ?? 30)) return;
-  const main = trainSkillOf(w), g = (4 + tq/25) * tm2, oth = broadJob(w) ? (T.broad.skillOthers ?? 0.6) : (SK.others ?? 0.35);
+  const main = trainSkillOf(w), g = ((SK.base ?? 4) + tq*(SK.perTech ?? 0.04)) * tm2, oth = broadJob(w) ? (T.broad.skillOthers ?? 0.6) : (SK.others ?? 0.35);
   const got = TECH_KEYS.map(k=>{ const v0 = w.tech[k]; grow(w, k, g * (k===main ? 1 : oth)); return `${TECH_LABEL[k]} +${Math.round(w.tech[k]-v0)}`; });
   statXP(w, 'charm', g*0.6); gainTrust(w, 1);
   w.energy = clamp(w.energy-(SK.herEnergy ?? 14), 0, maxEnergy(w)); if(tm<1) moodAdd(w, -3); samStat('technique',1); samXP(5); samLog(`Trained ${w.name}`);

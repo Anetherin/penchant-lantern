@@ -44,7 +44,7 @@ LAB.POLICY = {
   reserve: 300,          // keep this much gold on top of last week's costs and an upcoming debt payment
   roundsTrust: 35,       // Sam makes the rounds when any lady is below this trust
   partnerDates: true,    // one date a week with the partner while AP allows (builds toward Devoted -> NG+ carries)
-  samDefault: 'bartend', // what Sam does with spare AP: bartend | security | books | scout | rounds | lesson | trainStat | trainSkill | date | rest
+  samDefault: 'bartend', // what Sam does with spare AP: bartend | security | books | scout | rounds | lesson | statclass | trainStat | trainSkill | trainService | demo | date | rest
   payOff: true,
   scoutWhenShort: 4,     // Sam scouts instead of his spare action while a house has fewer ladies than this and few candidates are affordable          // pay the whole debt as soon as gold covers it plus the reserve
   targets: { maid: 1, promoter: 1 }, // support staff kept per house once it has `targetsAt` ladies; everyone else courtesan-first
@@ -103,17 +103,17 @@ function manageHouse(h){
   }
   manageJobs(h);
 }
-// the game reads some choices from the open sheet's <select>; give it a hidden one
-function sel(id, v){ let e = document.getElementById(id); if (!e) { e = document.createElement('select'); e.id = id; e.style.display = 'none'; document.body.appendChild(e); }
-  e.innerHTML = `<option value="${v}">${v}</option>`; e.value = v; }
 let trainI = 0;
 function samSpare(){
   const k = P.samDefault, earners = S.workers.filter(w => w.job === 'courtesan' || (JOBS[w.job] || {}).must);
   const pickW = () => { const L = (earners.length ? earners : S.workers); return L[(trainI++) % L.length]; };
   if (k === 'rest') return samRest();
-  if (k === 'lesson') { sel('lessonSel', 'service'); return samWork('lesson'); }
-  if (k === 'trainStat') { const w = pickW(); if (!w) return samWork('bartend'); const st = (P.trainStats || ['beauty', 'stamina', 'charm']).slice().sort((a, b) => statOf(w, a) - statOf(w, b))[0]; sel('trainStatSel', st); return samTrain(w.id, 'stat'); }
-  if (k === 'trainSkill') { const w = pickW(); if (!w) return samWork('bartend'); sel('trainSel', 'service'); return samTrain(w.id, 'skill'); }
+  if (k === 'lesson' || k === 'statclass') return samWork(k);
+  if (k === 'trainStat') { const w = pickW(); return w ? samTrain(w.id, 'stat') : samWork('bartend'); }
+  if (k === 'trainSkill') { const w = pickW(); return w ? samTrain(w.id, 'skill') : samWork('bartend'); }
+  if (k === 'trainService') { const L = S.workers.filter(w => getActs().some(a => canSam(w, a.id))); const w = L[(trainI++) % (L.length || 1)];
+    return w ? samTrain(w.id, 'service') : samWork('bartend'); }
+  if (k === 'demo') { const w = S.workers.find(w => demoAct(w) && demoOpen(w)); return w ? samDemo(w.id) : samWork('bartend'); }
   if (k === 'date') { const w = S.workers.slice().sort((a, b) => a.trust - b.trust)[0]; if (!w) return samWork('bartend'); return samDate(w.id, 'walk'); }
   return samWork(k);
 }

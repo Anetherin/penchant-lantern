@@ -78,7 +78,7 @@
     "bonus": {"eager":{"mood":4,"trust":0.5},"restless":{"mood":8,"trust":1.5},"trainMult":0.5,"clientMood":1}
   },
   "train": {
-    "_note": "One-on-one training on her sheet (samTrain), no pickers. stat: Sam coaches every stat her job uses (stat.byJob weights, default for jobs not listed); each gains (base + Sam Wits x perWits) x Wits bonus x weight x spread (0-1000 units, diminishing near the cap). skill: every trade skill; her job's skill (Hospitality without one) gets the full gain, the others x others; scales with Technique; no lust or lewdness. service: practice of every service she does with Sam (canSam), each (base + Technique x perTech) x share; warms her up (svcLust x her lewdness, lewd lewdness while her lewdness is below lewdCap). broad: jobs that learn a bit of everything (madame, teacher): stats not in their list at weight stat, other skills at skillOthers instead of skill.others, and in classes every other skill at lesson x the class gain. energy = Sam's, herEnergy = hers.",
+    "_note": "One-on-one training on her sheet (samTrain), no pickers. stat: Sam coaches every stat her job uses (stat.byJob weights, default for jobs not listed); each gains (base + Sam Wits x perWits) x Wits bonus x weight x spread (0-1000 units, diminishing near the cap). skill: every trade skill; her job's skill (Hospitality without one) gets the full gain, the others x others; scales with Technique; no lust or lewdness. service: practice of every service she does with Sam (canSam), each (base + Technique x perTech) x share; warms her up (svcLust x her lewdness, lewd lewdness while her lewdness is below lewdCap). broad: jobs that learn a bit of everything (madame, teacher): stats not in their list at weight stat, other skills at skillOthers instead of skill.others, and in classes every other skill at lesson x the class gain. energy = Sam's, herEnergy = hers. skill.base/perTech: her job's skill gains base + Technique x perTech per session (others x others); herEnergy kept low so a session pays back within a cycle (tools/lab sam-actions-campaign).",
     "stat": {
       "base": 12,
       "perWits": 0.2,
@@ -101,7 +101,7 @@
         "default": {"beauty":0.4,"charm":0.4,"charisma":0.4,"refinement":0.4,"wits":0.4,"stamina":0.4,"strength":0.4,"agility":0.4}
       }
     },
-    "skill": {"energy":30,"herEnergy":14,"others":0.35},
+    "skill": {"energy":30,"herEnergy":6,"others":0.35,"base":8,"perTech":0.08},
     "service": {"energy":30,"herEnergy":16,"base":6,"perTech":0.05,"share":0.4,"svcLust":6,"lewd":2,"lewdCap":50},
     "broad": {"jobs":["madame","teacher"],"stat":0.4,"skillOthers":0.6,"lesson":0.3}
   },
