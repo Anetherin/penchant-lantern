@@ -21,9 +21,10 @@ const GOD_TRUE = GOD.trueForm && GOD_FORMS[GOD.trueForm] ? GOD.trueForm : Object
 const godNpcId = r => 'npc_goddess_' + r;
 Object.entries(GOD_FORMS).forEach(([r, f], i)=>{
   const lk = GOD.look || {};
-  NPCS[godNpcId(r)] = {id:godNpcId(r), name:GOD.name, race:RACES[r] ? r : 'human', sub:f.sub || '', age:999, outfit:'custom', customOutfit:f.outfit || lk.outfit || '', under:'plain', imgVar:{},
+  const race = RACES[f.race || r] ? (f.race || r) : 'human';
+  NPCS[godNpcId(r)] = {id:godNpcId(r), name:GOD.name, race, sub:f.sub || '', age:999, outfit:'custom', customOutfit:f.outfit || lk.outfit || '', under:'plain', imgVar:{},
     seed:7130417 + i*101, lewd:95, trust:100, traits:[], acts:{}, menu:[], counts:{}, body:Object.assign({}, BODY_DEF, f.body || {}),
-    design:{build:f.build || '', hairStyle:f.hairStyle || lk.hairStyle || '', hairColor:f.hair || lk.hair || '', eyes:f.eyes || lk.eyes || '', skin:f.skin || '', features:[lk.signature, f.features].filter(Boolean).join(', ')}};
+    design:{build:f.build || '', hairStyle:f.hairStyle || lk.hairStyle || '', hairColor:f.hair || lk.hair || '', eyes:f.eyes || lk.eyes || '', skin:f.skin || lk.skin || '', features:[lk.signature, f.features].filter(Boolean).join(', ')}};
 });
 const GOD_ID = godNpcId(GOD_TRUE);   // her own form: story scenes before the binding
 const GFOCUS = ['indulge','business','watch','tutelage','whim'];
@@ -110,7 +111,7 @@ function goddessRebirth(info, next){
 }
 function goddessBind(info, next){
   const g = G(), B = GB(), T = GOD.binding || {};
-  g.bound = true; g.boundCycle = S.cycle; g.lastNight = S.week; g.divinity = (B.divinity||{}).bindTo ?? 5;
+  g.bound = true; g.knows = true; g.boundCycle = S.cycle; g.lastNight = S.week; g.divinity = (B.divinity||{}).bindTo ?? 5;
   g.love = clamp((g.love||0) + ((B.love||{}).bind ?? 10)); g.jealousy = Math.round((g.jealousy||0) * 0.4); g.finishes = (g.finishes||0) + 1;
   addLog(`${GN()} is bound to Sam. Her divinity is gone, for now.`);
   const ladies = rebornFull(fullAt() + 1).map(w=>w.name.split(' ')[0]);
@@ -126,7 +127,7 @@ function goddessHouseNote(id){
 
 /* ---------- weekly: before the houses run (her actions) and after (income, events, drift) ---------- */
 function goddessPlan(){
-  GW = {biz:{}, watch:{}, saved:0, lines:[]};
+  GW = {biz:{}, watch:{}, saved:0, lines:[], hl:[]};
   const g = G(); if(!goddessActive()) return;
   const A = GB().actions || {}, M = GB().mood || {}, p = goddessPower(), n = goddessActions();
   const lines = GW.lines, W = S.workers.filter(w=>w.job!=='rest' || (w.lust||0) > 0);
@@ -145,7 +146,8 @@ function goddessPlan(){
       ladies.forEach(w=>{ w.lust = Math.max(0, (w.lust||0) - (I.lust ?? 30) * q); fitLust(w); moodAdd(w, (I.mood ?? 8) * q);
         w.energy = clamp(w.energy + (I.energy ?? 15) * q, 0, maxEnergy(w)); lewdUp(w, (I.lewd ?? 1) * q); countUp(w, 'goddess');
         const f = form(), act = goddessActFor(w, f); if(act) growAct(w, act, (I.practice ?? 2) * q);
-        lines.push(gSvcLine(act, f, w.name.split(' ')[0]) || gtxt(((F.indulge||{})[f]) || (F.indulge||{}).report, {lady:w.name.split(' ')[0]})); });
+        const t = gSvcLine(act, f, w.name.split(' ')[0]) || gtxt(((F.indulge||{})[f]) || (F.indulge||{}).report, {lady:w.name.split(' ')[0]});
+        lines.push(t); if(act) GW.hl.push({wid:w.id, text:t, act, scene:`pair:${act}:${f}:${godId()}`, noAi:true}); });
     } else if(kind==='business'){
       const B = A.business || {}, h = pick(S.houses);
       GW.biz[h.id] = (GW.biz[h.id]||0) + (B.income ?? 0.06) * q; repAdd(h, (B.rep ?? 1) * q);
@@ -180,12 +182,11 @@ function goddessAfter(R){
   if(goddessActive()){
     let add = 0; (R.houses||[]).forEach(hr=>{ const b = GW.biz[hr.id]; if(b) add += Math.round(hr.income * b); });
     if(add){ R.income += add; S.gold += add; R.godBiz = add; }
-    GW.lines.forEach(t=>R.lines.push(`✨ ${t}`));
+    GW.lines.forEach(t=>R.lines.push(`✨ ${t}`)); GW.hl.forEach(e=>R.hl.push(e));   // her nights with the ladies, with a picture, on their pages
     if(add) R.lines.push(`✨ ${GN()} brought in an extra ${fmt(add)}.`);
     if(GW.saved) R.lines.push(`✨ ${gtxt((GOD.focus||{}).watch && GOD.focus.watch.saved, {n:GW.saved})}`);
     g.last = GW.lines.slice(0, 8);
   }
-  if((S.cycle||1) < 2 && !g.bound) return;
   if(g.left) return;
   // jealousy: new faces, private time with others, a crowded roster; time fades it a little
   const hires = Math.max(0, S.workers.length - (g.roster||0)); g.roster = S.workers.length;
@@ -205,28 +206,40 @@ function goddessAfter(R){
   // events: none in cycle 1, a little more often each cycle after (before the binding: her teases and remarks)
   const E = GB().events || {};
   if(!g.bound){
-    const ch = Math.min(E.max ?? 0.35, (E.perCycle ?? 0.07) * ((S.cycle||1) - 1));
+    const ch = Math.min(E.max ?? 0.35, (E.base ?? 0) + (E.perCycle ?? 0.07) * ((S.cycle||1) - 1));
     if(S.week - (g.evWk||0) >= (E.gap ?? 2) && Math.random() < ch){ g.evWk = S.week; EVQ.push(evGoddess); }
   } else if(!g.ending && (g.divinity||0) >= ((GB().divinity||{}).max ?? 100)){ EVQ.push(evGoddessEnd); }
   else if(goddessActive() && S.week - (g.evWk||0) >= (E.gap ?? 2) && Math.random() < (E.bound ?? 0.15) * (0.5 + g.jealousy/100)){ g.evWk = S.week; EVQ.push(evGoddessRemark); }
 }
 
 /* ---------- before the binding: teases (in order, gated by cycle) and jealous remarks ---------- */
+// Before the binding she turns up in disguise: another race's form each time (same hair, eyes and skin), going by an alias.
+// teases (goddess.json): in order, each once, from minCycle (to maxCycle); repeat: true ones fill the gaps at random.
+// form: 'disguise' (any form but her own), 'true', or a form key. reveal: true = Sam has worked it out (g.knows).
+const gEligible = t => (t.minCycle||1) <= (S.cycle||1) && (t.maxCycle||99) >= (S.cycle||1) && (!t.needKnows || G().knows) && (!t.unknown || !G().knows);
+function gDisguise(){ const ks = Object.keys(GOD_FORMS).filter(k=>k!==GOD_TRUE), g = G(); const k = pick(ks.filter(x=>x!==g.lastDisguise).length ? ks.filter(x=>x!==g.lastDisguise) : ks); g.lastDisguise = k; return k; }
 function evGoddess(){
   const g = G(); if(g.bound || g.left) return null;
-  const T = (GOD.teases||[]).find(t=>!(g.teases||[]).includes(t.id) && (t.minCycle||2) <= (S.cycle||1));
-  if(!T || (Math.random() < 0.3 && (GOD.remarks||{})[jTier()])) return evGoddessRemark();
-  const sc = T.image ? dynScene('goddess_' + T.id, T.image) : 'portrait';
-  return {title: gtxt(T.title), who:godId(), scene:sc, text: gtxt(T.text, {house:curH().name, n:S.workers.length}), choices:(T.choices||[{label:'…'}]).map(c=>({label:gtxt(c.label), fx(){
-    g.teases = [...(g.teases||[]), T.id]; g.love = clamp((g.love||0) + (c.love||0)); g.jealousy = clamp((g.jealousy||0) + (c.jealousy||0));
+  const all = GOD.teases || [], fresh = all.filter(t=>!t.repeat && !(g.teases||[]).includes(t.id) && gEligible(t)), rep = all.filter(t=>t.repeat && gEligible(t));
+  const canRemark = (S.cycle||1) >= (GOD.remarksFrom ?? 3) && (GOD.remarks||{})[jTier()];
+  const T = fresh[0] && Math.random() < 0.75 ? fresh[0] : rep.length && Math.random() < 0.7 ? pick(rep) : fresh[0] || null;
+  if(!T) return canRemark ? evGoddessRemark() : null;
+  const fk = T.form==='true' ? GOD_TRUE : GOD_FORMS[T.form] ? T.form : gDisguise(), F = GOD_FORMS[fk] || {};
+  const ctx = {house:curH().name, n:S.workers.length, alias:F.alias || GN(), form:F.desc || 'a woman', race:(F.label||'').toLowerCase(), times:(g.met2||0)};
+  const sc = T.image ? dynScene('goddess_' + T.id + (T.form==='disguise' ? '_' + fk : ''), T.image) : 'portrait';
+  return {title: gtxt(T.title, ctx), who:godNpcId(fk), scene:sc, text: gtxt(T.text, ctx), choices:(T.choices||[{label:'…'}]).map(c=>({label:gtxt(c.label, ctx), fx(){
+    if(!T.repeat) g.teases = [...(g.teases||[]), T.id];
+    g.met2 = (g.met2||0) + 1; if(T.reveal || c.reveal) g.knows = true;
+    g.love = clamp((g.love||0) + (c.love||0)); g.jealousy = clamp((g.jealousy||0) + (c.jealousy||0));
     if(c.energy) samEnergyAdd(c.energy);
-    return gtxt(c.res, {house:curH().name});
+    return gtxt(c.res, ctx);
   }}))};
 }
 function evGoddessRemark(){
   const g = G(); if(g.left) return null;
   const R = (GOD.remarks||{})[jTier()] || []; if(!R.length) return null;
   const r = pick(R), newest = S.workers[S.workers.length-1];
+  if(!g.bound && (S.cycle||1) < (GOD.remarksFrom ?? 3)) return null;
   const ctx = {lady: newest ? newest.name.split(' ')[0] : 'her', n: S.workers.length, house: curH().name};
   return {title: `${GN()}`, who:godId(), scene:'portrait', text: gtxt(r.text || r, ctx), choices:(r.choices || GOD.remarkChoices || [{label:'…'}]).map(c=>({label:gtxt(c.label), fx(){
     g.love = clamp((g.love||0) + (c.love||0)); g.jealousy = clamp((g.jealousy||0) + (c.jealousy||0)); return gtxt(c.res, ctx); }}))};

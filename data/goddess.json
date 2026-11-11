@@ -4,12 +4,12 @@
     "Placeholders: {goddess} her name, {sam}, {house}, {partner} (first name), {past} (Sam's past life, lowercase), {lady} (a lady's first name), {n}, {names}, {cycle}, {skill}.",
     "Any text field may be a list: one entry is picked at random.",
     "rebirth: at every New Game+ before the binding. fast/steady/slow = how quickly he paid (weeks vs the plan). lovers/alone = lovers carried or none. jealous.low/mid/high by her jealousy. bound.low/mid/high = after the binding, by her divinity.",
-    "teases: her scenes before the binding, in order; each only from minCycle. choices: love, jealousy (added), energy (Sam's), res. She never lets Sam finish: that would bind her.",
-    "remarks.low/mid/high: short jealous remarks (by jealousy) as weekly events; remarkChoices are their default answers.",
+    "teases: her scenes before the binding, picked by evGoddess (the first unseen eligible one in file order 75% of the time, else a random repeat). Fields: id, title, text, choices [{label, res, love, jealousy, energy (Sam's), reveal}], minCycle, maxCycle, form ('disguise' = random non-true form, 'true' = her own form, or a form key), repeat (filler, may recur, never marked seen), unknown (only before Sam has worked it out), needKnows (only after), reveal (taking the event, or a choice with reveal, sets g.knows), image {comp, setting, sam, pov} (comp describes pose/scene only: the code adds her look). Placeholders: {alias} the name she gives in this form, {form} e.g. 'a fox-eared girl', {race}, {goddess} (only when he knows / true form). Phases: stranger (cycles 1-2, st_*), suspicion (2-3, su_*), reveal (3), game (3-5, gm_*, after the reveal) and true-form scenes (3-5, tr_* and inside/almost/question). She never lets Sam finish: that would bind her.",
+    "remarks.low/mid/high: short jealous remarks (by jealousy) as weekly events, from cycle `remarksFrom` (3) on; remarkChoices are their default answers.",
     "binding: the first rebirth after a lady has lived a fully reincarnated life; she confesses it was never a whim. focus: her weekly guidance options (report lines; indulge has feminine/futa variants, chosen by her form setting). claim: what she does when jealousy wins. night: Sam's action on her tab (image, open by divinity low/mid/high, then inside / outside / unhappy lists by how the night ended; {act} = the service label, lowercase). ending.stay/leave: full divinity again.",
     "intro: cycle 1, before the Vane welcome. Her remarks about houses, partners and Sam's past lives live with them: economy.json → houses[id].goddess, pasts[k].goddess {intro, again}; characters.json → partner.goddess {hand, comment}. Her lines with the ladies are services.json → pair.fem/futa; on nights with Sam she uses the usual private-time lines (flavor.json → private_act).",
-    "look: what never changes, so she's always recognizable (hair, eyes, signature feature, outfit). forms[race]: one form per race (build, body, skin, features; beastkin needs sub). trueForm = the form of her story scenes. Each form has its own image id (npc_goddess_<race>), so pictures are saved per form.",
-    "neglect: report lines when Sam stays away (balance.json → goddess.neglect)."
+    "neglect: report lines when Sam stays away (balance.json → goddess.neglect).",
+    "look: what never changes, so she's always recognizable: hairStyle, hair, eyes, skin, signature, outfit. forms[key]: one per race and beastkin sub (race, sub, build, body; label for the tab; alias = the name she gives when disguised; desc = how Sam first sees her). trueForm = her own form (story scenes, rebirths). Each form has its own image id (npc_goddess_<key>), so pictures are saved per form."
   ],
   "name": "Seliora",
   "title": "the Lamplighter",
@@ -22,7 +22,7 @@
       "setting": "an endless dark space full of floating paper lanterns"
     },
     "open": "The horn is still ringing when the dark fills up with lanterns. Hundreds of them, hanging from nothing.\n\nA woman sits among them as if on a swing, barefoot, a little ember-flame drifting lazily around her shoulder. Her skin glows from within like a lantern, gold markings brightening at her collarbones and hips as she looks Sam over, slowly, head to toe, like someone deciding what to unwrap first.\n\n\"Sam Takahashi. Thirty-one years of being nice to people and nobody ever once being nice back on purpose.\" She tilts her head. \"I'm {goddess}. I light the way across, for the ones I pick. I picked you. On a whim, mostly. Don't read into it.\" She smiles like a woman who is reading into it a great deal.",
-    "close": "\"There's a debt. There's always a debt, it keeps you honest. Pay it, and if you're still interesting, I'll bring you back and we'll do it again.\" She trails one fingertip down his chest, leans close enough that her warmth fills the dark, and doesn't kiss him. \"I'll be watching. Everything. Give me something worth watching.\"\n\nThe lanterns go out, one by one.",
+    "close": "\"There's a debt. There's always a debt, it keeps you honest. Pay it, and if you're still interesting, I'll bring you back and we'll do it again.\" She trails one fingertip down his chest, leans close enough that her warmth fills the dark, and doesn't kiss him. \"I'll be watching. Everything. Give me something worth watching.\"\n\nThe lanterns go out, one by one.\n\nWhen he wakes, the lanterns slip away like a dream, and by the time he's tying his shoes there is only a warm smell of candle smoke, and a faint feeling of having forgotten something that mattered.",
     "button": "Wake up"
   },
   "rebirth": {
@@ -68,9 +68,9 @@
       ]
     },
     "close": [
-      "She kisses two fingers and presses them to his forehead, then, after a thought, to his mouth. The lanterns go out.",
-      "\"Off you go.\" She flicks his nose, then smooths a hand down his front like she's checking the goods. The dark folds up like paper.",
-      "\"Don't keep me waiting.\" She almost sounds like she means something by it. Then the lanterns go out."
+      "She kisses two fingers and presses them to his forehead, then, after a thought, to his mouth. The lanterns go out.\n\nWhen he wakes, the lanterns are already fading like a dream, and he can't quite remember whose face was looking down at him.",
+      "\"Off you go.\" She flicks his nose, then smooths a hand down his front like she's checking the goods. The dark folds up like paper. The dream is going already; by morning it'll be gone.",
+      "\"Don't keep me waiting.\" She almost sounds like she means something by it. Then the lanterns go out. He wakes with the taste of candle smoke and nothing else."
     ],
     "boundTitle": "{goddess}",
     "bound": {
@@ -83,121 +83,597 @@
       "high": [
         "{goddess} is already up, glowing faintly, watching him sleep with her chin on her hand. \"Nearly whole again,\" she says when he opens his eyes, and slides closer. She doesn't say what happens then."
       ]
-    }
+    },
+    "knows": [
+      "\"You remember,\" {goddess} says, before he's finished opening his eyes. She's grinning, and a little teary, and doesn't bother to hide either. \"Each time you wake up you forget a bit less. Good. I like being known.\" She pulls him close by the collar. \"Now come here, and let me remind you what you've been missing.\"",
+      "\"Hello, {sam}. Don't say it, I know: you knew it was me the whole time.\" {goddess} is lounging across the dark, eyes half-lidded, thoroughly smug. \"You're getting good at this. Go on. Go and pay your debt, and I'll find a new face to tease you with.\" She trails a fingertip down his chest and stops, exactly where she always stops."
+    ]
   },
   "teases": [
     {
-      "id": "kiss",
-      "minCycle": 2,
-      "title": "A visitor in the night",
+      "id": "st_bar",
+      "title": "A stranger at the bar",
+      "form": "disguise",
+      "minCycle": 1,
+      "maxCycle": 2,
+      "unknown": true,
       "image": {
-        "comp": "a goddess with glowing bronze skin and gold markings sitting on the edge of a man's bed at night, dress slipping, leaning in for a kiss, candle-light around her",
-        "setting": "Sam's bedroom at night",
+        "comp": "a girl sitting very close to a man at a bar counter, her hand on his thigh, leaning in to whisper in his ear, teasing smile",
+        "setting": "the bar of a lantern-lit pleasure house at night",
         "sam": true,
         "pov": true
       },
-      "text": "Sam wakes because the room is warm. {goddess} is sitting on the edge of his bed, glowing softly, the ember-flame drifting over her shoulder and every candle in the room lit without a match. Her dress has slipped, and she hasn't noticed. Or she has.\n\n\"I said I'd be watching. I didn't say I'd only watch.\" She leans down and kisses him, slow and very thorough, one hand sliding under the blanket to rest warm and proprietary on his stomach, and then she's gone, and the room is just a room.",
-      "choices": [
-        {"label":"Kiss her back","love":4,"res":"He catches the last of it. Somewhere, very far away, someone laughs, pleased."},
-        {"label":"\"Was that allowed?\"","love":3,"res":"\"No,\" says the dark, cheerfully. \"Goodnight, {sam}.\""}
-      ]
-    },
-    {
-      "id": "mirror",
-      "minCycle": 2,
-      "title": "In the mirror",
-      "text": "Shaving, Sam looks up and {goddess} is in the mirror behind him, chin on his shoulder, though nothing touches his shoulder. Her reflection is not wearing much.\n\n\"You're very popular here.\" She watches him in the glass, eyes dropping to the towel and back up. \"I picked well. I'm only slightly annoyed about it. Watching you shave is the best part of my morning.\"",
+      "text": "The girl at the end of the bar isn't a guest and isn't staff, and she's been watching Sam over the rim of her glass for ten minutes. {form}, very long black hair, gold at the tips, eyes that catch the lamplight a little too well.\n\n\"{alias},\" she says, when he finally goes over, as if he'd asked. \"You're the owner. You look like you haven't sat down since the morning.\" She hooks a foot around his stool and pulls it closer. \"Sit. Let someone look after you for once.\"\n\nShe does, for an hour: a hand on his knee, a thumb along his jaw, a laugh against his ear. Then he looks down at his drink, and when he looks up again the stool is empty and the glass is still warm.",
       "choices": [
         {
-          "label": "\"You could come out of the mirror.\"",
+          "label": "Look for her",
+          "res": "He checks the hall, the stairs, the street. No one. The stool is still warm, and he's still wound up tight as a spring. This world is strange.",
           "love": 3,
-          "jealousy": -2,
-          "res": "\"Could I?\" Her reflection kisses his reflection's neck. His actual neck gets goosebumps. Then the mirror is just a mirror."
+          "jealousy": -1
         },
-        {"label":"\"Jealous?\"","love":2,"jealousy":3,"res":"\"Of whom? I'm a goddess.\" The mirror fogs over, which is not an answer."}
+        {"label":"Shrug it off","res":"A lucky night, wasted. He tells himself these things happen. In this world, apparently, they do.","love":2}
       ]
     },
     {
-      "id": "bath",
-      "minCycle": 3,
-      "title": "Hot water",
+      "id": "st_kiss",
+      "title": "A visitor in the night",
+      "form": "disguise",
+      "minCycle": 1,
+      "maxCycle": 2,
+      "unknown": true,
       "image": {
-        "comp": "a goddess with glowing bronze skin sitting behind a man in a steaming bath, her arms around his shoulders, gold markings glowing under the water, teasing smile",
-        "setting": "a steaming wooden bath at night, lanterns",
+        "comp": "a girl sitting on the edge of a man's bed at night leaning in for a kiss, her hand under the blanket, candle-light",
+        "setting": "Sam's bedroom at night, candle-light",
         "sam": true,
-        "bath": true
+        "pov": true
       },
-      "text": "The bath is already hot when Sam gets in, and already occupied. {goddess} settles in behind him, wraps both arms around his chest and hooks her chin over his shoulder, warm and bare against his back. Her hands wander. They know exactly where they're going and exactly when to stop.\n\n\"Breathe,\" she murmurs. \"That's all you get tonight. Don't look so disappointed. I like it.\"",
+      "text": "Sam wakes because the room is warm. Someone is sitting on the edge of his bed: {form}, black hair spilling over her shoulders, gold tips glowing faintly in the dark.\n\n\"Shh. I'm {alias}. You didn't hear me come in.\" She leans down and kisses him, slow and very thorough, one hand sliding under the blanket to rest on his stomach. He's too startled to do anything but kiss back. Her hand drifts lower. Lower. And the bed is empty, the door is shut and locked, and the room is cold.",
       "choices": [
         {
-          "label": "Lean back into her",
-          "love": 4,
-          "energy": 15,
-          "res": "She hums against his ear and keeps him right there, on the edge, until the water cools. He comes out of it oddly rested and extremely frustrated."
+          "label": "Kiss her back",
+          "res": "He catches the last of it before she's gone, and lies awake for an hour, aching. Somewhere far off, someone laughs, pleased.",
+          "love": 4
         },
-        {"label":"Turn around","love":2,"jealousy":-2,"res":"She's gone before he finishes turning. The water ripples where she was, smug."}
+        {"label":"\"Who are you?\"","res":"\"Someone who likes you,\" says the dark, amused, from nowhere. \"Goodnight, {sam}.\"","love":3}
       ]
     },
     {
-      "id": "desk",
-      "minCycle": 3,
-      "title": "Overtime",
-      "text": "Sam is doing the books. {goddess} is sitting on the books. Specifically on the open ledger, legs crossed, reading his numbers upside down.\n\n\"You undercharge.\" She uncrosses her legs, slowly, and watches him lose his place. \"I don't.\"",
+      "id": "st_storeroom",
+      "title": "Between the shelves",
+      "form": "disguise",
+      "minCycle": 1,
+      "maxCycle": 2,
+      "unknown": true,
+      "image": {
+        "comp": "a girl pressing a man back against shelves in a dim storeroom, kissing his neck, her hand at his belt",
+        "setting": "a cramped linen storeroom",
+        "sam": true,
+        "pov": true
+      },
+      "text": "Sam is fetching linens from the storeroom when the door clicks shut behind him. {alias}, {form}, is leaning against it with her arms behind her back, looking him over like a shopkeeper's window.\n\n\"You work too hard.\" She pushes him back against the shelves and presses against him, warm and close, her mouth at his throat, her hand finding his belt. \"Let me help.\"\n\nHe's gasping, nearly there, when a knock sounds outside. \"Sam? Are you in there?\" He turns his head. When he turns back, the storeroom is empty, and the door is open a crack.",
       "choices": [
         {
-          "label": "\"What do you charge?\"",
+          "label": "Follow her out",
+          "res": "The hall is empty. A single gold hair is caught on his collar. He picks it off and stares at it for a while.",
           "love": 3,
-          "res": "She leans forward until her nose touches his. \"More than you can pay. Ask again in a few lives.\" When she's gone the ledger is balanced, which is somehow worse."
+          "jealousy": -1
         },
         {
-          "label": "Move her off the ledger",
-          "love": 2,
-          "jealousy": 2,
-          "res": "She lets him lift her. She weighs nothing at all, and she knows exactly what that does to him."
+          "label": "Stay and collect himself",
+          "res": "It takes a while. The blushing lasts longer. A strange girl, a locked door and a convenient knock. This place is wild.",
+          "love": 2
         }
       ]
     },
     {
-      "id": "dream",
-      "minCycle": 3,
-      "title": "A dream that isn't",
+      "id": "st_bath",
+      "title": "Hot water",
+      "form": "disguise",
+      "minCycle": 1,
+      "maxCycle": 2,
+      "unknown": true,
       "image": {
-        "comp": "a goddess with glowing bronze skin straddling a man's lap on a crescent of light, gold markings blazing, her hands on his chest, holding back",
-        "setting": "an endless dark space full of floating paper lanterns",
+        "comp": "a girl sitting behind a man in a steaming bath, her arms around his chest, teasing smile, steam",
+        "setting": "a steaming wooden bath at night, lanterns",
         "sam": true,
-        "pov": true
+        "bath": true
       },
-      "text": "Sam falls asleep and lands somewhere among the lanterns, with {goddess} in his lap. She takes her time. She takes a great deal of it, hands roaming his chest and shoulders as though she owns them. Every time he gets close she stops, waits, smiles, and starts again.\n\n\"You want to know why,\" she says, eventually, against his mouth. \"Not yet.\"",
+      "text": "The bath is already hot when Sam gets in, and already occupied. {alias} settles in behind him, wraps both arms around his chest and hooks her chin over his shoulder. She's {form}, and there is nothing at all between her skin and his back.\n\n\"Breathe,\" she murmurs, hands wandering. They know exactly where they're going, and exactly when to stop. \"That's all you get tonight.\"\n\nHe turns his head to answer and the water is just water, rippling gently around him, and the steam smells faintly of candle smoke.",
       "choices": [
         {
-          "label": "\"Then when?\"",
+          "label": "Lean back into her",
+          "res": "He leans into nothing, and the water holds him warm and still. He comes out of it oddly rested, and extremely frustrated.",
           "love": 4,
-          "res": "\"When it means something.\" She says it like a joke. It doesn't sound like one. He wakes up gasping, alone, and very awake."
+          "energy": 15
         },
-        {"label":"Let her play","love":3,"energy":10,"res":"She plays. He wakes up rested, which is unfair, and wanting, which is worse."}
+        {
+          "label": "Turn around",
+          "res": "He turns around fast enough to splash. No one. A ripple of laughter lingers somewhere near the ceiling.",
+          "love": 2,
+          "jealousy": -2
+        }
       ]
     },
     {
-      "id": "count",
+      "id": "st_ride",
+      "title": "The long way home",
+      "form": "disguise",
+      "minCycle": 2,
+      "maxCycle": 2,
+      "unknown": true,
+      "image": {
+        "comp": "a girl pushing a man against an alley wall, kissing him, her thigh between his, her hand inside his shirt",
+        "setting": "a lantern-lit back alley at dusk",
+        "sam": true,
+        "pov": true
+      },
+      "text": "Sam is walking back from the market when a hand takes his wrist and pulls him into an alley. {alias}, {form}, pushes him against the wall with a grin and kisses him until his knees go. Her thigh slips between his; her fingers are inside his shirt.\n\n\"Do you always walk home alone?\" she whispers. \"Someone should do something about that.\" Her hand moves, and moves, and he's almost, almost, almost-\n\nThen a cart rattles past the mouth of the alley, and when it's gone he's standing there alone, breathless, with his shirt untucked and the faint sense that he's been teased on purpose.",
+      "choices": [
+        {
+          "label": "Chase after her",
+          "res": "Nobody in the alley, nobody in the street. He walks home with his coat held in front of him.",
+          "love": 3,
+          "jealousy": -1
+        },
+        {
+          "label": "Laugh it off",
+          "res": "This world runs on strange luck. The kind that gets you kissed in an alley and then leaves you shaking. He's not sure whether that's good or bad luck.",
+          "love": 2
+        }
+      ]
+    },
+    {
+      "id": "st_rep1",
+      "title": "A stranger sits down",
+      "form": "disguise",
+      "minCycle": 1,
+      "maxCycle": 2,
+      "repeat": true,
+      "unknown": true,
+      "text": "A girl sits down next to Sam, uninvited: {form}, with very long black hair and gold-tipped ends. \"{alias},\" she says, and holds out a hand he doesn't get to shake. She lays it on his thigh instead, and talks about nothing for ten minutes while her fingers draw slow patterns higher and higher. Then she excuses herself to 'fix her hair', and doesn't come back.",
+      "choices": [
+        {
+          "label": "Chase her",
+          "res": "You can't catch a woman who isn't there. He heads back to work with a very foolish smile.",
+          "love": 3,
+          "jealousy": -1
+        },
+        {
+          "label": "Let her go",
+          "res": "He finishes his drink and then, after a while, gets up. Whoever she was, she left him with a very flushed face and no way to tell anyone why.",
+          "love": 2
+        }
+      ]
+    },
+    {
+      "id": "st_rep2",
+      "title": "A wink in the crowd",
+      "form": "disguise",
+      "minCycle": 1,
+      "maxCycle": 2,
+      "repeat": true,
+      "unknown": true,
+      "text": "In the middle of a busy evening, {alias} is just there: {form}, hip against the counter beside Sam, slipping one hand into his pocket and out again with a coin he hadn't known he had. \"Tip,\" she says. She tucks it into his collar, brushes her lips against his ear, and her hand lingers at his waist just a moment too long. By the time the crowd shifts she has gone.",
+      "choices": [
+        {
+          "label": "Chase her",
+          "res": "You can't catch a woman who isn't there. He heads back to work with a very foolish smile.",
+          "love": 3,
+          "jealousy": -1
+        },
+        {"label":"Let her go","res":"The coin is warm. It's also gold, and it's gone by morning.","love":2}
+      ]
+    },
+    {
+      "id": "st_rep3",
+      "title": "Someone is watching",
+      "form": "disguise",
+      "minCycle": 1,
+      "maxCycle": 2,
+      "repeat": true,
+      "unknown": true,
+      "text": "The back stairs are dim, and someone is waiting at the top of them: {form}, long black hair, gold tips, lit from within. {alias} takes the lapels of his coat and walks him backward into the wall, kissing him with a hunger he can feel in his spine. Her knee presses. His breath breaks.\n\n\"Later,\" she promises, and slips out of his hands like smoke.",
+      "choices": [
+        {
+          "label": "Chase her",
+          "res": "You can't catch a woman who isn't there. He heads back to work with a very foolish smile.",
+          "love": 3,
+          "jealousy": -1
+        },
+        {
+          "label": "Let her go",
+          "res": "The stairs are empty, the lamp flickers, and Sam stays there for a long moment, one hand against the wall.",
+          "love": 2
+        }
+      ]
+    },
+    {
+      "id": "su_hair",
+      "title": "The same hair",
+      "form": "disguise",
+      "minCycle": 2,
+      "maxCycle": 3,
+      "unknown": true,
+      "image": {
+        "comp": "a girl perched on the corner of a desk, crossing her legs, leaning in to run a finger along a man's tie, teasing smile",
+        "setting": "a lantern-lit office at night",
+        "sam": true,
+        "pov": true
+      },
+      "text": "It's {alias} again: {form}, a different girl, with a different name and a different pair of ears. Sam is at the desk when she perches on the corner of it, crossing her legs slowly, and asks how his night is going.\n\nHe's looking at her hair. Very long. Black. Gold at the tips, glowing faintly. The last girl had the same. And the one before that.\n\n\"Something wrong?\" She leans in, smiling, and runs a finger along his tie. \"You're staring.\"",
+      "choices": [
+        {
+          "label": "\"Have we met?\"",
+          "res": "\"Haven't we all?\" She taps his nose and kisses him on the corner of the mouth, and the door clicks, and she is not there. The pattern is getting hard to ignore.",
+          "love": 3
+        },
+        {
+          "label": "Say nothing, but watch her eyes",
+          "res": "Gold. Glowing. Exactly the same gold. She notices him noticing, and her smile grows slow and pleased. She's gone before he can ask.",
+          "love": 4,
+          "jealousy": 1
+        }
+      ]
+    },
+    {
+      "id": "su_pattern",
+      "title": "Always the same",
+      "form": "disguise",
+      "minCycle": 2,
+      "maxCycle": 3,
+      "unknown": true,
+      "text": "Sam has made a list. It's a short, embarrassing list: a fox, a cat, an elf, a dwarf. Each one a stranger, each with the same hair, the same eyes, the same warm bronze skin, and each one gone just before he-\n\nHe's staring at it when {alias} comes in, {form}, and reads it over his shoulder. \"What's this?\"\n\n\"A coincidence,\" he says, and she laughs, pressing herself against his back, her hands sliding around his waist. \"Poor thing. You've been so frustrated.\"",
+      "choices": [
+        {
+          "label": "\"You know exactly why.\"",
+          "res": "\"Do I?\" Her breath on his neck is hot enough to hurt. \"Maybe I'm just a bad girl. Maybe you're just unlucky.\" She nips his ear. The door closes behind nobody.",
+          "love": 3,
+          "jealousy": 1
+        },
+        {
+          "label": "\"Stay. Please.\"",
+          "res": "\"Oh, I'd love to.\" She does, exactly until he's about to say something clever. Then he's alone with his list.",
+          "love": 4
+        }
+      ]
+    },
+    {
+      "id": "su_ask",
+      "title": "Questions",
+      "form": "disguise",
+      "minCycle": 3,
+      "maxCycle": 5,
+      "unknown": true,
+      "image": {
+        "comp": "a girl in a man's lap in an armchair, his hands on her wrists, her face close to his, a finger against his lips, teasing",
+        "setting": "Sam's room at night, candle-light",
+        "sam": true,
+        "pov": true
+      },
+      "text": "Sam is done being teased in silence. When {alias} appears, {form}, slipping into his lap with an easy smile, he catches her wrists.\n\n\"Who are you?\"\n\n\"{alias}. I told you.\" She wriggles. Her hips do something distracting. \"Ask a better question.\"\n\n\"Why do you always leave before-\"\n\n\"Ah.\" She presses a finger to his lips. \"Wrong question too. Try again in a few lives.\" She kisses him instead of answering, very thoroughly, and he does not notice the 'lives' until much later.",
+      "choices": [
+        {
+          "label": "\"Few lives?\"",
+          "res": "She goes very still for half a heartbeat. \"Did I say lives? I meant weeks.\" She slips out of his hands, laughing, but she's not quite meeting his eye.",
+          "love": 4,
+          "jealousy": 2
+        },
+        {"label":"Kiss her back, and let it go","res":"He lets it go, and spends an hour lying awake going over the word.","love":3}
+      ]
+    },
+    {
+      "id": "su_lantern",
+      "title": "Smoke and candle",
+      "form": "disguise",
+      "minCycle": 3,
+      "maxCycle": 5,
+      "unknown": true,
+      "text": "Sam can't stop thinking about the dream. Gold lanterns, hundreds of them. A woman, laughing. Every time he reaches for the details, they slide away. But when {alias} comes through the door, {form}, and he smells candle smoke, he knows exactly where he's smelled it before.\n\nShe tries to kiss him. He turns his head.\n\n\"What's wrong?\" Her smile slips for a heartbeat. \"You're being strange.\"\n\n\"You smell like lanterns,\" he says.",
+      "choices": [
+        {
+          "label": "Hold her wrists, gently",
+          "res": "\"Sam.\" Her voice is small. \"Not yet.\" She presses her forehead against his chest for three long breaths. Then she's gone, and for the first time, he thinks she wanted to stay.",
+          "love": 5,
+          "jealousy": 2
+        },
+        {
+          "label": "Pull her in and ask again",
+          "res": "\"Don't.\" She kisses him to stop him, and it's a worse kiss, more frightened. She slips away. He is nearly sure now.",
+          "love": 4,
+          "jealousy": 1
+        }
+      ]
+    },
+    {
+      "id": "su_rep1",
+      "title": "Another one",
+      "form": "disguise",
+      "minCycle": 2,
+      "maxCycle": 3,
+      "repeat": true,
+      "unknown": true,
+      "text": "{alias}, {form}, is already sitting on the stairs when Sam comes up, ankles crossed, glowing faintly. \"You're late.\" She pulls him down beside her and kisses him, a warm lazy kiss, one hand tucked inside his shirt. \"Didn't you miss me?\" She's gone before he's finished deciding, leaving him with the gold hair on his sleeve and an uneasy thought.",
+      "choices": [
+        {
+          "label": "Call after her",
+          "res": "\"Whoever you are...\" His voice carries down the empty hall. No answer. But the candles flicker, and he thinks he hears a laugh.",
+          "love": 3
+        },
+        {
+          "label": "Smile and say nothing",
+          "res": "He holds the hair up to the lamp. Black, tipped with gold, and exactly like all the others.",
+          "love": 2,
+          "jealousy": 1
+        }
+      ]
+    },
+    {
+      "id": "su_rep2",
+      "title": "Her eyes, again",
+      "form": "disguise",
+      "minCycle": 2,
+      "maxCycle": 3,
+      "repeat": true,
+      "unknown": true,
+      "text": "Sam finds himself watching a girl's eyes: {alias}, {form}, who has appeared, as they always do, in the middle of a quiet hour. Glowing gold. She catches him at it and her smile deepens. She walks him to the wall, slow, and he lets her. \"Looking for something?\" she asks, and her hand slips into his waistband.\n\nHe doesn't get to answer.",
+      "choices": [
+        {
+          "label": "Call after her",
+          "res": "\"Whoever you are...\" His voice carries down the empty hall. No answer. But the candles flicker, and he thinks he hears a laugh.",
+          "love": 3
+        },
+        {"label":"Smile and say nothing","res":"Gold. Always the same gold. He is counting now.","love":2,"jealousy":1}
+      ]
+    },
+    {
+      "id": "su_rep3",
+      "title": "Different ears, same girl",
+      "form": "disguise",
+      "minCycle": 2,
+      "maxCycle": 3,
+      "repeat": true,
+      "unknown": true,
+      "text": "{alias} has new ears today, {form}, and the same everything else. She walks around him in a slow circle, trailing a hand across his shoulders. \"What do you think? Do I suit it?\" He thinks he's on to her. He thinks he's missing something, too. By the time he can say any of it, the chair beside him is empty.",
+      "choices": [
+        {
+          "label": "Call after her",
+          "res": "\"Whoever you are...\" His voice carries down the empty hall. No answer. But the candles flicker, and he thinks he hears a laugh.",
+          "love": 3
+        },
+        {
+          "label": "Smile and say nothing",
+          "res": "He sits there for a minute, then goes and checks the mirror in the hall. Nothing in it but him.",
+          "love": 2,
+          "jealousy": 1
+        }
+      ]
+    },
+    {
+      "id": "reveal",
+      "title": "Say my name",
+      "form": "disguise",
+      "minCycle": 3,
+      "maxCycle": 5,
+      "reveal": true,
+      "unknown": true,
+      "image": {
+        "comp": "a girl in a man's lap, arms around his neck, forehead to his, a startled and delighted look, candles flaring around them",
+        "setting": "Sam's bedroom at night, every candle burning gold",
+        "sam": true,
+        "pov": true
+      },
+      "text": "She comes to him as {alias} tonight, {form}, with a smile that is a little too wide. She sits in his lap, loops her arms around his neck, and he lets her. He lets her all the way to the edge of the kiss.\n\nThen he says, quietly, \"{goddess}.\"\n\nEverything stops. Her smile stays where it is; her eyes don't. The candles dip. He doesn't know where the name came from: a dream of paper lanterns, a woman swinging in the dark, a promise about a debt. It was just there on his tongue.\n\n\"...Well,\" she says, in a voice that isn't {alias}'s anymore. \"That took you long enough.\"",
+      "choices": [
+        {
+          "label": "\"You've been teasing me for years.\"",
+          "res": "\"Lives,\" she corrects, and kisses him, laughing and furious and relieved, all at once. \"You remembered. You actually remembered. Don't stop.\" She stays a good long while this time.",
+          "love": 5,
+          "jealousy": -2,
+          "reveal": true
+        },
+        {
+          "label": "\"Why the disguises?\"",
+          "res": "\"Because the game is more fun when you don't know the rules.\" She presses her forehead to his. \"And because I was afraid you'd say no, once you knew. Foolish of me.\" The glow around her brightens, a little shy.",
+          "love": 6,
+          "jealousy": -3,
+          "reveal": true
+        }
+      ]
+    },
+    {
+      "id": "gm_rules",
+      "title": "New rules",
+      "form": "disguise",
+      "minCycle": 3,
+      "maxCycle": 5,
+      "needKnows": true,
+      "image": {
+        "comp": "a girl straddling a man on a bed, hands on his chest, a wicked smile, looking down at him",
+        "setting": "Sam's bedroom at night, candle-light",
+        "sam": true,
+        "pov": true
+      },
+      "text": "{goddess} arrives as {alias} tonight, {form}, hands on her hips, with the air of someone about to read terms and conditions.\n\n\"So you know. Which is a nuisance, because the disguises are fun and I'm not giving them up.\" She walks around him in a slow circle. \"New rules. I come as someone new. You can play along, or you can call me by my name and I'll punish you. Either way, you don't finish. That part doesn't change.\"\n\n\"Is that a rule or a punishment?\"\n\n\"Yes.\"",
+      "choices": [
+        {
+          "label": "Play along",
+          "res": "\"Good,\" says {alias}, with a slow, wicked smile, settling into his lap as if she'd been introduced for the first time. The game is terrible, and wonderful.",
+          "love": 4,
+          "energy": 10
+        },
+        {
+          "label": "\"Nice to meet you, {goddess}.\"",
+          "res": "\"Oh, you're going to pay for that.\" She pushes him back onto the bed and makes him, thoroughly, until he's begging. She never gives him what he's begging for.",
+          "love": 3,
+          "jealousy": 1
+        }
+      ]
+    },
+    {
+      "id": "gm_stranger",
+      "title": "Introductions",
+      "form": "disguise",
+      "minCycle": 3,
+      "maxCycle": 5,
+      "needKnows": true,
+      "text": "{alias}, {form}, knocks on the office door and waits to be asked in, an act which is not at all like her.\n\n\"Good evening. I'm new in town.\" She holds out a hand, perfectly innocent. \"I heard the owner could use some help.\" Her eyes are glowing gold and entirely innocent. Her hand is already inside his coat.\n\n\"You haven't introduced yourself,\" Sam says, and she gives him a look that says play along or suffer.",
+      "choices": [
+        {
+          "label": "\"Welcome. What can you do?\"",
+          "res": "\"Oh,\" says the stranger, \"a great many things.\" She shows him a few. All of them. None to completion. He is going to be walking funny for a while.",
+          "love": 4,
+          "energy": 10
+        },
+        {
+          "label": "\"{goddess}, you're a terrible actress.\"",
+          "res": "\"I'm a wonderful actress and you are a spoilsport.\" She hits him with a pillow, then kisses him. Then, it turns out, there's more than one pillow. Somehow, it still leaves him frustrated.",
+          "love": 3
+        }
+      ]
+    },
+    {
+      "id": "gm_schoolgirl",
+      "title": "Wrong pretext",
+      "form": "disguise",
       "minCycle": 4,
+      "maxCycle": 5,
+      "needKnows": true,
+      "image": {
+        "comp": "a girl wearing glasses and carrying a stack of books, leaning over a man seated at a desk, her hand on his shoulder, playful smile",
+        "setting": "Sam's study at night, lantern-light",
+        "sam": true,
+        "pov": true
+      },
+      "text": "The knock on the door is very polite. {alias} is standing outside in {form}, carrying a stack of books, wearing a pair of spectacles she definitely doesn't need.\n\n\"Mr. {sam}? I'm here about the private lesson.\" She's trying very hard not to laugh. \"I understand it's... hands-on.\"\n\nShe is not subtle. He does not mind. Forty minutes of 'lessons' later, he's learned that a goddess in spectacles is considerably more dangerous than one without, and that she has no intention of giving him the final exam.",
+      "choices": [
+        {
+          "label": "Insist on a retake",
+          "res": "\"No retakes,\" she says, smugly, tying her hair back. \"Fail, learn, repeat.\" She kisses his forehead on the way out, which is somehow the worst part.",
+          "love": 3,
+          "energy": 10
+        },
+        {"label":"Beg for extra credit","res":"\"Begging. Good start.\" She's glowing with satisfaction. She doesn't award extra credit.","love":4}
+      ]
+    },
+    {
+      "id": "gm_rep1",
+      "title": "A new face, an old game",
+      "form": "disguise",
+      "minCycle": 3,
+      "maxCycle": 5,
+      "repeat": true,
+      "needKnows": true,
+      "text": "Tonight she's {alias}, {form}, lounging across his desk and pretending very hard that they haven't met. \"I'm sure I'd remember a man like you,\" she says, as her foot slides up the inside of his thigh. He plays along. She's very good. She's also absolutely merciless, and leaves him exactly one breath from the edge.",
+      "choices": [
+        {
+          "label": "Call her by name",
+          "res": "\"Seliora.\" Her mask slips, just a little, and she's smiling so wide he can feel it. \"Good boy.\" She kisses him, and doesn't let him finish.",
+          "love": 3
+        },
+        {
+          "label": "Stay in character",
+          "res": "\"Until next time,\" she says. \"Remember my name.\" She leaves it unsaid, which is part of the game.",
+          "love": 2,
+          "jealousy": -1
+        }
+      ]
+    },
+    {
+      "id": "gm_rep2",
+      "title": "Pick a name",
+      "form": "disguise",
+      "minCycle": 3,
+      "maxCycle": 5,
+      "repeat": true,
+      "needKnows": true,
+      "text": "{alias}, {form}, is waiting in the hall. \"Guess,\" she says, and wraps herself around him. \"Go on. I'll give you a point for every correct answer.\" He guesses 'Seliora' on the first try. She gives him a point. The point is one very pointed kiss.\n\nThe game goes on a good deal longer than he'd like. It ends the usual way.",
+      "choices": [
+        {
+          "label": "Call her by name",
+          "res": "\"Seliora.\" Her mask slips, just a little, and she's smiling so wide he can feel it. \"Good boy.\" She kisses him, and doesn't let him finish.",
+          "love": 3
+        },
+        {"label":"Stay in character","res":"She leaves laughing, a little breathless, a little pleased with herself.","love":2,"jealousy":-1}
+      ]
+    },
+    {
+      "id": "gm_rep3",
+      "title": "Playing a part",
+      "form": "disguise",
+      "minCycle": 3,
+      "maxCycle": 5,
+      "repeat": true,
+      "needKnows": true,
+      "text": "Tonight {alias} is {form}, shy and sweet and clumsy, tripping into his arms and not apologizing. \"Oh, I'm so sorry,\" she says, in a voice that has never been sorry in its life, and the way her hands wander is not at all clumsy. It ends the way it always does, and he's very nearly proud of how much he is able to take.",
+      "choices": [
+        {
+          "label": "Call her by name",
+          "res": "\"Seliora.\" Her mask slips, just a little, and she's smiling so wide he can feel it. \"Good boy.\" She kisses him, and doesn't let him finish.",
+          "love": 3
+        },
+        {
+          "label": "Stay in character",
+          "res": "\"Don't pout, {sam},\" she calls over her shoulder. \"Good things come to those who wait.\"",
+          "love": 2,
+          "jealousy": -1
+        }
+      ]
+    },
+    {
+      "id": "tr_kiss",
+      "title": "Herself",
+      "form": "true",
+      "minCycle": 3,
+      "maxCycle": 5,
+      "needKnows": true,
+      "image": {
+        "comp": "a tall goddess with glowing skin sitting on the edge of a man's bed at night, hair loose, leaning in for a slow kiss, candle-light and a floating ember-flame",
+        "setting": "Sam's bedroom at night, candle-light",
+        "sam": true,
+        "pov": true
+      },
+      "text": "For the first time in a very long time, {goddess} comes to him as herself. No ears, no tail, no wings: just a tall, bronze, glowing woman with eyes the color of lamp-flame, sitting on the edge of his bed with her hair loose over her shoulders.\n\n\"I got tired of being someone else,\" she says. \"For tonight, at least.\" She leans down and kisses him, slow, and he feels the tremor in her. \"Tell me what you remember.\"",
+      "choices": [
+        {
+          "label": "\"The lanterns. And you.\"",
+          "res": "She closes her eyes. \"Good,\" she whispers. \"That's the part I wanted you to keep.\" She stays with him until he sleeps.",
+          "love": 5,
+          "jealousy": -2
+        },
+        {
+          "label": "\"Not enough.\"",
+          "res": "\"Then I'll tell you.\" She does, a little at a time, in the dark, between kisses. She doesn't tell him all of it.",
+          "love": 4
+        }
+      ]
+    },
+    {
+      "id": "tr_count",
       "title": "Counting",
-      "text": "{goddess} is waiting in Sam's room with her arms folded, every candle in the room burning an offended, sulky orange.\n\n\"{n}. {n} of them.\" She doesn't say of what. \"Tonight you're mine. Don't argue, I'm a goddess.\"\n\nShe pulls him down onto the bed and keeps him there all night: close, closer, never all the way, her hands and mouth making very sure he won't forget whose bed this is. She never once lets him finish.",
+      "form": "true",
+      "minCycle": 3,
+      "maxCycle": 5,
+      "needKnows": true,
+      "text": "{goddess} is waiting in Sam's room with her arms folded, every candle burning an offended, sulky orange.\n\n\"{n}. {n} of them.\" She doesn't say of what. \"Tonight you're mine. Don't argue, I'm a goddess.\"\n\nShe pulls him down onto the bed and keeps him there all night: close, closer, never all the way, her hands and mouth making very sure he won't forget whose bed this is. She never once lets him finish.",
       "choices": [
         {
           "label": "\"You could just stay.\"",
+          "res": "She goes very still. \"No,\" she says. \"I couldn't.\" Then, quieter, into his shoulder: \"It wasn't a whim, you know. Forget I said that.\" She stays until dawn anyway.",
           "love": 5,
-          "jealousy": -10,
-          "res": "She goes very still. \"No,\" she says. \"I couldn't.\" Then, quieter, into his shoulder: \"It wasn't a whim, you know. Forget I said that.\" She stays until dawn anyway."
+          "jealousy": -10
         },
-        {"label":"Tell her she's the only goddess","love":3,"jealousy":-6,"res":"\"That's a technicality,\" she says, pleased, and bites his ear."}
+        {"label":"Tell her she's the only goddess","res":"\"That's a technicality,\" she says, pleased, and bites his ear.","love":3,"jealousy":-6}
       ]
     },
     {
       "id": "inside",
-      "minCycle": 4,
       "title": "Not yet",
+      "form": "true",
+      "minCycle": 4,
+      "maxCycle": 5,
+      "needKnows": true,
       "image": {
-        "comp": "a goddess with glowing bronze skin on top of a man in bed at night, gold markings blazing, one hand pressed to his chest to hold him still, intense look",
+        "comp": "a goddess on top of a man in bed at night, gold markings blazing, one hand pressed to his chest to hold him still, intense look",
         "setting": "Sam's bedroom at night, lantern-light",
         "sam": true,
         "pov": true
@@ -206,36 +682,42 @@
       "choices": [
         {
           "label": "Hold still for her",
+          "res": "He does. It is the hardest thing he has ever done. Afterwards she lies on his chest for a long time and doesn't disappear.",
           "love": 6,
-          "jealousy": -5,
-          "res": "He does. It is the hardest thing he has ever done. Afterwards she lies on his chest for a long time and doesn't disappear."
+          "jealousy": -5
         },
-        {"label":"\"Would that be so bad?\"","love":4,"res":"\"For a goddess? Catastrophic.\" She kisses him. \"Ask me again later.\""}
+        {"label":"\"Would that be so bad?\"","res":"\"For a goddess? Catastrophic.\" She kisses him. \"Ask me again later.\"","love":4}
       ]
     },
     {
       "id": "almost",
-      "minCycle": 5,
       "title": "Edges",
+      "form": "true",
+      "minCycle": 5,
+      "maxCycle": 5,
+      "needKnows": true,
       "text": "{goddess} visits more often now and leaves later. She takes him all the way in and stops, every time, at the very last moment, with a sound like it costs her more than it costs him.\n\n\"You know what I'd lose.\" Her forehead against his. \"Everything I am. And I'd be yours. I watched you for years before the truck, you know. Years. I don't even know which of those scares me more.\"",
       "choices": [
-        {"label":"\"I'd give it back.\"","love":6,"res":"She laughs, shakily. \"You'd try. You're very stubborn.\" She doesn't say no."},
-        {"label":"Kiss her until she stops thinking","love":4,"jealousy":-5,"res":"It works for a while. At dawn she's still there, which is new."}
+        {"label":"\"I'd give it back.\"","res":"She laughs, shakily. \"You'd try. You're very stubborn.\" She doesn't say no.","love":6},
+        {"label":"Kiss her until she stops thinking","res":"It works for a while. At dawn she's still there, which is new.","love":4,"jealousy":-5}
       ]
     },
     {
       "id": "question",
-      "minCycle": 5,
       "title": "What if",
+      "form": "true",
+      "minCycle": 5,
+      "maxCycle": 5,
+      "needKnows": true,
       "text": "{goddess} sits on the windowsill, glowing faintly, the ember-flame dozing against her neck, looking at the house.\n\n\"One of them has done it all now, you know. Lived and lived again, as far as a life can carry.\" She doesn't look at him. \"You fed that stray cat every morning for two years and nobody ever saw. I saw. It wasn't a whim, Sam. It never was.\" She finally turns. \"When you bring her back next time, I'm coming too. I don't think I can watch from the lanterns anymore.\"",
       "choices": [
         {
           "label": "\"Then come.\"",
+          "res": "\"Next time,\" she says. \"Finish what you started.\" Then she's gone, and the window is only a window.",
           "love": 6,
-          "jealousy": -8,
-          "res": "\"Next time,\" she says. \"Finish what you started.\" Then she's gone, and the window is only a window."
+          "jealousy": -8
         },
-        {"label":"\"You're sure?\"","love":4,"res":"\"No.\" She smiles, crooked. \"Goddesses are never sure. We just act like it.\""}
+        {"label":"\"You're sure?\"","res":"\"No.\" She smiles, crooked. \"Goddesses are never sure. We just act like it.\"","love":4}
       ]
     }
   ],
@@ -391,42 +873,116 @@
     "hair": "black with glowing gold tips",
     "eyes": "glowing gold",
     "signature": "a small lantern-flame floating beside her shoulder, faint gold markings along her collarbones",
-    "outfit": "a sheer crimson-and-gold wrap dress held by thin gold chains, barefoot"
+    "outfit": "a sheer crimson-and-gold wrap dress held by thin gold chains, barefoot",
+    "skin": "warm bronze that glows faintly from within, like a lantern"
   },
   "trueForm": "human",
   "forms": {
     "human": {
       "label": "Herself",
+      "race": "human",
+      "alias": "Seliora",
+      "desc": "a tall, curvy woman",
       "build": "tall and curvy",
-      "body": {"bust":"large","height":"tall","figure":"curvy"},
-      "skin": "warm bronze, glowing faintly from within"
+      "body": {"bust":"large","height":"tall","figure":"curvy"}
     },
-    "elf": {"label":"Elf","build":"willowy and graceful","body":{"bust":"small","height":"tall","figure":"slim"},"skin":"pale gold"},
-    "beastkin": {"label":"Fox","sub":"fox","build":"lithe and supple","body":{"bust":"medium","height":"average","figure":"athletic"},"skin":"sun-kissed"},
+    "elf": {
+      "label": "Elf",
+      "race": "elf",
+      "alias": "Lysa",
+      "desc": "a willowy elf",
+      "build": "willowy and graceful",
+      "body": {"bust":"small","height":"tall","figure":"slim"}
+    },
+    "fox": {
+      "label": "Fox",
+      "race": "beastkin",
+      "alias": "Kohaku",
+      "desc": "a fox-eared girl",
+      "build": "lithe and supple",
+      "body": {"bust":"medium","height":"average","figure":"athletic"},
+      "sub": "fox"
+    },
+    "cat": {
+      "label": "Cat",
+      "race": "beastkin",
+      "alias": "Mimi",
+      "desc": "a cat-eared girl",
+      "build": "petite and lithe",
+      "body": {"bust":"small","height":"short","figure":"slim"},
+      "sub": "cat"
+    },
+    "wolf": {
+      "label": "Wolf",
+      "race": "beastkin",
+      "alias": "Rhea",
+      "desc": "a wolf-eared woman",
+      "build": "tall and athletic",
+      "body": {"bust":"medium","height":"tall","figure":"athletic"},
+      "sub": "wolf"
+    },
+    "rabbit": {
+      "label": "Rabbit",
+      "race": "beastkin",
+      "alias": "Pip",
+      "desc": "a bunny-eared girl",
+      "build": "soft and petite",
+      "body": {"bust":"large","height":"short","figure":"soft"},
+      "sub": "rabbit"
+    },
+    "dragon": {
+      "label": "Dragon",
+      "race": "beastkin",
+      "alias": "Vesra",
+      "desc": "a horned dragon-girl",
+      "build": "statuesque and powerful",
+      "body": {"bust":"large","height":"tall","figure":"athletic"},
+      "sub": "dragon"
+    },
     "demon": {
       "label": "Demon",
-      "build": "statuesque and voluptuous",
-      "body": {"bust":"huge","height":"tall","figure":"curvy"},
-      "skin": "dusky crimson",
-      "features": "black horns tipped with gold"
+      "race": "demon",
+      "alias": "Lilim",
+      "desc": "a horned demoness",
+      "build": "voluptuous",
+      "body": {"bust":"huge","height":"tall","figure":"curvy"}
     },
-    "dwarf": {"label":"Dwarf","build":"short, sturdy and soft","body":{"bust":"large","height":"short","figure":"soft"},"skin":"ruddy bronze"},
+    "dwarf": {
+      "label": "Dwarf",
+      "race": "dwarf",
+      "alias": "Brenna",
+      "desc": "a sturdy little dwarf",
+      "build": "short, sturdy and soft",
+      "body": {"bust":"large","height":"short","figure":"soft"}
+    },
     "spirit": {
       "label": "Spirit",
+      "race": "spirit",
+      "alias": "Wisp",
+      "desc": "a drifting spirit-girl",
       "build": "slender and drifting",
-      "body": {"bust":"medium","height":"average","figure":"slim"},
-      "skin": "translucent gold, like lantern paper"
+      "body": {"bust":"medium","height":"average","figure":"slim"}
     },
-    "angel": {"label":"Angel","build":"tall and athletic","body":{"bust":"medium","height":"tall","figure":"athletic"},"skin":"luminous ivory"},
+    "angel": {
+      "label": "Angel",
+      "race": "angel",
+      "alias": "Celeste",
+      "desc": "a winged angel",
+      "build": "tall and athletic",
+      "body": {"bust":"medium","height":"tall","figure":"athletic"}
+    },
     "android": {
       "label": "Android",
+      "race": "android",
+      "alias": "Unit Seven",
+      "desc": "an android with seamed joints",
       "build": "sleek and precise",
-      "body": {"bust":"medium","height":"average","figure":"athletic"},
-      "skin": "polished pale bronze"
+      "body": {"bust":"medium","height":"average","figure":"athletic"}
     }
   },
   "neglect": {
     "ignored": "{goddess} hasn't seen Sam in {n} weeks. She's noticed.",
     "claim": "{goddess} made a scene over another woman and Sam never came to her. That hurt."
-  }
+  },
+  "remarksFrom": 3
 }

@@ -5,7 +5,7 @@
     "lust = base change to HER lust per client (negative = drop, positive = rises). Only being pleased (receiving services, positions) spends it; giving, kissing and massages build it, scaled by her lewdness: real rise = lust x (0.4 + lewdness/100) x (1.5 if favorite) x (0.6 if disliked) x her lustBuild fx. Drops: lust x client technique x (1.5 fav) x (0.6 disliked) x actQuality fx x her lust profile. finish = the client finishes (demon feeding; she can be left frustrated, but only by services that spend her lust). want = relative odds clients ask for it. kind: give | receive | massage | kiss (receiving services: with Sam he does the work, low Sam energy, big drop in her lust, no demon drain). A lady in the mood (lust >= lust.eager, lewdness >= balance.json svc.askMore.lewd) may ask for more after a service that builds lust: she offers a heavier one from her menu (balance.json svc.askMore).",
     "stats = optional {stat: weight} (weights sum to 1; stats are beauty, charm, charisma, refinement, wits, stamina, strength, agility): the service stat term (.15) of service quality is her weighted average of those stats; no stats (including custom services) = charm. Receiving services have none (she is not doing the work). If stamina is listed, her energy cost for it is also x (1.1 - stamina/500) (balance.json → svc.staminaEnergy).",
     "dress = {min: dressed|partial|under|nude, fullAt: lewdness she needs before images show her fully undressed}. Services whose min is 'dressed' (kissing, massage) stay dressed until her lewdness reaches fullAt. Older entries with minCloth still work (read as dress.min).",
-    "image.client / image.sam / image.duo = pose and framing for client scenes, Sam's first-person scenes, and scenes with two ladies. Each is a list: one is picked at random per image. image.extra is added to every image of this service. Anything starting with TODO is skipped when prompts are built. Every service now has default wording; the receiving ones are written softly, so make them as explicit as you like.",
+    "image.client / image.sam / image.duo / image.fem / image.futa = pose and framing for client scenes, Sam's first-person scenes, scenes with two ladies and Sam, and scenes with two women together (fem = two women; futa = the other woman is a futanari, the active one). Each is a list: one is picked at random per image. image.extra is added to every image of this service. Anything starting with TODO is skipped when prompts are built. Every service now has default wording; the receiving ones are written softly, so make them as explicit as you like.",
     "report = lines for the weekly report when a client got this service (one is picked at random; empty falls back to flavor.json client_yes).",
     "tier: how far past the line it is with Sam (1 kissing & touching, 2 hands & mouth, 3 everything). Private time with Sam only offers services up to the tier she's crossed in her firsts (data/firsts.json). Custom services without a tier count as 1 below line 30, 2 below 50, else 3.",
     "Naming: services that go both ways come in pairs, <thing>_give (she does it to him) and <thing>_get (he does it to her), labelled \"X (giving)\" / \"X (receiving)\". Positions (missionary, cowgirl, doggy) and kiss are single. Old ids still work as aliases in code: caress -> kiss, manual -> manual_give, oral -> oral_give, paizuri -> breast_give.",
@@ -40,7 +40,15 @@
         "duo": [
           "both massaging the viewer together, one at his shoulders, one at his back, pov"
         ],
-        "extra": ""
+        "extra": "",
+        "fem": [
+          "one woman massaging another's back as she lies face down, two women, yuri",
+          "two women, one kneading the other's shoulders on a massage bed"
+        ],
+        "futa": [
+          "a futanari massaging a woman's back as she lies face down, two women, yuri",
+          "two women, a futanari kneading the other's shoulders on a massage bed"
+        ]
       },
       "report": [
         "He left loose-limbed and lighter in the shoulders, and tipped like a man reborn.",
@@ -80,7 +88,12 @@
         "client": ["embracing and kissing passionately"],
         "sam": ["embracing and kissing passionately, looking at the viewer"],
         "duo": ["embracing and kissing passionately"],
-        "extra": ""
+        "extra": "",
+        "fem": [
+          "two women embracing and kissing passionately, yuri",
+          "two women kissing, foreheads together, hands on each other's waists"
+        ],
+        "futa": ["a futanari and a woman embracing and kissing passionately","a futanari and a woman kissing, bodies pressed together"]
       },
       "report": [
         "They spent most of the evening wrapped up together on a lounge sofa, and he left grinning.",
@@ -121,7 +134,12 @@
           "lying face down on a bed, the viewer's hands massaging her back, pov, looking back at the viewer"
         ],
         "duo": ["both lying side by side face down, being massaged, pov"],
-        "extra": ""
+        "extra": "",
+        "fem": [
+          "two women lying side by side on massage beds, one massaging the other, yuri",
+          "one woman lying face down while the other massages her back"
+        ],
+        "futa": ["a woman lying face down while a futanari massages her back","a futanari and a woman lying side by side, being massaged"]
       },
       "report": [
         "A rare request, and an easy hour: he did the work, and she mostly sighed.",
@@ -167,7 +185,15 @@
           "both lying back side by side, the viewer's hands between their thighs, pov"
         ],
         "extra": "",
-        "exposed": true
+        "exposed": true,
+        "fem": [
+          "lying back on a bed, another woman's hand between her thighs, two women, yuri",
+          "two women on a bed, one touching the other, yuri"
+        ],
+        "futa": [
+          "lying back on a bed, a futanari's hand between her thighs, two women",
+          "a futanari and a woman on a bed, touching, close together"
+        ]
       },
       "report": [
         "He was attentive and she did not complain. A quiet hour.",
@@ -211,7 +237,15 @@
         "duo": [
           "their hands wrapped around the viewer's penis, threesome, pov handjob, looking at the viewer"
         ],
-        "extra": ""
+        "extra": "",
+        "fem": [
+          "one woman's hand between another's thighs, two women, yuri, looking at the viewer",
+          "two women on a bed, one fingering the other, yuri"
+        ],
+        "futa": [
+          "a woman's hands wrapped around a futanari's penis, handjob, two women",
+          "a futanari sitting back while a woman strokes her penis, handjob"
+        ]
       },
       "report": [
         "It didn't take long. He left looking dazed and tipped well for it.",
@@ -254,7 +288,15 @@
         "duo": [
           "the viewer's hands on their breasts, sitting close together, pov"
         ],
-        "extra": ""
+        "extra": "",
+        "fem": [
+          "one woman embracing another from behind, hands on her breasts, yuri",
+          "two women sitting close, one caressing the other's breasts, yuri"
+        ],
+        "futa": [
+          "a futanari embracing a woman from behind, hands on her breasts",
+          "a futanari caressing a woman's breasts, sitting close together"
+        ]
       },
       "report": [
         "He was unhurried and appreciative, and she was kind about it.",
@@ -300,7 +342,15 @@
           "one lying back with the viewer between her thighs while the other kisses her, pov"
         ],
         "extra": "",
-        "exposed": true
+        "exposed": true,
+        "fem": [
+          "lying back on a bed, another woman's head between her thighs, yuri, cunnilingus",
+          "two women, one kneeling between the other's thighs, yuri"
+        ],
+        "futa": [
+          "lying back on a bed, a futanari's head between her thighs, cunnilingus",
+          "a futanari kneeling between a woman's thighs, mouth to her sex"
+        ]
       },
       "report": [
         "He took his time. She came downstairs flushed and unhurried.",
@@ -344,7 +394,12 @@
         "duo": [
           "ones mouth sucking viewer's penis while the other strokes his balls, threesome, pov blowjob, looking at the viewer"
         ],
-        "extra": ""
+        "extra": "",
+        "fem": [
+          "two women, 69 position, yuri",
+          "one woman kneeling between another's thighs, tongue out, yuri"
+        ],
+        "futa": ["a woman's mouth on a futanari's penis, fellatio, two women","a woman kneeling in front of a futanari, blowjob"]
       },
       "report": [
         "He came back downstairs looking like he'd seen the face of a god.",
@@ -388,7 +443,12 @@
         "duo": [
           "the viewer's penis between their breasts, threesome, pov titjob, looking at the viewer"
         ],
-        "extra": "paizuri"
+        "extra": "paizuri",
+        "fem": ["two women pressing their breasts together, yuri","two women embracing, breasts touching, yuri"],
+        "futa": [
+          "a futanari's penis between a woman's breasts, paizuri, two women",
+          "a woman kneeling, titjob on a futanari"
+        ]
       },
       "report": [
         "He talked about it at the bar afterward, at length, to anyone who'd listen.",
@@ -433,7 +493,15 @@
           "one getting fucked by the viewer while the other rides her face, threesome, pov, looking at the viewer"
         ],
         "extra": "man on top, woman below lying on the bed, missionary position sex",
-        "exposed": true
+        "exposed": true,
+        "fem": [
+          "two women on a bed, one on top between the other's thighs, yuri, tribadism",
+          "two women lying face to face on a bed, legs entwined, yuri"
+        ],
+        "futa": [
+          "a futanari on top, a woman lying below on the bed, missionary position sex, two women",
+          "futanari and woman, missionary, legs spread, looking at each other"
+        ]
       },
       "report": [
         "The door stayed closed a long time. He left smiling and walked into a pillar.",
@@ -474,7 +542,12 @@
           "both fucking the viewer together, pov, on the bed"
         ],
         "extra": "woman riding on top, straddling, sex in cowgirl position",
-        "exposed": true
+        "exposed": true,
+        "fem": ["a woman straddling another woman's face, yuri, on the bed","two women, one sitting astride the other, grinding, yuri"],
+        "futa": [
+          "a woman riding on top of a futanari, cowgirl position sex, on the bed",
+          "futanari lying on her back, a woman straddling her, cowgirl"
+        ]
       },
       "report": [
         "She came back down first, humming. He followed much later, red-faced and grinning.",
@@ -515,7 +588,15 @@
           "one getting fucked by the viewer while she eats out the other, threesome, pov"
         ],
         "extra": "on all fours, doggy style sex",
-        "exposed": true
+        "exposed": true,
+        "fem": [
+          "a woman on all fours while another kneels behind her, yuri",
+          "two women, one on all fours, the other behind her with a hand on her hip, yuri"
+        ],
+        "futa": [
+          "a woman on all fours, a futanari behind her, doggy style sex",
+          "futanari from behind, a woman on hands and knees, doggy style"
+        ]
       },
       "report": [
         "The bed upstairs creaked for most of the hour. He tipped extra on the way out.",

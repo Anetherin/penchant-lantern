@@ -4,9 +4,16 @@ The overarching story. Code: `js/logic/goddess.js`. Story wording, her look and 
 Test: `node tools/goddess-smoke.mjs [weeks per cycle]` (plays to the binding, every focus, nights until her ending).
 
 ## Arc
-- **Cycle 1:** she brings Sam over. Her intro plays before Marguerite's welcome and comments on his past life, his house and his partner (including how she had a hand in meeting her). No events in cycle 1.
+- **Cycle 1:** she brings Sam over. Her intro plays before Marguerite's welcome and comments on his past life, his house and his partner (including how she had a hand in meeting her).
 - **Every rebirth (NG+):** a scene before the Vane contract. It reacts to how fast he paid, which lovers he brought, a new past life, the new house and the new partner, plus a jealousy line.
-- **Cycles 2-5:** weekly chance of an event (`events.perCycle` x (cycle-1), max `events.max`). Her tease scenes run in order (`teases`, gated by `minCycle`): a kiss in cycle 2, escalating, with Sam inside her by cycles 4-5, but she always stops him before he finishes. Jealous remarks fill the gaps. Love comes from your answers. Jealousy grows with new hires, private time with others, roster size and lovers carried.
+- **Before the binding (cycles 1-5):** weekly chance of an event (`events.base` + `events.perCycle` x (cycle-1), max `events.max`). She mostly turns up **in disguise**: another race's form with an alias, always with the same hair, eyes and skin. The lantern-dream fades when Sam wakes, so at first he doesn't recognize her.
+  - Stranger (cycles 1-2): a strange girl flirts, kisses and gets handsy, then vanishes before he finishes.
+  - Suspicion (2-3): he notices the pattern.
+  - Reveal (3): he calls her by name, which sets `g.knows`.
+  - Game (3-5): the disguises become roleplay.
+  - True-form scenes (3-5): sincere and intimate, but she always stops him.
+  - Events are `teases`: one-offs run in order; `repeat` ones fill the gaps. `form` is disguise/true/a form key; `unknown`/`needKnows` gate on the reveal.
+  - Jealous remarks start at `remarksFrom` (cycle 3). Love comes from your answers. Jealousy grows with new hires, private time with others, roster size and lovers carried.
 - **The binding:** at the first rebirth after any lady has lived a fully reincarnated life (`w.reborn > fullReborn`, default 4, so the start of cycle 6 at the earliest). She lets him finish, loses her divinity (`divinity.bindTo`) and is bound to him.
 - **After the binding:** she gets her own tab.
   - You set a focus (Indulge / Business / Watch / Tutelage / Whim) and a form (herself / something more / as she pleases). She takes 1 action per week, plus 1 per 25 divinity.
@@ -26,4 +33,5 @@ Test: `node tools/goddess-smoke.mjs [weeks per cycle]` (plays to the binding, ev
 Hooks: `goddessPlan()` at the start of `endWeek`, `goddessAfter(R)` after the houses run, `goddessGuard(h)` in `pushyCheck`, `goddessRebirth()` at the end of `ngBegin`, `goddessIntro()` in `setupBegin`, and `goddessHouseNote()` on house purchase.
 
 ## Forms
-She has one form per race (`goddess.json → forms`: build, body, skin, features; beastkin needs `sub`). `look` holds what never changes: hair, eyes, a signature feature (a lantern-flame at her shoulder, gold markings) and her outfit, so she's recognizable in every form. Each form is its own NPC (`npc_goddess_<race>`, so images are saved per form). Story scenes before the binding use `trueForm`. After it you pick a form on her tab or let her change each week (`S.goddess.shape`, 'auto' rolls `autoShape` in `goddessPlan`).
+She has one form per race and per beastkin sub (12) (`goddess.json → forms`: build, body, skin, features; beastkin needs `sub`). `look` holds what never changes: hair, eyes, a signature feature (a lantern-flame at her shoulder, gold markings) and her outfit, so she's recognizable in every form. Each form is its own NPC (`npc_goddess_<race>`, so images are saved per form). Story scenes before the binding use `trueForm`. After it you pick a form on her tab or let her change each week (`S.goddess.shape`, 'auto' rolls `autoShape` in `goddessPlan`).
+Her nights with the ladies show on their report pages with a picture: scene `pair:<service>:<fem|futa>:<her npc id>` (poses `services.json → image.fem/futa`, tags `scenes.json → people.pair_fem/pair_futa`).

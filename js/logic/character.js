@@ -83,7 +83,7 @@ const actSkill = (w,id) => (w.acts&&w.acts[actKey(id)]) ? w.acts[actKey(id)].ski
 // Scene keys can carry extras after the base: 'act:oral_give~lost_in_it~prop' (~expression, ~context). sceneParts splits them.
 function sceneParts(k){ const p = String(k||'').split('~'); return {base:p[0], expr:p[1]||'', ctx:p[2]||''}; }
 const sceneBase = k => sceneParts(k).base;
-const isSvcScene = k => /^(act:|samact:|duo:|demo:|orgy:|solo$)/.test(sceneBase(k));
+const isSvcScene = k => /^(act:|samact:|duo:|pair:|demo:|orgy:|solo$)/.test(sceneBase(k));
 // Swim scenes (dates.json image "swim": true): she wears an owned bath-compatible outfit (swimsuit first), if she has one.
 function swimOutfit(w, scene){
   if(!isSwimScene(scene)) return null;
