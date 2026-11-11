@@ -42,12 +42,15 @@ A run that never reaches its phase is counted as "unreached" (warm-up cap `maxWa
 {
   "desc": "...", "scenario": "mid", "weeks": 12, "runs": 16,
   "start":  { "house": "lantern", "partner": "kaede", "past": "salaryman" },
-  "policy": { ... },                 // overrides LAB.POLICY in bot.js (see below)
+  "policy": { ... },                 // overrides LAB.POLICY in bot.js (see below), from week 1
+  "phasePolicy": { ... },            // policy overrides from the phase start only (warm-up stays shared)
   "phases": { "midStaff": 5 },
   "patch":  { "balance": {...}, "economy": {...}, "races": {...}, "traits": {...}, "characters": {...} },
   "patchAt": "phase",                // or "start" (whole game; disables the shared warm-up)
   "mutate": { ... },                 // applied at phase start, see below
-  "ng":     { "boon": "ap", "partner": "auto", "past": "none", "house": "wayfarer" | "none" | "auto", "keep": "all" | "home", "perk": "...", "romance": "keep" | "reset" },
+  "ng":     { "boon": "ap" | [per cycle], "partner": "auto", "past": "none", "house": "wayfarer" | [per cycle] | "none" | "auto" (first offer) | "best" (LAB.HOUSE_RANK),
+              "keep": "all" | "home", "lovers": n, "friends": n, "perk": "...", "romance": "keep" | "reset" },
+  "cycles": 4,                       // ngplus: number of NG+ cycles to play (cN* columns per cycle)
   "variants": [ { "name": "base" }, { "name": "x", "patch": {...} } ],
   "each":   { "mutate.race": ["elf", "demon"] },     // one variant per value (cartesian over several keys); adds "base"
   "by":     { "scenario": ["mid", "late"] },         // repeat everything per value; deltas vs that group's base
@@ -65,6 +68,8 @@ A run that never reaches its phase is counted as "unreached" (warm-up cap `maxWa
 - `job: "dancer"`, `jobWho: n | "generics" | "everyone"`, `force`: lock ladies into a job (needed amenity granted free).
   Without `force` she only takes it once `canDo` allows; with `force` she's put there regardless.
 - `gold`, `rep`, `trust` (added to everyone), `sam: {charm: 10}`, `upgrades: ["bath"]`.
+- `statAll: 5`, `stat: {beauty: 5}`, `skillAll: 5`: add to every lady (0-100 scale), for pricing a stat point (`stat-value.json`).
+- NG+ only (`ng`): `lovers: n` = exactly n Devoted going in (partner first, then by trust); `friends: n` = n generics at max trust.
 
 ## The policy (the bot "player")
 
@@ -73,7 +78,8 @@ bedrooms when clients are turned away, beds/quarters to fit hires, amenities in 
 once a house has 5 ladies; keeps 1 maid + 1 promoter, one lady per amenity job, everyone else courtesan-first and
 re-sorted weekly; rests ladies under 30% energy; keeps a reserve for costs and the next payment; pays the debt off
 early when it can. Sam makes the rounds when anyone is under 35 trust, walks with his partner once a week, and
-tends bar otherwise. Event choices are random (seeded), except Contract Renewal (renew).
+does `samDefault` otherwise (bartend | security | books | scout | rounds | lesson | trainStat | trainSkill | date | rest), and scouts
+instead while a house has under `scoutWhenShort` ladies and few affordable candidates. Houses are managed emptiest first. Event choices are random (seeded), except Contract Renewal (renew).
 
 Because every variant uses the same player, results are comparisons, not absolute truths: a choice the bot never makes
 (feasts, training, dates with others, decor) won't show its value unless a spec turns it on.

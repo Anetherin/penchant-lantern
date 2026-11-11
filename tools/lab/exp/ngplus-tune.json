@@ -1,0 +1,15 @@
+{
+  "desc": "NG+ tuning candidate vs current over 4 NG+ cycles: c1-shaped loan (no fewer/flatter) with more debt (debtShare, perCycle). Checked with every house kept, home only, and no lovers.",
+  "scenario": "ngplus", "runs": 12, "cycles": 4,
+  "ng": { "past": "none", "boon": "ap", "house": "best" },
+  "variants": [
+    {"name": "current"},
+    {"name": "tuned", "patch": {"balance": {"debt": {"ngplus": {"fewer": 0, "flatter": 0}}, "ngplus": {"debtShare": 0.9, "perCycle": 0.35}}}},
+    {"name": "tuned · home only", "ng": {"keep": "home"}, "patch": {"balance": {"debt": {"ngplus": {"fewer": 0, "flatter": 0}}, "ngplus": {"debtShare": 0.9, "perCycle": 0.35}}}},
+    {"name": "tuned · 0 lovers", "ng": {"lovers": 0}, "patch": {"balance": {"debt": {"ngplus": {"fewer": 0, "flatter": 0}}, "ngplus": {"debtShare": 0.9, "perCycle": 0.35}}}},
+    {"name": "tuned · 3 lovers", "ng": {"lovers": 3}, "patch": {"balance": {"debt": {"ngplus": {"fewer": 0, "flatter": 0}}, "ngplus": {"debtShare": 0.9, "perCycle": 0.35}}}}
+  ],
+  "columns": ["c2len", "c3len", "c4len", "c5len", "c2debt", "c3debt", "c4debt", "c5debt", "c2over", "c3over", "c4over", "c5over"],
+  "delta": ["c2len", "c3len", "c4len", "c5len"],
+  "breakdown": []
+}

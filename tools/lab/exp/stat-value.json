@@ -1,0 +1,11 @@
+{
+  "desc": "What a stat/skill point is worth: +5 (0-100 scale) to one stat for every lady at the phase start.",
+  "scenario": "mid", "weeks": 12, "runs": 16,
+  "each": { "mutate": [
+    {"name":"all stats +5","statAll":5}, {"name":"all skills +5","skillAll":5},
+    {"name":"beauty +5","stat":{"beauty":5}}, {"name":"charm +5","stat":{"charm":5}}, {"name":"charisma +5","stat":{"charisma":5}},
+    {"name":"wits +5","stat":{"wits":5}}, {"name":"refinement +5","stat":{"refinement":5}}, {"name":"stamina +5","stat":{"stamina":5}},
+    {"name":"strength +5","stat":{"strength":5}}, {"name":"agility +5","stat":{"agility":5}}
+  ] },
+  "columns": ["total", "net", "served", "sat", "repGain"], "delta": ["total", "net", "sat"], "breakdown": []
+}

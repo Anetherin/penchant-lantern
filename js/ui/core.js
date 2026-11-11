@@ -70,7 +70,7 @@ function regularsCard(h){
 }
 // Tidiness (h.tidy 0-100): label and colour class by tier (balance.json → tidy).
 function tidyTier(h){ const T = BAL.tidy, t = h.tidy ?? T.start; return t >= T.high ? 'high' : t < T.bad ? 'bad' : t < T.low ? 'low' : 'ok'; }
-const tidyLabel = h => ({high:'spotless: reputation, mood and rest all benefit', ok:'presentable', low:'getting shabby: reputation, mood and rest suffer', bad:'a mess: reputation, mood and rest suffer badly'})[tidyTier(h)];
+const tidyLabel = h => ({high:'spotless: reputation, mood, rest and clients all benefit a little', ok:'presentable', low:'getting shabby: reputation, mood, rest and clients suffer', bad:'a mess: reputation, mood, rest and clients suffer badly'})[tidyTier(h)];
 const tidyCls = h => ({high:'good', ok:'', low:'warn', bad:'warn'})[tidyTier(h)];
 function feastCard(h){
   const n = S.workers.filter(w=>w.house===h.id).length, done = h.feastWk === S.week;

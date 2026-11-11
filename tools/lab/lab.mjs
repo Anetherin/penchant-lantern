@@ -42,8 +42,8 @@ function expand(spec){
 }
 const variants = expand(spec);
 const jobFor = (v, seed) => ({ seed, scenario: v.scenario || spec.scenario || 'campaign', start: Object.assign({}, spec.start, v.start), weeks: v.weeks || spec.weeks,
-  policy: Object.assign({}, spec.policy, v.policy), phases: Object.assign({}, spec.phases, v.phases), patch: v.patch || spec.patch, patchAt: v.patchAt || spec.patchAt || 'phase',
-  mutate: Object.assign({}, spec.mutate, v.mutate), ng: Object.assign({}, spec.ng, v.ng), maxWarm: v.maxWarm || spec.maxWarm, stopOnWin: v.stopOnWin ?? spec.stopOnWin });
+  policy: Object.assign({}, spec.policy, v.policy), phasePolicy: (spec.phasePolicy || v.phasePolicy) ? Object.assign({}, spec.phasePolicy, v.phasePolicy) : null, phases: Object.assign({}, spec.phases, v.phases), patch: v.patch || spec.patch, patchAt: v.patchAt || spec.patchAt || 'phase',
+  mutate: Object.assign({}, spec.mutate, v.mutate), ng: Object.assign({}, spec.ng, v.ng), maxWarm: v.maxWarm || spec.maxWarm, cycles: v.cycles || spec.cycles, stopOnWin: v.stopOnWin ?? spec.stopOnWin });
 // variants with the same start/policy/phases (and patches only at the phase) share the warm-up: run it once, snapshot, reuse
 const warmKey = j => (j.patchAt === 'start' && j.patch) || j.scenario === 'campaign' || j.scenario === 'early' ? null : JSON.stringify([j.seed, j.scenario, j.start, j.policy, j.phases, j.maxWarm]);
 

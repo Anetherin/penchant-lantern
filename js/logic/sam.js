@@ -255,7 +255,7 @@ function samTrain(id, mode='skill'){
   const warm = (lust, lewdCap) => { const l0 = w.lust; w.lust += lust * (0.4 + w.lewd/100) * fxMul(w,'lustBuild'); fitLust(w); if(w.lewd < (SK.lewdCap ?? 50)) lewdUp(w, SK.lewd ?? 1.5, Math.min(lewdCap, SK.lewdCap ?? 50)); return Math.round(w.lust - l0); };
   // the trade skill her current job uses (Hospitality for courtesans and anyone without one), taught hands-on
   if(!useAP(SK.energy ?? 30)) return;
-  const sk = TECH_KEYS.includes(k) ? k : 'service', g = (4 + tq/25) * tm2;
+  const sk = TECH_KEYS.includes(k) ? k : 'service', g = ((SK.base ?? 4) + tq*(SK.perTech ?? 0.04)) * tm2;
   grow(w, sk, g); statXP(w, 'charm', g*0.6); const lu = warm(SK.lust ?? 4, SK.lewdCap ?? 50); gainTrust(w, 1);
   w.energy = clamp(w.energy-(SK.herEnergy ?? 14), 0, maxEnergy(w)); if(tm<1) moodAdd(w, -3); samStat('technique',1); samXP(5); samLog(`Trained ${w.name} in ${TECH_LABEL[sk]}`);
   save(); render(); closeModal();

@@ -1,0 +1,7 @@
+{
+  "desc": "Sam's spare action over a whole first cycle (Lantern): week the debt is cleared and income per phase.",
+  "scenario": "campaign", "weeks": 104, "runs": 16,
+  "each": { "policy.samDefault": ["security", "books", "scout", "rounds", "lesson", "trainStat", "trainSkill", "date", "rest"] },
+  "columns": ["winWeek", "netEarly", "netMid", "netLate", "gold26", "rep", "trust", "sat", "left"],
+  "breakdown": []
+}

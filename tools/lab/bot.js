@@ -44,8 +44,9 @@ LAB.POLICY = {
   reserve: 300,          // keep this much gold on top of last week's costs and an upcoming debt payment
   roundsTrust: 35,       // Sam makes the rounds when any lady is below this trust
   partnerDates: true,    // one date a week with the partner while AP allows (builds toward Devoted -> NG+ carries)
-  samDefault: 'bartend', // what Sam does with spare AP: bartend | security | books | scout
-  payOff: true,          // pay the whole debt as soon as gold covers it plus the reserve
+  samDefault: 'bartend', // what Sam does with spare AP: bartend | security | books | scout | rounds | lesson | trainStat | trainSkill | date | rest
+  payOff: true,
+  scoutWhenShort: 4,     // Sam scouts instead of his spare action while a house has fewer ladies than this and few candidates are affordable          // pay the whole debt as soon as gold covers it plus the reserve
   targets: { maid: 1, promoter: 1 }, // support staff kept per house once it has `targetsAt` ladies; everyone else courtesan-first
   targetsAt: 5,
   resort: true           // every week, move surplus promoters/maids/attendants up to courtesan when they qualify
@@ -102,20 +103,35 @@ function manageHouse(h){
   }
   manageJobs(h);
 }
+// the game reads some choices from the open sheet's <select>; give it a hidden one
+function sel(id, v){ let e = document.getElementById(id); if (!e) { e = document.createElement('select'); e.id = id; e.style.display = 'none'; document.body.appendChild(e); }
+  e.innerHTML = `<option value="${v}">${v}</option>`; e.value = v; }
+let trainI = 0;
+function samSpare(){
+  const k = P.samDefault, earners = S.workers.filter(w => w.job === 'courtesan' || (JOBS[w.job] || {}).must);
+  const pickW = () => { const L = (earners.length ? earners : S.workers); return L[(trainI++) % L.length]; };
+  if (k === 'rest') return samRest();
+  if (k === 'lesson') { sel('lessonSel', 'service'); return samWork('lesson'); }
+  if (k === 'trainStat') { const w = pickW(); if (!w) return samWork('bartend'); const st = (P.trainStats || ['beauty', 'stamina', 'charm']).slice().sort((a, b) => statOf(w, a) - statOf(w, b))[0]; sel('trainStatSel', st); return samTrain(w.id, 'stat'); }
+  if (k === 'trainSkill') { const w = pickW(); if (!w) return samWork('bartend'); sel('trainSel', 'service'); return samTrain(w.id, 'skill'); }
+  if (k === 'date') { const w = S.workers.slice().sort((a, b) => a.trust - b.trust)[0]; if (!w) return samWork('bartend'); return samDate(w.id, 'walk'); }
+  return samWork(k);
+}
 function samTurn(){
   let rounds = false, dated = false, g = 0;
   while (S.ap > 0 && g++ < 8) {
     const p = S.workers.find(w => w.isPartner);
     if (!rounds && S.sam.energy >= 25 && S.workers.some(w => w.trust < P.roundsTrust)) { samWork('rounds'); rounds = true; }
     else if (P.partnerDates && !dated && p && S.ap >= 2 && S.sam.energy >= 40) { try { samDate(p.id, 'walk'); } catch (e) {} dated = true; }
-    else if (S.sam.energy >= 25) samWork(P.samDefault);
+    else if (P.scoutWhenShort && S.sam.energy >= 25 && S.houses.some(h => staffIn(h).length < P.scoutWhenShort) && S.candidates.filter(c => S.gold - c.signing >= P.reserve).length < 2) samWork('scout');
+    else if (S.sam.energy >= 35) { try { samSpare(); } catch (e) { samWork('bartend'); } }
     else samRest();
     quiet(); resolveEvents();
   }
 }
 // one week of play; returns the metrics row
 function playWeek(){
-  for (const h of S.houses.slice()) manageHouse(h);
+  for (const h of S.houses.slice().sort((a, b) => staffIn(a).length - staffIn(b).length)) manageHouse(h);
   S.cur = S.houses[0].id; samTurn(); resolveEvents();
   if (P.payOff && !S.won && S.debt.remaining > 0 && S.gold >= S.debt.remaining + reserveGold()) { try { payOffDebt(); } catch (e) {} quiet(); resolveEvents(); }
   const before = new Set(S.workers.map(w => w.id)), wk = S.week, strikes0 = S.debt.strikes;
@@ -125,7 +141,9 @@ function playWeek(){
   const left = [...before].filter(id => !S.workers.some(w => w.id === id)).length;
   const per = Object.values(R.per).map(p => { const w = who[p.id] || {};
     return { race: w.race || '?', sub: w.sub || '', job: p.job, earned: Math.round(p.earned || 0), wage: w.free ? 0 : (w.wage || 0), served: p.served || 0, key: w.key || null, house: p.house }; });
-  const hs = R.houses.map(x => ({ id: x.id, served: x.served, turned: x.turned, sat: Math.round((x.avgSat || 0) * 10) / 10, rooms: x.roomsUsed, cap: x.roomCap }));
+  const hs = R.houses.map(x => ({ id: x.id, served: x.served, turned: x.turned, sat: Math.round((x.avgSat || 0) * 10) / 10, rooms: x.roomsUsed, cap: x.roomCap,
+    tidy: Math.round(x.tidy), promo: Math.round((x.promoDraw || 0) * 10) / 10, pushy: x.pushy ? Object.assign({}, x.pushy) : null, lost: x.nightsLost || 0, demand: x.demand || 0, maidAdd: Math.round((x.maidAdd || 0) * 10) / 10, tidy0: Math.round(x.tidy0), visitors: x.visitors || 0,
+    jobs: Object.fromEntries(Object.entries(Object.values(R.per).filter(p => p.house === x.id).reduce((a, p) => (a[p.job] = (a[p.job] || 0) + 1, a), {}))) }));
   const W = S.workers, avg = f => W.length ? W.reduce((a, w) => a + f(w), 0) / W.length : 0;
   return { wk, cycle: S.cycle || 1, gold: Math.round(S.gold), debt: Math.round(S.debt.remaining), net: Math.round(R.income - R.wages - R.upkeep - (R.recharge || 0)),
     income: Math.round(R.income), wages: Math.round(R.wages), upkeep: Math.round(R.upkeep), sam: Math.round(R.led.sam || 0), rep: Math.round(homeH().rep * 10) / 10,
@@ -159,6 +177,9 @@ LAB.mutate = M => { if (!M) return {};
   if (M.job) { const h = homeH(), J = JOBS[M.job]; if (J && J.needs && !h.up[J.needs]) { h.up[J.needs] = true; info.granted = J.needs; }
     const who = M.jobWho === 'everyone' ? staffIn(h).filter(w => !w.isPartner && !w.locked) : generics(M.jobWho ?? 2);
     who.forEach(w => { w._lock = M.job; w._force = !!M.force; if (!canDo(w, M.job) || M.force) w.job = M.job; }); info.locked = who.length; }
+  if (M.statAll) S.workers.forEach(w => STAT_KEYS.forEach(k => { w.stats[k] = clampK(w.stats[k] + M.statAll * SKL); }));   // +N (0-100 scale) to every stat
+  if (M.stat) S.workers.forEach(w => Object.entries(M.stat).forEach(([k, n]) => { w.stats[k] = clampK(w.stats[k] + n * SKL); }));
+  if (M.skillAll) S.workers.forEach(w => { TECH_KEYS.forEach(k => { w.tech[k] = clampK((w.tech[k] || 0) + M.skillAll * SKL); }); Object.values(w.acts || {}).forEach(a => { a.skill = clampK((a.skill || 0) + M.skillAll * SKL); }); });
   if (M.gold != null) S.gold += M.gold;
   if (M.rep != null) homeH().rep = M.rep;
   if (M.trust != null) S.workers.forEach(w => w.trust = clamp(w.trust + M.trust));
@@ -168,15 +189,33 @@ LAB.mutate = M => { if (!M) return {};
 };
 
 // ---------- NG+ ----------
+// 'best' new house = first offered in this order (from the ngplus-houses lab results)
+LAB.HOUSE_RANK = ['veil', 'castle', 'hollow', 'wayfarer', 'lantern', 'pavilion', 'onsen', 'tankard', 'skyhook', 'pearl'];
+// exactly n Devoted lovers going into NG+ (partner first, then by trust); exactly n generic "old friends" (trust 100)
+function setLovers(n){
+  S.workers.forEach(w => { if (has(w, 'Devoted')) w.traits = w.traits.filter(t => t !== 'Devoted'); });
+  S.workers.slice().sort((a, b) => (b.isPartner ? 1 : 0) - (a.isPartner ? 1 : 0) || b.trust - a.trust).slice(0, n)
+    .forEach(w => { w.traits.push('Devoted'); w.isPartner = true; w.wage = 0; w.contract = 999; });
+}
+function setFriends(n){
+  const G = S.workers.filter(w => !w.key && !has(w, 'Devoted')).sort((a, b) => b.trust - a.trust);
+  G.forEach((w, i) => { if (i < n) w.trust = 100; else if (w.trust >= 100) w.trust = 99; });
+}
 function enterNG(ng){
   ng = ng || {};
+  if (ng.lovers != null) setLovers(ng.lovers);
+  if (ng.friends != null) setFriends(ng.friends);
   startNGPlus(); quiet();
   const free = PARTNERS.filter(k => !S.workers.some(w => w.key === k));
   NGS.partner = ng.partner && ng.partner !== 'auto' ? ng.partner : (free.find(k => NAMED[k].ngplus) || free[0] || 'none');
-  NGS.boon = ng.boon || 'ap';
+  const taken = S.boons || [], want = Array.isArray(ng.boon) ? ng.boon[(S.cycle || 1) - 1] : ng.boon;
+  NGS.boon = [want || 'ap', 'purse', 'recruit', 'ap', 'memory', 'loyal', 'grace', 'renown', 'devotion', 'clone'].find(k => k && NG_BOONS[k] && !taken.includes(k)) || null;
   NGS.past = ng.past || 'none';
+  if (Array.isArray(ng.house)) ng = Object.assign({}, ng, { house: ng.house[(S.cycle || 1) - 1] ?? 'auto' });
+  if (ng.house && !['none', 'auto', 'best'].includes(ng.house) && H(ng.house)) ng = Object.assign({}, ng, { house: 'auto' });   // already owned
   if (ng.house === 'none') NGS.house = null;
-  else if (ng.house && ng.house !== 'auto') { if (!NGS.offers.includes(ng.house)) NGS.offers.push(ng.house); NGS.house = ng.house; }
+  else if (ng.house && ng.house !== 'auto' && ng.house !== 'best') { if (!NGS.offers.includes(ng.house)) NGS.offers.push(ng.house); NGS.house = ng.house; }
+  else if (ng.house === 'best') { const R = LAB.HOUSE_RANK; NGS.house = NGS.offers.slice().sort((a, b) => (R.indexOf(a) + 99) % 99 - (R.indexOf(b) + 99) % 99)[0] || null; }
   else NGS.house = NGS.offers[0] || null;
   if (ng.keep === 'home') Object.keys(NGS.keep).forEach(k => NGS.keep[k] = false);
   carriedLovers().forEach(w => { const p = (ng.perk && NG_PERKS().includes(ng.perk) && !(w.ngPerks || []).includes(ng.perk)) ? ng.perk : NG_PERKS().find(t => !(w.ngPerks || []).includes(t)); if (p) NGS.perks[w.id] = p;
@@ -218,13 +257,20 @@ LAB.run = async (J) => {
   LAB.reseed((J.seed * 7919 + 17) >>> 0);
   if (J.patch && J.patchAt !== 'start') LAB.applyPatch(J.patch);
   if (sc === 'early') P = Object.assign({}, LAB.POLICY, EARLY_POLICY, J.policy || {});
-  if (sc === 'ngplus') out.info.ng = enterNG(J.ng);
-  out.info.mut = LAB.mutate(J.mutate);
-  const W = J.weeks || (sc === 'campaign' || sc === 'ngplus' ? 104 : 12);
-  for (let i = 0; i < W && !S.over; i++) {
-    const r = playWeek(); if (!r) { out.info.stalled = S.week; break; }
-    out.weeks.push(r); track();
-    if (S.won && J.stopOnWin !== false) break;
+  if (J.phasePolicy) Object.assign(P, J.phasePolicy);
+  const W = J.weeks || (sc === 'campaign' || sc === 'ngplus' ? 104 : 12), C = sc === 'ngplus' ? (J.cycles || 1) : 1;
+  out.info.cyc = [];
+  for (let c = 0; c < C; c++) {
+    if (sc === 'ngplus') { if (c > 0 && !S.won) break; const ng = enterNG(J.ng); if (c === 0) out.info.ng = ng; out.info.cyc.push(Object.assign(ng, { cycle: S.cycle, start: S.week })); }
+    if (c === 0) out.info.mut = LAB.mutate(J.mutate);
+    const w0 = S.week;
+    for (let i = 0; i < W && !S.over; i++) {
+      const r = playWeek(); if (!r) { out.info.stalled = S.week; break; }
+      out.weeks.push(r); track();
+      if (S.won && J.stopOnWin !== false) break;
+    }
+    if (sc === 'ngplus') Object.assign(out.info.cyc.at(-1), { len: S.won ? S.week - w0 : null, won: !!S.won, over: !!S.over, staffEnd: S.workers.length,
+      lovers: S.workers.filter(w => has(w, 'Devoted')).length, friendsEnd: S.workers.filter(w => !w.key && w.trust >= 100).length });
   }
   out.info.end = { week: S.week, won: !!S.won, over: !!S.over, houses: S.houses.map(h => ({ id: h.id, rooms: h.rooms, size: houseSize(h), used: roomsUsed(h), up: Object.keys(h.up).filter(k => h.up[k]) })) };
   return out;

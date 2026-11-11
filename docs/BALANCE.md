@@ -1,47 +1,66 @@
-# Balance pass: first lab results (2026-11-10)
+# Balance pass: lab results
 
 Made with `tools/lab` (see `tools/lab/README.md`); rerun any line with `node tools/lab/lab.mjs <spec>`.
-Everything below uses the lab's default player (Lantern, Kaede, salaryman unless varied), 12–16 paired seeds.
+Everything uses the lab's default player (Lantern, Kaede, salaryman unless varied), 12–16 paired seeds.
 These are comparisons under one fixed player, not absolute truths. Δ figures are paired means; "±" is the 95% CI.
 
-## Baselines (Lantern, cycle 1)
+## Pass 2 (2026-11-11): support jobs, Sam's actions, NG+
 
-| phase | starts | net/wk (house) | + Sam | notes |
-|---|---|---|---|---|
-| early (≤4 ladies, no upgrades) | wk 1 | ~760 | — | courtesans ~520/wk each; Kaede carries it |
-| mid (5 ladies) | wk ~6 | ~1,080 | ~1,230 | |
-| late (rooms full) | wk ~15 | ~1,580 | ~1,820 | |
-| debt cleared (pays off early) | wk ~33 | | | 0 missed payments, 0 game overs |
+Changes (all numbers in `balance.json`):
+- **Security:** an unhandled pushy client (nobody there, or Sam's step-in fails) **ends her night**: a courtesan loses
+  `props.nightCap` (2) clients of the week, anyone else 1/`props.nights` (6) of her output and that share of her
+  propositions. Sam steps in **on the spot** during the week (+`watchBonus` if he stood watch), so the report already
+  shows it; the after-report "Trouble downstairs" event is gone.
+- **Tidiness:** maid gain x (100 − tidiness)/`maidEase` (35, max ×1.5): one maid holds a mid house at ~65–70 instead of
+  pinning 100. Bands: ≥80 small bonus, 50–80 neutral, <50 shabby, **<30 a mess** (−1.5 rep/week, −6 mood, rest ×0.9,
+  −10 client satisfaction, −20% demand).
+- **Promoter:** draw 3 + (Charisma + Hospitality)/15, ×(1 + (1 − rep/60)) while the house is little known, 2nd/3rd
+  promoter ×0.6^k, word of mouth +0.03 rep per client drawn.
+- **Training:** stat coaching +3.5 points/session (was +1.2–1.8), her energy cost 4 (was 10); job-skill training 8 + Technique×0.08
+  (was 4), her energy 6 (was 14).
+- **NG+ loan:** keeps cycle 1's payment shape (`debt.ngplus.fewer/flatter` 0; was fewer, flatter, front-loaded payments
+  each cycle) and grows through `ngplus.debtShare` 0.9 (was 0.7) and `perCycle` 0.35 (was 0.2).
 
-NG+ (Lantern kept + Wayfarer, Seasoned Owner): new debt ~62k, ~4 ladies to start, cycle 2 cleared at ~wk 67 (≈2x cycle 1).
+Results:
 
-## Findings worth acting on
+| | before | after |
+|---|---|---|
+| Manor (Hollowmere) cycle 1 | 33 wks, mid 1,220/wk | 29 wks, mid 1,560/wk |
+| first promoter vs none (mid / late) | ≈ −30 / −100 | +110 / +275 per week |
+| no maid (mid tidiness / rep gain over 12 wks) | 54 / 3 | 28 / 2, demand −20% once <30 |
+| unhandled incidents per week | 1.3 (after-report event) | 0.3–0.4, each ends a night |
+| stat training over a campaign | +3.6 wks vs bartending, worse than napping | +2.2 wks, like rounds/dates |
+| NG+ cycle 2 with 0 / 1 / 3 / 5 lovers | 60% game over / 34 / 33 / 29 wks | 42 / 36 / 35 / 32 wks, no game overs |
+| NG+ cycles 2-5, every house kept | 34, 26, then 70% game over at cycle 4 | 35, 29, 36, 33 wks; ≤10% game over |
+| NG+ cycles 2-5, home house only | 34, 32, 34, 34 | 35, 38, 39, 40 wks |
+| NG+ boons spread | −7.6 (Deep Pockets) … +1.6 wks | −0.8 … +4.2 wks |
 
-1. **Starting houses spread 18–34 weeks to clear.** Veil (wk 18), Pavilion (20), Castle (25) are far easier than
-   Lantern/Onsen/Hollow/Tankard (33–34) because their debt is smaller and income isn't. Castle also has the best
-   late game by far (+1,200/wk vs Lantern). Onsen and Tankard have the weakest mid/late (−300 to −760/wk). (`houses`)
-2. **Demons underperform everywhere** (−130/wk mid, −480/wk late when the house's generics are demons; demon-only
-   hiring: +12.5 weeks to clear, 20% game overs). Cause: they get no energy from sleep (35% on rest) and burn
-   `svc.demon.hunger` every working week, refuelling only by finishing services, so any demon in a non-service job
-   (maid, promoter, bartender, attendant) drains and sits out long rests. Other races sit within about ±120/wk. (`races`, `races-hire`)
-3. **Support jobs are worth far less than a courtesan.** Moving 2 more ladies into promoter/maid/security/host costs
-   250–350/wk; attendant ~150; bartender/dancer/bath ~50–100 (bath gives +6 satisfaction). Keeping 0, 1 or 2
-   maids/promoters barely changes income (differences inside the noise). A promoter's or maid's indirect value is
-   currently near zero at the margin. (`jobs`, `support`)
-4. **NG+ house choice can end the run.** Onsen, Tankard, Skyhook and Pearl as the new house lead to game overs in
-   60–70% of runs; Castle (−11 weeks) and Veil (−12) are the clear best; taking no new house beats Wayfarer by 5 weeks.
-   The premium NG+ houses (Skyhook 75k, Pearl 85k debt) are traps for this player. (`ngplus-houses`)
-5. **NG+ boons are lopsided.** Deep Pockets (−7.6 weeks, +730/wk) and Friends at the Guild (−5.5, +480/wk) dominate;
-   Lenient Lender is weak (−2.3 weeks) for what it promises; Renown, Fated Meeting, Old Loyalties, Vivid Memories and
-   Shadow Clone show no measurable effect for this player (some need play it doesn't do). (`ngplus-boons`)
-6. **Partners:** Nerys is the strongest in both cycles (cycle-1 mid +290/wk; NG+ −7 weeks, +710/wk). Adelheid is the
-   weakest start (+14.5 weeks to clear, −490/wk late); Marisol and Lirael +6 weeks. In NG+, Lara and Akari add little;
-   no partner at all costs ~420/wk. (`partners`, `ngplus-partners`)
-7. **Sam's pasts are close**, with salaryman the strongest for this player (Business → income bonus). Gym is the weakest
-   (+3.5 weeks). Otaku and Tutor produce *identical* games here because they only touch Wits/training/Appraisal,
-   which the lab player never uses; they need a training-focused policy to evaluate. (`pasts`, `ngplus-pasts`)
+Sam's spare action over a whole cycle 1 (`sam-actions-campaign`): bartending and books clear the debt by week 33;
+security, lessons 33; scouting, rounds, dates, napping and stat training 35; Hospitality training 36. Money actions win
+on speed, the others trade 2–3 weeks for trust, skills and stats (which also carry into NG+). Over 12-week windows
+(`sam-actions`), books ≈ bartending (books cuts upkeep ~40%), and security/scouting only pay when there are incidents
+or open beds.
 
-## Not covered yet (the player doesn't do these)
+What a stat point is worth (`stat-value`): +5 to every stat on every lady ≈ +220/week mid; per lady-point Beauty and
+Stamina ≈ 2.5g/week, Charm ~1.2, Wits/Refinement/Agility/Strength near 0 for income, Charisma ≈ 0 (now feeds promoters).
 
-One-on-one training, lessons, scouting, feasts, decor/drinks tiers, classroom/chapel, dates with anyone but the partner,
-madame focus choices, multiple houses in cycle 1. Add policy options in `tools/lab/bot.js` to cover them.
+## Still open
+
+1. **Support jobs vs a courtesan.** The first maid/promoter now clearly earns its place, but moving two *more* ladies
+   into promoter/maid/security/host still costs 200–470/wk (a courtesan nets ~475/wk). A courtesan slot is the
+   bottleneck. If you want support roles closer to that, raise what each does per house size rather than per lady.
+2. **NG+ trap houses:** with the new loan, Skyhook (80% game over) and Pearl (40%) as the cycle-2 house, and Tankard
+   (30%), are still traps for this player; Veil (28 wks) and Castle (30) are easiest. Skyhook/Pearl debt is 45k/55k
+   before the per-cycle scaling.
+3. **Starting houses** spread 16 (Veil) to 34 (Onsen) weeks; Onsen and Tankard have the weakest mid/late game.
+4. **Demons** (by design) are strongest as courtesans and weak elsewhere: −200/wk mid, −500/wk late if every generic is
+   one. Spirits/androids came out strong after this pass (+240 to +380/wk late when every generic is one); unexplained.
+5. NG+ cycle 3 is the easiest one when you keep every house (29 wks vs 35/36 around it): the third house arrives
+   with residents and upgrades but its debt only joins at the next cycle.
+
+## Pass 1 (2026-11-10), before the changes above
+
+- Starting houses spread 18–34 weeks to clear; Castle best late game, Onsen/Tankard weakest.
+- Partners: Nerys strongest in both cycles; Adelheid weakest start (+14.5 wks), Marisol/Lirael +6.
+- Sam's pasts: salaryman strongest for this player; Otaku and Tutor need training play to show anything.
+- (The pass 1 note that NG+ took "~65 weeks" was a lab bug: it reported the absolute week. Cycle 2 took ~34.)
