@@ -14,7 +14,7 @@ function charData(){
   return charData.c = out;
 }
 const GUEST_PACKS = noMeta((DATA.guests||{}).packs);
-const GUEST_VISITS = Object.assign({chance:0.3, stayWeeks:2, cooldownWeeks:8}, (DATA.guests||{}).visits);
+const GUEST_VISITS = Object.assign({chance:0.3, stayWeeks:2, cooldownWeeks:8, pity:0.1, maxChance:0.8}, (DATA.guests||{}).visits);
 // Service categories (data/services.json). Custom ones added in old versions of Settings still work.
 const ACTS = needData('services').services;
 // Old service ids -> current ones (services come in _give/_get pairs). Old data/saves that use them keep working through these.

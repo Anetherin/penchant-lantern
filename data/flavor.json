@@ -449,10 +449,10 @@
     ]
   },
   "stepped_in": {
-    "_note": "Note when a madame or attendant took clients because the courtesans were swamped.",
+    "_note": "Note when a madame or attendant took clients because the courtesans were swamped ({clients} = 'one client' / 'N clients', {did} = ' (kiss ×2, massage)' or ' (company only)').",
     "_default": [
-      "{name} stepped in when the courtesans were swamped and kept the evening running.",
-      "{name} took the overflow in the lounge so nobody had to be turned away."
+      "{name} stepped in for {clients} when the courtesans were swamped{did}.",
+      "{name} took the overflow herself: {clients}{did}, so nobody had to be turned away."
     ]
   },
   "pushy_talked": {
@@ -541,5 +541,97 @@
     ]
   },
   "enc_noroom": {"_note":"No free room for the client.","_default":["No room was free, so he went home disappointed."]},
-  "enc_expect": {"_note":"A client expected the attendant to make an offer.","_default":["He seemed to expect an offer and left a little sour."]}
+  "enc_expect": {"_note":"A client expected the attendant to make an offer.","_default":["He seemed to expect an offer and left a little sour."]},
+  "train_stat": {
+    "beauty": [
+      "Sam books {name} an afternoon with a stylist he can't quite afford, then sits in the corner taking notes on skincare.",
+      "{name} and Sam go through posture, grooming and how to stand in good light. Sam holds the mirror."
+    ],
+    "charm": [
+      "Sam plays a string of difficult guests for {name} to win over. His grumpy dwarf impression is a highlight.",
+      "{name} practices small talk on Sam until he forgets it's practice."
+    ],
+    "charisma": [
+      "Sam has {name} address an empty common room as if it were packed, then again, louder, from the stairs.",
+      "{name} rehearses toasts and introductions while Sam heckles gently from the back."
+    ],
+    "refinement": [
+      "Sam and {name} work through table settings, forms of address and which fork is for what. Neither of them is sure about the fish fork.",
+      "{name} reads poetry aloud while Sam corrects her pronunciation from a borrowed etiquette book."
+    ],
+    "wits": [
+      "Sam sets {name} logic puzzles from a book he half remembers from his old world. She solves the last one faster than he can.",
+      "{name} and Sam spend the afternoon on riddles, ledgers and a board game Sam had someone carve for him."
+    ],
+    "stamina": [
+      "Sam takes {name} on a long run along the river. He regrets it before she does.",
+      "{name} works through a circuit Sam drew up: stairs, buckets of water, more stairs."
+    ],
+    "strength": [
+      "{name} hauls crates in the storeroom while Sam counts reps and pretends he could lift them too.",
+      "Sam borrows weights from the guild and spots {name} through an afternoon of lifting."
+    ],
+    "agility": [
+      "Sam chalks a pattern on the courtyard floor and has {name} dance, dodge and step through it until it's second nature.",
+      "{name} practices balance on the garden wall while Sam hovers underneath, ready to catch her."
+    ]
+  },
+  "sample_act": {
+    "_note": "Report highlight for one free sample a promoter gave on the street ({act} = the service, {lady} = 'offered a massage' style phrase).",
+    "_default": [
+      "{name} pulled a curious passer-by into a doorway near {house} and {lady}, free of charge, then pressed a card into his hand.",
+      "Out on the street, {name} gave one hesitant man a free sample: she {lady}, then pointed him at {house}'s door.",
+      "{name}'s free sample of the week: a quick {act} in the shadow of {house}'s lanterns. He was inside within the hour."
+    ]
+  },
+  "step_lead": {
+    "_note": "Opening of a report highlight when a madame or attendant served a client because the courtesans were swamped ({role} = 'the madame' / 'an attendant').",
+    "_default": [
+      "Every courtesan was busy, so {name} stepped in herself.",
+      "With the courtesans swamped, {name} set aside her duties as {role} for a client.",
+      "No courtesan was free, and {name} didn't want anyone turned away."
+    ]
+  },
+  "act_turn": {
+    "_note": "Shown right after an encounter's or a first's opening (before the service line and any AI text), so the story says which way the moment went. Keyed by service id. Edit freely; {name} = her name.",
+    "kiss": [],
+    "massage_give": [
+      "Somewhere between kisses {name} pushes him gently down onto the bed and says he's far too tense. Her hands go to his shoulders: a massage, and a good one.",
+      "{name} breaks off with a laugh, turns him around by the shoulders and starts working the knots out of his back instead."
+    ],
+    "massage_get": [
+      "{name} stretches, winces at her own shoulders, and asks if he'd mind. He doesn't mind. He gives her a massage, slowly, and she melts into it.",
+      "She rolls onto her front and asks him for a massage. Sam takes the job very seriously."
+    ],
+    "manual_get": [
+      "She guides his hand where she wants it and keeps hers over it, showing him.",
+      "{name} takes his hand and lets him know, without a word, that she wants to be touched."
+    ],
+    "manual_give": [
+      "Her hand slips lower, and {name} smiles at the face he makes.",
+      "{name} decides it's her turn to take care of him, and her hands go to work."
+    ],
+    "breast_get": [
+      "{name} undoes her top and lets him explore, watching his face the whole time.",
+      "She guides his hands to her chest and lets him take his time."
+    ],
+    "oral_get": [
+      "{name} lies back and, a little shyly, asks him to use his mouth on her. He does.",
+      "She pushes him down gently, and her meaning is very clear."
+    ],
+    "oral_give": [
+      "{name} slides down to her knees with a look that says she's been planning this.",
+      "She kisses her way down his chest and doesn't stop."
+    ],
+    "breast_give": [
+      "{name} has an idea, and the way she unbuttons her top says she's proud of it.",
+      "She pulls her top off and shows him exactly what she has in mind."
+    ],
+    "missionary": ["They end up in bed, her pulling him down on top of her.","She lies back and pulls him with her, and that's that."],
+    "cowgirl": ["{name} pushes him back onto the bed and climbs on top.","She straddles him and takes charge."],
+    "doggy": [
+      "{name} turns over onto her hands and knees and looks back at him over her shoulder.",
+      "She rolls onto her front and looks back at him with a grin."
+    ]
+  }
 }

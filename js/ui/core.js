@@ -130,10 +130,43 @@ function agendaHTML(){
   lines.push(`🧑 Sam: ${S.ap} action${S.ap===1?'':'s'} left · energy ${Math.round(S.sam.energy)}`);
   return `<section class="card agenda"><h3 style="margin:0 0 4px">This week</h3>${lines.map(l=>`<div>${l}</div>`).join('')}</section>`;
 }
+let ROSTER_VIEW = {type:'all', lust:'all', trust:'all', sort:''};
+function setRosterView(k, v){ ROSTER_VIEW[k] = v; render(); }
+function rosterType(w){
+  const n = w.key && NAMED[w.key];
+  if(!n) return 'generic';
+  if(n.role==='drifter') return 'guest';
+  return 'story';   // partners, house residents, story and guild ladies: everyone written into the game's own story
+}
+function rosterFilterBar(){
+  const R = ROSTER_VIEW, sel = (k, opts) => `<select onchange="setRosterView('${k}',this.value)">${opts.map(o=>`<option value="${o[0]}" ${R[k]===o[0]?'selected':''}>${o[1]}</option>`).join('')}</select>`;
+  return `<div class="row">
+    <label>Type ${sel('type', [['all','All'],['generic','Generic'],['guest','Guest'],['story','Story']])}</label>
+    <label>Lust ${sel('lust', [['all','All'],['eager','Restless / eager'],['low','Low']])}</label>
+    <label>Trust ${sel('trust', [['all','All'],['high',`High (Trust ${tShow(70)}+)`],['mid',`Mid (Trust ${tShow(30)}-${tShow(70)-1})`],['low',`Low (under ${tShow(30)})`]])}</label>
+    <label>Sort ${sel('sort', [['','Default'],['trust','Trust'],['lust','Lust'],['lewd','Lewdness'],['popularity','Popularity']])}</label></div>`;
+}
+function rosterFiltered(list){
+  const R = ROSTER_VIEW;
+  let out = list.filter(w=>{
+    if(R.type!=='all' && rosterType(w)!==R.type) return false;
+    if(R.lust==='eager' && !(w.lust>=LUST_EAGER)) return false;
+    if(R.lust==='low' && !(w.lust<BAL.lust.low)) return false;
+    const t = w.trust||0;
+    if(R.trust==='high' && t<70) return false;
+    if(R.trust==='mid' && (t<30 || t>=70)) return false;
+    if(R.trust==='low' && t>=30) return false;
+    return true;
+  });
+  if(R.sort) out = out.slice().sort((a,b)=>(b[R.sort]||0)-(a[R.sort]||0));
+  return out;
+}
 function viewRoster(){
-  const all = ROSTER_FILTER==='all', list = all ? S.workers : S.workers.filter(w=>w.house===curH().id);
+  const all = ROSTER_FILTER==='all', base = all ? S.workers : S.workers.filter(w=>w.house===curH().id), list = rosterFiltered(base);
+  const empty = base.length ? '<span class="muted">Nobody matches these filters.</span>' : '<span class="muted">No one works here. Visit Recruit, or move someone over from her sheet.</span>';
   return `${houseTabs(true)}${agendaHTML()}<section class="card"><h2>Roster (${list.length})</h2><p class="muted">Tap someone to open her status window, services, wardrobe and images.</p>
-    <div class="grid">${list.map(w=>workerCard(w, all)).join('') || '<span class="muted">No one works here. Visit Recruit, or move someone over from her sheet.</span>'}</div></section>`;
+    ${rosterFilterBar()}
+    <div class="grid">${list.map(w=>workerCard(w, all)).join('') || empty}</div></section>`;
 }
 function viewRecruit(){
   const cards = S.candidates.map(c=>`<div class="wcard" style="cursor:default">${avatarHTML(c)}

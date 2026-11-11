@@ -144,7 +144,7 @@ function applyBondChoice(c, a, b, d, chosenAct){
   if(c.roll!==undefined && Math.random() >= c.roll && c.else) c = Object.assign({}, c.else);
   if(c.gold) S.gold += c.gold;
   if(c.rep){ const h = houseOf(a); if(h) h.rep = clamp(h.rep + c.rep); }
-  if(c.samEnergy) S.sam.energy = clamp(S.sam.energy + c.samEnergy);
+  if(c.samEnergy) samEnergyAdd(c.samEnergy);
   if(c.sam) Object.entries(c.sam).forEach(([k,n])=>samStat(k, n));
   bondFx(a, c.a, b); bondFx(b, c.b, a);
   if(c.bond) addBond(a, b, c.bond);

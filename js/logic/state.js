@@ -23,7 +23,7 @@ const houseOf = w => (S && (H(w.house) || S.houses[0])) || null;
 function makeHouse(id){ const D = HOUSES[id]; return {id, name:D.name, rooms:D.rooms, quarters:D.quarters, beds:D.beds, tier:D.tier, up:clone(D.up), tidy:BAL.tidy.start, price:1, rep:D.rep, since:S?S.week:1, story:{beat:0,wk:0}, bonus:{}, spent:0, decor:0, drinks:0, teachSkill:null, wsDisc:0, incense:'calm'}; }
 function newGame(cfg){
   const HD = HOUSES[cfg.house];
-  S = { v:27, samHome:cfg.house, samUps:{}, starters:[cfg.house], houseWardrobe:[], houseUnder:[], week:1, gold:600, rep:HD.rep, ap:3, cur:cfg.house, home:cfg.house, cycle:1, boons:[], past:cfg.past, pasts:[cfg.past], partner:cfg.partner, partners:[cfg.partner],
+  S = { v:28, samHome:cfg.house, samUps:{}, starters:[cfg.house], houseWardrobe:[], houseUnder:[], week:1, gold:600, rep:HD.rep, ap:3, cur:cfg.house, home:cfg.house, cycle:1, boons:[], past:cfg.past, pasts:[cfg.past], partner:cfg.partner, partners:[cfg.partner],
     houses:[makeHouse(cfg.house)],
     sam:{energy:100, ...BAL.sam.base, appraisal:1, appXP:0, first:true, lvl:1, xp:0},
     samWeek:{security:0, books:false, income:0, acts:[]},
@@ -134,7 +134,12 @@ function migrate(s){
       if(add.length) persLean(w, add);
     });
   }
-  s.v = 27; s.samUps = s.samUps || {}; s.houseWardrobe = s.houseWardrobe || []; s.houseUnder = s.houseUnder || []; s.home = s.home || (s.houses[0]||{}).id; s.samHome = s.samHome || s.home || (s.houses[0]||{}).id; s.cycle = s.cycle || 1; s.boons = s.boons || []; s.partners = s.partners || (s.partner ? [s.partner] : []);
+  if(ov < 28){   // Sam's Wits (sam.base.wits + perLevel per level); reincarnated ladies' wages pick up ngplus.rebornWage per life
+    if(s.sam && s.sam.wits===undefined) s.sam.wits = Math.min(100, (BAL.sam.base.wits||0) + BAL.sam.perLevel * ((s.sam.lvl||1) - 1));
+    (s.workers||[]).concat(s.candidates||[], s.alumni||[]).forEach(w=>raceFit(w));   // race appearance rules (races.json → design, body.json → raceBan)
+    (s.workers||[]).concat(s.alumni||[]).forEach(w=>{ if(w && w.reborn && w.wage > 0 && !w.free && !w.isPartner) w.wage = Math.round(w.wage * (1 + (BAL.ngplus.rebornWage||0) * w.reborn)); });
+  }
+  s.v = 28; s.samUps = s.samUps || {}; s.houseWardrobe = s.houseWardrobe || []; s.houseUnder = s.houseUnder || []; s.home = s.home || (s.houses[0]||{}).id; s.samHome = s.samHome || s.home || (s.houses[0]||{}).id; s.cycle = s.cycle || 1; s.boons = s.boons || []; s.partners = s.partners || (s.partner ? [s.partner] : []);
   s.regulars = s.regulars || []; s.bonds = s.bonds || {}; s.flags = Object.assign({partnerCD:3}, s.flags||{});
   s.sam.lvl = s.sam.lvl || 1; s.sam.xp = s.sam.xp || 0;
   s.houses.forEach(h=>{ if(h.tidy===undefined) h.tidy = BAL.tidy.start; h.since = h.since || 1; h.story = h.story || {beat:0,wk:0}; h.bonus = h.bonus || {}; if(h.spent===undefined) h.spent = 0;
@@ -177,8 +182,11 @@ function refreshCandidates(extra=0, quality=1){
   const seen = S.flags.guestSeen = S.flags.guestSeen || {}, V = GUEST_VISITS;
   const drift = Object.keys(NAMED).filter(k=>NAMED[k].role==='drifter' && !isHired(k) && !(SET.packsOff||{})[NAMED[k].pack]
     && S.week - (seen[k] ?? -999) >= V.stayWeeks + V.cooldownWeeks);
-  if(drift.length && Math.random()<V.chance){
-    const k = pick(drift), c = makeNamed(k); c.keep = false; c.stay = V.stayWeeks; seen[k] = S.week;
+  // dry spells shorten: each week without a guest adds visits.pity to the chance (at most visits.maxChance)
+  const dry = Math.max(0, S.week - (S.flags.lastGuest ?? S.week)), gch = Math.min(V.maxChance ?? 0.8, V.chance + (V.pity ?? 0) * dry);
+  if(S.flags.lastGuest === undefined) S.flags.lastGuest = S.week;
+  if(drift.length && Math.random()<gch){
+    const k = pick(drift), c = makeNamed(k); c.keep = false; c.stay = V.stayWeeks; seen[k] = S.week; S.flags.lastGuest = S.week;
     c.signing = signingFor(c); S.candidates.push(c); addLog(`${c.name} is passing through Hollowmere and looking for work. (Candidates)`);
   }
 }
@@ -209,9 +217,11 @@ function checkUnlocks(silent, sink){
 // Payments (balance.json → debt) every `every` weeks, counted from when this debt started (New Game+ restarts the schedule).
 // Payment n is total x share_n; shares ramp linearly from 1 to `ramp` and sum to 1. The last one clears whatever remains.
 const debtWeek = () => S.week - (S.debt.start||0);
-function debtShares(){ const D = BAL.debt, n = D.payments, w = Array.from({length:n}, (_,i)=> n>1 ? 1 + (D.ramp-1)*i/(n-1) : 1), t = w.reduce((a,b)=>a+b, 0); return w.map(x=>x/t); }
+// NG+ loans can run on a tighter schedule (S.debt.payments / S.debt.ramp, set by ngBegin from balance.json → debt.ngplus); cycle 1 uses debt.payments/ramp.
+const debtPlan = () => ({payments: (S && S.debt && S.debt.payments) || BAL.debt.payments, ramp: (S && S.debt && S.debt.ramp) || BAL.debt.ramp});
+function debtShares(){ const D = debtPlan(), n = D.payments, w = Array.from({length:n}, (_,i)=> n>1 ? 1 + (D.ramp-1)*i/(n-1) : 1), t = w.reduce((a,b)=>a+b, 0); return w.map(x=>x/t); }
 function nextDue(){
   const D = BAL.debt, r = debtWeek(), k = Math.max(1, Math.ceil(r/D.every));
-  const amount = k>=D.payments ? S.debt.remaining : Math.min(S.debt.remaining, Math.round(S.debt.total*debtShares()[k-1]) + S.debt.carry);
+  const amount = k>=debtPlan().payments ? S.debt.remaining : Math.min(S.debt.remaining, Math.round(S.debt.total*debtShares()[k-1]) + S.debt.carry);
   return {week:k*D.every + (S.debt.start||0), amount, n:k};
 }

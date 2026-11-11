@@ -21,7 +21,7 @@ function rebornFx(w){
   const n = w.reborn||0, R = (BAL.ngplus||{}).reborn; if(!n || !R) return null;
   return {trustGain: 1 + (R.trust||0)*n, skillGain: 1 + (R.skill||0)*n, statGain: 1 + (R.stat||0)*n, lewdGain: 1 + (R.lewd||0)*n};
 }
-const rebornDesc = w => { const f = rebornFx(w); return f ? `Carried over ${w.reborn} time${w.reborn>1?'s':''}: trust grows ×${f.trustGain.toFixed(2)}, skills ×${f.skillGain.toFixed(2)}, stats ×${f.statGain.toFixed(2)}, lewdness ×${f.lewdGain.toFixed(2)} as fast.` : ''; };
+const rebornDesc = w => { const f = rebornFx(w); return f ? `Carried over ${w.reborn} time${w.reborn>1?'s':''}: trust grows ×${f.trustGain.toFixed(2)}, skills ×${f.skillGain.toFixed(2)}, stats ×${f.statGain.toFixed(2)}, lewdness ×${f.lewdGain.toFixed(2)} as fast; asks ${Math.round(((BAL.ngplus||{}).rebornWage||0)*w.reborn*100)}% more pay.` : ''; };
 function fxSig(w){ return [w.race, w.sub, (w.traits||[]).join('|'), JSON.stringify(w.body||null), w.unique ? w.unique.name+'/'+JSON.stringify(w.unique.fx||null) : '', (w.ngPerks||[]).join('|'), w.reborn||0, w.titleId||''].join('~'); }
 function fxList(w){
   if(!w) return [];
@@ -82,10 +82,21 @@ const actBanned = (w, id) => fxArr(w, 'actBan').includes(actKey(id));
 
 /* ---------- bodies ---------- */
 function rollBody(race){
-  const skew = (BODY.raceSkew||{})[race] || {}, out = {};
-  BODY_KEYS.forEach(k => { const o = bodyOpts(k), ids = Object.keys(o);
+  const skew = (BODY.raceSkew||{})[race] || {}, ban = (BODY.raceBan||{})[race] || {}, out = {};
+  BODY_KEYS.forEach(k => { const o = bodyOpts(k), ids = Object.keys(o).filter(id=>!(ban[k]||[]).includes(id));
     out[k] = ids.length ? weighted(ids, id => Math.max(0.01, (o[id].weight ?? 1) + (((skew[k]||{})[id]) || 0))) : BODY_DEF[k]; });
   return out;
+}
+// Race appearance rules for generic ladies (races.json → design; body.json → raceBan): her build and skin come from her race's list.
+const raceBuilds = race => { const D = ((RACES[race]||{}).design)||{}; return D.builds || BUILDS.filter(b=>!(D.noBuilds||[]).includes(b)); };
+const raceSkins = race => (((RACES[race]||{}).design)||{}).skins || null;
+// Brings a generic lady's design and body in line with those rules (used at creation and by the v28 migration). Keeps what already fits.
+function raceFit(w){
+  if(!w || w.key || !w.design) return;
+  const B = raceBuilds(w.race), Sk = raceSkins(w.race), ban = (BODY.raceBan||{})[w.race] || {};
+  if(w.design.build && !B.includes(w.design.build)) w.design.build = pick(B);
+  if(Sk && !Sk.includes(w.design.skin)) w.design.skin = pick(Sk);
+  if(w.body) Object.entries(ban).forEach(([k,ids])=>{ if(ids.includes(w.body[k])) w.body[k] = BODY_DEF[k] && !ids.includes(BODY_DEF[k]) ? BODY_DEF[k] : Object.keys(bodyOpts(k)).find(x=>!ids.includes(x)); });
 }
 const bodyText = w => { const b = bodyOf(w); return BODY_KEYS.map(k => (bodyOpts(k)[b[k]]||{}).img || '').filter(Boolean).join(', '); };
 const bodyLabel = w => { const b = bodyOf(w); return BODY_KEYS.map(k => (bodyOpts(k)[b[k]]||{}).label || b[k]).join(' · '); };

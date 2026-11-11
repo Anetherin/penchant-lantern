@@ -35,7 +35,7 @@ function dateCtx(ctx){ const m = /^date_([^.]+)(?:\.(\d+))?$/.exec(ctx||''); if(
 const dateSetting = ctx => { const c = dateCtx(ctx); return (c && ((c.sp && c.sp.image.setting) || (c.d.image && c.d.image.setting))) || SCENE_DATA.samRoom; };
 function sceneInfo(k, w){
   const h = w && S ? houseOf(w) : null, HD = h ? HOUSES[h.id] : null, P = sceneParts(k); k = P.base;
-  if(k.startsWith('act:')){ return {label:'Client: '+actLabel(k.slice(4)), comp:actPose(k.slice(4),'client'), setting:ROOM_SETTING(h), client:SCENE_DATA.clientPhrase, snip:'act_'+k.slice(4), expr:exprText(P.expr, k.slice(4))}; }
+  if(k.startsWith('act:')){ return {label:'Client: '+actLabel(k.slice(4)), comp:actPose(k.slice(4),'client'), setting:P.ctx==='sample' ? (SCENE_DATA.sampleStreet || 'a lantern-lit street outside the house at night, a quiet doorway alcove') + (HD ? ', ' + HD.setting : '') : ROOM_SETTING(h), client:SCENE_DATA.clientPhrase, snip:'act_'+k.slice(4), expr:exprText(P.expr, k.slice(4))}; }
   if(k.startsWith('duo:')){ const [, id, oid, dyn] = k.split(':'), a = actById(id), o = findAny(oid);
     const D = dyn && typeof BONDS!=='undefined' ? (BONDS.dynamics[dyn]||{}) : {};
     return {label:'Sam & two: '+actLabel(id), pov:true, sam:true, comp:[actPose(id,'duo'), SCENE_DATA.duoPhrase, D.prompt].filter(Boolean).join(', '),

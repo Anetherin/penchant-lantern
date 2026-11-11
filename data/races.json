@@ -5,7 +5,8 @@
     "subs (beastkin): each with weight, mods, fx and optional label/look/client/age/names that override the race's. The former dragonkin is beastkin sub 'dragon'.",
     "Rules that are not simple numbers (demon feeding, android recharging, beastkin refusals, spirit bedlessness) live in code and read these entries.",
     "alwaysLast: generic ladies of this race always get a last name. Beastkin subs may also set wage.",
-    "perk on a beastkin sub: {label, desc} display text for that sub's fx and wage (shown on her sheet)."
+    "perk on a beastkin sub: {label, desc} display text for that sub's fx and wage (shown on her sheet).",
+    "design (optional, generic ladies only): skins = her skin tone is rolled from this list instead of people.json skins; builds = her build is rolled from this list; noBuilds = builds she never gets. Image looks (look) should only say what makes the race the race; height, figure, build and skin come from body.json and the design, so don't repeat them here."
   ],
   "races": {
     "human": {
@@ -29,7 +30,8 @@
       "weight": 15,
       "fx": {"moodDrift":0.5,"moodDelta":0.6,"classBonus":{"noble":1.2,"merchant":1.05}},
       "client": {"like":0.14,"dislike":0.04},
-      "alwaysLast": true
+      "alwaysLast": true,
+      "design": {"noBuilds":["sturdy","compact","broad-shouldered","soft-featured","stocky","solid"]}
     },
     "beastkin": {
       "label": "Beastkin",
@@ -47,33 +49,37 @@
           "mods": {"wits":5,"charisma":5,"beauty":5},
           "fx": {"appeal":3},
           "names": {"l":["Redbrush","Foxglove","Emberbrush","Kuzunoha","Silvertail","Hazebrush","Lanternfox","of the Shrine Gate"]},
-          "perk": {"label":"Fox's charm","desc":"+3 appeal."}
+          "perk": {"label":"Fox's charm","desc":"+3 appeal."},
+          "look": "fox beastkin woman with fox ears, a fluffy fox tail and soft russet fur on her ears, tail, forearms and calves"
         },
         "cat": {
           "weight": 1,
           "mods": {"agility":10,"charisma":5},
           "fx": {"energyRec":1.1},
           "names": {"l":["Velvetpaw","Whiskerwind","Softstep","Silkpaw","Sunwindow","Tallwhisker","Mousebane","of the Night Market"]},
-          "perk": {"label":"Cat's rest","desc":"Recovers 10% more energy."}
+          "perk": {"label":"Cat's rest","desc":"Recovers 10% more energy."},
+          "look": "cat beastkin woman with cat ears, a fluffy cat tail and soft sleek fur on her ears, tail, forearms and calves"
         },
         "wolf": {
           "weight": 1,
           "mods": {"stamina":10,"strength":5,"charm":5},
           "fx": {"trustGain":1.1},
           "names": {"l":["Grayfang","Moonhowl","Ironpelt","Snowmane","Frostfang","Longrunner","Pinehollow","of the Northern Pack"]},
-          "perk": {"label":"Wolf's loyalty","desc":"Trust grows 10% faster."}
+          "perk": {"label":"Wolf's loyalty","desc":"Trust grows 10% faster."},
+          "look": "wolf beastkin woman with wolf ears, a fluffy wolf tail and soft thick grey fur on her ears, tail, forearms and calves"
         },
         "rabbit": {
           "weight": 1,
           "mods": {"agility":5,"charm":5,"beauty":5},
           "fx": {"lustBuild":1.25,"encore":0.1},
           "names": {"l":["Thistledown","Clovermeadow","Quickfoot","Burrowell","Hareswift","Longear","Hollowbank","Dandelion"]},
-          "perk": {"label":"Rabbit's heat","desc":"Lust builds 25% faster and she is more likely to want another round."}
+          "perk": {"label":"Rabbit's heat","desc":"Lust builds 25% faster and she is more likely to want another round."},
+          "look": "rabbit beastkin woman with rabbit ears, a fluffy rabbit tail and soft soft white fur on her ears, tail, forearms and calves"
         },
         "dragon": {
           "weight": 0.15,
           "label": "dragon",
-          "look": "dragonkin woman with small swept-back horns and a scaled dragon tail",
+          "look": "dragonkin woman with small swept-back horns, a scaled dragon tail and patches of fine scales on her cheeks, shoulders and forearms",
           "mods": {"strength":5,"stamina":10,"agility":-5,"charisma":5},
           "fx": {"maxEnergy":15},
           "client": {"like":0.2,"dislike":0.1},
@@ -97,25 +103,29 @@
     "dwarf": {
       "label": "Dwarf",
       "age": [45,140],
-      "look": "stocky, muscular dwarf woman with mature features and strong shoulders",
+      "look": "dwarf woman",
       "mods": {"strength":10,"stamina":5,"beauty":-5,"wits":5},
       "common": true,
       "weight": 10,
       "fx": {"maxEnergy":25,"energyRec":1.25,"lustBuild":0.75,"jobBonus":{"bartender":1.15}},
       "client": {"like":0.1,"dislike":0.05},
       "wage": 1,
-      "alwaysLast": true
+      "alwaysLast": true,
+      "design": {"builds":["stocky","sturdy","compact","broad-shouldered","strong","solid","stocky","sturdy","lean"]}
     },
     "spirit": {
       "label": "Spirit",
       "age": [150,600],
-      "look": "ghostly spirit woman with a faint pale glow and softly translucent edges",
+      "look": "spirit woman with a faint glow and softly translucent edges",
       "mods": {"charm":10,"refinement":5,"strength":-10},
       "common": false,
       "weight": 2,
       "fx": {"moodDrift":1.6,"moodDelta":1.3,"classBonus":{"adventurer":1.3}},
       "client": {"like":0.15,"dislike":0.2,"classLike":{"adventurer":0.4}},
-      "needs": "tether"
+      "needs": "tether",
+      "design": {
+        "skins": ["moonlit silver-white","pale blue-white","pearl-white, faintly luminous","misty grey-blue","soft lilac-white","translucent ivory"]
+      }
     },
     "angel": {
       "label": "Angel",
@@ -136,7 +146,17 @@
       "weight": 3,
       "fx": {"maxEnergy":10,"moodLoss":0.6,"lustBuild":0.8,"skillGain":1.25,"classBonus":{"merchant":1.2}},
       "client": {"like":0.15,"dislike":0.15,"classLike":{"merchant":0.35}},
-      "needs": "charger"
+      "needs": "charger",
+      "design": {
+        "skins": [
+          "flawless porcelain synthetic",
+          "matte ivory synthetic",
+          "smooth warm-beige synthetic",
+          "glossy pale synthetic",
+          "satin bronze synthetic",
+          "cool white synthetic with faint panel lines"
+        ]
+      }
     }
   }
 }

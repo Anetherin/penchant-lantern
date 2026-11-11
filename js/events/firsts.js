@@ -95,7 +95,7 @@ function firstCross(w, s, act, d){
   addLog(`${w.name} and Sam: ${stageName(s)}.`);
   return {text: text + `\n\n♥ ${w.name} and Sam: ${stageName(s)}. Private time with her can now include ${opened.join(', ')}, as far as she's comfortable.`,
     img:{wid:w.id, scene:'samact:'+act},
-    ai:{kind:'encounter', wid:w.id, act, scene:'samact:'+act, forSam:true, situation: d.situation || FIRSTS.stages[s].situation}};
+    ai:{kind:'encounter', wid:w.id, act, scene:'samact:'+act, forSam:true, situation: actSituation(w, act, d.situation || FIRSTS.stages[s].situation)}};
 }
 
 /* ---------- when it happens ---------- */

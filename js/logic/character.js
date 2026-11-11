@@ -26,7 +26,7 @@ const svcLewdCap = (id, who) => ((actById(id)||{}).th ?? 30) + BAL.lewd.capOver[
 const lewdMult = w => fxMul(w,'lewdGain') * ((PERS[w.personality]||{}).lewd || 1) * ((S && HOUSES[(houseOf(w)||{}).id]||{}).lewdBoost || 1);
 const isFree = w => !!(w.isPartner || w.free);
 // Trust from Sam's attention: personality, race, and diminishing returns near the top.
-function gainTrust(w, n){ const b = w.trust, g = n * pTrust(w) * (n>0 ? fxMul(w,'trustGain') : 1) * (n>0 ? Math.max(0.15, 1 - w.trust/140) : 1); w.trust = clamp(w.trust + g); capTrust(w); return w.trust - b; }
+function gainTrust(w, n){ const b = w.trust, g = n * pTrust(w) * (n>0 ? fxMul(w,'trustGain') * samBonus('charm') : 1) * (n>0 ? Math.max(0.15, 1 - w.trust/140) : 1); w.trust = clamp(w.trust + g); capTrust(w); return w.trust - b; }
 // The least any activity with Sam builds (balance.json → trust.minor), so nothing they do together is wasted.
 const minorTrust = (w, mult=1) => gainTrust(w, (BAL.trust ? BAL.trust.minor : 0.3) * mult);
 // House-gated progress (docs/OVERHAUL.md §7): a lady who comes with a house (role 'house') can't trust Sam beyond
@@ -151,6 +151,7 @@ function actCloth(w, id, withSam, ctx){
     if(lv === 3 && D.fullAt !== undefined && w.lewd < D.fullAt) lv = 2;
   }
   if(ctx==='prop' || ctx==='reckless') lv = Math.max(lv, 1);
+  if(ctx==='sample') lv = Math.min(lv, 1);   // free samples happen out on the street
   if(w.svcLevel && w.svcLevel!=='auto' && ix(w.svcLevel) >= 0) lv = Math.min(ix(w.svcLevel), ix(cap));
   return CLOTH[Math.max(0, lv)].id;
 }
@@ -170,7 +171,8 @@ function wageFor(w){
   const st = STAT_KEYS.reduce((a,k)=>a+s100(statOf(w,k)),0)/STAT_KEYS.length;
   const tc = Math.max(...TECH_KEYS.map(k=>s100(w.tech[k]||0)), ...Object.values(w.acts||{}).map(a=>s100(a.skill)*0.8));
   const sd = w.race==='beastkin' ? subData(w.race, w.sub) : null;
-  return Math.round((8 + st*0.3 + tc*0.2 + w.popularity*0.3 + (has(w,'Ambitious')?8:0) + (has(w,'Greedy')?6:0)) * ((sd && sd.wage) ?? raceOf(w).wage ?? 1));
+  const rb = 1 + ((BAL.ngplus||{}).rebornWage||0) * (w.reborn||0) * (typeof hasBoon==='function' && hasBoon('loyal') ? 0.5 : 1);   // each life she's carried over asks a little more (balance.json → ngplus.rebornWage)
+  return Math.round((8 + st*0.3 + tc*0.2 + w.popularity*0.3 + (has(w,'Ambitious')?8:0) + (has(w,'Greedy')?6:0)) * ((sd && sd.wage) ?? raceOf(w).wage ?? 1) * rb);
 }
 function signingFor(w){ return Math.max(60, Math.round(w.wage * rnd(5,8) * (raceOf(w).signing ?? 1) * (0.9 + (S?S.rep:10)/150) * (hasBoon('recruit')?0.75:1))); }
 // Skills work in 1000-units: n is the old 0-100 amount (x SKL), with a diminishing curve (1 - v/growDen(), i.e. statCap() + 300).
@@ -262,8 +264,8 @@ function genWorker(opts={}){
   const sub = race==='beastkin' ? weighted(subNames(race), x=>(subData(race,x)||{}).weight ?? 1) : '';
   const w = {
     id:uid(), name:genName(race, sub), race, sub, age:ri(...((subData(race,sub)||{}).age || R.age)), named:false, keep:false, body:rollBody(race), counts:{},
-    design:{build:pick(BUILDS),hairStyle:pick(HAIR_STYLES),hairColor:pick(HAIR_COLORS),eyes:pick(EYES),
-      skin: race==='demon'&&Math.random()<0.4 ? pick(DEMON_SKINS) : pick(SKINS), features:pick(FEATURES)},
+    design:{build:pick(raceBuilds(race)),hairStyle:pick(HAIR_STYLES),hairColor:pick(HAIR_COLORS),eyes:pick(EYES),
+      skin: raceSkins(race) ? pick(raceSkins(race)) : race==='demon'&&Math.random()<0.4 ? pick(DEMON_SKINS) : pick(SKINS), features:pick(FEATURES)},
     personality:pick(PERSONALITIES), backstory:'', traits:[],
     stats:{beauty:clampK(base()+100),charm:base(),charisma:base(),refinement:base(),wits:base(),stamina:base(),strength:base(),agility:base()},
     tech:{service:K(ri(0,30)),dance:K(ri(0,25)),bar:K(ri(0,25)),combat:K(ri(0,20)),manage:K(ri(0,20))}, actSkill:ri(0,25),

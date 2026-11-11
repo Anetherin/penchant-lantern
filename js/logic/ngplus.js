@@ -32,7 +32,9 @@ const NG_BOONS = {
   renown:  {label:'A Name in Hollowmere', desc:'+15 renown, and the new house opens with +10 reputation.'},
   recruit: {label:'Friends at the Guild', desc:'3 extra candidates now; signing bonuses are 25% cheaper from now on.'},
   grace:   {label:'Lenient Lender', desc:'The new debt is 15% smaller.'},
-  devotion:{label:'Old Flame', desc:'Your new partner starts with +15 trust and +10 lewdness.'},
+  devotion:{label:'Fated Meeting', desc:'Your new partner starts with +15 trust and +10 lewdness.'},
+  loyal:   {label:'Old Loyalties', desc:'Ladies who come back from a past life ask only half the usual raise for each life.'},
+  memory:  {label:'Vivid Memories', desc:'Ladies who carry over keep 15% more of the skills and stats they built (still at most 65%).'},
   clone:   {label:'Shadow Clone', desc:'Sam learned to be in two places at once. Ladies from every house can find him at night, not just the house he sleeps in.'}
 };
 // What was spent on the home house's rooms, tiers, quarters, beds, annex and upgrades (tracked in h.spent by buyUpgrade).
@@ -144,17 +146,18 @@ function ngView(){
     body = `<h2>Ready for round ${N.cycle}?</h2><div class="card">
       <b>Keeps:</b> ${S.houses.filter(keptHouse).map(h=>`${esc(h.name)} (${keptWhy(h)})`).join(', ')}, each with its rooms, upgrades and story (its reputation starts over, keeping ${Math.round((BAL.ngplus.carry||0)*100)}% of what it had gained), Sam's level${BAL.ngplus.samReset.stats||BAL.ngplus.samReset.appraisal?'':', stats and Appraisal'}, the regulars there and your image library. Your savings stay behind.<br>
       ${BAL.ngplus.samReset.stats||BAL.ngplus.samReset.appraisal?`<b>Sam:</b> keeps his level (Lv ${S.sam.lvl||1}); ${[BAL.ngplus.samReset.stats&&'training and story stat gains',BAL.ngplus.samReset.appraisal&&'Appraisal'].filter(Boolean).join(' and ')} start over${BAL.ngplus.samReset.stats&&BAL.ngplus.carry?` (he keeps ${Math.round(BAL.ngplus.carry*100)}% of his trained stats)`:''}.<br>`:''}
-      <b>Lovers who stay:</b> ${lovers.length ? lovers.map(w=>`${esc(w.name)}${NGS.perks[w.id]?` (${esc(NGS.perks[w.id])})`:''}${ngRomance(NGS,w)==='reset'?' ↺ starting over':' ♥ still his lover'}`).join(', ') + '. They draw wages again; their skills, popularity, trust and lewdness start over, keeping ' + Math.round((BAL.ngplus.carry||0)*100) + '% of the skills and stats they\'d built (Reincarnated makes the climb back faster). A lover starting over begins her story with Sam again at the first chapter, firsts included.' : 'none. Only Devoted lovers come along.'}<br>
-      ${residents.length?`<b>Back with their houses:</b> ${residents.map(w=>esc(w.name)).join(', ')}. They start over like the lovers (no perk), with a Reincarnated stack.<br>`:''}
-      ${friends.length?`<b>Old friends:</b> ${friends.map(w=>esc(w.name)).join(', ')}. They'll look Sam up again (Recruit), with a Reincarnated stack.<br>`:''}
+      <b>Lovers who stay:</b> ${lovers.length ? lovers.map(w=>`${esc(w.name)}${NGS.perks[w.id]?` (${esc(NGS.perks[w.id])})`:''}${ngRomance(NGS,w)==='reset'?' ↺ starting over':' ♥ still his lover'}`).join(', ') + '. They draw wages again (' + Math.round((BAL.ngplus.rebornWage||0)*100) + '% more for each life carried over); their skills, popularity, trust and lewdness start over, keeping ' + carryTxt() + ' of the skills and stats they\'d built (Reincarnated makes the climb back faster). A lover starting over begins her story with Sam again at the first chapter, firsts included.' : 'none. Only Devoted lovers come along.'}<br>
+      ${residents.length?`<b>Back with their houses:</b> ${residents.map(w=>esc(w.name)).join(', ')}. They start over like the lovers (no perk), with a Reincarnated stack and the same wage rise.<br>`:''}
+      ${friends.length?`<b>Old friends:</b> ${friends.map(w=>esc(w.name)).join(', ')}. They'll look Sam up again (Recruit), with a Reincarnated stack, keeping ${carryTxt()} of what they'd built and asking ${Math.round((BAL.ngplus.rebornWage||0)*100)}% more pay per life.<br>`:''}
       <b>Leaving:</b> ${leaving.length ? `${leaving.length} ladies (${leaving.slice(0,8).map(w=>esc(w.name)).join(', ')}${leaving.length>8?', …':''}). Named ones can be met again, fresh.` : 'no one.'}<br>
       ${NGS.house?`<b>New house:</b> ${esc(HOUSES[NGS.house].name)} with ${esc((NAMED[HOUSES[NGS.house].npc]||{}).name||'its resident')}.<br>`:''}
       ${NGS.past&&NGS.past!=='none'?`<b>Another past life:</b> ${esc(PASTS[NGS.past].label)}.<br>`:''}
-      <b>Reincarnated:</b> every lady who stays gains a stack (faster trust, lewdness, skill and stat growth).<br>
+      <b>Reincarnated:</b> every lady who stays gains a stack (faster trust, lewdness, skill and stat growth; wages ${Math.round((BAL.ngplus.rebornWage||0)*100)}% higher per stack).<br>
+      <b>Sam:</b> max energy ${100 + (BAL.sam.energyPerCycle||0)*(N.cycle-1)}.<br>
       <b>Higher ceiling:</b> stats and skills can now reach ${BAL.ngplus.cap.base + BAL.ngplus.cap.perCycle*(N.cycle-1)} (Sam's ${(BAL.ngplus.cap.base + BAL.ngplus.cap.perCycle*(N.cycle-1))/SKL}).<br>
       <b>New:</b> ${NGS.partner&&NGS.partner!=='none'?`${esc(NAMED[NGS.partner].name)} at Sam's side`:'no new partner'}${NGS.boon?`. Perk: <b>${NG_BOONS[NGS.boon].label}</b>`:''}. ✦ houses (and more) can be bought during the cycle.<br>
       ${N.sold.length?`<b>${N.sale?'Sold to the Credit House':'Surrendered to the Credit House'}:</b> ${N.sold.map(h=>esc(h.name)).join(', ')}${N.sale?` (${fmt(N.sale)}, off the debt)`:''}.<br>`:''}
-      <b>Debt:</b> ${fmt(N.debt)} (${esc(HDo.name)} ${fmt(N.base)} + your improvements ${fmt(N.impr)} × ${BAL.ngplus.improveShare} = ${fmt(N.extra)}${N.house?` + ${esc(HOUSES[NGS.house].name)} ${fmt(N.house)}`:''})${N.sale?`, minus ${fmt(N.sale)} for the sold houses`:''}, due over ${BAL.debt.payments*BAL.debt.every} weeks.<br>
+      <b>Debt:</b> ${fmt(N.debt)} (${esc(HDo.name)} ${fmt(N.base)} + your improvements ${fmt(N.impr)} × ${BAL.ngplus.improveShare} = ${fmt(N.extra)}${N.house?` + ${esc(HOUSES[NGS.house].name)} ${fmt(N.house)}`:''})${N.sale?`, minus ${fmt(N.sale)} for the sold houses`:''}, due over ${ngPlan(N.cycle).payments*BAL.debt.every} weeks (the Credit House wants it faster each cycle).<br>
       <b>Purse:</b> ${fmt(N.purse)} (starting purse; your savings stay behind)</div>`;
     ok = true;
   }
@@ -164,20 +167,28 @@ function ngView(){
 // conversion as makeNamed; generic: half of what she has), popularity 0, and trust and lewdness back to where she began
 // (named: her data values; generic: w.base0 from when she was rolled, or balance.json → ngplus.baseTrust/baseLewd for old saves).
 // Her Reincarnated stacks make the climb back faster. Titles and bonds stay; a lover's romance resets separately (ngRomanceReset).
-// ngplus.carry (10%) of what she gained above that starting value stays with her (stats, job skills, service skills; not trust/lewdness).
+// carryShare(w) of what she gained above that starting value stays with her (stats, job skills, service skills; not trust/lewdness).
 // Call after S.cycle is raised, so clampK already allows the new cycle's higher ceiling.
-const ngCarry = (now, start) => clampK(Math.round(start + (BAL.ngplus.carry||0) * Math.max(0, (now||0) - start)));
+// The share grows with her lives: carryPer x the life she's entering (2nd life 20%...), at most carryMax; carry is the floor (and Sam's share).
+const carryShare = w => { const B = BAL.ngplus, m = hasBoon('memory') || (NGS && NGS.boon==='memory') ? 0.15 : 0; return Math.max(B.carry||0, Math.min((B.carryMax ?? 0.5) + m, (B.carryPer ?? B.carry ?? 0) * ((w && w.reborn || 0) + 1) + m)); };
+const carryTxt = () => { const B = BAL.ngplus; const m = hasBoon('memory') || (NGS && NGS.boon==='memory'); return `${Math.round((B.carryPer ?? B.carry ?? 0)*100)}% per life she's lived, up to ${Math.round((B.carryMax ?? 0.5)*100)}%${m ? ', +15% from Vivid Memories' : ''}`; };
+const ngCarry = (now, start, sh) => clampK(Math.round(start + (sh ?? BAL.ngplus.carry ?? 0) * Math.max(0, (now||0) - start)));
+// NG+ loan schedule (balance.json → debt.ngplus): each cycle past the first has fewer payments and a flatter ramp, so the money is due sooner.
+function ngPlan(cyc){
+  const D = BAL.debt, G = D.ngplus || {}, k = Math.max(0, (cyc||2) - 1);
+  return {payments: Math.max(G.minPayments ?? D.payments, D.payments - (G.fewer||0)*k), ramp: Math.max(G.minRamp ?? 1, D.ramp - (G.flatter||0)*k)};
+}
 function ngReset(w){
-  const B = BAL.ngplus;
+  const B = BAL.ngplus, sh = carryShare(w), ngC = (a,b) => ngCarry(a, b, sh);
   if(w.key && NAMED[w.key]){
     const f = makeNamed(w.key);
-    STAT_KEYS.forEach(k=>{ w.stats[k] = ngCarry(w.stats[k], f.stats[k]); }); TECH_KEYS.forEach(k=>{ w.tech[k] = ngCarry(w.tech[k], f.tech[k]); });
-    Object.keys(w.acts||{}).forEach(id=>{ if(f.acts[id]) w.acts[id].skill = ngCarry(w.acts[id].skill, f.acts[id].skill); });
+    STAT_KEYS.forEach(k=>{ w.stats[k] = ngC(w.stats[k], f.stats[k]); }); TECH_KEYS.forEach(k=>{ w.tech[k] = ngC(w.tech[k], f.tech[k]); });
+    Object.keys(w.acts||{}).forEach(id=>{ if(f.acts[id]) w.acts[id].skill = ngC(w.acts[id].skill, f.acts[id].skill); });
     w.trust = f.trust; w.lewd = f.lewd;
   } else {
     const half = v => Math.round((v||0)*0.5);
-    STAT_KEYS.forEach(k=>{ w.stats[k] = ngCarry(w.stats[k], half(w.stats[k])); }); TECH_KEYS.forEach(k=>{ w.tech[k] = ngCarry(w.tech[k], half(w.tech[k])); });
-    Object.values(w.acts||{}).forEach(a=>{ a.skill = ngCarry(a.skill, half(a.skill)); });
+    STAT_KEYS.forEach(k=>{ w.stats[k] = ngC(w.stats[k], half(w.stats[k])); }); TECH_KEYS.forEach(k=>{ w.tech[k] = ngC(w.tech[k], half(w.tech[k])); });
+    Object.values(w.acts||{}).forEach(a=>{ a.skill = ngC(a.skill, half(a.skill)); });
     const b = w.base0 || {}; w.trust = b.trust ?? (B.baseTrust ?? 15); w.lewd = Math.min(w.lewd, b.lewd ?? (B.baseLewd ?? 25));
   }
   w.lust = Math.min(w.lust||0, LUST_EAGER);
@@ -201,6 +212,7 @@ function ngBegin(){
   if(lovers.some(w=>!C.perks[w.id] && NG_PERKS().some(t=>!(w.ngPerks||[]).includes(t)))) return;
   const keptIds = new Set(S.houses.filter(keptHouse).map(h=>h.id));   // before S.houses is trimmed
   S.home = og; S.cycle = N.cycle;   // set first: generics rolled from here on can get ngOnly traits
+  S.boons = S.boons || []; if(C.boon && !S.boons.includes(C.boon)) S.boons.push(C.boon);   // early, so Old Loyalties / Vivid Memories apply to this cycle's carries
   // lovers: wages again, perk, reset
   lovers.forEach(w=>{
     const p = C.perks[w.id]; if(p){ w.ngPerks = [...(w.ngPerks||[]), p]; }
@@ -265,7 +277,7 @@ function ngBegin(){
   S.boons = S.boons || []; if(C.boon && !S.boons.includes(C.boon)) S.boons.push(C.boon);
   if(C.boon==='renown') S.rep = clamp(S.rep + 15);
   S.gold = N.purse;
-  S.debt = {total:N.debt, remaining:N.debt, carry:0, strikes:0, start:S.week-1};
+  S.debt = Object.assign({total:N.debt, remaining:N.debt, carry:0, strikes:0, start:S.week-1}, ngPlan(N.cycle));
   S.won = false; S.over = false; S.lastReport = null; EVQ = []; delete S.ngSeed;
   S.flags.partnerCD = 3; S.ap = apMax();
   refreshCandidates(C.boon==='recruit' ? 3 : 0, C.boon==='recruit' ? 1.15 : 1);
@@ -273,5 +285,5 @@ function ngBegin(){
   checkUnlocks(true);
   addLog(`New Game+ (cycle ${S.cycle}): Sam keeps ${HDo.name} and takes on a new debt of ${fmt(N.debt)}.`);
   NGS = null; save(); TAB = 'house'; render();
-  modal(`<h2>${esc(HDo.name)}</h2><p class="story">Marguerite Vane slides a fresh contract across the desk. "Paying off one house was impressive, Mr. Takahashi. Let's see you do it again, with a little less sentiment." She almost smiles again. It's starting to worry him.\n\nSam keeps ${esc(HDo.name)}${C.house?`, takes on ${esc(HOUSES[C.house].name)}`:''}${lovers.length?` and ${lovers.map(w=>esc(w.name)).join(', ')}`:''}. Everyone else has gone their own way. The new debt is ${fmt(N.debt)}, due over the next ${BAL.debt.payments*BAL.debt.every} weeks.</p><div class="row"><button class="primary" onclick="closeModal()">Let's go</button></div>`);
+  modal(`<h2>${esc(HDo.name)}</h2><p class="story">Marguerite Vane slides a fresh contract across the desk. "Paying off one house was impressive, Mr. Takahashi. Let's see you do it again, with a little less sentiment." She almost smiles again. It's starting to worry him.\n\nSam keeps ${esc(HDo.name)}${C.house?`, takes on ${esc(HOUSES[C.house].name)}`:''}${lovers.length?` and ${lovers.map(w=>esc(w.name)).join(', ')}`:''}. Everyone else has gone their own way. The new debt is ${fmt(N.debt)}, due over the next ${S.debt.payments*BAL.debt.every} weeks.</p><div class="row"><button class="primary" onclick="closeModal()">Let's go</button></div>`);
 }
