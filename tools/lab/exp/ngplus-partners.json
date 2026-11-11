@@ -1,0 +1,9 @@
+{
+  "desc": "NG+ new partner choice (Wayfarer as the new house, Seasoned Owner boon).",
+  "scenario": "ngplus",
+  "runs": 12,
+  "ng": { "house": "wayfarer", "past": "none", "boon": "ap" },
+  "each": { "ng.partner": ["yui", "natsuki", "kanako", "akari", "lara", "emily", "ella", "ione", "nerys", "none"] },
+  "baseline": false,
+  "breakdown": ["named"]
+}

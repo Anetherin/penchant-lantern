@@ -1,0 +1,8 @@
+{
+  "desc": "Template for tuning: sweep one number and compare against the current value. Patches merge into balance.json (balance), economy.json (economy), races.json (races), traits.json (traits), characters.json (characters). patchAt: 'phase' (default; only the measured weeks change, the warm-up is shared) or 'start' (whole game).",
+  "scenario": "mid",
+  "weeks": 12,
+  "runs": 16,
+  "each": { "patch.balance.rooms.perRoom": [6, 10] },
+  "breakdown": []
+}

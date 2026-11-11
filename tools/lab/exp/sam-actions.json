@@ -1,0 +1,54 @@
+{
+  "desc": "Sam's spare actions: what he does with AP left after the rounds (when anyone's trust is low) and one partner date. phasePolicy = only from the phase start (warm-up shared). Energy floor 35 for any action, else he naps.",
+  "scenario": "mid",
+  "weeks": 12,
+  "runs": 16,
+  "by": {
+    "scenario": [
+      "early",
+      "mid",
+      "late"
+    ]
+  },
+  "each": {
+    "phasePolicy.samDefault": [
+      "security",
+      "books",
+      "scout",
+      "rounds",
+      "lesson",
+      "date",
+      "rest",
+      "statclass",
+      "trainStat",
+      "trainSkill",
+      "trainService",
+      "demo"
+    ]
+  },
+  "columns": [
+    "total",
+    "net",
+    "sam",
+    "upkeep",
+    "repGain",
+    "sat",
+    "trust",
+    "mood",
+    "unhandled",
+    "left"
+  ],
+  "delta": [
+    "total",
+    "net",
+    "repGain",
+    "trust"
+  ],
+  "breakdown": [],
+  "variants": [
+    {
+      "name": "base"
+    }
+  ],
+  "baseline": true
+}

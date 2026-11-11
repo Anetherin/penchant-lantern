@@ -1,0 +1,9 @@
+{
+  "desc": "NG+ new house choice (Seasoned Owner, no past). 'none' = keep only the home house.",
+  "scenario": "ngplus",
+  "runs": 12,
+  "ng": { "boon": "ap", "past": "none" },
+  "each": { "ng.house": ["wayfarer", "castle", "onsen", "hollow", "tankard", "pavilion", "veil", "skyhook", "pearl", "none"] },
+  "baseline": false,
+  "breakdown": []
+}

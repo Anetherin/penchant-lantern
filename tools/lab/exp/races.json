@@ -1,0 +1,9 @@
+{
+  "desc": "Race balance in isolation: at the start of the phase every generic lady in the home house becomes this race (same lady, same stats, same RNG; race mods/fx are live, lewdness shifts by the race difference, wage recomputed). Run per phase.",
+  "scenario": "mid",
+  "weeks": 12,
+  "runs": 16,
+  "by": { "scenario": ["mid", "late"] },
+  "each": { "mutate.race": ["human", "elf", "beastkin/fox", "beastkin/cat", "beastkin/wolf", "beastkin/rabbit", "beastkin/dragon", "demon", "dwarf", "spirit", "angel", "android"] },
+  "breakdown": []
+}

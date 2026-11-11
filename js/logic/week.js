@@ -105,7 +105,9 @@ const CLS_LABEL = id => ((CLASSES.find(c=>c.id===id)||{}).label || id);
 const repGain = (h, n) => n > 0 ? n * Math.max(BAL.rep.gainMin, BAL.rep.gainBase - h.rep/BAL.rep.gainDiv) : n;
 function repAdd(h, n){ h.rep = clamp(h.rep + repGain(h, n)); }
 // Each accepted proposition costs a non-must lady 8% of her main job's output that week (max 50%).
-const outputMult = (w, pr) => (JOBS[w.job] && JOBS[w.job].must) ? 1 : Math.max(1 - BAL.props.maxPenalty, 1 - BAL.props.penalty*(pr.accProp||0));
+// A night ended by an unhandled pushy client costs her 1/nights of the week's output (balance.json → props.nights).
+const nightMult = pr => Math.max(0, 1 - (pr.nightsLost||0) / (BAL.props.nights || 6));
+const outputMult = (w, pr) => ((JOBS[w.job] && JOBS[w.job].must) ? 1 : Math.max(1 - BAL.props.maxPenalty, 1 - BAL.props.penalty*(pr.accProp||0))) * nightMult(pr);
 // Courtesans work out of the mood; everyone else turns heavier services down below lust.low.
 const moodFree = w => w.job === 'courtesan';
 const nim = (w, id) => !moodFree(w) && notInMood(w, id);
@@ -171,21 +173,34 @@ function pushyCheck(X, w, cls, pr, client){
   countUp(w,'rowdy'); pr.pushy = (pr.pushy||0)+1; hr.pushy.total++;
   if(Math.random() < (s100(statOf(w,'wits'))*0.6 + s100(statOf(w,'charm'))*0.4)/100 * (BP.talkDown ?? 0.35)){ res = 'talked'; moodAdd(w, BP.talkMood ?? -2); }
   else if(X.secPow > rnd(BP.securityRoll[0], BP.securityRoll[1])){ res = 'security'; moodAdd(w, BP.secMood); }
-  else if(S.sam.energy >= BP.samEnergyMin){
-    // security couldn't handle it and Sam is around: someone runs to fetch him. What he does is the player's call
-    // (an event after the report, see pushyEvent); until then the incident is 'samcall'.
-    res = 'samcall'; (hr.calls = hr.calls||[]).push({wid:w.id, cls:cls.id||null, h:h.id});
-  } else { res = 'none'; moodAdd(w, -BP.noneMood); h.rep = clamp(h.rep - BP.noneRep); }
+  // security couldn't handle it and Sam is around: someone runs to fetch him, and he steps in there and then
+  else if(S.sam.energy >= BP.samEnergyMin) res = samRescue(w, h);
+  else { res = 'none'; moodAdd(w, -BP.noneMood); h.rep = clamp(h.rep - BP.noneRep); }
   if(res==='security' || res==='sam') countUp(w,'rescued');
+  if(res==='none' || res==='samfail') endNight(X, w, pr);   // nobody stopped him: she's done for the night
   hr.pushy[res]++; (pr.notes = pr.notes||[]).push(flavor('pushy_'+res, w));
   return res;
 }
-// Sam's answer to the pushy clients security couldn't handle this week (one event for all of them).
-function samStepIn(c){
-  const BP = BAL.props, w = findW(c.wid), h = H(c.h); if(!w || !h) return null;
-  if(S.sam.energy >= BP.samEnergyMin && S.sam.strength + S.sam.charm/2 + rnd(0, BP.samRoll) >= BP.samCheck){
-    moodAdd(w, BP.samMood); gainTrust(w, BP.samTrust); S.sam.energy = Math.max(0, S.sam.energy - BP.samCost); countUp(w,'rescued'); return 'sam'; }
+// Her night is over: one night's worth of clients off her week (escorts), 1/nights off her job's output (outputMult), and she
+// skips that share of the propositions still coming (props loop, pr.skipProps).
+function endNight(X, w, pr){
+  const BP = BAL.props, n = BP.nights || 6;
+  pr.nightsLost = (pr.nightsLost||0) + 1; X.hr.nightsLost = (X.hr.nightsLost||0) + 1;
+  if(X.capc && X.capc[w.id] !== undefined) X.capc[w.id] = Math.max(pr.served, X.capc[w.id] - (BP.nightCap ?? 2));
+  pr.skipNights = (pr.skipNights||0) + 1;
+}
+// Sam answers a call for help (Strength + Charm/2 + roll vs props.samCheck; standing watch this week helps).
+function samRescue(w, h){
+  const BP = BAL.props;
+  if(S.sam.strength + S.sam.charm/2 + rnd(0, BP.samRoll) + (S.samWeek.security ? (BP.watchBonus ?? 15) : 0) >= BP.samCheck){
+    moodAdd(w, BP.samMood); gainTrust(w, BP.samTrust); S.sam.energy = Math.max(0, S.sam.energy - BP.samCost); return 'sam'; }
   S.sam.energy = Math.max(0, S.sam.energy - BP.failCost); h.rep = clamp(h.rep - BP.failRep); moodAdd(w, -BP.failMood); minorTrust(w); return 'samfail';
+}
+// Sam's answer to the pushy clients security couldn't handle this week (one event for all of them).
+// (Old flow, kept only so an event queued by an older version still resolves: Sam now steps in during the week, samRescue.)
+function samStepIn(c){
+  const w = findW(c.wid), h = H(c.h); if(!w || !h) return null;
+  const r = S.sam.energy >= BAL.props.samEnergyMin ? samRescue(w, h) : null; if(r==='sam') countUp(w,'rescued'); return r || 'samfail';
 }
 function pushyEvent(calls){
   const BP = BAL.props, names = Array.from(new Set(calls.map(c=>(findW(c.wid)||{}).name).filter(Boolean)));
@@ -274,9 +289,10 @@ function simHouse(h, R){
   if(HD.haunted) dBase *= 0.45 + Math.min(1, h.rep/(HD.hauntRep||40))*0.8;
   dBase *= (h.bonus&&h.bonus.demand) || 1;
   dBase *= BAL.amenities.decor.demand[h.decor||0] ?? 1;
+  dBase *= (hr.tidyFx && hr.tidyFx.demand) || 1;   // word gets around about a shabby house (balance.json → tidy.fx.*.demand)
   const v0 = W.length ? Math.max(1, Math.round(dBase)) + danceDraw*2 : 0;   // expected visitors, for proposition rates
   const escorts = W.filter(w=>JOBS[w.job].cat==='escort');
-  const capc = {}; escorts.forEach(w=>capc[w.id] = 10);
+  const capc = {}; escorts.forEach(w=>capc[w.id] = 10); X.capc = capc;
   // max lust: some ladies spend part of a night alone instead (costs energy, fewer clients)
   W.forEach(w=>{
     if(!restless(w) || has(w,'Devoted') || Math.random() >= soloChance(w)) return;   // lovers wait for Sam
@@ -302,6 +318,7 @@ function simHouse(h, R){
         if(expects){ X.expectMiss++; pr.expectMiss = (pr.expectMiss||0)+1; e.note = 'expect'; }
         const pu = pushyCheck(X, w, cls, pr, client); if(pu) e.note = 'pushy_'+pu;
         thirstyMiss(client, true);
+        if(pr.skipNights){ i += Math.ceil(n / (BP.nights || 6)) * pr.skipNights; pr.skipNights = 0; }   // her night ended: that night's offers never reach her
       } else if(!X.roomOK(w)){ hr.turned++; hr.short++; pr.noRoom = (pr.noRoom||0)+1; e.note = 'noroom'; thirstyMiss(client); }
       else {
         const A = actById(dec.act), reluct = clientStance(w,dec.act)==='ask', inc = propInc(w, dec.act, cls, client);
@@ -333,10 +350,13 @@ function simHouse(h, R){
     }
   });
   // --- promoters draw clients (free samples: bigger draw, but it tires her and shows in the house's name)
+  // (balance.json → jobs: promoterBase/Div; x (1 + promoterLowRep x (1 - rep/promoterRepRef)) for a house that isn't known yet;
+  //  each further promoter x promoterStack; word of mouth: repAdd(promoterRep x draw))
   let promoDraw = 0;
-  byJob('promoter').forEach(w=>{
+  const lowRepM = 1 + (J.promoterLowRep || 0) * Math.max(0, 1 - h.rep / (J.promoterRepRef || 60));
+  byJob('promoter').map(w=>({w, q:s100(statOf(w,'charisma')) + s100(w.tech.service)})).sort((a,b)=>b.q-a.q).forEach(({w}, k)=>{
     const pr = R.per[w.id], samples = w.samples && !has(w,'Modest');
-    let d = (J.promoterBase + (s100(statOf(w,'charisma')) + s100(w.tech.service))/J.promoterDiv) * ob(w,'promoter') * jb(w,'promoter') * fxMul(w,'promote') * outputMult(w, pr);
+    let d = (J.promoterBase + (s100(statOf(w,'charisma')) + s100(w.tech.service))/J.promoterDiv) * ob(w,'promoter') * jb(w,'promoter') * fxMul(w,'promote') * outputMult(w, pr) * lowRepM * Math.pow(J.promoterStack ?? 1, k);
     if(samples){
       d *= J.samplesDraw; w.energy -= J.samplesEnergy; pr.samples = true;
       // the samples are real (light) services from her client menu, given away on the street: no fee, no room, but they count as services
@@ -355,6 +375,7 @@ function simHouse(h, R){
       if(Math.abs(dr) >= 0.05) (pr.notes = pr.notes||[]).push(flavor(dr > 0 ? 'job_samples_rep_good' : 'job_samples_rep_bad', w));
     }
     pr.draw = d; promoDraw += d; countUp(w,'promo', Math.max(1, Math.round(d)));
+    if(J.promoterRep) repAdd(h, d * J.promoterRep);
   });
   hr.promoDraw = promoDraw;
   const demand = W.length ? Math.max(1, Math.round(dBase + promoDraw)) : 0;
@@ -469,7 +490,7 @@ function simHouse(h, R){
     const base = act ? actById(act).price * roomM * ob(w,'courtesan') : 20 * ob(w,'courtesan');
     const below = Math.max(0, (HD.minPop||0) - w.popularity);
     const inc = Math.round(base * P.mult * (0.6+q*0.9) * cm * (1+madF*0.15) * fxMul(w,'clientFee') * jb(w,w.job) * (react==='like' ? SVC.raceLikeFee : 1) * (below?0.75:1) * (reg ? (regQuirk(reg).tip||1) : 1) * cMul(client,'fee',X,w) * (act ? cQual(client,q) : cMul(client,'compFee',X)) * BAL.income.escort);
-    const sat = clamp(- below*0.5 - Math.max(0, repEff - BAL.clients.pickFrom)*BAL.clients.pickPer + q*100 + 6 + rnd(-15,15) + h.tier*5 - (h.price-1)*6 + (h.up.bath?4:0) + (HD.sat||0) + attHelp(w) * J.attendantSatPer + (matched && outcome==='yes' ? J.madameMatchSat : 0) + (outcome==='yes'?8:outcome==='alt'?3:outcome==='no'?-8:0)
+    const sat = clamp(- below*0.5 - Math.max(0, repEff - BAL.clients.pickFrom)*BAL.clients.pickPer + q*100 + 6 + rnd(-15,15) + h.tier*5 - (h.price-1)*6 + (h.up.bath?4:0) + (HD.sat||0) + ((hr.tidyFx && hr.tidyFx.sat) || 0) + attHelp(w) * J.attendantSatPer + (matched && outcome==='yes' ? J.madameMatchSat : 0) + (outcome==='yes'?8:outcome==='alt'?3:outcome==='no'?-8:0)
       + (fxSubC(w,'classBonus',cls)-1)*SVC.classBonusSat + (react==='like' ? SVC.raceLikeSat : react==='dislike' ? SVC.raceDislikeSat : 0)
       + waitAdj + cAdd(client,'satAdd') + cStatSat(client, w, sp) + (thirsty && outcome==='no' ? BAL.clients.thirsty.sat : 0));
     pr.satSum = (pr.satSum||0) + sat; if(sat<30) pr.low = (pr.low||0)+1;
@@ -541,7 +562,9 @@ function simHouse(h, R){
     if(JOBS[j].cat!=='escort' || !pr.served){ const t = flavor(j==='promoter' && pr.samples ? 'job_promoter_samples' : j==='bath' && pr.bathJoin ? (pr.moreN ? 'job_bath_more' : 'job_bath_joined') : j==='rest' && w.race==='demon' ? 'job_rest_demon' : 'job_'+j, w); if(t) R.hl.push({wid:w.id, text:t, act:null, scene:'job_'+j, noAi:true, job:true}); }
   });
   // --- tidiness: room services and visitors make a mess, maids clean it up
-  if(W.length){ h.tidy = clamp(hr.tidy0 - (TY.perService*hr.roomsUsed + TY.perVisitor*visitors) * (h.up.laundry ? BAL.amenities.laundry.decay : 1) + maidAdd); hr.tidy = h.tidy; hr.maidAdd = maidAdd; }
+  // maids pull toward clean with diminishing returns: x (100 - tidiness)/maidEase, at most maidMax (balance.json → tidy)
+  if(W.length){ const ease = clamp((100 - hr.tidy0) / (TY.maidEase || 50), 0, TY.maidMax || 1.5); maidAdd *= ease;
+    h.tidy = clamp(hr.tidy0 - (TY.perService*hr.roomsUsed + TY.perVisitor*visitors) * (h.up.laundry ? BAL.amenities.laundry.decay : 1) + maidAdd); hr.tidy = h.tidy; hr.maidAdd = maidAdd; }
   const rowdyF = X.rowdyN ? clamp(X.rowdySum / X.rowdyN / 0.07, 0.5, 2) : 1;
   if(W.length && Math.random() < clamp((0.12 + demand/120 - secPow/250) * (HD.trouble||1) * rowdyF * (1 + barN*J.barRowdy) * incenseHouseMul(h,'pushy'), 0.03, 0.6)) EVQ.push(()=>evIncident(h));
   if(HD.haunted && Math.random()<0.15) EVQ.push(()=>evHaunt(h));
@@ -689,9 +712,8 @@ function endWeek(){
     const T = BAL.tidy, tk = hr.tidy >= T.high ? 'high' : hr.tidy < T.bad ? 'bad' : hr.tidy < T.low ? 'low' : null;
     if(tk) log(`${tk==='high'?'✨':'🧹'} ${flavor('tidy_'+tk, null, {house:hr.name})} (tidiness ${Math.round(hr.tidy)})`);
     if(hr.classroom) log(`📚 Classroom: ${hr.classroom.teacher} taught ${hr.classroom.subject.toLowerCase()} to ${hr.classroom.n} lad${hr.classroom.n===1?'y':'ies'}.`);
-    const pu = hr.pushy; if(pu && pu.total) log(`⚠️ ${hr.name}: ${pu.total} pushy client${pu.total>1?'s':''}. ${[pu.talked&&`talked down ${pu.talked}×`, pu.security&&`security walked ${pu.security} out`, pu.sam&&`Sam stepped in ${pu.sam}×`, pu.samfail&&`Sam's attempt went badly ${pu.samfail}×`, pu.samcall&&`security needed Sam ${pu.samcall}× (your call)`, pu.none&&`nobody was there ${pu.none}×`].filter(Boolean).join(', ')}.`);
+    const pu = hr.pushy; if(pu && pu.total) log(`⚠️ ${hr.name}: ${pu.total} pushy client${pu.total>1?'s':''}${hr.nightsLost?` (${hr.nightsLost} night${hr.nightsLost>1?'s':''} cut short)`:''}. ${[pu.talked&&`talked down ${pu.talked}×`, pu.security&&`security walked ${pu.security} out`, pu.sam&&`Sam stepped in ${pu.sam}×`, pu.samfail&&`Sam's attempt went badly ${pu.samfail}×`, pu.samcall&&`security needed Sam ${pu.samcall}× (your call)`, pu.none&&`nobody was there ${pu.none}×`].filter(Boolean).join(', ')}.`);
   });
-  { const calls = (R.houses||[]).flatMap(hr=>hr.calls||[]); if(calls.length) EVQ.unshift(()=>pushyEvent(calls)); }
   (R.houses||[]).forEach(hr=>{ if(hr.floor && hr.floor.length) log(`🛏️ ${hr.name} is short on beds: ${hr.floor.join(', ')} slept on the floor. Build staff quarters or add staff beds.`); });
   R.avgSat = R.served ? satSum/R.served : 50;
   const avgRep = S.houses.reduce((a,h)=>a+h.rep,0)/S.houses.length, maxRep = Math.max(...S.houses.map(h=>h.rep));

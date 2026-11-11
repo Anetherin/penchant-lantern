@@ -1,0 +1,9 @@
+{
+  "desc": "Maids over a whole first cycle: 0, 1 (default) or 2 kept per house (Lantern and the Manor).",
+  "scenario": "campaign", "weeks": 104, "runs": 12,
+  "by": { "start.house": ["lantern", "hollow"] },
+  "variants": [ {"name": "base"} ],
+  "each": { "policy.targets": [ {"name": "no maid", "maid": 0, "promoter": 1}, {"name": "2 maids", "maid": 2, "promoter": 1} ] },
+  "columns": ["winWeek", "netMid", "netLate", "gold26", "tidy", "rep", "sat", "left"],
+  "breakdown": []
+}
