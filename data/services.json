@@ -12,7 +12,8 @@
     "Scales: th and dress.fullAt are LEWDNESS thresholds, and lewdness stays 0-100 (like trust, mood and lust). Only stats, tech and service skills run 0-1000, so a two-digit th here is correct.",
     "energyBack / mood (optional): energy she regains and mood she gains from a service (massage_get).",
     "ask = how the weekly report phrases it. client: what he asks for, after \"asked\" (\"asked for oral\", \"asked to go down on her\"). lady: what SHE does when she's the one offering, after \"she\" (\"she offered to go down on him\"). Custom services without ask fall back to their label.",
-    "image.exposed: true = the picture shows her bare between the legs, so the prompt names her pubic hair (snippets.json → clothing.pubic) unless the clothing wording already does."
+    "image.exposed: true = the picture shows her bare between the legs, so the prompt names her pubic hair (snippets.json → clothing.pubic) unless the clothing wording already does.",
+    "pair = lines for two women together (any two women; used by js/logic/goddess.js gSvcLine): fem = both women, futa = {partner} is a futanari. {name} = the woman whose side the id names (she gives for _give, receives for _get), {partner} = the other woman. Positions (tier 3) only need futa."
   ],
   "services": [
     {
@@ -48,7 +49,17 @@
         "The smell of lavender oil followed him out, along with a very generous tip and a contented sigh.",
         "He lay face-down for most of the hour and had to be gently woken at the end, smiling.",
         "By the time she was done he had stopped checking his pocket watch, which the staff counted as a miracle."
-      ]
+      ],
+      "pair": {
+        "fem": [
+          "{name} spent the evening working warm oil into {partner}'s shoulders and back while {partner} purred and offered notes. Neither of them glanced at the clock.",
+          "{partner} lay back and let {name}'s hands wander wherever they liked, sighing a little more with every slow pass."
+        ],
+        "futa": [
+          "{partner} stretched out under {name}'s oiled hands and let her knead the tension from her shoulders, then lower. It turned out {partner} was eager for more than a rubdown.",
+          "{name} worked her way down {partner}'s back, and {partner}, very much the interested party, kept finding reasons to roll over."
+        ]
+      }
     },
     {
       "id": "kiss",
@@ -78,7 +89,17 @@
         "He lingered long past the hour, reluctant to stop, and she was in no hurry to make him.",
         "Candlelight, a corner sofa and a great deal of patience: he said afterward it was the best kiss of his life.",
         "He came away flushed and quiet, touching his lip now and then as if to check it was still there."
-      ]
+      ],
+      "pair": {
+        "fem": [
+          "{partner} kissed {name} against the doorway until {name} forgot what she had come for.",
+          "{name} and {partner} traded slow, lingering kisses on the sofa, in no hurry to stop."
+        ],
+        "futa": [
+          "{partner} kissed {name} slowly, one hand at her waist and her body pressed close in a way that left no doubt of her interest. {name} forgot the question she had meant to ask.",
+          "{name} was kissed breathless against the bookshelves, with {partner}'s eagerness plain between them."
+        ]
+      }
     },
     {
       "id": "massage_get",
@@ -111,7 +132,17 @@
         "She came down loose-shouldered and smiling, and he left looking mightily proud of himself."
       ],
       "energyBack": 4,
-      "mood": 2
+      "mood": 2,
+      "pair": {
+        "fem": [
+          "{partner} oiled {name} from neck to ankle with unhurried hands, murmuring compliments as she went. {name} melted.",
+          "With hands alone, {partner} turned {name} into a puddle, and neither of them would say how long it took."
+        ],
+        "futa": [
+          "{partner} worked {name} over with warm oil and warmer hands, plainly enjoying the effect she was having. {name} did not complain.",
+          "{name} lay back under {partner}'s hands, with the heat of {partner}'s aroused body along her side. By the end it was not strictly a massage."
+        ]
+      }
     },
     {
       "id": "manual_get",
@@ -145,7 +176,17 @@
         "It was a slow hour of gentle exploration, and she came down flushed and in a good mood.",
         "He paid close attention, and she rewarded that attention generously.",
         "He was shy at first and bold by the end, and she did not seem to mind the progress one bit."
-      ]
+      ],
+      "pair": {
+        "fem": [
+          "{partner} slipped a hand where {name} needed it most and kept her there, trembling, until she asked nicely.",
+          "{name} learned just how patient {partner}'s fingers could be, and was still catching her breath afterward."
+        ],
+        "futa": [
+          "{partner} held {name} close with one arm and took her time with the other hand. {name} stopped trying to stay quiet.",
+          "{name} was gathered against {partner}'s eager body while a clever hand did the rest. It was a great deal."
+        ]
+      }
     },
     {
       "id": "manual_give",
@@ -179,7 +220,17 @@
         "Her hands did the talking, and he came downstairs speechless, which she took as a compliment.",
         "It was brisk, warm and thoroughly professional, and he tipped like a man who had found religion.",
         "He went in nervous and came out dazed, with a lopsided smile that lasted all the way to the street."
-      ]
+      ],
+      "pair": {
+        "fem": [
+          "{name} followed {partner}'s murmured directions with her hand and was rewarded with a long, shaky sigh.",
+          "{partner} guided {name}'s fingers, voice dropping to a purr of approval as {name} found the rhythm."
+        ],
+        "futa": [
+          "{name} took {partner} in hand at her soft command and watched her composure slowly come apart.",
+          "{partner} let {name} explore at her own pace, murmuring encouragement, one hand tangled in {name}'s hair."
+        ]
+      }
     },
     {
       "id": "breast_get",
@@ -212,7 +263,17 @@
         "He lingered happily and she let him, soft-eyed and amused throughout.",
         "Gentle, unhurried and clearly delighted, he left her flushed and laughing.",
         "It was an hour of soft sighs and slow attention, and neither seemed in any hurry for it to end."
-      ]
+      ],
+      "pair": {
+        "fem": [
+          "{partner} took her time with {name}'s breasts, attentive and a little smug, until {name} was clutching the sheets.",
+          "{name} gasped as {partner}'s warm mouth and hands made a long, thorough study of her."
+        ],
+        "futa": [
+          "{partner} lavished {name}'s breasts with attention, pressing close in a way that made her intentions clear. {name} did not argue.",
+          "{name} sat in {partner}'s lap and was thoroughly adored, with {partner}'s hard-to-ignore arousal against her thigh the whole time."
+        ]
+      }
     },
     {
       "id": "oral_get",
@@ -248,7 +309,17 @@
         "She left the room with trembling knees and a wide smile, and he left with an even wider one.",
         "It was a long, lazy hour and she had to sit down once she reached the stairs.",
         "He asked politely, worked diligently and was thanked in a breathless voice that he will remember for weeks."
-      ]
+      ],
+      "pair": {
+        "fem": [
+          "{partner} knelt between {name}'s knees and took the long way round. {name} refused to describe it afterward.",
+          "{name} lost all track of time under {partner}'s patient, devoted attention."
+        ],
+        "futa": [
+          "{partner} spent the night on devoted attention to {name} before taking things further, plainly impatient herself. {name} needed the next morning to recover.",
+          "{name} was thoroughly worshipped by a partner who clearly relished the work and was well aware of her own eagerness."
+        ]
+      }
     },
     {
       "id": "oral_give",
@@ -282,7 +353,17 @@
         "She was thorough and unhurried, and he said it was the finest thing to ever happen to him.",
         "Whatever she did, he came downstairs murmuring praise to the ceiling.",
         "He stayed well past his hour, tipped lavishly, and left walking a little sideways."
-      ]
+      ],
+      "pair": {
+        "fem": [
+          "{name} knelt for {partner}, who lay back among the cushions and offered soft, imperious encouragement.",
+          "{partner} let {name} take her time, one hand in her hair, until her breathing gave out entirely."
+        ],
+        "futa": [
+          "{name} knelt for {partner} and gave her all her attention, to a chorus of approving murmurs.",
+          "{partner} let {name} take her time, stroking her hair and telling her she was doing beautifully."
+        ]
+      }
     },
     {
       "id": "breast_give",
@@ -316,7 +397,17 @@
         "It was warm, playful and slightly ridiculous, and he laughed as much as he sighed.",
         "He thanked her three times before reaching the door, and tipped as though he were paying a tithe.",
         "The hour passed in a haze of oil and giggles, and he left in noticeably better spirits."
-      ]
+      ],
+      "pair": {
+        "fem": [
+          "{name} lavished attention on {partner}'s breasts, and {partner} answered with a long, warm sigh.",
+          "{partner} arched into {name}'s hands and mouth, smiling like a cat handed a very large bowl of cream."
+        ],
+        "futa": [
+          "{name} gave {partner}'s breasts her devoted attention while the rest of {partner} grew obviously, urgently interested. {name} noticed. {partner} did not care.",
+          "{partner} guided {name}'s mouth and hands with a murmur or two, her arousal pressing ever more plainly against her."
+        ]
+      }
     },
     {
       "id": "missionary",
@@ -351,7 +442,13 @@
         "They talked afterward for a long while, tangled in the sheets, and he left reluctantly.",
         "He was a gentleman throughout, and she said it was one of the more pleasant evenings of the week.",
         "He walked out into the night with a spring in his step and no apparent idea where he was going."
-      ]
+      ],
+      "pair": {
+        "futa": [
+          "{partner} laid {name} back among the pillows and took things slow, her body over {name}'s. {name} saw stars.",
+          "{name} was held down, kissed, and thoroughly made love to by {partner}, who was in no hurry at all."
+        ]
+      }
     },
     {
       "id": "cowgirl",
@@ -386,7 +483,13 @@
         "He lay back and enjoyed the ride, and tipped like a man who knew exactly what he'd been given.",
         "The ceiling creaked in a steady rhythm for the better part of an hour, and the bar below took bets.",
         "He left breathless and beaming, and said only that he would be back as soon as his legs permitted."
-      ]
+      ],
+      "pair": {
+        "futa": [
+          "{partner} lay back and let {name} take charge, which {name} did with considerable and gratifying enthusiasm.",
+          "{name} straddled {partner} and set the pace herself while {partner} watched, flushed and approving."
+        ]
+      }
     },
     {
       "id": "doggy",
@@ -421,7 +524,13 @@
         "It was loud, enthusiastic and apparently very satisfying, and he tipped well for the noise.",
         "She came downstairs laughing and rumpled, and he followed looking rather pleased with himself.",
         "He wobbled out onto the street with a goofy grin, and the doorman wished him a good night."
-      ]
+      ],
+      "pair": {
+        "futa": [
+          "{partner} took {name} from behind, one hand firm at her hip. {name} gripped the headboard and thanked her.",
+          "{name} found herself bent over the arm of a chair with {partner} behind her, murmuring praise into her hair."
+        ]
+      }
     }
   ]
 }

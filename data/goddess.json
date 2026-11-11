@@ -3,30 +3,17 @@
     "The goddess who brought Sam over (js/logic/goddess.js, docs/GODDESS.md). Numbers are in balance.json → goddess.",
     "Placeholders: {goddess} her name, {sam}, {house}, {partner} (first name), {past} (Sam's past life, lowercase), {lady} (a lady's first name), {n}, {names}, {cycle}, {skill}.",
     "Any text field may be a list: one entry is picked at random.",
-    "npc: her look for image prompts (same fields as a named lady's design). image blocks: {comp, setting, sam, pov} like story images (scenes.json).",
-    "intro: cycle 1, shown before the Vane welcome. pasts[k].intro = her remark on Sam's first past life; pasts[k].again = when he remembers it in New Game+.",
-    "houses[id]: her remark when the house becomes Sam's (intro, rebirth, bought mid-cycle from cycle 2 on). partners[key].hand = how she had a hand in Sam meeting her; .comment = her remark about her.",
     "rebirth: at every New Game+ before the binding. fast/steady/slow = how quickly he paid (weeks vs the plan). lovers/alone = lovers carried or none. jealous.low/mid/high by her jealousy. bound.low/mid/high = after the binding, by her divinity.",
     "teases: her scenes before the binding, in order; each only from minCycle. choices: love, jealousy (added), energy (Sam's), res. She never lets Sam finish: that would bind her.",
     "remarks.low/mid/high: short jealous remarks (by jealousy) as weekly events; remarkChoices are their default answers.",
     "binding: the first rebirth after a lady has lived a fully reincarnated life; she confesses it was never a whim. focus: her weekly guidance options (report lines; indulge has feminine/futa variants, chosen by her form setting). claim: what she does when jealousy wins. night: Sam's action on her tab (image, open by divinity low/mid/high, then inside / outside / unhappy lists by how the night ended; {act} = the service label, lowercase). ending.stay/leave: full divinity again.",
-    "services: her own lines per service id (ids as in services.json; _default is the fallback). Three contexts: sam = a night with Sam (she is the woman doing/receiving; _give = she gives, _get = she receives); feminine = she with a lady in her female form (report line; the id is the lady's point of view, e.g. oral_give = the lady pleases her; no tier 3 entries, they are not used); futa = same with a lady in her futa form. {lady} is the lady's first name. Lists: one is picked at random."
+    "intro: cycle 1, before the Vane welcome. Her remarks about houses, partners and Sam's past lives live with them: economy.json → houses[id].goddess, pasts[k].goddess {intro, again}; characters.json → partner.goddess {hand, comment}. Her lines with the ladies are services.json → pair.fem/futa; on nights with Sam she uses the usual private-time lines (flavor.json → private_act).",
+    "look: what never changes, so she's always recognizable (hair, eyes, signature feature, outfit). forms[race]: one form per race (build, body, skin, features; beastkin needs sub). trueForm = the form of her story scenes. Each form has its own image id (npc_goddess_<race>), so pictures are saved per form.",
+    "neglect: report lines when Sam stays away (balance.json → goddess.neglect)."
   ],
   "name": "Seliora",
   "title": "the Lamplighter",
   "tabBlurb": "Goddess of crossings and kept flames, currently bound to a former {past}, glowing a little less than she used to and not entirely sorry about it.",
-  "npc": {
-    "race": "human",
-    "design": {
-      "build": "tall and curvy",
-      "hairStyle": "very long, flowing, loose",
-      "hairColor": "black with ember-gold streaks",
-      "eyes": "gold, with a thin ring of light around each iris",
-      "skin": "warm bronze that glows faintly from within, like a lantern",
-      "features": "faint gold markings along her collarbones and hips that brighten with her mood, a small ember-flame floating near her shoulder"
-    },
-    "customOutfit": "a sheer crimson-and-gold wrap dress held by thin gold chains, barefoot"
-  },
   "intro": {
     "title": "Before the truck stops ringing",
     "image": {
@@ -37,110 +24,6 @@
     "open": "The horn is still ringing when the dark fills up with lanterns. Hundreds of them, hanging from nothing.\n\nA woman sits among them as if on a swing, barefoot, a little ember-flame drifting lazily around her shoulder. Her skin glows from within like a lantern, gold markings brightening at her collarbones and hips as she looks Sam over, slowly, head to toe, like someone deciding what to unwrap first.\n\n\"Sam Takahashi. Thirty-one years of being nice to people and nobody ever once being nice back on purpose.\" She tilts her head. \"I'm {goddess}. I light the way across, for the ones I pick. I picked you. On a whim, mostly. Don't read into it.\" She smiles like a woman who is reading into it a great deal.",
     "close": "\"There's a debt. There's always a debt, it keeps you honest. Pay it, and if you're still interesting, I'll bring you back and we'll do it again.\" She trails one fingertip down his chest, leans close enough that her warmth fills the dark, and doesn't kiss him. \"I'll be watching. Everything. Give me something worth watching.\"\n\nThe lanterns go out, one by one.",
     "button": "Wake up"
-  },
-  "pasts": {
-    "salaryman": {
-      "intro": "\"Eight years of spreadsheets. You reconciled other people's money for a living and nobody ever reconciled you.\" {goddess} sounds almost fond. \"It'll come in handy. Debts are just ledgers that bite.\"",
-      "again": "\"Ah, the ledgers again.\" She sounds delighted. \"Now you've got two lives' worth of columns. Try not to get lost in the margins.\""
-    },
-    "bartender": {
-      "intro": "\"A part-time bartender, hm.\" {goddess} turns an imaginary glass in her fingers. \"Pouring drinks and listening to strangers. You were practicing for this and didn't even know.\"",
-      "again": "\"You remember the bar, too?\" She grins. \"Good. Charm like that shouldn't go to waste. Pour me one sometime.\""
-    },
-    "gym": {
-      "intro": "\"You went to the gym three times a week and never once looked at yourself in the mirror.\" {goddess} pokes his arm. \"Thin, and sturdy underneath. I like a surprise.\"",
-      "again": "\"The gym rat, back again.\" She squeezes his bicep and pretends to be unimpressed. \"Still thin. Still strong. Still mine to watch.\""
-    },
-    "otaku": {
-      "intro": "\"Don't look so smug. I know you've read this story a hundred times.\" {goddess} lies back on the lanterns. \"Truck, goddess, new world. You even know to ask about the stats. It's adorable. Don't skip my lines.\"",
-      "again": "\"Oh good, you remember being a genre expert.\" She laughs. \"Now you know exactly how many clichés you're living in. I'm one of them, and I'm quite pleased with myself.\""
-    },
-    "cook": {
-      "intro": "\"Staff meals and midnight noodles for coworkers who never said thank you.\" {goddess} sniffs the air as if she can smell them. \"I did. Feed people here and see what happens.\"",
-      "again": "\"Your cooking again!\" She is already hovering over an invisible pot. \"I'll allow that one. Save me a bowl, would you?\""
-    },
-    "massage": {
-      "intro": "\"Good hands and no idea what to do with them.\" {goddess} takes one of them and turns it over, studying it. \"A massage therapist. I'll be keeping an eye on those.\"",
-      "again": "\"The hands, too.\" She holds out her shoulder with a martyred sigh. \"For old time's sake. Purely professional.\""
-    },
-    "tutor": {
-      "intro": "\"Six years of cram school, drilling teenagers for exams they'd forget.\" {goddess} tilts her head. \"A teacher who never got a thank-you. Teach this house something, and I'll be thanking you myself.\"",
-      "again": "\"Teacher again.\" She folds her hands behind her back, mock-prim. \"Tell me, professor, do I get extra credit for supervising you?\""
-    }
-  },
-  "houses": {
-    "lantern": "\"The Gilded Lantern.\" {goddess} sounds innocent. \"I may have nudged the old owner's luck. Mira's already decided you're hers to mother, so mind your manners. Or don't.\"",
-    "castle": "\"Castle Rosenhal. Noble Hill.\" {goddess} looks very pleased. \"I stood on those ramparts when the count still had a mind. Cecile will fold you into shape. I wouldn't mind watching it.\"",
-    "onsen": "{goddess} lets a long, contented sigh drift through the steam. \"A hot spring. I had no ulterior motive, none at all. Tsubaki sings dreadfully, you'll love it.\"",
-    "hollow": "\"Hollowmere Manor, dirt cheap, because it's haunted.\" {goddess} smiles into her lantern. \"I know Vesper. We've shared a candle or two. Be nice to her, she's been waiting three centuries for you.\"",
-    "tankard": "\"The Rusty Tankard! Noisy, cheap and crowded.\" {goddess} grins. \"Hilde lost a brewery to a giant, and she still owes me a pint. Collect it for me, would you?\"",
-    "pavilion": "\"The Moonlit Pavilion.\" {goddess} swirls a lantern like a lily on a pond. \"Sylphine will make you clap, I promise. Don't let her out-dazzle me.\"",
-    "veil": "\"The Crimson Veil. Underdistrict.\" {goddess} looks entirely too innocent. \"Zaria and I go way back. She keeps a ledger of favors, and I may be in it. Play nice with the demon, Sam.\"",
-    "wayfarer": "\"Every road meets at the Wayfarer's Rest.\" {goddess} sounds smug. \"Including yours. Bettina reads boots and hats, but she doesn't know about me. Yet.\"",
-    "skyhook": "\"The Skyhook, bolted to a cliff.\" {goddess} laughs and shades her eyes. \"I borrowed Rinna's wreck for a night once. She tells tall tales, but this one is true.\"",
-    "pearl": "\"The Pearl Grotto.\" For once {goddess} pauses before she answers. \"Maris was old when I was young. Nobody knows who built it. I may know, but I won't say. Go on, relax.\""
-  },
-  "partners": {
-    "kaede": {
-      "hand": "Seliora flicked a goblin ambush onto the road a few steps in front of a certain fox-eared scout, and made sure Sam would stumble in at exactly the wrong, right moment. A favor had to start somewhere, after all.",
-      "comment": "\"The scout who keeps tallies?\" {goddess} wrinkles her nose. \"She's counting favors. I'm counting her.\""
-    },
-    "yui": {
-      "hand": "Sam never saw the accountant two desks over cross the street with him. {goddess} did, and she nudged Yui's fall a week early so she could arrive first and find her feet.",
-      "comment": "\"Yui, from the office.\" {goddess} sounds odd. \"I let her come. She's tidy, and she knows you in ways I can't. That last part is annoying.\""
-    },
-    "nerys": {
-      "hand": "The summoning circle was Nerys's own; the hole in the sky above it was {goddess}'s. Seliora aimed Sam's fall at the exact spot, and she's smug that the contract clause she never saw trigger did so.",
-      "comment": "\"A contract devil, hm.\" {goddess} laughs. \"She's read the fine print. I wrote the clause she missed. Don't tell her.\""
-    },
-    "elowen": {
-      "hand": "Elowen didn't just happen to be on that stretch of road. {goddess} left a fever on the wind, dropped Sam where a healer would find him, and let two lonely people do the rest.",
-      "comment": "\"The healer. Three days she nursed you.\" {goddess} sniffs. \"I only helped a little. And I'm entirely not jealous of her cool hands on your forehead.\""
-    },
-    "adelheid": {
-      "hand": "The Order's foretelling of a hero was no accident: {goddess} whispered it into a vision, years early. She only left out the hoodie, and that, she admits, is her favorite part.",
-      "comment": "\"The knight.\" {goddess} bursts out laughing. \"I promised her a hero. She got you. I'm not sorry. Her oath is delightful. Be gentle with it.\""
-    },
-    "natsuki": {
-      "hand": "Natsuki's shortcut through the alley was no shortcut: {goddess} opened a door three years early, and left it ajar with a lantern on the far side so the girl would last until Sam came.",
-      "comment": "\"The sword-girl who punched you.\" {goddess} smirks. \"Good. Someone should. She's very loyal, and I've started watching for her fists.\""
-    },
-    "kanako": {
-      "hand": "{goddess} put Kanako at the right drink stall in the right town, and left a particular recipe on her tongue. Some people deserve to be found by a neighbor who knows how they take their coffee.",
-      "comment": "\"Kanako. Sammy.\" {goddess} mimics the voice and wrinkles her nose. \"A nickname, from a woman who knows what you eat for breakfast. I'm taking notes.\""
-    },
-    "akari": {
-      "hand": "Akari wasn't meant to cross that street. {goddess} lengthened the walk signal by one second, which is how a spare umbrella and an old crush ended up in the same world as Sam.",
-      "comment": "\"Kenta's little sister.\" {goddess} looks at her nails. \"Young, and brave. I let her come because she asked. That's a rule I don't have, and I'm already regretting it.\""
-    },
-    "marisol": {
-      "hand": "{goddess} steered the old owner out of the picture, politely, then steered a tired stranger to the deed. She wanted the Lantern to have someone who'd listen to its books.",
-      "comment": "\"The accountant's daughter.\" {goddess} nods slowly. \"She forgave nobody and taught you everything. I hate how much I like her.\""
-    },
-    "lara": {
-      "hand": "A rumor of a hoodied stranger in Hollowmere drifted to Lara on a very particular wind. {goddess} sent it. She doesn't like it when the ones who are left behind stay that way.",
-      "comment": "\"Lara, the orphanage girl.\" {goddess} says it softly, for once. \"She's been left too often. Don't be one more. I mean it.\""
-    },
-    "emily": {
-      "hand": "Emily woke in her character's body because {goddess} heard a lonely wolf-girl typing into the night and decided the story was worth a real ending. The rumor that led her to Sam was a bonus.",
-      "comment": "\"The wolf-girl. Shadowkin.\" {goddess} laughs. \"Six years of campaigns, and you never once noticed. I did. I'm very proud of myself.\""
-    },
-    "lirael": {
-      "hand": "The postbox in the alley was old, enchanted and not very quiet. {goddess} stirred it ten years ago, once, so two lonely teenagers could find each other. She's been waiting for the ownership notice ever since.",
-      "comment": "\"Lirael, the letter girl.\" {goddess} smiles. \"Ten years of letters, and you never thought to wonder who carried them. I did. It was a pleasure.\""
-    },
-    "ella": {
-      "hand": "{goddess} could have saved Ella from the crosswalk. She didn't. Her rival was the only person who'd pushed Sam his whole life, and a world without rankings seemed wrong for either of them.",
-      "comment": "\"Ella, the runner-up.\" {goddess} smiles thinly. \"She kept all your sheets in a drawer. I read them. We both know exactly what that means.\""
-    },
-    "ione": {
-      "hand": "{goddess} reached three centuries forward, picked one particular android off a charging dock and pointed her backwards. Some stories need their reader to meet the author. She will not say more.",
-      "comment": "\"The android with the diary.\" {goddess} pauses. \"She's read how it ends. I haven't. If she tells you, don't tell me. ...Tell me.\""
-    },
-    "anael": {
-      "hand": "Sam is the unsent soul the Order is hunting, because {goddess} never sent him: she plucked him out of line. The Lantern Stone burned out of sheer surprise. Anael just happens to be the one who found it.",
-      "comment": "\"An angel, writing reports.\" {goddess} laughs. \"About me, in a roundabout way. Her handwriting's gotten warmer. I'm not jealous, I'm a professional.\""
-    }
   },
   "rebirth": {
     "title": "Again, {sam}?",
@@ -503,176 +386,47 @@
       "res": "She's gone. Somewhere, among the lanterns, she's picking someone new. (Her story is over.)"
     }
   },
-  "services": {
-    "_default": {
-      "sam": [
-        "{goddess} takes the lead, unhurried and entirely sure of what she wants, and Sam is very much along for the ride.",
-        "{goddess} touches him freely, teasing and possessive, the candles in the room leaning in to watch."
-      ],
-      "feminine": [
-        "{goddess} spent the evening with {lady}, who has not stopped smiling.",
-        "{lady} and {goddess} disappeared into the goddess's candle-lit room for a long while."
-      ],
-      "futa": [
-        "{goddess} took a form with something extra for {lady}, and was in no hurry at all.",
-        "{lady} learned what a goddess does with a body she can change at will. She is still pink."
-      ]
+  "look": {
+    "hairStyle": "very long, loose",
+    "hair": "black with glowing gold tips",
+    "eyes": "glowing gold",
+    "signature": "a small lantern-flame floating beside her shoulder, faint gold markings along her collarbones",
+    "outfit": "a sheer crimson-and-gold wrap dress held by thin gold chains, barefoot"
+  },
+  "trueForm": "human",
+  "forms": {
+    "human": {
+      "label": "Herself",
+      "build": "tall and curvy",
+      "body": {"bust":"large","height":"tall","figure":"curvy"},
+      "skin": "warm bronze, glowing faintly from within"
     },
-    "massage_give": {
-      "sam": [
-        "{goddess} straddles his back with warm oil she conjured from nowhere and works the day out of his shoulders, humming. Every so often her hands wander lower than anatomy strictly requires.",
-        "\"Hold still, you're all knots.\" Her thumbs find every one, her breath warm on his neck, the little ember-flame drifting down to light the room."
-      ],
-      "feminine": [
-        "{lady} spent the evening working oil into {goddess}'s shoulders and back while the goddess purred and issued notes. Neither of them looked at the clock.",
-        "{goddess} lay back and let {lady}'s hands do as they pleased; the gold markings on her skin glowed warmer with every pass."
-      ],
-      "futa": [
-        "{goddess} wore a rather more generous form that night and let {lady} knead the tension out of her. It turned out not all of it was in her shoulders.",
-        "{lady} oiled the goddess down, shoulders to hips, and found the form {goddess} had picked eager to be appreciated."
-      ]
+    "elf": {"label":"Elf","build":"willowy and graceful","body":{"bust":"small","height":"tall","figure":"slim"},"skin":"pale gold"},
+    "beastkin": {"label":"Fox","sub":"fox","build":"lithe and supple","body":{"bust":"medium","height":"average","figure":"athletic"},"skin":"sun-kissed"},
+    "demon": {
+      "label": "Demon",
+      "build": "statuesque and voluptuous",
+      "body": {"bust":"huge","height":"tall","figure":"curvy"},
+      "skin": "dusky crimson",
+      "features": "black horns tipped with gold"
     },
-    "kiss": {
-      "sam": [
-        "She kisses him like she has all the time in the world, slow, then not slow, until the candles lean toward them.",
-        "{goddess} pins him against the wall by his shirt and kisses him breathless, her gold markings flaring where his hands land on her hips."
-      ],
-      "feminine": [
-        "{goddess} kissed {lady} against the lamp-lit doorway until {lady} forgot what she'd come for.",
-        "{lady} and {goddess} traded slow kisses over a shared candle; the flame leaned toward them, scandalized."
-      ],
-      "futa": [
-        "{goddess} kissed {lady} slowly, a hand at her waist and a clearly interested body pressed close. {lady} forgot the question she'd come to ask.",
-        "{lady} was kissed against the bookshelves by a goddess in an unmistakably generous mood."
-      ]
+    "dwarf": {"label":"Dwarf","build":"short, sturdy and soft","body":{"bust":"large","height":"short","figure":"soft"},"skin":"ruddy bronze"},
+    "spirit": {
+      "label": "Spirit",
+      "build": "slender and drifting",
+      "body": {"bust":"medium","height":"average","figure":"slim"},
+      "skin": "translucent gold, like lantern paper"
     },
-    "massage_get": {
-      "sam": [
-        "She lies face down across the bed, dress pooled at her waist. \"Your turn, Sam. Take your time. I'll tell you if you're doing it wrong.\" She does, smiling into the pillow, often.",
-        "\"Oil. Hands. Lower,\" says {goddess}, directing him like a conductor, her skin warming under his palms until it glows."
-      ],
-      "feminine": [
-        "{goddess} oiled {lady} from neck to ankle with unhurried hands, narrating compliments as she went. {lady} melted.",
-        "{goddess} turned {lady} into a puddle with her hands alone, and won't say how long it took."
-      ],
-      "futa": [
-        "{goddess} worked {lady} over with warm oil and warmer hands, and was plainly enjoying the effect she was having. {lady} did not complain.",
-        "{lady} lay back under {goddess}'s hands and the heat of a body pressed along her side. It was not strictly a massage by the end."
-      ]
-    },
-    "manual_get": {
-      "sam": [
-        "{goddess} guides his hand with her own, showing him exactly the pace she wants, eyes half-closed. \"There. Good student.\"",
-        "She leans back against him, sets his fingers where she wants them and sighs, the markings at her hips brightening with each breath."
-      ],
-      "feminine": [
-        "{goddess} slipped a hand where {lady} needed it most and kept her there, trembling, until she asked politely.",
-        "{lady} found out how patient a goddess's fingers can be. She is still catching her breath."
-      ],
-      "futa": [
-        "{goddess} kept {lady} pinned against her with one arm and took her time with the other. {lady} stopped trying to be quiet.",
-        "{lady} was held close by a goddess with something extra to press against her, and a very clever hand. It was a lot."
-      ]
-    },
-    "manual_give": {
-      "sam": [
-        "Her hand is warm and unhurried and very sure; she watches his face the whole time, enjoying every change in it.",
-        "\"Eyes on me,\" says {goddess}, and keeps him on the edge, patient and smug, until he is saying her name."
-      ],
-      "feminine": [
-        "{lady} followed {goddess}'s murmured directions with her hand and was rewarded with a glow bright enough to read by.",
-        "{goddess} guided {lady}'s hand and sighed her approval; the ember-flame bobbed happily overhead."
-      ],
-      "futa": [
-        "{lady} took {goddess} in her hand at the goddess's soft command, and got to watch a deity lose her composure.",
-        "{goddess} let {lady} explore, murmuring encouragement, her free hand tangled in {lady}'s hair."
-      ]
-    },
-    "breast_get": {
-      "sam": [
-        "{goddess} arches into his hands, guiding his mouth where she wants it. \"Don't rush. I picked you for your patience.\"",
-        "She laughs, low and pleased, as he takes his time with her, the ember-flame bobbing close as if to see."
-      ],
-      "feminine": [
-        "{goddess} took her time with {lady}'s chest, attentive and a bit smug, until {lady} was clutching the sheets.",
-        "{lady} gasped as {goddess}'s warm mouth and hands made a long, thorough study of her."
-      ],
-      "futa": [
-        "{goddess} lavished {lady}'s chest with attention while pressing close in a way that made her intentions clear. {lady} did not argue.",
-        "{lady} was held in a goddess's lap and thoroughly adored, a hard-to-ignore warmth against her thigh the whole time."
-      ]
-    },
-    "oral_get": {
-      "sam": [
-        "She settles back on the pillows like a queen receiving a petitioner, one hand in his hair. \"Slowly. I'll tell you when to stop. I won't.\"",
-        "{goddess} lets out a sound that sets every lantern in the room swaying, her hand firm on the back of his head."
-      ],
-      "feminine": [
-        "{goddess} knelt between {lady}'s knees like a petitioner and took the long way round. {lady} won't describe it.",
-        "{lady} lost track of time under {goddess}'s patient, devoted attention. Every candle in the room burned a little brighter."
-      ],
-      "futa": [
-        "{goddess} spent the night lavishing {lady} with devoted attention before taking things further. {lady} has asked for more candles, for atmosphere.",
-        "{lady} was worshipped, thoroughly, by a goddess who clearly enjoyed the work. She is going to need a day."
-      ]
-    },
-    "oral_give": {
-      "sam": [
-        "She kneels, looks up at him with gold eyes and the beginning of a grin, and takes her time, thoroughly enjoying how undone he gets.",
-        "\"I've been wanting to do this,\" says {goddess}, and then doesn't say anything else for a good while."
-      ],
-      "feminine": [
-        "{lady} knelt for {goddess}, who lay back among the cushions, glowing and issuing soft, imperious encouragement.",
-        "{goddess} let {lady} worship her properly, one hand in her hair, until the lanterns swayed."
-      ],
-      "futa": [
-        "{lady} knelt for {goddess} and did her best by the goddess's generous new form, to a chorus of approving noises and flaring candles.",
-        "{goddess} let {lady} take her time, a hand stroking her hair and murmuring that she was doing beautifully."
-      ]
-    },
-    "breast_give": {
-      "sam": [
-        "{goddess} presses close, warm and soft, and uses everything she has to make him forget his own name, watching his face the entire time.",
-        "She tucks him against her and teases, slow, sure, delighted, every flicker of his expression logged and appreciated."
-      ],
-      "feminine": [
-        "{lady} lavished {goddess}'s chest with attention, and the goddess rewarded her with a long, warm sigh and brightening skin.",
-        "{goddess} arched into {lady}'s hands and mouth, smiling like a cat with a very large bowl of cream."
-      ],
-      "futa": [
-        "{lady} paid devoted attention to the goddess's chest while the rest of her became very obviously interested. {lady} noticed. {goddess} didn't care.",
-        "{goddess} guided {lady}'s mouth and hands with a murmur or two, and the markings on her skin glowed in encouragement."
-      ]
-    },
-    "missionary": {
-      "sam": [
-        "She pulls him over her, legs around his waist, hands in his hair, and the whole room glows with her. \"Look at me. Stay with me. Not too far, Sam.\"",
-        "{goddess} holds his gaze through all of it, her skin brightening with every breath, one hand pressed to his chest to set the pace. Hers."
-      ],
-      "futa": [
-        "{goddess} laid {lady} back among the pillows in a very generous form and took things slow. {lady} saw lanterns.",
-        "{lady} was held down, kissed, and thoroughly made love to by a goddess who took her time. The candles didn't survive it."
-      ]
-    },
-    "cowgirl": {
-      "sam": [
-        "She takes charge, naturally, setting a rhythm that makes the candles flare and gutter in time, a hand flat on his chest. \"Mine, Sam. Hold still and let me.\"",
-        "{goddess} rides him in lantern-light, head back, markings blazing, the ember-flame circling above them like a spectator."
-      ],
-      "futa": [
-        "{goddess} lay back and let {lady} take charge, which {lady} did with considerable and gratifying enthusiasm.",
-        "{lady} climbed onto a smug, glowing goddess and set the pace herself. {goddess} supervised, approvingly."
-      ]
-    },
-    "doggy": {
-      "sam": [
-        "She looks back over her shoulder, gold eyes bright, and sets the pace herself, pushing back against him with a laugh. \"Don't be shy now.\"",
-        "{goddess} grips the bedframe, hair spilling like ink and embers down her back, and tells him exactly how much she approves."
-      ],
-      "futa": [
-        "{goddess} took {lady} from behind, one hand firm at her hip, in a form she'd chosen on purpose. {lady} gripped the headboard and thanked her.",
-        "{lady} found herself bent over the arm of a chair with a goddess behind her, murmuring praise into her hair."
-      ]
+    "angel": {"label":"Angel","build":"tall and athletic","body":{"bust":"medium","height":"tall","figure":"athletic"},"skin":"luminous ivory"},
+    "android": {
+      "label": "Android",
+      "build": "sleek and precise",
+      "body": {"bust":"medium","height":"average","figure":"athletic"},
+      "skin": "polished pale bronze"
     }
+  },
+  "neglect": {
+    "ignored": "{goddess} hasn't seen Sam in {n} weeks. She's noticed.",
+    "claim": "{goddess} made a scene over another woman and Sam never came to her. That hurt."
   }
 }

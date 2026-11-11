@@ -15,7 +15,7 @@ const BOT = `async (weeks) => {
   const out = [];
   newGame({past:'salaryman', house:'lantern', partner:'nerys'}); closeModal();
   goddessIntro(showIntro); if (!S.goddess.met) throw new Error('intro did not mark met'); gNext(); closeModal();
-  const drain = () => { let g = 0; while ((EVQ.length || CUR_EV) && g < 40) { if (CUR_EV) { if (CUR_EV.who === GOD_ID) out.push('ev:' + CUR_EV.title); evChoice(Math.floor(Math.random()*CUR_EV.choices.length)); CUR_EV = null; } closeModal(); runQueue(); g++; } closeModal(); };
+  const drain = () => { let g = 0; while ((EVQ.length || CUR_EV) && g < 40) { if (CUR_EV) { if (String(CUR_EV.who).startsWith('npc_goddess')) out.push('ev:' + CUR_EV.title); evChoice(Math.floor(Math.random()*CUR_EV.choices.length)); CUR_EV = null; } closeModal(); runQueue(); g++; } closeModal(); };
   const play = n => { for (let i = 0; i < n && !S.over; i++) { if (S.ap > 0) { samWork('rounds'); closeModal(); } endWeek(); closeModal(); drain(); S.gold = Math.max(S.gold, 3000); S.debt.strikes = 0; } };
   const ng = () => {
     S.won = true; S.workers.forEach(w => { if (!w.traits.includes('Devoted')) w.traits.push('Devoted'); });
@@ -31,11 +31,12 @@ const BOT = `async (weeks) => {
   if (!S.goddess.bound) throw new Error('not bound at cycle ' + S.cycle);
   TAB = 'goddess'; render(); if (!document.querySelector('#view').innerHTML.includes('Guidance')) throw new Error('no goddess tab');
   for (const f of GFOCUS) { setGFocus(f); play(3); }
+  setGShape('demon'); TAB = 'goddess'; render(); out.push('form ' + godId());
   setGForm('futa'); play(2);
   out.push('before nights: over=' + S.over + ' won=' + S.won + ' ap=' + S.ap + ' active=' + goddessActive());
   const l0 = S.goddess.love; play(6); out.push('neglect 6 weeks: love ' + Math.round(l0) + ' -> ' + Math.round(S.goddess.love));
-  const pr = buildPrompt(NPCS[GOD_ID], 'samact:cowgirl'); out.push('prompt ok: ' + String(pr && (pr.prompt || pr)).slice(0, 140));
-  out.push('svc line: ' + gSvcLine('kiss', 'futa', {lady:'Mira'}));
+  const pr = Object.keys(GOD_FORMS).map(r => buildPrompt(NPCS[godNpcId(r)], 'samact:cowgirl') && r).join(',') + ' ' + buildPrompt(NPCS[godNpcId('beastkin')], 'portrait'); out.push('prompt ok: ' + String(pr && (pr.prompt || pr)).slice(0, 700));
+  out.push('svc line: ' + gSvcLine('kiss', 'futa', 'Mira') + ' | ' + gSvcLine('doggy', 'futa', 'Mira'));
   goddessNightMenu(); closeModal(); S.ap = 3; S.sam.energy = 100; goddessNight('kiss'); closeModal(); goddessNight('oral_give'); closeModal();
   let n = 0; while (!S.goddess.ending && n < 60) { S.ap = 3; S.sam.energy = 100; goddessNight(pick(['cowgirl','missionary','doggy'])); closeModal(); drain(); n++; if (n % 2 === 0) play(1); }
   out.push('after bind: div=' + Math.round(S.goddess.divinity) + ' ending=' + S.goddess.ending + ' love=' + Math.round(S.goddess.love) + ' nights=' + S.goddess.nights + ' power=' + goddessPower().toFixed(2));

@@ -13,7 +13,8 @@
     "upgrades.mood (race houses): weekly mood bonus for ladies of that race working or living in the house.",
     "hauntRep (haunted houses): reputation at which the haunting stops scaring clients off (demand ramps from 45% to 125% of normal by then; default 40).",
     "lodging: weekly room-and-board income from travelers, x(1 + rep/50). sat: flat satisfaction bonus for every client (a welcoming house).",
-    "tiers: the four client tiers, in the order of houses → cls. Host (job host): entertains clients waiting for a courtesan; see balance.json → clients.wait / clients.host."
+    "tiers: the four client tiers, in the order of houses → cls. Host (job host): entertains clients waiting for a courtesan; see balance.json → clients.wait / clients.host.",
+    "houses[id].goddess / pasts[k].goddess {intro, again}: the goddess's remarks about them (js/logic/goddess.js)."
   ],
   "jobs": {
     "rest": {"label":"Rest","cat":"rest","desc":"Recover energy, health and mood."},
@@ -529,7 +530,8 @@
       "rep": 10,
       "starter": true,
       "desc": "A classic pleasure house: red velvet, paper lanterns, and a madame who knows everyone in town. Balanced clientele.",
-      "setting": "red velvet and gold-trimmed fantasy pleasure house"
+      "setting": "red velvet and gold-trimmed fantasy pleasure house",
+      "goddess": "\"The Gilded Lantern.\" {goddess} sounds innocent. \"I may have nudged the old owner's luck. Mira's already decided you're hers to mother, so mind your manners. Or don't.\""
     },
     "castle": {
       "size": 14,
@@ -552,7 +554,8 @@
       "renown": 40,
       "minPop": 40,
       "desc": "A crumbling hilltop manor turned discreet retreat for the wealthy. Few guests, very deep pockets, very high standards.",
-      "setting": "grand old castle chamber with tall windows and faded tapestries"
+      "setting": "grand old castle chamber with tall windows and faded tapestries",
+      "goddess": "\"Castle Rosenhal. Noble Hill.\" {goddess} looks very pleased. \"I stood on those ramparts when the count still had a mind. Cecile will fold you into shape. I wouldn't mind watching it.\""
     },
     "onsen": {
       "size": 9,
@@ -572,7 +575,8 @@
       "rep": 8,
       "starter": true,
       "desc": "Hot springs on the road to the dungeons. Tired adventurers, cheap sake, and a lot of steam.",
-      "setting": "wooden onsen inn with paper screens and rising steam"
+      "setting": "wooden onsen inn with paper screens and rising steam",
+      "goddess": "{goddess} lets a long, contented sigh drift through the steam. \"A hot spring. I had no ulterior motive, none at all. Tsubaki sings dreadfully, you'll love it.\""
     },
     "hollow": {
       "size": 12,
@@ -594,7 +598,8 @@
       "starter": true,
       "desc": "Dirt cheap because it's haunted. The ghost is part of the staff now. Customers barely trickle in at first, but thrill-seekers flock once its reputation grows.",
       "setting": "gothic manor room with candelabras, cobwebs and moonlight",
-      "hauntRep": 55
+      "hauntRep": 55,
+      "goddess": "\"Hollowmere Manor, dirt cheap, because it's haunted.\" {goddess} smiles into her lantern. \"I know Vesper. We've shared a candle or two. Be nice to her, she's been waiting three centuries for you.\""
     },
     "tankard": {
       "size": 8,
@@ -614,7 +619,8 @@
       "rep": 8,
       "starter": true,
       "desc": "A tiny tavern with rooms upstairs. Cheap, loud, always busy. Nobles do not come here.",
-      "setting": "cramped tavern room above a dockside bar"
+      "setting": "cramped tavern room above a dockside bar",
+      "goddess": "\"The Rusty Tankard! Noisy, cheap and crowded.\" {goddess} grins. \"Hilde lost a brewery to a giant, and she still owes me a pint. Collect it for me, would you?\""
     },
     "pavilion": {
       "size": 10,
@@ -637,7 +643,8 @@
       "renown": 30,
       "minPop": 30,
       "desc": "A garden pavilion of music and moon-lilies. Refined, artistic, unhurried.",
-      "setting": "elven garden pavilion with moon-lilies and silk drapes"
+      "setting": "elven garden pavilion with moon-lilies and silk drapes",
+      "goddess": "\"The Moonlit Pavilion.\" {goddess} swirls a lantern like a lily on a pond. \"Sylphine will make you clap, I promise. Don't let her out-dazzle me.\""
     },
     "veil": {
       "size": 10,
@@ -662,7 +669,8 @@
       "renown": 25,
       "minPop": 20,
       "desc": "A demon-run den beneath the streets. Anything goes, within reason. Trouble walks in often. Staff get bolder here.",
-      "setting": "dim underground den with crimson silk and red lanterns"
+      "setting": "dim underground den with crimson silk and red lanterns",
+      "goddess": "\"The Crimson Veil. Underdistrict.\" {goddess} looks entirely too innocent. \"Zaria and I go way back. She keeps a ledger of favors, and I may be in it. Play nice with the demon, Sam.\""
     },
     "wayfarer": {
       "size": 9,
@@ -685,7 +693,8 @@
       "desc": "A caravan inn where every road meets. Travelers pay for room and board, the hearth puts every guest at ease, and there's a steady stream of job-seekers.",
       "setting": "cozy roadside inn room with a crackling hearth",
       "lodging": 140,
-      "sat": 4
+      "sat": 4,
+      "goddess": "\"Every road meets at the Wayfarer's Rest.\" {goddess} sounds smug. \"Including yours. Bettina reads boots and hats, but she doesn't know about me. Yet.\""
     },
     "skyhook": {
       "size": 11,
@@ -706,7 +715,8 @@
       "trouble": 1.3,
       "ngplus": true,
       "desc": "A rowdy lounge bolted to the cliffside airship moorings. Sky-sailors, traders and treasure hunters, all with full purses and short shore leave.",
-      "setting": "lantern-lit airship dock lounge with brass fittings, rope rigging and a view over the clouds"
+      "setting": "lantern-lit airship dock lounge with brass fittings, rope rigging and a view over the clouds",
+      "goddess": "\"The Skyhook, bolted to a cliff.\" {goddess} laughs and shades her eyes. \"I borrowed Rinna's wreck for a night once. She tells tall tales, but this one is true.\""
     },
     "pearl": {
       "size": 12,
@@ -727,28 +737,73 @@
       "minPop": 30,
       "ngplus": true,
       "desc": "A hidden sea-cave bathhouse beneath the harbor, lit by glowing pearls. Very exclusive, very relaxing, and nobody is quite sure who built it.",
-      "setting": "luxurious sea-cave grotto with glowing pearls, warm tide pools and carved stone"
+      "setting": "luxurious sea-cave grotto with glowing pearls, warm tide pools and carved stone",
+      "goddess": "\"The Pearl Grotto.\" For once {goddess} pauses before she answers. \"Maris was old when I was young. Nobody knows who built it. I may know, but I won't say. Go on, relax.\""
     }
   },
   "pasts": {
-    "salaryman": {"label":"Office worker","desc":"Spreadsheets were his life. Business +20; doing the books saves more.","sam":{"business":20}},
-    "bartender": {"label":"Part-time bartender","desc":"He can make a cocktail out of anything. Charm +12; tending bar earns 50% more.","sam":{"charm":12}},
-    "gym": {"label":"Gym regular","desc":"Thin, but surprisingly strong. Strength +20; recovers more energy.","sam":{"strength":20}},
+    "salaryman": {
+      "label": "Office worker",
+      "desc": "Spreadsheets were his life. Business +20; doing the books saves more.",
+      "sam": {"business":20},
+      "goddess": {
+        "intro": "\"Eight years of spreadsheets. You reconciled other people's money for a living and nobody ever reconciled you.\" {goddess} sounds almost fond. \"It'll come in handy. Debts are just ledgers that bite.\"",
+        "again": "\"Ah, the ledgers again.\" She sounds delighted. \"Now you've got two lives' worth of columns. Try not to get lost in the margins.\""
+      }
+    },
+    "bartender": {
+      "label": "Part-time bartender",
+      "desc": "He can make a cocktail out of anything. Charm +12; tending bar earns 50% more.",
+      "sam": {"charm":12},
+      "goddess": {
+        "intro": "\"A part-time bartender, hm.\" {goddess} turns an imaginary glass in her fingers. \"Pouring drinks and listening to strangers. You were practicing for this and didn't even know.\"",
+        "again": "\"You remember the bar, too?\" She grins. \"Good. Charm like that shouldn't go to waste. Pour me one sometime.\""
+      }
+    },
+    "gym": {
+      "label": "Gym regular",
+      "desc": "Thin, but surprisingly strong. Strength +20; recovers more energy.",
+      "sam": {"strength":20},
+      "goddess": {
+        "intro": "\"You went to the gym three times a week and never once looked at yourself in the mirror.\" {goddess} pokes his arm. \"Thin, and sturdy underneath. I like a surprise.\"",
+        "again": "\"The gym rat, back again.\" She squeezes his bicep and pretends to be unimpressed. \"Still thin. Still strong. Still mine to watch.\""
+      }
+    },
     "otaku": {
       "label": "Isekai otaku",
       "desc": "He has read this story a hundred times. Wits +10; Appraisal starts at Lv 2.",
-      "sam": {"appraisal":2,"appXP":60,"wits":10}
+      "sam": {"appraisal":2,"appXP":60,"wits":10},
+      "goddess": {
+        "intro": "\"Don't look so smug. I know you've read this story a hundred times.\" {goddess} lies back on the lanterns. \"Truck, goddess, new world. You even know to ask about the stats. It's adorable. Don't skip my lines.\"",
+        "again": "\"Oh good, you remember being a genre expert.\" She laughs. \"Now you know exactly how many clichés you're living in. I'm one of them, and I'm quite pleased with myself.\""
+      }
     },
-    "cook": {"label":"Line cook","desc":"Staff meals and home cooking. Dinners are free; everyone +2 mood each week.","sam":{"charm":4}},
+    "cook": {
+      "label": "Line cook",
+      "desc": "Staff meals and home cooking. Dinners are free; everyone +2 mood each week.",
+      "sam": {"charm":4},
+      "goddess": {
+        "intro": "\"Staff meals and midnight noodles for coworkers who never said thank you.\" {goddess} sniffs the air as if she can smell them. \"I did. Feed people here and see what happens.\"",
+        "again": "\"Your cooking again!\" She is already hovering over an invisible pot. \"I'll allow that one. Save me a bowl, would you?\""
+      }
+    },
     "massage": {
       "label": "Massage therapist",
       "desc": "Good hands, zero experience otherwise. Technique +15; training is more effective.",
-      "sam": {"technique":15}
+      "sam": {"technique":15},
+      "goddess": {
+        "intro": "\"Good hands and no idea what to do with them.\" {goddess} takes one of them and turns it over, studying it. \"A massage therapist. I'll be keeping an eye on those.\"",
+        "again": "\"The hands, too.\" She holds out her shoulder with a martyred sigh. \"For old time's sake. Purely professional.\""
+      }
     },
     "tutor": {
       "label": "Cram-school tutor",
       "desc": "Six years of drilling teenagers for entrance exams. Wits +15; his stat coaching and lessons go 20% further.",
-      "sam": {"wits":15}
+      "sam": {"wits":15},
+      "goddess": {
+        "intro": "\"Six years of cram school, drilling teenagers for exams they'd forget.\" {goddess} tilts her head. \"A teacher who never got a thank-you. Teach this house something, and I'll be thanking you myself.\"",
+        "again": "\"Teacher again.\" She folds her hands behind her back, mock-prim. \"Tell me, professor, do I get extra credit for supervising you?\""
+      }
     }
   },
   "tiers": ["commoner","adventurer","merchant","noble"]
