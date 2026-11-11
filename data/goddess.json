@@ -961,7 +961,7 @@
       "alias": "Wisp",
       "desc": "a drifting spirit-girl",
       "build": "slender and drifting",
-      "body": {"bust":"medium","height":"average","figure":"slim"}
+      "body": {"bust":"flat","height":"average","figure":"slim"}
     },
     "angel": {
       "label": "Angel",
