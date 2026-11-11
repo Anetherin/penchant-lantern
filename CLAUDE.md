@@ -14,7 +14,7 @@
   Run `node tools/fmt-json.mjs` after editing data files programmatically.
 - Image prompts are always built programmatically (`js/logic/prompts.js`). The user writes any explicit wording Claude is uncomfortable with
   themselves in `data/snippets.json` / `data/ai-prompts.json`; All characters are adults;
-- Firsts with Sam: `js/events/firsts.js` + `data/firsts.json`. `canSam` = comfort (`samStance`) AND crossed (`actTier(id) <= w.intim`).
+- Firsts with Sam: `js/events/firsts.js` + `data/firsts.json`. Every named lady AND every guest has her own events (1/2/3, guests also `jump`; `firstData` prefers `events.jump` when she has no firsts yet and the stage is past a kiss); guests' pace/path/init stay rolled. Spicy date `lead` may be a list (picked at random). `canSam` = comfort (`samStance`) AND crossed (`actTier(id) <= w.intim`).
   Every path that leads to private time (dates, encounters, arcs, bonds) goes through `canSam`/`bestSamAct`, so keep it that way.
   Story moments can carry their own image `{comp, setting, sam}` → `dynScene(key, img)` (js/data/scenes.js).
 - Job preferences are per lady (`w.jobLikes`/`w.jobDislikes`; named ones from `jobs` in characters/guests.json, others rolled by `rollJobPrefs`).

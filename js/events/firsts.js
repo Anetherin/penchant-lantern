@@ -61,6 +61,8 @@ function firstData(w, s, pent){
   const C = w.key && FIRST_CHARS[w.key];
   if(C && C.events){
     if(pent && C.pent && C.pent[s]) return {d:C.pent[s], key:`first_${w.key}_${s}_p`};
+    // her own jump scene (nothing yet, straight past a first kiss) beats her stage scene, which assumes the earlier firsts
+    if((w.intim||0)===0 && s>1 && C.events.jump && !(pent && C.pent && C.pent[s])) return {d:C.events.jump, key:`first_${w.key}_jump`};
     if(C.events[s]) return {d:C.events[s], key:`first_${w.key}_${s}`};
   }
   const base = (w.intim||0)===0 && s>1 ? 'jump' : String(s);

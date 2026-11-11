@@ -219,7 +219,7 @@ function samSpicy(id, k, i){
   if(!spicyOK(w, sp)) return toast(`${w.name} isn't up for that.`);
   if(S.sam.energy < 12) return toast('Sam is too tired.');
   S.sam.energy -= 12;
-  const lead = sp.lead.replace(/\{name\}/g, w.name), act = sp.nude ? null : spicyAct(w, sp), label = sp.label.toLowerCase() + ' on a date (' + d.label.toLowerCase() + ')';
+  const lead = String(Array.isArray(sp.lead) ? pick(sp.lead) : sp.lead).replace(/\{name\}/g, w.name), act = sp.nude ? null : spicyAct(w, sp), label = sp.label.toLowerCase() + ' on a date (' + d.label.toLowerCase() + ')';
   let text, scene, ai;
   if(act){
     text = privateCore(w, act, {lead, turn: (sp.acts||[]).length > 1}); lewdUp(w, sp.gain, sp.cap); scene = 'samact:'+act+'~~date_'+k+(sp.image ? '.'+i : '');
