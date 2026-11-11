@@ -41,6 +41,7 @@
     'js/events/random.js',
     'js/setup.js',
     'js/logic/ngplus.js',
+    'js/logic/goddess.js',
     'js/ui/core.js',
     'js/ui/sheet.js',
     'js/ui/creator.js',
@@ -49,7 +50,7 @@
   ];
   window.HOLLOWMERE_FILES = FILES;
   // Editable data, loaded before any script runs. Each becomes window.PL_DATA['<name>'].
-  var DATA_FILES = ['balance', 'economy', 'services', 'personalities', 'people', 'races', 'traits', 'titles', 'body', 'wardrobe', 'characters', 'guests', 'arcs', 'regulars', 'bonds', 'scenes', 'dates', 'events', 'snippets', 'ai-prompts', 'flavor', 'firsts'];
+  var DATA_FILES = ['balance', 'economy', 'services', 'personalities', 'people', 'races', 'traits', 'titles', 'body', 'wardrobe', 'characters', 'guests', 'arcs', 'regulars', 'bonds', 'scenes', 'dates', 'events', 'snippets', 'ai-prompts', 'flavor', 'firsts', 'goddess'];
   window.HOLLOWMERE_DATA = DATA_FILES;
 
   var MARKUP = [

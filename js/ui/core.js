@@ -59,8 +59,10 @@ const TABS = [['house','🏠 Houses'],['roster','👥 Roster'],['recruit','📝 
 function render(){
   if(!S) return;
   renderHeader();
-  $('#tabs').innerHTML = TABS.map(([k,l])=>`<button class="${TAB===k?'on':''}" onclick="TAB='${k}';render()">${l}</button>`).join('');
-  const v = {house:viewHouse, roster:viewRoster, recruit:viewRecruit, sam:viewSam, upgrades:viewUpgrades, creator:viewCreator, log:viewLog, settings:viewSettings}[TAB];
+  const tabs = goddessActive() ? [...TABS.slice(0,4), ['goddess','✨ '+GN()], ...TABS.slice(4)] : TABS;
+  if(TAB==='goddess' && !goddessActive()) TAB = 'sam';
+  $('#tabs').innerHTML = tabs.map(([k,l])=>`<button class="${TAB===k?'on':''}" onclick="TAB='${k}';render()">${l}</button>`).join('');
+  const v = {house:viewHouse, roster:viewRoster, recruit:viewRecruit, sam:viewSam, goddess:viewGoddess, upgrades:viewUpgrades, creator:viewCreator, log:viewLog, settings:viewSettings}[TAB];
   $('#view').innerHTML = v();
   $('#endBtn').disabled = S.over;
 }

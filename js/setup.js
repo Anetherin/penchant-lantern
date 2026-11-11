@@ -46,5 +46,5 @@ function setupView(){
 }
 function setupBegin(){
   const cfg = {past:SETUP.past, house:SETUP.house, partner:SETUP.partner};
-  SETUP = null; newGame(cfg); TAB='house'; render(); showIntro();
+  SETUP = null; newGame(cfg); TAB='house'; render(); goddessIntro(showIntro);
 }
