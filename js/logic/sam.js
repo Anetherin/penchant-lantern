@@ -105,9 +105,11 @@ function samChat(id){
   showResult(`Chatting with ${w.name}`, `Sam and ${w.name} talk ${topic}.\n\nTrust ${tDelta(tg)}`, w.id, null);
 }
 // a short line for the service itself, used after encounter and first-time openings (flavor.json → private_act)
-const actLine = act => { const L = byAct(FLAVOR.private_act, act); return L && L.length ? pick(L) : ''; };
+const actLine = (act, w) => { const L = byAct(FLAVOR.private_act, act); return L && L.length ? pick(L).replace(/\{name\}/g, w ? w.name : 'she') : ''; };
 // The turn a moment takes, naming the service (flavor.json → act_turn), so a scene that opened on a kiss says so when it becomes a massage.
 const actTurn = (act, w) => { const L = byAct(FLAVOR.act_turn, act); return L && L.length ? pick(L).replace(/\{name\}/g, w.name) : ''; };
+// One-on-one skill training opening (flavor.json → train_skill, keyed by TECH skill; _default as fallback). {skill} = the skill's name.
+const trainSkillLine = (w, k) => { const L = (FLAVOR.train_skill||{})[k] || (FLAVOR.train_skill||{})._default || []; return (L.length ? pick(L) : `Sam walks {name} through the trade the hands-on way, {skill} first.`).replace(/\{name\}/g, w.name).replace(/\{skill\}/g, TECH_LABEL[k].toLowerCase()); };
 // What actually happens, for AI text: appended to the moment's situation.
 const actSituation = (w, act, base) => [base, act ? `What actually happens: ${w.name} ${askLady(act)}${(actById(act)||{}).kind==='kiss' ? '' : ` (${actLabel(act).toLowerCase()})`}; the text should lead into that.` : ''].filter(Boolean).join(' ');
 // Date types live in data/dates.json (DATES is defined in js/data/scenes.js). Chat is the first one.
@@ -189,7 +191,7 @@ const dateAfterTxt = (d, key, w) => { const t = dateAfter(d)[key]; return String
 const dateSparks = (w, m) => w.trust>=60 && w.mood>=70 && m>=1 && getActs().some(a=>canSam(w,a.id)) && Math.random() < 0.35 + Math.max(0, w.lust-50)/100;
 function dateInviteFx(w, d){
   showImg('invImg', w.id, 'invite');
-  if(SET.ai.on && getTextPlugin()) aiWrite('propAi', 'proposition', w.id, {scene:'invite', date:d.label.toLowerCase(), forSam:true});
+  if(SET.ai.on && SET.ai.auto && getTextPlugin()) aiWrite('propAi', 'proposition', w.id, {scene:'invite', date:d.label.toLowerCase(), forSam:true});
 }
 // the invitation screen: private time or goodnight
 function dateInvite(w, d){
@@ -280,8 +282,8 @@ function samTrain(id, mode='skill'){
     w.energy = clamp(w.energy-(SV.herEnergy ?? 16), 0, maxEnergy(w));
     samStat('technique',2); samXP(5); w.privateCount++; w._samTime=(w._samTime||0)+1; samLog(`Practiced with ${w.name}`); checkUnlocks();
     save(); render(); closeModal();
-    const show = acts.find(a=>a.id===w.fav) || acts[acts.length-1];
-    return showResult(`Practice with ${w.name}`, `${w.name} decides Sam's education is a shared project. They work through everything they're comfortable with, one thing at a time, until both of them are confident in the technique. Sam takes notes afterward. She finds this hilarious.${hot?'\n\n'+hot:''}\n\n${acts.map(a=>a.label).join(', ')}: skill +${Math.round(g*SKL)} each · Lust +${lu}${w.lewd < lewdCap ? ' · Lewdness +' : ''} · Trust ${tDelta(tgp)} · Sam's Technique +2`, w.id, 'samact:'+show.id, {kind:'train', act:show.id, scene:'samact:'+show.id, forSam:true});
+    const show = acts.find(a=>a.id===w.fav) || acts[acts.length-1], sl = actLine(show.id, w);
+    return showResult(`Practice with ${w.name}`, `${flavor('train_service', w) || `${w.name} decides Sam's education is a shared project.`}${sl ? '\n\n'+sl : ''}${hot?'\n\n'+hot:''}\n\n${acts.map(a=>a.label).join(', ')}: skill +${Math.round(g*SKL)} each · Lust +${lu}${w.lewd < lewdCap ? ' · Lewdness +' : ''} · Trust ${tDelta(tgp)} · Sam's Technique +2`, w.id, 'samact:'+show.id, {kind:'train', act:show.id, scene:'samact:'+show.id, forSam:true});
   }
   // every trade skill, hands-on: her job's skill (Hospitality without one) at full strength, the rest x skill.others
   if(!useAP(SK.energy ?? 30)) return;
@@ -290,7 +292,7 @@ function samTrain(id, mode='skill'){
   statXP(w, 'charm', g*0.6); gainTrust(w, 1);
   w.energy = clamp(w.energy-(SK.herEnergy ?? 14), 0, maxEnergy(w)); if(tm<1) moodAdd(w, -3); samStat('technique',1); samXP(5); samLog(`Trained ${w.name}`);
   save(); render(); closeModal();
-  showResult(`Training ${w.name}`, `Sam walks ${w.name} through the trade the hands-on way, ${TECH_LABEL[main].toLowerCase()} first: posture, pacing, the little things regulars notice. Sam takes detailed notes, as is tradition.${pNote(w,'train')}\n\n${got.join(' · ')} · Sam's Technique +1`, w.id, 'sam_training', {kind:'train', label:TECH_LABEL[main].toLowerCase(), scene:'sam_training'});
+  showResult(`Training ${w.name}`, `${trainSkillLine(w, main)} Sam takes detailed notes, as is tradition.${pNote(w,'train')}\n\n${got.join(' · ')} · Sam's Technique +1`, w.id, 'sam_training', {kind:'train', label:TECH_LABEL[main].toLowerCase(), scene:'sam_training'});
 }
 // Demonstration class (balance.json → lessons.demo): Sam and a partner show the others how it's done. She has to be open to an
 // audience (lewdness >= openLewd or Exhibitionist, never Modest) and the service goes through canSam/bestSamAct like any time with Sam.
@@ -421,18 +423,13 @@ function privateCore(w, act, o={}){
   samLog(`Private time with ${w.name} [${actLabel(act)}]`);
   let text;
   if(o.lead!==undefined){
-    text = [o.lead, o.turn === false ? '' : actTurn(act, w), actLine(act)].filter(Boolean).join('\n\n');
+    text = [o.lead, o.turn === false ? '' : actTurn(act, w), actLine(act, w)].filter(Boolean).join('\n\n');
     if(S.sam.first && actTier(act)>=2){ S.sam.first = false; text += `\n\n${pick(FLAVOR.sam_first._default).replace(/\{name\}/g, w.name)}`; }
-  } else if(S.sam.first && actTier(act)>=2){
-    S.sam.first = false;
-    text = `${w.name} takes Sam's hand and leads him upstairs. It becomes clear about four seconds in that his previous-life experience in this department is exactly zero.\n\n${w.name} looks absolutely delighted about this.\n\nThe door closes.`;
-  } else if(w.privateCount===1){
-    text = `${w.name} has clearly been thinking about this. She pulls Sam into her room before he can finish saying hello.\n\nThe door closes.`;
   } else {
-    text = pick([`${w.name} drags Sam off for a "lesson." He takes notes afterward. She finds this hilarious.`,
-      `A quiet evening, a locked door, and a "do not disturb" sign that the neighbors would later call unnecessary given the noise.`,
-      `${w.name} insists Sam needs more practice. Sam, a diligent student, does not argue.`,
-      `By the time they come downstairs, everyone has very carefully decided not to look at them.`]);
+    // plain private time: an opening (flavor.json → private_first_sam / private_first / private_open), the turn it takes, then the service's own line
+    const firstSam = S.sam.first && actTier(act)>=2; if(firstSam) S.sam.first = false;
+    const open = flavor(firstSam ? 'private_first_sam' : w.privateCount===1 ? 'private_first' : 'private_open', w);
+    text = [open, actTurn(act, w), actLine(act, w)].filter(Boolean).join('\n\n');
   }
   if(w.lovers===act && !o.first) text += `\n\n${w.name} wouldn't do this with a client. With Sam, it's different.`;
   if(w.fav===act && knowsPrefs(w)) text += `\n\n(Her favorite. She's in a very good mood afterward.)`;

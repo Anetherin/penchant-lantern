@@ -47,7 +47,7 @@ const DEFAULT_SETTINGS = {
   negative: "child, minor, teen, loli, young-looking, school uniform, lowres, bad anatomy, extra fingers, watermark, text, signature",
   resolution: "512x768", autoPortrait: true, autoImg: true, imgHidden: false, repImg: true, libraryInPool: true, packsOff: {},
   snippets: {}, clothText: {}, customActs: [],
-  ai: {on:true, auto:true, autoBackstory:true, guidance:'', tpl:{}}
+  ai: {on:true, auto:false, autoBackstory:true, guidance:'', tpl:{}, v:2}
 };
 const SAM_LOOK = "a young adult Japanese man in his mid-twenties, short dark brown hair, thin build, kind and slightly awkward expression";   // Sam without clothes (intimate scenes)
 const SAM_DESC = SAM_LOOK + ", grey hoodie under a simple traveler's cloak";

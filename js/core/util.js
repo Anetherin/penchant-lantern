@@ -59,6 +59,8 @@ const _ss = store.get(KEY_SET) || {};
 let SET = Object.assign({}, DEFAULT_SETTINGS, _ss);
 SET.snippets = Object.assign({}, _ss.snippets||{}); SET.clothText = Object.assign({}, _ss.clothText||{}); SET.customActs = (_ss.customActs||[]).slice();
 SET.ai = Object.assign({}, DEFAULT_SETTINGS.ai, _ss.ai||{}); SET.ai.tpl = Object.assign({}, (_ss.ai&&_ss.ai.tpl)||{});
+// v2: scenes are no longer AI-written by default (the game's own text covers them); only backstories auto-write.
+if((SET.ai.v||1) < 2){ SET.ai.auto = false; SET.ai.v = 2; }
 let LIB = store.get(KEY_LIB) || [];
 let S = null;
 let TAB='house', SHEET=null, MODAL_LOCK=false, CDRAFT=null, EDIT=null, EVQ=[], CUR_EV=null, ROSTER_FILTER='cur', SETUP=null;

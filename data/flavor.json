@@ -38,19 +38,32 @@
   "modest": {
     "_note": "Shown on her sheet when she has the Modest trait.",
     "_default": [
-      "She'd rather keep her clothes on. When things get intimate, they get pulled aside instead, though the lewder she gets (and the more she trusts Sam), the more comes off."
+      "She'd rather keep her clothes on. When things get intimate, they get pulled aside instead, though the lewder she gets (and the more she trusts Sam), the more comes off.",
+      "She keeps her clothing on as long as she can, and she's quietly flustered if it slips. With Sam, though, she lets the bits come off by degrees, one at a time, when she's ready.",
+      "A towel, a sleeve, a half-drawn curtain: she always has something between herself and the lamplight. The more she trusts Sam, the thinner the barriers get.",
+      "She prefers to keep a layer or two on, thank you, and Sam has learned not to tease about it. Over time, with enough warmth and enough patience, she grows braver.",
+      "She's shy about being seen, so the lamps are dimmed and the blankets drawn up. When she finally lets one fall, it feels like a gift.",
+      "Her clothes stay mostly on, tugged aside rather than shed. The more comfortable she becomes, the more she reveals, and Sam notices every inch of progress with a quiet, private joy."
     ]
   },
   "again": {
     "_default": [
       "{name} is still breathing hard, and she hasn't let go of him. \"Again,\" she says. It isn't really a question.",
-      "{name} props herself up on one elbow and gives Sam a long, considering look. Apparently they're not finished."
+      "{name} props herself up on one elbow and gives Sam a long, considering look. Apparently they're not finished.",
+      "\"Don't you dare fall asleep,\" {name} whispers, pulling him back down against her. The lamp is guttering and the night is long, and she isn't remotely finished with him.",
+      "{name} gives a slow, satisfied sigh, stretches like a cat, and then turns that sleepy, dangerous smile on Sam again. \"That was lovely,\" she says. \"I'd like to do it properly now.\"",
+      "Sam is reaching for the blanket when {name} catches his wrist and shakes her head, smiling. Her cheeks are flushed, her hair is wild, and she looks much too pleased with herself to stop.",
+      "For a long moment the only sounds are the rain and their breathing. Then {name} laughs softly, rolls over, and tugs Sam closer. \"One more,\" she says. \"I might even mean it.\""
     ]
   },
   "again_beastkin": {
     "_default": [
       "{name}'s tail hasn't stopped moving. She nuzzles into Sam's neck, warm and insistent, and makes a small, needy sound that says she's nowhere near done.",
-      "{name} is up on her knees before Sam has caught his breath, ears forward, eyes bright. \"More,\" she says, and climbs back into his lap."
+      "{name} is up on her knees before Sam has caught his breath, ears forward, eyes bright. \"More,\" she says, and climbs back into his lap.",
+      "{name}'s ears flick toward Sam, and her tail curls around his leg and holds on. She purrs, low and rumbling, and presses her forehead to his chest. It's clear the night isn't over until she says so.",
+      "A low, contented rumble fills the room as {name} nuzzles into the crook of Sam's neck, tail thumping slowly against the sheets. She's warm, and pleased, and completely unwilling to let him go anywhere.",
+      "{name}'s tail sweeps across the blanket in a long, lazy arc, and her eyes shine gold in the lamplight. \"Mm,\" she says, and climbs on top of him with unshakable purpose. Sam gives up the idea of sleeping altogether.",
+      "Her ears twitch at every sound, but {name} is fixed on Sam alone, nosing at his jaw, her breath warm and fast. \"Again,\" she says, in the plain way of someone who has no intention of discussing it."
     ]
   },
   "late_visit": {
@@ -58,7 +71,10 @@
     "_default": [
       "Sam is doing the books by candlelight when {name} knocks. She hasn't seen a single client all week, and she's clearly been thinking about something. \"Busy?\"",
       "{name} appears in Sam's doorway in her nightclothes, holding two cups of tea she clearly has no intention of drinking.",
-      "A note slides under Sam's door: \"Still awake? Come find out.\" It's in {name}'s handwriting."
+      "A note slides under Sam's door: \"Still awake? Come find out.\" It's in {name}'s handwriting.",
+      "The house is quiet, the corridor lamps burning low, when Sam hears the faintest scratch at his door. It's {name}, barefoot, with a shawl over her shoulders and a look that says she wasn't going to knock but couldn't help it. \"Can I come in?\" she asks.",
+      "Sam is half asleep over a stack of invoices when {name} lets herself in, carrying a plate of leftover dumplings. \"You missed supper,\" she says, setting it down. She doesn't leave, and she doesn't pretend that the dumplings were the only reason she came.",
+      "A soft knock, then another, a little braver. {name} stands in Sam's doorway with a candle, the flame bending in the draft, and her hair loose in a way he hasn't seen before. \"I couldn't sleep,\" she says. \"I thought you might be awake too.\""
     ],
     "Shy but earnest": [
       "There's a very quiet knock. {name} is standing in the hall, red to the ears, and has clearly rehearsed what she wants to say. She forgets all of it."
@@ -72,7 +88,10 @@
     "_default": [
       "The lamps are low in the Owner's Suite. {name} sits on the edge of the bed, unpinning her hair, and watches Sam over her shoulder. \"We could just sleep,\" she says. \"Or not.\"",
       "{name} slides under the blanket and doesn't turn her back on him tonight. Her hand finds his. \"Stay up a little longer,\" she murmurs.",
-      "\"Long day,\" {name} says, curling against Sam's side in the dark. Her fingers start tracing slow circles on his chest. \"I have a better idea than sleeping.\""
+      "\"Long day,\" {name} says, curling against Sam's side in the dark. Her fingers start tracing slow circles on his chest. \"I have a better idea than sleeping.\"",
+      "The Owner's Suite is warm, the shutters latched against the night wind, and {name} is brushing out her hair at the bedside. She catches Sam's reflection in the dark window and doesn't look away. \"I'm not tired,\" she says, setting down the brush. \"Are you?\"",
+      "{name} blows out the last lamp but one and slips beneath the blanket, her feet cold and her smile warm. Rain whispers on the roof, and she rolls toward him. \"Tell me about your day,\" she says. \"Then I'll tell you about mine, and we'll see.\"",
+      "Sam is mid-yawn when {name} puts a finger over his mouth. The room is lit by a single candle and the pale spill of the two moons through the curtain. \"That yawn,\" she says, \"is a lie. I can tell.\""
     ]
   },
   "sleepin_morning": {
@@ -80,7 +99,10 @@
     "_default": [
       "Sam wakes to gray morning light and {name} propped on one elbow beside him, smiling like she's been awake a while. \"Good morning,\" she says, and kisses him slowly.",
       "Something warm presses against Sam's back, and {name}'s voice is a sleepy whisper at his ear. \"Don't get up yet. I've got plans for you.\"",
-      "{name} has already pulled the covers over both their heads. \"The house can wait,\" she says, \"for a little while.\""
+      "{name} has already pulled the covers over both their heads. \"The house can wait,\" she says, \"for a little while.\"",
+      "A bird is arguing with itself outside the window and the light is the soft pink of early dawn. {name} is already awake, tracing the line of Sam's jaw with one finger. \"Don't say anything,\" she murmurs. \"Just stay.\"",
+      "The bed is warm, the house is still asleep, and {name} has her cheek against Sam's shoulder, listening to him breathe. When he stirs, she lifts her head with a lazy, knowing smile. \"Good,\" she says. \"You're up.\"",
+      "Sam wakes to the smell of baking bread drifting up from the kitchen and {name}'s hair spread over his arm. She doesn't open her eyes. \"Five more minutes,\" she says, in a voice that makes it clear what she plans to do with them."
     ]
   },
   "client_yes": {
@@ -89,7 +111,13 @@
       "They disappeared upstairs for most of the evening.",
       "He came downstairs an hour later looking dazed and very satisfied.",
       "The door stayed closed a long time. He tipped generously.",
-      "She came back down first, humming. He followed, red-faced and grinning."
+      "She came back down first, humming. He followed, red-faced and grinning.",
+      "The lamp in the upstairs window burned late, and the piano downstairs had finished two full sets before the door finally opened.",
+      "He went up with a nervous cough and a rumpled hat, and came down an hour later carrying the hat and no memory of where he'd left his dignity.",
+      "Somewhere between the second glass of plum wine and the stairs, he made up his mind. The staircase creaked for a while afterward, and nobody pretended not to notice.",
+      "They slipped away from the crowded lounge while the fiddler was mid-song. By the time the tune ended, the evening had gone somewhere much quieter.",
+      "He spent a long, unhurried evening behind a closed door and emerged looking like a man who'd forgotten what day it was. His coin purse, on the other hand, remembered perfectly.",
+      "The room smelled of lavender and warm candle wax by the time they were done, and the bedsheets looked like they'd lost an argument."
     ]
   },
   "client_company": {
@@ -97,14 +125,24 @@
     "_default": [
       "He left lighter in the purse and very happy about it.",
       "He promised to come back next week.",
-      "He told three friends about her before he got home."
+      "He told three friends about her before he got home.",
+      "He lingered on the stairs, patting his pockets like a man who didn't want to leave, then bought a bottle of wine for the road.",
+      "He stopped to straighten his collar in the hallway mirror and caught himself smiling at his own reflection.",
+      "He paid, he tipped, and he tried to tip again at the door. Sam had to gently steer him outside.",
+      "He left humming a tune from the lounge and walked straight into a lamppost. He apologized to it.",
+      "He lingered over his last cup of tea in the lounge, reluctant to let the night end, and asked the doorman which evenings were quietest.",
+      "He wrote her a small, terrible poem on a napkin before he left. She kept it."
     ]
   },
   "lover_waiting": {
     "_note": "Opening line when a lover (Devoted) at max lust comes to Sam instead of handling it herself.",
     "_default": [
       "{name} is sitting on the edge of Sam's bed when he gets back, shoes off, very much not reading the book in her lap. \"You've been busy all week,\" she says. \"I've been patient.\"",
-      "Sam finds a note on his desk in {name}'s handwriting: \"My room. Tonight. Don't make me come get you.\""
+      "Sam finds a note on his desk in {name}'s handwriting: \"My room. Tonight. Don't make me come get you.\"",
+      "{name} has made herself comfortable in Sam's chair, feet up on his desk, reading his ledger upside down with great ceremony. \"Your handwriting is awful,\" she announces. \"Come here. I've missed you.\"",
+      "The lamp in {name}'s window is lit when Sam passes her door, and the door is open a hand's width, which is as close to a summons as she'll ever write down. He stops. She says, from inside, \"Don't pretend you didn't see.\"",
+      "There's a tray on Sam's bed when he returns: tea, two cups, and a single flower in a water glass. {name} is sitting beside it, trying very hard to look casual. \"I thought we might have some time,\" she says. \"If you're not busy.\"",
+      "{name} intercepts Sam on the stairs, takes his sleeve, and doesn't say a word until they're at her door. \"Everyone is very busy,\" she says then. \"I decided you could be busy in here.\""
     ],
     "Shy but earnest": [
       "{name} hovers in Sam's doorway, fidgeting with her sleeve. \"I, um. I waited. For you. All week.\" She's bright red."
@@ -117,7 +155,11 @@
     "_note": "First line of the scene when Sam goes to a lover who's been waiting.",
     "_default": [
       "She pulls him in by the collar and doesn't let go for a long time.",
-      "\"Finally,\" she breathes, and the door clicks shut behind them."
+      "\"Finally,\" she breathes, and the door clicks shut behind them.",
+      "She's been counting the hours, and it shows in the way she crosses the room: quickly, then slowly, as if she's remembered she's supposed to be composed. It lasts about a second.",
+      "\"You're late,\" she says, with absolutely no heat. Then she kisses him, and neither of them mentions it again.",
+      "The lamp is low, the room is warm, and she's waiting for him with her arms already open. He walks into them like a man coming home.",
+      "She hooks a finger through his belt and leads him in without a word. The door shuts, the latch drops, and the corridor is left to its rumors."
     ]
   },
   "good_night": {
@@ -188,7 +230,12 @@
   "lover_shared": {
     "_note": "When two happy lovers come to Sam's room together. {other} = the second lover.",
     "_default": [
-      "There's a knock at Sam's door. It's {name}. Then a second knock: {other}, right behind her. They look at each other, then at Sam, and seem to reach an understanding without him."
+      "There's a knock at Sam's door. It's {name}. Then a second knock: {other}, right behind her. They look at each other, then at Sam, and seem to reach an understanding without him.",
+      "{name} and {other} arrive at Sam's door together, arm in arm, as though they'd rehearsed it. They probably did. \"We have an arrangement,\" {name} says, and {other} nods solemnly, hiding a grin.",
+      "Sam opens his door to find {name} and {other} in the corridor, whispering. They stop the moment they see him and share a look that says everything. \"We'd like to come in,\" {other} says. \"Both of us.\"",
+      "{other} comes in first, shy and a little flushed, and {name} follows close behind to shut the door. They exchange a glance of perfect understanding, which leaves Sam out of it entirely. He decides not to mind.",
+      "\"No arguments,\" {name} says, steering {other} by the elbow into Sam's room. \"We've settled it between ourselves.\" {other} just smiles, wickedly, and sits on the bed.",
+      "Two sets of footsteps in the corridor, one knock, and then {name} and {other} are standing in his doorway, giggling like conspirators. Whatever they have planned, they've clearly been planning it for days."
     ]
   },
   "breakup": {
@@ -218,42 +265,147 @@
   "rekindle_yes": {
     "_note": "When an ex-lover agrees to try again.",
     "_default": [
-      "{name} pretends to think about it for exactly three seconds. \"Took you long enough.\""
+      "{name} pretends to think about it for exactly three seconds. \"Took you long enough.\"",
+      "{name} looks at him for a long while, then lets out a breath she seems to have held for weeks. \"Yes,\" she says. \"Obviously yes. Don't make that face, you're going to cry.\"",
+      "\"I was hoping you'd ask,\" {name} admits, smiling in a way that goes straight to her eyes. \"I'd have asked you myself, but I wanted to see you work for it.\"",
+      "{name} takes his hand in both of hers. \"I've missed this,\" she says quietly. \"I've missed you. Yes. Let's try again.\"",
+      "{name} pretends to consider, tapping her chin and looking out the window. It lasts about a breath and a half before she gives up and kisses him. \"Yes, you idiot.\"",
+      "\"Fine,\" {name} says, trying very hard to look put-upon and failing completely. \"But you're buying dinner. Several dinners.\""
     ]
   },
-  "rekindle_no": {"_note":"When an ex-lover isn't ready to try again.","_default":["{name} smiles, a little sadly. \"Not yet. Ask me again sometime.\""]},
+  "rekindle_no": {
+    "_note": "When an ex-lover isn't ready to try again.",
+    "_default": [
+      "{name} smiles, a little sadly. \"Not yet. Ask me again sometime.\"",
+      "{name} shakes her head gently, her eyes soft. \"I care about you,\" she says, \"but I'm not there yet. Give me some time, and be patient with me.\"",
+      "\"Not today,\" {name} says, with a small, sincere smile. \"It isn't you. I just need to be sure, and I'm not, not quite. Ask me again.\"",
+      "{name} looks down at her hands for a moment, then up. \"I'm sorry,\" she says. \"Part of me wants to say yes. The rest of me needs more time.\"",
+      "She touches his arm briefly, kindly, and lets go. \"Ask me again when the leaves turn,\" {name} says. \"I'll have a better answer, I promise.\"",
+      "{name} sighs, not unkindly. \"I'm flattered. Really. But I'd be saying yes for the wrong reasons, and you deserve better than that.\""
+    ]
+  },
   "enc_fav": {
     "_note": "Client asked for her favorite.",
-    "_default": ["She enjoyed that one.","Her favorite. She was humming afterward.","She came back downstairs smiling."]
+    "_default": [
+      "She enjoyed that one.",
+      "Her favorite. She was humming afterward.",
+      "She came back downstairs smiling.",
+      "This was the one she'd have picked from the whole week, and she hummed the entire way back to her room.",
+      "She stretched out on the cushions afterward looking wonderfully pleased with herself.",
+      "She told Sam later it was the best part of her week. Sam turned very red and said he was glad.",
+      "She took her time on the stairs afterward, in no hurry to get back to work.",
+      "She was still smiling when the next lantern was lit.",
+      "Easily her favorite of the week. She kept replaying it over her tea."
+    ]
   },
   "enc_dislike": {
     "_note": "Client asked for something she dislikes but does.",
-    "_default": ["Not her favorite.","She got through it, but it's not her thing.","She was a little quiet afterward."]
+    "_default": [
+      "Not her favorite.",
+      "She got through it, but it's not her thing.",
+      "She was a little quiet afterward.",
+      "She gave him a perfectly professional evening and kept her real opinion to herself.",
+      "She counted the minutes against the candle and was glad when it was over.",
+      "She went back to her room afterward and brewed herself something strong.",
+      "She kept her smile painted on, but it took some effort.",
+      "She wasn't rude about it, but she was quick to change the subject afterward.",
+      "She was very careful not to look at the clock, and very glad to wash up after."
+    ]
   },
   "enc_stretch": {
     "_note": "A service that's still a stretch for her with clients.",
-    "_default": ["A stretch for her. She did it anyway.","She wasn't sure about it, and it showed a little.","Outside her comfort zone, but she managed."]
+    "_default": [
+      "A stretch for her. She did it anyway.",
+      "She wasn't sure about it, and it showed a little.",
+      "Outside her comfort zone, but she managed.",
+      "It wasn't what she'd usually choose, but she gave it an honest try with a brave smile.",
+      "She took a deep breath at the door and went in determined to be professional.",
+      "Not her usual territory by a long shot, but she muddled through with good humor.",
+      "She learned something new about her limits, and decided she could live with it.",
+      "A little awkward, a little bold, and she had to laugh at herself halfway through.",
+      "She'd rather have been elsewhere, but she held her head up and finished the job."
+    ]
   },
   "enc_eager": {
     "_note": "She was in the mood (high lust).",
-    "_default": ["She'd been wanting it all week.","She was more into it than he was.","She was very much in the mood."]
+    "_default": [
+      "She'd been wanting it all week.",
+      "She was more into it than he was.",
+      "She was very much in the mood.",
+      "She was practically waiting at the door for him.",
+      "She'd been eyeing the clock all afternoon and was ready the moment the bell rang.",
+      "She'd braided flowers into her hair for the occasion and was not at all shy about it.",
+      "She didn't need coaxing; if anything, she was the one doing the leading.",
+      "She'd been in a good mood since breakfast and it showed.",
+      "Her enthusiasm caught him a little off guard, and then caught him entirely."
+    ]
   },
   "enc_glow": {
     "_note": "Very satisfied client.",
-    "_default": ["He left glowing.","He's already asking when she's free next.","He tipped well and said so twice."]
+    "_default": [
+      "He left glowing.",
+      "He's already asking when she's free next.",
+      "He tipped well and said so twice.",
+      "He floated down the stairs with a grin he couldn't wipe off, and walked out into the night humming.",
+      "He left a tip big enough that Sam checked it twice for mistakes.",
+      "He paid for a bottle for the whole lounge on his way out.",
+      "He squeezed her hand at the door and promised to be back before the week was out.",
+      "He told the doorman that this was the best night of his life, then corrected it to 'month' and then 'year'.",
+      "He looked ten years younger and walked a little taller on the way home."
+    ]
   },
-  "enc_flat": {"_note":"Unhappy client.","_default":["He left grumbling.","It didn't really click.","Neither of them enjoyed it much."]},
-  "enc_declined": {"_note":"She turned the request down.","_default":["She didn't mind saying no.","No hard feelings either way."]},
+  "enc_flat": {
+    "_note": "Unhappy client.",
+    "_default": [
+      "He left grumbling.",
+      "It didn't really click.",
+      "Neither of them enjoyed it much.",
+      "The conversation ran out before the evening did, and the silence was long.",
+      "The candle burned down, but the spark never really took hold.",
+      "They parted politely, each privately sure it hadn't been their night.",
+      "He checked his pocket watch a few times too many.",
+      "Nothing went wrong exactly. Nothing went especially right either.",
+      "They both shrugged it off in the hallway and went their separate ways."
+    ]
+  },
+  "enc_declined": {
+    "_note": "She turned the request down.",
+    "_default": [
+      "She didn't mind saying no.",
+      "No hard feelings either way.",
+      "She turned him down with a friendly smile and offered him a drink at the bar instead.",
+      "She said no politely, and he took it with a gracious nod.",
+      "She waved him toward another lady, no offense taken on either side.",
+      "She told him honestly it wasn't for her, and he appreciated the honesty.",
+      "He asked, she declined, and they went on chatting as if nothing had happened.",
+      "She shook her head kindly and the conversation moved on without a hitch."
+    ]
+  },
   "enc_nomood": {
     "_note": "She turned it down because she wasn't in the mood (low lust).",
-    "_default": ["She just wasn't in the mood.","Not tonight, she said."]
+    "_default": [
+      "She just wasn't in the mood.",
+      "Not tonight, she said.",
+      "She'd had a long day and her heart simply wasn't in it.",
+      "She curled up in the corner of the lounge instead, and told him so kindly.",
+      "She begged off with a small yawn and a gentler smile.",
+      "Maybe another night, she said. Tonight she wanted tea and quiet.",
+      "The spark just wasn't there, and she knew better than to fake it.",
+      "She wasn't feeling it, so she poured him a drink on the house and let him down easy."
+    ]
   },
   "job_bartender": {
     "_note": "Weekly report line for a bartender.",
     "_default": [
       "{name} kept the drinks flowing at {house} and settled two arguments with a single raised eyebrow.",
       "{name} invented a new cocktail this week. Half the regulars love it, the other half are scared of it.",
-      "{name} worked the bar all week and knows every regular's order by heart now."
+      "{name} worked the bar all week and knows every regular's order by heart now.",
+      "{name} polished glasses until they sparkled and served a gruff old sailor who confessed everything. The bar at {house} heard it all.",
+      "{name} worked behind the bar of {house} all week, pouring, laughing, and quietly cutting off a very determined merchant.",
+      "{name} learned the exact hour that the crowd wants something stronger, and had it ready each time.",
+      "A busy week at the bar: {name} juggled three orders at once and still remembered to ask after a regular's cough.",
+      "{name} added a pinch of cinnamon to the house wine and had {house} talking about it for days.",
+      "{name} turned a dull Tuesday around by sliding free peanuts across the bar and telling a truly terrible joke."
     ]
   },
   "job_dancer": {
@@ -261,7 +413,13 @@
     "_default": [
       "{name}'s new routine had the lounge on its feet.",
       "{name} danced every night this week. Someone threw flowers, which she pretended not to love.",
-      "A crowd gathered early for {name}'s set. The bar did well out of it."
+      "A crowd gathered early for {name}'s set. The bar did well out of it.",
+      "{name} danced in the lamplight until her bells jingled, and the room kept time with its feet.",
+      "The fiddler struggled to keep up with {name} this week. Nobody minded.",
+      "{name} spun through the lounge in silk and shadows, and a few clients forgot to drink.",
+      "{name} added a slow, swaying number to her set and the whole room went quiet before it erupted in applause.",
+      "Her ankles ached by Friday, but {name} gave the crowd a finale that brought the house down.",
+      "{name} dragged a shy client onto the floor for one dance. He talked about it for the rest of the evening."
     ]
   },
   "job_bath": {
@@ -269,7 +427,13 @@
     "_default": [
       "{name} kept the baths hot and the guests relaxed.",
       "{name} has the guests so relaxed they forget to leave. She considers it a professional achievement.",
-      "Steam, scented oil, and {name}'s soft humming. The bathhouse was busy all week."
+      "Steam, scented oil, and {name}'s soft humming. The bathhouse was busy all week.",
+      "{name} kept the water hot and the lanterns low, and the guests drifted out pink and sleepy.",
+      "{name} swept steam off the tiles all week and learned to tell a tired merchant from a lonely one by the way he sank into the water.",
+      "Fresh towels, cedar oil, and {name}'s quiet humming: the bathhouse had a very good week.",
+      "{name} tended the baths and hung herbs from the rafters, which made the whole room smell like a mountain meadow.",
+      "The soaking tubs were full every night. {name} says it's the best job she's ever had for her hands.",
+      "{name} had the pool so cozy that two guests fell asleep in the water and had to be woken gently."
     ]
   },
   "job_bath_joined": {
@@ -277,7 +441,13 @@
     "_default": [
       "{name} didn't just tend the baths this week; she got in. Bath massages, in the water, became the most requested thing on the menu.",
       "{name} spent most of the week in the hot water with the guests, working out knots. Nobody wanted to leave the pool.",
-      "Steam, scented oil, and {name} slipping into the water to give massages where they soak. Business was very good."
+      "Steam, scented oil, and {name} slipping into the water to give massages where they soak. Business was very good.",
+      "{name} slipped into the warm water with her sleeves rolled and spent the week kneading shoulders. The steam swallowed every sigh.",
+      "{name} traded her towels for a seat in the bath, working knots out of tired backs while lanterns swayed above. The queue was long.",
+      "{name} spent the evenings waist-deep in the pool, hands busy and the room fragrant with oil. Guests left looking boneless.",
+      "Bath massages from {name}, in the water, with cedar smoke and soft chatter. She says her hands are sore and her heart is full.",
+      "{name} dunked herself into the baths each night, and the guests have been tipping like it's a festival.",
+      "{name} waded in among the soaking guests this week, and the most-requested spot in the whole house became the one next to her."
     ]
   },
   "job_bath_more": {
@@ -285,7 +455,13 @@
     "_default": [
       "{name} joined the bathers in the water, and once or twice the massage turned into something more, at her suggestion.",
       "Bath massages in the water all week, and {name} was in such a mood that a few lucky guests got more than their backs worked on.",
-      "The baths were busy and so was {name}. When the mood took her, the massages didn't stay massages."
+      "The baths were busy and so was {name}. When the mood took her, the massages didn't stay massages.",
+      "{name} slid into the water for massages as usual, but a few times her hands wandered where she meant them to.",
+      "The steam was thick, the oil was warm, and {name} was feeling bold. Not every massage stayed innocent.",
+      "{name} worked out the knots in tired shoulders, and sometimes the kneading turned into something slower and warmer.",
+      "Between the lanterns and the humid hush, {name} let a few of her massages drift further than the menu allows.",
+      "{name} treated a few of her favorites to a little extra under the water, and no one was in the mood to complain.",
+      "The baths were busy, and so was {name}. A few lucky guests got a massage that ended in a quiet, shared smile."
     ]
   },
   "job_teacher": {
@@ -293,7 +469,13 @@
     "_default": [
       "{name} ran the classroom at {house} with a ruler and endless patience. Notes were taken.",
       "{name} drilled the house until the lesson stuck. Somebody asked for homework. {name} was delighted.",
-      "{name} wrote on the slate, pointed, and waited. By evening the whole house was practising."
+      "{name} wrote on the slate, pointed, and waited. By evening the whole house was practising.",
+      "{name} chalked the day's lesson across the slate at {house} and ran the class with a patient, level voice.",
+      "{name} gave the ladies of {house} a hard morning of drills and an easy afternoon of practice.",
+      "{name} corrected posture, vowels, and bad habits with a gentle tap of her pointer. By Friday the house was gliding.",
+      "{name} turned the classroom of {house} into the liveliest room in the building. Somebody asked for extra lessons.",
+      "{name} taught a pupil one tiny trick this week and watched it spread through the house like wildfire.",
+      "{name} filled the slate at {house} with diagrams, jokes, and a stern reminder to keep up."
     ]
   },
   "job_maid": {
@@ -301,7 +483,13 @@
     "_default": [
       "{name} scrubbed {house} until it shone. Guests noticed.",
       "{name} found three lost earrings, a sword, and a love letter while cleaning. She returned all of them.",
-      "{name} reorganized the linen closet. Nobody asked her to. Everybody's grateful."
+      "{name} reorganized the linen closet. Nobody asked her to. Everybody's grateful.",
+      "{name} beat the rugs, dusted every shelf, and scrubbed the floors of {house} until the whole place smelled of lemon soap.",
+      "{name} washed the windows of {house} until the lantern light came through gold.",
+      "{name} changed every set of sheets by Wednesday and swept up a surprising amount of rose petals.",
+      "{name} polished the banister, the brasses, and the mirror in the lounge. Several guests checked their hair in it.",
+      "{name} worked from dawn to dusk making {house} sparkle, and hummed the whole time.",
+      "{name} cleaned out the cellar of {house}, found a crate of forgotten wine, and gave it to Sam with a straight face."
     ]
   },
   "job_security": {
@@ -309,7 +497,13 @@
     "_default": [
       "{name} walked a drunk adventurer to the door without him even noticing he'd been thrown out.",
       "A quiet week on watch for {name}. She suspects her reputation is doing half the work.",
-      "{name} stood by the door looking unimpressed all week. It worked."
+      "{name} stood by the door looking unimpressed all week. It worked.",
+      "{name} leaned against the door frame all week with her arms folded, and trouble thought twice.",
+      "A rowdy crowd tested the door on Saturday. {name} stared at them quietly until they went home.",
+      "{name} walked the corridors every hour and checked every latch twice. Nothing happened, which was the point.",
+      "{name} spent the week watching the street from the front step, and the district's worst drunks quietly started crossing to the other side.",
+      "{name} turned away three troublemakers with a single raised eyebrow apiece.",
+      "The house stayed peaceful all week. {name} would call that a good week."
     ]
   },
   "job_madame": {
@@ -317,7 +511,13 @@
     "_default": [
       "{name} ran {house} like clockwork and kept everyone's schedules sane.",
       "{name} smoothed over two complaints and a near-duel. Business as usual.",
-      "{name} checked in on every lady at least once this week. They noticed."
+      "{name} checked in on every lady at least once this week. They noticed.",
+      "{name} ran the books at {house}, soothed a nervous client, and still found time to fix a loose hinge.",
+      "{name} walked the halls of {house} with her ledger under one arm, quietly deciding who needed a day off.",
+      "A week of schedules and gentle word-smithing: {name} kept the ladies happy and the books balanced.",
+      "{name} stared down a rude patron without raising her voice. The house is still talking about it.",
+      "{name} sorted out the week's rosters over tea and made sure every lady got her proper rest.",
+      "{name} greeted important clients at {house} with exactly the right amount of warmth and gave nothing away."
     ]
   },
   "job_rest": {
@@ -325,7 +525,13 @@
     "_default": [
       "{name} took the week off: long baths, long naps, and a book she's been meaning to finish.",
       "{name} slept in every day this week and regrets nothing.",
-      "{name} spent her week off wandering the market and came back with snacks for everyone."
+      "{name} spent her week off wandering the market and came back with snacks for everyone.",
+      "{name} spent her week off in a hammock with a stack of novels and a bowl of dried plums.",
+      "{name} walked the riverbank, fed the ducks, and slept without once checking the time.",
+      "{name} napped through the afternoons, ate way too many sweet buns, and came back refreshed.",
+      "{name} took the week to herself: a long soak, a new hair ribbon, and no one needing anything.",
+      "{name} visited the market, bought a ridiculous hat, and wore it proudly all week.",
+      "{name} did absolutely nothing for seven days and plans to do it again."
     ]
   },
   "job_rest_demon": {
@@ -333,54 +539,166 @@
     "_default": [
       "{name} took the week off, which for a demon means slipping out after dark and feeding on whichever men in town looked at her twice. She came back glowing.",
       "{name} spent her week off in the taverns across town, sipping on strangers. Nobody she fed on remembers her name, which is the point.",
-      "{name} rested the demon way: a different tavern every night, a different admirer, and back home by dawn, much less hungry."
+      "{name} rested the demon way: a different tavern every night, a different admirer, and back home by dawn, much less hungry.",
+      "{name} spent her week off slipping through back streets after midnight, taking small sips from the men who followed her smile. She was back by dawn, rosy and well fed.",
+      "{name} rested the demon way: a quiet tavern, a fresh stranger each evening, and a tiny, delicious taste of each. She came home sated and very sleepy.",
+      "{name} drifted across town under the moon, nibbling on affections that no one will miss. She returned humming.",
+      "{name} wandered through three taverns, charmed a dozen admirers, and left each with a lingering shiver and no memory of why.",
+      "{name} spent her week off feasting politely on strangers' attention, then curled up in her room to digest.",
+      "{name} roamed the night markets until her hunger quieted and her cheeks turned warm again."
     ]
   },
   "private_act": {
     "_note": "A line for the service itself, after an encounter's or a first's own opening. Keyed by service id (services.json).",
-    "caress": [
-      "It stays slow and unhurried: long kisses, wandering hands, and neither of them in any hurry to stop.",
-      "They lose an hour to kissing like teenagers and don't regret a minute of it."
-    ],
     "manual_give": [
       "Her hands are clever and very sure of themselves. Sam's are learning fast.",
-      "She keeps her eyes on his face the whole time, enjoying every reaction."
+      "She keeps her eyes on his face the whole time, enjoying every reaction.",
+      "Her fingers are warm and deft, and she watches his face the entire time, smiling at every flicker of expression. Sam grips the sheets and tries to think about taxes. It does not help.",
+      "She takes her sweet time, a slow, teasing rhythm that makes his breath stutter. 'Look at you,' she murmurs, delighted, and he covers his eyes with one arm.",
+      "Her hand moves with practiced ease while her other draws idle patterns across his stomach. The lamp hisses, the bed creaks, and Sam loses all track of what language he speaks.",
+      "She leans down to kiss him as she strokes, swallowing the sound he makes. He fumbles for words, fails, and she grins like she's won something.",
+      "A little oil, a lot of patience, and a clever twist of her wrist, and his thoughts scatter like startled pigeons. She is quietly, thoroughly pleased with herself.",
+      "She murmurs encouragement against his shoulder, every word as warm as her hand. By the end Sam's toes have curled, his ears have gone scarlet, and he's laughing helplessly into her hair."
     ],
     "oral_give": [
       "She takes her time with him, plainly enjoying how quickly he loses the ability to form sentences.",
-      "Sam ends up staring at the ceiling, trying to remember his own name."
+      "Sam ends up staring at the ceiling, trying to remember his own name.",
+      "She kneels between his knees with an unhurried smile, and the first touch of her mouth drives every thought clean out of his head. Sam's hand finds her hair, then remembers manners and hovers uncertainly.",
+      "Her lips are warm and her pace is lazy, and she glances up now and then just to watch what it does to him. Sam says something that was probably going to be a word.",
+      "The lamp glows on her bare shoulders as she works, patient, attentive, in no hurry at all. He drops his head back against the headboard and gives up on dignity.",
+      "She hums, and the vibration is nearly his undoing. 'Hold still,' she says, grinning, and he promises he is trying.",
+      "Her hand rests warm on his thigh, steadying him, while she takes him slowly apart. The bed creaks. Somewhere far below, a glass shatters and nobody in this room notices.",
+      "She finishes with a languid kiss to his hip and a smile that is frankly insufferable. Sam lies flat, blinking, wondering if the ceiling has always been that interesting."
     ],
     "breast_give": [
       "She has an idea, and is extremely pleased with herself about it. Sam is in no position to argue.",
-      "She's smug about it afterward. She's earned it."
+      "She's smug about it afterward. She's earned it.",
+      "She presses close, warm and soft, and the sensation drives a short, helpless laugh out of him. 'Hold still,' she scolds fondly, and he tries.",
+      "Oil gleams on her skin in the lamplight, and she watches his face with sly satisfaction as she sets a slow, rolling rhythm. Sam's hands clutch the sheets, then her shoulders, then the sheets again.",
+      "She is soft and warm and very good at this, and each time his breath catches she looks a little prouder. 'Is this alright?' she asks, knowing perfectly well that it is.",
+      "The bed shifts as she leans in, hair falling forward, her smile turning wicked. Sam thinks briefly that whoever invented this deserves a statue.",
+      "She tilts her head to catch his eye, grinning, then lowers her gaze again with maddening patience. His whole body hums, and the poor lamp gets blamed for the heat.",
+      "Afterward she wipes her hands on the sheet with great ceremony and declares the matter a success. Sam, who cannot feel his fingers, applauds weakly from the pillow."
     ],
     "missionary": [
       "Afterward they lie tangled together, her head on his chest, listening to the house go quiet.",
-      "It's tender and a little clumsy and exactly right."
+      "It's tender and a little clumsy and exactly right.",
+      "She draws him down against her, warm and close, her arms looped round his neck. The first slow movement of her hips startles a breath out of him, and she answers with a soft, delighted sound.",
+      "They find a rhythm the way two people find a tune, a little off at first and then easy. Her eyes stay on his, dark and fond, and the lamp flickers over her flushed cheeks.",
+      "The mattress sighs beneath them and her heels settle at the small of his back. 'Look at me,' she whispers, and he does, and doesn't want to look anywhere else.",
+      "He tries to be careful and she laughs, pulling him closer. 'I won't break,' she says into his ear, and the rest of the night is considerably less careful.",
+      "Her fingers trail down his back, her breath coming in warm little gasps against his neck. Sam has never felt so wanted, and so thoroughly hopeless at hiding it.",
+      "Slow, then slower, then not slow at all, and the quilt ends up on the floor with a thump. She kisses him through the last of it and holds on tight until they're both quiet again."
     ],
     "cowgirl": [
       "She takes charge from the first minute and keeps it, and looks thoroughly smug about it afterward.",
-      "She sets the pace. Sam is very happy to let her."
+      "She sets the pace. Sam is very happy to let her.",
+      "She settles over him with a look of pure mischief, hair swinging loose, hands braced on his chest. The first roll of her hips pulls a groan out of him, and she grins down like a cat in sunshine.",
+      "Lamplight slides over her shoulders as she moves, unhurried, entirely in charge. Sam can only hold her hips and watch, dazzled, and attempt to remember what words are.",
+      "'Don't move,' she says, one finger pressed lightly to his lips, and then she sets a pace that he does not dare to argue with. The bed frame offers a rhythmic, scandalous commentary.",
+      "She leans down to kiss him between breaths, her hair a curtain around their faces. Whatever he meant to say dissolves into her name.",
+      "She tips her head back, eyes closed, lost in it, and Sam thinks this might be the most beautiful thing he has ever seen. His hands slide up her sides to hold on.",
+      "When she finally slows, she's flushed and laughing and a little breathless, and she collapses against his chest. 'Well,' she says, 'that went rather well,' and he can only nod."
     ],
     "doggy": [
       "The bed creaks, the headboard knocks, and somebody next door bangs on the wall. Neither of them stops.",
-      "By the end she's laughing into the pillow and Sam can't feel his legs."
+      "By the end she's laughing into the pillow and Sam can't feel his legs.",
+      "Her back curves beneath his hands, warm and smooth in the lamplight, and the glance she throws over her shoulder is half challenge, half invitation. Sam swallows and says a silent apology to his ancestors.",
+      "She pushes back to meet him, and his fingers tighten at her hips as she breathes his name into the pillow. The headboard begins to keep time.",
+      "The rhythm builds, deeper and a little rougher, and she laughs breathlessly between gasps. 'Don't stop,' she says, and he has no plans to.",
+      "She grips the sheets, her hair spilling across her shoulders, and arches in a way that makes his knees weaker than he'd like. Sam leans down to kiss the nape of her neck, and she shivers.",
+      "Somewhere below, a tankard clatters and a cheer goes up for reasons unrelated to them. Up here, she reaches back to find his hand and holds it tightly.",
+      "By the end they are a tangle of damp limbs and fallen pillows. She turns her flushed face to him, grinning, and tells him it's a good thing the walls are thick. They are not, particularly."
+    ],
+    "kiss": [
+      "It stays slow and unhurried: long kisses, wandering hands, and neither of them in any hurry to stop.",
+      "They lose an hour to kissing like teenagers and don't regret a minute of it.",
+      "It begins as a brush of lips and becomes something slower and deeper, her fingers curling into his collar. When they part for air, her eyes are half-lidded and Sam has forgotten what a floor is for.",
+      "She tastes faintly of honeyed tea. He kisses her the way he'd handle something precious, and she smiles against his mouth, then kisses him back until the careful part is gone.",
+      "Candlelight flickers across her cheek as she cups his jaw and tilts his head just so. Sam, who has read an alarming number of books on this subject, discovers none of them mentioned how much of it is just warmth.",
+      "Her hand slides into his hair and he makes a small, undignified sound that makes her laugh into the kiss. Neither of them minds, and they go back to it.",
+      "They kiss in the doorway, then against the wall, then somehow on the edge of the bed, each one slower than the last. Her breath catches when his thumb traces her cheek, and she holds him closer.",
+      "There's a lazy sort of hunger in the way she kisses him, nipping gently at his lower lip before soothing it. Sam's glasses, if he had any, would be fogged beyond saving."
+    ],
+    "massage_give": [
+      "Lamplight turns the oil on her palms to amber as she works along the length of his spine. Sam makes a noise he would deny under oath, and she hums, pleased, and presses a little deeper.",
+      "Her thumbs find a knot beneath his shoulder blade that he'd been carrying since the last tax audit. It lets go with a sigh, and so does he, face half-buried in the pillow.",
+      "The room smells of warm oil and lavender, and somewhere below a lute is losing an argument with a drunk. She kneads slow circles into his lower back, leaning close enough that her hair brushes his skin.",
+      "She runs her knuckles down either side of his spine and he forgets, entirely, how to be nervous. 'Better?' she murmurs, and all he manages is something that sounds like a happy kettle.",
+      "Her hands travel from his neck to his calves and back, unhurried, as if she has all the night and intends to spend it on him. Sam drifts somewhere between sleep and something warmer.",
+      "She works his tired hands last, thumb pressing into each palm, and he realizes nobody has taken care of him like this since he arrived. He tells her so, muffled, and she kisses the back of his neck in answer."
+    ],
+    "massage_get": [
+      "Sam warms the oil between his hands first, a detail he read about once and is very proud of. She laughs softly at the care of it, then goes quiet as his palms settle on her shoulders and begin to move.",
+      "Her skin is warm and smooth under his hands, and each time he finds a tight spot she exhales a little sigh into the pillow. He starts to suspect he might be good at this, and tries not to let it go to his head.",
+      "He works slow circles along her spine while the lamp throws honey light over her back. She murmurs his name sleepily and turns her cheek on her folded arms, eyes closed, smiling.",
+      "His thumbs press into the arch of her foot and her whole body goes boneless. 'Oh, do that again,' she says, and Sam resolves to do it forever.",
+      "She guides his hands lower with a lazy, wordless nudge, and he follows, careful and attentive. The only sounds are the rustle of sheets, the faint slap of oil, and her contented breathing.",
+      "By the time he reaches her neck she is melting into the mattress, murmuring that he has wonderful hands. Sam, flushed to the ears, keeps them very busy and very gentle."
+    ],
+    "manual_get": [
+      "His fingers move slowly, learning her, and she tells him in small sounds and shifting hips what works. Sam listens like a man cramming for the most important exam of his life.",
+      "She keeps her hand over his, steering, her breath warm at his ear. 'There,' she whispers, and he pays more attention than he ever did in school.",
+      "Her head tips back against the pillow, lashes fluttering, and the little catch in her breath tells him he has found the rhythm. He doesn't dare change a thing.",
+      "Her knee drifts against his as he strokes, her fingers tightening on his wrist. The room seems very quiet and very warm, and she is looking at him as though he were a pleasant surprise.",
+      "He's gentle, and a little hesitant, and she rewards the hesitance with a soft laugh and a kiss on his chin. 'You're doing beautifully,' she murmurs, which does nothing for his composure.",
+      "She arches into his touch, a flush spreading up her throat, and says his name in a voice he'll be hearing in his head for days. Sam, absurdly, wants to take notes."
+    ],
+    "breast_get": [
+      "Sam cups her gently, almost reverently, and she watches him with soft amusement. 'You can be bolder,' she says, but the way her breath hitches suggests gentle is working fine.",
+      "He kisses along her collarbone and lower, and she threads her fingers through his hair. Her skin is warm and flushed in the lamplight, and the little sigh she gives is all the encouragement he needs.",
+      "His thumb brushes a slow circle and she gasps, then laughs at herself. Sam, thrilled and terrified in equal measure, does it again.",
+      "She guides his mouth where she wants it with a gentle hand at the back of his head. The room smells of oil and warm skin, and every sound she makes is a small reward.",
+      "He takes his time, learning what draws a sigh and what draws a shiver, and she lets him. 'Such a good student,' she murmurs, back arching slightly.",
+      "Her fingers tighten in his hair as he lingers, and the rise and fall of her chest quickens. Sam feels, briefly, like the most capable man in two kingdoms."
+    ],
+    "oral_get": [
+      "She settles back against the pillows with a contented sigh, and Sam kisses his way slowly down her stomach. Her fingers find his hair, light at first, then rather more insistent.",
+      "He is nervous, but she is patient and tells him with soft sounds exactly where to linger. The thigh against his cheek trembles, and he counts that as a grade.",
+      "Her breathing deepens, a quiet gasp here, a sigh there, her heel pressed against his back. Sam gives it everything he has, which, it turns out, is quite a lot.",
+      "The candle gutters and neither notices. She mutters something half-laughing, half-pleading, and her hand tightens as he follows the rhythm she sets.",
+      "'Slower,' she whispers, and he obeys. The smile on her face when he glances up is worth every awkward moment of the last six months.",
+      "By the end she's flushed to her hairline, one arm flung over her eyes, laughing breathlessly. 'Where did you learn that?' she asks, and Sam says, truthfully, 'Listening to you.'"
     ]
   },
   "sam_first": {
     "_note": "Added when a lady is Sam's first, past kissing.",
     "_default": [
       "It becomes clear about four seconds in that Sam's previous-life experience in this department is exactly zero. {name} looks absolutely delighted about this.",
-      "Somewhere in the middle of it, Sam realizes this is his first time in two lives. {name} realizes it too, and is very, very kind about it."
+      "Somewhere in the middle of it, Sam realizes this is his first time in two lives. {name} realizes it too, and is very, very kind about it.",
+      "Sam's hands are shaking, a fact he is hoping the dim light will hide. {name} has noticed, of course. She laces her fingers through his, tells him to breathe, and says there's no hurry in the world.",
+      "There is a long, awkward silence in which Sam tries to recall every book he's ever read on the subject. None of it helps. {name} kisses the tip of his nose and says, \"Forget the books,\" and he does.",
+      "{name} explains each step before she takes it, in a low, patient voice, like a teacher who loves her subject. Sam listens with total attention and, once, starts to reach for a notebook that isn't there. She laughs into his shoulder.",
+      "It's not graceful, and {name} makes sure he knows that's perfectly fine. She's warm and unhurried, and by the end he's stopped counting things and simply feels them. Afterward she lies beside him, grinning, saying nothing at all about his ears."
     ]
   },
   "enc_frustrated": {
     "_note": "A finishing service that left her wanting more.",
-    "_default": ["It left her a little frustrated.","She wanted more than he knew how to give.","Not quite what she was hoping for."]
+    "_default": [
+      "It left her a little frustrated.",
+      "She wanted more than he knew how to give.",
+      "Not quite what she was hoping for.",
+      "She lay awake afterward, staring at the ceiling beams and wishing he'd tried harder.",
+      "The evening ended before she'd really gotten started, and she sighed at the door.",
+      "She was left drumming her fingers on the windowsill and wondering where it all went.",
+      "It was polite, quick, and entirely unsatisfying.",
+      "She ended up finishing her wine alone, a little cross.",
+      "She told herself it wasn't his fault. She was only partly convinced."
+    ]
   },
   "enc_drained": {
     "_note": "A restless demon fed too eagerly.",
-    "_default": ["He left pale and shaky.","He had to sit down for a while afterward.","He stumbled out looking decidedly drained."]
+    "_default": [
+      "He left pale and shaky.",
+      "He had to sit down for a while afterward.",
+      "He stumbled out looking decidedly drained.",
+      "He went down the stairs one hand on the wall, the color of old parchment.",
+      "He sat in the lounge for half an hour afterward and couldn't remember what he'd come for.",
+      "He asked for water, then more water, then a chair.",
+      "He walked out with unsteady knees and a very happy, very glassy smile.",
+      "He leaned on the doorframe for a long moment before braving the street.",
+      "The doorman had to help him find his hat. His own head seemed to be missing."
+    ]
   },
   "rest_demon_drain": {
     "_note": "A restless demon overdid it feeding in town on her week off (town reputation loss).",
@@ -392,19 +710,54 @@
   },
   "enc_like": {
     "_note": "Client who's a fan of her kind.",
-    "_default": ["He admitted he'd been hoping for her specifically.","He was a fan from the moment he saw her."]
+    "_default": [
+      "He admitted he'd been hoping for her specifically.",
+      "He was a fan from the moment he saw her.",
+      "He asked for her by name at the door and looked pleased as punch when she appeared.",
+      "He tried to hide how much he'd been hoping, and failed completely.",
+      "He'd saved up for an evening with her specifically, and he made sure she knew it.",
+      "He kept finding reasons to compliment her, each a little clumsier than the last.",
+      "He admitted she'd been the reason he came to the house at all.",
+      "He went all shy and sweet the moment she smiled at him."
+    ]
   },
   "enc_put_off": {
     "_note": "Client who's uneasy around her kind.",
-    "_default": ["He seemed ill at ease around her.","He kept glancing away. It wasn't her best night."]
+    "_default": [
+      "He seemed ill at ease around her.",
+      "He kept glancing away. It wasn't her best night.",
+      "He couldn't quite meet her eye, and the evening never really loosened up.",
+      "He fidgeted with his cuffs and kept the conversation firmly on the weather.",
+      "He seemed to have expected someone different and never quite recovered.",
+      "He kept a polite, wary distance, as though she might bite.",
+      "The mood curdled somewhere around the first glass, and she could feel it.",
+      "He found an excuse to leave early, and she let him, a little stung."
+    ]
   },
-  "encore": {"_note":"She wasn't done after the first round.","_default":["...and she wasn't done with him yet."]},
+  "encore": {
+    "_note": "She wasn't done after the first round.",
+    "_default": [
+      "...and she wasn't done with him yet.",
+      "...and when the candle guttered, she lit another.",
+      "...and then, quite unexpectedly, they went a second round.",
+      "...and he'd barely caught his breath before she was reaching for the wine again.",
+      "...and the lounge piano had moved on to a new song by the time they finally came out.",
+      "...and somehow the hourglass was turned over again, at her suggestion.",
+      "...and neither of them seemed in any hurry to see the door."
+    ]
+  },
   "job_promoter": {
     "_note": "Weekly report line for a promoter (no samples).",
     "_default": [
       "{name} stood at the door of {house} all week, handing out flyers and smiling at everyone who slowed down.",
       "{name} struck up conversations with half the street. A few of them even came inside.",
-      "{name} learned which tavern crowds are worth chatting up and which are just looking for a free drink."
+      "{name} learned which tavern crowds are worth chatting up and which are just looking for a free drink.",
+      "{name} stood in the busiest corner of the market handing out flyers for {house}, with a smile bright enough to catch the eye of a passing cart driver.",
+      "{name} chatted up a table of tired caravan guards and left them curious about {house}.",
+      "{name} haunted the taverns around {house}, charming strangers with a story and a flyer.",
+      "A weekend of flyers, handshakes, and a lot of walking: {name} counted her blisters and her new faces.",
+      "{name} found the best spot beside the fountain and spoke warmly of {house} to anyone who slowed their steps.",
+      "{name} tried three different pitches this week and discovered the one that works best is simply 'come in, it's warm'."
     ]
   },
   "job_promoter_samples": {
@@ -412,7 +765,13 @@
     "_default": [
       "{name} handed out little teasers all week and left a trail of curious faces in her wake.",
       "{name} gave away a lot of smiles and a few sample tastes. The queue at {house} grew.",
-      "{name} made the free samples sound irresistible. They were not wrong."
+      "{name} made the free samples sound irresistible. They were not wrong.",
+      "{name} passed out sample tastes at street corners all week, and curious men followed her like ducklings.",
+      "{name} left a trail of blushing, wide-eyed strangers across the market, all with a card for {house} in hand.",
+      "{name} gave out generous little teasers all week and watched the line outside {house} grow.",
+      "A sample here, a wink there: {name} worked the streets until her feet hurt and the queue at {house} stretched down the lane.",
+      "{name} introduced half the district to a very small taste of what {house} offers. They came back for the rest.",
+      "{name} hurried back to {house} every evening to catch her breath and count the new faces she'd brought."
     ]
   },
   "job_attendant": {
@@ -420,7 +779,13 @@
     "_default": [
       "{name} kept the corridors of {house} moving: towels, wine, and a calm word when it was needed.",
       "{name} spent the week making the courtesans' evenings easier. Nobody had to ask twice.",
-      "{name} refilled glasses, fetched shawls, and noticed everything."
+      "{name} refilled glasses, fetched shawls, and noticed everything.",
+      "{name} moved through {house} on quiet feet, carrying warm towels, cool water, and exactly what was needed before it was asked for.",
+      "{name} kept the rooms of {house} stocked, the sheets fresh, and the courtesans in good spirits.",
+      "A week of trays, shawls, and discreet knocks: {name} made every lady's night easier.",
+      "{name} knew which lady needed tea, which needed silence, and which needed a hairpin. She was right every time.",
+      "{name} dashed up and down the stairs of {house} with towels over her arm and never once dropped a thing.",
+      "{name} worked the corridors of {house} quietly, and by midweek the courtesans were saving her the good biscuits."
     ]
   },
   "job_host": {
@@ -428,154 +793,364 @@
     "_default": [
       "{name} kept the lounge of {house} lively: stories, refilled glasses, and a warm smile for everyone waiting.",
       "{name} made sure nobody waited alone at {house}. Conversation came easily to her.",
-      "{name} spent the week charming the guests in the lounge, one more round and one more story at a time."
+      "{name} spent the week charming the guests in the lounge, one more round and one more story at a time.",
+      "{name} greeted every guest at {house} like an old friend, remembered names, and had someone laughing in every corner.",
+      "{name} drifted around the lounge of {house} with a tray and a warm word, and nobody sat alone for more than a minute.",
+      "{name} traded gossip and compliments with half the lounge at {house}, and the evening felt a little warmer for it.",
+      "{name} spent the week introducing shy clients to each other, and to the ladies, and to the plum wine.",
+      "A talkative week for {name}: stories, toasts, and a shrewd eye for who needed a refill.",
+      "{name} kept the lounge at {house} bright and loud, and sent every client off with a smile."
     ]
   },
   "job_courtesan": {
     "_note": "Weekly report line for a courtesan who had no clients.",
     "_default": [
       "A quiet week for {name}. She wrote letters and rearranged her room twice.",
-      "{name} waited in the lounge all week. The clients simply did not come."
+      "{name} waited in the lounge all week. The clients simply did not come.",
+      "{name} spent a slow week brushing her hair, tuning her instrument, and watching the stairs. The bell stayed quiet.",
+      "Not a single knock on {name}'s door all week. She read three books and finished a very long scarf.",
+      "{name} dressed up every evening and waited in the lounge, but the clients walked past. She's started naming the cushions.",
+      "{name} kept her best smile polished all week. The clients simply never came to use it.",
+      "The lounge was almost empty this week, and {name} played cards with the cook to pass the hours.",
+      "A drizzly, empty week for {name}. She watched rain on the window and wrote a few lines of poetry she won't show anyone."
     ]
   },
   "job_samples_rep_good": {
     "_note": "Note when a promoter's samples raised the house's name.",
     "_default": [
-      "{name}'s samples had the whole district talking about {house}."
+      "{name}'s samples had the whole district talking about {house}.",
+      "{name}'s street samples were a hit; people were whispering about {house} in every tavern from the harbor to the hill.",
+      "{name} left such a lovely impression that strangers began asking after {house} by name.",
+      "The samples {name} gave out were charming and tasteful, and the buzz around {house} grew all week.",
+      "{name}'s teasers made the market giggle and the district curious. {house} came out sparkling.",
+      "Everyone who met {name} on the street had a good word for {house} afterward.",
+      "{name} handled her samples with such style that {house} now has a reputation to live up to."
     ]
   },
   "job_samples_rep_bad": {
     "_note": "Note when a promoter's samples cheapened the house.",
     "_default": [
-      "{name}'s samples left people shrugging. {house} looked a little cheaper for it."
+      "{name}'s samples left people shrugging. {house} looked a little cheaper for it.",
+      "{name}'s street samples came off as hurried and a little tacky, and {house} paid for it in whispers.",
+      "A few people who met {name} on the street came away unimpressed, and {house} slipped in their opinion.",
+      "{name}'s samples left a few eyebrows raised, and not in a good way. {house} looks a little cheaper this week.",
+      "The samples {name} gave out got more shrugs than smiles, and {house} felt it.",
+      "Folk on the street weren't charmed by {name}'s samples, and {house} took a small blow to its name.",
+      "{name} meant well, but the samples fell flat, and {house} looks a bit tawdry for it."
     ]
   },
   "stepped_in": {
     "_note": "Note when a madame or attendant took clients because the courtesans were swamped ({clients} = 'one client' / 'N clients', {did} = ' (kiss ×2, massage)' or ' (company only)').",
     "_default": [
       "{name} stepped in for {clients} when the courtesans were swamped{did}.",
-      "{name} took the overflow herself: {clients}{did}, so nobody had to be turned away."
+      "{name} took the overflow herself: {clients}{did}, so nobody had to be turned away.",
+      "With every courtesan busy, {name} quietly took on {clients}{did}, and the lounge never noticed a gap.",
+      "{name} put her usual duties aside and looked after {clients}{did}. The house ran smoothly on.",
+      "When the waiting room began to fill, {name} rolled up her sleeves and saw to {clients}{did}.",
+      "Nobody asked her to, but {name} covered {clients}{did} and kept the evening from falling apart.",
+      "{name} filled in where the courtesans couldn't: {clients}{did}, and not a single complaint.",
+      "The house was short a pair of hands, so {name} lent hers for {clients}{did}."
     ]
   },
   "pushy_talked": {
     "_note": "A client got pushy and she talked him down herself. Non-graphic.",
     "_default": [
       "A client got pushy with {name}, but she kept her head and talked him down before it went any further.",
-      "Someone wouldn't take no from {name}. A calm word and a steady look, and he backed off."
+      "Someone wouldn't take no from {name}. A calm word and a steady look, and he backed off.",
+      "One client grew grabby with {name}, but she held up a hand, spoke softly, and kept her smile steady until he sheepishly sat back down.",
+      "A client got a little too bold with {name}. She talked him down patiently, cup of tea in hand, until the moment passed.",
+      "{name} turned aside a client who wouldn't take no, using nothing but a calm voice and a level stare.",
+      "A drunk guest tried to push his luck with {name}. She laughed him down, steered him to a chair, and ordered him some water.",
+      "A man tried to press {name} for more than she'd offered. She kept her tone friendly, her boundaries firm, and he gave up."
     ]
   },
   "pushy_security": {
     "_note": "A client got pushy and security handled it. Non-graphic.",
     "_default": [
       "A client got pushy with {name}, and security walked him out.",
-      "Someone wouldn't take no from {name}. Security walked him out before it went further."
+      "Someone wouldn't take no from {name}. Security walked him out before it went further.",
+      "A client pushed too hard with {name}, and the house's security was beside him before the second request, politely escorting him out.",
+      "When a client wouldn't take {name}'s no, a security guard appeared at his shoulder and showed him the door.",
+      "Security stepped in the instant a client crowded {name}, and the man was out on the street with his hat before he could object.",
+      "One guest got grabby with {name}. Security collected him gently, firmly, and thoroughly.",
+      "{name} raised a hand and a guard was there at once. The pushy client left with a lot less swagger."
     ]
   },
   "pushy_sam": {
     "_note": "A client got pushy and Sam stepped in. Non-graphic.",
     "_default": [
       "A client got pushy with {name}. Sam stepped in and settled it.",
-      "A client wouldn't take no for an answer. Sam stepped in and walked him to the door."
+      "A client wouldn't take no for an answer. Sam stepped in and walked him to the door.",
+      "A client crowded {name} and wouldn't back off. Sam appeared, a little pale but determined, and spoke so earnestly that the man left.",
+      "One guest didn't want to hear no from {name}. Sam stepped between them, adjusted his glasses, and somehow talked him out the door.",
+      "A pushy client met Sam in the hallway. Sam, bless him, held his ground, and the man blinked and went home.",
+      "A client got insistent with {name}, and Sam appeared like a nervous, determined little lantern and sent him on his way.",
+      "Sam heard raised voices, hurried upstairs, and put himself between {name} and the client. It worked, and he needed a sit-down afterward."
     ]
   },
   "pushy_samfail": {
     "_note": "A client got pushy and Sam's attempt went badly. Non-graphic.",
     "_default": [
-      "A client got pushy with {name}. Sam stepped in, and it went badly: a loud scene, a bruised ego, and a bad story about {house}."
+      "A client got pushy with {name}. Sam stepped in, and it went badly: a loud scene, a bruised ego, and a bad story about {house}.",
+      "A client wouldn't take no from {name}. Sam stepped in with an apology and a trembling voice, and the whole thing turned into a shouting match in front of the lounge of {house}.",
+      "Sam tried to talk a pushy client down, but tripped over his own words and a rug. The scene at {house} was loud, humiliating, and everybody saw.",
+      "A client got pushy with {name}, and Sam's attempt at diplomacy came out as a squeak. {house} will be hearing about it for a week.",
+      "Sam stepped between {name} and a pushy guest, and the guest laughed at him. It got worse from there, in full view of {house}.",
+      "Sam did his best, but the pushy client shoved past him. {name} had to sort it out, and {house} looked rather foolish."
     ]
   },
   "pushy_samcall": {
     "_note": "A client got pushy, security could not handle it, and Sam was sent for (resolved by the player after the report). Non-graphic.",
     "_default": [
-      "A client got pushy with {name}. Security couldn't handle him, and someone ran to fetch Sam."
+      "A client got pushy with {name}. Security couldn't handle him, and someone ran to fetch Sam.",
+      "A client pushed {name} too far, and security couldn't shift him. Somebody sprinted up the stairs to find Sam.",
+      "The guards couldn't talk down the client bothering {name}, so a runner was sent flying for Sam.",
+      "A stubborn client wouldn't let up on {name}. Security held him, and a maid fetched Sam as fast as her legs would carry her.",
+      "Security hit a wall with a pushy client and {name} called for help. Word went round for Sam.",
+      "A very persistent guest kept {name} backed against a corner until security gave up and ran to fetch Sam."
     ]
   },
   "pushy_none": {
     "_note": "A client got pushy and nobody was there. Non-graphic.",
     "_default": [
       "A client got pushy with {name} and nobody was around to help. She got away from him, shaken.",
-      "{name} had to talk her way out of a client who wouldn't take no. Nobody was near."
+      "{name} had to talk her way out of a client who wouldn't take no. Nobody was near.",
+      "A client crowded {name} in a quiet corridor, and there was nobody close enough to hear. She slipped out of his grasp and fled down the stairs, still trembling.",
+      "{name} found herself alone with a client who wouldn't listen. She ducked his hand, got to the lounge, and sat very still for a while.",
+      "A pushy guest followed {name} and nobody noticed. She ended it herself, shaken but unhurt.",
+      "No guard, no maid, no Sam. {name} faced a pushy client alone, and got out by sheer nerve.",
+      "A client got too forward with {name}, and no one was within earshot. She got clear of him and needed a long cup of tea."
     ]
   },
-  "enc_pushy_talked": {"_default":["He got pushy; she talked him down."]},
-  "enc_pushy_security": {"_default":["He got pushy; security walked him out."]},
-  "enc_pushy_sam": {"_default":["He got pushy; Sam stepped in."]},
-  "enc_pushy_samfail": {"_default":["He got pushy; Sam's intervention went badly."]},
-  "enc_pushy_none": {"_default":["He got pushy and nobody was there to help."]},
-  "enc_pushy_samcall": {"_default":["He got pushy; security sent for Sam."]},
+  "enc_pushy_talked": {
+    "_default": [
+      "He got pushy; she talked him down.",
+      "He got pushy; she calmly talked him down.",
+      "He got grabby; she held up a hand and he stopped.",
+      "He pushed his luck; she talked him around.",
+      "He wouldn't take no at first; she wouldn't give in.",
+      "He got insistent; a calm voice settled him."
+    ]
+  },
+  "enc_pushy_security": {
+    "_default": [
+      "He got pushy; security walked him out.",
+      "He got pushy; the guards showed him out.",
+      "He wouldn't take no; security escorted him to the street.",
+      "He pushed too far; a guard was there in seconds.",
+      "He got grabby; security collected him politely.",
+      "He got pushy and was out the door before he knew it."
+    ]
+  },
+  "enc_pushy_sam": {
+    "_default": [
+      "He got pushy; Sam stepped in.",
+      "He got pushy; Sam stepped in, wobbly but resolute.",
+      "He wouldn't take no; Sam stepped between them.",
+      "He pushed too far; Sam talked him out.",
+      "He got insistent; Sam arrived and settled it.",
+      "He got grabby; Sam appeared and it ended."
+    ]
+  },
+  "enc_pushy_samfail": {
+    "_default": [
+      "He got pushy; Sam's intervention went badly.",
+      "He got pushy; Sam tried to help, and it made a scene.",
+      "He wouldn't take no; Sam's attempt fell apart.",
+      "He pushed too far; Sam stepped in and stumbled.",
+      "He got grabby; Sam's rescue was a loud mess.",
+      "He got pushy, and Sam's help only made it worse."
+    ]
+  },
+  "enc_pushy_none": {
+    "_default": [
+      "He got pushy and nobody was there to help.",
+      "He got pushy and she handled it on her own.",
+      "He wouldn't take no, and no one was close by.",
+      "He pushed too far with no help in earshot.",
+      "He got grabby, and she had to get away alone.",
+      "He got insistent and she was left to escape by herself."
+    ]
+  },
+  "enc_pushy_samcall": {
+    "_default": [
+      "He got pushy; security sent for Sam.",
+      "He got pushy; security couldn't shift him and Sam was called.",
+      "He wouldn't take no; somebody ran to fetch Sam.",
+      "He pushed too far; security sent a runner for Sam.",
+      "He got grabby, and the guards called for Sam.",
+      "He got insistent; Sam was sent for."
+    ]
+  },
   "self_prop": {
     "_note": "A restless lady propositioned a client herself.",
     "_default": [
       "{name}, restless, picked out a client herself and he was not about to say no.",
-      "{name} caught a client's eye across the lounge and made the first move."
+      "{name} caught a client's eye across the lounge and made the first move.",
+      "{name} leaned on the end of the bar, watched the room for a moment, and chose a quiet man in the corner who was clearly too shy to ask. He wasn't shy for long.",
+      "Bored of waiting for the bell, {name} wandered through the lounge and made her offer to a client who'd been eyeing the stairs for an hour.",
+      "{name} spotted a nervous newcomer fiddling with his sleeves and decided he looked like he needed a kind evening. She asked, and he stammered a yes.",
+      "With the fiddler playing something slow, {name} slid onto the arm of a client's chair and made her intentions plain.",
+      "{name} had been stealing glances at one particular regular all night, and finally decided to stop pretending otherwise.",
+      "Nobody had asked for her, so {name} asked for somebody instead. She picked her man with a smile and a crooked finger."
     ]
   },
   "rooms_short": {
     "_note": "Note: the house ran out of room sessions.",
     "_default": [
-      "{house} ran short on rooms this week. More bedrooms would have meant more clients."
+      "{house} ran short on rooms this week. More bedrooms would have meant more clients.",
+      "{house} turned away guests at the door this week. There simply weren't enough rooms to go around.",
+      "The lounge at {house} overflowed with hopeful clients while every bedroom stayed occupied. More rooms would have meant more coin.",
+      "Clients lined the hallway of {house}, waiting for a room that never opened. A few gave up and went elsewhere.",
+      "Every bed in {house} was in use, and the line kept growing. Sam noted that it's a good problem to have.",
+      "{house} ran out of rooms before the evening was half over, and a good number of disappointed guests left.",
+      "The ladies of {house} had willing clients and nowhere to take them. More bedrooms would have helped a lot."
     ]
   },
-  "tidy_high": {"_note":"Weekly note when the house is spotless.","_default":["{house} is spotless, and everyone seems to breathe easier for it."]},
+  "tidy_high": {
+    "_note": "Weekly note when the house is spotless.",
+    "_default": [
+      "{house} is spotless, and everyone seems to breathe easier for it.",
+      "{house} gleams from floor to rafters this week, and even the cat looks smug about it.",
+      "The floors of {house} shine, the lanterns are polished, and guests keep commenting on how fresh it all smells.",
+      "{house} has never looked better. The ladies breathe easier, and the guests linger.",
+      "Every corner of {house} sparkles. It feels like a home you'd be proud to bring a friend to.",
+      "Fresh linens, swept floors, and not a cobweb in sight. {house} is a pleasure to walk through.",
+      "The whole of {house} is spotless, and the staff look pleased with themselves."
+    ]
+  },
   "tidy_low": {
     "_note": "Weekly note when the house is getting shabby.",
     "_default": [
-      "{house} is getting untidy. Guests have noticed, and so have the ladies."
+      "{house} is getting untidy. Guests have noticed, and so have the ladies.",
+      "{house} has a few cobwebs in the corners, and the rugs have seen better days. The ladies have started to sigh.",
+      "Dust has settled on the banister at {house}, and a guest was seen wiping his hands.",
+      "A few too many cups left out and a few too many scuffs on the floors: {house} is slipping.",
+      "The lounge at {house} isn't quite as tidy as it used to be. Regulars have started to raise an eyebrow.",
+      "{house} is starting to look tired, with smudged windows and a sticky table or two.",
+      "Nothing dire yet, but {house} could use a good scrub before it gets worse."
     ]
   },
-  "tidy_bad": {"_note":"Weekly note when the house is a mess.","_default":["{house} is a mess. Guests wrinkle their noses and the ladies are miserable."]},
+  "tidy_bad": {
+    "_note": "Weekly note when the house is a mess.",
+    "_default": [
+      "{house} is a mess. Guests wrinkle their noses and the ladies are miserable.",
+      "{house} is in a sorry state: sticky floors, dusty corners, and a smell that follows people up the stairs.",
+      "Guests at {house} step carefully around the mess, and the ladies have begun to grumble loudly.",
+      "Dirty plates, tangled linens, and cobwebs the size of handkerchiefs: {house} is a disgrace this week.",
+      "The state of {house} has become a topic of conversation, and none of it is flattering.",
+      "{house} is filthy. A regular wrote it a polite complaint in the guest book, and then a less polite one.",
+      "There is mud on the stairs and a mystery stain on the rug at {house}. Nobody wants to be the one to ask."
+    ]
+  },
   "expect_miss": {
     "_note": "A client expected the attendant to offer, and she didn't.",
     "_default": [
-      "A client seemed to expect {name} to make an offer. She didn't, and he left a little sour."
+      "A client seemed to expect {name} to make an offer. She didn't, and he left a little sour.",
+      "A client sat waiting all evening for {name} to make an offer. She never did, and he left muttering about it.",
+      "A client hinted and hovered near {name}, plainly hoping for an invitation. She stayed focused on her work, and he left sour.",
+      "A guest cleared his throat meaningfully at {name} three times. She missed it or ignored it, and he left in a huff.",
+      "A client lingered around {name} expecting a proposition. None came, and he stalked off wounded.",
+      "A client was clearly waiting for {name} to make the first move. She didn't, and he drifted out.",
+      "One client expected an offer from {name} and went home with nothing but a cold cup of tea."
     ]
   },
   "prop_accept_reluctant": {
     "_note": "She accepted a proposition without much enthusiasm.",
     "_default": [
-      "{name} said yes to a proposition she wasn't really in the mood for."
+      "{name} said yes to a proposition she wasn't really in the mood for.",
+      "{name} said yes to a proposition with a small shrug, mostly because refusing felt like more effort.",
+      "{name} agreed to a client's offer, though her smile didn't quite reach her eyes.",
+      "{name} sighed, adjusted her sleeves, and accepted a proposal she wasn't thrilled about.",
+      "It wasn't what {name} wanted, but she nodded and said yes to a proposition anyway.",
+      "{name} agreed to a client's proposition with all the enthusiasm of someone doing the laundry.",
+      "{name} gave a polite, slightly tired yes to a proposition she'd rather have skipped."
     ]
   },
   "bath_massage": {
     "_note": "Weekly line for a bath attendant who gave massages.",
     "_default": [
-      "{name} offered every bather a massage, and most of them said yes."
+      "{name} offered every bather a massage, and most of them said yes.",
+      "{name} wandered among the bathers with warm oil on her palms, offering shoulder rubs to anyone who looked tense, which was everyone.",
+      "{name} turned the bath into an assembly line of contented sighs, one pair of shoulders after another.",
+      "{name} kneaded knots out of grateful guests while the steam curled around the lanterns.",
+      "{name} offered massages at the poolside all week, and the line for her corner of the bath ran out the door.",
+      "{name} worked her thumbs into tired necks and sore backs, and a dozen men left a little taller.",
+      "{name} dipped her hands in cedar oil and gave the bathhouse its best week yet."
     ]
   },
-  "enc_noroom": {"_note":"No free room for the client.","_default":["No room was free, so he went home disappointed."]},
-  "enc_expect": {"_note":"A client expected the attendant to make an offer.","_default":["He seemed to expect an offer and left a little sour."]},
+  "enc_noroom": {
+    "_note": "No free room for the client.",
+    "_default": [
+      "No room was free, so he went home disappointed.",
+      "Every room was full, and he left with a long face and a promise to try again.",
+      "There was nowhere to take him, so he finished his drink and trudged out into the evening.",
+      "He turned up with flowers and optimism, but not a single door was free.",
+      "He lingered in the lounge for an hour, but the upstairs stayed stubbornly occupied.",
+      "The rooms were all spoken for, and he left with a sigh and a half-finished glass.",
+      "No empty bedroom, no evening. He went home grumbling at the whole building."
+    ]
+  },
+  "enc_expect": {
+    "_note": "A client expected the attendant to make an offer.",
+    "_default": [
+      "He seemed to expect an offer and left a little sour.",
+      "He sat in the lounge waiting for an invitation that never came, and eventually stalked out.",
+      "He lingered and hinted and cleared his throat, but the offer never arrived.",
+      "He leaned back expecting an offer, and left grumbling when none came.",
+      "He kept glancing at the stairs, clearly hoping she'd make a move, and went home disappointed.",
+      "He'd come expecting a little encouragement. The lack of it hurt his pride.",
+      "He waited, hopeful, for a long moment, and then paid and went out."
+    ]
+  },
   "train_stat": {
     "beauty": [
       "Sam books {name} an afternoon with a stylist he can't quite afford, then sits in the corner taking notes on skincare.",
-      "{name} and Sam go through posture, grooming and how to stand in good light. Sam holds the mirror."
+      "{name} and Sam go through posture, grooming and how to stand in good light. Sam holds the mirror.",
+      "Sam finds a mirror, a comb, and a jar of honeyed pomade, and he and {name} spend the afternoon on her hair and complexion. She directs the whole thing, and he mostly holds things.",
+      "They go through colors in the shop-window light, hold up scarf after scarf, and argue happily about what suits her best. In the end, {name} chooses the one Sam said was too bold."
     ],
     "charm": [
       "Sam plays a string of difficult guests for {name} to win over. His grumpy dwarf impression is a highlight.",
-      "{name} practices small talk on Sam until he forgets it's practice."
+      "{name} practices small talk on Sam until he forgets it's practice.",
+      "{name} and Sam practice smiling. It sounds easy, and it isn't, and by the end they are both laughing too hard to manage any smile at all. Then she finally gets it right, and it's devastating.",
+      "Sam plays a stiff guest and {name} practices melting him. It takes fourteen tries, two bad puns, and a dramatic sigh, and when she finally wins, he applauds."
     ],
     "charisma": [
       "Sam has {name} address an empty common room as if it were packed, then again, louder, from the stairs.",
-      "{name} rehearses toasts and introductions while Sam heckles gently from the back."
+      "{name} rehearses toasts and introductions while Sam heckles gently from the back.",
+      "They rehearse entering a crowded room, over and over, in the empty lounge. {name} learns to hold a pause and own a doorway, and Sam stands at the back, clapping with the whole of his heart.",
+      "Sam makes her give a toast to an imaginary room, then another, then a third. By the end, {name} commands the empty chairs, and he's pretty sure they'd follow her anywhere."
     ],
     "refinement": [
       "Sam and {name} work through table settings, forms of address and which fork is for what. Neither of them is sure about the fish fork.",
-      "{name} reads poetry aloud while Sam corrects her pronunciation from a borrowed etiquette book."
+      "{name} reads poetry aloud while Sam corrects her pronunciation from a borrowed etiquette book.",
+      "A formal tea service appears in the parlor, with all the wrong cups, and Sam and {name} work through proper etiquette with great solemnity. She corrects his pinky finger. He deserves it.",
+      "They work through the finer points: how to fold a napkin, how to pour for a duke, how to look unbothered when something spills. {name} is a natural, and she knows it."
     ],
     "wits": [
       "Sam sets {name} logic puzzles from a book he half remembers from his old world. She solves the last one faster than he can.",
-      "{name} and Sam spend the afternoon on riddles, ledgers and a board game Sam had someone carve for him."
+      "{name} and Sam spend the afternoon on riddles, ledgers and a board game Sam had someone carve for him.",
+      "Sam brings riddles from three different lives' worth of memory, and {name} dismantles them with a sharp, delighted smile. She stumps him once, and refuses to ever let him forget it.",
+      "They play a long, fast game of quick comebacks in the lounge, and {name} wins. Sam writes down her best lines for the house's collection."
     ],
     "stamina": [
       "Sam takes {name} on a long run along the river. He regrets it before she does.",
-      "{name} works through a circuit Sam drew up: stairs, buckets of water, more stairs."
+      "{name} works through a circuit Sam drew up: stairs, buckets of water, more stairs.",
+      "Morning laps around the garden, a stitch in the side, and {name} slowing down to keep pace with Sam, who is wheezing dramatically. They finish together, collapsing on the grass.",
+      "Sam drafts a training plan with warm-ups and rest days. {name} reads it, nods, and follows it at twice the pace. By the end of the week, she's noticeably less winded."
     ],
     "strength": [
       "{name} hauls crates in the storeroom while Sam counts reps and pretends he could lift them too.",
-      "Sam borrows weights from the guild and spots {name} through an afternoon of lifting."
+      "Sam borrows weights from the guild and spots {name} through an afternoon of lifting.",
+      "They haul water jugs up and down the back stairs for an hour. {name} carries two at a time, and Sam carries one and a half, with a great show of dignity.",
+      "Sam sets up a row of sacks of flour and {name} lifts them with growing ease. He keeps a tally on a slate and claims it's for science."
     ],
     "agility": [
       "Sam chalks a pattern on the courtyard floor and has {name} dance, dodge and step through it until it's second nature.",
-      "{name} practices balance on the garden wall while Sam hovers underneath, ready to catch her."
+      "{name} practices balance on the garden wall while Sam hovers underneath, ready to catch her.",
+      "A rope strung low across the yard becomes an obstacle course, and {name} clears it again and again. Sam's attempt is shorter, funnier, and mostly face-down in the grass.",
+      "They practice ducking, dodging, and tumbling on the lawn, laughing breathlessly. {name} lands every roll while Sam lies on his back, wondering where his hat went."
     ]
   },
   "sample_act": {
@@ -583,7 +1158,13 @@
     "_default": [
       "{name} pulled a curious passer-by into a doorway near {house} and {lady}, free of charge, then pressed a card into his hand.",
       "Out on the street, {name} gave one hesitant man a free sample: she {lady}, then pointed him at {house}'s door.",
-      "{name}'s free sample of the week: a quick {act} in the shadow of {house}'s lanterns. He was inside within the hour."
+      "{name}'s free sample of the week: a quick {act} in the shadow of {house}'s lanterns. He was inside within the hour.",
+      "On a market corner with the noodle stalls steaming behind them, {name} drew a startled stranger aside and {lady}, free of charge, then tucked a card for {house} into his pocket.",
+      "{name} waited until the lanterns came on, then gave a lone traveller a free sample: she {lady}. He looked at the card for {house} the whole way to the door.",
+      "Beneath a tavern awning, {name} treated one cheerful drunk to a quick {act} and a wink. He staggered off toward {house} to see about the rest.",
+      "A sample for the road, {name} decided. A brief, teasing {act} in the alley behind the tea shop, and a man very sure of where he was headed afterward.",
+      "Between two rain showers, {name} caught a damp, lonely-looking man by the bridge and {lady}, a free taste. He asked for directions to {house} twice.",
+      "{name} gave away one {act} outside the cobbler's, with an audience of exactly one pigeon. The man it went to has been telling people about {house} ever since."
     ]
   },
   "step_lead": {
@@ -591,70 +1172,141 @@
     "_default": [
       "Every courtesan was busy, so {name} stepped in herself.",
       "With the courtesans swamped, {name} set aside her duties as {role} for a client.",
-      "No courtesan was free, and {name} didn't want anyone turned away."
+      "No courtesan was free, and {name} didn't want anyone turned away.",
+      "The bell rang again and again, and when there was nobody left to answer it, {name} put down her duties as {role} and answered it herself.",
+      "With a line forming at the foot of the stairs and every courtesan occupied, {name} smoothed her dress and left her post as {role}.",
+      "It was a busy night, and the lounge was getting restless. {name} set her work as {role} aside.",
+      "Nobody was free, and a hopeful client was already hovering by the door. {name} didn't have the heart to send him away, whatever her job as {role} said.",
+      "Sam looked harried, the courtesans were all upstairs, and {name} quietly hung up her apron as {role}.",
+      "Somebody had to take care of the waiting guests, and {name}, between tasks as {role}, decided that somebody would be her."
     ]
   },
   "act_turn": {
     "_note": "Shown right after an encounter's or a first's opening (before the service line and any AI text), so the story says which way the moment went. Keyed by service id. Edit freely; {name} = her name.",
-    "kiss": [],
+    "kiss": [
+      "The conversation runs out of words at roughly the same moment, and {name} steps closer. Her hand settles on his chest and she lifts her face to his.",
+      "{name} catches his sleeve, tugs him down, and kisses him before he can finish his sentence. He decides the sentence wasn't that important.",
+      "Something in the quiet makes {name} smile. She reaches up, cups his cheek, and kisses him slowly.",
+      "The lamp is low, the room is warm, and {name} has clearly stopped pretending she is here only to talk. She leans in and settles it.",
+      "With a soft little laugh, {name} brushes his hair off his forehead and kisses him, gently at first, then not so gently."
+    ],
     "massage_give": [
       "Somewhere between kisses {name} pushes him gently down onto the bed and says he's far too tense. Her hands go to his shoulders: a massage, and a good one.",
-      "{name} breaks off with a laugh, turns him around by the shoulders and starts working the knots out of his back instead."
+      "{name} breaks off with a laugh, turns him around by the shoulders and starts working the knots out of his back instead.",
+      "{name} notices his shoulders are somewhere near his ears and clicks her tongue. 'Lie down,' she says, already reaching for the oil.",
+      "Mid-sentence, {name} presses a thumb into the muscle at his neck and watches him wince. 'Right,' she announces, 'that needs attention.'",
+      "A kiss ends, and {name} sits back, studying him with a fond frown. She pats the bed beside her. 'Face down, Sam, I'm fixing that back.'",
+      "She slides behind him, hands landing on his shoulders, and he stiffens, then sags. Apparently there is going to be a massage, and he has no say in it."
     ],
     "massage_get": [
       "{name} stretches, winces at her own shoulders, and asks if he'd mind. He doesn't mind. He gives her a massage, slowly, and she melts into it.",
-      "She rolls onto her front and asks him for a massage. Sam takes the job very seriously."
+      "She rolls onto her front and asks him for a massage. Sam takes the job very seriously.",
+      "{name} rolls her neck with a pained little wince and glances his way. 'Would you mind terribly?' she asks, already turning her back to him.",
+      "With a sigh, {name} lies on her stomach and gathers her hair aside. 'My shoulders are made of rocks tonight,' she says, in a tone that is clearly a hint.",
+      "She slides the bottle of oil across the sheets toward him and arches an eyebrow. 'Hands,' she says. 'Yours. Please.'",
+      "{name} drops onto the bed with a groan, kicks off her shoes, and wiggles her toes pointedly at him. Sam gets the message and rolls up his sleeves."
     ],
     "manual_get": [
       "She guides his hand where she wants it and keeps hers over it, showing him.",
-      "{name} takes his hand and lets him know, without a word, that she wants to be touched."
+      "{name} takes his hand and lets him know, without a word, that she wants to be touched.",
+      "{name} takes his wrist and draws his hand along her thigh, watching his face. She isn't asking so much as showing.",
+      "Her breath quickens against his ear, and {name} guides his fingers lower with a quiet, 'Here.'",
+      "{name} holds his gaze, places his hand where she wants it, and gives a small nod. The rest, she seems to trust, he can work out.",
+      "She leans back on her elbows, knees falling gently open, and {name} gives him a look of pure encouragement."
     ],
     "manual_give": [
       "Her hand slips lower, and {name} smiles at the face he makes.",
-      "{name} decides it's her turn to take care of him, and her hands go to work."
+      "{name} decides it's her turn to take care of him, and her hands go to work.",
+      "{name}'s fingers drift lower and find the answer to a question he hadn't asked. She smiles, warm and wicked, and doesn't stop.",
+      "'Let me,' murmurs {name}, and without waiting for an answer her hand slips beneath his waistband. Sam forgets what he was saying.",
+      "A hand trails slowly down his stomach, and {name} watches the effect with open delight. 'Shh,' she says. 'Just relax.'",
+      "{name} laughs quietly at his sharp intake of breath, then settles in beside him and takes matters, literally, into her own hands."
     ],
     "breast_get": [
       "{name} undoes her top and lets him explore, watching his face the whole time.",
-      "She guides his hands to her chest and lets him take his time."
+      "She guides his hands to her chest and lets him take his time.",
+      "{name} slips her top from one shoulder and watches his eyes go wide. 'Go on,' she says softly. 'I won't bite.'",
+      "She takes his hand and lays it over her heart, then lower. 'Gently,' {name} whispers, and the ghost of a smile curves her lips.",
+      "With unhurried fingers, {name} undoes her laces and guides him closer. He is fairly sure he's dreaming, and equally sure he doesn't want to wake.",
+      "{name} tilts her chin, a quiet invitation, as her bodice comes loose. Sam, reverent, reaches out."
     ],
     "oral_get": [
       "{name} lies back and, a little shyly, asks him to use his mouth on her. He does.",
-      "She pushes him down gently, and her meaning is very clear."
+      "She pushes him down gently, and her meaning is very clear.",
+      "{name} draws him down toward her with a hand at his nape, and he understands what she means a heartbeat later. Her smile is a little shy, a little sure.",
+      "She presses a kiss to his forehead and guides him lower. 'Take your time,' {name} says, and her voice wavers just slightly.",
+      "Settling back against the pillows, {name} lets her knees fall apart and gives him a look that is unmistakably an invitation. Sam, flushed, accepts.",
+      "{name} slides his hand down her thigh, then nudges his shoulder gently. The message, though unspoken, is thoroughly clear."
     ],
     "oral_give": [
       "{name} slides down to her knees with a look that says she's been planning this.",
-      "She kisses her way down his chest and doesn't stop."
+      "She kisses her way down his chest and doesn't stop.",
+      "{name} sinks to her knees in front of him, hands resting on his thighs, and looks up with mischief in her eyes. 'Don't mind me,' she says.",
+      "She kisses a slow trail down his chest and stomach, then pauses to glance up at him through her lashes. The pause is, he suspects, for effect.",
+      "With a fond, wicked little smile, {name} pushes him back onto the cushions and settles between his knees. Sam stops breathing.",
+      "'Sit,' says {name}, and while he's still sitting she kneels, and then there is no more thinking."
     ],
     "breast_give": [
       "{name} has an idea, and the way she unbuttons her top says she's proud of it.",
-      "She pulls her top off and shows him exactly what she has in mind."
+      "She pulls her top off and shows him exactly what she has in mind.",
+      "{name} pulls her bodice open with theatrical ceremony. 'Lie back,' she says, with the air of someone presenting a masterpiece.",
+      "Her eyes sparkle, and {name} reaches for the oil with a slow, knowing smile. 'I've had an idea,' she announces, 'and you're going to like it.'",
+      "{name} shrugs off her top, leans over him, and tells him with a grin exactly where to put his hands, and exactly where not to. Sam nods, dazed.",
+      "She settles herself over his hips with a decisive wriggle, scoops her hair aside, and gives him a look that dares him to object. He does not."
     ],
-    "missionary": ["They end up in bed, her pulling him down on top of her.","She lies back and pulls him with her, and that's that."],
-    "cowgirl": ["{name} pushes him back onto the bed and climbs on top.","She straddles him and takes charge."],
+    "missionary": [
+      "They end up in bed, her pulling him down on top of her.",
+      "She lies back and pulls him with her, and that's that.",
+      "{name} draws him down against her, tugs the pillows into place, and pulls him in with a smile. The bed takes them both with a soft creak.",
+      "'Come here,' says {name}, arms already open, and Sam does, as if it were the easiest thing in the world. It is.",
+      "She hooks a leg around his and eases him over her, her eyes dark and fond. 'Right here,' she murmurs. 'I want you right here.'",
+      "The kiss deepens, hands become urgent, and the next thing he knows {name} is beneath him on the bed, breathless and smiling up at him."
+    ],
+    "cowgirl": [
+      "{name} pushes him back onto the bed and climbs on top.",
+      "She straddles him and takes charge.",
+      "{name} pushes him down against the pillows with one hand and swings a leg over his hips. 'My turn,' she says, and he is in no position to disagree.",
+      "With a wicked look she presses him flat and settles herself over him, hair spilling loose. 'Stay there,' says {name}, and he does.",
+      "Somewhere between one kiss and the next, {name} rolls them over so that she's on top, grinning down at his astonished face.",
+      "{name} straddles his lap, takes his hands, and pins them lightly to the bed. 'You,' she says, 'are going to let me do this properly.'"
+    ],
     "doggy": [
       "{name} turns over onto her hands and knees and looks back at him over her shoulder.",
-      "She rolls onto her front and looks back at him with a grin."
+      "She rolls onto her front and looks back at him with a grin.",
+      "{name} slides off his lap, turns, and braces her hands on the mattress, glancing back with a look that needs no translating.",
+      "With a low laugh, {name} turns onto her hands and knees and tosses her hair over one shoulder. 'Well?' she says. 'Are you going to just stand there?'",
+      "She rolls over, arches her back, and looks at him over her shoulder with a slow, inviting smile. Sam has to remind himself to move.",
+      "Pressing her face teasingly into the pillow, {name} lifts her hips and wiggles, which is both an invitation and a very unfair tactic."
     ]
   },
   "demo_lead": {
     "_default": [
       "Sam claps his hands for attention and announces a practical lesson. {name} stands up before he can ask, already untying something. \"Pay attention, everyone,\" she says. \"He gets nervous when nobody takes notes.\"",
       "The parlor is full, the cushions are claimed, and {name} is in the middle of it all with Sam, explaining each step as they go like it's the most normal thing in the world. Sam's ears are bright red. Nobody looks away.",
-      "{name} volunteers so fast that a couple of the others laugh. She takes Sam's hand, turns to the room, and says, \"Right. Watch closely, this is the part everyone gets wrong.\""
+      "{name} volunteers so fast that a couple of the others laugh. She takes Sam's hand, turns to the room, and says, \"Right. Watch closely, this is the part everyone gets wrong.\"",
+      "\"For the benefit of the class,\" Sam begins, and {name} cuts in. \"For the benefit of the class, he's going to stand there and be useful.\" She takes his hand, and the room, which was chattering a moment ago, goes completely still.",
+      "The parlor has been rearranged into a theater of cushions, and {name} stands at the center like she was born there. She gives the audience a slow look, then turns to Sam. \"Ready, teacher?\" she asks, and he forgets every word he planned to say.",
+      "{name} has brought a pointer, which she does not need and uses constantly. She narrates every step in a clear, cheerful voice, pausing only to correct Sam's posture and to tell the back row to stop whispering. They don't."
     ]
   },
   "demo_watch": {
     "_default": [
       "By the end, the room is very quiet and very warm. Several of the ladies have taken notes. Some of them are fanning themselves with the notes.",
       "Afterward nobody quite meets anybody's eyes, and everyone has questions. A lot of questions.",
-      "There's scattered applause. Someone asks if there'll be a follow-up class. Several people ask, actually."
+      "There's scattered applause. Someone asks if there'll be a follow-up class. Several people ask, actually.",
+      "When it's over, a stunned silence hangs in the air, then breaks all at once into a chorus of impressed murmurs. Two of the ladies are writing frantically, and a third is already asking about next month.",
+      "Somebody fans herself with a menu. Somebody else says \"Well,\" in a very small voice, and the entire room agrees that this was a most educational evening.",
+      "The audience drifts off in twos and threes, flushed, giggling, and making plans. The cushions will need airing, and so will a few of the spectators."
     ]
   },
   "orgy_lead": {
     "_default": [
       "It starts as a quiet drink in {house} after closing. {names} are all there, and somewhere around the second bottle {first} says what everyone has apparently been thinking. Sam opens his mouth to be sensible. Nobody lets him finish.",
       "{first} knocks on Sam's door with a grin he has learned to be nervous about. Behind her, crowding the hallway: {names}. \"We talked it over,\" she says. \"You're outvoted.\"",
-      "Nobody can say afterward whose idea it was. One minute {names} are arguing about who gets Sam's evening, the next someone suggests nobody has to lose, and the argument is over very quickly."
+      "Nobody can say afterward whose idea it was. One minute {names} are arguing about who gets Sam's evening, the next someone suggests nobody has to lose, and the argument is over very quickly.",
+      "{names} have been whispering in the corner of {house} for an hour, and when {first} finally comes over to Sam's table, the others are right behind her. \"We've come to a conclusion,\" she says. Sam, who has learned to dread conclusions, puts his cup down.",
+      "It begins with a card game that nobody is playing seriously, and ends with {first} announcing that the stakes have changed. {names} lean in as one. By the time Sam understands what he's agreed to, the lamps in {house} have been turned down.",
+      "The night is warm, the wine is good, and {first} has a gleam in her eye that Sam recognizes from the last three times he lost an argument. \"Don't panic,\" she says, as {names} gather round. \"It's a group project.\""
     ]
   },
   "orgy_pair": {
@@ -662,15 +1314,121 @@
       "{a} and {b} end up tangled together more than once and don't seem to mind in the least.",
       "{a} catches {b}'s eye across the bed and they both start laughing, then very much stop laughing.",
       "At one point {a} is coaching {b} with a running commentary. {b} tells her to shut up, then follows every word.",
-      "{a} pulls {b} in for a kiss while they wait their turn. It turns out waiting is not the hardship anyone expected."
+      "{a} pulls {b} in for a kiss while they wait their turn. It turns out waiting is not the hardship anyone expected.",
+      "{a} and {b} have drifted into a corner of their own, trading whispered jokes and soft touches as if they had all night. They do.",
+      "Between rounds, {a} straightens {b}'s hair, which immediately ruins it again, and they both grin like thieves."
     ]
   },
   "orgy_end": {
     "_default": [
       "Much later, the bed is a wreck, the lantern has burned down, and Sam is pinned under at least three warm, sleeping bodies. He decides this is fine. This is very fine.",
       "By dawn they're a heap of limbs and sheets. Somebody is snoring. Somebody else is still giggling. Sam stares at the ceiling, wondering how his life got here, and finds he has no complaints.",
-      "They drift off one by one. The last one awake is {first}, who props her chin on Sam's chest and says, \"Same time next week?\" She falls asleep before he can answer."
+      "They drift off one by one. The last one awake is {first}, who props her chin on Sam's chest and says, \"Same time next week?\" She falls asleep before he can answer.",
+      "The candles are stubs, the wine is gone, and the sheets look like they lost a war. Sam lies in the middle of it, grinning at nothing, as {first} pulls the blanket over all of them. \"Goodnight,\" she says, sleepy and satisfied.",
+      "Dawn finds them tangled, warm, and wholly unrepentant. Birdsong drifts in through the shutters, and {first} is the first to stir, cracking an eye to survey the damage. \"Worth it,\" she mumbles, and goes back to sleep.",
+      "The house is silent at last. Sam takes one long look around the room, at the sleeping faces, the scattered cushions, the smile {first} wears even in her sleep, and thinks that, notes or no notes, he will remember this one."
     ]
   },
-  "orgy_lover": {"_default":["{name} keeps a hand on Sam the whole night, sharing him and making very sure everyone knows who he goes home with."]}
+  "orgy_lover": {
+    "_default": [
+      "{name} keeps a hand on Sam the whole night, sharing him and making very sure everyone knows who he goes home with.",
+      "{name} stays within arm's reach of Sam all night, a hand on his shoulder, a foot against his ankle. She shares, but she makes sure everybody knows whose he is when the lamps go out.",
+      "Whatever else happens, {name} always ends up back at Sam's side, tucked into the crook of his arm like she belongs there. She does, and she lets the room know it with one sidelong glance.",
+      "{name} is generous, laughing, and wonderfully relaxed about the whole affair, but every few minutes her fingers find Sam's and squeeze. It's a quiet, private message in a very public night.",
+      "At some point {name} whispers \"mine\" in Sam's ear, so softly that only he can hear. Then she turns back to the others with a bright smile and carries on as though nothing at all had been said.",
+      "{name} insists on tucking the blanket around Sam when the night is over, a small, possessive kindness. \"You're coming with me,\" she says, and nobody argues."
+    ]
+  },
+  "private_open": {
+    "_note": "Opening of plain private time with Sam (before the turn and the service line). {name} = her name. Act-neutral.",
+    "_default": [
+      "{name} drags Sam off for a \"lesson.\" He takes notes afterward. She finds this hilarious.",
+      "A quiet evening, a locked door, and a \"do not disturb\" sign that the neighbors would later call unnecessary given the noise.",
+      "{name} insists Sam needs more practice. Sam, a diligent student, does not argue.",
+      "By the time they come downstairs, everyone has very carefully decided not to look at them.",
+      "The house has settled into its after-hours hush by the time {name} finds Sam in the lounge. Rain ticks against the shutters, one lantern is still burning, and she takes the cushion right beside his instead of across from him. \"Walk me upstairs?\" she says, as if it were a question.",
+      "{name}'s room smells of warm tea and the cedar oil she rubs into the bed frame. She lights a single candle, pulls the curtain against the rain, and pats the quilt beside her. Sam sits with the care of a man entering a temple.",
+      "They start with the leftover plum cakes from the kitchen and a game of cards neither of them is paying attention to. Somewhere around the third hand, {name} puts her cards face down and just looks at him. The candle gutters, and nobody remembers who was winning.",
+      "The evening wind pushes the shutters open a hand's width, bringing in night-jasmine and the faraway music of the Silver Fiddle. {name} gets up to close them, changes her mind, and leaves them open. \"Better,\" she says, turning back with a small, private smile.",
+      "Sam knocks, which is silly, because {name} invited him and is sitting right there. She raises an eyebrow at the knock, and he apologizes, and she laughs until she has to wipe her eyes. It breaks the nervous part cleanly in half, and he is allowed in.",
+      "{name} has put a kettle on the little brazier and arranged every cushion in the room into one large, suspicious nest. \"Nothing is happening yet,\" she says, pouring. \"This is just the part where we get comfortable.\" Her foot finds his under the blanket anyway.",
+      "The corridors are quiet, the stairs creak in their usual places, and {name} holds Sam's sleeve all the way up so he doesn't trip over the loose board. At her door she stops, turns, and straightens his collar for no reason at all. \"There,\" she says. \"Now you're presentable. Briefly.\"",
+      "A thunderstorm rolls over Hollowmere just as the last guest leaves, and the whole house goes dim and golden. {name} finds Sam at his desk, takes the quill out of his hand, and sets it carefully out of reach. \"The ledger will survive one night,\" she says.",
+      "Sam has brought a lantern, a bottle of plum wine, and a plan. The plan dissolves the instant {name} opens the door in her loose robe, her hair half down. She takes the bottle, ignores the plan, and tugs him inside.",
+      "The bathhouse steam has drifted all the way up the stairs, and {name}'s skin is still faintly warm and smelling of orange peel when she greets him. She leans in the doorway, in no hurry at all. \"I thought you might want some company,\" she says, \"since you've been staring at that door for an hour.\""
+    ]
+  },
+  "private_first": {
+    "_note": "Her first private time with Sam (replaces private_open once). {name}.",
+    "_default": [
+      "{name} has clearly been thinking about this. She pulls Sam into her room before he can finish saying hello.\n\nThe door closes.",
+      "{name} has clearly been thinking about this. She's tidied her room twice, changed her mind about the lamp three times, and when Sam arrives she says \"Hello\" in a very careful voice. Then she laughs at herself and lets him in.",
+      "There's a ribbon in {name}'s hair that wasn't there at supper. She doesn't mention it, and Sam, who has learned some things, doesn't either. The room is warm, the lamp is low, and she shuts the door behind him with a soft click and her back flat against it.",
+      "\"I rehearsed what to say,\" {name} admits, standing in her doorway with the night breeze in her sleeves. \"It was very good. I've forgotten all of it.\" She takes his hand instead, and her fingers are a little cold and entirely steady.",
+      "Rain is drumming on the roof tiles when {name} opens her door, and she's wearing the expression of a woman who has argued with herself for a week and won. She lets Sam come in, then stands very close, listening to the rain, saying nothing.",
+      "{name} has laid out two cups, one candle, and no excuses. She sits on the edge of her bed, folds her hands, then unfolds them. \"You're the first person I've actually wanted to ask,\" she says quietly. \"So I'm asking.\""
+    ]
+  },
+  "private_first_sam": {
+    "_note": "Sam's very first time (replaces private_open once). {name}.",
+    "_default": [
+      "{name} takes Sam's hand and leads him upstairs. It becomes clear about four seconds in that his previous-life experience in this department is exactly zero.\n\n{name} looks absolutely delighted about this.\n\nThe door closes.",
+      "Sam has read about this in two lives and practiced it in neither. He arrives at {name}'s door with his hands clasped like a schoolboy at a recital, and she takes one look at him and smiles so warmly that the nerves lose half their grip. \"Come in,\" she says. \"I'll go slowly. I'm very good at slowly.\"",
+      "\"I should mention,\" Sam begins, in the lamplit hush of {name}'s room, \"that I have no idea what I'm doing.\" {name} puts a finger to his lips, delighted beyond words. \"Good,\" she whispers. \"Then nothing gets in the way of me showing you.\"",
+      "{name} takes charge the way she might take a shy guest's coat, gently and without making a fuss of it. She guides his hands, tells him to breathe, and tells him he doesn't have to be graceful. The moons are bright in the window, and Sam's ears are the color of boiled shrimp.",
+      "Sam stands at the threshold with the posture of a man about to take an exam. {name} laughs, soft and kind, takes his notebook out of his coat pocket, and sets it on the shelf. \"No notes this time,\" she says, drawing him inside. \"Tonight, you just learn it by heart.\" The door closes behind them."
+    ]
+  },
+  "train_service": {
+    "_note": "Hands-on service practice with Sam (followed by her shown service's private_act line). {name}.",
+    "_default": [
+      "{name} decides Sam's education is a shared project. They work through everything they're comfortable with, one thing at a time, until both of them are confident in the technique. Sam takes notes afterward. She finds this hilarious.",
+      "Sam brings a candle, a notebook, and the serious face he wears for exams. {name} brings a smirk and a very good memory of what she's comfortable with. They run through her repertoire one item at a time, stopping whenever she says \"wait, try it like this,\" and he writes it all down.",
+      "It's supposed to be a practice session, and for the first ten minutes it very nearly is. {name} corrects his hand placement, he asks a polite follow-up question, and she tells him that politeness is lovely but he can stop checking in every four seconds. The notes are getting messier.",
+      "The practice room smells of lamp oil and warm cedar, and {name} has put cushions everywhere. \"Think of it as a rehearsal,\" she says. Sam thinks of it as an exam he's thrilled to be taking. They work through each service she's sure of, polishing and adjusting.",
+      "Sam has drawn a small diagram. {name} looks at it for a long, silent moment, then tells him it's anatomically ambitious and takes the pencil to correct it. After that they do things the hands-on way, and the diagram gets very smudged.",
+      "\"Rule one,\" {name} announces, \"no giggling at the technique.\" They break that rule within a minute. Between laughs, they go through each service she's confident in, trading adjustments, and the lamp burns down while they wrestle with the finer points.",
+      "The rain beats a steady rhythm on the shutters while {name} walks Sam through her own repertoire like a guide leading a tour. She stops at each service, shows him what works and what doesn't, and gives him her expert verdict on his form. He scribbles frantically, glowing with pride."
+    ]
+  },
+  "train_skill": {
+    "_note": "One-on-one trade-skill training, keyed by skill (service, dance, bar, combat, manage; _default fallback). {name}, {skill}. Followed by \"Sam takes detailed notes, as is tradition.\"",
+    "_default": [
+      "Sam walks {name} through the trade the hands-on way, {skill} first: posture, pacing, the little things regulars notice.",
+      "Sam pulls up a stool, and {name} sits across from him with the focused expression she saves for things she wants to be good at. They work through {skill} slowly, one piece at a time, and he is careful to praise what she does well before he mentions anything else.",
+      "The afternoon light slants across the floor while Sam and {name} drill {skill} together. She tries it, misses, tries again; he offers a small suggestion; and she gets it on the next go with a bright, startled laugh.",
+      "\"Show me,\" Sam says, and {name} does, and then he shows her his own clumsy version for contrast. She's helpless with laughter, which is the best thing that could have happened. After that, {skill} goes much more smoothly.",
+      "They keep at {skill} until the lamps need trimming. {name} is stubborn and quick, and Sam is patient, and somewhere in the middle of it she stops looking at him as the boss and starts looking at him as a very good teacher."
+    ],
+    "service": [
+      "Sam and {name} sit across from each other with a pot of tea and a plan: how to greet a guest, how to read a mood, how to make a tired stranger feel like the only person in the room. She practices her welcome on him four different ways. By the fourth, he is genuinely flustered.",
+      "\"Eye contact first,\" Sam says, \"then the smile, then the offer of a drink.\" {name} nods, tries it, and gets it right on the third go. The lounge is empty and quiet, the afternoon light coming slantwise through the shutters, and she sits a little taller each time he nods.",
+      "They spend the afternoon on small things, which turn out to be the big things: how to pour wine without a drip, when to stay silent, when to ask a question. {name} is quick, and the quiet pride on her face grows every time Sam says \"yes, exactly that.\"",
+      "Sam plays the nervous first-time guest. He is, unfortunately, very convincing. {name} manages to settle him with a few well-chosen words and a warm hand on his sleeve, and then they both realize he's forgotten to keep the act up."
+    ],
+    "dance": [
+      "The parlor rug is rolled aside and {name} stands barefoot on the boards while Sam counts the beat aloud. He can't dance, but he can spot where her weight drifts, and he's learned to say so gently. She keeps rolling her eyes and correcting herself anyway.",
+      "A phonograph does not exist in this world, so Sam hums and taps the rhythm on a table, badly. {name} laughs, then takes the beat from him and makes it hers, turning slowly across the floor. By the end of the hour, the humming is the only thing out of tune.",
+      "\"Again from the top,\" Sam says, and {name} salutes with a flourish and starts the routine over. Her shadow sweeps long across the wall in the lantern light, and her footwork sharpens every time. She stops at the end, breathing hard, flushed and pleased.",
+      "Sam watches from a stool at the edge of the floor, chin in his hand, offering notes like a very polite critic. {name} adjusts a spin, lifts her arms a touch higher, and the whole thing suddenly flows. He claps once, startled into it, and she bows with a grin."
+    ],
+    "bar": [
+      "Behind the empty bar, the shelves of bottles glint in the lamplight. Sam sets out three glasses and a jigger, and {name} learns to measure by eye while he times her pours with a sand-glass. She spills the first one, grins, and wipes the bar with a flourish.",
+      "\"A good bartender remembers faces,\" Sam says, holding up a deck of sketched regulars. {name} studies them, names each one correctly, and adds what each of them drinks. He is unreasonably impressed. She is unreasonably smug.",
+      "They go through the shaker, the strainer, and the long spoon, one tool at a time. {name} gets the ice rattle just right on her fifth try, and the sound rings through the quiet room like a small bell. Sam makes her do it six more times, to be sure.",
+      "Sam mixes a drink badly on purpose so {name} can fix it. She tastes it, winces, and rebuilds it from the base up, adding a twist of citrus and a pinch of something he doesn't recognize. It tastes wonderful, and he asks her to show him again."
+    ],
+    "combat": [
+      "The yard behind the house is damp from morning rain, and {name} stands in the middle of it with a wooden practice blade in her hand. Sam, who is thin and nerdy and very serious about this, demonstrates a stance. She straightens his, kindly, and then shows him how it's done.",
+      "They spar slowly, the wooden blades clacking in the morning stillness. Sam calls out corrections he read once in a book, and {name} humors him for exactly as long as it takes to disarm him. \"Theory is lovely,\" she says, handing his stick back. \"Now try it with feet.\"",
+      "{name} runs the drill again and again, footwork first, then guard, then the long step in. Sam counts for her, and the count keeps time with her breathing. By the end her shirt is damp and her grin is sharp.",
+      "Sam doesn't know a great deal about fighting, but he knows how to pay attention. He watches {name} move, notices where she drops her guard, and says so, apologetically. She tests the notion, finds it true, and gives him a surprised look of real respect."
+    ],
+    "manage": [
+      "Ledgers, receipts, and a pot of strong tea cover the office desk. Sam walks {name} through the weekly accounts one column at a time, and she follows with a finger down the page, frowning, then brightening when the numbers click. \"So this is where all the candles go,\" she says.",
+      "\"A manager's job,\" Sam says, \"is to make problems small before they're big.\" {name} considers this seriously, then asks three sharp questions about the rota that he has to look up. She pretends not to enjoy that.",
+      "They role-play a difficult guest. Sam plays the guest, loudly and a bit unfairly, and {name} de-escalates him with a calm voice and a firm smile. He folds in under a minute. She sits back, pleased, and takes the last biscuit.",
+      "The window is open to the afternoon, with the noise of the street drifting in, and {name} is working out next week's schedule on a slate. Sam leans over to point out a clash, and she has already spotted it. \"Give me some credit,\" she says, rubbing it out."
+    ]
+  }
 }
