@@ -15,8 +15,8 @@ const GOD = needData('goddess');
 const GB = () => BAL.goddess || {};
 const GN = () => GOD.name || 'Seliora';
 const GOD_ID = 'npc_goddess';
-NPCS[GOD_ID] = Object.assign({id:GOD_ID, name:GOD.name, race:'angel', sub:'', age:999, outfit:'custom', under:'plain', imgVar:{}, seed:7130417, lewd:60, trust:0, traits:[]}, clone(GOD.npc||{}));
-NPCS[GOD_ID].name = GOD.name;
+NPCS[GOD_ID] = Object.assign({id:GOD_ID, name:GOD.name, race:'human', sub:'', age:999, outfit:'custom', under:'plain', imgVar:{}, seed:7130417, lewd:95, trust:100, traits:[], acts:{}, menu:[], counts:{}}, clone(GOD.npc||{}));
+NPCS[GOD_ID].name = GOD.name; NPCS[GOD_ID].body = Object.assign({}, typeof BODY_DEF!=='undefined' ? BODY_DEF : {}, (GOD.npc||{}).body || {});
 const GFOCUS = ['indulge','business','watch','tutelage','whim'];
 let GNEXT = null, GW = {biz:{}, watch:{}, saved:0};   // GW: this week's effects, rebuilt by goddessPlan()
 
@@ -24,7 +24,7 @@ function ensureGoddess(){
   if(!S) return null;
   const B = GB(), J = B.mood || {};
   const d = {met:false, bound:false, boundCycle:0, love:0, jealousy:0, mood:J.base ?? 55, divinity:100, focus:'indulge', form:'auto',
-    teases:[], evWk:0, roster:0, ending:null, left:false, nights:0, finishes:0, last:[]};
+    teases:[], evWk:0, roster:0, ending:null, left:false, nights:0, finishes:0, last:[], lastNight:0, claimWk:0};
   const g = S.goddess = S.goddess || {};
   Object.keys(d).forEach(k=>{ if(g[k] === undefined) g[k] = d[k]; });   // in place: callers keep their reference
   return g;
@@ -97,7 +97,7 @@ function goddessRebirth(info, next){
 }
 function goddessBind(info, next){
   const g = G(), B = GB(), T = GOD.binding || {};
-  g.bound = true; g.boundCycle = S.cycle; g.divinity = (B.divinity||{}).bindTo ?? 5;
+  g.bound = true; g.boundCycle = S.cycle; g.lastNight = S.week; g.divinity = (B.divinity||{}).bindTo ?? 5;
   g.love = clamp((g.love||0) + ((B.love||{}).bind ?? 10)); g.jealousy = Math.round((g.jealousy||0) * 0.4); g.finishes = (g.finishes||0) + 1;
   addLog(`${GN()} is bound to Sam. Her divinity is gone, for now.`);
   const ladies = rebornFull(fullAt() + 1).map(w=>w.name.split(' ')[0]);
@@ -130,7 +130,8 @@ function goddessPlan(){
       const I = A.indulge || {}, ladies = W.slice().sort((a,b)=>((b.lust||0) - b.mood/2) - ((a.lust||0) - a.mood/2)).slice(0, I.ladies ?? 2);
       ladies.forEach(w=>{ w.lust = Math.max(0, (w.lust||0) - (I.lust ?? 30) * q); fitLust(w); moodAdd(w, (I.mood ?? 8) * q);
         w.energy = clamp(w.energy + (I.energy ?? 15) * q, 0, maxEnergy(w)); lewdUp(w, (I.lewd ?? 1) * q); countUp(w, 'goddess');
-        const f = form(); lines.push(gtxt(((F.indulge||{})[f]) || (F.indulge||{}).report, {lady:w.name.split(' ')[0]})); });
+        const f = form(), act = goddessActFor(w, f); if(act) growAct(w, act, (I.practice ?? 2) * q);
+        lines.push(gSvcLine(act, f, {lady:w.name.split(' ')[0]}) || gtxt(((F.indulge||{})[f]) || (F.indulge||{}).report, {lady:w.name.split(' ')[0]})); });
     } else if(kind==='business'){
       const B = A.business || {}, h = pick(S.houses);
       GW.biz[h.id] = (GW.biz[h.id]||0) + (B.income ?? 0.06) * q; repAdd(h, (B.rep ?? 1) * q);
@@ -151,7 +152,7 @@ function goddessPlan(){
         S.sam.energy = Math.max(0, S.sam.energy - (C.samEnergy ?? 15)); g.jealousy = clamp(g.jealousy - (C.cut ?? 10)); g.love = clamp(g.love + 1);
         lines.push(gtxt((GOD.claim||{}).sam));
       } else {
-        const w = pick(newest); moodAdd(w, C.mood ?? -4); w.energy = clamp(w.energy - 10, 0, maxEnergy(w)); g.jealousy = clamp(g.jealousy - (C.cut ?? 10) / 2);
+        const w = pick(newest); g.claimWk = S.week; moodAdd(w, C.mood ?? -4); w.energy = clamp(w.energy - 10, 0, maxEnergy(w)); g.jealousy = clamp(g.jealousy - (C.cut ?? 10) / 2);
         lines.push(gtxt((GOD.claim||{}).lady, {lady:w.name.split(' ')[0]}));
       }
     }
@@ -178,6 +179,15 @@ function goddessAfter(R){
   g.jealousy = clamp((g.jealousy||0) + hires * (J.perHire ?? 3) + priv * (J.perPrivate ?? 1) + Math.max(0, S.workers.length - (J.rosterRef ?? 6)) * (J.perLady ?? 0.15) - (J.decay ?? 2));
   const target = (M.base ?? 55) + (g.love||0) * (M.perLove ?? 0.25) - (g.jealousy||0) * (M.perJealous ?? 0.3);
   g.mood = clamp((g.mood||0) + (target - (g.mood||0)) * (M.drift ?? 0.3));
+  // neglect (after the binding): too long without a night costs love and mood; a jealous claim left unanswered costs more
+  if(goddessActive()){
+    const Ng = GB().neglect || {}, since = S.week - (g.lastNight || S.week);
+    if(since >= (Ng.after ?? 3)){ g.love = clamp(g.love - (Ng.love ?? 3)); g.mood = clamp(g.mood - (Ng.mood ?? 5)); R.lines.push(`✨ ${gtxt(GOD.neglect && GOD.neglect.ignored || '{goddess} hasn\'t seen Sam in {n} weeks. She\'s noticed.', {n:since})} (love −${Ng.love ?? 3})`); }
+    if(g.claimWk && S.week - g.claimWk >= (Ng.claimWeeks ?? 2)){
+      if((g.lastNight||0) < g.claimWk){ g.love = clamp(g.love - (Ng.claimLove ?? 8)); g.mood = clamp(g.mood - (Ng.claimMood ?? 10)); R.lines.push(`✨ ${gtxt(GOD.neglect && GOD.neglect.claim || '{goddess} made a scene and Sam never came to her. That hurt.')} (love −${Ng.claimLove ?? 8})`); }
+      g.claimWk = 0;
+    }
+  }
   // events: none in cycle 1, a little more often each cycle after (before the binding: her teases and remarks)
   const E = GB().events || {};
   if(!g.bound){
@@ -219,27 +229,54 @@ function evGoddessEnd(){
 /* ---------- her tab (after the binding) ---------- */
 function setGFocus(k){ if(GFOCUS.includes(k)){ G().focus = k; save(); render(); } }
 function setGForm(k){ if(['auto','feminine','futa'].includes(k)){ G().form = k; save(); render(); } }
-// A night with her: Sam's energy comes back (more the more divine she is), her love grows, jealousy cools, and he finishes: her divinity grows.
-function goddessNight(){
-  const g = G(), N = GB().night || {}, D = GB().divinity || {}; if(!goddessActive()) return;
-  if(!useAP(N.cost ?? 10)) return;
-  const back = Math.round((N.restore ?? 20) + (N.perDiv ?? 0.3) * (g.divinity||0));
-  samEnergyAdd(back);
-  const before = g.divinity||0;
-  g.divinity = Math.min(D.max ?? 100, before + (D.finish ?? 5)); g.finishes = (g.finishes||0) + 1; g.nights = (g.nights||0) + 1;
-  g.love = clamp((g.love||0) + ((GB().love||{}).night ?? 2)); g.jealousy = clamp((g.jealousy||0) - ((GB().jealousy||{}).nightCut ?? 15)); g.mood = clamp((g.mood||0) + 6);
-  samLog(`Night with ${GN()}`); samStat('technique', 2); samXP(5);
-  const nt = GOD.night || {}, txt = gpara(gtxt((nt.open||{})[dTier()]), gtxt(nt.finish), `Sam's energy +${back} · ${GN()}'s divinity ${Math.round(before)} → ${Math.round(g.divinity)}`);
-  save(); render();
-  const img = nt.image ? dynScene('goddess_night', nt.image) : 'portrait';
-  showResult(`A night with ${GN()}`, txt, GOD_ID, img);
-  if(g.divinity >= (D.max ?? 100) && !g.ending){ EVQ.push(evGoddessEnd); }
+/* ---------- nights with Sam: a service, as herself ---------- */
+// Her line for a service: services[act][ctx] (ctx 'sam', 'feminine', 'futa'), else services._default[ctx]; for 'sam' the usual private_act line as a last resort.
+function gSvcLine(act, ctx, extra={}){
+  const S0 = GOD.services || {}, L = ((S0[act]||{})[ctx]) || ((S0._default||{})[ctx]);
+  if(L && L.length) return gtxt(L, Object.assign({act: act ? actLabel(act).toLowerCase() : ''}, extra));
+  if(ctx==='sam' && act) return actLine(act, {name:GN()});
+  return '';
 }
-function goddessTalk(){
-  const g = G(); if(!goddessActive() || !useAP((GB().talk||{}).cost ?? 5)) return;
-  g.love = clamp((g.love||0) + ((GB().love||{}).talk ?? 5)); g.jealousy = clamp((g.jealousy||0) - ((GB().jealousy||{}).talkCut ?? 5)); g.mood = clamp((g.mood||0) + 4);
-  samLog(`Talked with ${GN()}`); save(); render();
-  showResult(`${GN()}`, gtxt((GOD.talk||{})[jTier()] || GOD.talk), GOD_ID, 'portrait');
+// Which service she shares with a lady: in her female form only tier 1-2; the lady's favorite if it fits, else the furthest the lady is comfortable with.
+function goddessActFor(w, form){
+  const top = form==='futa' ? 3 : 2, ok = getActs().filter(a=>actTier(a.id) <= top && (a.th||0) <= (w.lewd||0) + 15);
+  if(!ok.length) return null;
+  if(w.fav && ok.some(a=>a.id===w.fav)) return w.fav;
+  return ok.sort((a,b)=>(b.th||0)-(a.th||0))[0].id;
+}
+// What a night does: 'inside' (a finishing tier-3 service) restores everything, 'outside' (he finishes, not inside her) a little, 'none' upsets her.
+const gNightKind = act => { const A = actById(act) || {}; return A.finish ? (actTier(act) >= 3 ? 'inside' : 'outside') : 'none'; };
+function goddessNightMenu(){
+  if(!goddessActive()) return;
+  const lab = {inside:'✨ divinity', outside:'he finishes', none:'she won\'t like it'};
+  modal(`<h2>A night with ${esc(GN())}</h2><p class="muted">She'll do anything. She only gets her divinity back when Sam finishes inside her; anything that leaves her wanting costs her mood and love.</p>
+    <div class="row" style="flex-wrap:wrap">${getActs().map(a=>{ const k = gNightKind(a.id); return `<button ${k==='inside'?'class="primary"':''} onclick="goddessNight('${a.id}')">${esc(a.label)} <span class="muted">(${lab[k]})</span></button>`; }).join('')}</div>`);
+}
+function goddessNight(act){
+  const g = G(), N = GB().night || {}, D = GB().divinity || {}, L = GB().love || {}; if(!goddessActive() || !actById(act)) return;
+  if(!useAP(N.cost ?? 10)) return;
+  const kind = gNightKind(act), before = g.divinity||0, l0 = g.love||0;
+  let back = 0;
+  if(kind==='inside'){
+    back = Math.round((N.restore ?? 20) + (N.perDiv ?? 0.3) * before);
+    g.divinity = Math.min(D.max ?? 100, before + (D.finish ?? 3)); g.finishes = (g.finishes||0) + 1;
+    g.love = clamp(l0 + (L.night ?? 2)); g.mood = clamp((g.mood||0) + (N.mood ?? 8)); g.jealousy = clamp((g.jealousy||0) - ((GB().jealousy||{}).nightCut ?? 15));
+  } else if(kind==='outside'){
+    back = Math.round((N.restore ?? 20) / 2);
+    g.love = clamp(l0 + (L.outside ?? 0.5)); g.mood = clamp((g.mood||0) + (N.outsideMood ?? -2)); g.jealousy = clamp((g.jealousy||0) - ((GB().jealousy||{}).nightCut ?? 15) / 2);
+  } else {
+    g.love = clamp(l0 - (N.noneLove ?? 2)); g.mood = clamp((g.mood||0) - (N.noneMood ?? 8));
+  }
+  if(back) samEnergyAdd(back);
+  g.nights = (g.nights||0) + 1; g.lastNight = S.week; if(g.claimWk && kind!=='none') g.claimWk = 0;
+  samLog(`Night with ${GN()} [${actLabel(act)}]`); samStat('technique', 2); samXP(5);
+  const nt = GOD.night || {}, ctx = {act: actLabel(act).toLowerCase()};
+  const res = kind==='inside' ? `Sam's energy +${back} · ${GN()}'s divinity ${Math.round(before)} → ${Math.round(g.divinity)} · love +`
+    : kind==='outside' ? `Sam's energy +${back} · no divinity this time; she noticed.` : `No divinity, and she's not pleased (mood and love −).`;
+  const txt = gpara(gtxt((nt.open||{})[dTier()], ctx), gSvcLine(act, 'sam', ctx), gtxt(nt[kind==='inside' ? 'inside' : kind==='outside' ? 'outside' : 'unhappy'] || nt.finish, ctx), res);
+  save(); render();
+  showResult(`A night with ${GN()}`, txt, GOD_ID, 'samact:' + act);
+  if(g.divinity >= (D.max ?? 100) && !g.ending){ EVQ.push(evGoddessEnd); }
 }
 function viewGoddess(){
   const g = G(), F = GOD.focus || {}, B = GB(), next = (B.divinity||{}).perAction || 25;
@@ -249,12 +286,12 @@ function viewGoddess(){
       <p class="muted">${esc(gtxt(GOD.tabBlurb || ''))}</p>
       ${bar('Divinity', g.divinity||0, (B.divinity||{}).max ?? 100, 't')}${bar('Love', g.love||0, 100, 'p')}${bar('Jealousy', g.jealousy||0, 100, 'h')}${bar('Mood', g.mood||0, 100, 'm')}
       <div class="sgrid">${cell('ACTIONS / WEEK', goddessActions())}${cell('POWER', '×'+goddessPower().toFixed(2))}${cell('FULLY REBORN', rebornFull().length)}${cell('NIGHTS', g.nights||0)}</div>
-      <p class="muted">${goddessActions() < 5 ? `Next action at divinity ${Math.ceil(((g.divinity||0)+1)/next)*next}. ` : ''}Every fully reincarnated lady (and every life past that) makes her stronger. A jealous ${esc(GN())} sometimes goes her own way; an unhappy one ignores your guidance.</p>
+      <p class="muted">${goddessActions() < 5 ? `Next action at divinity ${Math.ceil(((g.divinity||0)+1)/next)*next}. ` : ''}Every fully reincarnated lady (and every life past that) makes her stronger. With the ladies she takes over their services herself. A jealous ${esc(GN())} sometimes goes her own way; an unhappy one ignores your guidance.</p>
       <button class="sm" onclick="showImg('gPort','${GOD_ID}','portrait')">🎨 Portrait</button></div></div></section>
     <section class="card"><h2>Guidance</h2><p class="muted">You can't tell a goddess what to do. You can tell her what you'd like. She picks what she actually does each week.</p>
       <div class="grid">${GFOCUS.map(k=>{ const f = F[k]||{}; return `<div class="pick ${g.focus===k?'sel':''}" onclick="setGFocus('${k}')"><b>${esc(f.label||k)}</b><div class="muted">${esc(f.desc||'')}</div></div>`; }).join('')}</div>
       <div class="row" style="margin-top:8px">With the ladies she appears as <select onchange="setGForm(this.value)">${[['auto','she pleases'],['feminine','herself'],['futa','something more']].map(([k,l])=>`<option value="${k}" ${g.form===k?'selected':''}>${l}</option>`).join('')}</select></div></section>
-    <section class="card"><h2>Sam and ${esc(GN())}</h2><div class="row"><button onclick="goddessNight()">🌙 Spend the night (+energy, divinity)</button><button onclick="goddessTalk()">💬 Talk (+love)</button></div>
-      <p class="muted">A night restores Sam's energy and rebuilds her divinity a little. Talking is how she comes to love him; nights alone won't do it.</p></section>
+    <section class="card"><h2>Sam and ${esc(GN())}</h2><div class="row"><button class="primary" onclick="goddessNightMenu()">🌙 Spend the night…</button></div>
+      <p class="muted">When Sam finishes inside her, a night restores his energy, rebuilds her divinity and raises her love and mood. Leave her wanting and she sulks. ${(()=>{ const n = S.week - (g.lastNight||S.week), a = (B.neglect||{}).after ?? 3; return n >= a - 1 ? `<span class="warn">It's been ${n} week${n===1?'':'s'}; she won't wait much longer.</span>` : 'She loses love if Sam stays away too long (or ignores her after she makes a jealous scene).'; })()}</p></section>
     ${(g.last||[]).length ? `<section class="card"><h2>Last week</h2>${g.last.map(t=>`<div>✨ ${esc(t)}</div>`).join('')}</section>` : ''}`;
 }

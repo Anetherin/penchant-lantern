@@ -33,7 +33,11 @@ const BOT = `async (weeks) => {
   for (const f of GFOCUS) { setGFocus(f); play(3); }
   setGForm('futa'); play(2);
   out.push('before nights: over=' + S.over + ' won=' + S.won + ' ap=' + S.ap + ' active=' + goddessActive());
-  let n = 0; while (!S.goddess.ending && n < 40) { S.ap = 3; S.sam.energy = 100; goddessNight(); closeModal(); goddessTalk(); closeModal(); drain(); n++; if (n % 5 === 0) play(1); }
+  const l0 = S.goddess.love; play(6); out.push('neglect 6 weeks: love ' + Math.round(l0) + ' -> ' + Math.round(S.goddess.love));
+  const pr = buildPrompt(NPCS[GOD_ID], 'samact:cowgirl'); out.push('prompt ok: ' + String(pr && (pr.prompt || pr)).slice(0, 140));
+  out.push('svc line: ' + gSvcLine('kiss', 'futa', {lady:'Mira'}));
+  goddessNightMenu(); closeModal(); S.ap = 3; S.sam.energy = 100; goddessNight('kiss'); closeModal(); goddessNight('oral_give'); closeModal();
+  let n = 0; while (!S.goddess.ending && n < 60) { S.ap = 3; S.sam.energy = 100; goddessNight(pick(['cowgirl','missionary','doggy'])); closeModal(); drain(); n++; if (n % 2 === 0) play(1); }
   out.push('after bind: div=' + Math.round(S.goddess.divinity) + ' ending=' + S.goddess.ending + ' love=' + Math.round(S.goddess.love) + ' nights=' + S.goddess.nights + ' power=' + goddessPower().toFixed(2));
   out.push('lastReport goddess lines: ' + (S.lastReport.lines||[]).filter(l=>l.startsWith('✨')).length);
   ng(); play(2);

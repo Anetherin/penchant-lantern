@@ -9,31 +9,33 @@
     "rebirth: at every New Game+ before the binding. fast/steady/slow = how quickly he paid (weeks vs the plan). lovers/alone = lovers carried or none. jealous.low/mid/high by her jealousy. bound.low/mid/high = after the binding, by her divinity.",
     "teases: her scenes before the binding, in order; each only from minCycle. choices: love, jealousy (added), energy (Sam's), res. She never lets Sam finish: that would bind her.",
     "remarks.low/mid/high: short jealous remarks (by jealousy) as weekly events; remarkChoices are their default answers.",
-    "binding: the first rebirth after a lady has lived a fully reincarnated life. focus: her weekly guidance options (report lines; indulge has feminine/futa variants, chosen by her form setting). claim: what she does when jealousy wins. night/talk: Sam's actions on her tab. ending.stay/leave: full divinity again."
+    "binding: the first rebirth after a lady has lived a fully reincarnated life; she confesses it was never a whim. focus: her weekly guidance options (report lines; indulge has feminine/futa variants, chosen by her form setting). claim: what she does when jealousy wins. night: Sam's action on her tab (image, open by divinity low/mid/high, then inside / outside / unhappy lists by how the night ended; {act} = the service label, lowercase). ending.stay/leave: full divinity again.",
+    "services: her own lines per service id (ids as in services.json; _default is the fallback). Three contexts: sam = a night with Sam (she is the woman doing/receiving; _give = she gives, _get = she receives); feminine = she with a lady in her female form (report line; the id is the lady's point of view, e.g. oral_give = the lady pleases her; no tier 3 entries, they are not used); futa = same with a lady in her futa form. {lady} is the lady's first name. Lists: one is picked at random."
   ],
   "name": "Seliora",
   "title": "the Lamplighter",
-  "tabBlurb": "Goddess of crossings and kept flames, currently bound to a former {past} and not entirely sorry about it.",
+  "tabBlurb": "Goddess of crossings and kept flames, currently bound to a former {past}, glowing a little less than she used to and not entirely sorry about it.",
   "npc": {
+    "race": "human",
     "design": {
-      "build": "tall, willowy and softly curved",
-      "hairStyle": "very long, flowing, drifting as if underwater",
-      "hairColor": "silver-gold",
-      "eyes": "molten gold with a thin ring of light around each iris",
-      "skin": "luminous pale gold",
-      "features": "a slowly turning halo of lantern-light behind her head, large wings of warm translucent feathers like lit paper, faint gold markings tracing her collarbones"
+      "build": "tall and curvy",
+      "hairStyle": "very long, flowing, loose",
+      "hairColor": "black with ember-gold streaks",
+      "eyes": "gold, with a thin ring of light around each iris",
+      "skin": "warm bronze that glows faintly from within, like a lantern",
+      "features": "faint gold markings along her collarbones and hips that brighten with her mood, a small ember-flame floating near her shoulder"
     },
-    "customOutfit": "a sheer white-and-gold draped gown held by thin gold chains, bare shoulders, barefoot"
+    "customOutfit": "a sheer crimson-and-gold wrap dress held by thin gold chains, barefoot"
   },
   "intro": {
     "title": "Before the truck stops ringing",
     "image": {
       "key": "intro",
-      "comp": "a radiant goddess floating in a dark void lit by hundreds of hanging paper lanterns, looking down with an amused smile, one hand extended",
+      "comp": "a radiant goddess with a glowing bronze skin and a small ember-flame at her shoulder, sitting in a dark void lit by hundreds of hanging paper lanterns, looking down with an amused smile, one hand extended",
       "setting": "an endless dark space full of floating paper lanterns"
     },
-    "open": "The horn is still ringing when the dark fills up with lanterns. Hundreds of them, hanging from nothing.\n\nA woman sits among them as if on a swing. Gold skin, gold eyes, wings like paper held up to a candle. She looks at Sam the way someone looks at a book they've decided to read.\n\n\"Sam Takahashi. Thirty-one years of being nice to people and nobody ever once being nice back on purpose.\" She tilts her head. \"I'm {goddess}. I light the way across, for the ones I pick. I picked you.\"",
-    "close": "\"There's a debt. There's always a debt, it keeps you honest. Pay it, and if you're still interesting, I'll bring you back and we'll do it again.\" She leans close enough that the lantern-light warms his face, and doesn't kiss him. \"I'll be watching. Try not to bore me.\"\n\nThe lanterns go out, one by one.",
+    "open": "The horn is still ringing when the dark fills up with lanterns. Hundreds of them, hanging from nothing.\n\nA woman sits among them as if on a swing, barefoot, a little ember-flame drifting lazily around her shoulder. Her skin glows from within like a lantern, gold markings brightening at her collarbones and hips as she looks Sam over, slowly, head to toe, like someone deciding what to unwrap first.\n\n\"Sam Takahashi. Thirty-one years of being nice to people and nobody ever once being nice back on purpose.\" She tilts her head. \"I'm {goddess}. I light the way across, for the ones I pick. I picked you. On a whim, mostly. Don't read into it.\" She smiles like a woman who is reading into it a great deal.",
+    "close": "\"There's a debt. There's always a debt, it keeps you honest. Pay it, and if you're still interesting, I'll bring you back and we'll do it again.\" She trails one fingertip down his chest, leans close enough that her warmth fills the dark, and doesn't kiss him. \"I'll be watching. Everything. Give me something worth watching.\"\n\nThe lanterns go out, one by one.",
     "button": "Wake up"
   },
   "pasts": {
@@ -144,59 +146,59 @@
     "title": "Again, {sam}?",
     "image": {
       "key": "rebirth",
-      "comp": "a radiant goddess lounging on a crescent of lantern-light, chin on her hand, smiling down",
+      "comp": "a radiant goddess with glowing bronze skin and a small ember-flame at her shoulder, lounging on a crescent of lantern-light, chin on her hand, smiling down, dress slipping off one shoulder",
       "setting": "an endless dark space full of floating paper lanterns"
     },
     "open": [
-      "The lanterns again. {goddess} is lying on her stomach across a crescent of light, chin in her hands, feet kicking idly.\n\n\"Debt paid. Look at you.\"",
-      "Darkness, then the warm smell of candle smoke. {goddess} is waiting, sitting on nothing, wings folded. \"There he is. My favorite investment.\"",
-      "\"Welcome back.\" {goddess} doesn't look up from the lantern she's turning in her hands. Inside it, very small, is the house he just left. \"You did it again. I'm almost proud.\""
+      "The lanterns again. {goddess} is lying on her stomach across a crescent of light, chin in her hands, feet kicking idly, her dress slipping off one shoulder and no effort made to fix it.\n\n\"Debt paid. Look at you.\" She looks him over, unhurried. \"Come here and let me see what the work did to you.\"",
+      "Darkness, then the warm smell of candle smoke. {goddess} is waiting, sitting on nothing, legs crossed, the little ember-flame circling her shoulder like a pet. \"There he is. My favorite investment.\" She crooks a finger.",
+      "\"Welcome back.\" {goddess} doesn't look up from the lantern she's turning in her hands. Inside it, very small, is the house he just left. \"You did it again. I watched all of it. All of it, {sam}. You have no idea how much I enjoyed some of those nights.\""
     ],
     "fast": [
-      "\"That was quick. Show-off.\" She sounds pleased anyway.",
-      "\"Paid early. Marguerite nearly smiled, did you see? I had money on it.\""
+      "\"That was quick. Show-off.\" She sounds pleased anyway. \"I do like a man who gets the job done.\"",
+      "\"Paid early. Marguerite nearly smiled, did you see? I had money on it. Now you owe me a kiss.\""
     ],
     "steady": [
-      "\"Right on schedule. Reliable. It's a good look on you, mostly.\"",
-      "\"Not fast, not slow. You're very consistent, {sam}. I like consistent.\""
+      "\"Right on schedule. Reliable. It's a good look on you.\" Her eyes drift down and back up. \"Mostly.\"",
+      "\"Not fast, not slow. You're very consistent, {sam}. I like a man with stamina.\""
     ],
     "slow": [
-      "\"That went right down to the wire. I had to watch through my fingers.\"",
-      "\"You cut that close. Do you know how boring the afterlife paperwork is? Don't make me do it.\""
+      "\"That went right down to the wire. I had to watch through my fingers.\" She doesn't say which fingers she was using.",
+      "\"You cut that close. Do you know how boring the afterlife paperwork is? Don't make me do it. I'd rather be doing you.\" She doesn't even pretend to have misspoken."
     ],
     "lovers": [
-      "\"And you're taking {names} with you.\" A pause that lasts slightly too long. \"Of course you are.\"",
-      "\"{names}. Again.\" She counts on her fingers and stops before she runs out. \"Sweet.\""
+      "\"And you're taking {names} with you.\" A pause that lasts slightly too long. \"Of course you are. I hope they appreciate what I've been doing to keep you in such good shape.\"",
+      "\"{names}. Again.\" She counts on her fingers and stops before she runs out. \"Sweet. Do tell me everything later.\""
     ],
     "alone": [
-      "\"Nobody coming along this time? Hm.\" She looks like she wants to be disappointed for you and can't quite manage it."
+      "\"Nobody coming along this time? Hm.\" She looks like she wants to be disappointed for you and can't quite manage it. \"More of you for me, then.\""
     ],
     "jealous": {
-      "low": ["\"Go on, then. Have fun.\"",""],
+      "low": ["\"Go on, then. Have fun. Tell me about it after.\"","\"Enjoy yourself.\" A smile. \"I will be, vicariously.\""],
       "mid": [
         "\"There are a lot of them now, {sam}.\" She says it lightly. She's looking at the lanterns, not at him.",
         "\"You know they don't remember me? Only you do. I find that very fair. Mostly.\""
       ],
       "high": [
-        "She catches his chin before he goes and holds it. \"Every life, more of them. I brought you here. Remember that.\"",
-        "\"I counted them. I didn't mean to. I count everything I'm not allowed to have.\""
+        "She catches his chin before he goes and holds it, thumb against his lip. \"Every life, more of them. I brought you here. Remember that.\"",
+        "\"I counted them. I didn't mean to. I count everything I'm not allowed to have.\" Her hand slides down his chest, and lingers."
       ]
     },
     "close": [
-      "She kisses two fingers and presses them to his forehead. The lanterns go out.",
-      "\"Off you go.\" She flicks his nose. The dark folds up like paper.",
+      "She kisses two fingers and presses them to his forehead, then, after a thought, to his mouth. The lanterns go out.",
+      "\"Off you go.\" She flicks his nose, then smooths a hand down his front like she's checking the goods. The dark folds up like paper.",
       "\"Don't keep me waiting.\" She almost sounds like she means something by it. Then the lanterns go out."
     ],
     "boundTitle": "{goddess}",
     "bound": {
       "low": [
-        "This time there are no lanterns. {goddess} is just there when he wakes, warm against his side, mortal-tired. \"Again,\" she mumbles. \"I'm coming too. Obviously.\""
+        "This time there are no lanterns. {goddess} is just there when he wakes, warm against his side, mortal-tired, one leg thrown over his. \"Again,\" she mumbles into his neck. \"I'm coming too. Obviously.\""
       ],
       "mid": [
-        "{goddess} wakes him with her wings around them both, brighter than last time. \"Another life. I'm getting some of it back, you know. Don't let it go to your head.\""
+        "{goddess} wakes him by pressing close, glowing brighter than last time, the little ember-flame bobbing over her shoulder. \"Another life. I'm getting some of it back, you know. Mostly thanks to you. Don't let it go to your head.\" She kisses him to make sure it does."
       ],
       "high": [
-        "{goddess} is already up, glowing faintly, watching him sleep. \"Nearly whole again,\" she says when he opens his eyes. She doesn't say what happens then."
+        "{goddess} is already up, glowing faintly, watching him sleep with her chin on her hand. \"Nearly whole again,\" she says when he opens his eyes, and slides closer. She doesn't say what happens then."
       ]
     }
   },
@@ -206,12 +208,12 @@
       "minCycle": 2,
       "title": "A visitor in the night",
       "image": {
-        "comp": "a glowing goddess sitting on the edge of a man's bed at night, leaning in for a kiss, lantern-light around her",
+        "comp": "a goddess with glowing bronze skin and gold markings sitting on the edge of a man's bed at night, dress slipping, leaning in for a kiss, candle-light around her",
         "setting": "Sam's bedroom at night",
         "sam": true,
         "pov": true
       },
-      "text": "Sam wakes because the room is warm. {goddess} is sitting on the edge of his bed, glowing softly, wings folded tight so they don't knock anything over.\n\n\"I said I'd be watching. I didn't say I'd only watch.\" She leans down and kisses him, slow and very thorough, and then she's gone, and the room is just a room.",
+      "text": "Sam wakes because the room is warm. {goddess} is sitting on the edge of his bed, glowing softly, the ember-flame drifting over her shoulder and every candle in the room lit without a match. Her dress has slipped, and she hasn't noticed. Or she has.\n\n\"I said I'd be watching. I didn't say I'd only watch.\" She leans down and kisses him, slow and very thorough, one hand sliding under the blanket to rest warm and proprietary on his stomach, and then she's gone, and the room is just a room.",
       "choices": [
         {"label":"Kiss her back","love":4,"res":"He catches the last of it. Somewhere, very far away, someone laughs, pleased."},
         {"label":"\"Was that allowed?\"","love":3,"res":"\"No,\" says the dark, cheerfully. \"Goodnight, {sam}.\""}
@@ -221,7 +223,7 @@
       "id": "mirror",
       "minCycle": 2,
       "title": "In the mirror",
-      "text": "Shaving, Sam looks up and {goddess} is in the mirror behind him, chin on his shoulder, though nothing touches his shoulder.\n\n\"You're very popular here.\" She watches him in the glass. \"I picked well. I'm only slightly annoyed about it.\"",
+      "text": "Shaving, Sam looks up and {goddess} is in the mirror behind him, chin on his shoulder, though nothing touches his shoulder. Her reflection is not wearing much.\n\n\"You're very popular here.\" She watches him in the glass, eyes dropping to the towel and back up. \"I picked well. I'm only slightly annoyed about it. Watching you shave is the best part of my morning.\"",
       "choices": [
         {
           "label": "\"You could come out of the mirror.\"",
@@ -237,12 +239,12 @@
       "minCycle": 3,
       "title": "Hot water",
       "image": {
-        "comp": "a glowing goddess sitting behind a man in a steaming bath, her arms around his shoulders, wings half-open, teasing smile",
+        "comp": "a goddess with glowing bronze skin sitting behind a man in a steaming bath, her arms around his shoulders, gold markings glowing under the water, teasing smile",
         "setting": "a steaming wooden bath at night, lanterns",
         "sam": true,
         "bath": true
       },
-      "text": "The bath is already hot when Sam gets in, and already occupied. {goddess} settles in behind him, wraps both arms around his chest and hooks her chin over his shoulder. Her hands wander. They know exactly where they're going and exactly when to stop.\n\n\"Breathe,\" she murmurs. \"That's all you get tonight.\"",
+      "text": "The bath is already hot when Sam gets in, and already occupied. {goddess} settles in behind him, wraps both arms around his chest and hooks her chin over his shoulder, warm and bare against his back. Her hands wander. They know exactly where they're going and exactly when to stop.\n\n\"Breathe,\" she murmurs. \"That's all you get tonight. Don't look so disappointed. I like it.\"",
       "choices": [
         {
           "label": "Lean back into her",
@@ -257,7 +259,7 @@
       "id": "desk",
       "minCycle": 3,
       "title": "Overtime",
-      "text": "Sam is doing the books. {goddess} is sitting on the books. Specifically on the open ledger, legs crossed, reading his numbers upside down.\n\n\"You undercharge.\" She uncrosses her legs, slowly. \"I don't.\"",
+      "text": "Sam is doing the books. {goddess} is sitting on the books. Specifically on the open ledger, legs crossed, reading his numbers upside down.\n\n\"You undercharge.\" She uncrosses her legs, slowly, and watches him lose his place. \"I don't.\"",
       "choices": [
         {
           "label": "\"What do you charge?\"",
@@ -277,12 +279,12 @@
       "minCycle": 3,
       "title": "A dream that isn't",
       "image": {
-        "comp": "a glowing goddess straddling a man's lap on a crescent of light, wings spread, her hands on his chest, holding back",
+        "comp": "a goddess with glowing bronze skin straddling a man's lap on a crescent of light, gold markings blazing, her hands on his chest, holding back",
         "setting": "an endless dark space full of floating paper lanterns",
         "sam": true,
         "pov": true
       },
-      "text": "Sam falls asleep and lands somewhere among the lanterns, with {goddess} in his lap. She takes her time. She takes a great deal of it. Every time he gets close she stops, waits, smiles, and starts again.\n\n\"You want to know why,\" she says, eventually, against his mouth. \"Not yet.\"",
+      "text": "Sam falls asleep and lands somewhere among the lanterns, with {goddess} in his lap. She takes her time. She takes a great deal of it, hands roaming his chest and shoulders as though she owns them. Every time he gets close she stops, waits, smiles, and starts again.\n\n\"You want to know why,\" she says, eventually, against his mouth. \"Not yet.\"",
       "choices": [
         {
           "label": "\"Then when?\"",
@@ -296,13 +298,13 @@
       "id": "count",
       "minCycle": 4,
       "title": "Counting",
-      "text": "{goddess} is waiting in Sam's room with her arms folded and her wings puffed up like an offended owl.\n\n\"{n}. {n} of them.\" She doesn't say of what. \"Tonight you're mine. Don't argue, I'm a goddess.\"\n\nShe pulls him down onto the bed and keeps him there all night: close, closer, never all the way. She never once lets him finish.",
+      "text": "{goddess} is waiting in Sam's room with her arms folded, every candle in the room burning an offended, sulky orange.\n\n\"{n}. {n} of them.\" She doesn't say of what. \"Tonight you're mine. Don't argue, I'm a goddess.\"\n\nShe pulls him down onto the bed and keeps him there all night: close, closer, never all the way, her hands and mouth making very sure he won't forget whose bed this is. She never once lets him finish.",
       "choices": [
         {
           "label": "\"You could just stay.\"",
           "love": 5,
           "jealousy": -10,
-          "res": "She goes very still. \"No,\" she says. \"I couldn't.\" She stays until dawn anyway."
+          "res": "She goes very still. \"No,\" she says. \"I couldn't.\" Then, quieter, into his shoulder: \"It wasn't a whim, you know. Forget I said that.\" She stays until dawn anyway."
         },
         {"label":"Tell her she's the only goddess","love":3,"jealousy":-6,"res":"\"That's a technicality,\" she says, pleased, and bites his ear."}
       ]
@@ -312,12 +314,12 @@
       "minCycle": 4,
       "title": "Not yet",
       "image": {
-        "comp": "a glowing goddess on top of a man in bed at night, wings spread wide, one hand pressed to his chest to hold him still, intense look",
+        "comp": "a goddess with glowing bronze skin on top of a man in bed at night, gold markings blazing, one hand pressed to his chest to hold him still, intense look",
         "setting": "Sam's bedroom at night, lantern-light",
         "sam": true,
         "pov": true
       },
-      "text": "This time she doesn't stop at the edge. She takes him in, slow, eyes closed, wings shaking, and for a moment the whole room is lantern-light.\n\nThen her hand is flat on his chest. \"Stop. Stay. Don't.\" Her voice isn't steady. \"If you finish in me I'm yours. Not as a figure of speech.\" She stays exactly like that, holding them both on the edge, until she can let go of him without either of them breaking.",
+      "text": "This time she doesn't stop at the edge. She takes him in, slow, eyes closed, gold markings blazing along her hips, and for a moment the whole room is lantern-light, every flame bowing toward them.\n\nThen her hand is flat on his chest. \"Stop. Stay. Don't.\" Her voice isn't steady. \"If you finish in me I'm yours. Not as a figure of speech. And I've wanted you for far longer than you know.\" She stays exactly like that, holding them both on the edge, until she can let go of him without either of them breaking.",
       "choices": [
         {
           "label": "Hold still for her",
@@ -332,7 +334,7 @@
       "id": "almost",
       "minCycle": 5,
       "title": "Edges",
-      "text": "{goddess} visits more often now and leaves later. She takes him all the way in and stops, every time, at the very last moment, with a sound like it costs her more than it costs him.\n\n\"You know what I'd lose.\" Her forehead against his. \"Everything I am. And I'd be yours. I don't even know which of those scares me.\"",
+      "text": "{goddess} visits more often now and leaves later. She takes him all the way in and stops, every time, at the very last moment, with a sound like it costs her more than it costs him.\n\n\"You know what I'd lose.\" Her forehead against his. \"Everything I am. And I'd be yours. I watched you for years before the truck, you know. Years. I don't even know which of those scares me more.\"",
       "choices": [
         {"label":"\"I'd give it back.\"","love":6,"res":"She laughs, shakily. \"You'd try. You're very stubborn.\" She doesn't say no."},
         {"label":"Kiss her until she stops thinking","love":4,"jealousy":-5,"res":"It works for a while. At dawn she's still there, which is new."}
@@ -342,7 +344,7 @@
       "id": "question",
       "minCycle": 5,
       "title": "What if",
-      "text": "{goddess} sits on the windowsill, glowing faintly, looking at the house.\n\n\"One of them has done it all now, you know. Lived and lived again, as far as a life can carry.\" She doesn't look at him. \"When you bring her back next time, I'm coming too. I don't think I can watch from the lanterns anymore.\"",
+      "text": "{goddess} sits on the windowsill, glowing faintly, the ember-flame dozing against her neck, looking at the house.\n\n\"One of them has done it all now, you know. Lived and lived again, as far as a life can carry.\" She doesn't look at him. \"You fed that stray cat every morning for two years and nobody ever saw. I saw. It wasn't a whim, Sam. It never was.\" She finally turns. \"When you bring her back next time, I'm coming too. I don't think I can watch from the lanterns anymore.\"",
       "choices": [
         {
           "label": "\"Then come.\"",
@@ -356,19 +358,19 @@
   ],
   "remarks": {
     "low": [
-      "A warm draft rattles the shutters. A voice, amused: \"{lady}? Cute. You have taste, I'll give you that.\"",
+      "A warm draft rattles the shutters. A voice, amused: \"{lady}? Cute. You have taste, I'll give you that. Did she make that sound for you? I'd like to hear it again.\"",
       "Every lantern in {house} flickers at once. Someone giggles. Nobody else hears it.",
-      "Sam finds a single gold feather on his pillow. Under it, in a very elegant hand: \"Busy week?\""
+      "Sam finds a single small ember on his pillow, still warm, burning nothing. Under it, in a very elegant hand: \"Busy week? I enjoyed the show.\""
     ],
     "mid": [
-      "\"{n} of them now.\" {goddess} is sitting on the end of the bar, invisible to everyone else, swinging her feet. \"I'm not counting. I'm a goddess, I just know.\"",
-      "{goddess} appears in Sam's room the night after he was with someone else. She doesn't say anything. She just sits there glowing at him, pointedly, until he apologizes for something he can't name.",
-      "\"{lady} again?\" The voice is at his ear, warm and dry. \"I'll remember that.\""
+      "\"{n} of them now.\" {goddess} is sitting on the end of the bar, invisible to everyone else, swinging her feet. \"I'm not counting. I'm a goddess, I just know.\" Her toe traces a slow line down his leg.",
+      "{goddess} appears in Sam's room the night after he was with someone else. She doesn't say anything. She just sits there glowing at him, pointedly, her dress sliding lower by the minute, until he apologizes for something he can't name.",
+      "\"{lady} again?\" The voice is at his ear, warm and dry, and a hand he can't see settles at his belt. \"I'll remember that. I'll want to compare.\""
     ],
     "high": [
       "Every candle in {house} gutters out at once. In the dark, {goddess}'s voice: \"I brought you here. I could have picked anyone. Don't make me regret it.\" The candles relight themselves, one at a time.",
-      "{goddess} catches Sam in the hallway, pins him to the wall by the collar and kisses him hard enough to hurt. \"So you remember who was first,\" she says, and is gone.",
-      "\"How many, {sam}?\" She isn't smiling. \"How many before you look up?\""
+      "{goddess} catches Sam in the hallway, pins him to the wall by the collar and kisses him hard enough to hurt, hands already inside his shirt. \"So you remember who was first,\" she says, and is gone.",
+      "\"How many, {sam}?\" She isn't smiling. Her hand is on his chest, warm and possessive. \"How many before you look up?\""
     ]
   },
   "remarkChoices": [
@@ -390,13 +392,13 @@
     "title": "Bound",
     "image": {
       "key": "binding",
-      "comp": "a goddess and a man embracing in bed, her wings wrapped around them both, lantern-light fading from her skin, tears and a smile",
+      "comp": "a goddess and a man embracing in bed, her skin glow fading, gold markings dimming and the ember-flame guttering, lantern-light dying around them, tears and a smile",
       "setting": "an endless dark space full of floating paper lanterns going out one by one",
       "sam": true,
       "pov": true
     },
-    "text": "This time the lanterns don't wait for him to wake. {goddess} is there before the dark is finished, and she doesn't say \"again.\"\n\n\"{names} has lived it all now. Everything a life can carry. And so have I, watching you.\" She pulls him down with her. \"I'm done watching.\"\n\nShe doesn't stop him this time. She holds on, and when he finishes inside her the light goes out of her like a breath let go: the halo, the glow, the warmth that never came from anywhere. Every lantern goes dark at once.\n\nWhat's left is a woman with gold eyes, shaking, laughing, holding on to him.",
-    "after": "\"Oh,\" she says. \"Oh, that's cold. Is it always this cold?\" She burrows into him. \"I'm yours now. All of me, the little that's left. You'll have to build me back up, {sam}.\"\n\nShe has a tab of her own now. She'll do what she likes each week. You can tell her what you'd like; she might even listen.",
+    "text": "This time the lanterns don't wait for him to wake. {goddess} is there before the dark is finished, and she doesn't say \"again.\"\n\n\"{names} has lived it all now. Everything a life can carry. And so have I, watching you.\" She pulls him down with her. \"I told you it was a whim. It wasn't. Years, Sam. Years of watching you be kind when nobody was looking: the stray cat you fed every single morning for two years, all the little things nobody ever thanked you for. I wanted you the whole time. I'm done watching.\"\n\nShe doesn't stop him this time. She holds on, and when he finishes inside her the light goes out of her like a breath let go: the glow under her skin, the gold markings, the little ember-flame, the warmth that never came from anywhere. Every lantern goes dark at once.\n\nWhat's left is a woman with gold eyes, shaking, laughing, holding on to him.",
+    "after": "\"Oh,\" she says. \"Oh, that's cold. Is it always this cold?\" She burrows into him. \"I'm yours now. All of me, the little that's left. I wanted you since before the truck, and I'd never have said so with the light still on. You'll have to build me back up, {sam}.\"\n\nShe has a tab of her own now. She'll do what she likes each week. You can tell her what you'd like; she might even listen.",
     "button": "Hold her"
   },
   "focus": {
@@ -426,7 +428,7 @@
     },
     "tutelage": {
       "label": "Tutelage",
-      "desc": "She takes the least practiced working lady under her wing: job skill and a stat.",
+      "desc": "She takes the least practiced working lady as her pupil: job skill and a stat.",
       "report": "{goddess} tutored {lady} in {skill}. She's a demanding teacher."
     },
     "whim": {"label":"Her whim","desc":"No guidance at all. She does what she feels like, a little more strongly than usual."}
@@ -444,40 +446,37 @@
   "night": {
     "image": {
       "key": "night",
-      "comp": "a goddess with faintly glowing skin lying with a man in bed at night, wings draped over them like a blanket, content smile",
+      "comp": "a goddess with faintly glowing bronze skin lying close against a man in bed at night, gold markings softly lit, a small ember-flame floating over them, content smile",
       "setting": "Sam's bedroom at night, lantern-light",
       "sam": true,
       "pov": true
     },
     "open": {
       "low": [
-        "{goddess} is cold more often than not now, and mortal-tired. She pulls Sam under the covers and under her wings, and for a while that's all.",
+        "{goddess} is cold more often than not now, and mortal-tired. She pulls Sam under the covers and against her, skin to skin, and for a while that's all.",
         "\"Warm me up,\" she says, and means it in every way."
       ],
       "mid": [
-        "There's light coming back into her. Not much: a glow at the edges of her wings when he touches her. She gasps at it every time, like she forgot."
+        "There's light coming back into her. Not much: a glow under her skin where he touches her, gold markings flickering awake along her collarbones and hips. She gasps at it every time, like she forgot."
       ],
       "high": [
-        "{goddess} is almost herself again. The room is lantern-bright when she pulls him down. She could stop him now, if she wanted. She doesn't want."
+        "{goddess} is almost herself again. The room is lantern-bright when she pulls him down, the candles leaning in. She could stop him now, if she wanted. She doesn't want."
       ]
     },
-    "finish": [
-      "When he finishes inside her, a little more light comes back into her skin, and a little more of the warmth he lost all day comes back into him.",
-      "Afterwards she lies with her ear against his chest, glowing faintly, listening to the heartbeat she chose."
-    ]
-  },
-  "talk": {
-    "low": [
-      "They sit on the roof and she points out which stars are hers. Most of them, apparently.",
-      "She asks about his old world. She already knows. She wants to hear him tell it."
+    "inside": [
+      "When he finishes inside her, light floods back into her skin, the gold markings flaring and the ember-flame spinning with delight. \"There,\" she breathes, laughing. \"That. More of that.\" A little of the warmth he lost all day comes back into him too.",
+      "Afterwards she lies with her ear against his chest, glowing, listening to the heartbeat she chose, and tells him exactly how pleased she is with his {act}. Smug, and radiant.",
+      "He finishes inside her and the room goes gold. {goddess} drags him closer by the hair and kisses him through it. \"Good {sam},\" she murmurs. \"Good, good {sam}.\""
     ],
-    "mid": [
-      "\"Do you love them?\" she asks, about the others, not looking at him. He answers honestly. She doesn't say anything for a while, but she leans on him.",
-      "She admits she used to watch him in his old world, before the truck. \"You fed a stray cat every day for two years. I thought: that one.\""
+    "outside": [
+      "He finishes, but not inside her, and {goddess} is pleased and a little sulky about it. \"Considerate. Wasteful.\" No light comes back, but she traces circles on his chest anyway, and the flame hovers close.",
+      "\"That was lovely, and I'm still cold.\" {goddess} nips his shoulder. \"Next time, don't be so polite about the {act}.\"",
+      "She watches him finish with open appreciation, and then pouts, prettily, because the light stays out of her. \"You know where it's supposed to go.\""
     ],
-    "high": [
-      "\"Talk to me,\" she says. \"Not about them. About us.\" It goes better than either of them expected.",
-      "She's angry, and then she's angry that she's angry, and then she laughs at herself, and by the end of it she's in his lap."
+    "unhappy": [
+      "{sam} didn't finish, and {goddess} is deeply put out. \"You wasted my night,\" she pouts, and the candles dim to match her mood. \"I wanted the {act} to end properly.\"",
+      "\"Nothing? After all that?\" {goddess} flops back on the pillow and glares at the ceiling. The ember-flame sulks in a corner. \"You owe me. With interest.\"",
+      "{goddess} turns her back to him, arms crossed, skin dimming. \"Wake me when you've remembered how it's done,\" she says, and does not sleep a wink."
     ]
   },
   "ending": {
@@ -485,10 +484,10 @@
       "title": "Whole again",
       "image": {
         "key": "stay",
-        "comp": "a radiant goddess fully glowing again, wings spread wide, holding a man's hand on a rooftop at night, lanterns rising into the sky",
+        "comp": "a radiant goddess fully glowing again, gold markings blazing, a bright ember-flame circling her shoulder, holding a man's hand on a rooftop at night, lanterns rising into the sky",
         "setting": "a rooftop at night, hundreds of paper lanterns floating up"
       },
-      "text": "It happens on an ordinary night. The light comes back all at once: the halo, the wings, the warmth from nowhere. {goddess} is a goddess again, entirely.\n\nThe lanterns are waiting. She can feel them pulling.\n\nShe takes Sam's hand instead. \"I could go,\" she says. \"I could pick someone new and watch. That's what I'm for.\" Her fingers tighten. \"I don't want to watch anymore. I'm staying.\"",
+      "text": "It happens on an ordinary night. The light comes back all at once: the glow under her skin, the gold markings, the ember-flame, the warmth from nowhere. {goddess} is a goddess again, entirely.\n\nThe lanterns are waiting. She can feel them pulling.\n\nShe takes Sam's hand instead. \"I could go,\" she says. \"I could pick someone new and watch. That's what I'm for.\" Her fingers tighten. \"I don't want to watch anymore. I'm staying.\"",
       "button": "Stay",
       "res": "She stays, whole and divine and his. (Her story is complete. She keeps her full power.)"
     },
@@ -496,12 +495,184 @@
       "title": "Whole again",
       "image": {
         "key": "leave",
-        "comp": "a radiant goddess fully glowing again, rising into a night sky full of lanterns, looking back over her shoulder",
+        "comp": "a radiant goddess fully glowing again, gold markings blazing, an ember-flame at her shoulder, rising into a night sky full of lanterns, looking back over her shoulder",
         "setting": "a rooftop at night, hundreds of paper lanterns floating up"
       },
-      "text": "It happens on an ordinary night. The light comes back all at once: the halo, the wings, the warmth from nowhere. {goddess} is a goddess again.\n\nShe looks at Sam for a long moment. \"You gave it all back. Every bit of it.\" She touches his face. \"But you never really asked me to stay, did you.\"\n\nThe lanterns rise, and she goes with them.",
+      "text": "It happens on an ordinary night. The light comes back all at once: the glow under her skin, the gold markings, the ember-flame, the warmth from nowhere. {goddess} is a goddess again.\n\nShe looks at Sam for a long moment. \"You gave it all back. Every bit of it.\" She touches his face. \"But you never really asked me to stay, did you.\"\n\nThe lanterns rise, and she goes with them.",
       "button": "Watch her go",
       "res": "She's gone. Somewhere, among the lanterns, she's picking someone new. (Her story is over.)"
+    }
+  },
+  "services": {
+    "_default": {
+      "sam": [
+        "{goddess} takes the lead, unhurried and entirely sure of what she wants, and Sam is very much along for the ride.",
+        "{goddess} touches him freely, teasing and possessive, the candles in the room leaning in to watch."
+      ],
+      "feminine": [
+        "{goddess} spent the evening with {lady}, who has not stopped smiling.",
+        "{lady} and {goddess} disappeared into the goddess's candle-lit room for a long while."
+      ],
+      "futa": [
+        "{goddess} took a form with something extra for {lady}, and was in no hurry at all.",
+        "{lady} learned what a goddess does with a body she can change at will. She is still pink."
+      ]
+    },
+    "massage_give": {
+      "sam": [
+        "{goddess} straddles his back with warm oil she conjured from nowhere and works the day out of his shoulders, humming. Every so often her hands wander lower than anatomy strictly requires.",
+        "\"Hold still, you're all knots.\" Her thumbs find every one, her breath warm on his neck, the little ember-flame drifting down to light the room."
+      ],
+      "feminine": [
+        "{lady} spent the evening working oil into {goddess}'s shoulders and back while the goddess purred and issued notes. Neither of them looked at the clock.",
+        "{goddess} lay back and let {lady}'s hands do as they pleased; the gold markings on her skin glowed warmer with every pass."
+      ],
+      "futa": [
+        "{goddess} wore a rather more generous form that night and let {lady} knead the tension out of her. It turned out not all of it was in her shoulders.",
+        "{lady} oiled the goddess down, shoulders to hips, and found the form {goddess} had picked eager to be appreciated."
+      ]
+    },
+    "kiss": {
+      "sam": [
+        "She kisses him like she has all the time in the world, slow, then not slow, until the candles lean toward them.",
+        "{goddess} pins him against the wall by his shirt and kisses him breathless, her gold markings flaring where his hands land on her hips."
+      ],
+      "feminine": [
+        "{goddess} kissed {lady} against the lamp-lit doorway until {lady} forgot what she'd come for.",
+        "{lady} and {goddess} traded slow kisses over a shared candle; the flame leaned toward them, scandalized."
+      ],
+      "futa": [
+        "{goddess} kissed {lady} slowly, a hand at her waist and a clearly interested body pressed close. {lady} forgot the question she'd come to ask.",
+        "{lady} was kissed against the bookshelves by a goddess in an unmistakably generous mood."
+      ]
+    },
+    "massage_get": {
+      "sam": [
+        "She lies face down across the bed, dress pooled at her waist. \"Your turn, Sam. Take your time. I'll tell you if you're doing it wrong.\" She does, smiling into the pillow, often.",
+        "\"Oil. Hands. Lower,\" says {goddess}, directing him like a conductor, her skin warming under his palms until it glows."
+      ],
+      "feminine": [
+        "{goddess} oiled {lady} from neck to ankle with unhurried hands, narrating compliments as she went. {lady} melted.",
+        "{goddess} turned {lady} into a puddle with her hands alone, and won't say how long it took."
+      ],
+      "futa": [
+        "{goddess} worked {lady} over with warm oil and warmer hands, and was plainly enjoying the effect she was having. {lady} did not complain.",
+        "{lady} lay back under {goddess}'s hands and the heat of a body pressed along her side. It was not strictly a massage by the end."
+      ]
+    },
+    "manual_get": {
+      "sam": [
+        "{goddess} guides his hand with her own, showing him exactly the pace she wants, eyes half-closed. \"There. Good student.\"",
+        "She leans back against him, sets his fingers where she wants them and sighs, the markings at her hips brightening with each breath."
+      ],
+      "feminine": [
+        "{goddess} slipped a hand where {lady} needed it most and kept her there, trembling, until she asked politely.",
+        "{lady} found out how patient a goddess's fingers can be. She is still catching her breath."
+      ],
+      "futa": [
+        "{goddess} kept {lady} pinned against her with one arm and took her time with the other. {lady} stopped trying to be quiet.",
+        "{lady} was held close by a goddess with something extra to press against her, and a very clever hand. It was a lot."
+      ]
+    },
+    "manual_give": {
+      "sam": [
+        "Her hand is warm and unhurried and very sure; she watches his face the whole time, enjoying every change in it.",
+        "\"Eyes on me,\" says {goddess}, and keeps him on the edge, patient and smug, until he is saying her name."
+      ],
+      "feminine": [
+        "{lady} followed {goddess}'s murmured directions with her hand and was rewarded with a glow bright enough to read by.",
+        "{goddess} guided {lady}'s hand and sighed her approval; the ember-flame bobbed happily overhead."
+      ],
+      "futa": [
+        "{lady} took {goddess} in her hand at the goddess's soft command, and got to watch a deity lose her composure.",
+        "{goddess} let {lady} explore, murmuring encouragement, her free hand tangled in {lady}'s hair."
+      ]
+    },
+    "breast_get": {
+      "sam": [
+        "{goddess} arches into his hands, guiding his mouth where she wants it. \"Don't rush. I picked you for your patience.\"",
+        "She laughs, low and pleased, as he takes his time with her, the ember-flame bobbing close as if to see."
+      ],
+      "feminine": [
+        "{goddess} took her time with {lady}'s chest, attentive and a bit smug, until {lady} was clutching the sheets.",
+        "{lady} gasped as {goddess}'s warm mouth and hands made a long, thorough study of her."
+      ],
+      "futa": [
+        "{goddess} lavished {lady}'s chest with attention while pressing close in a way that made her intentions clear. {lady} did not argue.",
+        "{lady} was held in a goddess's lap and thoroughly adored, a hard-to-ignore warmth against her thigh the whole time."
+      ]
+    },
+    "oral_get": {
+      "sam": [
+        "She settles back on the pillows like a queen receiving a petitioner, one hand in his hair. \"Slowly. I'll tell you when to stop. I won't.\"",
+        "{goddess} lets out a sound that sets every lantern in the room swaying, her hand firm on the back of his head."
+      ],
+      "feminine": [
+        "{goddess} knelt between {lady}'s knees like a petitioner and took the long way round. {lady} won't describe it.",
+        "{lady} lost track of time under {goddess}'s patient, devoted attention. Every candle in the room burned a little brighter."
+      ],
+      "futa": [
+        "{goddess} spent the night lavishing {lady} with devoted attention before taking things further. {lady} has asked for more candles, for atmosphere.",
+        "{lady} was worshipped, thoroughly, by a goddess who clearly enjoyed the work. She is going to need a day."
+      ]
+    },
+    "oral_give": {
+      "sam": [
+        "She kneels, looks up at him with gold eyes and the beginning of a grin, and takes her time, thoroughly enjoying how undone he gets.",
+        "\"I've been wanting to do this,\" says {goddess}, and then doesn't say anything else for a good while."
+      ],
+      "feminine": [
+        "{lady} knelt for {goddess}, who lay back among the cushions, glowing and issuing soft, imperious encouragement.",
+        "{goddess} let {lady} worship her properly, one hand in her hair, until the lanterns swayed."
+      ],
+      "futa": [
+        "{lady} knelt for {goddess} and did her best by the goddess's generous new form, to a chorus of approving noises and flaring candles.",
+        "{goddess} let {lady} take her time, a hand stroking her hair and murmuring that she was doing beautifully."
+      ]
+    },
+    "breast_give": {
+      "sam": [
+        "{goddess} presses close, warm and soft, and uses everything she has to make him forget his own name, watching his face the entire time.",
+        "She tucks him against her and teases, slow, sure, delighted, every flicker of his expression logged and appreciated."
+      ],
+      "feminine": [
+        "{lady} lavished {goddess}'s chest with attention, and the goddess rewarded her with a long, warm sigh and brightening skin.",
+        "{goddess} arched into {lady}'s hands and mouth, smiling like a cat with a very large bowl of cream."
+      ],
+      "futa": [
+        "{lady} paid devoted attention to the goddess's chest while the rest of her became very obviously interested. {lady} noticed. {goddess} didn't care.",
+        "{goddess} guided {lady}'s mouth and hands with a murmur or two, and the markings on her skin glowed in encouragement."
+      ]
+    },
+    "missionary": {
+      "sam": [
+        "She pulls him over her, legs around his waist, hands in his hair, and the whole room glows with her. \"Look at me. Stay with me. Not too far, Sam.\"",
+        "{goddess} holds his gaze through all of it, her skin brightening with every breath, one hand pressed to his chest to set the pace. Hers."
+      ],
+      "futa": [
+        "{goddess} laid {lady} back among the pillows in a very generous form and took things slow. {lady} saw lanterns.",
+        "{lady} was held down, kissed, and thoroughly made love to by a goddess who took her time. The candles didn't survive it."
+      ]
+    },
+    "cowgirl": {
+      "sam": [
+        "She takes charge, naturally, setting a rhythm that makes the candles flare and gutter in time, a hand flat on his chest. \"Mine, Sam. Hold still and let me.\"",
+        "{goddess} rides him in lantern-light, head back, markings blazing, the ember-flame circling above them like a spectator."
+      ],
+      "futa": [
+        "{goddess} lay back and let {lady} take charge, which {lady} did with considerable and gratifying enthusiasm.",
+        "{lady} climbed onto a smug, glowing goddess and set the pace herself. {goddess} supervised, approvingly."
+      ]
+    },
+    "doggy": {
+      "sam": [
+        "She looks back over her shoulder, gold eyes bright, and sets the pace herself, pushing back against him with a laugh. \"Don't be shy now.\"",
+        "{goddess} grips the bedframe, hair spilling like ink and embers down her back, and tells him exactly how much she approves."
+      ],
+      "futa": [
+        "{goddess} took {lady} from behind, one hand firm at her hip, in a form she'd chosen on purpose. {lady} gripped the headboard and thanked her.",
+        "{lady} found herself bent over the arm of a chair with a goddess behind her, murmuring praise into her hair."
+      ]
     }
   }
 }

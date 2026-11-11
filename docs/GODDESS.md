@@ -12,8 +12,14 @@ Test: `node tools/goddess-smoke.mjs [weeks per cycle]` (plays to the binding, ev
   - You set a focus (Indulge / Business / Watch / Tutelage / Whim) and a form (herself / something more / as she pleases). She takes 1 action per week, plus 1 per 25 divinity.
   - When jealous she sometimes "claims" Sam or a new lady instead. When unhappy she ignores your guidance.
   - Her power scales with divinity and with fully reincarnated ladies (and their extra lives).
-  - Sam's actions with her: a night (restores his energy, +divinity) and a talk (+love). Nights barely move her love.
-- **Ending:** at full divinity she stays if her love is at least `love.stay` (70) and keeps her full power. Otherwise she leaves for good.
+  - With the ladies (Indulge) she takes over a service herself: her female form does tier 1-2 services, her futa form any. Each has its own line (`goddess.json → services[act].feminine/futa`), and the lady practices that service.
+  - Nights with Sam: pick a service; she does it as herself (`services[act].sam`, image `samact:<act>` with her as the woman).
+    - Finishing inside her (a finishing tier-3 service) restores Sam's energy and raises divinity, love and mood, and cuts jealousy.
+    - Finishing outside her gives half the energy and a little love, but she sulks.
+    - No finish costs mood and love.
+  - Neglect: from `neglect.after` (3) weeks without a night she loses love and mood every week. A jealous claim on a lady that Sam doesn't answer with a night within `neglect.claimWeeks` (2) costs extra.
+- **Ending:** at full divinity she stays if her love is at least `love.stay` (70) and keeps her full power. Otherwise she leaves for good. A player who keeps coming to her ends well; one who only uses her for divinity and ignores her doesn't.
+- **Backstory:** she claims she picked Sam on a whim. In truth she had watched him for years in his old world (the stray cat). It slips out in the later teases and comes out at the binding.
 
 ## State
 `S.goddess` {met, bound, boundCycle, love, jealousy, mood, divinity, focus, form, teases[], evWk, roster, ending, left, nights, finishes, last[]}. Save v30. It carries through NG+ untouched.
