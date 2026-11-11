@@ -1,0 +1,9 @@
+{
+  "desc": "NG+ extra past life for Sam (Wayfarer, Seasoned Owner).",
+  "scenario": "ngplus",
+  "runs": 12,
+  "ng": { "house": "wayfarer", "boon": "ap" },
+  "each": { "ng.past": ["none", "bartender", "gym", "otaku", "cook", "massage", "tutor"] },
+  "baseline": false,
+  "breakdown": []
+}

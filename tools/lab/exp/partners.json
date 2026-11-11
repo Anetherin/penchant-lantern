@@ -1,0 +1,8 @@
+{
+  "desc": "Starting partner: a full first cycle at the Lantern with each cycle-1 partner.",
+  "scenario": "campaign",
+  "weeks": 104,
+  "runs": 12,
+  "each": { "start.partner": ["kaede", "nerys", "elowen", "adelheid", "marisol", "lirael", "anael"] },
+  "breakdown": ["named"]
+}

@@ -1,0 +1,9 @@
+{
+  "desc": "NG+ boon choice: cycle 1 at the Lantern (shared warm-up per seed), then NG+ with the Wayfarer as the new house, no new past, auto partner; cycle 2 played until won (max 104 weeks).",
+  "scenario": "ngplus",
+  "runs": 12,
+  "ng": { "house": "wayfarer", "past": "none" },
+  "each": { "ng.boon": ["ap", "purse", "renown", "recruit", "grace", "devotion", "loyal", "memory", "clone"] },
+  "baseline": false,
+  "breakdown": []
+}

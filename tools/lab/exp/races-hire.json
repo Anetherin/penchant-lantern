@@ -1,0 +1,8 @@
+{
+  "desc": "Race balance in a real playthrough: from week 1 the player only hires this race (the candidate pool is topped up with it). Includes signing/wage/candidate differences that the isolated swap does not.",
+  "scenario": "campaign",
+  "weeks": 104,
+  "runs": 12,
+  "each": { "policy.hireRace": ["human", "elf", "beastkin", "demon", "dwarf", "spirit", "angel", "android"] },
+  "breakdown": ["race"]
+}
