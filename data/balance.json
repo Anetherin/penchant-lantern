@@ -46,7 +46,9 @@
     "clients.nativeMatch: without a madame clients mostly take whoever is free: appeal and race/trait draw count only to this power. clients.wait: with a madame, a client whose best match is busy (chance (load - busyAt) / (1 - busyAt), load = her clients so far / her weekly cap of 10, so nobody is busy before busyAt) waits with chance base + his patience + house comfort (garden, decorPer x decor tier, tidy when tidy, bath, open bar, open stage, hostPer x working hosts), capped at max; waiting costs sat (a host offsets it); else he takes someone else, or leaves (leaveSat) if nobody is free. Waiting clients spend barSpend at an open bar / stageSpend at a staffed stage. clients.host: sat is x (0.6 + her Charm/125); each host entertains perWeek x (1 + service skill/100 x skillPer x 10) waiting clients per week (x outfit/job bonus x her output after accepted propositions; each accepted proposition costs propCost, a warm-up or entertaining 1 each), +sat (+satSkill x quality); clients at least fluffOpen open (0.3 + the open of his traits) get a warm-up (her menu or what she is comfortable with, from kiss / massage / manual / oral / breast give; not if she is set to Off) (a light service in the open, never finished): +fluffSat (+fluffSkill x quality) on his courtesan visit, tip fluffFee x service price, at most fluffMax per client; a client with acceptHost may have her finish him instead (finishShare of a normal fee, costs finishCost of her capacity); accepted propositions cost propCost. thirsty / gossip: see clients.traits.",
     "ngplus.bonds: when two ladies both reincarnate (carried lovers, old friends, or alumni still waiting to be re-hired), their bond carries into the next cycle at keep x its value (0.5 = halved; 1 = untouched; 0 = reset), and its kind (mentor, comrades, ...) stays unless kinds is false. The sheet marks such bonds '(from a past life)'. Bonds with anyone else are dropped as before.",
     "jobs.attendant*: an attendant's quality = (Hospitality x attendantSkillW + Charm x attendantCharmW + Wits x attendantWitsW)/100 x outfit/job bonus x her output, capped at attendantQMax (an average attendant is about 0.5, a top one 1+). The most popular courtesans each get their own attendant (best attendant first); the others share attendantShared x the average quality. A courtesan's service energy cost x (1 - help x attendantEnergyPer, never below attendantEnergyMin) and her clients' satisfaction + help x attendantSatPer; her own attendant also gives her attendantOwnMood / attendantOwnTrust x (0.5 + quality/2). Low-skill attendants mostly just step in when the courtesans are swamped.",
-    "amenities.classroom (teaching formula): each lady behind the teacher gains floor(gap x rate x teacher x learner). teacher = (base + Management/100 x manageW + Wits/100 x witsW) x outfit/job bonus (teacher) x her teach fx x her output; learner = (learnBase + Wits/100 x learnWits) x her learn fx (x humanMult for humans). An average teacher and learner come to about 1. The madame's coaching (jobs.madameCoach) also uses her teach fx and the learner's learn fx."
+    "amenities.classroom (teaching formula): each lady behind the teacher gains floor(gap x rate x teacher x learner). teacher = (base + Management/100 x manageW + Wits/100 x witsW) x outfit/job bonus (teacher) x her teach fx x her output; learner = (learnBase + Wits/100 x learnWits) x her learn fx (x humanMult for humans). An average teacher and learner come to about 1. The madame's coaching (jobs.madameCoach) also uses her teach fx and the learner's learn fx.",
+    "tutor: paid tutoring per lady (her sheet → Tutoring; js/logic/spending.js). Each week at the week's end Sam pays cost (x tier cost, x 1 + perCycle x (cycle-1)) for every lady with a tutor; skipped with a report note if the purse can't cover it. focus weak = her `weakStats` lowest stats (by statOf) at stat each and her `weakSkills` lowest trade skills at skill each; focus job = the stats her job uses (train.stat.byJob weights) at stat x weight, her job's skill at skill, other skills x others, and for menu jobs every menu service at svc. All gains x tier gain x her learn fx and personality 'train' liking. herEnergy = her energy per week; counts toward counts.lessons.",
+    "gifts: buying gifts for trust (her sheet → Gifts). tiers {cost, trust, mood}: trust goes through gainTrust (diminishing near the top, house-story caps still apply), mood x personality 'gift' liking (Greedy x greedy). Each gift to the same lady in one week costs x (1 + weekStep x gifts so far this week); cost x (1 + perCycle x (cycle-1)). beforeDebt: 'locked' (only once the debt is paid), 'action' (before that, each gift costs one of Sam's actions and energy; free after) or 'free'. Counts as a gift (counts.gifts)."
   ],
   "lewd": {
     "_note": "Lewdness diminishing returns (lewdUp). Each source has a cap: full gain below cap-band, half at the cap, none past cap+band. Services: cap = service th + capOver. softCap: default cap for sources without one; past it only daring dates, traits and stories push her further.",
@@ -630,5 +632,29 @@
     "lewd": 2,
     "lewdCapPlus": 10,
     "mood": 4
+  },
+  "tutor": {
+    "cost": 150,
+    "perCycle": 0.25,
+    "herEnergy": 4,
+    "tiers": {"tutor":{"label":"Tutor","cost":1,"gain":1},"master":{"label":"Master tutor","cost":2.5,"gain":2}},
+    "weakStats": 3,
+    "weakSkills": 2,
+    "stat": 8,
+    "skill": 5,
+    "others": 0.3,
+    "svc": 3
+  },
+  "gifts": {
+    "beforeDebt": "locked",
+    "energy": 5,
+    "weekStep": 0.25,
+    "perCycle": 0.25,
+    "greedy": 1.3,
+    "tiers": {
+      "trinket": {"label":"Trinket","cost":80,"trust":1.5,"mood":4},
+      "jewel": {"label":"Fine jewelry","cost":300,"trust":4,"mood":8},
+      "lavish": {"label":"Something lavish","cost":1000,"trust":10,"mood":15}
+    }
   }
 }

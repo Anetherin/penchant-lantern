@@ -5,7 +5,8 @@
     "enc_* lines are short notes on how one client visit went for her (shown in the weekly report). job_* lines are report lines for the non-escort jobs.",
     "encore: the line added when a restless lady goes another round. enc_frustrated / enc_drained / enc_like / enc_put_off: extra visit notes.",
     "demo_lead / demo_watch: Sam's demonstration lesson ({name} = his partner). Templates; rewrite freely.",
-    "orgy_lead ({names}, {first}, {house}), orgy_pair ({a}, {b}), orgy_end ({first}), orgy_lover ({name}: a Devoted lady sharing him): Sam's group nights. Templates; rewrite freely."
+    "orgy_lead ({names}, {first}, {house}), orgy_pair ({a}, {b}), orgy_end ({first}), orgy_lover ({name}: a Devoted lady sharing him): Sam's group nights. Templates; rewrite freely.",
+    "gift_trinket / gift_jewel / gift_lavish ({name}, {gift} = a random trinket from people.json gifts): Sam buys her a gift with gold (her sheet → Gifts). tutor_note ({name}, {tutor}): her weekly report note when a tutor works with her. Templates; rewrite freely."
   ],
   "solo": {
     "_note": "Report line when a lady at max lust spends part of her night alone in her room instead. Shown in the weekly report.",
@@ -1429,6 +1430,34 @@
       "\"A manager's job,\" Sam says, \"is to make problems small before they're big.\" {name} considers this seriously, then asks three sharp questions about the rota that he has to look up. She pretends not to enjoy that.",
       "They role-play a difficult guest. Sam plays the guest, loudly and a bit unfairly, and {name} de-escalates him with a calm voice and a firm smile. He folds in under a minute. She sits back, pleased, and takes the last biscuit.",
       "The window is open to the afternoon, with the noise of the street drifting in, and {name} is working out next week's schedule on a slate. Sam leans over to point out a clash, and she has already spotted it. \"Give me some credit,\" she says, rubbing it out."
+    ]
+  },
+  "gift_trinket": {
+    "_default": [
+      "Sam brings {name} {gift}. She turns it over in her hands and tucks it away somewhere safe.",
+      "{name} finds {gift} waiting on her pillow, with a note in Sam's careful handwriting.",
+      "Sam hands {name} {gift} without much ceremony. She smiles anyway."
+    ]
+  },
+  "gift_jewel": {
+    "_default": [
+      "Sam gives {name} a slim velvet box. Inside is a piece that catches the lamplight. She asks him to fasten it for her.",
+      "{name} opens the jeweler's box, closes it, opens it again. \"You didn't have to,\" she says, already wearing it.",
+      "A pendant from the good shop on the hill. {name} spends the evening finding reasons to touch it."
+    ]
+  },
+  "gift_lavish": {
+    "_default": [
+      "Sam has something extravagant delivered for {name}. Half the house comes to look. She pretends not to be thrilled and fails completely.",
+      "{name} stares at what Sam bought her, then at Sam. \"This is too much.\" She doesn't give it back.",
+      "It costs more than some of the furniture. {name} doesn't say much, but she stays close to Sam for the rest of the night."
+    ]
+  },
+  "tutor_note": {
+    "_default": [
+      "Spent her mornings with the {tutor}.",
+      "Her {tutor} left her a stack of exercises. She did most of them.",
+      "Lessons with the {tutor} went well this week."
     ]
   }
 }

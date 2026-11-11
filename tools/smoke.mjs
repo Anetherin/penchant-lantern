@@ -20,6 +20,8 @@ const BOT = `async (weeks) => {
     if (S.ap > 0) { samRest(); closeModal(); }
     if (i === 1) { S.gold = Math.max(S.gold, 9000); buyUpgrade('suite'); buySamUp('notebook'); closeModal(); }
     throwFeast(BAL.feast.tiers[0].id); closeModal();
+    if (i === 2) { setTutor(S.workers[0].id, 'job'); if (S.workers[1]) { setTutor(S.workers[1].id, 'weak'); setTutorTier(S.workers[1].id, 'master'); } closeModal(); }
+    if (i === 3) { const m = BAL.gifts.beforeDebt; BAL.gifts.beforeDebt = 'action'; giftMenu(S.workers[0].id); buyGift(S.workers[0].id, 'trinket'); BAL.gifts.beforeDebt = 'free'; buyGift(S.workers[0].id, 'jewel'); BAL.gifts.beforeDebt = m; closeModal(); }
     endWeek(); closeModal();
     let g = 0; while ((EVQ.length || CUR_EV) && g < 25) { if (CUR_EV) { evChoice(Math.floor(Math.random()*CUR_EV.choices.length)); CUR_EV = null; } closeModal(); runQueue(); g++; } closeModal();
     S.gold = Math.max(S.gold, 2000); S.debt.strikes = 0;

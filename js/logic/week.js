@@ -606,6 +606,7 @@ function endWeek(){
   R.bizBonus = Math.round(R.income * (samBonus('business') - 1)); R.income += R.bizBonus;
   R.wages = S.workers.reduce((a,w)=>a+(isFree(w)?0:w.wage), 0);
   S.gold += R.income - R.wages - R.upkeep;
+  tutorWeek(R);
 
   const leaving = [], renew = [];
   S.workers.forEach(w=>{
@@ -752,7 +753,7 @@ function endWeek(){
   refreshCandidates();
   checkUnlocks(false, R.lines);
   S.lastReport = R;
-  addLog(`Week ${R.week}: income ${fmt(R.income)}, wages ${fmt(R.wages)}, upkeep ${fmt(R.upkeep)}${R.recharge?`, recharging ${fmt(R.recharge)}`:''}.`);
+  addLog(`Week ${R.week}: income ${fmt(R.income)}, wages ${fmt(R.wages)}, upkeep ${fmt(R.upkeep)}${R.recharge?`, recharging ${fmt(R.recharge)}`:''}${R.tutor?`, tutors ${fmt(R.tutor)}`:''}.`);
   save(); render();
   showReport(R, true);
 }
@@ -789,9 +790,9 @@ function repHouseExtra(h){
   return `rooms ${h.roomsUsed}/${h.roomCap}${h.short?` <span class="warn">(short on rooms)</span>`:''} · tidiness ${Math.round(h.tidy0)}→<b class="${h.tidy>=BAL.tidy.high?'good':h.tidy<BAL.tidy.low?'warn':''}">${Math.round(h.tidy)}</b>${h.promoDraw?` · promoter draw +${Math.round(h.promoDraw)}`:''}${h.stepIn?` · stepped in for ${h.stepIn}`:''}${h.waited||h.left?` · ${h.waited} waited, ${h.left} left`:''}${h.selfProps?` · restless ladies made ${h.selfProps} proposition${h.selfProps>1?'s':''} themselves`:''}${pu.total?` · pushy clients ${pu.total}: <span class="good">${(pu.talked||0)+(pu.security||0)+(pu.sam||0)} handled</span>${(pu.samfail||0)+(pu.none||0)?`, <span class="warn">${(pu.samfail||0)+(pu.none||0)} went badly</span>`:''}`:''}${ctraitsLine(h)}`;
 }
 function repAll(R){
-  const net = R.income - R.wages - R.upkeep - (R.recharge||0), L = R.led;
+  const net = R.income - R.wages - R.upkeep - (R.recharge||0) - (R.tutor||0), L = R.led;
   const ledger = [['Escort fees',L.escort],['Propositions',L.offduty],['Bar',L.bar],['Stage',L.dance],['Bathhouse',L.bath],['Chapel donations',L.chapel],['Hosting',L.host],["Sam's dealings (Business)",R.bizBonus]].filter(x=>x[1]).map(([k,v])=>`<tr><td>${k}</td><td class="good">+${fmt(v)}</td></tr>`).join('')
-    + `<tr><td>Wages</td><td class="warn">−${fmt(R.wages)}</td></tr><tr><td>Upkeep</td><td class="warn">−${fmt(R.upkeep)}</td></tr>` + (R.recharge ? `<tr><td>Recharging</td><td class="warn">−${fmt(R.recharge)}</td></tr>` : '')
+    + `<tr><td>Wages</td><td class="warn">−${fmt(R.wages)}</td></tr><tr><td>Upkeep</td><td class="warn">−${fmt(R.upkeep)}</td></tr>` + (R.recharge ? `<tr><td>Recharging</td><td class="warn">−${fmt(R.recharge)}</td></tr>` : '') + (R.tutor ? `<tr><td>Tutors</td><td class="warn">−${fmt(R.tutor)}</td></tr>` : '')
     + (L.sam?`<tr><td class="muted">Sam's bar shifts (already in your purse)</td><td class="good">+${fmt(L.sam)}</td></tr>`:'')
     + `<tr><th>Net</th><th class="${net>=0?'good':'warn'}">${fmt(net)}</th></tr>`;
   const houseRows = (R.houses||[]).map(h=>`<tr><td>${repLink('h:'+h.id, esc(h.name))}</td><td>${h.served}${h.turned?` <span class="warn">(+${h.turned} turned away)</span>`:''}</td><td>${fmt(h.income)}</td><td>${fmt(h.upkeep)}</td><td>${Math.round(h.avgSat)}</td><td>${Math.round(h.rep)}</td></tr>`).join('');

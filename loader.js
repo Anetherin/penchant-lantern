@@ -26,6 +26,7 @@
     'js/logic/commands.js',
     'js/ui/wardrobe.js',
     'js/logic/sam.js',
+    'js/logic/spending.js',
     'js/logic/home.js',
     'js/logic/week.js',
     'js/events/core.js',
