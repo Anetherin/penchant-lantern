@@ -78,9 +78,31 @@
     "bonus": {"eager":{"mood":4,"trust":0.5},"restless":{"mood":8,"trust":1.5},"trainMult":0.5,"clientMood":1}
   },
   "train": {
-    "_note": "One-on-one training on her sheet (samTrain). stat: Sam coaches one of her 8 stats; gain = (base + Sam Wits x perWits) x Wits bonus, in 0-1000 stat units (diminishing near the cap); energy = Sam, herEnergy = hers. skill: Hospitality or a service practice; scales with Technique; adds lust (lust, x her lewdness) and lewd lewdness per session but only while her lewdness (0-100) is below lewdCap.",
-    "stat": {"base":12,"perWits":0.2,"energy":20,"herEnergy":10},
-    "skill": {"energy":30,"herEnergy":14,"lust":4,"lewd":1.5,"lewdCap":50}
+    "_note": "One-on-one training on her sheet (samTrain), no pickers. stat: Sam coaches every stat her job uses (stat.byJob weights, default for jobs not listed); each gains (base + Sam Wits x perWits) x Wits bonus x weight x spread, in 0-1000 stat units (diminishing near the cap). skill: every trade skill; her job's skill (Hospitality without one) gets the full gain, the others x others; scales with Technique; warms her up (lust, x her lewdness, and lewd lewdness while her lewdness is below lewdCap). service: practice of every service she does with Sam (canSam), each grows (base + Technique x perTech) x share; lust and lewdness as with skill (svcLust / lewd), lustBonus x BAL.lust.bonus.trainMult. energy = Sam's, herEnergy = hers.",
+    "stat": {
+      "base": 12,
+      "perWits": 0.2,
+      "energy": 20,
+      "herEnergy": 10,
+      "spread": 0.5,
+      "byJob": {
+        "courtesan": {"beauty":1,"charm":1,"stamina":0.8,"agility":0.5},
+        "madame": {"wits":1,"charm":1,"charisma":1},
+        "promoter": {"charisma":1,"beauty":0.7,"charm":0.5},
+        "attendant": {"charm":1,"wits":1},
+        "security": {"strength":1,"agility":1,"stamina":0.5},
+        "bartender": {"charisma":1,"agility":0.7,"charm":0.5},
+        "dancer": {"agility":1,"charisma":1,"beauty":0.5},
+        "bath": {"beauty":1,"charm":0.7,"stamina":0.5},
+        "teacher": {"wits":1,"refinement":0.7},
+        "maid": {"agility":1,"stamina":0.7},
+        "chapel": {"charm":1,"refinement":0.5},
+        "host": {"charm":1,"charisma":0.7,"wits":0.5},
+        "default": {"beauty":0.4,"charm":0.4,"charisma":0.4,"refinement":0.4,"wits":0.4,"stamina":0.4,"strength":0.4,"agility":0.4}
+      }
+    },
+    "skill": {"energy":30,"herEnergy":14,"lust":4,"lewd":1.5,"lewdCap":50,"others":0.35},
+    "service": {"energy":30,"herEnergy":16,"base":6,"perTech":0.05,"share":0.4,"svcLust":6,"lewd":2}
   },
   "solo": {"energyCost":0.15,"clientCap":6,"lustDrop":40},
   "again": {"beastkin":0.6,"other":0.2,"samCost":20,"mood":3},
@@ -572,5 +594,9 @@
       "desc": "The clerk waves Sam straight to the good noticeboard. Scout recruits finds +1 candidate.",
       "fx": {"scout":1}
     }
+  },
+  "samCloth": {
+    "_note": "Pictures of time with Sam roll how undressed she is each time (samSceneCloth): every level from the service minimum (never fully dressed when more is possible) up to what she is comfortable with, by these weights; her top level counts double. Each level, outfit and underwear set saves its own picture.",
+    "weights": {"partial":1,"under":1,"nude":2}
   }
 }

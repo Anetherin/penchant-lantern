@@ -155,6 +155,20 @@ function actCloth(w, id, withSam, ctx){
   if(w.svcLevel && w.svcLevel!=='auto' && ix(w.svcLevel) >= 0) lv = Math.min(ix(w.svcLevel), ix(cap));
   return CLOTH[Math.max(0, lv)].id;
 }
+// Time with Sam: each moment rolls how undressed she is, between the service's own minimum and what she's comfortable with
+// (her top level twice as likely), so every service collects pictures at several dress levels, and with every outfit and set of
+// underwear she wears (the image key includes them). Fully dressed only when nothing more is possible. Her own svcLevel choice wins.
+// balance.json → samCloth: weights per level.
+function samSceneCloth(w, scene){
+  const b = sceneBase(scene); if(!(b.startsWith('samact:') || b.startsWith('duo:'))) return null;
+  if(w.svcLevel && w.svcLevel!=='auto') return null;
+  const ix = x => CLOTH.findIndex(y=>y.id===x), act = b.split(':')[1], a = actById(act) || {}, D = a.dress || {};
+  const top = ix(actCloth(w, act, true)), lo = Math.min(top, Math.max(0, ix(D.min || a.minCloth || 'dressed')));
+  const W = ((BAL.samCloth||{}).weights) || {partial:1, under:1, nude:2}, opts = [];
+  for(let i = Math.max(lo, top > 0 ? 1 : 0); i <= top; i++){ const id = CLOTH[i].id; if(id==='under' && w.under==='none') continue; opts.push([id, (W[id] ?? 1) * (i===top ? 2 : 1)]); }
+  if(!opts.length) return CLOTH[top].id;
+  let r = Math.random() * opts.reduce((t,o)=>t+o[1], 0); for(const [id,wt] of opts){ if((r -= wt) <= 0) return id; } return opts[opts.length-1][0];
+}
 function defaultCloth(w, scene){
   const P = sceneParts(scene), base = P.base;
   if(base.startsWith('act:')) return actCloth(w, base.split(':')[1], false, P.ctx);

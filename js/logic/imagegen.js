@@ -41,7 +41,7 @@ async function saveImage(key, url, w, scene){
 // Any image can be hidden; hidden boxes show a "Show image" button and don't generate (SET.imgHidden = start hidden).
 async function showImg(boxId, id, scene, cloth, mode){
   const box = $('#'+boxId); const w = findAny(id); if(!box || !w) return;
-  cloth = cloth || defaultCloth(w, scene);
+  cloth = cloth || samSceneCloth(w, scene) || defaultCloth(w, scene);   // Sam scenes roll their dress level once, here; the buttons below keep it
   if(mode===undefined) mode = SET.autoImg===false ? 'manual' : 'auto';
   if(mode==='manual') mode = undefined;
   const A0 = `'${boxId}','${id}','${scene}','${cloth}'`;

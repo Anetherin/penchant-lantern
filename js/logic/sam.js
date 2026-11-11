@@ -64,14 +64,14 @@ function samWork(kind){
     title='Making the Rounds'; text=`Sam walks through every house with a notebook, asking everyone how they're doing and actually writing down the answers. A leaky window gets fixed, someone's favorite tea gets restocked, and the whole staff notices that he noticed.\n\n${n} ladies: trust ${tDelta(rt)}, mood +${Math.round(rmood*10)/10} · Charm +1`;
     samLog('Made the rounds');
   } else if(kind==='lesson'){
-    // a class for everyone whose job uses this skill (individual training is for services only)
-    const sel = $('#lessonSel'), k = sel ? sel.value : 'service', map = {service:'charm', dance:'charm', bar:'charm', combat:'strength', manage:'business'}, sk = map[k] || 'charm';
-    const who = S.workers.filter(w=>w.job!=='rest' && (JOBS[w.job]||{}).skill===k);
-    const g = (4 + S.sam[sk]/25) * BAL.sam.lessonShare * (hasPast('massage') ? 1.15 : 1) * (hasPast('tutor') ? 1.2 : 1) * (1 + samUpFx('lesson'));
-    who.forEach(w=>{ grow(w, k, g * pm(w,'train') * fxMul(w,'learn')); statXP(w, ({service:'charm', dance:'agility', bar:'charm', combat:'strength', manage:'refinement'})[k] || 'charm', g*0.4); minorTrust(w); });
-    samStat(sk,2);
-    title=`A Lesson: ${TECH_LABEL[k]}`; text = who.length ? `Sam gathers ${who.map(w=>w.name).join(', ')} for an afternoon on ${TECH_LABEL[k].toLowerCase()}. He brought handouts. Nobody asked for handouts.\n\n${TECH_LABEL[k]} +${Math.round(g*SKL)} each · Sam's ${cap(sk)} +2` : `Sam sets out chairs and handouts for a lesson on ${TECH_LABEL[k].toLowerCase()}. Nobody whose job uses it turns up. He reads the handout to himself.`;
-    samLog(`Taught a lesson in ${TECH_LABEL[k]}${who.length?` (${who.length})`:''}`);
+    // a class for the whole staff: everyone working learns her own job's skill (Hospitality for jobs without one)
+    const SM = {service:'charm', dance:'charm', bar:'charm', combat:'strength', manage:'business'}, GROW = {service:'charm', dance:'agility', bar:'charm', combat:'strength', manage:'refinement'};
+    const who = S.workers.filter(w=>w.job!=='rest'), base = BAL.sam.lessonShare * (hasPast('massage') ? 1.15 : 1) * (hasPast('tutor') ? 1.2 : 1) * (1 + samUpFx('lesson'));
+    const by = {};
+    who.forEach(w=>{ const k = trainSkillOf(w), g = (4 + S.sam[SM[k]]/25) * base; grow(w, k, g * pm(w,'train') * fxMul(w,'learn')); statXP(w, GROW[k] || 'charm', g*0.4); minorTrust(w); (by[k] = by[k] || []).push(w.name); });
+    const ks = Object.keys(by); Array.from(new Set(ks.map(k=>SM[k]))).forEach(st=>samStat(st, ks.length > 1 ? 1 : 2));
+    title = 'A Lesson'; text = who.length ? `Sam gathers the staff for an afternoon of lessons, a table for each trade. He brought handouts. Nobody asked for handouts.\n\n${ks.map(k=>`${TECH_LABEL[k]}: ${by[k].join(', ')}`).join('\n')}\n\nSam's ${Array.from(new Set(ks.map(k=>cap(SM[k])))).join(', ')} +${ks.length > 1 ? 1 : 2}` : `Sam sets out chairs and handouts. Everyone is off resting. He reads the handout to himself.`;
+    samLog(`Taught a lesson${who.length?` (${who.length})`:''}`);
   } else if(kind==='scout'){
     const nc = 2 + Math.round(samUpFx('scout')); addCandidates(nc, 1.1 + S.sam.business/400); samXP(10); samStat('charm',1); samStat('wits',1);
     title='Scouting'; text=`Sam walks the market and the guild hall, quietly using [Appraisal] on anyone who looks like they might want a job.\n\n+${nc} candidates · Appraisal XP +${Math.round(10*samBonus('wits'))} · Wits +1`;
@@ -233,33 +233,51 @@ function samSpicy(id, k, i){
 //  stats  - Sam coaches one of her 8 stats (STAT_KEYS; never popularity, lust or lewdness). Scales with his Wits (samBonus('wits')).
 //  skills - Hospitality or a service she's comfortable with; scales with his Technique, costs more energy, and warms her up:
 //           lust rises (services that spend lust spend it instead) and lewdness creeps up, but only below a threshold.
-// One-on-one skill training covers the skill her job uses; services grow through private time (privateCore), trade skills house-wide through lessons.
+// One-on-one training (balance.json → train), no pickers: 'stat' coaches every stat her job uses, 'skill' every trade skill
+// (her job's at full strength), 'service' practices every service she does with Sam.
 const trainSkillOf = w => { const k = (JOBS[w.job]||{}).skill; return TECH_KEYS.includes(k) ? k : 'service'; };
+const trainStatsOf = w => { const B = (BAL.train.stat||{}).byJob || {}; return Object.entries(B[w.job] || B.default || {}).filter(([k])=>STAT_KEYS.includes(k)); };
 function samTrain(id, mode='skill'){
   const w = findW(id); if(!w) return;
-  const T = BAL.train || {}, tm = pm(w,'train');
-  if(mode==='stat'){
-    const sel = $('#trainStatSel'), k = sel && STAT_KEYS.includes(sel.value) ? sel.value : 'charm', ST = T.stat || {};
-    if(!useAP(ST.energy ?? 20)) return;
-    const g = ((ST.base ?? 12) + (S.sam.wits||0) * (ST.perWits ?? 0.2)) * samBonus('wits') * tm * fxMul(w,'learn') * (hasPast('tutor') ? 1.2 : 1), v0 = w.stats[k];
-    statXP(w, k, g); const got = Math.round(w.stats[k] - v0);
-    minorTrust(w); w.energy = clamp(w.energy - (ST.herEnergy ?? 10), 0, maxEnergy(w)); if(tm<1) moodAdd(w, -3);
-    samStat('wits',1); samXP(5); samLog(`Coached ${w.name} (${cap(k)})`);
-    save(); render(); closeModal();
-    const line = pick((((typeof FLAVOR!=='undefined' && FLAVOR.train_stat) || {})[k]) || ['']).replace(/\{name\}/g, w.name);
-    return showResult(`Coaching: ${cap(k)}`, `${line || `Sam and ${w.name} spend the afternoon working on her ${k}.`} Sam takes detailed notes, as is tradition.${pNote(w,'train')}\n\n${cap(k)} +${got} · Sam's Wits +1`, w.id, 'sam_training', {kind:'train', label:k, scene:'sam_training'});
-  }
-  const SK = T.skill || {}, k = trainSkillOf(w);
-  const tq = (S.sam.technique||0), tm2 = (hasPast('massage') ? 1.3 : 1) * tm * fxMul(w,'learn');
+  const T = BAL.train || {}, tm = pm(w,'train'), learn = fxMul(w,'learn');
   // warming up: a little lust and lewdness, the lewdness only while she's below the threshold (lewdCap, 0-100)
-  const warm = (lust, lewdCap) => { const l0 = w.lust; w.lust += lust * (0.4 + w.lewd/100) * fxMul(w,'lustBuild'); fitLust(w); if(w.lewd < (SK.lewdCap ?? 50)) lewdUp(w, SK.lewd ?? 1.5, Math.min(lewdCap, SK.lewdCap ?? 50)); return Math.round(w.lust - l0); };
-  // the trade skill her current job uses (Hospitality for courtesans and anyone without one), taught hands-on
+  const SK = T.skill || {}, lewdCap = SK.lewdCap ?? 50;
+  const warm = (lust, lewd, cap) => { const l0 = w.lust; w.lust += lust * (0.4 + w.lewd/100) * fxMul(w,'lustBuild'); fitLust(w); if(w.lewd < lewdCap) lewdUp(w, lewd, Math.min(cap, lewdCap)); return Math.round(w.lust - l0); };
+  if(mode==='stat'){
+    const ST = T.stat || {}, list = trainStatsOf(w);
+    if(!useAP(ST.energy ?? 20)) return;
+    const g = ((ST.base ?? 12) + (S.sam.wits||0) * (ST.perWits ?? 0.2)) * samBonus('wits') * tm * learn * (hasPast('tutor') ? 1.2 : 1) * (ST.spread ?? 0.5);
+    const got = list.map(([k,wt])=>{ const v0 = w.stats[k]; statXP(w, k, g*wt); return `${cap(k)} +${Math.round(w.stats[k] - v0)}`; });
+    minorTrust(w); w.energy = clamp(w.energy - (ST.herEnergy ?? 10), 0, maxEnergy(w)); if(tm<1) moodAdd(w, -3);
+    samStat('wits',1); samXP(5); samLog(`Coached ${w.name}`);
+    save(); render(); closeModal();
+    const k0 = (list.slice().sort((a,b)=>b[1]-a[1])[0]||['charm'])[0];
+    const line = pick((((typeof FLAVOR!=='undefined' && FLAVOR.train_stat) || {})[k0]) || ['']).replace(/\{name\}/g, w.name);
+    return showResult(`Coaching ${w.name}`, `${line || `Sam and ${w.name} spend the afternoon working on what her job asks of her.`} Sam takes detailed notes, as is tradition.${pNote(w,'train')}\n\n${got.join(' · ')} · Sam's Wits +1`, w.id, 'sam_training', {kind:'train', label:k0, scene:'sam_training'});
+  }
+  const tq = (S.sam.technique||0), tm2 = (hasPast('massage') ? 1.3 : 1) * tm * learn;
+  if(mode==='service'){
+    const SV = T.service || {}, acts = getActs().filter(a=>canSam(w,a.id) && w.acts[actKey(a.id)]);
+    if(!acts.length) return toast((w.intim||0)===0 ? `${w.name} and Sam haven't crossed that line yet.` : `${w.name} isn't comfortable with that yet.`);
+    if(!useAP(SV.energy ?? 30)) return;
+    const g = ((SV.base ?? 6) + tq * (SV.perTech ?? 0.05)) * tm2 * (SV.share ?? 0.4), hot = lustBonus(w, BAL.lust.bonus.trainMult);
+    acts.forEach(a=>{ growAct(w, a.id, g * (w.fav===a.id ? 1.25 : 1)); if(w.dislike===a.id) moodAdd(w, -2); });
+    const lu = warm(SV.svcLust ?? 6, SV.lewd ?? 2, Math.max(...acts.map(a=>svcLewdCap(a.id,'sam'))));
+    const tgp = minorTrust(w); statXP(w, 'stamina', 1.5); countUp(w, 'privateSam');
+    w.energy = clamp(w.energy-(SV.herEnergy ?? 16), 0, maxEnergy(w));
+    samStat('technique',2); samXP(5); w.privateCount++; w._samTime=(w._samTime||0)+1; samLog(`Practiced with ${w.name}`); checkUnlocks();
+    save(); render(); closeModal();
+    const show = acts.find(a=>a.id===w.fav) || acts[acts.length-1];
+    return showResult(`Practice with ${w.name}`, `${w.name} decides Sam's education is a shared project. They work through everything they're comfortable with, one thing at a time, until both of them are confident in the technique. Sam takes notes afterward. She finds this hilarious.${hot?'\n\n'+hot:''}\n\n${acts.map(a=>a.label).join(', ')}: skill +${Math.round(g*SKL)} each · Lust +${lu}${w.lewd < lewdCap ? ' · Lewdness +' : ''} · Trust ${tDelta(tgp)} · Sam's Technique +2`, w.id, 'samact:'+show.id, {kind:'train', act:show.id, scene:'samact:'+show.id, forSam:true});
+  }
+  // every trade skill, hands-on: her job's skill (Hospitality without one) at full strength, the rest x skill.others
   if(!useAP(SK.energy ?? 30)) return;
-  const sk = TECH_KEYS.includes(k) ? k : 'service', g = (4 + tq/25) * tm2;
-  grow(w, sk, g); statXP(w, 'charm', g*0.6); const lu = warm(SK.lust ?? 4, SK.lewdCap ?? 50); gainTrust(w, 1);
-  w.energy = clamp(w.energy-(SK.herEnergy ?? 14), 0, maxEnergy(w)); if(tm<1) moodAdd(w, -3); samStat('technique',1); samXP(5); samLog(`Trained ${w.name} in ${TECH_LABEL[sk]}`);
+  const main = trainSkillOf(w), g = (4 + tq/25) * tm2;
+  const got = TECH_KEYS.map(k=>{ const v0 = w.tech[k]; grow(w, k, g * (k===main ? 1 : (SK.others ?? 0.35))); return `${TECH_LABEL[k]} +${Math.round(w.tech[k]-v0)}`; });
+  statXP(w, 'charm', g*0.6); const lu = warm(SK.lust ?? 4, SK.lewd ?? 1.5, lewdCap); gainTrust(w, 1);
+  w.energy = clamp(w.energy-(SK.herEnergy ?? 14), 0, maxEnergy(w)); if(tm<1) moodAdd(w, -3); samStat('technique',1); samXP(5); samLog(`Trained ${w.name}`);
   save(); render(); closeModal();
-  showResult(`Training: ${TECH_LABEL[sk]}`, `Sam walks ${w.name} through ${TECH_LABEL[sk].toLowerCase()} the hands-on way: posture, pacing, where to put her hands and when. Somewhere around the third demonstration it stops feeling entirely like a lesson. Sam takes detailed notes, as is tradition.${pNote(w,'train')}\n\n${TECH_LABEL[sk]} +${Math.round(g*SKL)} · Lust +${lu}${w.lewd < (SK.lewdCap ?? 50) ? ' · Lewdness +' : ''} · Sam's Technique +1`, w.id, 'sam_training', {kind:'train', label:TECH_LABEL[sk].toLowerCase(), scene:'sam_training'});
+  showResult(`Training ${w.name}`, `Sam walks ${w.name} through the trade the hands-on way, ${TECH_LABEL[main].toLowerCase()} first: posture, pacing, where to put her hands and when. Somewhere around the third demonstration it stops feeling entirely like a lesson. Sam takes detailed notes, as is tradition.${pNote(w,'train')}\n\n${got.join(' · ')} · Lust +${lu}${w.lewd < lewdCap ? ' · Lewdness +' : ''} · Sam's Technique +1`, w.id, 'sam_training', {kind:'train', label:TECH_LABEL[main].toLowerCase(), scene:'sam_training'});
 }
 function privateMenu(id, free){
   const w = findW(id); if(!w) return;
