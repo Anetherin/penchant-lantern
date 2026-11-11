@@ -109,7 +109,7 @@ const RETURNER_EVENTS = [
     S.flags.circle = true;
     return {title:RET('circle','title'), text:RET('circle','text'), choices:[
       {label:RET('circle','join','label'), fx(){ S.rep = clamp(S.rep+4); const open = ngPartnerOpen(); if(open.length){ const c = makeNamed(pick(open)); c.signing = signingFor(c); S.candidates.push(c); addLog(`${c.name} found Sam through the Returners' Circle. (Candidates)`); } return RET('circle','join','res'); }},
-      {label:RET('circle','visit','label'), fx(){ S.sam.energy = Math.min(100, S.sam.energy+20); return RET('circle','visit','res'); }}]};
+      {label:RET('circle','visit','label'), fx(){ samEnergyAdd(20); return RET('circle','visit','res'); }}]};
   }}
 ];
 const RANDOM_EVENTS = [

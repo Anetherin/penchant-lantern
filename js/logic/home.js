@@ -63,7 +63,7 @@ function sleepInWeek(R){
   if(!w || !sleepInOK(w)){ S.sleepIn = null; R.lines.push(`💤 ${w ? w.name : 'Nobody'} no longer shares Sam's bed.`); return; }
   gainTrust(w, B.trustGain); moodAdd(w, B.mood);
   w.energy = Math.min(energyCap(w), w.energy + B.rest);
-  S.sam.energy = Math.min(100, S.sam.energy + B.samRest);
+  samEnergyAdd(B.samRest);
   R.lines.push(`💤 ${w.name} shared the Owner's Suite with Sam (trust up, mood +${B.mood}, both rested).`);
 }
 function evSleepIn(w, morning){

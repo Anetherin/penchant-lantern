@@ -734,12 +734,21 @@
     "salaryman": {"label":"Office worker","desc":"Spreadsheets were his life. Business +20; doing the books saves more.","sam":{"business":20}},
     "bartender": {"label":"Part-time bartender","desc":"He can make a cocktail out of anything. Charm +12; tending bar earns 50% more.","sam":{"charm":12}},
     "gym": {"label":"Gym regular","desc":"Thin, but surprisingly strong. Strength +20; recovers more energy.","sam":{"strength":20}},
-    "otaku": {"label":"Isekai otaku","desc":"He has read this story a hundred times. Appraisal starts at Lv 2.","sam":{"appraisal":2,"appXP":60}},
+    "otaku": {
+      "label": "Isekai otaku",
+      "desc": "He has read this story a hundred times. Wits +10; Appraisal starts at Lv 2.",
+      "sam": {"appraisal":2,"appXP":60,"wits":10}
+    },
     "cook": {"label":"Line cook","desc":"Staff meals and home cooking. Dinners are free; everyone +2 mood each week.","sam":{"charm":4}},
     "massage": {
       "label": "Massage therapist",
       "desc": "Good hands, zero experience otherwise. Technique +15; training is more effective.",
       "sam": {"technique":15}
+    },
+    "tutor": {
+      "label": "Cram-school tutor",
+      "desc": "Six years of drilling teenagers for entrance exams. Wits +15; his stat coaching and lessons go 20% further.",
+      "sam": {"wits":15}
     }
   },
   "tiers": ["commoner","adventurer","merchant","noble"]

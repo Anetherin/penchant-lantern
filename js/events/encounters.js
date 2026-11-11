@@ -28,7 +28,7 @@ function encounterResult(w, act, intro, kind, situation, drain){
   const text = privateCore(w, act, {lead:intro});   // privateCore spends her lust
   samLog(`${kind==='reckless'?'Swept off by':'A visit from'} ${w.name}`);
   if(wantsAgain(w)){ const id = w.id; EVQ.unshift(()=>evAgain(findW(id))); }
-  return {text, img:{wid:w.id, scene:'samact:'+act}, ai:{kind, wid:w.id, act, scene:'samact:'+act, forSam:true, situation}};
+  return {text, img:{wid:w.id, scene:'samact:'+act}, ai:{kind, wid:w.id, act, scene:'samact:'+act, forSam:true, situation: actSituation(w, act, situation)}};
 }
 
 /* ---------- Sam rests ---------- */

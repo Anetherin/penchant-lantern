@@ -2,7 +2,8 @@
   "_readme": [
     "Bodies. w.body = {bust, height, figure}. Each option: label, img (neutral prompt words), weight (generic roll odds), fx (effect engine, see traits.json _readme).",
     "raceSkew: per race, extra weight for options (e.g. dwarves tend to be short). defaults: used for named ladies without a body in their data.",
-    "Bust img wording is plain and neutral; edit it freely. Anything starting with TODO is stripped from prompts."
+    "Bust img wording is plain and neutral; edit it freely. Anything starting with TODO is stripped from prompts.",
+    "raceBan: options a race never rolls (dwarves are never tall). raceSkew values can be negative to make an option rare (weights never drop below 0.01)."
   ],
   "defaults": {"bust":"medium","height":"average","figure":"slim"},
   "bust": {
@@ -29,9 +30,10 @@
     "soft": {"label":"Soft","img":"soft plump figure","weight":2,"fx":{"actQuality":{"massage_give":1.15},"maxEnergy":5,"jobBonus":{"bath":1.08}}}
   },
   "raceSkew": {
-    "dwarf": {"height":{"short":6},"figure":{"athletic":2,"soft":1}},
-    "elf": {"height":{"tall":3},"figure":{"slim":4}},
+    "dwarf": {"height":{"short":6},"figure":{"slim":-3,"athletic":2,"soft":1}},
+    "elf": {"height":{"tall":3},"figure":{"slim":4,"curvy":-2.5,"soft":-1.8}},
     "beastkin": {"figure":{"athletic":1}},
     "spirit": {"figure":{"slim":3}}
-  }
+  },
+  "raceBan": {"dwarf":{"height":["tall"]}}
 }

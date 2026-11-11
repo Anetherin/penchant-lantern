@@ -246,8 +246,8 @@
       "excl": []
     },
     "Second Wind": {
-      "desc": "Carries a little extra energy into every week.",
-      "fx": {"energyBank":15},
+      "desc": "Carries 15 extra energy into every week and recovers 5% faster.",
+      "fx": {"energyBank":15,"energyRec":1.05},
       "ngPerk": true,
       "gen": false,
       "hidden": false,
@@ -256,7 +256,7 @@
       "excl": []
     },
     "Practiced": {
-      "desc": "Everything she does improves faster.",
+      "desc": "Everything she does improves 20% faster: skills, and stats (including Sam's coaching).",
       "fx": {"skillGain":1.2,"statGain":1.2},
       "ngPerk": true,
       "gen": false,
@@ -888,7 +888,7 @@
       "excl": []
     },
     "Echo of Another Road": {
-      "desc": "Remembers old roads: +8 security, adventurers pay 10% more.",
+      "desc": "Remembers old roads: +8 security when she stands guard, adventurers pay 10% more.",
       "fx": {"security":8,"classBonus":{"adventurer":1.1}},
       "gen": true,
       "hidden": false,
@@ -979,7 +979,7 @@
       "excl": []
     },
     "House Favorite": {
-      "desc": "House reputation +15%; propositioned 10% more.",
+      "desc": "Happy clients lift the house's name 15% more; propositioned 10% more.",
       "fx": {"rep":1.15,"propRate":1.1},
       "gen": false,
       "hidden": false,
@@ -1040,7 +1040,7 @@
       "excl": []
     },
     "Guardian of the House": {
-      "desc": "+15 security; security work +15%.",
+      "desc": "+15 security when she stands guard; security work +15%.",
       "fx": {"security":15,"jobBonus":{"security":1.15}},
       "gen": false,
       "hidden": false,
@@ -1238,6 +1238,26 @@
       "ngOnly": false,
       "ngPerk": false,
       "excl": []
+    },
+    "Quick Study": {
+      "gen": false,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": true,
+      "excl": [],
+      "desc": "Learns 30% more from Sam's coaching and lessons, the madame and the classroom.",
+      "fx": {"learn":1.3}
+    },
+    "Street Darling": {
+      "gen": false,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": true,
+      "excl": [],
+      "desc": "The whole street knows her: promoting draws 20% more clients, +2 appeal.",
+      "fx": {"promote":1.2,"appeal":2}
     }
   },
   "earnChance": 0.35
