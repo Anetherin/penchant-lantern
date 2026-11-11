@@ -15,7 +15,8 @@
     "ngplus: partners only. true = she only appears as a partner choice from New Game+ (cycle 2), and not in the first cycle's partner list. Cycle-1 partners leave it out.",
     "vignettes: partners only. [{title, text, trust}] short slice-of-life 'Moments' on her sheet, each unlocked when her trust with Sam reaches that number.",
     "unique: {name, desc, fx} her personal semi-unique trait. fx uses only the effect keys from docs/OVERHAUL.md section 2 (maxEnergy, actQuality, jobBonus, security, energyBank, ...). Service ids: kiss, massage_give, massage_get, manual_give, manual_get, oral_give, oral_get, breast_give, breast_get, missionary, cowgirl, doggy (old ids manual/oral/paizuri/caress still work). fav/lovers can be a receiving service (*_get): she likes being on the other end.",
-    "body: {bust: flat|small|medium|large|huge, height: short|average|tall, figure: slim|athletic|curvy|soft}. Used for image wording and body effects (docs/OVERHAUL.md section 3). Job ids are courtesan, madame, promoter, maid, bartender, attendant, dancer, bath, security."
+    "body: {bust: flat|small|medium|large|huge, height: short|average|tall, figure: slim|athletic|curvy|soft}. Used for image wording and body effects (docs/OVERHAUL.md section 3). Job ids are courtesan, madame, promoter, maid, bartender, attendant, dancer, bath, security.",
+    "design.features: what stays on her body undressed (marks, ears, horns, jewelry). design.gear: worn or carried items (gloves, hats, collars, weapons, bags, pets): only in pictures where she is dressed and it isn't an intimate scene. design.build: only wording the body figure doesn't already say (it is merged into one body phrase). design.pubic: optional pubic hair wording for her alone."
   ],
   "mira": {
     "role": "house",
@@ -1182,7 +1183,8 @@
       "hairColor": "chestnut brown",
       "eyes": "grey-green",
       "skin": "pale",
-      "features": "soft grey wolf ears, a bushy grey tail, round glasses and a stack of hand-drawn character sheets"
+      "features": "soft grey wolf ears, a bushy grey tail and round glasses",
+      "gear": "a stack of hand-drawn character sheets"
     },
     "under": "silk",
     "underColor": "silver",
@@ -1259,7 +1261,8 @@
       "hairColor": "pale ash blonde",
       "eyes": "grey-green",
       "skin": "fair",
-      "features": "long pointed elf ears, round reading spectacles and a worn leather letter satchel"
+      "features": "long pointed elf ears and round reading spectacles",
+      "gear": "a worn leather letter satchel"
     },
     "under": "silk",
     "underColor": "silver",
@@ -1338,7 +1341,8 @@
       "hairColor": "golden blonde",
       "eyes": "bright blue",
       "skin": "fair",
-      "features": "a silver fountain pen clipped to her blouse and a perfectly level gaze"
+      "features": "a perfectly level gaze",
+      "gear": "a silver fountain pen clipped to her blouse"
     },
     "under": "silk",
     "underColor": "white",
@@ -1845,7 +1849,8 @@
       "hairColor": "copper",
       "eyes": "amber with slit pupils",
       "skin": "sun-bronzed",
-      "features": "small swept-back horns, a coppery scaled tail and a captain's tricorn hat"
+      "features": "small swept-back horns and a coppery scaled tail",
+      "gear": "a captain's tricorn hat"
     },
     "under": "sports",
     "underColor": "black",

@@ -4,16 +4,18 @@
     "scenes: pov (every Sam/POV scene), bath, mishap (shower / walk-in), solo (a lady alone at max lust), duo (every shared scene with two ladies). Per-service wording now lives in services.json (image.extra).",
     "clothing: how each clothing state is described. {outfit} and {underwear} are filled in from her wardrobe; commando becomes \"bare skin, nothing underneath\". nude falls back to partial while empty.",
     "clothing.aside / aside_commando: used for Modest ladies during services, when her clothes are pulled aside instead of taken off.",
-    "expressions: face wording for how she's taking a service (bored / professional / into it / lost in it, plus flustered and smug from personalities.json → expr). Added to client images. expressionsByAct: per-service face wording added on top of the general one (filled with neutral defaults; edit freely, anything starting with TODO is skipped)."
+    "expressions: face wording for how she's taking a service (bored / professional / into it / lost in it, plus flustered and smug from personalities.json → expr). Added to client images. expressionsByAct: per-service face wording added on top of the general one (filled with neutral defaults; edit freely, anything starting with TODO is skipped).",
+    "clothing.pubic: pubic hair wording ({hair} = her hair color; a lady's design.pubic replaces it). {pubic} can be used in any clothing line; it is also added on its own to services marked image.exposed in services.json when the clothing line doesn't mention it."
   ],
   "scenes": {"pov":"","bath":"","mishap":"","solo":"","duo":""},
   "clothing": {
     "dressed": "wearing {outfit}",
     "partial": "wearing {outfit}, partially removed and undressed,visible {underwear}",
     "under": "wearing only {underwear}",
-    "nude": "fully nude, breasts and pubic hair on full display",
+    "nude": "fully nude, bare breasts, {pubic}",
     "aside": "still wearing {outfit}, her clothes pulled aside, {underwear} visible but pushed aside to reveal her breasts and hairy pussy",
-    "aside_commando": "still wearing {outfit}, her clothes pulled aside, to reveal her breasts and hairy pussy"
+    "aside_commando": "still wearing {outfit}, her clothes pulled aside, to reveal her breasts and hairy pussy",
+    "pubic": "natural {hair} pubic hair"
   },
   "expressions": {
     "bored": "bored expression",

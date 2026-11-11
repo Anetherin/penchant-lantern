@@ -11,7 +11,8 @@
     "Naming: services that go both ways come in pairs, <thing>_give (she does it to him) and <thing>_get (he does it to her), labelled \"X (giving)\" / \"X (receiving)\". Positions (missionary, cowgirl, doggy) and kiss are single. Old ids still work as aliases in code: caress -> kiss, manual -> manual_give, oral -> oral_give, paizuri -> breast_give.",
     "Scales: th and dress.fullAt are LEWDNESS thresholds, and lewdness stays 0-100 (like trust, mood and lust). Only stats, tech and service skills run 0-1000, so a two-digit th here is correct.",
     "energyBack / mood (optional): energy she regains and mood she gains from a service (massage_get).",
-    "ask = how the weekly report phrases it. client: what he asks for, after \"asked\" (\"asked for oral\", \"asked to go down on her\"). lady: what SHE does when she's the one offering, after \"she\" (\"she offered to go down on him\"). Custom services without ask fall back to their label."
+    "ask = how the weekly report phrases it. client: what he asks for, after \"asked\" (\"asked for oral\", \"asked to go down on her\"). lady: what SHE does when she's the one offering, after \"she\" (\"she offered to go down on him\"). Custom services without ask fall back to their label.",
+    "image.exposed: true = the picture shows her bare between the legs, so the prompt names her pubic hair (snippets.json → clothing.pubic) unless the clothing wording already does."
   ],
   "services": [
     {
@@ -119,7 +120,8 @@
         "duo": [
           "both lying back side by side, the viewer's hands between their thighs, pov"
         ],
-        "extra": ""
+        "extra": "",
+        "exposed": true
       },
       "report": ["He was attentive and she did not complain. A quiet hour."]
     },
@@ -204,7 +206,8 @@
         "duo": [
           "one lying back with the viewer between her thighs while the other kisses her, pov"
         ],
-        "extra": ""
+        "extra": "",
+        "exposed": true
       },
       "report": ["He took his time. She came downstairs flushed and unhurried."]
     },
@@ -289,7 +292,8 @@
           "one getting fucked by the viewer while the other lies beside her, threesome, pov, looking at the viewer",
           "one getting fucked by the viewer while the other rides her face, threesome, pov, looking at the viewer"
         ],
-        "extra": "man on top, woman below lying on the bed, missionary position sex"
+        "extra": "man on top, woman below lying on the bed, missionary position sex",
+        "exposed": true
       },
       "report": [
         "The door stayed closed a long time. He left smiling and walked into a pillar."
@@ -318,7 +322,8 @@
           "one fucking the viewer while the other gropes her, pov, on the bed",
           "both fucking the viewer together, pov, on the bed"
         ],
-        "extra": "woman riding on top, straddling, sex in cowgirl position"
+        "extra": "woman riding on top, straddling, sex in cowgirl position",
+        "exposed": true
       },
       "report": [
         "She came back down first, humming. He followed much later, red-faced and grinning."
@@ -347,7 +352,8 @@
           "one getting fucked by the viewer while the other kneels beside her, threesome, pov, looking at the viewer",
           "one getting fucked by the viewer while she eats out the other, threesome, pov"
         ],
-        "extra": "on all fours, doggy style sex"
+        "extra": "on all fours, doggy style sex",
+        "exposed": true
       },
       "report": [
         "The bed upstairs creaked for most of the hour. He tipped extra on the way out."

@@ -72,7 +72,7 @@ function evRegular(rid){
       {label:'Let her decide', fx(){
         S.regulars = S.regulars.filter(x=>x!==r);
         if(stays){ gainTrust(w,4); moodAdd(w, 4); return F(E.stays); }
-        S.gold += g; S.workers = S.workers.filter(x=>x.id!==w.id); return F(E.goes,{gold:fmt(g)}); }},
+        S.gold += g; stashCloset(w); S.workers = S.workers.filter(x=>x.id!==w.id); return F(E.goes,{gold:fmt(g)}); }},
       {label:'Refuse the offer', fx(){ S.regulars = S.regulars.filter(x=>x!==r); moodAdd(w, -2); return F(E.refuse); }}]});
   }
   if(r.quirk==='talker'){

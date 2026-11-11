@@ -5,7 +5,8 @@
     "Add a new key to add a scene; it shows up in the scene picker on her sheet.",
     "rooms: client room by room tier (shabby, comfortable, lavish, opulent). samRoom: where Sam's private scenes happen. clientPhrase: who's with her in client scenes. duoPhrase: added to scenes with two ladies.",
     "enc_* scenes are the intros of encounters (nap visits, late knocks, waiting lovers, the storeroom). bath_invite / bath_walkin_relaxed replace the mishap scenes once she and Sam are past that point. Story moments (arc beats, events, firsts) can bring their own image: {comp, setting, sam, pov} on the beat itself.",
-    "Scene flags: bath:true = a bathing scene (in the house bathhouse when the house has one, unless away:true; only wardrobe outfits with bath:true stay on, otherwise a towel, underwear or nothing). undress:\"partial\"|\"under\" = invitations and the like: she is shown at most that undressed, within her comfort with Sam. bathhouse = the setting used for bath scenes at a house with a Bathhouse."
+    "Scene flags: bath:true = a bathing scene (in the house bathhouse when the house has one, unless away:true; only wardrobe outfits with bath:true stay on, otherwise a towel, underwear or nothing). undress:\"partial\"|\"under\" = invitations and the like: she is shown at most that undressed, within her comfort with Sam. bathhouse = the setting used for bath scenes at a house with a Bathhouse.",
+    "people: head-count tags that open every intimate image prompt (client = her with a client, pov = with Sam, duo = two ladies with Sam, solo = alone). Intimate prompts lead with these and the pose, then her description, so the pose isn't lost at the end of a long prompt."
   ],
   "scenes": {
     "portrait": {"label":"Portrait","comp":"upper body portrait, looking at viewer, gentle smile","setting":"warm softly blurred background"},
@@ -171,5 +172,6 @@
   "samRoom": "Sam's modest bedroom lit by a single lantern",
   "clientPhrase": "with an adult male client",
   "duoPhrase": "two women together with the viewer",
-  "bathhouse": "the house's own bathhouse, steaming tiled pools, wooden buckets, soft lantern light through the steam"
+  "bathhouse": "the house's own bathhouse, steaming tiled pools, wooden buckets, soft lantern light through the steam",
+  "people": {"client":"1girl, 1boy, hetero","pov":"1girl, 1boy, hetero, pov","duo":"2girls, 1boy, threesome, pov","solo":"1girl, solo"}
 }

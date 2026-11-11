@@ -65,7 +65,7 @@ function dismiss(id){
   if(w.isPartner) return toast(`${w.name} is your partner. She isn't going anywhere.`);
   if(w.locked) return toast(`${w.name} belongs to ${H(w.locked)?H(w.locked).name:'her house'}. She isn't going anywhere.`);
   if(!confirm(`Dismiss ${w.name}? This can't be undone.`)) return;
-  S.workers = S.workers.filter(x=>x!==w);
+  stashCloset(w); S.workers = S.workers.filter(x=>x!==w);
   S.workers.forEach(o=>o.trust=clamp(o.trust-2));
   addLog(`${w.name} was let go. The others noticed.`); closeModal(); save(); render();
 }

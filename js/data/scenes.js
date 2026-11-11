@@ -40,7 +40,7 @@ function sceneInfo(k, w){
     const D = dyn && typeof BONDS!=='undefined' ? (BONDS.dynamics[dyn]||{}) : {};
     return {label:'Sam & two: '+actLabel(id), pov:true, sam:true, comp:[actPose(id,'duo'), SCENE_DATA.duoPhrase, D.prompt].filter(Boolean).join(', '),
       setting:SCENE_DATA.samRoom, snip:'act_'+id, snip2:'duo',
-      client: o ? `the second woman: ${charDesc(o)}, ${clothText(o, defaultCloth(o, 'samact:'+id), 'samact:'+id)}` : ''}; }
+      client: o ? (()=>{ const oc = defaultCloth(o, 'samact:'+id); return `the second woman: ${charDesc(o, oc, 'samact:'+id)}, ${clothText(o, oc, 'samact:'+id).replace(/\{pubic\}/g, pubicText(o))}`; })() : ''}; }
   if(k.startsWith('samact:')){ const a=actById(k.slice(7)); return {label:'Sam: '+actLabel(k.slice(7)), pov:true, sam:true, comp:(()=>{ const c = dateCtx(P.ctx), pose = actPose(k.slice(7),'sam'), si = c && c.sp && c.sp.image; return si && si.comp ? (si.replace ? si.comp : pose + ', ' + si.comp) : pose; })(), setting:dateSetting(P.ctx), snip:'act_'+k.slice(7)}; }
   const sc = Object.assign({}, SCENES[k] || SCENES.portrait);
   // bath scenes at home happen in the house's bathhouse when it has one (scenes.json → bathhouse); "away" keeps its own place

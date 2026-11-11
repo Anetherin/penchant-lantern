@@ -69,6 +69,16 @@ table{border-collapse:collapse;width:100%;font-size:13px}td,th{border-bottom:1px
 .rep-w .head{display:flex;gap:10px;align-items:center}
 .hl{border-left:3px solid var(--gold2);padding:4px 10px;margin:6px 0;background:rgba(0,0,0,.15)}
 .hlimg{max-width:320px}
+.rep{display:grid;grid-template-columns:190px 1fr;gap:14px;align-items:start}
+.rep-nav{display:flex;flex-direction:column;gap:2px;position:sticky;top:0;max-height:75vh;overflow-y:auto;border-right:1px solid var(--line);padding-right:8px}
+.rep-tab{text-align:left;background:none;border:1px solid transparent;padding:5px 8px;border-radius:6px;font-weight:600}
+.rep-tab.sub{font-weight:normal;padding-left:20px;font-size:13px}
+.rep-tab.on{background:var(--panel2);border-color:var(--gold2)}
+.rep-main{min-width:0}
+.rep-main a{color:var(--gold);text-decoration:none}.rep-main a:hover{text-decoration:underline}
+.rep-sel{display:none;width:100%;margin:4px 0 8px}
+.rep-ladies td,.rep-ladies th{padding:3px 8px}
+@media(max-width:760px){.rep{grid-template-columns:1fr}.rep-nav{display:none}.rep-sel{display:block}}
 .hsel{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px}
 .swatch{display:inline-block;width:12px;height:12px;border-radius:3px;border:1px solid #0006;vertical-align:middle;margin-right:3px}
 .pick{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:10px;cursor:pointer}

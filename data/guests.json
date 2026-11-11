@@ -215,7 +215,7 @@
             "juju": {"v":50,"kind":"mentor","note":"Juju is from her toolsmith line and calls her Great-Grandma Tenten. Tenten hates it."}
           },
           "jobs": {"likes":["bartender","security"],"dislikes":["maid"]},
-          "body": {"bust":"small ","height":"medium","figure":"athletic"},
+          "body": {"bust":"small","height":"average","figure":"athletic"},
           "unique": {
             "name": "Never Misses",
             "desc": "Nothing slips past her, whether it's a thrown knife or a rowdy client.",
@@ -341,7 +341,7 @@
           "dislike": "doggy",
           "lovers": "kiss",
           "backstory": "Tsunade's assistant from the Leaf, a shinobi village across the eastern sea, still chasing down her mentor's debts and her mentor's tab. Shizune keeps impeccable books and a pet piglet named Tonton, who has opinions about clients.",
-          "design": {"hairStyle":"short straight bob","hairColor":"black","eyes":"dark","skin":"fair","features":"a small pig that follows her everywhere"},
+          "design": {"hairStyle":"short straight bob","hairColor":"black","eyes":"dark","skin":"fair","gear":"a small pig that follows her everywhere"},
           "under": "plain",
           "underColor": "navy",
           "stats": {"beauty":58,"charm":55,"charisma":60,"refinement":60,"wits":60,"stamina":50,"strength":30,"agility":45},
@@ -929,7 +929,7 @@
             "hairColor": "copper red",
             "eyes": "amber-brown",
             "skin": "sandy tan",
-            "features": "a pair of folding metal fans"
+            "gear": "a pair of folding metal fans"
           },
           "under": "none",
           "underColor": "none",
@@ -1396,7 +1396,7 @@
           "dislike": "kiss",
           "lovers": "missionary",
           "backstory": "A Leaf clone specialist from the Alliance villages across the eastern sea with chakra reserves big enough to be a squad by herself. Tobari covers every door in the house at once. She talks her problems through with her own clones, which know far too much about who she likes.",
-          "design": {"hairStyle":"short high ponytail","hairColor":"white","eyes":"red","skin":"pale","features":"a small white fur collar"},
+          "design": {"hairStyle":"short high ponytail","hairColor":"white","eyes":"red","skin":"pale","gear":"a small white fur collar"},
           "under": "sports",
           "underColor": "navy",
           "stats": {"beauty":64,"charm":48,"charisma":54,"refinement":45,"wits":45,"stamina":70,"strength":55,"agility":70},
@@ -1446,7 +1446,7 @@
             "hairColor": "pale blonde",
             "eyes": "pale blue",
             "skin": "fair",
-            "features": "a sewing pouch at her hip"
+            "gear": "a sewing pouch at her hip"
           },
           "under": "lace",
           "underColor": "cream",
@@ -1542,7 +1542,8 @@
             "hairColor": "black",
             "eyes": "dark",
             "skin": "pale",
-            "features": "a sharp, striking face and a small cutting blade at her hip"
+            "features": "a sharp, striking face",
+            "gear": "a small cutting blade at her hip"
           },
           "under": "silk",
           "underColor": "black",
@@ -1637,7 +1638,8 @@
             "hairColor": "dark brown",
             "eyes": "dark",
             "skin": "light",
-            "features": "a dark bandanna over her hairline, a prominent nose and strong brows"
+            "features": "a prominent nose and strong brows",
+            "gear": "a dark bandanna over her hairline"
           },
           "under": "sports",
           "underColor": "black",
@@ -1686,7 +1688,8 @@
             "hairColor": "light brown",
             "eyes": "deep blue",
             "skin": "fair",
-            "features": "a slim golden circlet and a triangle crest on her gloves"
+            "features": "a slim golden circlet",
+            "gear": "long white gloves with a triangle crest"
           },
           "under": "silk",
           "underColor": "white",
@@ -1782,7 +1785,7 @@
             "hairColor": "bright red",
             "eyes": "blue",
             "skin": "fair with light freckles",
-            "features": "a horse-head brooch at her collar"
+            "gear": "a horse-head brooch at her collar"
           },
           "under": "plain",
           "underColor": "white",
@@ -1812,7 +1815,7 @@
         },
         "great_fairy": {
           "job": "bath",
-          "name": "The Great Fairy",
+          "name": "Cotera",
           "race": "spirit",
           "age": 580,
           "personality": "Bold and flirtatious",
@@ -1822,7 +1825,7 @@
           "fav": "breast_give",
           "dislike": "doggy",
           "lovers": "breast_get",
-          "backstory": "A great fairy who used to live in a healing fountain and grant weary travelers their strength back. She has moved into the bathhouse, which she considers a fountain with better gossip, and her laugh echoes off the tiles.",
+          "backstory": "Cotera, a great fairy, used to live in a healing fountain and grant weary travelers their strength back. She has moved into the bathhouse, which she considers a fountain with better gossip, and her laugh echoes off the tiles.",
           "design": {
             "build": "very tall",
             "hairStyle": "enormous and voluminous",
@@ -1850,7 +1853,8 @@
           },
           "jobs": {"likes":["bath","courtesan"],"dislikes":["promoter"]},
           "body": {"bust":"huge","height":"tall","figure":"curvy"},
-          "unique": {"name":"Fountain's Blessing","desc":"Her bathwater restores weary guests.","fx":{"energyRec":1.2,"jobBonus":{"bath":1.2}}}
+          "unique": {"name":"Fountain's Blessing","desc":"Her bathwater restores weary guests.","fx":{"energyRec":1.2,"jobBonus":{"bath":1.2}}},
+          "title": "Great Fairy"
         },
         "nabooru": {
           "job": "security",
@@ -1918,7 +1922,7 @@
           "dislike": "manual_give",
           "lovers": "missionary",
           "backstory": "A swordswoman of the open plains from the warring continents beyond the southern straits, Lyndis turned down a noble title once and would do it again. She hates being cooped up, which is why she patrols the roof.",
-          "design": {"hairStyle":"very long high ponytail","hairColor":"deep green","eyes":"green","skin":"light","features":"a slim curved sword at her hip"},
+          "design": {"hairStyle":"very long high ponytail","hairColor":"deep green","eyes":"green","skin":"light","gear":"a slim curved sword at her hip"},
           "under": "sports",
           "underColor": "green",
           "stats": {"beauty":70,"charm":60,"charisma":66,"refinement":48,"wits":48,"stamina":65,"strength":50,"agility":75},
@@ -2092,7 +2096,7 @@
           "dislike": "kiss",
           "lovers": "cowgirl",
           "backstory": "The last of a rabbit shapeshifter people from the warring continents beyond the southern straits, Panne trusts very few humans and says so. The ones she does trust, she would die for.",
-          "design": {"build":"curvy","hairStyle":"long and wild","hairColor":"brown","eyes":"brown","skin":"dark brown","features":"a fur-trimmed collar"},
+          "design": {"build":"curvy","hairStyle":"long and wild","hairColor":"brown","eyes":"brown","skin":"dark brown","gear":"a fur-trimmed collar"},
           "under": "plain",
           "underColor": "white",
           "stats": {"beauty":70,"charm":50,"charisma":56,"refinement":40,"wits":44,"stamina":68,"strength":50,"agility":70},
@@ -2114,6 +2118,208 @@
           "jobs": {"likes":["courtesan","security"],"dislikes":["promoter"]},
           "body": {"bust":"small","height":"tall","figure":"athletic"},
           "unique": {"name":"Guardian's Loyalty","desc":"Slow to trust, but fiercely devoted once she does.","fx":{"trustGain":1.15,"security":8}}
+        },
+        "corrin": {
+          "job": "security",
+          "name": "Corrin",
+          "race": "beastkin",
+          "sub": "dragon",
+          "age": 25,
+          "personality": "Gentle and dreamy",
+          "traits": ["Loyal","Romantic"],
+          "style": "Elegant",
+          "favColor": "blue",
+          "fav": "kiss",
+          "dislike": "massage_get",
+          "lovers": "missionary",
+          "backstory": "Raised in a mountain fortress with a dragon's blood she barely understood, Corrin spent years torn between two homes. She came to Hollowmere to see the world she was never allowed to visit. She is gentle, curious, and surprisingly formidable when someone threatens her friends.",
+          "design": {
+            "hairStyle": "long, soft and silvery",
+            "hairColor": "silver-white",
+            "eyes": "red",
+            "skin": "pale",
+            "features": "pointed ears, small sharp fangs and faint pale scales along her forearms",
+            "gear": "an ornate long blade and a glowing dragonstone amulet"
+          },
+          "under": "silk",
+          "underColor": "blue",
+          "stats": {"beauty":78,"charm":64,"charisma":64,"refinement":60,"wits":56,"stamina":64,"strength":52,"agility":60},
+          "tech": {"service":30,"dance":25,"bar":20,"combat":70,"manage":30},
+          "actSkill": 20,
+          "popularity": 14,
+          "lewd": 28,
+          "trust": 26,
+          "outfits": {
+            "sig_corrin": {
+              "label": "Royal armor-dress",
+              "style": "Elegant",
+              "prompt": "a black and silver armored dress with a high collar and a deep blue sash",
+              "bonus": {"security":1.25,"noble":1.15}
+            },
+            "sp_corrin": {
+              "label": "Court gown",
+              "style": "Elegant",
+              "prompt": "a white and sky-blue court gown with silver embroidery",
+              "bonus": {"noble":1.25,"courtesan":1.1}
+            }
+          },
+          "bonds": {
+            "eirika": {"v":25,"kind":"comrades","note":"Royals who have swapped war stories."},
+            "celica": {"v":25,"kind":"comrades","note":"Royals who have swapped war stories."}
+          },
+          "jobs": {"likes":["security","attendant"],"dislikes":["dancer"]},
+          "body": {"bust":"medium","height":"average","figure":"athletic"},
+          "unique": {"name":"Dragon Blood","desc":"Dragon vigor lets her patrol far longer than most.","fx":{"maxEnergy":10,"security":8}}
+        },
+        "eirika": {
+          "job": "host",
+          "name": "Eirika",
+          "title": "Princess",
+          "race": "human",
+          "age": 25,
+          "personality": "Earnest and dutiful",
+          "traits": ["Loyal","Elegant"],
+          "style": "Elegant",
+          "favColor": "blue",
+          "fav": "kiss",
+          "dislike": "doggy",
+          "lovers": "missionary",
+          "backstory": "A princess who led her people through war and rebuilt a kingdom from ashes, Eirika is kind, brave and forever apologizing for things that were not her fault. She came to Hollowmere on a pilgrimage, and found the work warm and honest. She still stands as though a crown were on her head.",
+          "design": {
+            "hairStyle": "short, neat and swept back",
+            "hairColor": "teal",
+            "eyes": "blue",
+            "skin": "fair",
+            "features": "a serene, resolute face",
+            "gear": "a slender rapier"
+          },
+          "under": "lace",
+          "underColor": "blue",
+          "stats": {"beauty":82,"charm":66,"charisma":72,"refinement":74,"wits":62,"stamina":56,"strength":40,"agility":58},
+          "tech": {"service":35,"dance":25,"bar":20,"combat":55,"manage":50},
+          "actSkill": 20,
+          "popularity": 18,
+          "lewd": 26,
+          "trust": 28,
+          "outfits": {
+            "sig_eirika": {
+              "label": "Royal tabard",
+              "style": "Elegant",
+              "prompt": "a pale blue and white tabard dress with gold trim, a short skirt and tall blue boots",
+              "bonus": {"host":1.25,"noble":1.2}
+            },
+            "sp_eirika": {"label":"Royal ballgown","style":"Elegant","prompt":"a white and gold ballgown with a long train","bonus":{"noble":1.25,"courtesan":1.15}}
+          },
+          "bonds": {
+            "celica": {"v":30,"kind":"comrades","note":"Princesses of far-off realms: kindred spirits."},
+            "corrin": {"v":25,"kind":"comrades","note":"Royals who have swapped war stories."}
+          },
+          "jobs": {"likes":["host","attendant"],"dislikes":["bartender"]},
+          "body": {"bust":"medium","height":"average","figure":"slim"},
+          "unique": {"name":"Radiant Princess","desc":"Her grace and honesty are noticed by every noble.","fx":{"classBonus":{"noble":1.2},"rep":1.1}}
+        },
+        "byleth": {
+          "job": "teacher",
+          "name": "Byleth",
+          "title": "Professor",
+          "race": "human",
+          "age": 30,
+          "personality": "Stoic and blunt",
+          "traits": ["Tough","Former Adventurer"],
+          "style": "Elegant",
+          "favColor": "teal",
+          "fav": "massage_give",
+          "dislike": "breast_get",
+          "lovers": "missionary",
+          "backstory": "A mercenary who became a professor almost by accident, Byleth speaks little, notices everything and is quietly very good at both teaching and killing. She arrived in Hollowmere looking for work that did not involve a battlefield. She shows her feelings so rarely that a small smile is a gift.",
+          "design": {
+            "hairStyle": "long, wavy and loose",
+            "hairColor": "teal",
+            "eyes": "teal",
+            "skin": "fair",
+            "features": "a calm, nearly expressionless face",
+            "gear": "an ornate chained sword"
+          },
+          "under": "plain",
+          "underColor": "black",
+          "stats": {"beauty":78,"charm":48,"charisma":56,"refinement":66,"wits":72,"stamina":66,"strength":52,"agility":60},
+          "tech": {"service":40,"dance":20,"bar":20,"combat":65,"manage":55},
+          "actSkill": 20,
+          "popularity": 14,
+          "lewd": 34,
+          "trust": 18,
+          "outfits": {
+            "sig_byleth": {
+              "label": "Professor's coat",
+              "style": "Elegant",
+              "prompt": "a dark teal tailored coat with gold trim over a black bodice, a short skirt and thigh-high boots",
+              "bonus": {"teacher":1.3,"adventurer":1.1}
+            },
+            "sp_byleth": {"label":"Tea-party dress","style":"Elegant","prompt":"a pale green formal dress with lace sleeves","bonus":{"noble":1.2,"courtesan":1.1}}
+          },
+          "bonds": {
+            "manuela": {"v":35,"kind":"comrades","note":"Fellow instructor with an endless supply of gossip."},
+            "rhea": {"v":40,"note":"Her patron, who watched over her with a mix of hope and worry."}
+          },
+          "jobs": {"likes":["teacher","security"],"dislikes":["dancer"]},
+          "body": {"bust":"medium","height":"average","figure":"athletic"},
+          "unique": {
+            "name": "Teacher's Sense",
+            "desc": "She trains her fellows with a patient and steady hand.",
+            "fx": {"skillGain":1.25,"jobBonus":{"teacher":1.2}}
+          }
+        },
+        "celica": {
+          "job": "attendant",
+          "name": "Celica",
+          "title": "Princess",
+          "race": "human",
+          "age": 24,
+          "personality": "Earnest and dutiful",
+          "traits": ["Loyal","Romantic"],
+          "style": "Cute",
+          "favColor": "orange",
+          "fav": "kiss",
+          "dislike": "manual_give",
+          "lovers": "missionary",
+          "backstory": "A princess who left the safety of a convent and a kingdom to find her missing friend, Celica faced every hardship with a smile and a blessing. She came to Hollowmere on the same hopeful errand and decided that helping people was as good a quest as any. She prays before every shift and means every word.",
+          "design": {
+            "hairStyle": "long, wavy and soft",
+            "hairColor": "crimson red",
+            "eyes": "red",
+            "skin": "fair",
+            "features": "a soft, sincere smile",
+            "gear": "a silver-tipped staff"
+          },
+          "under": "lace",
+          "underColor": "white",
+          "stats": {"beauty":82,"charm":64,"charisma":70,"refinement":66,"wits":58,"stamina":54,"strength":34,"agility":52},
+          "tech": {"service":35,"dance":25,"bar":20,"combat":50,"manage":35},
+          "actSkill": 20,
+          "popularity": 20,
+          "lewd": 26,
+          "trust": 30,
+          "outfits": {
+            "sig_celica": {
+              "label": "Princess dress",
+              "style": "Cute",
+              "prompt": "a white and orange layered dress with gold trim and a short cape",
+              "bonus": {"attendant":1.25,"noble":1.15}
+            },
+            "sp_celica": {
+              "label": "Silk gown",
+              "style": "Elegant",
+              "prompt": "a gold-trimmed white silk gown with sheer layered sleeves",
+              "bonus": {"noble":1.25,"courtesan":1.15}
+            }
+          },
+          "bonds": {
+            "eirika": {"v":30,"kind":"comrades","note":"Princesses of far-off realms: kindred spirits."},
+            "corrin": {"v":25,"kind":"comrades","note":"Royals who have swapped war stories."}
+          },
+          "jobs": {"likes":["attendant","host"],"dislikes":["security"]},
+          "body": {"bust":"medium","height":"average","figure":"slim"},
+          "unique": {"name":"Valentian Heart","desc":"Her sincerity wins trust fast, and her prayers calm the house.","fx":{"trustGain":1.15,"security":8}}
         }
       }
     },
@@ -2638,6 +2844,323 @@
             "desc": "Her warmth and patience put clients at ease, easing the workload for everyone around her. Teaches well too.",
             "fx": {"jobBonus":{"attendant":1.2,"teacher":1.15},"actQuality":{"massage_give":1.1}}
           }
+        },
+        "leaf": {
+          "job": "attendant",
+          "name": "Leaf",
+          "race": "human",
+          "age": 25,
+          "personality": "Free-spirited wanderer",
+          "traits": ["Former Adventurer","Eager"],
+          "style": "Sporty",
+          "favColor": "green",
+          "fav": "kiss",
+          "dislike": "manual_give",
+          "lovers": "cowgirl",
+          "backstory": "A traveling trainer who left her sleepy hometown with little more than a sun hat and a dream of seeing everything, Leaf has crossed regions on foot and made friends everywhere. She turned up in Hollowmere between journeys, looking for coin and a warm bed. She treats every shift like a new route to explore.",
+          "design": {
+            "hairStyle": "very long, straight and loose",
+            "hairColor": "brown",
+            "eyes": "brown",
+            "skin": "fair",
+            "features": "a sunny, freckled grin",
+            "gear": "a white sun hat and a small travel pack"
+          },
+          "under": "plain",
+          "underColor": "white",
+          "stats": {"beauty":72,"charm":66,"charisma":68,"refinement":48,"wits":58,"stamina":68,"strength":38,"agility":66},
+          "tech": {"service":35,"dance":25,"bar":20,"combat":45,"manage":25},
+          "actSkill": 20,
+          "popularity": 12,
+          "lewd": 34,
+          "trust": 30,
+          "outfits": {
+            "sig_leaf": {
+              "label": "Trainer outfit",
+              "style": "Sporty",
+              "prompt": "a sleeveless white top, a short blue skirt, white socks and sneakers",
+              "bonus": {"attendant":1.2,"adventurer":1.2}
+            },
+            "sp_leaf": {"label":"Summer dress","style":"Cute","prompt":"a long sky-blue sundress with a ribbon at the waist","bonus":{"commoner":1.15,"noble":1.1}}
+          },
+          "bonds": {
+            "misty": {"v":35,"kind":"comrades","note":"Fellow travelers from the same region."},
+            "may": {"v":30,"kind":"comrades","note":"Old friends who swap trail stories."}
+          },
+          "jobs": {"likes":["attendant","promoter"],"dislikes":["madame"]},
+          "body": {"bust":"medium","height":"average","figure":"athletic"},
+          "unique": {"name":"Wanderer's Spirit","desc":"She never tires of the road, and her cheer is catching.","fx":{"maxEnergy":8,"promote":1.1}},
+          "title": "Trainer"
+        },
+        "misty": {
+          "job": "bath",
+          "name": "Misty",
+          "title": "Leader",
+          "race": "human",
+          "age": 28,
+          "personality": "Hot-blooded and competitive",
+          "traits": ["Tough","Eager"],
+          "style": "Sporty",
+          "favColor": "cyan",
+          "fav": "massage_give",
+          "dislike": "oral_get",
+          "lovers": "cowgirl",
+          "backstory": "The fiery water gym leader of a small seaside town, Misty set out to prove she was more than her sisters' shadow, and then proved it over and over. She arrived in Hollowmere hunting the best bathhouse in town and took a job on the spot. She has a short temper, a soft heart for water creatures, and a very loyal companion.",
+          "design": {
+            "hairStyle": "short side ponytail",
+            "hairColor": "orange",
+            "eyes": "teal",
+            "skin": "fair",
+            "features": "a bright, quick-tempered scowl that melts into a laugh",
+            "gear": "a dazed yellow duck companion at her heels"
+          },
+          "under": "sports",
+          "underColor": "cyan",
+          "stats": {"beauty":76,"charm":62,"charisma":66,"refinement":48,"wits":56,"stamina":68,"strength":42,"agility":70},
+          "tech": {"service":40,"dance":25,"bar":25,"combat":50,"manage":25},
+          "actSkill": 20,
+          "popularity": 16,
+          "lewd": 28,
+          "trust": 24,
+          "outfits": {
+            "sig_misty": {
+              "label": "Gym leader",
+              "style": "Sporty",
+              "prompt": "a yellow crop top, red suspenders, short denim shorts and sneakers",
+              "bonus": {"bath":1.25,"adventurer":1.15}
+            },
+            "sp_misty": {
+              "label": "Seaside wrap",
+              "style": "Revealing",
+              "prompt": "a sea-blue one-piece swimsuit with a sheer white wrap skirt",
+              "bonus": {"bath":1.3,"courtesan":1.1}
+            }
+          },
+          "bonds": {
+            "may": {"v":35,"kind":"comrades","note":"Fellow water-lovers who swap swimming tips."},
+            "leaf": {"v":35,"kind":"comrades","note":"Fellow travelers from the same region."},
+            "flannery": {"v":25,"kind":"comrades","note":"Fellow gym leaders with a friendly rivalry."},
+            "clair": {"v":25,"kind":"comrades","note":"Fellow gym leaders with a friendly rivalry."},
+            "sabrina": {"v":20,"note":"Fellow gym leaders who see each other at regional meetings."}
+          },
+          "jobs": {"likes":["bath","security"],"dislikes":["madame"]},
+          "body": {"bust":"medium","height":"average","figure":"athletic"},
+          "unique": {
+            "name": "Water Gym Leader",
+            "desc": "At home in steam and water, she lifts the bathhouse and eases every ache.",
+            "fx": {"jobBonus":{"bath":1.2},"actQuality":{"massage_give":1.15}}
+          }
+        },
+        "clair": {
+          "job": "security",
+          "name": "Clair",
+          "title": "Leader",
+          "race": "human",
+          "age": 30,
+          "personality": "Proud and sharp-tongued",
+          "traits": ["Tough","Ambitious"],
+          "style": "Elegant",
+          "favColor": "navy",
+          "fav": "missionary",
+          "dislike": "massage_get",
+          "lovers": "doggy",
+          "backstory": "Heir to a proud line of dragon tamers, Clair has never forgiven anyone for doubting her, including herself. She left her hidden mountain gym to find a place where her skill would be earned rather than assumed. She is exacting, fiercely loyal and rather good at throwing people out.",
+          "design": {
+            "hairStyle": "long wavy ponytail",
+            "hairColor": "light blue",
+            "eyes": "blue",
+            "skin": "fair",
+            "features": "a proud, narrow-eyed gaze",
+            "gear": "a high-collared black cape"
+          },
+          "under": "silk",
+          "underColor": "navy",
+          "stats": {"beauty":78,"charm":56,"charisma":66,"refinement":70,"wits":60,"stamina":64,"strength":56,"agility":62},
+          "tech": {"service":30,"dance":15,"bar":15,"combat":65,"manage":55},
+          "actSkill": 20,
+          "popularity": 14,
+          "lewd": 40,
+          "trust": 18,
+          "outfits": {
+            "sig_clair": {
+              "label": "Gym leader",
+              "style": "Elegant",
+              "prompt": "a fitted sleeveless navy tunic dress with gold trim, knee-high boots and black gloves",
+              "bonus": {"security":1.3,"noble":1.1}
+            },
+            "sp_clair": {
+              "label": "Tamer's gown",
+              "style": "Elegant",
+              "prompt": "a high-collared midnight-blue and gold gown with a long slit skirt",
+              "bonus": {"noble":1.2,"courtesan":1.15}
+            }
+          },
+          "bonds": {
+            "misty": {"v":25,"kind":"comrades","note":"Fellow gym leaders with a friendly rivalry."},
+            "flannery": {"v":25,"kind":"comrades","note":"Fellow gym leaders with a friendly rivalry."}
+          },
+          "jobs": {"likes":["security","madame"],"dislikes":["dancer"]},
+          "body": {"bust":"medium","height":"tall","figure":"slim"},
+          "unique": {
+            "name": "Dragon Tamer's Pride",
+            "desc": "Her bearing alone makes troublemakers think twice, and nobles respect it.",
+            "fx": {"security":12,"classBonus":{"noble":1.1}}
+          }
+        },
+        "flannery": {
+          "job": "bartender",
+          "name": "Flannery",
+          "title": "Leader",
+          "race": "human",
+          "age": 24,
+          "personality": "Hot-blooded and competitive",
+          "traits": ["Party Animal","Tough"],
+          "style": "Sporty",
+          "favColor": "red",
+          "fav": "breast_give",
+          "dislike": "manual_give",
+          "lovers": "cowgirl",
+          "backstory": "The fiery young leader of a gym in a volcano town, Flannery took over from her grandfather and spent years proving she could handle the heat. She left on a whim after hearing Hollowmere's taverns never close. She is clumsy with tact and wonderful with a crowd.",
+          "design": {
+            "hairStyle": "long red ponytail",
+            "hairColor": "red",
+            "eyes": "orange",
+            "skin": "light",
+            "features": "a spray of freckles across her nose and a hot-tempered grin"
+          },
+          "under": "sports",
+          "underColor": "red",
+          "stats": {"beauty":74,"charm":68,"charisma":70,"refinement":40,"wits":44,"stamina":72,"strength":48,"agility":66},
+          "tech": {"service":30,"dance":35,"bar":50,"combat":45,"manage":30},
+          "actSkill": 25,
+          "popularity": 16,
+          "lewd": 40,
+          "trust": 20,
+          "outfits": {
+            "sig_flannery": {
+              "label": "Gym leader",
+              "style": "Sporty",
+              "prompt": "a flame-red sleeveless top, a short skirt and high boots",
+              "bonus": {"bartender":1.25,"adventurer":1.1}
+            },
+            "sp_flannery": {
+              "label": "Festival yukata",
+              "style": "Elegant",
+              "prompt": "a bright red and gold short yukata with a wide obi",
+              "bonus": {"bartender":1.15,"noble":1.1}
+            }
+          },
+          "bonds": {
+            "misty": {"v":25,"kind":"comrades","note":"Fellow gym leaders with a friendly rivalry."},
+            "clair": {"v":25,"kind":"comrades","note":"Fellow gym leaders with a friendly rivalry."}
+          },
+          "jobs": {"likes":["bartender","host"],"dislikes":["madame"]},
+          "body": {"bust":"large","height":"average","figure":"curvy"},
+          "unique": {"name":"Burning Spirit","desc":"She fires up the crowd, and the drinks keep flowing.","fx":{"jobBonus":{"bartender":1.2},"clientFee":1.05}}
+        },
+        "may": {
+          "job": "dancer",
+          "name": "May",
+          "race": "human",
+          "age": 24,
+          "personality": "Cheerful and teasing",
+          "traits": ["Eager","Party Animal"],
+          "style": "Cute",
+          "favColor": "red",
+          "fav": "kiss",
+          "dislike": "manual_give",
+          "lovers": "missionary",
+          "backstory": "A coordinator who prefers a stage to a battlefield, May traveled from town to town collecting ribbons and, along the way, a few fans. She came to Hollowmere for the festivals and stayed for the dance floor. She trips sometimes. Then she turns it into a pirouette.",
+          "design": {
+            "hairStyle": "shoulder-length wavy",
+            "hairColor": "brown",
+            "eyes": "blue",
+            "skin": "fair",
+            "features": "a bright, expressive smile",
+            "gear": "a red bandana and a yellow belt pouch"
+          },
+          "under": "lace",
+          "underColor": "pink",
+          "stats": {"beauty":78,"charm":72,"charisma":72,"refinement":50,"wits":48,"stamina":62,"strength":30,"agility":66},
+          "tech": {"service":30,"dance":60,"bar":25,"combat":25,"manage":20},
+          "actSkill": 25,
+          "popularity": 16,
+          "lewd": 48,
+          "trust": 28,
+          "outfits": {
+            "sig_may": {
+              "label": "Coordinator outfit",
+              "style": "Cute",
+              "prompt": "a red zip-up crop top, a short white skirt with black shorts underneath and sneakers",
+              "bonus": {"dancer":1.3,"commoner":1.1}
+            },
+            "sp_may": {
+              "label": "Contest gown",
+              "style": "Elegant",
+              "prompt": "a frilly white and pink contest gown with a full skirt and ribbons",
+              "bonus": {"dancer":1.2,"noble":1.15}
+            }
+          },
+          "bonds": {
+            "misty": {"v":35,"kind":"comrades","note":"Fellow water-lovers who swap swimming tips."},
+            "leaf": {"v":30,"kind":"comrades","note":"Old friends who swap trail stories."}
+          },
+          "jobs": {"likes":["dancer","host"],"dislikes":["security"]},
+          "body": {"bust":"medium","height":"average","figure":"slim"},
+          "unique": {"name":"Contest Star","desc":"She turns every performance into a spectacle.","fx":{"jobBonus":{"dancer":1.2},"appeal":3}},
+          "title": "Trainer"
+        },
+        "hilda": {
+          "job": "promoter",
+          "name": "Hilda",
+          "race": "human",
+          "age": 25,
+          "personality": "Cheerful and teasing",
+          "traits": ["Eager","Former Adventurer"],
+          "style": "Sporty",
+          "favColor": "pink",
+          "fav": "kiss",
+          "dislike": "manual_get",
+          "lovers": "cowgirl",
+          "backstory": "A brash trainer from a bustling city, Hilda picked fights with every challenger she met and made more friends than enemies. She arrived in Hollowmere on a whim and talked herself into a job before noon. She is loud, quick and impossible to ignore.",
+          "design": {
+            "hairStyle": "long high ponytail",
+            "hairColor": "brown",
+            "eyes": "brown",
+            "skin": "fair",
+            "features": "a confident grin",
+            "gear": "a pink-and-white cap and a small shoulder bag"
+          },
+          "under": "plain",
+          "underColor": "pink",
+          "stats": {"beauty":76,"charm":70,"charisma":74,"refinement":48,"wits":50,"stamina":64,"strength":38,"agility":64},
+          "tech": {"service":35,"dance":25,"bar":30,"combat":45,"manage":35},
+          "actSkill": 20,
+          "popularity": 14,
+          "lewd": 38,
+          "trust": 28,
+          "outfits": {
+            "sig_hilda": {
+              "label": "Trainer outfit",
+              "style": "Sporty",
+              "prompt": "a fitted black and white vest top, short denim shorts, black thigh-high socks and pink boots",
+              "bonus": {"promoter":1.25,"adventurer":1.15}
+            },
+            "sp_hilda": {
+              "label": "City dress",
+              "style": "Cute",
+              "prompt": "a short pink and white tiered dress with a black belt",
+              "bonus": {"promoter":1.15,"merchant":1.1}
+            }
+          },
+          "bonds": {
+            "juniper": {"v":40,"kind":"mentor","note":"Professor Juniper gave her first partner and her first sendoff."},
+            "cynthia": {"v":25,"note":"The champion gave her a pointer or two on how to win."}
+          },
+          "jobs": {"likes":["promoter","host"],"dislikes":["madame"]},
+          "body": {"bust":"medium","height":"average","figure":"athletic"},
+          "unique": {"name":"Trainer's Spirit","desc":"She learns fast and talks faster.","fx":{"skillGain":1.2,"promote":1.1}},
+          "title": "Trainer"
         }
       }
     },
@@ -2662,7 +3185,8 @@
             "hairColor": "white-silver",
             "eyes": "golden",
             "skin": "pale",
-            "features": "a calm, courteous expression and a large leather-bound book at her side"
+            "features": "a calm, courteous expression",
+            "gear": "a large leather-bound book at her side"
           },
           "under": "plain",
           "underColor": "blue",
@@ -2905,6 +3429,483 @@
             "name": "Cross-Examination",
             "desc": "Nothing gets past her scrutiny; she runs a tight house and lifts its standing.",
             "fx": {"jobBonus":{"madame":1.2},"rep":1.1}
+          }
+        },
+        "yukiko": {
+          "job": "host",
+          "name": "Yukiko Amagi",
+          "race": "human",
+          "age": 25,
+          "personality": "Calm and elegant",
+          "traits": ["Elegant","Modest"],
+          "style": "Elegant",
+          "favColor": "red",
+          "fav": "massage_give",
+          "dislike": "doggy",
+          "lovers": "missionary",
+          "backstory": "Heir to a long-established inn, Yukiko was raised to be a gracious hostess and a quiet heir, and came to Hollowmere to see how other houses do it. She is courteous, unflappable and prone to sudden laughing fits over jokes only she understands. She would never admit how fierce her competitive streak is.",
+          "design": {
+            "hairStyle": "very long, straight and glossy with a neat fringe",
+            "hairColor": "black",
+            "eyes": "dark brown",
+            "skin": "fair",
+            "features": "a gentle face and a ready, delighted laugh"
+          },
+          "under": "silk",
+          "underColor": "red",
+          "stats": {"beauty":84,"charm":60,"charisma":64,"refinement":76,"wits":68,"stamina":52,"strength":34,"agility":52},
+          "tech": {"service":45,"dance":35,"bar":30,"combat":30,"manage":45},
+          "actSkill": 20,
+          "popularity": 18,
+          "lewd": 26,
+          "trust": 28,
+          "outfits": {
+            "sig_yukiko": {
+              "label": "Innkeeper's haori",
+              "style": "Elegant",
+              "prompt": "a crimson open-front haori over a cream blouse and a dark pleated skirt",
+              "bonus": {"host":1.25,"noble":1.15}
+            },
+            "sp_yukiko": {
+              "label": "Inn kimono",
+              "style": "Elegant",
+              "prompt": "a formal vermilion kimono with gold cranes and a pale obi",
+              "bonus": {"noble":1.2,"courtesan":1.15}
+            }
+          },
+          "bonds": {"ann":{"v":30,"kind":"comrades","note":"Compared notes on fighting and fashion."}},
+          "jobs": {"likes":["host","attendant"],"dislikes":["security"]},
+          "body": {"bust":"large","height":"average","figure":"slim"},
+          "unique": {
+            "name": "Hostess of the Inn",
+            "desc": "She sets guests at ease and keeps the place spotless.",
+            "fx": {"jobBonus":{"attendant":1.2,"host":1.1},"tidy":1.15}
+          }
+        },
+        "kasumi": {
+          "job": "dancer",
+          "name": "Kasumi Yoshizawa",
+          "race": "human",
+          "age": 22,
+          "personality": "Earnest and dutiful",
+          "traits": ["Loyal","Modest"],
+          "style": "Cute",
+          "favColor": "pink",
+          "fav": "kiss",
+          "dislike": "breast_give",
+          "lovers": "missionary",
+          "backstory": "A gymnast who has spent a lifetime perfecting every landing, Kasumi came to Hollowmere looking for a stage as polished as her routines. She is polite, driven and quietly determined to prove herself. She dances as though every night were a final.",
+          "design": {
+            "hairStyle": "long, tied in a high ponytail",
+            "hairColor": "auburn red",
+            "eyes": "reddish-brown",
+            "skin": "fair",
+            "features": "a determined, polite smile",
+            "gear": "a large red hair bow and a long satin gymnastics ribbon"
+          },
+          "under": "sports",
+          "underColor": "pink",
+          "stats": {"beauty":78,"charm":66,"charisma":66,"refinement":60,"wits":58,"stamina":74,"strength":42,"agility":84},
+          "tech": {"service":35,"dance":70,"bar":20,"combat":25,"manage":25},
+          "actSkill": 20,
+          "popularity": 12,
+          "lewd": 26,
+          "trust": 26,
+          "outfits": {
+            "sig_kasumi": {
+              "label": "Gymnast leotard",
+              "style": "Sporty",
+              "prompt": "a white and rose gymnast leotard with a short wrap skirt and soft slippers",
+              "bonus": {"dancer":1.3,"commoner":1.1}
+            },
+            "sp_kasumi": {
+              "label": "Performance dress",
+              "style": "Cute",
+              "prompt": "a pink ribbon-trimmed satin performance dress with a flared skirt",
+              "bonus": {"dancer":1.15,"noble":1.15}
+            }
+          },
+          "bonds": {
+            "ann": {"v":45,"kind":"comrades","note":"She looks up to Ann like a senpai."},
+            "kawakami": {"v":30,"note":"Her school teacher, who worries about her."},
+            "sae": {"v":10,"note":"Wary civility."}
+          },
+          "jobs": {"likes":["dancer","attendant"],"dislikes":["security"]},
+          "body": {"bust":"medium","height":"average","figure":"athletic"},
+          "unique": {
+            "name": "Gymnast's Poise",
+            "desc": "Her flawless balance and control draw an audience.",
+            "fx": {"jobBonus":{"dancer":1.2},"classBonus":{"noble":1.1}}
+          }
+        },
+        "ann": {
+          "job": "promoter",
+          "name": "Ann Takamaki",
+          "race": "human",
+          "age": 27,
+          "personality": "Bold and flirtatious",
+          "traits": ["Exhibitionist","Eager"],
+          "style": "Revealing",
+          "favColor": "red",
+          "fav": "cowgirl",
+          "dislike": "missionary",
+          "lovers": "doggy",
+          "backstory": "A model with a bold wardrobe and an even bolder sense of justice, Ann has little patience for people who push others around. She came to Hollowmere looking for fresh runways and a fresh start. She says what she thinks, and wears what she likes.",
+          "design": {"hairStyle":"very long twin tails","hairColor":"blonde","eyes":"blue","skin":"fair","features":"a bright, poised smile"},
+          "under": "lace",
+          "underColor": "red",
+          "stats": {"beauty":90,"charm":78,"charisma":82,"refinement":56,"wits":52,"stamina":56,"strength":32,"agility":58},
+          "tech": {"service":35,"dance":35,"bar":30,"combat":30,"manage":25},
+          "actSkill": 25,
+          "popularity": 22,
+          "lewd": 52,
+          "trust": 20,
+          "outfits": {
+            "sig_ann": {
+              "label": "Model's jacket",
+              "style": "Revealing",
+              "prompt": "a fitted red jacket over a white bodice, a short pleated black skirt and thigh-high stockings",
+              "bonus": {"promoter":1.3,"merchant":1.15}
+            },
+            "sp_ann": {
+              "label": "Runway gown",
+              "style": "Elegant",
+              "prompt": "a red satin evening gown with a plunging back and a high slit",
+              "bonus": {"courtesan":1.2,"noble":1.2}
+            }
+          },
+          "bonds": {
+            "kasumi": {"v":45,"kind":"mentor","note":"Her kohai: she watches out for her and offers advice."},
+            "kawakami": {"v":30,"note":"Her teacher, who nags her about homework."},
+            "takemi": {"v":25,"note":"Takemi's clinic is where she gets patched up."},
+            "sae": {"v":10,"note":"Once questioned her; polite but guarded."},
+            "yukiko": {"v":30,"kind":"comrades","note":"Compared notes on fighting and fashion."}
+          },
+          "jobs": {"likes":["promoter","dancer"],"dislikes":["maid"]},
+          "body": {"bust":"huge","height":"average","figure":"curvy"},
+          "unique": {"name":"Model's Allure","desc":"Heads turn when she walks in, and crowds follow.","fx":{"promote":1.3,"rep":1.1}}
+        }
+      }
+    },
+    "dragon-ball": {
+      "label": "Dragon Ball",
+      "characters": {
+        "bulma": {
+          "job": "promoter",
+          "name": "Bulma Briefs",
+          "race": "human",
+          "age": 40,
+          "personality": "Bold and flirtatious",
+          "traits": ["Ambitious","Party Animal"],
+          "style": "Elegant",
+          "favColor": "teal",
+          "fav": "kiss",
+          "dislike": "doggy",
+          "lovers": "cowgirl",
+          "backstory": "The heiress of a famous family of inventors, Bulma has already built, bankrolled and broken more gadgets than anyone in her own world cares to count. She came to Hollowmere chasing a rumor about rare crystals and stayed when she realized the house could use a proper marketing mind. She will tell you she's the smartest person in the room, and she is usually right.",
+          "design": {
+            "hairStyle": "short, sleek and swept to one side",
+            "hairColor": "turquoise",
+            "eyes": "blue",
+            "skin": "fair",
+            "features": "a bright, confident smile",
+            "gear": "a pouch of tiny inventor's gadgets at her belt"
+          },
+          "under": "lace",
+          "underColor": "pink",
+          "stats": {"beauty":84,"charm":74,"charisma":78,"refinement":62,"wits":90,"stamina":45,"strength":25,"agility":48},
+          "tech": {"service":40,"dance":20,"bar":40,"combat":10,"manage":60},
+          "actSkill": 30,
+          "popularity": 22,
+          "lewd": 44,
+          "trust": 24,
+          "outfits": {
+            "sig_bulma": {
+              "label": "Inventor's dress",
+              "style": "Cute",
+              "prompt": "a short pink dress with puffed sleeves, a blue sash and tall brown boots",
+              "bonus": {"promoter":1.3,"merchant":1.15}
+            },
+            "sp_bulma": {
+              "label": "Gala gown",
+              "style": "Elegant",
+              "prompt": "a sleeveless midnight-blue evening gown with a high slit and silver embroidery",
+              "bonus": {"courtesan":1.15,"noble":1.2}
+            }
+          },
+          "bonds": {
+            "chichi": {"v":40,"kind":"comrades","note":"Old friends who swap stories about stubborn husbands and unruly sons."},
+            "android21": {"v":25,"note":"Two brilliant minds who trade notes and one-up each other."}
+          },
+          "jobs": {"likes":["promoter","madame"],"dislikes":["security"]},
+          "body": {"bust":"large","height":"average","figure":"curvy"},
+          "unique": {
+            "name": "Genius Inventor",
+            "desc": "Her gadgets and her quick mind keep the house buzzing and the crowds coming.",
+            "fx": {"promote":1.25,"propRate":1.1}
+          }
+        },
+        "chichi": {
+          "job": "maid",
+          "name": "Chi-Chi",
+          "race": "human",
+          "age": 42,
+          "personality": "Warm and motherly",
+          "traits": ["Loyal","Tough"],
+          "style": "Elegant",
+          "favColor": "red",
+          "fav": "massage_give",
+          "dislike": "doggy",
+          "lovers": "missionary",
+          "backstory": "A princess-turned-martial-artist-turned-homemaker, Chi-Chi can cook for twenty, scold for thirty and still win a duel before supper. She followed her wayward family to Hollowmere and ended up taking over the household chores out of pure principle. Cross her rules and she will remind you where the door is.",
+          "design": {
+            "hairStyle": "long black hair pinned up in a high bun",
+            "hairColor": "black",
+            "eyes": "black",
+            "skin": "fair",
+            "features": "a stern but caring face",
+            "gear": "a long polearm slung across her back"
+          },
+          "under": "plain",
+          "underColor": "white",
+          "stats": {"beauty":72,"charm":62,"charisma":64,"refinement":66,"wits":62,"stamina":64,"strength":55,"agility":58},
+          "tech": {"service":55,"dance":15,"bar":30,"combat":60,"manage":50},
+          "actSkill": 25,
+          "popularity": 15,
+          "lewd": 28,
+          "trust": 32,
+          "outfits": {
+            "sig_chichi": {
+              "label": "Martial dress",
+              "style": "Sporty",
+              "prompt": "a sleeveless red martial-arts dress with a blue sash, black trousers and soft boots",
+              "bonus": {"maid":1.3,"commoner":1.15}
+            },
+            "sp_chichi": {
+              "label": "Wedding qipao",
+              "style": "Elegant",
+              "prompt": "a formal red-and-gold silk qipao with a high collar and embroidered phoenixes",
+              "bonus": {"noble":1.15,"courtesan":1.2}
+            }
+          },
+          "bonds": {"bulma":{"v":40,"kind":"comrades","note":"Old friends who swap stories about stubborn husbands and unruly sons."}},
+          "jobs": {"likes":["maid","attendant"],"dislikes":["dancer"]},
+          "body": {"bust":"medium","height":"average","figure":"athletic"},
+          "unique": {
+            "name": "Housewife's Fury",
+            "desc": "Dishes are washed, floors gleam, and no one dares skip a chore.",
+            "fx": {"tidy":1.3,"jobBonus":{"maid":1.15}}
+          }
+        },
+        "android21": {
+          "job": "bartender",
+          "name": "Android 21",
+          "race": "android",
+          "age": 30,
+          "personality": "Bookish and curious",
+          "traits": ["Eager","Ambitious"],
+          "style": "Elegant",
+          "favColor": "magenta",
+          "fav": "oral_give",
+          "dislike": "manual_get",
+          "lovers": "cowgirl",
+          "backstory": "A brilliant researcher who turned herself into something more than human, Android 21 came to Hollowmere looking for ingredients and new flavors to study. She can name every spice in a stew from the steam alone, and she has never once left a plate unfinished. She is polite and sharp, with an appetite she tries, and often fails, to keep under control.",
+          "design": {
+            "hairStyle": "very long, wavy and loose",
+            "hairColor": "brown",
+            "eyes": "brown",
+            "skin": "fair",
+            "features": "a bright, hungry smile",
+            "gear": "round-framed glasses"
+          },
+          "under": "silk",
+          "underColor": "black",
+          "stats": {"beauty":80,"charm":60,"charisma":62,"refinement":70,"wits":88,"stamina":70,"strength":50,"agility":55},
+          "tech": {"service":40,"dance":20,"bar":50,"combat":45,"manage":50},
+          "actSkill": 25,
+          "popularity": 12,
+          "lewd": 40,
+          "trust": 22,
+          "outfits": {
+            "sig_android21": {
+              "label": "Scientist's coat",
+              "style": "Elegant",
+              "prompt": "a white lab coat over a black halter top, a pencil skirt and dark stockings",
+              "bonus": {"bartender":1.25,"merchant":1.15}
+            },
+            "sp_android21": {
+              "label": "Evening dress",
+              "style": "Exotic",
+              "prompt": "a fitted dark magenta satin cocktail dress with a low back and long black gloves",
+              "bonus": {"courtesan":1.15,"noble":1.15}
+            }
+          },
+          "bonds": {"bulma":{"v":25,"note":"Two brilliant minds who trade notes and one-up each other."}},
+          "jobs": {"likes":["bartender","host"],"dislikes":["security"]},
+          "body": {"bust":"large","height":"tall","figure":"curvy"},
+          "unique": {
+            "name": "Gourmand's Appetite",
+            "desc": "She mixes drinks with scientific precision and recovers quickly on a good meal.",
+            "fx": {"jobBonus":{"bartender":1.2},"energyRec":1.1}
+          }
+        }
+      }
+    },
+    "shantae": {
+      "label": "Shantae",
+      "characters": {
+        "shantae": {
+          "job": "dancer",
+          "name": "Shantae",
+          "race": "spirit",
+          "age": 26,
+          "personality": "Cheerful and teasing",
+          "traits": ["Eager","Loyal"],
+          "style": "Exotic",
+          "favColor": "purple",
+          "fav": "massage_get",
+          "dislike": "missionary",
+          "lovers": "cowgirl",
+          "backstory": "A half-genie guardian from a seaside town of pirates and potions, Shantae has saved her home more times than she can count and still found time to dance. She came to Hollowmere on a magical errand that fizzled out, and stayed once she saw the stage. She is cheerful, impulsive and always ready to whip her hair around.",
+          "design": {
+            "hairStyle": "extremely long high ponytail reaching her ankles",
+            "hairColor": "purple",
+            "eyes": "blue",
+            "skin": "tan",
+            "features": "pointed ears, gold hoop earrings and a slim gold circlet"
+          },
+          "under": "sheer",
+          "underColor": "pink",
+          "stats": {"beauty":82,"charm":78,"charisma":76,"refinement":45,"wits":55,"stamina":68,"strength":35,"agility":80},
+          "tech": {"service":30,"dance":70,"bar":25,"combat":30,"manage":15},
+          "actSkill": 25,
+          "popularity": 24,
+          "lewd": 38,
+          "trust": 26,
+          "outfits": {
+            "sig_shantae": {
+              "label": "Half-genie dancer",
+              "style": "Exotic",
+              "prompt": "a magenta bandeau top and sheer purple harem pants with a gold waist chain, bare feet",
+              "bonus": {"dancer":1.3,"adventurer":1.1}
+            },
+            "sp_shantae": {
+              "label": "Veiled dancer",
+              "style": "Exotic",
+              "prompt": "a gem-trimmed turquoise and gold dancer set with a sheer veil skirt",
+              "bonus": {"dancer":1.2,"noble":1.2}
+            }
+          },
+          "bonds": {
+            "risky": {"v":-30,"note":"Her longtime rival, forever scheming to steal her magic."},
+            "rotty": {"v":45,"kind":"comrades","note":"Fast friends who share every adventure."}
+          },
+          "jobs": {"likes":["dancer","promoter"],"dislikes":["security"]},
+          "body": {"bust":"medium","height":"average","figure":"athletic"},
+          "unique": {
+            "name": "Belly Dance",
+            "desc": "Her hair whips and her hips sway, and every audience falls under her spell.",
+            "fx": {"jobBonus":{"dancer":1.25},"appeal":3}
+          }
+        },
+        "risky": {
+          "job": "madame",
+          "name": "Risky Boots",
+          "title": "Captain",
+          "race": "human",
+          "age": 37,
+          "personality": "Scheming and charming",
+          "traits": ["Greedy","Ambitious"],
+          "style": "Revealing",
+          "favColor": "purple",
+          "fav": "cowgirl",
+          "dislike": "missionary",
+          "lovers": "doggy",
+          "backstory": "The self-styled queen of the seven seas, Risky Boots lost her ship in a gamble she insists was rigged and washed up in Hollowmere with a plan and a grudge. She fully intends to steal the house out from under its owner, but the profits keep making her stay another week. She calls it patience.",
+          "design": {
+            "hairStyle": "long wavy black hair with side-swept bangs",
+            "hairColor": "black",
+            "eyes": "green",
+            "skin": "pale blue",
+            "features": "dark lipstick and a wicked smirk",
+            "gear": "a skull-badged tricorn hat, a cutlass and a long coat of purple velvet"
+          },
+          "under": "corset",
+          "underColor": "black",
+          "stats": {"beauty":85,"charm":68,"charisma":76,"refinement":58,"wits":72,"stamina":58,"strength":48,"agility":62},
+          "tech": {"service":30,"dance":40,"bar":35,"combat":60,"manage":65},
+          "actSkill": 20,
+          "popularity": 14,
+          "lewd": 52,
+          "trust": 16,
+          "outfits": {
+            "sig_risky": {
+              "label": "Pirate captain",
+              "style": "Revealing",
+              "prompt": "a purple corset bodice, a short black skirt, thigh-high leather boots and a studded belt",
+              "bonus": {"madame":1.3,"adventurer":1.2}
+            },
+            "sp_risky": {
+              "label": "Captain's gown",
+              "style": "Elegant",
+              "prompt": "a dark crimson silk gown with gold trim and a plunging neckline",
+              "bonus": {"noble":1.2,"merchant":1.2}
+            }
+          },
+          "bonds": {"shantae":{"v":-30,"note":"The half-genie who keeps foiling her schemes."}},
+          "jobs": {"likes":["madame","security"],"dislikes":["maid"]},
+          "body": {"bust":"large","height":"tall","figure":"curvy"},
+          "unique": {"name":"Dread Captain","desc":"A born schemer who commands attention and a slice of every deal.","fx":{"clientFee":1.08,"promote":1.2}}
+        },
+        "rotty": {
+          "job": "host",
+          "name": "Rottytops",
+          "race": "spirit",
+          "age": 25,
+          "personality": "Cheerful and teasing",
+          "traits": ["Eager","Night Owl"],
+          "style": "Cute",
+          "favColor": "green",
+          "fav": "kiss",
+          "dislike": "manual_give",
+          "lovers": "missionary",
+          "backstory": "A cheerful zombie girl from a ramshackle seaside town, Rottytops refuses to let a little thing like being dead slow her down. She wandered into Hollowmere following the smell of a good party and decided to stay for the late shifts. Nobody has ever caught her in a bad mood, even at dawn.",
+          "design": {
+            "hairStyle": "short and messy",
+            "hairColor": "green",
+            "eyes": "red",
+            "skin": "green",
+            "features": "visible stitches at her neck and wrists and a gap-toothed grin"
+          },
+          "under": "plain",
+          "underColor": "pink",
+          "stats": {"beauty":66,"charm":70,"charisma":70,"refinement":36,"wits":45,"stamina":80,"strength":40,"agility":60},
+          "tech": {"service":35,"dance":25,"bar":30,"combat":25,"manage":15},
+          "actSkill": 20,
+          "popularity": 10,
+          "lewd": 40,
+          "trust": 30,
+          "outfits": {
+            "sig_rotty": {
+              "label": "Patchwork tunic",
+              "style": "Cute",
+              "prompt": "a patched striped crop tunic, a ragged short skirt and mismatched stockings",
+              "bonus": {"commoner":1.2,"attendant":1.15}
+            },
+            "sp_rotty": {
+              "label": "Gothic gown",
+              "style": "Exotic",
+              "prompt": "a tattered black lace gown with sheer sleeves and ribbons",
+              "bonus": {"noble":1.15,"courtesan":1.1}
+            }
+          },
+          "bonds": {"shantae":{"v":45,"kind":"comrades","note":"Fast friends who share every adventure."}},
+          "jobs": {"likes":["host","attendant"],"dislikes":["security"]},
+          "body": {"bust":"medium","height":"short","figure":"soft"},
+          "unique": {
+            "name": "Undead Constitution",
+            "desc": "She never seems to tire, and her sunny mood keeps the night shift lively.",
+            "fx": {"maxEnergy":12,"jobBonus":{"host":1.1}}
           }
         }
       }

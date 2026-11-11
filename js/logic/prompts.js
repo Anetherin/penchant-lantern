@@ -48,24 +48,67 @@ function clothTextBase(w, cloth, scene, noTowel){
   }
   return (t||T.dressed).replace(/\{outfit\}/g, outfitText(w, scene)).replace(/\{underwear\}/g, ut || 'bare skin, nothing underneath');
 }
-function charDesc(w){
+// Her body in one phrase: height, build + figure, bust (the build word from her design and the body figure used to be two separate,
+// sometimes clashing, phrases). A build word the figure already says is dropped, and so is a height the build already says ("very tall").
+function bodyDesc(w){
+  const b = bodyOf(w), img = k => ((bodyOpts(k)[b[k]]||{}).img || '').trim(), d = w.design || {};
+  const build = (d.build||'').trim(), fig = img('figure'), words = s => s.toLowerCase().split(/[^a-z]+/).filter(x=>x.length>2);
+  let height = img('height');
+  if(height && build && words(height).every(x=>words(build).includes(x))) height = '';
+  const extra = build && !words(build).every(x=>words(fig).includes(x)) ? build : '';
+  const figure = [extra, fig || (extra ? 'figure' : '')].filter(Boolean).join(' ').replace(/,\s*$/, '');
+  return [height, figure, img('bust')].filter(Boolean).join(', ');
+}
+// features: always part of her look. gear (design.gear, plus generic features listed in people.json → featureGear) is worn or carried:
+// shown only when she's dressed and it isn't an intimate scene. people.json → featureSkip: features that don't show in a picture.
+function featureText(w, cloth, scene){
+  const d = w.design || {}, P = typeof PEOPLE!=='undefined' ? PEOPLE : {}, f = (d.features||'').trim();
+  const gearF = (P.featureGear||[]).includes(f), skip = (P.featureSkip||[]).includes(f);
+  const dressed = cloth==='dressed' && !isSvcScene(scene);
+  return [!gearF && !skip ? f : '', dressed ? [gearF ? f : '', d.gear].filter(Boolean).join(', ') : ''].filter(Boolean).join(', ');
+}
+// Pubic hair wording (snippets.json → clothing.pubic; {hair} = her hair color, design.pubic overrides it for one lady).
+function pubicText(w){
   const d = w.design || {};
-  return [`beautiful adult ${raceLook(w)}`, ageLook(w), d.build && `${d.build} build`,
+  if(d.pubic) return d.pubic;
+  const t = ((SET.clothText||{}).pubic || DEFAULT_CLOTH_TEXT.pubic || 'natural {hair} pubic hair');
+  return t.replace(/\{hair\}/g, (d.hairColor||'').trim()).replace(/\s{2,}/g,' ').trim();
+}
+function charDesc(w, cloth, scene){
+  const d = w.design || {};
+  return [`beautiful adult ${raceLook(w)}`, ageLook(w),
     (d.hairStyle||d.hairColor) && `${d.hairStyle||''} ${d.hairColor||''} hair`, d.eyes && `${d.eyes} eyes`,
-    d.skin && `${d.skin} skin`, bodyText(w), d.features].filter(Boolean).join(', ');
+    d.skin && `${d.skin} skin`, bodyDesc(w), featureText(w, cloth || 'dressed', scene)].filter(Boolean).join(', ');
 }
 // act_<id> snippets now live on the service (image.extra); older browser edits still win
 const getSnippet = k => { const a = k.startsWith('act_') && actById(k.slice(4)); const t = (SET.snippets[k] || (a && a.image && a.image.extra) || SCENE_SNIPPETS[k] || '').trim(); return isTodo(t) ? '' : t; };
+// Services whose picture shows her bare between the legs (services.json → image.exposed); pubic hair is named for those
+// unless the clothing wording already covers it.
+const exposedAct = id => !!(((actById(id)||{}).image||{}).exposed);
+function sceneAct(sceneKey){ const b = sceneBase(sceneKey); return b.startsWith('act:') ? b.slice(4) : (b.startsWith('samact:') || b.startsWith('duo:')) ? b.split(':')[1] : null; }
 function buildPrompt(w, sceneKey, cloth){
   const sc = sceneInfo(sceneKey, w);
   if(w.male) return cleanText([SET.style, 'adult man', w.look, 'upper body portrait, looking at viewer', 'dramatic lighting'].join(', '));
   cloth = cloth || defaultCloth(w, sceneKey);
+  const act = sceneAct(sceneKey), svc = isSvcScene(sceneKey), PP = SCENE_DATA.people || {};
+  let clothes = clothText(w, cloth, sceneKey).replace(/\{pubic\}/g, pubicText(w));
+  if(act && exposedAct(act) && cloth!=='dressed' && !/pubic|hairy/i.test(clothes)) clothes += (cloth==='under' ? ', panties pulled aside, ' : ', ') + pubicText(w);
   const parts = [SET.style];
+  // intimate scenes lead with who is in the picture and what they're doing: image models weigh the start of a prompt most, and a long
+  // description first lets the pose drift to whatever the model draws most often
+  if(svc){
+    const n = sceneBase(sceneKey).startsWith('duo:') ? PP.duo : sc.pov ? PP.pov : sc.client ? PP.client : PP.solo;
+    const duo = sceneBase(sceneKey).startsWith('duo:');   // a duo's "client" is the second woman's full description: it goes after hers
+    parts.push(n, sc.pov && "first-person POV, from the viewer's perspective", !duo && sc.client, sc.comp, sc.snip && getSnippet(sc.snip), sc.snip2 && getSnippet(sc.snip2));
+    parts.push(charDesc(w, cloth, sceneKey), clothes, duo && sc.client, sc.expr, sc.setting);
+    if(sc.pov) parts.push(getSnippet('pov'));
+    return cleanText(stripTodo(parts.filter(Boolean).join(', ')));
+  }
   if(sc.pov) parts.push("first-person POV, from the viewer's perspective");
-  parts.push(charDesc(w), clothText(w, cloth, sceneKey));
+  parts.push(charDesc(w, cloth, sceneKey), clothes);
   if(sc.sam && !sc.pov) parts.push('together with ' + SAM_DESC);
   if(sc.client) parts.push(sc.client);
-  // pose, expression and the service's own wording first, then where it happens
+  // pose, expression and the scene's own wording, then where it happens
   parts.push(sc.comp, sc.expr);
   if(sc.snip) parts.push(getSnippet(sc.snip));
   if(sc.snip2) parts.push(getSnippet(sc.snip2));

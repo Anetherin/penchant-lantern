@@ -233,6 +233,7 @@ function ngBegin(){
     ngReset(w); w.reborn = (w.reborn||0) + 1; w.free = false; w.isPartner = false; w.locked = null; w.job = 'rest'; w.contract = 12; w.house = og; w.seen = {}; w.wage = wageFor(w);
   });
   S.alumni = [...(S.alumni||[]), ...friends];
+  S.workers.filter(w=>!ids.has(w.id) && !friends.includes(w)).forEach(stashCloset);   // the ones walking away keep their clothes for next time
   S.workers = [...lovers, ...residents]; S.candidates = [];
   // bonds between two ladies who both reincarnate (lovers, old friends, alumni still waiting) carry over, faded to
   // ngplus.bonds.keep of their value (kind kept); everything else is dropped. b.past counts the lives it has survived.

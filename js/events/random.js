@@ -173,7 +173,7 @@ const RANDOM_EVENTS = [
   {w:2, ok:()=>S.week>=10 && S.rep>=30 && !S.flags.poachCD && anyW(w=>w.trust<50 && !has(w,'Loyal') && !isFree(w) && !w.locked).length>0, make(){
     S.flags.poachCD = 8;
     const w = pick(anyW(x=>x.trust<50 && !has(x,'Loyal') && !isFree(x) && !x.locked)), V = {name:w.name};
-    const leave = () => { S.workers=S.workers.filter(x=>x!==w); addLog(`${w.name} left for the Velvet Thorn.`); };
+    const leave = () => { stashCloset(w); S.workers=S.workers.filter(x=>x!==w); addLog(`${w.name} left for the Velvet Thorn.`); };
     return {title:ET('poach','title',V), who:w.id, scene:evImg('poach','portrait'), text:ET('poach','text',V), choices:[
       {label:ET('poach','raise','label',V), fx(){ w.wage=Math.round(w.wage*1.3); w.trust=clamp(w.trust+5); return ET('poach','raise','res',V); }},
       {label:ET('poach','talk','label',V), fx(){ if(Math.random() < (w.trust+w.mood)/130){ w.trust=clamp(w.trust+8); return ET('poach','talk','stay',V); } leave(); return ET('poach','talk','go',V); }},
@@ -237,7 +237,7 @@ function evRenew(w){
   return {title:'Contract Renewal', who:w.id, scene:'portrait', text:`${w.name}'s contract is up.${pay}\n\n${mood}`, choices:[
     {label:`Renew at ${fmt(market)}/wk (${fee?fmt(fee)+' bonus':'free'}${oddsTxt(odds)})`, fx: sign(market, fee, odds)},
     {label:`Offer a raise: ${fmt(raised)}/wk (${fee2?fmt(fee2)+' bonus':'free'}${oddsTxt(odds2)})`, fx: sign(raised, fee2, odds2, ()=>{ w.trust=clamp(w.trust+4); moodAdd(w, 4); })},
-    {label:'Let her go', fx(){ S.workers=S.workers.filter(x=>x!==w); addLog(`${w.name}'s contract ended.`); return `${w.name} says goodbye.`; }}]};
+    {label:'Let her go', fx(){ stashCloset(w); S.workers=S.workers.filter(x=>x!==w); addLog(`${w.name}'s contract ended.`); return `${w.name} says goodbye.`; }}]};
 }
 function evStrike(){
   const s = S.debt.strikes;

@@ -226,6 +226,18 @@
       "desc": "Bath work 10% better, +2 resting mood.",
       "fx": {"jobBonus":{"bath":1.1},"moodRest":2},
       "house": "pearl"
+    },
+    "greatfairy": {
+      "label": "Great Fairy",
+      "desc": "A fountain's blessing: the house's bathers leave refreshed (+8% bathhouse income) and she recovers 5% more energy.",
+      "fx": {"jobBonus":{"bath":1.08},"energyRec":1.05},
+      "seed": true
+    },
+    "trainer": {
+      "label": "Trainer",
+      "desc": "Years on the road training partners: she learns 8% faster and has +4 Stamina.",
+      "fx": {"learn":1.08,"stats":{"stamina":4}},
+      "seed": true
     }
   }
 }

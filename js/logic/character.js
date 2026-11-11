@@ -313,9 +313,27 @@ function makeNamed(key, asPartner){
   if(ARCS[key]) w.arc = 0;
   delete w.jobLikes; delete w.jobDislikes; delete w.firsts; delete w.intim;   // rolled for the generic base; hers come from her data
   delete w.titleId; w.titles = [];   // the generic base's; syncTitles takes hers from her data
+  restoreCloset(w);
   ensureWorker(w);
   w.wage = wageFor(w); w.energy = maxEnergy(w);
   return w;
+}
+// Closets: a named lady's own clothes outlive her stay. Whenever she leaves (quits, is dismissed, is bought out, or walks away at
+// New Game+) what she owned beyond her data's pieces goes to S.closets[key], and makeNamed hands it back when she turns up again.
+// (The shared house wardrobe, S.houseWardrobe / S.houseUnder, lives on the save and carries through New Game+ as it is.)
+function stashCloset(w){
+  if(!w || !w.key || !NAMED[w.key] || typeof S==='undefined' || !S) return;
+  const D = NAMED[w.key], mine = ['sig_'+w.key, 'sp_'+w.key];
+  S.closets = S.closets || {};
+  S.closets[w.key] = {owned:(w.owned||[]).filter(k=>!mine.includes(k) && WARDROBE[k]), ownedUnder:(w.ownedUnder||[]).filter(k=>k!=='plain' && k!==D.under),
+    outfit:w.outfit, outColor:w.outColor||null, under:w.under, underColor:w.underColor||null};
+}
+function restoreCloset(w){
+  const C = typeof S!=='undefined' && S && S.closets && S.closets[w.key]; if(!C) return;
+  w.owned = Array.from(new Set([...(w.owned||[]), ...C.owned.filter(k=>WARDROBE[k])]));
+  w.ownedUnder = Array.from(new Set([...(w.ownedUnder||[]), ...(C.ownedUnder||[])]));
+  if(C.outfit && (C.outfit==='sig_'+w.key || w.owned.includes(C.outfit) || houseStock().includes(C.outfit)) && WARDROBE[C.outfit]){ w.outfit = C.outfit; w.outColor = C.outColor; }
+  if(C.under && (w.ownedUnder.includes(C.under) || houseUnderStock().includes(C.under))){ w.under = C.under; w.underColor = C.underColor || w.underColor; }
 }
 const isHired = key => S && (S.workers.some(w=>w.key===key) || S.candidates.some(w=>w.key===key) || (S.alumni||[]).some(w=>w.key===key));
 
