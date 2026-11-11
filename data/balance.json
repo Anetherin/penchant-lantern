@@ -617,5 +617,18 @@
     "_note": "Sam's classes (Sam tab; each costs an action). stat: everyone working trains the stats her job uses at share x a one-on-one gain. skill: everyone working learns her job's skill (sam.lessonShare). demo: a demonstration with a partner Sam picks: she has to be open to it (lewdness >= openLewd, or Exhibitionist; never Modest) and does her favorite or furthest service with him (privateCore); everyone else watching learns that service (watchSkill x a practice gain) and warms up (watchLust x her lewdness, watchLewd lewdness up to that service's client line). The partner's demos count (counts.demos) toward Exhibitionist.",
     "stat": {"share":0.5},
     "demo": {"energy":30,"openLewd":45,"watchSkill":0.5,"watchLust":8,"watchLewd":1.5,"modestMood":-3}
+  },
+  "orgy": {
+    "_note": "A night with several ladies at once (Sam tab → Gather the girls; orgyMenu/samOrgy in sam.js). One action; Sam's energy = perGirl x ladies (+ ramp x ladies x (ladies-1)/2 if you want later ladies to cost more). min-max ladies, all from one house unless Sam has reach (Teleport Circle / Shadow Clone). Each lady needs a service she does with Sam (bestSamAct, through privateCore: her usual private-time effects, lust spent), to be open to sharing (lewdness >= openLewd, Exhibitionist, or lust >= eager), not Modest, and energy >= minEnergy. Every pair: bond + bond. Each: lewdness + lewd (up to her service's Sam line + lewdCapPlus), mood + mood; counts.orgies.",
+    "perGirl": 20,
+    "ramp": 0,
+    "min": 2,
+    "max": 5,
+    "openLewd": 50,
+    "minEnergy": 15,
+    "bond": 6,
+    "lewd": 2,
+    "lewdCapPlus": 10,
+    "mood": 4
   }
 }

@@ -42,6 +42,11 @@ function sceneInfo(k, w){
       setting:SCENE_DATA.samRoom, snip:'act_'+id, snip2:'duo',
       client: o ? (()=>{ const oc = defaultCloth(o, 'samact:'+id); return `the second woman: ${charDesc(o, oc, 'samact:'+id)}, ${clothText(o, oc, 'samact:'+id).replace(/\{pubic\}/g, pubicText(o))}`; })() : ''}; }
   // Sam's demonstration class: seen from the room, Sam is the man, the other ladies watch (scenes.json → demoRoom / people.demo)
+  // group nights (sam.js samOrgy): the first lady in full, the others briefly (scenes.json → orgyPose / orgyRoom / people.orgy)
+  if(k.startsWith('orgy:')){ const os = k.slice(5).split(',').map(findAny).filter(o=>o && w && o.id!==w.id);
+    const short = o => { const d = o.design || {}; return `${raceLook(o)}, ${[d.hairStyle, d.hairColor].filter(Boolean).join(' ')} hair, ${bodyDesc(o)}, ${clothText(o, defaultCloth(o, k), k).replace(/\{pubic\}/g, pubicText(o))}`; };
+    return {label:'A night together', pov:true, sam:true, comp:pick([].concat(SCENE_DATA.orgyPose || ['the women crowded around the viewer on the bed, pov'])), setting:SCENE_DATA.orgyRoom || SCENE_DATA.samRoom,
+      client: os.length ? 'the other women: ' + os.map(short).join('; ') : ''}; }
   if(k.startsWith('demo:')){ const id = k.slice(5); return {label:'Demonstration: '+actLabel(id), sam:true, comp:actPose(id,'demo'), client:'the man is ' + SAM_LOOK, setting:SCENE_DATA.demoRoom || 'a candlelit parlor, other women watching', snip:'act_'+id}; }
   if(k.startsWith('samact:')){ const a=actById(k.slice(7)); return {label:'Sam: '+actLabel(k.slice(7)), pov:true, sam:true, comp:(()=>{ const c = dateCtx(P.ctx), pose = actPose(k.slice(7),'sam'), si = c && c.sp && c.sp.image; return si && si.comp ? (si.replace ? si.comp : pose + ', ' + si.comp) : pose; })(), setting:dateSetting(P.ctx), snip:'act_'+k.slice(7)}; }
   const sc = Object.assign({}, SCENES[k] || SCENES.portrait);

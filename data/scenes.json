@@ -7,7 +7,8 @@
     "enc_* scenes are the intros of encounters (nap visits, late knocks, waiting lovers, the storeroom). bath_invite / bath_walkin_relaxed replace the mishap scenes once she and Sam are past that point. Story moments (arc beats, events, firsts) can bring their own image: {comp, setting, sam, pov} on the beat itself.",
     "Scene flags: bath:true = a bathing scene (in the house bathhouse when the house has one, unless away:true; only wardrobe outfits with bath:true stay on, otherwise a towel, underwear or nothing). undress:\"partial\"|\"under\" = invitations and the like: she is shown at most that undressed, within her comfort with Sam. bathhouse = the setting used for bath scenes at a house with a Bathhouse.",
     "people: head-count tags that open every intimate image prompt (client = her with a client, pov = with Sam, duo = two ladies with Sam, solo = alone). Intimate prompts lead with these and the pose, then her description, so the pose isn't lost at the end of a long prompt.",
-    "demoRoom: where Sam's demonstrations happen (scene demo:<service>); people.demo opens their prompts. The man in them is Sam (SAM_DESC)."
+    "demoRoom: where Sam's demonstrations happen (scene demo:<service>); people.demo opens their prompts. The man in them is Sam (SAM_DESC).",
+    "orgy: Sam's group nights (scene orgy:<lady ids>). people.orgy opens the prompt ({n} = number of women), orgyPose = poses (one is picked), orgyRoom = setting. The first lady is described in full, the others briefly."
   ],
   "scenes": {
     "portrait": {"label":"Portrait","comp":"upper body portrait, looking at viewer, gentle smile","setting":"warm softly blurred background"},
@@ -179,7 +180,14 @@
     "pov": "1girl, 1boy, hetero, pov",
     "duo": "2girls, 1boy, threesome, pov",
     "solo": "1girl, solo",
-    "demo": "1girl, 1boy, hetero, audience, multiple girls watching in the background"
+    "demo": "1girl, 1boy, hetero, audience, multiple girls watching in the background",
+    "orgy": "{n}girls, 1boy, group sex, hetero, pov"
   },
-  "demoRoom": "a candlelit parlor in the pleasure house, the other women watching from cushions and couches around them"
+  "demoRoom": "a candlelit parlor in the pleasure house, the other women watching from cushions and couches around them",
+  "orgyRoom": "a large bed piled with cushions in a lantern-lit room, sheets everywhere",
+  "orgyPose": [
+    "the women crowded around the viewer on the bed, tangled together, pov, looking at the viewer",
+    "one riding the viewer while the others kiss and touch her and him, pov",
+    "the women lying in a heap on the bed reaching for the viewer, pov"
+  ]
 }

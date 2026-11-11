@@ -321,6 +321,63 @@ function samDemo(id){
   checkUnlocks(); save(); render(); closeModal();
   showResult(`A Demonstration: ${actLabel(act)}`, `${text}\n\n${flavor('demo_watch', w)}\n\n${watchers.length} watched and learned ${actLabel(act).toLowerCase()} (+${Math.round(g*SKL)} each)${warm?` · ${warm} got rather worked up (lust, lewdness)`:''}${watchers.length>warm?` · the modest ones spent it staring at the ceiling`:''} · Sam's Technique +2`, w.id, 'demo:'+act, {kind:'private', act, scene:'demo:'+act, forSam:true, situation:`a demonstration lesson: she and Sam show the other ladies of the house how it's done while they watch`});
 }
+// Group nights (balance.json → orgy): one action, Sam's energy per lady, 2-5 ladies from one house (any house, unless samReach()).
+// Each lady goes through canSam/bestSamAct and privateCore like any private time; every pair bonds; longer text and several pictures.
+let ORGY = null;
+const orgyCost = n => { const O = BAL.orgy || {}; return Math.round((O.perGirl ?? 20) * n + (O.ramp ?? 0) * n * (n-1) / 2); };
+function orgyOpen(w){ const O = BAL.orgy || {}; return !has(w,'Modest') && (w.lewd >= (O.openLewd ?? 50) || has(w,'Exhibitionist') || w.lust >= LUST_EAGER); }
+function orgyWhy(w){ const O = BAL.orgy || {};
+  if(!orgyAct(w)) return (w.intim||0)===0 ? "she and Sam haven't crossed that line" : "not comfortable with Sam yet";
+  if(has(w,'Modest')) return 'too modest to share'; if(!orgyOpen(w)) return 'not ready to share him';
+  if(w.energy < (O.minEnergy ?? 15)) return 'too tired'; return ''; }
+// what she does on a group night: her favorite if it goes past the first tier, else her lovers-only one or a pick from the furthest tier she's comfortable with
+function orgyAct(w){ const ok = id => id && canSam(w,id) && samStance(w,id)==='yes';
+  if(ok(w.fav) && actTier(w.fav) >= 2) return w.fav;
+  const all = getActs().filter(a=>ok(a.id)); if(!all.length) return bestSamAct(w);
+  const top = Math.max(...all.map(actTierOf)), pool = all.filter(a=>actTierOf(a)===top);
+  return (ok(w.lovers) && pool.some(a=>a.id===w.lovers)) ? w.lovers : pick(pool).id; }
+function orgyMenu(){ ORGY = {sel:[]}; orgyDraw(); }
+function orgyPick(id){ if(!ORGY) return; const O = BAL.orgy || {}, i = ORGY.sel.indexOf(id);
+  if(i >= 0) ORGY.sel.splice(i, 1);
+  else { const w = findW(id), first = ORGY.sel[0] && findW(ORGY.sel[0]);
+    if(first && !samReach() && first.house !== w.house) ORGY.sel = [];   // one house at a time without reach
+    if(ORGY.sel.length >= (O.max ?? 5)) return toast(`${O.max ?? 5} is plenty. More than plenty.`);
+    ORGY.sel.push(id); }
+  orgyDraw(); }
+function orgyDraw(){
+  const O = BAL.orgy || {}, sel = ORGY.sel, n = sel.length, cost = orgyCost(n), first = sel[0] && findW(sel[0]);
+  const btn = w => { const why = orgyWhy(w), on = sel.includes(w.id), other = first && !samReach() && first.house !== w.house;
+    return `<button class="${on?'primary':''}" ${why?`disabled title="${esc(why)}"`:''} onclick="orgyPick('${w.id}')" ${other?'style="opacity:.6"':''}>${on?'✓ ':''}${esc(titled(w))}${why?` <span class="muted">(${esc(why)})</span>`:''}</button>`; };
+  const houses = S.houses.map(h=>{ const ws = S.workers.filter(w=>w.house===h.id && (orgyAct(w) || (w.intim||0) > 0)); return ws.length ? `<h3 style="margin-top:8px">${esc(h.name)}</h3><div class="row">${ws.map(btn).join('')}</div>` : ''; }).join('');
+  modal(`<h2>Gather the girls</h2><p class="muted">One night, ${O.min ?? 2}-${O.max ?? 5} ladies. Each does the furthest she's comfortable with (or her favorite) with Sam (spending her lust), and everyone gets closer to everyone. ${samReach()?'Sam can bring them together from any house.':'All from one house (picking someone from another house starts over).'} One action; ${O.perGirl ?? 20} of Sam's energy per lady.</p>
+    ${houses || '<p>Nobody is there yet with Sam.</p>'}
+    <div class="row" style="margin-top:10px"><button class="primary" ${n < (O.min ?? 2) || S.sam.energy < cost || S.ap <= 0 ? 'disabled' : ''} onclick="samOrgy()">🔥 Tonight (${n} · ${cost} energy${S.sam.energy < cost ? ', Sam is too tired' : ''})</button><button onclick="ORGY=null;closeModal()">Back</button></div>`);
+}
+function samOrgy(){
+  const O = BAL.orgy || {}, ws = (ORGY ? ORGY.sel : []).map(findW).filter(w=>w && !orgyWhy(w));
+  if(ws.length < (O.min ?? 2)) return toast('Not enough company for that.');
+  if(!samReach() && ws.some(w=>w.house !== ws[0].house)) return toast('They need to be in the same house.');
+  if(!useAP(orgyCost(ws.length))) return;
+  ORGY = null;
+  const first = ws[0], names = ws.map(w=>w.name.split(' ')[0]), list = names.length > 1 ? names.slice(0,-1).join(', ') + ' and ' + names[names.length-1] : names[0];
+  const C = {names:list, first:names[0], house:houseOf(first).name};
+  const beats = ws.map(w=>{ const act = orgyAct(w), line = privateCore(w, act, {lead:''});
+    lewdUp(w, O.lewd ?? 2, svcLewdCap(act,'sam') + (O.lewdCapPlus ?? 10)); moodAdd(w, O.mood ?? 4); countUp(w, 'orgies');
+    return {w, act, text: line + (has(w,'Devoted') ? '\n\n' + flavor('orgy_lover', w) : '')}; });
+  for(let i=0;i<ws.length;i++) for(let j=i+1;j<ws.length;j++) addBond(ws[i], ws[j], O.bond ?? 6);
+  const pairs = []; const P = ws.slice().sort(()=>Math.random()-0.5);
+  for(let i=0;i+1<P.length && pairs.length<2;i+=2) pairs.push(flavor('orgy_pair', P[i], {a:P[i].name.split(' ')[0], b:P[i+1].name.split(' ')[0]}));
+  samLog(`A night with ${list}`); checkUnlocks(); save(); render();
+  const scene = 'orgy:' + ws.map(w=>w.id).join(',');
+  modal(`<h2>A Night with ${esc(list)}</h2><div id="resImg"></div>
+    <p class="story">${esc(flavor('orgy_lead', first, C))}</p>
+    ${beats.map((b,i)=>`<h3 style="margin-top:10px">${esc(b.w.name)} <span class="muted">· ${esc(actLabel(b.act))}</span></h3><p class="story">${esc(b.text)}</p><button class="sm" id="og${i}_t" onclick="toggleImgBtn('og${i}','${b.w.id}','samact:${b.act}')">🖼 Show image</button><div id="og${i}" class="hlimg" data-ext="1"></div>`).join('')}
+    ${pairs.length ? `<p class="story">${esc(pairs.join(' '))}</p>` : ''}
+    <p class="story">${esc(flavor('orgy_end', first, C))}</p>
+    <p class="muted">Everyone: lust spent, lewdness +, mood + · Bonds +${O.bond ?? 6} between every pair · ${orgyCost(ws.length)} of Sam's energy</p>
+    ${SET.ai.on?'<div id="resAi"></div>':''}<div class="row">${aiBtn('resAi','private',first.id,{act:beats[0].act, scene, forSam:true, situation:`a night together: Sam with ${list} all at once`})}<button class="primary" onclick="closeModal()">OK</button></div>`);
+  $('#modal').scrollTop = 0; showImg('resImg', first.id, scene);
+}
 function privateMenu(id, free){
   const w = findW(id); if(!w) return;
   const opts = getActs().filter(a=>canSam(w,a.id));

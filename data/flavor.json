@@ -4,7 +4,8 @@
     "Placeholders: {name}, {house}, plus any extra ones noted for the section. Add as many lines as you like.",
     "enc_* lines are short notes on how one client visit went for her (shown in the weekly report). job_* lines are report lines for the non-escort jobs.",
     "encore: the line added when a restless lady goes another round. enc_frustrated / enc_drained / enc_like / enc_put_off: extra visit notes.",
-    "demo_lead / demo_watch: Sam's demonstration lesson ({name} = his partner). Templates; rewrite freely."
+    "demo_lead / demo_watch: Sam's demonstration lesson ({name} = his partner). Templates; rewrite freely.",
+    "orgy_lead ({names}, {first}, {house}), orgy_pair ({a}, {b}), orgy_end ({first}), orgy_lover ({name}: a Devoted lady sharing him): Sam's group nights. Templates; rewrite freely."
   ],
   "solo": {
     "_note": "Report line when a lady at max lust spends part of her night alone in her room instead. Shown in the weekly report.",
@@ -648,5 +649,28 @@
       "Afterward nobody quite meets anybody's eyes, and everyone has questions. A lot of questions.",
       "There's scattered applause. Someone asks if there'll be a follow-up class. Several people ask, actually."
     ]
-  }
+  },
+  "orgy_lead": {
+    "_default": [
+      "It starts as a quiet drink in {house} after closing. {names} are all there, and somewhere around the second bottle {first} says what everyone has apparently been thinking. Sam opens his mouth to be sensible. Nobody lets him finish.",
+      "{first} knocks on Sam's door with a grin he has learned to be nervous about. Behind her, crowding the hallway: {names}. \"We talked it over,\" she says. \"You're outvoted.\"",
+      "Nobody can say afterward whose idea it was. One minute {names} are arguing about who gets Sam's evening, the next someone suggests nobody has to lose, and the argument is over very quickly."
+    ]
+  },
+  "orgy_pair": {
+    "_default": [
+      "{a} and {b} end up tangled together more than once and don't seem to mind in the least.",
+      "{a} catches {b}'s eye across the bed and they both start laughing, then very much stop laughing.",
+      "At one point {a} is coaching {b} with a running commentary. {b} tells her to shut up, then follows every word.",
+      "{a} pulls {b} in for a kiss while they wait their turn. It turns out waiting is not the hardship anyone expected."
+    ]
+  },
+  "orgy_end": {
+    "_default": [
+      "Much later, the bed is a wreck, the lantern has burned down, and Sam is pinned under at least three warm, sleeping bodies. He decides this is fine. This is very fine.",
+      "By dawn they're a heap of limbs and sheets. Somebody is snoring. Somebody else is still giggling. Sam stares at the ceiling, wondering how his life got here, and finds he has no complaints.",
+      "They drift off one by one. The last one awake is {first}, who props her chin on Sam's chest and says, \"Same time next week?\" She falls asleep before he can answer."
+    ]
+  },
+  "orgy_lover": {"_default":["{name} keeps a hand on Sam the whole night, sharing him and making very sure everyone knows who he goes home with."]}
 }
