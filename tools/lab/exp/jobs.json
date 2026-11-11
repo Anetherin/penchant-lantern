@@ -1,0 +1,10 @@
+{
+  "desc": "Job balance: at the start of the phase, lock two generic ladies into this job (the amenity it needs is granted free). Δ net is the house-level value of putting two ladies there instead of where the default player puts them, so it counts what promoters/maids/hosts do for others.",
+  "scenario": "mid",
+  "weeks": 12,
+  "runs": 16,
+  "by": { "scenario": ["mid", "late"] },
+  "each": { "mutate.job": ["courtesan", "attendant", "promoter", "maid", "security", "bartender", "dancer", "bath", "host"] },
+  "mutate": { "jobWho": 2 },
+  "breakdown": ["job"]
+}

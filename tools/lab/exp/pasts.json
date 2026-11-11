@@ -1,0 +1,8 @@
+{
+  "desc": "Sam's background: a full first cycle at the Lantern with each past.",
+  "scenario": "campaign",
+  "weeks": 104,
+  "runs": 12,
+  "each": { "start.past": ["salaryman", "bartender", "gym", "otaku", "cook", "massage", "tutor"] },
+  "breakdown": ["named"]
+}

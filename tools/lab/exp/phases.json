@@ -1,0 +1,10 @@
+{
+  "desc": "Benchmark: the three single-house phases at the Lantern. early = new game, at most 4 ladies, no upgrades (12 weeks). mid = from the week the house has 5 ladies. late = from the week the house is out of space. Measured 12 weeks each.",
+  "scenario": "mid",
+  "weeks": 12,
+  "runs": 16,
+  "delta": [],
+  "variants": [ {"name": "early", "scenario": "early"}, {"name": "mid", "scenario": "mid"}, {"name": "late", "scenario": "late"} ],
+  "breakdownFor": ["early", "mid", "late"],
+  "breakdown": ["job"]
+}
