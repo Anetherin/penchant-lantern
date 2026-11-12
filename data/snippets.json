@@ -10,11 +10,11 @@
   "scenes": {"pov":"","bath":"","mishap":"","solo":"","duo":""},
   "clothing": {
     "dressed": "wearing {outfit}",
-    "partial": "wearing {outfit}, partially removed and undressed,visible {underwear}",
+    "partial": "wearing {outfit}, partially removed and undressed, visible {underwear}",
     "under": "wearing only {underwear}",
     "nude": "fully nude, bare breasts, {pubic}",
-    "aside": "still wearing {outfit}, her clothes pulled aside, {underwear} visible but pushed aside to reveal her breasts and hairy pussy",
-    "aside_commando": "still wearing {outfit}, her clothes pulled aside, to reveal her breasts and hairy pussy",
+    "aside": "still wearing {outfit}, her clothes pulled aside, {underwear} visible but pushed aside to reveal {pubic}",
+    "aside_commando": "still wearing {outfit}, her clothes pulled aside, to reveal her bare breasts and {pubic}",
     "pubic": "natural {hair} pubic hair"
   },
   "expressions": {
