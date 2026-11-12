@@ -125,6 +125,12 @@ function feedOnly(w, id){
   return w.feedOnly==='always' || w.energy < maxEnergy(w) * (+w.feedOnly||0) / 100;
 }
 const nim = (w, id) => feedOnly(w, id) || (!moodFree(w) && notInMood(w, id));
+// A demon's hunger works like lust when it comes to propositions: drive = lust + missing energy share x svc.demon.hungerDrive.
+// It lowers the bar for her to proposition clients herself and raises her odds of accepting (it doesn't make her reckless).
+const demonHunger = w => w.race==='demon' ? clamp(1 - w.energy / maxEnergy(w), 0, 1) * (SVC.demon.hungerDrive ?? 60) : 0;
+const propDrive = w => (w.lust||0) + demonHunger(w);
+// Energy floor for a service: a demon can always afford one that feeds her (it pays her back).
+const energyOK = (w, id, floor) => w.race==='demon' && demonFeeds(id) ? w.energy >= actCost(w, id) : w.energy - actCost(w, id) > maxEnergy(w) * floor;
 // Menu used for must-offer staff: her menu, or what she's comfortable with if she never set one.
 const offeredMenu = w => w.menu.length ? w.menu : getActs().filter(a=>clientStance(w,a.id)==='yes').map(a=>a.id);
 // Would she take this proposition? Returns {kind:'yes'|'alt'|'no', act, why}.
@@ -134,9 +140,9 @@ function propDecide(w, want, X){
   if(must) chance = 1;
   else if(mode==='on') chance = BP.onChance;
   else if(mode==='off') chance = reck ? BP.offSlip : 0;
-  else chance = clamp(BP.acceptBase + (w.lust - BP.acceptLustMid)/100 + fxAdd(w,'willing')/100 + (w.lust >= LUST_EAGER ? BP.acceptEager : 0) + (reck ? BP.acceptReckless : 0), 0.02, 0.95);
+  else { const dr = propDrive(w); chance = clamp(BP.acceptBase + (dr - BP.acceptLustMid)/100 + fxAdd(w,'willing')/100 + (dr >= LUST_EAGER ? BP.acceptEager : 0) + (reck ? BP.acceptReckless : 0), 0.02, 0.95); }
   if(Math.random() >= chance) return {kind:'no', why:'declined'};
-  const menu = must ? offeredMenu(w) : w.menu, ok = id => menu.includes(id) && canClient(w,id) && !nim(w,id) && w.energy - actCost(w,id) > maxEnergy(w)*0.2;
+  const menu = must ? offeredMenu(w) : w.menu, ok = id => menu.includes(id) && canClient(w,id) && !nim(w,id) && energyOK(w, id, 0.2);
   if(want && ok(want)) return {kind:'yes', act:want};
   if(want && menu.includes(want) && nim(w,want)) return {kind:'no', why:'nomood'};
   const alt = menu.filter(id=>ok(id) && actById(id) && actById(want) && actById(id).price <= actById(want).price).sort((a,b)=>actById(b).price-actById(a).price)[0];
@@ -375,10 +381,11 @@ function simHouse(h, R){
   // --- restless ladies proposition clients themselves (1-3 extra encounters; lovers wait for Sam)
   W.forEach(w=>{
     const pr = R.per[w.id];
-    if(w.job==='rest' || !restless(w) || has(w,'Devoted') || pr.solo) return;
-    const must = !!JOBS[w.job].must, n = ri(BP.recklessMin, BP.recklessMax);
+    if(w.job==='rest' || propDrive(w) < lustHigh(w) || has(w,'Devoted') || pr.solo) return;   // demons: hunger counts toward it (propDrive)
+    const must = !!JOBS[w.job].must, n = ri(BP.recklessMin, BP.recklessMax), hungry = !restless(w);   // only her hunger got her here
     for(let i=0;i<n;i++){
-      const ids = offeredMenu(w).filter(id=>canClient(w,id) && actById(id) && !feedOnly(w,id) && w.energy - actCost(w,id) > maxEnergy(w)*0.2);
+      let ids = offeredMenu(w).filter(id=>canClient(w,id) && actById(id) && !feedOnly(w,id) && energyOK(w, id, 0.2));
+      if(hungry && ids.some(demonFeeds)) ids = ids.filter(demonFeeds);   // a hungry demon goes looking for a meal
       if(!ids.length) break;
       const id = (w.fav && ids.includes(w.fav) && Math.random()<0.5) ? w.fav : pick(ids), cls = pickClass(h), client = makeClient(h, cls), e = {cls:cls.id, want:id, act:null, outcome:'no', self:true, note:null, expr:null, ctx:'reckless'}, s0 = encSnap(w, pr);
       pr.props++; hr.selfProps++; R.selfProps++; noteClient(X, client);

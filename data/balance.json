@@ -28,7 +28,7 @@
     "houseGate: ladies who come with a house (role 'house') can't trust Sam past base + perBeat x (that house's story beat) until the house story is finished (3 beats: 40 + 20 x 3 = 100). Arc beats for them wait for the story too. gap = weeks before beat 1 / 2 / 3 can start (first, later, later); retry = weeks before a beat comes back after a failed check.",
     "wardrobe: costMult scales every outfit/underwear price (lower = easier to get clothes). eventChance = relative weight of each of the 'someone gave her an outfit' random events (data/events.json).",
     "svc.askMore: after a service that builds her lust (giving, kissing, massages), a lady with lust >= lust.eager and lewdness >= lewd may ask the client for more (chance), offering a heavier service from her menu that spends lust; it pays fee x its normal price.",
-    "svc.demon: kissFeed = energy a demon draws from a client's kiss; kissSam (+ kissSamDraw when she's eager, costing Sam kissSamCost extra) from Sam's. restDrainChance / restRepDrain: a restless demon on her week off may drain some poor man in town (town reputation loss; a Demon Sigil doesn't help outside). studCost / studGain / studLust: Sam pays for a stud for the night (sheet button, once a week).",
+    "svc.demon: kissFeed = energy a demon draws from a client's kiss; kissSam (+ kissSamDraw when she's eager, costing Sam kissSamCost extra) from Sam's. restDrainChance / restRepDrain: a restless demon on her week off may drain some poor man in town (town reputation loss; a Demon Sigil doesn't help outside). studCost / studGain / studLust: Sam pays for a stud for the night (sheet button, once a week). hungerDrive: a demon's hunger counts like lust for propositions: drive = lust + (1 - energy/max) x hungerDrive. It lets her proposition clients herself once drive reaches her reckless line (a hungry, not lusty, demon then picks services that feed her), raises her odds of accepting clients' propositions, and she can always take a feeding service she has the energy for.",
     "again: after a visit or encounter, a lady who is still worked up may want another round (chance by race, other = everyone else except spirits, + her encore fx; beastkin only need to be eager, others nearly restless). samCost = Sam's energy; mood = her mood gain (twice for beastkin). Once a week each. Ladies who come to Sam because they are restless only pick services that spend lust (releaseSamAct).",
     "sam: Sam's house-wide actions. roundsTrust / roundsMood = what Making the rounds gives every lady (trust is 0-100 here, so 0.4 shows as 4); lessonShare = share of a one-on-one training gain that each lady in a lesson gets. base = Sam's starting stats in a new game (and the base for the NG+ rebuild); perLevel = each stat gained per level (samGainXP).",
     "lewd: lewdness gains go through lewdUp(w, n, cap) (character.js): see its _note. Dates add their own caps (dates.json lewdCap, spicy cap).",
@@ -215,7 +215,8 @@
       "restRepDrain": 0.8,
       "studCost": 120,
       "studGain": 40,
-      "studLust": 15
+      "studLust": 15,
+      "hungerDrive": 75
     },
     "spirit": {"restRec":55,"workRec":36},
     "android": {"fee":15,"perEnergy":0.4,"chargerDiscount":0.4},
