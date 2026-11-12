@@ -329,13 +329,14 @@ let ORGY = null;
 const orgyCost = n => { const O = BAL.orgy || {}; return Math.round((O.perGirl ?? 20) * n + (O.ramp ?? 0) * n * (n-1) / 2); };
 function orgyOpen(w){ const O = BAL.orgy || {}; return !has(w,'Modest') && (w.lewd >= (O.openLewd ?? 50) || has(w,'Exhibitionist') || w.lust >= LUST_EAGER); }
 function orgyWhy(w){ const O = BAL.orgy || {};
-  if(!orgyAct(w)) return (w.intim||0)===0 ? "she and Sam haven't crossed that line" : "not comfortable with Sam yet";
+  if(!orgyAct(w)) return (w.intim||0)===0 ? "she and Sam haven't crossed that line" : canSam(w,'kiss') && !getActs().some(a=>actTierOf(a) >= (O.minTier ?? 2) && canSam(w,a.id)) ? 'only kisses and massages with Sam so far' : "not comfortable with Sam yet";
   if(has(w,'Modest')) return 'too modest to share'; if(!orgyOpen(w)) return 'not ready to share him';
   if(w.energy < (O.minEnergy ?? 15)) return 'too tired'; return ''; }
-// what she does on a group night: her favorite if it goes past the first tier, else her lovers-only one or a pick from the furthest tier she's comfortable with
-function orgyAct(w){ const ok = id => id && canSam(w,id) && samStance(w,id)==='yes';
-  if(ok(w.fav) && actTier(w.fav) >= 2) return w.fav;
-  const all = getActs().filter(a=>ok(a.id)); if(!all.length) return bestSamAct(w);
+// what she does on a group night: her favorite if it goes past the first tier, else her lovers-only one or a pick from the furthest tier she's comfortable with.
+// Nothing below orgy.minTier (kisses and massages are too tame for it): without such a service she can't join.
+function orgyAct(w){ const mt = (BAL.orgy||{}).minTier ?? 2, ok = id => id && canSam(w,id) && samStance(w,id)==='yes' && actTier(id) >= mt;
+  if(ok(w.fav)) return w.fav;
+  const all = getActs().filter(a=>ok(a.id)); if(!all.length){ const b = bestSamAct(w); return b && actTier(b) >= mt ? b : null; }
   const top = Math.max(...all.map(actTierOf)), pool = all.filter(a=>actTierOf(a)===top);
   return (ok(w.lovers) && pool.some(a=>a.id===w.lovers)) ? w.lovers : pick(pool).id; }
 function orgyMenu(){ ORGY = {sel:[]}; orgyDraw(); }
@@ -365,6 +366,7 @@ function samOrgy(){
   const C = {names:list, first:names[0], house:houseOf(first).name};
   const beats = ws.map(w=>{ const act = orgyAct(w), line = privateCore(w, act, {lead:''});
     lewdUp(w, O.lewd ?? 2, svcLewdCap(act,'sam') + (O.lewdCapPlus ?? 10)); moodAdd(w, O.mood ?? 4); countUp(w, 'orgies');
+    spendLust(w, O.lustAfter ?? 20);   // the whole night spends her, whatever she did with Sam
     return {w, act, text: line + (has(w,'Devoted') ? '\n\n' + flavor('orgy_lover', w) : '')}; });
   for(let i=0;i<ws.length;i++) for(let j=i+1;j<ws.length;j++) addBond(ws[i], ws[j], O.bond ?? 6);
   const pairs = []; const P = ws.slice().sort(()=>Math.random()-0.5);

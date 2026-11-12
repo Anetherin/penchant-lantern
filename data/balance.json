@@ -629,7 +629,7 @@
     "demo": {"energy":30,"openLewd":45,"watchSkill":0.5,"watchLust":8,"watchLewd":1.5,"modestMood":-3}
   },
   "orgy": {
-    "_note": "A night with several ladies at once (Sam tab → Gather the girls; orgyMenu/samOrgy in sam.js). One action; Sam's energy = perGirl x ladies (+ ramp x ladies x (ladies-1)/2 if you want later ladies to cost more). min-max ladies, all from one house unless Sam has reach (Teleport Circle / Shadow Clone). Each lady needs a service she does with Sam (bestSamAct, through privateCore: her usual private-time effects, lust spent), to be open to sharing (lewdness >= openLewd, Exhibitionist, or lust >= eager), not Modest, and energy >= minEnergy. Every pair: bond + bond. Each: lewdness + lewd (up to her service's Sam line + lewdCapPlus), mood + mood; counts.orgies.",
+    "_note": "A night with several ladies at once (Sam tab → Gather the girls; orgyMenu/samOrgy in sam.js). One action; Sam's energy = perGirl x ladies (+ ramp x ladies x (ladies-1)/2 if you want later ladies to cost more). min-max ladies, all from one house unless Sam has reach (Teleport Circle / Shadow Clone). Each lady needs a service she does with Sam (bestSamAct, through privateCore: her usual private-time effects, lust spent), to be open to sharing (lewdness >= openLewd, Exhibitionist, or lust >= eager), not Modest, and energy >= minEnergy. Every pair: bond + bond. Each: lewdness + lewd (up to her service's Sam line + lewdCapPlus), mood + mood; counts.orgies. minTier: her service must be at least this tier (2 = no kisses or massages). lustAfter: extra lust every lady spends at the end of the night (x her lust drop), on top of her own service.",
     "perGirl": 20,
     "ramp": 0,
     "min": 2,
@@ -639,7 +639,9 @@
     "bond": 6,
     "lewd": 2,
     "lewdCapPlus": 10,
-    "mood": 4
+    "mood": 4,
+    "minTier": 2,
+    "lustAfter": 20
   },
   "tutor": {
     "cost": 150,
