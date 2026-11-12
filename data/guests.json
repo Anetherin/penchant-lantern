@@ -3181,11 +3181,11 @@
           "lovers": "kiss",
           "backstory": "An attendant of the Velvet Room, an elegant space between dream and reality, Margaret has guided countless guests along their journeys and watched every one of them leave. She is polite, composed and a little wistful, and fond of tea, small experiments and any sentence that begins with \"Would you like to...\". She is curious what it feels like to stay.",
           "design": {
-            "hairStyle": "short and neat, tucked under a cap",
+            "hairStyle": "wavy shoulder length",
             "hairColor": "white-silver",
             "eyes": "golden",
             "skin": "pale",
-            "features": "a calm, courteous expression",
+            "features": "a thin blue headband",
             "gear": "a large leather-bound book at her side"
           },
           "under": "plain",
@@ -3200,7 +3200,7 @@
             "sig_margaret": {
               "label": "Velvet attendant uniform",
               "style": "Elegant",
-              "prompt": "a fitted deep-blue attendant uniform with a short cape, a peaked cap, white gloves and black boots",
+              "prompt": "a fitted deep-blue attendant dress, black tights and blue high heels",
               "bonus": {"attendant":1.25,"noble":1.15}
             },
             "sp_margaret": {
