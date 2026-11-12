@@ -2,13 +2,6 @@
 /* =====================================================================
    IMAGE PROMPTS
    ===================================================================== */
-function ageLook(w){
-  const R = RACES[w.race]||RACES.human, SD = w.race==='beastkin' ? subData(w.race, w.sub) : null;
-  if(((SD && SD.age) || R.age)[1] > 60) return 'appearing to be a mature woman in her mid-twenties';
-  if(w.age < 25) return 'in her early-to-mid twenties';
-  if(w.age < 30) return 'in her late twenties';
-  return 'in her thirties';
-}
 function raceLook(w){ if(w.race==='beastkin'){ const s=w.sub||'fox', sd = subData('beastkin', s); if(sd && sd.look) return sd.look; return `beastkin woman with ${s} ears and a ${s} tail`; } return (RACES[w.race]||RACES.human).look; }
 // keepOn (data/characters.json): something she won't take off until trust reaches keepOn.trust.
 // With aside:true it's a garment, so the rest of her clothes get pulled aside at most.
@@ -76,7 +69,7 @@ function pubicText(w){
 }
 function charDesc(w, cloth, scene){
   const d = w.design || {};
-  return [`beautiful adult ${raceLook(w)}`, ageLook(w),
+  return [`beautiful adult ${raceLook(w)}`,
     (d.hairStyle||d.hairColor) && `${d.hairStyle||''} ${d.hairColor||''} hair`, d.eyes && `${d.eyes} eyes`,
     d.skin && `${d.skin} skin`, bodyDesc(w), featureText(w, cloth || 'dressed', scene)].filter(Boolean).join(', ');
 }
