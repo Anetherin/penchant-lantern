@@ -3284,8 +3284,8 @@
           "lovers": "cowgirl",
           "backstory": "Sadayo Kawakami was a hardworking teacher who also kept up a string of side jobs: a maid cafe, a hostess bar, and one regrettable stretch as a paid companion, to cover debts she had no right to be carrying. She is bubbly and tired, easily moved, and utterly convinced that effort is the only thing she can control. Hollowmere is the first place that pays well enough that she can finally stop running.",
           "design": {
-            "hairStyle": "shoulder-length with side-swept bangs",
-            "hairColor": "light brown",
+            "hairStyle": "unkempt shoulder-length",
+            "hairColor": "dark brown",
             "eyes": "brown",
             "skin": "fair",
             "features": "a warm, tired smile and a small beauty mark beneath her lip"
@@ -3302,14 +3302,14 @@
             "sig_kawakami": {
               "label": "Maid cafe outfit",
               "style": "Cute",
-              "prompt": "a frilly black and white maid dress with a lace apron, a headband and knee-high stockings",
+              "prompt": "a low cut frilly black and white maid dress with a lace apron, a headband and knee-high stockings",
               "bonus": {"maid":1.3,"commoner":1.15}
             },
             "sp_kawakami": {
-              "label": "Weekend dress",
+              "label": "Teacher dress",
               "style": "Elegant",
-              "prompt": "a soft cream cardigan, a floral skirt and low heels with a small shoulder bag",
-              "bonus": {"noble":1.1,"courtesan":1.15}
+              "prompt": "yellow long-sleeved shirt striped with white and red horizontal lines, a blue denim skirt and white kitten heel pumps",
+              "bonus": {"teacher":1.25,"adventurer":1.15}
             }
           },
           "bonds": {
