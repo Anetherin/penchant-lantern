@@ -93,7 +93,7 @@ function serveAct(w, a, o){
     if(frustrated){ w.lust += SVC.frustrateLust; fitLust(w); moodAdd(w, -1); pr.frustN = (pr.frustN||0)+1; }
     else spendLust(w, -a.lust * k);
   }
-  if(a.energyBack) w.energy += a.energyBack;
+  if(a.energyBack && w.race!=='demon') w.energy += a.energyBack;   // demons only feed on desire
   if(a.mood) moodAdd(w, a.mood);
   if(w.race==='demon' && a.finish){
     fed = reck ? SVC.demon.feedReckless : SVC.demon.feed; w.energy += fed;
@@ -117,9 +117,9 @@ const nightMult = pr => Math.max(0, 1 - (pr.nightsLost||0) / (BAL.props.nights |
 const outputMult = (w, pr) => ((JOBS[w.job] && JOBS[w.job].must) ? 1 : Math.max(1 - BAL.props.maxPenalty, 1 - BAL.props.penalty*(pr.accProp||0))) * nightMult(pr);
 // Courtesans work out of the mood; everyone else turns heavier services down below lust.low.
 const moodFree = w => w.job === 'courtesan';
-// Demons feed on finished services (a kiss is a small sip; massages she receives give energy back). w.feedOnly = null (off) |
+// Demons feed on finished services (a kiss is a small sip). Received massages don't restore a demon's energy (serveAct). w.feedOnly = null (off) |
 // a % of her max energy (below it she only takes services that feed her) | 'always'. Set on her sheet (setFeedOnly).
-const demonFeeds = id => { const A = actById(id); return !!A && (!!A.finish || (A.energyBack||0) > 0 || A.kind==='kiss'); };
+const demonFeeds = id => { const A = actById(id); return !!A && (!!A.finish || A.kind==='kiss'); };
 function feedOnly(w, id){
   if(w.race!=='demon' || !w.feedOnly || demonFeeds(id)) return false;
   return w.feedOnly==='always' || w.energy < maxEnergy(w) * (+w.feedOnly||0) / 100;

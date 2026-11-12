@@ -14,7 +14,6 @@ function extractUrl(d){
   return null;
 }
 function findAny(id){
-  if(id==='draft') return CDRAFT;
   if(SETUP && SETUP.prev && SETUP.prev[id]) return SETUP.prev[id];
   if(!S) return null;
   return S.workers.find(w=>w.id===id) || S.candidates.find(w=>w.id===id) || NPCS[id] || LIB.find(w=>w.id===id) || null;

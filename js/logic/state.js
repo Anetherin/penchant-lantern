@@ -163,7 +163,7 @@ function migrate(s){
   if(s.lastReport && !s.lastReport.v5) s.lastReport = null;
   return s;
 }
-function save(){ if(S){ enforceTrustCaps(); store.set(KEY_SAVE, S); } }
+function save(){ if(S){ enforceTrustCaps(); store.set(KEY_SAVE, S, saveReplacer); } }
 function saveSettings(){ store.set(KEY_SET, SET); }
 function saveLib(){ store.set(KEY_LIB, LIB); }
 function addLog(t){ S.log.unshift({wk:S.week, t}); if(S.log.length>250) S.log.length=250; }

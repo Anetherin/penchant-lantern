@@ -44,7 +44,6 @@
     'js/logic/goddess.js',
     'js/ui/core.js',
     'js/ui/sheet.js',
-    'js/ui/creator.js',
     'js/ui/settings.js',
     'js/main.js'
   ];

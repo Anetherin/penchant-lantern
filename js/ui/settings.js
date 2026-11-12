@@ -70,7 +70,7 @@ function exportBox(kind){
   const data = kind==='save' ? S : kind==='ngplus' ? ngSeed() : kind==='lib' ? LIB : {snippets:SET.snippets, clothText:SET.clothText, customActs:SET.customActs};
   if(!data) return toast('New Game+ unlocks once the debt is paid off.');
   const fname = kind==='ngplus' ? `ngplus-c${(S.cycle||1)+1}` : kind;
-  modal(`<h2>Export ${kind==='ngplus'?'NG+ save':kind}</h2><p class="muted">${kind==='ngplus'?'Only what New Game+ carries forward: your lovers, old friends, kept houses, Sam and his perks. Import it any time (even on a fresh browser) to go straight to the New Game+ setup.':'Copy this text and keep it somewhere safe.'}</p><textarea id="exp" style="min-height:200px">${esc(JSON.stringify(data))}</textarea>
+  modal(`<h2>Export ${kind==='ngplus'?'NG+ save':kind}</h2><p class="muted">${kind==='ngplus'?'Only what New Game+ carries forward: your lovers, old friends, kept houses, Sam and his perks. Import it any time (even on a fresh browser) to go straight to the New Game+ setup.':'Copy this text and keep it somewhere safe.'}</p><textarea id="exp" style="min-height:200px">${esc(JSON.stringify(data, kind==='lib' ? undefined : saveReplacer))}</textarea>
     <div class="row"><button class="primary" onclick="try{navigator.clipboard.writeText($('#exp').value);toast('Copied.')}catch(e){toast('Select and copy manually.')}">Copy</button><button onclick="dlText($('#exp').value,'hollowmere-${fname}.json')">Download file</button></div>`);
 }
 function dlText(text, name){

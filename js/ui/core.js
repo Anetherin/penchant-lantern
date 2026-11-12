@@ -55,14 +55,15 @@ function renderHeader(){
     <span>📜 <b>${fmt(nd.amount)}</b> due wk ${nd.week}${nd.week===S.week?' <span class="warn">(this week!)</span>':''}</span>
     <span>⚡ Sam Lv <b>${S.sam.lvl||1}</b> · AP <b>${S.ap}/${apMax()}</b></span>${cycleTag()?`<span class="tag act">${cycleTag()}</span>`:''}${S.won?'<button class="sm primary" onclick="startNGPlus()">✦ New Game+</button>':''}<button class="sm" onclick="if(confirm('Start a new game? Your current save will be erased.'))restart()">↻ New game</button></div>`;
 }
-const TABS = [['house','🏠 Houses'],['roster','👥 Roster'],['recruit','📝 Recruit'],['sam','🧑 Sam'],['upgrades','🔨 Upgrades'],['creator','✏️ Creator'],['log','📖 Log'],['settings','⚙️ Settings']];
+const TABS = [['house','🏠 Houses'],['roster','👥 Roster'],['recruit','📝 Recruit'],['sam','🧑 Sam'],['upgrades','🔨 Upgrades'],['log','📖 Log'],['settings','⚙️ Settings']];
 function render(){
   if(!S) return;
   renderHeader();
   const tabs = goddessActive() ? [...TABS.slice(0,4), ['goddess','✨ '+GN()], ...TABS.slice(4)] : TABS;
   if(TAB==='goddess' && !goddessActive()) TAB = 'sam';
+  if(TAB==='creator') TAB = 'house';
   $('#tabs').innerHTML = tabs.map(([k,l])=>`<button class="${TAB===k?'on':''}" onclick="TAB='${k}';render()">${l}</button>`).join('');
-  const v = {house:viewHouse, roster:viewRoster, recruit:viewRecruit, sam:viewSam, goddess:viewGoddess, upgrades:viewUpgrades, creator:viewCreator, log:viewLog, settings:viewSettings}[TAB];
+  const v = {house:viewHouse, roster:viewRoster, recruit:viewRecruit, sam:viewSam, goddess:viewGoddess, upgrades:viewUpgrades, log:viewLog, settings:viewSettings}[TAB];
   $('#view').innerHTML = v();
   $('#endBtn').disabled = S.over;
 }

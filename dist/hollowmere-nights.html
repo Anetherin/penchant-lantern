@@ -211,7 +211,7 @@ function hashStr(s){ let h=0; for(const c of String(s)) h=(h*31+c.charCodeAt(0))
 
 const store = {
   get(k){ try{ const v = localStorage.getItem(k); return v ? JSON.parse(v) : null; }catch(e){ return null; } },
-  set(k,v){ try{ localStorage.setItem(k, JSON.stringify(v)); return true; }catch(e){ return false; } },
+  set(k,v,rep){ try{ localStorage.setItem(k, JSON.stringify(v, rep)); return true; }catch(e){ return false; } },
   del(k){ try{ localStorage.removeItem(k); }catch(e){} }
 };
 // Random line from data/flavor.json: her personality's list if it has one, else _default. {name}/{house} filled in.
@@ -230,7 +230,7 @@ SET.ai = Object.assign({}, DEFAULT_SETTINGS.ai, _ss.ai||{}); SET.ai.tpl = Object
 if((SET.ai.v||1) < 2){ SET.ai.auto = false; SET.ai.v = 2; }
 let LIB = store.get(KEY_LIB) || [];
 let S = null;
-let TAB='house', SHEET=null, MODAL_LOCK=false, CDRAFT=null, EDIT=null, EVQ=[], CUR_EV=null, ROSTER_FILTER='cur', SETUP=null;
+let TAB='house', SHEET=null, MODAL_LOCK=false, EVQ=[], CUR_EV=null, ROSTER_FILTER='cur', SETUP=null;
 
 /* ---------- Image storage (IndexedDB) ---------- */
 let DB = null, THUMBS = {};
@@ -698,7 +698,21 @@ function genName(race, sub){
   return name;
 }
 
+// Named ladies (characters.json / guests.json) always look the way their data says: these fields are refilled from NAMED
+// whenever a lady is made or loaded (ensureWorker) and left out of saves (saveReplacer), so data edits show up in old saves
+// like outfit edits do. Generic ladies keep their rolled looks in the save.
+const NAMED_LOOK = ['name','race','sub','age','design','body','style','favColor'];
+function namedLook(w){
+  const D = w && w.key && NAMED[w.key]; if(!D) return;
+  NAMED_LOOK.forEach(k=>{ if(D[k]!==undefined) w[k] = clone(D[k]); });
+  w.sub = D.sub || ''; w.body = Object.assign({}, BODY_DEF, D.body || {}); w.design = w.design || {};
+}
+const saveReplacer = (k, v) => {
+  if(v && typeof v==='object' && !Array.isArray(v) && v.key && v.stats && v.id && NAMED[v.key]){ const D = NAMED[v.key], o = Object.assign({}, v); NAMED_LOOK.forEach(f=>{ if(D[f]!==undefined || f==='body' || f==='sub') delete o[f]; }); return o; }   // fields her data lacks (rolled) stay in the save
+  return v;
+};
 function ensureWorker(w){
+  namedLook(w);
   w.tech = w.tech || {}; TECH_KEYS.forEach(k=>{ if(w.tech[k]===undefined) w.tech[k]=ri(0,200); });
   w.acts = w.acts || {};
   const base = w.actSkill!==undefined ? w.actSkill : (w.tech.intimacy!==undefined ? s100(w.tech.intimacy) : ri(0,25));   // actSkill is a 0-100 seed value
@@ -1451,7 +1465,6 @@ function extractUrl(d){
   return null;
 }
 function findAny(id){
-  if(id==='draft') return CDRAFT;
   if(SETUP && SETUP.prev && SETUP.prev[id]) return SETUP.prev[id];
   if(!S) return null;
   return S.workers.find(w=>w.id===id) || S.candidates.find(w=>w.id===id) || NPCS[id] || LIB.find(w=>w.id===id) || null;
@@ -1711,7 +1724,7 @@ function migrate(s){
   if(s.lastReport && !s.lastReport.v5) s.lastReport = null;
   return s;
 }
-function save(){ if(S){ enforceTrustCaps(); store.set(KEY_SAVE, S); } }
+function save(){ if(S){ enforceTrustCaps(); store.set(KEY_SAVE, S, saveReplacer); } }
 function saveSettings(){ store.set(KEY_SET, SET); }
 function saveLib(){ store.set(KEY_LIB, LIB); }
 function addLog(t){ S.log.unshift({wk:S.week, t}); if(S.log.length>250) S.log.length=250; }
@@ -2841,7 +2854,7 @@ function serveAct(w, a, o){
     if(frustrated){ w.lust += SVC.frustrateLust; fitLust(w); moodAdd(w, -1); pr.frustN = (pr.frustN||0)+1; }
     else spendLust(w, -a.lust * k);
   }
-  if(a.energyBack) w.energy += a.energyBack;
+  if(a.energyBack && w.race!=='demon') w.energy += a.energyBack;   // demons only feed on desire
   if(a.mood) moodAdd(w, a.mood);
   if(w.race==='demon' && a.finish){
     fed = reck ? SVC.demon.feedReckless : SVC.demon.feed; w.energy += fed;
@@ -2865,9 +2878,9 @@ const nightMult = pr => Math.max(0, 1 - (pr.nightsLost||0) / (BAL.props.nights |
 const outputMult = (w, pr) => ((JOBS[w.job] && JOBS[w.job].must) ? 1 : Math.max(1 - BAL.props.maxPenalty, 1 - BAL.props.penalty*(pr.accProp||0))) * nightMult(pr);
 // Courtesans work out of the mood; everyone else turns heavier services down below lust.low.
 const moodFree = w => w.job === 'courtesan';
-// Demons feed on finished services (a kiss is a small sip; massages she receives give energy back). w.feedOnly = null (off) |
+// Demons feed on finished services (a kiss is a small sip). Received massages don't restore a demon's energy (serveAct). w.feedOnly = null (off) |
 // a % of her max energy (below it she only takes services that feed her) | 'always'. Set on her sheet (setFeedOnly).
-const demonFeeds = id => { const A = actById(id); return !!A && (!!A.finish || (A.energyBack||0) > 0 || A.kind==='kiss'); };
+const demonFeeds = id => { const A = actById(id); return !!A && (!!A.finish || A.kind==='kiss'); };
 function feedOnly(w, id){
   if(w.race!=='demon' || !w.feedOnly || demonFeeds(id)) return false;
   return w.feedOnly==='always' || w.energy < maxEnergy(w) * (+w.feedOnly||0) / 100;
@@ -5659,14 +5672,15 @@ function renderHeader(){
     <span>📜 <b>${fmt(nd.amount)}</b> due wk ${nd.week}${nd.week===S.week?' <span class="warn">(this week!)</span>':''}</span>
     <span>⚡ Sam Lv <b>${S.sam.lvl||1}</b> · AP <b>${S.ap}/${apMax()}</b></span>${cycleTag()?`<span class="tag act">${cycleTag()}</span>`:''}${S.won?'<button class="sm primary" onclick="startNGPlus()">✦ New Game+</button>':''}<button class="sm" onclick="if(confirm('Start a new game? Your current save will be erased.'))restart()">↻ New game</button></div>`;
 }
-const TABS = [['house','🏠 Houses'],['roster','👥 Roster'],['recruit','📝 Recruit'],['sam','🧑 Sam'],['upgrades','🔨 Upgrades'],['creator','✏️ Creator'],['log','📖 Log'],['settings','⚙️ Settings']];
+const TABS = [['house','🏠 Houses'],['roster','👥 Roster'],['recruit','📝 Recruit'],['sam','🧑 Sam'],['upgrades','🔨 Upgrades'],['log','📖 Log'],['settings','⚙️ Settings']];
 function render(){
   if(!S) return;
   renderHeader();
   const tabs = goddessActive() ? [...TABS.slice(0,4), ['goddess','✨ '+GN()], ...TABS.slice(4)] : TABS;
   if(TAB==='goddess' && !goddessActive()) TAB = 'sam';
+  if(TAB==='creator') TAB = 'house';
   $('#tabs').innerHTML = tabs.map(([k,l])=>`<button class="${TAB===k?'on':''}" onclick="TAB='${k}';render()">${l}</button>`).join('');
-  const v = {house:viewHouse, roster:viewRoster, recruit:viewRecruit, sam:viewSam, goddess:viewGoddess, upgrades:viewUpgrades, creator:viewCreator, log:viewLog, settings:viewSettings}[TAB];
+  const v = {house:viewHouse, roster:viewRoster, recruit:viewRecruit, sam:viewSam, goddess:viewGoddess, upgrades:viewUpgrades, log:viewLog, settings:viewSettings}[TAB];
   $('#view').innerHTML = v();
   $('#endBtn').disabled = S.over;
 }
@@ -5881,7 +5895,7 @@ function refreshSheetInfo(){
     <div class="row"><button onclick="dateMenu('${w.id}')">🌙 Date / spend time…</button>${S.workers.includes(w)?(giftMode()==='locked'?`<button disabled title="Opens up once the debt is paid off">🎁 Gifts…</button>`:`<button onclick="giftMenu('${w.id}')" title="Buy her something: gold for trust and mood${giftMode()==='action'?' (one action each until the debt is paid)':', no actions needed'}">🎁 Gifts…</button>`):''}${w.race==='demon'&&S.workers.includes(w)?`<button onclick="hireStud('${w.id}')" ${S.gold<SVC.demon.studCost||w._stud===S.week?'disabled':''} title="Pay a willing professional to be her meal for the night: lots of energy, no harm to anyone. Once a week.">🌹 Hire a stud (${fmt(SVC.demon.studCost)})</button>`:''}</div>
     <div class="row"><button onclick="samTrain('${w.id}','stat')" title="Sam coaches every stat her job uses: ${trainStatsOf(w).map(([k])=>cap(k)).join(', ')} (${(BAL.train||{}).stat?.energy ?? 20} energy). Goes further with Sam's Wits.">📖 Train stats</button><button onclick="samTrain('${w.id}','skill')" title="Hands-on training in every trade skill, ${esc(TECH_LABEL[trainSkillOf(w)])} (her job's) the most (${(BAL.train||{}).skill?.energy ?? 30} energy). Goes further with Sam's Technique.">💪 Train skills</button><button onclick="samTrain('${w.id}','service')" ${anySam?'':'disabled'} title="Practice every service she does with Sam (${(BAL.train||{}).service?.energy ?? 30} energy). Goes further with Sam's Technique; warms her up (lust, and lewdness while it's below ${lShow((BAL.train||{}).service?.lewdCap ?? 50)}).">🔥 Train services</button></div>
     <div class="row"><button onclick="privateMenu('${w.id}')" ${anySam?'':`disabled title="${(w.intim||0)===0?'She and Sam haven\'t crossed that line yet.':'She isn\'t comfortable with that yet.'}"`}>🕯️ Private time</button></div>
-    <div class="row"><button onclick="editWorker('${w.id}')">✏️ Edit design</button>${w.isPartner||w.locked?'':`<button onclick="dismiss('${w.id}')">Dismiss</button>`}${has(w,'Devoted')?`<button onclick="endLovers('${w.id}')">💔 End things</button>`:''}${w.exLover&&!has(w,'Devoted')?`<button onclick="rekindle('${w.id}')" ${w.trust<BAL.breakup.rekindleTrust?`disabled title="She needs trust ${tShow(BAL.breakup.rekindleTrust)}+"`:''}>💞 Ask her back</button>`:''}</div>`;
+    <div class="row">${w.isPartner||w.locked?'':`<button onclick="dismiss('${w.id}')">Dismiss</button>`}${has(w,'Devoted')?`<button onclick="endLovers('${w.id}')">💔 End things</button>`:''}${w.exLover&&!has(w,'Devoted')?`<button onclick="rekindle('${w.id}')" ${w.trust<BAL.breakup.rekindleTrust?`disabled title="She needs trust ${tShow(BAL.breakup.rekindleTrust)}+"`:''}>💞 Ask her back</button>`:''}</div>`;
 }
 function persLine(w){
   const J = a => a.map(j=>JOBS[j]?JOBS[j].label:j).join(', ') || 'nothing in particular';
@@ -5974,107 +5988,6 @@ function viewUpgrades(){
 function miniNamedAvatar(key){ const id='n_'+key; return THUMBS[id] ? `<div class="avatar"><img src="${THUMBS[id]}" alt=""></div>` : `<div class="avatar" style="background:${HAIR_HEX[(NAMED[key].design.hairColor||'').toLowerCase()]||'#b99'}">${esc(initials(NAMED[key].name))}</div>`; }
 function viewLog(){ return `<section class="card"><h2>Log</h2><div class="loglist">${S.log.map(l=>`<div><span class="muted">Wk ${l.wk}</span> · ${esc(l.t)}</div>`).join('')}</div></section>`; }
 
-/* ---- js/ui/creator.js ---- */
-'use strict';
-/* ---------- Creator ---------- */
-function editWorker(id){ const w=findW(id); if(!w) return; EDIT={id}; CDRAFT=clone(w); closeModal(); TAB='creator'; render(); }
-function cancelEdit(){ EDIT=null; CDRAFT=null; render(); }
-function dl(id, arr){ return `<datalist id="${id}">${arr.map(x=>`<option value="${esc(x)}">`).join('')}</datalist>`; }
-function viewCreator(){
-  if(!CDRAFT) CDRAFT = genWorker({race:'human'});
-  const d = ensureWorker(CDRAFT), D = d.design || {};
-  const f = (id,label,val,list) => `<label>${label}<input id="${id}" value="${esc(val)}" ${list?`list="${list}"`:''}></label>`;
-  const num = (id,label,val,max=100) => `<label>${label}<input id="${id}" type="number" min="0" ${max?`max="${max}"`:''} value="${Math.round(val||0)}"></label>`;
-  const actSel = (id,label,val) => `<label>${label}<select id="${id}"><option value="">None</option>${getActs().map(a=>`<option value="${a.id}" ${a.id===val?'selected':''}>${esc(a.label)}</option>`).join('')}</select></label>`;
-  const colSel = (id,label,val) => `<label>${label}<select id="${id}">${COLOR_KEYS.map(c=>`<option ${c===val?'selected':''}>${c}</option>`).join('')}</select></label>`;
-  const outOpts = Object.entries(WARDROBE).filter(([k,o])=>!o.owner || o.owner===d.key).map(([k,o])=>`<option value="${k}" ${k===d.outfit?'selected':''}>${esc(o.label)}</option>`).join('') + `<option value="custom" ${d.outfit==='custom'?'selected':''}>Custom text →</option>`;
-  const unOpts = Object.entries(UNDER).map(([k,u])=>`<option value="${k}" ${k===d.under?'selected':''}>${esc(u.label)}</option>`).join('') + `<option value="custom" ${d.under==='custom'?'selected':''}>Custom text →</option>`;
-  return `<section class="card"><h2>${EDIT?'Edit Character':'Character Creator'}</h2>
-    <p class="muted">Make any character: recruitable, named, or a library template. All characters are adults; ages below a race's minimum are raised automatically.</p>
-    <div class="form">
-      ${f('c_title','Title (optional)',d.title||'','dl_title')}${f('c_name','Name',d.name)}<datalist id="dl_title">${[...Object.values(TITLES).filter(t=>!t.after).map(t=>t.label),'Mistress'].map(t=>`<option value="${esc(t)}">`).join('')}</datalist>
-      <label>Race<select id="c_race" onchange="$('#c_subw').style.display=this.value==='beastkin'?'':'none'">${Object.entries(RACES).map(([k,r])=>`<option value="${k}" ${k===d.race?'selected':''}>${r.label}</option>`).join('')}</select></label>
-      <label id="c_subw" style="${d.race==='beastkin'?'':'display:none'}">Beast type<input id="c_sub" value="${esc(d.sub||'fox')}" list="dl_sub"></label>
-      ${num('c_age','Age',d.age,0)}
-      ${f('c_build','Build',D.build,'dl_build')}${f('c_hairStyle','Hair style',D.hairStyle,'dl_hs')}${f('c_hairColor','Hair color',D.hairColor,'dl_hc')}
-      ${f('c_eyes','Eyes',D.eyes,'dl_eyes')}${f('c_skin','Skin',D.skin,'dl_skin')}${f('c_features','Distinctive features',D.features,'dl_feat')}
-      ${f('c_pers','Personality',d.personality,'dl_pers')}
-      <label>Clothing style<select id="c_style">${STYLES.map(s=>`<option ${s===d.style?'selected':''}>${s}</option>`).join('')}</select></label>
-      ${colSel('c_fcol','Favorite color',d.favColor)}
-    </div>
-    <h3 style="margin-top:10px">Clothes</h3><div class="form">
-      <label>Outfit<select id="c_out">${outOpts}</select></label>${f('c_outc','Custom outfit text',d.customOutfit||'')}${colSel('c_ocol','Outfit color',d.outColor||'black')}
-      <label>Undergarments<select id="c_un">${unOpts}</select></label>${f('c_unc','Custom undergarment text',d.customUnder||'')}${colSel('c_ucol','Undergarment color',d.underColor||'white')}
-    </div>
-    <label class="muted" style="display:block;margin-top:8px">Backstory<textarea id="c_back">${esc(d.backstory)}</textarea></label>
-    <div style="margin-top:8px"><b>Traits</b><br>${Object.keys(TRAITS).filter(t=>!TRAITS[t].story).map(t=>`<label class="chk"><input type="checkbox" class="c_trait" value="${esc(t)}" ${(d.traits||[]).includes(t)?'checked':''}>${esc(t)}</label>`).join('')}</div>
-    <h3 style="margin-top:10px">Body</h3><div class="form">${BODY_KEYS.map(k=>`<label>${cap(k)}<select id="c_b_${k}">${Object.entries(bodyOpts(k)).map(([id,o])=>`<option value="${id}" ${bodyOf(d)[k]===id?'selected':''}>${esc(o.label)}</option>`).join('')}</select></label>`).join('')}</div>
-    <h3 style="margin-top:10px">Stats</h3><div class="form">${STAT_KEYS.map(k=>num('c_s_'+k,cap(k)+' /1000',d.stats[k],1000)).join('')}</div>
-    <h3>Skills</h3><div class="form">${TECH_KEYS.map(k=>num('c_t_'+k,TECH_LABEL[k]+' /1000',d.tech[k],1000)).join('')}
-      ${num('c_pop','Popularity',d.popularity)}${num('c_lewd','Lewdness (0-1000)',lShow(d.lewd),1000)}${num('c_trust','Trust (0-1000)',tShow(d.trust),1000)}</div>
-    <h3>Service preferences</h3><div class="form">${actSel('c_fav','Favorite',d.fav)}${actSel('c_dis','Dislikes',d.dislike)}${actSel('c_lov','Lovers only',d.lovers)}</div>
-    <div class="form" style="margin-top:6px">${getActs().map(a=>num('c_a_'+a.id,a.label+' skill /1000',actSkill(d,a.id),1000)).join('')}</div>
-    <label class="chk" style="margin-top:8px"><input type="checkbox" id="c_named" ${d.named?'checked':''}> Named character (★, stays in the candidate pool until hired)</label>
-    <div class="row" style="margin-top:10px"><button onclick="creatorRandom()">🎲 Randomize</button><button onclick="creatorPreview()">🎨 Preview portrait</button>
-      ${EDIT?`<button class="primary" onclick="creatorSaveEdit()">Save changes</button><button onclick="cancelEdit()">Cancel</button>`:`<button class="primary" onclick="creatorAdd('roster')">Add to roster</button><button onclick="creatorAdd('pool')">Add to candidates</button><button onclick="creatorAdd('lib')">Save to library</button>`}</div>
-    <div id="c_img" style="max-width:360px"></div>
-    ${dl('dl_sub',subNames('beastkin'))}${dl('dl_build',BUILDS)}${dl('dl_hs',HAIR_STYLES)}${dl('dl_hc',HAIR_COLORS)}${dl('dl_eyes',EYES)}${dl('dl_skin',SKINS.concat(DEMON_SKINS))}${dl('dl_feat',FEATURES)}${dl('dl_pers',PERSONALITIES)}
-  </section>
-  <section class="card"><h2>Library (${LIB.length})</h2><p class="muted">Saved characters, shared across save files. ${SET.libraryInPool?'They sometimes show up as candidates.':''}</p>
-    ${LIB.map((w,i)=>`<div class="row"><b>${esc(w.name)}</b> <span class="muted">${raceLabel(w)}</span>
-      <button class="sm" onclick="libTo(${i},'pool')">To candidates</button><button class="sm" onclick="libTo(${i},'roster')">To roster</button><button class="sm" onclick="libLoad(${i})">Load into creator</button><button class="sm" onclick="libDel(${i})">Delete</button></div>`).join('') || '<span class="muted">Empty.</span>'}</section>`;
-}
-function readCreator(){
-  const g = id => { const e=$('#'+id); return e ? e.value : ''; };
-  const race = RACES[g('c_race')] ? g('c_race') : 'human', R = RACES[race];
-  const w = CDRAFT ? clone(CDRAFT) : genWorker({race});
-  w.race = race; w.sub = race==='beastkin' ? (cleanText(g('c_sub'))||'fox') : '';
-  w.age = Math.max(R.age[0], parseInt(g('c_age'))||R.age[0]);
-  w.name = cleanText(g('c_name')) || genName(race, w.sub);
-  w.title = cleanText(g('c_title') || '') || undefined; delete w.titleId;   // syncTitles (ensureWorker) maps a known label to its title; titles she has earned stay
-  w.design = {build:cleanText(g('c_build')), hairStyle:cleanText(g('c_hairStyle')), hairColor:cleanText(g('c_hairColor')), eyes:cleanText(g('c_eyes')), skin:cleanText(g('c_skin')), features:cleanText(g('c_features'))};
-  w.personality = cleanText(g('c_pers')) || pick(PERSONALITIES);
-  w.backstory = cleanText(g('c_back'));
-  w.style = g('c_style') || w.style; w.favColor = g('c_fcol') || w.favColor;
-  w.outfit = g('c_out') || w.outfit; w.customOutfit = cleanText(g('c_outc')); w.outColor = g('c_ocol') || w.outColor;
-  if(w.outfit==='custom' && !w.customOutfit) w.customOutfit = 'an elegant dress';
-  if(w.outfit!=='custom' && !w.owned.includes(w.outfit)) w.owned.push(w.outfit);
-  w.under = g('c_un') || w.under; w.customUnder = cleanText(g('c_unc')); w.underColor = g('c_ucol') || w.underColor;
-  if(w.under==='custom' && !w.customUnder) w.customUnder = 'simple lace underwear';
-  if(w.under!=='custom' && !w.ownedUnder.includes(w.under)) w.ownedUnder.push(w.under);
-  w._mr = 1; w.traits = [...document.querySelectorAll('.c_trait:checked')].map(x=>x.value).concat((w.traits||[]).filter(t=>TRAITS[t]&&TRAITS[t].story));
-  STAT_KEYS.forEach(k=>w.stats[k]=clampK(parseInt(g('c_s_'+k))||0));
-  TECH_KEYS.forEach(k=>w.tech[k]=clampK(parseInt(g('c_t_'+k))||0));
-  w.body = Object.assign({}, bodyOf(w), Object.fromEntries(BODY_KEYS.map(k=>[k, g('c_b_'+k) || bodyOf(w)[k]])));
-  w.popularity = clamp(parseInt(g('c_pop'))||0); w.lewd = clamp((parseInt(g('c_lewd'))||0)/10); w.trust = clamp((parseInt(g('c_trust'))||0)/TRUST_SHOW);
-  w.fav = g('c_fav')||null; w.dislike = g('c_dis')||null; w.lovers = g('c_lov')||null;
-  if(w.dislike && w.dislike===w.fav) w.dislike = null;
-  ensureWorker(w);
-  getActs().forEach(a=>{ const v=parseInt(g('c_a_'+a.id)); if(!isNaN(v)) w.acts[a.id].skill = clampK(v); });
-  w.named = !!($('#c_named')&&$('#c_named').checked); w.keep = w.named;
-  return w;
-}
-function creatorRandom(){ CDRAFT = genWorker(); render(); }
-function creatorPreview(){ const id = CDRAFT ? CDRAFT.id : null; CDRAFT = readCreator(); if(id) CDRAFT.id = id; render(); const real = CDRAFT.id; CDRAFT.id='draft'; showImg('c_img','draft','portrait','dressed','auto').then(()=>{ if(CDRAFT) CDRAFT.id = real; }); }
-function finalize(w){ w.id=uid(); w.wage=wageFor(w); w.energy=maxEnergy(w); w.mood=60; w.health=100; w.contract=12; w.job='rest'; w.seen={}; w.unhappy=0; w.privateCount=0; w.menu=[]; w.house=curH().id; delete w.key; delete w.isPartner; return w; }
-function creatorAdd(dest){
-  const w = finalize(readCreator());
-  if(dest==='roster'){ const rb = raceBlock(w, curH()); if(rb) return toast(rb); S.workers.push(w); checkUnlocks(true); note(`${w.name} added to ${curH().name}.`); }
-  else if(dest==='pool'){ w.signing = signingFor(w); w.keep = true; S.candidates.push(w); note(`${w.name} added to candidates.`); }
-  else { LIB.push(w); saveLib(); note(`${w.name} saved to the library.`); }
-  CDRAFT = null; save(); render();
-}
-function creatorSaveEdit(){
-  const t = findW(EDIT.id); if(!t){ cancelEdit(); return; }
-  const w = readCreator();
-  ['name','title','race','sub','age','design','personality','backstory','traits','stats','tech','body','popularity','lewd','trust','named','style','fav','dislike','lovers','acts','favColor','outfit','customOutfit','outColor','under','customUnder','underColor','owned','ownedUnder'].forEach(k=>t[k]=clone(w[k]===undefined?null:w[k]));
-  t.energy = Math.min(t.energy, maxEnergy(t)); t.menu = t.menu.filter(a=>canClient(t,a));
-  EDIT = null; CDRAFT = null; checkUnlocks(); save(); note(`${t.name} updated. (Saved images keep their old look; regenerate them to update.)`); TAB='roster'; render();
-}
-function libTo(i, dest){ const w = finalize(ensureWorker(clone(LIB[i]))); if(dest==='roster'){ const rb = raceBlock(w, curH()); if(rb) return toast(rb); S.workers.push(w); checkUnlocks(true); } else { w.signing=signingFor(w); w.keep=true; S.candidates.push(w); } note(`${w.name} added to ${dest==='roster'?curH().name:'candidates'}.`); save(); render(); }
-function libLoad(i){ EDIT=null; CDRAFT = ensureWorker(clone(LIB[i])); render(); }
-function libDel(i){ if(!confirm(`Delete ${LIB[i].name} from the library?`)) return; LIB.splice(i,1); saveLib(); render(); }
-
 /* ---- js/ui/settings.js ---- */
 'use strict';
 /* ---------- Settings ---------- */
@@ -6148,7 +6061,7 @@ function exportBox(kind){
   const data = kind==='save' ? S : kind==='ngplus' ? ngSeed() : kind==='lib' ? LIB : {snippets:SET.snippets, clothText:SET.clothText, customActs:SET.customActs};
   if(!data) return toast('New Game+ unlocks once the debt is paid off.');
   const fname = kind==='ngplus' ? `ngplus-c${(S.cycle||1)+1}` : kind;
-  modal(`<h2>Export ${kind==='ngplus'?'NG+ save':kind}</h2><p class="muted">${kind==='ngplus'?'Only what New Game+ carries forward: your lovers, old friends, kept houses, Sam and his perks. Import it any time (even on a fresh browser) to go straight to the New Game+ setup.':'Copy this text and keep it somewhere safe.'}</p><textarea id="exp" style="min-height:200px">${esc(JSON.stringify(data))}</textarea>
+  modal(`<h2>Export ${kind==='ngplus'?'NG+ save':kind}</h2><p class="muted">${kind==='ngplus'?'Only what New Game+ carries forward: your lovers, old friends, kept houses, Sam and his perks. Import it any time (even on a fresh browser) to go straight to the New Game+ setup.':'Copy this text and keep it somewhere safe.'}</p><textarea id="exp" style="min-height:200px">${esc(JSON.stringify(data, kind==='lib' ? undefined : saveReplacer))}</textarea>
     <div class="row"><button class="primary" onclick="try{navigator.clipboard.writeText($('#exp').value);toast('Copied.')}catch(e){toast('Select and copy manually.')}">Copy</button><button onclick="dlText($('#exp').value,'hollowmere-${fname}.json')">Download file</button></div>`);
 }
 function dlText(text, name){

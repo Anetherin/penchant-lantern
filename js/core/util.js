@@ -44,7 +44,7 @@ function hashStr(s){ let h=0; for(const c of String(s)) h=(h*31+c.charCodeAt(0))
 
 const store = {
   get(k){ try{ const v = localStorage.getItem(k); return v ? JSON.parse(v) : null; }catch(e){ return null; } },
-  set(k,v){ try{ localStorage.setItem(k, JSON.stringify(v)); return true; }catch(e){ return false; } },
+  set(k,v,rep){ try{ localStorage.setItem(k, JSON.stringify(v, rep)); return true; }catch(e){ return false; } },
   del(k){ try{ localStorage.removeItem(k); }catch(e){} }
 };
 // Random line from data/flavor.json: her personality's list if it has one, else _default. {name}/{house} filled in.
@@ -63,7 +63,7 @@ SET.ai = Object.assign({}, DEFAULT_SETTINGS.ai, _ss.ai||{}); SET.ai.tpl = Object
 if((SET.ai.v||1) < 2){ SET.ai.auto = false; SET.ai.v = 2; }
 let LIB = store.get(KEY_LIB) || [];
 let S = null;
-let TAB='house', SHEET=null, MODAL_LOCK=false, CDRAFT=null, EDIT=null, EVQ=[], CUR_EV=null, ROSTER_FILTER='cur', SETUP=null;
+let TAB='house', SHEET=null, MODAL_LOCK=false, EVQ=[], CUR_EV=null, ROSTER_FILTER='cur', SETUP=null;
 
 /* ---------- Image storage (IndexedDB) ---------- */
 let DB = null, THUMBS = {};

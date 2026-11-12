@@ -205,7 +205,21 @@ function genName(race, sub){
   return name;
 }
 
+// Named ladies (characters.json / guests.json) always look the way their data says: these fields are refilled from NAMED
+// whenever a lady is made or loaded (ensureWorker) and left out of saves (saveReplacer), so data edits show up in old saves
+// like outfit edits do. Generic ladies keep their rolled looks in the save.
+const NAMED_LOOK = ['name','race','sub','age','design','body','style','favColor'];
+function namedLook(w){
+  const D = w && w.key && NAMED[w.key]; if(!D) return;
+  NAMED_LOOK.forEach(k=>{ if(D[k]!==undefined) w[k] = clone(D[k]); });
+  w.sub = D.sub || ''; w.body = Object.assign({}, BODY_DEF, D.body || {}); w.design = w.design || {};
+}
+const saveReplacer = (k, v) => {
+  if(v && typeof v==='object' && !Array.isArray(v) && v.key && v.stats && v.id && NAMED[v.key]){ const D = NAMED[v.key], o = Object.assign({}, v); NAMED_LOOK.forEach(f=>{ if(D[f]!==undefined || f==='body' || f==='sub') delete o[f]; }); return o; }   // fields her data lacks (rolled) stay in the save
+  return v;
+};
 function ensureWorker(w){
+  namedLook(w);
   w.tech = w.tech || {}; TECH_KEYS.forEach(k=>{ if(w.tech[k]===undefined) w.tech[k]=ri(0,200); });
   w.acts = w.acts || {};
   const base = w.actSkill!==undefined ? w.actSkill : (w.tech.intimacy!==undefined ? s100(w.tech.intimacy) : ri(0,25));   // actSkill is a 0-100 seed value
