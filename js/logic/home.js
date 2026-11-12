@@ -25,20 +25,35 @@ function buySamUp(k){
   S.gold -= u.cost; S.samUps = S.samUps || {}; S.samUps[k] = true;
   toast(`Bought: ${u.label}`); save(); render();
 }
-function throwFeast(tierId){
-  const h = curH(), t = BAL.feast.tiers.find(x=>x.id===tierId); if(!h || !t) return;
-  if(h.feastWk === S.week) return toast('This house already feasted this week.');
+// One feast at house h (shared by the button and the weekly auto-feast). Returns {t, n, total, tr} or an error string.
+function feastAt(h, t){
+  if(h.feastWk === S.week) return 'This house already feasted this week.';
   const L = S.workers.filter(w=>w.house===h.id);
-  if(!L.length) return toast('Nobody lives here to feast.');
+  if(!L.length) return 'Nobody lives here to feast.';
   const total = t.cost * L.length;
-  if(S.gold < total) return toast('Not enough gold.');
+  if(S.gold < total) return 'Not enough gold.';
   S.gold -= total; h.feastWk = S.week;
   let tr = 0;
   L.forEach(w=>{ tr += gainTrust(w, t.trust); moodAdd(w, t.mood); });
   addLog(`🍽️ ${t.label} at ${h.name} (${L.length} ladies, −${fmt(total)})`);
+  return {t, n:L.length, total, tr};
+}
+function throwFeast(tierId){
+  const h = curH(), t = BAL.feast.tiers.find(x=>x.id===tierId); if(!h || !t) return;
+  const r = feastAt(h, t); if(typeof r === 'string') return toast(r);
   samLog(`Threw a ${t.label.toLowerCase()} at ${h.name}`);
   save(); render();
-  showResult(t.label, `${t.text.replace(/\{house\}/g, h.name)}\n\n${L.length} ladies · Trust ${tDelta(tr/L.length)} each · Mood +${t.mood} each · −${fmt(total)}`);
+  showResult(t.label, `${t.text.replace(/\{house\}/g, h.name)}\n\n${r.n} ladies · Trust ${tDelta(r.tr/r.n)} each · Mood +${t.mood} each · −${fmt(r.total)}`);
+}
+// Auto-feast (h.autoFeast = tier id or null): thrown at the start of endWeek for every house that hasn't feasted yet.
+function setAutoFeast(id, tierId){ const h = H(id); if(!h) return; h.autoFeast = tierId || null; save(); render(); }
+function autoFeasts(R){
+  S.houses.forEach(h=>{
+    const t = h.autoFeast && BAL.feast.tiers.find(x=>x.id===h.autoFeast); if(!t || h.feastWk === S.week) return;
+    const r = feastAt(h, t);
+    if(typeof r === 'string'){ if(r==='Not enough gold.') R.lines.push(`🍽️ Auto-feast at ${h.name} skipped: not enough gold for a ${t.label.toLowerCase()} (${fmt(t.cost*S.workers.filter(w=>w.house===h.id).length)}).`); return; }
+    R.lines.push(`🍽️ Auto-feast: ${t.label} at ${h.name} (${r.n} ladies, trust ${tDelta(r.tr/r.n)} and mood +${t.mood} each, −${fmt(r.total)}).`);
+  });
 }
 
 /* ---------- Owner's Suite sleep-in (balance.json → sleepIn): one lady shares Sam's bed ---------- */

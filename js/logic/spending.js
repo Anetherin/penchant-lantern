@@ -35,13 +35,13 @@ function tutorRow(w){
 // Tutoring for a whole group at once (Sam tab → Errands). Groups follow the roster order (rosterRank in ui/core.js), plus houses and jobs.
 let TUT_ALL = null;
 function tutorGroups(){
-  const G = [['all','Everyone'],['perm','Permanent: house ladies, partners & story characters'],['r0','House ladies'],['r1','Partners'],['r2','Other story characters'],['r3','Guests'],['r4','Generic ladies']];
+  const G = [['all','Everyone'],['perm','Permanent: story characters & guests'],['story','Story: house ladies, partners & other story characters'],['r0','House ladies'],['r1','Partners'],['r2','Other story characters'],['r3','Guests'],['r4','Generic ladies']];
   if(S.houses.length > 1) S.houses.forEach(h=>G.push(['h:'+h.id, 'Everyone at '+h.name]));
   [...new Set(S.workers.map(w=>w.job))].filter(j=>JOBS[j]).forEach(j=>G.push(['j:'+j, 'Job: '+JOBS[j].label]));
   return G;
 }
 function tutorGroupList(g){
-  return S.workers.filter(w=>g==='all' || (g==='perm' && rosterRank(w) <= 2) || (g[0]==='r' && g.length===2 && rosterRank(w)===+g[1])
+  return S.workers.filter(w=>(!g.includes(':') && rosterTypeIs(w, g))
     || (g.startsWith('h:') && w.house===g.slice(2)) || (g.startsWith('j:') && w.job===g.slice(2)));
 }
 function tutorAllMenu(){ TUT_ALL = TUT_ALL || {g:'all', focus:'job', tier:Object.keys(BAL.tutor.tiers)[0]}; tutorAllDraw(); }

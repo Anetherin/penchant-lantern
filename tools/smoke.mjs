@@ -19,7 +19,9 @@ const BOT = `async (weeks) => {
     if (S.ap > 0) { samWork('rounds'); closeModal(); }
     if (S.ap > 0) { samRest(); closeModal(); }
     if (i === 1) { S.gold = Math.max(S.gold, 9000); buyUpgrade('suite'); buySamUp('notebook'); closeModal(); }
-    throwFeast(BAL.feast.tiers[0].id); closeModal();
+    if (i === 4) { S.gold = Math.max(S.gold, 200000); const k = Object.keys(HOUSES).find(k => !H(k) && houseOffered(k) && !HOUSES[k].premium); if (k) buyHouse(k); CUR_EV = null; EVQ = []; closeModal(); setAutoFeast(S.houses[S.houses.length-1].id, BAL.feast.tiers[0].id); }
+    if (i % 2) throwFeast(BAL.feast.tiers[0].id); closeModal();
+    if (i === 0) setAutoFeast(S.houses[0].id, BAL.feast.tiers[1].id);
     if (i === 2) { setTutor(S.workers[0].id, 'job'); if (S.workers[1]) { setTutor(S.workers[1].id, 'weak'); setTutorTier(S.workers[1].id, 'master'); } closeModal(); }
     if (i === 3) { const m = BAL.gifts.beforeDebt; BAL.gifts.beforeDebt = 'action'; giftMenu(S.workers[0].id); buyGift(S.workers[0].id, 'trinket'); BAL.gifts.beforeDebt = 'free'; buyGift(S.workers[0].id, 'jewel'); BAL.gifts.beforeDebt = m; closeModal(); }
     endWeek(); closeModal();
@@ -27,6 +29,9 @@ const BOT = `async (weeks) => {
     S.gold = Math.max(S.gold, 2000); S.debt.strikes = 0;
     S.workers.forEach(w => { if (w.job === 'rest' && !w.prevJob && w.energy > maxEnergy(w)*0.6) { for (const j of ['courtesan','promoter','attendant','bartender','maid']) { if (!canDo(w, j)) { setJob(w.id, j); break; } } } });
     for (const t of TABS) { TAB = t[0]; render(); }
+    TAB = 'house'; HOUSE_ALL = true; render(); HOUSE_ALL = false; render();
+    TAB = 'roster'; for (const [k, v] of [['type','perm'],['type','r3'],['job','working'],['job','courtesan'],['race',S.workers[0].race],['energy','rested'],['energy','tired'],['sort','energy']]) setRosterView(k, v);
+    ROSTER_VIEW = {type:'all', job:'all', race:'all', lust:'all', energy:'all', trust:'all', sort:''}; tutorAllMenu(); tutorAllSet('g','perm'); tutorAllSet('g','story'); TUT_ALL = null; closeModal();
     openSheet(S.workers[0].id); openWardrobe(S.workers[0].id); closeModal();
   }
   return { week: S.week, workers: S.workers.length, gold: Math.round(S.gold) };

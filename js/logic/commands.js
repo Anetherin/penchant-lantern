@@ -159,7 +159,7 @@ function buyHouse(id){
   const cost = houseCost(id);
   if(S.gold < cost) return toast('Not enough gold.');
   if(!confirm(`Buy ${D.name} for ${fmt(cost)}? (deed ${fmt(D.cost)} × ${houseBuyMult().toFixed(0)} this far into the cycle${S.houses.length>1 ? `, +${Math.round(BAL.houses.priceStep*100)}% for each house you already own beyond the first` : ''})`)) return;
-  S.gold -= cost; S.houses.push(makeHouse(id)); S.cur = id;
+  S.gold -= cost; S.houses.push(makeHouse(id)); S.cur = id; HOUSE_ALL = false;
   note(`You now own ${D.name}!`);
   if(!isHired(D.npc)){
     const n = rebirthNamed(makeNamed(D.npc)); n.house = id; n.locked = id; n.contract = 999; n.job = safeJob(n, NAMED[D.npc].job); if(MENU_JOBS.includes(n.job)) n.menu = getActs().filter(a=>clientStance(n,a.id)==='yes').map(a=>a.id);

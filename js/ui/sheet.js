@@ -143,11 +143,6 @@ function viewUpgrades(){
   const incSel = h.up.incense ? `<select onchange="setIncense(this.value)" title="Burner mode">${[['calm','Calm'],['aphro','Aphrodisiac']].map(([m,l])=>`<option value="${m}" ${(h.incense||'calm')===m?'selected':''}>${l}</option>`).join('')}</select>` : '';
   const wsLine = h.up.workshop ? `<p class="muted">Workshop discount: <b>${Math.round(clamp(h.wsDisc||0,0,1)*100)}%</b> of the markup${S.workers.some(w=>w.house===h.id&&w.race==='dwarf')?'':' (no dwarf lives here, so it is not growing)'}.</p>` : '';
   const dt = Math.min(3,(h.decor||0)+1), drt = Math.min(3,(h.drinks||0)+1), DR = BAL.amenities.drinks, dk = h.drinks||0;
-  const props = Object.entries(HOUSES).filter(([k])=>!H(k) && houseOffered(k)).map(([k,P])=>{ const locked = P.premium && ((S.sam.lvl||1) < P.level || S.rep < P.renown);
-    return `<div class="wcard" style="cursor:default">${miniNamedAvatar(P.npc)}<div class="winfo"><div class="wname">${P.name} <span class="tag house">${P.loc}</span>${P.premium?' <span class="tag act">Premium</span>':''}${P.ngplus?' <span class="tag act">✦ NG+</span>':''}</div><div class="muted">${P.desc}</div>
-    <div class="muted">Comes with ${NAMED[P.npc].name}${isHired(P.npc)?' (already with you)':''} · Rooms ${P.rooms} · Upkeep ~${fmt(P.upkeep+15*P.rooms)}/wk${P.minPop?` · Escorts should have popularity ${P.minPop}+`:''}</div>
-    ${P.premium?`<div class="${locked?'warn':'good'}">Requires Sam level ${P.level} (now ${S.sam.lvl||1}) and renown ${P.renown} (now ${Math.round(S.rep)})</div>`:''}
-    <div class="row"><button onclick="buyHouse('${k}')" ${S.gold<houseCost(k)||locked?'disabled':''}>Buy · ${fmt(houseCost(k))}</button><span class="muted">deed ${fmt(P.cost)} × ${houseBuyMult().toFixed(0)} (rises each week of the cycle)${S.houses.length>1?` +${Math.round(BAL.houses.priceStep*100*(S.houses.length-1))}% for the ${S.houses.length} houses you own`:''}</span></div></div></div>`; }).join('');
   return `${houseTabs(false)}<section class="card"><h2>Upgrades: ${esc(h.name)} <span class="muted">(${roomsUsed(h)}/${houseSize(h)} rooms)</span></h2><div class="grid">
     ${card('room',`Add Bedroom (${h.rooms})`,'One courtesan per bedroom. Takes 1 room. +12g/wk.',upgradeCost(h,'room'),false,h.rooms>D.rooms)}
     ${card('quarters',`Add Staff Quarters (${h.quarters||0})`,'Sleeps 2 staff. Without a bed, staff sleep on the floor (poor rest, −mood). Takes 1 room. +6g/wk.',upgradeCost(h,'quarters'),false,(h.quarters||0)>D.quarters)}
@@ -161,8 +156,7 @@ function viewUpgrades(){
     ${wsLine}
     <p class="muted">Building the same thing again costs 12% more each time (counted across all your houses); bedrooms, quarters and beds also scale with how many this house has. Upkeep also rises with a house's reputation. Demolishing something you built costs ${Math.round(BAL.demolish.share*100)}% of its base price (nothing is refunded); what a house started with stays.</p>
     <p>Space used: <b>${roomsUsed(h)}/${houseSize(h)}</b> rooms</p>
-    <p class="muted">Outfits and undergarments are bought per lady, from her sheet → Wardrobe.</p></section>
-    <section class="card"><h2>Properties for Sale</h2><p class="muted">Each house has its own clientele, reputation, staff, and resident.</p><div class="grid">${props||'<span class="muted">You own every house in Hollowmere!</span>'}</div></section>`;
+    <p class="muted">Outfits and undergarments are bought per lady, from her sheet → Wardrobe. New houses are for sale under Houses → All houses.</p></section>`;
 }
 function miniNamedAvatar(key){ const id='n_'+key; return THUMBS[id] ? `<div class="avatar"><img src="${THUMBS[id]}" alt=""></div>` : `<div class="avatar" style="background:${HAIR_HEX[(NAMED[key].design.hairColor||'').toLowerCase()]||'#b99'}">${esc(initials(NAMED[key].name))}</div>`; }
 function viewLog(){ return `<section class="card"><h2>Log</h2><div class="loglist">${S.log.map(l=>`<div><span class="muted">Wk ${l.wk}</span> · ${esc(l.t)}</div>`).join('')}</div></section>`; }
