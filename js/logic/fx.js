@@ -103,8 +103,9 @@ const bodyLabel = w => { const b = bodyOf(w); return BODY_KEYS.map(k => (bodyOpt
 
 /* ---------- small helpers built on fx ---------- */
 // Her lust at which she's restless/reckless: shifted by recklessAt, never for noReckless ladies.
-const lustHigh = w => fxHas(w, 'noReckless') ? 1e9 : LUST_HIGH + fxAdd(w, 'recklessAt');
-const restless = w => w.lust >= lustHigh(w);
+// Demons: their line is svc.demon.recklessLust instead, and they also go reckless when starving (energy below svc.demon.recklessEnergy).
+const lustHigh = w => fxHas(w, 'noReckless') ? 1e9 : (w.race==='demon' ? (BAL.svc.demon.recklessLust ?? 100) : LUST_HIGH) + fxAdd(w, 'recklessAt');
+const restless = w => w.lust >= lustHigh(w) || (w.race==='demon' && !fxHas(w, 'noReckless') && (w.energy ?? 100) < (BAL.svc.demon.recklessEnergy ?? 20));
 // Mood change scaled by moodDelta (events & work). Returns the applied change.
 // A madame in her house softens mood losses (balance.json → jobs.madameMoodLoss).
 function madameShield(w){

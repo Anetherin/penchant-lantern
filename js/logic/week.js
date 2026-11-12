@@ -381,8 +381,8 @@ function simHouse(h, R){
   // --- restless ladies proposition clients themselves (1-3 extra encounters; lovers wait for Sam)
   W.forEach(w=>{
     const pr = R.per[w.id];
-    if(w.job==='rest' || propDrive(w) < lustHigh(w) || has(w,'Devoted') || pr.solo) return;   // demons: hunger counts toward it (propDrive)
-    const must = !!JOBS[w.job].must, n = ri(BP.recklessMin, BP.recklessMax), hungry = !restless(w);   // only her hunger got her here
+    if(w.job==='rest' || (!restless(w) && propDrive(w) < lustHigh(w)) || has(w,'Devoted') || pr.solo) return;   // demons: hunger counts toward it (propDrive), and a starving one is reckless anyway
+    const must = !!JOBS[w.job].must, n = ri(BP.recklessMin, BP.recklessMax), hungry = w.race==='demon' && w.lust < lustHigh(w);   // her hunger, not her lust, got her here
     for(let i=0;i<n;i++){
       let ids = offeredMenu(w).filter(id=>canClient(w,id) && actById(id) && !feedOnly(w,id) && energyOK(w, id, 0.2));
       if(hungry && ids.some(demonFeeds)) ids = ids.filter(demonFeeds);   // a hungry demon goes looking for a meal
