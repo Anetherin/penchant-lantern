@@ -3659,7 +3659,7 @@
           "lovers": "missionary",
           "backstory": "A princess-turned-martial-artist-turned-homemaker, Chi-Chi can cook for twenty, scold for thirty and still win a duel before supper. She followed her wayward family to Hollowmere and ended up taking over the household chores out of pure principle. Cross her rules and she will remind you where the door is.",
           "design": {
-            "hairStyle": "long black hair pinned up in a high bun",
+            "hairStyle": "hime cut low ponytail",
             "hairColor": "black",
             "eyes": "black",
             "skin": "fair",
@@ -3678,14 +3678,14 @@
             "sig_chichi": {
               "label": "Martial dress",
               "style": "Sporty",
-              "prompt": "a sleeveless red martial-arts dress with a blue sash, black trousers and soft boots",
+              "prompt": "a blue cheongsam with red pants, armbands, shoes, white socks, and a red sash",
               "bonus": {"maid":1.3,"commoner":1.15}
             },
             "sp_chichi": {
-              "label": "Wedding qipao",
-              "style": "Elegant",
-              "prompt": "a formal red-and-gold silk qipao with a high collar and embroidered phoenixes",
-              "bonus": {"noble":1.15,"courtesan":1.2}
+              "label": "Battle bikini",
+              "style": "Revealing",
+              "prompt": "a blue bikini, pink gloves and boots, a green cape, and a pink helmet with an axe-like blade on top of it",
+              "bonus": {"security":1.15,"combat":1.2}
             }
           },
           "bonds": {"bulma":{"v":40,"kind":"comrades","note":"Old friends who swap stories about stubborn husbands and unruly sons."}},
