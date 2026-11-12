@@ -187,7 +187,10 @@ function wageFor(w){
   const tc = Math.max(...TECH_KEYS.map(k=>s100(w.tech[k]||0)), ...Object.values(w.acts||{}).map(a=>s100(a.skill)*0.8));
   const sd = w.race==='beastkin' ? subData(w.race, w.sub) : null;
   const rb = 1 + ((BAL.ngplus||{}).rebornWage||0) * (w.reborn||0) * (typeof hasBoon==='function' && hasBoon('loyal') ? 0.5 : 1);   // each life she's carried over asks a little more (balance.json → ngplus.rebornWage)
-  return Math.round((8 + st*0.3 + tc*0.2 + w.popularity*0.3 + (has(w,'Ambitious')?8:0) + (has(w,'Greedy')?6:0)) * ((sd && sd.wage) ?? raceOf(w).wage ?? 1) * rb);
+  // balance.json → wages.formula: linear terms, then x (1 + curve x (avg of stats/skill/popularity / 100)^2) so good ladies ask a lot more
+  const F = (BAL.wages||{}).formula || {}, lvl = (st + tc + (w.popularity||0)) / 300;
+  const base = (F.base ?? 8) + st*(F.stat ?? 0.3) + tc*(F.tech ?? 0.2) + (w.popularity||0)*(F.pop ?? 0.3) + (has(w,'Ambitious')?8:0) + (has(w,'Greedy')?6:0);
+  return Math.round(base * (1 + (F.curve ?? 0) * lvl * lvl) * ((sd && sd.wage) ?? raceOf(w).wage ?? 1) * rb);
 }
 function signingFor(w){ return Math.max(60, Math.round(w.wage * rnd(5,8) * (raceOf(w).signing ?? 1) * (0.9 + (S?S.rep:10)/150) * (hasBoon('recruit')?0.75:1))); }
 // Skills work in 1000-units: n is the old 0-100 amount (x SKL), with a diminishing curve (1 - v/growDen(), i.e. statCap() + 300).
@@ -343,6 +346,7 @@ function stashCloset(w){
   S.closets = S.closets || {};
   S.closets[w.key] = {owned:(w.owned||[]).filter(k=>!mine.includes(k) && WARDROBE[k]), ownedUnder:(w.ownedUnder||[]).filter(k=>k!=='plain' && k!==D.under),
     outfit:w.outfit, outColor:w.outColor||null, under:w.under, underColor:w.underColor||null};
+  if(w.reborn) rememberLife(w, true);   // a reincarnated lady leaving mid-cycle keeps her stacks for when she comes back (ngplus.js)
 }
 function restoreCloset(w){
   const C = typeof S!=='undefined' && S && S.closets && S.closets[w.key]; if(!C) return;

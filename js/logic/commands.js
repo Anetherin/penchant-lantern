@@ -142,19 +142,26 @@ function demolish(k){
   note(`${h.name}: ${label} demolished (${fmt(I.cost)}).`);
   save(); render();
 }
-// A house gets pricier with every one you already own (balance.json → houses.priceStep).
-const houseCost = id => Math.round(HOUSES[id].cost * (1 + BAL.houses.priceStep * Math.max(0, S.houses.length - 1)));
+// Buying a house outright (balance.json → houses): the deed price x a markup that grows with the weeks into this cycle
+// (max(buyMin, weeks x buyPerWeek): the Credit House knows Sam is earning), x priceStep for every house he already owns.
+const houseBuyMult = () => { const B = BAL.houses; return Math.max(B.buyMin ?? 1, debtWeek() * (B.buyPerWeek ?? 0)); };
+const houseCost = id => Math.round(HOUSES[id].cost * houseBuyMult() * (1 + BAL.houses.priceStep * Math.max(0, S.houses.length - 1)));
+// Reorder houses (tabs, report, pick lists all follow S.houses).
+function moveHouse(id, dir){
+  const i = S.houses.findIndex(h=>h.id===id), j = i + dir; if(i < 0 || j < 0 || j >= S.houses.length) return;
+  [S.houses[i], S.houses[j]] = [S.houses[j], S.houses[i]]; save(); render();
+}
 function setIncense(mode){ const h = curH(); if(!h.up.incense || !['calm','aphro'].includes(mode)) return; h.incense = mode; save(); render(); }
 function buyHouse(id){
   const D = HOUSES[id]; if(!D || H(id) || !houseOffered(id)) return;
   if(D.premium && ((S.sam.lvl||1) < D.level || S.rep < D.renown)) return toast(`${D.name} won't sell to Sam yet. Needs Sam level ${D.level} and renown ${D.renown}.`);
   const cost = houseCost(id);
   if(S.gold < cost) return toast('Not enough gold.');
-  if(!confirm(`Buy ${D.name} for ${fmt(cost)}?${S.houses.length>1 ? ` (base ${fmt(D.cost)}, +${Math.round(BAL.houses.priceStep*100)}% for each house you already own beyond the first)` : ''}`)) return;
+  if(!confirm(`Buy ${D.name} for ${fmt(cost)}? (deed ${fmt(D.cost)} × ${houseBuyMult().toFixed(0)} this far into the cycle${S.houses.length>1 ? `, +${Math.round(BAL.houses.priceStep*100)}% for each house you already own beyond the first` : ''})`)) return;
   S.gold -= cost; S.houses.push(makeHouse(id)); S.cur = id;
   note(`You now own ${D.name}!`);
   if(!isHired(D.npc)){
-    const n = makeNamed(D.npc); n.house = id; n.locked = id; n.contract = 999; n.job = safeJob(n, NAMED[D.npc].job); if(MENU_JOBS.includes(n.job)) n.menu = getActs().filter(a=>clientStance(n,a.id)==='yes').map(a=>a.id);
+    const n = rebirthNamed(makeNamed(D.npc)); n.house = id; n.locked = id; n.contract = 999; n.job = safeJob(n, NAMED[D.npc].job); if(MENU_JOBS.includes(n.job)) n.menu = getActs().filter(a=>clientStance(n,a.id)==='yes').map(a=>a.id);
     S.workers.push(n); checkUnlocks(true);
     EVQ.push(()=>({title:`${D.name}`, who:n.id, scene:'portrait', text:`${n.name} is waiting at the door when Sam arrives with the deed.\n\n${n.backstory}\n\nShe comes with the place.${goddessHouseNote(id)}`, choices:[{label:'Welcome aboard', fx(){ n.trust=clamp(n.trust+5); return ''; }}]}));
   }

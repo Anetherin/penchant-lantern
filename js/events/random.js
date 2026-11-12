@@ -220,6 +220,14 @@ function renewWill(w, boost=0){ const B = BAL.renewal; return (w.trust*0.6 + w.m
 function renewFee(w, wage, s){ const B = BAL.renewal; return s >= B.freeAt ? 0 : Math.round(wage * B.feeWeeks * Math.pow((B.freeAt - s)/B.freeAt, 1.2)); }
 // odds she says yes: certain above refuseBelow, falling toward 15% at zero
 const renewOdds = s => { const B = BAL.renewal; return s >= B.refuseBelow ? 1 : 0.15 + 0.85*Math.max(0,s)/B.refuseBelow; };
+// Auto-renew at her going rate when she's sure to say yes and the bonus is affordable. Returns a report line, or null (show the event).
+function autoRenew(w){
+  if(!S.workers.includes(w) || isFree(w) || w.locked) return null;
+  const B = BAL.renewal, market = Math.max(w.wage, wageFor(w)), s = renewWill(w), fee = renewFee(w, market, s);
+  if(!(has(w,'Loyal') || renewOdds(s) >= 1) || S.gold < fee) return null;
+  S.gold -= fee; const old = w.wage; w.wage = market; w.contract = 12;
+  return `📝 ${w.name} renewed her contract automatically: ${fmt(market)}/wk for 12 weeks${market > old ? ` (up from ${fmt(old)})` : ''}${fee ? `, ${fmt(fee)} signing bonus` : ''}.`;
+}
 function evRenew(w){
   if(!S.workers.includes(w) || isFree(w) || w.locked) return null;
   const B = BAL.renewal, market = Math.max(w.wage, wageFor(w)), raised = Math.round(market*(1+B.raise));

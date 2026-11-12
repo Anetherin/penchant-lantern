@@ -20,7 +20,7 @@ function pay(label, cost, h, win){ return {label:`${label} (${fmt(cost)})`, fx()
 function freeResident(h){ const R = resident(h); if(!R) return ''; R.free = true; R.wage = 0; R.contract = 999; R.trust = clamp(R.trust+15); if(!has(R,'Loyal')) R.traits.push('Loyal'); return `\n\n(${R.name} now works without wages.)`; }
 function joinNamed(key, h, free){
   if(isHired(key)) return '';
-  const w = makeNamed(key); w.house = h.id; w.locked = h.id; w.contract = 999; w.trust = clamp(w.trust+20);
+  const w = rebirthNamed(makeNamed(key)); w.house = h.id; w.locked = h.id; w.contract = 999; w.trust = clamp(w.trust+20);
   if(free){ w.free = true; w.wage = 0; w.contract = 999; }
   S.workers.push(w); assignStart(w, NAMED[key].job); delete NPCS['n_'+key]; checkUnlocks(true);
   return `\n\n(${w.name} joins ${h.name}${free?', working without wages':''}.)`;

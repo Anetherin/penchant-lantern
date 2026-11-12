@@ -70,6 +70,7 @@ function ngSeed(){
   if(!S || !S.won) return null;
   const kh = new Set([homeHouse(), ...S.houses.filter(keepable).map(h=>h.id)]);
   const s = clone(S), keep = new Set([...carriedLovers(), ...ngFriends(), ...ngResidents(h=>kh.has(h.id))].map(w=>w.id));
+  s.workers.filter(w=>!keep.has(w.id)).forEach(w=>rememberLife(w, false, s));   // the ones left behind lived a life too (see rememberLife)
   s.workers = s.workers.filter(w=>keep.has(w.id));
   const ids = new Set([...keep, ...(s.alumni||[]).map(w=>w.id)]);
   s.bonds = Object.fromEntries(Object.entries(s.bonds||{}).filter(([k])=>k.split('|').every(id=>ids.has(id))));
@@ -194,6 +195,32 @@ function ngReset(w){
   w.lust = Math.min(w.lust||0, LUST_EAGER);
   w.popularity = 0; w.arcWk = 0; w.earnedLast = 0; w.energy = maxEnergy(w);
 }
+// Past lives of named ladies (S.lives[key]): what she'd built and how many Reincarnated stacks she has.
+//  - At a New Game+ every named lady who walks away is remembered as having lived a life (rememberLife(w)): when she
+//    comes back later (her house bought again, a story join, a walk-in) she returns like a resident whose house was
+//    kept: ngReset from that snapshot + one more stack.
+//  - A reincarnated lady who leaves mid-cycle (stashCloset) is remembered as the same life (rememberLife(w, true)):
+//    she comes back as she left, stacks and all, no new stack.
+// rebirthNamed(n, newLife): newLife forces a new life even for a same-life entry (a kept house's resident recreated at NG+).
+const lifeOf = (w, same) => ({reborn: w.reborn||0, same: !!same, stats: Object.assign({}, w.stats), tech: Object.assign({}, w.tech),
+  acts: Object.fromEntries(Object.entries(w.acts||{}).map(([k,a])=>[k, a.skill||0])), titles: (w.titles||[]).slice(), titleId: w.titleId || null});
+function rememberLife(w, same, into){
+  if(!w || !w.key || !NAMED[w.key]) return;
+  const T = into || S; T.lives = T.lives || {};
+  T.lives[w.key] = lifeOf(w, same);
+}
+function rebirthNamed(n, newLife){
+  const L = n && n.key && S.lives && S.lives[n.key]; if(!L) return n;
+  STAT_KEYS.forEach(k=>{ if(L.stats[k]!==undefined) n.stats[k] = L.stats[k]; });
+  TECH_KEYS.forEach(k=>{ if(L.tech[k]!==undefined) n.tech[k] = L.tech[k]; });
+  Object.entries(L.acts||{}).forEach(([k,v])=>{ if(n.acts && n.acts[k]) n.acts[k].skill = v; });
+  n.reborn = L.reborn;
+  if(!L.same || newLife){ ngReset(n); n.reborn = L.reborn + 1; }
+  if(L.titles && L.titles.length){ n.titles = [...new Set([...(n.titles||[]), ...L.titles])]; if(L.titleId) n.titleId = L.titleId; syncTitles(n); }
+  if(!n.free) n.wage = wageFor(n);
+  delete S.lives[n.key];
+  return n;
+}
 // A carried lover's romance starts over (when the player picks 'reset' for her on the perks step): no longer Devoted, her arc back to chapter 0,
 // firsts back to the start (w.intim 0; her path is fixed by her data), and the counters her arc checks (dates, private time).
 // A data trait the arc removes (Oblivious) comes back. Titles she earned stay, so replaying the arc can't grant its title twice.
@@ -234,7 +261,7 @@ function ngBegin(){
     ngReset(w); w.reborn = (w.reborn||0) + 1; w.free = false; w.isPartner = false; w.locked = null; w.job = 'rest'; w.contract = 12; w.house = og; w.seen = {}; w.wage = wageFor(w);
   });
   S.alumni = [...(S.alumni||[]), ...friends];
-  S.workers.filter(w=>!ids.has(w.id) && !friends.includes(w)).forEach(stashCloset);   // the ones walking away keep their clothes for next time
+  S.workers.filter(w=>!ids.has(w.id) && !friends.includes(w)).forEach(w=>{ stashCloset(w); rememberLife(w); });   // the ones walking away keep their clothes for next time
   S.workers = [...lovers, ...residents]; S.candidates = [];
   // bonds between two ladies who both reincarnate (lovers, old friends, alumni still waiting) carry over, faded to
   // ngplus.bonds.keep of their value (kind kept); everything else is dropped. b.past counts the lives it has survived.
@@ -249,12 +276,12 @@ function ngBegin(){
   // kept houses keep rooms, upgrades and story; their reputation goes back to the house's starting value plus ngplus.carry of what it had gained
   S.houses.forEach(h=>{ const D = HOUSES[h.id]; if(D) h.rep = Math.round(D.rep + (B.carry||0) * Math.max(0, (h.rep||0) - D.rep)); });
   // each kept house's resident comes with the house: if she wasn't working for Sam she's back, fresh
-  S.houses.forEach(h=>{ const D = HOUSES[h.id]; if(D && D.npc && !isHired(D.npc)){ const npc = makeNamed(D.npc); npc.house = h.id; npc.locked = h.id; npc.contract = 999; assignStart(npc, NAMED[D.npc].job); S.workers.push(npc); } });
+  S.houses.forEach(h=>{ const D = HOUSES[h.id]; if(D && D.npc && !isHired(D.npc)){ const npc = rebirthNamed(makeNamed(D.npc), true); npc.house = h.id; npc.locked = h.id; npc.contract = 999; assignStart(npc, NAMED[D.npc].job); S.workers.push(npc); } });
   S.cur = og;
   // the new house and its resident
   if(C.house && HOUSES[C.house] && !H(C.house)){
     const D = HOUSES[C.house]; S.houses.push(makeHouse(C.house)); H(C.house).since = S.week; S.starters = [...(S.starters||[]), C.house];
-    if(!isHired(D.npc)){ const n = makeNamed(D.npc); n.house = C.house; n.locked = C.house; n.contract = 999; assignStart(n, NAMED[D.npc].job); S.workers.push(n); }
+    if(!isHired(D.npc)){ const n = rebirthNamed(makeNamed(D.npc)); n.house = C.house; n.locked = C.house; n.contract = 999; assignStart(n, NAMED[D.npc].job); S.workers.push(n); }
   }
   // another past life
   if(C.past && C.past!=='none' && PASTS[C.past] && !hasPast(C.past)){ S.pasts = [...samPasts(), C.past]; PASTS[C.past].fx(S.sam); }

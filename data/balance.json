@@ -3,7 +3,7 @@
     "sleepIn: the lady who shares Sam's bed in an Owner's Suite (Sam tab → Home). trust = minimum trust; weekly: trustGain, mood, rest (her energy), samRest (Sam's energy); eventChance = odds per week of an evening/morning proposal when she is eager.",
     "Tuning numbers. Change them and reload; no code needed.",
     "amenities: effect numbers for the house amenities (data/economy.json → upgrades has cost, upkeep and wording; amenitySize has the rooms). raceDraw = multiplier on that race's weight when candidates are rolled, while a Tethering Stone (spirit) or Charging Alcove (android) is built in ANY house. sigil.samDrain = share of the usual energy a demon takes from Sam in a house with the sigil. chapel: a Chapel Keeper (angels, 2 per house) adds rep (reputation, scaled by repGain) and pop (popularity) each week, gets mood and trust, visitorClass {class: x} = pilgrim / cleric clients raise visitors and donations: x (1 + sum of (that class's share of the week's courtesan clients) x (value - 1)), and visitors leave donations = visitors x donation x (0.5 + charm/100). garden: mood each week and rest multiplier (+5%) for everyone in the house, elves get elfMult times both. incense: mode calm or aphro (h.incense); calm.pushy = multiplier on pushy-client and incident chance, calm.lust / aphro.lust on weekly lust build, aphro.prop on propositions to staff; beastMult = how much stronger beastkin feel it (the factor's distance from 1 is multiplied by it); lewdDrop = points added to her lewdness for service-comfort checks under aphro (never stored). workshop.perDwarf = share of the build markup removed per dwarf in the house each week (h.wsDisc, max 1, reset on any purchase). laundry.decay = multiplier on weekly tidiness loss. drinks: per drinks tier (h.drinks 0-3) bar[] multiplies bartender income, props[] multiplies the bar's proposition boost (jobs.barProps) and upkeep[] is the weekly cost (needs the Bar). classroom: the teacher (job teacher) raises each other lady's skill in the subject by floor((hers below teacher) x rate), x humanMult for humans; teacherGrow = skill growth for the teacher, learnXP = Wits growth for each lady taught per week (the teacher gets 1.5), mood / trust = her weekly gains. decor: demand[tier] multiplies client demand, noble = extra weight for noble clients at the top tier, upkeep = gold per tier per week.",
-    "houses: priceStep = each house you already own beyond the first adds this share of the base price to the next house you buy (HOUSES[id].cost x (1 + priceStep x (owned - 1))). New Game+ new-house debt is not affected.",
+    "houses: buying a house outright costs its deed price x max(buyMin, weeks into this cycle x buyPerWeek) x (1 + priceStep for each house already owned beyond the first) (houseCost in commands.js). The NG+ new house goes on the loan instead and ignores this.",
     "solo: energyCost = share of her max energy a solo night costs; clientCap = most clients she'll see that week afterward; lustDrop = how much it lowers her lust.",
     "lovers: neglectWeeks = weeks in a row without Sam before she feels left out (when another lover isn't); missedMood = mood lost each week she's restless and Sam doesn't see her; jealousyChance = weekly odds of that event. Shared scenes are tuned in bonds.json.",
     "breakup: mood / trust = what ending it costs her (Loyal ladies lose half the trust); rekindleTrust = trust she needs before Sam can ask her back; rekindleChance = base odds she says yes (better if she's happy); rekindleCooldown = weeks between attempts.",
@@ -14,7 +14,7 @@
     "Insatiable / Slow to Warm and the race multipliers are now fx in data/traits.json and data/races.json (lustBuild, lustDrop, lustFloor, lustMax). lust.traitChance = odds a generic lady has the trait.",
     "lust.bonus: extra mood/trust from private time with Sam when she's eager or restless (trainMult scales it for practice sessions); clientMood = mood per client service while eager.",
     "renewal: her willingness = (trust×0.6 + mood×0.4)/100 (+loyal for Loyal ladies). At freeAt or above she re-signs for free; below that the fee scales up toward feeWeeks × her wage; below refuseBelow she's thinking of leaving and may say no. raise = size of the raise option; raiseBoost = how much it helps her willingness.",
-    "wages: contracts renew at her current going rate (wageFor, which rises with her skills and popularity). Between renewals she asks for a raise once her wage falls below askAt × her going rate (askAtAmbitious for Ambitious/Greedy).",
+    "wages: contracts renew at her current going rate (wageFor, which rises with her skills and popularity). Between renewals she asks for a raise once her wage falls below askAt × her going rate (askAtAmbitious for Ambitious/Greedy). wages.formula: a lady's going rate (wageFor in character.js) = (base + avg stat (0-100) x stat + best skill x tech + popularity x pop + trait extras) x (1 + curve x ((stat+skill+popularity)/300)^2) x race wage x reborn raise. askAt/askAtAmbitious: when she asks for a raise.",
     "mood: restingPoint = the mood she drifts back toward each week (drift = how fast); overworkAt = how many clients a week before she feels overworked.",
     "income.escort: multiplier on all escort and off-duty service fees.",
     "demolish: share = fraction of an item's base price (no inflation) it costs to demolish a built amenity, or the last bedroom / staff quarters above the house's starting count. Frees the space, lowers h.spent by the base price, never refunds. Built-in amenities can't be demolished; neither can the Bathhouse, Stage or Bar while someone holds the job that needs it.",
@@ -122,7 +122,7 @@
   "lovers": {"neglectWeeks":4,"missedMood":4,"jealousyChance":0.6},
   "breakup": {"mood":-20,"trust":-10,"rekindleTrust":80,"rekindleChance":0.55,"rekindleCooldown":4},
   "renewal": {"freeAt":0.85,"refuseBelow":0.3,"feeWeeks":6,"loyal":0.15,"raise":0.2,"raiseBoost":0.15},
-  "wages": {"askAt":0.85,"askAtAmbitious":0.95},
+  "wages": {"askAt":0.85,"askAtAmbitious":0.95,"formula":{"base":9,"stat":0.35,"tech":0.25,"pop":0.35,"curve":0.6}},
   "mood": {"restingPoint":50,"drift":0.2,"overworkAt":4},
   "income": {"escort":1.25},
   "trust": {
@@ -135,7 +135,7 @@
     "perCycle": 0.35,
     "purse": 600,
     "saleValue": 0,
-    "improveShare": 0.6,
+    "improveShare": 1,
     "newHouseShare": 1,
     "baseTrust": 15,
     "baseLewd": 25,
@@ -547,7 +547,7 @@
     },
     "decor": {"demand":[1,1.06,1.105,1.13],"noble":2,"upkeep":5}
   },
-  "houses": {"priceStep":0.25},
+  "houses": {"priceStep":0.25,"buyMin":10,"buyPerWeek":2},
   "samUps": {
     "coffee": {
       "label": "Otherworld Coffee Maker",
@@ -660,7 +660,7 @@
   },
   "goddess": {
     "fullReborn": 4,
-    "events": {"perCycle":0.06,"max":0.35,"gap":2,"bound":0.15,"base":0.04},
+    "events": {"perCycle":0.06,"max":0.35,"gap":2,"bound":0.15,"base":0.04,"catchUp":{"per":0.05,"cap":0.3,"max":0.15,"gap":1}},
     "jealousy": {"perHire":3,"perPrivate":1,"perLady":0.15,"rosterRef":6,"decay":2,"perLover":4,"perCycle":6,"nightCut":15,"talkCut":5,"mid":30,"high":60},
     "love": {"bind":10,"night":2.5,"outside":0.5,"stay":70},
     "mood": {"base":55,"perLove":0.25,"perJealous":0.3,"drift":0.3,"ignoreBelow":35},

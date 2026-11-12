@@ -185,7 +185,7 @@ function refreshCandidates(extra=0, quality=1){
   if(S.flags.partnerCD>0) S.flags.partnerCD--;
   else if(Math.random()<0.35){
     const open = PARTNERS.filter(k=>!isHired(k) && partnerOffered(k));   // NG+ partners only turn up from cycle 2
-    if(open.length){ const k = pick(open); const c = makeNamed(k); c.signing = signingFor(c); S.candidates.push(c); S.flags.partnerCD = 5; addLog(`${c.name} is looking for work. (Candidates)`); }
+    if(open.length){ const k = pick(open); const c = rebirthNamed(makeNamed(k)); c.signing = signingFor(c); S.candidates.push(c); S.flags.partnerCD = 5; addLog(`${c.name} is looking for work. (Candidates)`); }
   }
   // drifters / visiting guests (data/guests.json) wander in now and then, stay a while, and can come back later
   const seen = S.flags.guestSeen = S.flags.guestSeen || {}, V = GUEST_VISITS;

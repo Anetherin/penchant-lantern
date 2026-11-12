@@ -206,23 +206,35 @@ function goddessAfter(R){
   // events: none in cycle 1, a little more often each cycle after (before the binding: her teases and remarks)
   const E = GB().events || {};
   if(!g.bound){
-    const ch = Math.min(E.max ?? 0.35, (E.base ?? 0) + (E.perCycle ?? 0.07) * ((S.cycle||1) - 1));
-    if(S.week - (g.evWk||0) >= (E.gap ?? 2) && Math.random() < ch){ g.evWk = S.week; EVQ.push(evGoddess); }
+    // behind on her story (unseen scenes from earlier cycles): she turns up more often until he has caught up
+    const late = gOverdue(), C = E.catchUp || {};
+    const ch = Math.min((E.max ?? 0.35) + (late ? (C.max ?? 0.15) : 0), (E.base ?? 0) + (E.perCycle ?? 0.07) * ((S.cycle||1) - 1) + Math.min(C.cap ?? 0.3, late * (C.per ?? 0.05)));
+    if(S.week - (g.evWk||0) >= (late ? (C.gap ?? 1) : (E.gap ?? 2)) && Math.random() < ch){ g.evWk = S.week; EVQ.push(evGoddess); }
   } else if(!g.ending && (g.divinity||0) >= ((GB().divinity||{}).max ?? 100)){ EVQ.push(evGoddessEnd); }
   else if(goddessActive() && S.week - (g.evWk||0) >= (E.gap ?? 2) && Math.random() < (E.bound ?? 0.15) * (0.5 + g.jealousy/100)){ g.evWk = S.week; EVQ.push(evGoddessRemark); }
 }
 
 /* ---------- before the binding: teases (in order, gated by cycle) and jealous remarks ---------- */
 // Before the binding she turns up in disguise: another race's form each time (same hair, eyes and skin), going by an alias.
-// teases (goddess.json): in order, each once, from minCycle (to maxCycle); repeat: true ones fill the gaps at random.
+// teases (goddess.json): story scenes play in file order, each once, from minCycle on. maxCycle is when a scene is
+// "due": a story scene missed by then stays available (and makes her turn up more often, gOverdue) so the story
+// always moves forward. repeat: true ones are filler, gated by minCycle-maxCycle, and only play once every story
+// scene unlocked so far has been seen.
 // form: 'disguise' (any form but her own), 'true', or a form key. reveal: true = Sam has worked it out (g.knows).
-const gEligible = t => (t.minCycle||1) <= (S.cycle||1) && (t.maxCycle||99) >= (S.cycle||1) && (!t.needKnows || G().knows) && (!t.unknown || !G().knows);
+const gKnowOK = t => (!t.needKnows || G().knows) && (!t.unknown || !G().knows);
+const gEligible = t => t.repeat ? (t.minCycle||1) <= (S.cycle||1) && (t.maxCycle||99) >= (S.cycle||1) && gKnowOK(t)
+                                : (t.minCycle||1) <= (S.cycle||1) && gKnowOK(t);
+// unseen story scenes, in order (minCycle reached, not yet seen); the next one is the first eligible
+const gFresh = () => (GOD.teases||[]).filter(t=>!t.repeat && !(G().teases||[]).includes(t.id) && (t.minCycle||1) <= (S.cycle||1));
+// how many story scenes are past due (their maxCycle is behind the current cycle)
+const gOverdue = () => gFresh().filter(t=>(t.maxCycle||99) < (S.cycle||1)).length;
 function gDisguise(){ const ks = Object.keys(GOD_FORMS).filter(k=>k!==GOD_TRUE), g = G(); const k = pick(ks.filter(x=>x!==g.lastDisguise).length ? ks.filter(x=>x!==g.lastDisguise) : ks); g.lastDisguise = k; return k; }
 function evGoddess(){
   const g = G(); if(g.bound || g.left) return null;
-  const all = GOD.teases || [], fresh = all.filter(t=>!t.repeat && !(g.teases||[]).includes(t.id) && gEligible(t)), rep = all.filter(t=>t.repeat && gEligible(t));
+  const all = GOD.teases || [], pending = gFresh(), fresh = pending.filter(gEligible), rep = all.filter(t=>t.repeat && gEligible(t));
   const canRemark = (S.cycle||1) >= (GOD.remarksFrom ?? 3) && (GOD.remarks||{})[jTier()];
-  const T = fresh[0] && Math.random() < 0.75 ? fresh[0] : rep.length && Math.random() < 0.7 ? pick(rep) : fresh[0] || null;
+  // story first; filler (and remarks) only once every unlocked story scene has played
+  const T = fresh[0] || (!pending.length && rep.length && Math.random() < 0.7 ? pick(rep) : null);
   if(!T) return canRemark ? evGoddessRemark() : null;
   const fk = T.form==='true' ? GOD_TRUE : GOD_FORMS[T.form] ? T.form : gDisguise(), F = GOD_FORMS[fk] || {};
   const ctx = {house:curH().name, n:S.workers.length, alias:F.alias || GN(), form:F.desc || 'a woman', race:(F.label||'').toLowerCase(), times:(g.met2||0)};

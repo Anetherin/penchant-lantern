@@ -46,7 +46,7 @@ const nameBadge = w => isGuest(w) ? `<span class="tag guest" title="Visiting gue
 function traitTags(w){ return (w.reborn?`<span class="tag act" title="${esc(rebornDesc(w))}">♻ Reincarnated${w.reborn>1?' ×'+w.reborn:''}</span> `:'') + (w.unique?`<span class="tag act" title="${esc(w.unique.desc||'')}">★ ${esc(w.unique.name)}</span> `:'') + (w.ngPerks||[]).map(t=>`<span class="tag act" title="${esc(TRAITS[t]?TRAITS[t].desc:'')}">✦ ${esc(t)}</span>`).join(' ') + ' ' + (w.traits||[]).filter(t=>!TRAITS[t]||!TRAITS[t].hidden||S.sam.appraisal>=3).map(t=>`<span class="tag ${TRAITS[t]&&TRAITS[t].hidden?'hid':''} ${TRAITS[t]&&TRAITS[t].story?'act':''}" title="${esc(TRAITS[t]?TRAITS[t].desc:'')}">${esc(t)}</span>`).join(' '); }
 function jobOptions(w){ return Object.entries(JOBS).map(([k,J])=>{ const why = k===w.job ? null : canDo(w,k); return `<option value="${k}" ${k===w.job?'selected':''} ${why?'disabled':''}>${why?'🔒 ':''}${J.label}</option>`; }).join(''); }
 function houseTabs(withAll){
-  return `<div class="hsel">${withAll?`<button class="sm ${ROSTER_FILTER==='all'?'on':''}" onclick="ROSTER_FILTER='all';render()">All houses</button>`:''}${S.houses.map(h=>`<button class="sm ${(S.cur===h.id && (!withAll||ROSTER_FILTER!=='all'))?'on':''}" onclick="S.cur='${h.id}';ROSTER_FILTER='cur';render()">${esc(h.name)} <span class="muted">(${S.workers.filter(w=>w.house===h.id).length})</span></button>`).join('')}</div>`;
+  return `<div class="hsel">${withAll?`<button class="sm ${ROSTER_FILTER==='all'?'on':''}" onclick="ROSTER_FILTER='all';render()">All houses</button>`:''}${S.houses.map(h=>`<button class="sm ${(S.cur===h.id && (!withAll||ROSTER_FILTER!=='all'))?'on':''}" onclick="S.cur='${h.id}';ROSTER_FILTER='cur';render()">${esc(h.name)} <span class="muted">(${S.workers.filter(w=>w.house===h.id).length})</span></button>`).join('')}${S.houses.length>1?`<button class="sm" title="Move this house left" onclick="moveHouse(S.cur,-1)" ${S.houses[0].id===S.cur?'disabled':''}>◀</button><button class="sm" title="Move this house right" onclick="moveHouse(S.cur,1)" ${S.houses[S.houses.length-1].id===S.cur?'disabled':''}>▶</button>`:''}</div>`;
 }
 function renderHeader(){
   const nd = nextDue();
@@ -124,7 +124,7 @@ function agendaHTML(){
   const worn = W.filter(w=>w.job!=='rest' && w.energy < maxEnergy(w)*0.3);
   const unhappy = W.filter(w=>w.mood < 25);
   const ending = W.filter(w=>!isFree(w) && !w.locked && w.contract<=2);
-  const neglected = W.filter(w=>has(w,'Devoted') && (w.neglect||0) >= Math.max(1, BAL.lovers.neglectWeeks-1));
+  const neglected = W.filter(w=>has(w,'Devoted') && !w._samTime && (w.neglect||0) >= Math.max(1, BAL.lovers.neglectWeeks-1));   // time with Sam this week clears it (w.neglect itself resets at the week's end)
   if(waiting.length) lines.push(`💗 Waiting for Sam: ${list(waiting)}`);
   if(neglected.length) lines.push(`💔 Feeling neglected: ${list(neglected)}`);
   if(restlessL.length) lines.push(`🔥 Restless: ${list(restlessL)}`);

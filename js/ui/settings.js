@@ -10,7 +10,8 @@ function viewSettings(){
       <label class="chk"><input type="checkbox" id="s_auto" ${SET.autoPortrait?'checked':''}> Always auto-generate portraits, even with the option above off</label>
       <label class="chk"><input type="checkbox" id="s_imgHidden" ${SET.imgHidden?'checked':''}> Start with images hidden (press 🖼 Show image to see one)</label>
       <label class="chk"><input type="checkbox" id="s_repImg" ${SET.repImg!==false?'checked':''}> Weekly report: on a lady's page, show encounters that already have a saved image</label>
-      <label class="chk"><input type="checkbox" id="s_lib" ${SET.libraryInPool?'checked':''}> Library characters appear as candidates</label></div>
+      <label class="chk"><input type="checkbox" id="s_lib" ${SET.libraryInPool?'checked':''}> Library characters appear as candidates</label>
+      <label class="chk"><input type="checkbox" id="s_autoRenew" ${SET.autoRenew!==false?'checked':''}> Auto-renew contracts at the going rate when a lady is sure to sign (unsure ones, or bonuses you can't afford, still ask)</label></div>
     <div class="row"><button class="primary" onclick="saveSettingsUI()">Save settings</button><span class="muted">Image plugin: ${getPlugin()?'<span class="good">connected</span>':'<span class="warn">not connected</span>'} · Image storage: ${DB?'<span class="good">ready</span>':'<span class="warn">unavailable</span>'}</span></div></section>
   ${Object.keys(GUEST_PACKS).length ? `<section class="card"><h2>Visiting characters</h2><p class="muted">Crossover guests from <code>data/guests.json</code> pass through as candidates now and then. Switch off any packs you don't want.</p>
     <div class="row">${Object.entries(GUEST_PACKS).map(([k,P])=>`<label class="chk"><input type="checkbox" class="s_pack" data-pack="${esc(k)}" ${(SET.packsOff||{})[k]?'':'checked'}> ${esc(P.label||k)} <span class="muted">(${Object.keys(noMeta(P.characters)).length})</span></label>`).join('')}</div>
@@ -32,7 +33,7 @@ function viewSettings(){
 }
 function saveSettingsUI(){
   SET.style = $('#s_style').value; SET.negative = $('#s_neg').value; SET.resolution = $('#s_res').value;
-  SET.autoPortrait = $('#s_auto').checked; SET.autoImg = $('#s_autoImg').checked; SET.imgHidden = $('#s_imgHidden').checked; SET.repImg = $('#s_repImg').checked; SET.libraryInPool = $('#s_lib').checked; saveSettings(); toast('Settings saved.');
+  SET.autoPortrait = $('#s_auto').checked; SET.autoImg = $('#s_autoImg').checked; SET.imgHidden = $('#s_imgHidden').checked; SET.repImg = $('#s_repImg').checked; SET.libraryInPool = $('#s_lib').checked; SET.autoRenew = $('#s_autoRenew').checked; saveSettings(); toast('Settings saved.');
 }
 function savePacksUI(){
   SET.packsOff = {}; document.querySelectorAll('.s_pack').forEach(el=>{ if(!el.checked) SET.packsOff[el.dataset.pack] = true; });

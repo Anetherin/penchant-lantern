@@ -99,7 +99,7 @@ function samRest(){
 function samChat(id){
   const w = findW(id), d = DATES.chat; if(!w || !useAP(d.energy)) return;
   const m = pmAny(w,d.like), tg = gainTrust(w, d.trust * rnd(0.6,1.4) * (has(w,'Romantic')?1.4:1) * (has(w,'Shy')?1.2:1) * m);
-  moodAdd(w, d.mood*m - (m<1?3:0)); samStat('charm',1); samXP(5); samLog(`Chatted with ${w.name}`); checkUnlocks();
+  moodAdd(w, d.mood*m - (m<1?3:0)); w._samTime = (w._samTime||0) + 1; samStat('charm',1); samXP(5); samLog(`Chatted with ${w.name}`); checkUnlocks();
   save(); render(); closeModal();
   const topic = ET('chat', NAMED[w.key] && Object.values(NAMED[w.key].bonds||{}).some(x=>x.kind==='home') || ['yui','natsuki','kanako','akari','lara','ella','emily'].includes(w.key) ? 'home' : (S.cycle||1)>=2 && Math.random()<0.3 ? 'ng' : 'topics');
   showResult(`Chatting with ${w.name}`, `Sam and ${w.name} talk ${topic}.\n\nTrust ${tDelta(tg)}`, w.id, null);
@@ -148,7 +148,7 @@ function samDate(id, k){
   if(!dateListed(w, d)) return toast(d.needsUp ? `${houseOf(w).name} needs a ${(UPGRADES[d.needsUp]||{label:d.needsUp}).label}.` : `${w.name} and Sam aren't there yet.`);
   if(!useAP(d.energy)) return; S.gold -= cost;
   const m = pmAny(w,d.like), tg = gainTrust(w, d.trust * (has(w,'Romantic')?1.4:1) * (d.trustMult||1) * m);
-  moodAdd(w, d.mood*m - (m<1?3:0)); w.dates++;
+  moodAdd(w, d.mood*m - (m<1?3:0)); w.dates++; w._samTime = (w._samTime||0) + 1;   // a date counts as time with Sam (lovers' neglect)
   const lg = d.lewd ? lewdUp(w, d.lewd * (m>1 ? 1.25 : m<1 ? 0.6 : 1), d.lewdCap) : 0;
   if(d.lust){ w.lust += d.lust * fxMul(w,'lustBuild'); fitLust(w); }
   if(d.restores) w.energy = clamp(w.energy + d.restores, 0, maxEnergy(w));
