@@ -117,7 +117,14 @@ const nightMult = pr => Math.max(0, 1 - (pr.nightsLost||0) / (BAL.props.nights |
 const outputMult = (w, pr) => ((JOBS[w.job] && JOBS[w.job].must) ? 1 : Math.max(1 - BAL.props.maxPenalty, 1 - BAL.props.penalty*(pr.accProp||0))) * nightMult(pr);
 // Courtesans work out of the mood; everyone else turns heavier services down below lust.low.
 const moodFree = w => w.job === 'courtesan';
-const nim = (w, id) => !moodFree(w) && notInMood(w, id);
+// Demons feed on finished services (a kiss is a small sip; massages she receives give energy back). w.feedOnly = null (off) |
+// a % of her max energy (below it she only takes services that feed her) | 'always'. Set on her sheet (setFeedOnly).
+const demonFeeds = id => { const A = actById(id); return !!A && (!!A.finish || (A.energyBack||0) > 0 || A.kind==='kiss'); };
+function feedOnly(w, id){
+  if(w.race!=='demon' || !w.feedOnly || demonFeeds(id)) return false;
+  return w.feedOnly==='always' || w.energy < maxEnergy(w) * (+w.feedOnly||0) / 100;
+}
+const nim = (w, id) => feedOnly(w, id) || (!moodFree(w) && notInMood(w, id));
 // Menu used for must-offer staff: her menu, or what she's comfortable with if she never set one.
 const offeredMenu = w => w.menu.length ? w.menu : getActs().filter(a=>clientStance(w,a.id)==='yes').map(a=>a.id);
 // Would she take this proposition? Returns {kind:'yes'|'alt'|'no', act, why}.
@@ -244,26 +251,53 @@ function madameCoach(mad, w, pr){
 const teachPower = (t, pr) => { const C = BAL.amenities.classroom; return (C.base + s100(t.tech.manage)/100*C.manageW + s100(statOf(t,'wits'))/100*(C.witsW ?? C.refW)) * ob(t,'teacher') * jb0(t,'teacher') * fxMul(t,'teach') * (pr ? outputMult(t, pr) : 1); };
 const learnPower = w => { const C = BAL.amenities.classroom; return (C.learnBase + s100(statOf(w,'wits'))/100*(C.learnWits ?? C.learnRef)) * fxMul(w,'learn') * (w.race==='human' ? C.humanMult : 1); };
 const jb0 = (w, j) => fxSub(w, 'jobBonus', j);
-const subjectLabel = k => TECH_LABEL[k] || (actById(k) ? actLabel(k) : k);
-const subjectSkill = (w, k) => TECH_LABEL[k] ? (w.tech[k]||0) : (w.acts && w.acts[actKey(k)] ? w.acts[actKey(k)].skill : null);
-function teachSubject(h, t){
-  const k = h.teachSkill;
-  if(k && (TECH_LABEL[k] || (actById(k) && subjectSkill(t, k) !== null))) return TECH_LABEL[k] ? k : actKey(k);
-  return TECH_KEYS.reduce((a,x)=>(t.tech[x]||0) > (t.tech[a]||0) ? x : a, TECH_KEYS[0]);
+// Subjects (h.teachSkill): a TECH skill, 'stat:<key>', a service id, or a set: 'set:skills' | 'set:stats' | 'set:services' | 'set:all' | 'job:<job>'
+// (that job's stats and skill, plus services for menu jobs). A set splits the class: each subject gets rate x n^-setExp.
+// Services need a lewd enough teacher: her lewdness (0-100) >= the service's th + classroom.svcLewd (teachLewd), and she must know it.
+const teachLewd = id => ((actById(id)||{}).th || 0) + (BAL.amenities.classroom.svcLewd ?? 0);
+const canTeachSvc = (t, id) => !!actById(id) && !actBanned(t, id) && t.acts && !!t.acts[actKey(id)] && (t.lewd||0) >= teachLewd(id);
+const subjectLabel = k => TECH_LABEL[k] || (k.startsWith('stat:') ? cap(k.slice(5)) : actById(k) ? actLabel(k) : k);
+const subjectSkill = (w, k) => TECH_LABEL[k] ? (w.tech[k]||0) : k.startsWith('stat:') ? statOf(w, k.slice(5)) : (w.acts && w.acts[actKey(k)] ? w.acts[actKey(k)].skill : null);
+const TEACH_SETS = {'set:skills':'All skills', 'set:stats':'All stats', 'set:services':'All services she can teach', 'set:all':'Everything'};
+function teachSetLabel(k){ return TEACH_SETS[k] || (k && k.startsWith('job:') && JOBS[k.slice(4)] ? JOBS[k.slice(4)].label + ' set' : subjectLabel(k||'')); }
+function teachJobSet(t, j){
+  const B = (BAL.train.stat||{}).byJob || {}, st = Object.keys(B[j] || B.default || {}).filter(k=>STAT_KEYS.includes(k)).map(k=>'stat:'+k);
+  const sk = (JOBS[j]||{}).skill, out = [...st, TECH_KEYS.includes(sk) ? sk : 'service'];
+  if(MENU_JOBS.includes(j)) getActs().forEach(a=>{ if(canTeachSvc(t, a.id)) out.push(actKey(a.id)); });
+  return out;
 }
+function teachList(h, t){
+  const k = h.teachSkill, svcs = () => getActs().filter(a=>canTeachSvc(t, a.id)).map(a=>actKey(a.id));
+  if(k==='set:skills') return TECH_KEYS.slice();
+  if(k==='set:stats') return STAT_KEYS.map(x=>'stat:'+x);
+  if(k==='set:services'){ const v = svcs(); if(v.length) return v; }
+  else if(k==='set:all') return [...TECH_KEYS, ...STAT_KEYS.map(x=>'stat:'+x), ...svcs()];
+  else if(k && k.startsWith('job:') && JOBS[k.slice(4)]) return teachJobSet(t, k.slice(4));
+  else if(k && (TECH_LABEL[k] || (k.startsWith('stat:') && STAT_KEYS.includes(k.slice(5))))) return [k];
+  else if(k && canTeachSvc(t, k)) return [actKey(k)];
+  return [TECH_KEYS.reduce((a,x)=>(t.tech[x]||0) > (t.tech[a]||0) ? x : a, TECH_KEYS[0])];   // auto, or a subject she can't teach (yet)
+}
+// What the class covers this week (label for the report and the picker's "Auto").
+function teachSubject(h, t){ const L = teachList(h, t), k = h.teachSkill; return L.length > 1 ? k : L[0]; }
 function classroomTeach(h, W, t, tpr, R, hr){
-  const C = BAL.amenities.classroom, k = teachSubject(h, t), ts = subjectSkill(t, k) || 0, tp = teachPower(t, tpr); let n = 0, gain = 0;
+  const C = BAL.amenities.classroom, L = teachList(h, t), split = Math.pow(L.length, -(C.setExp ?? 0.5)), tp = teachPower(t, tpr), label = L.length > 1 ? teachSetLabel(h.teachSkill) : subjectLabel(L[0]);
+  let n = 0, gain = 0;
   W.forEach(w=>{
-    if(w===t) return; const cur = subjectSkill(w, k); if(cur === null) return;
+    if(w===t) return; let got = 0;
     statXP(w, 'wits', C.learnXP ?? 0.3);
-    const d = Math.floor((ts - cur) * C.rate * tp * learnPower(w)); if(d <= 0) return;
-    const nv = clampK(cur + d), got = nv - cur; if(got <= 0) return;
-    if(TECH_LABEL[k]) w.tech[k] = nv; else w.acts[actKey(k)].skill = nv;
-    const pr = R.per[w.id]; pr.learned = got; pr.why.push({t:`${t.name} taught her ${subjectLabel(k).toLowerCase()}`, good:true}); n++; gain += got; countUp(w, 'lessons');
+    L.forEach(k=>{
+      const cur = subjectSkill(w, k); if(cur === null || (!TECH_LABEL[k] && !k.startsWith('stat:') && actBanned(w, k))) return;
+      const d = Math.floor((subjectSkill(t, k) - cur) * C.rate * split * tp * learnPower(w)); if(d <= 0) return;
+      if(TECH_LABEL[k]){ const nv = clampK(w.tech[k] + d); got += nv - w.tech[k]; w.tech[k] = nv; }
+      else if(k.startsWith('stat:')){ const s = k.slice(5), o = w.stats[s]||0, nv = clampK(o + d); got += nv - o; w.stats[s] = nv; }
+      else { const A = w.acts[actKey(k)], nv = clampK(A.skill + d); got += nv - A.skill; A.skill = nv; }
+    });
+    if(got <= 0) return;
+    const pr = R.per[w.id]; pr.learned = got; pr.why.push({t:`${t.name} taught her ${label.toLowerCase()}`, good:true}); n++; gain += got; countUp(w, 'lessons');
   });
-  if(TECH_LABEL[k]) grow(t, k, C.teacherGrow); else growAct(t, k, C.teacherGrow);
+  L.forEach(k=>{ const g = C.teacherGrow * split; if(TECH_LABEL[k]) grow(t, k, g); else if(k.startsWith('stat:')) statXP(t, k.slice(5), g); else growAct(t, k, g); });
   moodAdd(t, C.mood); gainTrust(t, C.trust); tpr.taught = n; if(n) countUp(t, 'taught', n); tpr.why.push({t:'taught the class', good:true});
-  hr.classroom = {teacher:t.name, subject:subjectLabel(k), n, gain};
+  hr.classroom = {teacher:t.name, subject:label, n, gain};
 }
 function simHouse(h, R){
   const HD = HOUSES[h.id], W = S.workers.filter(w=>w.house===h.id), P = PRICES[h.price], J = BAL.jobs, BP = BAL.props, TY = BAL.tidy;
@@ -344,7 +378,7 @@ function simHouse(h, R){
     if(w.job==='rest' || !restless(w) || has(w,'Devoted') || pr.solo) return;
     const must = !!JOBS[w.job].must, n = ri(BP.recklessMin, BP.recklessMax);
     for(let i=0;i<n;i++){
-      const ids = offeredMenu(w).filter(id=>canClient(w,id) && actById(id) && w.energy - actCost(w,id) > maxEnergy(w)*0.2);
+      const ids = offeredMenu(w).filter(id=>canClient(w,id) && actById(id) && !feedOnly(w,id) && w.energy - actCost(w,id) > maxEnergy(w)*0.2);
       if(!ids.length) break;
       const id = (w.fav && ids.includes(w.fav) && Math.random()<0.5) ? w.fav : pick(ids), cls = pickClass(h), client = makeClient(h, cls), e = {cls:cls.id, want:id, act:null, outcome:'no', self:true, note:null, expr:null, ctx:'reckless'}, s0 = encSnap(w, pr);
       pr.props++; hr.selfProps++; R.selfProps++; noteClient(X, client);
@@ -377,9 +411,10 @@ function simHouse(h, R){
         w.energy -= actCost(w, id)*0.5; growAct(w, id, 0.3); lewdUp(w, 0.2, svcLewdCap(id,'client'));
         const ser = serveAct(w, A, {tech:0.8, reluct:false, pr, h});
         pr.samp = pr.samp || {}; pr.samp[id] = (pr.samp[id]||0) + 1; sN++;
+        w.popularity = clamp(w.popularity + (J.samplesPop ?? 0.8) * (0.5 + qualityOf(w, id)));   // the street remembers the girl who gave it away
         pr.enc.push(encFx(w, pr, s0, {cls:pickClass(h).id, act:id, outcome:'yes', sample:true, note:ser.note, expr:ser.expr, ctx:'sample'}));
       }
-      if(!sN) spendLust(w, J.samplesLust);   // nothing on her menu light enough: smiles and teasing only
+      if(!sN){ spendLust(w, J.samplesLust); w.popularity = clamp(w.popularity + (J.samplesPopTease ?? 0.3)); }   // nothing on her menu light enough: smiles and teasing only
       const dr = (qualityOf(w) - 0.5) * J.samplesRep; if(dr > 0) repAdd(h, dr); else h.rep = clamp(h.rep + dr);
       if(Math.abs(dr) >= 0.05) (pr.notes = pr.notes||[]).push(flavor(dr > 0 ? 'job_samples_rep_good' : 'job_samples_rep_bad', w));
     }
@@ -465,7 +500,7 @@ function simHouse(h, R){
         hx.cap -= 1; hx.ent++; hr.hosted.ent++; countUp(hx.w, 'hosted');
         waitAdj += HS.sat * (0.6 + s100(statOf(hw,'charm'))/125) + HS.satSkill * qualityOf(hw, null) * cMul(client,'hostLike');
         if(cOpen(client) >= HS.fluffOpen && hw.offDuty !== 'off'){
-          const ids = offeredMenu(hw).filter(id=>HOST_LIGHT.includes(id) && actById(id) && canClient(hw,id) && !actBanned(hw,id)); let done = 0, last = null;
+          const ids = offeredMenu(hw).filter(id=>HOST_LIGHT.includes(id) && actById(id) && canClient(hw,id) && !actBanned(hw,id) && !feedOnly(hw,id)); let done = 0, last = null;
           for(let k=ri(1, HS.fluffMax); k>0 && ids.length && hx.cap >= 1; k--){
             const id = (hw.fav && ids.includes(hw.fav) && Math.random()<0.5) ? hw.fav : pick(ids), ec = actCost(hw, id);
             if(hw.energy - ec < maxEnergy(hw)*0.2) break;
@@ -482,6 +517,7 @@ function simHouse(h, R){
     if(want){
       pr.props++;
       if(fits(w,want)){ act = want; outcome='yes'; pr.acc++; }
+      else if(feedOnly(w,want)){ pr.fedOnly = (pr.fedOnly||0)+1; outcome='no'; }   // a demon saving herself for services that feed her
       else if(nim(w,want)){ pr.notMood = (pr.notMood||0)+1; outcome='no'; pr._nm = true; }
       else {
         const alt = w.menu.filter(id=>canClient(w,id) && !nim(w,id) && lightOK(id) && actById(id) && actById(id).price<=actById(want).price).sort((a,b)=>actById(b).price-actById(a).price)[0];
@@ -866,6 +902,7 @@ function repWhy(p){
   if(p.nightsLost) lim.push(`<span class="warn">${p.nightsLost} night${p.nightsLost>1?'s':''} cut short by a pushy client</span>`);
   if(p.noRoom) lim.push(`<span class="warn">no free room ×${p.noRoom}</span>`);
   if(p.notMood) lim.push(`<span class="warn">not in the mood ×${p.notMood}</span>`);
+  if(p.fedOnly) lim.push(`<span class="warn">only feeding services ×${p.fedOnly}</span>`);
   if(p.solo) lim.push('<span class="pink">spent a night alone</span>');
   if(p.accProp && p.job && !(JOBS[p.job]||{}).must) lim.push(`propositions took time from her job (${p.accProp})`);
   if(p.skipNights) lim.push('skipped propositions after her night ended');

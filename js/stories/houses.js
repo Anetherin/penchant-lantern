@@ -25,6 +25,9 @@ function joinNamed(key, h, free){
   S.workers.push(w); assignStart(w, NAMED[key].job); delete NPCS['n_'+key]; checkUnlocks(true);
   return `\n\n(${w.name} joins ${h.name}${free?', working without wages':''}.)`;
 }
+// Ladies a house story brings in for good (joinNamed in its last beat): house id -> [key, free]. NG+ treats them like the
+// house's resident: they come back with a kept house whose story is done (ngplus.js houseLadies / residentHouse).
+const STORY_JOINS = {castle:['seraphine', true], hollow:['ines', false], pavilion:['ilyana', true], veil:['vharra', false]};
 const RN = h => { const R = resident(h); return R ? R.name : 'the staff'; };
 const RID = h => { const R = resident(h); return R ? R.id : null; };
 const SSTR = h => Math.max(S.sam.strength, secOf(h));

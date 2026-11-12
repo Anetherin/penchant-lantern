@@ -61,6 +61,7 @@ function refreshSheetInfo(){
     <table><tr><th>Service</th><th>Skill</th><th>Clients</th><th>Sam</th><th>Menu</th></tr>${rows}</table>
     <div class="muted" style="font-size:12px">✓ she enjoys it · 🔒 (Sam) she'd be fine with it, but they haven't gotten that far yet · ~ she'll do it because she trusts Sam (costs mood; lewdness grows faster) · ✗ a line she won't cross yet. Numbers: her inclination / the service's line (on the 0-1000 Lewdness scale; Skill is out of 1000 too).<br>${kp?'★ favorite (mood +) · <span class="warn">✗</span> after a name = dislikes (mood −) · ♥ lovers only':'Her preferences show at trust 400 or Appraisal Lv 3.'} · Menu = what she offers clients.</div>
     <div class="row" style="margin-top:4px" title="Clients may proposition her for menu services. Courtesans, dancers and bath attendants always serve them. Others: On = usually accepts, Ask me = she decides (lust and mood), Off = no (unless she is reckless). Each accepted proposition costs ${Math.round(BAL.props.penalty*100)}% of her main job's output (max ${Math.round(BAL.props.maxPenalty*100)}%).">Open to propositions ${JOBS[w.job].must ? '<span class="muted">always (this job offers its menu)</span>' : `<select onchange="setOffDuty('${w.id}',this.value)"><option value="on" ${w.offDuty==='on'?'selected':''}>On</option><option value="ask" ${w.offDuty==='ask'?'selected':''}>Ask me</option><option value="off" ${w.offDuty==='off'?'selected':''}>Off</option></select>`}</div>
+    ${w.race==='demon' ? `<div class="row" title="Demons feed on finished services (kisses are a small sip). With this on, she turns down clients' requests for services that don't feed her (receiving, massages, warm-ups) when her energy is below the threshold. Turned-down clients still pay for company.">😈 Feeding only <select onchange="setFeedOnly('${w.id}',this.value)">${[['','Off'],['25','Below 25% energy'],['50','Below 50% energy'],['75','Below 75% energy'],['always','Always']].map(([v,l])=>`<option value="${v}" ${String(w.feedOnly||'')===v?'selected':''}>${l}</option>`).join('')}</select></div>` : ''}
     ${w.job==='teacher' ? `<div class="row">Subject ${teachSelect(houseOf(w), w)}</div>` : ''}
     ${w.job==='promoter' ? `<label class="chk"><input type="checkbox" ${w.samples&&!has(w,'Modest')?'checked':''} ${has(w,'Modest')?'disabled':''} onchange="setSamples('${w.id}',this.checked)"> Hand out free samples (bigger draw, tiring, can cheapen the house)${has(w,'Modest')?' <span class="muted">· too modest</span>':''}</label>` : ''}
     <label class="chk"><input type="checkbox" ${w.autoRest?'checked':''} onchange="setAutoRest('${w.id}',this.checked)"> Auto-rest when worn out (below 35% energy), back to work at 85%</label>
@@ -100,10 +101,10 @@ function viewSam(){
       <div class="row"><button onclick="samWork('bartend')">🍺 Tend bar</button><button onclick="samWork('security')">🛡️ Stand watch</button><button onclick="samWork('books')">📒 Do the books</button><button onclick="samWork('scout')">🔍 Scout recruits</button><button onclick="samWork('rounds')">🚶 Make the rounds</button></div>
       <div class="row"><button onclick="samWork('statclass')" title="Everyone working trains the stats her job uses (madames and teachers: all of them).">📖 Stat class</button><button onclick="samWork('lesson')" title="Everyone working learns her job's skill (madames and teachers: a little of every skill).">🎓 Skill class</button><button onclick="demoMenu()" title="Sam and a partner of your choice demonstrate a service for everyone: they all learn it and get worked up.">🔥 Demonstration…</button></div>
       <p class="muted">Tend bar earns gold now (Charm). Watch reduces trouble in every house (Strength). Books cut upkeep (Business, Wits). Scouting adds candidates and Appraisal XP (Wits).${samBonusLine()} Rounds: a little trust and mood for every lady. Classes: a stat class or skill class trains everyone working in what her job uses; a demonstration teaches everyone a service (one-on-one training on a lady's sheet covers the same for her alone).</p></section>
-    <section class="card"><h2>Errands</h2><div class="row"><button onclick="samGuild()">⚔️ Adventurers' Guild</button><button onclick="samRest()">😴 Rest (+${samRecover(BAL.samHome.nap)} energy)</button></div></section>
+    <section class="card"><h2>Errands</h2><div class="row"><button onclick="samGuild()">⚔️ Adventurers' Guild</button><button onclick="samRest()">😴 Rest (+${samRecover(BAL.samHome.nap)} energy)</button><button onclick="tutorAllMenu()" title="Book (or stop) paid tutors for a whole group at once: no action needed.">📚 Tutoring for everyone…</button></div></section>
     <section class="card"><h2>Nights</h2><div class="row"><button onclick="orgyMenu()" title="A night with ${(BAL.orgy||{}).min ?? 2}-${(BAL.orgy||{}).max ?? 5} ladies at once: one action, ${(BAL.orgy||{}).perGirl ?? 20} energy per lady.">🔥 Gather the girls…</button></div></section>
     ${samHomeCard()}
-    <section class="card"><h2>Spend Time with Someone</h2><div class="grid">${S.workers.map(w=>workerCard(w, S.houses.length>1)).join('')}</div></section>`;
+    <section class="card"><h2>Spend Time with Someone</h2><div class="grid">${rosterOrder(S.workers).map(w=>workerCard(w, S.houses.length>1)).join('')}</div></section>`;
 }
 function sleepInRow(sh){
   const L = S.workers.filter(w=>sleepInOK(w)), cur = sleepInLady();
@@ -121,8 +122,17 @@ function samHomeCard(){
     <p class="muted">Late-night visits only come from ladies of this house${samReach()?' (not now: a Teleport Circle lets every house reach him)':''}. Moving is free, once a week.</p>${suite?'':`<p class="muted">Tip: build an Owner's Suite in ${esc(sh.name)} (House tab → Upgrades) for a better bed.</p>`}${suite?sleepInRow(sh):''}${ups}${tools?`<h3 style="margin:10px 0 4px">Tools of the trade</h3>${tools}`:''}</section>`;
 }
 function teachSelect(h, t){
-  const cur = h.teachSkill && (TECH_LABEL[h.teachSkill] || actById(h.teachSkill)) ? h.teachSkill : '';
-  return `<select onchange="setTeachSkill('${h.id}',this.value)"><option value="">Auto (${t ? esc(subjectLabel(teachSubject(h, t))) : 'her best skill'})</option>${TECH_KEYS.map(k=>`<option value="${k}" ${cur===k?'selected':''}>${TECH_LABEL[k]}</option>`).join('')}${getActs().map(a=>`<option value="${a.id}" ${cur===a.id?'selected':''}>${esc(a.label)}</option>`).join('')}</select>`;
+  const k = h.teachSkill || '', o = (v, l, dis) => `<option value="${v}" ${k===v?'selected':''} ${dis?'disabled':''}>${esc(l)}</option>`;
+  const auto = t ? subjectLabel(teachList({teachSkill:null}, t)[0]) : 'her best skill';
+  const jobs = Object.keys(JOBS).filter(j=>j!=='rest');
+  const svc = getActs().map(a=>{ const ok = !t || canTeachSvc(t, a.id), need = teachLewd(a.id);
+    return o(a.id, a.label + (ok ? '' : t && (t.lewd||0) < need ? ` (needs lewdness ${lShow(need)})` : ' (she doesn\'t know it)'), !ok && k!==a.id); }).join('');
+  const off = t && k && teachList(h, t).length === 1 && teachList(h, t)[0] !== (TECH_LABEL[k] || k.startsWith('stat:') ? k : actKey(k)) && !k.startsWith('set:') && !k.startsWith('job:');
+  return `<select onchange="setTeachSkill('${h.id}',this.value)" title="Sets split the class between their subjects. Services need a teacher who knows them and is lewd enough.">${o('', `Auto (${auto})`)}
+    <optgroup label="Sets">${Object.entries(TEACH_SETS).map(([v,l])=>o(v,l)).join('')}${jobs.map(j=>o('job:'+j, JOBS[j].label+' set')).join('')}</optgroup>
+    <optgroup label="Skills">${TECH_KEYS.map(x=>o(x, TECH_LABEL[x])).join('')}</optgroup>
+    <optgroup label="Stats">${STAT_KEYS.map(x=>o('stat:'+x, cap(x))).join('')}</optgroup>
+    <optgroup label="Services">${svc}</optgroup></select>${off ? ' <span class="warn">She can\'t teach that yet, so she teaches her best skill.</span>' : ''}`;
 }
 function viewUpgrades(){
   const h = curH(), D = HOUSES[h.id];

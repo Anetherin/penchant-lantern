@@ -142,6 +142,15 @@ function rosterType(w){
   if(n.role==='drifter') return 'guest';
   return 'story';   // partners, house residents, story and guild ladies: everyone written into the game's own story
 }
+// Default order: house-bound ladies (residents, story joins), partners, other story characters, guests, generics; ties keep hiring order.
+function rosterRank(w){
+  const n = w.key && NAMED[w.key]; if(!n) return 4;
+  if(n.role==='drifter') return 3;
+  if(n.role==='house' || (n.role!=='partner' && w.locked)) return 0;
+  if(n.role==='partner') return 1;
+  return 2;
+}
+const rosterOrder = list => list.map((w,i)=>[w,i]).sort((a,b)=>rosterRank(a[0])-rosterRank(b[0]) || a[1]-b[1]).map(x=>x[0]);
 function rosterFilterBar(){
   const R = ROSTER_VIEW, sel = (k, opts) => `<select onchange="setRosterView('${k}',this.value)">${opts.map(o=>`<option value="${o[0]}" ${R[k]===o[0]?'selected':''}>${o[1]}</option>`).join('')}</select>`;
   return `<div class="row">
@@ -162,7 +171,8 @@ function rosterFiltered(list){
     if(R.trust==='low' && t>=30) return false;
     return true;
   });
-  if(R.sort) out = out.slice().sort((a,b)=>(b[R.sort]||0)-(a[R.sort]||0));
+  out = rosterOrder(out);
+  if(R.sort) out = out.sort((a,b)=>(b[R.sort]||0)-(a[R.sort]||0));
   return out;
 }
 function viewRoster(){

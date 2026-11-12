@@ -349,7 +349,7 @@ function orgyPick(id){ if(!ORGY) return; const O = BAL.orgy || {}, i = ORGY.sel.
 function orgyDraw(){
   const O = BAL.orgy || {}, sel = ORGY.sel, n = sel.length, cost = orgyCost(n), first = sel[0] && findW(sel[0]);
   const btn = w => { const why = orgyWhy(w), on = sel.includes(w.id), other = first && !samReach() && first.house !== w.house;
-    return `<button class="${on?'primary':''}" ${why?`disabled title="${esc(why)}"`:''} onclick="orgyPick('${w.id}')" ${other?'style="opacity:.6"':''}>${on?'✓ ':''}${esc(titled(w))}${why?` <span class="muted">(${esc(why)})</span>`:''}</button>`; };
+    return `<button class="${on?'primary':''}" ${why?`disabled title="${esc(why)}"`:''} onclick="orgyPick('${w.id}')" ${other?'style="opacity:.6"':''}>${on?'✓ ':''}${esc(titled(w))} <span class="muted" title="Lust: ${esc(lustLabel(w))}">🔥${knows(w,true) ? `${Math.round(w.lust||0)}/${Math.round(lustProfile(w).max)}` : '?'}</span>${why?` <span class="muted">(${esc(why)})</span>`:''}</button>`; };
   const houses = S.houses.map(h=>{ const ws = S.workers.filter(w=>w.house===h.id && (orgyAct(w) || (w.intim||0) > 0)); return ws.length ? `<h3 style="margin-top:8px">${esc(h.name)}</h3><div class="row">${ws.map(btn).join('')}</div>` : ''; }).join('');
   modal(`<h2>Gather the girls</h2><p class="muted">One night, ${O.min ?? 2}-${O.max ?? 5} ladies. Each does the furthest she's comfortable with (or her favorite) with Sam (spending her lust), and everyone gets closer to everyone. ${samReach()?'Sam can bring them together from any house.':'All from one house (picking someone from another house starts over).'} One action; ${O.perGirl ?? 20} of Sam's energy per lady.</p>
     ${houses || '<p>Nobody is there yet with Sam.</p>'}

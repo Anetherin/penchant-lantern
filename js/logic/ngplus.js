@@ -49,7 +49,17 @@ function ngFriends(){
 const NG_PERKS = () => Object.keys(TRAITS).filter(t=>TRAITS[t].ngPerk);
 // House residents (HOUSES[id].npc) working for Sam whose house he keeps: they come back with it, reincarnated (no perk). Lovers are carried as lovers instead.
 // keep(h): which houses count (the NG+ save keeps every keepable house; the wizard asks keptHouse).
-const residentHouse = (w, keep) => w.key ? S.houses.find(h=>keep(h) && (HOUSES[h.id]||{}).npc===w.key) : null;
+// A house's own ladies: its resident (HOUSES[id].npc) and, once its story is finished, the lady the story brought in (STORY_JOINS).
+const storyJoin = h => { const J = STORY_JOINS[h.id]; return J && houseStoryDone(h) ? J : null; };
+const houseLadies = h => [(HOUSES[h.id]||{}).npc, (storyJoin(h)||[])[0]].filter(Boolean);
+const residentHouse = (w, keep) => w.key ? S.houses.find(h=>keep(h) && houseLadies(h).includes(w.key)) : null;
+// Bring back a finished story's lady with her house if she isn't working for Sam (NG+, and once for saves that lost her: migrate v31).
+function restoreStoryJoin(h, newLife){
+  const J = storyJoin(h); if(!J || isHired(J[0]) || !NAMED[J[0]]) return null;
+  const w = rebirthNamed(makeNamed(J[0]), newLife); w.house = h.id; w.locked = h.id; w.contract = 999;
+  if(J[1]){ w.free = true; w.wage = 0; }
+  assignStart(w, NAMED[J[0]].job); S.workers.push(w); return w;
+}
 const ngResidents = (keep = keptHouse) => S.workers.filter(w=>!has(w,'Devoted') && residentHouse(w, keep));
 function ngNumbers(boon, house){
   if(house===undefined && NGS) house = NGS.house;
@@ -276,7 +286,7 @@ function ngBegin(){
   // kept houses keep rooms, upgrades and story; their reputation goes back to the house's starting value plus ngplus.carry of what it had gained
   S.houses.forEach(h=>{ const D = HOUSES[h.id]; if(D) h.rep = Math.round(D.rep + (B.carry||0) * Math.max(0, (h.rep||0) - D.rep)); });
   // each kept house's resident comes with the house: if she wasn't working for Sam she's back, fresh
-  S.houses.forEach(h=>{ const D = HOUSES[h.id]; if(D && D.npc && !isHired(D.npc)){ const npc = rebirthNamed(makeNamed(D.npc), true); npc.house = h.id; npc.locked = h.id; npc.contract = 999; assignStart(npc, NAMED[D.npc].job); S.workers.push(npc); } });
+  S.houses.forEach(h=>{ const D = HOUSES[h.id]; if(D && D.npc && !isHired(D.npc)){ const npc = rebirthNamed(makeNamed(D.npc), true); npc.house = h.id; npc.locked = h.id; npc.contract = 999; assignStart(npc, NAMED[D.npc].job); S.workers.push(npc); } restoreStoryJoin(h, true); });
   S.cur = og;
   // the new house and its resident
   if(C.house && HOUSES[C.house] && !H(C.house)){

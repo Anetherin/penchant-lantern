@@ -32,6 +32,38 @@ function tutorRow(w){
     <select onchange="setTutorTier('${w.id}',this.value)">${tiers.map(([k,t])=>`<option value="${k}" ${tutorTier(w)===k?'selected':''}>${esc(t.label)} · ${fmt(tutorCost(w,k))}/wk</option>`).join('')}</select>
     ${w.tutor ? `<span class="muted">${esc(tutorSummary(w))}</span>` : ''}</div>`;
 }
+// Tutoring for a whole group at once (Sam tab → Errands). Groups follow the roster order (rosterRank in ui/core.js), plus houses and jobs.
+let TUT_ALL = null;
+function tutorGroups(){
+  const G = [['all','Everyone'],['perm','Permanent: house ladies, partners & story characters'],['r0','House ladies'],['r1','Partners'],['r2','Other story characters'],['r3','Guests'],['r4','Generic ladies']];
+  if(S.houses.length > 1) S.houses.forEach(h=>G.push(['h:'+h.id, 'Everyone at '+h.name]));
+  [...new Set(S.workers.map(w=>w.job))].filter(j=>JOBS[j]).forEach(j=>G.push(['j:'+j, 'Job: '+JOBS[j].label]));
+  return G;
+}
+function tutorGroupList(g){
+  return S.workers.filter(w=>g==='all' || (g==='perm' && rosterRank(w) <= 2) || (g[0]==='r' && g.length===2 && rosterRank(w)===+g[1])
+    || (g.startsWith('h:') && w.house===g.slice(2)) || (g.startsWith('j:') && w.job===g.slice(2)));
+}
+function tutorAllMenu(){ TUT_ALL = TUT_ALL || {g:'all', focus:'job', tier:Object.keys(BAL.tutor.tiers)[0]}; tutorAllDraw(); }
+function tutorAllSet(k, v){ if(!TUT_ALL) return; TUT_ALL[k] = v; tutorAllDraw(); }
+function tutorAllDraw(){
+  const A = TUT_ALL, list = tutorGroupList(A.g), T = BAL.tutor, on = S.workers.filter(w=>TUTOR_FOCUS[w.tutor]);
+  const sel = (k, opts) => `<select onchange="tutorAllSet('${k}',this.value)">${opts.map(([v,l])=>`<option value="${v}" ${A[k]===v?'selected':''}>${esc(l)}</option>`).join('')}</select>`;
+  const cost = A.focus ? list.reduce((a,w)=>a + tutorCost(w, A.tier), 0) : 0;
+  modal(`<h2>📚 Tutoring for everyone</h2><p class="muted">Sets the same tutor for a whole group (you can still change each lady on her sheet). Fees are paid at the end of each week; a lady is skipped if the purse can't cover her.</p>
+    <div class="row"><label>Who ${sel('g', tutorGroups())}</label></div>
+    <div class="row"><label>Focus ${sel('focus', [['','None (stop tutoring)'], ...Object.entries(TUTOR_FOCUS)])}</label>
+      <label>Tutor ${sel('tier', Object.entries(T.tiers).map(([k,t])=>[k, t.label]))}</label></div>
+    <p>${list.length ? list.map(w=>esc(w.name.split(' ')[0])).join(', ') : '<span class="muted">Nobody in this group.</span>'}</p>
+    <p class="muted">${A.focus ? `${list.length} lad${list.length===1?'y':'ies'} · ${fmt(cost)}/wk for this group.` : 'Their tutoring stops.'} Right now ${on.length} lad${on.length===1?'y has':'ies have'} a tutor (${fmt(on.reduce((a,w)=>a+tutorCost(w),0))}/wk).</p>
+    <div class="row"><button class="primary" ${list.length?'':'disabled'} onclick="tutorAllApply()">Apply</button><button onclick="TUT_ALL=null;closeModal()">Back</button></div>`);
+}
+function tutorAllApply(){
+  const A = TUT_ALL; if(!A) return; const list = tutorGroupList(A.g);
+  list.forEach(w=>{ w.tutor = TUTOR_FOCUS[A.focus] ? A.focus : null; if(BAL.tutor.tiers[A.tier]) w.tutorTier = A.tier; });
+  toast(A.focus ? `Tutors booked for ${list.length} lad${list.length===1?'y':'ies'}.` : `Tutoring stopped for ${list.length} lad${list.length===1?'y':'ies'}.`);
+  TUT_ALL = null; save(); closeModal(); render();
+}
 // Run from endWeek after the purse is settled. Pays each lady's tutor if it can, applies the week's lessons.
 function tutorWeek(R){
   const T = BAL.tutor, taught = [], skipped = [];
