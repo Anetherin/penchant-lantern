@@ -1,107 +1,160 @@
 {
   "_readme": [
-    "Short text lines the game picks from at random. No AI needed. Each section has a _default list; add a list under a personality name to give that personality its own lines.",
-    "Placeholders: {name}, {house}, plus any extra ones noted for the section. Add as many lines as you like.",
-    "enc_* lines are short notes on how one client visit went for her (shown in the weekly report). job_* lines are report lines for the non-escort jobs.",
-    "encore: the line added when a restless lady goes another round. enc_frustrated / enc_drained / enc_like / enc_put_off: extra visit notes.",
-    "demo_lead / demo_watch: Sam's demonstration lesson ({name} = his partner). Templates; rewrite freely.",
-    "orgy_lead ({names}, {first}, {house}), orgy_pair ({a}, {b}), orgy_end ({first}), orgy_lover ({name}: a Devoted lady sharing him): Sam's group nights. Templates; rewrite freely.",
-    "gift_trinket / gift_jewel / gift_lavish ({name}, {gift} = a random trinket from people.json gifts): Sam buys her a gift with gold (her sheet → Gifts). tutor_note ({name}, {tutor}): her weekly report note when a tutor works with her. Templates; rewrite freely."
+    "Flavor lines picked at random by js/logic/flavor.js. Each top-level key is a section; inside it, keys are personality names (from personalities.json) plus _default.",
+    "Sam-facing sections (private_open, private_first, private_first_sam, act_turn, private_act, sam_first, late_visit, sleepin_evening, sleepin_morning, lover_waiting, lover_reunion, lover_jealous, lover_shared, breakup, encore, again_beastkin, demo_lead, demo_watch, orgy_*, train_service, train_stat, train_skill, gift_*) are written in second person (you/your).",
+    "Report and house-life sections (client_yes, client_no, enc_*, job_*, self_prop, step_lead, sample_act, solo, idle, rest, mood_*, trust_*) are written for the weekly report.",
+    "Placeholders: {name}, {house}, {skill}, {gift}, {first}, {names}, {a}, {b}, {other}, {role}, {act}, {lady}."
   ],
-  "solo": {
-    "_note": "Report line when a lady at max lust spends part of her night alone in her room instead. Shown in the weekly report.",
+  "private_open": {
+    "_note": "Opening of plain private time with you (before the turn and the service line). {name} = her name. Act-neutral.",
     "_default": [
-      "{name} disappeared to her room early one night and didn't come back down for a long while. She seemed a lot calmer afterward.",
-      "{name} locked her door for most of an evening. She came out flushed, relaxed, and tired."
-    ],
-    "Shy but earnest": [
-      "{name} excused herself early one night, too embarrassed to say why. She avoided everyone's eyes at breakfast.",
-      "{name} spent an evening shut in her room with the curtains drawn. She insists she was reading."
-    ],
-    "Bookish and curious": [
-      "{name} took a novel of the steamier sort up to her room and was not seen again that night.",
-      "{name} called it 'research' and locked her door. She came out with a very satisfied look and ink on her fingers."
-    ],
-    "Mysterious and aloof": [
-      "{name} vanished one evening without explanation. When she returned, she was smiling to herself and offered none."
-    ],
-    "Proud and sharp-tongued": [
-      "{name} decided she didn't need anyone's help with her problem, thank you, and took the evening to herself.",
-      "{name} snapped at two clients, then went to her room and slammed the door. An hour later she came out in a far better mood."
-    ],
-    "Laid-back and lazy": [
-      "{name} figured the easiest solution was the one that didn't involve getting out of bed. She skipped most of one evening."
-    ],
-    "Calm and elegant": [
-      "{name} retired early one evening for 'a long bath'. It was a very long bath."
-    ]
-  },
-  "modest": {
-    "_note": "Shown on her sheet when she has the Modest trait.",
-    "_default": [
-      "She'd rather keep her clothes on. When things get intimate, they get pulled aside instead, though the lewder she gets (and the more she trusts Sam), the more comes off.",
-      "She keeps her clothing on as long as she can, and she's quietly flustered if it slips. With Sam, though, she lets the bits come off by degrees, one at a time, when she's ready.",
-      "A towel, a sleeve, a half-drawn curtain: she always has something between herself and the lamplight. The more she trusts Sam, the thinner the barriers get.",
-      "She prefers to keep a layer or two on, thank you, and Sam has learned not to tease about it. Over time, with enough warmth and enough patience, she grows braver.",
-      "She's shy about being seen, so the lamps are dimmed and the blankets drawn up. When she finally lets one fall, it feels like a gift.",
-      "Her clothes stay mostly on, tugged aside rather than shed. The more comfortable she becomes, the more she reveals, and Sam notices every inch of progress with a quiet, private joy."
-    ]
-  },
-  "again": {
-    "_default": [
-      "{name} is still breathing hard, and she hasn't let go of him. \"Again,\" she says. It isn't really a question.",
-      "{name} props herself up on one elbow and gives Sam a long, considering look. Apparently they're not finished.",
-      "\"Don't you dare fall asleep,\" {name} whispers, pulling him back down against her. The lamp is guttering and the night is long, and she isn't remotely finished with him.",
-      "{name} gives a slow, satisfied sigh, stretches like a cat, and then turns that sleepy, dangerous smile on Sam again. \"That was lovely,\" she says. \"I'd like to do it properly now.\"",
-      "Sam is reaching for the blanket when {name} catches his wrist and shakes her head, smiling. Her cheeks are flushed, her hair is wild, and she looks much too pleased with herself to stop.",
-      "For a long moment the only sounds are the rain and their breathing. Then {name} laughs softly, rolls over, and tugs Sam closer. \"One more,\" she says. \"I might even mean it.\""
-    ]
-  },
-  "again_beastkin": {
-    "_default": [
-      "{name}'s tail hasn't stopped moving. She nuzzles into Sam's neck, warm and insistent, and makes a small, needy sound that says she's nowhere near done.",
-      "{name} is up on her knees before Sam has caught his breath, ears forward, eyes bright. \"More,\" she says, and climbs back into his lap.",
-      "{name}'s ears flick toward Sam, and her tail curls around his leg and holds on. She purrs, low and rumbling, and presses her forehead to his chest. It's clear the night isn't over until she says so.",
-      "A low, contented rumble fills the room as {name} nuzzles into the crook of Sam's neck, tail thumping slowly against the sheets. She's warm, and pleased, and completely unwilling to let him go anywhere.",
-      "{name}'s tail sweeps across the blanket in a long, lazy arc, and her eyes shine gold in the lamplight. \"Mm,\" she says, and climbs on top of him with unshakable purpose. Sam gives up the idea of sleeping altogether.",
-      "Her ears twitch at every sound, but {name} is fixed on Sam alone, nosing at his jaw, her breath warm and fast. \"Again,\" she says, in the plain way of someone who has no intention of discussing it."
-    ]
-  },
-  "late_visit": {
-    "_note": "Opening line when a lady knocks on Sam's door late at night.",
-    "_default": [
-      "Sam is doing the books by candlelight when {name} knocks. She hasn't seen a single client all week, and she's clearly been thinking about something. \"Busy?\"",
-      "{name} appears in Sam's doorway in her nightclothes, holding two cups of tea she clearly has no intention of drinking.",
-      "A note slides under Sam's door: \"Still awake? Come find out.\" It's in {name}'s handwriting.",
-      "The house is quiet, the corridor lamps burning low, when Sam hears the faintest scratch at his door. It's {name}, barefoot, with a shawl over her shoulders and a look that says she wasn't going to knock but couldn't help it. \"Can I come in?\" she asks.",
-      "Sam is half asleep over a stack of invoices when {name} lets herself in, carrying a plate of leftover dumplings. \"You missed supper,\" she says, setting it down. She doesn't leave, and she doesn't pretend that the dumplings were the only reason she came.",
-      "A soft knock, then another, a little braver. {name} stands in Sam's doorway with a candle, the flame bending in the draft, and her hair loose in a way he hasn't seen before. \"I couldn't sleep,\" she says. \"I thought you might be awake too.\""
-    ],
-    "Shy but earnest": [
-      "There's a very quiet knock. {name} is standing in the hall, red to the ears, and has clearly rehearsed what she wants to say. She forgets all of it."
+      "{name} catches your sleeve in the corridor after the last guest leaves and tugs you toward the stairs. \"You owe me an evening,\" she murmurs, shutting the bedroom door behind you with her heel.",
+      "A quiet evening, a locked door, and a 'do not disturb' sign that the rest of the house will later call unnecessary given the noise.",
+      "{name} finds you at your desk, takes the quill out of your hand, and sets it carefully out of reach. \"The ledger will survive one night,\" she says, swinging a leg over your lap.",
+      "You brought a lantern, a bottle of plum wine, and a sensible plan. The plan dissolves the instant {name} opens her door in a loose robe with her hair half down, takes the bottle from your hand, and pulls you inside by the collar.",
+      "The bathhouse steam has drifted all the way up the stairs, and {name}'s skin is still warm and faintly scented with orange peel when she greets you. She leans against the doorframe, in no hurry at all. \"I thought you might want some company,\" she says, \"since you've been staring at my door for an hour.\"",
+      "The house has settled into its after-hours hush by the time {name} finds you in the lounge. Rain ticks against the shutters, one lantern is still burning, and she takes the cushion right beside yours instead of across from you. \"Walk me upstairs?\" she says, as if it were a question."
     ],
     "Bold and flirtatious": [
-      "{name} doesn't knock. She just leans in Sam's doorway until he notices her. \"You work too hard, boss.\""
+      "{name} doesn't wait for an invitation—she backs you through your own bedroom door, clicks the bolt shut, and smiles like a cat with the cream. \"Finally. I was starting to think I'd have to schedule an appointment.\""
+    ],
+    "Shy and sweet": [
+      "{name} opens her door a crack, peeks out with bright pink cheeks, and quickly ushers you inside before anyone in the hall can see. \"I'm glad you came,\" she whispers, pressing her back to the door."
     ]
   },
-  "sleepin_evening": {
-    "_note": "Opening line when the lady sharing Sam's bed in the Owner's Suite proposes as they turn in. Edit freely.",
+  "private_first": {
+    "_note": "Her first private time with you (replaces private_open once). {name}.",
     "_default": [
-      "The lamps are low in the Owner's Suite. {name} sits on the edge of the bed, unpinning her hair, and watches Sam over her shoulder. \"We could just sleep,\" she says. \"Or not.\"",
-      "{name} slides under the blanket and doesn't turn her back on him tonight. Her hand finds his. \"Stay up a little longer,\" she murmurs.",
-      "\"Long day,\" {name} says, curling against Sam's side in the dark. Her fingers start tracing slow circles on his chest. \"I have a better idea than sleeping.\"",
-      "The Owner's Suite is warm, the shutters latched against the night wind, and {name} is brushing out her hair at the bedside. She catches Sam's reflection in the dark window and doesn't look away. \"I'm not tired,\" she says, setting down the brush. \"Are you?\"",
-      "{name} blows out the last lamp but one and slips beneath the blanket, her feet cold and her smile warm. Rain whispers on the roof, and she rolls toward him. \"Tell me about your day,\" she says. \"Then I'll tell you about mine, and we'll see.\"",
-      "Sam is mid-yawn when {name} puts a finger over his mouth. The room is lit by a single candle and the pale spill of the two moons through the curtain. \"That yawn,\" she says, \"is a lie. I can tell.\""
+      "{name} has clearly been thinking about this all week. She pulls you into her room before you can finish saying hello, shuts the door, and leans her forehead briefly against your chest.\n\nThe latch clicks into place.",
+      "{name} has tidied her room twice, changed her mind about the lamp three times, and when you knock she opens the door with a very careful \"Hello.\" Then she laughs softly at herself, takes your hand, and draws you inside.",
+      "There's a ribbon in {name}'s hair that wasn't there at supper. Neither of you mentions it. The room is warm, the lamp is turned low, and she shuts the door behind you with her back flat against the wood.",
+      "\"I rehearsed what to say,\" {name} admits, standing in her doorway with the night breeze stirring her sleeves. \"It was very good. I've forgotten all of it.\" She threads her fingers through yours instead, her grip a little cool and completely steady.",
+      "Rain drums steadily on the roof tiles when {name} opens her door, wearing the expression of a woman who has argued with herself for a week and finally won. She lets you step inside, closes the door, and stands close enough that you can feel the warmth radiating off her skin.",
+      "{name} has laid out two cups, one candle, and no excuses. She sits on the edge of her bed, folds her hands, then unfolds them as you step in. \"You're the first person I've actually wanted to ask,\" she says quietly. \"So I'm asking.\""
     ]
   },
-  "sleepin_morning": {
-    "_note": "Opening line when the lady sharing Sam's bed wakes him in the morning with ideas of her own. Edit freely.",
+  "private_first_sam": {
+    "_note": "Your very first time (replaces private_open once). {name}.",
     "_default": [
-      "Sam wakes to gray morning light and {name} propped on one elbow beside him, smiling like she's been awake a while. \"Good morning,\" she says, and kisses him slowly.",
-      "Something warm presses against Sam's back, and {name}'s voice is a sleepy whisper at his ear. \"Don't get up yet. I've got plans for you.\"",
-      "{name} has already pulled the covers over both their heads. \"The house can wait,\" she says, \"for a little while.\"",
-      "A bird is arguing with itself outside the window and the light is the soft pink of early dawn. {name} is already awake, tracing the line of Sam's jaw with one finger. \"Don't say anything,\" she murmurs. \"Just stay.\"",
+      "{name} takes your hand and leads you upstairs. It becomes clear about four seconds after the door closes that your previous-life experience in this department is exactly zero.\n\n{name} looks absolutely delighted about this.",
+      "You've read about this in two lives and practiced it in neither. You arrive at {name}'s door stiff as a board, and she takes one look at your face and smiles so warmly that half the tension leaves your shoulders. \"Come in,\" she says softly. \"There's nowhere we have to be.\"",
+      "{name} laughs, soft and kind, lifts the small notebook out of your coat pocket, and sets it on the shelf out of reach. \"No notes this time,\" she says, drawing you toward the bed. \"Tonight, you just learn it by heart.\""
+    ]
+  },
+  "act_turn": {
+    "_note": "Shown right after an encounter's or a first's opening (before the service line and any AI text), so the story says which way the moment went.",
+    "_default": [
+      "{name} closes the distance between you, her fingers working at your collar as her breath warms your throat.",
+      "The conversation trails off into something quieter and heavier, and {name} shifts closer until her thigh presses against yours."
+    ],
+    "massage_give": [
+      "\"Lie down,\" {name} murmurs, uncorking a small bottle of warmed oil and climbing onto the edge of the mattress beside you. \"You carry everything in your shoulders, and I'm going to work it out.\"",
+      "{name} pushes you gently face-down onto the quilts, straddles the backs of your thighs, and pours warm cedar oil between her palms with a slow, wicked smile."
+    ],
+    "kiss": [
+      "{name} catches your chin between thumb and forefinger, tilts your face up, and parts her lips against yours in a kiss that leaves zero doubt about what she wants.",
+      "She straddles your lap on the edge of the bed, wraps both arms around your neck, and kisses you until you forget what you were about to say."
+    ],
+    "massage_get": [
+      "{name} lets her robe slip off her shoulders, stretches out face-down across the pillows, and glances back over her shoulder with heavy-lidded eyes. \"My turn to be spoiled. Don't hold back.\"",
+      "\"I've been on my feet all day,\" {name} sighs, unlacing her top and sprawled across the quilt with her bare back gleaming in the candlelight. \"Put those hands to work.\""
+    ],
+    "manual_give": [
+      "{name} sinks to her knees between your thighs, unfastens your trousers with unhurried fingers, and looks up at you through her lashes as her palm wraps around you.",
+      "She slides her hand down your chest, slips inside your waistband, and smiles at the sharp intake of your breath. \"Let me take care of this.\""
+    ],
+    "breast_give": [
+      "{name} unlaces her bodice and lets the fabric fall away, baring her breasts in the warm lamplight before kneeling between your legs and slicking her cleavage with oil.",
+      "\"Hold still,\" {name} whispers, pulling her top down to her waist and leaning over you until her warm, bare breasts press right against your shaft."
+    ],
+    "manual_get": [
+      "{name} leans back against the headboard, hikes her skirts up around her waist, and parts her thighs with a slow, inviting look. \"Come here. Use your hands.\"",
+      "She guides your hand down over her hip and presses your palm firmly between her wet thighs, shivering the moment your fingers find her."
+    ],
+    "breast_get": [
+      "{name} pulls her top open with unhurried fingers, baring her chest to the warm air, and guides your hands up to cup her breasts. \"Don't just stare,\" she murmurs.",
+      "She tilts her chin up as her laces come loose, arching her chest toward you with a soft, expectant breath."
+    ],
+    "oral_give": [
+      "{name} drops smoothly to her knees between your legs, pushes your trousers down over your hips, and brushes a warm, deliberate kiss right along your shaft before parting her lips.",
+      "She smiles against your collarbone, then trails kisses down your chest and stomach until she's kneeling between your thighs, looking up at you as she takes you in hand."
+    ],
+    "oral_get": [
+      "{name} settles back against the pillows, draws you down toward her with a hand at the back of your neck, and lets her knees fall wide open. \"Take your time,\" she whispers.",
+      "She slides your hand down her inner thigh, nudges your shoulders gently downward, and arches her hips off the mattress as you kneel between her legs."
+    ],
+    "missionary": [
+      "{name} pulls you down onto the mattress with her, wrapping her bare legs around your waist and lining you up against her wet entrance. \"Right here,\" she breathes against your mouth.",
+      "She opens her thighs beneath you on the rumpled sheets, reaches down to guide you between her folds, and pulls you flush against her chest."
+    ],
+    "cowgirl": [
+      "{name} pushes you back onto the pillows, climbs astride your hips, and sinks slowly down onto your shaft with a long, shuddering sigh. \"My pace tonight,\" she murmurs.",
+      "She straddles your lap, braces both hands on your chest, and lowers herself onto you inch by hot inch until she's seated all the way down."
+    ],
+    "doggy": [
+      "{name} turns onto her hands and knees in the middle of the bed, arches her lower back, and glances back over her shoulder with a slow, inviting smile. \"Well? Are you going to just stand there?\"",
+      "Pressing her cheek into the pillow, {name} lifts her hips and reaches back to guide you against her slick folds from behind."
+    ]
+  },
+  "private_act": {
+    "_note": "Core explicit beat of a private scene with you (runs after act_turn). Keyed by service id.",
+    "_default": [
+      "The candle burns lower while the two of you tangle together on the sheets, trading breathless sounds, tangled hands, and unhurried heat until neither of you has any strength left to move.",
+      "She holds onto you like she doesn't plan on letting go before morning, every touch unhurried and greedy until you're both flushed, damp with sweat, and completely spent."
+    ],
+    "massage_give": [
+      "Her oiled hands work deep into your shoulders and down your spine in long, deliberate strokes, her thighs warm where she straddles your hips. Whenever she leans forward to press her weight into a stubborn knot, her hair brushes your neck and her breath warms your ear until every muscle in your body goes slack.",
+      "She pours warm cedar oil between her palms and kneads the tension out of your neck, shoulders, and lower back before rolling you over to trace slow, slick circles across your chest and stomach. By the time she finishes, you're half-melted into the mattress and completely at her mercy.",
+      "With practiced thumbs and unhurried palms, she works every ache out of your back, letting her oiled fingers drift lower along your ribs and hips with every pass. She hums softly above you, clearly enjoying how thoroughly you surrender under her hands."
+    ],
+    "kiss": [
+      "She kisses you like she has all night and nowhere else to be, teasing your lower lip with her teeth before sliding her tongue against yours. Your hands tangle in her hair and roam over the curve of her waist and hips while she presses herself flush against your chest, breathing hard between every lingering kiss.",
+      "What starts as a soft, testing brush of lips quickly deepens into slow, wet, open-mouthed kisses that leave you both dizzy. She tilts your chin to catch every angle, murmuring quiet, breathless sounds against your mouth every time your hands tighten on her waist.",
+      "She frames your face in both hands and kisses you with unhurried, deliberate heat, sliding her tongue along yours until your pulse is hammering in your ears. When she finally pulls back an inch to catch her breath, her lips are swollen and her eyes are dark with wanting."
+    ],
+    "massage_get": [
+      "You warm the scented oil between your palms and work it slowly into her bare shoulders, down the hollow of her spine, and along the backs of her thighs. Every firm press of your thumbs draws a soft, unguarded sigh from her, and she arches lazily into your hands whenever your fingers brush the curve of her hips.",
+      "She stretches out face-down on the quilts with her cheek resting on her folded arms, shivering softly as your oiled hands knead the tightness from her neck, back, and inner thighs. By the time you finish, her skin is flushed pink and gleaming in the lamplight, and she turns over with a heavy-lidded, grateful smile.",
+      "You take your time working warm oil from her nape all the way down to her calves, lingering along her lower back where she hums with pleasure. She turns her head to watch you through half-closed lashes, completely relaxed and radiating warmth."
+    ],
+    "manual_give": [
+      "Her oiled fingers wrap firmly around your shaft, stroking from base to tip in a slow, twisting rhythm while her thumb circles the sensitive crown. She keeps her eyes locked on your face the entire time, smiling at every hitch in your breath before speeding up her wrist until you grip the sheets and spill hot across her hand.",
+      "She works you with warm, deft hands—one stroking steadily up and down your length while the other cups and teases gently beneath. Every time you get close, she slows down just enough to draw a ragged groan out of you before milking you through a sharp, overwhelming finish.",
+      "Leaning in close so her breath warms your jaw, she strokes you with slick, unhurried precision, watching your expression tighten with every pass of her hand. When you finally lose your composure, she kisses your cheek and keeps stroking gently until the aftershocks fade."
+    ],
+    "breast_give": [
+      "She slicks her bare chest with warm oil and presses her soft, heavy breasts tightly around your shaft, gliding up and down your length while looking up at you through her lashes. Every time the head of your cock slips free between her nipples, she dips her chin to flick it with her tongue until you groan and spill warm across her collarbone.",
+      "Cradling you deep in her oiled cleavage, she rolls her shoulders into a smooth, rhythmic glide that wraps you in slick heat from base to tip. Your hands rest on her shoulders while she watches your face, smiling softly as she works you right over the edge.",
+      "She squeezes her bare breasts together around you with both hands and sets a steady, delicious pace, teasing the crown with her lips on every upward stroke until your knees tremble and you finish over her chest."
+    ],
+    "manual_get": [
+      "You part her slick folds with your thumb and slide two fingers deep inside her, curling them slowly against her front wall while your thumb rubs steady circles over her swollen clit. Her hips lift off the mattress to meet your hand, her breath breaking into sharp gasps until she clenches tight around your fingers and shudders through a long climax.",
+      "She covers your hand with hers to guide your rhythm, whispering \"Right there\" against your shoulder as you stroke deep inside her wet heat. Before long her thighs are trembling against your wrist, and she arches her back with a breathless cry as release washes over her.",
+      "You take your time teasing her open with slow, wet strokes until she's gripping the sheets and begging quietly for more. When you curl your fingers just right and press your thumb against her clit, she comes hard enough to leave her flushed to her hairline."
+    ],
+    "breast_get": [
+      "You cup her bare breasts in both hands, kneading their soft weight while your mouth closes over one stiff nipple, swirling your tongue around it before drawing it gently between your teeth. She threads her fingers into your hair and holds your head to her chest, arching her back with soft, breathless sighs as you lavish attention on both breasts.",
+      "Trailing hot kisses across her collarbone and down the swell of her breasts, you tease each hardened peak with lips, tongue, and fingertips until her chest is flushed pink and her breathing comes in shallow catches.",
+      "She squirms beneath you with parted lips as you suckle and fondle her bare breasts, shivering every time your thumb brushes across a wet, sensitive nipple."
+    ],
+    "oral_give": [
+      "She wraps her warm, wet lips around the head of your cock and sinks smoothly down your shaft, hollowing her cheeks as she bobs in a slow, unhurried rhythm. One hand strokes the base in time with her mouth while her tongue swirls relentlessly beneath the ridge until your hands tangle in her hair and you groan and finish down her throat.",
+      "Looking straight up at you with dark, heavy-lidded eyes, she takes you deep into her mouth, humming softly around your length so the vibration shoots straight up your spine. She works you with lips, tongue, and slick hand until you can't hold out a second longer.",
+      "She teases your crown with quick, wet flicks of her tongue before sliding her mouth all the way down to the root, swallowing around you until your thighs shake and you spill into her warm mouth."
+    ],
+    "oral_get": [
+      "Kneeling between her spread thighs, you part her wet folds and press your tongue flat against her clit in slow, deliberate strokes while sliding two fingers inside her. Her hands tangle tightly in your hair as her hips roll against your mouth, building higher until she arches off the mattress and comes with a sharp, trembling gasp.",
+      "You hook one of her legs over your shoulder and work her with lips and tongue, sealing your mouth over her swollen clit and flickering steadily until her thighs clamp around your ears and she shudders apart against your face.",
+      "She grips the bedsheets with white knuckles as you lick and suck at her wet pussy, murmuring broken, breathless encouragement until a deep, rolling orgasm leaves her limp and glowing against the pillows."
+    ],
+    "missionary": [
+      "You settle between her parted thighs and push slowly into her tight, wet heat, pausing at the hilt while her legs wrap firmly around your waist. Moving face-to-face, you set a deep, rolling rhythm that builds from unhurried strokes into urgent thrusts until she clenches tight around you with a cry and pulls you over the edge right behind her.",
+      "Pressed chest-to-chest on the tangled sheets, she clings to your shoulders and lifts her hips to meet every deep stroke, holding your gaze with flushed cheeks and parted lips until both of you shatter together in a rush of heat.",
+      "You brace yourself over her on the mattress and fuck her in long, steady strokes that make the bedframe creak, watching her eyes flutter shut as she wraps her ankles behind your back and comes hard beneath you."
+    ],
+    "cowgirl": [
+      "Straddling your hips with her hands braced on your chest, she sinks all the way down onto your shaft and begins to grind and bounce at her own relentless pace. Her breasts sway with every stroke and her hair tumbles over her shoulders as she rides you harder, clenching tightly around you through her climax until she milks every drop out of you.",
+      "She mounts you facing forward and takes complete control, rolling her hips in slow, deep circles that drive you to the hilt before picking up into fast, b the line of Sam's jaw with one finger. \"Don't say anything,\" she murmurs. \"Just stay.\"",
       "The bed is warm, the house is still asleep, and {name} has her cheek against Sam's shoulder, listening to him breathe. When he stirs, she lifts her head with a lazy, knowing smile. \"Good,\" she says. \"You're up.\"",
       "Sam wakes to the smell of baking bread drifting up from the kitchen and {name}'s hair spread over his arm. She doesn't open her eyes. \"Five more minutes,\" she says, in a voice that makes it clear what she plans to do with them."
     ]
@@ -1454,10 +1507,66 @@
     ]
   },
   "tutor_note": {
+    "_note": "Weekly report note when a paid tutor works with her ({name}, {tutor}).",
     "_default": [
       "Spent her mornings with the {tutor}.",
       "Her {tutor} left her a stack of exercises. She did most of them.",
       "Lessons with the {tutor} went well this week."
     ]
+  },
+  "bad_night": {
+    "_note": "Report line after a rough week with unhappy or difficult clients.",
+    "_default": [
+      "{name} had a rough week, dealing with impatient guests and a schedule that refused to cooperate.",
+      "A tiring stretch of awkward bookings left {name} ready for a long bath and an early night."
+    ]
+  },
+  "enc_fav": {
+    "_note": "Client asked for her favorite.",
+    "_default": [
+      "She enjoyed that one.",
+      "Her favorite. She was humming afterward.",
+      "She came back downstairs smiling.",
+      "This was the one she'd have picked from the whole week, and she hummed the entire way back to her room.",
+      "She stretched out on the cushions afterward looking wonderfully pleased with herself."
+    ]
+  },
+  "job_teacher": {
+    "_note": "Weekly report line for the classroom teacher.",
+    "_default": [
+      "{name} ran the classroom at {house} with a ruler and endless patience. Notes were taken.",
+      "{name} drilled the house until the lesson stuck. Somebody asked for homework. {name} was delighted.",
+      "{name} wrote on the slate, pointed, and waited. By evening the whole house was practising.",
+      "{name} chalked the day's lesson across the slate at {house} and ran the class with a patient, level voice.",
+      "{name} corrected posture, vowels, and bad habits with a gentle tap of her pointer. By Friday the house was gliding."
+    ]
+  },
+  "job_promoter": {
+    "_note": "Weekly report line for a promoter.",
+    "_default": [
+      "{name} worked the street outside {house} with an easy smile and steered a steady stream of curious newcomers through the door.",
+      "{name} charmed merchants and off-duty guards alike along the avenue, sending fresh coin straight into {house}."
+    ]
+  },
+  "job_dancer": {
+    "_note": "Weekly report line for a dancer.",
+    "_default": [
+      "{name} held the lounge spellbound under the lantern light, leaving half the room ordering another round just to watch her next set.",
+      "{name} moved across the floor like smoke and silk, drawing generous tips from every table by the bar."
+    ]
+  },
+  "job_attendant": {
+    "_note": "Weekly report line for an attendant.",
+    "_default": [
+      "{name} kept fresh towels, warm water, and quiet discretion moving smoothly between every room upstairs.",
+      "{name} anticipated what every courtesan needed before she had to ask, keeping the upstairs floor running effortlessly."
+    ]
+  },
+  "job_chapel": {
+    "_note": "Weekly report line for an angel tending the chapel.",
+    "_default": [
+      "{name} kept the chapel candles lit and offered quiet comfort to weary guests and staff alike.",
+      "{name} turned the little sanctuary into the calmest corner of {house}, leaving everyone who stepped inside a little lighter."
+    ]
   }
-}
+
