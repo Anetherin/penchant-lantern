@@ -2863,7 +2863,7 @@
             "hairColor": "brown",
             "eyes": "brown",
             "skin": "fair",
-            "features": "a sunny, freckled grin",
+            "features": "a sunny grin",
             "gear": "a white sun hat and a small travel pack"
           },
           "under": "plain",
@@ -3022,9 +3022,9 @@
           "lovers": "cowgirl",
           "backstory": "The fiery young leader of a gym in a volcano town, Flannery took over from her grandfather and spent years proving she could handle the heat. She left on a whim after hearing Hollowmere's taverns never close. She is clumsy with tact and wonderful with a crowd.",
           "design": {
-            "hairStyle": "long red ponytail",
+            "hairStyle": "bangs covering one eye, rest tied up in a high spiky ponytail",
             "hairColor": "red",
-            "eyes": "orange",
+            "eyes": "red",
             "skin": "light",
             "features": "a spray of freckles across her nose and a hot-tempered grin"
           },
@@ -3040,7 +3040,7 @@
             "sig_flannery": {
               "label": "Gym leader",
               "style": "Sporty",
-              "prompt": "a flame-red sleeveless top, a short skirt and high boots",
+              "prompt": "a black crop top, red belt, and blue jeans",
               "bonus": {"bartender":1.25,"adventurer":1.1}
             },
             "sp_flannery": {
@@ -3055,7 +3055,7 @@
             "clair": {"v":25,"kind":"comrades","note":"Fellow gym leaders with a friendly rivalry."}
           },
           "jobs": {"likes":["bartender","host"],"dislikes":["madame"]},
-          "body": {"bust":"large","height":"average","figure":"curvy"},
+          "body": {"bust":"large","height":"average","figure":"athletic"},
           "unique": {"name":"Burning Spirit","desc":"She fires up the crowd, and the drinks keep flowing.","fx":{"jobBonus":{"bartender":1.2},"clientFee":1.05}}
         },
         "may": {
