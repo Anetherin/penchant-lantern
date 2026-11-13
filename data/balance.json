@@ -684,6 +684,12 @@
       "claim": {"per":150,"samEnergy":15,"cut":10,"mood":-4}
     },
     "night": {"cost":10,"restore":20,"perDiv":0.3,"mood":8,"outsideMood":-2,"noneLove":2,"noneMood":8},
-    "neglect": {"after":3,"love":3,"mood":5,"claimWeeks":2,"claimLove":8,"claimMood":10}
+    "neglect": {"after":3,"love":3,"mood":5,"claimWeeks":2,"claimLove":8,"claimMood":10},
+    "tease": {
+      "_note": "Her distraction in disguise teases (goddess.js gDistractAct). tierByCycle[cycle] = how far she goes (1 kisses/touching, 2 hands & mouth, 3 everything, never to a finish). acts[tier] = services she picks from (a choice/tease 'act' overrides). chance[phase] = odds a choice ends in a distraction (a choice/tease 'distract' true/false overrides).",
+      "tierByCycle": [1,1,1,2,3,3],
+      "acts": {"1":["kiss","kiss","massage_give"],"2":["manual_give","oral_give","breast_give"],"3":["cowgirl","cowgirl","missionary","doggy"]},
+      "chance": {"stranger":0.5,"suspicion":1,"reveal":1,"game":0.85,"true":0}
+    }
   }
 }
