@@ -27,6 +27,8 @@ This file is for big ideas when I have a fresh batch of Claude usage.
 ## Content
 - Make sure we have good amounts of traits, personalities, perks, titles, etc for both ladies and customers and that there's plenty for every stat, skill, job, appearance factor, etc and that nothing stands out as useless or redundant.
 - Is the gameplay well rounded? Anything thta adds bloat or conversely should be fleshed out? amy additional systems we could add to improve the game?
+- What about adventuring /rpg/battle stuff?
+- Girls maybe can take a cut of the profits and use it to buy their own clothes. The user can set the toggle (including for all gitls with filters). also (toggleable) is them changing their clothes according to their preference if they have multiple. both of these should increase trust and mood (maybe baseline 20% cut? 50%? and lowering penalizes mood/trust. Maybe it changes per cycle)
 
 ## Houses
 - We should have a house available that comes with an android (and charging station)
@@ -40,6 +42,7 @@ This file is for big ideas when I have a fresh batch of Claude usage.
 ## New Game Plus
 - After Cycle 5 if you recruit the goddess should it be a soft reset? You unlock her tab, but without divinity you maybe sort of start afresh? essentially a new cycle 1 (but all prior characters retain their reincarnated perks and continue to carry over even if they don't get re-recruited). Maybe a new house and no partner? Sam's level also gets reset, but he does keep his perks and caps. The new house could add rooms (and cost) every reincarnation.
 - Most of Sam's items should not carry through to Ng Plus, and there should also be items that reduce his energy consumption for various activities.
+- Maybe certain variables change each cycle or there are certain challenges that give perks (either available right away or after goddess is unlocked/maxed)
 
 ## Races
 - They don't necessarily need to all be balanced for every activity. demons may be the strongest courtesans but should still be risky in less proposition friendly roles, and require more maintenance there (or just waste time propositioning customers instead of actually working). Humans are the default all arounders who are easy to raise. 
