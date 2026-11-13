@@ -1,0 +1,12 @@
+{
+  "_readme": [
+    "Visiting characters (guests): crossover ladies grouped into packs. They wander in among the candidates now and then, stay a couple of weeks, and leave if not hired. They can come back later.",
+    "Same fields as data/characters.json (no role). Keys must be unique across this file and characters.json. Bonds can point at anyone in either file.",
+    "visits: chance = odds per week that a guest shows up, stayWeeks = how long she waits among the candidates, cooldownWeeks = how long before that same lady can turn up again, pity = added to the chance for every week since the last guest arrived (up to maxChance), so dry spells end sooner.",
+    "Packs can be switched off in Settings → Visiting characters.",
+    "All guests are adults: aged-up / endgame versions.",
+    "jobs: {likes, dislikes} job ids, same as characters.json.",
+    "Guests also carry body and unique (see characters.json _readme)."
+  ],
+  "visits": {"chance":0.3,"stayWeeks":2,"cooldownWeeks":8,"pity":0.1,"maxChance":0.8}
+}

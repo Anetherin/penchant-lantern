@@ -1,0 +1,111 @@
+{
+  "train_stat": {
+    "beauty": [
+      "You book {name} an afternoon with a stylist you can't quite afford, then sit in the corner taking notes on skincare.",
+      "{name} and you go through posture, grooming and how to stand in good light. You hold the mirror.",
+      "You find a mirror, a comb, and a jar of honeyed pomade, and you and {name} spend the afternoon on her hair and complexion. She directs the whole thing, and you mostly hold things.",
+      "You go through colors in the shop-window light, hold up scarf after scarf, and argue happily about what suits her best. In the end, {name} chooses the one you said was too bold."
+    ],
+    "charm": [
+      "You play a string of difficult guests for {name} to win over. Your grumpy dwarf impression is a highlight.",
+      "{name} practices small talk on you until you forget it's practice.",
+      "{name} and you practice smiling. It sounds easy, and it isn't, and by the end you are both laughing too hard to manage any smile at all. Then she finally gets it right, and it's devastating.",
+      "You play a stiff guest and {name} practices melting you. It takes fourteen tries, two bad puns, and a dramatic sigh, and when she finally wins, you applaud."
+    ],
+    "charisma": [
+      "You have {name} address an empty common room as if it were packed, then again, louder, from the stairs.",
+      "{name} rehearses toasts and introductions while you heckle gently from the back.",
+      "You rehearse entering a crowded room, over and over, in the empty lounge. {name} learns to hold a pause and own a doorway, and you stand at the back, clapping with the whole of your heart.",
+      "You make her give a toast to an imaginary room, then another, then a third. By the end, {name} commands the empty chairs, and you're pretty sure they'd follow her anywhere."
+    ],
+    "refinement": [
+      "You and {name} work through table settings, forms of address and which fork is for what. Neither of you is sure about the fish fork.",
+      "{name} reads poetry aloud while you correct her pronunciation from a borrowed etiquette book.",
+      "A formal tea service appears in the parlor, with all the wrong cups, and you and {name} work through proper etiquette with great solemnity. She corrects your pinky finger. You deserve it.",
+      "You work through the finer points: how to fold a napkin, how to pour for a duke, how to look unbothered when something spills. {name} is a natural, and she knows it."
+    ],
+    "wits": [
+      "You set {name} logic puzzles from a book you half remember from your old world. She solves the last one faster than you can.",
+      "{name} and you spend the afternoon on riddles, ledgers and a board game you had someone carve for you.",
+      "You bring riddles from three different lives' worth of memory, and {name} dismantles them with a sharp, delighted smile. She stumps you once, and refuses to ever let you forget it.",
+      "You play a long, fast game of quick comebacks in the lounge, and {name} wins. You write down her best lines for the house's collection."
+    ],
+    "stamina": [
+      "You take {name} on a long run along the river. You regret it before she does.",
+      "{name} works through a circuit you drew up: stairs, buckets of water, more stairs.",
+      "Morning laps around the garden, a stitch in the side, and {name} slowing down to keep pace with you while you wheeze dramatically. You finish together, collapsing on the grass.",
+      "You draft a training plan with warm-ups and rest days. {name} reads it, nods, and follows it at twice the pace. By the end of the week, she's noticeably less winded."
+    ],
+    "strength": [
+      "{name} hauls crates in the storeroom while you count reps and pretend you could lift them too.",
+      "You borrow weights from the guild and spot {name} through an afternoon of lifting.",
+      "You haul water jugs up and down the back stairs for an hour. {name} carries two at a time, and you carry one and a half, with a great show of dignity.",
+      "You set up a row of sacks of flour and {name} lifts them with growing ease. You keep a tally on a slate and claim it's for science."
+    ],
+    "agility": [
+      "You chalk a pattern on the courtyard floor and have {name} dance, dodge and step through it until it's second nature.",
+      "{name} practices balance on the garden wall while you hover underneath, ready to catch her.",
+      "A rope strung low across the yard becomes an obstacle course, and {name} clears it again and again. Your attempt is shorter, funnier, and mostly face-down in the grass.",
+      "You practice ducking, dodging, and tumbling on the lawn, laughing breathlessly. {name} lands every roll while you lie on your back, wondering where your hat went."
+    ]
+  },
+  "train_service": {
+    "_note": "Hands-on service practice with you (followed by her shown service's private_act line). {name}.",
+    "_default": [
+      "{name} decides your education is a shared project. You work through everything you're both comfortable with, one thing at a time, until both of you are confident in the technique. You take notes afterward. She finds this hilarious.",
+      "You bring a candle, a notebook, and the serious face you wear for exams. {name} brings a smirk and a very good memory of what she's comfortable with. You run through her repertoire one item at a time, stopping whenever she says \"wait, try it like this,\" and you write it all down.",
+      "It's supposed to be a practice session, and for the first ten minutes it very nearly is. {name} corrects your hand placement, you ask a polite follow-up question, and she tells you that politeness is lovely but you can stop checking in every four seconds. The notes are getting messier.",
+      "The practice room smells of lamp oil and warm cedar, and {name} has put cushions everywhere. \"Think of it as a rehearsal,\" she says. You think of it as an exam you're thrilled to be taking. You work through each service she's sure of, polishing and adjusting.",
+      "You've drawn a small diagram. {name} looks at it for a long, silent moment, then tells you it's anatomically ambitious and takes the pencil to correct it. After that you do things the hands-on way, and the diagram gets very smudged.",
+      "\"Rule one,\" {name} announces, \"no giggling at the technique.\" You break that rule within a minute. Between laughs, you go through each service she's confident in, trading adjustments, and the lamp burns down while you wrestle with the finer points.",
+      "The rain beats a steady rhythm on the shutters while {name} walks you through her own repertoire like a guide leading a tour. She stops at each service, shows you what works and what doesn't, and gives you her expert verdict on your form. You scribble frantically, glowing with pride."
+    ]
+  },
+  "train_skill": {
+    "_note": "One-on-one trade-skill training, keyed by skill (service, dance, bar, combat, manage; _default fallback). {name}, {skill}. Followed by \"Sam takes detailed notes, as is tradition.\"",
+    "_default": [
+      "You walk {name} through the trade the hands-on way, {skill} first: posture, pacing, the little things regulars notice.",
+      "You pull up a stool, and {name} sits across from you with the focused expression she saves for things she wants to be good at. You work through {skill} slowly, one piece at a time, and you're careful to praise what she does well before you mention anything else.",
+      "The afternoon light slants across the floor while you and {name} drill {skill} together. She tries it, misses, tries again; you offer a small suggestion; and she gets it on the next go with a bright, startled laugh.",
+      "\"Show me,\" you say, and {name} does, and then you show her your own clumsy version for contrast. She's helpless with laughter, which is the best thing that could have happened. After that, {skill} goes much more smoothly.",
+      "You keep at {skill} until the lamps need trimming. {name} is stubborn and quick, and you're patient, and somewhere in the middle of it she stops looking at you as the boss and starts looking at you as a very good teacher."
+    ],
+    "service": [
+      "You and {name} sit across from each other with a pot of tea and a plan: how to greet a guest, how to read a mood, how to make a tired stranger feel like the only person in the room. She practices her welcome on you four different ways. By the fourth, you're genuinely flustered.",
+      "\"Eye contact first,\" you say, \"then the smile, then the offer of a drink.\" {name} nods, tries it, and gets it right on the third go. The lounge is empty and quiet, the afternoon light coming slantwise through the shutters, and she sits a little taller each time you nod.",
+      "You spend the afternoon on small things, which turn out to be the big things: how to pour wine without a drip, when to stay silent, when to ask a question. {name} is quick, and the quiet pride on her face grows every time you say \"yes, exactly that.\"",
+      "You play the nervous first-time guest. You are, unfortunately, very convincing. {name} manages to settle you with a few well-chosen words and a warm hand on your sleeve, and then you both realize you've forgotten to keep the act up."
+    ],
+    "dance": [
+      "The parlor rug is rolled aside and {name} stands barefoot on the boards while you count the beat aloud. You can't dance, but you can spot where her weight drifts, and you've learned to say so gently. She keeps rolling her eyes and correcting herself anyway.",
+      "A phonograph does not exist in this world, so you hum and tap the rhythm on a table, badly. {name} laughs, then takes the beat from you and makes it hers, turning slowly across the floor. By the end of the hour, your humming is the only thing out of tune.",
+      "\"Again from the top,\" you say, and {name} salutes with a flourish and starts the routine over. Her shadow sweeps long across the wall in the lantern light, and her footwork sharpens every time. She stops at the end, breathing hard, flushed and pleased.",
+      "You watch from a stool at the edge of the floor, chin in your hand, offering notes like a very polite critic. {name} adjusts a spin, lifts her arms a touch higher, and the whole thing suddenly flows. You clap once, startled into it, and she bows with a grin."
+    ],
+    "bar": [
+      "Behind the empty bar, the shelves of bottles glint in the lamplight. You set out three glasses and a jigger, and {name} learns to measure by eye while you time her pours with a sand-glass. She spills the first one, grins, and wipes the bar with a flourish.",
+      "\"A good bartender remembers faces,\" you say, holding up a deck of sketched regulars. {name} studies them, names each one correctly, and adds what each of them drinks. You are unreasonably impressed. She is unreasonably smug.",
+      "You go through the shaker, the strainer, and the long spoon, one tool at a time. {name} gets the ice rattle just right on her fifth try, and the sound rings through the quiet room like a small bell. You make her do it six more times, to be sure.",
+      "You mix a drink badly on purpose so {name} can fix it. She tastes it, winces, and rebuilds it from the base up, adding a twist of citrus and a pinch of something you don't recognize. It tastes wonderful, and you ask her to show you again."
+    ],
+    "combat": [
+      "The yard behind the house is damp from morning rain, and {name} stands in the middle of it with a wooden practice blade in her hand. Thin and nerdy and very serious about this, you demonstrate a stance. She straightens yours, kindly, and then shows you how it's done.",
+      "You spar slowly, the wooden blades clacking in the morning stillness. You call out corrections you read once in a book, and {name} humors you for exactly as long as it takes to disarm you. \"Theory is lovely,\" she says, handing your stick back. \"Now try it with feet.\"",
+      "{name} runs the drill again and again, footwork first, then guard, then the long step in. You count for her, and the count keeps time with her breathing. By the end her shirt is damp and her grin is sharp.",
+      "You don't know a great deal about fighting, but you know how to pay attention. You watch {name} move, notice where she drops her guard, and say so, apologetically. She tests the notion, finds it true, and gives you a surprised look of real respect."
+    ],
+    "manage": [
+      "Ledgers, receipts, and a pot of strong tea cover the office desk. You walk {name} through the weekly accounts one column at a time, and she follows with a finger down the page, frowning, then brightening when the numbers click. \"So this is where all the candles go,\" she says.",
+      "\"A manager's job,\" you say, \"is to make problems small before they're big.\" {name} considers this seriously, then asks three sharp questions about the rota that you have to look up. She pretends not to enjoy that.",
+      "You role-play a difficult guest. You play the guest, loudly and a bit unfairly, and {name} de-escalates you with a calm voice and a firm smile. You fold in under a minute. She sits back, pleased, and takes the last biscuit.",
+      "The window is open to the afternoon, with the noise of the street drifting in, and {name} is working out next week's schedule on a slate. You lean over to point out a clash, and she has already spotted it. \"Give me some credit,\" she says, rubbing it out."
+    ]
+  },
+  "tutor_note": {
+    "_default": [
+      "Spent her mornings with the {tutor}.",
+      "Her {tutor} left her a stack of exercises. She did most of them.",
+      "Lessons with the {tutor} went well this week."
+    ]
+  }
+}

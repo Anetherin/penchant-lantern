@@ -1,0 +1,272 @@
+{
+  "seraphine": {
+    "role": "story",
+    "job": "courtesan",
+    "title": "Lady",
+    "name": "Seraphine Rosenhal",
+    "race": "human",
+    "age": 27,
+    "personality": "Proud and sharp-tongued",
+    "traits": ["Elegant","Loyal"],
+    "style": "Elegant",
+    "favColor": "gold",
+    "fav": "missionary",
+    "dislike": "doggy",
+    "lovers": "oral_get",
+    "backstory": "The last of the Rosenhals: no money, a title worth nothing, and a castle that now belongs to a commoner in a hoodie. She knows every noble in the kingdom and exactly how to host them. Hosting is the only pride her family has left, and she intends to be magnificent at it.",
+    "design": {
+      "hairStyle": "long golden hair in an old-fashioned updo",
+      "hairColor": "golden blonde",
+      "eyes": "sapphire",
+      "skin": "porcelain",
+      "features": "a family signet ring she never takes off"
+    },
+    "under": "silk",
+    "underColor": "ivory",
+    "stats": {"beauty":78,"charm":60,"charisma":64,"refinement":88,"wits":95,"stamina":40,"strength":15,"agility":40},
+    "tech": {"service":55,"dance":50,"bar":10,"combat":10,"manage":60},
+    "actSkill": 10,
+    "popularity": 30,
+    "lewd": 15,
+    "trust": 30,
+    "outfits": {
+      "sig_seraphine": {
+        "label": "Faded court silks",
+        "style": "Elegant",
+        "prompt": "an old-fashioned but immaculate gold-embroidered court dress, slightly faded",
+        "bonus": {"noble":1.35,"courtesan":1.1}
+      },
+      "sp_seraphine": {
+        "label": "Rosenhal ball gown",
+        "style": "Elegant",
+        "prompt": "a breathtaking crimson ball gown with the Rosenhal rose crest",
+        "bonus": {"noble":1.3,"madame":1.2}
+      }
+    },
+    "jobs": {"likes":["courtesan","madame"],"dislikes":["maid","bartender"]},
+    "body": {"bust":"medium","height":"tall","figure":"slim"},
+    "unique": {"name":"Noble Hostess","desc":"She knows exactly how to charm nobility.","fx":{"classBonus":{"noble":1.25}}}
+  },
+  "ilyana": {
+    "role": "story",
+    "job": "madame",
+    "title": "Lady",
+    "name": "Ilyana Silverbough",
+    "race": "elf",
+    "age": 260,
+    "personality": "Calm and elegant",
+    "traits": ["Elegant","Romantic"],
+    "style": "Elegant",
+    "favColor": "silver",
+    "fav": "kiss",
+    "dislike": "manual_give",
+    "lovers": "missionary",
+    "backstory": "The Pavilion's elven patroness for a century. She decided she would rather be part of it than own it from afar. She funded its first stage out of boredom and kept it out of affection, and now wants to know how it feels from the other side of the curtain.",
+    "design": {
+      "build": "lean",
+      "hairStyle": "very long silver hair woven with tiny pearls",
+      "hairColor": "silver",
+      "eyes": "pale gold",
+      "skin": "porcelain",
+      "features": "a serene smile that misses nothing"
+    },
+    "under": "silk",
+    "underColor": "silver",
+    "stats": {"beauty":82,"charm":62,"charisma":62,"refinement":90,"wits":95,"stamina":40,"strength":15,"agility":50},
+    "tech": {"service":60,"dance":60,"bar":20,"combat":10,"manage":70},
+    "actSkill": 35,
+    "popularity": 35,
+    "lewd": 28,
+    "trust": 30,
+    "outfits": {
+      "sig_ilyana": {
+        "label": "Patroness robes",
+        "style": "Elegant",
+        "prompt": "layered silver-grey elven robes with moon-lily embroidery",
+        "bonus": {"madame":1.3,"noble":1.15}
+      },
+      "sp_ilyana": {
+        "label": "Moonsilk gown",
+        "style": "Revealing",
+        "prompt": "a gown of shimmering moonsilk that is more light than fabric",
+        "bonus": {"noble":1.3,"courtesan":1.15}
+      }
+    },
+    "bonds": {"sylphine":{"v":40,"kind":"mentor","note":"The Pavilion's patroness has watched Sylphine dance for decades."}},
+    "jobs": {"likes":["madame","courtesan","dancer"],"dislikes":["maid"]},
+    "body": {"bust":"medium","height":"tall","figure":"slim"},
+    "unique": {"name":"Century of Poise","desc":"A hundred years of patronage give her unshakable poise.","fx":{"jobBonus":{"madame":1.15},"rep":1.15}}
+  },
+  "ines": {
+    "role": "story",
+    "job": "security",
+    "name": "Ines Varga",
+    "race": "human",
+    "age": 30,
+    "personality": "Hot-blooded and competitive",
+    "traits": ["Former Adventurer","Tough"],
+    "style": "Sporty",
+    "favColor": "black",
+    "fav": "doggy",
+    "dislike": "kiss",
+    "lovers": "missionary",
+    "backstory": "A former ghost hunter who came to exorcise Hollowmere Manor and stayed to make amends. She still sleeps with a silver dagger under her pillow, out of habit. On her first night Vesper offered her tea instead of fleeing, and she has never quite recovered; she now considers the manor her responsibility.",
+    "design": {
+      "hairStyle": "short, sharp black bob",
+      "hairColor": "black",
+      "eyes": "grey-green",
+      "skin": "olive",
+      "features": "a thin scar along her jaw and silver charm earrings"
+    },
+    "under": "sports",
+    "underColor": "black",
+    "stats": {"beauty":62,"charm":45,"charisma":51,"refinement":40,"wits":40,"stamina":70,"strength":65,"agility":65},
+    "tech": {"service":20,"dance":10,"bar":20,"combat":70,"manage":30},
+    "actSkill": 15,
+    "popularity": 10,
+    "lewd": 20,
+    "trust": 25,
+    "outfits": {
+      "sig_ines": {
+        "label": "Ghost-hunter's coat",
+        "style": "Sporty",
+        "prompt": "a long black hunter's coat with silver buckles and a bandolier of charms",
+        "bonus": {"security":1.35}
+      },
+      "sp_ines": {
+        "label": "Duelist's outfit",
+        "style": "Sporty",
+        "prompt": "a silver-trimmed duelist's jacket, white shirt and tall boots",
+        "bonus": {"adventurer":1.2,"security":1.2}
+      }
+    },
+    "bonds": {"vesper":{"v":-40,"note":"She came to exorcise Vesper. Vesper has not forgotten."}},
+    "jobs": {"likes":["security","bartender"],"dislikes":["dancer"]},
+    "body": {"bust":"medium","height":"tall","figure":"athletic"},
+    "unique": {"name":"Ghost Hunter's Eye","desc":"She notices danger before anyone else does.","fx":{"security":15}}
+  },
+  "vharra": {
+    "role": "story",
+    "job": "courtesan",
+    "name": "Vharra",
+    "race": "demon",
+    "age": 300,
+    "personality": "Bold and flirtatious",
+    "traits": ["Ambitious","Greedy"],
+    "style": "Revealing",
+    "favColor": "emerald",
+    "fav": "cowgirl",
+    "dislike": "kiss",
+    "lovers": "oral_get",
+    "backstory": "The Underdistrict's landlord, until she got bored of collecting rent and decided it would be more fun to make it. She owns half the lanes down there and the other half owe her favors. She treats Sam's debts as a game, and keeps score for fun.",
+    "design": {
+      "hairStyle": "long braided",
+      "hairColor": "jet black with green streaks",
+      "eyes": "emerald with slit pupils",
+      "skin": "dark grey",
+      "features": "four curling horns and gold piercings"
+    },
+    "under": "corset",
+    "underColor": "emerald",
+    "stats": {"beauty":76,"charm":66,"charisma":76,"refinement":50,"wits":50,"stamina":65,"strength":45,"agility":50},
+    "tech": {"service":45,"dance":40,"bar":30,"combat":40,"manage":60},
+    "actSkill": 65,
+    "popularity": 30,
+    "lewd": 75,
+    "trust": 10,
+    "outfits": {
+      "sig_vharra": {
+        "label": "Landlord's silks",
+        "style": "Revealing",
+        "prompt": "draped emerald silks with heavy gold chains and rings",
+        "bonus": {"courtesan":1.2,"merchant":1.2}
+      },
+      "sp_vharra": {
+        "label": "Underdistrict regalia",
+        "style": "Revealing",
+        "prompt": "black and emerald infernal regalia with a jeweled collar",
+        "bonus": {"courtesan":1.3,"propose":1.2}
+      }
+    },
+    "jobs": {"likes":["courtesan","madame"],"dislikes":["maid","security"]},
+    "body": {"bust":"large","height":"tall","figure":"curvy"},
+    "unique": {
+      "name": "Landlord's Cut",
+      "desc": "She always takes a little more from every deal, and nobody minds.",
+      "fx": {"clientFee":1.1,"classBonus":{"merchant":1.15}}
+    }
+  },
+  "rhoswen": {
+    "role": "guild",
+    "job": "attendant",
+    "name": "Rhoswen",
+    "race": "elf",
+    "age": 212,
+    "personality": "Calm and elegant",
+    "traits": ["Elegant","Shy"],
+    "style": "Elegant",
+    "favColor": "emerald",
+    "fav": "kiss",
+    "dislike": "doggy",
+    "lovers": "missionary",
+    "backstory": "A noble elf who walked away from a stifling court to see how humans actually live. Curious, very proper, and quietly thrilled to be somewhere scandalous. She carries a leather notebook of observations, blushes at her own boldness, and has never been so happy to be called \"miss\" instead of \"my lady.\"",
+    "design": {
+      "build": "lean",
+      "hairStyle": "long straight",
+      "hairColor": "platinum blonde",
+      "eyes": "emerald",
+      "skin": "porcelain",
+      "features": "a delicate silver circlet"
+    },
+    "under": "silk",
+    "underColor": "white",
+    "stats": {"beauty":80,"charm":50,"charisma":50,"refinement":85,"wits":88,"stamina":35,"strength":20,"agility":50},
+    "tech": {"service":40,"dance":55,"bar":10,"combat":15,"manage":40},
+    "actSkill": 5,
+    "popularity": 10,
+    "lewd": 14,
+    "trust": 10,
+    "outfits": {"sig_rhoswen":{"label":"Court gown","style":"Elegant","prompt":"a flowing pale-green silk court gown","bonus":{"noble":1.3,"dancer":1.1}}},
+    "jobs": {"likes":["attendant","promoter"],"dislikes":["bartender","courtesan"]},
+    "body": {"bust":"small","height":"tall","figure":"slim"},
+    "unique": {"name":"Court Manners","desc":"Impeccable breeding that nobles adore.","fx":{"classBonus":{"noble":1.2},"wardrobe":5}}
+  },
+  "hanna": {
+    "role": "guild",
+    "job": "promoter",
+    "name": "Hanna Weiss",
+    "race": "human",
+    "age": 27,
+    "personality": "Cheerful and teasing",
+    "traits": ["Romantic"],
+    "style": "Cute",
+    "favColor": "sky blue",
+    "fav": "breast_give",
+    "dislike": null,
+    "lovers": "missionary",
+    "backstory": "The Adventurers' Guild's most efficient receptionist and its biggest gossip. She's been dying for an excuse to see the inside of a pleasure house. She knows every adventurer's tab and secret crush by heart, and has been quietly cataloguing which of them visit the Lantern.",
+    "design": {"hairStyle":"shoulder-length","hairColor":"honey blonde","eyes":"blue","skin":"fair","features":"freckles across her nose"},
+    "under": "lace",
+    "underColor": "sky blue",
+    "stats": {"beauty":58,"charm":68,"charisma":81,"refinement":45,"wits":45,"stamina":50,"strength":25,"agility":40},
+    "tech": {"service":70,"dance":20,"bar":30,"combat":10,"manage":50},
+    "actSkill": 15,
+    "popularity": 25,
+    "lewd": 28,
+    "trust": 30,
+    "outfits": {
+      "sig_hanna": {"label":"Guild uniform","style":"Cute","prompt":"a neat guild uniform with a short blue cape","bonus":{"promoter":1.25,"adventurer":1.15}}
+    },
+    "bonds": {
+      "kaede": {"v":35,"note":"Hanna processed every one of Kaede's bounty claims, and gossiped about all of them."},
+      "rhoswen": {"v":30,"note":"Guild friends."}
+    },
+    "jobs": {"likes":["promoter","host","bartender"],"dislikes":["maid"]},
+    "body": {"bust":"medium","height":"average","figure":"curvy"},
+    "unique": {
+      "name": "Guild Gossip",
+      "desc": "She knows everyone's business, and tells enough of it to bring customers in.",
+      "fx": {"promote":1.25,"propRate":1.1}
+    }
+  }
+}

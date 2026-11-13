@@ -1,0 +1,425 @@
+{
+  "client_yes": {
+    "_note": "Second half of a report highlight when a client got the service he asked for.",
+    "_default": [
+      "They disappeared upstairs for most of the evening.",
+      "He came downstairs an hour later looking dazed and very satisfied.",
+      "The door stayed closed a long time. He tipped generously.",
+      "She came back down first, humming. He followed, red-faced and grinning.",
+      "The lamp in the upstairs window burned late, and the piano downstairs had finished two full sets before the door finally opened.",
+      "He went up with a nervous cough and a rumpled hat, and came down an hour later carrying the hat and no memory of where he'd left his dignity.",
+      "Somewhere between the second glass of plum wine and the stairs, he made up his mind. The staircase creaked for a while afterward, and nobody pretended not to notice.",
+      "They slipped away from the crowded lounge while the fiddler was mid-song. By the time the tune ended, the evening had gone somewhere much quieter.",
+      "He spent a long, unhurried evening behind a closed door and emerged looking like a man who'd forgotten what day it was. His coin purse, on the other hand, remembered perfectly.",
+      "The room smelled of lavender and warm candle wax by the time they were done, and the bedsheets looked like they'd lost an argument."
+    ]
+  },
+  "client_company": {
+    "_note": "Second half of a report highlight when a client only wanted her company.",
+    "_default": [
+      "He left lighter in the purse and very happy about it.",
+      "He promised to come back next week.",
+      "He told three friends about her before he got home.",
+      "He lingered on the stairs, patting his pockets like a man who didn't want to leave, then bought a bottle of wine for the road.",
+      "He stopped to straighten his collar in the hallway mirror and caught himself smiling at his own reflection.",
+      "He paid, he tipped, and he tried to tip again at the door. Sam had to gently steer him outside.",
+      "He left humming a tune from the lounge and walked straight into a lamppost. He apologized to it.",
+      "He lingered over his last cup of tea in the lounge, reluctant to let the night end, and asked the doorman which evenings were quietest.",
+      "He wrote her a small, terrible poem on a napkin before he left. She kept it."
+    ]
+  },
+  "enc_fav": {
+    "_note": "Client asked for her favorite.",
+    "_default": [
+      "She enjoyed that one.",
+      "Her favorite. She was humming afterward.",
+      "She came back downstairs smiling.",
+      "This was the one she'd have picked from the whole week, and she hummed the entire way back to her room.",
+      "She stretched out on the cushions afterward looking wonderfully pleased with herself.",
+      "She told Sam later it was the best part of her week. Sam turned very red and said he was glad.",
+      "She took her time on the stairs afterward, in no hurry to get back to work.",
+      "She was still smiling when the next lantern was lit.",
+      "Easily her favorite of the week. She kept replaying it over her tea."
+    ]
+  },
+  "enc_dislike": {
+    "_note": "Client asked for something she dislikes but does.",
+    "_default": [
+      "Not her favorite.",
+      "She got through it, but it's not her thing.",
+      "She was a little quiet afterward.",
+      "She gave him a perfectly professional evening and kept her real opinion to herself.",
+      "She counted the minutes against the candle and was glad when it was over.",
+      "She went back to her room afterward and brewed herself something strong.",
+      "She kept her smile painted on, but it took some effort.",
+      "She wasn't rude about it, but she was quick to change the subject afterward.",
+      "She was very careful not to look at the clock, and very glad to wash up after."
+    ]
+  },
+  "enc_stretch": {
+    "_note": "A service that's still a stretch for her with clients.",
+    "_default": [
+      "A stretch for her. She did it anyway.",
+      "She wasn't sure about it, and it showed a little.",
+      "Outside her comfort zone, but she managed.",
+      "It wasn't what she'd usually choose, but she gave it an honest try with a brave smile.",
+      "She took a deep breath at the door and went in determined to be professional.",
+      "Not her usual territory by a long shot, but she muddled through with good humor.",
+      "She learned something new about her limits, and decided she could live with it.",
+      "A little awkward, a little bold, and she had to laugh at herself halfway through.",
+      "She'd rather have been elsewhere, but she held her head up and finished the job."
+    ]
+  },
+  "enc_eager": {
+    "_note": "She was in the mood (high lust).",
+    "_default": [
+      "She'd been wanting it all week.",
+      "She was more into it than he was.",
+      "She was very much in the mood.",
+      "She was practically waiting at the door for him.",
+      "She'd been eyeing the clock all afternoon and was ready the moment the bell rang.",
+      "She'd braided flowers into her hair for the occasion and was not at all shy about it.",
+      "She didn't need coaxing; if anything, she was the one doing the leading.",
+      "She'd been in a good mood since breakfast and it showed.",
+      "Her enthusiasm caught him a little off guard, and then caught him entirely."
+    ]
+  },
+  "enc_glow": {
+    "_note": "Very satisfied client.",
+    "_default": [
+      "He left glowing.",
+      "He's already asking when she's free next.",
+      "He tipped well and said so twice.",
+      "He floated down the stairs with a grin he couldn't wipe off, and walked out into the night humming.",
+      "He left a tip big enough that Sam checked it twice for mistakes.",
+      "He paid for a bottle for the whole lounge on his way out.",
+      "He squeezed her hand at the door and promised to be back before the week was out.",
+      "He told the doorman that this was the best night of his life, then corrected it to 'month' and then 'year'.",
+      "He looked ten years younger and walked a little taller on the way home."
+    ]
+  },
+  "enc_flat": {
+    "_note": "Unhappy client.",
+    "_default": [
+      "He left grumbling.",
+      "It didn't really click.",
+      "Neither of them enjoyed it much.",
+      "The conversation ran out before the evening did, and the silence was long.",
+      "The candle burned down, but the spark never really took hold.",
+      "They parted politely, each privately sure it hadn't been their night.",
+      "He checked his pocket watch a few times too many.",
+      "Nothing went wrong exactly. Nothing went especially right either.",
+      "They both shrugged it off in the hallway and went their separate ways."
+    ]
+  },
+  "enc_declined": {
+    "_note": "She turned the request down.",
+    "_default": [
+      "She didn't mind saying no.",
+      "No hard feelings either way.",
+      "She turned him down with a friendly smile and offered him a drink at the bar instead.",
+      "She said no politely, and he took it with a gracious nod.",
+      "She waved him toward another lady, no offense taken on either side.",
+      "She told him honestly it wasn't for her, and he appreciated the honesty.",
+      "He asked, she declined, and they went on chatting as if nothing had happened.",
+      "She shook her head kindly and the conversation moved on without a hitch."
+    ]
+  },
+  "enc_nomood": {
+    "_note": "She turned it down because she wasn't in the mood (low lust).",
+    "_default": [
+      "She just wasn't in the mood.",
+      "Not tonight, she said.",
+      "She'd had a long day and her heart simply wasn't in it.",
+      "She curled up in the corner of the lounge instead, and told him so kindly.",
+      "She begged off with a small yawn and a gentler smile.",
+      "Maybe another night, she said. Tonight she wanted tea and quiet.",
+      "The spark just wasn't there, and she knew better than to fake it.",
+      "She wasn't feeling it, so she poured him a drink on the house and let him down easy."
+    ]
+  },
+  "enc_frustrated": {
+    "_note": "A finishing service that left her wanting more.",
+    "_default": [
+      "It left her a little frustrated.",
+      "She wanted more than he knew how to give.",
+      "Not quite what she was hoping for.",
+      "She lay awake afterward, staring at the ceiling beams and wishing he'd tried harder.",
+      "The evening ended before she'd really gotten started, and she sighed at the door.",
+      "She was left drumming her fingers on the windowsill and wondering where it all went.",
+      "It was polite, quick, and entirely unsatisfying.",
+      "She ended up finishing her wine alone, a little cross.",
+      "She told herself it wasn't his fault. She was only partly convinced."
+    ]
+  },
+  "enc_drained": {
+    "_note": "A restless demon fed too eagerly.",
+    "_default": [
+      "He left pale and shaky.",
+      "He had to sit down for a while afterward.",
+      "He stumbled out looking decidedly drained.",
+      "He went down the stairs one hand on the wall, the color of old parchment.",
+      "He sat in the lounge for half an hour afterward and couldn't remember what he'd come for.",
+      "He asked for water, then more water, then a chair.",
+      "He walked out with unsteady knees and a very happy, very glassy smile.",
+      "He leaned on the doorframe for a long moment before braving the street.",
+      "The doorman had to help him find his hat. His own head seemed to be missing."
+    ]
+  },
+  "enc_like": {
+    "_note": "Client who's a fan of her kind.",
+    "_default": [
+      "He admitted he'd been hoping for her specifically.",
+      "He was a fan from the moment he saw her.",
+      "He asked for her by name at the door and looked pleased as punch when she appeared.",
+      "He tried to hide how much he'd been hoping, and failed completely.",
+      "He'd saved up for an evening with her specifically, and he made sure she knew it.",
+      "He kept finding reasons to compliment her, each a little clumsier than the last.",
+      "He admitted she'd been the reason he came to the house at all.",
+      "He went all shy and sweet the moment she smiled at him."
+    ]
+  },
+  "enc_put_off": {
+    "_note": "Client who's uneasy around her kind.",
+    "_default": [
+      "He seemed ill at ease around her.",
+      "He kept glancing away. It wasn't her best night.",
+      "He couldn't quite meet her eye, and the evening never really loosened up.",
+      "He fidgeted with his cuffs and kept the conversation firmly on the weather.",
+      "He seemed to have expected someone different and never quite recovered.",
+      "He kept a polite, wary distance, as though she might bite.",
+      "The mood curdled somewhere around the first glass, and she could feel it.",
+      "He found an excuse to leave early, and she let him, a little stung."
+    ]
+  },
+  "encore": {
+    "_note": "She wasn't done after the first round.",
+    "_default": [
+      "...and she wasn't done with him yet.",
+      "...and when the candle guttered, she lit another.",
+      "...and then, quite unexpectedly, they went a second round.",
+      "...and he'd barely caught his breath before she was reaching for the wine again.",
+      "...and the lounge piano had moved on to a new song by the time they finally came out.",
+      "...and somehow the hourglass was turned over again, at her suggestion.",
+      "...and neither of them seemed in any hurry to see the door."
+    ]
+  },
+  "stepped_in": {
+    "_note": "Note when a madame or attendant took clients because the courtesans were swamped ({clients} = 'one client' / 'N clients', {did} = ' (kiss ×2, massage)' or ' (company only)').",
+    "_default": [
+      "{name} stepped in for {clients} when the courtesans were swamped{did}.",
+      "{name} took the overflow herself: {clients}{did}, so nobody had to be turned away.",
+      "With every courtesan busy, {name} quietly took on {clients}{did}, and the lounge never noticed a gap.",
+      "{name} put her usual duties aside and looked after {clients}{did}. The house ran smoothly on.",
+      "When the waiting room began to fill, {name} rolled up her sleeves and saw to {clients}{did}.",
+      "Nobody asked her to, but {name} covered {clients}{did} and kept the evening from falling apart.",
+      "{name} filled in where the courtesans couldn't: {clients}{did}, and not a single complaint.",
+      "The house was short a pair of hands, so {name} lent hers for {clients}{did}."
+    ]
+  },
+  "pushy_talked": {
+    "_note": "A client got pushy and she talked him down herself. Non-graphic.",
+    "_default": [
+      "A client got pushy with {name}, but she kept her head and talked him down before it went any further.",
+      "Someone wouldn't take no from {name}. A calm word and a steady look, and he backed off.",
+      "One client grew grabby with {name}, but she held up a hand, spoke softly, and kept her smile steady until he sheepishly sat back down.",
+      "A client got a little too bold with {name}. She talked him down patiently, cup of tea in hand, until the moment passed.",
+      "{name} turned aside a client who wouldn't take no, using nothing but a calm voice and a level stare.",
+      "A drunk guest tried to push his luck with {name}. She laughed him down, steered him to a chair, and ordered him some water.",
+      "A man tried to press {name} for more than she'd offered. She kept her tone friendly, her boundaries firm, and he gave up."
+    ]
+  },
+  "pushy_security": {
+    "_note": "A client got pushy and security handled it. Non-graphic.",
+    "_default": [
+      "A client got pushy with {name}, and security walked him out.",
+      "Someone wouldn't take no from {name}. Security walked him out before it went further.",
+      "A client pushed too hard with {name}, and the house's security was beside him before the second request, politely escorting him out.",
+      "When a client wouldn't take {name}'s no, a security guard appeared at his shoulder and showed him the door.",
+      "Security stepped in the instant a client crowded {name}, and the man was out on the street with his hat before he could object.",
+      "One guest got grabby with {name}. Security collected him gently, firmly, and thoroughly.",
+      "{name} raised a hand and a guard was there at once. The pushy client left with a lot less swagger."
+    ]
+  },
+  "pushy_sam": {
+    "_note": "A client got pushy and Sam stepped in. Non-graphic.",
+    "_default": [
+      "A client got pushy with {name}. Sam stepped in and settled it.",
+      "A client wouldn't take no for an answer. Sam stepped in and walked him to the door.",
+      "A client crowded {name} and wouldn't back off. Sam appeared, a little pale but determined, and spoke so earnestly that the man left.",
+      "One guest didn't want to hear no from {name}. Sam stepped between them, adjusted his glasses, and somehow talked him out the door.",
+      "A pushy client met Sam in the hallway. Sam, bless him, held his ground, and the man blinked and went home.",
+      "A client got insistent with {name}, and Sam appeared like a nervous, determined little lantern and sent him on his way.",
+      "Sam heard raised voices, hurried upstairs, and put himself between {name} and the client. It worked, and he needed a sit-down afterward."
+    ]
+  },
+  "pushy_samfail": {
+    "_note": "A client got pushy and Sam's attempt went badly. Non-graphic.",
+    "_default": [
+      "A client got pushy with {name}. Sam stepped in, and it went badly: a loud scene, a bruised ego, and a bad story about {house}.",
+      "A client wouldn't take no from {name}. Sam stepped in with an apology and a trembling voice, and the whole thing turned into a shouting match in front of the lounge of {house}.",
+      "Sam tried to talk a pushy client down, but tripped over his own words and a rug. The scene at {house} was loud, humiliating, and everybody saw.",
+      "A client got pushy with {name}, and Sam's attempt at diplomacy came out as a squeak. {house} will be hearing about it for a week.",
+      "Sam stepped between {name} and a pushy guest, and the guest laughed at him. It got worse from there, in full view of {house}.",
+      "Sam did his best, but the pushy client shoved past him. {name} had to sort it out, and {house} looked rather foolish."
+    ]
+  },
+  "pushy_samcall": {
+    "_note": "A client got pushy, security could not handle it, and Sam was sent for (resolved by the player after the report). Non-graphic.",
+    "_default": [
+      "A client got pushy with {name}. Security couldn't handle him, and someone ran to fetch Sam.",
+      "A client pushed {name} too far, and security couldn't shift him. Somebody sprinted up the stairs to find Sam.",
+      "The guards couldn't talk down the client bothering {name}, so a runner was sent flying for Sam.",
+      "A stubborn client wouldn't let up on {name}. Security held him, and a maid fetched Sam as fast as her legs would carry her.",
+      "Security hit a wall with a pushy client and {name} called for help. Word went round for Sam.",
+      "A very persistent guest kept {name} backed against a corner until security gave up and ran to fetch Sam."
+    ]
+  },
+  "pushy_none": {
+    "_note": "A client got pushy and nobody was there. Non-graphic.",
+    "_default": [
+      "A client got pushy with {name} and nobody was around to help. She got away from him, shaken.",
+      "{name} had to talk her way out of a client who wouldn't take no. Nobody was near.",
+      "A client crowded {name} in a quiet corridor, and there was nobody close enough to hear. She slipped out of his grasp and fled down the stairs, still trembling.",
+      "{name} found herself alone with a client who wouldn't listen. She ducked his hand, got to the lounge, and sat very still for a while.",
+      "A pushy guest followed {name} and nobody noticed. She ended it herself, shaken but unhurt.",
+      "No guard, no maid, no Sam. {name} faced a pushy client alone, and got out by sheer nerve.",
+      "A client got too forward with {name}, and no one was within earshot. She got clear of him and needed a long cup of tea."
+    ]
+  },
+  "enc_pushy_talked": {
+    "_default": [
+      "He got pushy; she talked him down.",
+      "He got pushy; she calmly talked him down.",
+      "He got grabby; she held up a hand and he stopped.",
+      "He pushed his luck; she talked him around.",
+      "He wouldn't take no at first; she wouldn't give in.",
+      "He got insistent; a calm voice settled him."
+    ]
+  },
+  "enc_pushy_security": {
+    "_default": [
+      "He got pushy; security walked him out.",
+      "He got pushy; the guards showed him out.",
+      "He wouldn't take no; security escorted him to the street.",
+      "He pushed too far; a guard was there in seconds.",
+      "He got grabby; security collected him politely.",
+      "He got pushy and was out the door before he knew it."
+    ]
+  },
+  "enc_pushy_sam": {
+    "_default": [
+      "He got pushy; Sam stepped in.",
+      "He got pushy; Sam stepped in, wobbly but resolute.",
+      "He wouldn't take no; Sam stepped between them.",
+      "He pushed too far; Sam talked him out.",
+      "He got insistent; Sam arrived and settled it.",
+      "He got grabby; Sam appeared and it ended."
+    ]
+  },
+  "enc_pushy_samfail": {
+    "_default": [
+      "He got pushy; Sam's intervention went badly.",
+      "He got pushy; Sam tried to help, and it made a scene.",
+      "He wouldn't take no; Sam's attempt fell apart.",
+      "He pushed too far; Sam stepped in and stumbled.",
+      "He got grabby; Sam's rescue was a loud mess.",
+      "He got pushy, and Sam's help only made it worse."
+    ]
+  },
+  "enc_pushy_none": {
+    "_default": [
+      "He got pushy and nobody was there to help.",
+      "He got pushy and she handled it on her own.",
+      "He wouldn't take no, and no one was close by.",
+      "He pushed too far with no help in earshot.",
+      "He got grabby, and she had to get away alone.",
+      "He got insistent and she was left to escape by herself."
+    ]
+  },
+  "enc_pushy_samcall": {
+    "_default": [
+      "He got pushy; security sent for Sam.",
+      "He got pushy; security couldn't shift him and Sam was called.",
+      "He wouldn't take no; somebody ran to fetch Sam.",
+      "He pushed too far; security sent a runner for Sam.",
+      "He got grabby, and the guards called for Sam.",
+      "He got insistent; Sam was sent for."
+    ]
+  },
+  "self_prop": {
+    "_note": "A restless lady propositioned a client herself.",
+    "_default": [
+      "{name}, restless, picked out a client herself and he was not about to say no.",
+      "{name} caught a client's eye across the lounge and made the first move.",
+      "{name} leaned on the end of the bar, watched the room for a moment, and chose a quiet man in the corner who was clearly too shy to ask. He wasn't shy for long.",
+      "Bored of waiting for the bell, {name} wandered through the lounge and made her offer to a client who'd been eyeing the stairs for an hour.",
+      "{name} spotted a nervous newcomer fiddling with his sleeves and decided he looked like he needed a kind evening. She asked, and he stammered a yes.",
+      "With the fiddler playing something slow, {name} slid onto the arm of a client's chair and made her intentions plain.",
+      "{name} had been stealing glances at one particular regular all night, and finally decided to stop pretending otherwise.",
+      "Nobody had asked for her, so {name} asked for somebody instead. She picked her man with a smile and a crooked finger."
+    ]
+  },
+  "expect_miss": {
+    "_note": "A client expected the attendant to offer, and she didn't.",
+    "_default": [
+      "A client seemed to expect {name} to make an offer. She didn't, and he left a little sour.",
+      "A client sat waiting all evening for {name} to make an offer. She never did, and he left muttering about it.",
+      "A client hinted and hovered near {name}, plainly hoping for an invitation. She stayed focused on her work, and he left sour.",
+      "A guest cleared his throat meaningfully at {name} three times. She missed it or ignored it, and he left in a huff.",
+      "A client lingered around {name} expecting a proposition. None came, and he stalked off wounded.",
+      "A client was clearly waiting for {name} to make the first move. She didn't, and he drifted out.",
+      "One client expected an offer from {name} and went home with nothing but a cold cup of tea."
+    ]
+  },
+  "prop_accept_reluctant": {
+    "_note": "She accepted a proposition without much enthusiasm.",
+    "_default": [
+      "{name} said yes to a proposition she wasn't really in the mood for.",
+      "{name} said yes to a proposition with a small shrug, mostly because refusing felt like more effort.",
+      "{name} agreed to a client's offer, though her smile didn't quite reach her eyes.",
+      "{name} sighed, adjusted her sleeves, and accepted a proposal she wasn't thrilled about.",
+      "It wasn't what {name} wanted, but she nodded and said yes to a proposition anyway.",
+      "{name} agreed to a client's proposition with all the enthusiasm of someone doing the laundry.",
+      "{name} gave a polite, slightly tired yes to a proposition she'd rather have skipped."
+    ]
+  },
+  "enc_noroom": {
+    "_note": "No free room for the client.",
+    "_default": [
+      "No room was free, so he went home disappointed.",
+      "Every room was full, and he left with a long face and a promise to try again.",
+      "There was nowhere to take him, so he finished his drink and trudged out into the evening.",
+      "He turned up with flowers and optimism, but not a single door was free.",
+      "He lingered in the lounge for an hour, but the upstairs stayed stubbornly occupied.",
+      "The rooms were all spoken for, and he left with a sigh and a half-finished glass.",
+      "No empty bedroom, no evening. He went home grumbling at the whole building."
+    ]
+  },
+  "enc_expect": {
+    "_note": "A client expected the attendant to make an offer.",
+    "_default": [
+      "He seemed to expect an offer and left a little sour.",
+      "He sat in the lounge waiting for an invitation that never came, and eventually stalked out.",
+      "He lingered and hinted and cleared his throat, but the offer never arrived.",
+      "He leaned back expecting an offer, and left grumbling when none came.",
+      "He kept glancing at the stairs, clearly hoping she'd make a move, and went home disappointed.",
+      "He'd come expecting a little encouragement. The lack of it hurt his pride.",
+      "He waited, hopeful, for a long moment, and then paid and went out."
+    ]
+  },
+  "step_lead": {
+    "_note": "Opening of a report highlight when a madame or attendant served a client because the courtesans were swamped ({role} = 'the madame' / 'an attendant').",
+    "_default": [
+      "Every courtesan was busy, so {name} stepped in herself.",
+      "With the courtesans swamped, {name} set aside her duties as {role} for a client.",
+      "No courtesan was free, and {name} didn't want anyone turned away.",
+      "The bell rang again and again, and when there was nobody left to answer it, {name} put down her duties as {role} and answered it herself.",
+      "With a line forming at the foot of the stairs and every courtesan occupied, {name} smoothed her dress and left her post as {role}.",
+      "It was a busy night, and the lounge was getting restless. {name} set her work as {role} aside.",
+      "Nobody was free, and a hopeful client was already hovering by the door. {name} didn't have the heart to send him away, whatever her job as {role} said.",
+      "Sam looked harried, the courtesans were all upstairs, and {name} quietly hung up her apron as {role}.",
+      "Somebody had to take care of the waiting guests, and {name}, between tasks as {role}, decided that somebody would be her."
+    ]
+  }
+}

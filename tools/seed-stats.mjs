@@ -1,12 +1,15 @@
-// Seeds `charisma` and `wits` into the stats block of every named lady (characters.json + guests.json packs).
+// Seeds `charisma` and `wits` into the stats block of every named lady (data/characters/ + data/guests/ packs).
 // Usage: node tools/seed-stats.mjs   (then: node tools/fmt-json.mjs)
 // Marker: tools/seeded-stats.json lists the ladies this script has seeded (safe to recompute); anyone who already has
 // both stats and is not listed is treated as hand-edited and left alone. Only charisma/wits are ever written.
 import fs from 'node:fs';
 import path from 'node:path';
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
-const rd = f => JSON.parse(fs.readFileSync(path.join(root, f), 'utf8'));
-const chars = rd('data/characters.json'), guests = rd('data/guests.json'), pers = rd('data/personalities.json');
+import { partFiles, readJSON, loadData } from './data.mjs';
+// characters/ and guests/ are split folders: each part file is read, seeded and written back on its own.
+const charParts = partFiles('characters').map(p => ({ ...p, d: readJSON(p.file) }));
+const guestParts = partFiles('guests').map(p => ({ ...p, d: readJSON(p.file) }));
+const pers = loadData('personalities').data;
 const markerFile = path.join(root, 'tools/seeded-stats.json');
 const seededSet = new Set(fs.existsSync(markerFile) ? JSON.parse(fs.readFileSync(markerFile, 'utf8')) : []);
 
@@ -67,21 +70,22 @@ function visit(file, key, d, label) {
   rows.push([file, key, d.name, d.personality, (d.traits || []).join(';'), d.job || '', d.stats.charm, d.stats.refinement, vals.charisma, vals.wits]);
   return stats;
 }
-for (const [k, d] of Object.entries(chars)) {
+// marker ids keep the old single-file names ('characters.json:<key>', 'guests.json:<pack>/characters/<key>')
+for (const { d: chars } of charParts) for (const [k, d] of Object.entries(chars)) {
   if (k.startsWith('_') || !d || !d.stats) continue;
   const s = visit('characters.json', k, d, k); if (s) d.stats = s;
 }
-(function walk(o, p) {
+const walkGuests = function walk(o, p) {
   if (!o || typeof o !== 'object' || Array.isArray(o)) return;
   if (o.stats && typeof o.stats === 'object' && 'charm' in o.stats) {
     const s = visit('guests.json', p[p.length - 1], o, p.join('/')); if (s) o.stats = s;
     return;
   }
   for (const k of Object.keys(o)) walk(o[k], [...p, k]);
-})(guests.packs, []);
+};
+for (const { d } of guestParts) if (d.packs) walkGuests(d.packs, []);
 
-fs.writeFileSync(path.join(root, 'data/characters.json'), JSON.stringify(chars, null, 2) + '\n');
-fs.writeFileSync(path.join(root, 'data/guests.json'), JSON.stringify(guests, null, 2) + '\n');
+for (const { file, d } of [...charParts, ...guestParts]) fs.writeFileSync(file, JSON.stringify(d, null, 2) + '\n');
 fs.writeFileSync(markerFile, JSON.stringify([...seededSet].sort(), null, 1) + '\n');
 const q = s => `"${String(s ?? '').replace(/"/g, '""')}"`;
 const head = 'file,key,name,personality,traits,job,charm,refinement,charisma,wits';

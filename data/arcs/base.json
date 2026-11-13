@@ -1,0 +1,10 @@
+{
+  "_readme": [
+    "Partner romance arcs: one list of beats per partner key (from characters.json). A beat fires every few weeks once her trust is high enough; the last beat makes her Sam's lover.",
+    "Beat: title, scene (image scene: sam_date, shower, walkin, casual, portrait, bath, or final = her private scene with Sam), text, choices.",
+    "Choice: label plus effects. t/m/l = trust/mood/lewdness change. res = result text ({N} = her name). hold:true = the beat comes back later instead of advancing.",
+    "Extra effects: gold (negative = cost; add cantAfford:{...} for when Sam is short), sam:{strength:1} (Sam stat), energy:\"full\", health:20, grow:{service:6} (her skill).",
+    "Conditions: if:{lewd:40} (her stat at least that; also works for trust, mood) uses this choice's effects, otherwise the ones under else:{...}.",
+    "image (optional): {comp, setting, sam, towel} a picture for that beat instead of the generic scene. The scene key still decides bath/walk-in handling."
+  ]
+}

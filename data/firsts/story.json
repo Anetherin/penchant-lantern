@@ -1,0 +1,228 @@
+{
+  "characters": {
+    "seraphine": {
+      "pace": "slow",
+      "path": [1,3],
+      "init": false,
+      "events": {
+        "1": {
+          "title": "Noblesse Oblige",
+          "text": "Etiquette lessons are held in the old ballroom, where afternoon light slants through tall windows and dust turns slowly in the gold. Seraphine has been drilling Sam on bows and forms for an hour, ring glinting on her glove. \"A lord kisses a lady's hand like so.\" He does. \"Adequate.\" But she doesn't take her hand back, and her chin has come up in that proud way that means she's terrified. Her cheeks are pink to the ears. \"Now. Not the hand.\"",
+          "image": {
+            "comp": "standing in a faded grand hall, holding out her gloved hand to him, chin raised, cheeks pink",
+            "setting": "dusty ballroom of an old castle, tall windows, afternoon light",
+            "sam": true
+          },
+          "go": "\"Not the hand.\"",
+          "goRes": "\"...Acceptable,\" Seraphine manages, a little breathless, her gloved fingers tightening on his sleeve. \"We shall have to practice further, for form's sake.\" They do, and the Rosenhal ancestors in their portraits are scandalised.",
+          "wait": "Kiss her hand again",
+          "waitRes": "\"Coward.\" She sweeps toward the door in a rustle of skirts, spine perfectly straight, but at the threshold he sees her smile, and the hand he kissed pressed to her heart."
+        },
+        "3": {
+          "title": "The Rosenhal Bed",
+          "text": "The great chamber of the castle is cold at the edges and warm only where the fire reaches. Seraphine stands beside the Rosenhal bed, four hundred years of carved oak and faded canopy, one hand resting on a bedpost as if to steady herself. Her hair is down, pale gold over her shoulders, the first time he has seen it so. \"Every Rosenhal has been miserable in it,\" she says, voice wobbling. \"I'd like it to have one good memory.\"",
+          "image": {
+            "comp": "standing beside an enormous antique four-poster bed, proud chin, blushing, letting her hair down",
+            "setting": "grand castle bedchamber, faded tapestries, firelight",
+            "sam": true
+          },
+          "go": "Give it a good memory",
+          "goRes": "Seraphine lets out a breath she seems to have held since the family's fortunes fell, and the proud line of her shoulders softens. \"Then do not stand there like a footman,\" she whispers, almost laughing.",
+          "wait": "\"You deserve more than a commoner.\"",
+          "waitRes": "\"I'll decide what I deserve.\" Her voice wobbles, and she tightens her grip on the bedpost until her signet ring catches the fire. \"Ask me again when you've stopped being an idiot.\""
+        }
+      }
+    },
+    "ilyana": {
+      "pace": "normal",
+      "path": [1,2,3],
+      "init": false,
+      "events": {
+        "1": {
+          "title": "A Century of Watching",
+          "text": "The pavilion's paper lanterns come on one by one at dusk, floor by floor, a slow tide of amber climbing the walls. Ilyana stands at the balcony rail with Sam, silver hair stirring with its tiny pearls in the evening breeze, the whole city softening below. She has watched this very sight for a hundred years, and he can see in her pale gold gaze that it's never been shared. \"I've watched lovers here for a century,\" she says quietly. \"I'd like to stop watching.\"",
+          "image": {
+            "comp": "on a balcony at dusk, turning toward him with a calm ancient gaze, lanterns glowing behind her",
+            "setting": "pavilion balcony at dusk, hundreds of paper lanterns lighting up",
+            "sam": true
+          },
+          "go": "Kiss her",
+          "goRes": "A century of practice shows, and also, strangely, a century of waiting. Her hand rises to his cheek as if he were something rare, and Sam forgets the lanterns entirely.",
+          "wait": "\"I'm just a human.\"",
+          "waitRes": "\"So were most of them.\" She smiles, unhurried, and turns back to the glow. \"I can wait. I am very good at it, and you are worth the practice.\""
+        },
+        "2": {
+          "title": "Lessons",
+          "text": "Ilyana closes the shutters of her study one at a time, and the city noise falls away into silk and quiet. Incense curls up from a brass dish; cushions the colour of old wine are heaped by the low table. She doesn't hurry, she never does, but when she glances back over her shoulder her smile is warm and a little bold. \"A century teaches you things,\" she says. \"I find I'd like to teach some of them to you.\"",
+          "image": {
+            "comp": "closing ornate shutters in a study, glancing over her shoulder at him with a serene knowing smile",
+            "setting": "elegant elven study, silk cushions, incense",
+            "sam": true
+          },
+          "go": "Be a good student",
+          "goRes": "Ilyana is an extremely patient teacher, and an unexpectedly tender one. Her laugh, when he blushes, is soft as the incense.",
+          "wait": "\"Maybe another time.\"",
+          "waitRes": "\"Of course.\" She opens the shutters again and lets the evening back in, serene and unoffended. \"I have waited a hundred years. Another week will not hurt me.\""
+        },
+        "3": {
+          "title": "Lantern Night",
+          "text": "The night of the lantern festival the pavilion garden is full of rising light: hundreds of paper lanterns lifting into the dark, each carrying a wish. Ilyana holds hers at the water's edge, then lets it go and watches it climb. Her hand finds Sam's, cool, then warm, and her pearls shine faintly in the glow. \"I have spent a century being the patroness,\" she says. \"Tonight I would like to simply be yours.\"",
+          "image": {
+            "comp": "releasing a paper lantern into the night sky, holding his hand, soft serene smile",
+            "setting": "pavilion garden at night during a lantern festival, lanterns rising",
+            "sam": true
+          },
+          "go": "\"Then be mine.\"",
+          "goRes": "Ilyana's serenity cracks into something shy and luminous, and she leans into him as the last lantern clears the trees. \"Then I am,\" she says, and sounds amazed by it.",
+          "wait": "Watch the lanterns",
+          "waitRes": "\"They are beautiful,\" she agrees, and lays her head on his shoulder, silver hair spilling over his hoodie. \"Next festival, then. I am rather fond of this view with company.\""
+        }
+      }
+    },
+    "ines": {
+      "pace": "normal",
+      "path": [1,3],
+      "init": true,
+      "events": {
+        "1": {
+          "title": "Something in the Dark",
+          "text": "Midnight patrol of Hollowmere Manor means a lantern, a bag of salt, and Ines's grip on Sam's sleeve hard enough to bruise. The corridor smells of dust and cold candle wax. Then something lunges out of the dark, a white shape with a shriek, and it's Vesper, giggling. Ines grabs Sam so hard they both go down, the lantern rolling away with a faint ghostly glow. She's on top of him, breathing fast, her scar pale against her jaw. Neither of them moves. She kisses him.",
+          "image": {
+            "comp": "sprawled on top of him on a dark manor floor, lantern rolling away, startled then determined",
+            "setting": "dark manor corridor at midnight, a fallen lantern, a faint ghostly glow",
+            "sam": true
+          },
+          "go": "Stay right there",
+          "goRes": "Somewhere down the hall a ghost cheers. Ines, flushed and fierce, throws a pinch of salt over her shoulder without looking, and keeps her eyes on him.",
+          "wait": "\"I think the ghost's gone.\"",
+          "waitRes": "\"Right. Yes. Ghost.\" She scrambles up, brushing at her knees and refusing to meet his eyes, ears red. \"Patrol continues. Separately. Don't say anything to Vesper.\""
+        },
+        "3": {
+          "title": "Salt Circle",
+          "text": "The floorboards around Sam's bed are scattered with a neat white ring of salt, and Ines kneels in the middle of it with the pouch in her fist, candlelight flickering over her black bob and her silver earrings. She looks very serious, in the way she does when she is hiding nerves. \"Protection,\" she says. Then she steps inside it, closing the last gap with her hand, and her grin turns sly. \"Nobody gets in or out till morning.\"",
+          "image": {
+            "comp": "kneeling inside a circle of salt around a bed, holding a salt pouch, sly heated grin",
+            "setting": "candlelit manor bedroom, salt circle on the floorboards",
+            "sam": true
+          },
+          "go": "\"Nobody?\"",
+          "goRes": "Nobody does. A ghost in the wall complains all night, and Ines tells it, breathless and laughing, to mind its own haunting.",
+          "wait": "\"What about bathroom breaks?\"",
+          "waitRes": "She laughs so hard she scuffs the circle with her knee, shaking out the pouch. \"Fine. Bathroom breaks. I'll redraw it next week, and you're holding the salt.\""
+        }
+      }
+    },
+    "vharra": {
+      "pace": "fast",
+      "path": [3],
+      "init": true,
+      "events": {
+        "3": {
+          "title": "Rent Is Due",
+          "text": "Her old landlord's office in the Underdistrict hasn't changed: gold coins heaped in dishes, red lamplight, a smell of smoke and cedar. Vharra lounges on a velvet chaise with an enormous ledger across her knees, horns catching the glow, golden piercings gleaming. Sam's name is at the top of the page. She crooks one finger at him and her smile is pure appetite. \"You've been living rent-free in my head for weeks,\" she says. \"Rent's due.\"",
+          "image": {
+            "comp": "lounging on a velvet chaise with a huge ledger, crooking a finger at him, greedy delighted smile, horns and gold jewelry",
+            "setting": "opulent underground office, gold coins, red lamplight",
+            "sam": true
+          },
+          "go": "Pay in full",
+          "goRes": "Vharra's laugh is low and thoroughly pleased. \"Interest accrues from the moment you walked in,\" she purrs, pulling him down by the lapels, and the ledger slides shut.",
+          "wait": "\"I'd like a payment plan.\"",
+          "waitRes": "\"Everyone does.\" She taps her pen against her teeth, eyes glittering, and writes something in the margin with a flourish. \"Late fee. And I do so enjoy collecting.\""
+        }
+      }
+    },
+    "rhoswen": {
+      "pace": "slow",
+      "path": [1,2,3],
+      "init": false,
+      "events": {
+        "1": {
+          "title": "Field Study",
+          "text": "Rhoswen has a leather notebook titled HUMAN CUSTOMS and tonight she holds it open with both hands, silver circlet slightly crooked, her ink-stained fingers trembling. The page says only \"Kissing (?)\". The room smells of warm tea and ink, and her ears, delicately pointed, are pink to the tips. She keeps her chin high as a court lady should. \"I would like to observe this firsthand,\" she says, pen ready. \"For accuracy.\"",
+          "image": {
+            "comp": "holding an open notebook and quill, looking up at him with earnest scholarly curiosity and pink cheeks",
+            "setting": "quiet garden bench at dusk, roses",
+            "sam": true
+          },
+          "go": "Help her research",
+          "goRes": "She forgets to take notes. The pen rolls away across the floor, and when she finally draws back she asks, very quietly and with great dignity, whether the experiment might be repeated.",
+          "wait": "\"Maybe a book would be better?\"",
+          "waitRes": "\"I have read the books.\" She closes the notebook with a small snap, slightly put out and trying not to show how much. \"They were insufficient. I shall make a note of that.\""
+        },
+        "2": {
+          "title": "Further Study",
+          "text": "The notebook has many more pages now, and the corners are soft from handling. Rhoswen hands it to Sam open to a list headed FURTHER QUESTIONS, her handwriting immaculate and a little unsteady. Then she turns to stare very hard at a vase of lilies, spine straight, blushing furiously. The candle gutters and the whole room seems to wait on his answer. \"Please,\" she says to the vase, \"take your time.\"",
+          "image": {
+            "comp": "staring hard at a vase while holding out an open notebook to him, ears red to the tips",
+            "setting": "elegant guest room, afternoon light",
+            "sam": true
+          },
+          "go": "Answer her questions",
+          "goRes": "She has a great many follow-up questions. Some she asks aloud and some she simply asks with her hands, and the notebook is forgotten on the floor, pages fluttering.",
+          "wait": "\"One question at a time.\"",
+          "waitRes": "\"Of course. Methodology.\" She underlines something three times with a trembling pen, composed again, though the pink in her ears says otherwise."
+        },
+        "3": {
+          "title": "Conclusions",
+          "text": "\"I have reached a conclusion,\" Rhoswen says, in the formal voice she uses when she is most afraid. She closes the notebook for good and sets it carefully on Sam's nightstand, squaring it with the edge. Candlelight turns her silver circlet to a thin halo. Her hands, now empty, don't know what to do with themselves. \"The study requires a final experiment. I would like it to be with you.\"",
+          "image": {
+            "comp": "setting a closed notebook on a nightstand, unpinning her elegant hair, calm but blushing",
+            "setting": "his bedroom at night, moonlight",
+            "sam": true
+          },
+          "go": "Conduct the experiment",
+          "goRes": "Rhoswen's formal composure dissolves into something startled and shining. \"I had expected to feel prepared,\" she whispers, laughing at herself, and reaches for him.",
+          "wait": "\"Are you certain?\"",
+          "waitRes": "\"I am never uncertain.\" A pause, and the faintest wobble. \"Ask me again in a week. I shall be quite as certain then, and will have rehearsed less.\""
+        }
+      }
+    },
+    "hanna": {
+      "pace": "normal",
+      "path": [1,2,3],
+      "init": false,
+      "events": {
+        "1": {
+          "title": "Gossip",
+          "text": "The guild hall is at its busiest, adventurers shouldering through, mugs thumping on the counter, the board rustling with fresh postings. Hanna leans over the reception desk with a pencil behind her ear and a spark in her eyes. \"The whole guild thinks we're already together,\" she says, loudly enough for the nearest table. \"I hate being wrong about gossip.\" Freckles flush across her nose. She grabs Sam by the collar. \"So I'm fixing it.\"",
+          "image": {
+            "comp": "grabbing his collar over a guild reception counter, freckled, mischievous grin",
+            "setting": "busy adventurers' guild hall, notice boards, afternoon",
+            "sam": true
+          },
+          "go": "Help her fix it",
+          "goRes": "Half the guild hall cheers. Somebody at the back wins a bet, and Hanna, pink and triumphant, doesn't let go of his collar for a long moment after.",
+          "wait": "\"Everyone's watching!\"",
+          "waitRes": "\"That's the POINT.\" She lets go, sighing dramatically, but she's smiling, tucking the pencil back. \"Fine. Somewhere private. Next time, and no spectators.\""
+        },
+        "2": {
+          "title": "Off the Record",
+          "text": "The records room is all dust and shelves, row on row of guild files tied with string, smelling of old paper. Hanna turns the key in the lock with an exaggerated click and leans back against the door, freckled nose wrinkling. \"Nothing that happens in here goes in the files,\" she says, which is a lie, because she files everything, and they both know it. Her bravado wobbles at the edges and she twists the key ring around her finger.",
+          "image": {
+            "comp": "leaning against tall shelves of scrolls in a records room, keys dangling from one finger, playful smile",
+            "setting": "guild records room, shelves of scrolls, a single lamp",
+            "sam": true
+          },
+          "go": "Go off the record",
+          "goRes": "Hanna keeps very good notes, and she is delightedly, breathlessly unfiled for once. Sam suspects there will be a folder anyway, labelled something rude.",
+          "wait": "\"Someone might need a record.\"",
+          "waitRes": "\"Ugh, PROCEDURE.\" She unlocks the door with a theatrical groan and a grin. \"Fine. You owe me, and I keep very detailed accounts.\""
+        },
+        "3": {
+          "title": "Exclusive",
+          "text": "Hanna kicks her shoes off inside Sam's door and sets them in the corner, one on top of the other, as if she's been doing it for years. Lamplight picks out the freckles across her nose and the way she's chewing her lip. For five years she has had the best gossip in Hollowmere, and for once she's quiet. \"I've had the best gossip in town for five years,\" she says. \"Tonight I'd like an exclusive.\"",
+          "image": {
+            "comp": "kicking off her shoes in a bedroom, freckled, grinning and a little nervous",
+            "setting": "his bedroom at night, lamplight",
+            "sam": true
+          },
+          "go": "Give her the exclusive",
+          "goRes": "She doesn't tell a soul. Everyone knows by lunchtime anyway, but for the night itself Hanna is quiet and soft and entirely his.",
+          "wait": "\"Can it be embargoed?\"",
+          "waitRes": "\"Embargoed!\" She laughs, a little shaky, and puts her shoes back on. \"Fine. One week. Then it goes to print, and the headline is yours.\""
+        }
+      }
+    }
+  }
+}

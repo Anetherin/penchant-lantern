@@ -1,0 +1,142 @@
+{
+  "adelheid": [
+    {
+      "title": "Poison Taster",
+      "scene": "sam_date",
+      "text": "Adelheid insists on tasting all of Sam's food for poison. Every meal, spoon first, her steel-blue eyes narrowed and the scar through her eyebrow pulled tight with solemnity. Soup, bread, a suspicious pear. She eventually admits, stiffly, over the last bite of his dinner, that she has started looking forward to dinner time.",
+      "choices": [
+        {
+          "label": "Ask her to stay for the whole meal",
+          "t": 5,
+          "m": 8,
+          "res": "She sits across from him in her armor, straight-backed, and eats a whole meal as a guest instead of a guard for the first time. She is very bad at it."
+        },
+        {
+          "label": "Tell her she's allowed to finish the pear",
+          "t": 1,
+          "m": 2,
+          "res": "\"Strictly for safety,\" Sam says, handing her the pear. {N} accepts it as a sacred duty, and eats it in tiny, reverent bites."
+        }
+      ],
+      "image": {
+        "comp": "in armor tasting food from his plate with great seriousness, napkin tucked in",
+        "setting": "inn dining room at dinner time",
+        "sam": true
+      }
+    },
+    {
+      "title": "Rain Barrel",
+      "scene": "shower",
+      "text": "Sam cuts through the training yard and finds Adelheid washing off after practice at the rain barrel, cold water streaming down her scarred shoulders, her short platinum hair plastered flat. She snaps to attention. With the hand holding the towel. Which is, therefore, no longer holding the towel, quite as well as it should.",
+      "choices": [
+        {
+          "label": "Turn around immediately",
+          "t": 3,
+          "m": 2,
+          "res": "\"Thank you, my lord,\" she says, in a very small voice, after the footsteps retreat. She holds the towel with both hands for the rest of the day."
+        },
+        {
+          "label": "Salute back",
+          "m": 6,
+          "t": 1,
+          "res": "She laughs: a real, startled laugh, the first he's ever heard from her, rough and surprised, like a door that hasn't been opened in years."
+        },
+        {
+          "label": "Stammer helplessly",
+          "m": 3,
+          "l": 1,
+          "res": "They stand there stammering at each other until a goose interrupts, honking, and the knight loses her last thread of dignity."
+        }
+      ],
+      "image": {
+        "comp": "snapping to attention beside a rain barrel, soaking wet, covering herself with one arm and saluting with the other",
+        "setting": "training yard behind an inn, afternoon",
+        "sam": false
+      }
+    },
+    {
+      "title": "Knight and Her Lord",
+      "scene": "casual",
+      "text": "Sam finds Adelheid's secret stash of romance novels in her saddlebag, cracked spines, pressed flowers, a ribbon marking every chapter. Every one is about a knight and her lord. She threatens him with her sword, steel flashing, face scarlet to the roots of her hair. Then asks, very quietly, if he's read the third one.",
+      "choices": [
+        {
+          "label": "Ask which part of the third one is her favorite",
+          "t": 5,
+          "m": 8,
+          "res": "She tells him, with the sword still half-drawn and her eyes fixed on a point past his shoulder. It is the chapter in the rain. He takes detailed notes, as is tradition."
+        },
+        {
+          "label": "Hand the books back and promise silence",
+          "t": 1,
+          "m": 2,
+          "res": "He swears silence on his honor, which causes her to blush deeper. {N} sheathes the sword with great ceremony, and asks if he wants to borrow volume two."
+        }
+      ],
+      "image": {
+        "comp": "pointing a sword at him while clutching a stack of romance novels to her chest, scarlet",
+        "setting": "spartan barracks room",
+        "sam": true
+      }
+    },
+    {
+      "title": "The Report",
+      "scene": "portrait",
+      "text": "The Order demands Adelheid report on \"the sinful nature\" of Sam's business. She's been staring at a blank page for three hours, a candle burned to a stub beside her, the quill chewed ragged. Her oath and her honesty are pulling in opposite directions, and the sound of her sword-hilt tapping the desk fills the room.",
+      "choices": [
+        {
+          "label": "\"Tell them the truth.\"",
+          "t": 6,
+          "m": 3,
+          "res": "She writes three pages: fair wages, rest days, no one here against her will. She reads them twice and seals them with pride, the wax pressed hard."
+        },
+        {
+          "label": "\"Could you... leave some things out?\"",
+          "t": -8,
+          "m": -10,
+          "res": "Her face goes hard. \"I will not lie, my lord. Not even for you.\" It's a long, cold week, and she guards his door like a stranger."
+        },
+        {
+          "label": "Go to the Order with her",
+          "t": 8,
+          "m": 5,
+          "res": "Sam answers their questions himself, politely, for four hours. Adelheid stands beside him the entire time, shoulders squared, not once looking away."
+        }
+      ],
+      "image": {"comp":"sitting at a desk staring at a blank page, quill frozen, troubled expression","setting":"barracks room by candlelight","sam":false}
+    },
+    {
+      "title": "Swordplay",
+      "scene": "sam_training",
+      "text": "Adelheid decides her lord must be able to defend himself, and hands Sam a practice sword in the cold dawn of the training yard. It's much heavier than it looks. Her stance is flawless, her voice crisp: \"Feet apart, my lord. Grip firm. Again.\" Sam's wrists are already complaining, and a rooster is laughing at him.",
+      "choices": [
+        {
+          "label": "Practice until you drop",
+          "sam": {"strength":2},
+          "t": 3,
+          "m": 6,
+          "res": "He drops. Twice. She is quietly, enormously proud, and her hand lingers on his shoulder as she helps him up."
+        },
+        {
+          "label": "Let her win on purpose",
+          "m": -3,
+          "res": "She knows. She hates that. Her scar-split brow lowers dangerously. \"Again, and properly this time.\""
+        }
+      ]
+    },
+    {
+      "title": "The Amended Oath",
+      "scene": "final",
+      "text": "Adelheid kneels in the empty chapel hall to renew her oath, the candlelight turning her short hair to silver, then stays kneeling. \"My oath was to serve you. I would like to amend it.\" Her voice is steady but her hand, when she takes his, trembles. \"To stand beside you.\" She rises, and doesn't let go.",
+      "choices": [
+        {"label":"Say yes","t":6,"m":12,"res":""},
+        {
+          "label": "Not yet",
+          "t": 1,
+          "m": -3,
+          "hold": true,
+          "res": "{N} bows her head, stiff with discipline. \"I can wait. Don't make it too long.\" She resumes her post by his door, and stands one pace closer."
+        }
+      ]
+    }
+  ]
+}

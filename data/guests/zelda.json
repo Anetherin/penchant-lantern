@@ -1,0 +1,244 @@
+{
+  "packs": {
+    "zelda": {
+      "label": "Zelda",
+      "characters": {
+        "zelda": {
+          "job": "courtesan",
+          "title": "Princess",
+          "name": "Zelda",
+          "race": "elf",
+          "age": 128,
+          "personality": "Calm and elegant",
+          "traits": ["Elegant","Loyal"],
+          "style": "Elegant",
+          "favColor": "lavender",
+          "fav": "kiss",
+          "dislike": "doggy",
+          "lovers": "missionary",
+          "backstory": "The princess of a kingdom of seven sages beyond the western mountains, whose realm once fell under a strange twilight. Zelda travels under a hooded cloak, carries herself like a queen anyway, and is studying how a business this odd stays solvent.",
+          "design": {
+            "hairStyle": "very long, with two wrapped side locks",
+            "hairColor": "light brown",
+            "eyes": "deep blue",
+            "skin": "fair",
+            "features": "a slim golden circlet",
+            "gear": "long white gloves with a triangle crest"
+          },
+          "under": "silk",
+          "underColor": "white",
+          "stats": {"beauty":74,"charm":62,"charisma":67,"refinement":72,"wits":72,"stamina":45,"strength":25,"agility":40},
+          "tech": {"service":40,"dance":30,"bar":15,"combat":35,"manage":60},
+          "actSkill": 30,
+          "popularity": 28,
+          "lewd": 24,
+          "trust": 26,
+          "outfits": {
+            "sig_zelda": {
+              "label": "Royal gown",
+              "style": "Elegant",
+              "prompt": "a regal white and lavender gown with a royal-crest tabard, ornate gold shoulder pieces and long white gloves",
+              "bonus": {"courtesan":1.25,"noble":1.25}
+            },
+            "sp_zelda": {
+              "label": "Twilight cloak",
+              "style": "Elegant",
+              "prompt": "a black hooded cloak over a fitted white and gold gown",
+              "bonus": {"courtesan":1.15,"noble":1.15}
+            }
+          },
+          "bonds": {"midna":{"v":40,"note":"An unlikely alliance from the twilight days."},"nabooru":{"v":25,"note":"Allies from the old kingdom."}},
+          "jobs": {"likes":["courtesan","madame","dancer"],"dislikes":["bartender","maid"]},
+          "body": {"bust":"medium","height":"tall","figure":"slim"},
+          "unique": {"name":"Wisdom","desc":"A princess's sharp mind and graceful bearing.","fx":{"classBonus":{"noble":1.2},"skillGain":1.1}}
+        },
+        "midna": {
+          "job": "courtesan",
+          "name": "Midna",
+          "title": "Queen",
+          "race": "demon",
+          "age": 322,
+          "personality": "Cheerful and teasing",
+          "traits": ["Exhibitionist","Ambitious"],
+          "style": "Exotic",
+          "favColor": "teal",
+          "fav": "cowgirl",
+          "dislike": "missionary",
+          "lovers": "oral_give",
+          "backstory": "The rightful queen of a realm of twilight, Midna spent a long stretch cursed into a tiny imp and enjoyed none of it. Back in her true form, she is tall, imperious and wickedly amused by everything, Sam very much included.",
+          "design": {
+            "build": "willowy",
+            "hairStyle": "very long, flowing",
+            "hairColor": "flame orange",
+            "eyes": "red with golden sclera",
+            "skin": "pale blue-grey with glowing teal markings",
+            "features": "a regal, mischievous smile"
+          },
+          "under": "sheer",
+          "underColor": "black",
+          "stats": {"beauty":76,"charm":70,"charisma":83,"refinement":60,"wits":60,"stamina":50,"strength":30,"agility":55},
+          "tech": {"service":50,"dance":40,"bar":15,"combat":55,"manage":40},
+          "actSkill": 45,
+          "popularity": 26,
+          "lewd": 55,
+          "trust": 20,
+          "outfits": {
+            "sig_midna": {
+              "label": "Twilight robe",
+              "style": "Exotic",
+              "prompt": "a flowing black and white robe with glowing teal geometric patterns, open at the sides",
+              "bonus": {"courtesan":1.25,"noble":1.15}
+            },
+            "sp_midna": {
+              "label": "Imp cloak",
+              "style": "Exotic",
+              "prompt": "a short black hooded cloak with teal markings over almost nothing",
+              "bonus": {"dancer":1.2,"commoner":1.15}
+            }
+          },
+          "bonds": {"zelda":{"v":40,"note":"An unlikely alliance from the twilight days."}},
+          "jobs": {"likes":["courtesan","host","promoter"],"dislikes":["maid","security"]},
+          "body": {"bust":"medium","height":"tall","figure":"slim"},
+          "unique": {"name":"Twilight Mischief","desc":"Playful and magnetic, with a knack for getting what she wants.","fx":{"appeal":4,"propRate":1.15}}
+        },
+        "malon": {
+          "job": "bartender",
+          "name": "Malon",
+          "race": "elf",
+          "age": 96,
+          "personality": "Cheerful and teasing",
+          "traits": ["Loyal","Romantic"],
+          "style": "Cute",
+          "favColor": "red",
+          "fav": "missionary",
+          "dislike": "doggy",
+          "lovers": "kiss",
+          "backstory": "A rancher from a kingdom of seven sages beyond the western mountains who sings to her horses and has opinions about milk. Malon came to sell her family's dairy to the house bar and ended up running it.",
+          "design": {
+            "hairStyle": "very long and loose",
+            "hairColor": "bright red",
+            "eyes": "blue",
+            "skin": "fair with light freckles",
+            "gear": "a horse-head brooch at her collar"
+          },
+          "under": "plain",
+          "underColor": "white",
+          "stats": {"beauty":66,"charm":66,"charisma":74,"refinement":35,"wits":35,"stamina":62,"strength":45,"agility":40},
+          "tech": {"service":35,"dance":35,"bar":55,"combat":15,"manage":30},
+          "actSkill": 25,
+          "popularity": 18,
+          "lewd": 30,
+          "trust": 34,
+          "outfits": {
+            "sig_malon": {
+              "label": "Rancher's dress",
+              "style": "Cute",
+              "prompt": "a white peasant blouse, a long lilac skirt, a yellow neckerchief and a white apron",
+              "bonus": {"bartender":1.25,"commoner":1.25}
+            },
+            "sp_malon": {
+              "label": "Festival dress",
+              "style": "Cute",
+              "prompt": "a red and cream ruffled festival dress with flowers in her hair",
+              "bonus": {"dancer":1.15,"merchant":1.15}
+            }
+          },
+          "jobs": {"likes":["bartender","host","courtesan"],"dislikes":["bath"]},
+          "body": {"bust":"large","height":"average","figure":"curvy"},
+          "unique": {"name":"Lon Lon Songs","desc":"Her rancher's songs cheer a room.","fx":{"jobBonus":{"bartender":1.15},"moodRest":4}}
+        },
+        "great_fairy": {
+          "job": "bath",
+          "name": "Cotera",
+          "race": "spirit",
+          "age": 580,
+          "personality": "Bold and flirtatious",
+          "traits": ["Exhibitionist","Elegant"],
+          "style": "Revealing",
+          "favColor": "magenta",
+          "fav": "breast_give",
+          "dislike": "doggy",
+          "lovers": "breast_get",
+          "backstory": "Cotera, a great fairy, used to live in a healing fountain and grant weary travelers their strength back. She has moved into the bathhouse, which she considers a fountain with better gossip, and her laugh echoes off the tiles.",
+          "design": {
+            "build": "very tall",
+            "hairStyle": "enormous and voluminous",
+            "hairColor": "magenta",
+            "eyes": "golden",
+            "skin": "warm amber",
+            "features": "green ivy-like markings across her body and tiny gossamer wings"
+          },
+          "under": "none",
+          "underColor": "none",
+          "stats": {"beauty":78,"charm":72,"charisma":82,"refinement":55,"wits":55,"stamina":60,"strength":20,"agility":40},
+          "tech": {"service":60,"dance":45,"bar":10,"combat":20,"manage":25},
+          "actSkill": 55,
+          "popularity": 30,
+          "lewd": 70,
+          "trust": 22,
+          "outfits": {
+            "sig_great_fairy": {
+              "label": "Ivy and gold",
+              "style": "Revealing",
+              "prompt": "strands of living green ivy and slim gold armbands and anklets",
+              "bonus": {"bath":1.3,"courtesan":1.15}
+            },
+            "sp_great_fairy": {"label":"Petal gown","style":"Elegant","prompt":"a sheer gown woven from flower petals and ivy","bonus":{"noble":1.25,"courtesan":1.15}}
+          },
+          "jobs": {"likes":["bath","courtesan"],"dislikes":["promoter"]},
+          "body": {"bust":"huge","height":"tall","figure":"curvy"},
+          "unique": {"name":"Fountain's Blessing","desc":"Her bathwater restores weary guests.","fx":{"energyRec":1.2,"jobBonus":{"bath":1.2}}},
+          "title": "Great Fairy"
+        },
+        "nabooru": {
+          "job": "security",
+          "name": "Nabooru",
+          "race": "elf",
+          "age": 142,
+          "personality": "Proud and sharp-tongued",
+          "traits": ["Tough","Former Adventurer"],
+          "style": "Exotic",
+          "favColor": "white",
+          "fav": "cowgirl",
+          "dislike": "kiss",
+          "lovers": "doggy",
+          "backstory": "A desert warrior-thief and sage from a clan of women, Nabooru only ever stole from people who deserved it. She says the house security job is a vacation. Nobody has tried her.",
+          "design": {
+            "build": "curvy",
+            "hairStyle": "high ponytail",
+            "hairColor": "deep red",
+            "eyes": "gold",
+            "skin": "dark tan",
+            "features": "a jeweled forehead piece and heavy gold hoop earrings"
+          },
+          "under": "silk",
+          "underColor": "white",
+          "stats": {"beauty":72,"charm":58,"charisma":62,"refinement":40,"wits":48,"stamina":70,"strength":62,"agility":68},
+          "tech": {"service":25,"dance":40,"bar":20,"combat":72,"manage":30},
+          "actSkill": 35,
+          "popularity": 22,
+          "lewd": 46,
+          "trust": 22,
+          "outfits": {
+            "sig_nabooru": {
+              "label": "Desert thief's silks",
+              "style": "Exotic",
+              "prompt": "loose white harem pants, a short white top, a red sash and gold jewelry",
+              "bonus": {"security":1.3,"adventurer":1.15}
+            },
+            "sp_nabooru": {
+              "label": "Sage's regalia",
+              "style": "Elegant",
+              "prompt": "an ornate gold and white desert gown with a jeweled belt",
+              "bonus": {"noble":1.2,"dancer":1.15}
+            }
+          },
+          "bonds": {"zelda":{"v":25,"note":"Allies from the old kingdom."}},
+          "jobs": {"likes":["security","courtesan"],"dislikes":["maid"]},
+          "body": {"bust":"large","height":"tall","figure":"athletic"},
+          "unique": {"name":"Thief's Pride","desc":"She can spot a hustle a mile away.","fx":{"security":12,"classBonus":{"adventurer":1.1}}}
+        }
+      }
+    }
+  }
+}

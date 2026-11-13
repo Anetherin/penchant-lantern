@@ -1,0 +1,471 @@
+{
+  "packs": {
+    "pokemon": {
+      "label": "Pokémon",
+      "characters": {
+        "sabrina": {
+          "job": "security",
+          "name": "Sabrina",
+          "title": "Leader",
+          "race": "human",
+          "age": 31,
+          "personality": "Mysterious and aloof",
+          "traits": ["Tough","Night Owl"],
+          "style": "Exotic",
+          "favColor": "purple",
+          "fav": "manual_give",
+          "dislike": "doggy",
+          "lovers": "missionary",
+          "backstory": "The psychic Gym Leader of Saffron City, Sabrina grew up able to bend spoons and read minds, and learned early that most people prefer you stay quiet about it. She is deadpan, precise and secretly very fond of the dolls she collects. She came to Hollowmere because the street hums with so many unspoken thoughts that, for once, someone can help with them.",
+          "design": {
+            "hairStyle": "long, straight and dark",
+            "hairColor": "dark teal-black",
+            "eyes": "violet",
+            "skin": "fair",
+            "features": "a calm, unblinking gaze and a faint smile that never quite reaches her eyes"
+          },
+          "under": "silk",
+          "underColor": "purple",
+          "stats": {"beauty":70,"charm":50,"charisma":61,"refinement":65,"wits":69,"stamina":50,"strength":30,"agility":55},
+          "tech": {"service":35,"dance":20,"bar":15,"combat":60,"manage":45},
+          "actSkill": 20,
+          "popularity": 10,
+          "lewd": 24,
+          "trust": 18,
+          "outfits": {
+            "sig_sabrina": {
+              "label": "Psychic robes",
+              "style": "Exotic",
+              "prompt": "a fitted dark red and violet bodysuit with a flowing high-collared cape and a hairband",
+              "bonus": {"security":1.25,"merchant":1.1}
+            },
+            "sp_sabrina": {
+              "label": "Seer's evening wear",
+              "style": "Elegant",
+              "prompt": "a deep plum silk dress with long sleeves and a crescent moon brooch",
+              "bonus": {"noble":1.2,"courtesan":1.15}
+            }
+          },
+          "bonds": {"cynthia":{"v":30,"note":"Champion and Gym Leader; mutual, wary respect."}},
+          "jobs": {"likes":["security","madame"],"dislikes":["dancer","bartender"]},
+          "body": {"bust":"medium","height":"average","figure":"slim"},
+          "unique": {
+            "name": "Mind Reader",
+            "desc": "She reads trouble before it starts, strengthening security and settling pushy clients.",
+            "fx": {"security":12,"classBonus":{"noble":1.1}}
+          }
+        },
+        "cynthia": {
+          "job": "promoter",
+          "name": "Cynthia",
+          "title": "Champion",
+          "race": "human",
+          "age": 33,
+          "personality": "Calm and elegant",
+          "traits": ["Elegant","Ambitious"],
+          "style": "Elegant",
+          "favColor": "black",
+          "fav": "kiss",
+          "dislike": "manual_give",
+          "lovers": "cowgirl",
+          "backstory": "The reigning Champion of Sinnoh, Cynthia has fought, studied and traveled for years chasing legends, and has never once lost her composure while doing it. She digs up ruins in her spare time, is quietly obsessed with old myths, and treats Hollowmere as a fascinating new excavation site. Everyone who meets her seems to want to be near her afterward.",
+          "design": {
+            "build": "graceful",
+            "hairStyle": "very long and sleek, falling over one eye",
+            "hairColor": "platinum blonde",
+            "eyes": "grey",
+            "skin": "fair",
+            "features": "a confident, composed face and one eye hidden behind a fall of hair"
+          },
+          "under": "silk",
+          "underColor": "black",
+          "stats": {"beauty":80,"charm":66,"charisma":71,"refinement":72,"wits":72,"stamina":55,"strength":40,"agility":55},
+          "tech": {"service":35,"dance":25,"bar":15,"combat":60,"manage":55},
+          "actSkill": 25,
+          "popularity": 20,
+          "lewd": 24,
+          "trust": 20,
+          "outfits": {
+            "sig_cynthia": {
+              "label": "Champion's coat",
+              "style": "Elegant",
+              "prompt": "a long black coat with a fur-trimmed collar over a fitted black dress, black boots and a gold hair ornament",
+              "bonus": {"promoter":1.3,"noble":1.2}
+            },
+            "sp_cynthia": {
+              "label": "Excavation gear",
+              "style": "Sporty",
+              "prompt": "a tailored khaki field jacket, fitted trousers, gloves and a trowel at her belt",
+              "bonus": {"adventurer":1.25,"merchant":1.1}
+            }
+          },
+          "bonds": {
+            "sabrina": {"v":30,"note":"Champion and Gym Leader; mutual, wary respect."},
+            "juniper": {"v":35,"kind":"mentor","note":"Cynthia shares ruins and legends with the professor, who loves every story."}
+          },
+          "jobs": {"likes":["promoter","madame"],"dislikes":["maid","bartender"]},
+          "body": {"bust":"large","height":"tall","figure":"slim"},
+          "unique": {"name":"Champion's Aura","desc":"Her fame brings people to the door and keeps them impressed.","fx":{"promote":1.3,"rep":1.1}}
+        },
+        "juniper": {
+          "job": "attendant",
+          "title": "Professor",
+          "name": "Aurea Juniper",
+          "race": "human",
+          "age": 32,
+          "personality": "Bookish and curious",
+          "traits": ["Romantic","Loyal"],
+          "style": "Elegant",
+          "favColor": "green",
+          "fav": "massage_give",
+          "dislike": "doggy",
+          "lovers": "missionary",
+          "backstory": "The Unova region's leading Pokémon professor, Juniper is cheerful, brilliant and chronically late, with a lab coat pocket full of sticky notes. She treats everyone as a fascinating specimen to be understood, but she is far kinder than any scientist should be. Hollowmere has turned out to be an excellent field site, and the guests excellent at fieldwork.",
+          "design": {"hairStyle":"short poofy bun","hairColor":"honey brown","eyes":"emerald","skin":"fair","features":"distinctive red rectangular earrings"},
+          "under": "plain",
+          "underColor": "white",
+          "stats": {"beauty":66,"charm":62,"charisma":56,"refinement":60,"wits":75,"stamina":50,"strength":30,"agility":50},
+          "tech": {"service":40,"dance":15,"bar":10,"combat":15,"manage":55},
+          "actSkill": 20,
+          "popularity": 12,
+          "lewd": 22,
+          "trust": 24,
+          "outfits": {
+            "sig_juniper": {
+              "label": "Professor's lab coat",
+              "style": "Elegant",
+              "prompt": "a long pale blue lab coat over a white blouse and a green knee-length skirt",
+              "bonus": {"attendant":1.25,"merchant":1.1}
+            },
+            "sp_juniper": {
+              "label": "Field day outfit",
+              "style": "Sporty",
+              "prompt": "a casual green and white field jacket with a satchel, short skirt and hiking boots",
+              "bonus": {"adventurer":1.2,"commoner":1.15}
+            }
+          },
+          "bonds": {"cynthia":{"v":35,"note":"Cynthia shares ruins and legends with the professor, who loves every story."}},
+          "jobs": {"likes":["teacher","attendant","bath"],"dislikes":["security"]},
+          "body": {"bust":"large","height":"average","figure":"curvy"},
+          "unique": {
+            "name": "Gentle Researcher",
+            "desc": "Her warmth and patience put clients at ease, easing the workload for everyone around her. Teaches well too.",
+            "fx": {"jobBonus":{"attendant":1.2,"teacher":1.15},"actQuality":{"massage_give":1.1}}
+          }
+        },
+        "leaf": {
+          "job": "attendant",
+          "name": "Leaf",
+          "race": "human",
+          "age": 25,
+          "personality": "Free-spirited wanderer",
+          "traits": ["Former Adventurer","Eager"],
+          "style": "Sporty",
+          "favColor": "green",
+          "fav": "kiss",
+          "dislike": "manual_give",
+          "lovers": "cowgirl",
+          "backstory": "A traveling trainer who left her sleepy hometown with little more than a sun hat and a dream of seeing everything, Leaf has crossed regions on foot and made friends everywhere. She turned up in Hollowmere between journeys, looking for coin and a warm bed. She treats every shift like a new route to explore.",
+          "design": {
+            "hairStyle": "very long, straight and loose",
+            "hairColor": "brown",
+            "eyes": "brown",
+            "skin": "fair",
+            "features": "a sunny grin",
+            "gear": "a white sun hat and a small travel pack"
+          },
+          "under": "plain",
+          "underColor": "white",
+          "stats": {"beauty":72,"charm":66,"charisma":68,"refinement":48,"wits":58,"stamina":68,"strength":38,"agility":66},
+          "tech": {"service":35,"dance":25,"bar":20,"combat":45,"manage":25},
+          "actSkill": 20,
+          "popularity": 12,
+          "lewd": 34,
+          "trust": 30,
+          "outfits": {
+            "sig_leaf": {
+              "label": "Trainer outfit",
+              "style": "Sporty",
+              "prompt": "a sleeveless white top, a short blue skirt, white socks and sneakers",
+              "bonus": {"attendant":1.2,"adventurer":1.2}
+            },
+            "sp_leaf": {"label":"Summer dress","style":"Cute","prompt":"a long sky-blue sundress with a ribbon at the waist","bonus":{"commoner":1.15,"noble":1.1}}
+          },
+          "bonds": {
+            "misty": {"v":35,"kind":"comrades","note":"Fellow travelers from the same region."},
+            "may": {"v":30,"kind":"comrades","note":"Old friends who swap trail stories."}
+          },
+          "jobs": {"likes":["attendant","promoter"],"dislikes":["madame"]},
+          "body": {"bust":"medium","height":"average","figure":"athletic"},
+          "unique": {"name":"Wanderer's Spirit","desc":"She never tires of the road, and her cheer is catching.","fx":{"maxEnergy":8,"promote":1.1}},
+          "title": "Trainer"
+        },
+        "misty": {
+          "job": "bath",
+          "name": "Misty",
+          "title": "Leader",
+          "race": "human",
+          "age": 28,
+          "personality": "Hot-blooded and competitive",
+          "traits": ["Tough","Eager"],
+          "style": "Sporty",
+          "favColor": "cyan",
+          "fav": "massage_give",
+          "dislike": "oral_get",
+          "lovers": "cowgirl",
+          "backstory": "The fiery water gym leader of a small seaside town, Misty set out to prove she was more than her sisters' shadow, and then proved it over and over. She arrived in Hollowmere hunting the best bathhouse in town and took a job on the spot. She has a short temper, a soft heart for water creatures, and a very loyal companion.",
+          "design": {
+            "hairStyle": "short side ponytail",
+            "hairColor": "orange",
+            "eyes": "teal",
+            "skin": "fair",
+            "features": "a bright, quick-tempered scowl that melts into a laugh",
+            "gear": "a dazed yellow duck companion at her heels"
+          },
+          "under": "sports",
+          "underColor": "cyan",
+          "stats": {"beauty":76,"charm":62,"charisma":66,"refinement":48,"wits":56,"stamina":68,"strength":42,"agility":70},
+          "tech": {"service":40,"dance":25,"bar":25,"combat":50,"manage":25},
+          "actSkill": 20,
+          "popularity": 16,
+          "lewd": 28,
+          "trust": 24,
+          "outfits": {
+            "sig_misty": {
+              "label": "Gym leader",
+              "style": "Sporty",
+              "prompt": "a yellow crop top, red suspenders, short denim shorts and sneakers",
+              "bonus": {"bath":1.25,"adventurer":1.15}
+            },
+            "sp_misty": {
+              "label": "Seaside wrap",
+              "style": "Revealing",
+              "prompt": "a sea-blue one-piece swimsuit with a sheer white wrap skirt",
+              "bonus": {"bath":1.3,"courtesan":1.1}
+            }
+          },
+          "bonds": {
+            "may": {"v":35,"kind":"comrades","note":"Fellow water-lovers who swap swimming tips."},
+            "leaf": {"v":35,"kind":"comrades","note":"Fellow travelers from the same region."},
+            "flannery": {"v":25,"kind":"comrades","note":"Fellow gym leaders with a friendly rivalry."},
+            "clair": {"v":25,"kind":"comrades","note":"Fellow gym leaders with a friendly rivalry."},
+            "sabrina": {"v":20,"note":"Fellow gym leaders who see each other at regional meetings."}
+          },
+          "jobs": {"likes":["bath","security"],"dislikes":["madame"]},
+          "body": {"bust":"medium","height":"average","figure":"athletic"},
+          "unique": {
+            "name": "Water Gym Leader",
+            "desc": "At home in steam and water, she lifts the bathhouse and eases every ache.",
+            "fx": {"jobBonus":{"bath":1.2},"actQuality":{"massage_give":1.15}}
+          }
+        },
+        "clair": {
+          "job": "security",
+          "name": "Clair",
+          "title": "Leader",
+          "race": "human",
+          "age": 30,
+          "personality": "Proud and sharp-tongued",
+          "traits": ["Tough","Ambitious"],
+          "style": "Elegant",
+          "favColor": "navy",
+          "fav": "missionary",
+          "dislike": "massage_get",
+          "lovers": "doggy",
+          "backstory": "Heir to a proud line of dragon tamers, Clair has never forgiven anyone for doubting her, including herself. She left her hidden mountain gym to find a place where her skill would be earned rather than assumed. She is exacting, fiercely loyal and rather good at throwing people out.",
+          "design": {
+            "hairStyle": "long wavy ponytail",
+            "hairColor": "light blue",
+            "eyes": "blue",
+            "skin": "fair",
+            "features": "a proud, narrow-eyed gaze",
+            "gear": "a high-collared black cape"
+          },
+          "under": "silk",
+          "underColor": "navy",
+          "stats": {"beauty":78,"charm":56,"charisma":66,"refinement":70,"wits":60,"stamina":64,"strength":56,"agility":62},
+          "tech": {"service":30,"dance":15,"bar":15,"combat":65,"manage":55},
+          "actSkill": 20,
+          "popularity": 14,
+          "lewd": 40,
+          "trust": 18,
+          "outfits": {
+            "sig_clair": {
+              "label": "Gym leader",
+              "style": "Elegant",
+              "prompt": "a fitted sleeveless navy tunic dress with gold trim, knee-high boots and black gloves",
+              "bonus": {"security":1.3,"noble":1.1}
+            },
+            "sp_clair": {
+              "label": "Tamer's gown",
+              "style": "Elegant",
+              "prompt": "a high-collared midnight-blue and gold gown with a long slit skirt",
+              "bonus": {"noble":1.2,"courtesan":1.15}
+            }
+          },
+          "bonds": {
+            "misty": {"v":25,"kind":"comrades","note":"Fellow gym leaders with a friendly rivalry."},
+            "flannery": {"v":25,"kind":"comrades","note":"Fellow gym leaders with a friendly rivalry."}
+          },
+          "jobs": {"likes":["security","madame"],"dislikes":["dancer"]},
+          "body": {"bust":"medium","height":"tall","figure":"slim"},
+          "unique": {
+            "name": "Dragon Tamer's Pride",
+            "desc": "Her bearing alone makes troublemakers think twice, and nobles respect it.",
+            "fx": {"security":12,"classBonus":{"noble":1.1}}
+          }
+        },
+        "flannery": {
+          "job": "bartender",
+          "name": "Flannery",
+          "title": "Leader",
+          "race": "human",
+          "age": 24,
+          "personality": "Hot-blooded and competitive",
+          "traits": ["Party Animal","Tough"],
+          "style": "Sporty",
+          "favColor": "red",
+          "fav": "breast_give",
+          "dislike": "manual_give",
+          "lovers": "cowgirl",
+          "backstory": "The fiery young leader of a gym in a volcano town, Flannery took over from her grandfather and spent years proving she could handle the heat. She left on a whim after hearing Hollowmere's taverns never close. She is clumsy with tact and wonderful with a crowd.",
+          "design": {
+            "hairStyle": "bangs covering one eye, rest tied up in a high spiky ponytail",
+            "hairColor": "red",
+            "eyes": "red",
+            "skin": "light",
+            "features": "a spray of freckles across her nose and a hot-tempered grin"
+          },
+          "under": "sports",
+          "underColor": "red",
+          "stats": {"beauty":74,"charm":68,"charisma":70,"refinement":40,"wits":44,"stamina":72,"strength":48,"agility":66},
+          "tech": {"service":30,"dance":35,"bar":50,"combat":45,"manage":30},
+          "actSkill": 25,
+          "popularity": 16,
+          "lewd": 40,
+          "trust": 20,
+          "outfits": {
+            "sig_flannery": {"label":"Gym leader","style":"Sporty","prompt":"a black crop top, red belt, and blue jeans","bonus":{"bartender":1.25,"adventurer":1.1}},
+            "sp_flannery": {
+              "label": "Festival yukata",
+              "style": "Elegant",
+              "prompt": "a bright red and gold short yukata with a wide obi",
+              "bonus": {"bartender":1.15,"noble":1.1}
+            }
+          },
+          "bonds": {
+            "misty": {"v":25,"kind":"comrades","note":"Fellow gym leaders with a friendly rivalry."},
+            "clair": {"v":25,"kind":"comrades","note":"Fellow gym leaders with a friendly rivalry."}
+          },
+          "jobs": {"likes":["bartender","host"],"dislikes":["madame"]},
+          "body": {"bust":"large","height":"average","figure":"athletic"},
+          "unique": {"name":"Burning Spirit","desc":"She fires up the crowd, and the drinks keep flowing.","fx":{"jobBonus":{"bartender":1.2},"clientFee":1.05}}
+        },
+        "may": {
+          "job": "dancer",
+          "name": "May",
+          "race": "human",
+          "age": 24,
+          "personality": "Cheerful and teasing",
+          "traits": ["Eager","Party Animal"],
+          "style": "Cute",
+          "favColor": "red",
+          "fav": "kiss",
+          "dislike": "manual_give",
+          "lovers": "missionary",
+          "backstory": "A coordinator who prefers a stage to a battlefield, May traveled from town to town collecting ribbons and, along the way, a few fans. She came to Hollowmere for the festivals and stayed for the dance floor. She trips sometimes. Then she turns it into a pirouette.",
+          "design": {
+            "hairStyle": "shoulder-length wavy",
+            "hairColor": "brown",
+            "eyes": "blue",
+            "skin": "fair",
+            "features": "a bright, expressive smile",
+            "gear": "a red bandana and a yellow belt pouch"
+          },
+          "under": "lace",
+          "underColor": "pink",
+          "stats": {"beauty":78,"charm":72,"charisma":72,"refinement":50,"wits":48,"stamina":62,"strength":30,"agility":66},
+          "tech": {"service":30,"dance":60,"bar":25,"combat":25,"manage":20},
+          "actSkill": 25,
+          "popularity": 16,
+          "lewd": 48,
+          "trust": 28,
+          "outfits": {
+            "sig_may": {
+              "label": "Coordinator outfit",
+              "style": "Cute",
+              "prompt": "a red zip-up crop top, a short white skirt with black shorts underneath and sneakers",
+              "bonus": {"dancer":1.3,"commoner":1.1}
+            },
+            "sp_may": {
+              "label": "Contest gown",
+              "style": "Elegant",
+              "prompt": "a frilly white and pink contest gown with a full skirt and ribbons",
+              "bonus": {"dancer":1.2,"noble":1.15}
+            }
+          },
+          "bonds": {
+            "misty": {"v":35,"kind":"comrades","note":"Fellow water-lovers who swap swimming tips."},
+            "leaf": {"v":30,"kind":"comrades","note":"Old friends who swap trail stories."}
+          },
+          "jobs": {"likes":["dancer","host"],"dislikes":["security"]},
+          "body": {"bust":"medium","height":"average","figure":"slim"},
+          "unique": {"name":"Contest Star","desc":"She turns every performance into a spectacle.","fx":{"jobBonus":{"dancer":1.2},"appeal":3}},
+          "title": "Trainer"
+        },
+        "hilda": {
+          "job": "promoter",
+          "name": "Hilda",
+          "race": "human",
+          "age": 25,
+          "personality": "Cheerful and teasing",
+          "traits": ["Eager","Former Adventurer"],
+          "style": "Sporty",
+          "favColor": "pink",
+          "fav": "kiss",
+          "dislike": "manual_get",
+          "lovers": "cowgirl",
+          "backstory": "A brash trainer from a bustling city, Hilda picked fights with every challenger she met and made more friends than enemies. She arrived in Hollowmere on a whim and talked herself into a job before noon. She is loud, quick and impossible to ignore.",
+          "design": {
+            "hairStyle": "long high ponytail",
+            "hairColor": "brown",
+            "eyes": "brown",
+            "skin": "fair",
+            "features": "a confident grin",
+            "gear": "a pink-and-white cap and a small shoulder bag"
+          },
+          "under": "plain",
+          "underColor": "pink",
+          "stats": {"beauty":76,"charm":70,"charisma":74,"refinement":48,"wits":50,"stamina":64,"strength":38,"agility":64},
+          "tech": {"service":35,"dance":25,"bar":30,"combat":45,"manage":35},
+          "actSkill": 20,
+          "popularity": 14,
+          "lewd": 38,
+          "trust": 28,
+          "outfits": {
+            "sig_hilda": {
+              "label": "Trainer outfit",
+              "style": "Sporty",
+              "prompt": "a fitted black and white vest top, short denim shorts, black thigh-high socks and pink boots",
+              "bonus": {"promoter":1.25,"adventurer":1.15}
+            },
+            "sp_hilda": {
+              "label": "City dress",
+              "style": "Cute",
+              "prompt": "a short pink and white tiered dress with a black belt",
+              "bonus": {"promoter":1.15,"merchant":1.1}
+            }
+          },
+          "bonds": {
+            "juniper": {"v":40,"kind":"mentor","note":"Professor Juniper gave her first partner and her first sendoff."},
+            "cynthia": {"v":25,"note":"The champion gave her a pointer or two on how to win."}
+          },
+          "jobs": {"likes":["promoter","host"],"dislikes":["madame"]},
+          "body": {"bust":"medium","height":"average","figure":"athletic"},
+          "unique": {"name":"Trainer's Spirit","desc":"She learns fast and talks faster.","fx":{"skillGain":1.2,"promote":1.1}},
+          "title": "Trainer"
+        }
+      }
+    }
+  }
+}

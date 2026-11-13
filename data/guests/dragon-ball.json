@@ -1,0 +1,168 @@
+{
+  "packs": {
+    "dragon-ball": {
+      "label": "Dragon Ball",
+      "characters": {
+        "bulma": {
+          "job": "promoter",
+          "name": "Bulma Briefs",
+          "race": "human",
+          "age": 40,
+          "personality": "Bold and flirtatious",
+          "traits": ["Ambitious","Party Animal"],
+          "style": "Elegant",
+          "favColor": "teal",
+          "fav": "kiss",
+          "dislike": "doggy",
+          "lovers": "cowgirl",
+          "backstory": "The heiress of a famous family of inventors, Bulma has already built, bankrolled and broken more gadgets than anyone in her own world cares to count. She came to Hollowmere chasing a rumor about rare crystals and stayed when she realized the house could use a proper marketing mind. She will tell you she's the smartest person in the room, and she is usually right.",
+          "design": {
+            "hairStyle": "short, sleek and swept to one side",
+            "hairColor": "turquoise",
+            "eyes": "blue",
+            "skin": "fair",
+            "features": "a bright, confident smile",
+            "gear": "a pouch of tiny inventor's gadgets at her belt"
+          },
+          "under": "lace",
+          "underColor": "pink",
+          "stats": {"beauty":84,"charm":74,"charisma":78,"refinement":62,"wits":90,"stamina":45,"strength":25,"agility":48},
+          "tech": {"service":40,"dance":20,"bar":40,"combat":10,"manage":60},
+          "actSkill": 30,
+          "popularity": 22,
+          "lewd": 44,
+          "trust": 24,
+          "outfits": {
+            "sig_bulma": {
+              "label": "Inventor's dress",
+              "style": "Cute",
+              "prompt": "a short pink dress with puffed sleeves, a blue sash and tall brown boots",
+              "bonus": {"promoter":1.3,"merchant":1.15}
+            },
+            "sp_bulma": {
+              "label": "Gala gown",
+              "style": "Elegant",
+              "prompt": "a sleeveless midnight-blue evening gown with a high slit and silver embroidery",
+              "bonus": {"courtesan":1.15,"noble":1.2}
+            }
+          },
+          "bonds": {
+            "chichi": {"v":40,"kind":"comrades","note":"Old friends who swap stories about stubborn husbands and unruly sons."},
+            "android21": {"v":25,"note":"Two brilliant minds who trade notes and one-up each other."}
+          },
+          "jobs": {"likes":["promoter","madame"],"dislikes":["security"]},
+          "body": {"bust":"large","height":"average","figure":"curvy"},
+          "unique": {
+            "name": "Genius Inventor",
+            "desc": "Her gadgets and her quick mind keep the house buzzing and the crowds coming.",
+            "fx": {"promote":1.25,"propRate":1.1}
+          }
+        },
+        "chichi": {
+          "job": "maid",
+          "name": "Chi-Chi",
+          "race": "human",
+          "age": 42,
+          "personality": "Warm and motherly",
+          "traits": ["Loyal","Tough"],
+          "style": "Elegant",
+          "favColor": "red",
+          "fav": "massage_give",
+          "dislike": "doggy",
+          "lovers": "missionary",
+          "backstory": "A princess-turned-martial-artist-turned-homemaker, Chi-Chi can cook for twenty, scold for thirty and still win a duel before supper. She followed her wayward family to Hollowmere and ended up taking over the household chores out of pure principle. Cross her rules and she will remind you where the door is.",
+          "design": {
+            "hairStyle": "hime cut low ponytail",
+            "hairColor": "black",
+            "eyes": "black",
+            "skin": "fair",
+            "features": "a stern but caring face",
+            "gear": "a long polearm slung across her back"
+          },
+          "under": "plain",
+          "underColor": "white",
+          "stats": {"beauty":72,"charm":62,"charisma":64,"refinement":66,"wits":62,"stamina":64,"strength":55,"agility":58},
+          "tech": {"service":55,"dance":15,"bar":30,"combat":60,"manage":50},
+          "actSkill": 25,
+          "popularity": 15,
+          "lewd": 28,
+          "trust": 32,
+          "outfits": {
+            "sig_chichi": {
+              "label": "Martial dress",
+              "style": "Sporty",
+              "prompt": "a blue cheongsam with red pants, armbands, shoes, white socks, and a red sash",
+              "bonus": {"maid":1.3,"commoner":1.15}
+            },
+            "sp_chichi": {
+              "label": "Battle bikini",
+              "style": "Revealing",
+              "prompt": "a blue bikini, pink gloves and boots, a green cape, and a pink helmet with an axe-like blade on top of it",
+              "bonus": {"security":1.15,"combat":1.2}
+            }
+          },
+          "bonds": {"bulma":{"v":40,"kind":"comrades","note":"Old friends who swap stories about stubborn husbands and unruly sons."}},
+          "jobs": {"likes":["maid","attendant"],"dislikes":["dancer"]},
+          "body": {"bust":"medium","height":"average","figure":"athletic"},
+          "unique": {
+            "name": "Housewife's Fury",
+            "desc": "Dishes are washed, floors gleam, and no one dares skip a chore.",
+            "fx": {"tidy":1.3,"jobBonus":{"maid":1.15}}
+          }
+        },
+        "android21": {
+          "job": "bartender",
+          "name": "Android 21",
+          "race": "android",
+          "age": 30,
+          "personality": "Bookish and curious",
+          "traits": ["Eager","Ambitious"],
+          "style": "Elegant",
+          "favColor": "magenta",
+          "fav": "oral_give",
+          "dislike": "manual_get",
+          "lovers": "cowgirl",
+          "backstory": "A brilliant researcher who turned herself into something more than human, Android 21 came to Hollowmere looking for ingredients and new flavors to study. She can name every spice in a stew from the steam alone, and she has never once left a plate unfinished. She is polite and sharp, with an appetite she tries, and often fails, to keep under control.",
+          "design": {
+            "hairStyle": "very long, wavy and loose",
+            "hairColor": "brown",
+            "eyes": "brown",
+            "skin": "fair",
+            "features": "a bright, hungry smile",
+            "gear": "round-framed glasses"
+          },
+          "under": "silk",
+          "underColor": "black",
+          "stats": {"beauty":80,"charm":60,"charisma":62,"refinement":70,"wits":88,"stamina":70,"strength":50,"agility":55},
+          "tech": {"service":40,"dance":20,"bar":50,"combat":45,"manage":50},
+          "actSkill": 25,
+          "popularity": 12,
+          "lewd": 40,
+          "trust": 22,
+          "outfits": {
+            "sig_android21": {
+              "label": "Scientist's coat",
+              "style": "Elegant",
+              "prompt": "a white lab coat over a black halter top, a pencil skirt and dark stockings",
+              "bonus": {"bartender":1.25,"merchant":1.15}
+            },
+            "sp_android21": {
+              "label": "Evening dress",
+              "style": "Exotic",
+              "prompt": "a fitted dark magenta satin cocktail dress with a low back and long black gloves",
+              "bonus": {"courtesan":1.15,"noble":1.15}
+            }
+          },
+          "bonds": {"bulma":{"v":25,"note":"Two brilliant minds who trade notes and one-up each other."}},
+          "jobs": {"likes":["bartender","host"],"dislikes":["security"]},
+          "body": {"bust":"large","height":"tall","figure":"curvy"},
+          "unique": {
+            "name": "Gourmand's Appetite",
+            "desc": "She mixes drinks with scientific precision and recovers quickly on a good meal.",
+            "fx": {"jobBonus":{"bartender":1.2},"energyRec":1.1}
+          }
+        }
+      }
+    }
+  }
+}

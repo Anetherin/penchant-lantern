@@ -1,0 +1,421 @@
+{
+  "packs": {
+    "fire-emblem": {
+      "label": "Fire Emblem",
+      "characters": {
+        "lyn": {
+          "job": "security",
+          "name": "Lyn",
+          "race": "human",
+          "age": 24,
+          "personality": "Hot-blooded and competitive",
+          "traits": ["Loyal","Tough"],
+          "style": "Sporty",
+          "favColor": "green",
+          "fav": "cowgirl",
+          "dislike": "manual_give",
+          "lovers": "missionary",
+          "backstory": "A swordswoman of the open plains from the warring continents beyond the southern straits, Lyndis turned down a noble title once and would do it again. She hates being cooped up, which is why she patrols the roof.",
+          "design": {"hairStyle":"very long high ponytail","hairColor":"deep green","eyes":"green","skin":"light","gear":"a slim curved sword at her hip"},
+          "under": "sports",
+          "underColor": "green",
+          "stats": {"beauty":70,"charm":60,"charisma":66,"refinement":48,"wits":48,"stamina":65,"strength":50,"agility":75},
+          "tech": {"service":20,"dance":30,"bar":15,"combat":72,"manage":25},
+          "actSkill": 25,
+          "popularity": 20,
+          "lewd": 26,
+          "trust": 28,
+          "outfits": {
+            "sig_lyn": {
+              "label": "Plainswoman's dress",
+              "style": "Sporty",
+              "prompt": "a blue sleeveless dress slit high at both sides, a gold sash, white leggings and tall boots",
+              "bonus": {"security":1.3,"adventurer":1.15}
+            },
+            "sp_lyn": {
+              "label": "Lady of the plains",
+              "style": "Elegant",
+              "prompt": "a flowing pale green silk gown with gold embroidery",
+              "bonus": {"noble":1.25,"courtesan":1.15}
+            }
+          },
+          "jobs": {"likes":["security","bartender"],"dislikes":["promoter"]},
+          "body": {"bust":"medium","height":"average","figure":"athletic"},
+          "unique": {"name":"Plains Swordswoman","desc":"A restless swordswoman who never tires of patrol.","fx":{"security":12,"maxEnergy":5}}
+        },
+        "rhea": {
+          "job": "madame",
+          "title": "Lady",
+          "name": "Rhea",
+          "race": "spirit",
+          "age": 598,
+          "personality": "Warm and motherly",
+          "traits": ["Elegant","Loyal"],
+          "style": "Elegant",
+          "favColor": "white",
+          "fav": "missionary",
+          "dislike": "doggy",
+          "lovers": "kiss",
+          "backstory": "Once the archbishop of a great church in the warring continents beyond the southern straits, and something far older than any archbishop. Rhea is serene, maternal and terrifying in equal measure. She claims she is here to tend the faithful.",
+          "design": {
+            "hairStyle": "very long, flowing",
+            "hairColor": "mint green",
+            "eyes": "pale green",
+            "skin": "pale",
+            "features": "an ornate white and gold floral headdress"
+          },
+          "under": "silk",
+          "underColor": "white",
+          "stats": {"beauty":78,"charm":66,"charisma":66,"refinement":75,"wits":80,"stamina":50,"strength":40,"agility":35},
+          "tech": {"service":40,"dance":15,"bar":15,"combat":55,"manage":68},
+          "actSkill": 35,
+          "popularity": 30,
+          "lewd": 24,
+          "trust": 20,
+          "outfits": {
+            "sig_rhea": {
+              "label": "Archbishop vestments",
+              "style": "Elegant",
+              "prompt": "ornate white and gold archbishop vestments with a long cape and a floral headdress",
+              "bonus": {"madame":1.3,"noble":1.2}
+            },
+            "sp_rhea": {
+              "label": "Garden dress",
+              "style": "Elegant",
+              "prompt": "a simple flowing white dress with fresh flowers in her hair",
+              "bonus": {"courtesan":1.2,"noble":1.15}
+            }
+          },
+          "bonds": {"manuela":{"v":20,"note":"Rhea keeps her employed. Manuela keeps her out of the wine."}},
+          "jobs": {"likes":["madame","teacher","bath"],"dislikes":["bartender"]},
+          "body": {"bust":"large","height":"tall","figure":"curvy"},
+          "unique": {"name":"Serene Presence","desc":"Her calm authority settles the whole floor.","fx":{"rep":1.2,"jobBonus":{"madame":1.15}}}
+        },
+        "manuela": {
+          "job": "dancer",
+          "name": "Manuela Casagranda",
+          "race": "human",
+          "age": 36,
+          "personality": "Bold and flirtatious",
+          "traits": ["Party Animal","Romantic"],
+          "style": "Elegant",
+          "favColor": "orange",
+          "fav": "breast_give",
+          "dislike": "kiss",
+          "lovers": "missionary",
+          "backstory": "A former opera diva and academy physician from the warring continents beyond the southern straits, Manuela is on the hunt for a husband and has a standing order at the bar. She can still bring a full house to tears with one aria.",
+          "design": {"hairStyle":"shoulder-length and wavy","hairColor":"light brown","eyes":"brown","skin":"fair","features":"a beauty mark beneath her eye"},
+          "under": "lace",
+          "underColor": "black",
+          "stats": {"beauty":72,"charm":70,"charisma":85,"refinement":55,"wits":55,"stamina":45,"strength":25,"agility":40},
+          "tech": {"service":50,"dance":60,"bar":40,"combat":30,"manage":30},
+          "actSkill": 45,
+          "popularity": 32,
+          "lewd": 44,
+          "trust": 28,
+          "outfits": {
+            "sig_manuela": {
+              "label": "Diva gown",
+              "style": "Elegant",
+              "prompt": "a plunging dark orange and black gown with a sheer shawl",
+              "bonus": {"dancer":1.3,"noble":1.15}
+            },
+            "sp_manuela": {
+              "label": "Physician's coat",
+              "style": "Elegant",
+              "prompt": "a white physician's coat over a fitted low-cut black dress",
+              "bonus": {"bath":1.2,"courtesan":1.15}
+            }
+          },
+          "bonds": {"rhea":{"v":20,"note":"Old employer."}},
+          "jobs": {"likes":["dancer","teacher","bartender"],"dislikes":["maid"]},
+          "body": {"bust":"large","height":"average","figure":"curvy"},
+          "unique": {"name":"Aria","desc":"A diva's voice and entrance.","fx":{"jobBonus":{"dancer":1.2},"appeal":3}}
+        },
+        "lethe": {
+          "job": "security",
+          "name": "Lethe",
+          "race": "beastkin",
+          "sub": "cat",
+          "age": 29,
+          "personality": "Proud and sharp-tongued",
+          "traits": ["Tough","Former Adventurer"],
+          "style": "Sporty",
+          "favColor": "orange",
+          "fav": "doggy",
+          "dislike": "missionary",
+          "lovers": "cowgirl",
+          "backstory": "A cat laguz warrior from the warring continents beyond the southern straits who distrusts humans on principle and Sam in particular, at first. She guards the door because someone competent has to.",
+          "design": {
+            "build": "lithe, muscular",
+            "hairStyle": "short and tousled",
+            "hairColor": "orange",
+            "eyes": "violet",
+            "skin": "light",
+            "features": "tribal markings on her cheeks"
+          },
+          "under": "sports",
+          "underColor": "black",
+          "stats": {"beauty":64,"charm":45,"charisma":49,"refinement":30,"wits":38,"stamina":72,"strength":55,"agility":78},
+          "tech": {"service":15,"dance":20,"bar":10,"combat":72,"manage":10},
+          "actSkill": 20,
+          "popularity": 14,
+          "lewd": 30,
+          "trust": 14,
+          "outfits": {
+            "sig_lethe": {
+              "label": "Laguz warrior's garb",
+              "style": "Sporty",
+              "prompt": "a sleeveless orange and brown tunic with a waist wrap and arm guards",
+              "bonus": {"security":1.3,"adventurer":1.2}
+            },
+            "sp_lethe": {"label":"Moonlit silks","style":"Exotic","prompt":"a deep purple silk wrap dress","bonus":{"courtesan":1.15,"noble":1.1}}
+          },
+          "bonds": {"panne":{"v":30,"note":"Two shapeshifters who recognize each other."}},
+          "jobs": {"likes":["security","courtesan","madame"],"dislikes":["maid","bath"]},
+          "body": {"bust":"medium","height":"average","figure":"athletic"},
+          "unique": {"name":"Laguz Guard","desc":"A warrior's ferocity at the door.","fx":{"security":14}}
+        },
+        "panne": {
+          "job": "courtesan",
+          "name": "Panne",
+          "race": "beastkin",
+          "sub": "rabbit",
+          "age": 30,
+          "personality": "Mysterious and aloof",
+          "traits": ["Loyal","Former Adventurer"],
+          "style": "Exotic",
+          "favColor": "white",
+          "fav": "doggy",
+          "dislike": "kiss",
+          "lovers": "cowgirl",
+          "backstory": "The last of a rabbit shapeshifter people from the warring continents beyond the southern straits, Panne trusts very few humans and says so. The ones she does trust, she would die for.",
+          "design": {"build":"curvy","hairStyle":"long and wild","hairColor":"brown","eyes":"brown","skin":"dark brown","gear":"a fur-trimmed collar"},
+          "under": "plain",
+          "underColor": "white",
+          "stats": {"beauty":70,"charm":50,"charisma":56,"refinement":40,"wits":44,"stamina":68,"strength":50,"agility":70},
+          "tech": {"service":40,"dance":30,"bar":10,"combat":62,"manage":10},
+          "actSkill": 35,
+          "popularity": 16,
+          "lewd": 38,
+          "trust": 14,
+          "outfits": {
+            "sig_panne": {
+              "label": "Taguel garb",
+              "style": "Exotic",
+              "prompt": "a fitted dark bodysuit with white fur trim, a short tabard and fur boots",
+              "bonus": {"courtesan":1.2,"adventurer":1.2}
+            },
+            "sp_panne": {"label":"Moon festival dress","style":"Elegant","prompt":"a white and silver fur-trimmed gown","bonus":{"noble":1.2,"courtesan":1.15}}
+          },
+          "bonds": {"lethe":{"v":30,"note":"Two shapeshifters who recognize each other."}},
+          "jobs": {"likes":["courtesan","security"],"dislikes":["promoter"]},
+          "body": {"bust":"small","height":"tall","figure":"athletic"},
+          "unique": {"name":"Guardian's Loyalty","desc":"Slow to trust, but fiercely devoted once she does.","fx":{"trustGain":1.15,"security":8}}
+        },
+        "corrin": {
+          "job": "security",
+          "name": "Corrin",
+          "race": "beastkin",
+          "sub": "dragon",
+          "age": 25,
+          "personality": "Gentle and dreamy",
+          "traits": ["Loyal","Romantic"],
+          "style": "Elegant",
+          "favColor": "blue",
+          "fav": "kiss",
+          "dislike": "massage_get",
+          "lovers": "missionary",
+          "backstory": "Raised in a mountain fortress with a dragon's blood she barely understood, Corrin spent years torn between two homes. She came to Hollowmere to see the world she was never allowed to visit. She is gentle, curious, and surprisingly formidable when someone threatens her friends.",
+          "design": {
+            "hairStyle": "long, soft and wavy",
+            "hairColor": "silver-white",
+            "eyes": "red",
+            "skin": "pale",
+            "features": "pointed ears, small sharp fangs and faint pale scales along her forearms",
+            "gear": "an ornate long blade and a glowing dragonstone amulet"
+          },
+          "under": "silk",
+          "underColor": "blue",
+          "stats": {"beauty":78,"charm":64,"charisma":64,"refinement":60,"wits":56,"stamina":64,"strength":52,"agility":60},
+          "tech": {"service":30,"dance":25,"bar":20,"combat":70,"manage":30},
+          "actSkill": 20,
+          "popularity": 14,
+          "lewd": 28,
+          "trust": 26,
+          "outfits": {
+            "sig_corrin": {
+              "label": "Royal armor-dress",
+              "style": "Elegant",
+              "prompt": "a black and silver armored dress with a high collar and a deep blue sash",
+              "bonus": {"security":1.25,"noble":1.15}
+            },
+            "sp_corrin": {
+              "label": "Court gown",
+              "style": "Elegant",
+              "prompt": "a white and sky-blue court gown with silver embroidery",
+              "bonus": {"noble":1.25,"courtesan":1.1}
+            }
+          },
+          "bonds": {
+            "eirika": {"v":25,"kind":"comrades","note":"Royals who have swapped war stories."},
+            "celica": {"v":25,"kind":"comrades","note":"Royals who have swapped war stories."}
+          },
+          "jobs": {"likes":["security","attendant"],"dislikes":["dancer"]},
+          "body": {"bust":"medium","height":"average","figure":"athletic"},
+          "unique": {"name":"Dragon Blood","desc":"Dragon vigor lets her patrol far longer than most.","fx":{"maxEnergy":10,"security":8}}
+        },
+        "eirika": {
+          "job": "host",
+          "name": "Eirika",
+          "title": "Princess",
+          "race": "human",
+          "age": 25,
+          "personality": "Earnest and dutiful",
+          "traits": ["Loyal","Elegant"],
+          "style": "Elegant",
+          "favColor": "blue",
+          "fav": "kiss",
+          "dislike": "doggy",
+          "lovers": "missionary",
+          "backstory": "A princess who led her people through war and rebuilt a kingdom from ashes, Eirika is kind, brave and forever apologizing for things that were not her fault. She came to Hollowmere on a pilgrimage, and found the work warm and honest. She still stands as though a crown were on her head.",
+          "design": {
+            "hairStyle": "long, neat and swept back",
+            "hairColor": "teal",
+            "eyes": "blue",
+            "skin": "fair",
+            "features": "a serene, resolute face",
+            "gear": "a slender rapier"
+          },
+          "under": "lace",
+          "underColor": "blue",
+          "stats": {"beauty":82,"charm":66,"charisma":72,"refinement":74,"wits":62,"stamina":56,"strength":40,"agility":58},
+          "tech": {"service":35,"dance":25,"bar":20,"combat":55,"manage":50},
+          "actSkill": 20,
+          "popularity": 18,
+          "lewd": 26,
+          "trust": 28,
+          "outfits": {
+            "sig_eirika": {
+              "label": "Royal tabard",
+              "style": "Elegant",
+              "prompt": "a pale blue and white tabard dress with gold trim, a short skirt and tall blue boots",
+              "bonus": {"host":1.25,"noble":1.2}
+            },
+            "sp_eirika": {"label":"Royal ballgown","style":"Elegant","prompt":"a white and gold ballgown with a long train","bonus":{"noble":1.25,"courtesan":1.15}}
+          },
+          "bonds": {
+            "celica": {"v":30,"kind":"comrades","note":"Princesses of far-off realms: kindred spirits."},
+            "corrin": {"v":25,"kind":"comrades","note":"Royals who have swapped war stories."}
+          },
+          "jobs": {"likes":["host","attendant"],"dislikes":["bartender"]},
+          "body": {"bust":"medium","height":"average","figure":"slim"},
+          "unique": {"name":"Radiant Princess","desc":"Her grace and honesty are noticed by every noble.","fx":{"classBonus":{"noble":1.2},"rep":1.1}}
+        },
+        "byleth": {
+          "job": "teacher",
+          "name": "Byleth",
+          "title": "Professor",
+          "race": "human",
+          "age": 30,
+          "personality": "Stoic and blunt",
+          "traits": ["Tough","Former Adventurer"],
+          "style": "Elegant",
+          "favColor": "teal",
+          "fav": "massage_give",
+          "dislike": "breast_get",
+          "lovers": "missionary",
+          "backstory": "A mercenary who became a professor almost by accident, Byleth speaks little, notices everything and is quietly very good at both teaching and killing. She arrived in Hollowmere looking for work that did not involve a battlefield. She shows her feelings so rarely that a small smile is a gift.",
+          "design": {
+            "hairStyle": "shoulder length, wavy and loose",
+            "hairColor": "teal",
+            "eyes": "teal",
+            "skin": "fair",
+            "features": "a calm, nearly expressionless face",
+            "gear": "an ornate chained sword"
+          },
+          "under": "plain",
+          "underColor": "black",
+          "stats": {"beauty":78,"charm":48,"charisma":56,"refinement":66,"wits":72,"stamina":66,"strength":52,"agility":60},
+          "tech": {"service":40,"dance":20,"bar":20,"combat":65,"manage":55},
+          "actSkill": 20,
+          "popularity": 14,
+          "lewd": 34,
+          "trust": 18,
+          "outfits": {
+            "sig_byleth": {
+              "label": "Professor's coat",
+              "style": "Elegant",
+              "prompt": "a dark teal tailored coat with gold trim over a black bodice, a short skirt and thigh-high boots",
+              "bonus": {"teacher":1.3,"adventurer":1.1}
+            },
+            "sp_byleth": {"label":"Tea-party dress","style":"Elegant","prompt":"a pale green formal dress with lace sleeves","bonus":{"noble":1.2,"courtesan":1.1}}
+          },
+          "bonds": {
+            "manuela": {"v":35,"kind":"comrades","note":"Fellow instructor with an endless supply of gossip."},
+            "rhea": {"v":40,"note":"Her patron, who watched over her with a mix of hope and worry."}
+          },
+          "jobs": {"likes":["teacher","security"],"dislikes":["dancer"]},
+          "body": {"bust":"medium","height":"average","figure":"athletic"},
+          "unique": {
+            "name": "Teacher's Sense",
+            "desc": "She trains her fellows with a patient and steady hand.",
+            "fx": {"skillGain":1.25,"jobBonus":{"teacher":1.2}}
+          }
+        },
+        "celica": {
+          "job": "attendant",
+          "name": "Celica",
+          "title": "Princess",
+          "race": "human",
+          "age": 24,
+          "personality": "Earnest and dutiful",
+          "traits": ["Loyal","Romantic"],
+          "style": "Cute",
+          "favColor": "orange",
+          "fav": "kiss",
+          "dislike": "manual_give",
+          "lovers": "missionary",
+          "backstory": "A princess who left the safety of a convent and a kingdom to find her missing friend, Celica faced every hardship with a smile and a blessing. She came to Hollowmere on the same hopeful errand and decided that helping people was as good a quest as any. She prays before every shift and means every word.",
+          "design": {
+            "hairStyle": "long, wavy and soft",
+            "hairColor": "crimson red",
+            "eyes": "red",
+            "skin": "fair",
+            "features": "a soft, sincere smile",
+            "gear": "a silver-tipped staff"
+          },
+          "under": "lace",
+          "underColor": "white",
+          "stats": {"beauty":82,"charm":64,"charisma":70,"refinement":66,"wits":58,"stamina":54,"strength":34,"agility":52},
+          "tech": {"service":35,"dance":25,"bar":20,"combat":50,"manage":35},
+          "actSkill": 20,
+          "popularity": 20,
+          "lewd": 26,
+          "trust": 30,
+          "outfits": {
+            "sig_celica": {
+              "label": "Princess dress",
+              "style": "Cute",
+              "prompt": "a white and orange layered dress with gold trim and a short cape",
+              "bonus": {"attendant":1.25,"noble":1.15}
+            },
+            "sp_celica": {
+              "label": "Silk gown",
+              "style": "Elegant",
+              "prompt": "a gold-trimmed white silk gown with sheer layered sleeves",
+              "bonus": {"noble":1.25,"courtesan":1.15}
+            }
+          },
+          "bonds": {
+            "eirika": {"v":30,"kind":"comrades","note":"Princesses of far-off realms: kindred spirits."},
+            "corrin": {"v":25,"kind":"comrades","note":"Royals who have swapped war stories."}
+          },
+          "jobs": {"likes":["attendant","host"],"dislikes":["security"]},
+          "body": {"bust":"medium","height":"average","figure":"slim"},
+          "unique": {"name":"Valentian Heart","desc":"Her sincerity wins trust fast, and her prayers calm the house.","fx":{"trustGain":1.15,"security":8}}
+        }
+      }
+    }
+  }
+}

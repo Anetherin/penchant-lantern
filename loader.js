@@ -50,7 +50,10 @@
   window.HOLLOWMERE_FILES = FILES;
   // Editable data, loaded before any script runs. Each becomes window.PL_DATA['<name>'].
   var DATA_FILES = ['balance', 'economy', 'services', 'personalities', 'people', 'races', 'traits', 'titles', 'body', 'wardrobe', 'characters', 'guests', 'arcs', 'regulars', 'bonds', 'scenes', 'dates', 'events', 'snippets', 'ai-prompts', 'flavor', 'firsts', 'goddess'];
+  // Data sets kept as a folder of parts (data/<name>/index.json + parts) instead of one file.
+  var DATA_DIRS = ['characters', 'guests', 'arcs', 'flavor', 'firsts', 'goddess'];
   window.HOLLOWMERE_DATA = DATA_FILES;
+  window.HOLLOWMERE_DATA_DIRS = DATA_DIRS;
 
   var MARKUP = [
     '<header id="hdr"></header>',
@@ -75,14 +78,41 @@
     if(v) v.innerHTML = '<p style="padding:20px;color:#e86b84">' + msg + '</p>';
   }
   window.PL_DATA = window.PL_DATA || {};
-  Promise.all(DATA_FILES.map(function(n){
-    if(window.PL_DATA[n]) return null;   // already inlined (single-file build)
-    return fetch(BASE + 'data/' + n + '.json?v=' + V).then(function(r){
+  // A data set is either data/<name>.json or a folder data/<name>/ whose index.json lists its parts
+  // (data/<name>/<part>.json), deep-merged in order: objects merge key by key, arrays are concatenated,
+  // other values defined twice: the later part wins. Same rules as tools/data.mjs.
+  function getJSON(rel){
+    return fetch(BASE + 'data/' + rel + '?v=' + V).then(function(r){
       if(!r.ok) throw new Error('HTTP ' + r.status);
       return r.json();
-    }).then(function(d){ window.PL_DATA[n] = d; }, function(e){
-      throw new Error('<code>data/' + n + '.json</code>: ' + (e instanceof SyntaxError ? 'not valid JSON (' + e.message + '). Check for a missing comma or quote.' : e.message));
+    }).then(null, function(e){
+      throw new Error('<code>data/' + rel + '</code>: ' + (e instanceof SyntaxError ? 'not valid JSON (' + e.message + '). Check for a missing comma or quote.' : e.message));
     });
+  }
+  function isObj(o){ return o && typeof o === 'object' && !Array.isArray(o); }
+  function mergeInto(dst, src, at){
+    Object.keys(src).forEach(function(k){
+      var d = dst[k], v = src[k];
+      if(!(k in dst)) dst[k] = v;
+      else if(Array.isArray(d) && Array.isArray(v)) dst[k] = d.concat(v);
+      else if(isObj(d) && isObj(v)) mergeInto(d, v, at + k + '.');
+      else { console.warn('[data] ' + at + k + ' is defined in more than one part; the later one wins'); dst[k] = v; }
+    });
+    return dst;
+  }
+  function loadSet(n){
+    if(DATA_DIRS.indexOf(n) < 0) return getJSON(n + '.json');
+    return getJSON(n + '/index.json').then(function(parts){
+      return Promise.all(parts.map(function(p){ return getJSON(n + '/' + p + '.json'); }));
+    }).then(function(list){
+      var out = {};
+      list.forEach(function(d){ mergeInto(out, d, n + ': '); });
+      return out;
+    });
+  }
+  Promise.all(DATA_FILES.map(function(n){
+    if(window.PL_DATA[n]) return null;   // already inlined (single-file build)
+    return loadSet(n).then(function(d){ window.PL_DATA[n] = d; });
   })).then(loadScripts, function(e){ fail('Couldn\'t load ' + e.message); });
 
   function loadScripts(){ FILES.forEach(function(f){
