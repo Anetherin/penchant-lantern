@@ -1,0 +1,150 @@
+{
+  "nerys": [
+    {
+      "title": "Inconvenient Feelings",
+      "scene": "sam_date",
+      "text": "Nerys complains, at length, that the contract makes her feel it when Sam is sad, a cold little ache under her ribs like a clause she never wrote. \"It's very inconvenient. Stop being sad.\" Her tail lashes the cushion in irritation. Then she sits down next to him on the lounge sofa, thigh to thigh, wings folded tight, and stays until he isn't.",
+      "choices": [
+        {
+          "label": "Let her sit there and stay quiet",
+          "t": 5,
+          "m": 8,
+          "res": "They sit in silence long enough for the candles to gutter. She keeps muttering that she's only doing this for her own comfort. Her tail wraps lightly around his ankle."
+        },
+        {
+          "label": "Tell her sadness is non-negotiable",
+          "t": 1,
+          "m": 2,
+          "res": "\"Read the fine print,\" Sam says. {N} narrows her magenta eyes, sniffs, and stays exactly where she is, tail twitching in what might be amusement."
+        }
+      ],
+      "image": {
+        "comp": "sitting very close to him on a sofa, arms crossed, sulking, wings folded, pretending not to care",
+        "setting": "dim lounge late at night",
+        "sam": true
+      }
+    },
+    {
+      "title": "Oops",
+      "scene": "shower",
+      "text": "Sam opens the washroom door to find Nerys lounging in the tub, steam clinging to her violet hair, bat wings draped over the rim, very obviously waiting. \"Oops,\" she says, not moving at all, one slender tail tip dipping in the water to draw lazy circles.",
+      "choices": [
+        {
+          "label": "Leave politely",
+          "t": 3,
+          "m": -3,
+          "res": "She looks almost disappointed. Almost. The tail tip stills, then goes back to circles as the door shuts, unmistakably sulky."
+        },
+        {
+          "label": "Call her bluff and sit down on the stool",
+          "l": 3,
+          "m": 8,
+          "res": "For once, SHE is the one who goes red, the blue-tinted skin of her cheeks darkening to plum. She recovers quickly. Mostly. Her wings give her away with a small, flustered rustle."
+        },
+        {
+          "label": "Toss her a towel",
+          "m": 2,
+          "res": "She catches it with her tail and drapes it over his head instead. \"Amateur,\" she says, but she is smiling at the water."
+        }
+      ],
+      "image": {
+        "comp": "lounging in a bathtub, very obviously waiting, smirking at the viewer, not moving at all",
+        "setting": "steamy wooden washroom, candles",
+        "sam": false,
+        "towel": true
+      }
+    },
+    {
+      "title": "Research Material",
+      "scene": "casual",
+      "text": "Sam finds Nerys reading a romance novel in the lounge, curled into a cushion with her horns tilted toward the lamp and her tail beating time behind her. She hides it in a panic, wings snapping shut, then throws a pillow at him. Later he finds it on his bed with a page dog-eared and a note in her sharp, looping hand: \"For research.\"",
+      "choices": [
+        {
+          "label": "Read the dog-eared page and find her",
+          "t": 5,
+          "m": 8,
+          "res": "The page is, frankly, upsetting for a man of his experience. He finds her anyway and says nothing; she studies the ceiling with enormous interest, tail curling round the chair leg."
+        },
+        {
+          "label": "Return it with a thoughtful review",
+          "t": 1,
+          "m": 2,
+          "res": "He returns it with a detailed critique of the pacing, as is tradition. {N} looks mortified, then argues about the ending until midnight."
+        }
+      ],
+      "image": {
+        "comp": "hiding a romance novel behind her back in a panic, throwing a pillow, flustered",
+        "setting": "plush lounge, cushions everywhere",
+        "sam": true
+      }
+    },
+    {
+      "title": "Leash",
+      "scene": "portrait",
+      "text": "A demon noble mocks Nerys in front of the whole lounge for being \"leashed to a human,\" his smile smooth as polished brass. She laughs it off, chin high, one wing flicking. That night, she snaps at Sam over nothing at all: a misplaced quill, a draft, the way he breathes. The contract hums uncomfortably between them.",
+      "choices": [
+        {
+          "label": "Defend her, publicly, the next day",
+          "t": 6,
+          "m": 6,
+          "res": "Sam has the demon noble thrown out, politely and with witnesses. Nerys pretends not to care. Her tail gives her away, wrapped around his wrist for the rest of the evening."
+        },
+        {
+          "label": "Let her handle it",
+          "m": -4,
+          "res": "She does, loudly, in three languages and with a surprising amount of cutlery. Then she sulks for days, wings drawn up around her like a cloak."
+        },
+        {
+          "label": "Offer to break the contract",
+          "t": -8,
+          "m": -12,
+          "res": "She goes very still. \"You want me gone?\" Her voice is dangerously even. It takes him a long, miserable hour to fix that, and a promise he doesn't intend to break."
+        }
+      ],
+      "image": {
+        "comp": "laughing off a sneering demon noble in a lounge, tight forced smile, tail lashing",
+        "setting": "velvet lounge full of guests, red lamplight",
+        "sam": false
+      }
+    },
+    {
+      "title": "Night Market",
+      "scene": "sam_date",
+      "text": "Nerys drags Sam to the Underdistrict night market, all red lanterns and sizzling oil, and buys him every cursed snack she can find: glowing skewers, black dumplings, something still twitching in a paper cone. She watches with the fixed attention of a woman collecting evidence. Her tail is curled around his sleeve so he can't get lost.",
+      "choices": [
+        {
+          "label": "Eat everything she hands you",
+          "m": 9,
+          "t": 2,
+          "res": "One of them makes his ears glow for an hour, and strangers ask for directions to his face. She has never been happier, and tells him so by laughing until she has to lean on him."
+        },
+        {
+          "label": "Buy her a hair ribbon",
+          "t": 4,
+          "m": 6,
+          "res": "She acts unimpressed, holding the ribbon between two claws like evidence. She wears it every day after, tied in her violet hair or around the base of her horn."
+        }
+      ],
+      "image": {
+        "comp": "holding out a skewer of strange glowing snacks to him at a night market, delighted grin",
+        "setting": "underground night market, glowing stalls, crowds",
+        "sam": true
+      }
+    },
+    {
+      "title": "Clause Kept",
+      "scene": "final",
+      "text": "A demon scholar in ink-black robes offers to dissolve the contract, paperwork spread on the table with a flourish. Nerys tears it up in front of him, every page. \"I'll keep it,\" she tells Sam afterward, in the empty lounge, looking anywhere but at him: the candles, the ceiling, her own claws. \"I've grown... attached.\" Then she looks at him, and stops pretending.",
+      "choices": [
+        {"label":"Say yes","t":6,"m":12,"res":""},
+        {
+          "label": "Not yet",
+          "t": 1,
+          "m": -3,
+          "hold": true,
+          "res": "{N} lifts one eyebrow. \"I can wait. Don't make it too long.\" Her tail flicks once, a clause left open, and she leaves the torn paper on his desk."
+        }
+      ]
+    }
+  ]
+}

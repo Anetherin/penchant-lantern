@@ -1,0 +1,160 @@
+{
+  "ella": [
+    {
+      "title": "Dinner Is a Competition",
+      "scene": "sam_date",
+      "text": "Ella challenges Sam to dinner as a competition: whoever orders the better meal wins. She arrives early, naturally, and has already studied the menu. Over the second course she puts down her fork, and the candle flame steadies between them. \"I was across the street. I saw the truck. For three years I've told myself I'd never speak of it.\" Her hand is steady on the glass, but her knuckles are white. \"I'm speaking of it now. Because you're here. Because I can.\"",
+      "choices": [
+        {
+          "label": "Reach across the table",
+          "t": 5,
+          "m": 8,
+          "res": "She lets him hold her hand and does not comment, though her pulse beats against his thumb. Then, quietly, a ghost of her usual crispness: \"That counts as a point to you.\""
+        },
+        {
+          "label": "Order dessert and change the subject gently",
+          "t": 2,
+          "m": 3,
+          "res": "She follows the pivot like a professional, blinking once, composure settled. \"The tart. Obviously.\" Under the table, her foot finds his and stays there."
+        }
+      ],
+      "image": {
+        "comp": "sitting across a candlelit dinner table from him, fork set down, serious and vulnerable, hand on her wine glass",
+        "setting": "private corner table in a lantern-lit restaurant",
+        "sam": true
+      }
+    },
+    {
+      "title": "Scoring Points",
+      "scene": "shower",
+      "text": "Sam opens the washroom door and finds Ella in the tub, hair pinned up with a pencil, a thick book propped on the soap dish, a glasses-fogged glare aimed squarely at the intruder. Steam curls around her. \"You didn't knock,\" she says. \"That's a point to me.\" She doesn't cover up, since the moral high ground is more valuable than modesty, and she turns a page with deliberate calm.",
+      "choices": [
+        {
+          "label": "Concede the point and leave",
+          "t": 2,
+          "m": 3,
+          "res": "\"Good.\" She tallies it in the margin of the book with a pencil. Later she leaves a cup of tea outside his door, which she scores as a draw."
+        },
+        {
+          "label": "\"Then I'll earn it back.\"",
+          "if": {"lewd":35},
+          "t": 3,
+          "m": 8,
+          "l": 3,
+          "res": "\"Oh?\" The corner of her mouth moves. \"Name your terms.\" They negotiate through the steam for far longer than the situation warrants, and neither of them seems to want to finish.",
+          "else": {
+            "t": -1,
+            "m": -3,
+            "res": "\"Out,\" she says, with great dignity, and points the pencil at the door. \"The point stands. Also, you're letting the heat out.\""
+          }
+        },
+        {
+          "label": "Compliment her and mean it",
+          "t": 3,
+          "m": 6,
+          "l": 1,
+          "res": "She goes very still, and a delicate pink climbs up her throat to her ears. \"That... wasn't in my scoring system,\" she says, and for once she doesn't have a rebuttal."
+        }
+      ],
+      "image": {
+        "comp": "in a bath, hair pinned up, a book propped beside her, fixing the doorway with a cool unimpressed glare",
+        "setting": "steamy wooden washroom",
+        "sam": false,
+        "towel": true
+      }
+    },
+    {
+      "title": "The Leaderboard",
+      "scene": "casual",
+      "text": "Ella turns the staff's daily chores into a points tournament, with a chalkboard leaderboard, little prizes and an appeals process with a very strict deadline. Morale in the house triples; even the cook has started saluting her. She has also, without telling anyone, assigned Sam a score of her own: a secret column in her notebook headed Observations. She is only caught when it falls out of her apron into the flour dust, and lies there, wide open.",
+      "choices": [
+        {
+          "label": "Stay with her",
+          "t": 5,
+          "m": 8,
+          "res": "He reads it aloud, politely, because she has frozen. The column contains seventeen entries, several about his handwriting. She says nothing at all and doesn't leave."
+        },
+        {
+          "label": "Hand it back unread",
+          "t": 3,
+          "m": 5,
+          "res": "She takes it with great dignity and tucks it away. \"You are,\" she says, crisply, \"unbelievably annoying.\" It sounds, for once, like a compliment."
+        }
+      ],
+      "image": {
+        "comp": "holding a leaderboard chalkboard, caught as a small notebook falls out of her apron, mortified and composed at once",
+        "setting": "busy inn kitchen with staff cheering in the background",
+        "sam": true
+      }
+    },
+    {
+      "title": "The Offer",
+      "scene": "portrait",
+      "text": "A merchant house in the capital offers Ella a post as chief of accounts: a salary, a title, a corner office with her name lettered on the door. It's everything she has ever wanted, on paper. She lays the letter in front of Sam in the quiet ledger room without a word, hands flat on the desk, and watches his face with the intensity of someone grading an exam she has already written the answers to.",
+      "choices": [
+        {
+          "label": "\"Take it. You'd be the best they've ever had.\"",
+          "t": 4,
+          "m": -2,
+          "res": "She nods once. \"I hate how much I wanted you to say that,\" she mutters, smoothing the letter. She doesn't answer the merchants for a week."
+        },
+        {
+          "label": "\"Stay. Beat me here.\"",
+          "t": 6,
+          "m": 6,
+          "res": "\"That's cheating,\" she says, eyes bright. She turns the letter down the next morning, in writing, with a flourish of the pen that nearly tears the page."
+        },
+        {
+          "label": "Say nothing",
+          "t": -5,
+          "m": -8,
+          "res": "She folds the letter, tucks it away, and gives him a mark he can't read. The house is colder for days, and the leaderboard stays unchalked."
+        }
+      ],
+      "image": {
+        "comp": "sitting at a desk with a sealed offer letter in front of her, watching him with a level searching gaze",
+        "setting": "ledger room, lamplight, neat stacks of paper",
+        "sam": true
+      }
+    },
+    {
+      "title": "Rematch",
+      "scene": "sam_date",
+      "text": "Ella sets up a chessboard in the courtyard at dusk, with rules, a brass clock and a hand-lettered scoreboard that reads SAM vs. ELLA - GAME 1 OF 1. They play for two hours without speaking, the lanterns coming on one by one, the clock ticking. At the end, she has him cornered. She looks at the board. She looks at him. She doesn't make the winning move.",
+      "choices": [
+        {
+          "label": "Offer a draw",
+          "t": 5,
+          "m": 8,
+          "res": "\"Accepted,\" she says, much too quickly, and tips her king over herself. \"As a purely tactical choice.\""
+        },
+        {
+          "label": "Tell her to take the win",
+          "t": 4,
+          "m": 5,
+          "res": "She takes it, and cheers, genuinely, a bright unguarded whoop, and then buys him dinner out of sheer guilt, and pays for the good wine."
+        }
+      ],
+      "image": {
+        "comp": "leaning over a chessboard, one hand hovering above a piece, looking up at him instead of the game",
+        "setting": "lantern-lit courtyard table at dusk, chessboard between them",
+        "sam": true
+      }
+    },
+    {
+      "title": "First Place",
+      "scene": "final",
+      "text": "Ella stops him on the stairs, a pencil in her hair and a ledger under her arm, her chin lifted for a fight. \"I have been second to you for years, and I have never minded. Don't tell anyone.\" She takes the pencil out of her hair, lets it fall down around her shoulders, and meets his eyes. \"I'm not competing anymore. I'd like to be on your side of the board.\" She kisses him, decisively, as if it were the winning move.",
+      "choices": [
+        {"label":"Say yes","t":6,"m":12,"res":""},
+        {
+          "label": "Not yet",
+          "t": 1,
+          "m": -3,
+          "hold": true,
+          "res": "Ella nods briskly, as if filing it. \"I can wait,\" she says. \"But I'm tracking the delay, Sam. Don't make it too long.\""
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,490 @@
+{
+  "mira": {
+    "role": "house",
+    "job": "madame",
+    "name": "Mira Ashdown",
+    "race": "human",
+    "age": 31,
+    "personality": "Warm and motherly",
+    "traits": ["Loyal","Elegant"],
+    "style": "Elegant",
+    "favColor": "burgundy",
+    "fav": "cowgirl",
+    "dislike": null,
+    "lovers": "missionary",
+    "backstory": "Mira kept the Gilded Lantern running for the old owner until he vanished. She isn't sure what to make of the skinny stranger with the deed, but she's staying. For now. She knows every regular by name and every creaky floorboard by sound, and she has quietly started mothering the man who inherited it all.",
+    "design": {"hairStyle":"long wavy","hairColor":"auburn","eyes":"warm brown","skin":"fair","features":"a beauty mark beside her lips"},
+    "under": "lace",
+    "underColor": "burgundy",
+    "stats": {"beauty":62,"charm":66,"charisma":66,"refinement":62,"wits":67,"stamina":45,"strength":25,"agility":35},
+    "tech": {"service":50,"dance":20,"bar":35,"combat":5,"manage":58},
+    "actSkill": 40,
+    "popularity": 20,
+    "lewd": 36,
+    "trust": 34,
+    "outfits": {
+      "sig_mira": {
+        "label": "Hostess gown",
+        "style": "Elegant",
+        "prompt": "an elegant burgundy dress with a black lace shawl",
+        "bonus": {"madame":1.3,"courtesan":1.1}
+      },
+      "sp_mira": {
+        "label": "Midnight silk gown",
+        "style": "Elegant",
+        "prompt": "a midnight-blue silk gown with a plunging back and sapphire jewelry",
+        "bonus": {"noble":1.3,"courtesan":1.15}
+      }
+    },
+    "bonds": {"bettina":{"v":35,"note":"Two old hands at running a front desk. They trade gossip by letter."}},
+    "jobs": {"likes":["madame","promoter","maid"],"dislikes":["security"]},
+    "body": {"bust":"medium","height":"average","figure":"soft"},
+    "unique": {"name":"Steady Hand","desc":"She keeps the whole house humming and the staff calm.","fx":{"jobBonus":{"madame":1.2},"rep":1.1}}
+  },
+  "cecile": {
+    "role": "house",
+    "job": "maid",
+    "name": "Cecile Fairbanks",
+    "race": "human",
+    "age": 33,
+    "personality": "Calm and elegant",
+    "traits": ["Loyal","Elegant"],
+    "style": "Elegant",
+    "favColor": "black",
+    "fav": "missionary",
+    "dislike": "doggy",
+    "lovers": "oral_give",
+    "backstory": "Head maid of Castle Rosenhal for twelve years and three owners. She runs the castle like a clock and considers Sam her newest project. She has outlasted a mad count, a bankrupt heir and an indifferent duchess, and trusts no one's word until she has seen how they fold a towel.",
+    "design": {
+      "build": "lean",
+      "hairStyle": "neat chignon",
+      "hairColor": "dark brown",
+      "eyes": "grey",
+      "skin": "pale",
+      "features": "a stern mouth that rarely, but devastatingly, smiles"
+    },
+    "under": "silk",
+    "underColor": "black",
+    "stats": {"beauty":64,"charm":50,"charisma":50,"refinement":80,"wits":80,"stamina":55,"strength":30,"agility":45},
+    "tech": {"service":72,"dance":30,"bar":30,"combat":15,"manage":60},
+    "actSkill": 25,
+    "popularity": 15,
+    "lewd": 22,
+    "trust": 30,
+    "outfits": {
+      "sig_cecile": {
+        "label": "Head maid uniform",
+        "style": "Elegant",
+        "prompt": "a long black head-maid dress with crisp white apron and a ring of brass keys",
+        "bonus": {"maid":1.4,"promoter":1.15}
+      },
+      "sp_cecile": {
+        "label": "Off-duty corset dress",
+        "style": "Elegant",
+        "prompt": "a dark green corset dress with lace sleeves",
+        "bonus": {"noble":1.2,"courtesan":1.15}
+      }
+    },
+    "bonds": {"seraphine":{"v":55,"note":"Ran the Rosenhal household for twelve years; Seraphine trusts her more than family."}},
+    "jobs": {"likes":["maid","madame"],"dislikes":["dancer","bartender"]},
+    "body": {"bust":"medium","height":"tall","figure":"slim"},
+    "unique": {
+      "name": "Clockwork Household",
+      "desc": "Her castle runs like a clock, and so does every room she touches.",
+      "fx": {"tidy":1.3,"jobBonus":{"maid":1.15}}
+    }
+  },
+  "tsubaki": {
+    "role": "house",
+    "job": "bath",
+    "name": "Tsubaki",
+    "race": "human",
+    "age": 29,
+    "personality": "Cheerful and teasing",
+    "traits": ["Party Animal","Night Owl"],
+    "style": "Exotic",
+    "favColor": "red",
+    "fav": "breast_give",
+    "dislike": null,
+    "lovers": "missionary",
+    "backstory": "Tsubaki came from the eastern isles to run the springs for her late aunt. She knows every guest's name and every guest's bath temperature. Her aunt's wooden bath bucket sits by the door for luck, and she sings off-key, loudly, to whoever is in the water.",
+    "design": {
+      "hairStyle": "long black hair in a loose side braid",
+      "hairColor": "black",
+      "eyes": "dark brown",
+      "skin": "warm fair",
+      "features": "a camellia hair ornament"
+    },
+    "under": "plain",
+    "underColor": "white",
+    "stats": {"beauty":66,"charm":64,"charisma":72,"refinement":45,"wits":45,"stamina":60,"strength":30,"agility":45},
+    "tech": {"service":62,"dance":25,"bar":40,"combat":10,"manage":35},
+    "actSkill": 35,
+    "popularity": 18,
+    "lewd": 42,
+    "trust": 28,
+    "outfits": {
+      "sig_tsubaki": {"label":"Onsen yukata","style":"Elegant","prompt":"an indigo yukata with a red obi, sleeves tied back","bonus":{"bath":1.35}},
+      "sp_tsubaki": {
+        "label": "Festival kimono",
+        "style": "Exotic",
+        "prompt": "a vivid festival kimono patterned with camellias",
+        "bonus": {"courtesan":1.2,"merchant":1.15}
+      }
+    },
+    "jobs": {"likes":["bath","host","bartender"],"dislikes":["security","maid"]},
+    "body": {"bust":"large","height":"average","figure":"curvy"},
+    "unique": {
+      "name": "Knows Every Guest",
+      "desc": "She remembers every bather's name and favorite temperature, and her rubdowns are famous.",
+      "fx": {"jobBonus":{"bath":1.2},"actQuality":{"massage_give":1.15}}
+    }
+  },
+  "vesper": {
+    "role": "house",
+    "job": "courtesan",
+    "title": "Lady",
+    "name": "Vesper",
+    "race": "spirit",
+    "age": 312,
+    "personality": "Mysterious and aloof",
+    "traits": ["Exhibitionist","Elegant"],
+    "style": "Elegant",
+    "favColor": "lavender",
+    "fav": "kiss",
+    "dislike": "manual_give",
+    "lovers": "cowgirl",
+    "backstory": "Vesper has haunted the manor for three centuries and was delighted to finally have company. She doesn't remember how she died and finds the question rude. She greets every arrival in a gown of her own era, and her ideas of hospitality are three hundred years out of date and perfectly charming.",
+    "design": {
+      "hairStyle": "very long flowing",
+      "hairColor": "silver",
+      "eyes": "pale violet",
+      "skin": "moon-pale",
+      "features": "a faint glow and drifting hair as if underwater"
+    },
+    "under": "silk",
+    "underColor": "lavender",
+    "stats": {"beauty":76,"charm":55,"charisma":61,"refinement":70,"wits":74,"stamina":50,"strength":10,"agility":55},
+    "tech": {"service":40,"dance":60,"bar":10,"combat":20,"manage":30},
+    "actSkill": 30,
+    "popularity": 12,
+    "lewd": 45,
+    "trust": 20,
+    "outfits": {
+      "sig_vesper": {
+        "label": "Mourning gown",
+        "style": "Elegant",
+        "prompt": "an antique black lace mourning gown with a sheer veil",
+        "bonus": {"noble":1.15,"dancer":1.15}
+      },
+      "sp_vesper": {
+        "label": "Spectral silks",
+        "style": "Revealing",
+        "prompt": "flowing translucent pale silks that drift like smoke",
+        "bonus": {"dancer":1.3,"propose":1.2}
+      }
+    },
+    "jobs": {"likes":["courtesan","dancer"],"dislikes":["promoter","maid"]},
+    "body": {"bust":"small","height":"tall","figure":"slim"},
+    "unique": {
+      "name": "Chill Lingers",
+      "desc": "A hush follows her through any room, and nobles find it unforgettable.",
+      "fx": {"appeal":4,"classBonus":{"noble":1.15}}
+    }
+  },
+  "hilde": {
+    "role": "house",
+    "job": "bartender",
+    "name": "Hilde Ironsong",
+    "race": "dwarf",
+    "age": 87,
+    "personality": "Hot-blooded and competitive",
+    "traits": ["Party Animal","Tough"],
+    "style": "Cute",
+    "favColor": "emerald",
+    "fav": "cowgirl",
+    "dislike": null,
+    "lovers": null,
+    "backstory": "A brewmaster who lost her brewery in a drinking contest with a giant. She wants a bar to run and doesn't much care what goes on upstairs, though she's not opposed to finding out. She still swears the giant cheated, keeps a barrel of the bet's vintage under the counter and offers a free pint to anyone who can out-drink her. Nobody has.",
+    "design": {
+      "build": "stocky, muscular",
+      "hairStyle": "thick braided",
+      "hairColor": "red",
+      "eyes": "grey",
+      "skin": "ruddy fair",
+      "features": "brass rings in her braids and freckled forearms"
+    },
+    "under": "plain",
+    "underColor": "ivory",
+    "stats": {"beauty":52,"charm":56,"charisma":62,"refinement":25,"wits":25,"stamina":75,"strength":75,"agility":35},
+    "tech": {"service":35,"dance":15,"bar":72,"combat":40,"manage":30},
+    "actSkill": 20,
+    "popularity": 10,
+    "lewd": 40,
+    "trust": 20,
+    "outfits": {
+      "sig_hilde": {
+        "label": "Brewmaster's bodice",
+        "style": "Cute",
+        "prompt": "a laced brown bodice, rolled linen sleeves and a leather apron",
+        "bonus": {"bartender":1.3}
+      },
+      "sp_hilde": {
+        "label": "Festival dirndl",
+        "style": "Cute",
+        "prompt": "a bright green festival dirndl with a low-cut bodice",
+        "bonus": {"bartender":1.2,"propose":1.2,"commoner":1.15}
+      }
+    },
+    "jobs": {"likes":["bartender","security"],"dislikes":["courtesan","maid"]},
+    "body": {"bust":"medium","height":"short","figure":"athletic"},
+    "unique": {
+      "name": "Brewmaster's Blend",
+      "desc": "Her drinks are legendary, and she can keep pouring all night.",
+      "fx": {"jobBonus":{"bartender":1.25},"maxEnergy":10}
+    }
+  },
+  "sylphine": {
+    "role": "house",
+    "job": "dancer",
+    "name": "Sylphine Moonwhisper",
+    "race": "elf",
+    "age": 146,
+    "personality": "Bookish and curious",
+    "traits": ["Party Animal","Romantic"],
+    "style": "Exotic",
+    "favColor": "silver",
+    "fav": "kiss",
+    "dislike": "breast_give",
+    "lovers": "missionary",
+    "backstory": "A dancer who left the elven conservatory to perform for \"people who actually clap.\" She treats every night at the Pavilion like opening night. After a century of precision and polite silence she lives for the roar of an audience, and can be talked into almost anything by applause.",
+    "design": {
+      "build": "toned",
+      "hairStyle": "long straight",
+      "hairColor": "silver-white",
+      "eyes": "ice-blue",
+      "skin": "porcelain",
+      "features": "silver anklets and a crescent-moon tattoo on her hip"
+    },
+    "under": "sheer",
+    "underColor": "silver",
+    "stats": {"beauty":74,"charm":58,"charisma":62,"refinement":70,"wits":82,"stamina":50,"strength":20,"agility":75},
+    "tech": {"service":35,"dance":75,"bar":15,"combat":10,"manage":20},
+    "actSkill": 20,
+    "popularity": 20,
+    "lewd": 30,
+    "trust": 22,
+    "outfits": {
+      "sig_sylphine": {"label":"Moonpetal dress","style":"Exotic","prompt":"a flowing white dress of layered petal-shaped silk","bonus":{"dancer":1.3}},
+      "sp_sylphine": {
+        "label": "Starlight silks",
+        "style": "Revealing",
+        "prompt": "sheer midnight silks embroidered with tiny silver stars",
+        "bonus": {"dancer":1.2,"noble":1.2}
+      }
+    },
+    "jobs": {"likes":["dancer","courtesan"],"dislikes":["security"]},
+    "body": {"bust":"small","height":"tall","figure":"slim"},
+    "unique": {
+      "name": "Opening Night",
+      "desc": "Every performance feels like a premiere, and the crowd can tell.",
+      "fx": {"jobBonus":{"dancer":1.2},"appeal":3}
+    }
+  },
+  "zaria": {
+    "role": "house",
+    "job": "courtesan",
+    "name": "Zaria Nightbloom",
+    "race": "demon",
+    "age": 188,
+    "personality": "Bold and flirtatious",
+    "traits": ["Eager","Ambitious"],
+    "style": "Revealing",
+    "favColor": "crimson",
+    "fav": "doggy",
+    "dislike": "kiss",
+    "lovers": null,
+    "backstory": "Zaria ran the Veil's floor long before the deed changed hands. She thinks humans are adorable and Sam is the most adorable one yet. For decades she has handled the house's difficult clients with a smile and a velvet rope, and she quietly keeps a ledger of the favors people owe her.",
+    "design": {
+      "hairStyle": "long curly",
+      "hairColor": "black with crimson tips",
+      "eyes": "gold with slit pupils",
+      "skin": "lavender-tinted",
+      "features": "long curved horns and a heart-tipped tail"
+    },
+    "under": "corset",
+    "underColor": "black",
+    "stats": {"beauty":72,"charm":62,"charisma":72,"refinement":35,"wits":35,"stamina":65,"strength":40,"agility":55},
+    "tech": {"service":45,"dance":45,"bar":30,"combat":30,"manage":30},
+    "actSkill": 60,
+    "popularity": 25,
+    "lewd": 72,
+    "trust": 15,
+    "outfits": {
+      "sig_zaria": {
+        "label": "Crimson harness dress",
+        "style": "Revealing",
+        "prompt": "a crimson dress with a strappy black leather harness",
+        "bonus": {"courtesan":1.2,"adventurer":1.1}
+      },
+      "sp_zaria": {
+        "label": "Infernal regalia",
+        "style": "Revealing",
+        "prompt": "black and gold infernal regalia with a high collar and very little else",
+        "bonus": {"courtesan":1.3,"propose":1.2}
+      }
+    },
+    "bonds": {"vharra":{"v":-30,"note":"Two demons who both think they run the Underdistrict."}},
+    "jobs": {"likes":["courtesan","madame"],"dislikes":["maid","promoter"]},
+    "body": {"bust":"large","height":"tall","figure":"curvy"},
+    "unique": {
+      "name": "Floor Boss",
+      "desc": "She commands the floor and always knows who is looking for company.",
+      "fx": {"jobBonus":{"courtesan":1.15},"propRate":1.2}
+    }
+  },
+  "bettina": {
+    "role": "house",
+    "job": "promoter",
+    "name": "Bettina Krumm",
+    "race": "human",
+    "age": 35,
+    "personality": "Warm and motherly",
+    "traits": ["Loyal","Greedy"],
+    "style": "Cute",
+    "favColor": "navy",
+    "fav": "missionary",
+    "dislike": null,
+    "lovers": "oral_give",
+    "backstory": "Bettina has run the Wayfarer's front desk for a decade. She can tell where a traveler is from by their boots and how much they'll spend by their hat. She keeps a drawer of lost-and-found trinkets and a surprisingly kind heart behind her tally book.",
+    "design": {
+      "hairStyle": "honey-brown hair in a practical bun",
+      "hairColor": "honey brown",
+      "eyes": "hazel",
+      "skin": "rosy fair",
+      "features": "laugh lines and a pencil tucked behind one ear"
+    },
+    "under": "plain",
+    "underColor": "white",
+    "stats": {"beauty":56,"charm":66,"charisma":71,"refinement":45,"wits":45,"stamina":55,"strength":35,"agility":30},
+    "tech": {"service":70,"dance":15,"bar":45,"combat":10,"manage":55},
+    "actSkill": 30,
+    "popularity": 15,
+    "lewd": 30,
+    "trust": 30,
+    "outfits": {
+      "sig_bettina": {
+        "label": "Innkeeper's apron dress",
+        "style": "Cute",
+        "prompt": "a sturdy blue dress with a flour-dusted white apron",
+        "bonus": {"promoter":1.3,"merchant":1.1}
+      },
+      "sp_bettina": {"label":"Sunday best","style":"Elegant","prompt":"a fitted plum dress with a cameo brooch","bonus":{"courtesan":1.2,"merchant":1.2}}
+    },
+    "jobs": {"likes":["promoter","madame"],"dislikes":["dancer"]},
+    "body": {"bust":"large","height":"average","figure":"soft"},
+    "unique": {
+      "name": "Boots and Hats",
+      "desc": "She reads a traveler's wallet at the door and charms him into spending it.",
+      "fx": {"clientFee":1.08,"promote":1.2}
+    }
+  },
+  "rinna": {
+    "role": "house",
+    "job": "bartender",
+    "title": "Captain",
+    "name": "Rinna Galewright",
+    "race": "beastkin",
+    "sub": "dragon",
+    "age": 142,
+    "personality": "Hot-blooded and competitive",
+    "traits": ["Former Adventurer","Party Animal"],
+    "style": "Sporty",
+    "favColor": "crimson",
+    "fav": null,
+    "dislike": null,
+    "lovers": null,
+    "backstory": "Rinna flew cargo (some of it legal) for sixty years before her ship ran aground on the cliffs. She built a bar around the wreck and never left. She still keeps the captain's hat, tells a different tall tale about every dent in the hull, and pours with a captain's generosity.",
+    "design": {
+      "hairStyle": "windswept shoulder-length",
+      "hairColor": "copper",
+      "eyes": "amber with slit pupils",
+      "skin": "sun-bronzed",
+      "features": "small swept-back horns and a coppery scaled tail",
+      "gear": "a captain's tricorn hat"
+    },
+    "under": "sports",
+    "underColor": "black",
+    "stats": {"beauty":66,"charm":64,"charisma":75,"refinement":30,"wits":30,"stamina":72,"strength":62,"agility":58},
+    "tech": {"service":35,"dance":25,"bar":62,"combat":55,"manage":45},
+    "actSkill": 40,
+    "popularity": 28,
+    "lewd": 45,
+    "trust": 15,
+    "outfits": {
+      "sig_rinna": {
+        "label": "Sky captain's coat",
+        "style": "Sporty",
+        "prompt": "a long weathered red captain's coat over a cropped shirt, fingerless gloves and tall boots",
+        "bonus": {"bartender":1.2,"adventurer":1.2}
+      },
+      "sp_rinna": {
+        "label": "Shore-leave finery",
+        "style": "Revealing",
+        "prompt": "a daring off-shoulder pirate blouse tied at the waist, a sash and tight breeches",
+        "bonus": {"bartender":1.2,"propose":1.2}
+      }
+    },
+    "jobs": {"likes":["bartender","security"],"dislikes":["promoter","maid"]},
+    "body": {"bust":"medium","height":"tall","figure":"athletic"},
+    "unique": {"name":"Sea Legs","desc":"A captain's endurance behind a bar that never closes.","fx":{"jobBonus":{"bartender":1.2},"maxEnergy":10}}
+  },
+  "maris": {
+    "role": "house",
+    "job": "bath",
+    "name": "Maris Tidewhisper",
+    "race": "elf",
+    "age": 310,
+    "personality": "Mysterious and aloof",
+    "traits": ["Elegant","Night Owl"],
+    "style": "Elegant",
+    "favColor": "teal",
+    "fav": null,
+    "dislike": null,
+    "lovers": null,
+    "backstory": "Maris has tended the Pearl Grotto longer than the harbor has had a name. She answers questions about her past with a smile and a different story every time. The steam smells of salt when she hums, and the regulars swear the water remembers their names.",
+    "design": {
+      "build": "graceful",
+      "hairStyle": "very long and wavy",
+      "hairColor": "sea-green",
+      "eyes": "pale silver",
+      "skin": "fair with a faint pearlescent sheen",
+      "features": "long pointed ears hung with pearl earrings"
+    },
+    "under": "silk",
+    "underColor": "white",
+    "stats": {"beauty":80,"charm":60,"charisma":66,"refinement":72,"wits":76,"stamina":50,"strength":30,"agility":55},
+    "tech": {"service":66,"dance":40,"bar":25,"combat":20,"manage":50},
+    "actSkill": 45,
+    "popularity": 32,
+    "lewd": 40,
+    "trust": 10,
+    "outfits": {
+      "sig_maris": {
+        "label": "Tidewoven robe",
+        "style": "Elegant",
+        "prompt": "a flowing translucent sea-green robe with pearl clasps",
+        "bonus": {"bath":1.3,"noble":1.2}
+      },
+      "sp_maris": {
+        "label": "Pearl regalia",
+        "style": "Revealing",
+        "prompt": "strands of glowing pearls and a sheer silver wrap",
+        "bonus": {"bath":1.3,"propose":1.2}
+      }
+    },
+    "jobs": {"likes":["bath","courtesan"],"dislikes":["promoter"]},
+    "body": {"bust":"medium","height":"tall","figure":"soft"},
+    "unique": {"name":"Tide-Told Tales","desc":"The grotto's steam and her stories leave guests soothed.","fx":{"jobBonus":{"bath":1.15},"moodRest":3}}
+  }
+}

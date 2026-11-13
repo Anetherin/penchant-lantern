@@ -1,0 +1,172 @@
+{
+  "characters": {
+    "bulma": {
+      "events": {
+        "1": {
+          "title": "Blueprint",
+          "text": "Bulma has covered the lounge table with schematics for something she refuses to explain. Sam brings her coffee and she waves him into the seat beside her without looking up. \"Genius needs company,\" she says. \"Preferably cute.\" She finally glances over. \"You're blushing, Sam. Good. I'd hate to be the only one.\" Gears and glass tubes cover the table. A pencil is stuck in her hair, and her smirk is bright and sure, though her cheeks match his.",
+          "image": {
+            "comp": "leaning over a table of blueprints with a smirk, one eyebrow raised, hair swept to one side",
+            "setting": "lounge table covered with schematics, coffee and a desk lamp",
+            "sam": true
+          },
+          "go": "Kiss her",
+          "goRes": "She laughs into his mouth and says that's the best idea he's had all week. It is, at least, better than the sprinkler system.",
+          "wait": "\"Back to work.\"",
+          "waitRes": "\"Ha! Cute and committed.\" She winks and goes back to the blueprint. \"Don't think I won't circle back.\""
+        },
+        "2": {
+          "title": "Prototype",
+          "text": "Bulma proudly presents a rickety lantern that blooms into a hundred little sparks. Hers fizzle. Sam's fingers brush hers as they fix the wiring. \"Okay, so I'm usually the smartest person in the room,\" she says. \"But you keep making it interesting.\" She leans in. \"What are you going to do about that?\" A warm blue light flickers over her face. A smear of grease marks her jaw, and her tongue is caught between her teeth as she concentrates.",
+          "image": {
+            "comp": "holding a sparkling prototype lantern, leaning into him with a bright smirk",
+            "setting": "workshop corner with tools, a spark-lit lantern and open wires",
+            "sam": true
+          },
+          "go": "Show her",
+          "goRes": "Sparks fly in more than one sense. She is thoroughly, brilliantly curious about everything he does.",
+          "wait": "\"Not now.\"",
+          "waitRes": "\"Pfft. Fine, fine.\" She waves a screwdriver. \"But I'm adding it to the project list. Top priority.\""
+        },
+        "3": {
+          "title": "Night Shift",
+          "text": "Bulma has stayed up three nights with a project and finally flops onto Sam's bed, boots on, hair wild. \"I'm brilliant, and I'm tired, and I'm tired of being alone in a bed,\" she mumbles. One eye opens. \"Since I'm already here. Stay?\" Papers rustle underfoot. Her hair is sticking out in four directions, and she has the rueful, honest look of someone too tired to bluff.",
+          "image": {
+            "comp": "sprawled across a bed with boots on and hair a mess, one eye open with a sleepy grin",
+            "setting": "Sam's bedroom, dim and cozy, a pile of schematics on the floor",
+            "sam": true
+          },
+          "go": "Stay",
+          "goRes": "He pulls her boots off, and she is suddenly a lot less sleepy.",
+          "wait": "\"Sleep first.\"",
+          "waitRes": "\"Ugh. Responsible.\" She curls up, grinning into the pillow. \"Fine. But tomorrow, I'm cashing this in.\""
+        },
+        "jump": {
+          "title": "Spark",
+          "text": "Bulma's gadget explodes in a harmless puff of glitter, leaving them both coughing and laughing in the storeroom. She wipes sparkles from his face, then pauses. \"Huh.\" Her voice is amused, but her gaze lingers on his mouth. \"Well. That was unplanned. I like it.\" Sparkles cling to her hair and lashes. Somewhere behind the crates, a gadget gives a final contented wheeze and dies.",
+          "image": {
+            "comp": "covered in glitter and laughing, face close to his, wiping sparkles from his cheek",
+            "setting": "storeroom with scattered gadget parts and drifting glitter",
+            "sam": true
+          },
+          "go": "Kiss her",
+          "goRes": "Glitter ends up in places for days, and she insists it was worth every particle.",
+          "wait": "\"Maybe not.\"",
+          "waitRes": "\"Chicken.\" She grins, unbothered, and flicks glitter at him. \"I can wait. I'm brilliant, not patient.\""
+        }
+      }
+    },
+    "chichi": {
+      "events": {
+        "1": {
+          "title": "Rules",
+          "text": "Chi-Chi runs the household like a general and the kitchen like a kingdom. Sam, caught sneaking a pastry, gets a ladle pointed at his nose. \"Wash up and sit.\" He does. She plates him a proper meal, and watches him eat with an unexpectedly soft look. \"You're too thin,\" she says gruffly. \"Someone ought to look after you.\" A kettle sings on the hob and the whole room smells of garlic and ginger. She cooks like she fights, with total commitment and no mercy.",
+          "image": {
+            "comp": "holding a ladle with a stern but affectionate expression, watching him eat",
+            "setting": "warm kitchen at night with simmering pots and a lit hearth",
+            "sam": true
+          },
+          "go": "Thank her with a kiss",
+          "goRes": "She sputters, goes red, and swats him with a dish towel, then kisses him back and pretends she did not.",
+          "wait": "\"Not yet, Chi-Chi.\"",
+          "waitRes": "\"Hmph.\" She dabs her hands on her apron, flustered. \"Then eat the second helping. I'm not giving up.\""
+        },
+        "2": {
+          "title": "Martial Arts",
+          "text": "Chi-Chi teaches Sam a basic stance in the courtyard and corrects his feet with a firm tap. \"Straight back. Breathe. No, not like that!\" Her hands on his hips, her chin at his shoulder. The lesson stills. \"...You're getting better,\" she says, softer. \"I might have to keep you.\" Dust lifts from the mat as she steps around him. Her apron is tied tighter than it needs to be, and her ears have gone pink.",
+          "image": {
+            "comp": "standing behind him adjusting his stance with her hands at his hips, a flushed stern smile",
+            "setting": "courtyard in afternoon sun with a practice mat",
+            "sam": true
+          },
+          "go": "Turn and face her",
+          "goRes": "She is wonderfully direct. A decisive woman, in all things, she decides quickly and thoroughly.",
+          "wait": "\"Another time.\"",
+          "waitRes": "\"Fine. But posture practice is mandatory.\" She pats his chest, cheeks pink."
+        },
+        "3": {
+          "title": "Homemaker",
+          "text": "Chi-Chi tucks Sam into bed herself, fussing with the blanket, and then, unexpectedly, does not leave. \"I've been a mother and a wife and a cook and a teacher,\" she says slowly. \"Nobody asks me what I want.\" She sits on the bed's edge. \"I want to be held tonight. By someone who's grateful.\" The quilt is tidily folded, as always. She has taken her hair out of its bun, and her hands, usually busy, lie open and still in her lap.",
+          "image": {
+            "comp": "sitting at the edge of a bed in an apron, hands twisting in her lap, brave and tender",
+            "setting": "Sam's bedroom with a patchwork quilt and one candle",
+            "sam": true
+          },
+          "go": "Hold her",
+          "goRes": "He holds her. She finally lets the rules go, and the sound she makes is a long, tired, happy sigh.",
+          "wait": "\"Are you sure?\"",
+          "waitRes": "\"Don't you dare be polite at me.\" But she squeezes his hand. \"Another night, then. I'll bring breakfast.\""
+        },
+        "jump": {
+          "title": "Flour on Her Cheek",
+          "text": "Chi-Chi has flour all over her cheek and a pie in the oven, and Sam, passing through, gently brushes it off. She goes still. \"...Well.\" Her ladle lowers. \"That was forward.\" Her stern look cracks. \"Do it again, and then kiss me, before the pie burns.\" Steam curls from the oven door. The scent of baking apples fills the room, and her cheeks are rosy, from the heat and from him.",
+          "image": {
+            "comp": "wiping flour from her cheek, ladle lowered, a stern look breaking into a smile",
+            "setting": "kitchen with flour dusted counters and a pie baking",
+            "sam": true
+          },
+          "go": "Kiss her",
+          "goRes": "The pie is fine. The kiss is better, and she is enormously pleased with both.",
+          "wait": "\"The pie.\"",
+          "waitRes": "\"The pie!\" She dashes to the oven, red-faced, and spends five minutes avoiding his eyes."
+        }
+      }
+    },
+    "android21": {
+      "events": {
+        "1": {
+          "title": "Taste Test",
+          "text": "Android 21 holds a spoon of Sam's stew out to him, her own eyes half-closed in bliss. \"Eleven spices. Three I cannot identify. Do you know how rare that is?\" Her voice is breathy, polite, hungry. She sets the spoon down. \"I am trying very hard to keep my appetites in order, Sam. You make that difficult.\" Spice jars line the shelf in alphabetical order. Her eyes are bright, and her voice is polite, but her gaze keeps sliding to his throat.",
+          "image": {
+            "comp": "holding a spoon out to him with half-closed eyes, a polite flushed smile and visible hunger",
+            "setting": "bar counter late at night with simmering pots and spice jars",
+            "sam": true
+          },
+          "go": "Kiss her",
+          "goRes": "She tastes like cinnamon and something electric. She pulls back, scientific and dazed. \"Fascinating. I need a second sample.\"",
+          "wait": "\"Not yet.\"",
+          "waitRes": "\"Understood.\" She folds her hands neatly, but her eyes follow him. \"I will try to be patient. I make no promises about my stomach.\""
+        },
+        "2": {
+          "title": "Research Notes",
+          "text": "Android 21 tallies flavors in a leather notebook at the end of the bar, long fingers curled around the pen. \"Subject: Sam. Observation: unusually kind. Hypothesis: delicious.\" She stops, mortified, and snaps the book closed. \"I did not mean the last one aloud. Or at all. Please forget it.\" Ink-stained fingers hold the pen too tightly. A pot simmers behind her, filling the air with cardamom, and she is plainly distracted.",
+          "image": {
+            "comp": "snapping a notebook shut with a mortified blush, polite smile, eyes lingering",
+            "setting": "end of the bar with a notebook, a stack of spice jars, low lantern",
+            "sam": true
+          },
+          "go": "Don't forget it",
+          "goRes": "She hums, delighted and hungry, and then curious in a manner that is distinctly academic. By the end, the notes are illegible.",
+          "wait": "\"Let's hold off.\"",
+          "waitRes": "\"Of course.\" Her smile is perfectly polite and a little hungry. \"I will update the hypothesis. It will remain the same.\""
+        },
+        "3": {
+          "title": "Appetite",
+          "text": "Android 21 appears at Sam's door with an empty plate and no apology. \"I have eaten everything I can. I am still hungry.\" A faint wry smile. \"Not for food. I have tried very hard to ignore this. I am bad at ignoring things I study.\" She steps in, tall and curvy against the lamplight. \"May I stay?\" She has put on a tidy cardigan, which makes her look both much more proper and much more nervous. The empty plate shakes just slightly.",
+          "image": {
+            "comp": "standing in a doorway holding an empty plate, tall figure in lamplight, wry apologetic smile",
+            "setting": "Sam's room, lamplit, a plate left on the table",
+            "sam": true
+          },
+          "go": "Let her stay",
+          "goRes": "She is meticulous, curious, hungry and unfailingly polite. In the morning her notebook has a single entry: 'Satisfactory.'",
+          "wait": "\"Not tonight.\"",
+          "waitRes": "\"Understood.\" She sets the plate down neatly. \"I will find something else to taste. Do not feel guilty.\""
+        },
+        "jump": {
+          "title": "Midnight Snack",
+          "text": "Sam catches Android 21 in the pantry at three in the morning, a wheel of cheese under one arm. She stiffens, guilty. \"I can explain. Metabolism.\" The cheese drops. Her gaze moves to his mouth, and her voice gets lower. \"...I have an appetite I never explained properly. Would you like me to start with a demonstration?\" A single hanging lantern swings overhead. Crumbs speckle her sleeve, and the guilty, hungry curve of her mouth is almost a smile.",
+          "image": {
+            "comp": "caught in the pantry with a wheel of cheese, guilty then amused, leaning toward him",
+            "setting": "kitchen pantry with shelves of food and a single hanging lantern",
+            "sam": true
+          },
+          "go": "Say yes",
+          "goRes": "The cheese is abandoned. She turns out to be a very thorough student.",
+          "wait": "\"I'll make tea.\"",
+          "waitRes": "\"Tea. Lovely.\" She picks up the cheese again, composed. \"I will bring a knife. We are going to talk about appetites.\""
+        }
+      }
+    }
+  }
+}

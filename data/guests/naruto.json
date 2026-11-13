@@ -1,0 +1,602 @@
+{
+  "packs": {
+    "naruto": {
+      "label": "Naruto",
+      "characters": {
+        "hinata": {
+          "job": "courtesan",
+          "name": "Hinata Hyuga",
+          "race": "human",
+          "age": 32,
+          "personality": "Shy but earnest",
+          "traits": ["Shy","Loyal"],
+          "style": "Elegant",
+          "favColor": "lavender",
+          "fav": "kiss",
+          "dislike": "doggy",
+          "lovers": "missionary",
+          "backstory": "Heir to a proud clan of the Leaf, a shinobi village across the eastern sea, Hinata walked away from an arranged future to find out what she wants for herself. She stammers through introductions, then quietly outworks everyone in the house.",
+          "design": {
+            "hairStyle": "long straight with blunt bangs",
+            "hairColor": "dark indigo",
+            "eyes": "pale lavender, pupil-less",
+            "skin": "porcelain",
+            "features": "a gentle, soft-spoken face"
+          },
+          "under": "lace",
+          "underColor": "lavender",
+          "stats": {"beauty":66,"charm":58,"charisma":50,"refinement":55,"wits":55,"stamina":55,"strength":35,"agility":50},
+          "tech": {"service":45,"dance":25,"bar":15,"combat":40,"manage":10},
+          "actSkill": 25,
+          "popularity": 10,
+          "lewd": 24,
+          "trust": 28,
+          "outfits": {
+            "sig_hinata": {
+              "label": "Clan kimono",
+              "style": "Elegant",
+              "prompt": "a lavender and cream layered kimono with a dark obi",
+              "bonus": {"courtesan":1.25,"noble":1.15}
+            },
+            "sp_hinata": {
+              "label": "Moonlit yukata",
+              "style": "Elegant",
+              "prompt": "a deep violet silk yukata patterned with white moonflowers",
+              "bonus": {"courtesan":1.15,"noble":1.2}
+            }
+          },
+          "bonds": {
+            "kurenai": {"v":60,"kind":"mentor","note":"Kurenai was her first squad leader back in the Leaf."},
+            "sakura": {"v":40,"kind":"comrades","note":"Leaf peers."},
+            "ino": {"v":35,"kind":"comrades","note":"Leaf peers."}
+          },
+          "jobs": {"likes":["courtesan","maid","promoter"],"dislikes":["dancer"]},
+          "body": {"bust":"large","height":"average","figure":"curvy"},
+          "unique": {
+            "name": "Byakugan",
+            "desc": "Her gentle fingertips find every knot, and nothing escapes her sight.",
+            "fx": {"actQuality":{"massage_give":1.4},"security":15}
+          }
+        },
+        "sakura": {
+          "job": "security",
+          "name": "Sakura Haruno",
+          "race": "human",
+          "age": 33,
+          "personality": "Hot-blooded and competitive",
+          "traits": ["Tough","Ambitious"],
+          "style": "Sporty",
+          "favColor": "pink",
+          "fav": "cowgirl",
+          "dislike": "oral_give",
+          "lovers": "missionary",
+          "backstory": "A field medic from the Leaf, a shinobi village across the eastern sea with a punch that has gone through walls (literally, ask the landlord). She left over a long-distance relationship that stayed long-distance, and is done waiting on anyone.",
+          "design": {
+            "hairStyle": "shoulder-length straight",
+            "hairColor": "pastel pink",
+            "eyes": "jade green",
+            "skin": "fair",
+            "features": "a small diamond-shaped mark on her forehead"
+          },
+          "under": "sports",
+          "underColor": "red",
+          "stats": {"beauty":62,"charm":48,"charisma":54,"refinement":40,"wits":40,"stamina":70,"strength":75,"agility":55},
+          "tech": {"service":25,"dance":10,"bar":20,"combat":70,"manage":25},
+          "actSkill": 20,
+          "popularity": 12,
+          "lewd": 26,
+          "trust": 24,
+          "outfits": {
+            "sig_sakura": {
+              "label": "Medic's qipao",
+              "style": "Sporty",
+              "prompt": "a sleeveless red qipao-style top with dark fitted shorts and gloves",
+              "bonus": {"security":1.3,"adventurer":1.15}
+            },
+            "sp_sakura": {
+              "label": "Cherry blossom dress",
+              "style": "Cute",
+              "prompt": "a pale pink sundress with a cherry-blossom print",
+              "bonus": {"courtesan":1.15,"merchant":1.15}
+            }
+          },
+          "bonds": {
+            "tsunade": {"v":55,"note":"Tsunade taught her everything she knows, including how to drink."},
+            "ino": {"v":45,"note":"Best friends and lifelong rivals, in that order."},
+            "karin": {"v":-15,"note":"Old history over the same aloof man. Neither will admit it still stings."}
+          },
+          "jobs": {"likes":["security","bartender"],"dislikes":["maid","promoter"]},
+          "body": {"bust":"small","height":"average","figure":"athletic"},
+          "unique": {"name":"Medic's Hands","desc":"A field medic's strong, precise hands.","fx":{"actQuality":{"massage_give":1.25},"security":10}}
+        },
+        "ino": {
+          "job": "dancer",
+          "name": "Ino Yamanaka",
+          "race": "human",
+          "age": 33,
+          "personality": "Bold and flirtatious",
+          "traits": ["Exhibitionist","Party Animal"],
+          "style": "Revealing",
+          "favColor": "violet",
+          "fav": "breast_give",
+          "dislike": "kiss",
+          "lovers": "oral_give",
+          "backstory": "The flower-shop heiress of the Leaf, a shinobi village across the eastern sea came west to open a shop of her own and got distracted by a city that actually appreciates her. She reads people like open books, which makes her terrifying at a card table.",
+          "design": {
+            "build": "hourglass",
+            "hairStyle": "very long high ponytail with a side-swept bang over one eye",
+            "hairColor": "platinum blonde",
+            "eyes": "pale blue",
+            "skin": "fair",
+            "features": "a perfect manicure"
+          },
+          "under": "silk",
+          "underColor": "purple",
+          "stats": {"beauty":70,"charm":68,"charisma":83,"refinement":45,"wits":45,"stamina":45,"strength":25,"agility":55},
+          "tech": {"service":40,"dance":60,"bar":25,"combat":30,"manage":15},
+          "actSkill": 30,
+          "popularity": 22,
+          "lewd": 44,
+          "trust": 26,
+          "outfits": {
+            "sig_ino": {
+              "label": "Florist's wrap",
+              "style": "Revealing",
+              "prompt": "a cropped purple wrap top and a split purple skirt",
+              "bonus": {"dancer":1.3,"commoner":1.15}
+            },
+            "sp_ino": {
+              "label": "Garden gala gown",
+              "style": "Elegant",
+              "prompt": "a lilac gown with a high slit and fresh flowers woven into her hair",
+              "bonus": {"noble":1.25,"courtesan":1.15}
+            }
+          },
+          "bonds": {"sakura":{"v":45,"note":"Best friends and lifelong rivals, in that order."},"hinata":{"v":35,"kind":"comrades","note":"Leaf peers."}},
+          "jobs": {"likes":["dancer","courtesan"],"dislikes":["maid"]},
+          "body": {"bust":"medium","height":"average","figure":"slim"},
+          "unique": {"name":"Mind Reader","desc":"She reads clients like open books and charms them accordingly.","fx":{"clientFee":1.1,"appeal":3}}
+        },
+        "tenten": {
+          "job": "bartender",
+          "name": "Tenten",
+          "race": "dwarf",
+          "age": 78,
+          "personality": "Cheerful and teasing",
+          "traits": ["Tough","Former Adventurer"],
+          "style": "Sporty",
+          "favColor": "green",
+          "fav": "manual_give",
+          "dislike": "breast_give",
+          "lovers": "cowgirl",
+          "backstory": "A dwarven weaponsmith raised among the shinobi of the Leaf, a shinobi village across the eastern sea, Tenten throws knives the way other people breathe. She's saving for her own forge and treats the bar like a target range: nothing slips past her.",
+          "design": {
+            "build": "compact, strong-armed",
+            "hairStyle": "twin buns",
+            "hairColor": "dark brown",
+            "eyes": "warm brown",
+            "skin": "tan",
+            "features": "a soot smudge she never quite gets off her cheek"
+          },
+          "under": "sports",
+          "underColor": "green",
+          "stats": {"beauty":55,"charm":52,"charisma":60,"refinement":25,"wits":25,"stamina":65,"strength":60,"agility":65},
+          "tech": {"service":20,"dance":15,"bar":50,"combat":60,"manage":20},
+          "actSkill": 15,
+          "popularity": 10,
+          "lewd": 30,
+          "trust": 30,
+          "outfits": {
+            "sig_tenten": {
+              "label": "Smith's tunic",
+              "style": "Sporty",
+              "prompt": "a pink mandarin-collar sleeveless top with olive trousers and a leather apron",
+              "bonus": {"bartender":1.25,"adventurer":1.2}
+            },
+            "sp_tenten": {
+              "label": "Festival qipao",
+              "style": "Exotic",
+              "prompt": "an emerald qipao with gold dragon embroidery",
+              "bonus": {"courtesan":1.15,"merchant":1.2}
+            }
+          },
+          "bonds": {
+            "hinata": {"v":30,"kind":"comrades","note":"Leaf comrades."},
+            "juju": {"v":50,"kind":"mentor","note":"Juju is from her toolsmith line and calls her Great-Grandma Tenten. Tenten hates it."}
+          },
+          "jobs": {"likes":["bartender","security"],"dislikes":["maid"]},
+          "body": {"bust":"small","height":"average","figure":"athletic"},
+          "unique": {
+            "name": "Never Misses",
+            "desc": "Nothing slips past her, whether it's a thrown knife or a rowdy client.",
+            "fx": {"security":12,"jobBonus":{"bartender":1.1}}
+          }
+        },
+        "temari": {
+          "job": "security",
+          "name": "Temari",
+          "race": "human",
+          "age": 32,
+          "personality": "Proud and sharp-tongued",
+          "traits": ["Tough","Loyal"],
+          "style": "Sporty",
+          "favColor": "teal",
+          "fav": "doggy",
+          "dislike": "kiss",
+          "lovers": "missionary",
+          "backstory": "An envoy from the desert sand-clans, Temari came to negotiate a trade treaty and stayed because the treaty requires a lot of supervising. She carries an enormous iron fan and isn't shy about using it on rowdy clients.",
+          "design": {
+            "hairStyle": "four short spiky tufts",
+            "hairColor": "sandy blonde",
+            "eyes": "teal",
+            "skin": "sun-kissed",
+            "features": "a no-nonsense scowl that becomes a grin when she wins"
+          },
+          "under": "plain",
+          "underColor": "black",
+          "stats": {"beauty":62,"charm":45,"charisma":49,"refinement":45,"wits":53,"stamina":70,"strength":60,"agility":65},
+          "tech": {"service":15,"dance":15,"bar":20,"combat":70,"manage":40},
+          "actSkill": 15,
+          "popularity": 14,
+          "lewd": 28,
+          "trust": 22,
+          "outfits": {
+            "sig_temari": {
+              "label": "Envoy's dress",
+              "style": "Sporty",
+              "prompt": "a short dark lilac dress with a red sash and fishnet sleeves, a giant folded fan on her back",
+              "bonus": {"security":1.3,"merchant":1.1}
+            },
+            "sp_temari": {
+              "label": "Desert silks",
+              "style": "Exotic",
+              "prompt": "flowing sand-colored desert silks with a bronze waist chain",
+              "bonus": {"noble":1.2,"courtesan":1.15}
+            }
+          },
+          "bonds": {
+            "ino": {"v":20,"note":"Rivals in sharp tongues."},
+            "nami": {"v":45,"kind":"mentor","note":"A fellow Sand wind user. Temari taught her the fans."}
+          },
+          "jobs": {"likes":["security","madame","courtesan"],"dislikes":["maid"]},
+          "body": {"bust":"medium","height":"tall","figure":"athletic"},
+          "unique": {
+            "name": "Wind Scythe",
+            "desc": "Her great fan can clear a room, which rowdy clients quickly learn.",
+            "fx": {"security":12,"jobBonus":{"security":1.1}}
+          }
+        },
+        "tsunade": {
+          "job": "madame",
+          "title": "Lady",
+          "name": "Tsunade Senju",
+          "race": "elf",
+          "age": 168,
+          "personality": "Proud and sharp-tongued",
+          "traits": ["Greedy","Party Animal"],
+          "style": "Elegant",
+          "favColor": "green",
+          "fav": "breast_give",
+          "dislike": "manual_give",
+          "lovers": "massage_get",
+          "backstory": "Former head of the Leaf, a shinobi village across the eastern sea, a legendary healer and an even more legendary bad gambler. Tsunade fled west one step ahead of her creditors and would very much like a cut of the house's dice tables.",
+          "design": {
+            "hairStyle": "long twin low ponytails",
+            "hairColor": "golden blonde",
+            "eyes": "honey brown",
+            "skin": "fair",
+            "features": "a violet diamond mark on her forehead"
+          },
+          "under": "silk",
+          "underColor": "black",
+          "stats": {"beauty":74,"charm":62,"charisma":66,"refinement":58,"wits":71,"stamina":70,"strength":80,"agility":40},
+          "tech": {"service":35,"dance":10,"bar":55,"combat":65,"manage":60},
+          "actSkill": 35,
+          "popularity": 30,
+          "lewd": 40,
+          "trust": 20,
+          "outfits": {
+            "sig_tsunade": {
+              "label": "Gambler's haori",
+              "style": "Elegant",
+              "prompt": "a long green haori over a low-cut grey kimono top with a dark sash",
+              "bonus": {"madame":1.3,"merchant":1.15}
+            },
+            "sp_tsunade": {
+              "label": "High-roller gown",
+              "style": "Elegant",
+              "prompt": "a backless emerald gown with gold jewelry and a pearl necklace",
+              "bonus": {"noble":1.3,"courtesan":1.15}
+            }
+          },
+          "bonds": {
+            "sakura": {"v":55,"kind":"mentor","note":"Her finest student."},
+            "shizune": {"v":70,"kind":"mentor","note":"Her long-suffering assistant of twenty years."},
+            "mei": {"v":25,"note":"Old colleagues from the village heads' council."}
+          },
+          "jobs": {"likes":["madame","teacher","courtesan"],"dislikes":["maid"]},
+          "body": {"bust":"huge","height":"tall","figure":"curvy"},
+          "unique": {"name":"Hundred Seals","desc":"The stored chakra of a legendary healer gives her an extra reserve of energy.","fx":{"energyBank":40}}
+        },
+        "shizune": {
+          "job": "promoter",
+          "name": "Shizune",
+          "race": "human",
+          "age": 38,
+          "personality": "Calm and elegant",
+          "traits": ["Loyal","Modest"],
+          "style": "Elegant",
+          "favColor": "black",
+          "fav": "missionary",
+          "dislike": "doggy",
+          "lovers": "kiss",
+          "backstory": "Tsunade's assistant from the Leaf, a shinobi village across the eastern sea, still chasing down her mentor's debts and her mentor's tab. Shizune keeps impeccable books and a pet piglet named Tonton, who has opinions about clients.",
+          "design": {"hairStyle":"short straight bob","hairColor":"black","eyes":"dark","skin":"fair","gear":"a small pig that follows her everywhere"},
+          "under": "plain",
+          "underColor": "navy",
+          "stats": {"beauty":58,"charm":55,"charisma":60,"refinement":60,"wits":60,"stamina":50,"strength":30,"agility":45},
+          "tech": {"service":40,"dance":10,"bar":30,"combat":35,"manage":60},
+          "actSkill": 25,
+          "popularity": 8,
+          "lewd": 22,
+          "trust": 32,
+          "outfits": {
+            "sig_shizune": {
+              "label": "Assistant's kimono",
+              "style": "Elegant",
+              "prompt": "a simple black kimono with a grey sash and pearl necklace",
+              "bonus": {"promoter":1.3,"merchant":1.1}
+            },
+            "sp_shizune": {
+              "label": "Evening kimono",
+              "style": "Elegant",
+              "prompt": "a midnight blue kimono with silver crane embroidery",
+              "bonus": {"noble":1.2,"courtesan":1.1}
+            }
+          },
+          "bonds": {"tsunade":{"v":70,"note":"Twenty years of cleaning up after her."}},
+          "jobs": {"likes":["promoter","madame","teacher"],"dislikes":["courtesan"]},
+          "body": {"bust":"small","height":"average","figure":"slim"},
+          "unique": {
+            "name": "Impeccable Books",
+            "desc": "Her record-keeping keeps the house orderly and its managers sharp.",
+            "fx": {"jobBonus":{"madame":1.15},"tidy":1.1}
+          }
+        },
+        "kurenai": {
+          "job": "courtesan",
+          "name": "Kurenai Yuhi",
+          "race": "human",
+          "age": 39,
+          "personality": "Mysterious and aloof",
+          "traits": ["Elegant","Romantic"],
+          "style": "Elegant",
+          "favColor": "crimson",
+          "fav": "oral_give",
+          "dislike": "breast_give",
+          "lovers": "missionary",
+          "backstory": "An illusionist of the Leaf, a shinobi village across the eastern sea whose crimson eyes make men forget what they were saying. Widowed young, she spent fifteen years putting everyone else first and is finally doing something for herself.",
+          "design": {"hairStyle":"long wild wavy","hairColor":"black","eyes":"crimson red","skin":"pale","features":"dark red lipstick"},
+          "under": "lace",
+          "underColor": "red",
+          "stats": {"beauty":72,"charm":66,"charisma":72,"refinement":62,"wits":66,"stamina":45,"strength":25,"agility":40},
+          "tech": {"service":50,"dance":30,"bar":25,"combat":45,"manage":35},
+          "actSkill": 45,
+          "popularity": 18,
+          "lewd": 40,
+          "trust": 24,
+          "outfits": {
+            "sig_kurenai": {
+              "label": "Bandage dress",
+              "style": "Elegant",
+              "prompt": "a wrapped white dress patterned with red roses and a single red sleeve",
+              "bonus": {"courtesan":1.25,"noble":1.15}
+            },
+            "sp_kurenai": {
+              "label": "Crimson illusion gown",
+              "style": "Elegant",
+              "prompt": "a flowing crimson gown that seems to shimmer and shift in the light",
+              "bonus": {"courtesan":1.25,"noble":1.15}
+            }
+          },
+          "bonds": {
+            "hinata": {"v":60,"kind":"mentor","note":"She was Hinata's first squad leader back in the Leaf."},
+            "anko": {"v":55,"note":"Drinking buddies for twenty years."}
+          },
+          "jobs": {"likes":["courtesan","dancer","teacher"],"dislikes":["promoter"]},
+          "body": {"bust":"medium","height":"tall","figure":"curvy"},
+          "unique": {"name":"Crimson Illusion","desc":"Her eyes make men forget what they were saying.","fx":{"appeal":4,"classBonus":{"noble":1.1}}}
+        },
+        "anko": {
+          "job": "courtesan",
+          "name": "Anko Mitarashi",
+          "race": "demon",
+          "age": 134,
+          "personality": "Bold and flirtatious",
+          "traits": ["Eager","Night Owl"],
+          "style": "Revealing",
+          "favColor": "purple",
+          "fav": "doggy",
+          "dislike": "missionary",
+          "lovers": "cowgirl",
+          "backstory": "A snake-touched demon who spent a century as a feared interrogator in the Leaf, a shinobi village across the eastern sea, and the next decade eating sweets. Anko is loud, hungry, and unbothered by anything, and the house's dango budget has tripled.",
+          "design": {
+            "hairStyle": "short spiky ponytail",
+            "hairColor": "dark violet",
+            "eyes": "light brown, slit-pupiled",
+            "skin": "fair",
+            "features": "a curse-mark tattoo on her neck and small snake-scale patches on her shoulders"
+          },
+          "under": "sheer",
+          "underColor": "black",
+          "stats": {"beauty":64,"charm":60,"charisma":70,"refinement":25,"wits":25,"stamina":70,"strength":50,"agility":60},
+          "tech": {"service":40,"dance":45,"bar":35,"combat":55,"manage":10},
+          "actSkill": 45,
+          "popularity": 20,
+          "lewd": 62,
+          "trust": 22,
+          "outfits": {
+            "sig_anko": {
+              "label": "Interrogator's coat",
+              "style": "Revealing",
+              "prompt": "a tan trench coat over a fishnet bodysuit and a short orange skirt",
+              "bonus": {"courtesan":1.25,"adventurer":1.2}
+            },
+            "sp_anko": {"label":"Snake charmer silks","style":"Exotic","prompt":"violet silk wraps with gold snake armlets","bonus":{"dancer":1.2,"commoner":1.15}}
+          },
+          "bonds": {"kurenai":{"v":55,"note":"Drinking buddies for twenty years."}},
+          "jobs": {"likes":["courtesan","bartender"],"dislikes":["promoter","maid"]},
+          "body": {"bust":"large","height":"average","figure":"curvy"},
+          "unique": {
+            "name": "Snake's Appetite",
+            "desc": "She is always hungry for more, and not just for dango.",
+            "fx": {"encore":0.1,"actQuality":{"oral_give":1.2}}
+          }
+        },
+        "karin": {
+          "job": "bath",
+          "name": "Karin Uzumaki",
+          "race": "human",
+          "age": 33,
+          "personality": "Proud and sharp-tongued",
+          "traits": ["Romantic","Ambitious"],
+          "style": "Cute",
+          "favColor": "red",
+          "fav": "manual_give",
+          "dislike": "oral_give",
+          "lovers": "kiss",
+          "backstory": "A sensor and healer from the wandering Uzumaki clan, Karin can feel a person's life energy from across a room. She claims she's here strictly for the pay. She has also asked twice whether Sam is single.",
+          "design": {
+            "hairStyle": "long and messy on one side, short and neat on the other",
+            "hairColor": "vivid red",
+            "eyes": "red, behind black-rimmed glasses",
+            "skin": "fair",
+            "features": "black-rimmed glasses"
+          },
+          "under": "lace",
+          "underColor": "black",
+          "stats": {"beauty":64,"charm":50,"charisma":54,"refinement":45,"wits":53,"stamina":55,"strength":25,"agility":40},
+          "tech": {"service":50,"dance":20,"bar":15,"combat":30,"manage":30},
+          "actSkill": 30,
+          "popularity": 10,
+          "lewd": 40,
+          "trust": 26,
+          "outfits": {
+            "sig_karin": {
+              "label": "Sensor's outfit",
+              "style": "Cute",
+              "prompt": "a lavender cropped jacket with very short black shorts and thigh-high black stockings",
+              "bonus": {"bath":1.25,"commoner":1.15}
+            },
+            "sp_karin": {
+              "label": "Librarian chic",
+              "style": "Cute",
+              "prompt": "a fitted pencil skirt, white blouse and red ribbon tie",
+              "bonus": {"merchant":1.2,"courtesan":1.15}
+            }
+          },
+          "bonds": {"sakura":{"v":-15,"note":"Old history over the same aloof man. Neither will admit it still stings."}},
+          "jobs": {"likes":["bath","madame"],"dislikes":["maid"]},
+          "body": {"bust":"small","height":"average","figure":"slim"},
+          "unique": {"name":"Sensor","desc":"She feels where tension and trouble are before they arrive.","fx":{"jobBonus":{"bath":1.15},"security":8}}
+        },
+        "mei": {
+          "job": "madame",
+          "name": "Mei Terumi",
+          "race": "human",
+          "age": 38,
+          "personality": "Bold and flirtatious",
+          "traits": ["Elegant","Romantic"],
+          "style": "Elegant",
+          "favColor": "blue",
+          "fav": "breast_give",
+          "dislike": "manual_give",
+          "lovers": "missionary",
+          "backstory": "The former ruler of the Mist, a coastal shinobi state, retired with a fortune, an iron reputation, and no husband. Mei is very, very keen to fix that last one. Any joke about her age or marriage prospects ends badly.",
+          "design": {
+            "hairStyle": "floor-length with a topknot and one eye covered by her bangs",
+            "hairColor": "auburn",
+            "eyes": "green",
+            "skin": "fair",
+            "features": "a mesh choker and dark blue lipstick"
+          },
+          "under": "silk",
+          "underColor": "blue",
+          "stats": {"beauty":76,"charm":70,"charisma":80,"refinement":68,"wits":73,"stamina":50,"strength":45,"agility":40},
+          "tech": {"service":45,"dance":25,"bar":30,"combat":60,"manage":60},
+          "actSkill": 40,
+          "popularity": 30,
+          "lewd": 44,
+          "trust": 20,
+          "outfits": {
+            "sig_mei": {
+              "label": "Mist ruler's gown",
+              "style": "Elegant",
+              "prompt": "a long dark blue off-shoulder gown with a mesh neckline",
+              "bonus": {"madame":1.3,"noble":1.15}
+            },
+            "sp_mei": {"label":"Lagoon silks","style":"Elegant","prompt":"a sheer sea-green gown with pearl strands","bonus":{"courtesan":1.2,"noble":1.2}}
+          },
+          "bonds": {"tsunade":{"v":25,"note":"Old colleagues from the village heads' council."}},
+          "jobs": {"likes":["madame","courtesan"],"dislikes":["maid","promoter"]},
+          "body": {"bust":"large","height":"tall","figure":"curvy"},
+          "unique": {
+            "name": "Lava and Mist",
+            "desc": "The poise of a former ruler: nobles and merchants alike feel obliged to be generous.",
+            "fx": {"classBonus":{"noble":1.15,"merchant":1.1}}
+          }
+        },
+        "konan": {
+          "job": "dancer",
+          "name": "Konan",
+          "race": "angel",
+          "age": 152,
+          "personality": "Calm and elegant",
+          "traits": ["Modest","Elegant"],
+          "style": "Exotic",
+          "favColor": "white",
+          "fav": "kiss",
+          "dislike": "doggy",
+          "lovers": "missionary",
+          "backstory": "An angel of paper and rain, Konan once led a band of rebels who called themselves angels, and found out later that the real thing is more complicated. Now she folds paper flowers between dances and drifts around the house in quiet, rustling silence.",
+          "design": {
+            "hairStyle": "short with a white paper rose pinned in it",
+            "hairColor": "blue-violet",
+            "eyes": "amber with violet eye shadow",
+            "skin": "pale",
+            "features": "a stud beneath her lower lip, paper-white angel wings and paper butterflies that drift around her"
+          },
+          "under": "silk",
+          "underColor": "white",
+          "stats": {"beauty":70,"charm":52,"charisma":57,"refinement":62,"wits":62,"stamina":45,"strength":30,"agility":60},
+          "tech": {"service":35,"dance":60,"bar":10,"combat":55,"manage":30},
+          "actSkill": 30,
+          "popularity": 15,
+          "lewd": 26,
+          "trust": 24,
+          "outfits": {
+            "sig_konan": {
+              "label": "Rain cloak",
+              "style": "Exotic",
+              "prompt": "a long black cloak lined with red clouds, open over a fitted white bodysuit",
+              "bonus": {"dancer":1.25,"adventurer":1.1}
+            },
+            "sp_konan": {
+              "label": "Paper angel",
+              "style": "Exotic",
+              "prompt": "a white dress with folded paper wings at the shoulders",
+              "bonus": {"noble":1.25,"courtesan":1.15}
+            }
+          },
+          "jobs": {"likes":["dancer","courtesan"],"dislikes":["bartender"]},
+          "body": {"bust":"medium","height":"average","figure":"slim"},
+          "unique": {
+            "name": "Paper Wings",
+            "desc": "She dances in a drift of folded paper that leaves audiences spellbound.",
+            "fx": {"jobBonus":{"dancer":1.2},"appeal":2}
+          }
+        }
+      }
+    }
+  }
+}

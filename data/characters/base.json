@@ -1,0 +1,22 @@
+{
+  "_readme": [
+    "Named characters. The key (e.g. \"mira\") is her id; keep it lowercase with no spaces.",
+    "role: house (comes with a house; the house in js/data/economy.js names her as npc), partner (starter choice, later shows up looking for work), story (joins through a house story), guild (Adventurers Guild), drifter (no strings: turns up among candidates now and then). Crossover guests live in data/guests.json instead.",
+    "name is her actual name only (first + family name, as she would be addressed by friends). title (optional) is an honorific or rank like Lady, Dame, Captain, Professor or Princess: shown in front of her name on cards and her sheet (titled(w)) and given to the AI as {title}/{fullname}, but never part of the name. It is a title from data/titles.json (its label or id), so it carries that title's perk; she can earn more in play.",
+    "personality must match a key in personalities.json. traits from the trait list (Shy, Eager, Ambitious, Party Animal, Former Adventurer, Elegant, Lazy, Tough, Romantic, Greedy, Loyal, Exhibitionist, Night Owl, Modest).",
+    "fav / dislike / lovers: service ids from services.json (lovers = what she enjoys only with Sam once she is his lover), or null.",
+    "partnerTrust / partnerLewd / partnerStory: only for partners. backstory is shown on her sheet.",
+    "design: appearance used for image prompts. under/underColor: undergarments id (plain, lace, silk, sports, corset, sheer, none) and color.",
+    "outfits: sig_<key> is her starting outfit; sp_<key> unlocks at trust 60 or as a lover. prompt is the image wording; bonus multiplies income for jobs or client classes.",
+    "Partners only get a romance story if one exists in js/stories/partners.js; without one they still work, just without the arc.",
+    "bonds: optional starting bonds with other named ladies: {\"otherKey\": {\"v\": 40, \"kind\": \"mentor\", \"note\": \"...\"}}. v from -100 (rivals) to 100. kind: mentor (she mentors them), home (both from Sam's old world), comrades. See bonds.json.",
+    "keepOn: optional {\"item\": \"...\", \"trust\": 90, \"aside\": true}. Until her trust reaches that, image prompts keep the item on; with aside the rest of her clothes only get pulled aside (js/logic/prompts.js keepOnRule). outfits.sp_<key>.unlock: optional trust needed for her special outfit instead of 60 (being a lover doesn't bypass it).",
+    "jobs: {likes:[...], dislikes:[...]} job ids she enjoys / would rather not do (mood each week, and she takes liked jobs at any trust). Ladies without it roll their own from personality and traits (balance.json → jobPrefs).",
+    "ngplus: partners only. true = she only appears as a partner choice from New Game+ (cycle 2), and not in the first cycle's partner list. Cycle-1 partners leave it out.",
+    "vignettes: partners only. [{title, text, trust}] short slice-of-life 'Moments' on her sheet, each unlocked when her trust with Sam reaches that number.",
+    "unique: {name, desc, fx} her personal semi-unique trait. fx uses only the effect keys from docs/OVERHAUL.md section 2 (maxEnergy, actQuality, jobBonus, security, energyBank, ...). Service ids: kiss, massage_give, massage_get, manual_give, manual_get, oral_give, oral_get, breast_give, breast_get, missionary, cowgirl, doggy (old ids manual/oral/paizuri/caress still work). fav/lovers can be a receiving service (*_get): she likes being on the other end.",
+    "body: {bust: flat|small|medium|large|huge, height: short|average|tall, figure: slim|athletic|curvy|soft}. Used for image wording and body effects (docs/OVERHAUL.md section 3). Job ids are courtesan, madame, promoter, maid, bartender, attendant, dancer, bath, security.",
+    "design.features: what stays on her body undressed (marks, ears, horns, jewelry). design.gear: worn or carried items (gloves, hats, collars, weapons, bags, pets): only in pictures where she is dressed and it isn't an intimate scene. design.build: only wording the body figure doesn't already say (it is merged into one body phrase). design.pubic: optional pubic hair wording for her alone.",
+    "goddess {hand, comment} (partners): how the goddess had a hand in Sam meeting her, and her remark about her (js/logic/goddess.js)."
+  ]
+}

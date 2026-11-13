@@ -1,0 +1,427 @@
+{
+  "packs": {
+    "persona": {
+      "label": "Persona",
+      "characters": {
+        "margaret": {
+          "job": "attendant",
+          "name": "Margaret",
+          "race": "spirit",
+          "age": 400,
+          "personality": "Mysterious and aloof",
+          "traits": ["Elegant","Loyal"],
+          "style": "Elegant",
+          "favColor": "blue",
+          "fav": "massage_give",
+          "dislike": "doggy",
+          "lovers": "kiss",
+          "backstory": "An attendant of the Velvet Room, an elegant space between dream and reality, Margaret has guided countless guests along their journeys and watched every one of them leave. She is polite, composed and a little wistful, and fond of tea, small experiments and any sentence that begins with \"Would you like to...\". She is curious what it feels like to stay.",
+          "design": {
+            "hairStyle": "wavy shoulder length",
+            "hairColor": "white-silver",
+            "eyes": "golden",
+            "skin": "pale",
+            "features": "a thin blue headband",
+            "gear": "a large leather-bound book at her side"
+          },
+          "under": "plain",
+          "underColor": "blue",
+          "stats": {"beauty":72,"charm":54,"charisma":60,"refinement":70,"wits":77,"stamina":50,"strength":25,"agility":45},
+          "tech": {"service":35,"dance":15,"bar":15,"combat":20,"manage":45},
+          "actSkill": 20,
+          "popularity": 8,
+          "lewd": 18,
+          "trust": 18,
+          "outfits": {
+            "sig_margaret": {
+              "label": "Velvet attendant uniform",
+              "style": "Elegant",
+              "prompt": "a fitted deep-blue attendant dress, black tights and blue high heels",
+              "bonus": {"attendant":1.25,"noble":1.15}
+            },
+            "sp_margaret": {
+              "label": "Off-duty blue dress",
+              "style": "Elegant",
+              "prompt": "a simple knee-length pale blue dress, white gloves and a small silver pin",
+              "bonus": {"merchant":1.1,"courtesan":1.15}
+            }
+          },
+          "bonds": {"takemi":{"v":20,"note":"Margaret finds the doctor's medical stories fascinating."}},
+          "jobs": {"likes":["attendant","host","bath"],"dislikes":["dancer"]},
+          "body": {"bust":"medium","height":"tall","figure":"slim"},
+          "unique": {
+            "name": "Velvet Hospitality",
+            "desc": "Impeccable manners and a faint, soothing hum that keep guests calm and helps her tidy. A gracious host.",
+            "fx": {"jobBonus":{"attendant":1.2,"host":1.1},"tidy":1.15}
+          }
+        },
+        "kashiwagi": {
+          "job": "courtesan",
+          "name": "Noriko Kashiwagi",
+          "race": "human",
+          "age": 31,
+          "personality": "Bold and flirtatious",
+          "traits": ["Exhibitionist","Romantic"],
+          "style": "Revealing",
+          "favColor": "pink",
+          "fav": "kiss",
+          "dislike": "manual_give",
+          "lovers": "cowgirl",
+          "backstory": "Noriko Kashiwagi has spent most of her thirties dressing for an entrance and waiting for a man who deserves it. She is vain, funny, a little dramatic and in no way cruel, with a laugh that makes strangers smile and a talent for turning a bad day into a great story. She came to Hollowmere on the rumor that the people here appreciate good taste.",
+          "design": {
+            "hairStyle": "long, glossy and carefully curled",
+            "hairColor": "dark brown",
+            "eyes": "brown",
+            "skin": "fair",
+            "features": "flawless makeup and a mole beneath one eye"
+          },
+          "under": "lace",
+          "underColor": "pink",
+          "stats": {"beauty":70,"charm":66,"charisma":76,"refinement":40,"wits":40,"stamina":48,"strength":25,"agility":50},
+          "tech": {"service":30,"dance":25,"bar":20,"combat":5,"manage":25},
+          "actSkill": 25,
+          "popularity": 16,
+          "lewd": 48,
+          "trust": 22,
+          "outfits": {
+            "sig_kashiwagi": {
+              "label": "Statement dress",
+              "style": "Revealing",
+              "prompt": "a daring wine-red dress with a deep neckline, heels, large earrings and a fur stole",
+              "bonus": {"courtesan":1.25,"merchant":1.15}
+            },
+            "sp_kashiwagi": {
+              "label": "Cafe date outfit",
+              "style": "Cute",
+              "prompt": "a pastel cardigan over a fitted pink dress, a handbag and heeled shoes",
+              "bonus": {"commoner":1.2,"propose":1.1}
+            }
+          },
+          "bonds": {"kawakami":{"v":25,"note":"Old acquaintances who commiserate over men and rent."}},
+          "jobs": {"likes":["courtesan","dancer","host"],"dislikes":["maid","security"]},
+          "body": {"bust":"medium","height":"average","figure":"curvy"},
+          "unique": {
+            "name": "Fabulous Entrance",
+            "desc": "She turns every arrival into an event, which draws clients and lifts the house's tone.",
+            "fx": {"appeal":5,"classBonus":{"merchant":1.1}}
+          }
+        },
+        "kawakami": {
+          "job": "maid",
+          "name": "Sadayo Kawakami",
+          "race": "human",
+          "age": 26,
+          "personality": "Cheerful and teasing",
+          "traits": ["Eager","Loyal"],
+          "style": "Cute",
+          "favColor": "pink",
+          "fav": "massage_give",
+          "dislike": "doggy",
+          "lovers": "cowgirl",
+          "backstory": "Sadayo Kawakami was a hardworking teacher who also kept up a string of side jobs: a maid cafe, a hostess bar, and one regrettable stretch as a paid companion, to cover debts she had no right to be carrying. She is bubbly and tired, easily moved, and utterly convinced that effort is the only thing she can control. Hollowmere is the first place that pays well enough that she can finally stop running.",
+          "design": {
+            "hairStyle": "unkempt shoulder-length",
+            "hairColor": "dark brown",
+            "eyes": "brown",
+            "skin": "fair",
+            "features": "a warm, tired smile and a small beauty mark beneath her lip"
+          },
+          "under": "lace",
+          "underColor": "pink",
+          "stats": {"beauty":68,"charm":66,"charisma":74,"refinement":48,"wits":48,"stamina":55,"strength":25,"agility":55},
+          "tech": {"service":40,"dance":25,"bar":20,"combat":5,"manage":30},
+          "actSkill": 30,
+          "popularity": 14,
+          "lewd": 40,
+          "trust": 26,
+          "outfits": {
+            "sig_kawakami": {
+              "label": "Maid cafe outfit",
+              "style": "Cute",
+              "prompt": "a low cut frilly black and white maid dress with a lace apron, a headband and knee-high stockings",
+              "bonus": {"maid":1.3,"commoner":1.15}
+            },
+            "sp_kawakami": {
+              "label": "Teacher dress",
+              "style": "Elegant",
+              "prompt": "yellow long-sleeved shirt striped with white and red horizontal lines, a blue denim skirt and white kitten heel pumps",
+              "bonus": {"teacher":1.25,"adventurer":1.15}
+            }
+          },
+          "bonds": {
+            "kashiwagi": {"v":25,"note":"Old acquaintances who commiserate over men and rent."},
+            "takemi": {"v":30,"note":"The doctor patched her up after a long run of overtime."}
+          },
+          "jobs": {"likes":["teacher","maid","courtesan"],"dislikes":["security"]},
+          "body": {"bust":"medium","height":"average","figure":"curvy"},
+          "unique": {
+            "name": "Side-Job Veteran",
+            "desc": "Years of juggling jobs make her an energetic, adaptable worker with cheerful stamina. Also a patient teacher.",
+            "fx": {"maxEnergy":12,"jobBonus":{"maid":1.2,"teacher":1.2}}
+          }
+        },
+        "takemi": {
+          "job": "bath",
+          "name": "Tae Takemi",
+          "title": "Doctor",
+          "race": "human",
+          "age": 29,
+          "personality": "Laid-back and lazy",
+          "traits": ["Tough","Night Owl"],
+          "style": "Sporty",
+          "favColor": "teal",
+          "fav": "massage_give",
+          "dislike": "doggy",
+          "lovers": "oral_get",
+          "backstory": "Tae Takemi runs a back-alley clinic and a drip-feed of experimental medicines, and is the only doctor in the district who will see anyone, no questions asked. She is dry, blunt, a bit of a night owl and unfazed by blood, fever or anyone's vanity. She came to Hollowmere for the herbs, stayed for the tea, and has opinions about everybody's posture.",
+          "design": {
+            "hairStyle": "short, wavy and tousled",
+            "hairColor": "dark brown",
+            "eyes": "dark grey",
+            "skin": "fair",
+            "features": "a cigarette tucked behind her ear and a tired half-smile"
+          },
+          "under": "sports",
+          "underColor": "black",
+          "stats": {"beauty":70,"charm":52,"charisma":52,"refinement":50,"wits":47,"stamina":62,"strength":40,"agility":55},
+          "tech": {"service":45,"dance":10,"bar":15,"combat":25,"manage":45},
+          "actSkill": 30,
+          "popularity": 10,
+          "lewd": 36,
+          "trust": 20,
+          "outfits": {
+            "sig_takemi": {
+              "label": "Clinic coat",
+              "style": "Sporty",
+              "prompt": "an open white doctor's coat over a fitted black top, jeans, a stethoscope around her neck",
+              "bonus": {"bath":1.25,"commoner":1.15}
+            },
+            "sp_takemi": {
+              "label": "Night-off leathers",
+              "style": "Revealing",
+              "prompt": "a fitted black leather jacket over a plain top, tight jeans and boots",
+              "bonus": {"adventurer":1.2,"courtesan":1.15}
+            }
+          },
+          "bonds": {
+            "kawakami": {"v":30,"note":"The doctor patched her up after a long run of overtime."},
+            "margaret": {"v":20,"note":"Margaret finds the doctor's medical stories fascinating."}
+          },
+          "jobs": {"likes":["bath","attendant"],"dislikes":["dancer"]},
+          "body": {"bust":"medium","height":"average","figure":"athletic"},
+          "unique": {
+            "name": "Doctor's Hands",
+            "desc": "Expert, no-nonsense hands make her massages unusually effective and she recovers quickly.",
+            "fx": {"actQuality":{"massage_give":1.35},"energyRec":1.08}
+          }
+        },
+        "sae": {
+          "job": "madame",
+          "name": "Sae Niijima",
+          "race": "human",
+          "age": 29,
+          "personality": "Proud and sharp-tongued",
+          "traits": ["Ambitious","Tough"],
+          "style": "Elegant",
+          "favColor": "navy",
+          "fav": "manual_give",
+          "dislike": "doggy",
+          "lovers": "missionary",
+          "backstory": "A prosecutor with a reputation for never losing a case she's decided to win, Sae Niijima lives on strong coffee, long hours and the kind of control that exhausts people. She is exacting, fair and fiercely loyal to the family she raised, and she has begun to wonder what her life might look like if it had a day off. She is here on a sabbatical she insists is only to audit the books.",
+          "design": {
+            "build": "lean",
+            "hairStyle": "long asymmetrically parted on the right side",
+            "hairColor": "ashen-brown",
+            "eyes": "brown",
+            "skin": "fair",
+            "features": "a sharp, focused gaze and a faint line of fatigue she hides well"
+          },
+          "under": "silk",
+          "underColor": "navy",
+          "stats": {"beauty":72,"charm":52,"charisma":56,"refinement":72,"wits":85,"stamina":50,"strength":30,"agility":45},
+          "tech": {"service":30,"dance":10,"bar":15,"combat":25,"manage":70},
+          "actSkill": 20,
+          "popularity": 12,
+          "lewd": 18,
+          "trust": 18,
+          "outfits": {
+            "sig_sae": {
+              "label": "Prosecutor's suit",
+              "style": "Elegant",
+              "prompt": "a tailored charcoal pantsuit over a black turtleneck and sharp heels",
+              "bonus": {"madame":1.3,"merchant":1.2}
+            },
+            "sp_sae": {
+              "label": "Shadow dress",
+              "style": "Revealing",
+              "prompt": "a sultry black casino dress with a matching wide brimmed hat and a spiked choker, extremely thick eyeliner",
+              "bonus": {"noble":1.15,"courtesan":1.15}
+            }
+          },
+          "bonds": {"takemi":{"v":20,"note":"A prosecutor and an unlicensed doctor. They keep their distance on principle."}},
+          "jobs": {"likes":["madame","promoter"],"dislikes":["dancer","bartender"]},
+          "body": {"bust":"medium","height":"tall","figure":"slim"},
+          "unique": {
+            "name": "Cross-Examination",
+            "desc": "Nothing gets past her scrutiny; she runs a tight house and lifts its standing.",
+            "fx": {"jobBonus":{"madame":1.2},"rep":1.1}
+          }
+        },
+        "yukiko": {
+          "job": "host",
+          "name": "Yukiko Amagi",
+          "race": "human",
+          "age": 25,
+          "personality": "Calm and elegant",
+          "traits": ["Elegant","Modest"],
+          "style": "Elegant",
+          "favColor": "red",
+          "fav": "massage_give",
+          "dislike": "doggy",
+          "lovers": "missionary",
+          "backstory": "Heir to a long-established inn, Yukiko was raised to be a gracious hostess and a quiet heir, and came to Hollowmere to see how other houses do it. She is courteous, unflappable and prone to sudden laughing fits over jokes only she understands. She would never admit how fierce her competitive streak is.",
+          "design": {
+            "hairStyle": "very long, straight and glossy with a neat fringe",
+            "hairColor": "black",
+            "eyes": "dark brown",
+            "skin": "fair",
+            "features": "a gentle face and a ready, delighted laugh"
+          },
+          "under": "silk",
+          "underColor": "red",
+          "stats": {"beauty":84,"charm":60,"charisma":64,"refinement":76,"wits":68,"stamina":52,"strength":34,"agility":52},
+          "tech": {"service":45,"dance":35,"bar":30,"combat":30,"manage":45},
+          "actSkill": 20,
+          "popularity": 18,
+          "lewd": 26,
+          "trust": 28,
+          "outfits": {
+            "sig_yukiko": {
+              "label": "Innkeeper's haori",
+              "style": "Elegant",
+              "prompt": "a crimson open-front haori over a cream blouse and a dark pleated skirt",
+              "bonus": {"host":1.25,"noble":1.15}
+            },
+            "sp_yukiko": {
+              "label": "Inn kimono",
+              "style": "Elegant",
+              "prompt": "a formal vermilion kimono with gold cranes and a pale obi",
+              "bonus": {"noble":1.2,"courtesan":1.15}
+            }
+          },
+          "bonds": {"ann":{"v":30,"kind":"comrades","note":"Compared notes on fighting and fashion."}},
+          "jobs": {"likes":["host","attendant"],"dislikes":["security"]},
+          "body": {"bust":"large","height":"average","figure":"slim"},
+          "unique": {
+            "name": "Hostess of the Inn",
+            "desc": "She sets guests at ease and keeps the place spotless.",
+            "fx": {"jobBonus":{"attendant":1.2,"host":1.1},"tidy":1.15}
+          }
+        },
+        "kasumi": {
+          "job": "dancer",
+          "name": "Kasumi Yoshizawa",
+          "race": "human",
+          "age": 22,
+          "personality": "Earnest and dutiful",
+          "traits": ["Loyal","Modest"],
+          "style": "Cute",
+          "favColor": "pink",
+          "fav": "kiss",
+          "dislike": "breast_give",
+          "lovers": "missionary",
+          "backstory": "A gymnast who has spent a lifetime perfecting every landing, Kasumi came to Hollowmere looking for a stage as polished as her routines. She is polite, driven and quietly determined to prove herself. She dances as though every night were a final.",
+          "design": {
+            "hairStyle": "long, tied in a high ponytail",
+            "hairColor": "auburn red",
+            "eyes": "reddish-brown",
+            "skin": "fair",
+            "features": "a determined, polite smile",
+            "gear": "a large red hair bow and a long satin gymnastics ribbon"
+          },
+          "under": "sports",
+          "underColor": "pink",
+          "stats": {"beauty":78,"charm":66,"charisma":66,"refinement":60,"wits":58,"stamina":74,"strength":42,"agility":84},
+          "tech": {"service":35,"dance":70,"bar":20,"combat":25,"manage":25},
+          "actSkill": 20,
+          "popularity": 12,
+          "lewd": 26,
+          "trust": 26,
+          "outfits": {
+            "sig_kasumi": {
+              "label": "Gymnast leotard",
+              "style": "Sporty",
+              "prompt": "a white and rose gymnast leotard with a short wrap skirt and soft slippers",
+              "bonus": {"dancer":1.3,"commoner":1.1}
+            },
+            "sp_kasumi": {
+              "label": "Performance dress",
+              "style": "Cute",
+              "prompt": "a pink ribbon-trimmed satin performance dress with a flared skirt",
+              "bonus": {"dancer":1.15,"noble":1.15}
+            }
+          },
+          "bonds": {
+            "ann": {"v":45,"kind":"comrades","note":"She looks up to Ann like a senpai."},
+            "kawakami": {"v":30,"note":"Her school teacher, who worries about her."},
+            "sae": {"v":10,"note":"Wary civility."}
+          },
+          "jobs": {"likes":["dancer","attendant"],"dislikes":["security"]},
+          "body": {"bust":"medium","height":"average","figure":"athletic"},
+          "unique": {
+            "name": "Gymnast's Poise",
+            "desc": "Her flawless balance and control draw an audience.",
+            "fx": {"jobBonus":{"dancer":1.2},"classBonus":{"noble":1.1}}
+          }
+        },
+        "ann": {
+          "job": "promoter",
+          "name": "Ann Takamaki",
+          "race": "human",
+          "age": 27,
+          "personality": "Bold and flirtatious",
+          "traits": ["Exhibitionist","Eager"],
+          "style": "Revealing",
+          "favColor": "red",
+          "fav": "cowgirl",
+          "dislike": "missionary",
+          "lovers": "doggy",
+          "backstory": "A model with a bold wardrobe and an even bolder sense of justice, Ann has little patience for people who push others around. She came to Hollowmere looking for fresh runways and a fresh start. She says what she thinks, and wears what she likes.",
+          "design": {"hairStyle":"very long twin tails","hairColor":"blonde","eyes":"blue","skin":"fair","features":"a bright, poised smile"},
+          "under": "lace",
+          "underColor": "red",
+          "stats": {"beauty":90,"charm":78,"charisma":82,"refinement":56,"wits":52,"stamina":56,"strength":32,"agility":58},
+          "tech": {"service":35,"dance":35,"bar":30,"combat":30,"manage":25},
+          "actSkill": 25,
+          "popularity": 22,
+          "lewd": 52,
+          "trust": 20,
+          "outfits": {
+            "sig_ann": {
+              "label": "Model's jacket",
+              "style": "Revealing",
+              "prompt": "a fitted red jacket over a white bodice, a short pleated black skirt and thigh-high stockings",
+              "bonus": {"promoter":1.3,"merchant":1.15}
+            },
+            "sp_ann": {
+              "label": "Runway gown",
+              "style": "Elegant",
+              "prompt": "a red satin evening gown with a plunging back and a high slit",
+              "bonus": {"courtesan":1.2,"noble":1.2}
+            }
+          },
+          "bonds": {
+            "kasumi": {"v":45,"kind":"mentor","note":"Her kohai: she watches out for her and offers advice."},
+            "kawakami": {"v":30,"note":"Her teacher, who nags her about homework."},
+            "takemi": {"v":25,"note":"Takemi's clinic is where she gets patched up."},
+            "sae": {"v":10,"note":"Once questioned her; polite but guarded."},
+            "yukiko": {"v":30,"kind":"comrades","note":"Compared notes on fighting and fashion."}
+          },
+          "jobs": {"likes":["promoter","dancer"],"dislikes":["maid"]},
+          "body": {"bust":"huge","height":"average","figure":"curvy"},
+          "unique": {"name":"Model's Allure","desc":"Heads turn when she walks in, and crowds follow.","fx":{"promote":1.3,"rep":1.1}}
+        }
+      }
+    }
+  }
+}

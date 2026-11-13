@@ -8,14 +8,19 @@ optional text generation (`ai-text-plugin`).
 
 - `loader.js`: injects the stylesheet and page markup, then loads every script in `js/` **in order**.
   The scripts are classic (non-module) scripts that share globals, so order matters; the list lives in `loader.js`.
-- `data/*.json`: **the files you edit by hand.** Each starts with a `_readme` explaining its fields.
+- `data/`: **the files you edit by hand.** Each starts with a `_readme` explaining its fields (for a folder, in its `base.json`).
+  The big sets are folders of smaller files: `data/<name>/index.json` lists the parts, which are merged in that order
+  (objects key by key, lists joined end to end). To add a part (say a new guest pack), create the file and add its name
+  to `index.json`; a key defined in two parts is an error in `node tools/build.mjs`.
   | File | What's in it |
   |---|---|
   | `services.json` | Services: thresholds, prices, AI description, image poses per context (client / Sam / two ladies), report lines |
   | `snippets.json` | Your own image wording for POV, bath, mishap, solo and duo scenes, and how each clothing state is described |
   | `ai-prompts.json` | The prompts sent to the AI text plugin, plus style guidance |
-  | `characters.json` | Named ladies, their outfits and starting bonds |
-  | `arcs.json` | Partner romance arcs |
+  | `characters/` | Named ladies, their outfits and starting bonds (`house`, `partners`, `story` = story + guild ladies) |
+  | `guests/` | Visiting/crossover ladies, one file per pack |
+  | `firsts/` | Firsts with Sam: shared rules + templates in `base`, then each lady's own scenes by group (`house`, `partners`, `story`, one file per guest pack) |
+  | `arcs/` | Partner romance arcs, one file per partner |
   | `bonds.json` | Bonds between ladies, their events, shared scenes and dynamics |
   | `regulars.json` | Regular clients: names, quirks, event text |
   | `personalities.json` | Personalities and what they like |
@@ -24,7 +29,8 @@ optional text generation (`ai-text-plugin`).
   | `scenes.json` / `dates.json` | Image scenes and backdrops; date types with their text and images |
   | `economy.json` | Jobs, job slots, houses, upgrades, prices, client classes (and what they ask for), Sam's past lives |
   | `events.json` | The words for random events, chats and gifts |
-  | `flavor.json` | Random lines per personality |
+  | `flavor/` | Random lines per personality: `sam` (private time, lovers, nights, gifts), `jobs`, `encounters` (clients, pushy clients), `training` |
+  | `goddess/` | The goddess: everything in `base`, her teases in `teases` |
   | `balance.json` | Tuning numbers: lust, solo nights, lovers, breakups |
 
   If the page says a file isn't valid JSON, look for a missing comma or quote. `node tools/fmt-json.mjs` tidies them.

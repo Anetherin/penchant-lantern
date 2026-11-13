@@ -1,0 +1,373 @@
+{
+  "packs": {
+    "wuthering-waves": {
+      "label": "Wuthering Waves",
+      "characters": {
+        "jinhsi": {
+          "job": "courtesan",
+          "name": "Jinhsi",
+          "title": "Magistrate",
+          "race": "beastkin",
+          "sub": "dragon",
+          "age": 114,
+          "personality": "Calm and elegant",
+          "traits": ["Elegant","Loyal"],
+          "style": "Elegant",
+          "favColor": "gold",
+          "fav": "kiss",
+          "dislike": "doggy",
+          "lovers": "missionary",
+          "backstory": "The dragon-blooded Magistrate of a great walled city in the sea-trade cities of the far east coast, Jinhsi carries the weight of her people with perfect composure. She came west on a diplomatic visit and keeps finding reasons not to leave.",
+          "design": {
+            "build": "graceful",
+            "hairStyle": "very long, high twintails",
+            "hairColor": "white with gold ornaments",
+            "eyes": "lavender-grey",
+            "skin": "fair",
+            "features": "a gold dragon-horn hair ornament"
+          },
+          "under": "silk",
+          "underColor": "white",
+          "stats": {"beauty":76,"charm":64,"charisma":64,"refinement":72,"wits":72,"stamina":50,"strength":35,"agility":45},
+          "tech": {"service":40,"dance":35,"bar":15,"combat":50,"manage":62},
+          "actSkill": 30,
+          "popularity": 30,
+          "lewd": 22,
+          "trust": 24,
+          "outfits": {
+            "sig_jinhsi": {
+              "label": "Magistrate's robes",
+              "style": "Elegant",
+              "prompt": "high-collared narrow black halter top trimmed in gold, white teal sashes, high waisted dark shorts, and sleek thigh-high white boots",
+              "bonus": {"courtesan":1.25,"noble":1.25}
+            },
+            "sp_jinhsi": {
+              "label": "Spring festival qipao",
+              "style": "Elegant",
+              "prompt": "a fitted pink silk qipao with gold dragon embroidery",
+              "bonus": {"courtesan":1.15,"noble":1.2}
+            }
+          },
+          "bonds": {"hsin":{"v":35,"note":"Two guardians of the same coast."}},
+          "jobs": {"likes":["courtesan","madame","dancer"],"dislikes":["bartender"]},
+          "body": {"bust":"medium","height":"short","figure":"slim"},
+          "unique": {
+            "name": "Magistrate's Bearing",
+            "desc": "A magistrate's authority impresses nobles and settles the house.",
+            "fx": {"classBonus":{"noble":1.2},"rep":1.1}
+          }
+        },
+        "carlotta": {
+          "job": "courtesan",
+          "name": "Carlotta Montelli",
+          "race": "human",
+          "age": 26,
+          "personality": "Proud and sharp-tongued",
+          "traits": ["Elegant","Ambitious"],
+          "style": "Elegant",
+          "favColor": "silver",
+          "fav": "cowgirl",
+          "dislike": "breast_give",
+          "lovers": "oral_get",
+          "backstory": "The second daughter of a powerful merchant family from the sea-trade cities of the far east coast, Carlotta collects art, settles disputes with an ornate pistol, and treats Sam's business as an investment she is still evaluating.",
+          "design": {
+            "build": "refined",
+            "hairStyle": "long and elegant",
+            "hairColor": "silver",
+            "eyes": "light teal",
+            "skin": "fair",
+            "features": "thin magenta headband and large ribbons"
+          },
+          "under": "lace",
+          "underColor": "black",
+          "stats": {"beauty":74,"charm":62,"charisma":66,"refinement":74,"wits":82,"stamina":45,"strength":30,"agility":55},
+          "tech": {"service":45,"dance":30,"bar":20,"combat":60,"manage":50},
+          "actSkill": 30,
+          "popularity": 28,
+          "lewd": 28,
+          "trust": 18,
+          "outfits": {
+            "sig_carlotta": {
+              "label": "Montelli finery",
+              "style": "Elegant",
+              "prompt": "a short, white, sleeveless  flowing dress with a high neckline, a vibrant magenta-colored cape with teal lining, black gloves, and thigh-high black boots with magenta stockings",
+              "bonus": {"courtesan":1.25,"merchant":1.25}
+            },
+            "sp_carlotta": {
+              "label": "Gallery gown",
+              "style": "Elegant",
+              "prompt": "a backless pale blue silk gown with silver jewelry",
+              "bonus": {"noble":1.25,"courtesan":1.15}
+            }
+          },
+          "jobs": {"likes":["courtesan","madame"],"dislikes":["maid","bartender"]},
+          "body": {"bust":"small","height":"short","figure":"slim"},
+          "unique": {
+            "name": "Merchant's Pistol",
+            "desc": "A shrewd negotiator with a decorative but credible deterrent.",
+            "fx": {"classBonus":{"merchant":1.2},"security":6}
+          }
+        },
+        "hsin": {
+          "job": "dancer",
+          "name": "Hsin",
+          "race": "beastkin",
+          "sub": "white fox",
+          "age": 31,
+          "personality": "Mysterious and aloof",
+          "traits": ["Elegant","Night Owl"],
+          "style": "Exotic",
+          "favColor": "gold",
+          "fav": "cowgirl",
+          "dislike": "missionary",
+          "lovers": "kiss",
+          "backstory": "The Heart Moon Fox, an ancient guardian spirit of a mountain city in the sea-trade cities of the far east coast, taking a mortal-sized shape for a while. Hsin dances under moonlight and answers questions with riddles.",
+          "design": {
+            "build": "graceful",
+            "hairStyle": "ornate long bun ponytail",
+            "hairColor": "pale silver-white",
+            "eyes": "glowing red-yellow",
+            "skin": "fair",
+            "features": "heavy red eyeshadow, ornate red tattoos on her hands and thighs"
+          },
+          "under": "silk",
+          "underColor": "black",
+          "stats": {"beauty":76,"charm":60,"charisma":71,"refinement":66,"wits":70,"stamina":55,"strength":30,"agility":70},
+          "tech": {"service":30,"dance":70,"bar":10,"combat":50,"manage":30},
+          "actSkill": 35,
+          "popularity": 26,
+          "lewd": 34,
+          "trust": 18,
+          "outfits": {
+            "sig_hsin": {
+              "label": "Moon guardian robes",
+              "style": "Exotic",
+              "prompt": "low cut black bodice with white and red flowing robes with detached sleeves ",
+              "bonus": {"dancer":1.3,"noble":1.15}
+            },
+            "sp_hsin": {"label":"Moonlit silk","style":"Exotic","prompt":"a sheer white and gold silk dancing dress","bonus":{"courtesan":1.15,"dancer":1.15}}
+          },
+          "bonds": {
+            "jinhsi": {"v":35,"note":"Two guardians of the same coast."},
+            "suoming": {"v":50,"kind":"mentor","note":"Her cute minister whom she trusts a great deal."}
+          },
+          "jobs": {"likes":["dancer","courtesan"],"dislikes":["promoter"]},
+          "body": {"bust":"large","height":"tall","figure":"curvy"},
+          "unique": {
+            "name": "Moonlit Riddles",
+            "desc": "She dances under moonlight and enchants the wealthy.",
+            "fx": {"jobBonus":{"dancer":1.2},"classBonus":{"noble":1.1}}
+          }
+        },
+        "cartethyia": {
+          "job": "dancer",
+          "name": "Cartethyia",
+          "race": "angel",
+          "age": 412,
+          "personality": "Calm and elegant",
+          "traits": ["Elegant","Romantic"],
+          "style": "Elegant",
+          "favColor": "sky blue",
+          "fav": "kiss",
+          "dislike": "doggy",
+          "lovers": "missionary",
+          "backstory": "An angel of the tide from the sea-trade cities of the far east coast, Cartethyia has spent centuries as the voice that calms storms for fishing fleets. She sings in a clear, unhurried voice, carries a slender rapier she rarely draws, and is quietly overwhelmed by a city that never stops talking. She shares a name and an old, difficult history with the red-winged sovereign who sometimes walks beside her.",
+          "design": {
+            "build": "graceful",
+            "hairStyle": "very long, loosely flowing",
+            "hairColor": "light blonde",
+            "eyes": "soft sea-blue",
+            "skin": "fair",
+            "features": "pointy elf ears and a pale blue laurel halo"
+          },
+          "under": "silk",
+          "underColor": "white",
+          "stats": {"beauty":74,"charm":55,"charisma":60,"refinement":66,"wits":66,"stamina":45,"strength":30,"agility":58},
+          "tech": {"service":35,"dance":55,"bar":10,"combat":45,"manage":35},
+          "actSkill": 20,
+          "popularity": 12,
+          "lewd": 18,
+          "trust": 26,
+          "outfits": {
+            "sig_cartethyia": {
+              "label": "Tide-singer's gown",
+              "style": "Elegant",
+              "prompt": "short white vestments over a short, black dress, completely open chest, with blue gradient fabric flowing behind her",
+              "bonus": {"dancer":1.25,"noble":1.15}
+            },
+            "sp_cartethyia": {
+              "label": "Moonwater veils",
+              "style": "Exotic",
+              "prompt": "layers of translucent pale-blue veils over a fitted white dress, tiny pearls in her hair",
+              "bonus": {"noble":1.2,"courtesan":1.15}
+            }
+          },
+          "bonds": {"fleurdelys":{"v":15,"note":"Two names, one history, and very little to say to each other so far."}},
+          "jobs": {"likes":["dancer","chapel","attendant"],"dislikes":["security"]},
+          "body": {"bust":"small","height":"short","figure":"slim"},
+          "unique": {
+            "name": "Storm-Stilling Song",
+            "desc": "Her singing soothes a room, steadying moods and lifting her dancing.",
+            "fx": {"jobBonus":{"dancer":1.2},"moodDelta":0.85}
+          }
+        },
+        "fleurdelys": {
+          "job": "security",
+          "name": "Fleurdelys",
+          "race": "demon",
+          "age": 430,
+          "personality": "Proud and sharp-tongued",
+          "traits": ["Tough","Ambitious"],
+          "style": "Revealing",
+          "favColor": "crimson",
+          "fav": "doggy",
+          "dislike": "kiss",
+          "lovers": "cowgirl",
+          "backstory": "A crimson-winged sovereign from the far east coast's storm-wracked south, Fleurdelys is what remains when a gentle voice learns to hold a spear. She is regal, impatient, and aware that every room she enters is a battlefield with better decorations. She is not fond of the tide-singer who shares her name; she is very fond of a spirited argument and a strong drink.",
+          "design": {
+            "hairStyle": "long flowing with a high crown braid",
+            "hairColor": "blonde with a subtle soft-blue gradient",
+            "eyes": "cold blue",
+            "skin": "fair",
+            "features": "a long golden horn and a crystal-blue crown of thorns"
+          },
+          "under": "lace",
+          "underColor": "black",
+          "stats": {"beauty":78,"charm":52,"charisma":61,"refinement":58,"wits":66,"stamina":70,"strength":62,"agility":60},
+          "tech": {"service":30,"dance":30,"bar":25,"combat":70,"manage":40},
+          "actSkill": 30,
+          "popularity": 14,
+          "lewd": 40,
+          "trust": 18,
+          "outfits": {
+            "sig_fleurdelys": {
+              "label": "Martyr's gown",
+              "style": "Revealing",
+              "prompt": "short white vestments over a very short black dress, completely open chest, with blue  fabric flowing behind her",
+              "bonus": {"security":1.35,"adventurer":1.15}
+            },
+            "sp_fleurdelys": {
+              "label": "Court navy",
+              "style": "Revealing",
+              "prompt": "a deep blue silk gown with a high slit, gold jewelry and a sweeping black train",
+              "bonus": {"noble":1.25,"courtesan":1.2}
+            }
+          },
+          "bonds": {"cartethyia":{"v":15,"note":"Two names, one history, and very little to say to each other so far."}},
+          "jobs": {"likes":["security","courtesan"],"dislikes":["maid","dancer"]},
+          "body": {"bust":"huge","height":"tall","figure":"curvy"},
+          "unique": {
+            "name": "Sovereign's Spear",
+            "desc": "A commanding presence that cows rowdy clients and gives her real security muscle.",
+            "fx": {"security":15,"jobBonus":{"security":1.1}}
+          }
+        },
+        "buling": {
+          "job": "attendant",
+          "name": "Buling",
+          "race": "human",
+          "age": 24,
+          "personality": "Playful trickster",
+          "traits": ["Natural Performer","Flirt"],
+          "style": "Cute",
+          "favColor": "pale blue",
+          "fav": "kiss",
+          "dislike": "oral_give",
+          "lovers": "cowgirl",
+          "backstory": "A Black Shores consultant and self-proclaimed \"Spiritchaser Taoist\" from the sea-trade cities of the far east coast, Buling is known for fortune-telling, feng shui and selling talismans on her travels. She wandered into the Lantern, announced that its feng shui was a disaster, and has been rearranging the furniture uninvited ever since.",
+          "design": {
+            "hairStyle": "shoulder-length with a short side ponytail tied with black ribbons",
+            "hairColor": "very pale blue",
+            "eyes": "bright yellow-gold",
+            "skin": "pale",
+            "features": "large black headphones with gold trim"
+          },
+          "under": "lace",
+          "underColor": "white",
+          "stats": {"beauty":68,"charm":72,"charisma":80,"refinement":45,"wits":54,"stamina":50,"strength":25,"agility":65},
+          "tech": {"service":45,"dance":30,"bar":25,"combat":20,"manage":30},
+          "actSkill": 25,
+          "popularity": 28,
+          "lewd": 32,
+          "trust": 22,
+          "outfits": {
+            "sig_buling": {
+              "label": "Spiritchaser's dress",
+              "style": "Cute",
+              "prompt": "a very short white dress with an open ornate black vest and detached sleeves",
+              "bonus": {"attendant":1.2,"promoter":1.15}
+            },
+            "sp_buling": {
+              "label": "Talisman merchant",
+              "style": "Exotic",
+              "prompt": "a short red-and-gold tunic dress hung with paper talismans and tasseled charms, with a small brass compass at her hip",
+              "bonus": {"promoter":1.2,"merchant":1.15}
+            }
+          },
+          "bonds": {"suoming":{"v":25,"note":"Buling pokes the auditor; the auditor pretends not to mind."}},
+          "jobs": {"likes":["attendant","promoter"],"dislikes":["security"]},
+          "body": {"bust":"flat","height":"short","figure":"slim"},
+          "unique": {
+            "name": "Feng Shui Fortune",
+            "desc": "Her talismans and rearranged furniture make the house feel luckier, drawing guests in.",
+            "fx": {"rep":1.05,"jobBonus":{"attendant":1.15,"promoter":1.1}}
+          }
+        },
+        "suoming": {
+          "job": "madame",
+          "name": "Suoming",
+          "race": "human",
+          "age": 215,
+          "personality": "Stoic and blunt",
+          "traits": ["Tough","Prim"],
+          "style": "Elegant",
+          "favColor": "red",
+          "fav": "kiss",
+          "dislike": "breast_give",
+          "lovers": "missionary",
+          "backstory": "Born in Huating, Mengzhou, in the sea-trade cities of the far east coast, Suoming founded the Ten Seals Covenant as its Seal Master to free her homeland from the Evil Miasma. A seal-binding keeps her from aging, which is how she is two centuries old and still looks about twenty-five. Later, by the Sentinel's decree, she served as Intendant of the Ministry of Sentinel Affairs, watching over all of Mengzhou. Now visiting the west, she inspects Sam's house like a ministry audit, clipboard-faced and unimpressed.",
+          "design": {
+            "hairStyle": "very very long, styled in twin bun pigtails with large gold bells",
+            "hairColor": "red",
+            "eyes": "red",
+            "skin": "pale",
+            "features": "large gold bells in her hair"
+          },
+          "under": "silk",
+          "underColor": "black",
+          "stats": {"beauty":70,"charm":42,"charisma":42,"refinement":75,"wits":82,"stamina":55,"strength":40,"agility":55},
+          "tech": {"service":30,"dance":15,"bar":10,"combat":70,"manage":75},
+          "actSkill": 30,
+          "popularity": 26,
+          "lewd": 18,
+          "trust": 16,
+          "outfits": {
+            "sig_suoming": {
+              "label": "Seal Master's dress",
+              "style": "Elegant",
+              "prompt": "a very short little black dress with an open ornate black cape",
+              "bonus": {"madame":1.2,"security":1.15}
+            },
+            "sp_suoming": {
+              "label": "Ministry formal",
+              "style": "Elegant",
+              "prompt": "a crisp high-collared red-and-black ministry robe with gold clasps, a sealed scroll case at her belt",
+              "bonus": {"madame":1.15,"noble":1.2}
+            }
+          },
+          "bonds": {
+            "buling": {"v":25,"note":"The auditor's one persistent finding: Buling."},
+            "hsin": {"v":50,"kind":"mentor","note":"The sentinel she has sworn to watch over."}
+          },
+          "jobs": {"likes":["madame","security"],"dislikes":["maid","host"]},
+          "body": {"bust":"flat","height":"short","figure":"slim"},
+          "unique": {
+            "name": "Seal Master",
+            "desc": "Centuries of command keep the house orderly and its staff in line.",
+            "fx": {"security":10,"jobBonus":{"madame":1.2}}
+          }
+        }
+      }
+    }
+  }
+}

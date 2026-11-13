@@ -1,0 +1,396 @@
+{
+  "characters": {
+    "jinhsi": {
+      "events": {
+        "1": {
+          "title": "Tea Etiquette",
+          "text": "Jinhsi serves tea in the ceremony room with a calm that could still a harbor. Sam fumbles his cup and she steadies it with a touch. \"A magistrate learns to hold a thousand burdens without a ripple,\" she says quietly. \"But I find myself wishing someone would take one from me.\" Her dragon-gold eyes rest on him, gentle and questioning. Steam rises from the pot in a thin ribbon. Her sleeves are folded with perfect symmetry, and the faint gold of her horns catches the lamp.",
+          "image": {
+            "comp": "pouring tea with graceful precision, gold eyes lifted to him, composed smile with the faintest tremor",
+            "setting": "tea room with paper screens, a low table and soft lantern glow",
+            "sam": true
+          },
+          "go": "Take her hand",
+          "goRes": "She turns her palm into his. When she kisses him, it is like a long-held breath, serene and gracious.",
+          "wait": "\"Not yet, Magistrate.\"",
+          "waitRes": "\"Very well.\" She pours a second cup, her composure perfect. \"I have waited decades for this city to be at peace. A few weeks are nothing.\""
+        },
+        "2": {
+          "title": "Letter Home",
+          "text": "Jinhsi is at her writing desk composing the dispatch she should have sent a month ago. \"I keep finding reasons to postpone my return,\" she admits. \"The reasons all have your face.\" She lays down the brush. \"A magistrate should not be so easily moved. I should like to see what happens if I allow it.\" Ink dries on the half-finished letter. The brush has left a faint line on her fingertip, and she has not noticed, or has chosen not to.",
+          "image": {
+            "comp": "seated at a writing desk with a brush set down, turning her face to him, calm but flushed",
+            "setting": "study with ink stones, rolled letters and an evening lantern",
+            "sam": true
+          },
+          "go": "Let her",
+          "goRes": "She is gracious even in surrender, and astonishingly warm. It is the first time in a century that she has set the city aside.",
+          "wait": "\"I'm not sure it's wise.\"",
+          "waitRes": "\"Wisdom.\" A small, wry smile. \"I have a great deal of it. Let me spend a little foolishness, later.\""
+        },
+        "3": {
+          "title": "Without the Robes",
+          "text": "Jinhsi has let her hair down, and the robes of office hang on a screen. Without them she seems smaller, shy of her own bare shoulders. \"Many have served me,\" she says. \"No one has seen me as I am when no one is watching. I would like it to be you.\" Her voice is steady. Her hands are not. Outside, a watchman calls the hour. Her hair spills past her hips, uncoiled, and she looks both younger and far older than anyone has seen her.",
+          "image": {
+            "comp": "standing beside a folding screen with her formal robe hung behind her, hair loose, brave and vulnerable",
+            "setting": "private chamber with silk hangings and moonlight through paper screens",
+            "sam": true
+          },
+          "go": "Be the one",
+          "goRes": "He is careful, as one is with a priceless thing that is also very much alive. Her laughter, when it comes, is low and astonished.",
+          "wait": "\"Take your time.\"",
+          "waitRes": "\"Thank you.\" She bows, a perfect small bow. \"The city can spare me another night. But not many.\""
+        },
+        "jump": {
+          "title": "Dragon Impulse",
+          "text": "A festival drum thunders in the street and Jinhsi steps out onto the balcony, face flushed with the rhythm. Sam finds her there, hands gripping the rail. \"Forgive me,\" she says, low. \"It is the blood. Tonight I do not feel composed.\" She turns and kisses him, quick and sure, and her eyes shine gold in the dark. Firelight and paper lanterns throw gold across the wood. Her horns glint, and the careful mask of office has slipped entirely away.",
+          "image": {
+            "comp": "gripping a balcony rail with the glow of festival lanterns behind her, turned to him, golden eyes bright",
+            "setting": "balcony above a festival street with drums, lanterns and fireworks",
+            "sam": true
+          },
+          "go": "Kiss her",
+          "goRes": "She leans into him, and her composure falls like a dropped veil. The drums keep going, long after they stop hearing them.",
+          "wait": "\"Are you all right?\"",
+          "waitRes": "\"Yes. No.\" She laughs, stilled, regal again. \"I will return to my senses. Do not judge the magistrate for the festival.\""
+        }
+      }
+    },
+    "carlotta": {
+      "events": {
+        "1": {
+          "title": "Investment Review",
+          "text": "Carlotta sits at the corner table with the ledger and an expression of tidy disdain. \"Your margins are acceptable. Your staffing is sentimental. Your owner, however...\" She snaps the book shut, tapping it against her palm. \"...is proving a better investment than projected.\" She rises, small and exact, and kisses him once as a gesture of closing the deal. The brandy glows amber in the lamplight, and her heeled boots rest on the rung of the chair, one ankle crossed with practiced ease.",
+          "image": {
+            "comp": "tapping a closed ledger against her palm, a sharp amused smile, her pistol holstered at her hip",
+            "setting": "corner table in the lounge with a ledger and brandy",
+            "sam": true
+          },
+          "go": "Accept the deal",
+          "goRes": "The kiss is brief and brisk, then not brisk at all. Carlotta pulls back, flushed, and straightens her cuffs. \"Provisional, of course.\"",
+          "wait": "\"I don't do deals.\"",
+          "waitRes": "\"Hm.\" She tilts her head, eyes narrowing in approval. \"Hard to buy. Interesting. I will raise my offer.\""
+        },
+        "2": {
+          "title": "Collector",
+          "text": "Carlotta shows Sam her private gallery, a room of sculptures and curios she's brought across the sea. \"Every piece I own, I chose carefully.\" She stops before a small bronze fox. \"Few people understand what I'm really looking for. Not a thing. A person who does not mind being looked at.\" Her eyes linger on him. \"You do not flinch.\" The room smells of lacquer and sea salt. Her gaze moves over each piece as a jeweler's would, then back to him, unhurried.",
+          "image": {
+            "comp": "standing beside a shelf of curios with a small bronze figure in her hand, appraising him with a flushed smile",
+            "setting": "private room of curios and art, a spotlight of lamplight",
+            "sam": true
+          },
+          "go": "Let her look",
+          "goRes": "She looks at him as she looks at art, with patience, then with wanting, and then she touches him as though he were not for sale but for keeps.",
+          "wait": "\"Not on display.\"",
+          "waitRes": "\"Of course not.\" A rare, softer smile. \"Some pieces are never sold. I'll wait for you to decide you are one of them.\""
+        },
+        "3": {
+          "title": "The Pistol on the Nightstand",
+          "text": "Carlotta sets the ornate pistol on Sam's nightstand like a signature. \"A formality. I am armed, you are not, and I would like us both to be at ease.\" She sits on the bed, her heels hooked together, a proud lift to her chin. \"I have never trusted anyone enough to take it off. Tonight I intend to.\" Her ring catches the candle as she folds her hands. She has not removed her gloves, and the stiffness of her shoulders gives her away.",
+          "image": {
+            "comp": "sitting on the edge of a bed with an ornate pistol laid on the nightstand, proud posture with a nervous flush",
+            "setting": "Sam's bedroom with a candle and a polished dresser",
+            "sam": true
+          },
+          "go": "Take the gun off the table",
+          "goRes": "He moves it to the dresser. She notices, and lets out a slow, startled exhale. Whatever contract this is, there are no clauses left.",
+          "wait": "\"You don't have to.\"",
+          "waitRes": "\"I know I don't.\" Chin up. \"That is why it matters. Ask me again next week; the offer stands.\""
+        },
+        "jump": {
+          "title": "Hostile Takeover",
+          "text": "Carlotta corners Sam behind the bar after a long argument about prices, her face flushed from wine and winning. \"You infuriate me,\" she says, jabbing a finger into his chest. \"You are stubborn, you are sentimental, and I cannot stop looking at your mouth.\" Before he answers she grabs his lapel. \"Consider this a merger.\" The bar glass between them is still half full, and her cheeks are flushed with wine and the unholy pleasure of a good argument.",
+          "image": {
+            "comp": "grabbing his hoodie with a flushed triumphant smile, finger pressed to his chest",
+            "setting": "behind the bar, glasses and bottles glinting",
+            "sam": true
+          },
+          "go": "Merge",
+          "goRes": "It's a very good merger. Carlotta emerges with her hair out of place and the unforgivable expression of someone who has won something.",
+          "wait": "\"Let's talk terms.\"",
+          "waitRes": "\"Terms!\" She laughs, thrilled. \"Excellent. I adore negotiation. I'll draft something. Foreplay, perhaps.\""
+        }
+      }
+    },
+    "hsin": {
+      "events": {
+        "1": {
+          "title": "Moon Dance",
+          "text": "Hsin dances alone on the rooftop terrace when the moon is full, her white tail trailing like mist. When Sam arrives she does not stop. \"Do you know what I guard?\" she says, in rhythm with her steps. \"What cannot be held. Come closer and tell me if you are the kind to try.\" The dance ends with her hand against his chest. Moonlight pools on the tiles. Her white tail trails behind her in the air like smoke, and where she steps, no sound follows.",
+          "image": {
+            "comp": "mid-dance on a terrace with her white tail sweeping behind her, one hand reaching toward him, moonlit mystery",
+            "setting": "rooftop terrace under a full moon with silver light",
+            "sam": true
+          },
+          "go": "Hold her hand",
+          "goRes": "She smiles slowly. Her kiss tastes of night and cold water, and she vanishes into her dance again before he can ask what it meant.",
+          "wait": "\"Not yet, Hsin.\"",
+          "waitRes": "\"A riddle: what is delayed and not denied?\" She tilts her head, tail swaying. \"Think on it. I'll wait among the stars.\""
+        },
+        "2": {
+          "title": "Riddle",
+          "text": "Hsin sits cross-legged on the tea room mat, tail curled around her knees. \"Answer one question and I'll answer yours,\" she says. \"What is closest when it is farthest, and farthest when it is closest?\" Sam guesses. Wrong. She leans forward, eyes glimmering. \"Try again, and I'll let you pay the forfeit.\" Her tea has gone cold, forgotten. The corner of her mouth quirks every time he guesses wrong, and she is plainly enjoying herself.",
+          "image": {
+            "comp": "leaning across a low table with a glimmer in her eyes, tail curled, playful and enigmatic",
+            "setting": "tea room with a low table and a single moonlit window",
+            "sam": true
+          },
+          "go": "Pay the forfeit",
+          "goRes": "The forfeit is long, slow and delightful. She never does reveal the answer, but afterward she sighs like someone who has heard one.",
+          "wait": "\"I'll think about it.\"",
+          "waitRes": "\"Do. The riddle will keep. So will I.\" Tail flicking, she vanishes into the corridor, leaving a single petal on the cushion."
+        },
+        "3": {
+          "title": "Mortal Shape",
+          "text": "Hsin sits at the edge of Sam's bed, hands folded, white ears twitching. \"I have worn this shape for centuries,\" she says, \"but never felt it. Never until you looked at me.\" She laughs, low and strange. \"Teach a guardian spirit what a body is for, Sam. I would like to learn from someone gentle.\" A single petal drifts in at the window. Her eyes shine silver in the dark, and for the first time her voice does not sound rehearsed.",
+          "image": {
+            "comp": "sitting at the edge of a bed with folded hands, ears twitching, curious and soft-eyed",
+            "setting": "Sam's bedroom with moonlight across the quilt",
+            "sam": true
+          },
+          "go": "Teach her",
+          "goRes": "He teaches her with patience and delight. By morning she is dazzled, and so quiet he is almost worried, until she says: \"Again, tomorrow.\"",
+          "wait": "\"Are you sure?\"",
+          "waitRes": "\"Spirits do not lie... often.\" A smile. \"Wait if you must. The moon will return.\""
+        },
+        "jump": {
+          "title": "Fox Fire",
+          "text": "Hsin catches Sam at the foot of the stairs, her eyes glowing pale in the dark, tail curled around his arm. \"A spirit should not want this,\" she says, as if reciting. \"A guardian should not want this.\" She leans up and kisses him, and her voice is nearly human: \"I want this.\" Her breath fogs in the cold stairwell. A faint, pale glow follows her fingertips, and it flickers whenever she pauses.",
+          "image": {
+            "comp": "kissing him at the foot of a staircase with pale glowing eyes, tail wrapped around his arm",
+            "setting": "dark stairwell with a single lantern and white petals drifting",
+            "sam": true
+          },
+          "go": "Kiss her back",
+          "goRes": "The glow in her eyes steadies to a warm moon-silver. She pulls away just enough to whisper that mortals have a clever custom.",
+          "wait": "\"Hsin, wait.\"",
+          "waitRes": "\"Mm.\" She withdraws, tail dragging reluctantly. \"A riddle for you: when is a spirit most mortal? When she must wait.\""
+        }
+      }
+    },
+    "cartethyia": {
+      "events": {
+        "1": {
+          "title": "Quiet Between Songs",
+          "text": "Cartethyia hums on the back terrace, a thin clear tune for the harbor boats. When Sam sits beside her she lets the song fade. \"The city never stops talking,\" she says softly. \"You talk less than most. I find I rest around you.\" Her slender hand finds his. \"It has been four hundred years since I rested in anyone's company.\" A gull cries somewhere over the harbor. Her voice drops lower, as though afraid to disturb the water, and her wings press close to her back.",
+          "image": {
+            "comp": "seated on a terrace railing with hands clasped around his, eyes closed in a soft hum, small and serene",
+            "setting": "back terrace overlooking the harbor lights at night",
+            "sam": true
+          },
+          "go": "Kiss her",
+          "goRes": "She sighs, like a tide going out, and kisses him back with unhurried grace. Somewhere beyond the rooftops, the sea lies still.",
+          "wait": "\"Take your time.\"",
+          "waitRes": "\"Thank you.\" She hums a few notes. \"Tides wait for no one, but they always return.\""
+        },
+        "2": {
+          "title": "Rapier Lesson",
+          "text": "Cartethyia shows Sam how she holds her slender rapier, standing behind him with her arms around his, guiding his grip. \"Lightly. As if holding a bird.\" Her breath stirs his hair. The lesson stops being about swords, and she doesn't move away. \"I think you are a very patient bird,\" she murmurs. The training hall smells of beeswax and old oak. Her breathing is slow, and a strand of pale hair has fallen across his shoulder.",
+          "image": {
+            "comp": "standing close behind him guiding his hand on a rapier hilt, soft and curious smile",
+            "setting": "training hall with polished wood floors and slanting evening light",
+            "sam": true
+          },
+          "go": "Turn around",
+          "goRes": "They are very close. She seems to hold her breath, then lets it go all at once, and learns how well a quiet voice can speak when it is allowed to.",
+          "wait": "\"Let's stop here.\"",
+          "waitRes": "\"Of course.\" She slides the rapier back into its sheath, her cheeks pink. \"The bird thanks you. The bird would like to continue the lesson, eventually.\""
+        },
+        "3": {
+          "title": "High Tide",
+          "text": "Cartethyia opens her door at the end of the hall in a long pale gown, her small wings folded close. \"Sam. I have sung the sea calm for centuries. Tonight, I find I cannot calm myself.\" She tries to smile. \"If you stayed, I think the waters would settle.\" The hallway is quiet but for the distant sea sound of the town. Her fingers fidget with the hem of her sleeve, an unfamiliar human habit.",
+          "image": {
+            "comp": "standing in the doorway of a softly lit room in a long pale gown, wings folded, tremulously hopeful",
+            "setting": "her tidy room with pale curtains and a shell on the windowsill",
+            "sam": true
+          },
+          "go": "Stay",
+          "goRes": "He stays. The storm in her goes down like the sea at dawn, slow, enormous, silver.",
+          "wait": "\"Are you sure?\"",
+          "waitRes": "\"I am as sure as I am afraid.\" A tender smile. \"Come back another night. I will leave the window open.\""
+        },
+        "jump": {
+          "title": "Overwhelmed",
+          "text": "The city is too loud tonight, and Cartethyia flees to the linen closet where it is quiet. Sam finds her sitting between the shelves, knees to her chest. \"I only needed to be still,\" she whispers. \"But with you, stillness feels... less lonely.\" She leans into him, trembling, and then kisses him with unexpected courage. The shelves smell of lavender and clean linen. Her whisper is quick and breathless, and her hands are cold, and grip his sleeve hard.",
+          "image": {
+            "comp": "sitting between linen shelves with knees drawn up, leaning into him mid-kiss, trembling with courage",
+            "setting": "narrow linen closet with soft blankets and dim light",
+            "sam": true
+          },
+          "go": "Hold her",
+          "goRes": "He holds her until the shaking passes, and the kiss turns from courage to comfort, and from comfort to something else.",
+          "wait": "\"Do you want to go?\"",
+          "waitRes": "\"Not yet.\" She smiles shakily. \"But I would like to sit here a little longer. With you. Quietly.\""
+        }
+      }
+    },
+    "fleurdelys": {
+      "events": {
+        "1": {
+          "title": "Spirited Argument",
+          "text": "Fleurdelys has been shouting about tactics with the security rota for an hour, and Sam, who prefers to avoid conflict, gets caught in it. She turns on him. \"You, then. Defend your position.\" He does, with surprising stubbornness. She stares, then pours two glasses. \"Finally. Someone who argues back.\" Maps curl at the edges under a dagger used as a paperweight. Her wings flare and fold with each retort, a sovereign enjoying a rare worthy opponent.",
+          "image": {
+            "comp": "holding two glasses of wine with a challenging, delighted smirk, wings half spread",
+            "setting": "staff room with maps and a heavy table, wine and candles",
+            "sam": true
+          },
+          "go": "Toast with her",
+          "goRes": "She clinks the glass, drinks, and kisses him over the rim, like a duel she's glad to lose.",
+          "wait": "\"Not tonight.\"",
+          "waitRes": "\"Hah! Retreating?\" Her smirk is wolfish. \"A good general chooses his battlefield. I'll have you on mine soon enough.\""
+        },
+        "2": {
+          "title": "War Room",
+          "text": "Fleurdelys leans over the map of the house and town, planning something absurd. \"Every room is a battlefield with better decorations,\" she says. Sam points out a flaw in her plan. She looks at him a long moment, then slowly grins. \"Brilliant. Insolent. Come here.\" Her hand catches his collar. A lamp throws red light on her wings. She has had two glasses already, and her eyes are bright, her words clipped, her stance a little too relaxed.",
+          "image": {
+            "comp": "leaning over a table-sized map with her crimson wings behind her, grinning, hand on his collar",
+            "setting": "back office with a map spread across the table and weapons mounted on the wall",
+            "sam": true
+          },
+          "go": "Come here",
+          "goRes": "She pulls him in, the map crinkling under their elbows, regal, impatient, and entirely sure of herself until the exact moment she isn't.",
+          "wait": "\"Another time.\"",
+          "waitRes": "\"A tactical pause.\" She releases his collar with a huff, eyes bright. \"I will hold the line. Do not be long.\""
+        },
+        "3": {
+          "title": "Sovereign's Terms",
+          "text": "Fleurdelys receives Sam in her room like an audience. Wings spread, spear stood in the corner, she sits like a throne. \"I have commanded nations and fought storms,\" she says, haughty. \"I will have you for a night, and I will set the terms.\" Beneath the haughty tone, her fingers worry at her sleeve. \"...Will you accept them?\" The spear leans in the corner, polished and unused. Her voice is crisp and regal, but she has not met his eyes since he sat down.",
+          "image": {
+            "comp": "sitting regally in a chair with wings half spread, imperious tone with nervous fingers on her sleeve",
+            "setting": "her room with a spear in the corner, red drapes and candlelight",
+            "sam": true
+          },
+          "go": "Accept her terms",
+          "goRes": "He accepts. By midnight the terms have been renegotiated, loudly and mutually, and the sovereign is smiling into his shoulder.",
+          "wait": "\"Not on those terms.\"",
+          "waitRes": "\"Not on...?\" She blinks, indignant, then barks a laugh. \"Fine. Name your own. I will consider them. Briefly.\""
+        },
+        "jump": {
+          "title": "Strong Drink",
+          "text": "Fleurdelys loses an arm-wrestling bet to Sam by pure cheating on his part (a trick with the bar towel), and she explodes in a roar of laughter. \"A scoundrel! I love it!\" Then she goes quiet, wings softening, hand still locked in his. \"I mean... I like it. Do not read into that.\" The towel lies crumpled on the wet counter. Her wings tremble, and she is breathing hard from laughing, ruffled and flushed and glorious.",
+          "image": {
+            "comp": "wings half-spread and laughing, hands still locked mid arm-wrestle, a sudden blush",
+            "setting": "bar counter with spilled drinks and an upended towel",
+            "sam": true
+          },
+          "go": "Kiss her",
+          "goRes": "She swallows her next retort with his mouth, and when she comes up for air, she is very, very pleased with the defeat.",
+          "wait": "\"Good game.\"",
+          "waitRes": "\"A draw.\" Her wings flutter. \"Rematch tomorrow. Bring wine, and your best cheating.\""
+        }
+      }
+    },
+    "buling": {
+      "events": {
+        "1": {
+          "title": "Feng Shui Audit",
+          "text": "Buling is rearranging the fortune-room furniture for the third time this week. \"Your chi is sluggish, boss,\" she announces, shoving a plant. \"Because you keep your bed facing the wrong star.\" She tosses a talisman at him and grins. \"I can fix it. Cheap. Introductory price: a kiss.\" Incense smoke coils around a row of paper charms, and her sleeves are rolled to the elbows. She is flushed from shoving furniture.",
+          "image": {
+            "comp": "kneeling beside a pushed-aside plant holding out a paper talisman, cheeky grin",
+            "setting": "small fortune-telling room full of mirrors, paper charms and plants",
+            "sam": true
+          },
+          "go": "Pay the price",
+          "goRes": "She plants one on his cheek, then he turns his head and she squeaks and it ends up not on the cheek at all. \"Oh! That's a bonus.\"",
+          "wait": "\"Not yet, Buling.\"",
+          "waitRes": "\"Pfft. Your loss.\" She sticks the talisman to his forehead and winks. \"The offer is eternal. Mostly.\""
+        },
+        "2": {
+          "title": "Fortune",
+          "text": "Buling reads Sam's palm over a candle with elaborate seriousness. \"I see a lucky meeting... a long journey... and...\" She pauses, caught on his lifeline. \"...oh, no, I see me.\" Her voice falters. She tries to grin it off. \"Spirits are rude. They never warn me when it's personal.\" The candle flame leans toward their hands. Her patter has run dry for the first time since she arrived, and her thumb is tracing a slow circle.",
+          "image": {
+            "comp": "holding his palm over a candle, trying to hide a flustered smile",
+            "setting": "fortune-telling table with a candle, coins and incense smoke",
+            "sam": true
+          },
+          "go": "Close your hand",
+          "goRes": "He closes his fingers around hers. For once Buling has no patter. She just looks at him and then leans in.",
+          "wait": "\"What does it say?\"",
+          "waitRes": "\"It says...\" She snaps her fingers and plays it off. \"Come back with a donation and I'll tell you!\""
+        },
+        "3": {
+          "title": "Lucky Night",
+          "text": "Buling drags Sam up to the roof with a blanket and a bottle. \"Tonight the stars are auspicious,\" she insists. \"The lucky hour! Perfect for a big decision.\" Her swagger has a crack in it. \"My big decision is you. Don't make me do the whole fortune-teller speech, it's embarrassing.\" The air smells of night jasmine and old wood. She keeps tugging the blanket straight, talking too fast, a talisman clutched in her fist.",
+          "image": {
+            "comp": "spreading a blanket on a roof beneath the stars, grinning but with a hint of nervous bluster",
+            "setting": "rooftop under a spangle of stars with a lantern and small bottle",
+            "sam": true
+          },
+          "go": "Say yes",
+          "goRes": "She whoops, then goes soft and shy when he reaches for her. Under the lucky stars she turns out to be a very earnest sort of trickster.",
+          "wait": "\"Not tonight.\"",
+          "waitRes": "\"Pah! The stars are patient.\" She waves a talisman. \"But I'll bribe them. You'll see.\""
+        },
+        "jump": {
+          "title": "Misplaced Talisman",
+          "text": "Buling is hanging a talisman above Sam's door and wobbles on the stool. He steadies her, hands at her waist. She freezes, mid-nail. \"...Wow, that's embarrassing. I'm supposed to be the smooth one.\" She looks down, red-faced. \"Okay, impulse: I'm kissing you now.\" The hallway smells of paint and pine. The charm swings from its nail, and she keeps smoothing it flat, then smoothing it again.",
+          "image": {
+            "comp": "wobbling on a stool with a hammer and talisman, looking down at him, red-faced mid-confession",
+            "setting": "hallway outside Sam's door with a stool and a hanging charm",
+            "sam": true
+          },
+          "go": "Kiss her",
+          "goRes": "She nearly falls off the stool, he catches her, and they both laugh until the kiss resumes.",
+          "wait": "\"Careful up there.\"",
+          "waitRes": "\"I'm always careful!\" She tumbles down, giggling, and brandishes the hammer. \"Just not about you.\""
+        }
+      }
+    },
+    "suoming": {
+      "events": {
+        "1": {
+          "title": "Audit",
+          "text": "Suoming sweeps through the ledger room with a clipboard, finding fault in the second line of every sheet. Sam, the unlucky owner, gets a lecture on tidy bookkeeping. \"...Yet, the staff speak well of you,\" she concedes, tapping her pen. \"I find that irritating.\" For a moment she looks straight at his mouth, then rigidly at the wall. Her pen taps the clipboard in a steady rhythm. Not a single paper in the room is out of place, except for the ones she has just disarranged.",
+          "image": {
+            "comp": "clipboard in hand, stern look, eyes darting to his mouth then away, small flush",
+            "setting": "ledger room with shelves of folders and a tidy desk",
+            "sam": true
+          },
+          "go": "Offer to start over",
+          "goRes": "She huffs, stamps her clipboard against his chest, and kisses him crisply. \"Procedural. Do not draw conclusions.\"",
+          "wait": "\"Maybe later.\"",
+          "waitRes": "\"A sensible deferral.\" She makes a note on her clipboard, then crosses it out. \"Noted. Reluctantly.\""
+        },
+        "2": {
+          "title": "Two Centuries",
+          "text": "Suoming stops pretending to inspect and sits on the edge of the writing desk. \"I have lived two hundred years and watched everything change but myself,\" she says. \"People age past me. I have learned not to attach.\" A pause. \"You are annoying in that you make me forget this.\" The lamp throws her shadow long against the shelves. She looks young, and that is exactly what troubles her, and she says so by saying nothing.",
+          "image": {
+            "comp": "seated on the edge of a desk with her clipboard in her lap, honest and a little lost",
+            "setting": "quiet office at dusk with files and a lamp",
+            "sam": true
+          },
+          "go": "Hold her hand",
+          "goRes": "She lets him. After a time she turns her palm up and takes the long, slow step she has avoided for a century.",
+          "wait": "\"We don't have to.\"",
+          "waitRes": "\"No. We don't.\" She straightens. \"But I am considering it. Do not take offense at deliberation.\""
+        },
+        "3": {
+          "title": "Seal Removed",
+          "text": "Suoming comes to Sam's room without the clipboard and without the stern face, looking oddly young. \"The seal keeps me looking twenty-five. It does not keep me from being afraid,\" she says. \"I have not let anyone close in a hundred years. I would like to try, once, with you.\" She sets her jacket down carefully, like a flag lowered. The room is orderly, just as she would leave it. She stands with her heels together and her hands clasped, like a soldier awaiting an order.",
+          "image": {
+            "comp": "standing in the doorway without her clipboard, jacket folded in her hands, vulnerable and resolute",
+            "setting": "Sam's room, quiet and tidy with a small lamp",
+            "sam": true
+          },
+          "go": "Let her try",
+          "goRes": "He is as careful as she needs him to be, and she is braver than she expected. At dawn she's already drafted three reasons to stay.",
+          "wait": "\"You're sure?\"",
+          "waitRes": "\"I am never unsure.\" A faint blush. \"I am merely... not ready. Wait for me. I am worth the wait.\""
+        },
+        "jump": {
+          "title": "Ministry Review",
+          "text": "Suoming has discovered a mistake in her own audit and she is furious at herself. Sam finds her hunched over the report, ink on her cheek, shoulders tight. He reaches out and wipes it away. She goes completely still. \"...You should not do that.\" She doesn't pull away. \"Do it again.\" The ink is smeared across her cheekbone, and the room is utterly silent. A moth circles the lamp, and her breath catches in time.",
+          "image": {
+            "comp": "hunched over papers with ink on her cheek, looking up at him wide-eyed and frozen",
+            "setting": "ledger room late at night with a dim lamp",
+            "sam": true
+          },
+          "go": "Wipe her cheek again",
+          "goRes": "She exhales, pulls him down by the lapel, and kisses him with startling sharpness, then looks horrified and delighted.",
+          "wait": "\"Take a break.\"",
+          "waitRes": "\"I do not take breaks.\" But she sets down the pen. \"...I will take five minutes. Sit with me.\""
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,156 @@
+{
+  "emily": [
+    {
+      "title": "Username",
+      "scene": "sam_date",
+      "text": "Emily asks Sam to meet her on the bridge over the canal after close. She has clearly rehearsed this, and has also clearly forgotten every word, twisting the strap of her satchel as lamplight shivers on the water below. \"Okay. So. This is going to sound insane,\" she says, and then she says his old forum username out loud, in a world where nobody should know it. Her wolf ears are flat against her hair, and her tail is wrapped around her own leg. \"Please tell me I didn't just say a random string of letters to a stranger.\"",
+      "choices": [
+        {
+          "label": "Say \"Shadowkin?\"",
+          "t": 5,
+          "m": 8,
+          "res": "She makes a noise he has only ever seen typed as a keysmash. Then she grabs his sleeve with both hands and holds on, tail thumping the bridge stones, until the lamp oil needs a refill."
+        },
+        {
+          "label": "\"You still owe me the end of that campaign.\"",
+          "t": 4,
+          "m": 7,
+          "res": "\"It was YOUR turn to post!\" she says, outraged, ears snapping upright, and then she starts crying and laughing at the same time and has to take off her glasses to wipe them."
+        }
+      ],
+      "image": {
+        "comp": "standing on a canal bridge at night, hands clasped, wolf ears flat, glasses, hopeful and terrified smile",
+        "setting": "stone bridge over a canal, lamplight on the water",
+        "sam": true
+      }
+    },
+    {
+      "title": "Bath Lag",
+      "scene": "shower",
+      "text": "Sam opens the washroom door and finds Emily in the tub, a notebook balanced on the rim, glasses fogged, one damp wolf ear flopped sideways as she mutters in what is unmistakably her old character's gravelly narrator voice. \"And then the wolf drew her blade and said...\" She looks up. Her tail slaps the water, soaking the notebook's edge. \"I was drafting dialogue,\" she says, mortified. \"Out loud. Like a normal person.\"",
+      "choices": [
+        {
+          "label": "Apologize and back out",
+          "t": 2,
+          "m": 3,
+          "res": "\"It's fine!\" she squeaks. That evening a note slides under his door: brb dying of embarrassment, signed with a tiny wolf doodle chewing its own tail."
+        },
+        {
+          "label": "Answer in your old character's voice",
+          "t": 3,
+          "m": 7,
+          "l": 1,
+          "res": "She stares, then answers back in character, and they finish the whole scene through the door with Sam politely facing the hallway. She laughs so hard the water sloshes, and the narrator voice cracks completely."
+        },
+        {
+          "label": "Stand there, flustered",
+          "t": 1,
+          "m": 3,
+          "l": 2,
+          "res": "Her ears go straight back. \"Lag,\" she whispers, clutching the notebook. \"You're lagging. Please reconnect.\" He tries, fails, and she giggles into her hands until her glasses fall in the water."
+        }
+      ],
+      "image": {
+        "comp": "in a tub with a notebook on the rim, fogged glasses, wolf ears perked up in surprise, tail splashing",
+        "setting": "steamy wooden washroom",
+        "sam": false,
+        "towel": true
+      }
+    },
+    {
+      "title": "Session Zero",
+      "scene": "casual",
+      "text": "Emily talks Sam into running a campaign again, on paper, in the lounge after close. She has carved dice faces into wooden cubes and written character sheets for both of them in tidy forum-style headers, her tail sweeping the rug as she sets out snacks. It's the same story they abandoned years ago, picked up mid-scene. The fire pops. Halfway through the session, her character says something to his that isn't in any of the old logs.",
+      "choices": [
+        {
+          "label": "Answer in character",
+          "t": 5,
+          "m": 8,
+          "res": "He does. She drops a die, picks it up, drops it again, and finally hides behind her character sheet with only the tips of her ears showing, quivering."
+        },
+        {
+          "label": "Ask, out of character, if she meant it",
+          "t": 4,
+          "m": 6,
+          "l": 1,
+          "res": "\"OOC?\" she says, very small, ears dipping behind the paper. \"...Yeah. OOC, I meant it.\" The dice sit forgotten between them."
+        }
+      ],
+      "image": {
+        "comp": "sitting cross-legged on a sofa with hand-drawn character sheets and wooden dice, peeking over a sheet with a shy smile, tail swishing",
+        "setting": "cozy lounge after close, fireplace glow",
+        "sam": true
+      }
+    },
+    {
+      "title": "Last Seen",
+      "scene": "portrait",
+      "text": "Emily shows Sam a page of her notebook where she copied out, from memory, the last thing she ever sent him on the forum: \"you there?\" It was never answered. The pencil marks are smudged where her thumb has rubbed them for months. \"I kept checking for three weeks,\" she says quietly, ears drooped. \"Then I woke up here. Sometimes I think if I fall asleep wrong, I'll wake up back in my dorm and you'll still be 'last seen' forever.\"",
+      "choices": [
+        {
+          "label": "\"I'm here.\"",
+          "t": 5,
+          "m": 6,
+          "res": "She reads his face like a chat window, waiting for the typing indicator. Then she nods, and holds his sleeve for a long time anyway, just to be sure it's real."
+        },
+        {
+          "label": "Write the reply under it",
+          "t": 6,
+          "m": 5,
+          "res": "He takes her pencil and writes under her line: yeah. sorry for the lag. She presses the notebook to her chest, her tail thumping once, and laughs wetly into the cover."
+        },
+        {
+          "label": "\"Let's not think about it.\"",
+          "t": -3,
+          "m": -6,
+          "res": "\"Right. Sure.\" Her ears droop and her tail goes still. She spends the evening rereading her notebook alone by the fire, and the page stays dry only by effort."
+        }
+      ],
+      "image": {
+        "comp": "holding an open notebook toward him, ears drooped, tail low, glasses, fear in her eyes",
+        "setting": "lamp-lit lounge corner at night",
+        "sam": true
+      }
+    },
+    {
+      "title": "New Constellations",
+      "scene": "sam_date",
+      "text": "Under a full moon Emily takes Sam up onto the roof with a blanket and her notebook. None of the stars match the ones back home, so she has been naming the constellations after their old campaign: the Cursed Lute, the Bard Who Never Posted, the Wolf and the Idiot. She lets her ears and tail relax, finally, at ease in the silver light. \"I figured,\" she says, \"if we're stuck here, we should at least have our own sky.\"",
+      "choices": [
+        {
+          "label": "Name one together",
+          "t": 4,
+          "m": 8,
+          "res": "They argue happily for an hour over a single cluster of stars and settle on The Streak. She writes it down in her best forum-header lettering, tail wagging the blanket into a heap."
+        },
+        {
+          "label": "Ask which one is her",
+          "t": 3,
+          "m": 6,
+          "l": 1,
+          "res": "She points to two stars close together and doesn't explain. She tucks her ears under his chin for a moment, and she doesn't have to."
+        }
+      ],
+      "image": {
+        "comp": "lying on a blanket on a rooftop in moonlight pointing at the stars, notebook open, wolf ears relaxed, glancing at him with soft eyes",
+        "setting": "slate rooftop under a full moon, a lantern beside her",
+        "sam": true
+      }
+    },
+    {
+      "title": "More Than a Username",
+      "scene": "final",
+      "text": "Emily stops in the doorway of Sam's room, notebook hugged to her chest, tail wrapped around her own ankle. \"For six years you were a username,\" she says. \"My favorite one. I never wanted more than that, and then I got a whole person, and it turns out I do.\" She is trembling, ears flat. \"I'm bad at saying things out loud. So, short version.\" She takes his hand, and her grip is much surer than her voice. \"Stay online.\" The door closes behind them.",
+      "choices": [
+        {"label":"Say yes","t":6,"m":12,"res":""},
+        {
+          "label": "Not yet",
+          "t": 1,
+          "m": -3,
+          "hold": true,
+          "res": "Emily nods, ears wobbling. \"I can wait,\" she says, clutching the notebook. \"Just don't go idle on me.\""
+        }
+      ]
+    }
+  ]
+}

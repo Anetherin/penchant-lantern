@@ -1,0 +1,163 @@
+{
+  "packs": {
+    "shantae": {
+      "label": "Shantae",
+      "characters": {
+        "shantae": {
+          "job": "dancer",
+          "name": "Shantae",
+          "race": "spirit",
+          "age": 26,
+          "personality": "Cheerful and teasing",
+          "traits": ["Eager","Loyal"],
+          "style": "Exotic",
+          "favColor": "purple",
+          "fav": "massage_get",
+          "dislike": "missionary",
+          "lovers": "cowgirl",
+          "backstory": "A half-genie guardian from a seaside town of pirates and potions, Shantae has saved her home more times than she can count and still found time to dance. She came to Hollowmere on a magical errand that fizzled out, and stayed once she saw the stage. She is cheerful, impulsive and always ready to whip her hair around.",
+          "design": {
+            "hairStyle": "extremely long high ponytail reaching her ankles",
+            "hairColor": "purple",
+            "eyes": "blue",
+            "skin": "tan",
+            "features": "pointed ears, gold hoop earrings and a slim gold circlet"
+          },
+          "under": "sheer",
+          "underColor": "pink",
+          "stats": {"beauty":82,"charm":78,"charisma":76,"refinement":45,"wits":55,"stamina":68,"strength":35,"agility":80},
+          "tech": {"service":30,"dance":70,"bar":25,"combat":30,"manage":15},
+          "actSkill": 25,
+          "popularity": 24,
+          "lewd": 38,
+          "trust": 26,
+          "outfits": {
+            "sig_shantae": {
+              "label": "Half-genie dancer",
+              "style": "Exotic",
+              "prompt": "a magenta bandeau top and sheer purple harem pants with a gold waist chain, bare feet",
+              "bonus": {"dancer":1.3,"adventurer":1.1}
+            },
+            "sp_shantae": {
+              "label": "Veiled dancer",
+              "style": "Exotic",
+              "prompt": "a gem-trimmed turquoise and gold dancer set with a sheer veil skirt",
+              "bonus": {"dancer":1.2,"noble":1.2}
+            }
+          },
+          "bonds": {
+            "risky": {"v":-30,"note":"Her longtime rival, forever scheming to steal her magic."},
+            "rotty": {"v":45,"kind":"comrades","note":"Fast friends who share every adventure."}
+          },
+          "jobs": {"likes":["dancer","promoter"],"dislikes":["security"]},
+          "body": {"bust":"medium","height":"average","figure":"athletic"},
+          "unique": {
+            "name": "Belly Dance",
+            "desc": "Her hair whips and her hips sway, and every audience falls under her spell.",
+            "fx": {"jobBonus":{"dancer":1.25},"appeal":3}
+          }
+        },
+        "risky": {
+          "job": "madame",
+          "name": "Risky Boots",
+          "title": "Captain",
+          "race": "human",
+          "age": 37,
+          "personality": "Scheming and charming",
+          "traits": ["Greedy","Ambitious"],
+          "style": "Revealing",
+          "favColor": "purple",
+          "fav": "cowgirl",
+          "dislike": "missionary",
+          "lovers": "doggy",
+          "backstory": "The self-styled queen of the seven seas, Risky Boots lost her ship in a gamble she insists was rigged and washed up in Hollowmere with a plan and a grudge. She fully intends to steal the house out from under its owner, but the profits keep making her stay another week. She calls it patience.",
+          "design": {
+            "hairStyle": "long wavy black hair with side-swept bangs",
+            "hairColor": "black",
+            "eyes": "green",
+            "skin": "pale blue",
+            "features": "dark lipstick and a wicked smirk",
+            "gear": "a skull-badged tricorn hat, a cutlass and a long coat of purple velvet"
+          },
+          "under": "corset",
+          "underColor": "black",
+          "stats": {"beauty":85,"charm":68,"charisma":76,"refinement":58,"wits":72,"stamina":58,"strength":48,"agility":62},
+          "tech": {"service":30,"dance":40,"bar":35,"combat":60,"manage":65},
+          "actSkill": 20,
+          "popularity": 14,
+          "lewd": 52,
+          "trust": 16,
+          "outfits": {
+            "sig_risky": {
+              "label": "Pirate captain",
+              "style": "Revealing",
+              "prompt": "a purple corset bodice, a short black skirt, thigh-high leather boots and a studded belt",
+              "bonus": {"madame":1.3,"adventurer":1.2}
+            },
+            "sp_risky": {
+              "label": "Captain's gown",
+              "style": "Elegant",
+              "prompt": "a dark crimson silk gown with gold trim and a plunging neckline",
+              "bonus": {"noble":1.2,"merchant":1.2}
+            }
+          },
+          "bonds": {"shantae":{"v":-30,"note":"The half-genie who keeps foiling her schemes."}},
+          "jobs": {"likes":["madame","security"],"dislikes":["maid"]},
+          "body": {"bust":"large","height":"tall","figure":"curvy"},
+          "unique": {"name":"Dread Captain","desc":"A born schemer who commands attention and a slice of every deal.","fx":{"clientFee":1.08,"promote":1.2}}
+        },
+        "rotty": {
+          "job": "host",
+          "name": "Rottytops",
+          "race": "spirit",
+          "age": 25,
+          "personality": "Cheerful and teasing",
+          "traits": ["Eager","Night Owl"],
+          "style": "Cute",
+          "favColor": "green",
+          "fav": "kiss",
+          "dislike": "manual_give",
+          "lovers": "missionary",
+          "backstory": "A cheerful zombie girl from a ramshackle seaside town, Rottytops refuses to let a little thing like being dead slow her down. She wandered into Hollowmere following the smell of a good party and decided to stay for the late shifts. Nobody has ever caught her in a bad mood, even at dawn.",
+          "design": {
+            "hairStyle": "short and messy",
+            "hairColor": "green",
+            "eyes": "red",
+            "skin": "green",
+            "features": "visible stitches at her neck and wrists and a gap-toothed grin"
+          },
+          "under": "plain",
+          "underColor": "pink",
+          "stats": {"beauty":66,"charm":70,"charisma":70,"refinement":36,"wits":45,"stamina":80,"strength":40,"agility":60},
+          "tech": {"service":35,"dance":25,"bar":30,"combat":25,"manage":15},
+          "actSkill": 20,
+          "popularity": 10,
+          "lewd": 40,
+          "trust": 30,
+          "outfits": {
+            "sig_rotty": {
+              "label": "Patchwork tunic",
+              "style": "Cute",
+              "prompt": "a patched striped crop tunic, a ragged short skirt and mismatched stockings",
+              "bonus": {"commoner":1.2,"attendant":1.15}
+            },
+            "sp_rotty": {
+              "label": "Gothic gown",
+              "style": "Exotic",
+              "prompt": "a tattered black lace gown with sheer sleeves and ribbons",
+              "bonus": {"noble":1.15,"courtesan":1.1}
+            }
+          },
+          "bonds": {"shantae":{"v":45,"kind":"comrades","note":"Fast friends who share every adventure."}},
+          "jobs": {"likes":["host","attendant"],"dislikes":["security"]},
+          "body": {"bust":"medium","height":"short","figure":"soft"},
+          "unique": {
+            "name": "Undead Constitution",
+            "desc": "She never seems to tire, and her sunny mood keeps the night shift lively.",
+            "fx": {"maxEnergy":12,"jobBonus":{"host":1.1}}
+          }
+        }
+      }
+    }
+  }
+}

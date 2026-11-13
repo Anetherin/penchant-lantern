@@ -1,0 +1,150 @@
+{
+  "lara": [
+    {
+      "title": "The Step Below",
+      "scene": "sam_date",
+      "text": "Lara finds Sam on the back steps after close, a lantern guttering beside him, and sits one step below, knees together, hands folded in her lap like a child waiting outside an office. In a low, careful voice she tells him how she tracked rumors of a stranger in a grey hoodie across three provinces, sleeping in stables and chapels, her black coat getting shabbier with every road. \"I couldn't stay anywhere you weren't,\" she says. \"I know that's not healthy. I know.\" She is looking at his boots, not his face, and her dark lipstick is chewed at the corner.",
+      "choices": [
+        {
+          "label": "\"I'm really glad you found me.\"",
+          "t": 5,
+          "m": 8,
+          "res": "She lets out a long, shaky breath, as if she's been holding it since Alder Street. A moth circles the lantern, and she watches it instead of crying, which for Lara is the same thing."
+        },
+        {
+          "label": "\"You're allowed a life of your own, Lara.\"",
+          "t": 4,
+          "m": 3,
+          "res": "She nods slowly, as though it's a lesson she'll need to learn more than once. She doesn't leave, but she looks out at the dark street instead of at him, and he can almost hear her turning the idea over, one careful page at a time."
+        }
+      ],
+      "image": {
+        "comp": "sitting one step below him on a back staircase at night, hands folded in her lap, looking up at him with dark kohl-lined eyes",
+        "setting": "back steps of a lantern-lit inn at night",
+        "sam": true
+      }
+    },
+    {
+      "title": "Can't Sleep",
+      "scene": "walkin",
+      "text": "At midnight Lara carries fresh towels to the washroom because she couldn't sleep, and walks in on Sam in the tub. She freezes in the doorway, arms full of linen, the stack held up to hide everything above her nose, lace cuffs trembling. Steam curls around her black dress. \"I'm so sorry. I'm so sorry. I'm just going to... stand here.\" She does not move. A drip falls from the tap, loud as a clock in the silence, and the towels creep a little higher.",
+      "choices": [
+        {
+          "label": "Laugh and ask her to leave the towels",
+          "t": 2,
+          "m": 6,
+          "res": "She sets them down with enormous, ceremonial care and retreats, and he hears her laughing, once, short and surprised, in the empty hall."
+        },
+        {
+          "label": "\"Stay and talk, if you can't sleep.\"",
+          "t": 4,
+          "m": 8,
+          "l": 2,
+          "res": "She sits on the edge of the tub with her back turned and tells him about the night noises of the orphanage, the pipes, the coughing, the matron's keys. By the end she's leaning against the wood, nearly asleep, her voice gone soft and slow."
+        },
+        {
+          "label": "Send her to bed",
+          "t": 1,
+          "m": -2,
+          "res": "\"Of course.\" She goes at once, silent as a cat. In the morning she apologizes four times, and the fourth is to the towel rack."
+        }
+      ],
+      "image": {
+        "comp": "frozen in a washroom doorway, arms full of folded towels hiding most of her face, mortified",
+        "setting": "steamy wooden washroom at night",
+        "sam": false,
+        "towel": true
+      }
+    },
+    {
+      "title": "A Lamp in the Window",
+      "scene": "casual",
+      "text": "Whenever Sam is out, Lara leaves a lamp lit in the courtyard window. Tonight he's out very late, and a cold fog has settled over Hollowmere. When he returns she is sitting under that lamp in her black shawl, a book open on her knee and not a single page turned, moths drifting around the glass. She stands, then doesn't know what to do with her hands. \"I wasn't waiting,\" she says. \"I was keeping it warm.\"",
+      "choices": [
+        {
+          "label": "Sit with her",
+          "t": 5,
+          "m": 8,
+          "res": "They share the bench and the shawl, which smells of lavender and old paper. She leans against his shoulder and, for once, doesn't ask whether he's tired of her."
+        },
+        {
+          "label": "\"Come out with me next time.\"",
+          "t": 4,
+          "m": 4,
+          "res": "She says \"maybe,\" very softly, and tugs the shawl closer. It is better than the \"no\" she'd have given last month, and they both know it."
+        }
+      ],
+      "image": {
+        "comp": "sitting under a courtyard lamp in a black shawl with a book, looking up as he returns",
+        "setting": "lantern-lit courtyard at night, moths around the light",
+        "sam": true
+      }
+    },
+    {
+      "title": "Don't Go",
+      "scene": "portrait",
+      "text": "The house needs Sam in the capital for three days to settle a supplier dispute. Lara hears it in the corridor, a stack of folded sheets in her arms, and goes white as the linen. She follows him to his room and grips the doorframe so hard her knuckles blanch. \"Everyone who says they'll come back... I know how this goes, Sam. I know.\" Her eyes are enormous and perfectly dry. She doesn't cry. That is worse.",
+      "choices": [
+        {
+          "label": "\"I'll never leave you.\"",
+          "t": 2,
+          "m": 3,
+          "res": "It's what she wants to hear. It isn't quite true, and both of them know it. She nods, holds on a little too tightly when he hugs her, and the three days are very long."
+        },
+        {
+          "label": "\"I can't promise forever. I promise I'll come back.\"",
+          "t": 6,
+          "m": 4,
+          "res": "She cries, but it's a different kind, the kind that loosens something. She presses her room key into his palm, warm from her fist. \"So you have to return it,\" she whispers."
+        },
+        {
+          "label": "Hand her the linen schedule to run while you're gone",
+          "grow": {"service":5},
+          "t": 5,
+          "m": 6,
+          "res": "She runs the house for three days with ledgers and lists and not a single crooked pillow. When he returns, she meets him at the door, proud in a way that has nothing to do with him, and that is exactly the point."
+        }
+      ],
+      "image": {"comp":"gripping a doorframe with both hands, pale, dark eyes wide, ponytail swinging","setting":"dim inn corridor at night","sam":true}
+    },
+    {
+      "title": "Midnight Garden",
+      "scene": "sam_date",
+      "text": "Lara invites Sam to the courtyard at midnight, as though she'd thought hard about it and decided to ask first. Under the moon, in a corner no one else bothered with, she has planted a patch of white flowers that glow faintly, like spilled milk-light. She shows him the little paths of pebbles she laid, the watering can with her initials scratched in. She says it's hers, and that she'd like him to see it. \"I made something,\" she says. \"Even if you weren't here.\"",
+      "choices": [
+        {
+          "label": "Tell her it's beautiful, and mean it",
+          "t": 5,
+          "m": 8,
+          "res": "She laughs, shaky and surprised, and tucks a glowing blossom behind his ear. \"Now you're in the garden too,\" she says, and doesn't look away this time."
+        },
+        {
+          "label": "Plant the next row together",
+          "t": 4,
+          "m": 6,
+          "res": "She teaches him to space the seeds with two fingers' width between them. He does it wrong, over and over. She lets him, because it's his row now, and kneels beside it in the dirt in her good black dress."
+        }
+      ],
+      "image": {
+        "comp": "kneeling in a patch of glowing white night flowers, offering a small blossom up to him, shy smile",
+        "setting": "moonlit courtyard garden of pale night-blooming flowers",
+        "sam": true
+      }
+    },
+    {
+      "title": "Being Left",
+      "scene": "final",
+      "text": "On the roof, under a clear sky, Lara stands with her hands wrapped in her shawl and says it slowly, each word chosen. \"I used to think loving someone meant never being left. I think it's closer to... being able to be left, and still be me.\" Her voice steadies as she goes. \"I want you because I choose you. Not because I'm afraid.\" She kisses him, and for the first time in her life she is the one who leads him inside, and the door closes behind them.",
+      "choices": [
+        {"label":"Say yes","t":6,"m":12,"res":""},
+        {
+          "label": "Not yet",
+          "t": 1,
+          "m": -3,
+          "hold": true,
+          "res": "Lara nods, and this time it doesn't look like a door closing. \"I can wait,\" she says, steady. \"I'll keep the lamp lit. Don't make it too long.\""
+        }
+      ]
+    }
+  ]
+}

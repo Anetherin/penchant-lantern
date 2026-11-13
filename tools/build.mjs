@@ -3,12 +3,15 @@
 // Useful as a fallback: paste the result straight into Perchance's HTML panel (no GitHub Pages needed).
 import fs from 'node:fs';
 import path from 'node:path';
+import { loadData, isSplit } from './data.mjs';
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
 const loader = fs.readFileSync(path.join(root, 'loader.js'), 'utf8');
 const files = [...loader.matchAll(/^\s*'(js\/[^']+\.js)',?$/gm)].map(m => m[1]);
 const markup = [...loader.match(/var MARKUP = \[([\s\S]*?)\]\.join/)[1].matchAll(/'((?:[^'\\]|\\.)*)'/g)].map(m => m[1].replace(/\\'/g, "'")).join('\n');
 const dataNames = [...loader.match(/var DATA_FILES = \[([^\]]*)\]/)[1].matchAll(/'([^']+)'/g)].map(m => m[1]);
-const data = Object.fromEntries(dataNames.map(n => [n, JSON.parse(fs.readFileSync(path.join(root, 'data', n + '.json'), 'utf8'))]));
+const conflicts = [];
+const data = Object.fromEntries(dataNames.map(n => { const r = loadData(n); conflicts.push(...r.conflicts); return [n, r.data]; }));
+if (conflicts.length) { console.error('Data defined in more than one part (fix before building):\n  ' + conflicts.join('\n  ')); process.exit(1); }
 const css = fs.readFileSync(path.join(root, 'css/style.css'), 'utf8');
 const js = files.map(f => `/* ---- ${f} ---- */\n` + fs.readFileSync(path.join(root, f), 'utf8')).join('\n');
 const html = `<!DOCTYPE html>
@@ -24,6 +27,7 @@ ${css}</style>
 <body>
 ${markup}
 <script>
+window.HOLLOWMERE_DATA_DIRS = ${JSON.stringify(dataNames.filter(isSplit))};
 window.PL_DATA = ${JSON.stringify(data).replace(/<\//g, '<\\/')};
 window.PL_PLUGINS = { t2i: (typeof t2i!=='undefined')?t2i:null, ai: (typeof ai!=='undefined')?ai:null };
 </script>

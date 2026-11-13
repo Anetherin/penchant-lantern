@@ -1,0 +1,593 @@
+{
+  "solo": {
+    "_note": "Report line when a lady at max lust spends part of her night alone in her room instead. Shown in the weekly report.",
+    "_default": [
+      "{name} disappeared to her room early one night and didn't come back down for a long while. She seemed a lot calmer afterward.",
+      "{name} locked her door for most of an evening. She came out flushed, relaxed, and tired."
+    ],
+    "Shy but earnest": [
+      "{name} excused herself early one night, too embarrassed to say why. She avoided everyone's eyes at breakfast.",
+      "{name} spent an evening shut in her room with the curtains drawn. She insists she was reading."
+    ],
+    "Bookish and curious": [
+      "{name} took a novel of the steamier sort up to her room and was not seen again that night.",
+      "{name} called it 'research' and locked her door. She came out with a very satisfied look and ink on her fingers."
+    ],
+    "Mysterious and aloof": [
+      "{name} vanished one evening without explanation. When she returned, she was smiling to herself and offered none."
+    ],
+    "Proud and sharp-tongued": [
+      "{name} decided she didn't need anyone's help with her problem, thank you, and took the evening to herself.",
+      "{name} snapped at two clients, then went to her room and slammed the door. An hour later she came out in a far better mood."
+    ],
+    "Laid-back and lazy": [
+      "{name} figured the easiest solution was the one that didn't involve getting out of bed. She skipped most of one evening."
+    ],
+    "Calm and elegant": [
+      "{name} retired early one evening for 'a long bath'. It was a very long bath."
+    ]
+  },
+  "modest": {
+    "_note": "Shown on her sheet when she has the Modest trait.",
+    "_default": [
+      "She'd rather keep her clothes on. When things get intimate, they get pulled aside instead, though the lewder she gets (and the more she trusts you), the more comes off.",
+      "She keeps her clothing on as long as she can, and she's quietly flustered if it slips. With you, though, she lets the bits come off by degrees, one at a time, when she's ready.",
+      "A towel, a sleeve, a half-drawn curtain: she always has something between herself and the lamplight. The more she trusts you, the thinner the barriers get.",
+      "She prefers to keep a layer or two on, thank you, and you've learned not to tease about it. Over time, with enough warmth and enough patience, she grows braver.",
+      "She's shy about being seen, so the lamps are dimmed and the blankets drawn up. When she finally lets one fall, it feels like a gift.",
+      "Her clothes stay mostly on, tugged aside rather than shed. The more comfortable she becomes, the more she reveals, and you notice every inch of progress with a quiet, private joy."
+    ]
+  },
+  "again": {
+    "_default": [
+      "{name} is still breathing hard, and she hasn't let go of you. \"Again,\" she says. It isn't really a question.",
+      "{name} props herself up on one elbow and gives you a long, considering look. Apparently you're not finished.",
+      "\"Don't you dare fall asleep,\" {name} whispers, pulling you back down against her. The lamp is guttering and the night is long, and she isn't remotely finished with you.",
+      "{name} gives a slow, satisfied sigh, stretches like a cat, and then turns that sleepy, dangerous smile on you again. \"That was lovely,\" she says. \"I'd like to do it properly now.\"",
+      "You're reaching for the blanket when {name} catches your wrist and shakes her head, smiling. Her cheeks are flushed, her hair is wild, and she looks much too pleased with herself to stop.",
+      "For a long moment the only sounds are the rain and your breathing. Then {name} laughs softly, rolls over, and tugs you closer. \"One more,\" she says. \"I might even mean it.\""
+    ]
+  },
+  "again_beastkin": {
+    "_default": [
+      "{name}'s tail hasn't stopped moving. She nuzzles into your neck, warm and insistent, and makes a small, needy sound that says she's nowhere near done.",
+      "{name} is up on her knees before you've caught your breath, ears forward, eyes bright. \"More,\" she says, and climbs back into your lap.",
+      "{name}'s ears flick toward you, and her tail curls around your leg and holds on. She purrs, low and rumbling, and presses her forehead to your chest. It's clear the night isn't over until she says so.",
+      "A low, contented rumble fills the room as {name} nuzzles into the crook of your neck, tail thumping slowly against the sheets. She's warm, and pleased, and completely unwilling to let you go anywhere.",
+      "{name}'s tail sweeps across the blanket in a long, lazy arc, and her eyes shine gold in the lamplight. \"Mm,\" she says, and climbs on top of you with unshakable purpose. You give up the idea of sleeping altogether.",
+      "Her ears twitch at every sound, but {name} is fixed on you alone, nosing at your jaw, her breath warm and fast. \"Again,\" she says, in the plain way of someone who has no intention of discussing it."
+    ]
+  },
+  "late_visit": {
+    "_note": "Opening line when a lady knocks on your door late at night.",
+    "_default": [
+      "You're doing the books by candlelight when {name} knocks. She hasn't seen a single client all week, and she's clearly been thinking about something. \"Busy?\"",
+      "{name} appears in your doorway in her nightclothes, holding two cups of tea she clearly has no intention of drinking.",
+      "A note slides under your door: \"Still awake? Come find out.\" It's in {name}'s handwriting.",
+      "The house is quiet, the corridor lamps burning low, when you hear the faintest scratch at your door. It's {name}, barefoot, with a shawl over her shoulders and a look that says she wasn't going to knock but couldn't help it. \"Can I come in?\" she asks.",
+      "You're half asleep over a stack of invoices when {name} lets herself in, carrying a plate of leftover dumplings. \"You missed supper,\" she says, setting it down. She doesn't leave, and she doesn't pretend that the dumplings were the only reason she came.",
+      "A soft knock, then another, a little braver. {name} stands in your doorway with a candle, the flame bending in the draft, and her hair loose in a way you haven't seen before. \"I couldn't sleep,\" she says. \"I thought you might be awake too.\""
+    ],
+    "Shy but earnest": [
+      "There's a very quiet knock. {name} is standing in the hall, red to the ears, and has clearly rehearsed what she wants to say. She forgets all of it."
+    ],
+    "Bold and flirtatious": [
+      "{name} doesn't knock. She just leans in your doorway until you notice her. \"You work too hard, boss.\""
+    ]
+  },
+  "sleepin_evening": {
+    "_note": "Opening line when the lady sharing your bed in the Owner's Suite proposes as you turn in. Edit freely.",
+    "_default": [
+      "The lamps are low in the Owner's Suite. {name} sits on the edge of the bed, unpinning her hair, and watches you over her shoulder. \"We could just sleep,\" she says. \"Or not.\"",
+      "{name} slides under the blanket and doesn't turn her back on you tonight. Her hand finds yours. \"Stay up a little longer,\" she murmurs.",
+      "\"Long day,\" {name} says, curling against your side in the dark. Her fingers start tracing slow circles on your chest. \"I have a better idea than sleeping.\"",
+      "The Owner's Suite is warm, the shutters latched against the night wind, and {name} is brushing out her hair at the bedside. She catches your reflection in the dark window and doesn't look away. \"I'm not tired,\" she says, setting down the brush. \"Are you?\"",
+      "{name} blows out the last lamp but one and slips beneath the blanket, her feet cold and her smile warm. Rain whispers on the roof, and she rolls toward you. \"Tell me about your day,\" she says. \"Then I'll tell you about mine, and we'll see.\"",
+      "You're mid-yawn when {name} puts a finger over your mouth. The room is lit by a single candle and the pale spill of the two moons through the curtain. \"That yawn,\" she says, \"is a lie. I can tell.\""
+    ]
+  },
+  "sleepin_morning": {
+    "_note": "Opening line when the lady sharing your bed wakes you in the morning with ideas of her own. Edit freely.",
+    "_default": [
+      "You wake to gray morning light and {name} propped on one elbow beside you, smiling like she's been awake a while. \"Good morning,\" she says, and kisses you slowly.",
+      "Something warm presses against your back, and {name}'s voice is a sleepy whisper at your ear. \"Don't get up yet. I've got plans for you.\"",
+      "{name} has already pulled the covers over both your heads. \"The house can wait,\" she says, \"for a little while.\"",
+      "A bird is arguing with itself outside the window and the light is the soft pink of early dawn. {name} is already awake, tracing the line of your jaw with one finger. \"Don't say anything,\" she murmurs. \"Just stay.\"",
+      "The bed is warm, the house is still asleep, and {name} has her cheek against your shoulder, listening to you breathe. When you stir, she lifts her head with a lazy, knowing smile. \"Good,\" she says. \"You're up.\"",
+      "You wake to the smell of baking bread drifting up from the kitchen and {name}'s hair spread over your arm. She doesn't open her eyes. \"Five more minutes,\" she says, in a voice that makes it clear what she plans to do with them."
+    ]
+  },
+  "lover_waiting": {
+    "_note": "Opening line when a lover (Devoted) at max lust comes to you instead of handling it herself.",
+    "_default": [
+      "{name} is sitting on the edge of your bed when you get back, shoes off, very much not reading the book in her lap. \"You've been busy all week,\" she says. \"I've been patient.\"",
+      "You find a note on your desk in {name}'s handwriting: \"My room. Tonight. Don't make me come get you.\"",
+      "{name} has made herself comfortable in your chair, feet up on your desk, reading your ledger upside down with great ceremony. \"Your handwriting is awful,\" she announces. \"Come here. I've missed you.\"",
+      "The lamp in {name}'s window is lit when you pass her door, and the door is open a hand's width, which is as close to a summons as she'll ever write down. You stop. She says, from inside, \"Don't pretend you didn't see.\"",
+      "There's a tray on your bed when you return: tea, two cups, and a single flower in a water glass. {name} is sitting beside it, trying very hard to look casual. \"I thought we might have some time,\" she says. \"If you're not busy.\"",
+      "{name} intercepts you on the stairs, takes your sleeve, and doesn't say a word until you're at her door. \"Everyone is very busy,\" she says then. \"I decided you could be busy in here.\""
+    ],
+    "Shy but earnest": [
+      "{name} hovers in your doorway, fidgeting with her sleeve. \"I, um. I waited. For you. All week.\" She's bright red."
+    ],
+    "Proud and sharp-tongued": [
+      "{name} corners you in the hall. \"I don't beg,\" she says. \"So you're going to notice on your own that it's been a week.\""
+    ]
+  },
+  "lover_reunion": {
+    "_note": "First line of the scene when you go to a lover who's been waiting.",
+    "_default": [
+      "She pulls you in by the collar and doesn't let go for a long time.",
+      "\"Finally,\" she breathes, and the door clicks shut behind you both.",
+      "She's been counting the hours, and it shows in the way she crosses the room: quickly, then slowly, as if she's remembered she's supposed to be composed. It lasts about a second.",
+      "\"You're late,\" she says, with absolutely no heat. Then she kisses you, and neither of you mentions it again.",
+      "The lamp is low, the room is warm, and she's waiting for you with her arms already open. You walk into them like a man coming home.",
+      "She hooks a finger through your belt and leads you in without a word. The door shuts, the latch drops, and the corridor is left to its rumors."
+    ]
+  },
+  "good_night": {
+    "_note": "Report line after a week where her clients loved her.",
+    "_default": [
+      "{name} had a great week and knows it. She's in a very good mood."
+    ],
+    "Cheerful and teasing": [
+      "{name} spent breakfast bragging about her week to anyone who'd listen, with impressions of her clients."
+    ],
+    "Shy but earnest": [
+      "{name} didn't say much, but she kept smiling to herself all week. Someone said she did well and she turned bright red."
+    ],
+    "Proud and sharp-tongued": [
+      "{name} reminded everyone, twice, that she is the best in the house. Nobody argued."
+    ],
+    "Hot-blooded and competitive": [
+      "{name} has started keeping a tally of satisfied clients on the kitchen wall. She's winning."
+    ],
+    "Bookish and curious": [
+      "{name} has notes on what worked this week. Detailed notes. She'd like to discuss them."
+    ],
+    "Warm and motherly": [
+      "{name}'s clients left happy, and she made a point of making sure the other girls did too."
+    ],
+    "Mysterious and aloof": ["{name} said nothing about her week. Her clients said plenty."],
+    "Laid-back and lazy": [
+      "{name} had a good week with surprisingly little effort, which she considers the ideal week."
+    ]
+  },
+  "bad_night": {
+    "_note": "Report line after a rough week with unhappy or difficult clients.",
+    "_default": [
+      "{name} had a rough week. A couple of clients left unhappy, and so did she."
+    ],
+    "Shy but earnest": [
+      "{name} had a bad client this week and has been very quiet since. She keeps apologizing for nothing."
+    ],
+    "Proud and sharp-tongued": [
+      "Two of {name}'s clients complained. {name} complained louder, and is now refusing to speak to anyone."
+    ],
+    "Hot-blooded and competitive": [
+      "{name} took a bad week personally. She's been training twice as hard out of spite."
+    ],
+    "Cheerful and teasing": [
+      "{name} laughed off a bad client, but the jokes have been a little thinner this week."
+    ],
+    "Laid-back and lazy": ["{name} had a bad week and shrugged it off. Mostly."],
+    "Mysterious and aloof": [
+      "Something about this week bothered {name}. She won't say what."
+    ]
+  },
+  "lover_jealous": {
+    "_note": "When one of your lovers has been left out for weeks while another hasn't. {other} = the other lover.",
+    "_default": [
+      "{name} has noticed exactly how many evenings you've spent with {other} lately, and exactly how many you've spent with her. She'd like to talk."
+    ],
+    "Shy but earnest": [
+      "{name} hasn't said anything. She's just been very quiet whenever {other} is around, and you finally notice."
+    ],
+    "Proud and sharp-tongued": [
+      "\"I'm not jealous,\" {name} announces, apropos of nothing, while glaring at {other} across the room."
+    ],
+    "Hot-blooded and competitive": [
+      "{name} has started treating {other} like a rival. Breakfast has become very tense."
+    ]
+  },
+  "lover_shared": {
+    "_note": "When two happy lovers come to your room together. {other} = the second lover.",
+    "_default": [
+      "There's a knock at your door. It's {name}. Then a second knock: {other}, right behind her. They look at each other, then at you, and seem to reach an understanding without you.",
+      "{name} and {other} arrive at your door together, arm in arm, as though they'd rehearsed it. They probably did. \"We have an arrangement,\" {name} says, and {other} nods solemnly, hiding a grin.",
+      "You open your door to find {name} and {other} in the corridor, whispering. They stop the moment they see you and share a look that says everything. \"We'd like to come in,\" {other} says. \"Both of us.\"",
+      "{other} comes in first, shy and a little flushed, and {name} follows close behind to shut the door. They exchange a glance of perfect understanding, which leaves you out of it entirely. You decide not to mind.",
+      "\"No arguments,\" {name} says, steering {other} by the elbow into your room. \"We've settled it between ourselves.\" {other} just smiles, wickedly, and sits on the bed.",
+      "Two sets of footsteps in the corridor, one knock, and then {name} and {other} are standing in your doorway, giggling like conspirators. Whatever they have planned, they've clearly been planning it for days."
+    ]
+  },
+  "breakup": {
+    "_note": "When you end things with a lover. She stays on at the house.",
+    "_default": [
+      "{name} listens without interrupting. \"Okay,\" she says finally. \"I'll be fine. Just... give me some time.\""
+    ],
+    "Shy but earnest": [
+      "{name} nods too fast and says she understands, then excuses herself. Nobody sees her for the rest of the day."
+    ],
+    "Proud and sharp-tongued": [
+      "\"Fine,\" {name} says crisply. \"Your loss.\" She makes it all the way to the hallway before her voice cracks."
+    ],
+    "Warm and motherly": [
+      "{name} squeezes your hand. \"You're allowed to change your mind, love. I'm not going anywhere.\" She cries later, alone."
+    ],
+    "Hot-blooded and competitive": [
+      "{name} throws a cup at the wall. Then she apologizes to the cup. Then she leaves."
+    ],
+    "Laid-back and lazy": [
+      "{name} shrugs a little too casually. \"Sure. Whatever works.\" She doesn't come down for dinner."
+    ],
+    "Mysterious and aloof": [
+      "{name} says nothing at all. She just looks at you for a long moment, then nods once and goes."
+    ]
+  },
+  "rekindle_yes": {
+    "_note": "When an ex-lover agrees to try again.",
+    "_default": [
+      "{name} pretends to think about it for exactly three seconds. \"Took you long enough.\"",
+      "{name} looks at you for a long while, then lets out a breath she seems to have held for weeks. \"Yes,\" she says. \"Obviously yes. Don't make that face, you're going to cry.\"",
+      "\"I was hoping you'd ask,\" {name} admits, smiling in a way that goes straight to her eyes. \"I'd have asked you myself, but I wanted to see you work for it.\"",
+      "{name} takes your hand in both of hers. \"I've missed this,\" she says quietly. \"I've missed you. Yes. Let's try again.\"",
+      "{name} pretends to consider, tapping her chin and looking out the window. It lasts about a breath and a half before she gives up and kisses you. \"Yes, you idiot.\"",
+      "\"Fine,\" {name} says, trying very hard to look put-upon and failing completely. \"But you're buying dinner. Several dinners.\""
+    ]
+  },
+  "rekindle_no": {
+    "_note": "When an ex-lover isn't ready to try again.",
+    "_default": [
+      "{name} smiles, a little sadly. \"Not yet. Ask me again sometime.\"",
+      "{name} shakes her head gently, her eyes soft. \"I care about you,\" she says, \"but I'm not there yet. Give me some time, and be patient with me.\"",
+      "\"Not today,\" {name} says, with a small, sincere smile. \"It isn't you. I just need to be sure, and I'm not, not quite. Ask me again.\"",
+      "{name} looks down at her hands for a moment, then up. \"I'm sorry,\" she says. \"Part of me wants to say yes. The rest of me needs more time.\"",
+      "She touches your arm briefly, kindly, and lets go. \"Ask me again when the leaves turn,\" {name} says. \"I'll have a better answer, I promise.\"",
+      "{name} sighs, not unkindly. \"I'm flattered. Really. But I'd be saying yes for the wrong reasons, and you deserve better than that.\""
+    ]
+  },
+  "private_act": {
+    "_note": "A line for the service itself, after an encounter's or a first's own opening. Keyed by service id (services.json).",
+    "manual_give": [
+      "Her hands are clever and very sure of themselves, wrapping firmly around your shaft with warm, slick fingers while her thumb circles the sensitive crown. Yours are learning fast.",
+      "She keeps her eyes on your face the whole time, enjoying every reaction as she strokes you from base to tip in a slow, twisting rhythm.",
+      "Her oiled fingers are warm and deft, and she watches your face the entire time, smiling at every flicker of expression. You grip the sheets and try to think about taxes. It does not help.",
+      "She takes her sweet time, stroking you with a slow, teasing rhythm that makes your breath stutter. 'Look at you,' she murmurs, delighted, and you cover your eyes with one arm.",
+      "Her hand moves with practiced ease along your length while her other draws idle patterns across your stomach. The lamp hisses, the bed creaks, and you lose all track of what language you speak.",
+      "She leans down to kiss you as she strokes you steadily from root to crown, swallowing the sound you make. You fumble for words, fail, and she grins like she's won something.",
+      "A little oil, a lot of patience, and a clever twist of her wrist around the head of your cock, and your thoughts scatter like startled pigeons. She is quietly, thoroughly pleased with herself.",
+      "She murmurs encouragement against your shoulder, every word as warm as her hand working you right to the brink. By the end your toes have curled, your ears have gone scarlet, and you're laughing helplessly into her hair."
+    ],
+    "oral_give": [
+      "She takes her time with you, wrapping her warm, wet lips around your cock and plainly enjoying how quickly you lose the ability to form sentences.",
+      "She hollow-cheeks her way down your shaft at an unhurried pace until you end up staring at the ceiling, trying to remember your own name.",
+      "She kneels between your knees with an unhurried smile, and the first wet touch of her mouth and tongue drives every thought clean out of your head. Your hand finds her hair, then remembers manners and hovers uncertainly.",
+      "Her lips are warm and her pace is lazy, swirling her tongue beneath the ridge and glancing up now and then just to watch what it does to you. You say something that was probably going to be a word.",
+      "The lamp glows on her bare shoulders as she takes you deep into her mouth, patient, attentive, in no hurry at all. You drop your head back against the headboard and give up on dignity.",
+      "She hums around your length, and the vibration is nearly your undoing. 'Hold still,' she says, grinning against your skin, and you promise you are trying.",
+      "Her hand rests warm on your thigh, steadying you, while she works you with lips, tongue, and a slick fist at the base. The bed creaks. Somewhere far below, a glass shatters and nobody in this room notices.",
+      "She finishes with a languid kiss to your hip and a smile that is frankly insufferable. You lie flat, blinking, wondering if the ceiling has always been that interesting."
+    ],
+    "breast_give": [
+      "She slicks her bare chest with oil and presses her soft, heavy breasts around your shaft, extremely pleased with herself about it. You are in no position to argue.",
+      "She cradles you in warm cleavage and glides up and down your length until you finish—and she's smug about it afterward. She's earned it.",
+      "She presses close, squeezing her bare breasts tightly around you, and the slick heat drives a short, helpless laugh out of you. 'Hold still,' she scolds fondly, and you try.",
+      "Oil gleams on her skin in the lamplight, and she watches your face with sly satisfaction as she sets a slow, rolling rhythm with her chest, dipping her chin to flick the crown with her tongue. Your hands clutch the sheets, then her shoulders, then the sheets again.",
+      "She is soft and warm and very good at this, and each time your breath catches she looks a little prouder. 'Is this alright?' she asks, knowing perfectly well that it is.",
+      "The bed shifts as she leans in, hair falling forward, her smile turning wicked as she works your cock between her breasts. You think briefly that whoever invented this deserves a statue.",
+      "She tilts her head to catch your eye, grinning, then lowers her gaze again with maddening patience. Your whole body hums, and the poor lamp gets blamed for the heat.",
+      "Afterward she wipes her hands on the sheet with great ceremony and declares the matter a success. You, who cannot feel your fingers, applaud weakly from the pillow."
+    ],
+    "missionary": [
+      "You settle between her parted thighs and push slowly into her tight, wet heat; afterward you lie tangled together, her head on your chest, listening to the house go quiet.",
+      "It's tender and a little clumsy and exactly right as you move together face-to-face on the rumpled sheets.",
+      "She draws you down against her, warm and close, her bare legs wrapped around your waist and her arms looped round your neck. The first slow movement of her hips startles a breath out of you, and she answers with a soft, delighted sound.",
+      "You find a rhythm the way two people find a tune, a little off at first and then deep and steady. Her eyes stay on yours, dark and fond, and the lamp flickers over her flushed cheeks.",
+      "The mattress sighs beneath you and her heels lock at the small of your back. 'Look at me,' she whispers, and you do, and don't want to look anywhere else.",
+      "You try to be careful and she laughs, lifting her hips to pull you deeper inside her. 'I won't break,' she says into your ear, and the rest of the night is considerably less careful.",
+      "Her fingers trail down your back, her breath coming in warm little gasps against your neck as you fuck her steadily. You have never felt so wanted, and so thoroughly hopeless at hiding it.",
+      "Slow, then slower, then not slow at all, and the quilt ends up on the floor with a thump. She kisses you through the last of it and holds on tight until you're both quiet again."
+    ],
+    "cowgirl": [
+      "Straddling your hips, she sinks all the way down onto your shaft and takes charge from the first minute, looking thoroughly smug about it afterward.",
+      "She mounts you and sets the pace, grinding and bouncing on top of you. You are very happy to let her.",
+      "She settles over you with a look of pure mischief, hair swinging loose, hands braced on your chest. The first slow roll of her hips around your cock pulls a groan out of you, and she grins down like a cat in sunshine.",
+      "Lamplight slides over her shoulders as she rides you, unhurried, entirely in charge. You can only hold her hips and watch, dazzled, and attempt to remember what words are.",
+      "'Don't move,' she says, one finger pressed lightly to your lips, and then she sets a pace that you do not dare to argue with. The bed frame offers a rhythmic, scandalous commentary.",
+      "She leans down to kiss you between breaths, her hair a curtain around your faces as she grinds her clit against you. Whatever you meant to say dissolves into her name.",
+      "She tips her head back, eyes closed, lost in it as she bounces steadily in your lap, and you think this might be the most beautiful thing you have ever seen. Your hands slide up her sides to hold on.",
+      "When she finally slows, clenching tightly around you through her climax, she's flushed and laughing and a little breathless, and she collapses against your chest. 'Well,' she says, 'that went rather well,' and you can only nod."
+    ],
+    "doggy": [
+      "On her hands and knees with your hands gripping her hips, the bed creaks, the headboard knocks, and somebody next door bangs on the wall. Neither of you stops.",
+      "You fuck her steadily from behind until she's laughing breathlessly into the pillow and you can't feel your legs.",
+      "Her back curves beneath your hands, warm and smooth in the lamplight as you line up behind her slick folds, and the glance she throws over her shoulder is half challenge, half invitation. You swallow and say a silent apology to your ancestors.",
+      "She pushes back to meet every deep thrust, and your fingers tighten at her hips as she breathes your name into the pillow. The headboard begins to keep time.",
+      "The rhythm builds, deeper and a little rougher, and she laughs breathlessly between gasps. 'Don't stop,' she says, and you have no plans to.",
+      "She grips the sheets, her hair spilling across her shoulders, and arches her back in a way that makes your knees weaker than you'd like. You lean down to kiss the nape of her neck, and she shivers.",
+      "Somewhere below, a tankard clatters and a cheer goes up for reasons unrelated to you two. Up here, she reaches back to find your hand and holds it tightly while you drive deep.",
+      "By the end you are a tangle of damp limbs and fallen pillows. She turns her flushed face to you, grinning, and tells you it's a good thing the walls are thick. They are not, particularly."
+    ],
+    "kiss": [
+      "It stays slow and unhurried: long, open-mouthed kisses, wandering hands, and neither of you in any hurry to stop.",
+      "You lose an hour to kissing like teenagers, trading slow, breathless touches, and don't regret a minute of it.",
+      "It begins as a brush of lips and becomes something slower and deeper, her tongue teasing yours and her fingers curling into your collar. When you part for air, her eyes are half-lidded and you have forgotten what a floor is for.",
+      "She tastes faintly of honeyed tea. You kiss her the way you'd handle something precious, and she smiles against your mouth, then kisses you back until the careful part is gone.",
+      "Candlelight flickers across her cheek as she cups your jaw and tilts your head just so. Having read an alarming number of books on this subject, you discover none of them mentioned how much of it is just warmth.",
+      "Her hand slides into your hair and you make a small, undignified sound that makes her laugh into the kiss. Neither of you minds, and you go back to it.",
+      "You kiss in the doorway, then against the wall, then somehow on the edge of the bed, each one slower than the last. Her breath catches when your thumb traces her cheek, and she holds you closer.",
+      "There's a lazy sort of hunger in the way she kisses you, nipping gently at your lower lip before soothing it. Your glasses, if you had any, would be fogged beyond saving."
+    ],
+    "massage_give": [
+      "Lamplight turns the oil on her palms to amber as she works along the length of your spine, her thighs warm where she straddles your hips. You make a noise you would deny under oath, and she hums, pleased, and presses a little deeper.",
+      "Her thumbs find a knot beneath your shoulder blade that you'd been carrying since the last tax audit. It lets go with a sigh, and so do you, face half-buried in the pillow.",
+      "The room smells of warm oil and lavender, and somewhere below a lute is losing an argument with a drunk. She kneads slow circles into your lower back, leaning close enough that her bare skin and hair brush yours.",
+      "She runs her knuckles down either side of your spine and you forget, entirely, how to be nervous. 'Better?' she murmurs, and all you manage is something that sounds like a happy kettle.",
+      "Her hands travel from your neck to your calves and back, unhurried, as if she has all the night and intends to spend it on you. You drift somewhere between sleep and something warmer.",
+      "She works your tired hands last, thumb pressing into each palm, and you realize nobody has taken care of you like this since you arrived. You tell her so, muffled, and she kisses the back of your neck in answer."
+    ],
+    "massage_get": [
+      "You warm the oil between your hands first, a detail you read about once and are very proud of. She laughs softly at the care of it, then goes quiet as your palms settle on her bare shoulders and begin to move.",
+      "Her skin is warm and smooth under your hands, and each time you find a tight spot she exhales a little sigh into the pillow. You start to suspect you might be good at this, and try not to let it go to your head.",
+      "You work slow circles along her spine while the lamp throws honey light over her back. She murmurs your name sleepily and turns her cheek on her folded arms, eyes closed, smiling.",
+      "Your thumbs press into the arch of her foot and her whole body goes boneless. 'Oh, do that again,' she says, and you resolve to do it forever.",
+      "She guides your hands lower along her hips and inner thighs with a lazy, wordless nudge, and you follow, careful and attentive. The only sounds are the rustle of sheets, the faint slap of oil, and her contented breathing.",
+      "By the time you reach her neck she is melting into the mattress, murmuring that you have wonderful hands. Flushed to the ears, you keep them very busy and very gentle."
+    ],
+    "manual_get": [
+      "Your fingers move slowly between her wet folds, learning her, and she tells you in small sounds and shifting hips what works. You listen like a man cramming for the most important exam of his life.",
+      "She keeps her hand over yours, steering your fingers deeper inside her, her breath warm at your ear. 'There,' she whispers, and you pay more attention than you ever did in school.",
+      "Her head tips back against the pillow, lashes fluttering as your thumb circles her clit, and the little catch in her breath tells you that you've found the rhythm. You don't dare change a thing.",
+      "Her knee drifts against yours as you finger her steadily, her fingers tightening on your wrist. The room seems very quiet and very warm, and she is looking at you as though you were a pleasant surprise.",
+      "You're gentle, and a little hesitant, and she rewards the hesitance with a soft laugh and a kiss on your chin. 'You're doing beautifully,' she murmurs, which does nothing for your composure.",
+      "She arches into your touch, a flush spreading up her throat as she clenches around your fingers, and says your name in a voice you'll be hearing in your head for days. Absurdly, you want to take notes."
+    ],
+    "breast_get": [
+      "You cup her bare breasts gently, almost reverently, and she watches you with soft amusement. 'You can be bolder,' she says, but the way her breath hitches suggests gentle is working fine.",
+      "You kiss along her collarbone and lower, teasing each stiff nipple with your lips, and she threads her fingers through your hair. Her skin is warm and flushed in the lamplight, and the little sigh she gives is all the encouragement you need.",
+      "Your thumb brushes a slow circle over her nipple and she gasps, then laughs at herself. Thrilled and terrified in equal measure, you do it again.",
+      "She guides your mouth where she wants it with a gentle hand at the back of your head. The room smells of oil and warm skin, and every sound she makes is a small reward.",
+      "You take your time suckling and fondling her bare chest, learning what draws a sigh and what draws a shiver, and she lets you. 'Such a good student,' she murmurs, back arching slightly.",
+      "Her fingers tighten in your hair as you linger, and the rise and fall of her chest quickens. You feel, briefly, like the most capable man in two kingdoms."
+    ],
+    "oral_get": [
+      "She settles back against the pillows with her thighs parted and a contented sigh, and you kiss your way slowly down her stomach. Her fingers find your hair, light at first, then rather more insistent.",
+      "You're nervous as you settle between her legs, but she is patient and tells you with soft sounds exactly where to flick your tongue. The thigh against your cheek trembles, and you count that as a grade.",
+      "Her breathing deepens as you lick and suck at her swollen clit, a quiet gasp here, a sigh there, her heel pressed against your back. You give it everything you have, which, it turns out, is quite a lot.",
+      "The candle gutters and neither notices. She mutters something half-laughing, half-pleading, and her hand tightens in your hair as you follow the rhythm she sets.",
+      "'Slower,' she whispers, and you obey. The smile on her face when you glance up from between her thighs is worth every awkward moment of the last six months.",
+      "By the end she's flushed to her hairline, one arm flung over her eyes, laughing breathlessly after a shuddering climax. 'Where did you learn that?' she asks, and you say, truthfully, 'Listening to you.'"
+    ]
+  },
+  "sam_first": {
+    "_note": "Added when a lady is your first, past kissing.",
+    "_default": [
+      "It becomes clear about four seconds in that your previous-life experience in this department is exactly zero. {name} looks absolutely delighted about this.",
+      "Somewhere in the middle of it, you realize this is your first time in two lives. {name} realizes it too, and is very, very kind about it.",
+      "Your hands are shaking, a fact you're hoping the dim light will hide. {name} has noticed, of course. She laces her fingers through yours, tells you to breathe, and says there's no hurry in the world.",
+      "There is a long, awkward silence in which you try to recall every book you've ever read on the subject. None of it helps. {name} kisses the tip of your nose and says, \"Forget the books,\" and you do.",
+      "{name} explains each step before she takes it, in a low, patient voice, like a teacher who loves her subject. You listen with total attention and, once, start to reach for a notebook that isn't there. She laughs into your shoulder.",
+      "It's not graceful, and {name} makes sure you know that's perfectly fine. She's warm and unhurried, and by the end you've stopped counting things and simply feel them. Afterward she lies beside you, grinning, saying nothing at all about your ears."
+    ]
+  },
+  "act_turn": {
+    "_note": "Shown right after an encounter's or a first's opening (before the service line and any AI text), so the story says which way the moment went. Keyed by service id. Edit freely; {name} = her name.",
+    "kiss": [
+      "The conversation runs out of words at roughly the same moment, and {name} steps closer. Her hand settles on your chest and she lifts her face to yours.",
+      "{name} catches your sleeve, tugs you down, and kisses you before you can finish your sentence. You decide the sentence wasn't that important.",
+      "Something in the quiet makes {name} smile. She reaches up, cups your cheek, and kisses you slowly.",
+      "The lamp is low, the room is warm, and {name} has clearly stopped pretending she is here only to talk. She leans in and settles it.",
+      "With a soft little laugh, {name} brushes your hair off your forehead and kisses you, gently at first, then not so gently."
+    ],
+    "massage_give": [
+      "Somewhere between kisses {name} pushes you gently down onto the bed and says you're far too tense. Her hands go to your shoulders: a massage, and a good one.",
+      "{name} breaks off with a laugh, turns you around by the shoulders and starts working the knots out of your back instead.",
+      "{name} notices your shoulders are somewhere near your ears and clicks her tongue. 'Lie down,' she says, already reaching for the oil.",
+      "Mid-sentence, {name} presses a thumb into the muscle at your neck and watches you wince. 'Right,' she announces, 'that needs attention.'",
+      "A kiss ends, and {name} sits back, studying you with a fond frown. She pats the bed beside her. 'Face down, I'm fixing that back.'",
+      "She slides behind you, hands landing on your shoulders, and you stiffen, then sag. Apparently there is going to be a massage, and you have no say in it."
+    ],
+    "massage_get": [
+      "{name} stretches, winces at her own shoulders, and asks if you'd mind. You don't mind. You give her a massage, slowly, and she melts into it.",
+      "She rolls onto her front and asks you for a massage. You take the job very seriously.",
+      "{name} rolls her neck with a pained little wince and glances your way. 'Would you mind terribly?' she asks, already turning her back to you.",
+      "With a sigh, {name} lies on her stomach and gathers her hair aside. 'My shoulders are made of rocks tonight,' she says, in a tone that is clearly a hint.",
+      "She slides the bottle of oil across the sheets toward you and arches an eyebrow. 'Hands,' she says. 'Yours. Please.'",
+      "{name} drops onto the bed with a groan, kicks off her shoes, and wiggles her toes pointedly at you. You get the message and roll up your sleeves."
+    ],
+    "manual_get": [
+      "She guides your hand where she wants it and keeps hers over it, showing you.",
+      "{name} takes your hand and lets you know, without a word, that she wants to be touched.",
+      "{name} takes your wrist and draws your hand along her thigh, watching your face. She isn't asking so much as showing.",
+      "Her breath quickens against your ear, and {name} guides your fingers lower with a quiet, 'Here.'",
+      "{name} holds your gaze, places your hand where she wants it, and gives a small nod. The rest, she seems to trust, you can work out.",
+      "She leans back on her elbows, knees falling gently open, and {name} gives you a look of pure encouragement."
+    ],
+    "manual_give": [
+      "Her hand slips lower, and {name} smiles at the face you make.",
+      "{name} decides it's her turn to take care of you, and her hands go to work.",
+      "{name}'s fingers drift lower and find the answer to a question you hadn't asked. She smiles, warm and wicked, and doesn't stop.",
+      "'Let me,' murmurs {name}, and without waiting for an answer her hand slips beneath your waistband. You forget what you were saying.",
+      "A hand trails slowly down your stomach, and {name} watches the effect with open delight. 'Shh,' she says. 'Just relax.'",
+      "{name} laughs quietly at your sharp intake of breath, then settles in beside you and takes matters, literally, into her own hands."
+    ],
+    "breast_get": [
+      "{name} undoes her top and lets you explore, watching your face the whole time.",
+      "She guides your hands to her chest and lets you take your time.",
+      "{name} slips her top from one shoulder and watches your eyes go wide. 'Go on,' she says softly. 'I won't bite.'",
+      "She takes your hand and lays it over her heart, then lower. 'Gently,' {name} whispers, and the ghost of a smile curves her lips.",
+      "With unhurried fingers, {name} undoes her laces and guides you closer. You are fairly sure you're dreaming, and equally sure you don't want to wake.",
+      "{name} tilts her chin, a quiet invitation, as her bodice comes loose. Reverently, you reach out."
+    ],
+    "oral_get": [
+      "{name} lies back and, a little shyly, asks you to use your mouth on her. You do.",
+      "She pushes you down gently, and her meaning is very clear.",
+      "{name} draws you down toward her with a hand at your nape, and you understand what she means a heartbeat later. Her smile is a little shy, a little sure.",
+      "She presses a kiss to your forehead and guides you lower. 'Take your time,' {name} says, and her voice wavers just slightly.",
+      "Settling back against the pillows, {name} lets her knees fall apart and gives you a look that is unmistakably an invitation. Flushed, you accept.",
+      "{name} slides your hand down her thigh, then nudges your shoulder gently. The message, though unspoken, is thoroughly clear."
+    ],
+    "oral_give": [
+      "{name} slides down to her knees with a look that says she's been planning this.",
+      "She kisses her way down your chest and doesn't stop.",
+      "{name} sinks to her knees in front of you, hands resting on your thighs, and looks up with mischief in her eyes. 'Don't mind me,' she says.",
+      "She kisses a slow trail down your chest and stomach, then pauses to glance up at you through her lashes. The pause is, you suspect, for effect.",
+      "With a fond, wicked little smile, {name} pushes you back onto the cushions and settles between your knees. You stop breathing.",
+      "'Sit,' says {name}, and while you're still sitting she kneels, and then there is no more thinking."
+    ],
+    "breast_give": [
+      "{name} has an idea, and the way she unbuttons her top says she's proud of it.",
+      "She pulls her top off and shows you exactly what she has in mind.",
+      "{name} pulls her bodice open with theatrical ceremony. 'Lie back,' she says, with the air of someone presenting a masterpiece.",
+      "Her eyes sparkle, and {name} reaches for the oil with a slow, knowing smile. 'I've had an idea,' she announces, 'and you're going to like it.'",
+      "{name} shrugs off her top, leans over you, and tells you with a grin exactly where to put your hands, and exactly where not to. You nod, dazed.",
+      "She settles herself over your hips with a decisive wriggle, scoops her hair aside, and gives you a look that dares you to object. You do not."
+    ],
+    "missionary": [
+      "You end up in bed, her pulling you down on top of her.",
+      "She lies back and pulls you with her, and that's that.",
+      "{name} draws you down against her, tugs the pillows into place, and pulls you in with a smile. The bed takes you both with a soft creak.",
+      "'Come here,' says {name}, arms already open, and you do, as if it were the easiest thing in the world. It is.",
+      "She hooks a leg around yours and eases you over her, her eyes dark and fond. 'Right here,' she murmurs. 'I want you right here.'",
+      "The kiss deepens, hands become urgent, and the next thing you know {name} is beneath you on the bed, breathless and smiling up at you."
+    ],
+    "cowgirl": [
+      "{name} pushes you back onto the bed and climbs on top.",
+      "She straddles you and takes charge.",
+      "{name} pushes you down against the pillows with one hand and swings a leg over your hips. 'My turn,' she says, and you are in no position to disagree.",
+      "With a wicked look she presses you flat and settles herself over you, hair spilling loose. 'Stay there,' says {name}, and you do.",
+      "Somewhere between one kiss and the next, {name} rolls you over so that she's on top, grinning down at your astonished face.",
+      "{name} straddles your lap, takes your hands, and pins them lightly to the bed. 'You,' she says, 'are going to let me do this properly.'"
+    ],
+    "doggy": [
+      "{name} turns over onto her hands and knees and looks back at you over her shoulder.",
+      "She rolls onto her front and looks back at you with a grin.",
+      "{name} slides off your lap, turns, and braces her hands on the mattress, glancing back with a look that needs no translating.",
+      "With a low laugh, {name} turns onto her hands and knees and tosses her hair over one shoulder. 'Well?' she says. 'Are you going to just stand there?'",
+      "She rolls over, arches her back, and looks at you over her shoulder with a slow, inviting smile. You have to remind yourself to move.",
+      "Pressing her face teasingly into the pillow, {name} lifts her hips and wiggles, which is both an invitation and a very unfair tactic."
+    ]
+  },
+  "demo_lead": {
+    "_default": [
+      "You clap your hands for attention and announce a practical lesson. {name} stands up before you can ask, already untying something. \"Pay attention, everyone,\" she says. \"He gets nervous when nobody takes notes.\"",
+      "The parlor is full, the cushions are claimed, and {name} is in the middle of it all with you, explaining each step as you go like it's the most normal thing in the world. Your ears are bright red. Nobody looks away.",
+      "{name} volunteers so fast that a couple of the others laugh. She takes your hand, turns to the room, and says, \"Right. Watch closely, this is the part everyone gets wrong.\"",
+      "\"For the benefit of the class,\" you begin, and {name} cuts in. \"For the benefit of the class, he's going to stand there and be useful.\" She takes your hand, and the room, which was chattering a moment ago, goes completely still.",
+      "The parlor has been rearranged into a theater of cushions, and {name} stands at the center like she was born there. She gives the audience a slow look, then turns to you. \"Ready, teacher?\" she asks, and you forget every word you planned to say.",
+      "{name} has brought a pointer, which she does not need and uses constantly. She narrates every step in a clear, cheerful voice, pausing only to correct your posture and to tell the back row to stop whispering. They don't."
+    ]
+  },
+  "demo_watch": {
+    "_default": [
+      "By the end, the room is very quiet and very warm. Several of the ladies have taken notes. Some of them are fanning themselves with the notes.",
+      "Afterward nobody quite meets anybody's eyes, and everyone has questions. A lot of questions.",
+      "There's scattered applause. Someone asks if there'll be a follow-up class. Several people ask, actually.",
+      "When it's over, a stunned silence hangs in the air, then breaks all at once into a chorus of impressed murmurs. Two of the ladies are writing frantically, and a third is already asking about next month.",
+      "Somebody fans herself with a menu. Somebody else says \"Well,\" in a very small voice, and the entire room agrees that this was a most educational evening.",
+      "The audience drifts off in twos and threes, flushed, giggling, and making plans. The cushions will need airing, and so will a few of the spectators."
+    ]
+  },
+  "orgy_lead": {
+    "_default": [
+      "It starts as a quiet drink in {house} after closing. {names} are all there, and somewhere around the second bottle {first} says what everyone has apparently been thinking. You open your mouth to be sensible. Nobody lets you finish.",
+      "{first} knocks on your door with a grin you've learned to be nervous about. Behind her, crowding the hallway: {names}. \"We talked it over,\" she says. \"You're outvoted.\"",
+      "Nobody can say afterward whose idea it was. One minute {names} are arguing about who gets your evening, the next someone suggests nobody has to lose, and the argument is over very quickly.",
+      "{names} have been whispering in the corner of {house} for an hour, and when {first} finally comes over to your table, the others are right behind her. \"We've come to a conclusion,\" she says. Having learned to dread conclusions, you put your cup down.",
+      "It begins with a card game that nobody is playing seriously, and ends with {first} announcing that the stakes have changed. {names} lean in as one. By the time you understand what you've agreed to, the lamps in {house} have been turned down.",
+      "The night is warm, the wine is good, and {first} has a gleam in her eye that you recognize from the last three times you lost an argument. \"Don't panic,\" she says, as {names} gather round. \"It's a group project.\""
+    ]
+  },
+  "orgy_pair": {
+    "_default": [
+      "{a} and {b} end up tangled together more than once and don't seem to mind in the least.",
+      "{a} catches {b}'s eye across the bed and they both start laughing, then very much stop laughing.",
+      "At one point {a} is coaching {b} with a running commentary. {b} tells her to shut up, then follows every word.",
+      "{a} pulls {b} in for a kiss while they wait their turn. It turns out waiting is not the hardship anyone expected.",
+      "{a} and {b} have drifted into a corner of their own, trading whispered jokes and soft touches as if they had all night. They do.",
+      "Between rounds, {a} straightens {b}'s hair, which immediately ruins it again, and they both grin like thieves."
+    ]
+  },
+  "orgy_end": {
+    "_default": [
+      "Much later, the bed is a wreck, the lantern has burned down, and you're pinned under at least three warm, sleeping bodies. You decide this is fine. This is very fine.",
+      "By dawn you're all a heap of limbs and sheets. Somebody is snoring. Somebody else is still giggling. You stare at the ceiling, wondering how your life got here, and find you have no complaints.",
+      "They drift off one by one. The last one awake is {first}, who props her chin on your chest and says, \"Same time next week?\" She falls asleep before you can answer.",
+      "The candles are stubs, the wine is gone, and the sheets look like they lost a war. You lie in the middle of it, grinning at nothing, as {first} pulls the blanket over all of you. \"Goodnight,\" she says, sleepy and satisfied.",
+      "Dawn finds you all tangled, warm, and wholly unrepentant. Birdsong drifts in through the shutters, and {first} is the first to stir, cracking an eye to survey the damage. \"Worth it,\" she mumbles, and goes back to sleep.",
+      "The house is silent at last. You take one long look around the room, at the sleeping faces, the scattered cushions, the smile {first} wears even in her sleep, and think that, notes or no notes, you will remember this one."
+    ]
+  },
+  "orgy_lover": {
+    "_default": [
+      "{name} keeps a hand on you the whole night, sharing you and making very sure everyone knows who you go home with.",
+      "{name} stays within arm's reach of you all night, a hand on your shoulder, a foot against your ankle. She shares, but she makes sure everybody knows whose you are when the lamps go out.",
+      "Whatever else happens, {name} always ends up back at your side, tucked into the crook of your arm like she belongs there. She does, and she lets the room know it with one sidelong glance.",
+      "{name} is generous, laughing, and wonderfully relaxed about the whole affair, but every few minutes her fingers find yours and squeeze. It's a quiet, private message in a very public night.",
+      "At some point {name} whispers \"mine\" in your ear, so softly that only you can hear. Then she turns back to the others with a bright smile and carries on as though nothing at all had been said.",
+      "{name} insists on tucking the blanket around you when the night is over, a small, possessive kindness. \"You're coming with me,\" she says, and nobody argues."
+    ]
+  },
+  "private_open": {
+    "_note": "Opening of plain private time with you (before the turn and the service line). {name} = her name. Act-neutral.",
+    "_default": [
+      "{name} drags you off for a \"lesson.\" You take notes afterward. She finds this hilarious.",
+      "A quiet evening, a locked door, and a \"do not disturb\" sign that the neighbors would later call unnecessary given the noise.",
+      "{name} insists you need more practice. Like a diligent student, you do not argue.",
+      "By the time you come downstairs together, everyone has very carefully decided not to look at either of you.",
+      "The house has settled into its after-hours hush by the time {name} finds you in the lounge. Rain ticks against the shutters, one lantern is still burning, and she takes the cushion right beside yours instead of across from you. \"Walk me upstairs?\" she says, as if it were a question.",
+      "{name}'s room smells of warm tea and the cedar oil she rubs into the bed frame. She lights a single candle, pulls the curtain against the rain, and pats the quilt beside her. You sit with the care of a man entering a temple.",
+      "You start with the leftover plum cakes from the kitchen and a game of cards neither of you is paying attention to. Somewhere around the third hand, {name} puts her cards face down and just looks at you. The candle gutters, and nobody remembers who was winning.",
+      "The evening wind pushes the shutters open a hand's width, bringing in night-jasmine and the faraway music of the Silver Fiddle. {name} gets up to close them, changes her mind, and leaves them open. \"Better,\" she says, turning back with a small, private smile.",
+      "You knock, which is silly, because {name} invited you and is sitting right there. She raises an eyebrow at the knock, and you apologize, and she laughs until she has to wipe her eyes. It breaks the nervous part cleanly in half, and you are allowed in.",
+      "{name} has put a kettle on the little brazier and arranged every cushion in the room into one large, suspicious nest. \"Nothing is happening yet,\" she says, pouring. \"This is just the part where we get comfortable.\" Her foot finds yours under the blanket anyway.",
+      "The corridors are quiet, the stairs creak in their usual places, and {name} holds your sleeve all the way up so you don't trip over the loose board. At her door she stops, turns, and straightens your collar for no reason at all. \"There,\" she says. \"Now you're presentable. Briefly.\"",
+      "A thunderstorm rolls over Hollowmere just as the last guest leaves, and the whole house goes dim and golden. {name} finds you at your desk, takes the quill out of your hand, and sets it carefully out of reach. \"The ledger will survive one night,\" she says.",
+      "You've brought a lantern, a bottle of plum wine, and a plan. The plan dissolves the instant {name} opens the door in her loose robe, her hair half down. She takes the bottle, ignores the plan, and tugs you inside.",
+      "The bathhouse steam has drifted all the way up the stairs, and {name}'s skin is still faintly warm and smelling of orange peel when she greets you. She leans in the doorway, in no hurry at all. \"I thought you might want some company,\" she says, \"since you've been staring at that door for an hour.\""
+    ]
+  },
+  "private_first": {
+    "_note": "Her first private time with you (replaces private_open once). {name}.",
+    "_default": [
+      "{name} has clearly been thinking about this. She pulls you into her room before you can finish saying hello.\n\nThe door closes.",
+      "{name} has clearly been thinking about this. She's tidied her room twice, changed her mind about the lamp three times, and when you arrive she says \"Hello\" in a very careful voice. Then she laughs at herself and lets you in.",
+      "There's a ribbon in {name}'s hair that wasn't there at supper. She doesn't mention it, and having learned some things, you don't either. The room is warm, the lamp is low, and she shuts the door behind you with a soft click and her back flat against it.",
+      "\"I rehearsed what to say,\" {name} admits, standing in her doorway with the night breeze in her sleeves. \"It was very good. I've forgotten all of it.\" She takes your hand instead, and her fingers are a little cold and entirely steady.",
+      "Rain is drumming on the roof tiles when {name} opens her door, and she's wearing the expression of a woman who has argued with herself for a week and won. She lets you come in, then stands very close, listening to the rain, saying nothing.",
+      "{name} has laid out two cups, one candle, and no excuses. She sits on the edge of her bed, folds her hands, then unfolds them. \"You're the first person I've actually wanted to ask,\" she says quietly. \"So I'm asking.\""
+    ]
+  },
+  "private_first_sam": {
+    "_note": "Your very first time (replaces private_open once). {name}.",
+    "_default": [
+      "{name} takes your hand and leads you upstairs. It becomes clear about four seconds in that your previous-life experience in this department is exactly zero.\n\n{name} looks absolutely delighted about this.\n\nThe door closes.",
+      "You've read about this in two lives and practiced it in neither. You arrive at {name}'s door with your hands clasped like a schoolboy at a recital, and she takes one look at you and smiles so warmly that the nerves lose half their grip. \"Come in,\" she says. \"I'll go slowly. I'm very good at slowly.\"",
+      "\"I should mention,\" you begin, in the lamplit hush of {name}'s room, \"that I have no idea what I'm doing.\" {name} puts a finger to your lips, delighted beyond words. \"Good,\" she whispers. \"Then nothing gets in the way of me showing you.\"",
+      "{name} takes charge the way she might take a shy guest's coat, gently and without making a fuss of it. She guides your hands, tells you to breathe, and tells you that you don't have to be graceful. The moons are bright in the window, and your ears are the color of boiled shrimp.",
+      "You stand at the threshold with the posture of a man about to take an exam. {name} laughs, soft and kind, takes your notebook out of your coat pocket, and sets it on the shelf. \"No notes this time,\" she says, drawing you inside. \"Tonight, you just learn it by heart.\" The door closes behind you."
+    ]
+  },
+  "gift_trinket": {
+    "_default": [
+      "You bring {name} {gift}. She turns it over in her hands and tucks it away somewhere safe.",
+      "{name} finds {gift} waiting on her pillow, with a note in your careful handwriting.",
+      "You hand {name} {gift} without much ceremony. She smiles anyway."
+    ]
+  },
+  "gift_jewel": {
+    "_default": [
+      "You give {name} a slim velvet box. Inside is a piece that catches the lamplight. She asks you to fasten it for her.",
+      "{name} opens the jeweler's box, closes it, opens it again. \"You didn't have to,\" she says, already wearing it.",
+      "A pendant from the good shop on the hill. {name} spends the evening finding reasons to touch it."
+    ]
+  },
+  "gift_lavish": {
+    "_default": [
+      "You have something extravagant delivered for {name}. Half the house comes to look. She pretends not to be thrilled and fails completely.",
+      "{name} stares at what you bought her, then at you. \"This is too much.\" She doesn't give it back.",
+      "It costs more than some of the furniture. {name} doesn't say much, but she stays close to you for the rest of the night."
+    ]
+  }
+}

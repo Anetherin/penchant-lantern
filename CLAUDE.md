@@ -12,6 +12,12 @@
   Crossover/visiting ladies live in `data/guests.json` (packs, merged into NAMED as role 'drifter' by `charData()` in
   `js/core/config.js`); keys must stay unique across characters.json and guests.json.
   Run `node tools/fmt-json.mjs` after editing data files programmatically.
+  Split data sets (`DATA_DIRS` in loader.js: characters, guests, arcs, flavor, firsts, goddess) are folders: `data/<name>/index.json`
+  lists parts, deep-merged in order (objects by key, arrays concatenated; a scalar defined twice is a conflict and fails the build).
+  The game still sees one `PL_DATA[name]`, so "firsts.json → characters" etc. below means the merged set. Node tools read data
+  through `tools/data.mjs` (`loadData(name)`, `partFiles`, `allDataFiles`), never `data/<name>.json` directly. Where new content goes:
+  a lady's characters/firsts entries in the group file matching her role (house/partners/story) or her pack's file; a new
+  partner arc = `data/arcs/<key>.json` + index; flavor keys by theme (sam/jobs/encounters/training).
 - Image prompts are always built programmatically (`js/logic/prompts.js`). The user writes any explicit wording Claude is uncomfortable with
   themselves in `data/snippets.json` / `data/ai-prompts.json`; All characters are adults;
 - Firsts with Sam: `js/events/firsts.js` + `data/firsts.json`. Every named lady AND every guest has her own events (1/2/3, guests also `jump`; `firstData` prefers `events.jump` when she has no firsts yet and the stage is past a kiss); guests' pace/path/init stay rolled. Spicy date `lead` may be a list (picked at random). `canSam` = comfort (`samStance`) AND crossed (`actTier(id) <= w.intim`).

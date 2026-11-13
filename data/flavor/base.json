@@ -1,0 +1,11 @@
+{
+  "_readme": [
+    "Short text lines the game picks from at random. No AI needed. Each section has a _default list; add a list under a personality name to give that personality its own lines.",
+    "Placeholders: {name}, {house}, plus any extra ones noted for the section. Add as many lines as you like.",
+    "enc_* lines are short notes on how one client visit went for her (shown in the weekly report). job_* lines are report lines for the non-escort jobs.",
+    "encore: the line added when a restless lady goes another round. enc_frustrated / enc_drained / enc_like / enc_put_off: extra visit notes.",
+    "demo_lead / demo_watch: your demonstration lesson ({name} = your partner). Templates; rewrite freely.",
+    "orgy_lead ({names}, {first}, {house}), orgy_pair ({a}, {b}), orgy_end ({first}), orgy_lover ({name}: a Devoted lady sharing you): your group nights. Templates; rewrite freely.",
+    "gift_trinket / gift_jewel / gift_lavish ({name}, {gift} = a random trinket from people.json gifts): you buy her a gift with gold (her sheet → Gifts). tutor_note ({name}, {tutor}): her weekly report note when a tutor works with her. Templates; rewrite freely."
+  ]
+}
