@@ -8,7 +8,7 @@
     "image.client / image.sam / image.duo / image.fem / image.futa = pose and framing for client scenes, Sam's first-person scenes, scenes with two ladies and Sam, and scenes with two women together (fem = two women; futa = the other woman is a futanari, the active one). Each is a list: one is picked at random per image. image.extra is added to every image of this service. Anything starting with TODO is skipped when prompts are built. Every service now has default wording; the receiving ones are written softly, so make them as explicit as you like.",
     "report = lines for the weekly report when a client got this service (one is picked at random; empty falls back to flavor.json client_yes).",
     "tier: how far past the line it is with Sam (1 kissing & touching, 2 hands & mouth, 3 everything). Private time with Sam only offers services up to the tier she's crossed in her firsts (data/firsts.json). Custom services without a tier count as 1 below line 30, 2 below 50, else 3.",
-    "Naming: services that go both ways come in pairs, <thing>_give (she does it to him) and <thing>_get (he does it to her), labelled \"X (giving)\" / \"X (receiving)\". Positions (missionary, cowgirl, doggy) and kiss are single. Old ids still work as aliases in code: caress -> kiss, manual -> manual_give, oral -> oral_give, paizuri -> breast_give.",
+    "Naming: services that go both ways come in pairs, _give (she does it to him) and _get (he does it to her), labelled \"X (giving)\" / \"X (receiving)\". Positions (missionary, cowgirl, doggy) and kiss are single. Old ids still work as aliases in code: caress -> kiss, manual -> manual_give, oral -> oral_give, paizuri -> breast_give.",
     "Scales: th and dress.fullAt are LEWDNESS thresholds, and lewdness stays 0-100 (like trust, mood and lust). Only stats, tech and service skills run 0-1000, so a two-digit th here is correct.",
     "energyBack / mood (optional): energy she regains and mood she gains from a service (massage_get).",
     "ask = how the weekly report phrases it. client: what he asks for, after \"asked\" (\"asked for oral\", \"asked to go down on her\"). lady: what SHE does when she's the one offering, after \"she\" (\"she offered to go down on him\"). Custom services without ask fall back to their label.",
@@ -18,60 +18,57 @@
   "services": [
     {
       "id": "massage_give",
-      "stats": {"strength":0.5,"agility":0.5},
       "label": "Massage (giving)",
       "tier": 1,
       "th": 10,
       "price": 22,
       "energy": 7,
-      "lust": 1,
+      "lust": 0,
       "finish": false,
       "want": 0.9,
       "kind": "massage",
-      "desc": "giving a massage",
-      "ask": {"client":"for a massage","lady":"offered him a massage"},
-      "dress": {"min":"dressed","fullAt":85},
+      "stats": { "strength": 0.5, "agility": 0.5 },
+      "desc": "giving a slow, warm oil massage to ease tension",
+      "dress": { "min": "dressed", "fullAt": 85 },
+      "ask": { "client": "for a massage", "lady": "offered to give him a massage" },
       "image": {
-        "client": ["massaging a man's shoulders as he lies face down on a bed","kneading a man's back, sitting beside him on a massage bed"],
+        "client": [
+          "kneeling beside a reclining man, hands pressing oil into his bare shoulders and back",
+          "leaning over a man lying face-down on a massage table, working his shoulders with both hands"
+        ],
         "sam": [
-          "massaging the viewer's shoulders, leaning over him, pov",
-          "her hands on the viewer's chest, giving a massage, pov, looking at the viewer"
+          "straddling the viewer's lower back, leaning forward to knead his shoulders with oiled hands",
+          "kneeling beside the viewer, smiling warmly while massaging his chest and shoulders"
         ],
         "duo": [
-          "both massaging the viewer together, one at his shoulders, one at his back, pov"
+          "two women kneeling on either side of the viewer, four oiled hands working across his back and shoulders"
         ],
-        "extra": "",
         "fem": [
-          "one woman massaging another's back as she lies face down, two women, yuri",
-          "two women, one kneading the other's shoulders on a massage bed"
+          "straddling the other woman's thighs on a cushioned mat, kneading oil into her bare shoulders and back"
         ],
         "futa": [
-          "a futanari massaging a woman's back as she lies face down, two women, yuri",
-          "two women, a futanari kneading the other's shoulders on a massage bed"
-        ]
+          "straddling the other woman's thighs on a cushioned mat, kneading oil into her bare shoulders and back"
+        ],
+        "extra": "glistening massage oil on skin, warm spa room"
       },
       "report": [
-        "He left loose-limbed and lighter in the shoulders, and tipped like a man reborn.",
-        "He left an hour later looking ten years younger and walking like a man made of warm pudding.",
-        "She worked out the knots in his back and the worries behind them, and he nearly fell asleep on the stairs.",
-        "The smell of lavender oil followed him out, along with a very generous tip and a contented sigh.",
-        "He lay face-down for most of the hour and had to be gently woken at the end, smiling.",
-        "By the time she was done he had stopped checking his pocket watch, which the staff counted as a miracle."
+        "Straddled his lower back and worked warm cedar oil into his shoulders until every knot gave way. By the time she slid her slick palms down his flanks and rolled him over, he was half-melted into the cushions and already reaching for his coin purse to book another hour.",
+        "Poured warm oil across his back and leaned her weight into slow, deep strokes from his neck to the small of his back. Her hair brushed his skin every time she bent over him, leaving him flushed, loose-limbed, and struggling to stand when the hour ended.",
+        "Kneaded the stiffness out of his shoulders with unhurried thumbs, letting her oiled hands glide lower across his ribs and hips with every pass. He groaned into the pillow the whole session and tipped generously on the way out.",
+        "Took her time warming the oil between her palms before working it down his spine in long, deliberate strokes. When he turned over, her thighs brushed his hip as she finished his chest, sending him out the door dazed and thoroughly relaxed."
       ],
       "pair": {
         "fem": [
-          "{name} spent the evening working warm oil into {partner}'s shoulders and back while {partner} purred and offered notes. Neither of them glanced at the clock.",
-          "{partner} lay back and let {name}'s hands wander wherever they liked, sighing a little more with every slow pass."
+          "{name} straddles {partner}'s thighs on the cushions and pours warm oil between her shoulder blades, working the tension out with slow, firm thumbs until {partner} melts into the mattress with a low sigh.",
+          "{name} glides oiled palms down {partner}'s bare spine, leaning in close so her chest brushes {partner}'s back as her fingers trace along her ribs and waist."
         ],
         "futa": [
-          "{partner} stretched out under {name}'s oiled hands and let her knead the tension from her shoulders, then lower. It turned out {partner} was eager for more than a rubdown.",
-          "{name} worked her way down {partner}'s back, and {partner}, very much the interested party, kept finding reasons to roll over."
+          "{name} straddles {partner}'s thighs and works warm oil into her shoulders, rocking her hips subtly back against {partner}'s rising heat until {partner}'s hands grip her waist."
         ]
       }
     },
     {
       "id": "kiss",
-      "stats": {"charm":1},
       "label": "Kissing",
       "tier": 1,
       "th": 20,
@@ -81,36 +78,43 @@
       "finish": false,
       "want": 0.8,
       "kind": "kiss",
-      "desc": "kissing",
-      "ask": {"client":"for a kiss","lady":"kissed him first"},
-      "dress": {"min":"dressed","fullAt":95},
+      "stats": { "charm": 1 },
+      "desc": "deep, lingering kisses and close affectionate touching",
+      "dress": { "min": "dressed", "fullAt": 95 },
+      "ask": { "client": "to kiss her", "lady": "leaned in to kiss him" },
       "image": {
-        "client": ["embracing and kissing passionately"],
-        "sam": ["embracing and kissing passionately, looking at the viewer"],
-        "duo": ["embracing and kissing passionately"],
-        "extra": "",
-        "fem": [
-          "two women embracing and kissing passionately, yuri",
-          "two women kissing, foreheads together, hands on each other's waists"
+        "client": [
+          "seated close beside a man, tilted into a deep lingering kiss, his hand resting at her waist",
+          "straddling a man's lap on a plush couch, arms around his neck in a slow kiss"
         ],
-        "futa": ["a futanari and a woman embracing and kissing passionately","a futanari and a woman kissing, bodies pressed together"]
+        "sam": [
+          "leaning in very close to the viewer, lips parted just before a kiss, warm eye contact",
+          "straddling the viewer's lap, hands framing his face in a deep, unhurried kiss"
+        ],
+        "duo": [
+          "two women flanking the viewer on a sofa, taking turns kissing his lips and jaw"
+        ],
+        "fem": [
+          "two women pressed close together, sharing a deep, lingering kiss with fingers tangled in each other's hair"
+        ],
+        "futa": [
+          "two women pressed close together, sharing a deep, lingering kiss with fingers tangled in each other's hair"
+        ],
+        "extra": "close framing, warm intimate candlelight"
       },
       "report": [
-        "They spent most of the evening wrapped up together on a lounge sofa, and he left grinning.",
-        "They kissed their way through the better part of an evening, and he left with the dazed look of a schoolboy.",
-        "It was slow and unhurried and thoroughly romantic, and he asked, shyly, whether he could come back.",
-        "He lingered long past the hour, reluctant to stop, and she was in no hurry to make him.",
-        "Candlelight, a corner sofa and a great deal of patience: he said afterward it was the best kiss of his life.",
-        "He came away flushed and quiet, touching his lip now and then as if to check it was still there."
+        "Climbed onto his lap on the velvet settee and drew him into a slow, open-mouthed kiss that left no room for rush. Her fingers tangled in his hair while his hands wandered over her waist and hips, and by the time she finally pulled back he looked thoroughly dizzy.",
+        "Kept him tangled in unhurried, wet kisses for the better part of an hour, teasing his lower lip with her teeth before parting her lips to let his tongue in. He left flushed from collar to ears and grinning like he'd stolen something.",
+        "Pressed herself flush against his chest and kissed him until both of them were breathing hard, guiding his hands to her curves through the fabric of her outfit. When the bell rang, he had to sit for a full minute before he could stand.",
+        "Started with soft, teasing kisses along his jaw and throat before capturing his mouth properly. She held him close until his pulse was hammering against hers, sending him home breathless and already asking when she was next free."
       ],
       "pair": {
         "fem": [
-          "{partner} kissed {name} against the doorway until {name} forgot what she had come for.",
-          "{name} and {partner} traded slow, lingering kisses on the sofa, in no hurry to stop."
+          "{name} tilts {partner}'s chin up and kisses her slowly, parting her lips to taste wine and warmth until {partner} sighs softly into her mouth and pulls her flush against her chest.",
+          "{name} and {partner} tangle together on the divan, trading deep, unhurried kisses with fingers threaded through each other's hair and hands wandering over bare skin."
         ],
         "futa": [
-          "{partner} kissed {name} slowly, one hand at her waist and her body pressed close in a way that left no doubt of her interest. {name} forgot the question she had meant to ask.",
-          "{name} was kissed breathless against the bookshelves, with {partner}'s eagerness plain between them."
+          "{name} presses {partner} back into the pillows and kisses her deeply, teasing her tongue while {partner}'s hips roll insistently up against hers."
         ]
       }
     },
@@ -125,13 +129,143 @@
       "finish": false,
       "want": 0.25,
       "kind": "receive",
-      "desc": "being given a massage",
-      "ask": {"client":"to give her a massage","lady":"asked him for a massage"},
-      "dress": {"min":"dressed","fullAt":85},
+      "energyBack": 4,
+      "mood": 2,
+      "desc": "lying back while he rubs warm oil into her shoulders, back and thighs",
+      "dress": { "min": "dressed", "fullAt": 80 },
+      "ask": { "client": "to give her a massage", "lady": "let him rub her down" },
       "image": {
-        "client": ["lying face down on a bed while a man massages her back","lying on her stomach, a man's hands kneading her shoulders"],
+        "client": [
+          "lying face-down on a massage table with a towel draped across her hips, a man's hands rubbing oil into her bare back",
+          "reclining on cushions while a man massages her bare shoulders and upper thighs"
+        ],
         "sam": [
-          "lying face down on a bed, the viewer's hands massaging her back, pov, looking back at the viewer"
+          "lying face-down on the bed looking back over her shoulder at the viewer as his hands knead her bare back",
+          "stretched out on her stomach with her back glistening with oil, glancing back at the viewer with heavy-lidded eyes"
+        ],
+        "duo": [
+          "two women lying side by side on a wide massage bed, glancing back as the viewer rubs oil into their shoulders"
+        ],
+        "fem": [
+          "lying face-down on a cushioned mat while the other woman kneels beside her, rubbing warm oil into her back and thighs"
+        ],
+        "futa": [
+          "lying face-down on a cushioned mat while the other woman kneels beside her, rubbing warm oil into her back and thighs"
+        ],
+        "extra": "glistening massage oil, soft warm lighting"
+      },
+      "report": [
+        "Stretched out face-down on the cushions with a towel draped low across her hips and let him spend the hour working warm oil into her shoulders, spine, and upper thighs. Every slow pass of his thumbs drew a soft, unguarded sigh from her, and she came out looser and warmer than she'd been all week.",
+        "Let him knead the ache out of her neck and lower back with oiled hands, arching into his palms whenever his fingers drifted close to the curve of her hips. He paid gold for the privilege of pampering her, and she walked back downstairs glowing.",
+        "Laid her head on her folded arms and purred quietly while he rubbed scented oil down her back and along the backs of her thighs. By the end of the session her skin was flushed pink and her eyes were heavy-lidded with lazy satisfaction.",
+        "Took advantage of a client who wanted nothing more than to work warm oil into her tired muscles. She guided his hands to every tight spot along her shoulders and waist, emerging rested, fragrant, and pleasantly aroused."
+      ],
+      "pair": {
+        "fem": [
+          "{name} stretches out on her stomach with a long sigh while {partner} works warm oil into her shoulders, down her spine, and along the backs of her thighs until her skin gleams.",
+          "{name} melts into the cushions under {partner}'s hands, arching lazily whenever oiled thumbs press into the curve of her lower back."
+        ],
+        "futa": [
+          "{name} lies stretched out on the bed, shivering softly as {partner} kneads warm oil into her hips and inner thighs with deliberate, unhurried strokes."
+        ]
+      }
+    },
+    {
+      "id": "manual_give",
+      "label": "Manual (giving)",
+      "tier": 2,
+      "th": 32,
+      "price": 32,
+      "energy": 7,
+      "lust": 4,
+      "finish": true,
+      "want": 1.0,
+      "kind": "give",
+      "stats": { "agility": 1 },
+      "desc": "stroking him off with skilled, unhurried hands",
+      "dress": { "min": "partial", "fullAt": 75 },
+      "ask": { "client": "for a handjob", "lady": "offered to use her hands on him" },
+      "image": {
+        "client": [
+          "kneeling beside a seated man, both hands wrapped around his shaft, looking up at him with a teasing smile",
+          "sitting close beside a man on a velvet sofa, stroking his penis with an oiled hand while kissing his neck"
+        ],
+        "sam": [
+          "kneeling between the viewer's legs, stroking his shaft with both hands while gazing up at him",
+          "leaning close beside the viewer, one hand working his penis steadily while she watches his face"
+        ],
+        "duo": [
+          "two women kneeling on either side of the viewer, working his shaft together with four oiled hands"
+        ],
+        "fem": [
+          "kneeling between the other woman's parted thighs, sliding two fingers inside her while her thumb circles her clit"
+        ],
+        "futa": [
+          "kneeling before the other woman, stroking her erect shaft with both oiled hands while looking up"
+        ],
+        "extra": "explicit, detailed hands"
+      },
+      "report": [
+        "Warmed oil between her palms and wrapped both hands around his cock, twisting her wrists in slow, slick strokes while her thumb circled the sensitive head. She watched his face the whole time, speeding up the instant his breathing hitched until he spilled hot across her fingers.",
+        "Settled beside him on the couch with her top unlaced and took him in hand, pairing a firm, steady rhythm with soft kisses along his jaw. When he tried to buck into her grip, she held him right at the edge before milking him dry with a knowing smile.",
+        "Knelt between his knees and stroked him from base to tip with unhurried, glistening fingers, cupping him with her other hand until his thighs trembled. He finished with a ragged groan and needed a towel before he could even fasten his trousers.",
+        "Used one oiled hand to work his shaft and the other to tease just beneath it, varying her pressure until he lost his composure completely. She wiped her hands clean with a composed smile while he sat catching his breath."
+      ],
+      "pair": {
+        "fem": [
+          "{name} settles between {partner}'s parted thighs and slides two slick fingers deep inside her, curling them slowly against her front wall while her thumb circles {partner}'s clit until {partner}'s hips lift off the sheets.",
+          "{name} strokes {partner}'s wet folds with unhurried fingers before slipping inside her at a steady, knowing rhythm, watching {partner}'s breath catch and break."
+        ],
+        "futa": [
+          "{name} kneels between {partner}'s legs and wraps both oiled hands around her shaft, twisting her wrists smoothly from base to tip until {partner}'s fingers tangle hard in her hair."
+        ]
+      }
+    },
+    {
+      "id": "breast_give",
+      "label": "Breast service (giving)",
+      "tier": 2,
+      "th": 36,
+      "price": 38,
+      "energy": 8,
+      "lust": 4,
+      "finish": true,
+      "want": 0.75,
+      "kind": "give",
+      "stats": { "stamina": 1 },
+      "desc": "pressing her bare breasts together around him until he finishes",
+      "dress": { "min": "partial", "fullAt": 70 },
+      "ask": { "client": "for titjob", "lady": "offered to use her breasts" },
+      "image": {
+        "client": [
+          "kneeling between a man's legs, pressing her bare breasts together around his penis, looking up through her lashes",
+          "leaning over a seated man, cradling his shaft in her cleavage as she glides up and down"
+        ],
+        "sam": [
+          "kneeling before the viewer, squeezing her bare breasts tightly around his shaft, looking up with parted lips",
+          "leaning forward between the viewer's thighs, sliding her oiled cleavage up and down his penis"
+        ],
+        "duo": [
+          "two women kneeling face-to-face over the viewer, pressing all four bare breasts around his shaft together"
+        ],
+        "fem": [
+          "pressed chest-to-chest with the other woman, rubbing their bare breasts and hardened nipples together"
+        ],
+        "futa": [
+          "kneeling before the other woman, pressing her bare breasts around her erect shaft and looking up"
+        ],
+        "extra": "explicit, bare breasts, glistening skin"
+      },
+      "report": [
+        "Pulled her bodice open and slicked her bare chest with warm oil before pressing her breasts tightly around his shaft. Every time the head of his cock slipped free between her nipples, she dipped her chin to flick it with her tongue until he groaned and spilled across her collarbone.",
+        "Knelt between his thighs and cradled his cock in her cleavage, rolling her shoulders to glide up and down his length while holding his gaze through her lashes. He gripped the edge of the divan with white knuckles before finishing warm across her breasts.",
+        "Squeezed her breasts together around him with both hands and set a smooth, rhythmic bounce that had him breathless inside minutes. She stayed on her knees until he finished completely, smiling up at him with glistening skin.",
+        "Leaned over him on the bed, enveloping his shaft in warm, oiled softness and teasing the tip with her lips on every upward stroke. He came harder than he'd expected, leaving her flushed and thoroughly pleased with her handiwork."
+      ],
+      "pair": {
+        "fem": [
+          "{name} leans in to press her bare breasts flush against {partner}'s, rolling her chest slowly so their hardened nipples brush and rub together until both of them are flushed and breathless.",
+          "{name} cradles {partner} closwer's hands massaging her back, pov, looking back at the viewer"
         ],
         "duo": ["both lying side by side face down, being massaged, pov"],
         "extra": "",
