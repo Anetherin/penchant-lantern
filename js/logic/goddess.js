@@ -239,13 +239,41 @@ function evGoddess(){
   const fk = T.form==='true' ? GOD_TRUE : GOD_FORMS[T.form] ? T.form : gDisguise(), F = GOD_FORMS[fk] || {};
   const ctx = {house:curH().name, n:S.workers.length, alias:F.alias || GN(), form:F.desc || 'a woman', race:(F.label||'').toLowerCase(), times:(g.met2||0)};
   const sc = T.image ? dynScene('goddess_' + T.id + (T.form==='disguise' ? '_' + fk : ''), T.image) : 'portrait';
-  return {title: gtxt(T.title, ctx), who:godNpcId(fk), scene:sc, text: gtxt(T.text, ctx), choices:(T.choices||[{label:'…'}]).map(c=>({label:gtxt(c.label, ctx), fx(){
+  // expanded scenes: intro (her arrival) is its own page, then wonder (Sam's thoughts) with the choices; old ones keep text
+  const pre = T.intro ? [{text: gtxt(T.intro, ctx), btn: gtxt(T.introBtn || (GOD.distract||{}).introBtn || 'Continue', ctx)}] : null;
+  const body = T.intro ? gtxt(T.wonder || '', ctx) || gtxt(T.text || '', ctx) : gtxt(T.text, ctx);
+  return {title: gtxt(T.title, ctx), who:godNpcId(fk), scene:sc, pre, text: body, choices:(T.choices||[{label:'…'}]).map(c=>({label:gtxt(c.label, ctx), fx(){
     if(!T.repeat) g.teases = [...(g.teases||[]), T.id];
     g.met2 = (g.met2||0) + 1; if(T.reveal || c.reveal) g.knows = true;
     g.love = clamp((g.love||0) + (c.love||0)); g.jealousy = clamp((g.jealousy||0) + (c.jealousy||0));
     if(c.energy) samEnergyAdd(c.energy);
-    return gtxt(c.res, ctx);
+    const act = gDistractAct(T, c);
+    if(act) EVQ.unshift(()=>evGoddessDistract(T, c, act, fk, ctx));
+    return gtxt(act && c.resIn ? c.resIn : c.res, ctx);   // resIn: the moment before she distracts him (she hasn't gone yet)
   }}))};
+}
+/* ---------- the distraction: when he asks too much (or she simply wants to), she does a service on him instead of answering,
+   and leaves him high and dry (kisses: just wanting more). goddess.json → distract (lead by phase, acts by service, dry by tier);
+   balance.json → goddess.tease (tier by cycle, services per tier, chance by phase). The picture is samact:<act> in her
+   disguise, at the tease's own setting (scene ctx gt_<id>, gTeaseSetting). ---------- */
+const gPhase = T => T.phase || (T.id==='reveal' ? 'reveal' : /^su_/.test(T.id) ? 'suspicion' : /^gm_/.test(T.id) ? 'game' : /^tr_/.test(T.id) ? 'true' : 'stranger');
+const gTeaseTier = () => { const B = (GB().tease||{}).tierByCycle || [1,1,1,2,3,3]; return B[Math.min(B.length-1, S.cycle||1)] || 1; };
+function gDistractAct(T, c){
+  const B = GB().tease || {};
+  const want = c.distract ?? (c.resIn ? (T.distract ?? (B.chance||{})[gPhase(T)] ?? 0) : false);
+  if(want === false || !(want === true || Math.random() < want)) return null;
+  const list = [].concat(c.act || T.act || ((B.acts||{})[gTeaseTier()]) || ['kiss']).filter(a=>actById(a));
+  return list.length ? actKey(pick(list)) : null;
+}
+const gTeaseSetting = ctx => { const m = /^gt_(.+)$/.exec(ctx||''); if(!m) return null; const T = (GOD.teases||[]).find(t=>t.id===m[1]); return T && T.image && T.image.setting || null; };
+function evGoddessDistract(T, c, act, fk, ctx){
+  const D = GOD.distract || {}, tier = actTier(act), ph = gPhase(T);
+  const x = Object.assign({}, ctx, {act: actLabel(act).toLowerCase()});
+  const lead = gtxt(c.lead || T.lead || (D.lead||{})[ph] || (D.lead||{}).stranger || '', x);
+  const line = gtxt((D.acts||{})[act] || actLine(act, {name:x.alias}), x);
+  const dry = c.dry || T.dry || (D.dry||{})[tier] || (D.dry||{})[1] || '';
+  return {title: gtxt(T.title, ctx), who:godNpcId(fk), scene:'samact:' + act + '~~gt_' + T.id, text: gpara(lead, line),
+    choices:[{label: gtxt((D.button||{})[tier] || 'Almost…', x), fx(){ return gtxt(dry, x); }}]};
 }
 function evGoddessRemark(){
   const g = G(); if(g.left) return null;
