@@ -104,8 +104,8 @@ function outfitKey(w, scene){
 function getOutfit(w, scene){ const ok = outfitKey(w, scene); if(ok==='custom') return {label:'Her own outfit', style:w.style, prompt:w.customOutfit||'an elegant dress', bonus:{}, custom:true}; return WARDROBE[ok] || BASE_OUTFITS.b_corset; }
 function getUnder(w){ if(w.under==='custom') return {label:'Custom', prompt:w.customUnder||'simple lace underwear', bonus:{}, style:w.style}; return UNDER[w.under] || UNDER.plain; }
 const usesColor = o => /\{color\}/.test(o.prompt||'');
-function outfitText(w, scene){ return getOutfit(w, scene).prompt.replace(/\{color\}/g, w.outColor||'black'); }
-function underText(w){ return w.under==='none' ? null : getUnder(w).prompt.replace(/\{color\}/g, w.underColor||'white'); }
+function outfitText(w, scene){ return getOutfit(w, scene).prompt; }   // outfit colors are written into the prompt
+function underText(w){ return w.under==='none' ? null : getUnder(w).prompt.replace(/\{color\}/g, w.favColor||'white'); }   // undergarments come in her favorite color
 function ob(w,k){ return ((getOutfit(w).bonus||{})[k]||1) * ((getUnder(w).bonus||{})[k]||1); }
 // sp_ outfits unlock at trust 60 (600 as shown) (or as a lover); an outfit with its own "unlock" needs that trust, lover or not.
 function spTrust(w){ const o = WARDROBE['sp_'+w.key]; return (o && o.unlock) || 60; }
@@ -257,11 +257,10 @@ function ensureWorker(w){
     else { const b = pick(plainBase().filter(k=>k!=='b_robe' || w.lewd>=20)); w.outfit = b; }
   }
   if(w.outfit && w.outfit!=='custom' && !ownsOutfit(w,w.outfit)) w.owned.push(w.outfit);
-  if(!w.outColor) w.outColor = Math.random()<0.4 ? w.favColor : pick(COLOR_KEYS);
+  delete w.outColor; delete w.underColor;   // color picking is gone
   if(!w.ownedUnder) w.ownedUnder = ['plain'];
   if(!w.under){ if(w.design.underwear){ w.under='custom'; w.customUnder=w.design.underwear; } else w.under = pick(['plain','plain','lace','silk','sports']); }
   if(w.under!=='custom' && !ownsUnder(w,w.under)) w.ownedUnder.push(w.under);
-  if(!w.underColor) w.underColor = Math.random()<0.4 ? w.favColor : pick(COLOR_KEYS);
   delete w.design.outfit; delete w.design.underwear;
   if(!w.imgVar) w.imgVar = {};
   if(!w.seen) w.seen = {};
@@ -337,7 +336,7 @@ function makeNamed(key, asPartner){
   if(d.unique) w.unique = clone(d.unique);
   ['fav','dislike','lovers'].forEach(k=>{ if(w[k]) w[k] = actKey(w[k]); });
   w.id = 'n_'+key; w.key = key; w.named = true; w.keep = true; w.sub = d.sub || '';
-  w.outfit = 'sig_'+key; w.owned = ['sig_'+key]; w.outColor = null;
+  w.outfit = 'sig_'+key; w.owned = ['sig_'+key];
   w.ownedUnder = Array.from(new Set(['plain', d.under]));
   w.seed = (hashStr(key)*7 + 12345) % 999999999;
   delete w.role; delete w.partnerTrust; delete w.partnerStory; delete w.partnerLewd;
@@ -359,15 +358,15 @@ function stashCloset(w){
   const D = NAMED[w.key], mine = ['sig_'+w.key, 'sp_'+w.key];
   S.closets = S.closets || {};
   S.closets[w.key] = {owned:(w.owned||[]).filter(k=>!mine.includes(k) && WARDROBE[k]), ownedUnder:(w.ownedUnder||[]).filter(k=>k!=='plain' && k!==D.under),
-    outfit:w.outfit, outColor:w.outColor||null, under:w.under, underColor:w.underColor||null};
+    outfit:w.outfit, under:w.under};
   if(w.reborn) rememberLife(w, true);   // a reincarnated lady leaving mid-cycle keeps her stacks for when she comes back (ngplus.js)
 }
 function restoreCloset(w){
   const C = typeof S!=='undefined' && S && S.closets && S.closets[w.key]; if(!C) return;
   w.owned = Array.from(new Set([...(w.owned||[]), ...C.owned.filter(k=>WARDROBE[k])]));
   w.ownedUnder = Array.from(new Set([...(w.ownedUnder||[]), ...(C.ownedUnder||[])]));
-  if(C.outfit && (C.outfit==='sig_'+w.key || w.owned.includes(C.outfit) || houseStock().includes(C.outfit)) && WARDROBE[C.outfit]){ w.outfit = C.outfit; w.outColor = C.outColor; }
-  if(C.under && (w.ownedUnder.includes(C.under) || houseUnderStock().includes(C.under))){ w.under = C.under; w.underColor = C.underColor || w.underColor; }
+  if(C.outfit && (C.outfit==='sig_'+w.key || w.owned.includes(C.outfit) || houseStock().includes(C.outfit)) && WARDROBE[C.outfit]) w.outfit = C.outfit;
+  if(C.under && (w.ownedUnder.includes(C.under) || houseUnderStock().includes(C.under))) w.under = C.under;
 }
 const isHired = key => S && (S.workers.some(w=>w.key===key) || S.candidates.some(w=>w.key===key) || (S.alumni||[]).some(w=>w.key===key));
 

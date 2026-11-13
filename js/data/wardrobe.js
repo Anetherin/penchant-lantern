@@ -9,7 +9,7 @@ const CLOTH = [
   {id:'under',   label:'Undergarments',    lv:30},
   {id:'nude',    label:'Undressed',        lv:55}
 ];
-// Generic base outfits: every non-named lady starts with one. Also buyable. {color} = her chosen color.
+// Generic base outfits: every non-named lady starts with one. Also buyable. Colors are fixed in each prompt.
 const BASE_OUTFITS = WARDROBE_DATA.base;
 const SHOP_OUTFITS = WARDROBE_DATA.shop;
 // Job uniforms: an outfit with "uniform":"<job>" is worn automatically on that job and never rolled for generic ladies.

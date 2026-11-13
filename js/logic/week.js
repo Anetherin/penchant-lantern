@@ -709,8 +709,6 @@ function endWeek(){
     if(h.up.garden) moodAdd(w, BAL.amenities.garden.mood * gardenMult(w));
     if(hasPast('cook')) moodAdd(w, 2);
     const o = getOutfit(w); if(o.style===w.style){ moodAdd(w, 3); why('loves her outfit', true); }
-    if(usesColor(o) && w.outColor===w.favColor) moodAdd(w, 2);
-    if(w.under!=='none' && usesColor(getUnder(w)) && w.underColor===w.favColor) moodAdd(w, 1);
     if(has(w,'Greedy') && pr.earned>250){ moodAdd(w, 4); why('made good money', true); }
     if(w.energy <= 5 && w.race!=='demon'){ w.health -= 15; moodAdd(w, -10); why('exhausted', false); log(`⚠️ ${w.name} is exhausted. Give her some rest.`); }
     w.energy = clamp(w.energy, 0, energyCap(w)); w.mood = clamp(w.mood); w.health = clamp(w.health);

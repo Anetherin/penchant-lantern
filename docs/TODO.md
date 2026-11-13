@@ -21,7 +21,6 @@ This file is for big ideas when I have a fresh batch of Claude usage.
 - Make sure features are physical features not expressions or items (which should be accessories)
 - Make sure unique clothing is unique now that we've added more. same for special. It's possible some characters are fine with default outfits and may not necessarily have special ones or may have more than one special one if lore appropriate (eg different Zeldas as special outfits?)
 - We probably could do with more accessories. Check if we're missing any sort of outfits and feel free to add them.
-- Favorite color maybe just applies to underwear and is always set to favorite by default. clothing can have set colors.
 - Add more hairstyles and maybe skin tones.
 
 ## Content

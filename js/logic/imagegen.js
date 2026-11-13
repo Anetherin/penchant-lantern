@@ -21,8 +21,8 @@ function findAny(id){
 // Images are saved per scene + clothing state + what she's wearing, so each outfit gets its own pictures.
 function lookKey(w, cloth, scene){
   if(w.male || !w.outfit) return '';
-  const o = `o:${outfitKey(w, scene)}:${usesColor(getOutfit(w, scene))?w.outColor:''}`;
-  const u = w.under==='none' ? 'u:none' : `u:${w.under}:${usesColor(getUnder(w))?w.underColor:''}`;
+  const o = `o:${outfitKey(w, scene)}:`;
+  const u = w.under==='none' ? 'u:none' : `u:${w.under}:${usesColor(getUnder(w))?w.favColor:''}`;
   return cloth==='nude' ? '-' : cloth==='under' ? u : cloth==='partial' ? o+'+'+u : o;
 }
 const imgKey = (w,scene,cloth) => { const l = lookKey(w,cloth,scene); return `${w.id}|${scene}|${cloth}` + (l?'|'+l:''); };

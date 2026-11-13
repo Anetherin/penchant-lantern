@@ -34,11 +34,9 @@ function giftHouseItem(id, kind, k){
   moodAdd(w, mg); gainTrust(w, 1.5*m*(match ? 1.25 : 1)); countUp(w,'gifts'); samXP(3); samLog(`Gave ${w.name} ${o.label}`); checkUnlocks();
   note(`Sam gave ${w.name} ${o.label}. ${match?'It suits her style. ':''}Mood +${mg}.${pNote(w,'gift')}`); save(); render(); openWardrobe(id);
 }
-function setColor(id, which, c){ const w=findW(id); if(!w) return; w[which]=c; save(); openWardrobe(id); }
 function openWardrobe(id){
   const w=findW(id); if(!w) return;
   const cur = getOutfit(w), cu = getUnder(w);
-  const colorSel = (which, val) => `<select onchange="setColor('${id}','${which}',this.value)">${COLOR_KEYS.map(c=>`<option value="${c}" ${c===val?'selected':''}>${c}${c===w.favColor?' ♥':''}</option>`).join('')}</select>`;
   const rows = wardrobeAvail(w).map(([k,o])=>{
     const owned = ownsOutfit(w,k), wearing = w.outfit===k, ok = wardrobeOK(w,k), inHouse = S.houseWardrobe.includes(k) && !w.owned.includes(k);
     let act;
@@ -59,9 +57,9 @@ function openWardrobe(id){
     return `<tr><td>${esc(u.label)}${u.lewd?` <span class="muted">(lewd ${lShow(u.lewd)}+)</span>`:''}${n?` <span class="tag hid" title="Saved images with these undergarments">📷 ${n}</span>`:''}</td><td>${u.style===w.style?'<b class="good">'+u.style+'</b>':u.style}</td><td class="muted">${bonusText(u.bonus,u.stats)}</td><td>${act}</td></tr>`;
   }).join('');
   modal(`<h2>${esc(w.name)}'s Wardrobe</h2>
-    <p class="muted">Outfits Sam buys go to the shared house wardrobe: any lady can wear them when she's comfortable, and he can gift a piece to her for keeps. Style: <b>${w.style}</b> · Favorite color: ${sw(w.favColor)}<b>${w.favColor}</b>. Wearing her style and her favorite color keeps her happier each week. 📷 = saved images with that item (images are saved per outfit and color).</p>
-    <div class="row"><b>Outfit:</b> ${esc(cur.label)} ${usesColor(cur)?`· Color ${colorSel('outColor', w.outColor)}`:'<span class="muted">(fixed colors)</span>'}</div>
-    <div class="row"><b>Undergarments:</b> ${esc(cu.label)} ${w.under!=='none'&&usesColor(cu)?`· Color ${colorSel('underColor', w.underColor)}`:''}</div>
+    <p class="muted">Outfits Sam buys go to the shared house wardrobe: any lady can wear them when she's comfortable, and he can gift a piece to her for keeps. Style: <b>${w.style}</b> · Favorite color: ${sw(w.favColor)}<b>${w.favColor}</b>. Wearing her style keeps her happier each week; her undergarments always come in her favorite color. 📷 = saved images with that item.</p>
+    <div class="row"><b>Outfit:</b> ${esc(cur.label)}</div>
+    <div class="row"><b>Undergarments:</b> ${esc(cu.label)}${w.under!=='none'&&usesColor(cu)?` · ${sw(w.favColor)}${w.favColor}`:''}</div>
     <h3>Outfits</h3><table><tr><th>Outfit</th><th>Style</th><th>Bonuses</th><th></th></tr>${rows}</table>
     <h3 style="margin-top:10px">Undergarments</h3><table><tr><th>Item</th><th>Style</th><th>Bonuses</th><th></th></tr>${urows}</table>
     <div class="row"><button class="primary" onclick="openSheet('${id}')">Back to her sheet</button></div>`, {wide:true});
