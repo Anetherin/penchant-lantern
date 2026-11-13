@@ -98,17 +98,55 @@ function giftMenu(id){
     <div class="row">${Object.entries(G.tiers).map(([k,t])=>{ const c = giftCost(w,k); return `<button onclick="buyGift('${w.id}','${k}')" ${S.gold<c?'disabled':''}>${esc(t.label)} · ${fmt(c)}</button>`; }).join('')}</div>
     <div class="row"><button onclick="openSheet('${w.id}')">Back</button></div>`);
 }
+// One gift: pays, counts toward this week's markup, trust (through gainTrust, so house gates hold) and mood.
+function giftCore(w, k, cost){
+  const G = BAL.gifts, t = G.tiers[k];
+  S.gold -= cost;
+  if(w._giftWk !== S.week){ w._giftWk = S.week; w._giftN = 0; } w._giftN++;
+  const m = pm(w,'gift') * (has(w,'Greedy') ? G.greedy : 1);
+  const tg = gainTrust(w, t.trust * m); moodAdd(w, Math.round(t.mood * m)); w.mood = clamp(w.mood);
+  countUp(w, 'gifts');
+  return {tg, m};
+}
+// Gifts for a whole group (Sam tab → Errands), same groups as group tutoring. Skips ladies at max trust or held by their house's story.
+let GIFT_ALL = null;
+const giftRoom = w => w.trust < Math.min(100, houseTrustCap(w));
+function giftAllMenu(){
+  if(giftMode()==='locked') return toast('Buying gifts opens up once the debt is paid off.');
+  GIFT_ALL = GIFT_ALL || {g:'all', tier:Object.keys(BAL.gifts.tiers)[0]}; giftAllDraw();
+}
+function giftAllSet(k, v){ if(!GIFT_ALL) return; GIFT_ALL[k] = v; giftAllDraw(); }
+function giftAllDraw(){
+  const A = GIFT_ALL, G = BAL.gifts, group = tutorGroupList(A.g), list = group.filter(giftRoom), full = group.length - list.length;
+  const sel = (k, opts) => `<select onchange="giftAllSet('${k}',this.value)">${opts.map(([v,l])=>`<option value="${v}" ${A[k]===v?'selected':''}>${esc(l)}</option>`).join('')}</select>`;
+  const cost = list.reduce((a,w)=>a + giftCost(w, A.tier), 0);
+  modal(`<h2>🎁 Gifts for everyone</h2><p class="muted">Buys the same gift for every lady in the group who can still grow closer to Sam (not at max trust and not held back by her house's story). Each extra gift for a lady this week costs ${Math.round(G.weekStep*100)}% more.${giftMode()==='action' ? ` Takes one of Sam's actions (${G.energy} energy).` : ''}</p>
+    <div class="row"><label>Who ${sel('g', tutorGroups())}</label><label>Gift ${sel('tier', Object.entries(G.tiers).map(([k,t])=>[k, t.label]))}</label></div>
+    <p>${list.length ? list.map(w=>`${esc(w.name.split(' ')[0])} <span class="muted">(${tShow(w.trust)})</span>`).join(', ') : '<span class="muted">Nobody in this group has room to grow.</span>'}</p>
+    <p class="muted">${list.length} lad${list.length===1?'y':'ies'} · ${fmt(cost)} total${full ? ` · ${full} skipped (max trust or held by her house)` : ''}${S.gold < cost ? ' · <span class="warn">not enough gold for all: gifts go out in roster order until the purse runs out</span>' : ''}</p>
+    <div class="row"><button class="primary" ${list.length && S.gold >= giftCost(list[0], A.tier) ? '' : 'disabled'} onclick="giftAllApply()">Buy gifts</button><button onclick="GIFT_ALL=null;closeModal()">Back</button></div>`);
+}
+function giftAllApply(){
+  const A = GIFT_ALL; if(!A) return; const G = BAL.gifts, t = G.tiers[A.tier];
+  if(giftMode()==='locked') return toast('Buying gifts opens up once the debt is paid off.');
+  const list = tutorGroupList(A.g).filter(giftRoom); if(!list.length) return;
+  if(giftMode()==='action' && !useAP(G.energy)) return;
+  let spent = 0, trust = 0; const got = [], short = [];
+  list.forEach(w=>{ const c = giftCost(w, A.tier); if(S.gold < c){ short.push(w.name.split(' ')[0]); return; }
+    const {tg} = giftCore(w, A.tier, c); spent += c; trust += tg; got.push(w.name.split(' ')[0]); });
+  if(got.length) samLog(`Bought gifts (${t.label.toLowerCase()}) for ${got.length} lad${got.length===1?'y':'ies'}`);
+  checkUnlocks(); GIFT_ALL = null; save(); render();
+  modal(`<h2>🎁 ${esc(t.label)} for everyone</h2><p>${got.length ? `Sam hands out gifts to ${got.join(', ')}.` : 'Nobody got a gift.'}</p><p class="muted">−${fmt(spent)} · Trust ${tDelta(trust)} in total${short.length ? ` · <span class="warn">ran out of gold before ${short.join(', ')}</span>` : ''}</p>
+    <div class="row"><button class="primary" onclick="closeModal()">OK</button></div>`);
+}
 function buyGift(id, k){
   const w = findW(id), G = BAL.gifts, t = G.tiers[k]; if(!w || !t) return;
   const mode = giftMode(), cost = giftCost(w, k);
   if(mode==='locked') return toast('Buying her gifts opens up once the debt is paid off.');
   if(S.gold < cost) return toast('Not enough gold.');
   if(mode==='action' && !useAP(G.energy)) return;
-  S.gold -= cost;
-  if(w._giftWk !== S.week){ w._giftWk = S.week; w._giftN = 0; } w._giftN++;
-  const m = pm(w,'gift') * (has(w,'Greedy') ? G.greedy : 1);
-  const tg = gainTrust(w, t.trust * m); moodAdd(w, Math.round(t.mood * m)); w.mood = clamp(w.mood);
-  countUp(w, 'gifts'); samLog(`Bought ${w.name} a gift (${t.label.toLowerCase()})`); checkUnlocks();
+  const {tg, m} = giftCore(w, k, cost);
+  samLog(`Bought ${w.name} a gift (${t.label.toLowerCase()})`); checkUnlocks();
   const line = flavor('gift_'+k, w, {gift: pick(GIFTS)}) || `Sam buys ${w.name} a gift.`;
   save(); render();
   modal(`<h2>${esc(t.label)} for ${esc(w.name)}</h2><p class="story">${esc(line)}${esc(pNote(w,'gift'))}</p><p class="muted">−${fmt(cost)} · Trust ${tDelta(tg)} · Mood +${Math.round(t.mood*m)}</p>

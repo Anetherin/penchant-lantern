@@ -63,7 +63,7 @@ SET.ai = Object.assign({}, DEFAULT_SETTINGS.ai, _ss.ai||{}); SET.ai.tpl = Object
 if((SET.ai.v||1) < 2){ SET.ai.auto = false; SET.ai.v = 2; }
 let LIB = store.get(KEY_LIB) || [];
 let S = null;
-let TAB='house', SHEET=null, MODAL_LOCK=false, EVQ=[], CUR_EV=null, ROSTER_FILTER='cur', HOUSE_ALL=false, SETUP=null;
+let TAB='house', SHEET=null, MODAL_LOCK=false, EVQ=[], CUR_EV=null, HOUSE_ALL=false, SETUP=null;
 
 /* ---------- Image storage (IndexedDB) ---------- */
 let DB = null, THUMBS = {};

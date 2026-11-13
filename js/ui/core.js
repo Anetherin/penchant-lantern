@@ -45,17 +45,17 @@ const isGuest = w => !!(w && w.key && NAMED[w.key] && NAMED[w.key].role==='drift
 const nameBadge = w => isGuest(w) ? `<span class="tag guest" title="Visiting guest${NAMED[w.key].pack && GUEST_PACKS[NAMED[w.key].pack] ? ' · '+esc(GUEST_PACKS[NAMED[w.key].pack].label||NAMED[w.key].pack) : ''}">☄</span>` : (w && w.named ? '<span class="tag">★</span>' : '');
 function traitTags(w){ return (w.reborn?`<span class="tag act" title="${esc(rebornDesc(w))}">♻ Reincarnated${w.reborn>1?' ×'+w.reborn:''}</span> `:'') + (w.unique?`<span class="tag act" title="${esc(w.unique.desc||'')}">★ ${esc(w.unique.name)}</span> `:'') + (w.ngPerks||[]).map(t=>`<span class="tag act" title="${esc(TRAITS[t]?TRAITS[t].desc:'')}">✦ ${esc(t)}</span>`).join(' ') + ' ' + (w.traits||[]).filter(t=>!TRAITS[t]||!TRAITS[t].hidden||S.sam.appraisal>=3).map(t=>`<span class="tag ${TRAITS[t]&&TRAITS[t].hidden?'hid':''} ${TRAITS[t]&&TRAITS[t].story?'act':''}" title="${esc(TRAITS[t]?TRAITS[t].desc:'')}">${esc(t)}</span>`).join(' '); }
 function jobOptions(w){ return Object.entries(JOBS).map(([k,J])=>{ const why = k===w.job ? null : canDo(w,k); return `<option value="${k}" ${k===w.job?'selected':''} ${why?'disabled':''}>${why?'🔒 ':''}${J.label}</option>`; }).join(''); }
-// House picker. withAll: true (or 'roster') = roster's "All houses" (ROSTER_FILTER); 'house' = the Houses tab's own "All houses" page (HOUSE_ALL).
+// House picker, shared by Houses, Roster, Recruit and Upgrades: the picked house (S.cur) and the "All houses" choice (HOUSE_ALL) carry
+// across tabs. withAll = this tab offers "All houses"; tabs without it (Recruit, Upgrades) show S.cur and leave HOUSE_ALL as it was.
 function houseTabs(withAll){
-  const hv = withAll==='house', allOn = hv ? HOUSE_ALL : (withAll && ROSTER_FILTER==='all');
-  const pickAll = hv ? 'HOUSE_ALL=true' : "ROSTER_FILTER='all'", pickOne = hv ? 'HOUSE_ALL=false' : "ROSTER_FILTER='cur'";
+  const allOn = !!withAll && HOUSE_ALL, pickAll = 'HOUSE_ALL=true', pickOne = 'HOUSE_ALL=false';
   return `<div class="hsel">${withAll?`<button class="sm ${allOn?'on':''}" onclick="${pickAll};render()">All houses</button>`:''}${S.houses.map(h=>`<button class="sm ${(S.cur===h.id && !allOn)?'on':''}" onclick="S.cur='${h.id}';${pickOne};render()">${esc(h.name)} <span class="muted">(${S.workers.filter(w=>w.house===h.id).length})</span></button>`).join('')}${S.houses.length>1 && !allOn?`<button class="sm" title="Move this house left" onclick="moveHouse(S.cur,-1)" ${S.houses[0].id===S.cur?'disabled':''}>◀</button><button class="sm" title="Move this house right" onclick="moveHouse(S.cur,1)" ${S.houses[S.houses.length-1].id===S.cur?'disabled':''}>▶</button>`:''}</div>`;
 }
 function renderHeader(){
   const nd = nextDue();
   $('#hdr').innerHTML = `<div class="brand">🏮 Hollowmere Nights</div><div class="hstats">
     <span>📅 Week <b>${S.week}</b></span><span>💰 <b>${fmt(S.gold)}</b></span><span>⭐ Renown <b>${Math.round(S.rep)}</b></span>
-    <span>📜 <b>${fmt(nd.amount)}</b> due wk ${nd.week}${nd.week===S.week?' <span class="warn">(this week!)</span>':''}</span>
+    ${debtOpen() ? `<span>📜 <b>${fmt(nd.amount)}</b> due wk ${nd.week}${nd.week===S.week?' <span class="warn">(this week!)</span>':''}</span>` : (S.lastReport ? `<span title="Last week's net after wages, upkeep and tutoring">📈 Net <b>${fmt(reportNet(S.lastReport))}</b>/wk</span>` : '')}
     <span>⚡ Sam Lv <b>${S.sam.lvl||1}</b> · AP <b>${S.ap}/${apMax()}</b></span>${cycleTag()?`<span class="tag act">${cycleTag()}</span>`:''}${S.won?'<button class="sm primary" onclick="startNGPlus()">✦ New Game+</button>':''}<button class="sm" onclick="if(confirm('Start a new game? Your current save will be erased.'))restart()">↻ New game</button></div>`;
 }
 const TABS = [['house','🏠 Houses'],['roster','👥 Roster'],['recruit','📝 Recruit'],['sam','🧑 Sam'],['upgrades','🔨 Upgrades'],['log','📖 Log'],['settings','⚙️ Settings']];
@@ -97,6 +97,8 @@ function houseNotes(h, withName){
   if(sl > bd) out.push(`🛏️ ${pre}<span class="warn">${sl-bd} without a bed</span> (${sl} staff, ${bd} beds): they sleep on the floor (poor rest, −mood). Add quarters or beds in Upgrades.`);
   return out;
 }
+const debtOpen = () => !S.won && S.debt.remaining > 0;
+const reportNet = L => L.income - L.wages - L.upkeep - (L.recharge||0) - (L.tutor||0);
 function notesCard(lines){ return lines.length ? `<section class="card agenda"><h3 style="margin:0 0 4px">Notes</h3>${lines.map(l=>`<div>${l}</div>`).join('')}</section>` : ''; }
 // One row of the All houses overview.
 function houseRow(h){
@@ -121,20 +123,30 @@ function propertiesCard(){
     <div class="row"><button onclick="buyHouse('${k}')" ${S.gold<houseCost(k)||locked?'disabled':''}>Buy · ${fmt(houseCost(k))}</button><span class="muted">deed ${fmt(P.cost)} × ${houseBuyMult().toFixed(0)} (rises each week of the cycle)${S.houses.length>1?` +${Math.round(BAL.houses.priceStep*100*(S.houses.length-1))}% for the ${S.houses.length} houses you own`:''}</span></div></div></div>`; }).join('');
   return `<section class="card"><h2>Properties for Sale</h2><p class="muted">Each house has its own clientele, reputation, staff, and resident.</p><div class="grid">${props||'<span class="muted">You own every house in Hollowmere!</span>'}</div></section>`;
 }
+// Debt card (All houses page only). Gone once the debt is paid.
+function debtCard(){
+  if(!debtOpen()) return '';
+  const nd = nextDue();
+  return `<section class="card"><h2>Debt to the Vane Credit House</h2>
+      <div>Remaining: <b>${fmt(S.debt.remaining)}</b> · Next payment: <b>${fmt(nd.amount)}</b> at the end of week ${nd.week} ${nd.week===S.week?'<span class="warn">(this week!)</span>':''}</div>
+      <div>Strikes: ${'❌'.repeat(S.debt.strikes)}${'▫️'.repeat(Math.max(0,BAL.debt.strikes-S.debt.strikes))}</div>
+      <div class="row"><input id="payamt" type="number" min="1" placeholder="Amount"><button onclick="payExtra()">Pay extra</button>${S.debt.remaining>0 && S.gold>=S.debt.remaining ? `<button class="primary" onclick="if(confirm('Pay off the whole debt (${fmt(S.debt.remaining)})?'))payOffDebt()">Pay off in full (${fmt(S.debt.remaining)})</button>` : ''}</div></section>`;
+}
 function viewAllHouses(){
   const L = S.lastReport, notes = S.houses.flatMap(h=>houseNotes(h, true));
   const sl = S.houses.reduce((a,h)=>a+sleepers(h).length,0), bd = S.houses.reduce((a,h)=>a+bedsFor(h),0);
   return `${houseTabs('house')}${notesCard(notes)}<section class="card"><h2>All houses</h2>
     <div class="grid2"><div>Houses: <b>${S.houses.length}</b> · Ladies: <b>${S.workers.length}</b> (${S.workers.filter(w=>w.job==='rest').length} resting)</div><div>Staff beds: <b class="${sl>bd?'warn':''}">${sl}/${bd}</b></div>
-    ${L?`<div>Last week: <b>${L.served}</b> clients · income <b>${fmt(L.income)}</b></div><div>Net after wages, upkeep${L.tutor?', tutoring':''}: <b>${fmt(L.income-L.wages-L.upkeep-(L.recharge||0)-(L.tutor||0))}</b></div>`:''}</div>
+    ${L?`<div>Last week: <b>${L.served}</b> clients · income <b>${fmt(L.income)}</b></div><div>Net after wages, upkeep${L.tutor?', tutoring':''}: <b>${fmt(reportNet(L))}</b></div>`:''}</div>
     <div style="overflow-x:auto"><table class="htable"><thead><tr><th>House</th><th>Rep</th><th>Ladies</th><th title="Staff who need a bed / beds (quarters ×2 + extra beds)">Staff beds</th><th title="Room sessions used last week / capacity">Client rooms</th><th>Tidy</th><th>Clients</th><th>Income / upkeep</th><th>Sat.</th><th>Feast</th></tr></thead>
     <tbody>${S.houses.map(houseRow).join('')}</tbody></table></div>
     <p class="muted">Client rooms and money are from last week's report. Tap a house's name to open it.</p></section>
+    ${debtCard()}
     ${propertiesCard()}`;
 }
 function viewHouse(){
   if(HOUSE_ALL) return viewAllHouses();
-  const h = curH(), D = HOUSES[h.id], nd = nextDue();
+  const h = curH(), D = HOUSES[h.id];
   const amen = Object.keys(UPGRADES).filter(k=>h.up[k]).map(k=>UPGRADES[k].label).join(', ') || 'none';
   const staff = Object.entries(JOBS).map(([k,J])=>{ const ws=S.workers.filter(w=>w.house===h.id && w.job===k); return ws.length?`<div><b>${J.label}</b>: ${ws.map(w=>esc(w.name)).join(', ')}</div>`:''; }).join('');
   const L = S.lastReport, lh = L && L.houses ? L.houses.find(x=>x.id===h.id) : null;
@@ -146,16 +158,12 @@ function viewHouse(){
       <div>Amenities: ${amen}</div>${D.minPop?`<div class="muted">Standard: escorts need popularity ${D.minPop}+</div>`:''}
       <div class="muted">Clientele: ${TIERS.map((t,i)=>D.cls[i]>=1.3?`<b>${TIER_LABEL(t)}s ↑</b>`:D.cls[i]<=0.5?`${TIER_LABEL(t)}s ↓`:'').filter(Boolean).join(', ')||'balanced'}</div></div>
       <p class="muted">Higher prices earn more per client but draw fewer of them, unless reputation is high.</p></section>
+    <section class="card"><h2>Positions</h2>${h.up.classroom ? `<div class="row">📚 Classroom subject ${teachSelect(h, S.workers.find(w=>w.house===h.id && w.job==='teacher'))}</div>` : ''}<div class="grid2">${Object.entries(JOBS).filter(([k])=>k!=='rest').map(([k,J])=>{ const ws=S.workers.filter(w=>w.house===h.id && w.job===k), mx=slotsFor(h,k); return mx||ws.length?`<div><b>${J.label}</b> <span class="muted">${ws.length}/${mx}</span>${ws.length?': '+ws.map(w=>esc(w.name)).join(', '):''}</div>`:''; }).join('')}
+      ${S.workers.filter(w=>w.house===h.id && w.job==='rest').length?`<div><b>Resting</b>: ${S.workers.filter(w=>w.house===h.id && w.job==='rest').map(w=>esc(w.name)).join(', ')}</div>`:''}</div></section>
     ${feastCard(h)}
     ${storyCard(h)}
     ${regularsCard(h)}
-    <section class="card"><h2>Positions</h2>${h.up.classroom ? `<div class="row">📚 Classroom subject ${teachSelect(h, S.workers.find(w=>w.house===h.id && w.job==='teacher'))}</div>` : ''}<div class="grid2">${Object.entries(JOBS).filter(([k])=>k!=='rest').map(([k,J])=>{ const ws=S.workers.filter(w=>w.house===h.id && w.job===k), mx=slotsFor(h,k); return mx||ws.length?`<div><b>${J.label}</b> <span class="muted">${ws.length}/${mx}</span>${ws.length?': '+ws.map(w=>esc(w.name)).join(', '):''}</div>`:''; }).join('')}
-      ${S.workers.filter(w=>w.house===h.id && w.job==='rest').length?`<div><b>Resting</b>: ${S.workers.filter(w=>w.house===h.id && w.job==='rest').map(w=>esc(w.name)).join(', ')}</div>`:''}</div></section>
-    <section class="card"><h2>Debt to the Vane Credit House</h2>
-      <div>Remaining: <b>${fmt(S.debt.remaining)}</b> · Next payment: <b>${fmt(nd.amount)}</b> at the end of week ${nd.week} ${nd.week===S.week?'<span class="warn">(this week!)</span>':''}</div>
-      <div>Strikes: ${'❌'.repeat(S.debt.strikes)}${'▫️'.repeat(Math.max(0,BAL.debt.strikes-S.debt.strikes))}</div>
-      <div class="row"><input id="payamt" type="number" min="1" placeholder="Amount"><button onclick="payExtra()">Pay extra</button>${S.debt.remaining>0 && S.gold>=S.debt.remaining ? `<button class="primary" onclick="if(confirm('Pay off the whole debt (${fmt(S.debt.remaining)})?'))payOffDebt()">Pay off in full (${fmt(S.debt.remaining)})</button>` : ''}</div></section>
-    <section class="card"><h2>Last Week</h2>${lh?`<div class="grid2"><div>Clients here: <b>${lh.served}</b>${lh.turned?` (${lh.turned} turned away)`:''}</div><div>Income here: <b>${fmt(lh.income)}</b> · Upkeep <b>${fmt(lh.upkeep)}</b></div><div>Satisfaction: <b>${Math.round(lh.avgSat)}</b>${lh.promoDraw?` · promoter draw <b>+${Math.round(lh.promoDraw)}</b>`:''}</div><div>All houses net: <b>${fmt(L.income-L.wages-L.upkeep-(L.recharge||0)-(L.tutor||0))}</b></div></div><div class="row"><button onclick="showReport(S.lastReport,false)">📋 Full report</button></div>`:'<span class="muted">No report yet. Assign jobs, then End Week.</span>'}</section>`;
+    <section class="card"><h2>Last Week</h2>${lh?`<div class="grid2"><div>Clients here: <b>${lh.served}</b>${lh.turned?` (${lh.turned} turned away)`:''}</div><div>Income here: <b>${fmt(lh.income)}</b> · Upkeep <b>${fmt(lh.upkeep)}</b></div><div>Satisfaction: <b>${Math.round(lh.avgSat)}</b>${lh.promoDraw?` · promoter draw <b>+${Math.round(lh.promoDraw)}</b>`:''}</div><div>All houses net: <b>${fmt(reportNet(L))}</b></div></div><div class="row"><button onclick="showReport(S.lastReport,false)">📋 Full report</button></div>`:'<span class="muted">No report yet. Assign jobs, then End Week.</span>'}</section>`;
 }
 function workerCard(w, showHouse){
   const wl = knows(w,true) ? lShow(w.lewd) : '?';
@@ -165,7 +173,7 @@ function workerCard(w, showHouse){
       <div class="muted">${raceLabel(w)} · ${esc(w.personality)}</div>
       ${bar('Energy',w.energy,maxEnergy(w),'e')}${bar('Mood',w.mood,100,'m')}${knows(w,true)?lustBar(w):''}${w.health<100?bar('Health',w.health,100,'h'):''}
       <div class="row" onclick="event.stopPropagation()"><select onchange="setJob('${w.id}',this.value)">${jobOptions(w)}</select>
-      <span class="muted">Lewd ${wl}${w.prevJob?' · 😴 auto-resting':''}</span><span class="muted">· ${isFree(w)?'no wage':fmt(w.wage)+'/wk'}</span></div><div>${menu}</div></div></div>`;
+      <span class="muted">Trust ${tShow(w.trust)} · Lewd ${wl}${w.prevJob?' · 😴 auto-resting':''}</span><span class="muted">· ${isFree(w)?'no wage':fmt(w.wage)+'/wk'}</span></div><div>${menu}</div></div></div>`;
 }
 // "This week" at a glance: who needs attention before you end the week.
 function agendaHTML(){
@@ -253,7 +261,7 @@ function rosterFiltered(list){
   return out;
 }
 function viewRoster(){
-  const all = ROSTER_FILTER==='all', base = all ? S.workers : S.workers.filter(w=>w.house===curH().id), list = rosterFiltered(base);
+  const all = HOUSE_ALL, base = all ? S.workers : S.workers.filter(w=>w.house===curH().id), list = rosterFiltered(base);
   const empty = base.length ? '<span class="muted">Nobody matches these filters.</span>' : '<span class="muted">No one works here. Visit Recruit, or move someone over from her sheet.</span>';
   return `${houseTabs(true)}${agendaHTML()}<section class="card"><h2>Roster (${list.length})</h2><p class="muted">Tap someone to open her status window, services, wardrobe and images.</p>
     ${rosterFilterBar(base)}
