@@ -11,6 +11,7 @@ This file is for big ideas when I have a fresh batch of Claude usage.
 - Fate: Tohsaka, Saber, Rider, Sakura (Noble Phantasms are spirits)
 - Wuthering Waves: Iuno, Augusta, Aemeath (Spirit), Camellya, Fem!Rover
 - Nier: 2B, A2, Devola/Popola
+Other: Wii Fit Trainer, Samus Aran (android)
 - Double check character appearances and bonds against sources. If I made a manual change that means whatever was there intitially was off (common for wuthering waves in particular)
 
 ## Clothing/Appearance 
@@ -28,6 +29,7 @@ This file is for big ideas when I have a fresh batch of Claude usage.
 - Is the gameplay well rounded? Anything thta adds bloat or conversely should be fleshed out? amy additional systems we could add to improve the game?
 - What about adventuring /rpg/battle stuff?
 - Girls maybe can take a cut of the profits and use it to buy their own clothes. The user can set the toggle (including for all gitls with filters). also (toggleable) is them changing their clothes according to their preference if they have multiple. both of these should increase trust and mood (maybe baseline 20% cut? 50%? and lowering penalizes mood/trust. Maybe it changes per cycle)
+- Orgies maybe can make use of the fem/fem scene if ladies have high enough bonds?
 
 ## Houses
 - We should have a house available that comes with an android (and charging station)
@@ -39,7 +41,7 @@ This file is for big ideas when I have a fresh batch of Claude usage.
 - Should we have any more upgrades? sexbots that make sure restless girls gettaken care of (with an image prompt etc to match)?
 
 ## New Game Plus
-- After Cycle 5 if you recruit the goddess should it be a soft reset? You unlock her tab, but without divinity you maybe sort of start afresh? essentially a new cycle 1 (but all prior characters retain their reincarnated perks and continue to carry over even if they don't get re-recruited). Maybe a new house and no partner? Sam's level also gets reset, but he does keep his perks and caps. The new house could add rooms (and cost) every reincarnation.
+- After Cycle 5 if you recruit the goddess should it be a soft reset? You unlock her tab, but without divinity you maybe sort of start afresh? essentially a new cycle 1 (but all prior characters retain their reincarnated perks and continue to carry over even if they don't get re-recruited). Maybe a new house and no partner? Sam's level also gets reset, but he does keep his perks and caps. The new house could add rooms (and cost) every reincarnation. lovers would keep the reincarnation but lose lover status.
 - Most of Sam's items should not carry through to Ng Plus, and there should also be items that reduce his energy consumption for various activities.
 - Maybe certain variables change each cycle or there are certain challenges that give perks (either available right away or after goddess is unlocked/maxed)
 
