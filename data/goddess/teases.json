@@ -13,7 +13,7 @@
         "sam": true,
         "pov": true
       },
-      "text": "The girl at the end of the bar isn't a guest and isn't staff, and she's been watching you over the rim of her glass for ten minutes. {form}, very long black hair, gold at the tips, eyes that catch the lamplight a little too well.\n\n\"{alias},\" she says, when you finally go over, as if you'd asked. \"You're the owner. You look like you haven't sat down since the morning.\" She hooks a foot around your stool and pulls it closer. \"Sit. Let someone look after you for once.\"\n\nShe does, for an hour: a hand on your knee, a thumb along your jaw, a laugh against your ear. Then you look down at your drink, and when you look up again the stool is empty and the glass is still warm.",
+      "text": "The girl at the end of the bar isn't a guest and isn't staff, and she's been watching you over the rim of her glass for ten minutes. {form}, very long black hair, gold at the tips, eyes that catch the lamplight a little too well.\n\n\"{alias},\" she says, when you finally go over, as if you'd asked. \"You're the owner. You look like you haven't sat down since the morning.\" She hooks a foot around your stool and pulls it flush against hers. \"Sit. Let someone look after you for once.\"\n\nShe does, for an hour: a warm palm sliding high on your inner thigh, a thumb along your jaw, a breathless laugh against your ear. Then you look down at your drink, and when you look up again the stool is empty and the glass is still warm.",
       "choices": [
         {
           "label": "\"Have we met?\"",
@@ -25,12 +25,12 @@
         {
           "label": "Enjoy it while it lasts",
           "resIn": "You stop trying to work her out and let the noise of the bar fade. She notices, and her smile turns slow and very warm.",
-          "res": "You let her talk, and let her hand wander, and for an hour this world feels kind. Then you blink, and she's gone, and the stool beside you is empty. A lucky night, wasted. You tell yourself these things happen. In this world, apparently, they do.",
+          "res": "You let her talk, and let her hand wander dangerously high up your thigh, and for an hour this world feels kind. Then you blink, and she's gone, and the stool beside you is empty. A lucky night, wasted. You tell yourself these things happen. In this world, apparently, they do.",
           "love": 2
         }
       ],
       "intro": "The bar is loud tonight, which is good for business and bad for your head. You've been on your feet since dawn: ledgers, a broken shutter, a client who wanted a refund for reasons he declined to explain.\n\nThe girl at the end of the counter isn't a guest and isn't staff. She's been there for ten minutes with one untouched glass, watching you over the rim of it. {form}, with very long black hair that turns to gold at the tips, and eyes that catch the lamplight a little too well.\n\nWhen you finally go over to ask if she needs anything, she answers before you can. \"{alias}.\" As if you'd asked. \"You're the owner. You look like you haven't sat down since this morning.\" She hooks a foot around the stool beside her and drags it closer. \"Sit. Let someone look after you for once.\"",
-      "wonder": "You sit. You aren't sure why. She talks about nothing (the weather, the music, the terrible painting over the door) and her hand settles on your knee as if it's always lived there.\n\nYou try to place her. Not one of your ladies. Not a client's companion; she came alone. Not anyone from the street, either: you would remember hair like that, the way the gold at the ends seems to glow a little in the dark corners of the room. There's something familiar about her laugh, though, like a song you heard once in a dream and can't quite hum.\n\nHer thumb traces your jaw. \"You're thinking very hard,\" {alias} says. \"About me?\""
+      "wonder": "You sit. You aren't sure why. She talks about nothing (the weather, the music, the terrible painting over the door) and her hand settles high on your thigh as if it's always lived there.\n\nYou try to place her. Not one of your ladies. Not a client's companion; she came alone. Not anyone from the street, either: you would remember hair like that, the way the gold at the ends seems to glow a little in the dark corners of the room. There's something familiar about her laugh, though, like a song you heard once in a dream and can't quite hum.\n\nHer thumb traces your jaw. \"You're thinking very hard,\" {alias} says. \"About me?\""
     },
     {
       "id": "st_kiss",
@@ -45,23 +45,23 @@
         "sam": true,
         "pov": true
       },
-      "text": "You wake because the room is warm. Someone is sitting on the edge of your bed: {form}, black hair spilling over her shoulders, gold tips glowing faintly in the dark.\n\n\"Shh. I'm {alias}. You didn't hear me come in.\" She leans down and kisses you, slow and very thorough, one hand sliding under the blanket to rest on your stomach. You're too startled to do anything but kiss back. Her hand drifts lower. Lower. And the bed is empty, the door is shut and locked, and the room is cold.",
+      "text": "You wake because the room is warm. Someone is sitting on the edge of your bed: {form}, black hair spilling over bare shoulders, gold tips glowing faintly in the dark.\n\n\"Shh. I'm {alias}. You didn't hear me come in.\" She leans down and kisses you, slow and wet, one hand sliding under the blanket to palm you right through your nightclothes. You're too startled to do anything but kiss back. Her fingers wrap around your hardening cock, stroking once, twice—and then the bed is empty, the door is shut and locked, and the room is cold.",
       "choices": [
         {
           "label": "Kiss her back",
-          "res": "You catch the last of it before she's gone, and lie awake for an hour, aching. Somewhere far off, someone laughs, pleased.",
+          "res": "You catch the last of it before she's gone, and lie awake for an hour, aching and hard. Somewhere far off, someone laughs, pleased.",
           "love": 4,
-          "resIn": "You open your mouth to say something, anything, and she catches the words before they leave, with a kiss that is slow and unhurried and entirely sure of itself. The blanket slides lower."
+          "resIn": "You open your mouth to say something, anything, and she catches the words before they leave with a slow, tongue-tangling kiss. The blanket slides lower, and her warm hand slips straight beneath your waistband."
         },
         {
           "label": "\"Who are you?\"",
           "res": "\"Someone who likes you,\" says the dark, amused, from nowhere. \"Goodnight, {sam}.\"",
           "love": 3,
-          "resIn": "\"Who are you?\" She seems to find the question adorable. \"Someone who couldn't sleep,\" she murmurs, and her mouth finds yours before you can ask a second one, her hand wandering down under the blanket."
+          "resIn": "\"Who are you?\" She seems to find the question adorable. \"Someone who couldn't sleep,\" she murmurs, and her mouth finds yours before you can ask a second one, her fingers curling around your shaft under the blanket."
         }
       ],
       "intro": "The house has gone quiet the way it only does after the last guest is out and the last lantern is trimmed. You've been asleep for an hour, face down, one arm hanging off the mattress, dreaming about spreadsheets.\n\nWhat wakes you is the warmth. Not the blanket kind: the kind that has a weight to it, sitting on the edge of the bed and making the mattress dip. Candle smoke, faint and sweet, as if someone had just walked in from a room full of them.\n\n{form} is sitting there in the dark, black hair spilling over her shoulders so long it pools on the sheets, the tips glowing a soft gold. Her eyes are the color of lamplight. \"Shh,\" she says, before you can get a word out. \"I'm {alias}. You didn't hear me come in.\"",
-      "wonder": "You're almost sure this is a dream. The door was locked; you locked it yourself. The window is two floors up. And yet there is a very solid, very warm person on your bed, and her hand is resting on your stomach through the blanket as if she'd been invited.\n\nYou don't know her. You're certain you don't know her. So why does the shape of her smile feel like a word on the tip of your tongue? Why does the smoke in the air remind you of somewhere high and golden, with paper lanterns swaying in a warm wind?\n\nShe leans closer, her hair sliding across your chest like cool silk, and waits to see what you'll do with the moment."
+      "wonder": "You're almost sure this is a dream. The door was locked; you locked it yourself. The window is two floors up. And yet there is a very solid, very warm woman on your bed, and her hand is sliding beneath the blanket to rest low on your stomach as if she'd been invited.\n\nYou don't know her. You're certain you don't know her. So why does the shape of her smile feel like a word on the tip of your tongue? Why does the smoke in the air remind you of somewhere high and golden, with paper lanterns swaying in a warm wind?\n\nShe leans closer, her hair sliding across your bare chest like cool silk, and waits to see what you'll do with the moment."
     },
     {
       "id": "st_storeroom",
@@ -76,24 +76,24 @@
         "sam": true,
         "pov": true
       },
-      "text": "You're fetching linens from the storeroom when the door clicks shut behind you. {alias}, {form}, is leaning against it with her arms behind her back, looking you over like a shopkeeper's window.\n\n\"You work too hard.\" She pushes you back against the shelves and presses against you, warm and close, her mouth at your throat, her hand finding your belt. \"Let me help.\"\n\nYou're gasping, nearly there, when a knock sounds outside. \"Sam? Are you in there?\" You turn your head. When you turn back, the storeroom is empty, and the door is open a crack.",
+      "text": "You're fetching linens from the storeroom when the door clicks shut behind you. {alias}, {form}, is leaning against it with her arms behind her back, looking you over like a meal she's already paid for.\n\n\"You work too hard.\" She pushes you back against the shelves and presses flush against you, hot and close, her teeth grazing your throat while her hand unbuckles your belt and slips inside your trousers. \"Let me take the edge off.\"\n\nYou're gasping, hips bucking into her fist, when a knock sounds outside. \"Sam? Are you in there?\" You turn your head. When you turn back, the storeroom is empty, your trousers are undone, and the door is open a crack.",
       "choices": [
         {
           "label": "Follow her out",
-          "res": "The hall is empty. A single gold hair is caught on your collar. You pick it off and stare at it for a while.",
+          "res": "The hall is empty. A single gold hair is caught on your collar. You tuck yourself back in, pick the hair off, and stare at it for a while.",
           "love": 3,
           "jealousy": -1,
-          "resIn": "\"Wait, that door was locked from the inside.\" She smiles, as though you've said something sweet, and slides closer, deaf to the logistics."
+          "resIn": "\"Wait, that door was locked from the inside.\" She smiles, as though you've said something sweet, and presses her hips against yours, deaf to the logistics."
         },
         {
           "label": "Stay and collect yourself",
-          "res": "It takes a while. The blushing lasts longer. A strange girl, a locked door and a convenient knock. This place is wild.",
+          "res": "It takes a while. The blushing—and the throbbing—last longer. A strange girl, a locked door, and a convenient knock. This place is wild.",
           "love": 2,
-          "resIn": "You don't say no. You don't say anything, and {alias} takes the silence as the yes it is, her fingers curling in the front of your shirt."
+          "resIn": "You don't say no. You don't say anything, and {alias} takes the silence as the yes it is, her fingers wrapping firmly around your cock."
         }
       ],
-      "intro": "The linen storeroom is the one place in the house that is always quiet, which is why you go there when you need to think. Today you need towels, and three minutes where nobody asks you anything.\n\nYou have an armful of folded sheets when the door clicks shut behind you. You turn. {form} is leaning against it with her hands behind her back, in the dusty gold light from the one high window, looking you over the way a person looks over a shop display they've already decided to buy.\n\nHer hair is black and ridiculously long, the tips glowing like embers. Her skin is bronze, her eyes lamp-bright. \"You work too hard,\" she says, as if you'd been talking all morning. \"{alias}. Put those down.\"",
-      "wonder": "You put them down. You have no idea why; your hands just do it. Maybe because no one has looked at you like that in a very long time, or maybe because she smells of candle smoke and warm skin and your brain has stopped taking orders.\n\nYou've been through every face in this house. Staff, guests, suppliers, the woman who sells lamp oil on the corner. She isn't any of them. And yet when she steps off the door and comes toward you, unhurried, there's a feeling in your chest like recognizing a handwriting.\n\nShe lays a hand flat on your chest, pushing you gently back until the shelves meet your shoulders. \"Well?\" she says, tilting her head. \"Do you want me to stop?\""
+      "intro": "The linen storeroom is the one place in the house that is always quiet, which is why you go there when you need to think. Today you need towels, and three minutes where nobody asks you anything.\n\nYou have an armful of folded sheets when the door clicks shut behind you. You turn. {form} is leaning against it with her hands behind her back, in the dusty gold light from the one high window, looking you over the way a person looks over a feast they've already decided to devour.\n\nHer hair is black and ridiculously long, the tips glowing like embers. Her skin is bronze, her eyes lamp-bright. \"You work too hard,\" she says, as if you'd been talking all morning. \"{alias}. Put those down.\"",
+      "wonder": "You put them down. You have no idea why; your hands just do it. Maybe because no one has looked at you with that kind of hunger in a very long time, or maybe because she smells of candle smoke and warm skin and your brain has stopped taking orders.\n\nYou've been through every face in this house. Staff, guests, suppliers, the woman who sells lamp oil on the corner. She isn't any of them. And yet when she steps off the door and comes toward you, unhurried, there's a feeling in your chest like recognizing a handwriting.\n\nShe lays a hand flat on your chest, pushing you gently back until the shelves meet your shoulders. \"Well?\" she says, tilting her head. \"Do you want me to stop?\""
     },
     {
       "id": "st_bath",
@@ -108,25 +108,25 @@
         "sam": true,
         "bath": true
       },
-      "text": "The bath is already hot when you get in, and already occupied. {alias} settles in behind you, wraps both arms around your chest and hooks her chin over your shoulder. She's {form}, and there is nothing at all between her skin and your back.\n\n\"Breathe,\" she murmurs, hands wandering. They know exactly where they're going, and exactly when to stop. \"That's all you get tonight.\"\n\nYou turn your head to answer and the water is just water, rippling gently around you, and the steam smells faintly of candle smoke.",
+      "text": "The bath is already hot when you get in, and already occupied. {alias} settles in behind you, wraps both arms around your chest, and hooks her chin over your shoulder. She's {form}, and there is nothing at all between her bare breasts and your back.\n\n\"Breathe,\" she murmurs, her slick hands sliding down your stomach beneath the water to wrap around your cock. They know the exact rhythm you like, and the exact second to stop. \"That's all you get tonight.\"\n\nYou turn your head to answer and the water is just water, rippling gently around you, and the steam smells faintly of candle smoke.",
       "choices": [
         {
           "label": "Lean back into her",
-          "res": "You lean into nothing, and the water holds you warm and still. You come out of it oddly rested, and extremely frustrated.",
+          "res": "You lean into nothing, and the water holds you warm and still. You come out of it oddly rested, and painfully hard.",
           "love": 4,
           "energy": 15,
-          "resIn": "You let your head fall back against her shoulder. \"Breathe,\" she says, and her hands begin to travel."
+          "resIn": "You let your head fall back against her shoulder. \"Breathe,\" she says, pressing her bare body flush against yours as her hands travel south beneath the surface."
         },
         {
           "label": "Turn around",
-          "res": "You turn around fast enough to splash. No one. A ripple of laughter lingers somewhere near the ceiling.",
+          "res": "You turn around fast enough to splash. No one. A ripple of low, wicked laughter lingers somewhere near the ceiling.",
           "love": 2,
           "jealousy": -2,
-          "resIn": "You start to turn, and a hand on your cheek gently stops you. \"Not yet. Eyes on the water, {sam}.\" And you find you don't mind obeying."
+          "resIn": "You start to turn, and a wet hand on your cheek gently stops you. \"Not yet. Eyes on the water, {sam}.\" And you find you don't mind obeying."
         }
       ],
-      "intro": "The bathhouse at the back of the property is your one luxury, a deep tiled tub fed by a hot spring that somebody before you had the good sense to build over. You get in at the end of the longest day of the week with a groan that would embarrass you in front of staff.\n\nThe water is perfect. The steam is thick. For a full minute you just float there with your eyes closed, listening to the lanterns tick as they cool.\n\nThen the water moves. Not much: a ripple behind you, a soft sound of someone settling. When you open your eyes, a pair of bronze arms slide around your chest from behind and a chin hooks over your shoulder. {form}, black hair floating around you both like ink in the water, gold at the ends. \"Don't turn around,\" says {alias}, warm against your ear. \"I'm shy.\"",
-      "wonder": "She is clearly not shy. You know this the way you know the water is wet. But it's hard to argue with her when her hands are drifting over your shoulders, working out knots you didn't know you had.\n\nWho gets into a bath with a man they've never met? Who knows exactly where you carry the tension, and exactly how hard to press? The steam smells of candle smoke, which is strange, because the bath lamps burn lamp oil. Strange, and faintly familiar, in the way of a smell from a childhood you never had.\n\nHer lips brush the back of your neck. \"You're thinking again,\" she says. \"I can hear it. Do you want me to make it stop?\""
+      "intro": "The bathhouse at the back of the property is your one luxury, a deep tiled tub fed by a hot spring that somebody before you had the good sense to build over. You get in at the end of the longest day of the week with a groan that would embarrass you in front of staff.\n\nThe water is perfect. The steam is thick. For a full minute you just float there with your eyes closed, listening to the lanterns tick as they cool.\n\nThen the water moves. Not much: a ripple behind you, a soft sound of someone settling. When you open your eyes, a pair of bronze arms slide around your chest from behind and a chin hooks over your shoulder. {form}, naked in the water, black hair floating around you both like ink, gold at the ends. \"Don't turn around,\" says {alias}, warm against your ear. \"I'm shy.\"",
+      "wonder": "She is clearly not shy—not with her bare thighs pressed against yours and her nipples grazing your shoulder blades. You know this the way you know the water is wet. But it's hard to argue with her when her hands are drifting over your chest and stomach, working out tension you didn't know you had.\n\nWho gets into a bath naked with a man they've never met? Who knows exactly where you carry the tension, and exactly how hard to press? The steam smells of candle smoke, which is strange, because the bath lamps burn lamp oil. Strange, and faintly familiar, in the way of a smell from a childhood you never had.\n\nHer lips brush the back of your neck. \"You're thinking again,\" she says. \"I can hear it. Do you want me to make it stop?\""
     },
     {
       "id": "st_ride",
@@ -141,24 +141,24 @@
         "sam": true,
         "pov": true
       },
-      "text": "You're walking back from the market when a hand takes your wrist and pulls you into an alley. {alias}, {form}, pushes you against the wall with a grin and kisses you until your knees go. Her thigh slips between yours; her fingers are inside your shirt.\n\n\"Do you always walk home alone?\" she whispers. \"Someone should do something about that.\" Her hand moves, and moves, and you're almost, almost, almost-\n\nThen a cart rattles past the mouth of the alley, and when it's gone you're standing there alone, breathless, with your shirt untucked and the faint sense that you've been teased on purpose.",
+      "text": "You're walking back from the market when a hand takes your wrist and pulls you into an alley. {alias}, {form}, pushes you against the wall with a grin and kisses you until your knees go weak. Her bare thigh wedges hard against your groin; her fingers are already unfastening your trousers.\n\n\"Do you always walk home alone?\" she whispers against your mouth. \"Someone should do something about that.\" Her slick hand works your shaft in fast, teasing strokes, bringing you right to the brink—almost, almost, almost—\n\nThen a cart rattles past the mouth of the alley, and when it's gone you're standing there alone, breathless and throbbing, with your trousers half undone and the sharp realization that she edged you on purpose.",
       "choices": [
         {
           "label": "Chase after her",
-          "res": "Nobody in the alley, nobody in the street. You walk home with your coat held in front of you.",
+          "res": "Nobody in the alley, nobody in the street. You fasten your trousers with shaking fingers and walk home with your coat held in front of you.",
           "love": 3,
           "jealousy": -1,
-          "resIn": "You try to say you have errands, and she kisses the word right out of your mouth. The parcels can wait."
+          "resIn": "You try to say you have errands, and she kisses the word right out of your mouth, grinding her thigh against your cock. The parcels can wait."
         },
         {
           "label": "Laugh it off",
-          "res": "This world runs on strange luck. The kind that gets you kissed in an alley and then leaves you shaking. You're not sure whether that's good or bad luck.",
+          "res": "This world runs on strange luck. The kind that gets you stroked to the edge in an alley and then leaves you shaking. You're not sure whether that's good or bad luck.",
           "love": 2,
-          "resIn": "You laugh, a little helplessly, because what else do you do, and the sound seems to please her. \"Good,\" she says. \"Stay right there.\""
+          "resIn": "You laugh, a little helplessly, because what else do you do, and the sound seems to please her. \"Good,\" she says, slipping her hand inside your trousers. \"Stay right there.\""
         }
       ],
       "intro": "The market has been a long, loud errand: oil, linen, a haggle over soap that you lost on principle. You're cutting through the narrow lane behind the dyers' street, arms full of parcels, when the light goes strange.\n\nA hand closes on your wrist. A very warm hand, with firm fingers. Before you have time to protest, the parcels are on the cobbles and your back is against the cool brick of an alley wall, and {form} is smiling up at you from very close.\n\nHer hair falls to her knees, black as a night sky and tipped with gold that shines faintly even in the shade. Her eyes are the color of lamplight on honey. \"Do you always walk home alone?\" she asks. \"{alias}. Hello.\"",
-      "wonder": "There is a cart rattling somewhere beyond the mouth of the alley. A man is shouting about fish. The world carries on at the edge of your hearing, and none of it seems to have anything to do with the woman who has you by the collar.\n\nHaving been in this world a short while and already been pickpocketed twice, you should be checking your purse. Instead you're trying to remember where you've seen that exact shade of gold. In a dream, perhaps. Or lanterns, lots of them, floating up into a warm dark.\n\nHer knee shifts lightly against yours. \"You haven't said a word,\" {alias} observes, delighted with herself. \"Should I be worried?\""
+      "wonder": "There is a cart rattling somewhere beyond the mouth of the alley. A man is shouting about fish. The world carries on at the edge of your hearing, and none of it seems to have anything to do with the woman who has you pinned by the collar.\n\nHaving been in this world a short while and already been pickpocketed twice, you should be checking your purse. Instead you're trying to remember where you've seen that exact shade of gold. In a dream, perhaps. Or lanterns, lots of them, floating up into a warm dark.\n\nHer knee presses firmly right against your growing bulge. \"You haven't said a word,\" {alias} observes, delighted with herself. \"Should I be worried?\""
     },
     {
       "id": "st_rep1",
@@ -168,24 +168,24 @@
       "maxCycle": 2,
       "repeat": true,
       "unknown": true,
-      "text": "A girl sits down next to you, uninvited: {form}, with very long black hair and gold-tipped ends. \"{alias},\" she says, and holds out a hand you don't get to shake. She lays it on your thigh instead, and talks about nothing for ten minutes while her fingers draw slow patterns higher and higher. Then she excuses herself to 'fix her hair', and doesn't come back.",
+      "text": "A girl sits down next to you, uninvited: {form}, with very long black hair and gold-tipped ends. \"{alias},\" she says, and holds out a hand you don't get to shake. She lays it high on your inner thigh instead, and talks about nothing for ten minutes while her fingers draw slow circles right up to your groin, palming you through the fabric. Then she excuses herself to 'fix her hair', and doesn't come back.",
       "choices": [
         {
           "label": "Ask what she wants",
-          "res": "She laughs and drops the topic, her fingers sliding off your knee. Whoever she was, she's not there when you look again, only a cooling chair and a faint smell of smoke. You go back to work grinning like a fool.",
+          "res": "She laughs and drops the topic, her fingers sliding off your thigh. Whoever she was, she's not there when you look again, only a cooling chair and a faint smell of smoke. You go back to work grinning like a fool.",
           "love": 3,
           "jealousy": -1,
-          "resIn": "\"What I want?\" She seems to enjoy the question. \"Hold still and I'll show you,\" she says, and leans in until all you can see are her eyes."
+          "resIn": "\"What I want?\" She seems to enjoy the question. \"Hold still and I'll show you,\" she says, squeezing you firmly under the table until all you can see are her eyes."
         },
         {
           "label": "Say nothing",
-          "res": "You finish the tea, and after a while realize it is the only warm thing left at the table. You don't mention to anyone why your face is red.",
+          "res": "You finish the tea, and after a while realize it is the only warm thing left at the table. You don't mention to anyone why your face is red or why you're still sitting.",
           "love": 2,
-          "resIn": "You say nothing, and she hums approvingly, her hand traveling slowly, and with great confidence, higher."
+          "resIn": "You say nothing, and she hums approvingly, her hand traveling slowly, and with great confidence, right up between your legs."
         }
       ],
-      "intro": "It is a slow afternoon, and you've sat down at the corner table to let your tea go cold. You don't see her arrive. One moment the chair beside you is empty; the next, {form} is in it, as if she'd been there all along.\n\nVery long black hair, gold at the tips. Eyes like lamplight. A trace of candle smoke. \"{alias},\" she says, and holds out a hand. When you reach for it she lays it on your thigh instead.",
-      "wonder": "Again. The thought comes before the word does. You have no reason to think \"again\", because you've never met this girl. And yet something inside you shrugs and says: of course.\n\nHer fingers are drawing slow patterns on your knee while she talks about nothing in particular. You should probably say something. You're just not sure what question to ask first."
+      "intro": "It is a slow afternoon, and you've sat down at the corner table to let your tea go cold. You don't see her arrive. One moment the chair beside you is empty; the next, {form} is in it, as if she'd been there all along.\n\nVery long black hair, gold at the tips. Eyes like lamplight. A trace of candle smoke. \"{alias},\" she says, and holds out a hand. When you reach for it she lays it high on your thigh instead.",
+      "wonder": "Again. The thought comes before the word does. You have no reason to think \"again\", because you've never met this girl. And yet something inside you shrugs and says: of course.\n\nHer fingers are drawing slow patterns right near your groin while she talks about nothing in particular. You should probably say something. You're just not sure what question to ask first."
     },
     {
       "id": "st_rep2",
@@ -195,20 +195,20 @@
       "maxCycle": 2,
       "repeat": true,
       "unknown": true,
-      "text": "In the middle of a busy evening, {alias} is just there: {form}, hip against the counter beside you, slipping one hand into your pocket and out again with a coin you hadn't known you had. \"Tip,\" she says. She tucks it into your collar, brushes her lips against your ear, and her hand lingers at your waist just a moment too long. By the time the crowd shifts she has gone.",
+      "text": "In the middle of a busy evening, {alias} is just there: {form}, hip against the counter beside you, slipping one hand into your pocket and out again with a coin you hadn't known you had. \"Tip,\" she says. She tucks it into your collar, brushes her lips against your ear, and her hand lingers right over your fly just a moment too long. By the time the crowd shifts she has gone.",
       "choices": [
         {
           "label": "Ask her name again",
           "res": "You turn to ask and the space beside you is just space. The coin is warm against your collarbone. It is also gold, and by morning it is gone.",
           "love": 3,
           "jealousy": -1,
-          "resIn": "\"{alias},\" she repeats, amused, and her fingers find the hem of your shirt under the counter's edge. \"Pay attention.\""
+          "resIn": "\"{alias},\" she repeats, amused, and her fingers slip beneath your waistband under the counter's edge. \"Pay attention.\""
         },
         {
           "label": "Play along",
           "res": "The crowd shifts, someone shouts for a refill, and when you look again she is gone. You spend the rest of the shift touching your collar.",
           "love": 2,
-          "resIn": "You pocket your embarrassment and lean into her. She smiles against your jaw, and the noise of the room seems to retreat a step."
+          "resIn": "You pocket your embarrassment and lean into her. She smiles against your jaw, pressing her hand shamelessly against your groin out of sight of the room."
         }
       ],
       "intro": "The evening rush is in full cry, glasses and laughter and a lute somewhere in the back, and you're wedged against the counter checking tabs. A hip bumps yours, unhurried, and {form} is simply there beside you.\n\nHair so long it nearly touches the floor, black with burning gold tips. Her skin is bronze, her eyes a bright lamp-gold. She holds up a coin between two fingers. \"Found this in your pocket,\" says {alias}. \"I thought you'd like it back.\"",
@@ -222,20 +222,20 @@
       "maxCycle": 2,
       "repeat": true,
       "unknown": true,
-      "text": "The back stairs are dim, and someone is waiting at the top of them: {form}, long black hair, gold tips, lit from within. {alias} takes the lapels of your coat and walks you backward into the wall, kissing you with a hunger you can feel in your spine. Her knee presses. Your breath breaks.\n\n\"Later,\" she promises, and slips out of your hands like smoke.",
+      "text": "The back stairs are dim, and someone is waiting at the top of them: {form}, long black hair, gold tips, lit from within. {alias} takes the lapels of your coat and walks you backward into the wall, kissing you with a hunger you can feel in your spine. Her knee presses hard between your thighs. Your breath breaks.\n\n\"Later,\" she promises, and slips out of your hands like smoke.",
       "choices": [
         {
           "label": "Ask what she's doing",
           "res": "\"Later,\" she promises, and the shadows swallow her. The lamp has burned down by the time you think to move.",
           "love": 3,
           "jealousy": -1,
-          "resIn": "\"What does it look like?\" She tugs you down by the collar and answers the question in her own way."
+          "resIn": "\"What does it look like?\" She tugs you down by the collar and answers the question in her own way, grinding her thigh against yours."
         },
         {
           "label": "Kiss her",
           "res": "The stairs are empty, the lamp flickers, and you stay there for a long moment, one hand against the wall.",
           "love": 2,
-          "resIn": "You kiss her, because it seems like the only sensible answer, and feel her smile against your mouth."
+          "resIn": "You kiss her, because it seems like the only sensible answer, and feel her smile against your mouth as her hands roam your hips."
         }
       ],
       "intro": "The back stairs are dim at this hour. You're on your way up with a lamp when you realize someone is waiting at the top, and not one of your people. {form}, tall in the half-light, her black hair so long it brushes the steps, the gold tips lit as if from within.\n\n\"Late,\" says {alias}, and she doesn't say it as a complaint. She takes your lapels. You let her.",
@@ -254,13 +254,13 @@
         "sam": true,
         "pov": true
       },
-      "text": "It's {alias} again: {form}, a different girl, with a different name and a different pair of ears. You're at the desk when she perches on the corner of it, crossing her legs slowly, and asks how your night is going.\n\nYou're looking at her hair. Very long. Black. Gold at the tips, glowing faintly. The last girl had the same. And the one before that.\n\n\"Something wrong?\" She leans in, smiling, and runs a finger along your tie. \"You're staring.\"",
+      "text": "It's {alias} again: {form}, a different girl, with a different name and a different pair of ears. You're at the desk when she perches on the corner of it, uncrossing her legs slowly to give you a glimpse of bare thigh, and asks how your night is going.\n\nYou're looking at her hair. Very long. Black. Gold at the tips, glowing faintly. The last girl had the same. And the one before that.\n\n\"Something wrong?\" She leans in, smiling, and runs a finger down your tie to your belt. \"You're staring.\"",
       "choices": [
         {
           "label": "\"Have we met?\"",
           "res": "\"Haven't we all?\" She taps your nose and kisses you on the corner of the mouth, and the door clicks, and she is not there. The pattern is getting hard to ignore.",
           "love": 3,
-          "resIn": "\"Have we met?\" She doesn't flinch. Her smile only deepens, and she slides off the desk and into your lap as though that were the answer."
+          "resIn": "\"Have we met?\" She doesn't flinch. Her smile only deepens, and she slides off the desk and straight into your lap as though that were the answer."
         },
         {
           "label": "Say nothing, but watch her eyes",
@@ -280,24 +280,24 @@
       "minCycle": 2,
       "maxCycle": 3,
       "unknown": true,
-      "text": "You've made a list. It's a short, embarrassing list: a fox, a cat, an elf, a dwarf. Each one a stranger, each with the same hair, the same eyes, the same warm bronze skin, and each one gone just before you-\n\nYou're staring at it when {alias} comes in, {form}, and reads it over your shoulder. \"What's this?\"\n\n\"A coincidence,\" you say, and she laughs, pressing herself against your back, her hands sliding around your waist. \"Poor thing. You've been so frustrated.\"",
+      "text": "You've made a list. It's a short, embarrassing list: a fox, a cat, an elf, a dwarf. Each one a stranger, each with the same hair, the same eyes, the same warm bronze skin, and each one gone just before you finish—\n\nYou're staring at it when {alias} comes in, {form}, and reads it over your shoulder. \"What's this?\"\n\n\"A coincidence,\" you say, and she laughs, pressing her breasts against your back while her hands slide around your waist and straight down to palm your groin. \"Poor thing. You've been kept so hard and frustrated.\"",
       "choices": [
         {
           "label": "\"You know exactly why.\"",
           "res": "\"Do I?\" Her breath on your neck is hot enough to hurt. \"Maybe I'm just a bad girl. Maybe you're just unlucky.\" She nips your ear. The door closes behind nobody.",
           "love": 3,
           "jealousy": 1,
-          "resIn": "\"You know exactly why.\" You feel her go quiet, very briefly, against your spine. Then her hands move again, as though it were all part of the plan."
+          "resIn": "\"You know exactly why.\" You feel her go quiet, very briefly, against your spine. Then her hand squeezes you again, as though it were all part of the plan."
         },
         {
           "label": "\"Stay. Please.\"",
-          "res": "\"Oh, I'd love to.\" She does, exactly until you're about to say something clever. Then you're alone with your list.",
+          "res": "\"Oh, I'd love to.\" She does, stroking you right up until you're about to say something clever. Then you're alone with your list.",
           "love": 4,
-          "resIn": "\"Stay. Please.\" She goes very soft at that. \"Oh, I'd love to,\" she says, and turns your chair around so she can look at you properly."
+          "resIn": "\"Stay. Please.\" She goes very soft at that. \"Oh, I'd love to,\" she says, and turns your chair around so she can straddle your lap properly."
         }
       ],
       "intro": "You've made a list. It's a short, embarrassing list, written on the back of an invoice with a pencil you keep sharpening: a fox, a cat, an elf, a dwarf. Four columns: hair, eyes, skin, smell. Every line says the same thing four times.\n\nYou're still staring at it when the door opens without a knock. {alias} walks in as if she lived here, {form}, and drifts around the desk. She reads the list over your shoulder, and you feel her chin settle on it, smoke and warmth against your neck.\n\n\"What's this?\" she asks lightly. \"Homework?\"",
-      "wonder": "\"A coincidence,\" you say, and she laughs, a low, delighted sound. It is the same laugh. Of course it is. You just never noticed, because the ears were different.\n\nYour pencil is shaking. Four girls, no, five now. All of them arrive with no warning and leave the same way. All of them stop, always, always, just before you can-\n\nShe's pressed up against your back now, hands sliding around your waist, her mouth near your ear. \"Poor thing,\" {alias} murmurs. \"You've been so frustrated. Tell me about it.\""
+      "wonder": "\"A coincidence,\" you say, and she laughs, a low, delighted sound. It is the same laugh. Of course it is. You just never noticed, because the ears were different.\n\nYour pencil is shaking. Four girls, no, five now. All of them arrive with no warning and leave the same way. All of them stop, always, always, just before you can finish—\n\nShe's pressed up against your back now, hands sliding around your waist and down toward your belt, her mouth near your ear. \"Poor thing,\" {alias} murmurs. \"You've been so frustrated. Tell me about it.\""
     },
     {
       "id": "su_ask",
@@ -312,24 +312,24 @@
         "sam": true,
         "pov": true
       },
-      "text": "You're done being teased in silence. When {alias} appears, {form}, slipping into your lap with an easy smile, you catch her wrists.\n\n\"Who are you?\"\n\n\"{alias}. I told you.\" She wriggles. Her hips do something distracting. \"Ask a better question.\"\n\n\"Why do you always leave before-\"\n\n\"Ah.\" She presses a finger to your lips. \"Wrong question too. Try again in a few lives.\" She kisses you instead of answering, very thoroughly, and you do not notice the 'lives' until much later.",
+      "text": "You're done being teased in silence. When {alias} appears, {form}, slipping into your lap with an easy smile, you catch her wrists.\n\n\"Who are you?\"\n\n\"{alias}. I told you.\" She wriggles, grinding her hips slowly down onto your hardening cock. \"Ask a better question.\"\n\n\"Why do you always leave before—\"\n\n\"Ah.\" She presses a finger to your lips. \"Wrong question too. Try again in a few lives.\" She kisses you instead of answering, very thoroughly, and you do not notice the 'lives' until much later.",
       "choices": [
         {
           "label": "\"Who are you?\"",
           "res": "\"{alias},\" she says, \"I told you.\" It's the lightest voice she's used so far, and it hides something. She slips out of your hands like water, laughing. \"Ask me again in a few lives.\"",
           "love": 4,
           "jealousy": 2,
-          "resIn": "\"{alias}. I told you.\" She seems almost fond. \"Ask a better question, {sam}.\" Her hips shift in your lap, a slow and very effective argument."
+          "resIn": "\"{alias}. I told you.\" She seems almost fond. \"Ask a better question, {sam}.\" Her hips roll in your lap, a slow and very effective argument."
         },
         {
           "label": "\"Why do you always leave?\"",
           "res": "\"Ah.\" She presses a finger to your lips. \"Try again in a few lives.\" Then she's gone, and you're alone with the word 'lives', turning it over.",
           "love": 3,
-          "resIn": "\"Wrong question,\" she says gently, and lays a finger across your lips. \"Let me give you a better one.\" Her other hand slides slowly down your chest."
+          "resIn": "\"Wrong question,\" she says gently, and lays a finger across your lips. \"Let me give you a better one.\" Her other hand slides slowly down to unbuckle your belt."
         }
       ],
       "intro": "You've had enough of being teased in silence. You've been up for three days working on a plan, and the plan is simple: the next time one of them shows up, you are going to hold on.\n\nYou're at your desk, pretending to read, when {alias} slips in. {form} again, hair like a curtain of night with gold at the ends, hips swaying. She doesn't bother with a greeting. She crosses the room, drops lightly into your lap, and starts to loosen your collar.\n\nYou catch her wrists. Not hard. Just enough. Her eyebrows go up, interested, and she doesn't pull away.",
-      "wonder": "Her pulse is quick under your thumbs. That's something: she has a pulse, she's warm, she's here. Not a ghost, not a dream, not a figment of overwork. You've been making excuses for weeks and this is the first time you've had the evidence in your hands.\n\nYou have a dozen questions lined up. Who are you. What are you. Why me. Why do you always go before it matters. The longer you look into those lamp-gold eyes, the more you think she already knows every one of them, and has the answers sitting ready.\n\nShe wriggles a little, and your thoughts scatter. \"Ask,\" says {alias}, with a smile like a dare. \"I'm listening.\""
+      "wonder": "Her pulse is quick under your thumbs. That's something: she has a pulse, she's warm, she's here. Not a ghost, not a dream, not a figment of overwork. You've been making excuses for weeks and this is the first time you've had the evidence in your hands.\n\nYou have a dozen questions lined up. Who are you. What are you. Why me. Why do you always go before it matters. The longer you look into those lamp-gold eyes, the more you think she already knows every one of them, and has the answers sitting ready.\n\nShe rolls her hips against you, and your thoughts scatter. \"Ask,\" says {alias}, with a smile like a dare. \"I'm listening.\""
     },
     {
       "id": "su_lantern",
@@ -366,20 +366,20 @@
       "maxCycle": 3,
       "repeat": true,
       "unknown": true,
-      "text": "{alias}, {form}, is already sitting on the stairs when you come up, ankles crossed, glowing faintly. \"You're late.\" She pulls you down beside her and kisses you, a warm lazy kiss, one hand tucked inside your shirt. \"Didn't you miss me?\" She's gone before you've finished deciding, leaving you with the gold hair on your sleeve and an uneasy thought.",
+      "text": "{alias}, {form}, is already sitting on the stairs when you come up, ankles crossed, glowing faintly. \"You're late.\" She pulls you down beside her and kisses you, a warm lazy kiss, one hand tucked inside your shirt while the other rests high on your thigh. \"Didn't you miss me?\" She's gone before you've finished deciding, leaving you with a gold hair on your sleeve and an uneasy thought.",
       "choices": [
         {
           "label": "Call after her",
           "res": "\"Whoever you are...\" Your voice carries down the empty hall. No answer. But the candles flicker, and you think you hear a laugh.",
           "love": 3,
-          "resIn": "\"Whoever you are-\" you begin, and she kisses the rest of it away, slow and lazy and warm, one hand slipping inside your shirt."
+          "resIn": "\"Whoever you are—\" you begin, and she kisses the rest of it away, slow and lazy and warm, one hand slipping inside your shirt."
         },
         {
           "label": "Smile and say nothing",
           "res": "You hold a long black hair up to the lamp. Gold at the tip. Exactly like all the others.",
           "love": 2,
           "jealousy": 1,
-          "resIn": "You smile and say nothing, which she plainly takes as encouragement. Her fingers play along your ribs."
+          "resIn": "You smile and say nothing, which she plainly takes as encouragement. Her fingers play along your ribs and down toward your belt."
         }
       ],
       "intro": "The upper landing is dark and smells of lamp oil, and coming up with a tray of clean glasses, you nearly walk into someone's crossed ankles. {alias} is sitting on the top stair, {form}, glowing faintly in the gloom, black hair coiled around her like a sleeping cat, gold at the tips. Her eyes catch the single lamp below and hold it.\n\n\"You're late,\" she says, as though you'd made plans. She pulls you down beside her by the sleeve, the glasses chiming in your hands, and tucks herself against your side with the unhurried comfort of someone who's done this before.",
@@ -393,24 +393,24 @@
       "maxCycle": 3,
       "repeat": true,
       "unknown": true,
-      "text": "You find yourself watching a girl's eyes: {alias}, {form}, who has appeared, as they always do, in the middle of a quiet hour. Glowing gold. She catches you at it and her smile deepens. She walks you to the wall, slow, and you let her. \"Looking for something?\" she asks, and her hand slips into your waistband.\n\nYou don't get to answer.",
+      "text": "You find yourself watching a girl's eyes: {alias}, {form}, who has appeared, as they always do, in the middle of a quiet hour. Glowing gold. She catches you at it and her smile deepens. She walks you to the wall, slow, and you let her. \"Looking for something?\" she asks, and her hand slips right into your waistband to stroke you.\n\nYou don't get to answer.",
       "choices": [
         {
           "label": "Call after her",
           "res": "\"Whoever you are...\" Your voice carries down the empty hall. No answer. But the candles flicker, and you think you hear a laugh.",
           "love": 3,
-          "resIn": "You try to ask, and she answers by pulling you close, her hand slipping lower. \"Not yet, {sam},\" she says, and the name lands strangely."
+          "resIn": "You try to ask, and she answers by pulling you close, her fingers wrapping firmly around your shaft. \"Not yet, {sam},\" she says, and the name lands strangely."
         },
         {
           "label": "Smile and say nothing",
           "res": "Gold. Always the same gold. You are counting now.",
           "love": 2,
           "jealousy": 1,
-          "resIn": "You smile and say nothing, watching her eyes. Hers narrow, pleased, and she crowds closer."
+          "resIn": "You smile and say nothing, watching her eyes. Hers narrow, pleased, and she crowds closer, pressing her hips against yours."
         }
       ],
       "intro": "It's a quiet hour, the house humming low, the kind of lull in which you usually restock shelves and think about nothing. Today you're thinking about gold. You're straightening a row of lamp oil tins when you feel it: that prickle at the back of the neck of being watched.\n\n{alias} is leaning in the doorway, {form}, arms folded, a spill of black hair reaching past her hips and glowing at the ends. Her eyes are lamp-gold, warm and glowing and amused. She's caught you staring, you realize; you've been staring at nothing for a full minute, waiting for her. She strolls over, slow, and you let her walk you back against the wall.",
-      "wonder": "Gold. Always the same gold, with the same slow glow at the edges, like a lamp seen through a windowpane. Five girls, six, and one pair of eyes. You've stopped telling yourself it's a coincidence. You've started wondering what, exactly, you are supposed to do with the knowledge.\n\nHer hand settles at your waist. \"Looking for something?\" asks {alias}, quietly, and you get the strangest feeling that she wants you to answer honestly. That she would be pleased if you did."
+      "wonder": "Gold. Always the same gold, with the same slow glow at the edges, like a lamp seen through a windowpane. Five girls, six, and one pair of eyes. You've stopped telling yourself it's a coincidence. You've started wondering what, exactly, you are supposed to do with the knowledge.\n\nHer hand settles at your waist, thumbs hooking into your belt. \"Looking for something?\" asks {alias}, quietly, and you get the strangest feeling that she wants you to answer honestly. That she would be pleased if you did."
     },
     {
       "id": "su_rep3",
@@ -426,7 +426,7 @@
           "label": "Call after her",
           "res": "\"Whoever you are...\" Your voice carries down the empty hall. No answer. But the candles flicker, and you think you hear a laugh.",
           "love": 3,
-          "resIn": "\"Whoever you are-\" you begin, and a hand slides over your mouth. \"Hush,\" she whispers. \"Let's not spoil it.\""
+          "resIn": "\"Whoever you are—\" you begin, and a hand slides over your mouth. \"Hush,\" she whispers. \"Let's not spoil it.\""
         },
         {
           "label": "Smile and say nothing",
@@ -461,7 +461,7 @@
           "love": 5,
           "jealousy": -2,
           "reveal": true,
-          "resIn": "Everything stops. Her smile stays where it is; her eyes don't. Then she kisses you, hard and fast, as if to catch the name before it escapes, and starts working at your collar."
+          "resIn": "Everything stops. Her smile stays where it is; her eyes don't. Then she kisses you, hard and fast, as if to catch the name before it escapes, and starts tearing at your collar."
         },
         {
           "label": "\"Why the disguises?\"",
@@ -488,25 +488,25 @@
         "sam": true,
         "pov": true
       },
-      "text": "{goddess} arrives as {alias} tonight, {form}, hands on her hips, with the air of someone about to read terms and conditions.\n\n\"So you know. Which is a nuisance, because the disguises are fun and I'm not giving them up.\" She walks around you in a slow circle. \"New rules. I come as someone new. You can play along, or you can call me by my name and I'll punish you. Either way, you don't finish. That part doesn't change.\"\n\n\"Is that a rule or a punishment?\"\n\n\"Yes.\"",
+      "text": "{goddess} arrives as {alias} tonight, {form}, hands on her hips, with the air of someone about to read terms and conditions.\n\n\"So you know. Which is a nuisance, because the disguises are fun and I'm not giving them up.\" She walks around you in a slow circle. \"New rules. I come as someone new. You can play along, or you can call me by my name and I'll punish you. Either way, you don't get to cum. That part doesn't change.\"\n\n\"Is that a rule or a punishment?\"\n\n\"Yes.\"",
       "choices": [
         {
           "label": "Play along",
-          "res": "\"Good,\" says {alias}, with a slow, wicked smile, settling into your lap as if she'd been introduced for the first time. The game is terrible, and wonderful.",
+          "res": "\"Good,\" says {alias}, with a slow, wicked smile, straddling your lap as if she'd been introduced for the first time. The game is cruel, and intoxicating.",
           "love": 4,
           "energy": 10,
-          "resIn": "You play along, and she brightens like a lamp being lit. \"Good,\" says {alias}. \"Then let's begin. Hello, stranger.\" She slides into your lap."
+          "resIn": "You play along, and she brightens like a lamp being lit. \"Good,\" says {alias}. \"Then let's begin. Hello, stranger.\" She slides straight into your lap."
         },
         {
           "label": "\"Nice to meet you, {goddess}.\"",
-          "res": "\"Oh, you're going to pay for that.\" She pushes you back onto the bed and makes you, thoroughly, until you're begging. She never gives you what you're begging for.",
+          "res": "\"Oh, you're going to pay for that.\" She shoves you back onto the bed, strips you bare, and edges you mercilessly with hands and mouth until you're begging—never once letting you spill.",
           "love": 3,
           "jealousy": 1,
-          "resIn": "\"Nice to meet you, {goddess},\" you say politely, and watch her eyes narrow with a wicked light. \"Oh, you will pay for that,\" she promises, and takes hold of your tie."
+          "resIn": "\"Nice to meet you, {goddess},\" you say politely, and watch her eyes narrow with a wicked light. \"Oh, you will pay for that,\" she promises, grabbing your tie."
         }
       ],
       "intro": "The office is dim, and you're expecting trouble. You've been expecting it since the roof; every footfall in the hall is a possible goddess. When the door opens, you don't even look up.\n\n\"Good evening.\" {alias}, {form}, standing with her hands on her hips, hair swinging to her knees, gold tips glowing, eyes bright with mischief. She has the air of someone about to read out terms and conditions. {goddess} has dressed for the occasion in someone else's face.\n\n\"So you know,\" she says, walking a slow circle around your chair. \"Which is a nuisance, because I like the disguises and I'm not giving them up.\"",
-      "wonder": "She's enjoying this enormously. You can tell, because she can't quite keep her mouth straight, and because she keeps rolling the new name around in her mouth as though it were a sweet.\n\nYou know exactly who is under the ears. Knowing changes things. It means that when she looks at you like that, there is a person behind the look, someone who has been waiting an awfully long time. It also means that you're in a great deal of trouble.\n\n\"New rules,\" she announces, and perches on the edge of the desk. \"I come as someone new. You can play along, or you can call me by my real name, and I'll punish you. Either way, you don't finish. That part doesn't change.\" You raise an eyebrow. \"Is that a rule or a punishment?\"\n\n\"Yes.\""
+      "wonder": "She's enjoying this enormously. You can tell, because she can't quite keep her mouth straight, and because she keeps rolling the new name around in her mouth as though it were a sweet.\n\nYou know exactly who is under the ears. Knowing changes things. It means that when she looks at you like that, there is a person behind the look, someone who has been waiting an awfully long time. It also means that you're in a great deal of trouble.\n\n\"New rules,\" she announces, and perches on the edge of the desk. \"I come as someone new. You can play along, or you can call me by my real name, and I'll punish you. Either way, you don't get to finish. That part doesn't change.\" You raise an eyebrow. \"Is that a rule or a punishment?\"\n\n\"Yes.\""
     },
     {
       "id": "gm_stranger",
@@ -515,23 +515,23 @@
       "minCycle": 3,
       "maxCycle": 5,
       "needKnows": true,
-      "text": "{alias}, {form}, knocks on the office door and waits to be asked in, an act which is not at all like her.\n\n\"Good evening. I'm new in town.\" She holds out a hand, perfectly innocent. \"I heard the owner could use some help.\" Her eyes are glowing gold and entirely innocent. Her hand is already inside your coat.\n\n\"You haven't introduced yourself,\" you say, and she gives you a look that says play along or suffer.",
+      "text": "{alias}, {form}, knocks on the office door and waits to be asked in, an act which is not at all like her.\n\n\"Good evening. I'm new in town.\" She holds out a hand, perfectly innocent. \"I heard the owner could use some help.\" Her eyes are glowing gold and entirely demure. Her other hand is already unbuckling your trousers.\n\n\"You haven't introduced yourself,\" you say, and she gives you a look that says play along or suffer.",
       "choices": [
         {
           "label": "\"Welcome. What can you do?\"",
-          "res": "\"Oh,\" says the stranger, \"a great many things.\" She shows you a few. All of them. None to completion. You're going to be walking funny for a while.",
+          "res": "\"Oh,\" says the stranger, \"a great many filthy things.\" She drops to her knees and proves it—mouth, tongue, and slick hands—stopping every single time you get close. You're going to ache for days.",
           "love": 4,
           "energy": 10,
           "resIn": "\"Oh,\" says the stranger, brightening, \"a great many things.\" She closes the office door with her heel and does not look at all innocent."
         },
         {
           "label": "\"{goddess}, you're a terrible actress.\"",
-          "res": "\"I'm a wonderful actress and you are a spoilsport.\" She taps your nose, scandalized. \"I'll have to teach you manners.\" By the end of the night, you're the one who has learned a lesson.",
+          "res": "\"I'm a wonderful actress and you are a spoilsport.\" She taps your nose, scandalized. \"I'll have to teach you manners.\" By the end of the night, she has you trembling on the edge for hours.",
           "love": 3,
-          "resIn": "\"I'm a wonderful actress and you are a spoilsport,\" says the stranger, offended, and shows you exactly how she means to make it up to you."
+          "resIn": "\"I'm a wonderful actress and you are a spoilsport,\" says the stranger, offended, and shows you exactly how she means to punish you."
         }
       ],
-      "intro": "{alias}, {form}, knocks on the office door and waits to be asked in, an act which is not at all like her. Having been at the ledgers for hours, you look up with your pen halfway through a sum.\n\n\"Good evening.\" She comes in with small, careful steps, hands clasped, eyes cast down. Long black hair, gold-tipped, drifting around her like smoke. \"I'm new in town. I heard the owner could use some help.\"\n\nShe offers you a hand, perfectly innocent. You take it. Her other hand, you note, is already inside your coat.",
+      "intro": "{alias}, {form}, knocks on the office door and waits to be asked in, an act which is not at all like her. Having been at the ledgers for hours, you look up with your pen halfway through a sum.\n\n\"Good evening.\" She comes in with small, careful steps, hands clasped, eyes cast down. Long black hair, gold-tipped, drifting around her like smoke. \"I'm new in town. I heard the owner could use some help.\"\n\nShe offers you a hand, perfectly innocent. You take it. Her other hand, you note, is already slipping inside your trousers.",
       "wonder": "This is the part you used to dread: the strange woman, the warm smile, the sinking feeling that you'd been caught in a trap. Now you know exactly whose trap it is. You know the shape of the eyes under the lowered lashes. You know the laugh she's swallowing.\n\nIt's ridiculous, and it's oddly sweet. She has been a stranger so many times that she has turned it into an art form, and tonight, she's decided to let you see the seams.\n\nYou wonder how long she can keep it up, and how far she'll go before the mask cracks. Whether, this time, she might let you finish. She looks up at you with huge, solemn gold eyes, wholly innocent. \"You haven't introduced yourself, sir,\" says the stranger."
     },
     {
@@ -547,18 +547,18 @@
         "sam": true,
         "pov": true
       },
-      "text": "The knock on the door is very polite. {alias} is standing outside in {form}, carrying a stack of books, wearing a pair of spectacles she definitely doesn't need.\n\n\"Mr. {sam}? I'm here about the private lesson.\" She's trying very hard not to laugh. \"I understand it's... hands-on.\"\n\nShe is not subtle. You do not mind. Forty minutes of 'lessons' later, you've learned that a goddess in spectacles is considerably more dangerous than one without, and that she has no intention of giving you the final exam.",
+      "text": "The knock on the door is very polite. {alias} is standing outside in {form}, carrying a stack of books, wearing a pair of spectacles she definitely doesn't need.\n\n\"Mr. {sam}? I'm here about the private lesson.\" She's trying very hard not to laugh. \"I understand it's... very hands-on.\"\n\nShe is not subtle. You do not mind. Forty minutes of 'lessons' later—her bare tits pressed against your chest, her slick hand pumping your cock right to the brink before pulling away—you've learned that a goddess in spectacles is considerably more dangerous than one without.",
       "choices": [
         {
           "label": "Insist on a retake",
-          "res": "\"No retakes,\" she says, smugly, tying her hair back. \"Fail, learn, repeat.\" She kisses your forehead on the way out, which is somehow the worst part.",
+          "res": "\"No retakes,\" she says, smugly, tying her hair back while you sit there aching. \"Fail, learn, repeat.\" She kisses your forehead on the way out, which is somehow the worst part.",
           "love": 3,
           "energy": 10,
           "resIn": "\"A retake? Already?\" She sets down the book, eyes dancing. \"Very well. Let's see what you remember.\""
         },
         {
           "label": "Beg for extra credit",
-          "res": "\"Begging. Good start.\" She's glowing with satisfaction. She doesn't award extra credit.",
+          "res": "\"Begging. Good start.\" She's glowing with satisfaction—and still refuses to let you finish.",
           "love": 4,
           "resIn": "\"Extra credit?\" She taps her chin as if it's a serious question. \"That depends. How badly do you want it?\""
         }
@@ -574,11 +574,11 @@
       "maxCycle": 5,
       "repeat": true,
       "needKnows": true,
-      "text": "Tonight she's {alias}, {form}, lounging across your desk and pretending very hard that you haven't met. \"I'm sure I'd remember a man like you,\" she says, as her foot slides up the inside of your thigh. You play along. She's very good. She's also absolutely merciless, and leaves you exactly one breath from the edge.",
+      "text": "Tonight she's {alias}, {form}, lounging across your desk with her skirt hiked up and pretending very hard that you haven't met. \"I'm sure I'd remember a man like you,\" she says, as her bare foot slides up your inner thigh to press against your bulge. You play along. She's very good—and absolutely merciless, leaving you leaking and one breath from the edge.",
       "choices": [
         {
           "label": "Call her by name",
-          "res": "\"{goddess}.\" Her mask slips, just a little, and she's smiling so wide you can feel it. \"Good boy.\" She kisses you, and doesn't let you finish.",
+          "res": "\"{goddess}.\" Her mask slips, just a little, and she's smiling so wide you can feel it. \"Good boy.\" She kisses you, strokes you right to the brink, and leaves you aching.",
           "love": 3,
           "resIn": "\"{goddess},\" you say, mildly. Her toes stop, and her grin breaks wide. \"Spoilsport,\" she murmurs, delighted, and slides off the desk into your lap."
         },
@@ -587,11 +587,11 @@
           "res": "\"Until next time,\" she says. \"Remember my name.\" She leaves it unsaid, which is part of the game.",
           "love": 2,
           "jealousy": -1,
-          "resIn": "\"We've never met,\" you agree solemnly. She makes a pleased little noise, and the foot travels higher."
+          "resIn": "\"We've never met,\" you agree solemnly. She makes a pleased little noise, and her foot presses harder against your cock."
         }
       ],
-      "intro": "Tonight she's {alias}, {form}, lounging across your desk and pretending very hard that you haven't met. She has pushed the ledger aside to make room, black hair spilling over the pages in a shining river, the gold tips lighting the blotted figures from below. Her eyes are bright, and dancing, and perfectly innocent.\n\n\"I'm sure I'd remember a man like you,\" she says, with a perfectly straight face, as a bare foot slides slowly along the arm of your chair. \"Have we done business before?\"",
-      "wonder": "You play along, because it's easier than arguing and because you're curious how long she can hold the straight face. Not long, from the look of it: the corner of her mouth keeps betraying her. Every time you almost laugh, she nudges you with a toe.\n\nYou wonder whether tonight is the night she'll let you finish. You doubt it. Her toes are very warm and entirely too confident, and the look in her eyes says she has a plan. You just have to decide whether to give her the satisfaction of her name."
+      "intro": "Tonight she's {alias}, {form}, lounging across your desk and pretending very hard that you haven't met. She has pushed the ledger aside to make room, black hair spilling over the pages in a shining river, the gold tips lighting the blotted figures from below. Her eyes are bright, and dancing, and perfectly innocent.\n\n\"I'm sure I'd remember a man like you,\" she says, with a perfectly straight face, as a bare foot slides slowly along your thigh. \"Have we done business before?\"",
+      "wonder": "You play along, because it's easier than arguing and because you're curious how long she can hold the straight face. Not long, from the look of it: the corner of her mouth keeps betraying her. Every time you almost laugh, she nudges your groin with a toe.\n\nYou wonder whether tonight is the night she'll let you finish. You doubt it. Her toes are very warm and entirely too confident, and the look in her eyes says she has a plan. You just have to decide whether to give her the satisfaction of her name."
     },
     {
       "id": "gm_rep2",
@@ -601,11 +601,11 @@
       "maxCycle": 5,
       "repeat": true,
       "needKnows": true,
-      "text": "{alias}, {form}, is waiting in the hall. \"Guess,\" she says, and wraps herself around you. \"Go on. I'll give you a point for every correct answer.\" You guess 'Seliora' on the first try. She gives you a point. The point is one very pointed kiss.\n\nThe game goes on a good deal longer than you'd like. It ends the usual way.",
+      "text": "{alias}, {form}, is waiting in the hall. \"Guess,\" she says, and wraps herself around you, pressing her hips hard against yours. \"Go on. I'll give you a point for every correct answer.\" You guess '{goddess}' on the first try. She gives you a point. The point is one very deep, filthy kiss.\n\nThe game goes on a good deal longer than you'd like. It ends with you rock hard, breathless, and entirely unrelieved.",
       "choices": [
         {
           "label": "Call her by name",
-          "res": "\"{goddess}.\" Her mask slips, just a little, and she's smiling so wide you can feel it. \"Good boy.\" She kisses you, and doesn't let you finish.",
+          "res": "\"{goddess}.\" Her mask slips, just a little, and she's smiling so wide you can feel it. \"Good boy.\" She kisses you, strokes you right to the brink, and leaves you hanging.",
           "love": 3,
           "resIn": "\"{goddess},\" you say, on the first try. \"A point,\" she says, thrilled, and her answer is a very pointed kiss."
         },
@@ -618,7 +618,7 @@
         }
       ],
       "intro": "{alias}, {form}, is waiting in the upstairs hall, leaning against the wall under a lantern as though she owned the house, which, strictly, she might. Her black hair falls past her knees, gold at the ends like a candle snuffed mid-burn. When you come round the corner she steps into your path, smiling, and drapes herself around you without any warning at all.\n\n\"Guess,\" she says, her lips at your ear. \"Go on. I'll give you a point for every correct answer.\"",
-      "wonder": "You know that she wants you to say the name. You also know that saying it will cost you something, and not saying it will cost you something else. It's a nice sort of problem, you decide, the kind that smells of candle smoke and warm skin.\n\nShe's pressed close enough that you can feel her laugh before you hear it, and her hands have started to wander as if looking for the answer on you. Whatever you pick, she is going to enjoy it a great deal."
+      "wonder": "You know that she wants you to say the name. You also know that saying it will cost you something, and not saying it will cost you something else. It's a nice sort of problem, you decide, the kind that smells of candle smoke and warm skin.\n\nShe's pressed close enough that you can feel her laugh before you hear it, and her hands have started to wander toward your belt as if looking for the answer on you. Whatever you pick, she is going to enjoy it a great deal."
     },
     {
       "id": "gm_rep3",
@@ -628,11 +628,11 @@
       "maxCycle": 5,
       "repeat": true,
       "needKnows": true,
-      "text": "Tonight {alias} is {form}, shy and sweet and clumsy, tripping into your arms and not apologizing. \"Oh, I'm so sorry,\" she says, in a voice that has never been sorry in its life, and the way her hands wander is not at all clumsy. It ends the way it always does, and you're very nearly proud of how much you're able to take.",
+      "text": "Tonight {alias} is {form}, shy and sweet and clumsy, tripping into your arms and not apologizing. \"Oh, I'm so sorry,\" she says, in a voice that has never been sorry in its life, and the way her hands slide straight to your groin is not at all clumsy. It ends the way it always does—right on the razor's edge—and you're very nearly proud of how much you're able to take.",
       "choices": [
         {
           "label": "Call her by name",
-          "res": "\"{goddess}.\" Her mask slips, just a little, and she's smiling so wide you can feel it. \"Good boy.\" She kisses you, and doesn't let you finish.",
+          "res": "\"{goddess}.\" Her mask slips, just a little, and she's smiling so wide you can feel it. \"Good boy.\" She kisses you, brings you right to the edge, and leaves.",
           "love": 3,
           "resIn": "\"{goddess},\" you say gently. The shy act cracks like thin ice, and she laughs into your shirt. \"You're no fun,\" she tells you. \"Do it again.\""
         },
@@ -641,11 +641,11 @@
           "res": "\"Don't pout, {sam},\" she calls over her shoulder. \"Good things come to those who wait.\"",
           "love": 2,
           "jealousy": -1,
-          "resIn": "\"No harm done,\" you say, steadying her. \"Oh, I wouldn't say that,\" she whispers, and doesn't let go."
+          "resIn": "\"No harm done,\" you say, steadying her. \"Oh, I wouldn't say that,\" she whispers, palming you shamelessly through your trousers."
         }
       ],
       "intro": "Tonight {alias} is {form}, shy and sweet and clumsy. You're carrying a stack of folded towels along the corridor when she steps out of a doorway, trips over absolutely nothing, and lands in your arms. Towels everywhere. Black hair tumbling over your shoulder, gold tips flickering like sparks.\n\n\"Oh, I'm so sorry,\" she says, wide-eyed, in a voice that has never been sorry in its life.",
-      "wonder": "She isn't sorry. She isn't clumsy, either, and the hands pressed flat to your chest are far too sure of themselves. You're nearly proud of how well you're holding up; it's quite a performance, and you've seen her do worse.\n\nShe peeks up at you through her lashes, a picture of bashful innocence, and you feel the whole act wind itself up like a spring. Somewhere beneath the blush, a goddess is trying very hard not to laugh."
+      "wonder": "She isn't sorry. She isn't clumsy, either, and the hands pressed flat to your chest—and drifting lower—are far too sure of themselves. You're nearly proud of how well you're holding up; it's quite a performance, and you've seen her do worse.\n\nShe peeks up at you through her lashes, a picture of bashful innocence, and you feel the whole act wind itself up like a spring. Somewhere beneath the blush, a goddess is trying very hard not to laugh."
     },
     {
       "id": "tr_kiss",
@@ -660,17 +660,17 @@
         "sam": true,
         "pov": true
       },
-      "text": "For the first time in a very long time, {goddess} comes to you as herself. No ears, no tail, no wings: just a tall, bronze, glowing woman with eyes the color of lamp-flame, sitting on the edge of your bed with her hair loose over her shoulders.\n\n\"I got tired of being someone else,\" she says. \"For tonight, at least.\" She leans down and kisses you, slow, and you feel the tremor in her. \"Tell me what you remember.\"",
+      "text": "For the first time in a very long time, {goddess} comes to you as herself. No ears, no tail, no wings: just a tall, bronze, glowing woman with eyes the color of lamp-flame, sitting on the edge of your bed with her hair loose over her bare shoulders.\n\n\"I got tired of being someone else,\" she says. \"For tonight, at least.\" She leans down and kisses you, slow and deep, and you feel the tremor in her. \"Tell me what you remember.\"",
       "choices": [
         {
           "label": "\"The lanterns. And you.\"",
-          "res": "She closes her eyes. \"Good,\" she whispers. \"That's the part I wanted you to keep.\" She stays with you until you sleep.",
+          "res": "She closes her eyes. \"Good,\" she whispers. \"That's the part I wanted you to keep.\" She curls against your chest and stays with you until you sleep.",
           "love": 5,
           "jealousy": -2
         },
         {
           "label": "\"Not enough.\"",
-          "res": "\"Then I'll tell you.\" She does, a little at a time, in the dark, between kisses. She doesn't tell you all of it.",
+          "res": "\"Then I'll tell you.\" She does, a little at a time, in the dark, between slow, lingering kisses. She doesn't tell you all of it.",
           "love": 4
         }
       ]
@@ -682,7 +682,7 @@
       "minCycle": 3,
       "maxCycle": 5,
       "needKnows": true,
-      "text": "{goddess} is waiting in your room with her arms folded, every candle burning an offended, sulky orange.\n\n\"{n}. {n} of them.\" She doesn't say of what. \"Tonight you're mine. Don't argue, I'm a goddess.\"\n\nShe pulls you down onto the bed and keeps you there all night: close, closer, never all the way, her hands and mouth making very sure you won't forget whose bed this is. She never once lets you finish.",
+      "text": "{goddess} is waiting in your room with her arms folded, every candle burning an offended, sulky orange.\n\n\"{n}. {n} of them.\" She doesn't say of what. \"Tonight you're mine. Don't argue, I'm a goddess.\"\n\nShe strips you bare, pulls you down onto the bed, and keeps you there all night: riding your thighs, wrapping her slick hands and hot mouth around you, bringing you right to the brink over and over without ever letting you cum. She makes very sure you won't forget whose bed this is.",
       "choices": [
         {
           "label": "\"You could just stay.\"",
@@ -690,7 +690,12 @@
           "love": 5,
           "jealousy": -10
         },
-        {"label":"Tell her she's the only goddess","res":"\"That's a technicality,\" she says, pleased, and bites your ear.","love":3,"jealousy":-6}
+        {
+          "label": "Tell her she's the only goddess",
+          "res": "\"That's a technicality,\" she says, pleased, and bites your ear before sliding down your body again.",
+          "love": 3,
+          "jealousy": -6
+        }
       ]
     },
     {
@@ -706,15 +711,19 @@
         "sam": true,
         "pov": true
       },
-      "text": "This time she doesn't stop at the edge. She takes you in, slow, eyes closed, gold markings blazing along her hips, and for a moment the whole room is lantern-light, every flame bowing toward you both.\n\nThen her hand is flat on your chest. \"Stop. Stay. Don't.\" Her voice isn't steady. \"If you finish in me I'm yours. Not as a figure of speech. And I've wanted you for far longer than you know.\" She stays exactly like that, holding you both on the edge, until she can let go of you without either of you breaking.",
+      "text": "This time she doesn't stop at the edge. She straddles your hips, sinks all the way down onto your cock, and takes you in—tight, scorching hot, eyes closed, gold markings blazing along her bare hips. For a moment the whole room is lantern-light, every flame bowing toward you both.\n\nThen her hand slams flat against your chest, pinning you down. \"Stop. Stay. Don't move.\" Her voice is ragged, her pussy clenching around your shaft. \"If you cum inside me, I'm yours. Not as a figure of speech. And I've wanted you for far longer than you know.\" She holds herself motionless on top of you, impaled on your cock, keeping you both trembling on the razor's edge until she can pull off without either of you breaking.",
       "choices": [
         {
           "label": "Hold still for her",
-          "res": "You do. It is the hardest thing you've ever done. Afterwards she lies on your chest for a long time and doesn't disappear.",
+          "res": "You do. It is the hardest thing you've ever done—every muscle shaking while she clenches around you. Afterwards she collapses onto your chest for a long time and doesn't disappear.",
           "love": 6,
           "jealousy": -5
         },
-        {"label":"\"Would that be so bad?\"","res":"\"For a goddess? Catastrophic.\" She kisses you. \"Ask me again later.\"","love":4}
+        {
+          "label": "\"Would that be so bad?\"",
+          "res": "\"For a goddess? Catastrophic.\" She kisses you fiercely before easing off your cock. \"Ask me again later.\"",
+          "love": 4
+        }
       ]
     },
     {
@@ -724,10 +733,19 @@
       "minCycle": 5,
       "maxCycle": 5,
       "needKnows": true,
-      "text": "{goddess} visits more often now and leaves later. She takes you all the way in and stops, every time, at the very last moment, with a sound like it costs her more than it costs you.\n\n\"You know what I'd lose.\" Her forehead against yours. \"Everything I am. And I'd be yours. I watched you for years before the truck, you know. Years. I don't even know which of those scares me more.\"",
+      "text": "{goddess} visits more often now and leaves later. She mounts you and takes you all the way inside her wet heat, riding you slowly until you're both shaking—and pulls off at the very last heartbeat, every time, with a broken gasp like it costs her even more than it costs you.\n\n\"You know what I'd lose.\" Her forehead presses against yours, sweat-damp and trembling. \"Everything I am. And I'd be yours. I watched you for years before the truck, you know. Years. I don't even know which of those scares me more.\"",
       "choices": [
-        {"label":"\"I'd give it back.\"","res":"She laughs, shakily. \"You'd try. You're very stubborn.\" She doesn't say no.","love":6},
-        {"label":"Kiss her until she stops thinking","res":"It works for a while. At dawn she's still there, which is new.","love":4,"jealousy":-5}
+        {
+          "label": "\"I'd give it back.\"",
+          "res": "She laughs, shakily, still straddling your bare thighs. \"You'd try. You're very stubborn.\" She doesn't say no.",
+          "love": 6
+        },
+        {
+          "label": "Kiss her until she stops thinking",
+          "res": "It works for a while. At dawn she's still tangled in your sheets, which is new.",
+          "love": 4,
+          "jealousy": -5
+        }
       ]
     },
     {
@@ -737,7 +755,7 @@
       "minCycle": 5,
       "maxCycle": 5,
       "needKnows": true,
-      "text": "{goddess} sits on the windowsill, glowing faintly, the ember-flame dozing against her neck, looking at the house.\n\n\"One of them has done it all now, you know. Lived and lived again, as far as a life can carry.\" She doesn't look at you. \"You fed that stray cat every morning for two years and nobody ever saw. I saw. It wasn't a whim, {sam}. It never was.\" She finally turns. \"When you bring her back next time, I'm coming too. I don't think I can watch from the lanterns anymore.\"",
+      "text": "{goddess} sits on the windowsill, glowing faintly in the dark, the ember-flame dozing against her bare neck, looking out over the house.\n\n\"One of them has done it all now, you know. Lived and lived again, as far as a life can carry.\" She doesn't look at you. \"You fed that stray cat every morning for two years and nobody ever saw. I saw. It wasn't a whim, {sam}. It never was.\" She finally turns, eyes bright. \"When you bring her back next time, I'm coming too. I don't think I can watch from the lanterns anymore.\"",
       "choices": [
         {
           "label": "\"Then come.\"",
@@ -745,7 +763,11 @@
           "love": 6,
           "jealousy": -8
         },
-        {"label":"\"You're sure?\"","res":"\"No.\" She smiles, crooked. \"Goddesses are never sure. We just act like it.\"","love":4}
+        {
+          "label": "\"You're sure?\"",
+          "res": "\"No.\" She smiles, crooked. \"Goddesses are never sure. We just act like it.\"",
+          "love": 4
+        }
       ]
     }
   ]
