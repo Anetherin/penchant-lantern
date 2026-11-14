@@ -50,7 +50,7 @@
         "{regular} arrived with a velvet box for {name}: a bracelet worth at least {gold}. She's turning it over in her hands, delighted and a little unsure."
       ],
       "keep": "She keeps it. She hasn't stopped smiling.",
-      "split": "She hands it to Sam to sell for the house, a little wistfully. +{gold}."
+      "split": "She hands it to you to sell for the house, a little wistfully. +{gold}."
     },
     "jealous": {
       "title": "{regular} Wants {name} to Himself",
@@ -58,7 +58,7 @@
         "{regular} saw {name} going upstairs with someone else, and he's at the front desk, red in the face. He wants her to see no one else on his nights, and he'll pay for it."
       ],
       "pay": "He pays {gold} for his nights to be hers alone. {name} rolls her eyes but takes the money.",
-      "refuse": "Sam tells him {name} isn't anyone's property. {regular} storms out. He may not come back.",
+      "refuse": "You tell him {name} isn't anyone's property. {regular} storms out. He may not come back.",
       "calm": "{name} talks him down herself, sweetly. He leaves soothed, and she leaves tired."
     },
     "lingering": {
@@ -66,25 +66,25 @@
       "text": [
         "It's past dawn and {regular} is still in {name}'s room, talking about his mother."
       ],
-      "charge": "Sam bills him for the whole night. He pays {gold} without blinking. {name} is exhausted.",
+      "charge": "You bill him for the whole night. He pays {gold} without blinking. {name} is exhausted.",
       "escort": "Security walks him out, politely. He's embarrassed, and a little hurt.",
-      "letit": "Sam lets it go. {name} gets no sleep, but {regular} tips extra out of guilt."
+      "letit": "You let it go. {name} gets no sleep, but {regular} tips extra out of guilt."
     },
     "smitten": {
       "title": "{regular} Proposes",
       "text": [
         "{regular} has offered to buy out {name}'s contract and marry her. He's put {gold} on the table and is waiting for an answer."
       ],
-      "stays": "{name} looks at the money, then at Sam, and gently tells {regular} no. She's staying.",
+      "stays": "{name} looks at the money, then at you, and gently tells {regular} no. She's staying.",
       "goes": "{name} hesitates a long time, then says yes. She leaves with {regular}, and the house keeps the {gold}.",
-      "refuse": "Sam refuses the offer outright. {regular} leaves, heartbroken. {name} looks relieved, and a little annoyed nobody asked her."
+      "refuse": "You refuse the offer outright. {regular} leaves, heartbroken. {name} looks relieved, and a little annoyed nobody asked her."
     },
     "talker": {
       "title": "{regular} Spreads the Word",
       "text": [
         "{regular} has been telling everyone in town about {house}, and about {name} in particular. A few new faces have turned up asking for her."
       ],
-      "thanks": "Sam stands him a drink. Reputation +2."
+      "thanks": "You stand him a drink. Reputation +2."
     }
   }
 }

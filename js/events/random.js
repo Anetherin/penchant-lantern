@@ -55,7 +55,7 @@ const TITLE_EVENTS = [
     const w = weighted(anyW(fairOK), x=>x.popularity + s100(statOf(x,'charisma'))), fee = 50, V = {name:w.name, gold:fmt(fee)};
     return {title:ET('title_fair','title',V), who:w.id, scene:evImg('title_fair','casual'), text:ET('title_fair','text',V), choices:[
       {label:ET('title_fair','enter','label',V), fx(){
-        if(S.gold < fee) return 'Sam can\'t cover the entry fee.'; S.gold -= fee;
+        if(S.gold < fee) return 'You can\'t cover the entry fee.'; S.gold -= fee;
         const odds = clamp((s100(statOf(w,'charisma')) + s100(statOf(w,'beauty')) + w.popularity) / 300 + fxAdd(w,'appeal')/40, 0.15, 0.85);
         if(Math.random() < odds){ w.popularity = clamp(w.popularity+6); moodAdd(w, 10); repAdd(houseOf(w), 2); return withTitle(ET('title_fair','enter','win',V), giveTitle(w,'festival')); }
         w.popularity = clamp(w.popularity+2); moodAdd(w, 2); return ET('title_fair','enter','lose',V); }},
@@ -263,7 +263,7 @@ function checkEnd(){
   if(!S) return;
   if(S.debt.strikes>=(BAL.debt.strikes||3) && !S.over){
     S.over = true; save();
-    modal(`<h2>Game Over</h2><p class="story">The Credit House takes the deeds. Sam is out on the street with a hoodie, a status window, and a lot of feelings.\n\nYou lasted ${S.week-1} weeks.</p><div class="row"><button class="primary" onclick="restart()">New game</button></div>`, {lock:true});
+    modal(`<h2>Game Over</h2><p class="story">The Credit House takes the deeds. You are out on the street with a hoodie, a status window, and a lot of feelings.\n\nYou lasted ${S.week-1} weeks.</p><div class="row"><button class="primary" onclick="restart()">New game</button></div>`, {lock:true});
   } else if(S.debt.remaining<=0 && !S.won){
     S.won = true; save();
     modal(`<h2>Debt Paid! 🎉</h2><p class="story">Marguerite Vane stamps the final receipt. "Paid in full. I confess, Mr. Takahashi, I had money on you failing." She almost smiles.\n\nEverything you've built is yours, free and clear.\n\nNew Game+ is now unlocked: keep ${HOUSES[homeHouse()].name}, your partner and your progress, and take on a second house with a bigger debt. You can start it now or any time later from the top bar.</p><div class="row"><button onclick="closeModal()">Keep playing</button><button onclick="exportBox('ngplus')" title="Only what New Game+ carries; load it any time to start the next cycle again">Export NG+ save</button><button class="primary" onclick="startNGPlus()">New Game+…</button></div>`);

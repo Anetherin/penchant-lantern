@@ -3,7 +3,7 @@
     {
       "title": "Three Questions",
       "scene": "sam_date",
-      "text": "Ione brings Sam tea on the back steps, exactly how he takes it, at exactly the temperature he likes. \"I will answer any question you ask,\" she says, \"except three. I won't tell you where I came from, how I came, or how the story ends.\" She sits with perfect posture and a faint hum, silver-white hair silvered further by the dusk. \"The rest is yours.\" Sam, flailing, asks her what she likes. She is quiet for so long he thinks she's frozen. \"Nobody has asked me that before,\" she says.",
+      "text": "Ione brings you tea on the back steps, exactly how you take it, at exactly the temperature you like. \"I will answer any question you ask,\" she says, \"except three. I won't tell you where I came from, how I came, or how the story ends.\" She sits with perfect posture and a faint hum, silver-white hair silvered further by the dusk. \"The rest is yours.\" You, flailing, ask her what she likes. She is quiet for so long you think she's frozen. \"Nobody has asked me that before,\" she says.",
       "choices": [
         {
           "label": "\"Then tell me what you like.\"",
@@ -27,20 +27,20 @@
     {
       "title": "Warm Water",
       "scene": "walkin",
-      "text": "Ione has discovered the bath. Sam walks in to find her seated in the water, perfectly still, eyes closed, silver hair floating and her status light glowing a fascinated gold. \"I have read about this for years,\" she says, not opening her eyes. \"No document prepared me for the temperature.\" Steam beads on her lashes. She makes no attempt to cover up, since it hasn't occurred to her to.",
+      "text": "Ione has discovered the bath. You walk in to find her seated in the water, perfectly still, eyes closed, silver hair floating and her status light glowing a fascinated gold. \"I have read about this for years,\" she says, not opening her eyes. \"No document prepared me for the temperature.\" Steam beads on her lashes. She makes no attempt to cover up, since it hasn't occurred to her to.",
       "choices": [
         {
           "label": "Sit on the edge and tell her about baths",
           "t": 4,
           "m": 8,
           "l": 1,
-          "res": "She listens as though to scripture, head tilted, light pulsing. By the end she's asked him to explain the concept of a bubble, and then, gravely, to produce one."
+          "res": "She listens as though to scripture, head tilted, light pulsing. By the end she's asked you to explain the concept of a bubble, and then, gravely, to produce one."
         },
         {
           "label": "Back out politely",
           "t": 2,
           "m": 3,
-          "res": "\"Understood,\" she calls after him. \"I will file this under 'privacy.' Please return soon with more information.\" The water ripples as she sinks to her chin."
+          "res": "\"Understood,\" she calls after you. \"I will file this under 'privacy.' Please return soon with more information.\" The water ripples as she sinks to her chin."
         },
         {
           "label": "Hand her a towel and the soap",
@@ -59,7 +59,7 @@
     {
       "title": "Joke Protocol",
       "scene": "casual",
-      "text": "Ione has been practicing jokes. They're from a list in her memory, delivered with flawless timing and no comprehension at all. Tonight, polishing a glass behind the bar, she tells one about a priest and a goblin and a barrel, and the punchline lands with a perfect, silent thud. The lamps hum. She watches Sam's face with scientific interest. \"I think,\" she says, \"that was funnier in the archive.\"",
+      "text": "Ione has been practicing jokes. They're from a list in her memory, delivered with flawless timing and no comprehension at all. Tonight, polishing a glass behind the bar, she tells one about a priest and a goblin and a barrel, and the punchline lands with a perfect, silent thud. The lamps hum. She watches your face with scientific interest. \"I think,\" she says, \"that was funnier in the archive.\"",
       "choices": [
         {
           "label": "Laugh anyway",
@@ -71,7 +71,7 @@
           "label": "Teach her a real one",
           "t": 4,
           "m": 6,
-          "res": "He tells her the worst joke he knows. She stares. Then her mouth twitches, and she gets it, an entire second late, and it's glorious. She sets down the glass to laugh, a soft chime of a sound."
+          "res": "You tell her the worst joke you know. She stares. Then her mouth twitches, and she gets it, an entire second late, and it's glorious. She sets down the glass to laugh, a soft chime of a sound."
         }
       ],
       "image": {
@@ -83,19 +83,19 @@
     {
       "title": "Another Evening",
       "scene": "portrait",
-      "text": "Mid-sentence, Ione goes still. Her status light flickers white, and the rain against the lounge window seems suddenly loud. Then, in a flat voice: \"I was not supposed to remember that. There was another evening like this one. You wore the blue hoodie. It rained.\" Her gaze snaps back to him, frightened, the first fear he has seen in her. \"That hasn't happened yet. It has happened. I don't know which.\"",
+      "text": "Mid-sentence, Ione goes still. Her status light flickers white, and the rain against the lounge window seems suddenly loud. Then, in a flat voice: \"I was not supposed to remember that. There was another evening like this one. You wore the blue hoodie. It rained.\" Her gaze snaps back to you, frightened, the first fear you have seen in her. \"That hasn't happened yet. It has happened. I don't know which.\"",
       "choices": [
         {
           "label": "\"Whatever it is, you can tell me.\"",
           "t": 5,
           "m": 5,
-          "res": "She tells him in pieces: fragments of evenings that might be hers, might be his. By the end she is holding his hand tightly, her light slowing to gold, and he is not afraid."
+          "res": "She tells you in pieces: fragments of evenings that might be hers, might be yours. By the end she is holding your hand tightly, her light slowing to gold, and you are not afraid."
         },
         {
           "label": "\"Don't tell me. Let's just live this one.\"",
           "t": 6,
           "m": 6,
-          "res": "She breathes in, the way no machine needs to. \"Yes. Yes. That's... correct.\" She sleeps beside him, for the first time, in the lounge chair, her light dimmed to a soft ember."
+          "res": "She breathes in, the way no machine needs to. \"Yes. Yes. That's... correct.\" She sleeps beside you, for the first time, in the lounge chair, her light dimmed to a soft ember."
         },
         {
           "label": "Change the subject, uneasily",
@@ -113,19 +113,19 @@
     {
       "title": "Satellites",
       "scene": "sam_date",
-      "text": "On the town wall at midnight Ione points at a clear patch of sky, the stones still holding the day's warmth. \"That one hasn't been launched yet,\" she says. \"Neither has that one. They will have names. Some of them will be yours.\" She lowers her hand. \"I'm not allowed to explain. I wanted to show you anyway. Is that permitted?\" He says yes, and she leans, very carefully, against his shoulder, as if measuring the distance first.",
+      "text": "On the town wall at midnight Ione points at a clear patch of sky, the stones still holding the day's warmth. \"That one hasn't been launched yet,\" she says. \"Neither has that one. They will have names. Some of them will be yours.\" She lowers her hand. \"I'm not allowed to explain. I wanted to show you anyway. Is that permitted?\" You say yes, and she leans, very carefully, against your shoulder, as if measuring the distance first.",
       "choices": [
         {
           "label": "Make a wish on one",
           "t": 4,
           "m": 8,
-          "res": "\"On a satellite? Statistically unsound.\" She wishes anyway, silver lashes closed. Her light glows gold, and she doesn't tell him what for."
+          "res": "\"On a satellite? Statistically unsound.\" She wishes anyway, silver lashes closed. Her light glows gold, and she doesn't tell you what for."
         },
         {
           "label": "Ask her what the future is like",
           "t": 3,
           "m": 4,
-          "res": "\"Bright,\" she says, after a long moment. \"With a lot of lanterns. Yours is still burning.\" Her head settles a degree further onto his shoulder."
+          "res": "\"Bright,\" she says, after a long moment. \"With a lot of lanterns. Yours is still burning.\" Her head settles a degree further onto your shoulder."
         }
       ],
       "image": {
@@ -137,7 +137,7 @@
     {
       "title": "The Last Page",
       "scene": "final",
-      "text": "Ione hands Sam the diary, closed, a ribbon marking the last page, its cover worn pale by her handling. \"I came to read the ending,\" she says. \"I opened it on the road. The last page was blank.\" Her light is steady gold. \"I have decided that means the ending isn't written. I would like to help write it.\" She takes his hand, her fingers warm and exactly as firm as she means them to be. \"With you.\" It isn't in any archive. The door closes behind them.",
+      "text": "Ione hands you the diary, closed, a ribbon marking the last page, its cover worn pale by her handling. \"I came to read the ending,\" she says. \"I opened it on the road. The last page was blank.\" Her light is steady gold. \"I have decided that means the ending isn't written. I would like to help write it.\" She takes your hand, her fingers warm and exactly as firm as she means them to be. \"With you.\" It isn't in any archive. The door closes behind them.",
       "choices": [
         {"label":"Say yes","t":6,"m":12,"res":""},
         {
