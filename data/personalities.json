@@ -11,10 +11,10 @@
     "stats: stat leans on the 0-100 scale, added to a new generic lady's rolled stats (and used by tools/seed-stats.mjs for named ladies). Keys: beauty, charm, charisma, refinement, wits, stamina, strength, agility."
   ],
   "Cheerful and teasing": {
-    "likes": ["chat","gift","walk"],
-    "dislikes": ["train","theater"],
-    "jobsUp": ["bartender","host"],
-    "jobsDown": ["maid","security"],
+    "likes": ["chat", "gift", "walk"],
+    "dislikes": ["train", "theater"],
+    "jobsUp": ["bartender", "host", "promoter"],
+    "jobsDown": ["maid", "security", "teacher"],
     "trust": 1.1,
     "lewd": 1.05,
     "solo": 0.25,
@@ -22,13 +22,13 @@
     "goodNight": 3,
     "badNight": -2,
     "lustBuild": 1.05,
-    "stats": {"charisma":8,"charm":4}
+    "stats": {"charisma": 8, "charm": 5, "agility": 2, "wits": -2}
   },
   "Calm and elegant": {
-    "likes": ["dinner","train","theater"],
+    "likes": ["dinner", "train", "theater"],
     "dislikes": ["walk"],
-    "jobsUp": ["madame","dancer","teacher"],
-    "jobsDown": ["bartender","maid"],
+    "jobsUp": ["madame", "dancer", "teacher", "host", "chapel"],
+    "jobsDown": ["bartender", "maid", "promoter"],
     "trust": 1,
     "lewd": 0.95,
     "solo": 0.5,
@@ -36,13 +36,13 @@
     "goodNight": 2,
     "badNight": -2,
     "lustBuild": 0.9,
-    "stats": {"refinement":5,"charm":5}
+    "stats": {"refinement": 8, "charm": 5, "beauty": 3}
   },
   "Shy but earnest": {
-    "likes": ["chat","train","walk"],
+    "likes": ["chat", "train", "walk"],
     "dislikes": ["dinner"],
-    "jobsUp": ["maid"],
-    "jobsDown": ["dancer","courtesan","host"],
+    "jobsUp": ["maid", "attendant", "chapel"],
+    "jobsDown": ["dancer", "courtesan", "host", "promoter"],
     "trust": 1.2,
     "lewd": 0.85,
     "solo": 0.7,
@@ -50,14 +50,14 @@
     "goodNight": 4,
     "badNight": -6,
     "lustBuild": 0.85,
-    "expr": {"into":"flustered","lost":"flustered"},
-    "stats": {"charm":8,"charisma":-8}
+    "expr": {"into": "flustered", "lost": "flustered"},
+    "stats": {"charm": 8, "stamina": 3, "charisma": -8}
   },
   "Proud and sharp-tongued": {
-    "likes": ["gift","theater"],
-    "dislikes": ["chat","walk"],
-    "jobsUp": ["madame","security","courtesan"],
-    "jobsDown": ["maid"],
+    "likes": ["gift", "theater"],
+    "dislikes": ["chat", "walk"],
+    "jobsUp": ["madame", "security", "courtesan"],
+    "jobsDown": ["maid", "attendant", "promoter"],
     "trust": 0.85,
     "lewd": 1,
     "solo": 0.55,
@@ -65,14 +65,14 @@
     "goodNight": 2,
     "badNight": -5,
     "lustBuild": 1,
-    "expr": {"into":"smug"},
-    "stats": {"wits":8,"charisma":4,"charm":-5}
+    "expr": {"into": "smug"},
+    "stats": {"wits": 8, "refinement": 5, "charisma": 4, "charm": -5}
   },
   "Laid-back and lazy": {
-    "likes": ["chat","private"],
-    "dislikes": ["train","walk"],
-    "jobsUp": ["bath"],
-    "jobsDown": ["security","maid","teacher"],
+    "likes": ["chat", "private"],
+    "dislikes": ["train", "walk"],
+    "jobsUp": ["bath", "host"],
+    "jobsDown": ["security", "maid", "teacher", "promoter"],
     "trust": 1,
     "lewd": 1.05,
     "solo": 0.6,
@@ -80,13 +80,13 @@
     "goodNight": 1,
     "badNight": -1,
     "lustBuild": 1,
-    "stats": {"charm":4,"wits":-3}
+    "stats": {"charm": 5, "beauty": 3, "wits": -3, "stamina": -4}
   },
   "Bold and flirtatious": {
-    "likes": ["private","dinner"],
+    "likes": ["private", "dinner"],
     "dislikes": ["train"],
-    "jobsUp": ["courtesan","dancer","bartender","host"],
-    "jobsDown": ["maid"],
+    "jobsUp": ["courtesan", "dancer", "bartender", "host", "promoter"],
+    "jobsDown": ["maid", "teacher"],
     "trust": 1,
     "lewd": 1.2,
     "solo": 0.15,
@@ -94,14 +94,14 @@
     "goodNight": 3,
     "badNight": -2,
     "lustBuild": 1.2,
-    "expr": {"professional":"smug"},
-    "stats": {"charisma":10,"charm":-2}
+    "expr": {"professional": "smug"},
+    "stats": {"charisma": 10, "beauty": 4, "charm": -2}
   },
   "Bookish and curious": {
-    "likes": ["train","chat","theater"],
+    "likes": ["train", "chat", "theater"],
     "dislikes": ["gift"],
-    "jobsUp": ["madame","teacher"],
-    "jobsDown": ["security","dancer"],
+    "jobsUp": ["madame", "teacher", "attendant"],
+    "jobsDown": ["security", "dancer", "promoter"],
     "trust": 1.05,
     "lewd": 1,
     "solo": 0.55,
@@ -109,13 +109,13 @@
     "goodNight": 3,
     "badNight": -3,
     "lustBuild": 1,
-    "stats": {"wits":12,"charisma":-6}
+    "stats": {"wits": 12, "refinement": 4, "charisma": -6, "strength": -2}
   },
   "Warm and motherly": {
-    "likes": ["dinner","chat","walk"],
+    "likes": ["dinner", "chat", "walk"],
     "dislikes": [],
-    "jobsUp": ["madame","bath","maid","teacher"],
-    "jobsDown": ["security"],
+    "jobsUp": ["madame", "bath", "maid", "teacher", "attendant", "chapel"],
+    "jobsDown": ["security", "promoter"],
     "trust": 1.1,
     "lewd": 0.95,
     "solo": 0.35,
@@ -123,13 +123,13 @@
     "goodNight": 3,
     "badNight": -3,
     "lustBuild": 0.95,
-    "stats": {"charm":12}
+    "stats": {"charm": 12, "stamina": 4}
   },
   "Mysterious and aloof": {
-    "likes": ["gift","private","theater"],
+    "likes": ["gift", "private", "theater"],
     "dislikes": ["chat"],
-    "jobsUp": ["dancer"],
-    "jobsDown": [],
+    "jobsUp": ["dancer", "courtesan", "chapel"],
+    "jobsDown": ["promoter", "host", "maid"],
     "trust": 0.8,
     "lewd": 1,
     "solo": 0.6,
@@ -137,14 +137,14 @@
     "goodNight": 1,
     "badNight": -1,
     "lustBuild": 0.9,
-    "expr": {"into":"professional"},
-    "stats": {"charisma":6,"wits":4,"charm":-6}
+    "expr": {"into": "professional"},
+    "stats": {"charisma": 6, "wits": 4, "beauty": 4, "refinement": 3, "charm": -6}
   },
   "Hot-blooded and competitive": {
-    "likes": ["train","dinner"],
-    "dislikes": ["gift","theater"],
-    "jobsUp": ["security","bartender","dancer"],
-    "jobsDown": ["maid"],
+    "likes": ["train", "dinner"],
+    "dislikes": ["gift", "theater"],
+    "jobsUp": ["security", "bartender", "dancer", "courtesan"],
+    "jobsDown": ["maid", "teacher", "chapel"],
     "trust": 1,
     "lewd": 1.05,
     "solo": 0.3,
@@ -152,13 +152,13 @@
     "goodNight": 5,
     "badNight": -4,
     "lustBuild": 1.15,
-    "stats": {"charisma":6,"agility":4,"charm":-4}
+    "stats": {"charisma": 6, "stamina": 6, "agility": 4, "strength": 4, "charm": -4, "refinement": -3}
   },
   "Gloomy but devoted": {
-    "likes": ["private","walk","chat"],
-    "dislikes": ["theater","gift"],
-    "jobsUp": ["maid","bath"],
-    "jobsDown": ["dancer","promoter"],
+    "likes": ["private", "walk", "chat"],
+    "dislikes": ["theater", "gift"],
+    "jobsUp": ["maid", "bath", "attendant", "chapel"],
+    "jobsDown": ["dancer", "promoter", "host"],
     "trust": 1.25,
     "lewd": 0.9,
     "solo": 0.65,
@@ -166,14 +166,14 @@
     "goodNight": 1,
     "badNight": -5,
     "lustBuild": 0.9,
-    "expr": {"into":"flustered"},
-    "stats": {"charm":6,"charisma":-8}
+    "expr": {"into": "flustered"},
+    "stats": {"charm": 6, "stamina": 4, "wits": 2, "charisma": -8}
   },
   "Scheming and charming": {
-    "likes": ["dinner","gift","theater"],
-    "dislikes": ["walk","train"],
-    "jobsUp": ["courtesan","madame","promoter","host"],
-    "jobsDown": ["maid","security"],
+    "likes": ["dinner", "gift", "theater"],
+    "dislikes": ["walk", "train"],
+    "jobsUp": ["courtesan", "madame", "promoter", "host"],
+    "jobsDown": ["maid", "security"],
     "trust": 0.8,
     "lewd": 1.1,
     "solo": 0.3,
@@ -181,14 +181,14 @@
     "goodNight": 2,
     "badNight": -2,
     "lustBuild": 1.05,
-    "expr": {"professional":"smug"},
-    "stats": {"wits":8,"charisma":6,"charm":-4}
+    "expr": {"professional": "smug"},
+    "stats": {"wits": 8, "charisma": 6, "refinement": 4, "charm": -4}
   },
   "Earnest and dutiful": {
-    "likes": ["train","chat","dinner"],
+    "likes": ["train", "chat", "dinner"],
     "dislikes": ["private"],
-    "jobsUp": ["maid","attendant","madame","teacher"],
-    "jobsDown": ["dancer","courtesan"],
+    "jobsUp": ["maid", "attendant", "madame", "teacher", "security"],
+    "jobsDown": ["dancer", "courtesan"],
     "trust": 1.15,
     "lewd": 0.9,
     "solo": 0.6,
@@ -196,13 +196,13 @@
     "goodNight": 3,
     "badNight": -4,
     "lustBuild": 0.9,
-    "stats": {"charm":4,"wits":4}
+    "stats": {"charm": 4, "wits": 4, "stamina": 5}
   },
   "Free-spirited wanderer": {
-    "likes": ["walk","private","chat"],
-    "dislikes": ["train","dinner"],
-    "jobsUp": ["dancer","bartender","promoter"],
-    "jobsDown": ["madame","maid","teacher"],
+    "likes": ["walk", "private", "chat"],
+    "dislikes": ["train", "dinner"],
+    "jobsUp": ["dancer", "bartender", "promoter", "courtesan"],
+    "jobsDown": ["madame", "maid", "teacher"],
     "trust": 0.95,
     "lewd": 1.1,
     "solo": 0.25,
@@ -210,13 +210,13 @@
     "goodNight": 3,
     "badNight": -1,
     "lustBuild": 1.1,
-    "stats": {"charisma":6,"agility":4}
+    "stats": {"charisma": 6, "agility": 6, "stamina": 3, "refinement": -3}
   },
   "Cold and professional": {
-    "likes": ["train","theater"],
-    "dislikes": ["chat","walk","private"],
-    "jobsUp": ["madame","courtesan","security"],
-    "jobsDown": ["bath","dancer","host"],
+    "likes": ["train", "theater"],
+    "dislikes": ["chat", "walk", "private"],
+    "jobsUp": ["madame", "courtesan", "security", "teacher"],
+    "jobsDown": ["bath", "dancer", "host", "promoter"],
     "trust": 0.8,
     "lewd": 0.95,
     "solo": 0.55,
@@ -224,14 +224,14 @@
     "goodNight": 1,
     "badNight": -2,
     "lustBuild": 0.9,
-    "expr": {"into":"professional","lost":"into"},
-    "stats": {"wits":6,"refinement":4,"charm":-8}
+    "expr": {"into": "professional", "lost": "into"},
+    "stats": {"wits": 6, "refinement": 6, "stamina": 2, "charm": -8}
   },
   "Playful trickster": {
-    "likes": ["chat","walk","gift"],
-    "dislikes": ["train","dinner"],
-    "jobsUp": ["bartender","promoter","dancer","host"],
-    "jobsDown": ["madame","security"],
+    "likes": ["chat", "walk", "gift"],
+    "dislikes": ["train", "dinner"],
+    "jobsUp": ["bartender", "promoter", "dancer", "host"],
+    "jobsDown": ["madame", "security", "teacher"],
     "trust": 1,
     "lewd": 1.1,
     "solo": 0.2,
@@ -239,14 +239,14 @@
     "goodNight": 4,
     "badNight": -2,
     "lustBuild": 1.1,
-    "expr": {"professional":"smug"},
-    "stats": {"wits":6,"charisma":4,"agility":3}
+    "expr": {"professional": "smug"},
+    "stats": {"wits": 6, "agility": 6, "charisma": 4, "refinement": -3}
   },
   "Gentle and dreamy": {
-    "likes": ["walk","theater","gift"],
+    "likes": ["walk", "theater", "gift"],
     "dislikes": ["train"],
-    "jobsUp": ["bath","attendant","dancer"],
-    "jobsDown": ["security","madame"],
+    "jobsUp": ["bath", "attendant", "dancer", "chapel"],
+    "jobsDown": ["security", "madame", "bartender"],
     "trust": 1.15,
     "lewd": 0.95,
     "solo": 0.55,
@@ -254,14 +254,14 @@
     "goodNight": 3,
     "badNight": -4,
     "lustBuild": 0.9,
-    "expr": {"into":"flustered"},
-    "stats": {"charm":8,"wits":2}
+    "expr": {"into": "flustered"},
+    "stats": {"charm": 8, "beauty": 4, "wits": 2, "strength": -3}
   },
   "Stoic and blunt": {
-    "likes": ["train","dinner"],
-    "dislikes": ["theater","gift"],
-    "jobsUp": ["security","bartender","maid"],
-    "jobsDown": ["courtesan","dancer","host"],
+    "likes": ["train", "dinner"],
+    "dislikes": ["theater", "gift"],
+    "jobsUp": ["security", "bartender", "maid"],
+    "jobsDown": ["courtesan", "dancer", "host", "promoter"],
     "trust": 0.9,
     "lewd": 1,
     "solo": 0.45,
@@ -269,6 +269,64 @@
     "goodNight": 2,
     "badNight": -1,
     "lustBuild": 1,
-    "stats": {"strength":4,"wits":2,"charm":-6}
+    "stats": {"strength": 8, "stamina": 5, "wits": 2, "charm": -6, "refinement": -3}
+  },
+  "Sultry and indulgent": {
+    "likes": ["private", "dinner", "gift"],
+    "dislikes": ["train", "walk"],
+    "jobsUp": ["courtesan", "bath", "host", "chapel"],
+    "jobsDown": ["maid", "security", "teacher"],
+    "trust": 1,
+    "lewd": 1.25,
+    "solo": 0.15,
+    "modest": 0,
+    "goodNight": 3,
+    "badNight": -2,
+    "lustBuild": 1.25,
+    "expr": {"professional": "into"},
+    "stats": {"beauty": 6, "charisma": 6, "charm": 4, "agility": -2}
+  },
+  "Prim and proper": {
+    "likes": ["theater", "dinner", "train"],
+    "dislikes": ["walk", "private"],
+    "jobsUp": ["madame", "teacher", "host", "attendant"],
+    "jobsDown": ["bartender", "dancer", "promoter", "security"],
+    "trust": 0.9,
+    "lewd": 0.85,
+    "solo": 0.65,
+    "modest": 0.55,
+    "goodNight": 2,
+    "badNight": -4,
+    "lustBuild": 0.85,
+    "expr": {"into": "flustered", "lost": "flustered"},
+    "stats": {"refinement": 10, "wits": 5, "charisma": -4}
+  },
+  "Rowdy and boisterous": {
+    "likes": ["dinner", "chat", "walk"],
+    "dislikes": ["theater", "train"],
+    "jobsUp": ["bartender", "security", "promoter"],
+    "jobsDown": ["madame", "teacher", "chapel", "attendant"],
+    "trust": 1.1,
+    "lewd": 1.1,
+    "solo": 0.2,
+    "modest": 0.05,
+    "goodNight": 4,
+    "badNight": -1,
+    "lustBuild": 1.1,
+    "stats": {"stamina": 6, "strength": 6, "charisma": 5, "refinement": -6}
+  },
+  "Devout and serene": {
+    "likes": ["walk", "chat", "theater"],
+    "dislikes": ["gift"],
+    "jobsUp": ["chapel", "bath", "attendant", "courtesan"],
+    "jobsDown": ["security", "bartender", "promoter"],
+    "trust": 1.15,
+    "lewd": 1,
+    "solo": 0.4,
+    "modest": 0.25,
+    "goodNight": 3,
+    "badNight": -3,
+    "lustBuild": 0.95,
+    "stats": {"charm": 8, "refinement": 6, "beauty": 3, "wits": -2}
   }
 }
