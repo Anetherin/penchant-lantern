@@ -31,6 +31,9 @@ Other: Wii Fit Trainer, Samus Aran (android)
 - Event/encounter scenes should either reflect the girls clothes or the image prompt should use the clothing (etc) from the description of the scene
 - Orgies maybe can make use of the fem/fem scene if ladies have high enough bonds?
 - You should be able to auto hire studs for your demins (maybe all the girls? instead of the house upgrades)
+- Bath attendants scenes should probably be in the baths. exhibitionist scenes should be in the open.
+- There should be an option (at lover stage) to do double dates. several options, increase bonds between ladies, and if they're both open can trigger a threesome scene.
+
 
 ## Houses
 - We should have a house available that comes with an android (and charging station)
@@ -56,7 +59,8 @@ Other: Wii Fit Trainer, Samus Aran (android)
 - They don't necessarily need to all be balanced for every activity. demons may be the strongest courtesans but should still be risky in less proposition friendly roles, and require more maintenance there (or just waste time propositioning customers instead of actually working). Humans are the default all arounders who are easy to raise. 
 - Spirits should be able to possess customers (and Sam, like Vesper does already). although really more of a reverse possession. Keep her body, get his dick. They can then have a solo (futa) scene, or go to another girl if she's free for a futa x fem (increases bond). Some customers are *really* into this, but some are freaked out. should be it's own separate request but a spirit lady can also suggest it fairly easily.
 - Androids can change their hair color, eye color, body parts (bust, height , build) to meet customer demand. some customers are big fans of this on its own. Generics can change their appearance in the stat screen.
-- Angels above a certain lewdness threshold can turn into fallen (or maybe it's better to just say sex/lewd/lantern?) angels. could be a subtype. Their wing color changes, maybe halo too, and their Lust now goes from 75-100(or 125?150?). Low trust angels will decide themselves whether to make the change, high trust angels will ask. if a generic spawns above the threshold she's already made the choice.
+- Angels above a certain lewdness threshold can turn into fallen (or maybe it's better to just say sex/lewd/lantern?) angels. could be a subtype. Their wing color changes, maybe halo too, and their Lust now goes from 75-100(or 125?150?). Low trust angels will decide themselves whether to make the change, high trust angels will ask. if a generic spawns above the threshold she's already made the choice. Also the chapel keeper should accept propositions, sort of similar to a bath attendant. However, instead of getting paid the angel generates more reputation (and increases tip chance). 
+- consider scene add-ons when a domain is draining recklessly or a beastkin is in heat etc
 
 
 ## Services
