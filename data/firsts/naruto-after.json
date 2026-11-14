@@ -4,55 +4,55 @@
       "events": {
         "1": {
           "title": "Doctor's Orders",
-          "text": "Sam is nursing a sprained wrist when Mio sweeps into the kitchen, coat swinging, and takes his arm without asking. Her fingers are cool and exact. \"Star's rule: the patient holds still.\" She wraps the bandage, then keeps hold of his hand. \"Now. You've been looking at my mouth all week, Sam. I wore the lipstick on purpose.\" Outside the window the lanterns gutter, and Mio does not so much as glance at the coat she left on the chair.",
+          "text": "You're nursing a sprained wrist when Mio sweeps into the kitchen, coat swinging, and takes your arm without asking. Her fingers are cool and exact. \"Star's rule: the patient holds still.\" She wraps the bandage, then keeps hold of your hand, sliding her thumb across your pulse. \"Now. You've been staring at my mouth all week, Sam—I wore this dark lipstick on purpose.\"",
           "image": {
             "comp": "holding his wrist in both hands, dark wine lips curved in a knowing smirk, one eyebrow raised",
             "setting": "kitchen late in the evening, bandages and a lamp on the table",
             "sam": true
           },
           "go": "Kiss her",
-          "goRes": "Her laugh turns into a hum against his mouth. Mio kisses like she walks into a room, and for once Sam is the one everyone is looking at.",
+          "goRes": "Her low laugh turns into a warm hum against your mouth, parting her lips to taste you deeply—leaving a smudge of dark wine lipstick on your jaw when she finally pulls back.",
           "wait": "\"I'm still working on the wrist.\"",
-          "waitRes": "\"Of course you are.\" Mio pats the bandage twice, perfectly unbothered. \"The invitation doesn't expire, darling. I just like making a man wait for it.\""
+          "waitRes": "\"Of course you are.\" Mio pats the bandage twice, utterly unbothered. \"The invitation doesn't expire, darling—I just enjoy making a man ache for it.\""
         },
         "2": {
           "title": "Medic's Hands",
-          "text": "The lounge is empty after the last client. Mio sits Sam on the arm of a couch, coat slipping off one shoulder. \"You carry everything in your back, you know. I could always tell, even in the field.\" Her thumbs press into his shoulders, then drift lower, slow, in no hurry at all. \"Tell me when it stops being treatment.\" The lanterns are low, the couches are deep, and she makes it very clear she has no intention of being quick about it.",
+          "text": "The lounge is empty after the last client leaves. Mio sits you on the arm of a deep couch, her coat slipping off one bare shoulder. \"You carry everything in your back—I could always tell, even in the field.\" Her thumbs dig firmly into your shoulders before sliding lower down your spine and over your waist, palms warm and unhurried. \"Tell me the second it stops being treatment.\"",
           "image": {
             "comp": "standing behind him with her coat slipping off one shoulder, hands on his shoulders, bold sidelong glance",
             "setting": "empty lounge after closing, a few lanterns left burning",
             "sam": true
           },
           "go": "Tell her now",
-          "goRes": "\"Oh, good,\" Mio breathes, and the treatment becomes something else entirely, her hands as sure as they ever were on a battlefield.",
+          "goRes": "\"Oh, good,\" Mio purrs against your ear, sliding her hands straight down to unbuckle your belt—working your cock with the same practiced, relentless precision she once brought to the battlefield.",
           "wait": "\"Keep going. I'm not ready to stop it.\"",
-          "waitRes": "Mio's hands pause, then resume the plain massage with a theatrical sigh. \"Patient's choice. But I'm marking you down as a tease.\""
+          "waitRes": "Mio's hands pause at your hips before resuming the massage with a theatrical sigh. \"Patient's choice—though I'm marking you down as a tease.\""
         },
         "3": {
           "title": "Open Door",
-          "text": "Mio's room has a glass of wine poured for him already, and her coat is hung neatly on its hook, the first time Sam has seen it off her. \"I trained a hundred healers to be calm before the worst night of anyone's life,\" she says. \"I've never once been calm about this.\" The choker catches the candlelight. \"Stay.\" There is no performance in the room, only a woman who has spent a century making sure everyone looks, now asking one person to stay.",
+          "text": "Mio's bedroom already has a glass of red wine poured for you, and her heavy coat hangs neatly on its hook—the first time you've seen her without it. Seated on the bed in a loose silk robe that parts over bare thighs, her choker catches the candlelight. \"I trained a hundred medics to stay calm before the worst night of their lives,\" she whispers, letting the robe slip off her shoulders. \"I've never once been calm about this. Stay.\"",
           "image": {
             "comp": "sitting on the edge of a bed in a silk robe, choker catching candlelight, a rare uncertain smile",
             "setting": "her bedroom, candles and a wine bottle on the nightstand",
             "sam": true
           },
           "go": "Stay",
-          "goRes": "She doesn't need an audience this time. Mio pulls him down beside her, and the candle burns low on the first quiet night of her life that is entirely hers.",
+          "goRes": "She needs no audience tonight—pulling you down between her bare thighs and arching beneath every deep thrust until the candle burns dry on the first quiet night that belongs entirely to her.",
           "wait": "\"Are you sure it's me you want?\"",
-          "waitRes": "\"Ask me again in a week,\" Mio says, smiling, though her thumb lingers on his sleeve. \"I'll give you the same answer. Louder, probably.\""
+          "waitRes": "\"Ask me again in a week,\" Mio smiles, her thumb lingering on your sleeve. \"I'll give you the exact same answer—louder, probably.\""
         },
         "jump": {
           "title": "Too Long Staring",
-          "text": "Sam has caught Mio lingering outside his door twice this week, and she's finished pretending. She walks him backward into the linen closet, coat swinging shut behind them. \"A hundred and eighteen years, Sam. I know exactly what I want and exactly how long I'm willing to wait. Which, it turns out, is until about now.\" The shelves smell of lavender and starch, and she is smiling the way she does just before she takes the stage.",
+          "text": "You've caught Mio lingering outside your door twice this week, and she's finished pretending. She walks you backward into the linen closet, coat swinging shut behind you both, and presses her chest flush against yours while her hand drops straight to your groin. \"A hundred and eighteen years, Sam—I know exactly what I want, and I'm done waiting.\"",
           "image": {
             "comp": "pressing him against a shelf with a hand on his chest, wine-dark lips and a predatory grin",
             "setting": "narrow linen closet, lantern light slanting through the door crack",
             "sam": true
           },
           "go": "Give in",
-          "goRes": "He's more than willing. Mio's laugh is low and delighted, and the coat stays on exactly long enough to hide the door closing.",
+          "goRes": "You kiss her breathless among the lavender-scented sheets, hiking up her skirt and sinking into her right against the shelves while her coat hides the closed door.",
           "wait": "\"Not in a closet, Mio.\"",
-          "waitRes": "\"Fair.\" She smooths his hoodie, unashamed. \"I'd prefer a bed with an audience anyway. Name the night.\""
+          "waitRes": "\"Fair enough.\" She smooths your hoodie, completely unashamed. \"I'd prefer a real bed anyway—name the night.\""
         }
       }
     },
@@ -60,55 +60,55 @@
       "events": {
         "1": {
           "title": "Someone to Notice",
-          "text": "Emi has been the last one up for weeks, checking the locks twice. Tonight Sam finds her at the back door, ponytail loose, a mug of tea cooling in her hands. \"Nobody ever asks who checks on me,\" she says, a little embarrassed. \"You did. Every night.\" She puts the mug down. \"I'd like to thank you properly, if that's all right.\" The house is finally quiet, and the lantern throws her calm face into soft gold. Emi has never once asked for anything for herself.",
+          "text": "Emi has been the last one awake for weeks, checking every lock twice. Tonight you find her by the back door, ponytail loose and a mug of tea cooling in her hands. \"Nobody ever asks who checks on me,\" she admits softly, setting the mug aside. \"You do—every night. I'd like to thank you properly, if you'll let me.\"",
           "image": {
             "comp": "standing at a back door with a tea mug set down beside her, shy composed smile, ponytail slightly loose",
             "setting": "back door of the house at night, a single lantern",
             "sam": true
           },
-          "go": "Let her thank him",
-          "goRes": "It's a soft, careful kiss, the kind she'd give someone she's decided to keep safe. Emi's shoulders drop for the first time all day.",
+          "go": "Let her thank you",
+          "goRes": "She steps close and presses a soft, lingering kiss to your lips—the kind she gives someone she's decided to keep safe—her shoulders finally dropping against your hands.",
           "wait": "\"Rest first. Please.\"",
-          "waitRes": "Emi huffs a small laugh and picks the mug up again. \"You sound like me. All right. I'll still be on door duty tomorrow, Sam.\""
+          "waitRes": "Emi lets out a small, fond laugh and picks up her mug. \"You sound just like me. All right—I'll still be on door duty tomorrow, Sam.\""
         },
         "2": {
           "title": "Off Duty",
-          "text": "Emi wears the soft blue wrap dress for once, sitting beside Sam on the porch step with her scarf folded in her lap. \"Everyone's asleep and every lock is turned. For tonight, I'm not guarding anything.\" She leans her head on his shoulder, then turns it. \"I've never been shy about fighting. This is much harder.\" A cricket starts up in the garden. Her scarf is in her lap, and she is holding it the way other people hold a hand.",
+          "text": "Emi wears her soft blue wrap dress for once, sitting beside you on the quiet porch step with her scarf folded in her lap. \"Everyone's asleep and every bolt is thrown—tonight I'm not guarding anything,\" she murmurs, resting her cheek on your shoulder and sliding her hand onto your thigh. \"I've never been shy in a fight, yet touching you like this makes my hands shake.\"",
           "image": {
             "comp": "sitting close on a porch step in a soft wrap dress, head tilted up toward him, blushing and sincere",
             "setting": "house porch at night, moths around the lantern, quiet street",
             "sam": true
           },
           "go": "Hold her close",
-          "goRes": "Her breath hitches, then eases. Emi's hands, always so steady, tremble just a little as she finally lets herself be taken care of.",
+          "goRes": "You pull her into your lap and slip your hands beneath the soft wrap dress, her steady guard melting into breathless, trembling gasps against your neck.",
           "wait": "\"We have all the time we need.\"",
-          "waitRes": "\"I know,\" Emi says, and she's smiling, relieved and a little disappointed in equal measure. \"I'll keep the porch warm.\""
+          "waitRes": "\"I know,\" Emi smiles, relieved and a little wistful. \"I'll keep the porch warm for you.\""
         },
         "3": {
           "title": "The Last Lock",
-          "text": "Emi finishes the rounds and, instead of her own room, stops at Sam's door. She still holds the ring of keys, and she sets them down on his desk with a quiet clink. \"All done,\" she says. \"Everyone's safe. I'd like to stop being the strong one for a night.\" Her voice is steady. Her fingers, on the doorframe, are not. Down the hall every door is bolted and every window latched, and she has done it all herself, as she always does, before coming to him.",
+          "text": "Emi finishes her nightly rounds and stops at your doorway instead of her own, setting her heavy ring of keys down on your desk with a quiet clink. \"Every door is bolted and everyone is safe,\" she says softly, unfastening her top with slightly trembling fingers. \"For one night, I want to stop being the strong one—and let you take me to bed.\"",
           "image": {
             "comp": "standing in a doorway holding a ring of keys against her chest, warm trusting smile, ponytail down over one shoulder",
             "setting": "Sam's bedroom doorway, lamplight inside, hallway dark",
             "sam": true
           },
           "go": "Let her in",
-          "goRes": "He takes the keys and sets them aside. She is the one the house leans on, so he is gentle, and Emi cries a little, and smiles through it.",
+          "goRes": "You undress her slowly and sink deep into her warmth, holding her tight through long, shuddering waves of release until she cries softly—and smiles through every tear.",
           "wait": "\"Are you sure you're not just tired?\"",
-          "waitRes": "\"Mm. Tired, and sure.\" Emi tucks the keys back in her belt. \"But I'll respect it. Ask me again when I'm only one of those.\""
+          "waitRes": "\"Tired, and completely sure.\" Emi hooks the keys back onto her belt. \"Ask me again when I'm only one of those.\""
         },
         "jump": {
           "title": "Stopped Cold",
-          "text": "A drunk client gets handsy with Sam's friend in the hall, and Emi settles it without raising her voice: he simply cannot move. Afterward she leans against the wall, shaking out her hands. \"I was so frightened it would be you,\" she says, quietly furious at herself. \"I can't pretend about this anymore.\" She kisses him, quick and fierce. For years she has been the one who stops other people's trouble before it reaches anyone. This time it nearly reached him.",
+          "text": "A drunk patron gets handsy in the hall, and Emi locks him in place without raising her voice. After security hauls him out, she leans back against the plaster, shaking out her hands. \"I was terrified it would be you,\" she confesses fiercely, grabbing your collar and kissing you hard while pressing her body flush against yours. \"I'm done pretending I don't want you.\"",
           "image": {
             "comp": "leaning against a hallway wall with her hands up, wide-eyed, caught mid-confession and flushed",
             "setting": "upstairs hallway, a toppled chair in the background",
             "sam": true
           },
           "go": "Pull her in",
-          "goRes": "Her whole composure folds. He holds her until the shaking stops, and then she kisses him again slowly, as if she'd rather not stop at all.",
+          "goRes": "Her stoic composure crumbles completely as you carry her into your bedroom, peeling off her clothes while she clings to you, breathless and hungry.",
           "wait": "\"You're allowed to be shaken.\"",
-          "waitRes": "\"Not yet.\" Emi straightens her scarf, eyes bright. \"I'm allowed. But you're the one making it so easy. Give me a moment.\""
+          "waitRes": "\"Not yet.\" Emi straightens her scarf, eyes bright. \"I'm allowed—you're just making it entirely too easy. Give me a moment.\""
         }
       }
     },
@@ -116,55 +116,55 @@
       "events": {
         "1": {
           "title": "Encore",
-          "text": "The stage lights are down and the crowd is gone when Hibiki drops from the rafters in a swirl of wings and lands on Sam's lap, guitar still humming. \"Best crowd tonight? You. Front row, every show.\" She taps his nose. \"I've been playing every song at you. Did you get the message, or do I need a bridge?\" The green glow on the strings fades slowly, and without the crowd the hall is large and soft. Her wings brush the curtain as she settles.",
+          "text": "The stage lights are down and the crowd is gone when Hibiki drops from the rafters in a swirl of bat wings, landing straight across your lap with her guitar still humming. \"Best audience tonight? You—front row, every set,\" she purrs, tapping your nose. \"I've been playing every song directly at you. Did you catch the hint, or do I need a bridge?\"",
           "image": {
             "comp": "perched on the edge of a stage with a glowing-stringed guitar across her knees, bat wings half unfurled, teasing grin",
             "setting": "empty stage after a show, green light fading on the strings",
             "sam": true
           },
           "go": "Kiss her",
-          "goRes": "She tastes like honey tea and smoke. Hibiki's wings flutter behind her, and the last string rings out on its own.",
+          "goRes": "She tastes like honeyed tea and stage smoke, her wings fluttering behind her as she parts her lips and lets the last guitar chord ring out into the dark.",
           "wait": "\"Maybe a bridge.\"",
-          "waitRes": "\"A bridge! He wants a bridge.\" Hibiki cackles and strums one wild chord. \"Fine, darling. I'll write you a whole album.\""
+          "waitRes": "\"A bridge! He wants a bridge.\" Hibiki cackles, strumming one wild chord. \"Fine, darling—I'll write you a whole album.\""
         },
         "2": {
           "title": "Dressing Room Mirror",
-          "text": "Backstage, Hibiki sits at the mirror, powder smeared on her cheek, and doesn't turn when Sam knocks. \"Zip me out of this? The back clasp always sticks.\" Her eyes meet his in the glass, red-violet and gleaming. \"I'm fond of an audience, but this one I'd like to keep to one.\" Rouge pots and feathered hairpins crowd the table. A single bulb buzzes. It is the one place she never plays to anyone.",
+          "text": "Backstage, Hibiki sits at her vanity with stage powder smudged on one cheek, glancing over her bare shoulder in the mirror when you knock. \"Unlace me? The back clasp always sticks,\" she purrs, red-violet eyes glinting as she lets her bodice drop forward. \"I love a crowd, Sam, though this show is strictly for one.\"",
           "image": {
             "comp": "sitting at a dressing-room mirror with her back to him, looking over a bare shoulder with a playful dare",
             "setting": "backstage dressing room, bulbs round the mirror, costume rack",
             "sam": true
           },
           "go": "Help her",
-          "goRes": "The clasp gives easily. It is not at all what the song promised, only close and breathless, and Hibiki, for once, stops talking.",
+          "goRes": "The clasp gives easily—and as your hands slide around her bare waist and breasts, Hibiki drops to her knees before you and, for once, runs completely out of banter.",
           "wait": "\"The clasp can wait.\"",
-          "waitRes": "\"Rude! The clasp never waits.\" She grins into the mirror all the same. \"Come back when you've worked up your nerve. I'll keep the lights on.\""
+          "waitRes": "\"Rude! The clasp never waits.\" She grins into the mirror anyway. \"Come back when you've worked up your nerve.\""
         },
         "3": {
           "title": "Quiet Set",
-          "text": "Nobody expects Hibiki to turn the amp off. She plays in Sam's room, unplugged, a slow song he's never heard, wings folded close. \"This one doesn't go on the setlist.\" She puts the guitar on its stand and looks, for the first time since he met her, a little afraid. \"Stay with me? Until morning?\" There are no lights, no amps and no encore. She is quieter than he has ever heard her, which in itself is a kind of music.",
+          "text": "Nobody expects Hibiki to unplug her amp. She sits on the edge of your bed in nothing but a loose silk shift, playing a slow, stripped-down melody you've never heard with her wings folded close. Setting the guitar aside, she looks up—unguarded and slightly nervous. \"This track isn't on the setlist. Stay with me until morning?\"",
           "image": {
             "comp": "sitting on the edge of a bed with her guitar laid aside, wings folded, soft vulnerable smile",
             "setting": "Sam's bedroom, one lamp low, guitar stand in the corner",
             "sam": true
           },
           "go": "Stay",
-          "goRes": "The song ends in the dark, and the rest of the night is not performance, just warmth, wings wrapped around him like a curtain.",
+          "goRes": "You pull her shift off and sink into her warmth, Hibiki wrapping her wings and legs tight around you like a velvet curtain as she gasps your name in the dark.",
           "wait": "\"Are you sure? It's a big song.\"",
-          "waitRes": "\"I wrote it for you, Sam, of course I'm sure.\" She laughs, wobbly. \"Take your time. It's a long tour.\""
+          "waitRes": "\"I wrote it for you, Sam—of course I'm sure.\" She laughs shakily. \"Take your time; it's a long tour.\""
         },
         "jump": {
           "title": "Stage Dive",
-          "text": "Hibiki flies right off the stage at the end of the final number, through a gasping crowd, straight into Sam's arms at the bar. The room erupts. She laughs in his ear, breathless. \"Tell me you didn't feel that,\" she whispers, wings still half out. \"Because I have wanted to do that since the day I got here.\" Chairs scrape, glasses clink, and someone whoops in the dark. Hibiki's grin is wicked and entirely sincere.",
+          "text": "Hibiki launches herself straight off the stage at the climax of her final number, soaring over a gasping crowd right into your arms at the bar. Laughing breathlessly against your ear with her wings half spread, she grinds her hips against yours. \"Tell me you didn't feel that—I've wanted to jump you since the day I got here.\"",
           "image": {
             "comp": "caught mid-air in his arms, wings spread behind her, flushed and laughing, guitar slung on her back",
             "setting": "crowded lounge, spotlights, cheering guests blurred behind",
             "sam": true
           },
           "go": "Hold on",
-          "goRes": "Her mouth finds his in front of everyone. Hibiki, for once, has no banter ready.",
+          "goRes": "She devours your mouth in front of the cheering lounge before hauling you straight backstage and onto the dressing room couch.",
           "wait": "\"Not in front of the crowd.\"",
-          "waitRes": "\"Spoilsport.\" Hibiki hops down, dazzling smile intact. \"Don't think I'll forget. I'm the type to do an encore.\""
+          "waitRes": "\"Spoilsport.\" Hibiki hops down, dazzling grin intact. \"Don't think I'll forget—I'm famous for my encores.\""
         }
       }
     },
@@ -172,55 +172,55 @@
       "events": {
         "1": {
           "title": "Soot Smudge",
-          "text": "The third flambe of the night goes wrong, and Choko is on Sam's side of the bar in a heartbeat, patting out his sleeve. \"Out! It's out!\" Her laugh cuts off when they're nose to nose. \"I don't really do kissing,\" she mutters, red under the soot. \"It's too soft. But I keep looking at your mouth, which is annoying.\" The bar still smells of scorched sugar and rum, and she keeps wiping the same patch of counter, ears pink under her flyaways.",
+          "text": "The third flambé of the night flares up wildly, and Choko vaults onto your side of the bar in a heartbeat to pat out your sleeve. \"Out! It's out!\" Her laugh cuts off when you're nose to nose. \"I don't usually do kissing—it's too soft,\" she mutters, bright red beneath a smudge of soot. \"Yet I keep staring at your mouth, and it's pissing me off.\"",
           "image": {
             "comp": "leaning over a bar counter toward him with a soot smudge on her cheek, amber eyes wide, grinning in fluster",
             "setting": "bar, scorched counter, bottles and a bucket of water",
             "sam": true
           },
           "go": "Wipe the smudge and kiss her",
-          "goRes": "She goes rigid, then melts all at once. \"Huh,\" Choko says, dazed. \"That was not bad.\" She grabs his collar and does it again, hard.",
+          "goRes": "She stiffens for half a second before melting all at once. \"Huh—not bad,\" Choko breathes, grabbing your collar to kiss you again, harder.",
           "wait": "\"Maybe after the fire's out.\"",
-          "waitRes": "\"Ha! Coward.\" Choko slaps the counter. \"Fine, I'll get the bucket. But I won him over once. I'll do it again.\""
+          "waitRes": "\"Ha! Coward.\" Choko slaps the counter. \"Fine, I'll grab the bucket—though I won you over once, and I'll do it again.\""
         },
         "2": {
           "title": "Barrel Room",
-          "text": "Choko drags Sam down to the cellar to help with a barrel, though the barrel is clearly fine. She leans on it, forearm seals glowing faintly in the dim. \"I make the best drinks in town and nobody's made me one.\" Her smile is cocky, nerves showing. \"So. Your turn. Show me you can handle heat.\" The cellar is cool and smells of oak and cedar. She pours two mugs of something dark, spills a bit, and swears cheerfully.",
+          "text": "Choko drags you down to the cellar to inspect a cask that is plainly fine, leaning back against the oak with the ink seals glowing faintly along her bare forearms. \"I pour the stiffest drinks in town and nobody's ever handled my heat,\" she smirks, sliding a warm hand straight over your fly. \"Your turn—show me what you've got.\"",
           "image": {
             "comp": "leaning against a barrel with arms crossed, ink seals glowing faintly on her forearms, challenging smirk",
             "setting": "cellar of the bar, barrels and lantern light",
             "sam": true
           },
           "go": "Take the challenge",
-          "goRes": "She is all competition and warmth, a dwarf's grip, a flaring laugh, and when she finally goes quiet it is in a very good way.",
+          "goRes": "She unfastens your trousers with a firm, calloused grip, trading filthy banter and breathless gasps among the oak casks until you're both shaking.",
           "wait": "\"Not tonight. Drink first.\"",
-          "waitRes": "\"Pfft. You are no fun.\" She pours two cups anyway and clinks hers against his. \"Next time I'm winning the contest, not the barrel.\""
+          "waitRes": "\"Pfft—you're no fun.\" She pours two mugs anyway and clinks hers against yours. \"Next time I'm winning the contest.\""
         },
         "3": {
           "title": "Cooldown",
-          "text": "Closing time. Choko has banked the bar, no fire this time, and presses a glass of something amber into Sam's hands. \"Special blend. Slow burn.\" She is oddly quiet, picking at the soot under her nails. \"I don't know how to be soft. Be patient with me? Come upstairs.\" The room above the bar is small, with a patched quilt and a window that smells of woodsmoke. She has never invited anyone here before.",
+          "text": "Closing time. Choko banks the bar fire and presses a glass of amber dwarven liquor into your hand, strangely quiet as she unties her apron. \"Special reserve—slow burn,\" she murmurs, cheeks flushed. \"I don't know how to be gentle, Sam, so bear with me. Come upstairs to my bed.\"",
           "image": {
             "comp": "standing in a quiet doorway wiping her hands on a towel, soft rare smile, ponytail messy",
             "setting": "small upstairs room above the bar, warm lamplight",
             "sam": true
           },
           "go": "Go upstairs",
-          "goRes": "It starts out as a contest and ends as anything but. Choko falls asleep on his chest with the stubborn grip of a girl who wins.",
+          "goRes": "What starts out like a wrestling match turns slow, sweaty, and intensely tender—Choko straddling your hips until she collapses onto your chest with a stubborn, satisfied grip.",
           "wait": "\"Only if you're sure.\"",
-          "waitRes": "\"I'm sure, idiot.\" She punches his shoulder, grinning. \"But I'm not racing you. Come find me when you're ready.\""
+          "waitRes": "\"I'm sure, idiot.\" She punches your shoulder lightly, grinning. \"Come find me whenever you're ready.\""
         },
         "jump": {
           "title": "Dare",
-          "text": "The staff's drinking game gets loud, and somebody dares Choko to kiss the owner. She snorts and slams her mug down. \"Not for the dare,\" she says, standing, fists on her hips. \"I'm doing it because I want to and these idiots need to shut up about it.\" She marches around the table. The crowd howls. She looks across the table at Sam, soot on her chin, and the bet suddenly means a great deal more than a bet.",
+          "text": "The staff drinking game gets rowdy, and someone dares Choko to kiss the boss. She slams her tankard down so hard the table jumps. \"Not for a stupid dare—because I actually want him, and you idiots need to shut up about it!\" Marching around the table, she grabs your collar with soot on her chin and heat in her eyes.",
           "image": {
             "comp": "standing with fists on her hips, flushed and fierce, a mug raised in one hand",
             "setting": "busy bar common room, lanterns and cheering silhouettes",
             "sam": true
           },
           "go": "Let her",
-          "goRes": "The room cheers and she waves them off, red to the ears. \"Told you,\" she says into his shoulder. \"Heat of the moment. I'm taking you upstairs before it fades.\"",
+          "goRes": "The room roars as she kisses you breathless, waving them off red-faced. \"Heat of the moment—I'm taking you upstairs before it cools.\"",
           "wait": "\"Another time. Win the game first.\"",
-          "waitRes": "\"Ha!\" Choko drains her mug, undaunted. \"Another time, then. Warm the bed up, Sam.\""
+          "waitRes": "\"Ha!\" Choko drains her mug, undaunted. \"Another time, then—warm the mattress up for me, Sam.\""
         }
       }
     },
@@ -228,55 +228,55 @@
       "events": {
         "1": {
           "title": "Beetle Report",
-          "text": "Saya finishes her morning report, then stays. \"The beetles keep reporting a heart rate I can't explain,\" she says, reading from nothing. Her visor is pushed into her hair. \"It happens whenever you're near. I pulled the colony off you, so now I only have my own data.\" She closes the gap. \"I'd like a second sample.\" Dust turns in the slanting sun between the shelves. She has set her report down, which, for Saya, is a declaration of intent.",
+          "text": "Saya finishes her morning security report and lingers beside your desk, visor pushed up into her dark hair. \"My beetles keep registering an elevated pulse I can't explain whenever you're close,\" she says evenly, stepping inside your reach. \"I recalled the colony, so now I only have my own heartbeat. I require a direct sample.\"",
           "image": {
             "comp": "standing with her visor pushed up into long dark hair, composed face cracking into a small blush",
             "setting": "quiet corner of the library, afternoon light on shelves",
             "sam": true
           },
           "go": "Give the sample",
-          "goRes": "She kisses like she researches: thoroughly. When she pulls back, Saya whispers, \"Fascinating,\" and drags him in again.",
+          "goRes": "She kisses like she conducts surveillance—meticulous, thorough, and unrelenting—whispering \"Fascinating\" against your lips before pulling you back in.",
           "wait": "\"Peer review first?\"",
-          "waitRes": "\"There is no one to review it,\" Saya says dryly, though her ears are pink. \"I'll redo the experiment later. Control group of one.\""
+          "waitRes": "\"There are no peers to review it,\" Saya replies dryly, ears bright pink. \"I'll repeat the experiment later—control group of one.\""
         },
         "2": {
           "title": "Off the Record",
-          "text": "Saya's room smells of ink and old paper, beetles drifting over the lamp. She has dismissed every one of them, and shows him the empty air. \"Nothing is listening tonight. No one will know.\" She takes his hand and presses it, shyly, to her own pounding pulse. \"I've learned everything about this house. Except this.\" Pressed flowers are tucked between her papers like bookmarks. Outside, the night is calm, and so, with great effort, is her voice.",
+          "text": "Saya's room smells of ink and old parchment, and she holds up an empty palm to show you the air is completely clear. \"Every beetle is dismissed—nothing is watching or listening tonight,\" she murmurs, guiding your hand onto her bare waist beneath her top. \"I know every secret in this house except how your hands feel on me.\"",
           "image": {
             "comp": "sitting at a desk covered in notes, visor off, holding his hand to her chest, earnest blush",
             "setting": "her room, lamplit desk, stacks of notes and paper",
             "sam": true
           },
           "go": "Learn it with her",
-          "goRes": "Saya, who knows everything, learns it with her eyes closed. She is curious, then breathless, then not curious at all.",
+          "goRes": "Saya, who always knows everything, squeezes her eyes shut as your hands and mouth explore her—her analytical calm dissolving into sharp, breathless gasps.",
           "wait": "\"I want to be sure you're comfortable.\"",
-          "waitRes": "\"I appreciate it.\" Saya nods, solemn, and writes something on her palm. \"I'm adding it to my list. Please do not read the list.\""
+          "waitRes": "\"I appreciate that.\" Saya nods solemnly, jotting a note on her palm. \"Added to the list—please don't read it.\""
         },
         "3": {
           "title": "Contingency",
-          "text": "Saya has a plan for tonight. She says so, standing at Sam's door with a folded sheet. \"Item one: arrive. Item two: tell you I'm frightened.\" She holds the paper out, hands shaking. \"Item three I never wrote. I wanted it to be a surprise to me too.\" The visor is nowhere in sight. She has memorized the whole house but never this particular hallway, and her step down it is slow, deliberate and a little shy.",
+          "text": "Saya stands in your bedroom doorway unmasked, holding a folded slip of paper in slightly trembling fingers. \"I drafted a protocol for tonight,\" she says softly, letting her coat slip off her bare shoulders. \"Step one: arrive. Step two: confess I'm terrified. Step three I left blank—because I want to feel every second of you without predicting it.\"",
           "image": {
             "comp": "standing at a bedroom door holding a folded paper, unmasked, hopeful and nervous",
             "setting": "Sam's bedroom door, soft candlelight from inside",
             "sam": true
           },
           "go": "Step aside and let her in",
-          "goRes": "She comes in as though entering the first room of her life. Item three turns out to be wonderful, and no one will ever read the paper.",
+          "goRes": "You lay her back on the sheets and ease slowly inside her, Saya clinging to your shoulders with breathless, startled cries as step three exceeds every calculation.",
           "wait": "\"Slow down. I'm not going anywhere.\"",
-          "waitRes": "\"Of course.\" Saya folds the sheet and puts it in her sleeve. \"Plans can be revised. I'll rewrite it.\""
+          "waitRes": "\"Of course.\" Saya tucks the paper into her sleeve. \"Protocols can be revised—I'll rewrite it.\""
         },
         "jump": {
           "title": "Unscheduled",
-          "text": "Saya knocks over the whole shelf looking for a scroll, and Sam catches her before the last book falls. She stares up at him, breathless. \"This was not in the forecast.\" Her voice is smaller than he's ever heard it. \"I have no contingency for this. I'd like to improvise.\" Dust floats down, a candle gutters, and for a breath neither of them says anything at all. Then she says, very quietly, his name.",
+          "text": "Saya topples a shelf reaching for a scroll, and you catch her flush against your chest before the last book hits the floor. Breathless with her visor knocked askew, she grips your hoodie. \"This wasn't in the forecast—I have no contingency for how badly I want you right now. Let me improvise.\"",
           "image": {
             "comp": "caught in his arms amid a few toppled books, visor slipped to her forehead, startled and bright-eyed",
             "setting": "library, books scattered, dust in sunbeams",
             "sam": true
           },
           "go": "Catch the moment",
-          "goRes": "Improvised, and perfect. Saya, who has never been unprepared, turns out to be gifted at it.",
+          "goRes": "She kisses you hungrily right among the scattered books, hiking up her skirt and pulling you down between the shelves.",
           "wait": "\"Let's clean up first.\"",
-          "waitRes": "\"Sensible,\" Saya says, flushed and already shelving books. \"We can improvise tomorrow. I will note the time.\""
+          "waitRes": "\"Sensible,\" Saya murmurs, flushed as she begins shelving books. \"We'll improvise tomorrow—I've noted the time.\""
         }
       }
     },
@@ -284,55 +284,55 @@
       "events": {
         "1": {
           "title": "Overheated",
-          "text": "Juju has been in the bathhouse boiler room since dawn, arms black to the elbow, and she shoves a wrench at Sam. \"Hold that. No, that. Good.\" She wipes her face, smearing soot. \"You're good at this. Standing still and being patient, I mean. It makes me want to try something.\" Her twin tails bounce as she leans in. The pipes tick and groan around them, and a haze of steam clings to her twin tails like a halo. She is grinning, of course.",
+          "text": "Juju has been in the bathhouse boiler room since dawn, arms smudged with grease to the elbows, and shoves a wrench into your hands. \"Hold that—no, there, perfect.\" Wiping a streak of soot across her cheek, her twin tails bounce as she leans right into your face. \"You're really good at standing still and being patient, Sam. Makes me want to test something.\"",
           "image": {
             "comp": "leaning toward him with a wrench in one hand and a smear of grease on her cheek, bright mischievous smile",
             "setting": "bathhouse boiler room, pipes and steam",
             "sam": true
           },
           "go": "Kiss her",
-          "goRes": "She tastes like steam and tea. Juju drops the wrench and clutches his hoodie, and the pipes behind them hiss as if applauding.",
+          "goRes": "She tastes like warm steam and sweet tea, dropping the wrench with a loud clang as she grabs your hoodie and kisses you back eagerly.",
           "wait": "\"Fix the boiler first.\"",
-          "waitRes": "\"Boring!\" Juju grins and picks the wrench back up. \"But I'll tune it fast. And then I'm collecting.\""
+          "waitRes": "\"Boring!\" Juju grins, scooping up the wrench. \"I'll tune it in five minutes—then I'm collecting.\""
         },
         "2": {
           "title": "Gadget Test",
-          "text": "Juju has built something, and it's clearly not for the bath. \"A massage chair. Prototype. It's got gears.\" She pushes Sam into it, and it hums, and her hands go tentative on his shoulders. \"The chair does the shoulders. I do the rest. If you let me.\" Her grin is a shade too bright. Gears, springs and half-finished contraptions cover every surface, and she has cleared exactly one corner for the two of them.",
+          "text": "Juju has built a humming contraption in the back workshop that clearly isn't meant for the bathhouse. Pushing you down onto the cushioned seat, she straddles your thighs with a flushed, daring grin. \"Prototype massage rig—it handles your back, and my hands and mouth handle everything below your belt. Deal?\"",
           "image": {
             "comp": "standing over him in a workshop with her forearm interfaces glowing softly, flustered but daring",
             "setting": "workshop corner behind the baths, tools and a humming gadget",
             "sam": true
           },
           "go": "Let her try",
-          "goRes": "The chair stops working about a minute in. Juju swears, laughs, and has to take over by hand, and decides she prefers that.",
+          "goRes": "The gears seize up within sixty seconds—so Juju swears cheerfully, drops to her knees between your thighs, and finishes the job by hand and mouth with far better results.",
           "wait": "\"Test the chair first.\"",
-          "waitRes": "\"Okay, okay.\" Juju flips a switch with a huff. \"Version two will have a better pitch. Come back to me.\""
+          "waitRes": "\"Okay, okay.\" Juju flips a switch with a huff. \"Mark Two will have a better pitch—come back soon.\""
         },
         "3": {
           "title": "Steam Vents",
-          "text": "Juju turns off the boilers herself, the whole bathhouse hushed, tools hung neatly for once. \"Guess I'm a lot,\" she says, not looking at him. \"Everyone says it. You never do. I'd like to be a lot for one person, just tonight.\" She's still in her cheongsam, buttons gleaming. \"Stay. I'll fix the roof leak tomorrow.\" Without the clank of tools the bathhouse is oddly peaceful, and the water ripples when she shifts, small and nervous and wonderfully honest.",
+          "text": "Juju shuts down the boilers herself, leaving the bathhouse hushed in warm, curling steam as she unbuttons her cheongsam and lets it slip off her shoulders. \"I know I'm loud and too much for most people,\" she admits softly, stepping naked into the dim lamplight. \"Tonight I just want to be a lot for you. Stay with me?\"",
           "image": {
             "comp": "sitting on the edge of a tub with her feet in warm water, hair buns loosened, quiet vulnerable smile",
             "setting": "bathhouse after hours, warm steam, lamps low",
             "sam": true
           },
           "go": "Stay",
-          "goRes": "She is a lot. She is also tender, and loud, then quiet, and for once there is no gadget in the room but the two of them.",
+          "goRes": "You join her on the warm bathhouse cushions, sliding deep inside her while she clings to your neck—loud, breathless, and completely unguarded.",
           "wait": "\"Are you sure? You don't have to prove anything.\"",
-          "waitRes": "\"I'm not proving anything,\" Juju says, small. \"I'm choosing. But okay. Rain check.\""
+          "waitRes": "\"I'm not proving anything,\" Juju says quietly. \"I'm choosing you. Rain check, then.\""
         },
         "jump": {
           "title": "Short Circuit",
-          "text": "A pipe bursts and Juju slams Sam against the wall to shield him from the spray. Steam everywhere, her hair half out of its buns. She's laughing, soaked, hands on his chest. \"You didn't even flinch!\" The laughter fades. \"Okay. New plan. I'm kissing you, and then I'm fixing the pipe. In that order.\" Water drums on the tile, the lamps flicker, and every wise thing she ever planned to say goes straight out of her head.",
+          "text": "A steam pipe bursts and Juju slams you against the tiled wall to shield you from the spray, soaked to the skin with her hair buns tumbling loose. Laughing breathlessly with her palms flat on your chest, her eyes suddenly darken. \"New plan—I'm kissing you breathless, taking you to bed, and fixing the pipe afterward.\"",
           "image": {
             "comp": "soaked and laughing, hands on his chest, hair buns coming loose, eyes bright with sudden intent",
             "setting": "bathhouse hallway, spraying pipe, steam",
             "sam": true
           },
           "go": "Kiss her back",
-          "goRes": "She kisses him with her whole body, then, after a long minute, remembers the pipe. \"Hold that thought,\" she pants, \"and the wrench.\"",
+          "goRes": "She kisses you with her whole soaked body, dragging you into the changing room before reluctantly grabbing her wrench ten minutes later.",
           "wait": "\"The pipe, Juju.\"",
-          "waitRes": "\"The pipe, yes.\" She wipes her face, beaming. \"But I'm coming back for you.\""
+          "waitRes": "\"Right—the pipe!\" She wipes her wet face, beaming. \"Don't move, I'm coming right back for you.\""
         }
       }
     },
@@ -340,55 +340,55 @@
       "events": {
         "1": {
           "title": "Six Hours",
-          "text": "Nami has been perfecting one breeze for most of the afternoon, and it finally ruffles Sam's hair, soft as breath. \"There. That took six hours,\" she says, lying on the veranda with her hair spilling off the edge. \"It's for you. I forgot lunch. I also forgot to mention that I think I'd like to kiss you.\" The curtains drift in and out like slow breath. She lets the breeze ease her hair across his shoulder before she says another word.",
+          "text": "Nami has spent all afternoon coaxing a single warm breeze through the veranda, and it finally ruffles your hair like a soft breath. \"Six hours for that,\" she murmurs lazily, sprawled on the cushions with her copper hair spilling over the edge. \"I skipped lunch—and I almost forgot to mention I want you to kiss me.\"",
           "image": {
             "comp": "lying lazily on a veranda with copper hair spilling off the edge, folding fans on her chest, sleepy smile",
             "setting": "sunlit veranda, a breeze moving the curtains",
             "sam": true
           },
           "go": "Kiss her",
-          "goRes": "Unhurried, drowsy, completely there. The curtains billow as if they've been waiting for it too.",
+          "goRes": "Slow, drowsy, and utterly unhurried—she parts her lips beneath yours with a soft sigh as the curtains billow around you both.",
           "wait": "\"Did you at least eat?\"",
-          "waitRes": "\"Mm. Not yet.\" Nami waves a fan, unbothered. \"Feed me. I'll kiss you after. Perhaps.\""
+          "waitRes": "\"Mm, not yet.\" Nami waves a folding fan lazily. \"Feed me first, and maybe I'll kiss you after.\""
         },
         "2": {
           "title": "Slow Hands",
-          "text": "Nami has decided Sam is too tense, and arranges him on cushions with the tools of a woman who has all the time in the world. Her fans are folded away. \"Massage is my favorite thing to receive,\" she admits. \"But I'll give one first. You don't mind going further? Nothing's hurried. That's the point.\" Amber light slants in and the cushions are soft. She has forgotten, happily, that there is anywhere else in the world to be.",
+          "text": "Nami decides you're far too wound up and arranges you on a pile of plush cushions in the slanting amber light, her fans set aside. \"Receiving massages is my favorite pastime,\" she purrs, straddling your hips with warm, oiled palms. \"Though I'll give one first—and I don't plan on stopping at your waist. Nothing's rushed.\"",
           "image": {
             "comp": "kneeling beside him on cushions with a gentle smirk, sleeves slipping, long copper hair trailing",
             "setting": "lounge floor with cushions and slanting amber light",
             "sam": true
           },
           "go": "Go further",
-          "goRes": "Nami never rushes, and Sam learns what it is to be taken slowly, as if a breeze had hands.",
+          "goRes": "Nami never hurries a single stroke, sliding her oiled hands and soft mouth over you with languid, intoxicating patience until your knees go weak.",
           "wait": "\"Just the massage for now.\"",
-          "waitRes": "\"Perfect.\" She seems entirely content, and falls asleep halfway through. \"Best offer I've had all week.\""
+          "waitRes": "\"Works for me.\" She seems thoroughly content, nearly dozing off halfway down your back. \"Best offer all week.\""
         },
         "3": {
           "title": "Where the Wind Settles",
-          "text": "Nami is not in bed when Sam arrives. She's on the roof, wrapped in her gold silk, copper hair flowing away from her. \"I drifted for a hundred years,\" she says. \"Never settled. Don't tell the wind.\" She holds out one hand. \"Come lie down with me. I think I'd like to stay somewhere.\" The shingles are still warm from the day, and every breeze holds its breath. Even the wind, it seems, wants her to stay put.",
+          "text": "Nami isn't in her bedroom when you look—she's on the warm rooftop tiles at dusk, wrapped in loose gold silk that parts effortlessly in the evening breeze, copper hair flowing behind her. \"I've drifted like the wind for a hundred years without settling,\" she whispers, holding out her hand. \"Come lie down and make me stay.\"",
           "image": {
             "comp": "sitting on a rooftop at dusk, gold silk wrapping her shoulders, hand held out to him, calm affectionate smile",
             "setting": "rooftop at dusk, a faint wind and the first stars",
             "sam": true
           },
           "go": "Take her hand",
-          "goRes": "They never quite make it back inside. The wind is warm, her hair is everywhere, and the night is slow, quiet and entirely theirs.",
+          "goRes": "You unwrap the gold silk on the warm roof tiles and sink slowly into her heat, moving together under the stars in a long, unhurried rhythm.",
           "wait": "\"Are you sure you want to settle?\"",
-          "waitRes": "\"Sure enough to try.\" Nami pats the roof beside her. \"Stay anyway, and we'll count stars. The rest can wait.\""
+          "waitRes": "\"Sure enough to try.\" Nami pats the tiles beside her. \"Lie down anyway and count stars with me.\""
         },
         "jump": {
           "title": "Forgot to Be Shy",
-          "text": "Nami wanders into Sam's room in the afternoon to nap, because it's the sunniest, and has gotten halfway through undoing her sash before she notices him. \"Oh. Hello.\" She blinks, thinks about it for a full breath, and lets the sash fall. \"I was about to be lazy. I think I'd rather be something else.\" Dust motes spin in the light. Her smile is slow and sleepy, and has not a single doubt in it.",
+          "text": "Nami wanders into your sunny bedroom for an afternoon nap and gets halfway through untying her silk sash before noticing you at the desk. \"Oh—hello,\" she blinks, pausing for one slow breath before letting the sash and robe drop to the floor, standing completely naked in the sunbeams. \"I was going to nap, though I'd much rather have you.\"",
           "image": {
             "comp": "standing sleepily in a sunlit room with her sash half undone, copper hair loose, unabashed languid smile",
             "setting": "Sam's sunlit bedroom, curtains stirring",
             "sam": true
           },
           "go": "Pull her close",
-          "goRes": "She falls into him like she falls into everything, easy and warm, and the afternoon vanishes without a single clock.",
+          "goRes": "She melts into your arms on the sunlit mattress, warm and boneless, making the entire afternoon vanish without a glance at the clock.",
           "wait": "\"Nap first. Then decide.\"",
-          "waitRes": "\"Good plan.\" She curls up on his bed, eyes closing. \"Wake me when you're certain.\""
+          "waitRes": "\"Sensible.\" She curls up naked under your sheet, eyes fluttering shut. \"Wake me when you're ready.\""
         }
       }
     },
@@ -396,55 +396,55 @@
       "events": {
         "1": {
           "title": "Unlisted Variable",
-          "text": "Maki has a notebook open on the counter, titled in neat letters: Prospects. Sam's name is crossed out, then written again, then crossed out. She notices him reading it upside down. \"I optimized everything,\" she says calmly, closing it. \"And then I stopped caring about the spreadsheet and started caring about you. It's inefficient. Kiss me anyway.\" The desk is tidy, the lamp is lit, and she is quite visibly out of her depth, which is the most charming thing he has ever seen.",
+          "text": "Maki has a neat ledger open on the counter titled Prospects, with your name crossed out, rewritten, and underlined twice. Catching you reading it upside down, she snaps it shut with a faint blush. \"I optimized every variable—until I stopped caring about the spreadsheet and started wanting you. It's wildly inefficient. Kiss me anyway.\"",
           "image": {
             "comp": "holding a closed notebook against her chest, grey-blue eyes direct, composed with a faint blush",
             "setting": "tidy office, evening light on a polished desk",
             "sam": true
           },
           "go": "Kiss her",
-          "goRes": "Elegant, as expected, until it isn't. Maki's notebook slides off the counter and neither of them reaches for it.",
+          "goRes": "Poised and controlled for two seconds—until she parts her lips with a soft gasp and lets her notebook slide forgotten off the desk.",
           "wait": "\"Let me read the next page first.\"",
-          "waitRes": "\"There is no next page.\" Maki's smile is rueful. \"Which is the problem. Ask me again when I've drafted a plan for this.\""
+          "waitRes": "\"There is no next page,\" Maki admits wryly. \"Which is the entire problem. Ask again once I've drafted a plan.\""
         },
         "2": {
           "title": "Presentation",
-          "text": "Maki lays out three evening dresses on her bed and asks Sam's opinion, as if it were a client meeting. He says the navy. She nods, then sets the dress aside, unzipping instead the one she's wearing. \"I've spent a year presenting myself. Tonight I'd like to be seen, and not graded.\" The mirror reflects the two of them and the stack of discarded gowns. She has never been looked at without knowing exactly what she wanted back.",
+          "text": "Maki lays three evening gowns across her bed and asks for your critique as though conducting a client review. When you pick the navy silk, she nods—then slowly unzips the dress she's wearing instead, letting it slide off her shoulders. \"I've spent a year packaging myself. Tonight I want to be bare—touched, not graded.\"",
           "image": {
             "comp": "standing before a mirror with one strap slipped, looking back at him with a quiet steady gaze",
             "setting": "her bedroom, three dresses laid on the bed, lamp glow",
             "sam": true
           },
           "go": "Look at her",
-          "goRes": "He looks, and she lets him. For once nothing is a performance, and her careful composure comes undone with a laugh.",
+          "goRes": "You step behind her before the mirror, running your hands over her bare curves until every trace of polished composure dissolves into breathless shivers.",
           "wait": "\"You don't need to present for me.\"",
-          "waitRes": "\"I know,\" Maki says softly, retying the strap. \"That's why I want to. Soon, though. Not tonight.\""
+          "waitRes": "\"I know,\" Maki murmurs softly, pulling her strap back up. \"That's why I want to—soon, though.\""
         },
         "3": {
           "title": "Without Notes",
-          "text": "Maki arrives at Sam's door with no notebook, no jewelry, hair loose. \"I tried to prepare,\" she says. \"I read everything. It didn't help.\" Her hand, so careful with every glass and fork, shakes slightly on the doorframe. \"The truth is I'm in love with you, and I have no strategy. Would you let me stay?\" The house sleeps below. She has laid out nothing, folded nothing, planned nothing, and she looks lighter for it than he has ever seen her.",
+          "text": "Maki arrives in your doorway with no notebook, no jewelry, and her hair loose over a thin silk robe. \"I tried preparing for tonight—I read everything, and none of it helped,\" she whispers, her usually steady fingers trembling on the doorframe. \"I'm in love with you, Sam, and I have zero strategy. Let me stay.\"",
           "image": {
             "comp": "standing at a door in a plain robe with her hair loose and no jewelry, earnest and a little frightened",
             "setting": "Sam's bedroom doorway, warm lamplight",
             "sam": true
           },
           "go": "Let her stay",
-          "goRes": "She stays. The most polished woman in the house comes undone slowly and gladly, and falls asleep with her face against his neck.",
+          "goRes": "The most polished woman in the house comes completely undone beneath you—crying out your name without a single rehearsed line before falling asleep against your chest.",
           "wait": "\"Are you sure? There's no rush.\"",
-          "waitRes": "\"There's nothing to rush for,\" Maki says with a small smile, and doesn't leave. \"But yes, ask me again.\""
+          "waitRes": "\"There's nothing to rush for,\" Maki smiles softly, lingering at the door. \"Ask me again soon.\""
         },
         "jump": {
           "title": "Off Script",
-          "text": "A client spills wine down Maki's dress and she handles it perfectly, until she retreats to the pantry and Sam finds her trembling with laughter. \"I had a plan. For the evening. For my whole year.\" She grabs his lapels. \"This is the least efficient thing I've ever wanted. Come here.\" Barrels clink, someone laughs in the hall, and the person she has been polishing herself into for a year simply gives up on being polished.",
+          "text": "A patron splashes wine down Maki's navy gown, and she handles it with icy grace—right until she slips into the pantry and you find her breathless with helpless laughter. Grabbing your collar, she pulls you flush against her wine-stained silk. \"I had a plan for my whole year, and wanting you is the least efficient thing on it. Come here.\"",
           "image": {
             "comp": "laughing in a pantry doorway with wine stains on her navy dress, hand fisted in his hoodie",
             "setting": "pantry shelves, lantern light, jars behind her",
             "sam": true
           },
           "go": "Come here",
-          "goRes": "The least efficient decision of her life. She does not appear to regret a single second of it.",
+          "goRes": "She hikes up her ruined dress among the pantry shelves, pulling you into a fierce, messy kiss that abandons every rule she ever wrote.",
           "wait": "\"Maybe change out of the wine first?\"",
-          "waitRes": "\"Sensible,\" Maki sighs, dabbing at her dress. \"You are annoyingly practical. It is one of your qualities.\""
+          "waitRes": "\"Sensible,\" Maki sighs, dabbing at the stain. \"Annoyingly practical—it's one of your best traits.\""
         }
       }
     },
@@ -452,55 +452,55 @@
       "events": {
         "1": {
           "title": "Wire-Thin",
-          "text": "Saki's right hand wobbles as she threads a marionette, the wooden joints clicking, and she mutters a word that would make the lounge blush. \"It's not the arm.\" Sam is close enough to see the paint on her cheek. \"It's you being nearby. I keep losing the thread.\" She sets the puppet down. \"Can I try something? I'm told I'm good with my hands.\" Painted faces and wooden hands dangle above them like an audience. She has stopped threading the puppet and begun, quietly, to hope.",
+          "text": "Saki's right hand trembles slightly as she threads a marionette, wooden joints clicking softly. \"It isn't the prosthetic—it's having you stand this close,\" she mutters, purple face paint flushing warm underneath as she sets the puppet aside. \"I keep losing the thread. Can I try kissing you? I'm told I'm good with my hands.\"",
           "image": {
             "comp": "sitting cross-legged with a marionette in her lap, purple face paint, glancing up shyly, puppet-craft arm raised",
             "setting": "backstage workshop, marionettes hanging from the rafters",
             "sam": true
           },
           "go": "Let her try",
-          "goRes": "Her kiss is careful, as if testing a wire, then surer. The puppet in her lap slumps over, forgotten.",
+          "goRes": "Her kiss starts out careful, like testing tension on a wire, before deepening hungrily while the marionette slumps forgotten in her lap.",
           "wait": "\"Practice first?\"",
-          "waitRes": "\"Practice.\" Saki gives a short laugh. \"I can do practice. Don't go anywhere.\""
+          "waitRes": "\"Practice,\" Saki repeats with a short laugh. \"I can do practice—don't go anywhere.\""
         },
         "2": {
           "title": "Strings Attached",
-          "text": "After the late show, Saki cuts the cords on her stage coat and sits on the dressing room floor, mechanical hand in her lap. \"It doesn't feel what the rest of me feels,\" she says, flat on purpose. \"I'm still learning which parts do.\" She holds the metal fingers out to him. \"Would you help me find out?\" The stage costumes glitter on their pegs. The wire at her wrist hums faintly, and the hand it moves trembles more than the rest of her.",
+          "text": "After the late show, Saki cuts the cords on her stage coat and sits on the dressing room floor, resting her mechanical hand in her lap. \"This hand doesn't feel what the rest of my body feels,\" she says quietly, holding her warm, flesh-and-blood palm out to guide yours beneath her shirt. \"Help me find out which parts do.\"",
           "image": {
             "comp": "seated on a dressing-room floor offering her mechanical hand, bold face paint smudged, hopeful guarded eyes",
             "setting": "backstage dressing room, stage coat draped over a chair",
             "sam": true
           },
           "go": "Take her hand",
-          "goRes": "The metal is warm from the lamps. Saki breathes in sharply at his touch, then smiles, wide and astonished, as the feeling comes home.",
+          "goRes": "She gasps sharply as your fingers trace her bare skin and breasts, arching into every touch with wide, astonished eyes as sensation floods through her.",
           "wait": "\"Only if you want to.\"",
-          "waitRes": "\"I do. That's the strange part.\" Saki curls her fingers around his. \"But I'd like to be sure. Soon.\""
+          "waitRes": "\"I do—that's the strange part.\" Saki laces her fingers through yours. \"I'll be certain soon.\""
         },
         "3": {
           "title": "Alive",
-          "text": "Saki's room has a blanket fort, which she refuses to explain. She lights a candle inside and pats the floor beside her. \"I was built. Then I woke up. Nobody told me what to do next.\" The paint is off her face for once, freckles and all. \"I'd like to pick this part myself. I pick you.\" The candle makes the fort glow like a lantern. She has made herself small in it, and wants him to see exactly how brave that is.",
+          "text": "Saki has built a candlelit blanket fort in the middle of her bedroom, sitting inside with her face paint washed clean—freckles bare and robe hanging open over her shoulders. \"I was constructed, then I woke up, and nobody told me how to live,\" she whispers, holding out her hand. \"I want to choose this myself. I choose you.\"",
           "image": {
             "comp": "sitting inside a cozy blanket fort with her paint wiped off, soft smile, mechanical hand resting over his",
             "setting": "her room, a blanket fort lit by one candle",
             "sam": true
           },
           "go": "Crawl in",
-          "goRes": "It is the most deliberate, chosen night of her life, and she says so afterward, laughing and a little amazed.",
+          "goRes": "You crawl inside the warm canopy of blankets and make love to her slowly, Saki breathless and amazed at every single sensation.",
           "wait": "\"Are you sure? I'm happy to wait.\"",
-          "waitRes": "\"You can wait,\" Saki says, and means it. \"I've got years. But I'm picking you eventually. Fair warning.\""
+          "waitRes": "\"You can wait,\" Saki nods sincerely. \"I have plenty of time—though I'm picking you eventually.\""
         },
         "jump": {
           "title": "Cut the Strings",
-          "text": "Saki's puppet show ends in a kiss on stage, scripted, and the audience cheers. Backstage she drops the puppet and keeps going, pulling Sam down by the front of his hoodie. \"The script ended thirty seconds ago,\" she says, breathless. \"I'm improvising. Do you mind?\" The crowd is still applauding on the far side of the canvas. Her face paint is smeared, her eyes are huge, and she looks gloriously alive.",
+          "text": "Saki's puppet show ends with a scripted stage kiss to roaring applause—yet backstage she drops the marionette and keeps going, hauling you behind the curtain by your hoodie. \"The script ended thirty seconds ago,\" she pants, smudged face paint flushed bright as her hand drops to your belt. \"I'm improvising now.\"",
           "image": {
             "comp": "pulling him by his hoodie behind a stage curtain, face paint smudged, mischievous breathless grin",
             "setting": "behind the stage curtain, rope rigging and soft glow",
             "sam": true
           },
           "go": "Don't mind",
-          "goRes": "He doesn't mind. She's an improviser by nature, and all the strings she's ever worn have been cut.",
+          "goRes": "Behind the heavy velvet curtain while the crowd still claps, she hikes up her stage skirt and pulls you inside her, cutting every string she ever wore.",
           "wait": "\"Maybe not behind the curtain.\"",
-          "waitRes": "\"Right. Props backstage, no witnesses.\" Saki winks. \"Tonight, then. I'll write the script.\""
+          "waitRes": "\"Fair—no witnesses backstage.\" Saki winks wickedly. \"Tonight, then; I'll write a whole new script.\""
         }
       }
     },
@@ -508,55 +508,55 @@
       "events": {
         "1": {
           "title": "Unhooded",
-          "text": "Sam notices a smudge of flour on the folds of Yori's hood, and brushes it off before he thinks. She goes absolutely still. \"No one sees me,\" she says, in the voice of someone deciding something. \"It's a skill. But you do.\" The mask comes down, only slightly, one finger holding it. \"Please don't look away.\" A single window lets in the last grey light. She has not once been seen here, and now she stands in plain view, shaking slightly.",
+          "text": "You notice a smudge of flour on the fold of Yori's hood and brush it away instinctively. She freezes completely. \"Nobody notices me—it's my best skill,\" she whispers, lowering her face mask with one trembling finger. \"Yet you always see me. Please don't look away while I kiss you.\"",
           "image": {
             "comp": "standing in a dim linen room with her hood up, mask lowered by one finger, grey eyes wide and trembling",
             "setting": "linen room at dusk, folded sheets and a single window",
             "sam": true
           },
           "go": "Don't look away",
-          "goRes": "The kiss is brief and shaking. When she pulls the mask back up, her eyes are smiling over it, and she is lighter than he has ever seen.",
+          "goRes": "Her kiss is soft, hesitant, and trembling—and when she pulls her mask back up, her grey eyes are shining brighter than you've ever seen.",
           "wait": "\"Take your time.\"",
-          "waitRes": "Yori nods, mask back in place, and slips away almost unseen. At the door she pauses. \"Thank you. For noticing. Even now.\""
+          "waitRes": "Yori nods, sliding her mask back into place, before pausing at the door. \"Thank you for noticing me—even now.\""
         },
         "2": {
           "title": "Not Forgotten",
-          "text": "Yori finds Sam in the upstairs hall late at night and fusses with a picture frame that does not need straightening. \"I was thinking,\" she says to the wall. \"Everyone forgets me. You don't. It's frightening.\" She turns, hood still up. \"Could I be forgotten somewhere else, tonight? Somewhere with you?\" The hall clock ticks. She has spent a hundred years working to be overlooked, and the effort of asking to be seen shows in every line of her.",
+          "text": "Yori finds you in the dark upstairs hallway late at night, fussing nervously with a picture frame. \"Everyone forgets I'm in the room—except you, and it terrifies me,\" she whispers, turning toward you with her hood still up. \"Could I disappear into your room tonight, and let you touch me where nobody else sees?\"",
           "image": {
             "comp": "standing in a quiet hallway with her hood up and a hand trembling at the frame, shy sidelong look",
             "setting": "upstairs hallway at night, one lamp, long shadows",
             "sam": true
           },
           "go": "Take her somewhere quiet",
-          "goRes": "In the dark of his room, her cloak slides off her shoulders at last. It is an act of trust, and he treats it like one, gently.",
+          "goRes": "Behind your locked bedroom door, her heavy cloak slides off her shoulders at last, trembling softly under your hands as you explore every inch she's kept hidden.",
           "wait": "\"We can just talk tonight.\"",
-          "waitRes": "\"Oh.\" Yori's relief is audible. \"Yes. Talking would be good.\" She sits down, still wrapped in the cloak, and tells him a story."
+          "waitRes": "\"Oh.\" Yori's relief is audible. \"Yes—talking would be lovely.\" She sits beside you, still wrapped in her cloak."
         },
         "3": {
           "title": "Hair Down",
-          "text": "Yori shuts the door and, with a steady breath, drops her hood. Hair the blue-purple of twilight spills to the floor. She takes off the mask, then the cloak, hanging each one on a peg. \"No one has seen me without them. Not in years.\" She tries a nervous smile. \"Is it all right?\" She is breathtaking, and she has no idea. The lamp is turned low and the door is shut. Every layer she has worn to hide has been hung away, and she is waiting with her heart in her hands.",
+          "text": "Yori bolts your bedroom door and, taking a slow breath, pushes back her hood—letting twilight-blue hair spill all the way to the floor. Setting aside her mask, cloak, and tunic one by one until she stands bare in the soft lamplight, she offers a tremulous smile. \"Nobody has seen me unmasked in years. Is this... all right?\"",
           "image": {
             "comp": "standing barefoot in a bedroom with very long blue-purple hair finally loose, her mask in her hand, tentative wondering smile",
             "setting": "a small bedroom lit by a single lamp, cloak on a peg",
             "sam": true
           },
           "go": "Tell her she is beautiful",
-          "goRes": "He tells her, and she doesn't believe it, then she does. It is the quietest, most careful night, and she doesn't vanish from it.",
+          "goRes": "You tell her she's breathtaking, lay her back amidst the river of twilight hair, and make love to her slowly—anchor her so thoroughly she never vanishes.",
           "wait": "\"You don't have to do this tonight.\"",
-          "waitRes": "\"I know,\" Yori says, and doesn't put the cloak back on. \"But I wanted you to see. That's enough for now.\""
+          "waitRes": "\"I know,\" Yori whispers, leaving the cloak hung on its peg. \"I just wanted you to finally see me.\""
         },
         "jump": {
           "title": "Quiet Thunder",
-          "text": "A client barges into the laundry and doesn't see Yori in the corner, until Sam does. She watches him quietly send the man away, and something shifts in her face. After, she steps from the shadows and tugs the hem of his hoodie. \"You saw me,\" she whispers. \"Every time. I can't pretend that doesn't matter.\" Rain patters on the high window. She is not hiding now, and her grey eyes are fierce with a feeling she has no practice naming.",
+          "text": "A patron barges into the laundry room completely overlooking Yori in the corner—until you step in and quietly steer him out. Afterward, she emerges from the shadows, tugging the hem of your hoodie with fierce grey eyes. \"You see me every single time. I can't pretend I don't want you anymore.\"",
           "image": {
             "comp": "stepping out of the shadows in a hooded cloak, one hand tugging his hoodie, intense hushed gaze",
             "setting": "laundry room, steam and hanging linens",
             "sam": true
           },
           "go": "Meet her gaze",
-          "goRes": "He does. For once, Yori holds the contact, and the mask comes down, and the moment fills the room like rain on a roof.",
+          "goRes": "She pulls down her mask, kisses you hungrily between the hanging sheets, and lets her cloak drop right onto the laundry floor.",
           "wait": "\"Are you all right?\"",
-          "waitRes": "\"Yes.\" She breathes. \"I just need a moment to decide how brave I am. Tomorrow, perhaps.\""
+          "waitRes": "\"Yes,\" she breathes. \"I just need a moment to decide how brave I am—tomorrow, perhaps.\""
         }
       }
     },
@@ -564,55 +564,55 @@
       "events": {
         "1": {
           "title": "One Kind Gesture",
-          "text": "Sam hands Nozomi a warm cup of tea after a rough shift, nothing more. She stares at it like it might bite. \"I know what this is,\" she says unsteadily. \"One kind thing, and I'm gone. I've done it before.\" She sets the cup down. \"I've been trying to keep away. But I'm tired of keeping away from you.\" The teapot ticks as it cools, and the last light turns the tiles gold. She has run out of ways to look away.",
+          "text": "You hand Nozomi a steaming cup of tea after a grueling shift, nothing more—yet she stares at it like it might burn her. \"I know how this goes: one kind gesture, and I'm completely lost,\" she admits unsteadily, setting the cup down and stepping close. \"I tried keeping my distance, Sam, and I'm tired of fighting it.\"",
           "image": {
             "comp": "holding a steaming cup in both hands and looking up with a blush, soft brown-hazel eyes shining",
             "setting": "kitchen at twilight, a window with last light",
             "sam": true
           },
           "go": "Close the distance",
-          "goRes": "She kisses him as though she's apologizing, and then not. When she pulls back she's laughing, eyes wet.",
+          "goRes": "She kisses you softly at first, almost apologetic, before melting against your chest with a breathless, teary laugh.",
           "wait": "\"Take your time. I'll wait.\"",
-          "waitRes": "\"You'd wait.\" Nozomi wipes her eyes, laughing. \"That's exactly the problem. I'm going to fall harder.\""
+          "waitRes": "\"Of course you'd wait,\" Nozomi laughs softly, wiping her eyes. \"That's the exact problem—I'm only going to fall harder.\""
         },
         "2": {
           "title": "Arm's Length",
-          "text": "Nozomi is sitting on the garden wall when Sam finds her, knees drawn up. \"I measured it once,\" she says. \"The distance I keep. Arm's length. You've crossed it twice this week.\" She holds her arm out, then lowers it. \"I don't want to measure anymore. Could you come closer, and maybe stay closer?\" Moths gather at the lantern and the night smells of damp stone and jasmine. Her courage arrives in small, unsteady pieces.",
+          "text": "Nozomi sits on the low garden wall with her knees drawn up, staring out at the fireflies. \"I used to keep everyone strictly at arm's length—and you walked right past it twice this week,\" she murmurs, uncurling her legs and reaching for your hand to guide it onto her thigh. \"I don't want any distance between us anymore.\"",
           "image": {
             "comp": "sitting on a low garden wall with her knees drawn up, one hand reaching out to him, brave blush",
             "setting": "garden wall at evening, fireflies and lantern glow",
             "sam": true
           },
           "go": "Step closer",
-          "goRes": "He steps in, inside her arm's length, and she lets her arm fall around his neck. The rest comes shy, hopeful, and entirely sincere.",
+          "goRes": "You step between her knees and slide your hands beneath her skirt, her shy hesitation giving way to soft, earnest gasps in the warm night air.",
           "wait": "\"Let's go slow.\"",
-          "waitRes": "\"Slow is good,\" Nozomi says, smiling at her knees. \"I'm not sure I'm ready to be brave twice in a day.\""
+          "waitRes": "\"Slow is good,\" Nozomi smiles at her knees. \"I'm not sure I could survive being brave twice in one night.\""
         },
         "3": {
           "title": "Planted",
-          "text": "Nozomi sits on the edge of Sam's bed in the pale green sundress, hands folded, as if reporting. \"I was sent to watch people like you,\" she says. \"I stopped. I told you, and you didn't kick me out.\" She looks up, wet-eyed and certain. \"No more lies. I'd like to stay. Not for a mission, just because I'm in love.\" The curtains stir and the house is quiet. She has never made anyone this offer without a mission behind it, and the lack of one makes her breathless.",
+          "text": "Nozomi sits on the edge of your bed in her pale green sundress, hands folded neatly in her lap before she lets the straps slip down her arms. \"I was originally sent to watch people like you—and instead I fell completely in love with you,\" she whispers, wet-eyed and certain. \"No more missions or lies. Let me stay in your bed tonight.\"",
           "image": {
             "comp": "sitting on the edge of a bed in a pale green sundress, hands folded, tearful hopeful smile",
             "setting": "Sam's bedroom, evening light through the curtains",
             "sam": true
           },
           "go": "Hold her",
-          "goRes": "She falls into him, trusting, tender, and exactly as in love as she said she'd be. It is the first time she has slept without one ear open.",
+          "goRes": "You peel off the green sundress and sink slowly inside her, Nozomi clinging to you with tender, breathless sighs—sleeping safely for the first time without one ear open.",
           "wait": "\"Are you sure? You don't owe me anything.\"",
-          "waitRes": "\"I know,\" Nozomi says softly. \"That's why I want to.\" She smooths his sleeve. \"Not tonight, though. Let me get brave first.\""
+          "waitRes": "\"I know,\" Nozomi says softly, smoothing your sleeve. \"That's why I want to—give me a little more time to be brave.\""
         },
         "jump": {
           "title": "Nothing Left to Hide",
-          "text": "Nozomi catches Sam in the hall during a thunderstorm and tells him, in a rush, that she is not afraid of the storm, only of the thought of him leaving. Lightning flashes. \"I fall for people in one afternoon,\" she says. \"I fell for you in one cup of tea. I'm tired of acting like it's not true.\" Rain hammers the roof and the hall is dark. It is the first time in years she has told the whole truth to anyone, and she is shaking.",
+          "text": "Nozomi catches you in the upstairs hall during a thunderstorm, blurting out in a trembling rush that she isn't scared of the lightning—only of losing you. \"I fell for you over a single cup of tea, Sam, and I'm done pretending I don't want all of you,\" she pants, pressing flush against you.",
           "image": {
             "comp": "standing in a dim hallway with lightning behind her, hands clasped, heart on her sleeve",
             "setting": "upstairs hall during a thunderstorm, rain on a window",
             "sam": true
           },
-          "go": "Tell her it's true for him too",
-          "goRes": "It tumbles out of her, and out of him, and the thunder covers the rest. Nozomi's smile, afterward, is the lightest he has seen.",
+          "go": "Tell her it's true for you too",
+          "goRes": "You kiss her breathless in the corridor and pull her straight into your room, the thunder drowning out every gasp as you strip away her wet clothes.",
           "wait": "\"Let's wait out the storm.\"",
-          "waitRes": "\"All right.\" She tucks into his side anyway. \"I'll wait. But I'm not going anywhere.\""
+          "waitRes": "\"All right.\" She tucks herself tightly against your side anyway. \"I'll wait—I'm not going anywhere.\""
         }
       }
     },
@@ -620,55 +620,55 @@
       "events": {
         "1": {
           "title": "Cold Hands",
-          "text": "Sam finds Yukine on the balcony in the frost she makes without noticing, hair ribbon trembling. \"If you're here to ask if I'm lonely, the answer is no,\" she says, dry as paper. Then, quieter: \"You've been standing there ten minutes. If you wish to do something, do it before I change my mind.\" Snowflakes of frost spiral from her fingers onto the rail and melt almost at once. She does not seem to have noticed, or to care.",
+          "text": "You find Yukine on the moonlit balcony surrounded by a faint rim of frost she conjured without noticing. \"If you're here to ask if I'm lonely, the answer is no,\" she says crisply—then softens just a fraction. \"You've stood there ten minutes. If you intend to kiss me, do it before I change my mind.\"",
           "image": {
             "comp": "standing at a balcony railing with frost on her sleeves, imperious sideways look softening",
             "setting": "moonlit balcony, a dusting of frost on the rail",
             "sam": true
           },
           "go": "Kiss her",
-          "goRes": "Her lips are cool and her breath is not. Yukine makes a small, entirely undignified noise, and the frost melts under her palm.",
+          "goRes": "Her lips are cool for a heartbeat before warming rapidly against yours—Yukine letting out a small, startled gasp as the frost melts beneath her palms.",
           "wait": "\"Not tonight.\"",
-          "waitRes": "\"As you wish.\" Her voice is a blade, her ears pink. \"I won't ask twice. Probably. Do not make me regret it.\""
+          "waitRes": "\"As you wish.\" Her voice is sharp, though her ears turn pink. \"I won't ask twice—probably.\""
         },
         "2": {
           "title": "Ice Princess",
-          "text": "Yukine summons Sam to her office, closes the door, and says, as if issuing orders, \"Sit.\" Then she sits in his lap. \"It's a contingency,\" she says. \"I've been told I'm too cold to touch. I want the data.\" Her fingers are cool on his collar. \"I intend to find out how long it takes you to warm me up.\" The lamp is low and the ledgers are neat, and she is entirely too composed, except for the pulse he can feel at her wrist.",
+          "text": "Yukine summons you to her office, bolts the door, and commands crisply, \"Sit.\" Then she hikes up her skirt and straddles your lap. \"Purely an experiment—I've been told I'm far too cold to touch, so I intend to measure precisely how long it takes your hands to warm me up.\"",
           "image": {
             "comp": "sitting poised on his lap with one hand on his collar, haughty expression undermined by a flush",
             "setting": "madame's office at night, a ledger and a single lamp",
             "sam": true
           },
           "go": "Warm her up",
-          "goRes": "It takes considerably less time than she predicted. Yukine's composure melts one glacial inch at a time.",
+          "goRes": "It takes far less time than she predicted—your hands sliding over her bare thighs and chest until her glacial poise melts into breathless shivers.",
           "wait": "\"You're not a data point.\"",
-          "waitRes": "\"Hmph.\" Yukine stands, smoothing her hair. \"Annoyingly kind. I'll return to you with a revised hypothesis.\""
+          "waitRes": "\"Hmph.\" Yukine stands, smoothing her hair. \"Annoyingly kind—I'll return with a revised hypothesis.\""
         },
         "3": {
           "title": "Thaw",
-          "text": "Yukine's room is cold when Sam arrives, frost flowering on the window, and she is sitting on the bed in her white silk, hair ribbon undone. \"When my people left home, I told them I would never again be weak,\" she says quietly. \"This is not weakness. I decided. I'd like you to stay.\" The frost recedes from the glass as she says it. Her breath smokes faintly in the cold room. She sits straight as a blade, yet her hands are clasped tight, and she meets his eyes without a flicker of her old haughtiness.",
+          "text": "Yukine's bedroom is crisp when you arrive, frost fern-patterned on the glass, while she sits on the mattress in sheer white silk with her hair ribbon untied. \"I swore I would never show weakness again—and wanting you isn't weakness,\" she says quietly, letting the silk slip off her shoulders. \"Stay in my bed tonight.\"",
           "image": {
             "comp": "sitting on the edge of a bed in white silk, ribbon undone and near-black hair spilling, quietly resolute",
             "setting": "her cold bedroom, frost on the window, a single lamp",
             "sam": true
           },
           "go": "Stay",
-          "goRes": "Frost clears from the window as the night warms. She sleeps pressed to him, the Ice Princess who finally gave herself permission.",
+          "goRes": "The frost vanishes from the windowpane as you sink into her warmth, the Ice Princess arching beneath you with soft, unguarded cries before falling asleep pressed tight against your chest.",
           "wait": "\"You don't have to be strong in here.\"",
-          "waitRes": "\"Don't tell me what I have to do,\" Yukine says, but her voice shakes with fondness. \"Another night. Do not forget.\""
+          "waitRes": "\"Don't tell me what I have to do,\" Yukine mutters, voice trembling with fondness. \"Another night—don't forget.\""
         },
         "jump": {
           "title": "Sharp Tongue",
-          "text": "After a quarrel with a client over an unpaid bill, Yukine follows Sam to the stairs and says, seething, \"You stood beside me.\" She grabs his hoodie, furious at the tenderness of it. \"I hate that I like it. I hate that it's you.\" She kisses him, hard and grudging, and keeps going. The staircase is steep and narrow, and there is nowhere to run. Her tongue is razor sharp, and so, tonight, is her honesty.",
+          "text": "After facing down a belligerent patron over an unpaid tab, Yukine corners you on the narrow landing, chest heaving. \"You stepped in to back me up—and I hate how much I liked it,\" she hisses, grabbing your hoodie and slamming her mouth onto yours while pressing her hips against yours.",
           "image": {
             "comp": "gripping his hoodie on a staircase, glaring and flushed, near-black hair sliding over one shoulder",
             "setting": "staircase landing, lantern light",
             "sam": true
           },
           "go": "Kiss her back",
-          "goRes": "Her fury dissolves into something he will not forget for a long time. \"Do not tell anyone,\" she mutters. \"I mean it.\"",
+          "goRes": "Her sharp pride dissolves completely as you haul her up the stairs into your bedroom, peeling off her clothes while she clings to you furiously.",
           "wait": "\"Maybe cool down first.\"",
-          "waitRes": "\"I am perfectly cool,\" Yukine snaps, face scarlet, and stalks upstairs. Her hair ribbon trails behind her like a surrender flag."
+          "waitRes": "\"I am perfectly cool,\" Yukine snaps, face scarlet, stalking upstairs with her hair ribbon trailing behind her."
         }
       }
     },
@@ -676,55 +676,55 @@
       "events": {
         "1": {
           "title": "Faster Than Words",
-          "text": "Hana outruns Sam to the pump after a morning sprint, braced on her knees, grinning. \"Beat you by eleven seconds.\" She straightens, red ribbon swinging. \"I don't really do kissing. It feels like standing still.\" The grin falters. \"But I stood still beside you, and I liked it. So try it. Quickly, before I run off.\" Dew shines on the cobbles. For a girl who never stops moving she has stopped dead, tail flicking, with nowhere left to sprint to.",
+          "text": "Hana beats you to the courtyard pump after a morning sprint, hands braced on her knees and grinning breathlessly. \"Beat you by eleven seconds!\" Straightening up with her red ribbon swinging, her grin softens. \"I usually hate standing still—except when I'm next to you. Kiss me quick before I bolt.\"",
           "image": {
             "comp": "leaning on a courtyard pump, flushed from running, ponytail with a red ribbon, hesitant daring grin",
             "setting": "courtyard at dawn, a stone pump and dew on cobbles",
             "sam": true
           },
           "go": "Kiss her",
-          "goRes": "It's quick, and then it isn't. Hana forgets to run. Her tail flicks wildly and her ears flatten with surprise.",
+          "goRes": "It starts fast and turns slow—Hana completely forgetting to run as her tail wags wildly and her ears flatten in delighted surprise.",
           "wait": "\"Race me first?\"",
-          "waitRes": "\"You're on!\" And she's gone, a streak of red, calling over her shoulder, \"Loser kisses the winner!\""
+          "waitRes": "\"You're on!\" She's gone in a blur of red, shouting back over her shoulder, \"Loser kisses the winner!\""
         },
         "2": {
           "title": "Sparring Partner",
-          "text": "Hana tackles Sam into the sparring-room mats, then pins him with a knee and a laugh. \"You're losing,\" she says. \"Give up?\" He doesn't. She stays there, panting, ears twitching. \"I'm actually terrible at this part,\" she admits. \"The part after I win. What do I do with you?\" Dust drifts in the morning sun and the mats are still warm. She has beaten everyone in the house and is completely at a loss for what to do with a win.",
+          "text": "Hana tackles you onto the training room mats, pinning your shoulders with her knees and laughing breathlessly. \"You're pinned—give up?\" When you don't budge, she stays straddling your waist, ears twitching as she feels you harden beneath her. \"I'm terrible at what comes after winning... show me what to do with you.\"",
           "image": {
             "comp": "pinning him lightly on a training mat, ears twitching, breathless, competitive grin turning soft",
             "setting": "training room with straw mats and wooden swords on the wall",
             "sam": true
           },
           "go": "Suggest an answer",
-          "goRes": "He suggests one. Hana goes quiet, then fiercely curious, and the training room is very quiet for a while.",
+          "goRes": "You guide her hands straight to your belt, and Hana dives in with fierce, eager curiosity—working you on the straw mats until you're both panting.",
           "wait": "\"Rematch.\"",
-          "waitRes": "\"Rematch!\" Hana whoops, rolling off. \"You're on. Winner picks the next thing. I intend to win.\""
+          "waitRes": "\"Rematch!\" Hana whoops, rolling off your lap. \"Winner picks the next round—and I intend to win.\""
         },
         "3": {
           "title": "Finish Line",
-          "text": "Hana runs the roofline every night, and tonight she runs it straight to Sam's window. She comes in with the night wind, red ribbon in her hand. \"It was my cousin's,\" she says, breathless. \"I've never untied it for anyone.\" The ribbon dangles from her fingers. \"I want you to hold it. I'm done racing tonight.\" Wind pours in through the window and the whole room smells of rain and cut grass. Even her restless tail has gone still.",
+          "text": "Hana runs the rooftops every night, and tonight she slips straight through your bedroom window with the night wind, holding her red hair ribbon in her palm as her loose hair spills down her bare shoulders. \"I've never untied this for anyone,\" she whispers, letting her shift drop to the floorboards. \"I'm done running tonight—take me to bed.\"",
           "image": {
             "comp": "standing in a moonlit window with a red ribbon held out in her palm, hair down, wild tender grin",
             "setting": "Sam's bedroom window, night wind and moonlight",
             "sam": true
           },
           "go": "Take the ribbon",
-          "goRes": "He takes it, and the fastest girl in any room slows down for him, her laughter low and breathless against his shoulder.",
+          "goRes": "You tie the ribbon around her wrist and pull her onto the mattress, the fastest girl in town matching your rhythm stroke for stroke with breathless, wild laughter.",
           "wait": "\"Are you sure?\"",
-          "waitRes": "\"Ha. I'm sure.\" Hana ties the ribbon back, grinning. \"But you can have a head start. Catch me next time.\""
+          "waitRes": "\"Ha—completely sure.\" Hana ties the ribbon back with a grin. \"I'll give you a head start; catch me next time.\""
         },
         "jump": {
           "title": "Track Record",
-          "text": "Sam times her morning sprint, and she beats her own record, and swoops him off his feet in a whooping spin. \"You're my lucky charm!\" She sets him down and sees his face and goes still. \"Oh,\" she says. \"That's the reason, isn't it. Every record I've broken lately.\" She leans in. \"Mind if I try something fast?\" The courtyard is empty and the sun is climbing. She has outrun every opponent she has ever faced, and cannot outrun this.",
+          "text": "You time her morning sprint, and when she shatters her own record she sweeps you off your feet in a whooping spin. Setting you down, her eyes darken as she presses her flushed body against yours. \"You're the reason I keep breaking records—mind if I try something fast with you right now?\"",
           "image": {
             "comp": "swinging him around in a courtyard, laughing, ears pricked, then abruptly softer, eyes locked on his",
             "setting": "courtyard at dawn, morning light",
             "sam": true
           },
           "go": "Let her",
-          "goRes": "She is fast about it, and then not fast at all, and every record she's ever set is forgotten.",
+          "goRes": "She kisses you breathless in the dawn light and drags you straight inside, tearing off your clothes with zero patience.",
           "wait": "\"Maybe slower.\"",
-          "waitRes": "\"Slower,\" Hana says, as if tasting the word. \"I can try. Don't laugh if I'm bad at it.\""
+          "waitRes": "\"Slower,\" Hana repeats, testing the word. \"I can try—don't laugh if I'm bad at it.\""
         }
       }
     },
@@ -732,55 +732,55 @@
       "events": {
         "1": {
           "title": "Quiet Hours",
-          "text": "Shiori is stacking cartridges in her old proctor's harness at midnight, sleeves rolled, lamp low. \"I don't sleep well,\" she says without looking up. \"I thought you'd know.\" The room is very quiet. \"My husband used to sit with me like this.\" She finally meets Sam's eyes. \"I haven't wanted anyone to since. I think I do now.\" The lamp is low and a pot of tea has gone cold. She has not asked anyone to sit with her in a very long time.",
+          "text": "Shiori is stacking cartridges in her old proctor's harness at midnight, sleeves rolled and lamp turned low. \"I don't sleep well—my husband used to sit with me through the quiet hours,\" she says softly, lifting her gaze to yours. \"I haven't wanted anyone beside me since... until you. May I kiss you?\"",
           "image": {
             "comp": "sitting at a table in a loose dark sweater with silver-white hair over one eye, quiet tired smile",
             "setting": "her small room at midnight, one lamp and neat gear on a shelf",
             "sam": true
           },
           "go": "Sit with her",
-          "goRes": "The kiss is slow and grieved and tender, and she cries a little. She makes no apology, and he does not ask for one.",
+          "goRes": "Her kiss is slow, aching, and deeply tender, a single tear slipping down her cheek without apology as she leans into your warmth.",
           "wait": "\"There's no hurry.\"",
-          "waitRes": "\"No,\" Shiori says, with gentle gratitude. \"I've learned there never is. Thank you.\""
+          "waitRes": "\"No,\" Shiori agrees with quiet gratitude. \"I've learned there never is. Thank you, Sam.\""
         },
         "2": {
           "title": "Contingency Plans",
-          "text": "Shiori has a plan for tonight. It is written in her tight proctor's hand and tucked in the cuff of her sweater. \"I am too old to be shy,\" she says, and blushes anyway. \"Item four says I should let you take off my sweater. I wasn't sure I'd manage it.\" She lifts her arms, slowly, a woman daring to want something again. The pages in her cuff are neat as a proctor's. Her usual cool composure holds exactly as long as the sweater does.",
+          "text": "Shiori holds a neat proctor's note tucked in her cuff, blushing softly despite her dry tone. \"I'm far too old to be shy, yet item four on my contingency list says I should let you take off my sweater—and touch me.\" Lifting her arms slowly, she bares her pale skin to your hands.",
           "image": {
             "comp": "lifting her arms to tug at a loose dark sweater, silver-white hair messy, nervous wry smile",
             "setting": "her room, lamplight, a folded note on the table",
             "sam": true
           },
           "go": "Help her",
-          "goRes": "The sweater goes, and with it a little of the weight she's carried. She laughs, a rusty and surprised sound.",
+          "goRes": "You pull the sweater over her head and run your hands over her bare breasts and waist, drawing a startled, breathless laugh as years of tension finally melt away.",
           "wait": "\"We don't have to follow the plan.\"",
-          "waitRes": "\"Good,\" Shiori exhales. \"I would prefer to revise it.\" She tucks the note away. \"Thank you.\""
+          "waitRes": "\"Good,\" Shiori exhales, tucking the note away. \"I'd much rather revise it—thank you.\""
         },
         "3": {
           "title": "A Little Light",
-          "text": "Shiori comes to Sam's door in the morning light, not night, hair brushed, wearing the proctor's uniform she hasn't touched in years. \"I wanted to be myself when I asked.\" Her voice cracks only slightly. \"I lost two people in one war. I did not think there would be room for a third. There is. Will you have me?\" Morning light slants across the floorboards, pale and forgiving. She has pinned back her silver-white hair and for once does not hide the left eye.",
+          "text": "Shiori appears in your doorway in the soft morning light, silver-white hair brushed back from both eyes and her dark high-collared uniform unfastened at the throat. \"I wanted to be completely myself when I asked,\" she whispers, voice trembling slightly. \"I didn't think my heart had room left—yet here you are. Will you have me?\"",
           "image": {
             "comp": "standing in a doorway in a dark high-collared uniform with her hair neatly brushed back, brave and vulnerable",
             "setting": "Sam's bedroom doorway in soft morning light",
             "sam": true
           },
           "go": "Have her",
-          "goRes": "He does. They take the whole morning, and when she lies against him afterward she says, to the ceiling, \"Thank you,\" and means it for everything.",
+          "goRes": "You undress her in the pale morning light and make love to her unhurriedly all morning—Shiori whispering \"Thank you\" to the ceiling afterward, meaning it for everything.",
           "wait": "\"Take all the time you need.\"",
-          "waitRes": "\"I've had time,\" Shiori says, and smiles sadly. \"But I understand. I'll come back. I'm patient.\""
+          "waitRes": "\"I've had plenty of time,\" Shiori smiles gently. \"I'll come back—I'm patient.\""
         },
         "jump": {
           "title": "Overdue",
-          "text": "The anniversary comes and goes, and Shiori stays in the courtyard long after the lanterns are out. Sam sits beside her without a word. Eventually she says, \"I thought I was finished.\" She turns, hair silver in the moonlight. \"I'm not. Show me I'm not.\" She takes his hand in both of hers and kisses it, then his mouth. A last paper lantern gutters out. She is a woman who plans for everything, and she has no plan for this, and she walks in anyway.",
+          "text": "Long after the anniversary lanterns burn out, you sit quietly beside Shiori on the dark courtyard bench until she turns, silver hair glowing in the moonlight. \"I thought I was finished living—and I'm not. Prove it to me,\" she whispers, gripping your hand and kissing you with sudden, desperate heat.",
           "image": {
             "comp": "sitting on a stone bench in moonlight holding his hand in both of hers, silver-white hair loose, tearful, resolute",
             "setting": "courtyard bench at night, paper lanterns burned low",
             "sam": true
           },
           "go": "Show her",
-          "goRes": "He does. Gently, and then with some surprise from them both, he does.",
+          "goRes": "You carry her upstairs into the quiet dark, peeling off her clothes and holding her tight as years of grief give way to raw, shuddering warmth.",
           "wait": "\"Are you sure it's me you need right now?\"",
-          "waitRes": "\"I'm sure it's you I want,\" Shiori says. \"But you're right to ask. Let me be sure of the rest.\""
+          "waitRes": "\"I'm sure it's you I want,\" Shiori says softly. \"Though you're right to ask—let me be sure of the rest.\""
         }
       }
     },
@@ -788,55 +788,55 @@
       "events": {
         "1": {
           "title": "Field Study",
-          "text": "Tsubasa has labelled Sam's visits to the bathhouse in a clipboard. \"Objective measures,\" she says, adjusting her glasses. \"Heart rate, skin temperature, a certain restlessness around me.\" She puts the clipboard down. \"I don't generally enjoy kissing, but I'm a researcher. Hypothesis: it's different with you. May I test it?\" Steam fogs the window and a kettle sings in the corner. She is the calmest-looking woman in the house and the most thoroughly flustered.",
+          "text": "Tsubasa has logged your bathhouse visits on a clipboard. \"Objective data,\" she says evenly, adjusting her rectangular glasses with rising color in her cheeks. \"Elevated heart rate and skin temperature whenever I'm near. Hypothesis: kissing you will feel entirely different from anyone else. May I test it?\"",
           "image": {
             "comp": "adjusting her rectangular glasses with a clipboard held to her chest, composed with a blush rising",
             "setting": "bathhouse office, steam on a window, neat shelves",
             "sam": true
           },
           "go": "Let her test",
-          "goRes": "She kisses like a graduate student at a final exam, meticulous, then distracted. \"Hypothesis,\" she breathes, \"confirmed. Repeat trials required.\"",
+          "goRes": "She kisses with meticulous, focused intensity before pulling back breathless. \"Hypothesis... confirmed. Repeat trials strictly required.\"",
           "wait": "\"Peer review first?\"",
-          "waitRes": "\"I'm both peers.\" Tsubasa smiles, flustered, and writes something down. \"Next week, then. Trial two.\""
+          "waitRes": "\"I am both peers.\" Tsubasa smiles, flustered, jotting a note. \"Next week, then—trial two.\""
         },
         "2": {
           "title": "Hygienic",
-          "text": "Tsubasa scrubs her hands twice, a habit, before she takes Sam's. \"I am extremely hygienic,\" she says, in the voice of someone who has been teased about it. \"I realize it's unromantic.\" Her fingers shake the slightest bit. \"I'd like to learn something new, and I'd like you to teach me. Slowly. Clean.\" Soap, linen and a hint of lavender scent the little room. Her hands are warm from the water, and her curiosity is plain.",
+          "text": "Tsubasa washes her hands twice out of habit before resting her warm, soap-scented palms over yours in the steamy changing room. \"I know being clinical isn't terribly romantic,\" she admits softly, fingers trembling slightly as she guides your hands to her waist. \"Teach me the rest—slowly, and thoroughly.\"",
           "image": {
             "comp": "holding out freshly washed hands with a nervous gentle smile, glasses slightly fogged from steam",
             "setting": "bathhouse changing room, fresh towels stacked, lantern light",
             "sam": true
           },
           "go": "Teach her",
-          "goRes": "She is the best student he has ever had, curious and diligent, and thoroughly, happily pink. \"Notes later,\" she says, breathless.",
+          "goRes": "She turns out to be an eager, attentive student—blushing crimson from her collarbone up as your hands and mouth draw breathless gasps from her.",
           "wait": "\"Another day. Study first.\"",
-          "waitRes": "\"Reading assignment, then.\" Tsubasa nods, dignified. \"I'll bring questions. Please be prepared.\""
+          "waitRes": "\"A reading assignment, then.\" Tsubasa nods with dignity. \"I'll bring questions—be prepared.\""
         },
         "3": {
           "title": "Lab Coat Off",
-          "text": "Tsubasa takes off the white coat and folds it over a chair, and then her glasses, which she sets on top with enormous care. \"I can't see very well without them,\" she admits, squinting at Sam's blurry shape. \"I'd like to make an exception. For you, I want to be unobserved. Only felt.\" She has placed the glasses where she can reach them in the morning, and a spare towel just in case. Even her nerves are tidy.",
+          "text": "Tsubasa folds her white coat neatly over a chair and sets her glasses carefully on top, sitting bare-shouldered on the edge of your mattress. \"I can barely see without them,\" she whispers, squinting warmly toward your silhouette. \"Tonight I don't want to observe—I only want to feel you.\"",
           "image": {
             "comp": "sitting on a bed without her glasses, squinting gently, lab coat folded over a nearby chair, shy fond smile",
             "setting": "her room, a neat bed, a lamp turned low",
             "sam": true
           },
           "go": "Come closer",
-          "goRes": "He does, and she reaches for him by touch, quiet and sure and hilariously unguarded. It is a good night, and it ends with her asleep with a book on her chest.",
+          "goRes": "She navigates entirely by touch—running her hands over your bare skin as you sink inside her, unguarded and breathless until she falls asleep with a book on her chest.",
           "wait": "\"Are you sure? I'll wait.\"",
-          "waitRes": "\"You can wait.\" Tsubasa puts her glasses back on, flushed. \"I just won't be able to read a thing in the meantime.\""
+          "waitRes": "\"You can wait.\" Tsubasa slips her glasses back on, flushed. \"I just won't be able to focus on a single page until then.\""
         },
         "jump": {
           "title": "Out of Order",
-          "text": "Tsubasa gets steam in her glasses and walks into Sam, then stays there, pressing her palms to his chest to steady herself. \"I'm not hurt,\" she says, flustered. \"I'm just very warm. I have been for weeks.\" The glasses fog completely. She takes them off and says, \"I'll do the experiment first, and review afterward.\" The corridor is thick with steam, tiles slick underfoot. Every rule she has about cleanliness and caution has quietly left the building.",
+          "text": "Blinded by steam on her lenses, Tsubasa collides straight into you in the bathhouse corridor—and stays pressed flush against your chest, pulling her glasses off with a bright blush. \"I'm not hurt, Sam, I'm just burning up. Let's run the physical experiment first and log the notes afterward.\"",
           "image": {
             "comp": "pressed close to him with fogged glasses held in one hand, flushed and wide-eyed",
             "setting": "bathhouse corridor, rolling steam and tiled walls",
             "sam": true
           },
           "go": "Let her",
-          "goRes": "Steam rolls over them, and no one in the world could write this up.",
+          "goRes": "Thick steam curls around you both as she pulls you into an empty changing stall, hiking up her skirt and letting go of every rule.",
           "wait": "\"Maybe dry off first?\"",
-          "waitRes": "\"Practical,\" Tsubasa laughs, wiping her glasses. \"A good researcher cleans her equipment. Give me ten minutes.\""
+          "waitRes": "\"Practical,\" Tsubasa laughs, wiping her lenses. \"Good researchers clean their equipment—give me ten minutes.\""
         }
       }
     },
@@ -844,55 +844,55 @@
       "events": {
         "1": {
           "title": "What She Hears",
-          "text": "Kotone is on the landing before Sam reaches the top step. \"Your heartbeat changes when you're nervous,\" she says, blindfold turned toward him, smiling. \"It's been doing that all week, near me.\" She lifts her fingertips to his jaw, finding his face by touch. \"I can read the house, Sam. I can't read what you want. Tell me.\" A warm lantern hangs by the stair, and she tilts toward it as if feeling the heat. Her smile is calm, her breath not at all.",
+          "text": "Kotone is waiting at the top of the stairs before you even reach the landing. \"Your heartbeat shifts every time you get nervous around me,\" she smiles, turning her blindfold toward you and raising her fingertips to trace your jaw. \"I can read the whole house by sound, Sam—yet I need to feel what you want.\"",
           "image": {
             "comp": "standing at the top of the stairs with her blindfold toward him, fingertips raised to touch his jaw, soft knowing smile",
             "setting": "upstairs landing at dusk, lantern light on a worn banister",
             "sam": true
           },
           "go": "Show her",
-          "goRes": "He kisses her, and she gasps, delighted. \"Oh, that,\" Kotone whispers. \"That I can feel all the way through.\"",
+          "goRes": "You kiss her softly, and she lets out a delighted gasp against your lips. \"Oh—that I can feel all the way through.\"",
           "wait": "\"Let me say it first.\"",
-          "waitRes": "\"Say it, then.\" She listens with her whole body for a long moment. \"Mm. I'll wait to hear the rest.\""
+          "waitRes": "\"Say it, then.\" She tilts her head, listening intently. \"Mm—I'll wait to hear the rest.\""
         },
         "2": {
           "title": "Map by Touch",
-          "text": "Kotone draws Sam's face with her fingers the way she maps a room: forehead, brow, the line of his mouth. \"I've known you by sound and chakra for months,\" she says, voice steady, cheeks warm. \"I'd like to know you the other way. All of it, if you'll let me.\" Her hand slides down his collar, deliberate and curious. The rugs are soft underfoot and the room smells of cedar. She knows exactly where everything stands, and chooses to risk the unfamiliar anyway.",
+          "text": "Kotone maps your face with her fingertips—brow, cheekbones, parted lips—before sliding her hands slowly down your chest and stomach. \"I've known you by sound and chakra for months,\" she murmurs, cheeks flushed warm. \"Now I want to learn every inch of your skin by touch.\"",
           "image": {
             "comp": "seated close to him with the blindfold on, fingertips tracing his collar, rapt gentle smile",
             "setting": "her quiet room, soft rugs, a lamp she can't see but likes warm",
             "sam": true
           },
           "go": "Let her learn him",
-          "goRes": "She learns him with exquisite attention, and he learns how it feels to be known entirely by someone who cannot see him and knows him anyway.",
+          "goRes": "She explores your body with breathtaking, unhurried attention—her sensitive fingers and warm mouth bringing you to the brink while you return every touch.",
           "wait": "\"We can go slower.\"",
-          "waitRes": "\"I'd like that.\" Kotone presses her palm over his heart, listening. \"Faster than I thought, though, isn't it? You answer for yourself.\""
+          "waitRes": "\"I'd like that.\" Kotone rests her palm over your racing heart, smiling. \"Faster than you claim, though, isn't it?\""
         },
         "3": {
           "title": "Quarter Note",
-          "text": "Kotone sets the blindfold on the nightstand for the first time in front of anyone. The metal plate rings softly against wood. \"I don't need it off,\" she says. \"But I'd like to be someone you can see.\" Her sightless eyes are warm brown, and fixed unerringly on his. \"Stay. I'll hear you stay.\" The room is dark, which she cannot see and he can, and she tells him so with a laugh. The metal plate rests on the wood with a quiet chime.",
+          "text": "Kotone unties her blindfold for the first time in front of anyone, setting the metal-plated cloth softly on the nightstand as her nightgown slips off one shoulder. \"I don't need sight to know you're here,\" she whispers, her warm brown eyes turned unerringly toward yours. \"I just wanted you to see all of me. Stay.\"",
           "image": {
             "comp": "sitting on the edge of a bed with her blindfold set aside, calm unfocused eyes turned toward him, tender smile",
             "setting": "her bedroom, a soft lamp, a blindfold with a note-plate on the nightstand",
             "sam": true
           },
           "go": "Stay",
-          "goRes": "He stays, and the night is gentle and unhurried and full of listening, her laugh at every sound he makes.",
+          "goRes": "You peel off her nightgown and make love to her in the dark, Kotone laughing softly and gasping at every sound and thrust until dawn.",
           "wait": "\"You don't have to take it off for me.\"",
-          "waitRes": "\"I know,\" Kotone says warmly, and picks up the blindfold. \"I chose to. Ask again soon. I'll be listening.\""
+          "waitRes": "\"I know,\" Kotone smiles warmly, picking up the blindfold. \"I chose to—ask me again soon.\""
         },
         "jump": {
           "title": "Heard It Coming",
-          "text": "Kotone halts mid-hall, tilts her head, and says, \"Your heart is racing.\" She turns toward him. \"Mine is too, apparently. I can hear the difference between lies and wanting, and you are in the second category.\" She crosses to him in three sure steps and finds his collar. \"I'm tired of being polite about it.\" The lantern sways, the floorboards creak, and she has heard every beat of his pulse for ten minutes without once mentioning it.",
+          "text": "Kotone stops dead mid-corridor, tilts her head, and turns straight toward you. \"Your pulse is hammering—and mine is matching it beat for beat,\" she purrs, crossing the hall in three sure strides to grip your collar. \"I'm done pretending I can't hear how badly you want me.\"",
           "image": {
             "comp": "standing in a hallway with her head tilted, blindfold facing him, hand reaching unerringly for his collar, amused and flushed",
             "setting": "upstairs hallway, a lantern swinging lightly",
             "sam": true
           },
           "go": "Don't be polite",
-          "goRes": "She isn't. For someone who senses everyone, the surprise is all hers, and she laughs against his mouth.",
+          "goRes": "She kisses you hungrily and pulls you into her bedroom, breathless and laughing as she tugs at your clothes.",
           "wait": "\"Slow down. Listen.\"",
-          "waitRes": "\"I am listening.\" Kotone grins. \"You are very loud. Come find me when you've decided.\""
+          "waitRes": "\"I am listening,\" Kotone grins. \"And you're very loud—come find me once you've decided.\""
         }
       }
     },
@@ -900,55 +900,55 @@
       "events": {
         "1": {
           "title": "Clone Council",
-          "text": "Three Tobaris are crowded onto the back step when Sam opens the door. \"We voted,\" says one. \"Four to one,\" says another. \"She's the one who objects,\" says the third, pointing at the real one, who is bright red. \"Fine,\" Tobari mutters. \"I don't do kissing. But they say I have to try it once. With you.\" The clones vanish in a puff of smoke. Somewhere in the garden a dozen quiet whispers are shushed at once. She stands rigid, the fur collar tickling her flushed jaw.",
+          "text": "Three Tobaris crowd the back step when you open the door. \"We voted,\" says the first. \"Four to one,\" adds the second, pointing at the bright-red original. \"Fine,\" Tobari mutters, her white fur collar tickling her flushed jaw. \"I don't do kissing—though they insist I try it once with you.\" The clones poof into smoke.",
           "image": {
             "comp": "standing stiffly on a back step with a small white fur collar and arms folded, red eyes avoiding his, blushing",
             "setting": "back step at night, small puffs of smoke fading",
             "sam": true
           },
           "go": "Kiss her",
-          "goRes": "She is stiff, then she isn't. \"...Huh,\" Tobari says. A faint voice from the smoke: \"Told you.\"",
+          "goRes": "She starts out rigid as a board before melting into your mouth. \"...Huh,\" Tobari blinks—while a faint voice from the fading smoke mutters, \"Told you.\"",
           "wait": "\"Don't let them bully you.\"",
-          "waitRes": "\"They never ask,\" Tobari sighs, rubbing her face. \"They decide. Thanks for asking. I'll think about it.\""
+          "waitRes": "\"They never ask, they just vote,\" Tobari sighs, rubbing her face. \"Thanks for asking—I'll think about it.\""
         },
         "2": {
           "title": "Strong Preferences",
-          "text": "Tobari has drawn a diagram on a roll of paper and is explaining it with her ears red. \"Hana thinks I should be bolder. My clones think I should be quieter. I think I should be on my hands and knees,\" she blurts, then covers her mouth. \"I meant, I have preferences. Strong ones. I'd like to try them. If you'd like to see.\" Lamp oil, ink and the smell of old scrolls fill the room. She has drawn arrows on the diagram and then crossed them out, blushing furiously.",
+          "text": "Tobari unrolls an ink diagram on her floor, ears burning scarlet. \"Hana says I should be bolder, my clones say quieter, and I think I want to be on my hands and knees—\" She claps both hands over her mouth. \"I meant I have strong preferences! And I'd like to try them with you!\"",
           "image": {
             "comp": "kneeling by a scroll of diagrams with a hand over her mouth, short white ponytail, red eyes huge with embarrassment",
             "setting": "her room, scrolls and a low lamp",
             "sam": true
           },
           "go": "Say yes",
-          "goRes": "Her clones knock politely on the wall, and Tobari yells at them to go away. After that it is a quiet, flustered, wonderful hour.",
+          "goRes": "When a clone knocks politely on the wall, Tobari yells at her to get lost—then turns back to you, flustered and eager as your hands explore every detail on her scroll.",
           "wait": "\"Maybe not tonight.\"",
-          "waitRes": "\"Fine!\" Tobari buries her face in the scroll. \"I'll refine the diagram.\""
+          "waitRes": "\"Fine!\" Tobari buries her flaming face in the parchment. \"I'll refine the diagram.\""
         },
         "3": {
           "title": "No Clones",
-          "text": "Tobari stands at Sam's door with nobody behind her. \"I sent them to cover the doors.\" Her voice cracks. \"All of them. I needed to do this alone. They can't be in the room, they know too much.\" The white fur collar is askew. \"I like you. I've liked you for ages. Let me in before I put on a bodyguard.\" The corridor beyond her is eerily empty, every clone dispatched, every door doubly guarded. The only person left to be brave is her.",
+          "text": "Tobari stands in your doorway completely alone—not a single clone in sight. \"I dispatched all of them to guard the perimeter so nobody else can feel this,\" she whispers, voice cracking as she unfastens her fur collar. \"I've liked you for ages, Sam. Let me in before I chicken out.\"",
           "image": {
             "comp": "standing at a bedroom door alone, fur collar slightly crooked, red eyes shy and brave",
             "setting": "Sam's bedroom doorway, lamplight and a quiet hallway behind her",
             "sam": true
           },
           "go": "Let her in",
-          "goRes": "It's gentle. For the first time her chakra is quiet, entirely hers, and she falls asleep smiling. Somewhere in the house, a dozen Tobaris all sigh at once.",
+          "goRes": "You undress her gently and sink inside her, Tobari trembling and gasping softly until she falls asleep on your chest—while a dozen clones across the house sigh in unison.",
           "wait": "\"Are you sure? They won't like it.\"",
-          "waitRes": "\"They'll survive.\" Tobari lifts her chin. \"I'll try again tomorrow, with maybe two clones. And a hammock.\""
+          "waitRes": "\"They'll live,\" Tobari says, lifting her chin. \"I'll try again tomorrow—maybe with two clones and a hammock.\""
         },
         "jump": {
           "title": "Unmasked by Clone",
-          "text": "A clone, in the middle of a security shift, announces loudly to the whole kitchen: \"She likes Sam! She said it in the bath!\" The real Tobari arrives in a dead run, smoke trailing, and stops dead when she sees Sam. \"Okay,\" she pants. \"Okay. That's out. Fine. Kiss me and I'll never stop being embarrassed.\" A bowl rolls across the floor, smoke still drifting from where the clone vanished, and she cannot meet his eye or look away.",
+          "text": "Mid-shift, a clone blurts out to the entire kitchen: \"She wants to sleep with Sam—she admitted it in the bath!\" The real Tobari skids into the doorway trailing smoke, locking eyes with you in pure panic before giving up. \"Fine! The secret's out—kiss me already so I can die of embarrassment!\"",
           "image": {
             "comp": "breathless in a kitchen doorway with smoke trailing behind, ponytail wild, red eyes locked on his in dismay and resolve",
             "setting": "kitchen, a cloud of smoke and a spilled bowl",
             "sam": true
           },
           "go": "Kiss her",
-          "goRes": "She makes a strangled noise, grabs his hoodie, and stays there. The clone, somewhere, hums approvingly.",
+          "goRes": "She lets out a strangled squeak, grabs your hoodie, and drags you straight upstairs while the vanishing clone hums approvingly.",
           "wait": "\"Deal with the clone first.\"",
-          "waitRes": "\"I'm going to murder her.\" Tobari stomps off. At the door she whirls. \"But it's true, okay? Remember that!\""
+          "waitRes": "\"I'm going to murder her.\" Tobari storms off, whirling at the door: \"It's true, though—remember that!\""
         }
       }
     },
@@ -956,55 +956,55 @@
       "events": {
         "1": {
           "title": "Hem and Heart",
-          "text": "Marina kneels at Sam's feet with pins in her mouth, adjusting the hem of a coat. She removes them carefully. \"I mend every dress in this house,\" she says, curls bobbing, \"but yours is the only seam I keep pretending to fix.\" She looks up, pale blue eyes sly. \"There's nothing wrong with it, you know. I wanted the excuse.\" A pale dress form stands behind her in the lamplight, with a row of dolls on the shelf pretending very hard not to look.",
+          "text": "Marina kneels at your feet with sewing pins between her lips, adjusting a coat hem that doesn't need fixing. Removing the pins carefully, she looks up with pale blue eyes and a sly smile. \"Yours is the only seam I keep pretending to mend, Sam—I just wanted an excuse to get close to you.\"",
           "image": {
             "comp": "kneeling at his feet with a pin cushion on her wrist, pale ringlets framing a sly blush",
             "setting": "sewing room, fabric bolts and dolls on a shelf",
             "sam": true
           },
           "go": "Lift her to her feet and kiss her",
-          "goRes": "She tastes like tea and thread. A doll on the shelf falls over in surprise, and Marina laughs into his shoulder.",
+          "goRes": "You pull her up into your arms and kiss her deeply, Marina laughing softly against your shoulder as a wooden doll tips over on the shelf behind her.",
           "wait": "\"Tell me about the dolls first.\"",
-          "waitRes": "\"They are completely unrelated to anyone,\" Marina says brightly. \"Nobody you know. Another day, then.\""
+          "waitRes": "\"They're completely unrelated to anyone you know,\" Marina replies brightly. \"Another day, then.\""
         },
         "2": {
           "title": "Fitting",
-          "text": "Marina insists on a private fitting. The door locks. She runs the measuring tape across his shoulders, down his arm, around his waist, and her breath catches when it reaches his collar. \"I'm quite fond of measuring,\" she says, almost to herself. \"I've measured you in my head for months. Let me check my work properly.\" Bolts of cloth and pins in neat rows line the walls. She has locked the door twice and tested the handle, just in case.",
+          "text": "Marina locks the sewing room door twice for a 'private fitting,' running her measuring tape across your shoulders, down your chest, and straight around your waist—her breath hitching as her fingers brush your fly. \"I've measured you in my head for months,\" she murmurs, eyes bright. \"Let me check my numbers hands-on.\"",
           "image": {
             "comp": "standing close with a measuring tape looped round her neck and her hands on his shoulders, pale blue eyes bright",
             "setting": "private sewing room, mirror, spools of thread and lantern light",
             "sam": true
           },
           "go": "Let her check",
-          "goRes": "Her work, it turns out, was excellent. Marina applies every careful, creative technique, and the dolls watch in silent approval.",
+          "goRes": "Her measurements are remarkably thorough—unbuttoning your trousers and working you with deft, creative fingers while the shelf dolls stare silently.",
           "wait": "\"Maybe after the fitting.\"",
-          "waitRes": "\"Of course, of course.\" Marina snips a thread, unabashed. \"I'll finish the coat. And the rest can be finished too. Tomorrow.\""
+          "waitRes": "\"Of course.\" Marina snips a thread, unabashed. \"I'll finish the coat—and the rest tomorrow.\""
         },
         "3": {
           "title": "Night Owl",
-          "text": "The sewing room light is still on at three. Marina has finished the coat, and she holds it up for him, perfectly tailored. \"It's a thank-you,\" she says, bashful. \"For letting me be strange.\" She sets it down, and slips her fingers through his. \"The dolls will behave. I'd like to show you the rest of my night.\" A pot of cold tea sits beside a dress half finished. The dolls on the shelf are facing the wall, which she insists is a coincidence.",
+          "text": "The sewing room lamp still glows at three in the morning as Marina sets aside your finished coat—every doll on the shelf turned neatly toward the wall. Unlacing her bodice, she laces her fingers through yours. \"The dolls will behave tonight. Come to bed and let me show you the rest of my evening.\"",
           "image": {
             "comp": "standing in a lamp-lit sewing room holding a finished coat out to him, curls loose, tender conspiratorial smile",
             "setting": "the sewing room at 3am, dolls on a shelf, a single lamp",
             "sam": true
           },
           "go": "Take her hand",
-          "goRes": "She leads him, and the night is soft and quiet and unfolds like a thing well stitched. The dolls, to her great pride, behave.",
+          "goRes": "She leads you to her mattress, stripping away her dress and arching beneath you with soft, breathless gasps—and to her pride, not a single doll moves.",
           "wait": "\"Tell me it's not just the coat.\"",
-          "waitRes": "\"It isn't the coat,\" Marina says, with a delighted laugh. \"But that is the sweetest thing anyone has asked. Ask again soon.\""
+          "waitRes": "\"It isn't the coat,\" Marina laughs delightedly. \"Ask me again soon.\""
         },
         "jump": {
           "title": "Loose Thread",
-          "text": "A seam gives way at the worst moment: Sam's cloak snags, and Marina, nearby, steadies him with a hand to his chest. They stay there longer than the thread requires. \"You keep unravelling,\" she says, breathless. \"I would like to be the one to mend it. And then, perhaps, to unravel it again.\" A bright thread dangles from his cuff, and she has not looked away from his face in a good three breaths.",
+          "text": "Your cloak snags in the hallway and Marina catches your chest to steady you, lingering far longer than the loose thread requires. \"You keep unraveling around me, Sam,\" she breathes, pale blue eyes dark with sudden heat. \"Let me stitch you up—and unravel you all over again.\"",
           "image": {
             "comp": "holding a bit of thread, one hand against his chest, pale blue eyes sly and flushed",
             "setting": "hallway outside the sewing room, a snagged cloak",
             "sam": true
           },
           "go": "Let her mend him",
-          "goRes": "She mends him, and then does the other thing too, with surprising eagerness for a woman who works with dolls.",
+          "goRes": "She pulls you into the sewing room, bolts the door, and strips you down with surprising, shameless eagerness.",
           "wait": "\"Let me fix the cloak first.\"",
-          "waitRes": "\"The cloak!\" Marina laughs. \"Yes. I'm a professional. After that, I'm free.\""
+          "waitRes": "\"The cloak!\" Marina laughs. \"Right—professional first, completely free afterward.\""
         }
       }
     },
@@ -1012,55 +1012,55 @@
       "events": {
         "1": {
           "title": "Order Up",
-          "text": "Ayano slides Sam his usual before he's even sat, extra spice, just how he likes it. \"I know everyone's order,\" she says cheerfully, \"and everybody's secret. Yours is the only one I haven't said out loud.\" She leans across the counter. \"You've been looking at my mouth the whole time you ate. So let me serve you something else.\" A last wisp of steam curls from his empty bowl. She has been watching him over the rim of her ladle for a while, and has finally decided to say so.",
+          "text": "Ayano slides your usual bowl across the counter before you even sit—extra spice, just how you like it. \"I know everyone's order and everyone's secrets,\" she grins, leaning across the counter on her elbows. \"And I noticed you staring at my mouth the entire time you ate. Ready for dessert?\"",
           "image": {
             "comp": "leaning on a kitchen bar counter with a ladle in one hand, long ponytail swinging, teasing warm grin",
             "setting": "kitchen bar at closing, steaming bowls and lantern light",
             "sam": true
           },
           "go": "Take the dessert",
-          "goRes": "She's laughing before he's finished kissing her, and then not laughing at all. \"Extra spice,\" Ayano whispers. \"Told you.\"",
+          "goRes": "She laughs softly against your lips before deepening the kiss, tasting of sweet spice and warmth. \"Extra spice—told you.\"",
           "wait": "\"I'll finish the bowl first.\"",
-          "waitRes": "\"Ha! Finish it, then.\" Ayano takes the empty bowl away. \"I'm not going anywhere. I always know where you are.\""
+          "waitRes": "\"Ha! Finish up, then,\" Ayano winks, clearing the dish. \"I'm not going anywhere.\""
         },
         "2": {
           "title": "Kitchen After Hours",
-          "text": "The last bowl is washed. Ayano dries her hands slowly, then steps behind Sam and slides her arms around his waist. \"I know the whole house,\" she says into his back. \"Nobody knows me. I like how it feels, you looking.\" Her hands drift down, practiced and warm. \"Want to know what I can do with these? It isn't ramen.\" The pots are scrubbed and the lamps turned low. She has the kind of calm that comes from knowing everyone else's secrets and finally surrendering her own.",
+          "text": "Once the last pot is scrubbed, Ayano slips behind you in the dim kitchen and wraps her arms around your waist, sliding her warm hands straight down over your groin. \"I know everybody's dirty secrets in this house,\" she purrs against your back. \"Want to feel what these hands can do besides make noodles?\"",
           "image": {
             "comp": "standing behind him with her arms wrapped around his waist, chin on his shoulder, cheeky smile",
             "setting": "kitchen bar after hours, steam fading, clean bowls stacked",
             "sam": true
           },
           "go": "Turn around",
-          "goRes": "He does, and she makes sure he never regrets it. Ayano is generous, attentive, and cheerful to the end.",
+          "goRes": "You spin around and lift her onto the counter, trading messy kisses and breathless gasps while her hands and mouth work you thoroughly.",
           "wait": "\"Not in the kitchen.\"",
-          "waitRes": "\"Pfft. You're no fun.\" Ayano flicks a towel at him. \"I'll accept an upstairs. I know all the creaky stairs, so I'll be quiet.\""
+          "waitRes": "\"Pfft—spoilsport.\" Ayano snaps a dish towel at your hip. \"I'll accept upstairs; I know every creaky board to avoid.\""
         },
         "3": {
           "title": "Last Customer",
-          "text": "Ayano locks the kitchen door and hangs the sign. \"You're my last customer,\" she says, and for once the cheerful mask slips. \"Everyone tells me their troubles. I never get to tell mine.\" She sits on the counter, ponytail down, and pats the spot beside her. \"Stay? I'd like someone to listen. And then, if you're willing, someone to hold me.\" A single bowl sits cooling between them, the first she has ever left uneaten. The night has gone quiet, and she lets it.",
+          "text": "Ayano locks the kitchen door and flips the sign, sitting on the counter with her ponytail down and her blouse unfastened halfway. \"You're my last customer tonight,\" she says softly, the usual banter melting into real warmth as she pats the space between her knees. \"Hold me—and take me upstairs.\"",
           "image": {
             "comp": "sitting on a counter with her ponytail loose, warm tired smile, one hand patting the space beside her",
             "setting": "kitchen at night, the sign turned, a single bowl steaming",
             "sam": true
           },
           "go": "Sit beside her",
-          "goRes": "He listens, and listens, and then holds her. The night continues upstairs, where she is finally the one being cared for.",
+          "goRes": "You carry her upstairs to bed, peeling off her clothes and making love to her slowly until the girl who takes care of everyone finally gets taken care of.",
           "wait": "\"Are you sure you want more than listening?\"",
-          "waitRes": "\"Listening is lovely,\" Ayano says, leaning on him. \"Let's start there. The rest will keep.\""
+          "waitRes": "\"Listening is lovely,\" Ayano smiles, leaning her head on your shoulder. \"Let's start there—the rest will keep.\""
         },
         "jump": {
           "title": "On the House",
-          "text": "A regular wanders in and pronounces Ayano's cooking the secret to Sam's good mood. She smacks him with a towel and bolts into the pantry with Sam, mortified and giggling. \"I know everything about everyone,\" she whispers. \"I can't keep my own heart a secret from you. Sam. Kiss me before I make another joke.\" Flour hangs in the air, and from outside the door comes a faint indignant demand for noodles. She does not appear to hear it.",
+          "text": "When a regular loudly declares Ayano's cooking is the secret to your good mood, she swats him with a towel and drags you straight into the pantry, giggling and scarlet. \"I can't keep my own crush a secret anymore, Sam—kiss me before I crack another bad joke.\"",
           "image": {
             "comp": "hiding in a pantry with a towel over her shoulder, ponytail swinging, giggling and flushed, one hand gripping his sleeve",
             "setting": "pantry shelves, sacks of flour and jars",
             "sam": true
           },
           "go": "Kiss her",
-          "goRes": "She melts into it, still laughing. The regular outside shouts for noodles, and no one answers.",
+          "goRes": "She melts into your mouth, laughing breathlessly among the flour sacks while the patron outside shouts unanswered for noodles.",
           "wait": "\"Go on, he's waiting.\"",
-          "waitRes": "\"He can wait.\" Ayano grins. \"But so can this. You owe me a kiss, mister.\""
+          "waitRes": "\"He can wait,\" Ayano grins. \"Though so can this—you owe me a kiss later, mister.\""
         }
       }
     },
@@ -1068,55 +1068,55 @@
       "events": {
         "1": {
           "title": "Strands",
-          "text": "Kamiko trims the ragged edge of her hair with a blade at her hip, as she does every year, and Sam walks in just as the cut strand floats down. \"Don't,\" she says calmly, steel in it. Then, softer: \"I only keep a few people close enough to see this. I did not intend to add one.\" She lifts her chin. \"I don't kiss. I've decided to make an exception.\" A single strand of black hair drifts slowly to the floor between them, unnoticed. She sheathes the blade with a small, controlled click.",
+          "text": "Kamiko trims the ragged ends of her ankle-length black hair with the blade at her hip, freezing when you walk in as a cut strand drifts to the floor. She sheathes the steel with a quiet click. \"I keep very few people close enough to witness this—and I don't kiss. Yet for you, I'm making an exception.\"",
           "image": {
             "comp": "standing before a mirror with her long black hair uneven at the end, blade at her hip, composed sharp face with a flicker of nerves",
             "setting": "a quiet dressing room, a single mirror and lantern glow",
             "sam": true
           },
           "go": "Accept the exception",
-          "goRes": "Her control holds for exactly three seconds. Then Kamiko, endlessly patient, kisses him as if she's finally run out.",
+          "goRes": "Her icy poise lasts exactly three seconds before Kamiko grabs your collar and kisses you like she's finally run out of restraint.",
           "wait": "\"Take your time. I mean it.\"",
-          "waitRes": "\"I have endless patience,\" Kamiko says coolly, and sheathes the blade. \"Right up until I don't. Be warned.\""
+          "waitRes": "\"I possess endless patience,\" Kamiko replies coolly—\"right up until I don't. Consider yourself warned.\""
         },
         "2": {
           "title": "Patience Runs Out",
-          "text": "Kamiko has been polishing a glass for ten minutes. Sam has been drinking for ten minutes. Finally she sets it down and says, \"I have endless patience. I have had it. You are slow.\" She takes the cup from his hand, sets it on the bar, and steps into him. \"I will not ask twice.\" Her hair brushes his wrist like silk thread. The lounge is silent. She has a way of holding still that makes a room hold its breath, and she is holding it now.",
+          "text": "Kamiko polishes a glass in silence for ten straight minutes while you nurse your drink, before setting the cloth down with a sharp snap. \"I have endless patience—and you've officially exhausted it,\" she purrs, stepping flush against you and sliding a cool, silk-smooth hand straight onto your groin. \"I won't ask twice.\"",
           "image": {
             "comp": "standing close behind a bar with her arms crossed, sharp composed face cracking into a hungry smile",
             "setting": "lounge bar, empty glasses and lantern light",
             "sam": true
           },
           "go": "Let her not ask twice",
-          "goRes": "She doesn't. Kamiko is polished and certain and, to her mild irritation, completely undone for a while.",
+          "goRes": "She doesn't—unfastening your trousers behind the bar and stroking you with cool, devastating precision until your knees buckle.",
           "wait": "\"I wanted to be sure you were ready.\"",
-          "waitRes": "\"I am the readiest I will ever be,\" Kamiko says through her teeth. \"But fine. A day, Sam. Not a week.\""
+          "waitRes": "\"I am as ready as I will ever be,\" Kamiko says through gritted teeth. \"One day, Sam—not a week.\""
         },
         "3": {
           "title": "Uneven Edge",
-          "text": "Kamiko lets down the full length of her hair across Sam's pillow, black as ink, uneven and wild at the bottom. \"I cut it each time I lose something,\" she says quietly. \"It is very uneven.\" She glances up. \"You're not shorter than an inch of it. I haven't cut since I met you.\" She smiles, small and honest. \"Stay with me.\" Moonlight lies across the sheets in a long pale stripe. She has put her blade out of reach, which tells him more than anything she says.",
+          "text": "Kamiko spreads the full, ink-black cascade of her hair across your pillows, completely bare beneath the sheet with her blade laid far out of reach on the nightstand. \"I cut an inch every time I lose someone—and I haven't touched the blade since meeting you,\" she whispers, a rare, sincere smile softening her sharp features. \"Stay.\"",
           "image": {
             "comp": "lying back against pillows with her long uneven black hair spread across them, small honest smile",
             "setting": "Sam's bedroom, sheets, a lamp turned low",
             "sam": true
           },
           "go": "Stay",
-          "goRes": "The cool, unflappable spirit is warm, in the end, and unhurried. The blade rests unused on the nightstand all night.",
+          "goRes": "You slide beneath the sheet and sink slowly into her heat, the cool, unflappable spirit arching beneath you with breathless, unguarded gasps all night.",
           "wait": "\"Are you sure you want this?\"",
-          "waitRes": "\"Do not make me answer that twice.\" Kamiko's smile is dry. \"But yes. I'll wait. Briefly.\""
+          "waitRes": "\"Don't make me answer twice,\" Kamiko replies dryly—\"though yes. I'll wait. Briefly.\""
         },
         "jump": {
           "title": "Unflappable, Mostly",
-          "text": "A drunk guest insults the house, and Kamiko dispatches him with two quiet sentences and a single strand of hair around his collar. Afterward she turns on Sam, breathing hard. \"You looked afraid for me.\" Her voice is dangerous. \"No one has done that in a century.\" She grabs his hoodie and the polish drops from her entirely. A broken glass glitters on the floor and the guest's footsteps fade. The woman who never loses her temper is struggling very visibly to keep it.",
+          "text": "When a drunk patron insults the house, Kamiko ejects him with two icy words and a single strand of hair wrapped around his collar—then whirls on you in the corridor, chest heaving. \"You looked worried for me. Nobody has dared worry for me in a century,\" she hisses, fisting your hoodie and pulling you into a fierce kiss.",
           "image": {
             "comp": "holding his hoodie in one fist, black hair swinging, sharp face flushed with sudden intensity",
             "setting": "corridor outside the lounge, a toppled chair behind her",
             "sam": true
           },
           "go": "Meet her fury",
-          "goRes": "The Kamiko he meets then is not polished at all. It is everything she hasn't said, in a rush.",
+          "goRes": "Every ounce of her polished restraint shatters as she hauls you into her room, tearing off your clothes in a sudden, breathless rush.",
           "wait": "\"Breathe first.\"",
-          "waitRes": "\"I am breathing.\" Kamiko lets go, smooths her hair, and walks away with absolute dignity. \"Ask me again in an hour.\""
+          "waitRes": "\"I am breathing.\" Kamiko releases your collar and smooths her hair with icy dignity. \"Ask me again in an hour.\""
         }
       }
     },
@@ -1124,55 +1124,55 @@
       "events": {
         "1": {
           "title": "Friendliest in the House",
-          "text": "Nai drapes herself across the sofa beside Sam, black hair pooling, and smiles in her pleasant way. \"Everyone says my eyes are ominous. You never flinched.\" Her eyes go matte black as she looks at him, and nothing happens, and she laughs, delighted. \"Still you. Nothing to cancel. Kiss me, then? Night owl hours are lonely.\" Only one lantern still burns, and the shadows pool darkly in the corners. Her smile is the warmest thing in the room.",
+          "text": "Nai drapes herself languidly across the lounge sofa beside you, long black hair pooling around her hips. \"Everyone flinches when my eyes go pitch-black—except you,\" she smiles warmly, letting the darkness flood her irises without any effect on you before laughing in delight. \"Nothing to cancel. Kiss me, then? Night-owl hours get lonely.\"",
           "image": {
             "comp": "lounging along a sofa with her long black hair pooled, eyes turned matte black, pleasant lazy smile",
             "setting": "lounge couch late at night, lantern glow",
             "sam": true
           },
           "go": "Kiss her",
-          "goRes": "Soft and slow and utterly unhurried. \"Mm,\" Nai hums. \"The jutsu is cancelled but this stays.\"",
+          "goRes": "Soft, slow, and luxuriously unhurried—\"Mm,\" Nai hums against your mouth, \"the jutsu is off, yet this definitely stays.\"",
           "wait": "\"Maybe tomorrow.\"",
-          "waitRes": "\"Tomorrow's fine.\" Nai yawns happily. \"I'm up all night anyway. Wake me when you're brave.\""
+          "waitRes": "\"Tomorrow works.\" Nai yawns happily. \"I'm awake all night anyway—wake me when you're brave.\""
         },
         "2": {
           "title": "Void",
-          "text": "Nai slides into Sam's lap on the lounge couch as if it's her own, and tilts his chin up. \"I'm told I'm a good listener,\" she says. \"With my mouth, mostly. I've been wondering what you'd think.\" Her eyes stay warm for him, never black. \"Nobody's watching. Let me be friendly.\" Rain taps at the curtain and the clock has stopped mattering. She is, as always, friendly, and tonight a little shy about it.",
+          "text": "Nai slides effortlessly into your lap on the empty lounge couch at two in the morning, grinding her hips slowly against yours while tilting your chin up. \"I'm told I'm wonderful with my mouth,\" she purrs, her eyes staying warm and gentle on yours. \"Nobody's watching—let me be friendly.\"",
           "image": {
             "comp": "sitting in his lap with a calm pleasant smile, long black hair swept over one shoulder, eyes warm",
             "setting": "empty lounge at 2am, a single lamp and a drawn curtain",
             "sam": true
           },
           "go": "Let her",
-          "goRes": "She is friendly in every sense, cheerful and generous and in no hurry whatsoever. The night owl keeps her hours.",
+          "goRes": "She slips down between your knees on the sofa, taking her sweet, unhurried time with lips and tongue until you're gripping the cushions.",
           "wait": "\"Slow down a little.\"",
-          "waitRes": "\"Slow is my specialty,\" Nai says, pleased, and snuggles in. \"We can start with a nap.\""
+          "waitRes": "\"Slow is my specialty,\" Nai smiles, snuggling against your chest. \"We can start with a nap.\""
         },
         "3": {
           "title": "Eyes Open",
-          "text": "Nai turns off the lantern and doesn't turn it on again. \"I look at people hard when I'm afraid,\" she says in the dark. \"They get scared of me. You don't.\" Her voice is gentle. \"I'd like to look at you, properly, and not be afraid. Stay with me until morning. I'm good at mornings. Late ones.\" Her room is lit by a single dim lamp, and now by none. She keeps her eyes steadily warm for him, a gift she does not give often.",
+          "text": "Nai blows out the bedroom lantern and climbs naked under the covers beside you, black hair spilling over the pillow. \"I stare people down when I'm scared, and they run—you never do,\" she whispers softly, pressing her warm body against yours. \"Stay with me until morning.\"",
           "image": {
             "comp": "in bed with the covers pulled to her shoulders, black hair on the pillow, eyes soft and warm, relaxed smile",
             "setting": "her bedroom, the lantern low, rumpled sheets",
             "sam": true
           },
           "go": "Stay",
-          "goRes": "The night is slow, and then not, and then slow again. When the eyes finally close, they are not black, only warm, and so sleepy.",
+          "goRes": "You roll her onto her back and sink deep inside her, moving from slow and drowsy to breathless and intense before she finally drifts off curled in your arms.",
           "wait": "\"Are you sure? You seem nervous.\"",
-          "waitRes": "\"A bit.\" Nai smiles, unbothered. \"But I'm better at nervous when you're nearby. Soon.\""
+          "waitRes": "\"A little,\" Nai smiles easily. \"Though I'm much better at nervous when you're right here.\""
         },
         "jump": {
           "title": "Too Pleasant",
-          "text": "Sam catches Nai shaking out a client's poker deck at dawn, caught cheating, and she smiles so pleasantly the client leaves. \"You're laughing,\" she says. \"Everyone else is afraid.\" She sets down the cards. \"You are a lovely person, Sam. I haven't been pleasant to someone in a long time. May I be?\" The first light of morning pools on the green baize. Her smile is its usual pleasant self, and her eyes, for him, are gentle.",
+          "text": "You catch Nai shaking extra aces out of her sleeve at dawn, yet she smiles so pleasantly the mark tips her on his way out. Turning to you in the early sunlight, she loosens her sash. \"Everyone else is terrified of me, and you're laughing. Let me show you just how pleasant I can be.\"",
           "image": {
             "comp": "standing at a card table in early light, eyes briefly black then warm, mischievous pleasant smile",
             "setting": "lounge card table at dawn, scattered cards",
             "sam": true
           },
           "go": "Let her",
-          "goRes": "She is very pleasant indeed. The sun comes up on the two of them, and nobody notices the clock.",
+          "goRes": "She pulls you down onto the velvet lounge couch in the morning sun, hiking up her dress and riding you without a glance at the clock.",
           "wait": "\"Not before breakfast.\"",
-          "waitRes": "\"Pfft. Breakfast and then.\" Nai takes his arm. \"I'll cook. Don't tell the others I can.\""
+          "waitRes": "\"Pfft—breakfast first, then.\" Nai hooks her arm through yours. \"I'll cook; don't tell the others I know how.\""
         }
       }
     },
@@ -1180,55 +1180,55 @@
       "events": {
         "1": {
           "title": "Itinerary",
-          "text": "Ebina hands Sam a laminated schedule titled Free Time, with a block at nine marked simply: Sam. \"I plan everything,\" she says, bandanna low over her brow, face as flat as ever. \"This I did not plan. It happened on page forty of a very good book.\" She slides closer. \"I read about this a lot. I'd like to compare notes.\" A pen sits capped on the desk, an unusual sight. Her face is perfectly still, but her bandanna has crept down toward her brow.",
+          "text": "Ebina hands you a laminated schedule titled Free Time, with the nine o'clock slot blocked out simply as: Sam. \"I plan everything—except wanting you, which happened around page forty of a very explicit romance novel,\" she says deadpan, bandanna low over her brow as she leans in. \"I'd like to compare notes.\"",
           "image": {
             "comp": "holding a laminated schedule against her chest, dark bandanna low over her brow, strong brows raised, hint of a smile",
             "setting": "her room, shelves of novels and a tidy desk",
             "sam": true
           },
           "go": "Compare notes",
-          "goRes": "She's more nervous than she lets on and kisses well anyway, as if trying to reproduce a favourite paragraph. \"Chapter one,\" she murmurs, \"done.\"",
+          "goRes": "Slightly nervous yet thoroughly committed, she kisses you like she's testing a favorite scene—whispering \"Chapter one complete\" against your lips.",
           "wait": "\"Chapter two next week?\"",
-          "waitRes": "\"Scheduled.\" Ebina writes it in, serious as a vow. \"Nine on Thursday.\""
+          "waitRes": "\"Scheduled.\" Ebina jots it down solemnly. \"Thursday at nine sharp.\""
         },
         "2": {
           "title": "Reading Ahead",
-          "text": "Ebina has a stack of romance novels with Sam's name taped to the spines. She holds one up, bright red under the bandanna. \"These are fiction,\" she says. \"I've been told the realistic parts are exaggerated. I would like to check.\" She tugs her shirt hem and, without a moment of shame, begins to show him exactly how much she has learned. Dog-eared pages and bookmarks litter the floor. She has not once covered her eyes, though she has not looked at him either.",
+          "text": "Ebina holds up a dog-eared romance novel with your name taped to the spine, bright red beneath her dark bandanna. \"These books are fiction, and I've been told the explicit scenes are exaggerated—I intend to verify their accuracy,\" she announces, tugging her shirt over her head without an ounce of hesitation.",
           "image": {
             "comp": "sitting among stacked novels with a bandanna on, strong brows arched, bold blush, hands on her hem",
             "setting": "her room, a tidy stack of novels and a low lamp",
             "sam": true
           },
           "go": "Check the research",
-          "goRes": "He agrees, with gusto. Ebina's performance is, to his surprise, entirely sincere, and the books slide to the floor.",
+          "goRes": "You enthusiastically verify every chapter together—your hands and mouths exploring each other while the stack of novels topples onto the floorboards.",
           "wait": "\"Maybe not tonight.\"",
-          "waitRes": "\"Fair.\" Ebina squares the stack. \"I'll reread. Page three hundred. See you then.\""
+          "waitRes": "\"Fair.\" Ebina squares the stack of books neatly. \"I'll reread page three hundred—see you then.\""
         },
         "3": {
           "title": "Without the Shades",
-          "text": "Ebina sits across the bed from Sam, round black sunglasses in her hands. \"I haven't let anyone see my eyes in years,\" she says, wry and steady. \"It started as a joke.\" She takes a breath. \"I'd like you to see them. Please don't say anything clever.\" The glasses come off. She looks up, dark and unguarded. Her novels line the wall behind her like an audience. For once she has nothing to read, and no plan, and she looks small and brave.",
+          "text": "Ebina sits on the edge of her bed holding her round black sunglasses in her lap, unlacing her top slowly. \"I haven't let anyone see my bare eyes—or my bare skin—in years,\" she says steadily, setting the glasses aside and lifting dark, unguarded eyes to yours. \"No clever remarks. Just stay with me.\"",
           "image": {
             "comp": "sitting on a bed holding round black sunglasses in her lap, dark eyes uncovered and shy, bandanna still in place",
             "setting": "her bedroom, lamplight, a novel splayed on the nightstand",
             "sam": true
           },
           "go": "Say nothing clever",
-          "goRes": "He says nothing. He just looks at her, and the rest of the night proves better than any book she owns.",
+          "goRes": "You say nothing at all—undressing her gently and making love to her all night, proving far better than any novel on her shelves.",
           "wait": "\"Take your time with it.\"",
-          "waitRes": "\"I'll keep the glasses a little longer.\" Ebina sets them on the nightstand anyway. \"But I've shown you. That's a first.\""
+          "waitRes": "\"I'll keep the shades a little longer,\" Ebina says, setting them on the nightstand anyway. \"Still—showing you was a first.\""
         },
         "jump": {
           "title": "Plot Twist",
-          "text": "Ebina is in the middle of a chapter in the garden when Sam sits down, and the book falls from her hands. \"This isn't in the outline,\" she says, flat but flushed. \"I'm not good with unscheduled things. I'd like to make an exception, right now, before I overthink it.\" She kisses him, quick and unplanned, and then goes bright red. A page flutters in the breeze and the bench creaks. She has re-read this scene a hundred times, and nothing prepared her for it.",
+          "text": "Ebina drops her novel in the garden the second you sit beside her, deadpan expression undermined by a scarlet blush. \"This isn't in my outline, and I'm terrible at improvising—so I'm going to kiss you and take you upstairs before I overthink it.\"",
           "image": {
             "comp": "in a garden chair with a novel dropped in her lap, bandanna low, red-faced after an impulsive kiss",
             "setting": "garden bench, afternoon light through leaves",
             "sam": true
           },
           "go": "Kiss her again",
-          "goRes": "The itinerary never recovers. Ebina leans against him, laughing quietly, and doesn't schedule anything else.",
+          "goRes": "The itinerary goes completely out the window as she kisses you hungrily and drags you straight to her bedroom.",
           "wait": "\"Maybe pencil it in?\"",
-          "waitRes": "\"Pencil.\" Ebina nods solemnly. \"Pencil is acceptable. I'll bring an eraser.\""
+          "waitRes": "\"Pencil,\" Ebina nods solemnly. \"Pencil is acceptable—I'll bring an eraser.\""
         }
       }
     }
