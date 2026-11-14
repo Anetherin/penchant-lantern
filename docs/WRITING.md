@@ -35,12 +35,6 @@ The text has to agree with the service the game actually runs next.
 - **Story beats** stay at the level of intimacy the lady has reached by then.
 - **The goddess** never lets Sam finish before she's bound (`docs/GODDESS.md`).
 
-## Characters kept tame
-
-These ladies are canonically young or of unclear age: Misty, May, Leaf, Hilda, Flannery (Pokémon), Yukiko, Kasumi, Ann
-(Persona), Buling (Wuthering Waves), Shantae and Rottytops. Claude doesn't make their scenes more explicit. If you want
-something different for them, write it yourself.
-
 ## Mechanics
 
 - **Placeholders.** Keep every `{placeholder}` a line uses (`{name}`, `{N}`, `{a}`, `{b}`, `{house}`, `{act}`, `{goddess}`,
