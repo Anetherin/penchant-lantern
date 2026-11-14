@@ -37,8 +37,19 @@
         "{name} is stretched out bare in the hot bath when you walk in by mistake. Instead of covering up, she arches her back, shifts over, and pats the slick tile beside her hips to make room."
       ],
       "choices": [
-        {"label":"Join her","t":2,"m":8,"l":2,"res":"The water's hot, her skin is slick, and {N} makes sure you don't waste a drop of it."},
-        {"label":"Leave her to her bath","t":1,"m":3,"res":"\"Spoilsport,\" {N} calls after you, lazily trailing a wet hand down her own stomach."}
+        {
+          "label": "Join her",
+          "t": 2,
+          "m": 8,
+          "l": 2,
+          "res": "The water's hot, her skin is slick, and {N} has her hand around your cock before you're all the way in, her wet tits sliding against your chest."
+        },
+        {
+          "label": "Leave her to her bath",
+          "t": 1,
+          "m": 3,
+          "res": "\"Spoilsport,\" {N} calls after you, lazily trailing a wet hand down her stomach and between her thighs, rubbing her pussy where you can still see."
+        }
       ]
     },
     "walkin": {
@@ -52,7 +63,7 @@
           "t": 2,
           "m": 8,
           "l": 2,
-          "res": "There isn't really room for two, which means her bare thighs end up straddling yours. You make it work."
+          "res": "There isn't really room for two, which means her bare thighs end up straddling yours, her wet pussy sliding over your cock. You make it work."
         },
         {
           "label": "\"Some privacy?\"",
@@ -112,7 +123,7 @@
           "sam": true
         },
         "go": "Close the distance",
-        "goRes": "The rain doesn't stop, and her wet skin is scorching against yours. Neither of you notices the storm.",
+        "goRes": "The rain doesn't stop, and her soaked dress is plastered to her tits and ass under your hands. Neither of you notices the storm.",
         "wait": "Make a run for the door",
         "waitRes": "You sprint inside together, dripping wet. {name} keeps glancing at your mouth all evening."
       },
@@ -163,7 +174,7 @@
           "sam": true
         },
         "go": "Kiss her",
-        "goRes": "It starts out exactly as composed and lovely as she planned—and turns hungry fast.",
+        "goRes": "It starts out exactly as composed and lovely as she planned—and turns hungry fast, her tongue in your mouth and your hands filling with her ass.",
         "wait": "\"Perhaps not yet.\"",
         "waitRes": "\"Of course.\" She inclines her head, entirely unruffled. \"There will be other sunsets.\"",
         "pers": ["Calm and elegant","Mysterious and aloof","Proud and sharp-tongued"]
@@ -260,7 +271,7 @@
           "sam": true
         },
         "go": "Let her show you",
-        "goRes": "She has, in fact, been fantasizing about this for days—and wastes zero time unbuckling your belt.",
+        "goRes": "She has, in fact, been fantasizing about this for days—and wastes zero time unbuckling your belt and wrapping her hand around your cock.",
         "wait": "\"Kissing is nice too...\"",
         "waitRes": "\"It is.\" She gives your bulge one last teasing squeeze before kissing you once more. \"Next time, though.\""
       },
@@ -273,7 +284,7 @@
           "sam": true
         },
         "go": "\"Show me.\"",
-        "goRes": "She pulls the blanket down, gets you naked from the waist down, and sets right to work.",
+        "goRes": "She pulls the blanket down, gets you naked from the waist down, wraps her hand around your cock, and starts stroking.",
         "wait": "\"Tomorrow's a big day.\"",
         "waitRes": "\"Boring.\" She tucks the blanket back over your lap and leaves you wide awake and throbbing."
       },
@@ -286,7 +297,7 @@
           "sam": true
         },
         "go": "Let her try",
-        "goRes": "She's an extraordinarily attentive student, eager to learn every sound she can pull out of you.",
+        "goRes": "She's an extraordinarily attentive student, eager to learn every sound she can pull out of you with her hand and her mouth on your cock.",
         "wait": "\"One question at a time.\"",
         "waitRes": "\"Right. Yes.\" She buries her flaming face in the pillow.",
         "pers": ["Shy but earnest","Bookish and curious"]
@@ -300,7 +311,7 @@
           "sam": true
         },
         "go": "\"Then keep going.\"",
-        "goRes": "She keeps going, unfastening your trousers and dropping to her knees between your legs.",
+        "goRes": "She keeps going, unfastening your trousers and dropping to her knees between your legs to pull out your cock and suck it.",
         "wait": "\"Someone might come in.\"",
         "waitRes": "\"Coward.\" She laughs, grinds her hips against yours once, and drags you upstairs instead.",
         "pers": ["Bold and flirtatious","Hot-blooded and competitive","Cheerful and teasing"]
@@ -315,7 +326,7 @@
           "sam": true
         },
         "go": "\"Then just be you\"",
-        "goRes": "She stops performing halfway through, lets out a breathless laugh, and touches you like she's starving for it.",
+        "goRes": "She stops performing halfway through, lets out a breathless laugh, and strokes your cock like she's starving for it.",
         "wait": "Not tonight",
         "waitRes": "\"Okay,\" says {name}, and means it—keeping her hands warm on your chest a while longer anyway."
       },
@@ -328,7 +339,7 @@
           "sam": true
         },
         "go": "\"Gladly\"",
-        "goRes": "She guides your fingers higher until she's gasping against your shoulder, keeping your hands warm all night.",
+        "goRes": "She guides your fingers higher, into her wet pussy, grinding on them until she's gasping against your shoulder.",
         "wait": "Pick up the wine",
         "waitRes": "\"Coward,\" she whispers with a sultry smile, warming your hands against her bare throat instead."
       },
@@ -341,7 +352,7 @@
           "sam": true
         },
         "go": "Join her",
-        "goRes": "The water is scorching, her bare skin is slick, and neither of you hurries out.",
+        "goRes": "The water is scorching, her bare tits are slick against your arm, your fingers are working between her legs, and neither of you hurries out.",
         "wait": "\"I'll stand guard\"",
         "waitRes": "\"Brave, noble Sam,\" she teases, sinking naked into the water with a slow sigh. \"Don't look. Or do.\"",
         "traits": ["Night Owl","Party Animal"]
@@ -355,7 +366,7 @@
           "sam": true
         },
         "go": "\"Show me\"",
-        "goRes": "It turns out she's been imagining quite a lot—and her hands are surprisingly bold once she starts.",
+        "goRes": "It turns out she's been imagining quite a lot—and her hands are surprisingly bold once she starts, one slipping into your trousers to stroke your cock.",
         "wait": "Hold her hand",
         "waitRes": "\"Oh. That's nice too,\" she whispers, squeezing your fingers. \"A little longer, then, before I show you.\"",
         "pers": ["Shy but earnest","Bookish and curious"]
@@ -369,7 +380,7 @@
           "sam": true
         },
         "go": "Accept the dare",
-        "goRes": "She never did look at the coin—and judging by what she does with her hands and mouth, you don't care.",
+        "goRes": "She never did look at the coin—and judging by what she does to your cock with her hands and mouth, you don't care.",
         "wait": "\"Best of three?\"",
         "waitRes": "She laughs and flips again. It rolls under the desk, and she drags you down after it to kiss you breathless.",
         "pers": ["Bold and flirtatious","Hot-blooded and competitive"]
@@ -383,7 +394,7 @@
           "sam": true
         },
         "go": "\"I'd like that\"",
-        "goRes": "She unfastens your trousers by firelight and takes her time, proving it's the exact opposite of work.",
+        "goRes": "She unfastens your trousers by firelight and takes your cock in her mouth, taking her time and proving it's the exact opposite of work.",
         "wait": "Stay for tea",
         "waitRes": "You share the pot until it goes cold, her head resting against your thigh. \"Next time,\" she murmurs drowsily.",
         "lewdMin": 45
@@ -399,7 +410,7 @@
           "sam": true
         },
         "go": "Stay",
-        "goRes": "The lamp burns down to nothing while you tangle together in the sheets.",
+        "goRes": "The lamp burns down to nothing while you fuck her in the sheets, her legs locked around your hips.",
         "wait": "\"Not yet.\"",
         "waitRes": "{name} nods slowly, pulling her robe closed. \"Okay. But I'm not going anywhere.\""
       },
@@ -412,7 +423,7 @@
           "sam": true
         },
         "go": "Follow her",
-        "goRes": "The door closes, the bolt slides shut, and her dress hits the floor.",
+        "goRes": "The door closes, the bolt slides shut, her dress hits the floor, and minutes later you're buried in her pussy while she grips the headboard.",
         "wait": "\"Are you really sure?\"",
         "waitRes": "\"I said so.\" She sighs fondly. \"Ask me again next week, then—I'll still want you in my bed.\""
       },
@@ -421,7 +432,7 @@
         "text": "{name} kicks your bedroom door shut behind her and pulls her top straight over her head, baring her breasts in the lamplight. \"I've been patient,\" she growls, backing you toward the mattress. \"I'm done being patient. Fuck me.\"",
         "image": {"comp":"kicking a bedroom door shut, pulling off her outer layer, fierce grin","setting":"his bedroom at night","sam":true},
         "go": "\"So am I.\"",
-        "goRes": "Neither of you wastes a second on patience as clothes hit the floor.",
+        "goRes": "Neither of you wastes a second on patience as clothes hit the floor and you drive your cock into her pussy, fucking her hard into the mattress.",
         "wait": "\"Patience is a virtue!\"",
         "waitRes": "\"So is honesty.\" She grins wickedly and leaves you staring at the door. \"You're going to regret that.\"",
         "pers": ["Bold and flirtatious","Hot-blooded and competitive"]
@@ -431,7 +442,7 @@
         "text": "{name} is nervous and doesn't try to hide it, sitting bare-shouldered on the edge of the mattress. \"I want to go all the way with you,\" she whispers, holding both your hands. \"Just... go slow with me at first. Okay?\"",
         "image": {"comp":"holding both of his hands beside a candlelit bed, nervous brave expression","setting":"small candlelit bedroom","sam":true},
         "go": "\"Gently.\"",
-        "goRes": "You take your time easing into her, and afterward she clings to your chest with a radiant, breathless smile.",
+        "goRes": "You take your time easing your cock into her pussy an inch at a time, and afterward she clings to your chest with a radiant, breathless smile.",
         "wait": "\"We have all the time in the world.\"",
         "waitRes": "She lets out a long, shaky breath and laughs softly. \"Okay. Thank you.\"",
         "pers": ["Shy but earnest","Warm and motherly","Bookish and curious"]
@@ -445,7 +456,7 @@
           "sam": true
         },
         "go": "Accept the invitation",
-        "goRes": "Her composure lasts less than a minute once you untie her sash.",
+        "goRes": "Her composure lasts less than a minute once you untie her sash—after that she's spread on the bed, hips lifting to meet every thrust of your cock.",
         "wait": "\"I came to say not yet.\"",
         "waitRes": "\"Then thank you for being punctual.\" A faint, knowing smile. \"Another midnight.\"",
         "pers": ["Calm and elegant","Mysterious and aloof","Proud and sharp-tongued"]
@@ -460,7 +471,7 @@
           "sam": true
         },
         "go": "Go to her",
-        "goRes": "None of the positions are new to her, yet every touch feels brand new—and she tells you so breathlessly afterward.",
+        "goRes": "None of the positions are new to her, yet every thrust of your cock feels brand new—and she tells you so breathlessly afterward.",
         "wait": "Hold her instead",
         "waitRes": "You simply lie together in the dark. {name} whispers that it's the most intimate night she's had in years."
       },
@@ -473,7 +484,7 @@
           "sam": true
         },
         "go": "Let her in",
-        "goRes": "She drops the blanket at the bedside and slides naked under your sheets.",
+        "goRes": "She drops the blanket at the bedside, slides naked under your sheets, and guides your cock into her pussy with a long sigh.",
         "wait": "\"It's late. Let me walk you back\"",
         "waitRes": "She laughs, gentle and flustered. \"Walk me back, then. Slowly.\" She tucks her arm into yours for a very long walk."
       },
@@ -486,7 +497,7 @@
           "sam": true
         },
         "go": "\"I will\"",
-        "goRes": "You never make it to the second page before she's pulling you down onto the mattress.",
+        "goRes": "You never make it to the second page before she's pulling you down onto the mattress and spreading her legs for your cock.",
         "wait": "\"Let me read it properly\"",
         "waitRes": "\"Do. Take your time.\" She touches your sleeve, breathless. \"I'll be waiting upstairs.\"",
         "pers": ["Shy but earnest","Bookish and curious"]
@@ -500,7 +511,7 @@
           "sam": true
         },
         "go": "\"All yours\"",
-        "goRes": "She locks the door and drops the key straight down her cleavage. Neither of you leaves bed until morning.",
+        "goRes": "She locks the door and drops the key straight down her cleavage. You fish it out with your teeth, then fuck her until neither of you can move.",
         "wait": "\"The house needs me\"",
         "waitRes": "\"It really doesn't,\" she sighs, pocketing the key anyway. \"Fine—tomorrow night you're mine.\"",
         "pers": ["Cheerful and teasing","Warm and motherly"]
@@ -514,7 +525,7 @@
           "sam": true
         },
         "go": "Take it off",
-        "goRes": "You peel the silk slowly off her bare skin, and the gown ends up pooled around her ankles.",
+        "goRes": "You peel the silk slowly off her bare skin until the gown pools around her ankles, then lay her on the bed and slide your cock into her.",
         "wait": "\"It's beautiful. Keep it on a while\"",
         "waitRes": "\"Then I shall,\" she says with a regal nod and a warm, breathless smile.",
         "pers": ["Calm and elegant","Mysterious and aloof","Proud and sharp-tongued"]
@@ -530,7 +541,7 @@
           "sam": true
         },
         "go": "Don't do it in pieces",
-        "goRes": "One kiss turns straight into tangled limbs, shed clothes, and a very loud bedframe.",
+        "goRes": "One kiss turns straight into shed clothes, hands and mouths everywhere, and her moans carrying down the hall.",
         "wait": "\"Let's take it slower.\"",
         "waitRes": "{name} stops, catches her breath, and laughs weakly. \"...Okay. Slower. Even if it kills me.\""
       },
@@ -539,7 +550,7 @@
         "text": "\"I don't do things halfway,\" {name} purrs, kicking your door shut and sliding the bolt. \"Never have.\" She reaches straight for the hem of her dress and pulls it over her head.",
         "image": {"comp":"leaning back against a closed door, confident heated gaze at him","setting":"his bedroom at night, one lamp","sam":true},
         "go": "\"Neither do I.\"",
-        "goRes": "She wasn't exaggerating—within seconds you're both naked on the bed.",
+        "goRes": "She wasn't exaggerating—within seconds you're both naked on the bed, her hand around your cock and your mouth on her tits.",
         "wait": "\"Maybe start with a quarter way?\"",
         "waitRes": "She laughs, tugging her dress back down. \"Fine. A quarter—for now.\"",
         "pers": ["Bold and flirtatious","Hot-blooded and competitive","Laid-back and lazy","Mysterious and aloof"]
@@ -553,7 +564,7 @@
           "sam": true
         },
         "go": "Go with her",
-        "goRes": "The linens stay scattered in the hall until morning while you break in her mattress.",
+        "goRes": "The linens stay scattered in the hall until morning while she drags you into bed and you get your hands and mouth all over her.",
         "wait": "\"The linens...\"",
         "waitRes": "\"Forget the linens.\" She lets you go with a breathless laugh. \"Next time, drop them faster.\""
       },
@@ -563,7 +574,7 @@
         "text": "\"I've never been any good at waiting around,\" {name} admits, pulling you by the collar into her room and kicking the door shut. \"I want my first time with you to be the whole thing. Is that all right?\"",
         "image": {"comp":"pulling him by the hand toward her room, laughing and a little shy","setting":"her bedroom doorway at night, lamplight","sam":true},
         "go": "Go with her",
-        "goRes": "She skips straight past the preliminaries and pulls you down onto the sheets.",
+        "goRes": "She skips straight past the preliminaries and pulls you down onto the sheets, already grinding against your cock through your clothes.",
         "wait": "\"Slow can be good too\"",
         "waitRes": "{name} pauses in the doorway, considers it, and kisses your cheek. \"Fine. Slow. Tomorrow.\""
       },
@@ -576,7 +587,7 @@
           "sam": true
         },
         "go": "Let her in",
-        "goRes": "The pillow ends up on the floor, the nightgown follows, and neither of you hears the thunder anymore.",
+        "goRes": "The pillow ends up on the floor, the nightgown follows, and with her bare tits in your hands and your mouth on her nipples, neither of you hears the thunder anymore.",
         "wait": "Offer her the chair",
         "waitRes": "\"The chair,\" she repeats deadpan, then laughs. \"Very gentlemanly.\" She leaves, keeping her own door open a crack."
       },
@@ -589,7 +600,7 @@
           "sam": true
         },
         "go": "\"Not a mistake\"",
-        "goRes": "She strips you down with eager hands, proving it's the best decision either of you has made all week.",
+        "goRes": "She strips you down with eager hands and gets her mouth around your cock, proving it's the best decision either of you has made all week.",
         "wait": "\"Sleep on it?\"",
         "waitRes": "She blinks, smiles slowly, and sits back down. \"Fair. Don't let me lose my nerve tomorrow.\"",
         "pers": ["Bold and flirtatious","Hot-blooded and competitive"]
@@ -603,7 +614,7 @@
           "sam": true
         },
         "go": "\"Skip to that part\"",
-        "goRes": "She pulls you inside and locks the door, far better with her hands than her speeches.",
+        "goRes": "She pulls you inside and locks the door, far better with her hands than her speeches—one is already down your trousers, stroking your cock.",
         "wait": "\"Take your time\"",
         "waitRes": "She takes a shaky breath, tries the speech again, and still forgets the middle.",
         "pers": ["Shy but earnest","Bookish and curious"]
@@ -660,7 +671,7 @@
           "sam": true
         },
         "go": "Go with it",
-        "goRes": "She makes it abundantly clear what she wants—and gets you out of your trousers in record time.",
+        "goRes": "She makes it abundantly clear what she wants—and has your trousers open and her hand around your cock in record time.",
         "wait": "\"Hold on—\"",
         "waitRes": "She lets go with a frustrated groan. \"Fine. But I'm not waiting much longer.\""
       },
@@ -673,7 +684,7 @@
           "sam": true
         },
         "go": "Let her lead",
-        "goRes": "She drags you into the nearest room, hikes up her skirt, and guides your hands right between her legs.",
+        "goRes": "She drags you into the nearest room, hikes up her skirt, and pushes your hand into her wet panties and onto her pussy.",
         "wait": "\"Easy. Breathe\"",
         "waitRes": "She lets out an agonized whimper and rests her forehead on your chest. \"I'm trying. Hold me while I try.\""
       },
@@ -686,7 +697,7 @@
           "sam": true
         },
         "go": "Come closer",
-        "goRes": "Your ledgers get swept onto the floor as you step between her parted knees.",
+        "goRes": "Your ledgers get swept onto the floor as you step between her parted knees and slide your fingers into her pussy.",
         "wait": "\"After the shift\"",
         "waitRes": "\"After the shift,\" she repeats, agonized, kissing you savagely to hold you to your word."
       }
@@ -701,7 +712,7 @@
           "sam": true
         },
         "go": "Let her in",
-        "goRes": "Her nightgown doesn't even make it past the doorway, and neither of you gets a wink of sleep.",
+        "goRes": "Her nightgown doesn't even make it past the doorway—you fuck her against the wall, then again in bed, and neither of you gets a wink of sleep.",
         "wait": "\"Tomorrow, I promise.\"",
         "waitRes": "She exhales a ragged breath. \"Tomorrow. I'm holding you to every second of it.\""
       },
@@ -714,7 +725,7 @@
           "sam": true
         },
         "go": "Pull back the blanket",
-        "goRes": "She climbs naked onto your lap, and the long, agonizing week ends right there.",
+        "goRes": "She climbs naked onto your lap and sinks down onto your cock, and the long, agonizing week ends right there.",
         "wait": "\"Tell me what you need\"",
         "waitRes": "She tells you—every filthy, honest detail—and it's the rawest conversation you've ever had."
       },
@@ -727,7 +738,7 @@
           "sam": true
         },
         "go": "\"Then come in\"",
-        "goRes": "She follows you inside, already tearing at your clothes before the door even latches.",
+        "goRes": "She follows you inside, already tearing at your clothes, desperate to get your cock inside her before the door even latches.",
         "wait": "\"Sleep, and we'll talk\"",
         "waitRes": "\"I won't sleep,\" she sighs miserably. \"I'll just lie there aching—for tonight.\""
       }
@@ -738,7 +749,7 @@
         "text": "{name} has been climbing the walls for days. Tonight she corners you in the hall, kisses you for the very first time, and doesn't stop—sliding her hand straight down to unbuckle your belt.",
         "image": {"comp":"cornering him against a wall, kissing him hungrily, flushed restless expression","setting":"dim corridor late at night","sam":true},
         "go": "Don't stop her",
-        "goRes": "First kiss, shed clothes, and straight into bed—in roughly ten seconds flat.",
+        "goRes": "First kiss, shed clothes, and her hand around your cock—in roughly ten seconds flat.",
         "wait": "\"Whoa, whoa, slow down—\"",
         "waitRes": "She stops, panting hard against your chest. \"...Sorry. I've been going out of my mind.\" She doesn't look sorry at all."
       },
@@ -751,7 +762,7 @@
           "sam": true
         },
         "go": "Let it happen",
-        "goRes": "She tackles you onto the mattress naked, skipping every intermediate step.",
+        "goRes": "She tackles you onto the mattress naked, tits against your chest and her hand already around your cock, skipping every intermediate step.",
         "wait": "\"Wait. Breathe\"",
         "waitRes": "She gasps, steadies herself, and laughs breathlessly. \"Okay. Breathing. Don't move a muscle.\""
       },
@@ -764,7 +775,7 @@
           "sam": true
         },
         "go": "\"This one's good\"",
-        "goRes": "Within moments you're both bare on the sheets, making up for lost time.",
+        "goRes": "Within moments you're both bare on the sheets, hands and mouths making up for lost time, her pussy grinding against your thigh.",
         "wait": "\"Slow down, please\"",
         "waitRes": "\"Slower,\" she repeats, trying and failing as she kisses you breathless."
       }

@@ -138,7 +138,13 @@
           "bond": -8,
           "res": "{a} looks thoroughly vindicated. {b} is going to remember this."
         },
-        {"label":"Side with {b}","b":{"trust":3,"mood":3},"a":{"trust":-4,"mood":-4},"bond":-8,"res":"{b} flashes a wicked smirk. {a} is going to remember this."},
+        {
+          "label": "Side with {b}",
+          "b": {"trust":3,"mood":3},
+          "a": {"trust":-4,"mood":-4},
+          "bond": -8,
+          "res": "{b} flashes a wicked smirk. {a} is going to remember this."
+        },
         {
           "label": "\"He can see you both\"",
           "a": {"popularity":2},
@@ -167,9 +173,14 @@
           "b": {"grow":{"service":6},"mood":3},
           "a": {"mood":2},
           "bond": 6,
-          "res": "A week of hands-on lessons. {b} carries herself with a whole new confidence by the end of it."
+          "res": "A week of hands-on lessons in sucking, stroking, and fucking. {b} carries herself with a whole new confidence by the end of it."
         },
-        {"label":"Let them work it out","b":{"grow":{"service":3}},"bond":4,"res":"{a} coaches her between shifts. {b} picks up a few very effective tricks."}
+        {
+          "label": "Let them work it out",
+          "b": {"grow":{"service":3}},
+          "bond": 4,
+          "res": "{a} coaches her between shifts. {b} picks up a few very effective tricks."
+        }
       ]
     },
     {
@@ -212,7 +223,13 @@
         "{a} and {b} have started finishing each other's sentences and sharing knowing glances across the lounge. The other ladies find it unsettling; the clients find it intoxicating."
       ],
       "choices": [
-        {"label":"Book them as a pair","a":{"popularity":4},"b":{"popularity":4},"bond":3,"res":"Word spreads fast. Their paired sessions become the hottest request in the house."},
+        {
+          "label": "Book them as a pair",
+          "a": {"popularity":4},
+          "b": {"popularity":4},
+          "bond": 3,
+          "res": "Word spreads fast. Their paired sessions become the hottest request in the house."
+        },
         {"label":"Leave them be","a":{"mood":4},"b":{"mood":4},"bond":3,"res":"They're completely happy in each other's orbit. That's enough."}
       ]
     }
@@ -238,7 +255,7 @@
           "a": {"lust":-30,"mood":5},
           "b": {"lust":-30,"mood":5},
           "bond": 8,
-          "res": "By dawn the sheets are ruined and nobody has gotten a wink of sleep. (Your energy −30)",
+          "res": "By dawn the sheets are soaked in sweat and cum and nobody has gotten a wink of sleep. (Your energy −30)",
           "acts": true
         },
         {
@@ -269,7 +286,7 @@
           "samEnergy": -40,
           "a": {"lust":-35},
           "b": {"lust":-35},
-          "res": "It is an exhausting, sweat-drenched night with zero mercy shown. (Your energy −40)",
+          "res": "It is an exhausting, sweat-soaked, cum-sticky night, and neither of them shows you a shred of mercy. (Your energy −40)",
           "acts": true
         },
         {
@@ -305,7 +322,11 @@
           "res": "{b} looks at you with a whole new hunger afterward—and so does {a}, come to think of it. (Your energy −30)",
           "acts": true
         },
-        {"label":"\"Maybe another time\"","b":{"mood":-2},"res":"{b} laughs it off quickly, looking half relieved and half disappointed as she slips away."}
+        {
+          "label": "\"Maybe another time\"",
+          "b": {"mood":-2},
+          "res": "{b} laughs it off quickly, looking half relieved and half disappointed as she slips away."
+        }
       ],
       "dynamic": "curious"
     },
@@ -329,7 +350,7 @@
           "b": {"mood":3},
           "sam": {"technique":2},
           "bond": 6,
-          "res": "You end up a thoroughly spent, trembling visual aid. (Your energy −25)",
+          "res": "You end up a thoroughly spent, cum-drained, trembling visual aid. (Your energy −25)",
           "acts": true
         },
         {"label":"\"I have paperwork\"","res":"{a} clicks her tongue in disappointment. \"Fine. We'll practice on a pillow instead.\""}
@@ -355,7 +376,7 @@
           "a": {"mood":6,"trust":2,"lust":-10},
           "b": {"mood":6,"trust":2,"lust":-10},
           "bond": 5,
-          "res": "Mostly you all talk, surrounded by warm skin and slick limbs. Mostly. You step out flushed and more relaxed than you've been in weeks. (Your energy +10)"
+          "res": "Mostly you all talk, surrounded by bare tits, warm wet skin, and hands that wander under the water. Mostly. You step out flushed and more relaxed than you've been in weeks. (Your energy +10)"
         },
         {"label":"Keep walking","a":{"mood":-1},"b":{"mood":-1},"res":"Their teasing laughter echoes down the corridor after you."}
       ]
@@ -366,18 +387,18 @@
     "collaborative": {
       "label": "together",
       "prompt": "the two women share him affectionately, in sync with each other",
-      "_default": "{a} and {b} share you effortlessly, tangling together and teasing each other just as eagerly as they please you.",
+      "_default": "{a} and {b} share you effortlessly, tangling together, kissing and groping each other just as eagerly as they get you off.",
       "caress": "An unhurried tangle of wandering hands, bare skin, and open-mouthed kisses three ways. Nobody is keeping score.",
       "kiss": "An unhurried tangle of wandering hands, bare skin, and open-mouthed kisses three ways. Nobody is keeping score.",
       "cowgirl": "{a} and {b} take turns straddling you, lacing their fingers together across your chest for balance and laughing breathlessly as they ride.",
-      "oral_give": "They work your length in tandem, trading licks, strokes, and wicked glances over your hips, thoroughly pleased with themselves.",
+      "oral_give": "They suck and stroke your cock in tandem, trading licks, strokes, and wicked glances over your hips, thoroughly pleased with themselves.",
       "missionary": "{b} stays curled flush against your side the entire time, kissing your neck and whispering dirty encouragement while you thrust into {a}."
     },
     "competitive": {
       "label": "a contest",
       "prompt": "the two rivals compete for his attention, each trying to outdo the other",
-      "_default": "Every touch is a ruthless contest. Each of them is determined to be the one who leaves you completely wrecked.",
-      "oral_give": "It turns into a fierce contest immediately: who can take you deeper and make your knees buckle first.",
+      "_default": "Every touch is a ruthless contest. Each of them is determined to be the one who makes you cum hardest.",
+      "oral_give": "It turns into a fierce contest immediately: who can take your cock deeper and make your knees buckle first.",
       "cowgirl": "They bicker breathlessly over whose turn it is on top, then bounce harder to prove who rides you better.",
       "breast_give": "A matter of fierce pride, apparently—both of them pressing their bare chests around you to see who draws the louder groan.",
       "caress": "Even the kissing and touching turns into a cutthroat competition, leaving you dizzy and surrounded.",
@@ -389,7 +410,7 @@
       "_default": "{a} demonstrates the technique firsthand, then talks {b} through every stroke step by step with a patient, wicked smile.",
       "oral_give": "{a} demonstrates with slow, practiced suction, then coaches {b} through the rhythm and angle while you try to survive the lesson.",
       "cowgirl": "{a} places her hands over {b}'s hips as she straddles you, guiding her grind and counting the tempo under her breath.",
-      "manual_give": "{a} wraps her fingers over {b}'s oiled hand on your shaft, guiding her twist and grip like a hands-on masterclass."
+      "manual_give": "{a} wraps her fingers over {b}'s oiled hand on your cock, guiding her twist and grip like a hands-on masterclass."
     },
     "curious": {
       "label": "a first time",
@@ -397,7 +418,7 @@
       "_default": "{a} takes the lead confidently, and {b} follows along—hesitant for the first minute, and completely hooked by the second.",
       "caress": "{b} starts out shy and flushed. {a} kisses her softly first, then guides her mouth to yours, and that settles her nerves.",
       "kiss": "{b} starts out shy and flushed. {a} kisses her softly first, then guides her mouth to yours, and that settles her nerves.",
-      "oral_give": "{a} shows her friend exactly how you like to be worked. {b} proves a quick, breathless study—and endlessly curious."
+      "oral_give": "{a} shows her friend exactly how you like your cock sucked. {b} proves a quick, breathless study—and endlessly curious."
     }
   },
   "competition": {
