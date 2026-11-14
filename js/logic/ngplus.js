@@ -41,10 +41,12 @@ const NG_BOONS = {
 const improvementsValue = h => Math.round((h && h.spent) || 0);
 // Lovers (Devoted) are the only ladies who carry over.
 const carriedLovers = () => S.workers.filter(w=>has(w,'Devoted'));
-// Old friends: non-lover guests (role 'drifter') and generic ladies at max trust. They come back as extra candidates (S.alumni), reborn but without a perk.
+// Old friends: non-lover guests (role 'drifter') and favorited generic ladies at max trust (capped at completed cycles). They come back as extra candidates (S.alumni), reborn but without a perk.
 function ngFriends(){
   const F = BAL.ngplus.friends || {}, L = carriedLovers();
-  return S.workers.filter(w=>!L.includes(w) && !w.isPartner && w.trust >= (F.trust ?? 100) && ((!w.key && F.generics) || (isGuest(w) && F.guests)));
+  const guests = S.workers.filter(w=>!L.includes(w) && !w.isPartner && w.trust >= (F.trust ?? 100) && isGuest(w) && F.guests);
+  const gens = F.generics ? S.workers.filter(w=>!L.includes(w) && !w.isPartner && !w.key && w.favorite && w.trust >= (F.trust ?? 100)).slice(0, S.cycle||1) : [];
+  return [...guests, ...gens];
 }
 const NG_PERKS = () => Object.keys(TRAITS).filter(t=>TRAITS[t].ngPerk);
 // House residents (HOUSES[id].npc) working for Sam whose house he keeps: they come back with it, reincarnated (no perk). Lovers are carried as lovers instead.
@@ -154,12 +156,14 @@ function ngView(){
   } else {
     const N = ngNumbers(NGS.boon), HDo = HOUSES[og];
     const friends = ngFriends(), residents = ngResidents(), leaving = S.workers.filter(w=>!lovers.includes(w) && !friends.includes(w) && !residents.includes(w));
+    const F = BAL.ngplus.friends || {}, maxGen = S.cycle || 1, genFriends = S.workers.filter(w=>!lovers.includes(w) && !w.isPartner && !w.key && w.trust >= (F.trust ?? 100));
     body = `<h2>Ready for round ${N.cycle}?</h2><div class="card">
       <b>Keeps:</b> ${S.houses.filter(keptHouse).map(h=>`${esc(h.name)} (${keptWhy(h)})`).join(', ')}, each with its rooms, upgrades and story (its reputation starts over, keeping ${Math.round((BAL.ngplus.carry||0)*100)}% of what it had gained), Sam's level${BAL.ngplus.samReset.stats||BAL.ngplus.samReset.appraisal?'':', stats and Appraisal'}, the regulars there and your image library. Your savings stay behind.<br>
       ${BAL.ngplus.samReset.stats||BAL.ngplus.samReset.appraisal?`<b>Sam:</b> keeps his level (Lv ${S.sam.lvl||1}); ${[BAL.ngplus.samReset.stats&&'training and story stat gains',BAL.ngplus.samReset.appraisal&&'Appraisal'].filter(Boolean).join(' and ')} start over${BAL.ngplus.samReset.stats&&BAL.ngplus.carry?` (he keeps ${Math.round(BAL.ngplus.carry*100)}% of his trained stats)`:''}.<br>`:''}
       <b>Lovers who stay:</b> ${lovers.length ? lovers.map(w=>`${esc(w.name)}${NGS.perks[w.id]?` (${esc(NGS.perks[w.id])})`:''}${ngRomance(NGS,w)==='reset'?' ↺ starting over':' ♥ still his lover'}`).join(', ') + '. They draw wages again (' + Math.round((BAL.ngplus.rebornWage||0)*100) + '% more for each life carried over); their skills, popularity, trust and lewdness start over, keeping ' + carryTxt() + ' of the skills and stats they\'d built (Reincarnated makes the climb back faster). A lover starting over begins her story with Sam again at the first chapter, firsts included.' : 'none. Only Devoted lovers come along.'}<br>
       ${residents.length?`<b>Back with their houses:</b> ${residents.map(w=>esc(w.name)).join(', ')}. They start over like the lovers (no perk), with a Reincarnated stack and the same wage rise.<br>`:''}
       ${friends.length?`<b>Old friends:</b> ${friends.map(w=>esc(w.name)).join(', ')}. They'll look Sam up again (Recruit), with a Reincarnated stack, keeping ${carryTxt()} of what they'd built and asking ${Math.round((BAL.ngplus.rebornWage||0)*100)}% more pay per life.<br>`:''}
+      ${genFriends.length?`<b>Favorite old friends (up to ${maxGen}):</b> ${genFriends.map(w=>`<button class="sm" onclick="toggleFavorite('${w.id}')">${w.favorite?'★':'☆'} ${esc(w.name)}</button>`).join(' ')} <span class="muted">(favorited generic ladies at max trust reincarnate into Recruit, max ${maxGen} after cycle ${maxGen})</span><br>`:''}
       <b>Leaving:</b> ${leaving.length ? `${leaving.length} ladies (${leaving.slice(0,8).map(w=>esc(w.name)).join(', ')}${leaving.length>8?', …':''}). Named ones can be met again, fresh.` : 'no one.'}<br>
       ${NGS.house?`<b>New house:</b> ${esc(HOUSES[NGS.house].name)} with ${esc((NAMED[HOUSES[NGS.house].npc]||{}).name||'its resident')}.<br>`:''}
       ${NGS.past&&NGS.past!=='none'?`<b>Another past life:</b> ${esc(PASTS[NGS.past].label)}.<br>`:''}
@@ -204,6 +208,7 @@ function ngReset(w){
   }
   w.lust = Math.min(w.lust||0, LUST_EAGER);
   w.popularity = 0; w.arcWk = 0; w.earnedLast = 0; w.energy = maxEnergy(w);
+  w.tutor = null; delete w.tutorTier;
 }
 // Past lives of named ladies (S.lives[key]): what she'd built and how many Reincarnated stacks she has.
 //  - At a New Game+ every named lady who walks away is remembered as having lived a life (rememberLife(w)): when she
@@ -283,8 +288,9 @@ function ngBegin(){
     return [k, n]; }).filter(([,o])=>o.v || o.kind));
   S.regulars = (S.regulars||[]).filter(r=>keptIds.has(r.house));
   S.houses = S.houses.filter(h=>keptIds.has(h.id));
-  // kept houses keep rooms, upgrades and story; their reputation goes back to the house's starting value plus ngplus.carry of what it had gained
-  S.houses.forEach(h=>{ const D = HOUSES[h.id]; if(D) h.rep = Math.round(D.rep + (B.carry||0) * Math.max(0, (h.rep||0) - D.rep)); });
+  // kept houses keep rooms, upgrades and story; their reputation goes back to the house's starting value plus ngplus.carry of what it had gained; auto-feasts and auto-tutors reset
+  S.houses.forEach(h=>{ const D = HOUSES[h.id]; if(D) h.rep = Math.round(D.rep + (B.carry||0) * Math.max(0, (h.rep||0) - D.rep)); delete h.autoFeast; });
+  delete S.autoTutor;
   // each kept house's resident comes with the house: if she wasn't working for Sam she's back, fresh
   S.houses.forEach(h=>{ const D = HOUSES[h.id]; if(D && D.npc && !isHired(D.npc)){ const npc = rebirthNamed(makeNamed(D.npc), true); npc.house = h.id; npc.locked = h.id; npc.contract = 999; assignStart(npc, NAMED[D.npc].job); S.workers.push(npc); } restoreStoryJoin(h, true); });
   S.cur = og;

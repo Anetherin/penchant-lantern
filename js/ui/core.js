@@ -42,14 +42,28 @@ function statCell(w, k, employee, label){
   return `<div${tip}><span>${label}</span><b>${sv(w, e, employee)}${known && b ? ` <span class="muted" style="font-size:.7em">${b>0?'+':'-'}${Math.abs(b)}</span>` : ''}</b></div>`;
 }
 const isGuest = w => !!(w && w.key && NAMED[w.key] && NAMED[w.key].role==='drifter');
-const nameBadge = w => isGuest(w) ? `<span class="tag guest" title="Visiting guest${NAMED[w.key].pack && GUEST_PACKS[NAMED[w.key].pack] ? ' · '+esc(GUEST_PACKS[NAMED[w.key].pack].label||NAMED[w.key].pack) : ''}">☄</span>` : (w && w.named ? '<span class="tag">★</span>' : '');
+const nameBadge = w => isGuest(w) ? `<span class="tag guest" title="Visiting guest${NAMED[w.key].pack && GUEST_PACKS[NAMED[w.key].pack] ? ' · '+esc(GUEST_PACKS[NAMED[w.key].pack].label||NAMED[w.key].pack) : ''}">☄</span>` : (w && w.named ? '<span class="tag">★</span>' : (w && w.favorite ? '<span class="tag act" title="Favorited (reincarnates as an old friend at max trust)">★</span>' : ''));
+function attendantPairs(h){
+  const J = BAL.jobs || {}, ws = S.workers.filter(w=>w.house===h.id);
+  const attQ = x => clamp((s100(x.tech.service)*J.attendantSkillW + s100(statOf(x,'charm'))*J.attendantCharmW + s100(statOf(x,'wits'))*(J.attendantWitsW ?? J.attendantRefW))/100 * ob(x,'attendant') * jb(x,'attendant'), 0, J.attendantQMax || 2);
+  const courts = ws.filter(w=>w.job==='courtesan').sort((a,b)=>b.popularity-a.popularity);
+  const atts = ws.filter(w=>w.job==='attendant').sort((a,b)=>attQ(b)-attQ(a));
+  const byCourt = new Map(), byAtt = new Map();
+  courts.slice(0, atts.length).forEach((c,i)=>{ byCourt.set(c.id, atts[i]); byAtt.set(atts[i].id, c); });
+  return {byCourt, byAtt, courts:courts.length, atts:atts.length};
+}
 function traitTags(w){ return (w.reborn?`<span class="tag act" title="${esc(rebornDesc(w))}">♻ Reincarnated${w.reborn>1?' ×'+w.reborn:''}</span> `:'') + (w.unique?`<span class="tag act" title="${esc(w.unique.desc||'')}">★ ${esc(w.unique.name)}</span> `:'') + (w.ngPerks||[]).map(t=>`<span class="tag act" title="${esc(TRAITS[t]?TRAITS[t].desc:'')}">✦ ${esc(t)}</span>`).join(' ') + ' ' + (w.traits||[]).filter(t=>!TRAITS[t]||!TRAITS[t].hidden||S.sam.appraisal>=3).map(t=>`<span class="tag ${TRAITS[t]&&TRAITS[t].hidden?'hid':''} ${TRAITS[t]&&TRAITS[t].story?'act':''}" title="${esc(TRAITS[t]?TRAITS[t].desc:'')}">${esc(t)}</span>`).join(' '); }
 function jobOptions(w){ return Object.entries(JOBS).map(([k,J])=>{ const why = k===w.job ? null : canDo(w,k); return `<option value="${k}" ${k===w.job?'selected':''} ${why?'disabled':''}>${why?'🔒 ':''}${J.label}</option>`; }).join(''); }
 // House picker, shared by Houses, Roster, Recruit and Upgrades: the picked house (S.cur) and the "All houses" choice (HOUSE_ALL) carry
 // across tabs. withAll = this tab offers "All houses"; tabs without it (Recruit, Upgrades) show S.cur and leave HOUSE_ALL as it was.
 function houseTabs(withAll){
   const allOn = !!withAll && HOUSE_ALL, pickAll = 'HOUSE_ALL=true', pickOne = 'HOUSE_ALL=false';
-  return `<div class="hsel">${withAll?`<button class="sm ${allOn?'on':''}" onclick="${pickAll};render()">All houses</button>`:''}${S.houses.map(h=>`<button class="sm ${(S.cur===h.id && !allOn)?'on':''}" onclick="S.cur='${h.id}';${pickOne};render()">${esc(h.name)} <span class="muted">(${S.workers.filter(w=>w.house===h.id).length})</span></button>`).join('')}${S.houses.length>1 && !allOn?`<button class="sm" title="Move this house left" onclick="moveHouse(S.cur,-1)" ${S.houses[0].id===S.cur?'disabled':''}>◀</button><button class="sm" title="Move this house right" onclick="moveHouse(S.cur,1)" ${S.houses[S.houses.length-1].id===S.cur?'disabled':''}>▶</button>`:''}</div>`;
+  return `<div class="hsel">${withAll?`<button class="sm ${allOn?'on':''}" onclick="${pickAll};render()">All houses</button>`:''}${S.houses.map(h=>{
+    const n = S.workers.filter(w=>w.house===h.id).length, sl = sleepers(h).length, bd = bedsFor(h);
+    const upCls = TAB==='upgrades' && roomsUsed(h) < houseSize(h) ? 'good' : '';
+    const bedCls = TAB!=='upgrades' ? (sl < bd ? 'good' : sl > bd ? 'warn' : 'muted') : 'muted';
+    return `<button class="sm ${(S.cur===h.id && !allOn)?'on':''}" onclick="S.cur='${h.id}';${pickOne};render()"><span class="${upCls||bedCls==='warn'?'warn':upCls}">${esc(h.name)}</span> <span class="${TAB==='upgrades'?(upCls||'muted'):bedCls}">(${TAB==='upgrades'?`${roomsUsed(h)}/${houseSize(h)}`:n})</span></button>`;
+  }).join('')}${S.houses.length>1 && !allOn?`<button class="sm" title="Move this house left" onclick="moveHouse(S.cur,-1)" ${S.houses[0].id===S.cur?'disabled':''}>◀</button><button class="sm" title="Move this house right" onclick="moveHouse(S.cur,1)" ${S.houses[S.houses.length-1].id===S.cur?'disabled':''}>▶</button>`:''}</div>`;
 }
 function renderHeader(){
   const nd = nextDue();
@@ -85,7 +99,7 @@ function autoFeastSel(h){
 }
 function feastCard(h){
   const n = S.workers.filter(w=>w.house===h.id).length, done = h.feastWk === S.week;
-  return `<section class="card"><h2>Throw a feast</h2><div class="row">${BAL.feast.tiers.map(t=>`<button ${done||!n||S.gold<t.cost*n?'disabled':''} onclick="throwFeast('${t.id}')">${esc(t.label)} · ${fmt(t.cost*n)}</button>`).join('')}${autoFeastSel(h)}</div>${done?'<p class="muted">Already feasted this week.</p>':`<p class="muted">Once a week per house, no action. Trust and mood for every lady living here.${h.autoFeast?' The auto-feast runs when you end the week if you haven\'t feasted here by then.':''}</p>`}</section>`;
+  return `<section class="card"><h2>Throw a feast</h2><div class="row">${BAL.feast.tiers.map(t=>`<button ${done||!n||S.gold<feastCost(t)*n?'disabled':''} onclick="throwFeast('${t.id}')">${esc(t.label)} · ${fmt(feastCost(t)*n)}</button>`).join('')}${autoFeastSel(h)}</div>${done?'<p class="muted">Already feasted this week.</p>':`<p class="muted">Once a week per house, no action. Trust and mood for every lady living here.${h.autoFeast?' The auto-feast runs when you end the week if you haven\'t feasted here by then.':''}</p>`}</section>`;
 }
 // Things worth fixing in a house: ladies resting with energy to spare (85%+, where auto-rest sends them back) and staff without a bed.
 const restReady = h => S.workers.filter(w=>w.house===h.id && w.job==='rest' && w.energy >= maxEnergy(w)*0.85);
@@ -103,11 +117,11 @@ function notesCard(lines){ return lines.length ? `<section class="card agenda"><
 // One row of the All houses overview.
 function houseRow(h){
   const L = S.lastReport, lh = L && L.houses ? L.houses.find(x=>x.id===h.id) : null;
-  const ws = S.workers.filter(w=>w.house===h.id), resting = ws.filter(w=>w.job==='rest').length, sl = sleepers(h).length, bd = bedsFor(h);
-  const tidy = Math.round(h.tidy ?? BAL.tidy.start);
-  return `<tr><td><a href="#" onclick="S.cur='${h.id}';HOUSE_ALL=false;render();return false"><b>${esc(h.name)}</b></a>${h.id===samHouse().id?' <span title="Sam sleeps here">🧑</span>':''}</td>
-    <td>${Math.round(h.rep)}</td><td>${ws.length}${resting?` <span class="muted">(${resting} resting)</span>`:''}</td>
-    <td class="${sl>bd?'warn':''}">${sl}/${bd} <span class="muted">${esc(BEDS[h.beds||0].label)}</span></td>
+  const ws = S.workers.filter(w=>w.house===h.id), resting = ws.filter(w=>w.job==='rest').length, sl = sleepers(h).length, bd = bedsFor(h), ap = attendantPairs(h);
+  const tidy = Math.round(h.tidy ?? BAL.tidy.start), bedCls = sl < bd ? 'good' : sl > bd ? 'warn' : '';
+  return `<tr><td><a href="#" onclick="S.cur='${h.id}';HOUSE_ALL=false;render();return false"><b class="${bedCls}">${esc(h.name)}</b></a>${h.id===samHouse().id?' <span title="Sam sleeps here">🧑</span>':''}</td>
+    <td>${Math.round(h.rep)}</td><td><span class="${bedCls}">${ws.length}</span>${resting?` <span class="muted">(${resting} resting)</span>`:''}${ap.courts?` <span class="${ap.atts>=ap.courts?'good':'muted'}" title="Attendants / Courtesans (${ap.atts}/${ap.courts})">🎀 ${ap.atts}/${ap.courts}</span>`:''}</td>
+    <td class="${bedCls}">${sl}/${bd} <span class="muted">${esc(BEDS[h.beds||0].label)}</span></td>
     <td>${lh&&lh.roomCap?`${lh.roomsUsed}/${lh.roomCap}${lh.short?' <span class="warn">short</span>':''}`:`–/${h.rooms*BAL.rooms.perRoom}`} <span class="muted">${h.rooms} bedroom${h.rooms===1?'':'s'}</span></td>
     <td class="${tidyCls(h)}">${tidy}</td>
     <td>${lh?`${lh.served}${lh.turned?` <span class="muted">(${lh.turned} away)</span>`:''}`:'–'}</td>
@@ -158,7 +172,7 @@ function viewHouse(){
       <div>Amenities: ${amen}</div>${D.minPop?`<div class="muted">Standard: escorts need popularity ${D.minPop}+</div>`:''}
       <div class="muted">Clientele: ${TIERS.map((t,i)=>D.cls[i]>=1.3?`<b>${TIER_LABEL(t)}s ↑</b>`:D.cls[i]<=0.5?`${TIER_LABEL(t)}s ↓`:'').filter(Boolean).join(', ')||'balanced'}</div></div>
       <p class="muted">Higher prices earn more per client but draw fewer of them, unless reputation is high.</p></section>
-    <section class="card"><h2>Positions</h2>${h.up.classroom ? `<div class="row">📚 Classroom subject ${teachSelect(h, S.workers.find(w=>w.house===h.id && w.job==='teacher'))}</div>` : ''}<div class="grid2">${Object.entries(JOBS).filter(([k])=>k!=='rest').map(([k,J])=>{ const ws=S.workers.filter(w=>w.house===h.id && w.job===k), mx=slotsFor(h,k); return mx||ws.length?`<div><b>${J.label}</b> <span class="muted">${ws.length}/${mx}</span>${ws.length?': '+ws.map(w=>esc(w.name)).join(', '):''}</div>`:''; }).join('')}
+    <section class="card"><h2>Positions</h2>${h.up.classroom ? `<div class="row">📚 Classroom subject ${teachSelect(h, S.workers.find(w=>w.house===h.id && w.job==='teacher'))}</div>` : ''}<div class="grid2">${(()=>{ const ap = attendantPairs(h); return Object.entries(JOBS).filter(([k])=>k!=='rest').map(([k,J])=>{ const ws=S.workers.filter(w=>w.house===h.id && w.job===k), mx=slotsFor(h,k); return mx||ws.length?`<div><b>${J.label}</b> <span class="muted">${ws.length}/${mx}</span>${k==='courtesan'&&ws.length?` <span class="${ap.atts>=ap.courts?'good':'muted'}" title="Attendants assigned / Courtesans">🎀 ${ap.atts}/${ap.courts}</span>`:''}${ws.length?': '+ws.map(w=>{ const p = k==='courtesan' ? ap.byCourt.get(w.id) : k==='attendant' ? ap.byAtt.get(w.id) : null; return esc(w.name) + (p ? ` <span class="muted" title="${k==='courtesan'?'Attended by':'Attending'} ${esc(p.name)}">(🎀 ${esc(p.name.split(' ')[0])})</span>` : ''); }).join(', '):''}</div>`:''; }).join(''); })()}
       ${S.workers.filter(w=>w.house===h.id && w.job==='rest').length?`<div><b>Resting</b>: ${S.workers.filter(w=>w.house===h.id && w.job==='rest').map(w=>esc(w.name)).join(', ')}</div>`:''}</div></section>
     ${feastCard(h)}
     ${storyCard(h)}
@@ -166,10 +180,12 @@ function viewHouse(){
     <section class="card"><h2>Last Week</h2>${lh?`<div class="grid2"><div>Clients here: <b>${lh.served}</b>${lh.turned?` (${lh.turned} turned away)`:''}</div><div>Income here: <b>${fmt(lh.income)}</b> · Upkeep <b>${fmt(lh.upkeep)}</b></div><div>Satisfaction: <b>${Math.round(lh.avgSat)}</b>${lh.promoDraw?` · promoter draw <b>+${Math.round(lh.promoDraw)}</b>`:''}</div><div>All houses net: <b>${fmt(reportNet(L))}</b></div></div><div class="row"><button onclick="showReport(S.lastReport,false)">📋 Full report</button></div>`:'<span class="muted">No report yet. Assign jobs, then End Week.</span>'}</section>`;
 }
 function workerCard(w, showHouse){
-  const wl = knows(w,true) ? lShow(w.lewd) : '?';
-  const menu = JOBS[w.job] && (JOBS[w.job].must || w.offDuty==='on') ? (w.menu.length ? w.menu.map(a=>`<span class="tag act">${esc(actLabel(a))}</span>`).join('') : '<span class="muted">No services on menu</span>') : '';
+  const wl = knows(w,true) ? lShow(w.lewd) : '?', ap = attendantPairs(houseOf(w));
+  const attTag = w.job==='courtesan' ? (ap.byCourt.has(w.id) ? ` <span class="tag good" title="Attended by ${esc(ap.byCourt.get(w.id).name)}">🎀 ${esc(ap.byCourt.get(w.id).name.split(' ')[0])}</span>` : ` <span class="tag muted" title="No dedicated attendant">unattended</span>`)
+    : w.job==='attendant' && ap.byAtt.has(w.id) ? ` <span class="tag" title="Attending ${esc(ap.byAtt.get(w.id).name)}">🎀 → ${esc(ap.byAtt.get(w.id).name.split(' ')[0])}</span>` : '';
+  const menu = w.job!=='rest' ? (w.menu.length ? w.menu.map(a=>`<span class="tag act">${esc(actLabel(a))}</span>`).join('') : '<span class="muted">No services on menu</span>') : '';
   return `<div class="wcard" onclick="openSheet('${w.id}')">${avatarHTML(w)}
-    <div class="winfo"><div class="wname">${esc(titled(w))}${nameBadge(w)}${w.isPartner?' <span class="tag act">♥ Partner</span>':''}${showHouse?` <span class="tag house">${esc(houseOf(w).name)}</span>`:''}</div>
+    <div class="winfo"><div class="wname">${esc(titled(w))}${nameBadge(w)}${w.isPartner?' <span class="tag act">♥ Partner</span>':''}${attTag}${showHouse?` <span class="tag house">${esc(houseOf(w).name)}</span>`:''}</div>
       <div class="muted">${raceLabel(w)} · ${esc(w.personality)}</div>
       ${bar('Energy',w.energy,maxEnergy(w),'e')}${bar('Mood',w.mood,100,'m')}${knows(w,true)?lustBar(w):''}${w.health<100?bar('Health',w.health,100,'h'):''}
       <div class="row" onclick="event.stopPropagation()"><select onchange="setJob('${w.id}',this.value)">${jobOptions(w)}</select>

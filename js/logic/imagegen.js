@@ -103,6 +103,11 @@ async function useAvatar(key, id){ const d = await imgGet(key); if(d){ await set
 async function deleteImg(key, boxId, id, scene, cloth){ if(!confirm('Delete this saved image?')) return; await imgDel(key); showImg(boxId,id,scene,cloth,'manual'); }
 // A button outside the image box (weekly report highlights): "Show image" turns into "Hide image" once the image is up.
 function syncImgBtn(boxId){ const b = $('#'+boxId+'_t'), box = $('#'+boxId); if(b && box) b.textContent = box.dataset.key ? '🙈 Hide image' : '🖼 Show image'; }
-function toggleImgBtn(boxId, id, scene){ const box = $('#'+boxId); if(!box) return; const shown = !!box.dataset.key; box.dataset.hide = shown ? '1' : '0'; showImg(boxId, id, scene, null, shown ? 'manual' : 'auto'); }
-function toggleImg(boxId, id, scene, cloth, hide){ const box = $('#'+boxId); if(!box) return; box.dataset.hide = hide ? '1' : '0'; showImg(boxId, id, scene, cloth, hide ? 'manual' : undefined); }
+function setRepHide(box, id, scene, hide){
+  if(!box || !box.dataset.ext) return;
+  if(typeof REPV!=='undefined' && REPV){ REPV.hide = REPV.hide || {}; if(hide) REPV.hide[id+'|'+scene] = 1; else delete REPV.hide[id+'|'+scene]; }
+  if(typeof S!=='undefined' && S){ S.repHide = S.repHide || {}; if(hide) S.repHide[id+'|'+scene] = 1; else delete S.repHide[id+'|'+scene]; save(); }
+}
+function toggleImgBtn(boxId, id, scene){ const box = $('#'+boxId); if(!box) return; const shown = !!box.dataset.key; box.dataset.hide = shown ? '1' : '0'; setRepHide(box, id, scene, shown); showImg(boxId, id, scene, null, shown ? 'manual' : 'auto'); }
+function toggleImg(boxId, id, scene, cloth, hide){ const box = $('#'+boxId); if(!box) return; box.dataset.hide = hide ? '1' : '0'; setRepHide(box, id, scene, !!hide); showImg(boxId, id, scene, cloth, hide ? 'manual' : undefined); }
 function avatarHTML(w){ return THUMBS[w.id] ? `<div class="avatar"><img src="${THUMBS[w.id]}" alt=""></div>` : `<div class="avatar" style="background:${hairHex(w)}">${esc(initials(w.name))}</div>`; }

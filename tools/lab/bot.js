@@ -199,7 +199,7 @@ function setLovers(n){
 }
 function setFriends(n){
   const G = S.workers.filter(w => !w.key && !has(w, 'Devoted')).sort((a, b) => b.trust - a.trust);
-  G.forEach((w, i) => { if (i < n) w.trust = 100; else if (w.trust >= 100) w.trust = 99; });
+  G.forEach((w, i) => { w.favorite = i < n; if (i < n) w.trust = 100; else if (w.trust >= 100) w.trust = 99; });
 }
 function enterNG(ng){
   ng = ng || {};

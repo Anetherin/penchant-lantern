@@ -42,8 +42,12 @@ function samXP(n){
 }
 function samStat(k,n){ S.sam[k] = clamp((S.sam[k]||0)+n, 0, samCap()); }
 const lessonMul = () => (hasPast('massage') ? 1.15 : 1) * (hasPast('tutor') ? 1.2 : 1) * (1 + samUpFx('lesson'));
+const samWorkCost = (base=25) => Math.max(5, base - samUpFx('workEnergy'));
+const samTrainCost = (base=20) => Math.max(5, base - samUpFx('trainEnergy'));
+const samDateCost = (base=15) => Math.max(4, base - samUpFx('dateEnergy'));
+const samPrivCost = (base=15, free=false) => Math.max(4, base - Math.round(samUpFx('privEnergy') * (free ? 0.5 : 1)));
 function samWork(kind){
-  if(!useAP(25)) return;
+  if(!useAP(samWorkCost(25))) return;
   let title='', text='';
   if(kind==='bartend'){
     const inc = Math.round((30 + S.sam.charm*1.2 + rnd(0,25)) * (hasPast('bartender')?1.5:1) * (1 + samUpFx('bartend'))); S.gold += inc; S.samWeek.income += inc; samStat('charm',2);
@@ -97,7 +101,7 @@ function samRest(){
   showResult('Nap Time', 'Sam takes a long nap. In his dreams, a truck honks at him. He wakes up and decides not to think about it.\n\nEnergy +'+nap);
 }
 function samChat(id){
-  const w = findW(id), d = DATES.chat; if(!w || !useAP(d.energy)) return;
+  const w = findW(id), d = DATES.chat; if(!w || !useAP(samDateCost(d.energy))) return;
   const m = pmAny(w,d.like), tg = gainTrust(w, d.trust * rnd(0.6,1.4) * (has(w,'Romantic')?1.4:1) * (has(w,'Shy')?1.2:1) * m);
   moodAdd(w, d.mood*m - (m<1?3:0)); w._samTime = (w._samTime||0) + 1; samStat('charm',1); samXP(5); samLog(`Chatted with ${w.name}`); checkUnlocks();
   save(); render(); closeModal();
@@ -128,7 +132,7 @@ function dateMenu(id){
   const w = findW(id); if(!w) return;
   modal(`<h2>Take ${esc(w.name)} out</h2><p class="muted">Dates build trust and mood. What she enjoys depends on her personality. A great date at high trust might not end at her door.</p>
     <table>${Object.entries(DATES).filter(([k,d])=>dateListed(w,d)).map(([k,d])=>{ const c = dateFor(k).cost, m = pmAny(w,d.like), r = dateRaises(d);
-      return `<tr><td><b>${d.label}</b>${m>1?' <span class="good">♥ she\'d love this</span>':m<1?' <span class="warn">not her thing</span>':''}${r?`<br><span class="muted">${esc(r)}</span>`:''}</td><td>${c?fmt(c):'free'}</td><td class="muted">${d.energy} energy</td><td><button class="sm" onclick="${d.special==='chat'?`samChat('${id}')`:`samDate('${id}','${k}')`}" ${S.gold<c?'disabled':''}>Go</button></td></tr>`; }).join('')}</table>
+      return `<tr><td><b>${d.label}</b>${m>1?' <span class="good">♥ she\'d love this</span>':m<1?' <span class="warn">not her thing</span>':''}${r?`<br><span class="muted">${esc(r)}</span>`:''}</td><td>${c?fmt(c):'free'}</td><td class="muted">${samDateCost(d.energy)} energy</td><td><button class="sm" onclick="${d.special==='chat'?`samChat('${id}')`:`samDate('${id}','${k}')`}" ${S.gold<c?'disabled':''}>Go</button></td></tr>`; }).join('')}</table>
     <div class="row"><button onclick="openSheet('${id}')">Back</button></div>`);
 }
 // Daring variants offered on a date (dates.json → spicy). With acts: the one she'd do (favorite, else the highest-th she's keen on, else the first she's comfortable with).
@@ -146,7 +150,7 @@ function samDate(id, k){
   const cost = d.cost||0;
   if(S.gold<cost) return toast('Not enough gold.');
   if(!dateListed(w, d)) return toast(d.needsUp ? `${houseOf(w).name} needs a ${(UPGRADES[d.needsUp]||{label:d.needsUp}).label}.` : `${w.name} and Sam aren't there yet.`);
-  if(!useAP(d.energy)) return; S.gold -= cost;
+  if(!useAP(samDateCost(d.energy))) return; S.gold -= cost;
   const m = pmAny(w,d.like), tg = gainTrust(w, d.trust * (has(w,'Romantic')?1.4:1) * (d.trustMult||1) * m);
   moodAdd(w, d.mood*m - (m<1?3:0)); w.dates++; w._samTime = (w._samTime||0) + 1;   // a date counts as time with Sam (lovers' neglect)
   const lg = d.lewd ? lewdUp(w, d.lewd * (m>1 ? 1.25 : m<1 ? 0.6 : 1), d.lewdCap) : 0;
@@ -260,7 +264,7 @@ function samTrain(id, mode='skill'){
   const warm = (lust, lewd, cap) => { const l0 = w.lust; w.lust += lust * (0.4 + w.lewd/100) * fxMul(w,'lustBuild'); fitLust(w); if(w.lewd < lewdCap) lewdUp(w, lewd, Math.min(cap, lewdCap)); return Math.round(w.lust - l0); };
   if(mode==='stat'){
     const ST = T.stat || {}, list = trainStatsOf(w);
-    if(!useAP(ST.energy ?? 20)) return;
+    if(!useAP(samTrainCost(ST.energy ?? 20))) return;
     const g = ((ST.base ?? 12) + (S.sam.wits||0) * (ST.perWits ?? 0.2)) * samBonus('wits') * tm * learn * (hasPast('tutor') ? 1.2 : 1) * (ST.spread ?? 0.5);
     const got = list.map(([k,wt])=>{ const v0 = w.stats[k]; statXP(w, k, g*wt); return `${cap(k)} +${Math.round(w.stats[k] - v0)}`; });
     minorTrust(w); w.energy = clamp(w.energy - (ST.herEnergy ?? 10), 0, maxEnergy(w)); if(tm<1) moodAdd(w, -3);
@@ -274,7 +278,7 @@ function samTrain(id, mode='skill'){
   if(mode==='service'){
     const SV = T.service || {}, acts = getActs().filter(a=>canSam(w,a.id) && w.acts[actKey(a.id)]);
     if(!acts.length) return toast((w.intim||0)===0 ? `${w.name} and Sam haven't crossed that line yet.` : `${w.name} isn't comfortable with that yet.`);
-    if(!useAP(SV.energy ?? 30)) return;
+    if(!useAP(samTrainCost(SV.energy ?? 30))) return;
     const g = ((SV.base ?? 6) + tq * (SV.perTech ?? 0.05)) * tm2 * (SV.share ?? 0.4), hot = lustBonus(w, BAL.lust.bonus.trainMult);
     acts.forEach(a=>{ growAct(w, a.id, g * (w.fav===a.id ? 1.25 : 1)); if(w.dislike===a.id) moodAdd(w, -2); });
     const lu = warm(SV.svcLust ?? 6, SV.lewd ?? 2, Math.max(...acts.map(a=>svcLewdCap(a.id,'sam'))));
@@ -286,7 +290,7 @@ function samTrain(id, mode='skill'){
     return showResult(`Practice with ${w.name}`, `${flavor('train_service', w) || `${w.name} decides Sam's education is a shared project.`}${sl ? '\n\n'+sl : ''}${hot?'\n\n'+hot:''}\n\n${acts.map(a=>a.label).join(', ')}: skill +${Math.round(g*SKL)} each · Lust +${lu}${w.lewd < lewdCap ? ' · Lewdness +' : ''} · Trust ${tDelta(tgp)} · Sam's Technique +2`, w.id, 'samact:'+show.id, {kind:'train', act:show.id, scene:'samact:'+show.id, forSam:true});
   }
   // every trade skill, hands-on: her job's skill (Hospitality without one) at full strength, the rest x skill.others
-  if(!useAP(SK.energy ?? 30)) return;
+  if(!useAP(samTrainCost(SK.energy ?? 30))) return;
   const main = trainSkillOf(w), g = ((SK.base ?? 4) + tq*(SK.perTech ?? 0.04)) * tm2, oth = broadJob(w) ? (T.broad.skillOthers ?? 0.6) : (SK.others ?? 0.35);
   const got = TECH_KEYS.map(k=>{ const v0 = w.tech[k]; grow(w, k, g * (k===main ? 1 : oth)); return `${TECH_LABEL[k]} +${Math.round(w.tech[k]-v0)}`; });
   statXP(w, 'charm', g*0.6); gainTrust(w, 1);
@@ -301,7 +305,7 @@ function demoOpen(w){ const D = (BAL.lessons||{}).demo || {}; if(has(w,'Modest')
 function demoMenu(){
   const D = (BAL.lessons||{}).demo || {};
   const ok = S.workers.filter(w=>demoAct(w) && demoOpen(w)), shy = S.workers.filter(w=>demoAct(w) && !demoOpen(w));
-  modal(`<h2>A Demonstration</h2><p class="muted">Sam and a partner show the staff how it's done. Everyone watching learns that service and gets worked up; she does her favorite (or the furthest they've gone). She has to be comfortable with an audience. Repeat partners may develop a taste for it. (${D.energy ?? 30} energy)</p>
+  modal(`<h2>A Demonstration</h2><p class="muted">Sam and a partner show the staff how it's done. Everyone watching learns that service and gets worked up; she does her favorite (or the furthest they've gone). She has to be comfortable with an audience. Repeat partners may develop a taste for it. (${samTrainCost(D.energy ?? 30)} energy)</p>
     ${ok.length ? `<div class="row">${ok.map(w=>`<button onclick="samDemo('${w.id}')">${esc(titled(w))} · ${esc(actLabel(demoAct(w)))}</button>`).join('')}</div>` : '<p>Nobody is ready for an audience yet.</p>'}
     ${shy.length ? `<p class="muted">Not in front of everyone: ${shy.map(w=>esc(w.name)+(has(w,'Modest')?' (modest)':'')).join(', ')}</p>` : ''}
     <div class="row"><button onclick="closeModal()">Back</button></div>`);
@@ -309,7 +313,7 @@ function demoMenu(){
 function samDemo(id){
   const w = findW(id), D = (BAL.lessons||{}).demo || {}; if(!w) return;
   const act = demoAct(w); if(!act || !demoOpen(w)) return toast(`${w.name} isn't up for that.`);
-  if(!useAP(D.energy ?? 30)) return;
+  if(!useAP(samTrainCost(D.energy ?? 30))) return;
   const text = privateCore(w, act, {lead: flavor('demo_lead', w)});
   countUp(w, 'demos'); lewdUp(w, 1, svcLewdCap(act,'client') + 10);
   const g = (6 + (S.sam.technique||0)/20) * (D.watchSkill ?? 0.5) * lessonMul(), cap0 = svcLewdCap(act,'client'), watchers = S.workers.filter(o=>o!==w);
@@ -326,7 +330,7 @@ function samDemo(id){
 // Group nights (balance.json → orgy): one action, Sam's energy per lady, 2-5 ladies from one house (any house, unless samReach()).
 // Each lady goes through canSam/bestSamAct and privateCore like any private time; every pair bonds; longer text and several pictures.
 let ORGY = null;
-const orgyCost = n => { const O = BAL.orgy || {}; return Math.round((O.perGirl ?? 20) * n + (O.ramp ?? 0) * n * (n-1) / 2); };
+const orgyCost = n => { const O = BAL.orgy || {}, per = Math.max(8, (O.perGirl ?? 20) - samUpFx('orgyEnergy')); return Math.round(per * n + (O.ramp ?? 0) * n * (n-1) / 2); };
 function orgyOpen(w){ const O = BAL.orgy || {}; return !has(w,'Modest') && (w.lewd >= (O.openLewd ?? 50) || has(w,'Exhibitionist') || w.lust >= LUST_EAGER); }
 function orgyWhy(w){ const O = BAL.orgy || {};
   if(!orgyAct(w)) return (w.intim||0)===0 ? "she and Sam haven't crossed that line" : canSam(w,'kiss') && !getActs().some(a=>actTierOf(a) >= (O.minTier ?? 2) && canSam(w,a.id)) ? 'only kisses and massages with Sam so far' : "not comfortable with Sam yet";
@@ -396,7 +400,7 @@ function samPrivate(id, act, free){
   const w = findW(id); if(!w) return;
   if(!canSam(w,act)) return toast(`${w.name} isn't comfortable with that yet.`);
   const recv = (actById(act)||{}).kind==='receive';   // receiving services: Sam does the work, and tires less
-  if(free){ const c = recv ? 8 : 15; if(S.sam.energy<c) return toast('Sam is too tired.'); S.sam.energy -= c; } else if(!useAP(recv ? 15 : 30)) return;
+  if(free){ const c = samPrivCost(recv ? 8 : 15, true); if(S.sam.energy<c) return toast('Sam is too tired.'); S.sam.energy -= c; } else if(!useAP(samPrivCost(recv ? 15 : 30, false))) return;
   const text = privateCore(w, act);
   checkUnlocks(); save(); render(); closeModal();
   showResult(`Private Time with ${w.name}`, text, w.id, 'samact:'+act, {kind:'private', act, scene:'samact:'+act, forSam:true});
@@ -461,7 +465,7 @@ function hireStud(id){
     `Sam finds ${w.name} a willing stud for the night: a retired gladiator with stamina to spare and a fee to match. Nobody gets drained into a faint, nobody's reputation suffers, and ${w.name} hums all the next morning.`]) + `\n\nEnergy +${Math.round(g)} · Lust −${ld} · Mood + · Trust + · −${fmt(D.studCost)}`, w.id, 'casual', null);
 }
 function samGuild(){
-  if(!useAP(20)) return;
+  if(!useAP(samWorkCost(20))) return;
   const g = S.flags.guild; let text='', wid=null, scene=null;
   if(g===0){
     S.flags.guild = 1; text = `A freckled receptionist practically vaults the counter when she hears what Sam does for a living. "You own a pleasure house? I'm Hanna! Parties come back from dungeons with full purses and nowhere to spend them. Let's talk."\n\nGuild contracts unlocked.`;

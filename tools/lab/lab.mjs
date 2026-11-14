@@ -10,7 +10,12 @@ import fs from 'node:fs';
 import http from 'node:http';
 import { report } from './report.mjs';
 const require = createRequire(import.meta.url);
-let pw; try { pw = require('playwright'); } catch { pw = require(process.env.PLAYWRIGHT_PATH || '/opt/node-tools/node_modules/playwright'); }
+let pw;
+for (const m of ['playwright', process.env.PLAYWRIGHT_PATH, '/opt/node-tools/node_modules/playwright', path.resolve(process.execPath, '../../lib/node_modules/playwright')]) {
+  if (!m) continue;
+  try { pw = require(m); break; } catch {}
+}
+if (!pw) throw new Error('Cannot find module playwright');
 const here = path.dirname(new URL(import.meta.url).pathname), root = path.resolve(here, '../..');
 
 // ---------- args & spec ----------
@@ -56,7 +61,8 @@ const server = http.createServer((q, r) => {
   r.writeHead(200, { 'content-type': TYPES[path.extname(f)] || 'application/octet-stream' }); fs.createReadStream(f).pipe(r);
 }).listen(0);
 const PORT = server.address().port;
-const browser = await pw.chromium.launch({ args: ['--no-proxy-server'], executablePath: process.env.CHROME || '/usr/bin/google-chrome' });
+const chromeBin = process.env.CHROME || (fs.existsSync('/usr/bin/google-chrome') ? '/usr/bin/google-chrome' : undefined);
+const browser = await pw.chromium.launch({ args: ['--no-proxy-server'], ...(chromeBin ? { executablePath: chromeBin } : {}) });
 const BOT = fs.readFileSync(path.join(here, 'bot.js'), 'utf8');
 // seeded Math.random, installed before any game script runs
 const RNG = `(() => { let a = 1; window.__labSeed = s => { a = s || 1; }; Math.random = () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; })();`;

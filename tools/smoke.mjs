@@ -5,7 +5,12 @@ import { createRequire } from 'node:module';
 import path from 'node:path';
 import fs from 'node:fs';
 const require = createRequire(import.meta.url);
-let pw; try { pw = require('playwright'); } catch { pw = require(process.env.PLAYWRIGHT_PATH || 'playwright'); }
+let pw;
+for (const m of ['playwright', process.env.PLAYWRIGHT_PATH, '/opt/node-tools/node_modules/playwright', path.resolve(process.execPath, '../../lib/node_modules/playwright')]) {
+  if (!m) continue;
+  try { pw = require(m); break; } catch {}
+}
+if (!pw) throw new Error('Cannot find module playwright');
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
 const WEEKS = +process.argv[2] || 30;
 

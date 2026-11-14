@@ -10,7 +10,12 @@ import path from 'node:path';
 import fs from 'node:fs';
 import http from 'node:http';
 const require = createRequire(import.meta.url);
-let pw; try { pw = require('playwright'); } catch { pw = require(process.env.PLAYWRIGHT_PATH || '/opt/node-tools/node_modules/playwright'); }
+let pw;
+for (const m of ['playwright', process.env.PLAYWRIGHT_PATH, '/opt/node-tools/node_modules/playwright', path.resolve(process.execPath, '../../lib/node_modules/playwright')]) {
+  if (!m) continue;
+  try { pw = require(m); break; } catch {}
+}
+if (!pw) throw new Error('Cannot find module playwright');
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
 const argv = process.argv.slice(2); let PATCH = null; const pi = argv.indexOf('--patch');
 if (pi >= 0) { PATCH = JSON.parse(fs.readFileSync(argv[pi+1], 'utf8')); argv.splice(pi, 2); }
@@ -24,7 +29,8 @@ const server = http.createServer((q, r) => {
   r.writeHead(200, {'content-type': TYPES[path.extname(f)] || 'application/octet-stream'}); fs.createReadStream(f).pipe(r);
 }).listen(0);
 const PORT = server.address().port;
-const browser = await pw.chromium.launch({ args:['--no-proxy-server'], executablePath: process.env.CHROME || '/usr/bin/google-chrome' });
+const chromeBin = process.env.CHROME || (fs.existsSync('/usr/bin/google-chrome') ? '/usr/bin/google-chrome' : undefined);
+const browser = await pw.chromium.launch({ args:['--no-proxy-server'], ...(chromeBin ? { executablePath: chromeBin } : {}) });
 
 const COMMON = `
 function deepMerge(t, p){ for (const k of Object.keys(p)) { if (p[k] && typeof p[k] === 'object' && !Array.isArray(p[k]) && t[k] && typeof t[k] === 'object') deepMerge(t[k], p[k]); else t[k] = p[k]; } }
