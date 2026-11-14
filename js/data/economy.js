@@ -31,15 +31,21 @@ function rollJobPrefs(w){
   const Dl = roll(down, B.maxDislikes).filter(j=>!L.includes(j));
   w.jobLikes = L; w.jobDislikes = Dl;
 }
-// Job positions per house (data/economy.json → slots). Courtesans: 4 (+2 with a madame); attendants: one per courtesan working in the house ('byJob');
-// promoters and maids have no entry and are unlimited.
+// Job positions per house (data/economy.json → slots). Courtesans: 4 (+1 with a madame, +1 more per 200 of her madame score: 6 at 1000);
+// attendants: one per courtesan working in the house ('byJob'); promoters and maids have no entry and are unlimited.
+function madameScore(w){
+  return (w.tech.manage||0)*0.5 + statOf(w,'wits')*0.2 + statOf(w,'charm')*0.175 + statOf(w,'charisma')*0.125;
+}
 function slotsFor(h, job){
   const d = ECON.slots[job]; if(!d) return 99;
   if(d.as) return slotsFor(h, d.as);
   if(d.byJob) return (typeof S!=='undefined' && S) ? S.workers.filter(w=>w.house===h.id && w.job===d.byJob).length : 0;
   const u = h.up || {};
-  let n = (d.base||0) + Object.entries(d).filter(([k])=>u[k] && !['base','perSize','perRoom','min','perRooms','madame','byJob'].includes(k)).reduce((a,[,v])=>a+v,0) + (d.perSize ? Math.floor(houseSize(h)/d.perSize) : 0);
-  if(d.madame && typeof S!=='undefined' && S && S.workers.some(w=>w.house===h.id && w.job==='madame')) n += d.madame;
+  let n = (d.base||0) + Object.entries(d).filter(([k])=>u[k] && !['base','perSize','perRoom','min','perRooms','madame','madameBase','madameStep','byJob'].includes(k)).reduce((a,[,v])=>a+v,0) + (d.perSize ? Math.floor(houseSize(h)/d.perSize) : 0);
+  if((d.madame || d.madameBase) && typeof S!=='undefined' && S){
+    const m = S.workers.find(w=>w.house===h.id && w.job==='madame');
+    if(m) n += (d.madameBase ?? d.madame ?? 1) + (d.madameStep ? Math.floor(madameScore(m) / d.madameStep) : 0);
+  }
   if(d.perRoom) n += h.rooms * d.perRoom;
   if(d.perRooms) n += Math.floor(h.rooms / d.perRooms);
   return Math.max(d.min||0, n);

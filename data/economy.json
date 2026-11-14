@@ -2,7 +2,7 @@
   "_readme": [
     "Jobs, houses and money. Numbers here are the main balance levers.",
     "jobs: label, cat (rest / staff / escort), energy (weekly cost), skill (which skill she uses), needs (amenity required), room (uses a bedroom), must (must-offer role: she serves propositions from her menu and expects them; other jobs choose, see data/balance.json → props), desc. jobTrust: trust she needs for a job she doesn't particularly like. Removed jobs: companion (now courtesan), reception (now promoter).",
-    "slots: positions per house. Keys: base, amenity ids (bar, stage, guard, bath), perSize (one more per N building size), perRoom (per bedroom), min / perRooms (one per N bedrooms, at least min), as (same number as another job), byJob (equal to active workers in that job), madame (extra slots when a madame works in the house). A job with no entry (promoter, maid) is unlimited. Courtesans: 4 (+2 with a madame); attendants: one per courtesan working in the house.",
+    "slots: positions per house. Keys: base, amenity ids (bar, stage, guard, bath), perSize (one more per N building size), perRoom (per bedroom), min / perRooms (one per N bedrooms, at least min), as (same number as another job), byJob (equal to active workers in that job), madameBase / madameStep (extra slots when a madame works in the house: madameBase + floor(madameScore / madameStep)). A job with no entry (promoter, maid) is unlimited. Courtesans: 4 (+1 to +6 with a madame at 1000 cap); attendants: one per courtesan working in the house.",
     "propRate / propWhere: base chance per client visit that a staff job gets propositioned, and where it happens (reports). The bar, her propRate fx and her appeal multiply it. Courtesans are asked through the normal client flow (balance.json → jobs.propWant), so their entry is 0.",
     "classes: client classes; mult = how much they pay; wants = how much more (or less) often they ask for a service, by service id; tech = mean technique (0.3-1.4); prop = chance a visiting client of this class makes a proposition to staff; rowdy = chance of bar trouble; reckless = how reckless/forceful (adds half to pushy; a Bar adds more); pushy = chance to try to force it after hearing no. tier: the old four classes (commoner, adventurer, merchant, noble) that houses' clientele weights (houses cls, 4 numbers) and ladies' classBonus/classLike fall back to; share: weight within its tier; traits: x weights for client traits (balance.json → clients.traits) for this class. stats = {stat: weight} stat taste (balance.json → clients.statPref): his draw, satisfaction and fee follow how high her stats are. Regulars keep their class taste.",
     "upgrades with a \"race\" field are race houses (tether = spirits, charger = androids, chapel = angels, sigil = demons; the garden, incense burner, workshop, laundry, classroom have no race). amenity effect numbers are in balance.json → amenities. Races with \"needs\" in races.json can't be recruited into or moved to a house without that upgrade. upgrades.mood (race houses): weekly mood bonus for ladies of that race working or living in the house.",
@@ -23,7 +23,7 @@
       "cat": "staff",
       "energy": 20,
       "skill": "manage",
-      "desc": "Runs the house: calmer moods, +2 courtesan positions, clients matched to the right lady, and coaching for courtesans she out-ranks in popularity and skill. Steps in for overwhelmed courtesans; can be propositioned."
+      "desc": "Runs the house: calmer moods, +1 courtesan position (+1 more per 200 Management/Wits/Charm/Charisma, up to +6 at 1000), clients matched to the right lady, and coaching for courtesans she out-ranks in popularity and skill. Steps in for overwhelmed courtesans; can be propositioned."
     },
     "promoter": {
       "label": "Promoter",
@@ -126,7 +126,7 @@
     "dancer": {"base":0,"stage":2},
     "bath": {"base":0,"bath":2},
     "chapel": {"base":0,"chapel":2},
-    "courtesan": {"base":4,"madame":2},
+    "courtesan": {"base":4,"madameBase":1,"madameStep":200},
     "attendant": {"byJob":"courtesan"},
     "host": {"base":1,"perRooms":4}
   },
