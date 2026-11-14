@@ -3,7 +3,7 @@
 function buyOutfit(id, k){
   const w=findW(id), o=WARDROBE[k]; if(!w||!o) return;
   if(ownsOutfit(w,k)) return;
-  if(o.owner) return toast(spUnlocked(w) ? 'Already unlocked.' : `Unlocks at trust ${tShow(spTrust(w))}.`);
+  if(o.owner) return toast(spUnlocked(w, k) ? 'Already unlocked.' : `Unlocks at trust ${tShow(spTrust(w, k))}.`);
   const cost = outfitCost(o);
   if(S.gold < cost) return toast('Not enough gold.');
   S.gold -= cost; S.houseWardrobe.push(k);   // outfits Sam buys go to the shared house wardrobe
@@ -42,12 +42,13 @@ function openWardrobe(id){
     let act;
     if(wearing) act = '<span class="good">Wearing</span>';
     else if(owned) act = `<button class="sm" onclick="equipOutfit('${id}','${k}')" ${ok?'':'disabled title="Not comfortable yet"'}>Wear</button>`;
-    else if(o.owner) act = `<span class="muted">${spUnlocked(w)?'':'🔒 trust '+tShow(spTrust(w))}</span>`;
+    else if(o.owner) act = `<span class="muted">${spUnlocked(w,k)?'':'🔒 trust '+tShow(spTrust(w,k))}</span>`;
     else act = `<button class="sm" onclick="buyOutfit('${id}','${k}')" ${S.gold<outfitCost(o)?'disabled':''}>Buy ${fmt(outfitCost(o))}</button>`;
     if(inHouse) act += ` <button class="sm" onclick="giftHouseItem('${id}','outfit','${k}')" title="Give it to her to keep. Counts as a gift (10 energy)">🎁 Gift</button>`;
     const tag = o.owner ? (k.startsWith('sig_')?' <span class="tag">Signature</span>':' <span class="tag">Special</span>') : (BASE_OUTFITS[k]?' <span class="muted">(basic)</span>':'');
+    const accTag = o.accessories ? ` <span class="muted" title="Includes accessory: ${esc(o.accessories)}">· 🎀 ${esc(o.accessories)}</span>` : '';
     const n = imgCountFor(w, `o:${k}:`);
-    return `<tr><td>${esc(o.label)}${tag}${inHouse||(S.houseWardrobe.includes(k)&&w.owned.includes(k))?' <span class="tag house" title="In the shared house wardrobe">🏠 house</span>':''}${o.lewd?` <span class="muted">(lewd ${lShow(o.lewd)}+)</span>`:''}${n?` <span class="tag hid" title="Saved images with this outfit">📷 ${n}</span>`:''}</td><td>${o.style===w.style?'<b class="good">'+o.style+'</b>':o.style}</td><td class="muted">${bonusText(o.bonus,o.stats)}</td><td>${act}</td></tr>`;
+    return `<tr><td>${esc(o.label)}${tag}${inHouse||(S.houseWardrobe.includes(k)&&w.owned.includes(k))?' <span class="tag house" title="In the shared house wardrobe">🏠 house</span>':''}${o.lewd?` <span class="muted">(lewd ${lShow(o.lewd)}+)</span>`:''}${accTag}${n?` <span class="tag hid" title="Saved images with this outfit">📷 ${n}</span>`:''}</td><td>${o.style===w.style?'<b class="good">'+o.style+'</b>':o.style}</td><td class="muted">${bonusText(o.bonus,o.stats)}</td><td>${act}</td></tr>`;
   }).join('') + (w.customOutfit ? `<tr><td>Her own outfit <span class="muted">(custom)</span></td><td>—</td><td class="muted">—</td><td>${w.outfit==='custom'?'<span class="good">Wearing</span>':`<button class="sm" onclick="equipOutfit('${id}','custom')">Wear</button>`}</td></tr>` : '');
   const urows = Object.entries(UNDER).map(([k,u])=>{
     const owned = ownsUnder(w,k), wearing = w.under===k, ok = underOK(w,k), inHouse = S.houseUnder.includes(k) && !w.ownedUnder.includes(k);
@@ -59,7 +60,8 @@ function openWardrobe(id){
   modal(`<h2>${esc(w.name)}'s Wardrobe</h2>
     <p class="muted">Outfits Sam buys go to the shared house wardrobe: any lady can wear them when she's comfortable, and he can gift a piece to her for keeps. Style: <b>${w.style}</b> · Favorite color: ${sw(w.favColor)}<b>${w.favColor}</b>. Wearing her style keeps her happier each week; her undergarments always come in her favorite color. 📷 = saved images with that item.</p>
     <div class="row"><b>Outfit:</b> ${esc(cur.label)}</div>
-    <div class="row"><b>Undergarments:</b> ${esc(cu.label)}${w.under!=='none'&&usesColor(cu)?` · ${sw(w.favColor)}${w.favColor}`:''}</div>
+    <div class="row"><b>Undergarments:</b> ${esc(cu.label)}${w.under!=='none'&&usesColor(cu)?` · ${sw(favColorOf(w))}${favColorOf(w)}`:''}</div>
+    <div class="row"><b>Accessories:</b> ${esc(accListText(w) || 'None')} · Keep on: <select onchange="setAccState('${id}',this.value)"><option value="auto" ${(!w.accState||w.accState==='auto')?'selected':''}>Default (${esc(accAutoLabel(w))})</option>${ACC_STATES.map(a=>`<option value="${a.id}" ${w.accState===a.id?'selected':''}>${esc(a.label)}</option>`).join('')}</select></div>
     <h3>Outfits</h3><table><tr><th>Outfit</th><th>Style</th><th>Bonuses</th><th></th></tr>${rows}</table>
     <h3 style="margin-top:10px">Undergarments</h3><table><tr><th>Item</th><th>Style</th><th>Bonuses</th><th></th></tr>${urows}</table>
     <div class="row"><button class="primary" onclick="openSheet('${id}')">Back to her sheet</button></div>`, {wide:true});

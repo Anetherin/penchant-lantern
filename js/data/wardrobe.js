@@ -9,6 +9,12 @@ const CLOTH = [
   {id:'under',   label:'Undergarments',    lv:30},
   {id:'nude',    label:'Undressed',        lv:55}
 ];
+const ACC_STATES = [
+  {id:'dressed', label:'With clothes only'},
+  {id:'under',   label:'With undergarments'},
+  {id:'always',  label:'On all the time'},
+  {id:'off',     label:'Off'}
+];
 // Generic base outfits: every non-named lady starts with one. Also buyable. Colors are fixed in each prompt.
 const BASE_OUTFITS = WARDROBE_DATA.base;
 const SHOP_OUTFITS = WARDROBE_DATA.shop;

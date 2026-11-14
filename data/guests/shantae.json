@@ -21,7 +21,10 @@
             "hairColor": "purple",
             "eyes": "blue",
             "skin": "tan",
-            "features": "pointed ears, gold hoop earrings and a slim gold circlet"
+            "features": "pointed genie ears",
+            "accessories": "gold hoop earrings and a slim gold circlet",
+            "accState": "always",
+            "expression": "a cheerful, energetic smile"
           },
           "under": "sheer",
           "underColor": "pink",
@@ -76,8 +79,10 @@
             "hairColor": "black",
             "eyes": "green",
             "skin": "pale blue",
-            "features": "dark lipstick and a wicked smirk",
-            "gear": "a skull-badged tricorn hat, a cutlass and a long coat of purple velvet"
+            "features": "dark lipstick",
+            "accessories": "a skull-badged tricorn hat, a cutlass and a long purple velvet coat",
+            "accState": "dressed",
+            "expression": "a wicked smirk"
           },
           "under": "corset",
           "underColor": "black",
@@ -124,7 +129,8 @@
             "hairColor": "green",
             "eyes": "red",
             "skin": "green",
-            "features": "visible stitches at her neck and wrists and a gap-toothed grin"
+            "features": "visible stitches at her neck and wrists",
+            "expression": "a playful, gap-toothed grin"
           },
           "under": "plain",
           "underColor": "pink",

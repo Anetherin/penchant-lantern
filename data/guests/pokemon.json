@@ -22,7 +22,7 @@
             "hairColor": "dark teal-black",
             "eyes": "violet",
             "skin": "fair",
-            "features": "a calm, unblinking gaze and a faint smile that never quite reaches her eyes"
+            "expression": "a calm, unblinking gaze and a faint smile that never quite reaches her eyes"
           },
           "under": "silk",
           "underColor": "purple",
@@ -75,7 +75,9 @@
             "hairColor": "platinum blonde",
             "eyes": "grey",
             "skin": "fair",
-            "features": "a confident, composed face and one eye hidden behind a fall of hair"
+            "accessories": "black-and-gold teardrop hair ornaments",
+            "accState": "always",
+            "expression": "a confident, composed smile"
           },
           "under": "silk",
           "underColor": "black",
@@ -89,7 +91,7 @@
             "sig_cynthia": {
               "label": "Champion's coat",
               "style": "Elegant",
-              "prompt": "a long black coat with a fur-trimmed collar over a fitted black dress, black boots and a gold hair ornament",
+              "prompt": "a long black coat with a fur-trimmed collar over a fitted black dress and black boots",
               "bonus": {"promoter":1.3,"noble":1.2}
             },
             "sp_cynthia": {
@@ -121,7 +123,15 @@
           "dislike": "doggy",
           "lovers": "missionary",
           "backstory": "The Unova region's leading Pokémon professor, Juniper is cheerful, brilliant and chronically late, with a lab coat pocket full of sticky notes. She treats everyone as a fascinating specimen to be understood, but she is far kinder than any scientist should be. Hollowmere has turned out to be an excellent field site, and the guests excellent at fieldwork.",
-          "design": {"hairStyle":"short poofy bun","hairColor":"honey brown","eyes":"emerald","skin":"fair","features":"distinctive red rectangular earrings"},
+          "design": {
+            "hairStyle": "short poofy bun",
+            "hairColor": "honey brown",
+            "eyes": "emerald",
+            "skin": "fair",
+            "accessories": "distinctive red rectangular earrings",
+            "accState": "always",
+            "expression": "a cheerful, curious smile"
+          },
           "under": "plain",
           "underColor": "white",
           "stats": {"beauty":66,"charm":62,"charisma":56,"refinement":60,"wits":75,"stamina":50,"strength":30,"agility":50},
@@ -171,8 +181,9 @@
             "hairColor": "brown",
             "eyes": "brown",
             "skin": "fair",
-            "features": "a sunny grin",
-            "gear": "a white sun hat and a small travel pack"
+            "accessories": "a white sun hat and a small travel pack",
+            "accState": "dressed",
+            "expression": "a sunny grin"
           },
           "under": "plain",
           "underColor": "white",
@@ -219,8 +230,9 @@
             "hairColor": "orange",
             "eyes": "teal",
             "skin": "fair",
-            "features": "a bright, quick-tempered scowl that melts into a laugh",
-            "gear": "a dazed yellow duck companion at her heels"
+            "accessories": "a dazed yellow duck companion at her heels",
+            "accState": "dressed",
+            "expression": "a bright, quick-tempered grin"
           },
           "under": "sports",
           "underColor": "cyan",
@@ -278,8 +290,9 @@
             "hairColor": "light blue",
             "eyes": "blue",
             "skin": "fair",
-            "features": "a proud, narrow-eyed gaze",
-            "gear": "a high-collared black cape"
+            "accessories": "a high-collared black cape",
+            "accState": "dressed",
+            "expression": "a proud, narrow-eyed gaze"
           },
           "under": "silk",
           "underColor": "navy",
@@ -334,7 +347,8 @@
             "hairColor": "red",
             "eyes": "red",
             "skin": "light",
-            "features": "a spray of freckles across her nose and a hot-tempered grin"
+            "features": "a spray of freckles across her nose",
+            "expression": "a hot-tempered, eager grin"
           },
           "under": "sports",
           "underColor": "red",
@@ -379,8 +393,9 @@
             "hairColor": "brown",
             "eyes": "blue",
             "skin": "fair",
-            "features": "a bright, expressive smile",
-            "gear": "a red bandana and a yellow belt pouch"
+            "accessories": "a red bandana",
+            "accState": "always",
+            "expression": "a bright, expressive smile"
           },
           "under": "lace",
           "underColor": "pink",
@@ -395,7 +410,9 @@
               "label": "Coordinator outfit",
               "style": "Cute",
               "prompt": "a red zip-up crop top, a short white skirt with black shorts underneath and sneakers",
-              "bonus": {"dancer":1.3,"commoner":1.1}
+              "bonus": {"dancer":1.3,"commoner":1.1},
+              "accessories": "a yellow belt pouch",
+              "accState": "dressed"
             },
             "sp_may": {
               "label": "Contest gown",
@@ -431,8 +448,9 @@
             "hairColor": "brown",
             "eyes": "brown",
             "skin": "fair",
-            "features": "a confident grin",
-            "gear": "a pink-and-white cap and a small shoulder bag"
+            "accessories": "a pink-and-white cap and a small shoulder bag",
+            "accState": "dressed",
+            "expression": "a confident grin"
           },
           "under": "plain",
           "underColor": "pink",

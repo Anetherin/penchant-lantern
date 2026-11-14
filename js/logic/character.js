@@ -104,12 +104,51 @@ function outfitKey(w, scene){
 function getOutfit(w, scene){ const ok = outfitKey(w, scene); if(ok==='custom') return {label:'Her own outfit', style:w.style, prompt:w.customOutfit||'an elegant dress', bonus:{}, custom:true}; return WARDROBE[ok] || BASE_OUTFITS.b_corset; }
 function getUnder(w){ if(w.under==='custom') return {label:'Custom', prompt:w.customUnder||'simple lace underwear', bonus:{}, style:w.style}; return UNDER[w.under] || UNDER.plain; }
 const usesColor = o => /\{color\}/.test(o.prompt||'');
+// Effective appearance in a scene: outfits can override hairStyle and add/replace features; special outfits can also override hairColor, eyes, skin, favColor, build, body, expression, pubic, raceLook.
+function effDesign(w, scene){
+  const d = (w && w.design) || {}, o = (w && w.outfit && getOutfit(w, scene)) || {};
+  const out = Object.assign({}, d);
+  ['hairStyle','hairColor','eyes','skin','build','pubic','expression','raceLook'].forEach(k=>{ if(o[k]!==undefined) out[k] = o[k]; });
+  if(o.replaceFeatures) out.features = o.features || '';
+  else if(o.features) out.features = [d.features, o.features].filter(Boolean).join(', ');
+  return out;
+}
+function favColorOf(w, scene){
+  const o = w && w.outfit && getOutfit(w, scene);
+  return (o && o.favColor) || (w && w.favColor) || 'white';
+}
+// Default state where an accessory stays on: 'dressed' (clothes only), 'under' (with undergarments), 'always' (on all the time).
+function defaultAccState(acc, explicit){
+  if(explicit && explicit !== 'auto') return explicit;
+  if(!acc) return 'always';
+  if(/\b(satchel|bag|pouch|pack|cape|cloak|coat|jacket|shawl|scarf|hat|cap|helmet|visor|hood|apron|belt|holster|quiver|sheath|scabbard|sword|blade|dagger|knife|katana|rapier|spear|lance|halberd|axe|mace|hammer|staff|wand|rod|bow|crossbow|gun|pistol|rifle|shield|buckler|book|tome|grimoire|ledger|clipboard|scroll|sheets|slate|chalk|brush|quill|pen|lantern|lamp|torch|parasol|umbrella|fan|lute|harp|flute|violin|drum|horn|pipe|tray|pitcher|bottle|mug|cup|glass|teapot|broom|duster|basket|bucket|kit|tools|wrench|goggles|headphones|stethoscope|riding crop|whip|cards|dice|orb|crystal|familiar|toad|fox|cat|bird|hawk|owl|ferret|puppet|doll|pig|duck)\b/i.test(acc) && !/\b(hairpin|earring|necklace|pendant|choker|bracelet|anklet|bangle|ring)\b/i.test(acc)) return 'dressed';
+  if(/\b(stockings|garter|thigh|gloves|gauntlets|wraps|armband|wristband|waist chain|belly chain|veil|blindfold|mask|collar)\b/i.test(acc)) return 'under';
+  return 'always';
+}
+function itemAccState(w, acc, explicit){
+  return (w && w.accState && w.accState !== 'auto') ? w.accState : defaultAccState(acc, explicit);
+}
+function accAutoState(w, scene){
+  const d = (w && w.design) || {}, o = (w && w.outfit && getOutfit(w, scene)) || {};
+  if(d.accessories) return defaultAccState(d.accessories, d.accState);
+  if(o.accessories) return defaultAccState(o.accessories, o.accState);
+  return d.accState || 'always';
+}
+function accAutoLabel(w, scene){
+  const st = accAutoState(w, scene), found = ACC_STATES.find(x=>x.id===st);
+  return found ? found.label.toLowerCase() : 'on all the time';
+}
+function accListText(w, scene){
+  const d = (w && w.design) || {}, o = (w && w.outfit && getOutfit(w, scene)) || {};
+  return [d.accessories, o.accessories && o.accessories !== d.accessories ? `${o.accessories} (${o.label||'outfit'})` : ''].filter(Boolean).join(', ');
+}
 function outfitText(w, scene){ return getOutfit(w, scene).prompt; }   // outfit colors are written into the prompt
-function underText(w){ return w.under==='none' ? null : getUnder(w).prompt.replace(/\{color\}/g, w.favColor||'white'); }   // undergarments come in her favorite color
+function underText(w, scene){ return w.under==='none' ? null : getUnder(w).prompt.replace(/\{color\}/g, favColorOf(w, scene)); }   // undergarments come in her favorite color
 function ob(w,k){ return ((getOutfit(w).bonus||{})[k]||1) * ((getUnder(w).bonus||{})[k]||1); }
-// sp_ outfits unlock at trust 60 (600 as shown) (or as a lover); an outfit with its own "unlock" needs that trust, lover or not.
-function spTrust(w){ const o = WARDROBE['sp_'+w.key]; return (o && o.unlock) || 60; }
-function spUnlocked(w,k){ const o = WARDROBE['sp_'+w.key]; return (o && o.unlock) ? w.trust>=o.unlock : (w.trust>=60 || has(w,'Devoted')); }
+// Named character's special outfits (sp_<key>, sp_<key>_*): 0, 1, or several. Each unlocks at trust 60 (600 as shown) (or as a lover), or at its own "unlock" trust if set.
+const spOutfitsOf = w => w && w.key ? Object.keys(WARDROBE).filter(k => WARDROBE[k].owner === w.key && !k.startsWith('sig_')) : [];
+function spTrust(w, k){ const o = WARDROBE[k || (w && 'sp_'+w.key)]; return (o && o.unlock) || 60; }
+function spUnlocked(w, k){ const o = WARDROBE[k || (w && 'sp_'+w.key)]; return o ? (o.unlock ? w.trust>=o.unlock : (w.trust>=60 || has(w,'Devoted'))) : false; }
 function wardrobeAvail(w){
   return Object.entries(WARDROBE).filter(([k,o])=>!o.owner || o.owner===w.key);
 }
@@ -250,6 +289,17 @@ function ensureWorker(w){
   if(w._mr===undefined){ w._mr = 1; if(!has(w,'Modest') && !has(w,'Exhibitionist') && Math.random() < ((PERS[w.personality]||{}).modest||0)) (w.traits = w.traits||[]).push('Modest'); }
   if(has(w,'Modest') && w.modesty===undefined) w.modesty = ri(20,45);
   w.design = w.design || {};
+  if(w.design.gear){
+    w.design.accessories = [w.design.accessories, w.design.gear].filter(Boolean).join(', ');
+    if(!w.design.accState) w.design.accState = defaultAccState(w.design.gear);
+    delete w.design.gear;
+  }
+  if(!w.key && w.design.features){
+    const f = w.design.features.trim();
+    if(ACCESSORIES.includes(f)){ w.design.accessories = [w.design.accessories, f].filter(Boolean).join(', '); w.design.features = ''; }
+    else if(EXPRESSIONS.includes(f)){ w.design.expression = w.design.expression || f; w.design.features = ''; }
+  }
+  if(!w.accState) w.accState = 'auto';
   // wardrobe migration / defaults
   if(!w.owned) w.owned = [];
   if(!w.outfit || (w.outfit!=='custom' && !WARDROBE[w.outfit])){
@@ -295,8 +345,13 @@ function genWorker(opts={}){
   const sub = race==='beastkin' ? weighted(subNames(race), x=>(subData(race,x)||{}).weight ?? 1) : '';
   const w = {
     id:uid(), name:genName(race, sub), race, sub, age:ri(...((subData(race,sub)||{}).age || R.age)), named:false, keep:false, body:rollBody(race), counts:{},
-    design:{build:pick(raceBuilds(race)),hairStyle:pick(HAIR_STYLES),hairColor:pick(HAIR_COLORS),eyes:pick(EYES),
-      skin: raceSkins(race) ? pick(raceSkins(race)) : race==='demon'&&Math.random()<0.4 ? pick(DEMON_SKINS) : pick(SKINS), features:pick(FEATURES)},
+    design:(()=>{ const acc = ACCESSORIES.length && Math.random()<0.55 ? pick(ACCESSORIES) : '', feat = FEATURES.length && Math.random()<0.65 ? pick(FEATURES) : '', expr = EXPRESSIONS.length && Math.random()<0.65 ? pick(EXPRESSIONS) : '';
+      const d = {build:pick(raceBuilds(race)),hairStyle:pick(HAIR_STYLES),hairColor:pick(HAIR_COLORS),eyes:pick(EYES),
+        skin: raceSkins(race) ? pick(raceSkins(race)) : race==='demon'&&Math.random()<0.4 ? pick(DEMON_SKINS) : pick(SKINS)};
+      if(feat) d.features = feat;
+      if(acc){ d.accessories = acc; d.accState = defaultAccState(acc); }
+      if(expr) d.expression = expr;
+      return d; })(),
     personality:pick(PERSONALITIES), backstory:'', traits:[],
     stats:{beauty:clampK(base()+100),charm:base(),charisma:base(),refinement:base(),wits:base(),stamina:base(),strength:base(),agility:base()},
     tech:{service:K(ri(0,30)),dance:K(ri(0,25)),bar:K(ri(0,25)),combat:K(ri(0,20)),manage:K(ri(0,20))}, actSkill:ri(0,25),
@@ -355,7 +410,7 @@ function makeNamed(key, asPartner){
 // (The shared house wardrobe, S.houseWardrobe / S.houseUnder, lives on the save and carries through New Game+ as it is.)
 function stashCloset(w){
   if(!w || !w.key || !NAMED[w.key] || typeof S==='undefined' || !S) return;
-  const D = NAMED[w.key], mine = ['sig_'+w.key, 'sp_'+w.key];
+  const D = NAMED[w.key], mine = Object.keys(WARDROBE).filter(k => WARDROBE[k].owner === w.key);
   S.closets = S.closets || {};
   S.closets[w.key] = {owned:(w.owned||[]).filter(k=>!mine.includes(k) && WARDROBE[k]), ownedUnder:(w.ownedUnder||[]).filter(k=>k!=='plain' && k!==D.under),
     outfit:w.outfit, under:w.under};

@@ -16,7 +16,14 @@
           "dislike": "manual_give",
           "lovers": "missionary",
           "backstory": "A swordswoman of the open plains from the warring continents beyond the southern straits, Lyndis turned down a noble title once and would do it again. She hates being cooped up, which is why she patrols the roof.",
-          "design": {"hairStyle":"very long high ponytail","hairColor":"deep green","eyes":"green","skin":"light","gear":"a slim curved sword at her hip"},
+          "design": {
+            "hairStyle": "very long high ponytail",
+            "hairColor": "deep green",
+            "eyes": "green",
+            "skin": "light",
+            "accessories": "a slim curved sword at her hip",
+            "accState": "dressed"
+          },
           "under": "sports",
           "underColor": "green",
           "stats": {"beauty":70,"charm":60,"charisma":66,"refinement":48,"wits":48,"stamina":65,"strength":50,"agility":75},
@@ -62,7 +69,9 @@
             "hairColor": "mint green",
             "eyes": "pale green",
             "skin": "pale",
-            "features": "an ornate white and gold floral headdress"
+            "accessories": "an ornate white and gold floral headdress",
+            "accState": "always",
+            "expression": "a serene, maternal smile"
           },
           "under": "silk",
           "underColor": "white",
@@ -76,14 +85,16 @@
             "sig_rhea": {
               "label": "Archbishop vestments",
               "style": "Elegant",
-              "prompt": "ornate white and gold archbishop vestments with a long cape and a floral headdress",
+              "prompt": "ornate white and gold archbishop vestments with a long cape",
               "bonus": {"madame":1.3,"noble":1.2}
             },
             "sp_rhea": {
               "label": "Garden dress",
               "style": "Elegant",
-              "prompt": "a simple flowing white dress with fresh flowers in her hair",
-              "bonus": {"courtesan":1.2,"noble":1.15}
+              "prompt": "a simple flowing white garden dress",
+              "bonus": {"courtesan":1.2,"noble":1.15},
+              "accessories": "fresh white flowers braided into her hair",
+              "accState": "always"
             }
           },
           "bonds": {"manuela":{"v":20,"note":"Rhea keeps her employed. Manuela keeps her out of the wine."}},
@@ -104,7 +115,14 @@
           "dislike": "kiss",
           "lovers": "missionary",
           "backstory": "A former opera diva and academy physician from the warring continents beyond the southern straits, Manuela is on the hunt for a husband and has a standing order at the bar. She can still bring a full house to tears with one aria.",
-          "design": {"hairStyle":"shoulder-length and wavy","hairColor":"light brown","eyes":"brown","skin":"fair","features":"a beauty mark beneath her eye"},
+          "design": {
+            "hairStyle": "shoulder-length and wavy",
+            "hairColor": "light brown",
+            "eyes": "brown",
+            "skin": "fair",
+            "features": "a beauty mark beneath her eye",
+            "expression": "a sultry, dramatic smile"
+          },
           "under": "lace",
           "underColor": "black",
           "stats": {"beauty":72,"charm":70,"charisma":85,"refinement":55,"wits":55,"stamina":45,"strength":25,"agility":40},
@@ -152,7 +170,8 @@
             "hairColor": "orange",
             "eyes": "violet",
             "skin": "light",
-            "features": "tribal markings on her cheeks"
+            "features": "tribal markings on her cheeks",
+            "expression": "a fierce, guarded glare"
           },
           "under": "sports",
           "underColor": "black",
@@ -190,7 +209,15 @@
           "dislike": "kiss",
           "lovers": "cowgirl",
           "backstory": "The last of a rabbit shapeshifter people from the warring continents beyond the southern straits, Panne trusts very few humans and says so. The ones she does trust, she would die for.",
-          "design": {"build":"curvy","hairStyle":"long and wild","hairColor":"brown","eyes":"brown","skin":"dark brown","gear":"a fur-trimmed collar"},
+          "design": {
+            "build": "curvy",
+            "hairStyle": "long and wild",
+            "hairColor": "brown",
+            "eyes": "brown",
+            "skin": "dark brown",
+            "accessories": "a fur-trimmed collar",
+            "accState": "under"
+          },
           "under": "plain",
           "underColor": "white",
           "stats": {"beauty":70,"charm":50,"charisma":56,"refinement":40,"wits":44,"stamina":68,"strength":50,"agility":70},
@@ -233,7 +260,8 @@
             "eyes": "red",
             "skin": "pale",
             "features": "pointed ears, small sharp fangs and faint pale scales along her forearms",
-            "gear": "an ornate long blade and a glowing dragonstone amulet"
+            "accessories": "a glowing dragonstone amulet",
+            "accState": "always"
           },
           "under": "silk",
           "underColor": "blue",
@@ -248,7 +276,9 @@
               "label": "Royal armor-dress",
               "style": "Elegant",
               "prompt": "a black and silver armored dress with a high collar and a deep blue sash",
-              "bonus": {"security":1.25,"noble":1.15}
+              "bonus": {"security":1.25,"noble":1.15},
+              "accessories": "an ornate long blade at her hip",
+              "accState": "dressed"
             },
             "sp_corrin": {
               "label": "Court gown",
@@ -284,8 +314,9 @@
             "hairColor": "teal",
             "eyes": "blue",
             "skin": "fair",
-            "features": "a serene, resolute face",
-            "gear": "a slender rapier"
+            "accessories": "a slender rapier at her hip",
+            "accState": "dressed",
+            "expression": "a serene, resolute expression"
           },
           "under": "lace",
           "underColor": "blue",
@@ -331,8 +362,9 @@
             "hairColor": "teal",
             "eyes": "teal",
             "skin": "fair",
-            "features": "a calm, nearly expressionless face",
-            "gear": "an ornate chained sword"
+            "accessories": "an ornate chained sword at her hip",
+            "accState": "dressed",
+            "expression": "a calm, nearly expressionless gaze"
           },
           "under": "plain",
           "underColor": "black",
@@ -382,8 +414,9 @@
             "hairColor": "crimson red",
             "eyes": "red",
             "skin": "fair",
-            "features": "a soft, sincere smile",
-            "gear": "a silver-tipped staff"
+            "accessories": "a golden circlet and a silver-tipped staff",
+            "accState": "dressed",
+            "expression": "a soft, sincere smile"
           },
           "under": "lace",
           "underColor": "white",

@@ -21,8 +21,9 @@
             "hairColor": "turquoise",
             "eyes": "blue",
             "skin": "fair",
-            "features": "a bright, confident smile",
-            "gear": "a pouch of tiny inventor's gadgets at her belt"
+            "accessories": "a pouch of tiny inventor's gadgets at her belt",
+            "accState": "dressed",
+            "expression": "a bright, confident smile"
           },
           "under": "lace",
           "underColor": "pink",
@@ -76,8 +77,9 @@
             "hairColor": "black",
             "eyes": "black",
             "skin": "fair",
-            "features": "a stern but caring face",
-            "gear": "a long polearm slung across her back"
+            "accessories": "a long polearm slung across her back",
+            "accState": "dressed",
+            "expression": "a stern but caring expression"
           },
           "under": "plain",
           "underColor": "white",
@@ -125,11 +127,12 @@
           "backstory": "A brilliant researcher who turned herself into something more than human, Android 21 came to Hollowmere looking for ingredients and new flavors to study. She can name every spice in a stew from the steam alone, and she has never once left a plate unfinished. She is polite and sharp, with an appetite she tries, and often fails, to keep under control.",
           "design": {
             "hairStyle": "very long, wavy and loose",
-            "hairColor": "brown",
-            "eyes": "brown",
+            "hairColor": "chestnut brown",
+            "eyes": "blue",
             "skin": "fair",
-            "features": "a bright, hungry smile",
-            "gear": "round-framed glasses"
+            "accessories": "round-framed glasses and gold hoop earrings",
+            "accState": "always",
+            "expression": "a gentle, intellectual smile"
           },
           "under": "silk",
           "underColor": "black",
@@ -143,14 +146,29 @@
             "sig_android21": {
               "label": "Scientist's coat",
               "style": "Elegant",
-              "prompt": "a white lab coat over a black halter top, a pencil skirt and dark stockings",
+              "prompt": "a white lab coat over a red-and-blue plaid halter top, a matching miniskirt and dark thigh-high stockings",
               "bonus": {"bartender":1.25,"merchant":1.15}
             },
             "sp_android21": {
+              "label": "Majin form",
+              "style": "Revealing",
+              "prompt": "a black-and-white spiral-patterned tube top and baggy white harem pants with a gold belt",
+              "bonus": {"courtesan":1.25,"propose":1.2},
+              "hairColor": "pure white",
+              "eyes": "crimson with black sclera",
+              "skin": "bubblegum pink",
+              "features": "pointed ears and a long pink Majin tail",
+              "accessories": "gold hoop earrings and heavy gold arm cuffs",
+              "accState": "always",
+              "expression": "a bright, hungry smile",
+              "favColor": "pink",
+              "stats": {"beauty":5,"strength":5,"charisma":4}
+            },
+            "sp_android21_gown": {
               "label": "Evening dress",
-              "style": "Exotic",
+              "style": "Elegant",
               "prompt": "a fitted dark magenta satin cocktail dress with a low back and long black gloves",
-              "bonus": {"courtesan":1.15,"noble":1.15}
+              "bonus": {"noble":1.2,"courtesan":1.15}
             }
           },
           "bonds": {"bulma":{"v":25,"note":"Two brilliant minds who trade notes and one-up each other."}},
