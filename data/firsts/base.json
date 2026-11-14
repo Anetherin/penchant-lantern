@@ -47,8 +47,19 @@
         "{name} wanders in while you're bathing, sets a towel down out of reach, and leans over the edge to chat with her breasts practically in your face like it's the most natural thing in the world. For the two of you, it is."
       ],
       "choices": [
-        {"label":"Scoot over","t":2,"m":8,"l":2,"res":"There isn't really room for two, which means her bare thighs end up straddling yours. You make it work."},
-        {"label":"\"Some privacy?\"","t":1,"m":2,"res":"{N} laughs, presses a wet kiss to your forehead, and leaves you alone and half-hard in the tub."}
+        {
+          "label": "Scoot over",
+          "t": 2,
+          "m": 8,
+          "l": 2,
+          "res": "There isn't really room for two, which means her bare thighs end up straddling yours. You make it work."
+        },
+        {
+          "label": "\"Some privacy?\"",
+          "t": 1,
+          "m": 2,
+          "res": "{N} laughs, presses a wet kiss to your forehead, and leaves you alone and half-hard in the tub."
+        }
       ]
     }
   },
@@ -116,7 +127,8 @@
         "go": "\"None.\"",
         "goRes": "\"Good,\" she purrs, grabbing your collar and kissing you breathless right against the wall.",
         "wait": "\"One objection...\"",
-        "waitRes": "\"Overruled. Later.\" She winks, brushes her hip against yours, and saunters off."
+        "waitRes": "\"Overruled. Later.\" She winks, brushes her hip against yours, and saunters off.",
+        "pers": ["Bold and flirtatious","Hot-blooded and competitive"]
       },
       {
         "title": "{name}: Very Brave",
@@ -129,7 +141,8 @@
         "go": "Kiss her gently",
         "goRes": "It's barely a brush of lips at first, until she lets out a shaky breath and leans right into you.",
         "wait": "Squeeze her hand instead",
-        "waitRes": "She opens her eyes, mortified, then visibly relieved. \"...Thank you. Next time. Maybe.\""
+        "waitRes": "She opens her eyes, mortified, then visibly relieved. \"...Thank you. Next time. Maybe.\"",
+        "pers": ["Shy but earnest","Bookish and curious"]
       },
       {
         "title": "{name}: A Gift for You",
@@ -138,7 +151,8 @@
         "go": "Forget the gift",
         "goRes": "The gift is a bookmark. You don't find out until much later, after she's thoroughly ruined your concentration.",
         "wait": "\"I should open this.\"",
-        "waitRes": "\"Open it, then.\" She laughs softly and leaves you to it."
+        "waitRes": "\"Open it, then.\" She laughs softly and leaves you to it.",
+        "pers": ["Cheerful and teasing","Warm and motherly"]
       },
       {
         "title": "{name}: Elegant Timing",
@@ -151,7 +165,8 @@
         "go": "Kiss her",
         "goRes": "It starts out exactly as composed and lovely as she planned—and turns hungry fast.",
         "wait": "\"Perhaps not yet.\"",
-        "waitRes": "\"Of course.\" She inclines her head, entirely unruffled. \"There will be other sunsets.\""
+        "waitRes": "\"Of course.\" She inclines her head, entirely unruffled. \"There will be other sunsets.\"",
+        "pers": ["Calm and elegant","Mysterious and aloof","Proud and sharp-tongued"]
       },
       {
         "title": "{name}: Off the Clock",
@@ -751,8 +766,7 @@
         "go": "\"This one's good\"",
         "goRes": "Within moments you're both bare on the sheets, making up for lost time.",
         "wait": "\"Slow down, please\"",
-        "waitRes": "\"Slower,\" she repeats, trying and failing as she kisses you breathless.",
-        "pers": ["Bold and flirtatious","Hot-blooded and competitive"]
+        "waitRes": "\"Slower,\" she repeats, trying and failing as she kisses you breathless."
       }
     ]
   }
