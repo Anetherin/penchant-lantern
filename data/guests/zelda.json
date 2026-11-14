@@ -22,8 +22,9 @@
             "hairColor": "light brown",
             "eyes": "deep blue",
             "skin": "fair",
-            "features": "a slim golden circlet",
-            "gear": "long white gloves with a triangle crest"
+            "accessories": "a slim golden circlet",
+            "accState": "always",
+            "expression": "a regal, composed smile"
           },
           "under": "silk",
           "underColor": "white",
@@ -37,14 +38,28 @@
             "sig_zelda": {
               "label": "Royal gown",
               "style": "Elegant",
-              "prompt": "a regal white and lavender gown with a royal-crest tabard, ornate gold shoulder pieces and long white gloves",
-              "bonus": {"courtesan":1.25,"noble":1.25}
+              "prompt": "a regal white and lavender gown with a royal-crest tabard and ornate gold shoulder pieces",
+              "bonus": {"courtesan":1.25,"noble":1.25},
+              "accessories": "long white gloves with a golden triangle crest",
+              "accState": "under"
             },
             "sp_zelda": {
               "label": "Twilight cloak",
               "style": "Elegant",
               "prompt": "a black hooded cloak over a fitted white and gold gown",
               "bonus": {"courtesan":1.15,"noble":1.15}
+            },
+            "sp_zelda_sheik": {
+              "label": "Sheikah disguise",
+              "style": "Sporty",
+              "unlock": 70,
+              "hairStyle": "pinned up under a white headwrap with a long braided tail",
+              "eyes": "crimson",
+              "prompt": "a form-fitting dark blue Sheikah bodysuit with white cloth wraps, shin guards and a red sash",
+              "accessories": "a white cloth half-mask and a small golden harp",
+              "accState": "dressed",
+              "bonus": {"security":1.2,"dancer":1.15},
+              "stats": {"agility":5,"wits":3}
             }
           },
           "bonds": {"midna":{"v":40,"note":"An unlikely alliance from the twilight days."},"nabooru":{"v":25,"note":"Allies from the old kingdom."}},
@@ -72,7 +87,8 @@
             "hairColor": "flame orange",
             "eyes": "red with golden sclera",
             "skin": "pale blue-grey with glowing teal markings",
-            "features": "a regal, mischievous smile"
+            "features": "glowing teal twilight markings across her skin",
+            "expression": "a regal, mischievous smile"
           },
           "under": "sheer",
           "underColor": "black",
@@ -119,7 +135,10 @@
             "hairColor": "bright red",
             "eyes": "blue",
             "skin": "fair with light freckles",
-            "gear": "a horse-head brooch at her collar"
+            "features": "light freckles across her nose",
+            "accessories": "a horse-head brooch at her collar",
+            "accState": "dressed",
+            "expression": "a warm, country smile"
           },
           "under": "plain",
           "underColor": "white",
@@ -139,8 +158,10 @@
             "sp_malon": {
               "label": "Festival dress",
               "style": "Cute",
-              "prompt": "a red and cream ruffled festival dress with flowers in her hair",
-              "bonus": {"dancer":1.15,"merchant":1.15}
+              "prompt": "a red and cream ruffled festival dress",
+              "bonus": {"dancer":1.15,"merchant":1.15},
+              "accessories": "fresh wildflowers in her hair",
+              "accState": "always"
             }
           },
           "jobs": {"likes":["bartender","host","courtesan"],"dislikes":["bath"]},
@@ -166,7 +187,8 @@
             "hairColor": "magenta",
             "eyes": "golden",
             "skin": "warm amber",
-            "features": "green ivy-like markings across her body and tiny gossamer wings"
+            "features": "green ivy-like markings across her body and tiny gossamer wings",
+            "expression": "a lavish, indulgent smile"
           },
           "under": "none",
           "underColor": "none",
@@ -209,7 +231,9 @@
             "hairColor": "deep red",
             "eyes": "gold",
             "skin": "dark tan",
-            "features": "a jeweled forehead piece and heavy gold hoop earrings"
+            "accessories": "a jeweled forehead piece and heavy gold hoop earrings",
+            "accState": "always",
+            "expression": "a bold, roguish grin"
           },
           "under": "silk",
           "underColor": "white",

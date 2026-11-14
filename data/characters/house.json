@@ -13,7 +13,14 @@
     "dislike": null,
     "lovers": "missionary",
     "backstory": "Mira kept the Gilded Lantern running for the old owner until he vanished. She isn't sure what to make of the skinny stranger with the deed, but she's staying. For now. She knows every regular by name and every creaky floorboard by sound, and she has quietly started mothering the man who inherited it all.",
-    "design": {"hairStyle":"long wavy","hairColor":"auburn","eyes":"warm brown","skin":"fair","features":"a beauty mark beside her lips"},
+    "design": {
+      "hairStyle": "long wavy",
+      "hairColor": "auburn",
+      "eyes": "warm brown",
+      "skin": "fair",
+      "features": "a beauty mark beside her lips",
+      "expression": "a warm, welcoming smile"
+    },
     "under": "lace",
     "underColor": "burgundy",
     "stats": {"beauty":62,"charm":66,"charisma":66,"refinement":62,"wits":67,"stamina":45,"strength":25,"agility":35},
@@ -26,14 +33,18 @@
       "sig_mira": {
         "label": "Hostess gown",
         "style": "Elegant",
-        "prompt": "an elegant burgundy dress with a black lace shawl",
-        "bonus": {"madame":1.3,"courtesan":1.1}
+        "prompt": "an elegant burgundy hostess dress",
+        "bonus": {"madame":1.3,"courtesan":1.1},
+        "accessories": "a black lace shawl",
+        "accState": "dressed"
       },
       "sp_mira": {
         "label": "Midnight silk gown",
         "style": "Elegant",
-        "prompt": "a midnight-blue silk gown with a plunging back and sapphire jewelry",
-        "bonus": {"noble":1.3,"courtesan":1.15}
+        "prompt": "a midnight-blue silk gown with a plunging back",
+        "bonus": {"noble":1.3,"courtesan":1.15},
+        "accessories": "sapphire drop earrings and a matching necklace",
+        "accState": "always"
       }
     },
     "bonds": {"bettina":{"v":35,"note":"Two old hands at running a front desk. They trade gossip by letter."}},
@@ -61,7 +72,7 @@
       "hairColor": "dark brown",
       "eyes": "grey",
       "skin": "pale",
-      "features": "a stern mouth that rarely, but devastatingly, smiles"
+      "expression": "a stern mouth that rarely, but devastatingly, smiles"
     },
     "under": "silk",
     "underColor": "black",
@@ -75,14 +86,17 @@
       "sig_cecile": {
         "label": "Head maid uniform",
         "style": "Elegant",
-        "prompt": "a long black head-maid dress with crisp white apron and a ring of brass keys",
-        "bonus": {"maid":1.4,"promoter":1.15}
+        "prompt": "a long black head-maid dress with a crisp white apron",
+        "bonus": {"maid":1.4,"promoter":1.15},
+        "accessories": "a ring of brass keys at her waist",
+        "accState": "dressed"
       },
       "sp_cecile": {
         "label": "Off-duty corset dress",
         "style": "Elegant",
         "prompt": "a dark green corset dress with lace sleeves",
-        "bonus": {"noble":1.2,"courtesan":1.15}
+        "bonus": {"noble":1.2,"courtesan":1.15},
+        "hairStyle": "long dark brown hair let down from its chignon"
       }
     },
     "bonds": {"seraphine":{"v":55,"note":"Ran the Rosenhal household for twelve years; Seraphine trusts her more than family."}},
@@ -113,7 +127,9 @@
       "hairColor": "black",
       "eyes": "dark brown",
       "skin": "warm fair",
-      "features": "a camellia hair ornament"
+      "accessories": "a red camellia hair ornament",
+      "accState": "always",
+      "expression": "a calm, unhurried smile"
     },
     "under": "plain",
     "underColor": "white",
@@ -160,7 +176,8 @@
       "hairColor": "silver",
       "eyes": "pale violet",
       "skin": "moon-pale",
-      "features": "a faint glow and drifting hair as if underwater"
+      "features": "a faint spectral glow and hair that drifts as if underwater",
+      "expression": "a dreamy, wistful expression"
     },
     "under": "silk",
     "underColor": "lavender",
@@ -174,8 +191,10 @@
       "sig_vesper": {
         "label": "Mourning gown",
         "style": "Elegant",
-        "prompt": "an antique black lace mourning gown with a sheer veil",
-        "bonus": {"noble":1.15,"dancer":1.15}
+        "prompt": "an antique black lace mourning gown",
+        "bonus": {"noble":1.15,"dancer":1.15},
+        "accessories": "a sheer black mourning veil",
+        "accState": "under"
       },
       "sp_vesper": {
         "label": "Spectral silks",
@@ -212,7 +231,10 @@
       "hairColor": "red",
       "eyes": "grey",
       "skin": "ruddy fair",
-      "features": "brass rings in her braids and freckled forearms"
+      "features": "freckled forearms",
+      "accessories": "brass rings braided into her hair",
+      "accState": "always",
+      "expression": "a hearty, boisterous grin"
     },
     "under": "plain",
     "underColor": "ivory",
@@ -264,7 +286,9 @@
       "hairColor": "silver-white",
       "eyes": "ice-blue",
       "skin": "porcelain",
-      "features": "silver anklets and a crescent-moon tattoo on her hip"
+      "features": "a crescent-moon tattoo on her hip",
+      "accessories": "delicate silver anklets",
+      "accState": "always"
     },
     "under": "sheer",
     "underColor": "silver",
@@ -310,7 +334,8 @@
       "hairColor": "black with crimson tips",
       "eyes": "gold with slit pupils",
       "skin": "lavender-tinted",
-      "features": "long curved horns and a heart-tipped tail"
+      "features": "long curved horns and a heart-tipped tail",
+      "expression": "a sultry, knowing smirk"
     },
     "under": "corset",
     "underColor": "black",
@@ -362,7 +387,10 @@
       "hairColor": "honey brown",
       "eyes": "hazel",
       "skin": "rosy fair",
-      "features": "laugh lines and a pencil tucked behind one ear"
+      "features": "warm laugh lines around her eyes",
+      "accessories": "a pencil tucked behind one ear",
+      "accState": "always",
+      "expression": "a warm, motherly smile"
     },
     "under": "plain",
     "underColor": "white",
@@ -379,7 +407,14 @@
         "prompt": "a sturdy blue dress with a flour-dusted white apron",
         "bonus": {"promoter":1.3,"merchant":1.1}
       },
-      "sp_bettina": {"label":"Sunday best","style":"Elegant","prompt":"a fitted plum dress with a cameo brooch","bonus":{"courtesan":1.2,"merchant":1.2}}
+      "sp_bettina": {
+        "label": "Sunday best",
+        "style": "Elegant",
+        "prompt": "a fitted plum Sunday dress",
+        "bonus": {"courtesan":1.2,"merchant":1.2},
+        "accessories": "a vintage cameo brooch",
+        "accState": "dressed"
+      }
     },
     "jobs": {"likes":["promoter","madame"],"dislikes":["dancer"]},
     "body": {"bust":"large","height":"average","figure":"soft"},
@@ -411,7 +446,9 @@
       "eyes": "amber with slit pupils",
       "skin": "sun-bronzed",
       "features": "small swept-back horns and a coppery scaled tail",
-      "gear": "a captain's tricorn hat"
+      "accessories": "a weathered captain's tricorn hat",
+      "accState": "dressed",
+      "expression": "a bold, wind-swept grin"
     },
     "under": "sports",
     "underColor": "black",
@@ -459,7 +496,10 @@
       "hairColor": "sea-green",
       "eyes": "pale silver",
       "skin": "fair with a faint pearlescent sheen",
-      "features": "long pointed ears hung with pearl earrings"
+      "features": "a faint pearlescent sheen to her skin",
+      "accessories": "pearl drop earrings",
+      "accState": "always",
+      "expression": "a serene, enigmatic smile"
     },
     "under": "silk",
     "underColor": "white",

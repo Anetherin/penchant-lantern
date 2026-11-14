@@ -21,10 +21,12 @@
           "design": {
             "build": "graceful",
             "hairStyle": "very long, high twintails",
-            "hairColor": "white with gold ornaments",
+            "hairColor": "white",
             "eyes": "lavender-grey",
             "skin": "fair",
-            "features": "a gold dragon-horn hair ornament"
+            "accessories": "a gold dragon-horn hair ornament",
+            "accState": "always",
+            "expression": "a serene, dignified expression"
           },
           "under": "silk",
           "underColor": "white",
@@ -76,7 +78,9 @@
             "hairColor": "silver",
             "eyes": "light teal",
             "skin": "fair",
-            "features": "thin magenta headband and large ribbons"
+            "accessories": "a thin magenta headband and hair ribbons",
+            "accState": "always",
+            "expression": "a poised, aristocratic smile"
           },
           "under": "lace",
           "underColor": "black",
@@ -128,7 +132,7 @@
             "hairColor": "pale silver-white",
             "eyes": "glowing red-yellow",
             "skin": "fair",
-            "features": "heavy red eyeshadow, ornate red tattoos on her hands and thighs"
+            "features": "heavy red eyeshadow and ornate red tattoos on her hands and thighs"
           },
           "under": "silk",
           "underColor": "black",
@@ -178,7 +182,8 @@
             "hairColor": "light blonde",
             "eyes": "soft sea-blue",
             "skin": "fair",
-            "features": "pointy elf ears and a pale blue laurel halo"
+            "features": "pointed elf ears and a pale blue laurel halo",
+            "expression": "a gentle, ethereal smile"
           },
           "under": "silk",
           "underColor": "white",
@@ -198,8 +203,10 @@
             "sp_cartethyia": {
               "label": "Moonwater veils",
               "style": "Exotic",
-              "prompt": "layers of translucent pale-blue veils over a fitted white dress, tiny pearls in her hair",
-              "bonus": {"noble":1.2,"courtesan":1.15}
+              "prompt": "layers of translucent pale-blue veils over a fitted white dress",
+              "bonus": {"noble":1.2,"courtesan":1.15},
+              "accessories": "tiny pearls woven into her hair",
+              "accState": "always"
             }
           },
           "bonds": {"fleurdelys":{"v":15,"note":"Two names, one history, and very little to say to each other so far."}},
@@ -229,7 +236,8 @@
             "hairColor": "blonde with a subtle soft-blue gradient",
             "eyes": "cold blue",
             "skin": "fair",
-            "features": "a long golden horn and a crystal-blue crown of thorns"
+            "features": "a long golden horn and a crystal-blue crown of thorns",
+            "expression": "a solemn, imperious gaze"
           },
           "under": "lace",
           "underColor": "black",
@@ -280,7 +288,9 @@
             "hairColor": "very pale blue",
             "eyes": "bright yellow-gold",
             "skin": "pale",
-            "features": "large black headphones with gold trim"
+            "accessories": "large black headphones with gold trim",
+            "accState": "always",
+            "expression": "a mischievous, knowing grin"
           },
           "under": "lace",
           "underColor": "white",
@@ -327,11 +337,12 @@
           "lovers": "missionary",
           "backstory": "Born in Huating, Mengzhou, in the sea-trade cities of the far east coast, Suoming founded the Ten Seals Covenant as its Seal Master to free her homeland from the Evil Miasma. A seal-binding keeps her from aging, which is how she is two centuries old and still looks about twenty-five. Later, by the Sentinel's decree, she served as Intendant of the Ministry of Sentinel Affairs, watching over all of Mengzhou. Now visiting the west, she inspects Sam's house like a ministry audit, clipboard-faced and unimpressed.",
           "design": {
-            "hairStyle": "very very long, styled in twin bun pigtails with large gold bells",
+            "hairStyle": "very long twin bun pigtails",
             "hairColor": "red",
             "eyes": "red",
             "skin": "pale",
-            "features": "large gold bells in her hair"
+            "accessories": "large gold bells in her hair",
+            "accState": "always"
           },
           "under": "silk",
           "underColor": "black",

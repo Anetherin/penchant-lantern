@@ -21,7 +21,7 @@
             "hairColor": "dark indigo",
             "eyes": "pale lavender, pupil-less",
             "skin": "porcelain",
-            "features": "a gentle, soft-spoken face"
+            "expression": "a gentle, shy smile"
           },
           "under": "lace",
           "underColor": "lavender",
@@ -76,7 +76,7 @@
             "hairColor": "pastel pink",
             "eyes": "jade green",
             "skin": "fair",
-            "features": "a small diamond-shaped mark on her forehead"
+            "features": "a small violet diamond-shaped mark on her forehead"
           },
           "under": "sports",
           "underColor": "red",
@@ -128,7 +128,8 @@
             "hairColor": "platinum blonde",
             "eyes": "pale blue",
             "skin": "fair",
-            "features": "a perfect manicure"
+            "features": "a perfect glossy manicure",
+            "expression": "a confident, teasing smile"
           },
           "under": "silk",
           "underColor": "purple",
@@ -148,8 +149,10 @@
             "sp_ino": {
               "label": "Garden gala gown",
               "style": "Elegant",
-              "prompt": "a lilac gown with a high slit and fresh flowers woven into her hair",
-              "bonus": {"noble":1.25,"courtesan":1.15}
+              "prompt": "a lilac gala gown with a high slit",
+              "bonus": {"noble":1.25,"courtesan":1.15},
+              "accessories": "fresh flowers woven into her hair",
+              "accState": "always"
             }
           },
           "bonds": {"sakura":{"v":45,"note":"Best friends and lifelong rivals, in that order."},"hinata":{"v":35,"kind":"comrades","note":"Leaf peers."}},
@@ -176,7 +179,7 @@
             "hairColor": "dark brown",
             "eyes": "warm brown",
             "skin": "tan",
-            "features": "a soot smudge she never quite gets off her cheek"
+            "features": "a faint soot smudge on her cheek"
           },
           "under": "sports",
           "underColor": "green",
@@ -230,7 +233,7 @@
             "hairColor": "sandy blonde",
             "eyes": "dark green",
             "skin": "sun-kissed",
-            "features": "a no-nonsense scowl that becomes a grin when she wins"
+            "expression": "a no-nonsense smirk"
           },
           "under": "plain",
           "underColor": "black",
@@ -244,14 +247,18 @@
             "sig_temari": {
               "label": "Envoy's dress",
               "style": "Sporty",
-              "prompt": "a short dark lilac dress with a red sash and fishnet sleeves, a giant folded fan on her back",
-              "bonus": {"security":1.3,"merchant":1.1}
+              "prompt": "a short dark lilac dress with a red sash and fishnet sleeves",
+              "bonus": {"security":1.3,"merchant":1.1},
+              "accessories": "a giant folded iron war fan on her back",
+              "accState": "dressed"
             },
             "sp_temari": {
               "label": "Desert silks",
               "style": "Exotic",
-              "prompt": "flowing sand-colored desert silks with a bronze waist chain",
-              "bonus": {"noble":1.2,"courtesan":1.15}
+              "prompt": "flowing sand-colored desert silks",
+              "bonus": {"noble":1.2,"courtesan":1.15},
+              "accessories": "a bronze waist chain",
+              "accState": "always"
             }
           },
           "bonds": {
@@ -285,7 +292,8 @@
             "hairColor": "golden blonde",
             "eyes": "honey brown",
             "skin": "fair",
-            "features": "a violet diamond mark on her forehead"
+            "features": "a violet diamond mark on her forehead",
+            "expression": "a bold, commanding smirk"
           },
           "under": "silk",
           "underColor": "black",
@@ -305,8 +313,10 @@
             "sp_tsunade": {
               "label": "High-roller gown",
               "style": "Elegant",
-              "prompt": "a backless emerald gown with gold jewelry and a pearl necklace",
-              "bonus": {"noble":1.3,"courtesan":1.15}
+              "prompt": "a backless emerald high-roller gown",
+              "bonus": {"noble":1.3,"courtesan":1.15},
+              "accessories": "gold drop earrings and a pearl necklace",
+              "accState": "always"
             }
           },
           "bonds": {
@@ -331,7 +341,14 @@
           "dislike": "doggy",
           "lovers": "kiss",
           "backstory": "Tsunade's assistant from the Leaf, a shinobi village across the eastern sea, still chasing down her mentor's debts and her mentor's tab. Shizune keeps impeccable books and a pet piglet named Tonton, who has opinions about clients.",
-          "design": {"hairStyle":"short straight bob","hairColor":"black","eyes":"dark","skin":"fair","gear":"a small pig that follows her everywhere"},
+          "design": {
+            "hairStyle": "short straight bob",
+            "hairColor": "black",
+            "eyes": "dark",
+            "skin": "fair",
+            "accessories": "a small pink pig with a pearl necklace that follows her everywhere",
+            "accState": "dressed"
+          },
           "under": "plain",
           "underColor": "navy",
           "stats": {"beauty":58,"charm":55,"charisma":60,"refinement":60,"wits":60,"stamina":50,"strength":30,"agility":45},
@@ -425,7 +442,8 @@
             "hairColor": "dark violet",
             "eyes": "light brown, slit-pupiled",
             "skin": "fair",
-            "features": "a curse-mark tattoo on her neck and small snake-scale patches on her shoulders"
+            "features": "a curse-mark tattoo on her neck and small snake-scale patches on her shoulders",
+            "expression": "a wild, teasing grin"
           },
           "under": "sheer",
           "underColor": "black",
@@ -442,7 +460,14 @@
               "prompt": "a tan trench coat over a fishnet bodysuit and a short orange skirt",
               "bonus": {"courtesan":1.25,"adventurer":1.2}
             },
-            "sp_anko": {"label":"Snake charmer silks","style":"Exotic","prompt":"violet silk wraps with gold snake armlets","bonus":{"dancer":1.2,"commoner":1.15}}
+            "sp_anko": {
+              "label": "Snake charmer silks",
+              "style": "Exotic",
+              "prompt": "violet snake-charmer silk wraps",
+              "bonus": {"dancer":1.2,"commoner":1.15},
+              "accessories": "gold coiled-snake armlets",
+              "accState": "always"
+            }
           },
           "bonds": {"kurenai":{"v":55,"note":"Drinking buddies for twenty years."}},
           "jobs": {"likes":["courtesan","bartender"],"dislikes":["promoter","maid"]},
@@ -469,9 +494,11 @@
           "design": {
             "hairStyle": "long and messy on one side, short and neat on the other",
             "hairColor": "vivid red",
-            "eyes": "red, behind black-rimmed glasses",
+            "eyes": "red",
             "skin": "fair",
-            "features": "black-rimmed glasses"
+            "features": "faint bite-mark scars on her collarbone and forearms",
+            "accessories": "black-rimmed glasses",
+            "accState": "always"
           },
           "under": "lace",
           "underColor": "black",
@@ -518,7 +545,10 @@
             "hairColor": "auburn",
             "eyes": "green",
             "skin": "fair",
-            "features": "a mesh choker and dark blue lipstick"
+            "features": "dark blue lipstick",
+            "accessories": "a dark mesh choker",
+            "accState": "always",
+            "expression": "a sultry, dangerous smile"
           },
           "under": "silk",
           "underColor": "blue",
@@ -560,11 +590,13 @@
           "lovers": "missionary",
           "backstory": "An angel of paper and rain, Konan once led a band of rebels who called themselves angels, and found out later that the real thing is more complicated. Now she folds paper flowers between dances and drifts around the house in quiet, rustling silence.",
           "design": {
-            "hairStyle": "short with a white paper rose pinned in it",
+            "hairStyle": "short straight",
             "hairColor": "blue-violet",
             "eyes": "amber with violet eye shadow",
             "skin": "pale",
-            "features": "a stud beneath her lower lip, paper-white angel wings and paper butterflies that drift around her"
+            "features": "a stud piercing beneath her lower lip and paper-white angel wings",
+            "accessories": "a white paper rose pinned in her hair",
+            "accState": "always"
           },
           "under": "silk",
           "underColor": "white",

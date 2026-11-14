@@ -4,9 +4,9 @@
    ===================================================================== */
 const NPCS = {
   npc_marguerite:{id:'npc_marguerite', name:'Marguerite Vane', race:'human', sub:'', age:38,
-    design:{build:'tall and lean',hairStyle:'severe bun',hairColor:'black',eyes:'steel-grey',skin:'pale',features:'a monocle and thin red lips'}, outfit:'custom', customOutfit:'a tailored black coat with silver buttons', under:'plain', imgVar:{}, seed:4417021, lewd:0, trust:0, traits:[]},
+    design:{build:'tall and lean',hairStyle:'severe bun',hairColor:'black',eyes:'steel-grey',skin:'pale',features:'thin red lips',accessories:'a silver monocle',expression:'a cool, appraising gaze'}, outfit:'custom', customOutfit:'a tailored black coat with silver buttons', under:'plain', imgVar:{}, seed:4417021, lewd:0, trust:0, traits:[]},
   npc_isolde:{id:'npc_isolde', name:'Lady Isolde Thorne', race:'demon', sub:'', age:260,
-    design:{build:'statuesque',hairStyle:'long curly',hairColor:'crimson',eyes:'violet',skin:'ash-grey',features:'gold cuffs on her horns'}, outfit:'custom', customOutfit:'a black and red velvet gown', under:'plain', imgVar:{}, seed:8812230, lewd:0, trust:0, traits:[]}
+    design:{build:'statuesque',hairStyle:'long curly',hairColor:'crimson',eyes:'violet',skin:'ash-grey',accessories:'gold cuffs on her horns',expression:'an aristocratic, haughty smile'}, outfit:'custom', customOutfit:'a black and red velvet gown', under:'plain', imgVar:{}, seed:8812230, lewd:0, trust:0, traits:[]}
 };
 Object.assign(NPCS, {
   npc_silas:{id:'npc_silas', male:true, name:'Silas Grieve', seed:5512, look:'a broad-shouldered man in his forties with a scarred jaw, slicked-back black hair, an expensive dark coat and a menacing smile'},
@@ -23,7 +23,7 @@ const houseOf = w => (S && (H(w.house) || S.houses[0])) || null;
 function makeHouse(id){ const D = HOUSES[id]; return {id, name:D.name, rooms:D.rooms, quarters:D.quarters, beds:D.beds, tier:D.tier, up:clone(D.up), tidy:BAL.tidy.start, price:1, rep:D.rep, since:S?S.week:1, story:{beat:0,wk:0}, bonus:{}, spent:0, decor:0, drinks:0, teachSkill:null, wsDisc:0, incense:'calm'}; }
 function newGame(cfg){
   const HD = HOUSES[cfg.house];
-  S = { v:31, samHome:cfg.house, samUps:{}, starters:[cfg.house], houseWardrobe:[], houseUnder:[], closets:{}, week:1, gold:600, rep:HD.rep, ap:3, cur:cfg.house, home:cfg.house, cycle:1, boons:[], past:cfg.past, pasts:[cfg.past], partner:cfg.partner, partners:[cfg.partner],
+  S = { v:32, samHome:cfg.house, samUps:{}, starters:[cfg.house], houseWardrobe:[], houseUnder:[], closets:{}, week:1, gold:600, rep:HD.rep, ap:3, cur:cfg.house, home:cfg.house, cycle:1, boons:[], past:cfg.past, pasts:[cfg.past], partner:cfg.partner, partners:[cfg.partner],
     houses:[makeHouse(cfg.house)],
     sam:{energy:100, ...BAL.sam.base, appraisal:1, appXP:0, first:true, lvl:1, xp:0},
     samWeek:{security:0, books:false, income:0, acts:[]},
@@ -148,7 +148,14 @@ function migrate(s){
   }
   s.closets = s.closets || {};
   if(ov < 30){ s.goddess = s.goddess || {met:(s.cycle||1) > 1}; }   // the goddess (goddess.js): an old NG+ save has met her already
-  s.v = 31; s.samUps = s.samUps || {}; s.houseWardrobe = s.houseWardrobe || []; s.houseUnder = s.houseUnder || []; s.home = s.home || (s.houses[0]||{}).id; s.samHome = s.samHome || s.home || (s.houses[0]||{}).id; s.cycle = s.cycle || 1; s.boons = s.boons || []; s.partners = s.partners || (s.partner ? [s.partner] : []);
+  if(ov < 32){   // design.gear -> design.accessories; w.accState; generic features split into features / accessories / expression
+    (s.workers||[]).concat(s.candidates||[], s.alumni||[]).forEach(w=>{
+      if(!w || !w.design) return;
+      if(w.design.gear){ w.design.accessories = [w.design.accessories, w.design.gear].filter(Boolean).join(', '); delete w.design.gear; }
+      if(!w.accState) w.accState = 'auto';
+    });
+  }
+  s.v = 32; s.samUps = s.samUps || {}; s.houseWardrobe = s.houseWardrobe || []; s.houseUnder = s.houseUnder || []; s.home = s.home || (s.houses[0]||{}).id; s.samHome = s.samHome || s.home || (s.houses[0]||{}).id; s.cycle = s.cycle || 1; s.boons = s.boons || []; s.partners = s.partners || (s.partner ? [s.partner] : []);
   s.regulars = s.regulars || []; s.bonds = s.bonds || {}; s.flags = Object.assign({partnerCD:3}, s.flags||{});
   s.sam.lvl = s.sam.lvl || 1; s.sam.xp = s.sam.xp || 0;
   s.houses.forEach(h=>{ if(h.tidy===undefined) h.tidy = BAL.tidy.start; h.since = h.since || 1; h.story = h.story || {beat:0,wk:0}; h.bonus = h.bonus || {}; if(h.spent===undefined) h.spent = 0;
@@ -220,7 +227,10 @@ function checkUnlocks(silent, sink){
       if(canSam(w,a.id) && !w.seen['s_'+a.id]){ w.seen['s_'+a.id]=true; if(!silent) msgs.push(`${w.name} is now open to ${a.label} with Sam.`); }
     });
     CLOTH.forEach(c=>{ if(c.lv && clothOK(w,c.id,false) && !w.seen['w_'+c.id]){ w.seen['w_'+c.id]=true; if(!silent) msgs.push(`${w.name} is now comfortable ${c.id==='under'?'in her undergarments':c.label.toLowerCase()} for clients.`); } });
-    if(w.key && WARDROBE['sp_'+w.key] && spUnlocked(w) && !w.seen.sp){ w.seen.sp=true; if(!w.owned.includes('sp_'+w.key)) w.owned.push('sp_'+w.key); if(!silent) msgs.push(`${w.name} unlocked her special outfit: ${WARDROBE['sp_'+w.key].label}.`); }
+    spOutfitsOf(w).forEach(sk=>{
+      const seenKey = sk === 'sp_'+w.key ? 'sp' : 'sp_'+sk;
+      if(spUnlocked(w, sk) && !w.seen[seenKey]){ w.seen[seenKey]=true; if(!w.owned.includes(sk)) w.owned.push(sk); if(!silent) msgs.push(`${w.name} unlocked her special outfit: ${WARDROBE[sk].label}.`); }
+    });
   });
   msgs.forEach(m=>addLog(m));
   if(sink){ msgs.forEach(m=>sink.push('🔓 '+m)); return; }

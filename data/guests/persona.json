@@ -21,8 +21,9 @@
             "hairColor": "white-silver",
             "eyes": "golden",
             "skin": "pale",
-            "features": "a thin blue headband",
-            "gear": "a large leather-bound book at her side"
+            "accessories": "a thin blue headband",
+            "accState": "always",
+            "expression": "a composed, enigmatic half-smile"
           },
           "under": "plain",
           "underColor": "blue",
@@ -37,7 +38,9 @@
               "label": "Velvet attendant uniform",
               "style": "Elegant",
               "prompt": "a fitted deep-blue attendant dress, black tights and blue high heels",
-              "bonus": {"attendant":1.25,"noble":1.15}
+              "bonus": {"attendant":1.25,"noble":1.15},
+              "accessories": "a large leather-bound compendium at her side",
+              "accState": "dressed"
             },
             "sp_margaret": {
               "label": "Off-duty blue dress",
@@ -73,7 +76,8 @@
             "hairColor": "dark brown",
             "eyes": "brown",
             "skin": "fair",
-            "features": "flawless makeup and a mole beneath one eye"
+            "features": "flawless makeup and a beauty mark beneath one eye",
+            "expression": "a flirtatious, needy wink"
           },
           "under": "lace",
           "underColor": "pink",
@@ -87,8 +91,10 @@
             "sig_kashiwagi": {
               "label": "Statement dress",
               "style": "Revealing",
-              "prompt": "a daring wine-red dress with a deep neckline, heels, large earrings and a fur stole",
-              "bonus": {"courtesan":1.25,"merchant":1.15}
+              "prompt": "a daring wine-red dress with a deep neckline and high heels",
+              "bonus": {"courtesan":1.25,"merchant":1.15},
+              "accessories": "large gold earrings and a fur stole",
+              "accState": "dressed"
             },
             "sp_kashiwagi": {
               "label": "Cafe date outfit",
@@ -124,7 +130,8 @@
             "hairColor": "dark brown",
             "eyes": "brown",
             "skin": "fair",
-            "features": "a warm, tired smile and a small beauty mark beneath her lip"
+            "features": "a small beauty mark beneath her lip",
+            "expression": "a warm, slightly tired smile"
           },
           "under": "lace",
           "underColor": "pink",
@@ -138,8 +145,11 @@
             "sig_kawakami": {
               "label": "Maid cafe outfit",
               "style": "Cute",
-              "prompt": "a low cut frilly black and white maid dress with a lace apron, a headband and knee-high stockings",
-              "bonus": {"maid":1.3,"commoner":1.15}
+              "prompt": "a low-cut frilly black and white maid dress with a lace apron and knee-high stockings",
+              "bonus": {"maid":1.3,"commoner":1.15},
+              "hairStyle": "twin curls framing her face",
+              "accessories": "a white frilly maid headband",
+              "accState": "always"
             },
             "sp_kawakami": {
               "label": "Teacher dress",
@@ -179,7 +189,9 @@
             "hairColor": "dark brown",
             "eyes": "dark grey",
             "skin": "fair",
-            "features": "a cigarette tucked behind her ear and a tired half-smile"
+            "accessories": "a thin silver choker",
+            "accState": "always",
+            "expression": "a tired, teasing half-smile"
           },
           "under": "sports",
           "underColor": "black",
@@ -193,8 +205,10 @@
             "sig_takemi": {
               "label": "Clinic coat",
               "style": "Sporty",
-              "prompt": "an open white doctor's coat over a fitted black top, jeans, a stethoscope around her neck",
-              "bonus": {"bath":1.25,"commoner":1.15}
+              "prompt": "an open white doctor's coat over a fitted black dress and dark tights",
+              "bonus": {"bath":1.25,"commoner":1.15},
+              "accessories": "a stethoscope around her neck",
+              "accState": "dressed"
             },
             "sp_takemi": {
               "label": "Night-off leathers",
@@ -234,7 +248,8 @@
             "hairColor": "ashen-brown",
             "eyes": "brown",
             "skin": "fair",
-            "features": "a sharp, focused gaze and a faint line of fatigue she hides well"
+            "features": "a faint line of fatigue she hides well",
+            "expression": "a sharp, focused gaze"
           },
           "under": "silk",
           "underColor": "navy",
@@ -254,8 +269,25 @@
             "sp_sae": {
               "label": "Shadow dress",
               "style": "Revealing",
-              "prompt": "a sultry black casino dress with a matching wide brimmed hat and a spiked choker, extremely thick eyeliner",
-              "bonus": {"noble":1.15,"courtesan":1.15}
+              "prompt": "a sultry black and crimson high-slit casino dress with long black gloves",
+              "bonus": {"courtesan":1.25,"noble":1.2},
+              "eyes": "glowing yellow",
+              "skin": "pale",
+              "features": "heavy dark eyeliner and black lipstick",
+              "accessories": "a black wide-brimmed casino hat and a spiked choker",
+              "accState": "under",
+              "expression": "a haughty, domineering smirk",
+              "favColor": "crimson"
+            },
+            "sp_sae_biker": {
+              "label": "Off-duty biker leathers",
+              "style": "Sporty",
+              "unlock": 75,
+              "prompt": "a fitted dark crimson leather riding jacket over a black camisole, tight riding trousers and heeled boots",
+              "accessories": "aviator sunglasses pushed up on her head",
+              "accState": "dressed",
+              "bonus": {"security":1.15,"adventurer":1.15},
+              "stats": {"agility":4,"charisma":3}
             }
           },
           "bonds": {"takemi":{"v":20,"note":"A prosecutor and an unlicensed doctor. They keep their distance on principle."}},
@@ -285,7 +317,7 @@
             "hairColor": "black",
             "eyes": "dark brown",
             "skin": "fair",
-            "features": "a gentle face and a ready, delighted laugh"
+            "expression": "a gentle smile that easily breaks into a delighted laugh"
           },
           "under": "silk",
           "underColor": "red",
@@ -336,8 +368,9 @@
             "hairColor": "auburn red",
             "eyes": "reddish-brown",
             "skin": "fair",
-            "features": "a determined, polite smile",
-            "gear": "a large red hair bow and a long satin gymnastics ribbon"
+            "accessories": "a large red hair bow",
+            "accState": "always",
+            "expression": "a determined, polite smile"
           },
           "under": "sports",
           "underColor": "pink",
@@ -352,7 +385,9 @@
               "label": "Gymnast leotard",
               "style": "Sporty",
               "prompt": "a white and rose gymnast leotard with a short wrap skirt and soft slippers",
-              "bonus": {"dancer":1.3,"commoner":1.1}
+              "bonus": {"dancer":1.3,"commoner":1.1},
+              "accessories": "a long satin gymnastics ribbon",
+              "accState": "dressed"
             },
             "sp_kasumi": {
               "label": "Performance dress",
@@ -387,7 +422,7 @@
           "dislike": "missionary",
           "lovers": "doggy",
           "backstory": "A model with a bold wardrobe and an even bolder sense of justice, Ann has little patience for people who push others around. She came to Hollowmere looking for fresh runways and a fresh start. She says what she thinks, and wears what she likes.",
-          "design": {"hairStyle":"very long twin tails","hairColor":"blonde","eyes":"blue","skin":"fair","features":"a bright, poised smile"},
+          "design": {"hairStyle":"very long twin tails","hairColor":"blonde","eyes":"blue","skin":"fair","expression":"a bright, poised smile"},
           "under": "lace",
           "underColor": "red",
           "stats": {"beauty":90,"charm":78,"charisma":82,"refinement":56,"wits":52,"stamina":56,"strength":32,"agility":58},

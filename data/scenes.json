@@ -12,7 +12,7 @@
     "people.pair_fem / pair_futa: head-count tags for two women together (scene pair:<service>:<fem|futa>:<other id>, the second woman described after the first; poses from services.json image.fem / image.futa)."
   ],
   "scenes": {
-    "portrait": {"label":"Portrait","comp":"upper body portrait, looking at viewer, gentle smile","setting":"warm softly blurred background"},
+    "portrait": {"label":"Portrait","comp":"upper body portrait, looking at viewer","setting":"warm softly blurred background"},
     "casual": {"label":"Casual","comp":"full body, relaxed pose","setting":"cozy lounge, warm lantern light","house":true},
     "job_madame": {"label":"Work: Madame","comp":"standing confidently holding a ledger","setting":"elegant reception hall","house":true},
     "job_reception": {

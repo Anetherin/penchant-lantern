@@ -19,7 +19,8 @@
       "hairColor": "golden blonde",
       "eyes": "sapphire",
       "skin": "porcelain",
-      "features": "a family signet ring she never takes off"
+      "features": "a family signet ring she never takes off",
+      "expression": "a poised, aristocratic smile"
     },
     "under": "silk",
     "underColor": "ivory",
@@ -64,11 +65,13 @@
     "backstory": "The Pavilion's elven patroness for a century. She decided she would rather be part of it than own it from afar. She funded its first stage out of boredom and kept it out of affection, and now wants to know how it feels from the other side of the curtain.",
     "design": {
       "build": "lean",
-      "hairStyle": "very long silver hair woven with tiny pearls",
+      "hairStyle": "very long flowing",
       "hairColor": "silver",
       "eyes": "pale gold",
       "skin": "porcelain",
-      "features": "a serene smile that misses nothing"
+      "accessories": "tiny pearls woven into her hair",
+      "accState": "always",
+      "expression": "a serene smile that misses nothing"
     },
     "under": "silk",
     "underColor": "silver",
@@ -116,7 +119,10 @@
       "hairColor": "black",
       "eyes": "grey-green",
       "skin": "olive",
-      "features": "a thin scar along her jaw and silver charm earrings"
+      "features": "a thin scar along her jaw",
+      "accessories": "silver charm earrings",
+      "accState": "always",
+      "expression": "a wry, watchful half-smile"
     },
     "under": "sports",
     "underColor": "black",
@@ -164,7 +170,10 @@
       "hairColor": "jet black with green streaks",
       "eyes": "emerald with slit pupils",
       "skin": "dark grey",
-      "features": "four curling horns and gold piercings"
+      "features": "four curling horns",
+      "accessories": "heavy gold horn rings and piercings",
+      "accState": "always",
+      "expression": "a sharp, calculating smirk"
     },
     "under": "corset",
     "underColor": "emerald",
@@ -216,7 +225,8 @@
       "hairColor": "platinum blonde",
       "eyes": "emerald",
       "skin": "porcelain",
-      "features": "a delicate silver circlet"
+      "accessories": "a delicate silver circlet",
+      "accState": "always"
     },
     "under": "silk",
     "underColor": "white",
@@ -245,7 +255,14 @@
     "dislike": null,
     "lovers": "missionary",
     "backstory": "The Adventurers' Guild's most efficient receptionist and its biggest gossip. She's been dying for an excuse to see the inside of a pleasure house. She knows every adventurer's tab and secret crush by heart, and has been quietly cataloguing which of them visit the Lantern.",
-    "design": {"hairStyle":"shoulder-length","hairColor":"honey blonde","eyes":"blue","skin":"fair","features":"freckles across her nose"},
+    "design": {
+      "hairStyle": "shoulder-length",
+      "hairColor": "honey blonde",
+      "eyes": "blue",
+      "skin": "fair",
+      "features": "freckles across her nose",
+      "expression": "a cheerful, helpful smile"
+    },
     "under": "lace",
     "underColor": "sky blue",
     "stats": {"beauty":58,"charm":68,"charisma":81,"refinement":45,"wits":45,"stamina":50,"strength":25,"agility":40},

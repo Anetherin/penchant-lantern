@@ -38,7 +38,7 @@ function clientTech(cls, reg, client){
   return t;
 }
 // Her expression during a service: bored / professional / into it / lost in it; personality can shift it (personalities.json → expr).
-const EXPR_LABEL = {bored:'bored', professional:'professional', into:'into it', lost:'lost in it', flustered:'flustered', smug:'smug'};
+const EXPR_LABEL = {bored:'bored', professional:'professional', into:'into it', lost:'lost in it', flustered:'flustered', smug:'smug', teasing:'teasing', tender:'affectionate', fierce:'fierce', languid:'languid'};
 function exprFor(w, act, reluct){
   const k = restless(w) ? 'lost' : (reluct || w.lust < LUST_LOW) ? 'bored' : (w.lust >= LUST_EAGER || w.fav===act) ? 'into' : 'professional';
   const m = (PERS[w.personality]||{}).expr;

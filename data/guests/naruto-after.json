@@ -21,7 +21,9 @@
             "hairColor": "pale teal",
             "eyes": "clear green-grey",
             "skin": "light warm",
-            "features": "dark smoky eye makeup, deep wine lips and a thin black choker with a small sand-symbol plate"
+            "features": "dark smoky eye makeup and deep wine lips",
+            "accessories": "a thin black choker with a small sand-symbol plate",
+            "accState": "always"
           },
           "under": "lace",
           "underColor": "wine",
@@ -73,7 +75,7 @@
             "hairColor": "medium brown",
             "eyes": "warm brown",
             "skin": "fair",
-            "features": "a calm, composed face"
+            "expression": "a calm, composed expression"
           },
           "under": "sports",
           "underColor": "grey",
@@ -115,11 +117,12 @@
           "backstory": "A bat-winged sound demon from the Sound village of the Alliance villages across the eastern sea who plays a chakra guitar strung with green light. Bubbly, theatrical and very happy to be stared at, she has turned the house stage into a nightly vampire-rock concert.",
           "design": {
             "build": "long-legged",
-            "hairStyle": "calf-length, thick and layered with bat-wing hair ornaments",
+            "hairStyle": "calf-length, thick and layered",
             "hairColor": "dark plum with wine-red highlights",
             "eyes": "vivid red-violet",
             "skin": "fair",
-            "features": "a delicate refined face and silver filigree jewelry"
+            "accessories": "bat-wing hair ornaments and silver filigree jewelry",
+            "accState": "always"
           },
           "under": "lace",
           "underColor": "black",
@@ -167,7 +170,8 @@
             "hairColor": "blonde",
             "eyes": "warm amber-brown",
             "skin": "light tan",
-            "features": "ink seal arrays on her forearms and a cheerful soot smudge"
+            "features": "ink seal arrays on her forearms and a cheerful soot smudge",
+            "expression": "an energetic, cheerful grin"
           },
           "under": "sports",
           "underColor": "red",
@@ -217,9 +221,11 @@
             "build": "elegant",
             "hairStyle": "very long, straight and loose",
             "hairColor": "dark",
-            "eyes": "dark, behind a sleek smoky purple-grey visor",
+            "eyes": "dark",
             "skin": "fair",
-            "features": "an exceptionally beautiful, composed face"
+            "accessories": "a sleek smoky purple-grey visor over her eyes",
+            "accState": "dressed",
+            "expression": "a cool, composed expression"
           },
           "under": "silk",
           "underColor": "charcoal",
@@ -233,14 +239,16 @@
             "sig_saya": {
               "label": "Information commander",
               "style": "Elegant",
-              "prompt": "a long fitted white field jacket worn open over a charcoal-black top with abstract web-like seams and mesh panels, fitted dark trousers, a smoky semi-translucent visor",
+              "prompt": "a long fitted white field jacket worn open over a charcoal-black top with abstract web-like seams and mesh panels, fitted dark trousers",
               "bonus": {"promoter":1.3,"merchant":1.15}
             },
             "sp_saya": {
               "label": "Off-duty knit",
               "style": "Elegant",
-              "prompt": "a long white knit dress with her visor pushed up into her hair",
-              "bonus": {"courtesan":1.15,"noble":1.15}
+              "prompt": "a long white off-duty knit dress",
+              "bonus": {"courtesan":1.15,"noble":1.15},
+              "accessories": "her smoky visor pushed up into her hair",
+              "accState": "always"
             }
           },
           "bonds": {
@@ -321,7 +329,8 @@
             "hairColor": "copper red",
             "eyes": "amber-brown",
             "skin": "sandy tan",
-            "gear": "a pair of folding metal fans"
+            "accessories": "a pair of folding metal fans",
+            "accState": "dressed"
           },
           "under": "none",
           "underColor": "none",
@@ -369,7 +378,9 @@
             "hairColor": "blonde",
             "eyes": "grey-blue",
             "skin": "light",
-            "features": "light, polished makeup"
+            "features": "light, polished makeup",
+            "accessories": "delicate silver earrings",
+            "accState": "always"
           },
           "under": "silk",
           "underColor": "navy",
@@ -475,7 +486,8 @@
             "hairColor": "blue-purple",
             "eyes": "striking grey",
             "skin": "light",
-            "features": "a pale-jade disc pendant, a gold sun-engraved bangle and a plain dark-silver ring"
+            "accessories": "a pale-jade disc pendant, a gold sun-engraved bangle and a plain dark-silver ring",
+            "accState": "always"
           },
           "under": "plain",
           "underColor": "black",
@@ -495,9 +507,10 @@
             "sp_yori": {
               "label": "Unhooded",
               "style": "Elegant",
-              "prompt": "a fitted dark blue-purple dress with her very long hair finally loose",
+              "prompt": "a fitted dark blue-purple dress",
               "bonus": {"noble":1.25,"courtesan":1.15},
-              "unlock": 90
+              "unlock": 90,
+              "hairStyle": "extremely long and worn loose"
             }
           },
           "bonds": {"emi":{"v":25,"note":"Both from Ame."}},
@@ -524,7 +537,7 @@
             "hairColor": "chestnut",
             "eyes": "soft brown-hazel",
             "skin": "light-to-medium warm",
-            "features": "approachable, friendly prettiness"
+            "expression": "a warm, approachable smile"
           },
           "under": "plain",
           "underColor": "cream",
@@ -563,11 +576,13 @@
           "backstory": "A snow spirit and heir to the ice-wielding Kitahashi line of the Snow country, Yukine led her people out when their home fell, and nobody has been able to tell her what to do since. Dry, sarcastic and quietly menacing, she runs a floor like an Ice Princess who is unquestionably in control.",
           "design": {
             "build": "long-limbed",
-            "hairStyle": "extremely long thin low ponytail with a dusty-pink ribbon",
+            "hairStyle": "extremely long thin low ponytail",
             "hairColor": "near-black",
             "eyes": "pale blue-grey",
             "skin": "pale cool",
-            "features": "a delicate, slightly androgynous face"
+            "accessories": "a dusty-pink hair ribbon",
+            "accState": "always",
+            "expression": "a cool, delicate expression"
           },
           "under": "silk",
           "underColor": "white",
@@ -615,11 +630,13 @@
           "backstory": "A cheetah-eared lightning sprinter from the Cloud village of the Alliance villages across the eastern sea, Hana is genuinely in love with fighting and fastest in any room. A red ribbon tying her hair once belonged to a cousin she lost.",
           "design": {
             "build": "powerful-legged sprinter",
-            "hairStyle": "sleek high ponytail tied with a red ribbon",
+            "hairStyle": "sleek high ponytail",
             "hairColor": "deep warm red",
             "eyes": "amber-brown",
             "skin": "warm brown",
-            "features": "a confident, energetic grin"
+            "accessories": "a red hair ribbon",
+            "accState": "always",
+            "expression": "a confident, energetic grin"
           },
           "under": "sports",
           "underColor": "black",
@@ -665,7 +682,7 @@
             "hairColor": "silver-white",
             "eyes": "blue-grey",
             "skin": "pale",
-            "features": "a stern, cool face"
+            "expression": "a stern, cool expression"
           },
           "under": "plain",
           "underColor": "black",
@@ -705,7 +722,15 @@
           "dislike": "kiss",
           "lovers": "missionary",
           "backstory": "A Leaf researcher and former exam instructor from the Alliance villages across the eastern sea, Tsubasa looks like a friendly teacher. Her combat specialty is horrifyingly sticky chakra-laced saliva. She is extremely hygienic and refuses to let embarrassment stop her from mastering a useful skill.",
-          "design": {"hairStyle":"shoulder-length","hairColor":"brown","eyes":"warm brown","skin":"fair","features":"rectangular glasses and a gentle smile"},
+          "design": {
+            "hairStyle": "shoulder-length",
+            "hairColor": "brown",
+            "eyes": "warm brown",
+            "skin": "fair",
+            "accessories": "rectangular glasses",
+            "accState": "always",
+            "expression": "a gentle smile"
+          },
           "under": "plain",
           "underColor": "white",
           "stats": {"beauty":60,"charm":60,"charisma":54,"refinement":55,"wits":67,"stamina":55,"strength":30,"agility":40},
@@ -718,8 +743,10 @@
             "sig_tsubasa": {
               "label": "Instructor's fieldwear",
               "style": "Elegant",
-              "prompt": "modern dark professional fieldwear with a clipboard",
-              "bonus": {"bath":1.2,"merchant":1.15}
+              "prompt": "modern dark professional fieldwear",
+              "bonus": {"bath":1.2,"merchant":1.15},
+              "accessories": "a clipboard tucked under her arm",
+              "accState": "dressed"
             },
             "sp_tsubasa": {"label":"Lab coat","style":"Elegant","prompt":"a crisp white lab coat over a fitted dark dress","bonus":{"bath":1.25,"noble":1.1}}
           },
@@ -747,7 +774,8 @@
             "hairColor": "medium-to-dark brown",
             "eyes": "hidden behind a blindfold",
             "skin": "warm tan",
-            "features": "a dark cloth blindfold with a metal plate engraved with a quarter-note symbol across her eyes"
+            "accessories": "a dark cloth blindfold with a metal quarter-note plate across her eyes",
+            "accState": "always"
           },
           "under": "plain",
           "underColor": "plum",
@@ -788,7 +816,14 @@
           "dislike": "kiss",
           "lovers": "missionary",
           "backstory": "A Leaf clone specialist from the Alliance villages across the eastern sea with chakra reserves big enough to be a squad by herself. Tobari covers every door in the house at once. She talks her problems through with her own clones, which know far too much about who she likes.",
-          "design": {"hairStyle":"short high ponytail","hairColor":"white","eyes":"red","skin":"pale","gear":"a small white fur collar"},
+          "design": {
+            "hairStyle": "short high ponytail",
+            "hairColor": "white",
+            "eyes": "red",
+            "skin": "pale",
+            "accessories": "a small white fur collar",
+            "accState": "dressed"
+          },
           "under": "sports",
           "underColor": "navy",
           "stats": {"beauty":64,"charm":48,"charisma":54,"refinement":45,"wits":45,"stamina":70,"strength":55,"agility":70},
@@ -838,7 +873,8 @@
             "hairColor": "pale blonde",
             "eyes": "pale blue",
             "skin": "fair",
-            "gear": "a sewing pouch at her hip"
+            "accessories": "a sewing pouch at her hip",
+            "accState": "dressed"
           },
           "under": "lace",
           "underColor": "cream",
@@ -886,7 +922,7 @@
             "hairColor": "dark brown",
             "eyes": "brown",
             "skin": "light warm",
-            "features": "a warm, friendly face"
+            "expression": "a warm, friendly smile"
           },
           "under": "plain",
           "underColor": "red",
@@ -934,8 +970,9 @@
             "hairColor": "black",
             "eyes": "dark",
             "skin": "pale",
-            "features": "a sharp, striking face",
-            "gear": "a small cutting blade at her hip"
+            "accessories": "a small cutting blade at her hip",
+            "accState": "dressed",
+            "expression": "a sharp, focused gaze"
           },
           "under": "silk",
           "underColor": "black",
@@ -949,14 +986,17 @@
             "sig_kamiko": {
               "label": "Wanderer's layers",
               "style": "Exotic",
-              "prompt": "a broad conical straw traveling hat and layered muted olive, charcoal and black fieldwear with a draped weathered outer layer",
-              "bonus": {"courtesan":1.2,"adventurer":1.2}
+              "prompt": "layered muted olive, charcoal and black fieldwear with a draped weathered outer layer",
+              "bonus": {"courtesan":1.2,"adventurer":1.2},
+              "accessories": "a broad conical straw traveling hat",
+              "accState": "dressed"
             },
             "sp_kamiko": {
               "label": "Black silk kimono",
               "style": "Elegant",
-              "prompt": "a black silk kimono with a grass-green obi, her uneven hair loose",
-              "bonus": {"noble":1.25,"courtesan":1.1}
+              "prompt": "a black silk kimono with a grass-green obi",
+              "bonus": {"noble":1.25,"courtesan":1.1},
+              "hairStyle": "very long, loose and unevenly cut"
             }
           },
           "jobs": {"likes":["courtesan","security"],"dislikes":["maid"]},
@@ -982,7 +1022,7 @@
             "hairColor": "black",
             "eyes": "dark, turning matte black when she focuses",
             "skin": "pale",
-            "features": "a calm, pleasant smile"
+            "expression": "a calm, pleasant smile"
           },
           "under": "lace",
           "underColor": "black",
@@ -1031,7 +1071,8 @@
             "eyes": "dark",
             "skin": "light",
             "features": "a prominent nose and strong brows",
-            "gear": "a dark bandanna over her hairline"
+            "accessories": "a dark bandanna over her hairline",
+            "accState": "always"
           },
           "under": "sports",
           "underColor": "black",

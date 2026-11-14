@@ -14,7 +14,7 @@
    android recharging...) stays in code and reads has(w,...) / w.race.
    ===================================================================== */
 const FX_CACHE = new WeakMap();
-const bodyOf = w => Object.assign({}, BODY_DEF, (w && w.body) || {});
+const bodyOf = (w, scene) => { const o = w && scene !== false && typeof getOutfit === 'function' && w.outfit ? getOutfit(w, scene) : null; return Object.assign({}, BODY_DEF, (w && w.body) || {}, (o && o.body) || {}); };
 const raceOf = w => RACES[w && w.race] || RACES.human;
 // Reincarnated: every New Game+ a lady carries over adds a stack (w.reborn). balance.json → ngplus.reborn.
 function rebornFx(w){
@@ -22,7 +22,7 @@ function rebornFx(w){
   return {trustGain: 1 + (R.trust||0)*n, skillGain: 1 + (R.skill||0)*n, statGain: 1 + (R.stat||0)*n, lewdGain: 1 + (R.lewd||0)*n};
 }
 const rebornDesc = w => { const f = rebornFx(w); return f ? `Carried over ${w.reborn} time${w.reborn>1?'s':''}: trust grows ×${f.trustGain.toFixed(2)}, skills ×${f.skillGain.toFixed(2)}, stats ×${f.statGain.toFixed(2)}, lewdness ×${f.lewdGain.toFixed(2)} as fast; asks ${Math.round(((BAL.ngplus||{}).rebornWage||0)*w.reborn*100)}% more pay.` : ''; };
-function fxSig(w){ return [w.race, w.sub, (w.traits||[]).join('|'), JSON.stringify(w.body||null), w.unique ? w.unique.name+'/'+JSON.stringify(w.unique.fx||null) : '', (w.ngPerks||[]).join('|'), w.reborn||0, w.titleId||''].join('~'); }
+function fxSig(w){ return [w.race, w.sub, (w.traits||[]).join('|'), JSON.stringify(w.body||null), w.outfit||'', w.unique ? w.unique.name+'/'+JSON.stringify(w.unique.fx||null) : '', (w.ngPerks||[]).join('|'), w.reborn||0, w.titleId||''].join('~'); }
 function fxList(w){
   if(!w) return [];
   const sig = fxSig(w), c = FX_CACHE.get(w);
