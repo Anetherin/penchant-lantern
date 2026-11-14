@@ -186,7 +186,7 @@
             "sig_leaf": {
               "label": "Trainer outfit",
               "style": "Sporty",
-              "prompt": "a sleeveless white top, a short blue skirt, white socks and sneakers",
+              "prompt": "a sleeveless sky blue top, a short red skirt, sky blue socks and sneakers",
               "bonus": {"attendant":1.2,"adventurer":1.2}
             },
             "sp_leaf": {"label":"Summer dress","style":"Cute","prompt":"a long sky-blue sundress with a ribbon at the waist","bonus":{"commoner":1.15,"noble":1.1}}
