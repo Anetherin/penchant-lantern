@@ -44,13 +44,16 @@
               "bonus": {"courtesan":1.25,"noble":1.25}
             },
             "sp_jinhsi": {
-              "label": "Spring festival qipao",
+              "label": "Peach Blossom",
               "style": "Elegant",
-              "prompt": "a fitted pink silk qipao with gold dragon embroidery",
-              "bonus": {"courtesan":1.15,"noble":1.2}
+              "prompt": "a flowing white, pink and crimson ceremonial dress patterned with blooming peach blossoms and sheer pink silk ribbons",
+              "bonus": {"courtesan":1.2,"noble":1.2}
             }
           },
-          "bonds": {"hsin":{"v":35,"note":"Two guardians of the same coast."}},
+          "bonds": {
+            "hsin": {"v":35,"note":"Two guardians of the same coast."},
+            "fem_rover": {"v":55,"kind":"comrades","note":"The trusted Arbiter who stood beside Jinzhou in its darkest hour."}
+          },
           "jobs": {"likes":["courtesan","madame","dancer"],"dislikes":["bartender"]},
           "body": {"bust":"medium","height":"short","figure":"slim"},
           "unique": {
@@ -94,16 +97,11 @@
             "sig_carlotta": {
               "label": "Montelli finery",
               "style": "Elegant",
-              "prompt": "a short, white, sleeveless  flowing dress with a high neckline, a vibrant magenta-colored cape with teal lining, black gloves, and thigh-high black boots with magenta stockings",
+              "prompt": "a short, white, sleeveless flowing dress with a high neckline, a vibrant magenta-colored cape with teal lining, black gloves, and thigh-high black boots with magenta stockings",
               "bonus": {"courtesan":1.25,"merchant":1.25}
-            },
-            "sp_carlotta": {
-              "label": "Gallery gown",
-              "style": "Elegant",
-              "prompt": "a backless pale blue silk gown with silver jewelry",
-              "bonus": {"noble":1.25,"courtesan":1.15}
             }
           },
+          "bonds": {"fem_rover":{"v":45,"note":"Her favorite dancing partner and most reliable collaborator."}},
           "jobs": {"likes":["courtesan","madame"],"dislikes":["maid","bartender"]},
           "body": {"bust":"small","height":"short","figure":"slim"},
           "unique": {
@@ -132,7 +130,7 @@
             "hairColor": "pale silver-white",
             "eyes": "glowing red-yellow",
             "skin": "fair",
-            "features": "heavy red eyeshadow and ornate red tattoos on her hands and thighs"
+            "features": "white fox ears, a fluffy white fox tail, heavy red eyeshadow and ornate red tattoos on her hands and thighs"
           },
           "under": "silk",
           "underColor": "black",
@@ -146,10 +144,9 @@
             "sig_hsin": {
               "label": "Moon guardian robes",
               "style": "Exotic",
-              "prompt": "low cut black bodice with white and red flowing robes with detached sleeves ",
+              "prompt": "low cut black bodice with white and red flowing robes with detached sleeves",
               "bonus": {"dancer":1.3,"noble":1.15}
-            },
-            "sp_hsin": {"label":"Moonlit silk","style":"Exotic","prompt":"a sheer white and gold silk dancing dress","bonus":{"courtesan":1.15,"dancer":1.15}}
+            }
           },
           "bonds": {
             "jinhsi": {"v":35,"note":"Two guardians of the same coast."},
@@ -175,7 +172,7 @@
           "fav": "kiss",
           "dislike": "doggy",
           "lovers": "missionary",
-          "backstory": "An angel of the tide from the sea-trade cities of the far east coast, Cartethyia has spent centuries as the voice that calms storms for fishing fleets. She sings in a clear, unhurried voice, carries a slender rapier she rarely draws, and is quietly overwhelmed by a city that never stops talking. She shares a name and an old, difficult history with the red-winged sovereign who sometimes walks beside her.",
+          "backstory": "A blessed maiden of the tide from the island city-states of Rinascita, Cartethyia spent centuries crowned in a pale blue laurel halo as the voice that calms storms. She sings in a clear, unhurried voice, carries a slender rapier she rarely draws, and is quietly overwhelmed by a city that never stops talking. She shares a name and an old, difficult history with the horned sovereign who sometimes walks beside her.",
           "design": {
             "build": "graceful",
             "hairStyle": "very long, loosely flowing",
@@ -199,17 +196,12 @@
               "style": "Elegant",
               "prompt": "short white vestments over a short, black dress, completely open chest, with blue gradient fabric flowing behind her",
               "bonus": {"dancer":1.25,"noble":1.15}
-            },
-            "sp_cartethyia": {
-              "label": "Moonwater veils",
-              "style": "Exotic",
-              "prompt": "layers of translucent pale-blue veils over a fitted white dress",
-              "bonus": {"noble":1.2,"courtesan":1.15},
-              "accessories": "tiny pearls woven into her hair",
-              "accState": "always"
             }
           },
-          "bonds": {"fleurdelys":{"v":15,"note":"Two names, one history, and very little to say to each other so far."}},
+          "bonds": {
+            "fleurdelys": {"v":15,"note":"Two names, one history, and very little to say to each other so far."},
+            "fem_rover": {"v":60,"note":"The knight who freed her from the inverted tower."}
+          },
           "jobs": {"likes":["dancer","chapel","attendant"],"dislikes":["security"]},
           "body": {"bust":"small","height":"short","figure":"slim"},
           "unique": {
@@ -226,17 +218,17 @@
           "personality": "Proud and sharp-tongued",
           "traits": ["Tough","Ambitious"],
           "style": "Revealing",
-          "favColor": "crimson",
+          "favColor": "ice blue",
           "fav": "doggy",
           "dislike": "kiss",
           "lovers": "cowgirl",
-          "backstory": "A crimson-winged sovereign from the far east coast's storm-wracked south, Fleurdelys is what remains when a gentle voice learns to hold a spear. She is regal, impatient, and aware that every room she enters is a battlefield with better decorations. She is not fond of the tide-singer who shares her name; she is very fond of a spirited argument and a strong drink.",
+          "backstory": "A horned sovereign from the storm-wracked spires of Rinascita, Fleurdelys is what remains when a blessed maiden grows tall enough to defy a false god with blade in hand. She is regal, impatient, and aware that every room she enters is a battlefield with better decorations. She is not fond of the smaller tide-singer who shares her past; she is very fond of a spirited argument and a strong drink.",
           "design": {
             "hairStyle": "long flowing with a high crown braid",
             "hairColor": "blonde with a subtle soft-blue gradient",
             "eyes": "cold blue",
             "skin": "fair",
-            "features": "a long golden horn and a crystal-blue crown of thorns",
+            "features": "long pointed elf ears, a long golden horn and a crystal-blue crown of thorns",
             "expression": "a solemn, imperious gaze"
           },
           "under": "lace",
@@ -251,21 +243,18 @@
             "sig_fleurdelys": {
               "label": "Martyr's gown",
               "style": "Revealing",
-              "prompt": "short white vestments over a very short black dress, completely open chest, with blue  fabric flowing behind her",
+              "prompt": "short white vestments over a very short black dress, completely open chest, with blue fabric flowing behind her",
               "bonus": {"security":1.35,"adventurer":1.15}
-            },
-            "sp_fleurdelys": {
-              "label": "Court navy",
-              "style": "Revealing",
-              "prompt": "a deep blue silk gown with a high slit, gold jewelry and a sweeping black train",
-              "bonus": {"noble":1.25,"courtesan":1.2}
             }
           },
-          "bonds": {"cartethyia":{"v":15,"note":"Two names, one history, and very little to say to each other so far."}},
+          "bonds": {
+            "cartethyia": {"v":15,"note":"Two names, one history, and very little to say to each other so far."},
+            "fem_rover": {"v":50,"note":"The only opponent who ever bested her blade cleanly."}
+          },
           "jobs": {"likes":["security","courtesan"],"dislikes":["maid","dancer"]},
           "body": {"bust":"huge","height":"tall","figure":"curvy"},
           "unique": {
-            "name": "Sovereign's Spear",
+            "name": "Sovereign's Blade",
             "desc": "A commanding presence that cows rowdy clients and gives her real security muscle.",
             "fx": {"security":15,"jobBonus":{"security":1.1}}
           }
@@ -306,12 +295,6 @@
               "style": "Cute",
               "prompt": "a very short white dress with an open ornate black vest and detached sleeves",
               "bonus": {"attendant":1.2,"promoter":1.15}
-            },
-            "sp_buling": {
-              "label": "Talisman merchant",
-              "style": "Exotic",
-              "prompt": "a short red-and-gold tunic dress hung with paper talismans and tasseled charms, with a small brass compass at her hip",
-              "bonus": {"promoter":1.2,"merchant":1.15}
             }
           },
           "bonds": {"suoming":{"v":25,"note":"Buling pokes the auditor; the auditor pretends not to mind."}},
@@ -358,12 +341,6 @@
               "style": "Elegant",
               "prompt": "a very short little black dress with an open ornate black cape",
               "bonus": {"madame":1.2,"security":1.15}
-            },
-            "sp_suoming": {
-              "label": "Ministry formal",
-              "style": "Elegant",
-              "prompt": "a crisp high-collared red-and-black ministry robe with gold clasps, a sealed scroll case at her belt",
-              "bonus": {"madame":1.15,"noble":1.2}
             }
           },
           "bonds": {
@@ -376,6 +353,260 @@
             "name": "Seal Master",
             "desc": "Centuries of command keep the house orderly and its staff in line.",
             "fx": {"security":10,"jobBonus":{"madame":1.2}}
+          }
+        },
+        "iuno": {
+          "job": "courtesan",
+          "name": "Iuno",
+          "title": "Priestess",
+          "race": "human",
+          "age": 23,
+          "personality": "Proud and sharp-tongued",
+          "traits": ["Elegant","Ambitious"],
+          "style": "Elegant",
+          "favColor": "moonlight blue",
+          "fav": "cowgirl",
+          "dislike": "doggy",
+          "lovers": "kiss",
+          "backstory": "A prodigy priestess of Septimont who reads fate in the shifting phases of the moon, Iuno grew tired of senators demanding safe prophecies and set out across the sea. She carries a crescent moonbow, dresses in white-and-gold temple silk, and insists she foresaw every decision Sam makes three nights ago.",
+          "design": {
+            "build": "graceful, slender",
+            "hairStyle": "floor-length twin tails with side bangs",
+            "hairColor": "midnight blue fading to translucent sky-blue tips",
+            "eyes": "luminous azure blue",
+            "skin": "fair",
+            "accessories": "a golden winged laurel-and-crescent hair crown and gold armlets",
+            "accState": "always",
+            "expression": "a haughty, teasing smile"
+          },
+          "under": "silk",
+          "underColor": "white",
+          "stats": {"beauty":78,"charm":66,"charisma":68,"refinement":74,"wits":78,"stamina":48,"strength":30,"agility":62},
+          "tech": {"service":45,"dance":55,"bar":15,"combat":55,"manage":50},
+          "actSkill": 30,
+          "popularity": 24,
+          "lewd": 28,
+          "trust": 20,
+          "outfits": {
+            "sig_iuno": {
+              "label": "Moon Priestess dress",
+              "style": "Elegant",
+              "prompt": "an asymmetrical white-and-gold classical priestess dress with a golden bandeau chest piece exposing her midriff, sheer blue-tinted drapes and golden sandals with leg wrappings",
+              "bonus": {"courtesan":1.3,"noble":1.2}
+            }
+          },
+          "bonds": {
+            "augusta": {"v":55,"kind":"comrades","note":"Sun and moon of Septimont—Augusta's arena triumphs and Iuno's prophecies always seem to align."}
+          },
+          "jobs": {"likes":["courtesan","dancer","chapel"],"dislikes":["maid","bartender"]},
+          "body": {"bust":"medium","height":"average","figure":"slim"},
+          "unique": {
+            "name": "Lunar Prophecy",
+            "desc": "Her moon-sight anticipates noble whims and turns every evening in her company into destiny.",
+            "fx": {"classBonus":{"noble":1.2},"clientFee":1.1}
+          }
+        },
+        "augusta": {
+          "job": "security",
+          "name": "Augusta",
+          "title": "Ephor",
+          "race": "human",
+          "age": 26,
+          "personality": "Bold and flirtatious",
+          "traits": ["Tough","Ambitious"],
+          "style": "Sporty",
+          "favColor": "crimson gold",
+          "fav": "cowgirl",
+          "dislike": "manual_give",
+          "lovers": "doggy",
+          "backstory": "The undefeated gladiator champion and reigning Ephor of Septimont, Augusta forged her own legend in the sun-drenched colosseum with an oversized broadblade and unyielding willpower. Visiting Hollowmere between campaigns, she treats the Lantern's security like an honor guard and respects only those who meet her blazing gaze without flinching.",
+          "design": {
+            "build": "sculpted, statuesque",
+            "hairStyle": "long, voluminous wavy",
+            "hairColor": "fiery orange-red",
+            "eyes": "crimson red with golden-white pupil rings",
+            "skin": "sun-kissed",
+            "accessories": "a golden sunburst laurel crown and eight-pointed gold star earrings",
+            "accState": "always",
+            "expression": "a fearless, commanding grin"
+          },
+          "under": "silk",
+          "underColor": "red",
+          "stats": {"beauty":78,"charm":62,"charisma":78,"refinement":58,"wits":68,"stamina":85,"strength":85,"agility":70},
+          "tech": {"service":30,"dance":25,"bar":35,"combat":88,"manage":65},
+          "actSkill": 30,
+          "popularity": 30,
+          "lewd": 36,
+          "trust": 22,
+          "outfits": {
+            "sig_augusta": {
+              "label": "Ephor's panoply",
+              "style": "Sporty",
+              "prompt": "a sleeveless high-necked white tunic under an ornate golden chestplate, bronze shoulder pauldrons, a crimson-and-gold split gladiator skirt with leather pteruges over high-cut black shorts and armored greaves",
+              "bonus": {"security":1.35,"noble":1.15}
+            }
+          },
+          "bonds": {"iuno":{"v":55,"kind":"comrades","note":"Septimont's Moon Priestess—the only woman whose counsel Augusta never ignores."}},
+          "jobs": {"likes":["security","madame"],"dislikes":["maid","bath"]},
+          "body": {"bust":"large","height":"tall","figure":"athletic"},
+          "unique": {
+            "name": "Undefeated Sun",
+            "desc": "The blazing charisma and arena might of Septimont's Ephor keep the house secure and its guests in awe.",
+            "fx": {"security":18,"rep":1.1,"jobBonus":{"security":1.15}}
+          }
+        },
+        "aemeath": {
+          "job": "dancer",
+          "name": "Aemeath",
+          "race": "spirit",
+          "age": 22,
+          "personality": "Sweet and bubbly",
+          "traits": ["Sunny","Natural Performer"],
+          "style": "Cute",
+          "favColor": "rose pink",
+          "fav": "kiss",
+          "dislike": "doggy",
+          "lovers": "missionary",
+          "backstory": "Once a Synchronist cadet of the Roya Tribe's Startorch Academy, Aemeath now drifts between worlds as a radiant digital spirit who leaves trails of starlight wherever she hums. She materialized in the Lantern's stage lights one evening, delighted to find an audience that can actually see and touch her.",
+          "design": {
+            "build": "lithe, weightless",
+            "hairStyle": "long, airy twin-layered waves",
+            "hairColor": "vibrant rose-pink fading to warm blonde tips",
+            "eyes": "warm golden-amber",
+            "skin": "luminous fair skin with a faint starlight digital shimmer",
+            "features": "faint glowing pink starlight motes drifting near her shoulders",
+            "expression": "a bright, starry-eyed smile"
+          },
+          "under": "lace",
+          "underColor": "pink",
+          "stats": {"beauty":74,"charm":72,"charisma":70,"refinement":54,"wits":60,"stamina":55,"strength":30,"agility":75},
+          "tech": {"service":45,"dance":72,"bar":20,"combat":45,"manage":20},
+          "actSkill": 25,
+          "popularity": 24,
+          "lewd": 26,
+          "trust": 28,
+          "outfits": {
+            "sig_aemeath": {
+              "label": "Synchronist suit",
+              "style": "Cute",
+              "prompt": "a sleek white-and-charcoal futuristic Synchronist dress with glowing rose-pink and cyan circuit accents, detached sleeves and thigh straps",
+              "bonus": {"dancer":1.3,"promoter":1.15}
+            }
+          },
+          "bonds": {"fem_rover":{"v":60,"note":"Her cherished anchor to the waking world."}},
+          "jobs": {"likes":["dancer","promoter","attendant"],"dislikes":["security"]},
+          "body": {"bust":"medium","height":"average","figure":"slim"},
+          "unique": {
+            "name": "Starlight Resonance",
+            "desc": "Her weightless, starlit songs lift the whole house's spirits and draw crowds from down the street.",
+            "fx": {"jobBonus":{"dancer":1.2},"promote":1.15,"moodDelta":0.9}
+          }
+        },
+        "camellya": {
+          "job": "courtesan",
+          "name": "Camellya",
+          "race": "human",
+          "age": 24,
+          "personality": "Bold and flirtatious",
+          "traits": ["Eager","Exhibitionist"],
+          "style": "Revealing",
+          "favColor": "crimson",
+          "fav": "cowgirl",
+          "dislike": "massage_give",
+          "lovers": "doggy",
+          "backstory": "A Bloom Bearer of the Black Shores who lives entirely by instinct and thrill, Camellya follows promising 'seeds' across continents just to watch them blossom. She wandered into Hollowmere with crimson vines curling from her fingertips and decided Sam was the most fascinating flower in the garden.",
+          "design": {
+            "build": "supple, lithe",
+            "hairStyle": "asymmetrical twin tails, one short and one long",
+            "hairColor": "pure white with crimson-red inner streaks and tips",
+            "eyes": "vivid crimson",
+            "skin": "pale",
+            "features": "a glowing red Tacet Mark on her upper chest and red camellia blossoms in her hair",
+            "expression": "a dangerously playful, half-lidded smile"
+          },
+          "under": "sheer",
+          "underColor": "red",
+          "stats": {"beauty":78,"charm":70,"charisma":68,"refinement":48,"wits":62,"stamina":68,"strength":52,"agility":78},
+          "tech": {"service":55,"dance":65,"bar":20,"combat":75,"manage":15},
+          "actSkill": 45,
+          "popularity": 24,
+          "lewd": 58,
+          "trust": 24,
+          "outfits": {
+            "sig_camellya": {
+              "label": "Bloom Bearer dress",
+              "style": "Revealing",
+              "prompt": "a plunging backless white-and-black gothic leotard dress with crimson camellia flower ornaments, vine-like dark straps and sheer black thigh-high stockings",
+              "bonus": {"courtesan":1.3,"dancer":1.2}
+            }
+          },
+          "bonds": {
+            "fem_rover": {"v":75,"note":"Her favorite 'seed' across every lifetime—she still watches Rover like a cat watching a bird."},
+            "buling": {"v":35,"kind":"comrades","note":"Fellow Black Shores eccentric."}
+          },
+          "jobs": {"likes":["courtesan","dancer","security"],"dislikes":["maid","madame"]},
+          "body": {"bust":"medium","height":"average","figure":"slim"},
+          "unique": {
+            "name": "Crimson Blossom",
+            "desc": "She throws herself into every encounter with reckless, intoxicating intensity.",
+            "fx": {"encore":0.12,"actQuality":{"cowgirl":1.25},"appeal":4}
+          }
+        },
+        "fem_rover": {
+          "job": "security",
+          "name": "Rover",
+          "title": "Arbiter",
+          "race": "human",
+          "age": 24,
+          "personality": "Calm and elegant",
+          "traits": ["Tough","Loyal"],
+          "style": "Sporty",
+          "favColor": "black and gold",
+          "fav": "missionary",
+          "dislike": "doggy",
+          "lovers": "kiss",
+          "backstory": "An awakened traveler with golden eyes and no memory of where her long journey began, Rover has crossed seas, quieted lament-torn cities, and collected half the east coast's heroines as devoted companions. In Hollowmere she finally sets her sword down for a season, lending Sam her steady blade and quiet magnetism.",
+          "design": {
+            "build": "sleek, athletic",
+            "hairStyle": "medium-length with a half-up ponytail and a longer braided lock at the back",
+            "hairColor": "jet black with pale silver-white inner streaks",
+            "eyes": "warm golden-amber",
+            "skin": "fair",
+            "features": "a glowing Tacet Mark on the back of her right hand",
+            "accessories": "a white feather hair ornament pinned at her temple",
+            "accState": "always",
+            "expression": "a calm, attentive half-smile"
+          },
+          "under": "silk",
+          "underColor": "black",
+          "stats": {"beauty":78,"charm":72,"charisma":78,"refinement":60,"wits":74,"stamina":80,"strength":75,"agility":80},
+          "tech": {"service":45,"dance":40,"bar":35,"combat":85,"manage":55},
+          "actSkill": 30,
+          "popularity": 28,
+          "lewd": 28,
+          "trust": 30,
+          "outfits": {
+            "sig_fem_rover": {
+              "label": "Arbiter's attire",
+              "style": "Sporty",
+              "prompt": "a sleeveless black-and-white asymmetrical halter dress with a plunged keyhole cutout, a cropped dark jacket panel over her shoulders, detached black sleeves and thigh-high dark boots",
+              "bonus": {"security":1.3,"promoter":1.2}
+            }
+          },
+          "bonds": {
+            "jinhsi": {"v":55,"kind":"comrades","note":"Jinzhou's Magistrate, whose trust she earned in battle."},
+            "carlotta": {"v":45,"note":"Her partner in Rinascita's high society and intrigues."},
+            "cartethyia": {"v":60,"note":"A bond forged atop the inverted tower."},
+            "fleurdelys": {"v":50,"note":"A worthy rival turned ally."},
+            "camellya": {"v":75,"note":"Camellya never lets her wander far out of sight."},
+            "aemeath": {"v":60,"note":"A cherished starlight bond."}
+          },
+          "jobs": {"likes":["security","promoter","attendant"],"dislikes":["maid"]},
+          "body": {"bust":"medium","height":"average","figure":"curvy"},
+          "unique": {
+            "name": "Harmonic Arbiter",
+            "desc": "People naturally gravitate to her calm leadership, boosting security and house harmony alike.",
+            "fx": {"security":16,"rep":1.1,"moodDelta":0.85}
           }
         }
       }

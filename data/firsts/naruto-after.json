@@ -1231,6 +1231,62 @@
           "waitRes": "\"Pencil,\" Ebina nods solemnly. \"Pencil is acceptable—I'll bring an eraser.\""
         }
       }
+    },
+    "tomoe": {
+      "events": {
+        "1": {
+          "title": "The Third Seal",
+          "text": "You find Tomoe in her workshop after hours, calibrating a row of tiny black chakra-receiver studs on her worktable while wearing her warm, disarming Envy form. \"Envy was built to watch what other people have and learn how to replicate it,\" she says, stepping close and touching the three black studs beneath her left collarbone. \"I've been watching how the others look at you, Sam. I'd like a direct reading of my own.\"",
+          "image": {
+            "comp": "standing beside a workshop table with one hand touching the three studs below her collarbone, concentric violet eyes fixed on him, warm curious smile",
+            "setting": "dimly lit workshop with scrolls and delicate tools on a table",
+            "sam": true
+          },
+          "go": "Give her the reading",
+          "goRes": "Her kiss is slow, practiced, and unexpectedly warm—her violet eyes widening a fraction as her pulse-relay hums against your fingertips. \"Interesting. The telemetry doesn't do that justice at all.\"",
+          "wait": "\"Which of the seven is asking?\"",
+          "waitRes": "\"All of them, through this one,\" Tomoe smiles, unbothered. \"Take your time. I have seven bodies' worth of patience.\""
+        },
+        "2": {
+          "title": "Sensory Calibration",
+          "text": "Tomoe locks her office door and sits on the edge of the desk, loosening her forest-green silk top so the three receiver studs beneath her collarbone catch the lamplight. \"Every vessel routes sensation back to my core, but Envy feels touch more acutely than the others,\" she murmurs, taking your wrist and placing your palm against her bare ribs. \"Help me test the threshold before the feedback overwhelms the circuit.\"",
+          "image": {
+            "comp": "sitting on the edge of a desk with her green silk top loosened, guiding his hand to her ribs, concentric violet eyes half-lidded",
+            "setting": "madame's office at night, warm lamplight and sealed scrolls",
+            "sam": true
+          },
+          "go": "Test the threshold",
+          "goRes": "Her clinical composure fractures within a minute—gasping against your mouth as your hands cup her breasts and your fingers stroke her wet pussy while her own deft hands unbuckle your belt and work your cock.",
+          "wait": "\"That sounds less like calibration and more like an excuse.\"",
+          "waitRes": "\"A good researcher never wastes a dual-purpose experiment,\" Tomoe replies smoothly, fastening her top with a lingering smile. \"We'll resume the trial soon.\""
+        },
+        "3": {
+          "title": "Unsealed",
+          "text": "Tomoe comes to your room late at night with her dark wooden hairpin already pulled free, brown waves spilling over bare shoulders as she lets her green silk slip to the floorboards. \"I built seven vessels so no single body could ever hold all of me hostage,\" she whispers, climbing onto your mattress with her concentric violet eyes dark and unguarded. \"Right now every other body is powered down. Every circuit I have is right here in this room with you.\"",
+          "image": {
+            "comp": "kneeling naked on a bed with her dark brown hair loose over her shoulders, three black studs below her collarbone, intense unguarded gaze",
+            "setting": "Sam's bedroom at night, single lantern burning low",
+            "sam": true
+          },
+          "go": "Take all of her",
+          "goRes": "You press her back into the sheets and sink your cock deep into her pussy, fucking her through long, shuddering climaxes until the woman who divided her soul across seven bodies clings to you with everything in one place.",
+          "wait": "\"Are you sure you want all your defenses down?\"",
+          "waitRes": "\"No,\" Tomoe admits softly, resting her forehead against your shoulder. \"Which is how I know the data is real. Ask me again tomorrow night.\""
+        },
+        "jump": {
+          "title": "Feedback Loop",
+          "text": "You brush past Tomoe in the narrow archive aisle and she catches your sleeve before you can take a second step, pressing you back against the scroll racks. Her concentric violet eyes are dilated, her breath warm against your throat. \"You've been corrupting my focus across three separate bodies all week, Sam. I'm shutting the others down and settling this right now.\"",
+          "image": {
+            "comp": "pinning him against a scroll rack with one hand on his chest, concentric violet eyes dilated, flushed and intent",
+            "setting": "narrow archive room lined with scroll shelves, warm lantern glow",
+            "sam": true
+          },
+          "go": "Settle it",
+          "goRes": "She kisses you hard against the shelves, hiking up her split skirt and guiding your hand between her bare thighs while her other hand unfastens your trousers right in the archive.",
+          "wait": "\"Not in the archive.\"",
+          "waitRes": "\"Practical as ever,\" Tomoe murmurs, smoothing her skirt as her breathing steadies. \"My room, then—don't keep me waiting.\""
+        }
+      }
     }
   }
 }

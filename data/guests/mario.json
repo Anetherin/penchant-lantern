@@ -1,0 +1,347 @@
+{
+  "packs": {
+    "mario": {
+      "label": "Super Mario",
+      "characters": {
+        "peach": {
+          "job": "host",
+          "name": "Peach Toadstool",
+          "title": "Princess",
+          "race": "human",
+          "age": 24,
+          "personality": "Warm and motherly",
+          "traits": ["Elegant","Sunny"],
+          "style": "Elegant",
+          "favColor": "rose pink",
+          "fav": "kiss",
+          "dislike": "doggy",
+          "lovers": "missionary",
+          "backstory": "The sovereign princess of a cheerful kingdom of painted hills and castle gardens, Peach grew tired of being carried off every second Tuesday and decided to take a holiday of her own choosing. In Hollowmere she bakes cakes for the staff, hosts the parlor with effortless royal grace, and occasionally floats down the grand staircase under a pink parasol.",
+          "design": {
+            "build": "graceful, regal",
+            "hairStyle": "long, voluminous waves with a flipped fringe and side locks",
+            "hairColor": "golden blonde",
+            "eyes": "sapphire blue",
+            "skin": "fair",
+            "accessories": "a gold crown set with red and blue jewels, round blue sapphire earrings and a sapphire brooch",
+            "accState": "always",
+            "expression": "a sweet, serene royal smile"
+          },
+          "under": "lace",
+          "underColor": "pink",
+          "stats": {"beauty":82,"charm":78,"charisma":76,"refinement":84,"wits":64,"stamina":52,"strength":30,"agility":55},
+          "tech": {"service":55,"dance":45,"bar":35,"combat":25,"manage":60},
+          "actSkill": 25,
+          "popularity": 30,
+          "lewd": 20,
+          "trust": 30,
+          "outfits": {
+            "sig_peach": {
+              "label": "Royal pink gown",
+              "style": "Elegant",
+              "prompt": "a puff-sleeved rose-pink ballgown with a darker pink pannier overskirt, gold hemline trim and long white opera gloves",
+              "bonus": {"host":1.3,"noble":1.25}
+            },
+            "sp_peach": {
+              "label": "Sunshine sundress",
+              "style": "Cute",
+              "prompt": "a sleeveless light-pink summer sundress with a magenta waist sash and white sandals",
+              "bonus": {"promoter":1.2,"commoner":1.2},
+              "hairStyle": "long high ponytail"
+            }
+          },
+          "bonds": {
+            "daisy": {"v":75,"kind":"comrades","note":"Best friends and royal cousins in spirit—Daisy drags her into trouble and Peach bails them out."},
+            "toadette": {"v":65,"kind":"mentor","note":"Her loyal castle archivist and favorite baking tester."},
+            "bowsette": {"v":25,"note":"A very complicated history of kidnappings, kart races, and reluctant tea parties."},
+            "pauline": {"v":45,"kind":"comrades","note":"Old friends who swap governance notes and musical numbers."}
+          },
+          "jobs": {"likes":["host","courtesan","madame"],"dislikes":["security"]},
+          "body": {"bust":"medium","height":"tall","figure":"slim"},
+          "unique": {
+            "name": "Heart Blossom",
+            "desc": "Her gentle royal warmth soothes the entire house and delights noble patrons.",
+            "fx": {"classBonus":{"noble":1.2},"moodDelta":0.85,"jobBonus":{"host":1.15}}
+          }
+        },
+        "daisy": {
+          "job": "promoter",
+          "name": "Daisy",
+          "title": "Princess",
+          "race": "human",
+          "age": 24,
+          "personality": "Hot-blooded and competitive",
+          "traits": ["Sunny","Party Animal"],
+          "style": "Sporty",
+          "favColor": "marigold orange",
+          "fav": "cowgirl",
+          "dislike": "massage_give",
+          "lovers": "kiss",
+          "backstory": "The tomboy princess of Sarasaland's desert-and-island empire, Daisy has never met a sport she wouldn't play for keeps or a formality she wouldn't skip. She followed Peach to Hollowmere, challenged half the tavern to arm-wrestling on her first night, and has been the loudest, brightest voice on the street ever since.",
+          "design": {
+            "build": "energetic, toned",
+            "hairStyle": "shoulder-length flipped bob with rounded bangs",
+            "hairColor": "warm auburn-ginger",
+            "eyes": "bright cobalt blue",
+            "skin": "sun-kissed",
+            "accessories": "a gold crown set with daisy-shaped jewels, white-and-gold flower earrings and a teal-centered flower brooch",
+            "accState": "always",
+            "expression": "a loud, confident grin"
+          },
+          "under": "sports",
+          "underColor": "yellow",
+          "stats": {"beauty":76,"charm":74,"charisma":80,"refinement":50,"wits":58,"stamina":76,"strength":58,"agility":72},
+          "tech": {"service":35,"dance":50,"bar":45,"combat":50,"manage":35},
+          "actSkill": 25,
+          "popularity": 26,
+          "lewd": 32,
+          "trust": 30,
+          "outfits": {
+            "sig_daisy": {
+              "label": "Sarasaland gown",
+              "style": "Elegant",
+              "prompt": "a puff-sleeved yellow-and-orange royal gown with a ruffled tangerine pannier overskirt and wrist-length white gloves",
+              "bonus": {"promoter":1.25,"noble":1.15}
+            },
+            "sp_daisy": {
+              "label": "Striker uniform",
+              "style": "Sporty",
+              "prompt": "a cropped yellow-and-orange athletic halter top exposing her midriff, fitted orange shorts and knee-high striped socks",
+              "bonus": {"promoter":1.3,"adventurer":1.2}
+            }
+          },
+          "bonds": {"peach":{"v":75,"kind":"comrades","note":"Her closest royal friend—Peach brings the poise, Daisy brings the punch."}},
+          "jobs": {"likes":["promoter","bartender","dancer"],"dislikes":["maid"]},
+          "body": {"bust":"medium","height":"average","figure":"athletic"},
+          "unique": {
+            "name": "Sarasaland Spirit",
+            "desc": "Her infectious energy and competitive fire pack the house every night.",
+            "fx": {"promote":1.25,"maxEnergy":12}
+          }
+        },
+        "pauline": {
+          "job": "dancer",
+          "name": "Pauline",
+          "title": "Mayor",
+          "race": "human",
+          "age": 28,
+          "personality": "Bold and flirtatious",
+          "traits": ["Natural Performer","Ambitious"],
+          "style": "Elegant",
+          "favColor": "scarlet red",
+          "fav": "cowgirl",
+          "dislike": "manual_give",
+          "lovers": "oral_get",
+          "backstory": "The jazz-singing Mayor of New Donk City, a towering metropolis of steel girders and neon marquees, Pauline knows how to run a city council by day and bring down a concert hall by night. Visiting Hollowmere on a cultural exchange, she took one look at the Lantern's stage and asked for a brass band and a spotlight.",
+          "design": {
+            "build": "statuesque, glamorous",
+            "hairStyle": "long, glossy waves swept over one shoulder",
+            "hairColor": "chestnut brown",
+            "eyes": "vivid sky blue",
+            "skin": "fair",
+            "features": "glossy red lipstick",
+            "accessories": "large gold hoop earrings and gold bangles",
+            "accState": "always",
+            "expression": "a sultry, show-stopping smile"
+          },
+          "under": "silk",
+          "underColor": "red",
+          "stats": {"beauty":84,"charm":78,"charisma":86,"refinement":74,"wits":76,"stamina":58,"strength":32,"agility":60},
+          "tech": {"service":45,"dance":75,"bar":35,"combat":20,"manage":72},
+          "actSkill": 35,
+          "popularity": 32,
+          "lewd": 36,
+          "trust": 24,
+          "outfits": {
+            "sig_pauline": {
+              "label": "Starlight stage gown",
+              "style": "Elegant",
+              "prompt": "a strapless glittering scarlet-red floor-length jazz gown with a high leg slit and a gold bracelet",
+              "bonus": {"dancer":1.3,"noble":1.2}
+            },
+            "sp_pauline": {
+              "label": "Mayor's pantsuit",
+              "style": "Elegant",
+              "prompt": "a sharp crimson tailored pantsuit over a plunging purple silk camisole and wide-brimmed red hat",
+              "bonus": {"madame":1.3,"merchant":1.2}
+            }
+          },
+          "bonds": {"peach":{"v":45,"kind":"comrades","note":"Two women who know the headaches of running a state."}},
+          "jobs": {"likes":["dancer","madame","promoter"],"dislikes":["maid"]},
+          "body": {"bust":"large","height":"tall","figure":"curvy"},
+          "unique": {
+            "name": "One-Up Girl",
+            "desc": "Her show-stopping jazz vocals and mayoral polish boost both stage revenue and house management.",
+            "fx": {"jobBonus":{"dancer":1.2,"madame":1.15},"rep":1.1}
+          }
+        },
+        "toadette": {
+          "job": "maid",
+          "name": "Toadette",
+          "race": "dwarf",
+          "age": 52,
+          "personality": "Sweet and bubbly",
+          "traits": ["Sunny","Loyal"],
+          "style": "Cute",
+          "favColor": "magenta pink",
+          "fav": "massage_give",
+          "dislike": "doggy",
+          "lovers": "missionary",
+          "backstory": "Chief archivist, master builder, and treasure-hunting captain of Princess Peach's court, Toadette is a pint-sized dwarven dynamo who can draw up a blueprint before breakfast and organize the whole house by noon. She followed her princess to Hollowmere to make sure the ledgers balance and the bookshelves stay dusted.",
+          "design": {
+            "build": "petite, bustling",
+            "hairStyle": "thick twin rounded braids bobbing at her shoulders",
+            "hairColor": "bright magenta-pink",
+            "eyes": "dark brown",
+            "skin": "rosy fair",
+            "accessories": "a pink-and-white spotted mushroom-cap beret",
+            "accState": "dressed",
+            "expression": "a cheerful, rosy-cheeked beam"
+          },
+          "under": "cotton",
+          "underColor": "pink",
+          "stats": {"beauty":64,"charm":72,"charisma":66,"refinement":52,"wits":70,"stamina":72,"strength":48,"agility":64},
+          "tech": {"service":55,"dance":30,"bar":35,"combat":25,"manage":62},
+          "actSkill": 20,
+          "popularity": 16,
+          "lewd": 20,
+          "trust": 34,
+          "outfits": {
+            "sig_toadette": {
+              "label": "Archivist dress",
+              "style": "Cute",
+              "prompt": "a sleeveless magenta-pink dress with a white hemline, a cropped red vest trimmed in gold and brown ankle boots",
+              "bonus": {"maid":1.3,"merchant":1.15}
+            },
+            "sp_toadette": {
+              "label": "Explorer headlamp gear",
+              "style": "Sporty",
+              "prompt": "a khaki explorer tunic with a red neckerchief, canvas shorts, a leather backpack and a brass headlamp",
+              "bonus": {"attendant":1.2,"adventurer":1.25}
+            }
+          },
+          "bonds": {"peach":{"v":65,"note":"Her beloved Princess, whom she serves with cheerful pride."}},
+          "jobs": {"likes":["maid","attendant","madame"],"dislikes":["security"]},
+          "body": {"bust":"medium","height":"short","figure":"soft"},
+          "unique": {
+            "name": "Chief Builder",
+            "desc": "She keeps the house spotless, organized, and running below budget.",
+            "fx": {"tidy":1.25,"upkeep":0.9,"jobBonus":{"maid":1.15}}
+          }
+        },
+        "bowsette": {
+          "job": "security",
+          "name": "Bowsette",
+          "title": "Queen",
+          "race": "demon",
+          "age": 120,
+          "personality": "Bold and flirtatious",
+          "traits": ["Tough","Ambitious"],
+          "style": "Revealing",
+          "favColor": "black and crimson",
+          "fav": "cowgirl",
+          "dislike": "massage_give",
+          "lovers": "doggy",
+          "backstory": "The fire-breathing Koopa Queen of the dark volcanic keeps, transformed by a magical Super Crown she refuses to take off because she looks phenomenal in it. Loud, bossy, and secretly a hopeless romantic beneath all the spikes, Bowsette marched into the Lantern after Peach arrived—and ended up taking over the bouncer detail because nobody dares start a brawl while she's cracking her knuckles.",
+          "design": {
+            "build": "voluptuous, Amazonian",
+            "hairStyle": "long, wild spiky waves with a high ponytail",
+            "hairColor": "golden blonde",
+            "eyes": "piercing ocean blue",
+            "skin": "fair",
+            "features": "two curved pale horns, pointed fangs and a thick green-and-tan spiked dragon-turtle tail",
+            "accessories": "a small gold crown with pink-and-blue mushroom motifs, a black leather spiked collar and heavy spiked cuffs on her wrists and upper arms",
+            "accState": "always",
+            "expression": "a fierce, sharp-fanged smirk"
+          },
+          "under": "corset",
+          "underColor": "black",
+          "stats": {"beauty":82,"charm":66,"charisma":78,"refinement":42,"wits":54,"stamina":88,"strength":90,"agility":58},
+          "tech": {"service":35,"dance":30,"bar":45,"combat":90,"manage":50},
+          "actSkill": 35,
+          "popularity": 30,
+          "lewd": 54,
+          "trust": 22,
+          "outfits": {
+            "sig_bowsette": {
+              "label": "Koopa Queen gown",
+              "style": "Revealing",
+              "prompt": "a strapless sweetheart-neckline black gothic gown with a high front slit, a small spiked green shell bustle on her lower back and black high-heeled boots",
+              "bonus": {"security":1.35,"courtesan":1.2}
+            },
+            "sp_bowsette": {
+              "label": "Red-head fury",
+              "style": "Revealing",
+              "prompt": "a plunging black leather corset bodysuit with spiked shoulder straps and thigh-high boots",
+              "bonus": {"security":1.25,"adventurer":1.25},
+              "hairColor": "fiery crimson-red",
+              "eyes": "glowing crimson",
+              "skin": "sun-kissed tan"
+            }
+          },
+          "bonds": {
+            "peach": {"v":25,"note":"She still swears they are rivals, even while saving Peach a seat at dinner."},
+            "boosette": {"v":55,"kind":"comrades","note":"Her favorite haunted-keep lieutenant and drinking companion."}
+          },
+          "jobs": {"likes":["security","courtesan","bartender"],"dislikes":["maid"]},
+          "body": {"bust":"huge","height":"tall","figure":"curvy"},
+          "unique": {
+            "name": "Koopa Sovereign",
+            "desc": "A breath of fire and a fanged grin keep rowdy patrons in line and thrill thrill-seekers.",
+            "fx": {"security":20,"classBonus":{"adventurer":1.2},"appeal":4}
+          }
+        },
+        "boosette": {
+          "job": "courtesan",
+          "name": "Boosette",
+          "title": "Lady",
+          "race": "spirit",
+          "age": 210,
+          "personality": "Playful trickster",
+          "traits": ["Shy","Flirt"],
+          "style": "Elegant",
+          "favColor": "ghost white",
+          "fav": "doggy",
+          "dislike": "missionary",
+          "lovers": "oral_give",
+          "backstory": "The spectral queen of a haunted mansion who slipped on a magical crown and discovered the joys of a curvy, touchable body. Boosette is a walking contradiction: the instant you look her straight in the eye she blushes scarlet and hides behind her hands, and the second you turn your back she's pressing flush against you with a wicked, long-tongued grin.",
+          "design": {
+            "build": "weightless",
+            "hairStyle": "short, fluffy wavy bob with bangs swept over one eye",
+            "hairColor": "pure snow-white",
+            "eyes": "glowing crimson-red",
+            "skin": "translucent porcelain skin with a faint spectral glow",
+            "features": "cute pointed fangs and a playful long pink tongue",
+            "accessories": "a gold crown set with red jewels and floating ghostly white cuff-mittens",
+            "accState": "always",
+            "expression": "a mischievous, sharp-toothed giggle that turns bashful when watched"
+          },
+          "under": "sheer",
+          "underColor": "white",
+          "stats": {"beauty":80,"charm":76,"charisma":72,"refinement":60,"wits":64,"stamina":60,"strength":28,"agility":78},
+          "tech": {"service":60,"dance":55,"bar":25,"combat":40,"manage":20},
+          "actSkill": 45,
+          "popularity": 26,
+          "lewd": 56,
+          "trust": 24,
+          "outfits": {
+            "sig_boosette": {
+              "label": "Spectral bride gown",
+              "style": "Revealing",
+              "prompt": "a plunging off-shoulder sheer white spectral gown that trails into wispy ghost-tail silk at the hem",
+              "bonus": {"courtesan":1.3,"noble":1.15}
+            }
+          },
+          "bonds": {"bowsette":{"v":55,"kind":"comrades","note":"Followed Queen Bowsette out of the dark keeps for the fun of it."}},
+          "jobs": {"likes":["courtesan","dancer","bath"],"dislikes":["security","promoter"]},
+          "body": {"bust":"large","height":"average","figure":"curvy"},
+          "unique": {
+            "name": "Don't Look at Me",
+            "desc": "Shy face-to-face and shamelessly bold from behind, she excels at teasing and rear positions.",
+            "fx": {"actQuality":{"doggy":1.35,"oral_give":1.2},"appeal":4}
+          }
+        }
+      }
+    }
+  }
+}

@@ -435,7 +435,7 @@
         },
         "jump": {
           "title": "Silent Type",
-          "text": "During an afternoon sparring drill on the back lawn, Byleth sweeps your legs and pins you flat in the grass, straddling your hips with one hand braced beside your head. Her braid has come loose, her chest is heaving against yours, and her eyes darken as she feels you beneath her. \"...I appear to have forgotten the lesson,\" she murmurs.",
+          "text": "During an afternoon sparring drill on the back lawn, Byleth sweeps your legs and pins you flat in the grass, straddling your hips with one hand braced beside your head. Her hair has come loose, her chest is heaving against yours, and her eyes darken as she feels you beneath her. \"...I appear to have forgotten the lesson,\" she murmurs.",
           "image": {
             "comp": "kneeling over him in the grass, one hand braced beside his head, deadpan but visibly flustered",
             "setting": "training lawn behind the house in afternoon sun",
@@ -501,6 +501,230 @@
           "goRes": "She lets out a breathless gasp as you kiss her hungrily, abandoning the wine bottle on the steps to carry her straight to your bed, her hands already at your belt.",
           "wait": "\"Careful on the stairs.\"",
           "waitRes": "\"Right—yes!\" Mortified and radiant, she steadies herself. \"I'll watch my step... and take the next one with you later.\""
+        }
+      }
+    },
+    "tiki": {
+      "events": {
+        "1": {
+          "title": "Three Thousand Springs",
+          "text": "You find Tiki half-asleep on the sunny veranda rail, her long emerald ponytail draped over her lap. Opening one green eye as you bring a blanket, she catches your sleeve with a warm, drowsy smile. \"Whenever I close my eyes for too long, the people I care for are gone when I wake,\" she murmurs, sitting up closer to you. \"Kiss me, Sam, so I know I'm wide awake right now.\"",
+          "image": {
+            "comp": "sitting on a sunny veranda rail holding his sleeve, long emerald ponytail over her shoulder, warm sleepy smile",
+            "setting": "sunlit veranda with hanging lanterns and afternoon warmth",
+            "sam": true
+          },
+          "go": "Kiss her",
+          "goRes": "Her lips are warm and unhurried, Tiki humming happily against your mouth before resting her cheek on your shoulder. \"Much better than dreaming.\"",
+          "wait": "\"Rest a little longer first.\"",
+          "waitRes": "\"Only a short nap,\" Tiki promises, tugging the blanket around her shoulders. \"Promise you'll still be here when I open my eyes.\""
+        },
+        "2": {
+          "title": "Mortal Warmth",
+          "text": "Late at night in the quiet lounge, Tiki unclasps her sheer pink cape-veil and draws you down beside her on the cushions. \"People call me the Voice of the Divine Dragon and keep a reverent distance,\" she whispers, guiding your hands onto her bare back and waist. \"You never treat me like a relic. Touch me the way a man touches a woman he wants.\"",
+          "image": {
+            "comp": "kneeling close on lounge cushions with her cape-veil set aside, guiding his hands to her waist, tender inviting gaze",
+            "setting": "quiet lounge late at night, low lantern glow",
+            "sam": true
+          },
+          "go": "Touch her",
+          "goRes": "Three millennia of lonely reverence melt away as your hands cup her full breasts and stroke her wet pussy while her soft, eager hands free your cock and bring you both to breathless shivers.",
+          "wait": "\"We have plenty of nights ahead.\"",
+          "waitRes": "\"To you, perhaps,\" Tiki smiles wistfully, kissing your knuckles. \"Don't make a dragon wait too long, Sam.\""
+        },
+        "3": {
+          "title": "No More Sleeping",
+          "text": "Tiki slips into your bedroom at midnight with her golden tiara set aside and her emerald hair spilling loose down her bare back, letting her crimson dress pool at her feet. \"I spent centuries asleep because waking hurt too much,\" she whispers, climbing into your lap on the edge of the mattress. \"Tonight I don't want to sleep a single wink. Make me yours.\"",
+          "image": {
+            "comp": "kneeling naked on his bed with her long green hair loose over her shoulders, tender unguarded smile",
+            "setting": "Sam's bedroom by warm candlelight",
+            "sam": true
+          },
+          "go": "Make her yours",
+          "goRes": "You lay her back on the pillows and sink your cock deep into her pussy, Tiki wrapping her arms and legs around you with soft, breathless cries that last until morning light.",
+          "wait": "\"Are you sure?\"",
+          "waitRes": "\"I have had three thousand years to think it over,\" Tiki laughs softly. \"Come find me tomorrow night.\""
+        },
+        "jump": {
+          "title": "Wide Awake",
+          "text": "You try to slip past the lounge sofa without waking Tiki from her afternoon nap, and her arms loop around your neck in a flash, pulling you straight down on top of her. \"Caught you,\" she purrs against your ear, her breasts pressed warm and heavy against your chest. \"I wasn't sleeping—I was waiting for you to get within reach.\"",
+          "image": {
+            "comp": "pulling him down onto a lounge sofa with her arms looped around his neck, flushed and smiling",
+            "setting": "lounge sofa in warm afternoon light",
+            "sam": true
+          },
+          "go": "Stay in reach",
+          "goRes": "She kisses you deeply on the sofa, hiking up her crimson gown and guiding your hand between her thighs while her other hand unfastens your belt.",
+          "wait": "\"Someone will walk in!\"",
+          "waitRes": "\"Let them,\" Tiki pouts playfully before sitting up. \"Fine—your room tonight, and the door stays locked.\""
+        }
+      }
+    },
+    "nowi": {
+      "events": {
+        "1": {
+          "title": "Shiny Things",
+          "text": "Nowi spreads her collection of shiny pebbles, brass buttons, and glass beads across your desk, then points straight at your face. \"You're my favorite thing in the house, Sam, and you don't fit in my treasure box,\" she declares, leaning over the desk on her elbows with bright pink-violet eyes. \"So I decided I'm going to kiss you to mark you as mine instead!\"",
+          "image": {
+            "comp": "leaning across a desk covered in shiny trinkets, long blonde-to-green wavy hair, bright playful grin",
+            "setting": "Sam's office desk, scattered glass beads and warm lamplight",
+            "sam": true
+          },
+          "go": "Let her mark you",
+          "goRes": "She hops onto the edge of the desk and kisses you squarely on the mouth, kicking her heels happily before hugging your neck. \"Mine! Official dragon rule.\"",
+          "wait": "\"Maybe start with a button?\"",
+          "waitRes": "\"A button's just a down payment!\" Nowi pockets one cheerfully. \"I'm coming back for the kiss later.\""
+        },
+        "2": {
+          "title": "Older Than I Look",
+          "text": "You find Nowi sitting quietly by the garden pond after hours, her usual bounce gone as she watches the lantern reflections on the water. \"Everyone treats me like a kid because I laugh a lot—it's easier than looking a thousand years old,\" she says softly, taking your hand and pressing it against her bare midriff. \"You're the only one who looks at me like a woman. Show me you mean it.\"",
+          "image": {
+            "comp": "sitting by a garden pond at night holding his hand against her midriff, surprisingly mature and earnest gaze",
+            "setting": "garden pond at night, floating lantern reflections",
+            "sam": true
+          },
+          "go": "Show her",
+          "goRes": "In the quiet garden pavilion, her playful mask gives way to breathless, shivering gasps as your hands cup her breasts and your fingers stroke her pussy while she eagerly works your cock.",
+          "wait": "\"You don't have to prove anything to me.\"",
+          "waitRes": "\"I know,\" Nowi smiles warmly, leaning her cheek against your palm. \"That's why I want it to be you.\""
+        },
+        "3": {
+          "title": "Dragon's Hoard",
+          "text": "Nowi pads into your bedroom barefoot with her dragonstone pendant gleaming against her bare collarbone, unclasping her capelet and letting her top drop to the rug. \"A dragon sleeps on what she treasures most,\" she whispers, cheeks flushed bright pink as she climbs onto your bed. \"I don't want gold or gems tonight, Sam—just you.\"",
+          "image": {
+            "comp": "kneeling on his bed with her dragonstone pendant gleaming on her bare chest, flushed and earnest",
+            "setting": "Sam's bedroom at night, warm lamplight",
+            "sam": true
+          },
+          "go": "Hold her close",
+          "goRes": "You pull her down into the sheets and slide your cock into her tight pussy, fucking her slowly until she clings to your neck with breathless cries and falls asleep curled across your chest.",
+          "wait": "\"Let's take our time.\"",
+          "waitRes": "\"I've got a thousand years,\" Nowi grins softly, tugging your blanket over her shoulders, \"though I'd rather not wait that long!\""
+        },
+        "jump": {
+          "title": "Pounce",
+          "text": "Nowi drops straight off the stair banister into your arms, wrapping her legs around your waist and refusing to let go. \"I tried being patient all week and it's terrible for my health!\" she announces, pressing her flushed face into your neck as her hips shift against yours. \"Take me to your room right now!\"",
+          "image": {
+            "comp": "clinging to him with her legs wrapped around his waist at the bottom of the stairs, flushed and grinning",
+            "setting": "staircase hall, warm lanterns",
+            "sam": true
+          },
+          "go": "Carry her upstairs",
+          "goRes": "You carry her straight into your bedroom and kick the door shut, kissing her breathless as she tugs at your belt and guides your hand between her thighs.",
+          "wait": "\"Set your feet on the floor first.\"",
+          "waitRes": "\"Boo!\" Nowi hops down, straightening her skirt with a cheeky grin. \"Ten minutes—then I'm pouncing again.\""
+        }
+      }
+    },
+    "tharja": {
+      "events": {
+        "1": {
+          "title": "Love Hex",
+          "text": "You catch Tharja behind the parlor pillar with an open dark tome and a strand of your hair wound around her finger. Instead of hiding it, she steps out into the lamplight, dark violet eyes locked on yours beneath her blunt bangs. \"The hex was supposed to make you come to me,\" she murmurs in a low, husky voice. \"Since you're already here, hold still while I test the side effects.\"",
+          "image": {
+            "comp": "stepping out from behind a pillar with a dark tome held to her chest, dark eyes fixed on him, sly flushed smile",
+            "setting": "dim parlor corner, flickering candle sconces",
+            "sam": true
+          },
+          "go": "Hold still",
+          "goRes": "She rises on tiptoe and kisses you with dark, possessive intensity, letting out a breathless little laugh against your lips. \"The spell wasn't even finished...\"",
+          "wait": "\"Did you steal that hair off my hoodie?\"",
+          "waitRes": "\"I found it,\" Tharja lies smoothly, tucking it into her tome. \"And I'm keeping it until next time.\""
+        },
+        "2": {
+          "title": "Hands-On Ritual",
+          "text": "Tharja's room is lit by purple candles and smells of desert myrrh. She sits you in the center of a chalk circle on her rug, then kneels between your knees in her sheer black mesh bodysuit. \"Standard Plegian ritual requires a physical conduit,\" she whispers, her cheeks flushing warm as she places your palms directly over her breasts. \"Don't break the circle, Sam.\"",
+          "image": {
+            "comp": "kneeling between his knees in a candlelit room, guiding his hands to her chest, dark obsessive gaze softening",
+            "setting": "her bedroom, purple candles and a chalk circle on the rug",
+            "sam": true
+          },
+          "go": "Stay in the circle",
+          "goRes": "There is no spell at all—just Tharja gasping under your hands as you peel back the sheer mesh and stroke her pussy while her warm mouth and tongue worship your cock.",
+          "wait": "\"Is there actually a spell?\"",
+          "waitRes": "\"...Details,\" Tharja mutters, pulling her cape across her blushing face. \"Come back tomorrow and don't ask questions.\""
+        },
+        "3": {
+          "title": "Body and Soul",
+          "text": "Tharja stands at the foot of your bed at midnight with her tome left behind and her black hair falling loose around her bare shoulders, peeling off the sheer mesh until she stands completely naked in the candlelight. \"No hexes tonight, Sam,\" she whispers, her voice trembling with raw honesty. \"You already have all of me—take the rest.\"",
+          "image": {
+            "comp": "standing naked at the foot of a candlelit bed, long black hair loose, dark eyes intense and vulnerable",
+            "setting": "Sam's bedroom at midnight, flickering candlelight",
+            "sam": true
+          },
+          "go": "Pull her into bed",
+          "goRes": "You pull her down onto the mattress and sink your cock deep into her scorching pussy, Tharja clinging to you with fierce, nails-in-your-back devotion as she cums again and again.",
+          "wait": "\"You don't need a hex to stay here.\"",
+          "waitRes": "\"Good,\" Tharja murmurs, slipping under your covers anyway to hold your arm. \"Because I'm never leaving.\""
+        },
+        "jump": {
+          "title": "No More Watching",
+          "text": "You turn into the linen alcove and find Tharja right behind you, kicking the door shut and pinning you against the shelves with a fierce blush across her pale cheeks. \"I've watched three different women laugh with you today and I'm out of patience,\" she hisses, grabbing your belt. \"Look at me instead.\"",
+          "image": {
+            "comp": "pinning him against shelves in a dim alcove, pale cheeks flushed, dark eyes blazing with possessive heat",
+            "setting": "dim linen alcove, closed door behind her",
+            "sam": true
+          },
+          "go": "Look only at her",
+          "goRes": "You kiss her breathless against the shelves, shoving her Plegian wrap aside to slide your fingers into her wet pussy while she groans against your mouth.",
+          "wait": "\"You can just talk to me, Tharja.\"",
+          "waitRes": "\"Talking takes too long,\" she mutters, though she lets you kiss her forehead. \"Tonight. Your room. Don't lock the door.\""
+        }
+      }
+    },
+    "lucina": {
+      "events": {
+        "1": {
+          "title": "Quiet Watch",
+          "text": "Lucina is polishing her sword on the courtyard bench under a sky full of peaceful stars, looking almost lost without a war to fight. When you sit beside her, she sets the cloth down and turns earnest deep-blue eyes on you. \"In the future I came from, we never had time for gentleness,\" she says softly, her cheeks warming. \"Would you show me what a kiss is like when the world isn't ending?\"",
+          "image": {
+            "comp": "sitting on a courtyard bench under the stars, sword across her knees, earnest blush and hopeful eyes",
+            "setting": "courtyard at night, stars overhead and warm lantern light",
+            "sam": true
+          },
+          "go": "Show her",
+          "goRes": "She closes her eyes and leans in with touching solemnity, her breath catching in a soft, wondering sigh as your lips meet hers.",
+          "wait": "\"The world will still be here tomorrow.\"",
+          "waitRes": "\"It will,\" Lucina smiles with quiet wonder, touching her fingers to her lips. \"I still can't quite believe that. Tomorrow, then.\""
+        },
+        "2": {
+          "title": "Fashion Advice",
+          "text": "Lucina calls you into her room for an urgent matter—which turns out to be a terribly gaudy polka-dot dress she bought in the market, laid out on her bed while she stands in her undershirt and shorts, blushing furiously. \"I wanted to wear something pretty for you, and I realize now I have made a tactical error,\" she confesses, taking your hand. \"May we skip the dress and go straight to your hands on me?\"",
+          "image": {
+            "comp": "standing in her room in an undershirt with a gaudy dress on the bed behind her, mortified earnest blush, holding his hand",
+            "setting": "her tidy bedroom, warm lamplight",
+            "sam": true
+          },
+          "go": "Skip the dress",
+          "goRes": "You laugh softly and pull her close, slipping off her undershirt to kiss her breasts and slide your hand into her shorts—Lucina gasping and clinging to your shoulders as her warrior's stiffness melts away.",
+          "wait": "\"You look great without the dress.\"",
+          "waitRes": "\"Truly?\" She brightens instantly, folding the offending garment away. \"Then I shall prepare a better plan for next time.\""
+        },
+        "3": {
+          "title": "A Future of Her Own",
+          "text": "Lucina unbuckles Falchion and sets the scabbard across her chair—the furthest she has ever left her blade—before turning to you in a simple navy sleeping shift. The faint star-shaped mark in her left eye catches the candlelight as she lets the shift fall. \"My whole life belonged to history,\" she whispers, stepping into your arms. \"Tonight belongs to me, and I want to give it to you.\"",
+          "image": {
+            "comp": "standing barefoot beside her bed with her sword set aside, navy hair loose over bare shoulders, brave tender smile",
+            "setting": "bedroom by candlelight, sword resting on a chair",
+            "sam": true
+          },
+          "go": "Hold her",
+          "goRes": "You lay her gently on the bed and slide your cock into her tight pussy, fucking her with slow, steady warmth until her earnest sighs turn into breathless, crying climaxes in your arms.",
+          "wait": "\"Take all the time you want.\"",
+          "waitRes": "\"I have all the time in the world now,\" Lucina whispers, resting her cheek against your chest. \"Thank you, Sam.\""
+        },
+        "jump": {
+          "title": "Tactical Directness",
+          "text": "Lucina marches into your office, closes the door behind her, and stands at attention with her face burning bright red. \"I have concluded that subtlety is not among my strengths,\" she announces in one breathless rush, stepping around your desk to grab your hoodie. \"I want you, Sam, and I am launching a direct assault.\"",
+          "image": {
+            "comp": "standing over his desk holding his hoodie in both hands, face scarlet, earnest determined gaze",
+            "setting": "Sam's office, ledger on the desk and warm lamplight",
+            "sam": true
+          },
+          "go": "Surrender",
+          "goRes": "Her 'assault' is a fierce, clumsy kiss that quickly turns hot and hungry as she straddles your lap on the office chair and guides your hands under her tunic.",
+          "wait": "\"At ease, Princess.\"",
+          "waitRes": "\"R-right! At ease!\" Lucina steps back with a salute she immediately regrets, bolting for the door: \"I shall regroup for tonight!\""
         }
       }
     }

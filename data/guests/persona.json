@@ -41,12 +41,6 @@
               "bonus": {"attendant":1.25,"noble":1.15},
               "accessories": "a large leather-bound compendium at her side",
               "accState": "dressed"
-            },
-            "sp_margaret": {
-              "label": "Off-duty blue dress",
-              "style": "Elegant",
-              "prompt": "a simple knee-length pale blue dress, white gloves and a small silver pin",
-              "bonus": {"merchant":1.1,"courtesan":1.15}
             }
           },
           "bonds": {"takemi":{"v":20,"note":"Margaret finds the doctor's medical stories fascinating."}},
@@ -97,10 +91,10 @@
               "accState": "dressed"
             },
             "sp_kashiwagi": {
-              "label": "Cafe date outfit",
-              "style": "Cute",
-              "prompt": "a pastel cardigan over a fitted pink dress, a handbag and heeled shoes",
-              "bonus": {"commoner":1.2,"propose":1.1}
+              "label": "Golden beach bikini",
+              "style": "Revealing",
+              "prompt": "a gold-and-pink string bikini with a sheer sarong wrap at her hips",
+              "bonus": {"bath":1.2,"courtesan":1.2}
             }
           },
           "bonds": {"kawakami":{"v":25,"note":"Old acquaintances who commiserate over men and rent."}},
@@ -209,12 +203,6 @@
               "bonus": {"bath":1.25,"commoner":1.15},
               "accessories": "a stethoscope around her neck",
               "accState": "dressed"
-            },
-            "sp_takemi": {
-              "label": "Night-off leathers",
-              "style": "Revealing",
-              "prompt": "a fitted black leather jacket over a plain top, tight jeans and boots",
-              "bonus": {"adventurer":1.2,"courtesan":1.15}
             }
           },
           "bonds": {
@@ -278,16 +266,6 @@
               "accState": "under",
               "expression": "a haughty, domineering smirk",
               "favColor": "crimson"
-            },
-            "sp_sae_biker": {
-              "label": "Off-duty biker leathers",
-              "style": "Sporty",
-              "unlock": 75,
-              "prompt": "a fitted dark crimson leather riding jacket over a black camisole, tight riding trousers and heeled boots",
-              "accessories": "aviator sunglasses pushed up on her head",
-              "accState": "dressed",
-              "bonus": {"security":1.15,"adventurer":1.15},
-              "stats": {"agility":4,"charisma":3}
             }
           },
           "bonds": {"takemi":{"v":20,"note":"A prosecutor and an unlicensed doctor. They keep their distance on principle."}},
@@ -390,10 +368,12 @@
               "accState": "dressed"
             },
             "sp_kasumi": {
-              "label": "Performance dress",
-              "style": "Cute",
-              "prompt": "a pink ribbon-trimmed satin performance dress with a flared skirt",
-              "bonus": {"dancer":1.15,"noble":1.15}
+              "label": "Violet thief suit",
+              "style": "Elegant",
+              "prompt": "a fitted black high-collared leotard with a long dark tailcoat, red waist sash, thigh-high black boots and red gloves",
+              "bonus": {"dancer":1.2,"security":1.2},
+              "accessories": "a black domino mask",
+              "accState": "dressed"
             }
           },
           "bonds": {
@@ -439,10 +419,12 @@
               "bonus": {"promoter":1.3,"merchant":1.15}
             },
             "sp_ann": {
-              "label": "Runway gown",
-              "style": "Elegant",
-              "prompt": "a red satin evening gown with a plunging back and a high slit",
-              "bonus": {"courtesan":1.2,"noble":1.2}
+              "label": "Panther suit",
+              "style": "Revealing",
+              "prompt": "a skin-tight glossy red latex bodysuit with a plunging front zipper, long pink gloves and thigh-high red boots",
+              "bonus": {"dancer":1.25,"security":1.15},
+              "accessories": "a red cat-ear mask",
+              "accState": "dressed"
             }
           },
           "bonds": {

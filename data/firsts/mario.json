@@ -1,0 +1,340 @@
+{
+  "characters": {
+    "peach": {
+      "events": {
+        "1": {
+          "title": "Strawberry Shortcake",
+          "text": "Princess Peach sets a freshly frosted strawberry shortcake on your office desk after hours, her pink gown rustling softly as she holds out a silver fork with a serene smile. \"I always bake when I'm thinking about someone special,\" she confesses, sapphire eyes warming as a delicate blush touches her cheeks. \"Taste it first—and then tell me if a princess is allowed to ask for a kiss.\"",
+          "image": {
+            "comp": "holding out a forkful of strawberry cake across his desk, wearing her pink royal gown and gold crown, warm blushing smile",
+            "setting": "Sam's office late at night, strawberry cake on a silver plate",
+            "sam": true
+          },
+          "go": "Taste and kiss her",
+          "goRes": "Her lips taste of sweet cream and strawberries, Peach sighing softly against your mouth as her white-gloved hand rests over your cheek.",
+          "wait": "\"One slice at a time, Your Highness.\"",
+          "waitRes": "\"Of course,\" Peach giggles behind her gloved fingertips. \"I'll save the icing for tomorrow night.\""
+        },
+        "2": {
+          "title": "Off the Balcony",
+          "text": "You find Peach on the moonlit garden terrace with her gold crown set on the stone railing and her white opera gloves peeled halfway down her forearms. \"Everyone treats me like porcelain on a pedestal,\" she murmurs, stepping close and guiding your hands onto her waist. \"With you, I don't want to be untouchable, Sam. Touch me the way you want to.\"",
+          "image": {
+            "comp": "standing on a moonlit terrace with her opera gloves half-peeled and crown on the railing, guiding his hands to her waist",
+            "setting": "moonlit garden terrace with blooming roses",
+            "sam": true
+          },
+          "go": "Touch her",
+          "goRes": "You slip her pink bodice down to kiss her bare breasts while Peach gasps softly, her warm hands unbuckling your belt and stroking and sucking your cock with earnest, breathless devotion.",
+          "wait": "\"You're never just porcelain to me.\"",
+          "waitRes": "Peach's sapphire eyes shine as she leans her cheek against your palm. \"Then don't make me wait on this pedestal much longer.\""
+        },
+        "3": {
+          "title": "No More Castles",
+          "text": "Peach steps into your bedroom at midnight in a sheer pink silk nightgown, her golden hair tumbling loose past her shoulders without her crown. \"I've been locked in towers and waited for rescue more times than I care to count,\" she whispers, letting the silk ribbons untie so the gown pools at her feet. \"Tonight I walked through this door myself—because I want to be yours.\"",
+          "image": {
+            "comp": "standing barefoot beside his bed as her pink silk gown slips down, golden blonde hair loose, tender unguarded smile",
+            "setting": "Sam's bedroom by warm candlelight",
+            "sam": true
+          },
+          "go": "Welcome her into bed",
+          "goRes": "You draw her onto the mattress and sink your cock slowly into her warm, wet pussy, Peach wrapping her arms around your neck with sweet, trembling cries until she comes in your arms.",
+          "wait": "\"Take all the time you want.\"",
+          "waitRes": "\"I already chose,\" Peach whispers, kissing your lips softly before slipping under your covers. \"Stay close to me tonight.\""
+        },
+        "jump": {
+          "title": "Floating Down",
+          "text": "Peach floats gently down from the second-floor landing under her open pink parasol and lands right in front of you, snapping the parasol shut with a bright, breathless laugh. Before you can step back, she catches your collar in both gloved hands. \"I decided royalty shouldn't always wait to be swept off her feet—my turn to sweep you upstairs!\"",
+          "image": {
+            "comp": "landing at the foot of the stairs with a folded pink parasol, grabbing his collar with a bold blushing smile",
+            "setting": "grand staircase hall in warm lantern light",
+            "sam": true
+          },
+          "go": "Let her sweep you away",
+          "goRes": "She pulls you into her suite and kisses you breathless, hiking up her voluminous pink skirts so you can slide your fingers into her wet pussy right against the door.",
+          "wait": "\"That parasol trick is dangerous!\"",
+          "waitRes": "\"Only to your composure,\" Peach winks with uncharacteristic mischief. \"Meet me upstairs in ten minutes.\""
+        }
+      }
+    },
+    "daisy": {
+      "events": {
+        "1": {
+          "title": "Winner Takes All",
+          "text": "Daisy slams her empty cider mug down on the tavern table after beating three guards at darts, spinning around with her auburn bob bouncing and her cobalt eyes locked on you. \"Your turn, boss! High score gets a prize—and if I win, you're kissing me right here!\" She throws a bullseye without even looking at the board and grins from ear to ear.",
+          "image": {
+            "comp": "pointing at him with a dart in hand and a triumphant grin, gold flower crown glinting, warm tavern light",
+            "setting": "tavern game corner after closing, dartboard behind her",
+            "sam": true
+          },
+          "go": "Pay the winner",
+          "goRes": "She whoops, grabs your face in both hands, and plants a hot, enthusiastic kiss right on your mouth before pulling back flushed and beaming. \"Best trophy in town!\"",
+          "wait": "\"Best two out of three!\"",
+          "waitRes": "\"Oh, you're on!\" Daisy laughs, tossing you the darts. \"Double stakes when I beat you again!\""
+        },
+        "2": {
+          "title": "Locker Room Pep Talk",
+          "text": "After an evening dance-and-acrobatics set, Daisy sits on the dressing room bench in her cropped orange athletic top and shorts, toweling off her sun-kissed neck. \"Hey, Sam—close the door a sec,\" she calls, patting the bench between her knees with a sudden, deeper flush. \"I've got all this energy left over and only one guy I want to spend it on. Hands on me—now.\"",
+          "image": {
+            "comp": "sitting on a dressing room bench in her sporty crop top and shorts, towel around her neck, flushed bold smile",
+            "setting": "backstage dressing room, warm lamplight",
+            "sam": true
+          },
+          "go": "Close the door",
+          "goRes": "She tugs her cropped top off so you can kiss her full breasts while she unfastens your trousers, stroking and sucking your cock with competitive, breathless gusto until you groan her name.",
+          "wait": "\"Cool down first, Princess.\"",
+          "waitRes": "\"Princesses from Sarasaland don't cool down!\" Daisy grins, snapping her towel playfully at your hip. \"Your room, tonight!\""
+        },
+        "3": {
+          "title": "No Formalities",
+          "text": "Daisy kicks your bedroom door shut with her heel, sets her flower crown on the dresser with a clink, and peels off her yellow-and-orange dress in one smooth motion. \"Peach is the one who does slow ballroom speeches—I'm terrible at them,\" she says, her loud bravado softening into earnest warmth as she climbs naked onto your bed. \"I'm crazy about you, Sam. Come here.\"",
+          "image": {
+            "comp": "kneeling naked on his bed with her flower crown set on the dresser, sun-kissed skin, warm earnest grin",
+            "setting": "Sam's bedroom at night, warm lamplight",
+            "sam": true
+          },
+          "go": "Climb into bed",
+          "goRes": "She straddles your hips immediately and sinks down onto your cock with a loud, happy gasp, riding you hard and fast until she collapses breathless across your chest.",
+          "wait": "\"Short speeches suit you.\"",
+          "waitRes": "\"Good!\" Daisy laughs, pulling you down into a tight hug under the covers. \"Because I'm not going anywhere.\""
+        },
+        "jump": {
+          "title": "Fast Break",
+          "text": "Daisy intercepts you in the hallway at a dead sprint, scoops your ledger right out of your hands, and tosses it onto a side table before pinning you against the wall. \"Paperwork's canceled!\" she declares, cheeks burning bright red as she presses her hips flush against yours. \"I've been trying to behave all day and I quit!\"",
+          "image": {
+            "comp": "pinning him against the hallway wall after tossing his ledger aside, flushed and grinning wildly",
+            "setting": "upstairs hallway, ledger on a side table",
+            "sam": true
+          },
+          "go": "Quit behaving too",
+          "goRes": "You kiss her hard and carry her into the nearest room, shoving her shorts down to fuck her with your fingers while she clutches your shoulders.",
+          "wait": "\"I need that ledger!\"",
+          "waitRes": "\"You can count coins in the morning!\" Daisy laughs, stealing a quick kiss before letting you grab the book. \"Don't be late tonight!\""
+        }
+      }
+    },
+    "pauline": {
+      "events": {
+        "1": {
+          "title": "Private Encore",
+          "text": "After the lounge empties out, Pauline stays by the piano in her glittering scarlet gown, singing the final verse of a slow jazz ballad straight to you in the back row. Stepping down from the stage, her heels click across the polished wood until her red-painted lips are an inch from yours. \"The crowd gets the show, Sam,\" she purrs. \"The mayor's private encore is just for you.\"",
+          "image": {
+            "comp": "stepping off the stage in her glittering scarlet slit gown, one hand on his lapel, sultry jazz-singer smile",
+            "setting": "empty lounge after closing, piano and low stage lights",
+            "sam": true
+          },
+          "go": "Claim the encore",
+          "goRes": "She kisses you slow, deep, and intoxicating, leaving a faint mark of scarlet lipstick at the corner of your mouth as she chuckles softly.",
+          "wait": "\"Save the encore for our next date.\"",
+          "waitRes": "\"A man who knows how to build suspense,\" Pauline purrs, tapping your chest with a manicured finger. \"Front row tomorrow, darling.\""
+        },
+        "2": {
+          "title": "Executive Session",
+          "text": "Pauline calls a late-night 'budget review' in her suite, wearing her sharp crimson pantsuit with the purple camisole unlaced low over her cleavage. Setting her pen down, she walks around the table and sits on the edge in front of you, parting her long legs so the slit of her trousers rides up. \"In New Donk City, I make the executive decisions,\" she whispers, sliding her hand over your belt. \"Tonight's agenda is you.\"",
+          "image": {
+            "comp": "sitting on the edge of a table in an unbuttoned crimson suit, long chestnut waves over one shoulder, sultry commanding gaze",
+            "setting": "private suite at night, city-style lamp and wine glasses",
+            "sam": true
+          },
+          "go": "Approve the agenda",
+          "goRes": "She unfastens your trousers and drops to her knees on the plush rug, wrapping her red lips and warm hands around your cock with smooth, unhurried mastery until you come.",
+          "wait": "\"Let's finish the actual budget first.\"",
+          "waitRes": "Pauline laughs—rich and musical—and picks up her pen. \"Ten more minutes of numbers, then I'm adjourning us to the bedroom.\""
+        },
+        "3": {
+          "title": "After the Spotlight",
+          "text": "Pauline stands before her vanity mirror, unzipping her glittering red stage gown so it slides to the floor and leaves her naked save for her gold hoop earrings. \"A mayor and a headliner always has ten thousand eyes on her,\" she says softly, meeting your gaze in the glass before turning into your arms. \"Tonight I only want yours, Sam. Make love to me.\"",
+          "image": {
+            "comp": "stepping out of her scarlet stage gown before a vanity mirror, statuesque curves bare in warm lamplight, tender sultry smile",
+            "setting": "her dressing suite at night, warm vanity bulbs",
+            "sam": true
+          },
+          "go": "Take her to bed",
+          "goRes": "You lay her across the silk sheets and sink your cock deep into her hot, wet pussy, Pauline's jazz-singer contralto breaking into breathless, musical moans until dawn.",
+          "wait": "\"You don't have to perform for me.\"",
+          "waitRes": "\"That's why it's you, darling,\" Pauline whispers, pulling a silk robe around her shoulders and kissing your cheek. \"Stay and hold me tonight.\""
+        },
+        "jump": {
+          "title": "Backstage Heat",
+          "text": "The applause is still roaring through the stage curtain when Pauline catches your wrist in the wings, her skin hot from the footlights and her chest heaving in her scarlet dress. \"That song had me thinking about your hands on me for four straight verses,\" she pants against your mouth, hiking her high-slit skirt up to her hip. \"Right here, before the band finishes packing up.\"",
+          "image": {
+            "comp": "pulling him into the backstage shadows with her scarlet gown hiked up her thigh, flushed and breathless",
+            "setting": "dim backstage wings behind red velvet curtains",
+            "sam": true
+          },
+          "go": "Touch her backstage",
+          "goRes": "You press her against the backstage wall and slide your fingers into her soaking pussy while she muffles her gasps against your neck.",
+          "wait": "\"Your room is thirty seconds away!\"",
+          "waitRes": "\"Then run!\" Pauline laughs breathlessly, grabbing your hand and towing you up the back stairs."
+        }
+      }
+    },
+    "toadette": {
+      "events": {
+        "1": {
+          "title": "Star Sticker",
+          "text": "Toadette finishes reorganizing the entire supply room by color and height, then hops onto a wooden crate so she can look you right in the eye, her pink twin braids bobbing. \"Every job in the ledger got a gold star today—and since you're the best boss in Hollowmere, you get the special reward!\" Blushing rosy pink, she leans forward from the crate and kisses your lips.",
+          "image": {
+            "comp": "standing on a wooden crate to reach his height, pink twin braids bobbing, rosy-cheeked affectionate smile",
+            "setting": "neatly organized supply room, warm lantern light",
+            "sam": true
+          },
+          "go": "Kiss her back",
+          "goRes": "She lets out a happy little squeak against your mouth, hugging your neck tightly before beaming up at you. \"Gold star officially awarded!\"",
+          "wait": "\"Don't fall off the crate!\"",
+          "waitRes": "\"I'm a master builder—my crates never wobble!\" Toadette giggles, hopping down into your arms anyway."
+        },
+        "2": {
+          "title": "Blueprint for Two",
+          "text": "Toadette spreads a rolled parchment across your desk late at night—only instead of a room renovation, it's a carefully labeled diagram of her own bedroom with a heart drawn over the bed. Taking off her mushroom-cap beret, she climbs into your lap with burning cheeks. \"I planned out every step except the part where you touch me, Sam... will you show me?\"",
+          "image": {
+            "comp": "sitting in his lap at the desk with her beret set aside, pink braids resting on her shoulders, shy earnest blush",
+            "setting": "Sam's office at night, rolled blueprints on the desk",
+            "sam": true
+          },
+          "go": "Show her",
+          "goRes": "You unfasten her pink dress and cup her soft breasts, sliding your hand between her thighs while she eagerly strokes and kisses your cock with sweet, breathless enthusiasm.",
+          "wait": "\"Let's review the blueprint slowly.\"",
+          "waitRes": "\"Okay!\" Toadette nods earnestly, resting her head under your chin. \"I'm a very fast learner, though!\""
+        },
+        "3": {
+          "title": "Captain's Treasure",
+          "text": "In her cozy room lined with maps and treasure chests, Toadette unbuttons her red vest and lets her magenta dress slip to the floor, standing barefoot on the rug in the warm lamplight. \"I've hunted for power stars and golden coins across a dozen islands,\" she whispers, holding out both hands to you with shining dark eyes. \"Turns out my favorite treasure was right here all along. Stay in my bed tonight, Sam.\"",
+          "image": {
+            "comp": "standing barefoot beside her bed with her dress slipped off, pink twin braids over bare shoulders, warm loving smile",
+            "setting": "cozy bedroom with maps and a small treasure chest, warm lamplight",
+            "sam": true
+          },
+          "go": "Stay with her",
+          "goRes": "You lift her onto the soft mattress and ease your cock slowly into her warm, tight pussy, Toadette clinging to your shoulders with sweet, gasping cries until she comes in your arms.",
+          "wait": "\"You're a treasure yourself, Toadette.\"",
+          "waitRes": "She turns bright crimson from cheek to ear and hugs your waist. \"Then don't leave me locked in the chest for long!\""
+        },
+        "jump": {
+          "title": "Super Pickaxe",
+          "text": "After helping haul a jammed cellar door off its hinges, Toadette dusts off her hands, looks up at you flushed and breathing hard from the exertion, and suddenly grabs your hoodie to pull you down to her level. \"All that heavy lifting got my heart racing—come to my room right now before I cool off!\"",
+          "image": {
+            "comp": "tugging him down by his hoodie with both hands, flushed and breathless with a bold grin",
+            "setting": "cellar stairs, warm lantern light",
+            "sam": true
+          },
+          "go": "Carry her upstairs",
+          "goRes": "You scoop her up in both arms and carry her straight to her bed, kissing her breathless as she tugs at your belt.",
+          "wait": "\"Wash the dust off first!\"",
+          "waitRes": "\"Bathhouse in five minutes, then!\" Toadette cheers, already sprinting up the stairs ahead of you."
+        }
+      }
+    },
+    "bowsette": {
+      "events": {
+        "1": {
+          "title": "Royal Kidnapping",
+          "text": "Bowsette blocks the office doorway with one spiked-cuff arm braced against the frame, her curved horns and golden ponytail catching the lamplight while her thick spiked tail swishes lazily behind her. \"Listen up, Sam—I'm tired of waiting for you to ask me out, so I'm officially kidnapping you for the evening,\" she declares, a fierce blush creeping across her cheeks beneath her fanged grin. \"Shut up and kiss the Queen.\"",
+          "image": {
+            "comp": "blocking the doorway with one spiked-cuff arm on the frame, horns and fangs glinting, bold blushing smirk",
+            "setting": "Sam's office doorway at night, warm lamplight",
+            "sam": true
+          },
+          "go": "Kiss the Queen",
+          "goRes": "You grab her waist and kiss her hard—and the big, terrifying Koopa Queen lets out a tiny, melted whimper against your mouth while her tail thumps the floor like an excited puppy's.",
+          "wait": "\"Don't I get a ransom note first?\"",
+          "waitRes": "\"I burned the draft because my handwriting looked too cute!\" Bowsette snaps, scarlet to her horns. \"Tomorrow night, no excuses!\""
+        },
+        "2": {
+          "title": "Fire Breath",
+          "text": "In her candlelit room, Bowsette lounges across the sofa with her black gothic gown unzipped halfway down her massive cleavage, a small curl of warm smoke rising from the corner of her mouth. \"Every guy in this town is too scared of the horns and spikes to touch me,\" she mutters, grabbing your wrist and pressing your palm straight against her bare breast. \"You aren't scared. Prove it.\"",
+          "image": {
+            "comp": "lounging on a sofa with her black gown unzipped low, pressing his hand to her chest, fierce blushing gaze",
+            "setting": "her candlelit suite, spiked cuffs glinting in the warm glow",
+            "sam": true
+          },
+          "go": "Prove it",
+          "goRes": "Her skin is furnace-hot as you knead her heavy tits and slide your hand under her slit skirt, while she drops to her knees and devours your cock with her hot mouth and tongue until you come down her throat.",
+          "wait": "\"Scared? Never.\"",
+          "waitRes": "\"Good,\" Bowsette purrs, nipping your thumb lightly with a fang. \"Because once I get my claws in you, I'm not letting go.\""
+        },
+        "3": {
+          "title": "Soft Beneath the Spikes",
+          "text": "Bowsette unclasps her spiked cuffs and sets them on the dresser—leaving only the little gold crown in her blonde hair as her black gown drops to the rug, baring her voluptuous, Amazonian curves. \"I spent my whole life building iron castles and breathing fire so nobody would see how badly I wanted someone to stay,\" she whispers, climbing onto your bed with surprisingly shy blue eyes. \"Be mine tonight, Sam.\"",
+          "image": {
+            "comp": "kneeling naked on his bed with her spiked cuffs set aside, voluptuous curves and shy fierce blush",
+            "setting": "Sam's bedroom at night, warm candlelight",
+            "sam": true
+          },
+          "go": "Make her yours",
+          "goRes": "You pull her down onto the mattress and drive your cock deep into her scorching, wet pussy, Bowsette wrapping her heavy tail around your leg and crying out your name as she comes hard beneath you.",
+          "wait": "\"You never need a castle to keep me here.\"",
+          "waitRes": "Bowsette sniffles once, glares at the wall to hide her happy tears, and tackles you into a bone-crushing hug under the blankets."
+        },
+        "jump": {
+          "title": "Shell Shock",
+          "text": "After Peach casually mentions how well you and she get along, Bowsette storms into the back hall, hauls you into the empty wine cellar by your hoodie, and slams the oak door shut. \"Oh no you don't—you're looking at me tonight, not the princess!\" she growls, shoving her black slit skirt up over her hips and straddling your thigh.",
+          "image": {
+            "comp": "pinning him against the wine cellar door with her black skirt hiked up, jealous blushing scowl",
+            "setting": "dim wine cellar lined with oak casks",
+            "sam": true
+          },
+          "go": "Give her your full attention",
+          "goRes": "You kiss her fiercely and lift her up against the oak casks, sliding your fingers deep into her soaking pussy while she groans against your mouth.",
+          "wait": "\"Are you jealous, Your Majesty?\"",
+          "waitRes": "\"I am conquering, not jealous!\" Bowsette roars, ears bright red. \"Upstairs, right now!\""
+        }
+      }
+    },
+    "boosette": {
+      "events": {
+        "1": {
+          "title": "Peek-a-Boo",
+          "text": "Every time you walk down the upstairs corridor at night, you feel a cool, curvy body press right against your back—and the instant you turn around, Boosette is floating two feet away with both white-mittened hands covering her scarlet face. \"Stop turning around so fast!\" she squeaks through her fingers. \"Close your eyes for five seconds so I can kiss you without dying of embarrassment!\"",
+          "image": {
+            "comp": "floating in a dim corridor with her hands half-covering her blushing face, peeking through her fingers with crimson eyes",
+            "setting": "upstairs corridor at night, flickering wall lanterns",
+            "sam": true
+          },
+          "go": "Close your eyes",
+          "goRes": "The second your eyelids shut, her soft lips press against yours—followed by a playful, wet lick of her long tongue up your cheek before she giggles against your ear.",
+          "wait": "\"Look at me when you kiss me.\"",
+          "waitRes": "\"T-too bright!\" Boosette squeaks, turning half-translucent as she drifts backward. \"I'll practice for tomorrow!\""
+        },
+        "2": {
+          "title": "Long Tongue",
+          "text": "You sit at your desk pretending to read the ledger while looking at Boosette's reflection in the dark windowpane. Thinking you aren't watching, her bashful blush vanishes into a wicked, sharp-toothed grin as she floats under the desk between your knees and unfastens your belt. \"You're super focused on those numbers, boss,\" she purrs, her long, warm tongue trailing from the base of your cock to the tip. \"Let's see how long you can keep reading.\"",
+          "image": {
+            "comp": "kneeling between his knees under the desk with a mischievous sharp-toothed grin, crimson eyes glinting",
+            "setting": "Sam's office at night, dark window reflection behind the desk",
+            "sam": true
+          },
+          "go": "Keep 'reading'",
+          "goRes": "As long as you don't look straight down at her face, she is shameless—wrapping her long tongue and hot mouth around your cock until you come hard with your hands in her snow-white hair.",
+          "wait": "Look straight down at her",
+          "waitRes": "\"Eep!\" She claps both hands over her crimson face, burying her forehead against your knee. \"Cheater! Turn the lamp down first!\""
+        },
+        "3": {
+          "title": "Nothing to Hide",
+          "text": "In the pitch-dark bedroom lit only by the faint spectral glow of her porcelain skin, Boosette lets her sheer white gown drift away like mist, kneeling naked before you on the bed. When she tries to cover her face out of habit, you gently take her wrists and lower them. \"You're looking right at me,\" she whispers, trembling and scarlet-cheeked, \"and I don't want to vanish tonight. Take me, Sam.\"",
+          "image": {
+            "comp": "kneeling naked on the bed as he gently lowers her hands from her blushing face, glowing crimson eyes tender and shy",
+            "setting": "dark bedroom lit by her soft spectral glow",
+            "sam": true
+          },
+          "go": "Hold her gaze and take her",
+          "goRes": "Whether face-to-face or bent over the pillows in her favorite position, her spectral body turns hot and solid around your cock, Boosette gasping and crying out until she comes in your arms.",
+          "wait": "\"You're too pretty to hide.\"",
+          "waitRes": "Boosette's whole face glows bright pink before she tackles you into the pillows, hiding her face against your neck."
+        },
+        "jump": {
+          "title": "Haunted From Behind",
+          "text": "You step into the dark linen room to grab a towel and the door clicks shut on its own—followed immediately by Boosette's bare breasts pressing flush against your back as her hands slide straight into your trousers from behind. \"Don't you dare turn around, Sam,\" she giggles breathlessly against your shoulder blade. \"Bend me over the shelf instead!\"",
+          "image": {
+            "comp": "pressed flush against his back in a dark linen room, hands reaching around his waist, wicked blushing grin",
+            "setting": "dark linen room, stacks of towels",
+            "sam": true
+          },
+          "go": "Bend her over the shelf",
+          "goRes": "You spin her around with her back to you and hike up her sheer white gown, sliding your fingers into her soaking wet pussy while she moans shamelessly into the stacked towels.",
+          "wait": "Turn around and hug her",
+          "waitRes": "She lets out a high-pitched squeak and goes scarlet in your arms—though she doesn't phase through the floor to escape."
+        }
+      }
+    }
+  }
+}

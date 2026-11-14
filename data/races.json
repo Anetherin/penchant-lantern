@@ -6,13 +6,13 @@
     "Rules that are not simple numbers (demon feeding, android recharging, beastkin refusals, spirit bedlessness) live in code and read these entries.",
     "alwaysLast: generic ladies of this race always get a last name. Beastkin subs may also set wage.",
     "perk on a beastkin sub: {label, desc} display text for that sub's fx and wage (shown on her sheet).",
-    "design (optional, generic ladies only): skins = her skin tone is rolled from this list instead of people.json skins; builds = her build is rolled from this list; noBuilds = builds she never gets. Image looks (look) should only say what makes the race the race; height, figure, build and skin come from body.json and the design, so don't repeat them here."
+    "design (optional, generic ladies only): skins = her skin tone is rolled from this list instead of people.json skins; features = a race feature rolled into her design.features; builds = her build is rolled from this list; noBuilds = builds she never gets. Image looks (look) use '<race> woman' without anatomy markers so race anatomy lives in features and skin."
   ],
   "races": {
     "human": {
       "label": "Human",
       "age": [21,34],
-      "look": "human woman",
+      "look": "woman",
       "mods": {"charm":5},
       "common": true,
       "weight": 40,
@@ -24,14 +24,17 @@
     "elf": {
       "label": "Elf",
       "age": [90,380],
-      "look": "elf woman with long pointed ears",
+      "look": "elf woman",
       "mods": {"refinement":10,"beauty":5,"stamina":-5,"wits":5},
       "common": true,
       "weight": 15,
       "fx": {"moodDrift":0.5,"moodDelta":0.6,"classBonus":{"noble":1.2,"merchant":1.05}},
       "client": {"like":0.14,"dislike":0.04},
       "alwaysLast": true,
-      "design": {"noBuilds":["sturdy","compact","broad-shouldered","soft-featured","stocky","solid"]}
+      "design": {
+        "features": ["long pointed elf ears","slender pointed elf ears"],
+        "noBuilds": ["sturdy","compact","broad-shouldered","soft-featured","stocky","solid"]
+      }
     },
     "beastkin": {
       "label": "Beastkin",
@@ -50,7 +53,8 @@
           "fx": {"appeal":3},
           "names": {"l":["Redbrush","Foxglove","Emberbrush","Kuzunoha","Silvertail","Hazebrush","Lanternfox","of the Shrine Gate"]},
           "perk": {"label":"Fox's charm","desc":"+3 appeal."},
-          "look": "fox beastkin woman with fox ears, a fluffy fox tail and soft russet fur on her ears, tail, forearms and calves"
+          "look": "fox beastkin woman",
+          "design": {"features":["fox ears and a fluffy fox tail","perk fox ears and a thick white-tipped fox tail"]}
         },
         "cat": {
           "weight": 1,
@@ -58,7 +62,8 @@
           "fx": {"energyRec":1.1},
           "names": {"l":["Velvetpaw","Whiskerwind","Softstep","Silkpaw","Sunwindow","Tallwhisker","Mousebane","of the Night Market"]},
           "perk": {"label":"Cat's rest","desc":"Recovers 10% more energy."},
-          "look": "cat beastkin woman with cat ears, a fluffy cat tail and soft sleek fur on her ears, tail, forearms and calves"
+          "look": "cat beastkin woman",
+          "design": {"features":["cat ears and a sleek cat tail","tufted cat ears and a long curling cat tail"]}
         },
         "wolf": {
           "weight": 1,
@@ -66,7 +71,8 @@
           "fx": {"trustGain":1.1},
           "names": {"l":["Grayfang","Moonhowl","Ironpelt","Snowmane","Frostfang","Longrunner","Pinehollow","of the Northern Pack"]},
           "perk": {"label":"Wolf's loyalty","desc":"Trust grows 10% faster."},
-          "look": "wolf beastkin woman with wolf ears, a fluffy wolf tail and soft thick grey fur on her ears, tail, forearms and calves"
+          "look": "wolf beastkin woman",
+          "design": {"features":["wolf ears and a bushy wolf tail","pointed wolf ears and a thick wolf tail"]}
         },
         "rabbit": {
           "weight": 1,
@@ -74,31 +80,49 @@
           "fx": {"lustBuild":1.25,"encore":0.1},
           "names": {"l":["Thistledown","Clovermeadow","Quickfoot","Burrowell","Hareswift","Longear","Hollowbank","Dandelion"]},
           "perk": {"label":"Rabbit's heat","desc":"Lust builds 25% faster and she is more likely to want another round."},
-          "look": "rabbit beastkin woman with rabbit ears, a fluffy rabbit tail and soft soft white fur on her ears, tail, forearms and calves"
+          "look": "rabbit beastkin woman",
+          "design": {"features":["long upright rabbit ears and a fluffy cotton tail","long lop rabbit ears and a round fluffy tail"]}
         },
         "dragon": {
           "weight": 0.15,
           "label": "dragon",
-          "look": "dragonkin woman with small swept-back horns, a scaled dragon tail and patches of fine scales on her cheeks, shoulders and forearms",
+          "look": "dragonkin woman",
           "mods": {"strength":5,"stamina":10,"agility":-5,"charisma":5},
           "fx": {"maxEnergy":15},
           "client": {"like":0.2,"dislike":0.1},
           "age": [80,400],
           "wage": 1.15,
           "names": {"l":["Ashscale","Embercrest","Goldhorn","Stormwing","Jadeclaw","Cloudcoil","Pearlscale","of the Eastern Sea"]},
-          "perk": {"label":"Dragon's might","desc":"+15 max energy. Asks 15% more wages. Rarer."}
+          "perk": {"label":"Dragon's might","desc":"+15 max energy. Asks 15% more wages. Rarer."},
+          "design": {
+            "features": ["swept-back dragon horns and a scaled dragon tail","curved draconic horns and a long scaled tail"],
+            "skins": [
+              "fair with fine iridescent scales along her shoulders and hips",
+              "warm bronze with subtle gold-edged scales at her collarbones",
+              "pale ivory with pearlescent scales along her shoulders and forearms",
+              "golden-tan with patches of dark draconic scales at her shoulders"
+            ]
+          }
         }
       }
     },
     "demon": {
       "label": "Demon",
       "age": [110,320],
-      "look": "demon woman with small curved horns and a slender spade-tipped tail",
+      "look": "demon woman",
       "mods": {"charisma":10,"wits":5,"charm":-5,"lewd":15},
       "common": false,
       "weight": 10,
       "fx": {"lustMax":20,"lustBuild":1.3,"actEnergy":0.6},
-      "client": {"like":0.25,"dislike":0.25}
+      "client": {"like":0.25,"dislike":0.25},
+      "design": {
+        "features": [
+          "small curved horns and a slender spade-tipped tail",
+          "swept-back dark horns and a heart-tipped tail",
+          "curled dark horns, small bat wings and a slender tail",
+          "slender black horns and small leathery bat wings"
+        ]
+      }
     },
     "dwarf": {
       "label": "Dwarf",
@@ -116,7 +140,7 @@
     "spirit": {
       "label": "Spirit",
       "age": [150,600],
-      "look": "spirit woman with a faint glow and softly translucent edges",
+      "look": "spirit woman",
       "mods": {"charm":10,"refinement":5,"strength":-10},
       "common": false,
       "weight": 2,
@@ -124,23 +148,37 @@
       "client": {"like":0.15,"dislike":0.2,"classLike":{"adventurer":0.4}},
       "needs": "tether",
       "design": {
-        "skins": ["moonlit silver-white","pale blue-white","pearl-white, faintly luminous","misty grey-blue","soft lilac-white","translucent ivory"]
+        "skins": [
+          "moonlit silver-white with a faint spectral glow",
+          "pale blue-white with softly translucent edges",
+          "pearl-white, faintly luminous",
+          "misty grey-blue with a soft ethereal sheen",
+          "soft lilac-white with translucent fingertips",
+          "translucent ivory with a faint inner glow"
+        ]
       }
     },
     "angel": {
       "label": "Angel",
       "age": [120,900],
-      "look": "angel woman with large white feathered wings and a faint golden halo",
+      "look": "angel woman",
       "mods": {"refinement":10,"beauty":5,"strength":-5,"charm":5},
       "common": false,
       "weight": 3,
       "fx": {"lustMax":-30,"noReckless":true,"moodRest":5},
-      "client": {"like":0.25,"dislike":0.1,"classLike":{"noble":0.3}}
+      "client": {"like":0.25,"dislike":0.1,"classLike":{"noble":0.3}},
+      "design": {
+        "features": [
+          "large white feathered wings and a faint golden halo",
+          "graceful snow-white feathered wings and a warm golden halo",
+          "white-and-gold feathered wings and a glowing halo"
+        ]
+      }
     },
     "android": {
       "label": "Android",
       "age": [22,95],
-      "look": "android woman with fine seams at her joints and softly glowing eyes",
+      "look": "android woman",
       "mods": {"stamina":5,"refinement":5,"wits":10,"charm":-5},
       "common": false,
       "weight": 3,
@@ -149,12 +187,12 @@
       "needs": "charger",
       "design": {
         "skins": [
-          "flawless porcelain synthetic",
-          "matte ivory synthetic",
-          "smooth warm-beige synthetic",
-          "glossy pale synthetic",
-          "satin bronze synthetic",
-          "cool white synthetic with faint panel lines"
+          "flawless porcelain synthetic with fine joint seams",
+          "matte ivory synthetic with subtle panel lines",
+          "smooth warm-beige synthetic with doll-like joint seams",
+          "glossy pale synthetic with fine mechanical seams at her joints",
+          "satin bronze synthetic with delicate seam lines",
+          "cool white synthetic with faint glowing panel lines"
         ]
       }
     }

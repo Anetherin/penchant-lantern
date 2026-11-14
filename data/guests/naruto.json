@@ -39,16 +39,18 @@
               "bonus": {"courtesan":1.25,"noble":1.15}
             },
             "sp_hinata": {
-              "label": "Moonlit yukata",
-              "style": "Elegant",
-              "prompt": "a deep violet silk yukata patterned with white moonflowers",
-              "bonus": {"courtesan":1.15,"noble":1.2}
+              "label": "Blank Period tunic",
+              "style": "Sporty",
+              "prompt": "a sleeveless lavender turtleneck top with a dark purple sash, short dark navy shorts and open-toed thigh-high ninja boots",
+              "bonus": {"courtesan":1.15,"adventurer":1.2}
             }
           },
           "bonds": {
             "kurenai": {"v":60,"kind":"mentor","note":"Kurenai was her first squad leader back in the Leaf."},
             "sakura": {"v":40,"kind":"comrades","note":"Leaf peers."},
-            "ino": {"v":35,"kind":"comrades","note":"Leaf peers."}
+            "ino": {"v":35,"kind":"comrades","note":"Leaf peers."},
+            "hanabi": {"v":65,"kind":"family","note":"Her younger sister and closest confidante."},
+            "himawari": {"v":75,"kind":"family","note":"Her beloved daughter, who inherited her gentle heart and a nine-tailed spark."}
           },
           "jobs": {"likes":["courtesan","maid","promoter"],"dislikes":["dancer"]},
           "body": {"bust":"large","height":"average","figure":"curvy"},
@@ -94,10 +96,10 @@
               "bonus": {"security":1.3,"adventurer":1.15}
             },
             "sp_sakura": {
-              "label": "Cherry blossom dress",
-              "style": "Cute",
-              "prompt": "a pale pink sundress with a cherry-blossom print",
-              "bonus": {"courtesan":1.15,"merchant":1.15}
+              "label": "Crimson crest top",
+              "style": "Sporty",
+              "prompt": "a long sleeveless crimson high-collared top with a white fan crest on the back, cropped white trousers and black ninja sandals",
+              "bonus": {"security":1.2,"courtesan":1.15}
             }
           },
           "bonds": {
@@ -123,7 +125,7 @@
           "lovers": "oral_give",
           "backstory": "The flower-shop heiress of the Leaf, a shinobi village across the eastern sea came west to open a shop of her own and got distracted by a city that actually appreciates her. She reads people like open books, which makes her terrifying at a card table.",
           "design": {
-            "build": "hourglass",
+            "build": "slender-waisted",
             "hairStyle": "very long high ponytail with a side-swept bang over one eye",
             "hairColor": "platinum blonde",
             "eyes": "pale blue",
@@ -147,17 +149,15 @@
               "bonus": {"dancer":1.3,"commoner":1.15}
             },
             "sp_ino": {
-              "label": "Garden gala gown",
-              "style": "Elegant",
-              "prompt": "a lilac gala gown with a high slit",
-              "bonus": {"noble":1.25,"courtesan":1.15},
-              "accessories": "fresh flowers woven into her hair",
-              "accState": "always"
+              "label": "Yamanaka crop top",
+              "style": "Revealing",
+              "prompt": "a sleeveless cropped purple halter top exposing her midriff and matching long purple skirt with a high slit over mesh shorts",
+              "bonus": {"dancer":1.2,"merchant":1.2}
             }
           },
           "bonds": {"sakura":{"v":45,"note":"Best friends and lifelong rivals, in that order."},"hinata":{"v":35,"kind":"comrades","note":"Leaf peers."}},
           "jobs": {"likes":["dancer","courtesan"],"dislikes":["maid"]},
-          "body": {"bust":"medium","height":"average","figure":"slim"},
+          "body": {"bust":"medium","height":"average","figure":"curvy"},
           "unique": {"name":"Mind Reader","desc":"She reads clients like open books and charms them accordingly.","fx":{"clientFee":1.1,"appeal":3}}
         },
         "tenten": {
@@ -197,9 +197,9 @@
               "bonus": {"bartender":1.25,"adventurer":1.2}
             },
             "sp_tenten": {
-              "label": "Festival qipao",
+              "label": "Blank Period qipao",
               "style": "Exotic",
-              "prompt": "an emerald qipao with gold dragon embroidery",
+              "prompt": "a sleeveless white high-slit qipao dress with red trim, a maroon waist sash and black fingerless gloves",
               "bonus": {"courtesan":1.15,"merchant":1.2}
             }
           },
@@ -253,12 +253,10 @@
               "accState": "dressed"
             },
             "sp_temari": {
-              "label": "Desert silks",
-              "style": "Exotic",
-              "prompt": "flowing sand-colored desert silks",
-              "bonus": {"noble":1.2,"courtesan":1.15},
-              "accessories": "a bronze waist chain",
-              "accState": "always"
+              "label": "Sand kunoichi tunic",
+              "style": "Sporty",
+              "prompt": "a light purple sleeveless off-shoulder tunic wrapped in a wide red sash over fishnet armor at her shoulders and thighs",
+              "bonus": {"security":1.2,"adventurer":1.2}
             }
           },
           "bonds": {
@@ -292,7 +290,7 @@
             "hairColor": "golden blonde",
             "eyes": "honey brown",
             "skin": "fair",
-            "features": "a violet diamond mark on her forehead",
+            "features": "pointed elf ears and a violet diamond mark on her forehead",
             "expression": "a bold, commanding smirk"
           },
           "under": "silk",
@@ -311,12 +309,12 @@
               "bonus": {"madame":1.3,"merchant":1.15}
             },
             "sp_tsunade": {
-              "label": "High-roller gown",
+              "label": "Fifth Hokage robes",
               "style": "Elegant",
-              "prompt": "a backless emerald high-roller gown",
-              "bonus": {"noble":1.3,"courtesan":1.15},
-              "accessories": "gold drop earrings and a pearl necklace",
-              "accState": "always"
+              "prompt": "sweeping white and crimson ceremonial Hokage robes over her low-cut grey kimono top",
+              "bonus": {"madame":1.25,"noble":1.25},
+              "accessories": "a red-and-white wide conical Hokage hat",
+              "accState": "dressed"
             }
           },
           "bonds": {
@@ -365,10 +363,10 @@
               "bonus": {"promoter":1.3,"merchant":1.1}
             },
             "sp_shizune": {
-              "label": "Evening kimono",
-              "style": "Elegant",
-              "prompt": "a midnight blue kimono with silver crane embroidery",
-              "bonus": {"noble":1.2,"courtesan":1.1}
+              "label": "Medic captain vest",
+              "style": "Sporty",
+              "prompt": "a green shinobi flak vest over a dark navy high-collared tunic with a poison-needle launcher strapped to her forearm",
+              "bonus": {"security":1.2,"promoter":1.15}
             }
           },
           "bonds": {"tsunade":{"v":70,"note":"Twenty years of cleaning up after her."}},
@@ -407,12 +405,6 @@
               "label": "Bandage dress",
               "style": "Elegant",
               "prompt": "a wrapped white dress patterned with red roses and a single red sleeve",
-              "bonus": {"courtesan":1.25,"noble":1.15}
-            },
-            "sp_kurenai": {
-              "label": "Crimson illusion gown",
-              "style": "Elegant",
-              "prompt": "a flowing crimson gown that seems to shimmer and shift in the light",
               "bonus": {"courtesan":1.25,"noble":1.15}
             }
           },
@@ -459,14 +451,6 @@
               "style": "Revealing",
               "prompt": "a tan trench coat over a fishnet bodysuit and a short orange skirt",
               "bonus": {"courtesan":1.25,"adventurer":1.2}
-            },
-            "sp_anko": {
-              "label": "Snake charmer silks",
-              "style": "Exotic",
-              "prompt": "violet snake-charmer silk wraps",
-              "bonus": {"dancer":1.2,"commoner":1.15},
-              "accessories": "gold coiled-snake armlets",
-              "accState": "always"
             }
           },
           "bonds": {"kurenai":{"v":55,"note":"Drinking buddies for twenty years."}},
@@ -516,10 +500,10 @@
               "bonus": {"bath":1.25,"commoner":1.15}
             },
             "sp_karin": {
-              "label": "Librarian chic",
-              "style": "Cute",
-              "prompt": "a fitted pencil skirt, white blouse and red ribbon tie",
-              "bonus": {"merchant":1.2,"courtesan":1.15}
+              "label": "Researcher dress",
+              "style": "Elegant",
+              "prompt": "a sleeveless maroon-red high-slit dress over black leggings with a white lab coat draped over her shoulders",
+              "bonus": {"madame":1.2,"noble":1.15}
             }
           },
           "bonds": {"sakura":{"v":-15,"note":"Old history over the same aloof man. Neither will admit it still stings."}},
@@ -564,8 +548,7 @@
               "style": "Elegant",
               "prompt": "a long dark blue off-shoulder gown with a mesh neckline",
               "bonus": {"madame":1.3,"noble":1.15}
-            },
-            "sp_mei": {"label":"Lagoon silks","style":"Elegant","prompt":"a sheer sea-green gown with pearl strands","bonus":{"courtesan":1.2,"noble":1.2}}
+            }
           },
           "bonds": {"tsunade":{"v":25,"note":"Old colleagues from the village heads' council."}},
           "jobs": {"likes":["madame","courtesan"],"dislikes":["maid","promoter"]},
@@ -612,12 +595,6 @@
               "style": "Exotic",
               "prompt": "a long black cloak lined with red clouds, open over a fitted white bodysuit",
               "bonus": {"dancer":1.25,"adventurer":1.1}
-            },
-            "sp_konan": {
-              "label": "Paper angel",
-              "style": "Exotic",
-              "prompt": "a white dress with folded paper wings at the shoulders",
-              "bonus": {"noble":1.25,"courtesan":1.15}
             }
           },
           "jobs": {"likes":["dancer","courtesan"],"dislikes":["bartender"]},
@@ -626,6 +603,118 @@
             "name": "Paper Wings",
             "desc": "She dances in a drift of folded paper that leaves audiences spellbound.",
             "fx": {"jobBonus":{"dancer":1.2},"appeal":2}
+          }
+        },
+        "hanabi": {
+          "job": "security",
+          "name": "Hanabi Hyuga",
+          "race": "human",
+          "age": 27,
+          "personality": "Cheerful and teasing",
+          "traits": ["Elegant","Flirt"],
+          "style": "Elegant",
+          "favColor": "amber",
+          "fav": "cowgirl",
+          "dislike": "doggy",
+          "lovers": "kiss",
+          "backstory": "The younger daughter and reigning heiress of the Hyuga clan from the Leaf across the eastern sea, Hanabi grew up carrying the family banner her elder sister stepped away from. She came west to check on Hinata, fell in love with the Lantern's lively nights, and stayed to teach the guards Gentle Fist palm strikes with a bright, teasing grin.",
+          "design": {
+            "build": "lithe, graceful",
+            "hairStyle": "waist-length straight with side locks bound in yellow-orange ribbons",
+            "hairColor": "dark brown",
+            "eyes": "pale lavender, pupil-less",
+            "skin": "porcelain",
+            "expression": "a bright, playful smile"
+          },
+          "under": "silk",
+          "underColor": "gold",
+          "stats": {"beauty":70,"charm":64,"charisma":62,"refinement":60,"wits":58,"stamina":60,"strength":48,"agility":68},
+          "tech": {"service":40,"dance":40,"bar":25,"combat":65,"manage":35},
+          "actSkill": 25,
+          "popularity": 16,
+          "lewd": 30,
+          "trust": 26,
+          "outfits": {
+            "sig_hanabi": {
+              "label": "Heiress kimono tunic",
+              "style": "Elegant",
+              "prompt": "a sleeveless brown kimono-style tunic trimmed in golden-yellow over a mesh undershirt, a short dark skirt with a yellow sash and dark shinobi sandals",
+              "bonus": {"security":1.25,"noble":1.15}
+            }
+          },
+          "bonds": {
+            "hinata": {"v":65,"kind":"family","note":"Her beloved older sister, whom she still teases mercilessly."},
+            "himawari": {"v":70,"kind":"family","note":"Her favorite niece, whom she spoils rotten."}
+          },
+          "jobs": {"likes":["security","courtesan","dancer"],"dislikes":["maid"]},
+          "body": {"bust":"medium","height":"average","figure":"slim"},
+          "unique": {
+            "name": "Rotation Palm",
+            "desc": "Her spinning Gentle Fist palm strikes deflect rowdy troublemakers without breaking a teacup.",
+            "fx": {"security":14,"jobBonus":{"security":1.1,"courtesan":1.1}}
+          }
+        },
+        "himawari": {
+          "job": "attendant",
+          "name": "Himawari Uzumaki",
+          "race": "beastkin",
+          "sub": "fox",
+          "age": 21,
+          "personality": "Sweet and bubbly",
+          "traits": ["Sunny","Loyal"],
+          "style": "Cute",
+          "favColor": "sunflower yellow",
+          "fav": "kiss",
+          "dislike": "doggy",
+          "lovers": "missionary",
+          "backstory": "Hinata's daughter from the Leaf across the eastern sea, Himawari grew up with her mother's gentle heart and a nine-tailed fox spirit curled warmly inside her soul. Traveling west to visit her mother and aunt, she brightens every room she enters—until a guest gets handsy and discovers her awakened fox chakra and Gentle Fist can knock a grown man through a wall.",
+          "design": {
+            "build": "youthful, energetic",
+            "hairStyle": "long, loose wavy reaching past her shoulders with blunt bangs and a tall ahoge cowlick",
+            "hairColor": "dark indigo-black",
+            "eyes": "bright azure blue",
+            "skin": "fair",
+            "features": "two thin whisker marks on each cheek, dark fox ears and a fluffy orange fox tail",
+            "expression": "a warm, radiant smile"
+          },
+          "under": "cotton",
+          "underColor": "yellow",
+          "stats": {"beauty":68,"charm":70,"charisma":64,"refinement":48,"wits":52,"stamina":68,"strength":62,"agility":64},
+          "tech": {"service":50,"dance":35,"bar":25,"combat":60,"manage":15},
+          "actSkill": 20,
+          "popularity": 18,
+          "lewd": 20,
+          "trust": 32,
+          "outfits": {
+            "sig_himawari": {
+              "label": "Sunflower crop tee",
+              "style": "Sporty",
+              "prompt": "a cropped yellow short-sleeved t-shirt with an orange sunflower graphic on the front exposing her midriff, loose blue denim jeans with rolled cuffs and black ninja sandals",
+              "bonus": {"attendant":1.25,"commoner":1.15}
+            },
+            "sp_himawari": {
+              "label": "Nine-Tails awakening",
+              "style": "Exotic",
+              "prompt": "a cropped yellow short-sleeved t-shirt with an orange sunflower graphic and loose blue denim jeans, wreathed in a flickering golden-orange chakra aura",
+              "bonus": {"security":1.35,"adventurer":1.25},
+              "hairStyle": "long, wild and floating upward in nine tail-like locks",
+              "eyes": "glowing crimson-orange with vertical slit pupils",
+              "features": "thick dark whisker markings on her cheeks, heavy crimson-orange eyeshadow around her eyes, fox ears and nine swirling golden-orange fox tails",
+              "expression": "a fierce, protective snarl",
+              "favColor": "fiery orange",
+              "stats": {"strength":12,"stamina":10,"agility":8}
+            }
+          },
+          "bonds": {
+            "hinata": {"v":75,"kind":"family","note":"Her mother, whose kindness she looks up to every day."},
+            "hanabi": {"v":70,"kind":"family","note":"Her doting Aunt Hanabi."}
+          },
+          "jobs": {"likes":["attendant","security","bath"],"dislikes":["madame"]},
+          "body": {"bust":"small","height":"average","figure":"slim"},
+          "unique": {
+            "name": "Nine-Tailed Warmth",
+            "desc": "Her sunny spirit and fox-chakra warmth soothe tired staff and keep the peace.",
+            "fx": {"moodDelta":0.85,"energyBank":25,"security":10}
           }
         }
       }

@@ -1,0 +1,228 @@
+{
+  "packs": {
+    "nier": {
+      "label": "NieR",
+      "characters": {
+        "yorha_2b": {
+          "job": "security",
+          "name": "2B",
+          "race": "android",
+          "age": 24,
+          "personality": "Stoic and blunt",
+          "traits": ["Tough","Loyal"],
+          "style": "Elegant",
+          "favColor": "black",
+          "fav": "missionary",
+          "dislike": "oral_give",
+          "lovers": "kiss",
+          "backstory": "An elite YoRHa combat android built for an endless war on a ruined Earth, 2B repeats the maxim that 'emotions are prohibited' at least three times a day—usually while feeding stray cats in the courtyard or quietly making sure Sam has a coat in the rain. In Hollowmere, she guards the doors with a greatsword floating behind her back and slowly learns what it feels like to live without orders.",
+          "design": {
+            "build": "sleek, sculpted",
+            "hairStyle": "short chin-length bob with side-swept bangs",
+            "hairColor": "silver-white",
+            "eyes": "pale grey-blue",
+            "skin": "flawless porcelain synthetic skin",
+            "features": "a small beauty mark beneath the right side of her lower lip",
+            "accessories": "a wide black combat visor headband and a black hairband",
+            "accState": "dressed",
+            "expression": "a cool, stoic expression"
+          },
+          "under": "plain",
+          "underColor": "white",
+          "stats": {"beauty":86,"charm":58,"charisma":64,"refinement":68,"wits":70,"stamina":92,"strength":88,"agility":90},
+          "tech": {"service":35,"dance":45,"bar":20,"combat":96,"manage":45},
+          "actSkill": 25,
+          "popularity": 30,
+          "lewd": 24,
+          "trust": 28,
+          "outfits": {
+            "sig_yorha_2b": {
+              "label": "YoRHa combat dress",
+              "style": "Elegant",
+              "prompt": "a high-necked black gothic lolita velvet combat dress with feather-trimmed puffed sleeves, a cutout back, a high-slit embroidered skirt over a white leotard, black over-the-knee stockings and thigh-high heeled boots",
+              "bonus": {"security":1.35,"noble":1.15}
+            },
+            "sp_yorha_2b": {
+              "label": "Self-destruct leotard",
+              "style": "Revealing",
+              "prompt": "a high-cut white-and-black YoRHa leotard bodysuit with a sheer mesh back, black opera gloves and thigh-high heeled boots",
+              "bonus": {"courtesan":1.25,"dancer":1.25}
+            }
+          },
+          "bonds": {
+            "yorha_a2": {"v":45,"kind":"comrades","note":"Built on the same frame and haunted by the same command; they understand each other without speaking."},
+            "devola": {"v":40,"kind":"comrades","note":"The twins maintain her frame and never ask invasive questions."},
+            "popola": {"v":40,"kind":"comrades","note":"Popola always sets aside a quiet cup of oil-tea for her."}
+          },
+          "jobs": {"likes":["security","dancer"],"dislikes":["promoter","bartender"]},
+          "body": {"bust":"large","height":"tall","figure":"curvy"},
+          "unique": {
+            "name": "Blade of YoRHa",
+            "desc": "Her grace with a blade and striking silhouette make the house both completely secure and unforgettable.",
+            "fx": {"security":22,"appeal":4,"jobBonus":{"security":1.15}}
+          }
+        },
+        "yorha_a2": {
+          "job": "security",
+          "name": "A2",
+          "race": "android",
+          "age": 26,
+          "personality": "Stoic and blunt",
+          "traits": ["Tough","Former Adventurer"],
+          "style": "Revealing",
+          "favColor": "charcoal",
+          "fav": "doggy",
+          "dislike": "massage_give",
+          "lovers": "cowgirl",
+          "backstory": "An older prototype attacker unit who survived betrayal by her own command and spent years wandering the ruins alone, A2 is abrasive, sharp-tongued, and fiercely protective of anyone who earns her trust. Her synthetic skin is worn away across her torso and limbs to expose sleek black chassis panels, which she treats like battle scars.",
+          "design": {
+            "build": "lithe, battle-scarred",
+            "hairStyle": "waist-length, straight and slightly ragged",
+            "hairColor": "silver-white",
+            "eyes": "icy blue",
+            "skin": "pale porcelain synthetic skin with black mechanical chassis panels across her midriff, hips and limbs",
+            "features": "a small beauty mark beneath the right side of her lower lip",
+            "expression": "a fierce, guarded glare"
+          },
+          "under": "plain",
+          "underColor": "black",
+          "stats": {"beauty":80,"charm":46,"charisma":58,"refinement":32,"wits":64,"stamina":90,"strength":92,"agility":92},
+          "tech": {"service":20,"dance":30,"bar":30,"combat":98,"manage":25},
+          "actSkill": 25,
+          "popularity": 24,
+          "lewd": 32,
+          "trust": 20,
+          "outfits": {
+            "sig_yorha_a2": {
+              "label": "Deserter's cloth",
+              "style": "Revealing",
+              "prompt": "a tattered black cloth chest wrap and trailing scarf over exposed black synthetic chassis panels at her torso and thighs, with sleek black thigh-high boots",
+              "bonus": {"security":1.35,"adventurer":1.25}
+            },
+            "sp_yorha_a2": {
+              "label": "Short-haired memories",
+              "style": "Revealing",
+              "prompt": "a fitted black sleeveless combat top and short tattered skirt over sleek black thigh-high boots",
+              "bonus": {"security":1.3,"courtesan":1.15},
+              "hairStyle": "short chin-length bob"
+            }
+          },
+          "bonds": {
+            "yorha_2b": {"v":45,"kind":"comrades","note":"Two halves of the same design line, finally off the battlefield."},
+            "devola": {"v":35,"note":"Lets Devola tune her joints so long as she doesn't fuss."},
+            "popola": {"v":35,"note":"Popola patches her up without lecturing her."}
+          },
+          "jobs": {"likes":["security","bartender"],"dislikes":["maid","promoter","host"]},
+          "body": {"bust":"medium","height":"tall","figure":"athletic"},
+          "unique": {
+            "name": "Berserk Mode",
+            "desc": "When trouble starts, she hits like a hurricane and never backs down.",
+            "fx": {"security":24,"jobBonus":{"security":1.2}}
+          }
+        },
+        "devola": {
+          "job": "bartender",
+          "name": "Devola",
+          "race": "android",
+          "age": 180,
+          "personality": "Cheerful and teasing",
+          "traits": ["Natural Performer","Loyal"],
+          "style": "Exotic",
+          "favColor": "terracotta red",
+          "fav": "cowgirl",
+          "dislike": "doggy",
+          "lovers": "kiss",
+          "backstory": "The livelier half of a pair of twin observer androids who have walked together for centuries, Devola loves tavern songs, acoustic lute strings, and a strong mug of ale. Nearly identical to her twin save for her wilder, wavy hair, she sings in the Lantern's bar until the rafters hum and would burn the world down before letting anyone hurt Popola.",
+          "design": {
+            "build": "graceful, warm",
+            "hairStyle": "long, messy and voluminous wavy",
+            "hairColor": "crimson-red",
+            "eyes": "emerald green",
+            "skin": "fair synthetic skin",
+            "accessories": "a white lunar-tear flower pinned on the left side of her hair and an acoustic lute slung across her back",
+            "accState": "dressed",
+            "expression": "a warm, spirited smile"
+          },
+          "under": "lace",
+          "underColor": "red",
+          "stats": {"beauty":76,"charm":74,"charisma":76,"refinement":58,"wits":64,"stamina":72,"strength":48,"agility":66},
+          "tech": {"service":45,"dance":60,"bar":72,"combat":55,"manage":40},
+          "actSkill": 30,
+          "popularity": 22,
+          "lewd": 34,
+          "trust": 30,
+          "outfits": {
+            "sig_devola": {
+              "label": "Songstress tunic",
+              "style": "Exotic",
+              "prompt": "a sleeveless white-and-crimson bardic tunic dress with gold embroidery, detached dark sleeves, a wide brown leather belt and tall laced boots",
+              "bonus": {"bartender":1.3,"dancer":1.2}
+            }
+          },
+          "bonds": {
+            "popola": {"v":95,"kind":"family","note":"Her twin sister and the other half of her soul—they have never been apart."},
+            "yorha_2b": {"v":40,"kind":"comrades","note":"Fellow android in a human town."},
+            "yorha_a2": {"v":35,"note":"Leaves a plate by the back door for the stray prototype."}
+          },
+          "jobs": {"likes":["bartender","dancer","host"],"dislikes":["maid"]},
+          "body": {"bust":"medium","height":"average","figure":"curvy"},
+          "unique": {
+            "name": "Song of the Ancients",
+            "desc": "Her haunting tavern ballads keep glasses full and guests lingering late into the night.",
+            "fx": {"jobBonus":{"bartender":1.2,"dancer":1.15},"clientFee":1.1}
+          }
+        },
+        "popola": {
+          "job": "madame",
+          "name": "Popola",
+          "race": "android",
+          "age": 180,
+          "personality": "Warm and motherly",
+          "traits": ["Elegant","Loyal"],
+          "style": "Elegant",
+          "favColor": "cream and crimson",
+          "fav": "missionary",
+          "dislike": "doggy",
+          "lovers": "massage_give",
+          "backstory": "The quieter, bookish twin to Devola, Popola spent centuries managing village libraries and medical bays while carrying the weight of an ancient guilt neither twin deserved. Distinguished from her sister by her sleek, neatly kept long hair, she runs the Lantern's schedule with gentle precision—though Devola warns everyone never, ever to let Popola drink too much wine.",
+          "design": {
+            "build": "graceful, gentle",
+            "hairStyle": "long, straight and neatly kept",
+            "hairColor": "crimson-red",
+            "eyes": "emerald green",
+            "skin": "fair synthetic skin",
+            "expression": "a gentle, serene smile"
+          },
+          "under": "silk",
+          "underColor": "white",
+          "stats": {"beauty":76,"charm":70,"charisma":66,"refinement":74,"wits":80,"stamina":68,"strength":45,"agility":60},
+          "tech": {"service":55,"dance":30,"bar":40,"combat":50,"manage":78},
+          "actSkill": 30,
+          "popularity": 20,
+          "lewd": 26,
+          "trust": 32,
+          "outfits": {
+            "sig_popola": {
+              "label": "Archivist robes",
+              "style": "Elegant",
+              "prompt": "a high-collared cream-and-crimson administrative tunic dress with a dark corset waist belt, long flared sleeves and dark stockings",
+              "bonus": {"madame":1.3,"attendant":1.2}
+            }
+          },
+          "bonds": {
+            "devola": {"v":95,"kind":"family","note":"Her twin sister—so long as Devola is smiling, Popola is at peace."},
+            "yorha_2b": {"v":40,"kind":"comrades","note":"Watches over the younger YoRHa units like a quiet older sister."},
+            "yorha_a2": {"v":35,"note":"Keeps spare repair parts on hand whenever A2 returns from patrol."}
+          },
+          "jobs": {"likes":["madame","attendant","bath"],"dislikes":["promoter"]},
+          "body": {"bust":"medium","height":"average","figure":"curvy"},
+          "unique": {
+            "name": "Twin Harmony",
+            "desc": "Her calm administration keeps the house running smoothly and lowers staff stress.",
+            "fx": {"jobBonus":{"madame":1.2,"attendant":1.15},"moodDelta":0.85}
+          }
+        }
+      }
+    }
+  }
+}

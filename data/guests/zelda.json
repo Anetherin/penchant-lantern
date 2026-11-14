@@ -22,6 +22,7 @@
             "hairColor": "light brown",
             "eyes": "deep blue",
             "skin": "fair",
+            "features": "long pointed elf ears",
             "accessories": "a slim golden circlet",
             "accState": "always",
             "expression": "a regal, composed smile"
@@ -43,26 +44,32 @@
               "accessories": "long white gloves with a golden triangle crest",
               "accState": "under"
             },
-            "sp_zelda": {
-              "label": "Twilight cloak",
+            "sp_zelda_oot": {
+              "label": "Hero of Time gown",
               "style": "Elegant",
-              "prompt": "a black hooded cloak over a fitted white and gold gown",
-              "bonus": {"courtesan":1.15,"noble":1.15}
+              "hairColor": "golden blonde",
+              "hairStyle": "long straight with two front locks wrapped in gold",
+              "prompt": "a regal pink and white Hylian gown with a blue royal-crest tabard and gold shoulder pauldrons",
+              "accessories": "a gold tiara with a blue jewel, blue drop earrings and long white gloves",
+              "accState": "under",
+              "bonus": {"noble":1.25,"courtesan":1.2}
             },
-            "sp_zelda_sheik": {
-              "label": "Sheikah disguise",
-              "style": "Sporty",
-              "unlock": 70,
-              "hairStyle": "pinned up under a white headwrap with a long braided tail",
-              "eyes": "crimson",
-              "prompt": "a form-fitting dark blue Sheikah bodysuit with white cloth wraps, shin guards and a red sash",
-              "accessories": "a white cloth half-mask and a small golden harp",
-              "accState": "dressed",
-              "bonus": {"security":1.2,"dancer":1.15},
-              "stats": {"agility":5,"wits":3}
+            "sp_zelda_ss": {
+              "label": "Skyloft maiden dress",
+              "style": "Cute",
+              "hairColor": "golden blonde",
+              "hairStyle": "long straight with two thick front locks tied in white bands",
+              "prompt": "a pink and white Skyloft tunic dress with a brown waist belt, a green shawl and knee-high brown boots",
+              "accessories": "purple hair ribbons",
+              "accState": "always",
+              "bonus": {"courtesan":1.2,"commoner":1.25}
             }
           },
-          "bonds": {"midna":{"v":40,"note":"An unlikely alliance from the twilight days."},"nabooru":{"v":25,"note":"Allies from the old kingdom."}},
+          "bonds": {
+            "midna": {"v":40,"note":"An unlikely alliance from the twilight days."},
+            "nabooru": {"v":25,"note":"Allies from the old kingdom."},
+            "hilda_lorule": {"v":45,"note":"Two princesses who look like mirror images and understand the weight of a crown."}
+          },
           "jobs": {"likes":["courtesan","madame","dancer"],"dislikes":["bartender","maid"]},
           "body": {"bust":"medium","height":"tall","figure":"slim"},
           "unique": {"name":"Wisdom","desc":"A princess's sharp mind and graceful bearing.","fx":{"classBonus":{"noble":1.2},"skillGain":1.1}}
@@ -87,7 +94,7 @@
             "hairColor": "flame orange",
             "eyes": "red with golden sclera",
             "skin": "pale blue-grey with glowing teal markings",
-            "features": "glowing teal twilight markings across her skin",
+            "features": "long pointed ears",
             "expression": "a regal, mischievous smile"
           },
           "under": "sheer",
@@ -103,13 +110,17 @@
               "label": "Twilight robe",
               "style": "Exotic",
               "prompt": "a flowing black and white robe with glowing teal geometric patterns, open at the sides",
-              "bonus": {"courtesan":1.25,"noble":1.15}
+              "bonus": {"courtesan":1.25,"noble":1.15},
+              "accessories": "a dark stone tiara-like twilight crown",
+              "accState": "always"
             },
             "sp_midna": {
-              "label": "Imp cloak",
-              "style": "Exotic",
-              "prompt": "a short black hooded cloak with teal markings over almost nothing",
-              "bonus": {"dancer":1.2,"commoner":1.15}
+              "label": "Fused Shadow regalia",
+              "style": "Revealing",
+              "prompt": "a sheer dark twilight wrap with glowing cyan runes, leaving her legs and midriff bare",
+              "accessories": "the ornate dark stone helmet-crown of the Fused Shadow",
+              "accState": "always",
+              "bonus": {"dancer":1.25,"propose":1.2}
             }
           },
           "bonds": {"zelda":{"v":40,"note":"An unlikely alliance from the twilight days."}},
@@ -134,8 +145,8 @@
             "hairStyle": "very long and loose",
             "hairColor": "bright red",
             "eyes": "blue",
-            "skin": "fair with light freckles",
-            "features": "light freckles across her nose",
+            "skin": "fair",
+            "features": "long pointed elf ears and light freckles across her nose",
             "accessories": "a horse-head brooch at her collar",
             "accState": "dressed",
             "expression": "a warm, country smile"
@@ -182,12 +193,12 @@
           "lovers": "breast_get",
           "backstory": "Cotera, a great fairy, used to live in a healing fountain and grant weary travelers their strength back. She has moved into the bathhouse, which she considers a fountain with better gossip, and her laugh echoes off the tiles.",
           "design": {
-            "build": "very tall",
+            "build": "voluptuous",
             "hairStyle": "enormous and voluminous",
             "hairColor": "magenta",
             "eyes": "golden",
-            "skin": "warm amber",
-            "features": "green ivy-like markings across her body and tiny gossamer wings",
+            "skin": "warm amber with a faint magical shimmer",
+            "features": "long pointed ears, green ivy-like markings across her body and tiny gossamer wings",
             "expression": "a lavish, indulgent smile"
           },
           "under": "none",
@@ -205,7 +216,14 @@
               "prompt": "strands of living green ivy and slim gold armbands and anklets",
               "bonus": {"bath":1.3,"courtesan":1.15}
             },
-            "sp_great_fairy": {"label":"Petal gown","style":"Elegant","prompt":"a sheer gown woven from flower petals and ivy","bonus":{"noble":1.25,"courtesan":1.15}}
+            "sp_great_fairy": {
+              "label": "Fountain of Wisdom",
+              "style": "Revealing",
+              "hairStyle": "three long high ponytails",
+              "hairColor": "vivid pink",
+              "prompt": "strands of dark green ivy covering her bust and hips, barefoot with gold anklets",
+              "bonus": {"bath":1.25,"propose":1.2}
+            }
           },
           "jobs": {"likes":["bath","courtesan"],"dislikes":["promoter"]},
           "body": {"bust":"huge","height":"tall","figure":"curvy"},
@@ -226,11 +244,12 @@
           "lovers": "doggy",
           "backstory": "A desert warrior-thief and sage from a clan of women, Nabooru only ever stole from people who deserved it. She says the house security job is a vacation. Nobody has tried her.",
           "design": {
-            "build": "curvy",
+            "build": "toned, long-legged",
             "hairStyle": "high ponytail",
             "hairColor": "deep red",
             "eyes": "gold",
             "skin": "dark tan",
+            "features": "pointed elf ears",
             "accessories": "a jeweled forehead piece and heavy gold hoop earrings",
             "accState": "always",
             "expression": "a bold, roguish grin"
@@ -257,10 +276,113 @@
               "bonus": {"noble":1.2,"dancer":1.15}
             }
           },
-          "bonds": {"zelda":{"v":25,"note":"Allies from the old kingdom."}},
+          "bonds": {
+            "zelda": {"v":25,"note":"Allies from the old kingdom."},
+            "twinrova": {"v":-30,"note":"Nabooru still remembers the brainwashing; Twinrova calls it 'spirited mentoring.'"}
+          },
           "jobs": {"likes":["security","courtesan"],"dislikes":["maid"]},
           "body": {"bust":"large","height":"tall","figure":"athletic"},
           "unique": {"name":"Thief's Pride","desc":"She can spot a hustle a mile away.","fx":{"security":12,"classBonus":{"adventurer":1.1}}}
+        },
+        "hilda_lorule": {
+          "job": "madame",
+          "title": "Princess",
+          "name": "Hilda",
+          "race": "elf",
+          "age": 128,
+          "personality": "Mysterious and aloof",
+          "traits": ["Elegant","Ambitious"],
+          "style": "Elegant",
+          "favColor": "purple",
+          "fav": "missionary",
+          "dislike": "doggy",
+          "lovers": "oral_give",
+          "backstory": "The princess of a shadowy mirror-kingdom whose Triforce was shattered long ago, Hilda once tried to steal another realm's light to save her own. Older, wiser and still carrying the quiet guilt of a desperate ruler, she manages the floor with velvet authority and a weakness for men who don't give up on broken things.",
+          "design": {
+            "hairStyle": "very long straight with two wrapped front locks",
+            "hairColor": "dark violet",
+            "eyes": "crimson",
+            "skin": "fair",
+            "features": "long pointed elf ears",
+            "accessories": "a gold tiara with an inverted triangle crest and red drop earrings",
+            "accState": "always",
+            "expression": "a solemn, regal gaze"
+          },
+          "under": "silk",
+          "underColor": "purple",
+          "stats": {"beauty":74,"charm":60,"charisma":68,"refinement":75,"wits":76,"stamina":45,"strength":25,"agility":40},
+          "tech": {"service":45,"dance":30,"bar":20,"combat":35,"manage":68},
+          "actSkill": 30,
+          "popularity": 24,
+          "lewd": 28,
+          "trust": 20,
+          "outfits": {
+            "sig_hilda_lorule": {
+              "label": "Lorulean royal gown",
+              "style": "Elegant",
+              "prompt": "a regal dark purple and black Hylian-style gown with a lavender inverted-crest tabard, gold shoulder pauldrons and a high magenta collar",
+              "accessories": "a tall golden staff topped with an inverted Triforce crest",
+              "accState": "dressed",
+              "bonus": {"madame":1.3,"noble":1.25}
+            }
+          },
+          "bonds": {"zelda":{"v":45,"note":"Two princesses who look like mirror images and understand the weight of a crown."}},
+          "jobs": {"likes":["madame","courtesan","promoter"],"dislikes":["maid","bartender"]},
+          "body": {"bust":"medium","height":"tall","figure":"slim"},
+          "unique": {
+            "name": "Mirror Crown",
+            "desc": "She has ruled a kingdom in ruin and knows how to hold a house together under pressure.",
+            "fx": {"jobBonus":{"madame":1.2},"classBonus":{"noble":1.15}}
+          }
+        },
+        "twinrova": {
+          "job": "courtesan",
+          "name": "Twinrova",
+          "race": "spirit",
+          "age": 400,
+          "personality": "Bold and flirtatious",
+          "traits": ["Exhibitionist","Party Animal"],
+          "style": "Revealing",
+          "favColor": "crimson",
+          "fav": "cowgirl",
+          "dislike": "kiss",
+          "lovers": "breast_give",
+          "backstory": "When the twin desert sorceresses Koume and Kotake fuse into one body, the result is Twinrova: a statuesque elemental spirit of fire and ice who is four centuries old, wildly vain about her fused youth, and twice as much trouble as any single woman in the house.",
+          "design": {
+            "build": "voluptuous hourglass",
+            "hairStyle": "extremely long swirling elemental braids",
+            "hairColor": "blazing flame-orange and icy cyan",
+            "eyes": "glowing gold",
+            "skin": "pale greenish-grey with a faint elemental glow",
+            "features": "long pointed ears and a floating elemental halo of fire and ice behind her shoulders",
+            "accessories": "a jeweled gold forehead ornament and heavy gold hoop earrings",
+            "accState": "always",
+            "expression": "a wicked, sultry grin"
+          },
+          "under": "sheer",
+          "underColor": "black",
+          "stats": {"beauty":76,"charm":66,"charisma":80,"refinement":45,"wits":70,"stamina":65,"strength":50,"agility":55},
+          "tech": {"service":55,"dance":50,"bar":35,"combat":75,"manage":40},
+          "actSkill": 60,
+          "popularity": 28,
+          "lewd": 72,
+          "trust": 16,
+          "outfits": {
+            "sig_twinrova": {
+              "label": "Sorceress silks",
+              "style": "Revealing",
+              "prompt": "a low-cut black and gold Gerudo sorceress top, a fitted red-and-blue patterned skirt with a jeweled sash, and gold armlets",
+              "bonus": {"courtesan":1.3,"adventurer":1.2}
+            }
+          },
+          "bonds": {"nabooru":{"v":-30,"note":"Nabooru still remembers the brainwashing; Twinrova calls it 'spirited mentoring.'"}},
+          "jobs": {"likes":["courtesan","dancer","bath"],"dislikes":["maid"]},
+          "body": {"bust":"huge","height":"tall","figure":"curvy"},
+          "unique": {
+            "name": "Fire and Ice",
+            "desc": "She alternates between scorching heat and delicious chill, leaving clients breathless.",
+            "fx": {"actQuality":{"cowgirl":1.2,"breast_give":1.2},"appeal":3}
+          }
         }
       }
     }

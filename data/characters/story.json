@@ -15,7 +15,7 @@
     "lovers": "oral_get",
     "backstory": "The last of the Rosenhals: no money, a title worth nothing, and a castle that now belongs to a commoner in a hoodie. She knows every noble in the kingdom and exactly how to host them. Hosting is the only pride her family has left, and she intends to be magnificent at it.",
     "design": {
-      "hairStyle": "long golden hair in an old-fashioned updo",
+      "hairStyle": "long old-fashioned updo",
       "hairColor": "golden blonde",
       "eyes": "sapphire",
       "skin": "porcelain",
@@ -69,6 +69,7 @@
       "hairColor": "silver",
       "eyes": "pale gold",
       "skin": "porcelain",
+      "features": "long pointed elf ears",
       "accessories": "tiny pearls woven into her hair",
       "accState": "always",
       "expression": "a serene smile that misses nothing"
@@ -115,7 +116,7 @@
     "lovers": "missionary",
     "backstory": "A former ghost hunter who came to exorcise Hollowmere Manor and stayed to make amends. She still sleeps with a silver dagger under her pillow, out of habit. On her first night Vesper offered her tea instead of fleeing, and she has never quite recovered; she now considers the manor her responsibility.",
     "design": {
-      "hairStyle": "short, sharp black bob",
+      "hairStyle": "short, sharp bob",
       "hairColor": "black",
       "eyes": "grey-green",
       "skin": "olive",
@@ -225,6 +226,7 @@
       "hairColor": "platinum blonde",
       "eyes": "emerald",
       "skin": "porcelain",
+      "features": "long pointed elf ears",
       "accessories": "a delicate silver circlet",
       "accState": "always"
     },

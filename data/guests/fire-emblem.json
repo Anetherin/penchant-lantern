@@ -40,10 +40,10 @@
               "bonus": {"security":1.3,"adventurer":1.15}
             },
             "sp_lyn": {
-              "label": "Lady of the plains",
-              "style": "Elegant",
-              "prompt": "a flowing pale green silk gown with gold embroidery",
-              "bonus": {"noble":1.25,"courtesan":1.15}
+              "label": "Blade Lord attire",
+              "style": "Sporty",
+              "prompt": "a teal and white Sacaean tunic dress with gold embroidery, a white fur-trimmed shoulder mantle and knee-high brown boots",
+              "bonus": {"security":1.25,"noble":1.2}
             }
           },
           "jobs": {"likes":["security","bartender"],"dislikes":["promoter"]},
@@ -69,6 +69,7 @@
             "hairColor": "mint green",
             "eyes": "pale green",
             "skin": "pale",
+            "features": "pointed ears",
             "accessories": "an ornate white and gold floral headdress",
             "accState": "always",
             "expression": "a serene, maternal smile"
@@ -89,12 +90,13 @@
               "bonus": {"madame":1.3,"noble":1.2}
             },
             "sp_rhea": {
-              "label": "Garden dress",
-              "style": "Elegant",
-              "prompt": "a simple flowing white garden dress",
-              "bonus": {"courtesan":1.2,"noble":1.15},
-              "accessories": "fresh white flowers braided into her hair",
-              "accState": "always"
+              "label": "Saint Seiros regalia",
+              "style": "Sporty",
+              "hairColor": "golden blonde",
+              "prompt": "a white and crimson warrior's dress with ornate gold chest armor, a flowing red cape and tall white boots",
+              "bonus": {"security":1.3,"noble":1.2},
+              "accessories": "a winged gold tiara and a golden sword and shield",
+              "accState": "dressed"
             }
           },
           "bonds": {"manuela":{"v":20,"note":"Rhea keeps her employed. Manuela keeps her out of the wine."}},
@@ -170,7 +172,7 @@
             "hairColor": "orange",
             "eyes": "violet",
             "skin": "light",
-            "features": "tribal markings on her cheeks",
+            "features": "orange cat ears, a long striped cat tail and tribal markings on her cheeks",
             "expression": "a fierce, guarded glare"
           },
           "under": "sports",
@@ -187,8 +189,7 @@
               "style": "Sporty",
               "prompt": "a sleeveless orange and brown tunic with a waist wrap and arm guards",
               "bonus": {"security":1.3,"adventurer":1.2}
-            },
-            "sp_lethe": {"label":"Moonlit silks","style":"Exotic","prompt":"a deep purple silk wrap dress","bonus":{"courtesan":1.15,"noble":1.1}}
+            }
           },
           "bonds": {"panne":{"v":30,"note":"Two shapeshifters who recognize each other."}},
           "jobs": {"likes":["security","courtesan","madame"],"dislikes":["maid","bath"]},
@@ -210,11 +211,12 @@
           "lovers": "cowgirl",
           "backstory": "The last of a rabbit shapeshifter people from the warring continents beyond the southern straits, Panne trusts very few humans and says so. The ones she does trust, she would die for.",
           "design": {
-            "build": "curvy",
+            "build": "toned, long-limbed",
             "hairStyle": "long and wild",
             "hairColor": "brown",
             "eyes": "brown",
             "skin": "dark brown",
+            "features": "long upright brown rabbit ears, a fluffy tail and dark facial markings",
             "accessories": "a fur-trimmed collar",
             "accState": "under"
           },
@@ -232,8 +234,7 @@
               "style": "Exotic",
               "prompt": "a fitted dark bodysuit with white fur trim, a short tabard and fur boots",
               "bonus": {"courtesan":1.2,"adventurer":1.2}
-            },
-            "sp_panne": {"label":"Moon festival dress","style":"Elegant","prompt":"a white and silver fur-trimmed gown","bonus":{"noble":1.2,"courtesan":1.15}}
+            }
           },
           "bonds": {"lethe":{"v":30,"note":"Two shapeshifters who recognize each other."}},
           "jobs": {"likes":["courtesan","security"],"dislikes":["promoter"]},
@@ -259,7 +260,7 @@
             "hairColor": "silver-white",
             "eyes": "red",
             "skin": "pale",
-            "features": "pointed ears, small sharp fangs and faint pale scales along her forearms",
+            "features": "long pointed ears",
             "accessories": "a glowing dragonstone amulet",
             "accState": "always"
           },
@@ -275,16 +276,16 @@
             "sig_corrin": {
               "label": "Royal armor-dress",
               "style": "Elegant",
-              "prompt": "a black and silver armored dress with a high collar and a deep blue sash",
+              "prompt": "a black and silver armored dress with a high collar, a deep blue sash and bare feet",
               "bonus": {"security":1.25,"noble":1.15},
               "accessories": "an ornate long blade at her hip",
               "accState": "dressed"
             },
             "sp_corrin": {
-              "label": "Court gown",
-              "style": "Elegant",
-              "prompt": "a white and sky-blue court gown with silver embroidery",
-              "bonus": {"noble":1.25,"courtesan":1.1}
+              "label": "Nohr Noble armor",
+              "style": "Revealing",
+              "prompt": "a sleek black and gold Nohrian armor-dress with dark thigh-high cutouts, a flowing black cape and bare feet",
+              "bonus": {"security":1.2,"courtesan":1.2}
             }
           },
           "bonds": {
@@ -333,7 +334,12 @@
               "prompt": "a pale blue and white tabard dress with gold trim, a short skirt and tall blue boots",
               "bonus": {"host":1.25,"noble":1.2}
             },
-            "sp_eirika": {"label":"Royal ballgown","style":"Elegant","prompt":"a white and gold ballgown with a long train","bonus":{"noble":1.25,"courtesan":1.15}}
+            "sp_eirika": {
+              "label": "Great Lord regalia",
+              "style": "Elegant",
+              "prompt": "ornate silver and turquoise royal armor over a white pleated skirt, a flowing red cape and tall silver-trimmed boots",
+              "bonus": {"noble":1.25,"security":1.2}
+            }
           },
           "bonds": {
             "celica": {"v":30,"kind":"comrades","note":"Princesses of far-off realms: kindred spirits."},
@@ -378,17 +384,26 @@
             "sig_byleth": {
               "label": "Professor's coat",
               "style": "Elegant",
-              "prompt": "a dark teal tailored coat with gold trim over a black bodice, a short skirt and thigh-high boots",
+              "prompt": "a dark teal tailored coat with gold trim over a black bodice, a short skirt, patterned black tights and thigh-high boots",
               "bonus": {"teacher":1.3,"adventurer":1.1}
             },
-            "sp_byleth": {"label":"Tea-party dress","style":"Elegant","prompt":"a pale green formal dress with lace sleeves","bonus":{"noble":1.2,"courtesan":1.1}}
+            "sp_byleth": {
+              "label": "Enlightened One",
+              "style": "Elegant",
+              "hairColor": "mint green",
+              "eyes": "mint green",
+              "prompt": "regal white, black and gold archbishop-inspired vestments with a tall golden collar and flowing cape",
+              "accessories": "a small golden crown tiara",
+              "accState": "always",
+              "bonus": {"teacher":1.25,"noble":1.25}
+            }
           },
           "bonds": {
             "manuela": {"v":35,"kind":"comrades","note":"Fellow instructor with an endless supply of gossip."},
             "rhea": {"v":40,"note":"Her patron, who watched over her with a mix of hope and worry."}
           },
           "jobs": {"likes":["teacher","security"],"dislikes":["dancer"]},
-          "body": {"bust":"medium","height":"average","figure":"athletic"},
+          "body": {"bust":"large","height":"average","figure":"athletic"},
           "unique": {
             "name": "Teacher's Sense",
             "desc": "She trains her fellows with a patient and steady hand.",
@@ -434,10 +449,10 @@
               "bonus": {"attendant":1.25,"noble":1.15}
             },
             "sp_celica": {
-              "label": "Silk gown",
+              "label": "Rigain regalia",
               "style": "Elegant",
-              "prompt": "a gold-trimmed white silk gown with sheer layered sleeves",
-              "bonus": {"noble":1.25,"courtesan":1.15}
+              "prompt": "an ornate crimson, white and gold royal priestess dress with a golden breastplate and a flowing white cape",
+              "bonus": {"noble":1.25,"attendant":1.2}
             }
           },
           "bonds": {
@@ -447,6 +462,227 @@
           "jobs": {"likes":["attendant","host"],"dislikes":["security"]},
           "body": {"bust":"medium","height":"average","figure":"slim"},
           "unique": {"name":"Valentian Heart","desc":"Her sincerity wins trust fast, and her prayers calm the house.","fx":{"trustGain":1.15,"security":8}}
+        },
+        "tiki": {
+          "job": "courtesan",
+          "title": "Lady",
+          "name": "Tiki",
+          "race": "beastkin",
+          "sub": "dragon",
+          "age": 3000,
+          "personality": "Warm and motherly",
+          "traits": ["Elegant","Lazy"],
+          "style": "Elegant",
+          "favColor": "crimson",
+          "fav": "kiss",
+          "dislike": "doggy",
+          "lovers": "missionary",
+          "backstory": "Known in her homeland across the southern straits as the Voice of the Divine Dragon, Tiki has slept away millennia and outlived almost everyone she ever loved. Waking in Hollowmere was the first surprise in a thousand years that made her smile, and she lingers in the lounge just to be around warm, noisy mortal lives.",
+          "design": {
+            "hairStyle": "very long wavy high ponytail",
+            "hairColor": "emerald green",
+            "eyes": "green",
+            "skin": "fair",
+            "features": "long pointed ears",
+            "accessories": "a golden tiara with a red teardrop gem and a gold collar-necklace",
+            "accState": "always",
+            "expression": "a serene, slightly sleepy smile"
+          },
+          "under": "silk",
+          "underColor": "crimson",
+          "stats": {"beauty":82,"charm":70,"charisma":74,"refinement":76,"wits":72,"stamina":65,"strength":50,"agility":45},
+          "tech": {"service":50,"dance":35,"bar":15,"combat":65,"manage":55},
+          "actSkill": 35,
+          "popularity": 28,
+          "lewd": 32,
+          "trust": 24,
+          "outfits": {
+            "sig_tiki": {
+              "label": "Oracle's vestments",
+              "style": "Elegant",
+              "prompt": "a flowing crimson-pink sleeveless backless gown with gold trim, a sheer pink detached cape-veil, and long white gloves",
+              "bonus": {"courtesan":1.25,"noble":1.25}
+            },
+            "sp_tiki": {
+              "label": "Divine Dragon's summer",
+              "style": "Revealing",
+              "bath": true,
+              "prompt": "a red and gold halter bikini with a sheer pink pareo wrap around her hips",
+              "bonus": {"bath":1.25,"courtesan":1.2}
+            }
+          },
+          "bonds": {
+            "nowi": {"v":45,"note":"Fellow manaketes who understand how fast mortal centuries fly by."},
+            "lucina": {"v":40,"note":"Lucina bears the blood of the Hero-King Tiki knew three thousand years ago."}
+          },
+          "jobs": {"likes":["courtesan","host","bath"],"dislikes":["maid","security"]},
+          "body": {"bust":"large","height":"tall","figure":"curvy"},
+          "unique": {
+            "name": "Voice of the Divine",
+            "desc": "Three millennia of gentle poise soothe any room she enters.",
+            "fx": {"moodRest":4,"classBonus":{"noble":1.2}}
+          }
+        },
+        "nowi": {
+          "job": "dancer",
+          "name": "Nowi",
+          "race": "beastkin",
+          "sub": "dragon",
+          "age": 1000,
+          "personality": "Cheerful and teasing",
+          "traits": ["Party Animal","Eager"],
+          "style": "Revealing",
+          "favColor": "pink",
+          "fav": "cowgirl",
+          "dislike": "massage_give",
+          "lovers": "kiss",
+          "backstory": "A thousand-year-old manakete from the warring continents beyond the southern straits who refuses to act her age because being solemn is boring. Nowi treats the dance floor like a playground, hoards shiny trinkets in her room, and is much wiser about people's hearts than she ever lets on.",
+          "design": {
+            "build": "petite",
+            "hairStyle": "very long wavy",
+            "hairColor": "blonde fading to mint green",
+            "eyes": "bright pink-violet",
+            "skin": "fair",
+            "features": "long pointed ears",
+            "accessories": "a glowing green dragonstone pendant",
+            "accState": "always",
+            "expression": "a bright, playful grin"
+          },
+          "under": "lace",
+          "underColor": "pink",
+          "stats": {"beauty":70,"charm":72,"charisma":76,"refinement":30,"wits":58,"stamina":70,"strength":55,"agility":72},
+          "tech": {"service":35,"dance":68,"bar":20,"combat":60,"manage":15},
+          "actSkill": 30,
+          "popularity": 22,
+          "lewd": 42,
+          "trust": 28,
+          "outfits": {
+            "sig_nowi": {
+              "label": "Manakete's silks",
+              "style": "Revealing",
+              "prompt": "a pink and purple ruffled bikini-style top with a detached collar and capelet, a short white and gold skirt, and tall purple-and-pink striped boots",
+              "bonus": {"dancer":1.3,"adventurer":1.15}
+            }
+          },
+          "bonds": {
+            "tiki": {"v":45,"note":"Fellow manaketes who understand how fast mortal centuries fly by."},
+            "tharja": {"v":30,"note":"Nowi isn't scared of her hexes at all, which Tharja secretly appreciates."}
+          },
+          "jobs": {"likes":["dancer","promoter"],"dislikes":["maid","madame"]},
+          "body": {"bust":"small","height":"short","figure":"slim"},
+          "unique": {
+            "name": "Eternal Playfulness",
+            "desc": "A thousand years of boundless energy keep the crowd smiling.",
+            "fx": {"jobBonus":{"dancer":1.2},"maxEnergy":10}
+          }
+        },
+        "tharja": {
+          "job": "courtesan",
+          "name": "Tharja",
+          "race": "human",
+          "age": 23,
+          "personality": "Mysterious and aloof",
+          "traits": ["Exhibitionist","Loyal"],
+          "style": "Revealing",
+          "favColor": "black",
+          "fav": "missionary",
+          "dislike": "massage_give",
+          "lovers": "oral_give",
+          "backstory": "A dark mage from the desert kingdom of Plegia across the southern straits, Tharja mutters hexes under her breath, collects hair clippings for reasons she won't explain, and stares at Sam from behind pillars. Beneath the gloom and the sheer black mesh is a woman whose devotion, once fixed on someone, is absolute and slightly terrifying.",
+          "design": {
+            "hairStyle": "long straight with blunt bangs",
+            "hairColor": "jet-black",
+            "eyes": "dark violet",
+            "skin": "pale",
+            "features": "dark eye shadow",
+            "accessories": "a gold coin-trimmed headband and a dark tome",
+            "accState": "dressed",
+            "expression": "a gloomy, obsessive stare that softens into a sly smile"
+          },
+          "under": "sheer",
+          "underColor": "black",
+          "stats": {"beauty":76,"charm":52,"charisma":62,"refinement":40,"wits":76,"stamina":55,"strength":25,"agility":50},
+          "tech": {"service":50,"dance":40,"bar":15,"combat":68,"manage":20},
+          "actSkill": 45,
+          "popularity": 20,
+          "lewd": 64,
+          "trust": 22,
+          "outfits": {
+            "sig_tharja": {
+              "label": "Plegian dark mage",
+              "style": "Revealing",
+              "prompt": "a sheer black mesh bodysuit under a cropped black and gold Plegian cape, a high-cut black bikini-style wrap and gold wrist and ankle cuffs",
+              "bonus": {"courtesan":1.3,"adventurer":1.15}
+            }
+          },
+          "bonds": {
+            "nowi": {"v":30,"note":"Nowi isn't scared of her hexes at all, which Tharja secretly appreciates."},
+            "lucina": {"v":15,"note":"Comrades from the same war, though Lucina still eyes her hexes warily."}
+          },
+          "jobs": {"likes":["courtesan","bath"],"dislikes":["promoter","host"]},
+          "body": {"bust":"large","height":"average","figure":"curvy"},
+          "unique": {
+            "name": "Hexing Obsession",
+            "desc": "Her intense fixation makes her unforgettable in private.",
+            "fx": {"actQuality":{"missionary":1.2,"oral_give":1.2},"trustGain":1.15}
+          }
+        },
+        "lucina": {
+          "job": "security",
+          "title": "Princess",
+          "name": "Lucina",
+          "race": "human",
+          "age": 22,
+          "personality": "Earnest and dutiful",
+          "traits": ["Loyal","Tough"],
+          "style": "Sporty",
+          "favColor": "navy",
+          "fav": "missionary",
+          "dislike": "doggy",
+          "lovers": "kiss",
+          "backstory": "A princess from a ruined future who crossed time itself to save her father's kingdom, Lucina takes every duty like a vow and has terrible, earnest taste in fashion. With no apocalypse left to prevent in Hollowmere, she is learning how to live an ordinary life—one awkward smile at a time.",
+          "design": {
+            "hairStyle": "long straight",
+            "hairColor": "navy blue",
+            "eyes": "deep blue",
+            "skin": "fair",
+            "features": "a faint star-shaped mark in her left eye",
+            "accessories": "the exalted sword Falchion at her hip",
+            "accState": "dressed",
+            "expression": "an earnest, determined gaze"
+          },
+          "under": "plain",
+          "underColor": "navy",
+          "stats": {"beauty":76,"charm":58,"charisma":68,"refinement":65,"wits":64,"stamina":72,"strength":62,"agility":75},
+          "tech": {"service":25,"dance":20,"bar":15,"combat":78,"manage":45},
+          "actSkill": 15,
+          "popularity": 22,
+          "lewd": 18,
+          "trust": 28,
+          "outfits": {
+            "sig_lucina": {
+              "label": "Ylissean Lord",
+              "style": "Sporty",
+              "prompt": "a navy blue and silver Ylissean tunic over a fitted undershirt, a blue cape with a silver clasp, leather gauntlets and tall boots",
+              "bonus": {"security":1.35,"adventurer":1.2}
+            },
+            "sp_lucina": {
+              "label": "Masked Swordsman",
+              "style": "Sporty",
+              "hairStyle": "tucked up short",
+              "prompt": "a navy blue tunic, silver shoulder pauldrons, a flowing blue cape and tall boots",
+              "accessories": "a butterfly-shaped silver mask and the sword Falchion at her hip",
+              "accState": "dressed",
+              "bonus": {"security":1.25,"noble":1.2}
+            }
+          },
+          "bonds": {
+            "tiki": {"v":40,"note":"Lucina reveres the Voice of the Divine Dragon; Tiki spoils her gently."},
+            "tharja": {"v":15,"note":"Comrades from the same war."}
+          },
+          "jobs": {"likes":["security","attendant"],"dislikes":["dancer","courtesan"]},
+          "body": {"bust":"small","height":"average","figure":"athletic"},
+          "unique": {"name":"Future Witness","desc":"She has stared down ruin and never yields her post.","fx":{"security":15,"trustGain":1.1}}
         }
       }
     }

@@ -52,7 +52,7 @@ function sceneInfo(k, w){
   // Sam's demonstration class: seen from the room, Sam is the man, the other ladies watch (scenes.json → demoRoom / people.demo)
   // group nights (sam.js samOrgy): the first lady in full, the others briefly (scenes.json → orgyPose / orgyRoom / people.orgy)
   if(k.startsWith('orgy:')){ const os = k.slice(5).split(',').map(findAny).filter(o=>o && w && o.id!==w.id);
-    const short = o => { const d = effDesign(o, k); return `${raceLook(o, k)}, ${[d.hairStyle, d.hairColor].filter(Boolean).join(' ')} hair, ${bodyDesc(o, k)}, ${clothText(o, defaultCloth(o, k), k).replace(/\{pubic\}/g, pubicText(o, k))}`; };
+    const short = o => { const d = effDesign(o, k); return [raceLook(o, k), `${[d.hairStyle, d.hairColor].filter(Boolean).join(' ')} hair`, d.skin && `${d.skin} skin`, bodyDesc(o, k), d.features, clothText(o, defaultCloth(o, k), k).replace(/\{pubic\}/g, pubicText(o, k))].filter(Boolean).join(', '); };
     return {label:'A night together', pov:true, sam:true, comp:pick([].concat(SCENE_DATA.orgyPose || ['the women crowded around the viewer on the bed, pov'])), setting:SCENE_DATA.orgyRoom || SCENE_DATA.samRoom, expr:svcExpr(w, null, P, true),
       client: os.length ? 'the other women: ' + os.map(short).join('; ') : ''}; }
   if(k.startsWith('demo:')){ const id = k.slice(5); return {label:'Demonstration: '+actLabel(id), sam:true, comp:actPose(id,'demo'), client:'the man is ' + SAM_LOOK, setting:SCENE_DATA.demoRoom || 'a candlelit parlor, other women watching', snip:'act_'+id, expr:svcExpr(w, id, P, true)}; }

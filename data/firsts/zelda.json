@@ -4,9 +4,9 @@
       "events": {
         "1": {
           "title": "Audience with the Princess",
-          "text": "Zelda requests a private audience, which is how she asks for everything. She waits in the rose-covered garden pavilion with her hood lowered and steady green eyes fixed on you. \"I have studied your house for months—its books, its customs, its people—yet I failed to account for one variable,\" she smiles faintly. \"You. I would like to kiss you, Sam. Formally first, and then not formally at all.\"",
+          "text": "Zelda requests a private audience, which is how she asks for everything. She waits in the rose-covered garden pavilion with her hands folded and steady deep-blue eyes fixed on you. \"I have studied your house for months—its books, its customs, its people—yet I failed to account for one variable,\" she smiles faintly. \"You. I would like to kiss you, Sam. Formally first, and then not formally at all.\"",
           "image": {
-            "comp": "seated upright in a garden pavilion with hood lowered, hands in lap, composed with a warm smile, long elf ears",
+            "comp": "seated upright in a garden pavilion with hands in her lap, composed with a warm smile",
             "setting": "garden pavilion at dusk, climbing roses, lantern light",
             "sam": true
           },
@@ -17,20 +17,20 @@
         },
         "2": {
           "title": "Without the Crown",
-          "text": "You find Zelda on the rooftop at dusk with her hood thrown back, evening wind tangling her golden hair above the glowing town lanterns. \"At home everyone bows and treats me like glass—you never bow, and it's a relief,\" she murmurs, guiding your warm hands onto her bare waist beneath her cloak. \"Touch me as a woman, not a crown.\"",
+          "text": "You find Zelda on the rooftop at dusk with her circlet set aside, evening wind tangling her long hair above the glowing town lanterns. \"At home everyone bows and treats me like glass—you never bow, and it's a relief,\" she murmurs, guiding your warm hands onto her bare waist beneath her gown. \"Touch me as a woman, not a crown.\"",
           "image": {
-            "comp": "sitting on a rooftop with hood back, wind in her long hair, looking at him with open warm eyes",
+            "comp": "sitting on a rooftop with wind in her long hair, looking at him with open warm eyes",
             "setting": "rooftop at dusk, view over town lights",
             "sam": true
           },
           "go": "Sit beside her",
-          "goRes": "Beneath the shelter of her cloak on the warm roof tiles, her royal poise melts into soft, breathless gasps as your hands explore her breasts and slip between her thighs and her fingers free your cock from your belt.",
+          "goRes": "On the warm roof tiles, her royal poise melts into soft, breathless gasps as your hands explore her breasts and slip between her thighs and her fingers free your cock from your belt.",
           "wait": "\"Not tonight.\"",
           "waitRes": "\"I understand.\" Zelda tilts her head with a gentle smile. \"I will keep the roof warm for another evening.\""
         },
         "3": {
           "title": "A Kingdom of Two",
-          "text": "Zelda sets aside her tome of sage lore and takes both of your hands, standing in a sheer white nightgown with her golden hair spilling loose past her waist. \"Every decision of my life was made for duty—this one is solely mine,\" she whispers, letting the straps slide off her bare shoulders. \"Stay in my bed tonight and show me what it means to be only Zelda.\"",
+          "text": "Zelda sets aside her tome of sage lore and takes both of your hands, standing in a sheer white nightgown with her long hair spilling loose past her waist. \"Every decision of my life was made for duty—this one is solely mine,\" she whispers, letting the straps slide off her bare shoulders. \"Stay in my bed tonight and show me what it means to be only Zelda.\"",
           "image": {
             "comp": "standing in a simple nightgown with long hair down, holding his hands, gentle nervous smile",
             "setting": "her guest suite, tall window, moonlight, books on a table",
@@ -116,9 +116,9 @@
       "events": {
         "1": {
           "title": "Fresh Cream",
-          "text": "Malon tops off a glass at the bar and slides it across to you while humming a ranch tune, her red braid resting over one shoulder. \"Fresh from my family's herd—best in Hyrule,\" she smiles, biting her lip with rosy cheeks. \"Truth is, I came to deliver milk and stayed because of you—and it keeps coming out sounding like dairy.\"",
+          "text": "Malon tops off a glass at the bar and slides it across to you while humming a ranch tune, her long red hair resting over one shoulder. \"Fresh from my family's herd—best in Hyrule,\" she smiles, biting her lip with rosy cheeks. \"Truth is, I came to deliver milk and stayed because of you—and it keeps coming out sounding like dairy.\"",
           "image": {
-            "comp": "leaning over a bar counter with a glass, cheeky bashful smile, red braid over one shoulder",
+            "comp": "leaning over a bar counter with a glass, cheeky bashful smile, long red hair over one shoulder",
             "setting": "the house bar, wooden counter, glass jars of cream, afternoon light",
             "sam": true
           },
@@ -131,7 +131,7 @@
           "title": "Lullaby",
           "text": "Malon hums a soft ranch lullaby while wiping down the bar after closing, watching you lean drowsily on the counter. Coming around the wood with a warm, teasing smile, she takes your hand and guides it onto her waist. \"Works on restless foals and tired owners alike—let me use my hands on you.\"",
           "image": {
-            "comp": "taking his hand with a sweet teasing smile, red braid swaying, humming softly",
+            "comp": "taking his hand with a sweet teasing smile, long red hair swaying, humming softly",
             "setting": "bar after closing, lamplight, wiping cloth in hand",
             "sam": true
           },
@@ -144,7 +144,7 @@
           "title": "Barn Dance",
           "text": "The lantern-lit courtyard supper turns into a lively dance, Malon spinning you around the hay bales until you're dizzy and laughing. As the fiddle fades, she keeps hold of your hands with flushed cheeks and bright eyes. \"I'm done being shy, Sam—stay in my bed tonight.\"",
           "image": {
-            "comp": "holding both his hands after a dance, hair coming loose, sweet bright flushed smile",
+            "comp": "holding both his hands after a dance, hair flowing loose, sweet bright flushed smile",
             "setting": "courtyard with strung lanterns, hay bales, dusk",
             "sam": true
           },
@@ -157,7 +157,7 @@
           "title": "Sudden Song",
           "text": "Malon is stacking mugs in the back room when she bursts into joyful song mid-sentence, claps a hand over her mouth, and turns bright red. \"Sorry—I always sing when I'm happy, and you make me ridiculously happy!\" Hopping up to kiss your cheek, then your mouth, she giggles breathlessly. \"I regret nothing!\"",
           "image": {
-            "comp": "hopping up to kiss him with a stack of mugs behind her, giggling, flushed, red braid bouncing",
+            "comp": "hopping up to kiss him with a stack of mugs behind her, giggling, flushed, long red hair bouncing",
             "setting": "bar back room, mugs and bottles, warm light",
             "sam": true
           },
@@ -230,7 +230,7 @@
           "title": "Spoils",
           "text": "Nabooru tosses a small velvet pouch into your lap—revealing a gleaming silver ring inside. \"Lifted it off a bandit who deserved worse. Not a proposal—a trophy,\" she grins, leaning against the doorframe with arms crossed and a flicker of nerves beneath her Gerudo swagger. \"I owe you a kiss for every decent thing you've done here, and I'm starting now.\"",
           "image": {
-            "comp": "leaning in a doorway with arms folded, confident grin, braided red hair, a flicker of nerves",
+            "comp": "leaning in a doorway with arms folded, confident grin, high red ponytail, a flicker of nerves",
             "setting": "the security post by the front door, a lantern, a stack of crates",
             "sam": true
           },
@@ -269,7 +269,7 @@
           "title": "Quick Hands",
           "text": "Nabooru has already pickpocketed your quill, ledger notes, and coin purse before you even blink. \"Just testing your reflexes,\" she grins—tucking the purse back into your pocket while grabbing your collar and kissing you breathless. \"And you didn't see that coming either.\"",
           "image": {
-            "comp": "tucking a wallet back into his pocket while kissing him, grinning, quick-handed, red braid swinging",
+            "comp": "tucking a wallet back into his pocket while kissing him, grinning, quick-handed, red ponytail swinging",
             "setting": "security desk, scattered quills and papers, lantern light",
             "sam": true
           },
@@ -277,6 +277,118 @@
           "goRes": "You kiss her back hungrily, backing her onto the security desk and hiking up her Gerudo silks to slide your hand between her thighs while she laughs breathlessly against your mouth.",
           "wait": "\"Nabooru!\"",
           "waitRes": "\"Fine, fine.\" She hands back your quill without a shred of remorse. \"Though I refuse to apologize for the kiss.\""
+        }
+      }
+    },
+    "hilda_lorule": {
+      "events": {
+        "1": {
+          "title": "Mirror Royal",
+          "text": "Hilda stands by the lounge window at twilight, her tall staff resting against the frame and crimson eyes reflecting the street lamps. \"In Lorule I spent every waking hour trying to salvage a crumbling crown,\" she says quietly, turning to face you. \"Here, nothing is crumbling, and I still find myself watching you. May I learn what a kiss feels like when nothing is at stake?\"",
+          "image": {
+            "comp": "standing by a window at twilight with her staff resting beside her, crimson eyes soft, tentative regal smile",
+            "setting": "lounge window at twilight, warm lanterns outside",
+            "sam": true
+          },
+          "go": "Kiss her",
+          "goRes": "Her lips are cool and hesitant for a heartbeat before parting warmly beneath yours, her hand rising to rest over your heart. \"Oh... so that is what peace tastes like.\"",
+          "wait": "\"Take your time adjusting first.\"",
+          "waitRes": "\"You are kinder than I deserve,\" Hilda murmurs, inclining her head. \"I will ask again when the evening is quiet.\""
+        },
+        "2": {
+          "title": "Inverted Crest",
+          "text": "Hilda invites you into her office after the ledgers are closed, unclasping her heavy gold shoulder pauldrons and setting her tiara beside the lamp. \"I wore a crown like armor for so long I forgot I had skin underneath,\" she whispers, taking your hand and guiding it beneath her dark purple bodice. \"Remind me, Sam.\"",
+          "image": {
+            "comp": "sitting at her desk with her tiara and pauldrons set aside, guiding his hand to her chest, flushed and earnest",
+            "setting": "madame's office at night, candle glow and closed ledgers",
+            "sam": true
+          },
+          "go": "Remind her",
+          "goRes": "Her solemn composure gives way to soft, shivering gasps as your hands cup her bare breasts and slide between her thighs while her slender fingers unfasten your belt and stroke your cock.",
+          "wait": "\"We don't have to rush.\"",
+          "waitRes": "\"Of course.\" Hilda presses your hand briefly to her cheek before letting go. \"I have learned patience the hard way.\""
+        },
+        "3": {
+          "title": "No More Borrowed Light",
+          "text": "Hilda waits for you in her bedchamber wearing only a loose lavender slip, her dark violet hair brushed out over bare shoulders. \"Once, I tried to steal another princess's light because I thought my world was empty,\" she says softly, letting the slip fall to the floor. \"I don't want borrowed light anymore. Stay with me tonight.\"",
+          "image": {
+            "comp": "standing beside her bed with her dark violet hair loose over bare shoulders, crimson eyes shining, vulnerable smile",
+            "setting": "her bedroom at night, soft lamplight on dark purple drapes",
+            "sam": true
+          },
+          "go": "Stay with her",
+          "goRes": "You lay her back on the sheets and sink your cock deep into her pussy, holding her close through every breathless, trembling cry until she sleeps curled warmly against your chest.",
+          "wait": "\"Are you certain?\"",
+          "waitRes": "\"More certain than I have ever been of a royal decree,\" Hilda smiles faintly. \"Come back to me when you are ready.\""
+        },
+        "jump": {
+          "title": "Unplanned Decree",
+          "text": "You catch Hilda staring at you from the top of the stairs, and when you walk up to ask what's wrong, she catches your hoodie in both hands. \"I am tired of being the solemn shadow in the corner,\" she breathes, crimson eyes blazing with sudden resolve as she pulls you into her doorway. \"Tonight I am taking what I want.\"",
+          "image": {
+            "comp": "pulling him by his hoodie into a doorway, crimson eyes bright, solemn composure broken by a fierce blush",
+            "setting": "upstairs doorway, warm lantern light",
+            "sam": true
+          },
+          "go": "Let her take it",
+          "goRes": "She kisses you hungrily behind the closed door, hiking up her royal skirts and guiding your hand between her bare thighs while her breath comes hot against your neck.",
+          "wait": "\"Hilda, breathe first.\"",
+          "waitRes": "\"I am breathing,\" she murmurs, cheeks scarlet as she smooths her tabard. \"Do not make me wait too long, Sam.\""
+        }
+      }
+    },
+    "twinrova": {
+      "events": {
+        "1": {
+          "title": "Double Trouble",
+          "text": "Twinrova lounges across two barstools after closing, one braid radiating desert heat and the other frosting the rim of her glass. \"Four hundred years and we've never agreed on a man this fast,\" she purrs, crooked grin curving as she hooks a finger into your belt loop. \"Come closer, little boss—let's see if you prefer fire or ice.\"",
+          "image": {
+            "comp": "lounging across barstools with swirling fire and ice braids, glowing gold eyes, wicked sultry grin",
+            "setting": "empty bar at night, frost and ember-glow on the counter",
+            "sam": true
+          },
+          "go": "Kiss her",
+          "goRes": "Her lips are scorching hot one second and dizzyingly cool the next, leaving you breathless while she laughs low in her throat. \"Oh, he didn't even flinch—we're keeping him.\"",
+          "wait": "\"Which one of you am I kissing?\"",
+          "waitRes": "\"Both of us, darling—that's the fun of fusion!\" Twinrova cackles, raising her glass. \"Come back when you're feeling brave.\""
+        },
+        "2": {
+          "title": "Fever and Frost",
+          "text": "Twinrova traps you in the bathhouse steam room, her elemental halo dimming to a low shimmer as she presses her voluptuous chest against your back. One palm slides down your stomach burning warm while the other wraps around your cock cool as snowmelt. \"Hold still—we're having a little argument over which hand makes you shudder harder.\"",
+          "image": {
+            "comp": "pressing close behind him in a steamy room, one hand warm with ember light and the other cool with frost, sultry smirk",
+            "setting": "bathhouse steam room, drifting mist and elemental glow",
+            "sam": true
+          },
+          "go": "Let her settle the bet",
+          "goRes": "The alternating heat and chill of her hands and mouth on your cock is maddening, driving you over the edge while she purrs in triumphant satisfaction.",
+          "wait": "\"Not during bath hours.\"",
+          "waitRes": "\"Spoilsport!\" Twinrova pouts theatricality, tapping your nose. \"After hours, then—we'll bring both temperatures.\""
+        },
+        "3": {
+          "title": "Four Centuries Young",
+          "text": "Twinrova's room smells of desert incense and ozone, her gold jewelry gleaming against bare greenish-grey skin as she reclines across the bed with her elemental braids spilled over the pillows. \"Do you know how much magic it takes to stay this gorgeous?\" she murmurs, beckoning you with a crooked finger. \"Come make use of it before the night cools off.\"",
+          "image": {
+            "comp": "reclining naked on a bed with fire and ice braids spread across the pillows, gold jewelry gleaming, inviting smirk",
+            "setting": "bedroom lit by floating fire and ice wisps, desert curtains",
+            "sam": true
+          },
+          "go": "Join her",
+          "goRes": "You climb between her thighs and drive your cock into her pussy, her body alternating between feverish heat and gasping shivers as she rides you until dawn.",
+          "wait": "\"Try asking nicely first.\"",
+          "waitRes": "\"Nicely? At our age?\" She bursts out laughing, eyes glinting gold. \"Fine—please, little boss. Tomorrow night.\""
+        },
+        "jump": {
+          "title": "Elemental Overload",
+          "text": "A burst of frost and flame rattles the hallway lanterns as Twinrova backs you against the wall, her huge breasts heaving against your chest. \"Keeping this form fused makes our blood run hot, Sam, and you've been driving us both crazy all week,\" she growls, grabbing your belt with both hands.",
+          "image": {
+            "comp": "pinning him against a hallway wall with elemental sparks in her hair, flushed and grinning hungrily",
+            "setting": "upstairs hallway, flickering lanterns and frost on the wainscoting",
+            "sam": true
+          },
+          "go": "Give in",
+          "goRes": "You haul her into the nearest room, shoving her sorceress top up over her tits and sliding your fingers into her wet pussy while she kisses you breathless.",
+          "wait": "\"Watch the wallpaper!\"",
+          "waitRes": "\"The wallpaper can be replaced!\" Twinrova huffs, fanning herself with a frosted hand. \"Bedroom, ten minutes—don't be late.\""
         }
       }
     }

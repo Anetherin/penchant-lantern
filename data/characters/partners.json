@@ -21,7 +21,7 @@
       "hairColor": "copper",
       "eyes": "golden",
       "skin": "sun-kissed",
-      "features": "a thin scar on her shoulder",
+      "features": "fox ears, a fluffy fox tail and a thin scar on her shoulder",
       "expression": "an earnest, determined expression"
     },
     "under": "sports",
@@ -98,7 +98,7 @@
     "backstory": "Yui spent six years in the accounts department of a mid-sized firm, two desks from Sam, keeping everyone's numbers honest and her own feelings filed under \"later.\" She woke up in Hollowmere a week before him with a stapler in her pocket and no explanation, and spent that week learning the local coins and discovering that nobody here had ever invented the spreadsheet. She gets inexplicably emotional about instant noodles.",
     "partnerStory": "Yui sat at the next desk over in Sam's old office, and was crossing the same street when the truck came. She woke in this world a week before him, and when a familiar hoodie turned up in the Lantern's doorway she nearly dropped the account book. She's been quietly reorganizing Sam's finances ever since, which is what she does when she's nervous. And happy. And both.",
     "design": {
-      "hairStyle": "black bob-cut",
+      "hairStyle": "neat bob-cut",
       "hairColor": "black",
       "eyes": "dark brown",
       "skin": "fair",
@@ -267,7 +267,7 @@
       "hairColor": "honey blonde",
       "eyes": "green",
       "skin": "fair",
-      "features": "light freckles across her nose",
+      "features": "long pointed elf ears and light freckles across her nose",
       "accessories": "a sprig of fresh rosemary woven into her braid",
       "accState": "always",
       "expression": "a gentle, kind smile"
@@ -854,6 +854,7 @@
       "hairColor": "chestnut brown",
       "eyes": "grey-green",
       "skin": "pale",
+      "features": "grey wolf ears and a bushy wolf tail",
       "accessories": "round glasses",
       "accState": "always",
       "expression": "a shy, dreamy smile"
@@ -935,10 +936,11 @@
     "backstory": "Lirael Quill is an elven sorting clerk at the Hollowmere post house, the sort of person who can tell a letter's whole story from its smudges. Years ago, lonely and very young by elven reckoning, she dropped a note addressed to no one into the old enchanted postbox in the alley behind the post house, and got an answer from another lonely teenager named Sam, writing from somewhere that, as far as she could tell, did not exist. For years they wrote about nothing and everything. It was friendship and nothing more: two lonely people with good handwriting. When the replies stopped, she kept the postbox swept anyway.",
     "partnerStory": "The ownership notice for a certain pleasure house crossed Lirael's counter, signed in a hand she would have known anywhere. She read the signature three times, then went to the back room and had a small, private breakdown. Sam is real, he is a few streets away, and he has no idea that someone in this world has been holding his letters for ten years. She has decided to walk into the Lantern and say hello. She has also decided to do it with her shoulders squared and her satchel strap wound round her fingers, because she is an elf, and elves are supposed to be composed, and she is not.",
     "design": {
-      "hairStyle": "long straight hair with a single braid",
+      "hairStyle": "long straight with a single side braid",
       "hairColor": "pale ash blonde",
       "eyes": "grey-green",
       "skin": "fair",
+      "features": "long pointed elf ears",
       "accessories": "round reading spectacles",
       "accState": "always"
     },
@@ -1108,11 +1110,11 @@
     "partnerStory": "Ione-7 walked into Hollowmere running on twelve percent charge, with perfect posture, a faint hum and a message she says she was meant to deliver in person: \"You did it.\" She won't say what he did. She does know how he takes his tea, which he has never told anyone, and she sometimes finishes his sentences, then looks stricken, as though she has stepped over a line she can't quite see. She is warm, odd and very sure she is exactly where she is supposed to be.",
     "design": {
       "build": "graceful",
-      "hairStyle": "short silver-white bob with one thin fibre-optic strand",
+      "hairStyle": "short bob",
       "hairColor": "silver-white",
       "eyes": "pale cyan with a faint ring of light",
-      "skin": "porcelain with faint seam lines at the wrists and collarbone",
-      "features": "a small status light at her temple that glows warm gold when she is content",
+      "skin": "porcelain synthetic with faint seam lines at her wrists and collarbone",
+      "features": "a small circular status light at her temple and one thin fibre-optic strand in her hair",
       "expression": "a calm, attentive expression"
     },
     "under": "plain",
@@ -1210,7 +1212,7 @@
       "sig_anael": {
         "label": "Warden's robes",
         "style": "Elegant",
-        "prompt": "flowing white and gold robes, wings spread behind her",
+        "prompt": "flowing white and gold robes",
         "bonus": {"madame":1.25,"noble":1.2},
         "accessories": "a lantern-shaped gold brooch",
         "accState": "dressed"
@@ -1218,7 +1220,7 @@
       "sp_anael": {
         "label": "Lamplight gown",
         "style": "Elegant",
-        "prompt": "a soft golden gown with sheer feathered shoulders, a warm glow behind her head",
+        "prompt": "a soft golden gown with sheer feathered shoulders",
         "bonus": {"noble":1.25,"courtesan":1.15}
       }
     },

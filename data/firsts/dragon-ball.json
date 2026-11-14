@@ -167,6 +167,62 @@
           "waitRes": "\"Tea. Lovely.\" She picks up the cheese with a composed, hungry smile. \"We'll discuss appetites over a pot.\""
         }
       }
+    },
+    "android18": {
+      "events": {
+        "1": {
+          "title": "Overtime Rate",
+          "text": "Eighteen leans against the edge of your office desk after tossing two rowdy mercenaries into the street without wrinkling her denim vest, tucking a lock of blonde hair behind her ear. \"Your contract covers standard security,\" she says coolly, icy blue eyes holding yours as a faint blush warms her cheeks. \"Staying late to keep you company costs extra. Lucky for you, I'm willing to take a kiss as down payment.\"",
+          "image": {
+            "comp": "leaning against his desk with arms loosely crossed, tucking blonde hair behind her ear, cool half-smirk with a faint blush",
+            "setting": "Sam's office late at night, ledger and coin pouch on the desk",
+            "sam": true
+          },
+          "go": "Pay up",
+          "goRes": "She catches the back of your neck and kisses you—cool and unhurried at first, then surprisingly warm and deep before she pulls back with a satisfied smirk. \"Consider your account in good standing.\"",
+          "wait": "\"Put it on my tab.\"",
+          "waitRes": "\"Interest compounds daily,\" Eighteen warns, tapping your nose with one finger as she strolls out. \"Don't wait too long to settle up.\""
+        },
+        "2": {
+          "title": "Infinite Stamina",
+          "text": "You find Eighteen in the empty break room after closing, her denim vest hung over a chair while she stretches her shoulders. \"You look wiped out, boss,\" she remarks, walking over to straddle your knees on the bench and sliding her cool, steady hands under your shirt. \"I don't get tired—ever. Sit back and let me do all the work.\"",
+          "image": {
+            "comp": "straddling his knees on a bench in her black shirt and striped sleeves, cool blue eyes dark with heat",
+            "setting": "quiet staff break room after hours, warm lamplight",
+            "sam": true
+          },
+          "go": "Let her work",
+          "goRes": "She unbuckles your belt with brisk efficiency, stroking your cock and then dropping to her knees to suck you with relentless, unhurried focus until your legs give out.",
+          "wait": "\"I might not survive infinite stamina.\"",
+          "waitRes": "\"Only one way to find out,\" Eighteen smirks, patting your cheek before standing up. \"Get some sleep—I'm collecting tomorrow.\""
+        },
+        "3": {
+          "title": "Off the Clock",
+          "text": "Eighteen steps into your bedroom at midnight, kicks the door shut, and unbuttons her denim skirt, letting it drop to the rug alongside her vest and shirt until she stands in just her black sports underwear. \"No invoices, no contracts, no Red Ribbon ghosts,\" she says quietly, her cool armor slipping to reveal genuine warmth as she climbs onto your bed. \"I'm here because I want you, Sam. Try to keep up.\"",
+          "image": {
+            "comp": "kneeling on his bed in black sports underwear, blonde hair loose, cool blue eyes soft and earnest",
+            "setting": "Sam's bedroom by lamplight, denim vest on a chair",
+            "sam": true
+          },
+          "go": "Keep up with her",
+          "goRes": "You strip off the rest and sink your cock deep into her tight, wet pussy, Eighteen gasping into your neck as she rides you with tireless, breathless passion deep into the night.",
+          "wait": "\"Are you sure, Lazuli?\"",
+          "waitRes": "Her eyes widen slightly at her real name before her expression softens completely. \"Yeah. I'm sure. Whenever you're ready, Sam.\""
+        },
+        "jump": {
+          "title": "Shoplifter's Reward",
+          "text": "After you help her talk down a boutique merchant over a pricey necklace she was eyeing—and buy it for her outright—Eighteen drags you into the alley behind the Lantern and pins you against the brick wall with a forearm across your chest. \"Buying me jewelry is a dangerous move, boss,\" she murmurs, cheeks flushed pink as her other hand drops straight to your belt. \"Inside. Now.\"",
+          "image": {
+            "comp": "pinning him against a brick wall with one forearm on his chest, wearing a new necklace, flushed and intense",
+            "setting": "lantern-lit alley behind the house at dusk",
+            "sam": true
+          },
+          "go": "Take her inside",
+          "goRes": "You haul her through the back door and straight into your room, kissing her breathless while she shoves her skirt up and guides your fingers into her wet pussy.",
+          "wait": "\"It was just a bonus!\"",
+          "waitRes": "\"Nobody gives bonuses that good for free,\" Eighteen scoffs, touching the necklace with a rare, genuine smile. \"Tonight, my room.\""
+        }
+      }
     }
   }
 }

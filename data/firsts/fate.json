@@ -1,0 +1,284 @@
+{
+  "characters": {
+    "rin_tohsaka": {
+      "events": {
+        "1": {
+          "title": "Tuition Fee",
+          "text": "Rin slaps a velvet pouch of uncut rubies onto your desk and crosses her arms beneath her red sweater, her long dark twin tails swaying as her cheeks flush pink. \"You overpaid my magecraft consulting fee by twenty percent, Sam, and a Tohsaka never leaves a debt unsettled,\" she declares, lifting her chin imperiously. \"Hold still—I'm settling the balance with a kiss, and you are not allowed to look smug about it!\"",
+          "image": {
+            "comp": "standing across his desk with arms crossed in her red turtleneck sweater, twin tails swaying, flustered proud blush",
+            "setting": "Sam's office at night, velvet gem pouch on the desk",
+            "sam": true
+          },
+          "go": "Try not to look smug",
+          "goRes": "She leans across the desk and kisses you—stiff and nervous for half a second before her lips part warmly against yours. \"T-there! Account balanced!\"",
+          "wait": "\"Keep the twenty percent as a bonus.\"",
+          "waitRes": "\"A bonus?!\" Rin turns scarlet to her roots. \"Fine, then I'll owe you interest tomorrow night!\""
+        },
+        "2": {
+          "title": "Mana Transfer",
+          "text": "Late at night in her study, Rin sits on the edge of the sofa with her spellbooks stacked neatly aside, tugging playfully at the top of one black thigh-high stocking. \"My magical circuits are running low after setting the house wards, and gems are too expensive to waste,\" she mutters, refusing to meet your eyes as her face burns crimson. \"Direct physical contact is the traditional method. Come sit down and touch me, idiot.\"",
+          "image": {
+            "comp": "sitting on a study sofa in her red sweater and black thigh-highs, face crimson, looking sideways at him",
+            "setting": "candlelit mage study with spellbooks and crystal gems",
+            "sam": true
+          },
+          "go": "Transfer mana",
+          "goRes": "Her tsundere bluster vanishes into soft, needy whimpers as your hands slide under her sweater to cup her breasts and stroke her wet pussy while her warm mouth and hands work your cock.",
+          "wait": "\"I can buy you another ruby.\"",
+          "waitRes": "\"It's not about the ruby!\" Rin throws a throw pillow at your chest, mortified. \"Come back in five minutes and don't be dense!\""
+        },
+        "3": {
+          "title": "Heir No More",
+          "text": "Rin unties the black ribbons from her twin tails so her dark wavy hair falls loose around her shoulders, pulling her red turtleneck over her head until she stands before your bed in just her black lace underwear and thigh-high stockings. \"My whole life was 'be a flawless mage, never show weakness,'\" she whispers, aqua-blue eyes shining and earnest. \"With you, I just want to be Rin. Take me to bed, Sam.\"",
+          "image": {
+            "comp": "standing beside his bed with her hair untied and loose, wearing black lace underwear and thigh-highs, earnest vulnerable blush",
+            "setting": "Sam's bedroom by lamplight, black hair ribbons on the nightstand",
+            "sam": true
+          },
+          "go": "Pull her into bed",
+          "goRes": "You lay her back on the pillows and sink your cock slowly into her tight, scorching pussy, Rin wrapping her stocking-clad legs around your waist and gasping your name until dawn.",
+          "wait": "\"You never have to be perfect with me.\"",
+          "waitRes": "Rin's eyes mist over before she hides her blushing face against your collarbone. \"Don't let go of me tonight, okay?\""
+        },
+        "jump": {
+          "title": "Defenseless",
+          "text": "You walk into the office to find Rin stretched over the desk trying to reach a ledger on the top shelf, her pleated black miniskirt riding up over her thighs. When you steady her hips so she doesn't slip, she freezes, spins around scarlet-faced, and grabs your collar. \"Since you're already staring—lock the door right now before I change my mind!\"",
+          "image": {
+            "comp": "spinning around against the desk edge with her hands on his collar, scarlet blush and bright aqua eyes",
+            "setting": "office bookshelves in warm evening light",
+            "sam": true
+          },
+          "go": "Lock the door",
+          "goRes": "You click the lock shut, lift her onto the desk edge, and slide your fingers into her wet pussy while she kisses you breathless.",
+          "wait": "\"I was just helping you reach the ledger!\"",
+          "waitRes": "\"Sure you were!\" Rin huffs, smoothing her skirt with trembling hands. \"My room, midnight—don't be late!\""
+        }
+      }
+    },
+    "saber": {
+      "events": {
+        "1": {
+          "title": "Midnight Supper",
+          "text": "You bring a warm plate of honey-glazed roast and fresh bread out to the courtyard where Artoria is standing night watch, her ahoge cowlick perking up the instant she smells the food. After finishing every crumb with solemn gratitude, she sets the plate aside and looks up at you with emerald eyes. \"In all my years as a king, few ever tended to me simply as a woman,\" she says softly, cheeks warming. \"May I offer you a knight's kiss, Sam?\"",
+          "image": {
+            "comp": "standing in the courtyard by lantern light with an empty plate set aside, emerald eyes warm and earnest, slight blush",
+            "setting": "courtyard at night, warm lantern glow",
+            "sam": true
+          },
+          "go": "Accept her kiss",
+          "goRes": "She rises onto tiptoe and kisses you with chivalrous, heart-melting earnestness, her hands resting gently on your chest.",
+          "wait": "\"Your company is reward enough.\"",
+          "waitRes": "Artoria smiles—radiant and unguarded—and bows her head. \"Then I shall guard your dreams twice as closely tonight.\""
+        },
+        "2": {
+          "title": "Behind the Breastplate",
+          "text": "In her tidy quarters, Artoria unbuckles her silver breastplate and gauntlets, setting the steel armor on its stand until she sits in her blue-and-white under-dress. \"A king's body was meant only to bear a sword,\" she murmurs, taking your hand and placing your palm over her racing heart. \"Yet when you look at me, Sam, I wish to know how a woman is touched. Will you teach me?\"",
+          "image": {
+            "comp": "sitting on her bed with her silver armor on a stand beside her, guiding his hand to her chest, brave blushing gaze",
+            "setting": "tidy knightly quarters, armor stand and candle sconce",
+            "sam": true
+          },
+          "go": "Teach her gently",
+          "goRes": "You unlace her blue dress to kiss her small, firm breasts and stroke her wet pussy until her solemn composure breaks into soft, trembling gasps as her hands eagerly explore your cock.",
+          "wait": "\"We can take this one step at a time.\"",
+          "waitRes": "\"Thank you, Sam,\" Artoria whispers, lacing her fingers through yours. \"Your patience does you credit.\""
+        },
+        "3": {
+          "title": "A Vow Without a Crown",
+          "text": "Artoria unties the blue ribbon holding her braided bun, letting her golden blonde hair spill loose over her bare shoulders as her white shift falls to the floorboards. \"I swore my life to a kingdom that vanished into history,\" she whispers, kneeling before you on the mattress with emerald eyes shining in the candlelight. \"Tonight I swear myself to you—not as a king, only as Artoria.\"",
+          "image": {
+            "comp": "kneeling naked on the bed with her golden hair unbound and blue ribbon in hand, tender devoted smile",
+            "setting": "Sam's bedroom by warm candlelight",
+            "sam": true
+          },
+          "go": "Take her vow",
+          "goRes": "You draw her down onto the sheets and sink your cock slowly into her tight, hot pussy, Artoria gasping and holding you with all her knightly strength as she comes in your arms.",
+          "wait": "\"You're already everything to me.\"",
+          "waitRes": "She rests her forehead against yours with a soft, happy sigh, curling up against your chest under the quilt."
+        },
+        "jump": {
+          "title": "Sparring Oath",
+          "text": "After an afternoon practice bout in the garden leaves you both breathless on the grass, Artoria catches your wrist instead of helping you up, straddling your waist with her cheeks flushed bright pink. \"Forgive my boldness, Sam,\" she breathes, emerald eyes dark with sudden heat. \"My heart refuses to wait another night—take me inside.\"",
+          "image": {
+            "comp": "straddling his waist on the garden grass after sparring, cheeks flushed pink, earnest intense emerald gaze",
+            "setting": "garden lawn at dusk, wooden practice swords nearby",
+            "sam": true
+          },
+          "go": "Carry her inside",
+          "goRes": "She kisses you hungrily as you carry her into her room, unfastening her skirt so your fingers can slide into her wet pussy while she tugs at your belt.",
+          "wait": "\"Catch your breath first, My King.\"",
+          "waitRes": "\"Just Artoria,\" she corrects softly, kissing your cheek before standing up. \"Come to my chamber at moonrise.\""
+        }
+      }
+    },
+    "rider": {
+      "events": {
+        "1": {
+          "title": "Behind the Glasses",
+          "text": "You find Medusa sitting in the library window seat with her slender Mystic Eye Killer glasses perched on her nose, a romance novel open in her lap and her ankle-length violet hair cascading to the rug. When you bring her a cup of tea, she marks her page and looks up with a faint, shy blush. \"I always thought I was too tall to be held like the heroines in these books,\" she murmurs, leaning down slightly toward you. \"Prove me wrong, Sam.\"",
+          "image": {
+            "comp": "sitting in a library window seat wearing slender glasses, open book in her lap, long violet hair, shy warm blush",
+            "setting": "quiet library nook at dusk, warm lamplight",
+            "sam": true
+          },
+          "go": "Kiss her",
+          "goRes": "You cup her cheek and kiss her softly, Medusa letting out a low, contented hum as she leans into your palm.",
+          "wait": "\"Which chapter are you on?\"",
+          "waitRes": "\"The part where the hero stops hesitating,\" Medusa replies dryly, though her lips curve into a fond smile."
+        },
+        "2": {
+          "title": "Blindfold Off",
+          "text": "In the dim quiet of her room, Medusa reaches up to unfasten her ornate purple-and-gold blindfold visor, keeping her eyelids lowered as she straddles your lap on the edge of the bed. \"If I open my eyes without my glasses, you won't be able to move a muscle,\" she whispers, sliding her long-gloved hands down your chest to your belt. \"Wait—perhaps having you completely at my mercy is the point.\"",
+          "image": {
+            "comp": "straddling his lap in her sleeveless black turtleneck dress, holding her visor in one hand, half-lidded crimson-violet eyes",
+            "setting": "dim candlelit bedroom, violet drapes",
+            "sam": true
+          },
+          "go": "Stay at her mercy",
+          "goRes": "A single glance from her crimson-violet eyes pins you in delicious stillness while she unbuttons your trousers and worships your cock with her warm mouth, tongue, and heavy breasts until you come.",
+          "wait": "\"Put the glasses on so I can touch you back.\"",
+          "waitRes": "A soft blush crosses her pale cheeks as she slips her glasses on. \"...Very well. Next time, your hands don't get to rest.\""
+        },
+        "3": {
+          "title": "No Longer a Monster",
+          "text": "Medusa stands beside your bed in her glasses, peeling off her form-fitting black dress and long gloves until her tall, statuesque curves are bare in the moonlight, her violet hair pooling across the mattress. \"Mortals either feared me as a gorgon or worshipped me from afar,\" she whispers, kneeling over you on the sheets. \"With you, I feel desirable. Take all of me tonight, Sam.\"",
+          "image": {
+            "comp": "kneeling naked on his bed wearing only her slender glasses, floor-length violet hair spilling around them, tender sultry gaze",
+            "setting": "Sam's moonlit bedroom",
+            "sam": true
+          },
+          "go": "Take all of her",
+          "goRes": "She sinks down onto your cock with a low, shivering moan, her long legs wrapping around you as she rides you with deep, unhurried passion until she comes trembling against your chest.",
+          "wait": "\"You've always been beautiful to me.\"",
+          "waitRes": "Medusa's breath catches, and she kisses you deeply before pulling the covers over you both. \"Don't make me wait past tomorrow.\""
+        },
+        "jump": {
+          "title": "Silent Pounce",
+          "text": "You don't even hear Medusa's footsteps on the dark stairs before a slender chain clicks softly around the banister and her tall, curvy frame presses you into the alcove. \"I've been watching you all evening from the rafters, Sam,\" she breathes against your ear, her hand already sliding over your fly. \"My patience is gone.\"",
+          "image": {
+            "comp": "pressing him into a shadowed stair alcove in her black mini-dress, visor pushed up, flushed and hungry",
+            "setting": "shadowed staircase alcove at night",
+            "sam": true
+          },
+          "go": "Pull her close",
+          "goRes": "You hike up her short split skirt and slide your fingers into her soaking pussy while she kisses you with fierce, breathless hunger.",
+          "wait": "\"Your room is right upstairs!\"",
+          "waitRes": "Without another word, she scoops you effortlessly by the hand and whisks you into her bedroom before you can blink."
+        }
+      }
+    },
+    "sakura_matou": {
+      "events": {
+        "1": {
+          "title": "Apron Strings",
+          "text": "Sakura stands in the warm kitchen after dinner has been cleared away, her pink hair ribbon catching the lamplight as she reaches behind her back to untie her white apron—and gets the knot stuck. \"Um, Sam... could you help me with this?\" When you untie the bow, she turns around in the circle of your arms instead of stepping away, violet eyes lifted shyly to yours. \"Thank you for always making this place feel like spring... may I kiss you?\"",
+          "image": {
+            "comp": "turning in his arms in the warm kitchen with her apron untied, pink ribbon in her violet hair, shy loving blush",
+            "setting": "cozy kitchen at night, warm hearth glow",
+            "sam": true
+          },
+          "go": "Kiss her",
+          "goRes": "Her lips are soft, sweet, and trembling slightly before she leans her whole weight into your chest with a happy sigh.",
+          "wait": "\"Anytime you need a hand, Sakura.\"",
+          "waitRes": "\"Then I might 'get stuck' again tomorrow night,\" Sakura confesses with a tiny, brave smile."
+        },
+        "2": {
+          "title": "Sweetness and Heat",
+          "text": "Sakura brings a tray of warm tea to your room at midnight, setting it down before kneeling between your knees and unbuttoning her pink cardigan and white blouse to bare her lush, heavy breasts. \"I know I seem quiet during the day,\" she whispers, her cheeks scarlet as she guides your hands onto her chest. \"At night, all I can think about is you touching me like this... please don't hold back, Sam.\"",
+          "image": {
+            "comp": "kneeling between his knees with her cardigan and blouse unbuttoned, guiding his hands to her chest, flushed devoted gaze",
+            "setting": "Sam's bedroom at night, tea tray on the table and warm lamplight",
+            "sam": true
+          },
+          "go": "Don't hold back",
+          "goRes": "She whimpers softly as you kiss and knead her full breasts, then eagerly wraps her soft tits and warm mouth around your cock until you come across her cleavage.",
+          "wait": "\"You don't have to rush for me.\"",
+          "waitRes": "\"I'm not rushing for you—I'm being greedy for myself,\" Sakura whispers, kissing your palm tenderly."
+        },
+        "3": {
+          "title": "Only Yours",
+          "text": "Sakura closes your bedroom door and locks it, letting her skirt and blouse fall to the floor until she stands naked save for the pink ribbon in her violet hair. \"For a long time I thought I didn't deserve a gentle life,\" she whispers, climbing onto your bed and wrapping her arms around your neck. \"If I'm going to belong to someone, I only ever want it to be you, Sam. Make me yours tonight.\"",
+          "image": {
+            "comp": "kneeling naked on his bed with only her pink hair ribbon, lush curves in warm candlelight, tearfully happy and devoted smile",
+            "setting": "Sam's bedroom at midnight, warm candlelight",
+            "sam": true
+          },
+          "go": "Make her yours",
+          "goRes": "You lay her down on the pillows and sink your cock deep into her wet, clinging pussy, Sakura holding onto you with fierce, breathless devotion and crying out your name through every climax.",
+          "wait": "\"I'm not going anywhere, Sakura.\"",
+          "waitRes": "\"Promise me,\" she whispers, curling tightly against your chest under the blankets with her fingers twined in yours."
+        },
+        "jump": {
+          "title": "Possessive Bloom",
+          "text": "After a noble guest spends half the evening trying to flirt with you in the parlor, Sakura quietly leads you into the pantry, clicks the bolt shut, and presses her lush body flush against yours with a dark, feverish flush in her violet eyes. \"I tried to be polite all evening, Sam, and I can't stand it another second,\" she breathes, grabbing your belt. \"Remind me that you're mine right now.\"",
+          "image": {
+            "comp": "pressing him against the closed pantry door, cheeks flushed and violet eyes dark with possessive heat",
+            "setting": "dim kitchen pantry, bolted door behind her",
+            "sam": true
+          },
+          "go": "Remind her",
+          "goRes": "You kiss her deeply and hike up her maroon skirt, sliding your fingers into her soaking wet pussy while she gasps your name against your throat.",
+          "wait": "\"Nobody else comes close to you.\"",
+          "waitRes": "Her possessive tension melts into a shy, radiant blush as she hugs your waist. \"Come to my room as soon as we close.\""
+        }
+      }
+    },
+    "illyasviel": {
+      "events": {
+        "1": {
+          "title": "Warm Hands",
+          "text": "Illya perches on the arm of your office chair as if it were a throne, taking off her violet beret and pressing her cool, porcelain hands flat against your cheeks. \"In the Einzbern castle it snowed all year round, and nobody ever warmed my hands,\" she says, her playful tone softening as her crimson eyes hold yours. \"Bend down a little, Sam—I decided you're giving me my first kiss tonight.\"",
+          "image": {
+            "comp": "perched on the arm of his chair holding his cheeks, long silver-white hair and crimson eyes, sweet mischievous blush",
+            "setting": "Sam's office by warm lamplight, violet beret on the desk",
+            "sam": true
+          },
+          "go": "Kiss her",
+          "goRes": "She leans in and kisses you softly, a faint crimson glow of magic circuits shimmering along her collarbone before she giggles happily against your lips. \"Warm—just like I thought.\"",
+          "wait": "\"Let me warm your hands first.\"",
+          "waitRes": "\"Hmm, acceptable,\" Illya purrs, lacing her small fingers tightly with yours. \"You still owe me the kiss, though!\""
+        },
+        "2": {
+          "title": "Magic Circuits",
+          "text": "In her velvet-draped suite, Illya sits on the edge of the bed with her purple coat tossed aside and her white blouse unbuttoned, faint crimson circuit lines pulsing softly across her porcelain chest. \"Every nerve in a homunculus body is an open magic circuit—ten times more sensitive than a normal human's,\" she whispers, cheeks flushed bright pink as she guides your palms onto her chest. \"Touch me carefully, Sam... or don't be careful at all.\"",
+          "image": {
+            "comp": "sitting on her bed with her blouse unbuttoned and faint crimson circuits glowing on her chest, guiding his hands, flushed earnest gaze",
+            "setting": "velvet-draped bedroom at night, warm candlelight",
+            "sam": true
+          },
+          "go": "Trace her circuits",
+          "goRes": "Every brush of your fingers and tongue across her chest and between her thighs draws high, shivering gasps as her circuits flare bright crimson, before her warm hands and mouth eagerly stroke and suck your cock.",
+          "wait": "\"I don't want to overload your circuits.\"",
+          "waitRes": "\"Coward!\" Illya pouts playfully, though she leans her flushed cheek against your chest. \"Next time I won't let you stop.\""
+        },
+        "3": {
+          "title": "More Than a Vessel",
+          "text": "Illya stands barefoot before your bed in the candlelight, letting her white skirt and slip drop to the rug until her delicate, porcelain frame is completely bare, her waist-length silver-white hair spilling down her back. \"I was crafted to be a vessel for someone else's miracle, and everyone treated me like a doll,\" she whispers, climbing into your lap with shining crimson eyes. \"Make me feel like a real woman tonight, Sam—just yours.\"",
+          "image": {
+            "comp": "kneeling naked on his bed with her long silver-white hair spilling over her shoulders, crimson eyes tender and unguarded",
+            "setting": "Sam's bedroom at midnight, warm candlelight",
+            "sam": true
+          },
+          "go": "Make her yours",
+          "goRes": "You lay her gently on the pillows and ease your cock into her tight, scorching pussy, Illya wrapping her arms and legs around you with breathless, crying gasps as her crimson circuits glow against your skin until dawn.",
+          "wait": "\"You've never been a doll to me, Illya.\"",
+          "waitRes": "Her crimson eyes glisten before she hugs your neck tightly under the covers. \"Stay with me all night, promise?\""
+        },
+        "jump": {
+          "title": "Spoiled Decree",
+          "text": "Illya marches into your bedroom without knocking, hops straight up to wrap her arms and legs around your waist, and refuses to budge. \"You paid attention to everyone else in the house today and I'm officially bored and jealous!\" she declares, her cheeks burning scarlet as she kisses your throat. \"Carry me to the bed right now—that's an Einzbern order!\"",
+          "image": {
+            "comp": "clinging to him with her arms and legs wrapped around his waist, flushed scarlet with a demanding pout",
+            "setting": "Sam's bedroom doorway, warm lamplight",
+            "sam": true
+          },
+          "go": "Obey the order",
+          "goRes": "You carry her to the mattress and kiss her breathless, sliding your hand under her white pleated skirt into her wet pussy while she gasps into your mouth.",
+          "wait": "\"At least let me close the door!\"",
+          "waitRes": "Illya kicks the door shut with one booted foot and grins triumphantly. \"Door's closed—no more excuses!\""
+        }
+      }
+    }
+  }
+}

@@ -87,15 +87,18 @@ function rollBody(race){
     out[k] = ids.length ? weighted(ids, id => Math.max(0.01, (o[id].weight ?? 1) + (((skew[k]||{})[id]) || 0))) : BODY_DEF[k]; });
   return out;
 }
-// Race appearance rules for generic ladies (races.json → design; body.json → raceBan): her build and skin come from her race's list.
-const raceBuilds = race => { const D = ((RACES[race]||{}).design)||{}; return D.builds || BUILDS.filter(b=>!(D.noBuilds||[]).includes(b)); };
-const raceSkins = race => (((RACES[race]||{}).design)||{}).skins || null;
+// Race appearance rules for generic ladies (races.json → design; body.json → raceBan): her build, skin and race features come from her race/sub list.
+const raceDesign = (race, sub) => { const sd = race==='beastkin' && sub ? subData(race, sub) : null; return Object.assign({}, (RACES[race]||{}).design || {}, (sd && sd.design) || {}); };
+const raceBuilds = (race, sub) => { const D = raceDesign(race, sub); return D.builds || BUILDS.filter(b=>!(D.noBuilds||[]).includes(b)); };
+const raceSkins = (race, sub) => raceDesign(race, sub).skins || null;
+const raceFeatures = (race, sub) => raceDesign(race, sub).features || null;
 // Brings a generic lady's design and body in line with those rules (used at creation and by the v28 migration). Keeps what already fits.
 function raceFit(w){
   if(!w || w.key || !w.design) return;
-  const B = raceBuilds(w.race), Sk = raceSkins(w.race), ban = (BODY.raceBan||{})[w.race] || {};
+  const B = raceBuilds(w.race, w.sub), Sk = raceSkins(w.race, w.sub), rf = raceFeatures(w.race, w.sub), ban = (BODY.raceBan||{})[w.race] || {};
   if(w.design.build && !B.includes(w.design.build)) w.design.build = pick(B);
   if(Sk && !Sk.includes(w.design.skin)) w.design.skin = pick(Sk);
+  if(rf && rf.length && !rf.some(x => (w.design.features||'').includes(x))) w.design.features = [pick(rf), w.design.features].filter(Boolean).join(', ');
   if(w.body) Object.entries(ban).forEach(([k,ids])=>{ if(ids.includes(w.body[k])) w.body[k] = BODY_DEF[k] && !ids.includes(BODY_DEF[k]) ? BODY_DEF[k] : Object.keys(bodyOpts(k)).find(x=>!ids.includes(x)); });
 }
 const bodyText = w => { const b = bodyOf(w); return BODY_KEYS.map(k => (bodyOpts(k)[b[k]]||{}).img || '').filter(Boolean).join(', '); };

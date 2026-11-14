@@ -2,7 +2,7 @@
 /* =====================================================================
    IMAGE PROMPTS
    ===================================================================== */
-function raceLook(w, scene){ const ed = typeof effDesign==='function' ? effDesign(w, scene) : (w&&w.design)||{}; if(ed.raceLook) return ed.raceLook; if(w.race==='beastkin'){ const s=w.sub||'fox', sd = subData('beastkin', s); if(sd && sd.look) return sd.look; return `beastkin woman with ${s} ears and a ${s} tail`; } return (RACES[w.race]||RACES.human).look; }
+function raceLook(w, scene){ const ed = typeof effDesign==='function' ? effDesign(w, scene) : (w&&w.design)||{}; if(ed.raceLook) return ed.raceLook; if(w.race==='beastkin'){ const s=w.sub||'fox', sd = subData('beastkin', s); if(sd && sd.look) return sd.look; return s+' beastkin woman'; } return (RACES[w.race]||RACES.human).look || 'woman'; }
 // keepOn (data/characters.json): something she won't take off until trust reaches keepOn.trust.
 // With aside:true it's a garment, so the rest of her clothes get pulled aside at most.
 function keepOnRule(w){ const k = w.key && NAMED[w.key] && NAMED[w.key].keepOn; return k && w.trust < (k.trust||90) ? k : null; }

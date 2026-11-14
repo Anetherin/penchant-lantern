@@ -30,9 +30,9 @@
         },
         "3": {
           "title": "One Who Stays",
-          "text": "Margaret has laid her cap and white gloves neatly on the nightstand, her uniform folded over a chair while she sits bare-shouldered on the edge of the blue-curtained bed with her silver hair unbound. \"Everyone who has ever entered my room was gone by dawn,\" she whispers, letting her silk shift slip down her waist. \"I want you to be the first man still in my bed when I open my eyes.\"",
+          "text": "Margaret has laid her blue headband and white gloves neatly on the nightstand, her uniform folded over a chair while she sits bare-shouldered on the edge of the blue-curtained bed with her silver hair unbound. \"Everyone who has ever entered my room was gone by dawn,\" she whispers, letting her silk shift slip down her waist. \"I want you to be the first man still in my bed when I open my eyes.\"",
           "image": {
-            "comp": "sitting on the edge of a blue-curtained bed, cap and gloves set aside, hair unpinned, quiet hope in her eyes",
+            "comp": "sitting on the edge of a blue-curtained bed, headband and gloves set aside, hair unpinned, quiet hope in her eyes",
             "setting": "her room, deep blue hangings, one candle, a small clock ticking",
             "sam": true
           },
@@ -228,9 +228,9 @@
       "events": {
         "1": {
           "title": "Off the Record",
-          "text": "Sae audits the ledgers for hours before snapping the book shut and taking off her glasses. \"The numbers have been spotless for three days—I only kept reading to avoid saying what I actually want,\" she admits, voice tight with effort. \"Off the record, Sam: I want to kiss you.\"",
+          "text": "Sae audits the ledgers for hours before snapping the book shut and setting her pen down. \"The numbers have been spotless for three days—I only kept reading to avoid saying what I actually want,\" she admits, voice tight with effort. \"Off the record, Sam: I want to kiss you.\"",
           "image": {
-            "comp": "taking off her glasses at a desk piled with ledgers, a stern expression melting, leaning toward him",
+            "comp": "setting her pen down at a desk piled with ledgers, a stern expression melting, leaning toward him",
             "setting": "the house office at night, ledgers, cold coffee, a desk lamp",
             "sam": true
           },
@@ -254,9 +254,9 @@
         },
         "3": {
           "title": "Verdict",
-          "text": "Sae stands in her doorway with her suit jacket discarded, her tie loosened, and her shirt unbuttoned down her cleavage. \"I have argued for and against everything I ever wanted—except you,\" she whispers, dark eyes unguarded and fierce. \"There is no counterargument. Stay in my bed tonight, Sam.\"",
+          "text": "Sae stands in her doorway with her suit jacket discarded and her black turtleneck pulled off, leaving her in a navy silk camisole unlaced at her cleavage. \"I have argued for and against everything I ever wanted—except you,\" she whispers, dark eyes unguarded and fierce. \"There is no counterargument. Stay in my bed tonight, Sam.\"",
           "image": {
-            "comp": "leaning against a doorframe with her tie loosened, hair down, composed but vulnerable eyes",
+            "comp": "leaning against a doorframe with her suit jacket off, hair down, composed but vulnerable eyes",
             "setting": "her room, a neat desk with files stacked, an unmade bed, warm lamplight",
             "sam": true
           },

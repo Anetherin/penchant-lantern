@@ -671,6 +671,118 @@
           "waitRes": "\"Of course.\" She steps back, composed save for the slight tremor in her wings. \"I will observe a little longer.\""
         }
       }
+    },
+    "hanabi": {
+      "events": {
+        "1": {
+          "title": "All-Seeing Eyes",
+          "text": "Hanabi drops off the courtyard wall beside you with her yellow-ribboned hair locks swaying, poking your chest with one finger. \"Don't bother pretending, Sam—I don't even need the Byakugan to see your heart rate spike when I walk past,\" she teases, pale lavender eyes crinkling with a grin before softening into a sudden blush. \"Big Sister Hinata had to work up her nerve for days. I'd rather just kiss you right now.\"",
+          "image": {
+            "comp": "standing close in the courtyard with one finger poking his chest, yellow ribbons in her long brown hair, teasing grin and slight blush",
+            "setting": "courtyard by evening lantern light",
+            "sam": true
+          },
+          "go": "Kiss her",
+          "goRes": "She rises on tiptoe and kisses you with bright, playful boldness, pulling back breathless and touching her lips. \"Okay... maybe my heart rate spiked a little too.\"",
+          "wait": "\"Does your sister know you're this bold?\"",
+          "waitRes": "\"Where do you think she got her pep talks?\" Hanabi winks, backing away with a wave. \"Next time you aren't dodging!\" "
+        },
+        "2": {
+          "title": "Tenketsu Lesson",
+          "text": "Hanabi insists on showing you the Hyuga clan's chakra points in the quiet lounge after hours, sitting in your lap and tracing two warm fingers down your throat and bare chest. \"Every point on the body can either lock you up or make you melt,\" she whispers, her teasing tone turning husky as her hand slides over your belt. \"Hold still—I want to see which points make you groan.\"",
+          "image": {
+            "comp": "sitting across his lap in a dim lounge, two fingers tracing his chest, flushed playful smile",
+            "setting": "quiet lounge after closing, warm lantern light",
+            "sam": true
+          },
+          "go": "Hold still",
+          "goRes": "Her nimble fingers unfasten your trousers and stroke your cock with pinpoint, teasing precision before her warm mouth takes you in until you're gripping the chair arms.",
+          "wait": "\"Is this clan-approved training?\"",
+          "waitRes": "\"I'm the heiress—I write the rules!\" Hanabi laughs, hopping off your lap with burning cheeks. \"Class resumes tomorrow night.\""
+        },
+        "3": {
+          "title": "Heiress Off Duty",
+          "text": "Hanabi unties the yellow ribbons from her side locks and sets them on your nightstand, letting her brown kimono tunic fall open over her porcelain skin. \"Back home I always had to be the strong sister who stayed behind to lead the clan,\" she says softly, climbing onto your bed with unguarded lavender eyes. \"Tonight I don't want to be the Hyuga heiress. I just want to be yours, Sam.\"",
+          "image": {
+            "comp": "kneeling on his bed with her hair ribbons untied and kimono tunic slipping off her shoulders, tender unguarded smile",
+            "setting": "Sam's bedroom by candlelight",
+            "sam": true
+          },
+          "go": "Pull her close",
+          "goRes": "You peel off her tunic and sink your cock into her tight, wet pussy, Hanabi gasping against your neck as her playful bravado melts into fierce, clinging moans until dawn.",
+          "wait": "\"Take all the time you want off duty.\"",
+          "waitRes": "\"You're way too sweet,\" Hanabi murmurs, curling against your side. \"Don't expect me to behave tomorrow night.\""
+        },
+        "jump": {
+          "title": "No More Teasing",
+          "text": "Hanabi corners you in the upstairs hallway after a long shift, her cheeks flushed and her pale eyes bright. \"I've spent a month teasing you and all I managed to do was drive myself crazy!\" she announces, grabbing your hoodie with both hands and backing you through your bedroom door. \"My turn to stop talking.\"",
+          "image": {
+            "comp": "backing him through a doorway by his hoodie, flushed cheeks and bright determined lavender eyes",
+            "setting": "bedroom doorway, dim hallway lantern behind her",
+            "sam": true
+          },
+          "go": "Kiss her",
+          "goRes": "She kicks the door shut and kisses you hungrily, hiking up her skirt so you can slide your fingers into her wet pussy while she tugs your belt open.",
+          "wait": "\"Catch your breath first.\"",
+          "waitRes": "\"I don't want to catch my breath!\" Hanabi pouts, then laughs against your chest. \"Fine—five minutes, then the door locks.\""
+        }
+      }
+    },
+    "himawari": {
+      "events": {
+        "1": {
+          "title": "Sunflowers in the Window",
+          "text": "Himawari arranges a tall vase of bright yellow sunflowers on your office windowsill, her fox ears perking happily and her fluffy orange tail swaying behind her as you look up from your ledger. \"Everything looks warmer with a little yellow,\" she says, stepping over to your desk with her whisker-marked cheeks flushing pink. \"You've been working so hard for everyone, Sam... may I give you my favorite kind of thank-you?\"",
+          "image": {
+            "comp": "standing beside a windowsill vase of sunflowers, fox ears perked, warm blushing smile",
+            "setting": "Sam's sunlit office, vase of sunflowers on the sill",
+            "sam": true
+          },
+          "go": "Let her",
+          "goRes": "She leans down and kisses you with sweet, sunny warmth, her fluffy tail wagging once behind her before she straightens with a radiant grin.",
+          "wait": "\"The flowers are already a great thank-you.\"",
+          "waitRes": "\"Then I'll save the rest for when you aren't buried in paperwork!\" Himawari beams, patting your shoulder warmly."
+        },
+        "2": {
+          "title": "Shared Warmth",
+          "text": "On a rainy evening in the back parlor, Himawari curls up beside you on the sofa and drapes her warm, fluffy fox tail across your lap like a blanket. \"Whenever Kurama's chakra wakes up inside me, my skin gets so warm I can't sit still,\" she whispers, taking your hand and sliding it under her cropped yellow sunflower t-shirt onto her bare waist. \"Your hands feel so good, Sam... please don't stop touching me.\"",
+          "image": {
+            "comp": "curled close on a parlor sofa with her fluffy fox tail across his lap, guiding his hand under her cropped sunflower t-shirt, flushed earnest gaze",
+            "setting": "cozy back parlor, rain on the window and warm lamplight",
+            "sam": true
+          },
+          "go": "Touch her",
+          "goRes": "Her fox ears tremble as your hands cup her full breasts and unbutton her loose jeans to stroke her wet pussy, while her warm, eager fingers wrap around your cock.",
+          "wait": "\"Let's just stay warm for a bit.\"",
+          "waitRes": "\"Okay,\" Himawari purrs softly, resting her cheek on your shoulder with her tail tucked snugly around your waist."
+        },
+        "3": {
+          "title": "All Grown Up",
+          "text": "Himawari slips into your room late at night, her long dark indigo hair falling past her shoulders and her blue eyes glowing faintly warm in the candlelight as she pulls her cropped sunflower tee over her head. \"Everyone back home still remembers me as a little girl carrying a stuffed bear,\" she whispers, kneeling on the edge of your mattress with her bare breasts rising and falling fast. \"With you, I feel like a woman. Hold me tonight, Sam.\"",
+          "image": {
+            "comp": "kneeling on his bed with her top set aside, fox ears angled shyly, warm azure eyes earnest and glowing",
+            "setting": "Sam's bedroom at night, soft candlelight",
+            "sam": true
+          },
+          "go": "Hold her",
+          "goRes": "You pull her into your arms and sink your cock slowly into her hot, tight pussy, Himawari wrapping her legs and fluffy tail around your waist with soft, breathless cries until she comes in your arms.",
+          "wait": "\"We don't have to rush.\"",
+          "waitRes": "\"I know,\" she smiles tenderly, kissing your jaw. \"I just wanted you to see how sure I am.\""
+        },
+        "jump": {
+          "title": "Fox Spark",
+          "text": "After effortlessly tossing a rowdy brawler out the front gates with a single palm strike, Himawari spins around in the courtyard with her chakra still humming warm and golden—and catches you staring. Instead of calming down, her cheeks flush scarlet and she crosses the yard in three strides, throwing her arms around your neck. \"My heart is beating way too fast—come upstairs with me right now!\"",
+          "image": {
+            "comp": "throwing her arms around his neck in the courtyard, cheeks flushed, fox ears twitching with excitement",
+            "setting": "courtyard at night, front gates behind her, warm lantern glow",
+            "sam": true
+          },
+          "go": "Take her upstairs",
+          "goRes": "You carry her straight upstairs into her room, kissing her breathless as she tugs your shirt off and guides your hand between her thighs.",
+          "wait": "\"Deep breaths first!\"",
+          "waitRes": "\"I tried deep breaths!\" Himawari laughs against your collarbone, her tail swishing happily. \"Save the rest of your night for me, promise?\""
+        }
+      }
     }
   }
 }

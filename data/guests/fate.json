@@ -1,0 +1,313 @@
+{
+  "packs": {
+    "fate": {
+      "label": "Fate",
+      "characters": {
+        "rin_tohsaka": {
+          "job": "madame",
+          "name": "Rin Tohsaka",
+          "race": "human",
+          "age": 22,
+          "personality": "Proud and sharp-tongued",
+          "traits": ["Elegant","Greedy"],
+          "style": "Cute",
+          "favColor": "crimson",
+          "fav": "cowgirl",
+          "dislike": "doggy",
+          "lovers": "missionary",
+          "backstory": "The proud heir to an old mage lineage from Fuyuki, Rin burns through pricey gemstones every time she casts a spell and is perpetually one crystal short of her tuition at the Clock Tower. She took over the Lantern's account books to fund her gem pouch, lecturing Sam daily on financial discipline while blushing furiously whenever he compliments her.",
+          "design": {
+            "build": "slender, poised",
+            "hairStyle": "long wavy twin tails tied with black ribbons",
+            "hairColor": "dark brown-black",
+            "eyes": "bright aqua-blue",
+            "skin": "fair",
+            "features": "crimson Command Seals on the back of her right hand",
+            "expression": "a confident, teasing smirk that easily turns flustered"
+          },
+          "under": "lace",
+          "underColor": "black",
+          "stats": {"beauty":78,"charm":68,"charisma":72,"refinement":72,"wits":84,"stamina":55,"strength":35,"agility":64},
+          "tech": {"service":40,"dance":30,"bar":25,"combat":65,"manage":72},
+          "actSkill": 25,
+          "popularity": 24,
+          "lewd": 26,
+          "trust": 24,
+          "outfits": {
+            "sig_rin_tohsaka": {
+              "label": "Mage's red sweater",
+              "style": "Cute",
+              "prompt": "a fitted crimson long-sleeved turtleneck sweater with a white cross emblem on the front, a black pleated miniskirt, black thigh-high stockings showing absolute territory and brown ankle boots",
+              "bonus": {"madame":1.3,"merchant":1.2}
+            }
+          },
+          "bonds": {
+            "sakura_matou": {"v":65,"kind":"family","note":"Her younger sister, whom she watches over fiercely beneath a cool mage exterior."},
+            "saber": {"v":60,"kind":"comrades","note":"Her former knight Servant and favorite ally."},
+            "rider": {"v":35,"kind":"comrades","note":"Respects her quiet competence and speed."},
+            "illyasviel": {"v":40,"note":"Fuyuki rivals who still bicker like sisters whenever they share a table."}
+          },
+          "jobs": {"likes":["madame","promoter","teacher"],"dislikes":["maid"]},
+          "body": {"bust":"small","height":"average","figure":"slim"},
+          "unique": {
+            "name": "Gem Magecraft",
+            "desc": "She appraises every gem and coin to the penny, boosting house management and merchant fees.",
+            "fx": {"jobBonus":{"madame":1.2},"classBonus":{"merchant":1.2},"clientFee":1.08}
+          }
+        },
+        "saber": {
+          "job": "security",
+          "name": "Artoria Pendragon",
+          "title": "King",
+          "race": "human",
+          "age": 25,
+          "personality": "Earnest and dutiful",
+          "traits": ["Loyal","Tough"],
+          "style": "Elegant",
+          "favColor": "royal blue",
+          "fav": "missionary",
+          "dislike": "doggy",
+          "lovers": "kiss",
+          "backstory": "A once-and-future knight-king summoned out of legend, Artoria carries an invisible holy sword, chivalric honor, and a bottomless appetite that has the Lantern's kitchen working double shifts. Released from war in Hollowmere, she guards the doors with regal solemnity and lights up like a sunbeam whenever Sam brings her a warm meal.",
+          "design": {
+            "build": "petite, knightly",
+            "hairStyle": "braided low bun held with a blue ribbon and a slender ahoge cowlick on top",
+            "hairColor": "golden blonde",
+            "eyes": "emerald green",
+            "skin": "fair",
+            "expression": "a solemn, chivalrous expression"
+          },
+          "under": "cotton",
+          "underColor": "white",
+          "stats": {"beauty":78,"charm":64,"charisma":80,"refinement":76,"wits":68,"stamina":88,"strength":86,"agility":80},
+          "tech": {"service":35,"dance":25,"bar":20,"combat":95,"manage":55},
+          "actSkill": 20,
+          "popularity": 28,
+          "lewd": 18,
+          "trust": 32,
+          "outfits": {
+            "sig_saber": {
+              "label": "Knight-King's dress",
+              "style": "Elegant",
+              "prompt": "a royal-blue and white armored knight dress with a silver steel breastplate, armored gauntlets and greaves over a pleated blue skirt with gold trim",
+              "bonus": {"security":1.35,"noble":1.2}
+            },
+            "sp_saber_alter": {
+              "label": "Tyrant's black armor",
+              "style": "Elegant",
+              "prompt": "a darkened gothic black-and-crimson plate armor dress with a plunging black lace bodice when unarmored",
+              "bonus": {"security":1.3,"courtesan":1.2},
+              "hairColor": "pale platinum blonde",
+              "eyes": "glowing golden-amber",
+              "skin": "porcelain pale",
+              "accessories": "a jagged black iron visor",
+              "accState": "dressed",
+              "expression": "a cold, imperious gaze",
+              "favColor": "obsidian"
+            }
+          },
+          "bonds": {
+            "rin_tohsaka": {"v":60,"kind":"comrades","note":"Her brilliant mage partner."},
+            "sakura_matou": {"v":55,"note":"Sakura's home cooking is the highlight of Artoria's entire week."},
+            "rider": {"v":40,"kind":"comrades","note":"Former battle rivals who now share the house watch."}
+          },
+          "jobs": {"likes":["security","attendant"],"dislikes":["dancer","bartender"]},
+          "body": {"bust":"small","height":"short","figure":"athletic"},
+          "unique": {
+            "name": "King of Knights",
+            "desc": "Her chivalric presence and unmatched swordsmanship make the house impenetrable and respected by nobility.",
+            "fx": {"security":22,"classBonus":{"noble":1.15},"rep":1.1}
+          }
+        },
+        "rider": {
+          "job": "courtesan",
+          "name": "Medusa",
+          "race": "spirit",
+          "age": 320,
+          "personality": "Mysterious and aloof",
+          "traits": ["Elegant","Night Owl"],
+          "style": "Revealing",
+          "favColor": "deep violet",
+          "fav": "cowgirl",
+          "dislike": "massage_give",
+          "lovers": "oral_give",
+          "backstory": "An ancient mythic spirit whose Mystic Eyes can turn the unwary to stone, Medusa wears an enchanted visor or framed glasses so she can live quietly among mortals. Self-conscious about her statuesque height and fiercely protective of Sakura, she spends her afternoons reading novels in the sunny window and her nights moving like silk in the dark.",
+          "design": {
+            "build": "statuesque, long-legged",
+            "hairStyle": "ankle-length, straight and flowing with long side locks",
+            "hairColor": "vivid violet-purple",
+            "eyes": "crimson-violet with rectangular pupils",
+            "skin": "pale",
+            "features": "a small violet triangular sigil on her forehead",
+            "accessories": "an ornate purple-and-gold blindfold visor with a serpent motif",
+            "accState": "dressed",
+            "expression": "a cool, composed expression"
+          },
+          "under": "sheer",
+          "underColor": "black",
+          "stats": {"beauty":84,"charm":66,"charisma":64,"refinement":68,"wits":72,"stamina":72,"strength":65,"agility":88},
+          "tech": {"service":50,"dance":55,"bar":35,"combat":82,"manage":30},
+          "actSkill": 35,
+          "popularity": 22,
+          "lewd": 42,
+          "trust": 26,
+          "outfits": {
+            "sig_rider": {
+              "label": "Gorgon dress",
+              "style": "Revealing",
+              "prompt": "a form-fitting sleeveless black turtleneck mini-dress with a keyhole chest cutout, a short split skirt, long black gloves and thigh-high heeled boots",
+              "bonus": {"courtesan":1.3,"security":1.2}
+            },
+            "sp_rider": {
+              "label": "Bookshop casual",
+              "style": "Cute",
+              "prompt": "a fitted white turtleneck sweater with a long denim skirt and dark boots",
+              "bonus": {"attendant":1.2,"commoner":1.2},
+              "accessories": "slender Mystic Eye Killer glasses",
+              "accState": "always"
+            }
+          },
+          "bonds": {
+            "sakura_matou": {"v":80,"note":"Her cherished charge, whom she would protect against the entire world."},
+            "rin_tohsaka": {"v":35,"kind":"comrades","note":"Respects her strength, even when Rin bosses her around."},
+            "saber": {"v":40,"kind":"comrades","note":"Old rivals who share a quiet mutual respect."}
+          },
+          "jobs": {"likes":["courtesan","security","bath"],"dislikes":["promoter"]},
+          "body": {"bust":"large","height":"tall","figure":"curvy"},
+          "unique": {
+            "name": "Mystic Eyes",
+            "desc": "One glance beneath her visor freezes troublemakers in their tracks and leaves patrons entranced.",
+            "fx": {"appeal":5,"security":14,"actQuality":{"cowgirl":1.2}}
+          }
+        },
+        "sakura_matou": {
+          "job": "attendant",
+          "name": "Sakura Matou",
+          "race": "human",
+          "age": 21,
+          "personality": "Warm and motherly",
+          "traits": ["Shy","Romantic"],
+          "style": "Cute",
+          "favColor": "cherry blossom pink",
+          "fav": "missionary",
+          "dislike": "doggy",
+          "lovers": "breast_give",
+          "backstory": "Rin's gentle younger sister who endured years of quiet hardship in Fuyuki before finding peace, Sakura is a peerless cook, an archer with unerring aim, and the heart of the household kitchen. Beneath her soft-spoken smile and polite apron lies a deep, possessive devotion to the man who makes her feel safe.",
+          "design": {
+            "build": "soft, lush",
+            "hairStyle": "shoulder-length straight with a side part",
+            "hairColor": "deep violet",
+            "eyes": "violet-purple",
+            "skin": "fair",
+            "accessories": "a pink ribbon hair bow tied on the left side",
+            "accState": "always",
+            "expression": "a gentle, devoted smile"
+          },
+          "under": "lace",
+          "underColor": "lavender",
+          "stats": {"beauty":78,"charm":72,"charisma":58,"refinement":68,"wits":64,"stamina":56,"strength":32,"agility":50},
+          "tech": {"service":60,"dance":25,"bar":45,"combat":45,"manage":40},
+          "actSkill": 35,
+          "popularity": 20,
+          "lewd": 38,
+          "trust": 32,
+          "outfits": {
+            "sig_sakura_matou": {
+              "label": "Spring cardigan",
+              "style": "Cute",
+              "prompt": "a soft pink cardigan over a white collared blouse, a knee-length pleated maroon skirt and a white kitchen apron",
+              "bonus": {"attendant":1.3,"commoner":1.2}
+            },
+            "sp_sakura_dark": {
+              "label": "Shadow Grail gown",
+              "style": "Revealing",
+              "prompt": "a flowing black-and-crimson living shadow dress with glowing red circuit ribbons that cling to her curves",
+              "bonus": {"courtesan":1.35,"noble":1.2},
+              "hairColor": "pale silver-white",
+              "eyes": "glowing crimson",
+              "features": "crimson shadow-circuit markings across her collarbones and thighs",
+              "expression": "a dark, possessive smile",
+              "favColor": "crimson"
+            }
+          },
+          "bonds": {
+            "rin_tohsaka": {"v":65,"kind":"family","note":"Her admired older sister—they finally get to live under the same roof again."},
+            "rider": {"v":80,"note":"Her loyal guardian and closest companion."},
+            "saber": {"v":55,"note":"Artoria never misses a single meal Sakura cooks."},
+            "illyasviel": {"v":50,"kind":"family","note":"Bound by the Grail's history; they share quiet tea in the garden."}
+          },
+          "jobs": {"likes":["attendant","maid","courtesan"],"dislikes":["security","promoter"]},
+          "body": {"bust":"huge","height":"average","figure":"curvy"},
+          "unique": {
+            "name": "Spring Hearth",
+            "desc": "Her warm meals and devoted care restore the whole house's energy and delight her guests.",
+            "fx": {"energyRec":1.12,"actQuality":{"breast_give":1.3},"jobBonus":{"attendant":1.15}}
+          }
+        },
+        "illyasviel": {
+          "job": "host",
+          "name": "Illyasviel von Einzbern",
+          "title": "Lady",
+          "race": "android",
+          "age": 21,
+          "personality": "Playful trickster",
+          "traits": ["Elegant","Romantic"],
+          "style": "Cute",
+          "favColor": "violet",
+          "fav": "kiss",
+          "dislike": "doggy",
+          "lovers": "missionary",
+          "backstory": "An alchemical homunculus crafted by the Einzbern family in a frozen northern castle to serve as a living vessel of magecraft, Illya is older than her petite frame suggests—and thoroughly tired of winter, rituals, and lonely halls. In Hollowmere she plays the spoiled little aristocrat, clings to Sam's arm whenever she pleases, and dazzles noble guests with effortless snow-fairy grace.",
+          "design": {
+            "build": "petite, delicate",
+            "hairStyle": "waist-length straight with neat blunt bangs",
+            "hairColor": "platinum silver-white",
+            "eyes": "crimson red",
+            "skin": "porcelain alchemical homunculus skin",
+            "features": "faint glowing crimson magic circuit lines along her collarbones when excited",
+            "expression": "a sweet, mischievous smile"
+          },
+          "under": "lace",
+          "underColor": "white",
+          "stats": {"beauty":78,"charm":74,"charisma":72,"refinement":76,"wits":74,"stamina":55,"strength":25,"agility":60},
+          "tech": {"service":45,"dance":40,"bar":15,"combat":65,"manage":45},
+          "actSkill": 25,
+          "popularity": 24,
+          "lewd": 24,
+          "trust": 28,
+          "outfits": {
+            "sig_illyasviel": {
+              "label": "Einzbern winter coat",
+              "style": "Cute",
+              "prompt": "a long violet-purple double-breasted coat with silver buttons, a white scarf, a white pleated skirt and dark knee-high boots",
+              "bonus": {"host":1.3,"noble":1.2},
+              "accessories": "a matching violet-purple beret",
+              "accState": "dressed"
+            },
+            "sp_illyasviel": {
+              "label": "Dress of Heaven",
+              "style": "Elegant",
+              "prompt": "an ornate ethereal white-and-gold ceremonial gown woven from crystallized prana with golden shoulder filigree and a sheer white veil",
+              "bonus": {"courtesan":1.3,"noble":1.3},
+              "accessories": "a golden Einzbern tiara",
+              "accState": "always",
+              "favColor": "gold"
+            }
+          },
+          "bonds": {
+            "rin_tohsaka": {"v":40,"note":"Loves teasing Rin until her twin tails bristle."},
+            "sakura_matou": {"v":50,"kind":"family","note":"Two sisters of the same Fuyuki ritual, finally free of it."},
+            "saber": {"v":45,"note":"Still calls Artoria her favorite knight in town."}
+          },
+          "jobs": {"likes":["host","chapel","courtesan"],"dislikes":["maid","bartender"]},
+          "body": {"bust":"flat","height":"short","figure":"slim"},
+          "unique": {
+            "name": "Wishcraft",
+            "desc": "Her alchemical circuits weave wishes into reality, enchanting noble patrons and lifting house reputation.",
+            "fx": {"classBonus":{"noble":1.25},"rep":1.1,"jobBonus":{"host":1.15}}
+          }
+        }
+      }
+    }
+  }
+}

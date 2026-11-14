@@ -27,10 +27,10 @@
       "finish": false,
       "want": 0.9,
       "kind": "massage",
-      "stats": { "strength": 0.5, "agility": 0.5 },
+      "stats": {"strength":0.5,"agility":0.5},
       "desc": "giving a slow, warm oil massage to ease tension",
-      "dress": { "min": "dressed", "fullAt": 85 },
-      "ask": { "client": "for a massage", "lady": "offered to give him a massage" },
+      "dress": {"min":"dressed","fullAt":85},
+      "ask": {"client":"for a massage","lady":"offered to give him a massage"},
       "image": {
         "client": [
           "kneeling beside a reclining man, hands pressing oil into his bare shoulders and back",
@@ -78,10 +78,10 @@
       "finish": false,
       "want": 0.8,
       "kind": "kiss",
-      "stats": { "charm": 1 },
+      "stats": {"charm":1},
       "desc": "deep, lingering kisses and close affectionate touching",
-      "dress": { "min": "dressed", "fullAt": 95 },
-      "ask": { "client": "to kiss her", "lady": "leaned in to kiss him" },
+      "dress": {"min":"dressed","fullAt":95},
+      "ask": {"client":"to kiss her","lady":"leaned in to kiss him"},
       "image": {
         "client": [
           "seated close beside a man, tilted into a deep lingering kiss, his hand resting at her waist",
@@ -132,8 +132,8 @@
       "energyBack": 4,
       "mood": 2,
       "desc": "lying back while he rubs warm oil into her shoulders, back and thighs",
-      "dress": { "min": "dressed", "fullAt": 80 },
-      "ask": { "client": "to give her a massage", "lady": "let him rub her down" },
+      "dress": {"min":"dressed","fullAt":80},
+      "ask": {"client":"to give her a massage","lady":"let him rub her down"},
       "image": {
         "client": [
           "lying face-down on a massage table with a towel draped across her hips, a man's hands rubbing oil into her bare back",
@@ -179,12 +179,12 @@
       "energy": 7,
       "lust": 4,
       "finish": true,
-      "want": 1.0,
+      "want": 1,
       "kind": "give",
-      "stats": { "agility": 1 },
+      "stats": {"agility":1},
       "desc": "stroking him off with skilled, unhurried hands",
-      "dress": { "min": "partial", "fullAt": 75 },
-      "ask": { "client": "for a handjob", "lady": "offered to use her hands on him" },
+      "dress": {"min":"partial","fullAt":75},
+      "ask": {"client":"for a handjob","lady":"offered to use her hands on him"},
       "image": {
         "client": [
           "kneeling beside a seated man, both hands wrapped around his shaft, looking up at him with a teasing smile",
@@ -232,10 +232,10 @@
       "finish": true,
       "want": 0.75,
       "kind": "give",
-      "stats": { "stamina": 1 },
+      "stats": {"stamina":1},
       "desc": "pressing her bare breasts together around him until he finishes",
-      "dress": { "min": "partial", "fullAt": 70 },
-      "ask": { "client": "for titjob", "lady": "offered to use her breasts" },
+      "dress": {"min":"partial","fullAt":70},
+      "ask": {"client":"for titjob","lady":"offered to use her breasts"},
       "image": {
         "client": [
           "kneeling between a man's legs, pressing her bare breasts together around his penis, looking up through her lashes",
@@ -257,25 +257,6 @@
         "extra": "explicit, bare breasts, glistening skin"
       },
       "report": [
-        "Pulled her bodice open and slicked her bare chest with warm oil before pressing her breasts tightly around his shaft. Every time the head of his cock slipped free between her nipples, she dipped her chin to flick it with her tongue until he groaned and spilled across her collarbone.",
-        "Knelt between his thighs and cradled his cock in her cleavage, rolling her shoulders to glide up and down his length while holding his gaze through her lashes. He gripped the edge of the divan with white knuckles before finishing warm across her breasts.",
-        "Squeezed her breasts together around him with both hands and set a smooth, rhythmic bounce that had him breathless inside minutes. She stayed on her knees until he finished completely, smiling up at him with glistening skin.",
-        "Leaned over him on the bed, enveloping his shaft in warm, oiled softness and teasing the tip with her lips on every upward stroke. He came harder than he'd expected, leaving her flushed and thoroughly pleased with her handiwork."
-      ],
-      "pair": {
-        "fem": [
-          "{name} leans in to press her bare breasts flush against {partner}'s, rolling her chest slowly so their hardened nipples brush and rub together until both of them are flushed and breathless.",
-          "{name} cradles {partner} closwer's hands massaging her back, pov, looking back at the viewer"
-        ],
-        "duo": ["both lying side by side face down, being massaged, pov"],
-        "extra": "",
-        "fem": [
-          "two women lying side by side on massage beds, one massaging the other, yuri",
-          "one woman lying face down while the other massages her back"
-        ],
-        "futa": ["a woman lying face down while a futanari massages her back","a futanari and a woman lying side by side, being massaged"]
-      },
-      "report": [
         "A rare request, and an easy hour: he did the work, and she mostly sighed.",
         "He took the job seriously, oil and all, and she purred through most of it.",
         "His hands were gentle and earnest, and she told the bar later that he had a real talent.",
@@ -283,8 +264,6 @@
         "He apologized twice for his technique and she assured him thrice that there was nothing to apologize for.",
         "She came down loose-shouldered and smiling, and he left looking mightily proud of himself."
       ],
-      "energyBack": 4,
-      "mood": 2,
       "pair": {
         "fem": [
           "{partner} oiled {name} from neck to ankle with unhurried hands, murmuring compliments as she went. {name} melted.",
@@ -294,7 +273,9 @@
           "{partner} worked {name} over with warm oil and warmer hands, plainly enjoying the effect she was having. {name} did not complain.",
           "{name} lay back under {partner}'s hands, with the heat of {partner}'s aroused body along her side. By the end it was not strictly a massage."
         ]
-      }
+      },
+      "energyBack": 4,
+      "mood": 2
     },
     {
       "id": "manual_get",

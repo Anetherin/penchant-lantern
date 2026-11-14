@@ -1,0 +1,116 @@
+{
+  "characters": {
+    "wii_fit": {
+      "events": {
+        "1": {
+          "title": "Center of Balance",
+          "text": "You are hunched over the house ledger at midnight when two cool, chalk-white hands gently pull your shoulders back into alignment. \"Your posture is drifting left again, Sam,\" the Trainer says in her calm, encouraging cadence, stepping around the desk to face you with a faint pastel blush on her cheeks. \"Let's try a new breathing exercise together. Inhale—and hold still while I kiss you.\"",
+          "image": {
+            "comp": "standing beside his desk in her sky-blue tank top and yoga leggings, adjusting his shoulders with a calm blushing smile",
+            "setting": "Sam's office at night, warm desk lamp",
+            "sam": true
+          },
+          "go": "Hold your breath and kiss her",
+          "goRes": "Her kiss is steady, warm, and impeccably balanced, her fingers resting on your jaw before she smiles. \"Excellent form. Your heart rate is up nicely.\"",
+          "wait": "\"Is kissing on the fitness chart?\"",
+          "waitRes": "\"It burns calories and reduces stress,\" she replies earnestly. \"We will schedule a full session tomorrow.\""
+        },
+        "2": {
+          "title": "Partner Stretch",
+          "text": "In the warm bathhouse studio after closing, she guides you onto the yoga mat and straddles your lap in a deep hip-opener, her toned thighs framing your waist as she pulls her sky-blue tank top over her head. \"Partner resistance training requires close contact,\" she murmurs, her composed voice softening into a breathless sigh as she presses her bare breasts against your chest. \"Keep your hands firmly on my hips, Sam.\"",
+          "image": {
+            "comp": "straddling his lap on a yoga mat with her sky-blue tank top removed, toned mannequin-white curves, earnest flushed smile",
+            "setting": "warm studio room after hours, yoga mats and soft lantern glow",
+            "sam": true
+          },
+          "go": "Spot her closely",
+          "goRes": "Her flexibility is astonishing—she arches into your hands and mouth as you kiss her breasts, then wraps her smooth hands and warm tongue around your cock with rhythmic, athletic precision.",
+          "wait": "\"Remember to hydrate first.\"",
+          "waitRes": "\"Good call!\" She reaches for her water bottle with a bright, unbothered smile. \"Five-minute water break, then Set Two.\""
+        },
+        "3": {
+          "title": "Core Workout",
+          "text": "She steps into your bedroom at midnight, peeling off her dark grey Capri leggings and sports bra until her sculpted, chalk-white body stands completely bare in the lamplight. \"I spend every day teaching people how to control their bodies,\" she whispers, climbing onto your mattress with a rare, shy tremor in her voice. \"Tonight I want to lose control with you, Sam. Let's work up a sweat.\"",
+          "image": {
+            "comp": "kneeling naked on his bed with her dark ponytail over one shoulder, sculpted chalk-white skin, warm inviting smile",
+            "setting": "Sam's bedroom at night, warm lamplight",
+            "sam": true
+          },
+          "go": "Work up a sweat",
+          "goRes": "She folds her flexible legs effortlessly behind your shoulders as you sink your cock deep into her tight pussy, her calm instructor voice breaking into loud, breathless moans until you both collapse on the sheets.",
+          "wait": "\"Let's start with a slow warm-up.\"",
+          "waitRes": "\"A thorough warm-up prevents injury,\" she agrees happily, pulling you down into a long kiss under the covers."
+        },
+        "jump": {
+          "title": "Runner's High",
+          "text": "Fresh from fifty laps around the courtyard, she catches you in the bathhouse changing room, her skin glowing warm and her chest rising fast. \"Endorphins are peaking—let's not waste this heart-rate zone!\" she announces, backing you against the lockers and hooking one flexible leg high around your waist.",
+          "image": {
+            "comp": "pinning him against the changing room lockers with one leg hooked high around his waist, flushed and energetic",
+            "setting": "bathhouse changing room, warm steam",
+            "sam": true
+          },
+          "go": "Keep her heart rate up",
+          "goRes": "You tug her yoga leggings down her hips and slide your fingers into her wet pussy while she kisses you with breathless, athletic hunger.",
+          "wait": "\"Hit the showers first!\"",
+          "waitRes": "\"Together!\" she declares, grabbing your wrist and towing you straight toward the steaming baths."
+        }
+      }
+    },
+    "samus": {
+      "events": {
+        "1": {
+          "title": "Shore Leave",
+          "text": "Samus sits on the rooftop parapet looking up at the unfamiliar constellations above Hollowmere, her six-foot frame clad in her glowing cyan Zero Suit and her golden ponytail stirring in the night wind. When you sit beside her, she lowers her guard in a way few living things in the galaxy have ever seen. \"I've spent my whole life inside a visored helmet, alone in the dark,\" she says quietly, ocean-blue eyes turning to yours. \"Come closer, Sam. I want to feel something real.\"",
+          "image": {
+            "comp": "sitting on a rooftop parapet under the stars in her cyan Zero Suit, golden ponytail blowing, soft unguarded blue eyes",
+            "setting": "rooftop under a starry night sky",
+            "sam": true
+          },
+          "go": "Kiss her",
+          "goRes": "She cups the back of your neck and kisses you deeply, a low, contented sigh escaping her lips as she rests her forehead against yours.",
+          "wait": "\"You're never alone here, Samus.\"",
+          "waitRes": "Her cool expression softens into a rare, genuine smile as her gloved hand covers yours on the stone."
+        },
+        "2": {
+          "title": "Zero Suit Unsealed",
+          "text": "In her private quarters after night watch, Samus presses the glowing release seal at her collarbone—and the skin-tight cyan Zero Suit parts down the front to her navel, baring her full breasts and sculpted stomach. \"Without the Power Suit, every nerve in my skin feels ten times sharper,\" she murmurs, catching your hands and drawing them inside the parted suit. \"Don't be gentle with me, Sam. Touch me.\"",
+          "image": {
+            "comp": "standing in her quarters with her cyan Zero Suit unzipped down the front, guiding his hands to her chest, intense blue eyes",
+            "setting": "private quarters at night, soft cyan glow from her suit",
+            "sam": true
+          },
+          "go": "Touch her",
+          "goRes": "The galaxy's deadliest hunter shivers and gasps in your arms as you kiss her breasts and stroke her wet pussy, before she pushes you onto the chair and takes your cock into her hot mouth until you come.",
+          "wait": "\"Even hunters need a gentle touch sometimes.\"",
+          "waitRes": "Samus blinks, a slow flush warming her cheeks as she leans down to kiss your throat. \"...Show me tomorrow night, then.\""
+        },
+        "3": {
+          "title": "Out of the Armor",
+          "text": "Samus steps completely out of her Zero Suit beside your bed, her tall, Amazonian body bare in the candlelight as she unties her golden hair so it cascades over her shoulders. \"Out there, I'm a weapon they call when a world is ending,\" she whispers, kneeling over you on the mattress with ocean-blue eyes dark with heat. \"In this bed, I'm just Samus—and tonight you're mine.\"",
+          "image": {
+            "comp": "kneeling naked over him on the bed with her long golden blonde hair loose, statuesque athletic curves in warm candlelight",
+            "setting": "Sam's bedroom at midnight, Zero Suit draped over a chair",
+            "sam": true
+          },
+          "go": "Let her claim you",
+          "goRes": "She sinks down onto your cock with a low, throaty groan, pinning your wrists to the pillows and riding you with overwhelming, tireless strength until she comes shuddering in your arms.",
+          "wait": "\"Stay as long as you want.\"",
+          "waitRes": "She stretches out beside you on the mattress, pulling you tight against her warm chest until morning."
+        },
+        "jump": {
+          "title": "Bounty Claimed",
+          "text": "After you talk a belligerent noble out of drawing a blade in the lounge, Samus follows you into the back corridor, catches your shoulder, and pins you flat against the wall with her thigh pressed between yours. \"Watching you handle trouble without a plasma cannon does things to my pulse, boss,\" she murmurs, her blue eyes blazing as she reaches for your belt. \"Bedroom. Now.\"",
+          "image": {
+            "comp": "pinning him against the corridor wall in her Zero Suit, flushed and intense, hand at his belt",
+            "setting": "dim back corridor at night",
+            "sam": true
+          },
+          "go": "Surrender to the hunter",
+          "goRes": "She hauls you into her quarters, unseals the lower half of her Zero Suit, and guides your fingers into her soaking wet pussy while kissing you breathless.",
+          "wait": "\"At least let me close the lounge first!\"",
+          "waitRes": "\"You have five minutes,\" Samus warns with a rare, wolfish smirk. \"Don't make me come hunt you down.\""
+        }
+      }
+    }
+  }
+}

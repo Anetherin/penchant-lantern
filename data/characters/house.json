@@ -96,7 +96,7 @@
         "style": "Elegant",
         "prompt": "a dark green corset dress with lace sleeves",
         "bonus": {"noble":1.2,"courtesan":1.15},
-        "hairStyle": "long dark brown hair let down from its chignon"
+        "hairStyle": "long wavy, let down from its chignon"
       }
     },
     "bonds": {"seraphine":{"v":55,"note":"Ran the Rosenhal household for twelve years; Seraphine trusts her more than family."}},
@@ -123,7 +123,7 @@
     "lovers": "missionary",
     "backstory": "Tsubaki came from the eastern isles to run the springs for her late aunt. She knows every guest's name and every guest's bath temperature. Her aunt's wooden bath bucket sits by the door for luck, and she sings off-key, loudly, to whoever is in the water.",
     "design": {
-      "hairStyle": "long black hair in a loose side braid",
+      "hairStyle": "long loose side braid",
       "hairColor": "black",
       "eyes": "dark brown",
       "skin": "warm fair",
@@ -175,8 +175,8 @@
       "hairStyle": "very long flowing",
       "hairColor": "silver",
       "eyes": "pale violet",
-      "skin": "moon-pale",
-      "features": "a faint spectral glow and hair that drifts as if underwater",
+      "skin": "moon-pale with a faint spectral glow and softly translucent edges",
+      "features": "hair that drifts as if underwater",
       "expression": "a dreamy, wistful expression"
     },
     "under": "silk",
@@ -286,7 +286,7 @@
       "hairColor": "silver-white",
       "eyes": "ice-blue",
       "skin": "porcelain",
-      "features": "a crescent-moon tattoo on her hip",
+      "features": "long pointed elf ears and a crescent-moon tattoo on her hip",
       "accessories": "delicate silver anklets",
       "accState": "always"
     },
@@ -383,7 +383,7 @@
     "lovers": "oral_give",
     "backstory": "Bettina has run the Wayfarer's front desk for a decade. She can tell where a traveler is from by their boots and how much they'll spend by their hat. She keeps a drawer of lost-and-found trinkets and a surprisingly kind heart behind her tally book.",
     "design": {
-      "hairStyle": "honey-brown hair in a practical bun",
+      "hairStyle": "practical bun",
       "hairColor": "honey brown",
       "eyes": "hazel",
       "skin": "rosy fair",
@@ -496,7 +496,7 @@
       "hairColor": "sea-green",
       "eyes": "pale silver",
       "skin": "fair with a faint pearlescent sheen",
-      "features": "a faint pearlescent sheen to her skin",
+      "features": "long pointed elf ears",
       "accessories": "pearl drop earrings",
       "accState": "always",
       "expression": "a serene, enigmatic smile"

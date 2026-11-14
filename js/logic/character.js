@@ -299,6 +299,12 @@ function ensureWorker(w){
     if(ACCESSORIES.includes(f)){ w.design.accessories = [w.design.accessories, f].filter(Boolean).join(', '); w.design.features = ''; }
     else if(EXPRESSIONS.includes(f)){ w.design.expression = w.design.expression || f; w.design.features = ''; }
   }
+  if(!w.key){
+    const rf = raceFeatures(w.race, w.sub);
+    if(rf && rf.length && !rf.some(x => (w.design.features||'').includes(x))){
+      w.design.features = [rf[Math.abs(w.seed||0) % rf.length], w.design.features].filter(Boolean).join(', ');
+    }
+  }
   if(!w.accState) w.accState = 'auto';
   // wardrobe migration / defaults
   if(!w.owned) w.owned = [];
@@ -345,9 +351,9 @@ function genWorker(opts={}){
   const sub = race==='beastkin' ? weighted(subNames(race), x=>(subData(race,x)||{}).weight ?? 1) : '';
   const w = {
     id:uid(), name:genName(race, sub), race, sub, age:ri(...((subData(race,sub)||{}).age || R.age)), named:false, keep:false, body:rollBody(race), counts:{},
-    design:(()=>{ const acc = ACCESSORIES.length && Math.random()<0.55 ? pick(ACCESSORIES) : '', feat = FEATURES.length && Math.random()<0.65 ? pick(FEATURES) : '', expr = EXPRESSIONS.length && Math.random()<0.65 ? pick(EXPRESSIONS) : '';
-      const d = {build:pick(raceBuilds(race)),hairStyle:pick(HAIR_STYLES),hairColor:pick(HAIR_COLORS),eyes:pick(EYES),
-        skin: raceSkins(race) ? pick(raceSkins(race)) : race==='demon'&&Math.random()<0.4 ? pick(DEMON_SKINS) : pick(SKINS)};
+    design:(()=>{ const acc = ACCESSORIES.length && Math.random()<0.55 ? pick(ACCESSORIES) : '', rf = raceFeatures(race, sub), feat = [rf && rf.length ? pick(rf) : '', FEATURES.length && Math.random()<0.65 ? pick(FEATURES) : ''].filter(Boolean).join(', '), expr = EXPRESSIONS.length && Math.random()<0.65 ? pick(EXPRESSIONS) : '', sk = raceSkins(race, sub);
+      const d = {build:pick(raceBuilds(race, sub)),hairStyle:pick(HAIR_STYLES),hairColor:pick(HAIR_COLORS),eyes:pick(EYES),
+        skin: sk ? pick(sk) : race==='demon'&&Math.random()<0.4 ? pick(DEMON_SKINS) : pick(SKINS)};
       if(feat) d.features = feat;
       if(acc){ d.accessories = acc; d.accState = defaultAccState(acc); }
       if(expr) d.expression = expr;
