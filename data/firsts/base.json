@@ -27,28 +27,50 @@
   "defaults": {
     "go": "Go with it",
     "wait": "\"Let's not rush this.\"",
-    "waitRes": "{name} nods. She doesn't seem upset. If anything, she looks like she's already planning the next time."
+    "waitRes": "{name} nods. She doesn't seem upset—if anything, she looks like she's already planning how to wear you down next time."
   },
   "relaxedAt": 2,
   "relaxed": {
     "shower": {
       "text": [
-        "Sam opens the washroom door and finds {name} in the tub. She doesn't so much as reach for a towel. \"Close the door,\" she says. \"From the inside.\"",
-        "{name} is soaking in the bath when Sam walks in by mistake. She just smiles and shifts over to make room."
+        "You push open the washroom door and find {name} soaking naked in the steaming tub. She doesn't so much as reach for a towel—just spreads her legs a little in the water and smirks. \"Close the door,\" she says. \"From the inside.\"",
+        "{name} is stretched out bare in the hot bath when you walk in by mistake. Instead of covering up, she arches her back, shifts over, and pats the slick tile beside her hips to make room."
       ],
       "choices": [
-        {"label":"Join her","t":2,"m":8,"l":2,"res":"The water's perfect. {N} says so, several times."},
-        {"label":"Leave her to her bath","t":1,"m":3,"res":"\"Spoilsport,\" {N} calls after him, fondly."}
+        {
+          "label": "Join her",
+          "t": 2,
+          "m": 8,
+          "l": 2,
+          "res": "The water's hot, her skin is slick, and {N} has her hand around your cock before you're all the way in, her wet tits sliding against your chest."
+        },
+        {
+          "label": "Leave her to her bath",
+          "t": 1,
+          "m": 3,
+          "res": "\"Spoilsport,\" {N} calls after you, lazily trailing a wet hand down her stomach and between her thighs, rubbing her pussy where you can still see."
+        }
       ]
     },
     "walkin": {
       "text": [
-        "{name} walks into the washroom while Sam's in the tub, doesn't even pause, and sits on the edge with her feet in the water. \"Scoot over.\"",
-        "{name} wanders in while Sam's bathing, hands him a towel he didn't ask for, and stays to chat like it's the most natural thing in the world. For them, it is."
+        "{name} strolls into the washroom while you're naked in the tub, doesn't even pause, and drops her robe before sitting on the edge with her bare legs sliding into the water. \"Scoot over.\"",
+        "{name} wanders in while you're bathing, sets a towel down out of reach, and leans over the edge to chat with her breasts practically in your face like it's the most natural thing in the world. For the two of you, it is."
       ],
       "choices": [
-        {"label":"Scoot over","t":2,"m":8,"l":2,"res":"There isn't really room for two. They make it work."},
-        {"label":"\"Some privacy?\"","t":1,"m":2,"res":"{N} laughs, kisses the top of his head, and leaves him to it."}
+        {
+          "label": "Scoot over",
+          "t": 2,
+          "m": 8,
+          "l": 2,
+          "res": "There isn't really room for two, which means her bare thighs end up straddling yours, her wet pussy sliding over your cock. You make it work."
+        },
+        {
+          "label": "\"Some privacy?\"",
+          "t": 1,
+          "m": 2,
+          "res": "{N} laughs, presses a wet kiss to your forehead, and leaves you alone and half-hard in the tub."
+        }
       ]
     }
   },
@@ -81,78 +103,78 @@
     "1": [
       {
         "title": "{name}: A Quiet Moment",
-        "text": "Sam walks {name} back to her room after a long shift. At her door she stops, turns, and just looks at him for a moment, like she's deciding something.",
+        "text": "You walk {name} back to her room after a long shift. At her door she stops, turns, and holds onto your sleeve, looking up at your mouth as though she's been working up her nerve all night.",
         "image": {
           "comp": "standing at her bedroom door, turned toward him, looking up at him with a soft hesitant smile",
           "setting": "lantern-lit upstairs hallway at night",
           "sam": true
         },
         "go": "Kiss her",
-        "goRes": "She meets him halfway. It's brief, and then it isn't.",
+        "goRes": "She meets you halfway with a soft sigh. It starts out brief, and then her hands slide up your chest and it isn't brief at all.",
         "wait": "Say goodnight",
-        "waitRes": "{name} smiles, a little disappointed, a little relieved. \"Goodnight, Sam.\""
+        "waitRes": "{name} smiles, a little disappointed and a little relieved, lingering by the latch. \"Goodnight, Sam.\""
       },
       {
         "title": "{name}: Under the Eaves",
-        "text": "A sudden downpour traps Sam and {name} under the eaves out back. She's laughing, soaked, shoulder to shoulder with him, and then she isn't laughing anymore.",
+        "text": "A sudden downpour traps you and {name} under the eaves out back, her damp dress clinging to every curve. She's laughing, pressed shoulder to shoulder against you—and then she looks up, her breath catches, and she isn't laughing anymore.",
         "image": {
           "comp": "sheltering under wooden eaves in the rain beside him, soaked and laughing, leaning closer",
           "setting": "back alley in heavy rain, lantern light, wet cobbles",
           "sam": true
         },
         "go": "Close the distance",
-        "goRes": "The rain doesn't stop. They don't notice.",
+        "goRes": "The rain doesn't stop, and her soaked dress is plastered to her tits and ass under your hands. Neither of you notices the storm.",
         "wait": "Make a run for the door",
-        "waitRes": "They sprint inside, dripping. {name} keeps glancing at him all evening."
+        "waitRes": "You sprint inside together, dripping wet. {name} keeps glancing at your mouth all evening."
       },
       {
         "title": "{name}: Bold Move",
-        "text": "{name} plants herself in front of Sam in the hallway. \"I'm going to kiss you now,\" she announces. \"Objections?\"",
+        "text": "{name} plants herself squarely in front of you in the hallway, hands on her hips and a wicked glint in her eyes. \"I'm going to kiss you now,\" she announces, stepping inside your space. \"Objections?\"",
         "image": {
           "comp": "blocking a hallway with hands on her hips, confident flirtatious grin, leaning toward him",
           "setting": "lantern-lit hallway of a pleasure house",
           "sam": true
         },
         "go": "\"None.\"",
-        "goRes": "\"Good,\" she says, and does. Thoroughly.",
+        "goRes": "\"Good,\" she purrs, grabbing your collar and kissing you breathless right against the wall.",
         "wait": "\"One objection...\"",
-        "waitRes": "\"Overruled. Later.\" She winks and saunters off.",
+        "waitRes": "\"Overruled. Later.\" She winks, brushes her hip against yours, and saunters off.",
         "pers": ["Bold and flirtatious","Hot-blooded and competitive"]
       },
       {
         "title": "{name}: Very Brave",
-        "text": "{name} has been hovering near Sam all evening. Finally she tugs his sleeve, closes her eyes, and goes up on her toes, shaking a little.",
+        "text": "{name} has been hovering near you all evening, worrying at her lower lip. Finally she tugs your sleeve, squeezes her eyes shut, and goes up on her tiptoes, trembling slightly.",
         "image": {
           "comp": "on tiptoe with eyes squeezed shut, tugging his sleeve, deeply blushing, trembling slightly",
           "setting": "quiet corner of a lantern-lit lounge",
           "sam": true
         },
         "go": "Kiss her gently",
-        "goRes": "It's barely a kiss. She looks like she might float away.",
+        "goRes": "It's barely a brush of lips at first, until she lets out a shaky breath and leans right into you.",
         "wait": "Squeeze her hand instead",
-        "waitRes": "She opens her eyes, mortified, then relieved. \"...Thank you. Next time. Maybe.\"",
+        "waitRes": "She opens her eyes, mortified, then visibly relieved. \"...Thank you. Next time. Maybe.\"",
         "pers": ["Shy but earnest","Bookish and curious"]
       },
       {
         "title": "{name}: A Gift for You",
-        "text": "{name} hands Sam a small wrapped package. While he fumbles with the ribbon she leans in and kisses his cheek. Then, considering, not his cheek.",
+        "text": "{name} presses a small wrapped package into your hands. While you fumble with the ribbon, she leans in and kisses your cheek—then pauses, grins wickedly, and moves straight to your mouth.",
         "image": {"comp":"leaning in to kiss him as he unwraps a small gift, playful sly smile","setting":"cozy lounge, warm lantern light","sam":true},
         "go": "Forget the gift",
-        "goRes": "The gift is a bookmark. He doesn't find out until much later.",
+        "goRes": "The gift is a bookmark. You don't find out until much later, after she's thoroughly ruined your concentration.",
         "wait": "\"I should open this.\"",
-        "waitRes": "\"Open it, then.\" She laughs and leaves him to it.",
+        "waitRes": "\"Open it, then.\" She laughs softly and leaves you to it.",
         "pers": ["Cheerful and teasing","Warm and motherly"]
       },
       {
         "title": "{name}: Elegant Timing",
-        "text": "{name} chooses her moment carefully: a balcony, a view, the last light of evening. \"I prefer not to leave these things to chance,\" she says.",
+        "text": "{name} chooses her moment carefully: a quiet balcony, a view of the lanterns below, and the last golden light of evening. \"I prefer not to leave these things to chance,\" she says, turning into your arms.",
         "image": {
           "comp": "on a balcony at sunset, turning toward him with calm poise, one hand on the railing",
           "setting": "balcony overlooking a fantasy town at sunset",
           "sam": true
         },
         "go": "Kiss her",
-        "goRes": "It's exactly as composed and lovely as she planned. Then less composed.",
+        "goRes": "It starts out exactly as composed and lovely as she planned—and turns hungry fast, her tongue in your mouth and your hands filling with her ass.",
         "wait": "\"Perhaps not yet.\"",
         "waitRes": "\"Of course.\" She inclines her head, entirely unruffled. \"There will be other sunsets.\"",
         "pers": ["Calm and elegant","Mysterious and aloof","Proud and sharp-tongued"]
@@ -160,602 +182,602 @@
       {
         "title": "{name}: Off the Clock",
         "lewdMin": 45,
-        "text": "{name} has spent the night smiling at strangers. Afterward she finds Sam in the kitchen and sits down across from him, chin in her hand. \"You know what's strange?\" she says. \"I've lost count of the men I've kissed this month. And I'm nervous.\"",
+        "text": "{name} has spent all night putting on a show for strangers. Afterward she finds you in the kitchen and sits down across from you, chin in her hand. \"You know what's strange?\" she murmurs. \"I've lost count of the men I've kissed this month—and right now my hands are shaking.\"",
         "image": {
           "comp": "sitting across a small kitchen table late at night, chin in her hand, looking at him with a nervous, unguarded smile",
           "setting": "house kitchen after closing, a single lantern, two cups of tea",
           "sam": true
         },
         "go": "Kiss her",
-        "goRes": "It's nothing like work. She seems as surprised by that as he is.",
+        "goRes": "It feels nothing like work, and the soft gasp she lets out against your lips says she's just as surprised as you are.",
         "wait": "\"Then let's not rush it\"",
-        "waitRes": "{name} laughs, relieved and a little disappointed. \"Nobody's ever said that to me before.\""
+        "waitRes": "{name} laughs softly, relieved and a little disappointed. \"Nobody's ever said that to me before.\""
       },
       {
         "title": "{name}: Lantern Duty",
-        "text": "Closing time, and {name} has asked Sam to help her put out the lanterns along the front walk. One by one the lights go dark, and the street grows quiet and blue. At the last lantern she stops with her hand on the glass. \"I always leave this one for last,\" she says. \"It gives me an excuse to stand next to you.\"",
+        "text": "Closing time, and {name} has asked you to help her snuff the lanterns along the front walk. One by one the lights go dark until the street turns blue and quiet. At the last lantern she stops with her hand on the warm glass. \"I always leave this one for last,\" she whispers. \"It gives me an excuse to stand close to you.\"",
         "image": {
           "comp": "standing beside a hanging lantern, hand on the glass, looking up at him with a shy warm smile",
           "setting": "front walk of the house at night, lanterns half out, blue dusk",
           "sam": true
         },
         "go": "Kiss her",
-        "goRes": "She turns her face up, and the last lantern goes out on its own, or maybe neither of them was looking.",
+        "goRes": "She tilts her face up, and the last lantern gutters out on its own—or maybe neither of you was paying attention.",
         "wait": "\"Let's get inside\"",
-        "waitRes": "{name} laughs under her breath and hooks her arm through his. \"Next lantern, then.\""
+        "waitRes": "{name} laughs under her breath and hooks her arm snugly through yours. \"Next lantern, then.\""
       },
       {
         "title": "{name}: Flour on Her Cheek",
-        "text": "{name} is up to her elbows in bread dough in the kitchen at dawn, and there is flour on her cheek, her nose and one eyebrow. Sam reaches out to brush it off. Her breath catches. \"You missed a spot,\" she whispers, though he hasn't missed any, and she is looking at his mouth.",
+        "text": "{name} is up to her elbows in bread dough in the kitchen at dawn, with flour dusted across her cheek, her nose, and one eyebrow. You reach out to brush it off, and her breath catches. \"You missed a spot,\" she whispers, eyes fixed on your mouth.",
         "image": {
           "comp": "close to him at a kitchen worktable, flour on her cheek, looking at his mouth, hands covered in dough",
           "setting": "warm house kitchen at dawn, flour dust in the light",
           "sam": true
         },
         "go": "Kiss her",
-        "goRes": "She leaves two floury handprints on his hoodie, and neither of them cares.",
+        "goRes": "She leaves two floury handprints right on your hips, and neither of you cares.",
         "wait": "Fetch a cloth",
-        "waitRes": "She lets him wipe her cheek, blushing furiously, and pretends not to be disappointed. The bread, unattended, is slightly burned."
+        "waitRes": "She lets you wipe her cheek, blushing furiously, while the unattended bread burns slightly in the oven."
       },
       {
         "title": "{name}: Rooftop Stars",
-        "text": "{name} has dragged a blanket up to the roof, the only place in the house where the noise can't follow. The tiles are still warm from the day, the stars very sharp. She pats the spot next to her. When Sam sits, she leans her head on his shoulder, then tips her chin up. \"Just checking something,\" she says.",
+        "text": "{name} has dragged a thick blanket up to the roof, the one place where the lounge noise can't follow. The tiles are still warm from the day, and she pats the spot beside her. When you sit, she rests her head on your shoulder, then tips her chin up. \"Just checking something,\" she says softly.",
         "image": {
           "comp": "sitting on a rooftop blanket under the stars, head on his shoulder, tipping her chin up to him",
           "setting": "rooftop of the house at night, warm tiles, bright stars",
           "sam": true
         },
         "go": "Kiss her",
-        "goRes": "She was checking. It checks out. She says so, twice.",
+        "goRes": "She was checking, and it checks out—she confirms it twice between slow, lingering kisses.",
         "wait": "Point out a constellation",
-        "waitRes": "\"That one's the Cup,\" she says, a little hoarse, and keeps her head on his shoulder anyway."
+        "waitRes": "\"That one's the Cup,\" she says, voice a little hoarse, keeping her head on your shoulder anyway."
       },
       {
         "title": "{name}: Mending",
-        "text": "Sam's hoodie has a torn cuff, and {name} takes it from him without a word and sits in the lamp-glow with her needle and thread. The room is hushed. When she bites off the thread, she looks up, holds the sleeve out, and doesn't let go of it when he takes hold. \"All fixed,\" she says softly. \"But I'm not done.\"",
+        "text": "Your hoodie has a torn cuff, so {name} takes it from you without a word and sits in the lamplight with needle and thread. When she bites off the thread, she looks up, holds the sleeve out, and doesn't let go when you take it. \"All fixed,\" she murmurs, pulling you closer. \"Though I'm not finished.\"",
         "image": {
           "comp": "sitting in lamplight with a needle and thread, holding the sleeve of his hoodie, looking up at him through her lashes",
           "setting": "quiet sewing corner by the lamp, evening, baskets of thread",
           "sam": true
         },
         "go": "Lean in",
-        "goRes": "She pulls him down by the repaired sleeve. The stitching holds beautifully.",
+        "goRes": "She tugs you down by the repaired sleeve, and the stitching holds beautifully.",
         "wait": "Say thank you",
-        "waitRes": "\"Anytime,\" she says, and finishes the sleeve with a very satisfied little smile, as if she already has a plan.",
+        "waitRes": "\"Anytime,\" she says, finishing the cuff with a knowing smile that says she already has a plan.",
         "traits": ["Loyal","Romantic"]
       },
       {
         "title": "{name}: Winner Takes",
-        "text": "{name} has beaten Sam at cards for the fourth night in a row. \"You owe me a stake,\" she says, collecting the coins, then leaving them where they lie. She leans over the table until the candle flickers. \"Unless you'd like to pay in another way.\"",
+        "text": "{name} has beaten you at cards for the fourth night straight. \"You owe me a stake,\" she purrs, gathering the coins only to leave them on the table. She leans forward until the candle flame bends between you. \"Unless you'd rather pay with your mouth.\"",
         "image": {
           "comp": "leaning across a card table toward him, a hand of cards held up, sly confident smile",
           "setting": "common room card table at night, candle, scattered coins",
           "sam": true
         },
         "go": "Pay the stake",
-        "goRes": "The candle goes out. Nobody relights it.",
+        "goRes": "The candle gutters out. Neither of you bothers relighting it.",
         "wait": "\"Double or nothing\"",
-        "waitRes": "\"Oh, I like that.\" She shuffles slowly, eyes on him. \"I'll collect next time.\"",
+        "waitRes": "\"Oh, I like that.\" She shuffles slowly, eyes dark on yours. \"I'll collect next time.\"",
         "pers": ["Bold and flirtatious","Hot-blooded and competitive"]
       }
     ],
     "2": [
       {
         "title": "{name}: Further",
-        "text": "{name} pulls Sam into her room after a long day and closes the door. \"I've been thinking about more than kissing,\" she admits. \"A lot more.\"",
+        "text": "{name} pulls you into her bedroom after closing, slides the bolt shut, and presses you back against the wood. \"Kissing you isn't nearly enough anymore,\" she breathes, one hand sliding straight down to palm you through your trousers. \"I want my hands—and my mouth—on you.\"",
         "image": {
           "comp": "leaning back against a closed door in a dim bedroom, pulling him close by his hoodie, heated eyes",
           "setting": "small cozy bedroom at night, one candle",
           "sam": true
         },
         "go": "Let her show you",
-        "goRes": "She has, in fact, been thinking about it a lot.",
+        "goRes": "She has, in fact, been fantasizing about this for days—and wastes zero time unbuckling your belt and wrapping her hand around your cock.",
         "wait": "\"Kissing is nice too...\"",
-        "waitRes": "\"It is.\" She kisses him once more, slowly. \"Next time, though.\""
+        "waitRes": "\"It is.\" She gives your bulge one last teasing squeeze before kissing you once more. \"Next time, though.\""
       },
       {
         "title": "{name}: Late Night",
-        "text": "Sam can't sleep. Neither can {name}, apparently; she's sitting on the end of his bed when he looks up. \"I had an idea,\" she says.",
+        "text": "You can't sleep, and neither can {name}; she's perched on the foot of your bed in a loose nightshift when you sit up. \"I couldn't stop thinking about you,\" she murmurs, crawling up the mattress and reaching straight for your waistband. \"Hold still and let me take care of you.\"",
         "image": {
           "comp": "sitting on the end of a bed in the dark, leaning toward him with a sly smile, candle beside her",
           "setting": "his bedroom late at night, one candle",
           "sam": true
         },
-        "go": "\"Tell me.\"",
-        "goRes": "She doesn't tell him. She demonstrates.",
+        "go": "\"Show me.\"",
+        "goRes": "She pulls the blanket down, gets you naked from the waist down, wraps her hand around your cock, and starts stroking.",
         "wait": "\"Tomorrow's a big day.\"",
-        "waitRes": "\"Boring.\" She tucks the blanket around him and leaves him wide awake."
+        "waitRes": "\"Boring.\" She tucks the blanket back over your lap and leaves you wide awake and throbbing."
       },
       {
         "title": "{name}: Curious",
-        "text": "{name} has questions. Very specific questions. She asks them in a rush, red to the ears, and then: \"Could you... show me?\"",
+        "text": "{name} has questions—very specific, filthy questions about what you like. She asks them in a breathless rush, scarlet to her collarbone, before biting her lip. \"Could you... let me try? With my hands? Or my mouth?\"",
         "image": {
           "comp": "sitting on a bed hugging a pillow, red to the ears, curious earnest eyes on him",
           "setting": "quiet bedroom, afternoon light through curtains",
           "sam": true
         },
-        "go": "Show her",
-        "goRes": "She's a very attentive student.",
+        "go": "Let her try",
+        "goRes": "She's an extraordinarily attentive student, eager to learn every sound she can pull out of you with her hand and her mouth on your cock.",
         "wait": "\"One question at a time.\"",
-        "waitRes": "\"Right. Yes.\" She buries her face in the pillow.",
+        "waitRes": "\"Right. Yes.\" She buries her flaming face in the pillow.",
         "pers": ["Shy but earnest","Bookish and curious"]
       },
       {
         "title": "{name}: Not Done Yet",
-        "text": "{name} stops Sam mid-kiss. \"I'm not done,\" she says, and pushes him back onto the sofa.",
+        "text": "{name} breaks off mid-kiss, shoves you flat onto the lounge sofa, and straddles your thighs with a wicked grin. \"I'm nowhere near done with you,\" she purrs, already tugging at your shirt and belt.",
         "image": {
           "comp": "pushing him back onto a lounge sofa, standing over him with a challenging grin",
           "setting": "empty lounge after hours, low lanterns",
           "sam": true
         },
         "go": "\"Then keep going.\"",
-        "goRes": "She keeps going.",
+        "goRes": "She keeps going, unfastening your trousers and dropping to her knees between your legs to pull out your cock and suck it.",
         "wait": "\"Someone might come in.\"",
-        "waitRes": "\"Coward.\" She laughs and drags him upstairs instead... to say goodnight. Pointedly.",
+        "waitRes": "\"Coward.\" She laughs, grinds her hips against yours once, and drags you upstairs instead.",
         "pers": ["Bold and flirtatious","Hot-blooded and competitive","Cheerful and teasing"]
       },
       {
         "title": "{name}: Not Like Work",
         "lewdMin": 45,
-        "text": "\"I know how to do this,\" {name} says, her hands at Sam's collar. \"I'm very good at it. That's the problem.\" She stops. \"With you I don't want to be good at it. I just want it to be us.\"",
+        "text": "\"I know how to get a man off,\" {name} murmurs, her fingers tracing your jaw while her other hand rests flat over your belt. \"I'm very good at it. That's the problem—with you, I don't want to put on an act. I want to feel every second of it.\"",
         "image": {
           "comp": "standing close in her room, her hands resting on his collar, hesitating, eyes searching his face",
           "setting": "her bedroom at night, soft lamplight, the door closed",
           "sam": true
         },
         "go": "\"Then just be you\"",
-        "goRes": "She stops performing halfway through, starts laughing, and doesn't let go of him.",
+        "goRes": "She stops performing halfway through, lets out a breathless laugh, and strokes your cock like she's starving for it.",
         "wait": "Not tonight",
-        "waitRes": "\"Okay,\" says {name}, and means it. She keeps her hands on his collar a while longer anyway."
+        "waitRes": "\"Okay,\" says {name}, and means it—keeping her hands warm on your chest a while longer anyway."
       },
       {
         "title": "{name}: Warm Hands",
-        "text": "It is a cold night, and {name} has brought Sam a hot cup of spiced wine, which she then sets aside. She takes his hands in hers and rubs the warmth back into them, slowly, thumb by thumb. Her eyes stay on his face. \"Your hands are always cold,\" she says. \"I'd like to know where else.\"",
+        "text": "It's a freezing night, and {name} sets a mug of spiced wine aside to take your hands in hers, rubbing warmth back into your fingers thumb by thumb. Her dark eyes stay locked on yours. \"Your hands are always cold,\" she purrs, guiding them straight under her skirt onto her bare thighs. \"Warm them up.\"",
         "image": {
           "comp": "holding both of his hands between hers by the fireplace, rubbing them warm, heated look",
           "setting": "small parlor with a crackling fire, winter night",
           "sam": true
         },
-        "go": "\"Find out\"",
-        "goRes": "She finds out thoroughly, and keeps his hands warm all night.",
+        "go": "\"Gladly\"",
+        "goRes": "She guides your fingers higher, into her wet pussy, grinding on them until she's gasping against your shoulder.",
         "wait": "Pick up the wine",
-        "waitRes": "\"Coward,\" she whispers, with a smile, and warms them against her cheek instead."
+        "waitRes": "\"Coward,\" she whispers with a sultry smile, warming your hands against her bare throat instead."
       },
       {
         "title": "{name}: The Bath Is Big Enough",
-        "text": "The bathhouse is empty, the steam rising off the water in soft white curls. {name} stands at the edge in a robe, one foot testing the temperature, and glances back over her shoulder. \"It's a large bath,\" she says, as if the thought has only just occurred. \"Plenty of room for two. You look like you need it.\"",
+        "text": "The bathhouse is empty, thick steam curling off the water. {name} stands at the edge in a loose robe, lets it slip off her shoulders, and glances back at you naked in the lantern glow. \"Plenty of room for two,\" she murmurs, stepping into the water. \"And I'd love your hands on me.\"",
         "image": {
           "comp": "at the edge of a steaming bath in a loose robe, glancing back at him over her shoulder, inviting",
           "setting": "private bathhouse at night, steam, paper lanterns",
           "sam": true
         },
         "go": "Join her",
-        "goRes": "The water is hot and the company is warmer, and neither of them hurries out.",
+        "goRes": "The water is scorching, her bare tits are slick against your arm, your fingers are working between her legs, and neither of you hurries out.",
         "wait": "\"I'll stand guard\"",
-        "waitRes": "\"Brave, noble Sam,\" she says, and sinks in with a sigh, tossing him a towel. \"Don't look. Or do.\"",
+        "waitRes": "\"Brave, noble Sam,\" she teases, sinking naked into the water with a slow sigh. \"Don't look. Or do.\"",
         "traits": ["Night Owl","Party Animal"]
       },
       {
         "title": "{name}: Hands and Hesitation",
-        "text": "{name} sits on the edge of the bed with her hands in her lap, twisting the fabric of her sleeve. \"I've been thinking about kissing,\" she says carefully. \"And then about what comes after kissing. And then I stopped thinking about anything else.\" She takes a breath. \"May I show you what I've worked out?\"",
+        "text": "{name} sits on the edge of the bed, knees pressed together, twisting her sleeve in her lap. \"I've been thinking about kissing,\" she admits softly, cheeks flushed. \"And then about touching you—and having you touch me. May I show you what I've been imagining?\"",
         "image": {
           "comp": "sitting on the edge of a bed twisting her sleeve in her lap, looking up with shy brave eyes",
           "setting": "her bedroom at night, one candle, drawn curtains",
           "sam": true
         },
         "go": "\"Show me\"",
-        "goRes": "It turns out she worked out quite a lot. She apologizes for none of it.",
+        "goRes": "It turns out she's been imagining quite a lot—and her hands are surprisingly bold once she starts, one slipping into your trousers to stroke your cock.",
         "wait": "Hold her hand",
-        "waitRes": "\"Oh. That's nice too,\" she says, and means it. \"A little longer, then, before I show you.\"",
+        "waitRes": "\"Oh. That's nice too,\" she whispers, squeezing your fingers. \"A little longer, then, before I show you.\"",
         "pers": ["Shy but earnest","Bookish and curious"]
       },
       {
         "title": "{name}: A Dare",
-        "text": "{name} slaps a coin down on Sam's desk. \"Heads, I pick the next thing we do. Tails, you do.\" She flips it, catches it, and doesn't look at it. \"Heads,\" she says, with a grin that says it never mattered. \"I pick something past kissing.\"",
+        "text": "{name} slaps a coin onto your desk. \"Heads, I pick what we do next. Tails, you do.\" She flips it, catches it, and doesn't bother looking. \"Heads,\" she grins, dropping to her knees beside your chair and reaching straight for your belt. \"I pick going past kissing.\"",
         "image": {
           "comp": "flipping a coin and catching it, grinning, stepping into his space with confident heat",
           "setting": "his small study at night, lantern on the desk",
           "sam": true
         },
         "go": "Accept the dare",
-        "goRes": "She never did look at the coin. He suspects it had two heads.",
+        "goRes": "She never did look at the coin—and judging by what she does to your cock with her hands and mouth, you don't care.",
         "wait": "\"Best of three?\"",
-        "waitRes": "She laughs and flips again. It lands on the floor. She drags him down to look, and then doesn't let him up for a while, kissing instead.",
+        "waitRes": "She laughs and flips again. It rolls under the desk, and she drags you down after it to kiss you breathless.",
         "pers": ["Bold and flirtatious","Hot-blooded and competitive"]
       },
       {
         "title": "{name}: After the Last Guest",
-        "text": "The last guest has gone, and {name} sits on a stool by the dying fire, boots off, rolling her sore shoulders. Sam brings her a cup of tea, and she holds his wrist so the cup trembles. \"Everyone takes what they want from me and goes,\" she says, very quietly. \"You always bring tea. Stay a while. I'd like to give something to you.\"",
+        "text": "The last guest is gone, and {name} sits by the dying fire with her boots off, rolling her sore shoulders. When you bring her tea, she catches your wrist, pulling you down between her knees. \"Everyone takes what they want from me and leaves,\" she whispers. \"Stay. Let me use my mouth on you just because I want to.\"",
         "image": {
           "comp": "sitting by a dying fire with her boots off, holding his wrist, soft vulnerable smile",
           "setting": "house parlor after the last guest, embers glowing",
           "sam": true
         },
         "go": "\"I'd like that\"",
-        "goRes": "She gives, and he receives, and it is the opposite of work.",
+        "goRes": "She unfastens your trousers by firelight and takes your cock in her mouth, taking her time and proving it's the exact opposite of work.",
         "wait": "Stay for tea",
-        "waitRes": "They share the pot until it goes cold, her head on his knee. \"Next time,\" she says, drowsy, and means it.",
+        "waitRes": "You share the pot until it goes cold, her head resting against your thigh. \"Next time,\" she murmurs drowsily.",
         "lewdMin": 45
       }
     ],
     "3": [
       {
         "title": "{name}: Stay Tonight",
-        "text": "{name} is waiting in Sam's room when he comes up, lamp turned low. \"I don't want to say goodnight at the door again,\" she says. \"Stay with me tonight.\"",
+        "text": "{name} is waiting in your bedroom when you come upstairs, lamp turned low and her robe hanging open over bare skin. \"I'm tired of stopping halfway,\" she whispers, holding out her hand. \"Come to bed and take me properly tonight.\"",
         "image": {
           "comp": "sitting on the edge of a bed in lamplight, holding out a hand to him, soft determined smile",
           "setting": "his bedroom at night, lamp turned low",
           "sam": true
         },
         "go": "Stay",
-        "goRes": "The lamp burns down. Neither of them gets up to refill it.",
+        "goRes": "The lamp burns down to nothing while you fuck her in the sheets, her legs locked around your hips.",
         "wait": "\"Not yet.\"",
-        "waitRes": "{name} nods slowly. \"Okay. But I'm not going anywhere.\""
+        "waitRes": "{name} nods slowly, pulling her robe closed. \"Okay. But I'm not going anywhere.\""
       },
       {
         "title": "{name}: The Whole Night",
-        "text": "{name} takes Sam's hand and leads him upstairs without a word. At her door she finally looks back. \"I'm sure,\" she says, before he can ask.",
+        "text": "{name} laces her fingers through yours and leads you upstairs without a word. At her bedroom door she turns back, cheeks flushed and eyes dark with intent. \"I want all of you tonight,\" she says before you can ask.",
         "image": {
           "comp": "leading him by the hand up a narrow staircase, looking back over her shoulder, sure gentle smile",
           "setting": "narrow lantern-lit staircase at night",
           "sam": true
         },
         "go": "Follow her",
-        "goRes": "The door closes behind them.",
+        "goRes": "The door closes, the bolt slides shut, her dress hits the floor, and minutes later you're buried in her pussy while she grips the headboard.",
         "wait": "\"Are you really sure?\"",
-        "waitRes": "\"I said so.\" She sighs, fond. \"Ask me again next week, then. I'll say the same thing.\""
+        "waitRes": "\"I said so.\" She sighs fondly. \"Ask me again next week, then—I'll still want you in my bed.\""
       },
       {
         "title": "{name}: Done Waiting",
-        "text": "{name} kicks Sam's door shut behind her. \"I've been patient,\" she says. \"I'm finished being patient.\"",
+        "text": "{name} kicks your bedroom door shut behind her and pulls her top straight over her head, baring her breasts in the lamplight. \"I've been patient,\" she growls, backing you toward the mattress. \"I'm done being patient. Fuck me.\"",
         "image": {"comp":"kicking a bedroom door shut, pulling off her outer layer, fierce grin","setting":"his bedroom at night","sam":true},
         "go": "\"So am I.\"",
-        "goRes": "Neither of them is patient about it.",
+        "goRes": "Neither of you wastes a second on patience as clothes hit the floor and you drive your cock into her pussy, fucking her hard into the mattress.",
         "wait": "\"Patience is a virtue!\"",
-        "waitRes": "\"So is honesty.\" She grins and leaves. \"Honestly, you'll regret that.\"",
+        "waitRes": "\"So is honesty.\" She grins wickedly and leaves you staring at the door. \"You're going to regret that.\"",
         "pers": ["Bold and flirtatious","Hot-blooded and competitive"]
       },
       {
         "title": "{name}: Gently",
-        "text": "{name} is nervous and won't pretend she isn't. \"I want this,\" she says, holding both his hands. \"Just... gently. Okay?\"",
+        "text": "{name} is nervous and doesn't try to hide it, sitting bare-shouldered on the edge of the mattress. \"I want to go all the way with you,\" she whispers, holding both your hands. \"Just... go slow with me at first. Okay?\"",
         "image": {"comp":"holding both of his hands beside a candlelit bed, nervous brave expression","setting":"small candlelit bedroom","sam":true},
         "go": "\"Gently.\"",
-        "goRes": "It is gentle. It's also wonderful, and afterward she won't stop smiling.",
+        "goRes": "You take your time easing your cock into her pussy an inch at a time, and afterward she clings to your chest with a radiant, breathless smile.",
         "wait": "\"We have all the time in the world.\"",
-        "waitRes": "She lets out a long breath and laughs. \"Okay. Okay. Thank you.\"",
+        "waitRes": "She lets out a long, shaky breath and laughs softly. \"Okay. Thank you.\"",
         "pers": ["Shy but earnest","Warm and motherly","Bookish and curious"]
       },
       {
         "title": "{name}: An Invitation",
-        "text": "A note under Sam's door, in elegant handwriting: \"My room. Midnight. Don't be late.\" When he arrives, {name} is waiting, perfectly composed, except for her eyes.",
+        "text": "A note slides under your door in elegant script: \"My room. Midnight. Come naked under your robe.\" When you arrive, {name} is waiting by the candlelit window, perfectly composed except for the dark hunger in her eyes.",
         "image": {
           "comp": "standing by a candlelit window at midnight in an elegant robe, perfectly composed, looking at him with intent",
           "setting": "elegant bedroom at midnight, candles",
           "sam": true
         },
         "go": "Accept the invitation",
-        "goRes": "Her composure lasts about a minute. It's a very good minute.",
+        "goRes": "Her composure lasts less than a minute once you untie her sash—after that she's spread on the bed, hips lifting to meet every thrust of your cock.",
         "wait": "\"I came to say not yet.\"",
-        "waitRes": "\"Then thank you for being punctual.\" A faint smile. \"Another midnight.\"",
+        "waitRes": "\"Then thank you for being punctual.\" A faint, knowing smile. \"Another midnight.\"",
         "pers": ["Calm and elegant","Mysterious and aloof","Proud and sharp-tongued"]
       },
       {
         "title": "{name}: The One That Counts",
         "lewdMin": 45,
-        "text": "{name} closes her door behind them and leans against it. \"Half this town thinks they know what I'm like in bed,\" she says. \"I want one person who doesn't have to guess.\"",
+        "text": "{name} bolts her bedroom door behind you and leans back against it, unlacing her bodice slowly. \"Half this town thinks they know what I'm like in bed,\" she says softly. \"I want one man who doesn't have to guess—because I'm actually into it.\"",
         "image": {
           "comp": "leaning back against her closed bedroom door, looking at him, vulnerable and certain",
           "setting": "her bedroom late at night, a single candle",
           "sam": true
         },
         "go": "Go to her",
-        "goRes": "None of it is new to her, and all of it is. She tells him so, afterward.",
+        "goRes": "None of the positions are new to her, yet every thrust of your cock feels brand new—and she tells you so breathlessly afterward.",
         "wait": "Hold her instead",
-        "waitRes": "They don't do anything but lie there. {name} says it's the most intimate night she's had in years."
+        "waitRes": "You simply lie together in the dark. {name} whispers that it's the most intimate night she's had in years."
       },
       {
         "title": "{name}: Morning After Rain",
-        "text": "The rain hasn't stopped since yesterday, and {name} appears at Sam's door with a blanket around her shoulders and her hair damp. \"I don't want to hear it on my own roof tonight,\" she says. \"I want to hear it on yours.\" She steps inside without waiting for an answer.",
+        "text": "Rain has drummed against the roof all night, and {name} appears in your doorway wearing only a thin blanket wrapped around her bare body. \"I don't want to sleep alone tonight,\" she murmurs, letting the blanket slip off one shoulder as she steps inside. \"Make room for me.\"",
         "image": {
           "comp": "standing in his doorway wrapped in a blanket with damp hair, soft earnest smile",
           "setting": "his bedroom at night, rain on the window, lamp burning low",
           "sam": true
         },
         "go": "Let her in",
-        "goRes": "The rain keeps up all night. Neither of them hears it after a while.",
+        "goRes": "She drops the blanket at the bedside, slides naked under your sheets, and guides your cock into her pussy with a long sigh.",
         "wait": "\"It's late. Let me walk you back\"",
-        "waitRes": "She laughs, gentle and flustered. \"Walk me back, then. Slowly.\" She takes his arm and it is a very long walk."
+        "waitRes": "She laughs, gentle and flustered. \"Walk me back, then. Slowly.\" She tucks her arm into yours for a very long walk."
       },
       {
         "title": "{name}: Ink and Candlelight",
-        "text": "{name} has written Sam a letter. She holds it, folded, against her chest. \"I couldn't say it right,\" she says. \"So I wrote it. It's long. It ends with an invitation.\" She presses the page into his hand. The last line is just three words: \"Stay with me.\"",
+        "text": "{name} has written you a letter, holding the folded sheet against her chest. \"I couldn't say it out loud,\" she admits, cheeks burning. \"So I wrote down everything I want you to do to me tonight.\" She presses the page into your hand. The final line reads: \"Stay in my bed.\"",
         "image": {
           "comp": "standing at his table, pressing a folded letter into his hand, cheeks flushed, steady gaze",
           "setting": "his study at night, candlelight, ink pot and quill",
           "sam": true
         },
         "go": "\"I will\"",
-        "goRes": "He never gets to the second page until morning.",
+        "goRes": "You never make it to the second page before she's pulling you down onto the mattress and spreading her legs for your cock.",
         "wait": "\"Let me read it properly\"",
-        "waitRes": "\"Do. Take your time.\" She touches his sleeve. \"I'll be here, reading you.\"",
+        "waitRes": "\"Do. Take your time.\" She touches your sleeve, breathless. \"I'll be waiting upstairs.\"",
         "pers": ["Shy but earnest","Bookish and curious"]
       },
       {
         "title": "{name}: Mine Tonight",
-        "text": "{name} lifts the key to his bedroom from the hook by the stairs, tosses it once, and catches it. \"I've decided you're mine tonight,\" she says. \"The house can run itself. Think of it as a day off.\" She looks as pleased as a cat with cream. Her eyes are not teasing at all.",
+        "text": "{name} lifts the key to your bedroom off its hook by the stairs, tosses it once, and catches it. \"You're mine tonight,\" she purrs, already unfastening the top buttons of her dress. \"The house can run itself while I wear you out.\"",
         "image": {
           "comp": "tossing a key and catching it, leaning on his door frame, purring smile",
           "setting": "upstairs hallway, his bedroom door, lantern light",
           "sam": true
         },
         "go": "\"All yours\"",
-        "goRes": "She locks the door and drops the key down her front. He is clearly not leaving until morning.",
+        "goRes": "She locks the door and drops the key straight down her cleavage. You fish it out with your teeth, then fuck her until neither of you can move.",
         "wait": "\"The house needs me\"",
-        "waitRes": "\"It really doesn't,\" she says, and sighs. \"Fine. But the key stays with me.\"",
+        "waitRes": "\"It really doesn't,\" she sighs, pocketing the key anyway. \"Fine—tomorrow night you're mine.\"",
         "pers": ["Cheerful and teasing","Warm and motherly"]
       },
       {
         "title": "{name}: Dress Rehearsal",
-        "text": "{name} stands in his doorway in a gown she bought last week and has not yet been seen in. She turns once, slowly, and the silk catches the lamp. \"I wanted you to be the first to see it,\" she says. \"And I wanted you to be the one who takes it off.\" She says it with perfect, courteous composure, and her hands are shaking.",
+        "text": "{name} stands in your doorway in a sheer silk gown she bought last week and hasn't worn yet. She turns slowly so the lamplight catches every curve beneath the fabric. \"I wanted you to be the first to see it,\" she whispers. \"And the one who strips it off me.\"",
         "image": {
           "comp": "turning slowly in an elegant gown in his doorway, poised, steady gaze despite trembling hands",
           "setting": "his bedroom at night, lamplight on silk",
           "sam": true
         },
         "go": "Take it off",
-        "goRes": "He does, slowly. The gown, it turns out, was very well made.",
+        "goRes": "You peel the silk slowly off her bare skin until the gown pools around her ankles, then lay her on the bed and slide your cock into her.",
         "wait": "\"It's beautiful. Keep it on a while\"",
-        "waitRes": "\"Then I shall,\" she says, with a regal nod and the first real smile of the night.",
+        "waitRes": "\"Then I shall,\" she says with a regal nod and a warm, breathless smile.",
         "pers": ["Calm and elegant","Mysterious and aloof","Proud and sharp-tongued"]
       }
     ],
     "jump": [
       {
         "title": "{name}: All at Once",
-        "text": "{name} kisses Sam for the first time in the hallway, and then again, and then she's pulling him toward her door. \"I don't want to do this in pieces,\" she says.",
+        "text": "{name} kisses you for the first time in the hallway, and then again, harder, tugging you backward toward her open bedroom door. \"I don't want to do this in pieces,\" she pants against your mouth. \"I want everything right now.\"",
         "image": {
           "comp": "pulling him toward her bedroom door by the hand, flushed, kissing him over her shoulder",
           "setting": "lantern-lit upstairs hallway at night",
           "sam": true
         },
         "go": "Don't do it in pieces",
-        "goRes": "One kiss turns into a great deal more than a kiss.",
+        "goRes": "One kiss turns straight into shed clothes, hands and mouths everywhere, and her moans carrying down the hall.",
         "wait": "\"Let's take it slower.\"",
-        "waitRes": "{name} stops, catches her breath, and laughs. \"...Okay. Slower. Annoyingly.\""
+        "waitRes": "{name} stops, catches her breath, and laughs weakly. \"...Okay. Slower. Even if it kills me.\""
       },
       {
         "title": "{name}: No Half Measures",
-        "text": "\"I don't do things halfway,\" {name} says, closing Sam's door behind her. \"Never have.\"",
+        "text": "\"I don't do things halfway,\" {name} purrs, kicking your door shut and sliding the bolt. \"Never have.\" She reaches straight for the hem of her dress and pulls it over her head.",
         "image": {"comp":"leaning back against a closed door, confident heated gaze at him","setting":"his bedroom at night, one lamp","sam":true},
         "go": "\"Neither do I.\"",
-        "goRes": "She was telling the truth.",
+        "goRes": "She wasn't exaggerating—within seconds you're both naked on the bed, her hand around your cock and your mouth on her tits.",
         "wait": "\"Maybe start with a quarter way?\"",
-        "waitRes": "She laughs. \"Fine. A quarter. For now.\"",
+        "waitRes": "She laughs, tugging her dress back down. \"Fine. A quarter—for now.\"",
         "pers": ["Bold and flirtatious","Hot-blooded and competitive","Laid-back and lazy","Mysterious and aloof"]
       },
       {
         "title": "{name}: Something Shifts",
-        "text": "Sam is helping {name} carry linens upstairs when she drops them all, takes his face in her hands, and kisses him. When she pulls back, she doesn't let go. \"Come with me,\" she whispers.",
+        "text": "You're helping {name} carry linens upstairs when she drops the entire stack, grabs your face, and kisses you hungrily. When she pulls back, her hands are already at your belt. \"Come to bed with me,\" she whispers.",
         "image": {
           "comp": "holding his face in her hands in a hallway, fallen linens around their feet, breathless",
           "setting": "upstairs hallway, scattered white linens, lantern light",
           "sam": true
         },
         "go": "Go with her",
-        "goRes": "The linens stay on the floor until morning.",
+        "goRes": "The linens stay scattered in the hall until morning while she drags you into bed and you get your hands and mouth all over her.",
         "wait": "\"The linens...\"",
-        "waitRes": "\"Forget the linens.\" But she lets him go, laughing. \"Next time, forget them faster.\""
+        "waitRes": "\"Forget the linens.\" She lets you go with a breathless laugh. \"Next time, drop them faster.\""
       },
       {
         "title": "{name}: Skipping Ahead",
         "lewdMin": 45,
-        "text": "\"I've never been good at the slow part,\" {name} admits, already pulling Sam toward her room. \"But I'm going to remember this one. Is that all right?\"",
+        "text": "\"I've never been any good at waiting around,\" {name} admits, pulling you by the collar into her room and kicking the door shut. \"I want my first time with you to be the whole thing. Is that all right?\"",
         "image": {"comp":"pulling him by the hand toward her room, laughing and a little shy","setting":"her bedroom doorway at night, lamplight","sam":true},
         "go": "Go with her",
-        "goRes": "She does remember it. So does he.",
+        "goRes": "She skips straight past the preliminaries and pulls you down onto the sheets, already grinding against your cock through your clothes.",
         "wait": "\"Slow can be good too\"",
-        "waitRes": "{name} stops in the doorway, considers this, and kisses his cheek instead. \"Fine. Slow. Tomorrow.\""
+        "waitRes": "{name} pauses in the doorway, considers it, and kisses your cheek. \"Fine. Slow. Tomorrow.\""
       },
       {
         "title": "{name}: Storm Night",
-        "text": "Thunder cracks over the house and every lamp flickers. {name} knocks on Sam's door in her nightgown, clutching a pillow. \"I'm not scared,\" she says, as the next crack shakes the windows. \"I just don't want to be alone.\" She looks at him, then at the bed, then at him again, and steps close enough that the question changes.",
+        "text": "Thunder cracks over the house and every lamp flickers. {name} knocks on your door in a thin nightgown, clutching a pillow to her chest. \"I'm not scared,\" she says as lightning flashes behind her. \"I just don't want to sleep alone.\" She steps close enough that her nipples press against your shirt.",
         "image": {
           "comp": "clutching a pillow in his doorway in a nightgown, lightning behind her, stepping close",
           "setting": "his bedroom during a thunderstorm, flickering lamp",
           "sam": true
         },
         "go": "Let her in",
-        "goRes": "The storm passes eventually. Neither of them was paying attention.",
+        "goRes": "The pillow ends up on the floor, the nightgown follows, and with her bare tits in your hands and your mouth on her nipples, neither of you hears the thunder anymore.",
         "wait": "Offer her the chair",
-        "waitRes": "\"The chair,\" she repeats, deadpan, and laughs. \"Very gentlemanly.\" She takes the pillow back to bed, but keeps the door open a crack."
+        "waitRes": "\"The chair,\" she repeats deadpan, then laughs. \"Very gentlemanly.\" She leaves, keeping her own door open a crack."
       },
       {
         "title": "{name}: Wine and Nerve",
-        "text": "{name} has had exactly one glass of wine, enough to be brave and not enough to be silly. She sets it down, stands, and crosses the room to Sam in four steps. \"I'm going to kiss you,\" she says, \"and then I'm going to ask for more. Tell me now if that is a mistake.\"",
+        "text": "{name} has had one glass of plum wine—just enough to melt her hesitation. She sets the glass down and crosses the room to you in four determined strides. \"I'm going to kiss you,\" she says, hands sliding to your belt, \"and then I'm going to take you to bed. Stop me now if you don't want it.\"",
         "image": {
           "comp": "crossing a room toward him with a determined stride, empty wine glass left behind, bright eyes",
           "setting": "private sitting room at night, wine bottle on the table",
           "sam": true
         },
         "go": "\"Not a mistake\"",
-        "goRes": "It was the opposite of a mistake, and she says so several times between kisses.",
+        "goRes": "She strips you down with eager hands and gets her mouth around your cock, proving it's the best decision either of you has made all week.",
         "wait": "\"Sleep on it?\"",
-        "waitRes": "She blinks, then smiles, and sits right back down. \"Reasonable. I'll sleep on it. Don't let me lose my nerve.\"",
+        "waitRes": "She blinks, smiles slowly, and sits back down. \"Fair. Don't let me lose my nerve tomorrow.\"",
         "pers": ["Bold and flirtatious","Hot-blooded and competitive"]
       },
       {
         "title": "{name}: Long Time Coming",
-        "text": "{name} has rehearsed this in her head for weeks, and she gets it all wrong anyway. She starts the speech, forgets the middle, and abandons it entirely. \"I'm terrible at this,\" she says, laughing and a little teary. \"Can I skip to the part where I don't talk anymore?\"",
+        "text": "{name} has rehearsed a speech for weeks and forgets every word of it the moment she opens your door. \"I'm hopeless at talking,\" she says, flushed from her chest up. \"Can we skip straight to the part where we're in bed?\"",
         "image": {
           "comp": "laughing and flustered in his doorway, fingers on his sleeve, eyes bright",
           "setting": "hallway outside his room at night, lantern light",
           "sam": true
         },
         "go": "\"Skip to that part\"",
-        "goRes": "She does, and it is nothing like her rehearsal, and far better.",
+        "goRes": "She pulls you inside and locks the door, far better with her hands than her speeches—one is already down your trousers, stroking your cock.",
         "wait": "\"Take your time\"",
-        "waitRes": "She takes a breath, tries again, and still forgets the middle, and he loves every second of it.",
+        "waitRes": "She takes a shaky breath, tries the speech again, and still forgets the middle.",
         "pers": ["Shy but earnest","Bookish and curious"]
       }
     ],
     "pent_1": [
       {
         "title": "{name} Can't Stand It",
-        "text": "{name} has been restless for days and she's done hiding it. She catches Sam in the stairwell, pins him to the wall with both hands, and kisses him before he can say a word.",
+        "text": "{name} has been restless for days and she's done hiding it. She corners you in the stairwell, pins your shoulders to the wall, and presses her mouth hungrily to yours before you can speak.",
         "image": {
           "comp": "pinning him against a stairwell wall with both hands, flushed, restless heated eyes",
           "setting": "narrow lantern-lit stairwell",
           "sam": true
         },
         "go": "Kiss her back",
-        "goRes": "When she finally lets him go, they're both out of breath.",
+        "goRes": "When she finally comes up for air, you're both panting and tangled together.",
         "wait": "Ease her back gently",
-        "waitRes": "She groans and thumps her forehead against his shoulder. \"Sorry. It's been a week.\""
+        "waitRes": "She groans and thumps her forehead against your chest. \"Sorry. It's been a maddening week.\""
       },
       {
         "title": "{name} Is Out of Patience",
-        "text": "{name} has been pacing the corridor outside Sam's door for what feels like an hour, and when he opens it she doesn't speak, only grips his lapels and kisses him, hard and a little desperate. \"I'm sorry,\" she says into his mouth. \"I'm not sorry. I've thought about this too much.\"",
+        "text": "{name} has been pacing outside your door for an hour; the second you open it, she grabs your lapels and kisses you hard. \"I'm sorry,\" she gasps against your lips. \"Actually, I'm not sorry—I've been aching to do this all week.\"",
         "image": {
           "comp": "gripping his lapels in a doorway, kissing him hard, flushed restless eyes",
           "setting": "his doorway at night, corridor lantern",
           "sam": true
         },
         "go": "Kiss her back",
-        "goRes": "She apologizes again, between kisses, and means it even less.",
+        "goRes": "She apologizes again between deep, messy kisses, meaning it even less.",
         "wait": "Steady her gently",
-        "waitRes": "She presses her face into his shoulder and breathes. \"Okay. Okay. Just give me a minute. A long one.\""
+        "waitRes": "She buries her face in your shoulder and breathes hard. \"Okay. Give me a minute. A long one.\""
       },
       {
         "title": "{name}: The Last Straw",
-        "text": "It's the way {name} watches him sort the linens that does it, her gaze lingering on his hands. She puts the basket down, shuts the laundry room door, and leans on it. \"I've held out as long as I can,\" she says. \"Please don't make me do it from across the room.\"",
+        "text": "It's watching your hands sort the linens that finally breaks her restraint. {name} drops the basket, shuts the laundry room door, and leans against it. \"I've held out as long as I can,\" she breathes. \"Come kiss me before I lose my mind.\"",
         "image": {
           "comp": "leaning on a closed laundry room door, breathing a little fast, intense gaze",
           "setting": "laundry room, hanging sheets, afternoon light",
           "sam": true
         },
         "go": "Cross the room",
-        "goRes": "She meets him halfway, and the sheets sway above them.",
+        "goRes": "She meets you halfway between the hanging sheets, kissing you breathless.",
         "wait": "\"Not here\"",
-        "waitRes": "She exhales a sharp, frustrated laugh. \"Fine. Not here. Somewhere with a lock, then. Soon.\""
+        "waitRes": "She lets out a sharp, frustrated laugh. \"Fine. Somewhere with a bolt on the door, then—soon.\""
       }
     ],
     "pent_2": [
       {
         "title": "{name} Has Waited Long Enough",
-        "text": "Kissing isn't cutting it anymore, and {name} says so, at length, while pulling Sam into the nearest empty room.",
+        "text": "Kissing isn't cutting it anymore, and {name} says so bluntly while dragging you into the nearest empty bedroom and reaching straight for your trousers.",
         "image": {
           "comp": "pulling him into an empty room by his hoodie, impatient flushed grin",
           "setting": "small empty guest room, afternoon light",
           "sam": true
         },
         "go": "Go with it",
-        "goRes": "She's very clear about what she wants. Sam is happy to oblige.",
+        "goRes": "She makes it abundantly clear what she wants—and has your trousers open and her hand around your cock in record time.",
         "wait": "\"Hold on—\"",
-        "waitRes": "She lets go with a frustrated sigh. \"Fine. But I'm not waiting forever.\""
+        "waitRes": "She lets go with a frustrated groan. \"Fine. But I'm not waiting much longer.\""
       },
       {
         "title": "{name}: No More Kisses",
-        "text": "\"Kissing isn't enough,\" {name} says, holding Sam's wrists against the stair rail, pupils wide. \"It was never going to be enough. Do you know how many nights I've spent counting the steps to your door?\" Her voice is rough, and her whole body hums.",
+        "text": "\"Kissing isn't nearly enough,\" {name} pants, pinning your wrists against the stair rail while she presses her thigh hard between yours. \"Do you know how wet I've been thinking about your hands on me?\"",
         "image": {
           "comp": "pinning his wrists lightly against a stair rail, intense flushed gaze, breathing fast",
           "setting": "back staircase of the house, evening light",
           "sam": true
         },
         "go": "Let her lead",
-        "goRes": "She takes the lead, and all the counted steps are finally worth it.",
+        "goRes": "She drags you into the nearest room, hikes up her skirt, and pushes your hand into her wet panties and onto her pussy.",
         "wait": "\"Easy. Breathe\"",
-        "waitRes": "She makes an agonized sound and rests her forehead on his chest. \"I'm trying. Hold me while I try.\""
+        "waitRes": "She lets out an agonized whimper and rests her forehead on your chest. \"I'm trying. Hold me while I try.\""
       },
       {
         "title": "{name}: Past Caring",
-        "text": "{name} has been on edge since breakfast, and by the afternoon she has stopped pretending otherwise. She walks into Sam's office, turns the key, and leans back against the desk. \"I'm not going to be subtle,\" she says. \"I want you. Now. Please.\"",
+        "text": "{name} has been squirming with heat since breakfast, and by afternoon she's done pretending. She marches into your office, locks the door, and hikes her skirt up as she leans against your desk. \"I'm not being subtle anymore,\" she breathes. \"Touch me. Now. Please.\"",
         "image": {
           "comp": "leaning back against his desk with the door locked behind her, wanting gaze, flushed",
           "setting": "his office in the afternoon, sunlight through the curtains",
           "sam": true
         },
         "go": "Come closer",
-        "goRes": "The ledgers are going to need reshuffling.",
+        "goRes": "Your ledgers get swept onto the floor as you step between her parted knees and slide your fingers into her pussy.",
         "wait": "\"After the shift\"",
-        "waitRes": "\"After the shift,\" she repeats, agonized, and kisses him once, savagely, to hold him to it."
+        "waitRes": "\"After the shift,\" she repeats, agonized, kissing you savagely to hold you to your word."
       }
     ],
     "pent_3": [
       {
         "title": "{name} Has Had Enough",
-        "text": "{name} shows up at Sam's door at midnight, restless and done pretending otherwise. \"I've been lying awake for a week,\" she says. \"Let me in.\"",
+        "text": "{name} shows up at your door at midnight in nothing but an unfastened nightgown, flushed and trembling. \"I've been lying awake aching for you all week,\" she whispers. \"Let me in and fuck me.\"",
         "image": {
           "comp": "standing in a doorway at midnight in a loose nightgown, restless heated eyes, one hand on the frame",
           "setting": "dark hallway at midnight, candlelight",
           "sam": true
         },
         "go": "Let her in",
-        "goRes": "Neither of them sleeps much.",
+        "goRes": "Her nightgown doesn't even make it past the doorway—you fuck her against the wall, then again in bed, and neither of you gets a wink of sleep.",
         "wait": "\"Tomorrow, I promise.\"",
-        "waitRes": "She exhales hard. \"Tomorrow. I'm holding you to it.\""
+        "waitRes": "She exhales a ragged breath. \"Tomorrow. I'm holding you to every second of it.\""
       },
       {
         "title": "{name}: Not Another Night",
-        "text": "{name} stands at Sam's bedside in the dark, one hand on the blanket. \"I can't sleep. I can't think. I can't do anything but want you.\" Her voice cracks, unashamed. \"Please. I'd rather say it plainly than pretend I don't.\"",
+        "text": "{name} stands beside your bed in the dark, pulling her shift over her head and dropping it to the floor. \"I can't sleep. I can't think. All I can do is ache for you,\" she whispers, completely naked in the candlelight. \"Please. Take me to bed.\"",
         "image": {
           "comp": "standing at the side of his bed in the dark, hand on the blanket, raw and unashamed",
           "setting": "his bedroom in the small hours, a single candle",
           "sam": true
         },
         "go": "Pull back the blanket",
-        "goRes": "She slides in beside him, and the long week ends right there.",
+        "goRes": "She climbs naked onto your lap and sinks down onto your cock, and the long, agonizing week ends right there.",
         "wait": "\"Tell me what you need\"",
-        "waitRes": "She tells him, haltingly and then fluently, and it is the most honest conversation they have ever had."
+        "waitRes": "She tells you—every filthy, honest detail—and it's the rawest conversation you've ever had."
       },
       {
         "title": "{name}: Undone",
-        "text": "{name} meets Sam on the landing, flushed and bare-footed, and takes his face in her hands. \"I've tried everything,\" she says. \"Cold water. Long walks. Counting. I'm out of tricks, Sam. I'm just out.\" She leans her forehead on his.",
+        "text": "{name} catches you on the landing, flushed and barefoot, pressing her body hard against yours. \"I've tried cold baths. I've tried fingering myself to sleep. Nothing works except you,\" she gasps against your neck. \"I'm out of tricks, Sam.\"",
         "image": {
           "comp": "cupping his face on a landing, bare-footed, forehead against his, breathless",
           "setting": "upstairs landing at night, a single lantern",
           "sam": true
         },
         "go": "\"Then come in\"",
-        "goRes": "She follows him in, and the tricks are forgotten.",
+        "goRes": "She follows you inside, already tearing at your clothes, desperate to get your cock inside her before the door even latches.",
         "wait": "\"Sleep, and we'll talk\"",
-        "waitRes": "\"I won't sleep,\" she says, and sighs. \"But I'll lie there and be good. For tonight.\""
+        "waitRes": "\"I won't sleep,\" she sighs miserably. \"I'll just lie there aching—for tonight.\""
       }
     ],
     "pent_jump": [
       {
         "title": "{name} Can't Wait",
-        "text": "{name} has been climbing the walls for days. Tonight she corners Sam, kisses him for the very first time, and doesn't stop at kissing.",
+        "text": "{name} has been climbing the walls for days. Tonight she corners you in the hall, kisses you for the very first time, and doesn't stop—sliding her hand straight down to unbuckle your belt.",
         "image": {"comp":"cornering him against a wall, kissing him hungrily, flushed restless expression","setting":"dim corridor late at night","sam":true},
         "go": "Don't stop her",
-        "goRes": "First kiss, and then everything else, in about that order.",
+        "goRes": "First kiss, shed clothes, and her hand around your cock—in roughly ten seconds flat.",
         "wait": "\"Whoa, whoa, slow down—\"",
-        "waitRes": "She stops, breathing hard. \"...Sorry. I've been going crazy.\" She doesn't look very sorry."
+        "waitRes": "She stops, panting hard against your chest. \"...Sorry. I've been going out of my mind.\" She doesn't look sorry at all."
       },
       {
         "title": "{name}: Everything at Once",
-        "text": "{name} bursts into Sam's room without knocking, shuts the door, and says, \"I've been trying to work out how to start. I can't. So I'll start with this.\" She kisses him, then keeps going, in the order that seems right to her, which is every order at once.",
+        "text": "{name} bursts into your bedroom without knocking, bolts the door, and begins undressing on the spot. \"I couldn't figure out how to start,\" she pants, tossing her top aside. \"So we're doing everything at once.\"",
         "image": {
           "comp": "bursting through his door, kissing him with both hands in his hoodie, wild and flushed",
           "setting": "his bedroom at dusk, lantern light",
           "sam": true
         },
         "go": "Let it happen",
-        "goRes": "It happens, in an order only she understands.",
+        "goRes": "She tackles you onto the mattress naked, tits against your chest and her hand already around your cock, skipping every intermediate step.",
         "wait": "\"Wait. Breathe\"",
-        "waitRes": "She gasps, steadies, and laughs. \"Okay. Breathing. Don't go anywhere.\""
+        "waitRes": "She gasps, steadies herself, and laughs breathlessly. \"Okay. Breathing. Don't move a muscle.\""
       },
       {
         "title": "{name}: Past Waiting",
-        "text": "\"I'm not going to wait for a good moment,\" {name} says, catching Sam in the hall and pushing him against the wall with no ceremony. \"There isn't one. There's only this one.\" Her eyes are fierce and her hands are very sure.",
+        "text": "\"I'm done waiting for the right moment,\" {name} growls, shoving you into your room and slamming the door behind you both. \"There's only right now.\" Her eyes are dark with lust as she reaches for your shirt.",
         "image": {
           "comp": "pushing him against a hallway wall, fierce eyes, hands sure on his chest",
           "setting": "house hallway in the evening, lantern light",
           "sam": true
         },
         "go": "\"This one's good\"",
-        "goRes": "It really is. Very good.",
+        "goRes": "Within moments you're both bare on the sheets, hands and mouths making up for lost time, her pussy grinding against your thigh.",
         "wait": "\"Slow down, please\"",
-        "waitRes": "\"Slower,\" she says, and tries, and fails, and kisses him until it's only a very fast sort of slow."
+        "waitRes": "\"Slower,\" she repeats, trying and failing as she kisses you breathless."
       }
     ]
   }

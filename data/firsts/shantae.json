@@ -4,55 +4,55 @@
       "events": {
         "1": {
           "title": "Hair Flip",
-          "text": "Shantae finishes her set on the stage and hops down into the empty hall, hair still swishing. \"Whew! Did you see the last spin? I almost took out a lantern.\" She grins up at Sam, damp with sweat. \"You always stay to the end. Nobody does that. You must really like dancing.\" Her bare feet slap on the polished boards. The lanterns flicker, and her armbands jingle with every breath she takes.",
+          "text": "Shantae finishes her routine on stage and hops lightly down into the empty hall, her long purple ponytail still swishing against her hips. \"Whew! Did you see that final spin? Nearly took out a lantern.\" Damp with sweat and glowing in the low lamplight, she grins up at you with jingling brass armbands. \"You always stay till the very end—nobody else does that. You must really like watching me move.\"",
           "image": {
             "comp": "grinning with a wild ponytail and flushed cheeks, one hand on his arm, cheerful spark",
             "setting": "empty stage hall after a show with lanterns burning low",
             "sam": true
           },
           "go": "Kiss her",
-          "goRes": "She giggles into the kiss, then whoops and does a pirouette. \"Best encore ever!\"",
+          "goRes": "She giggles brightly against your lips before parting them to kiss you back, whooping softly and spinning into a dizzy pirouette afterward. \"Best encore ever!\"",
           "wait": "\"Not just yet.\"",
-          "waitRes": "\"Aw, no fair!\" She pokes his chest, bouncing. \"Okay. But I'll keep dancing in your direction.\""
+          "waitRes": "\"Aw, no fair!\" She pokes your chest, bouncing on her bare toes. \"Okay—though I'm definitely going to keep dancing in your direction.\""
         },
         "2": {
           "title": "Magic Lamp",
-          "text": "Shantae pulls a dented little lamp from her bag and sets it on the bar. \"My genie side wants to grant you a wish,\" she says. \"Anything! Free of charge!\" Then she notices he is quietly watching her. \"...Oh. You're the kind who wishes for something else. Huh.\" Her ponytail droops pleasantly. The little lamp is dented and wonderfully ordinary, and the faint glitter in the air around her is anything but.",
+          "text": "Shantae pulls a dented brass lamp from her bag and sets it on the bar counter, leaning close enough that you can smell honeysuckle and warm skin. \"My genie side wants to grant you one wish—anything you want, free of charge!\" Seeing your eyes linger on her bare midriff and hips, her ponytail swishes with sudden, shy heat. \"...Oh. You're wishing for me, aren't you?\"",
           "image": {
             "comp": "sitting on a bar stool with a small lamp, smiling shyly, ponytail drooping",
             "setting": "bar counter with a dented magic lamp and glimmering bottles",
             "sam": true
           },
           "go": "Wish for her",
-          "goRes": "The wish takes a long time, glittery and giggling, and ends in a hush that she has no clever joke for.",
+          "goRes": "Faint magic glitter swirls around you both behind the bar as her clever hands and warm mouth grant your wish—starting with breathless giggles and ending in a low, shivering moan.",
           "wait": "\"Let's wait.\"",
-          "waitRes": "\"Okay!\" She hops down, cheerful. \"I'll hold the wish until you're ready. Genies are patient.\""
+          "waitRes": "\"Okay!\" She hops down from the stool, cheerful and flushed. \"I'll hold onto that wish until you're ready—genies are very patient.\""
         },
         "3": {
           "title": "Dancing Till Dawn",
-          "text": "Shantae dances until the lanterns burn out and the town goes silent. Sam is still there. She stops, breathless, hair damp against her neck. \"Okay, I've never been this nervous,\" she whispers. \"I save a town for fun. But this feels scarier.\" She holds out her hand. \"Dance with me? Somewhere private?\" Pale gold light touches her hair as the sun begins to rise. Her toes are curled against the cold wood, and her sparkle is a little dimmed by nerves.",
+          "text": "Shantae dances until the last lantern gutters out and the town falls silent—and you're still watching from the edge of the stage. Stopping breathless with damp hair clinging to her neck, she unfastens her silk vest and lets it slip to the floorboards. \"I save Scuttle Town for fun, Sam, yet this has my knees shaking. Dance with me in bed?\"",
           "image": {
             "comp": "extending a hand with a breathless smile, ponytail loose, flushed cheeks",
             "setting": "empty stage hall at dawn, a single lantern left, golden light through a high window",
             "sam": true
           },
           "go": "Take her hand",
-          "goRes": "They dance slowly up the stairs, and she laughs the whole way. The night ends softly, full of her warmth and joy.",
+          "goRes": "You carry her up the stairs to your room, peeling off her harem silks and sinking deep into her heat—Shantae arching beneath you with breathless, joyful cries until sunrise.",
           "wait": "\"Maybe tomorrow.\"",
-          "waitRes": "\"Okay!\" She bounces on her toes. \"I'll practice. Tomorrow, with extra spin.\""
+          "waitRes": "\"Okay!\" She bounces on her bare toes, grinning brightly. \"I'll practice—tomorrow, with extra hip-sway.\""
         },
         "jump": {
           "title": "Impulse Spin",
-          "text": "Shantae is mid-twirl in the hallway when she crashes into Sam, hair whipping around them both. They tangle and stop, noses almost touching. \"Oops!\" She's giggling. Then she isn't. \"Hey. That wasn't an accident. I might have been aiming.\" Her bracelets chime softly in the dim hall. A trace of honeysuckle perfume clings to her, and her laughter has gone soft.",
+          "text": "Shantae is mid-twirl in the dim hallway when she crashes straight into your chest, her long purple hair whipping around you both. Tangled together with noses nearly touching, her giggles soften into a flush as she presses her bare midriff against your hands. \"Oops—actually, that wasn't an accident. I was aiming right for you.\"",
           "image": {
             "comp": "crashing into his chest mid-spin, giggling, hair whipping around them",
             "setting": "upstairs hallway with a flickering lantern",
             "sam": true
           },
           "go": "Kiss her",
-          "goRes": "She melts into the kiss with a laugh, then spins them both in a clumsy half-dance.",
+          "goRes": "She melts into your mouth with a breathless laugh, grabbing your belt and tugging you straight through your bedroom door.",
           "wait": "\"Maybe not yet.\"",
-          "waitRes": "\"Ooh, mixed signals!\" She grins and boops his nose. \"I'll try again. And again. I'm very persistent.\""
+          "waitRes": "\"Ooh, mixed signals!\" She grins and boops your nose. \"I'll just have to keep aiming at you until I hit.\""
         }
       }
     },
@@ -60,55 +60,55 @@
       "events": {
         "1": {
           "title": "Plunder",
-          "text": "Risky has been counting the house takings for an hour with a keen, hungry eye. Sam finds her with a small bag of coins. \"Don't look at me like that,\" she says. \"It's part of the plan.\" She tucks it away. \"Admit it. You've figured out I'm planning to steal this place, and you still bring me wine.\" Her coat is slung over the chair, and a pistol-handled quill stands in the inkwell. The candlelight turns her smile into something predatory.",
+          "text": "Risky has been tallying the house coin for an hour with a sharp, hungry gleam in her eyes. When you bring her wine, she slips a small leather pouch of sovereigns into her coat without blinking. \"Don't glare at me like that—it's part of the plan. Admit it: you know I'm plotting to rob this place blind, yet you still bring me drinks.\"",
           "image": {
             "comp": "leaning back in a chair with a small coin bag and a sly smile, tricorn hat on the table",
             "setting": "office with a ledger and a candlelit desk, a wine bottle",
             "sam": true
           },
           "go": "Take the bag",
-          "goRes": "She laughs, delighted, and kisses him for the audacity. \"Pirate's rule: never steal from a man who gives it back.\"",
+          "goRes": "She laughs in pure delight, grabs your collar, and kisses you fiercely for the sheer nerve of it. \"Pirate's code: never plunder a man who steals right back.\"",
           "wait": "\"Not yet, Captain.\"",
-          "waitRes": "\"Tch. You drive a hard bargain.\" She tips her hat with a wink. \"I'll steal it in time. The kiss, I mean.\""
+          "waitRes": "\"Tch—you drive a hard bargain.\" She tips her tricorn hat with a wicked wink. \"I'll steal that kiss soon enough.\""
         },
         "2": {
           "title": "Treasure Map",
-          "text": "Risky spreads a fake treasure map over Sam's desk. \"X marks the spot,\" she purrs, trailing a finger down it. The finger stops on his chest. \"I rigged this, of course. The treasure's right here.\" She smiles, pleased with herself and a little wicked. \"Shall we dig?\" The map is tea-stained, deliberately aged. Her rings click on the desk, and she looks pleased with herself and perhaps a little exposed.",
+          "text": "Risky unrolls a tea-stained treasure map across your study desk, leaning forward so her cleavage spills over the parchment as she drags a ringed fingernail down the ink—stopping squarely over your belt. \"I rigged the chart, of course. X marks the real prize right here... shall we start digging?\"",
           "image": {
             "comp": "leaning over the desk with a sly smile, one finger resting on his chest",
             "setting": "Sam's study with a spread-out map, brandy and candles",
             "sam": true
           },
           "go": "Dig in",
-          "goRes": "She pulls him close, and it turns out the treasure was never gold.",
+          "goRes": "She shoves the map onto the floorboards, unbuckles your trousers with ruthless efficiency, and strokes and sucks your cock with her hands and mouth until you're gripping the desk edge.",
           "wait": "\"Not tonight.\"",
-          "waitRes": "\"Hmph.\" She smirks, rolling the map. \"The treasure will keep. So will I.\""
+          "waitRes": "\"Hmph.\" She smirks, rolling up the parchment. \"The treasure will keep—and so will I.\""
         },
         "3": {
           "title": "Ship's Quarters",
-          "text": "Risky Boots invites Sam into her cabin, which is just a room with sails hung up on the walls. \"I lost my ship,\" she says, pouring rum. \"I haven't lost my taste. I'd like to claim one more prize tonight.\" She sits on the bed, legs crossed. \"Care to be plundered?\" Rope and sailcloth hang from the rafters, and the bed is built like a captain's berth. Her bravado wobbles for only a breath.",
+          "text": "Risky invites you into her bedroom, decked out with rigged ropes and billowed sailcloth like a captain's cabin. Pouring two glasses of dark rum, she sits on the edge of the bed with her coat discarded and her silk chemise unlaced low. \"I lost my galleon, Sam, not my appetite—care to let me plunder you all night?\"",
           "image": {
             "comp": "sitting on a bed with legs crossed and a rum glass, mischievous smile",
             "setting": "her room decked out like a ship's cabin with sails and rope and lantern light",
             "sam": true
           },
           "go": "Be plundered",
-          "goRes": "He surrenders with grace. She is a masterful raider, and then, briefly, she is only a woman holding on.",
+          "goRes": "You surrender gladly as she straddles your hips and rides your cock like a conquering pirate—until her fierce bravado breaks into breathless, clinging moans.",
           "wait": "\"I'm not ready.\"",
-          "waitRes": "\"Pity.\" She toasts him with the rum, smiling. \"But a pirate knows when to wait for a better tide.\""
+          "waitRes": "\"Pity.\" She raises her rum glass in a sly toast. \"Still, any good captain knows how to wait for high tide.\""
         },
         "jump": {
           "title": "Cutthroat",
-          "text": "Risky traps Sam against the pantry door, one hand braced beside his head, lips curled. \"I'll ruin you,\" she whispers. \"I'll outbid you, outwit you, and outlast you.\" Her voice drops. \"I'll start with your mouth.\" And she kisses him, a challenge and a promise. The door shudders on its hinges, and her spiced perfume overwhelms the pantry's smell of flour. Her eyes burn with challenge and wanting.",
+          "text": "Risky pins you back against the pantry door with one hand braced beside your head and her knee wedged firmly between your thighs. \"I'll ruin you, Sam—outbid you, outwit you, and outlast you,\" she purrs, spiced perfume enveloping you as her other hand drops to your belt. \"Starting right now.\"",
           "image": {
             "comp": "pinning him against a door with a hand beside his head, wicked grin",
             "setting": "pantry door in a dim hallway, a lantern behind her",
             "sam": true
           },
           "go": "Kiss back",
-          "goRes": "The kiss is greedy, then startlingly honest. When she breaks away she looks furious at how much she enjoyed it.",
+          "goRes": "You kiss her hungrily, hiking up her skirt against the pantry door and sliding a hand between her thighs while she wraps her fist around your cock, gasping furiously at how good it feels.",
           "wait": "\"Wait.\"",
-          "waitRes": "\"Hmph.\" She steps back, adjusting her coat. \"You're lucky I like a challenge.\""
+          "waitRes": "\"Hmph.\" She steps back, smoothing her coat with a smirk. \"You're lucky I enjoy a challenge.\""
         }
       }
     },
@@ -116,51 +116,51 @@
       "events": {
         "1": {
           "title": "Dead Tired",
-          "text": "Rottytops slumps over the bar at dawn, green hair in a mess, grinning from ear to ear. \"Dead tired,\" she says, delighted at her own joke. \"Get it? 'Cause I'm a zombie!\" Sam laughs. She goes pink. \"You laugh at my jokes. Nobody does that.\" Pale morning light turns her green hair almost gold. Her stitches are visible at the wrist, and she has stopped hiding them around him.",
+          "text": "Rottytops slumps across the bar counter at dawn with her green hair a wild tangle, grinning from ear to ear. \"Dead tired—get it? Because I'm a zombie!\" When you actually laugh, she flushes bright pink beneath her stitches. \"Nobody ever laughs at my terrible jokes except you.\"",
           "image": {
             "comp": "slumped over the bar with a wide, tired grin, green hair messy, flushed cheeks",
             "setting": "bar at dawn with pale light and empty mugs",
             "sam": true
           },
           "go": "Kiss her",
-          "goRes": "She tastes like berries and sleep. She gasps, then whoops softly into his shoulder. \"Eep! I'm so alive right now!\"",
+          "goRes": "She tastes like sweet berries and cool morning air, letting out a startled gasp before giggling happily against your shoulder. \"Eep! I feel totally alive right now!\"",
           "wait": "\"Not yet.\"",
-          "waitRes": "\"Aw, bummer.\" She pats his cheek, bouncing back up. \"Okay! Later. I'm so good at later.\""
+          "waitRes": "\"Aw, bummer.\" She pats your cheek, bouncing right back up. \"Okay! Later—I'm awesome at later.\""
         },
         "2": {
           "title": "Night Shift",
-          "text": "Rottytops sits on the roof with a legful of stitches, kicking her heels at the stars. \"Zombies don't sleep much,\" she says brightly. \"So I get lots of time to think.\" She looks at Sam. \"I think about you a lot. Is that gross? Don't answer that.\" The roof tiles are cold, and the stars are enormous. Her heels thump the eaves in an uneven rhythm, and her smile slips shy at the edges.",
+          "text": "Rottytops sits on the edge of the roof under a canopy of stars, swinging her stitched legs over the eaves. \"Zombies barely sleep, so I get hours and hours to daydream,\" she says brightly, sliding over to press her thigh against yours and rest a cool hand on your lap. \"Mostly about getting my hands on you. Is that weird? Don't answer.\"",
           "image": {
             "comp": "sitting on a roof with her legs swinging, bright smile with a shy blush",
             "setting": "rooftop at night under stars, her legs dangling over the edge",
             "sam": true
           },
           "go": "Join her",
-          "goRes": "He sits down beside her. She leans in, cheerful and curious and totally unashamed, and the stars get a good long look.",
+          "goRes": "Out on the starlit tiles, she leans in cheerful, shameless, and endlessly curious—exploring you with eager hands and mouth until you're breathless.",
           "wait": "\"Maybe not.\"",
-          "waitRes": "\"Okay!\" She hops up, a little wobbly. \"That's fine! I just wanted to say it out loud.\""
+          "waitRes": "\"Okay!\" She hops up with a slight wobble. \"Totally fine—I just wanted to say it out loud.\""
         },
         "3": {
           "title": "Graveyard Shift",
-          "text": "Rottytops pops her head out from under Sam's bed at midnight. \"Surprise! I wanted to ask something and I couldn't wait.\" She climbs out, cobwebs in her hair, and rests her chin on his mattress. \"Can I stay? I don't sleep, but I'm excellent company. And cuddling is, like, a ten out of ten.\" Dust bunnies cling to her skirts. The bed creaks as she props her chin on it, and her nose is smudged with something suspiciously green.",
+          "text": "Rottytops pops her head out from beneath your bedframe at midnight, cobwebs tangled in her green hair and a hopeful grin on her face. \"Surprise! Couldn't wait till morning—can I stay in bed with you? I don't need sleep, and my cuddling game is a solid ten out of ten.\"",
           "image": {
             "comp": "peering over the edge of a bed with cobwebs in her hair, wide hopeful smile",
             "setting": "Sam's room, moonlit, a scattering of mismatched socks",
             "sam": true
           },
           "go": "Let her stay",
-          "goRes": "She curls up warm and green and giggling, and the night gets very interesting very fast.",
+          "goRes": "She climbs onto the mattress, sheds her tattered clothes, and straddles your lap—giggling and moaning breathlessly as the night turns wild fast.",
           "wait": "\"Not tonight.\"",
-          "waitRes": "\"Okay, okay!\" She climbs back under the bed. \"I'll just be down here. Quietly. Probably.\""
+          "waitRes": "\"Okay, okay!\" She ducks back under the bedframe. \"I'll just hang out down here—super quietly. Probably.\""
         },
         "jump": {
           "title": "Surprise Kiss",
-          "text": "Rottytops leaps out from behind a door shouting \"Boo!\" and Sam doesn't even flinch. She tilts her head. \"Huh. You're not scared of me.\" A grin spreads. \"Then how about this?\" She grabs his face and plants a big smacking kiss on him. The hall is dark, and her grin is the brightest thing in it. Her heart does not beat, but her cheeks are visibly hot.",
+          "text": "Rottytops leaps out from behind a doorway shouting \"Boo!\"—and when you don't even flinch, she tilts her head with a wide, wicked grin. \"Huh, not scared at all? Let's try this instead!\" Grabbing your face in both hands, she plants a loud, messy kiss right on your mouth.",
           "image": {"comp":"grabbing his face mid-leap, grinning wildly","setting":"hallway doorway with a lantern and shadows","sam":true},
           "go": "Kiss her back",
-          "goRes": "She squeals, hugs him, and spins them both around. \"Best scare ever!\"",
+          "goRes": "She squeals in delight, wraps her legs around your waist, and lets you carry her straight to your bedroom.",
           "wait": "\"Whoa, wait!\"",
-          "waitRes": "\"Oops!\" She laughs, ears pink. \"Okay! Too fast. I'll try slower. Maybe.\""
+          "waitRes": "\"Oops!\" She laughs, ears turning pink. \"Too fast—I'll try slower next time. Maybe.\""
         }
       }
     }

@@ -4,55 +4,55 @@
       "events": {
         "1": {
           "title": "Rooftop Wind",
-          "text": "Lyn's patrol ends on the roof, where the wind comes straight off the plains road and she can finally breathe. Sam climbs up with two mugs of tea. \"Four walls make me itchy,\" she admits, leaning on the chimney. \"Funny. You're the first thing in this town that doesn't.\" She hasn't stopped watching him since he sat down. Below them the town hums, and her hand rests near his on the tiles, close enough that neither mentions it.",
+          "text": "Lyn's patrol ends on the roof, where the wind comes straight off the plains road and she can finally breathe. You climb up with two mugs of tea. \"Four walls make me itchy,\" she admits, leaning against the chimney. \"Funny—you're the first thing in this town that doesn't.\" She hasn't stopped watching you since you sat down, and her fingers brush yours on the warm tiles, close enough that neither of you pulls away.",
           "image": {
             "comp": "leaning against a chimney with her ponytail whipping in the wind, a sideways grin, mug in hand",
             "setting": "rooftop of the house at dusk, the town's lantern-lit roofs below",
             "sam": true
           },
           "go": "Kiss her",
-          "goRes": "She tastes of tea and open sky. When she laughs against his mouth it sounds a lot like a challenge accepted.",
+          "goRes": "She tastes of spiced tea and open sky, and when she laughs softly against your mouth, she grabs your shirt to pull you back in.",
           "wait": "\"Careful, Lyn.\"",
-          "waitRes": "\"Careful is for people who lose.\" She bumps his shoulder, grinning, and goes back to watching the road, a little pink around the ears."
+          "waitRes": "\"Careful is for people who lose.\" She bumps her shoulder into yours, grinning, pink around the ears."
         },
         "2": {
           "title": "Sparring Rematch",
-          "text": "Lyn drags Sam to the yard behind the stables for a lesson with practice swords, which he loses in four seconds. She pins his wooden blade under her boot, breathing hard, flushed and pleased. \"Ha! Again?\" Then she sees how close they are, and the grin shifts into something quieter. \"...Or we could call it a draw.\" A few stable cats watch from the rail, deeply unimpressed. Her sword arm is steady, but her pulse in her throat is not.",
+          "text": "Lyn drags you to the yard behind the stables for a lesson with practice swords, which you lose in four seconds flat. She pins you on your back in the straw, straddling your hips, breathing hard and flushed from the exertion. \"Ha! Again?\" Then she feels how hard you are beneath her, and her cocky grin softens into heat. \"...Or we could call it a draw, and I use my hands instead.\"",
           "image": {
             "comp": "standing over him with a practice sword, flushed and breathless, a confident smile softening",
             "setting": "stable yard behind the house in late afternoon light, straw and training dummies",
             "sam": true
           },
           "go": "Call it a draw",
-          "goRes": "She drops the sword in the straw and pulls him up by both hands. The rest of the lesson is not about swordplay, and Lyn is every bit as competitive about it.",
+          "goRes": "She tosses the wooden blade into the straw and drags you into the tack room, where she jerks your cock with calloused hands and then sucks it, determined to make you cum first.",
           "wait": "\"Best of three.\"",
-          "waitRes": "\"Coward.\" But she's laughing, and she tosses him a towel. \"Fine. I'll win the next two and then we'll talk terms.\""
+          "waitRes": "\"Coward.\" She laughs, rolls off your lap, and tosses you a towel. \"Fine—I'll win the next two, then collect my prize.\""
         },
         "3": {
           "title": "Out of the Rain",
-          "text": "A storm drives Lyn off the roof for the first time. She turns up at Sam's door soaked to the skin, scowling at the ceiling like it's a personal insult. \"Don't say anything. I'm not used to sleeping under a lid.\" She hovers, dripping, and then, quietly, \"I'd rather not do it alone tonight.\" Thunder rattles the shutters again, and she flinches, then scowls at herself for it. A dripping puddle spreads under her boots.",
+          "text": "A thunderstorm finally drives Lyn off the roof. She shows up in your doorway soaked to the skin, her wet clothes clinging to every curve, scowling at the ceiling like it's a personal insult. \"Don't say a word—I'm not used to sleeping indoors.\" She hovers, dripping, before peeling off her soaked tunic and baring her chest in the firelight. \"I'm not spending the night alone, Sam. Make room.\"",
           "image": {
             "comp": "standing in a doorway wet from rain, green ponytail dripping, awkward but earnest expression",
             "setting": "Sam's bedroom with a small fire lit, rain streaming down the window",
             "sam": true
           },
           "go": "Let her in",
-          "goRes": "He wraps a blanket around her shoulders, and for once she doesn't argue. Somewhere between the thunder and the dark, the lid stops bothering her.",
+          "goRes": "You strip off the rest of her wet clothes, pull her under your sheets, and fuck her until she's flushed, panting and warm all the way through, the storm forgotten.",
           "wait": "\"Dry off first.\"",
-          "waitRes": "\"Right. Practical.\" She huffs, but she's smiling. \"I'll hang my cloak by the fire. Don't think this means I'm leaving.\""
+          "waitRes": "\"Right. Practical.\" She huffs, though a grin tugs at her mouth. \"I'll dry by the fire—don't think I'm leaving your bed.\""
         },
         "jump": {
           "title": "Overdue Challenge",
-          "text": "Lyn has been circling Sam for weeks and hates it. She finally corners him in the hallway by the back stairs. \"I don't do slow. I've turned down titles and armies and I'm not going to be defeated by a skinny bookworm in a hoodie.\" She plants a hand on the wall beside his head. \"So. Do I win, or do I have to try harder?\" She has smelled of rain and leather all week, and the whole house has noticed, and she knows that, and does not care.",
+          "text": "Lyn has been circling you for weeks and hates hesitating. She finally corners you in the dim hallway by the back stairs, slamming a hand against the wall beside your head and pressing her thigh between yours. \"I don't do slow—I've turned down lords and armies, and I'm not losing to a bookworm in a hoodie,\" she growls, reaching straight for your belt. \"Let's take this upstairs. Now.\"",
           "image": {
             "comp": "pinning a hand against the wall beside him, fierce grin, a faint blush across her nose",
             "setting": "narrow back-stairs hallway of the house, lantern light",
             "sam": true
           },
           "go": "Let her win",
-          "goRes": "She kisses him the way she does everything, all at once and at a full run, and he is gently surprised to find he is keeping up.",
+          "goRes": "She kisses you at a full sprint, kicks open your bedroom door, shoves you onto the mattress and gets her hand around your cock, taking what she wants like she's conquering territory.",
           "wait": "\"Give me a minute.\"",
-          "waitRes": "\"A minute.\" She narrows her eyes, then lets him go with a snort. \"I've waited on armies for longer. I'll be on the roof.\""
+          "waitRes": "\"A minute.\" She narrows her eyes, squeezes your hip once, and snorts. \"I've waited on armies longer. I'll be on the roof.\""
         }
       }
     },
@@ -60,55 +60,55 @@
       "events": {
         "1": {
           "title": "Evening Vespers",
-          "text": "Rhea has turned the little storeroom off the east hall into a chapel of sorts, with candles and a single brass bell. Sam finds her there after closing. \"I was tending a great many souls once,\" she says, serene as a held breath. \"Tonight I find I would rather tend one.\" Her hand rests against his cheek, cool and impossibly gentle. The smell of wax and old incense hangs about her, and the small bell throws a tiny shadow on the wall.",
+          "text": "Rhea has turned the little alcove off the east hall into a quiet sanctuary with tall candles and a single brass bell. You find her there after closing. \"I tended a great many souls once,\" she says, serene as a held breath, resting a cool, impossibly gentle hand against your cheek. \"Tonight I find I would rather tend just one.\"",
           "image": {
             "comp": "standing among candles in a small chapel nook, one hand raised to his cheek, a serene and tender smile",
             "setting": "tiny candlelit chapel in a storeroom, brass bell, folded vestments",
             "sam": true
           },
           "go": "Kiss her",
-          "goRes": "Her lips are cool, then not. She lets out a breath like someone setting down a very old weight.",
+          "goRes": "Her lips are cool at first, then scorching warm, parting beneath yours with a long, trembling sigh like someone setting down an ancient weight.",
           "wait": "\"Lady Rhea, I'm not sure.\"",
-          "waitRes": "\"Of course.\" She smiles, unoffended and unhurried. \"I have waited centuries, child. I can wait for your heart to catch up.\""
+          "waitRes": "\"Of course.\" She smiles, unoffended and unhurried. \"I have waited centuries, Sam—I can wait for your heart to catch up.\""
         },
         "2": {
           "title": "Confession",
-          "text": "She asks Sam to sit with her in the garden alcove, where the lanterns are dim. \"People used to kneel to confess,\" Rhea says, smoothing her robes. \"No one has asked for my confession in a very long time.\" Her fingers find his, and she holds them with startling warmth. \"I want to be touched without being worshipped. Can you do that?\" Night jasmine drifts in from the beds, and when she speaks again her voice is nearly human, nearly frightened.",
+          "text": "She asks you to sit with her in the moonlit garden alcove, where the lanterns burn low. \"Mortals used to kneel before me to confess,\" Rhea murmurs, her fingers lacing warmly through yours before guiding your hand onto her thigh. \"No one has asked for my confession in a very long time. I want to be touched—pleasured—without being worshipped. Can you give me that?\"",
           "image": {
             "comp": "seated on a garden bench, holding his hand in both of hers, an uncertain, honest expression",
             "setting": "moonlit garden alcove with hanging lanterns and night-blooming flowers",
             "sam": true
           },
           "go": "Say yes",
-          "goRes": "He's very careful with her. She is very quiet, and then not so quiet, and her sigh is that of someone who had forgotten she was allowed.",
+          "goRes": "You hike up her robes, spread her thighs, and stroke and finger her pussy with unhurried devotion until her quiet, breathless gasps turn into shuddering moans against your shoulder.",
           "wait": "\"Tell me slowly, Rhea.\"",
           "waitRes": "\"Slowly.\" She laughs, low and pleased. \"Yes. You understand mercy better than most priests. We shall go slowly.\""
         },
         "3": {
           "title": "A Night Without Vigil",
-          "text": "Rhea is waiting in her room with the bell silenced and the candles lit low. The matron's composure is there, but her hands are not quite steady. \"I have kept vigil for the faithful for six hundred years,\" she says. \"Tonight I wish to be only a woman who is wanted. Will you stay?\" The room smells faintly of lavender. Her hair is unbound, and it spills nearly to her waist, silver in the candlelight.",
+          "text": "Rhea is waiting in her room with the candles lit low, her silver hair unbound and spilling past her waist over bare shoulders as her robe falls open. \"I have kept vigil for the faithful for six hundred years,\" she whispers, her hands trembling slightly on her sash. \"Tonight I wish to be nothing more than a woman thoroughly taken in bed. Will you stay?\"",
           "image": {
             "comp": "sitting at the edge of a large bed in a loose robe, hands folded, a nervous but dignified smile",
             "setting": "elegant bedroom with soft candlelight and heavy curtains",
             "sam": true
           },
           "go": "Stay",
-          "goRes": "He stays. The candles burn low and nobody watches the door, and she does not seem like anything but a woman who is wanted.",
+          "goRes": "You slide her robe off her shoulders, settle between her parted thighs, eat her pussy until she shakes, then fuck her slow and deep until dawn without a single prayer spoken.",
           "wait": "\"Are you sure?\"",
-          "waitRes": "\"I am older than most mountains, Sam, and I am sure.\" A tender smile. \"But you may take the night to be certain. I shall be here.\""
+          "waitRes": "\"I am older than most mountains, Sam, and I am certain.\" A tender smile. \"Take the night to be sure—I shall be waiting.\""
         },
         "jump": {
           "title": "Quiet Hour",
-          "text": "Rhea finds Sam alone in the kitchen at some deep hour of the night, stirring warm milk. Without a word she takes the spoon and sets it aside. \"I have been very good for a very long time,\" she murmurs. \"I find I am tired of it.\" She steps closer, and for a moment the air around her feels ancient and warm at once. The clock in the hall has ticked past three. The steam rises, and for once she does not seem eternal, only tired and warm.",
+          "text": "Rhea finds you alone in the kitchen past three in the morning, stirring warm milk. Without a word she takes the spoon, sets it aside, and presses her lush, warm body flush against yours. \"I have been virtuous for a very long time,\" she purrs against your throat, her hand sliding down to your belt. \"And I am tired of restraint.\"",
           "image": {
             "comp": "stepping close in a dim kitchen, spoon set aside, gaze steady and warm with a hint of mischief",
             "setting": "dim kitchen at night, a pot of milk steaming on the hearth",
             "sam": true
           },
           "go": "Kiss her",
-          "goRes": "Time seems to forget itself. Rhea kisses him like someone remembering a song they once knew by heart.",
+          "goRes": "Time seems to stop as she kisses you breathless, hikes up her skirts, and drags you to bed with her hand already wrapped around your cock, like she's been starving for centuries.",
           "wait": "\"I'm just making milk.\"",
-          "waitRes": "\"So you are.\" She laughs, soft and amused, and pours herself a cup. \"Then we'll sit. I will find my courage over the dregs.\""
+          "waitRes": "\"So you are.\" She laughs softly and pours herself a cup. \"Then we shall sit—and I will find my courage over the dregs.\""
         }
       }
     },
@@ -116,55 +116,55 @@
       "events": {
         "1": {
           "title": "Encore",
-          "text": "Manuela is still in her stage dress when Sam finds her at the back of the empty hall, humming the last bars of an aria to the dusty chairs. \"Nobody claps when no one is looking,\" she says, with a wry little laugh. \"Be a darling and applaud.\" He does. She bows, takes his hand, and stays bowed a beat too long. Dust turns slowly in the single beam of the lantern, and she is smiling the brittle way people do when they are afraid to hope.",
+          "text": "Manuela is still in her low-cut stage gown when you find her at the back of the empty hall, humming the last bars of an aria to the dusty chairs. \"Nobody claps when the house is empty,\" she says with a wry laugh. \"Be a darling and applaud.\" You do—and when she takes your hand for a theatrical bow, she presses close, letting you smell wine, perfume, and warm skin.",
           "image": {
             "comp": "taking a theatrical bow in a stage dress, one hand holding his, a playful and slightly vulnerable smile",
             "setting": "empty stage and hall after the show, a single lantern left lit",
             "sam": true
           },
           "go": "Kiss her",
-          "goRes": "She hums against his mouth, a startled note that she lets fade, then kisses him again. \"Mm. Bravo, darling.\"",
+          "goRes": "She hums a startled, delighted note right against your mouth, then parts her lips and kisses you like you're the only audience that matters.",
           "wait": "\"Maybe not yet, Manuela.\"",
-          "waitRes": "\"Always the gentleman.\" She flutters her fan, winks, and sweeps away. \"I'll keep the front row warm.\""
+          "waitRes": "\"Always the gentleman.\" She flutters her fan, winks, and sweeps off. \"I'll keep the front row warm for you.\""
         },
         "2": {
           "title": "Husband Hunting",
-          "text": "Manuela has been through four lemon wines and a long list of her disappointments. \"I have been looking for a husband for years,\" she says, resting her chin on her hand. \"Every one wants a diva or a doctor. None of them want to know whether I take my tea sweet.\" She fixes Sam with a long look. \"You asked. Do you realize how rare that is?\" Her lipstick has smudged on the rim of the glass. The ghost of a tune hums under every word, as it always does with her.",
+          "text": "Manuela has been through four lemon wines and a long list of her romantic disasters. \"Every man wants a diva or a physician,\" she sighs, leaning against you at the bar with her hand resting high on your thigh. \"None of them ever ask how I take my tea—and you did.\" Her dark eyes drop straight to your groin. \"Let me thank you properly, darling.\"",
           "image": {
             "comp": "slumped charmingly against the bar, chin on her hand, sad smile turning warm",
             "setting": "back corner of the bar, empty glasses, low lamp",
             "sam": true
           },
           "go": "Take her hand",
-          "goRes": "She sets her hand over his, and her flirtatious patter falls away. What follows is slower and gentler than either of them expected.",
+          "goRes": "Her theatrical patter melts into soft, breathless sighs as she slips into a back booth with you, wraps her hand around your cock, and sucks it with eager, practiced lips.",
           "wait": "\"I'm not a husband.\"",
-          "waitRes": "\"I know, dear.\" A rueful chuckle. \"Hope is stubborn, though. Pour me another, and we'll pretend I'm not hopeful.\""
+          "waitRes": "\"I know, dear.\" A rueful chuckle. \"Hope is stubborn, though. Pour me another and let me pretend.\""
         },
         "3": {
           "title": "The Doctor Is In",
-          "text": "Manuela turns up at Sam's door with a medical satchel and a very straight face. \"Professional concern. You've been working far too hard. I'm prescribing rest, wine, and a good deal of company.\" The satchel lands on the chair. Her hand lands on his chest. \"I'll be monitoring your pulse personally.\" The satchel smells of herbs and tincture, the way a real physician's does, and her fingers on his wrist are surprisingly steady.",
+          "text": "Manuela appears in your bedroom doorway carrying a medical satchel and wearing nothing underneath her unbuttoned physician's coat. \"Professional concern, darling—you've been overworking yourself,\" she purrs, dropping the satchel and pressing her bare chest against yours. \"I'm prescribing wine, bedrest, and a very thorough physical examination.\"",
           "image": {
             "comp": "leaning in the doorway with a doctor's bag over one shoulder, hand on his chest, teasing smile",
             "setting": "Sam's bedroom lit by a single lamp, a bottle and two glasses on the table",
             "sam": true
           },
-          "go": "Let her examine him",
-          "goRes": "His pulse is, she reports with great satisfaction, scandalous. The treatment lasts until well after the wine.",
+          "go": "Let her examine you",
+          "goRes": "Your pulse is, she declares breathlessly while straddling your hips, positively scandalous—and she sinks down onto your cock and rides you for hours as treatment.",
           "wait": "\"Doctor, I'm fine.\"",
-          "waitRes": "\"Doctors hear that every day, and it is always a lie.\" She pats his cheek. \"Rest tonight, then. The treatment will keep.\""
+          "waitRes": "\"Doctors hear that every day, and it's always a lie.\" She pats your cheek with a wicked wink. \"Rest tonight, then—I'll check on you later.\""
         },
         "jump": {
           "title": "Opera Fever",
-          "text": "Manuela sings through the entire evening, a full aria for the lounge crowd, her voice rolling over the room like warm honey. When the last note ends she skips the applause, marches straight to Sam, and kisses him in front of everyone. A beat later she goes pink to the ears. \"Oh dear. That was meant for the dressing room.\" Silence follows, then a scatter of boots and delighted whistles, and the diva who has faced a thousand audiences cannot lift her head.",
+          "text": "Manuela sings her heart out for the lounge crowd, her rich voice rolling over the room like warm honey. When the final note fades, she ignores the applause, marches straight up to you, and kisses you breathless in front of everyone—her hand sliding shamelessly down your hip before she catches herself, turning scarlet. \"Oh heavens—that was meant for behind closed doors!\"",
           "image": {
             "comp": "caught mid-kiss then pulling back, hand to her cheeks, flustered and delighted",
             "setting": "lounge stage with lanterns and astonished patrons behind",
             "sam": true
           },
           "go": "Kiss her again",
-          "goRes": "The room gives them a long, delighted cheer. Manuela hides her face in his shoulder, laughing, and does not let go.",
+          "goRes": "The lounge erupts into cheers as you sweep her straight upstairs to your bedroom, where she strips naked and finishes the performance with her hands and mouth on your cock.",
           "wait": "\"Maybe in private.\"",
-          "waitRes": "\"Yes, yes. Dressing room. I'm so sorry, darling.\" She fans herself furiously, and her eyes sparkle all the same."
+          "waitRes": "\"Yes, yes—the dressing room! Forgive me, darling.\" She fans her flushed chest, eyes sparkling all the same."
         }
       }
     },
@@ -172,55 +172,55 @@
       "events": {
         "1": {
           "title": "Night Watch",
-          "text": "Lethe has the door shift, which means she is awake and hostile to everything. Sam brings her a bowl of soup anyway. She sniffs it, glares at him, and eats it. \"Humans,\" she mutters, tail twitching. \"You give things and want nothing. It makes me suspicious.\" A pause. \"...I do not hate it.\" Past midnight the hall is quiet, the lamp throwing her long shadow across the door, ears swiveling toward every creak.",
+          "text": "Lethe is working the door shift, bristling and hostile to every shadow in the hall. You bring her a hot bowl of soup anyway. She sniffs it suspiciously, glares at you, and eats every bite. \"Humans,\" she mutters, her tail twitching against your leg. \"You give things and demand nothing. It puts me on edge.\" A beat. \"...I do not hate it.\"",
           "image": {
             "comp": "sitting on a stool by the door with a bowl in her hands, ears angled toward him, guarded but softening",
             "setting": "front entrance hall at night, lantern on the wall, shut door",
             "sam": true
           },
           "go": "Offer a smile",
-          "goRes": "She sets the bowl down and, without comment, kisses him. It's brief and fierce, like a claw's swipe, and she wipes her mouth afterward as if to check it was real.",
+          "goRes": "She sets the bowl aside, grabs your collar, and kisses you hard—brief, fierce, and warm, wiping her mouth afterward as if checking it was real.",
           "wait": "\"Eat your soup.\"",
-          "waitRes": "\"I am.\" She narrows her eyes, then looks away. \"You are the only one who did not ask for anything. Remember that.\""
+          "waitRes": "\"I am.\" She narrows her eyes, ears flattening slightly. \"You are the only one who asked for nothing. Remember that.\""
         },
         "2": {
           "title": "Grooming",
-          "text": "Lethe stands in the washroom with her tail soaked after a rainy patrol, scowling at a comb she cannot reach. Sam offers to help, and she nearly bites him for it. Then, stiffly, she turns and presents her back. \"Slowly. If you tug, I will know.\" Her purr starts on the second stroke. She pretends it's a cough. The room smells of damp fur and lavender soap. Her tail trembles at the tip whenever the comb catches a tangle.",
+          "text": "Lethe stands in the washroom with her fur damp after a rainy patrol, scowling at a comb she can't reach behind her back. You offer to help, and she nearly hisses before stiffly turning around and presenting her tail. \"Slowly. If you tug, I will bite.\" Her low purr starts on the second stroke—and by the fourth, she's leaning her ass back against your groin, trembling.",
           "image": {
             "comp": "back turned and tail held out, glancing over her shoulder with an embarrassed glare, ears flat then softening",
             "setting": "small washroom with warm steam and a single window, a comb on the sill",
             "sam": true
           },
           "go": "Keep brushing",
-          "goRes": "The purr grows. She turns around, pulls him in by the front of his hoodie, and remarks quietly that she has decided to allow more.",
+          "goRes": "Her purr turns into a rough groan; she spins around, drops to her knees, pulls out your cock and takes it in her mouth with fierce, possessive focus.",
           "wait": "\"Tell me when to stop.\"",
-          "waitRes": "\"I will.\" Her tail curls around his wrist. \"Not yet. Do not look so proud.\""
+          "waitRes": "\"I will.\" Her tail wraps tightly around your wrist. \"Not yet. Do not look so smug.\""
         },
         "3": {
           "title": "Claiming the Night",
-          "text": "Lethe shows up at Sam's room off-shift, arms crossed, tail lashing. \"I have thought it over. I distrust you less each week. It is irritating.\" She steps in and shuts the door with her heel. \"A warrior should take what she has decided on. I have decided on you.\" Moonlight cuts across the floorboards. She stands there as if facing down a charge, but her ears keep drifting flat and then upright again.",
+          "text": "Lethe marches into your bedroom off-shift, arms crossed and tail lashing, kicking the door shut behind her. \"I have thought it over. I distrust you less every week, and it is infuriating,\" she growls, pulling her top off and tossing it aside. \"A warrior claims what she wants. I have decided I want you in my bed—now.\"",
           "image": {
             "comp": "stepping inside and kicking a door shut, arms crossed but a small shy smile tugging her mouth",
             "setting": "Sam's room with the window open to a clear cold night",
             "sam": true
           },
           "go": "Welcome her",
-          "goRes": "She is as forceful as she is blunt, and then startlingly soft. When dawn comes she is still there, curled against him and deeply offended at how comfortable it is.",
+          "goRes": "She climbs on and rides your cock with fierce, demanding intensity—and by dawn she's curled purring against your chest, deeply offended at how good it felt.",
           "wait": "\"Think it over more.\"",
-          "waitRes": "\"I have thought. You are the one who must think.\" She snorts, but a touch lingers on his sleeve. \"Do not take long.\""
+          "waitRes": "\"I have thought—you are the slow one.\" She snorts, brushing her fingers along your arm. \"Do not keep me waiting long.\""
         },
         "jump": {
           "title": "Claw Marks",
-          "text": "Sam leans in to pull a loose thread from her cloak, and Lethe goes rigid, tail bristling. A heartbeat of pure hissing stillness. Then she grabs his collar and kisses him, hard, as if daring him to flinch. \"Do not mention this,\" she warns. \"Do not tell the others. Do not make it a story.\" The wall is cold behind him, her breath warm against his jaw, and her heart is hammering fast enough to feel through her cloak.",
+          "text": "You lean in to pluck a loose thread from her cloak, and Lethe goes rigid, tail bristling—a heartbeat of pure hissing tension. Then she grabs your collar, slams you back against the wall, and kisses you hungrily, grinding her hips against yours. \"Say nothing of this,\" she pants against your jaw, her hand dropping to your belt. \"Do not tell the others. Come upstairs.\"",
           "image": {
             "comp": "gripping his collar, ears pinned, fierce and flustered glare after a kiss",
             "setting": "the hallway by the front door, shadows from a hanging lantern",
             "sam": true
           },
           "go": "Say nothing and kiss back",
-          "goRes": "He keeps his word. She keeps pressing closer, and her tail slowly stops lashing.",
+          "goRes": "You keep your mouth shut except to kiss her back, following her upstairs where she tackles you onto the mattress and gets her hand around your cock.",
           "wait": "\"We should talk.\"",
-          "waitRes": "\"No.\" Ears flat. Then, muffled, \"...Later. Perhaps.\" She's gone before he can see her face."
+          "waitRes": "\"No.\" Ears pinned flat. Then, muffled: \"...Later. Perhaps.\" She slips into the shadows before you can answer."
         }
       }
     },
@@ -228,55 +228,55 @@
       "events": {
         "1": {
           "title": "Moonlit Path",
-          "text": "Panne walks the garden path alone every night and never explains why. Tonight Sam falls into step beside her without asking, and she lets him. \"Most humans fill silence,\" she says at last, tall against the moonlight, long ears tilted toward him. \"You do not. I find I have stopped counting the exits when you are near.\" Crickets stop and start in the hedges. Her stride is silent on the gravel, but tonight it is a shade slower than it should be.",
+          "text": "Panne walks the garden path alone every night and never explains why. Tonight you fall into step beside her without a word, and she lets you stay. \"Most humans rush to fill silence,\" she says softly, tall in the silver moonlight with her long ears angled toward you. \"You do not. I realized tonight I have stopped counting the exits whenever you are near.\"",
           "image": {
             "comp": "walking a moonlit garden path, long ears tilted toward him, a rare soft look",
             "setting": "garden path with lanterns and silver moonlight on the hedges",
             "sam": true
           },
           "go": "Hold her hand",
-          "goRes": "She lets him. After a long moment she turns, tucks her hair behind her ear, and kisses him as lightly as a rabbit crossing snow.",
+          "goRes": "She laces her fingers through yours, turns after a quiet beat, and kisses you softly—lingering just long enough to make your heart race.",
           "wait": "\"Take your time.\"",
-          "waitRes": "\"I will.\" The ghost of a smile. \"Do not mistake slow for no. I wait. It is what my people know best.\""
+          "waitRes": "\"I will.\" The faintest smile curves her lips. \"Do not mistake slow for no—patience is what my kind knows best.\""
         },
         "2": {
           "title": "Trust",
-          "text": "Panne is seated stiffly on the library window seat with her knees drawn up when Sam finds her. \"My people were hunted for what we are,\" she says, eyes on the glass. \"I was taught not to be touched by strangers. You have not been a stranger for some time.\" She holds out one hand, palm up, trembling just slightly. The glass fogs where she breathes, and her knuckles are pale around her knees. She has not looked away from him once.",
+          "text": "Panne sits stiffly on the library window seat with her knees drawn up when you find her. \"My people were hunted for what we are,\" she says quietly, eyes fixed on yours. \"I was taught never to let strangers touch me—and you have not been a stranger for a long time.\" She uncurls her legs, parting them slightly, and holds out a trembling hand. \"Touch me, Sam. Show me.\"",
           "image": {
             "comp": "seated in a window seat with knees up, one palm extended toward him, braced and hopeful",
             "setting": "quiet library nook with rain on the windowpane",
             "sam": true
           },
           "go": "Take her hand",
-          "goRes": "He holds it, then more. She lets him closer by degrees, and every inch is a gift she hands over deliberately.",
+          "goRes": "You take her hand and guide her onto the cushions, fingering her pussy with slow, deliberate care until her trembling turns into soft, breathless gasps.",
           "wait": "\"We can stop anytime.\"",
-          "waitRes": "\"I know.\" She exhales shakily and keeps his hand. \"That is why I could ask. Give me a moment.\""
+          "waitRes": "\"I know.\" She exhales shakily and holds onto your fingers. \"That is why I dared to ask. Give me a moment.\""
         },
         "3": {
           "title": "Burrow",
-          "text": "The room is dark when Panne lets Sam in, and it has been rearranged into something like a burrow, blankets heaped in the corner, a lantern turned low. \"I do not do this lightly,\" she says, one ear flicking. \"I have never brought anyone into my den. Not even in my head.\" She sits and pats the heap beside her. The blankets smell of cedar and warm wool. Her ears droop low, a small tell she would never admit, and her fingers pluck at the hem.",
+          "text": "The room is dim when Panne lets you inside, transformed into a deep nest of heaped blankets and warm pillows in the corner. \"I do not do this lightly,\" she whispers, her long ears drooping shyly as she slips out of her dress, baring her slender, athletic body in the lantern glow. \"I have never brought anyone into my burrow. Come lie with me.\"",
           "image": {
             "comp": "sitting on a nest of blankets, patting the space beside her, long ears low and shy, tall frame folded small",
             "setting": "her private room with blankets heaped like a nest and a low lantern",
             "sam": true
           },
           "go": "Sit with her",
-          "goRes": "He settles in beside her. She tucks herself under his arm, quiet and impossibly warm, and the night belongs to them.",
+          "goRes": "You crawl into the nest of blankets beside her, wrap her up in your arms, and fuck her slowly, your cock sliding into her warm, wet pussy.",
           "wait": "\"Is this a lot to ask?\"",
-          "waitRes": "\"It is a lot to give,\" she says gravely. \"Think on it. I will keep the blankets.\""
+          "waitRes": "\"It is a great deal to give,\" she says gravely. \"Think on it—I will keep the nest warm.\""
         },
         "jump": {
           "title": "Spring Hare",
-          "text": "A hard spring night and Panne is sleepless, restlessly pacing the kitchen, ears twitching. Sam arrives for water and she suddenly closes the gap, pressing her forehead to his and then his mouth. \"Forgive me,\" she whispers. \"I have run so long. I am tired of running from this one thing.\" The window is open to the damp air, and the lamp is out. Her long ears tremble as she backs a step away, and then forward again.",
+          "text": "On a restless spring night you find Panne pacing the dark kitchen, flushed and breathing fast, her ears twitching at every sound. The moment she sees you, she closes the distance, pressing her body hard against yours and kissing you with sudden, desperate heat. \"Forgive me,\" she pants against your mouth, tugging at your shirt. \"I have run my whole life—I am tired of running from wanting you.\"",
           "image": {
             "comp": "pressed close to him with her forehead against his, eyes closed, ears trembling",
             "setting": "dim kitchen with a window open to a warm spring night",
             "sam": true
           },
           "go": "Kiss her back",
-          "goRes": "She lets out a startled laugh into the kiss, as if she had spooked herself, then stays right where she is.",
+          "goRes": "She lets out a breathless, startled laugh into your mouth before pulling you straight to her room and into her nest of blankets, her hand already inside your pants.",
           "wait": "\"Panne, are you okay?\"",
-          "waitRes": "\"I am. I think.\" She retreats a pace, breathing hard. \"Give me time to be brave twice.\""
+          "waitRes": "\"I am. I think.\" She steps back a pace, chest heaving. \"Give me a moment to gather my nerve again.\""
         }
       }
     },
@@ -284,55 +284,55 @@
       "events": {
         "1": {
           "title": "Sky Watcher",
-          "text": "Corrin sits on the sill of the attic window most nights, looking at the town as if it were a map she is still learning. Sam joins her with a blanket. \"Everything here is so loud and so kind,\" she says, dreamy. \"In the fortress I never saw so many strangers smile.\" She leans her head on his shoulder and then, shyly, up. She tucks her hands inside the blanket, and the faintest glow of heat shimmers off her where the lantern light touches.",
+          "text": "Corrin sits on the attic windowsill most nights, gazing out at the lantern-lit town as if memorizing a new map. You join her with a warm blanket. \"Everything here feels so loud and alive,\" she murmurs dreamily, resting her head on your shoulder before tilting her chin up toward your lips, radiating a faint, feverish warmth.",
           "image": {
             "comp": "sitting on a window sill with a blanket around her shoulders, leaning against him, soft dreamy smile",
             "setting": "attic window above the rooftops with a view of town lights",
             "sam": true
           },
           "go": "Kiss her",
-          "goRes": "Her lips are warm, almost fevered, and she makes a small astonished sound, like she's tasted a new fruit.",
+          "goRes": "Her lips are scorching warm, and she lets out a soft, astonished sigh as she melts into your arms.",
           "wait": "\"Take it slow.\"",
-          "waitRes": "\"Oh. Yes.\" A shy, sleepy smile. \"There is no hurry. I have only just seen the sky.\""
+          "waitRes": "\"Oh—yes, of course.\" She offers a shy, sleepy smile. \"There's no rush at all.\""
         },
         "2": {
           "title": "Dragon Warm",
-          "text": "Corrin's hands run hot whenever she's flustered, a trait of that old blood. Tonight she stands in Sam's doorway holding a mug of cocoa that is nearly boiling. \"I am sorry. I was going to be calm about this.\" Her pupils flicker faintly. \"May I hold your hand? I think it would help us both.\" The cocoa steams in her fingers, nearly boiling. A faint scale-pattern shimmers on her wrist where she's nervous.",
+          "text": "Corrin's skin runs fever-hot whenever she's flustered—a quirk of her ancient blood. Tonight she stands in your doorway holding a steaming mug of cocoa, cheeks flushed gold and pupils slit with heat. \"I tried to stay calm about this,\" she whispers, setting the mug down and laying her hot palms flat on your chest, sliding them slowly downward. \"May I touch you? I'm burning up.\"",
           "image": {
             "comp": "standing in a doorway holding a steaming mug, eyes with a faint draconic glint, hopeful and nervous",
             "setting": "Sam's room, soft lamplight, a rug and shelf of books",
             "sam": true
           },
           "go": "Take her hand",
-          "goRes": "Her palm is hot as a hearth stone, and he finds he does not mind at all. She leans in, bold with sweetness, and learns what else warmth can mean.",
+          "goRes": "Her hands are hot as hearthstones as she unfastens your trousers, strokes your cock, then takes it in her mouth, eagerly learning every sound and shudder she can draw out of you.",
           "wait": "\"Let's sit first.\"",
-          "waitRes": "\"Of course.\" She curls up beside him on the rug and laughs at herself. \"I will cool down. A little.\""
+          "waitRes": "\"Of course.\" She curls up beside you on the rug with a soft laugh. \"I'll try to cool down a little.\""
         },
         "3": {
           "title": "Two Homes",
-          "text": "Corrin sits cross-legged on Sam's bed with a letter she has not finished in a month. \"I always belonged to two places and neither was really mine,\" she says. \"I think this might be the first home I chose.\" She sets the letter aside. \"I would like to choose you too, if you will let me.\" Outside, the last carts of the day rumble home. Her gaze goes between the letter, the window, and him, and settles at last on him.",
+          "text": "Corrin sits cross-legged on your bed in a loose nightshift, holding an unfinished letter she's been writing for a month. \"I always belonged to two worlds and neither felt truly mine,\" she says softly, setting the page aside and letting her shift slip off one bare shoulder. \"You feel like home, Sam—and I want to be yours tonight, completely.\"",
           "image": {
             "comp": "sitting cross-legged on a bed holding an unfinished letter, glancing up with open sincerity",
             "setting": "Sam's bedroom with a quilt, lamplight, a night window",
             "sam": true
           },
           "go": "Let her choose",
-          "goRes": "She chooses him slowly, gently, and with a trembling sort of bravery. The letter stays unwritten, and it no longer matters.",
+          "goRes": "You pull her shift off and push your cock into her scorching, tight pussy, holding her close as she gasps your name against your neck.",
           "wait": "\"Are you sure?\"",
-          "waitRes": "\"I think so.\" She hugs the letter to her chest. \"But I will finish this first. Wait for me.\""
+          "waitRes": "\"I think so.\" She hugs the letter to her chest, smiling warmly. \"Let me finish this first—wait for me.\""
         },
         "jump": {
           "title": "Cold Hands",
-          "text": "Corrin finds Sam on the porch in the winter chill and presses his cold hands between her feverish palms. \"You are freezing.\" Her fingers warm his through and through, and she looks up at him through the steam of her breath. \"I hope this is not strange. I feel like I have been waiting for an excuse.\" Frost gathers along the rail, and the steam of her breath curls up between them. A faint flush of gold creeps along her cheeks.",
+          "text": "Corrin finds you on the porch in the winter chill and presses your freezing hands between her fever-hot palms. \"You're ice cold,\" she murmurs, stepping flush against you so her heat radiates right through your clothes. Looking up through the steam of her breath, her eyes darken. \"I've been waiting for an excuse to warm you up properly—take me upstairs.\"",
           "image": {
             "comp": "holding his hands between hers with breath visible in cold air, shy and affectionate",
             "setting": "front porch in winter night with frost on the railings and warm lantern glow",
             "sam": true
           },
           "go": "Kiss her",
-          "goRes": "She is so warm that the cold forgets him entirely. Her laugh hiccups out in a puff of breath.",
+          "goRes": "She kisses you breathless, leads you straight to your room, and wraps her hot hands and bare body around you, stroking your cock until winter is forgotten.",
           "wait": "\"We should go in.\"",
-          "waitRes": "\"Yes. Yes, of course.\" She squeezes once more. \"Inside, then. But I am not letting go of your hands.\""
+          "waitRes": "\"Yes, of course.\" She squeezes your fingers tightly. \"Inside, then—though I'm not letting go of you.\""
         }
       }
     },
@@ -340,55 +340,55 @@
       "events": {
         "1": {
           "title": "Posture",
-          "text": "Eirika still stands as though a crown rested on her head, even sweeping the lounge floor after closing. Sam teases her gently about it. \"Habit,\" she apologizes, which makes him laugh. \"I am sorry, I did not mean...!\" She stops. She laughs too, helplessly. \"I think I have not laughed like this since the war ended.\" Her broom stands forgotten against the wall. She has not slouched once in the whole conversation, even now, even laughing.",
+          "text": "Eirika still carries herself as though wearing a crown, even while sweeping the lounge floor after closing. When you tease her gently about her royal posture, she starts to apologize, catches herself, and bursts into helpless laughter. \"I don't think I've laughed like that since the war ended,\" she admits, stepping closer with bright, unguarded eyes.",
           "image": {
             "comp": "laughing helplessly with a broom in hand, composure slipping, hand over her mouth",
             "setting": "lounge after closing, chairs stacked, lanterns burning low",
             "sam": true
           },
           "go": "Kiss her",
-          "goRes": "She kisses him with the grave sincerity she brings to everything, and apologizes afterward, and then kisses him again.",
+          "goRes": "She kisses you with the earnest devotion she brings to everything, whispers a soft apology against your lips, and immediately kisses you again.",
           "wait": "\"No need to rush.\"",
-          "waitRes": "\"Of course. Forgive me.\" She flushes. \"I tend to treat every feeling like a duty. Let me learn to let this be pleasant.\""
+          "waitRes": "\"Of course—forgive me.\" She flushes warmly. \"I tend to treat every feeling like a duty. Let me learn to simply enjoy this.\""
         },
         "2": {
           "title": "A Princess Off Duty",
-          "text": "Eirika asks Sam to walk with her through the evening market, not as a princess, but as nobody in particular. She buys a paper lantern, loses it to the wind, and chases it laughing. At the canal edge she turns, hair loose, cheeks bright. \"Is this what it is like? To simply be a person?\" The paper lantern bobs away on the wind, and she is breathless, hair sticking to her cheek, as joyful as a girl of fifteen.",
+          "text": "Eirika asks you to walk with her through the evening market—not as royalty, just as an ordinary woman. By the quiet canal edge, hair loose and cheeks flushed from chasing a runaway paper lantern, she catches your hands and pulls them to her waist. \"Is this what it's like to just be a person?\" she whispers, leaning into you in the shadows.",
           "image": {
             "comp": "standing at a canal edge with hair loose, laughing, flushed with delight",
             "setting": "evening market by a canal with paper lanterns and warm lights",
             "sam": true
           },
           "go": "Say yes, it is",
-          "goRes": "She takes his arm, and later, in the quiet of the stair, she takes more. She is earnest even about this, every touch an honest question.",
+          "goRes": "Back in the quiet of the upstairs hall, she lets her royal reserve melt entirely, guiding your hands over her bare breasts and between her thighs with breathless curiosity.",
           "wait": "\"Let's head home.\"",
-          "waitRes": "\"Yes. Of course.\" She slips her arm through his anyway. \"Just as far as the stair, then. I would like to keep the lantern light a little longer.\""
+          "waitRes": "\"Yes, of course.\" She slips her arm snugly through yours anyway. \"Walk me up the stairs, at least.\""
         },
         "3": {
           "title": "The Crown Set Down",
-          "text": "Eirika waits on the edge of Sam's bed, in a plain nightgown, with her hands pressed together. \"I have led armies and buried friends,\" she says quietly. \"I have never been asked what I wanted. I want this. I want you. And I am terrified.\" A tremulous smile. \"Please be patient with me.\" The candle gutters, and she catches the flame with her palm as if it were a thing to defend. Her voice wobbles on 'terrified'.",
+          "text": "Eirika sits on the edge of your bed in a thin nightgown, hands clasped tightly in her lap, cheeks crimson. \"I have led armies and buried friends,\" she whispers, meeting your eyes with quiet courage. \"Yet nobody ever asked what I desired. I want this—I want you inside me tonight. Please be patient with me.\"",
           "image": {
             "comp": "seated on the edge of a bed in a simple nightgown, hands clasped, brave and anxious",
             "setting": "Sam's room by candlelight, a plain coverlet and an open window",
             "sam": true
           },
           "go": "Be patient with her",
-          "goRes": "He is. She learns, tentatively, that a princess may be held without needing to hold up a kingdom.",
+          "goRes": "You slip off her nightgown and fuck her slowly, tenderly, your cock deep in her pussy, until her nervous trembling gives way to breathless cries and clinging hands.",
           "wait": "\"We can wait.\"",
-          "waitRes": "\"You are kind to offer.\" She nods, steadying. \"Another few days, then. I will practice courage.\""
+          "waitRes": "\"You're kind to offer.\" She nods, steadying her breath. \"A few more days, then—I will gather my courage.\""
         },
         "jump": {
           "title": "Apologies",
-          "text": "Eirika bumps into Sam in the corridor with an armful of linens and apologizes seven times. He catches the sheets, then her elbow. \"Sorry, I... Oh.\" She stops, staring at where his hand rests on her arm. \"I have apologized for everything for years. I do not want to apologize for this.\" And she kisses him, linens and all. The corridor smells of clean cotton. A single sconce throws her shadow long, and her heart is plainly pounding in her throat.",
+          "text": "Eirika collides with you in the corridor carrying an armful of linens and begins apologizing profusely before you steady her waist. She freezes, staring at your hands on her hips, her chest rising fast. \"I have spent years apologizing for everything,\" she breathes, dropping the sheets and grabbing your collar. \"I refuse to apologize for wanting you.\"",
           "image": {
             "comp": "kissing him with an armful of linens, eyes shut, a determined blush",
             "setting": "upstairs corridor with stacked linens and a dim sconce",
             "sam": true
           },
           "go": "Kiss her",
-          "goRes": "The linens fall, forgotten. She does not apologize once.",
+          "goRes": "The linens stay forgotten on the floorboards as she pulls you into her bedroom, unlaces her dress, and surrenders completely, baring her breasts to your hands and mouth.",
           "wait": "\"Eirika, wait.\"",
-          "waitRes": "\"Oh! I am so sorry!\" Red to the ears, she gathers the sheets and stops. \"...No. I am not sorry. Only early.\""
+          "waitRes": "\"Oh! Forgive me!\" Scarlet to her ears, she scoops up the sheets—then pauses. \"...No. I'm not sorry. Only early.\""
         }
       }
     },
@@ -396,55 +396,55 @@
       "events": {
         "1": {
           "title": "Lesson Plan",
-          "text": "Byleth is grading the house staff's reading exercises, which no one asked for, at the kitchen table. Sam sits down across from her. \"You made a mistake on line four,\" she says flatly. \"I did not correct it. I wanted you to stay.\" Her face does not change at all. The tip of her ear turns bright pink. Her quill scratches in the quiet. She has been rereading the same page for ten minutes, and the candle has burned down a finger's width.",
+          "text": "Byleth is grading the staff's reading exercises at the kitchen table—unprompted—when you sit across from her. \"You made an error on line four,\" she says evenly. \"I left it uncorrected so you would come sit with me.\" Her expression doesn't shift a millimeter, though the tips of her ears turn bright pink.",
           "image": {
             "comp": "sitting at a table with a quill and papers, expression unreadable, ear faintly pink",
             "setting": "kitchen table with papers, a candle, and a half-finished tea",
             "sam": true
           },
           "go": "Lean over and kiss her",
-          "goRes": "Her eyes widen by a hair. Then she pulls him down by the sleeve and returns the favor with unnerving precision.",
+          "goRes": "Her eyes widen by a fraction before she grabs your collar, pulls you across the table corner, and kisses you with startling, thorough focus.",
           "wait": "\"Maybe later.\"",
-          "waitRes": "\"Understood.\" She turns the page. Her pen hovers a beat too long. \"I will adjust the schedule.\""
+          "waitRes": "\"Understood.\" She turns the page, her quill hovering a beat too long. \"I will revise the schedule.\""
         },
         "2": {
           "title": "Massage Hours",
-          "text": "Byleth works the knots out of Sam's shoulders in the dim storeroom after a double shift, hands strong and exact. \"You hold tension here,\" she says. \"And here.\" A pause. \"I enjoy this more than I expected.\" Her thumbs slow. In the half-light, the corner of her mouth gives the smallest, rarest curve. The air smells of warm oil and cedar. Her hands have stilled on his shoulders, and she is watching the back of his neck with great attention.",
+          "text": "Byleth works the knots out of your shoulders in the dim storeroom after a double shift, her hands strong, warm, and exact. \"You carry tension here,\" she murmurs, sliding her oiled palms lower down your bare back to your waist. \"And here. I find I enjoy touching you more than anticipated.\"",
           "image": {
             "comp": "standing behind him, working his shoulders, a very faint smile at the corner of her mouth",
             "setting": "small storeroom turned massage room with warm oil lamp",
             "sam": true
           },
           "go": "Turn and take her hand",
-          "goRes": "She studies his face, nods once, as if concluding an experiment, and explores a great deal more.",
+          "goRes": "She studies your face, gives a single decisive nod as if concluding an experiment, and takes hold of your cock with oiled hands, stroking it with exact, methodical focus.",
           "wait": "\"That's enough for tonight.\"",
-          "waitRes": "\"Alright.\" Utterly neutral, and yet she lays the blanket over his shoulders before she goes."
+          "waitRes": "\"Very well.\" Utterly deadpan, yet she drapes a warm blanket carefully over your shoulders before leaving."
         },
         "3": {
           "title": "Hypothesis",
-          "text": "Byleth knocks at midnight and enters before he answers. \"I have formed a hypothesis,\" she says, straight-backed. \"I believe I want to stay in your bed. I would like to test it.\" She says it with the same expression she'd use for a lesson plan. She is holding the doorknob very tightly. She has rehearsed this; he can tell, because she arrives at each word on time, like soldiers. Her knuckles are white on the knob.",
+          "text": "Byleth knocks at midnight and steps inside before you even answer, standing straight-backed in a loose sleeping shift that leaves her thighs bare. \"I have formed a hypothesis,\" she announces, gripping the doorknob white-knuckled. \"I believe I want to spend the night naked in your bed. I wish to test it immediately.\"",
           "image": {
             "comp": "standing very straight in a doorway, gripping the doorknob, deadpan with a flicker of nerves",
             "setting": "Sam's room at midnight, a single candle",
             "sam": true
           },
           "go": "Test the hypothesis",
-          "goRes": "The result, she reports afterward, in a tiny voice, is conclusive. She does not leave in the morning.",
+          "goRes": "She strips off her shift with clinical precision—and once your cock is inside her pussy, her deadpan composure shatters into breathless gasps. In the morning she whispers that the results are conclusive.",
           "wait": "\"Give me a few days.\"",
-          "waitRes": "\"Acceptable.\" She nods once. \"I will refine the experiment. Do not tire of me.\""
+          "waitRes": "\"Acceptable.\" She nods once, ears crimson. \"I will refine the parameters. Do not keep me waiting too long.\""
         },
         "jump": {
           "title": "Silent Type",
-          "text": "There's a battle exercise on the training lawn and Byleth lands Sam flat on his back in the grass with a gentle, precise sweep. She kneels over him, braced on one hand, breathing a little heavier than the throw deserved. \"...I have lost track of the lesson,\" she admits, expressionless. The grass smells of sun and cut hay. Her braid has come loose in the tumble, and she does not seem to notice at all.",
+          "text": "During an afternoon sparring drill on the back lawn, Byleth sweeps your legs and pins you flat in the grass, straddling your hips with one hand braced beside your head. Her braid has come loose, her chest is heaving against yours, and her eyes darken as she feels you beneath her. \"...I appear to have forgotten the lesson,\" she murmurs.",
           "image": {
             "comp": "kneeling over him in the grass, one hand braced beside his head, deadpan but visibly flustered",
             "setting": "training lawn behind the house in afternoon sun",
             "sam": true
           },
           "go": "Pull her down",
-          "goRes": "She blinks. A moment later she is kissing him in the grass with an awkward, devoted care, as if learning a new form.",
+          "goRes": "She blinks once, kisses you hungrily in the grass, and drags you straight upstairs to study anatomy firsthand, her hands and mouth all over your cock.",
           "wait": "\"Class dismissed?\"",
-          "waitRes": "\"Dismissed.\" She stands and offers a hand, expression perfectly flat, ears glowing. \"Tomorrow. Same time.\""
+          "waitRes": "\"Dismissed.\" She stands and offers a hand, face completely neutral while her ears burn bright red. \"Tomorrow. Same time.\""
         }
       }
     },
@@ -452,55 +452,55 @@
       "events": {
         "1": {
           "title": "Morning Prayer",
-          "text": "Celica prays before every shift, kneeling at the little window in the staff hall. This morning Sam kneels beside her without a word, and she opens one eye, smiling. \"You are not much for hymns, are you?\" she whispers. \"It's all right. I think you pray with your hands, the way you carry things for everyone.\" She touches his sleeve. A candle stub burns on the sill, and she has tucked her hair behind one ear, as she does when she has made up her mind.",
+          "text": "Celica kneels in prayer at the sunlit hall window before every shift. This morning you kneel quietly beside her, and she opens one eye with a warm, radiant smile. \"You aren't much for hymns, are you?\" she whispers, laying her fingers gently over yours. \"That's alright—I think you pray with your kindness.\"",
           "image": {
             "comp": "kneeling by a sunlit window with folded hands, one eye open and smiling at him",
             "setting": "staff hall window with morning light and a small shrine candle",
             "sam": true
           },
           "go": "Kiss her",
-          "goRes": "Her lips are soft and quietly joyful, like a blessing returned. She laughs under her breath. \"I think the saints are blushing.\"",
+          "goRes": "Her lips are soft, warm, and quietly joyful, parting beneath yours before she laughs breathlessly. \"I think the saints are blushing.\"",
           "wait": "\"Let's pray first.\"",
-          "waitRes": "\"Of course.\" She bows her head and peeks at him through her lashes. \"I shall add you to my list. At the top.\""
+          "waitRes": "\"Of course.\" She bows her head and peeks through her lashes. \"I'll place you right at the top of my prayers.\""
         },
         "2": {
           "title": "The Missing Friend",
-          "text": "Celica sits on the back steps in the dusk, turning an old charm over in her fingers. \"I came all this way to find someone I lost,\" she says. \"I have not found him. But I found a place where I'm useful, and a person who listens.\" She leans her head on Sam's shoulder. \"Is it selfish to want to be happy while he is still missing?\" The herb bed smells of thyme and rosemary. Her charm catches the last light, small and worn from being held so often.",
+          "text": "Celica sits on the back stone steps at twilight, turning an old charm over in her fingers. \"I traveled all this way searching for someone I lost,\" she says softly, leaning her head against your shoulder and sliding her hand onto your knee. \"Instead I found a home—and a man who truly listens. Is it selfish to want your touch?\"",
           "image": {
             "comp": "seated on stone steps holding a small charm, leaning her head on his shoulder, hopeful and a little sad",
             "setting": "back steps of the house at twilight, herbs growing by the wall",
             "sam": true
           },
           "go": "Hold her",
-          "goRes": "He tells her no, it's not selfish, and she believes him enough to turn her face up. Her touch is earnest and warm and a little shaky.",
+          "goRes": "You tell her it isn't selfish at all, and in the quiet inside she lets you bare her breasts and slide your fingers between her thighs, trembling and breathless under your hands.",
           "wait": "\"Maybe later.\"",
-          "waitRes": "\"Yes.\" She presses the charm to her heart. \"I will wait. But thank you for the shoulder.\""
+          "waitRes": "\"Yes.\" She presses the charm to her chest with a soft smile. \"I will be patient—thank you for lending me your shoulder.\""
         },
         "3": {
           "title": "Blessing",
-          "text": "Celica comes to Sam's room in her white sleeping gown, clutching her hands as if praying through every step. \"I asked for guidance,\" she says, breathless. \"And all I could think was: 'Be brave. Be kind. Be his.'\" She laughs at herself, eyes shining. \"I do hope that was not blasphemy.\" A gentle rain taps the glass. Her hands tremble a little on her gown, though her smile is steady, and she keeps it up like a lamp.",
+          "text": "Celica appears in your bedroom doorway in a sheer white sleeping gown, hands clasped nervously at her chest as lamplight outlines every curve beneath the fabric. \"I prayed for guidance tonight,\" she whispers, cheeks flushed bright pink. \"And the only answer I heard was: 'Be brave. Be his.' I do hope that wasn't blasphemy.\"",
           "image": {
             "comp": "standing in a white sleeping gown with hands clasped at her chest, flushed, hopeful smile",
             "setting": "Sam's bedroom with a single candle and a rain-streaked window",
             "sam": true
           },
           "go": "Welcome her",
-          "goRes": "He tells her it wasn't. The night is gentle, devout, and often interrupted by helpless giggles.",
+          "goRes": "You assure her it wasn't blasphemy as you peel off the white gown and fuck her slowly, your cock deep in her pussy, interrupted only by soft gasps and breathless giggles.",
           "wait": "\"Are you sure?\"",
-          "waitRes": "\"I am nearly sure.\" She nods, resolute. \"Nearly is enough for prayer. Let me be sure for you.\""
+          "waitRes": "\"I am nearly sure.\" She nods resolutely, blushing. \"Nearly is enough for faith—let me be sure for both of us soon.\""
         },
         "jump": {
           "title": "Brave Steps",
-          "text": "Celica trips on the cellar stairs carrying wine, and Sam catches her. They stand frozen, her hand fisted in his hoodie. \"Oh. Thank you. I...\" She lifts her eyes. \"I have been so careful to be good. Just once, I would like to be impulsive.\" And she kisses him on the stairs. The cellar smells of oak and cool stone. A bottle rolls to a stop at their feet, and neither of them reaches for it.",
+          "text": "Celica stumbles on the cellar stairs carrying a bottle of wine, and you catch her flush against your chest. Frozen in your arms with her hands fisted in your hoodie, she looks up with sudden, reckless heat. \"I have spent my whole life trying to be proper,\" she whispers, pressing her hips against yours. \"Just once, I want to give in to temptation.\"",
           "image": {
             "comp": "caught mid-stumble in his arms, hand clutching his hoodie, kissing him with flushed surprise",
             "setting": "narrow cellar staircase with wine racks and dim lantern light",
             "sam": true
           },
           "go": "Kiss her back",
-          "goRes": "She breaks away giggling and breathless. \"Heavens. That felt like a miracle.\"",
+          "goRes": "She lets out a breathless gasp as you kiss her hungrily, abandoning the wine bottle on the steps to carry her straight to your bed, her hands already at your belt.",
           "wait": "\"Careful on the stairs.\"",
-          "waitRes": "\"Right. Yes!\" Mortified and radiant, she scrambles upright. \"I will do better. I will take the next stair... and the next step too, later.\""
+          "waitRes": "\"Right—yes!\" Mortified and radiant, she steadies herself. \"I'll watch my step... and take the next one with you later.\""
         }
       }
     }

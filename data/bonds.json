@@ -38,7 +38,7 @@
       "title": "{b} Covers for {a}",
       "scene": "casual",
       "text": [
-        "{a} is dead on her feet. {b} has already offered to take her clients tonight, and is now looking at Sam for permission."
+        "{a} is dead on her feet after a demanding shift. {b} has already offered to take over her clients tonight, and is now looking to you for permission."
       ],
       "choices": [
         {
@@ -46,14 +46,14 @@
           "a": {"energy":25,"mood":4},
           "b": {"energy":-15,"mood":2},
           "bond": 6,
-          "res": "{a} sleeps for twelve hours. She brings {b} breakfast in bed the next morning."
+          "res": "{a} sleeps for twelve straight hours. She brings {b} breakfast in bed the next morning, lingering longer than necessary."
         },
         {
           "label": "Send them both to bed",
           "a": {"energy":20},
           "b": {"mood":2},
           "bond": 2,
-          "res": "The house runs a little short tonight. Neither of them complains."
+          "res": "The house runs a little short-staffed tonight. Neither of them complains about turning in early together."
         }
       ]
     },
@@ -66,7 +66,7 @@
       "title": "A Night Out",
       "scene": "casual",
       "text": [
-        "{a} and {b} want a night off together: the night market, too much wine, and absolutely no clients. They'd love it if Sam paid."
+        "{a} and {b} want a night off together: the night market, far too much wine, and zero clients. They'd love it if you covered the tab."
       ],
       "choices": [
         {
@@ -76,14 +76,14 @@
           "a": {"mood":10,"trust":2},
           "b": {"mood":10,"trust":2},
           "bond": 8,
-          "res": "They come back at dawn arm in arm, singing, with a souvenir for Sam that he does not understand."
+          "res": "They stumble back at dawn arm in arm, flushed and singing, carrying a bizarre souvenir for you that you don't quite understand."
         },
         {
           "label": "They can go on their own coin",
           "a": {"mood":5},
           "b": {"mood":5},
           "bond": 5,
-          "res": "They go anyway. They have a wonderful time and don't bring Sam anything."
+          "res": "They go anyway, have a wild time, and conveniently forget to bring you anything back."
         }
       ]
     },
@@ -96,8 +96,8 @@
       "title": "{a} and {b} Are at It Again",
       "scene": "casual",
       "text": [
-        "The shouting in the kitchen is about a missing hairbrush. It is not really about the hairbrush.",
-        "{a} and {b} have stopped speaking to each other and started speaking through the other girls, which is worse."
+        "The shouting in the kitchen is ostensibly about a missing hairbrush. It is not really about the hairbrush.",
+        "{a} and {b} have stopped speaking directly to each other and started sniping through the other ladies, which is much worse."
       ],
       "choices": [
         {
@@ -107,15 +107,15 @@
           "a": {"trust":2},
           "b": {"trust":2},
           "res": "It takes an hour and a pot of tea, but by the end they're grudgingly laughing about it.",
-          "else": {"bond":-5,"a":{"mood":-3},"b":{"mood":-3},"res":"It ends with both of them storming out of different doors. Progress, of a sort."}
+          "else": {"bond":-5,"a":{"mood":-3},"b":{"mood":-3},"res":"It ends with both of them storming out of opposite doors. Progress, of a sort."}
         },
-        {"label":"Split up their shifts","a":{"mood":-2},"b":{"mood":-2},"bond":2,"res":"They see less of each other. It helps a little."},
+        {"label":"Split up their shifts","a":{"mood":-2},"b":{"mood":-2},"bond":2,"res":"They see less of each other. The tension cools a little."},
         {
           "label": "Let them sort it out",
           "roll": 0.5,
           "bond": 10,
-          "res": "They have it out in the yard. Afterward they're sharing a bottle on the steps like nothing happened.",
-          "else": {"bond":-10,"a":{"energy":-5},"b":{"energy":-5},"res":"They have it out in the yard. Nobody wins. The hairbrush is never found."}
+          "res": "They have it out in the yard. Afterward they're sharing a bottle on the back steps like nothing happened.",
+          "else": {"bond":-10,"a":{"energy":-5},"b":{"energy":-5},"res":"They have it out in the yard. Nobody wins, and the hairbrush is never found."}
         }
       ]
     },
@@ -128,7 +128,7 @@
       "title": "A Stolen Client",
       "scene": "companion",
       "text": [
-        "{a} insists {b} stole one of her regulars on purpose. {b} insists he just has taste."
+        "{a} insists {b} poached one of her regulars on purpose. {b} smirks and insists the man simply has good taste."
       ],
       "choices": [
         {
@@ -136,15 +136,21 @@
           "a": {"trust":3,"mood":3},
           "b": {"trust":-4,"mood":-4},
           "bond": -8,
-          "res": "{a} is vindicated. {b} is going to remember this."
+          "res": "{a} looks thoroughly vindicated. {b} is going to remember this."
         },
-        {"label":"Side with {b}","b":{"trust":3,"mood":3},"a":{"trust":-4,"mood":-4},"bond":-8,"res":"{b} smirks. {a} is going to remember this."},
+        {
+          "label": "Side with {b}",
+          "b": {"trust":3,"mood":3},
+          "a": {"trust":-4,"mood":-4},
+          "bond": -8,
+          "res": "{b} flashes a wicked smirk. {a} is going to remember this."
+        },
         {
           "label": "\"He can see you both\"",
           "a": {"popularity":2},
           "b": {"popularity":2},
           "bond": -2,
-          "res": "The client is thrilled. The two of them are less thrilled, but the money's good."
+          "res": "The client is ecstatic. Neither of them is thrilled about sharing, though the coin softens the blow."
         }
       ]
     },
@@ -157,7 +163,7 @@
       "title": "{a} Takes {b} Under Her Wing",
       "scene": "casual",
       "text": [
-        "{a} has noticed {b} struggling with some of the finer points of the work, and offers to teach her."
+        "{a} has noticed {b} struggling with some of the more intimate techniques of the job, and offers to coach her privately."
       ],
       "choices": [
         {
@@ -167,9 +173,14 @@
           "b": {"grow":{"service":6},"mood":3},
           "a": {"mood":2},
           "bond": 6,
-          "res": "A week of lessons. {b} carries herself differently by the end of it."
+          "res": "A week of hands-on lessons in sucking, stroking, and fucking. {b} carries herself with a whole new confidence by the end of it."
         },
-        {"label":"Let them work it out","b":{"grow":{"service":3}},"bond":4,"res":"{a} teaches between shifts. {b} picks up a few tricks."}
+        {
+          "label": "Let them work it out",
+          "b": {"grow":{"service":3}},
+          "bond": 4,
+          "res": "{a} coaches her between shifts. {b} picks up a few very effective tricks."
+        }
       ]
     },
     {
@@ -181,7 +192,7 @@
       "title": "A Taste of Home",
       "scene": "sam_date",
       "text": [
-        "{a} and {b} have spent all afternoon trying to recreate a dish from back home with ingredients that are almost, but not quite, right. They want Sam to judge."
+        "{a} and {b} have spent all afternoon trying to recreate a dish from back home with ingredients that are close, but not quite right. They want you to be the judge."
       ],
       "choices": [
         {
@@ -189,14 +200,14 @@
           "a": {"mood":8,"trust":2},
           "b": {"mood":8,"trust":2},
           "bond": 8,
-          "res": "It is not perfect. It's close enough that all three of them go quiet for a minute."
+          "res": "It is not perfect—not really—but it's close enough that all three of you go quiet for a long minute."
         },
         {
           "label": "Be honest",
           "a": {"mood":3,"trust":3},
           "b": {"mood":3,"trust":3},
           "bond": 5,
-          "res": "\"Needs soy sauce,\" Sam says. They both groan. They spend the next week trying to invent soy sauce."
+          "res": "\"Needs soy sauce,\" you tell them. Both of them groan, and spend the next week trying to reinvent soy sauce from scratch."
         }
       ]
     },
@@ -209,11 +220,17 @@
       "title": "Two of a Kind",
       "scene": "casual",
       "text": [
-        "{a} and {b} have started finishing each other's sentences. The other girls find it unsettling. The clients find it charming."
+        "{a} and {b} have started finishing each other's sentences and sharing knowing glances across the lounge. The other ladies find it unsettling; the clients find it intoxicating."
       ],
       "choices": [
-        {"label":"Book them as a pair","a":{"popularity":4},"b":{"popularity":4},"bond":3,"res":"Word gets around. They're the talk of the house."},
-        {"label":"Leave them be","a":{"mood":4},"b":{"mood":4},"bond":3,"res":"They're happy. That's enough."}
+        {
+          "label": "Book them as a pair",
+          "a": {"popularity":4},
+          "b": {"popularity":4},
+          "bond": 3,
+          "res": "Word spreads fast. Their paired sessions become the hottest request in the house."
+        },
+        {"label":"Leave them be","a":{"mood":4},"b":{"mood":4},"bond":3,"res":"They're completely happy in each other's orbit. That's enough."}
       ]
     }
   ],
@@ -228,7 +245,7 @@
       "title": "A Knock, Twice",
       "scene": "casual",
       "text": [
-        "There's a knock at Sam's door. It's {a}. Then a second knock: {b}, right behind her. They look at each other, then at Sam, and seem to reach an understanding without him."
+        "There's a soft knock at your door. It's {a}, wrapped in a loose silk robe. A heartbeat later comes a second knock: {b}, standing right behind her in even less. They trade a heated glance, then look at you, reaching a silent agreement without asking your input."
       ],
       "choices": [
         {
@@ -238,14 +255,14 @@
           "a": {"lust":-30,"mood":5},
           "b": {"lust":-30,"mood":5},
           "bond": 8,
-          "res": "Nobody gets much sleep. (Sam's energy −30)",
+          "res": "By dawn the sheets are soaked in sweat and cum and nobody has gotten a wink of sleep. (Your energy −30)",
           "acts": true
         },
         {
           "label": "\"One at a time, please\"",
           "a": {"mood":-1},
           "b": {"mood":-1},
-          "res": "They exchange a look, decide he's adorable, and agree to take turns. Sam is not sure he won anything."
+          "res": "They exchange a wry look, decide you're adorable, and agree to take turns wearing you out. You aren't sure you actually won anything."
         }
       ],
       "dynamic": "collaborative"
@@ -260,7 +277,7 @@
       "title": "Who Does He Like Best?",
       "scene": "casual",
       "text": [
-        "{a} and {b} have decided to settle their rivalry the obvious way, and Sam is the obvious judge. Neither of them is willing to leave first."
+        "{a} and {b} have marched into your room to settle their rivalry the most direct way possible, with you pinned squarely in the middle as the judge. Neither of them has any intention of walking out first."
       ],
       "choices": [
         {
@@ -269,7 +286,7 @@
           "samEnergy": -40,
           "a": {"lust":-35},
           "b": {"lust":-35},
-          "res": "It is a very long night. (Sam's energy −40)",
+          "res": "It is an exhausting, sweat-soaked, cum-sticky night, and neither of them shows you a shred of mercy. (Your energy −40)",
           "acts": true
         },
         {
@@ -277,7 +294,7 @@
           "a": {"mood":-4},
           "b": {"mood":-4},
           "bond": 3,
-          "res": "They leave together, united for once, in being annoyed with Sam."
+          "res": "They storm out together, united for once in being thoroughly annoyed with you."
         }
       ],
       "dynamic": "competitive"
@@ -292,7 +309,7 @@
       "title": "{a} Brings a Friend",
       "scene": "casual",
       "text": [
-        "{a} shows up at Sam's door with {b} in tow. \"She's been curious,\" {a} says. {b} goes pink, but doesn't deny it."
+        "{a} appears at your bedroom door with a flushed {b} tucked under her arm. \"She's been curious about what we get up to,\" {a} purrs. {b} turns crimson to her collarbone, yet makes no move to leave."
       ],
       "choices": [
         {
@@ -302,10 +319,14 @@
           "a": {"mood":4},
           "b": {"trust":5,"mood":4},
           "bond": 6,
-          "res": "{b} looks at Sam differently afterward. So does {a}, come to think of it. (Sam's energy −30)",
+          "res": "{b} looks at you with a whole new hunger afterward—and so does {a}, come to think of it. (Your energy −30)",
           "acts": true
         },
-        {"label":"\"Maybe another time\"","b":{"mood":-2},"res":"{b} laughs it off, a little relieved and a little disappointed."}
+        {
+          "label": "\"Maybe another time\"",
+          "b": {"mood":-2},
+          "res": "{b} laughs it off quickly, looking half relieved and half disappointed as she slips away."
+        }
       ],
       "dynamic": "curious"
     },
@@ -319,7 +340,7 @@
       "title": "A Practical Lesson",
       "scene": "casual",
       "text": [
-        "{a} has been teaching {b} the finer points of the work, and has decided theory only goes so far. She'd like to borrow Sam for a demonstration."
+        "{a} has been coaching {b} on advanced bedroom technique, and has decided theory only goes so far. She wants to borrow your body for a live, hands-on demonstration."
       ],
       "choices": [
         {
@@ -329,10 +350,10 @@
           "b": {"mood":3},
           "sam": {"technique":2},
           "bond": 6,
-          "res": "Sam is a very tired visual aid. (Sam's energy −25)",
+          "res": "You end up a thoroughly spent, cum-drained, trembling visual aid. (Your energy −25)",
           "acts": true
         },
-        {"label":"\"I have paperwork\"","res":"{a} sighs. \"Fine. We'll use a pillow.\""}
+        {"label":"\"I have paperwork\"","res":"{a} clicks her tongue in disappointment. \"Fine. We'll practice on a pillow instead.\""}
       ],
       "dynamic": "lesson"
     },
@@ -346,7 +367,7 @@
       "title": "Room for One More",
       "scene": "bath",
       "text": [
-        "{a} and {b} are soaking in the bath after a long week, and they've noticed Sam walking past the door for the third time. \"Oh, just get in.\""
+        "{a} and {b} are soaking naked in the steaming bath after a long week, and they've caught you pacing past the open doorway three times. \"Stop hovering and strip down—get in.\""
       ],
       "choices": [
         {
@@ -355,9 +376,9 @@
           "a": {"mood":6,"trust":2,"lust":-10},
           "b": {"mood":6,"trust":2,"lust":-10},
           "bond": 5,
-          "res": "Mostly they talk. Mostly. Sam comes out pink and more relaxed than he's been in weeks. (Sam's energy +10)"
+          "res": "Mostly you all talk, surrounded by bare tits, warm wet skin, and hands that wander under the water. Mostly. You step out flushed and more relaxed than you've been in weeks. (Your energy +10)"
         },
-        {"label":"Keep walking","a":{"mood":-1},"b":{"mood":-1},"res":"Their laughter follows him down the hall."}
+        {"label":"Keep walking","a":{"mood":-1},"b":{"mood":-1},"res":"Their teasing laughter echoes down the corridor after you."}
       ]
     }
   ],
@@ -366,43 +387,43 @@
     "collaborative": {
       "label": "together",
       "prompt": "the two women share him affectionately, in sync with each other",
-      "_default": "{a} and {b} share him easily, as affectionate with each other as with Sam.",
-      "caress": "An unhurried tangle of kisses, three ways. Nobody is keeping score.",
-      "kiss": "An unhurried tangle of kisses, three ways. Nobody is keeping score.",
-      "cowgirl": "{a} and {b} take turns, holding hands across him for balance and laughing when they get it wrong.",
-      "oral_give": "They work together, trading places and glances, very pleased with themselves.",
-      "missionary": "{b} stays curled at Sam's side the whole time, murmuring encouragement to {a}."
+      "_default": "{a} and {b} share you effortlessly, tangling together, kissing and groping each other just as eagerly as they get you off.",
+      "caress": "An unhurried tangle of wandering hands, bare skin, and open-mouthed kisses three ways. Nobody is keeping score.",
+      "kiss": "An unhurried tangle of wandering hands, bare skin, and open-mouthed kisses three ways. Nobody is keeping score.",
+      "cowgirl": "{a} and {b} take turns straddling you, lacing their fingers together across your chest for balance and laughing breathlessly as they ride.",
+      "oral_give": "They suck and stroke your cock in tandem, trading licks, strokes, and wicked glances over your hips, thoroughly pleased with themselves.",
+      "missionary": "{b} stays curled flush against your side the entire time, kissing your neck and whispering dirty encouragement while you thrust into {a}."
     },
     "competitive": {
       "label": "a contest",
       "prompt": "the two rivals compete for his attention, each trying to outdo the other",
-      "_default": "Every moment is a contest. Each of them is determined to be the one he remembers.",
-      "oral_give": "It turns into a contest almost at once: who can make him lose his composure first.",
-      "cowgirl": "They argue over whose turn it is, then over who's doing it better.",
-      "breast_give": "A matter of pride, apparently. Both of them take it extremely seriously.",
-      "caress": "Even the kissing becomes a competition. Sam is not sure how.",
-      "kiss": "Even the kissing becomes a competition. Sam is not sure how."
+      "_default": "Every touch is a ruthless contest. Each of them is determined to be the one who makes you cum hardest.",
+      "oral_give": "It turns into a fierce contest immediately: who can take your cock deeper and make your knees buckle first.",
+      "cowgirl": "They bicker breathlessly over whose turn it is on top, then bounce harder to prove who rides you better.",
+      "breast_give": "A matter of fierce pride, apparently—both of them pressing their bare chests around you to see who draws the louder groan.",
+      "caress": "Even the kissing and touching turns into a cutthroat competition, leaving you dizzy and surrounded.",
+      "kiss": "Even the kissing and touching turns into a cutthroat competition, leaving you dizzy and surrounded."
     },
     "lesson": {
       "label": "a lesson",
       "prompt": "the experienced woman demonstrates and coaches the less experienced one",
-      "_default": "{a} demonstrates, then talks {b} through it step by step, correcting her with a teacher's patience.",
-      "oral_give": "{a} demonstrates, then coaches {b} through it, with notes. Many notes.",
-      "cowgirl": "{a} guides {b}'s hips with her hands and counts the rhythm under her breath.",
-      "manual_give": "{a} positions {b}'s hands and walks her through it like a fencing lesson."
+      "_default": "{a} demonstrates the technique firsthand, then talks {b} through every stroke step by step with a patient, wicked smile.",
+      "oral_give": "{a} demonstrates with slow, practiced suction, then coaches {b} through the rhythm and angle while you try to survive the lesson.",
+      "cowgirl": "{a} places her hands over {b}'s hips as she straddles you, guiding her grind and counting the tempo under her breath.",
+      "manual_give": "{a} wraps her fingers over {b}'s oiled hand on your cock, guiding her twist and grip like a hands-on masterclass."
     },
     "curious": {
       "label": "a first time",
       "prompt": "the lover gently guides her nervous, curious friend",
-      "_default": "{a} takes the lead, and {b} follows, nervous at first and then not at all.",
-      "caress": "{b} starts out shy. {a} kisses her first, then Sam, and that settles it.",
-      "kiss": "{b} starts out shy. {a} kisses her first, then Sam, and that settles it.",
-      "oral_give": "{a} shows her friend how it's done. {b} is a quick study, and very curious."
+      "_default": "{a} takes the lead confidently, and {b} follows along—hesitant for the first minute, and completely hooked by the second.",
+      "caress": "{b} starts out shy and flushed. {a} kisses her softly first, then guides her mouth to yours, and that settles her nerves.",
+      "kiss": "{b} starts out shy and flushed. {a} kisses her softly first, then guides her mouth to yours, and that settles her nerves.",
+      "oral_give": "{a} shows her friend exactly how you like your cock sucked. {b} proves a quick, breathless study—and endlessly curious."
     }
   },
   "competition": {
     "_note": "After a competitive scene: who did better, judged by each lady's skill at that service plus luck. {w} = winner, {l} = the other.",
-    "close": "Too close to call. They glare at each other, then, grudgingly, laugh. (bond +8)",
-    "win": "{w} wins, by her own account. {l} disputes this loudly. (bond −4)"
+    "close": "Too close to call. They glare at each other over your chest, then grudgingly break into breathless laughter. (bond +8)",
+    "win": "{w} wins, by her own smug account. {l} disputes the verdict loudly while catching her breath. (bond −4)"
   }
 }

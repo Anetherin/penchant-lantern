@@ -4,55 +4,55 @@
       "events": {
         "1": {
           "title": "Audience with the Princess",
-          "text": "Zelda requests a private audience, which is how she asks for everything. She waits in the garden pavilion, hood down, eyes steady. \"I have studied your house for months,\" she says, \"its books, its customs, its people. There is a variable I failed to account for.\" She smiles, faintly self-mocking. \"You. I would like to kiss you, Sam. Formally, and then not formally.\"",
+          "text": "Zelda requests a private audience, which is how she asks for everything. She waits in the rose-covered garden pavilion with her hood lowered and steady green eyes fixed on you. \"I have studied your house for months—its books, its customs, its people—yet I failed to account for one variable,\" she smiles faintly. \"You. I would like to kiss you, Sam. Formally first, and then not formally at all.\"",
           "image": {
             "comp": "seated upright in a garden pavilion with hood lowered, hands in lap, composed with a warm smile, long elf ears",
             "setting": "garden pavilion at dusk, climbing roses, lantern light",
             "sam": true
           },
           "go": "Grant the audience",
-          "goRes": "The formal kiss is polite. The second is not. When she pulls away, a princess with flushed cheeks says, \"Fascinating.\"",
+          "goRes": "The formal kiss is poised and sweet; the second parts your lips and leaves a flushed, breathless princess whispering, \"Fascinating.\"",
           "wait": "\"Maybe not yet.\"",
-          "waitRes": "\"Of course.\" Zelda inclines her head, regal and unbothered. \"Take whatever time you need. I have a good deal to read in the meantime.\""
+          "waitRes": "\"Of course.\" Zelda inclines her head regally. \"Take whatever time you need—I have plenty to read in the meantime.\""
         },
         "2": {
           "title": "Without the Crown",
-          "text": "Sam finds Zelda on the roof, hood back, wind in her hair, the evening lanterns spread below. \"At home I am always the princess,\" she says. \"Everyone is gentle. Everyone bows.\" She meets his eyes. \"You do not bow. It is a relief. Come sit. I wish to be touched by someone who sees me, not the crown.\"",
+          "text": "You find Zelda on the rooftop at dusk with her hood thrown back, evening wind tangling her golden hair above the glowing town lanterns. \"At home everyone bows and treats me like glass—you never bow, and it's a relief,\" she murmurs, guiding your warm hands onto her bare waist beneath her cloak. \"Touch me as a woman, not a crown.\"",
           "image": {
             "comp": "sitting on a rooftop with hood back, wind in her long hair, looking at him with open warm eyes",
             "setting": "rooftop at dusk, view over town lights",
             "sam": true
           },
           "go": "Sit beside her",
-          "goRes": "Her hand, then her lips, then a quiet laugh as she forgets to be regal. The stars take notice.",
+          "goRes": "Beneath the shelter of her cloak on the warm roof tiles, her royal poise melts into soft, breathless gasps as your hands explore her breasts and slip between her thighs and her fingers free your cock from your belt.",
           "wait": "\"Not tonight.\"",
-          "waitRes": "\"I understand.\" Zelda tilts her head. \"I will keep the roof warm for another night.\""
+          "waitRes": "\"I understand.\" Zelda tilts her head with a gentle smile. \"I will keep the roof warm for another evening.\""
         },
         "3": {
           "title": "A Kingdom of Two",
-          "text": "Zelda sets down her book of sage lore and takes both Sam's hands. \"I have governed, studied, and waited,\" she says. \"I have made every decision of my life for others. This one is mine.\" She hesitates, a flicker of nerves under the poise. \"Will you stay with me tonight? I would like to find out what it means to be only Zelda.\"",
+          "text": "Zelda sets aside her tome of sage lore and takes both of your hands, standing in a sheer white nightgown with her golden hair spilling loose past her waist. \"Every decision of my life was made for duty—this one is solely mine,\" she whispers, letting the straps slide off her bare shoulders. \"Stay in my bed tonight and show me what it means to be only Zelda.\"",
           "image": {
             "comp": "standing in a simple nightgown with long hair down, holding his hands, gentle nervous smile",
             "setting": "her guest suite, tall window, moonlight, books on a table",
             "sam": true
           },
           "go": "Stay",
-          "goRes": "He does. The princess learns that being only herself is a very pleasant thing, and a warm one.",
+          "goRes": "You peel off her nightgown and ease your cock slowly into her tight, scorching pussy, Zelda clinging to your shoulders with breathless, unguarded cries until dawn.",
           "wait": "\"Are you certain?\"",
-          "waitRes": "\"I am.\" She smiles, soft. \"But I admire the question. Ask again when you are comfortable; I am in no hurry.\""
+          "waitRes": "\"I am,\" she smiles softly. \"Though I admire your care—ask again whenever you are ready; I am in no hurry.\""
         },
         "jump": {
           "title": "Royal Impulse",
-          "text": "Zelda is mid-lecture on the economics of a bar tab when she stops, flushes, and says, \"I have lost my place.\" She looks at Sam, and the poise cracks. \"I have been very composed for a hundred and twenty-eight years. It has become tiresome.\" She steps close and kisses him, and the book in her hand hits the floor.",
+          "text": "Zelda is mid-lecture on bar-tab economics in the quiet library nook when she stops dead, flushes crimson, and lets her heavy tome thud onto the floorboards. \"I have been composed for a hundred and twenty-eight years, Sam, and it has grown utterly tiresome,\" she breathes, grabbing your collar and kissing you hungrily.",
           "image": {
             "comp": "kissing him with a dropped book at her feet, startled at herself, poise cracking into a smile",
             "setting": "library nook, tall shelves, a fallen book",
             "sam": true
           },
           "go": "Kiss her back",
-          "goRes": "He kisses back, and the princess forgets the economics entirely.",
+          "goRes": "You press her back against the bookshelves, hiking up her skirts and sliding a hand between her thighs while she gets hold of your cock, economics completely forgotten.",
           "wait": "\"Zelda, wait.\"",
-          "waitRes": "\"Yes. Quite right.\" She picks up the book, blushing like a schoolgirl. \"I will resume composure. Momentarily.\""
+          "waitRes": "\"Yes—quite right.\" Retrieving her book with scarlet cheeks, she murmurs, \"I shall resume composure momentarily.\""
         }
       }
     },
@@ -60,55 +60,55 @@
       "events": {
         "1": {
           "title": "Imp No More",
-          "text": "Midna floats onto the bar like it's a throne. \"I was an imp for far too long,\" she says. \"Small. Furious. Easy to ignore.\" Her smile is slow and wicked. \"You never ignored me, even then. Come here, Sam.\" Her fingers hook his hoodie strings. \"I am going to kiss you, and you are going to let me. Do try to look flattered.\"",
+          "text": "Midna perches on the edge of the bar counter like it's her personal throne, crimson hair cascading down her back and a wicked smirk curving her lips. \"I was trapped as a tiny imp far too long—yet you never ignored me even then,\" she purrs, hooking her fingers into your hoodie strings and tugging you between her knees. \"I'm going to kiss you now; do try to look honored.\"",
           "image": {
             "comp": "perched on the edge of a bar counter, long crimson hair, wicked amused smile, tugging his hoodie strings",
             "setting": "bar after hours, shimmering twilight light, empty stools",
             "sam": true
           },
           "go": "Look flattered",
-          "goRes": "He tries and fails, and she laughs and kisses him anyway. \"Adorable,\" she says. \"Now, again.\"",
+          "goRes": "She laughs against your mouth before claiming your lips with fierce, possessive heat, pulling back with glowing eyes. \"Adorable—now again.\"",
           "wait": "\"Maybe later.\"",
-          "waitRes": "Midna arches an eyebrow. \"You are making a queen wait? Bold.\" She smiles. \"I like it. I will pretend to be offended for a day.\""
+          "waitRes": "Midna arches a brow. \"Making the Twilight Princess wait? Bold—I'll pretend to be offended until tomorrow.\""
         },
         "2": {
           "title": "Show Me Off",
-          "text": "Midna drags Sam onto the lounge floor, announcing to the room, \"This one is mine for the evening.\" She winds an arm around his waist, delighted by the staring. \"Let them watch. I enjoy it.\" Her hand slides to the small of his back and lingers. \"And if you enjoy it too, you only need say so.\"",
+          "text": "Midna hauls you onto the crowded lounge floor, announcing proudly to the room, \"This one belongs to me tonight.\" Winding an arm around your waist while sliding her other hand boldly down over your rear, she smirks at the staring regulars. \"Let them watch—tell me you enjoy it too.\"",
           "image": {
             "comp": "leaning against him with an arm around his waist, delighted smirk, glancing at unseen onlookers",
             "setting": "lounge floor, twilight lanterns, curious regulars watching",
             "sam": true
           },
           "go": "Say so",
-          "goRes": "\"I enjoy it,\" Sam says, and the queen of twilight laughs, bright and warm, pulling him closer.",
+          "goRes": "\"I enjoy it,\" you tell her, and she laughs brightly before pulling you into a shadowed booth to wrap her hands around your cock inside your trousers.",
           "wait": "\"Not in front of everyone.\"",
-          "waitRes": "\"Spoilsport.\" She winks. \"Fine. I will take you somewhere less crowded. But I will remember your hesitation.\""
+          "waitRes": "\"Spoilsport,\" she winks. \"Fine—somewhere private, though I won't forget your hesitation.\""
         },
         "3": {
           "title": "Throne Room, Private",
-          "text": "Midna's room is arranged like a palace chamber, cushions, shadow-curtain, a candle shaped like a crown. She lounges, one leg over the other. \"I ruled a world,\" she says. \"I do not often get to be chosen.\" The mask slips. \"Choose me, Sam. Not for being a queen. For this.\" She gestures at herself, wicked and vulnerable all at once.",
+          "text": "Midna's room is draped in shadow-silk and lit by a crown-shaped candle as she lounges naked across heaped cushions, one leg crossed lazily over the other. \"I ruled an entire realm, Sam, yet I rarely get to be chosen,\" she whispers, her wicked smirk softening into raw desire. \"Choose me tonight—not as a queen, just as yours.\"",
           "image": {
             "comp": "reclining on cushions like a throne, one leg crossed, wicked smile fading into genuine vulnerability",
             "setting": "her private room, shadow curtain, a crown-shaped candle",
             "sam": true
           },
           "go": "Choose her",
-          "goRes": "He does. The queen lets her guard down, and the twilight outside seems a little brighter.",
+          "goRes": "You climb onto the cushions and sink your cock deep into her pussy, Midna arching beneath you with breathless, unguarded cries as the twilight outside glows brighter.",
           "wait": "\"Are you sure?\"",
-          "waitRes": "\"Of course I am,\" Midna says, then softer, \"I like that you checked. Wait if you must. I will be here.\""
+          "waitRes": "\"Of course I am,\" Midna purrs—before adding softly, \"I like that you asked. I'll be waiting.\""
         },
         "jump": {
           "title": "Impulse Control",
-          "text": "Midna was in the middle of teasing Sam about a stain on his hoodie when she stopped, narrowed her eyes, and said, \"Oh, bother.\" She grabs his collar. \"I had a whole plan. A grand seduction. Instead, this.\" She kisses him quickly and smugly and then pulls back, flushed. \"Don't you dare tell the other courtesans I improvised.\"",
+          "text": "Midna is mid-tease about a smudge on your hoodie when she stops, narrows her glowing eyes, and mutters, \"Oh, forget the grand seduction plan.\" Grabbing your collar, she slams you back against the hallway wall and kisses you hungrily while grinding her hips against yours.",
           "image": {
             "comp": "grabbing his collar with a smug flushed grin, red hair tumbling, eyes bright",
             "setting": "upstairs hallway, a window showing twilight, lantern glow",
             "sam": true
           },
           "go": "Kiss her back",
-          "goRes": "He kisses back and she melts, just a little. \"Well,\" she says. \"That went better than the plan.\"",
+          "goRes": "You kiss her breathless and haul her straight into your bedroom, kicking the door shut as she tears at your clothes and gets her hand around your cock.",
           "wait": "\"Midna!\"",
-          "waitRes": "\"What? You are very kissable.\" She smirks, unrepentant, and releases him. \"Fine. I'll plan it better. Be afraid.\""
+          "waitRes": "\"What? You're entirely too kissable.\" She smirks unrepentantly. \"Fine—I'll draft a proper plan; be afraid.\""
         }
       }
     },
@@ -116,55 +116,55 @@
       "events": {
         "1": {
           "title": "Fresh Cream",
-          "text": "Malon tops off a glass at the bar and slides it to Sam, humming one of her horse songs. \"That's from my family's herd,\" she says. \"Best in the kingdom, I swear.\" Then she bites her lip. \"I came here to sell you milk. I stayed because of you. Do you know how silly that sounds? I keep trying to say it and it keeps coming out as dairy.\"",
+          "text": "Malon tops off a glass at the bar and slides it across to you while humming a ranch tune, her red braid resting over one shoulder. \"Fresh from my family's herd—best in Hyrule,\" she smiles, biting her lip with rosy cheeks. \"Truth is, I came to deliver milk and stayed because of you—and it keeps coming out sounding like dairy.\"",
           "image": {
             "comp": "leaning over a bar counter with a glass, cheeky bashful smile, red braid over one shoulder",
             "setting": "the house bar, wooden counter, glass jars of cream, afternoon light",
             "sam": true
           },
           "go": "Take her hand",
-          "goRes": "She kisses him over the bar, tasting of cream and strawberries. \"There,\" she says, laughing, \"that came out clearer.\"",
+          "goRes": "She leans over the bar and kisses you warmly, tasting of sweet cream and strawberries. \"There,\" she laughs breathlessly, \"that came out much clearer.\"",
           "wait": "\"Give me a little time.\"",
-          "waitRes": "\"Sure! I'm not going anywhere.\" Malon grins and tops off his glass. \"I've got the bar to run. And I'm very good at waiting.\""
+          "waitRes": "\"Sure thing!\" Malon grins, topping off your glass. \"I'm not going anywhere—and ranch girls are great at waiting.\""
         },
         "2": {
           "title": "Lullaby",
-          "text": "Malon hums a lullaby while she wipes down the bar, a song that she says calms foals. Sam leans on the counter, drifting. \"Works on people, too,\" she murmurs. She comes around the counter, takes his hand, and tilts her head. \"Come here. I'd like to sing you the rest of the way to sleep. With some help from my hands.\"",
+          "text": "Malon hums a soft ranch lullaby while wiping down the bar after closing, watching you lean drowsily on the counter. Coming around the wood with a warm, teasing smile, she takes your hand and guides it onto her waist. \"Works on restless foals and tired owners alike—let me use my hands on you.\"",
           "image": {
             "comp": "taking his hand with a sweet teasing smile, red braid swaying, humming softly",
             "setting": "bar after closing, lamplight, wiping cloth in hand",
             "sam": true
           },
           "go": "Come with her",
-          "goRes": "Her lullaby ends mid-verse, replaced by something warmer. The bar stays dark until dawn.",
+          "goRes": "Her lullaby breaks off into soft, breathless gasps behind the bar as her warm, eager hands and mouth work your cock until you cum.",
           "wait": "\"Maybe not tonight.\"",
-          "waitRes": "\"All right!\" Malon pats his hand, cheerful. \"We'll save it. A song's better for the wait.\""
+          "waitRes": "\"All right!\" Malon pats your hand cheerfully. \"A good song's always worth waiting for.\""
         },
         "3": {
           "title": "Barn Dance",
-          "text": "The ranch-style supper in the courtyard turns into a dance, Malon spinning Sam until he's dizzy. \"I've waited ages for someone to dance with who isn't a horse,\" she laughs. As the music fades she keeps hold of his hands. \"Stay with me tonight? I won't be shy about it. I'm done being shy.\"",
+          "text": "The lantern-lit courtyard supper turns into a lively dance, Malon spinning you around the hay bales until you're dizzy and laughing. As the fiddle fades, she keeps hold of your hands with flushed cheeks and bright eyes. \"I'm done being shy, Sam—stay in my bed tonight.\"",
           "image": {
             "comp": "holding both his hands after a dance, hair coming loose, sweet bright flushed smile",
             "setting": "courtyard with strung lanterns, hay bales, dusk",
             "sam": true
           },
           "go": "Stay with her",
-          "goRes": "She leads him up the stairs by the hand, still humming, and the lullaby finds a new verse.",
+          "goRes": "She leads you upstairs still humming softly, stripping off her ranch dress and straddling your hips—riding your cock with warm, breathless abandon all night long.",
           "wait": "\"Are you sure?\"",
-          "waitRes": "\"Mm-hm.\" Malon smiles. \"But I like that you check. Take a week if you need it; I've got plenty of songs.\""
+          "waitRes": "\"Mm-hm,\" Malon smiles warmly. \"I love that you check, though—take a week if you need; I've got plenty of songs.\""
         },
         "jump": {
           "title": "Sudden Song",
-          "text": "Malon is stacking mugs when she bursts into song, mid-sentence, then stops and covers her mouth. \"Oh! Sorry! I do that when I'm happy.\" She looks at Sam. \"And I'm happy. Very. When you're around.\" She hops up and kisses his cheek, then his mouth, giggling. \"Okay. That was impulsive. I regret nothing!\"",
+          "text": "Malon is stacking mugs in the back room when she bursts into joyful song mid-sentence, claps a hand over her mouth, and turns bright red. \"Sorry—I always sing when I'm happy, and you make me ridiculously happy!\" Hopping up to kiss your cheek, then your mouth, she giggles breathlessly. \"I regret nothing!\"",
           "image": {
             "comp": "hopping up to kiss him with a stack of mugs behind her, giggling, flushed, red braid bouncing",
             "setting": "bar back room, mugs and bottles, warm light",
             "sam": true
           },
           "go": "Kiss her back",
-          "goRes": "He does, and she hums happily against his lips. \"Mm. Now I'm going to be singing all week.\"",
+          "goRes": "You kiss her deeply, lifting her onto the back-room counter while she hums breathlessly against your lips and tugs your cock free of your belt.",
           "wait": "\"That was sudden!\"",
-          "waitRes": "\"I know!\" Malon laughs, cheeks pink. \"Sorry, sorry. Ranch girl. We act first.\" She picks up the mugs, humming."
+          "waitRes": "\"I know!\" Malon laughs, cheeks scarlet. \"Ranch girl—we act first.\" She scoops up the mugs, humming happily."
         }
       }
     },
@@ -172,55 +172,55 @@
       "events": {
         "1": {
           "title": "Healing Fountain",
-          "text": "Cotera drifts through the steam of the bathhouse, translucent, sparkling, giggling at nothing. \"I have granted wishes for six hundred years,\" she says. \"No one has ever wished for me.\" She settles in front of Sam, pink hair floating. \"Make a wish, little one. A small one. I'll give you whatever you like.\" Her laugh rings off the tiles.",
+          "text": "Cotera drifts gracefully through the curling bathhouse steam, translucent and sparkling with pink hair floating around her bare shoulders. \"I have granted travelers' wishes for six centuries, yet nobody ever wished for me,\" she giggles, hovering inches before you. \"Make a wish, little one—anything your heart desires.\"",
           "image": {
             "comp": "floating just above the bath edge with sparkling mist around her, teasing smile, long hair drifting",
             "setting": "bathhouse, rising steam, glowing water, mist",
             "sam": true
           },
           "go": "Wish for a kiss",
-          "goRes": "Her kiss tastes of rain and cherry blossoms. \"Granted,\" she says, giggling. \"Now, another wish?\"",
+          "goRes": "Her kiss tastes of spring rain and cherry blossoms, sparkling magic tingling across your lips. \"Granted!\" she laughs brightly. \"Care for another wish?\"",
           "wait": "\"Not yet.\"",
-          "waitRes": "Cotera pouts, then laughs. \"A patient wisher! Tsk. Fine, I'll wait. The fountain is always open.\""
+          "waitRes": "Cotera pouts playfully before giggling. \"A patient mortal! The fountain is always open whenever you're ready.\""
         },
         "2": {
           "title": "Wishes Come True",
-          "text": "Cotera has been unusually quiet for a spirit who normally can't stop talking. \"I've been thinking about wishes,\" she says. She settles beside Sam on the stone edge, bare feet in the water. \"I always grant. I never ask. Do you know how lonely that is?\" Her laughter is quieter now. \"I'd like to ask something of you, for once.\"",
+          "text": "Cotera is unusually quiet for a Great Fairy who normally fills the bathhouse with laughter, sitting on the glowing stone rim with bare feet dangling in the warm water. \"I always grant wishes and never ask for my own—do you know how lonely that feels?\" she whispers softly. \"Tonight, I want your hands on me.\"",
           "image": {
             "comp": "sitting on the stone rim with bare feet in the water, soft vulnerable smile, shimmering skin",
             "setting": "bathhouse alcove, glowing water, soft fairy lights",
             "sam": true
           },
           "go": "Ask away",
-          "goRes": "She asks for his arms around her, and his lips on hers, and she takes it gladly. The water glows brighter.",
+          "goRes": "You step into the glowing water between her knees, running your hands over her shimmering tits and ass and between her slick thighs while she gasps and trembles against your mouth.",
           "wait": "\"Not yet.\"",
-          "waitRes": "\"Oh.\" Cotera blinks, then sparkles anyway. \"Well. A fairy can wait. A few decades, even. Don't let it come to that.\""
+          "waitRes": "\"Oh.\" Cotera blinks, then sparkles warmly anyway. \"A fairy can wait—just don't make it several decades.\""
         },
         "3": {
           "title": "Moonlit Fountain",
-          "text": "Under the full moon, Cotera lets the bathhouse water shimmer with silver light. \"The fountain loves to be visited,\" she says, drifting close, \"and so do I.\" She takes Sam's hand and presses it flat to her chest, where something warm hums. \"I am a creature of old magic, but I feel like a girl. Will you stay with me, little one?\"",
+          "text": "Under the full moon, Cotera makes the entire bathhouse pool shimmer like liquid silver, drifting naked toward you through the steam. Pressing your palm flat against her warm, humming chest, she whispers, \"I am born of ancient magic, yet tonight I feel purely like a woman. Stay with me in the water, little one.\"",
           "image": {
             "comp": "floating close with his hand pressed to her chest, silver moonlight, soft smile",
             "setting": "bathhouse at night, moonlight on glowing water",
             "sam": true
           },
           "go": "Stay with her",
-          "goRes": "He does. The water glows all night, and by morning the whole bathhouse is gossiping about the light.",
+          "goRes": "You sink your cock deep into her pussy in the warm, glowing fountain—the water shining blindingly bright with every orgasm until dawn has the whole house whispering.",
           "wait": "\"Are you sure?\"",
-          "waitRes": "\"Mm. Terribly sure,\" Cotera laughs. \"But I admire you for asking. A fairy can wait. A little.\""
+          "waitRes": "\"Terribly sure,\" Cotera laughs softly. \"Still, I admire your care—a fairy can wait a little longer.\""
         },
         "jump": {
           "title": "Overflow",
-          "text": "Cotera is laughing at a gossipy client's story when she turns and notices Sam. \"Oh!\" she says, and the room's water ripples. \"I've been trying to be subtle about this. I am a creature who sings in tile halls. Subtle isn't in me.\" She floats to him and kisses him, giggling. \"There. That's what I've been trying to say for a month.\"",
+          "text": "Cotera is mid-laugh at a regular's story when she spots you across the bathhouse—sending ripples surging across the pool as she floats straight into your arms. \"Subtlety isn't in a Great Fairy's nature!\" she giggles, kissing you breathless. \"I've wanted you for a month.\"",
           "image": {
             "comp": "kissing him mid-laughter, delighted, floating just above the tiles with sparkles drifting",
             "setting": "bathhouse, echoing tile hall, steam and sparkles",
             "sam": true
           },
           "go": "Kiss her back",
-          "goRes": "He kisses back, and the bathwater overflows a little. She giggles about it for the rest of the night.",
+          "goRes": "You kiss her deeply as the warm fountain water sloshes over the stone rim, pulling her down into the steaming pool with your hands full of her breasts and ass.",
           "wait": "\"Cotera!\"",
-          "waitRes": "\"Too sudden? Oh dear.\" She covers her mouth, laughing. \"I'll rewind. Pretend that never happened. I'll do it again, subtler.\""
+          "waitRes": "\"Too sudden? Oh dear!\" Covering her mouth with a laugh, she sparkles. \"I'll rewind and try again—slightly subtler.\""
         }
       }
     },
@@ -228,55 +228,55 @@
       "events": {
         "1": {
           "title": "Spoils",
-          "text": "Nabooru drops a small velvet pouch in Sam's lap. \"Stole it from a bandit who deserved it,\" she says. Inside is a plain silver ring. \"Not a proposal. A trophy.\" She leans against the doorway, arms folded, grinning with just a touch of nerves. \"I figure I owe you a kiss for every honest thing you've done for this house. I'm going to start collecting.\"",
+          "text": "Nabooru tosses a small velvet pouch into your lap—revealing a gleaming silver ring inside. \"Lifted it off a bandit who deserved worse. Not a proposal—a trophy,\" she grins, leaning against the doorframe with arms crossed and a flicker of nerves beneath her Gerudo swagger. \"I owe you a kiss for every decent thing you've done here, and I'm starting now.\"",
           "image": {
             "comp": "leaning in a doorway with arms folded, confident grin, braided red hair, a flicker of nerves",
             "setting": "the security post by the front door, a lantern, a stack of crates",
             "sam": true
           },
           "go": "Let her collect",
-          "goRes": "She kisses him quickly, sure, and then slower. \"One,\" she says, smiling. \"Don't lose count.\"",
+          "goRes": "She kisses you quick and fierce, then lingers for a second, slower taste. \"One,\" she purrs with a wicked smile. \"Keep count.\"",
           "wait": "\"Maybe later.\"",
-          "waitRes": "Nabooru raises her chin. \"Later's fine. I've waited out sandstorms. I can wait out a nervous man.\" She nudges him, grinning."
+          "waitRes": "Nabooru lifts her chin. \"Later works—I've outlasted desert sandstorms, so I can certainly outlast a nervous man.\""
         },
         "2": {
           "title": "Night Watch",
-          "text": "They keep watch together on the roof, Nabooru's elbow bumping his, a quiet pleasant silence between jokes. \"Most people turn nervous when I stand this close,\" she says. \"You turn pink.\" Her hand finds the back of his neck. \"I like the pink. I like you. Let's find out where this goes, thief to thief.\"",
+          "text": "Standing night watch together on the starlit roof, Nabooru bumps her shoulder against yours with a low laugh. \"Most men get intimidated when I stand this close—you just turn pink, and I love it,\" she murmurs, sliding one hand behind your neck and the other straight onto your belt. \"Let's see where this goes.\"",
           "image": {
             "comp": "sitting shoulder to shoulder on a rooftop, her hand at the back of his neck, confident warm smirk",
             "setting": "rooftop at night, stars, quiet city",
             "sam": true
           },
           "go": "Find out",
-          "goRes": "The watch is forgotten. The roof is a good place to be wanted.",
+          "goRes": "Watch duty is completely abandoned on the roof as her strong, practiced hands unfasten your trousers and jerk your cock until you're breathless beneath the stars.",
           "wait": "\"Not yet.\"",
-          "waitRes": "\"Fine.\" Nabooru's grin doesn't slip. \"I'll keep my hands to myself. Probably.\" She elbows him, laughing."
+          "waitRes": "\"Fine.\" Nabooru's smirk holds steady. \"I'll keep my hands to myself—probably.\""
         },
         "3": {
           "title": "Desert Heat",
-          "text": "Nabooru's room is bare as a warrior's, a bedroll, a lamp, a spear mounted on the wall. She pours water for them both, then sits on the edge of the bed. \"I've never needed anyone,\" she says plainly. \"I'm changing my mind. Stay the night. I won't pretend it doesn't mean something.\"",
+          "text": "Nabooru's bedroom is stark as a warrior's tent—a spear mounted on the wall, a single lamp, and her athletic bronze body bare beneath an open silk wrap on the bed edge. \"I have never needed anyone in my life, Sam, and I'm changing my mind tonight,\" she says steadily. \"Stay with me.\"",
           "image": {
             "comp": "sitting on the edge of a plain bed with arms resting on her knees, steady honest gaze",
             "setting": "her spare room, a spear on the wall, a single lamp, bedroll",
             "sam": true
           },
           "go": "Stay",
-          "goRes": "She's fierce, then unexpectedly gentle. In the quiet after, she admits it's the best haul of her life.",
+          "goRes": "Fierce and demanding at first before melting into breathless, clinging moans as you fuck her pussy, she admits quietly afterward that you're the finest haul of her life.",
           "wait": "\"Are you sure?\"",
-          "waitRes": "\"I wouldn't have asked if I wasn't.\" Nabooru smirks. \"But I'll give you a night. Think it over. I'm not going anywhere.\""
+          "waitRes": "\"I wouldn't have asked if I wasn't,\" Nabooru smirks. \"Take the night to think—I'm not going anywhere.\""
         },
         "jump": {
           "title": "Quick Hands",
-          "text": "Nabooru has lifted Sam's quill, notes, and wallet before he notices. \"Just checking you're paying attention,\" she grins. Then she tucks the wallet back and, in the same motion, pulls him into a kiss. \"And you didn't even feel that part coming. You're easy to steal from.\" Her grin turns soft. \"But I'm keeping the heart. Tell no one.\"",
+          "text": "Nabooru has already pickpocketed your quill, ledger notes, and coin purse before you even blink. \"Just testing your reflexes,\" she grins—tucking the purse back into your pocket while grabbing your collar and kissing you breathless. \"And you didn't see that coming either.\"",
           "image": {
             "comp": "tucking a wallet back into his pocket while kissing him, grinning, quick-handed, red braid swinging",
             "setting": "security desk, scattered quills and papers, lantern light",
             "sam": true
           },
           "go": "Kiss her back",
-          "goRes": "He kisses back. She keeps the quill, and he lets her.",
+          "goRes": "You kiss her back hungrily, backing her onto the security desk and hiking up her Gerudo silks to slide your hand between her thighs while she laughs breathlessly against your mouth.",
           "wait": "\"Nabooru!\"",
-          "waitRes": "\"Fine, fine.\" She hands back the quill, smiling, no remorse. \"But I'm not apologizing for the kiss.\""
+          "waitRes": "\"Fine, fine.\" She hands back your quill without a shred of remorse. \"Though I refuse to apologize for the kiss.\""
         }
       }
     }
