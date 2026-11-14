@@ -48,6 +48,7 @@ Other: Wii Fit Trainer, Samus Aran (android)
 - Maybe certain variables change each cycle or there are certain challenges that give perks (either available right away or after goddess is unlocked/maxed)
 - Costs need to scale on both cycle #, # houses brought over, and # partners brought over. Right now taken over tons of partners trivializes week 2 onwards. (although the Ng ++ post cycle 5 should totally fix this, still might be good to have)
 - Maybe we rebalance repayments so cycle 1 is 5 weeks all the way down to 1 week at cycle 5 (or maybe only down to 2 and increment every other cycle)
+- Actually first order of business  - houses shouldn't be full to the brim on week 1 (esp without a promoter). this is probably the best place to look first
 
 ## Races
 - They don't necessarily need to all be balanced for every activity. demons may be the strongest courtesans but should still be risky in less proposition friendly roles, and require more maintenance there (or just waste time propositioning customers instead of actually working). Humans are the default all arounders who are easy to raise. 
