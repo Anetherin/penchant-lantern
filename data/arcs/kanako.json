@@ -3,19 +3,19 @@
     {
       "title": "Sammy",
       "scene": "sam_date",
-      "text": "Kanako ruffles Sam's hair and calls him \"Sammy\" in front of the whole staff. Again. The red lipstick leaves a faint smudge on his cheek, and everyone pretends not to notice. Later she finds him on the back steps, warm lamplight on her beauty mark and the pins coming loose from her hair. \"You've grown up a lot, haven't you? When did that happen?\"",
+      "text": "Kanako ruffles your hair and calls you \"Sammy\" in front of the whole staff. Again. The red lipstick leaves a faint smudge on your cheek, and everyone pretends not to notice. Later she finds you on the back steps, warm lamplight on her beauty mark and the pins coming loose from her hair. \"You've grown up a lot, haven't you? When did that happen?\"",
       "choices": [
         {
           "label": "Tell her it happened somewhere around the truck",
           "t": 5,
           "m": 8,
-          "res": "\"Somewhere around the truck,\" he says. She laughs, loud and bright, then goes quiet and watches him a beat too long over the rim of her glass."
+          "res": "\"Somewhere around the truck,\" you say. She laughs, loud and bright, then goes quiet and watches you a beat too long over the rim of her glass."
         },
         {
           "label": "Let her ruffle your hair again",
           "t": 1,
           "m": 2,
-          "res": "He bows his head and lets her. {N}'s fingers linger in his hair a second past the joke, and then she tucks a loose pin back into place and says nothing."
+          "res": "You bow your head and let her. {N}'s fingers linger in your hair a second past the joke, and then she tucks a loose pin back into place and says nothing."
         }
       ],
       "image": {"comp":"ruffling his hair in front of the staff, laughing","setting":"lively bar during staff meeting","sam":true}
@@ -23,7 +23,7 @@
     {
       "title": "Shampoo",
       "scene": "walkin",
-      "text": "Kanako walks in on Sam in the bath, doesn't blink, sets the shampoo on the edge of the tub, and keeps chatting about the bar schedule, like it's nothing. Her red lipstick and the beauty mark under her eye are the only things steady in the steam. Sam's ears, meanwhile, are doing something unprecedented.",
+      "text": "Kanako walks in on you in the bath, doesn't blink, sets the shampoo on the edge of the tub, and keeps chatting about the bar schedule, like it's nothing. Her red lipstick and the beauty mark under her eye are the only things steady in the steam. Your ears, meanwhile, are doing something unprecedented.",
       "choices": [
         {
           "label": "Insist she leave",
@@ -40,7 +40,7 @@
           "label": "\"I'm a grown man, Kanako.\"",
           "t": 3,
           "m": -2,
-          "res": "She stops mid-sentence. Looks at him. Leaves without a word, and he can hear her not laughing all the way down the hall."
+          "res": "She stops mid-sentence. Looks at you. Leaves without a word, and you can hear her not laughing all the way down the hall."
         }
       ],
       "image": {
@@ -52,19 +52,19 @@
     {
       "title": "Since When",
       "scene": "casual",
-      "text": "A drunk client gets grabby with Kanako and Sam steps in without thinking, a hand on the man's wrist, a voice he didn't know he had. Afterward the bar is quiet, glasses ringing faintly. She leans on the counter, silent for a long time. \"Since when do you protect me?\" She doesn't ruffle his hair. She just looks at him, like she's seeing him for the first time.",
+      "text": "A drunk client gets grabby with Kanako and you step in without thinking, a hand on the man's wrist, a voice you didn't know you had. Afterward the bar is quiet, glasses ringing faintly. She leans on the counter, silent for a long time. \"Since when do you protect me?\" She doesn't ruffle your hair. She just looks at you, like she's seeing you for the first time.",
       "choices": [
         {
           "label": "Tell her since always",
           "t": 5,
           "m": 8,
-          "res": "\"Since always,\" he says, and it comes out smaller than he intended. She takes a slow breath. When she nods, her hand rests on his for a moment."
+          "res": "\"Since always,\" you say, and it comes out smaller than you intended. She takes a slow breath. When she nods, her hand rests on yours for a moment."
         },
         {
           "label": "Pour her a drink and say nothing",
           "t": 1,
           "m": 2,
-          "res": "He pours her a glass without a word. {N} drinks it slowly, looking at him over the rim, and for once she's the one who forgets to joke."
+          "res": "You pour her a glass without a word. {N} drinks it slowly, looking at you over the rim, and for once she's the one who forgets to joke."
         }
       ],
       "image": {
@@ -76,7 +76,7 @@
     {
       "title": "Matchmaker",
       "scene": "portrait",
-      "text": "Kanako has found Sam \"a nice girl\" and set up a dinner, a candle on the table and her own best lipstick on, fussing at his collar. She's very proud of herself. Her laugh is the loudest thing in the room. Her fingers, straightening his cuff, are not quite steady.",
+      "text": "Kanako has found you \"a nice girl\" and set up a dinner, a candle on the table and her own best lipstick on, fussing at your collar. She's very proud of herself. Her laugh is the loudest thing in the room. Her fingers, straightening your cuff, are not quite steady.",
       "choices": [
         {
           "label": "Go on the date to make her happy",
@@ -88,12 +88,12 @@
           "label": "\"It's always been you. You know that.\"",
           "t": 5,
           "m": -4,
-          "res": "Kanako opens her mouth, closes it, and leaves. She doesn't sleep that night. Neither does he."
+          "res": "Kanako opens her mouth, closes it, and leaves. She doesn't sleep that night. Neither do you."
         },
         {
           "label": "Politely refuse",
           "t": 2,
-          "res": "\"You're impossible,\" she sighs, and fusses with his collar once more. She looks relieved, and a little guilty about it."
+          "res": "\"You're impossible,\" she sighs, and fusses with your collar once more. She looks relieved, and a little guilty about it."
         }
       ],
       "image": {
@@ -105,7 +105,7 @@
     {
       "title": "Last Call",
       "scene": "sam_date",
-      "text": "Kanako finds a bar that's almost like a snack bar back home, with a low counter, a cracked mirror and a smoky amber light, and takes Sam there, just the two of them. There's a lute, and a very drunk bard willing to lend it. She orders for both of them, the way she did for six years across the hallway.",
+      "text": "Kanako finds a bar that's almost like a snack bar back home, with a low counter, a cracked mirror and a smoky amber light, and takes you there, just the two of them. There's a lute, and a very drunk bard willing to lend it. She orders for both of them, the way she did for six years across the hallway.",
       "choices": [
         {
           "label": "Sing, badly",
@@ -117,7 +117,7 @@
           "label": "Ask her to sing",
           "t": 4,
           "m": 6,
-          "res": "Her voice is soft, a little rough from years of smoke and laughter. She sings the whole song looking at him."
+          "res": "Her voice is soft, a little rough from years of smoke and laughter. She sings the whole song looking at you."
         }
       ],
       "image": {
@@ -129,7 +129,7 @@
     {
       "title": "Not the Boy Next Door",
       "scene": "final",
-      "text": "Kanako corners Sam in the kitchen late at night, the lamp low, a pot cooling on the stove, flustered for once in her life, red lipstick smudged where she's been biting her lip. \"I spent six years telling myself you were the boy next door. You're not. You haven't been for a long time.\" She kisses him, laughs at her own blush, and kisses him again.",
+      "text": "Kanako corners you in the kitchen late at night, the lamp low, a pot cooling on the stove, flustered for once in her life, red lipstick smudged where she's been biting her lip. \"I spent six years telling myself you were the boy next door. You're not. You haven't been for a long time.\" She kisses you, laughs at her own blush, and kisses you again.",
       "choices": [
         {"label":"Say yes","t":6,"m":12,"res":""},
         {
@@ -137,7 +137,7 @@
           "t": 1,
           "m": -3,
           "hold": true,
-          "res": "{N} laughs, but it's soft. \"I can wait. Don't make it too long.\" She ruffles his hair, slowly this time, like a question."
+          "res": "{N} laughs, but it's soft. \"I can wait. Don't make it too long.\" She ruffles your hair, slowly this time, like a question."
         }
       ]
     }

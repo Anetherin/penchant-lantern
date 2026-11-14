@@ -3,7 +3,7 @@
     {
       "title": "Lamplighter",
       "scene": "sam_date",
-      "text": "At dusk Anael walks the street with Sam, lighting lanterns with a touch of her fingers, her white wings folded neatly behind her and the flames blooming one by one in her wake. She tells him, plainly, that the old Lantern Stone burned for the first time in four centuries on the night he arrived, and that the Order sent her to find out why. \"I have concluded,\" she says, \"that it was you.\" Sam says that's absurd. \"I know,\" says Anael, with a small, helpless smile. \"I have run out of other explanations.\"",
+      "text": "At dusk Anael walks the street with you, lighting lanterns with a touch of her fingers, her white wings folded neatly behind her and the flames blooming one by one in her wake. She tells you, plainly, that the old Lantern Stone burned for the first time in four centuries on the night you arrived, and that the Order sent her to find out why. \"I have concluded,\" she says, \"that it was you.\" You say that's absurd. \"I know,\" says Anael, with a small, helpless smile. \"I have run out of other explanations.\"",
       "choices": [
         {
           "label": "\"I'm glad it was me.\"",
@@ -27,7 +27,7 @@
     {
       "title": "Not the Wings",
       "scene": "shower",
-      "text": "Sam opens the washroom door to find Anael perched on the edge of the tub, wings dripping onto the tiles, wrapped in a towel and a deep, full-body blush. Her halo has dimmed to a candle-glow in the steam. \"The Order does not prepare one,\" she says with enormous dignity, \"for the maintenance of plumage.\" She draws one wing in front of her like a shield. \"Do not touch the wings. It is... impolite.\"",
+      "text": "You open the washroom door to find Anael perched on the edge of the tub, wings dripping onto the tiles, wrapped in a towel and a deep, full-body blush. Her halo has dimmed to a candle-glow in the steam. \"The Order does not prepare one,\" she says with enormous dignity, \"for the maintenance of plumage.\" She draws one wing in front of her like a shield. \"Do not touch the wings. It is... impolite.\"",
       "choices": [
         {
           "label": "Apologize and back out",
@@ -41,18 +41,18 @@
           "t": 4,
           "m": 7,
           "l": 1,
-          "res": "She holds very still while he blots the feathers with a towel, her breathing slow and careful. At the end her halo is brighter than the lamps.",
+          "res": "She holds very still while you blot the feathers with a towel, her breathing slow and careful. At the end her halo is brighter than the lamps.",
           "else": {
             "t": -2,
             "m": -4,
-            "res": "\"No,\" she says, rigid, wing clutched tighter. \"Please leave.\" The wings snap shut with a thump, and a few droplets scatter across his hoodie."
+            "res": "\"No,\" she says, rigid, wing clutched tighter. \"Please leave.\" The wings snap shut with a thump, and a few droplets scatter across your hoodie."
           }
         },
         {
           "label": "Offer her the soap",
           "t": 2,
           "m": 5,
-          "res": "She examines it, perplexed, turning it in her long fingers. \"I have never required it,\" she admits. She keeps it anyway, and he finds it later on her windowsill."
+          "res": "She examines it, perplexed, turning it in her long fingers. \"I have never required it,\" she admits. She keeps it anyway, and you find it later on her windowsill."
         }
       ],
       "image": {
@@ -65,13 +65,13 @@
     {
       "title": "Field Research: Pie",
       "scene": "casual",
-      "text": "Anael has decided to try human food in the name of research. She approaches a slice of berry pie as if it might be a trap, fork held like a surgical instrument, afternoon light slanting across her wings. After the first bite she goes completely still. After the second, her halo flickers. After the third, she looks Sam directly in the eye. \"This changes my understanding of mortality,\" she says gravely. \"Please do not tell the Order I enjoyed it so much.\"",
+      "text": "Anael has decided to try human food in the name of research. She approaches a slice of berry pie as if it might be a trap, fork held like a surgical instrument, afternoon light slanting across her wings. After the first bite she goes completely still. After the second, her halo flickers. After the third, she looks you directly in the eye. \"This changes my understanding of mortality,\" she says gravely. \"Please do not tell the Order I enjoyed it so much.\"",
       "choices": [
         {
           "label": "Stay with her",
           "t": 5,
           "m": 8,
-          "res": "He shares the pie. She feeds him a bite, solemnly, as though it were a sacrament, and purple juice stains her lip, and something warm settles over them both."
+          "res": "You share the pie. She feeds you a bite, solemnly, as though it were a sacrament, and purple juice stains her lip, and something warm settles over them both."
         },
         {
           "label": "Order a second slice",
@@ -89,7 +89,7 @@
     {
       "title": "Recall",
       "scene": "portrait",
-      "text": "A second angel, tall and stern, appears in the courtyard with a sealed scroll, the lamps flaring white at her presence. The Order has completed its review. Anael is recalled to the Quiet Lamp at the next new moon. She takes the scroll with perfect composure and tucks it into her sleeve, and the stern angel departs in a rush of feathers. That night Anael stands at Sam's door, wings drooping, one hand raised to knock, and does not knock.",
+      "text": "A second angel, tall and stern, appears in the courtyard with a sealed scroll, the lamps flaring white at her presence. The Order has completed its review. Anael is recalled to the Quiet Lamp at the next new moon. She takes the scroll with perfect composure and tucks it into her sleeve, and the stern angel departs in a rush of feathers. That night Anael stands at your door, wings drooping, one hand raised to knock, and does not knock.",
       "choices": [
         {
           "label": "\"Go, if it's your duty.\"",
@@ -119,7 +119,7 @@
     {
       "title": "Evensong",
       "scene": "sam_date",
-      "text": "In the chapel nook of the house, Anael sings the evensong of her order, a slow, ancient melody of lanterns and homecoming. Candlelight shivers on her wings, and the lights in the room rise and fall with her voice. Sam, who cannot sing, hums the bass line anyway, and the lanterns glow brighter in answer. She stops mid-verse, stares at him, and starts to laugh, helpless and bright, her halo flaring in delight.",
+      "text": "In the chapel nook of the house, Anael sings the evensong of her order, a slow, ancient melody of lanterns and homecoming. Candlelight shivers on her wings, and the lights in the room rise and fall with her voice. You, who cannot sing, hum the bass line anyway, and the lanterns glow brighter in answer. She stops mid-verse, stares at you, and starts to laugh, helpless and bright, her halo flaring in delight.",
       "choices": [
         {
           "label": "Keep humming",
@@ -131,7 +131,7 @@
           "label": "Listen in silence",
           "t": 4,
           "m": 5,
-          "res": "She sings the whole of it for him alone, golden eyes closed, and the room is warm for hours afterward, as though the walls remembered."
+          "res": "She sings the whole of it for you alone, golden eyes closed, and the room is warm for hours afterward, as though the walls remembered."
         }
       ],
       "image": {
@@ -143,7 +143,7 @@
     {
       "title": "Report Withheld",
       "scene": "final",
-      "text": "Anael finds Sam on the roof under the stars, the whole sleeping town laid out below them in lantern light. She opens her wings and then folds them around both of them, feathers warm and impossibly soft. \"I have been asked to report on whether this soul is a danger to the world,\" she says. \"I find that he is a danger only to my composure.\" She meets his eyes, golden and brave. \"I would like to stay. Not as a Warden. As yourself.\" The door closes behind them.",
+      "text": "Anael finds you on the roof under the stars, the whole sleeping town laid out below them in lantern light. She opens her wings and then folds them around both of them, feathers warm and impossibly soft. \"I have been asked to report on whether this soul is a danger to the world,\" she says. \"I find that he is a danger only to my composure.\" She meets your eyes, golden and brave. \"I would like to stay. Not as a Warden. As yourself.\" The door closes behind them.",
       "choices": [
         {"label":"Say yes","t":6,"m":12,"res":""},
         {

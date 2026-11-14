@@ -16,33 +16,33 @@
     "away": {
       "label": "🏠 Head home",
       "home": [
-        "Sam walks {name} back. At her door she squeezes his hand, says goodnight, and slips inside.",
+        "You walk {name} back. At her door she squeezes your hand, says goodnight, and slips inside.",
         "They take the long way back, talking about nothing. At her door, {name} smiles and says goodnight.",
-        "They walk back arm in arm, trading the day's best moments. At her door {name} kisses his cheek, says \"Tonight was lovely,\" and closes the door with a smile.",
-        "The streets are quiet, the lanterns burn low, and {name} hums as they walk. At her door she squeezes Sam's hand twice, and goes in.",
-        "Sam sees {name} to her door, and she lingers on the step, content. \"Same time next week?\" she says, laughing, before slipping inside."
+        "They walk back arm in arm, trading the day's best moments. At her door {name} kisses your cheek, says \"Tonight was lovely,\" and closes the door with a smile.",
+        "The streets are quiet, the lanterns burn low, and {name} hums as they walk. At her door she squeezes your hand twice, and goes in.",
+        "You see {name} to her door, and she lingers on the step, content. \"Same time next week?\" she says, laughing, before slipping inside."
       ],
       "invite": [
-        "On the way back, {name} slips her hand into Sam's and doesn't let go. At her door, she hesitates. \"...Do you want to come in?\"",
-        "The walk back stretches a little longer than it needs to. At her door {name} fiddles with the latch, looks up at Sam, and says quietly, \"Come inside. Please.\"",
+        "On the way back, {name} slips her hand into yours and doesn't let go. At her door, she hesitates. \"...Do you want to come in?\"",
+        "The walk back stretches a little longer than it needs to. At her door {name} fiddles with the latch, looks up at you, and says quietly, \"Come inside. Please.\"",
         "{name} stops at her door, key in hand, and does not turn it. \"I don't want tonight to be over yet,\" she says, and holds the door open.",
-        "They reach her door and neither says goodnight. {name} tugs Sam's sleeve, flushed and smiling. \"Stay for a bit?\""
+        "They reach her door and neither says goodnight. {name} tugs your sleeve, flushed and smiling. \"Stay for a bit?\""
       ]
     },
     "home": {
       "label": "🕯 Leave it there",
       "home": [
         "They tidy up together. {name} yawns, says goodnight, and pads off to her room.",
-        "{name} stretches, thanks Sam for the evening, and heads up to bed.",
-        "The house is hushed. {name} gathers the cups, yawns, squeezes Sam's arm, and wanders off to her room.",
-        "They put out the lamps together. {name} leans against his shoulder for a moment, whispers goodnight, and pads up the stairs.",
-        "{name} stretches by the fire's last embers, thanks Sam for the evening, and heads off to bed with a sleepy smile."
+        "{name} stretches, thanks you for the evening, and heads up to bed.",
+        "The house is hushed. {name} gathers the cups, yawns, squeezes your arm, and wanders off to her room.",
+        "They put out the lamps together. {name} leans against your shoulder for a moment, whispers goodnight, and pads up the stairs.",
+        "{name} stretches by the fire's last embers, thanks you for the evening, and heads off to bed with a sleepy smile."
       ],
       "invite": [
-        "The house has gone quiet. {name} lingers at the foot of the stairs, then looks back at Sam. \"...Walk me up?\"",
+        "The house has gone quiet. {name} lingers at the foot of the stairs, then looks back at you. \"...Walk me up?\"",
         "Upstairs, the corridor is dim and the house is silent. {name} stops at her door and turns back. \"...Would you like to come in?\"",
-        "{name} puts out the last lamp and stays beside Sam in the dark. \"It's late,\" she says, \"and I'm not tired. Stay?\"",
-        "The embers are low, and {name} has not moved away from Sam in an hour. \"My room is warmer,\" she says, almost shy about it."
+        "{name} puts out the last lamp and stays beside you in the dark. \"It's late,\" she says, \"and I'm not tired. Stay?\"",
+        "The embers are low, and {name} has not moved away from you in an hour. \"My room is warmer,\" she says, almost shy about it."
       ]
     }
   },
@@ -54,13 +54,13 @@
     "trust": 2.2,
     "mood": 6,
     "like": "walk",
-    "intro": "Sam and {name} drift into the market as the lanterns come on, past stalls of copper pans, bundled herbs and sizzling skewers. The air smells of woodsmoke and cinnamon, and {name} sets the pace, stopping wherever something shiny catches her eye.",
+    "intro": "You and {name} drift into the market as the lanterns come on, past stalls of copper pans, bundled herbs and sizzling skewers. The air smells of woodsmoke and cinnamon, and {name} sets the pace, stopping wherever something shiny catches her eye.",
     "lines": [
       "She haggles a merchant down to half price just to show off.",
       "They split a skewer of something that is definitely not chicken.",
-      "She drags him to every single fabric stall.",
-      "A fruit-seller presses a pear into her hand, and she bites into it right there, juice running down her wrist, before Sam can pay. The market is full of chatter, smoke from the grill-stalls, and the bright flap of awnings.",
-      "They stop to listen to a street fiddler. {name} hums along under her breath, and Sam realizes he's been watching her instead of the music.",
+      "She drags you to every single fabric stall.",
+      "A fruit-seller presses a pear into her hand, and she bites into it right there, juice running down her wrist, before you can pay. The market is full of chatter, smoke from the grill-stalls, and the bright flap of awnings.",
+      "They stop to listen to a street fiddler. {name} hums along under her breath, and you realize you've been watching her instead of the music.",
       "A gust of wind blows the whole stall of paper lanterns sideways, and {name} catches a runaway one in midair with a triumphant grin. The merchant gives it to her for free."
     ],
     "image": {"comp":"strolling arm in arm through a busy market, laughing","setting":"colorful fantasy market street with stalls and lanterns"},
@@ -75,9 +75,9 @@
         "cap": 95,
         "risk": 0.3,
         "lead": [
-          "The market thins out, and {name} steers Sam into a narrow alley where the lanterns don't reach.",
-          "The crowd has gone loud and easy behind them. {name} catches Sam by the cloak and tows him into a gap between two stacks of crates, where the lantern glow barely reaches. \"Two minutes,\" she says, which is not what she means.",
-          "Past a rope of drying laundry the market sounds fade to a murmur. {name} backs Sam into the cool brick, grinning at his startled face, and listens for footsteps that do not come."
+          "The market thins out, and {name} steers you into a narrow alley where the lanterns don't reach.",
+          "The crowd has gone loud and easy behind them. {name} catches you by the cloak and tows you into a gap between two stacks of crates, where the lantern glow barely reaches. \"Two minutes,\" she says, which is not what she means.",
+          "Past a rope of drying laundry the market sounds fade to a murmur. {name} backs you into the cool brick, grinning at your startled face, and listens for footsteps that do not come."
         ],
         "image": {
           "comp": "pressed against a brick wall in a dim narrow alley, glancing toward the street",
@@ -92,9 +92,9 @@
         "gain": 4,
         "risk": 0.3,
         "lead": [
-          "The merchant has gone home and left his stall under a drawn tarp. {name} lifts the flap, looks both ways, and tugs Sam inside by his hoodie strings.",
-          "A cloth merchant is arguing with a customer two stalls over, and the tarp of the empty one is invitingly loose. {name} hooks a finger in Sam's belt and leads him in among the bolts of silk.",
-          "Past the fishmonger's, the stalls turn silent and shuttered. {name} finds one with the tarp tied loose, ducks beneath it, and holds the flap open for Sam with a look he understands completely."
+          "The merchant has gone home and left his stall under a drawn tarp. {name} lifts the flap, looks both ways, and tugs you inside by your hoodie strings.",
+          "A cloth merchant is arguing with a customer two stalls over, and the tarp of the empty one is invitingly loose. {name} hooks a finger in your belt and leads you in among the bolts of silk.",
+          "Past the fishmonger's, the stalls turn silent and shuttered. {name} finds one with the tarp tied loose, ducks beneath it, and holds the flap open for you with a look you understand completely."
         ],
         "image": {
           "comp": "behind the drawn canvas of a closed market stall among stacked crates, a lantern swinging outside",
@@ -110,14 +110,14 @@
     "trust": 2.6,
     "mood": 7,
     "like": ["walk","private"],
-    "intro": "After dark Sam spreads a blanket over the rooftop slates and brings up a flask of something warm. The two moons hang low and bright above the chimneys, the city hums far below, and {name} lies back to find constellations that probably do not exist.",
+    "intro": "After dark you spread a blanket over the rooftop slates and bring up a flask of something warm. The two moons hang low and bright above the chimneys, the city hums far below, and {name} lies back to find constellations that probably do not exist.",
     "lines": [
       "She traces the constellations and makes up her own names for them.",
-      "She tucks herself against his side when the night wind picks up.",
+      "She tucks herself against your side when the night wind picks up.",
       "They stay far longer than they meant to, talking quietly until the lanterns below go out.",
-      "The night air smells of chimney smoke and river water, and the two moons wear thin silver halos. {name} lies back with her hands behind her head, and Sam lies beside her, trying not to talk too much.",
-      "A shooting star scratches across the sky, and she gasps and grabs his sleeve. \"Quick,\" she says, \"make a wish, and don't tell me.\" Neither of them speaks for a while.",
-      "The city is quiet below them, the last windows going dark one by one. {name} whispers a story about the stars that is almost certainly invented, and Sam believes every word."
+      "The night air smells of chimney smoke and river water, and the two moons wear thin silver halos. {name} lies back with her hands behind her head, and you lie beside her, trying not to talk too much.",
+      "A shooting star scratches across the sky, and she gasps and grabs your sleeve. \"Quick,\" she says, \"make a wish, and don't tell me.\" Neither of them speaks for a while.",
+      "The city is quiet below them, the last windows going dark one by one. {name} whispers a story about the stars that is almost certainly invented, and you believe every word."
     ],
     "image": {
       "comp": "lying together on a blanket, gazing at the night sky, her head on his shoulder",
@@ -133,9 +133,9 @@
         "cap": 50,
         "risk": 0,
         "lead": [
-          "The wind picks up, and {name} pulls the blanket over both of them. Under it, her hand finds Sam's, and the stars stop being the point.",
-          "The wind has teeth tonight, and {name} burrows beneath the blanket and drags Sam in after her. Warm under the wool, she laces her fingers through his and forgets the constellations entirely.",
-          "\"Cold,\" {name} announces, tucking her feet against his. The blanket becomes a tent, the tent becomes a secret, and the two moons wander on overhead without anyone watching."
+          "The wind picks up, and {name} pulls the blanket over both of them. Under it, her hand finds yours, and the stars stop being the point.",
+          "The wind has teeth tonight, and {name} burrows beneath the blanket and drags you in after her. Warm under the wool, she laces her fingers through yours and forgets the constellations entirely.",
+          "\"Cold,\" {name} announces, tucking her feet against yours. The blanket becomes a tent, the tent becomes a secret, and the two moons wander on overhead without anyone watching."
         ],
         "image": {"comp":"tangled together under a wool blanket on the rooftop, only their heads and shoulders showing, flushed and smiling","replace":true}
       },
@@ -147,9 +147,9 @@
         "gain": 2,
         "risk": 0,
         "lead": [
-          "A bright streak splits the sky, and {name} gasps. \"Make a wish,\" she says, and Sam wishes aloud, with no sense of shame whatsoever. She laughs, rolls toward him, and grants it.",
-          "The meteors come in a soft, slow shower, and {name} counts them out loud until she loses track. Sam turns his head, catches her looking at him instead, and the sky is forgotten.",
-          "\"That one was mine,\" says {name}, pointing at a falling spark. \"Want to know what I wished for?\" She does not wait for his answer, and the blanket does the rest."
+          "A bright streak splits the sky, and {name} gasps. \"Make a wish,\" she says, and you wish aloud, with no sense of shame whatsoever. She laughs, rolls toward you, and grants it.",
+          "The meteors come in a soft, slow shower, and {name} counts them out loud until she loses track. You turn your head and catch her looking at you instead, and the sky is forgotten.",
+          "\"That one was mine,\" says {name}, pointing at a falling spark. \"Want to know what I wished for?\" She does not wait for your answer, and the blanket does the rest."
         ],
         "image": {"comp":"lying together on the rooftop blanket, a streak of light overhead, faces tipped up and close, flushed","replace":true}
       }
@@ -163,13 +163,13 @@
     "trust": 3,
     "mood": 9,
     "like": "walk",
-    "intro": "Sam finds a patch of soft grass under a willow, with the river sliding by green and slow. The basket holds bread, cheese and too many pickles, and {name} settles onto the blanket with the golden afternoon on her face.",
+    "intro": "You find a patch of soft grass under a willow, with the river sliding by green and slow. The basket holds bread, cheese and too many pickles, and {name} settles onto the blanket with the golden afternoon on her face.",
     "lines": [
-      "She falls asleep on his shoulder.",
+      "She falls asleep on your shoulder.",
       "They watch the two moons come up early.",
       "A duck steals a sandwich. She laughs until she cries.",
-      "The grass is warm, the river chuckles over its stones, and {name} lays out cheese, bread, and a suspiciously large number of pastries. She hands Sam the biggest one with great ceremony.",
-      "Dragonflies zigzag over the water while she weaves a crown out of clover and puts it on his head. He wears it with dignity until a passing boatman salutes him.",
+      "The grass is warm, the river chuckles over its stones, and {name} lays out cheese, bread, and a suspiciously large number of pastries. She hands you the biggest one with great ceremony.",
+      "Dragonflies zigzag over the water while she weaves a crown out of clover and puts it on your head. You wear it with dignity until a passing boatman salutes you.",
       "A light breeze lifts the corner of the blanket, and {name} holds it down with her foot while reaching for the wine. They talk about nothing and everything until the shadows grow long."
     ],
     "image": {
@@ -186,9 +186,9 @@
         "cap": 65,
         "risk": 0.1,
         "lead": [
-          "The willow hangs low enough to make a room of the riverbank. {name} looks at Sam, looks at the branches, and lets the picnic basket go unattended.",
-          "The branches sway shut like a curtain, and the river chatter sounds far away. {name} nudges the basket aside, kisses a crumb off Sam's lip, and takes her time with the rest.",
-          "Under the willow it is green and still and dappled, a room made of leaves. {name} lies back on the blanket and looks at Sam with an expression the pickles never inspired."
+          "The willow hangs low enough to make a room of the riverbank. {name} looks at you, looks at the branches, and lets the picnic basket go unattended.",
+          "The branches sway shut like a curtain, and the river chatter sounds far away. {name} nudges the basket aside, kisses a crumb off your lip, and takes her time with the rest.",
+          "Under the willow it is green and still and dappled, a room made of leaves. {name} lies back on the blanket and looks at you with an expression the pickles never inspired."
         ],
         "image": {
           "comp": "hidden under the drooping willow branches, the picnic blanket rumpled",
@@ -203,9 +203,9 @@
         "gain": 3,
         "risk": 0.1,
         "lead": [
-          "The honey jar tips and {name} licks a golden streak from her wrist with slow satisfaction. She looks at Sam, at the sticky jar, and smiles in a way that is nothing like innocent.",
-          "The sun is warm and the river lulls everything to a hush. {name} feeds Sam the last bite of honeycake, her fingertips lingering on his lips, and the basket stays forgotten.",
-          "Down where the reeds crowd the bank, no one can see the blanket. {name} dips a finger in the honey, draws a lazy line along Sam's jaw, and leans in to follow it."
+          "The honey jar tips and {name} licks a golden streak from her wrist with slow satisfaction. She looks at you, at the sticky jar, and smiles in a way that is nothing like innocent.",
+          "The sun is warm and the river lulls everything to a hush. {name} feeds you the last bite of honeycake, her fingertips lingering on your lips, and the basket stays forgotten.",
+          "Down where the reeds crowd the bank, no one can see the blanket. {name} dips a finger in the honey, draws a lazy line along your jaw, and leans in to follow it."
         ],
         "image": {
           "comp": "on the picnic blanket in a hollow of tall grass, honey jar tipped over beside them",
@@ -223,12 +223,12 @@
     "like": ["chat","walk"],
     "intro": "The street fair has taken over the whole square, all bunting, brass music and shouting game barkers. Lantern light spills over ring-toss stalls and sugar-stick sellers, and {name} is already eyeing the biggest prize on the shelf.",
     "lines": [
-      "She wins a stuffed dragon at the ring toss and refuses to let Sam carry it.",
+      "She wins a stuffed dragon at the ring toss and refuses to let you carry it.",
       "They share candied nuts and gossip about every passerby.",
-      "She drags him into the dance circle, and he is terrible. She loves it.",
-      "A brass band is playing slightly out of tune, and nobody cares. {name} grabs Sam's hand and tows him through the crowd toward the smell of fried dough and honey.",
-      "At the archery stall, she hits the target dead center on her first try, then looks at Sam, daring him to match it. His arrow lands in a hay bale ten feet to the left. She laughs until she has to sit down.",
-      "Paper lanterns bob overhead, and the evening glows gold. {name} gets a ribbon braided into her hair by a stall girl and turns around, asking Sam what he thinks. He's speechless for a moment."
+      "She drags you into the dance circle, and you are terrible. She loves it.",
+      "A brass band is playing slightly out of tune, and nobody cares. {name} grabs your hand and tows you through the crowd toward the smell of fried dough and honey.",
+      "At the archery stall, she hits the target dead center on her first try, then looks at you, daring you to match it. Your arrow lands in a hay bale ten feet to the left. She laughs until she has to sit down.",
+      "Paper lanterns bob overhead, and the evening glows gold. {name} gets a ribbon braided into her hair by a stall girl and turns around, asking you what you think. You're speechless for a moment."
     ],
     "image": {
       "comp": "laughing together at a game stall, holding a prize and sweets",
@@ -245,9 +245,9 @@
         "cap": 75,
         "risk": 0.3,
         "lead": [
-          "The music is loud enough to cover anything. {name} tugs Sam between two stalls, into a gap barely wide enough for the two of them.",
-          "A drum roll and a roar of laughter swallow the noise of the square, and {name} chooses that moment to pull Sam behind the canvas of the nearest stall. \"Nobody is watching,\" she says, and decides she believes it.",
-          "Behind the prize tent it smells of canvas and spilled cider, and the fair's colors flicker over the ropes. {name} presses a finger to Sam's lips, laughing, and pulls him closer."
+          "The music is loud enough to cover anything. {name} tugs you between two stalls, into a gap barely wide enough for the two of them.",
+          "A drum roll and a roar of laughter swallow the noise of the square, and {name} chooses that moment to pull you behind the canvas of the nearest stall. \"Nobody is watching,\" she says, and decides she believes it.",
+          "Behind the prize tent it smells of canvas and spilled cider, and the fair's colors flicker over the ropes. {name} presses a finger to your lips, laughing, and pulls you closer."
         ],
         "image": {
           "comp": "squeezed into a narrow gap between two game stalls, bunting overhead",
@@ -262,9 +262,9 @@
         "gain": 3,
         "risk": 0.25,
         "lead": [
-          "The wheel creaks to a stop at the very top, and the operator below shouts that he is going to take a break. {name} looks at the whole glittering fair beneath them, then at Sam, and smiles.",
-          "The gondola sways with every gust, the whole fair a spill of lantern light below. {name} grabs Sam's arm to steady herself and does not let go.",
-          "Up here the music is thin and far, and no one in the square will look up. {name} slides along the bench until their knees touch and kisses Sam like the wheel might never move again."
+          "The wheel creaks to a stop at the very top, and the operator below shouts that he is going to take a break. {name} looks at the whole glittering fair beneath them, then at you, and smiles.",
+          "The gondola sways with every gust, the whole fair a spill of lantern light below. {name} grabs your arm to steady herself and does not let go.",
+          "Up here the music is thin and far, and no one in the square will look up. {name} slides along the bench until their knees touch and kisses you like the wheel might never move again."
         ],
         "image": {
           "comp": "in a small swaying gondola at the top of a hand-turned fair wheel, the lantern-lit fair spread below",
@@ -287,10 +287,10 @@
     "lines": [
       "She reads a passage aloud in a theatrical voice until the clerk shushes them both.",
       "They argue over a faded map for an hour, and she turns out to be right.",
-      "She finds a shelf of bad romance novels and reads the worst bits to Sam in a solemn tone.",
+      "She finds a shelf of bad romance novels and reads the worst bits to you in a solemn tone.",
       "Dust motes drift through the slanted afternoon light, and the only sound is the scratch of a clerk's pen far away. {name} runs a finger along the spines of the old books and murmurs the titles like a prayer.",
-      "They share a single reading desk, shoulder to shoulder, passing a magnifying glass back and forth. Every so often her hair brushes his cheek, and he loses his place.",
-      "{name} finds a pressed flower between two pages of an old poetry book and shows it to Sam, quietly. They wonder together who left it there, and invent three different love stories."
+      "They share a single reading desk, shoulder to shoulder, passing a magnifying glass back and forth. Every so often her hair brushes your cheek, and you lose your place.",
+      "{name} finds a pressed flower between two pages of an old poetry book and shows it to you, quietly. They wonder together who left it there, and invent three different love stories."
     ],
     "image": {
       "comp": "reading together at a long table, heads bent over an old book, her finger on the page",
@@ -305,9 +305,9 @@
         "cap": 60,
         "risk": 0.25,
         "lead": [
-          "{name} pulls Sam into the narrowest aisle, past the ladders, where the clerk can't see. \"We have to be very quiet,\" she whispers.",
-          "Between the shelves, the dusty hush makes every breath loud. {name} slides a heavy tome back into place, turns, and finds Sam exactly where she wants him, close, flushed and trying not to sneeze.",
-          "A ladder creaks somewhere far off and the clerk coughs. {name} takes Sam's collar, murmurs \"shush\" against his ear, and treats the sound as a challenge."
+          "{name} pulls you into the narrowest aisle, past the ladders, where the clerk can't see. \"We have to be very quiet,\" she whispers.",
+          "Between the shelves, the dusty hush makes every breath loud. {name} slides a heavy tome back into place, turns, and finds you exactly where she wants you, close, flushed and trying not to sneeze.",
+          "A ladder creaks somewhere far off and the clerk coughs. {name} takes your collar, murmurs \"shush\" against your ear, and treats the sound as a challenge."
         ],
         "image": {
           "comp": "pressed against tall bookshelves in a narrow aisle, a fallen book at their feet, trying to stay quiet",
@@ -322,9 +322,9 @@
         "gain": 3,
         "risk": 0.15,
         "lead": [
-          "{name} has talked the clerk out of a key she probably should not own. Behind the iron-banded door, the restricted room is small and dim and entirely theirs, and she locks it behind Sam with a click.",
+          "{name} has talked the clerk out of a key she probably should not own. Behind the iron-banded door, the restricted room is small and dim and entirely theirs, and she locks it behind you with a click.",
           "The restricted reading room smells of wax and leather, and a sign warns against open flames. {name} ignores the sign, and the one candle she lights is the least of the heat.",
-          "\"Forbidden knowledge,\" {name} says, closing the door with her foot. She slides a scroll aside and sits on the oak table, drawing Sam in by the sleeve, and the archive's silence has never felt so loud."
+          "\"Forbidden knowledge,\" {name} says, closing the door with her foot. She slides a scroll aside and sits on the oak table, drawing you in by the sleeve, and the archive's silence has never felt so loud."
         ],
         "image": {
           "comp": "in a small candlelit reading room, pushed against a heavy oak table with scrolls scattered, whispering",
@@ -343,13 +343,13 @@
     "stats": {"strength":1.5,"stamina":1},
     "skills": {"combat":1.5},
     "sam": {"strength":1},
-    "intro": "The Mountain Road climbs in switchbacks through pine and loose stone, and Sam is wheezing well before the first bend. At the top the whole valley opens out below, with the dungeon mouth a dark smudge in the far trees, and {name} breathes it in as if it were hers.",
+    "intro": "The Mountain Road climbs in switchbacks through pine and loose stone, and you are wheezing well before the first bend. At the top the whole valley opens out below, with the dungeon mouth a dark smudge in the far trees, and {name} breathes it in as if it were hers.",
     "lines": [
-      "At the top they spar with sticks, and she wins more often than Sam would like to admit.",
+      "At the top they spar with sticks, and she wins more often than you would like to admit.",
       "They share a flask and look down at the dungeon mouth far below, small as a keyhole.",
       "On the way down, her legs give out first, and she blames the boots.",
       "The air gets thinner and cooler the higher they climb, and a hawk circles lazily overhead. {name} pauses at a switchback, hands on her knees, laughing at how winded they both are.",
-      "Wildflowers cling to the rocks along the trail, and {name} picks one and tucks it behind Sam's ear without breaking stride. He doesn't take it out for the rest of the climb.",
+      "Wildflowers cling to the rocks along the trail, and {name} picks one and tucks it behind your ear without breaking stride. You don't take it out for the rest of the climb.",
       "At the overlook, the whole valley spreads out below them in green and gold, the distant river shining like a ribbon. {name} stands at the edge with her hair whipping in the wind and looks, for a moment, impossibly free."
     ],
     "image": {
@@ -365,9 +365,9 @@
         "cap": 75,
         "risk": 0.05,
         "lead": [
-          "{name} leaves the path without explaining, and Sam follows. The clearing is quiet and sunny, and a long way from anyone.",
-          "Halfway down the ridge {name} stops at a sunlit gap in the pines and spreads Sam's cloak across the moss without a word. Birdsong, warm resin and no one for a mile, and she is in no hurry at all.",
-          "The trail bends, and so does {name}, off it and into a hollow of wildflowers that hums with bees. She turns back to Sam with sun in her hair, and the climb stops mattering."
+          "{name} leaves the path without explaining, and you follow. The clearing is quiet and sunny, and a long way from anyone.",
+          "Halfway down the ridge {name} stops at a sunlit gap in the pines and spreads your cloak across the moss without a word. Birdsong, warm resin and no one for a mile, and she is in no hurry at all.",
+          "The trail bends, and so does {name}, off it and into a hollow of wildflowers that hums with bees. She turns back to you with sun in her hair, and the climb stops mattering."
         ],
         "image": {
           "comp": "on a cloak spread over the grass in a sunny clearing",
@@ -383,8 +383,8 @@
         "risk": 0.05,
         "lead": [
           "The cabin is half-fallen, with herbs still hanging from the rafters and a bunk against the wall. {name} brushes the dust off the blanket and sits down, patting the space beside her.",
-          "A rainstorm pushes them into the old hunter's hut, and the roof holds, mostly. {name} wrings out her braid, shakes out the blanket, and takes a long look at Sam while the rain drums on.",
-          "Nobody has used the cabin in years, but the bunk is dry and the door latches. {name} wedges it shut with a boot, turns to Sam, and her breath is still quick from the climb."
+          "A rainstorm pushes them into the old hunter's hut, and the roof holds, mostly. {name} wrings out her braid, shakes out the blanket, and takes a long look at you while the rain drums on.",
+          "Nobody has used the cabin in years, but the bunk is dry and the door latches. {name} wedges it shut with a boot, turns to you, and her breath is still quick from the climb."
         ],
         "image": {
           "comp": "on a rough bunk with a folded blanket in a dusty hunter's cabin, afternoon light through the slats",
@@ -405,14 +405,14 @@
     "lewdCap": 40,
     "stats": {"strength":1,"agility":1},
     "sam": {"strength":1},
-    "intro": "Over dinner Sam says, out loud and with great confidence, that he could take {name} in a fair fight. She sets down her cup, rolls up her sleeves and shoves the table against the wall, and the rug becomes an arena lit by one warm lamp.",
+    "intro": "Over dinner you say, out loud and with great confidence, that you could take {name} in a fair fight. She sets down her cup, rolls up her sleeves and shoves the table against the wall, and the rug becomes an arena lit by one warm lamp.",
     "lines": [
-      "She pins him in under a minute and sits on him until he admits it.",
-      "He wins one round by accident. She demands a rematch, then three more.",
+      "She pins you in under a minute and sits on you until you admit it.",
+      "You win one round by accident. She demands a rematch, then three more.",
       "They end up in a breathless, laughing tangle on the floor, and nobody is keeping score anymore.",
-      "The furniture is shoved to the walls, the rugs are rolled, and {name} cracks her knuckles with theatrical menace. Sam, in his shirtsleeves, looks like a man regretting several decisions at once.",
-      "She hooks his ankle and drops him on the cushions so smoothly that he doesn't realize he's down until he's looking at the ceiling. \"Ow,\" he says, impressed. \"Again?\" she asks.",
-      "They finally collapse side by side, sweaty and out of breath, laughing at nothing. {name} lets him win the last round, then claims she didn't."
+      "The furniture is shoved to the walls, the rugs are rolled, and {name} cracks her knuckles with theatrical menace. You, in your shirtsleeves, look like a man regretting several decisions at once.",
+      "She hooks your ankle and drops you on the cushions so smoothly that you don't realize you're down until you're looking at the ceiling. \"Ow,\" you say, impressed. \"Again?\" she asks.",
+      "They finally collapse side by side, sweaty and out of breath, laughing at nothing. {name} lets you win the last round, then claims she didn't."
     ],
     "image": {
       "comp": "wrestling playfully on a padded floor, tangled up and laughing, her pinning him down",
@@ -420,16 +420,16 @@
     },
     "spicy": [
       {
-        "label": "She pins him",
+        "label": "She pins you",
         "acts": ["cowgirl","manual_give","kiss"],
         "lewd": 35,
         "gain": 3,
         "cap": 70,
         "risk": 0,
         "lead": [
-          "{name} pins Sam flat for the last time and doesn't let him up. She doesn't seem to be thinking about the score anymore.",
-          "The bout ends the way {name} always meant it to, with Sam flat on the rug and her weight pinning him there. She is breathing hard, grinning, and not at all in a hurry to call the match.",
-          "\"Say it,\" {name} breathes, knee on the cushion beside his ribs. Sam says something, though not the thing she asked for, and the contest quietly changes rules."
+          "{name} pins you flat for the last time and doesn't let you up. She doesn't seem to be thinking about the score anymore.",
+          "The bout ends the way {name} always meant it to, with you flat on the rug and her weight pinning him there. She is breathing hard, grinning, and not at all in a hurry to call the match.",
+          "\"Say it,\" {name} breathes, knee on the cushion beside your ribs. You say something, though not the thing she asked for, and the contest quietly changes rules."
         ],
         "image": {"comp":"on the cushions on the floor, her on top, flushed and breathless from wrestling"}
       },
@@ -441,9 +441,9 @@
         "gain": 3,
         "risk": 0,
         "lead": [
-          "Sam, by pure accident, hooks a leg and rolls {name} onto the cushions. He realizes too late that he has won and has no plan for it.",
-          "\"Best of three,\" says {name}, who has just lost the second round and is looking up at him, breathless. The third, she decides, will be a different kind of contest.",
-          "Sam finally has her down, her wrists loose and her smile wide. \"Go on, then,\" says {name}, \"claim your prize.\""
+          "You, by pure accident, hook a leg and roll {name} onto the cushions. You realize too late that you have won and have no plan for it.",
+          "\"Best of three,\" says {name}, who has just lost the second round and is looking up at you, breathless. The third, she decides, will be a different kind of contest.",
+          "You finally have her down, her wrists loose and her smile wide. \"Go on, then,\" says {name}, \"claim your prize.\""
         ],
         "image": {"comp":"on the cushions on the floor, him pinning her down for once, both breathless and laughing"}
       }
@@ -462,13 +462,13 @@
     "lewd": 2,
     "lewdCap": 40,
     "sam": {"technique":1},
-    "intro": "The room is warm and dim, with towels folded on the bench and a bottle of scented oil gleaming in the candlelight. The deal is fair: Sam works first, then {name} takes her turn, and neither of them is entirely sure who got the better bargain.",
+    "intro": "The room is warm and dim, with towels folded on the bench and a bottle of scented oil gleaming in the candlelight. The deal is fair: you work first, then {name} takes her turn, and neither of them is entirely sure who got the better bargain.",
     "lines": [
-      "She critiques his technique the whole time, then falls asleep halfway through her turn.",
-      "She finds every knot in his shoulders and is smug about each one.",
+      "She critiques your technique the whole time, then falls asleep halfway through her turn.",
+      "She finds every knot in your shoulders and is smug about each one.",
       "Neither of them talks much. Neither of them needs to.",
-      "The room is warm and smells of sandalwood and sweet almond oil. {name} rolls her shoulders and sighs happily as Sam's thumbs find the first stubborn knot. \"Oh,\" she says. \"Oh, that's the one.\"",
-      "A single candle flickers, and the sounds of the house fade to a distant murmur. When it's his turn, Sam yields to her hands with a groan he doesn't bother to hide.",
+      "The room is warm and smells of sandalwood and sweet almond oil. {name} rolls her shoulders and sighs happily as your thumbs find the first stubborn knot. \"Oh,\" she says. \"Oh, that's the one.\"",
+      "A single candle flickers, and the sounds of the house fade to a distant murmur. When it's your turn, you yield to her hands with a groan you don't bother to hide.",
       "They talk in low voices between silences, about nothing in particular. The oil is warm, the blankets are soft, and the afternoon slides by unnoticed."
     ],
     "image": {
@@ -485,9 +485,9 @@
         "cap": 60,
         "risk": 0,
         "lead": [
-          "\"You missed a spot,\" says {name}, and guides Sam's hands somewhere that isn't her shoulders.",
-          "\"Mm, lower,\" {name} murmurs, and Sam's oiled hands travel the way she steers them. The candle gutters, the towel slips, and the lesson is clearly over.",
-          "The oil has warmed to the skin, and so has {name}. She turns over slowly, catches Sam's wrist, and decides that shoulders were only the beginning."
+          "\"You missed a spot,\" says {name}, and guides your hands over her ass and her thighs, anywhere that isn't her shoulders.",
+          "\"Mm, lower,\" {name} murmurs, and your oiled hands travel the way she steers them. The candle gutters, the towel slips, and the lesson is clearly over.",
+          "The oil has warmed to the skin, and so has {name}. She turns over slowly, catches your wrist, and decides that shoulders were only the beginning."
         ],
         "image": {"comp":"on the towels, oiled skin glistening in candlelight"}
       },
@@ -499,9 +499,9 @@
         "gain": 2,
         "risk": 0,
         "lead": [
-          "It is {name}'s turn at last, and she sprawls on the towels with a groan that sounds like surrender. Sam warms the oil in his palms and she shivers before he has touched her.",
-          "{name} hums through every knot Sam finds, softer and lower with each pass of his thumbs. Somewhere along her spine the humming turns into something else.",
-          "\"Lower,\" says {name} into the folded towel, then \"Slower.\" Sam, a man of notes and diligence, takes this direction very seriously."
+          "It is {name}'s turn at last, and she sprawls on the towels with a groan that sounds like surrender. You warm the oil in your palms and she shivers before he has touched her.",
+          "{name} hums through every knot you find, softer and lower with each pass of your thumbs. Somewhere along her spine the humming turns into something else.",
+          "\"Lower,\" says {name} into the folded towel, then \"Slower.\" You, a man of notes and diligence, take this direction very seriously."
         ],
         "image": {"comp":"face down on the towels while he works oil along her back, candlelight on her skin"}
       }
@@ -515,21 +515,21 @@
     "trust": 3.6,
     "mood": 10,
     "like": "dinner",
-    "intro": "The Lark & Kettle is small and golden, with candles in old bottles, a fiddle somewhere behind the kitchen and a menu chalked on a slate. Sam and {name} take the corner table, and the bread arrives hot enough to steam in the cool evening air.",
+    "intro": "The Lark & Kettle is small and golden, with candles in old bottles, a fiddle somewhere behind the kitchen and a menu chalked on a slate. You and {name} take the corner table, and the bread arrives hot enough to steam in the cool evening air.",
     "lines": [
-      "She orders for both of them after watching him squint at the menu.",
-      "He tells her about ramen. She makes him promise to recreate it someday.",
-      "She laughs so hard at one of his stories that wine comes out of her nose. They agree never to speak of it.",
+      "She orders for both of them after watching you squint at the menu.",
+      "You tell her about ramen. She makes him promise to recreate it someday.",
+      "She laughs so hard at one of your stories that wine comes out of her nose. They agree never to speak of it.",
       "The Lark & Kettle is all low beams and candlelight, with a hearth crackling at the far end. {name} orders the house stew and the good bread without even looking at the board, and the waiter gives her an approving nod.",
-      "They share a plate of roasted pears with cream, and {name} steals the last bite off Sam's fork. \"Strategic,\" she says, unrepentant.",
-      "The innkeeper brings a second bottle they didn't order, claiming it's a gift from the next table. {name} raises her glass in thanks to a startled stranger, and Sam laughs into his cup."
+      "They share a plate of roasted pears with cream, and {name} steals the last bite off your fork. \"Strategic,\" she says, unrepentant.",
+      "The innkeeper brings a second bottle they didn't order, claiming it's a gift from the next table. {name} raises her glass in thanks to a startled stranger, and you laugh into your cup."
     ],
     "past": {
       "cook": {
         "cost": 0,
         "trustMult": 1.25,
-        "intro": "Sam cooks for {name} in the kitchen after closing.",
-        "lines": ["She has thirds.","She tries to get the recipe out of him and fails.","She says it's the best thing she's eaten in this world."]
+        "intro": "You cook for {name} in the kitchen after closing.",
+        "lines": ["She has thirds.","She tries to get the recipe out of you and fails.","She says it's the best thing she's eaten in this world."]
       }
     },
     "image": {"comp":"sharing a candlelit dinner, leaning toward each other, smiling","setting":"small cozy fantasy restaurant, warm candlelight"},
@@ -543,9 +543,9 @@
         "cap": 70,
         "risk": 0.25,
         "lead": [
-          "The tablecloth hangs low and the waiter is busy. {name} keeps a perfectly composed face and a very busy hand.",
-          "The candle is low and the waiter has vanished into the kitchen for the third time. {name} keeps her face a mask of polite interest while her hand wanders beneath the long cloth, and Sam forgets how to hold a spoon.",
-          "\"Pass the salt,\" says {name} in a perfectly even voice, one hand fully occupied elsewhere. Sam passes it with a trembling hand and the faint hope that nobody is looking."
+          "The tablecloth hangs low and the waiter is busy. {name} keeps a perfectly composed face and a very busy hand in your lap.",
+          "The candle is low and the waiter has vanished into the kitchen for the third time. {name} keeps her face a mask of polite interest while her hand wanders beneath the long cloth, and you forget how to hold a spoon.",
+          "\"Pass the salt,\" says {name} in a perfectly even voice, one hand fully occupied elsewhere. You pass it with a trembling hand and the faint hope that nobody is looking."
         ],
         "image": {
           "comp": "seated side by side at a candlelit table, her face perfectly composed while her hand is hidden under the long tablecloth, his face flushed",
@@ -560,9 +560,9 @@
         "gain": 3,
         "risk": 0.25,
         "lead": [
-          "The pastry is served and {name} suddenly needs the washroom, which, the waiter says, is up the back stairs. She takes Sam's hand and does not go to the washroom.",
-          "The stairs behind the kitchen are narrow and dark, and smell of wine and rosemary. {name} stops two steps above Sam, which puts her at exactly the right height.",
-          "\"I'll show you where they keep the good dessert,\" says {name}, and leads Sam past a barrel and up the creaking back stairs. It turns out to be a very short tour."
+          "The pastry is served and {name} suddenly needs the washroom, which, the waiter says, is up the back stairs. She takes your hand and does not go to the washroom.",
+          "The stairs behind the kitchen are narrow and dark, and smell of wine and rosemary. {name} stops two steps above you, which puts her at exactly the right height.",
+          "\"I'll show you where they keep the good dessert,\" says {name}, and leads you past a barrel and up the creaking back stairs. It turns out to be a very short tour."
         ],
         "image": {
           "comp": "on a dim back stairwell with crates of wine, close together, the kitchen light below",
@@ -582,14 +582,14 @@
     "skills": {"dance":1.5},
     "stats": {"agility":1},
     "lust": 4,
-    "intro": "The Silver Fiddle is loud and warm and crowded, the floorboards bouncing under a band that does not know the word rest. Lanterns sway overhead, mugs clack on every table, and {name} grabs Sam by the wrist and hauls him into the middle of it all.",
+    "intro": "The Silver Fiddle is loud and warm and crowded, the floorboards bouncing under a band that does not know the word rest. Lanterns sway overhead, mugs clack on every table, and {name} grabs you by the wrist and hauls you into the middle of it all.",
     "lines": [
-      "Sam steps on her feet twice before she takes over and leads.",
-      "She teaches him a spin and he nearly takes out a waiter.",
+      "You step on her feet twice before she takes over and leads.",
+      "She teaches you a spin and you nearly take out a waiter.",
       "A slow song comes on, and neither of them says anything for its whole length.",
-      "The fiddler picks up the tempo, and the whole floor starts to stamp and spin. {name} pulls Sam into the middle of it with a laugh, her skirt swirling and her cheeks bright.",
-      "Sweat, spilled ale, and the thump of boots on boards: the Silver Fiddle at its loudest. {name} shouts something in his ear that he can't hear, then kisses his cheek instead.",
-      "They finally stagger out into the cool night air, ears ringing, shoulders bumping. {name} is still humming the last tune, and Sam suspects he will be too."
+      "The fiddler picks up the tempo, and the whole floor starts to stamp and spin. {name} pulls you into the middle of it with a laugh, her skirt swirling and her cheeks bright.",
+      "Sweat, spilled ale, and the thump of boots on boards: the Silver Fiddle at its loudest. {name} shouts something in your ear that you can't hear, then kisses your cheek instead.",
+      "They finally stagger out into the cool night air, ears ringing, shoulders bumping. {name} is still humming the last tune, and you suspect you will be too."
     ],
     "image": {"comp":"dancing close together, her leading, laughing","setting":"lively fantasy dance hall with a fiddle band, lanterns and wooden floor"},
     "spicy": [
@@ -601,8 +601,8 @@
         "cap": 70,
         "risk": 0.2,
         "lead": [
-          "{name} drags Sam through a curtain into the coat room, where the music comes muffled and the door has no lock.",
-          "The coats muffle the fiddle to a distant heartbeat. {name} pulls the curtain across and backs Sam into a rack of cloaks, laughing against his neck, with no lock on the door and no reason to care.",
+          "{name} drags you through a curtain into the coat room, where the music comes muffled and the door has no lock.",
+          "The coats muffle the fiddle to a distant heartbeat. {name} pulls the curtain across and backs you into a rack of cloaks, laughing against your neck, with no lock on the door and no reason to care.",
           "Past the dancers, past the bar, behind a curtain, the coat room is a cave of wool and lamplight. {name} is out of breath from the reel and not at all done moving."
         ],
         "image": {
@@ -618,7 +618,7 @@
         "gain": 3,
         "risk": 0.2,
         "lead": [
-          "The reel finishes and {name}, laughing and breathless, steers Sam out the back door to the cool of the courtyard. Under the strung lanterns she pulls him down onto the bench.",
+          "The reel finishes and {name}, laughing and breathless, steers you out the back door to the cool of the courtyard. Under the strung lanterns she pulls you down onto the bench.",
           "Out in the courtyard the night is quiet and the fiddle is a heartbeat through the wall. {name}'s hair has come loose, her cheeks are flushed, and she is very much not done dancing.",
           "\"Need air,\" says {name}, who does not need air. The courtyard has a bench, a gap in the lanterns and nobody else, and she makes use of all three."
         ],
@@ -639,11 +639,11 @@
     "intro": "The Hollowmere Players are doing a tragedy, and the velvet seats of the old theater are full of people already sniffling. Candles gutter along the stage, a painted storm rolls across the backdrop, and {name} leans in close to whisper commentary on the acting.",
     "lines": [
       "She cries through the whole third act and denies it afterward.",
-      "Sam falls asleep in act two. She pokes him awake, grinning.",
+      "You fall asleep in act two. She pokes him awake, grinning.",
       "She whispers commentary the entire time. It is better than the play.",
       "The lanterns dim, the curtain rises, and the audience quiets to a reverent hush. {name} leans forward in her seat, lips slightly parted, entirely lost in the first scene.",
-      "A villain stalks onstage in a dramatic cape, and {name} whispers, \"I'd have him arrested.\" Sam whispers back, \"He's the king.\" \"Even worse,\" she says.",
-      "At the final bow, the whole house is on its feet. {name} wipes her eyes and applauds hardest of all, then catches Sam watching and tries to look stern about it."
+      "A villain stalks onstage in a dramatic cape, and {name} whispers, \"I'd have him arrested.\" You whisper back, \"He's the king.\" \"Even worse,\" she says.",
+      "At the final bow, the whole house is on its feet. {name} wipes her eyes and applauds hardest of all, then catches you watching and tries to look stern about it."
     ],
     "image": {
       "comp": "seated side by side in a theater box, watching the stage, her hand on his arm",
@@ -659,9 +659,9 @@
         "cap": 70,
         "risk": 0.1,
         "lead": [
-          "The lights go down for the second act. {name}'s hand settles on Sam's thigh, and stays there, and then wanders.",
-          "The tragedy reaches its great speech, and {name} stops listening to a word of it. Her fingers find Sam's knee in the dark, and the box feels very private indeed.",
-          "In the dim of the box the stage glows like a distant fire. {name} leans across Sam, pretending to look at the tragic duel below, and finds better things to do with her hands."
+          "The lights go down for the second act. {name}'s hand settles on your thigh, and stays there, and then wanders up toward your cock.",
+          "The tragedy reaches its great speech, and {name} stops listening to a word of it. Her fingers find your knee in the dark, and the box feels very private indeed.",
+          "In the dim of the box the stage glows like a distant fire. {name} leans across you, pretending to look at the tragic duel below, and finds better things to do with her hands."
         ],
         "image": {"comp":"in the dark of a private theater box, the stage glowing far below"}
       },
@@ -673,9 +673,9 @@
         "gain": 3,
         "risk": 0.2,
         "lead": [
-          "After the final bow, {name} slips a stagehand a coin and leads Sam into the wings. The set pieces loom around them, painted mountains and cardboard moons, and she shuts out the world.",
-          "Backstage smells of greasepaint and old velvet. {name} runs a hand along a costume rack, picks out a feathered cloak, and winds Sam into it by the collar.",
-          "The tragedy ends in applause. In the wings behind a painted tree, {name} breaks the stage silence with a very un-tragic laugh and pulls Sam closer."
+          "After the final bow, {name} slips a stagehand a coin and leads you into the wings. The set pieces loom around them, painted mountains and cardboard moons, and she shuts out the world.",
+          "Backstage smells of greasepaint and old velvet. {name} runs a hand along a costume rack, picks out a feathered cloak, and winds you into it by the collar.",
+          "The tragedy ends in applause. In the wings behind a painted tree, {name} breaks the stage silence with a very un-tragic laugh and pulls you closer."
         ],
         "image": {"comp":"among painted flats and costume racks backstage, the empty stage glimmering past the wings"}
       }
@@ -689,15 +689,15 @@
     "mood": 16,
     "like": "gift",
     "greedyMood": 8,
-    "intro": "Old Town's boutiques glow in the afternoon light, brass signs swinging over doors that jingle when they open. {name} sweeps through them with a hunter's eye, trying on hats, sniffing perfumes and holding up silks, while Sam trails behind as the designated bag-carrier.",
+    "intro": "Old Town's boutiques glow in the afternoon light, brass signs swinging over doors that jingle when they open. {name} sweeps through them with a hunter's eye, trying on hats, sniffing perfumes and holding up silks, while you trail behind as the designated bag-carrier.",
     "lines": [
       "She comes out with a ridiculous hat.",
       "She comes out with a silk scarf.",
       "She comes out with a pair of earrings she \"absolutely needed.\"",
       "She comes out with perfume that smells like rain.",
-      "A shopkeeper in a bright waistcoat sweeps out of the back with an armful of silks, and {name} holds each one up to the window, turning slowly. Sam's role is to hold things and nod, and he commits to it.",
-      "She tries on a ridiculous feathered cap and strikes a pose that makes the clerk cough into her hand. Sam buys it on the spot, and is fiercely proud of himself.",
-      "The shops of Old Town glow in the afternoon light, brass signs swinging in the breeze. {name} haggles with grim delight, and Sam carries the bags and the bruised pride of the shopkeepers."
+      "A shopkeeper in a bright waistcoat sweeps out of the back with an armful of silks, and {name} holds each one up to the window, turning slowly. Your role is to hold things and nod, and you commit to it.",
+      "She tries on a ridiculous feathered cap and strikes a pose that makes the clerk cough into her hand. You buy it on the spot, and are fiercely proud of yourself.",
+      "The shops of Old Town glow in the afternoon light, brass signs swinging in the breeze. {name} haggles with grim delight, and you carry the bags and the bruised pride of the shopkeepers."
     ],
     "image": {"comp":"holding up a new purchase and showing it off happily","setting":"elegant fantasy boutique full of fabrics and jewelry"},
     "gift": true,
@@ -712,9 +712,9 @@
         "cap": 90,
         "risk": 0.2,
         "lead": [
-          "\"Help me with this clasp,\" says {name}, and pulls Sam into the changing room with her. The curtain swings shut behind them.",
-          "\"I think the fitting needs a second opinion,\" says {name}, and the changing-room curtain closes on Sam's yelp. The mirror gets a better view than the shopkeeper ever will.",
-          "Silk slips over a bench and the lamp throws their shadows against the velvet. {name} turns her back to Sam and asks, very sweetly, for help with a button that does not exist."
+          "\"Help me with this clasp,\" says {name}, and pulls you into the changing room with her. The curtain swings shut behind them.",
+          "\"I think the fitting needs a second opinion,\" says {name}, and the changing-room curtain closes on your yelp. The mirror gets a better view than the shopkeeper ever will.",
+          "Silk slips over a bench and the lamp throws their shadows against the velvet. {name} turns her back to you and asks, very sweetly, for help with a button that does not exist."
         ],
         "image": {
           "comp": "inside a curtained changing room, her reflection in a tall mirror, new clothes half on",
@@ -729,9 +729,9 @@
         "gain": 3,
         "risk": 0.25,
         "lead": [
-          "\"This one comes in blue, I'll just check the back,\" says {name} to the shopkeeper, and crooks a finger at Sam. The stockroom door swings shut behind them.",
-          "The shopkeeper is busy with a duchess, and {name} knows where the good silks are kept. Among the fabric bolts and hat boxes, she pulls Sam down into the soft dark.",
-          "The stockroom is lit by one swinging lamp, with rolls of velvet stacked to the ceiling. {name} sits on a trunk, hooks a foot behind Sam's knee and draws him in."
+          "\"This one comes in blue, I'll just check the back,\" says {name} to the shopkeeper, and crooks a finger at you. The stockroom door swings shut behind them.",
+          "The shopkeeper is busy with a duchess, and {name} knows where the good silks are kept. Among the fabric bolts and hat boxes, she pulls you down into the soft dark.",
+          "The stockroom is lit by one swinging lamp, with rolls of velvet stacked to the ceiling. {name} sits on a trunk, hooks a foot behind your knee and draws you in."
         ],
         "image": {
           "comp": "in a cramped boutique stockroom among rolls of fabric and hat boxes, one hanging lamp swaying",
@@ -748,11 +748,11 @@
     "mood": 14,
     "like": "private",
     "restores": 35,
-    "intro": "The springs lie high in the hills, where steam coils off the rocks and the air smells of minerals and pine. Snow dusts the branches, the water is hot enough to make Sam yelp, and {name} sinks in with a sigh that melts into the mist.",
+    "intro": "The springs lie high in the hills, where steam coils off the rocks and the air smells of minerals and pine. Snow dusts the branches, the water is hot enough to make you yelp, and {name} sinks in with a sigh that melts into the mist.",
     "lines": [
       "{name} comes back pink-cheeked and completely relaxed.",
       "The steam rises from the rocks in soft white curls, and the water is exactly the right side of too hot. {name} slides in with a long groan and rests her head on the stone rim.",
-      "Birdsong and the sound of running water fill the quiet, and the afternoon light filters through the pines. Sam closes his eyes for a moment, and when he opens them, {name} is smiling at him.",
+      "Birdsong and the sound of running water fill the quiet, and the afternoon light filters through the pines. You close your eyes for a moment, and when you open them, {name} is smiling at you.",
       "They pass a small flask of cold tea back and forth, saying very little. Every so often {name} sinks to her chin in the water and blows slow bubbles, utterly content."
     ],
     "image": {
@@ -773,7 +773,7 @@
         "lead": [
           "The attendant leaves them a private pool behind the rocks. {name} lets the steam hide her smile and slides closer through the water.",
           "The attendant bows and vanishes with a tray of cups, leaving a shelf of rock and a pool that is theirs alone. {name} lets the water carry her closer, steam beading on her lashes, and does not ask permission.",
-          "Behind the boulders the world shrinks to heat and mist. {name} drifts to Sam's side, rests her cheek on his shoulder, and her hand disappears below the surface."
+          "Behind the boulders the world shrinks to heat and mist. {name} drifts to your side, rests her cheek on your shoulder, and her hand disappears below the surface."
         ],
         "image": {
           "comp": "half-submerged in the steaming water of a private pool, steam curling around them",
@@ -789,8 +789,8 @@
         "risk": 0.05,
         "lead": [
           "By evening the other guests have gone, and the lantern burns low on a rock. Snowflakes drift into the steam and vanish, and {name} sinks to her chin with a dreamy smile.",
-          "The night is cold, the water is hot, and {name} sees no reason to leave either. She slides through the steam to Sam, dripping and glowing, and puts her arms around his neck.",
-          "A flake of snow lands on {name}'s lashes and she laughs. The spring is quiet, the stars are out, and she pulls Sam closer to keep the cold away."
+          "The night is cold, the water is hot, and {name} sees no reason to leave either. She slides through the steam to you, dripping and glowing, and puts her arms around your neck.",
+          "A flake of snow lands on {name}'s lashes and she laughs. The spring is quiet, the stars are out, and she pulls you closer to keep the cold away."
         ],
         "image": {
           "comp": "in the steaming water of the spring at dusk, snow falling softly onto their wet hair",
@@ -810,13 +810,13 @@
     "mood": 10,
     "like": "private",
     "lewd": 2,
-    "intro": "The path to Sam's lake is half-forgotten, ending at a still, clear pool ringed with reeds and old willows. No one has been here in weeks, the water is glass, and {name} looks at it with open mischief.",
+    "intro": "The path to your lake is half-forgotten, ending at a still, clear pool ringed with reeds and old willows. No one has been here in weeks, the water is glass, and {name} looks at it with open mischief.",
     "lines": [
-      "She wades in first and splashes him until he follows.",
+      "She wades in first and splashes you until you follow.",
       "They float on their backs and say nothing for a long while.",
-      "She dries off in a sunny patch of grass, completely unbothered by his staring.",
+      "She dries off in a sunny patch of grass, completely unbothered by your staring.",
       "The water is clear, cold, and quiet, ringed with reeds and old willows. {name} wades in up to her knees and lets out a startled yelp at the chill, then plunges in.",
-      "Sunlight breaks into a thousand pieces on the surface, and a heron stalks the far shore. {name} floats on her back, eyes closed, saying nothing, and Sam tries to remember the last time he felt this peaceful.",
+      "Sunlight breaks into a thousand pieces on the surface, and a heron stalks the far shore. {name} floats on her back, eyes closed, saying nothing, and you try to remember the last time you felt this peaceful.",
       "They share a towel on the mossy bank afterward, hair dripping, teeth chattering, laughing. A frog sings from the reeds, and {name} sings back at it."
     ],
     "image": {
@@ -838,7 +838,7 @@
         "lead": [
           "{name} looks around the empty shore once, then leaves her clothes on a rock and wades in without them. \"Well?\" she calls back.",
           "{name} glances over her shoulder at the empty trees, then pulls her shift over her head and leaves it on a stone. \"It's only polite to match the lake,\" she says, and lets the water take her.",
-          "There is no one for miles, only reeds and a heron that politely looks away. {name} sheds the last of her clothes and steps in, ripples spreading around her, and tilts her head at Sam like an invitation."
+          "There is no one for miles, only reeds and a heron that politely looks away. {name} sheds the last of her clothes and steps in, ripples spreading around her, and tilts her head at you like an invitation."
         ],
         "image": {"comp":"swimming bare in the clear lake, looking back over her shoulder at him, her clothes left on a rock"}
       },
@@ -852,7 +852,7 @@
         "lead": [
           "The water is cool and the grass is warm. {name} stops pretending they came here only to swim.",
           "They flop out of the water onto the sun-warm grass, laughing, shivering, steaming a little. {name} gives up on the towel, and also on the idea that this was only a swim.",
-          "The sun has dried the shore to warm gold. {name} stretches out beside Sam, water still beading on her skin, and kisses him as though the lake was the warm-up."
+          "The sun has dried the shore to warm gold. {name} stretches out beside you, water still beading on her skin, and kisses you as though the lake was the warm-up."
         ],
         "image": {"comp":"on the warm grass at the water's edge, still wet from the lake"}
       },
@@ -866,7 +866,7 @@
         "lead": [
           "A crooked jetty runs out over the water, warm planks under the evening sun. {name} lays the towel down, stretches out, and her smile is slow and unhurried.",
           "They climb dripping onto the old pier, and the boards creak under them. {name} wrings out her hair, glances at the empty shore, and decides the towel can stay where it is.",
-          "The dock is gray with age and warm as bread. {name} sits on the edge, feet in the water, and pulls Sam down beside her, close enough that the lake can only gossip with the reeds."
+          "The dock is gray with age and warm as bread. {name} sits on the edge, feet in the water, and pulls you down beside her, close enough that the lake can only gossip with the reeds."
         ],
         "image": {"comp":"on a weathered wooden jetty over the water with a towel spread beneath them, low sun, wet hair"}
       }
@@ -881,14 +881,14 @@
     "like": "private",
     "lewd": 2,
     "needsUp": "bath",
-    "intro": "The last client has gone, the lanterns burn low, and the bathhouse is Sam's and {name}'s alone. Steam gathers in the rafters, the tiles are warm underfoot, and the water laps quietly at the edge of a long, tiring day.",
+    "intro": "The last client has gone, the lanterns burn low, and the bathhouse is yours and {name}'s alone. Steam gathers in the rafters, the tiles are warm underfoot, and the water laps quietly at the edge of a long, tiring day.",
     "lines": [
       "She sinks into the water with a long sigh and drifts closer without a word.",
-      "He scrubs her back. She returns the favor, and takes her time.",
+      "You scrub her back. She returns the favor, and takes her time.",
       "They linger until the water cools and the lanterns burn low.",
       "The lanterns cast moving gold across the water, and the steam curls up toward the dark rafters. {name} tips her head back against the rim with a long, quiet exhale.",
-      "The sounds of the house are far away, only the drip of water and the faint creak of old timbers. {name} slides closer through the warm water, resting her shoulder against Sam's.",
-      "She hums something slow while she pours water over his shoulders from a wooden pail. It's an old song from somewhere far from here, and Sam doesn't ask her to stop."
+      "The sounds of the house are far away, only the drip of water and the faint creak of old timbers. {name} slides closer through the warm water, resting her shoulder against yours.",
+      "She hums something slow while she pours water over your shoulders from a wooden pail. It's an old song from somewhere far from here, and you don't ask her to stop."
     ],
     "image": {
       "comp": "soaking together in a steaming bath, relaxed and flushed, close to each other",
@@ -907,22 +907,22 @@
         "risk": 0,
         "lead": [
           "The water is warm and the lanterns are low. {name}'s hands stop scrubbing and start wandering, and she doesn't pretend otherwise.",
-          "The scrubbing brush goes forgotten at the edge of the tub. {name}'s hands slide from his shoulders downward, slow and sure, and the steam hides nothing that matters.",
+          "The scrubbing brush goes forgotten at the edge of the tub. {name}'s hands slide from your shoulders downward, slow and sure, toward your cock, and the steam hides nothing that matters.",
           "The water swirls warm around them and the lanterns blur in the steam. {name} stops pretending to wash and begins, deliberately, to explore."
         ],
         "image": {"comp":"close together in the steaming bath, hands under the water"}
       },
       {
-        "label": "Scrub his back",
+        "label": "She scrubs your back",
         "acts": ["massage_give","breast_give","manual_give"],
         "lewd": 30,
         "cap": 60,
         "gain": 2,
         "risk": 0,
         "lead": [
-          "\"Turn around,\" says {name}, taking up the soap. Her hands are warm and slow on Sam's back, and the steam makes it very hard to say no.",
-          "{name} sits behind Sam on the rim of the tub and scrubs, dutifully, for about as long as it takes to lose count. After that her arms slide around his chest.",
-          "The soap smells like lavender. {name} lathers Sam's shoulders, murmurs that he works too hard, and lets her hands wander a little lower than the scrub brush ever could."
+          "\"Turn around,\" says {name}, taking up the soap. Her hands are warm and slow on your back, and the steam makes it very hard to say no.",
+          "{name} sits behind you on the rim of the tub and scrubs, dutifully, for about as long as it takes to lose count. After that her arms slide around your chest.",
+          "The soap smells like lavender. {name} lathers your shoulders, murmurs that he works too hard, and lets her hands wander a little lower than the scrub brush ever could."
         ],
         "image": {"comp":"in the steaming bath with her behind him, soap suds on his shoulders, arms around him"}
       }
@@ -931,21 +931,21 @@
     "home": true
   },
   "posing": {
-    "label": "Pose for Sam's sketchbook",
+    "label": "Pose for your sketchbook",
     "cost": 15,
     "energy": 20,
     "trust": 3,
     "mood": 9,
     "like": "train",
     "lewd": 3,
-    "intro": "Sam once took an art class, and today he has propped an easel by the window, set out charcoal and dragged in a pile of drapery. {name} arranges herself in the sunlight with a lazy smile, and Sam finds out how little of the class survived.",
+    "intro": "You once took an art class, and today you have propped an easel by the window, set out charcoal and dragged in a pile of drapery. {name} arranges herself in the sunlight with a lazy smile, and you find out how little of the class survived.",
     "lines": [
-      "She holds a pose with great dignity while he scowls at his page.",
-      "His drawing looks nothing like her. She frames it anyway.",
-      "She critiques his shading, then shifts the pose to see him blush.",
-      "Sam arranges a drape, a chair, and a bowl of fruit, then steps back and squints like a master. {name} settles into the chair with perfect composure, and the afternoon light finds her cheekbone and stays there.",
-      "\"Hold still,\" Sam says, for the fifth time. \"I am,\" {name} says, \"you're the one fidgeting.\" The charcoal scratches busily on, and his tongue pokes out the corner of his mouth when he concentrates.",
-      "By the time the light fades, the sketchbook is full of half-finished faces and a few honestly lovely lines. {name} peers over his shoulder, and for once says nothing sarcastic at all."
+      "She holds a pose with great dignity while you scowl at your page.",
+      "Your drawing looks nothing like her. She frames it anyway.",
+      "She critiques your shading, then shifts the pose to see you blush.",
+      "You arrange a drape, a chair, and a bowl of fruit, then step back and squint like a master. {name} settles into the chair with perfect composure, and the afternoon light finds her cheekbone and stays there.",
+      "\"Hold still,\" you say, for the fifth time. \"I am,\" {name} says, \"you're the one fidgeting.\" The charcoal scratches busily on, and your tongue pokes out the corner of your mouth when you concentrate.",
+      "By the time the light fades, the sketchbook is full of half-finished faces and a few honestly lovely lines. {name} peers over your shoulder, and for once says nothing sarcastic at all."
     ],
     "image": {
       "comp": "posing gracefully while Sam sketches her, a sketchbook in his hands",
@@ -964,9 +964,9 @@
         "cap": 65,
         "risk": 0,
         "lead": [
-          "\"A real study needs less drapery,\" says {name}, and lets it fall. Sam's pencil stops moving.",
-          "\"Let me see your line,\" murmurs {name}, and the drapery pools at her feet. Sam's charcoal hangs forgotten over the page, and the sunlight on her shoulders is not a subject he can capture.",
-          "{name} lets the cloth slide, one fold at a time, until nothing is left but window light. \"Is this pose all right?\" she asks innocently, watching him forget his own name."
+          "\"A real study needs less drapery,\" says {name}, and lets it fall. Your pencil stops moving.",
+          "\"Let me see your line,\" murmurs {name}, and the drapery pools at her feet. Your charcoal hangs forgotten over the page, and the sunlight on her shoulders is not a subject he can capture.",
+          "{name} lets the cloth slide, one fold at a time, until nothing is left but window light. \"Is this pose all right?\" she asks innocently, watching you forget your own name."
         ],
         "image": {"comp":"posing nude on draped fabric while Sam sketches her, the sketchbook in his hands"}
       },
@@ -978,8 +978,8 @@
         "cap": 80,
         "risk": 0,
         "lead": [
-          "Sam's drawing is going badly. {name} takes the pencil out of his hand, puts it on the easel, and the sketch waits.",
-          "The drawing is hopeless, and so is Sam. {name} plucks the charcoal from his smudged fingers, sets it in the easel tray, and settles beside him on the chaise.",
+          "Your drawing is going badly. {name} takes the pencil out of your hand, puts it on the easel, and the sketch waits.",
+          "The drawing is hopeless, and so are you. {name} plucks the charcoal from your smudged fingers, sets it in the easel tray, and settles beside you on the chaise.",
           "\"Your perspective is all off,\" says {name}, and leans in to correct it up close. The sketchbook slides to the floor, and neither of them picks it up."
         ],
         "image": {"comp":"on the draped chaise beside the easel, charcoal sketches scattered on the floor"}
@@ -992,9 +992,9 @@
         "gain": 3,
         "risk": 0,
         "lead": [
-          "\"You can't draw what you can't feel,\" says {name}, and brings Sam's hand to her shoulder. The sketch is long forgotten by the time the light moves.",
-          "Sam's charcoal has smudged her collarbone, and {name} laughs and lets him leave it. The easel tips and nobody rights it.",
-          "{name} stops holding the pose, steps off the dais and settles onto the rug beside Sam. \"Now I want a look at you,\" she says, and her fingers go to his hoodie."
+          "\"You can't draw what you can't feel,\" says {name}, and brings your hand to her shoulder. The sketch is long forgotten by the time the light moves.",
+          "Your charcoal has smudged her collarbone, and {name} laughs and lets you leave it. The easel tips and nobody rights it.",
+          "{name} stops holding the pose, steps off the dais and settles onto the rug beside you. \"Now I want a look at you,\" she says, and her fingers go to your hoodie."
         ],
         "image": {"comp":"on the rug beside the easel, drapery pushed aside, sketchbook open beside them, warm afternoon light"}
       }
@@ -1015,10 +1015,10 @@
     "lines": [
       "She tucks her feet under herself and steals the whole blanket.",
       "They talk about nothing until the fire burns low.",
-      "She falls quiet, then leans her head on his shoulder and stays there.",
-      "The fire pops and settles, and the shadows on the ceiling lean and stretch. {name} pours the wine with a practiced tilt and hands Sam the first cup, curling up beside him with a contented sigh.",
-      "Outside, the wind rattles the shutters, and inside, a blanket is shared between two people who were definitely not going to share it. {name} tucks her cold toes against his calf and doesn't apologize.",
-      "They read to each other from a battered book of tales, taking turns doing the voices. {name}'s dragon is excellent, and Sam's is lamentable, and they are both asleep with a smile before the final chapter."
+      "She falls quiet, then leans her head on your shoulder and stays there.",
+      "The fire pops and settles, and the shadows on the ceiling lean and stretch. {name} pours the wine with a practiced tilt and hands you the first cup, curling up beside him with a contented sigh.",
+      "Outside, the wind rattles the shutters, and inside, a blanket is shared between two people who were definitely not going to share it. {name} tucks her cold toes against your calf and doesn't apologize.",
+      "They read to each other from a battered book of tales, taking turns doing the voices. {name}'s dragon is excellent, and yours is lamentable, and they are both asleep with a smile before the final chapter."
     ],
     "image": {
       "comp": "sitting together on the floor by a fire under one blanket, glasses of wine, relaxed and close",

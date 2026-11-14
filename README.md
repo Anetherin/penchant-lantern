@@ -34,6 +34,7 @@ optional text generation (`ai-text-plugin`).
   | `balance.json` | Tuning numbers: lust, solo nights, lovers, breakups |
 
   If the page says a file isn't valid JSON, look for a missing comma or quote. `node tools/fmt-json.mjs` tidies them.
+  Style rules for scene text (voice, wording, which lines may name an act) are in `docs/WRITING.md`.
 - `css/style.css`: all styles.
 - `js/core`: config (your scene snippets, service categories, defaults) and utilities/storage.
 - `js/data`: characters, races, jobs, houses, wardrobe, scenes, named characters.

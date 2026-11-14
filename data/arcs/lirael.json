@@ -3,19 +3,19 @@
     {
       "title": "Whoever Finds This",
       "scene": "sam_date",
-      "text": "Lirael meets Sam at the old iron postbox in the alley after close, a single lamp throwing their shadows long across the cobbles. From her satchel she draws a yellowed letter, soft at the folds from years of handling: the very first one, addressed to \"Whoever finds this.\" She reads it aloud in a clear, careful clerk's voice that trembles at the end. \"I never thought anyone would write back.\" Her long ears are drooping, and her fingers smooth the paper as if it might tear. \"And then you did.\"",
+      "text": "Lirael meets you at the old iron postbox in the alley after close, a single lamp throwing their shadows long across the cobbles. From her satchel she draws a yellowed letter, soft at the folds from years of handling: the very first one, addressed to \"Whoever finds this.\" She reads it aloud in a clear, careful clerk's voice that trembles at the end. \"I never thought anyone would write back.\" Her long ears are drooping, and her fingers smooth the paper as if it might tear. \"And then you did.\"",
       "choices": [
         {
           "label": "\"Thank you for writing first.\"",
           "t": 5,
           "m": 8,
-          "res": "Her satchel strap slips from her fingers and clinks against the cobbles, loud in the quiet alley. She covers her face with the letter, ears trembling, and does not seem to mind that he can see."
+          "res": "Her satchel strap slips from her fingers and clinks against the cobbles, loud in the quiet alley. She covers her face with the letter, ears trembling, and does not seem to mind that you can see."
         },
         {
           "label": "Take the letter and read your own reply",
           "t": 4,
           "m": 6,
-          "res": "He reads it aloud from memory, and she mouths the words along with him; she has known them by heart for years. When he stumbles over a line she supplies it, softly, without looking."
+          "res": "You read it aloud from memory, and she mouths the words along with you; she has known them by heart for years. When you stumble over a line she supplies it, softly, without looking."
         }
       ],
       "image": {
@@ -27,27 +27,27 @@
     {
       "title": "Ink Stains",
       "scene": "shower",
-      "text": "Sam opens the washroom door and finds Lirael in the tub, a stack of waterproofed letters balanced on the rim, reading with a soft smile and a damp pencil behind one long ear. She looks up. Her hand slaps the water and a fan of drops lands across the top page. \"I read them here,\" she says, mortified, pressing the letters to her chest. \"It's the only quiet room in the building.\"",
+      "text": "You open the washroom door and find Lirael in the tub, a stack of waterproofed letters balanced on the rim, reading with a soft smile and a damp pencil behind one long ear. She looks up. Her hand slaps the water and a fan of drops lands across the top page. \"I read them here,\" she says, mortified, pressing the letters to her chest. \"It's the only quiet room in the building.\"",
       "choices": [
         {
           "label": "Apologize and back out",
           "t": 2,
           "m": 3,
-          "res": "\"It's fine!\" she squeaks. That evening a note appears under his door, three neat lines in her sorter's hand, signed with a tiny drawn quill that has blotted a little at the tip."
+          "res": "\"It's fine!\" she squeaks. That evening a note appears under your door, three neat lines in her sorter's hand, signed with a tiny drawn quill that has blotted a little at the tip."
         },
         {
           "label": "\"Which one are you on?\"",
           "t": 3,
           "m": 7,
           "l": 1,
-          "res": "She holds up the letter. He reads it from the doorway, politely addressing the ceiling. She laughs so hard the water sloshes, and the ink on the rim runs in a pretty blue stream."
+          "res": "She holds up the letter. You read it from the doorway, politely addressing the ceiling. She laughs so hard the water sloshes, and the ink on the rim runs in a pretty blue stream."
         },
         {
           "label": "Stand there, flustered",
           "t": 1,
           "m": 3,
           "l": 2,
-          "res": "The tips of her ears go pink. \"Please say something,\" she whispers. He tries, fails, and she giggles into her hands, a rare, bubbling sound that echoes off the wooden walls."
+          "res": "The tips of her ears go pink. \"Please say something,\" she whispers. You try, fail, and she giggles into her hands, a rare, bubbling sound that echoes off the wooden walls."
         }
       ],
       "image": {
@@ -66,13 +66,13 @@
           "label": "Stay with her",
           "t": 5,
           "m": 8,
-          "res": "He reads the P.S. aloud, and she buries her face in a cushion, ears trembling, then scribbles a reply and kicks it across the sofa before she can think better of it."
+          "res": "You read the P.S. aloud, and she buries her face in a cushion, ears trembling, then scribbles a reply and kicks it across the sofa before she can think better of it."
         },
         {
           "label": "Write one back about how you feel",
           "t": 4,
           "m": 6,
-          "res": "She reads it three times, mouthing the words, then folds it into precise thirds and tucks it into her satchel, beside the others, where he can see how many there are."
+          "res": "She reads it three times, mouthing the words, then folds it into precise thirds and tucks it into her satchel, beside the others, where you can see how many there are."
         }
       ],
       "image": {
@@ -84,13 +84,13 @@
     {
       "title": "Wrong Address",
       "scene": "portrait",
-      "text": "A letter arrives for Sam with no stamp, no postmark, and an address in a handwriting he hasn't used in years: his own, from long ago. It reads: \"To whoever I become. I hope you're not lonely anymore.\" Lirael reads over his shoulder, and the sorting-room hum around them seems to fade. She goes very still, long ears flat. \"If a letter can cross,\" she says quietly, \"so can a person. What if the box takes you back?\"",
+      "text": "A letter arrives for you with no stamp, no postmark, and an address in a handwriting you haven't used in years: your own, from long ago. It reads: \"To whoever I become. I hope you're not lonely anymore.\" Lirael reads over your shoulder, and the sorting-room hum around them seems to fade. She goes very still, long ears flat. \"If a letter can cross,\" she says quietly, \"so can a person. What if the box takes you back?\"",
       "choices": [
         {
           "label": "\"I'm not going anywhere.\"",
           "t": 5,
           "m": 6,
-          "res": "She nods, and holds his sleeve for a long time anyway, thumb worrying the cuff, as though it were a letter she might lose in the post."
+          "res": "She nods, and holds your sleeve for a long time anyway, thumb worrying the cuff, as though it were a letter she might lose in the post."
         },
         {
           "label": "Write a reply together",
@@ -110,19 +110,19 @@
     {
       "title": "Full Moon Post",
       "scene": "sam_date",
-      "text": "Under a full moon Lirael takes Sam up onto the post house roof to sort the night's collection by lantern light, bundles tied with twine, the slate cold beneath them. She lets her shoulders and ears relax, her clerk's stiffness softening in the silver air. Between letters, she hums the tune she once wrote in the margin of her second note, and he realizes he's been humming it for years without knowing where it came from.",
+      "text": "Under a full moon Lirael takes you up onto the post house roof to sort the night's collection by lantern light, bundles tied with twine, the slate cold beneath them. She lets her shoulders and ears relax, her clerk's stiffness softening in the silver air. Between letters, she hums the tune she once wrote in the margin of her second note, and you realize you've been humming it for years without knowing where it came from.",
       "choices": [
         {
           "label": "Hum along",
           "t": 4,
           "m": 8,
-          "res": "She stops sorting and just listens, ears tilted toward him, and then joins the harmony in a thin sweet voice. The letters lie forgotten in her lap."
+          "res": "She stops sorting and just listens, ears tilted toward you, and then joins the harmony in a thin sweet voice. The letters lie forgotten in her lap."
         },
         {
           "label": "Help her sort the last bag",
           "t": 3,
           "m": 5,
-          "res": "He puts every letter in the wrong slot. She re-sorts every one, grinning, and says it's the best mistake she's ever seen, and keeps the worst-sorted one to herself."
+          "res": "You put every letter in the wrong slot. She re-sorts every one, grinning, and says it's the best mistake she's ever seen, and keeps the worst-sorted one to herself."
         }
       ],
       "image": {
@@ -134,7 +134,7 @@
     {
       "title": "Meeting the Man",
       "scene": "final",
-      "text": "Lirael sets her satchel down in the doorway of Sam's room, a thing she has never done in front of him. \"For ten years I wrote to a name,\" she says. \"I'd like to meet the man.\" She is trembling, ears dipping, one foot hooked around her own ankle. \"I'm not good at saying things out loud. So I'll say the short version.\" She takes his hand, and her ink-stained fingertips are warm. \"Stay.\" The door closes behind them.",
+      "text": "Lirael sets her satchel down in the doorway of your room, a thing she has never done in front of you. \"For ten years I wrote to a name,\" she says. \"I'd like to meet the man.\" She is trembling, ears dipping, one foot hooked around her own ankle. \"I'm not good at saying things out loud. So I'll say the short version.\" She takes your hand, and her ink-stained fingertips are warm. \"Stay.\" The door closes behind them.",
       "choices": [
         {"label":"Say yes","t":6,"m":12,"res":""},
         {

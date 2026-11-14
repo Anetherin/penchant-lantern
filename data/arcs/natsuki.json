@@ -3,19 +3,19 @@
     {
       "title": "Scars and Bets",
       "scene": "sam_date",
-      "text": "Natsuki shows Sam the scar she got her first week here, three years ago, alone, a pale ridge along her ribs just visible above the hem of her tank top. She tells it matter-of-factly, then less so. \"I kept thinking: if Sam were here, he'd do something dumb and it'd somehow be fine.\" She laughs, rough and warm. \"Then you showed up and did something dumb.\"",
+      "text": "Natsuki shows you the scar she got her first week here, three years ago, alone, a pale ridge along her ribs just visible above the hem of her tank top. She tells it matter-of-factly, then less so. \"I kept thinking: if Sam were here, he'd do something dumb and it'd somehow be fine.\" She laughs, rough and warm. \"Then you showed up and did something dumb.\"",
       "choices": [
         {
           "label": "Trace the scar gently with your eyes only",
           "t": 5,
           "m": 8,
-          "res": "He doesn't touch it, but he looks, and he lets her see him looking. She goes quiet in a way she never was in the old neighborhood, and moves the plaster on her cheek back into place."
+          "res": "You don't touch it, but you look, and you let her see you looking. She goes quiet in a way she never was in the old neighborhood, and moves the plaster on her cheek back into place."
         },
         {
           "label": "Admit the dumb thing was on purpose",
           "t": 1,
           "m": 2,
-          "res": "\"Totally on purpose,\" Sam lies. {N} grins, rubs her plaster, and punches his shoulder, softer than she'd like to admit."
+          "res": "\"Totally on purpose,\" you lie. {N} grins, rubs her plaster, and punches your shoulder, softer than she'd like to admit."
         }
       ],
       "image": {"comp":"showing him a scar on her arm, sitting on a fence, half-smiling","setting":"town wall walkway at sunset","sam":true}
@@ -23,12 +23,12 @@
     {
       "title": "Incoming",
       "scene": "shower",
-      "text": "Sam walks into the washroom. Natsuki is in the bath, steam rising, chestnut hair plastered to her forehead, mid-hum. A bar of soap is already in the air at adventurer speed. There's no malice in it, just fifteen years of reflex and a very small, very red face.",
+      "text": "You walk into the washroom. Natsuki is in the bath, steam rising, chestnut hair plastered to her forehead, mid-hum. A bar of soap is already in the air at adventurer speed. There's no malice in it, just fifteen years of reflex and a very small, very red face.",
       "choices": [
         {
           "label": "Duck",
           "m": 4,
-          "res": "He doesn't duck fast enough. She feels terrible. She laughs anyway, pressing the heel of her hand against her mouth."
+          "res": "You don't duck fast enough. She feels terrible. She laughs anyway, pressing the heel of her hand against her mouth."
         },
         {
           "label": "Take it like a man",
@@ -39,7 +39,7 @@
         {
           "label": "Apologize through the door",
           "t": 2,
-          "res": "\"Knock next time, idiot!\" She sounds like she's grinning, and he hears the soap splash into the tub as she forgives him."
+          "res": "\"Knock next time, idiot!\" She sounds like she's grinning, and you hear the soap splash into the tub as she forgives you."
         }
       ],
       "image": {
@@ -52,19 +52,19 @@
     {
       "title": "Almost Taiyaki",
       "scene": "casual",
-      "text": "They find a stall selling something almost like taiyaki, warm and sweet-smelling in the evening crowd. Natsuki buys ten. Halfway through the fifth she goes quiet, paper bag crumpling in her fist. \"Back home I always figured I'd end up with you someday. Dumb, right?\" She doesn't look at him; she watches a lantern bob down the street.",
+      "text": "They find a stall selling something almost like taiyaki, warm and sweet-smelling in the evening crowd. Natsuki buys ten. Halfway through the fifth she goes quiet, paper bag crumpling in her fist. \"Back home I always figured I'd end up with you someday. Dumb, right?\" She doesn't look at you; she watches a lantern bob down the street.",
       "choices": [
         {
           "label": "Tell her it isn't dumb",
           "t": 5,
           "m": 8,
-          "res": "\"It isn't dumb.\" His voice cracks on the second word. She crushes the bag completely and says nothing, but she doesn't stop him from taking her hand."
+          "res": "\"It isn't dumb.\" Your voice cracks on the second word. She crushes the bag completely and says nothing, but she doesn't stop you from taking her hand."
         },
         {
           "label": "Steal the last taiyaki to break the tension",
           "t": 1,
           "m": 2,
-          "res": "Sam steals the last one, deadpan. {N} yelps, chases him three stalls down, and laughs herself breathless. Her ears are red when she catches up."
+          "res": "You steal the last one, deadpan. {N} yelps, chases you three stalls down, and laughs herself breathless. Her ears are red when she catches up."
         }
       ],
       "image": {
@@ -76,7 +76,7 @@
     {
       "title": "Solo Run",
       "scene": "portrait",
-      "text": "Natsuki took a dangerous dungeon contract without telling anyone. She comes back three days later with a broken arm and a sack of gold, grinning through the grime. The grin falters when she sees his face. Her sword is chipped and her plaster is gone, and she swears the fight was \"basically nothing.\"",
+      "text": "Natsuki took a dangerous dungeon contract without telling anyone. She comes back three days later with a broken arm and a sack of gold, grinning through the grime. The grin falters when she sees your face. Her sword is chipped and her plaster is gone, and she swears the fight was \"basically nothing.\"",
       "choices": [
         {
           "label": "Yell at her",
@@ -89,13 +89,13 @@
           "health": 20,
           "t": 6,
           "m": 6,
-          "res": "He doesn't say anything. He doesn't have to. She leans her head against his, breathing out three years of tension."
+          "res": "You don't say anything. You don't have to. She leans her head against yours, breathing out three years of tension."
         },
         {
           "label": "Make her promise",
           "t": 4,
           "m": 2,
-          "res": "\"Next time, you come with me,\" she says, laughing a little. \"Deal?\" He says deal, and she spits in her palm to shake on it."
+          "res": "\"Next time, you come with me,\" she says, laughing a little. \"Deal?\" You say deal, and she spits in her palm to shake on it."
         }
       ],
       "image": {"comp":"limping in with a broken arm in a sling and a sack of gold, defiant grin","setting":"inn entrance hall at night","sam":false}
@@ -115,7 +115,7 @@
           "label": "Tell her you missed her, all three years",
           "t": 6,
           "m": 6,
-          "res": "She punches his arm. Then she cries. Then she laughs, and the next firework drowns out whatever she says into his shoulder."
+          "res": "She punches your arm. Then she cries. Then she laughs, and the next firework drowns out whatever she says into your shoulder."
         }
       ],
       "image": {
@@ -127,7 +127,7 @@
     {
       "title": "Door Kicked In",
       "scene": "final",
-      "text": "Natsuki kicks Sam's door open at dawn, red-faced, sword still on her hip, the lock splintering under her boot. Cold morning light spills in behind her. \"I spent three years here thinking I'd never see you again. I'm not wasting another day.\" She kicks the door shut behind her.",
+      "text": "Natsuki kicks your door open at dawn, red-faced, sword still on her hip, the lock splintering under her boot. Cold morning light spills in behind her. \"I spent three years here thinking I'd never see you again. I'm not wasting another day.\" She kicks the door shut behind her.",
       "choices": [
         {"label":"Say yes","t":6,"m":12,"res":""},
         {

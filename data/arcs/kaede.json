@@ -3,19 +3,19 @@
     {
       "title": "Two Stolen Bottles",
       "scene": "sam_date",
-      "text": "Kaede hauls Sam up the ladder to the roof of the Lantern with two bottles of wine she very obviously did not pay for, the glass still cold and sweating from the cellar. The tiles hold the day's warmth, chimney smoke drifts past the stars, and her copper tail thumps the roof behind her. \"Back in my party, nobody ever had my back. Then this skinny guy in a hoodie jumps in front of a goblin for me.\" She bumps his shoulder with hers. \"Idiot.\" She doesn't move away, and the tail curls around his ankle.",
+      "text": "Kaede hauls you up the ladder to the roof of the Lantern with two bottles of wine she very obviously did not pay for, the glass still cold and sweating from the cellar. The tiles hold the day's warmth, chimney smoke drifts past the stars, and her copper tail thumps the roof behind her. \"Back in my party, nobody ever had my back. Then this skinny guy in a hoodie jumps in front of a goblin for me.\" She bumps your shoulder with hers. \"Idiot.\" She doesn't move away, and the tail curls around your ankle.",
       "choices": [
         {
           "label": "Stay on the roof with her",
           "t": 5,
           "m": 8,
-          "res": "Sam finds the bottle in his hand somehow empty and the stars somehow lower. Kaede's tail never unwinds from his ankle, and neither of them points it out."
+          "res": "You find the bottle in your hand somehow empty and the stars somehow lower. Kaede's tail never unwinds from your ankle, and neither of them points it out."
         },
         {
           "label": "Pass the conversation back to her wine",
           "t": 1,
           "m": 2,
-          "res": "{N} snorts into the bottle and lets him off the hook. Her tail still sneaks one lazy swish against his leg as they climb down."
+          "res": "{N} snorts into the bottle and lets you off the hook. Her tail still sneaks one lazy swish against your leg as you climb down."
         }
       ],
       "image": {
@@ -27,13 +27,13 @@
     {
       "title": "Wrong Door",
       "scene": "shower",
-      "text": "Sam shoulders open the washroom door and finds Kaede mid-towel, steam curling off her sun-kissed skin, the thin scar on her shoulder pink from the heat. Every single hair on her tail stands straight up like a startled bottlebrush. For one long second the only sound is a dripping tap and Sam's brain emptying itself of all vocabulary.",
+      "text": "You shoulder open the washroom door and finds Kaede mid-towel, steam curling off her sun-kissed skin, the thin scar on her shoulder pink from the heat. Every single hair on her tail stands straight up like a startled bottlebrush. For one long second the only sound is a dripping tap and your brain emptying itself of all vocabulary.",
       "choices": [
         {
           "label": "Apologize and bolt",
           "t": 1,
           "m": -2,
-          "res": "Kaede laughs about it for ten straight minutes. Through the door. Loudly enough that the whole corridor learns what happened, and at dinner she toasts him with a spoon."
+          "res": "Kaede laughs about it for ten straight minutes. Through the door. Loudly enough that the whole corridor learns what happened, and at dinner she toasts you with a spoon."
         },
         {
           "label": "Compliment her",
@@ -45,14 +45,14 @@
           "else": {
             "t": -2,
             "m": -4,
-            "res": "\"GET OUT.\" The towel hits him square in the face, still warm and smelling of her soap, and the door slams hard enough to rattle the hinges."
+            "res": "\"GET OUT.\" The towel hits you square in the face, still warm and smelling of her soap, and the door slams hard enough to rattle the hinges."
           }
         },
         {
           "label": "Stand there like an idiot",
           "m": 3,
           "l": 2,
-          "res": "\"Take a picture, it lasts longer.\" Sam has no idea how she knows that phrase, but she is smirking when she says it, tail fluffed with pride rather than panic."
+          "res": "\"Take a picture, it lasts longer.\" You have no idea how she knows that phrase, but she is smirking when she says it, tail fluffed with pride rather than panic."
         }
       ],
       "image": {
@@ -65,19 +65,19 @@
     {
       "title": "Tail Says Otherwise",
       "scene": "casual",
-      "text": "Kaede turns up at Sam's door with a bandaged hand and a bright grin, claiming she got hurt sparring \"for fun.\" The knuckles under the linen are split and puffy, and she smells of liniment and sawdust. She sits on the edge of his bed while he unwinds and re-wraps it with clumsy care, and her tail keeps brushing his arm, back and forth, warm and soft. Neither of them mentions it.",
+      "text": "Kaede turns up at your door with a bandaged hand and a bright grin, claiming she got hurt sparring \"for fun.\" The knuckles under the linen are split and puffy, and she smells of liniment and sawdust. She sits on the edge of your bed while you unwind and re-wrap it with clumsy care, and her tail keeps brushing your arm, back and forth, warm and soft. Neither of them mentions it.",
       "choices": [
         {
           "label": "Finish the bandage slowly",
           "t": 5,
           "m": 8,
-          "res": "He takes his time over the knot, and she lets him, eyes on his hands instead of the wall. Her tail stops pretending it's accidental."
+          "res": "You take your time over the knot, and she lets you, eyes on your hands instead of the wall. Her tail stops pretending it's accidental."
         },
         {
           "label": "Tie it off and tease her about sparring",
           "t": 1,
           "m": 2,
-          "res": "\"For fun,\" Sam repeats, deadpan. {N} flicks his ear for it, but her laugh is soft and she stays seated a minute longer than she needs to."
+          "res": "\"For fun,\" you repeat, deadpan. {N} flicks your ear for it, but her laugh is soft and she stays seated a minute longer than she needs to."
         }
       ],
       "image": {
@@ -89,7 +89,7 @@
     {
       "title": "The Old Party",
       "scene": "portrait",
-      "text": "Kaede's old party leader turns up at the bar in dungeon-stained leathers, trailing the smell of rain and old smoke. He has a new contract, a deep dungeon and a spot for her, if she wants it. The common room goes quiet. Kaede doesn't look at him; she looks at Sam, ears pinned flat, and waits with her fingers drumming on the counter.",
+      "text": "Kaede's old party leader turns up at the bar in dungeon-stained leathers, trailing the smell of rain and old smoke. He has a new contract, a deep dungeon and a spot for her, if she wants it. The common room goes quiet. Kaede doesn't look at him; she looks at you, ears pinned flat, and waits with her fingers drumming on the counter.",
       "choices": [
         {
           "label": "\"Go, if it's what you want.\"",
@@ -101,13 +101,13 @@
           "label": "\"Stay. Please.\"",
           "t": 6,
           "m": 6,
-          "res": "Kaede turns the leader down without even looking at him, and the ex-captain leaves with his ears burning. Her tail slaps Sam's leg twice under the bar, hard, happy."
+          "res": "Kaede turns the leader down without even looking at him, and the ex-captain leaves with his ears burning. Her tail slaps your leg twice under the bar, hard, happy."
         },
         {
           "label": "Say nothing",
           "t": -6,
           "m": -10,
-          "res": "She leaves for two days without a word. When she comes back, she doesn't mention it. Neither does he. It sits between them for a while, like a bill nobody wants to read."
+          "res": "She leaves for two days without a word. When she comes back, she doesn't mention it. Neither do you. It sits between them for a while, like a bill nobody wants to read."
         }
       ],
       "image": {
@@ -119,20 +119,20 @@
     {
       "title": "Rooftops",
       "scene": "sam_date",
-      "text": "Kaede teaches Sam to run the rooftops of Hollowmere at night, hopping slate to slate in the moonlight as though gravity were a polite suggestion. Sam, in his grey hoodie and traveler's cloak, is very, very bad at it. He windmills across a gap, clings to a chimney, and apologizes to a pigeon. Kaede crouches on the ridgeline above, hands on her knees, wheezing with laughter.",
+      "text": "Kaede teaches you to run the rooftops of Hollowmere at night, hopping slate to slate in the moonlight as though gravity were a polite suggestion. You, in your grey hoodie and traveler's cloak, are very, very bad at it. You windmill across a gap, cling to a chimney, and apologize to a pigeon. Kaede crouches on the ridgeline above, hands on her knees, wheezing with laughter.",
       "choices": [
         {
           "label": "Keep trying",
           "sam": {"strength":1},
           "t": 3,
           "m": 6,
-          "res": "By the end of the night he makes one jump cleanly. She cheers loud enough to wake the whole street, and a shutter bangs open below them. Neither cares."
+          "res": "By the end of the night you make one jump cleanly. She cheers loud enough to wake the whole street, and a shutter bangs open below them. Neither cares."
         },
         {
           "label": "Fake a sprained ankle so she carries you",
           "m": 8,
           "l": 2,
-          "res": "She sees right through it, ears twitching with delight. She carries him anyway, the whole way home, over her shoulder and grumbling that he weighs nothing."
+          "res": "She sees right through it, ears twitching with delight. She carries you anyway, the whole way home, over her shoulder and grumbling that you weigh nothing."
         }
       ],
       "image": {
@@ -144,7 +144,7 @@
     {
       "title": "Copper Fox, Kept",
       "scene": "final",
-      "text": "After closing, Kaede corners Sam in the kitchen, where the stove is still ticking as it cools and one lamp burns low. She drums her fingers on the table, stops, starts again. \"I'm bad at this, so I'll just say it. I'm not going anywhere. Not for the money. For you.\" Her ears are bright red to the tips and her tail won't stop wagging. She takes his hand and leads him upstairs, and the door closes behind them.",
+      "text": "After closing, Kaede corners you in the kitchen, where the stove is still ticking as it cools and one lamp burns low. She drums her fingers on the table, stops, starts again. \"I'm bad at this, so I'll just say it. I'm not going anywhere. Not for the money. For you.\" Her ears are bright red to the tips and her tail won't stop wagging. She takes your hand and leads you upstairs, and the door closes behind them.",
       "choices": [
         {"label":"Say yes","t":6,"m":12,"res":""},
         {

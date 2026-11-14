@@ -3,19 +3,19 @@
     {
       "title": "Bedside Manner",
       "scene": "sam_date",
-      "text": "Elowen insists on a \"check-up\" and spends most of it nervously talking about herbs, rosemary in her braid, fingers pressed to his pulse a few seconds longer than the instructions require. The room smells of chamomile and lamp oil. At the end she admits she's never been this far from home, and that Sam makes it feel less far.",
+      "text": "Elowen insists on a \"check-up\" and spends most of it nervously talking about herbs, rosemary in her braid, fingers pressed to your pulse a few seconds longer than the instructions require. The room smells of chamomile and lamp oil. At the end she admits she's never been this far from home, and that you make it feel less far.",
       "choices": [
         {
-          "label": "Tell her the distance feels shorter to him too",
+          "label": "Tell her the distance feels shorter to you too",
           "t": 5,
           "m": 8,
-          "res": "She keeps her fingers on his wrist and doesn't count anything. The tea goes cold between them, and neither says what the silence is for."
+          "res": "She keeps her fingers on your wrist and doesn't count anything. The tea goes cold between them, and neither says what the silence is for."
         },
         {
           "label": "Offer to be her patient any time",
           "t": 1,
           "m": 2,
-          "res": "\"Any time,\" Sam says. {N} hides behind her sleeve, ears pink, and writes \"weekly\" in her notes before he can see it."
+          "res": "\"Any time,\" you say. {N} hides behind her sleeve, ears pink, and writes \"weekly\" in her notes before you can see it."
         }
       ],
       "image": {
@@ -27,7 +27,7 @@
     {
       "title": "Tea Service",
       "scene": "walkin",
-      "text": "Elowen brings herbal tea to Sam's room at exactly the moment he's changing, the tray balanced carefully in both hands, a little steam rising off the pot. She sees. The tray hits the floor with a crash of porcelain, and the smell of mint and lemon balm rises from the rug. Sam stands frozen with one arm in a sleeve, and neither of them breathes.",
+      "text": "Elowen brings herbal tea to your room at exactly the moment you're changing, the tray balanced carefully in both hands, a little steam rising off the pot. She sees. The tray hits the floor with a crash of porcelain, and the smell of mint and lemon balm rises from the rug. You stand frozen with one arm in a sleeve, and neither of them breathes.",
       "choices": [
         {
           "label": "Laugh it off",
@@ -63,19 +63,19 @@
     {
       "title": "Flower Crowns",
       "scene": "casual",
-      "text": "They go flower-picking outside the walls \"for medicine,\" a basket on Elowen's arm and the smell of crushed clover under their boots. Somewhere in the second hour the herb list is forgotten. Elowen weaves Sam a flower crown with quick, careful fingers. He makes a terrible one back, lopsided and shedding petals. She wears it all day.",
+      "text": "They go flower-picking outside the walls \"for medicine,\" a basket on Elowen's arm and the smell of crushed clover under their boots. Somewhere in the second hour the herb list is forgotten. Elowen weaves you a flower crown with quick, careful fingers. You make a terrible one back, lopsided and shedding petals. She wears it all day.",
       "choices": [
         {
           "label": "Wear her crown home",
           "t": 5,
           "m": 8,
-          "res": "He wears hers all the way back through the gate, pollen on his collar, and doesn't mind the guards' stares. She walks half a step closer than usual."
+          "res": "You wear hers all the way back through the gate, pollen on your collar, and don't mind the guards' stares. She walks half a step closer than usual."
         },
         {
           "label": "Tell her the lopsided one suits her",
           "t": 1,
           "m": 2,
-          "res": "\"It suits you,\" Sam says of his own wreck. {N} adjusts it on her braid with immense seriousness and says it is the finest crown in Hollowmere."
+          "res": "\"It suits you,\" you say of your own wreck. {N} adjusts it on her braid with immense seriousness and says it is the finest crown in Hollowmere."
         }
       ],
       "image": {
@@ -93,21 +93,21 @@
           "label": "Scold her",
           "t": -4,
           "m": -6,
-          "res": "She cries. Not because he's wrong. The rosemary stays on the floor where it fell, and she doesn't speak to him until morning."
+          "res": "She cries. Not because you're wrong. The rosemary stays on the floor where it fell, and she doesn't speak to you until morning."
         },
         {
           "label": "Take care of her for a day",
           "energy": "full",
           "t": 7,
           "m": 8,
-          "res": "Sam makes soup (badly), reads to her (badly, doing the voices), and doesn't leave her side. She sleeps for fourteen hours, one hand curled in his sleeve."
+          "res": "You make soup (badly), read to her (badly, doing the voices), and don't leave her side. She sleeps for fourteen hours, one hand curled in your sleeve."
         },
         {
           "label": "Fund a free clinic night (150g)",
           "gold": -150,
           "t": 6,
           "m": 10,
-          "res": "One night a week, with help from the apothecary's apprentices. She hugs him so hard his ribs creak, and presses her damp face against his hoodie.",
+          "res": "One night a week, with help from the apothecary's apprentices. She hugs you so hard your ribs creak, and presses her damp face against your hoodie.",
           "cantAfford": {"t":2,"m":2,"res":"You can't afford it. She thanks you for trying."}
         }
       ],
@@ -120,19 +120,19 @@
     {
       "title": "Starlight",
       "scene": "sam_date",
-      "text": "Elowen takes Sam to a hill outside town on a cloudless night, the grass cool and damp, and names the constellations of her homeland, one by one, in the soft old language of the cedar glade. Her finger traces lines across the dark. Her voice grows steadier with every name, and further away.",
+      "text": "Elowen takes you to a hill outside town on a cloudless night, the grass cool and damp, and names the constellations of her homeland, one by one, in the soft old language of the cedar glade. Her finger traces lines across the dark. Her voice grows steadier with every name, and further away.",
       "choices": [
         {
           "label": "Listen to every single one",
           "t": 4,
           "m": 7,
-          "res": "There are a lot of them. He doesn't mind. By the last one her head is on his shoulder, and she's stopped pointing."
+          "res": "There are a lot of them. You don't mind. By the last one her head is on your shoulder, and she's stopped pointing."
         },
         {
           "label": "Make up a constellation for her",
           "t": 3,
           "m": 8,
-          "res": "\"The Clumsy Healer.\" She shoves him. She uses the name forever, and writes it into the margins of her star chart in tiny, careful script."
+          "res": "\"The Clumsy Healer.\" She shoves you. She uses the name forever, and writes it into the margins of her star chart in tiny, careful script."
         }
       ],
       "image": {
@@ -144,7 +144,7 @@
     {
       "title": "Long-Lived",
       "scene": "final",
-      "text": "Elowen kisses Sam first, very quickly, in the herb garden after dusk with moths circling the lamp, then hides her face in his shirt. \"Elves live a long time,\" she mumbles into the grey cotton. \"I'd like to spend some of it with you.\" Her braid smells of rosemary and rain. She doesn't let go of his hand all the way to her room.",
+      "text": "Elowen kisses you first, very quickly, in the herb garden after dusk with moths circling the lamp, then hides her face in your shirt. \"Elves live a long time,\" she mumbles into the grey cotton. \"I'd like to spend some of it with you.\" Her braid smells of rosemary and rain. She doesn't let go of your hand all the way to her room.",
       "choices": [
         {"label":"Say yes","t":6,"m":12,"res":""},
         {
@@ -152,7 +152,7 @@
           "t": 1,
           "m": -3,
           "hold": true,
-          "res": "{N} nods against his chest, embarrassed and relieved. \"I can wait. Don't make it too long.\" She's still holding his sleeve."
+          "res": "{N} nods against your chest, embarrassed and relieved. \"I can wait. Don't make it too long.\" She's still holding your sleeve."
         }
       ]
     }

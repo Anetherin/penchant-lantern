@@ -3,19 +3,19 @@
     {
       "title": "Margin Notes",
       "scene": "sam_date",
-      "text": "Marisol shows Sam her father's old ledgers in the dusty back room, and her own corrections in the margins: years of tidy, furious red ink, her gold hoops catching the lamp. \"He never listened. You actually do.\" It sounds like an accusation. It isn't. She taps the page with an ink-stained finger and won't look up.",
+      "text": "Marisol shows you her father's old ledgers in the dusty back room, and her own corrections in the margins: years of tidy, furious red ink, her gold hoops catching the lamp. \"He never listened. You actually do.\" It sounds like an accusation. It isn't. She taps the page with an ink-stained finger and won't look up.",
       "choices": [
         {
           "label": "Ask her to walk you through one",
           "t": 5,
           "m": 8,
-          "res": "She walks him through a column from six years ago, and he listens to every number. At the end she closes the book gently, as if it had finally been read."
+          "res": "She walks you through a column from six years ago, and you listen to every number. At the end she closes the book gently, as if it had finally been read."
         },
         {
           "label": "Tell her the margins are the best part",
           "t": 1,
           "m": 2,
-          "res": "\"The margins are the best part,\" Sam says. {N} stares at him, then scribbles something in a corner, grinning, and hides it."
+          "res": "\"The margins are the best part,\" you say. {N} stares at you, then scribbles something in a corner, grinning, and hides it."
         }
       ],
       "image": {
@@ -27,13 +27,13 @@
     {
       "title": "Invoice Ambush",
       "scene": "walkin",
-      "text": "Marisol barges into the washroom mid-argument about invoices, waving a handful of paper, sees Sam in the tub, and keeps arguing. Her gold hoops swing with every point, and her amber eyes fix on the ceiling at the third. She is competitive enough to not give ground even now, and Sam is too wet to take notes.",
+      "text": "Marisol barges into the washroom mid-argument about invoices, waving a handful of paper, sees you in the tub, and keeps arguing. Her gold hoops swing with every point, and her amber eyes fix on the ceiling at the third. She is competitive enough to not give ground even now, and you are too wet to take notes.",
       "choices": [
         {
           "label": "Argue back from the tub",
           "m": 6,
           "t": 2,
-          "res": "He wins, for once. She claims it doesn't count, since he had the unfair advantage of being undressed, and stalks out with her chin high."
+          "res": "You win, for once. She claims it doesn't count, since you had the unfair advantage of being undressed, and stalks out with her chin high."
         },
         {
           "label": "Ask for some privacy",
@@ -56,19 +56,19 @@
     {
       "title": "House Rules",
       "scene": "casual",
-      "text": "Marisol beats Sam at cards four times in a row, snapping each hand down with relish, curls bouncing. Then she lets him win once, badly, with a deliberately terrible bluff. \"I wanted to see your face,\" she says, and laughs until she can't breathe, gold hoops swinging, one hand pressed to her ribs.",
+      "text": "Marisol beats you at cards four times in a row, snapping each hand down with relish, curls bouncing. Then she lets you win once, badly, with a deliberately terrible bluff. \"I wanted to see your face,\" she says, and laughs until she can't breathe, gold hoops swinging, one hand pressed to her ribs.",
       "choices": [
         {
           "label": "Demand a rematch, with stakes",
           "t": 5,
           "m": 8,
-          "res": "The stakes are a week of ledger duty. He loses again. She lets him pick the penalty, and it takes her a surprisingly long time to say no."
+          "res": "The stakes are a week of ledger duty. You lose again. She lets you pick the penalty, and it takes her a surprisingly long time to say no."
         },
         {
-          "label": "Admit that his face was worth it",
+          "label": "Admit that your face was worth it",
           "t": 1,
           "m": 2,
-          "res": "\"Worth every coin,\" Sam says. {N} wipes her eyes and, for once, doesn't reach for a witty retort, only another deck."
+          "res": "\"Worth every coin,\" you say. {N} wipes her eyes and, for once, doesn't reach for a witty retort, only another deck."
         }
       ],
       "image": {
@@ -86,7 +86,7 @@
           "label": "\"No. He left you with all of this.\"",
           "t": -5,
           "m": -8,
-          "res": "\"He's not YOUR father.\" She slams the door, and the hoops on her ears chime. She apologizes the next day; so does he."
+          "res": "\"He's not YOUR father.\" She slams the door, and the hoops on her ears chime. She apologizes the next day; so do you."
         },
         {
           "label": "Send him 300g",
@@ -108,19 +108,19 @@
     {
       "title": "Her Mother",
       "scene": "sam_date",
-      "text": "Marisol takes Sam to a small grave on the hill above town, wind combing the long grass, a single faded ribbon tied to the stone. Her mother's. She doesn't say much. The gold hoops are still, for once, and her hand is shoved deep in her pocket.",
+      "text": "Marisol takes you to a small grave on the hill above town, wind combing the long grass, a single faded ribbon tied to the stone. Her mother's. She doesn't say much. The gold hoops are still, for once, and her hand is shoved deep in her pocket.",
       "choices": [
         {
           "label": "Bring flowers",
           "t": 4,
           "m": 6,
-          "res": "She tells him three stories about her mother on the walk back, the lemon cake, the singing, the sums on the backs of invoices. She has never told anyone."
+          "res": "She tells you three stories about her mother on the walk back, the lemon cake, the singing, the sums on the backs of invoices. She has never told anyone."
         },
         {
           "label": "Just stand with her",
           "t": 5,
           "m": 4,
-          "res": "After a while she leans against his shoulder, all her competitive edges gone soft, and they watch the clouds cross the stone together."
+          "res": "After a while she leans against your shoulder, all her competitive edges gone soft, and they watch the clouds cross the stone together."
         }
       ],
       "image": {
@@ -132,7 +132,7 @@
     {
       "title": "A New Deed",
       "scene": "final",
-      "text": "Marisol tears the old deed in half and writes a new one with both their names, her ink-stained fingers steady. The candle gutters in the ledger room where she grew up. \"Partners,\" she says. \"In every sense. Don't make me say it twice.\" Then she kisses him, gold hoops cold against his cheek, and says nothing else for a long while.",
+      "text": "Marisol tears the old deed in half and writes a new one with both their names, her ink-stained fingers steady. The candle gutters in the ledger room where she grew up. \"Partners,\" she says. \"In every sense. Don't make me say it twice.\" Then she kisses you, gold hoops cold against your cheek, and says nothing else for a long while.",
       "choices": [
         {"label":"Say yes","t":6,"m":12,"res":""},
         {

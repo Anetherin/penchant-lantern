@@ -3,7 +3,7 @@
     {
       "title": "Almost Coffee",
       "scene": "sam_date",
-      "text": "Yui finds Sam on the back steps at dusk with two cups of something that is almost, but not quite, coffee. It smells of burnt barley, and they both pull the same face at the first sip. They talk about home for hours: trains, convenience stores, the vending machine on the 4th floor that only ever ate her coins. She pushes her glasses up, twice, and then she cries a little. So does he.",
+      "text": "Yui finds you on the back steps at dusk with two cups of something that is almost, but not quite, coffee. It smells of burnt barley, and they both pull the same face at the first sip. They talk about home for hours: trains, convenience stores, the vending machine on the 4th floor that only ever ate her coins. She pushes her glasses up, twice, and then she cries a little. So do you.",
       "choices": [
         {
           "label": "Sit with her until the cups go cold",
@@ -15,7 +15,7 @@
           "label": "Pass her a napkin and a joke",
           "t": 1,
           "m": 2,
-          "res": "Sam offers a napkin and a terrible vending machine joke. {N} laughs wetly, pushes up her glasses, and leans just a little against the step rail closer to him."
+          "res": "You offer a napkin and a terrible vending machine joke. {N} laughs wetly, pushes up her glasses, and leans just a little against the step rail closer to you."
         }
       ],
       "image": {
@@ -27,25 +27,25 @@
     {
       "title": "Bath Time Budget Meeting",
       "scene": "walkin",
-      "text": "Hunting for the ledger, Yui walks straight into the washroom while Sam is in the tub, a cloud of steam rolling past her glasses until they fog completely. She does not leave. She stares fixedly at the ceiling. Then the floor. Then the ceiling again, clutching the account book to her chest like a shield, her ears the color of boiled shrimp.",
+      "text": "Hunting for the ledger, Yui walks straight into the washroom while you are in the tub, a cloud of steam rolling past her glasses until they fog completely. She does not leave. She stares fixedly at the ceiling. Then the floor. Then the ceiling again, clutching the account book to her chest like a shield, her ears the color of boiled shrimp.",
       "choices": [
         {
           "label": "\"Could you pass me a towel?\"",
           "t": 2,
           "m": 3,
-          "res": "She throws it directly at his face and flees, the account book forgotten on the stool. He finds a neat sticky note inside: \"Variance: 1 towel.\""
+          "res": "She throws it directly at your face and flees, the account book forgotten on the stool. You find a neat sticky note inside: \"Variance: 1 towel.\""
         },
         {
           "label": "Act completely casual",
           "m": 5,
           "l": 2,
-          "res": "She stammers through the entire weekly budget review, right there, without once looking down, glasses fogged, voice cracking on \"depreciation.\" It's honestly impressive. He approves every line item."
+          "res": "She stammers through the entire weekly budget review, right there, without once looking down, glasses fogged, voice cracking on \"depreciation.\" It's honestly impressive. You approve every line item."
         },
         {
           "label": "Yell",
           "t": -2,
           "m": -3,
-          "res": "She flees, mortified, glasses clattering on the tiles, and avoids him for three days, sliding reports under his door instead of speaking."
+          "res": "She flees, mortified, glasses clattering on the tiles, and avoids you for three days, sliding reports under your door instead of speaking."
         }
       ],
       "image": {
@@ -63,13 +63,13 @@
           "label": "Tell her you liked her too, then finish the bowl",
           "t": 5,
           "m": 8,
-          "res": "He tells her, a little clumsily, and she covers her face with the cup. They scrape the bowl clean. She says it's the best ramen she's ever made, and for once she is not lying about it."
+          "res": "You tell her, a little clumsily, and she covers her face with the cup. They scrape the bowl clean. She says it's the best ramen she's ever made, and for once she is not lying about it."
         },
         {
           "label": "Declare it a triumph of accounting",
           "t": 1,
           "m": 2,
-          "res": "\"Best ramen in the realm,\" Sam says, which is technically true. {N} laughs, tucks her hair behind her ear, and doesn't take back what she said."
+          "res": "\"Best ramen in the realm,\" you say, which is technically true. {N} laughs, tucks her hair behind her ear, and doesn't take back what she said."
         }
       ],
       "image": {
@@ -81,7 +81,7 @@
     {
       "title": "The Way Home",
       "scene": "portrait",
-      "text": "A traveling mage claims he can send otherworlders home. Yui shows Sam the flyer with shaking hands, the ink smeared where she's held it too long. It smells of cheap incense. She stands in the doorway of the office and won't come inside. \"If it's real... would you go?\"",
+      "text": "A traveling mage claims he can send otherworlders home. Yui shows you the flyer with shaking hands, the ink smeared where she's held it too long. It smells of cheap incense. She stands in the doorway of the office and won't come inside. \"If it's real... would you go?\"",
       "choices": [
         {
           "label": "\"I'd stay. This is home now.\"",
@@ -107,7 +107,7 @@
     {
       "title": "Festival Night",
       "scene": "sam_date",
-      "text": "Yui drags Sam to the harvest festival, all lantern strings and fried dough, and wins him a prize at the ring toss: a deeply ugly stuffed wyvern with mismatched button eyes. She insists he carry it all night. People stare. She enjoys that more than she'll admit, her cheeks pink with cider and delight.",
+      "text": "Yui drags you to the harvest festival, all lantern strings and fried dough, and wins you a prize at the ring toss: a deeply ugly stuffed wyvern with mismatched button eyes. She insists you carry it all night. People stare. She enjoys that more than she'll admit, her cheeks pink with cider and delight.",
       "choices": [
         {
           "label": "Wear it like a hat, proudly",
@@ -131,7 +131,7 @@
     {
       "title": "Second Chance",
       "scene": "final",
-      "text": "Yui takes Sam's hand under the table during the staff meeting and doesn't let go, her thumb tracing the inside of his wrist while she reads out the quarterly figures in a perfectly level voice. Afterward, in the empty office, the lamp low, ledgers stacked behind her: \"Second life. Second chance. I'm not wasting this one being shy.\" She kisses him, glasses bumping his nose, and pulls him toward her room.",
+      "text": "Yui takes your hand under the table during the staff meeting and doesn't let go, her thumb tracing the inside of your wrist while she reads out the quarterly figures in a perfectly level voice. Afterward, in the empty office, the lamp low, ledgers stacked behind her: \"Second life. Second chance. I'm not wasting this one being shy.\" She kisses you, glasses bumping your nose, and pulls you toward her room.",
       "choices": [
         {"label":"Say yes","t":6,"m":12,"res":""},
         {
@@ -139,7 +139,7 @@
           "t": 1,
           "m": -3,
           "hold": true,
-          "res": "{N} nods and squeezes his hand once. \"I can wait. Don't make it too long.\" She pushes up her glasses and goes back to her columns, smiling."
+          "res": "{N} nods and squeezes your hand once. \"I can wait. Don't make it too long.\" She pushes up her glasses and goes back to her columns, smiling."
         }
       ]
     }

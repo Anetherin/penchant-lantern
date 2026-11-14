@@ -27,7 +27,7 @@
   },
   "dayoff": {
     "title": "A Small Request",
-    "text": "{name} catches Sam in the hallway. \"Could I take a few days off? I'm running on fumes.\"",
+    "text": "{name} catches you in the hallway. \"Could I take a few days off? I'm running on fumes.\"",
     "yes": {"label":"Of course","res":"{name} looks relieved. \"Thanks, boss.\""},
     "no": {"label":"Not this week","resSoft":"{name} says she understands. She looks very tired.","res":"{name} nods stiffly and goes back to work."},
     "image": {
@@ -42,7 +42,7 @@
     "ask": {
       "label": "Ask her if she wants to go",
       "res": "{name} agrees and returns the next morning with the fee and a smug smile. +{gold}, +renown.",
-      "pass": "{name} politely passes. Sam sends regrets. She appreciates being asked."
+      "pass": "{name} politely passes. You send regrets. She appreciates being asked."
     },
     "decline": {"label":"Decline politely","res":"The messenger sniffs and leaves."},
     "image": {
@@ -63,11 +63,11 @@
   },
   "taunt": {
     "title": "The Velvet Thorn",
-    "text": "A tall demon woman in red velvet sweeps into the lobby and looks around like she's pricing the furniture. \"Lady Isolde Thorne, of the Velvet Thorn. I came to see what the newcomer bought.\" Her gaze settles on Sam's hoodie. \"...Charming.\"",
+    "text": "A tall demon woman in red velvet sweeps into the lobby and looks around like she's pricing the furniture. \"Lady Isolde Thorne, of the Velvet Thorn. I came to see what the newcomer bought.\" Her gaze settles on your hoodie. \"...Charming.\"",
     "banter": {
       "label": "Banter back",
-      "win": "Sam lands a surprisingly good comeback. Isolde laughs despite herself. Word gets around. +renown.",
-      "lose": "Sam's comeback arrives about ten seconds late. Isolde is already gone."
+      "win": "You land a surprisingly good comeback. Isolde laughs despite herself. Word gets around. +renown.",
+      "lose": "Your comeback arrives about ten seconds late. Isolde is already gone."
     },
     "polite": {"label":"Stay polite","res":"\"We'll see how long you last,\" she says, and leaves."}
   },
@@ -75,7 +75,7 @@
     "title": "An Offer from the Thorn",
     "text": "{name} admits Isolde Thorne offered her a position at the Velvet Thorn, with better pay. She hasn't decided.",
     "raise": {"label":"Offer a raise (+30%)","res":"{name} stays. \"Okay. You actually value me. Noted.\""},
-    "talk": {"label":"Talk it through","stay":"They talk for an hour. {name} decides she'd rather stay.","go":"{name} hugs Sam goodbye. She's going."},
+    "talk": {"label":"Talk it through","stay":"They talk for an hour. {name} decides she'd rather stay.","go":"{name} hugs you goodbye. She's going."},
     "choose": {"label":"Let her choose","stay":"{name} turns Isolde down.","go":"{name} takes the offer."},
     "image": {
       "comp": "holding a fancy embossed letter, conflicted expression, glancing at a rival's calling card",
@@ -87,7 +87,7 @@
     "title": "Lucky Break",
     "text": [
       "A regular leaves a coin purse \"as a tip.\" It holds {gold}.",
-      "Sam finds {gold} hidden behind a loose brick in the cellar. The old owner had secrets.",
+      "You find {gold} hidden behind a loose brick in the cellar. The old owner had secrets.",
       "A merchant pays {gold} for the ugliest painting in the house. Nobody asks why."
     ],
     "ok": {"label":"Nice"}
@@ -95,11 +95,11 @@
   "inspector": {
     "_vars": "{gold} (the fee), {fine} (if the argument goes badly)",
     "title": "The Inspector",
-    "text": "A city inspector with a clipboard announces Sam owes \"licensing fees.\" He says {gold}, but he sounds like he's improvising.",
+    "text": "A city inspector with a clipboard announces you owe \"licensing fees.\" He says {gold}, but he sounds like he's improvising.",
     "pay": {"label":"Pay {gold}","res":"He leaves satisfied."},
     "argue": {
       "label": "Argue the paperwork",
-      "win": "Sam cites three ordinances that don't exist with total confidence. The inspector leaves, confused. No fee.",
+      "win": "You cite three ordinances that don't exist with total confidence. The inspector leaves, confused. No fee.",
       "lose": "It does not go well. {fine} and a lecture."
     }
   },
@@ -116,7 +116,7 @@
   },
   "quiet": {
     "title": "A Quiet Moment",
-    "text": "{name} finds Sam on the back steps after closing and sits next to him. \"You know, you're not what I expected. In a good way.\"",
+    "text": "{name} finds you on the back steps after closing and sits next to you. \"You know, you're not what I expected. In a good way.\"",
     "stay": {"label":"Stay and talk","res":"They watch the two moons rise."},
     "image": {
       "comp": "sitting on the back steps next to him sharing a pot of tea, talking quietly, shoulders touching",
@@ -127,9 +127,9 @@
   "raise": {
     "_vars": "{wage} (current), {newWage}",
     "title": "Raise Request",
-    "text": "{name} plants herself in front of Sam's desk. \"I'm worth more than {wage} a week, and we both know it. {newWage}.\"",
+    "text": "{name} plants herself in front of your desk. \"I'm worth more than {wage} a week, and we both know it. {newWage}.\"",
     "agree": {"label":"Agree ({newWage}/wk)","res":"\"Pleasure doing business.\""},
-    "refuse": {"label":"Refuse","resProud":"{name} stares at Sam for a long, cold moment. She won't forget this.","res":"{name} leaves without a word."},
+    "refuse": {"label":"Refuse","resProud":"{name} stares at you for a long, cold moment. She won't forget this.","res":"{name} leaves without a word."},
     "image": {
       "comp": "standing in front of a desk with arms folded, determined expression, a list of her accomplishments in hand",
       "setting": "small office, lamplight"
@@ -141,9 +141,9 @@
     "text": "A drunk adventurer starts shoving furniture and shouting about a refund for a service he never actually paid for.",
     "guard": {"label":"Let {guard} handle it","res":"{guard} throws him out in about four seconds. The regulars applaud."},
     "sam": {
-      "label": "Sam steps in",
-      "win": "Sam talks him down. Mostly by being so polite it's confusing. +reputation.",
-      "lose": "Sam takes a punch, then the drunk falls asleep on his own. Sam gets a black eye and a lot of sympathy."
+      "label": "Step in yourself",
+      "win": "You talk him down. Mostly by being so polite it's confusing. +reputation.",
+      "lose": "You take a punch, then the drunk falls asleep on his own. You get a black eye and a lot of sympathy."
     },
     "pay": {"label":"Pay for the damage","res":"Broken chairs and a cracked mirror: {gold}."}
   },
@@ -239,7 +239,7 @@
       },
       "deflect": {
         "label": "Laugh it off",
-        "res": "\"Sounds exhausting,\" Sam says. The look he gets back says he isn't fooling anyone, but the conversation moves on."
+        "res": "\"Sounds exhausting,\" you say. The look you get back says you aren't fooling anyone, but the conversation moves on."
       },
       "image": {
         "comp": "leaning over a guild counter whispering gossip, quill in hand, conspiratorial grin",
@@ -251,29 +251,29 @@
       "title": "Déjà Vu",
       "text": [
         "{name} stops halfway through setting a table, a plate in each hand. \"I've done this before,\" she says slowly. \"Not this table. This moment. You were standing right there, and you said...\" She frowns. \"I don't remember what you said. Only that I liked it.\"",
-        "{name} wakes Sam before dawn, sitting on the end of his bed. \"I had the strangest dream. We'd already met. I already knew how you take your tea.\" She holds up the cup she brought him. It's exactly right."
+        "{name} wakes you before dawn, sitting on the end of your bed. \"I had the strangest dream. We'd already met. I already knew how you take your tea.\" She holds up the cup she brought him. It's exactly right."
       ],
       "truth": {
         "label": "Tell her the truth",
-        "res": "It takes a while, and a second pot of tea. {name} doesn't laugh. \"That explains a lot,\" she says finally, and leans her head on his shoulder. \"Then I picked you twice. Good taste.\""
+        "res": "It takes a while, and a second pot of tea. {name} doesn't laugh. \"That explains a lot,\" she says finally, and leans her head on your shoulder. \"Then I picked you twice. Good taste.\""
       },
       "smile": {
         "label": "Say it's a good dream",
-        "res": "\"It is,\" {name} agrees, and doesn't push. But she keeps glancing at him for the rest of the day, like she's checking him against a memory."
+        "res": "\"It is,\" {name} agrees, and doesn't push. But she keeps glancing at you for the rest of the day, like she's checking him against a memory."
       },
       "image": {"comp":"pausing mid-motion with a soft, puzzled, nostalgic smile, holding a teacup","setting":"quiet kitchen at dawn, pale window light"}
     },
     "familiar": {
       "title": "A Familiar Face",
       "text": [
-        "A grey-bearded merchant stops Sam at the door, squinting. \"We've met. I'd swear to it. You ran a place like this, and I left too large a tip because you remembered my wife's name.\" He presses a coin purse into Sam's hand. \"Call it making up for a life I can't quite recall.\" (+{gold})",
-        "A woman in travelling clothes orders a drink, takes one look at Sam, and laughs. \"It's you. The hoodie. You don't remember me, do you? Never mind. You were kind to me once, somewhere else.\" She overpays and won't take the change. (+{gold})"
+        "A grey-bearded merchant stops you at the door, squinting. \"We've met. I'd swear to it. You ran a place like this, and I left too large a tip because you remembered my wife's name.\" He presses a coin purse into your hand. \"Call it making up for a life I can't quite recall.\" (+{gold})",
+        "A woman in travelling clothes orders a drink, takes one look at you, and laughs. \"It's you. The hoodie. You don't remember me, do you? Never mind. You were kind to me once, somewhere else.\" She overpays and won't take the change. (+{gold})"
       ],
       "ok": {"label":"Thank them"}
     },
     "lamp": {
       "title": "The Lantern Stone",
-      "text": "Anael finds Sam at the crossroads after close. The old Lantern Stone is burning, steadier than before. \"It has been lit {cycle} times now,\" she says. \"The Order's records only allow for once. I have been instructed to file a correction.\" She looks at the flame, then at him. \"I have not decided what the correction should say.\"",
+      "text": "Anael finds you at the crossroads after close. The old Lantern Stone is burning, steadier than before. \"It has been lit {cycle} times now,\" she says. \"The Order's records only allow for once. I have been instructed to file a correction.\" She looks at the flame, then at you. \"I have not decided what the correction should say.\"",
       "stay": {
         "label": "Stay with her a while",
         "res": "They watch the flame until the bells ring midnight. When Anael finally writes her report, it is three pages long and none of it is about the lamp."
@@ -290,14 +290,14 @@
     },
     "circle": {
       "title": "The Returners' Circle",
-      "text": "A folded card arrives with no seal, only a hand-drawn lantern and an address above a teahouse. Inside: a dozen people who all, in one way or another, should not remember what they remember. A former schoolteacher. A sellsword who apologises to everyone. A woman who still checks her pockets for a phone. Someone hands Sam tea. \"Welcome back,\" they say, and it's clear they've said it many times before.",
+      "text": "A folded card arrives with no seal, only a hand-drawn lantern and an address above a teahouse. Inside: a dozen people who all, in one way or another, should not remember what they remember. A former schoolteacher. A sellsword who apologises to everyone. A woman who still checks her pockets for a phone. Someone hands you tea. \"Welcome back,\" they say, and it's clear they've said it many times before.",
       "join": {
         "label": "Become a regular",
         "res": "The Circle meets on the last night of each month. People talk. Some of them are looking for work, and now they know where to find it. (+renown. Someone from Sam's old world is already waiting among your candidates.)"
       },
       "visit": {
         "label": "Just stay for the tea",
-        "res": "It's good tea. Sam leaves with a full stomach and a strange, light feeling, like being remembered by strangers."
+        "res": "It's good tea. You leave with a full stomach and a strange, light feeling, like being remembered by strangers."
       }
     }
   },
@@ -367,7 +367,7 @@
     "_vars": "{other} (the lady who comforts her)",
     "title": "Tears in the Hall",
     "text": [
-      "Sam finds {name} sitting alone at the end of the hallway, trying very hard not to cry. It has clearly been a hard night. {other} has noticed too, and hovers nearby, unsure whether to step in.",
+      "You find {name} sitting alone at the end of the hallway, trying very hard not to cry. It has clearly been a hard night. {other} has noticed too, and hovers nearby, unsure whether to step in.",
       "A long week has caught up with {name}, and she is quietly wiping her eyes in the staff common room. {other} is watching from the doorway with a worried look."
     ],
     "comfort": {
@@ -375,10 +375,10 @@
       "res": "{other} sits down, says almost nothing, and just stays. By the end of the night both of them are smiling a little. They seem closer for it."
     },
     "sam": {
-      "label": "Sam sits with her himself",
-      "res": "Sam brings tea and listens until she runs out of words. {name} leans on his shoulder for a while, and thanks him quietly."
+      "label": "Sit with her yourself",
+      "res": "You bring tea and listen until she runs out of words. {name} leans on your shoulder for a while, and thanks you quietly."
     },
-    "leave": {"label":"Leave her be","res":"Sam gives her space. By morning she is composed again, but she doesn't quite meet his eyes."},
+    "leave": {"label":"Leave her be","res":"You give her space. By morning she is composed again, but she doesn't quite meet your eyes."},
     "image": {
       "comp": "two women sitting side by side, one wiping her eyes while the other gently rests a hand on her shoulder",
       "setting": "staff common room in the evening, warm lamplight",

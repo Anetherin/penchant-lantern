@@ -5,7 +5,7 @@ ARCS = noMeta(needData('arcs'));
 function resolveEff(w, c){
   let e = Object.assign({}, c);
   if(e.if){ const ok = Object.entries(e.if).every(([k,v])=>(w[k]||0) >= v); if(!ok) e = Object.assign({}, e.else||{}); }
-  if(e.gold && e.gold < 0 && S.gold < -e.gold) return Object.assign({}, e.cantAfford || {res:"Sam can't afford that right now."});
+  if(e.gold && e.gold < 0 && S.gold < -e.gold) return Object.assign({}, e.cantAfford || {res:"You can't afford that right now."});
   if(e.gold) S.gold += e.gold;
   if(e.sam) Object.entries(e.sam).forEach(([k,v])=>samStat(k, v));
   if(e.energy==='full') w.energy = maxEnergy(w); else if(typeof e.energy==='number') w.energy = clamp(w.energy + e.energy, 0, maxEnergy(w));

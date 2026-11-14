@@ -20,6 +20,10 @@
   partner arc = `data/arcs/<key>.json` + index; flavor keys by theme (sam/jobs/encounters/training).
 - Image prompts are always built programmatically (`js/logic/prompts.js`). The user writes any explicit wording Claude is uncomfortable with
   themselves in `data/snippets.json` / `data/ai-prompts.json`; All characters are adults;
+- Scene text follows `docs/WRITING.md`: narration in second person ("you" = Sam; "Sam" stays in dialogue, logs/reports/UI and
+  anything sent to the AI/image models), direct explicit wording instead of euphemism, and text that matches the service the game
+  plays (firsts tiers 1/2/3, `jump` never assumes intercourse, `enc_*` notes and `{act}` scenes act-neutral). A few canonically
+  young crossover ladies are kept tame (list in the doc).
 - Firsts with Sam: `js/events/firsts.js` + `data/firsts.json`. Every named lady AND every guest has her own events (1/2/3, guests also `jump`; `firstData` prefers `events.jump` when she has no firsts yet and the stage is past a kiss); guests' pace/path/init stay rolled. Spicy date `lead` may be a list (picked at random). `canSam` = comfort (`samStance`) AND crossed (`actTier(id) <= w.intim`).
   Every path that leads to private time (dates, encounters, arcs, bonds) goes through `canSam`/`bestSamAct`, so keep it that way.
   Story moments can carry their own image `{comp, setting, sam}` → `dynScene(key, img)` (js/data/scenes.js).
