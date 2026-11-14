@@ -26,8 +26,7 @@ Other: Wii Fit Trainer, Samus Aran (android)
 
 ## Content
 - Make sure we have good amounts of traits, personalities, perks, titles, etc for both ladies and customers and that there's plenty for every stat, skill, job, appearance factor, etc and that nothing stands out as useless or redundant.
-- Is the gameplay well rounded? Anything thta adds bloat or conversely should be fleshed out? amy additional systems we could add to improve the game?
-- What about adventuring /rpg/battle stuff?
+- Is the gameplay well rounded? Anything thta adds bloat or conversely should be fleshed out? any additional systems we could add to improve the game?
 - Girls maybe can take a cut of the profits and use it to buy their own clothes. The user can set the toggle (including for all gitls with filters). also (toggleable) is them changing their clothes according to their preference if they have multiple. both of these should increase trust and mood (maybe baseline 20% cut? 50%? and lowering penalizes mood/trust. Maybe it changes per cycle)
 - Orgies maybe can make use of the fem/fem scene if ladies have high enough bonds?
 
@@ -43,6 +42,8 @@ Other: Wii Fit Trainer, Samus Aran (android)
 ## New Game Plus
 - After Cycle 5 if you recruit the goddess should it be a soft reset? You unlock her tab, but without divinity you maybe sort of start afresh? essentially a new cycle 1 (but all prior characters retain their reincarnated perks and continue to carry over even if they don't get re-recruited). Maybe a new house and no partner? Sam's level also gets reset, but he does keep his perks and caps. The new house could add rooms (and cost) every reincarnation. lovers would keep the reincarnation but lose lover status. House progress is reset. You can buy houses but neither lovers (nor houses?) should carry over in reincarnation (progress does and you can still get ladies perks). Prior lovers should have extra lines when you meet them on a walk and join without a signing bonus (does make goddess a bit jealous though). you only need the goddess, right? the house probably does come with a new bound character. no preferences, mood, lust, or personality (at least at first). She should resemble one of the goddesses forms (maybe you get one for each play through since you can't carry over other characters for free)
 - Most of Sam's items should not carry through to Ng Plus, and there should also be items that reduce his energy consumption for various activities.
+- Tutor settings get reset. also, your should have a toggle for applying current tutor settings to new recruits
+- You should only be able to reincarnate a maximum of (number of cycles completed) old friends (generics). or alternatively, there's a favorite button for generics and only favorites get reincarnated.
 - Maybe certain variables change each cycle or there are certain challenges that give perks (either available right away or after goddess is unlocked/maxed)
 
 ## Races
@@ -61,13 +62,12 @@ Other: Wii Fit Trainer, Samus Aran (android)
 - If there's a reasonably competent Madame and/or attendant, courtesans being overworked should be quite rare
 
 ## Story
-- Everything involving Sam should be narrated in second person
 - All non guest characters should have fully fleshed out stories 
 - The isekai characters should feel like people Sam knows from home moreso than inhabitants of this world
 - Certain characters should call Sam by different names (boss is more generic and probably not suitable for most isekai girls)
 - Stories are expanded from current and take current physical progress into account 
 - Some (like bath scenes) should lead into a service scene depending on what the girl is comfortable with
-- Check the tone and length of various stories, arcs, and bonds. given the nature of the game we don't need to shy away from intimate subject matter, and it's okay to give everything room to breathe with multiple paragraphs. If you can't write things directly feel free to use and even create new snippets etc. for me to fill in.
+- Check the tone and length of various stories, arcs, and bonds. 
 
 ## Walks
 Once the guild characters are done, should the button disappear? also should they have stories built out?
