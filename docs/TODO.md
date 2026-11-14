@@ -28,6 +28,7 @@ Other: Wii Fit Trainer, Samus Aran (android)
 - Make sure we have good amounts of traits, personalities, perks, titles, etc for both ladies and customers and that there's plenty for every stat, skill, job, appearance factor, etc and that nothing stands out as useless or redundant.
 - Is the gameplay well rounded? Anything thta adds bloat or conversely should be fleshed out? any additional systems we could add to improve the game?
 - Girls maybe can take a cut of the profits and use it to buy their own clothes. The user can set the toggle (including for all gitls with filters). also (toggleable) is them changing their clothes according to their preference if they have multiple. both of these should increase trust and mood (maybe baseline 20% cut? 50%? and lowering penalizes mood/trust. Maybe it changes per cycle)
+- Event/encounter scenes should either reflect the girls clothes or the image prompt should use the clothing (etc) from the description of the scene
 - Orgies maybe can make use of the fem/fem scene if ladies have high enough bonds?
 - You should be able to auto hire studs for your demins (maybe all the girls? instead of the house upgrades)
 
