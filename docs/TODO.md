@@ -2,26 +2,26 @@
 This file is for big ideas when I have a fresh batch of Claude usage.
 
 ## Characters
-- Zelda: Princess Hilda (Elf), Twinrova (Spirit)
-- Mario: Princess Peach, Daisy, Pauline, Toadette inspired dwarf, Bowsette (Demon), Boosette (Spirit)
-- Fire Emblem: Tiki (Dragonkin), Nowi (Dragonkin), Tharja, Lucina
-- Naruto: Hanabi, Himawari? (blue vortex design aged up, could be foxkin)
-- Naruto after: Could Tomoe be an android with her seven sin forms as outfits? Default would be Envy. 
-- Dragonball: Android 18
-- Fate: Tohsaka, Saber, Rider, Sakura (Noble Phantasms are spirits)
-- Wuthering Waves: Iuno, Augusta, Aemeath (Spirit), Camellya, Fem!Rover
-- Nier: 2B, A2, Devola/Popola
-Other: Wii Fit Trainer, Samus Aran (android)
-- Double check character appearances and bonds against sources. If I made a manual change that means whatever was there intitially was off (common for wuthering waves in particular)
+- [x] Zelda: Princess Hilda (Elf), Twinrova (Spirit)
+- [x] Mario: Princess Peach, Daisy, Pauline, Toadette inspired dwarf, Bowsette (Demon), Boosette (Spirit)
+- [x] Fire Emblem: Tiki (Dragonkin), Nowi (Dragonkin), Tharja, Lucina
+- [x] Naruto: Hanabi, Himawari? (blue vortex design aged up, could be foxkin)
+- [x] Naruto after: Could Tomoe be an android with her seven sin forms as outfits? Default would be Envy. 
+- [x] Dragonball: Android 18
+- [x] Fate: Tohsaka, Saber, Rider, Sakura (Noble Phantasms are spirits)
+- [x] Wuthering Waves: Iuno, Augusta, Aemeath (Spirit), Camellya, Fem!Rover
+- [x] Nier: 2B, A2, Devola/Popola
+- [x] Other: Wii Fit Trainer, Samus Aran (android)
+- [x] Double check character appearances and bonds against sources. If I made a manual change that means whatever was there intitially was off (common for wuthering waves in particular)
 
 ## Clothing/Appearance 
-- Have more gear(really should be accessories) available. characters should be able to use a state of undress where the accessories are removed (or never). although maybe accessories are just associated with characters and/or outfits rather than independent items.
-- outfits should be able to change hair (style) and have their own features
-- Special outfits can change eyes, skin, hair color, favorite color, etc (See Sae Nakijima who should have yellow eyes in her signature, or Android 21 who can have her Buu like form as her special)
-- accessories can be removed, features always stay
-- Make sure features are physical features not expressions or items (which should be accessories)
-- Make sure unique clothing is unique now that we've added more. same for special. It's possible some characters are fine with default outfits and may not necessarily have special ones or may have more than one special one if lore appropriate (eg different Zeldas as special outfits?)
-- We probably could do with more accessories. Check if we're missing any sort of outfits and feel free to add them.
+- [x] Have more gear(really should be accessories) available. characters should be able to use a state of undress where the accessories are removed (or never). although maybe accessories are just associated with characters and/or outfits rather than independent items.
+- [x] outfits should be able to change hair (style) and have their own features
+- [x] Special outfits can change eyes, skin, hair color, favorite color, etc (See Sae Nakijima who should have yellow eyes in her signature, or Android 21 who can have her Buu like form as her special)
+- [x] accessories can be removed, features always stay
+- [x] Make sure features are physical features not expressions or items (which should be accessories)
+- [x] Make sure unique clothing is unique now that we've added more. same for special. It's possible some characters are fine with default outfits and may not necessarily have special ones or may have more than one special one if lore appropriate (eg different Zeldas as special outfits?)
+- [x] We probably could do with more accessories. Check if we're missing any sort of outfits and feel free to add them.
 
 ## Content
 - Make sure we have good amounts of traits, personalities, perks, titles, etc for both ladies and customers and that there's plenty for every stat, skill, job, appearance factor, etc and that nothing stands out as useless or redundant.

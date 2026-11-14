@@ -1,0 +1,110 @@
+{
+  "packs": {
+    "other": {
+      "label": "Other Worlds",
+      "characters": {
+        "wii_fit": {
+          "job": "bath",
+          "name": "Wii Fit Trainer",
+          "race": "human",
+          "age": 26,
+          "personality": "Earnest and dutiful",
+          "traits": ["Tough","Sunny"],
+          "style": "Sporty",
+          "favColor": "sky blue",
+          "fav": "cowgirl",
+          "dislike": "doggy",
+          "lovers": "massage_give",
+          "backstory": "A relentlessly encouraging yoga and strength instructor with chalk-white mannequin skin and flawless posture, she arrived in Hollowmere determined to fix the entire town's center of balance. She runs morning sun salutations in the bathhouse courtyard, critiques Sam's spine alignment whenever he hunches over the ledger, and treats every intimate encounter as an advanced core workout.",
+          "design": {
+            "build": "toned, flexible",
+            "hairStyle": "neat low ponytail",
+            "hairColor": "charcoal-black",
+            "eyes": "dark grey",
+            "skin": "chalk-white mannequin skin",
+            "expression": "a calm, encouraging smile"
+          },
+          "under": "sports",
+          "underColor": "white",
+          "stats": {"beauty":72,"charm":64,"charisma":66,"refinement":54,"wits":60,"stamina":92,"strength":68,"agility":88},
+          "tech": {"service":55,"dance":60,"bar":20,"combat":55,"manage":35},
+          "actSkill": 30,
+          "popularity": 20,
+          "lewd": 28,
+          "trust": 30,
+          "outfits": {
+            "sig_wii_fit": {
+              "label": "Yoga studio set",
+              "style": "Sporty",
+              "prompt": "a fitted sky-blue athletic tank top, dark grey high-waisted Capri yoga leggings and bare feet",
+              "bonus": {"bath":1.3,"dancer":1.2}
+            }
+          },
+          "bonds": {"samus":{"v":40,"kind":"comrades","note":"Morning sparring and flexibility partners."}},
+          "jobs": {"likes":["bath","dancer","teacher"],"dislikes":["bartender"]},
+          "body": {"bust":"medium","height":"average","figure":"athletic"},
+          "unique": {
+            "name": "Salute the Sun",
+            "desc": "Her daily stretching routines keep the whole house limber, boosting stamina recovery and massage quality.",
+            "fx": {"energyRec":1.12,"actQuality":{"massage_give":1.3},"jobBonus":{"bath":1.15}}
+          }
+        },
+        "samus": {
+          "job": "security",
+          "name": "Samus Aran",
+          "race": "android",
+          "age": 28,
+          "personality": "Stoic and blunt",
+          "traits": ["Tough","Former Adventurer"],
+          "style": "Sporty",
+          "favColor": "plasma blue",
+          "fav": "cowgirl",
+          "dislike": "manual_give",
+          "lovers": "missionary",
+          "backstory": "A legendary galactic bounty hunter infused with ancient Chozo cybernetics and alien DNA, Samus has hunted apex predators across a dozen star systems and blown up half the planets she visited. Taking a rare shore leave in Hollowmere with her heavy Power Suit stored in sub-space, she guards the Lantern in her sleek Zero Suit and enjoys finally sleeping in a bed that isn't inside a gunship.",
+          "design": {
+            "build": "statuesque, Amazonian",
+            "hairStyle": "long high ponytail with bangs framing her face",
+            "hairColor": "golden blonde",
+            "eyes": "ocean blue",
+            "skin": "fair",
+            "features": "a small beauty mark beneath the left side of her lower lip",
+            "expression": "a cool, focused gaze"
+          },
+          "under": "sports",
+          "underColor": "blue",
+          "stats": {"beauty":86,"charm":60,"charisma":72,"refinement":55,"wits":76,"stamina":94,"strength":92,"agility":90},
+          "tech": {"service":30,"dance":30,"bar":35,"combat":98,"manage":50},
+          "actSkill": 25,
+          "popularity": 28,
+          "lewd": 30,
+          "trust": 24,
+          "outfits": {
+            "sig_samus": {
+              "label": "Zero Suit",
+              "style": "Revealing",
+              "prompt": "a skin-tight glossy cyan-and-navy futuristic Zero Suit bodysuit with glowing pink-red Chozo insignia on the chest and back, and cyan high-heeled jet boots",
+              "bonus": {"security":1.35,"courtesan":1.2},
+              "accessories": "a sleek silver Paralyzer pistol at her hip",
+              "accState": "dressed"
+            },
+            "sp_samus": {
+              "label": "Bounty hunter two-piece",
+              "style": "Sporty",
+              "prompt": "a cropped bright-orange athletic halter top exposing her toned midriff, matching fitted orange shorts and dark combat boots",
+              "bonus": {"security":1.25,"adventurer":1.25}
+            }
+          },
+          "bonds": {"wii_fit":{"v":40,"kind":"comrades","note":"Respects anyone who can hold a plank as long as she can."}},
+          "jobs": {"likes":["security","bartender"],"dislikes":["maid","promoter"]},
+          "body": {"bust":"large","height":"tall","figure":"athletic"},
+          "unique": {
+            "name": "Galactic Hunter",
+            "desc": "No bounty or troublemaker escapes her sight, making the house a fortress.",
+            "fx": {"security":24,"classBonus":{"adventurer":1.2},"jobBonus":{"security":1.15}}
+          }
+        }
+      }
+    }
+  }
+}

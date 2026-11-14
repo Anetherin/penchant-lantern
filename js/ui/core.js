@@ -20,7 +20,7 @@ function showResult(title, text, wid, scene, ai, next){
   if(ai && SET.ai.on && SET.ai.auto) aiWrite('resAi', ai.kind, wid, ai);
 }
 const HAIR_HEX = {black:'#3a3a44','dark brown':'#5a3d2b',chestnut:'#7b4a2c',auburn:'#8e3b23',red:'#b8342c',copper:'#c4672e',blonde:'#e3c56a','honey blonde':'#d9a94e','platinum blonde':'#efe6c8',silver:'#cfd3dc',white:'#f2f2f2','ash grey':'#9a9a9a',pink:'#f0a0c0',lavender:'#b9a2e0',teal:'#3fa9a0','deep blue':'#3a5bb0',crimson:'#a3203a'};
-const hairHex = w => HAIR_HEX[((w.design&&w.design.hairColor)||'').toLowerCase()] || '#b99';
+const hairHex = w => HAIR_HEX[((effDesign(w).hairColor)||(w.design&&w.design.hairColor)||'').toLowerCase()] || '#b99';
 const initials = n => String(n||'?').split(' ').map(x=>x[0]).join('').slice(0,2).toUpperCase();
 const raceLabel = w => (RACES[w.race]||RACES.human).label + (w.sub?` (${w.sub})`:'');
 // v / max fills the bar; max is HER ceiling (max energy, lust max, house-gated trust...), so a full bar means she's at her limit.

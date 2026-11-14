@@ -21,7 +21,9 @@
             "hairColor": "pale teal",
             "eyes": "clear green-grey",
             "skin": "light warm",
-            "features": "dark smoky eye makeup, deep wine lips and a thin black choker with a small sand-symbol plate"
+            "features": "long pointed elf ears, dark smoky eye makeup and deep wine lips",
+            "accessories": "a thin black choker with a small sand-symbol plate",
+            "accState": "always"
           },
           "under": "lace",
           "underColor": "wine",
@@ -73,7 +75,7 @@
             "hairColor": "medium brown",
             "eyes": "warm brown",
             "skin": "fair",
-            "features": "a calm, composed face"
+            "expression": "a calm, composed expression"
           },
           "under": "sports",
           "underColor": "grey",
@@ -115,11 +117,13 @@
           "backstory": "A bat-winged sound demon from the Sound village of the Alliance villages across the eastern sea who plays a chakra guitar strung with green light. Bubbly, theatrical and very happy to be stared at, she has turned the house stage into a nightly vampire-rock concert.",
           "design": {
             "build": "long-legged",
-            "hairStyle": "calf-length, thick and layered with bat-wing hair ornaments",
+            "hairStyle": "calf-length, thick and layered",
             "hairColor": "dark plum with wine-red highlights",
             "eyes": "vivid red-violet",
             "skin": "fair",
-            "features": "a delicate refined face and silver filigree jewelry"
+            "features": "a delicate refined face and small dark bat wings",
+            "accessories": "bat-wing hair ornaments and silver filigree jewelry",
+            "accState": "always"
           },
           "under": "lace",
           "underColor": "black",
@@ -167,7 +171,8 @@
             "hairColor": "blonde",
             "eyes": "warm amber-brown",
             "skin": "light tan",
-            "features": "ink seal arrays on her forearms and a cheerful soot smudge"
+            "features": "ink seal arrays on her forearms and a cheerful soot smudge",
+            "expression": "an energetic, cheerful grin"
           },
           "under": "sports",
           "underColor": "red",
@@ -217,9 +222,12 @@
             "build": "elegant",
             "hairStyle": "very long, straight and loose",
             "hairColor": "dark",
-            "eyes": "dark, behind a sleek smoky purple-grey visor",
+            "eyes": "dark",
             "skin": "fair",
-            "features": "an exceptionally beautiful, composed face"
+            "features": "an exceptionally beautiful, composed face",
+            "accessories": "a sleek smoky purple-grey visor over her eyes",
+            "accState": "dressed",
+            "expression": "a cool, composed expression"
           },
           "under": "silk",
           "underColor": "charcoal",
@@ -233,14 +241,16 @@
             "sig_saya": {
               "label": "Information commander",
               "style": "Elegant",
-              "prompt": "a long fitted white field jacket worn open over a charcoal-black top with abstract web-like seams and mesh panels, fitted dark trousers, a smoky semi-translucent visor",
+              "prompt": "a long fitted white field jacket worn open over a charcoal-black top with abstract web-like seams and mesh panels, fitted dark trousers",
               "bonus": {"promoter":1.3,"merchant":1.15}
             },
             "sp_saya": {
               "label": "Off-duty knit",
               "style": "Elegant",
-              "prompt": "a long white knit dress with her visor pushed up into her hair",
-              "bonus": {"courtesan":1.15,"noble":1.15}
+              "prompt": "a long white off-duty knit dress",
+              "bonus": {"courtesan":1.15,"noble":1.15},
+              "accessories": "her smoky visor pushed up into her hair",
+              "accState": "always"
             }
           },
           "bonds": {
@@ -321,7 +331,8 @@
             "hairColor": "copper red",
             "eyes": "amber-brown",
             "skin": "sandy tan",
-            "gear": "a pair of folding metal fans"
+            "accessories": "a pair of folding metal fans",
+            "accState": "dressed"
           },
           "under": "none",
           "underColor": "none",
@@ -369,7 +380,9 @@
             "hairColor": "blonde",
             "eyes": "grey-blue",
             "skin": "light",
-            "features": "light, polished makeup"
+            "features": "light, polished makeup",
+            "accessories": "delicate silver earrings",
+            "accState": "always"
           },
           "under": "silk",
           "underColor": "navy",
@@ -475,7 +488,9 @@
             "hairColor": "blue-purple",
             "eyes": "striking grey",
             "skin": "light",
-            "features": "a pale-jade disc pendant, a gold sun-engraved bangle and a plain dark-silver ring"
+            "features": "long pointed elf ears",
+            "accessories": "a pale-jade disc pendant, a gold sun-engraved bangle and a plain dark-silver ring",
+            "accState": "always"
           },
           "under": "plain",
           "underColor": "black",
@@ -495,9 +510,10 @@
             "sp_yori": {
               "label": "Unhooded",
               "style": "Elegant",
-              "prompt": "a fitted dark blue-purple dress with her very long hair finally loose",
+              "prompt": "a fitted dark blue-purple dress",
               "bonus": {"noble":1.25,"courtesan":1.15},
-              "unlock": 90
+              "unlock": 90,
+              "hairStyle": "extremely long and worn loose"
             }
           },
           "bonds": {"emi":{"v":25,"note":"Both from Ame."}},
@@ -524,7 +540,7 @@
             "hairColor": "chestnut",
             "eyes": "soft brown-hazel",
             "skin": "light-to-medium warm",
-            "features": "approachable, friendly prettiness"
+            "expression": "a warm, approachable smile"
           },
           "under": "plain",
           "underColor": "cream",
@@ -563,11 +579,13 @@
           "backstory": "A snow spirit and heir to the ice-wielding Kitahashi line of the Snow country, Yukine led her people out when their home fell, and nobody has been able to tell her what to do since. Dry, sarcastic and quietly menacing, she runs a floor like an Ice Princess who is unquestionably in control.",
           "design": {
             "build": "long-limbed",
-            "hairStyle": "extremely long thin low ponytail with a dusty-pink ribbon",
+            "hairStyle": "extremely long thin low ponytail",
             "hairColor": "near-black",
             "eyes": "pale blue-grey",
             "skin": "pale cool",
-            "features": "a delicate, slightly androgynous face"
+            "accessories": "a dusty-pink hair ribbon",
+            "accState": "always",
+            "expression": "a cool, delicate expression"
           },
           "under": "silk",
           "underColor": "white",
@@ -615,11 +633,14 @@
           "backstory": "A cheetah-eared lightning sprinter from the Cloud village of the Alliance villages across the eastern sea, Hana is genuinely in love with fighting and fastest in any room. A red ribbon tying her hair once belonged to a cousin she lost.",
           "design": {
             "build": "powerful-legged sprinter",
-            "hairStyle": "sleek high ponytail tied with a red ribbon",
+            "hairStyle": "sleek high ponytail",
             "hairColor": "deep warm red",
             "eyes": "amber-brown",
             "skin": "warm brown",
-            "features": "a confident, energetic grin"
+            "features": "spotted cheetah ears and a long spotted cheetah tail",
+            "accessories": "a red hair ribbon",
+            "accState": "always",
+            "expression": "a confident, energetic grin"
           },
           "under": "sports",
           "underColor": "black",
@@ -665,7 +686,7 @@
             "hairColor": "silver-white",
             "eyes": "blue-grey",
             "skin": "pale",
-            "features": "a stern, cool face"
+            "expression": "a stern, cool expression"
           },
           "under": "plain",
           "underColor": "black",
@@ -705,7 +726,15 @@
           "dislike": "kiss",
           "lovers": "missionary",
           "backstory": "A Leaf researcher and former exam instructor from the Alliance villages across the eastern sea, Tsubasa looks like a friendly teacher. Her combat specialty is horrifyingly sticky chakra-laced saliva. She is extremely hygienic and refuses to let embarrassment stop her from mastering a useful skill.",
-          "design": {"hairStyle":"shoulder-length","hairColor":"brown","eyes":"warm brown","skin":"fair","features":"rectangular glasses and a gentle smile"},
+          "design": {
+            "hairStyle": "shoulder-length",
+            "hairColor": "brown",
+            "eyes": "warm brown",
+            "skin": "fair",
+            "accessories": "rectangular glasses",
+            "accState": "always",
+            "expression": "a gentle smile"
+          },
           "under": "plain",
           "underColor": "white",
           "stats": {"beauty":60,"charm":60,"charisma":54,"refinement":55,"wits":67,"stamina":55,"strength":30,"agility":40},
@@ -718,8 +747,10 @@
             "sig_tsubasa": {
               "label": "Instructor's fieldwear",
               "style": "Elegant",
-              "prompt": "modern dark professional fieldwear with a clipboard",
-              "bonus": {"bath":1.2,"merchant":1.15}
+              "prompt": "modern dark professional fieldwear",
+              "bonus": {"bath":1.2,"merchant":1.15},
+              "accessories": "a clipboard tucked under her arm",
+              "accState": "dressed"
             },
             "sp_tsubasa": {"label":"Lab coat","style":"Elegant","prompt":"a crisp white lab coat over a fitted dark dress","bonus":{"bath":1.25,"noble":1.1}}
           },
@@ -747,7 +778,8 @@
             "hairColor": "medium-to-dark brown",
             "eyes": "hidden behind a blindfold",
             "skin": "warm tan",
-            "features": "a dark cloth blindfold with a metal plate engraved with a quarter-note symbol across her eyes"
+            "accessories": "a dark cloth blindfold with a metal quarter-note plate across her eyes",
+            "accState": "always"
           },
           "under": "plain",
           "underColor": "plum",
@@ -788,7 +820,14 @@
           "dislike": "kiss",
           "lovers": "missionary",
           "backstory": "A Leaf clone specialist from the Alliance villages across the eastern sea with chakra reserves big enough to be a squad by herself. Tobari covers every door in the house at once. She talks her problems through with her own clones, which know far too much about who she likes.",
-          "design": {"hairStyle":"short high ponytail","hairColor":"white","eyes":"red","skin":"pale","gear":"a small white fur collar"},
+          "design": {
+            "hairStyle": "short high ponytail",
+            "hairColor": "white",
+            "eyes": "red",
+            "skin": "pale",
+            "accessories": "a small white fur collar",
+            "accState": "dressed"
+          },
           "under": "sports",
           "underColor": "navy",
           "stats": {"beauty":64,"charm":48,"charisma":54,"refinement":45,"wits":45,"stamina":70,"strength":55,"agility":70},
@@ -838,7 +877,9 @@
             "hairColor": "pale blonde",
             "eyes": "pale blue",
             "skin": "fair",
-            "gear": "a sewing pouch at her hip"
+            "features": "long pointed elf ears",
+            "accessories": "a sewing pouch at her hip",
+            "accState": "dressed"
           },
           "under": "lace",
           "underColor": "cream",
@@ -886,7 +927,7 @@
             "hairColor": "dark brown",
             "eyes": "brown",
             "skin": "light warm",
-            "features": "a warm, friendly face"
+            "expression": "a warm, friendly smile"
           },
           "under": "plain",
           "underColor": "red",
@@ -934,8 +975,9 @@
             "hairColor": "black",
             "eyes": "dark",
             "skin": "pale",
-            "features": "a sharp, striking face",
-            "gear": "a small cutting blade at her hip"
+            "accessories": "a small cutting blade at her hip",
+            "accState": "dressed",
+            "expression": "a sharp, focused gaze"
           },
           "under": "silk",
           "underColor": "black",
@@ -949,14 +991,17 @@
             "sig_kamiko": {
               "label": "Wanderer's layers",
               "style": "Exotic",
-              "prompt": "a broad conical straw traveling hat and layered muted olive, charcoal and black fieldwear with a draped weathered outer layer",
-              "bonus": {"courtesan":1.2,"adventurer":1.2}
+              "prompt": "layered muted olive, charcoal and black fieldwear with a draped weathered outer layer",
+              "bonus": {"courtesan":1.2,"adventurer":1.2},
+              "accessories": "a broad conical straw traveling hat",
+              "accState": "dressed"
             },
             "sp_kamiko": {
               "label": "Black silk kimono",
               "style": "Elegant",
-              "prompt": "a black silk kimono with a grass-green obi, her uneven hair loose",
-              "bonus": {"noble":1.25,"courtesan":1.1}
+              "prompt": "a black silk kimono with a grass-green obi",
+              "bonus": {"noble":1.25,"courtesan":1.1},
+              "hairStyle": "very long, loose and unevenly cut"
             }
           },
           "jobs": {"likes":["courtesan","security"],"dislikes":["maid"]},
@@ -982,7 +1027,7 @@
             "hairColor": "black",
             "eyes": "dark, turning matte black when she focuses",
             "skin": "pale",
-            "features": "a calm, pleasant smile"
+            "expression": "a calm, pleasant smile"
           },
           "under": "lace",
           "underColor": "black",
@@ -1031,7 +1076,8 @@
             "eyes": "dark",
             "skin": "light",
             "features": "a prominent nose and strong brows",
-            "gear": "a dark bandanna over her hairline"
+            "accessories": "a dark bandanna over her hairline",
+            "accState": "always"
           },
           "under": "sports",
           "underColor": "black",
@@ -1055,6 +1101,183 @@
           "jobs": {"likes":["dancer","madame"],"dislikes":["security"]},
           "body": {"bust":"medium","height":"tall","figure":"athletic"},
           "unique": {"name":"Planned Itinerary","desc":"She plans her time perfectly and recovers well.","fx":{"energyRec":1.1,"jobBonus":{"dancer":1.1}}}
+        },
+        "tomoe": {
+          "job": "madame",
+          "name": "Tomoe Mitama",
+          "race": "android",
+          "age": 48,
+          "personality": "Mysterious and aloof",
+          "traits": ["Ambitious","Elegant"],
+          "style": "Exotic",
+          "favColor": "emerald",
+          "fav": "cowgirl",
+          "dislike": "doggy",
+          "lovers": "missionary",
+          "backstory": "An exiled researcher and shadow strategist from the Alliance villages across the eastern sea who solved mortality by dividing her consciousness across seven synthetic android vessels, each calibrated to one of the Seven Deadly Sins. She usually walks the floor in her Third Seal, Envy—warm, attentive and disarming—though she keeps her other six chassis in the closet and switches bodies the way other women switch gowns.",
+          "design": {
+            "build": "lithe",
+            "hairStyle": "long wavy, half-up with a dark wooden hairpin",
+            "hairColor": "dark brown",
+            "eyes": "soft violet with concentric rings",
+            "skin": "warm olive synthetic",
+            "features": "three tiny black chakra-receiver studs in a triangle below her left collarbone",
+            "accessories": "simple silver hoop earrings",
+            "accState": "always",
+            "expression": "a warm, disarming smile"
+          },
+          "under": "silk",
+          "underColor": "emerald",
+          "stats": {"beauty":74,"charm":68,"charisma":74,"refinement":68,"wits":88,"stamina":65,"strength":45,"agility":60},
+          "tech": {"service":50,"dance":40,"bar":35,"combat":65,"manage":75},
+          "actSkill": 45,
+          "popularity": 20,
+          "lewd": 48,
+          "trust": 16,
+          "outfits": {
+            "sig_tomoe": {
+              "label": "Third Seal: Envy",
+              "style": "Exotic",
+              "prompt": "a sleeveless dark forest-green silk top with a keyhole neckline and gold-thread trim, a flowing black split skirt over fitted dark shorts, barefoot with thin gold anklets",
+              "bonus": {"madame":1.25,"courtesan":1.2}
+            },
+            "sp_tomoe_pride": {
+              "label": "First Seal: Pride",
+              "style": "Elegant",
+              "prompt": "a regal high-collared white and gold sleeveless coat over a fitted black bodysuit, gold-trimmed white hakama-style split skirt panels and heeled boots",
+              "bonus": {"madame":1.3,"noble":1.25},
+              "favColor": "gold",
+              "build": "statuesque",
+              "body": {"bust":"large","height":"tall","figure":"athletic"},
+              "hairStyle": "floor-length straight, high crown braid",
+              "hairColor": "platinum-white",
+              "eyes": "pale violet with concentric rings",
+              "skin": "pale porcelain synthetic",
+              "features": "a single black chakra-receiver stud at the base of her throat and faint geometric seal lines along her arms",
+              "replaceFeatures": true,
+              "accessories": "a thin gold circlet",
+              "accState": "always",
+              "expression": "an imperious, serene gaze"
+            },
+            "sp_tomoe_greed": {
+              "label": "Second Seal: Greed",
+              "style": "Elegant",
+              "prompt": "a deep burgundy and black merchant-style sleeveless vest with gold embroidery over a sheer dark mesh undershirt, fitted black trousers with scroll holsters and dark boots",
+              "bonus": {"merchant":1.3,"promoter":1.2},
+              "favColor": "burgundy",
+              "build": "toned",
+              "body": {"bust":"medium","height":"tall","figure":"athletic"},
+              "hairStyle": "asymmetric chin-length bob, longer on the left",
+              "hairColor": "jet-black",
+              "eyes": "icy violet with concentric rings",
+              "skin": "light tan synthetic",
+              "features": "two black chakra-receiver studs along her left jawline and dark seal tattoos on the backs of her hands",
+              "replaceFeatures": true,
+              "accessories": "heavy gold ring-cuffs on her fingers",
+              "accState": "always",
+              "expression": "a calculating, appraising smirk"
+            },
+            "sp_tomoe_wrath": {
+              "label": "Fourth Seal: Wrath",
+              "style": "Sporty",
+              "prompt": "a sleeveless black and crimson combat tunic, bandaged forearms and shins, dark fitted shorts and open-toed shinobi sandals",
+              "bonus": {"security":1.35,"adventurer":1.2},
+              "favColor": "crimson",
+              "build": "compact, muscular",
+              "body": {"bust":"small","height":"short","figure":"athletic"},
+              "hairStyle": "wild spiky, cropped short",
+              "hairColor": "crimson-streaked black",
+              "eyes": "fierce violet with concentric rings",
+              "skin": "ash-pale synthetic",
+              "features": "four black chakra-receiver studs across the bridge of her nose and mechanical seam lines at her shoulders and elbows",
+              "replaceFeatures": true,
+              "accessories": "",
+              "expression": "a feral, focused scowl"
+            },
+            "sp_tomoe_sloth": {
+              "label": "Fifth Seal: Sloth",
+              "style": "Elegant",
+              "prompt": "an oversized off-shoulder pale grey and lavender kimono-style haori slipping loosely over a simple black wrap top and wide-legged dark trousers",
+              "bonus": {"bath":1.25,"courtesan":1.15},
+              "favColor": "lavender",
+              "build": "languid",
+              "body": {"bust":"large","height":"average","figure":"soft"},
+              "hairStyle": "very long, messy loose braid over one shoulder",
+              "hairColor": "silver-grey",
+              "eyes": "half-lidded violet with concentric rings",
+              "skin": "pale ivory synthetic",
+              "features": "five tiny black chakra-receiver studs in an arc along the back of her neck",
+              "replaceFeatures": true,
+              "accessories": "",
+              "expression": "a sleepy, unbothered half-smile"
+            },
+            "sp_tomoe_gluttony": {
+              "label": "Sixth Seal: Gluttony",
+              "style": "Revealing",
+              "prompt": "a cropped black and deep-purple sleeveless bodice with an open midriff, a high-waisted dark wrap skirt with gold clasps and long black arm-wraps",
+              "bonus": {"bartender":1.25,"courtesan":1.2},
+              "favColor": "purple",
+              "build": "plush, voluptuous",
+              "body": {"bust":"huge","height":"tall","figure":"curvy"},
+              "hairStyle": "thick, voluminous twin tails",
+              "hairColor": "auburn-red",
+              "eyes": "bright violet with concentric rings",
+              "skin": "warm peach synthetic",
+              "features": "six black chakra-receiver studs framing her navel and glowing purple seal-script along her ribs",
+              "replaceFeatures": true,
+              "accessories": "",
+              "expression": "an indulgent, hungry grin"
+            },
+            "sp_tomoe_lust": {
+              "label": "Seventh Seal: Lust",
+              "style": "Revealing",
+              "prompt": "a daring black and wine-red silk halter dress with a plunging front, sheer lace side panels, a high double leg slit and stiletto heels",
+              "bonus": {"courtesan":1.35,"propose":1.25},
+              "favColor": "wine",
+              "build": "hourglass",
+              "body": {"bust":"large","height":"tall","figure":"curvy"},
+              "hairStyle": "long, glossy loose waves",
+              "hairColor": "midnight-black with violet undertones",
+              "eyes": "luminous violet with concentric rings",
+              "skin": "flawless cream synthetic",
+              "features": "seven tiny black chakra-receiver studs arranged in a vertical line down her sternum and a beauty mark below her left eye",
+              "replaceFeatures": true,
+              "accessories": "delicate silver chain jewelry",
+              "accState": "always",
+              "expression": "a sultry, knowing smile"
+            },
+            "sp_tomoe_original": {
+              "label": "True Body: Mitama",
+              "style": "Elegant",
+              "prompt": "a high-collared dark charcoal and crimson laboratory coat worn over a fitted black sleeveless turtleneck and dark trousers",
+              "bonus": {"madame":1.3,"merchant":1.2},
+              "unlock": 80,
+              "favColor": "charcoal",
+              "build": "lean, mature",
+              "body": {"bust":"medium","height":"tall","figure":"slim"},
+              "hairStyle": "long straight, tied in a low tail",
+              "hairColor": "streaked silver and black",
+              "eyes": "sharp dark grey",
+              "skin": "pale with faint surgical scars along her wrists and throat",
+              "features": "faint surgical scars at her throat and wrists",
+              "replaceFeatures": true,
+              "accessories": "frameless glasses",
+              "accState": "always",
+              "expression": "a cool, clinical half-smile"
+            }
+          },
+          "bonds": {
+            "shiori": {"v":-35,"note":"Former comrades in the shadows; Shiori spent years hunting her network."},
+            "saki": {"v":25,"note":"Tomoe admires her puppet-craft engineering; Saki guards her blueprints around her."},
+            "nozomi": {"v":-25,"note":"Nozomi once answered to her network and walked away from it."}
+          },
+          "jobs": {"likes":["madame","courtesan","promoter"],"dislikes":["maid"]},
+          "body": {"bust":"medium","height":"average","figure":"slim"},
+          "unique": {
+            "name": "Seven Seals",
+            "desc": "Seven synthetic vessels tuned to seven appetites let her read any room and outlast any night.",
+            "fx": {"jobBonus":{"madame":1.2,"courtesan":1.1},"energyBank":20}
+          }
         }
       }
     }

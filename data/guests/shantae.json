@@ -21,7 +21,10 @@
             "hairColor": "purple",
             "eyes": "blue",
             "skin": "tan",
-            "features": "pointed ears, gold hoop earrings and a slim gold circlet"
+            "features": "pointed genie ears",
+            "accessories": "gold hoop earrings and a slim gold circlet",
+            "accState": "always",
+            "expression": "a cheerful, energetic smile"
           },
           "under": "sheer",
           "underColor": "pink",
@@ -72,12 +75,14 @@
           "lovers": "doggy",
           "backstory": "The self-styled queen of the seven seas, Risky Boots lost her ship in a gamble she insists was rigged and washed up in Hollowmere with a plan and a grudge. She fully intends to steal the house out from under its owner, but the profits keep making her stay another week. She calls it patience.",
           "design": {
-            "hairStyle": "long wavy black hair with side-swept bangs",
+            "hairStyle": "long wavy with side-swept bangs",
             "hairColor": "black",
             "eyes": "green",
             "skin": "pale blue",
-            "features": "dark lipstick and a wicked smirk",
-            "gear": "a skull-badged tricorn hat, a cutlass and a long coat of purple velvet"
+            "features": "dark lipstick",
+            "accessories": "a skull-badged tricorn hat, a cutlass and a long purple velvet coat",
+            "accState": "dressed",
+            "expression": "a wicked smirk"
           },
           "under": "corset",
           "underColor": "black",
@@ -93,12 +98,6 @@
               "style": "Revealing",
               "prompt": "a purple corset bodice, a short black skirt, thigh-high leather boots and a studded belt",
               "bonus": {"madame":1.3,"adventurer":1.2}
-            },
-            "sp_risky": {
-              "label": "Captain's gown",
-              "style": "Elegant",
-              "prompt": "a dark crimson silk gown with gold trim and a plunging neckline",
-              "bonus": {"noble":1.2,"merchant":1.2}
             }
           },
           "bonds": {"shantae":{"v":-30,"note":"The half-genie who keeps foiling her schemes."}},
@@ -124,7 +123,8 @@
             "hairColor": "green",
             "eyes": "red",
             "skin": "green",
-            "features": "visible stitches at her neck and wrists and a gap-toothed grin"
+            "features": "visible stitches at her neck and wrists",
+            "expression": "a playful, gap-toothed grin"
           },
           "under": "plain",
           "underColor": "pink",
@@ -140,12 +140,6 @@
               "style": "Cute",
               "prompt": "a patched striped crop tunic, a ragged short skirt and mismatched stockings",
               "bonus": {"commoner":1.2,"attendant":1.15}
-            },
-            "sp_rotty": {
-              "label": "Gothic gown",
-              "style": "Exotic",
-              "prompt": "a tattered black lace gown with sheer sleeves and ribbons",
-              "bonus": {"noble":1.15,"courtesan":1.1}
             }
           },
           "bonds": {"shantae":{"v":45,"kind":"comrades","note":"Fast friends who share every adventure."}},

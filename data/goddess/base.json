@@ -261,6 +261,7 @@
       "alias": "Lysa",
       "desc": "a willowy elf",
       "build": "willowy and graceful",
+      "features": "long pointed elf ears",
       "body": {"bust":"small","height":"tall","figure":"slim"}
     },
     "fox": {
@@ -269,6 +270,7 @@
       "alias": "Kohaku",
       "desc": "a fox-eared girl",
       "build": "lithe and supple",
+      "features": "fox ears and a fluffy gold-tipped fox tail",
       "body": {"bust":"medium","height":"average","figure":"athletic"},
       "sub": "fox"
     },
@@ -278,6 +280,7 @@
       "alias": "Mimi",
       "desc": "a cat-eared girl",
       "build": "petite and lithe",
+      "features": "cat ears and a sleek cat tail",
       "body": {"bust":"small","height":"short","figure":"slim"},
       "sub": "cat"
     },
@@ -287,6 +290,7 @@
       "alias": "Rhea",
       "desc": "a wolf-eared woman",
       "build": "tall and athletic",
+      "features": "wolf ears and a bushy wolf tail",
       "body": {"bust":"medium","height":"tall","figure":"athletic"},
       "sub": "wolf"
     },
@@ -296,6 +300,7 @@
       "alias": "Pip",
       "desc": "a bunny-eared girl",
       "build": "soft and petite",
+      "features": "long upright rabbit ears and a fluffy cotton tail",
       "body": {"bust":"large","height":"short","figure":"soft"},
       "sub": "rabbit"
     },
@@ -305,6 +310,7 @@
       "alias": "Vesra",
       "desc": "a horned dragon-girl",
       "build": "statuesque and powerful",
+      "features": "curved gold dragon horns and a scaled dragon tail",
       "body": {"bust":"large","height":"tall","figure":"athletic"},
       "sub": "dragon"
     },
@@ -314,6 +320,7 @@
       "alias": "Lilim",
       "desc": "a horned demoness",
       "build": "voluptuous",
+      "features": "curved dark horns and a slender spade-tipped tail",
       "body": {"bust":"huge","height":"tall","figure":"curvy"}
     },
     "dwarf": {
@@ -330,6 +337,7 @@
       "alias": "Wisp",
       "desc": "a drifting spirit-girl",
       "build": "slender and drifting",
+      "skin": "translucent bronze that glows like drifting lantern-mist",
       "body": {"bust":"flat","height":"average","figure":"slim"}
     },
     "angel": {
@@ -338,6 +346,7 @@
       "alias": "Celeste",
       "desc": "a winged angel",
       "build": "tall and athletic",
+      "features": "large white feathered wings and a faint golden halo",
       "body": {"bust":"medium","height":"tall","figure":"athletic"}
     },
     "android": {
@@ -346,6 +355,7 @@
       "alias": "Unit Seven",
       "desc": "an android with seamed joints",
       "build": "sleek and precise",
+      "skin": "warm bronze synthetic with fine gold-lit joint seams",
       "body": {"bust":"medium","height":"average","figure":"athletic"}
     }
   },

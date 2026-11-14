@@ -21,8 +21,9 @@
             "hairColor": "turquoise",
             "eyes": "blue",
             "skin": "fair",
-            "features": "a bright, confident smile",
-            "gear": "a pouch of tiny inventor's gadgets at her belt"
+            "accessories": "a pouch of tiny inventor's gadgets at her belt",
+            "accState": "dressed",
+            "expression": "a bright, confident smile"
           },
           "under": "lace",
           "underColor": "pink",
@@ -40,15 +41,18 @@
               "bonus": {"promoter":1.3,"merchant":1.15}
             },
             "sp_bulma": {
-              "label": "Gala gown",
-              "style": "Elegant",
-              "prompt": "a sleeveless midnight-blue evening gown with a high slit and silver embroidery",
-              "bonus": {"courtesan":1.15,"noble":1.2}
+              "label": "Bunny costume",
+              "style": "Revealing",
+              "prompt": "a glossy black strapless bunny-girl bodysuit with a white collar, red bow tie, white cuffs and sheer black pantyhose",
+              "bonus": {"courtesan":1.2,"dancer":1.2},
+              "accessories": "a black bunny-ears headband and a white puff tail",
+              "accState": "always"
             }
           },
           "bonds": {
             "chichi": {"v":40,"kind":"comrades","note":"Old friends who swap stories about stubborn husbands and unruly sons."},
-            "android21": {"v":25,"note":"Two brilliant minds who trade notes and one-up each other."}
+            "android21": {"v":25,"note":"Two brilliant minds who trade notes and one-up each other."},
+            "android18": {"v":35,"kind":"comrades","note":"Old friends who appreciate fine clothes and prize money."}
           },
           "jobs": {"likes":["promoter","madame"],"dislikes":["security"]},
           "body": {"bust":"large","height":"average","figure":"curvy"},
@@ -76,8 +80,9 @@
             "hairColor": "black",
             "eyes": "black",
             "skin": "fair",
-            "features": "a stern but caring face",
-            "gear": "a long polearm slung across her back"
+            "accessories": "a long polearm slung across her back",
+            "accState": "dressed",
+            "expression": "a stern but caring expression"
           },
           "under": "plain",
           "underColor": "white",
@@ -125,11 +130,12 @@
           "backstory": "A brilliant researcher who turned herself into something more than human, Android 21 came to Hollowmere looking for ingredients and new flavors to study. She can name every spice in a stew from the steam alone, and she has never once left a plate unfinished. She is polite and sharp, with an appetite she tries, and often fails, to keep under control.",
           "design": {
             "hairStyle": "very long, wavy and loose",
-            "hairColor": "brown",
-            "eyes": "brown",
+            "hairColor": "chestnut brown",
+            "eyes": "blue",
             "skin": "fair",
-            "features": "a bright, hungry smile",
-            "gear": "round-framed glasses"
+            "accessories": "round-framed glasses and gold hoop earrings",
+            "accState": "always",
+            "expression": "a gentle, intellectual smile"
           },
           "under": "silk",
           "underColor": "black",
@@ -143,23 +149,92 @@
             "sig_android21": {
               "label": "Scientist's coat",
               "style": "Elegant",
-              "prompt": "a white lab coat over a black halter top, a pencil skirt and dark stockings",
+              "prompt": "a white lab coat over a red-and-blue plaid halter top, a matching miniskirt and dark thigh-high stockings",
               "bonus": {"bartender":1.25,"merchant":1.15}
             },
             "sp_android21": {
-              "label": "Evening dress",
-              "style": "Exotic",
-              "prompt": "a fitted dark magenta satin cocktail dress with a low back and long black gloves",
-              "bonus": {"courtesan":1.15,"noble":1.15}
+              "label": "Majin form",
+              "style": "Revealing",
+              "prompt": "a black-and-white spiral-patterned tube top and baggy white harem pants with a gold belt",
+              "bonus": {"courtesan":1.25,"propose":1.2},
+              "hairColor": "pure white",
+              "eyes": "crimson with black sclera",
+              "skin": "bubblegum pink",
+              "features": "pointed ears and a long pink Majin tail",
+              "accessories": "gold hoop earrings and heavy gold arm cuffs",
+              "accState": "always",
+              "expression": "a bright, hungry smile",
+              "favColor": "pink",
+              "stats": {"beauty":5,"strength":5,"charisma":4}
             }
           },
-          "bonds": {"bulma":{"v":25,"note":"Two brilliant minds who trade notes and one-up each other."}},
+          "bonds": {
+            "bulma": {"v":25,"note":"Two brilliant minds who trade notes and one-up each other."},
+            "android18": {"v":40,"kind":"comrades","note":"Fellow Red Ribbon survivors who watch out for each other."}
+          },
           "jobs": {"likes":["bartender","host"],"dislikes":["security"]},
           "body": {"bust":"large","height":"tall","figure":"curvy"},
           "unique": {
             "name": "Gourmand's Appetite",
             "desc": "She mixes drinks with scientific precision and recovers quickly on a good meal.",
             "fx": {"jobBonus":{"bartender":1.2},"energyRec":1.1}
+          }
+        },
+        "android18": {
+          "job": "security",
+          "name": "Android 18",
+          "race": "android",
+          "age": 28,
+          "personality": "Cool and mercenary",
+          "traits": ["Tough","Greedy"],
+          "style": "Sporty",
+          "favColor": "denim blue",
+          "fav": "cowgirl",
+          "dislike": "oral_give",
+          "lovers": "missionary",
+          "backstory": "Rebuilt against her will by a mad scientist in her own world, Lazuli—still called Eighteen by habit—has infinite stamina, a right hook that can shatter bedrock, and zero patience for nonsense. She took the security contract at the Lantern because the pay is on time and the boutique shops down the street are first-rate. Beneath the cool, deadpan exterior, she takes quiet pride in keeping the house safe.",
+          "design": {
+            "build": "sleek, athletic",
+            "hairStyle": "shoulder-length straight, parted on the left and tucked behind one ear",
+            "hairColor": "platinum blonde",
+            "eyes": "icy blue",
+            "skin": "flawless fair skin",
+            "accessories": "gold hoop earrings",
+            "accState": "always",
+            "expression": "a cool, unimpressed half-smirk"
+          },
+          "under": "sports",
+          "underColor": "black",
+          "stats": {"beauty":82,"charm":58,"charisma":64,"refinement":48,"wits":64,"stamina":95,"strength":90,"agility":82},
+          "tech": {"service":30,"dance":20,"bar":35,"combat":92,"manage":40},
+          "actSkill": 25,
+          "popularity": 20,
+          "lewd": 30,
+          "trust": 22,
+          "outfits": {
+            "sig_android18": {
+              "label": "Denim vest",
+              "style": "Sporty",
+              "prompt": "a cropped blue denim vest over a black short-sleeved shirt with striped white long sleeves, a dark blue denim miniskirt with a brown belt, black leggings and brown boots",
+              "bonus": {"security":1.35,"merchant":1.15}
+            },
+            "sp_android18": {
+              "label": "Tournament tracksuit",
+              "style": "Sporty",
+              "prompt": "a fitted magenta-pink zip-up athletic tracksuit jacket with white trim and matching track trousers",
+              "bonus": {"security":1.25,"adventurer":1.2}
+            }
+          },
+          "bonds": {
+            "bulma": {"v":35,"kind":"comrades","note":"Bulma always knows which boutiques just got a new shipment."},
+            "android21": {"v":40,"kind":"comrades","note":"Both carry Dr. Gero's legacy and prefer making their own choices."}
+          },
+          "jobs": {"likes":["security","bartender"],"dislikes":["maid","promoter"]},
+          "body": {"bust":"medium","height":"average","figure":"athletic"},
+          "unique": {
+            "name": "Infinite Reactor",
+            "desc": "Her perpetual energy core never tires, letting her guard the house effortlessly day and night.",
+            "fx": {"security":20,"energyBank":40,"jobBonus":{"security":1.15}}
           }
         }
       }

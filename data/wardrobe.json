@@ -1,12 +1,13 @@
 {
   "_readme": [
-    "Clothing. Outfits have their colors written into the prompt (no color picking). In undergarment prompts {color} is replaced with her favorite color (colors are listed at the bottom with their swatch hex).",
+    "Clothing. Outfits have their colors written into the prompt (no color picking). In undergarment prompts {color} is replaced with her favorite color (or the outfit's favColor override; colors are listed at the bottom with their swatch hex).",
     "base: generic starting outfits (also sold in the shop). shop: shop-only outfits. Each: label, style (Elegant, Cute, Exotic, Sporty, Revealing), cost, lewd (lewdness she needs to wear it), prompt, bonus.",
+    "Outfits can also specify accessories (worn with the outfit, staying on according to her accessory state or the outfit's accState: dressed|under|always), hairStyle (overrides her hairStyle while worn), and features (added to her features while worn). Special (sp_*) outfits on named characters can also override hairColor, eyes, skin, favColor, build, body, expression, pubic, or raceLook.",
     "bonus multiplies income: jobs (maid, promoter, attendant, bartender, dancer, bath, courtesan, madame, security), client classes (commoner, adventurer, merchant, noble) or propose (propositions).",
     "under: undergarments, same fields. Keep the ids plain and none; none (commando) is special-cased.",
-    "Named ladies' signature outfits live with them in characters.json.",
+    "Named ladies' signature and special outfits live with them in characters/*.json and guests/*.json.",
     "uniform: an outfit tagged with a job (b_maid) is never rolled for generic ladies; she wears it automatically while she holds that job, unless she has a job outfit set (w.jobOutfit[job]).",
-    "bath: true marks an outfit that can be worn in bath scenes (e.g. yukata, swimsuit, bathrobe).",
+    "bath: true marks an outfit that can be worn in bath scenes (e.g. yukata, swimsuit, bathrobe, bikini).",
     "stats: optional {stat:n} on an outfit or undergarment (0-100 scale; beauty, charm, charisma, refinement, wits, stamina, strength, agility). A bonus on top of her trained stats that may exceed the cap. bonus keys also include host, teacher and chapel."
   ],
   "base": {
@@ -87,10 +88,12 @@
       "style": "Cute",
       "cost": 60,
       "lewd": 0,
-      "prompt": "a plain black maid dress with a white apron and a small cap",
+      "prompt": "a plain black maid dress with a white apron",
       "bonus": {"maid":1.15},
       "uniform": "maid",
-      "stats": {"refinement":3,"stamina":2}
+      "stats": {"refinement":3,"stamina":2},
+      "accessories": "a small white maid cap",
+      "accState": "always"
     }
   },
   "shop": {
@@ -99,9 +102,11 @@
       "cost": 120,
       "style": "Cute",
       "lewd": 0,
-      "prompt": "a classic black maid dress with white apron and frilled headband",
+      "prompt": "a classic black maid dress with a white apron",
       "bonus": {"maid":1.3,"promoter":1.1},
-      "stats": {"refinement":4,"stamina":2}
+      "stats": {"refinement":4,"stamina":2},
+      "accessories": "a frilled white maid headband",
+      "accState": "always"
     },
     "barmaid": {
       "label": "Barmaid dirndl",
@@ -126,9 +131,11 @@
       "cost": 300,
       "style": "Elegant",
       "lewd": 0,
-      "prompt": "a luxurious floor-length navy evening gown and fine jewelry",
+      "prompt": "a luxurious floor-length navy evening gown",
       "bonus": {"noble":1.2,"courtesan":1.1},
-      "stats": {"refinement":5,"beauty":4}
+      "stats": {"refinement":5,"beauty":4},
+      "accessories": "sapphire drop earrings and a delicate silver necklace",
+      "accState": "always"
     },
     "qipao": {
       "label": "Silk qipao",
@@ -144,9 +151,11 @@
       "cost": 240,
       "style": "Exotic",
       "lewd": 35,
-      "prompt": "flowing sheer purple dancer's silks with gold coin jewelry",
+      "prompt": "flowing sheer purple dancer's silks",
       "bonus": {"dancer":1.3,"propose":1.1},
-      "stats": {"agility":4,"charisma":3}
+      "stats": {"agility":4,"charisma":3},
+      "accessories": "gold coin jewelry and jingling anklets",
+      "accState": "always"
     },
     "yukata": {
       "label": "Bath yukata",
@@ -163,9 +172,11 @@
       "cost": 260,
       "style": "Revealing",
       "lewd": 30,
-      "prompt": "a black bunny hostess suit with bunny-ear headband and fishnet stockings",
+      "prompt": "a glossy black strapless bunny hostess bodysuit",
       "bonus": {"bartender":1.1,"propose":1.2,"courtesan":1.2},
-      "stats": {"beauty":3,"charisma":3}
+      "stats": {"beauty":3,"charisma":3},
+      "accessories": "a black bunny-ear headband, bow-tie collar and fishnet stockings",
+      "accState": "under"
     },
     "negligee": {
       "label": "Sheer negligee",
@@ -201,18 +212,22 @@
       "cost": 180,
       "style": "Cute",
       "lewd": 20,
-      "prompt": "a short black-and-white French maid dress with a frilly apron and stockings",
+      "prompt": "a short black-and-white French maid dress with a frilly apron",
       "bonus": {"maid":1.35,"propose":1.1},
-      "stats": {"refinement":4,"beauty":2}
+      "stats": {"refinement":4,"beauty":2},
+      "accessories": "a frilly lace maid headband and black stockings",
+      "accState": "under"
     },
     "sexy_maid": {
       "label": "Sexy maid dress",
       "cost": 240,
       "style": "Revealing",
       "lewd": 40,
-      "prompt": "a very short, low-cut black maid dress with a frilly apron and stockings",
+      "prompt": "a very short, low-cut black maid dress with a frilly apron",
       "bonus": {"maid":1.25,"propose":1.25,"courtesan":1.05},
-      "stats": {"beauty":3,"agility":2}
+      "stats": {"beauty":3,"agility":2},
+      "accessories": "a lace maid headband and sheer thigh-high stockings",
+      "accState": "under"
     },
     "hostess": {
       "label": "Hostess dress",
@@ -230,25 +245,31 @@
       "lewd": 0,
       "prompt": "long navy scholar's robes with a pinned collar and a satchel strap",
       "bonus": {"teacher":1.25,"madame":1.05},
-      "stats": {"wits":3,"refinement":2}
+      "stats": {"wits":3,"refinement":2},
+      "accessories": "round wire-rimmed reading glasses",
+      "accState": "always"
     },
     "livery": {
       "label": "Attendant's livery",
       "cost": 180,
       "style": "Cute",
       "lewd": 0,
-      "prompt": "a neat emerald attendant's livery with a short jacket, ribbon and white gloves",
+      "prompt": "a neat emerald attendant's livery with a short jacket",
       "bonus": {"attendant":1.25,"courtesan":1.05},
-      "stats": {"refinement":3,"agility":2}
+      "stats": {"refinement":3,"agility":2},
+      "accessories": "an emerald hair ribbon and white gloves",
+      "accState": "under"
     },
     "vestments": {
       "label": "Chapel vestments",
       "cost": 240,
       "style": "Elegant",
       "lewd": 0,
-      "prompt": "flowing white chapel vestments with gold trim and a slim silver pendant",
+      "prompt": "flowing white chapel vestments with gold trim",
       "bonus": {"chapel":1.3,"noble":1.05},
-      "stats": {"charm":3,"wits":2}
+      "stats": {"charm":3,"wits":2},
+      "accessories": "a slim silver chapel pendant and white veil",
+      "accState": "always"
     },
     "lounge": {
       "label": "Lounge silks",
@@ -264,9 +285,11 @@
       "cost": 420,
       "style": "Elegant",
       "lewd": 0,
-      "prompt": "a dramatic crimson statement gown with a long train and bold jewelry",
+      "prompt": "a dramatic crimson statement gown with a long train",
       "bonus": {"courtesan":1.05},
-      "stats": {"beauty":6,"charisma":3,"charm":3,"refinement":4}
+      "stats": {"beauty":6,"charisma":3,"charm":3,"refinement":4},
+      "accessories": "ruby chandelier earrings and a bold gold collar necklace",
+      "accState": "always"
     },
     "training": {
       "label": "Training gear",
@@ -278,13 +301,15 @@
       "stats": {"strength":5,"stamina":5,"agility":4}
     },
     "spectacles": {
-      "label": "Reading spectacles",
+      "label": "Governess blouse & spectacles",
       "cost": 90,
       "style": "Elegant",
       "lewd": 0,
-      "prompt": "a pair of thin gold-framed reading spectacles worn with a neat high-collared blouse and a long skirt",
+      "prompt": "a neat high-collared blouse and a long pleated skirt",
       "bonus": {"teacher":1.1,"madame":1.03},
-      "stats": {"wits":5}
+      "stats": {"wits":5},
+      "accessories": "a pair of thin gold-framed reading spectacles",
+      "accState": "always"
     },
     "stagecoat": {
       "label": "Stage costume",
@@ -300,9 +325,89 @@
       "cost": 100,
       "style": "Cute",
       "lewd": 0,
-      "prompt": "a soft cream knitted dress with a thick scarf and fuzzy slippers",
+      "prompt": "a soft cream knitted dress and fuzzy slippers",
       "bonus": {"commoner":1.1,"host":1.08},
-      "stats": {"charm":4}
+      "stats": {"charm":4},
+      "accessories": "a thick cream knit scarf",
+      "accState": "dressed"
+    },
+    "kimono": {
+      "label": "Silk kimono",
+      "cost": 280,
+      "style": "Exotic",
+      "lewd": 0,
+      "prompt": "an ornate floral crimson silk kimono with a gold brocade obi",
+      "accessories": "kanzashi floral hairpins",
+      "accState": "always",
+      "bonus": {"host":1.2,"noble":1.15},
+      "stats": {"refinement":4,"beauty":3}
+    },
+    "bikini": {
+      "label": "Two-piece swimsuit",
+      "cost": 200,
+      "style": "Revealing",
+      "lewd": 30,
+      "prompt": "a sleek black-and-gold two-piece bikini",
+      "accessories": "a thin gold belly chain",
+      "accState": "always",
+      "bath": true,
+      "bonus": {"bath":1.3,"propose":1.15},
+      "stats": {"beauty":4,"charisma":2}
+    },
+    "shrine": {
+      "label": "Shrine maiden attire",
+      "cost": 220,
+      "style": "Exotic",
+      "lewd": 0,
+      "prompt": "a crisp white kosode top and crimson hakama skirt with detached sleeves",
+      "accessories": "a red silk hair ribbon and small brass bells",
+      "accState": "always",
+      "bonus": {"chapel":1.25,"commoner":1.1},
+      "stats": {"charm":4,"refinement":2}
+    },
+    "duelist": {
+      "label": "Duelist's coat",
+      "cost": 240,
+      "style": "Sporty",
+      "lewd": 0,
+      "prompt": "a tailored crimson-and-black duelist's coat with high boots and fitted breeches",
+      "accessories": "a feathered cavalier hat and a swept-hilt rapier at her hip",
+      "accState": "dressed",
+      "bonus": {"security":1.3,"noble":1.1},
+      "stats": {"agility":5,"strength":3,"charisma":2}
+    },
+    "corset_gown": {
+      "label": "Velvet corset gown",
+      "cost": 300,
+      "style": "Revealing",
+      "lewd": 25,
+      "prompt": "a low-cut black velvet corset gown with a high leg slit",
+      "accessories": "a black velvet cameo choker and long opera gloves",
+      "accState": "under",
+      "bonus": {"courtesan":1.2,"madame":1.15,"noble":1.1},
+      "stats": {"beauty":4,"charisma":4}
+    },
+    "alchemist": {
+      "label": "Alchemist's apron",
+      "cost": 190,
+      "style": "Cute",
+      "lewd": 0,
+      "prompt": "a fitted waistcoat, rolled-up sleeves and a leather alchemist's apron",
+      "accessories": "brass magnifying goggles pushed up on her forehead",
+      "accState": "always",
+      "bonus": {"teacher":1.2,"bartender":1.1},
+      "stats": {"wits":4,"charm":2}
+    },
+    "veils": {
+      "label": "Harem silks & veil",
+      "cost": 290,
+      "style": "Revealing",
+      "lewd": 40,
+      "prompt": "sheer turquoise harem silks with a beaded halter and low-slung split skirt",
+      "accessories": "a sheer jeweled face veil and gold arm cuffs",
+      "accState": "always",
+      "bonus": {"dancer":1.25,"courtesan":1.2,"propose":1.15},
+      "stats": {"beauty":4,"agility":3}
     }
   },
   "under": {
@@ -336,7 +441,25 @@
       "bonus": {"propose":1.1,"courtesan":1.05},
       "stats": {"beauty":3}
     },
-    "none": {"label":"None (commando)","cost":0,"lewd":45,"style":"Revealing","prompt":"","bonus":{"propose":1.15},"stats":{"charm":2}}
+    "none": {"label":"None (commando)","cost":0,"lewd":45,"style":"Revealing","prompt":"","bonus":{"propose":1.15},"stats":{"charm":2}},
+    "garter": {
+      "label": "Garter & stockings",
+      "cost": 65,
+      "lewd": 25,
+      "style": "Revealing",
+      "prompt": "{color} lace panties with a garter belt and thigh-high stockings",
+      "bonus": {"courtesan":1.06,"propose":1.05},
+      "stats": {"beauty":3,"charm":1}
+    },
+    "ribbons": {
+      "label": "Satin ribbons",
+      "cost": 85,
+      "lewd": 45,
+      "style": "Revealing",
+      "prompt": "barely-there {color} satin ribbon lingerie",
+      "bonus": {"courtesan":1.08,"propose":1.12},
+      "stats": {"beauty":4}
+    }
   },
   "colors": {
     "black": "#222",

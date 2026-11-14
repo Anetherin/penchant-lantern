@@ -14,7 +14,7 @@
    android recharging...) stays in code and reads has(w,...) / w.race.
    ===================================================================== */
 const FX_CACHE = new WeakMap();
-const bodyOf = w => Object.assign({}, BODY_DEF, (w && w.body) || {});
+const bodyOf = (w, scene) => { const o = w && scene !== false && typeof getOutfit === 'function' && w.outfit ? getOutfit(w, scene) : null; return Object.assign({}, BODY_DEF, (w && w.body) || {}, (o && o.body) || {}); };
 const raceOf = w => RACES[w && w.race] || RACES.human;
 // Reincarnated: every New Game+ a lady carries over adds a stack (w.reborn). balance.json → ngplus.reborn.
 function rebornFx(w){
@@ -22,7 +22,7 @@ function rebornFx(w){
   return {trustGain: 1 + (R.trust||0)*n, skillGain: 1 + (R.skill||0)*n, statGain: 1 + (R.stat||0)*n, lewdGain: 1 + (R.lewd||0)*n};
 }
 const rebornDesc = w => { const f = rebornFx(w); return f ? `Carried over ${w.reborn} time${w.reborn>1?'s':''}: trust grows ×${f.trustGain.toFixed(2)}, skills ×${f.skillGain.toFixed(2)}, stats ×${f.statGain.toFixed(2)}, lewdness ×${f.lewdGain.toFixed(2)} as fast; asks ${Math.round(((BAL.ngplus||{}).rebornWage||0)*w.reborn*100)}% more pay.` : ''; };
-function fxSig(w){ return [w.race, w.sub, (w.traits||[]).join('|'), JSON.stringify(w.body||null), w.unique ? w.unique.name+'/'+JSON.stringify(w.unique.fx||null) : '', (w.ngPerks||[]).join('|'), w.reborn||0, w.titleId||''].join('~'); }
+function fxSig(w){ return [w.race, w.sub, (w.traits||[]).join('|'), JSON.stringify(w.body||null), w.outfit||'', w.unique ? w.unique.name+'/'+JSON.stringify(w.unique.fx||null) : '', (w.ngPerks||[]).join('|'), w.reborn||0, w.titleId||''].join('~'); }
 function fxList(w){
   if(!w) return [];
   const sig = fxSig(w), c = FX_CACHE.get(w);
@@ -87,15 +87,18 @@ function rollBody(race){
     out[k] = ids.length ? weighted(ids, id => Math.max(0.01, (o[id].weight ?? 1) + (((skew[k]||{})[id]) || 0))) : BODY_DEF[k]; });
   return out;
 }
-// Race appearance rules for generic ladies (races.json → design; body.json → raceBan): her build and skin come from her race's list.
-const raceBuilds = race => { const D = ((RACES[race]||{}).design)||{}; return D.builds || BUILDS.filter(b=>!(D.noBuilds||[]).includes(b)); };
-const raceSkins = race => (((RACES[race]||{}).design)||{}).skins || null;
+// Race appearance rules for generic ladies (races.json → design; body.json → raceBan): her build, skin and race features come from her race/sub list.
+const raceDesign = (race, sub) => { const sd = race==='beastkin' && sub ? subData(race, sub) : null; return Object.assign({}, (RACES[race]||{}).design || {}, (sd && sd.design) || {}); };
+const raceBuilds = (race, sub) => { const D = raceDesign(race, sub); return D.builds || BUILDS.filter(b=>!(D.noBuilds||[]).includes(b)); };
+const raceSkins = (race, sub) => raceDesign(race, sub).skins || null;
+const raceFeatures = (race, sub) => raceDesign(race, sub).features || null;
 // Brings a generic lady's design and body in line with those rules (used at creation and by the v28 migration). Keeps what already fits.
 function raceFit(w){
   if(!w || w.key || !w.design) return;
-  const B = raceBuilds(w.race), Sk = raceSkins(w.race), ban = (BODY.raceBan||{})[w.race] || {};
+  const B = raceBuilds(w.race, w.sub), Sk = raceSkins(w.race, w.sub), rf = raceFeatures(w.race, w.sub), ban = (BODY.raceBan||{})[w.race] || {};
   if(w.design.build && !B.includes(w.design.build)) w.design.build = pick(B);
   if(Sk && !Sk.includes(w.design.skin)) w.design.skin = pick(Sk);
+  if(rf && rf.length && !rf.some(x => (w.design.features||'').includes(x))) w.design.features = [pick(rf), w.design.features].filter(Boolean).join(', ');
   if(w.body) Object.entries(ban).forEach(([k,ids])=>{ if(ids.includes(w.body[k])) w.body[k] = BODY_DEF[k] && !ids.includes(BODY_DEF[k]) ? BODY_DEF[k] : Object.keys(bodyOpts(k)).find(x=>!ids.includes(x)); });
 }
 const bodyText = w => { const b = bodyOf(w); return BODY_KEYS.map(k => (bodyOpts(k)[b[k]]||{}).img || '').filter(Boolean).join(', '); };

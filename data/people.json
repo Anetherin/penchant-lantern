@@ -2,9 +2,9 @@
   "_readme": [
     "Random generation pools for generic characters, plus a few lists of flavor.",
     "races.json can carry its own names (angel, android) which take precedence over this file; angel/android lists here are the fallback. android 'l' entries are model designations.",
-    "names: first (f) and last (l) names per race; every race has an l list (last names, house names or titles like 'of the Ninth Circle'). Beastkin subs in races.json can add their own l list (names.l), used instead of these half the time. builds/hairStyles/hairColors/eyes/skins/demonSkins/features: appearance picks for image prompts. Builds are extra nuance only (lithe, graceful...): height, figure and bust come from body.json, so don't repeat them here or in a character's design.build.",
+    "names: first (f) and last (l) names per race; every race has an l list (last names, house names or titles like 'of the Ninth Circle'). Beastkin subs in races.json can add their own l list (names.l), used instead of these half the time. builds/hairStyles/hairColors/eyes/skins/demonSkins/features/accessories/expressions: appearance picks for image prompts. Builds are extra nuance only (lithe, graceful...): height, figure and bust come from body.json, so don't repeat them here or in a character's design.build.",
     "hooks: why she came to Hollowmere (used in AI backstories). gifts: what Sam gives when he buys a gift. clients: how anonymous clients are described in reports, per client class.",
-    "featureGear: generic features that are worn items (only in pictures where she's dressed). featureSkip: features that can't be seen, left out of image prompts (still used in text)."
+    "features: permanent physical traits (beauty marks, freckles, scars, tattoos, makeup, piercings). accessories: wearable items controlled by her accessory state setting (dressed / under / always / off). expressions: default facial expressions for portraits and non-service scenes (replaced by service expressions in intimate scenes)."
   ],
   "names": {
     "human": {
@@ -684,14 +684,7 @@
     "tawny",
     "caramel"
   ],
-  "demonSkins": [
-    "lavender-tinted",
-    "ash-grey",
-    "pale blue-tinted",
-    "crimson-flushed",
-    "dusky plum",
-    "obsidian-tinted"
-  ],
+  "demonSkins": ["lavender-tinted","ash-grey","pale blue-tinted","crimson-flushed","dusky plum","obsidian-tinted"],
   "features": [
     "a beauty mark under one eye",
     "a beauty mark near the corner of her mouth",
@@ -714,30 +707,10 @@
     "glossy dark lipstick",
     "soft rose-tinted lips",
     "painted nails",
-    "a confident smirk",
-    "a lopsided grin",
-    "a gentle, teasing smile",
     "dimples when she smiles",
     "a dimple in one cheek",
-    "heavy-lidded, sleepy eyes",
     "a silver nose stud",
-    "a delicate navel piercing",
-    "gold hoop earrings",
-    "mismatched drop earrings",
-    "a velvet choker",
-    "a silk scarf at her throat",
-    "a pearl necklace",
-    "a silver crescent moon pendant",
-    "a flower tucked in her hair",
-    "an ornate silver hairpin",
-    "a carved bone hairpin",
-    "tiny bells braided into her hair",
-    "a sprig of lavender behind her ear",
-    "a pair of round spectacles",
-    "a jade bracelet",
-    "a worn leather wristband",
-    "a silk ribbon tied round her wrist",
-    "a braided anklet"
+    "a delicate navel piercing"
   ],
   "hooks": [
     "a failed merchant venture left her looking for steady coin",
@@ -997,23 +970,59 @@
       "a bridge warden grinning at the staff"
     ]
   },
-  "featureGear": [
+  "featureSkip": [],
+  "accessories": [
     "gold hoop earrings",
+    "silver drop earrings",
+    "pearl stud earrings",
     "mismatched drop earrings",
+    "a pair of dangling star earrings",
     "a velvet choker",
+    "a black lace choker",
     "a silk scarf at her throat",
     "a pearl necklace",
+    "a thin gold chain necklace",
     "a silver crescent moon pendant",
+    "a ruby pendant at her collarbone",
     "a flower tucked in her hair",
     "an ornate silver hairpin",
     "a carved bone hairpin",
+    "a jeweled hair comb",
+    "a velvet hair ribbon",
+    "a satin bow in her hair",
+    "a thin silver circlet",
+    "a braided headband",
     "tiny bells braided into her hair",
     "a sprig of lavender behind her ear",
     "a pair of round spectacles",
+    "half-moon reading glasses",
+    "thin wire-rimmed glasses",
     "a jade bracelet",
+    "stacked silver bangles",
     "a worn leather wristband",
     "a silk ribbon tied round her wrist",
-    "a braided anklet"
+    "a braided anklet",
+    "a delicate gold anklet with a tiny charm",
+    "a slender silver waist chain",
+    "an embroidered shawl over her shoulders",
+    "a lace-trimmed folding fan"
   ],
-  "featureSkip": []
+  "expressions": [
+    "a confident smirk",
+    "a lopsided grin",
+    "a gentle, teasing smile",
+    "heavy-lidded, sleepy eyes",
+    "a warm, welcoming smile",
+    "a cool, composed expression",
+    "a shy, sidelong glance",
+    "a playful wink",
+    "a serene, poised smile",
+    "a haughty, sidelong gaze",
+    "a bright, eager grin",
+    "a dreamy, half-smiling look",
+    "a wry, knowing smile",
+    "a guarded, watchful gaze",
+    "an unbothered, languid expression",
+    "a mischievous glint in her eyes"
+  ]
 }

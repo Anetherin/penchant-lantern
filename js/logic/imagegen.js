@@ -21,9 +21,16 @@ function findAny(id){
 // Images are saved per scene + clothing state + what she's wearing, so each outfit gets its own pictures.
 function lookKey(w, cloth, scene){
   if(w.male || !w.outfit) return '';
-  const o = `o:${outfitKey(w, scene)}:`;
-  const u = w.under==='none' ? 'u:none' : `u:${w.under}:${usesColor(getUnder(w))?w.favColor:''}`;
-  return cloth==='nude' ? '-' : cloth==='under' ? u : cloth==='partial' ? o+'+'+u : o;
+  const ok = outfitKey(w, scene), go = getOutfit(w, scene) || {};
+  const o = `o:${ok}:`, fc = favColorOf(w, scene);
+  const u = w.under==='none' ? 'u:none' : `u:${w.under}:${usesColor(getUnder(w))?fc:''}`;
+  const oLooks = !!(go.hairStyle || go.hairColor || go.eyes || go.skin || go.body || go.features || go.raceLook || (go.accessories && accVisible(itemAccState(w, go.accessories, go.accState), cloth, scene, w)));
+  let base = cloth==='nude' ? (oLooks ? o+'nude' : '-') : cloth==='under' ? (oLooks ? o+'+'+u : u) : cloth==='partial' ? o+'+'+u : o;
+  if(w.accState && w.accState!=='auto'){
+    const curA = accessoryText(w, cloth, scene), defA = accessoryText(Object.assign({}, w, {accState:'auto'}), cloth, scene);
+    if(curA !== defA) base += (curA ? '+acc' : '-acc');
+  }
+  return base;
 }
 const imgKey = (w,scene,cloth) => { const l = lookKey(w,cloth,scene); return `${w.id}|${scene}|${cloth}` + (l?'|'+l:''); };
 const legacyKey = (w,scene,cloth) => `${w.id}|${scene}|${cloth}`;

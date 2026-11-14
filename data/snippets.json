@@ -29,7 +29,11 @@
     "into": "soft parted-lip smile, flushed cheeks, eager eyes",
     "lost": "deeply flushed face, glazed half-lidded eyes, parted lips, breathless",
     "flustered": "bright red blush, flustered expression, shy averted eyes",
-    "smug": "knowing smug smirk, confident half-lidded gaze"
+    "smug": "knowing smug smirk, confident half-lidded gaze",
+    "teasing": "playful teasing grin, mischievous glint in her eyes, flushed cheeks",
+    "tender": "warm affectionate smile, soft loving eyes, gentle blush",
+    "fierce": "bold fierce grin, heated intense eyes, flushed skin",
+    "languid": "heavy-lidded sleepy eyes, unbothered languid smile, relaxed flush"
   },
   "expressionsByAct": {
     "kiss": {
@@ -38,7 +42,11 @@
       "into": "eyes closed, leaning in, soft breathless kiss",
       "lost": "eyes tightly shut, clinging close, parted breathless lips",
       "flustered": "deep blush, shy hesitant kiss",
-      "smug": "faint smirk against his lips, eyes half open"
+      "smug": "faint smirk against his lips, eyes half open",
+      "teasing": "playful smile against his lips, eyes half open with a mischievous glint",
+      "tender": "eyes closed, cradling his cheek, soft affectionate kiss",
+      "fierce": "pulling him in close, hungry intense kiss",
+      "languid": "slow, unhurried kiss, heavy-lidded eyes"
     },
     "massage_give": {
       "bored": "looking aside, distracted expression",
@@ -46,7 +54,11 @@
       "into": "leaning close, warm fond smile, flushed cheeks",
       "lost": "leaning over closely, heated gaze, parted lips",
       "flustered": "pink cheeks, shy downward glance",
-      "smug": "confident smirk, raised eyebrow"
+      "smug": "confident smirk, raised eyebrow",
+      "teasing": "leaning in close to whisper, playful teasing grin",
+      "tender": "gentle attentive touch, warm affectionate smile",
+      "fierce": "confident firm touch, bold heated gaze",
+      "languid": "unhurried relaxed movements, sleepy half-smile"
     },
     "massage_get": {
       "bored": "chin resting on folded arms, flat expression",
@@ -54,7 +66,11 @@
       "into": "eyes closed, soft parted-lip sigh, flushed shoulders",
       "lost": "head turned to the side, eyes fluttering shut, flushed and breathless",
       "flustered": "blushing deeply, peeking back over her shoulder",
-      "smug": "lounging comfortably, eyes half closed, smug smile"
+      "smug": "lounging comfortably, eyes half closed, smug smile",
+      "teasing": "glancing back with a playful wink and a teasing smile",
+      "tender": "soft contented sigh, warm fond smile",
+      "fierce": "arching into the touch, bold satisfied grin",
+      "languid": "melting into the cushions, heavy-lidded sleepy smile"
     },
     "manual_give": {
       "bored": "looking away, blank expression",
@@ -62,7 +78,11 @@
       "into": "biting lower lip, eager eyes, flushed cheeks",
       "lost": "deeply flushed, intense heated stare, parted lips",
       "flustered": "blushing brightly, glancing away shyly",
-      "smug": "teasing smirk, maintaining eye contact"
+      "smug": "teasing smirk, maintaining eye contact",
+      "teasing": "playful grin, whispering teasingly while watching his reaction",
+      "tender": "soft fond smile, gentle attentive eyes, flushed cheeks",
+      "fierce": "intense heated gaze, bold hungry grin",
+      "languid": "resting her chin on her free hand, sleepy teasing smile"
     },
     "manual_get": {
       "bored": "looking at the ceiling, unmoved expression",
@@ -70,7 +90,11 @@
       "into": "lips parted, flushed cheeks, eyes half closed",
       "lost": "head tilted back, eyes squeezed shut, open-mouthed gasp",
       "flustered": "hand covering her mouth, bright red blush",
-      "smug": "watching with a confident, teasing smirk"
+      "smug": "watching with a confident, teasing smirk",
+      "teasing": "biting her lip with a playful, challenging grin",
+      "tender": "holding onto him, soft breathless smile, loving gaze",
+      "fierce": "gripping the sheets, fierce flushed expression, heated stare",
+      "languid": "sprawled back comfortably, heavy-lidded eyes, soft sigh"
     },
     "breast_give": {
       "bored": "looking aside, detached expression",
@@ -78,7 +102,11 @@
       "into": "playful warm smile, looking up, flushed chest",
       "lost": "deeply flushed, heavy-lidded eyes, breathless parted lips",
       "flustered": "embarrassed blush, shy smile, eyes darting down",
-      "smug": "proud smirk, confident gaze"
+      "smug": "proud smirk, confident gaze",
+      "teasing": "winking playfully, bouncing slightly with a mischievous grin",
+      "tender": "warm affectionate smile, looking down softly",
+      "fierce": "bold confident grin, leaning forward intently",
+      "languid": "half-lidded sleepy eyes, slow unbothered smile"
     },
     "breast_get": {
       "bored": "neutral expression, looking away",
@@ -86,7 +114,11 @@
       "into": "soft gasp, parted lips, eyes fluttering",
       "lost": "back arched, head tilted back, breathless flushed face",
       "flustered": "covering her face with one hand, deep blush",
-      "smug": "chin raised, proud smug smile"
+      "smug": "chin raised, proud smug smile",
+      "teasing": "laughing softly, teasing grin, flushed chest",
+      "tender": "cradling his head gently, warm loving smile",
+      "fierce": "back arched, bold breathless grin, heated eyes",
+      "languid": "head resting back, sleepy contented sigh, flushed skin"
     },
     "oral_give": {
       "bored": "half-lidded unenthusiastic eyes",
@@ -94,7 +126,11 @@
       "into": "eager upward gaze, flushed cheeks",
       "lost": "deeply flushed, glazed half-lidded eyes looking up",
       "flustered": "bright blush, shy upward glance",
-      "smug": "looking up with a confident, teasing glint"
+      "smug": "looking up with a confident, teasing glint",
+      "teasing": "looking up through her lashes with a playful, mischievous glint",
+      "tender": "looking up with soft, devoted eyes, flushed cheeks",
+      "fierce": "intense upward stare, hungry eager expression",
+      "languid": "slow, unhurried rhythm, heavy-lidded sleepy gaze"
     },
     "oral_get": {
       "bored": "staring blankly upward, unimpressed",
@@ -102,7 +138,11 @@
       "into": "lips parted, flushed face, looking down through lashes",
       "lost": "head thrown back, eyes squeezed shut, trembling gasp",
       "flustered": "hands over her face, bright red cheeks",
-      "smug": "looking down with a slow, triumphant smirk"
+      "smug": "looking down with a slow, triumphant smirk",
+      "teasing": "looking down with a breathless, teasing grin",
+      "tender": "fingers gently in his hair, soft loving gasp",
+      "fierce": "head tilted back, fierce breathless grin, gripping the sheets",
+      "languid": "eyes fluttering half shut, languid contented sigh"
     },
     "missionary": {
       "bored": "looking off to the side, unmoved",
@@ -110,7 +150,11 @@
       "into": "smiling warmly, flushed cheeks, soft gaze",
       "lost": "head pressed back, glazed half-lidded eyes, open-mouthed gasp",
       "flustered": "deep blush, turning her face partially aside",
-      "smug": "confident smirk, intense eye contact"
+      "smug": "confident smirk, intense eye contact",
+      "teasing": "wrapping her legs around him with a playful, teasing grin",
+      "tender": "reaching up to touch his cheek, warm loving smile, soft flushed gaze",
+      "fierce": "pulling him down close, fierce heated stare, breathless grin",
+      "languid": "arms draped loosely around his neck, sleepy half-lidded smile"
     },
     "cowgirl": {
       "bored": "looking away, flat unimpressed face",
@@ -118,7 +162,11 @@
       "into": "bright flushed grin, eager eyes",
       "lost": "head tipped back, hair messy, flushed and breathless",
       "flustered": "blushing hard, hair falling across her face",
-      "smug": "looking down with a dominant, smug smirk"
+      "smug": "looking down with a dominant, smug smirk",
+      "teasing": "leaning forward with a playful wink and a mischievous grin",
+      "tender": "interlacing her fingers with his, warm affectionate smile",
+      "fierce": "riding hard, fierce triumphant grin, glowing heated eyes",
+      "languid": "slow rolling hips, heavy-lidded sleepy eyes, languid smile"
     },
     "doggy": {
       "bored": "chin on her arms, bored expression",
@@ -126,7 +174,11 @@
       "into": "looking back eagerly, biting her lip, flushed cheeks",
       "lost": "face buried in the pillow, eyes shut, breathless gasp",
       "flustered": "deeply blushing, hiding her face against her arm",
-      "smug": "glancing back over her shoulder with a teasing smirk"
+      "smug": "glancing back over her shoulder with a teasing smirk",
+      "teasing": "looking back over her shoulder with a playful, teasing grin",
+      "tender": "glancing back warmly, reaching a hand back for his, soft blush",
+      "fierce": "pushing back eagerly, fierce flushed grin over her shoulder",
+      "languid": "resting her cheek on her forearm, sleepy contented smile"
     }
   }
 }

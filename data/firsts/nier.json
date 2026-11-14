@@ -1,0 +1,228 @@
+{
+  "characters": {
+    "yorha_2b": {
+      "events": {
+        "1": {
+          "title": "Emotions Are Prohibited",
+          "text": "You find 2B kneeling in the rainy courtyard holding an umbrella over a stray kitten while getting soaked herself. When you step up and hold a larger umbrella over her silver-white hair, she stiffens, then slowly rises to face you, removing her black combat visor so her pale grey-blue eyes meet yours. \"Emotions are prohibited,\" she says quietly, her fingers brushing your wrist. \"...Yet my core temperature rises whenever you are near. Permission to test a kiss.\"",
+          "image": {
+            "comp": "standing under an umbrella with him in the rain, holding her black combat visor in one hand, pale blue eyes lifted to him",
+            "setting": "rainy courtyard at dusk, paper lanterns reflecting on wet stones",
+            "sam": true
+          },
+          "go": "Grant permission",
+          "goRes": "Her lips are soft and warm despite the rain, 2B clinging briefly to your sleeve before whispering, \"...Log updated. I wish to repeat that test soon.\"",
+          "wait": "\"Let's get out of the rain first.\"",
+          "waitRes": "\"Acknowledged,\" 2B says softly, though she walks shoulder-to-shoulder under your umbrella all the way inside."
+        },
+        "2": {
+          "title": "Maintenance Check",
+          "text": "In her spare, spotless room, 2B sits on the edge of the bed with her visor off and her black velvet combat dress unzipped down the back. \"My tactile sensors have been registering abnormal sensitivity since last week,\" she murmurs, taking your hand and placing your palm flat against the bare skin of her shoulder blade before guiding it around to her breast. \"Run a manual diagnostic for me, Sam.\"",
+          "image": {
+            "comp": "sitting on the edge of her bed with her visor off and black dress unzipped, guiding his hand to her bare shoulder, flushed stoic gaze",
+            "setting": "minimalist bedroom at night, single warm lamp",
+            "sam": true
+          },
+          "go": "Run the diagnostic",
+          "goRes": "Her stoic voice breaks into soft, trembling gasps as you cup her bare breasts and stroke her wet pussy through her white leotard while her gloved hands and warm mouth bring your cock to a climax.",
+          "wait": "\"Your sensors seem pretty healthy to me.\"",
+          "waitRes": "\"...Further testing is still required,\" 2B insists, looking away with pink cheeks."
+        },
+        "3": {
+          "title": "No Command Left",
+          "text": "2B stands before your bed at midnight, letting her black YoRHa dress and white leotard fall to the floor until she is completely naked in the silver moonlight, the beauty mark beneath her lip catching your eye. \"I was built to fight and die on command,\" she whispers, kneeling on the mattress and resting her forehead against yours. \"Tonight there is no Bunker and no war. I choose you, Sam.\"",
+          "image": {
+            "comp": "kneeling naked on his bed in silver moonlight, silver-white bob framing her face, tender unguarded eyes",
+            "setting": "Sam's moonlit bedroom, greatsword resting in the corner",
+            "sam": true
+          },
+          "go": "Hold her close",
+          "goRes": "You lay her back on the sheets and sink your cock deep into her hot, tight pussy, 2B wrapping her long legs around your waist and crying out your name as every prohibition shatters.",
+          "wait": "\"You're free to choose every night here.\"",
+          "waitRes": "2B exhales a quiet, shaky breath and curls into your arms under the blanket, holding your hand over her heart."
+        },
+        "jump": {
+          "title": "System Override",
+          "text": "After a tense night patrol, 2B walks straight into your office, clicks the door lock shut behind her, and pulls off her black visor in one sharp motion. \"I attempted to suppress this impulse for seventy-two hours and failed,\" she announces breathlessly, pinning you against the edge of your desk. \"Touch me now, Sam.\"",
+          "image": {
+            "comp": "pinning him against his desk with her visor in hand, cheeks flushed and pale blue eyes intense",
+            "setting": "Sam's office late at night, locked door behind her",
+            "sam": true
+          },
+          "go": "Override complete",
+          "goRes": "You kiss her hard and hike up her slit velvet skirt, pulling aside her white leotard to slide your fingers into her soaking pussy while she gasps into your mouth.",
+          "wait": "\"Breathe, 2B.\"",
+          "waitRes": "\"Androids do not need to breathe,\" she mutters, though her chest heaves against yours. \"My quarters. Ten minutes.\""
+        }
+      }
+    },
+    "yorha_a2": {
+      "events": {
+        "1": {
+          "title": "Stray Prototype",
+          "text": "A2 sits on the roof tiles with a whetstone in hand, her long silver-white hair whipping in the wind as you climb up with a mug of warm cider. She glares suspiciously at the mug, takes a sip, and goes quiet. \"You keep feeding me and giving me a roof without asking me to kill anything,\" she mutters, setting the blade down and grabbing your collar with a rough blush. \"Shut up and let me kiss you before it gets weird.\"",
+          "image": {
+            "comp": "sitting on roof tiles at dusk, grabbing his collar with one hand, long silver hair blowing, fierce blushing scowl",
+            "setting": "rooftop at sunset overlooking Hollowmere",
+            "sam": true
+          },
+          "go": "Let her kiss you",
+          "goRes": "She kisses you hard and clumsy, biting your lower lip lightly before shoving back with burning ears. \"...Not bad. Don't tell 2B.\"",
+          "wait": "\"Drink the cider first.\"",
+          "waitRes": "\"Tch. Bossy,\" A2 grumbles, draining half the mug while leaning her shoulder against your knee."
+        },
+        "2": {
+          "title": "Scars and Chassis",
+          "text": "In the dim armory after hours, A2 sits on a crate and unwraps the tattered black cloth from her chest, exposing her pale breasts above the sleek black chassis panels of her midriff. \"Most people stare at the missing skin like I'm scrap metal,\" she says quietly, catching your wrist and pressing your warm palm over her bare chest. \"You never look away. Show me you mean it.\"",
+          "image": {
+            "comp": "sitting on an armory crate with her black chest wrap undone, pressing his hand to her bare chest, guarded icy-blue eyes softening",
+            "setting": "dim armory room at night, single lantern",
+            "sam": true
+          },
+          "go": "Kiss every scar",
+          "goRes": "You trace your lips over every seam and curve of her breasts and thighs until A2 is shivering and gasping, her calloused hand and hot mouth wrapping around your cock until you come.",
+          "wait": "\"You're beautiful to me, A2.\"",
+          "waitRes": "She freezes, curses softly under her breath to hide her scarlet face, and pulls you into a fierce hug."
+        },
+        "3": {
+          "title": "Done Running",
+          "text": "A2 slips into your bedroom without knocking, kicking off her thigh-high boots and letting the last strip of black cloth fall to the floorboards. \"I spent years running alone through dead cities thinking everyone I cared about was gone,\" she whispers, her icy blue eyes raw and unguarded as she climbs onto your bed. \"I'm done running, Sam. Keep me here tonight.\"",
+          "image": {
+            "comp": "kneeling naked on his bed with her long silver hair spilling over her shoulders, fierce tender gaze",
+            "setting": "Sam's bedroom at night, warm candlelight",
+            "sam": true
+          },
+          "go": "Keep her close",
+          "goRes": "You pull her down onto the mattress and drive your cock deep into her tight, wet pussy, A2 digging her fingers into your shoulders with low, ragged moans until she comes hard around you.",
+          "wait": "\"You have a home here for good.\"",
+          "waitRes": "\"...Yeah,\" A2 murmurs, flopping onto your pillows and pulling you down beside her. \"Don't you forget it.\""
+        },
+        "jump": {
+          "title": "Overheated Core",
+          "text": "After tossing three rowdy mercenaries through the tavern window without breaking a sweat, A2 stalks into the back hall, grabs you by the front of your hoodie, and slams you against the wall. \"My core is running way too hot and fighting didn't fix it,\" she growls, pressing her thigh between your legs. \"Your turn, boss.\"",
+          "image": {
+            "comp": "slamming him against the back hallway wall by his hoodie, flushed and breathing hard, hungry glare",
+            "setting": "dim back hallway, lantern light",
+            "sam": true
+          },
+          "go": "Cool her down",
+          "goRes": "You kiss her fiercely and lift her against the wall, sliding your fingers into her soaking pussy while she groans and tears at your belt.",
+          "wait": "\"Take it to the bedroom!\"",
+          "waitRes": "A2 hauls you up the stairs two at a time and kicks your bedroom door shut behind you."
+        }
+      }
+    },
+    "devola": {
+      "events": {
+        "1": {
+          "title": "Last Song of the Night",
+          "text": "After the bar empties out, Devola sits on the counter edge strumming a quiet, aching chord on her lute, her long messy crimson waves tumbling over her shoulders. When you hand her a glass of spiced wine, she sets the lute aside and catches your fingers. \"For a hundred years, nobody sang for us—we only sang for them,\" she says softly, emerald eyes crinkling with a warm blush. \"Kiss me, Sam, and give me a new verse to remember.\"",
+          "image": {
+            "comp": "sitting on the bar counter with her lute set aside, long messy wavy crimson hair, warm blushing smile",
+            "setting": "empty tavern bar after closing, warm amber lantern light",
+            "sam": true
+          },
+          "go": "Kiss her",
+          "goRes": "She laughs softly into your mouth, her lips warm and sweet with spiced wine as she wraps her ankles loosely around your calves.",
+          "wait": "\"Play me one more song first.\"",
+          "waitRes": "\"Deal—and you're paying the bard's fee right after!\" Devola winks, strumming a bright melody."
+        },
+        "2": {
+          "title": "Tuning by Hand",
+          "text": "In the quiet back room behind the bar, Devola unlaces the front of her white-and-crimson bardic tunic, leaning back against the cushions with a playful, heavy-lidded smile. \"Popola says I'm always the reckless twin, and she's right,\" she purrs, guiding your hands onto her bare waist and up toward her breasts. \"Show me how well your hands play, boss.\"",
+          "image": {
+            "comp": "leaning back on cushions with her bardic tunic unlaced, guiding his hands to her waist, sultry emerald gaze",
+            "setting": "cozy back room behind the bar, lute leaning in the corner",
+            "sam": true
+          },
+          "go": "Play her like a lute",
+          "goRes": "Her musical sighs fill the room as you cup her breasts and finger her wet pussy, before she drops to her knees and sucks your cock with eager, rhythmic devotion.",
+          "wait": "\"What if Popola walks in?\"",
+          "waitRes": "\"She'd probably take notes!\" Devola laughs, kissing your cheek before lacing her tunic back up. \"Tomorrow night, lock the door.\""
+        },
+        "3": {
+          "title": "No Guilt Left",
+          "text": "Devola unpins the white flower from her hair so her messy crimson waves spill wild across your pillows, slipping out of her tunic until she kneels naked on your bed in the warm candlelight. \"We carried a sin that wasn't even ours for so long I forgot what happiness felt like,\" she whispers, cupping your face in both hands. \"Make me forget everything except you tonight, Sam.\"",
+          "image": {
+            "comp": "kneeling naked on his bed with her messy wavy crimson hair loose, cupping his face with tender shining emerald eyes",
+            "setting": "Sam's bedroom by candlelight",
+            "sam": true
+          },
+          "go": "Love her",
+          "goRes": "You pull her down and sink your cock deep into her warm, wet pussy, Devola singing out your name in breathless, shivering cries as she rides you until dawn.",
+          "wait": "\"You and Popola are safe here forever.\"",
+          "waitRes": "Tears glisten on her lashes before she smiles radiantly and pulls you into a tight embrace under the covers."
+        },
+        "jump": {
+          "title": "Tavern Fever",
+          "text": "After two mugs of dwarven ale after closing, Devola hops off her barstool, backs you into the liquor storeroom, and kicks the door shut with a bright, flushed grin. \"I've been watching you pour drinks all night and I'm officially thirsty for something else!\" she announces, grabbing your belt.",
+          "image": {
+            "comp": "backing him into the liquor storeroom with a flushed playful grin, hands on his belt",
+            "setting": "liquor storeroom lined with bottles, warm lantern glow",
+            "sam": true
+          },
+          "go": "Quench her thirst",
+          "goRes": "You lift her onto a crate of wine and slide your fingers into her soaking pussy while she kisses you hungrily.",
+          "wait": "\"Save some energy for your bedroom!\"",
+          "waitRes": "\"Race you up the stairs!\" Devola laughs, tugging you out the door by your hand."
+        }
+      }
+    },
+    "popola": {
+      "events": {
+        "1": {
+          "title": "Late-Night Ledger",
+          "text": "Popola brings a pot of chamomile tea to your desk at midnight, her long, neatly kept crimson hair framing her gentle face as she stacks the finished schedules. Instead of leaving, she lingers beside your chair with her hands folded and a shy blush warming her cheeks. \"Devola teased me all week that I only check your books three times a night to see you,\" she whispers. \"She was right... may I kiss you, Sam?\"",
+          "image": {
+            "comp": "standing beside his desk with a teapot, long neat straight crimson hair, shy gentle blush",
+            "setting": "Sam's office at midnight, neatly stacked ledgers and warm lamp",
+            "sam": true
+          },
+          "go": "Kiss her",
+          "goRes": "Her kiss is soft, tender, and lingering, Popola letting out a tiny, breathless sigh against your lips before smiling warmly.",
+          "wait": "\"You can visit without an excuse anytime.\"",
+          "waitRes": "\"I would like that very much,\" Popola murmurs, pouring your tea with a radiant blush."
+        },
+        "2": {
+          "title": "Quiet Care",
+          "text": "In the quiet infirmary room, Popola insists on checking you over after a long week, kneeling between your knees on the cot and slowly unbuckling her dark corset waist belt. \"I have spent centuries tending to everyone else's aches,\" she whispers, emerald eyes dark and earnest as she guides your hands inside her cream-and-crimson tunic. \"Tonight, please tend to mine.\"",
+          "image": {
+            "comp": "kneeling between his knees with her corset belt unbuckled, guiding his hands inside her tunic, tender flushed gaze",
+            "setting": "quiet infirmary room at night, warm lamplight",
+            "sam": true
+          },
+          "go": "Tend to her",
+          "goRes": "Gentle, composed Popola trembles and gasps as you cup her soft breasts and stroke her wet pussy, before she lovingly massages and sucks your cock with slow, thorough care.",
+          "wait": "\"Let me hold you first.\"",
+          "waitRes": "She leans into your arms with a soft, grateful sigh, resting her cheek over your heart."
+        },
+        "3": {
+          "title": "Unburdened",
+          "text": "Popola steps out of her cream-and-crimson robes in the candlelight of your bedroom, her crimson hair loose around her bare shoulders as she climbs shyly onto your mattress. \"For the first time in my memory, I am not afraid of tomorrow,\" she whispers, opening her arms to you with shining emerald eyes. \"Make me yours tonight, Sam.\"",
+          "image": {
+            "comp": "kneeling naked on his bed in warm candlelight, crimson hair framing her gentle blushing face, open arms",
+            "setting": "Sam's bedroom at night, folded robes on a chair",
+            "sam": true
+          },
+          "go": "Make her yours",
+          "goRes": "You ease her back onto the pillows and sink your cock slowly into her hot, clinging pussy, Popola holding you tight with soft, surprisingly passionate cries until she comes in your arms.",
+          "wait": "\"Stay right here with me.\"",
+          "waitRes": "\"Always,\" Popola whispers, twining her fingers with yours under the quilt."
+        },
+        "jump": {
+          "title": "One Glass Too Many",
+          "text": "Devola warned you never to let Popola drink plum wine—and now Popola has cornered you in the upstairs library with a bright pink flush across her cheeks and a remarkably bold smile. \"I have been polite and patient for two hundred years, Sam, and I am officially done waiting,\" she purrs, locking the library door and unfastening her corset belt.",
+          "image": {
+            "comp": "locking the library door behind her with a flushed, unusually bold smile, unbuckling her corset belt",
+            "setting": "upstairs library at night, warm lamplight",
+            "sam": true
+          },
+          "go": "Let her cut loose",
+          "goRes": "She kisses you with dizzying, pent-up hunger, hiking up her skirt on the library sofa so you can finger her soaking pussy while she moans into your neck.",
+          "wait": "\"Devola warned me about this!\"",
+          "waitRes": "\"Ignore Devola!\" Popola giggles, hugging your neck tightly. \"Take me to bed instead!\""
+        }
+      }
+    }
+  }
+}

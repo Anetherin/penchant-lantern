@@ -4,7 +4,7 @@
       "events": {
         "1": {
           "title": "Tea Etiquette",
-          "text": "Jinhsi serves tea in the quiet ceremony room with a poise that could still a storm. When you fumble your porcelain cup, she steadies your fingers with a warm, lingering touch. \"A magistrate learns to carry a thousand burdens without a ripple,\" she whispers, golden dragon-eyes searching yours as the faint gold of her horns catches the lamplight. \"Yet I find myself wishing someone would take one from me.\"",
+          "text": "Jinhsi serves tea in the quiet ceremony room with a poise that could still a storm. When you fumble your porcelain cup, she steadies your fingers with a warm, lingering touch. \"A magistrate learns to carry a thousand burdens without a ripple,\" she whispers, lavender-grey eyes searching yours as the gold dragon-horn ornament in her hair catches the lamplight. \"Yet I find myself wishing someone would take one from me.\"",
           "image": {
             "comp": "pouring tea with graceful precision, gold eyes lifted to him, composed smile with the faintest tremor",
             "setting": "tea room with paper screens, a low table and soft lantern glow",
@@ -198,9 +198,9 @@
         },
         "3": {
           "title": "High Tide",
-          "text": "Cartethyia opens her bedroom door in a sheer white nightgown, her small wings folded tightly against her bare back. \"I have sung raging seas to sleep for centuries, Sam—yet tonight I cannot calm the ache inside me,\" she whispers, letting the gown slip off her shoulders. \"Stay with me.\"",
+          "text": "Cartethyia opens her bedroom door in a sheer white nightgown, her pale blue laurel halo casting a soft glow across her bare shoulders. \"I have sung raging seas to sleep for centuries, Sam—yet tonight I cannot calm the ache inside me,\" she whispers, letting the gown slip to the floor. \"Stay with me.\"",
           "image": {
-            "comp": "standing in the doorway of a softly lit room in a long pale gown, wings folded, tremulously hopeful",
+            "comp": "standing in the doorway of a softly lit room in a long pale gown, pale blue laurel halo glowing softly, tremulously hopeful",
             "setting": "her tidy room with pale curtains and a shell on the windowsill",
             "sam": true
           },
@@ -228,9 +228,9 @@
       "events": {
         "1": {
           "title": "Spirited Argument",
-          "text": "Fleurdelys has argued security tactics for an hour until she rounds on you—and when you push back stubbornly instead of backing down, her crimson wings flare in delighted surprise. Pouring two glasses of wine, she smirks wickedly. \"At last—someone with the spine to argue back.\"",
+          "text": "Fleurdelys has argued security tactics for an hour until she rounds on you—and when you push back stubbornly instead of backing down, her crystal-blue crown of thorns glints in delighted surprise. Pouring two glasses of wine, she smirks wickedly. \"At last—someone with the spine to argue back.\"",
           "image": {
-            "comp": "holding two glasses of wine with a challenging, delighted smirk, wings half spread",
+            "comp": "holding two glasses of wine with a challenging, delighted smirk, tall and imperious",
             "setting": "staff room with maps and a heavy table, wine and candles",
             "sam": true
           },
@@ -241,23 +241,23 @@
         },
         "2": {
           "title": "War Room",
-          "text": "Fleurdelys leans over the war-room table with crimson lamplight gleaming across her spread wings—and when you spot a flaw in her battle plan, a slow, predatory grin curves her lips. \"Brilliant. Insolent. Come here,\" she purrs, fisting your collar and sliding her other hand straight over your belt.",
+          "text": "Fleurdelys leans over the war-room table with lamplight gleaming along her golden horn—and when you spot a flaw in her battle plan, a slow, predatory grin curves her lips. \"Brilliant. Insolent. Come here,\" she purrs, fisting your collar and sliding her other hand straight over your belt.",
           "image": {
-            "comp": "leaning over a table-sized map with her crimson wings behind her, grinning, hand on his collar",
+            "comp": "leaning over a table-sized map, grinning imperiously, hand on his collar",
             "setting": "back office with a map spread across the table and weapons mounted on the wall",
             "sam": true
           },
           "go": "Come here",
           "goRes": "The parchment maps crumple beneath your elbows as she unfastens your trousers, jerking your cock and then sucking it with commanding, breathless intensity until your knees weaken.",
           "wait": "\"Another time.\"",
-          "waitRes": "\"A tactical pause.\" She releases your collar with a huff, eyes blazing. \"I will hold the line—don't keep me waiting.\""
+          "waitRes": "\"A tactical pause.\" She releases your collar with a huff, cold blue eyes blazing. \"I will hold the line—don't keep me waiting.\""
         },
         "3": {
           "title": "Sovereign's Terms",
-          "text": "Fleurdelys receives you in her candlelit chamber like a queen upon a throne, her spear leaning in the corner and her crimson wings half-furled over bare shoulders as her robe hangs parted. \"I have commanded nations and weathered tempests—tonight I claim you on my terms. Do you accept?\"",
+          "text": "Fleurdelys receives you in her candlelit chamber like a queen upon a throne, her blade leaning in the corner and her blonde-and-blue hair spilling over bare shoulders as her vestments hang parted. \"I have commanded tempests and defied false gods—tonight I claim you on my terms. Do you accept?\"",
           "image": {
-            "comp": "sitting regally in a chair with wings half spread, imperious tone with nervous fingers on her sleeve",
-            "setting": "her room with a spear in the corner, red drapes and candlelight",
+            "comp": "sitting regally in a chair with her vestments parted, imperious tone with nervous fingers on her sleeve",
+            "setting": "her room with a sword in the corner, blue drapes and candlelight",
             "sam": true
           },
           "go": "Accept her terms",
@@ -269,14 +269,14 @@
           "title": "Strong Drink",
           "text": "When you beat Fleurdelys at arm-wrestling through a shameless bar-towel trick, she erupts into a roar of delighted laughter—before going suddenly still, flushed and panting with her hand locked tight in yours. \"A scoundrel... I want you right now.\"",
           "image": {
-            "comp": "wings half-spread and laughing, hands still locked mid arm-wrestle, a sudden blush",
+            "comp": "laughing at the bar counter, hands still locked mid arm-wrestle, a sudden blush",
             "setting": "bar counter with spilled drinks and an upended towel",
             "sam": true
           },
           "go": "Kiss her",
           "goRes": "You swallow her next remark with a deep, hungry kiss, hauling her over the counter and straight upstairs to bed, her hands already down your trousers.",
           "wait": "\"Good game.\"",
-          "waitRes": "\"A draw.\" Her crimson wings flutter. \"Rematch tomorrow—bring wine and your filthiest tricks.\""
+          "waitRes": "\"A draw.\" Her cold blue eyes glint with heat. \"Rematch tomorrow—bring wine and your filthiest tricks.\""
         }
       }
     },
@@ -389,6 +389,286 @@
           "goRes": "She exhales sharply, grabs your lapel, and kisses you hungrily—looking equally horrified and thrilled as you lift her onto the desk and slide a hand up her thigh.",
           "wait": "\"Take a break.\"",
           "waitRes": "\"I never take breaks.\" Setting her pen down anyway, she murmurs, \"...Five minutes. Sit with me.\""
+        }
+      }
+    },
+    "iuno": {
+      "events": {
+        "1": {
+          "title": "Already Foreseen",
+          "text": "Iuno perches on the balcony balustrade under a crescent moon, her floor-length midnight-blue twin tails shimmering pale cyan at the tips. \"You are three minutes late, Sam,\" she declares with a haughty little tilt of her golden laurel crown, though her cheeks are faintly pink. \"I read the moon's reflection an hour ago—it said you would come up here, and that I would permit you to kiss me.\"",
+          "image": {
+            "comp": "sitting on a stone balustrade under a crescent moon, long blue gradient twin tails, haughty teasing smile with a faint blush",
+            "setting": "moonlit balcony overlooking the garden",
+            "sam": true
+          },
+          "go": "Fulfill the prophecy",
+          "goRes": "She lifts her chin regally—and melts the instant your lips touch hers, her fingers clutching your lapel before she pulls back breathless. \"...Just as I foresaw. Mostly.\"",
+          "wait": "\"What if I defy fate?\"",
+          "waitRes": "\"Impossible!\" Iuno huffs, ears turning pink. \"You may only delay it—until tomorrow night, at the latest.\""
+        },
+        "2": {
+          "title": "Waxing Tide",
+          "text": "Iuno summons you to her candlelit chamber on the night of the half-moon, reclining on a velvet divan with her white-and-gold temple drapes parted over her bare midriff and thighs. \"A priestess's divination requires focus, and you have been clouding my mirror all week,\" she murmurs, catching your wrist and drawing your palm onto her stomach. \"Touch me until my head clears—that is a temple decree.\"",
+          "image": {
+            "comp": "reclining on a velvet divan in white-and-gold priestess drapes, guiding his hand to her bare midriff, flushed imperious gaze",
+            "setting": "candlelit chamber with a silver water basin and moonlit window",
+            "sam": true
+          },
+          "go": "Obey the decree",
+          "goRes": "Her haughty poise dissolves into soft, shivering gasps as you unfasten her golden bandeau to kiss her breasts and stroke her wet pussy while her slender hands work your cock.",
+          "wait": "\"Will that actually clear your head?\"",
+          "waitRes": "\"Do not question the oracle!\" Iuno snaps, blushing scarlet as she sits up. \"Return when you are ready to be devout.\""
+        },
+        "3": {
+          "title": "Eclipse",
+          "text": "Iuno sets her golden laurel crown beside the silver basin and lets her white-and-gold dress fall around her ankles, standing naked in the moonlight with her long blue twin tails pooling across the sheets. \"In Septimont, everyone looked at me to see tomorrow,\" she whispers, stepping into your arms with luminous azure eyes. \"You are the only one who looks at me tonight. Make me forget every prophecy, Sam.\"",
+          "image": {
+            "comp": "standing naked in silver moonlight with her long blue twin tails spilling over her shoulders, vulnerable and earnest",
+            "setting": "bedroom bathed in silver moonlight",
+            "sam": true
+          },
+          "go": "Hold her",
+          "goRes": "You lay her down on the bed and sink your cock deep into her tight, wet pussy, Iuno arching her back and crying your name until neither of you cares what tomorrow brings.",
+          "wait": "\"Are you certain?\"",
+          "waitRes": "\"I have never been more certain of a single omen,\" Iuno whispers, kissing your cheek softly. \"Come back to me soon.\""
+        },
+        "jump": {
+          "title": "Unwritten Star",
+          "text": "You catch Iuno staring into her silver divination bowl in the empty lounge, her face burning crimson before she splashes the water with a hand. \"Infuriating! Every single reading tonight is just your hands on me!\" she hisses, spinning around to grab your collar. \"Take me upstairs at once so I can get back to work!\"",
+          "image": {
+            "comp": "standing beside a splashed silver bowl, grabbing his collar with a furious blush",
+            "setting": "dim lounge at night, silver basin on a low table",
+            "sam": true
+          },
+          "go": "Take her upstairs",
+          "goRes": "She kisses you hungrily all the way up the stairs, shoving her white-and-gold skirts aside so you can finger her pussy before the door even latches.",
+          "wait": "\"Blaming the moon again?\"",
+          "waitRes": "\"The moon is completely unbiased!\" Iuno insists, smoothing her hair with trembling fingers. \"Ten minutes—in my room.\""
+        }
+      }
+    },
+    "augusta": {
+      "events": {
+        "1": {
+          "title": "Victor's Wreath",
+          "text": "Augusta leans her massive broadblade against the courtyard wall after routing a gang of street toughs single-handed, sweat gleaming on her sun-kissed shoulders and fiery orange-red waves. \"In Septimont's arena, the champion claims a tribute from the patron of the games,\" she says, striding right up to you with her crimson-and-gold eyes blazing. \"Stand your ground, Sam—I am claiming my kiss.\"",
+          "image": {
+            "comp": "standing tall in the courtyard in golden gladiator armor, fiery red wavy hair, bold commanding grin",
+            "setting": "courtyard after a skirmish, warm torchlight",
+            "sam": true
+          },
+          "go": "Stand your ground",
+          "goRes": "She grips the back of your neck and kisses you like a conqueror—hot, fierce, and breathless—before grinning against your mouth. \"A worthy patron indeed.\"",
+          "wait": "\"Don't I get a say in the tribute?\"",
+          "waitRes": "Augusta barks a delighted laugh, clapping your shoulder. \"Spoken with spine! Name the hour, then, and I shall collect.\""
+        },
+        "2": {
+          "title": "Armor Unbuckled",
+          "text": "You help Augusta unstrap her heavy golden chestplate and bronze pauldrons in the armory after a long night watch, leaving her in a damp white sleeveless tunic that clings to her sculpted curves. She turns on the bench, catching your wrists and pressing your palms flat against her ribs. \"My pulse never races in the arena anymore,\" she murmurs, voice low and smoky. \"Only around you. Put those hands to work.\"",
+          "image": {
+            "comp": "sitting on an armory bench with her golden armor set aside, holding his wrists against her ribs, intense crimson-gold gaze",
+            "setting": "armory room at night, golden armor on a stand and warm lantern glow",
+            "sam": true
+          },
+          "go": "Put your hands to work",
+          "goRes": "You peel her tunic over her head to kiss her full breasts while she unbuckles your belt, wrapping her strong, calloused hand and hot mouth around your cock until your knees buckle.",
+          "wait": "\"Rest from your watch first.\"",
+          "waitRes": "\"An Ephor does not tire so easily,\" Augusta smirks, though she leans her forehead warmly against yours. \"Tomorrow night, then—no armor between us.\""
+        },
+        "3": {
+          "title": "The Ephor's Bed",
+          "text": "Augusta stands beside your bed with her golden sunburst crown set on the nightstand and her fiery hair tumbling over her bare, statuesque shoulders, unfastening the last buckle of her gladiator skirt. \"All of Septimont cheers the undefeated champion, and not a soul dares touch the woman beneath the iron,\" she says quietly, stepping naked into your reach. \"Take me tonight, Sam—no titles, no crowd.\"",
+          "image": {
+            "comp": "standing naked beside his bed in warm candlelight, fiery orange-red hair loose over sculpted shoulders, proud and unguarded",
+            "setting": "Sam's bedroom at night, golden crown on the nightstand",
+            "sam": true
+          },
+          "go": "Take her to bed",
+          "goRes": "You pull her down onto the mattress and drive your cock deep into her hot, wet pussy, matching her fierce strength thrust for thrust until she cries out against your throat.",
+          "wait": "\"You don't have to fight for a place here.\"",
+          "waitRes": "Her fierce eyes soften into a rare, tender smile. \"I know, Sam. That is why I chose your bed.\""
+        },
+        "jump": {
+          "title": "Trial by Combat",
+          "text": "After an afternoon sparring session where you manage to catch her wrist before her wooden practice blade taps your shoulder, Augusta drops the sword, pins you flat against the training wall, and presses her thigh firmly between yours. \"Good reflexes,\" she pants, cheeks flushed hot beneath her sun-kissed skin. \"Now let's see how you handle close quarters.\"",
+          "image": {
+            "comp": "pinning him against the training wall with her thigh between his legs, flushed from sparring, hungry grin",
+            "setting": "training yard at sunset, wooden practice sword on the ground",
+            "sam": true
+          },
+          "go": "Pull her close",
+          "goRes": "She kisses you hard and drags you straight into the armory, hiking up her gladiator skirt so you can slide your fingers into her soaking pussy while she groans against your mouth.",
+          "wait": "\"Yield!\"",
+          "waitRes": "\"No quarter granted!\" Augusta laughs, releasing you with a lingering nip to your jaw. \"Lock your door tonight if you actually mean yield.\""
+        }
+      }
+    },
+    "aemeath": {
+      "events": {
+        "1": {
+          "title": "Starlight Tuning",
+          "text": "Aemeath floats an inch above the stage edge after rehearsal, humming a bright pop melody while faint pink starlight motes drift from her rose-to-blonde hair. When you offer a hand to steady her down to the floorboards, her golden-amber eyes light up. \"Every time you touch me, my frequency locks right into the waking world,\" she beams, lacing her fingers tight with yours. \"Stay my anchor for a second—and kiss me?\"",
+          "image": {
+            "comp": "stepping down from the stage holding his hand, rose-pink to blonde hair glowing with starlight motes, bright starry-eyed smile",
+            "setting": "empty stage after rehearsal, soft footlights and drifting pink motes",
+            "sam": true
+          },
+          "go": "Kiss her",
+          "goRes": "Her lips feel warm and tingly like summer starlight, a small burst of pink motes shimmering around her shoulders as she giggles breathlessly against your mouth.",
+          "wait": "\"Your feet are on the floor now.\"",
+          "waitRes": "\"Only barely!\" Aemeath laughs, spinning in place. \"I'm going to need way more anchoring tomorrow!\""
+        },
+        "2": {
+          "title": "Full Synchronization",
+          "text": "In the quiet dressing room, Aemeath sits on the vanity counter with the glowing cyan circuits of her Synchronist suit pulsing in time with her racing heartbeat. \"Spirit bodies aren't supposed to ache like this, Sam,\" she whispers, cheeks flushed bright pink as she guides your hands under the hem of her futuristic dress. \"Show me how real I can feel.\"",
+          "image": {
+            "comp": "sitting on a vanity counter with her glowing suit pulsing, guiding his hands to her thighs, flushed and eager",
+            "setting": "dressing room at night, vanity mirrors reflecting pink starlight",
+            "sam": true
+          },
+          "go": "Show her",
+          "goRes": "Every gasp makes her starlight shimmer brighter as you cup her bare breasts and stroke her wet pussy, while her warm, eager mouth and hands bring your cock to a shuddering climax.",
+          "wait": "\"Easy, your circuits are glowing.\"",
+          "waitRes": "\"That's your fault!\" Aemeath covers her burning cheeks, laughing softly. \"Don't leave me out of sync for long.\""
+        },
+        "3": {
+          "title": "Real Enough to Hold",
+          "text": "Aemeath materializes sitting cross-legged on your bed at midnight, slipping out of her white-and-charcoal Synchronist suit until only her luminous fair skin and drifting pink starlight remain. \"For a long time I was just a voice in the data stream, afraid I'd fade if the song stopped,\" she whispers, reaching for you with shining amber eyes. \"Hold me tonight so I know I'm truly here.\"",
+          "image": {
+            "comp": "kneeling naked on his bed with faint pink starlight drifting around her shoulders, tender glowing smile",
+            "setting": "Sam's bedroom at night, lit by her soft pink starlight",
+            "sam": true
+          },
+          "go": "Hold her close",
+          "goRes": "She feels warm, solid, and breathtakingly real as you sink your cock into her tight pussy, Aemeath clinging to your neck with sweet, high cries while starlight rains across the sheets.",
+          "wait": "\"You're never fading on my watch.\"",
+          "waitRes": "\"Promise?\" Aemeath beams through misty eyes, curling up against your chest under the quilt. \"Then I can wait one more night.\""
+        },
+        "jump": {
+          "title": "Signal Spike",
+          "text": "Aemeath tackle-hugs you the moment you step into the upstairs corridor, her rose-pink hair tickling your chin and her body radiating feverish starlight warmth. \"My resonance spiked off the charts the second I heard your footsteps!\" she blurts out, kissing your jaw and tugging at your hoodie. \"Quick, into your room before I light up the whole hallway!\"",
+          "image": {
+            "comp": "hugging him tightly in the corridor with pink starlight sparking around her, flushed and breathless",
+            "setting": "upstairs corridor at night",
+            "sam": true
+          },
+          "go": "Pull her inside",
+          "goRes": "You pull her into your bedroom and kick the door shut, kissing her breathless as she hikes up her dress and wraps her warm hand around your cock.",
+          "wait": "\"Dim the starlight first!\"",
+          "waitRes": "\"Trying!\" Aemeath giggles, pressing her glowing forehead against your shoulder. \"Meet me in five minutes when I stop sparkling!\""
+        }
+      }
+    },
+    "camellya": {
+      "events": {
+        "1": {
+          "title": "Favorite Seed",
+          "text": "Camellya dangles upside-down from the garden pergola by a single crimson vine, her two-toned white-and-red twin tails brushing your shoulders as she stops nose-to-nose with you. \"I've been watching you tend this whole house, Sam, and I simply can't resist any longer,\" she purrs, vivid crimson eyes half-lidded with playful hunger. \"Give me one kiss—let's see how sweet you bloom.\"",
+          "image": {
+            "comp": "hanging upside-down from a garden pergola by crimson vines, nose-to-nose with him, playful half-lidded smile",
+            "setting": "lantern-lit garden pergola at night, red camellia vines",
+            "sam": true
+          },
+          "go": "Kiss her",
+          "goRes": "She wraps her arms around your neck and kisses you deep and slow, nipping your lower lip with a low, delighted hum as the glowing red Tacet Mark on her chest flares.",
+          "wait": "\"Come down on your feet first.\"",
+          "waitRes": "\"Boring!\" Camellya flips gracefully onto her heels, trailing a finger under your chin. \"Though waiting only makes the fruit sweeter.\""
+        },
+        "2": {
+          "title": "Tangled Vines",
+          "text": "You step into the conservatory after closing and find Camellya lounging across the cushioned bench in her backless gothic dress, slender red vines coiling lazily around her wrists. Before you can speak, a vine loops gently around your waist and tugs you between her parted knees. \"No running tonight,\" she whispers, sliding her hands down your chest to unbuckle your belt. \"I want a taste of you right now.\"",
+          "image": {
+            "comp": "lounging on a conservatory bench with red vines around her wrists, pulling him between her knees, sultry crimson gaze",
+            "setting": "glass conservatory at night, blooming red camellias and moonlight",
+            "sam": true
+          },
+          "go": "Let her taste",
+          "goRes": "She laughs breathlessly as she frees your cock, stroking and sucking you with wild, intoxicating devotion while your hands cup her bare breasts.",
+          "wait": "\"No vines on the management.\"",
+          "waitRes": "The vines vanish in a puff of red petals as Camellya pouts playfully. \"Fine, just my bare hands next time—and I won't let go.\""
+        },
+        "3": {
+          "title": "Full Bloom",
+          "text": "Camellya slips through your bedroom window at midnight, peeling off her white-and-black leotard dress until she stands completely naked, the red Tacet Mark between her breasts pulsing like a second heartbeat. \"I've chased thrills across a dozen seas, Sam, and nothing has ever made me ache like you do,\" she whispers, climbing into your lap. \"Ruin me for everyone else tonight.\"",
+          "image": {
+            "comp": "straddling his lap naked on the bed, red camellia mark glowing on her chest, fierce passionate smile",
+            "setting": "Sam's bedroom at midnight, open window and moonlight",
+            "sam": true
+          },
+          "go": "Take her",
+          "goRes": "She sinks down onto your cock with a long, shuddering moan, riding you in a frantic, possessive frenzy and digging her nails into your back as she comes around you again and again.",
+          "wait": "\"Are you going to stay when the thrill settles?\"",
+          "waitRes": "Camellya stills, her wild eyes softening as she presses her palm over your heart. \"Try getting rid of me, Sam. I've already taken root.\""
+        },
+        "jump": {
+          "title": "Instinct",
+          "text": "Camellya corners you behind the stage curtain between sets, her breath hot against your throat and her hands already sliding under your shirt. \"Don't think—thinking ruins the best parts,\" she whispers feverishly, lifting one thigh around your hip. \"Touch me right now before I go mad.\"",
+          "image": {
+            "comp": "pressing him against the backstage wall with one leg hooked around his hip, flushed and feverish",
+            "setting": "dim backstage alcove behind heavy velvet curtains",
+            "sam": true
+          },
+          "go": "Give in",
+          "goRes": "You shove her leotard dress aside and slide your fingers deep into her dripping pussy while she bites your shoulder to stifle her cries.",
+          "wait": "\"After the set, Camellya.\"",
+          "waitRes": "\"Cruel man,\" she purrs, shivering as she steps back. \"Count the seconds—the moment the curtain falls, you're mine.\""
+        }
+      }
+    },
+    "fem_rover": {
+      "events": {
+        "1": {
+          "title": "Where the Road Stops",
+          "text": "Rover sits on the rooftop steps after patrol, her sword resting across her knees and the white feather in her dark hair stirring in the night breeze. When you sit beside her with two mugs of cider, her golden-amber eyes warm with rare relief. \"Every city I visit asks me to save it,\" she says quietly, leaning her shoulder against yours. \"You're the first person who only asked if I'd eaten. May I kiss you, Sam?\"",
+          "image": {
+            "comp": "sitting on rooftop steps at night with a mug of cider, golden-amber eyes warm and soft, feather ornament in her hair",
+            "setting": "rooftop steps overlooking Hollowmere's lanterns at night",
+            "sam": true
+          },
+          "go": "Kiss her",
+          "goRes": "She sets her mug aside and kisses you with steady, lingering warmth, her hand resting over your heart as if memorizing the beat.",
+          "wait": "\"There's always a plate waiting for you here.\"",
+          "waitRes": "Rover smiles—soft and unguarded—and squeezes your hand. \"Then I don't think I'll be leaving anytime soon.\""
+        },
+        "2": {
+          "title": "Resonance",
+          "text": "In the quiet training room after hours, the glowing mark on the back of Rover's right hand hums softly as she catches your wrist. \"I've spent years reading frequencies and battle rhythms,\" she murmurs, stepping flush against you and unfastening her cropped dark jacket panel so your palm rests against the warm cutout of her halter dress. \"Right now, yours is the only one I want to feel.\"",
+          "image": {
+            "comp": "standing close in the dim training room, guiding his palm to her chest, golden eyes dark with quiet intensity",
+            "setting": "training room at night, single lantern glowing",
+            "sam": true
+          },
+          "go": "Feel her rhythm",
+          "goRes": "Her calm composure melts into low, breathless sighs as you slip her halter dress down to kiss her breasts and stroke her wet pussy while her steady hands work your cock.",
+          "wait": "\"Take it slow, traveler.\"",
+          "waitRes": "\"Slow is nice for a change,\" Rover laughs softly, resting her forehead against your shoulder. \"Tomorrow night, Sam.\""
+        },
+        "3": {
+          "title": "No Longer Wandering",
+          "text": "Rover steps into your bedroom at midnight with her hair unbound, dark locks streaked with silver-white falling over her bare shoulders as she lets her black-and-white dress drop to the rug. \"I don't remember where my journey started,\" she whispers, kneeling before you on the mattress with golden eyes shining. \"Tonight, I finally know where I want it to rest. Love me, Sam.\"",
+          "image": {
+            "comp": "kneeling naked on his bed in warm candlelight, black-and-silver hair loose, golden eyes tender and devoted",
+            "setting": "Sam's bedroom at night, sword resting by the door",
+            "sam": true
+          },
+          "go": "Love her",
+          "goRes": "You pull her into your arms and sink your cock deep into her warm, wet pussy, fucking her with slow, consuming devotion as she holds you tight and cries your name into the dark.",
+          "wait": "\"You always have a home here.\"",
+          "waitRes": "She kisses your palm and curls up beside you under the blanket. \"That's all I ever needed to hear.\""
+        },
+        "jump": {
+          "title": "Off Guard",
+          "text": "You catch Rover half-asleep on the office sofa after a double shift and drape a blanket over her—only for her reflexes to kick in, pulling you straight down on top of her in one fluid motion. Blinking awake with her legs tangled around yours, a slow blush spreads across her cheeks. \"...Sorry. Reflex. Though now that you're here, I'm not letting you up.\"",
+          "image": {
+            "comp": "holding him pinned on top of her on the office sofa, flushed awake with a warm teasing smile",
+            "setting": "Sam's office late at night, blanket tangled around them",
+            "sam": true
+          },
+          "go": "Stay right there",
+          "goRes": "She pulls you down into a deep, hungry kiss, sliding her hands under your shirt and unbuckling your trousers right on the office sofa.",
+          "wait": "\"At least move to a real bed!\"",
+          "waitRes": "\"Deal,\" Rover grins, standing up and tugging you by the wrist toward the stairs. \"Lead the way, boss.\""
         }
       }
     }

@@ -42,9 +42,10 @@ function toggleMenu(id, act, on){
   w.menu = w.menu.filter(x=>x!==act); if(on) w.menu.push(act);
   save(); refreshSheetInfo();
 }
-// Service outfit and dress level (sheet → wardrobe): how she looks in service images. Visual only.
+// Service outfit, dress level, and accessory state (sheet / wardrobe): how she looks in images. Visual only.
 function setSvcOutfit(id, k){ const w=findW(id); if(!w) return; w.svcOutfit = k || ''; save(); refreshSheetInfo(); sheetImg(); }
 function setSvcLevel(id, k){ const w=findW(id); if(!w) return; w.svcLevel = k || 'auto'; save(); refreshSheetInfo(); fillCloth(); sheetImg(); }
+function setAccState(id, k){ const w=findW(id); if(!w) return; w.accState = k || 'auto'; save(); refreshSheetInfo(); sheetImg(); if($('#modalBox h2') && $('#modalBox h2').textContent.includes('Wardrobe')) openWardrobe(id); }
 function setAutoRest(id, on){ const w=findW(id); if(!w) return; w.autoRest=!!on; if(!on) delete w.prevJob; save(); refreshSheetInfo(); }
 function setOffDuty(id, v){ const w=findW(id); if(!w) return; w.offDuty = v==='on'||v===true ? 'on' : v==='off'||v===false ? 'off' : 'ask'; save(); refreshSheetInfo(); }
 function setFeedOnly(id, v){ const w=findW(id); if(!w) return; w.feedOnly = v==='always' ? 'always' : (+v > 0 ? +v : null); save(); refreshSheetInfo(); }

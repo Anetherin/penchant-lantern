@@ -16,7 +16,14 @@
     "partnerTrust": 75,
     "backstory": "Kaede was the scout of a four-person party called the Copper Foxes until a collapsing dungeon floor and a leader who ran first ended it. Pride kept her from going home empty-handed, so she took a room at the Lantern \"for a week\" and found she was good at watching doors. She has never been anyone's guard before, and has never been anyone's friend for free either.",
     "partnerStory": "In his first hour in this world Sam stumbled into a goblin ambush and, almost entirely by accident, shoved a fox-eared scout out of the path of a crossbow bolt. Nobody had ever put themselves in front of Kaede before. She keeps a running tally of favors in her head, Sam is hopelessly in the red, and she has decided the only fair repayment is staying close. She has also decided he's cute.",
-    "design": {"hairStyle":"high ponytail","hairColor":"copper","eyes":"golden","skin":"sun-kissed","features":"a thin scar on her shoulder"},
+    "design": {
+      "hairStyle": "high ponytail",
+      "hairColor": "copper",
+      "eyes": "golden",
+      "skin": "sun-kissed",
+      "features": "fox ears, a fluffy fox tail and a thin scar on her shoulder",
+      "expression": "an earnest, determined expression"
+    },
     "under": "sports",
     "underColor": "black",
     "stats": {"beauty":62,"charm":50,"charisma":65,"refinement":20,"wits":20,"stamina":70,"strength":55,"agility":70},
@@ -91,11 +98,13 @@
     "backstory": "Yui spent six years in the accounts department of a mid-sized firm, two desks from Sam, keeping everyone's numbers honest and her own feelings filed under \"later.\" She woke up in Hollowmere a week before him with a stapler in her pocket and no explanation, and spent that week learning the local coins and discovering that nobody here had ever invented the spreadsheet. She gets inexplicably emotional about instant noodles.",
     "partnerStory": "Yui sat at the next desk over in Sam's old office, and was crossing the same street when the truck came. She woke in this world a week before him, and when a familiar hoodie turned up in the Lantern's doorway she nearly dropped the account book. She's been quietly reorganizing Sam's finances ever since, which is what she does when she's nervous. And happy. And both.",
     "design": {
-      "hairStyle": "black bob-cut",
+      "hairStyle": "neat bob-cut",
       "hairColor": "black",
       "eyes": "dark brown",
       "skin": "fair",
-      "features": "thin-framed glasses and a nervous habit of pushing them up"
+      "accessories": "thin-framed glasses",
+      "accState": "always",
+      "expression": "a shy, earnest expression"
     },
     "under": "plain",
     "underColor": "sky blue",
@@ -109,7 +118,7 @@
       "sig_yui": {
         "label": "Office clothes from Earth",
         "style": "Elegant",
-        "prompt": "a white button-up blouse, grey pencil skirt, black tights and thin-framed glasses",
+        "prompt": "a white button-up office blouse, grey pencil skirt and black tights",
         "bonus": {"promoter":1.2,"merchant":1.2}
       },
       "sp_yui": {
@@ -175,7 +184,8 @@
       "hairColor": "deep violet",
       "eyes": "magenta",
       "skin": "pale blue-tinted",
-      "features": "small bat wings, curled horns and a slender tail"
+      "features": "small bat wings, curled horns and a slender tail",
+      "expression": "a playful, teasing smile"
     },
     "under": "none",
     "underColor": "black",
@@ -195,8 +205,11 @@
       "sp_nerys": {
         "label": "\"Disguise\": librarian",
         "style": "Elegant",
-        "prompt": "a prim high-collared librarian dress and glasses, barely hiding her horns",
-        "bonus": {"noble":1.2,"courtesan":1.2}
+        "prompt": "a prim high-collared librarian dress, barely hiding her horns",
+        "bonus": {"noble":1.2,"courtesan":1.2},
+        "hairStyle": "pinned up in a neat librarian bun",
+        "accessories": "half-moon librarian glasses",
+        "accState": "always"
       }
     },
     "jobs": {"likes":["courtesan","dancer"],"dislikes":["maid","promoter"]},
@@ -254,7 +267,10 @@
       "hairColor": "honey blonde",
       "eyes": "green",
       "skin": "fair",
-      "features": "freckles and a sprig of rosemary in her braid"
+      "features": "long pointed elf ears and light freckles across her nose",
+      "accessories": "a sprig of fresh rosemary woven into her braid",
+      "accState": "always",
+      "expression": "a gentle, kind smile"
     },
     "under": "plain",
     "underColor": "white",
@@ -268,8 +284,10 @@
       "sig_elowen": {
         "label": "Healer's robes",
         "style": "Elegant",
-        "prompt": "soft white healer's robes with green embroidery and a satchel of herbs",
-        "bonus": {"courtesan":1.1,"promoter":1.1}
+        "prompt": "soft white healer's robes with green embroidery",
+        "bonus": {"courtesan":1.1,"promoter":1.1},
+        "accessories": "a leather herb satchel",
+        "accState": "dressed"
       },
       "sp_elowen": {
         "label": "Forest silk dress",
@@ -335,7 +353,8 @@
       "hairColor": "platinum blonde",
       "eyes": "steel blue",
       "skin": "fair",
-      "features": "a scar through one eyebrow"
+      "features": "a faint scar through one eyebrow",
+      "expression": "a proud, composed expression"
     },
     "under": "sports",
     "underColor": "white",
@@ -413,7 +432,8 @@
       "hairColor": "chestnut",
       "eyes": "amber",
       "skin": "lightly tanned",
-      "features": "a sticking plaster on her cheek and a confident grin"
+      "features": "a sticking plaster on her cheek",
+      "expression": "a confident grin"
     },
     "under": "sports",
     "underColor": "sky blue",
@@ -427,8 +447,10 @@
       "sig_natsuki": {
         "label": "Veteran adventurer gear",
         "style": "Sporty",
-        "prompt": "a worn blue scarf, fitted leather armor and a katana at her hip",
-        "bonus": {"security":1.3,"adventurer":1.2}
+        "prompt": "fitted leather adventurer armor",
+        "bonus": {"security":1.3,"adventurer":1.2},
+        "accessories": "a worn blue scarf and a katana at her hip",
+        "accState": "dressed"
       },
       "sp_natsuki": {
         "label": "Summer festival yukata",
@@ -496,7 +518,8 @@
       "hairColor": "dark brown",
       "eyes": "warm brown",
       "skin": "fair",
-      "features": "a beauty mark under her left eye and red lipstick"
+      "features": "a beauty mark under her left eye and red lipstick",
+      "expression": "a warm, teasing smile"
     },
     "under": "lace",
     "underColor": "burgundy",
@@ -517,7 +540,8 @@
         "label": "Date-night dress",
         "style": "Elegant",
         "prompt": "a sleek black off-shoulder dress she bought \"just in case\"",
-        "bonus": {"courtesan":1.2,"noble":1.15}
+        "bonus": {"courtesan":1.2,"noble":1.15},
+        "hairStyle": "long wavy and worn loose"
       }
     },
     "bonds": {"akari":{"v":25,"kind":"home"}},
@@ -578,7 +602,9 @@
       "hairColor": "dyed pink-blonde",
       "eyes": "brown",
       "skin": "fair",
-      "features": "a star-shaped hair clip and a mischievous grin"
+      "accessories": "a star-shaped hair clip",
+      "accState": "always",
+      "expression": "a mischievous grin"
     },
     "under": "lace",
     "underColor": "pink",
@@ -652,7 +678,16 @@
     "partnerTrust": 70,
     "backstory": "Marisol grew up in the Gilded Lantern's ledger room, doing sums on the backs of invoices while her father charmed the front of house. She spotted errors in his books years before he would admit they were there, and has been the unacknowledged accountant of the place ever since. When he vanished he left behind a deed, a debt and a note that said, in full, \"Sorry.\" She hasn't forgiven him, and she hasn't stopped checking the post.",
     "partnerStory": "Marisol's father vanished and left the deed, and the debt, to \"whoever shows up.\" That turned out to be Sam. Instead of fighting him for it, she decided to make sure he doesn't ruin it, and to find out what sort of person inherits a house like this on purpose. So far the answer is: a very tired one, who actually listens when she explains the books.",
-    "design": {"hairStyle":"long curly","hairColor":"dark brown","eyes":"amber","skin":"olive","features":"gold hoop earrings and ink-stained fingers"},
+    "design": {
+      "hairStyle": "long curly",
+      "hairColor": "dark brown",
+      "eyes": "amber",
+      "skin": "olive",
+      "features": "ink-stained fingers",
+      "accessories": "gold hoop earrings",
+      "accState": "always",
+      "expression": "a sharp, charming smile"
+    },
     "under": "lace",
     "underColor": "gold",
     "stats": {"beauty":62,"charm":62,"charisma":73,"refinement":45,"wits":45,"stamina":50,"strength":25,"agility":40},
@@ -665,8 +700,10 @@
       "sig_marisol": {
         "label": "Merchant's daughter dress",
         "style": "Cute",
-        "prompt": "a practical but pretty mustard-yellow dress with a ledger tucked under her arm",
-        "bonus": {"merchant":1.2,"promoter":1.1}
+        "prompt": "a practical but pretty mustard-yellow dress",
+        "bonus": {"merchant":1.2,"promoter":1.1},
+        "accessories": "a leather-bound ledger tucked under her arm",
+        "accState": "dressed"
       },
       "sp_marisol": {
         "label": "Heiress gown",
@@ -728,7 +765,10 @@
       "hairColor": "black",
       "eyes": "dark brown, lined with kohl",
       "skin": "warm brown",
-      "features": "a silver nose stud, black lace chokers and dark plum lipstick"
+      "features": "a silver nose stud and dark plum lipstick",
+      "accessories": "a black lace choker",
+      "accState": "always",
+      "expression": "a cool, deadpan gaze"
     },
     "under": "lace",
     "underColor": "black",
@@ -742,13 +782,13 @@
       "sig_lara": {
         "label": "Black lace maid dress",
         "style": "Elegant",
-        "prompt": "a black lace-trimmed maid dress with a high collar, a velvet choker and platform boots",
+        "prompt": "a black lace-trimmed maid dress with a high collar and platform boots",
         "bonus": {"maid":1.25,"commoner":1.1}
       },
       "sp_lara": {
         "label": "Midnight gown",
         "style": "Elegant",
-        "prompt": "a floor-length black velvet gown with deep plum embroidery, long sleeves and a lace choker",
+        "prompt": "a floor-length black velvet gown with deep plum embroidery and long sleeves",
         "bonus": {"noble":1.2,"courtesan":1.15}
       }
     },
@@ -814,8 +854,10 @@
       "hairColor": "chestnut brown",
       "eyes": "grey-green",
       "skin": "pale",
-      "features": "soft grey wolf ears, a bushy grey tail and round glasses",
-      "gear": "a stack of hand-drawn character sheets"
+      "features": "grey wolf ears and a bushy wolf tail",
+      "accessories": "round glasses",
+      "accState": "always",
+      "expression": "a shy, dreamy smile"
     },
     "under": "silk",
     "underColor": "silver",
@@ -830,7 +872,9 @@
         "label": "Comfy hoodie",
         "style": "Cute",
         "prompt": "an oversized soft grey hoodie with the sleeves over her hands, a short pleated skirt and thigh-high socks",
-        "bonus": {"attendant":1.2,"commoner":1.15}
+        "bonus": {"attendant":1.2,"commoner":1.15},
+        "accessories": "a stack of hand-drawn character sheets",
+        "accState": "dressed"
       },
       "sp_emily": {
         "label": "Character cosplay",
@@ -892,12 +936,13 @@
     "backstory": "Lirael Quill is an elven sorting clerk at the Hollowmere post house, the sort of person who can tell a letter's whole story from its smudges. Years ago, lonely and very young by elven reckoning, she dropped a note addressed to no one into the old enchanted postbox in the alley behind the post house, and got an answer from another lonely teenager named Sam, writing from somewhere that, as far as she could tell, did not exist. For years they wrote about nothing and everything. It was friendship and nothing more: two lonely people with good handwriting. When the replies stopped, she kept the postbox swept anyway.",
     "partnerStory": "The ownership notice for a certain pleasure house crossed Lirael's counter, signed in a hand she would have known anywhere. She read the signature three times, then went to the back room and had a small, private breakdown. Sam is real, he is a few streets away, and he has no idea that someone in this world has been holding his letters for ten years. She has decided to walk into the Lantern and say hello. She has also decided to do it with her shoulders squared and her satchel strap wound round her fingers, because she is an elf, and elves are supposed to be composed, and she is not.",
     "design": {
-      "hairStyle": "long straight hair with a single braid",
+      "hairStyle": "long straight with a single side braid",
       "hairColor": "pale ash blonde",
       "eyes": "grey-green",
       "skin": "fair",
-      "features": "long pointed elf ears and round reading spectacles",
-      "gear": "a worn leather letter satchel"
+      "features": "long pointed elf ears",
+      "accessories": "round reading spectacles",
+      "accState": "always"
     },
     "under": "silk",
     "underColor": "silver",
@@ -911,8 +956,10 @@
       "sig_lirael": {
         "label": "Post house uniform",
         "style": "Elegant",
-        "prompt": "a fitted dark green postal jacket with brass buttons, a pleated skirt and a leather satchel",
-        "bonus": {"attendant":1.2,"merchant":1.1}
+        "prompt": "a fitted dark green postal jacket with brass buttons and a pleated skirt",
+        "bonus": {"attendant":1.2,"merchant":1.1},
+        "accessories": "a worn leather letter satchel",
+        "accState": "dressed"
       },
       "sp_lirael": {
         "label": "Full-moon dress",
@@ -980,8 +1027,9 @@
       "hairColor": "golden blonde",
       "eyes": "bright blue",
       "skin": "fair",
-      "features": "a perfectly level gaze",
-      "gear": "a silver fountain pen clipped to her blouse"
+      "accessories": "a silver fountain pen clipped to her collar",
+      "accState": "dressed",
+      "expression": "a perfectly level gaze"
     },
     "under": "silk",
     "underColor": "white",
@@ -1001,8 +1049,10 @@
       "sp_ella": {
         "label": "Gala gown",
         "style": "Elegant",
-        "prompt": "an elegant midnight-blue gown with a high neck and an open back, gold earrings",
-        "bonus": {"noble":1.25,"courtesan":1.15}
+        "prompt": "an elegant midnight-blue gown with a high neck and an open back",
+        "bonus": {"noble":1.25,"courtesan":1.15},
+        "accessories": "gold drop earrings",
+        "accState": "always"
       }
     },
     "bonds": {"adelheid":{"v":-10,"note":"Two perfectionists, one question: who is more punctual."}},
@@ -1060,11 +1110,12 @@
     "partnerStory": "Ione-7 walked into Hollowmere running on twelve percent charge, with perfect posture, a faint hum and a message she says she was meant to deliver in person: \"You did it.\" She won't say what he did. She does know how he takes his tea, which he has never told anyone, and she sometimes finishes his sentences, then looks stricken, as though she has stepped over a line she can't quite see. She is warm, odd and very sure she is exactly where she is supposed to be.",
     "design": {
       "build": "graceful",
-      "hairStyle": "short silver-white bob with one thin fibre-optic strand",
+      "hairStyle": "short bob",
       "hairColor": "silver-white",
       "eyes": "pale cyan with a faint ring of light",
-      "skin": "porcelain with faint seam lines at the wrists and collarbone",
-      "features": "a small status light at her temple that glows warm gold when she is content"
+      "skin": "porcelain synthetic with faint seam lines at her wrists and collarbone",
+      "features": "a small circular status light at her temple and one thin fibre-optic strand in her hair",
+      "expression": "a calm, attentive expression"
     },
     "under": "plain",
     "underColor": "white",
@@ -1146,7 +1197,8 @@
       "hairColor": "white-gold",
       "eyes": "pale gold",
       "skin": "luminous fair",
-      "features": "large white-feathered wings and a faint warm glow like lantern light behind her head"
+      "features": "large white-feathered wings and a faint warm glow like lantern light behind her head",
+      "expression": "a serene, gentle smile"
     },
     "under": "silk",
     "underColor": "white",
@@ -1160,13 +1212,15 @@
       "sig_anael": {
         "label": "Warden's robes",
         "style": "Elegant",
-        "prompt": "flowing white and gold robes with a lantern-shaped brooch, wings spread behind her",
-        "bonus": {"madame":1.25,"noble":1.2}
+        "prompt": "flowing white and gold robes",
+        "bonus": {"madame":1.25,"noble":1.2},
+        "accessories": "a lantern-shaped gold brooch",
+        "accState": "dressed"
       },
       "sp_anael": {
         "label": "Lamplight gown",
         "style": "Elegant",
-        "prompt": "a soft golden gown with sheer feathered shoulders, a warm glow behind her head",
+        "prompt": "a soft golden gown with sheer feathered shoulders",
         "bonus": {"noble":1.25,"courtesan":1.15}
       }
     },
