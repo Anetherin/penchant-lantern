@@ -5,7 +5,12 @@ import fs from 'node:fs';
 import http from 'node:http';
 import os from 'node:os';
 const require = createRequire(import.meta.url);
-let pw; try { pw = require('playwright'); } catch { pw = require(process.env.PLAYWRIGHT_PATH || '/opt/node-tools/node_modules/playwright'); }
+let pw;
+for (const m of ['playwright', process.env.PLAYWRIGHT_PATH, '/opt/node-tools/node_modules/playwright', path.resolve(process.execPath, '../../lib/node_modules/playwright')]) {
+  if (!m) continue;
+  try { pw = require(m); break; } catch {}
+}
+if (!pw) throw new Error('Cannot find module playwright');
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
 const RUNS = +process.argv[2] || 3, CONC = +process.argv[3] || 3;
 const OUT = process.env.OUT || path.join(os.tmpdir(), 'ngplus-sim.out.json');
@@ -17,7 +22,8 @@ const server = http.createServer((q, r) => {
   r.writeHead(200, {'content-type': TYPES[path.extname(f)] || 'application/octet-stream'}); fs.createReadStream(f).pipe(r);
 }).listen(0);
 const PORT = server.address().port;
-const browser = await pw.chromium.launch({ args:['--no-proxy-server'], executablePath: process.env.CHROME || '/usr/bin/google-chrome' });
+const chromeBin = process.env.CHROME || (fs.existsSync('/usr/bin/google-chrome') ? '/usr/bin/google-chrome' : undefined);
+const browser = await pw.chromium.launch({ args:['--no-proxy-server'], ...(chromeBin ? { executablePath: chromeBin } : {}) });
 
 const BOT = `async (houseId, boon, maxWeeks) => {
   async function boot(){ await new Promise(r => { const t = setInterval(() => { if (typeof SETUP !== 'undefined' && (SETUP || S)) { clearInterval(t); r(); } }, 50); }); }

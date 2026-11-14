@@ -134,13 +134,16 @@ const energyOK = (w, id, floor) => w.race==='demon' && demonFeeds(id) ? w.energy
 // Menu used for must-offer staff: her menu, or what she's comfortable with if she never set one.
 const offeredMenu = w => w.menu.length ? w.menu : getActs().filter(a=>clientStance(w,a.id)==='yes').map(a=>a.id);
 // Would she take this proposition? Returns {kind:'yes'|'alt'|'no', act, why}.
+// Propositions are always active and decided by her willingness (lust, mood, traits, and her job's proposition expectations).
 function propDecide(w, want, X){
-  const BP = BAL.props, must = !!(JOBS[w.job] && JOBS[w.job].must), reck = restless(w) && !has(w,'Devoted'), mode = w.offDuty || 'ask';
+  const BP = BAL.props, must = !!(JOBS[w.job] && JOBS[w.job].must), reck = restless(w) && !has(w,'Devoted');
   let chance;
   if(must) chance = 1;
-  else if(mode==='on') chance = BP.onChance;
-  else if(mode==='off') chance = reck ? BP.offSlip : 0;
-  else { const dr = propDrive(w); chance = clamp(BP.acceptBase + (dr - BP.acceptLustMid)/100 + fxAdd(w,'willing')/100 + (dr >= LUST_EAGER ? BP.acceptEager : 0) + (reck ? BP.acceptReckless : 0), 0.02, 0.95); }
+  else {
+    const dr = propDrive(w), jb = (BP.jobBonus||{})[w.job] ?? 0, minMood = (BP.jobMood||{})[w.job] ?? 45;
+    if(!reck && dr < LUST_EAGER && w.mood < minMood) return {kind:'no', why:'nomood'};
+    chance = clamp(BP.acceptBase + jb + (dr - BP.acceptLustMid)/100 + (w.mood - 50)*0.004 + fxAdd(w,'willing')/100 + (dr >= LUST_EAGER ? BP.acceptEager : 0) + (reck ? BP.acceptReckless : 0), 0.02, 0.95);
+  }
   if(Math.random() >= chance) return {kind:'no', why:'declined'};
   const menu = must ? offeredMenu(w) : w.menu, ok = id => menu.includes(id) && canClient(w,id) && !nim(w,id) && energyOK(w, id, 0.2);
   if(want && ok(want)) return {kind:'yes', act:want};
@@ -332,8 +335,8 @@ function simHouse(h, R){
   X.roomOK = w => has(w,'Exhibitionist') || hr.roomsUsed < hr.roomCap;
   X.useRoom = w => { if(!has(w,'Exhibitionist')) hr.roomsUsed++; };
   hr.tidyFx = hr.tidy0 >= TY.high ? TY.fx.high : hr.tidy0 < TY.bad ? TY.fx.bad : hr.tidy0 < TY.low ? TY.fx.low : null;
-  const repEff = h.rep*0.75 + S.rep*0.25;
-  let dBase = (10 + repEff*0.4 + danceDraw*1.5) * HD.demand * (P.demand + (h.price>=2 ? repEff/250 : 0)) * rnd(0.85,1.15);
+  const repEff = h.rep*0.75 + S.rep*0.25, DM = BAL.demand || {};
+  let dBase = ((DM.base ?? 5) + repEff*(DM.perRep ?? 0.5) + danceDraw*(DM.danceMult ?? 1.5)) * HD.demand * (P.demand + (h.price>=2 ? repEff/250 : 0)) * rnd(0.85,1.15);
   if(HD.haunted) dBase *= 0.45 + Math.min(1, h.rep/(HD.hauntRep||40))*0.8;
   dBase *= (h.bonus&&h.bonus.demand) || 1;
   dBase *= BAL.amenities.decor.demand[h.decor||0] ?? 1;
@@ -594,9 +597,9 @@ function simHouse(h, R){
     }
     if(j==='maid'){ const add = (TY.maidBase + s100(w.tech.service)*TY.maidPerSkill + s100(statOf(w,'agility'))*TY.maidPerAgil) * ob(w,'maid') * jb(w,'maid') * fxMul(w,'tidy') * om; maidAdd += add; pr.tidied = add; grow(w,'service',1.5); statXP(w,'stamina',1.5); statXP(w,'agility',0.3); }
     if(j==='chapel'){   // tends visitors for free (no services); the chapel draws reputation, popularity and donations (balance.json → amenities.chapel)
-      const C = BAL.amenities.chapel, cb = jb(w,'chapel') * ob(w,'chapel'), don = Math.round(visitors * chapelClassMul(X, C) * C.donation * (0.5 + s100(statOf(w,'charm'))/100) * cb * om);
+      const C = BAL.amenities.chapel, rm = w.race==='angel' ? 1 : (C.nonAngelMult ?? 0.5), cb = jb(w,'chapel') * ob(w,'chapel') * rm, don = Math.round(visitors * chapelClassMul(X, C) * C.donation * (0.5 + s100(statOf(w,'charm'))/100) * cb * om);
       hr.income += don; R.led.chapel += don; pr.earned += don; pr.tended = Math.round(visitors * chapelClassMul(X, C)); hr.chapel = (hr.chapel||0) + don;
-      repAdd(h, C.rep * cb); w.popularity = clamp(w.popularity + C.pop); moodAdd(w, C.mood); gainTrust(w, C.trust); grow(w,'service',1); statXP(w,'charm',1); pr.why.push({t:'tended the chapel', good:true});
+      repAdd(h, C.rep * cb); w.popularity = clamp(w.popularity + C.pop * rm); moodAdd(w, C.mood); gainTrust(w, C.trust); grow(w,'service',1); statXP(w,'charm',1); pr.why.push({t:'tended the chapel', good:true});
     }
     if(j==='teacher'){ classroomTeach(h, W, w, pr, R, hr); statXP(w,'wits',1.5); }
     if(j==='security'){ grow(w,'combat',1.5); w.trust = clamp(w.trust+0.3); statXP(w,'agility',0.5); statXP(w,'strength',0.5); }
@@ -615,6 +618,10 @@ function simHouse(h, R){
     if(pr.expectMiss) (pr.notes = pr.notes||[]).push(flavor('expect_miss', w));
     if(JOBS[j].cat!=='escort' || !pr.served){ const t = flavor(j==='promoter' && pr.samples ? 'job_promoter_samples' : j==='bath' && pr.bathJoin ? (pr.moreN ? 'job_bath_more' : 'job_bath_joined') : j==='rest' && w.race==='demon' ? 'job_rest_demon' : 'job_'+j, w); if(t) R.hl.push({wid:w.id, text:t, act:null, scene:'job_'+j, noAi:true, job:true}); }
   });
+  if(h.up.chapel && byJob('chapel').length && !W.some(x=>x.race==='angel' && ['chapel','host','security','maid'].includes(x.job))){
+    const C = BAL.amenities.chapel; X.unsat += Math.abs(C.noAngelSat ?? -8); repAdd(h, C.noAngelRep ?? -0.5);
+    R.lines.push(`🕯️ Visitors to ${h.name}'s chapel were disappointed not to see an angel in the chapel or on the floor.`);
+  }
   // --- tidiness: room services and visitors make a mess, maids clean it up
   // maids pull toward clean with diminishing returns: x (100 - tidiness)/maidEase, at most maidMax (balance.json → tidy)
   if(W.length){ const ease = clamp((100 - hr.tidy0) / (TY.maidEase || 50), 0, TY.maidMax || 1.5); maidAdd *= ease;
@@ -968,6 +975,7 @@ async function repShowSaved(R, wid){
   const w = findAny(wid); if(!w) return;
   for(const [i, h] of R.hl.entries()){
     if(h.wid!==wid) continue;
+    if((REPV && REPV.hide && REPV.hide[wid+'|'+h.scene]) || (S && S.repHide && S.repHide[wid+'|'+h.scene])) continue;
     const box = $('#hl'+i); if(!box || box.dataset.key) continue;
     const cloth = defaultCloth(w, h.scene);
     if(!(await imgGet(imgKey(w, h.scene, cloth))) && !(await imgGet(legacyKey(w, h.scene, cloth)))) continue;

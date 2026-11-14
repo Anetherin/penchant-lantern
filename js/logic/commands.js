@@ -11,9 +11,10 @@ function canDo(w, job){
   if(job==='courtesan' && !getActs().some(a=>clientStance(w,a.id,'courtesan')!=='no')) return `${w.name} isn't comfortable with that yet.`;
   if(J.needs && !h.up[J.needs]) return `${h.name} needs a ${UPGRADES[J.needs].label}.`;
   const used = S.workers.filter(x=>x!==w && x.house===h.id && x.job===job).length, max = slotsFor(h, job);
-  if(used >= max) return `No open ${J.label} positions in ${h.name} (${max}).`;
+  if(used >= max) return max===0 && ECON.slots[job] && ECON.slots[job].byJob ? `Needs a ${JOBS[ECON.slots[job].byJob].label} in ${h.name} first.` : `No open ${J.label} positions in ${h.name} (${max}).`;
   return null;
 }
+function toggleFavorite(id){ const w = findW(id); if(!w || w.key) return; w.favorite = !w.favorite; save(); render(); refreshSheetInfo(); if(typeof NGS!=='undefined' && NGS) ngView(); }
 // Jobs that offer a service menu (courtesans, and the must-offer staff roles).
 const MENU_JOBS = ['courtesan','dancer','bath','host'];
 // First job she can actually take: her preference, then the open-ended ones.
@@ -57,7 +58,7 @@ function hire(id){
   if(S.gold < c.signing) return toast('Not enough gold for the signing bonus.');
   S.gold -= c.signing; S.candidates = S.candidates.filter(x=>x!==c);
   delete c.signing; c.job='rest'; c.contract=12; c.keep=false; c.seen={}; c.house = curH().id;
-  S.workers.push(c); checkUnlocks(true); samXP(3);
+  S.workers.push(c); if(typeof applyAutoTutor==='function') applyAutoTutor(c); checkUnlocks(true); samXP(3);
   note(`${c.name} joins ${curH().name}.`); save(); render();
   if(SET.ai.on && SET.ai.autoBackstory!==false && !c.named && !c.aiBackstory){ c.aiBackstory = true; const tmp = document.createElement('div'); tmp.id='aiTmp'; tmp.style.display='none'; document.body.appendChild(tmp); aiBackstory('aiTmp', c.id).then(()=>tmp.remove()); }
 }
@@ -112,7 +113,6 @@ function buyUpgrade(k){
   else if(k==='incense'){ h.up[k]=true; h.incense='calm'; note(`${h.name}: ${UPGRADES[k].label} built.`); }
   else { h.up[k]=true; note(`${h.name}: ${UPGRADES[k].label} built.`); }
   save(); render();
-  if(k==='bar' && !S.flags.hilde && !isHired('hilde')){ S.flags.hilde=true; EVQ.push(evHilde); runQueue(); }
 }
 // Demolish (balance.json → demolish): knocks down a built amenity, or the last bedroom / staff quarters above the house's starting count.
 // Costs share x the item's base price (no inflation), lowers h.spent by that base price (improvement value for NG+), never refunds.
@@ -163,7 +163,7 @@ function buyHouse(id){
   note(`You now own ${D.name}!`);
   if(!isHired(D.npc)){
     const n = rebirthNamed(makeNamed(D.npc)); n.house = id; n.locked = id; n.contract = 999; n.job = safeJob(n, NAMED[D.npc].job); if(MENU_JOBS.includes(n.job)) n.menu = getActs().filter(a=>clientStance(n,a.id)==='yes').map(a=>a.id);
-    S.workers.push(n); checkUnlocks(true);
+    S.workers.push(n); if(typeof applyAutoTutor==='function') applyAutoTutor(n); checkUnlocks(true);
     EVQ.push(()=>({title:`${D.name}`, who:n.id, scene:'portrait', text:`${n.name} is waiting at the door when Sam arrives with the deed.\n\n${n.backstory}\n\nShe comes with the place.${goddessHouseNote(id)}`, choices:[{label:'Welcome aboard', fx(){ n.trust=clamp(n.trust+5); return ''; }}]}));
   }
   save(); render(); runQueue();

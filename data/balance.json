@@ -275,6 +275,7 @@
     "samplesPopTease": 0.3
   },
   "rooms": {"perRoom":8},
+  "demand": {"base":5,"perRep":0.5,"danceMult":1.5},
   "tidy": {
     "start": 70,
     "perService": 0.5,
@@ -305,6 +306,8 @@
     "acceptLustMid": 40,
     "acceptEager": 0.15,
     "acceptReckless": 0.45,
+    "jobBonus": {"bartender":0.25,"host":0.25,"attendant":0.2,"madame":0.1,"promoter":0.05,"maid":0,"security":-0.2},
+    "jobMood": {"bartender":35,"host":35,"attendant":35,"madame":45,"promoter":45,"maid":55,"security":65},
     "onChance": 0.9,
     "offSlip": 0.35,
     "alt": 0.55,
@@ -499,6 +502,7 @@
   "quarters": {"repPerLevel":25,"moodPer":2},
   "arcs": {"need":[35,42,50,58,66,75],"gap":[1,1,1,2,2,2],"dates":{"2":1,"4":1},"private":{"5":1}},
   "feast": {
+    "perCycle": 0.25,
     "tiers": [
       {
         "id": "supper",
@@ -531,7 +535,17 @@
   "amenities": {
     "raceDraw": 2,
     "sigil": {"samDrain":0.5},
-    "chapel": {"rep":0.3,"pop":2,"donation":1.8,"mood":2,"trust":0.3,"visitorClass":{"pilgrim":1.5,"cleric":1.3}},
+    "chapel": {
+      "rep": 0.3,
+      "pop": 2,
+      "donation": 1.8,
+      "mood": 2,
+      "trust": 0.3,
+      "nonAngelMult": 0.5,
+      "noAngelSat": -8,
+      "noAngelRep": -0.5,
+      "visitorClass": {"pilgrim":1.5,"cleric":1.3}
+    },
     "garden": {"mood":1,"rest":0.05,"elfMult":2},
     "incense": {"beastMult":1.6,"lewdDrop":5,"calm":{"pushy":0.6,"lust":0.8},"aphro":{"lust":1.25,"prop":1.2}},
     "workshop": {"perDwarf":0.04},
@@ -573,7 +587,7 @@
     "kit": {
       "label": "Bartender's Kit",
       "cost": 2500,
-      "carry": true,
+      "carry": false,
       "tool": true,
       "desc": "Proper shakers, a good knife, a bar towel with a history. Tend bar earns x1.3.",
       "fx": {"bartend":0.3}
@@ -581,7 +595,7 @@
     "whistle": {
       "label": "Watchman's Whistle",
       "cost": 2000,
-      "carry": true,
+      "carry": false,
       "tool": true,
       "desc": "Loud enough to end an argument two streets away. Stand watch gives x1.5 security.",
       "fx": {"watch":0.5}
@@ -589,7 +603,7 @@
     "ledger": {
       "label": "Enchanted Ledger",
       "cost": 3000,
-      "carry": true,
+      "carry": false,
       "tool": true,
       "desc": "It adds itself up and sulks when the sums are wrong. Do the books cuts upkeep a further 10 percentage points.",
       "fx": {"books":0.1}
@@ -605,7 +619,7 @@
     "chalkboard": {
       "label": "Slate Chalkboard",
       "cost": 3500,
-      "carry": true,
+      "carry": false,
       "tool": true,
       "desc": "Big enough for the back row and the handouts. Hold a lesson gives x1.3 skill gains.",
       "fx": {"lesson":0.3}
@@ -613,10 +627,42 @@
     "pass": {
       "label": "Guild Hall Pass",
       "cost": 3000,
-      "carry": true,
+      "carry": false,
       "tool": true,
       "desc": "The clerk waves Sam straight to the good noticeboard. Scout recruits finds +1 candidate.",
       "fx": {"scout":1}
+    },
+    "boots": {
+      "label": "Well-Worn Walking Boots",
+      "cost": 2500,
+      "carry": false,
+      "tool": true,
+      "desc": "Resoled by a dwarven cobbler. Sam's work shifts (bar, watch, books, rounds, classes, scouting) and guild visits cost 5 less energy.",
+      "fx": {"workEnergy":5}
+    },
+    "manual": {
+      "label": "Annotated Coaching Manual",
+      "cost": 3000,
+      "carry": false,
+      "tool": true,
+      "desc": "Tabbed pages and margin notes for every exercise. One-on-one coaching, training, practice and demonstrations cost 6 less energy.",
+      "fx": {"trainEnergy":6}
+    },
+    "cloak": {
+      "label": "Evening Outing Cloak",
+      "cost": 2200,
+      "carry": false,
+      "tool": true,
+      "desc": "Warm wool with pockets for theatre tickets and umbrellas. Dates and chats cost 5 less energy.",
+      "fx": {"dateEnergy":5}
+    },
+    "tonic": {
+      "label": "Apothecary's Stamina Tonic",
+      "cost": 3500,
+      "carry": false,
+      "tool": true,
+      "desc": "A discreet brown bottle that tastes terrible and works wonders. Private time costs 6 less energy, and group nights cost 4 less energy per lady.",
+      "fx": {"privEnergy":6,"orgyEnergy":4}
     }
   },
   "samCloth": {

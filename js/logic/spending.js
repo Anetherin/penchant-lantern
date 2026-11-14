@@ -40,11 +40,19 @@ function tutorGroups(){
   [...new Set(S.workers.map(w=>w.job))].filter(j=>JOBS[j]).forEach(j=>G.push(['j:'+j, 'Job: '+JOBS[j].label]));
   return G;
 }
-function tutorGroupList(g){
-  return S.workers.filter(w=>(!g.includes(':') && rosterTypeIs(w, g))
-    || (g.startsWith('h:') && w.house===g.slice(2)) || (g.startsWith('j:') && w.job===g.slice(2)));
+function tutorGroupMatch(w, g){
+  return (!g.includes(':') && rosterTypeIs(w, g)) || (g.startsWith('h:') && w.house===g.slice(2)) || (g.startsWith('j:') && w.job===g.slice(2));
 }
-function tutorAllMenu(){ TUT_ALL = TUT_ALL || {g:'all', focus:'job', tier:Object.keys(BAL.tutor.tiers)[0]}; tutorAllDraw(); }
+function tutorGroupList(g){ return S.workers.filter(w=>tutorGroupMatch(w, g)); }
+function applyAutoTutor(w){
+  const A = S && S.autoTutor; if(!A || !A.on || !TUTOR_FOCUS[A.focus]) return;
+  if(tutorGroupMatch(w, A.g || 'all')){ w.tutor = A.focus; if(BAL.tutor.tiers[A.tier]) w.tutorTier = A.tier; }
+}
+function tutorAllMenu(){
+  const cur = (S && S.autoTutor) || {};
+  TUT_ALL = TUT_ALL || {g: cur.g || 'all', focus: cur.focus || 'job', tier: cur.tier || Object.keys(BAL.tutor.tiers)[0], auto: !!cur.on};
+  tutorAllDraw();
+}
 function tutorAllSet(k, v){ if(!TUT_ALL) return; TUT_ALL[k] = v; tutorAllDraw(); }
 function tutorAllDraw(){
   const A = TUT_ALL, list = tutorGroupList(A.g), T = BAL.tutor, on = S.workers.filter(w=>TUTOR_FOCUS[w.tutor]);
@@ -54,14 +62,16 @@ function tutorAllDraw(){
     <div class="row"><label>Who ${sel('g', tutorGroups())}</label></div>
     <div class="row"><label>Focus ${sel('focus', [['','None (stop tutoring)'], ...Object.entries(TUTOR_FOCUS)])}</label>
       <label>Tutor ${sel('tier', Object.entries(T.tiers).map(([k,t])=>[k, t.label]))}</label></div>
+    <label class="chk"><input type="checkbox" ${A.auto?'checked':''} onchange="tutorAllSet('auto',this.checked)"> Apply these tutor settings to new recruits automatically</label>
     <p>${list.length ? list.map(w=>esc(w.name.split(' ')[0])).join(', ') : '<span class="muted">Nobody in this group.</span>'}</p>
     <p class="muted">${A.focus ? `${list.length} lad${list.length===1?'y':'ies'} · ${fmt(cost)}/wk for this group.` : 'Their tutoring stops.'} Right now ${on.length} lad${on.length===1?'y has':'ies have'} a tutor (${fmt(on.reduce((a,w)=>a+tutorCost(w),0))}/wk).</p>
-    <div class="row"><button class="primary" ${list.length?'':'disabled'} onclick="tutorAllApply()">Apply</button><button onclick="TUT_ALL=null;closeModal()">Back</button></div>`);
+    <div class="row"><button class="primary" ${list.length||A.auto!==!!(S.autoTutor&&S.autoTutor.on)?'':'disabled'} onclick="tutorAllApply()">Apply</button><button onclick="TUT_ALL=null;closeModal()">Back</button></div>`);
 }
 function tutorAllApply(){
   const A = TUT_ALL; if(!A) return; const list = tutorGroupList(A.g);
   list.forEach(w=>{ w.tutor = TUTOR_FOCUS[A.focus] ? A.focus : null; if(BAL.tutor.tiers[A.tier]) w.tutorTier = A.tier; });
-  toast(A.focus ? `Tutors booked for ${list.length} lad${list.length===1?'y':'ies'}.` : `Tutoring stopped for ${list.length} lad${list.length===1?'y':'ies'}.`);
+  S.autoTutor = A.auto && TUTOR_FOCUS[A.focus] ? {on:true, g:A.g, focus:A.focus, tier:A.tier} : null;
+  toast(A.focus ? `Tutors booked for ${list.length} lad${list.length===1?'y':'ies'}${S.autoTutor?' (and new recruits)':''}.` : `Tutoring stopped for ${list.length} lad${list.length===1?'y':'ies'}.`);
   TUT_ALL = null; save(); closeModal(); render();
 }
 // Run from endWeek after the purse is settled. Pays each lady's tutor if it can, applies the week's lessons.

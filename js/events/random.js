@@ -253,12 +253,6 @@ function evStrike(){
     text: s>=(BAL.debt.strikes||3) ? `Marguerite Vane adjusts her monocle. "Three strikes, Mr. Takahashi. Your properties now belong to the Credit House."` : `Marguerite Vane adjusts her monocle. "You've missed a payment, Mr. Takahashi. Strike ${s} of three. The shortfall carries over, with interest. I'd hate to see you on the street. Truly."`,
     choices:[{label: s>=(BAL.debt.strikes||3)?'...':'Understood', fx(){ return ''; }}]};
 }
-function evHilde(){
-  const h = makeNamed('hilde'); NPCS[h.id] = h;
-  return {title:'A Dwarf at the Bar', who:h.id, scene:'portrait', text:`The new bar isn't even finished when a red-braided dwarf walks in, inspects the taps, and declares them adequate. "Hilde Ironsong. I need a bar, you have a bar. I'll work for wages. No bonus."`, choices:[
-    {label:'Hire her on the spot', fx(){ h.job='bartender'; h.contract=12; h.house=curH().id; S.workers.push(h); delete NPCS[h.id]; checkUnlocks(true); return 'Hilde rolls up her sleeves. The bar is open.'; }},
-    {label:'Maybe later', fx(){ h.signing=0; S.candidates.push(h); delete NPCS[h.id]; return 'She leaves her name at the front desk. (Added to candidates.)'; }}]};
-}
 function checkEnd(){
   if(!S) return;
   if(S.debt.strikes>=(BAL.debt.strikes||3) && !S.over){

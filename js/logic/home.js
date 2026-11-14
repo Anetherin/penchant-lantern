@@ -25,12 +25,13 @@ function buySamUp(k){
   S.gold -= u.cost; S.samUps = S.samUps || {}; S.samUps[k] = true;
   toast(`Bought: ${u.label}`); save(); render();
 }
+const feastCost = t => Math.round(t.cost * cycleMul(BAL.feast.perCycle));
 // One feast at house h (shared by the button and the weekly auto-feast). Returns {t, n, total, tr} or an error string.
 function feastAt(h, t){
   if(h.feastWk === S.week) return 'This house already feasted this week.';
   const L = S.workers.filter(w=>w.house===h.id);
   if(!L.length) return 'Nobody lives here to feast.';
-  const total = t.cost * L.length;
+  const total = feastCost(t) * L.length;
   if(S.gold < total) return 'Not enough gold.';
   S.gold -= total; h.feastWk = S.week;
   let tr = 0;
@@ -51,7 +52,7 @@ function autoFeasts(R){
   S.houses.forEach(h=>{
     const t = h.autoFeast && BAL.feast.tiers.find(x=>x.id===h.autoFeast); if(!t || h.feastWk === S.week) return;
     const r = feastAt(h, t);
-    if(typeof r === 'string'){ if(r==='Not enough gold.') R.lines.push(`🍽️ Auto-feast at ${h.name} skipped: not enough gold for a ${t.label.toLowerCase()} (${fmt(t.cost*S.workers.filter(w=>w.house===h.id).length)}).`); return; }
+    if(typeof r === 'string'){ if(r==='Not enough gold.') R.lines.push(`🍽️ Auto-feast at ${h.name} skipped: not enough gold for a ${t.label.toLowerCase()} (${fmt(feastCost(t)*S.workers.filter(w=>w.house===h.id).length)}).`); return; }
     R.lines.push(`🍽️ Auto-feast: ${t.label} at ${h.name} (${r.n} ladies, trust ${tDelta(r.tr/r.n)} and mood +${t.mood} each, −${fmt(r.total)}).`);
   });
 }
