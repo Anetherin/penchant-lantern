@@ -4,6 +4,11 @@
       "title": "Commoner Tea",
       "scene": "sam_date",
       "text": "You find Rhoswen on the back porch after dusk, balancing a chipped ceramic mug of cheap street tea on her knee while her leather notebook rests open beside her. Her silver circlet sits on the table instead of her platinum hair, and her long pointed ears flick toward you as the screen door creaks. \"I bought it from the dockside cart,\" she announces with immense pride, holding up a crumpled paper bag of fried dough. \"At court, tea takes forty minutes and three spoons. Out here you simply hold the warm cup. May I write down that it tastes better?\"",
+      "ngpp": [
+        "Her pointed ears twitch faintly as you step onto the porch, as though she half-expected the exact weight of your footstep on that loose plank.",
+        "\"Strange,\" she murmurs, glancing from the dockside pastry bag to your face. \"I reached for cheap fried dough on pure instinct, as though someone once convinced me it was worth a kingdom.\"",
+        "\"Look at me sitting barefoot with dockside tea,\" Rhoswen says softly, emerald eyes searching yours. \"My notebook is blank, yet I swear we have shared this exact quiet porch a lifetime ago, Sam.\""
+      ],
       "choices": [
         {
           "label": "Sit beside her and share the paper bag",
@@ -28,6 +33,49 @@
       "title": "Margin Notes",
       "scene": "shower",
       "text": "You knock once on the washroom door—mostly—and push it open to find Rhoswen kneeling beside the steaming tub, hair pinned hastily up, squinting at a damp page of her journal while scrubbing soap out of her sleeve. She freezes, towel slipping an inch off one pale shoulder, emerald eyes wide. \"I dropped it in the bathwater,\" she says weakly, as though caught committing treason. \"The ink under 'Propriety' has bled straight into 'Breakfast.'\"",
+      "byIntim": {
+        "1": {
+          "text": "You open the washroom door to find Rhoswen perched on the bath rim, damp platinum locks pinned high, setting her soaked notebook safely onto the stool when she hears your step. Her pale towel slips neatly off one shoulder, emerald eyes warming beneath pink-tipped ears. \"Propriety seems utterly ruined already,\" she murmurs softly. \"Care to help dry my shoulders instead, Sam?\"",
+          "choices": [
+            {
+              "label": "Step into the steam and trace dry warmth across her shoulders",
+              "t": 4,
+              "m": 8,
+              "l": 2,
+              "private": true,
+              "acts": ["kiss", "massage_give"],
+              "res": "Her pointed ears flush scarlet as her head tilts gently back into your palm."
+            },
+            {
+              "label": "Pass her a dry towel and tease her about wet ink",
+              "t": 2,
+              "m": 4,
+              "res": "\"I shall switch to charcoal tomorrow,\" she retorts softly, smiling after you."
+            }
+          ]
+        },
+        "3": {
+          "text": "You push the washroom door open to find Rhoswen already rising from the steaming tub without a shred of courtly hurry—bare pale skin glistening, wet platinum hair clinging to her collar, long elven ears tipped bright rose. She sets the towel deliberately onto the chair and turns toward you with quiet daring. \"No notebook today,\" she whispers, holding out one wet hand. \"Come test empirical warmth with me in the water.\"",
+          "choices": [
+            {
+              "label": "Bolster the latch and join her inside the bath",
+              "t": 5,
+              "m": 10,
+              "l": 4,
+              "private": true,
+              "acts": ["sex_vaginal", "oral_give", "handjob"],
+              "res": "She exhales softly as you pull her bare, slick waist against you beneath the hot water."
+            },
+            {
+              "label": "Wrap her in warm linen and kiss down her throat",
+              "t": 4,
+              "m": 7,
+              "l": 2,
+              "res": "She shivers in the damp towel, fingers tangling straight into your collar."
+            }
+          ]
+        }
+      },
       "choices": [
         {
           "label": "Apologize and step back out",
@@ -92,6 +140,11 @@
       "title": "The Courier's Seal",
       "scene": "portrait",
       "text": "An elven courier in silver-trimmed livery waits in the entryway with a wax-sealed scroll bearing her house's stag crest. Rhoswen reads it once in silence, her posture snapping back into rigid court lines until her knuckles turn white around the parchment. Her father has learned where she works—and the carriage home leaves at dawn if she wishes her name scrubbed from the scandal sheets. When the courier steps outside for an answer, Rhoswen turns to you with careful, brittle calm. \"I should not bring trouble to your door.\"",
+      "ngpp": [
+        "Even before breaking her father's stag seal, her chin lifts instinctively—almost like she already spoke her refusal once before.",
+        "\"Weird,\" she murmurs, twisting the torn parchment ribbon. \"My chest does not even hesitate. Why does this silver livery look smaller to me than it used to?\"",
+        "\"Two centuries of high-court fear,\" she breathes softly, turning the crest over in steady fingers. \"And my heart already knows which doorway is home before you speak, Sam.\""
+      ],
       "choices": [
         {
           "label": "\"Stay only if you want to—this house can handle scandal.\"",
@@ -131,6 +184,16 @@
           "res": "She catches her breath as your lips brush her knuckles, then closes the notebook with one slow finger. \"You may read as far as you like.\""
         },
         {
+          "label": "Shut the notebook and take her straight back to your bedroom",
+          "if": {"canAct": ["sex_vaginal", "oral_give", "kiss"]},
+          "t": 6,
+          "m": 9,
+          "l": 3,
+          "private": true,
+          "acts": ["sex_vaginal", "oral_give", "kiss"],
+          "res": "Wine glasses stay abandoned on the parapet as her trembling smile breaks into an eager nod."
+        },
+        {
           "label": "Ask what comes on the next page",
           "t": 5,
           "m": 7,
@@ -147,6 +210,12 @@
       "title": "Beyond the Text",
       "scene": "final",
       "text": "In the quiet room at the end of the hall, Rhoswen unclasps her silver circlet and sets it cleanly beside her closed notebook on the bedside table. No pages open tonight, no pen in reach—just platinum hair spilling across bare shoulders as she steps into your arms, steady and deliberate. \"I left a court because every day was already written for me,\" she whispers against your mouth, hands sliding firmly behind your neck. \"You are the only chapter I never want to edit. Let me belong here—with you.\"",
+      "ngpp": [
+        "Even setting her silver circlet aside tonight carries an uncanny rhythm, like muscle memory returning from a dream.",
+        "\"Strange,\" she whispers against your collarbone, \"I unclasped this crown as if I had sworn off marble courts for you once already.\"",
+        "\"Whatever goddess rewrote our pages,\" Rhoswen breathes into your mouth, holding you fast, \"she couldn't erase the warmth of this room. Stay my unwritten chapter forever, Sam.\""
+      ],
+      "goLead": "You pull Rhoswen gently back onto the pillows while platinum hair fans across your wrists; no elven etiquette survives the first unhurried press of your mouths.",
       "choices": [
         {"label":"Say yes","t":6,"m":12,"res":""},
         {

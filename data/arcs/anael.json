@@ -4,6 +4,11 @@
       "title": "Lamplighter",
       "scene": "sam_date",
       "text": "At dusk Anael walks the street with you, lighting lanterns with a touch of her fingers, her white wings folded neatly behind her and the flames blooming one by one in her wake. She tells you, plainly, that the old Lantern Stone burned for the first time in four centuries on the night you arrived, and that the Order sent her to find out why. \"I have concluded,\" she says, \"that it was you.\" You say that's absurd. \"I know,\" says Anael, with a small, helpless smile. \"I have run out of other explanations.\"",
+      "ngpp": [
+        "Even before her fingertip touches the brass wick, the streetlamp catches a faint ember and makes her wings twitch in brief puzzlement.",
+        "\"Strange,\" Anael murmurs, pausing mid-stride. \"The Lantern Stone has not merely sparked this evening—it answered me before I spoke your name.\"",
+        "Her golden eyes hold yours longer than duty allows. \"My report says we only just met tonight, Sam. Yet every flame along this lane already knows your step beside mine.\""
+      ],
       "choices": [
         {
           "label": "\"I'm glad it was me.\"",
@@ -28,6 +33,49 @@
       "title": "Not the Wings",
       "scene": "shower",
       "text": "You open the washroom door to find Anael perched on the edge of the tub, wings dripping onto the tiles, wrapped in a towel and a deep, full-body blush. Her halo has dimmed to a candle-glow in the steam. \"The Order does not prepare one,\" she says with enormous dignity, \"for the maintenance of plumage.\" She draws one wing in front of her like a shield. \"Do not touch the wings. It is... impolite.\"",
+      "byIntim": {
+        "1": {
+          "text": "You open the washroom door to find Anael perched on the bath rim, wet feathers heavy with steam and a deep blush creeping past her collarbone. Instead of raising a wing like a shield, she parts the white plumage slightly, halo pulsing warm amber. \"It is still considered... terribly improper,\" she whispers, shy yet trusting as she holds out a dry linen cloth toward you. \"Yet I would not mind if your hands were the ones drying them.\"",
+          "choices": [
+            {
+              "label": "Kneel behind her and dry her wings slowly",
+              "t": 4,
+              "m": 8,
+              "l": 2,
+              "private": true,
+              "acts": ["massage_give", "kiss"],
+              "res": "A shiver runs down every primary feather as your palms trace the warm curve of her wing-joint."
+            },
+            {
+              "label": "Hand her the dry towel and step out gently",
+              "t": 2,
+              "m": 4,
+              "res": "\"Thank you, Sam,\" she breathes, pressing the linen tightly to her glowing throat."
+            }
+          ]
+        },
+        "3": {
+          "text": "You push the washroom door open to find Anael standing ankle-deep beside the steaming bath, the damp towel already laid neatly on the stool while golden halo-light spills across bare curves and silver-white feathers. She turns cleanly toward you, trembling slightly yet unashamed, wings spreading just wide enough to invite you between them. \"Protocol left this house long ago,\" she whispers softly. \"Come into the warm water with me.\"",
+          "choices": [
+            {
+              "label": "Step into the steam and draw her into the bath",
+              "t": 5,
+              "m": 10,
+              "l": 4,
+              "private": true,
+              "acts": ["sex_vaginal", "oral_give", "kiss"],
+              "res": "Warm white wings fold instinctively around your back as she pulls you down into the water with her."
+            },
+            {
+              "label": "Kiss her bare shoulder and wash the soap from her feathers",
+              "t": 4,
+              "m": 7,
+              "l": 2,
+              "res": "She leans back against your chest with a long, helpless sigh, her halo dimming to warm ember."
+            }
+          ]
+        }
+      },
       "choices": [
         {
           "label": "Apologize and back out",
@@ -71,7 +119,17 @@
           "label": "Stay with her",
           "t": 5,
           "m": 8,
-          "res": "You share the pie. She feeds you a bite, solemnly, as though it were a sacrament, and purple juice stains her lip, and something warm settles over them both."
+          "res": "You share the pie. She feeds you a bite, solemnly, as though it were a sacrament, and purple juice stains her lip, and something warm settles over you both."
+        },
+        {
+          "label": "Thumb the berry stain off her lip and take her upstairs",
+          "if": {"canAct": ["kiss", "oral_give", "sex_vaginal"]},
+          "t": 5,
+          "m": 8,
+          "l": 2,
+          "private": true,
+          "acts": ["kiss", "oral_give", "sex_vaginal"],
+          "res": "Her halo flares warm amber the second your thumb brushes her berry-sweet lower lip."
         },
         {
           "label": "Order a second slice",
@@ -90,6 +148,11 @@
       "title": "Recall",
       "scene": "portrait",
       "text": "A second angel, tall and stern, appears in the courtyard with a sealed scroll, the lamps flaring white at her presence. The Order has completed its review. Anael is recalled to the Quiet Lamp at the next new moon. She takes the scroll with perfect composure and tucks it into her sleeve, and the stern angel departs in a rush of feathers. That night Anael stands at your door, wings drooping, one hand raised to knock, and does not knock.",
+      "ngpp": [
+        "Looking down at the red seal in the corridor, she shivers slightly, as though she has already heard herself refuse it once.",
+        "\"I have not written the reply yet,\" she murmurs at your threshold, \"and yet my hand remembers the exact line I mean to send.\"",
+        "\"Four centuries of law,\" she whispers against your sleeve, wings trembling, \"and all I can feel in my bones is how fiercely I chose your doorway over theirs before.\""
+      ],
       "choices": [
         {
           "label": "\"Go, if it's your duty.\"",
@@ -125,7 +188,7 @@
           "label": "Keep humming",
           "t": 5,
           "m": 8,
-          "res": "They finish the evensong together, one voice shining and one decidedly flat. It is the best she has ever heard it, and she says so, tears on her cheeks."
+          "res": "You finish the evensong together, one voice shining and one decidedly flat. It is the best she has ever heard it, and she says so, tears on her cheeks."
         },
         {
           "label": "Listen in silence",
@@ -143,7 +206,13 @@
     {
       "title": "Report Withheld",
       "scene": "final",
-      "text": "Anael finds you on the roof under the stars, the whole sleeping town laid out below them in lantern light. She opens her wings and then folds them around both of them, feathers warm and impossibly soft. \"I have been asked to report on whether this soul is a danger to the world,\" she says. \"I find that he is a danger only to my composure.\" She meets your eyes, golden and brave. \"I would like to stay. Not as a Warden. As yourself.\" The door closes behind them.",
+      "text": "Anael finds you on the roof under the stars, the whole sleeping town laid out below you both in lantern light. She opens her wings and then folds them around both of you, feathers warm and impossibly soft. \"I have been asked to report on whether this soul is a danger to the world,\" she says. \"I find that he is a danger only to my composure.\" She meets your eyes, golden and brave. \"I would like to stay. Not as a Warden. As yours.\" Downstairs, your door closes behind you both.",
+      "ngpp": [
+        "As her wings gather warmth around your shoulders, a sudden stillness crosses her face, as though this starlit sanctuary already knew your names.",
+        "\"The Lantern Stone burned twice as bright tonight,\" she whispers against your temple, halo soft as candlelight. \"Almost as if it remembered how this night ends.\"",
+        "\"Every memory swept clean,\" Anael murmurs, golden eyes shimmering as her wings lock around you, \"yet my feathers still remember every shiver of yours, Sam. Choose me again.\""
+      ],
+      "goLead": "You take Anael's hand and guide her down the attic stair to your bed, where white wings spread wide against the pillows and every sacred boundary melts in candlelight.",
       "choices": [
         {"label":"Say yes","t":6,"m":12,"res":""},
         {

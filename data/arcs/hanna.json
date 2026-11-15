@@ -3,7 +3,12 @@
     {
       "title": "The Off-Duty Ledger",
       "scene": "sam_date",
-      "text": "Hanna traps you at a corner bakery table with two mugs of cider and a thick sheaf of folded guild forms she has annotated in bright blue ink. Half the pages are real bounty tallies; the other half turn out to be a hand-drawn seating chart of which adventurers tip best, which merchants blush when complimented, and a tiny margin doodle of your hoodie marked \"Terrible disguise, 10/10 charm.\" She catches you reading upside down and snaps the paper flat, freckles flushing bright across her nose. \"Trade secrets! Eyes on your pastry, boss!\"",
+      "text": "Hanna traps you at a corner bakery table with two mugs of cider and a thick sheaf of folded guild forms she has annotated in bright blue ink. Half the pages are real bounty tallies; the other half turn out to be a hand-drawn seating chart of which adventurers tip best, which merchants blush when complimented, and a tiny margin doodle of your hoodie marked \"Terrible disguise, 10/10 charm.\" She catches you reading upside down and snaps the paper flat, freckles flushing bright across her nose. \"Trade secrets! Eyes on your pastry, Sam!\"",
+      "ngpp": [
+        "Right next to the hoodie doodle she pauses with a sudden squint, muttering that she could've sworn she drew a little lantern beside it before.",
+        "\"Okay, creepy question,\" she mutters over her cider, squinting at her own ink. \"Did I already tell you that hoodie disguise joke? Why'd my hand write 'still 10/10' under it?\"",
+        "\"Don't laugh,\" she says softly, sliding the blue-ink ledger halfway toward you. \"Every page in this stack feels like notes from a life we already lived, Sam. Tell me I'm not losing it.\""
+      ],
       "choices": [
         {
           "label": "Demand to see the rest of your margin notes",
@@ -28,6 +33,49 @@
       "title": "Filing Error",
       "scene": "shower",
       "text": "You open the washroom door assuming nobody's inside—and find Hanna perched on the tub rim wrapped in a thin towel, one damp blonde curl plastered over her eyebrow while she dries a stack of soaked index cards over a candle stub. She yelps, nearly drops the cards into the bathwater, and then narrows her eyes at you with pure theatrical indignation. \"Knock much?! And before you ask—no, these aren't about you. Mostly.\"",
+      "byIntim": {
+        "1": {
+          "text": "You push open the washroom door and find Hanna sitting sideways on the bath rim wrapped in a short towel, damp curls clinging to her freckles while she sets her dry stack of cards down cleanly. Instead of yelping, she flashes a sly, breathless grin and hooks one finger through your hoodie pocket. \"Terrible timing, Sam—unless you're finally collecting on that proper live interview?\"",
+          "choices": [
+            {
+              "label": "Step into the steam and claim her live interview at the tub rim",
+              "t": 4,
+              "m": 8,
+              "l": 2,
+              "private": true,
+              "acts": ["kiss", "handjob"],
+              "res": "\"Best filing error all week,\" she breathes as your mouth finds hers through the steam."
+            },
+            {
+              "label": "Leave her to dry her cards with a promise for later",
+              "t": 2,
+              "m": 4,
+              "res": "\"I'm holding you to that after hours,\" she calls brightly behind the latch."
+            }
+          ]
+        },
+        "3": {
+          "text": "You open the washroom door to find Hanna up to her chest in hot bubbles, wet golden hair piled loosely with one stray curl over her grin. Seeing you, she hooks one bare foot up against the doorjamb, kicks the brass latch shut herself, and reaches cleanly out of the foam. \"Knock? Please—you already know the bath schedule by heart, Sam. Drop the shirt and get in here before the water cools.\"",
+          "choices": [
+            {
+              "label": "Climb straight into the steaming bath under her",
+              "t": 5,
+              "m": 10,
+              "l": 4,
+              "private": true,
+              "acts": ["sex_ride", "sex_vaginal", "oral_give"],
+              "res": "She laughs softly against your lips as her slick thighs settle astride your hips in the bubbles."
+            },
+            {
+              "label": "Wash the soap across her shoulders and tease her about gossip",
+              "t": 4,
+              "m": 7,
+              "l": 2,
+              "res": "She melts back against your chest with a happy groan. \"Okay, better than any ledger.\""
+            }
+          ]
+        }
+      },
       "choices": [
         {
           "label": "Apologize and shut the door fast",
@@ -76,6 +124,16 @@
           "res": "Her fingers curl into your shirt at once, freckles glowing in the amber light. \"Yeah,\" she whispers, leaning forward until her forehead rests against your chin. \"Like that.\""
         },
         {
+          "label": "Lock the front bolt and lift her onto the empty bar",
+          "if": {"canAct": ["sex_vaginal", "oral_give", "handjob"]},
+          "t": 5,
+          "m": 9,
+          "l": 3,
+          "private": true,
+          "acts": ["oral_give", "sex_vaginal", "handjob"],
+          "res": "Brass coins clatter across the counter as she hooks her ankles straight behind your waist."
+        },
+        {
           "label": "Pour two nightcaps and stay by the counter",
           "t": 4,
           "m": 7,
@@ -92,12 +150,17 @@
       "title": "Head Clerkship",
       "scene": "portrait",
       "text": "An official messenger from the Adventurers' Guild stops by before noon with an offer stamped in red wax: the Guild's head clerk just retired, and the Guildmaster wants Hanna back—double her old pay, her own corner office, and a seat on the trade council. Hanna reads the letter twice on the front steps, twirling her pencil between her knuckles until it snaps cleanly in half. She looks up at you, all teasing gone for once. \"It's everything I thought I wanted two years ago,\" she says softly. \"Say the word, Sam—what do you think I should do?\"",
+      "ngpp": [
+        "Staring at the red wax seal, she snaps her pencil right on beat—then blinks down at the wood as though remembering the exact crack.",
+        "\"Weirdest déjà vu,\" she mutters softly over the offer letter. \"Why does double pay already sound like bad news compared to staying on your porch?\"",
+        "\"Look at me holding a fancy corner-office scroll and already tearing the corner,\" she says quietly, freckles warm. \"I already chose you over that marble desk once, Sam. Didn't even have to think.\""
+      ],
       "choices": [
         {
           "label": "\"I'd hate to lose you, yet I won't hold you back.\"",
           "t": 4,
           "m": 2,
-          "res": "Hanna exhales slowly, then laughs—a little wetly—and crumples the red-wax offer into her pocket. \"Good answer, boss. Mostly because I'd already decided not to go.\""
+          "res": "Hanna exhales slowly, then laughs—a little wetly—and crumples the red-wax offer into her pocket. \"Good answer, Sam. Mostly because I'd already decided not to go.\""
         },
         {
           "label": "\"Stay here with me. This place isn't half as bright without you.\"",
@@ -147,6 +210,12 @@
       "title": "Front Page",
       "scene": "final",
       "text": "Hanna shuts your bedroom door with her heel and leans against it, wearing nothing but your spare oversized shirt and a breathless, bright-eyed grin that sends heat straight through your chest. She crosses the rug in four steps, climbs straight onto your lap on the edge of the bed, and frames your face between warm palms. \"No more margin notes, no more rumors, no more standing behind somebody else's counter,\" she whispers, pressing her forehead to yours as her hips settle firmly against yours. \"I want the whole thing, Sam—every week, every cycle, no secrets left. Tell me I'm yours.\"",
+      "ngpp": [
+        "Even buttoned in nothing but your oversized shirt, she pauses mid-stride across the rug, shivering with a sudden flash of heat she can't explain.",
+        "\"Okay, laugh at me,\" she breathes right against your chin, hips rocking gently in your lap. \"Why does straddling you in this shirt already feel like my favorite habit?\"",
+        "\"Reset the cycle all she wants,\" Hanna whispers fiercely, unbuttoning the stolen shirt right in your palms. \"My body never forgot this bed, Sam. Claim me front page tonight.\""
+      ],
+      "goLead": "You peel your oversized shirt cleanly off Hanna's freckled shoulders and lay her back into the sheets, where her bright laughter catches instantly into low, eager gasps against your throat.",
       "choices": [
         {"label":"Say yes","t":6,"m":12,"res":""},
         {

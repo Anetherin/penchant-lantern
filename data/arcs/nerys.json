@@ -4,12 +4,17 @@
       "title": "Inconvenient Feelings",
       "scene": "sam_date",
       "text": "Nerys complains, at length, that the contract makes her feel it when you are sad, a cold little ache under her ribs like a clause she never wrote. \"It's very inconvenient. Stop being sad.\" Her tail lashes the cushion in irritation. Then she sits down next to you on the lounge sofa, thigh to thigh, wings folded tight, and stays until you aren't.",
+      "ngpp": [
+        "Mid-scowl, she blinks down at your wrist as though confused why curling her tail around your ankle felt automatic.",
+        "\"Honestly, Sam—why do I feel like we've sat on this exact lumpy sofa negotiating feelings already?\"",
+        "\"Spare me the stoic act,\" Nerys murmurs, hooking her tail firmly around your ankle without pretending otherwise. \"I don't care which cycle wrote the fine print, I hate seeing you grim.\""
+      ],
       "choices": [
         {
           "label": "Let her sit there and stay quiet",
           "t": 5,
           "m": 8,
-          "res": "They sit in silence long enough for the candles to gutter. She keeps muttering that she's only doing this for her own comfort. Her tail wraps lightly around your ankle."
+          "res": "You sit in silence long enough for the candles to gutter. She keeps muttering that she's only doing this for her own comfort. Her tail wraps lightly around your ankle."
         },
         {
           "label": "Tell her sadness is non-negotiable",
@@ -28,6 +33,53 @@
       "title": "Oops",
       "scene": "shower",
       "text": "You open the washroom door to find Nerys lounging in the tub, steam clinging to her violet hair, bat wings draped over the rim, very obviously waiting. \"Oops,\" she says, not moving at all, one slender tail tip dipping in the water to draw lazy circles.",
+      "byIntim": {
+        "1": {
+          "text": "You open the washroom door to find Nerys perched along the steaming cedar rim in a sheer towel that hides almost nothing, violet hair clinging damply to bare shoulders while her tail taps an unhurried invitation against the wood. \"Careful,\" she purrs, sliding a hand up her wet collarbone as crimson eyes catch yours. \"Keep staring like that, darling, and I might charge you a kiss for admission.\"",
+          "choices": [
+            {
+              "label": "Step close and collect your admission across the bath rim",
+              "t": 4,
+              "m": 8,
+              "l": 2,
+              "private": true,
+              "acts": ["kiss", "massage_give"],
+              "res": "She arches smoothly into your hands as steam curls around her wings."
+            },
+            {
+              "label": "Leave her a dry towel and a promise for later",
+              "t": 2,
+              "m": 4,
+              "res": "\"Tease,\" she mutters softly, tail flicking lazily back into the foam."
+            }
+          ]
+        },
+        "3": {
+          "title": "Contract Benefit",
+          "scene": "bath",
+          "text": "Nerys doesn't even pretend it was an accident this time. Steam clings to bare plum-toned curves as she reclines across the hot tub with her bat wings draped over the rim, lazily dragging one wet finger up her thigh. \"You knocked late, darling,\" she purrs, violet eyes gleaming. \"Come earn your signature in hot water.\"",
+          "choices": [
+            {
+              "label": "Step into the tub and take what she's offering",
+              "t": 5,
+              "m": 10,
+              "l": 4,
+              "private": true,
+              "acts": ["sex_ride", "oral_give", "sex_vaginal"],
+              "res": "She hooks her tail straight around your belt and hauls you half-dressed over the wood rim until you shed everything and sink right between her parted thighs in the steaming water."
+            },
+            {
+              "label": "Tease her slowly with soap and warm water",
+              "t": 3,
+              "m": 8,
+              "l": 2,
+              "private": true,
+              "acts": ["massage_give", "handjob"],
+              "res": "You glide soapy hands slowly across her breasts and wings until Nerys shivers hard, arching up into your palms with breathless impatience."
+            }
+          ]
+        }
+      },
       "choices": [
         {
           "label": "Leave politely",
@@ -60,10 +112,20 @@
       "text": "You find Nerys reading a romance novel in the lounge, curled into a cushion with her horns tilted toward the lamp and her tail beating time behind her. She hides it in a panic, wings snapping shut, then throws a pillow at you. Later you find it on your bed with a page dog-eared and a note in her sharp, looping hand: \"For research.\"",
       "choices": [
         {
+          "label": "Test chapter seven with her on the cushions",
+          "if": {"canAct": ["sex_vaginal", "oral_give"]},
+          "t": 5,
+          "m": 10,
+          "l": 4,
+          "private": true,
+          "acts": ["sex_vaginal", "oral_give"],
+          "res": "You walk straight back with the dog-eared novel open in one hand. Nerys goes bright plum to the tips of her horns, snaps the book out of your fingers, and shoves you flat onto the velvet cushions to prove she doesn't take notes lightly."
+        },
+        {
           "label": "Read the dog-eared page and find her",
           "t": 5,
           "m": 8,
-          "res": "The page is, frankly, upsetting for a man of your experience. You find her anyway and says nothing; she studies the ceiling with enormous interest, tail curling round the chair leg."
+          "res": "The page is, frankly, upsetting for a man of your experience. You find her anyway and say nothing; she studies the ceiling with enormous interest, tail curling round the chair leg."
         },
         {
           "label": "Return it with a thoughtful review",
@@ -81,7 +143,12 @@
     {
       "title": "Leash",
       "scene": "portrait",
-      "text": "A demon noble mocks Nerys in front of the whole lounge for being \"leashed to a human,\" his smile smooth as polished brass. She laughs it off, chin high, one wing flicking. That night, she snaps at you over nothing at all: a misplaced quill, a draft, the way you breathe. The contract hums uncomfortably between them.",
+      "text": "A demon noble mocks Nerys in front of the whole lounge for being \"leashed to a human,\" his smile smooth as polished brass. She laughs it off, chin high, one wing flicking. That night, she snaps at you over nothing at all: a misplaced quill, a draft, the way you breathe. The contract hums uncomfortably between you.",
+      "ngpp": [
+        "When the brass-voiced demon steps inside, Nerys freezes halfway through turning a glass—like she remembers throwing a smug idiot out of this exact lounge before.",
+        "\"Tell me we've humiliated a pompous bastard like him already, Sam,\" Nerys mutters quietly behind her hand, wings twitching with phantom certainty.",
+        "Nerys doesn't even rise to the bait alone this time; she hooks a sharp glance straight to you across the room. \"Go on, darling. Remind me how well you ruin an arrogant fool's evening.\""
+      ],
       "choices": [
         {
           "label": "Defend her, publicly, the next day",
@@ -134,9 +201,15 @@
     {
       "title": "Clause Kept",
       "scene": "final",
-      "text": "A demon scholar in ink-black robes offers to dissolve the contract, paperwork spread on the table with a flourish. Nerys tears it up in front of him, every page. \"I'll keep it,\" she tells you afterward, in the empty lounge, looking anywhere but at you: the candles, the ceiling, her own claws. \"I've grown... attached.\" Then she looks at you, and stops pretending.",
+      "text": "A demon scholar in ink-black robes offers to dissolve the contract, paperwork spread on the table with a flourish. Nerys tears it up in front of him, every page. \"I'll keep it,\" she tells you afterward, in the empty lounge, looking anywhere but at you: the candles, the ceiling, her own claws. \"I've grown... attached.\" Then she looks straight at you, and stops pretending.",
+      "ngpp": [
+        "Even tearing up the scholar's parchment feels oddly familiar—like she's already chosen you over hell's lawyers once before.",
+        "\"Don't smirk like you knew I'd rip it, Sam,\" she mutters softly as the scholar retreats, though her tail already coils behind your belt.",
+        "\"Let the heavens or the underworld keep resetting the ink,\" Nerys purrs against your mouth. \"I'm never signing away from you, darling.\""
+      ],
+      "goLead": "Nerys closes the distance in two smooth strides, wings sweeping shut around you both as she catches your lip between her teeth and backs you toward the velvet cushions.",
       "choices": [
-        {"label":"Say yes","t":6,"m":12,"res":""},
+        {"label": "Say yes", "t": 6, "m": 12, "res": ""},
         {
           "label": "Not yet",
           "t": 1,

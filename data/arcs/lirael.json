@@ -3,7 +3,12 @@
     {
       "title": "Whoever Finds This",
       "scene": "sam_date",
-      "text": "Lirael meets you at the old iron postbox in the alley after close, a single lamp throwing their shadows long across the cobbles. From her satchel she draws a yellowed letter, soft at the folds from years of handling: the very first one, addressed to \"Whoever finds this.\" She reads it aloud in a clear, careful clerk's voice that trembles at the end. \"I never thought anyone would write back.\" Her long ears are drooping, and her fingers smooth the paper as if it might tear. \"And then you did.\"",
+      "text": "Lirael meets you at the old iron postbox in the alley after close, a single lamp throwing your shadows long across the cobbles. From her satchel she draws a yellowed letter, soft at the folds from years of handling: the very first one, addressed to \"Whoever finds this.\" She reads it aloud in a clear, careful clerk's voice that trembles at the end. \"I never thought anyone would write back.\" Her long ears are drooping, and her fingers smooth the paper as if it might tear. \"And then you did.\"",
+      "ngpp": [
+        "Refolding the yellowed margin, she pauses staring at the cobbles—as though she once stood beneath this exact alley lamp listening to your voice read those lines.",
+        "\"How strange, Sam...\" Lirael whispers, clutching the paper tight. \"I remember ten years of envelopes across worlds—so why does holding your sleeve here feel like muscle memory?\"",
+        "Lirael slips the yellowed letter gently away and laces her warm, ink-stained fingers cleanly into yours. \"I may not hold every erased morning in my ledger, Sam—only that reading it beside you here feels entirely natural.\""
+      ],
       "choices": [
         {
           "label": "\"Thank you for writing first.\"",
@@ -28,6 +33,56 @@
       "title": "Ink Stains",
       "scene": "shower",
       "text": "You open the washroom door and find Lirael in the tub, a stack of waterproofed letters balanced on the rim, reading with a soft smile and a damp pencil behind one long ear. She looks up. Her hand slaps the water and a fan of drops lands across the top page. \"I read them here,\" she says, mortified, pressing the letters to her chest. \"It's the only quiet room in the building.\"",
+      "byIntim": {
+        "1": {
+          "title": "Margin Steam",
+          "scene": "shower",
+          "text": "Lirael isn't hiding behind waterproof envelopes when you step inside tonight; sitting softly at the tub rim wrapped in a thin cotton towel with ink faint on her left thumb, she sets her pencil down and turns rosy-eared toward you. \"Your ink smudges easily in steam, Sam,\" she whispers shyly, lifting one damp curl off her collarbone. \"Stay and help me scrub the rest off?\"",
+          "choices": [
+            {
+              "label": "Kneel beside her, wash the ink gently off her shoulders, and kiss her",
+              "t": 5,
+              "m": 8,
+              "l": 2,
+              "private": true,
+              "acts": ["massage_give", "kiss"],
+              "res": "Warm suds chase faint cobalt ink down her pale shoulder blades while her pointed ears turn bright pink—and when you lean in against her damp throat, Lirael turns shyly and kisses you softly through the mist.",
+              "fallbackRes": "Her delicate shoulders soften completely beneath warm soapy palms until she leans lightly sideways against your sleeve."
+            },
+            {
+              "label": "Read one of her margins aloud while handing her a dry towel",
+              "t": 3,
+              "m": 5,
+              "res": "She buries her glowing face straight into the warm linen, muffled laughter ringing sweetly in the steam."
+            }
+          ]
+        },
+        "3": {
+          "title": "Postmarked in Steam",
+          "scene": "bath",
+          "text": "The old waterproof letters sit dry and neatly ribbon-tied on the bench outside the water tonight. In the hot cedar tub, silver-blonde hair piled high off slender bare shoulders, Lirael holds both wet arms out cleanly through swirling steam with an unhurried, brave smile. \"No mail routes left between us, Sam. Lock the door.\"",
+          "choices": [
+            {
+              "label": "Slip into the hot bathwater and draw her into your lap",
+              "t": 5,
+              "m": 10,
+              "l": 4,
+              "private": true,
+              "acts": ["sex_vaginal", "oral_give", "kiss"],
+              "res": "Lirael gasps softly into your mouth as warm water swells around your hips, slim thighs trembling happily around your waist as you move deep inside her beneath the lanterns."
+            },
+            {
+              "label": "Wash her slowly and spend all your time on her breathless mouth",
+              "t": 4,
+              "m": 8,
+              "l": 3,
+              "private": true,
+              "acts": ["oral_give", "kiss", "massage_give"],
+              "res": "Ink-stained fingers clutch your damp shoulders tight while soft elven gasps ring clear through the warm steam."
+            }
+          ]
+        }
+      },
       "choices": [
         {
           "label": "Apologize and back out",
@@ -60,8 +115,18 @@
     {
       "title": "Notes Across the Sofa",
       "scene": "casual",
-      "text": "They fall into an easy habit: sitting at opposite ends of the lounge sofa after close, writing each other notes instead of talking, and passing them across with their feet. It is a ridiculous, wonderful way to flirt. The fire ticks, paper rustles, and Lirael's replies grow longer every night, her handwriting looping as she gets braver. Tonight's note has a P.S. in very small letters, crowded into the corner like a secret.",
+      "text": "You fall into an easy habit: sitting at opposite ends of the lounge sofa after close, writing each other notes instead of talking, and passing them across with your feet. It is a ridiculous, wonderful way to flirt. The fire ticks, paper rustles, and Lirael's replies grow longer every night, her handwriting looping as she gets braver. Tonight's note has a P.S. in very small letters, crowded into the corner like a secret.",
       "choices": [
+        {
+          "label": "Walk straight to her end of the sofa and answer in person",
+          "if": {"canAct": ["kiss", "sex_vaginal", "oral_give"]},
+          "t": 5,
+          "m": 9,
+          "l": 3,
+          "private": true,
+          "acts": ["sex_vaginal", "oral_give", "kiss"],
+          "res": "You read the tiny postscript once, fold the scrap neatly into your pocket, and cross the sofa cushions in one stride—leaving Lirael flushed scarlet and breathless beneath you by the dying hearth embers."
+        },
         {
           "label": "Stay with her",
           "t": 5,
@@ -84,7 +149,12 @@
     {
       "title": "Wrong Address",
       "scene": "portrait",
-      "text": "A letter arrives for you with no stamp, no postmark, and an address in a handwriting you haven't used in years: your own, from long ago. It reads: \"To whoever I become. I hope you're not lonely anymore.\" Lirael reads over your shoulder, and the sorting-room hum around them seems to fade. She goes very still, long ears flat. \"If a letter can cross,\" she says quietly, \"so can a person. What if the box takes you back?\"",
+      "text": "A letter arrives for you with no stamp, no postmark, and an address in a handwriting you haven't used in years: your own, from long ago. It reads: \"To whoever I become. I hope you're not lonely anymore.\" Lirael reads over your shoulder, and the sorting-room hum around you both seems to fade. She goes very still, long ears flat. \"If a letter can cross,\" she says quietly, \"so can a person. What if the box takes you back?\"",
+      "ngpp": [
+        "Staring down at your old loops beside her knuckles, she blinks quietly—like a voice once wrote \"Not lonely\" on that exact blank reverse.",
+        "\"Strange... I feel as though I already pressed that iron box silent beside you once before, Sam,\" she murmurs softly.",
+        "She sets her ink-stained thumb quietly beside your old signature. \"Every cycle resets the ledger, Sam—and still my hand remembers posting 'Not lonely' with yours.\""
+      ],
       "choices": [
         {
           "label": "\"I'm not going anywhere.\"",
@@ -96,7 +166,7 @@
           "label": "Write a reply together",
           "t": 6,
           "m": 5,
-          "res": "They write two words and post them: Not lonely. The old box hums under her palm, a low warm note. She is still smiling when it falls silent."
+          "res": "You write two words together and post them: Not lonely. The old box hums under her palm, a low warm note. She is still smiling when it falls silent."
         },
         {
           "label": "Burn the letter",
@@ -105,12 +175,12 @@
           "res": "\"You can't burn what's already happened,\" she says. She spends the night sweeping the postbox in silence, one slow stroke after another, ears low."
         }
       ],
-      "image": {"comp":"reading a letter over his shoulder, ears drooped, fear in her eyes","setting":"lamp-lit lounge corner at night","sam":true}
+      "image": {"comp": "reading a letter over his shoulder, ears drooped, fear in her eyes", "setting": "lamp-lit lounge corner at night", "sam": true}
     },
     {
       "title": "Full Moon Post",
       "scene": "sam_date",
-      "text": "Under a full moon Lirael takes you up onto the post house roof to sort the night's collection by lantern light, bundles tied with twine, the slate cold beneath them. She lets her shoulders and ears relax, her clerk's stiffness softening in the silver air. Between letters, she hums the tune she once wrote in the margin of her second note, and you realize you've been humming it for years without knowing where it came from.",
+      "text": "Under a full moon Lirael takes you up onto the post house roof to sort the night's collection by lantern light, bundles tied with twine, the slate cold beneath you both. She lets her shoulders and ears relax, her clerk's stiffness softening in the silver air. Between letters, she hums the tune she once wrote in the margin of her second note, and you realize you've been humming it for years without knowing where it came from.",
       "choices": [
         {
           "label": "Hum along",
@@ -134,9 +204,15 @@
     {
       "title": "Meeting the Man",
       "scene": "final",
-      "text": "Lirael sets her satchel down in the doorway of your room, a thing she has never done in front of you. \"For ten years I wrote to a name,\" she says. \"I'd like to meet the man.\" She is trembling, ears dipping, one foot hooked around her own ankle. \"I'm not good at saying things out loud. So I'll say the short version.\" She takes your hand, and her ink-stained fingertips are warm. \"Stay.\" The door closes behind them.",
+      "text": "Lirael sets her satchel down in the doorway of your room, a thing she has never done in front of you. \"For ten years I wrote to a name,\" she says. \"I'd like to meet the man.\" She is trembling, ears dipping, one foot hooked around her own ankle. \"I'm not good at saying things out loud. So I'll say the short version.\" She takes your hand, and her ink-stained fingertips are warm. \"Stay, Sam.\" The door closes behind you both.",
+      "ngpp": [
+        "Even setting down her satchel feels oddly familiar—like this ink-stained confession has already crossed worlds and cycles alike.",
+        "\"My sorting bag feels light as air at your doorway, Sam,\" she breathes shyly, \"like I have finally delivered myself right where I kept aiming.\"",
+        "\"Let the post house lose every ledger on file, Sam,\" Lirael whispers warmly as she shuts the latch. \"Every version of my heart stays addressed to this room.\""
+      ],
+      "goLead": "Lirael steps straight inside your arms, setting her small spectacles gently on the bedside table before lifting her flushed face up to meet your mouth.",
       "choices": [
-        {"label":"Say yes","t":6,"m":12,"res":""},
+        {"label": "Say yes", "t": 6, "m": 12, "res": ""},
         {
           "label": "Not yet",
           "t": 1,

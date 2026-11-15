@@ -198,9 +198,11 @@ function buyHouse(id){
       G().jealousy = clamp((G().jealousy || 0) + jGain);
       jNote = `\n\n(${n.name} still remembers what you shared. ${GN()}'s jealousy +${jGain}.)`;
     }
-    EVQ.push(()=>({title:`${D.name}`, who:n.id, scene:'portrait', text:`${n.name} is waiting at the door when Sam arrives with the deed.\n\n${n.backstory}\n\nShe comes with the place.${goddessHouseNote(id)}${jNote}`, choices:[{label:'Welcome aboard', fx(){ n.trust=clamp(n.trust+5); return ''; }}]}));
-  } else if(typeof restoreStoryJoin==='function'){
-    restoreStoryJoin(nh, true); checkUnlocks(true);
+    EVQ.push(()=>introHouseEvent(nh, findW(n.id), {purchased:true, jNote}));
+  } else {
+    if(typeof restoreStoryJoin==='function') restoreStoryJoin(nh, true);
+    checkUnlocks(true);
+    EVQ.push(()=>introHouseEvent(nh, D.npc ? S.workers.find(w=>w.key===D.npc) : null, {purchased:true, alreadyHired:true}));
   }
   save(); render(); runQueue();
 }

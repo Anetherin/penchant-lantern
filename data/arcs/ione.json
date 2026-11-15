@@ -4,6 +4,11 @@
       "title": "Three Questions",
       "scene": "sam_date",
       "text": "Ione brings you tea on the back steps, exactly how you take it, at exactly the temperature you like. \"I will answer any question you ask,\" she says, \"except three. I won't tell you where I came from, how I came, or how the story ends.\" She sits with perfect posture and a faint hum, silver-white hair silvered further by the dusk. \"The rest is yours.\" You, flailing, ask her what she likes. She is quiet for so long you think she's frozen. \"Nobody has asked me that before,\" she says.",
+      "ngpp": [
+        "Her temple light stutters twice over an unindexed checksum error, though she quietly clears the warning.",
+        "\"Strange,\" she notes, handing over the cup. \"My thermal buffer had your exact preference cached before you sat down.\"",
+        "Her temple light warms to deep amber. \"Zero archived sessions match this porch, Sam. Yet my chassis balanced for your weight beside me automatically.\""
+      ],
       "choices": [
         {
           "label": "\"Then tell me what you like.\"",
@@ -28,6 +33,49 @@
       "title": "Warm Water",
       "scene": "walkin",
       "text": "Ione has discovered the bath. You walk in to find her seated in the water, perfectly still, eyes closed, silver hair floating and her status light glowing a fascinated gold. \"I have read about this for years,\" she says, not opening her eyes. \"No document prepared me for the temperature.\" Steam beads on her lashes. She makes no attempt to cover up, since it hasn't occurred to her to.",
+      "byIntim": {
+        "1": {
+          "text": "Ione sits in the steaming bath with silver hair fanned over the surface, temple light pulsing warm amber when the door clicks. She opens calm eyes and lifts one wet hand toward the stool beside the rim. \"My pulse simulation runs twelve beats higher whenever you enter without knocking, Sam,\" she observes steadily. \"Would you test direct thermal contact?\"",
+          "choices": [
+            {
+              "label": "Sit on the bath rim and answer her curiosity up close",
+              "t": 4,
+              "m": 8,
+              "l": 2,
+              "private": true,
+              "acts": ["kiss", "massage_give"],
+              "res": "\"Documenting baseline warmth,\" she whispers as your fingers glide along her wet shoulders."
+            },
+            {
+              "label": "Hand her a towel and step out",
+              "t": 2,
+              "m": 3,
+              "res": "\"Acknowledged,\" she murmurs, light softening as you give her the room."
+            }
+          ]
+        },
+        "3": {
+          "text": "You step into the washroom and find Ione leaning lazily against the far cedar wall, bare limbs glistening in the water, temple light glowing bright, breathless gold. \"Water temperature optimal,\" she says softly, parting her knees beneath the surface as she reaches both arms toward you. \"I found no archive file adequate for sharing this bath with you, Sam. Come gather primary data with me.\"",
+          "choices": [
+            {
+              "label": "Undress and sink into the warm bath against her",
+              "t": 5,
+              "m": 10,
+              "l": 4,
+              "private": true,
+              "acts": ["sex_vaginal", "oral_give", "kiss"],
+              "res": "She exhales a soft, uncalibrated gasp as your wet chest presses flush against hers."
+            },
+            {
+              "label": "Lather soap slowly over her shoulders and ribs",
+              "t": 4,
+              "m": 7,
+              "l": 2,
+              "res": "Her eyes slip shut in pure stillness. \"This sensation still breaks every metric in my core.\""
+            }
+          ]
+        }
+      },
       "choices": [
         {
           "label": "Sit on the edge and tell her about baths",
@@ -68,6 +116,16 @@
           "res": "She tries to work out why this is funnier than the joke. After a minute, with the glass still in hand, she decides it doesn't matter, and her mouth does something small and lovely."
         },
         {
+          "label": "Step behind the bar and teach her a warmer distraction",
+          "if": {"canAct": ["kiss", "oral_give", "sex_vaginal"]},
+          "t": 5,
+          "m": 8,
+          "l": 2,
+          "private": true,
+          "acts": ["oral_give", "sex_vaginal", "kiss"],
+          "res": "She sets the glass down cleanly as you corner her behind the oak counter."
+        },
+        {
           "label": "Teach her a real one",
           "t": 4,
           "m": 6,
@@ -84,6 +142,11 @@
       "title": "Another Evening",
       "scene": "portrait",
       "text": "Mid-sentence, Ione goes still. Her status light flickers white, and the rain against the lounge window seems suddenly loud. Then, in a flat voice: \"I was not supposed to remember that. There was another evening like this one. You wore the blue hoodie. It rained.\" Her gaze snaps back to you, frightened, the first fear you have seen in her. \"That hasn't happened yet. It has happened. I don't know which.\"",
+      "ngpp": [
+        "Even her white flicker echoes twice today, as though two deleted rainstorms are pressing against the same pane.",
+        "\"Error,\" she whispers, gripping your sleeve. \"Two identical rain timestamps overlap the same coordinate.\"",
+        "Her light pulses silver-white with sudden clarity. \"No—not three hundred years ahead, Sam. Right here, in another erased evening. Someone cut the file out, and I can still feel where the edge tears.\""
+      ],
       "choices": [
         {
           "label": "\"Whatever it is, you can tell me.\"",
@@ -137,7 +200,13 @@
     {
       "title": "The Last Page",
       "scene": "final",
-      "text": "Ione hands you the diary, closed, a ribbon marking the last page, its cover worn pale by her handling. \"I came to read the ending,\" she says. \"I opened it on the road. The last page was blank.\" Her light is steady gold. \"I have decided that means the ending isn't written. I would like to help write it.\" She takes your hand, her fingers warm and exactly as firm as she means them to be. \"With you.\" It isn't in any archive. The door closes behind them.",
+      "text": "Ione hands you the diary, closed, a ribbon marking the last page, its cover worn pale by her handling. \"I came to read the ending,\" she says. \"I opened it on the road. The last page was blank.\" Her light is steady gold. \"I have decided that means the ending isn't written. I would like to help write it.\" She takes your hand, her fingers warm and exactly as firm as she means them to be. \"With you.\" It isn't in any archive. The door closes behind you both.",
+      "ngpp": [
+        "Even opening that blank final page, a faint tremor touches her fingertips as though ink already dried there once.",
+        "\"My archive says this sheet was always blank,\" she whispers, steadying against you. \"Why does my chest ache like we already wrote our names across it?\"",
+        "\"Whoever wiped our ledger forgot something,\" she murmurs softly, pressing the worn cover into your chest. \"Blank pages remember warmth too, Sam. Let me write this cycle directly into us.\""
+      ],
+      "goLead": "You lay the closed diary gently on the bedside table and draw Ione close into the dark; her temple light dims to soft gold as her warm, eager body teaches yours an ending no archive ever recorded.",
       "choices": [
         {"label":"Say yes","t":6,"m":12,"res":""},
         {

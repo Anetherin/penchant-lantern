@@ -3,7 +3,12 @@
     {
       "title": "The Step Below",
       "scene": "sam_date",
-      "text": "Lara finds you on the back steps after close, a lantern guttering beside you, and sits one step below, knees together, hands folded in her lap like a child waiting outside an office. In a low, careful voice she tells you how she tracked rumors of a stranger in a grey hoodie across three provinces, sleeping in stables and chapels, her black coat getting shabbier with every road. \"I couldn't stay anywhere you weren't,\" she says. \"I know that's not healthy. I know.\" She is looking at your boots, not your face, and her dark lipstick is chewed at the corner.",
+      "text": "Lara finds you on the back steps after close, a lantern guttering beside you, and sits one step below, knees together, hands folded in her lap like a child waiting outside an office on Alder Street. In a low, careful voice she tells you how she tracked rumors of a stranger in a grey hoodie across three provinces, sleeping in stables and chapels, her black coat getting shabbier with every road. \"I couldn't stay anywhere you weren't, Sam,\" she says. \"I know that's not healthy. I know.\" She is looking at your boots, not your face, and her dark lipstick is chewed at the corner.",
+      "ngpp": [
+        "Halfway through smoothing her frayed sleeve, she pauses staring at the lantern wick—like she already sat on this exact wooden step beside your boots before.",
+        "\"Alder Street felt lifetimes away, Sam... so why does sitting one step below you here feel like muscle memory from a different world?\"",
+        "She doesn't drop to the lower step tonight; Lara settles straight beside your shoulder, fingers lacing quietly into your sleeve. \"No idea how many back porches we've shared, Sam—I just knew where you'd be.\""
+      ],
       "choices": [
         {
           "label": "\"I'm really glad you found me.\"",
@@ -28,6 +33,56 @@
       "title": "Can't Sleep",
       "scene": "walkin",
       "text": "At midnight Lara carries fresh towels to the washroom because she couldn't sleep, and walks in on you in the tub. She freezes in the doorway, arms full of linen, the stack held up to hide everything above her nose, lace cuffs trembling. Steam curls around her black dress. \"I'm so sorry. I'm so sorry. I'm just going to... stand here.\" She does not move. A drip falls from the tap, loud as a clock in the silence, and the towels creep a little higher.",
+      "byIntim": {
+        "1": {
+          "title": "Warm Towels, Warm Hands",
+          "scene": "shower",
+          "text": "At midnight Lara taps softly and enters the washroom carrying a warm towel straight from the kitchen stove, stopping just beside the tub instead of freezing behind linen. Steam curls soft damp tendrils around her pale throat as she kneels carefully beside the cedar rim. \"Nightmare again,\" she murmurs quietly, smoothing her lace cuffs up. \"May I wash your back... just until I stop shaking?\"",
+          "choices": [
+            {
+              "label": "Let her—then dry her cold hands between yours and kiss her",
+              "t": 5,
+              "m": 8,
+              "l": 2,
+              "private": true,
+              "acts": ["massage_give", "kiss", "handjob"],
+              "res": "Lara's cool fingertips warm rapidly against your wet shoulders until the trembling stops altogether; when you turn to kiss her damp temple and lips, she sighs quietly and leans straight into your chest.",
+              "fallbackRes": "Her quiet hands trace careful circles across your back until the shivers leave her shoulders and she rests her cheek softly beside your arm."
+            },
+            {
+              "label": "Wrap her in the warm towel and sit with her on the bench",
+              "t": 4,
+              "m": 6,
+              "res": "She tucks her knees tightly inside the warm linen and falls half-asleep leaning cleanly against your damp coat."
+            }
+          ]
+        },
+        "3": {
+          "title": "No Nightmares Tonight",
+          "scene": "bath",
+          "text": "You hear soft bare footsteps at midnight, and Lara steps quietly into the steam without towels to hide behind—unbuttoning her black dress calmly at the stool before slipping gently into the hot water across from your knees. Dark hair floats softly around pale shoulders as she takes your hand under the surface. \"No nightmares tonight, Sam. Just stay close.\"",
+          "choices": [
+            {
+              "label": "Draw her gently onto your lap in the warm water",
+              "t": 5,
+              "m": 10,
+              "l": 4,
+              "private": true,
+              "acts": ["sex_vaginal", "oral_give", "kiss"],
+              "res": "Lara anchors both thin arms securely around your neck as you ease inside her warmth slowly—her dark kohl-lined eyes holding yours steady without a trace of fear as soft gasps echo off the cedar walls."
+            },
+            {
+              "label": "Hold her against your chest and touch her gently beneath the mist",
+              "t": 4,
+              "m": 8,
+              "l": 2,
+              "private": true,
+              "acts": ["kiss", "handjob", "massage_give"],
+              "res": "She tucks her cold toes between yours under the water, melting into quiet breathless shivers beneath your hands and mouth."
+            }
+          ]
+        }
+      },
       "choices": [
         {
           "label": "Laugh and ask her to leave the towels",
@@ -40,7 +95,7 @@
           "t": 4,
           "m": 8,
           "l": 2,
-          "res": "She sits on the edge of the tub with her back turned and tells you about the night noises of the orphanage, the pipes, the coughing, the matron's keys. By the end she's leaning against the wood, nearly asleep, her voice gone soft and slow."
+          "res": "She sits on the edge of the tub with her back turned and tells you about the night noises of the Alder Street orphanage, the pipes, the coughing, the matron's keys. By the end she's leaning against the wood, nearly asleep, her voice gone soft and slow."
         },
         {
           "label": "Send her to bed",
@@ -62,16 +117,26 @@
       "text": "Whenever you are out, Lara leaves a lamp lit in the courtyard window. Tonight you're out very late, and a cold fog has settled over Hollowmere. When you return she is sitting under that lamp in her black shawl, a book open on her knee and not a single page turned, moths drifting around the glass. She stands, then doesn't know what to do with her hands. \"I wasn't waiting,\" she says. \"I was keeping it warm.\"",
       "choices": [
         {
+          "label": "Take her upstairs out of the fog and warm her up properly",
+          "if": {"canAct": ["kiss", "sex_vaginal", "oral_give"]},
+          "t": 5,
+          "m": 9,
+          "l": 3,
+          "private": true,
+          "acts": ["sex_vaginal", "oral_give", "kiss"],
+          "res": "You wrap your hoodie around her cold shoulders and guide her softly upstairs; once the door shuts on the fog, Lara pulls you straight onto the bed, clinging warmly until every chill vanishes."
+        },
+        {
           "label": "Sit with her",
           "t": 5,
           "m": 8,
-          "res": "They share the bench and the shawl, which smells of lavender and old paper. She leans against your shoulder and, for once, doesn't ask whether you're tired of her."
+          "res": "You share the bench and the shawl, which smells of lavender and old paper. She leans against your shoulder and, for once, doesn't ask whether you're tired of her."
         },
         {
           "label": "\"Come out with me next time.\"",
           "t": 4,
           "m": 4,
-          "res": "She says \"maybe,\" very softly, and tugs the shawl closer. It is better than the \"no\" she'd have given last month, and they both know it."
+          "res": "She says \"maybe,\" very softly, and tugs the shawl closer. It is better than the \"no\" she'd have given last month, and you both know it."
         }
       ],
       "image": {
@@ -84,12 +149,17 @@
       "title": "Don't Go",
       "scene": "portrait",
       "text": "The house needs you in the capital for three days to settle a supplier dispute. Lara hears it in the corridor, a stack of folded sheets in her arms, and goes white as the linen. She follows you to your room and grips the doorframe so hard her knuckles blanch. \"Everyone who says they'll come back... I know how this goes, Sam. I know.\" Her eyes are enormous and perfectly dry. She doesn't cry. That is worse.",
+      "ngpp": [
+        "Even standing pale in the doorframe, she pauses staring at her own brass room key—as though she remembers pressing it warm into your palm before.",
+        "\"Why does my chest insist you always kept your promise and came back, Sam?\" she whispers trembling, even while gripping the frame.",
+        "She breathes out shakily and lays her room key directly on your palm before the fear takes over. \"I remember Alder Street, Sam—and some deeper piece of me remembers trusting you to return this.\""
+      ],
       "choices": [
         {
           "label": "\"I'll never leave you.\"",
           "t": 2,
           "m": 3,
-          "res": "It's what she wants to hear. It isn't quite true, and both of them know it. She nods, holds on a little too tightly when you hug her, and the three days are very long."
+          "res": "It's what she wants to hear. It isn't quite true, and both of you know it. She nods, holds on a little too tightly when you hug her, and the three days are very long."
         },
         {
           "label": "\"I can't promise forever. I promise I'll come back.\"",
@@ -99,13 +169,13 @@
         },
         {
           "label": "Hand her the linen schedule to run while you're gone",
-          "grow": {"service":5},
+          "grow": {"service": 5},
           "t": 5,
           "m": 6,
           "res": "She runs the house for three days with ledgers and lists and not a single crooked pillow. When you return, she meets you at the door, proud in a way that has nothing to do with you, and that is exactly the point."
         }
       ],
-      "image": {"comp":"gripping a doorframe with both hands, pale, dark eyes wide, ponytail swinging","setting":"dim inn corridor at night","sam":true}
+      "image": {"comp": "gripping a doorframe with both hands, pale, dark eyes wide, ponytail swinging", "setting": "dim inn corridor at night", "sam": true}
     },
     {
       "title": "Midnight Garden",
@@ -134,9 +204,15 @@
     {
       "title": "Being Left",
       "scene": "final",
-      "text": "On the roof, under a clear sky, Lara stands with her hands wrapped in her shawl and says it slowly, each word chosen. \"I used to think loving someone meant never being left. I think it's closer to... being able to be left, and still be me.\" Her voice steadies as she goes. \"I want you because I choose you. Not because I'm afraid.\" She kisses you, and for the first time in her life she is the one who leads you inside, and the door closes behind them.",
+      "text": "On the roof, under a clear sky, Lara stands with her hands wrapped in her shawl and says it slowly, each word chosen. \"I used to think loving someone meant never being left. I think it's closer to... being able to be left, and still be me.\" Her voice steadies as she goes. \"I want you because I choose you, Sam. Not because I'm afraid.\" She kisses you, and for the first time in her life she is the one who leads you inside, and the door closes behind you both.",
+      "ngpp": [
+        "Even standing steady beneath twin moons, her breath catches—like another lifetime already whispered this exact bravery into her ribs.",
+        "\"Alder Street taught me how doors shut,\" she murmurs softly beside your cheek, \"yet why does walking through yours feel like keeping a promise I already kept?\"",
+        "\"Let cycles erase whatever walls they like, Sam,\" Lara whispers fiercely against your lips as she draws you inside. \"I choose you in this life—and every one I can't remember.\""
+      ],
+      "goLead": "Inside the quiet bedroom, Lara lets her black shawl fall calmly from bare shoulders and presses both palms flat over your heart before pulling you down onto the quilt.",
       "choices": [
-        {"label":"Say yes","t":6,"m":12,"res":""},
+        {"label": "Say yes", "t": 6, "m": 12, "res": ""},
         {
           "label": "Not yet",
           "t": 1,

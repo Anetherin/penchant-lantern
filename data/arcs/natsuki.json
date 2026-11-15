@@ -3,7 +3,12 @@
     {
       "title": "Scars and Bets",
       "scene": "sam_date",
-      "text": "Natsuki shows you the scar she got her first week here, three years ago, alone, a pale ridge along her ribs just visible above the hem of her tank top. She tells it matter-of-factly, then less so. \"I kept thinking: if Sam were here, he'd do something dumb and it'd somehow be fine.\" She laughs, rough and warm. \"Then you showed up and did something dumb.\"",
+      "text": "Natsuki shows you the scar she got her first week here, three years ago, alone, a pale ridge along her ribs just visible above the hem of her tank top. Back then you were still trading convenience-store popsicles on summer break while she fought monsters for dry bread. \"I kept thinking: if Sam were here, he'd do something dumb and it'd somehow be fine.\" She laughs, rough and warm. \"Then you washed up and ran a brothel.\"",
+      "ngpp": [
+        "Even while laughing about summer popsicles back home, she stops half a beat staring at the wall lantern—like a ghost of sharing this same stone bench tugged her sleeve.",
+        "\"Funny, Sam—I remember every single stupid bike race back home clear as yesterday, yet sitting beside you on THIS town wall feels like we already settled in here once.\"",
+        "\"Three years alone wasn't enough to shake me loose, idiot,\" Natsuki mutters, leaning firmly against your arm despite wiped cycles. \"I remember Earth—and every rib in my chest knows this wall bench belongs to us too.\""
+      ],
       "choices": [
         {
           "label": "Trace the scar gently with your eyes only",
@@ -18,12 +23,62 @@
           "res": "\"Totally on purpose,\" you lie. {N} grins, rubs her plaster, and punches your shoulder, softer than she'd like to admit."
         }
       ],
-      "image": {"comp":"showing him a scar on her arm, sitting on a fence, half-smiling","setting":"town wall walkway at sunset","sam":true}
+      "image": {"comp": "showing him a scar on her arm, sitting on a fence, half-smiling", "setting": "town wall walkway at sunset", "sam": true}
     },
     {
       "title": "Incoming",
       "scene": "shower",
       "text": "You walk into the washroom. Natsuki is in the bath, steam rising, chestnut hair plastered to her forehead, mid-hum. A bar of soap is already in the air at adventurer speed. There's no malice in it, just fifteen years of reflex and a very small, very red face.",
+      "byIntim": {
+        "1": {
+          "title": "Soap & Pride",
+          "scene": "shower",
+          "text": "You open the washroom door to find Natsuki mid-soak with chestnut hair pinned up and a towel draped carelessly across the tub bench—she reaches for the soap bar out of pure childhood reflex, pauses with her cheeks burning scarlet, and drops her arm back into the water with a huff. \"Ugh, quit grinning like that, idiot! If you're coming in, at least scrub the spot between my shoulder blades I can't reach.\"",
+          "choices": [
+            {
+              "label": "Kneel beside the tub and scrub her scarred back gently",
+              "t": 5,
+              "m": 8,
+              "l": 2,
+              "private": true,
+              "acts": ["massage_give", "kiss"],
+              "res": "Natsuki stiffens for two stubborn seconds as warm lather works over old sword-calluses and pale scars—before tipping her head back with a sharp breath to catch your mouth in a hot, wet kiss.",
+              "fallbackRes": "She grumbles the whole time about your terrible massage technique, though she leans squarely back against your knuckles until her ears glow pink."
+            },
+            {
+              "label": "Toss her the bath brush and close the door cleanly",
+              "t": 2,
+              "m": 4,
+              "res": "\"Chicken,\" she calls after you, though she's laughing against the splash of hot water."
+            }
+          ]
+        },
+        "3": {
+          "title": "No More Clothes Between Us",
+          "scene": "bath",
+          "text": "Steam rolls out thick when you open the washroom door, and Natsuki sits bare in the deep wooden tub with one scarred leg hooked over the rim, glaring playfully up at you through damp chestnut bangs. \"Took you long enough, Sam. Three years waiting in this city—get out of those clothes and get in here before the water cools.\"",
+          "choices": [
+            {
+              "label": "Strip down and climb straight into the tub with her",
+              "t": 5,
+              "m": 10,
+              "l": 4,
+              "private": true,
+              "acts": ["sex_ride", "sex_vaginal", "oral_give"],
+              "res": "Before you settle waist-deep in the hot water, Natsuki pins your shoulders straight back against the wood and sinks cleanly down onto your cock—riding you hard with damp cheek pressed fiercely to yours."
+            },
+            {
+              "label": "Pin her lightly against the rim and take your time",
+              "t": 4,
+              "m": 8,
+              "l": 3,
+              "private": true,
+              "acts": ["oral_give", "handjob", "kiss"],
+              "res": "She gasps loudly when your hands slide low under the hot water, gripping your neck tightly while mist hides nothing between you both."
+            }
+          ]
+        }
+      },
       "choices": [
         {
           "label": "Duck",
@@ -52,8 +107,18 @@
     {
       "title": "Almost Taiyaki",
       "scene": "casual",
-      "text": "They find a stall selling something almost like taiyaki, warm and sweet-smelling in the evening crowd. Natsuki buys ten. Halfway through the fifth she goes quiet, paper bag crumpling in her fist. \"Back home I always figured I'd end up with you someday. Dumb, right?\" She doesn't look at you; she watches a lantern bob down the street.",
+      "text": "You find a stall selling something almost like taiyaki, warm and sweet-smelling in the evening crowd. Natsuki buys ten. Halfway through the fifth she goes quiet, paper bag crumpling in her fist. \"Back home in high school I always figured I'd end up nagging you over dinner someday. Dumb, right?\" She doesn't look at you; she watches a lantern bob down the street.",
       "choices": [
+        {
+          "label": "Pull her into the empty alley behind the stall and prove she was right",
+          "if": {"canAct": ["kiss", "sex_vaginal", "oral_give"]},
+          "t": 5,
+          "m": 9,
+          "l": 3,
+          "private": true,
+          "acts": ["sex_vaginal", "oral_give", "kiss"],
+          "res": "You catch her wrist before she walks away, draw her behind the quiet lantern wall away from the crowd, and pin her warm mouth under yours until the paper bag hits the stones."
+        },
         {
           "label": "Tell her it isn't dumb",
           "t": 5,
@@ -77,12 +142,17 @@
       "title": "Solo Run",
       "scene": "portrait",
       "text": "Natsuki took a dangerous dungeon contract without telling anyone. She comes back three days later with a broken arm and a sack of gold, grinning through the grime. The grin falters when she sees your face. Her sword is chipped and her plaster is gone, and she swears the fight was \"basically nothing.\"",
+      "ngpp": [
+        "When you pull the bandages out before she finishes talking, she blinks sharply—as though she remembers this exact quiet standoff over her bruises.",
+        "\"Why did you grab the splint out of the bottom cupboard before looking, Sam?\" she mutters through gritted teeth, weirdly shaken despite the grin.",
+        "She drops straight into the chair before you even scold her, holding out her good arm with rough quiet surrender. \"Yeah, yeah—I knew you'd look at me like that, idiot. Patch me up.\""
+      ],
       "choices": [
         {
           "label": "Yell at her",
           "t": -4,
           "m": -8,
-          "res": "\"You don't get to disappear on me twice!\" It comes out wrong, too loud, too raw. They don't talk for a while."
+          "res": "\"You don't get to disappear on me twice!\" It comes out wrong, too loud, too raw. You don't talk for a while."
         },
         {
           "label": "Patch her up, quietly",
@@ -98,12 +168,12 @@
           "res": "\"Next time, you come with me,\" she says, laughing a little. \"Deal?\" You say deal, and she spits in her palm to shake on it."
         }
       ],
-      "image": {"comp":"limping in with a broken arm in a sling and a sack of gold, defiant grin","setting":"inn entrance hall at night","sam":false}
+      "image": {"comp": "limping in with a broken arm in a sling and a sack of gold, defiant grin", "setting": "inn entrance hall at night", "sam": false}
     },
     {
       "title": "Fireworks",
       "scene": "sam_date",
-      "text": "Natsuki bribes an alchemist to make fireworks \"like the summer festival back home.\" They watch from the town wall, legs dangling, a bag of unidentifiable snacks between them. The first burst is the wrong color. The second is almost right, a pink chrysanthemum blooming over Hollowmere's rooftops.",
+      "text": "Natsuki bribes an alchemist to make fireworks \"like the summer festival back home.\" You watch together from the town wall, legs dangling, a bag of unidentifiable snacks between you. The first burst is the wrong color. The second is almost right, a pink chrysanthemum blooming over Hollowmere's rooftops.",
       "choices": [
         {
           "label": "Hold her hand",
@@ -127,9 +197,15 @@
     {
       "title": "Door Kicked In",
       "scene": "final",
-      "text": "Natsuki kicks your door open at dawn, red-faced, sword still on her hip, the lock splintering under her boot. Cold morning light spills in behind her. \"I spent three years here thinking I'd never see you again. I'm not wasting another day.\" She kicks the door shut behind her.",
+      "text": "Natsuki kicks your door open at dawn, red-faced, sword still on her hip, the lock splintering under her boot. Cold morning light spills in behind her. \"I spent three years here thinking I'd never see you again—and a lifetime back home pretending we were just kids! I'm not wasting another day, Sam.\" She kicks the door shut behind her.",
+      "ngpp": [
+        "Even kicking the latch splinters feels oddly practiced, like another piece of her remembers losing patience at this exact dawn.",
+        "\"Don't ask why I feel like I've broken this exact bedroom door already, Sam,\" she growls flushed to her collarbones as she steps toward your bed.",
+        "\"Every Earth summer, every wiped cycle in this town—I don't care anymore, Sam,\" Natsuki breathes fiercely as she unbuckles her sword belt. \"You're stuck with me.\""
+      ],
+      "goLead": "Natsuki drops her scabbard cleanly onto the chair and shoves you straight back onto the mattress, straddling your waist with fierce, breathless relief.",
       "choices": [
-        {"label":"Say yes","t":6,"m":12,"res":""},
+        {"label": "Say yes", "t": 6, "m": 12, "res": ""},
         {
           "label": "Not yet",
           "t": 1,
