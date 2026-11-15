@@ -1,0 +1,14 @@
+{
+  "desc": "Demon all-generics swap with vs without Warding Sigil (sigil) in mid and late game.",
+  "scenario": "mid",
+  "weeks": 12,
+  "runs": 16,
+  "by": { "scenario": ["mid", "late"] },
+  "variants": [
+    { "name": "base" },
+    { "name": "sigil only", "mutate": { "upgrades": ["sigil"] } },
+    { "name": "demon (no sigil)", "mutate": { "race": "demon", "raceWho": "all" } },
+    { "name": "demon + sigil", "mutate": { "race": "demon", "raceWho": "all", "upgrades": ["sigil"] } }
+  ],
+  "breakdown": []
+}

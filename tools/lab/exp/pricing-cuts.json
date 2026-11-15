@@ -1,0 +1,21 @@
+{
+  "desc": "House pricing tiers (0=Cheap .. 4=Exclusive), profit cuts (0% .. 50%), and paid tutoring in mid and late game.",
+  "scenario": "mid",
+  "weeks": 12,
+  "runs": 16,
+  "by": { "scenario": ["mid", "late"] },
+  "variants": [
+    { "name": "base" },
+    { "name": "price: Cheap", "phasePolicy": { "price": 0 } },
+    { "name": "price: Premium", "phasePolicy": { "price": 2 } },
+    { "name": "price: Luxury", "phasePolicy": { "price": 3 } },
+    { "name": "price: Exclusive", "phasePolicy": { "price": 4 } },
+    { "name": "cut: 0%", "phasePolicy": { "cut": 0 } },
+    { "name": "cut: 10%", "phasePolicy": { "cut": 0.1 } },
+    { "name": "cut: 35%", "phasePolicy": { "cut": 0.35 } },
+    { "name": "cut: 50%", "phasePolicy": { "cut": 0.5 } },
+    { "name": "tutor: job", "phasePolicy": { "tutor": "job", "tutorTier": "tutor" } },
+    { "name": "tutor: master", "phasePolicy": { "tutor": "job", "tutorTier": "master" } }
+  ],
+  "breakdown": []
+}

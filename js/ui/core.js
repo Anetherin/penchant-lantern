@@ -115,7 +115,7 @@ function houseRow(h){
     <td class="${bedCls}">${sl}/${bd} <span class="muted">${esc(BEDS[h.beds||0].label)}</span></td>
     <td>${lh&&lh.roomCap?`${lh.roomsUsed}/${lh.roomCap}${lh.short?' <span class="warn">short</span>':''}`:`–/${h.rooms*BAL.rooms.perRoom}`} <span class="muted">${h.rooms} bedroom${h.rooms===1?'':'s'}</span></td>
     <td class="${tidyCls(h)}">${tidy}</td>
-    <td>${lh?`${lh.served}${lh.turned?` <span class="muted">(${lh.turned} away)</span>`:''}`:'–'}</td>
+    <td>${lh?`${lh.served}${(lh.left||lh.stopped||lh.turned)?` <span class="muted">(${lh.left||lh.stopped?[lh.left?`${lh.left} left`:'',lh.stopped?`${lh.stopped} held`:''].filter(Boolean).join(', '):`${lh.turned} away`})</span>`:''}`:'–'}</td>
     <td>${lh?`${fmt(lh.income)} <span class="muted">/ ${fmt(lh.upkeep)}</span>`:'–'}</td>
     <td>${lh?Math.round(lh.avgSat):'–'}</td>
     <td>${autoFeastSel(h)}${h.feastWk===S.week?' <span class="muted">✓</span>':''}</td></tr>`;
@@ -182,7 +182,7 @@ function viewHouse(){
     ${feastCard(h)}
     ${storyCard(h)}
     ${regularsCard(h)}
-    <section class="card"><h2>Last Week</h2>${lh?`<div class="grid2"><div>Clients here: <b>${lh.served}</b>${lh.turned?` (${lh.turned} turned away)`:''}</div><div>Income here: <b>${fmt(lh.income)}</b> · Upkeep <b>${fmt(lh.upkeep)}</b></div><div>Satisfaction: <b>${Math.round(lh.avgSat)}</b>${lh.promoDraw?` · promoter draw <b>+${Math.round(lh.promoDraw)}</b>`:''}</div><div>All houses net: <b>${fmt(reportNet(L))}</b></div></div><div class="row"><button onclick="showReport(S.lastReport,false)">📋 Full report</button></div>`:'<span class="muted">No report yet. Assign jobs, then End Week.</span>'}</section>`;
+    <section class="card"><h2>Last Week</h2>${lh?`<div class="grid2"><div>Clients here: <b>${lh.served}</b>${(lh.left||lh.stopped||lh.turned)?` (${lh.left||lh.stopped?[lh.left?`${lh.left} left unhappy`:'',lh.stopped?`${lh.stopped} held at door`:''].filter(Boolean).join(', '):`${lh.turned} turned away`})`:''}</div><div>Income here: <b>${fmt(lh.income)}</b> · Upkeep <b>${fmt(lh.upkeep)}</b></div><div>Satisfaction: <b>${Math.round(lh.avgSat)}</b>${lh.promoDraw?` · promoter draw <b>+${Math.round(lh.promoDraw)}</b>`:''}</div><div>All houses net: <b>${fmt(reportNet(L))}</b></div></div><div class="row"><button onclick="showReport(S.lastReport,false)">📋 Full report</button></div>`:'<span class="muted">No report yet. Assign jobs, then End Week.</span>'}</section>`;
 }
 function workerCard(w, showHouse){
   const wl = knows(w,true) ? lShow(w.lewd) : '?', ap = attendantPairs(houseOf(w));

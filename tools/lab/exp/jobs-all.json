@@ -1,0 +1,24 @@
+{
+  "desc": "All 12 jobs compared fairly (1 generic lady locked into each job at phase start, minTrust 45 so every role including madame/courtesan qualifies, needed amenity granted free). Plus chapel with an angel.",
+  "scenario": "mid",
+  "weeks": 12,
+  "runs": 16,
+  "by": { "scenario": ["mid", "late"] },
+  "variants": [
+    { "name": "base", "mutate": { "minTrust": 45 } },
+    { "name": "courtesan", "mutate": { "minTrust": 45, "job": "courtesan", "jobWho": 1 } },
+    { "name": "attendant", "mutate": { "minTrust": 45, "job": "attendant", "jobWho": 1 } },
+    { "name": "promoter", "mutate": { "minTrust": 45, "job": "promoter", "jobWho": 1 } },
+    { "name": "maid", "mutate": { "minTrust": 45, "job": "maid", "jobWho": 1 } },
+    { "name": "security", "mutate": { "minTrust": 45, "job": "security", "jobWho": 1 } },
+    { "name": "bartender", "mutate": { "minTrust": 45, "job": "bartender", "jobWho": 1 } },
+    { "name": "dancer", "mutate": { "minTrust": 45, "job": "dancer", "jobWho": 1 } },
+    { "name": "bath", "mutate": { "minTrust": 45, "job": "bath", "jobWho": 1 } },
+    { "name": "host", "mutate": { "minTrust": 45, "job": "host", "jobWho": 1 } },
+    { "name": "chapel", "mutate": { "minTrust": 45, "job": "chapel", "jobWho": 1 } },
+    { "name": "chapel (angel)", "mutate": { "minTrust": 45, "race": "angel", "raceWho": 1, "job": "chapel", "jobWho": 1 } },
+    { "name": "teacher", "mutate": { "minTrust": 45, "job": "teacher", "jobWho": 1 } },
+    { "name": "madame", "mutate": { "minTrust": 45, "job": "madame", "jobWho": 1 } }
+  ],
+  "breakdown": ["job"]
+}

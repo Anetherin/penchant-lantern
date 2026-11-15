@@ -1,0 +1,16 @@
+{
+  "desc": "Teacher effectiveness over 26 weeks (mid-game onwards): base (no dedicated teacher) vs locked teacher on Auto, All stats (set:stats), or Everything (set:all), plus a 3-housemaid vs 1-teacher comparison.",
+  "scenario": "mid",
+  "weeks": 26,
+  "runs": 12,
+  "variants": [
+    { "name": "base (no teacher)" },
+    { "name": "teacher (auto)", "mutate": { "minTrust": 45, "job": "teacher", "jobWho": 1 } },
+    { "name": "teacher (set:stats)", "mutate": { "minTrust": 45, "job": "teacher", "jobWho": 1 }, "policy": { "teachSkill": "set:stats" } },
+    { "name": "teacher (set:all)", "mutate": { "minTrust": 45, "job": "teacher", "jobWho": 1 }, "policy": { "teachSkill": "set:all" } },
+    { "name": "teacher (set:stats) + 18 staff cap", "mutate": { "minTrust": 45, "job": "teacher", "jobWho": 1 }, "policy": { "teachSkill": "set:stats", "maxStaff": 12 } }
+  ],
+  "columns": ["total", "net", "gold", "repGain", "served", "sat", "mood", "perLady"],
+  "delta": ["total", "net", "gold", "sat", "repGain"],
+  "breakdown": ["job"]
+}

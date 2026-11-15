@@ -46,7 +46,7 @@ const withTitle = (txt, line) => line ? txt + '\n\n' + line : txt;
 const TITLE_EVENTS = [
   {w:1, ok:()=>titleFree() && S.week>=12 && S.rep>=40 && anyW(patronOK).length>0, make(){
     S.flags.titleCD = S.week + 10;
-    const w = weighted(anyW(patronOK), x=>s100(statOf(x,'refinement'))+x.popularity), g = ri(150,300), V = {name:w.name, house:houseOf(w).name, gold:fmt(g)};
+    const w = weighted(anyW(patronOK), x=>s100(statOf(x,'refinement'))+x.popularity), g = samGold(225, 'business', 0.3), V = {name:w.name, house:houseOf(w).name, gold:fmt(g)};
     return {title:ET('title_patron','title',V), who:w.id, scene:evImg('title_patron','portrait'), text:ET('title_patron','text',V), choices:[
       {label:ET('title_patron','accept','label',V), fx(){ moodAdd(w, 8); repAdd(houseOf(w), 1); return withTitle(ET('title_patron','accept','res',V), giveTitle(w,'lady')); }},
       {label:ET('title_patron','decline','label',V), fx(){ S.gold += g; moodAdd(w, 3); return ET('title_patron','decline','res',V); }}]};
@@ -64,7 +64,7 @@ const TITLE_EVENTS = [
   }},
   {w:1, ok:()=>titleFree() && S.week>=10 && anyW(arenaOK).length>0, make(){
     S.flags.titleCD = S.week + 10;
-    const w = weighted(anyW(arenaOK), x=>s100(x.tech.combat||0)+s100(statOf(x,'strength'))), prize = ri(200,400), V = {name:w.name, gold:fmt(prize)};
+    const w = weighted(anyW(arenaOK), x=>s100(x.tech.combat||0)+s100(statOf(x,'strength'))), prize = samGold(300, 'strength', 0.3), V = {name:w.name, gold:fmt(prize)};
     return {title:ET('title_arena','title',V), who:w.id, scene:evImg('title_arena','casual'), text:ET('title_arena','text',V), choices:[
       {label:ET('title_arena','fight','label',V), fx(){
         w.energy = clamp(w.energy-30, 0, maxEnergy(w));
@@ -95,7 +95,7 @@ const RETURNER_EVENTS = [
   }},
   {w:1, ok:()=>cyc()>=2 && !(S.flags.familiarCD>S.week), make(){
     S.flags.familiarCD = S.week + 8;
-    const g = Math.round(rnd(80,200) * (1 + 0.25*(cyc()-2))), V = {gold:fmt(g)};
+    const g = samGold(Math.round(140 * (1 + 0.25*(cyc()-2))), 'wits', 0.35), V = {gold:fmt(g)};
     return {title:RET('familiar','title',V), text:RET('familiar','text',V), choices:[
       {label:RET('familiar','ok','label',V), fx(){ S.gold += g; return ''; }}]};
   }},
@@ -122,21 +122,21 @@ const RANDOM_EVENTS = [
   }},
   {w:2, ok:()=>S.rep>=20 && anyW(w=>s100(statOf(w,'refinement'))>=45 && w.energy>=30).length>0, make(){
     const w = weighted(anyW(x=>s100(statOf(x,'refinement'))>=45 && x.energy>=30), x=>s100(statOf(x,'refinement')));
-    const pay = Math.round(150 + s100(statOf(w,'refinement'))*3 + S.rep*2), V = {name:w.name, gold:fmt(pay)};
+    const pay = samGold(Math.round(150 + s100(statOf(w,'refinement'))*3 + S.rep*2), 'charm', 0.2), V = {name:w.name, gold:fmt(pay)};
     return {title:ET('noble','title',V), who:w.id, scene:evImg('noble','companion'), text:ET('noble','text',V), choices:[
       {label:ET('noble','ask','label',V), fx(){ if(w.lewd>=15 || w.trust>=30){ S.gold+=pay; w.popularity=clamp(w.popularity+5); w.energy=clamp(w.energy-25,0,maxEnergy(w)); S.rep=clamp(S.rep+2); return ET('noble','ask','res',V); } w.trust=clamp(w.trust+2); return ET('noble','ask','pass',V); }},
       {label:ET('noble','decline','label',V), fx(){ S.rep=clamp(S.rep-1); return ET('noble','decline','res',V); }}]};
   }},
   {w:2, ok:()=>S.flags.guild>=1 && anyW(w=>w.job!=='rest' && w.energy>=30).length>0, make(){
     const w = weighted(anyW(x=>x.job!=='rest' && x.energy>=30), x=>s100(statOf(x,'charisma'))+x.popularity);
-    const pay = Math.round(rnd(120,240) * (1+S.rep/150)), V = {name:w.name, gold:fmt(pay)};
+    const pay = samGold(Math.round(180 * (1+S.rep/150)), 'business', 0.3), V = {name:w.name, gold:fmt(pay)};
     return {title:ET('guild','title',V), who:w.id, scene:evImg('guild','companion'), text:ET('guild','text',V), choices:[
       {label:ET('guild','send','label',V), fx(){ S.gold+=pay; w.energy=clamp(w.energy-20,0,maxEnergy(w)); w.popularity=clamp(w.popularity+4); moodAdd(w, 5); return ET('guild','send','res',V); }},
       {label:ET('guild','pass','label',V), fx(){ return ET('guild','pass','res',V); }}]};
   }},
   {w:2, ok:()=>anyW(w=>w.job!=='rest' && w.energy>=25).length>0, make(){
     const w = weighted(anyW(x=>x.job!=='rest' && x.energy>=25), x=>5+s100(statOf(x,'wits')));
-    const gold = Math.round(rnd(100,200) * (1+S.rep/150)), V = {name:w.name, gold:fmt(gold)};
+    const gold = samGold(Math.round(150 * (1+S.rep/150)), 'wits', 0.3), V = {name:w.name, gold:fmt(gold)};
     return {title:ET('riddle','title',V), who:w.id, scene:evImg('riddle','casual'), text:ET('riddle','text',V), choices:[
       {label:ET('riddle','send','label',V), fx(){
         w.energy = clamp(w.energy-15, 0, maxEnergy(w));
@@ -156,7 +156,7 @@ const RANDOM_EVENTS = [
   {w:2, ok:()=>S.houses.some(h=>h.up && (h.up.stage || h.up.bar)) && anyW(w=>w.energy>=30 && w.job!=='rest' && houseOf(w) && houseOf(w).up && (houseOf(w).up.stage || houseOf(w).up.bar)).length>0, make(){
     const score = x => s100(statOf(x,'charisma')) + s100(x.tech.dance||0);
     const w = weighted(anyW(x=>x.energy>=30 && x.job!=='rest' && houseOf(x) && houseOf(x).up && (houseOf(x).up.stage || houseOf(x).up.bar)), x=>5+score(x));
-    const gold = Math.round(rnd(120,220) * (1+S.rep/150)), V = {name:w.name, gold:fmt(gold), bard:pick(['Lyric','Odalys','Pip','Marrow','Tamsin','Fenwick'])};
+    const gold = samGold(Math.round(170 * (1+S.rep/150)), 'charm', 0.3), V = {name:w.name, gold:fmt(gold), bard:pick(['Lyric','Odalys','Pip','Marrow','Tamsin','Fenwick'])};
     return {title:ET('bardduel','title',V), who:w.id, scene:evImg('bardduel','casual'), text:ET('bardduel','text',V), choices:[
       {label:ET('bardduel','accept','label',V), fx(){
         w.energy = clamp(w.energy-20, 0, maxEnergy(w)); const h = houseOf(w);
@@ -181,7 +181,7 @@ const RANDOM_EVENTS = [
       {label:ET('poach','choose','label',V), fx(){ if(Math.random() < w.trust/60+0.2) return ET('poach','choose','stay',V); leave(); return ET('poach','choose','go',V); }}]};
   }},
   {w:2, ok:()=>true, make(){
-    const g = ri(40,150), V = {gold:fmt(g)};
+    const g = samGold(95, 'wits', 0.45), V = {gold:fmt(g)};
     return {title:ET('lucky','title',V), text:ET('lucky','text',V), choices:[{label:ET('lucky','ok','label',V), fx(){ S.gold+=g; return ''; }}]};
   }},
   {w:1.5, ok:()=>S.gold>=200, make(){

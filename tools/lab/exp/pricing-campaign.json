@@ -1,0 +1,14 @@
+{
+  "desc": "House pricing tiers (0=Cheap .. 4=Exclusive) and Amber incense over a full first cycle at the Lantern.",
+  "scenario": "campaign",
+  "runs": 12,
+  "variants": [
+    { "name": "base (Normal)" },
+    { "name": "price: Cheap", "policy": { "price": 0 } },
+    { "name": "price: Premium", "policy": { "price": 2 } },
+    { "name": "price: Luxury", "policy": { "price": 3 } },
+    { "name": "price: Exclusive", "policy": { "price": 4 } },
+    { "name": "incense: amber", "mutate": { "incense": "amber" } }
+  ],
+  "breakdown": []
+}

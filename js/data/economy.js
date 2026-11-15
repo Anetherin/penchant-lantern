@@ -60,7 +60,7 @@ const houseBaseSize = h => {
   const D = (h && HOUSES[h.id]) || {};
   if(D.ngppOnly){
     const B = BAL.ngplus || {}, lvl = Math.max(1, (h && h.ngppLevel) || (typeof S!=='undefined' && S && S.ngppCycle) || 1);
-    return (B.ngppRoomStart ?? 5) + (B.ngppRoomStep ?? 5) * (lvl - 1);
+    return (B.ngppRoomStart ?? 10) + (B.ngppRoomStep ?? 5) * (lvl - 1);
   }
   return D.size || 9;
 };

@@ -40,7 +40,7 @@ function walkEligibleEvents(cat){
 }
 
 function samWalk(){
-  const B = BAL.walk || {}, W = B.weights || {};
+  const B = BAL.walk || {}, W = ((S.ngppCycle || 0) > 0 && B.ngppWeights) ? Object.assign({}, B.weights, B.ngppWeights) : (B.weights || {});
   if(!useAP(samWorkCost(B.energy ?? 15))) return;
   const partners = openWalkPartners(), guests = openWalkGuests(), exLovers = openWalkExLovers();
   const g = G();
@@ -83,7 +83,7 @@ function walkHireChoices(c, h, opts={}){
   const rb = raceBlock(c, h), choices = [];
   if(!rb && S.gold >= c.signing){
     choices.push({
-      label: c.signing > 0 ? `Hire her for ${h.name} (−${fmt(c.signing)})` : `Welcome her back to ${h.name} (free)`,
+      label: c.signing > 0 ? `Hire her for ${h.name} (−${fmt(c.signing)})` : c.wasLover ? `Welcome her back to ${h.name} (free)` : `Invite her into ${h.name} (free)`,
       fx(){
         if(S.gold < c.signing) return 'Not enough gold for the signing bonus.';
         S.gold -= c.signing; delete c.signing; c.job = 'rest'; c.contract = 12; c.keep = false; c.seen = {}; c.house = h.id;
@@ -130,7 +130,7 @@ function walkHireChoices(c, h, opts={}){
 function walkRecruitEvent(key, isPartner){
   const N = NAMED[key];
   const c = rebirthNamed(makeNamed(key));
-  c.signing = c.wasLover ? 0 : signingFor(c);
+  c.signing = (c.wasLover || (isPartner && (S.ngppCycle || 0) > 0)) ? 0 : signingFor(c);
   NPCS[c.id] = c;
 
   const h = curH(), ngpp = (S.ngppCycle || 0) > 0, tier = Math.min(2, c.reMet || 0);
@@ -313,10 +313,17 @@ function walkCasualEvent(){
           samStat('technique', techGain);
           if(charmGain) samStat('charm', charmGain);
           if(S.sam.first && actTier(actId) >= 2) S.sam.first = false;
-          if((S.sam.technique || 0) >= (C.recruitTech ?? 25)) EVQ.unshift(() => walkCasualRecruit(npc, sc, actId, baseTrust, origLewd));
+          let paidLine = '', pay = 0;
+          if(Math.random() < (C.paidChance ?? 0.25)){
+            pay = Math.max(8, Math.min(C.paidMax ?? 45, Math.round((C.paidBase ?? 10) + Math.min(100, S.sam.technique || 0) * (C.paidPerTech ?? 0.3) + rnd(-3, 5))));
+            S.gold += pay;
+            paidLine = WALKS.casualPaid && WALKS.casualPaid.length ? walkFill(pick(WALKS.casualPaid), {name:npc.name, gold:fmt(pay)}) : '';
+          } else if((S.sam.technique || 0) >= (C.recruitTech ?? 25)){
+            EVQ.unshift(() => walkCasualRecruit(npc, sc, actId, baseTrust, origLewd));
+          }
           const scene = 'samact:' + actId + '~~walk_' + sc.id;
           return {
-            text: walkFill(sc.goRes, V) + `\n\n(Sam's Technique +${techGain}${charmGain ? `, Charm +${charmGain}` : ''}${extraE ? `, Energy −${extraE}` : ''})`,
+            text: walkFill(sc.goRes, V) + paidLine + `\n\n(Sam's Technique +${techGain}${charmGain ? `, Charm +${charmGain}` : ''}${pay ? `, +${fmt(pay)}` : ''}${extraE ? `, Energy −${extraE}` : ''})`,
             img: {wid: npc.id, scene}
           };
         }
@@ -337,8 +344,10 @@ function walkCasualEvent(){
 function applyWalkOutcome(o, vars){
   const notes = [];
   if(o.gold){
-    S.gold = Math.max(0, S.gold + o.gold);
-    notes.push((o.gold > 0 ? '+' : '−') + fmt(Math.abs(o.gold)));
+    const g = o.gold > 0 ? samGold(o.gold, o.goldStat || vars._goldStat || 'business', o.goldSpread ?? 0.25) : o.gold;
+    S.gold = Math.max(0, S.gold + g);
+    vars.gold = fmt(Math.abs(g));
+    notes.push((g > 0 ? '+' : '−') + fmt(Math.abs(g)));
   }
   if(o.energy){
     if(o.energy > 0){ samEnergyAdd(o.energy); notes.push(`Energy +${o.energy}`); }
@@ -412,14 +421,15 @@ function walkMiscEvent(cat){
       label: walkFill(c.label, vars),
       fx(){
         if(c.gold && c.gold < 0 && S.gold < -c.gold) return 'You do not have enough gold for that right now.';
+        const callVars = Object.assign({}, vars, {_goldStat: (c.check && c.check.stat) || c.goldStat || 'business'});
         if(c.check){
           const ch = c.check;
           const pastOk = ch.past && hasPast(ch.past);
           const appOk = ch.app && (S.sam.appraisal || 1) >= ch.app;
           const pass = pastOk || appOk || ((S.sam[ch.stat] || 0) + rnd(0, 45) >= (ch.need || 40));
-          return applyWalkOutcome(pass ? c.win : c.lose, vars);
+          return applyWalkOutcome(pass ? c.win : c.lose, callVars);
         }
-        return applyWalkOutcome(c, vars);
+        return applyWalkOutcome(c, callVars);
       }
     }))
   };

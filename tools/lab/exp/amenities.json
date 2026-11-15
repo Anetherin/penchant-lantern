@@ -1,0 +1,23 @@
+{
+  "desc": "Amenities, incense blends, decor & drinks tiers granted at phase start (on top of baseline) in mid and late game.",
+  "scenario": "mid",
+  "weeks": 12,
+  "runs": 16,
+  "by": { "scenario": ["mid", "late"] },
+  "variants": [
+    { "name": "base", "phasePolicy": { "upgrades": false } },
+    { "name": "garden", "mutate": { "upgrades": ["garden"] }, "phasePolicy": { "upgrades": false } },
+    { "name": "laundry", "mutate": { "upgrades": ["laundry"] }, "phasePolicy": { "upgrades": false } },
+    { "name": "guard", "mutate": { "upgrades": ["guard"] }, "phasePolicy": { "upgrades": false } },
+    { "name": "workshop", "mutate": { "upgrades": ["workshop"] }, "phasePolicy": { "upgrades": false } },
+    { "name": "suite", "mutate": { "upgrades": ["suite"] }, "phasePolicy": { "upgrades": false } },
+    { "name": "incense: calm", "mutate": { "incense": "calm" }, "phasePolicy": { "upgrades": false } },
+    { "name": "incense: aphro", "mutate": { "incense": "aphro" }, "phasePolicy": { "upgrades": false } },
+    { "name": "incense: focus", "mutate": { "incense": "focus" }, "phasePolicy": { "upgrades": false } },
+    { "name": "incense: velvet", "mutate": { "incense": "velvet" }, "phasePolicy": { "upgrades": false } },
+    { "name": "incense: amber", "mutate": { "incense": "amber" }, "phasePolicy": { "upgrades": false } },
+    { "name": "decor 3", "phasePolicy": { "upgrades": false, "decor": 3 } },
+    { "name": "bar + drinks 3", "mutate": { "upgrades": ["bar"] }, "phasePolicy": { "upgrades": false, "drinks": 3 } }
+  ],
+  "breakdown": []
+}

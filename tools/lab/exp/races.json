@@ -4,6 +4,6 @@
   "weeks": 12,
   "runs": 16,
   "by": { "scenario": ["mid", "late"] },
-  "each": { "mutate.race": ["human", "elf", "beastkin/fox", "beastkin/cat", "beastkin/wolf", "beastkin/rabbit", "beastkin/dragon", "demon", "dwarf", "spirit", "angel", "android"] },
+  "each": { "mutate.race": ["human", "elf", "beastkin/fox", "beastkin/cat", "beastkin/wolf", "beastkin/rabbit", "beastkin/dragon", "demon", "dwarf", "spirit", "angel", "angel/lantern", "android"] },
   "breakdown": []
 }

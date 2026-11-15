@@ -11,6 +11,7 @@ This file is for big ideas when I have a fresh batch of Claude usage.
 ## Houses
 - Check the balance of the houses against one another and NG Plus house balance.
 - Cheaper houses should payoff sooner even if more expensive houses generate more income long term. Might need to look into the payoff schedule which probably needs to be more aggressive in NG Plus.
+- Add a House Class / Respectability scale alongside Reputation (`rep` = fame vs `class` = prestige/upscale standing; e.g., infamous dens like Crimson Veil can be famous without being classy while Castle Rosenhal / Dawnlight Cloister aim high). Ties into `Exhibitionist` open-act overflow penalties shifting client mix toward seedier/rowdy guests while hurting noble/merchant satisfaction.
 
 
 
