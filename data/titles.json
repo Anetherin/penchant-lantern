@@ -231,6 +231,8 @@
     "peerless": {"label":"the Peerless","after":true,"desc":"Skills grow 8% faster, stats 5%.","fx":{"skillGain":1.08,"statGain":1.05},"arc":"ella"},
     "sommelier": {"label":"Sommelier","desc":"Bartends 12% better.","fx":{"jobBonus":{"bartender":1.12}},"arc":"ione"},
     "warden": {"label":"Warden","desc":"Keeps the chapel 10% better, +2 resting mood.","fx":{"jobBonus":{"chapel":1.1},"moodRest":2},"arc":"anael"},
+    "chronicler": {"label":"the Chronicler","after":true,"desc":"Nobles pay 10% more; +4 Wits, +4 Refinement.","fx":{"classBonus":{"noble":1.1},"stats":{"wits":4,"refinement":4}},"arc":"rhoswen"},
+    "guildheart": {"label":"Heart of the Guild","after":true,"desc":"Promotes 12% better; +4 Charm, +4 Charisma.","fx":{"promote":1.12,"stats":{"charm":4,"charisma":4}},"arc":"hanna"},
     "springs": {"label":"Mistress of the Springs","after":true,"desc":"Bath work 12% better.","fx":{"jobBonus":{"bath":1.12}},"house":"onsen"},
     "manor": {
       "label": "Lady of the Manor",

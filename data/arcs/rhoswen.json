@@ -1,0 +1,162 @@
+{
+  "rhoswen": [
+    {
+      "title": "Commoner Tea",
+      "scene": "sam_date",
+      "text": "You find Rhoswen on the back porch after dusk, balancing a chipped ceramic mug of cheap street tea on her knee while her leather notebook rests open beside her. Her silver circlet sits on the table instead of her platinum hair, and her long pointed ears flick toward you as the screen door creaks. \"I bought it from the dockside cart,\" she announces with immense pride, holding up a crumpled paper bag of fried dough. \"At court, tea takes forty minutes and three spoons. Out here you simply hold the warm cup. May I write down that it tastes better?\"",
+      "choices": [
+        {
+          "label": "Sit beside her and share the paper bag",
+          "t": 5,
+          "m": 8,
+          "res": "She breaks the pastry in half with spotless etiquette, licks sugar off her thumb, and immediately looks horrified at herself before laughing softly when you pretend not to notice."
+        },
+        {
+          "label": "Call her \"miss\" and ask what else is in the notebook",
+          "t": 4,
+          "m": 7,
+          "res": "The tips of her ears pinken immediately. \"Miss Rhoswen,\" she tests aloud, smiling down at her pages. \"You have no idea how light two syllables can sound.\""
+        }
+      ],
+      "image": {
+        "comp": "sitting on a wooden back porch step at dusk holding a chipped mug and a paper pastry bag, open notebook beside her, pink ears, pleased smile",
+        "setting": "quiet wooden back porch overlooking a cobblestone lane at dusk",
+        "sam": true
+      }
+    },
+    {
+      "title": "Margin Notes",
+      "scene": "shower",
+      "text": "You knock once on the washroom door—mostly—and push it open to find Rhoswen kneeling beside the steaming tub, hair pinned hastily up, squinting at a damp page of her journal while scrubbing soap out of her sleeve. She freezes, towel slipping an inch off one pale shoulder, emerald eyes wide. \"I dropped it in the bathwater,\" she says weakly, as though caught committing treason. \"The ink under 'Propriety' has bled straight into 'Breakfast.'\"",
+      "choices": [
+        {
+          "label": "Apologize and step back out",
+          "t": 2,
+          "m": 4,
+          "res": "\"Thank you!\" she squeaks behind the closing latch. Ten minutes later she sets a dry towel neatly by your door with a tiny pressed leaf tucked underneath."
+        },
+        {
+          "label": "Hold a towel out from the doorway",
+          "if": {"lewd":35},
+          "t": 3,
+          "m": 7,
+          "l": 2,
+          "res": "She accepts the dry linen without rushing to cover herself, her ears turning rose as your eyes linger. \"For scholarly completeness,\" she murmurs, \"you look very steady when startled.\"",
+          "else": {
+            "t": 1,
+            "m": -2,
+            "res": "She snatches the towel through a two-inch crack in the door with brisk courtly dignity, though you hear her smother a flustered laugh inside."
+          }
+        },
+        {
+          "label": "Tease her about waterproof ink",
+          "t": 2,
+          "m": 5,
+          "l": 1,
+          "res": "\"Elven ink doesn't run,\" she replies stiffly, clutching the towel. \"Human ink is apparently much bolder.\" Her smile gives her away before the door clicks shut."
+        }
+      ],
+      "image": {
+        "comp": "kneeling beside a steaming wooden tub wrapped in a towel, holding up a wet ink-streaked notebook with bright pink ears",
+        "setting": "steamy wooden washroom",
+        "sam": false,
+        "towel": true
+      }
+    },
+    {
+      "title": "Unplanned Hours",
+      "scene": "casual",
+      "text": "Late at night in the quiet parlor, Rhoswen has spread half a dozen town maps and ledger scraps across the low table, barefoot for once with her heels tucked under her skirt. She hasn't written a single line in her notebook all evening; instead, she watches you sort receipts by lamplight until her chin rests on her folded arms. \"Two centuries in a silver tower,\" she says softly, \"and nobody ever once asked me what I thought of the weather, or let me sit on the rug without posture correction. I had no idea quiet could feel so greedy.\"",
+      "choices": [
+        {
+          "label": "Set the receipts aside and sit on the rug beside her",
+          "t": 5,
+          "m": 8,
+          "res": "She shifts without hesitation so her shoulder rests against yours. After ten quiet minutes she turns a blank page in her notebook and writes only the date."
+        },
+        {
+          "label": "Ask what she wants to do tomorrow—no notes allowed",
+          "t": 4,
+          "m": 6,
+          "l": 1,
+          "res": "She thinks seriously for a whole minute. \"Walk through the fish market at noon. Eat something sticky with both hands. And hold your sleeve when the crowd pushes.\""
+        }
+      ],
+      "image": {
+        "comp": "sitting barefoot on a parlor rug beside a low table strewn with maps and receipts, chin resting on folded arms, warm lamplight",
+        "setting": "quiet parlor rug by warm hearthlight late at night",
+        "sam": true
+      }
+    },
+    {
+      "title": "The Courier's Seal",
+      "scene": "portrait",
+      "text": "An elven courier in silver-trimmed livery waits in the entryway with a wax-sealed scroll bearing her house's stag crest. Rhoswen reads it once in silence, her posture snapping back into rigid court lines until her knuckles turn white around the parchment. Her father has learned where she works—and the carriage home leaves at dawn if she wishes her name scrubbed from the scandal sheets. When the courier steps outside for an answer, Rhoswen turns to you with careful, brittle calm. \"I should not bring trouble to your door.\"",
+      "choices": [
+        {
+          "label": "\"Stay only if you want to—this house can handle scandal.\"",
+          "t": 6,
+          "m": 7,
+          "res": "Some of the ice leaves her shoulders at once. She breaks the wax seal cleanly in half and hands it back to the waiting courier with a polite, devastating smile."
+        },
+        {
+          "label": "\"Go back if that's what makes you safe.\"",
+          "t": 2,
+          "m": -4,
+          "res": "Her lips thin. \"Safe is what I left behind,\" she answers quietly—then goes out alone to send the courier away empty-handed anyway."
+        },
+        {
+          "label": "Say nothing and let her choose",
+          "t": -3,
+          "m": -6,
+          "res": "She waits one heartbeat for a word that doesn't come, turns on her heel, and deals with the courier herself—returning pale and silent for the rest of the night."
+        }
+      ],
+      "image": {
+        "comp": "holding a silver-sealed parchment scroll, rigid aristocratic posture masking worry, emerald eyes glancing toward him",
+        "setting": "lantern-lit parlor entryway, afternoon light",
+        "sam": true
+      }
+    },
+    {
+      "title": "The Unfinished Margin",
+      "scene": "sam_date",
+      "text": "Rhoswen brings you up to the quiet terrace garden above the square after midnight, carrying two glasses of pale elven wine and the battered leather notebook that started it all. She hands the book to you open—not to *Human Customs*, but to the last twenty pages, filled cover to cover with tiny, meticulous notes about the way you check on tired staff, the crooked angle of your hoodie pocket, and every time you remembered her tea without asking. \"I stopped studying the town months ago,\" she admits, ears glowing crimson in the moonlight. \"I was never very impartial.\"",
+      "choices": [
+        {
+          "label": "Kiss her hand and promise not to read ahead",
+          "t": 5,
+          "m": 8,
+          "l": 2,
+          "res": "She catches her breath as your lips brush her knuckles, then closes the notebook with one slow finger. \"You may read as far as you like.\""
+        },
+        {
+          "label": "Ask what comes on the next page",
+          "t": 5,
+          "m": 7,
+          "res": "She steps inside your reach, tilting her chin up with a bold, trembling smile. \"I was hoping we might draft it together.\""
+        }
+      ],
+      "image": {
+        "comp": "standing on a moonlit terrace holding out a worn leather notebook and two wine glasses, blushing deeply down to her pointed ears",
+        "setting": "moonlit terrace garden overlooking lantern-lit rooftops at night",
+        "sam": true
+      }
+    },
+    {
+      "title": "Beyond the Text",
+      "scene": "final",
+      "text": "In the quiet room at the end of the hall, Rhoswen unclasps her silver circlet and sets it cleanly beside her closed notebook on the bedside table. No pages open tonight, no pen in reach—just platinum hair spilling across bare shoulders as she steps into your arms, steady and deliberate. \"I left a court because every day was already written for me,\" she whispers against your mouth, hands sliding firmly behind your neck. \"You are the only chapter I never want to edit. Let me belong here—with you.\"",
+      "choices": [
+        {"label":"Say yes","t":6,"m":12,"res":""},
+        {
+          "label": "Not yet",
+          "t": 1,
+          "m": -3,
+          "hold": true,
+          "res": "Rhoswen draws back slowly, smoothing her skirts with shaken composure. \"Then I shall exercise patience,\" she murmurs, touching your cheek once. \"I am an elf—I have plenty, even if my heart disagrees.\""
+        }
+      ]
+    }
+  ]
+}

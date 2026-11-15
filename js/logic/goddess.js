@@ -265,7 +265,7 @@ function gDistractAct(T, c){
   const list = [].concat(c.act || T.act || ((B.acts||{})[gTeaseTier()]) || ['kiss']).filter(a=>actById(a));
   return list.length ? actKey(pick(list)) : null;
 }
-const gTeaseSetting = ctx => { const m = /^gt_(.+)$/.exec(ctx||''); if(!m) return null; const T = (GOD.teases||[]).find(t=>t.id===m[1]); return T && T.image && T.image.setting || null; };
+const gTeaseSetting = ctx => { const m = /^gt_(.+)$/.exec(ctx||''); if(!m) return null; const T = (GOD.teases||[]).find(t=>t.id===m[1]) || (typeof WALKS!=='undefined' && WALKS.goddess && (WALKS.goddess.disguise||[]).find(t=>t.id===m[1])); return T && T.image && T.image.setting || null; };
 function evGoddessDistract(T, c, act, fk, ctx){
   const D = GOD.distract || {}, tier = actTier(act), ph = gPhase(T);
   const x = Object.assign({}, ctx, {act: actLabel(act).toLowerCase()});

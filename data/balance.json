@@ -732,7 +732,7 @@
       "cost": 2500,
       "carry": false,
       "tool": true,
-      "desc": "Resoled by a dwarven cobbler. Sam's work shifts (bar, watch, books, rounds, classes, scouting) and guild visits cost 5 less energy.",
+      "desc": "Resoled by a dwarven cobbler. Sam's work shifts (bar, watch, books, rounds, classes, scouting), guild visits, and walks cost 5 less energy.",
       "fx": {"workEnergy":5}
     },
     "manual": {
@@ -809,6 +809,11 @@
       "jewel": {"label":"Fine jewelry","cost":300,"trust":4,"mood":8},
       "lavish": {"label":"Something lavish","cost":1000,"trust":10,"mood":15}
     }
+  },
+  "walk": {
+    "energy": 15,
+    "weights": {"partner":3.5,"partnerPity":1.5,"guest":3,"goddess":2.5,"goddessBound":0.9,"casual":2.2,"rest":1.6,"coin":1.6,"flavor":1.6},
+    "casual": {"tech":3,"charm":1,"extraEnergy":8,"passEnergy":4}
   },
   "goddess": {
     "fullReborn": 4,

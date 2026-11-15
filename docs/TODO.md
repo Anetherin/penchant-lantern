@@ -9,13 +9,8 @@ This file is for big ideas when I have a fresh batch of Claude usage.
 - Bath attendants scenes should probably be in the baths. exhibitionist scenes should be in the open. Make sure scenes and descriptions line up in general.
 
 ## Houses
-- We should have a house available that comes with an android (and charging station)
-- We should add a some more houses. maybe a big empty one, etc etc
-- Check the balance of the houses against one another.
-- Consider unique perks per house
-- houses should be able to have focuses that are mutually exclusive (kind of like incense type. or we just expans incense types)
-- Also check the NG Plus house balance
-- Cheaper houses should payoff sooner even if more expensive houses generate more income long term. might need to look into The payoff schedule which probably needs to be more aggressive in NG Plus.
+- Check the balance of the houses against one another and NG Plus house balance.
+- Cheaper houses should payoff sooner even if more expensive houses generate more income long term. Might need to look into the payoff schedule which probably needs to be more aggressive in NG Plus.
 
 
 
@@ -44,15 +39,4 @@ This file is for big ideas when I have a fresh batch of Claude usage.
 - Certain characters should call Sam by different names (boss is more generic and probably not suitable for most isekai girls)
 - Stories are expanded from current and take current physical progress into account 
 - Some (like bath scenes) should lead into a service scene depending on what the girl is comfortable with
-- Check the tone and length of various stories, arcs, and bonds. 
-
-## Walks
-Once the guild characters are done, should the button disappear? also should they have stories built out?
-If so we can replace it with walks, if not walks are a new thing.
-Partners no longer show up recruitable by default.
-Instead we can take walks, one of a couple things happen:
-- You encounter the goddess in disguise (maybe you can still get occasional encounters normally, but this is a way to have it be much more likely)
-- You have a casual encounter with a randomly generated NPC (buffs technique)
-- You encounter a partner character (the only way to find them if you don't choose them j. reincarnation)
-- You encounter a guest character (if all partners have been found)
-- You find a place to rest, make some money, flavorful events, etc
+- Check the tone and length of various stories, arcs, and bonds.

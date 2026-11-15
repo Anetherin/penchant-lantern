@@ -1,0 +1,504 @@
+{
+  "_readme": [
+    "Walks around Hollowmere (js/events/walks.js, samWalk). Placeholders depend on the section.",
+    "goddess: pre-binding disguise encounters and post-binding strolls. Placeholders: {alias}, {form}, {race}, {house}, {sam}, {goddess}. Pre-binding choices with resIn can trigger evGoddessDistract via gDistractAct (she never lets Sam finish).",
+    "casual: encounters with randomly generated NPCs (buffs Sam's Technique). Placeholders: {name}, {race}, {act}, {job}, {house}.",
+    "partnerOpeners: optional custom opener lines per partner key when met on a walk; falls back to partnerDefault.",
+    "events: rest / coin / flavor walk events (type: 'rest' | 'coin' | 'flavor'). Choices declare declarative effects (energy, gold, rep, sam, appXP, mood, trust, outfit, regularLoyalty) and optional stat check (check: {stat, label, need, win, lose})."
+  ],
+  "goddess": {
+    "disguise": [
+      {
+        "id": "walk_market",
+        "title": "A Familiar Face in the Crowd",
+        "intro": "Lanternlight catches the gold tips of long black hair three stalls ahead of you in the afternoon market. Before you can look away, {form} steps neatly out of the crowd and falls into step beside you.\n\n\"{alias},\" she says brightly, linking her arm through yours as though you'd arranged to meet here. \"You walk too fast, {sam}. You're going to miss everything worth looking at.\"",
+        "wonder": "Her palm is startlingly warm through your sleeve. You try to place her—not one of your staff, and certainly not any townswoman you remember—until she leans in close enough for you to smell faint candle smoke and warm honey.\n\n\"Looking for someone?\" {alias} asks, her eyes bright with amusement.",
+        "unknown": true,
+        "image": {
+          "comp": "walking arm in arm through a sunlit market street, looking up at him with a teasing smile, hand tucked around his elbow",
+          "setting": "busy cobblestone market street with colorful stalls and hanging paper lanterns",
+          "sam": true
+        },
+        "choices": [
+          {
+            "label": "\"Who told you my name?\"",
+            "resIn": "\"Everyone in the Lantern Quarter talks, darling,\" she murmurs, steering you into the quiet recess between two spice stalls. \"Let me help you stop overthinking.\"",
+            "res": "\"A little bird,\" she says, tapping the tip of your nose. By the time you blink past the scent of cinnamon and candle smoke, she has slipped back into the crowd.",
+            "love": 3,
+            "jealousy": -1
+          },
+          {
+            "label": "Walk with her awhile",
+            "resIn": "You let her lead the pace down a quieter lane behind the silk stalls. Her hand slides from your elbow down to your fingers, and then lower still.",
+            "res": "You stroll the stalls with her for half an hour, trading quiet remarks about the merchants. When you stop to buy roasted chestnuts, you turn back to an empty cobblestones.",
+            "love": 2
+          }
+        ]
+      },
+      {
+        "id": "walk_bridge",
+        "title": "At the Canal Rail",
+        "intro": "Halfway across the canal bridge, {form} is leaning over the stone parapet, watching paper boats drift beneath the arches. She glances over her shoulder as your boots hit the cobbles—black hair tipped with gold catching the late sun.\n\n\"Fancy meeting you here,\" {alias} purrs, patting the warm stone beside her. \"Take a break. The ledger won't catch fire if you look at the river for five minutes.\"",
+        "wonder": "You lean on the parapet beside her. Within a minute she has shifted close enough that her hip brushes yours, her fingers trailing lazily along the back of your hand. Something in the effortless way she claims your space makes your pulse jump.",
+        "unknown": true,
+        "image": {
+          "comp": "leaning against a stone canal bridge beside him, looking sideways with a sly smile, hair blowing softly in the breeze",
+          "setting": "stone bridge over a quiet canal in warm late-afternoon light",
+          "sam": true
+        },
+        "choices": [
+          {
+            "label": "Ask where she's staying",
+            "resIn": "\"Closer than you think,\" she whispers, turning you toward the shadow beneath the bridge steps with both hands on your waist.",
+            "res": "\"Somewhere with a great view of {house},\" she says lightly, kissing your cheek before slipping down the canal stairs and out of sight.",
+            "love": 3,
+            "energy": 6
+          },
+          {
+            "label": "Stay and watch the boats",
+            "res": "She stays until the lamps along the canal flicker on, resting her chin lightly against your shoulder before vanishing the moment a barge passes.",
+            "love": 2,
+            "energy": 10
+          }
+        ]
+      },
+      {
+        "id": "walk_shrine",
+        "title": "Candle Smoke at the Crossroads",
+        "intro": "A step off the main road sits an old roadside lantern shrine, mossy and quiet. Standing before the unlit brass bowl is {form}—though when she turns, you already know that gold-tipped black hair and that impossible smile.\n\n\"{goddess},\" you say flatly. She laughs, bright and pleased, and snaps her fingers so the shrine wick catches with a soft pop.",
+        "wonder": "\"Still sharp when you want to be,\" she says, strolling straight up until her chest brushes yours. \"Out shopping for trouble without me? Let's see how steady your pulse is today.\"",
+        "needKnows": true,
+        "image": {
+          "comp": "standing beside an old stone lantern shrine, smiling smugly with one finger brushing his collar, small ember light glowing nearby",
+          "setting": "quiet mossy roadside shrine shaded by trees, warm dusk light",
+          "sam": true
+        },
+        "choices": [
+          {
+            "label": "Pull her into the trees",
+            "resIn": "\"Oh, bold today,\" {goddess} breathes, already melting into the alcove behind the shrine with a pleased, wicked laugh.",
+            "res": "\"Impatient,\" she chides softly, letting you kiss her breathless against the shrine stone before slipping out of your arms in a swirl of warm candle smoke.",
+            "love": 4,
+            "jealousy": -2
+          },
+          {
+            "label": "Tease her about slacking off",
+            "res": "\"I am never slacking off, {sam},\" she says, poking your ribs. \"I'm supervising. Closely.\" She walks you halfway back to {house} before fading down a side alley.",
+            "love": 2,
+            "energy": 8
+          }
+        ]
+      },
+      {
+        "id": "walk_alley",
+        "title": "Out of the Rain",
+        "intro": "A sudden drizzle drives you under a narrow tavern awning, shaking water from your hoodie—only to find {form} already waiting there, completely dry despite the rain drumming on the street.\n\n\"You're soaked,\" {alias} notes, though her eyes are already dropping down the front of your shirt. When you catch her grin, you realize the air under the awning smells like warm wax and sparks.",
+        "wonder": "She steps close to blot your collar with her sleeve, taking entirely too long about it and letting her knuckles brush low against your belt.",
+        "needKnows": true,
+        "image": {
+          "comp": "standing close under a wooden awning while rain falls behind them, drying his collar with a mischievous grin",
+          "setting": "lantern-lit cobblestone street during a light rain shower, wooden awning",
+          "sam": true
+        },
+        "choices": [
+          {
+            "label": "Ask what she really wants",
+            "resIn": "\"You know what I like watching,\" {goddess} murmurs, sliding a hand straight inside your coat while the rain hides the doorway behind you.",
+            "res": "\"Just a minute out of the rain with my favorite mortal,\" she says softly, leaving a lingering kiss on your jaw before stepping dryly out into the downpour.",
+            "love": 3,
+            "jealousy": -1
+          },
+          {
+            "label": "Share the awning quietly",
+            "res": "She leans against your side until the clouds break, humming something old and quiet while your damp shirt dries in the heat off her skin.",
+            "love": 2,
+            "energy": 8
+          }
+        ]
+      }
+    ],
+    "bound": [
+      {
+        "id": "walk_bound_stroll",
+        "title": "Out in Disguise",
+        "text": "Halfway down the market street, {form} slips smoothly into step beside you and laces her fingers through yours. You only need one glance at the gold tips of her hair and that smug sidelong grin to recognize {goddess}.\n\n\"Couldn't stand watching you stroll around town by yourself,\" she whispers, leaning into your shoulder. \"Come on. Buy me something sweet and pretend I'm a stranger.\"",
+        "image": {
+          "comp": "walking hand in hand through a busy street looking fondly at him, wearing a playful disguise",
+          "setting": "warm afternoon market street with lanterns",
+          "sam": true
+        },
+        "choices": [
+          {
+            "label": "Buy her honey pastries (-20g)",
+            "gold": -20,
+            "love": 3,
+            "jealousy": -4,
+            "mood": 4,
+            "res": "{goddess} eats both pastries with obvious delight and licks honey off her thumb just to watch you stare. \"Good mortal.\""
+          },
+          {
+            "label": "Play along with the stranger act",
+            "love": 2,
+            "jealousy": -2,
+            "mood": 2,
+            "res": "You introduce yourself as if for the first time, and she plays coy all the way back to {house}, stealing a quick kiss in every dark doorway along the way."
+          }
+        ]
+      },
+      {
+        "id": "walk_bound_bridge",
+        "title": "A Quiet Detour",
+        "text": "On the canal bridge, a familiar voice calls out from a bench—{goddess}, wearing {form} like a favorite coat, swinging her legs above the water. \"Your ladies have the house covered for an hour,\" she tells you, patting the bench beside her. \"Sit.\"",
+        "image": {
+          "comp": "sitting on a stone bridge bench swinging her legs, beckoning him with an affectionate smile",
+          "setting": "quiet canal bridge at dusk, warm lantern reflection on water",
+          "sam": true
+        },
+        "choices": [
+          {
+            "label": "Rest your head in her lap",
+            "love": 3,
+            "jealousy": -3,
+            "mood": 4,
+            "energy": 12,
+            "res": "She laughs softly and cards warm fingers through your hair until the sky turns deep violet. You head back strangely rested."
+          },
+          {
+            "label": "Tease her about sneaking out",
+            "love": 2,
+            "jealousy": -2,
+            "mood": 2,
+            "res": "\"Goddesses don't sneak, {sam},\" she replies primly, nudging your knee with hers. \"We make unscheduled appearances.\""
+          }
+        ]
+      }
+    ]
+  },
+  "casual": [
+    {
+      "id": "awning",
+      "title": "Caught in the Rain",
+      "acts": ["kiss","manual_give","oral_give"],
+      "setting": "quiet cobblestone archway sheltered from a warm afternoon downpour",
+      "text": "A sudden downpour chases you under a narrow stone archway—already occupied by {name}, a friendly {race} shaking rain from her hair. The two of you stand shoulder to shoulder watching the gutters flood, trading dry jokes until her gaze drops to your mouth and doesn't come back up.\n\n\"Looks like we're stuck here for a bit,\" she murmurs, stepping inside your coat out of the chill. \"Might as well stay warm.\"",
+      "goLabel": "Pull her closer",
+      "goRes": "Sheltered behind the archway's stone pillar, one slow kiss turns urgent fast. Her breath catches as you take your time learning what makes her shiver—purely for mutual warmth, naturally. By the time the clouds clear, both of you are flushed and smiling.",
+      "passLabel": "Share your umbrella space politely",
+      "passRes": "You keep your hands to yourself and chat easily until the rain slows. She waves warmly as you step back into the street."
+    },
+    {
+      "id": "loft",
+      "title": "Upstairs at the Tavern",
+      "acts": ["missionary","cowgirl","oral_give"],
+      "setting": "quiet sunlit upstairs room above a neighborhood tavern, narrow bed",
+      "text": "At a quiet neighborhood tavern, you end up sharing a corner table with {name}, a bright-eyed {race} traveling through town. One drink turns into two, easy laughter turning warm and unhurried. When she taps her empty cup and glances toward the innkeeper's stairs, there's nothing ambiguous about her smile.\n\n\"My room's paid through tonight,\" {name} says softly, brushing your knee under the table. \"Come up for an hour?\"",
+      "goLabel": "Follow her upstairs",
+      "goRes": "The latch clicks behind you, and she wastes no time pulling you down onto the narrow mattress. Unhurried and enthusiastic, she meets every touch halfway—letting you practice your rhythm without a ledger or clock in sight.",
+      "passLabel": "Wish her safe travels",
+      "passRes": "You raise your cup to her instead and keep the afternoon light. She laughs, pays her tab, and heads off down the road."
+    },
+    {
+      "id": "canal",
+      "title": "The Quiet Boathouse",
+      "acts": ["manual_give","oral_give","doggy"],
+      "setting": "dim wooden canal boathouse smelling of cedar and river breeze",
+      "text": "Along the quiet lower canal, you strike up a conversation with {name}, a {race} watching the barges drift by with boredom in her posture and sparks in her eyes. Ten minutes of easy flirting later, she unlocks the little cedar boathouse behind her aunt's shop and jerks her chin inside.\n\n\"Nobody comes down here till dusk,\" she grins, pulling the door half-shut behind you.",
+      "goLabel": "Step inside with her",
+      "goRes": "Among coiled ropes and sunlit dust motes, she leans back against the cedar workbench and pulls you straight between her thighs. Unhurried and eager, she lets you take the lead—and leaves you grinning all the way back to the street.",
+      "passLabel": "Keep walking along the canal",
+      "passRes": "You laugh and beg off for today, leaving her lounging in the doorway with an amused wave."
+    },
+    {
+      "id": "apothecary",
+      "title": "After-Hours Tea",
+      "acts": ["massage_give","kiss","cowgirl"],
+      "setting": "warm candlelit backroom behind an apothecary shop, shelves of dried herbs",
+      "text": "You stop by a quiet backstreet apothecary to pick up salves, where {name}—a {race} closing up for the afternoon—offers you spiced tea in the backroom instead. Halfway through the pot, she stretches with a groan about her stiff shoulders, then looks right at you from under her lashes.\n\n\"You look like someone who knows what he's doing with his hands,\" she purrs, slipping her outer wrap off one shoulder.",
+      "goLabel": "Offer to help her unwind",
+      "goRes": "The shop bell stays unhung while you work the knots out of her shoulders—and then let your hands wander lower once she sighs into your touch. She answers with warm, greedy enthusiasm, leaving both of you delightfully breathless.",
+      "passLabel": "Finish your tea and head out",
+      "passRes": "You finish the spiced tea, thank her for the salves, and leave her humming cheerfully behind the counter."
+    },
+    {
+      "id": "garden_bench",
+      "title": "Behind the Ivy Wall",
+      "acts": ["kiss","manual_give","missionary"],
+      "setting": "secluded stone bench tucked behind an ivy-covered courtyard wall at dusk",
+      "text": "Taking a shortcut past an overgrown courtyard, you nearly walk straight into {name}, a charming {race} sitting alone on a stone bench behind the ivy wall. What starts as an apology turns into twenty minutes of teasing banter—until she tugs you down beside her by the front of your hoodie.\n\n\"Nobody walks past here this late,\" she whispers against your jaw. \"Want to see how quiet I can be?\"",
+      "goLabel": "Take her up on it",
+      "goRes": "Hidden behind the thick ivy, she bites her lip to muffle every soft gasp while your hands and mouth learn her pace. By the time dusk settles across the courtyard, she's flushed from collarbone to ears and pressing a breathless kiss to your cheek.",
+      "passLabel": "Wish her a good evening",
+      "passRes": "You smile, squeeze her hand, and slip back out onto the lane before dark."
+    }
+  ],
+  "partnerOpeners": {
+    "default": "At a corner stall along the Lantern Market, you spot {name}—{backstory} When your eyes meet across the street, she pauses and turns toward you.",
+    "kaede": "Outside a noisy noodle stand near the guild road, a flash of bright copper tail catches your eye. {name} spots you at the exact same moment, ears perking upright as she grins and saunters over with her thumbs hooked in her belt.",
+    "yui": "Beneath the shadow of an old stone bridge, you find {name} sitting calmly with a wooden practice blade across her knees, watching the river. She looks up as your boots tap the cobbles, her expression unreadable and sharp.",
+    "nerys": "Near a row of crooked apothecary shops, a sharp burst of laughter makes you turn—{name} is gesturing dramatically at a merchant's display, tail flicking lazily behind her before her gaze locks onto yours.",
+    "elowen": "Under the quiet canopy of the market trees, {name} stands examining an herbalist's basket with gentle patience. Sensing your step, she turns with a serene, unhurried smile.",
+    "adelheid": "By the city watch noticeboard, {name} stands straight-backed in well-kept steel, scanning bounty postings with a furrowed brow. She glances over as you approach and gives a crisp, measuring nod.",
+    "natsuki": "In front of a crowded sweet stall, {name} is frowning fiercely at a tray of frosted cakes while trying to look entirely uninterested. She spots you watching and scowls—pink coloring her cheeks almost immediately.",
+    "kanako": "At a quiet backstreet tea table, {name} sits swirling a cup between pale fingers, cool and composed until she notices you standing nearby and raises one eyebrow in quiet invitation.",
+    "akari": "On a sunny bench beside the plaza fountain, {name} jumps half an inch when she catches sight of you—fidgeting with her sleeves for one second before beaming brightly as if she'd been waiting all morning.",
+    "marisol": "On the edge of the spice market, {name} is casually charming a pair of dockworkers into carrying crates twice their weight for free. Catching your eye, she winks and drifts across the lane to meet you.",
+    "lara": "Sweeping the front step of a cramped boardinghouse, {name} pauses with her broom when she notices you passing by, brushing damp hair from her forehead with a tired, hopeful look.",
+    "emily": "On the canal bridge, {name} is scribbling furiously in a battered notebook, wolf ears twitching whenever anyone walks past. She freezes halfway through a sentence when she hears your footsteps—and stares as if seeing a ghost.",
+    "lirael": "Beside the iron postbox at the end of the market lane, {name} stands sorting a bundle of tied envelopes with neat precision. When you step up to check the street sign, her long ears flick and she hesitates, clutching a letter to her chest.",
+    "ella": "Beside a quiet fountain courtyard, {name} watches the water with poised, distant grace—looking entirely out of place among the dust and shouts of the quarter until your eyes meet.",
+    "ione": "Sitting outside a cellar wine shop with a single glass in hand, {name} tilts her head at you with a faint, humming calm, as though she had already calculated the exact minute you would walk down this street.",
+    "anael": "Beside an unlit crossroads lamppost, {name} stands motionless in pale light, watching the street with solemn golden eyes. As you pass, the wick flares gently on its own, and her wings shift in quiet wonder."
+  },
+  "guestIntro": "Passing the fountain plaza, you notice someone who plainly doesn't belong to Hollowmere's usual crowd—{name}. {backstory}",
+  "events": [
+    {
+      "id": "shrine_bench",
+      "cat": "rest",
+      "title": "The Quiet Shrine Bench",
+      "text": "Down a shaded lane behind the old lantern shrine, you find a sun-warmed stone bench where nobody passes for an hour. The breeze smells of pine and warm dust, and your shoulders drop an inch the moment you sit.",
+      "choices": [
+        {
+          "label": "Close your eyes for half an hour",
+          "energy": 24,
+          "sam": {"wits":1},
+          "res": "You doze with your back against the warm stone and wake with a clear head and steady legs."
+        },
+        {
+          "label": "Leave an offering at the shrine (-15g)",
+          "gold": -15,
+          "energy": 30,
+          "rep": 1,
+          "sam": {"charm":1},
+          "res": "The caretaker beams, hands you a cup of sweet herbal tea, and tells three passing merchants what a decent fellow runs the house down the hill."
+        }
+      ]
+    },
+    {
+      "id": "tea_stall",
+      "cat": "rest",
+      "title": "The Harbor Tea Stall",
+      "text": "Above the harbor steps, an elderly dwarf runs a tiny wooden tea cart overlooking the sails. Steam rises from spiced kettles while gulls wheel lazily overhead.",
+      "choices": [
+        {
+          "label": "Buy hot tea and steamed buns (-20g)",
+          "gold": -20,
+          "energy": 28,
+          "sam": {"charm":1},
+          "res": "Hot ginger tea and fluffy pork buns bring the life right back into your bones."
+        },
+        {
+          "label": "Sit on the low wall and chat",
+          "energy": 18,
+          "sam": {"charm":1},
+          "res": "The old dwarf pours you a free splash from the end of the pot and trades dockyard gossip until your legs feel light again."
+        }
+      ]
+    },
+    {
+      "id": "canal_lawn",
+      "cat": "rest",
+      "title": "Breeze by the Canal",
+      "text": "On the grassy bank past the upper canal lock, willows trail in the slow current and a warm breeze keeps the afternoon noise at bay.",
+      "choices": [
+        {
+          "label": "Stretch out in the grass and rest",
+          "energy": 22,
+          "res": "Half an hour staring at clouds through willow leaves clears the ledger haze straight out of your head."
+        },
+        {
+          "label": "Watch the barge traffic and take notes",
+          "energy": 12,
+          "appXP": 6,
+          "sam": {"wits":1},
+          "res": "Watching merchants, dockers, and off-duty guards pass sharpens your eye for who has coin to spend."
+        }
+      ]
+    },
+    {
+      "id": "caravan_ledger",
+      "cat": "coin",
+      "title": "The Tangled Tariff",
+      "text": "Outside the merchant gate, a harried caravan clerk is surrounded by three fluttering stacks of customs parchment, muttering numbers under his breath while his inkwell tips dangerously close to his sleeve.",
+      "choices": [
+        {
+          "label": "Sort out his ledger for him",
+          "check": {"stat":"business","need":42,"past":"salaryman"},
+          "win": {"gold":170,"sam":{"business":2},"res":"Ten minutes with a borrowed pen untangles an entire column of double-counted wool tariffs. He presses 170g into your palm in pure relief."},
+          "lose": {"gold":60,"sam":{"business":1},"res":"You spot two arithmetic errors before your eyes cross—still enough to earn a grateful 60g finder's tip."}
+        },
+        {
+          "label": "Point him toward your house for a drink tonight",
+          "gold": 40,
+          "rep": 1,
+          "res": "He gratefully accepts a card for {house} and tips you 40g for the spare ink blotter you lent him."
+        }
+      ]
+    },
+    {
+      "id": "shell_game",
+      "cat": "coin",
+      "title": "Alley Cups",
+      "text": "Near the dockside steps, a fast-talking hustler flips three tarnished brass cups across an upturned barrel while two bored sailors watch. \"Double your stake if you track the pearl, friend!\"",
+      "choices": [
+        {
+          "label": "Play his game and watch his wrists",
+          "check": {"stat":"wits","need":44,"app":2},
+          "win": {"gold":140,"sam":{"wits":1},"appXP":6,"res":"His left thumb gave it away before the second pass. You scoop up 140g before he decides he's suddenly out of change."},
+          "lose": {"gold":-40,"sam":{"wits":1},"res":"Too fast. You drop 40g, though you catch the trick the moment he pockets the cups."}
+        },
+        {
+          "label": "Watch silently from the steps",
+          "appXP": 8,
+          "res": "You stand back with your hands in your pockets and study how he reads marks in the crowd."
+        }
+      ]
+    },
+    {
+      "id": "flour_sacks",
+      "cat": "coin",
+      "title": "A Broken Cart Axle",
+      "text": "A baker's cart has snapped an axle halfway up the cobblestone hill, blocking half the lane with heavy grain sacks while the owner tries fruitlessly to flag down help.",
+      "choices": [
+        {
+          "label": "Haul the sacks up to his shop",
+          "check": {"stat":"strength","need":36,"past":"gym"},
+          "win": {"gold":130,"sam":{"strength":2},"energy":-8,"res":"It leaves your hoodie dusty and your arms burning, yet every sack makes it inside before the drizzle starts. He pays 130g and insists you take a loaf."},
+          "lose": {"gold":65,"sam":{"strength":1},"energy":-8,"res":"It takes twice as many trips as you expected, earning 65g and a sore lower back."}
+        },
+        {
+          "label": "Hire two dockhands to help and direct traffic (-20g)",
+          "gold": -20,
+          "rep": 2,
+          "sam": {"charm":1},
+          "res": "The lane clears in five minutes, and half the street hears that the owner of {house} stepped up to sort it out."
+        }
+      ]
+    },
+    {
+      "id": "peddler_trunk",
+      "cat": "coin",
+      "title": "The Traveling Peddler's Trunk",
+      "text": "At the edge of the square, a sunburned clothier is packing down a cedar trunk stuffed with bright silks, neatly pressed dresses, and bolted lace he wants moved before sundown.",
+      "choices": [
+        {
+          "label": "Buy an outfit for the house wardrobe at clearance",
+          "outfitDiscount": 0.55,
+          "res": "You pick out {outfit} at a steep discount ({cost}) and have it sent straight to the wardrobe at {house}."
+        },
+        {
+          "label": "Help him price and move the remaining bolts",
+          "check": {"stat":"business","need":38},
+          "win": {"gold":120,"sam":{"business":1},"res":"You steer three passing seamstresses straight to his bolts and earn a tidy 120g commission."},
+          "lose": {"gold":45,"res":"You drum up a couple of small buyers and pocket 45g for the trouble."}
+        }
+      ]
+    },
+    {
+      "id": "busker_crowd",
+      "cat": "flavor",
+      "title": "Corner Lute & Crowd",
+      "text": "A sharp-tongued young bard has drawn two dozen off-duty merchants and adventurers around the fountain plaza, singing bright, bawdy tavern ballads.",
+      "choices": [
+        {
+          "label": "Toss a coin and buy a verse about {house} (-25g)",
+          "gold": -25,
+          "rep": 2,
+          "sam": {"charm":1},
+          "res": "The bard grins, switches keys without blinking, and weaves {house}'s lanterns neatly into the chorus. Half the crowd looks up the street."
+        },
+        {
+          "label": "Work the edge of the crowd",
+          "check": {"stat":"charm","need":40},
+          "win": {"rep":2,"sam":{"charm":1},"res":"Easy banter leaves four well-dressed merchants asking what time your doors open tonight."},
+          "lose": {"sam":{"charm":1},"res":"You hand out a couple of polite words before the song wraps up and the crowd scatters."}
+        }
+      ]
+    },
+    {
+      "id": "book_cart",
+      "cat": "flavor",
+      "title": "The Old Bookseller's Cart",
+      "text": "Tucked beside the clocktower wall sits a rickety cart piled high with dog-eared manuals—half merchant ledgers, half anatomical sketches and pillow-books.",
+      "choices": [
+        {
+          "label": "Buy a worn technique treatise (-70g)",
+          "gold": -70,
+          "sam": {"technique":3,"wits":1},
+          "res": "You thumb through a surprisingly practical volume on breath, pace, and hands over a bench in the square. Useful."
+        },
+        {
+          "label": "Browse the market almanacs and chat",
+          "sam": {"wits":1},
+          "appXP": 6,
+          "res": "The old bookseller lets you skim his town registries for free while complaining about rising parchment prices."
+        }
+      ]
+    },
+    {
+      "id": "alley_trouble",
+      "cat": "flavor",
+      "title": "Cornered by the Bakery",
+      "text": "Rounding a narrow corner, you spot two drunken brawlers blocking a terrified apprentice tailor against a wall, reaching for his delivery satchel.",
+      "choices": [
+        {
+          "label": "Step between them and back them off",
+          "check": {"stat":"strength","need":42,"past":"gym"},
+          "win": {"gold":90,"rep":2,"sam":{"strength":2},"res":"Your tone—and the unexpected solidity behind it—convince them to find an easier street. The tailor presses 90g on you in thanks."},
+          "lose": {"energy":-10,"rep":1,"sam":{"strength":1},"res":"You take a bruised rib pulling the kid clear before the watch whistle sounds down the block."}
+        },
+        {
+          "label": "Bluff that the city watch captain is right behind you",
+          "check": {"stat":"charm","need":40},
+          "win": {"gold":75,"rep":2,"sam":{"charm":2},"res":"They bolt down the side lane before checking the corner. The tailor thanks you breathless and hands over 75g."},
+          "lose": {"sam":{"charm":1},"res":"They glare, hesitate just long enough for the tailor to bolt past, and slink off cursing."}
+        }
+      ]
+    },
+    {
+      "id": "regular_walk",
+      "cat": "flavor",
+      "title": "A Familiar Patron",
+      "needRegular": true,
+      "text": "Outside a corner coffee stall, you nearly walk straight into {regular}—who looks far less composed in broad daylight when he realizes it's you, hastily straightening his collar.",
+      "choices": [
+        {
+          "label": "Buy him a quiet cup and keep his secret (-20g)",
+          "gold": -20,
+          "regularLoyalty": 6,
+          "sam": {"charm":1},
+          "res": "He relaxes over coffee, clearly relieved you didn't announce his favorite house to the street. \"See you Friday, Takahashi.\""
+        },
+        {
+          "label": "Mention tonight's lineup with a grin",
+          "regularLoyalty": 3,
+          "rep": 1,
+          "res": "His eyes light up at once; by the time you part ways, he's already rearranging his evening plans."
+        }
+      ]
+    },
+    {
+      "id": "lady_walk",
+      "cat": "flavor",
+      "title": "Off the Clock",
+      "needWorker": true,
+      "text": "Halfway down Ribbon Lane, you spot {lady} squinting critically at a display of ribbons and glass hairpins. She catches sight of you and perks up at once.",
+      "choices": [
+        {
+          "label": "Buy her a ribbon and sweet cake (-30g)",
+          "gold": -30,
+          "workerMood": 7,
+          "workerTrust": 2,
+          "sam": {"charm":1},
+          "res": "{lady} lights up, slipping the ribbon straight into her sleeve before walking the rest of the square beside you."
+        },
+        {
+          "label": "Stroll back to {house} together",
+          "workerMood": 4,
+          "workerTrust": 1.5,
+          "energy": 8,
+          "res": "The walk home passes twice as fast with {lady} trading idle remarks about every shop window on the street."
+        }
+      ]
+    }
+  ]
+}
