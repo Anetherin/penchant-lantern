@@ -87,7 +87,7 @@
       "energy": 10,
       "skill": "service",
       "needs": "chapel",
-      "desc": "Tends the Quiet Chapel: visitors come to her for comfort, not for service. Adds reputation and popularity, and visitors leave donations (other races work at half effectiveness, and visitors are disappointed if no angel works as chapel keeper, host, security or maid). Two positions."
+      "desc": "Tends the Quiet Chapel: draws reputation, popularity, and donations (other races work at half effectiveness, and visitors are disappointed if no angel works as chapel keeper, host, security or maid). Visitors often proposition her discreetly—willing keepers earn extra house reputation and higher donations instead of service fees. Two positions."
     },
     "courtesan": {
       "label": "Courtesan",
@@ -188,15 +188,15 @@
     },
     "spirit": {
       "label": "Incorporeal",
-      "desc": "Needs no bed, but needs a Tethering Stone to live here. Recovers a steady amount every week. Moods swing hard but settle fast. Adventurers pay 30% more and seek her out."
+      "desc": "Needs no bed, but needs a Tethering Stone to live here. Recovers a steady amount every week. Moods swing hard but settle fast. Adventurers pay 30% more and seek her out. Can reverse-possess clients, Sam, or a willing housemate—keeping her body while borrowing his cock."
     },
     "angel": {
       "label": "Serene",
-      "desc": "Lower lust ceiling (-30), never reckless, resting mood +5. Can keep a Quiet Chapel (Chapel Keeper). Nobles are especially fond of her."
+      "desc": "Lower lust ceiling (-30), never reckless, resting mood +5. Can keep a Quiet Chapel (Chapel Keeper, where willing propositions earn reputation and donations). High lewdness can awaken her as a Lantern Angel. Nobles are especially fond of her."
     },
     "android": {
       "label": "Rechargeable",
-      "desc": "Needs a Charging Alcove and no bed. Rest charges her to full, but each recharge costs the house a fee. Skills grow 25% faster, +10 max energy, bad moods hit 40% softer, lust builds slowly. Merchants pay 20% more."
+      "desc": "Needs a Charging Alcove and no bed. Rest charges her to full (for a fee). Skills grow 25% faster, +10 max energy, bad moods hit 40% softer, lust builds slowly. Tailors her hair, eyes and figure per client on shift (for draw, fees and satisfaction); un-keyed models can also be customized on her sheet. Merchants pay 20% more."
     }
   },
   "propRate": {
@@ -204,6 +204,7 @@
     "bartender": 0.07,
     "dancer": 0.1,
     "bath": 0.15,
+    "chapel": 0.14,
     "maid": 0.03,
     "promoter": 0.03,
     "attendant": 0.05,
@@ -215,6 +216,7 @@
     "bartender": "at the bar",
     "dancer": "after her set on stage",
     "bath": "in the bathhouse",
+    "chapel": "in the Quiet Chapel",
     "maid": "in the hallway",
     "promoter": "at the front step",
     "attendant": "in the corridor",

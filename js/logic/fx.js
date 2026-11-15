@@ -32,7 +32,7 @@ function fxList(w){
   (w.ngPerks||[]).forEach(t => add(TRAITS[t] && TRAITS[t].fx));
   const rb = rebornFx(w); if(rb) add(rb);
   const R = raceOf(w); add(R.fx);
-  const sd = w.race==='beastkin' ? subData(w.race, w.sub) : null; if(sd) add(sd.fx);
+  const sd = w.sub ? subData(w.race, w.sub) : null; if(sd) add(sd.fx);
   const b = bodyOf(w); BODY_KEYS.forEach(k => { const o = bodyOpts(k)[b[k]]; if(o) add(o.fx); });
   if(w.unique) add(w.unique.fx);
   const tt = w.titleId && typeof TITLES!=='undefined' && TITLES[w.titleId]; if(tt) add(tt.fx);   // only the title she goes by
@@ -53,7 +53,7 @@ function statBonus(w, k){
   if(!w) return 0;
   let n = 0;
   fxList(w).forEach(f => { if(f.stats && typeof f.stats[k]==='number') n += f.stats[k]; });
-  const R = RACES[w.race], SD = w.race==='beastkin' ? subData(w.race, w.sub) : null;
+  const R = RACES[w.race], SD = w.sub ? subData(w.race, w.sub) : null;
   if(R && R.mods && typeof R.mods[k]==='number') n += R.mods[k];
   if(SD && SD.mods && typeof SD.mods[k]==='number') n += SD.mods[k];
   n += wornStat(getOutfit(w), k) + wornStat(getUnder(w), k);
@@ -67,7 +67,7 @@ function statBonusParts(w, k){
   (w.traits||[]).forEach(t => add(t, fxs(TRAITS[t] && TRAITS[t].fx)));
   (w.ngPerks||[]).forEach(t => add(t, fxs(TRAITS[t] && TRAITS[t].fx)));
   const rb = rebornFx(w); if(rb) add('Reincarnated', fxs(rb));
-  const R = RACES[w.race], SD = w.race==='beastkin' ? subData(w.race, w.sub) : null;
+  const R = RACES[w.race], SD = w.sub ? subData(w.race, w.sub) : null;
   if(R){ add(R.label || w.race, R.mods && R.mods[k]); add(R.label || w.race, fxs(R.fx)); }
   if(SD){ add(SD.label || w.sub, SD.mods && SD.mods[k]); add(SD.label || w.sub, fxs(SD.fx)); }
   const b = bodyOf(w); BODY_KEYS.forEach(bk => { const o = bodyOpts(bk)[b[bk]]; if(o) add('Body', fxs(o.fx)); });
@@ -88,7 +88,7 @@ function rollBody(race){
   return out;
 }
 // Race appearance rules for generic ladies (races.json → design; body.json → raceBan): her build, skin and race features come from her race/sub list.
-const raceDesign = (race, sub) => { const sd = race==='beastkin' && sub ? subData(race, sub) : null; return Object.assign({}, (RACES[race]||{}).design || {}, (sd && sd.design) || {}); };
+const raceDesign = (race, sub) => { const sd = sub ? subData(race, sub) : null; return Object.assign({}, (RACES[race]||{}).design || {}, (sd && sd.design) || {}); };
 const raceBuilds = (race, sub) => { const D = raceDesign(race, sub); return D.builds || BUILDS.filter(b=>!(D.noBuilds||[]).includes(b)); };
 const raceSkins = (race, sub) => raceDesign(race, sub).skins || null;
 const raceFeatures = (race, sub) => raceDesign(race, sub).features || null;
@@ -105,10 +105,11 @@ const bodyText = w => { const b = bodyOf(w); return BODY_KEYS.map(k => (bodyOpts
 const bodyLabel = w => { const b = bodyOf(w); return BODY_KEYS.map(k => (bodyOpts(k)[b[k]]||{}).label || b[k]).join(' · '); };
 
 /* ---------- small helpers built on fx ---------- */
-// Her lust at which she's restless/reckless: shifted by recklessAt, never for noReckless ladies.
+// Her lust at which she's restless/reckless: shifted by recklessAt, never for noReckless ladies (unless overridden by allowReckless).
 // Demons: their line is svc.demon.recklessLust instead, and they also go reckless when starving (energy below svc.demon.recklessEnergy).
-const lustHigh = w => fxHas(w, 'noReckless') ? 1e9 : (w.race==='demon' ? (BAL.svc.demon.recklessLust ?? 100) : LUST_HIGH) + fxAdd(w, 'recklessAt');
-const restless = w => w.lust >= lustHigh(w) || (w.race==='demon' && !fxHas(w, 'noReckless') && (w.energy ?? 100) < (BAL.svc.demon.recklessEnergy ?? 20));
+const isNoReckless = w => fxHas(w, 'noReckless') && !fxHas(w, 'allowReckless');
+const lustHigh = w => isNoReckless(w) ? 1e9 : (w.race==='demon' ? (BAL.svc.demon.recklessLust ?? 100) : LUST_HIGH) + fxAdd(w, 'recklessAt');
+const restless = w => w.lust >= lustHigh(w) || (w.race==='demon' && !isNoReckless(w) && (w.energy ?? 100) < (BAL.svc.demon.recklessEnergy ?? 20));
 // Mood change scaled by moodDelta (events & work). Returns the applied change.
 // A madame in her house softens mood losses (balance.json → jobs.madameMoodLoss).
 function madameShield(w){
@@ -199,7 +200,7 @@ function obC(w, cls){ const a = ob(w, cls.id); return a !== 1 || cls.tier === cl
 // Her client reaction to her race (races.json → client): 'like' (enthusiast), 'dislike' (put off) or null.
 // A client with traits (balance.json → clients.traits) likes some ladies more: raises her like chance. `c` is a client object from makeClient or nothing.
 function raceReact(w, clsId, c){
-  const R = raceOf(w), sd = w.race==='beastkin' ? subData(w.race, w.sub) : null, C = Object.assign({}, R.client||{}, (sd && sd.client) || {});
+  const R = raceOf(w), sd = w.sub ? subData(w.race, w.sub) : null, C = Object.assign({}, R.client||{}, (sd && sd.client) || {});
   const CL = C.classLike || {};
   let like = (CL[clsId] ?? CL[clsTier(clsId)]) ?? C.like ?? 0; const dis = C.dislike ?? 0, r = Math.random();
   if(c && c.traits) c.traits.forEach(t => { if(traitFits(t, w)) like = Math.max(like, t.like ?? 0); });

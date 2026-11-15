@@ -29,7 +29,8 @@ function evOutfit(kind){
   const w = pick(anyW(x=>eventOutfit(x))), k = eventOutfit(w), o = WARDROBE[k];
   const mates = anyW(x=>x!==w && x.house===w.house), other = mates.length ? pick(mates) : null;
   const V = {name:w.name, outfit:o.label, other: other ? other.name : 'a friend'}, key = 'outfit_'+kind;
-  return {title:ET(key,'title',V), who:w.id, scene:evImg(key,'casual'), text:ET(key,'text',V), choices:[
+  const sc = dynScene('ev_'+key+'_'+k, Object.assign({outfit:k, house:true}, (EVT[key]||{}).image||{comp:'trying on her new outfit in front of a mirror', setting:'dressing room, warm lantern light'})) || evImg(key,'casual');
+  return {title:ET(key,'title',V), who:w.id, scene:sc, text:ET(key,'text',V), choices:[
     {label:ET(key,'keep','label',V), fx(){ w.owned.push(k); countUp(w,'gifts'); moodAdd(w, o.style===w.style ? 10 : 6); gainTrust(w, 1); return ET(key,'keep','res',V); }},
     {label:ET(key,'share','label',V), fx(){ if(!S.houseWardrobe.includes(k)) S.houseWardrobe.push(k); moodAdd(w, 3); return ET(key,'share','res',V); }}]};
 }
@@ -252,6 +253,27 @@ function evStrike(){
   return {title:'A Visit from the Vane Credit House', who:'npc_marguerite', scene:'portrait',
     text: s>=(BAL.debt.strikes||3) ? `Marguerite Vane adjusts her monocle. "Three strikes, Mr. Takahashi. Your properties now belong to the Credit House."` : `Marguerite Vane adjusts her monocle. "You've missed a payment, Mr. Takahashi. Strike ${s} of three. The shortfall carries over, with interest. I'd hate to see you on the street. Truly."`,
     choices:[{label: s>=(BAL.debt.strikes||3)?'...':'Understood', fx(){ return ''; }}]};
+}
+function evLanternAsk(w){
+  if(!w) return null;
+  const V = {name:w.name};
+  return {title:ET('lantern_ask','title',V), who:w.id, scene:evImg('lantern_ask','portrait'), text:ET('lantern_ask','text',V), choices:[
+    {label:ET('lantern_ask','accept.label',V), fx(){
+      w.sub = 'lantern'; w.lantern = true; w.lanternDecided = true; fitLust(w); gainTrust(w, 4); moodAdd(w, 8);
+      return ET('lantern_ask','accept.res',V);
+    }},
+    {label:ET('lantern_ask','refuse.label',V), fx(){
+      w.lanternDecided = true; moodAdd(w, -4);
+      return ET('lantern_ask','refuse.res',V);
+    }}
+  ]};
+}
+function evLanternSelf(w){
+  if(!w) return null;
+  const V = {name:w.name};
+  return {title:ET('lantern_self','title',V), who:w.id, scene:evImg('lantern_self','portrait'), text:ET('lantern_self','text',V), choices:[
+    {label:ET('lantern_self','ok.label',V), fx(){ return ''; }}
+  ]};
 }
 function checkEnd(){
   if(!S) return;

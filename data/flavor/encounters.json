@@ -419,5 +419,64 @@
       "You looked harried and the courtesans were all tangled up upstairs, so {name} quietly set aside her duties as {role}.",
       "Somebody had to satisfy the waiting guests, and {name}, stepping away from her work as {role}, decided it would be her."
     ]
+  },
+  "enc_beast_heat": {
+    "_note": "Beastkin in heat during a client encounter.",
+    "_default": [
+      "In full heat, her ears burned crimson and her tail lashed the sheets as she fucked him relentlessly.",
+      "She was practically whining with heat, grinding hard against him until the headboard rattled.",
+      "Her feral heat left zero room for politeness—clawed fingers dug into his back while her tail coiled tight around his wrist."
+    ]
+  },
+  "enc_possess_like": {
+    "_note": "Client loved reverse possession with a spirit.",
+    "_default": [
+      "Halfway through, she reached into him and flipped the script—keeping every lush inch of her ghostly body while borrowing a thick, throbbing cock of her own. He lost his mind over it, begging breathlessly as she put it to eager work.",
+      "He actually asked her to try reverse possession, going rigid with excitement when her phantom shaft hardened between her thighs. Seeing his own cock pulsing on her pale body nearly undid him on the spot."
+    ]
+  },
+  "enc_possess_ok": {
+    "_note": "Client went along with reverse possession curiously.",
+    "_default": [
+      "Curiosity got the better of him when she manifested a pulsing phantom cock while keeping her own pale curves—weird at first, thrilling fast.",
+      "She floated into him just enough to borrow his cock for herself, letting him watch her pale body wrap around that borrowed heat in shocked fascination."
+    ]
+  },
+  "enc_possess_freak": {
+    "_note": "Client was freaked out by reverse possession.",
+    "_default": [
+      "He clearly wasn't ready when she kept her own ghostly body and suddenly sported his cock between her legs—he bolted halfway dressed, stammering.",
+      "Her playful trick with reverse possession spooked him badly; seeing what should have been between his own legs growing hard on a floating spirit sent him scrambling for his trousers."
+    ]
+  },
+  "spirit_pair_futa": {
+    "_note": "A spirit reverse-possessed someone and brought that phantom cock to a willing housemate ({other} = partner).",
+    "_default": [
+      "Still humming with borrowed heat, {name} slipped into {other}'s room with a thick phantom cock pulsing between her pale thighs, and {other} didn't hesitate for a second.",
+      "{name} knocked on {other}'s door late after her shift, grinning wickedly as she showed off what she'd borrowed—and spent the next hour giving {other} everything she could handle."
+    ]
+  },
+  "enc_adapt": {
+    "_note": "Android adapted her hair/eyes/body for a client ({hair}, {eyes}, {body}).",
+    "_default": [
+      "Before closing the door, she subtly tuned her chassis to his unspoken type—{hair} hair, {eyes} eyes, and {body} proportions.",
+      "She read his gaze in the hallway and quietly shifted her frame into {hair} hair, {eyes} optics, and {body} curves built precisely for him.",
+      "With a soft synthetic hum, she adjusted her hair to {hair}, warmed her eyes to {eyes}, and contoured her body into a {body} silhouette tailored to his taste."
+    ]
+  },
+  "prop_chapel": {
+    "_note": "Chapel Keeper accepted a discreet proposition.",
+    "_default": [
+      "She inclined her head calmly and led him behind the altar curtain—charging nothing, though he pressed a heavy pouch of coin into the chapel alms box afterward.",
+      "She accepted his quiet proposition in the candlelight of the vestry, leaving him flushed, reverent, and eager to refill the chapel donation chest."
+    ]
+  },
+  "enc_lantern_angel": {
+    "_note": "Lantern Angel flavor on an intimate client encounter.",
+    "_default": [
+      "The Order's warnings about mortals losing all restraint beneath the Lantern's whisper weren't completely wrong—when her eyes flared lamp-flame gold in the dark, she threw herself into him without a shred of heavenly hesitation.",
+      "Somewhere between the vows she left behind and the warm hum of the Lantern in her blood, pickiness vanished; amber-eyed and breathless, she took him eagerly until neither of them could think straight.",
+      "Rumors back home claimed the Pleasure Lantern hollows angels out into shameless creatures of appetite. Judging by the glowing gold heat in her eyes and the way she wrapped her dark wings around him, she didn't care how true that sounded."
+    ]
   }
 }

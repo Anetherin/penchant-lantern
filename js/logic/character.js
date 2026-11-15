@@ -60,13 +60,13 @@ function clientStance(w,id,job){
   if(inc >= th - ASK_BAND && w.trust >= trustNeed(th - inc)) return 'ask';
   return 'no';
 }
-function samLean(w,id){ return inclination(w,id) + w.trust*0.3 + (w.lovers===id && w.trust>=40 ? 15 : 0) + (has(w,'Devoted')?20:0) - (has(w,'Oblivious')?45:0); }
+function samLean(w,id){ return inclination(w,id) + w.trust*0.45 + (w.lovers===id && w.trust>=40 ? 15 : 0) + (has(w,'Devoted')?20:0) - (has(w,'Oblivious')?45:0); }
 function samStance(w,id){
   const a = actById(id); if(!a || actBanned(w,id)) return 'no';
   if(has(w,'Oblivious') && actKey(id)!=='kiss') return 'no';
-  const inc = samLean(w,id);
+  const inc = samLean(w,id), band = ASK_BAND + Math.max(0, Math.round((w.trust - 50) * 0.25));
   if(inc >= a.th) return 'yes';
-  if(inc >= a.th - ASK_BAND && w.trust >= trustNeed(a.th - inc) - 10) return 'ask';
+  if(inc >= a.th - band && w.trust >= trustNeed(a.th - inc) - 14) return 'ask';
   return 'no';
 }
 function comfortOf(w,id){ id = actKey(id); const a = w.acts&&w.acts[id]; return (a?a.comfort:0) + (w.fav===id?10:0) - (w.dislike===id?15:0); }
@@ -84,6 +84,7 @@ const actSkill = (w,id) => (w.acts&&w.acts[actKey(id)]) ? w.acts[actKey(id)].ski
 function sceneParts(k){ const p = String(k||'').split('~'); return {base:p[0], expr:p[1]||'', ctx:p[2]||''}; }
 const sceneBase = k => sceneParts(k).base;
 const isSvcScene = k => /^(act:|samact:|duo:|pair:|demo:|orgy:|solo$)/.test(sceneBase(k));
+const isIntimateScene = k => isSvcScene(k) || /^(solo_futa|sam_spirit_futa)$/.test(sceneBase(k));
 // Swim scenes (dates.json image "swim": true): she wears an owned bath-compatible outfit (swimsuit first), if she has one.
 function swimOutfit(w, scene){
   if(!isSwimScene(scene)) return null;
@@ -101,9 +102,19 @@ function outfitKey(w, scene){
   }
   return w.outfit;
 }
-function getOutfit(w, scene){ const ok = outfitKey(w, scene); if(ok==='custom') return {label:'Her own outfit', style:w.style, prompt:w.customOutfit||'an elegant dress', bonus:{}, custom:true}; return WARDROBE[ok] || BASE_OUTFITS.b_corset; }
+function getOutfit(w, scene){ const ok = (scene && (SCENES[sceneBase(scene)]||{}).outfit) || outfitKey(w, scene); if(ok==='custom') return {label:'Her own outfit', style:w.style, prompt:w.customOutfit||'an elegant dress', bonus:{}, custom:true}; return WARDROBE[ok] || BASE_OUTFITS.b_corset; }
 function getUnder(w){ if(w.under==='custom') return {label:'Custom', prompt:w.customUnder||'simple lace underwear', bonus:{}, style:w.style}; return UNDER[w.under] || UNDER.plain; }
 const usesColor = o => /\{color\}/.test(o.prompt||'');
+// Lantern Angels deepen their wings to black-and-amber and shift their halo glow to pleasure-lantern amber.
+function lanternFeatures(f){
+  let s = String(f||'');
+  if(!s) return 'black-and-amber feathered wings and a glowing amber lantern halo';
+  s = s.replace(/\b(?:snow-white|white-and-gold|white|ivory|silver)(?=[\s-]*(?:feathered )?wings)/gi, 'black-and-amber')
+       .replace(/\b(?:faint|warm|bright|pale)?\s*(?:golden|white|blue laurel)\s*halo\b|\bglowing halo\b/gi, 'glowing amber lantern halo')
+       .replace(/faint warm glow like lantern light behind her head/gi, 'warm crimson-amber lantern halo glowing behind her head');
+  if(!/amber lantern|crimson-amber/i.test(s)) s += ', amber lantern halo';
+  return s;
+}
 // Effective appearance in a scene: outfits can override hairStyle and add/replace features; special outfits can also override hairColor, eyes, skin, favColor, build, body, expression, pubic, raceLook.
 function effDesign(w, scene){
   const d = (w && w.design) || {}, o = (w && w.outfit && getOutfit(w, scene)) || {};
@@ -111,6 +122,10 @@ function effDesign(w, scene){
   ['hairStyle','hairColor','eyes','skin','build','pubic','expression','raceLook'].forEach(k=>{ if(o[k]!==undefined) out[k] = o[k]; });
   if(o.replaceFeatures) out.features = o.features || '';
   else if(o.features) out.features = [d.features, o.features].filter(Boolean).join(', ');
+  if(w && w.race==='angel' && w.sub==='lantern'){
+    if(!o.replaceFeatures) out.features = lanternFeatures(out.features);
+    if(scene && isIntimateScene(scene) && !o.eyes) out.eyes = 'glowing lamp-flame gold';
+  }
   return out;
 }
 function favColorOf(w, scene){
@@ -212,7 +227,9 @@ function defaultCloth(w, scene){
   const P = sceneParts(scene), base = P.base;
   if(base.startsWith('act:')) return actCloth(w, base.split(':')[1], false, P.ctx);
   if(base.startsWith('samact:') || base.startsWith('duo:') || base.startsWith('demo:')) return actCloth(w, base.split(':')[1], true);
-  if(base==='solo') return comfortCloth(w, false, true);
+  if(base.startsWith('pair:')) return actCloth(w, base.split(':')[1], false);
+  if(base==='solo' || base==='solo_futa') return comfortCloth(w, false, true);
+  if(base==='sam_spirit_futa') return comfortCloth(w, true, true);
   if(base.startsWith('orgy:')) return comfortCloth(w, true, true);
   if(base==='bath') return clothOK(w,'nude',false) ? 'nude' : 'dressed';
   // invitations and the like (scenes.json / dates.json image "undress": "partial" | "under"): as far as that, within her comfort with Sam
@@ -224,7 +241,7 @@ function wageFor(w){
   if(isFree(w)) return 0;
   const st = STAT_KEYS.reduce((a,k)=>a+s100(statOf(w,k)),0)/STAT_KEYS.length;
   const tc = Math.max(...TECH_KEYS.map(k=>s100(w.tech[k]||0)), ...Object.values(w.acts||{}).map(a=>s100(a.skill)*0.8));
-  const sd = w.race==='beastkin' ? subData(w.race, w.sub) : null;
+  const sd = w.sub ? subData(w.race, w.sub) : null;
   const rb = 1 + ((BAL.ngplus||{}).rebornWage||0) * (w.reborn||0) * (typeof hasBoon==='function' && hasBoon('loyal') ? 0.5 : 1);   // each life she's carried over asks a little more (balance.json → ngplus.rebornWage)
   // balance.json → wages.formula: linear terms, then x (1 + curve x (avg of stats/skill/popularity / 100)^2) so good ladies ask a lot more
   const F = (BAL.wages||{}).formula || {}, lvl = (st + tc + (w.popularity||0)) / 300;
@@ -251,7 +268,7 @@ const NAMED_LOOK = ['name','race','sub','age','design','body','style','favColor'
 function namedLook(w){
   const D = w && w.key && NAMED[w.key]; if(!D) return;
   NAMED_LOOK.forEach(k=>{ if(D[k]!==undefined) w[k] = clone(D[k]); });
-  w.sub = D.sub || ''; w.body = Object.assign({}, BODY_DEF, D.body || {}); w.design = w.design || {};
+  w.sub = D.sub || ''; if(w.lantern && !D.sub) w.sub = 'lantern'; w.body = Object.assign({}, BODY_DEF, D.body || {}); w.design = w.design || {};
 }
 const saveReplacer = (k, v) => {
   if(v && typeof v==='object' && !Array.isArray(v) && v.key && v.stats && v.id && NAMED[v.key]){ const D = NAMED[v.key], o = Object.assign({}, v); NAMED_LOOK.forEach(f=>{ if(D[f]!==undefined || f==='body' || f==='sub') delete o[f]; }); return o; }   // fields her data lacks (rolled) stay in the save
@@ -259,6 +276,7 @@ const saveReplacer = (k, v) => {
 };
 function ensureWorker(w){
   namedLook(w);
+  if(w.race==='angel' && w.lantern && !w.sub) w.sub = 'lantern';
   w.tech = w.tech || {}; TECH_KEYS.forEach(k=>{ if(w.tech[k]===undefined) w.tech[k]=ri(0,200); });
   w.acts = w.acts || {};
   const base = w.actSkill!==undefined ? w.actSkill : (w.tech.intimacy!==undefined ? s100(w.tech.intimacy) : ri(0,25));   // actSkill is a 0-100 seed value
@@ -280,6 +298,7 @@ function ensureWorker(w){
   if(w.samples===undefined) w.samples = false;
   delete w.madameFocus;   // the madame has no focus options any more (she matches clients and coaches courtesans)
   if(!w.body) w.body = rollBody(w.race);
+  if(w.race==='angel' && w.sub==='lantern') w.lantern = true;
   w.counts = w.counts || {};
   if(!w.style) w.style = pick(STYLES);
   if(!w.favColor) w.favColor = pick(COLOR_KEYS);
@@ -329,7 +348,7 @@ function ensureWorker(w){
   return w;
 }
 function applyMods(w){
-  const R = RACES[w.race], SD = w.race==='beastkin' ? subData(w.race, w.sub) : null;
+  const R = RACES[w.race], SD = w.sub ? subData(w.race, w.sub) : null;
   // race and sub stat mods and the Elegant / Former Adventurer / Tough stat boosts are a live bonus now (statBonus, fx.js); only lewdness is added here
   [R.mods, SD && SD.mods].forEach(M=>{ if(M && M.lewd) w.lewd += M.lewd; });
   if(has(w,'Former Adventurer')) w.tech.combat += 250;
@@ -337,6 +356,7 @@ function applyMods(w){
   STAT_KEYS.forEach(k=>w.stats[k]=clampK(Math.round(w.stats[k])));
   TECH_KEYS.forEach(k=>w.tech[k]=clampK(Math.round(w.tech[k])));
   w.lewd = clamp(w.lewd);
+  if(w.race==='angel' && !w.sub && w.lewd >= ((BAL.svc.angel||{}).lanternLewd ?? 60)){ w.sub = 'lantern'; w.lantern = true; w.lanternDecided = true; }
 }
 // personality stat leans (personalities.json `stats`, 0-100 scale), baked into a new generic lady's trained stats
 function persLean(w, only){
