@@ -317,7 +317,7 @@ const trainStatsOf = w => { const B = (BAL.train.stat||{}).byJob || {}, own = Ob
   if(!broadJob(w)) return own; const o = Object.fromEntries(own); return STAT_KEYS.map(k=>[k, o[k] ?? (BAL.train.broad.stat ?? 0.4)]); };
 function samTrain(id, mode='skill'){
   const w = findW(id); if(!w) return;
-  const T = BAL.train || {}, tm = pm(w,'train'), learn = fxMul(w,'learn');
+  const T = BAL.train || {}, tm = pm(w,'train'), learn = fxMul(w,'learn') * housePerkVal(houseOf(w), 'trainMult', 1);
   // warming up: a little lust and lewdness, the lewdness only while she's below the threshold (lewdCap, 0-100)
   const SK = T.skill || {}, lewdCap = (T.service||{}).lewdCap ?? 50;
   const warm = (lust, lewd, cap) => { const l0 = w.lust; w.lust += lust * (0.4 + w.lewd/100) * fxMul(w,'lustBuild'); fitLust(w); if(w.lewd < lewdCap) lewdUp(w, lewd, Math.min(cap, lewdCap)); return Math.round(w.lust - l0); };

@@ -55,7 +55,7 @@ const FLOOR_REST = ECON.floorRest;
 const AMENITY_SIZE = ECON.amenitySize;
 const DECOR = ECON.decor;
 const DRINKS = ECON.drinks;
-const houseSize = h => (HOUSES[h.id].size||9) + (h.annex?3:0);
+const houseSize = h => Math.max(0, (HOUSES[h.id].size||9) + (h.annex?3:0) - (h.damaged||0));
 const roomsUsed = h => h.rooms + (h.quarters||0) + Object.keys(h.up||{}).filter(k=>h.up[k]).reduce((a,k)=>a+(AMENITY_SIZE[k] ?? 1),0);
 const bedsFor = h => (h.quarters||0)*2 + (h.extraBeds||0);
 const maxExtraBeds = h => (h.quarters||0)*2;   // each staff room fits up to 2 more (bunks, a cot by the window)

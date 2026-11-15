@@ -526,5 +526,267 @@
     "jobs": {"likes":["bath","courtesan"],"dislikes":["promoter"]},
     "body": {"bust":"medium","height":"tall","figure":"soft"},
     "unique": {"name":"Tide-Told Tales","desc":"The grotto's steam and her stories leave guests soothed.","fx":{"jobBonus":{"bath":1.15},"moodRest":3}}
+  },
+  "caelia": {
+    "role": "house",
+    "job": "chapel",
+    "name": "Caelia",
+    "race": "angel",
+    "sub": "lantern",
+    "age": 312,
+    "personality": "Warm and disarmingly candid",
+    "traits": ["Warm-Hearted","Romantic"],
+    "style": "Elegant",
+    "favColor": "gold",
+    "fav": "kiss",
+    "dislike": null,
+    "lovers": null,
+    "backstory": "An angel who caught the Lamplighter's spark centuries ago and never bothered pretending sanctity meant celibacy. Her Quiet Chapel is famous across Hollowmere for gentle absolution—and what pilgrims fondly call heaven on earth.",
+    "design": {
+      "build": "willowy",
+      "hairStyle": "long and softly curled",
+      "hairColor": "spun gold",
+      "eyes": "warm amber",
+      "skin": "radiant cream",
+      "features": "large white feathered wings with gold-tipped feathers and a bright lantern-gold halo",
+      "accessories": "gold-embroidered prayer ribbon",
+      "accState": "always",
+      "expression": "a beatific, teasing smile"
+    },
+    "under": "lace",
+    "underColor": "white",
+    "stats": {"beauty":82,"charm":76,"charisma":70,"refinement":78,"wits":68,"stamina":56,"strength":34,"agility":54},
+    "tech": {"service":64,"dance":42,"bar":25,"combat":25,"manage":52},
+    "actSkill": 44,
+    "popularity": 28,
+    "lewd": 52,
+    "trust": 12,
+    "outfits": {
+      "sig_caelia": {
+        "label": "Cloister vestments",
+        "style": "Elegant",
+        "prompt": "draped ivory and gold cloister silk robes parted over slender thighs",
+        "bonus": {"chapel":1.3,"noble":1.2}
+      },
+      "sp_caelia": {
+        "label": "Heavenly veil",
+        "style": "Revealing",
+        "prompt": "sheer sunlit gold silk ribbons and lace lingerie beneath feathered wings",
+        "bonus": {"chapel":1.3,"propose":1.25}
+      }
+    },
+    "jobs": {"likes":["chapel","courtesan"],"dislikes":["security","bartender"]},
+    "body": {"bust":"medium","height":"tall","figure":"slender"},
+    "unique": {
+      "name": "Heaven on Earth",
+      "desc": "Confession in her chapel feels like grace with warm skin.",
+      "fx": {"jobBonus":{"chapel":1.2},"propRate":1.15}
+    }
+  },
+  "nadia6": {
+    "role": "house",
+    "job": "courtesan",
+    "name": "Nadia-6",
+    "race": "android",
+    "age": 31,
+    "personality": "Poised and endlessly curious",
+    "traits": ["Quick Learner","Perfectionist"],
+    "style": "Elegant",
+    "favColor": "teal",
+    "fav": "oral_give",
+    "dislike": null,
+    "lovers": null,
+    "backstory": "An antique pleasure-chassis built in an artisan guild and kept humming by her own careful hand. She keeps tidy logs of breath rates, pillow heights, and partner preferences—though lately her telemetry keeps stumbling over Sam.",
+    "design": {
+      "build": "sleek",
+      "hairStyle": "chin-length asymmetric bob",
+      "hairColor": "copper-silver",
+      "eyes": "luminous cyan",
+      "skin": "matte ivory synthetic with subtle panel lines",
+      "features": "delicate brass filigree beneath her collarbone and fine seam lines along her hips",
+      "accessories": "slim brass choker with a glowing blue core",
+      "accState": "always",
+      "expression": "calm, attentive curiosity"
+    },
+    "under": "silk",
+    "underColor": "black",
+    "stats": {"beauty":78,"charm":62,"charisma":64,"refinement":74,"wits":82,"stamina":68,"strength":48,"agility":66},
+    "tech": {"service":68,"dance":48,"bar":34,"combat":30,"manage":58},
+    "actSkill": 48,
+    "popularity": 24,
+    "lewd": 44,
+    "trust": 10,
+    "outfits": {
+      "sig_nadia6": {
+        "label": "Atelier corset dress",
+        "style": "Elegant",
+        "prompt": "a tailored charcoal silk dress with brass-boned waist lacing and high side slits",
+        "bonus": {"courtesan":1.2,"merchant":1.25}
+      },
+      "sp_nadia6": {
+        "label": "Silk conduit harness",
+        "style": "Revealing",
+        "prompt": "delicate black leather and brass straps over sheer teal silk lingerie",
+        "bonus": {"courtesan":1.25,"oral_give":1.15}
+      }
+    },
+    "jobs": {"likes":["courtesan","host","attendant"],"dislikes":["security","maid"]},
+    "body": {"bust":"medium","height":"medium","figure":"athletic"},
+    "unique": {"name":"Calibrated Memory","desc":"Refines every touch through steady, patient study.","fx":{"skillGain":1.15,"actQuality":0.05}}
+  },
+  "brynna": {
+    "role": "house",
+    "job": "security",
+    "name": "Brynna Ironnail",
+    "race": "dwarf",
+    "age": 94,
+    "personality": "Gruff, proud, and secretly sentimental",
+    "traits": ["Tough","Tidy"],
+    "style": "Casual",
+    "favColor": "amber",
+    "fav": "massage_give",
+    "dislike": null,
+    "lovers": null,
+    "backstory": "A master timberwright and bouncer who held onto the deed for Ironwood Hall through three failed syndicates. She has a hammer in her boot, carpentry chalk behind one ear, and zero patience for anyone breaking the furniture she just planed.",
+    "design": {
+      "build": "stocky and muscular",
+      "hairStyle": "thick twin braids tucked over her shoulders",
+      "hairColor": "chestnut red",
+      "eyes": "hazel",
+      "skin": "warm weathered bronze",
+      "features": "braided locks clasped with brass rings",
+      "accessories": "heavy leather carpenter's apron",
+      "accState": "work",
+      "expression": "a crooked, assessing grin"
+    },
+    "under": "sports",
+    "underColor": "charcoal",
+    "stats": {"beauty":58,"charm":54,"charisma":60,"refinement":44,"wits":66,"stamina":84,"strength":86,"agility":56},
+    "tech": {"service":52,"dance":24,"bar":56,"combat":80,"manage":62},
+    "actSkill": 38,
+    "popularity": 18,
+    "lewd": 32,
+    "trust": 14,
+    "outfits": {
+      "sig_brynna": {
+        "label": "Timberwright vest",
+        "style": "Casual",
+        "prompt": "a rolled-sleeve linen shirt, laced leather work vest, and brass-buckled breeches",
+        "bonus": {"security":1.25,"adventurer":1.2}
+      },
+      "sp_brynna": {
+        "label": "Riveted velvet wrap",
+        "style": "Revealing",
+        "prompt": "an open amber velvet robe belted tightly over a low-cut laced bodice",
+        "bonus": {"security":1.2,"propose":1.2}
+      }
+    },
+    "jobs": {"likes":["security","bartender","maid"],"dislikes":["dancer"]},
+    "body": {"bust":"full","height":"petite","figure":"curvy"},
+    "unique": {"name":"Master Joiner","desc":"Keeps rowdies flat on the floorboards and timbers tight.","fx":{"jobBonus":{"security":1.2},"tidy":1.15}}
+  },
+  "maren": {
+    "role": "house",
+    "job": "host",
+    "name": "Maren Briarfox",
+    "race": "beastkin",
+    "sub": "fox",
+    "age": 26,
+    "personality": "Silky, playful, and perceptive",
+    "traits": ["Flirt","Soothing Voice"],
+    "style": "Exotic",
+    "favColor": "emerald",
+    "fav": "cowgirl",
+    "dislike": null,
+    "lovers": null,
+    "backstory": "An apothecary's daughter who turned a crumbling botanical conservatory into Hollowmere's most intoxicating salon. She blends rare resins for the brass censers—and knows to the heartbeat how quickly incense goes to a fox's ears.",
+    "design": {
+      "build": "lithe and curvy",
+      "hairStyle": "long wavy locks cascading down her back",
+      "hairColor": "russet auburn",
+      "eyes": "amber-gold",
+      "skin": "warm peach",
+      "features": "perky auburn fox ears and a thick, fluffy white-tipped fox tail",
+      "accessories": "jade hairpin shaped like a fern leaf",
+      "accState": "always",
+      "expression": "a sly, half-lidded smile"
+    },
+    "under": "lace",
+    "underColor": "emerald",
+    "stats": {"beauty":82,"charm":78,"charisma":72,"refinement":68,"wits":70,"stamina":60,"strength":40,"agility":72},
+    "tech": {"service":66,"dance":58,"bar":42,"combat":28,"manage":54},
+    "actSkill": 46,
+    "popularity": 28,
+    "lewd": 48,
+    "trust": 12,
+    "outfits": {
+      "sig_maren": {
+        "label": "Botanist's silk gown",
+        "style": "Exotic",
+        "prompt": "an emerald silk wrap gown embroidered with night-blooming jasmine vines, split to show her hips",
+        "bonus": {"host":1.25,"merchant":1.2}
+      },
+      "sp_maren": {
+        "label": "Jasmine veil",
+        "style": "Revealing",
+        "prompt": "a translucent forest-green silk kimono slipped off one shoulder over matching lace",
+        "bonus": {"host":1.2,"propose":1.25}
+      }
+    },
+    "jobs": {"likes":["host","courtesan","dancer"],"dislikes":["security","maid"]},
+    "body": {"bust":"medium","height":"medium","figure":"curvy"},
+    "unique": {"name":"Perfumer's Ear","desc":"Matches every guest to a scent and a lingering tease.","fx":{"jobBonus":{"host":1.2},"propRate":1.15}}
+  },
+  "vivienne": {
+    "role": "house",
+    "job": "teacher",
+    "name": "Vivienne Vance",
+    "title": "Professor",
+    "race": "human",
+    "age": 34,
+    "personality": "Cool, exacting, and quietly wicked",
+    "traits": ["Born Teacher","Level-Headed"],
+    "style": "Elegant",
+    "favColor": "plum",
+    "fav": "missionary",
+    "dislike": null,
+    "lovers": null,
+    "backstory": "Once etiquette mistress to Hollowmere's merchant daughters, until she realized high society paid three times as much for private lessons behind velvet curtains. Crisp with a riding crop in the lecture hall, devastatingly thorough behind closed doors.",
+    "design": {
+      "build": "poised and hourglass",
+      "hairStyle": "pinned up in a neat chignon with loose framing tendrils",
+      "hairColor": "dark espresso",
+      "eyes": "cool grey",
+      "skin": "pale ivory",
+      "features": "a small beauty mark beside her lower lip",
+      "accessories": "gold-rimmed half-moon spectacles",
+      "accState": "always",
+      "expression": "a composed, slightly amused glance over her frames"
+    },
+    "under": "corset",
+    "underColor": "plum",
+    "stats": {"beauty":78,"charm":70,"charisma":76,"refinement":86,"wits":84,"stamina":56,"strength":38,"agility":54},
+    "tech": {"service":72,"dance":54,"bar":30,"combat":26,"manage":74},
+    "actSkill": 52,
+    "popularity": 30,
+    "lewd": 38,
+    "trust": 10,
+    "outfits": {
+      "sig_vivienne": {
+        "label": "Preceptor's suit",
+        "style": "Elegant",
+        "prompt": "a sharply tailored plum velvet waistcoat, crisp high-collared blouse, and fitted long skirt slit to the knee",
+        "bonus": {"teacher":1.25,"noble":1.2}
+      },
+      "sp_vivienne": {
+        "label": "Evening lecture silk",
+        "style": "Revealing",
+        "prompt": "a sheer plum chiffon wrap worn open over a boned silk corset and stockings",
+        "bonus": {"courtesan":1.2,"propose":1.2}
+      }
+    },
+    "jobs": {"likes":["teacher","madame","courtesan"],"dislikes":["promoter","maid"]},
+    "body": {"bust":"full","height":"tall","figure":"hourglass"},
+    "unique": {"name":"Private Syllabus","desc":"Turns awkward technique into effortless polish.","fx":{"jobBonus":{"teacher":1.2},"skillGain":1.15}}
   }
 }

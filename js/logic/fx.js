@@ -117,29 +117,45 @@ function madameShield(w){
   return S.workers.some(x=>x!==w && x.house===w.house && x.job==='madame') ? BAL.jobs.madameMoodLoss : 1;
 }
 function moodAdd(w, n){ const before = w.mood; let d = n * fxMul(w, 'moodDelta'); if(d < 0) d *= madameShield(w) * fxMul(w, 'moodLoss'); w.mood = clamp(w.mood + d); return w.mood - before; }
-// Sleep/rest recovery multiplier from fx, plus the house's amenities (garden; balance.json → amenities).
+// Sleep/rest recovery multiplier from fx, house perks, and house amenities (garden, incense; balance.json → amenities).
 function restMult(w){
-  let m = fxMul(w, 'energyRec');
+  let m = fxMul(w, 'energyRec') * incenseMul(w, 'energyRec');
   const h = (typeof S!=='undefined' && S) ? houseOf(w) : null;
+  m *= housePerkVal(h, 'restMult', 1);
   if(h && h.up && h.up.garden) m *= 1 + BAL.amenities.garden.rest * gardenMult(w);
   return m;
 }
 /* ---------- amenity helpers (data/balance.json → amenities) ---------- */
+const housePerkVal = (h, key, def=1) => (h && typeof HOUSES!=='undefined' && HOUSES[h.id] && HOUSES[h.id][key] !== undefined) ? HOUSES[h.id][key] : def;
+const houseIncenseMult = h => housePerkVal(h, 'incenseMult', 1);
+const incenseModes = () => Object.keys((BAL.amenities||{}).incense||{}).filter(k => BAL.amenities.incense[k] && typeof BAL.amenities.incense[k] === 'object');
 // The garden's effect is doubled for elves.
 const gardenMult = w => w.race==='elf' ? BAL.amenities.garden.elfMult : 1;
-// Incense burner: mode 'calm' | 'aphro' of the lady's house (null without one). Beastkin feel it more strongly.
+// Incense burner: mutually exclusive mode on h.incense (null without one). Beastkin & conservatory strengthen effects.
 function incenseMode(w){ const h = (typeof S!=='undefined' && S && w && w.house) ? houseOf(w) : null; return (h && h.up && h.up.incense) ? (h.incense || 'calm') : null; }
-// Multiplier for key ('pushy', 'lust', 'prop') from her house's incense: the factor's distance from 1, times her strength.
+// Multiplier for key ('pushy', 'lust', 'prop', 'skillGain', 'statGain', 'trustGain', 'energyRec', 'actEnergy') from her house's incense.
 function incenseMul(w, key){
-  const A = BAL.amenities.incense, m = incenseMode(w), f = m && A[m] ? A[m][key] : undefined; if(f === undefined) return 1;
-  return Math.max(0.1, 1 + (f - 1) * (w.race==='beastkin' ? A.beastMult : 1));
+  const A = BAL.amenities.incense, h = (typeof S!=='undefined' && S && w && w.house) ? houseOf(w) : null, m = incenseMode(w), f = m && A[m] ? A[m][key] : undefined; if(f === undefined) return 1;
+  const mult = (w && w.race==='beastkin' ? A.beastMult : 1) * houseIncenseMult(h);
+  return Math.max(0.1, 1 + (f - 1) * mult);
+}
+// Additive bonus from her house's incense (e.g. mood, sat, appeal).
+function incenseAdd(w, key){
+  const A = BAL.amenities.incense, h = (typeof S!=='undefined' && S && w && w.house) ? houseOf(w) : null, m = incenseMode(w), v = m && A[m] ? A[m][key] : undefined; if(!v) return 0;
+  return v * (w && w.race==='beastkin' ? A.beastMult : 1) * houseIncenseMult(h);
 }
 // The same for the house as a whole (client trouble, incidents): no race involved.
-function incenseHouseMul(h, key){ const A = BAL.amenities.incense, m = h && h.up && h.up.incense ? (h.incense || 'calm') : null, f = m && A[m] ? A[m][key] : undefined; return f === undefined ? 1 : f; }
+function incenseHouseMul(h, key){
+  const A = BAL.amenities.incense, m = h && h.up && h.up.incense ? (h.incense || 'calm') : null, f = m && A[m] ? A[m][key] : undefined; if(f === undefined) return 1;
+  return Math.max(0.1, 1 + (f - 1) * houseIncenseMult(h));
+}
 // True when her house burns calming incense (a refusal from Sam stings less; see refusalHit).
 const incenseCalmsRefusal = w => incenseMode(w) === 'calm';
 // Aphrodisiac incense: extra lewdness counted only for service-comfort checks (never stored).
-function lewdBoost(w){ return incenseMode(w) === 'aphro' ? BAL.amenities.incense.lewdDrop * (w.race==='beastkin' ? BAL.amenities.incense.beastMult : 1) : 0; }
+function lewdBoost(w){
+  const h = (typeof S!=='undefined' && S && w && w.house) ? houseOf(w) : null;
+  return incenseMode(w) === 'aphro' ? BAL.amenities.incense.lewdDrop * (w && w.race==='beastkin' ? BAL.amenities.incense.beastMult : 1) * houseIncenseMult(h) : 0;
+}
 // Binding Sigil: demons in a house with one take this share of the usual energy from Sam.
 function sigilDrain(w){ const h = (typeof S!=='undefined' && S && w && w.house) ? houseOf(w) : null; return h && h.up && h.up.sigil ? BAL.amenities.sigil.samDrain : 1; }
 // Candidates of a race turn up more often while its house amenity (Tethering Stone: spirits, Charging Alcove: androids) stands in ANY house.
@@ -157,7 +173,7 @@ function raceBlock(w, h){
 function statXP(w, key, n){
   if(!w.stats || w.stats[key]===undefined) return;
   const v = w.stats[key];
-  w.stats[key] = clampK(v + n * fxMul(w, 'statGain') * Math.max(0.05, 1 - v/growDen()));
+  w.stats[key] = clampK(v + n * fxMul(w, 'statGain') * incenseMul(w, 'statGain') * Math.max(0.05, 1 - v/growDen()));
 }
 
 /* ---------- counters (w.counts) and developable traits ---------- */

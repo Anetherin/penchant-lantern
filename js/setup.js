@@ -26,6 +26,7 @@ function setupView(){
     body = `<h2>Which deed is in Sam's hand?</h2><p class="muted">Each house has its own clientele, debt, features, resident, and storyline. You can buy the others later, and premium houses unlock as Sam's level and renown grow.</p>
       <div class="grid">${SETUP.offers.map(k=>{ const D=HOUSES[k], n=NAMED[D.npc]; return `<div class="pick ${SETUP.house===k?'sel':''}" onclick="setupPick('house','${k}')">
         <b>${D.name}</b> <span class="tag house">${D.loc}</span><div class="muted">${D.desc}</div>
+        ${D.perk?`<div class="good" style="margin-top:4px">✦ <b>${esc(D.perk.label)}:</b> ${esc(D.perk.desc)}</div>`:''}
         <div style="margin-top:4px">Debt <b>${fmt(D.debt)}</b> · Rooms ${D.rooms} (${ROOM_NAMES[D.tier]}) ${Object.keys(D.up).map(u=>`<span class="tag">${UPGRADES[u].label}</span>`).join('')}</div>
         <div class="muted">Clientele: ${TIERS.map((t,i)=>D.cls[i]>=1.3?`<b>${TIER_LABEL(t)}s ↑</b>`:D.cls[i]<=0.5?`${TIER_LABEL(t)}s ↓`:'').filter(Boolean).join(', ')||'balanced'}</div>
         <div class="row" style="margin-top:6px">${miniAvatar(D.npc)}<div><b>${esc(titled(n))}</b> · ${JOBS[n.job].label}<div class="muted">${esc(n.personality)}</div></div></div>${previewBtn(D.npc)}</div>`; }).join('')}</div>

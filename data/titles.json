@@ -253,6 +253,34 @@
       "fx": {"jobBonus":{"bath":1.1},"moodRest":2},
       "house": "pearl"
     },
+    "cloister_beacon": {
+      "label": "Beacon of Grace",
+      "after": true,
+      "desc": "Chapel work 12% better, pilgrims and clerics pay 10% more.",
+      "fx": {"jobBonus":{"chapel":1.12},"classBonus":{"pilgrim":1.1,"cleric":1.1}},
+      "house": "sanctuary"
+    },
+    "atelier_muse": {"label":"Clockwork Muse","after":true,"desc":"Skills grow 8% faster, +3 appeal.","fx":{"skillGain":1.08,"appeal":3},"house":"atelier"},
+    "foundry_warden": {
+      "label": "Hearth-Warden",
+      "after": true,
+      "desc": "Guards 12% better, keeps the house 10% tidier, +5 Stamina.",
+      "fx": {"jobBonus":{"security":1.12},"tidy":1.1,"stats":{"stamina":5}},
+      "house": "foundry"
+    },
+    "conservatory_rose": {
+      "label": "Night-Blooming",
+      "after": true,
+      "desc": "Hosts 12% better, +2 appeal, +5 Charm.",
+      "fx": {"jobBonus":{"host":1.12},"appeal":2,"stats":{"charm":5}},
+      "house": "conservatory"
+    },
+    "lyceum_dean": {
+      "label": "Preceptress",
+      "desc": "Teaches 15% better, passes on 10% more skill, +5 Wits.",
+      "fx": {"jobBonus":{"teacher":1.15},"teach":1.1,"stats":{"wits":5}},
+      "house": "lyceum"
+    },
     "greatfairy": {
       "label": "Great Fairy",
       "desc": "A fountain's blessing: the house's bathers leave refreshed (+8% bathhouse income) and she recovers 5% more energy.",
