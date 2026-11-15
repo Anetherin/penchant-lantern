@@ -97,12 +97,14 @@ function evLateVisit(w){
   ];
   if(canRev) ch.push({label:'Agree to reverse possession', fx(){ const S0 = SVC.spirit||{}; const ld = spendLust(w, S0.pairLust||30); lewdUp(w, 3, 95); moodAdd(w, 6); gainTrust(w, 2); countUp(w, 'privateSam'); samLog(`Reverse-possessed Sam (${w.name})`); const text = `${flavor('spirit_sam_futa', w)}\n\nLewdness + · Trust + · Mood + · Lust −${ld}`; return {text, img:{wid:w.id, scene:'sam_spirit_futa'}, ai:{kind:'private', wid:w.id, scene:'sam_spirit_futa', forSam:true, spiritFuta:true}}; }});
   ch.push({label:'Not tonight', fx(){ refusalHit(w, 4); w.lust = clamp(w.lust-5); return `${w.name} smiles a little ruefully. "Your loss, boss."` + refusalNote(w); }});
-  return {title:'A Knock After Midnight', who:w.id, scene:'enc_late', text:flavor('late_visit', w), choices:ch};
+  const text = flavor('late_visit', w);
+  return {title:'A Knock After Midnight', who:w.id, scene:'enc_late', cloth:textCloth(text), text, choices:ch};
 }
 function evLoverWaiting(w){
   if(!w || !has(w,'Devoted')) return null;
   const act = releaseSamAct(w) || (!restless(w) && bestSamAct(w)); if(!act) return null;
-  return {title:`${w.name} Has Been Waiting`, who:w.id, scene:'enc_waiting', text:flavor('lover_waiting', w),
+  const text = flavor('lover_waiting', w);
+  return {title:`${w.name} Has Been Waiting`, who:w.id, scene:'enc_waiting', cloth:textCloth(text), text,
     choices:[
       {label:'Go to her', fx(){ return encounterResult(w, act, flavor('lover_reunion', w), 'encounter', 'She is his lover and had been waiting for him all week; she came to his room.'); }},
       {label:'"Tomorrow, I promise"', fx(){ refusalHit(w, 5); w.lust = clamp(w.lust-5); return `${w.name} sighs and kisses your cheek. "You'd better mean it."` + refusalNote(w); }}]};
