@@ -1,28 +1,6 @@
 # Purpose
 This file is for big ideas when I have a fresh batch of Claude usage.
 
-## Characters
-- [x] Zelda: Princess Hilda (Elf), Twinrova (Spirit)
-- [x] Mario: Princess Peach, Daisy, Pauline, Toadette inspired dwarf, Bowsette (Demon), Boosette (Spirit)
-- [x] Fire Emblem: Tiki (Dragonkin), Nowi (Dragonkin), Tharja, Lucina
-- [x] Naruto: Hanabi, Himawari? (blue vortex design aged up, could be foxkin)
-- [x] Naruto after: Could Tomoe be an android with her seven sin forms as outfits? Default would be Envy. 
-- [x] Dragonball: Android 18
-- [x] Fate: Tohsaka, Saber, Rider, Sakura (Noble Phantasms are spirits)
-- [x] Wuthering Waves: Iuno, Augusta, Aemeath (Spirit), Camellya, Fem!Rover
-- [x] Nier: 2B, A2, Devola/Popola
-- [x] Other: Wii Fit Trainer, Samus Aran (android)
-- [x] Double check character appearances and bonds against sources. If I made a manual change that means whatever was there intitially was off (common for wuthering waves in particular)
-
-## Clothing/Appearance 
-- [x] Have more gear(really should be accessories) available. characters should be able to use a state of undress where the accessories are removed (or never). although maybe accessories are just associated with characters and/or outfits rather than independent items.
-- [x] outfits should be able to change hair (style) and have their own features
-- [x] Special outfits can change eyes, skin, hair color, favorite color, etc (See Sae Nakijima who should have yellow eyes in her signature, or Android 21 who can have her Buu like form as her special)
-- [x] accessories can be removed, features always stay
-- [x] Make sure features are physical features not expressions or items (which should be accessories)
-- [x] Make sure unique clothing is unique now that we've added more. same for special. It's possible some characters are fine with default outfits and may not necessarily have special ones or may have more than one special one if lore appropriate (eg different Zeldas as special outfits?)
-- [x] We probably could do with more accessories. Check if we're missing any sort of outfits and feel free to add them.
-
 ## Content
 - Make sure we have good amounts of traits, personalities, perks, titles, etc for both ladies and customers and that there's plenty for every stat, skill, job, appearance factor, etc and that nothing stands out as useless or redundant.
 - Is the gameplay well rounded? Anything thta adds bloat or conversely should be fleshed out? any additional systems we could add to improve the game?
@@ -30,43 +8,28 @@ This file is for big ideas when I have a fresh batch of Claude usage.
 - Event/encounter scenes should either reflect the girls clothes or the image prompt should use the clothing (etc) from the description of the scene
 - More variety of events in general 
 - Orgies maybe can make use of the fem/fem scene if ladies have high enough bonds?
-- You should be able to auto hire studs for your demins (maybe all the girls? instead of the house upgrades)
 - Bath attendants scenes should probably be in the baths. exhibitionist scenes should be in the open. Make sure scenes and descriptions line up in general.
-- There should be an option (at lover stage) to do double dates. several options, increase bonds between ladies, and if they're both open can trigger a threesome scene.
-- ~~Roster overview maybe has house names or lady numbers in green if there are staff beds and red if there are more ladies than staff beds. On the upgrade screen house is green if it has more rooms to expand.~~
 
 ## Houses
 - We should have a house available that comes with an android (and charging station)
-- ~~Hilde is available both via a bar and the house. she should be one or the other and the other should be a new character (or just don't have her come with a bar anymore).~~
 - We should add a some more houses. maybe a big empty one, etc etc
 - Check the balance of the houses against one another.
 - Consider unique perks per house
 - houses should be able to have focuses that are mutually exclusive (kind of like incense type. or we just expans incense types)
 - Also check the NG Plus house balance
 - Cheaper houses should payoff sooner even if more expensive houses generate more income long term. might need to look into The payoff schedule which probably needs to be more aggressive in NG Plus.
-- Should we have any more upgrades? sexbots that make sure restless girls gettaken care of (with an image prompt etc to match)?
-- ~~There should be UI indicators (including on overview?) if each courtesan has an attendant.~~
-- ~~Hiding an image in the report should keep it hidden until the user asks to show it again.~~
+
 
 
 
 ## New Game Plus
 - After Cycle 5 if you recruit the goddess should it be a soft reset? You unlock her tab, but without divinity you maybe sort of start afresh? essentially a new cycle 1 (but all prior characters retain their reincarnated perks and continue to carry over even if they don't get re-recruited). Maybe a new house and no partner? Sam's level also gets reset, but he does keep his perks and caps. The new house could add rooms (and cost) every reincarnation. lovers would keep the reincarnation but lose lover status. House progress is reset. You can buy houses but neither lovers (nor houses?) should carry over in reincarnation (progress does and you can still get ladies perks). Prior lovers should have extra lines when you meet them on a walk and join without a signing bonus (does make goddess a bit jealous though). you only need the goddess, right? the house probably does come with a new bound character. no preferences, mood, lust, or personality (at least at first). She should resemble one of the goddesses forms (maybe you get one for each play through since you can't carry over other characters for free). Maybe a bonus for reincarnators at the house
-- ~~Most of Sam's items should not carry through to Ng Plus, and there should also be items that reduce his energy consumption for various activities.~~
-- ~~Tutor and grand feast settings get reset. also, your should have a toggle for applying current tutor settings to new recruits~~
-- ~~You should only be able to reincarnate a maximum of (number of cycles completed) old friends (generics). or alternatively, there's a favorite button for generics and only favorites get reincarnated.~~
 - Maybe certain variables change each cycle or there are certain challenges that give perks (either available right away or after goddess is unlocked/maxed)
 - Costs need to scale on both cycle #, # houses brought over, and # partners brought over. Right now taken over tons of partners trivializes week 2 onwards. (although the Ng ++ post cycle 5 should totally fix this, still might be good to have)
-- Maybe we rebalance repayments so cycle 1 is 5 weeks all the way down to 1 week at cycle 5 (or maybe only down to 2 and increment every other cycle)
-- ~~Actually first order of business  - houses shouldn't be full to the brim on week 1 (esp without a promoter). this is probably the best place to look first~~
-- ~~Costs of gifts, feasts, tutoring should all go up per cycle~~
+
 
 ## Races
 - They don't necessarily need to all be balanced for every activity. demons may be the strongest courtesans but should still be risky in less proposition friendly roles, and require more maintenance there (or just waste time propositioning customers instead of actually working). Humans are the default all arounders who are easy to raise. 
-- Spirits should be able to possess customers (and Sam, like Vesper does already). although really more of a reverse possession. Keep her body, get his dick. They can then have a solo (futa) scene, or go to another girl if she's free for a futa x fem (increases bond). Some customers are *really* into this, but some are freaked out. should be it's own separate request but a spirit lady can also suggest it fairly easily.
-- Androids can change their hair color, eye color, body parts (bust, height , build) to meet customer demand. some customers are big fans of this on its own. Generics can change their appearance in the stat screen.
-- Angels above a certain lewdness threshold can turn into fallen (or maybe it's better to just say sex/lewd/lantern?) angels. could be a subtype. Their wing color changes, maybe halo too, and their Lust now goes from 75-100(or 125?150?). Low trust angels will decide themselves whether to make the change, high trust angels will ask. if a generic spawns above the threshold she's already made the choice. Also the chapel keeper should accept propositions, sort of similar to a bath attendant. However, instead of getting paid the angel generates more reputation (and increases tip chance). 
-- consider scene add-ons when a domain is draining recklessly or a beastkin is in heat etc
 
 
 ## Services
@@ -75,10 +38,7 @@ This file is for big ideas when I have a fresh batch of Claude usage.
 - Attendants who are willing can do the service instead of the courtesan. This should give some bond points 
 - If there is an attendant for each courtesan, they can also slowly build up bonds. more trust is given if the courtesan and attendant already have a bond. madames can prioritize matching courtesans with bonded attendants.
 - Check the lewdness thresholds for acts (especially with Sam). it feels like intercourse should have a higher threshold for raising lewdness than kissing under the stars, but I'm not sure that's currently the case.
-- If there's a reasonably competent Madame and/or attendant, courtesans being overworked should be quite rare
-- ~~No proposition toggle - it should always on (be based on the lady's willingness). Jobs with higher expectations of propositions can be done at lower moods etc (it's considered a job possibility ), whereas a security guard probably accepts it if she's really in the mood.~~
-- ~~Chapel keeper should be open to other races but only at half effectiveness and customers are disappointed if there is no angel (but an angel host, security, or maid counts)~~
-- ~~attendant number is limited by courtesans. Courtesan number maybe starts out at 4 and is increased by the madame if there is one.~~  
+- If there's a reasonably competent Madame and/or attendant, courtesans being overworked should be quite 
 
 ## Story
 - All non guest characters should have fully fleshed out stories 
