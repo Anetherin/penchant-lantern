@@ -408,6 +408,61 @@
       "accState": "always",
       "bonus": {"dancer":1.25,"courtesan":1.2,"propose":1.15},
       "stats": {"beauty":4,"agility":3}
+    },
+    "attendant_vest": {
+      "label": "Valet waistcoat",
+      "cost": 210,
+      "style": "Elegant",
+      "lewd": 0,
+      "prompt": "a tailored charcoal attendant waistcoat over a crisp ivory blouse and slim trousers",
+      "accessories": "a silver pocket watch on a fine chain and white gloves",
+      "accState": "under",
+      "bonus": {"attendant":1.25,"host":1.08,"noble":1.08},
+      "stats": {"wits":3,"refinement":3,"charm":2}
+    },
+    "chapel_choir": {
+      "label": "Cantor's surplice",
+      "cost": 210,
+      "style": "Cute",
+      "lewd": 0,
+      "prompt": "a pleated cream cantor's surplice over a deep blue pleated skirt",
+      "accessories": "a gilded hymn brooch and soft ribbon ties",
+      "accState": "always",
+      "bonus": {"chapel":1.25,"commoner":1.08,"merchant":1.06},
+      "stats": {"charisma":3,"beauty":2,"refinement":2}
+    },
+    "lecturer": {
+      "label": "Lecturer's jacket",
+      "cost": 230,
+      "style": "Elegant",
+      "lewd": 0,
+      "prompt": "a structured burgundy scholar jacket with brass buttons, pleated skirt, and ink-cuffed sleeves",
+      "accessories": "half-moon spectacles and a leather folio",
+      "accState": "always",
+      "bonus": {"teacher":1.25,"madame":1.12,"merchant":1.06},
+      "stats": {"wits":4,"refinement":3}
+    },
+    "herald_coat": {
+      "label": "Street herald's coat",
+      "cost": 190,
+      "style": "Sporty",
+      "lewd": 0,
+      "prompt": "a bright crimson tailcoat over a white tunic and knee-high boots",
+      "accessories": "a gilded lantern pin and braided shoulder cords",
+      "accState": "dressed",
+      "bonus": {"promoter":1.25,"bartender":1.1,"adventurer":1.08},
+      "stats": {"charisma":4,"stamina":2,"agility":2}
+    },
+    "warden_coat": {
+      "label": "Brass-buckled guard gear",
+      "cost": 240,
+      "style": "Sporty",
+      "lewd": 0,
+      "prompt": "fitted dark leather-trimmed guard tunic and trousers with brass buckles and sturdy boots",
+      "accessories": "a studded belt and heavy wrist guards",
+      "accState": "dressed",
+      "bonus": {"security":1.25,"adventurer":1.12,"merchant":1.08},
+      "stats": {"strength":4,"stamina":3,"agility":2}
     }
   },
   "under": {
@@ -459,6 +514,33 @@
       "prompt": "barely-there {color} satin ribbon lingerie",
       "bonus": {"courtesan":1.08,"propose":1.12},
       "stats": {"beauty":4}
+    },
+    "camisole": {
+      "label": "Embroidered camisole",
+      "cost": 55,
+      "lewd": 5,
+      "style": "Elegant",
+      "prompt": "a fine {color} silk camisole with delicate embroidery and matching drawers",
+      "bonus": {"madame":1.04,"attendant":1.04},
+      "stats": {"refinement":2,"wits":2}
+    },
+    "wraps": {
+      "label": "Linen chest wraps",
+      "cost": 45,
+      "lewd": 0,
+      "style": "Sporty",
+      "prompt": "snug {color} linen chest wraps and fitted athletic briefs",
+      "bonus": {"security":1.05,"maid":1.04},
+      "stats": {"strength":2,"stamina":2}
+    },
+    "chemise": {
+      "label": "Tasseled silk chemise",
+      "cost": 75,
+      "lewd": 20,
+      "style": "Exotic",
+      "prompt": "a {color} silk chemise trimmed with gold tassels and low-cut lace",
+      "bonus": {"dancer":1.05,"host":1.04},
+      "stats": {"charisma":2,"beauty":2}
     }
   },
   "colors": {

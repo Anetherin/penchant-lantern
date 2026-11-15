@@ -8,7 +8,7 @@
   "defaults": {"bust":"medium","height":"average","figure":"slim"},
   "bust": {
     "flat": {"label":"Flat","img":"flat chest","weight":1,"fx":{"actEnergy":0.92,"actBan":["breast_give"],"appeal":-2}},
-    "small": {"label":"Small","img":"small breasts","weight":3,"fx":{"actQuality":{"breast_give":0.8}}},
+    "small": {"label":"Small","img":"small breasts","weight":3,"fx":{"actQuality":{"breast_give":0.8},"stats":{"agility":2}}},
     "medium": {"label":"Medium","img":"average sized breasts","weight":5,"fx":{}},
     "large": {"label":"Large","img":"large breasts","weight":3,"fx":{"actQuality":{"breast_give":1.2},"appeal":3,"actEnergy":1.06}},
     "huge": {
@@ -19,7 +19,7 @@
     }
   },
   "height": {
-    "short": {"label":"Short","img":"short stature","weight":2,"fx":{"jobBonus":{"security":0.9}}},
+    "short": {"label":"Short","img":"short stature","weight":2,"fx":{"jobBonus":{"security":0.9},"stats":{"agility":3}}},
     "average": {"label":"Average","img":"","weight":6,"fx":{}},
     "tall": {"label":"Tall","img":"tall","weight":2,"fx":{"jobBonus":{"dancer":1.08,"security":1.08},"classBonus":{"noble":1.05}}}
   },

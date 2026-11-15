@@ -79,5 +79,23 @@ function evRegular(rid){
     return Object.assign(base, {text:F(E.text), choices:[
       {label:'Buy him a drink', fx(){ if(h) h.rep = clamp(h.rep+2); w.popularity = clamp(w.popularity+3); return F(E.thanks); }}]});
   }
+  if(r.quirk==='patron'){
+    const sk = pick(TECH_KEYS), g = ri(60, 140);
+    return Object.assign(base, {text:F(E.text,{skill:TECH_LABEL[sk]}), choices:[
+      {label:'Accept the private lesson', fx(){ grow(w, sk, 5); gainTrust(w, 2); moodAdd(w, 4); return F(E.accept,{skill:TECH_LABEL[sk]}); }},
+      {label:`Take the coin for the house (${fmt(g)})`, fx(){ S.gold += g; r.loyalty--; return F(E.gold,{gold:fmt(g)}); }}]});
+  }
+  if(r.quirk==='epicure'){
+    const g = ri(45, 95);
+    return Object.assign(base, {text:F(E.text), choices:[
+      {label:'Let them share it', fx(){ w.energy = clamp(w.energy+12, 0, maxEnergy(w)); moodAdd(w, 6); r.loyalty++; return F(E.share); }},
+      {label:`Cellar it for the house bar (${fmt(g)})`, fx(){ S.gold += g; moodAdd(w, -2); return F(E.cellar,{gold:fmt(g)}); }}]});
+  }
+  if(r.quirk==='collector'){
+    const g = ri(70, 150);
+    return Object.assign(base, {text:F(E.text,{gold:fmt(g)}), choices:[
+      {label:`Sell him a signed keepsake (${fmt(g)})`, fx(){ S.gold += g; w.popularity = clamp(w.popularity+2); r.loyalty++; return F(E.sell,{gold:fmt(g)}); }},
+      {label:'Decline politely', fx(){ gainTrust(w, 3); moodAdd(w, 3); r.loyalty--; return F(E.decline); }}]});
+  }
   return null;
 }

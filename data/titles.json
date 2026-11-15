@@ -231,8 +231,20 @@
     "peerless": {"label":"the Peerless","after":true,"desc":"Skills grow 8% faster, stats 5%.","fx":{"skillGain":1.08,"statGain":1.05},"arc":"ella"},
     "sommelier": {"label":"Sommelier","desc":"Bartends 12% better.","fx":{"jobBonus":{"bartender":1.12}},"arc":"ione"},
     "warden": {"label":"Warden","desc":"Keeps the chapel 10% better, +2 resting mood.","fx":{"jobBonus":{"chapel":1.1},"moodRest":2},"arc":"anael"},
-    "chronicler": {"label":"the Chronicler","after":true,"desc":"Nobles pay 10% more; +4 Wits, +4 Refinement.","fx":{"classBonus":{"noble":1.1},"stats":{"wits":4,"refinement":4}},"arc":"rhoswen"},
-    "guildheart": {"label":"Heart of the Guild","after":true,"desc":"Promotes 12% better; +4 Charm, +4 Charisma.","fx":{"promote":1.12,"stats":{"charm":4,"charisma":4}},"arc":"hanna"},
+    "chronicler": {
+      "label": "the Chronicler",
+      "after": true,
+      "desc": "Nobles pay 10% more; +4 Wits, +4 Refinement.",
+      "fx": {"classBonus":{"noble":1.1},"stats":{"wits":4,"refinement":4}},
+      "arc": "rhoswen"
+    },
+    "guildheart": {
+      "label": "Heart of the Guild",
+      "after": true,
+      "desc": "Promotes 12% better; +4 Charm, +4 Charisma.",
+      "fx": {"promote":1.12,"stats":{"charm":4,"charisma":4}},
+      "arc": "hanna"
+    },
     "springs": {"label":"Mistress of the Springs","after":true,"desc":"Bath work 12% better.","fx":{"jobBonus":{"bath":1.12}},"house":"onsen"},
     "manor": {
       "label": "Lady of the Manor",
@@ -350,8 +362,8 @@
     "suite_queen": {
       "label": "Mistress of the Suite",
       "after": true,
-      "desc": "Trust grows 20% faster, private time energy cost reduced by 10%, +6 Beauty.",
-      "fx": {"trustGain":1.2,"actEnergyBy":{"private":0.9},"stats":{"beauty":6}},
+      "desc": "Trust grows 20% faster, services cost 6% less energy, +2 mood from rest, +6 Beauty.",
+      "fx": {"trustGain":1.2,"actEnergy":0.94,"moodRest":2,"stats":{"beauty":6}},
       "earn": {"count":"privateSam","at":40}
     },
     "bath_siren": {
@@ -366,14 +378,112 @@
       "after": true,
       "desc": "Trust and skills grow 10% faster, max energy +15.",
       "fx": {"trustGain":1.1,"skillGain":1.1,"maxEnergy":15},
-      "ngPerk": true
+      "earn": {"reborn":3}
     },
     "paragon": {
       "label": "the Paragon",
       "after": true,
       "desc": "All stats grow 10% faster, max energy +20, +5 to all core stats.",
       "fx": {"statGain":1.1,"maxEnergy":20,"stats":{"beauty":5,"charm":5,"charisma":5,"refinement":5,"wits":5,"stamina":5,"strength":5,"agility":5}},
-      "ngPerk": true
+      "earn": {"all":[{"reborn":3},{"stat":"popularity","at":85},{"trust":90}]}
+    },
+    "first_attendant": {
+      "label": "First Attendant",
+      "after": false,
+      "desc": "Attendant work +12%, resting mood +2, +4 Charm, +4 Wits.",
+      "fx": {"jobBonus":{"attendant":1.12},"moodRest":2,"stats":{"charm":4,"wits":4}},
+      "earn": {"job":"attendant","weeks":15}
+    },
+    "seneschal": {
+      "label": "Seneschal",
+      "after": false,
+      "desc": "Attendant work +18%, nobles and officials pay 10% more, +6 Wits, +4 Refinement.",
+      "fx": {"jobBonus":{"attendant":1.18},"classBonus":{"noble":1.1,"official":1.1},"stats":{"wits":6,"refinement":4}},
+      "earn": {"all":[{"job":"attendant","weeks":28},{"stat":"wits","at":75}]}
+    },
+    "toast": {
+      "label": "Toast of the Lantern",
+      "after": true,
+      "desc": "Courtesan work +15%, services earn 10% more, +3 appeal, +5 Beauty, +5 Charm.",
+      "fx": {"jobBonus":{"courtesan":1.15},"clientFee":1.1,"appeal":3,"stats":{"beauty":5,"charm":5}},
+      "earn": {"all":[{"job":"courtesan","weeks":30},{"stat":"popularity","at":80}]}
+    },
+    "maitresse": {
+      "label": "Golden Hostess",
+      "after": true,
+      "desc": "Hosting +18%, happy clients boost reputation 15% more, +6 Charm, +4 Charisma.",
+      "fx": {"jobBonus":{"host":1.18},"rep":1.15,"stats":{"charm":6,"charisma":4}},
+      "earn": {"all":[{"job":"host","weeks":25},{"count":"hosted","at":220}]}
+    },
+    "soother": {
+      "label": "Stillwater Healer",
+      "after": true,
+      "desc": "Bathhouse work +12%, massage quality +15%, +4 Stamina, +4 Charm.",
+      "fx": {"jobBonus":{"bath":1.12},"actQuality":{"massage_give":1.15},"stats":{"stamina":4,"charm":4}},
+      "earn": {"all":[{"job":"bath","weeks":12},{"count":"massage","at":50}]}
+    },
+    "housekeeper": {
+      "label": "Chamberlain",
+      "after": false,
+      "desc": "Maid work +12%, cleaning 25% more thorough, resting mood +2, +5 Stamina.",
+      "fx": {"jobBonus":{"maid":1.12},"tidy":1.25,"moodRest":2,"stats":{"stamina":5}},
+      "earn": {"all":[{"job":"maid","weeks":30},{"stat":"stamina","at":70}]}
+    },
+    "town_crier": {
+      "label": "Street Herald",
+      "after": true,
+      "desc": "Promoter work +15%, promoting draws 15% more clients, bards and commoners pay 10% more, +5 Charisma.",
+      "fx": {"jobBonus":{"promoter":1.15},"promote":1.15,"classBonus":{"bard":1.1,"commoner":1.1},"stats":{"charisma":5}},
+      "earn": {"job":"promoter","weeks":15}
+    },
+    "quicksilver": {
+      "label": "the Quicksilver",
+      "after": true,
+      "desc": "Dancing +10%, services cost 6% less energy, +6 Agility.",
+      "fx": {"jobBonus":{"dancer":1.1},"actEnergy":0.94,"stats":{"agility":6}},
+      "earn": {"stat":"agility","at":90}
+    },
+    "iron_belle": {
+      "label": "Iron Rose",
+      "after": true,
+      "desc": "+10 security, mercenaries and watchmen pay 12% more, +6 Strength.",
+      "fx": {"security":10,"classBonus":{"mercenary":1.12,"watchman":1.12},"stats":{"strength":6}},
+      "earn": {"stat":"strength","at":90}
+    },
+    "graced": {
+      "label": "the Graced",
+      "after": true,
+      "desc": "Scholars and officials pay 12% more, +8 Refinement, +2 appeal.",
+      "fx": {"classBonus":{"scholar":1.12,"official":1.12},"stats":{"refinement":8},"appeal":2},
+      "earn": {"stat":"refinement","at":90}
+    },
+    "harbor_star": {
+      "label": "Harbor Siren",
+      "after": true,
+      "desc": "Sailors and farmhands pay 15% more, propositioned 10% more, +5 Beauty, +5 Charisma.",
+      "fx": {"classBonus":{"sailor":1.15,"farmhand":1.15},"propRate":1.1,"stats":{"beauty":5,"charisma":5}},
+      "earn": {"all":[{"count":"svc","at":120},{"stat":"beauty","at":78}]}
+    },
+    "muse": {
+      "label": "Muse of Hollowmere",
+      "after": true,
+      "desc": "Bards and artisans pay 18% more, happy clients boost reputation 10% more, +5 Beauty, +5 Wits.",
+      "fx": {"classBonus":{"bard":1.18,"artisan":1.18},"rep":1.1,"stats":{"beauty":5,"wits":5}},
+      "earn": {"all":[{"stat":"charisma","at":85},{"stat":"beauty","at":80}]}
+    },
+    "luminary": {
+      "label": "the Luminary",
+      "after": true,
+      "desc": "Scholars and artisans pay 12% more, teaches and learns 15% more, +8 Wits.",
+      "fx": {"classBonus":{"scholar":1.12,"artisan":1.12},"teach":1.15,"learn":1.15,"stats":{"wits":8}},
+      "earn": {"stat":"wits","at":92}
+    },
+    "enchanter": {
+      "label": "the Enchantress",
+      "after": true,
+      "desc": "Kiss and oral quality +10%, trust grows 10% faster, +8 Charm.",
+      "fx": {"actQuality":{"kiss":1.1,"oral_give":1.1},"trustGain":1.1,"stats":{"charm":8}},
+      "earn": {"stat":"charm","at":92}
     }
   }
 }
