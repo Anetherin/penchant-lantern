@@ -1,0 +1,14 @@
+{
+  "desc": "NG++ Lantern Shrine soft reset: 2 NG++ cycles (Seliora bound going into cycle 2) vs standard NG+.",
+  "scenario": "ngplus",
+  "runs": 10,
+  "cycles": 2,
+  "ng": { "past": "none", "boon": "ap", "cycleVar": "none", "bindGoddess": true },
+  "variants": [
+    { "name": "ng++ (shrine)", "ng": { "bindGoddess": true } },
+    { "name": "ng+ (wayfarer)", "ng": { "bindGoddess": false, "house": "wayfarer" } }
+  ],
+  "columns": ["c1won", "c2len", "c3len", "c2debt", "c3debt", "c2staff", "c3staff", "c2over", "c3over"],
+  "delta": ["c2len", "c3len"],
+  "breakdown": []
+}

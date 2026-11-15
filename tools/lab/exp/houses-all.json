@@ -1,0 +1,9 @@
+{
+  "desc": "Benchmark: all 10 Cycle-1 houses (5 starters + 5 premium houses) played from week 1 (Kaede, salaryman, default policy).",
+  "scenario": "campaign",
+  "weeks": 104,
+  "runs": 12,
+  "baseline": false,
+  "each": { "start.house": ["lantern", "onsen", "hollow", "tankard", "wayfarer", "castle", "pavilion", "veil", "sanctuary", "atelier"] },
+  "breakdown": []
+}

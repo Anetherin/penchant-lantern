@@ -260,12 +260,21 @@ function raceReact(w, clsId, c){
 
 // Client traits (balance.json → clients.traits): every non-regular client rolls 1-3 (traitCount odds), weighted by trait w x the class's
 // traits weight, without replacement, skipping excl in either direction. Regulars get none (client = null everywhere).
-function makeClient(h, cls){
+function makeClient(h, cls, screen=0){
   const C = BAL.clients, T = C.traits, odds = C.traitCount || [1], tr = [];
+  const WT = C.wait || {};
   let r = Math.random(), n = 1; for(let i=0;i<odds.length;i++){ r -= odds[i]; if(r <= 0){ n = i + 1; break; } n = i + 1; }
   let keys = Object.keys(T);
   while(tr.length < n && keys.length){
-    const k = weighted(keys, x => (T[x].w ?? 1) * ((cls.traits||{})[x] ?? 1));
+    const k = weighted(keys, x => {
+      const tx = T[x];
+      let w = (tx.w ?? 1) * ((cls.traits||{})[x] ?? 1);
+      if(screen > 0){
+        if((tx.rowdy||0) > 0 || (tx.pushy||0) > 0 || (tx.fee != null && tx.fee < 1)) w *= Math.max(0.25, 1 - screen * (WT.screenSafe ?? 0.45));
+        else if((tx.fee != null && tx.fee > 1) || (tx.tips != null && tx.tips > 1)) w *= 1 + screen * (WT.screenGood ?? 0.35);
+      }
+      return w;
+    });
     tr.push(Object.assign({id:k}, T[k]));
     keys = keys.filter(x => x!==k && !(T[k].excl||[]).includes(x) && !(T[x].excl||[]).includes(k));
   }

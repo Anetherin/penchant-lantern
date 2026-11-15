@@ -172,7 +172,7 @@ function ngView(){
   let body = '', ok = false;
   if(cur==='Bound vessel'){
     const seenV = new Set(S.vessels || []), hk = BAL.ngplus.ngppHouse || 'shrine', ngppCyc = (S.ngppCycle||0) + 1;
-    const cap = (BAL.ngplus.ngppRoomStart ?? 5) + (BAL.ngplus.ngppRoomStep ?? 5) * Math.max(0, ngppCyc - 1);
+    const cap = (BAL.ngplus.ngppRoomStart ?? 10) + (BAL.ngplus.ngppRoomStep ?? 5) * Math.max(0, ngppCyc - 1);
     body = `<h2>NG++ Soft Reset — Choose a Bound Vessel</h2><p class="muted">With ${esc(GN())} bound, a deeper cycle opens at <b>${esc(HOUSES[hk].name)}</b> (room cap <b>${cap}</b> on NG++${ngppCyc}). Everything resets to a fresh beginning—houses, savings, Sam's level (keeping boons, past lives, challenge perks, and raised stat caps), and lovers (prior lovers keep their reincarnated stacks and perks if met again). Instead of a partner, choose a bound form to wait in the shrine as an empty vessel—and awaken as Sam fills her up.</p>
       <div class="grid">${Object.entries(GOD_FORMS).map(([k,f])=>{ const done = seenV.has(k); return `<div class="pick ${NGS.vesselForm===k?'sel':''}" onclick="ngPick('vesselForm','${k}')">
         <b>${esc(f.label||k)}</b> ${done?'<span class="tag">awakened before</span>':'<span class="tag house">new form</span>'}
@@ -238,7 +238,7 @@ function ngView(){
   } else {
     const N = ngNumbers(NGS.boon), HDo = HOUSES[og], cv = CYCLE_VARS[NGS.cycleVar] || {}, ch = CYCLE_CHALLENGES[NGS.challenge] || {};
     if(N.ngpp){
-      const hk = N.houseKey || 'shrine', cap = (BAL.ngplus.ngppRoomStart ?? 5) + (BAL.ngplus.ngppRoomStep ?? 5) * Math.max(0, N.ngppCycle - 1);
+      const hk = N.houseKey || 'shrine', cap = (BAL.ngplus.ngppRoomStart ?? 10) + (BAL.ngplus.ngppRoomStep ?? 5) * Math.max(0, N.ngppCycle - 1);
       const vf = GOD_FORMS[NGS.vesselForm] || {};
       body = `<h2>Ready for NG++${N.ngppCycle} (Cycle ${N.cycle})?</h2><div class="card">
         <b>Soft Reset:</b> starts fresh at <b>${esc(HOUSES[hk].name)}</b> (room cap <b>${cap}</b>; scales income, growth &amp; renown from total Reincarnations working there). Sam returns to Lv 1 (stats reset to base + past lives), keeping his boons, past lives, Challenge Perks, energy (${samMaxEnergy()}), and raised ceiling (${BAL.ngplus.cap.base + BAL.ngplus.cap.perCycle*(N.cycle-1)}). ${N.ngppCycle===1 ? 'All prior house upgrades, house stories, lovers, regulars, and savings reset once here.' : 'Shrine keeps its upgrades &amp; story; other houses keep their NG++ upgrades &amp; stories to unlock when bought (paid without cycle scaling).'}<br>

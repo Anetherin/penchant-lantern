@@ -1,9 +1,9 @@
 {
-  "desc": "NG+ new house choice (Seasoned Owner, no past). 'none' = keep only the home house.",
+  "desc": "NG+ new house choice (all 14 houses vs none; Seasoned Owner, no past, cycleVar none for clean comparison).",
   "scenario": "ngplus",
   "runs": 12,
-  "ng": { "boon": "ap", "past": "none" },
-  "each": { "ng.house": ["wayfarer", "castle", "onsen", "hollow", "tankard", "pavilion", "veil", "skyhook", "pearl", "none"] },
+  "ng": { "boon": "ap", "past": "none", "cycleVar": "none" },
+  "each": { "ng.house": ["wayfarer", "castle", "onsen", "hollow", "tankard", "pavilion", "veil", "sanctuary", "atelier", "skyhook", "pearl", "foundry", "conservatory", "lyceum", "none"] },
   "baseline": false,
   "breakdown": []
 }

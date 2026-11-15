@@ -1,0 +1,15 @@
+{
+  "desc": "Chapel Keeper synergy inside Sanctuary (built-in chapel, +35% donations/rep, +25g offerings) in mid and late game.",
+  "scenario": "mid",
+  "weeks": 12,
+  "runs": 16,
+  "start": { "house": "sanctuary" },
+  "by": { "scenario": ["mid", "late"] },
+  "variants": [
+    { "name": "base" },
+    { "name": "courtesan", "mutate": { "job": "courtesan", "jobWho": 1, "minTrust": 45 } },
+    { "name": "chapel (non-angel)", "mutate": { "job": "chapel", "jobWho": 1, "minTrust": 45, "force": true } },
+    { "name": "chapel (angel)", "mutate": { "race": "angel", "raceWho": 1, "job": "chapel", "jobWho": 1, "minTrust": 45, "force": true } }
+  ],
+  "breakdown": []
+}

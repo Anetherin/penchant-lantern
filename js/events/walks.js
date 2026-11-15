@@ -40,7 +40,7 @@ function walkEligibleEvents(cat){
 }
 
 function samWalk(){
-  const B = BAL.walk || {}, W = B.weights || {};
+  const B = BAL.walk || {}, W = ((S.ngppCycle || 0) > 0 && B.ngppWeights) ? Object.assign({}, B.weights, B.ngppWeights) : (B.weights || {});
   if(!useAP(samWorkCost(B.energy ?? 15))) return;
   const partners = openWalkPartners(), guests = openWalkGuests(), exLovers = openWalkExLovers();
   const g = G();
@@ -83,7 +83,7 @@ function walkHireChoices(c, h, opts={}){
   const rb = raceBlock(c, h), choices = [];
   if(!rb && S.gold >= c.signing){
     choices.push({
-      label: c.signing > 0 ? `Hire her for ${h.name} (−${fmt(c.signing)})` : `Welcome her back to ${h.name} (free)`,
+      label: c.signing > 0 ? `Hire her for ${h.name} (−${fmt(c.signing)})` : c.wasLover ? `Welcome her back to ${h.name} (free)` : `Invite her into ${h.name} (free)`,
       fx(){
         if(S.gold < c.signing) return 'Not enough gold for the signing bonus.';
         S.gold -= c.signing; delete c.signing; c.job = 'rest'; c.contract = 12; c.keep = false; c.seen = {}; c.house = h.id;
@@ -130,7 +130,7 @@ function walkHireChoices(c, h, opts={}){
 function walkRecruitEvent(key, isPartner){
   const N = NAMED[key];
   const c = rebirthNamed(makeNamed(key));
-  c.signing = c.wasLover ? 0 : signingFor(c);
+  c.signing = (c.wasLover || (isPartner && (S.ngppCycle || 0) > 0)) ? 0 : signingFor(c);
   NPCS[c.id] = c;
 
   const h = curH(), ngpp = (S.ngppCycle || 0) > 0, tier = Math.min(2, c.reMet || 0);

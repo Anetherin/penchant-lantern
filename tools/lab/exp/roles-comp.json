@@ -1,0 +1,20 @@
+{
+  "desc": "Role & support compositions in mid and late game (fillTargets enabled so roles actually switch at phase start).",
+  "scenario": "mid",
+  "weeks": 12,
+  "runs": 16,
+  "by": { "scenario": ["mid", "late"] },
+  "variants": [
+    { "name": "base", "phasePolicy": { "fillTargets": true, "targets": { "maid": 1, "promoter": 1 } } },
+    { "name": "all courtesans", "phasePolicy": { "fillTargets": true, "targets": { "maid": 0, "promoter": 0 }, "resort": true, "upgrades": false } },
+    { "name": "+ madame", "mutate": { "minTrust": 45 }, "phasePolicy": { "fillTargets": true, "targets": { "maid": 1, "promoter": 1, "madame": 1 } } },
+    { "name": "+ host", "phasePolicy": { "fillTargets": true, "targets": { "maid": 1, "promoter": 1, "host": 1 } } },
+    { "name": "+ attendant", "phasePolicy": { "fillTargets": true, "targets": { "maid": 1, "promoter": 1, "attendant": 1 } } },
+    { "name": "+ security", "phasePolicy": { "fillTargets": true, "targets": { "maid": 1, "promoter": 1, "security": 1 } } },
+    { "name": "+ teacher", "mutate": { "upgrades": ["classroom"] }, "phasePolicy": { "fillTargets": true, "targets": { "maid": 1, "promoter": 1, "teacher": 1 } } },
+    { "name": "+ chapel (non-angel)", "mutate": { "upgrades": ["chapel"] }, "phasePolicy": { "fillTargets": true, "targets": { "maid": 1, "promoter": 1, "chapel": 1 } } },
+    { "name": "+ chapel (angel)", "mutate": { "upgrades": ["chapel"], "race": "angel", "raceWho": 1 }, "phasePolicy": { "fillTargets": true, "targets": { "maid": 1, "promoter": 1, "chapel": 1 } } },
+    { "name": "madame + host + att", "mutate": { "minTrust": 45 }, "phasePolicy": { "fillTargets": true, "targets": { "maid": 1, "promoter": 1, "madame": 1, "host": 1, "attendant": 1 } } }
+  ],
+  "breakdown": []
+}

@@ -11,6 +11,8 @@
       "rounds",
       "lesson",
       "date",
+      "walk",
+      "orgy",
       "rest",
       "statclass",
       "trainStat",
@@ -19,16 +21,6 @@
       "demo"
     ]
   },
-  "columns": [
-    "winWeek",
-    "netEarly",
-    "netMid",
-    "netLate",
-    "gold26",
-    "rep",
-    "trust",
-    "sat",
-    "left"
-  ],
+  "columns": ["winWeek", "netEarly", "netMid", "netLate", "gold26", "rep", "trust", "sat", "left"],
   "breakdown": []
 }
