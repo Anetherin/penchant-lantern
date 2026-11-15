@@ -23,6 +23,11 @@ function samBonusLine(){
   const p = k => Math.round((samBonus(k) - 1)*100), B = (BAL.sam||{}).bonus||{};
   return `<br>Always on: Charm +${p('charm')}% trust gained · Business +${p('business')}% house income · Strength +${Math.round((S.sam.strength||0)*(B.security||0))} security everywhere, +${Math.round((samBonus('rest','strength')-1)*100)}% weekly recovery · Wits +${p('wits')}% stat training and Appraisal XP · Technique: better service practice.`;
 }
+// Walk/event gold payouts vary randomly around base and scale gently with the relevant Sam stat.
+function samGold(base, stat='business', spread=0.2){
+  const v = Math.max(0, (typeof S!=='undefined' && S && S.sam ? S.sam[stat] : 0) || 0);
+  return Math.max(1, Math.round(base * rnd(1 - spread, 1 + spread) * (0.8 + v / 160)));
+}
 // Max energy grows with each New Game+ cycle (balance.json → sam.energyPerCycle).
 const samMaxEnergy = () => 100 + ((BAL.sam||{}).energyPerCycle || 0) * Math.max(0, ((typeof S!=='undefined' && S ? S.cycle : 1) || 1) - 1) + (hasChallengePerk('iron_ledger') ? 15 : 0) + cycleVarAdd('samEnergy', 0);
 const samEnergyAdd = n => { S.sam.energy = clamp(S.sam.energy + n, 0, samMaxEnergy()); };

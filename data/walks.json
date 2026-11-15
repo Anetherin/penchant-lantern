@@ -242,6 +242,11 @@
     "passLabel": "Keep things casual and wish her well",
     "passRes": "\"Fair enough,\" {name} laughs, kissing your cheek before slipping away down the lane. \"If I ever pass through again, I know where to find you.\""
   },
+  "casualPaid": [
+    "\n\nAs you fasten your trousers, {name} presses {gold} into your palm with a brisk, satisfied pat on your cheek and a warm \"Keep the change, handsome,\" leaving you standing alone on the flagstones wondering which one of you just worked a shift.",
+    "\n\nBefore you have even caught your breath, {name} fixes her hair, slips {gold} straight into your hoodie pocket with an amused wink, and disappears back into the street—leaving you staring at the coins, oddly paid and faintly used.",
+    "\n\n\"Good hands,\" {name} murmurs lazily, tucking her blouse back in and counting {gold} onto the edge beside your knee before strolling away without another word. You pocket the money anyway, though you feel suspiciously like the hired talent for once."
+  ],
   "partnerOpeners": {
     "default": "At a corner stall along the Lantern Market, you spot {name}—{backstory} When your eyes meet across the street, she pauses and turns toward you.",
     "kaede": "Outside a noisy noodle stand near the guild road, a flash of bright copper tail catches your eye. {name} spots you at the exact same moment, fox ears perking upright as she grins and saunters over with her thumbs hooked in her belt.\n\n\"Looking a little soft for this end of town, Sam,\" she teases cleanly. \"Need someone with sharp steel to keep trouble off your ledger?\"",
@@ -351,8 +356,8 @@
         {
           "label": "Sort out his ledger for him",
           "check": {"stat":"business","need":42,"past":"salaryman"},
-          "win": {"gold":35,"sam":{"business":2},"res":"Ten minutes with a borrowed pen untangles an entire column of double-counted wool tariffs. He presses 35g into your palm in pure relief."},
-          "lose": {"gold":15,"sam":{"business":1},"res":"You spot two arithmetic errors before your eyes cross—still enough to earn a grateful 15g finder's tip."}
+          "win": {"gold":35,"sam":{"business":2},"res":"Ten minutes with a borrowed pen untangles an entire column of double-counted wool tariffs. He presses {gold} into your palm in pure relief."},
+          "lose": {"gold":15,"sam":{"business":1},"res":"You spot two arithmetic errors before your eyes cross—still enough to earn a grateful {gold} finder's tip."}
         },
         {
           "label": "Point him toward your house for a drink tonight",
@@ -370,7 +375,7 @@
         {
           "label": "Play his game and watch his wrists",
           "check": {"stat":"wits","need":44,"app":2},
-          "win": {"gold":30,"sam":{"wits":1},"appXP":6,"res":"His left thumb gave it away before the second pass. You scoop up 30g before he decides he's suddenly out of change."},
+          "win": {"gold":30,"sam":{"wits":1},"appXP":6,"res":"His left thumb gave it away before the second pass. You scoop up {gold} before he decides he's suddenly out of change."},
           "lose": {"gold":-15,"sam":{"wits":1},"res":"Too fast. You drop 15g, though you catch the trick the moment he pockets the cups."}
         },
         {
@@ -389,8 +394,8 @@
         {
           "label": "Haul the sacks up to his shop",
           "check": {"stat":"strength","need":36,"past":"gym"},
-          "win": {"gold":25,"sam":{"strength":2},"energy":-8,"res":"It leaves your hoodie dusty and your arms burning, yet every sack makes it inside before the drizzle starts. He presses 25g on you and insists you take a loaf."},
-          "lose": {"gold":10,"sam":{"strength":1},"energy":-8,"res":"It takes twice as many trips as you expected, earning 10g and a sore lower back."}
+          "win": {"gold":25,"sam":{"strength":2},"energy":-8,"res":"It leaves your hoodie dusty and your arms burning, yet every sack makes it inside before the drizzle starts. He presses {gold} on you and insists you take a loaf."},
+          "lose": {"gold":10,"sam":{"strength":1},"energy":-8,"res":"It takes twice as many trips as you expected, earning {gold} and a sore lower back."}
         },
         {
           "label": "Hire two dockhands to help and direct traffic (-20g)",
@@ -415,8 +420,8 @@
         {
           "label": "Help him price and move the remaining bolts",
           "check": {"stat":"business","need":38},
-          "win": {"gold":25,"sam":{"business":1},"res":"You steer three passing seamstresses straight to his bolts and earn a modest 25g commission."},
-          "lose": {"gold":10,"res":"You drum up a couple of small buyers and pocket 10g for the trouble."}
+          "win": {"gold":25,"sam":{"business":1},"res":"You steer three passing seamstresses straight to his bolts and earn a modest {gold} commission."},
+          "lose": {"gold":10,"res":"You drum up a couple of small buyers and pocket {gold} for the trouble."}
         }
       ]
     },
@@ -470,13 +475,13 @@
         {
           "label": "Step between them and back them off",
           "check": {"stat":"strength","need":42,"past":"gym"},
-          "win": {"gold":20,"rep":2,"sam":{"strength":2},"res":"Your tone—and the unexpected solidity behind it—convince them to find an easier street. The tailor presses 20g on you in thanks."},
+          "win": {"gold":20,"rep":2,"sam":{"strength":2},"res":"Your tone—and the unexpected solidity behind it—convince them to find an easier street. The tailor presses {gold} on you in thanks."},
           "lose": {"energy":-10,"rep":1,"sam":{"strength":1},"res":"You take a bruised rib pulling the kid clear before the watch whistle sounds down the block."}
         },
         {
           "label": "Bluff that the city watch captain is right behind you",
           "check": {"stat":"charm","need":40},
-          "win": {"gold":15,"rep":2,"sam":{"charm":2},"res":"They bolt down the side lane before checking the corner. The tailor thanks you breathless and hands over 15g."},
+          "win": {"gold":15,"rep":2,"sam":{"charm":2},"res":"They bolt down the side lane before checking the corner. The tailor thanks you breathless and hands over {gold}."},
           "lose": {"sam":{"charm":1},"res":"They glare, hesitate just long enough for the tailor to bolt past, and slink off cursing."}
         }
       ]

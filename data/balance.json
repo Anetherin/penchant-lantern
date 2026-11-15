@@ -1111,7 +1111,7 @@
     "mainGoddessChance": 0.75,
     "weights": {"partner":4.5,"partnerPity":1.8,"guest":4,"goddess":2.2,"goddessBound":0.8,"casual":3,"rest":1.4,"coin":0.7,"flavor":1.4},
     "ngppWeights": {"partner":2.0,"partnerPity":0.8,"guest":2.5,"goddessBound":0.8,"casual":4.8,"rest":1.6,"coin":0.7,"flavor":3.5},
-    "casual": {"tech":3,"charm":1,"extraEnergy":8,"passEnergy":4,"recruitTech":15}
+    "casual": {"tech":3,"charm":1,"extraEnergy":8,"passEnergy":4,"recruitTech":15,"paidChance":0.25,"paidBase":10,"paidPerTech":0.3,"paidMax":45}
   },
   "goddess": {
     "fullReborn": 4,
