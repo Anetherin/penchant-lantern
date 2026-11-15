@@ -26,12 +26,8 @@ This file is for big ideas when I have a fresh batch of Claude usage.
 
 
 ## Services
-- Each customer (type/class/perk) has preferences. They probably are looking for more than just kisses or massages and those are probably downgrades for most customers. Their hope is probably more than just a massage at the baths (but pretty much all baths for non regulars start with a massage). Almost no customer should be looking for a massage only from a courtesan. However , a massage basically requires no lust. Customers who want only company or kissing are rare but exist. Likewise for customers who only want to service a lady (which is less taxing for her than if she has to service him). maybe ladies have more preferences than just favorite disliek lovers only? or we can have any number of them (some girls might have all penetration as lovers only. others might dislike anything that doesn't involve a dick). There can be negotiations between customer preferences and lady comfort/preferences. Energy also plays a role - a tired girl probably doesn't want to be on top or giving a bj.
-- Madames can also help direct customers to courtesans willing (and skilled, all else being equal) to do their preferred services
-- Attendants who are willing can do the service instead of the courtesan. This should give some bond points 
-- If there is an attendant for each courtesan, they can also slowly build up bonds. more trust is given if the courtesan and attendant already have a bond. madames can prioritize matching courtesans with bonded attendants.
-- Check the lewdness thresholds for acts (especially with Sam). it feels like intercourse should have a higher threshold for raising lewdness than kissing under the stars, but I'm not sure that's currently the case.
-- If there's a reasonably competent Madame and/or attendant, courtesans being overworked should be quite 
+- Check the lewdness thresholds for acts (especially with Sam) and make sure everything makes sense.
+- If there's a reasonably competent Madame and/or attendant, courtesans being overworked should be quite rare
 
 ## Story
 - All non guest characters should have fully fleshed out stories 
