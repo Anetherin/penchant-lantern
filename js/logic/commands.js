@@ -65,10 +65,17 @@ function setPrice(i){ curH().price = i; save(); render(); }
 function hire(id){
   const c = S.candidates.find(x=>x.id===id); if(!c) return;
   const rb = raceBlock(c, curH()); if(rb) return toast(rb);
-  if(S.gold < c.signing) return toast('Not enough gold for the signing bonus.');
-  S.gold -= c.signing; S.candidates = S.candidates.filter(x=>x!==c);
+  const cost = c.wasLover ? 0 : (c.signing||0);
+  if(S.gold < cost) return toast('Not enough gold for the signing bonus.');
+  S.gold -= cost; S.candidates = S.candidates.filter(x=>x!==c);
   delete c.signing; c.job='rest'; c.contract=12; c.keep=false; c.seen={}; c.house = curH().id;
+  if((S.ngppCycle||0) > 0 && (c.wasLover || (c.reborn||0) > 0 || (c.key && NAMED[c.key] && NAMED[c.key].role==='partner'))) c.reMet = (c.reMet||0) + 1;
   S.workers.push(c); if(typeof applyAutoTutor==='function') applyAutoTutor(c); if(typeof applyAutoWardrobe==='function') applyAutoWardrobe(c); checkUnlocks(true); samXP(3);
+  if(c.wasLover && goddessActive()){
+    const jGain = (GB().jealousy || {}).perExLover ?? 6;
+    G().jealousy = clamp((G().jealousy || 0) + jGain);
+    addLog(`${GN()} notices ${c.name} returning to ${curH().name} (jealousy +${jGain}).`);
+  }
   note(`${c.name} joins ${curH().name}.`); save(); render();
   if(SET.ai.on && SET.ai.autoBackstory!==false && !c.named && !c.aiBackstory){ c.aiBackstory = true; const tmp = document.createElement('div'); tmp.id='aiTmp'; tmp.style.display='none'; document.body.appendChild(tmp); aiBackstory('aiTmp', c.id).then(()=>tmp.remove()); }
 }
@@ -160,7 +167,7 @@ function demolish(k){
 // Buying a house outright (balance.json → houses): the deed price x a markup that grows with the weeks into this cycle
 // (max(buyMin, weeks x buyPerWeek): the Credit House knows Sam is earning), x priceStep for every house he already owns.
 const houseBuyMult = () => { const B = BAL.houses; return Math.max(B.buyMin ?? 1, debtWeek() * (B.buyPerWeek ?? 0)); };
-const houseCost = id => Math.round(HOUSES[id].cost * houseBuyMult() * (1 + BAL.houses.priceStep * Math.max(0, S.houses.length - 1)));
+const houseCost = id => Math.round(HOUSES[id].cost * houseBuyMult() * (1 + BAL.houses.priceStep * Math.max(0, S.houses.length - 1))) + (typeof ngppSavedCost==='function' ? ngppSavedCost(id) : 0);
 // Reorder houses (tabs, report, pick lists all follow S.houses).
 function moveHouse(id, dir){
   const i = S.houses.findIndex(h=>h.id===id), j = i + dir; if(i < 0 || j < 0 || j >= S.houses.length) return;
@@ -170,15 +177,30 @@ function setIncense(mode){ const h = curH(); if(!h.up.incense || !incenseModes()
 function buyHouse(id){
   const D = HOUSES[id]; if(!D || H(id) || !houseOffered(id)) return;
   if(D.premium && ((S.sam.lvl||1) < D.level || S.rep < D.renown)) return toast(`${D.name} won't sell to Sam yet. Needs Sam level ${D.level} and renown ${D.renown}.`);
-  const cost = houseCost(id);
+  const cost = houseCost(id), upFee = typeof ngppSavedCost==='function' ? ngppSavedCost(id) : 0;
   if(S.gold < cost) return toast('Not enough gold.');
-  if(!confirm(`Buy ${D.name} for ${fmt(cost)}? (deed ${fmt(D.cost)} × ${houseBuyMult().toFixed(0)} this far into the cycle${S.houses.length>1 ? `, +${Math.round(BAL.houses.priceStep*100)}% for each house you already own beyond the first` : ''})`)) return;
-  S.gold -= cost; S.houses.push(makeHouse(id)); S.cur = id; HOUSE_ALL = false;
+  if(!confirm(`Buy ${D.name} for ${fmt(cost)}? (deed ${fmt(D.cost)} × ${houseBuyMult().toFixed(0)} this far into the cycle${S.houses.length>1 ? `, +${Math.round(BAL.houses.priceStep*100)}% for each house you already own beyond the first` : ''}${upFee ? `, +${fmt(upFee)} for persisted upgrades` : ''})`)) return;
+  S.gold -= cost;
+  const nh = makeHouse(id);
+  if((S.ngppCycle||0) > 0 && S.ngppHouses && S.ngppHouses[id] && typeof restoreNgppHouse==='function') restoreNgppHouse(nh, S.ngppHouses[id]);
+  S.houses.push(nh); S.cur = id; HOUSE_ALL = false;
+  S.flags = S.flags || {}; S.flags.boughtHouse = true;
   note(`You now own ${D.name}!`);
   if(!isHired(D.npc)){
     const n = rebirthNamed(makeNamed(D.npc)); n.house = id; n.locked = id; n.contract = 999; n.job = safeJob(n, NAMED[D.npc].job); if(MENU_JOBS.includes(n.job)) n.menu = getActs().filter(a=>clientStance(n,a.id)==='yes').map(a=>a.id);
-    S.workers.push(n); if(typeof applyAutoTutor==='function') applyAutoTutor(n); if(typeof applyAutoWardrobe==='function') applyAutoWardrobe(n); checkUnlocks(true);
-    EVQ.push(()=>({title:`${D.name}`, who:n.id, scene:'portrait', text:`${n.name} is waiting at the door when Sam arrives with the deed.\n\n${n.backstory}\n\nShe comes with the place.${goddessHouseNote(id)}`, choices:[{label:'Welcome aboard', fx(){ n.trust=clamp(n.trust+5); return ''; }}]}));
+    if((S.ngppCycle||0) > 0 && (n.wasLover || (n.reborn||0) > 0)) n.reMet = (n.reMet||0) + 1;
+    S.workers.push(n); if(typeof applyAutoTutor==='function') applyAutoTutor(n); if(typeof applyAutoWardrobe==='function') applyAutoWardrobe(n);
+    if(typeof restoreStoryJoin==='function') restoreStoryJoin(nh, true);
+    checkUnlocks(true);
+    let jNote = '';
+    if(n.wasLover && goddessActive()){
+      const jGain = (GB().jealousy || {}).perExLover ?? 6;
+      G().jealousy = clamp((G().jealousy || 0) + jGain);
+      jNote = `\n\n(${n.name} still remembers what you shared. ${GN()}'s jealousy +${jGain}.)`;
+    }
+    EVQ.push(()=>({title:`${D.name}`, who:n.id, scene:'portrait', text:`${n.name} is waiting at the door when Sam arrives with the deed.\n\n${n.backstory}\n\nShe comes with the place.${goddessHouseNote(id)}${jNote}`, choices:[{label:'Welcome aboard', fx(){ n.trust=clamp(n.trust+5); return ''; }}]}));
+  } else if(typeof restoreStoryJoin==='function'){
+    restoreStoryJoin(nh, true); checkUnlocks(true);
   }
   save(); render(); runQueue();
 }

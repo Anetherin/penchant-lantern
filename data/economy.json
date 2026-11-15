@@ -915,6 +915,38 @@
       "desc": "A former noble finishing academy turned discreet salon. Mirror-lined practice halls and a lecture theater train staff to command top coin.",
       "setting": "velvet-draped private academy salon with tall mirrors, lecture desks, and gilded sconces",
       "goddess": "\"The Velvet Lyceum.\" {goddess} chuckles behind her sleeve. \"Vivienne used to grade young lords on posture and etiquette. Now she grades something considerably warmer.\""
+    },
+    "shrine": {
+      "size": 5,
+      "quarters": 1,
+      "beds": 0,
+      "name": "The Lantern Shrine",
+      "loc": "Lantern Quarter",
+      "npc": null,
+      "rooms": 1,
+      "tier": 0,
+      "up": {},
+      "demand": 1.0,
+      "cls": [1,1,0.8,0.5],
+      "upkeep": 35,
+      "debt": 9000,
+      "cost": 0,
+      "rep": 10,
+      "ngplus": true,
+      "ngppOnly": true,
+      "rebornPool": {
+        "perFee": 0.015,
+        "perGrowth": 0.02,
+        "perRep": 0.01,
+        "cap": 50
+      },
+      "perk": {
+        "label": "Lantern of Echoes",
+        "desc": "Bound to Seliora's embers. Room cap starts at 5 and grows +5 each NG++ cycle. Gains a house-wide bonus from total Reincarnations of everyone actively working here (+1.5% client fees, +2% trust & skill growth, +1% reputation gain per reincarnation stack, up to 50)."
+      },
+      "desc": "A quiet wooden shrine-house built around a bronze lantern that remembers every face you've loved. Compact at first, another wing opens whenever Sam crosses back through the dark.",
+      "setting": "lantern-lit wooden shrine parlor with sliding lattice screens, warm cedar beams, and quiet alcove rooms",
+      "goddess": "\"The Lantern Shrine.\" {goddess} rests two fingers on the warm doorframe. \"Small for a fresh start, with room for one unformed soul—and extra grace for anyone who already remembers your name.\""
     }
   },
   "pasts": {

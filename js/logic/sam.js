@@ -9,10 +9,10 @@ function useAP(cost=20){
   S.ap--; S.sam.energy -= cost; samGainXP(6); return true;
 }
 // Do the books: share of upkeep cut this week (Business, the ledger tool, and the office worker's spreadsheet habit). Capped at 60%.
-const booksCut = () => Math.min(0.6, 0.1 + S.sam.business*0.003 + samUpFx('books') + (hasPast('salaryman') ? 0.1 : 0));
+const booksCut = () => Math.min(0.6, 0.1 + S.sam.business*0.003 + samUpFx('books') + (hasPast('salaryman') ? 0.1 : 0) + (hasChallengePerk('iron_ledger') ? 0.08 : 0));
 const samLog = t => S.samWeek.acts.push(t);
 const xpNeed = l => 60 + 40*l;
-const apMax = () => 3 + Math.floor((S.sam.lvl||1)/5) + (hasBoon('ap')?1:0);   // +1 action every 5 levels (5, 10, 15, 20...)
+const apMax = () => 3 + Math.floor((S.sam.lvl||1)/5) + (hasBoon('ap')?1:0) + (hasChallengePerk('starlight_debt')?1:0);   // +1 action every 5 levels (5, 10, 15, 20...)
 // Sam's stats (0-100). Each also works passively (balance.json → sam.bonus, x stat/100): Charm → trust the ladies gain (gainTrust),
 // Business → house income (endWeek), Strength → security in every house (simHouse) and weekly recovery, Wits → stat training and
 // Appraisal XP, Technique → service skills he teaches and how much he satisfies (samRelease).
@@ -24,7 +24,7 @@ function samBonusLine(){
   return `<br>Always on: Charm +${p('charm')}% trust gained · Business +${p('business')}% house income · Strength +${Math.round((S.sam.strength||0)*(B.security||0))} security everywhere, +${Math.round((samBonus('rest','strength')-1)*100)}% weekly recovery · Wits +${p('wits')}% stat training and Appraisal XP · Technique: better service practice.`;
 }
 // Max energy grows with each New Game+ cycle (balance.json → sam.energyPerCycle).
-const samMaxEnergy = () => 100 + ((BAL.sam||{}).energyPerCycle || 0) * Math.max(0, ((typeof S!=='undefined' && S ? S.cycle : 1) || 1) - 1);
+const samMaxEnergy = () => 100 + ((BAL.sam||{}).energyPerCycle || 0) * Math.max(0, ((typeof S!=='undefined' && S ? S.cycle : 1) || 1) - 1) + (hasChallengePerk('iron_ledger') ? 15 : 0) + cycleVarAdd('samEnergy', 0);
 const samEnergyAdd = n => { S.sam.energy = clamp(S.sam.energy + n, 0, samMaxEnergy()); };
 function samGainXP(n){
   S.sam.xp = (S.sam.xp||0) + n; S.sam.lvl = S.sam.lvl || 1;
@@ -41,7 +41,7 @@ function samXP(n){
   if(lv > S.sam.appraisal){ S.sam.appraisal = lv; note(`[Appraisal] leveled up to Lv ${lv}! ${lv===2?'Exact stats and lewdness are now visible.':'Hidden traits and everyone\'s preferences are now visible.'}`); }
 }
 function samStat(k,n){ S.sam[k] = clamp((S.sam[k]||0)+n, 0, samCap()); }
-const lessonMul = () => (hasPast('massage') ? 1.15 : 1) * (hasPast('tutor') ? 1.2 : 1) * (1 + samUpFx('lesson'));
+const lessonMul = () => (hasPast('massage') ? 1.15 : 1) * (hasPast('tutor') ? 1.2 : 1) * (1 + samUpFx('lesson')) * cycleVarMul('learn', 1);
 const samWorkCost = (base=25) => Math.max(5, base - samUpFx('workEnergy'));
 const samTrainCost = (base=20) => Math.max(5, base - samUpFx('trainEnergy'));
 const samDateCost = (base=15) => Math.max(4, base - samUpFx('dateEnergy'));
@@ -50,7 +50,7 @@ function samWork(kind){
   if(!useAP(samWorkCost(25))) return;
   let title='', text='';
   if(kind==='bartend'){
-    const inc = Math.round((30 + S.sam.charm*1.2 + rnd(0,25)) * (hasPast('bartender')?1.5:1) * (1 + samUpFx('bartend'))); S.gold += inc; S.samWeek.income += inc; samStat('charm',2);
+    const inc = Math.round((30 + S.sam.charm*1.2 + rnd(0,25)) * (hasPast('bartender')?1.5:1) * (1 + samUpFx('bartend')) * (hasChallengePerk('iron_ledger') ? 1.15 : 1)); S.gold += inc; S.samWeek.income += inc; samStat('charm',2);
     title='Behind the Bar'; text=`Sam pours drinks all evening. ${hasPast('bartender')?'Old habits: he flips a bottle and the whole room cheers.':'He over-explains the menu to everyone, but people seem to find it charming.'}\n\n+${fmt(inc)} · Charm +2`;
     samLog(`Tended bar (+${fmt(inc)})`);
   } else if(kind==='security'){
@@ -485,9 +485,9 @@ function privateMenu(id, free){
   const opts = getActs().filter(a=>canSam(w,a.id));
   const canPossess = w.race==='spirit' && (w.intim||0)>=1 && ((w.lewd||0) >= ((SVC.spirit||{}).possessLewd ?? 35) || (w.intim||0)>=2);
   if(!opts.length && !canPossess) return toast((w.intim||0)===0 ? `${w.name} and Sam haven't crossed that line yet.` : `${w.name} isn't comfortable with that yet.`);
-  const kp = knowsPrefs(w);
-  modal(`<h2>Private time with ${esc(w.name)}</h2><p class="muted">What she's comfortable with, with you, as far as you two have gone (${esc(stageName(w.intim)||'nothing yet')}). ${kp?'★ = her favorite.':''}</p>
-    <div class="row">${opts.map(a=>`<button onclick="samPrivate('${id}','${a.id}',${free?'true':'false'})">${esc(a.label)}${kp&&isFav(w,a.id)?' ★':''}${samStance(w,a.id)==='ask'?' ~':''}</button>`).join('')}${canPossess?`<button onclick="spiritSamMenu('${id}',${free?'true':'false'})">👻 Reverse-possess Sam…</button>`:''}</div>
+  const kp = knowsPrefs(w), vAw = isVessel(w) && vesselStage(w) < 3;
+  modal(`<h2>Private time with ${esc(w.name)}</h2><p class="muted">What she's comfortable with, with you, as far as you two have gone (${esc(stageName(w.intim)||'nothing yet')}). ${kp?'★ = her favorite.':''}${vAw ? ` 💧 = fills ${w.name} faster (${vesselLabel(w)}).` : ''}</p>
+    <div class="row">${opts.map(a=>`<button onclick="samPrivate('${id}','${a.id}',${free?'true':'false'})">${esc(a.label)}${kp&&isFav(w,a.id)?' ★':''}${samStance(w,a.id)==='ask'?' ~':''}${vAw && gNightKind(a.id)==='inside' ? ' 💧' : ''}</button>`).join('')}${canPossess?`<button onclick="spiritSamMenu('${id}',${free?'true':'false'})">👻 Reverse-possess Sam…</button>`:''}</div>
     <p class="muted">~ = she'll do it for Sam, but it's a stretch for her (less mood, more lewdness).</p>
     <div class="row"><button onclick="${free?'closeModal()':`openSheet('${id}')`}">Back</button></div>`);
 }
@@ -603,6 +603,7 @@ function privateCore(w, act, o={}){
   if(stretch) text += `\n\n(This was a stretch for ${w.name}. She did it for Sam, and it's a little less of a stretch now.)`;
   if(hot) text += `\n\n${hot}`;
   text += fed;
+  text += fillVessel(w, act);
   text += `\n\n[${actLabel(act)}] skill + · ${lg >= 0.3 ? 'Lewdness + · ' : ''}Trust + · Lust ${ld < 0 ? '+'+(-ld) : '−'+ld} · Sam's Technique +3`;
   // worked up by it, she may want more: something that actually spends it, if they've crossed that far
   if(builds && !o.more && w.lust >= LUST_EAGER && w.lewd >= SVC.askMore.lewd){
@@ -654,10 +655,10 @@ function samGuild(){
     text = `A freckled receptionist practically vaults the counter when she hears what Sam does for a living. "You own a pleasure house? I'm Hanna! Parties come back from dungeons with full purses and nowhere to spend them. Let's talk."\n\nGuild contracts unlocked.`;
     const h = makeNamed('hanna'); h.id='npc_hanna'; NPCS.npc_hanna = h; wid='npc_hanna'; scene='portrait';
   } else if(g===1 && !guildHas('rhoswen')){
-    S.flags.guild = 2; const r = makeNamed('rhoswen'); r.signing = signingFor(r); S.candidates.push(r);
+    S.flags.guild = 2; const r = rebirthNamed(makeNamed('rhoswen')); r.signing = r.wasLover ? 0 : signingFor(r); S.candidates.push(r);
     text = `Hanna leans in. "So. There's an elf. Very proper, very lost, asking about work in places elves do NOT ask about. I may have mentioned you."\n\nRhoswen has been added to your candidates.`; wid = r.id; scene='portrait';
   } else if(g>=1 && g<3 && S.rep>=30 && !guildHas('hanna')){
-    S.flags.guild = 3; const h = makeNamed('hanna'); h.signing = 40; S.candidates.push(h);
+    S.flags.guild = 3; const h = rebirthNamed(makeNamed('hanna')); h.signing = h.wasLover ? 0 : 40; S.candidates.push(h);
     text = `Hanna slides her resignation letter across the counter to her own supervisor, then turns to Sam. "Your reception desk is a disgrace and I have opinions. When do I start?"\n\nHanna has been added to your candidates.`; wid = h.id; scene='portrait';
   } else {
     if(g===1) S.flags.guild = 2;

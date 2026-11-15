@@ -426,5 +426,16 @@
       ]
     },
     "button": {"1":"Kiss her again","2":"Don't stop—","3":"Almost…"}
+  },
+  "vessel": {
+    "stageLabels": ["Empty vessel", "Stirring vessel", "Quickening vessel", "Awakened vessel"],
+    "awakenedTitle": "Awakened Vessel",
+    "dormantMood": "Mood: dormant (fill the vessel to stir her)",
+    "backstory": "Shaped like {form} when this cycle turned—quiet-eyed, pliable, and waiting like an empty vessel for you to fill her with a soul of her own.",
+    "awakenLines": {
+      "1": "{name}'s quiet stare blinks into focus afterwards—still hollow, yet something in her stirred.{traitNote} Her mood and first inclinations have begun to form.",
+      "2": "{name} shivers as warmth lingers inside her long after you pull back—appetite waking where stillness used to live. Her desire and full job preferences have begun to form.",
+      "3": "{name} catches her breath and meets your eyes—not blank anymore, not borrowed, wholly herself ({pers}{traitNote}). The empty vessel has awakened."
+    }
   }
 }

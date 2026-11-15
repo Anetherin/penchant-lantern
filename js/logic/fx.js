@@ -116,7 +116,42 @@ function madameShield(w){
   if(typeof S==='undefined' || !S || !w.house) return 1;
   return S.workers.some(x=>x!==w && x.house===w.house && x.job==='madame') ? BAL.jobs.madameMoodLoss : 1;
 }
-function moodAdd(w, n){ const before = w.mood; let d = n * fxMul(w, 'moodDelta'); if(d < 0) d *= madameShield(w) * fxMul(w, 'moodLoss'); w.mood = clamp(w.mood + d); return w.mood - before; }
+const isVessel = w => !!(w && w.vessel);
+const vesselStage = w => w && w.vessel ? (w.vesselStage || 0) : 3;
+function vesselLabel(w){
+  const L = (typeof GOD!=='undefined' && GOD && GOD.vessel && GOD.vessel.stageLabels) || ['Empty vessel','Stirring vessel','Quickening vessel','Awakened vessel'];
+  return L[Math.min(3, Math.max(0, vesselStage(w)))] || L[0];
+}
+
+const CYCLE_VARS = (BAL.ngplus && BAL.ngplus.cycleVars) || {};
+const CYCLE_CHALLENGES = (BAL.ngplus && BAL.ngplus.cycleChallenges) || {};
+const activeCycleVar = () => (typeof S!=='undefined' && S && S.cycleVar && CYCLE_VARS[S.cycleVar]) ? CYCLE_VARS[S.cycleVar] : null;
+const cycleVarMul = (k, def=1) => { const v = activeCycleVar(); return v && v[k]!==undefined ? v[k] : def; };
+const cycleVarAdd = (k, def=0) => { const v = activeCycleVar(); return v && v[k]!==undefined ? v[k] : def; };
+const hasChallengePerk = id => !!(typeof S!=='undefined' && S && S.challengePerks && S.challengePerks.includes(id));
+
+function shrineRebornSum(h){
+  if(!h || typeof S==='undefined' || !S) return 0;
+  const P = (HOUSES[h.id]||{}).rebornPool; if(!P) return 0;
+  const raw = (S.workers||[]).filter(w=>w.house===h.id && w.job!=='rest').reduce((a,w)=>a+(w.reborn||0), 0);
+  return P.cap ? Math.min(P.cap, raw) : raw;
+}
+function shrineMult(h, key){
+  const P = h && (HOUSES[h.id]||{}).rebornPool;
+  return P && P[key] ? 1 + shrineRebornSum(h) * P[key] : 1;
+}
+function rebornHouseGrowth(w){
+  const h = (typeof S!=='undefined' && S && w && w.house) ? houseOf(w) : null;
+  const poolMul = h ? shrineMult(h, 'perGrowth') : 1;
+  if(!w || !(w.reborn > 0)) return poolMul;
+  const hMul = h ? housePerkVal(h, 'rebornGrowth', 1) : 1;
+  return poolMul * hMul * (hasChallengePerk('full_vessel') ? 1.2 : 1);
+}
+
+function moodAdd(w, n){
+  if(isVessel(w) && vesselStage(w) < 1) return 0;
+  const before = w.mood; let d = n * fxMul(w, 'moodDelta'); if(d < 0) d *= madameShield(w) * fxMul(w, 'moodLoss'); w.mood = clamp(w.mood + d); return w.mood - before;
+}
 // Sleep/rest recovery multiplier from fx, house perks, and house amenities (garden, incense; balance.json → amenities).
 function restMult(w){
   let m = fxMul(w, 'energyRec') * incenseMul(w, 'energyRec');
@@ -173,7 +208,7 @@ function raceBlock(w, h){
 function statXP(w, key, n){
   if(!w.stats || w.stats[key]===undefined) return;
   const v = w.stats[key];
-  w.stats[key] = clampK(v + n * fxMul(w, 'statGain') * incenseMul(w, 'statGain') * Math.max(0.05, 1 - v/growDen()));
+  w.stats[key] = clampK(v + n * fxMul(w, 'statGain') * incenseMul(w, 'statGain') * rebornHouseGrowth(w) * cycleVarMul('learn', 1) * Math.max(0.05, 1 - v/growDen()));
 }
 
 /* ---------- counters (w.counts) and developable traits ---------- */

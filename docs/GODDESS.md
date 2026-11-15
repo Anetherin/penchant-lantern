@@ -27,10 +27,12 @@ Test: `node tools/goddess-smoke.mjs [weeks per cycle]` (plays to the binding, ev
     - No finish costs mood and love.
   - Neglect: from `neglect.after` (3) weeks without a night she loses love and mood every week. A jealous claim on a lady that Sam doesn't answer with a night within `neglect.claimWeeks` (2) costs extra.
 - **Ending:** at full divinity she stays if her love is at least `love.stay` (70) and keeps her full power. Otherwise she leaves for good. A player who keeps coming to her ends well; one who only uses her for divinity and ignores her doesn't.
+- **NG++ Soft Reset & Bound Vessels:** starting New Game+ once a lady has lived a full reincarnated life (`w.reborn >= fullReborn`) and Seliora is bound (or binding) enters NG++: houses, savings, lovers, and Sam's level reset cleanly while keeping `S.boons`, `S.pasts`, `S.challengePerks`, `S.goddess`, raised caps, `S.vessels`, and all prior characters' `reborn` stacks and `ngPerks` (in `S.lives` / `S.alumni`). Sam starts at The Lantern Shrine (`shrine`, room cap `5 + 5 * (ngppCycle - 1)`, +15% client fees and +20% growth for reincarnated ladies) alongside a chosen **Bound Vessel** (`createBoundVessel`): empty at first (no personality, preferences, dormant mood and lust), awakening in stages (Stirring → Quickening → Awakened) via `fillVessel` when Sam finishes inside her. Prior lovers encountered on walks use `S.lives` / `exLoverOpeners`, charge no signing bonus, and raise Seliora's jealousy (`perExLover`).
+- **Cycle Variables & Challenges:** each NG+/NG++ cycle rolls a `CYCLE_VARS` modifier (`S.cycleVar`) and lets Sam accept an optional `CYCLE_CHALLENGES` rule (`S.challenge`) for a permanent `S.challengePerks` reward on debt payoff (`checkEnd`).
 - **Backstory:** she claims she picked Sam on a whim. In truth she had watched him for years in his old world (the stray cat). It slips out in the later teases and comes out at the binding.
 
 ## State
-`S.goddess` {met, bound, boundCycle, love, jealousy, mood, divinity, focus, form, teases[], evWk, roster, ending, left, nights, finishes, last[]}. Save v30. It carries through NG+ untouched.
+`S.goddess` {met, bound, boundCycle, love, jealousy, mood, divinity, focus, form, teases[], evWk, roster, ending, left, nights, finishes, last[]}. Save v36 (includes `ngppCycle`, `ngppHouses`, `cycleVar`, `challenge`, `challengePerks[]`, `vessels[]`). It carries through NG+ and NG++ untouched.
 Hooks: `goddessPlan()` at the start of `endWeek`, `goddessAfter(R)` after the houses run, `goddessGuard(h)` in `pushyCheck`, `goddessRebirth()` at the end of `ngBegin`, `goddessIntro()` in `setupBegin`, and `goddessHouseNote()` on house purchase.
 
 ## Forms

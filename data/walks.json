@@ -511,5 +511,38 @@
         }
       ]
     }
-  ]
+  ],
+  "exLoverOpeners": [
+    "She stops dead halfway across the cobbles when she hears your footsteps, staring for two heartbeats before her shoulders drop with a breath she'd clearly been holding. No vow binds her in this new cycle, yet {name} steps right inside your reach as if her feet know the distance by heart.\n\n\"I thought you looked familiar from down the street, Sam,\" she says quietly, fingers brushing your sleeve. \"If you need another pair of hands at {house}, keep your coin. Just tell me where my room is.\"",
+    "You find {name} leaning against a tea-stall awning, squinting at your face the moment you round the corner. Something sharp and fond crosses her eyes—an ache that has outlived the world resetting around you.\n\n\"Funny,\" {name} murmurs, folding her arms over her chest to hide a sudden smile. \"I don't even have a contract in front of me, and I still walked straight down the road toward {house}. Don't insult me with a signing fee, Sam. Just ask.\"",
+    "{name} slows down the instant your eyes meet, stepping out of the foot traffic to walk alongside you without being asked. Even without old promises tying her to your belt, there is zero distance in the way she falls into step beside your shoulder.\n\n\"Starting fresh again, Sam?\" she asks softly, looking up through her lashes. \"Fine. Keep your gold for the house—if you want me back, you already have me.\""
+  ],
+  "exLoverHireRes": "{name} slips into step beside you back toward {house}, waving off your purse before you can reach for it. \"Already yours once,\" she murmurs lightly. \"Call it an old habit.\"",
+  "goddessExLover": [
+    "Behind your shoulder, a dry warm voice curls right into your ear: \"Oh, wonderful. Not even a signing fee for an old flame? Tell me you aren't collecting the whole set again, Sam.\"",
+    "A faint flicker of amber sparks at your collar as {goddess} mutters in the back of your head: \"Free of charge? How terribly generous of her. Don't expect me to clap.\"",
+    "\"She remembers that much without the ring?\" {goddess} hums low against your ear, sharp-edged and possessive. \"Fine. Bring her home. Just remember whose lantern lit your door this morning.\""
+  ],
+  "_partnerMemoryTodo": "Custom per-partner 3-tier memory arrays (vague deja vu -> fragments -> clear recognition) can be added under partnerMemoryLines[key] = [tier0, tier1, tier2].",
+  "exLoverMemoryTiers": [
+    "Halfway across the square, {name} slows to a stop and stares at you for a beat too long, frowning as if a dream slipped out of reach the instant she woke.\n\n\"Sorry—do I know you from somewhere?\" {name} touches her wrist and tilts her head at your lantern-pin. \"I was just walking past {house}, and something made me look twice.\"",
+    "{name} catches herself smiling before she even reaches you, then blinks in surprise at her own nerve. Fragments she can't quite place sit behind her eyes—a warm room, a quiet laugh, the cadence of your voice.\n\n\"Funny,\" {name} murmurs, tilting her chin up. \"I swear I've walked back to {house} with you in another life, Sam. Tell me what you're offering.\"",
+    "She stops dead halfway across the cobbles when she hears your footsteps, staring for two heartbeats before her shoulders drop with a breath she'd been holding across cycles. {name} steps inside your reach as if her feet never forgot the distance.\n\n\"Still pulling me back every time the world turns over, Sam?\" she says quietly, fingers brushing your sleeve. \"Keep your gold. Just tell me where my room is.\""
+  ],
+  "exLoverMemoryHire": [
+    "{name} follows you back toward {house}, glancing sideways at your hand with a puzzled half-smile. \"No idea why I waived my own fee, Sam. Must be good salesmanship.\"",
+    "{name} falls into step beside your shoulder like she's done it a dozen times before—half remembering, wholly willing. \"Give me a day at {house},\" she says lightly. \"The rest will come back.\"",
+    "{name} slips her fingers briefly through yours on the way back to {house}. \"Once wasn't enough,\" she murmurs. \"Might as well unpack before you change your mind.\""
+  ],
+  "isekaiMemoryTiers": [
+    "{name} stands by the lantern-post looking thoroughly out of place, clutching the collar of clothes from another world and squinting at the cobbles as if she dreamed them once before.\n\n\"{backstory}\" she murmurs, then stops herself, staring at your face with sudden unease. \"Wait—Sam? How did I already know your name? Feels like half a lifetime from a fever dream.\"",
+    "When you round the corner, {name} is already looking down the street in your direction, arms folded tight around herself. The other-world clothes feel less strange on her shoulders than the uncanny weight of having stood on this exact corner before.\n\n\"I thought you'd come down this road,\" she says softly, forcing a small crooked grin. \"Don't ask me how I knew you'd be the one carrying a ledger in Hollowmere, Sam. Need someone at {house}?\"",
+    "{name} doesn't look lost this time—she spots you clear across the street and walks straight over, every piece of the worlds between you locked neatly back into place.\n\n\"Back from my own world again, right into yours,\" {name} says softly, standing close enough that her shoulder brushes yours. \"No point pretending I don't know you by now, Sam. Lead the way to {house}.\""
+  ],
+  "isekaiMemoryHire": [
+    "{name} steps onto the flagstones toward {house} and slows, staring at the doorway as if her feet knew the threshold before her head did. \"Weird,\" she whispers. \"Feels like coming home to a place I've never been.\"",
+    "{name} walks the route to {house} without asking once which turn comes next, catching herself with a quiet laugh halfway down the alley. \"Alright—maybe there really is more in my head than dreams, Sam.\"",
+    "{name} shakes her head in dry amusement as {house} comes into view. \"Another world, another cycle, same doorstep. Try not to lose me next time, Sam.\""
+  ],
+  "partnerMemoryLines": {}
 }

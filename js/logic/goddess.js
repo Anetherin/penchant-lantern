@@ -56,12 +56,17 @@ const jTier = () => { const j = G().jealousy||0, T = GB().jealousy||{}; return j
 const dTier = () => { const d = G().divinity||0; return d >= 70 ? 'high' : d >= 35 ? 'mid' : 'low'; };
 // Fully reincarnated: lived (or living) a life at the maximum carry. min = the reborn stacks that counts.
 const fullAt = () => GB().fullReborn ?? 4;
-const rebornFull = (min = fullAt()) => [...(S.workers||[]), ...(S.alumni||[])].filter(w=>(w.reborn||0) >= min);
+function rebornFull(min = fullAt()){
+  const out = [...(S.workers||[]), ...(S.alumni||[])].filter(w=>(w.reborn||0) >= min);
+  const seen = new Set(out.map(w=>w.key || w.id));
+  Object.entries(S.lives || {}).forEach(([k, L])=>{ if(!seen.has(k) && L && (L.reborn||0) >= min){ out.push(Object.assign({name:(NAMED[k]||{}).name||k}, L)); seen.add(k); } });
+  return out;
+}
 // Her power: base + divinity, times a bonus for every fully reincarnated lady (more for each life past full).
 function goddessPower(){
   const P = GB().power || {}, g = G();
   const reb = rebornFull().reduce((a,w)=>a + 1 + ((w.reborn||0) - fullAt()), 0);
-  return ((P.base ?? 0.5) + (P.perDiv ?? 0.01) * (g.divinity||0)) * (1 + (P.perReborn ?? 0.1) * reb);
+  return ((P.base ?? 0.5) + (P.perDiv ?? 0.01) * (g.divinity||0)) * (1 + (P.perReborn ?? 0.1) * reb) * (hasChallengePerk('faithful_flame') ? 1.2 : 1);
 }
 const goddessActions = () => 1 + Math.floor((G().divinity||0) / ((GB().divinity||{}).perAction || 25));
 
@@ -114,7 +119,7 @@ function goddessBind(info, next){
   g.bound = true; g.knows = true; g.boundCycle = S.cycle; g.lastNight = S.week; g.divinity = (B.divinity||{}).bindTo ?? 5;
   g.love = clamp((g.love||0) + ((B.love||{}).bind ?? 10)); g.jealousy = Math.round((g.jealousy||0) * 0.4); g.finishes = (g.finishes||0) + 1;
   addLog(`${GN()} is bound to Sam. Her divinity is gone, for now.`);
-  const ladies = rebornFull(fullAt() + 1).map(w=>w.name.split(' ')[0]);
+  const ladies = rebornFull(fullAt() + 1).map(w=>(w.name||'someone').split(' ')[0]);
   const ctx = {names: ladies.join(', '), lady: ladies[0] || 'her', house: info && info.house && HOUSES[info.house] ? HOUSES[info.house].name : ''};
   save();
   gScene(T.title || 'Bound', gpara(gtxt(T.text, ctx), gtxt(T.after, ctx)), T.image, T.button || 'Stay with her', ()=>{ TAB = 'goddess'; if(next) next(); else render(); });
@@ -361,4 +366,75 @@ function viewGoddess(){
     <section class="card"><h2>Sam and ${esc(GN())}</h2><div class="row"><button class="primary" onclick="goddessNightMenu()">🌙 Spend the night…</button></div>
       <p class="muted">When Sam finishes inside her, a night restores his energy, rebuilds her divinity and raises her love and mood. Leave her wanting and she sulks. ${(()=>{ const n = S.week - (g.lastNight||S.week), a = (B.neglect||{}).after ?? 3; return n >= a - 1 ? `<span class="warn">It's been ${n} week${n===1?'':'s'}; she won't wait much longer.</span>` : 'She loses love if Sam stays away too long (or ignores her after she makes a jealous scene).'; })()}</p></section>
     ${(g.last||[]).length ? `<section class="card"><h2>Last week</h2>${g.last.map(t=>`<div>✨ ${esc(t)}</div>`).join('')}</section>` : ''}`;
+}
+
+/* ---------- NG++ bound vessel: shaped from a goddess form, awakening as Sam fills her up ---------- */
+const VB = () => BAL.ngplus.vessel || {};
+function createBoundVessel(formKey, houseId){
+  const fk = GOD_FORMS[formKey] ? formKey : GOD_TRUE, f = GOD_FORMS[fk] || {}, src = NPCS[godNpcId(fk)] || {};
+  const race = src.race || 'human', sub = src.sub || '', V = VB();
+  const w = genWorker({race, sub, quality:1});
+  Object.assign(w, {
+    vessel:true, vesselForm:fk, vesselFills:0, vesselStage:0, vesselFirst:true,
+    race, sub, lantern: race==='angel' && sub==='lantern',
+    design: clone(src.design || w.design || {}), body: clone(src.body || w.body || Object.assign({}, BODY_DEF)),
+    seed: (src.seed || w.seed || ri(1, 9999999)) + ((S && S.ngppCycle)||1) * 31,
+    personality:'', traits:[], fav:null, dislike:null, lovers:null, jobLikes:[], jobDislikes:[],
+    mood:50, lust:0, lewd: V.startLewd ?? 42, trust: V.startTrust ?? 25, intim:3,
+    house:houseId, job:'courtesan', locked:houseId, contract:999, free:true, title:'Bound Vessel',
+    backstory: ((GOD.vessel||{}).backstory || 'Shaped like {form} when this cycle turned—quiet-eyed, pliable, and waiting like an empty vessel for you to fill her with a soul of her own.').replace(/\{form\}/g, f.label || raceLabel({race, sub}))
+  });
+  ensureWorker(w);
+  return w;
+}
+function addVesselTrait(w){
+  const clash = t => ((TRAITS[t]||{}).excl||[]).some(x=>has(w,x)) || (w.traits||[]).some(x=>((TRAITS[x]||{}).excl||[]).includes(t));
+  const pool = Object.keys(TRAITS).filter(k=>TRAITS[k].gen && !TRAITS[k].hidden && !TRAITS[k].story && !TRAITS[k].personal && !TRAITS[k].negative && !(w.traits||[]).includes(k) && !clash(k));
+  if(pool.length){ const t = pick(pool); w.traits.push(t); applyMods(w, (TRAITS[t]||{}).mods); return t; }
+  return null;
+}
+function awakenVesselStage(w, st){
+  const V = VB(), VT = GOD.vessel || {}, L = VT.awakenLines || {};
+  const fmtLine = (raw, extra={}) => Object.entries(extra).reduce((s,[k,v])=>s.replace(new RegExp('\\{'+k+'\\}','g'), v), String(raw||''));
+  w.vesselStage = st;
+  if(st === 1){
+    delete w.fav; delete w.dislike; delete w.jobLikes; delete w.jobDislikes;
+    ensureWorker(w);
+    w.jobDislikes = [];
+    w.mood = clamp(55 + ri(0, 10));
+    const t = addVesselTrait(w);
+    return fmtLine(L['1'] || '{name}\'s quiet stare blinks into focus afterwards—still hollow, yet something in her stirred.{traitNote} Her mood and first inclinations have begun to form.', {name:w.name, traitNote:t ? ` (${t})` : ''});
+  }
+  if(st === 2){
+    delete w.lovers; delete w.jobLikes; delete w.jobDislikes;
+    ensureWorker(w);
+    w.lust = clamp(24 + ri(0, 12));
+    fitLust(w);
+    return fmtLine(L['2'] || '{name} shivers as warmth lingers inside her long after you pull back—appetite waking where stillness used to live. Her desire and full job preferences have begun to form.', {name:w.name});
+  }
+  if(st === 3){
+    const p = pick(PERSONALITIES);
+    w.personality = p;
+    applyMods(w, (PERS[p]||{}).stats);
+    persLean(w);
+    w.trust = clamp(w.trust + (V.awakenedTrust ?? 10));
+    w.title = VT.awakenedTitle || 'Awakened Vessel';
+    const t = addVesselTrait(w);
+    if(S){ S.vessels = S.vessels || []; if(w.vesselForm && !S.vessels.includes(w.vesselForm)) S.vessels.push(w.vesselForm); }
+    statXP(w, 'stamina', 2);
+    return fmtLine(L['3'] || '{name} catches her breath and meets your eyes—not blank anymore, not borrowed, wholly herself ({pers}{traitNote}). The empty vessel has awakened.', {name:w.name, pers:p, traitNote:t ? `, ${t}` : ''});
+  }
+  return '';
+}
+function fillVessel(w, act){
+  if(!isVessel(w)) return '';
+  const V = VB(), th = V.fills || [2, 5, 9], k = gNightKind(act);
+  const base = k==='inside' ? (V.insideFill ?? 2) : k==='outside' ? (V.outsideFill ?? 1) : (V.teaseFill ?? 0.5);
+  const gain = base * (hasChallengePerk('faithful_flame') ? 1.25 : 1);
+  w.vesselFills = Math.round(((w.vesselFills || 0) + gain) * 10) / 10;
+  const target = th.filter(x => w.vesselFills >= x).length;
+  if(target <= (w.vesselStage || 0)) return '';
+  const notes = [];
+  for(let s = (w.vesselStage || 0) + 1; s <= target; s++){ const line = awakenVesselStage(w, s); if(line) notes.push(line); }
+  return notes.length ? `\n\n✨ ${notes.join('\n\n✨ ')}` : '';
 }

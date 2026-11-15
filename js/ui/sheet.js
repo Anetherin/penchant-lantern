@@ -44,13 +44,15 @@ function refreshSheetInfo(){
   const o = getOutfit(w), u = getUnder(w);
   const anySam = getActs().some(a=>canSam(w,a.id));
   const arcTxt = ARCS[w.key] ? `<div class="pink">♥ Story: ${(w.arc||0)>=ARCS[w.key].length ? 'Lovers' : `chapter ${w.arc||0}/${ARCS[w.key].length}${(w.arc||0)<ARCS[w.key].length?` <span class="muted">(next: ${ARCS[w.key][w.arc||0].title})</span>`:''}`}${!w.arc&&w.trust<BAL.arcs.need[0]?` <span class="muted">(begins once she trusts Sam: ${tShow(BAL.arcs.need[0])})</span>`:''}</div>` : '';
+  const vSt = vesselStage(w), vTh = (BAL.ngplus.vessel && BAL.ngplus.vessel.fills) || [2,5,9];
+  const persBadge = isVessel(w) && !w.personality ? vesselLabel(w) : esc(w.personality || vesselLabel(w));
   box.innerHTML = `<div class="status"><div class="row"><h3>[ STATUS ] ${esc(titled(w))}</h3>${!w.key && S.workers.includes(w) ? `<button class="sm ${w.favorite?'primary':''}" onclick="toggleFavorite('${w.id}')" title="Favorited generic ladies who reach max trust (1000) reincarnate as 'old friends' in New Game+ (up to 1 per completed cycle).">${w.favorite?'★ Favorited':'☆ Favorite'}</button>` : ''}</div>
-    <div class="muted">${raceLabel(w)} · Age ${w.age} · ${esc(w.personality)} · Style: ${w.style} · ♥ ${sw(w.favColor)}${w.favColor}</div>
+    <div class="muted">${raceLabel(w)} · Age ${w.age} · ${persBadge} · Style: ${w.style} · ♥ ${sw(w.favColor)}${w.favColor}</div>
     <p class="story" style="margin:6px 0" id="bs_${w.id}">${esc(w.backstory)}</p>${SET.ai.on&&!w.named?`<button class="sm" onclick="if(confirm('Replace her backstory with a new AI-written one?'))aiBackstory('bs_${w.id}','${w.id}')">✨ Rewrite backstory</button>`:''}<div>${traitTags(w)}</div>${titleRow(w)}${arcTxt}${firstsLine(w)}${(()=>{ if(!S.workers.includes(w)) return ''; seedBonds(); const bl = bondLines(w); return bl.length ? `<div class="muted">🤝 ${bl.map(esc).join(' · ')}</div>` : ''; })()}
     <div class="muted">Body: ${esc(bodyLabel(w))}${w.unique?` · <span class="pink" title="${esc(w.unique.desc||'')}">★ ${esc(w.unique.name)}</span>`:''}</div>
     <div class="sgrid" style="margin-top:8px">${STAT_KEYS.map(s=>statCell(w,s,true,s.toUpperCase())).join('')}</div>
     <div class="sgrid" style="margin-top:6px">${TECH_KEYS.map(s=>`<div><span>${TECH_LABEL[s].toUpperCase()}</span><b>${sv(w,w.tech[s],true)}</b></div>`).join('')}<div><span>POPULARITY</span><b>${Math.round(w.popularity)}</b></div>${trustCell(w)}<div title="${k?'':'Appraisal Lv 2 or more trust'}"><span>LEWDNESS</span><b>${k?lShow(w.lewd):'?'}</b></div></div>
-    <div style="margin-top:8px">${bar('Energy',w.energy,maxEnergy(w),'e')}${bar('Mood',w.mood,100,'m')}${k?lustBar(w, 'Lust ('+lustLabel(w)+')'):''}${bar('Health',w.health,100,'h')}</div>
+    <div style="margin-top:8px">${bar('Energy',w.energy,maxEnergy(w),'e')}${vSt>=1?bar('Mood',w.mood,100,'m'):'<div class="muted">Mood: dormant (empty vessel)</div>'}${k&&vSt>=2?lustBar(w, 'Lust ('+lustLabel(w)+')'):isVessel(w)?'<div class="muted">Lust: dormant (awakens as Sam fills her)</div>':''}${isVessel(w)&&vSt<3?bar('Vessel Awakening ('+vesselLabel(w)+')',Math.round((w.vesselFills||0)*10)/10,vTh[vTh.length-1]||9,'t'):''}${bar('Health',w.health,100,'h')}</div>
     <div class="muted" style="margin-top:6px">Race perk: <b>${RACE_PERK[w.race]?RACE_PERK[w.race].label:''}</b>: ${RACE_PERK[w.race]?RACE_PERK[w.race].desc:''}</div>${(()=>{ const P = w.sub && (subData(w.race, w.sub)||{}).perk; return P ? `<div class="muted">${esc(P.label)}: ${esc(P.desc)}</div>` : ''; })()}
     <div class="muted">Comfortable up to: <b>${CLOTH.find(c=>c.id===cl).label}</b> with clients · <b>${CLOTH.find(c=>c.id===cs).label}</b> with Sam${has(w,'Modest')?`<br><span class="pink">Modest:</span> ${esc(flavor('modest', w))}`:''}</div>
     ${persLine(w)}${(HOUSES[houseOf(w).id].minPop||0) > w.popularity ? `<div class="warn">⚠️ Below ${esc(houseOf(w).name)}'s standard (popularity ${HOUSES[houseOf(w).id].minPop}). Escort clients pay less and complain.</div>`:''}</div>
@@ -92,16 +94,30 @@ function androidLookHTML(w){
   }).join(' ')}</div>`;
 }
 function persLine(w){
+  if(isVessel(w) && vesselStage(w) < 1) return `<div class="muted">An empty vessel—use Private time (especially finishing inside her) to awaken her mood, appetite, and personality.</div>`;
   const J = a => a.map(j=>JOBS[j]?JOBS[j].label:j).join(', ') || 'nothing in particular';
   return `<div class="muted">Jobs she'll do now: ${Object.keys(JOB_TRUST).filter(j=>w.trust>=jobTrust(w,j)).map(j=>JOBS[j].label).join(', ')||'none yet'}</div><div class="muted">Enjoys working as: <b>${J(jobLikes(w))}</b>${jobDislikes(w).length?` · Would rather not: <b>${J(jobDislikes(w))}</b>`:''}</div>`;
 }
-// Everything Sam carries: his past lives, New Game+ perks, and the cycle he's on.
+// Everything Sam carries: his past lives, New Game+ perks, cycle variable, challenge, and challenge perks.
 function samPerksHTML(){
   const P = samPasts().filter(k=>PASTS[k]), B = (S.boons||[]).filter(k=>NG_BOONS[k]);
-  const tag = (t, d) => `<span class="tag act" title="${esc(d)}">${t}</span>`;
-  const tags = [...P.map(k=>tag('✧ '+esc(PASTS[k].label), PASTS[k].desc)), ...B.map(k=>tag('✦ '+esc(NG_BOONS[k].label), NG_BOONS[k].desc))];
+  const CV = activeCycleVar(), CH = S.challenge && CYCLE_CHALLENGES[S.challenge] ? CYCLE_CHALLENGES[S.challenge] : null;
+  const CP = (S.challengePerks||[]).filter(k=>CYCLE_CHALLENGES[k]);
+  const tag = (t, d, cls='tag act') => `<span class="${cls}" title="${esc(d)}">${t}</span>`;
+  const tags = [
+    ...P.map(k=>tag('✧ '+esc(PASTS[k].label), PASTS[k].desc)),
+    ...B.map(k=>tag('✦ '+esc(NG_BOONS[k].label), NG_BOONS[k].desc)),
+    ...CP.map(k=>tag('🏆 '+esc(CYCLE_CHALLENGES[k].perk), CYCLE_CHALLENGES[k].perkDesc, 'tag good')),
+    ...(CV ? [tag('🌊 '+esc(CV.label), CV.desc, 'tag house')] : []),
+    ...(CH ? [tag('🎯 '+esc(CH.label), CH.desc, 'tag warn')] : [])
+  ];
   if(!tags.length) return '';
-  return `<div style="margin-top:6px">${tags.join(' ')}</div>` + P.map(k=>`<div class="muted">Past life (${esc(PASTS[k].label)}): ${PASTS[k].desc}</div>`).join('') + B.map(k=>`<div class="muted">${esc(NG_BOONS[k].label)}: ${NG_BOONS[k].desc}</div>`).join('');
+  return `<div style="margin-top:6px">${tags.join(' ')}</div>`
+    + P.map(k=>`<div class="muted">Past life (${esc(PASTS[k].label)}): ${esc(PASTS[k].desc)}</div>`).join('')
+    + B.map(k=>`<div class="muted">${esc(NG_BOONS[k].label)}: ${esc(NG_BOONS[k].desc)}</div>`).join('')
+    + CP.map(k=>`<div class="good">Challenge Perk (${esc(CYCLE_CHALLENGES[k].perk)}): ${esc(CYCLE_CHALLENGES[k].perkDesc)}</div>`).join('')
+    + (CV ? `<div class="muted">Cycle Variable (${esc(CV.label)}): ${esc(CV.desc)}</div>` : '')
+    + (CH ? `<div class="muted">Active Challenge (${esc(CH.label)}): ${esc(CH.desc)}</div>` : '');
 }
 function viewSam(){
   const s = S.sam;

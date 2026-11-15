@@ -135,6 +135,42 @@
   "ngplus": {
     "debtShare": 0.9,
     "perCycle": 0.35,
+    "perKeptHouse": 0.18,
+    "keptHouseShare": 0.25,
+    "perLover": 0.22,
+    "loverDebt": 1800,
+    "ngppDebt": 50000,
+    "ngppStep": 50000,
+    "ngppHouse": "shrine",
+    "ngppRoomStart": 5,
+    "ngppRoomStep": 5,
+    "cycleVars": {
+      "festival":       {"label":"Lantern Festival","desc":"Clients flock to Hollowmere (+15% demand, +15% propositions), while pushy incidents tick up +15%.","demand":1.15,"prop":1.15,"pushy":1.15},
+      "austerity":      {"label":"Credit Audit","desc":"House upkeep runs 15% higher, but Merchants & Nobles pay +15% when satisfied (65+).","upkeep":1.15,"richFee":1.15},
+      "warm_winds":     {"label":"Warm Winds","desc":"Staff lust builds +25% faster and lewdness grows +15% quicker, with −2 weekly mood.","lustBuild":1.25,"lewd":1.15,"mood":-2},
+      "iron_watch":     {"label":"City Watch Crackdown","desc":"Pushy client risk drops 30%, while candidate signing bonuses cost +20%.","pushy":0.7,"signing":1.2},
+      "scholars":       {"label":"Guild Scrutiny","desc":"Training, coaching, and lessons grant +25% stat & skill gains; reputation rises 15% slower.","learn":1.25,"rep":0.85},
+      "crimson_nights": {"label":"Crimson Nights","desc":"Sam gets +15 max energy and +20% trust gained; starting cycle debt +5%.","samEnergy":15,"trust":1.2,"debt":1.05}
+    },
+    "cycleChallenges": {
+      "lean_house":     {"label":"Lean House","tier":"guild","desc":"Pay off the cycle debt without buying any extra houses.","perk":"Lean Margin","perkDesc":"+10% all house income permanently."},
+      "ahead_of_time":  {"label":"Ahead of Schedule","tier":"guild","desc":"Pay off the debt within 70% of the scheduled payment weeks.","perk":"Credit Favored","perkDesc":"−10% future cycle debt & −10% house upkeep permanently."},
+      "iron_ledger":    {"label":"Spotless Record","tier":"guild","desc":"Clear the cycle with 0 missed payment strikes and average house tidiness 65+.","perk":"Iron Ledger","perkDesc":"+15 Sam max energy & +15% Tend Bar / Do the Books efficiency permanently."},
+      "small_troupe":   {"label":"Tight Troupe","tier":"guild","desc":"Clear the cycle with 6 or fewer staff across all houses.","perk":"Tight Knit","perkDesc":"+15% trust gain & +15% lady skill gain permanently."},
+      "faithful_flame": {"label":"Faithful Lantern","tier":"bound","req":"bound","desc":"Finish the cycle with Seliora still bound and Love at 75+.","perk":"Goddess's Favor","perkDesc":"+20% Goddess weekly power & +25% Vessel awakening speed permanently."},
+      "full_vessel":    {"label":"Awakened Soul","tier":"bound","req":"ngpp","desc":"Awaken your Bound Vessel completely (full personality) before paying off the debt.","perk":"Living Echo","perkDesc":"+20% skill & stat gain for Reincarnated ladies permanently."},
+      "starlight_debt": {"label":"Debt Under Starlight","tier":"stay","req":"stay","desc":"Take on +25% starting debt and −25% starting gold for this cycle.","perk":"Sovereign Flame","perkDesc":"+15% all house income & +1 permanent Sam action per week.","debt":1.25,"purse":0.75}
+    },
+    "vessel": {
+      "fills": [2, 5, 9],
+      "insideFill": 2,
+      "outsideFill": 1,
+      "teaseFill": 0.5,
+      "startLewd": 42,
+      "startTrust": 25,
+      "awakenedTrust": 10,
+      "awakenedEnergy": 5
+    },
     "purse": 600,
     "saleValue": 0,
     "improveShare": 1,
@@ -843,7 +879,7 @@
   "goddess": {
     "fullReborn": 4,
     "events": {"perCycle":0.07,"max":0.4,"gap":2,"bound":0.15,"base":0.06,"catchUp":{"per":0.05,"cap":0.3,"max":0.15,"gap":1}},
-    "jealousy": {"perHire":3,"perPrivate":1,"perLady":0.15,"rosterRef":6,"decay":2,"perLover":4,"perCycle":6,"nightCut":15,"talkCut":5,"mid":30,"high":60},
+    "jealousy": {"perHire":3,"perExLover":6,"perPrivate":1,"perLady":0.15,"rosterRef":6,"decay":2,"perLover":4,"perCycle":6,"nightCut":15,"talkCut":5,"mid":30,"high":60},
     "love": {"bind":10,"night":2.5,"outside":0.5,"stay":70},
     "mood": {"base":55,"perLove":0.25,"perJealous":0.3,"drift":0.3,"ignoreBelow":35},
     "divinity": {"bindTo":5,"finish":3,"perAction":25,"max":100},
