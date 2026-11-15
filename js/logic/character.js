@@ -555,7 +555,8 @@ const LUST_LOW = BAL.lust.low, LUST_HIGH = BAL.lust.high;
 function notInMood(w, act){
   if(!act) return false;
   const id = actKey(act), A = actById(id) || {};
-  if(id==='massage_give' || id==='massage_get' || id==='kiss' || A.kind==='receive') return false;
+  if(id==='massage_give' || id==='massage_get' || id==='kiss') return false;
+  if(A.kind==='receive') return w.lust < (BAL.lust.receiveMin ?? 10);
   return w.lust < LUST_LOW && (A.energy||10) >= 9;
 }
 function tooTiredFor(w, act){

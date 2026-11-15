@@ -313,6 +313,7 @@
       "rowdy": 0.06,
       "reckless": 0.05,
       "pushy": 0.08,
+      "stamina": 1.1,
       "traits": {"drinker":1.5,"cheapskate":1.5,"rowdy":1.2},
       "stats": {"beauty":0.5,"stamina":0.5}
     },
@@ -328,6 +329,7 @@
       "rowdy": 0.04,
       "reckless": 0.04,
       "pushy": 0.06,
+      "stamina": 1.25,
       "traits": {"shy":2,"firstTimer":2.5,"vanilla":1.5},
       "stats": {"charm":0.5,"stamina":0.5}
     },
@@ -343,6 +345,7 @@
       "rowdy": 0.1,
       "reckless": 0.08,
       "pushy": 0.1,
+      "stamina": 1.2,
       "traits": {"thirsty":3,"drinker":2,"wild":1.5},
       "stats": {"stamina":0.5,"charisma":0.5}
     },
@@ -358,6 +361,7 @@
       "rowdy": 0.14,
       "reckless": 0.12,
       "pushy": 0.14,
+      "stamina": 1.25,
       "traits": {"rowdy":2,"thirsty":1.5,"exotic":1.3},
       "stats": {"agility":0.5,"strength":0.5}
     },
@@ -373,6 +377,7 @@
       "rowdy": 0.2,
       "reckless": 0.16,
       "pushy": 0.18,
+      "stamina": 1.25,
       "traits": {"rowdy":3,"impatient":2,"drinker":1.5,"wild":1.5},
       "stats": {"strength":0.7,"stamina":0.3}
     },
@@ -388,7 +393,8 @@
       "rowdy": 0.04,
       "reckless": 0.04,
       "pushy": 0.05,
-      "traits": {"generous":1.5,"bigSpender":1.3,"gossip":1.5},
+      "stamina": 0.85,
+      "traits": {"generous":1.5,"bigSpender":1.3,"gossip":1.5,"older":1.8},
       "stats": {"charisma":0.5,"wits":0.5}
     },
     {
@@ -403,6 +409,7 @@
       "rowdy": 0.04,
       "reckless": 0.03,
       "pushy": 0.04,
+      "stamina": 1,
       "traits": {"patient":1.5,"loyal":2,"connoisseur":1.3},
       "stats": {"wits":0.5,"beauty":0.5}
     },
@@ -418,7 +425,8 @@
       "rowdy": 0.02,
       "reckless": 0.02,
       "pushy": 0.03,
-      "traits": {"shy":2.5,"chatty":2,"connoisseur":1.5,"firstTimer":1.5},
+      "stamina": 0.8,
+      "traits": {"shy":2.5,"chatty":2,"connoisseur":1.5,"firstTimer":1.5,"older":1.6},
       "stats": {"wits":1}
     },
     {
@@ -433,7 +441,8 @@
       "rowdy": 0.02,
       "reckless": 0.03,
       "pushy": 0.04,
-      "traits": {"connoisseur":2,"bigSpender":1.5,"exotic":1.5,"gossip":1.5},
+      "stamina": 0.85,
+      "traits": {"connoisseur":2,"bigSpender":1.5,"exotic":1.5,"gossip":1.5,"older":1.8},
       "stats": {"refinement":1.5}
     },
     {
@@ -448,7 +457,8 @@
       "rowdy": 0.02,
       "reckless": 0.03,
       "pushy": 0.05,
-      "traits": {"lonely":2,"discreet":3,"impatient":1.5,"prude":1.3},
+      "stamina": 0.75,
+      "traits": {"lonely":2,"discreet":3,"impatient":1.5,"prude":1.3,"older":2.2},
       "stats": {"refinement":0.5,"wits":0.5}
     },
     {
@@ -463,6 +473,7 @@
       "rowdy": 0.03,
       "reckless": 0.04,
       "pushy": 0.04,
+      "stamina": 1.05,
       "traits": {"dancerFan":2,"chatty":2,"gossip":2,"generous":1.5,"curious":1.5},
       "stats": {"charisma":0.6,"wits":0.4}
     },
@@ -478,6 +489,7 @@
       "rowdy": 0.02,
       "reckless": 0.03,
       "pushy": 0.03,
+      "stamina": 0.9,
       "traits": {"lonely":2,"shy":1.5,"troubled":1.5,"prude":1.5},
       "stats": {"charm":1}
     },
@@ -493,7 +505,8 @@
       "rowdy": 0.02,
       "reckless": 0.02,
       "pushy": 0.03,
-      "traits": {"discreet":3,"troubled":2,"prude":1.5,"romantic":1.2},
+      "stamina": 0.85,
+      "traits": {"discreet":3,"troubled":2,"prude":1.5,"romantic":1.2,"older":1.4},
       "stats": {"charm":0.5,"refinement":0.5}
     },
     {
@@ -508,6 +521,7 @@
       "rowdy": 0.08,
       "reckless": 0.06,
       "pushy": 0.1,
+      "stamina": 1.15,
       "traits": {"rowdy":1.5,"drinker":1.5,"loyal":1.5},
       "stats": {"strength":0.5,"agility":0.5}
     }

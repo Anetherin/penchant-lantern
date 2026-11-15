@@ -202,6 +202,29 @@
       "...and neither of them was in any hurry to put their clothes back on while he still had anything left to give."
     ]
   },
+  "client_round_unfin": {
+    "_note": "He hadn't finished yet and asked to keep going, and she agreed.",
+    "_default": [
+      "Still keyed up and nowhere near done, he asked her to keep going, and she obliged him into a second round.",
+      "He hadn't gotten over the edge yet and talked her into staying a little longer to finish what they'd started.",
+      "Left wanting more, he asked for another round, and she was willing enough to see him through properly."
+    ]
+  },
+  "client_round": {
+    "_note": "He had stamina to spare and paid to go a second round, and she agreed.",
+    "_default": [
+      "Still raring to go, he tossed more coin on the table for a second round, and she laughed and pulled him back in.",
+      "With plenty of stamina left in him, he asked for another round and she happily obliged.",
+      "One round clearly wasn't enough for him—he paid for another go, and she made it worth his while."
+    ]
+  },
+  "round_declined": {
+    "_note": "He hadn't finished and asked to go again, and she turned him down.",
+    "_default": [
+      "He still hadn't finished and pressed for another try, though she gently called it a night.",
+      "Left unsatisfied, he asked to keep going, but she drew the curtain and sent him back downstairs."
+    ]
+  },
   "stepped_in": {
     "_note": "Note when a madame or attendant took clients because the courtesans were swamped ({clients} = 'one client' / 'N clients', {did} = ' (kiss ×2, massage)' or ' (company only)').",
     "_default": [
