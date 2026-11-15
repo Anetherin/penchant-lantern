@@ -59,6 +59,8 @@ function setAndroidLook(id, grp, k, v){
 function setTeachSkill(hid, v){ const h = H(hid); if(!h) return; h.teachSkill = v || null; save(); render(); refreshSheetInfo(); }
 function setSamples(id, on){ const w=findW(id); if(!w) return; if(on && has(w,'Modest')) return toast(`${w.name} is too modest for handing out samples.`); w.samples=!!on; save(); refreshSheetInfo(); }
 function setWage(id, v){ const w=findW(id); if(!w) return; if(isFree(w)) return toast(`${w.name} won't take a wage from you.`); w.wage=Math.max(0,Math.round(+v||0)); save(); refreshSheetInfo(); renderHeader(); }
+function setCut(id, v){ const w=findW(id); if(!w) return; w.cut = v==='base' ? 'base' : clamp(+v||0, 0, 0.9); save(); refreshSheetInfo(); }
+function setAutoDress(id, on){ const w=findW(id); if(!w) return; w.autoDress = !!on; save(); refreshSheetInfo(); }
 function setPrice(i){ curH().price = i; save(); render(); }
 function hire(id){
   const c = S.candidates.find(x=>x.id===id); if(!c) return;
@@ -66,7 +68,7 @@ function hire(id){
   if(S.gold < c.signing) return toast('Not enough gold for the signing bonus.');
   S.gold -= c.signing; S.candidates = S.candidates.filter(x=>x!==c);
   delete c.signing; c.job='rest'; c.contract=12; c.keep=false; c.seen={}; c.house = curH().id;
-  S.workers.push(c); if(typeof applyAutoTutor==='function') applyAutoTutor(c); checkUnlocks(true); samXP(3);
+  S.workers.push(c); if(typeof applyAutoTutor==='function') applyAutoTutor(c); if(typeof applyAutoWardrobe==='function') applyAutoWardrobe(c); checkUnlocks(true); samXP(3);
   note(`${c.name} joins ${curH().name}.`); save(); render();
   if(SET.ai.on && SET.ai.autoBackstory!==false && !c.named && !c.aiBackstory){ c.aiBackstory = true; const tmp = document.createElement('div'); tmp.id='aiTmp'; tmp.style.display='none'; document.body.appendChild(tmp); aiBackstory('aiTmp', c.id).then(()=>tmp.remove()); }
 }
@@ -171,7 +173,7 @@ function buyHouse(id){
   note(`You now own ${D.name}!`);
   if(!isHired(D.npc)){
     const n = rebirthNamed(makeNamed(D.npc)); n.house = id; n.locked = id; n.contract = 999; n.job = safeJob(n, NAMED[D.npc].job); if(MENU_JOBS.includes(n.job)) n.menu = getActs().filter(a=>clientStance(n,a.id)==='yes').map(a=>a.id);
-    S.workers.push(n); if(typeof applyAutoTutor==='function') applyAutoTutor(n); checkUnlocks(true);
+    S.workers.push(n); if(typeof applyAutoTutor==='function') applyAutoTutor(n); if(typeof applyAutoWardrobe==='function') applyAutoWardrobe(n); checkUnlocks(true);
     EVQ.push(()=>({title:`${D.name}`, who:n.id, scene:'portrait', text:`${n.name} is waiting at the door when Sam arrives with the deed.\n\n${n.backstory}\n\nShe comes with the place.${goddessHouseNote(id)}`, choices:[{label:'Welcome aboard', fx(){ n.trust=clamp(n.trust+5); return ''; }}]}));
   }
   save(); render(); runQueue();

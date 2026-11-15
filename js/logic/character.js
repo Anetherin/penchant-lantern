@@ -173,6 +173,73 @@ const houseUnderStock = () => (typeof S!=='undefined' && S && S.houseUnder) || [
 const ownsOutfit = (w,k) => (w.owned||[]).includes(k) || houseStock().includes(k);
 const ownsUnder = (w,k) => (w.ownedUnder||[]).includes(k) || houseUnderStock().includes(k);
 const ownedOutfits = w => Array.from(new Set([...(w.owned||[]), ...houseStock()])).filter(k=>WARDROBE[k]);
+const baselineCut = () => { const C = BAL.wardrobe.cut; return Math.min(C.maxBase, C.base + Math.max(0, ((typeof S!=='undefined'&&S&&S.cycle)||1) - 1) * C.perCycle); };
+const defaultCut = w => isFree(w) ? 0 : baselineCut();
+const workerCut = w => !w || w.cut===undefined || w.cut==='base' ? defaultCut(w) : clamp(+w.cut||0, 0, 0.9);
+function wantedOutfits(w, budget){
+  const avail = Object.entries(WARDROBE).filter(([k,o])=>o && !o.owner && !o.uniform && !ownsOutfit(w,k) && wardrobeOK(w,k) && outfitCost(o)>0);
+  const styleWant = avail.filter(([,o])=>o.style===w.style);
+  const pool = styleWant.length ? styleWant : avail;
+  const afford = budget!==undefined ? pool.filter(([,o])=>outfitCost(o)<=budget) : [];
+  const minCost = pool.length ? Math.min(...pool.map(([,o])=>outfitCost(o))) : Infinity;
+  return {avail, pool, afford, minCost};
+}
+function cutSpendPick(w, budget, weekCut, noOutfit){
+  const CS = BAL.wardrobe.cutSpend || {}, W = Object.assign({}, CS.weights || {}), PW = (CS.pers && CS.pers[w.personality]) || {};
+  Object.entries(PW).forEach(([k,m])=>{ W[k] = (W[k] ?? 1) * m; });
+  const mxE = maxEnergy(w);
+  if(w.energy < mxE * 0.65) W.massage = (W.massage ?? 1) * 2.5;
+  if(w.energy >= mxE * 0.98) W.massage = (W.massage ?? 1) * 0.25;
+  if(has(w,'Lazy')) W.massage = (W.massage ?? 1) * 1.6;
+  if(has(w,'Greedy')){ W.nice = (W.nice ?? 1) * 2; W.outfit = (W.outfit ?? 1) * 1.4; W.home = 0; W.treat = 0; }
+  if(has(w,'Romantic')) W.nice = (W.nice ?? 1) * 1.3;
+  if(has(w,'Studious')||has(w,'Ambitious')||has(w,'Eager Student')) W.lessons = (W.lessons ?? 1) * 1.7;
+  if(has(w,'Lazy')) W.lessons = (W.lessons ?? 1) * 0.35;
+  if(has(w,'Loyal')||has(w,'Devout')) W.home = (W.home ?? 1) * 1.6;
+  if(has(w,'Elegant')||has(w,'Charming')) W.pamper = (W.pamper ?? 1) * 1.5;
+  if(has(w,'Shy')) W.pamper = (W.pamper ?? 1) * 0.5;
+  const mates = S.workers.filter(x=>x!==w && x.house===w.house);
+  if(!mates.length) W.treat = 0;
+  else {
+    if(has(w,'Warm Hospitality')||has(w,'Party Animal')) W.treat = (W.treat ?? 1) * 1.6;
+    if(has(w,'Aloof')) W.treat = (W.treat ?? 1) * 0.3;
+  }
+  // Good time with a guy: forbidden for partners / Devoted / Modest or low lust; high trust in Sam strongly steers her away
+  if(isFree(w) || has(w,'Devoted') || has(w,'Modest') || (w.lust||0) < 25) W.fling = 0;
+  else {
+    const tf = w.trust>=70 ? 0.06 : w.trust>=50 ? 0.25 : w.trust>=30 ? 0.7 : 1.3;
+    const lf = (w.lust||0)>=75 ? 1.9 : (w.lust||0)>=50 ? 1.25 : 0.7;
+    W.fling = (W.fling ?? 1) * tf * lf * (has(w,'Flirt')||has(w,'Party Animal')||has(w,'Eager') ? 1.5 : 1) * (has(w,'Loyal')||has(w,'Romantic') ? 0.4 : 1) * (has(w,'Shy') ? 0.35 : 1);
+  }
+  const wo = noOutfit ? {pool:[], afford:[], minCost:Infinity} : wantedOutfits(w, budget);
+  if(noOutfit || !wo.pool.length) W.outfit = 0;
+  else if(!wo.afford.length){
+    if(wo.minCost > Math.max(budget + (weekCut||0)*3, 80)) W.outfit = 0;
+    else W.outfit = (W.outfit ?? 1) * 0.55;
+  }
+  const opts = Object.entries(W).filter(([,wt])=>wt > 0);
+  if(!opts.length) return 'nice';
+  let r = Math.random() * opts.reduce((a,x)=>a+x[1], 0);
+  for(const [k,wt] of opts){ if((r -= wt) <= 0) return k; }
+  return opts[opts.length-1][0];
+}
+const autoDressPool = w => ownedOutfits(w).filter(k=>{ const o=WARDROBE[k]; return o && !o.uniform && wardrobeOK(w,k); });
+function autoDressPick(w){
+  const pool = autoDressPool(w);
+  if(!pool.length) return null;
+  if(pool.length===1) return pool[0];
+  const scored = pool.map(k=>{
+    const o = WARDROBE[k];
+    let wt = o.style===w.style ? 4 : 1;
+    if(o.owner===w.key) wt *= 1.5;
+    if(w.job && o.bonus && o.bonus[w.job]>1) wt *= 1.5;
+    if(k===w.outfit) wt *= 0.35;
+    return [k, wt];
+  });
+  let r = Math.random() * scored.reduce((a,x)=>a+x[1], 0);
+  for(const [k,wt] of scored){ if((r -= wt) <= 0) return k; }
+  return scored[scored.length-1][0];
+}
 const outfitCost = o => Math.max(0, Math.round((o.cost||0) * BAL.wardrobe.costMult));
 function wardrobeOK(w,k){ const o = k==='custom' ? {lewd:0} : WARDROBE[k]; return !!o && clothLimit(w,false) >= (o.lewd||0); }
 function underOK(w,k){ return !!UNDER[k] && clothLimit(w,false) >= UNDER[k].lewd || k==='custom'; }
@@ -303,6 +370,9 @@ function ensureWorker(w){
   w.counts = w.counts || {};
   if(!w.style) w.style = pick(STYLES);
   if(!w.favColor) w.favColor = pick(COLOR_KEYS);
+  if(w.cut===undefined) w.cut = 'base';
+  if(w.purse===undefined) w.purse = 0;
+  if(w.autoDress===undefined) w.autoDress = false;
   // Modest: rolled once per lady from her personality (data/personalities.json → modest)
   if(w._lt===undefined){ w._lt = 1; w.traits = w.traits||[]; if(!w.named){ const tc = BAL.lust.traitChance||{}, r = Math.random();
     if(r < (tc['Insatiable']||0)) w.traits.push('Insatiable'); else if(r < (tc['Insatiable']||0) + (tc['Slow to Warm']||0)) w.traits.push('Slow to Warm'); } }

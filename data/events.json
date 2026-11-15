@@ -162,7 +162,7 @@
       "about the returners everyone at the guild is suddenly talking about",
       "about whether she'd want to remember, if she came back",
       "about the Lantern Stone, and why it keeps lighting",
-      "about a dream she keeps having where she already knows him"
+      "about a dream she keeps having where she already knows you"
     ]
   },
   "outfit_market": {
@@ -279,7 +279,7 @@
       },
       "smile": {
         "label": "Say it's a good dream",
-        "res": "\"It is,\" {name} agrees, and doesn't push. But she keeps glancing at you for the rest of the day, like she's checking him against a memory."
+        "res": "\"It is,\" {name} agrees, and doesn't push. But she keeps glancing at you for the rest of the day, like she's checking you against a memory."
       },
       "image": {"comp":"pausing mid-motion with a soft, puzzled, nostalgic smile, holding a teacup","setting":"quiet kitchen at dawn, pale window light"}
     },

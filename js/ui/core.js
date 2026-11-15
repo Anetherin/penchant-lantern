@@ -112,7 +112,7 @@ function houseNotes(h, withName){
   return out;
 }
 const debtOpen = () => !S.won && S.debt.remaining > 0;
-const reportNet = L => L.income - L.wages - L.upkeep - (L.recharge||0) - (L.tutor||0);
+const reportNet = L => L.income - L.wages - L.upkeep - (L.cuts||0) - (L.recharge||0) - (L.tutor||0);
 function notesCard(lines){ return lines.length ? `<section class="card agenda"><h3 style="margin:0 0 4px">Notes</h3>${lines.map(l=>`<div>${l}</div>`).join('')}</section>` : ''; }
 // One row of the All houses overview.
 function houseRow(h){
@@ -151,7 +151,7 @@ function viewAllHouses(){
   const sl = S.houses.reduce((a,h)=>a+sleepers(h).length,0), bd = S.houses.reduce((a,h)=>a+bedsFor(h),0);
   return `${houseTabs('house')}${notesCard(notes)}<section class="card"><h2>All houses</h2>
     <div class="grid2"><div>Houses: <b>${S.houses.length}</b> · Ladies: <b>${S.workers.length}</b> (${S.workers.filter(w=>w.job==='rest').length} resting)</div><div>Staff beds: <b class="${sl>bd?'warn':''}">${sl}/${bd}</b></div>
-    ${L?`<div>Last week: <b>${L.served}</b> clients · income <b>${fmt(L.income)}</b></div><div>Net after wages, upkeep${L.tutor?', tutoring':''}: <b>${fmt(reportNet(L))}</b></div>`:''}</div>
+    ${L?`<div>Last week: <b>${L.served}</b> clients · income <b>${fmt(L.income)}</b></div><div>Net after wages, upkeep${L.cuts?', cuts':''}${L.tutor?', tutoring':''}: <b>${fmt(reportNet(L))}</b></div>`:''}</div>
     <div style="overflow-x:auto"><table class="htable"><thead><tr><th>House</th><th>Rep</th><th>Ladies</th><th title="Staff who need a bed / beds (quarters ×2 + extra beds)">Staff beds</th><th title="Room sessions used last week / capacity">Client rooms</th><th>Tidy</th><th>Clients</th><th>Income / upkeep</th><th>Sat.</th><th>Feast</th></tr></thead>
     <tbody>${S.houses.map(houseRow).join('')}</tbody></table></div>
     <p class="muted">Client rooms and money are from last week's report. Tap a house's name to open it.</p></section>
@@ -279,7 +279,7 @@ function rosterFiltered(list){
 function viewRoster(){
   const all = HOUSE_ALL, base = all ? S.workers : S.workers.filter(w=>w.house===curH().id), list = rosterFiltered(base);
   const empty = base.length ? '<span class="muted">Nobody matches these filters.</span>' : '<span class="muted">No one works here. Visit Recruit, or move someone over from her sheet.</span>';
-  return `${houseTabs(true)}${agendaHTML()}<section class="card"><h2>Roster (${list.length})</h2><p class="muted">Tap someone to open her status window, services, wardrobe and images.</p>
+  return `${houseTabs(true)}${agendaHTML()}<section class="card"><h2>Roster (${list.length}) <button class="sm" style="float:right" onclick="wardrobeAllMenu(true)" ${list.length?'':'disabled'} title="Set profit cuts and self-dressing for the currently filtered ladies.">👗 Cuts &amp; wardrobe (${list.length})…</button></h2><p class="muted">Tap someone to open her status window, services, wardrobe and images.</p>
     ${rosterFilterBar(base)}
     <div class="grid">${list.map(w=>workerCard(w, all)).join('') || empty}</div></section>`;
 }

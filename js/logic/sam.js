@@ -419,6 +419,26 @@ function orgyDraw(){
     ${houses || '<p>Nobody is there yet with Sam.</p>'}
     <div class="row" style="margin-top:10px"><button class="primary" ${n < (O.min ?? 2) || S.sam.energy < cost || S.ap <= 0 ? 'disabled' : ''} onclick="samOrgy()">🔥 Tonight (${n} · ${cost} energy${S.sam.energy < cost ? ', Sam is too tired' : ''})</button><button onclick="ORGY=null;closeModal()">Back</button></div>`);
 }
+// Fem/fem act for two bonded ladies in an orgy: uses services with pair.fem + image.fem.
+function orgyFemAct(a, b){
+  const pref = ['oral_give','oral_get','manual_give','manual_get','breast_give','breast_get','kiss'];
+  const ok = id => {
+    const A = actById(id);
+    return A && A.pair && A.pair.fem && A.pair.fem.length && A.image && A.image.fem && A.image.fem.length && !actBanned(a, id) && !actBanned(b, id);
+  };
+  const comfy = pref.filter(id => ok(id) && canSam(a, id) && canSam(b, id));
+  if(comfy.length) return pick(comfy);
+  const open = pref.filter(id => ok(id) && Math.min(inclination(a, id), inclination(b, id)) >= ((actById(id)||{}).th||0) - 10);
+  if(open.length) return pick(open);
+  return ok('kiss') ? 'kiss' : null;
+}
+function orgyFemText(act, a, b){
+  const F = FLAVOR.orgy_fem || {}, list = (F[act] && F[act].length) ? F[act] : (F._default || []);
+  const na = a.name.split(' ')[0], nb = b.name.split(' ')[0];
+  if(list.length) return pick(list).replace(/\{a\}/g, na).replace(/\{b\}/g, nb);
+  const P = ((actById(act)||{}).pair||{}).fem || [];
+  return P.length ? pick(P).replace(/\{name\}/g, na).replace(/\{partner\}/g, nb) : '';
+}
 function samOrgy(){
   const O = BAL.orgy || {}, ws = (ORGY ? ORGY.sel : []).map(findW).filter(w=>w && !orgyWhy(w));
   if(ws.length < (O.min ?? 2)) return toast('Not enough company for that.');
@@ -427,28 +447,43 @@ function samOrgy(){
   ORGY = null;
   const first = ws[0], names = ws.map(w=>w.name.split(' ')[0]), list = names.length > 1 ? names.slice(0,-1).join(', ') + ' and ' + names[names.length-1] : names[0];
   const C = {names:list, first:names[0], house:houseOf(first).name};
+  // Check bonded pairs before applying this night's bond gain so high-bond pairs trigger fem/fem scenes.
+  const femPairs = [], usedFem = new Set(), candPairs = [];
+  for(let i=0;i<ws.length;i++) for(let j=i+1;j<ws.length;j++){
+    const v = bondV(ws[i], ws[j]);
+    if(v >= (O.femBond ?? 25)) candPairs.push({a:ws[i], b:ws[j], v});
+  }
+  candPairs.sort((x,y)=>y.v - x.v + (Math.random()-0.5)*10);
+  candPairs.forEach(({a, b})=>{
+    if(femPairs.length >= 2 || usedFem.has(a.id) || usedFem.has(b.id)) return;
+    const act = orgyFemAct(a, b); if(!act) return;
+    usedFem.add(a.id); usedFem.add(b.id);
+    addBond(a, b, O.femBondBonus ?? 3); moodAdd(a, 2); moodAdd(b, 2);
+    femPairs.push({a, b, act, text: orgyFemText(act, a, b)});
+  });
   const beats = ws.map(w=>{ const act = orgyAct(w), line = privateCore(w, act, {lead:''});
     lewdUp(w, O.lewd ?? 2, svcLewdCap(act,'sam') + (O.lewdCapPlus ?? 10)); moodAdd(w, O.mood ?? 4); countUp(w, 'orgies');
     spendLust(w, O.lustAfter ?? 20);   // the whole night spends her, whatever she did with Sam
     return {w, act, text: line + (has(w,'Devoted') ? '\n\n' + flavor('orgy_lover', w) : '')}; });
   for(let i=0;i<ws.length;i++) for(let j=i+1;j<ws.length;j++) addBond(ws[i], ws[j], O.bond ?? 6);
-  const pairs = []; const P = ws.slice().sort(()=>Math.random()-0.5);
-  for(let i=0;i+1<P.length && pairs.length<2;i+=2) pairs.push(flavor('orgy_pair', P[i], {a:P[i].name.split(' ')[0], b:P[i+1].name.split(' ')[0]}));
+  const pairs = []; const P = ws.filter(w=>!usedFem.has(w.id)).sort(()=>Math.random()-0.5);
+  for(let i=0;i+1<P.length && pairs.length + femPairs.length < 2; i+=2) pairs.push(flavor('orgy_pair', P[i], {a:P[i].name.split(' ')[0], b:P[i+1].name.split(' ')[0]}));
   samLog(`A night with ${list}`); checkUnlocks(); save(); render();
   const scene = 'orgy:' + ws.map(w=>w.id).join(',');
   modal(`<h2>A Night with ${esc(list)}</h2><div id="resImg"></div>
     <p class="story">${esc(flavor('orgy_lead', first, C))}</p>
     ${beats.map((b,i)=>`<h3 style="margin-top:10px">${esc(b.w.name)} <span class="muted">· ${esc(actLabel(b.act))}</span></h3><p class="story">${esc(b.text)}</p><button class="sm" id="og${i}_t" onclick="toggleImgBtn('og${i}','${b.w.id}','samact:${b.act}')">🖼 Show image</button><div id="og${i}" class="hlimg" data-ext="1"></div>`).join('')}
+    ${femPairs.map((fp,i)=>`<h3 style="margin-top:10px">${esc(fp.a.name.split(' ')[0])} &amp; ${esc(fp.b.name.split(' ')[0])} <span class="muted">· ${esc(actLabel(fp.act))} (bond)</span></h3><p class="story">${esc(fp.text)}</p><button class="sm" id="ogf${i}_t" onclick="toggleImgBtn('ogf${i}','${fp.a.id}','pair:${fp.act}:fem:${fp.b.id}')">🖼 Show image</button><div id="ogf${i}" class="hlimg" data-ext="1"></div>`).join('')}
     ${pairs.length ? `<p class="story">${esc(pairs.join(' '))}</p>` : ''}
     <p class="story">${esc(flavor('orgy_end', first, C))}</p>
-    <p class="muted">Everyone: lust spent, lewdness +, mood + · Bonds +${O.bond ?? 6} between every pair · ${orgyCost(ws.length)} of Sam's energy</p>
+    <p class="muted">Everyone: lust spent, lewdness +, mood + · Bonds +${O.bond ?? 6} between every pair${femPairs.length?` (+${O.femBondBonus ?? 3} extra for bonded pairs)`:''} · ${orgyCost(ws.length)} of Sam's energy</p>
     ${SET.ai.on?'<div id="resAi"></div>':''}<div class="row">${aiBtn('resAi','private',first.id,{act:beats[0].act, scene, forSam:true, situation:`a night together: Sam with ${list} all at once`})}<button class="primary" onclick="closeModal()">OK</button></div>`);
   $('#modal').scrollTop = 0; showImg('resImg', first.id, scene);
 }
 function privateMenu(id, free){
   const w = findW(id); if(!w) return;
   const opts = getActs().filter(a=>canSam(w,a.id));
-  const canPossess = w.race==='spirit' && ((w.lewd||0) >= ((SVC.spirit||{}).possessLewd ?? 35) || (w.intim||0)>=2);
+  const canPossess = w.race==='spirit' && (w.intim||0)>=1 && ((w.lewd||0) >= ((SVC.spirit||{}).possessLewd ?? 35) || (w.intim||0)>=2);
   if(!opts.length && !canPossess) return toast((w.intim||0)===0 ? `${w.name} and Sam haven't crossed that line yet.` : `${w.name} isn't comfortable with that yet.`);
   const kp = knowsPrefs(w);
   modal(`<h2>Private time with ${esc(w.name)}</h2><p class="muted">What she's comfortable with, with you, as far as you two have gone (${esc(stageName(w.intim)||'nothing yet')}). ${kp?'★ = her favorite.':''}</p>
@@ -604,8 +639,8 @@ function hireStud(id){
   const r = applyStud(w); if(!r) return;
   samLog(`Paid for a stud for ${w.name}`); save(); render(); closeModal();
   showResult('A Night Off the Menu', pick([
-    `Sam quietly books ${w.name} a night with a broad-shouldered professional from across town who knows exactly what he's signing up for and is paid accordingly. She comes down to breakfast radiant. He leaves at noon, cheerful and very, very sleepy.`,
-    `Sam finds ${w.name} a willing stud for the night: a retired gladiator with stamina to spare and a fee to match. Nobody gets drained into a faint, nobody's reputation suffers, and ${w.name} hums all the next morning.`]) + `\n\nEnergy +${r.g} · Lust −${r.ld} · Mood + · Trust + · −${fmt(r.cost)}`, w.id, 'casual', null);
+    `You quietly book ${w.name} a night with a broad-shouldered professional from across town who knows exactly what he's signing up for and is paid accordingly. She comes down to breakfast radiant. He leaves at noon, cheerful and very, very sleepy.`,
+    `You find ${w.name} a willing stud for the night: a retired gladiator with stamina to spare and a fee to match. Nobody gets drained into a faint, nobody's reputation suffers, and ${w.name} hums all the next morning.`]) + `\n\nEnergy +${r.g} · Lust −${r.ld} · Mood + · Trust + · −${fmt(r.cost)}`, w.id, 'casual', null);
 }
 function samGuild(){
   if(!useAP(samWorkCost(20))) return;

@@ -534,7 +534,7 @@
         "risk": 0,
         "lead": [
           "{name} pins you flat for the last time and doesn't let you up. She doesn't seem to be thinking about the score anymore.",
-          "The bout ends the way {name} always meant it to, with you flat on the rug and her weight pinning him there. She is breathing hard, grinning, and not at all in a hurry to call the match.",
+          "The bout ends the way {name} always meant it to, with you flat on the rug and her weight pinning you there. She is breathing hard, grinning, and not at all in a hurry to call the match.",
           "\"Say it,\" {name} breathes, knee on the cushion beside your ribs. You say something, though not the thing she asked for, and the contest quietly changes rules."
         ],
         "image": {"comp":"on the cushions on the floor, her on top, flushed and breathless from wrestling"}
@@ -624,7 +624,7 @@
     "intro": "The Lark & Kettle is small and golden, with candles in old bottles, a fiddle somewhere behind the kitchen and a menu chalked on a slate. You and {name} take the corner table, and the bread arrives hot enough to steam in the cool evening air.",
     "lines": [
       "She orders for both of them after watching you squint at the menu.",
-      "You tell her about ramen. She makes him promise to recreate it someday.",
+      "You tell her about ramen. She makes you promise to recreate it someday.",
       "She laughs so hard at one of your stories that wine comes out of her nose. They agree never to speak of it.",
       "The Lark & Kettle is all low beams and candlelight, with a hearth crackling at the far end. {name} orders the house stew and the good bread without even looking at the board, and the waiter gives her an approving nod.",
       "They share a plate of roasted pears with cream, and {name} steals the last bite off your fork. \"Strategic,\" she says, unrepentant.",
@@ -745,7 +745,7 @@
     "intro": "The Hollowmere Players are doing a tragedy, and the velvet seats of the old theater are full of people already sniffling. Candles gutter along the stage, a painted storm rolls across the backdrop, and {name} leans in close to whisper commentary on the acting.",
     "lines": [
       "She cries through the whole third act and denies it afterward.",
-      "You fall asleep in act two. She pokes him awake, grinning.",
+      "You fall asleep in act two. She pokes you awake, grinning.",
       "She whispers commentary the entire time. It is better than the play.",
       "The lanterns dim, the curtain rises, and the audience quiets to a reverent hush. {name} leans forward in her seat, lips slightly parted, entirely lost in the first scene.",
       "A villain stalks onstage in a dramatic cape, and {name} whispers, \"I'd have him arrested.\" You whisper back, \"He's the king.\" \"Even worse,\" she says.",
@@ -1028,7 +1028,7 @@
         "lead": [
           "\"Turn around,\" says {name}, taking up the soap. Her hands are warm and slow on your back, and the steam makes it very hard to say no.",
           "{name} sits behind you on the rim of the tub and scrubs, dutifully, for about as long as it takes to lose count. After that her arms slide around your chest.",
-          "The soap smells like lavender. {name} lathers your shoulders, murmurs that he works too hard, and lets her hands wander a little lower than the scrub brush ever could."
+          "The soap smells like lavender. {name} lathers your shoulders, murmurs that you work too hard, and lets her hands wander a little lower than the scrub brush ever could."
         ],
         "image": {"comp":"in the steaming bath with her behind him, soap suds on his shoulders, arms around him"}
       }
