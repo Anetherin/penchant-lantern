@@ -178,6 +178,11 @@
       "res": [
         "{name} shrugs happily. \"Then everyone can borrow it.\" {outfit} joins the house wardrobe."
       ]
+    },
+    "image": {
+      "comp": "standing in front of a full-length mirror modeling her new outfit with a delighted smile",
+      "setting": "lantern-lit market stall clearing, colorful fabric awnings",
+      "house": true
     }
   },
   "outfit_regular": {
@@ -193,6 +198,11 @@
       "res": [
         "{name} thinks about it, then nods. {outfit} goes into the house wardrobe, and the regular's note goes on the wall."
       ]
+    },
+    "image": {
+      "comp": "turning beside a gilded mirror in her new outfit, unwrapping tissue ribbon, pleased smile",
+      "setting": "bright dressing parlor with warm lamps",
+      "house": true
     }
   },
   "outfit_friend": {
@@ -208,6 +218,11 @@
       "res": [
         "{other} laughs. \"Fine, fine. Anyone can wear it, then.\" {outfit} joins the house wardrobe."
       ]
+    },
+    "image": {
+      "comp": "posing playfully in her new outfit for a friend, smiling brightly",
+      "setting": "staff bedroom with wooden wardrobe and warm lamplight",
+      "house": true
     }
   },
   "outfit_made": {
@@ -218,7 +233,12 @@
       "{name} lays something across the kitchen table, stitched by candlelight: {outfit}. \"It took a while, but I'm proud of it.\""
     ],
     "keep": {"label":"\"It's wonderful. Wear it.\"","res":["{name} glows. {outfit} is hers, and she made it."]},
-    "share": {"label":"\"Let the whole house enjoy it.\"","res":["{name} blushes and nods. {outfit} goes into the house wardrobe."]}
+    "share": {"label":"\"Let the whole house enjoy it.\"","res":["{name} blushes and nods. {outfit} goes into the house wardrobe."]},
+    "image": {
+      "comp": "standing beside a sunlit kitchen table in her freshly tailored outfit, glowing with quiet pride",
+      "setting": "warm kitchen and sewing table, soft candlelight",
+      "house": true
+    }
   },
   "gift": {
     "_note": "When Sam gives a lady a gift. The gift itself comes from people.json gifts.",
@@ -315,6 +335,11 @@
     "decline": {
       "label": "Ask for something practical instead",
       "res": "{name} thanks the house warmly and asks whether the honor might come as a donation. It does: {gold}."
+    },
+    "image": {
+      "comp": "standing gracefully holding a wax-sealed parchment scroll, composed proud smile",
+      "setting": "velvet parlor in a pleasure house, candelabra",
+      "house": true
     }
   },
   "title_fair": {
@@ -329,7 +354,11 @@
       "win": "The crowd roars. {name} walks the length of the square under a crown of paper lanterns, waving like she was born to it.",
       "lose": "{name} comes a close second, and spends the evening being bought drinks by everyone who voted for her anyway."
     },
-    "skip": {"label":"Not this year","res":"{name} watches the crowning from the edge of the square and cheers for the winner."}
+    "skip": {"label":"Not this year","res":"{name} watches the crowning from the edge of the square and cheers for the winner."},
+    "image": {
+      "comp": "standing on a festive town-square stage beneath bunting and paper lanterns, radiant confident smile",
+      "setting": "sunny bustling town square street fair, cheering crowd, colorful banners"
+    }
   },
   "title_arena": {
     "_vars": "{gold} (prize)",
@@ -343,7 +372,11 @@
       "win": "Three bouts, three wins. {name} limps home with the purse, a split lip, and a grin that will not go away.",
       "lose": "{name} makes the final and loses it on a slip. She is furious, sore, and already planning a rematch."
     },
-    "pass": {"label":"Not this time","res":"{name} grumbles, but sits in the stands and heckles the finalists with real expertise."}
+    "pass": {"label":"Not this time","res":"{name} grumbles, but sits in the stands and heckles the finalists with real expertise."},
+    "image": {
+      "comp": "ready in a fighting stance at the center of a sandy stone arena, confident fierce grin",
+      "setting": "crowded Adventurers' Guild stone fighting pit in bright daylight, banners and spectators"
+    }
   },
   "riddle": {
     "_vars": "{gold} (the prize)",
@@ -401,6 +434,41 @@
     "image": {
       "comp": "standing tall on a small stage mid-song, facing a travelling bard with a lute, crowd cheering",
       "setting": "lively stage in a pleasure house common room, lanterns and a crowd"
+    }
+  },
+  "lantern_ask": {
+    "title": "Touched by the Lamplighter",
+    "text": [
+      "{name} corners you after closing, dark amber sparks snapping along her halo while her wings tremble behind her. \"Everyone back home whispers about the Lamplighter stealing angels,\" she breathes, grabbing your hand and pressing it straight between her wet thighs. \"Some goddess nobody can even name, making us lose our heads over cock. Tell me to take it, Sam. Tell me to quit pretending I want anything less than getting fucked raw whenever I itch for it.\"",
+      "{name} lingers by the parlor hearth with warm amber creeping through her white feathers, smiling crookedly at you. \"The Order warned us about this town's goddess—some unnamed Lamplighter who turns good angels into shameless sluts,\" she purrs, sliding her palm over the front of your trousers. \"Half the whispers are lies, except the part where my pussy hasn't stopped aching since I walked under these lanterns. Say yes, and watch me drop every vow right here.\""
+    ],
+    "accept": {
+      "label": "Give her your blessing",
+      "res": "{name} shudders and grins as lamp-flame light washes down her halo and turns her feathers black-and-amber. \"Finally,\" she laughs softly, licking her lips while her eyes flare gold. \"Now come over here—this angel is done waiting politely for cock.\""
+    },
+    "refuse": {
+      "label": "Keep her old wings",
+      "res": "{name} sucks in a sharp breath as the amber sparks die back to pale gold, glaring half-annoyed down at her lap. \"Fine. You win, Sam. Back to pretending I'm not wet all week.\""
+    },
+    "image": {
+      "comp": "standing in warm lantern light with wings half spread, subtle amber glow along her halo and feather tips",
+      "setting": "quiet pleasure-house parlor at night, glowing amber lanterns",
+      "house": true
+    }
+  },
+  "lantern_self": {
+    "title": "A Darker Halo",
+    "text": [
+      "{name} strolls into the breakfast room with black-and-amber wings spread lazily behind her and a halo burning hot lantern-gold. She didn't ask permission. \"Stop gaping,\" she says, grinning around a bite of toast. \"Whether it's the Lamplighter's whisper or my own filthy head, I threw out the Order's vows last night. Now point me at a client before I drag someone under the stairs.\"",
+      "You catch {name} in the hallway and stop mid-step—her halo glows rich lamp-amber, and dusky black feathers edge her wings. \"No point hiding it,\" she purrs, running a slow tongue across her bottom lip. \"Whoever the goddess behind these lanterns is, I'm hers now. My pussy aches all day, I'm not turning anyone away, and I want cock every night I can get it.\""
+    ],
+    "ok": {
+      "label": "Noted"
+    },
+    "image": {
+      "comp": "standing composed in a lantern-lit corridor, black-and-amber feathered wings folded and glowing amber halo",
+      "setting": "pleasure house hallway, warm lantern glow",
+      "house": true
     }
   }
 }

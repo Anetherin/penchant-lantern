@@ -82,6 +82,13 @@
       "comp": "alone on her bed, flushed, eyes half closed, fingering her pussy, masturbating, touching herself.",
       "setting": "her private bedroom, curtains drawn, a single candle"
     },
+    "sam_spirit_futa": {
+      "label": "Reverse possession with Sam",
+      "sam": true,
+      "pov": true,
+      "comp": "futanari spirit sitting upright on the bed keeping her female body with an erect cock between her thighs while a man watches from the edge of the bed, pov",
+      "setting": "Sam's modest bedroom lit by a single lantern"
+    },
     "sam_training": {
       "label": "With Sam: Training",
       "sam": true,
@@ -103,7 +110,8 @@
       "sam": true,
       "comp": "standing in a half-open doorway at night holding a candle, looking at the viewer through her lashes",
       "setting": "dark wooden hallway, candlelight, late night",
-      "undress": "partial"
+      "undress": "under",
+      "robe": true
     },
     "enc_waiting": {
       "label": "Encounter: She's been waiting",
@@ -111,14 +119,16 @@
       "sam": true,
       "comp": "sitting on the viewer's bed with her legs crossed, arms folded, impatient pout turning into a smile",
       "setting": "his bedroom at night, a single lamp",
-      "undress": "partial"
+      "undress": "under",
+      "robe": true
     },
     "enc_reckless": {
       "label": "Encounter: The storeroom",
       "pov": true,
       "sam": true,
       "comp": "pinning the viewer against shelves, flushed, heated determined look, door locked behind her",
-      "setting": "cramped storeroom, crates and barrels, a single swinging lantern"
+      "setting": "cramped storeroom, crates and barrels, a single swinging lantern",
+      "undress": "partial"
     },
     "enc_jealous": {
       "label": "Encounter: Left out",
@@ -173,6 +183,8 @@
     "an opulent suite with a canopy bed and rich fabrics"
   ],
   "samRoom": "Sam's modest bedroom lit by a single lantern",
+  "chapelSetting": "behind a velvet curtain in the quiet chapel vestry, candlelight",
+  "exhibSetting": "in a semi-public curtained alcove off the lantern-lit lounge, risking passers-by",
   "clientPhrase": "with an adult male client",
   "duoPhrase": "two women together with the viewer",
   "bathhouse": "the house's own bathhouse, steaming tiled pools, wooden buckets, soft lantern light through the steam",

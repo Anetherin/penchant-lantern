@@ -51,9 +51,12 @@ const store = {
 function flavor(sec, w, extra={}){
   const F = FLAVOR[sec] || {}, list = (w && Array.isArray(F[w.personality]) && F[w.personality].length) ? F[w.personality] : (F._default||[]);
   if(!list.length) return '';
-  const c = Object.assign({name: w ? w.name : '', house: (w && typeof S!=='undefined' && S && typeof houseOf==='function' && houseOf(w)) ? houseOf(w).name : 'the house'}, extra);
+  const outfit = (w && typeof getOutfit==='function') ? ((getOutfit(w, extra.scene).label||'clothes').toLowerCase()) : 'clothes';
+  const under = (w && typeof underText==='function' && underText(w, extra.scene)) ? underText(w, extra.scene) : 'bare skin';
+  const c = Object.assign({name: w ? w.name : '', house: (w && typeof S!=='undefined' && S && typeof houseOf==='function' && houseOf(w)) ? houseOf(w).name : 'the house', outfit, under}, extra);
   return pick(list).replace(/\{(\w+)\}/g, (m,k)=> c[k]!==undefined ? String(c[k]) : m);
 }
+const textCloth = t => /\b(naked|completely bare|under the blanket|beneath the sheets)\b/i.test(String(t||'')) ? 'nude' : undefined;
 const KEY_SAVE='gilded_lantern_save_v1', KEY_SET='gilded_lantern_settings_v1', KEY_LIB='gilded_lantern_library_v1';
 const _ss = store.get(KEY_SET) || {};
 let SET = Object.assign({}, DEFAULT_SETTINGS, _ss);

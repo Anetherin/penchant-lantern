@@ -245,7 +245,7 @@
       "title": "A Knock, Twice",
       "scene": "casual",
       "text": [
-        "There's a soft knock at your door. It's {a}, wrapped in a loose silk robe. A heartbeat later comes a second knock: {b}, standing right behind her in even less. They trade a heated glance, then look at you, reaching a silent agreement without asking your input."
+        "There's a soft knock at your door. It's {a}, her {aOutfit} loose around her shoulders. A heartbeat later comes a second knock: {b}, standing right behind her in even less. They trade a heated glance, then look at you, reaching a silent agreement without asking your input."
       ],
       "choices": [
         {

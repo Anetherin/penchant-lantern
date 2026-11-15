@@ -46,6 +46,112 @@
       ]
     }
   },
+  "_double": {
+    "dinner": {
+      "label": "Dinner for three",
+      "cost": 26,
+      "energy": 20,
+      "trust": 2.4,
+      "mood": 8,
+      "bond": 5,
+      "lust": 3,
+      "lewd": 1,
+      "lewdCap": 30,
+      "like": "dinner",
+      "intro": "You book the corner booth at the Silver Flagon for the three of you — candles, roast duck, a second bottle of wine before the first is finished. {a} and {b} flank you with knees brushing beneath the tablecloth.",
+      "lines": [
+        "By dessert {a} is feeding {b} tart off her fork while watching your face over the rim of her glass.",
+        "Conversation turns effortlessly warm and a little wicked as the candles burn low; their hands find each other's across the table and yours underneath.",
+        "When the waiter knocks to clear the plates, both of them are flushed and laughing over some shared joke that started innocent an hour ago."
+      ],
+      "threesomeLead": [
+        "On the walk back to the house, {a} loops her arm through yours while {b} catches your other hand. Nobody drops the hold on the stairs; in the upper hall, {b} pauses at {a}'s door and glances at both of you with dark, bright eyes.",
+        "The wine stays with all three of you all the way up the steps. Outside the bedchamber, {a} leans her shoulder against {b}'s and looks up at you. \"Seems a shame to split up now,\" {b} murmurs."
+      ],
+      "image": {
+        "comp": "two women flanking a man at a corner table in a candlelit tavern booth, sharing wine and leaning close, flushed smiles",
+        "setting": "intimate candlelit booth at a warm lantern-lit inn, glasses and plates on white linen"
+      }
+    },
+    "walk": {
+      "label": "Lantern walk & late drinks",
+      "cost": 8,
+      "energy": 18,
+      "trust": 2.2,
+      "mood": 7,
+      "bond": 5,
+      "lust": 2,
+      "like": "walk",
+      "intro": "The three of you wander down past the canal stalls under paper lanterns, one woman on each arm, stopping at an outdoor brazier for spiced wine as the mist curls off the water.",
+      "lines": [
+        "{a} claims the shawl you brought for one chill breeze and wraps half of it around {b}, tucking both of them close against your sides.",
+        "Halfway across the old footbridge {b} dares {a} to steal a chestnut off a vendor's tray; instead they share a skewer between kisses and giggles.",
+        "By the last square, passersby are throwing envious looks at the easy warmth between the three of you."
+      ],
+      "threesomeLead": [
+        "Back in the foyer with the chill still on their cheeks, {a} pulls {b} close to warm her hands and pulls you in with her other arm. Neither makes a move toward her own bedroom.",
+        "They linger together on the landing until {b} laughs softly, catches {a}'s chin, and asks you whether the fire is lit in your suite or hers."
+      ],
+      "image": {
+        "comp": "two women arm in arm with a man on a misty stone bridge under warm hanging paper lanterns, laughing close together",
+        "setting": "canal promenade at night, reflections of paper lanterns shimmering on dark water"
+      }
+    },
+    "theater": {
+      "label": "Private gallery box",
+      "cost": 40,
+      "energy": 20,
+      "trust": 2.6,
+      "mood": 9,
+      "bond": 6,
+      "lust": 4,
+      "lewd": 2,
+      "lewdCap": 38,
+      "like": "theater",
+      "intro": "You take a velvet-curtained box above the stage. Below, the players quarrel and sing; behind the curtain, with {a} on one knee and {b} close at your shoulder, the box is very small and very dark.",
+      "lines": [
+        "Halfway through the second act {a}'s hand steals over yours on the rail while {b}'s rests brazenly high on your other thigh, neither woman watching the stage.",
+        "During the intermission they share a goblet and trade whispered commentary sharp enough to make both of them blush.",
+        "By the final curtain all three of you are wound closer together than polite theatregoers have any business being."
+      ],
+      "threesomeLead": [
+        "The carriage ride home is quiet only because nobody is talking; {a} has her head on your chest and {b}'s fingers laced into yours, and upstairs the curtain never really drops.",
+        "The moment the front latch clicks behind you, {b} looks from {a} to you with unmistakable intent. \"The last act dragged,\" she says softly. \"Let's write a better one.\""
+      ],
+      "image": {
+        "comp": "two women seated close on either side of a man in a dimly lit velvet theater box, hands entwined, looking at each other warmly",
+        "setting": "crimson velvet private theater balcony box, soft chandelier glow from the stage below"
+      }
+    },
+    "springs": {
+      "label": "Private bathhouse soak",
+      "cost": 16,
+      "energy": 18,
+      "trust": 2.8,
+      "mood": 10,
+      "bond": 7,
+      "lust": 6,
+      "lewd": 3,
+      "lewdCap": 42,
+      "needsUp": "bath",
+      "like": ["private","walk"],
+      "intro": "You bolt the cedar door of the bathhouse for the night and slide into the steaming mineral pool with {a} and {b}. Cedar scent, wet skin, and nowhere for anyone's hands to hide.",
+      "lines": [
+        "{a} leans back against the warm stone washing {b}'s shoulders while water laps over their collarbones, glancing at you through damp lashes.",
+        "With steam curling thick around the lamps, both women grow shamelessly relaxed, limbs tangling casually along the cedar bench.",
+        "By the time you pour the cool plum wine from the tray, nobody is sitting a hand's breadth apart."
+      ],
+      "threesomeLead": [
+        "Neither woman reaches for a dry robe when you step out; glistening with bath oil and warm from the pool, {a} presses close to {b}'s hip and looks right at you. \"Dry us off?\"",
+        "Damp towels drop before you even reach the alcove. {b} catches your wrist while {a} slides an arm around her waist, eyes heavy and bright."
+      ],
+      "image": {
+        "comp": "two bare-shouldered women soaking beside a man in a steaming cedar bathhouse pool, glistening damp skin and warm relaxed smiles",
+        "setting": "private wooden bathhouse at night, rising steam and warm amber oil lamps",
+        "bath": true
+      }
+    }
+  },
   "chat": {"label":"Just talk","cost":0,"energy":10,"trust":1.6,"mood":4,"like":"chat","special":"chat","intro":"","lines":[]},
   "walk": {
     "label": "Walk through the market",
@@ -130,7 +236,7 @@
         "acts": ["manual_give","manual_get","kiss"],
         "lewd": 20,
         "gain": 2,
-        "cap": 50,
+        "cap": 38,
         "risk": 0,
         "lead": [
           "The wind picks up, and {name} pulls the blanket over both of them. Under it, her hand finds yours, and the stars stop being the point.",
@@ -143,7 +249,7 @@
         "label": "Wish on a falling star",
         "acts": ["kiss","manual_get","breast_get"],
         "lewd": 30,
-        "cap": 55,
+        "cap": 42,
         "gain": 2,
         "risk": 0,
         "lead": [

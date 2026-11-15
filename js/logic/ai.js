@@ -31,6 +31,11 @@ function aiOutcome(w, x){
   if(w.race==='demon' && a.finish && a.kind!=='receive') out.push(T(x.note==='drained' || (!x.forSam && restless(w)) ? 'drain' : 'feed'));
   else if(a.finish) out.push(T('finish'));
   out.push(T(x.note==='frustrated' ? 'frustrated' : spends ? 'satisfied' : 'wanting'));
+  if(w.race==='beastkin' && (x.beastHeat || x.note==='beast_heat' || restless(w))) out.push(T('beast_heat'));
+  if(x.spiritFuta || /^pair:.*:futa:/.test(x.scene||'') || x.scene==='sam_spirit_futa') out.push(T('spirit_futa'));
+  if(x.androidAdapt || x.adapt) out.push(T('android_adapt'));
+  if(w.race==='angel' && w.sub==='lantern') out.push(T('angel_lantern'));
+  if(x.where==='chapel') out.push(T('chapel'));
   return out.filter(Boolean).join(' ');
 }
 const fillTpl = (t, c) => t.replace(/\{(\w+)\}/g, (m,k)=> c[k]!==undefined ? String(c[k]) : m);

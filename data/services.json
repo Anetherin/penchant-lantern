@@ -71,7 +71,7 @@
       "id": "kiss",
       "label": "Kissing",
       "tier": 1,
-      "th": 20,
+      "th": 16,
       "price": 18,
       "energy": 4,
       "lust": 2,
@@ -122,7 +122,7 @@
       "id": "massage_get",
       "label": "Massage (receiving)",
       "tier": 1,
-      "th": 22,
+      "th": 20,
       "price": 16,
       "energy": 2,
       "lust": 3,
@@ -225,7 +225,7 @@
       "id": "breast_give",
       "label": "Breast service (giving)",
       "tier": 2,
-      "th": 36,
+      "th": 40,
       "price": 38,
       "energy": 8,
       "lust": 4,
@@ -257,31 +257,29 @@
         "extra": "explicit, bare breasts, glistening skin"
       },
       "report": [
-        "A rare request, and an easy hour: he did the work, and she mostly sighed.",
-        "He took the job seriously, oil and all, and she purred through most of it.",
-        "His hands were gentle and earnest, and she told the bar later that he had a real talent.",
-        "It was a quiet, sleepy hour, and she emerged relaxed enough to float.",
-        "He apologized twice for his technique and she assured him thrice that there was nothing to apologize for.",
-        "She came down loose-shouldered and smiling, and he left looking mightily proud of himself."
+        "He talked about it at the bar afterward, at length, to anyone who'd listen.",
+        "She made a show of it, and he left with a look of dazed gratitude on his face.",
+        "He had clearly been dreaming of this for years, and she gave the dream its due.",
+        "It was warm, playful and slightly ridiculous, and he laughed as much as he sighed.",
+        "He thanked her three times before reaching the door, and tipped as though he were paying a tithe.",
+        "The hour passed in a haze of oil and giggles, and he left in noticeably better spirits."
       ],
       "pair": {
         "fem": [
-          "{partner} oiled {name} from neck to ankle with unhurried hands, murmuring compliments as she went. {name} melted.",
-          "With hands alone, {partner} turned {name} into a puddle, and neither of them would say how long it took."
+          "{name} lavished attention on {partner}'s breasts, and {partner} answered with a long, warm sigh.",
+          "{partner} arched into {name}'s hands and mouth, smiling like a cat handed a very large bowl of cream."
         ],
         "futa": [
-          "{partner} worked {name} over with warm oil and warmer hands, plainly enjoying the effect she was having. {name} did not complain.",
-          "{name} lay back under {partner}'s hands, with the heat of {partner}'s aroused body along her side. By the end it was not strictly a massage."
+          "{name} gave {partner}'s breasts her devoted attention while the rest of {partner} grew obviously, urgently interested. {name} noticed. {partner} did not care.",
+          "{partner} guided {name}'s mouth and hands with a murmur or two, her arousal pressing ever more plainly against her."
         ]
-      },
-      "energyBack": 4,
-      "mood": 2
+      }
     },
     {
       "id": "manual_get",
       "label": "Manual (receiving)",
       "tier": 2,
-      "th": 30,
+      "th": 28,
       "price": 24,
       "energy": 3,
       "lust": -10,
@@ -330,62 +328,10 @@
       }
     },
     {
-      "id": "manual_give",
-      "stats": {"agility":1},
-      "label": "Manual (giving)",
-      "tier": 2,
-      "th": 32,
-      "price": 32,
-      "energy": 7,
-      "lust": 2,
-      "finish": true,
-      "want": 1,
-      "kind": "give",
-      "desc": "using her hands",
-      "ask": {"client":"for a hand job","lady":"offered him a hand job"},
-      "dress": {"min":"partial","fullAt":55},
-      "image": {
-        "client": ["her hands wrapped around a man's penis, handjob"],
-        "sam": [
-          "her hands wrapped around the viewer's penis, pov handjob, looking at the viewer"
-        ],
-        "duo": [
-          "their hands wrapped around the viewer's penis, threesome, pov handjob, looking at the viewer"
-        ],
-        "extra": "",
-        "fem": [
-          "one woman's hand between another's thighs, two women, yuri, looking at the viewer",
-          "two women on a bed, one fingering the other, yuri"
-        ],
-        "futa": [
-          "a woman's hands wrapped around a futanari's penis, handjob, two women",
-          "a futanari sitting back while a woman strokes her penis, handjob"
-        ]
-      },
-      "report": [
-        "It didn't take long. He left looking dazed and tipped well for it.",
-        "She was quick, clever and deliberate, and he left unsteady on his feet and grinning.",
-        "He lasted far less time than he'd planned, and she was kind enough not to mention it.",
-        "Her hands did the talking, and he came downstairs speechless, which she took as a compliment.",
-        "It was brisk, warm and thoroughly professional, and he tipped like a man who had found religion.",
-        "He went in nervous and came out dazed, with a lopsided smile that lasted all the way to the street."
-      ],
-      "pair": {
-        "fem": [
-          "{name} followed {partner}'s murmured directions with her hand and was rewarded with a long, shaky sigh.",
-          "{partner} guided {name}'s fingers, voice dropping to a purr of approval as {name} found the rhythm."
-        ],
-        "futa": [
-          "{name} took {partner} in hand at her soft command and watched her composure slowly come apart.",
-          "{partner} let {name} explore at her own pace, murmuring encouragement, one hand tangled in {name}'s hair."
-        ]
-      }
-    },
-    {
       "id": "breast_get",
       "label": "Breast play (receiving)",
       "tier": 2,
-      "th": 34,
+      "th": 36,
       "price": 26,
       "energy": 3,
       "lust": -8,
@@ -436,7 +382,7 @@
       "id": "oral_get",
       "label": "Oral (receiving)",
       "tier": 2,
-      "th": 40,
+      "th": 44,
       "price": 34,
       "energy": 3,
       "lust": -14,
@@ -491,7 +437,7 @@
       "stats": {"stamina":1},
       "label": "Oral (giving)",
       "tier": 2,
-      "th": 42,
+      "th": 48,
       "price": 44,
       "energy": 9,
       "lust": 2,
@@ -536,60 +482,11 @@
       }
     },
     {
-      "id": "breast_give",
-      "stats": {"stamina":1},
-      "label": "Breast play (giving)",
-      "tier": 2,
-      "th": 45,
-      "price": 46,
-      "energy": 9,
-      "lust": 2,
-      "finish": true,
-      "want": 0.8,
-      "kind": "give",
-      "desc": "using her breasts (paizuri)",
-      "ask": {"client":"for paizuri","lady":"offered him paizuri"},
-      "dress": {"min":"partial","fullAt":55},
-      "image": {
-        "client": ["a man's penis between her breasts, titjob"],
-        "sam": [
-          "the viewer's penis between her breasts, pov titjob, looking at the viewer"
-        ],
-        "duo": [
-          "the viewer's penis between their breasts, threesome, pov titjob, looking at the viewer"
-        ],
-        "extra": "paizuri",
-        "fem": ["two women pressing their breasts together, yuri","two women embracing, breasts touching, yuri"],
-        "futa": [
-          "a futanari's penis between a woman's breasts, paizuri, two women",
-          "a woman kneeling, titjob on a futanari"
-        ]
-      },
-      "report": [
-        "He talked about it at the bar afterward, at length, to anyone who'd listen.",
-        "She made a show of it, and he left with a look of dazed gratitude on his face.",
-        "He had clearly been dreaming of this for years, and she gave the dream its due.",
-        "It was warm, playful and slightly ridiculous, and he laughed as much as he sighed.",
-        "He thanked her three times before reaching the door, and tipped as though he were paying a tithe.",
-        "The hour passed in a haze of oil and giggles, and he left in noticeably better spirits."
-      ],
-      "pair": {
-        "fem": [
-          "{name} lavished attention on {partner}'s breasts, and {partner} answered with a long, warm sigh.",
-          "{partner} arched into {name}'s hands and mouth, smiling like a cat handed a very large bowl of cream."
-        ],
-        "futa": [
-          "{name} gave {partner}'s breasts her devoted attention while the rest of {partner} grew obviously, urgently interested. {name} noticed. {partner} did not care.",
-          "{partner} guided {name}'s mouth and hands with a murmur or two, her arousal pressing ever more plainly against her."
-        ]
-      }
-    },
-    {
       "id": "missionary",
       "stats": {"stamina":1},
       "label": "Missionary",
       "tier": 3,
-      "th": 52,
+      "th": 56,
       "price": 58,
       "energy": 11,
       "lust": -8,
@@ -638,7 +535,7 @@
       "stats": {"agility":0.5,"stamina":0.5},
       "label": "Cowgirl",
       "tier": 3,
-      "th": 56,
+      "th": 60,
       "price": 64,
       "energy": 12,
       "lust": -9,
@@ -684,7 +581,7 @@
       "stats": {"stamina":0.5,"strength":0.5},
       "label": "Doggy",
       "tier": 3,
-      "th": 60,
+      "th": 64,
       "price": 64,
       "energy": 12,
       "lust": -9,

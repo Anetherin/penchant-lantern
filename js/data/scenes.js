@@ -4,9 +4,12 @@
    ===================================================================== */
 const SCENE_DATA = needData('scenes');
 // Dates (data/dates.json); each brings its own image scene, date_<key>.
-const DATES = noMeta(needData('dates'));
+const DATES_RAW = needData('dates');
+const DATES = noMeta(DATES_RAW);
+const DOUBLE_DATES = DATES_RAW._double || {};
 const SCENES = Object.assign({}, SCENE_DATA.scenes);
 Object.entries(DATES).forEach(([k,d])=>{ if(d.image) SCENES['date_'+k] = Object.assign({label:'Date: '+d.label, sam:true}, d.image||{}); });
+Object.entries(DOUBLE_DATES).forEach(([k,d])=>{ if(d.image) SCENES['ddate_'+k] = Object.assign({label:'Double date: '+d.label, sam:true}, d.image||{}); });
 // nude spicy variants with their own image (date_<key>_sp<i>), registered up front so they survive a reload
 Object.entries(DATES).forEach(([k,d])=>(d.spicy||[]).forEach((sp,i)=>{ if(!sp.nude || !sp.image || !sp.image.comp) return; const di = d.image || {}, im = {label:d.label+': '+sp.label, comp:sp.image.comp, setting:sp.image.setting || di.setting, sam:true}; ['undress','bath','away','swim'].forEach(f=>{ if(di[f] != null) im[f] = di[f]; }); SCENES['date_'+k+'_sp'+i] = im; }));
 // One-off image scenes for story moments (arc beats, events, firsts): {comp, setting} plus the usual flags (sam, pov,
@@ -39,7 +42,15 @@ function svcExpr(w, id, P, withSam){
 }
 function sceneInfo(k, w){
   const h = w && S ? houseOf(w) : null, HD = h ? HOUSES[h.id] : null, P = sceneParts(k); k = P.base;
-  if(k.startsWith('act:')){ const id = k.slice(4); return {label:'Client: '+actLabel(id), comp:actPose(id,'client'), setting:P.ctx==='sample' ? (SCENE_DATA.sampleStreet || 'a lantern-lit street outside the house at night, a quiet doorway alcove') + (HD ? ', ' + HD.setting : '') : ROOM_SETTING(h), client:SCENE_DATA.clientPhrase, snip:'act_'+id, expr:svcExpr(w, id, P, false)}; }
+  if(k.startsWith('act:')){
+    const id = k.slice(4), bath = P.ctx==='bath';
+    const setting = P.ctx==='sample' ? (SCENE_DATA.sampleStreet || 'a lantern-lit street outside the house at night, a quiet doorway alcove') + (HD ? ', ' + HD.setting : '')
+      : bath ? (h && h.up && h.up.bath ? SCENE_DATA.bathhouse : SCENES.bath.setting) + (HD ? ', ' + HD.setting : '')
+      : P.ctx==='exhib' ? (SCENE_DATA.exhibSetting || 'semi-public alcove off the lounge') + (HD ? ', ' + HD.setting : '')
+      : P.ctx==='chapel' ? (SCENE_DATA.chapelSetting || 'candlelit chapel vestry') + (HD ? ', ' + HD.setting : '')
+      : ROOM_SETTING(h);
+    return {label:'Client: '+actLabel(id), comp:actPose(id,'client'), setting, client:SCENE_DATA.clientPhrase, snip:'act_'+id, expr:svcExpr(w, id, P, false), bath, towel:bath};
+  }
   if(k.startsWith('duo:')){ const [, id, oid, dyn] = k.split(':'), a = actById(id), o = findAny(oid);
     const D = dyn && typeof BONDS!=='undefined' ? (BONDS.dynamics[dyn]||{}) : {};
     return {label:'Sam & two: '+actLabel(id), pov:true, sam:true, comp:[actPose(id,'duo'), SCENE_DATA.duoPhrase, D.prompt].filter(Boolean).join(', '),

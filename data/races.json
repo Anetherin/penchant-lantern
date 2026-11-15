@@ -167,6 +167,15 @@
       "weight": 3,
       "fx": {"lustMax":-30,"noReckless":true,"moodRest":5},
       "client": {"like":0.25,"dislike":0.1,"classLike":{"noble":0.3}},
+      "subs": {
+        "lantern": {
+          "label": "Lantern Angel",
+          "mods": {"charm":5,"charisma":5},
+          "fx": {"lustMax":55,"lustBuild":1.2,"allowReckless":true,"appeal":3},
+          "client": {"like":0.3,"dislike":0.15,"classLike":{"noble":0.25,"adventurer":0.3}},
+          "perk": {"label":"Lantern Angel","desc":"Touched by the Lamplighter's whisper—or so other angels claim. Lust ceiling rises to 125, can grow restless, builds lust 20% faster, +3 appeal."}
+        }
+      },
       "design": {
         "features": [
           "large white feathered wings and a faint golden halo",
