@@ -7,7 +7,6 @@ This file is for big ideas when I have a fresh batch of Claude usage.
 - Girls maybe can take a cut of the profits and use it to buy their own clothes. The user can set the toggle (including for all gitls with filters). also (toggleable) is them changing their clothes according to their preference if they have multiple. both of these should increase trust and mood (maybe baseline 20% cut? 50%? and lowering penalizes mood/trust. Maybe it changes per cycle)
 - Event/encounter scenes should either reflect the girls clothes or the image prompt should use the clothing (etc) from the description of the scene
 - More variety of events in general 
-- Orgies maybe can make use of the fem/fem scene if ladies have high enough bonds?
 - Bath attendants scenes should probably be in the baths. exhibitionist scenes should be in the open. Make sure scenes and descriptions line up in general.
 
 ## Houses
