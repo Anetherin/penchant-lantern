@@ -40,6 +40,8 @@ function clothTextBase(w, cloth, scene, noTowel){
   let t = T[cloth];
   if(!t && cloth==='nude') t = T.partial;
   const ut = underText(w, scene);
+  const sc = scene && SCENES[sceneBase(scene)];
+  if(sc && sc.robe && (cloth==='under' || cloth==='partial')) return `wearing an open robe hanging wide open over ${ut || 'bare skin, nothing underneath'}`;
   // Modest ladies during intimate scenes: clothes pulled aside rather than removed
   if(has(w,'Modest') && (cloth==='dressed'||cloth==='partial') && isSvcScene(scene)){
     t = (!ut && T.aside_commando) || T.aside || t;

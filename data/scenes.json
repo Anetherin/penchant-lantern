@@ -86,7 +86,7 @@
       "label": "Reverse possession with Sam",
       "sam": true,
       "pov": true,
-      "comp": "translucent-toned woman sitting upright on the bed keeping her female body while now sporting male anatomy, a man watching her from the edge of the bed, pov",
+      "comp": "futanari spirit sitting upright on the bed keeping her female body with an erect cock between her thighs while a man watches from the edge of the bed, pov",
       "setting": "Sam's modest bedroom lit by a single lantern"
     },
     "sam_training": {
@@ -110,7 +110,8 @@
       "sam": true,
       "comp": "standing in a half-open doorway at night holding a candle, looking at the viewer through her lashes",
       "setting": "dark wooden hallway, candlelight, late night",
-      "undress": "partial"
+      "undress": "under",
+      "robe": true
     },
     "enc_waiting": {
       "label": "Encounter: She's been waiting",
@@ -118,7 +119,8 @@
       "sam": true,
       "comp": "sitting on the viewer's bed with her legs crossed, arms folded, impatient pout turning into a smile",
       "setting": "his bedroom at night, a single lamp",
-      "undress": "partial"
+      "undress": "under",
+      "robe": true
     },
     "enc_reckless": {
       "label": "Encounter: The storeroom",
