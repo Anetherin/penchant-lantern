@@ -226,8 +226,8 @@ const gEligible = t => t.repeat ? (t.minCycle||1) <= (S.cycle||1) && (t.maxCycle
                                 : (t.minCycle||1) <= (S.cycle||1) && gKnowOK(t);
 // unseen story scenes, in order (minCycle reached, not yet seen); the next one is the first eligible
 const gFresh = () => (GOD.teases||[]).filter(t=>!t.repeat && !(G().teases||[]).includes(t.id) && (t.minCycle||1) <= (S.cycle||1));
-// how many story scenes are past due (their maxCycle is behind the current cycle)
-const gOverdue = () => gFresh().filter(t=>(t.maxCycle||99) < (S.cycle||1)).length;
+// how many story scenes are past due (their maxCycle is behind the current cycle, or remaining Cycle 5 scenes before the Cycle 6 binding)
+const gOverdue = () => gFresh().filter(t=>(t.maxCycle||99) < (S.cycle||1) || ((S.cycle||1) >= 5 && (t.maxCycle||99) <= (S.cycle||1))).length;
 function gDisguise(){ const ks = Object.keys(GOD_FORMS).filter(k=>k!==GOD_TRUE), g = G(); const k = pick(ks.filter(x=>x!==g.lastDisguise).length ? ks.filter(x=>x!==g.lastDisguise) : ks); g.lastDisguise = k; return k; }
 function evGoddess(){
   const g = G(); if(g.bound || g.left) return null;
@@ -265,7 +265,7 @@ function gDistractAct(T, c){
   const list = [].concat(c.act || T.act || ((B.acts||{})[gTeaseTier()]) || ['kiss']).filter(a=>actById(a));
   return list.length ? actKey(pick(list)) : null;
 }
-const gTeaseSetting = ctx => { const m = /^gt_(.+)$/.exec(ctx||''); if(!m) return null; const T = (GOD.teases||[]).find(t=>t.id===m[1]); return T && T.image && T.image.setting || null; };
+const gTeaseSetting = ctx => { const m = /^gt_(.+)$/.exec(ctx||''); if(!m) return null; const T = (GOD.teases||[]).find(t=>t.id===m[1]) || (typeof WALKS!=='undefined' && WALKS.goddess && (WALKS.goddess.disguise||[]).find(t=>t.id===m[1])); return T && T.image && T.image.setting || null; };
 function evGoddessDistract(T, c, act, fk, ctx){
   const D = GOD.distract || {}, tier = actTier(act), ph = gPhase(T);
   const x = Object.assign({}, ctx, {act: actLabel(act).toLowerCase()});

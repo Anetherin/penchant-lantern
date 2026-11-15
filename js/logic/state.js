@@ -197,12 +197,7 @@ function refreshCandidates(extra=0, quality=1){
     if(!allNames().includes(src.name)){ const c = ensureWorker(clone(src)); c.id=uid(); c.keep=false; c.signing=signingFor(c); S.candidates.push(c); }
   }
   inviteFriend(false);
-  // other partners occasionally turn up looking for work (paid, normal trust, still have their story)
-  if(S.flags.partnerCD>0) S.flags.partnerCD--;
-  else if(Math.random()<0.35){
-    const open = PARTNERS.filter(k=>!isHired(k) && partnerOffered(k));   // NG+ partners only turn up from cycle 2
-    if(open.length){ const k = pick(open); const c = rebirthNamed(makeNamed(k)); c.signing = signingFor(c); S.candidates.push(c); S.flags.partnerCD = 5; addLog(`${c.name} is looking for work. (Candidates)`); }
-  }
+  // Partners are now encountered on walks (js/events/walks.js) rather than appearing in Candidates automatically.
   // drifters / visiting guests (data/guests.json) wander in now and then, stay a while, and can come back later
   const seen = S.flags.guestSeen = S.flags.guestSeen || {}, V = GUEST_VISITS;
   const drift = Object.keys(NAMED).filter(k=>NAMED[k].role==='drifter' && !isHired(k) && !(SET.packsOff||{})[NAMED[k].pack]

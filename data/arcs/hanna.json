@@ -1,0 +1,162 @@
+{
+  "hanna": [
+    {
+      "title": "The Off-Duty Ledger",
+      "scene": "sam_date",
+      "text": "Hanna traps you at a corner bakery table with two mugs of cider and a thick sheaf of folded guild forms she has annotated in bright blue ink. Half the pages are real bounty tallies; the other half turn out to be a hand-drawn seating chart of which adventurers tip best, which merchants blush when complimented, and a tiny margin doodle of your hoodie marked \"Terrible disguise, 10/10 charm.\" She catches you reading upside down and snaps the paper flat, freckles flushing bright across her nose. \"Trade secrets! Eyes on your pastry, boss!\"",
+      "choices": [
+        {
+          "label": "Demand to see the rest of your margin notes",
+          "t": 5,
+          "m": 8,
+          "res": "She tries to swat your hands away, fails, and ends up laughing into her cider while giving you a wildly exaggerated dramatic reading of every rumor she ever heard about you."
+        },
+        {
+          "label": "Ask why she really left the Guild desk",
+          "t": 4,
+          "m": 6,
+          "res": "Her grin softens into something real. \"Because standing behind a counter hearing everyone else's stories gets old, Sam. I wanted to actually live in one for a change.\""
+        }
+      ],
+      "image": {
+        "comp": "leaning over a bakery table shielding a stack of annotated parchment sheets, freckled cheeks flushed, laughing brightly",
+        "setting": "warm corner bakery table by a sunlit window, mugs of cider",
+        "sam": true
+      }
+    },
+    {
+      "title": "Filing Error",
+      "scene": "shower",
+      "text": "You open the washroom door assuming nobody's inside—and find Hanna perched on the tub rim wrapped in a thin towel, one damp blonde curl plastered over her eyebrow while she dries a stack of soaked index cards over a candle stub. She yelps, nearly drops the cards into the bathwater, and then narrows her eyes at you with pure theatrical indignation. \"Knock much?! And before you ask—no, these aren't about you. Mostly.\"",
+      "choices": [
+        {
+          "label": "Apologize and shut the door fast",
+          "t": 2,
+          "m": 4,
+          "res": "\"Smooth exit!\" she calls through the wood. Five minutes later she slides a single dry index card under your door reading: IOUs: 1 proper knock (collectable tonight)."
+        },
+        {
+          "label": "Ask which card has your name on it",
+          "if": {"lewd":40},
+          "t": 3,
+          "m": 7,
+          "l": 2,
+          "res": "Hanna smirks, deliberately letting the towel dip an inch at her collarbone as she holds a card between two fingers. \"Depends—are you offering a live interview?\"",
+          "else": {
+            "t": 1,
+            "m": -2,
+            "res": "\"Classified!\" she announces, tossing a wet sponge straight at your chest before slamming the latch shut with a bright laugh."
+          }
+        },
+        {
+          "label": "Offer to hold the candle so she doesn't burn the cards",
+          "t": 2,
+          "m": 5,
+          "l": 1,
+          "res": "\"Now that's executive support,\" she grins, tugging the towel tight around her thighs while you lean politely against the doorframe."
+        }
+      ],
+      "image": {
+        "comp": "perched on the rim of a wooden bath wrapped in a towel, holding damp index cards near a candle, startled playful grin",
+        "setting": "steamy wooden washroom",
+        "sam": false,
+        "towel": true
+      }
+    },
+    {
+      "title": "After Last Call",
+      "scene": "casual",
+      "text": "The common room is dark except for one low lantern behind the counter, where Hanna is perched barefoot on a tall stool swinging her legs and counting tip coins into neat brass stacks. When you lean across the bar beside her, all her usual rapid-fire chatter slows down. She reaches out, straightens your collar with light, warm fingers, and doesn't pull her hand back. \"Funny thing,\" she says quietly, looking down at your shirt button instead of your eyes. \"I spent five years writing down everybody else's secrets. Never realized how nice it is when someone already knows mine.\"",
+      "choices": [
+        {
+          "label": "Cover her hand with yours on your collar",
+          "t": 5,
+          "m": 8,
+          "l": 1,
+          "res": "Her fingers curl into your shirt at once, freckles glowing in the amber light. \"Yeah,\" she whispers, leaning forward until her forehead rests against your chin. \"Like that.\""
+        },
+        {
+          "label": "Pour two nightcaps and stay by the counter",
+          "t": 4,
+          "m": 7,
+          "res": "She hops down to sit on the counter right beside you, bumping her knee against yours while the quiet house settles around you both."
+        }
+      ],
+      "image": {
+        "comp": "sitting on a dark wooden bar counter barefoot by a single lantern, adjusting his collar with a quiet tender smile",
+        "setting": "quiet pleasure-house bar after closing, single amber lantern",
+        "sam": true
+      }
+    },
+    {
+      "title": "Head Clerkship",
+      "scene": "portrait",
+      "text": "An official messenger from the Adventurers' Guild stops by before noon with an offer stamped in red wax: the Guild's head clerk just retired, and the Guildmaster wants Hanna back—double her old pay, her own corner office, and a seat on the trade council. Hanna reads the letter twice on the front steps, twirling her pencil between her knuckles until it snaps cleanly in half. She looks up at you, all teasing gone for once. \"It's everything I thought I wanted two years ago,\" she says softly. \"Say the word, Sam—what do you think I should do?\"",
+      "choices": [
+        {
+          "label": "\"I'd hate to lose you, yet I won't hold you back.\"",
+          "t": 4,
+          "m": 2,
+          "res": "Hanna exhales slowly, then laughs—a little wetly—and crumples the red-wax offer into her pocket. \"Good answer, boss. Mostly because I'd already decided not to go.\""
+        },
+        {
+          "label": "\"Stay here with me. This place isn't half as bright without you.\"",
+          "t": 6,
+          "m": 8,
+          "res": "Her face lights up bright enough to outshine the porch lantern. She grabs the messenger's ink pen, scribbles \"Position already filled—by me, somewhere better\" across the bottom, and hands it back."
+        },
+        {
+          "label": "\"Double pay is hard to argue with.\"",
+          "t": -3,
+          "m": -7,
+          "res": "Her smile goes flat in half a second. \"Right. Good business sense.\" She walks inside without waiting for you—though when morning comes, she is still behind your desk, quiet and unusually distant."
+        }
+      ],
+      "image": {
+        "comp": "standing on porch steps holding an official red-wax guild letter and a snapped pencil, serious hopeful expression",
+        "setting": "lantern-lit wooden front steps in daylight",
+        "sam": true
+      }
+    },
+    {
+      "title": "Off the Market",
+      "scene": "sam_date",
+      "text": "Hanna drags you up to the bell-tower overlook above the market street just before sunset, dangling a bag of warm honey almonds between her knees as the evening lamps flicker to life all across Hollowmere. Down below, adventurers spill out of the Guild hall toward the tavern row. Hanna leans her head firmly onto your shoulder, sighing with contentment. \"Look at all of 'em,\" she grins lazily. \"Sixteen parties, forty rumors, and for once I don't care who's sneaking off with whom—because the best story in town is sitting right next to me.\"",
+      "choices": [
+        {
+          "label": "Kiss her temple and pull her closer",
+          "t": 5,
+          "m": 8,
+          "l": 2,
+          "res": "She turns her face up before you can pull away, catching your mouth in a warm, sweet kiss that tastes like honey and dusk."
+        },
+        {
+          "label": "Tell her you're glad she walked out on the Guild",
+          "t": 4,
+          "m": 7,
+          "res": "\"Best impulse decision I ever made,\" she says happily, lacing her fingers tight through yours until the stars come out."
+        }
+      ],
+      "image": {
+        "comp": "sitting on a stone tower ledge at sunset leaning her head on his shoulder, overlooking a lantern-lit fantasy town",
+        "setting": "stone clocktower overlook at sunset above glowing city rooftops",
+        "sam": true
+      }
+    },
+    {
+      "title": "Front Page",
+      "scene": "final",
+      "text": "Hanna shuts your bedroom door with her heel and leans against it, wearing nothing but your spare oversized shirt and a breathless, bright-eyed grin that sends heat straight through your chest. She crosses the rug in four steps, climbs straight onto your lap on the edge of the bed, and frames your face between warm palms. \"No more margin notes, no more rumors, no more standing behind somebody else's counter,\" she whispers, pressing her forehead to yours as her hips settle firmly against yours. \"I want the whole thing, Sam—every week, every cycle, no secrets left. Tell me I'm yours.\"",
+      "choices": [
+        {"label":"Say yes","t":6,"m":12,"res":""},
+        {
+          "label": "Not yet",
+          "t": 1,
+          "m": -3,
+          "hold": true,
+          "res": "Hanna blinks, swallows hard, and manages a crooked smile as she climbs off your lap. \"Okay,\" she says softly, pulling the oversized shirt tighter around herself. \"Wait's on the record. Just don't keep a girl on hold too long.\""
+        }
+      ]
+    }
+  ]
+}

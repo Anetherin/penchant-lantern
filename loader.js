@@ -42,6 +42,7 @@
     'js/setup.js',
     'js/logic/ngplus.js',
     'js/logic/goddess.js',
+    'js/events/walks.js',
     'js/ui/core.js',
     'js/ui/sheet.js',
     'js/ui/settings.js',
@@ -49,7 +50,7 @@
   ];
   window.HOLLOWMERE_FILES = FILES;
   // Editable data, loaded before any script runs. Each becomes window.PL_DATA['<name>'].
-  var DATA_FILES = ['balance', 'economy', 'services', 'personalities', 'people', 'races', 'traits', 'titles', 'body', 'wardrobe', 'characters', 'guests', 'arcs', 'regulars', 'bonds', 'scenes', 'dates', 'events', 'snippets', 'ai-prompts', 'flavor', 'firsts', 'goddess'];
+  var DATA_FILES = ['balance', 'economy', 'services', 'personalities', 'people', 'races', 'traits', 'titles', 'body', 'wardrobe', 'characters', 'guests', 'arcs', 'regulars', 'bonds', 'scenes', 'dates', 'events', 'walks', 'snippets', 'ai-prompts', 'flavor', 'firsts', 'goddess'];
   // Data sets kept as a folder of parts (data/<name>/index.json + parts) instead of one file.
   var DATA_DIRS = ['characters', 'guests', 'arcs', 'flavor', 'firsts', 'goddess'];
   window.HOLLOWMERE_DATA = DATA_FILES;

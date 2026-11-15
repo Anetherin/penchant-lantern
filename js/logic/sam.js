@@ -642,20 +642,25 @@ function hireStud(id){
     `You quietly book ${w.name} a night with a broad-shouldered professional from across town who knows exactly what he's signing up for and is paid accordingly. She comes down to breakfast radiant. He leaves at noon, cheerful and very, very sleepy.`,
     `You find ${w.name} a willing stud for the night: a retired gladiator with stamina to spare and a fee to match. Nobody gets drained into a faint, nobody's reputation suffers, and ${w.name} hums all the next morning.`]) + `\n\nEnergy +${r.g} · Lust −${r.ld} · Mood + · Trust + · −${fmt(r.cost)}`, w.id, 'casual', null);
 }
+const guildHas = k => isHired(k) || S.candidates.some(c=>c.key===k);
+const guildDone = () => (S.flags.guild||0) >= 3 || ((S.flags.guild||0) >= 1 && guildHas('rhoswen') && guildHas('hanna'));
 function samGuild(){
+  if(guildDone()) return;
   if(!useAP(samWorkCost(20))) return;
   const g = S.flags.guild; let text='', wid=null, scene=null;
   if(g===0){
-    S.flags.guild = 1; text = `A freckled receptionist practically vaults the counter when she hears what Sam does for a living. "You own a pleasure house? I'm Hanna! Parties come back from dungeons with full purses and nowhere to spend them. Let's talk."\n\nGuild contracts unlocked.`;
+    S.flags.guild = guildHas('rhoswen') && guildHas('hanna') ? 3 : 1;
+    text = `A freckled receptionist practically vaults the counter when she hears what Sam does for a living. "You own a pleasure house? I'm Hanna! Parties come back from dungeons with full purses and nowhere to spend them. Let's talk."\n\nGuild contracts unlocked.`;
     const h = makeNamed('hanna'); h.id='npc_hanna'; NPCS.npc_hanna = h; wid='npc_hanna'; scene='portrait';
-  } else if(g===1 && !isHired('rhoswen')){
+  } else if(g===1 && !guildHas('rhoswen')){
     S.flags.guild = 2; const r = makeNamed('rhoswen'); r.signing = signingFor(r); S.candidates.push(r);
     text = `Hanna leans in. "So. There's an elf. Very proper, very lost, asking about work in places elves do NOT ask about. I may have mentioned you."\n\nRhoswen has been added to your candidates.`; wid = r.id; scene='portrait';
-  } else if(g>=1 && g<3 && S.rep>=30 && !isHired('hanna')){
+  } else if(g>=1 && g<3 && S.rep>=30 && !guildHas('hanna')){
     S.flags.guild = 3; const h = makeNamed('hanna'); h.signing = 40; S.candidates.push(h);
     text = `Hanna slides her resignation letter across the counter to her own supervisor, then turns to Sam. "Your reception desk is a disgrace and I have opinions. When do I start?"\n\nHanna has been added to your candidates.`; wid = h.id; scene='portrait';
   } else {
     if(g===1) S.flags.guild = 2;
+    if(guildHas('rhoswen') && guildHas('hanna')) S.flags.guild = 3;
     addCandidates(1, 1.1); samXP(6);
     text = S.flags.guild===2 ? `Hanna gives Sam the week's gossip and points out a promising job-seeker. "Come back when you've got a better reputation. I have... reasons."\n\n+1 candidate` : `Hanna points out a promising job-seeker and fills Sam in on the week's gossip.\n\n+1 candidate`;
   }
