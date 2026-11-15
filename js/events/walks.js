@@ -69,65 +69,76 @@ function samWalk(){
   if(ev) showEvent(ev);
 }
 
-function walkRecruitEvent(key, isPartner){
-  const N = NAMED[key];
-  const c = isPartner ? rebirthNamed(makeNamed(key)) : makeNamed(key);
-  c.signing = signingFor(c);
-  NPCS[c.id] = c;
-
-  const h = curH(), rb = raceBlock(c, h);
-  const opener = isPartner
-    ? ((WALKS.partnerOpeners || {})[key] || walkFill((WALKS.partnerOpeners || {}).default || 'You run into {name}.', {name:c.name, backstory:N.backstory || ''}))
-    : walkFill(WALKS.guestIntro || 'You run into {name}. {backstory}', {name:c.name, backstory:N.backstory || ''});
-  const pitch = isPartner && N.partnerStory ? `\n\n${N.partnerStory}` : '';
+function walkWorkerSummary(c){
   const jobLabel = (JOBS[c.job] || {}).label || c.job;
   const raceLabel = (RACES[c.race] || {}).label || c.race;
-  const info = `\n\n${titled(c)} (${raceLabel}${c.sub ? ', ' + c.sub : ''} · prefers ${jobLabel} · signing ${fmt(c.signing)})`;
+  return `${titled(c)} (${raceLabel}${c.sub ? ', ' + c.sub : ''} · prefers ${jobLabel} · signing ${fmt(c.signing)})`;
+}
 
-  const choices = [];
+function walkHireChoices(c, h, opts={}){
+  const rb = raceBlock(c, h), choices = [];
   if(!rb && S.gold >= c.signing){
     choices.push({
       label: `Hire her for ${h.name} (−${fmt(c.signing)})`,
       fx(){
         if(S.gold < c.signing) return 'Not enough gold for the signing bonus.';
         S.gold -= c.signing; delete c.signing; c.job = 'rest'; c.contract = 12; c.keep = false; c.seen = {}; c.house = h.id;
-        if(!isPartner){ (S.flags.guestSeen = S.flags.guestSeen || {})[key] = S.week; S.flags.lastGuest = S.week; }
+        if(opts.onHire) opts.onHire(c);
         delete NPCS[c.id]; S.workers.push(c);
         if(typeof applyAutoTutor === 'function') applyAutoTutor(c);
         if(typeof applyAutoWardrobe === 'function') applyAutoWardrobe(c);
         checkUnlocks(true); samXP(3);
         addLog(`${c.name} met Sam on a walk and joined ${h.name}.`);
-        return `${c.name} shakes your hand and falls into step beside you back to ${h.name}. (${c.name} hired!)`;
+        return (opts.hireRes || `${c.name} shakes your hand and falls into step beside you back to ${h.name}.`) + ` (${c.name} hired!)`;
       }
     });
   }
   choices.push({
-    label: `Invite her to apply (${isPartner ? 'stays in Candidates' : 'Candidates'})`,
+    label: `Invite her to apply (${opts.candNote || 'Candidates'})`,
     fx(){
       delete NPCS[c.id];
-      if(!isHired(key) && !inCandidates(key)){
-        if(isPartner){ c.keep = true; }
-        else { c.keep = false; c.stay = GUEST_VISITS.stayWeeks; (S.flags.guestSeen = S.flags.guestSeen || {})[key] = S.week; S.flags.lastGuest = S.week; }
+      if(!opts.candCheck || opts.candCheck()){
+        if(opts.onCand) opts.onCand(c);
         S.candidates.push(c);
         addLog(`Met ${c.name} on a walk. (Candidates)`);
       }
-      return `${c.name} agrees to drop by ${h.name} when she has a free hour. (${c.name} added to Candidates${rb ? ' — note: ' + rb : ''}.)`;
+      return (opts.candRes || `${c.name} agrees to drop by ${h.name} when she has a free hour.`) + ` (${c.name} added to Candidates${rb ? ' — note: ' + rb : ''}.)`;
     }
   });
   choices.push({
-    label: 'Chat awhile and wish her well',
+    label: opts.passLabel || 'Chat awhile and wish her well',
     fx(){
       delete NPCS[c.id]; samStat('charm', 1);
-      return `You share a pleasant few minutes talking before letting ${c.name} get back to her afternoon. (Charm +1)`;
+      return (opts.passRes || `You share a pleasant few minutes talking before letting ${c.name} get back to her afternoon.`) + ' (Charm +1)';
     }
   });
+  return choices;
+}
+
+function walkRecruitEvent(key, isPartner){
+  const N = NAMED[key];
+  const c = isPartner ? rebirthNamed(makeNamed(key)) : makeNamed(key);
+  c.signing = signingFor(c);
+  NPCS[c.id] = c;
+
+  const h = curH();
+  const opener = isPartner
+    ? ((WALKS.partnerOpeners || {})[key] || walkFill((WALKS.partnerOpeners || {}).default || 'You run into {name}.', {name:c.name, backstory:N.backstory || ''}))
+    : walkFill(WALKS.guestIntro || 'You run into {name}. {backstory}', {name:c.name, backstory:N.backstory || ''});
+  const pitch = isPartner && N.partnerStory ? `\n\n${N.partnerStory}` : '';
+  const markGuest = () => { if(!isPartner){ (S.flags.guestSeen = S.flags.guestSeen || {})[key] = S.week; S.flags.lastGuest = S.week; } };
 
   return {
     title: isPartner ? `A Chance Meeting: ${c.name}` : `A Visitor in Town: ${c.name}`,
     who: c.id,
     scene: 'portrait',
-    text: opener + pitch + info,
-    choices
+    text: `${opener}${pitch}\n\n${walkWorkerSummary(c)}`,
+    choices: walkHireChoices(c, h, {
+      candNote: isPartner ? 'stays in Candidates' : 'Candidates',
+      candCheck: () => !isHired(key) && !inCandidates(key),
+      onHire: markGuest,
+      onCand: () => { if(isPartner){ c.keep = true; } else { c.keep = false; c.stay = GUEST_VISITS.stayWeeks; markGuest(); } }
+    })
   };
 }
 
@@ -135,7 +146,24 @@ const walkPartnerEvent = list => walkRecruitEvent(pick(list), true);
 const walkGuestEvent = list => walkRecruitEvent(pick(list), false);
 
 function walkGoddessEvent(){
-  const g = G(), GW = WALKS.goddess || {};
+  const g = G(), GW = WALKS.goddess || {}, B = BAL.walk || {};
+  if(!g.bound){
+    const fresh = gFresh().filter(gEligible);
+    const mainOdds = gOverdue() > 0 ? 1 : (B.mainGoddessChance ?? 0.75);
+    if(fresh.length && Math.random() < mainOdds){
+      const mainEv = evGoddess();
+      if(mainEv){
+        g.evWk = S.week;
+        if(fresh[0].id !== 'st_ride'){
+          const lead = 'Later that night, after you get back from your walk:\n\n';
+          if(mainEv.pre && mainEv.pre.length) mainEv.pre[0].text = lead + mainEv.pre[0].text;
+          else mainEv.text = lead + mainEv.text;
+        }
+        return mainEv;
+      }
+    }
+  }
+
   const fk = gDisguise(), F = GOD_FORMS[fk] || {};
   const ctx = {alias:F.alias || GN(), form:F.desc || 'a woman', race:(F.label || '').toLowerCase(), house:curH().name, sam:'Sam', goddess:GN()};
 
@@ -174,8 +202,7 @@ function walkGoddessEvent(){
         g.love = clamp((g.love || 0) + (c.love || 0));
         g.jealousy = clamp((g.jealousy || 0) + (c.jealousy || 0));
         if(c.energy) samEnergyAdd(c.energy);
-        const phase = g.knows ? 'game' : 'stranger';
-        const act = c.resIn ? gDistractAct({id:T.id, phase, distract:0.75}, c) : null;
+        const act = c.resIn ? gDistractAct(T, c) : null;
         if(act) EVQ.unshift(() => evGoddessDistract(T, c, act, fk, ctx));
         return gtxt(act && c.resIn ? c.resIn : c.res, ctx);
       }
@@ -183,15 +210,49 @@ function walkGoddessEvent(){
   };
 }
 
+function walkCasualRecruit(npc, sc, actId, baseTrust, origLewd){
+  if(!npc) return null;
+  const h = curH(), CR = WALKS.casualRecruit || {};
+  npc.trust = clamp(Math.round((baseTrust || 10) + 12), 22, 34);
+  npc.lewd = Math.max(origLewd || 15, ((actById(actId) || {}).th || 10) + 4);
+  npc.intim = Math.max(npc.intim || 0, actTier(actId));
+  npc.privateCount = (npc.privateCount || 0) + 1;
+  npc.counts = npc.counts || {};
+  npc.counts.privateSam = (npc.counts.privateSam || 0) + 1;
+  npc.base0 = {trust: npc.trust, lewd: npc.lewd};
+  npc.signing = signingFor(npc);
+  NPCS[npc.id] = npc;
+
+  const raceLabel = (RACES[npc.race] || {}).label.toLowerCase() || npc.race;
+  const V = {name: npc.name, race: raceLabel, house: h.name};
+  const noteOrigin = c => { c.backstory = `Met Sam during a walk around Hollowmere. ${c.backstory || ''}`; };
+
+  return {
+    title: walkFill(CR.title || `Second Thoughts: ${npc.name}`, V),
+    who: npc.id,
+    scene: 'portrait',
+    text: walkFill(CR.text || `{name} pauses before leaving and asks if you have an opening at {house}.`, V) + `\n\n${walkWorkerSummary(npc)}`,
+    choices: walkHireChoices(npc, h, {
+      onHire: noteOrigin,
+      onCand: noteOrigin,
+      hireRes: walkFill(CR.hireRes || `{name} smiles and agrees to come back to {house} with you.`, V),
+      candRes: walkFill(CR.candRes || `{name} promises to stop by {house} later this week.`, V),
+      passLabel: walkFill(CR.passLabel || 'Keep things casual and wish her well', V),
+      passRes: walkFill(CR.passRes || `You share one last smile and let {name} go on her way.`, V)
+    })
+  };
+}
+
 function walkCasualEvent(){
   const C = (BAL.walk || {}).casual || {};
   const sc = pick(WALKS.casual || []); if(!sc) return walkMiscEvent('rest');
   const npc = genWorker({quality:1.05});
+  const baseTrust = npc.trust || 10, origLewd = npc.lewd || 15;
   const actPool = (sc.acts || ['kiss']).filter(id => actById(id));
   const actId = pick(actPool.length ? actPool : ['kiss']);
   const act = actById(actId) || {th:10, label:'Kiss'};
-  npc.lewd = Math.max(npc.lewd || 0, (act.th || 10) + 12);
-  npc.trust = Math.max(npc.trust || 0, 65);
+  npc.lewd = Math.max(origLewd, (act.th || 10) + 12);
+  npc.trust = Math.max(baseTrust, 65);
   NPCS[npc.id] = npc;
 
   const raceLabel = (RACES[npc.race] || {}).label.toLowerCase() || npc.race;
@@ -211,6 +272,7 @@ function walkCasualEvent(){
           samStat('technique', techGain);
           if(charmGain) samStat('charm', charmGain);
           if(S.sam.first && actTier(actId) >= 2) S.sam.first = false;
+          if((S.sam.technique || 0) >= (C.recruitTech ?? 25)) EVQ.unshift(() => walkCasualRecruit(npc, sc, actId, baseTrust, origLewd));
           const scene = 'samact:' + actId + '~~walk_' + sc.id;
           return {
             text: walkFill(sc.goRes, V) + `\n\n(Sam's Technique +${techGain}${charmGain ? `, Charm +${charmGain}` : ''}${extraE ? `, Energy −${extraE}` : ''})`,

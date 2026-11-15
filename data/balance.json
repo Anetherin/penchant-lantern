@@ -812,12 +812,13 @@
   },
   "walk": {
     "energy": 15,
+    "mainGoddessChance": 0.75,
     "weights": {"partner":3.5,"partnerPity":1.5,"guest":3,"goddess":2.5,"goddessBound":0.9,"casual":2.2,"rest":1.6,"coin":1.6,"flavor":1.6},
-    "casual": {"tech":3,"charm":1,"extraEnergy":8,"passEnergy":4}
+    "casual": {"tech":3,"charm":1,"extraEnergy":8,"passEnergy":4,"recruitTech":25}
   },
   "goddess": {
     "fullReborn": 4,
-    "events": {"perCycle":0.06,"max":0.35,"gap":2,"bound":0.15,"base":0.04,"catchUp":{"per":0.05,"cap":0.3,"max":0.15,"gap":1}},
+    "events": {"perCycle":0.07,"max":0.4,"gap":2,"bound":0.15,"base":0.06,"catchUp":{"per":0.05,"cap":0.3,"max":0.15,"gap":1}},
     "jealousy": {"perHire":3,"perPrivate":1,"perLady":0.15,"rosterRef":6,"decay":2,"perLover":4,"perCycle":6,"nightCut":15,"talkCut":5,"mid":30,"high":60},
     "love": {"bind":10,"night":2.5,"outside":0.5,"stay":70},
     "mood": {"base":55,"perLove":0.25,"perJealous":0.3,"drift":0.3,"ignoreBelow":35},
