@@ -731,7 +731,7 @@ function endWeek(){
   closeModal();
   S.workers.forEach(ensureWorker);
   goddessPlan();   // her actions this week (goddess.js), before the houses run
-  const R = {v3:true, v5:true, v6:true, week:S.week, lines:[], per:{}, hl:[], houses:[], income:0, wages:0, upkeep:0, recharge:0, served:0, turned:0, selfProps:0,
+  const R = {v3:true, v5:true, v6:true, week:S.week, lines:[], per:{}, hl:[], houses:[], income:0, wages:0, upkeep:0, recharge:0, cuts:0, served:0, turned:0, selfProps:0,
     led:{escort:0, offduty:0, bar:0, dance:0, bath:0, chapel:0, host:0, sam:S.samWeek.income}, samActs:S.samWeek.acts.slice()};
   S.workers.forEach(w=>R.per[w.id]={id:w.id, name:w.name, job:w.job, house:w.house, served:0, comp:0, acts:{}, props:0, acc:0, earned:0, e0:Math.round(w.energy), m0:Math.round(w.mood), l0:Math.round(w.lust||0), enc:[], why:[], notes:[],
     t0:w.trust||0, lw0:w.lewd||0, p0:w.popularity||0, st0:Object.assign({}, w.stats), tk0:Object.assign({}, w.tech), ak0:Object.fromEntries(Object.entries(w.acts||{}).map(([k,a])=>[k, a.skill||0]))});
@@ -743,7 +743,8 @@ function endWeek(){
   // Sam's Business: his deals and pricing lift every house's takings (balance.json → sam.bonus.business)
   R.bizBonus = Math.round(R.income * (samBonus('business') - 1)); R.income += R.bizBonus;
   R.wages = S.workers.reduce((a,w)=>a+(isFree(w)?0:w.wage), 0);
-  S.gold += R.income - R.wages - R.upkeep;
+  S.workers.forEach(w=>{ const pr = R.per[w.id], cut = workerCut(w), cg = pr.earned>0 && cut>0 ? Math.round(pr.earned * cut) : 0; pr.cut = cg; if(cg){ w.purse = (w.purse||0) + cg; R.cuts += cg; } });
+  S.gold += R.income - R.wages - R.upkeep - R.cuts;
   tutorWeek(R);
 
   const leaving = [], renew = [];
@@ -791,7 +792,87 @@ function endWeek(){
     if(hasPast('cook')) moodAdd(w, 2);
     const o = getOutfit(w); if(o.style===w.style){ moodAdd(w, 3); why('loves her outfit', true); }
     if(has(w,'Greedy') && pr.earned>250){ moodAdd(w, 4); why('made good money', true); }
+    if(pr.earned > 0 && !isFree(w)){
+      const cut = workerCut(w), base = baselineCut(), C = BAL.wardrobe.cut, gm = has(w,'Greedy') ? C.greedyMult : 1;
+      if(cut < base){
+        const ratio = (base - cut) / Math.max(0.05, base);
+        moodAdd(w, -Math.max(1, Math.round(C.moodPenalty * ratio * gm)));
+        w.trust -= Math.max(0.2, +(C.trustPenalty * ratio).toFixed(2));
+        why(cut <= 0 ? 'no profit cut' : 'small profit cut', false);
+      }
+    }
+    if(w.autoDress && autoDressPool(w).length > 1){
+      const AD = BAL.wardrobe.autoDress;
+      moodAdd(w, AD.mood); w.trust += AD.trust * fxMul(w,'trustGain');
+      why('chooses her own clothes', true);
+    }
     if(w.energy <= 5 && w.race!=='demon'){ w.health -= 15; moodAdd(w, -10); why('exhausted', false); log(`⚠️ ${w.name} is exhausted. Give her some rest.`); }
+    let boughtOutfit = false;
+    // Spend weekly profit cut (using up the budget each week unless saving briefly for an outfit within reach)
+    const spendBudget = (budget, noOutfit) => {
+      if(budget <= 0) return;
+      const act = cutSpendPick(w, budget, pr.cut||0, noOutfit);
+      if(act === 'outfit'){
+        const {afford} = wantedOutfits(w, budget);
+        if(afford.length){
+          const [bk, bo] = pick(afford), bc = outfitCost(bo);
+          w.owned = w.owned || []; if(!w.owned.includes(bk)) w.owned.push(bk);
+          if(w.autoDress || !wardrobeOK(w, w.outfit)) w.outfit = bk;
+          boughtOutfit = true;
+          moodAdd(w, bo.style===w.style ? 5 : 2);
+          why(`bought ${bo.label}`, true);
+          log(`🛍️ ${w.name} spent ${fmt(bc)} from her cut on ${bo.label}${w.outfit===bk?' and put it on':''}.`);
+          pr.notes.push(`Bought ${bo.label} (${fmt(bc)})`);
+          const left = budget - bc;
+          w.purse = 0;
+          if(left >= 5) spendBudget(left, true);
+          return;
+        }
+        w.purse = budget;
+        pr.notes.push(`Saved ${fmt(budget)} toward an outfit`);
+        return;
+      }
+      w.purse = 0;
+      if(act === 'massage'){
+        const eg = Math.round(clamp(budget / 5, 4, 28));
+        w.energy += eg;
+        why('got a massage', true);
+        pr.notes.push(`Spent ${fmt(budget)} on a massage (+${eg} energy)`);
+      } else if(act === 'nice'){
+        const mg = Math.round(clamp(budget / 9, 2, 12)), tg = +(clamp(budget / 110, 0.15, 1.5)).toFixed(2);
+        moodAdd(w, mg); w.trust += tg * fxMul(w,'trustGain');
+        why('treated herself to nice things', true);
+        pr.notes.push(`Bought herself nice things (${fmt(budget)}: +mood, +trust)`);
+      } else if(act === 'fling'){
+        const mg = Math.round(clamp(budget / 10, 2, 10)), ld = spendLust(w, Math.round(clamp(budget / 4, 6, 32)));
+        moodAdd(w, mg);
+        why('went out for a good time', true);
+        pr.notes.push(`Spent ${fmt(budget)} on a night out with a guy (lust −${ld}, +mood)`);
+      } else if(act === 'lessons'){
+        const xp = clamp(+(budget / 45).toFixed(2), 0.35, 2.2), sts = trainStatsOf(w).slice(0, 2);
+        if(sts.length){ const tot = sts.reduce((a,x)=>a+x[1],0)||1; sts.forEach(([k,wt])=>statXP(w, k, xp*(wt/tot))); }
+        else statXP(w, 'charm', xp);
+        why('paid for extra lessons', true);
+        pr.notes.push(`Paid ${fmt(budget)} for extra lessons (+stats)`);
+      } else if(act === 'treat'){
+        const mates = S.workers.filter(x=>x!==w && x.house===w.house), other = pick(mates);
+        if(other){
+          const bg = Math.round(clamp(budget / 30, 1, 3));
+          addBond(w, other, bg); moodAdd(w, 2); moodAdd(other, 2); w.trust += 0.2 * fxMul(w,'trustGain');
+          why(`treated ${other.name.split(' ')[0]}`, true);
+          pr.notes.push(`Treated ${other.name.split(' ')[0]} (${fmt(budget)}: +bond, +mood)`);
+        }
+      } else if(act === 'pamper'){
+        const xp = clamp(+(budget / 65).toFixed(2), 0.25, 1.4), pg = clamp(+(budget / 110).toFixed(1), 0.2, 1.4);
+        statXP(w, pick(['beauty','charm']), xp); w.popularity = clamp(w.popularity + pg); moodAdd(w, 2);
+        why('spent on grooming & scent', true);
+        pr.notes.push(`Salon & grooming (${fmt(budget)}: +stat, +popularity)`);
+      } else {
+        const temple = has(w,'Devout') || w.personality==='Devout and serene';
+        pr.notes.push(temple ? `Tithed ${fmt(budget)} to her temple` : `Sent ${fmt(budget)} home`);
+      }
+    };
+    if((w.purse||0) > 0) spendBudget(Math.round(w.purse), false);
     w.energy = clamp(w.energy, 0, energyCap(w)); w.mood = clamp(w.mood); w.health = clamp(w.health);
     if(w.race==='demon' && w.energy <= 5 && w.job!=='rest') log(`${w.name} is running on fumes. She needs clients to feed on, or time off.`);
     if(has(w,'Devoted')) w.mood = Math.max(w.mood, 45);
@@ -805,6 +886,13 @@ function endWeek(){
     if(w.job==='courtesan' && !getActs().some(a=>canClient(w,a.id))){ w.job = safeJob(w, 'attendant'); log(`${w.name} isn't comfortable offering services right now and moved to ${(JOBS[w.job]||{label:'rest'}).label} work.`); }
     if(!wardrobeOK(w,w.outfit)){ w.outfit = ownedOutfits(w).find(k=>wardrobeOK(w,k)) || w.outfit; log(`${w.name} changed into something she's more comfortable in.`); }
     if(!underOK(w,w.under)){ w.under='plain'; }
+    if(!boughtOutfit && w.autoDress && autoDressPool(w).length > 1){
+      const np = autoDressPick(w);
+      if(np && np !== w.outfit){
+        w.outfit = np;
+        pr.notes && pr.notes.push(`Dressed herself in ${WARDROBE[np].label}`);
+      }
+    }
     // auto-rest
     if(w.autoRest){
       if(w.job!=='rest' && w.energy < maxEnergy(w)*0.35){ w.prevJob = w.job; w.job = 'rest'; log(`😴 ${w.name} is worn out and will rest next week.`); }
@@ -907,13 +995,14 @@ function endWeek(){
       }
     }
   }
-  if(R.income - R.wages - R.upkeep > 0) samGainXP(Math.min(30, Math.round((R.income - R.wages - R.upkeep)/60)));
+  const netXp = R.income - R.wages - R.upkeep - (R.cuts||0);
+  if(netXp > 0) samGainXP(Math.min(30, Math.round(netXp/60)));
   S.week++; S.ap = apMax(); samEnergyAdd(samRecover(BAL.samHome.weekly) * samBonus('rest','strength') + (samUpFx('weekly')||0) + (hasPast('gym')?20:0));
   S.samWeek = {security:0, books:false, income:0, acts:[]};
   refreshCandidates();
   checkUnlocks(false, R.lines);
   S.lastReport = R;
-  addLog(`Week ${R.week}: income ${fmt(R.income)}, wages ${fmt(R.wages)}, upkeep ${fmt(R.upkeep)}${R.recharge?`, recharging ${fmt(R.recharge)}`:''}${R.tutor?`, tutors ${fmt(R.tutor)}`:''}.`);
+  addLog(`Week ${R.week}: income ${fmt(R.income)}, wages ${fmt(R.wages)}, upkeep ${fmt(R.upkeep)}${R.cuts?`, cuts ${fmt(R.cuts)}`:''}${R.recharge?`, recharging ${fmt(R.recharge)}`:''}${R.tutor?`, tutors ${fmt(R.tutor)}`:''}.`);
   save(); render();
   showReport(R, true);
 }
@@ -953,9 +1042,9 @@ function repHouseExtra(h){
   return `rooms ${h.roomsUsed}/${h.roomCap}${h.short?` <span class="warn">(short on rooms)</span>`:''} · tidiness ${Math.round(h.tidy0)}→<b class="${h.tidy>=BAL.tidy.high?'good':h.tidy<BAL.tidy.low?'warn':''}">${Math.round(h.tidy)}</b>${h.promoDraw?` · promoter draw +${Math.round(h.promoDraw)}`:''}${h.stepIn?` · stepped in for ${h.stepIn}`:''}${h.waited||h.left?` · ${h.waited} waited, ${h.left} left`:''}${h.selfProps?` · restless ladies made ${h.selfProps} proposition${h.selfProps>1?'s':''} themselves`:''}${pu.total?` · pushy clients ${pu.total}: <span class="good">${(pu.talked||0)+(pu.security||0)+(pu.sam||0)} handled</span>${(pu.samfail||0)+(pu.none||0)?`, <span class="warn">${(pu.samfail||0)+(pu.none||0)} went badly</span>`:''}`:''}${ctraitsLine(h)}`;
 }
 function repAll(R){
-  const net = R.income - R.wages - R.upkeep - (R.recharge||0) - (R.tutor||0), L = R.led;
+  const net = R.income - R.wages - R.upkeep - (R.cuts||0) - (R.recharge||0) - (R.tutor||0), L = R.led;
   const ledger = [['Escort fees',L.escort],['Propositions',L.offduty],['Bar',L.bar],['Stage',L.dance],['Bathhouse',L.bath],['Chapel donations',L.chapel],['Hosting',L.host],["Sam's dealings (Business)",R.bizBonus]].filter(x=>x[1]).map(([k,v])=>`<tr><td>${k}</td><td class="good">+${fmt(v)}</td></tr>`).join('')
-    + `<tr><td>Wages</td><td class="warn">−${fmt(R.wages)}</td></tr><tr><td>Upkeep</td><td class="warn">−${fmt(R.upkeep)}</td></tr>` + (R.recharge ? `<tr><td>Recharging</td><td class="warn">−${fmt(R.recharge)}</td></tr>` : '') + (R.tutor ? `<tr><td>Tutors</td><td class="warn">−${fmt(R.tutor)}</td></tr>` : '')
+    + `<tr><td>Wages</td><td class="warn">−${fmt(R.wages)}</td></tr><tr><td>Upkeep</td><td class="warn">−${fmt(R.upkeep)}</td></tr>` + (R.cuts ? `<tr><td>Profit cuts</td><td class="warn">−${fmt(R.cuts)}</td></tr>` : '') + (R.recharge ? `<tr><td>Recharging</td><td class="warn">−${fmt(R.recharge)}</td></tr>` : '') + (R.tutor ? `<tr><td>Tutors</td><td class="warn">−${fmt(R.tutor)}</td></tr>` : '')
     + (L.sam?`<tr><td class="muted">Sam's bar shifts (already in your purse)</td><td class="good">+${fmt(L.sam)}</td></tr>`:'')
     + `<tr><th>Net</th><th class="${net>=0?'good':'warn'}">${fmt(net)}</th></tr>`;
   const houseRows = (R.houses||[]).map(h=>`<tr><td>${repLink('h:'+h.id, esc(h.name))}</td><td>${h.served}${h.turned?` <span class="warn">(+${h.turned} turned away)</span>`:''}</td><td>${fmt(h.income)}</td><td>${fmt(h.upkeep)}</td><td>${Math.round(h.avgSat)}</td><td>${Math.round(h.rep)}</td></tr>`).join('');

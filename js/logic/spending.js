@@ -162,3 +162,55 @@ function buyGift(id, k){
   modal(`<h2>${esc(t.label)} for ${esc(w.name)}</h2><p class="story">${esc(line)}${esc(pNote(w,'gift'))}</p><p class="muted">−${fmt(cost)} · Trust ${tDelta(tg)} · Mood +${Math.round(t.mood*m)}</p>
     <div class="row"><button onclick="giftMenu('${w.id}')">Another gift…</button><button class="primary" onclick="openSheet('${w.id}')">Back to her</button></div>`);
 }
+let WARDROBE_ALL = null;
+function wardrobeGroupList(g){
+  if(g==='roster'){
+    const base = HOUSE_ALL ? S.workers : S.workers.filter(w=>w.house===curH().id);
+    return rosterFiltered(base);
+  }
+  return tutorGroupList(g);
+}
+function applyAutoWardrobe(w){
+  const a = S.autoWardrobe; if(!a || !a.on || !w) return;
+  if(a.cut!==undefined && a.cut!=='keep') w.cut = a.cut==='base' ? 'base' : clamp(+a.cut||0, 0, 0.9);
+  if(a.autoDress!==undefined && a.autoDress!=='keep') w.autoDress = a.autoDress==='on';
+}
+function wardrobeAllMenu(fromRoster){
+  if(!S.workers.length) return toast('Hire someone first.');
+  const gs = tutorGroups();
+  WARDROBE_ALL = { fromRoster:!!fromRoster, group: fromRoster ? 'roster' : ((gs[0]||[])[0]||'all'), cut:'keep', autoDress:'keep', autoNew:!!(S.autoWardrobe&&S.autoWardrobe.on) };
+  wardrobeAllDraw();
+}
+function wardrobeAllSet(k, v){ if(!WARDROBE_ALL) return; WARDROBE_ALL[k]=v; wardrobeAllDraw(); }
+function wardrobeAllDraw(){
+  const A = WARDROBE_ALL; if(!A) return;
+  const gs = tutorGroups(), list = wardrobeGroupList(A.group), basePct = Math.round(baselineCut()*100);
+  const gOpts = (A.fromRoster ? `<option value="roster" ${A.group==='roster'?'selected':''}>Current Roster filter (${wardrobeGroupList('roster').length})</option>` : '')
+    + gs.map(([id,lbl])=>`<option value="${esc(id)}" ${A.group===id?'selected':''}>${esc(lbl)} (${tutorGroupList(id).length})</option>`).join('');
+  const cOpts = `<option value="keep" ${A.cut==='keep'?'selected':''}>Don't change</option><option value="base" ${A.cut==='base'?'selected':''}>Default (${basePct}% paid · 0% free)</option>`
+    + BAL.wardrobe.cut.options.map(v=>`<option value="${v}" ${A.cut===String(v)?'selected':''}>${Math.round(v*100)}%</option>`).join('');
+  const aOpts = `<option value="keep" ${A.autoDress==='keep'?'selected':''}>Don't change</option><option value="on" ${A.autoDress==='on'?'selected':''}>Yes — picks her own outfits</option><option value="off" ${A.autoDress==='off'?'selected':''}>No — Sam chooses</option>`;
+  const names = list.slice(0,8).map(w=>esc(w.name.split(' ')[0])).join(', ') + (list.length>8 ? ` +${list.length-8} more` : '');
+  const canApply = list.length > 0 && (A.cut!=='keep' || A.autoDress!=='keep');
+  modal(`<h2>👗 Profit cuts &amp; wardrobe autonomy</h2><p class="muted">Set profit cuts and self-dressing for a whole group at once. Paid workers' baseline is <b>${basePct}%</b> this cycle (+${Math.round(BAL.wardrobe.cut.perCycle*100)}% per NG+ cycle up to ${Math.round(BAL.wardrobe.cut.maxBase*100)}%); partners and free workers default to 0%. Ladies spend their cut each week on outfits, massages, treats, lessons, grooming, or sending it home.</p>
+    <div class="row" style="margin:10px 0">Who <select onchange="wardrobeAllSet('group',this.value)">${gOpts}</select></div>
+    <div class="row" style="margin:6px 0">Profit cut <select onchange="wardrobeAllSet('cut',this.value)">${cOpts}</select></div>
+    <div class="row" style="margin:6px 0">Chooses own outfits <select onchange="wardrobeAllSet('autoDress',this.value)">${aOpts}</select></div>
+    <label class="row" style="margin:8px 0"><input type="checkbox" ${A.autoNew?'checked':''} onchange="wardrobeAllSet('autoNew',this.checked)"> Also apply these defaults to newly hired ladies</label>
+    <p class="muted">${list.length ? `${list.length} lad${list.length===1?'y':'ies'}: ${names}` : 'No one matches this group.'}</p>
+    <div class="row"><button class="primary" onclick="wardrobeAllApply()" ${canApply?'':'disabled'}>Apply</button><button onclick="WARDROBE_ALL=null;closeModal()">Cancel</button></div>`);
+}
+function wardrobeAllApply(){
+  const A = WARDROBE_ALL; if(!A) return;
+  const list = wardrobeGroupList(A.group);
+  list.forEach(w=>{
+    if(A.cut!=='keep') w.cut = A.cut==='base' ? 'base' : clamp(+A.cut||0, 0, 0.9);
+    if(A.autoDress!=='keep') w.autoDress = A.autoDress==='on';
+  });
+  if(A.autoNew && (A.cut!=='keep' || A.autoDress!=='keep')){
+    S.autoWardrobe = Object.assign({on:true}, S.autoWardrobe||{}, A.cut!=='keep'?{cut:A.cut}:{}, A.autoDress!=='keep'?{autoDress:A.autoDress}:{});
+    S.autoWardrobe.on = true;
+  } else if(!A.autoNew && S.autoWardrobe){ S.autoWardrobe.on = false; }
+  WARDROBE_ALL = null; save(); render(); refreshSheetInfo(); closeModal();
+  toast(`Updated wardrobe & cut settings for ${list.length} lad${list.length===1?'y':'ies'}.`);
+}

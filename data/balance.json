@@ -376,7 +376,48 @@
     "watchBonus": 15
   },
   "houseGate": {"base":40,"perBeat":20,"gap":[2,2,2],"retry":2},
-  "wardrobe": {"costMult":0.7,"eventChance":1.2},
+  "wardrobe": {
+    "costMult": 0.7,
+    "eventChance": 1.2,
+    "cut": {
+      "base": 0.2,
+      "perCycle": 0.05,
+      "maxBase": 0.4,
+      "options": [0, 0.1, 0.15, 0.2, 0.25, 0.35, 0.5],
+      "moodPenalty": 6,
+      "trustPenalty": 1.5,
+      "greedyMult": 1.5
+    },
+    "cutSpend": {
+      "_note": "How ladies spend their weekly profit cut at week end (no flat cut bonus; effects come from what she buys, using up her budget each week unless saving briefly for an outfit within reach). Personality & traits shift weights.",
+      "weights": {"outfit": 2.4, "massage": 1.5, "nice": 2.0, "fling": 1.1, "lessons": 1.4, "home": 1.0, "treat": 1.1, "pamper": 1.3},
+      "pers": {
+        "Cheerful and teasing": {"treat": 2.0, "nice": 1.5, "pamper": 1.4, "home": 0.6},
+        "Calm and elegant": {"pamper": 2.0, "nice": 1.6, "massage": 1.4, "fling": 0.4},
+        "Shy but earnest": {"home": 2.2, "lessons": 1.6, "treat": 1.3, "fling": 0.2},
+        "Proud and sharp-tongued": {"nice": 2.2, "outfit": 1.6, "pamper": 1.8, "treat": 0.6, "home": 0.5},
+        "Laid-back and lazy": {"massage": 2.5, "nice": 1.5, "lessons": 0.4, "home": 0.7},
+        "Bold and flirtatious": {"fling": 2.0, "pamper": 1.8, "outfit": 1.5, "home": 0.4},
+        "Bookish and curious": {"lessons": 2.8, "nice": 1.3, "pamper": 0.7, "fling": 0.4},
+        "Warm and motherly": {"treat": 2.4, "home": 2.2, "massage": 1.3, "fling": 0.3},
+        "Mysterious and aloof": {"pamper": 1.8, "nice": 1.5, "home": 1.3, "treat": 0.4},
+        "Hot-blooded and competitive": {"lessons": 2.2, "massage": 1.8, "fling": 1.3, "pamper": 0.7},
+        "Gloomy but devoted": {"home": 1.8, "lessons": 1.4, "nice": 1.3, "fling": 0.3},
+        "Scheming and charming": {"pamper": 2.0, "nice": 1.6, "outfit": 1.5, "home": 0.4},
+        "Earnest and dutiful": {"home": 2.4, "lessons": 1.8, "massage": 1.5, "fling": 0.4},
+        "Free-spirited wanderer": {"fling": 1.9, "nice": 1.5, "treat": 1.4, "lessons": 0.6},
+        "Cold and professional": {"lessons": 2.2, "massage": 1.6, "pamper": 1.3, "treat": 0.5},
+        "Playful trickster": {"treat": 1.8, "fling": 1.6, "nice": 1.5, "home": 0.5},
+        "Gentle and dreamy": {"nice": 2.0, "treat": 1.7, "pamper": 1.5, "fling": 0.4},
+        "Stoic and blunt": {"lessons": 1.9, "home": 1.9, "massage": 1.6, "pamper": 0.5},
+        "Sultry and indulgent": {"fling": 2.2, "pamper": 2.0, "nice": 1.6, "home": 0.3},
+        "Prim and proper": {"pamper": 1.9, "nice": 1.7, "lessons": 1.5, "fling": 0.2},
+        "Rowdy and boisterous": {"fling": 2.1, "treat": 2.0, "massage": 1.4, "lessons": 0.6},
+        "Devout and serene": {"home": 2.5, "massage": 1.5, "lessons": 1.3, "fling": 0.1}
+      }
+    },
+    "autoDress": {"mood": 2, "trust": 0.4}
+  },
   "debt": {"every":4,"payments":13,"ramp":8,"penalty":0.1,"strikes":3,"ngplus":{"fewer":0,"minPayments":9,"flatter":0,"minRamp":3}},
   "clients": {
     "pickFrom": 30,
@@ -724,7 +765,7 @@
     "demo": {"energy":30,"openLewd":45,"watchSkill":0.5,"watchLust":8,"watchLewd":1.5,"modestMood":-3}
   },
   "orgy": {
-    "_note": "A night with several ladies at once (Sam tab → Gather the girls; orgyMenu/samOrgy in sam.js). One action; Sam's energy = perGirl x ladies (+ ramp x ladies x (ladies-1)/2 if you want later ladies to cost more). min-max ladies, all from one house unless Sam has reach (Teleport Circle / Shadow Clone). Each lady needs a service she does with Sam (bestSamAct, through privateCore: her usual private-time effects, lust spent), to be open to sharing (lewdness >= openLewd, Exhibitionist, or lust >= eager), not Modest, and energy >= minEnergy. Every pair: bond + bond. Each: lewdness + lewd (up to her service's Sam line + lewdCapPlus), mood + mood; counts.orgies. minTier: her service must be at least this tier (2 = no kisses or massages). lustAfter: extra lust every lady spends at the end of the night (x her lust drop), on top of her own service.",
+    "_note": "A night with several ladies at once (Sam tab → Gather the girls; orgyMenu/samOrgy in sam.js). One action; Sam's energy = perGirl x ladies (+ ramp x ladies x (ladies-1)/2 if you want later ladies to cost more). min-max ladies, all from one house unless Sam has reach (Teleport Circle / Shadow Clone). Each lady needs a service she does with Sam (bestSamAct, through privateCore: her usual private-time effects, lust spent), to be open to sharing (lewdness >= openLewd, Exhibitionist, or lust >= eager), not Modest, and energy >= minEnergy. Every pair: bond + bond. Ladies already at bond >= femBond get a fem/fem vignette with image (pair:<act>:fem:<other>) and +femBondBonus bond. Each: lewdness + lewd (up to her service's Sam line + lewdCapPlus), mood + mood; counts.orgies. minTier: her service must be at least this tier (2 = no kisses or massages). lustAfter: extra lust every lady spends at the end of the night (x her lust drop), on top of her own service.",
     "perGirl": 20,
     "ramp": 0,
     "min": 2,
@@ -732,6 +773,8 @@
     "openLewd": 50,
     "minEnergy": 15,
     "bond": 6,
+    "femBond": 25,
+    "femBondBonus": 3,
     "lewd": 2,
     "lewdCapPlus": 10,
     "mood": 4,
