@@ -155,10 +155,12 @@ function viewUpgrades(){
   const card = (k,label,desc,cost,done,canDem,extra,blocked) => `<div class="wcard" style="cursor:default"><div class="winfo"><div class="wname">${label}</div><div class="muted">${desc}</div>
     <div class="row">${done?'<span class="good">✓ Built</span>':`<button onclick="buyUpgrade('${k}')" ${S.gold<cost||blocked?'disabled':''}>Buy · ${fmt(cost)}</button>`}${dem(k, canDem)}${extra||''}</div></div></div>`;
   const sizeTxt = k => { const n = AMENITY_SIZE[k] ?? 1; return n ? `${n} room${n>1?'s':''}` : 'no room'; };
-  const incSel = h.up.incense ? `<select onchange="setIncense(this.value)" title="Burner mode">${[['calm','Calm'],['aphro','Aphrodisiac']].map(([m,l])=>`<option value="${m}" ${(h.incense||'calm')===m?'selected':''}>${l}</option>`).join('')}</select>` : '';
+  const incSel = incensePicker(h);
+  const repairCard = h.damaged > 0 ? card('repair', `Repair Damaged Room (${h.damaged} left)`, 'Clear rubble and rebuild one damaged wing, permanently opening +1 room of usable capacity.', upgradeCost(h,'repair'), false) : '';
   const wsLine = h.up.workshop ? `<p class="muted">Workshop discount: <b>${Math.round(clamp(h.wsDisc||0,0,1)*100)}%</b> of the markup${S.workers.some(w=>w.house===h.id&&w.race==='dwarf')?'':' (no dwarf lives here, so it is not growing)'}.</p>` : '';
   const dt = Math.min(3,(h.decor||0)+1), drt = Math.min(3,(h.drinks||0)+1), DR = BAL.amenities.drinks, dk = h.drinks||0;
-  return `${houseTabs(false)}<section class="card"><h2>Upgrades: ${esc(h.name)} <span class="muted">(${roomsUsed(h)}/${houseSize(h)} rooms)</span></h2><div class="grid">
+  return `${houseTabs(false)}<section class="card"><h2>Upgrades: ${esc(h.name)} <span class="muted">(${roomsUsed(h)}/${houseSize(h)} rooms${h.damaged?`, ${h.damaged} damaged`:''})</span></h2>${D.buildDisc?`<p class="good">✦ <b>${esc(D.perk.label)}:</b> all upgrade costs here are ${Math.round(D.buildDisc*100)}% lower.</p>`:''}<div class="grid">
+    ${repairCard}
     ${card('room',`Add Bedroom (${h.rooms})`,`Adds ${BAL.rooms.perRoom} room sessions/wk for services. Takes 1 room. +12g/wk.`,upgradeCost(h,'room'),false,h.rooms>D.rooms)}
     ${card('quarters',`Add Staff Quarters (${h.quarters||0})`,'Sleeps 2 staff. Without a bed, staff sleep on the floor (poor rest, −mood). Takes 1 room. +6g/wk.',upgradeCost(h,'quarters'),false,(h.quarters||0)>D.quarters)}
     ${card('extraBed',`Add a Staff Bed (${bedsFor(h)} beds)`,`One more bed in the staff rooms, no extra space needed. Up to 2 extra per staff room (${h.extraBeds||0}/${maxExtraBeds(h)}). A bit cramped, but better than the floor. +3g/wk.`,upgradeCost(h,'extraBed'),(h.extraBeds||0)>=maxExtraBeds(h))}

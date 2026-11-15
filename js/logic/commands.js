@@ -94,7 +94,9 @@ function upgradeCost(h, k){
   else if(k==='annex') base = 2500;
   else if(k==='decor') base = (DECOR[Math.min(3,(h.decor||0)+1)]||{}).cost || 0;
   else if(k==='drinks') base = (DRINKS[Math.min(3,(h.drinks||0)+1)]||{}).cost || 0;
+  else if(k==='repair'){ const done = Math.max(0, ((HOUSES[h.id]||{}).damaged||0) - (h.damaged||0)); base = (BAL.houses.repairBase ?? 350) + done * (BAL.houses.repairStep ?? 80); }
   else base = UPGRADES[k] ? UPGRADES[k].cost : 0;
+  base = Math.round(base * (1 - ((HOUSES[h.id]||{}).buildDisc || 0)));
   // Workshop: the markup (inflation) is trimmed by h.wsDisc, never below the base price
   const disc = h.up && h.up.workshop ? clamp(h.wsDisc||0, 0, 1) : 0;
   return Math.round(base + base*(infl-1)*(1-disc));
@@ -108,6 +110,7 @@ function buyUpgrade(k){
   else if(k==='decor'){ if((h.decor||0)>=3) return toast('The house is already as grand as it gets.'); }
   else if(k==='drinks'){ if(!h.up.bar) return toast('The drinks menu needs a Bar first.'); if((h.drinks||0)>=3) return toast('The bar already pours the best in Hollowmere.'); }
   else if(k==='extraBed'){ if((h.extraBeds||0) >= maxExtraBeds(h)) return toast('The staff rooms are full. Add staff quarters first.'); }
+  else if(k==='repair'){ if(!(h.damaged>0)) return toast('No damaged rooms left to repair.'); }
   else { if(h.up[k]) return; need = AMENITY_SIZE[k] ?? 1; const nd = UPGRADES[k] && UPGRADES[k].needs; if(nd && !h.up[nd]) return toast(`${UPGRADES[k].label} needs a ${UPGRADES[nd].label} first.`); }
   if(need && roomsUsed(h) + need > houseSize(h)) return toast(`${h.name} is out of space (${roomsUsed(h)}/${houseSize(h)} rooms used).`);
   if(S.gold < cost) return toast('Not enough gold.');
@@ -120,6 +123,7 @@ function buyUpgrade(k){
   else if(k==='annex'){ h.annex=true; note(`${h.name}: annex built (+3 rooms of space).`); }
   else if(k==='decor'){ h.decor=(h.decor||0)+1; note(`${h.name}: redecorated (${DECOR[h.decor].label}).`); }
   else if(k==='drinks'){ h.drinks=(h.drinks||0)+1; note(`${h.name}: the bar now serves ${DRINKS[h.drinks].label.toLowerCase()}.`); }
+  else if(k==='repair'){ h.damaged = Math.max(0, (h.damaged||0) - 1); note(`${h.name}: 1 damaged room repaired (${h.damaged ? h.damaged + ' remaining' : 'fully restored'}).`); }
   else if(k==='incense'){ h.up[k]=true; h.incense='calm'; note(`${h.name}: ${UPGRADES[k].label} built.`); }
   else { h.up[k]=true; note(`${h.name}: ${UPGRADES[k].label} built.`); }
   save(); render();
@@ -162,7 +166,7 @@ function moveHouse(id, dir){
   const i = S.houses.findIndex(h=>h.id===id), j = i + dir; if(i < 0 || j < 0 || j >= S.houses.length) return;
   [S.houses[i], S.houses[j]] = [S.houses[j], S.houses[i]]; save(); render();
 }
-function setIncense(mode){ const h = curH(); if(!h.up.incense || !['calm','aphro'].includes(mode)) return; h.incense = mode; save(); render(); }
+function setIncense(mode){ const h = curH(); if(!h.up.incense || !incenseModes().includes(mode)) return; h.incense = mode; save(); render(); }
 function buyHouse(id){
   const D = HOUSES[id]; if(!D || H(id) || !houseOffered(id)) return;
   if(D.premium && ((S.sam.lvl||1) < D.level || S.rep < D.renown)) return toast(`${D.name} won't sell to Sam yet. Needs Sam level ${D.level} and renown ${D.renown}.`);

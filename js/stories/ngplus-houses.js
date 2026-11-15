@@ -5,7 +5,8 @@
    ===================================================================== */
 Object.assign(NPCS, {
   npc_ashby:{id:'npc_ashby', male:true, name:'Commodore Ashby Vell', seed:2218, look:'a lean, silver-haired air-navy commodore in an immaculate blue greatcoat with gold epaulettes and a cold, tidy smile'},
-  npc_harbormaster:{id:'npc_harbormaster', male:true, name:'Harbormaster Quill', seed:3319, look:'a stout, balding harbormaster with ink-stained fingers, a brass spyglass and a nervous habit of polishing it'}
+  npc_harbormaster:{id:'npc_harbormaster', male:true, name:'Harbormaster Quill', seed:3319, look:'a stout, balding harbormaster with ink-stained fingers, a brass spyglass and a nervous habit of polishing it'},
+  npc_foreman:{id:'npc_foreman', male:true, name:'Foreman Krag', seed:4412, look:'a broad-shouldered dwarven mason with a soot-dusted beard, leather measuring tape, and a heavy brass plumb line'}
 });
 STORIES.skyhook = {title:'Contraband Winds', hint:[
   'Something is hidden in the Skyhook\'s cellar.',
@@ -42,4 +43,49 @@ STORIES.pearl = {title:'The Drowned Bell', hint:[
   h=>({who:RID(h), scene:'job_bath', text:`The Bell is ringing again, louder each night. ${RN(h)} stands at the edge of the deepest pool. "The bargain can be ended, if someone takes the Bell's toll in my place: a gift the sea will accept."`, choices:[
     pay('Offer the sea a fortune in pearls', 1500, h, ()=>{ storyAdvance(h,60); h.rep=clamp(h.rep+6); return `The pearls sink, glowing, into the dark. The Bell tolls once more, softly, then never again. ${RN(h)} walks out of the harbor and up into the hills the next morning, and comes back that evening with an armful of wildflowers.\n\n"I'm staying," she says. "By choice, this time. Keep my wages."` + freeResident(h); }),
     check('Ring the Bell yourself, and bargain','Charm',S.sam.charm,60, ()=>{ storyAdvance(h,60); h.rep=clamp(h.rep+6); return `You dive, ring the Bell with both fists, and somehow talks the sea into a better deal: the Grotto stays warm, the pearls keep glowing, and ${RN(h)} is free to come and go as she likes.\n\nShe stays. "Someone has to keep an eye on you. Keep my wages."` + freeResident(h); }, ()=>{ S.sam.energy=0; storyRetry(h); return 'The sea is not in a bargaining mood. You are fished out of the pool half-frozen.'; })]})
+]};
+STORIES.foundry = {title:'Raising the Rafters', hint:[
+  'The west wing timbers groan every time the wind blows.',
+  'An old dwarven mason has an eye on Ironwood Hall.',
+  'Locked doors hide the hall\'s sunken hearth.',
+  'Ironwood Hall is ready for its grand reopening.'], beats:[
+  h=>({who:RID(h), scene:'casual', text:`Rain drips cleanly into three strategically placed buckets along Ironwood Hall's upper gallery. ${RN(h)} tosses you a pry bar. "Half these rooms were walled shut to duck taxes twenty years back. Help me pull a beam down?"`, choices:[
+    check('Brace the main beam together','Strength',S.sam.strength,40, ()=>{ storyAdvance(h); if((h.damaged||0)>0) h.damaged--; return 'Timber snaps straight into place. You pry open one sealed wing on the spot (-1 damaged room)!'; }, ()=>{ storyRetry(h); return 'The rusted iron bolt refuses to budge tonight.'; }),
+    pay('Hire a roofing crew', 450, h, ()=>{ storyAdvance(h); if((h.damaged||0)>0) h.damaged--; return 'Shingles go up before nightfall and one sealed wing opens up (-1 damaged room).'; })]}),
+  h=>({who:'npc_foreman', text:`Foreman Krag thumps a boot against the stone hearth. "I built half the foundries on this street, lad. That sunken flue can heat eighteen rooms easy—if you clear the slag and pay union timber rates."`, choices:[
+    check('Bargain down timber costs','Business',S.sam.business,50, ()=>{ storyAdvance(h); h.rep=clamp(h.rep+3); return 'Krag respects a hard ledger. He clears the flue himself and knocks a discount off every plank.'; }, ()=>{ storyRetry(h); return 'Krag shakes his beard slowly and walks out whistling.'; })]}),
+  h=>({who:RID(h), scene:'job_security', text:`With the cellar cleared, ${RN(h)} uncovers an intact dwarven forge-boiler beneath the stairs—warm enough to steam towels and dry timber twice as fast.`, choices:[
+    check('Rebuild the boiler manifold','Technique',S.sam.technique,45, ()=>{ storyAdvance(h); h.rep=clamp(h.rep+4); if((h.damaged||0)>0) h.damaged--; return 'Steam hisses smoothly through brass pipes. Another sealed room unlatches (-1 damaged room)!'; }, ()=>{ storyRetry(h); return 'A gasket blows warm soot in both your faces. Try again next week.'; })]}),
+  h=>({who:RID(h), scene:'portrait', text:`The great hall finally gleams with oiled oak and hung iron lanterns. ${RN(h)} leans on her maul, exhausted and grinning ear to ear. "She's loud, she's huge, and she's ours, boss."`, choices:[
+    {label:'Raise a tankard to Ironwood Hall', fx(){ storyAdvance(h,60); h.rep=clamp(h.rep+6); h.bonus.demand=(h.bonus.demand||1)*1.12; return `Half of Foundry Row pours in to celebrate (+12% clients). ${RN(h)} waves off her ledger. "Keep my pay. Nobody walks out on work she built with her own two hands."` + freeResident(h); }}]})
+]};
+STORIES.conservatory = {title:'Night-Blooming Blend', hint:[
+  'An exotic orchid cutting refuses to bloom.',
+  'A rival perfumer tries to poach Maren\'s recipes.',
+  'The conservatory vents need a rare resin.',
+  'The moon-orchid is about to open.'], beats:[
+  h=>({who:RID(h), scene:'casual', text:`Mist drifts warm beneath the vaulted glass. ${RN(h)} kneels beside an unopened black-crimson bud, fox tail curled anxiously over her ankles. "Night-blooming dusk orchid," she murmurs. "One drop of nectar doubles any censer's pull—if we keep it alive."`, choices:[
+    check('Adjust the glasshouse humidity by hand','Technique',S.sam.technique,40, ()=>{ storyAdvance(h); return 'Condensation clears cleanly off the panes. The petals stir open a fraction.'; }, ()=>{ storyRetry(h); return 'Too damp—two leaves curl back before you open the louvers.'; })]}),
+  h=>({who:RID(h), scene:'job_host', text:`A merchant from the Spice Guild corners ${RN(h)} in the lounge, sliding a heavy pouch across the table for her censer notebooks. She tilts her fox ears back toward you, waiting.`, choices:[
+    check('Out-charm the guild buyer into becoming a patron','Charm',S.sam.charm,55, ()=>{ storyAdvance(h); h.rep=clamp(h.rep+4); return 'He leaves the gold anyway—for a private table every Friday instead.'; }, ()=>{ storyRetry(h); return 'He snaps his briefcase shut and threatens to undercut your resin suppliers.'; })]}),
+  h=>({who:RID(h), scene:'casual', text:`All five censers need fresh myrrh and lotus resin before the Conservatory's seasonal salon. ${RN(h)} holds up a shipping manifest with an apologetic twitch of her ears.`, choices:[
+    pay('Import a full crate of temple resin', 600, h, ()=>{ storyAdvance(h); h.rep=clamp(h.rep+4); return 'Sweet golden smoke fills every suite to the rafters.'; }),
+    check('Mix a custom house blend with Maren','Wits',S.sam.wits||S.sam.business,50, ()=>{ storyAdvance(h); return 'Your improvised amber-orchid blend lingers three times longer than guild stock.'; }, ()=>{ storyRetry(h); return 'A smoky cough drives you both out onto the terrace until sunset.'; })]}),
+  h=>({who:RID(h), scene:'portrait', text:`Midnight strikes and the black-crimson dusk orchid unfurls completely under the glass dome, flooding the Conservatory with warm, dizzying sweetness. ${RN(h)} presses close against your arm, grinning.`, choices:[
+    {label:'Let the glasshouse breathe', fx(){ storyAdvance(h,60); h.rep=clamp(h.rep+6); h.bonus.demand=(h.bonus.demand||1)*1.12; return `Patrons linger past dawn (+12% clients). ${RN(h)} tucks an orchid behind your ear. "No wages from me, darling—you helped bloom the best room in town."` + freeResident(h); }}]})
+]};
+STORIES.lyceum = {title:'Final Examination', hint:[
+  'Former students want a private salon.',
+  'The Academy board disputes your charter.',
+  'Vivienne writes an advanced curriculum.',
+  'Graduation night at the Velvet Lyceum.'], beats:[
+  h=>({who:RID(h), scene:'casual', text:`Gilded mirrors double the candlelight inside ${h.name}'s empty lecture hall. ${RN(h)} taps a riding crop lightly against an oak lectern. "Word got back to my former patronesses. Either we polish our salon's standards tonight, or society calls us a common brothel."`, choices:[
+    check('Review the etiquette ledger with her','Charm',S.sam.charm,50, ()=>{ storyAdvance(h); return 'She lowers the crop with a faint smile. "Better. You don\'t embarrass easily, Sam."'; }, ()=>{ storyRetry(h); return 'Professor Vivienne marks a crisp red X beside your posture.'; })]}),
+  h=>({who:RID(h), scene:'portrait', text:`Three Academy governors arrive to contest your use of the name "Lyceum." They expect flustered apologies; ${RN(h)} pours four glasses of plum wine and leaves the negotiation to you.`, choices:[
+    check('Prove the deed carries legacy naming rights','Business',S.sam.business,55, ()=>{ storyAdvance(h); h.rep=clamp(h.rep+5); return 'One governor turns pale at the original founders\' clause; the other two immediately ask about private membership.'; }, ()=>{ storyRetry(h); return 'They adjourn in icy silence. Prepare stronger paperwork.'; })]}),
+  h=>({who:RID(h), scene:'casual', text:`With high society mollified, ${RN(h)} asks you to co-sign an advanced evening syllabus—requiring imported velvet drapes and full-length gilded mirrors in every practice booth.`, choices:[
+    pay('Outfit the mirror suites', 700, h, ()=>{ storyAdvance(h); return 'Every suite shines like a noble salon. Clients notice immediately.'; }),
+    {label:'Start with the main hall first', fx(){ storyAdvance(h); return 'Vivienne arches one eyebrow, nods slowly, and drills the staff twice as hard anyway.'; }}]}),
+  h=>({who:RID(h), scene:'portrait', text:`The Velvet Lyceum's first open soirée ends in applause and discreet envelopes stuffed with gold. ${RN(h)} removes her spectacles, polishes one lens, and locks the salon door behind the last carriage.`, choices:[
+    {label:'Accept her private tuition', fx(){ storyAdvance(h,60); h.rep=clamp(h.rep+6); h.bonus.demand=(h.bonus.demand||1)*1.12; return `Nobles book out next month on the spot (+12% clients). ${RN(h)} slips her contract into the desk drawer. "Keep my wages, Sam. Consider it a scholarship."` + freeResident(h); }}]})
 ]};

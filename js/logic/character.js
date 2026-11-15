@@ -11,11 +11,11 @@ function actCost(w, act){
   c *= 1.2 - s100(statOf(w,'stamina'))/250;
   if(act){ if(w.fav===act) c *= 0.75; if(w.dislike===act) c *= 1.35; if(clientStance(w,act)==='ask') c *= 1.25; }
   if(act && BAL.svc.staminaEnergy !== false){ const st = (actById(act)||{}).stats; if(st && st.stamina) c *= 1.1 - s100(statOf(w,'stamina'))/500; }
-  c *= fxMul(w,'actEnergy') * (act ? fxSub(w,'actEnergyBy',act) : 1);
+  c *= fxMul(w,'actEnergy') * (act ? fxSub(w,'actEnergyBy',act) : 1) * incenseMul(w,'actEnergy');
   return Math.max(1, c);
 }
 const clientCost = w => actCost(w, null) * 1.8;
-const appeal = w => s100(statOf(w,'beauty'))*0.4 + s100(statOf(w,'charisma'))*0.2 + s100(statOf(w,'charm'))*0.1 + w.popularity*0.5 + fxAdd(w,'appeal');
+const appeal = w => s100(statOf(w,'beauty'))*0.4 + s100(statOf(w,'charisma'))*0.2 + s100(statOf(w,'charm'))*0.1 + w.popularity*0.5 + fxAdd(w,'appeal') + incenseAdd(w,'appeal');
 // Lewdness gain with diminishing returns: each source has a cap. Full gain below cap - band, half at the cap, nothing by cap + band.
 function lewdUp(w, n, cap){
   const L = BAL.lewd, c = cap ?? L.softCap, t = Math.max(0, Math.min(1, (c + L.band - w.lewd) / (2*L.band)));
@@ -26,7 +26,7 @@ const svcLewdCap = (id, who) => ((actById(id)||{}).th ?? 30) + BAL.lewd.capOver[
 const lewdMult = w => fxMul(w,'lewdGain') * ((PERS[w.personality]||{}).lewd || 1) * ((S && HOUSES[(houseOf(w)||{}).id]||{}).lewdBoost || 1);
 const isFree = w => !!(w.isPartner || w.free);
 // Trust from Sam's attention: personality, race, and diminishing returns near the top.
-function gainTrust(w, n){ const b = w.trust, g = n * pTrust(w) * (n>0 ? fxMul(w,'trustGain') * samBonus('charm') : 1) * (n>0 ? Math.max(0.15, 1 - w.trust/140) : 1); w.trust = clamp(w.trust + g); capTrust(w); return w.trust - b; }
+function gainTrust(w, n){ const b = w.trust, g = n * pTrust(w) * (n>0 ? fxMul(w,'trustGain') * incenseMul(w,'trustGain') * samBonus('charm') : 1) * (n>0 ? Math.max(0.15, 1 - w.trust/140) : 1); w.trust = clamp(w.trust + g); capTrust(w); return w.trust - b; }
 // The least any activity with Sam builds (balance.json → trust.minor), so nothing they do together is wasted.
 const minorTrust = (w, mult=1) => gainTrust(w, (BAL.trust ? BAL.trust.minor : 0.3) * mult);
 // House-gated progress (docs/OVERHAUL.md §7): a lady who comes with a house (role 'house') can't trust Sam beyond
@@ -318,8 +318,9 @@ function wageFor(w){
 }
 function signingFor(w){ return Math.max(60, Math.round(w.wage * rnd(5,8) * (raceOf(w).signing ?? 1) * (0.9 + (S?S.rep:10)/150) * (hasBoon('recruit')?0.75:1))); }
 // Skills work in 1000-units: n is the old 0-100 amount (x SKL), with a diminishing curve (1 - v/growDen(), i.e. statCap() + 300).
-function grow(w,k,n){ n *= SKL * fxMul(w,'skillGain'); w.tech[k] = clampK((w.tech[k]||0) + n*(1 - (w.tech[k]||0)/growDen())); }
-function growAct(w,id,n){ id = actKey(id); if(!w.acts[id]) return; n *= SKL * fxMul(w,'skillGain'); const s=w.acts[id].skill; w.acts[id].skill = clampK(s + n*(1 - s/growDen())); }
+const skillMult = w => fxMul(w,'skillGain') * incenseMul(w,'skillGain') * housePerkVal(typeof S!=='undefined' && S && w && w.house ? houseOf(w) : null, 'skillGain', 1);
+function grow(w,k,n){ n *= SKL * skillMult(w); w.tech[k] = clampK((w.tech[k]||0) + n*(1 - (w.tech[k]||0)/growDen())); }
+function growAct(w,id,n){ id = actKey(id); if(!w.acts[id]) return; n *= SKL * skillMult(w); const s=w.acts[id].skill; w.acts[id].skill = clampK(s + n*(1 - s/growDen())); }
 function allNames(){ return S ? [...S.workers, ...S.candidates, ...(S.alumni||[])].map(w=>w.name) : []; }
 function genName(race, sub){
   const R = RACES[race] || {}, n = R.names || NAMES[race] || NAMES.human, SL = ((subData(race, sub)||{}).names||{}).l; let name, t=0;

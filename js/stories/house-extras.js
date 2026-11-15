@@ -64,7 +64,21 @@ const STORY_EXTRA = {
     end:h=>({who:RID(h), scene:'job_reception', text:'The merchant guild offers the Wayfarer an exclusive charter: every guild caravan stops here first.', choices:[
       S.flags.traveler ? {label:'Accept (the guildmaster\'s wife insists it\'s free)', fx(){ h.bonus.charter=60; storyAdvance(h,60); return 'The cloaked traveler was the guildmaster\'s wife. The charter is free: +60g every week.'; }}
         : pay('Buy the charter', 500, h, ()=>{ h.bonus.charter=60; storyAdvance(h,60); return 'The guild caravans arrive like clockwork: +60g every week.'; }),
-      {label:'Not yet', fx(){ storyRetry(h); return 'The offer stands, for now.'; }}]})}
+      {label:'Not yet', fx(){ storyRetry(h); return 'The offer stands, for now.'; }}]})},
+  sanctuary:{hintMid:'Caelia has a late confession for you.', hintEnd:'The Lantern Quarter holds its Candlemas.',
+    mid:h=>({who:RID(h), scene:'job_chapel', text:`After bells fade, ${RN(h)} pats the seat beside her inside the velvet confessional. "You spend every week listening to everyone else's troubles, Sam. Tell the priestess one selfish wish."`, choices:[
+      {label:'Wish for her to take a night off', fx(){ RES(h,{t:5, m:8}); storyAdvance(h,20); return 'Her wings flutter lightly against the wood screen. "Greedy boy," she whispers—and smiles all week.'; }},
+      {label:'Ask what she wishes for', fx(){ RES(h,{t:4, l:4}); storyAdvance(h,20); return '"Already sitting beside me," Caelia purrs, grazing your knuckles with bright halo-warm fingers.'; }}]}),
+    end:h=>({who:RID(h), scene:'casual', text:`Candlemas fills the Cloister steps with brass lanterns and flower crowns. ${RN(h)} asks whether to host a free vigil for the whole ward.`, choices:[
+      pay('Sponsor the Candlemas Vigil', 350, h, ()=>{ storyAdvance(h,60); h.rep=clamp(h.rep+8); houseStaff(h).forEach(w=>moodAdd(w, 8)); return 'Hymns and laughter echo down the quarter until dawn. The Cloister\'s name is spoken with reverence—and fond grins.'; }),
+      {label:'Keep the doors velvet-roped for regulars', fx(){ storyAdvance(h,60); h.rep=clamp(h.rep+4); h.bonus.demand=(h.bonus.demand||1)*1.1; return 'Exclusive candlelight suites draw steady crowds (+10% clients).'; }}]})},
+  atelier:{hintMid:'Nadia wants to fine-tune the parlor acoustics.', hintEnd:'An exhibition of clockwork art comes to Hollowmere.',
+    mid:h=>({who:RID(h), scene:'casual', text:`${RN(h)} kneels beside an open brass vent with an oilcan, hair pinned up, asking you to time the harmonic hum on your pocket watch.`, choices:[
+      check('Calibrate by ear','Technique',S.sam.technique,45, ()=>{ RES(h,{t:5, m:6}); storyAdvance(h,20); return 'The conduits settle into a warm low thrum that relaxes every room upstairs.'; }, ()=>{ RES(h,{m:3}); storyAdvance(h,10); return 'A pipe whistles loudly before settling down. Nadia laughs—rare and genuine.'; }),
+      {label:'Compliment how she looks in the brass glow', fx(){ RES(h,{t:3, m:7, l:2}); storyAdvance(h,20); return 'Her cheek panels flush soft rose gold. "Anomaly noted, Sam."'; }}]}),
+    end:h=>({who:RID(h), scene:'portrait', text:`Artisans gather outside the Clockwork Atelier to tour its private suites. ${RN(h)} offers to unveil her newest acoustic divan.`, choices:[
+      pay('Host the Guild Showcase', 400, h, ()=>{ storyAdvance(h,60); h.rep=clamp(h.rep+7); h.bonus.demand=(h.bonus.demand||1)*1.12; return 'Merchants and inventors leave fascinated and generous (+12% clients).'; }),
+      {label:'Keep it private for patrons only', fx(){ storyAdvance(h,60); h.rep=clamp(h.rep+4); houseStaff(h).forEach(w=>moodAdd(w, 8)); return 'Regulars pack the salon all month.'; }}]})}
 };
 Object.entries(STORY_EXTRA).forEach(([k,x])=>{ const st = STORIES[k]; st.beats.splice(1,0,x.mid); st.beats.push(x.end); st.hint.splice(1,0,x.hintMid); st.hint.push(x.hintEnd); });
 

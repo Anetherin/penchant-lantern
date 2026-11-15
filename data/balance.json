@@ -2,8 +2,8 @@
   "_readme": [
     "sleepIn: the lady who shares Sam's bed in an Owner's Suite (Sam tab → Home). trust = minimum trust; weekly: trustGain, mood, rest (her energy), samRest (Sam's energy); eventChance = odds per week of an evening/morning proposal when she is eager.",
     "Tuning numbers. Change them and reload; no code needed.",
-    "amenities: effect numbers for the house amenities (data/economy.json → upgrades has cost, upkeep and wording; amenitySize has the rooms). raceDraw = multiplier on that race's weight when candidates are rolled, while a Tethering Stone (spirit) or Charging Alcove (android) is built in ANY house. sigil.samDrain = share of the usual energy a demon takes from Sam in a house with the sigil. chapel: a Chapel Keeper (angels, 2 per house) adds rep (reputation, scaled by repGain) and pop (popularity) each week, gets mood and trust, visitorClass {class: x} = pilgrim / cleric clients raise visitors and donations: x (1 + sum of (that class's share of the week's courtesan clients) x (value - 1)), and visitors leave donations = visitors x donation x (0.5 + charm/100). garden: mood each week and rest multiplier (+5%) for everyone in the house, elves get elfMult times both. incense: mode calm or aphro (h.incense); calm.pushy = multiplier on pushy-client and incident chance, calm.lust / aphro.lust on weekly lust build, aphro.prop on propositions to staff; beastMult = how much stronger beastkin feel it (the factor's distance from 1 is multiplied by it); lewdDrop = points added to her lewdness for service-comfort checks under aphro (never stored). workshop.perDwarf = share of the build markup removed per dwarf in the house each week (h.wsDisc, max 1, reset on any purchase). laundry.decay = multiplier on weekly tidiness loss. drinks: per drinks tier (h.drinks 0-3) bar[] multiplies bartender income, props[] multiplies the bar's proposition boost (jobs.barProps) and upkeep[] is the weekly cost (needs the Bar). classroom: the teacher (job teacher) raises each other lady's skill in the subject by floor((hers below teacher) x rate), x humanMult for humans; teacherGrow = skill growth for the teacher, learnXP = Wits growth for each lady taught per week (the teacher gets 1.5), mood / trust = her weekly gains. decor: demand[tier] multiplies client demand, noble = extra weight for noble clients at the top tier, upkeep = gold per tier per week.",
-    "houses: buying a house outright costs its deed price x max(buyMin, weeks into this cycle x buyPerWeek) x (1 + priceStep for each house already owned beyond the first) (houseCost in commands.js). The NG+ new house goes on the loan instead and ignores this.",
+    "amenities: effect numbers for the house amenities (data/economy.json → upgrades has cost, upkeep and wording; amenitySize has the rooms). raceDraw = multiplier on that race's weight when candidates are rolled, while a Tethering Stone (spirit) or Charging Alcove (android) is built in ANY house. sigil.samDrain = share of the usual energy a demon takes from Sam in a house with the sigil. chapel: a Chapel Keeper (angels, 2 per house) adds rep (reputation, scaled by repGain) and pop (popularity) each week, gets mood and trust, visitorClass {class: x} = pilgrim / cleric clients raise visitors and donations: x (1 + sum of (that class's share of the week's courtesan clients) x (value - 1)), and visitors leave donations = visitors x donation x (0.5 + charm/100). garden: mood each week and rest multiplier (+5%) for everyone in the house, elves get elfMult times both. incense: mutually exclusive scent focus on h.incense (calm, aphro, focus, velvet, amber); beastMult = how much stronger beastkin feel every effect (multiplier deltas from 1 and additive bonuses like mood, sat, appeal, lewdDrop); pushy = pushy-client/incident multiplier, lust = weekly lust build multiplier, prop = propositions multiplier, skillGain/statGain/trustGain/energyRec/actEnergy = multipliers, mood/sat/appeal = weekly additive bonuses; lewdDrop = service-comfort lewdness bonus under aphro (never stored). workshop.perDwarf = share of the build markup removed per dwarf in the house each week (h.wsDisc, max 1, reset on any purchase). laundry.decay = multiplier on weekly tidiness loss. drinks: per drinks tier (h.drinks 0-3) bar[] multiplies bartender income, props[] multiplies the bar's proposition boost (jobs.barProps) and upkeep[] is the weekly cost (needs the Bar). classroom: the teacher (job teacher) raises each other lady's skill in the subject by floor((hers below teacher) x rate), x humanMult for humans; teacherGrow = skill growth for the teacher, learnXP = Wits growth for each lady taught per week (the teacher gets 1.5), mood / trust = her weekly gains. decor: demand[tier] multiplies client demand, noble = extra weight for noble clients at the top tier, upkeep = gold per tier per week.",
+    "houses: buying a house outright costs its deed price x max(buyMin, weeks into this cycle x buyPerWeek) x (1 + priceStep for each house already owned beyond the first) (houseCost in commands.js). The NG+ new house goes on the loan instead and ignores this. repairBase / repairStep: cost to repair one damaged room in a fixer-upper house (repairBase + repairedCount x repairStep).",
     "solo: energyCost = share of her max energy a solo night costs; clientCap = most clients she'll see that week afterward; lustDrop = how much it lowers her lust.",
     "lovers: neglectWeeks = weeks in a row without Sam before she feels left out (when another lover isn't); missedMood = mood lost each week she's restless and Sam doesn't see her; jealousyChance = weekly odds of that event. Shared scenes are tuned in bonds.json.",
     "breakup: mood / trust = what ending it costs her (Loyal ladies lose half the trust); rekindleTrust = trust she needs before Sam can ask her back; rekindleChance = base odds she says yes (better if she's happy); rekindleCooldown = weeks between attempts.",
@@ -241,24 +241,8 @@
       "pairEnergy": 14,
       "pairLust": 30
     },
-    "android": {
-      "fee": 15,
-      "perEnergy": 0.4,
-      "chargerDiscount": 0.4,
-      "adaptDraw": 1.2,
-      "adaptChance": 0.55,
-      "adaptFanChance": 0.85,
-      "adaptFee": 1.18,
-      "adaptSat": 10
-    },
-    "angel": {
-      "lanternLewd": 60,
-      "lanternTrust": 50,
-      "lanternAutoMood": 6,
-      "lanternAcceptTrust": 4,
-      "lanternAcceptMood": 8,
-      "lanternRefuseMood": -4
-    },
+    "android": {"fee":15,"perEnergy":0.4,"chargerDiscount":0.4,"adaptDraw":1.2,"adaptChance":0.55,"adaptFanChance":0.85,"adaptFee":1.18,"adaptSat":10},
+    "angel": {"lanternLewd":60,"lanternTrust":50,"lanternAutoMood":6,"lanternAcceptTrust":4,"lanternAcceptMood":8,"lanternRefuseMood":-4},
     "refusalMood": 15,
     "denHalves": true,
     "askMore": {"lewd":45,"chance":0.35,"fee":0.7}
@@ -379,44 +363,36 @@
   "wardrobe": {
     "costMult": 0.7,
     "eventChance": 1.2,
-    "cut": {
-      "base": 0.2,
-      "perCycle": 0.05,
-      "maxBase": 0.4,
-      "options": [0, 0.1, 0.15, 0.2, 0.25, 0.35, 0.5],
-      "moodPenalty": 6,
-      "trustPenalty": 1.5,
-      "greedyMult": 1.5
-    },
+    "cut": {"base":0.2,"perCycle":0.05,"maxBase":0.4,"options":[0,0.1,0.15,0.2,0.25,0.35,0.5],"moodPenalty":6,"trustPenalty":1.5,"greedyMult":1.5},
     "cutSpend": {
       "_note": "How ladies spend their weekly profit cut at week end (no flat cut bonus; effects come from what she buys, using up her budget each week unless saving briefly for an outfit within reach). Personality & traits shift weights.",
-      "weights": {"outfit": 2.4, "massage": 1.5, "nice": 2.0, "fling": 1.1, "lessons": 1.4, "home": 1.0, "treat": 1.1, "pamper": 1.3},
+      "weights": {"outfit":2.4,"massage":1.5,"nice":2,"fling":1.1,"lessons":1.4,"home":1,"treat":1.1,"pamper":1.3},
       "pers": {
-        "Cheerful and teasing": {"treat": 2.0, "nice": 1.5, "pamper": 1.4, "home": 0.6},
-        "Calm and elegant": {"pamper": 2.0, "nice": 1.6, "massage": 1.4, "fling": 0.4},
-        "Shy but earnest": {"home": 2.2, "lessons": 1.6, "treat": 1.3, "fling": 0.2},
-        "Proud and sharp-tongued": {"nice": 2.2, "outfit": 1.6, "pamper": 1.8, "treat": 0.6, "home": 0.5},
-        "Laid-back and lazy": {"massage": 2.5, "nice": 1.5, "lessons": 0.4, "home": 0.7},
-        "Bold and flirtatious": {"fling": 2.0, "pamper": 1.8, "outfit": 1.5, "home": 0.4},
-        "Bookish and curious": {"lessons": 2.8, "nice": 1.3, "pamper": 0.7, "fling": 0.4},
-        "Warm and motherly": {"treat": 2.4, "home": 2.2, "massage": 1.3, "fling": 0.3},
-        "Mysterious and aloof": {"pamper": 1.8, "nice": 1.5, "home": 1.3, "treat": 0.4},
-        "Hot-blooded and competitive": {"lessons": 2.2, "massage": 1.8, "fling": 1.3, "pamper": 0.7},
-        "Gloomy but devoted": {"home": 1.8, "lessons": 1.4, "nice": 1.3, "fling": 0.3},
-        "Scheming and charming": {"pamper": 2.0, "nice": 1.6, "outfit": 1.5, "home": 0.4},
-        "Earnest and dutiful": {"home": 2.4, "lessons": 1.8, "massage": 1.5, "fling": 0.4},
-        "Free-spirited wanderer": {"fling": 1.9, "nice": 1.5, "treat": 1.4, "lessons": 0.6},
-        "Cold and professional": {"lessons": 2.2, "massage": 1.6, "pamper": 1.3, "treat": 0.5},
-        "Playful trickster": {"treat": 1.8, "fling": 1.6, "nice": 1.5, "home": 0.5},
-        "Gentle and dreamy": {"nice": 2.0, "treat": 1.7, "pamper": 1.5, "fling": 0.4},
-        "Stoic and blunt": {"lessons": 1.9, "home": 1.9, "massage": 1.6, "pamper": 0.5},
-        "Sultry and indulgent": {"fling": 2.2, "pamper": 2.0, "nice": 1.6, "home": 0.3},
-        "Prim and proper": {"pamper": 1.9, "nice": 1.7, "lessons": 1.5, "fling": 0.2},
-        "Rowdy and boisterous": {"fling": 2.1, "treat": 2.0, "massage": 1.4, "lessons": 0.6},
-        "Devout and serene": {"home": 2.5, "massage": 1.5, "lessons": 1.3, "fling": 0.1}
+        "Cheerful and teasing": {"treat":2,"nice":1.5,"pamper":1.4,"home":0.6},
+        "Calm and elegant": {"pamper":2,"nice":1.6,"massage":1.4,"fling":0.4},
+        "Shy but earnest": {"home":2.2,"lessons":1.6,"treat":1.3,"fling":0.2},
+        "Proud and sharp-tongued": {"nice":2.2,"outfit":1.6,"pamper":1.8,"treat":0.6,"home":0.5},
+        "Laid-back and lazy": {"massage":2.5,"nice":1.5,"lessons":0.4,"home":0.7},
+        "Bold and flirtatious": {"fling":2,"pamper":1.8,"outfit":1.5,"home":0.4},
+        "Bookish and curious": {"lessons":2.8,"nice":1.3,"pamper":0.7,"fling":0.4},
+        "Warm and motherly": {"treat":2.4,"home":2.2,"massage":1.3,"fling":0.3},
+        "Mysterious and aloof": {"pamper":1.8,"nice":1.5,"home":1.3,"treat":0.4},
+        "Hot-blooded and competitive": {"lessons":2.2,"massage":1.8,"fling":1.3,"pamper":0.7},
+        "Gloomy but devoted": {"home":1.8,"lessons":1.4,"nice":1.3,"fling":0.3},
+        "Scheming and charming": {"pamper":2,"nice":1.6,"outfit":1.5,"home":0.4},
+        "Earnest and dutiful": {"home":2.4,"lessons":1.8,"massage":1.5,"fling":0.4},
+        "Free-spirited wanderer": {"fling":1.9,"nice":1.5,"treat":1.4,"lessons":0.6},
+        "Cold and professional": {"lessons":2.2,"massage":1.6,"pamper":1.3,"treat":0.5},
+        "Playful trickster": {"treat":1.8,"fling":1.6,"nice":1.5,"home":0.5},
+        "Gentle and dreamy": {"nice":2,"treat":1.7,"pamper":1.5,"fling":0.4},
+        "Stoic and blunt": {"lessons":1.9,"home":1.9,"massage":1.6,"pamper":0.5},
+        "Sultry and indulgent": {"fling":2.2,"pamper":2,"nice":1.6,"home":0.3},
+        "Prim and proper": {"pamper":1.9,"nice":1.7,"lessons":1.5,"fling":0.2},
+        "Rowdy and boisterous": {"fling":2.1,"treat":2,"massage":1.4,"lessons":0.6},
+        "Devout and serene": {"home":2.5,"massage":1.5,"lessons":1.3,"fling":0.1}
       }
     },
-    "autoDress": {"mood": 2, "trust": 0.4}
+    "autoDress": {"mood":2,"trust":0.4}
   },
   "debt": {"every":4,"payments":13,"ramp":8,"penalty":0.1,"strikes":3,"ngplus":{"fewer":0,"minPayments":9,"flatter":0,"minRamp":3}},
   "clients": {
@@ -539,15 +515,7 @@
         "stats": {"agility":0.5,"stamina":0.5},
         "excl": ["prude"]
       },
-      "customizer": {
-        "label": "Look-Seeker",
-        "w": 0.5,
-        "likes": {"races":["android"]},
-        "like": 0.45,
-        "draw": 1.6,
-        "fee": 1.15,
-        "satAdd": 6
-      }
+      "customizer": {"label":"Look-Seeker","w":0.5,"likes":{"races":["android"]},"like":0.45,"draw":1.6,"fee":1.15,"satAdd":6}
     },
     "traitCount": [0.45,0.35,0.2],
     "nativeMatch": 0.3,
@@ -637,7 +605,44 @@
       "visitorClass": {"pilgrim":1.5,"cleric":1.3}
     },
     "garden": {"mood":1,"rest":0.05,"elfMult":2},
-    "incense": {"beastMult":1.6,"lewdDrop":5,"calm":{"pushy":0.6,"lust":0.8},"aphro":{"lust":1.25,"prop":1.2}},
+    "incense": {
+      "beastMult": 1.6,
+      "lewdDrop": 5,
+      "calm": {
+        "label": "Calming Lavender",
+        "desc": "Steady nerves and cool heads. Less lust, calmer nights, +1 mood, and Sam refusals sting less.",
+        "pushy": 0.6,
+        "lust": 0.8,
+        "mood": 1
+      },
+      "aphro": {
+        "label": "Crimson Lotus",
+        "desc": "Sweet smoke that wakes desire. +25% lust build, +20% propositions, and +5 comfort lewdness.",
+        "lust": 1.25,
+        "prop": 1.2
+      },
+      "focus": {
+        "label": "Scholar's Cedar",
+        "desc": "Crisp temple wood for practice. +18% skill and stat growth, -10% lust build.",
+        "skillGain": 1.18,
+        "statGain": 1.18,
+        "lust": 0.9
+      },
+      "velvet": {
+        "label": "Velvet Myrrh",
+        "desc": "Warm, welcoming spice. +3 client satisfaction, +3 appeal, and +15% trust gain.",
+        "sat": 3,
+        "appeal": 3,
+        "trustGain": 1.15
+      },
+      "amber": {
+        "label": "Brisk Ambergris",
+        "desc": "Bright resin that restores stamina. -10% act energy, +10% rest recovery, and +1 mood.",
+        "energyRec": 1.1,
+        "actEnergy": 0.9,
+        "mood": 1
+      }
+    },
     "workshop": {"perDwarf":0.04},
     "laundry": {"decay":0.6},
     "drinks": {"bar":[1,1.25,1.5,2],"props":[1,1.15,1.35,1.6],"upkeep":[0,4,8,14]},
@@ -658,7 +663,7 @@
     },
     "decor": {"demand":[1,1.06,1.105,1.13],"noble":2,"upkeep":5}
   },
-  "houses": {"priceStep":0.25,"buyMin":10,"buyPerWeek":2},
+  "houses": {"priceStep":0.25,"buyMin":10,"buyPerWeek":2,"repairBase":350,"repairStep":80},
   "samUps": {
     "coffee": {
       "label": "Otherworld Coffee Maker",

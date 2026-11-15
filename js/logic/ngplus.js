@@ -132,7 +132,8 @@ function ngView(){
     body = `<h2>A new deed</h2><p class="muted">The Credit House is happy to finance a second property. Sam keeps his home house, his starter houses and any house whose story is finished, and takes on one more; its full listed debt${(S.cycle||1)+1>2?` (plus ${Math.round(BAL.ngplus.perCycle*((S.cycle||1)-1)*100)}% for each cycle past the first)`:''} joins the new loan, and its resident comes with it. ✦ houses only appear in New Game+.</p>
       <div class="grid">${NGS.offers.map(k=>{ const D = HOUSES[k], n = NAMED[D.npc]; return `<div class="pick ${NGS.house===k?'sel':''}" onclick="ngPick('house','${k}')">
         <b>${D.ngplus?'✦ ':''}${D.name}</b> <span class="tag house">${D.loc}</span><div class="muted">${D.desc}</div>
-        <div style="margin-top:4px">Adds ${fmt(ngNumbers(null, k).house)} debt · Rooms ${D.rooms} · ${n?esc(n.name)+' comes with it':''}</div></div>`; }).join('')}</div>`;
+        ${D.perk?`<div class="good" style="margin-top:4px">✦ <b>${esc(D.perk.label)}:</b> ${esc(D.perk.desc)}</div>`:''}
+        <div style="margin-top:4px">Adds ${fmt(ngNumbers(null, k).house)} debt · Rooms ${D.rooms}${D.damaged?` · ${D.damaged} damaged`:''} · ${n?esc(n.name)+' comes with it':''}</div></div>`; }).join('')}</div>`;
     ok = !!NGS.house;
   } else if(cur==='Another past life'){
     body = `<h2>Another life remembered</h2><p class="muted">Something from a life before the last one surfaces. Sam can add one more past life (its bonuses stack with what he already has), or keep things as they are.</p>
