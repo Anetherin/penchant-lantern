@@ -18,6 +18,7 @@ const walkSetting = ctx => {
 const inCandidates = key => S.candidates.some(c => c.key === key);
 const openWalkPartners = () => PARTNERS.filter(k => !isHired(k) && !inCandidates(k) && partnerOffered(k));
 const openWalkGuests = () => Object.keys(NAMED).filter(k => NAMED[k].role === 'drifter' && !isHired(k) && !inCandidates(k) && !(SET.packsOff || {})[NAMED[k].pack]);
+const openWalkExLovers = () => Object.keys(NAMED).filter(k => S.lives && S.lives[k] && S.lives[k].wasLover && !isHired(k) && !inCandidates(k) && !(SET.packsOff || {})[NAMED[k].pack]);
 
 function walkFill(text, vars){
   return String(text ?? '').replace(/\{(\w+)\}/g, (m, k) => vars[k] !== undefined ? String(vars[k]) : m);
@@ -41,9 +42,10 @@ function walkEligibleEvents(cat){
 function samWalk(){
   const B = BAL.walk || {}, W = B.weights || {};
   if(!useAP(samWorkCost(B.energy ?? 15))) return;
-  const partners = openWalkPartners(), guests = openWalkGuests();
+  const partners = openWalkPartners(), guests = openWalkGuests(), exLovers = openWalkExLovers();
   const g = G();
   const opts = [];
+  if(exLovers.length) opts.push({cat:'exlover', w:(W.partner ?? 3.5) + 1.2});
   if(partners.length) opts.push({cat:'partner', w:(W.partner ?? 3.5) + (W.partnerPity ?? 1.5) * (S.flags.walkNoPartner || 0)});
   else if(guests.length) opts.push({cat:'guest', w:W.guest ?? 3.0});
   if(!g.left) opts.push({cat:'goddess', w: g.bound ? (W.goddessBound ?? 0.9) : (W.goddess ?? 2.5)});
@@ -53,12 +55,13 @@ function samWalk(){
   });
 
   const picked = opts.length ? weighted(opts, o => o.w).cat : 'rest';
-  if(picked === 'partner') S.flags.walkNoPartner = 0;
+  if(picked === 'partner' || picked === 'exlover') S.flags.walkNoPartner = 0;
   else if(partners.length) S.flags.walkNoPartner = (S.flags.walkNoPartner || 0) + 1;
   S.flags.walks = (S.flags.walks || 0) + 1;
 
   let ev = null;
-  if(picked === 'partner') ev = walkPartnerEvent(partners);
+  if(picked === 'exlover') ev = walkRecruitEvent(pick(exLovers), true);
+  else if(picked === 'partner') ev = walkPartnerEvent(partners);
   else if(picked === 'guest') ev = walkGuestEvent(guests);
   else if(picked === 'goddess') ev = walkGoddessEvent();
   else if(picked === 'casual') ev = walkCasualEvent();
@@ -72,24 +75,33 @@ function samWalk(){
 function walkWorkerSummary(c){
   const jobLabel = (JOBS[c.job] || {}).label || c.job;
   const raceLabel = (RACES[c.race] || {}).label || c.race;
-  return `${titled(c)} (${raceLabel}${c.sub ? ', ' + c.sub : ''} · prefers ${jobLabel} · signing ${fmt(c.signing)})`;
+  const sign = c.wasLover ? 'no signing bonus' : `signing ${fmt(c.signing)}`;
+  return `${titled(c)} (${raceLabel}${c.sub ? ', ' + c.sub : ''} · prefers ${jobLabel} · ${sign})`;
 }
 
 function walkHireChoices(c, h, opts={}){
   const rb = raceBlock(c, h), choices = [];
   if(!rb && S.gold >= c.signing){
     choices.push({
-      label: `Hire her for ${h.name} (−${fmt(c.signing)})`,
+      label: c.signing > 0 ? `Hire her for ${h.name} (−${fmt(c.signing)})` : `Welcome her back to ${h.name} (free)`,
       fx(){
         if(S.gold < c.signing) return 'Not enough gold for the signing bonus.';
         S.gold -= c.signing; delete c.signing; c.job = 'rest'; c.contract = 12; c.keep = false; c.seen = {}; c.house = h.id;
+        if((S.ngppCycle||0) > 0 && (c.wasLover || (c.reborn||0) > 0 || (c.key && NAMED[c.key] && NAMED[c.key].role==='partner'))) c.reMet = (c.reMet || 0) + 1;
         if(opts.onHire) opts.onHire(c);
         delete NPCS[c.id]; S.workers.push(c);
         if(typeof applyAutoTutor === 'function') applyAutoTutor(c);
         if(typeof applyAutoWardrobe === 'function') applyAutoWardrobe(c);
         checkUnlocks(true); samXP(3);
         addLog(`${c.name} met Sam on a walk and joined ${h.name}.`);
-        return (opts.hireRes || `${c.name} shakes your hand and falls into step beside you back to ${h.name}.`) + ` (${c.name} hired!)`;
+        let msg = (opts.hireRes || `${c.name} shakes your hand and falls into step beside you back to ${h.name}.`) + ` (${c.name} hired!)`;
+        if(c.wasLover && goddessActive()){
+          const jGain = (GB().jealousy || {}).perExLover ?? 6;
+          G().jealousy = clamp((G().jealousy || 0) + jGain);
+          const gl = WALKS.goddessExLover && WALKS.goddessExLover.length ? walkFill(pick(WALKS.goddessExLover), {goddess:GN(), name:c.name}) : '';
+          if(gl) msg += `\n\n${gl} (${GN()}'s jealousy +${jGain})`;
+        }
+        return msg;
       }
     });
   }
@@ -117,27 +129,43 @@ function walkHireChoices(c, h, opts={}){
 
 function walkRecruitEvent(key, isPartner){
   const N = NAMED[key];
-  const c = isPartner ? rebirthNamed(makeNamed(key)) : makeNamed(key);
-  c.signing = signingFor(c);
+  const c = rebirthNamed(makeNamed(key));
+  c.signing = c.wasLover ? 0 : signingFor(c);
   NPCS[c.id] = c;
 
-  const h = curH();
-  const opener = isPartner
-    ? ((WALKS.partnerOpeners || {})[key] || walkFill((WALKS.partnerOpeners || {}).default || 'You run into {name}.', {name:c.name, backstory:N.backstory || ''}))
-    : walkFill(WALKS.guestIntro || 'You run into {name}. {backstory}', {name:c.name, backstory:N.backstory || ''});
-  const pitch = isPartner && N.partnerStory ? `\n\n${N.partnerStory}` : '';
+  const h = curH(), ngpp = (S.ngppCycle || 0) > 0, tier = Math.min(2, c.reMet || 0);
+  const isReturning = ngpp && (c.wasLover || (c.reborn || 0) > 0);
+  const custom = (WALKS.partnerMemoryLines || {})[key];
+  const memOpener = isReturning
+    ? (Array.isArray(custom) && custom[tier] ? custom[tier]
+      : (N.ngplus && WALKS.isekaiMemoryTiers && WALKS.isekaiMemoryTiers[tier]) ? WALKS.isekaiMemoryTiers[tier]
+      : (WALKS.exLoverMemoryTiers && WALKS.exLoverMemoryTiers[tier]) ? WALKS.exLoverMemoryTiers[tier] : null)
+    : null;
+  const fVars = {name:c.name, house:h.name, backstory:N.backstory || ''};
+  const opener = memOpener ? walkFill(memOpener, fVars)
+    : c.wasLover && WALKS.exLoverOpeners && WALKS.exLoverOpeners.length
+      ? walkFill(pick(WALKS.exLoverOpeners), fVars)
+      : isPartner
+        ? walkFill((WALKS.partnerOpeners || {})[key] || (WALKS.partnerOpeners || {}).default || 'You run into {name}.', fVars)
+        : walkFill(WALKS.guestIntro || 'You run into {name}. {backstory}', fVars);
+  const pitch = isPartner && N.partnerStory && !isReturning ? `\n\n${N.partnerStory}` : '';
   const markGuest = () => { if(!isPartner){ (S.flags.guestSeen = S.flags.guestSeen || {})[key] = S.week; S.flags.lastGuest = S.week; } };
+  const memHire = isReturning ? (N.ngplus && WALKS.isekaiMemoryHire ? WALKS.isekaiMemoryHire[tier] : WALKS.exLoverMemoryHire ? WALKS.exLoverMemoryHire[tier] : null) : null;
+  const hireRes = memHire ? walkFill(memHire, fVars)
+    : c.wasLover && WALKS.exLoverHireRes && WALKS.exLoverHireRes.length
+      ? walkFill(pick(WALKS.exLoverHireRes), fVars) : null;
 
   return {
-    title: isPartner ? `A Chance Meeting: ${c.name}` : `A Visitor in Town: ${c.name}`,
+    title: c.wasLover ? `A Familiar Face: ${c.name}` : isPartner ? `A Chance Meeting: ${c.name}` : `A Visitor in Town: ${c.name}`,
     who: c.id,
     scene: 'portrait',
     text: `${opener}${pitch}\n\n${walkWorkerSummary(c)}`,
     choices: walkHireChoices(c, h, {
+      hireRes,
       candNote: isPartner ? 'stays in Candidates' : 'Candidates',
       candCheck: () => !isHired(key) && !inCandidates(key),
       onHire: markGuest,
-      onCand: () => { if(isPartner){ c.keep = true; } else { c.keep = false; c.stay = GUEST_VISITS.stayWeeks; markGuest(); } }
+      onCand: () => { if(isPartner || c.wasLover){ c.keep = true; } else { c.keep = false; c.stay = GUEST_VISITS.stayWeeks; markGuest(); } }
     })
   };
 }

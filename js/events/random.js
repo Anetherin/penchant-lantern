@@ -275,14 +275,45 @@ function evLanternSelf(w){
     {label:ET('lantern_self','ok.label',V), fx(){ return ''; }}
   ]};
 }
+function challengeMet(id){
+  if(!id || !S || !CYCLE_CHALLENGES[id]) return false;
+  if(id==='lean_house') return !(S.flags && S.flags.boughtHouse);
+  if(id==='ahead_of_time'){
+    const elapsed = Math.max(1, (S.week||1) - ((S.debt && S.debt.start) || 0));
+    const total = ((S.debt && S.debt.payments) || BAL.debt.payments) * BAL.debt.every;
+    return elapsed <= Math.floor(total * 0.7);
+  }
+  if(id==='iron_ledger') return (S.debt.strikes||0) === 0 && (S.houses.reduce((a,h)=>a+(h.tidy||0), 0) / Math.max(1, S.houses.length)) >= 65;
+  if(id==='small_troupe') return S.workers.length <= 6;
+  if(id==='faithful_flame') return goddessActive() && (G().love||0) >= 75;
+  if(id==='full_vessel') return S.workers.some(w=>isVessel(w) && vesselStage(w) >= 3);
+  if(id==='starlight_debt') return true;
+  return false;
+}
 function checkEnd(){
   if(!S) return;
   if(S.debt.strikes>=(BAL.debt.strikes||3) && !S.over){
     S.over = true; save();
     modal(`<h2>Game Over</h2><p class="story">The Credit House takes the deeds. You are out on the street with a hoodie, a status window, and a lot of feelings.\n\nYou lasted ${S.week-1} weeks.</p><div class="row"><button class="primary" onclick="restart()">New game</button></div>`, {lock:true});
   } else if(S.debt.remaining<=0 && !S.won){
-    S.won = true; save();
-    modal(`<h2>Debt Paid! 🎉</h2><p class="story">Marguerite Vane stamps the final receipt. "Paid in full. I confess, Mr. Takahashi, I had money on you failing." She almost smiles.\n\nEverything you've built is yours, free and clear.\n\nNew Game+ is now unlocked: keep ${HOUSES[homeHouse()].name}, your partner and your progress, and take on a second house with a bigger debt. You can start it now or any time later from the top bar.</p><div class="row"><button onclick="closeModal()">Keep playing</button><button onclick="exportBox('ngplus')" title="Only what New Game+ carries; load it any time to start the next cycle again">Export NG+ save</button><button class="primary" onclick="startNGPlus()">New Game+…</button></div>`);
+    S.won = true;
+    let chMsg = '';
+    if(S.challenge && CYCLE_CHALLENGES[S.challenge]){
+      const ch = CYCLE_CHALLENGES[S.challenge];
+      if(challengeMet(S.challenge)){
+        S.challengePerks = S.challengePerks || [];
+        if(!S.challengePerks.includes(S.challenge)) S.challengePerks.push(S.challenge);
+        chMsg = `\n\n🏆 Challenge Complete (${ch.label})! Unlocked permanent Challenge Perk: ${ch.perk} (${ch.perkDesc})`;
+      } else {
+        chMsg = `\n\nChallenge (${ch.label}) conditions were not met this cycle.`;
+      }
+    }
+    save();
+    const ngpp = typeof isNGPPNext==='function' && isNGPPNext();
+    const nextDesc = ngpp
+      ? `NG++ is now unlocked: soft-reset into The Lantern Shrine with a new Bound Vessel while keeping Sam's boons, past lives, Challenge Perks, and raised ceilings.`
+      : `New Game+ is now unlocked: keep ${HOUSES[homeHouse()].name}, your partners and your progress, and take on another cycle.`;
+    modal(`<h2>Debt Paid! 🎉</h2><p class="story">Marguerite Vane stamps the final receipt. "Paid in full. I confess, Mr. Takahashi, I had money on you failing." She almost smiles.\n\nEverything you've built is yours, free and clear.${chMsg}\n\n${nextDesc}</p><div class="row"><button onclick="closeModal()">Keep playing</button><button onclick="exportBox('ngplus')" title="Only what New Game+ carries; load it any time to start the next cycle again">Export NG+ save</button><button class="primary" onclick="startNGPlus()">New Game+…</button></div>`);
   }
 }
 function restart(){ store.del(KEY_SAVE); EVQ=[]; S=null; closeModal(); TAB='house'; startSetup(); }

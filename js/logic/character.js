@@ -31,10 +31,15 @@ function svcLewdCap(id, who){
   const A = actById(id) || {}, L = BAL.lewd, raw = (A.th ?? 30) + L.capOver[who];   // who: 'sam' | 'client'
   return who === 'sam' && L.tierCaps && L.tierCaps[A.tier] != null ? Math.min(raw, L.tierCaps[A.tier]) : raw;
 }
-const lewdMult = w => fxMul(w,'lewdGain') * ((PERS[w.personality]||{}).lewd || 1) * ((S && HOUSES[(houseOf(w)||{}).id]||{}).lewdBoost || 1);
+const lewdMult = w => fxMul(w,'lewdGain') * ((PERS[w.personality]||{}).lewd || 1) * ((S && HOUSES[(houseOf(w)||{}).id]||{}).lewdBoost || 1) * (typeof cycleVarMul==='function' ? cycleVarMul('lewd', 1) : 1);
 const isFree = w => !!(w.isPartner || w.free);
 // Trust from Sam's attention: personality, race, and diminishing returns near the top.
-function gainTrust(w, n){ const b = w.trust, g = n * pTrust(w) * (n>0 ? fxMul(w,'trustGain') * incenseMul(w,'trustGain') * samBonus('charm') : 1) * (n>0 ? Math.max(0.15, 1 - w.trust/140) : 1); w.trust = clamp(w.trust + g); capTrust(w); return w.trust - b; }
+function gainTrust(w, n){
+  const b = w.trust;
+  const ch = n > 0 ? ((typeof hasChallengePerk==='function' && hasChallengePerk('small_troupe') ? 1.15 : 1) * (typeof rebornHouseGrowth==='function' ? rebornHouseGrowth(w) : 1) * (typeof cycleVarMul==='function' ? cycleVarMul('trust', 1) : 1)) : 1;
+  const g = n * pTrust(w) * (n>0 ? fxMul(w,'trustGain') * incenseMul(w,'trustGain') * samBonus('charm') * ch : 1) * (n>0 ? Math.max(0.15, 1 - w.trust/140) : 1);
+  w.trust = clamp(w.trust + g); capTrust(w); return w.trust - b;
+}
 // The least any activity with Sam builds (balance.json → trust.minor), so nothing they do together is wasted.
 const minorTrust = (w, mult=1) => gainTrust(w, (BAL.trust ? BAL.trust.minor : 0.3) * mult);
 // House-gated progress (docs/OVERHAUL.md §7): a lady who comes with a house (role 'house') can't trust Sam beyond
@@ -68,7 +73,7 @@ function clientStance(w,id,job){
   if(inc >= th - ASK_BAND && w.trust >= trustNeed(th - inc)) return 'ask';
   return 'no';
 }
-function samLean(w,id){ return inclination(w,id) + w.trust*0.45 + (isLovers(w,id) && w.trust>=40 ? 15 : 0) + (has(w,'Devoted')?20:0) - (has(w,'Oblivious')?45:0); }
+function samLean(w,id){ return inclination(w,id) + w.trust*0.45 + (isLovers(w,id) && w.trust>=40 ? 15 : 0) + (has(w,'Devoted')?20:0) + (typeof isVessel==='function' && isVessel(w) && vesselStage(w)<2 ? 35 : 0) - (has(w,'Oblivious')?45:0); }
 function samStance(w,id){
   const a = actById(id); if(!a || actBanned(w,id)) return 'no';
   if(has(w,'Oblivious') && actKey(id)!=='kiss') return 'no';
@@ -324,9 +329,12 @@ function wageFor(w){
   const base = (F.base ?? 8) + st*(F.stat ?? 0.3) + tc*(F.tech ?? 0.2) + (w.popularity||0)*(F.pop ?? 0.3) + (has(w,'Ambitious')?8:0) + (has(w,'Greedy')?6:0);
   return Math.round(base * (1 + (F.curve ?? 0) * lvl * lvl) * ((sd && sd.wage) ?? raceOf(w).wage ?? 1) * rb);
 }
-function signingFor(w){ return Math.max(60, Math.round(w.wage * rnd(5,8) * (raceOf(w).signing ?? 1) * (0.9 + (S?S.rep:10)/150) * (hasBoon('recruit')?0.75:1))); }
+function signingFor(w){
+  if(w && w.wasLover) return 0;
+  return Math.max(60, Math.round(w.wage * rnd(5,8) * (raceOf(w).signing ?? 1) * (0.9 + (S?S.rep:10)/150) * (hasBoon('recruit')?0.75:1) * cycleVarMul('signing', 1)));
+}
 // Skills work in 1000-units: n is the old 0-100 amount (x SKL), with a diminishing curve (1 - v/growDen(), i.e. statCap() + 300).
-const skillMult = w => fxMul(w,'skillGain') * incenseMul(w,'skillGain') * housePerkVal(typeof S!=='undefined' && S && w && w.house ? houseOf(w) : null, 'skillGain', 1);
+const skillMult = w => fxMul(w,'skillGain') * incenseMul(w,'skillGain') * housePerkVal(typeof S!=='undefined' && S && w && w.house ? houseOf(w) : null, 'skillGain', 1) * rebornHouseGrowth(w) * (hasChallengePerk('small_troupe') ? 1.15 : 1) * cycleVarMul('learn', 1);
 function grow(w,k,n){ n *= SKL * skillMult(w); w.tech[k] = clampK((w.tech[k]||0) + n*(1 - (w.tech[k]||0)/growDen())); }
 function growAct(w,id,n){ id = actKey(id); if(!w.acts[id]) return; n *= SKL * skillMult(w); const s=w.acts[id].skill; w.acts[id].skill = clampK(s + n*(1 - s/growDen())); }
 function allNames(){ return S ? [...S.workers, ...S.candidates, ...(S.alumni||[])].map(w=>w.name) : []; }
@@ -362,31 +370,33 @@ function ensureWorker(w){
   ['fav','dislike','lovers'].forEach(k=>{ if(w[k]!==undefined) w[k] = normPref(w[k]); });
   if(w.menu) w.menu = Array.from(new Set(w.menu.map(actKey)));
   const ids = getActs().map(a=>a.id).filter(id=>id!=='kiss');
-  if(w.fav===undefined){
-    const n = Math.random()<0.25 ? 2 : 1, f = [];
-    for(let i=0; i<n; i++){ const p = ids.filter(id=>!f.includes(id)); if(p.length) f.push(pick(p)); }
-    w.fav = normPref(f);
-    actArr(w.fav).forEach(id=>{ if(w.acts[id]) w.acts[id].skill = clampK(w.acts[id].skill+100); });
-  }
-  const favSet = actArr(w.fav);
-  if(w.dislike===undefined){
-    let d = []; const r = Math.random();
-    if(r < 0.12) d = ['manual_give','oral_give'].filter(id=>!favSet.includes(id) && ids.includes(id));
-    else if(r < 0.72){ const n = Math.random()<0.3 ? 2 : 1; for(let i=0; i<n; i++){ const p = ids.filter(id=>!favSet.includes(id) && !d.includes(id)); if(p.length) d.push(pick(p)); } }
-    w.dislike = normPref(d);
-  }
-  if(w.lovers===undefined){
-    let l = []; const r = Math.random();
-    if(r < 0.14) l = ['missionary','cowgirl','doggy'].filter(id=>!favSet.includes(id) && ids.includes(id));
-    else if(r < 0.45){ const n = Math.random()<0.22 ? 2 : 1; for(let i=0; i<n; i++){ const p = ids.filter(id=>!favSet.includes(id) && !l.includes(id)); if(p.length) l.push(pick(p)); } }
-    w.lovers = normPref(l);
+  if(!isVessel(w) || vesselStage(w) >= 1){
+    if(w.fav===undefined){
+      const n = Math.random()<0.25 ? 2 : 1, f = [];
+      for(let i=0; i<n; i++){ const p = ids.filter(id=>!f.includes(id)); if(p.length) f.push(pick(p)); }
+      w.fav = normPref(f);
+      actArr(w.fav).forEach(id=>{ if(w.acts[id]) w.acts[id].skill = clampK(w.acts[id].skill+100); });
+    }
+    const favSet = actArr(w.fav);
+    if(w.dislike===undefined){
+      let d = []; const r = Math.random();
+      if(r < 0.12) d = ['manual_give','oral_give'].filter(id=>!favSet.includes(id) && ids.includes(id));
+      else if(r < 0.72){ const n = Math.random()<0.3 ? 2 : 1; for(let i=0; i<n; i++){ const p = ids.filter(id=>!favSet.includes(id) && !d.includes(id)); if(p.length) d.push(pick(p)); } }
+      w.dislike = normPref(d);
+    }
+    if(w.lovers===undefined && (!isVessel(w) || vesselStage(w) >= 2)){
+      let l = []; const r = Math.random();
+      if(r < 0.14) l = ['missionary','cowgirl','doggy'].filter(id=>!favSet.includes(id) && ids.includes(id));
+      else if(r < 0.45){ const n = Math.random()<0.22 ? 2 : 1; for(let i=0; i<n; i++){ const p = ids.filter(id=>!favSet.includes(id) && !l.includes(id)); if(p.length) l.push(pick(p)); } }
+      w.lovers = normPref(l);
+    }
+    if(!w.jobLikes) rollJobPrefs(w);
   }
   if(!w.menu) w.menu = [];
   // firsts with Sam (js/events/firsts.js): her pace and path, and how far they've gone. Older saves where they'd
   // already been together count as having crossed every line.
   if(!w.firsts || !Array.isArray(w.firsts.path)) w.firsts = firstsProfile(w);
   if(w.intim===undefined) w.intim = (w.privateCount>0 || has(w,'Devoted')) ? Math.max(...w.firsts.path) : 0;
-  if(!w.jobLikes) rollJobPrefs(w);
   // "Open to propositions": 'on' | 'ask' | 'off' (old saves stored true/false). Must-offer jobs ignore it.
   if(w.offDuty===undefined) w.offDuty = 'ask'; else if(w.offDuty===true) w.offDuty = 'on'; else if(w.offDuty===false) w.offDuty = 'off';
   if(w.samples===undefined) w.samples = false;
@@ -553,7 +563,7 @@ const isHired = key => S && (S.workers.some(w=>w.key===key) || S.candidates.some
 // she isn't in the mood for the heavier services.
 const LUST_LOW = BAL.lust.low, LUST_HIGH = BAL.lust.high;
 function notInMood(w, act){
-  if(!act) return false;
+  if(!act || (isVessel(w) && vesselStage(w) < 2)) return false;
   const id = actKey(act), A = actById(id) || {};
   if(id==='massage_give' || id==='massage_get' || id==='kiss') return false;
   if(A.kind==='receive') return w.lust < (BAL.lust.receiveMin ?? 10);
@@ -569,14 +579,15 @@ function lustLabel(w){ return restless(w) ? 'restless' : w.lust>=LUST_EAGER ? 'e
 const LUST_EAGER = BAL.lust.eager || 60;
 // Her lust profile (data/balance.json → lust): weekly build, how much each act spends, floor and ceiling.
 function lustProfile(w){
+  if(isVessel(w) && vesselStage(w) < 2) return {build:0, drop:1, floor:0, max:0};
   const L = BAL.lust, B = L.build, Pf = L.profile, P = PERS[w.personality]||{};
-  const build = (B.base + w.lewd*B.perLewd + ((has(w,'Eager')||has(w,'Exhibitionist'))?B.eagerTrait:0) + (w.job==='rest'?B.resting:0)) * (P.lustBuild||1) * fxMul(w,'lustBuild') * incenseMul(w,'lust');
+  const build = (B.base + w.lewd*B.perLewd + ((has(w,'Eager')||has(w,'Exhibitionist'))?B.eagerTrait:0) + (w.job==='rest'?B.resting:0)) * (P.lustBuild||1) * fxMul(w,'lustBuild') * incenseMul(w,'lust') * cycleVarMul('lustBuild', 1);
   const drop = (Pf.dropAtLewd0 + (Pf.dropAtLewd100 - Pf.dropAtLewd0) * w.lewd/100) * fxMul(w,'lustDrop');
   const max = 100 + fxAdd(w,'lustMax');
   const floor = Math.min(60, max, w.lewd*Pf.floorPerLewd + fxAdd(w,'lustFloor'));
   return {build, drop, floor:Math.round(floor), max};
 }
-const fitLust = w => { const p = lustProfile(w); w.lust = Math.max(Math.min(p.floor, p.max), Math.min(p.max, clamp(w.lust, 0, p.max))); return w.lust; };
+const fitLust = w => { if(isVessel(w) && vesselStage(w) < 2){ w.lust = 0; return 0; } const p = lustProfile(w); w.lust = Math.max(Math.min(p.floor, p.max), Math.min(p.max, clamp(w.lust, 0, p.max))); return w.lust; };
 // Spend lust (a service, private time...). Returns how much it actually went down.
 // How much Sam's time spends her lust: half at Technique 0, up to samMax at 100 (balance.json → lust.samRelease).
 const samRelease = () => { const R = BAL.lust.samRelease; return R.min + (R.max - R.min) * Math.min(100, S.sam.technique||0)/100; };

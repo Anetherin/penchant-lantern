@@ -7,6 +7,7 @@ const JOBS = ECON.jobs;
 // Trust she needs before she'll take a job she doesn't particularly like. Jobs she enjoys need none.
 const JOB_TRUST = ECON.jobTrust;
 function jobTrust(w, job){
+  if(typeof isVessel==='function' && isVessel(w) && vesselStage(w) < 1) return Math.min(JOB_TRUST[job]||0, 20);
   if(jobLikes(w).includes(job)) return 0;
   return (JOB_TRUST[job]||0) + (jobDislikes(w).includes(job)?15:0);
 }
@@ -55,7 +56,15 @@ const FLOOR_REST = ECON.floorRest;
 const AMENITY_SIZE = ECON.amenitySize;
 const DECOR = ECON.decor;
 const DRINKS = ECON.drinks;
-const houseSize = h => Math.max(0, (HOUSES[h.id].size||9) + (h.annex?3:0) - (h.damaged||0));
+const houseBaseSize = h => {
+  const D = (h && HOUSES[h.id]) || {};
+  if(D.ngppOnly){
+    const B = BAL.ngplus || {}, lvl = Math.max(1, (h && h.ngppLevel) || (typeof S!=='undefined' && S && S.ngppCycle) || 1);
+    return (B.ngppRoomStart ?? 5) + (B.ngppRoomStep ?? 5) * (lvl - 1);
+  }
+  return D.size || 9;
+};
+const houseSize = h => Math.max(0, houseBaseSize(h) + (h.annex?3:0) - (h.damaged||0));
 const roomsUsed = h => h.rooms + (h.quarters||0) + Object.keys(h.up||{}).filter(k=>h.up[k]).reduce((a,k)=>a+(AMENITY_SIZE[k] ?? 1),0);
 const bedsFor = h => (h.quarters||0)*2 + (h.extraBeds||0);
 const maxExtraBeds = h => (h.quarters||0)*2;   // each staff room fits up to 2 more (bunks, a cot by the window)

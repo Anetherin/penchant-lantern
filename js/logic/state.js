@@ -20,10 +20,24 @@ function storyNpc(key){ const id='n_'+key; if(!NPCS[id]) NPCS[id] = makeNamed(ke
 const H = id => S.houses.find(h=>h.id===id);
 const curH = () => H(S.cur) || S.houses[0];
 const houseOf = w => (S && (H(w.house) || S.houses[0])) || null;
-function makeHouse(id){ const D = HOUSES[id]; return {id, name:D.name, rooms:D.rooms, quarters:D.quarters, beds:D.beds, tier:D.tier, up:clone(D.up), damaged:D.damaged||0, tidy:BAL.tidy.start, price:1, rep:D.rep, since:S?S.week:1, story:{beat:0,wk:0}, bonus:{}, spent:0, decor:0, drinks:0, teachSkill:null, wsDisc:0, incense:'calm'}; }
+function makeHouse(id){ const D = HOUSES[id], h = {id, name:D.name, rooms:D.rooms, quarters:D.quarters, beds:D.beds, tier:D.tier, up:clone(D.up), damaged:D.damaged||0, tidy:BAL.tidy.start, price:1, rep:D.rep, since:S?S.week:1, story:{beat:0,wk:0}, bonus:{}, spent:0, decor:0, drinks:0, teachSkill:null, wsDisc:0, incense:'calm'}; if(D.ngppOnly) h.ngppLevel = Math.max(1, (S && S.ngppCycle) || 1); return h; }
+function snapshotNgppHouse(h){
+  return {rooms:h.rooms, quarters:h.quarters, beds:h.beds, extraBeds:h.extraBeds||0, tier:h.tier, up:clone(h.up||{}), damaged:h.damaged||0, annex:!!h.annex, decor:h.decor||0, drinks:h.drinks||0, incense:h.incense||'calm', spent:Math.round(h.spent||0), story:clone(h.story||{beat:0,wk:0})};
+}
+function restoreNgppHouse(h, snap){
+  if(!h || !snap) return h;
+  ['rooms','quarters','beds','extraBeds','tier','damaged','annex','decor','drinks','incense','spent'].forEach(k=>{ if(snap[k]!==undefined) h[k] = snap[k]; });
+  if(snap.up) h.up = clone(snap.up);
+  if(snap.story) h.story = clone(snap.story);
+  return h;
+}
+function ngppSavedCost(id){
+  if(!S || !(S.ngppCycle > 0) || !S.ngppHouses || !S.ngppHouses[id]) return 0;
+  return Math.round((S.ngppHouses[id].spent || 0) * ((BAL.ngplus && BAL.ngplus.improveShare) ?? 1));
+}
 function newGame(cfg){
   const HD = HOUSES[cfg.house];
-  S = { v:33, samHome:cfg.house, samUps:{}, starters:[cfg.house], houseWardrobe:[], houseUnder:[], closets:{}, week:1, gold:600, rep:HD.rep, ap:3, cur:cfg.house, home:cfg.house, cycle:1, boons:[], past:cfg.past, pasts:[cfg.past], partner:cfg.partner, partners:[cfg.partner],
+  S = { v:36, samHome:cfg.house, samUps:{}, starters:[cfg.house], houseWardrobe:[], houseUnder:[], closets:{}, week:1, gold:600, rep:HD.rep, ap:3, cur:cfg.house, home:cfg.house, cycle:1, ngppCycle:0, ngppHouses:{}, cycleVar:null, challenge:null, challengePerks:[], vessels:[], boons:[], past:cfg.past, pasts:[cfg.past], partner:cfg.partner, partners:[cfg.partner],
     houses:[makeHouse(cfg.house)],
     sam:{energy:100, ...BAL.sam.base, appraisal:1, appXP:0, first:true, lvl:1, xp:0},
     samWeek:{security:0, books:false, income:0, acts:[]},
@@ -161,7 +175,7 @@ function migrate(s){
   if(ov < 34){   // run-down house repairs & expanded incense modes
     s.houses.forEach(h=>{ if(h.damaged===undefined) h.damaged = (HOUSES[h.id]||{}).damaged || 0; });
   }
-  s.v = 34; s.samUps = s.samUps || {}; s.houseWardrobe = s.houseWardrobe || []; s.houseUnder = s.houseUnder || []; s.home = s.home || (s.houses[0]||{}).id; s.samHome = s.samHome || s.home || (s.houses[0]||{}).id; s.cycle = s.cycle || 1; s.boons = s.boons || []; s.partners = s.partners || (s.partner ? [s.partner] : []);
+  s.v = 36; s.samUps = s.samUps || {}; s.houseWardrobe = s.houseWardrobe || []; s.houseUnder = s.houseUnder || []; s.home = s.home || (s.houses[0]||{}).id; s.samHome = s.samHome || s.home || (s.houses[0]||{}).id; s.cycle = s.cycle || 1; s.ngppCycle = s.ngppCycle || 0; s.ngppHouses = s.ngppHouses || {}; s.cycleVar = s.cycleVar || null; s.challenge = s.challenge || null; s.challengePerks = s.challengePerks || []; s.vessels = s.vessels || []; s.boons = s.boons || []; s.partners = s.partners || (s.partner ? [s.partner] : []);
   s.regulars = s.regulars || []; s.bonds = s.bonds || {}; s.flags = Object.assign({partnerCD:3}, s.flags||{});
   s.sam.lvl = s.sam.lvl || 1; s.sam.xp = s.sam.xp || 0;
   s.houses.forEach(h=>{ if(h.tidy===undefined) h.tidy = BAL.tidy.start; h.since = h.since || 1; h.story = h.story || {beat:0,wk:0}; h.bonus = h.bonus || {}; if(h.spent===undefined) h.spent = 0;
@@ -215,8 +229,8 @@ function inviteFriend(force){
   const F = BAL.ngplus.friends || {}, al = S.alumni = S.alumni || [];
   if(!al.length || S.candidates.filter(c=>c.friend).length >= (F.max||2) || !force && Math.random() >= (F.chance ?? 0.5)) return;
   const c = pick(al); S.alumni = al.filter(x=>x!==c);
-  c.keep = true; c.friend = true; c.signing = signingFor(c); S.candidates.push(c);
-  addLog(`${c.name} remembers you from another life and is looking for work. (Candidates)`);
+  c.keep = true; c.friend = true; c.signing = c.wasLover ? 0 : signingFor(c); S.candidates.push(c);
+  addLog(`${c.name} ${c.wasLover ? 'still remembers what you shared' : 'remembers you from another life'} and is looking for work. (Candidates)`);
 }
 function addCandidates(n, quality=1){ for(let i=0;i<n;i++){ const c=genWorker({quality}); c.signing=signingFor(c); S.candidates.push(c); } }
 function checkUnlocks(silent, sink){

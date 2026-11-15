@@ -128,11 +128,16 @@ function incensePicker(h){
 }
 function propertiesCard(){
   const props = Object.entries(HOUSES).filter(([k])=>!H(k) && houseOffered(k)).map(([k,P])=>{ const locked = P.premium && ((S.sam.lvl||1) < P.level || S.rep < P.renown);
-    return `<div class="wcard" style="cursor:default">${miniNamedAvatar(P.npc)}<div class="winfo"><div class="wname">${P.name} <span class="tag house">${P.loc}</span>${P.premium?' <span class="tag act">Premium</span>':''}${P.ngplus?' <span class="tag act">✦ NG+</span>':''}</div><div class="muted">${P.desc}</div>
+    const comeLine = P.npc && NAMED[P.npc] ? `Comes with ${NAMED[P.npc].name}${isHired(P.npc)?' (already with you)':''} · ` : '';
+    const saved = (S.ngppCycle||0) > 0 && S.ngppHouses && S.ngppHouses[k] ? S.ngppHouses[k] : null;
+    const upFee = typeof ngppSavedCost==='function' ? ngppSavedCost(k) : 0;
+    const rooms = saved ? saved.rooms : P.rooms, dmg = saved ? (saved.damaged||0) : (P.damaged||0), cap = houseBaseSize({id:k, ngppLevel:S.ngppCycle||1}) + (saved&&saved.annex?3:0);
+    return `<div class="wcard" style="cursor:default">${P.npc?miniNamedAvatar(P.npc):''}<div class="winfo"><div class="wname">${P.name} <span class="tag house">${P.loc}</span>${P.premium?' <span class="tag act">Premium</span>':''}${P.ngplus?' <span class="tag act">✦ NG+</span>':''}</div><div class="muted">${P.desc}</div>
     ${P.perk?`<div class="good">✦ <b>${esc(P.perk.label)}:</b> ${esc(P.perk.desc)}</div>`:''}
-    <div class="muted">Comes with ${NAMED[P.npc].name}${isHired(P.npc)?' (already with you)':''} · Rooms ${P.rooms} (cap ${P.size}${P.damaged?`, ${P.damaged} damaged`:''}) · Upkeep ~${fmt(P.upkeep+15*P.rooms)}/wk${P.minPop?` · Escorts should have popularity ${P.minPop}+`:''}</div>
+    ${saved?`<div class="good">↻ Restores saved NG++ upgrades &amp; story${upFee?` (+${fmt(upFee)} unscaled upgrade value)`:''}</div>`:''}
+    <div class="muted">${comeLine}Rooms ${rooms} (cap ${cap}${dmg?`, ${dmg} damaged`:''}) · Upkeep ~${fmt(P.upkeep+15*rooms)}/wk${P.minPop?` · Escorts should have popularity ${P.minPop}+`:''}</div>
     ${P.premium?`<div class="${locked?'warn':'good'}">Requires Sam level ${P.level} (now ${S.sam.lvl||1}) and renown ${P.renown} (now ${Math.round(S.rep)})</div>`:''}
-    <div class="row"><button onclick="buyHouse('${k}')" ${S.gold<houseCost(k)||locked?'disabled':''}>Buy · ${fmt(houseCost(k))}</button><span class="muted">deed ${fmt(P.cost)} × ${houseBuyMult().toFixed(0)} (rises each week of the cycle)${S.houses.length>1?` +${Math.round(BAL.houses.priceStep*100*(S.houses.length-1))}% for the ${S.houses.length} houses you own`:''}</span></div></div></div>`; }).join('');
+    <div class="row"><button onclick="buyHouse('${k}')" ${S.gold<houseCost(k)||locked?'disabled':''}>Buy · ${fmt(houseCost(k))}</button><span class="muted">deed ${fmt(P.cost)} × ${houseBuyMult().toFixed(0)} (rises each week of the cycle)${S.houses.length>1?` +${Math.round(BAL.houses.priceStep*100*(S.houses.length-1))}% for the ${S.houses.length} houses you own`:''}${upFee?` + ${fmt(upFee)} saved upgrades`:''}</span></div></div></div>`; }).join('');
   return `<section class="card"><h2>Properties for Sale</h2><p class="muted">Each house has its own clientele, reputation, staff, and resident.</p><div class="grid">${props||'<span class="muted">You own every house in Hollowmere!</span>'}</div></section>`;
 }
 // Debt card (All houses page only). Gone once the debt is paid.
@@ -162,7 +167,8 @@ function viewHouse(){
   const amen = Object.keys(UPGRADES).filter(k=>h.up[k]).map(k=>UPGRADES[k].label).join(', ') || 'none';
   const staff = Object.entries(JOBS).map(([k,J])=>{ const ws=S.workers.filter(w=>w.house===h.id && w.job===k); return ws.length?`<div><b>${J.label}</b>: ${ws.map(w=>esc(w.name)).join(', ')}</div>`:''; }).join('');
   const L = S.lastReport, lh = L && L.houses ? L.houses.find(x=>x.id===h.id) : null;
-  return `${houseTabs('house')}${notesCard(houseNotes(h))}<section class="card"><h2>${esc(h.name)} <span class="tag house">${D.loc}</span></h2><p class="muted">${D.desc}</p>${D.perk?`<div class="good" style="margin-bottom:6px">✦ <b>${esc(D.perk.label)}:</b> ${esc(D.perk.desc)}</div>`:''}<div class="grid2">
+  const rp = D.rebornPool ? `<div class="good" style="margin-bottom:6px">🔥 Working Reincarnations here: <b>${shrineRebornSum(h)}${D.rebornPool.cap?'/'+D.rebornPool.cap:''}</b> → +${Math.round((shrineMult(h,'perFee')-1)*100)}% fees, +${Math.round((shrineMult(h,'perGrowth')-1)*100)}% trust &amp; skill growth, +${Math.round((shrineMult(h,'perRep')-1)*100)}% reputation</div>` : '';
+  return `${houseTabs('house')}${notesCard(houseNotes(h))}<section class="card"><h2>${esc(h.name)} <span class="tag house">${D.loc}</span></h2><p class="muted">${D.desc}</p>${D.perk?`<div class="good" style="margin-bottom:6px">✦ <b>${esc(D.perk.label)}:</b> ${esc(D.perk.desc)}</div>`:''}${rp}<div class="grid2">
       <div>Reputation: <b>${Math.round(h.rep)}</b></div><div>Building: <b>${roomsUsed(h)}/${houseSize(h)}</b> rooms used${h.damaged?` <span class="warn">(${h.damaged} damaged)</span>`:''}</div>
       <div>Bedrooms: <b>${h.rooms}</b> · ${ROOM_NAMES[h.tier]} · <span title="Room services per week: ${BAL.rooms.perRoom} per bedroom">${h.rooms*BAL.rooms.perRoom} sessions/wk${lh&&lh.roomCap?` (last week ${lh.roomsUsed}/${lh.roomCap})`:''}</span>${housingShort(h)?` · <span class="warn" title="Expected comfort ${housingExpect(h)} (beds and bedroom tier, 0-3) at this reputation; yours is ${housingComfort(h)}. Staff lose mood each week.">Staff expect better beds/rooms at this reputation</span>`:''}</div>
       <div>Tidiness: <b class="${tidyCls(h)}">${Math.round(h.tidy ?? BAL.tidy.start)}</b> <span class="muted">${tidyLabel(h)}</span></div><div>Staff beds: <b>${sleepers(h).length}/${bedsFor(h)}</b> · ${BEDS[h.beds||0].label}${sleepers(h).length>bedsFor(h)?' <span class="warn">(not enough!)</span>':''}</div>
@@ -183,10 +189,13 @@ function workerCard(w, showHouse){
   const attTag = w.job==='courtesan' ? (ap.byCourt.has(w.id) ? ` <span class="tag good" title="Attended by ${esc(ap.byCourt.get(w.id).name)}">🎀 ${esc(ap.byCourt.get(w.id).name.split(' ')[0])}</span>` : ` <span class="tag muted" title="No dedicated attendant">unattended</span>`)
     : w.job==='attendant' && ap.byAtt.has(w.id) ? ` <span class="tag" title="Attending ${esc(ap.byAtt.get(w.id).name)}">🎀 → ${esc(ap.byAtt.get(w.id).name.split(' ')[0])}</span>` : '';
   const menu = w.job!=='rest' ? (w.menu.length ? w.menu.map(a=>`<span class="tag act">${esc(actLabel(a))}</span>`).join('') : '<span class="muted">No services on menu</span>') : '';
+  const vSt = vesselStage(w), vTh = (BAL.ngplus.vessel && BAL.ngplus.vessel.fills) || [2,5,9];
+  const subTxt = isVessel(w) && !w.personality ? vesselLabel(w) : esc(w.personality || vesselLabel(w));
+  const dormantTxt = (typeof GOD!=='undefined' && GOD && GOD.vessel && GOD.vessel.dormantMood) || 'Mood: dormant (fill the vessel to stir her)';
   return `<div class="wcard" onclick="openSheet('${w.id}')">${avatarHTML(w)}
     <div class="winfo"><div class="wname">${esc(titled(w))}${nameBadge(w)}${w.isPartner?' <span class="tag act">♥ Partner</span>':''}${attTag}${showHouse?` <span class="tag house">${esc(houseOf(w).name)}</span>`:''}</div>
-      <div class="muted">${raceLabel(w)} · ${esc(w.personality)}</div>
-      ${bar('Energy',w.energy,maxEnergy(w),'e')}${bar('Mood',w.mood,100,'m')}${knows(w,true)?lustBar(w):''}${w.health<100?bar('Health',w.health,100,'h'):''}
+      <div class="muted">${raceLabel(w)} · ${subTxt}</div>
+      ${bar('Energy',w.energy,maxEnergy(w),'e')}${vSt>=1?bar('Mood',w.mood,100,'m'):`<div class="muted" style="font-size:12px">${esc(dormantTxt)}</div>`}${knows(w,true)&&vSt>=2?lustBar(w):''}${isVessel(w)&&vSt<3?bar('Awakening',Math.round((w.vesselFills||0)*10)/10,vTh[vTh.length-1]||9,'t'):''}${w.health<100?bar('Health',w.health,100,'h'):''}
       <div class="row" onclick="event.stopPropagation()"><select onchange="setJob('${w.id}',this.value)">${jobOptions(w)}</select>
       <span class="muted">Trust ${tShow(w.trust)} · Lewd ${wl}${w.prevJob?' · 😴 auto-resting':''}</span><span class="muted">· ${isFree(w)?'no wage':fmt(w.wage)+'/wk'}</span></div><div>${menu}</div></div></div>`;
 }
