@@ -45,6 +45,8 @@ const tierActs = (w, s) => getActs().filter(a=>actTier(a.id)===s && samStance(w,
 // Why she isn't ready for her next first (null = she is). pent: she's restless enough to push past her own pace.
 function firstBlock(w, pent){
   const s = firstNext(w); if(!s) return 'done';
+  const gate = ((w.key && FIRST_CHARS[w.key] && FIRST_CHARS[w.key].gate) || {})[s];
+  if(gate && gate.arc && (w.arc||0) < gate.arc) return 'story';
   if(!tierActs(w,s).length) return 'comfort';
   const need = firstNeed(w, s, pent);
   if(w.trust < need) return 'trust';
@@ -134,6 +136,7 @@ function firstsLine(w){
   const kp = knowsPrefs(w), k = knows(w, true);
   const why = !s ? '' : {comfort:`She isn't comfortable going that far with Sam yet.`,
     trust:`She needs to trust Sam more first${k?` (${tShow(firstNeed(w,s,false))}${pentUp(w)?`, or ${tShow(firstNeed(w,s,true))} while she's this restless`:''})`:''}.`,
+    story:'Her story has to move a little further first.',
     wait:'Give it a little time.'}[blk] || '';
   return `<div style="margin-top:4px">With Sam: ${steps}${kp?` <span class="muted">(${w.firsts.pace} pace${w.firsts.init?', makes the first move':''})</span>`:''}</div>`
     + (s ? (blk ? `<div class="muted">Next: ${esc(stageName(s))}. ${why}</div>` : `<div class="pink">${pentUp(w)&&!firstReady(w)?`She's restless enough not to wait.`:`She's ready for the next step.`} <button class="sm" onclick="firstFromSheet('${w.id}')">♥ Take the next step</button> <span class="muted">(1 action)</span></div>`) : '');

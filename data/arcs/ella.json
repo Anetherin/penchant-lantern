@@ -3,7 +3,12 @@
     {
       "title": "Dinner Is a Competition",
       "scene": "sam_date",
-      "text": "Ella challenges you to dinner as a competition: whoever orders the better meal wins. She arrives early, naturally, and has already studied the menu. Over the second course she puts down her fork, and the candle flame steadies between them. \"I was across the street. I saw the truck. For three years I've told myself I'd never speak of it.\" Her hand is steady on the glass, but her knuckles are white. \"I'm speaking of it now. Because you're here. Because I can.\"",
+      "text": "Ella challenges you to dinner as a competition: whoever orders the better meal wins. She arrives early, naturally, and has already studied the menu. Over the second course she puts down her fork, and the candle flame steadies between you. \"I was across the street. I saw the truck. For three years I've told myself I'd never speak of it.\" Her hand is steady on the glass, but her knuckles are white. \"I'm speaking of it now. Because you're here. Because I can.\"",
+      "ngpp": [
+        "Halfway through studying the menu she frowns at the salt cellar as though checking a phantom scorecard, then briskly shakes it off.",
+        "\"Odd,\" she murmurs over her wine glass, brow knitted. \"I knew which entrée you'd pass on before you opened your mouth, Takahashi. Lucky guess?\"",
+        "\"This table,\" she says softly, knuckles pale on the stem. \"Cracked brass candleholder, rain outside, the truck tearing through my sleep. Don't look at me like that—I swear we've had this dinner before.\""
+      ],
       "choices": [
         {
           "label": "Reach across the table",
@@ -28,6 +33,49 @@
       "title": "Scoring Points",
       "scene": "shower",
       "text": "You open the washroom door and find Ella in the tub, hair pinned up with a pencil, a thick book propped on the soap dish, a glasses-fogged glare aimed squarely at the intruder. Steam curls around her. \"You didn't knock,\" she says. \"That's a point to me.\" She doesn't cover up, since the moral high ground is more valuable than modesty, and she turns a page with deliberate calm.",
+      "byIntim": {
+        "1": {
+          "text": "You open the washroom door and find Ella in the tub, hair pinned up with a pencil, glasses fogged over her nose. Instead of snapping, the corner of her mouth twitches upward. \"You didn't knock, Takahashi—that's a point to me,\" she murmurs, tilting her chin so water slides over her collarbone. \"If you want an appeal, step closer instead of standing in the draft.\"",
+          "choices": [
+            {
+              "label": "Kneel beside the tub and earn your point back",
+              "t": 4,
+              "m": 8,
+              "l": 2,
+              "private": true,
+              "acts": ["kiss", "massage_give"],
+              "res": "\"Acceptable opening argument,\" she breathes as steam clings to both of you."
+            },
+            {
+              "label": "Concede the point and shut the door",
+              "t": 2,
+              "m": 3,
+              "res": "\"Smart,\" she calls cleanly. Five minutes later she leaves a cup of tea outside your door marked DRAW."
+            }
+          ]
+        },
+        "3": {
+          "text": "You open the washroom door to find Ella already pulling the pencil out of her hair, bare shoulders gleaming above the bathwater. She sets her book flat on the stool and leans back, long legs parted lazily under the foam. \"You're late, Sam,\" she says, voice dropping to a smoky challenge. \"I'm three points ahead and bored. Get in here and settle the tie-breaker.\"",
+          "choices": [
+            {
+              "label": "Lock the door and climb into the bath with her",
+              "t": 5,
+              "m": 10,
+              "l": 4,
+              "private": true,
+              "acts": ["sex_vaginal", "oral_give", "sex_ride"],
+              "res": "\"About time,\" she whispers, catching your wet wrists before you even sit down."
+            },
+            {
+              "label": "Wash her hair first and tease her about the score",
+              "t": 4,
+              "m": 7,
+              "l": 2,
+              "res": "She leans back against your palms with a soft, defeated sigh. \"Pure bribery. Ten points.\""
+            }
+          ]
+        }
+      },
       "choices": [
         {
           "label": "Concede the point and leave",
@@ -41,7 +89,7 @@
           "t": 3,
           "m": 8,
           "l": 3,
-          "res": "\"Oh?\" The corner of her mouth moves. \"Name your terms.\" They negotiate through the steam for far longer than the situation warrants, and neither of them seems to want to finish.",
+          "res": "\"Oh?\" The corner of her mouth moves. \"Name your terms.\" You negotiate through the steam for far longer than the situation warrants, and neither of you seems eager to finish.",
           "else": {
             "t": -1,
             "m": -3,
@@ -75,6 +123,16 @@
           "res": "You read it aloud, politely, because she has frozen. The column contains seventeen entries, several about your handwriting. She says nothing at all and doesn't leave."
         },
         {
+          "label": "Pull her into the pantry for an off-the-record review",
+          "if": {"canAct": ["kiss", "oral_give", "sex_vaginal"]},
+          "t": 5,
+          "m": 8,
+          "l": 2,
+          "private": true,
+          "acts": ["oral_give", "sex_vaginal", "kiss"],
+          "res": "Flour dusts her apron as you nudge the pantry bolt shut, and her brisk composure breaks at once."
+        },
+        {
           "label": "Hand it back unread",
           "t": 3,
           "m": 5,
@@ -91,6 +149,11 @@
       "title": "The Offer",
       "scene": "portrait",
       "text": "A merchant house in the capital offers Ella a post as chief of accounts: a salary, a title, a corner office with her name lettered on the door. It's everything she has ever wanted, on paper. She lays the letter in front of you in the quiet ledger room without a word, hands flat on the desk, and watches your face with the intensity of someone grading an exam she has already written the answers to.",
+      "ngpp": [
+        "As she sets the heavy parchment down, her thumb lingers on the wax crest with an odd, unsettled frown.",
+        "\"Funny,\" she says tightly. \"Last night I dreamed I tore a letter with this exact seal straight down the spine.\"",
+        "\"I already know how this turns out, don't I?\" she whispers over the parchment, eyes bright. \"Corner office on paper, and somehow my feet won't leave this plank floor.\""
+      ],
       "choices": [
         {
           "label": "\"Take it. You'd be the best they've ever had.\"",
@@ -120,13 +183,23 @@
     {
       "title": "Rematch",
       "scene": "sam_date",
-      "text": "Ella sets up a chessboard in the courtyard at dusk, with rules, a brass clock and a hand-lettered scoreboard that reads SAM vs. ELLA - GAME 1 OF 1. They play for two hours without speaking, the lanterns coming on one by one, the clock ticking. At the end, she has you cornered. She looks at the board. She looks at you. She doesn't make the winning move.",
+      "text": "Ella sets up a chessboard in the courtyard at dusk, with rules, a brass clock and a hand-lettered scoreboard that reads SAM vs. ELLA - GAME 1 OF 1. You play for two hours without speaking, the lanterns coming on one by one, the clock ticking. At the end, she has you cornered. She looks at the board. She looks at you. She doesn't make the winning move.",
       "choices": [
         {
           "label": "Offer a draw",
           "t": 5,
           "m": 8,
           "res": "\"Accepted,\" she says, much too quickly, and tips her king over herself. \"As a purely tactical choice.\""
+        },
+        {
+          "label": "Sweep the pieces aside and raise the stakes upstairs",
+          "if": {"canAct": ["sex_vaginal", "oral_give"]},
+          "t": 6,
+          "m": 10,
+          "l": 3,
+          "private": true,
+          "acts": ["sex_vaginal", "sex_ride", "oral_give"],
+          "res": "Her breath catches as you tip the brass clock off and take her hand toward the stairs."
         },
         {
           "label": "Tell her to take the win",
@@ -145,6 +218,12 @@
       "title": "First Place",
       "scene": "final",
       "text": "Ella stops you on the stairs, a pencil in her hair and a ledger under her arm, her chin lifted for a fight. \"I have been second to you for years, and I have never minded. Don't tell anyone.\" She takes the pencil out of her hair, lets it fall down around her shoulders, and meets your eyes. \"I'm not competing anymore. I'd like to be on your side of the board.\" She kisses you, decisively, as if it were the winning move.",
+      "ngpp": [
+        "Wait—as her fingers unpin the pencil, she blinks hard at the landing shadows, shaken by how right her pulse already feels.",
+        "\"Weird,\" she murmurs against your mouth before pulling back half an inch. \"Like my body already knew the stairs ended here.\"",
+        "\"Different life, same second place,\" she whispers into your collar, clinging tight. \"Never mind the goddess's reset. Put me in your column permanently this time, Sam.\""
+      ],
+      "goLead": "You catch her by the waist on the landing and draw her straight through your bedroom door, setting ledger and pencil aside while she clings to your collar like she's finally claiming first prize.",
       "choices": [
         {"label":"Say yes","t":6,"m":12,"res":""},
         {

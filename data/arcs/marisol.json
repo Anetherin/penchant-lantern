@@ -3,7 +3,12 @@
     {
       "title": "Margin Notes",
       "scene": "sam_date",
-      "text": "Marisol shows you her father's old ledgers in the dusty back room, and her own corrections in the margins: years of tidy, furious red ink, her gold hoops catching the lamp. \"He never listened. You actually do.\" It sounds like an accusation. It isn't. She taps the page with an ink-stained finger and won't look up.",
+      "text": "Marisol shows you her father's old ledgers in the dusty back room, and her own corrections in the margins: years of tidy, furious red ink, her gold hoops catching the lamp. \"He never listened. You actually do, Sam.\" It sounds like an accusation. It isn't. She taps the page with an ink-stained finger and won't look up.",
+      "ngpp": [
+        "Flipping backward through red columns, she freezes suddenly staring at an old ink flourish—like she's already shown you this exact dusty ledger page once before.",
+        "\"Wait—why did I set the red inkwell beside your left elbow instead of your right, Sam?\" Marisol mutters sideways, eyeing her own hand sharply.",
+        "She slides the margin open straight toward your nose without hesitation. \"No idea why my pulse speeds up whenever you lean over these accounts, Sam—just read the red ink.\""
+      ],
       "choices": [
         {
           "label": "Ask her to walk you through one",
@@ -28,6 +33,56 @@
       "title": "Invoice Ambush",
       "scene": "walkin",
       "text": "Marisol barges into the washroom mid-argument about invoices, waving a handful of paper, sees you in the tub, and keeps arguing. Her gold hoops swing with every point, and her amber eyes fix on the ceiling at the third. She is competitive enough to not give ground even now, and you are too wet to take notes.",
+      "byIntim": {
+        "1": {
+          "title": "Settling Balances",
+          "scene": "shower",
+          "text": "Marisol kicks the washroom door open waving an invoice as usual—then catches sight of you waist-deep in hot mist, shuts the latch softly behind her, and drops straight onto the bath bench tossing the parchment onto the dry shelf. Her gold hoops catch warm steam as she leans dangerously close over the rim. \"Still owe me two silver on Tuesday's wine tab, Sam. Paying in coin or labor?\"",
+          "choices": [
+            {
+              "label": "Pull her down to the tub edge and pay up properly",
+              "t": 5,
+              "m": 8,
+              "l": 3,
+              "private": true,
+              "acts": ["handjob", "oral_give", "kiss"],
+              "res": "Her competitive smirk cracks instantly into a breathless laugh as you tug her flush against the cedar rim, wet palms gliding smoothly under her skirt until the invoices are forgotten completely.",
+              "fallbackRes": "She grins crookedly and hooks two fingers under your wet chin, kissing you warm and slow through the steam before drying off her cuffs."
+            },
+            {
+              "label": "Splash warm water on her blouse and call it settled",
+              "t": 2,
+              "m": 5,
+              "res": "She squeaks as hot spray hits her collar, then dumps a whole wooden scoop back over your head laughing wildly."
+            }
+          ]
+        },
+        "3": {
+          "title": "Waterproof Ledger",
+          "scene": "bath",
+          "text": "Marisol doesn't bother bringing paper into the washroom tonight. Unfastening her silk blouse right beside the steaming cedar tub while her dark curls stick softly to damp collarbones, she steps cleanly over the rim into hot water facing you across bare knees. \"New house policy, Sam: disputes after nine get settled naked in the tub.\"",
+          "choices": [
+            {
+              "label": "Pull her onto your lap in the hot water",
+              "t": 5,
+              "m": 10,
+              "l": 4,
+              "private": true,
+              "acts": ["sex_ride", "sex_vaginal", "oral_give"],
+              "res": "Gold hoops sway wildly against your throat as Marisol straddles your waist, biting her lower lip hard while riding your cock through sloshing bathwater until she wins every single argument."
+            },
+            {
+              "label": "Keep the water slow and tease her breathless",
+              "t": 4,
+              "m": 8,
+              "l": 3,
+              "private": true,
+              "acts": ["oral_give", "handjob", "massage_give"],
+              "res": "She tilts her chin high trying to keep her poise—then groans loudly and tangles fingers in your wet hair the moment your mouth finds her."
+            }
+          ]
+        }
+      },
       "choices": [
         {
           "label": "Argue back from the tub",
@@ -44,7 +99,7 @@
           "label": "Splash her",
           "m": 8,
           "l": 2,
-          "res": "War is declared. The washroom floods, her skirt is soaked, and she retaliates with the sponge. Mira is not amused."
+          "res": "War is declared. The washroom floods, her skirt is soaked, and she retaliates with the sponge. Nobody in the hall is surprised."
         }
       ],
       "image": {
@@ -60,6 +115,16 @@
       "choices": [
         {
           "label": "Demand a rematch, with stakes",
+          "if": {"canAct": ["sex_vaginal", "oral_give", "handjob"]},
+          "t": 5,
+          "m": 10,
+          "l": 4,
+          "private": true,
+          "acts": ["sex_vaginal", "oral_give", "handjob"],
+          "res": "You sweep the deck onto the floor and clear the table cleanly; Marisol shrieks with delighted laughter as you pull her bare hips right onto the ledger desk to collect your winnings immediately."
+        },
+        {
+          "label": "Demand a week's ledger stakes",
           "t": 5,
           "m": 8,
           "res": "The stakes are a week of ledger duty. You lose again. She lets you pick the penalty, and it takes her a surprisingly long time to say no."
@@ -81,6 +146,11 @@
       "title": "A Letter",
       "scene": "portrait",
       "text": "A letter arrives from Marisol's father, creased and salt-stained. He's alive, across the sea, and in debt again. She reads it three times at the ledger desk, jaw tight, and wants to sell something, anything, to bail him out. The ink on her fingers has begun to smear the page.",
+      "ngpp": [
+        "Staring down at the sea-stained postmark, Marisol frowns uneasily—as if some stubborn instinct already warns her how clean a refusal feels.",
+        "\"Funny, Sam—I swear we sat at this desk until sunrise crossing out that old fool's numbers once before,\" she mutters softly without looking up.",
+        "She lays the salt-stained letter calmly under your thumb without raising her voice. \"Skip the argument, partner. Help me tell him no cleanly, like we do.\""
+      ],
       "choices": [
         {
           "label": "\"No. He left you with all of this.\"",
@@ -94,7 +164,7 @@
           "t": 8,
           "m": 6,
           "res": "She stares at the coins for a long time. \"You didn't have to.\" \"I know.\"",
-          "cantAfford": {"t":2,"m":-2,"res":"You can't spare it. She understands. Mostly."}
+          "cantAfford": {"t": 2, "m": -2, "res": "You can't spare it. She understands. Mostly."}
         },
         {
           "label": "Help her write back",
@@ -103,7 +173,7 @@
           "res": "It takes all night, three drafts and a pot of tea. The letter says no, kindly. She sleeps better than she has in years, her head on the ledger."
         }
       ],
-      "image": {"comp":"reading a letter with a stricken expression, his hand on her shoulder","setting":"owner's office at dusk","sam":true}
+      "image": {"comp": "reading a letter with a stricken expression, his hand on her shoulder", "setting": "owner's office at dusk", "sam": true}
     },
     {
       "title": "Her Mother",
@@ -120,7 +190,7 @@
           "label": "Just stand with her",
           "t": 5,
           "m": 4,
-          "res": "After a while she leans against your shoulder, all her competitive edges gone soft, and they watch the clouds cross the stone together."
+          "res": "After a while she leans against your shoulder, all her competitive edges gone soft, and you watch the clouds cross the stone together."
         }
       ],
       "image": {
@@ -132,9 +202,15 @@
     {
       "title": "A New Deed",
       "scene": "final",
-      "text": "Marisol tears the old deed in half and writes a new one with both their names, her ink-stained fingers steady. The candle gutters in the ledger room where she grew up. \"Partners,\" she says. \"In every sense. Don't make me say it twice.\" Then she kisses you, gold hoops cold against your cheek, and says nothing else for a long while.",
+      "text": "Marisol tears the old deed in half and writes a new one with both your names, her ink-stained fingers steady. The candle gutters in the ledger room where she grew up. \"Partners,\" she says. \"In every sense. Don't make me say it twice, Sam.\" Then she kisses you, gold hoops cool against your cheek, and shuts the door firmly behind you both.",
+      "ngpp": [
+        "Right as she tears the old deed, her hands pause for half a beat—smiling sideways as though this ink already belongs beside your name.",
+        "\"Wait—did I already write two names on this exact parchment line in some fever dream, Sam?\" she laughs breathlessly, pulling you closer.",
+        "\"Every ledger in Hollowmere can burn to ash and reset at dawn, partner,\" Marisol whispers fiercely against your lips. \"My name only ever sits beside yours.\""
+      ],
+      "goLead": "Marisol tosses the fresh quill aside and shoves ledgers cleanly off the desk edge, pulling you hard against her waist in the candlelight.",
       "choices": [
-        {"label":"Say yes","t":6,"m":12,"res":""},
+        {"label": "Say yes", "t": 6, "m": 12, "res": ""},
         {
           "label": "Not yet",
           "t": 1,

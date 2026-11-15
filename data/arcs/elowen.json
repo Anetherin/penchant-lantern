@@ -4,12 +4,17 @@
       "title": "Bedside Manner",
       "scene": "sam_date",
       "text": "Elowen insists on a \"check-up\" and spends most of it nervously talking about herbs, rosemary in her braid, fingers pressed to your pulse a few seconds longer than the instructions require. The room smells of chamomile and lamp oil. At the end she admits she's never been this far from home, and that you make it feel less far.",
+      "ngpp": [
+        "When her fingers settle over your wrist, she catches herself pausing in surprise—as though she already memorized your resting heartbeat long before tonight.",
+        "\"Forgive me, Sam,\" Elowen whispers, blush creeping softly up her long pointed ears as she brews tea without checking your cup. \"My hands know your pulse far better than our acquaintance allows.\"",
+        "She skips the pretext entirely this time, letting warm fingers linger softly along your wrist. \"I cannot recall when first I measured this beat, Sam—only that every life leads me straight back to your table.\""
+      ],
       "choices": [
         {
           "label": "Tell her the distance feels shorter to you too",
           "t": 5,
           "m": 8,
-          "res": "She keeps her fingers on your wrist and doesn't count anything. The tea goes cold between them, and neither says what the silence is for."
+          "res": "She keeps her fingers on your wrist and doesn't count anything. The tea goes cold between you, and neither of you says what the silence is for."
         },
         {
           "label": "Offer to be her patient any time",
@@ -27,23 +32,73 @@
     {
       "title": "Tea Service",
       "scene": "walkin",
-      "text": "Elowen brings herbal tea to your room at exactly the moment you're changing, the tray balanced carefully in both hands, a little steam rising off the pot. She sees. The tray hits the floor with a crash of porcelain, and the smell of mint and lemon balm rises from the rug. You stand frozen with one arm in a sleeve, and neither of them breathes.",
+      "text": "Elowen brings herbal tea to your room at exactly the moment you're changing, the tray balanced carefully in both hands, a little steam rising off the pot. She sees. The tray hits the floor with a crash of porcelain, and the smell of mint and lemon balm rises from the rug. You stand frozen with one arm in a sleeve, and neither of you breathes.",
+      "byIntim": {
+        "1": {
+          "title": "Herb Oil & Steam",
+          "scene": "walkin",
+          "text": "Elowen knocks softly before slipping inside with a warm clay vial of rosemary-infused massage oil and two cups of lemon-balm tea. Seeing you half-dressed from the washroom only makes her pointed ears flush delicate rose instead of fleeing. \"Your shoulders have been knotted all week, Sam,\" she murmurs shyly, uncorking the warm oil. \"If you sit on the bed... I won't drop the cups this time.\"",
+          "choices": [
+            {
+              "label": "Let her warm oiled hands work your shoulders—and return the favor",
+              "t": 5,
+              "m": 8,
+              "l": 2,
+              "private": true,
+              "acts": ["massage_give", "kiss", "handjob"],
+              "res": "Rosemary oil warms both your palms as you turn the tables gently, kneading the tension from her slender shoulders until Elowen tips her head back against your collarbone with a breathless sigh.",
+              "fallbackRes": "Her slender hands glide smoothly down your back until her breath catches and she rests her forehead briefly between your shoulder blades, ears burning bright crimson."
+            },
+            {
+              "label": "Thank her and drink the lemon balm while she rests",
+              "t": 3,
+              "m": 5,
+              "res": "She pours two steady cups without spilling a drop, visibly proud of herself, and tucks her knees comfortably beside yours on the quilt."
+            }
+          ]
+        },
+        "3": {
+          "title": "Chamomile & Bare Skin",
+          "scene": "bath",
+          "text": "Elowen doesn't carry a tray tonight—she meets you inside the steam-filled washroom wearing only a loose linen shift damp across her curves, warm rosemary bath oil already swirling through the tub. Her green eyes hold yours steady beneath flushed elven ears. \"Medical advice, Sam: you are far too tense—and tonight the healer prescribes both hands.\"",
+          "choices": [
+            {
+              "label": "Pull her bare into the warm oil and water",
+              "t": 5,
+              "m": 10,
+              "l": 4,
+              "private": true,
+              "acts": ["sex_vaginal", "oral_give", "massage_give"],
+              "res": "Wet linen peels off easily over her shoulders before you draw Elowen back into the scented bathwater, parting smooth oil-slicked thighs to slide deep inside her while rosemary steam rises all around you both."
+            },
+            {
+              "label": "Hold her close in the tub and kiss her slowly",
+              "t": 4,
+              "m": 8,
+              "l": 2,
+              "private": true,
+              "acts": ["kiss", "massage_give"],
+              "res": "She melts contentedly back against your bare chest in the warm rosemary water, sighing softly while your lips brush her neck and ear tips."
+            }
+          ]
+        }
+      },
       "choices": [
         {
           "label": "Laugh it off",
           "t": 3,
           "m": 4,
-          "res": "She laughs too, eventually, from behind both hands, shoulders shaking. They pick up the shards together, not quite looking up."
+          "res": "She laughs too, eventually, from behind both hands, shoulders shaking. You pick up the shards together, not quite looking up."
         },
         {
           "label": "Apologize profusely",
           "t": 2,
           "m": 1,
-          "res": "They both apologize to each other for ten minutes, bowing in turn like two clockwork birds, and the broken teapot is never mentioned again."
+          "res": "You both apologize to each other for ten minutes, bowing in turn like two clockwork birds, and the broken teapot is never mentioned again."
         },
         {
           "label": "\"You're a healer. You've seen it all, right?\"",
-          "if": {"lewd":30},
+          "if": {"lewd": 30},
           "m": 4,
           "l": 3,
           "res": "\"Not... all,\" she says faintly, fanning her flushed face with a hand.",
@@ -63,8 +118,18 @@
     {
       "title": "Flower Crowns",
       "scene": "casual",
-      "text": "They go flower-picking outside the walls \"for medicine,\" a basket on Elowen's arm and the smell of crushed clover under their boots. Somewhere in the second hour the herb list is forgotten. Elowen weaves you a flower crown with quick, careful fingers. You make a terrible one back, lopsided and shedding petals. She wears it all day.",
+      "text": "You go flower-picking outside the walls \"for medicine,\" a basket on Elowen's arm and the smell of crushed clover under your boots. Somewhere in the second hour the herb list is forgotten. Elowen weaves you a flower crown with quick, careful fingers. You make a terrible one back, lopsided and shedding petals. She wears it all day.",
       "choices": [
+        {
+          "label": "Pull her down into the clover when you're both alone",
+          "if": {"canAct": ["kiss", "oral_give", "sex_vaginal"]},
+          "t": 5,
+          "m": 9,
+          "l": 3,
+          "private": true,
+          "acts": ["sex_vaginal", "oral_give", "kiss"],
+          "res": "Hidden behind tall sunlit meadow grass far from the road, Elowen lets the medicine basket tip over sideways as she laughs softly and pulls you down onto her cloak."
+        },
         {
           "label": "Wear her crown home",
           "t": 5,
@@ -88,6 +153,11 @@
       "title": "Burnout",
       "scene": "portrait",
       "text": "Elowen has been healing the dock workers for free, every night, for weeks, coming home with salt on her hem and shadows under her green eyes. Today she collapses in the kitchen mid-sentence about willow bark. Her rosemary sprig has come loose from her braid, and her hands are cold.",
+      "ngpp": [
+        "Halfway to catching her elbow, you swear she blinks in sleepy recognition—as though she already dreamed waking up with you tucking a wool blanket around her knees.",
+        "\"Don't scold me yet, Sam...\" she mumbles deliriously against your hoodie, fingers gripping your sleeve like she already knows how stubbornly you insist on soup.",
+        "Even exhausted, Elowen tucks her cold fingers straight inside your collar with complete trust. \"I knew you wouldn't let me sleep on the floorboards, Sam... same as always.\""
+      ],
       "choices": [
         {
           "label": "Scold her",
@@ -108,7 +178,7 @@
           "t": 6,
           "m": 10,
           "res": "One night a week, with help from the apothecary's apprentices. She hugs you so hard your ribs creak, and presses her damp face against your hoodie.",
-          "cantAfford": {"t":2,"m":2,"res":"You can't afford it. She thanks you for trying."}
+          "cantAfford": {"t": 2, "m": 2, "res": "You can't afford it. She thanks you for trying."}
         }
       ],
       "image": {
@@ -144,9 +214,15 @@
     {
       "title": "Long-Lived",
       "scene": "final",
-      "text": "Elowen kisses you first, very quickly, in the herb garden after dusk with moths circling the lamp, then hides her face in your shirt. \"Elves live a long time,\" she mumbles into the grey cotton. \"I'd like to spend some of it with you.\" Her braid smells of rosemary and rain. She doesn't let go of your hand all the way to her room.",
+      "text": "Elowen kisses you first, very quickly, in the herb garden after dusk with moths circling the lamp, then hides her face in your shirt. \"Elves live a long time,\" she mumbles into the grey cotton. \"I'd like to spend some of it with you.\" Her braid smells of rosemary and rain. She doesn't let go of your hand all the way back to her room.",
+      "ngpp": [
+        "Even as she pulls you up the quiet stairs, her grip feels oddly unhesitant—like another heart inside hers already remembers every bend of the hall.",
+        "\"Elves measure years differently,\" she whispers against your shirt, smiling tremulously. \"So why does it feel as though I have waited several lifetimes just for this evening, Sam?\"",
+        "\"No erased cycle can take away what my chest remembers,\" Elowen whispers against your neck as she closes the bedroom door. \"Every year I live belongs here with you, Sam.\""
+      ],
+      "goLead": "Inside the herb-scented bedroom, Elowen closes the door quietly and lifts her face up into your palms, trembling softly as her braid slips over bare shoulders.",
       "choices": [
-        {"label":"Say yes","t":6,"m":12,"res":""},
+        {"label": "Say yes", "t": 6, "m": 12, "res": ""},
         {
           "label": "Not yet",
           "t": 1,

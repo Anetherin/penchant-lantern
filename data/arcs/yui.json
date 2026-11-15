@@ -3,13 +3,18 @@
     {
       "title": "Almost Coffee",
       "scene": "sam_date",
-      "text": "Yui finds you on the back steps at dusk with two cups of something that is almost, but not quite, coffee. It smells of burnt barley, and they both pull the same face at the first sip. They talk about home for hours: trains, convenience stores, the vending machine on the 4th floor that only ever ate her coins. She pushes her glasses up, twice, and then she cries a little. So do you.",
+      "text": "Yui finds you on the back steps at dusk with two cups of something that is almost, but not quite, coffee. It smells of burnt barley, and you both pull the exact same face at the first sip. You talk about home for hours: Yamanote train transfers, late convenience stores, the vending machine on the 4th floor outside Accounting that only ever ate her coins. She pushes her glasses up, twice, murmuring \"Takahashi-kun...\" before wiping her eyes. So do you.",
+      "ngpp": [
+        "Even talking about Tokyo's fourth-floor vending machine feels normal—until Yui pauses blinking sideways at the courtyard lantern post, whispering that the shadow across the steps gave her sudden déjà vu.",
+        "\"I remember every awful office instant coffee back home,\" Yui murmurs softly, clutching her mug tight. \"So why did my hands reach straight for your favorite chipped mug without even asking, Sam?\"",
+        "\"My mind stops right at the Tokyo crosswalk, Takahashi-kun,\" Yui whispers, setting her mug neatly beside your knee as if she's sat on these steps a hundred times. \"Yet every bone in my shoulders knows you like two spoons of sugar in Hollowmere too.\""
+      ],
       "choices": [
         {
           "label": "Sit with her until the cups go cold",
           "t": 5,
           "m": 8,
-          "res": "They stay there until the cups are cold and the lanterns are lit, shoulders touching, saying the names of train stations like prayers. She files the evening under \"keep.\""
+          "res": "You stay there together until the cups are cold and the lanterns are lit, shoulders touching, saying the names of train stations like prayers. She files the evening under \"keep.\""
         },
         {
           "label": "Pass her a napkin and a joke",
@@ -28,6 +33,56 @@
       "title": "Bath Time Budget Meeting",
       "scene": "walkin",
       "text": "Hunting for the ledger, Yui walks straight into the washroom while you are in the tub, a cloud of steam rolling past her glasses until they fog completely. She does not leave. She stares fixedly at the ceiling. Then the floor. Then the ceiling again, clutching the account book to her chest like a shield, her ears the color of boiled shrimp.",
+      "byIntim": {
+        "1": {
+          "title": "Off the Ledger",
+          "scene": "shower",
+          "text": "Yui knocks timidly before stepping into the warm steam with folded towels, only for her glasses to fog over completely the instant she sees you sitting waist-deep in the tub. This time she doesn't drop the towels or hide behind a column of numbers; she swallows hard, slips off her cardigan cuffs, and kneels beside the wooden rim with flaming cheeks. \"Y-You've been staring at ledgers until midnight, Sam... let me at least wash your shoulders?\"",
+          "choices": [
+            {
+              "label": "Let her wash your back—then pull her close for a slow kiss",
+              "t": 5,
+              "m": 8,
+              "l": 2,
+              "private": true,
+              "acts": ["massage_give", "kiss", "handjob"],
+              "res": "Yui's small, warm hands tremble lightly as soapy lather glides down your collarbones—and when you lean up to catch her damp lips through the steam, she makes a soft, helpless sound and lets the towel fall.",
+              "fallbackRes": "Her small soap-slick hands tremble against your shoulders for two heartbeats before settling into slow, careful circles while she leans her flushed forehead gently against your neck."
+            },
+            {
+              "label": "Thank her gently and save her glasses from the steam",
+              "t": 3,
+              "m": 5,
+              "res": "She exhales a shaky little laugh, wiping her lenses on her apron while promising not to log \"one soaked cardigan\" under operating losses."
+            }
+          ]
+        },
+        "3": {
+          "title": "Closing Entries",
+          "scene": "bath",
+          "text": "Steam curls around bare skin when you push the washroom door open—and find Yui already soaking quietly in the cedar tub, round glasses resting neatly beside a folded towel and dark hair pinned high off flushed collarbones. She meets your gaze without hiding behind anything at all, lifting two wet hands above the water. \"No audit tonight, Sam. Bolt the door and get in beside me.\"",
+          "choices": [
+            {
+              "label": "Lock the bolt and slip into the hot water with her",
+              "t": 5,
+              "m": 10,
+              "l": 4,
+              "private": true,
+              "acts": ["sex_vaginal", "oral_give", "handjob"],
+              "res": "Yui climbs straight into your lap the moment warm water closes over your waist, clinging tightly around your shoulders as she gasps your name in quiet, unguarded bliss beneath the mist."
+            },
+            {
+              "label": "Wash her slowly from collarbone to thighs",
+              "t": 4,
+              "m": 8,
+              "l": 3,
+              "private": true,
+              "acts": ["massage_give", "kiss", "handjob"],
+              "res": "She leans softly back against your bare chest, shivering beneath every slow pass of your soapy hands until her hips press insistently back against yours."
+            }
+          ]
+        }
+      },
       "choices": [
         {
           "label": "\"Could you pass me a towel?\"",
@@ -57,13 +112,23 @@
     {
       "title": "Instant Ramen, Reconstructed",
       "scene": "casual",
-      "text": "Yui reveals she's been \"recreating\" instant ramen in the kitchen for a month. The broth is a pale, apologetic grey, and the noodles have the texture of wet rope. It is terrible. They eat all of it anyway, passing one chipped bowl back and forth. \"Remember when you covered my shift that time?\" she asks, eyes on the steam. \"I liked you before the truck, you know.\"",
+      "text": "Yui reveals she's been \"recreating\" instant ramen in the kitchen for a month. The broth is a pale, apologetic grey, and the noodles have the texture of wet rope. It is terrible. You eat all of it anyway, passing one chipped bowl back and forth. \"Remember when you covered my Friday shift before the rainy weekend, Takahashi-kun?\" she asks, eyes fixed on the steam. \"I liked you long before the truck.\"",
       "choices": [
+        {
+          "label": "Step around the table and kiss six years of waiting right off her lips",
+          "if": {"canAct": ["kiss", "handjob", "oral_give"]},
+          "t": 5,
+          "m": 9,
+          "l": 3,
+          "private": true,
+          "acts": ["oral_give", "handjob", "kiss"],
+          "res": "You push the terrible bowls aside and cup her burning cheeks in both hands; Yui drops her chopsticks at once and pulls you close, glasses bumping your nose as six years of quiet office yearning finally spills loose."
+        },
         {
           "label": "Tell her you liked her too, then finish the bowl",
           "t": 5,
           "m": 8,
-          "res": "You tell her, a little clumsily, and she covers her face with the cup. They scrape the bowl clean. She says it's the best ramen she's ever made, and for once she is not lying about it."
+          "res": "You tell her, a little clumsily, and she covers her face with the cup. You scrape the bowl clean together. She says it's the best ramen she's ever made, and for once she is not lying about it."
         },
         {
           "label": "Declare it a triumph of accounting",
@@ -81,7 +146,12 @@
     {
       "title": "The Way Home",
       "scene": "portrait",
-      "text": "A traveling mage claims he can send otherworlders home. Yui shows you the flyer with shaking hands, the ink smeared where she's held it too long. It smells of cheap incense. She stands in the doorway of the office and won't come inside. \"If it's real... would you go?\"",
+      "text": "A traveling mage claims he can send otherworlders home to Earth. Yui shows you the flyer with shaking hands, the ink smeared where she's held it too long. It smells of cheap incense. She stands in the doorway of the office and won't come inside. \"Back in Tokyo, nobody waited up for either of us... yet if it's real, would you go?\"",
+      "ngpp": [
+        "Folding the flyer along crisp office creases, she blinks sideways at the desk as if wondering why giving up Hollowmere pinched harder than leaving Tokyo.",
+        "\"Wait—why does leaving THIS office hurt almost as much as Tokyo did, Sam?\" Yui whispers, fingers whitening on the doorframe.",
+        "Yui drops the flyer straight onto the lamp tray before finishing the question. \"Honestly, Sam—I remember every Tokyo apartment block by heart, and somehow every cycle I still choose sitting right across from you here.\""
+      ],
       "choices": [
         {
           "label": "\"I'd stay. This is home now.\"",
@@ -99,10 +169,10 @@
           "label": "\"Only if you came with me.\"",
           "t": 7,
           "m": 8,
-          "res": "She laughs and wipes her eyes under her glasses. (The mage turns out to be a fraud. Neither of them is disappointed.)"
+          "res": "She laughs and wipes her eyes under her glasses. (The mage turns out to be a fraud. Neither of you is disappointed.)"
         }
       ],
-      "image": {"comp":"holding a crumpled flyer with shaking hands, looking up at him with teary eyes","setting":"quiet office at dusk","sam":true}
+      "image": {"comp": "holding a crumpled flyer with shaking hands, looking up at him with teary eyes", "setting": "quiet office at dusk", "sam": true}
     },
     {
       "title": "Festival Night",
@@ -131,9 +201,15 @@
     {
       "title": "Second Chance",
       "scene": "final",
-      "text": "Yui takes your hand under the table during the staff meeting and doesn't let go, her thumb tracing the inside of your wrist while she reads out the quarterly figures in a perfectly level voice. Afterward, in the empty office, the lamp low, ledgers stacked behind her: \"Second life. Second chance. I'm not wasting this one being shy.\" She kisses you, glasses bumping your nose, and pulls you toward her room.",
+      "text": "Yui takes your hand under the table during the staff meeting and doesn't let go, her thumb tracing the inside of your wrist while she reads out the quarterly figures in a perfectly level voice. Afterward, in the empty office, the lamp low, ledgers stacked behind her: \"Second life. Second chance. I wasn't brave enough back in Tokyo—I'm not wasting this one being shy, Sam.\" She kisses you, glasses bumping your nose, and pulls you toward her room.",
+      "ngpp": [
+        "Her thumb traces that exact spot on your wrist as though she already learned how smoothly it steadies her voice.",
+        "\"Tokyo never gave us overtime to stay together, Sam,\" she breathes softly outside her room, \"yet why does closing this latch feel like a habit we've kept across worlds?\"",
+        "\"No goddess gets to file our second chance under 'closed,' Sam,\" Yui whispers fiercely against your collarbone as the bedroom door shuts. \"I didn't cross worlds twice just to wait another night.\""
+      ],
+      "goLead": "Yui sets her spectacles cleanly beside the bedside lantern and tugs you down by your hoodie strings, pressing flushed, trembling warmth straight against your chest.",
       "choices": [
-        {"label":"Say yes","t":6,"m":12,"res":""},
+        {"label": "Say yes", "t": 6, "m": 12, "res": ""},
         {
           "label": "Not yet",
           "t": 1,

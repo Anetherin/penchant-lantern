@@ -150,15 +150,28 @@ function walkRecruitEvent(key, isPartner){
         : walkFill(WALKS.guestIntro || 'You run into {name}. {backstory}', fVars);
   const pitch = isPartner && N.partnerStory && !isReturning ? `\n\n${N.partnerStory}` : '';
   const markGuest = () => { if(!isPartner){ (S.flags.guestSeen = S.flags.guestSeen || {})[key] = S.week; S.flags.lastGuest = S.week; } };
-  const memHire = isReturning ? (N.ngplus && WALKS.isekaiMemoryHire ? WALKS.isekaiMemoryHire[tier] : WALKS.exLoverMemoryHire ? WALKS.exLoverMemoryHire[tier] : null) : null;
+  const customHire = (WALKS.partnerMemoryHire || {})[key];
+  const memHire = isReturning
+    ? (Array.isArray(customHire) && customHire[tier] ? customHire[tier]
+      : (N.ngplus && WALKS.isekaiMemoryHire && WALKS.isekaiMemoryHire[tier]) ? WALKS.isekaiMemoryHire[tier]
+      : (WALKS.exLoverMemoryHire && WALKS.exLoverMemoryHire[tier]) ? WALKS.exLoverMemoryHire[tier] : null)
+    : null;
   const hireRes = memHire ? walkFill(memHire, fVars)
     : c.wasLover && WALKS.exLoverHireRes && WALKS.exLoverHireRes.length
       ? walkFill(pick(WALKS.exLoverHireRes), fVars) : null;
+  const PI = (WALKS.partnerIntros || {})[key] || {};
+  const GP = typeof GOD !== 'undefined' && GOD && GOD.partnerIntros ? GOD.partnerIntros[key] : null;
+  const imgSpec = PI.image || (GP && GP.image) || null;
+  const sc = imgSpec ? (dynScene('walk_' + key, imgSpec) || 'portrait') : 'portrait';
+  const gNote = isReturning && !G().left && (N.goddess && N.goddess.comment) ? `\n\n(${gtxt(N.goddess.comment, {partner: c.name.split(' ')[0], house: h.name, goddess: GN()})})` : '';
+  const preOpen = PI.open ? walkFill(PI.open, fVars) : (GP && GP.arrival ? walkFill(GP.arrival, {name:c.name, first:c.name.split(' ')[0], house:h.name, loc:h.loc||'', goddess:GN(), sam:'Sam'}) : '');
+  const pre = preOpen ? [{text: `${preOpen}${isReturning ? gNote : ''}`, btn: `Step closer to ${c.name.split(' ')[0]}`, scene: sc}] : undefined;
 
   return {
     title: c.wasLover ? `A Familiar Face: ${c.name}` : isPartner ? `A Chance Meeting: ${c.name}` : `A Visitor in Town: ${c.name}`,
     who: c.id,
-    scene: 'portrait',
+    scene: sc,
+    pre,
     text: `${opener}${pitch}\n\n${walkWorkerSummary(c)}`,
     choices: walkHireChoices(c, h, {
       hireRes,

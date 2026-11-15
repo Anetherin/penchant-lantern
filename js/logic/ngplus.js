@@ -413,8 +413,9 @@ function ngBegin(){
     refreshCandidates(C.boon==='recruit' ? 3 : 0, C.boon==='recruit' ? 1.15 : 1);
     inviteFriend(true); checkUnlocks(true);
     addLog(`NG++${N.ngppCycle} (Cycle ${S.cycle}): Sam wakes at ${HDn.name} with an empty vessel and a loan of ${fmt(N.debt)}.`);
+    queueNgppIntros(shrine, vessel);
     NGS = null; save(); TAB = 'house'; render();
-    const vane = () => modal(`<h2>${esc(HDn.name)}</h2><p class="story">A quieter knock answers when morning arrives. Marguerite Vane sets down a slim black ledger bearing a new seal. "Back to square one, Mr. Takahashi—at least on paper. The Shrine's rooms scale with what you've endured, and whatever that silent companion is, she's yours to shape."\n\nDebt: ${fmt(N.debt)} over the next ${S.debt.payments*BAL.debt.every} weeks. Room cap: ${houseBaseSize(H(hk))}.</p><div class="row"><button class="primary" onclick="closeModal()">Let's go</button></div>`);
+    const vane = () => { modal(`<h2>${esc(HDn.name)}</h2><div id="ngVaneImg"></div><p class="story">A quieter knock answers when morning arrives. Marguerite Vane sets down a slim black ledger bearing a new seal. "Back to square one, Mr. Takahashi—at least on paper. The Shrine's rooms scale with what you've endured, and whatever that silent companion is, she's yours to shape."\n\nDebt: ${fmt(N.debt)} over the next ${S.debt.payments*BAL.debt.every} weeks. Room cap: ${houseBaseSize(H(hk))}.</p><div class="row"><button class="primary" onclick="closeModal();runQueue()">Enter ${esc(HDn.name)}</button></div>`, {lock:true}); showImg('ngVaneImg', 'npc_marguerite', 'portrait'); };
     return goddessRebirth(gInfo, vane);
   }
 
@@ -492,7 +493,8 @@ function ngBegin(){
   inviteFriend(true);   // the first week already shows an old friend
   checkUnlocks(true);
   addLog(`New Game+ (cycle ${S.cycle}): Sam keeps ${HDo.name} and takes on a new debt of ${fmt(N.debt)}.`);
+  queueNgPlusIntros(C.house && H(C.house), C.partner && C.partner!=='none' ? S.workers.find(w=>w.key===C.partner) : null);
   NGS = null; save(); TAB = 'house'; render();
-  const vane = () => modal(`<h2>${esc(HDo.name)}</h2><p class="story">Marguerite Vane slides a fresh contract across the desk. "Paying off one house was impressive, Mr. Takahashi. Let's see you do it again, with a little less sentiment." She almost smiles again. It's starting to worry him.\n\nSam keeps ${esc(HDo.name)}${C.house?`, takes on ${esc(HOUSES[C.house].name)}`:''}${lovers.length?` and ${lovers.map(w=>esc(w.name)).join(', ')}`:''}. Everyone else has gone their own way. The new debt is ${fmt(N.debt)}, due over the next ${S.debt.payments*BAL.debt.every} weeks.</p><div class="row"><button class="primary" onclick="closeModal()">Let's go</button></div>`);
+  const vane = () => { modal(`<h2>${esc(HDo.name)}</h2><div id="ngVaneImg"></div><p class="story">Marguerite Vane slides a fresh contract across the desk. "Paying off one house was impressive, Mr. Takahashi. Let's see you do it again, with a little less sentiment." She almost smiles again. It's starting to worry you.\n\nYou keep ${esc(HDo.name)}${C.house?`, take on ${esc(HOUSES[C.house].name)}`:''}${lovers.length?` with ${lovers.map(w=>esc(w.name)).join(', ')}`:''}. Everyone else has gone their own way. The new debt is ${fmt(N.debt)}, due over the next ${S.debt.payments*BAL.debt.every} weeks.</p><div class="row"><button class="primary" onclick="closeModal();runQueue()">Continue</button></div>`, {lock:true}); showImg('ngVaneImg', 'npc_marguerite', 'portrait'); };
   goddessRebirth(gInfo, vane);
 }

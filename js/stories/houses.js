@@ -31,6 +31,14 @@ const STORY_JOINS = {castle:['seraphine', true], hollow:['ines', false], pavilio
 const RN = h => { const R = resident(h); return R ? R.name : 'the staff'; };
 const RID = h => { const R = resident(h); return R ? R.id : null; };
 const SSTR = h => Math.max(S.sam.strength, secOf(h));
+function housePrivate(R, acts, lead, situation, extra){
+  const list = Array.isArray(acts) ? acts : [acts];
+  const ok = R ? list.filter(id=>canSam(R, id) && samStance(R, id)!=='no') : [];
+  const act = R && (ok[0] || bestSamAct(R));
+  if(!R || !act) return lead + (extra ? `\n\n${extra}` : '');
+  const text = privateCore(R, act, {lead}) + (extra ? `\n\n${extra}` : '');
+  return {text, img:{wid:R.id, scene:'samact:'+act}, ai:{kind:'private', wid:R.id, act, scene:'samact:'+act, forSam:true, situation: actSituation(R, act, situation)}};
+}
 const STORIES = {
   lantern:{title:'The Grieve Debt', hint:['A stranger will come asking about the old owner\'s debts.','Mira is looking into the old ledgers.','Time to deal with Silas Grieve for good.'], beats:[
     h=>({title:'The Grieve Debt (1/3)', who:'npc_silas', text:`A broad man with a scarred jaw lets himself into ${h.name} like he owns it. "Silas Grieve. The old owner paid my employer for 'protection.' Payments stopped when he vanished. I assume you'll be resuming them."\n\nBehind the counter, ${RN(h)} has gone very pale.`, choices:[
@@ -91,7 +99,7 @@ const STORIES = {
   ]},
   pavilion:{title:'Opening Night', hint:['The Pavilion\'s patroness wants to meet the new owner.','A famous critic is coming.','The patroness has made a decision.'], beats:[
     h=>({title:'Opening Night (1/3)', who:storyNpc('ilyana'), text:`Lady Ilyana Silverbough, the Pavilion's elven patroness for a century, glides in unannounced. "So. A human bought my garden." She studies you like an unusual insect. "Impress me."`, choices:[
-      check('Make conversation','Charm',S.sam.charm,40, ()=>{ storyAdvance(h); return '"Hm. You listen more than you talk. That\'s rare in humans." She leaves him a pressed moon-lily.'; }, ()=>{ storyRetry(h); return '"Hm," she says, and leaves. Not a good "hm."'; }),
+      check('Make conversation','Charm',S.sam.charm,40, ()=>{ storyAdvance(h); return '"Hm. You listen more than you talk. That\'s rare in humans." She leaves you a pressed moon-lily.'; }, ()=>{ storyRetry(h); return '"Hm," she says, and leaves. Not a good "hm."'; }),
       check(`Let ${RN(h)} dance for her`,'Dance',resident(h)?s100(resident(h).tech.dance):30,55, ()=>{ storyAdvance(h); return 'Ilyana watches without blinking. At the end she says only: "Again, next season."'; }, ()=>{ storyRetry(h); return 'A stumble. Ilyana says nothing, which is worse.'; })]}),
     h=>({title:'Opening Night (2/3)', who:'npc_valois', text:`Maestro Valois, the most feared critic in three kingdoms, has announced he will review the Pavilion's new season. ${RN(h)} hasn't eaten in two days.`, choices:[
       check(`${RN(h)} dances the premiere`,'Dance',(resident(h)?s100(resident(h).tech.dance):30)+(h.up.stage?10:0),70, ()=>{ storyAdvance(h); h.rep=clamp(h.rep+5); return 'Valois\'s review is one word long: "Transcendent." Half the city tries to book a table.'; }, ()=>{ h.rep=clamp(h.rep-2); storyRetry(h); return 'Valois writes "Promising." It\'s devastating. They\'ll try again next season.'; })]}),
@@ -101,12 +109,12 @@ const STORIES = {
   veil:{title:'The Landlord Below', hint:['The Underdistrict\'s landlord has noticed you.','Vharra is not done with you.','Vharra wants to talk.'], beats:[
     h=>({title:'The Landlord Below (1/3)', who:storyNpc('vharra'), text:`A four-horned demoness drapes herself across the bar. "Vharra. I own the Underdistrict, darling. Including the ground under your little den. Rent is tripling."\n\n${RN(h)} hisses at her.`, choices:[
       pay('Pay her off', 400, h, ()=>{ storyAdvance(h,20); return '"Good boy." She\'ll want more later. She always does.'; }),
-      check('Flirt back','Charm',S.sam.charm,55, ()=>{ storyAdvance(h); return 'Vharra blinks, then laughs. "Oh, you\'re FUN." Rent stays the same. For now.'; }, ()=>{ storyRetry(h); return 'She pats his cheek. "Adorable. Rent is due next week."'; }),
+      check('Flirt back','Charm',S.sam.charm,55, ()=>{ storyAdvance(h); return 'Vharra blinks, then laughs. "Oh, you\'re FUN." Rent stays the same. For now.'; }, ()=>{ storyRetry(h); return 'She pats your cheek. "Adorable. Rent is due next week."'; }),
       check('Refuse','Strength',SSTR(h),55, ()=>{ storyAdvance(h); return 'Vharra looks around at your security, then at you, and smiles slowly. "Interesting."'; }, ()=>{ storyRetry(h); return 'Vharra laughs and leaves. She\'ll be back.'; })]}),
     h=>({title:'The Landlord Below (2/3)', who:RID(h), scene:'job_security', text:`Vharra's "tenants" start showing up every night: picking fights, breaking glasses, scaring clients. ${RN(h)} is furious. "She's testing us."`, choices:[
       check('Hold the line','Security',secOf(h)+S.sam.strength/3,55, ()=>{ storyAdvance(h); return 'Night after night, the Veil throws them out. Eventually, they stop coming.'; }, ()=>{ h.rep=clamp(h.rep-3); storyRetry(h); return 'It\'s a bad week. The Veil needs better security.'; })]}),
     h=>({title:'The Landlord Below (3/3)', who:storyNpc('vharra'), text:`Vharra sits down across from you, uninvited. "Fine. You win. Do you know how boring it is, collecting rent for three hundred years?" She leans in. "I'd rather MAKE money. Here. With you. And I'll cut your rent, obviously."`, choices:[
-      {label:'Hire her', fx(){ storyAdvance(h,60); h.bonus.upkeep = 0.7; return `Vharra joins the Veil, and its upkeep drops by 30%.\n\n${RN(h)} rolls her eyes, but she's grinning. "Fine. And you can keep my wages, boss. I like it here too much."` + joinNamed('vharra', h, false) + freeResident(h); }}]})
+      {label:'Hire her', fx(){ storyAdvance(h,60); h.bonus.upkeep = 0.7; return `Vharra joins the Veil, and its upkeep drops by 30%.\n\n${RN(h)} rolls her eyes, but she's grinning. "Fine. And you can keep my wages, Zaria's rules. Try not to bore me, Sam."` + joinNamed('vharra', h, false) + freeResident(h); }}]})
   ]},
   wayfarer:{title:'Roads and Rumors', hint:['The roads are getting dangerous.','Bettina is asking around.','Time to deal with Red Oskar.'], beats:[
     h=>({title:'Roads and Rumors (1/3)', who:'npc_oskar', text:`Caravans are arriving late, light, or not at all. ${RN(h)} is grim. "Red Oskar's gang. Bandits on the east road. If the merchants stop coming, we're finished."`, choices:[
