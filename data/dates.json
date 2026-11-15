@@ -235,8 +235,8 @@
         "label": "Under the blanket",
         "acts": ["manual_give","manual_get","kiss"],
         "lewd": 20,
-        "gain": 2,
-        "cap": 38,
+        "gain": 1.5,
+        "cap": 32,
         "risk": 0,
         "lead": [
           "The wind picks up, and {name} pulls the blanket over both of them. Under it, her hand finds yours, and the stars stop being the point.",
@@ -249,8 +249,8 @@
         "label": "Wish on a falling star",
         "acts": ["kiss","manual_get","breast_get"],
         "lewd": 30,
-        "cap": 42,
-        "gain": 2,
+        "cap": 36,
+        "gain": 1.5,
         "risk": 0,
         "lead": [
           "A bright streak splits the sky, and {name} gasps. \"Make a wish,\" she says, and you wish aloud, with no sense of shame whatsoever. She laughs, rolls toward you, and grants it.",

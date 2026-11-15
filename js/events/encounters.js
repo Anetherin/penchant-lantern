@@ -8,13 +8,13 @@
      away (draining his energy) or freelancing with clients off the books.
    Every outcome is consensual; "reckless" means impulsive, not unwilling.
    ===================================================================== */
-const bestSamAct = w => (w.fav && canSam(w,w.fav) && samStance(w,w.fav)==='yes') ? w.fav
-  : (getActs().filter(a=>canSam(w,a.id) && samStance(w,a.id)==='yes').sort((a,b)=>b.th-a.th)[0] || getActs().find(a=>canSam(w,a.id)) || {}).id;
+const bestSamAct = w => actArr(w.fav).find(id=>canSam(w,id) && samStance(w,id)==='yes')
+  || (getActs().filter(a=>canSam(w,a.id) && samStance(w,a.id)==='yes').sort((a,b)=>b.th-a.th)[0] || getActs().find(a=>canSam(w,a.id)) || {}).id;
 // When she comes to Sam because she needs it, it has to be something that gets her off: a service that spends her lust
 // (services.json lust < 0). Her favorite or lovers-only one if it qualifies, else the furthest they've gone. null if none yet.
 const releases = id => ((actById(id)||{}).lust ?? -1) < 0;
 const releaseSamAct = w => { const ok = id => id && canSam(w,id) && samStance(w,id)==='yes' && releases(id);
-  if(ok(w.fav)) return w.fav; if(ok(w.lovers)) return w.lovers;
+  const f = actArr(w.fav).find(ok); if(f) return f; const l = actArr(w.lovers).find(ok); if(l) return l;
   const a = getActs().filter(x=>ok(x.id)).sort((x,y)=>y.th-x.th)[0] || getActs().find(x=>releases(x.id) && canSam(w,x.id)); return a ? a.id : null; };
 const needSamAct = w => releaseSamAct(w) || bestSamAct(w);
 const idleForClients = w => JOBS[w.job] && JOBS[w.job].cat!=='escort';

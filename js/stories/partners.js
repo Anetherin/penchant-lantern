@@ -29,7 +29,7 @@ function evArc(w){
   // the last beat crosses her next line with Sam if she's comfortable with it; the picture shows the furthest she'd go
   const nx = last ? firstNext(w) : null, nxOk = nx && tierActs(w, nx).length;
   if(scene==='final'){ const top = nxOk ? nx : (w.intim||0), pool = getActs().filter(a=>actTier(a.id)<=top && samStance(w,a.id)!=='no');
-    const act = (pool.find(a=>a.id===w.fav) || pool.sort((x,y)=>y.th-x.th)[0] || {id:'kiss'}).id; scene = 'samact:'+act; cloth = undefined; }
+    const act = (pool.find(a=>isFav(w,a.id)) || pool.sort((x,y)=>y.th-x.th)[0] || {id:'kiss'}).id; scene = 'samact:'+act; cloth = undefined; }
   return {title:`${w.name}: ${b.title} (${i+1}/${beats.length})`, who:w.id, scene, cloth, text:b.text,
     choices: b.choices.map(c=>({label:fillF(c.label, w), fx(){
       const e = resolveEff(w, c);

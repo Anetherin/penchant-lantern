@@ -197,7 +197,7 @@ function doubleThreesomeRun(id, oid, act){
 // Daring variants offered on a date (dates.json → spicy). With acts: the one she'd do (favorite, else the highest-th she's keen on, else the first she's comfortable with).
 function spicyAct(w, sp){
   const ok = (sp.acts||[]).filter(a=>canSam(w,a)); if(!ok.length) return null;
-  if(w.fav && ok.includes(w.fav)) return w.fav;
+  const fav = pickFav(w, ok); if(fav) return fav;
   const yes = ok.filter(a=>samStance(w,a)==='yes').sort((a,b)=>((actById(b)||{}).th||0) - ((actById(a)||{}).th||0));
   return yes[0] || ok[0];
 }
@@ -339,13 +339,13 @@ function samTrain(id, mode='skill'){
     if(!acts.length) return toast((w.intim||0)===0 ? `${w.name} and Sam haven't crossed that line yet.` : `${w.name} isn't comfortable with that yet.`);
     if(!useAP(samTrainCost(SV.energy ?? 30))) return;
     const g = ((SV.base ?? 6) + tq * (SV.perTech ?? 0.05)) * tm2 * (SV.share ?? 0.4), hot = lustBonus(w, BAL.lust.bonus.trainMult);
-    acts.forEach(a=>{ growAct(w, a.id, g * (w.fav===a.id ? 1.25 : 1)); if(w.dislike===a.id) moodAdd(w, -2); });
+    acts.forEach(a=>{ growAct(w, a.id, g * (isFav(w,a.id) ? 1.25 : 1)); if(isDislike(w,a.id)) moodAdd(w, -2); });
     const lu = warm(SV.svcLust ?? 6, SV.lewd ?? 2, Math.max(...acts.map(a=>svcLewdCap(a.id,'sam'))));
     const tgp = minorTrust(w); statXP(w, 'stamina', 1.5); countUp(w, 'privateSam');
     w.energy = clamp(w.energy-(SV.herEnergy ?? 16), 0, maxEnergy(w));
     samStat('technique',2); samXP(5); w.privateCount++; w._samTime=(w._samTime||0)+1; samLog(`Practiced with ${w.name}`); checkUnlocks();
     save(); render(); closeModal();
-    const show = acts.find(a=>a.id===w.fav) || acts[acts.length-1], sl = actLine(show.id, w);
+    const show = acts.find(a=>isFav(w,a.id)) || acts[acts.length-1], sl = actLine(show.id, w);
     return showResult(`Practice with ${w.name}`, `${flavor('train_service', w) || `${w.name} decides Sam's education is a shared project.`}${sl ? '\n\n'+sl : ''}${hot?'\n\n'+hot:''}\n\n${acts.map(a=>a.label).join(', ')}: skill +${Math.round(g*SKL)} each · Lust +${lu}${w.lewd < lewdCap ? ' · Lewdness +' : ''} · Trust ${tDelta(tgp)} · Sam's Technique +2`, w.id, 'samact:'+show.id, {kind:'train', act:show.id, scene:'samact:'+show.id, forSam:true});
   }
   // every trade skill, hands-on: her job's skill (Hospitality without one) at full strength, the rest x skill.others
@@ -398,10 +398,10 @@ function orgyWhy(w){ const O = BAL.orgy || {};
 // what she does on a group night: her favorite if it goes past the first tier, else her lovers-only one or a pick from the furthest tier she's comfortable with.
 // Nothing below orgy.minTier (kisses and massages are too tame for it): without such a service she can't join.
 function orgyAct(w){ const mt = (BAL.orgy||{}).minTier ?? 2, ok = id => id && canSam(w,id) && samStance(w,id)==='yes' && actTier(id) >= mt;
-  if(ok(w.fav)) return w.fav;
+  const fav = actArr(w.fav).find(ok); if(fav) return fav;
   const all = getActs().filter(a=>ok(a.id)); if(!all.length){ const b = bestSamAct(w); return b && actTier(b) >= mt ? b : null; }
-  const top = Math.max(...all.map(actTierOf)), pool = all.filter(a=>actTierOf(a)===top);
-  return (ok(w.lovers) && pool.some(a=>a.id===w.lovers)) ? w.lovers : pick(pool).id; }
+  const top = Math.max(...all.map(actTierOf)), pool = all.filter(a=>actTierOf(a)===top), lv = pool.find(a=>isLovers(w,a.id));
+  return lv ? lv.id : pick(pool).id; }
 function orgyMenu(){ ORGY = {sel:[]}; orgyDraw(); }
 function orgyPick(id){ if(!ORGY) return; const O = BAL.orgy || {}, i = ORGY.sel.indexOf(id);
   if(i >= 0) ORGY.sel.splice(i, 1);
@@ -487,7 +487,7 @@ function privateMenu(id, free){
   if(!opts.length && !canPossess) return toast((w.intim||0)===0 ? `${w.name} and Sam haven't crossed that line yet.` : `${w.name} isn't comfortable with that yet.`);
   const kp = knowsPrefs(w);
   modal(`<h2>Private time with ${esc(w.name)}</h2><p class="muted">What she's comfortable with, with you, as far as you two have gone (${esc(stageName(w.intim)||'nothing yet')}). ${kp?'★ = her favorite.':''}</p>
-    <div class="row">${opts.map(a=>`<button onclick="samPrivate('${id}','${a.id}',${free?'true':'false'})">${esc(a.label)}${kp&&w.fav===a.id?' ★':''}${samStance(w,a.id)==='ask'?' ~':''}</button>`).join('')}${canPossess?`<button onclick="spiritSamMenu('${id}',${free?'true':'false'})">👻 Reverse-possess Sam…</button>`:''}</div>
+    <div class="row">${opts.map(a=>`<button onclick="samPrivate('${id}','${a.id}',${free?'true':'false'})">${esc(a.label)}${kp&&isFav(w,a.id)?' ★':''}${samStance(w,a.id)==='ask'?' ~':''}</button>`).join('')}${canPossess?`<button onclick="spiritSamMenu('${id}',${free?'true':'false'})">👻 Reverse-possess Sam…</button>`:''}</div>
     <p class="muted">~ = she'll do it for Sam, but it's a stretch for her (less mood, more lewdness).</p>
     <div class="row"><button onclick="${free?'closeModal()':`openSheet('${id}')`}">Back</button></div>`);
 }
@@ -573,17 +573,18 @@ function privateCore(w, act, o={}){
   else ld = spendLust(w, BAL.lust.drop.private * (recv ? 1.8 : 1) * samRelease());   // receiving: a big drop in her lust; Sam's technique decides how much
   growAct(w, act, (4 + S.sam.technique/20) * (hasPast('massage')?1.3:1)); statXP(w, 'stamina', 0.8); countUp(w, 'privateSam');
   const cap = o.cap != null ? Math.min(svcLewdCap(act,'sam') + (pushed ? BAL.lewd.stretchCap : 0), o.cap) : svcLewdCap(act,'sam') + (pushed ? BAL.lewd.stretchCap : 0);
-  if(pushed){ lewdUp(w, (stretch?4:3) + Math.min(4, Math.floor(over/8)), cap); stretch ? minorTrust(w) : minorTrust(w, 2); }
-  else if(fromLewd){ lewdUp(w, 2, o.cap != null ? Math.min(svcLewdCap(act,'sam'), o.cap) : svcLewdCap(act,'sam')); minorTrust(w, 2); }
-  else gainTrust(w, 2);
-  moodAdd(w, (stretch?1:6)*pm(w,'private') + (w.fav===act?6:0) - (w.dislike===act?6:0)); w.energy = clamp(w.energy-(recv ? 6 : 15), 0, maxEnergy(w));
+  const tier = actTier(act);
+  let lg = 0;
+  if(pushed){ lg = lewdUp(w, (stretch?4:3) + Math.min(4, Math.floor(over/8)), cap); stretch ? minorTrust(w) : minorTrust(w, 2); }
+  else { lg = lewdUp(w, tier >= 3 ? 3.5 : tier === 2 ? 2.5 : 1.5, cap); if(fromLewd) minorTrust(w, 2); else gainTrust(w, 2); }
+  moodAdd(w, (stretch?1:6)*pm(w,'private') + (isFav(w,act)?6:0) - (isDislike(w,act)?6:0)); w.energy = clamp(w.energy-(recv ? 6 : 15), 0, maxEnergy(w));
   let fed = '';
   if(w.race==='demon' && A.finish){ w.energy = clamp(w.energy + SVC.demon.samGain, 0, maxEnergy(w)); S.sam.energy = Math.max(0, S.sam.energy - Math.round(SVC.demon.samExtra * sigilDrain(w))); fed = `\n\n(${w.name} fed on him. Sam is much more tired than usual. Energy +${SVC.demon.samGain} for her.)`; }
   if(w.race==='demon' && A.kind==='kiss'){   // a kiss is a small sip; an eager demon draws harder
     const D = SVC.demon, deep = w.lust >= LUST_EAGER, g = D.kissSam + (deep ? D.kissSamDraw : 0);
     w.energy = clamp(w.energy + g, 0, maxEnergy(w)); S.sam.energy = Math.max(0, S.sam.energy - (deep ? Math.round(D.kissSamCost * sigilDrain(w)) : 0));
     fed = `\n\n(${w.name} drinks a little of him with every kiss${deep ? ', and tonight she drinks deep. Sam is a bit lightheaded afterward' : ''}. Energy +${g} for her.)`; }
-  if(w.lovers===act) gainTrust(w, 2);
+  if(isLovers(w,act)) gainTrust(w, 2);
   samStat('technique',3); samXP(5); w.privateCount++; w._samTime = (w._samTime||0) + 1;
   samLog(`Private time with ${w.name} [${actLabel(act)}]`);
   let text;
@@ -596,17 +597,17 @@ function privateCore(w, act, o={}){
     const open = flavor(firstSam ? 'private_first_sam' : w.privateCount===1 ? 'private_first' : 'private_open', w);
     text = [open, actTurn(act, w), actLine(act, w)].filter(Boolean).join('\n\n');
   }
-  if(w.lovers===act && !o.first) text += `\n\n${w.name} wouldn't do this with a client. With Sam, it's different.`;
-  if(w.fav===act && knowsPrefs(w)) text += `\n\n(Her favorite. She's in a very good mood afterward.)`;
+  if(isLovers(w,act) && !o.first) text += `\n\n${w.name} wouldn't do this with a client. With Sam, it's different.`;
+  if(isFav(w,act) && knowsPrefs(w)) text += `\n\n(Her favorite. She's in a very good mood afterward.)`;
   text += pNote(w,'private');
   if(stretch) text += `\n\n(This was a stretch for ${w.name}. She did it for Sam, and it's a little less of a stretch now.)`;
   if(hot) text += `\n\n${hot}`;
   text += fed;
-  text += `\n\n[${actLabel(act)}] skill + · ${pushed||fromLewd?'Lewdness + · Trust +':'Trust +'} · Lust ${ld < 0 ? '+'+(-ld) : '−'+ld} · Sam's Technique +3`;
+  text += `\n\n[${actLabel(act)}] skill + · ${lg >= 0.3 ? 'Lewdness + · ' : ''}Trust + · Lust ${ld < 0 ? '+'+(-ld) : '−'+ld} · Sam's Technique +3`;
   // worked up by it, she may want more: something that actually spends it, if they've crossed that far
   if(builds && !o.more && w.lust >= LUST_EAGER && w.lewd >= SVC.askMore.lewd){
     const ids = getActs().filter(a=>(a.lust ?? -1) < 0 && canSam(w, a.id)).map(a=>a.id);
-    if(ids.length){ const id2 = ids.includes(w.lovers) ? w.lovers : ids.includes(w.fav) ? w.fav : pick(ids);
+    if(ids.length){ const id2 = ids.find(id=>isLovers(w,id)) || pickFav(w,ids) || pick(ids);
       text += '\n\n' + privateCore(w, id2, {lead:`${w.name} isn't done. She pulls Sam closer and tells him, quietly and very clearly, what she wants next.`, more:true}); }
   }
   return text;

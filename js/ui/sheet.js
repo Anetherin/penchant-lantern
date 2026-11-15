@@ -34,9 +34,9 @@ function refreshSheetInfo(){
   const k = knows(w,true), kp = knowsPrefs(w);
   const rows = getActs().filter(a=>!actBanned(w,a.id)).map(a=>{
     const cst = clientStance(w,a.id), sst = samStance(w,a.id), cc = cst!=='no', on = w.menu.includes(a.id);
-    const pref = kp ? (w.fav===a.id?' <span title="Favorite" class="good">★</span>':'') + (w.dislike===a.id?' <span title="Dislikes" class="warn">✗</span>':'') + (w.lovers===a.id?' <span title="Lovers only: with clients only if very lewd" class="pink">♥</span>':'') : '';
+    const pref = kp ? (isFav(w,a.id)?' <span title="Favorite" class="good">★</span>':'') + (isDislike(w,a.id)?' <span title="Dislikes" class="warn">✗</span>':'') + (isLovers(w,a.id)?' <span title="Lovers only: with clients only if very lewd" class="pink">♥</span>':'') : '';
     return `<tr><td>${esc(a.label)}${pref}</td><td>${sv(w,actSkill(w,a.id),true)}</td>
-      <td>${cst==='no'&&kp&&w.lovers===a.id?'<span class="pink">♥ lovers</span>':STANCE[cst]}${k?` <span class="muted" title="Her willingness (lewdness + comfort) / what this service needs, on the same 0-1000 scale as Lewdness.">${lShow(inclination(w,a.id)-(w.lovers===a.id?30:0))}/${lShow(a.th)}${cst==='ask'?'':cst==='no'&&inclination(w,a.id)-(w.lovers===a.id?30:0)>=a.th-ASK_BAND?` (trust ${tShow(trustNeed(a.th-inclination(w,a.id)+(w.lovers===a.id?30:0)))})`:''}</span>`:''}</td>
+      <td>${cst==='no'&&kp&&isLovers(w,a.id)?'<span class="pink">♥ lovers</span>':STANCE[cst]}${k?` <span class="muted" title="Her willingness (lewdness + comfort) / what this service needs, on the same 0-1000 scale as Lewdness.">${lShow(inclination(w,a.id)-(isLovers(w,a.id)?30:0))}/${lShow(a.th)}${cst==='ask'?'':cst==='no'&&inclination(w,a.id)-(isLovers(w,a.id)?30:0)>=a.th-ASK_BAND?` (trust ${tShow(trustNeed(a.th-inclination(w,a.id)+(isLovers(w,a.id)?30:0)))})`:''}</span>`:''}</td>
       <td>${sst!=='no' && !crossed(w,a.id) ? `<span class="muted" title="She'd be comfortable with it, but she and Sam haven't crossed that line yet">🔒</span>` : STANCE[sst]}</td>
       <td><input type="checkbox" ${on?'checked':''} ${cc?'':'disabled'} onchange="toggleMenu('${w.id}','${a.id}',this.checked)"></td></tr>`;
   }).join('');
