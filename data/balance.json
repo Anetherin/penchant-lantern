@@ -145,32 +145,98 @@
     "ngppRoomStart": 5,
     "ngppRoomStep": 5,
     "cycleVars": {
-      "festival":       {"label":"Lantern Festival","desc":"Clients flock to Hollowmere (+15% demand, +15% propositions), while pushy incidents tick up +15%.","demand":1.15,"prop":1.15,"pushy":1.15},
-      "austerity":      {"label":"Credit Audit","desc":"House upkeep runs 15% higher, but Merchants & Nobles pay +15% when satisfied (65+).","upkeep":1.15,"richFee":1.15},
-      "warm_winds":     {"label":"Warm Winds","desc":"Staff lust builds +25% faster and lewdness grows +15% quicker, with −2 weekly mood.","lustBuild":1.25,"lewd":1.15,"mood":-2},
-      "iron_watch":     {"label":"City Watch Crackdown","desc":"Pushy client risk drops 30%, while candidate signing bonuses cost +20%.","pushy":0.7,"signing":1.2},
-      "scholars":       {"label":"Guild Scrutiny","desc":"Training, coaching, and lessons grant +25% stat & skill gains; reputation rises 15% slower.","learn":1.25,"rep":0.85},
-      "crimson_nights": {"label":"Crimson Nights","desc":"Sam gets +15 max energy and +20% trust gained; starting cycle debt +5%.","samEnergy":15,"trust":1.2,"debt":1.05}
+      "festival": {
+        "label": "Lantern Festival",
+        "desc": "Clients flock to Hollowmere (+15% demand, +15% propositions), while pushy incidents tick up +15%.",
+        "demand": 1.15,
+        "prop": 1.15,
+        "pushy": 1.15
+      },
+      "austerity": {
+        "label": "Credit Audit",
+        "desc": "House upkeep runs 15% higher, but Merchants & Nobles pay +15% when satisfied (65+).",
+        "upkeep": 1.15,
+        "richFee": 1.15
+      },
+      "warm_winds": {
+        "label": "Warm Winds",
+        "desc": "Staff lust builds +25% faster and lewdness grows +15% quicker, with −2 weekly mood.",
+        "lustBuild": 1.25,
+        "lewd": 1.15,
+        "mood": -2
+      },
+      "iron_watch": {"label":"City Watch Crackdown","desc":"Pushy client risk drops 30%, while candidate signing bonuses cost +20%.","pushy":0.7,"signing":1.2},
+      "scholars": {
+        "label": "Guild Scrutiny",
+        "desc": "Training, coaching, and lessons grant +25% stat & skill gains; reputation rises 15% slower.",
+        "learn": 1.25,
+        "rep": 0.85
+      },
+      "crimson_nights": {
+        "label": "Crimson Nights",
+        "desc": "Sam gets +15 max energy and +20% trust gained; starting cycle debt +5%.",
+        "samEnergy": 15,
+        "trust": 1.2,
+        "debt": 1.05
+      }
     },
     "cycleChallenges": {
-      "lean_house":     {"label":"Lean House","tier":"guild","desc":"Pay off the cycle debt without buying any extra houses.","perk":"Lean Margin","perkDesc":"+10% all house income permanently."},
-      "ahead_of_time":  {"label":"Ahead of Schedule","tier":"guild","desc":"Pay off the debt within 70% of the scheduled payment weeks.","perk":"Credit Favored","perkDesc":"−10% future cycle debt & −10% house upkeep permanently."},
-      "iron_ledger":    {"label":"Spotless Record","tier":"guild","desc":"Clear the cycle with 0 missed payment strikes and average house tidiness 65+.","perk":"Iron Ledger","perkDesc":"+15 Sam max energy & +15% Tend Bar / Do the Books efficiency permanently."},
-      "small_troupe":   {"label":"Tight Troupe","tier":"guild","desc":"Clear the cycle with 6 or fewer staff across all houses.","perk":"Tight Knit","perkDesc":"+15% trust gain & +15% lady skill gain permanently."},
-      "faithful_flame": {"label":"Faithful Lantern","tier":"bound","req":"bound","desc":"Finish the cycle with Seliora still bound and Love at 75+.","perk":"Goddess's Favor","perkDesc":"+20% Goddess weekly power & +25% Vessel awakening speed permanently."},
-      "full_vessel":    {"label":"Awakened Soul","tier":"bound","req":"ngpp","desc":"Awaken your Bound Vessel completely (full personality) before paying off the debt.","perk":"Living Echo","perkDesc":"+20% skill & stat gain for Reincarnated ladies permanently."},
-      "starlight_debt": {"label":"Debt Under Starlight","tier":"stay","req":"stay","desc":"Take on +25% starting debt and −25% starting gold for this cycle.","perk":"Sovereign Flame","perkDesc":"+15% all house income & +1 permanent Sam action per week.","debt":1.25,"purse":0.75}
+      "lean_house": {
+        "label": "Lean House",
+        "tier": "guild",
+        "desc": "Pay off the cycle debt without buying any extra houses.",
+        "perk": "Lean Margin",
+        "perkDesc": "+10% all house income permanently."
+      },
+      "ahead_of_time": {
+        "label": "Ahead of Schedule",
+        "tier": "guild",
+        "desc": "Pay off the debt within 70% of the scheduled payment weeks.",
+        "perk": "Credit Favored",
+        "perkDesc": "−10% future cycle debt & −10% house upkeep permanently."
+      },
+      "iron_ledger": {
+        "label": "Spotless Record",
+        "tier": "guild",
+        "desc": "Clear the cycle with 0 missed payment strikes and average house tidiness 65+.",
+        "perk": "Iron Ledger",
+        "perkDesc": "+15 Sam max energy & +15% Tend Bar / Do the Books efficiency permanently."
+      },
+      "small_troupe": {
+        "label": "Tight Troupe",
+        "tier": "guild",
+        "desc": "Clear the cycle with 6 or fewer staff across all houses.",
+        "perk": "Tight Knit",
+        "perkDesc": "+15% trust gain & +15% lady skill gain permanently."
+      },
+      "faithful_flame": {
+        "label": "Faithful Lantern",
+        "tier": "bound",
+        "req": "bound",
+        "desc": "Finish the cycle with Seliora still bound and Love at 75+.",
+        "perk": "Goddess's Favor",
+        "perkDesc": "+20% Goddess weekly power & +25% Vessel awakening speed permanently."
+      },
+      "full_vessel": {
+        "label": "Awakened Soul",
+        "tier": "bound",
+        "req": "ngpp",
+        "desc": "Awaken your Bound Vessel completely (full personality) before paying off the debt.",
+        "perk": "Living Echo",
+        "perkDesc": "+20% skill & stat gain for Reincarnated ladies permanently."
+      },
+      "starlight_debt": {
+        "label": "Debt Under Starlight",
+        "tier": "stay",
+        "req": "stay",
+        "desc": "Take on +25% starting debt and −25% starting gold for this cycle.",
+        "perk": "Sovereign Flame",
+        "perkDesc": "+15% all house income & +1 permanent Sam action per week.",
+        "debt": 1.25,
+        "purse": 0.75
+      }
     },
-    "vessel": {
-      "fills": [2, 5, 9],
-      "insideFill": 2,
-      "outsideFill": 1,
-      "teaseFill": 0.5,
-      "startLewd": 42,
-      "startTrust": 25,
-      "awakenedTrust": 10,
-      "awakenedEnergy": 5
-    },
+    "vessel": {"fills":[2,5,9],"insideFill":2,"outsideFill":1,"teaseFill":0.5,"startLewd":42,"startTrust":25,"awakenedTrust":10,"awakenedEnergy":5},
     "purse": 600,
     "saleValue": 0,
     "improveShare": 1,
@@ -222,7 +288,13 @@
       "Patient Tutor": {"up":["teacher"]},
       "Attentive": {"up":["attendant","host"]},
       "Devout": {"up":["chapel"]},
-      "Eager Student": {"up":["teacher"]}
+      "Eager Student": {"up":["teacher"]},
+      "Velvet Touch": {"up":["courtesan"],"down":["security"]},
+      "Crowd Magnet": {"up":["promoter","host"]},
+      "Shield-Sister": {"up":["security"],"down":["maid"]},
+      "Warm Springs": {"up":["bath"]},
+      "Crisp Apron": {"up":["maid","attendant"]},
+      "Stern Eye": {"up":["madame","teacher"],"down":["dancer"]}
     }
   },
   "svc": {
@@ -441,7 +513,9 @@
         "Sultry and indulgent": {"fling":2.2,"pamper":2,"nice":1.6,"home":0.3},
         "Prim and proper": {"pamper":1.9,"nice":1.7,"lessons":1.5,"fling":0.2},
         "Rowdy and boisterous": {"fling":2.1,"treat":2,"massage":1.4,"lessons":0.6},
-        "Devout and serene": {"home":2.5,"massage":1.5,"lessons":1.3,"fling":0.1}
+        "Devout and serene": {"home":2.5,"massage":1.5,"lessons":1.3,"fling":0.1},
+        "Graceful and athletic": {"massage":2.3,"lessons":2.1,"treat":1.3,"pamper":0.8,"fling":0.6},
+        "Poised and artistic": {"outfit":2.1,"pamper":1.9,"nice":1.8,"treat":1.1,"lessons":0.7}
       }
     },
     "autoDress": {"mood":2,"trust":0.4}
@@ -464,7 +538,7 @@
         "likes": {"races":["beastkin","demon","dwarf"],"traits":["Brawler","Reckless","Flirt","Scandalous","Former Adventurer"]},
         "like": 0.35,
         "draw": 1.6,
-        "excl": ["shy","prude"],
+        "excl": ["shy","prude","devotedGuest","neatFreak"],
         "stats": {"strength":0.5,"charisma":0.5}
       },
       "drinker": {
@@ -490,7 +564,7 @@
         "likes": {"restless":true,"traits":["Flirt","Eager","Charming"]},
         "like": 0.4,
         "draw": 1.5,
-        "excl": ["rowdy"],
+        "excl": ["rowdy","staminaTester"],
         "stats": {"charm":1}
       },
       "romantic": {
@@ -505,7 +579,7 @@
         "draw": 1.5,
         "stats": {"charm":0.7,"beauty":0.3}
       },
-      "generous": {"label":"Generous","w":0.7,"fee":1.2,"tips":1.5,"excl":["cheapskate"]},
+      "generous": {"label":"Generous","w":0.7,"fee":1.2,"tips":1.5,"excl":["cheapskate","bigSpender"]},
       "bigSpender": {"label":"Big Spender","w":0.3,"fee":1.35,"tips":2,"excl":["cheapskate","generous"]},
       "cheapskate": {"label":"Cheapskate","w":0.9,"fee":0.8,"cheat":0.5,"tips":0.5,"excl":["generous","bigSpender"]},
       "connoisseur": {
@@ -517,9 +591,20 @@
         "likes": {"races":["elf","angel","android"],"traits":["Elegant","Skilled Hands","Silken Kisses","Nimble Fingers"]},
         "like": 0.3,
         "draw": 1.4,
-        "stats": {"refinement":0.5,"wits":0.5}
+        "stats": {"refinement":0.5,"wits":0.5},
+        "excl": ["firstTimer"]
       },
-      "thirsty": {"label":"Thirsty","w":0.7,"thirsty":true,"open":0.3,"patience":-0.1,"acceptHost":0.5,"stamina":1.35,"wants":{"missionary":1.4,"cowgirl":1.4,"doggy":1.4,"oral_give":1.3},"excl":["prude","lonely"]},
+      "thirsty": {
+        "label": "Thirsty",
+        "w": 0.7,
+        "thirsty": true,
+        "open": 0.3,
+        "patience": -0.1,
+        "acceptHost": 0.5,
+        "stamina": 1.35,
+        "wants": {"missionary":1.4,"cowgirl":1.4,"doggy":1.4,"oral_give":1.3},
+        "excl": ["prude","lonely"]
+      },
       "patient": {"label":"Patient","w":0.9,"hidden":true,"patience":0.5,"excl":["impatient"]},
       "impatient": {"label":"Impatient","w":0.9,"patience":-0.5,"excl":["patient"]},
       "chatty": {"label":"Chatty","w":0.8,"hidden":true,"compFee":1.15,"patience":0.15,"hostLike":1.5,"jobProp":{"host":1.5},"stats":{"wits":1}},
@@ -537,12 +622,51 @@
       "bather": {"label":"Bath Lover","w":0.5,"hidden":true,"jobProp":{"bath":2},"wants":{"massage_give":2,"massage_get":1.5},"patience":0.05},
       "gossip": {"label":"Gossip","w":0.6,"hidden":true,"gossip":2},
       "loyal": {"label":"Loyal","w":0.6,"hidden":true,"regular":2},
-      "firstTimer": {"label":"First-Timer","w":0.6,"tech":-0.3,"open":0.1,"acceptHost":0.6,"satAdd":5,"stamina":1.5,"wants":{"kiss":1.5,"manual_give":1.4,"missionary":1.2},"excl":["connoisseur","older"],"stats":{"charm":1}},
+      "firstTimer": {
+        "label": "First-Timer",
+        "w": 0.6,
+        "tech": -0.3,
+        "open": 0.1,
+        "acceptHost": 0.6,
+        "satAdd": 5,
+        "stamina": 1.5,
+        "wants": {"kiss":1.5,"manual_give":1.4,"missionary":1.2},
+        "excl": ["connoisseur","older"],
+        "stats": {"charm":1}
+      },
       "adventurous": {"label":"Adventurous","w":0.6,"hidden":true,"open":0.4,"wants":{"cowgirl":1.4,"doggy":1.4,"oral_get":1.3},"excl":["prude"]},
-      "prude": {"label":"Prude","w":0.5,"hidden":true,"open":-0.4,"prop":0.55,"stamina":0.65,"wants":{"kiss":1.8,"manual_give":1.3},"excl":["adventurous","thirsty","rowdy","thrillSeeker"]},
-      "lonely": {"label":"Lonely","w":0.5,"hidden":true,"prop":0.45,"compFee":1.2,"regular":1.5,"hostLike":1.3,"wants":{"kiss":1.8},"stats":{"charm":1}},
+      "prude": {
+        "label": "Prude",
+        "w": 0.5,
+        "hidden": true,
+        "open": -0.4,
+        "prop": 0.55,
+        "stamina": 0.65,
+        "wants": {"kiss":1.8,"manual_give":1.3},
+        "excl": ["adventurous","thirsty","rowdy","thrillSeeker","staminaTester"]
+      },
+      "lonely": {
+        "label": "Lonely",
+        "w": 0.5,
+        "hidden": true,
+        "prop": 0.45,
+        "compFee": 1.2,
+        "regular": 1.5,
+        "hostLike": 1.3,
+        "wants": {"kiss":1.8},
+        "stats": {"charm":1},
+        "excl": ["thirsty"]
+      },
       "pleaser": {"label":"Giver","w":0.7,"wantKinds":{"receive":3.5},"prop":0.85,"satAdd":4,"open":0.15,"stats":{"charm":0.6,"beauty":0.4}},
-      "older": {"label":"Older","w":0.6,"stamina":0.45,"patience":0.15,"fee":1.1,"stats":{"refinement":0.5,"charm":0.5},"excl":["firstTimer","thrillSeeker"]},
+      "older": {
+        "label": "Older",
+        "w": 0.6,
+        "stamina": 0.45,
+        "patience": 0.15,
+        "fee": 1.1,
+        "stats": {"refinement":0.5,"charm":0.5},
+        "excl": ["firstTimer","thrillSeeker","staminaTester"]
+      },
       "discreet": {"label":"Discreet","w":0.4,"hidden":true,"fee":1.1,"patience":-0.1,"jobProp":{"bartender":0.5,"dancer":0.5,"host":0.5}},
       "vanilla": {"label":"Vanilla","w":3,"hidden":true,"likes":{"races":["human"]},"like":0.45,"draw":2,"excl":["exotic","wild"],"stats":{"beauty":1}},
       "exotic": {
@@ -575,7 +699,75 @@
         "stats": {"agility":0.5,"stamina":0.5},
         "excl": ["prude","older"]
       },
-      "customizer": {"label":"Look-Seeker","w":0.5,"likes":{"races":["android"]},"like":0.45,"draw":1.6,"fee":1.15,"satAdd":6}
+      "customizer": {"label":"Look-Seeker","w":0.5,"likes":{"races":["android"]},"like":0.45,"draw":1.6,"fee":1.15,"satAdd":6},
+      "brawnFan": {
+        "label": "Brawn Admirer",
+        "w": 0.5,
+        "satAdd": 3,
+        "wants": {"cowgirl":1.3,"doggy":1.2},
+        "likes": {"races":["dwarf","demon","beastkin"],"traits":["Brawler","Tough","Strong Back","Shield-Sister","Iron Post"]},
+        "like": 0.35,
+        "draw": 1.4,
+        "stats": {"strength":0.7,"stamina":0.3}
+      },
+      "graceSeeker": {
+        "label": "Grace Seeker",
+        "w": 0.5,
+        "wants": {"cowgirl":1.3,"oral_get":1.2},
+        "jobProp": {"dancer":1.5,"maid":1.4},
+        "likes": {"races":["elf","spirit"],"traits":["Graceful","Fleet-Footed","Fleet Step","Lithe Dancer"]},
+        "like": 0.3,
+        "draw": 1.4,
+        "stats": {"agility":0.7,"beauty":0.3}
+      },
+      "devotedGuest": {
+        "label": "Serene Visitor",
+        "w": 0.45,
+        "hidden": true,
+        "patience": 0.35,
+        "pushyMult": 0.4,
+        "jobProp": {"chapel":1.8,"bath":1.3},
+        "likes": {"races":["angel","spirit"],"traits":["Devout","Sacred Touch","Warm-Hearted"]},
+        "like": 0.3,
+        "draw": 1.4,
+        "stats": {"charm":0.5,"refinement":0.5},
+        "excl": ["rowdy"]
+      },
+      "tavernRegular": {
+        "label": "Barfly",
+        "w": 0.65,
+        "tips": 1.8,
+        "jobProp": {"bartender":1.8,"promoter":1.3},
+        "booze": {"prop":1.2,"patience":0.15},
+        "likes": {"traits":["Bar Veteran","Party Animal","Bold Laugh","Steady Nerves"]},
+        "like": 0.3,
+        "draw": 1.35,
+        "stats": {"charisma":0.6,"stamina":0.4}
+      },
+      "neatFreak": {
+        "label": "Orderly Patron",
+        "w": 0.45,
+        "hidden": true,
+        "patience": 0.1,
+        "satAdd": 4,
+        "jobProp": {"maid":1.6,"attendant":1.5},
+        "likes": {"traits":["Tidy","Organised","Crisp Apron","Well-Bred"]},
+        "like": 0.3,
+        "draw": 1.3,
+        "stats": {"refinement":0.6,"wits":0.4},
+        "excl": ["rowdy"]
+      },
+      "staminaTester": {
+        "label": "Endurance Seeker",
+        "w": 0.45,
+        "stamina": 1.5,
+        "fee": 1.15,
+        "satAdd": 3,
+        "wantStats": {"stats":["stamina","strength"],"mult":1.3},
+        "wants": {"missionary":1.3,"cowgirl":1.3,"doggy":1.3},
+        "stats": {"stamina":0.7,"strength":0.3},
+        "excl": ["older","shy","prude"]
+      }
     },
     "traitCount": [0.45,0.35,0.2],
     "nativeMatch": 0.3,
@@ -879,7 +1071,20 @@
   "goddess": {
     "fullReborn": 4,
     "events": {"perCycle":0.07,"max":0.4,"gap":2,"bound":0.15,"base":0.06,"catchUp":{"per":0.05,"cap":0.3,"max":0.15,"gap":1}},
-    "jealousy": {"perHire":3,"perExLover":6,"perPrivate":1,"perLady":0.15,"rosterRef":6,"decay":2,"perLover":4,"perCycle":6,"nightCut":15,"talkCut":5,"mid":30,"high":60},
+    "jealousy": {
+      "perHire": 3,
+      "perExLover": 6,
+      "perPrivate": 1,
+      "perLady": 0.15,
+      "rosterRef": 6,
+      "decay": 2,
+      "perLover": 4,
+      "perCycle": 6,
+      "nightCut": 15,
+      "talkCut": 5,
+      "mid": 30,
+      "high": 60
+    },
     "love": {"bind":10,"night":2.5,"outside":0.5,"stay":70},
     "mood": {"base":55,"perLove":0.25,"perJealous":0.3,"drift":0.3,"ignoreBelow":35},
     "divinity": {"bindTo":5,"finish":3,"perAction":25,"max":100},

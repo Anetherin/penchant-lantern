@@ -28,9 +28,35 @@
       "Matthias",
       "Leopold",
       "Cassian",
-      "Tamsin"
+      "Tamsin",
+      "Barnaby",
+      "Cedric",
+      "Gideon",
+      "Harlan",
+      "Julian"
     ],
-    "last": ["Hale","Marsh","Crane","Ashby","Pell","Wren","Fairweather","Thorne","Vane","Holloway","Bramble","Quill","Stroud","Kettering","Lark"]
+    "last": [
+      "Hale",
+      "Marsh",
+      "Crane",
+      "Ashby",
+      "Pell",
+      "Wren",
+      "Fairweather",
+      "Thorne",
+      "Vane",
+      "Holloway",
+      "Bramble",
+      "Quill",
+      "Stroud",
+      "Kettering",
+      "Lark",
+      "Alder",
+      "Finch",
+      "Mercer",
+      "Rowe",
+      "Vance"
+    ]
   },
   "quirks": {
     "generous": {"label":"Generous","desc":"Tips well and brings gifts.","tip":1.35,"drama":0.12},
@@ -38,7 +64,10 @@
     "lingering": {"label":"Lingers","desc":"Never wants the night to end.","tip":1,"drama":0.15},
     "smitten": {"label":"Smitten","desc":"Has fallen for his favorite. Might try to take her away.","tip":1.2,"drama":0.08},
     "talker": {"label":"Talker","desc":"Mostly comes for conversation, and tells everyone about the house.","tip":1,"drama":0.1},
-    "shy": {"label":"Shy","desc":"Took him weeks to say hello. Very loyal once he does.","tip":1.1,"drama":0}
+    "shy": {"label":"Shy","desc":"Took him weeks to say hello. Very loyal once he does.","tip":1.1,"drama":0},
+    "patron": {"label":"Patron","desc":"Sponsors private tutoring for his favorite.","tip":1.25,"drama":0.12},
+    "epicure": {"label":"Epicure","desc":"Brings fine wine and late supper to share.","tip":1.15,"drama":0.12},
+    "collector": {"label":"Collector","desc":"Pays extra for keepsakes and signed tokens.","tip":1.2,"drama":0.1}
   },
   "events": {
     "new": [
@@ -85,6 +114,30 @@
         "{regular} has been telling everyone in town about {house}, and about {name} in particular. A few new faces have turned up asking for her."
       ],
       "thanks": "You stand him a drink. Reputation +2."
+    },
+    "patron": {
+      "title": "{regular} Offers a Tutor",
+      "text": [
+        "{regular} arrived early with a folded note for {name}: he has already paid a private master to coach her {skill}, unless you would rather just take his silver."
+      ],
+      "accept": "{name} spends the afternoon practicing {skill} with the master. She comes back energized and proud of herself.",
+      "gold": "{regular} shrugs, drops {gold} on the desk, and cancels the tutor. He looks slightly less pleased."
+    },
+    "epicure": {
+      "title": "A Vintage for {name}",
+      "text": [
+        "{regular} brought a dust-caked bottle of amber cellar wine and cold roasted pheasant just for {name} after shift."
+      ],
+      "share": "You let them linger over the table together. {name} turns in glowing and well fed.",
+      "cellar": "You buy the bottle off him for the house cellar (+{gold}). {name} picks at her cold plate looking put out."
+    },
+    "collector": {
+      "title": "{regular} Wants a Keepsake",
+      "text": [
+        "{regular} has cornered {name} at the desk with {gold} in palm, begging for a signed ribbon and a lock of hair for his display case."
+      ],
+      "sell": "{name} laughs, snips a small ribbon with a flourish, and hands it over for {gold}.",
+      "decline": "You shake your head and tell him she is not a museum piece. {name} quietly squeezes your hand."
     }
   }
 }

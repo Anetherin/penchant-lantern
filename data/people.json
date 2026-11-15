@@ -267,7 +267,15 @@
         "of the Red Hollow",
         "Brambleback",
         "Fernhollow",
-        "Kestrel-clan"
+        "Kestrel-clan",
+        "Silverbrook",
+        "Swiftwing",
+        "Redbriar",
+        "Amberfur",
+        "Sunmeadow",
+        "Frostpaw",
+        "Oakhollow",
+        "Deepburrow"
       ]
     },
     "demon": {
@@ -326,7 +334,13 @@
         "Ashenvow",
         "Blackbriar",
         "of the Ember Court",
-        "Sablethorn"
+        "Sablethorn",
+        "Emberglass",
+        "Duskcrown",
+        "Velvetflare",
+        "of Obsidian Hall",
+        "Brimrose",
+        "Ashwhisper"
       ]
     },
     "dwarf": {
@@ -441,7 +455,17 @@
         "Oriane",
         "Perdita",
         "Rosamund",
-        "Sorrel"
+        "Sorrel",
+        "Vespera",
+        "Seraphine",
+        "Undine",
+        "Mireille",
+        "Sablette",
+        "Celeste",
+        "Evanthe",
+        "Nympha",
+        "Odelia",
+        "Ysolde"
       ],
       "l": [
         "of the Willow Well",
@@ -455,7 +479,15 @@
         "Paleveil",
         "the Quiet",
         "Moth-and-Candle",
-        "of the Silent Mere"
+        "of the Silent Mere",
+        "Silvermist",
+        "of the Moonwell",
+        "Glasswing",
+        "the Dusk-Lit",
+        "Starhollow",
+        "Stillwater",
+        "of the Blue Lantern",
+        "Gossamer"
       ]
     },
     "angel": {
@@ -494,7 +526,12 @@
         "Evanora",
         "Galadia",
         "Lucienne",
-        "Isaura"
+        "Isaura",
+        "Aurelia",
+        "Estelle",
+        "Seraphina",
+        "Claribel",
+        "Isolde"
       ],
       "l": [
         "Dawnwing",
@@ -511,7 +548,12 @@
         "Whitefeather",
         "Sunmantle",
         "Lightbearer",
-        "Halo-Reach"
+        "Halo-Reach",
+        "Dawnfeather",
+        "Starcrest",
+        "Brighthalo",
+        "Sunwing",
+        "Skyveil"
       ]
     },
     "android": {
@@ -540,7 +582,15 @@
         "Solstice",
         "Tessel",
         "Unity",
-        "Zephyr"
+        "Zephyr",
+        "Vega",
+        "Aria-9",
+        "Sable-M",
+        "Nadia",
+        "Clio",
+        "Talia",
+        "Iris",
+        "Kestrel"
       ],
       "l": [
         "Unit 04",
@@ -557,7 +607,12 @@
         "Series-12",
         "Mk. II",
         "Model C-08",
-        "Type V"
+        "Type V",
+        "Unit 88",
+        "Series-7",
+        "Model E-14",
+        "Mk. V",
+        "Type L"
       ]
     }
   },
@@ -814,7 +869,7 @@
       "a tanner who apologizes for the smell",
       "a cheerful cooper",
       "a weaver with ink-stained fingers",
-      "a cooper rolling his shoulders after a long week",
+      "a dyer with indigo-stained knuckles rolling his shoulders",
       "a baker's hand off before dawn",
       "a porter who has been saving up since spring"
     ],
@@ -937,7 +992,10 @@
       "a court singer between engagements",
       "a storyteller who hums while he talks",
       "a fiddler with rosin on his fingers",
-      "a skald who won't stop gesturing"
+      "a skald who won't stop gesturing",
+      "a lute-maker testing the acoustics of the parlor",
+      "a travelling chronicler hunting a local rumor",
+      "a harper in a velvet cap who tips in silver and praise"
     ],
     "pilgrim": [
       "a road-weary pilgrim with a staff and dusty hem",
@@ -947,7 +1005,10 @@
       "a footsore penitent looking for kindness",
       "a gentle old wanderer with a worn satchel",
       "a young pilgrim who has not spoken to anyone in days",
-      "a shrine-goer far from home"
+      "a shrine-goer far from home",
+      "a shrine-walker with blistered heels and a thankful smile",
+      "a quiet penitent carrying a lantern charm from the coast",
+      "a wandering novice seeing Hollowmere for the first time"
     ],
     "cleric": [
       "a cleric in plain clothes who asked for discretion",
@@ -957,7 +1018,10 @@
       "a young acolyte, flushed and guilty",
       "a hospitaller with tired, kind eyes",
       "a monk who lost an argument with himself",
-      "a chaplain very careful about who sees him"
+      "a chaplain very careful about who sees him",
+      "a parish cantor taking a discreet evening off",
+      "a tired archivist smelling of beeswax and old vellum",
+      "a bell-warden hoping nobody from the abbey knows his face"
     ],
     "watchman": [
       "a town watchman off shift, helmet under his arm",
@@ -967,7 +1031,10 @@
       "a wall sentry who earned his evening",
       "a constable who knows half the street",
       "a barracks guardsman with a week of pay",
-      "a bridge warden grinning at the staff"
+      "a bridge warden grinning at the staff",
+      "a harbor patrolman shaking river chill from his cloak",
+      "a lantern-warden off the midnight bell",
+      "an off-duty pike sergeant looking for warm company"
     ]
   },
   "featureSkip": [],

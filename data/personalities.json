@@ -334,5 +334,35 @@
     "lustBuild": 0.95,
     "stats": {"charm":8,"refinement":6,"beauty":3,"wits":-2},
     "expr": {"professional":"tender"}
+  },
+  "Graceful and athletic": {
+    "likes": ["train","walk"],
+    "dislikes": ["theater","gift"],
+    "jobsUp": ["dancer","security","bath","maid"],
+    "jobsDown": ["madame","teacher","promoter"],
+    "trust": 1,
+    "lewd": 1,
+    "solo": 0.4,
+    "modest": 0.25,
+    "goodNight": 4,
+    "badNight": -3,
+    "lustBuild": 1.05,
+    "stats": {"agility":8,"stamina":5,"strength":4,"beauty":3,"wits":-2},
+    "expr": {"professional":"professional","into":"fierce"}
+  },
+  "Poised and artistic": {
+    "likes": ["theater","dinner","chat"],
+    "dislikes": ["train"],
+    "jobsUp": ["dancer","courtesan","host","chapel","bath"],
+    "jobsDown": ["security","maid","bartender"],
+    "trust": 1.05,
+    "lewd": 1,
+    "solo": 0.45,
+    "modest": 0.3,
+    "goodNight": 4,
+    "badNight": -3,
+    "lustBuild": 1,
+    "stats": {"beauty":8,"refinement":6,"agility":4,"charm":3,"strength":-4},
+    "expr": {"professional":"languid","into":"tender"}
   }
 }

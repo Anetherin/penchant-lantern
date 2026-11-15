@@ -76,7 +76,7 @@
       "earn": null,
       "ngOnly": false,
       "ngPerk": false,
-      "excl": ["Perfectionist","Eager Student","Ambitious"]
+      "excl": ["Perfectionist","Eager Student","Ambitious","Stern Eye"]
     },
     "Tough": {
       "desc": "+20 max energy; +10 Stamina.",
@@ -441,7 +441,7 @@
       "earn": null,
       "ngOnly": false,
       "ngPerk": false,
-      "excl": ["Tidy","Elegant","Prim"]
+      "excl": ["Tidy","Elegant","Prim","Well-Bred"]
     },
     "Steady Nerves": {
       "desc": "Mood changes are 10% smaller.",
@@ -641,7 +641,7 @@
       "earn": null,
       "ngOnly": false,
       "ngPerk": false,
-      "excl": ["Scandalous","Exhibitionist","Slovenly"]
+      "excl": ["Scandalous","Exhibitionist","Slovenly","Uninhibited","Harbor Favorite","Sensualist"]
     },
     "Strong Back": {
       "desc": "Giving massages and the missionary position cost less energy; +6 Strength.",
@@ -1434,6 +1434,169 @@
       "ngOnly": false,
       "ngPerk": true,
       "excl": []
+    },
+    "Breathtaking": {"desc":"Turns heads the moment she steps into the light: +8 Beauty, +2 appeal.","gen":true,"fx":{"stats":{"beauty":8},"appeal":2}},
+    "Velvet Touch": {
+      "desc": "Built for unhurried private company: courtesan work +12%, services earn 4% more, +4 Beauty.",
+      "gen": true,
+      "fx": {"jobBonus":{"courtesan":1.12},"clientFee":1.04,"stats":{"beauty":4}}
+    },
+    "Crowd Magnet": {
+      "desc": "Knows how to turn a passing glance into a queue at the door: promoter work +12%, promoting draws 12% more clients, +4 Charisma.",
+      "gen": true,
+      "fx": {"jobBonus":{"promoter":1.12},"promote":1.12,"stats":{"charisma":4}}
+    },
+    "Shield-Sister": {
+      "desc": "Plants her boots and holds a threshold without flinching: security work +12%, +8 security, +5 Strength.",
+      "gen": true,
+      "fx": {"jobBonus":{"security":1.12},"security":8,"stats":{"strength":5}}
+    },
+    "Second Breath": {
+      "desc": "Finds an extra reserve halfway through a long night: +8 Stamina, recovers 5% more energy, +6 max energy.",
+      "gen": true,
+      "fx": {"stats":{"stamina":8},"energyRec":1.05,"maxEnergy":6}
+    },
+    "Poet's Ear": {
+      "desc": "Loves verse, quick banter, and ink-stained regulars: bards pay 18% more, scholars pay 10% more, +4 Wits.",
+      "gen": true,
+      "fx": {"classBonus":{"bard":1.18,"scholar":1.1},"stats":{"wits":4}}
+    },
+    "Garrison Toast": {
+      "desc": "Easy company for off-duty patrols and blades for hire: watchmen pay 18% more, mercenaries pay 12% more, +4 Strength.",
+      "gen": true,
+      "fx": {"classBonus":{"watchman":1.18,"mercenary":1.12},"stats":{"strength":4}}
+    },
+    "Guild-Friendly": {
+      "desc": "Appreciates calloused hands and honest craft: artisans pay 15% more, farmhands pay 12% more, +4 Refinement.",
+      "gen": true,
+      "fx": {"classBonus":{"artisan":1.15,"farmhand":1.12},"stats":{"refinement":4}}
+    },
+    "Sensualist": {
+      "desc": "Knows how to melt into every touch: receiving massage, hand, and oral services please clients 12% more, lewdness grows 10% faster.",
+      "gen": true,
+      "excl": ["Prim"],
+      "fx": {"actQuality":{"massage_get":1.12,"manual_get":1.12,"oral_get":1.12},"lewdGain":1.1}
+    },
+    "Pillow Soft": {
+      "desc": "Warm, yielding, and generous with her chest: breast service quality (giving and receiving) +12%, +4 Beauty.",
+      "gen": true,
+      "fx": {"actQuality":{"breast_give":1.12,"breast_get":1.12},"stats":{"beauty":4}}
+    },
+    "Warm Springs": {
+      "desc": "Moves effortlessly through steam and warm linen: bathhouse work +12%, resting mood +2, +4 Stamina.",
+      "gen": true,
+      "fx": {"jobBonus":{"bath":1.12},"moodRest":2,"stats":{"stamina":4}}
+    },
+    "Crisp Apron": {
+      "desc": "Sweeps through chores at a brisk clip without breaking stride: maid work +12%, cleaning 15% faster, +4 Agility.",
+      "gen": true,
+      "fx": {"jobBonus":{"maid":1.12},"tidy":1.15,"stats":{"agility":4}}
+    },
+    "Stern Eye": {
+      "desc": "Spots a crooked hem or slack posture from down the hall: madame work +10%, teaches and coaches 12% more, +4 Wits.",
+      "gen": true,
+      "excl": ["Lazy"],
+      "fx": {"jobBonus":{"madame":1.1},"teach":1.12,"stats":{"wits":4}}
+    },
+    "Lithe Dancer": {
+      "desc": "Quick on her feet and supple on the floor: +6 Agility, +4 Beauty, doggy position quality +10%.",
+      "gen": true,
+      "fx": {"actQuality":{"doggy":1.1},"stats":{"agility":6,"beauty":4}}
+    },
+    "Heart-to-Heart": {
+      "desc": "Unmatched closeness face-to-face: missionary quality +12%, trust grows 10% faster, +4 Charm.",
+      "earn": {"count":"svcByAct.missionary","at":25},
+      "fx": {"actQuality":{"missionary":1.12},"trustGain":1.1,"stats":{"charm":4}}
+    },
+    "In the Saddle": {
+      "desc": "Takes the reins effortlessly on top: cowgirl quality +12%, +5 Agility, +4 Stamina.",
+      "earn": {"count":"svcByAct.cowgirl","at":25},
+      "fx": {"actQuality":{"cowgirl":1.12},"stats":{"agility":5,"stamina":4}}
+    },
+    "Arch & Rhythm": {
+      "desc": "Knows every angle from behind: doggy quality +12%, +5 Stamina, +4 Strength.",
+      "earn": {"count":"svcByAct.doggy","at":25},
+      "fx": {"actQuality":{"doggy":1.12},"stats":{"stamina":5,"strength":4}}
+    },
+    "Yielding Warmth": {
+      "desc": "Melts under a partner's hands: getting a massage pleases clients 15% more, resting mood +2.",
+      "earn": {"count":"svcByAct.massage_get","at":15},
+      "fx": {"actQuality":{"massage_get":1.15},"moodRest":2}
+    },
+    "Responsive": {
+      "desc": "Every gasp and shudder reads like an invitation: receiving a handjob pleases clients 15% more, +3 Beauty.",
+      "earn": {"count":"svcByAct.manual_get","at":20},
+      "fx": {"actQuality":{"manual_get":1.15},"stats":{"beauty":3}}
+    },
+    "Heavy-Lidded": {
+      "desc": "Unmistakable pleasure when someone goes down on her: receiving oral pleases clients 15% more, +3 Charm.",
+      "earn": {"count":"svcByAct.oral_get","at":18},
+      "fx": {"actQuality":{"oral_get":1.15},"stats":{"charm":3}}
+    },
+    "Lush Poise": {
+      "desc": "Enjoys having her chest worshipped and shows it: receiving breast play pleases clients 15% more, +4 Beauty.",
+      "earn": {"count":"svcByAct.breast_get","at":15},
+      "fx": {"actQuality":{"breast_get":1.15},"stats":{"beauty":4}}
+    },
+    "Silver Barker": {
+      "desc": "Steers foot traffic through the door out of sheer instinct: promoter work +15%, promoting +15%, +4 Charisma.",
+      "earn": {"job":"promoter","weeks":14},
+      "fx": {"jobBonus":{"promoter":1.15},"promote":1.15,"stats":{"charisma":4}}
+    },
+    "Iron Post": {
+      "desc": "Spots trouble before a glass hits the floor: security work +15%, +10 security, +4 Strength.",
+      "earn": {"job":"security","weeks":14},
+      "fx": {"jobBonus":{"security":1.15},"security":10,"stats":{"strength":4}}
+    },
+    "Seasoned Tutor": {
+      "desc": "Makes every lesson stick: teacher work +15%, teaches 18% more, +4 Wits, +4 Refinement.",
+      "earn": {"job":"teacher","weeks":12},
+      "fx": {"jobBonus":{"teacher":1.15},"teach":1.18,"stats":{"wits":4,"refinement":4}}
+    },
+    "Fleet Step": {
+      "desc": "Moves with effortless speed and balance: +6 Agility, services cost 6% less energy.",
+      "earn": {"stat":"agility","at":80},
+      "fx": {"stats":{"agility":6},"actEnergy":0.94}
+    },
+    "Salon Grace": {
+      "desc": "Carries herself like old nobility even off the clock: +6 Refinement, nobles and officials pay 8% more.",
+      "earn": {"stat":"refinement","at":80},
+      "fx": {"stats":{"refinement":6},"classBonus":{"noble":1.08,"official":1.08}}
+    },
+    "Queen of the Velvet": {
+      "desc": "Master of private suites: courtesan work +15%, services earn 10% more, +8 Beauty.",
+      "ngPerk": true,
+      "fx": {"jobBonus":{"courtesan":1.15},"clientFee":1.1,"stats":{"beauty":8}}
+    },
+    "Steam Empress": {
+      "desc": "Bathhouse work +18%, massage quality +15%, recovers 8% more energy, +8 Stamina.",
+      "ngPerk": true,
+      "fx": {"jobBonus":{"bath":1.18},"actQuality":{"massage_give":1.15},"energyRec":1.08,"stats":{"stamina":8}}
+    },
+    "Mistress of Order": {
+      "desc": "Maid work +18%, cleaning +25%, resting mood +3, +8 Agility.",
+      "ngPerk": true,
+      "fx": {"jobBonus":{"maid":1.18},"tidy":1.25,"moodRest":3,"stats":{"agility":8}}
+    },
+    "Lantern's Voice": {
+      "desc": "Promoter work +18%, promoting +18%, bards and merchants pay 12% more, +8 Charisma.",
+      "ngPerk": true,
+      "fx": {"jobBonus":{"promoter":1.18},"promote":1.18,"classBonus":{"bard":1.12,"merchant":1.12},"stats":{"charisma":8}}
+    },
+    "Scholar's Mind": {
+      "desc": "Stats and skills grow 12% faster, teaches and learns 15% more, +10 Wits.",
+      "ngPerk": true,
+      "fx": {"statGain":1.12,"skillGain":1.12,"teach":1.15,"learn":1.15,"stats":{"wits":10}}
+    },
+    "Porcelain Poise": {
+      "desc": "Aristocratic bearing across lives: +10 Refinement, nobles and officials pay 12% more, +3 appeal.",
+      "ngPerk": true,
+      "fx": {"stats":{"refinement":10},"classBonus":{"noble":1.12,"official":1.12},"appeal":3}
+    },
+    "Unyielding Frame": {
+      "desc": "Honed across lifetimes: +10 Strength, +10 Stamina, +15 security, +15 max energy.",
+      "ngPerk": true,
+      "fx": {"stats":{"strength":10,"stamina":10},"security":15,"maxEnergy":15}
     }
   },
   "earnChance": 0.35
