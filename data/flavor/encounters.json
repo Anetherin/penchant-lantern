@@ -471,6 +471,14 @@
       "She accepted his quiet proposition in the candlelight of the vestry, leaving him flushed, reverent, and eager to refill the chapel donation chest."
     ]
   },
+  "covered_for": {
+    "_note": "Opening of a report highlight when a courtesan's attendant steps in to cover a service her courtesan refused or was too tired for ({for} = courtesan's name).",
+    "_default": [
+      "{for} wasn't up to it, so her attendant {name} quietly slipped in to take care of him herself.",
+      "Seeing {for} balk, {name} stepped smoothly forward and offered to see to him in her place.",
+      "{for} was too worn out to oblige him; {name} took his hand instead and saved the booking."
+    ]
+  },
   "enc_lantern_angel": {
     "_note": "Lantern Angel flavor on an intimate client encounter.",
     "_default": [

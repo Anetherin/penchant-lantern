@@ -5,11 +5,16 @@
 const maxEnergy = w => Math.max(20, Math.round(60 + s100(statOf(w,'stamina'))*0.6 + fxAdd(w,'maxEnergy')));
 // energy can be banked above max (energyBank fx); it is simply spent first
 const energyCap = w => maxEnergy(w) + fxAdd(w,'energyBank');
+const actArr = v => (Array.isArray(v) ? v : v ? [v] : []).map(actKey);
+const isFav = (w, id) => actArr(w && w.fav).includes(actKey(id));
+const isDislike = (w, id) => actArr(w && w.dislike).includes(actKey(id));
+const isLovers = (w, id) => actArr(w && w.lovers).includes(actKey(id));
+const pickFav = (w, ids) => { const f = actArr(w && w.fav).filter(id=>!ids || ids.includes(id)); return f.length ? pick(f) : null; };
 // Energy per client: depends on the service, her stamina, and how she feels about it.
 function actCost(w, act){
   let c = act ? ((actById(act)||{}).energy || 10) : 5;
   c *= 1.2 - s100(statOf(w,'stamina'))/250;
-  if(act){ if(w.fav===act) c *= 0.75; if(w.dislike===act) c *= 1.35; if(clientStance(w,act)==='ask') c *= 1.25; }
+  if(act){ if(isFav(w,act)) c *= 0.75; if(isDislike(w,act)) c *= 1.35; if(clientStance(w,act)==='ask') c *= 1.25; }
   if(act && BAL.svc.staminaEnergy !== false){ const st = (actById(act)||{}).stats; if(st && st.stamina) c *= 1.1 - s100(statOf(w,'stamina'))/500; }
   c *= fxMul(w,'actEnergy') * (act ? fxSub(w,'actEnergyBy',act) : 1) * incenseMul(w,'actEnergy');
   return Math.max(1, c);
@@ -22,7 +27,10 @@ function lewdUp(w, n, cap){
   const boost = w.lewd < L.lowBoostBelow ? L.lowBoost : 1;          // shy beginners move a bit faster
   const g = n * lewdMult(w) * t * boost; w.lewd = clamp(w.lewd + g); return g;
 }
-const svcLewdCap = (id, who) => ((actById(id)||{}).th ?? 30) + BAL.lewd.capOver[who];   // who: 'sam' | 'client'
+function svcLewdCap(id, who){
+  const A = actById(id) || {}, L = BAL.lewd, raw = (A.th ?? 30) + L.capOver[who];   // who: 'sam' | 'client'
+  return who === 'sam' && L.tierCaps && L.tierCaps[A.tier] != null ? Math.min(raw, L.tierCaps[A.tier]) : raw;
+}
 const lewdMult = w => fxMul(w,'lewdGain') * ((PERS[w.personality]||{}).lewd || 1) * ((S && HOUSES[(houseOf(w)||{}).id]||{}).lewdBoost || 1);
 const isFree = w => !!(w.isPartner || w.free);
 // Trust from Sam's attention: personality, race, and diminishing returns near the top.
@@ -55,12 +63,12 @@ const trustNeed = gap => Math.round(40 + gap*2);
 const jobTh = (w, job) => (job || w.job)==='courtesan' ? BAL.jobs.courtesanTh : 0;
 function clientStance(w,id,job){
   const a = actById(id); if(!a || actBanned(w,id)) return 'no';
-  const inc = inclination(w,id) - (w.lovers===id ? 30 : 0), th = a.th - jobTh(w, job);
+  const inc = inclination(w,id) - (isLovers(w,id) ? 30 : 0), th = a.th - jobTh(w, job);
   if(inc >= th) return 'yes';
   if(inc >= th - ASK_BAND && w.trust >= trustNeed(th - inc)) return 'ask';
   return 'no';
 }
-function samLean(w,id){ return inclination(w,id) + w.trust*0.45 + (w.lovers===id && w.trust>=40 ? 15 : 0) + (has(w,'Devoted')?20:0) - (has(w,'Oblivious')?45:0); }
+function samLean(w,id){ return inclination(w,id) + w.trust*0.45 + (isLovers(w,id) && w.trust>=40 ? 15 : 0) + (has(w,'Devoted')?20:0) - (has(w,'Oblivious')?45:0); }
 function samStance(w,id){
   const a = actById(id); if(!a || actBanned(w,id)) return 'no';
   if(has(w,'Oblivious') && actKey(id)!=='kiss') return 'no';
@@ -69,7 +77,7 @@ function samStance(w,id){
   if(inc >= a.th - band && w.trust >= trustNeed(a.th - inc) - 14) return 'ask';
   return 'no';
 }
-function comfortOf(w,id){ id = actKey(id); const a = w.acts&&w.acts[id]; return (a?a.comfort:0) + (w.fav===id?10:0) - (w.dislike===id?15:0); }
+function comfortOf(w,id){ id = actKey(id); const a = w.acts&&w.acts[id]; return (a?a.comfort:0) + (isFav(w,id)?10:0) - (isDislike(w,id)?15:0); }
 const canClient = (w,id) => clientStance(w,id) !== 'no';
 // How far past the line a service is with Sam (services.json → tier). She has to have crossed that line with him first
 // (w.intim, raised by her firsts: js/events/firsts.js). samStance is still her comfort; this is whether it's happened yet.
@@ -350,12 +358,29 @@ function ensureWorker(w){
   w.acts = w.acts || {};
   const base = w.actSkill!==undefined ? w.actSkill : (w.tech.intimacy!==undefined ? s100(w.tech.intimacy) : ri(0,25));   // actSkill is a 0-100 seed value
   getActs().forEach(a=>{ if(!w.acts[a.id]) w.acts[a.id] = {skill: clampK(Math.round(base*0.8 + (base<10 ? ri(0,10) : ri(8,22)))*SKL + ri(0,SKL-1)), comfort: ri(-10,10)}; });
-  ['fav','dislike','lovers'].forEach(k=>{ if(w[k]) w[k] = actKey(w[k]); });
+  const normPref = v => { const a = Array.from(new Set(actArr(v))); return !a.length ? null : a.length===1 ? a[0] : a; };
+  ['fav','dislike','lovers'].forEach(k=>{ if(w[k]!==undefined) w[k] = normPref(w[k]); });
   if(w.menu) w.menu = Array.from(new Set(w.menu.map(actKey)));
   const ids = getActs().map(a=>a.id).filter(id=>id!=='kiss');
-  if(w.fav===undefined){ w.fav = pick(ids); if(w.acts[w.fav]) w.acts[w.fav].skill = clampK(w.acts[w.fav].skill+100); }
-  if(w.dislike===undefined){ let d=null; if(Math.random()<0.7){ do d=pick(ids); while(d===w.fav); } w.dislike=d; }
-  if(w.lovers===undefined){ let l=null; if(Math.random()<0.45){ do l=pick(ids); while(l===w.fav); } w.lovers=l; }
+  if(w.fav===undefined){
+    const n = Math.random()<0.25 ? 2 : 1, f = [];
+    for(let i=0; i<n; i++){ const p = ids.filter(id=>!f.includes(id)); if(p.length) f.push(pick(p)); }
+    w.fav = normPref(f);
+    actArr(w.fav).forEach(id=>{ if(w.acts[id]) w.acts[id].skill = clampK(w.acts[id].skill+100); });
+  }
+  const favSet = actArr(w.fav);
+  if(w.dislike===undefined){
+    let d = []; const r = Math.random();
+    if(r < 0.12) d = ['manual_give','oral_give'].filter(id=>!favSet.includes(id) && ids.includes(id));
+    else if(r < 0.72){ const n = Math.random()<0.3 ? 2 : 1; for(let i=0; i<n; i++){ const p = ids.filter(id=>!favSet.includes(id) && !d.includes(id)); if(p.length) d.push(pick(p)); } }
+    w.dislike = normPref(d);
+  }
+  if(w.lovers===undefined){
+    let l = []; const r = Math.random();
+    if(r < 0.14) l = ['missionary','cowgirl','doggy'].filter(id=>!favSet.includes(id) && ids.includes(id));
+    else if(r < 0.45){ const n = Math.random()<0.22 ? 2 : 1; for(let i=0; i<n; i++){ const p = ids.filter(id=>!favSet.includes(id) && !l.includes(id)); if(p.length) l.push(pick(p)); } }
+    w.lovers = normPref(l);
+  }
   if(!w.menu) w.menu = [];
   // firsts with Sam (js/events/firsts.js): her pace and path, and how far they've gone. Older saves where they'd
   // already been together count as having crossed every line.
@@ -487,7 +512,7 @@ function makeNamed(key, asPartner){
   STAT_KEYS.forEach(k=>{ w.stats[k] = clampK(K(d.stats[k] ?? d.stats[STAT_FALLBACK[k]] ?? 30)); }); TECH_KEYS.forEach(k=>{ w.tech[k] = clampK(K((d.tech||{})[k] ?? 10)); });
   w.body = Object.assign({}, BODY_DEF, d.body || {});   // named ladies: from data, default medium / average / slim
   if(d.unique) w.unique = clone(d.unique);
-  ['fav','dislike','lovers'].forEach(k=>{ if(w[k]) w[k] = actKey(w[k]); });
+  ['fav','dislike','lovers'].forEach(k=>{ if(w[k]) w[k] = Array.isArray(w[k]) ? w[k].map(actKey) : actKey(w[k]); });
   w.id = 'n_'+key; w.key = key; w.named = true; w.keep = true; w.sub = d.sub || '';
   w.outfit = 'sig_'+key; w.owned = ['sig_'+key];
   w.ownedUnder = Array.from(new Set(['plain', d.under]));
@@ -527,7 +552,16 @@ const isHired = key => S && (S.workers.some(w=>w.key===key) || S.candidates.some
 // services and time with Sam. Very high lust can lead to reckless choices; very low lust means
 // she isn't in the mood for the heavier services.
 const LUST_LOW = BAL.lust.low, LUST_HIGH = BAL.lust.high;
-const notInMood = (w, act) => act && w.lust < LUST_LOW && ((actById(act)||{}).energy||10) >= 9;
+function notInMood(w, act){
+  if(!act) return false;
+  const id = actKey(act), A = actById(id) || {};
+  if(id==='massage_give' || id==='massage_get' || id==='kiss' || A.kind==='receive') return false;
+  return w.lust < LUST_LOW && (A.energy||10) >= 9;
+}
+function tooTiredFor(w, act){
+  const A = actById(act); if(!A || !A.tiredAt) return false;
+  return (w.energy || 0) / Math.max(1, maxEnergy(w)) < A.tiredAt;
+}
 // At max lust some ladies take care of it themselves (data/personalities.json → solo).
 function soloChance(w){ const P = PERS[w.personality]||{}; return Math.max(0.05, Math.min(0.9, (P.solo ?? 0.3) + (has(w,'Shy')?0.15:0) + (has(w,'Modest')?0.1:0) - (has(w,'Eager')?0.15:0) - (has(w,'Exhibitionist')?0.1:0))); }
 function lustLabel(w){ return restless(w) ? 'restless' : w.lust>=LUST_EAGER ? 'eager' : w.lust<LUST_LOW ? 'not in the mood' : 'content'; }

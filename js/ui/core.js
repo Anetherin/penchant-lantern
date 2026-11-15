@@ -43,15 +43,6 @@ function statCell(w, k, employee, label){
 }
 const isGuest = w => !!(w && w.key && NAMED[w.key] && NAMED[w.key].role==='drifter');
 const nameBadge = w => isGuest(w) ? `<span class="tag guest" title="Visiting guest${NAMED[w.key].pack && GUEST_PACKS[NAMED[w.key].pack] ? ' · '+esc(GUEST_PACKS[NAMED[w.key].pack].label||NAMED[w.key].pack) : ''}">☄</span>` : (w && w.named ? '<span class="tag">★</span>' : (w && w.favorite ? '<span class="tag act" title="Favorited (reincarnates as an old friend at max trust)">★</span>' : ''));
-function attendantPairs(h){
-  const J = BAL.jobs || {}, ws = S.workers.filter(w=>w.house===h.id);
-  const attQ = x => clamp((s100(x.tech.service)*J.attendantSkillW + s100(statOf(x,'charm'))*J.attendantCharmW + s100(statOf(x,'wits'))*(J.attendantWitsW ?? J.attendantRefW))/100 * ob(x,'attendant') * jb(x,'attendant'), 0, J.attendantQMax || 2);
-  const courts = ws.filter(w=>w.job==='courtesan').sort((a,b)=>b.popularity-a.popularity);
-  const atts = ws.filter(w=>w.job==='attendant').sort((a,b)=>attQ(b)-attQ(a));
-  const byCourt = new Map(), byAtt = new Map();
-  courts.slice(0, atts.length).forEach((c,i)=>{ byCourt.set(c.id, atts[i]); byAtt.set(atts[i].id, c); });
-  return {byCourt, byAtt, courts:courts.length, atts:atts.length};
-}
 function traitTags(w){ return (w.reborn?`<span class="tag act" title="${esc(rebornDesc(w))}">♻ Reincarnated${w.reborn>1?' ×'+w.reborn:''}</span> `:'') + (w.unique?`<span class="tag act" title="${esc(w.unique.desc||'')}">★ ${esc(w.unique.name)}</span> `:'') + (w.ngPerks||[]).map(t=>`<span class="tag act" title="${esc(TRAITS[t]?TRAITS[t].desc:'')}">✦ ${esc(t)}</span>`).join(' ') + ' ' + (w.traits||[]).filter(t=>!TRAITS[t]||!TRAITS[t].hidden||S.sam.appraisal>=3).map(t=>`<span class="tag ${TRAITS[t]&&TRAITS[t].hidden?'hid':''} ${TRAITS[t]&&TRAITS[t].story?'act':''}" title="${esc(TRAITS[t]?TRAITS[t].desc:'')}">${esc(t)}</span>`).join(' '); }
 function jobOptions(w){ return Object.entries(JOBS).map(([k,J])=>{ const why = k===w.job ? null : canDo(w,k); return `<option value="${k}" ${k===w.job?'selected':''} ${why?'disabled':''}>${why?'🔒 ':''}${J.label}</option>`; }).join(''); }
 // House picker, shared by Houses, Roster, Recruit and Upgrades: the picked house (S.cur) and the "All houses" choice (HOUSE_ALL) carry

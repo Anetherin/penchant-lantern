@@ -273,10 +273,14 @@ function cStatSat(c, w, score){
 }
 // Draw: trait likes (draw) x stat taste. cls = his class object (so regulars' class taste counts too).
 const clientDraw = (c, w, cls) => (c ? c.traits.reduce((m, t) => traitFits(t, w) ? m * (t.draw ?? 1) : m, 1) : 1) * (1 + BAL.clients.statPref.draw * statPrefScore(c, w, cls || (c && c.cls)));
-// wantStats {stats, mult} on a trait: x that on his chance to ask for a service whose services.json stats include any of them.
+// wantStats / wants / wantKinds on a trait: multiply his chance to ask for matching services.
 function cWantMul(c, act){
-  let m = 1; if(!c) return m; const st = act && act.stats;
-  c.traits.forEach(t => { const W = t.wantStats; if(W && st && W.stats.some(k => st[k])) m *= W.mult; });
+  let m = 1; if(!c || !act) return m; const st = act.stats;
+  c.traits.forEach(t => {
+    const W = t.wantStats; if(W && st && W.stats.some(k => st[k])) m *= W.mult;
+    if(t.wants && t.wants[act.id] != null) m *= t.wants[act.id];
+    if(t.wantKinds && act.kind && t.wantKinds[act.kind] != null) m *= t.wantKinds[act.kind];
+  });
   return m;
 }
 // Count a client's traits into the house report and the week's average tips multiplier.

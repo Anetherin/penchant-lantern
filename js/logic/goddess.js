@@ -307,7 +307,7 @@ function gSvcLine(act, ctx, lady){
 function goddessActFor(w, form){
   const top = form==='futa' ? 3 : 2, ok = getActs().filter(a=>actTier(a.id) <= top && (a.th||0) <= (w.lewd||0) + 15);
   if(!ok.length) return null;
-  if(w.fav && ok.some(a=>a.id===w.fav)) return w.fav;
+  const fav = pickFav(w, ok.map(a=>a.id)); if(fav) return fav;
   return ok.sort((a,b)=>(b.th||0)-(a.th||0))[0].id;
 }
 // What a night does: 'inside' (a finishing tier-3 service) restores everything, 'outside' (he finishes, not inside her) a little, 'none' upsets her.

@@ -120,7 +120,7 @@ function bondFx(w, e, partner){
   if(e.energy) w.energy = clamp(w.energy + e.energy, 0, maxEnergy(w));
   if(e.popularity) w.popularity = clamp(w.popularity + e.popularity);
   if(e.grow) Object.entries(e.grow).forEach(([k,n])=>grow(w, k, n));
-  if(e.lesson && partner){ const act = bestSamAct(partner) || partner.fav; if(act && w.acts[act]) growAct(w, act, 6); }
+  if(e.lesson && partner){ const act = bestSamAct(partner) || pickFav(partner); if(act && w.acts[act]) growAct(w, act, 6); }
 }
 // services both will do with Sam, best-liked first
 const duoActs = (a, b) => getActs().filter(x=>canSam(a,x.id) && canSam(b,x.id)).map(x=>x.id)
@@ -129,7 +129,7 @@ const dynLine = (dyn, act, a, b) => { const D = (BONDS.dynamics||{})[dyn] || {};
 // what the bond dynamic adds on top of the choice's own effects
 function dynamicFx(dyn, act, a, b){
   const fn = w => w.name.split(' ')[0];
-  if(dyn==='collaborative'){ addBond(a, b, 6); [a,b].forEach(w=>{ if(w.fav===act) moodAdd(w, 4); }); return ''; }
+  if(dyn==='collaborative'){ addBond(a, b, 6); [a,b].forEach(w=>{ if(isFav(w,act)) moodAdd(w, 4); }); return ''; }
   if(dyn==='competitive'){
     const sa = s100(actSkill(a,act)) + rnd(0,25), sb = s100(actSkill(b,act)) + rnd(0,25), C = BONDS.competition || {};
     if(Math.abs(sa-sb) < 8){ addBond(a, b, 8); return C.close || ''; }

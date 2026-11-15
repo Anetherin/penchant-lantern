@@ -75,7 +75,7 @@ function firstData(w, s, pent){
 function firstAct(w, s, d){
   const acts = tierActs(w, s);
   if(d && d.act && acts.some(a=>a.id===d.act)) return d.act;
-  return (acts.find(a=>a.id===w.fav) || acts.slice().sort((a,b)=>a.th-b.th)[0] || {}).id;
+  return (acts.find(a=>isFav(w,a.id)) || acts.slice().sort((a,b)=>a.th-b.th)[0] || {}).id;
 }
 function firstEvent(w, how){
   const s = firstNext(w); if(!s) return null;
