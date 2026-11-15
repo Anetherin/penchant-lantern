@@ -408,8 +408,7 @@ function simHouse(h, R){
     const pr = R.per[w.id]; pr.solo = true;
     w.energy = Math.max(0, w.energy - Math.round(maxEnergy(w)*BAL.solo.energyCost)); spendLust(w, BAL.solo.lustDrop); moodAdd(w, 3);
     if(capc[w.id]!==undefined) capc[w.id] = Math.min(capc[w.id], BAL.solo.clientCap);
-    const futaSolo = w.race==='spirit' && (w.lewd||0) >= ((SVC.spirit||{}).possessLewd ?? 35) && Math.random() < ((SVC.spirit||{}).soloFutaChance ?? 0.6);
-    R.hl.push({wid:w.id, text:flavor(futaSolo ? 'solo_spirit_futa' : 'solo', w), act:null, scene:futaSolo ? 'solo_futa' : 'solo', noAi:true, spiritFuta:futaSolo});
+    R.hl.push({wid:w.id, text:flavor('solo', w), act:null, scene:'solo', noAi:true});
   });
   const roomM = ROOM_MULT[h.tier];
   const propInc = (w, id, cls, c) => { const q = qualityOf(w,id); return Math.round(actById(id).price * P.mult * BP.propFee * (0.6+q*0.9) * cls.mult * fxMul(w,'clientFee') * BAL.income.escort * cMul(c,'fee',X,w) * cQual(c,q)); };
@@ -1033,7 +1032,7 @@ function encLine(h){
 function repGroups(R, p){
   const here = !!findAny(p.id), G = new Map();
   R.hl.forEach((h,i)=>{ if(h.wid!==p.id) return;
-    const k = h.pairFuta ? 'pair' : (h.scene==='solo'||h.scene==='solo_futa') ? 'solo' : h.act ? 'act:'+h.act : h.job ? 'job' : h.outcome==='no' ? 'no' : h.where ? 'prop:'+h.where : 'comp';
+    const k = h.pairFuta ? 'pair' : h.scene==='solo' ? 'solo' : h.act ? 'act:'+h.act : h.job ? 'job' : h.outcome==='no' ? 'no' : h.where ? 'prop:'+h.where : 'comp';
     if(!G.has(k)) G.set(k, []); G.get(k).push({h,i}); });
   const title = k => k==='pair' ? 'With a housemate (reverse possession)' : k.startsWith('act:') ? actLabel(k.slice(4)) : k==='job' ? 'At work' : k==='solo' ? 'A night to herself' : k==='no' ? 'Turned down' : k.startsWith('prop:') ? 'Propositions that went nowhere' : 'Company only';
   return [...G.entries()].map(([k, list])=>{

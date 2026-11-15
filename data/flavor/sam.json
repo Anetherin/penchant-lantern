@@ -27,18 +27,11 @@
       "{name} retired early one evening for 'a long, hot bath.' Judging by the flush on her chest and the way she lingered over the faucet, the warm water wasn't the only thing making her moan."
     ]
   },
-  "solo_spirit_futa": {
-    "_note": "Report line when a spirit spends the night alone using reverse possession on herself.",
-    "_default": [
-      "{name} locked her room, summoned up the memory of a client's heat, and kept her own ghostly curves while conjuring a stiff, glowing cock between her thighs—stroking herself through two breathless orgasms before dawn.",
-      "Too restless to float idle, {name} shifted a thick phantom cock onto her own translucent body and spent a long hour fisting herself over the sheets until spectral light flared through the keyhole."
-    ]
-  },
   "spirit_sam_futa": {
-    "_note": "Private time when a spirit reverse-possesses Sam directly.",
+    "_note": "Private time when a spirit reverse-possesses Sam directly (Sam remains present watching her keep her own body while borrowing his anatomy).",
     "_default": [
-      "{name} straddles your hips and presses a cool hand over your groin—then shivers as the air between your bodies twists. You feel a dizzying phantom tug while she keeps every lush curve of her own body and suddenly sprouts a hard, aching cock of her own, already leaking at the tip as she grins down at you and starts stroking it against your belly.",
-      "With a low laugh, {name} lets her fingers drift down between your legs until sensation blooms somewhere entirely different: she keeps her soft breasts and slender waist while claiming your cock as her own stiff phantom shaft, grinding her slick groin against yours and riding the strange dual rush until both of you groan aloud."
+      "{name} sits across from you on the mattress instead of vanishing inside—then the air between you shimmers, leaving you watching in breathless disbelief as she keeps her own spectral figure while sprouting what she borrowed from you.",
+      "With a low laugh, {name} lets her fingers brush over you until the magic takes hold: rather than slipping out of sight, she stays right where you can watch her, keeping her soft frame while claiming your anatomy as her own."
     ]
   },
   "modest": {
@@ -76,17 +69,17 @@
     "_note": "Opening line when a lady knocks on your door late at night.",
     "_default": [
       "You're doing the books by candlelight when {name} knocks. She hasn't had a single client all week, and the flush spreading down her chest says she's desperate to be fucked. \"Busy, boss?\"",
-      "{name} appears in your doorway in nothing but a sheer silk nightgown that shows every curve and dark nipple beneath, holding two cups of tea she clearly has no intention of drinking.",
-      "A folded note slides under your door: \"Still awake? Come fuck the restlessness out of me.\" It's in {name}'s handwriting.",
-      "The house is quiet, the corridor lamps burning low, when you hear a soft scratch at your door. It's {name}, barefoot, wearing only an unfastened shawl over bare skin and a look of pure lust. \"Let me in,\" she whispers.",
+      "{name} appears in your doorway with her {outfit} half-unfastened at the collar, holding two cups of tea she clearly has no intention of drinking.",
+      "A folded note slides under your door: \"Still awake?\" It's in {name}'s handwriting.",
+      "The house is quiet, the corridor lamps burning low, when you hear a soft scratch at your door. It's {name}, barefoot, her {outfit} loose at her shoulders and a look of unmistakable intent. \"Let me in,\" she whispers.",
       "You're half asleep over a stack of invoices when {name} slips inside, carrying a plate of leftover dumplings. \"You missed supper,\" she murmurs, bolting the door behind her before setting the plate down.",
-      "A soft knock, then another, bolder. {name} stands in your doorway holding a candle, the thin fabric of her shift clinging to her bare curves, her hair loose down her shoulders. \"I'm wet and wide awake,\" she says softly. \"And I know you are too.\""
+      "A soft knock, then another, bolder. {name} stands in your doorway holding a candle, her hair loose over her {outfit}. \"I'm wide awake,\" she says softly. \"And I know you are too.\""
     ],
     "Shy but earnest": [
-      "There's a tiny, hesitant knock. {name} is standing in the hall in a thin nightshift, red from her chest to her ears, having clearly rehearsed an excuse she forgets the second you open the door."
+      "There's a tiny, hesitant knock. {name} is standing in the hall fidgeting with the hem of her {outfit}, red from her chest to her ears, having clearly rehearsed an excuse she forgets the second you open the door."
     ],
     "Bold and flirtatious": [
-      "{name} doesn't even knock. She slips inside, leans back against the door with her robe wide open and nothing underneath, and grins. \"You work way too hard, boss. Let me drain some of that tension.\""
+      "{name} doesn't even knock. She slips inside, leans back against the door pulling at the fastenings of her {outfit}, and grins. \"You work way too hard, boss. Let me help with that tension.\""
     ]
   },
   "sleepin_evening": {
@@ -116,13 +109,13 @@
     "_default": [
       "{name} is lounging naked on your bed when you get back, thighs parted, very much not reading the book in her lap. \"You've been busy all week,\" she purrs. \"And I'm tired of using my own fingers.\"",
       "You find a note on your desk in {name}'s handwriting: \"My room. Tonight. Bring your stamina—I plan on fucking you dry.\"",
-      "{name} has made herself comfortable in your chair, bare legs propped up on your desk, reading your ledger upside down. \"Your handwriting is atrocious,\" she announces, letting her robe fall wide open. \"Come here. I'm aching for you.\"",
-      "The lamp in {name}'s window is lit when you pass her door, and the door stands open a hand's width. You stop. From inside, breathless and low, she says, \"Get in here, bolt the door, and take your clothes off.\"",
-      "There's a tray on your bed when you return: wine, two glasses, and {name} reclining beside it completely bare. \"I thought we might spend the evening together,\" she murmurs, spreading her knees wide to show you her pussy.",
-      "{name} intercepts you on the stairs, hooks a finger into your belt, and marches you straight to her bedroom door. \"Everyone else has had their turn,\" she whispers, backing you inside. \"Now fuck me.\""
+      "{name} has made herself comfortable in your chair, bare legs propped up on your desk, reading your ledger upside down. \"Your handwriting is atrocious,\" she announces, letting her {outfit} fall open at the shoulder. \"Come here. I've been waiting all week.\"",
+      "The lamp in {name}'s window is lit when you pass her door, and the door stands open a hand's width. You stop. From inside, breathless and low, she says, \"Get in here and bolt the door.\"",
+      "There's a tray on your bed when you return: wine, two glasses, and {name} reclining beside it with her {outfit} artfully undone. \"I thought we might spend the evening together,\" she murmurs, sliding toward the pillows.",
+      "{name} intercepts you on the stairs, hooks a finger into your belt, and marches you straight to her bedroom door. \"Everyone else has had their turn,\" she whispers, backing you inside."
     ],
     "Shy but earnest": [
-      "{name} hovers in your doorway in a thin nightgown, twisting the hem in her fingers. \"I, um. I waited. For you. All week.\" She's bright red from her chest up, trembling slightly."
+      "{name} hovers in your doorway fidgeting with the cuff of her {outfit}. \"I, um. I waited. For you. All week.\" She's bright red from her chest up, trembling slightly."
     ],
     "Proud and sharp-tongued": [
       "{name} corners you in the hall and pins you against the wall. \"I don't beg,\" she hisses, already unfastening your trousers. \"So you're going to fuck me properly right now to make up for this entire week.\""
@@ -209,8 +202,8 @@
   "lover_shared": {
     "_note": "When two happy lovers come to your room together. {other} = the second lover.",
     "_default": [
-      "There's a knock at your door. It's {name} in a sheer robe. Then a second knock: {other}, right behind her wearing nothing at all. They look at each other, then at you, and reach a silent agreement.",
-      "{name} and {other} arrive at your door together, arms linked and robes wide open, as though they'd rehearsed this. \"We've made an arrangement,\" {name} purrs, and {other} nods with a wicked grin.",
+      "There's a knock at your door. It's {name} in her {outfit}. Then a second knock: {other}, right behind her smiling wickedly. They look at each other, then at you, and reach a silent agreement.",
+      "{name} and {other} arrive at your door together, arms linked and collars already loosened, as though they'd rehearsed this. \"We've made an arrangement,\" {name} purrs, and {other} nods with a wicked grin.",
       "You open your door to find {name} and {other} whispering in the hall. They stop the moment they see you, trading a heated glance. \"We're coming in,\" {other} says softly. \"And we're sharing you.\"",
       "{other} slips inside first, flushed and biting her lip, and {name} follows close behind to bolt the door. They share a look of wicked understanding, leaving you pleasantly outnumbered.",
       "\"No arguing,\" {name} says, steering {other} by the hip into your room. \"We already decided who gets which end.\" {other} just smiles darkly and climbs onto your bed.",
@@ -560,7 +553,7 @@
       "{name} has arranged every cushion in the room into one large, inviting nest. \"Just getting comfortable,\" she says innocently—while her bare foot slides up your calf.",
       "The stairs creak in their usual spots as {name} leads you up by the sleeve. At her door she stops, straightens your collar, and murmurs, \"Now you're presentable. Briefly.\"",
       "A thunderstorm rolls over Hollowmere as the last guest leaves, bathing the house in warm lamplight. {name} plucks the quill from your fingers. \"The ledger will survive without you tonight.\"",
-      "You arrive with a bottle of plum wine and a plan. The plan evaporates the second {name} opens the door in a loose silk robe, her hair spilling over bare shoulders.",
+      "You arrive with a bottle of plum wine and a plan. The plan evaporates the second {name} opens the door with her {outfit} loose around her shoulders and her hair unpinned.",
       "Bathhouse steam lingers on {name}'s warm skin, smelling faintly of orange peel as she leans in her doorway. \"Come in,\" she purrs. \"You've been staring at this door for an hour.\""
     ]
   },

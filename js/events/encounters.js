@@ -91,11 +91,13 @@ function queueEncounters(){
 }
 function evLateVisit(w){
   if(!w || !canVisit(w, 60, 45, 40)) return null;
-  const act = needSamAct(w);
-  return {title:'A Knock After Midnight', who:w.id, scene:'enc_late', text:flavor('late_visit', w),
-    choices:[
-      {label:'Let her in', fx(){ return encounterResult(w, act, `${w.name} doesn't wait for an answer. Her clothes are on the floor before the door clicks shut, and the candle burns all the way down.`, 'encounter', 'Late at night, she came to his door on her own initiative.'); }},
-      {label:'Not tonight', fx(){ refusalHit(w, 4); w.lust = clamp(w.lust-5); return `${w.name} smiles a little ruefully. "Your loss, boss."` + refusalNote(w); }}]};
+  const act = needSamAct(w), canRev = w.race==='spirit' && ((w.lewd||0) >= ((SVC.spirit||{}).possessLewd ?? 35) || (w.intim||0)>=2);
+  const ch = [
+    {label:'Let her in', fx(){ return encounterResult(w, act, `${w.name} doesn't wait for an answer. Her clothes are on the floor before the door clicks shut, and the candle burns all the way down.`, 'encounter', 'Late at night, she came to his door on her own initiative.'); }}
+  ];
+  if(canRev) ch.push({label:'Agree to reverse possession', fx(){ const S0 = SVC.spirit||{}; const ld = spendLust(w, S0.pairLust||30); lewdUp(w, 3, 95); moodAdd(w, 6); gainTrust(w, 2); countUp(w, 'privateSam'); samLog(`Reverse-possessed Sam (${w.name})`); const text = `${flavor('spirit_sam_futa', w)}\n\nLewdness + · Trust + · Mood + · Lust −${ld}`; return {text, img:{wid:w.id, scene:'sam_spirit_futa'}, ai:{kind:'private', wid:w.id, scene:'sam_spirit_futa', forSam:true, spiritFuta:true}}; }});
+  ch.push({label:'Not tonight', fx(){ refusalHit(w, 4); w.lust = clamp(w.lust-5); return `${w.name} smiles a little ruefully. "Your loss, boss."` + refusalNote(w); }});
+  return {title:'A Knock After Midnight', who:w.id, scene:'enc_late', text:flavor('late_visit', w), choices:ch};
 }
 function evLoverWaiting(w){
   if(!w || !has(w,'Devoted')) return null;

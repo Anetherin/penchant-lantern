@@ -84,7 +84,7 @@ const actSkill = (w,id) => (w.acts&&w.acts[actKey(id)]) ? w.acts[actKey(id)].ski
 function sceneParts(k){ const p = String(k||'').split('~'); return {base:p[0], expr:p[1]||'', ctx:p[2]||''}; }
 const sceneBase = k => sceneParts(k).base;
 const isSvcScene = k => /^(act:|samact:|duo:|pair:|demo:|orgy:|solo$)/.test(sceneBase(k));
-const isIntimateScene = k => isSvcScene(k) || /^(solo_futa|sam_spirit_futa)$/.test(sceneBase(k));
+const isIntimateScene = k => isSvcScene(k) || sceneBase(k)==='sam_spirit_futa';
 // Swim scenes (dates.json image "swim": true): she wears an owned bath-compatible outfit (swimsuit first), if she has one.
 function swimOutfit(w, scene){
   if(!isSwimScene(scene)) return null;
@@ -218,6 +218,7 @@ function samSceneCloth(w, scene){
   if(w.svcLevel && w.svcLevel!=='auto') return null;
   const ix = x => CLOTH.findIndex(y=>y.id===x), act = b.split(':')[1], a = actById(act) || {}, D = a.dress || {};
   const top = ix(actCloth(w, act, true)), lo = Math.min(top, Math.max(0, ix(D.min || a.minCloth || 'dressed')));
+  if(typeof isBathScene==='function' && isBathScene(scene)) return top===3 && Math.random()<0.67 ? 'nude' : 'dressed';
   const W = ((BAL.samCloth||{}).weights) || {partial:1, under:1, nude:2}, opts = [];
   for(let i = Math.max(lo, top > 0 ? 1 : 0); i <= top; i++){ const id = CLOTH[i].id; if(id==='under' && w.under==='none') continue; opts.push([id, (W[id] ?? 1) * (i===top ? 2 : 1)]); }
   if(!opts.length) return CLOTH[top].id;
@@ -225,13 +226,13 @@ function samSceneCloth(w, scene){
 }
 function defaultCloth(w, scene){
   const P = sceneParts(scene), base = P.base;
+  if(typeof isBathScene==='function' && isBathScene(scene)) return clothOK(w,'nude',/^(samact:|duo:|ddate_|date_|bath_invite)/.test(base)) ? 'nude' : 'dressed';
   if(base.startsWith('act:')) return actCloth(w, base.split(':')[1], false, P.ctx);
   if(base.startsWith('samact:') || base.startsWith('duo:') || base.startsWith('demo:')) return actCloth(w, base.split(':')[1], true);
   if(base.startsWith('pair:')) return actCloth(w, base.split(':')[1], false);
-  if(base==='solo' || base==='solo_futa') return comfortCloth(w, false, true);
+  if(base==='solo') return comfortCloth(w, false, true);
   if(base==='sam_spirit_futa') return comfortCloth(w, true, true);
   if(base.startsWith('orgy:')) return comfortCloth(w, true, true);
-  if(base==='bath') return clothOK(w,'nude',false) ? 'nude' : 'dressed';
   // invitations and the like (scenes.json / dates.json image "undress": "partial" | "under"): as far as that, within her comfort with Sam
   const U = (SCENES[base]||{}).undress;
   if(U){ const ix = x => CLOTH.findIndex(y=>y.id===x), cap = comfortCloth(w, true, false), lv = Math.min(ix(U), ix(cap)); return CLOTH[Math.max(0, lv)].id; }

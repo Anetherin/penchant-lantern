@@ -6,8 +6,14 @@ function raceLook(w, scene){ const ed = typeof effDesign==='function' ? effDesig
 // keepOn (data/characters.json): something she won't take off until trust reaches keepOn.trust.
 // With aside:true it's a garment, so the rest of her clothes get pulled aside at most.
 function keepOnRule(w){ const k = w.key && NAMED[w.key] && NAMED[w.key].keepOn; return k && w.trust < (k.trust||90) ? k : null; }
-// A bathing scene (scenes.json / dates.json image: "bath": true, or the older "towel": true).
-const isBathScene = scene => { const sc = scene && SCENES[sceneBase(scene)]; return !!(sc && (sc.bath || sc.towel)); };
+// A bathing scene (scenes.json / dates.json image: "bath": true, "towel": true, act:*~~bath, or context date_* with bath:true).
+function isBathScene(scene){
+  if(!scene) return false;
+  const P = sceneParts(scene);
+  if(P.base.startsWith('act:') && P.ctx==='bath') return true;
+  const sc = SCENES[P.base] || SCENES[P.base.split('.')[0]];
+  return !!((sc && (sc.bath || sc.towel)) || (P.ctx && isBathScene(P.ctx)));
+}
 // A swimming scene (dates.json image: "swim": true). Not a bath scene: no towel, stays where it is.
 const isSwimScene = scene => { const sc = scene && SCENES[sceneBase(scene)]; return !!(sc && sc.swim); };
 function clothText(w, cloth, scene){
@@ -25,11 +31,10 @@ function clothTextBase(w, cloth, scene, noTowel){
   if(cloth!=='nude' && swimOutfit(w, scene)){
     return outfitText(w, scene);
   }
-  // Bath scenes: only bath-compatible outfits (wardrobe.json "bath": true) stay on; otherwise a towel, her underwear, or nothing.
+  // Bath scenes: only bath-compatible outfits (wardrobe.json "bath": true) stay on; otherwise a white towel or nothing (never "partial" street clothes).
   if(!noTowel && isBathScene(scene)){
-    const T0 = Object.assign({}, DEFAULT_CLOTH_TEXT, Object.fromEntries(Object.entries(SET.clothText||{}).filter(([k,v])=>v)));
     if(cloth==='dressed' && getOutfit(w, scene).bath) return outfitText(w, scene);
-    if(cloth==='dressed' || cloth==='partial') return cloth==='partial' && getOutfit(w, scene).bath ? (T0.partial||'').replace(/\{outfit\}/g, outfitText(w, scene)).replace(/\{underwear\}/g, underText(w, scene) || 'bare skin, nothing underneath') : 'wrapped only in a white towel';
+    if(cloth!=='nude') return 'wrapped only in a white towel';
   }
   const T = Object.assign({}, DEFAULT_CLOTH_TEXT, Object.fromEntries(Object.entries(SET.clothText||{}).filter(([k,v])=>v)));
   let t = T[cloth];

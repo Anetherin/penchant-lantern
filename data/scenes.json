@@ -82,17 +82,11 @@
       "comp": "alone on her bed, flushed, eyes half closed, fingering her pussy, masturbating, touching herself.",
       "setting": "her private bedroom, curtains drawn, a single candle"
     },
-    "solo_futa": {
-      "label": "Alone in her room (reverse-possessed)",
-      "snip": "solo",
-      "comp": "futanari, alone on her bed, flushed, eyes half closed, stroking her own erect penis, masturbating, touching herself",
-      "setting": "her private bedroom, curtains drawn, a single candle"
-    },
     "sam_spirit_futa": {
       "label": "Reverse possession with Sam",
       "sam": true,
       "pov": true,
-      "comp": "futanari woman straddling the viewer on the bed, her own erect penis gleaming between them as she leans down with a wicked grin, pov",
+      "comp": "translucent-toned woman sitting upright on the bed keeping her female body while now sporting male anatomy, a man watching her from the edge of the bed, pov",
       "setting": "Sam's modest bedroom lit by a single lantern"
     },
     "sam_training": {
@@ -146,8 +140,7 @@
       "comp": "relaxing in a steaming bath, arm draped over the edge, beckoning the viewer in with a warm unbothered smile",
       "setting": "tiled fantasy washroom, steam everywhere, candles",
       "towel": true,
-      "bath": true,
-      "undress": "partial"
+      "bath": true
     },
     "bath_walkin_relaxed": {
       "label": "Bath: Walks in, unbothered",

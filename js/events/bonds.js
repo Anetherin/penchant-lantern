@@ -95,7 +95,7 @@ function queueBondEvents(){
 }
 
 /* ---------- the event ---------- */
-const bondFill = (t, a, b) => String(Array.isArray(t) ? pick(t) : (t||'')).replace(/\{a\}/g, a.name).replace(/\{b\}/g, b.name);
+const bondFill = (t, a, b) => String(Array.isArray(t) ? pick(t) : (t||'')).replace(/\{a\}/g, a.name).replace(/\{b\}/g, b.name).replace(/\{aOutfit\}/g, (typeof getOutfit==='function' ? getOutfit(a).label : 'clothes').toLowerCase()).replace(/\{bOutfit\}/g, (typeof getOutfit==='function' ? getOutfit(b).label : 'clothes').toLowerCase());
 function evBond(id, aId, bId, shared){
   const d = (shared ? BONDS.shared : BONDS.events).find(x=>x.id===id), a = findW(aId), b = findW(bId);
   if(!d || !a || !b || !bondPairOK(d, a, b)) return null;
