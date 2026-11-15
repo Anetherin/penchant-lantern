@@ -437,18 +437,18 @@
     }
   },
   "lantern_ask": {
-    "title": "Sanction of the Lantern",
+    "title": "Touched by the Lamplighter",
     "text": [
-      "{name} finds you alone after closing, her wings drawn tight behind her shoulders. \"You've felt it too, haven't you?\" she says quietly, touching her golden halo as amber sparks flicker at its edge. \"The Pleasure Lantern recognizes what I've become here. If I accept its sanction, my old restraint goes with it—higher appetites, darker feathers, and no turning back. Say the word, Sam.\"",
-      "{name} lingers by the parlor hearth, a warm crimson-amber glow creeping through the white of her feathers. \"The Order's vows weren't built for a house like this,\" she murmurs, meeting your eyes steadily. \"The Lantern is offering to mark me as its own—a Lantern Angel. Should I take it?\""
+      "{name} corners you after closing, dark amber sparks snapping along her halo while her wings tremble behind her. \"Everyone back home whispers about the Lamplighter stealing angels,\" she breathes, grabbing your hand and pressing it straight between her wet thighs. \"Some goddess nobody can even name, making us lose our heads over cock. Tell me to take it, Sam. Tell me to quit pretending I want anything less than getting fucked raw whenever I itch for it.\"",
+      "{name} lingers by the parlor hearth with warm amber creeping through her white feathers, smiling crookedly at you. \"The Order warned us about this town's goddess—some unnamed Lamplighter who turns good angels into shameless sluts,\" she purrs, sliding her palm over the front of your trousers. \"Half the whispers are lies, except the part where my pussy hasn't stopped aching since I walked under these lanterns. Say yes, and watch me drop every vow right here.\""
     ],
     "accept": {
       "label": "Give her your blessing",
-      "res": "{name} breathes out slowly and bows her head. Light flares around her—warm amber washing through her halo, dark crimson and black feathers rippling down her wings until she lifts her gaze with a slow, wicked smile. \"Then I belong here properly now.\""
+      "res": "{name} shudders and grins as lamp-flame light washes down her halo and turns her feathers black-and-amber. \"Finally,\" she laughs softly, licking her lips while her eyes flare gold. \"Now come over here—this angel is done waiting politely for cock.\""
     },
     "refuse": {
       "label": "Keep her old wings",
-      "res": "{name} exhales and nods once, the amber flicker fading back to soft gold. \"As you say, Sam. Maybe I'm not ready to let that go.\""
+      "res": "{name} sucks in a sharp breath as the amber sparks die back to pale gold, glaring half-annoyed down at her lap. \"Fine. You win, Sam. Back to pretending I'm not wet all week.\""
     },
     "image": {
       "comp": "standing in warm lantern light with wings half spread, subtle amber glow along her halo and feather tips",
@@ -459,8 +459,8 @@
   "lantern_self": {
     "title": "A Darker Halo",
     "text": [
-      "{name} steps into the breakfast room looking noticeably different: the snow-white of her wings has deepened into black-and-amber feathers, and her halo burns with the warm, unhurried glow of a Pleasure Lantern. She didn't ask permission. \"Don't look so surprised,\" she says coolly, pouring herself tea. \"The Lantern didn't wait for either of us.\"",
-      "You catch {name} in the hallway and stop mid-step—her golden halo now smolders a rich lantern-amber, and dark, dusky feathers trace the sweep of her wings. \"I took the Lantern's sanction myself,\" she tells you evenly. \"I'm done pretending I don't want more.\""
+      "{name} strolls into the breakfast room with black-and-amber wings spread lazily behind her and a halo burning hot lantern-gold. She didn't ask permission. \"Stop gaping,\" she says, grinning around a bite of toast. \"Whether it's the Lamplighter's whisper or my own filthy head, I threw out the Order's vows last night. Now point me at a client before I drag someone under the stairs.\"",
+      "You catch {name} in the hallway and stop mid-step—her halo glows rich lamp-amber, and dusky black feathers edge her wings. \"No point hiding it,\" she purrs, running a slow tongue across her bottom lip. \"Whoever the goddess behind these lanterns is, I'm hers now. My pussy aches all day, I'm not turning anyone away, and I want cock every night I can get it.\""
     ],
     "ok": {
       "label": "Noted"

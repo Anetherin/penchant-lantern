@@ -185,7 +185,7 @@ function doubleThreesomeRun(id, oid, act){
   const need = samPrivCost(12, true);
   if(S.sam.energy < need) return toast('Sam is too tired.');
   S.sam.energy -= need;
-  const lead1 = `Behind the latched door, ${w.name} and ${o.name} waste no time on shyness — pulling you between them in a tangle of warm hands and eager mouths.`;
+  const lead1 = `Behind the latched door, ${w.name} and ${o.name} waste no time shucking their clothes and pulling you onto the bed—warm hands, slick mouths, and soft breasts pressing against you from both sides.`;
   const t1 = privateCore(w, act, {lead:lead1, turn:false});
   const t2 = privateCore(o, act, {lead:`${o.name} presses right in beside her, trading breaths and kisses as the two of them share you without an ounce of jealousy.`, turn:false});
   addBond(w, o, 6);
@@ -468,7 +468,7 @@ function spiritSamMenu(id, free){
   const w = findW(id); if(!w) return;
   const pool = spiritSamPool(w);
   modal(`<h2>👻 Reverse Possession — ${esc(w.name)}</h2>
-    <p class="story">${esc(w.name)} shifts closer with a wicked grin—her body, borrowing yours. Just the two of you, or invite a willing housemate to share?</p>
+    <p class="story">${esc(w.name)} shifts closer with a wicked grin—keeping her own body while borrowing your cock so you can watch her use it. Just the two of you, or invite a willing housemate to share?</p>
     <div class="row"><button class="primary" onclick="spiritSamSolo('${id}',${free?'true':'false'})">Just you and ${esc(w.name)}</button>
       ${pool.map(o=>`<button onclick="spiritSamPairMenu('${id}','${o.id}',${free?'true':'false'})">Invite ${esc(o.name)}</button>`).join('')}
     </div>
@@ -486,7 +486,7 @@ function spiritSamSolo(id, free){
   w.energy = clamp(w.energy - 10, 0, maxEnergy(w));
   samStat('technique', 2); samXP(5); w.privateCount++; w._samTime = (w._samTime||0) + 1; countUp(w, 'privateSam');
   samLog(`Reverse-possessed Sam (${w.name})`);
-  const line = flavor('spirit_sam_futa', w) || `${w.name} slips through your chest and keeps her own shape while borrowing what makes you hard—riding out the strangest, sharpest private time either of you have had all week.`;
+  const line = flavor('spirit_sam_futa', w) || `${w.name} keeps her own pale body while claiming your cock, stroking herself hard right in front of you while you watch.`;
   const text = `${line}\n\nLewdness + · Trust + · Mood + · Lust −${ld} · Sam's Technique +2`;
   checkUnlocks(); save(); render(); closeModal();
   showResult(`Private Time with ${w.name}`, text, w.id, 'sam_spirit_futa', {kind:'private', scene:'sam_spirit_futa', forSam:true, spiritFuta:true});
