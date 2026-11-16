@@ -57,7 +57,7 @@ function flavor(sec, w, extra={}){
   return pick(list).replace(/\{(\w+)\}/g, (m,k)=> c[k]!==undefined ? String(c[k]) : m);
 }
 const textCloth = t => /\b(naked|completely bare|under the blanket|beneath the sheets)\b/i.test(String(t||'')) ? 'nude' : undefined;
-const KEY_SAVE='gilded_lantern_save_v1', KEY_SET='gilded_lantern_settings_v1', KEY_LIB='gilded_lantern_library_v1';
+const KEY_SAVE='gilded_lantern_save_v1', KEY_SET='gilded_lantern_settings_v1', KEY_LIB='gilded_lantern_library_v1', KEY_CLOUD='gilded_lantern_cloud_v1';
 const _ss = store.get(KEY_SET) || {};
 let SET = Object.assign({}, DEFAULT_SETTINGS, _ss);
 SET.snippets = Object.assign({}, _ss.snippets||{}); SET.clothText = Object.assign({}, _ss.clothText||{}); SET.customActs = (_ss.customActs||[]).slice();
@@ -69,18 +69,37 @@ let S = null;
 let TAB='house', SHEET=null, MODAL_LOCK=false, EVQ=[], CUR_EV=null, HOUSE_ALL=false, SETUP=null;
 
 /* ---------- Image storage (IndexedDB) ---------- */
-let DB = null, THUMBS = {};
-function idbOpen(){ return new Promise(res=>{ try{ const r = indexedDB.open('gilded_lantern_imgs',1);
-  r.onupgradeneeded = ()=>{ const d=r.result; if(!d.objectStoreNames.contains('imgs')) d.createObjectStore('imgs'); if(!d.objectStoreNames.contains('thumbs')) d.createObjectStore('thumbs'); };
+let DB = null, THUMBS = {}, IMG_META = {};
+function idbOpen(){ return new Promise(res=>{ try{ const r = indexedDB.open('gilded_lantern_imgs',2);
+  r.onupgradeneeded = ()=>{ const d=r.result; if(!d.objectStoreNames.contains('imgs')) d.createObjectStore('imgs'); if(!d.objectStoreNames.contains('thumbs')) d.createObjectStore('thumbs'); if(!d.objectStoreNames.contains('meta')) d.createObjectStore('meta'); };
   r.onsuccess = ()=>{ DB=r.result; res(DB); }; r.onerror = ()=>res(null); }catch(e){ res(null); } }); }
 function idbReq(st, mode, fn){ return new Promise(res=>{ if(!DB) return res(null); try{ const tx=DB.transaction(st,mode); const q=fn(tx.objectStore(st)); tx.oncomplete=()=>res(q?q.result:null); tx.onerror=()=>res(null); tx.onabort=()=>res(null); }catch(e){ res(null); } }); }
 const imgGet = k => idbReq('imgs','readonly',s=>s.get(k));
 let IMGKEYS = new Set();
+const imgMetaPut = (k,v) => { IMG_META[k] = v; return idbReq('meta','readwrite',s=>s.put(v,k)); };
+const imgMetaDel = k => { delete IMG_META[k]; return idbReq('meta','readwrite',s=>s.delete(k)); };
 const imgPut = (k,v) => { IMGKEYS.add(k); return idbReq('imgs','readwrite',s=>s.put(v,k)); };
-const imgDel = k => { IMGKEYS.delete(k); return idbReq('imgs','readwrite',s=>s.delete(k)); };
+const imgDel = k => { IMGKEYS.delete(k); imgMetaDel(k); return idbReq('imgs','readwrite',s=>s.delete(k)); };
 const imgKeysAll = () => idbReq('imgs','readonly',s=>s.getAllKeys());
 function idbAll(st){ return new Promise(res=>{ const out={}; if(!DB) return res(out); try{ const c=DB.transaction(st,'readonly').objectStore(st).openCursor(); c.onsuccess=()=>{ const cur=c.result; if(cur){ out[cur.key]=cur.value; cur.continue(); } else res(out); }; c.onerror=()=>res(out); }catch(e){ res(out); } }); }
+function dataUrlToBlob(dataUrl){
+  const parts = String(dataUrl||'').split(','), mime = (parts[0].match(/:(.*?);/)||[])[1] || 'image/jpeg';
+  const bin = atob(parts[1]||''), arr = new Uint8Array(bin.length);
+  for(let i=0;i<bin.length;i++) arr[i] = bin.charCodeAt(i);
+  return new Blob([arr], {type:mime});
+}
+function blobToDataUrl(blob){ return new Promise((res,rej)=>{ const fr=new FileReader(); fr.onload=()=>res(fr.result); fr.onerror=()=>rej(fr.error); fr.readAsDataURL(blob); }); }
+async function sha256Hex(buf){
+  if(typeof crypto!=='undefined' && crypto.subtle){
+    const h = await crypto.subtle.digest('SHA-256', buf);
+    return [...new Uint8Array(h)].map(b=>b.toString(16).padStart(2,'0')).join('');
+  }
+  const u = new Uint8Array(buf); let h = 2166136261;
+  for(let i=0;i<u.length;i++){ h ^= u[i]; h = Math.imul(h, 16777619); }
+  return 'fnv_' + (h>>>0).toString(16).padStart(8,'0') + '_' + u.length;
+}
+async function sha256DataUrl(dataUrl){ const b = dataUrlToBlob(dataUrl); return { hash: await sha256Hex(await b.arrayBuffer()), bytes: b.size, blob: b }; }
 function shrink(src, max, q){ return new Promise(res=>{ const im=new Image(); im.crossOrigin='anonymous';
   im.onload=()=>{ const s=Math.min(1, max/Math.max(im.width,im.height)); const c=document.createElement('canvas'); c.width=Math.round(im.width*s); c.height=Math.round(im.height*s); c.getContext('2d').drawImage(im,0,0,c.width,c.height); try{ res(c.toDataURL('image/jpeg',q)); }catch(e){ res(src.startsWith('data:')?src:null); } };
   im.onerror=()=>res(null); im.src=src; }); }
-async function setThumb(id, dataUrl){ const t = await shrink(dataUrl, 160, 0.82); if(!t) return; THUMBS[id]=t; await idbReq('thumbs','readwrite',s=>s.put(t,id)); if(S) render(); }
+async function setThumb(id, dataUrl){ const t = await shrink(dataUrl, 160, 0.82); if(!t) return; THUMBS[id]=t; await idbReq('thumbs','readwrite',s=>s.put(t,id)); const info = await sha256DataUrl(t); await imgMetaPut('thumb:'+id, {hash:info.hash, bytes:info.bytes, updatedAt:Date.now()}); if(S) render(); }

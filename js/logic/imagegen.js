@@ -39,17 +39,21 @@ async function saveImage(key, url, w, scene){
   const small = await shrink(url, 768, 0.88);
   if(!small){ toast('Couldn\'t read that image to save it. Download it, then use ⬆ Upload.'); return false; }
   await imgPut(key, small);
+  if(typeof sha256DataUrl === 'function'){
+    try{ const info = await sha256DataUrl(small); await imgMetaPut(key, {hash:info.hash, bytes:info.bytes, updatedAt:Date.now()}); }catch(e){}
+  }
   if(w && w.id!=='draft' && (scene==='portrait' || !THUMBS[w.id])) await setThumb(w.id, small);
   return true;
 }
-// mode: 'new' = regenerate now; 'auto' = generate if nothing's saved; 'manual' = only on request.
+// mode: 'new' = regenerate now; 'auto' = generate if nothing's saved; 'manual' = only on request; 'local_only' = skip remote pull & auto-gen.
 // Left out, it follows Settings (SET.autoImg). The weekly report passes 'auto' only when its 🎨 button is pressed.
 // Any image can be hidden; hidden boxes show a "Show image" button and don't generate (SET.imgHidden = start hidden).
 async function showImg(boxId, id, scene, cloth, mode){
   const box = $('#'+boxId); const w = findAny(id); if(!box || !w) return;
   cloth = cloth || samSceneCloth(w, scene) || defaultCloth(w, scene);   // Sam scenes roll their dress level once, here; the buttons below keep it
+  const skipRemote = mode === 'local_only';
   if(mode===undefined) mode = SET.autoImg===false ? 'manual' : 'auto';
-  if(mode==='manual') mode = undefined;
+  if(mode==='manual' || mode==='local_only') mode = undefined;
   const A0 = `'${boxId}','${id}','${scene}','${cloth}'`;
   if(box.dataset.hide ? box.dataset.hide==='1' : !!SET.imgHidden){
     box.dataset.key = '';
@@ -61,6 +65,11 @@ async function showImg(boxId, id, scene, cloth, mode){
   const prompt = buildPrompt(w, scene, cloth);
   let saved = mode==='new' ? null : await imgGet(key), legacy = false;
   if(!saved && mode!=='new' && key!==legacyKey(w,scene,cloth)){ saved = await imgGet(legacyKey(w,scene,cloth)); if(saved){ legacy = true; } }
+  const cloudPerm = typeof cloudReady==='function' && cloudReady() && isPermImgId(id);
+  if(!saved && mode!=='new' && !skipRemote && cloudPerm && (CLOUD_STATE.manifest.imgs||{})[key]){
+    box.innerHTML = `<div class="imgbox"><div class="imgph">Loading from cloud…</div></div>`;
+    try{ saved = await cloudFetchImg(key, 'img'); }catch(e){}
+  }
   if(box.dataset.key !== key || !box.isConnected) return;   // the modal moved on while we were loading
   const newKey = key; if(legacy) key = legacyKey(w,scene,cloth);
   box.innerHTML = '';
@@ -70,10 +79,18 @@ async function showImg(boxId, id, scene, cloth, mode){
   else if(mode==='new' || mode==='auto'){ generateInto(wrap, w, newKey, prompt, scene, mode==='new', boxId, id, cloth); }
   else wrap.innerHTML = `<div class="imgph">No saved image for this scene yet.</div>`;
   const bar = document.createElement('div'); bar.className='row';
+  const clrLbl = cloudPerm ? '🗑 Local' : '🗑';
   bar.innerHTML = `<button class="sm" onclick="toggleImg(${A},true)" title="Hide this image">🙈 Hide</button><button class="sm" onclick="showImg(${A},'new')">🎨 ${saved?'Regenerate':'Generate'}</button>
     <button class="sm" onclick="uploadImg(${A})">⬆ Upload</button>
-    ${saved?`<button class="sm" onclick="downloadImg('${key}','${esc(w.name).replace(/'/g,'')}')">⬇ Save file</button>${id!=='draft'?`<button class="sm" onclick="useAvatar('${key}','${id}')">👤 Avatar</button>`:''}<button class="sm" onclick="deleteImg('${key}',${A})">🗑</button>`:''}`;
+    ${saved?`<button class="sm" onclick="downloadImg('${key}','${esc(w.name).replace(/'/g,'')}')">⬇ Save file</button>${id!=='draft'?`<button class="sm" onclick="useAvatar('${key}','${id}')">👤 Avatar</button>`:''}<button class="sm" onclick="deleteImg('${key}',${A})" title="Clear local cached image">${clrLbl}</button>`:''}`
+    + (cloudPerm ? `<span class="sync-pill none" data-sync-pill></span><button class="sm" data-cloud-push style="display:none" onclick="cloudPushBoxImg(${A})" title="Upload this image to Cloudflare R2">↑ Push</button><button class="sm" onclick="cloudCheckImg(${A})" title="Check cloud status and compare if different">⇄ Check</button><button class="sm" data-cloud-clear style="display:none" onclick="deleteImgBoth('${key}',${A})" title="Delete from both local cache and cloud">🗑☁</button>` : '');
   box.appendChild(bar);
+  if(cloudPerm){
+    renderCloudImgUI(box, key, id, !!saved);
+    if(saved && (!IMG_META[key] || !IMG_META[key].hash)){
+      ensureLocalImgMeta(key, saved).then(()=>{ if(box.isConnected && box.dataset.key===newKey) renderCloudImgUI(box, key, id, true); }).catch(()=>{});
+    }
+  }
   const det = document.createElement('details'); det.className='prompt'; if(!getPlugin()&&!saved) det.open = true;
   det.innerHTML = `<summary class="muted">Prompt</summary><textarea readonly>${esc(prompt)}</textarea>`;
   const cb = document.createElement('button'); cb.className='sm'; cb.textContent='Copy prompt';
@@ -107,7 +124,16 @@ function uploadImg(boxId, id, scene, cloth){
 }
 async function downloadImg(key, name){ const d = await imgGet(key); if(!d) return; const a=document.createElement('a'); a.href=d; a.download=`${name||'image'}-${key.split('|').slice(1).join('-').replace(/[^a-z0-9-]/gi,'_')}.jpg`; document.body.appendChild(a); a.click(); a.remove(); }
 async function useAvatar(key, id){ const d = await imgGet(key); if(d){ await setThumb(id, d); toast('Avatar updated.'); } }
-async function deleteImg(key, boxId, id, scene, cloth){ if(!confirm('Delete this saved image?')) return; await imgDel(key); showImg(boxId,id,scene,cloth,'manual'); }
+async function deleteImg(key, boxId, id, scene, cloth){ if(!confirm('Clear this image from local browser cache?')) return; await imgDel(key); showImg(boxId,id,scene,cloth,'local_only'); }
+async function deleteImgBoth(key, boxId, id, scene, cloth){
+  if(!confirm('Delete this image from BOTH this device and Cloudflare R2? It won\'t regenerate automatically.')) return;
+  await imgDel(key);
+  if(typeof cloudReady==='function' && cloudReady()){
+    try{ await cloudDeleteImg(key, 'img'); }catch(e){ toast('Cloud delete failed: ' + e.message); }
+  }
+  toast('Image cleared locally and from cloud.');
+  showImg(boxId, id, scene, cloth, 'local_only');
+}
 // A button outside the image box (weekly report highlights): "Show image" turns into "Hide image" once the image is up.
 function syncImgBtn(boxId){ const b = $('#'+boxId+'_t'), box = $('#'+boxId); if(b && box) b.textContent = box.dataset.key ? '🙈 Hide image' : '🖼 Show image'; }
 function setRepHide(box, id, scene, hide){

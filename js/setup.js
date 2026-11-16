@@ -19,7 +19,7 @@ function setupView(){
   let body = '', ok = false;
   if(st===0){
     body = `<h2>Who was Sam, before the truck?</h2><div class="grid">${Object.entries(PASTS).map(([k,p])=>`<div class="pick ${SETUP.past===k?'sel':''}" onclick="setupPick('past','${k}')"><b>${p.label}</b><div class="muted">${p.desc}</div></div>`).join('')}</div>`;
-    body += `<div class="row muted" style="margin-top:10px">Have a save (or an NG+ save) from somewhere else? <button class="sm" onclick="importSaveFile()">Load save file</button><button class="sm" onclick="importBox('save')">Paste save</button></div>`;
+    body += `<div class="row muted" style="margin-top:10px">Have a save (or an NG+ save) from somewhere else? <button class="sm" onclick="importSaveFile()">Load save file</button><button class="sm" onclick="importBox('save')">Paste save</button>${typeof cloudOpenSlotsModal==='function' ? `<button class="sm" onclick="cloudOpenSlotsModal()">☁ Cloud saves</button>` : ''}</div>`;
     ok = !!SETUP.past;
   } else if(st===1){
     body = `<h2>Which deed is in Sam's hand?</h2><p class="muted">Each house has its own clientele, debt, features, resident, and storyline. You can buy the others later, and premium houses unlock as Sam's level and renown grow.</p>
@@ -39,12 +39,14 @@ function setupView(){
     ok = !!SETUP.partner;
   } else {
     const D = HOUSES[SETUP.house], n = NAMED[D.npc], p = NAMED[SETUP.partner];
-    body = `<h2>Ready?</h2><div class="card"><b>Sam Takahashi</b>, former ${PASTS[SETUP.past].label.toLowerCase()}.<br>Owner of <b>${D.name}</b> (${D.loc}), along with its debt of ${fmt(D.debt)}.<br>${n.name} runs things there as ${JOBS[n.job].label.toLowerCase()}.<br>At his side: <b>${p.name}</b>.</div>`;
+    body = `<h2>Ready?</h2><div class="card"><b>Sam Takahashi</b>, former ${PASTS[SETUP.past].label.toLowerCase()}.<br>Owner of <b>${D.name}</b> (${D.loc}), along with its debt of ${fmt(D.debt)}.<br>${n.name} runs things there as ${JOBS[n.job].label.toLowerCase()}.<br>At his side: <b>${p.name}</b>.</div>
+      <div class="row" style="margin-top:8px"><label class="muted">Save name <input id="setup_save_name" value="${esc(SETUP.cloudName || D.name)}" placeholder="e.g. Main Run" oninput="SETUP.cloudName=this.value"></label></div>`;
     ok = true;
   }
   modal(`${nav}${body}<div class="row" style="margin-top:12px">${st>0?'<button onclick="setupNav(-1)">← Back</button>':''}${st<3?`<button class="primary" onclick="setupNav(1)" ${ok?'':'disabled'}>Next →</button>`:`<button class="primary" onclick="setupBegin()">Begin</button>`}</div>`, {lock:true, wide:true});
 }
 function setupBegin(){
-  const cfg = {past:SETUP.past, house:SETUP.house, partner:SETUP.partner};
+  const nm = ($('#setup_save_name') && $('#setup_save_name').value) || SETUP.cloudName || '';
+  const cfg = {past:SETUP.past, house:SETUP.house, partner:SETUP.partner, cloudName:nm};
   SETUP = null; newGame(cfg); TAB='house'; render(); goddessIntro(showIntro);
 }

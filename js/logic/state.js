@@ -37,7 +37,7 @@ function ngppSavedCost(id){
 }
 function newGame(cfg){
   const HD = HOUSES[cfg.house];
-  S = { v:37, samHome:cfg.house, samUps:{}, starters:[cfg.house], houseWardrobe:[], houseUnder:[], closets:{}, week:1, gold:600, rep:HD.rep, ap:3, cur:cfg.house, home:cfg.house, cycle:1, ngppCycle:0, ngppHouses:{}, cycleVar:null, challenge:null, challengePerks:[], vessels:[], boons:[], past:cfg.past, pasts:[cfg.past], partner:cfg.partner, partners:[cfg.partner],
+  S = { v:37, cloudId: cfg.cloudId || ('run_' + Date.now().toString(36) + Math.random().toString(36).slice(2,6)), cloudName: (cfg.cloudName || '').trim() || HD.name, localSavedAt: Date.now(), cloudSyncedAt: 0, samHome:cfg.house, samUps:{}, starters:[cfg.house], houseWardrobe:[], houseUnder:[], closets:{}, week:1, gold:600, rep:HD.rep, ap:3, cur:cfg.house, home:cfg.house, cycle:1, ngppCycle:0, ngppHouses:{}, cycleVar:null, challenge:null, challengePerks:[], vessels:[], boons:[], past:cfg.past, pasts:[cfg.past], partner:cfg.partner, partners:[cfg.partner],
     houses:[makeHouse(cfg.house)],
     sam:{energy:100, ...BAL.sam.base, appraisal:1, appXP:0, first:true, lvl:1, xp:0},
     samWeek:{security:0, books:false, income:0, acts:[]},
@@ -190,10 +190,11 @@ function migrate(s){
   if(ov < 31 && (s.cycle||1) > 1){   // NG+ used to drop a finished house story's lady (Ines, Vharra...) unless she was a lover: bring her back with her house once
     const S0 = S; S = s; try { s.houses.forEach(h=>{ const w = restoreStoryJoin(h); if(w) addLog(`${w.name} is back at ${h.name}, where she belongs.`); }); } finally { S = S0; }
   }
+  if(typeof ensureCloudRun === 'function') ensureCloudRun(s);
   if(s.lastReport && !s.lastReport.v5) s.lastReport = null;
   return s;
 }
-function save(){ if(S){ enforceTrustCaps(); store.set(KEY_SAVE, S, saveReplacer); } }
+function save(){ if(S){ enforceTrustCaps(); if(typeof ensureCloudRun === 'function') ensureCloudRun(S); S.localSavedAt = Date.now(); store.set(KEY_SAVE, S, saveReplacer); } }
 function saveSettings(){ store.set(KEY_SET, SET); }
 function saveLib(){ store.set(KEY_LIB, LIB); }
 function addLog(t){ S.log.unshift({wk:S.week, t}); if(S.log.length>250) S.log.length=250; }

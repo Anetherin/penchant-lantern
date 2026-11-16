@@ -28,8 +28,10 @@ function viewSettings(){
     <div class="row"><button class="primary" onclick="saveAiUI()">Save AI settings</button></div></section>
   <section class="card"><h2>Images</h2><p class="muted">Generated and uploaded images live in this browser. Export them to back up or move them to another browser.</p>
     <div class="row"><button onclick="exportImages()">⬇ Export images</button><button onclick="importImages()">⬆ Import images</button><button onclick="cleanImages()">Clean up unused images</button></div></section>
-  <section class="card"><h2>Save File</h2><p class="muted">The game autosaves every week in this browser. Export to back up or move between browsers.</p>
-    <div class="row"><button onclick="save();toast('Saved.')">Save now</button><button onclick="exportBox('save')">Export save</button>${S.won?'<button onclick="exportBox(\'ngplus\')" title="Only what New Game+ carries; loading it opens the New Game+ setup">Export NG+ save</button>':''}<button onclick="importBox('save')">Import save</button><button onclick="importSaveFile()">Import save file</button><button onclick="exportBox('lib')">Export library</button><button onclick="importBox('lib')">Import library</button><button onclick="if(confirm('Start over? Your current save will be erased.'))restart()">New game</button></div></section>`;
+  <section class="card"><h2>Save File</h2><p class="muted">The game autosaves every week in this browser. Each playthrough has its own save name so multiple runs stay separate in cloud sync and exports.</p>
+    <div class="row"><label class="muted">Run name <input id="s_runName" value="${esc(S.cloudName || '')}" placeholder="Main Run"></label><button onclick="renameCurrentRun()">Rename run</button></div>
+    <div class="row"><button onclick="save();toast('Saved.')">Save now</button><button onclick="exportBox('save')">Export save</button>${S.won?'<button onclick="exportBox(\'ngplus\')" title="Only what New Game+ carries; loading it opens the New Game+ setup">Export NG+ save</button>':''}<button onclick="importBox('save')">Import save</button><button onclick="importSaveFile()">Import save file</button><button onclick="exportBox('lib')">Export library</button><button onclick="importBox('lib')">Import library</button><button onclick="if(confirm('Start over? Your current save will be erased.'))restart()">New game</button></div></section>
+  ${typeof viewCloudSettings === 'function' ? viewCloudSettings() : ''}`;
 }
 function saveSettingsUI(){
   SET.style = $('#s_style').value; SET.negative = $('#s_neg').value; SET.resolution = $('#s_res').value;
@@ -110,6 +112,165 @@ function importImages(){
       toast(`Imported ${n} images.`); render(); };
     fr.readAsText(f); };
   inp.click();
+}
+function renameCurrentRun(){
+  const v = ($('#s_runName') && $('#s_runName').value || '').trim();
+  if(!v) return toast('Enter a run name.');
+  ensureCloudRun(S);
+  S.cloudName = v.slice(0, 80);
+  save();
+  toast(`Run renamed to "${S.cloudName}".`);
+  if(cloudReady() && CLOUD_STATE.saves.slots[S.cloudId]){
+    cloudSaveSlot(S.cloudId, S.cloudName, 'full', S).catch(()=>{});
+  }
+}
+function viewCloudSettings(){
+  const ready = cloudReady(), conn = CLOUD_STATE.connected;
+  const slots = Object.values((CLOUD_STATE.saves && CLOUD_STATE.saves.slots) || {}).sort((a,b)=>(b.updatedAt||0)-(a.updatedAt||0));
+  const stats = cloudLocalPermStats();
+  const statusHtml = !ready ? '<span class="muted">not configured</span>'
+    : conn ? '<span class="good">connected</span>'
+    : `<span class="warn">error${CLOUD_STATE.lastErr?': '+esc(CLOUD_STATE.lastErr):''}</span>`;
+  return `<section class="card"><h2>Cloud Sync (Cloudflare R2)</h2>
+    <p class="muted">Sync named save runs, cycle-end/NG+ snapshots, and permanent character images (<code>n_*</code> / <code>npc_*</code>) via your own Cloudflare Worker + R2 bucket. Images sync on demand only. Status: ${statusHtml}</p>
+    <div class="form">
+      <label>Worker URL <input id="c_url" value="${esc(CLOUD.url||'')}" placeholder="https://hollowmere-sync.you.workers.dev"></label>
+      <label>Sync passphrase <input id="c_secret" type="password" value="${esc(CLOUD.secret||'')}" placeholder="Your SYNC_SECRET"></label>
+    </div>
+    <div class="row">
+      <label class="chk"><input type="checkbox" id="c_autoSave" ${CLOUD.autoSave!==false?'checked':''}> Auto-save active run at End Week</label>
+      <label class="chk"><input type="checkbox" id="c_autoMile" ${CLOUD.autoMilestone!==false?'checked':''}> Auto-snapshot NG+ seed when debt is paid</label>
+      <label class="chk"><input type="checkbox" id="c_syncLib" ${CLOUD.syncLib?'checked':''}> Include Library characters in cloud image sync</label>
+    </div>
+    <div class="row">
+      <button class="primary" onclick="saveCloudUI()">Save &amp; Connect</button>
+      ${ready?`<button onclick="refreshCloudUI()">↻ Refresh</button>`:''}
+    </div>
+    ${conn ? `
+    <h3 style="margin-top:12px">Cloud Saves</h3>
+    <div class="row">
+      <button class="primary" onclick="cloudSaveCurrentRun()">Save "${esc(S.cloudName||'Current Run')}" to Cloud</button>
+      <button onclick="cloudNewSnapshotPrompt()">+ New Named Snapshot</button>
+    </div>
+    ${slots.length ? `<table><thead><tr><th>Name</th><th>Type</th><th>Progress</th><th>Updated</th><th>Actions</th></tr></thead><tbody>
+      ${slots.map(sl=>{
+        const curMark = S && sl.id === S.cloudId ? ' <span class="tag">active</span>' : '';
+        const cyc = (sl.ngppCycle||0) > 0 ? `NG++${sl.ngppCycle}` : `C${sl.cycle||1}`;
+        return `<tr>
+          <td><b>${esc(sl.name||sl.id)}</b>${curMark}<div class="muted" style="font-size:11px">${esc(sl.house||'')}</div></td>
+          <td>${sl.kind==='ngplus'?'<span class="tag act">NG+</span>':'Full'}</td>
+          <td>${cyc} · Wk ${sl.week||1} · ${fmt(sl.gold||0)}</td>
+          <td class="muted">${esc(fmtTime(sl.updatedAt))}</td>
+          <td><div class="row" style="margin:0">
+            <button class="sm" onclick="cloudLoadSlot('${esc(sl.id)}')">Load</button>
+            <button class="sm" onclick="cloudOverwriteSlot('${esc(sl.id)}')">Overwrite</button>
+            <button class="sm" onclick="cloudRenameSlot('${esc(sl.id)}')">Rename</button>
+            <button class="sm" onclick="cloudExportSlot('${esc(sl.id)}')" title="Download local .json copy">⬇</button>
+            <button class="sm" onclick="cloudDeleteSlot('${esc(sl.id)}')">🗑</button>
+          </div></td>
+        </tr>`;
+      }).join('')}
+    </tbody></table>` : '<p class="muted">No cloud saves yet.</p>'}
+    <div class="row" style="margin-top:8px">
+      <button class="sm" onclick="cloudPushExtra('settings')">Push Settings</button>
+      <button class="sm" onclick="cloudPullExtra('settings')">Pull Settings</button>
+      <button class="sm" onclick="cloudPushExtra('library')">Push Library</button>
+      <button class="sm" onclick="cloudPullExtra('library')">Pull Library</button>
+    </div>
+    <h3 style="margin-top:12px">Cloud Images (Permanent Characters)</h3>
+    <p class="muted">Local permanent images: <b>${stats.localPerm}</b> (${stats.synced} synced · ${stats.diff} different · ${stats.unsynced} not in cloud) · Total in R2: <b>${stats.remoteTotal}</b></p>
+    <div class="row">
+      <button onclick="cloudBatchPushImages()">↑ Upload unsynced permanent images</button>
+      <button onclick="cloudPullAllThumbs()">⬇ Pull all portraits</button>
+      <button onclick="cloudRebuildManifest()" title="Rebuild manifest from R2 objects">Rebuild manifest</button>
+      <button onclick="cloudClearLocalCache()">Clear local image cache</button>
+    </div>` : ''}</section>`;
+}
+async function saveCloudUI(){
+  CLOUD.url = ($('#c_url') && $('#c_url').value || '').trim().replace(/\/+$/, '');
+  CLOUD.secret = ($('#c_secret') && $('#c_secret').value || '').trim();
+  CLOUD.autoSave = $('#c_autoSave') ? $('#c_autoSave').checked : true;
+  CLOUD.autoMilestone = $('#c_autoMile') ? $('#c_autoMile').checked : true;
+  CLOUD.syncLib = $('#c_syncLib') ? $('#c_syncLib').checked : false;
+  saveCloudConfig();
+  if(!cloudReady()){ CLOUD_STATE.connected = false; toast('Cloud settings saved.'); return render(); }
+  toast('Connecting to Cloudflare Worker…');
+  const ok = await cloudRefresh(false);
+  if(ok) toast('Connected to Cloudflare R2!');
+  render();
+}
+async function refreshCloudUI(){
+  toast('Refreshing cloud state…');
+  const ok = await cloudRefresh(false);
+  if(ok) toast('Cloud state refreshed.');
+  render();
+}
+async function cloudSaveCurrentRun(){
+  if(!S) return;
+  ensureCloudRun(S);
+  try{
+    toast('Saving run to cloud…');
+    await cloudSaveSlot(S.cloudId, S.cloudName, 'full', S);
+    save();
+    toast(`Saved "${S.cloudName}" to cloud.`);
+    render();
+  }catch(e){
+    toast('Cloud save failed: ' + e.message);
+  }
+}
+function cloudNewSnapshotPrompt(){
+  if(!S) return;
+  const defName = `${S.cloudName || 'Run'} · C${S.cycle||1} Wk${S.week}`;
+  modal(`<h2>New Cloud Snapshot</h2>
+    <div class="form">
+      <label>Snapshot name <input id="snap_name" value="${esc(defName)}"></label>
+      ${S.won ? `<label>Snapshot type <select id="snap_kind"><option value="full">Full save</option><option value="ngplus">NG+ seed (opens NG+ wizard)</option></select></label>` : ''}
+    </div>
+    <div class="row" style="margin-top:10px"><button class="primary" onclick="doCloudNewSnapshot()">Save Snapshot</button><button onclick="closeModal()">Cancel</button></div>`);
+}
+async function doCloudNewSnapshot(){
+  const name = ($('#snap_name') && $('#snap_name').value || '').trim();
+  if(!name) return toast('Enter a snapshot name.');
+  const kind = ($('#snap_kind') && $('#snap_kind').value) || 'full';
+  const slotId = 'snap_' + Date.now().toString(36) + Math.random().toString(36).slice(2,5);
+  try{
+    await cloudSaveSlot(slotId, name, kind);
+    closeModal();
+    toast(`Saved snapshot "${name}".`);
+    if(TAB === 'settings') render();
+  }catch(e){
+    toast('Snapshot failed: ' + e.message);
+  }
+}
+async function cloudOpenSlotsModal(){
+  if(!cloudReady()){
+    modal(`<h2>Connect Cloud Sync</h2>
+      <p class="muted">Enter your Cloudflare Worker URL and sync passphrase to load a cloud save on this device.</p>
+      <div class="form">
+        <label>Worker URL <input id="cm_url" value="${esc(CLOUD.url||'')}" placeholder="https://hollowmere-sync.you.workers.dev"></label>
+        <label>Sync passphrase <input id="cm_secret" type="password" value="${esc(CLOUD.secret||'')}" placeholder="Your SYNC_SECRET"></label>
+      </div>
+      <div class="row" style="margin-top:10px"><button class="primary" onclick="connectFromSetupModal()">Connect &amp; Load Saves</button>${SETUP?'<button onclick="setupView()">← Back</button>':'<button onclick="closeModal()">Close</button>'}</div>`, {lock:!!SETUP});
+    return;
+  }
+  await cloudRefresh(false);
+  const slots = Object.values((CLOUD_STATE.saves && CLOUD_STATE.saves.slots) || {}).sort((a,b)=>(b.updatedAt||0)-(a.updatedAt||0));
+  modal(`<h2>Load Cloud Save</h2>
+    ${slots.length ? `<table><thead><tr><th>Name</th><th>Type</th><th>Progress</th><th>Updated</th><th></th></tr></thead><tbody>
+      ${slots.map(sl=>{
+        const cyc = (sl.ngppCycle||0) > 0 ? `NG++${sl.ngppCycle}` : `C${sl.cycle||1}`;
+        return `<tr><td><b>${esc(sl.name||sl.id)}</b></td><td>${sl.kind==='ngplus'?'NG+':'Full'}</td><td>${cyc} · Wk ${sl.week||1}</td><td class="muted">${esc(fmtTime(sl.updatedAt))}</td><td><button class="sm primary" onclick="cloudLoadSlot('${esc(sl.id)}')">Load</button></td></tr>`;
+      }).join('')}
+    </tbody></table>` : '<p class="muted">No cloud saves found.</p>'}
+    <div class="row" style="margin-top:10px">${SETUP?'<button onclick="setupView()">← Back</button>':'<button onclick="closeModal()">Close</button>'}</div>`, {lock:!!SETUP, wide:true});
+}
+async function connectFromSetupModal(){
+  CLOUD.url = ($('#cm_url') && $('#cm_url').value || '').trim().replace(/\/+$/, '');
+  CLOUD.secret = ($('#cm_secret') && $('#cm_secret').value || '').trim();
+  saveCloudConfig();
+  if(!cloudReady()) return toast('Enter both URL and passphrase.');
+  const ok = await cloudRefresh(false);
+  if(ok) cloudOpenSlotsModal();
 }
 async function cleanImages(){
   const keep = new Set([...S.workers, ...S.candidates, ...LIB].map(w=>w.id).concat(Object.keys(NPCS)));
