@@ -96,7 +96,7 @@ function hlText(w, e){
       const how = e.where==='chapel' ? flavor('prop_chapel', w) : e.where==='bath' ? flavor('prop_bath', w) : e.ctx==='exhib' ? flavor('prop_exhib', w) : e.outcome==='alt' ? `She ${askLady(e.act)} instead, and he took it.` : 'She thought about it for exactly one second, then took his hand and led him upstairs.';
       return `${cap(who)} propositioned ${N} ${where}, asking ${askClient(e.want)}. ${how}${encTxt}${more}`;
     }
-    return `${cap(who)} propositioned ${N} ${where}, asking ${askClient(e.want)}. She turned him down${(w.offDuty==='off' && !(JOBS[w.job]||{}).must)?' (she isn\'t open to propositions)':''}.`;
+    return `${cap(who)} propositioned ${N} ${where}, asking ${askClient(e.want)}. She turned him down.`;
   }
   const extra = [e.adapt && flavor('enc_adapt', w, e.adapt), e.possess && flavor('enc_possess_' + e.possess, w), e.lantern && flavor('enc_lantern_angel', w), e.heat && e.note!=='drained' && e.note!=='frustrated' && flavor('enc_beast_heat', w)].filter(Boolean).join(' ');
   const tail = extra ? ' ' + extra : '';
@@ -197,7 +197,6 @@ function propDecide(w, want, X){
   let chance;
   if(must) chance = 1;
   else {
-    if(w.offDuty==='off' && !reck) return {kind:'no', why:'declined'};
     const dr = propDrive(w), jb = (BP.jobBonus||{})[w.job] ?? 0, minMood = (BP.jobMood||{})[w.job] ?? 45;
     if(!reck && dr < LUST_EAGER && w.mood < minMood) return {kind:'no', why:'nomood'};
     chance = clamp(BP.acceptBase + jb + (dr - BP.acceptLustMid)/100 + (w.mood - 50)*0.004 + fxAdd(w,'willing')/100 + (dr >= LUST_EAGER ? BP.acceptEager : 0) + (reck ? BP.acceptReckless : 0), 0.02, 0.95);

@@ -348,7 +348,7 @@ function simHouse(h, R){
   // host warm-up (takes an open room if one is free, else in the lounge): returns avg quality if any fluff happened, else 0
   const hostFluff = (hx, client, cls, maxActs) => {
     const hw = hx.w, hpr = hx.pr;
-    if(cOpen(client) < HS.fluffOpen || hw.offDuty === 'off') return 0;
+    if(cOpen(client) < HS.fluffOpen) return 0;
     const ids = offeredMenu(hw).filter(id=>HOST_LIGHT.includes(id) && actById(id) && canClient(hw,id) && !actBanned(hw,id) && !feedOnly(hw,id));
     let done = 0, qSum = 0;
     for(let k=maxActs; k>0 && ids.length && hx.cap >= 1; k--){
@@ -890,18 +890,21 @@ function endWeek(){
     delete pr.enc;
     earnCheck(w).forEach(t=>{ log(`✨ ${w.name} has developed a knack: ${t}. ${TRAITS[t].desc}`); addLog(`${w.name} developed the trait ${t}.`); });
     titleCheck(w).forEach(log);
-    // Lantern Angel threshold check
-    const AN = SVC.angel || {};
-    if(w.race==='angel' && w.sub!=='lantern' && !w.lanternDecided && w.lewd >= (AN.lanternLewd ?? 60)){
-      w.lanternDecided = true;
-      if(w.trust < (AN.lanternTrust ?? 50)){
-        if(!has(w,'Modest') || w.lewd >= (AN.lanternLewd ?? 60) + 15){
-          w.sub = 'lantern'; w.lantern = true; fitLust(w); moodAdd(w, AN.lanternAutoMood ?? 6);
-          log(`🕯️ ${w.name} took the Pleasure Lantern's sanction on her own and became a Lantern Angel.`);
-          const wid = w.id; EVQ.push(()=>evLanternSelf(findW(wid)));
-        }
-      } else {
-        const wid = w.id; EVQ.push(()=>evLanternAsk(findW(wid)));
+    // Lantern Angel: once her lewdness reaches lanternLewd the Lamplighter's sanction is hers to take.
+    // With enough trust (lanternTrust) she asks Sam first. Otherwise her personality decides: an easygoing one
+    // (personality lewd multiplier >= 1, not Modest) takes it on her own; a reserved one holds to her vows until
+    // she trusts Sam enough to ask, or her lewdness climbs lanternOwn past the threshold and she stops resisting.
+    const AN = SVC.angel || {}, LL = AN.lanternLewd ?? 60;
+    if(w.race==='angel' && w.sub!=='lantern' && !w.lanternDecided && w.lewd >= LL){
+      const wid = w.id;
+      if(w.trust >= (AN.lanternTrust ?? 50)){ w.lanternDecided = true; EVQ.push(()=>evLanternAsk(findW(wid))); }
+      else if((((PERS[w.personality]||{}).lewd ?? 1) >= 1 && !has(w,'Modest')) || w.lewd >= LL + (AN.lanternOwn ?? 15)){
+        w.lanternDecided = true; w.sub = 'lantern'; w.lantern = true; fitLust(w); moodAdd(w, AN.lanternAutoMood ?? 6);
+        log(`🕯️ ${w.name} took the Pleasure Lantern's sanction on her own and became a Lantern Angel.`);
+        EVQ.push(()=>evLanternSelf(findW(wid)));
+      } else if(!w.lanternHeld){
+        w.lanternHeld = true;
+        log(`🕯️ ${w.name} feels the Pleasure Lantern's pull and is holding to her vows for now. She may ask Sam about it once she trusts him more (trust ${tShow(AN.lanternTrust ?? 50)}).`);
       }
     }
     // romance arcs

@@ -47,7 +47,6 @@ function setSvcOutfit(id, k){ const w=findW(id); if(!w) return; w.svcOutfit = k 
 function setSvcLevel(id, k){ const w=findW(id); if(!w) return; w.svcLevel = k || 'auto'; save(); refreshSheetInfo(); fillCloth(); sheetImg(); }
 function setAccState(id, k){ const w=findW(id); if(!w) return; w.accState = k || 'auto'; save(); refreshSheetInfo(); sheetImg(); if($('#modalBox h2') && $('#modalBox h2').textContent.includes('Wardrobe')) openWardrobe(id); }
 function setAutoRest(id, on){ const w=findW(id); if(!w) return; w.autoRest=!!on; if(!on) delete w.prevJob; save(); refreshSheetInfo(); }
-function setOffDuty(id, v){ const w=findW(id); if(!w) return; w.offDuty = v==='on'||v===true ? 'on' : v==='off'||v===false ? 'off' : 'ask'; save(); refreshSheetInfo(); }
 function setFeedOnly(id, v){ const w=findW(id); if(!w) return; w.feedOnly = v==='always' ? 'always' : (+v > 0 ? +v : null); save(); refreshSheetInfo(); }
 function setAutoStud(id, v){ const w=findW(id); if(!w || w.race!=='demon') return; w.autoStud = v==='always' ? 'always' : (+v > 0 ? +v : null); save(); refreshSheetInfo(); }
 function setAndroidLook(id, grp, k, v){

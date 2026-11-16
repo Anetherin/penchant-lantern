@@ -1,4 +1,5 @@
-// Story check: plays every scripted intro, romance arc and after-story through every page and choice, and fails on
+// Story check: plays every scripted intro, walk meeting, romance arc and after-story through every page and choice
+// (plus the Lantern Angel decision), and fails on
 // page errors, leftover {placeholders}, "undefined"/"null"/"NaN" in shown text, empty pages, or broken structure.
 // Covers what tools/smoke.mjs never reaches (it only starts as Kaede at the Gilded Lantern and picks random choices).
 // Usage: node tools/story-check.mjs [--words]      (--words prints a word count per partner intro and arc)
@@ -117,6 +118,30 @@ const CHECK = `async () => {
     if (n.role === 'guild' && !ARCS[k]) bad.push('coverage: guild lady ' + k + ' has no arc');
     if ((n.role === 'house' || n.role === 'story') && !AFTER_STORIES[k]) bad.push('coverage: ' + n.role + ' lady ' + k + ' has no after-story');
   }
+  // 6. walk meetings: every partner met on a walk (first meeting), each hire choice
+  for (const k of PARTNERS) {
+    fresh(starters[0], PARTNERS.find(x => x !== k)); S.gold = 1e6;
+    const WI = (WALKS.partnerIntros || {})[k]; if (!WI) { bad.push('walk ' + k + ': no entry in walks.json partnerIntros'); continue; }
+    const ev0 = walkRecruitEvent(k, true);
+    if (!ev0.pre || !ev0.pre.length) bad.push('walk ' + k + ': no opening page');
+    (ev0.pre || []).forEach(pg => look('walk ' + k + ' open', pg.text, true)); look('walk ' + k + ' story', ev0.text, true); look('walk ' + k + ' aside', ev0.aside, false);
+    ev0.choices.forEach((c0, i) => { const ev = walkRecruitEvent(k, true); look('walk ' + k + ' choice ' + i, outText(ev.choices[i].fx()), true); S.workers = S.workers.filter(w => w.key !== k); S.candidates = (S.candidates || []).filter(w => w.key !== k); });
+    if (WI.image && /\b(hair|haired|blonde|brunette|ponytail|braid|halo|horns|(red|grey|gray|blue|green|violet|amber|gold|golden|dark|silver|white|black|brown|copper)[- ](eyes|eyed|ears|tail|wings))\b/i.test(WI.image.comp)) bad.push('walk ' + k + ': image.comp describes her look: ' + WI.image.comp);
+  }
+  // 7. Lantern Angels: trusted -> she asks; untrusted + easygoing -> takes it herself; untrusted + reserved -> holds, then asks once she trusts Sam
+  const angel = (pers, trust, lewd) => { fresh(starters[0], PARTNERS[0]); let w, t = 0; do { w = genWorker({race:'angel'}); } while (w.sub && ++t < 300);
+    w.sub = ''; w.lantern = false; w.lanternDecided = false; w.personality = pers; w.traits = w.traits.filter(x => x !== 'Modest'); w.trust = trust; w.lewd = lewd; w.house = S.houses[0].id; w.job = 'rest'; w.contract = 50; S.workers.push(w);
+    S.gold = 1e6; endWeek(); closeModal(); return w; };
+  const LL = SVC.angel.lanternLewd, LT = SVC.angel.lanternTrust;
+  const easy = Object.keys(PERS).find(k => (PERS[k].lewd ?? 1) >= 1.1), shy = Object.keys(PERS).find(k => (PERS[k].lewd ?? 1) < 0.9);
+  let a = angel(easy, LT + 20, LL + 2);
+  if (a.sub === 'lantern' || !a.lanternDecided) bad.push('lantern: a trusting angel should ask Sam first');
+  else { const ev = evLanternAsk(a); look('lantern ask', ev.text, true); ['accept.label','refuse.label'].forEach((k, i) => look('lantern ' + k, ev.choices[i].label, true)); look('lantern accept', outText(ev.choices[0].fx()), true); if (a.sub !== 'lantern') bad.push('lantern: accepting did not transform her');
+    a.sub = ''; a.lantern = false; look('lantern refuse', outText(evLanternAsk(a).choices[1].fx()), true); if (a.sub === 'lantern') bad.push('lantern: refusing still transformed her'); }
+  a = angel(easy, LT - 30, LL + 2); if (a.sub !== 'lantern') bad.push('lantern: an easygoing angel with low trust should take it on her own');
+  a = angel(shy, LT - 30, LL + 2); if (a.sub === 'lantern' || a.lanternDecided) bad.push('lantern: a reserved angel with low trust should hold to her vows and stay undecided');
+  EVQ = []; CUR_EV = null; a.trust = LT + 20; a.lewd = Math.max(a.lewd, LL + 2); endWeek(); closeModal(); if (!a.lanternDecided || a.sub === 'lantern') bad.push('lantern: a reserved angel should ask once she trusts Sam');
+  a = angel(shy, LT - 30, LL + (SVC.angel.lanternOwn ?? 15) + 2); if (a.sub !== 'lantern') bad.push('lantern: a reserved angel far past the threshold should give in on her own');
   store.del(KEY_SAVE);
   return {bad, words, partners: PARTNERS.length, arcs: Object.keys(ARCS).length, afters: Object.keys(AFTER_STORIES).length};
 }`;

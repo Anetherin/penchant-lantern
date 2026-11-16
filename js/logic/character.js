@@ -397,7 +397,7 @@ function ensureWorker(w){
   if(!w.firsts || !Array.isArray(w.firsts.path)) w.firsts = firstsProfile(w);
   if(w.intim===undefined) w.intim = (w.privateCount>0 || has(w,'Devoted')) ? Math.max(...w.firsts.path) : 0;
   // "Open to propositions": 'on' | 'ask' | 'off' (old saves stored true/false). Must-offer jobs ignore it.
-  if(w.offDuty===undefined) w.offDuty = 'ask'; else if(w.offDuty===true) w.offDuty = 'on'; else if(w.offDuty===false) w.offDuty = 'off';
+  delete w.offDuty;   // old per-lady propositions switch (removed: staff accept when they're willing)
   if(w.samples===undefined) w.samples = false;
   delete w.madameFocus;   // the madame has no focus options any more (she matches clients and coaches courtesans)
   if(!w.body) w.body = rollBody(w.race);
