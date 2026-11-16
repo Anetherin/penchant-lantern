@@ -2264,7 +2264,7 @@ function nextDue(){
    Optional per-user cloud sync for named save slots and permanent
    character images (n_* / npc_*). Images sync on demand only.
    ===================================================================== */
-const DEFAULT_CLOUD = { url:'', secret:'', autoSave:true, autoMilestone:true, syncLib:false };
+const DEFAULT_CLOUD = { url:'https://hollowmere-sync.anetherin.workers.dev', secret:'', autoSave:true, autoMilestone:true, syncLib:false };
 let CLOUD = Object.assign({}, DEFAULT_CLOUD, store.get(KEY_CLOUD) || {});
 const CLOUD_STATE = { connected:false, busy:false, lastErr:'', manifest:{imgs:{}, thumbs:{}}, saves:{slots:{}, extras:{}} };
 let CLOUD_CMP = null;
