@@ -56,7 +56,6 @@ function clientTech(cls, reg, client){
   return t;
 }
 // Her expression during a service: bored / professional / into it / lost in it; personality can shift it (personalities.json → expr).
-const EXPR_LABEL = {bored:'bored', professional:'professional', into:'into it', lost:'lost in it', flustered:'flustered', smug:'smug', teasing:'teasing', tender:'affectionate', fierce:'fierce', languid:'languid'};
 function exprFor(w, act, reluct){
   const k = restless(w) ? 'lost' : (reluct || w.lust < LUST_LOW) ? 'bored' : (w.lust >= LUST_EAGER || isFav(w,act)) ? 'into' : 'professional';
   const m = (PERS[w.personality]||{}).expr;
@@ -97,7 +96,7 @@ function hlText(w, e){
       const how = e.where==='chapel' ? flavor('prop_chapel', w) : e.where==='bath' ? flavor('prop_bath', w) : e.ctx==='exhib' ? flavor('prop_exhib', w) : e.outcome==='alt' ? `She ${askLady(e.act)} instead, and he took it.` : 'She thought about it for exactly one second, then took his hand and led him upstairs.';
       return `${cap(who)} propositioned ${N} ${where}, asking ${askClient(e.want)}. ${how}${encTxt}${more}`;
     }
-    return `${cap(who)} propositioned ${N} ${where}, asking ${askClient(e.want)}. She turned him down${(w.offDuty==='off' && !(JOBS[w.job]||{}).must)?' (she isn\'t open to propositions)':''}.`;
+    return `${cap(who)} propositioned ${N} ${where}, asking ${askClient(e.want)}. She turned him down.`;
   }
   const extra = [e.adapt && flavor('enc_adapt', w, e.adapt), e.possess && flavor('enc_possess_' + e.possess, w), e.lantern && flavor('enc_lantern_angel', w), e.heat && e.note!=='drained' && e.note!=='frustrated' && flavor('enc_beast_heat', w)].filter(Boolean).join(' ');
   const tail = extra ? ' ' + extra : '';
@@ -143,7 +142,6 @@ function serveAct(w, a, o){
   return {note, expr, frustrated, fed, drained};
 }
 const ENC_NOTE = k => k ? flavor('enc_'+k) : '';
-const CLS_LABEL = id => ((CLASSES.find(c=>c.id===id)||{}).label || id);
 
 /* ---------- jobs, propositions & rough clients (docs/OVERHAUL.md §5-6) ---------- */
 // Reputation gains get harder as the house grows: max(gainMin, gainBase - rep/gainDiv). Losses are unchanged.
@@ -199,7 +197,6 @@ function propDecide(w, want, X){
   let chance;
   if(must) chance = 1;
   else {
-    if(w.offDuty==='off' && !reck) return {kind:'no', why:'declined'};
     const dr = propDrive(w), jb = (BP.jobBonus||{})[w.job] ?? 0, minMood = (BP.jobMood||{})[w.job] ?? 45;
     if(!reck && dr < LUST_EAGER && w.mood < minMood) return {kind:'no', why:'nomood'};
     chance = clamp(BP.acceptBase + jb + (dr - BP.acceptLustMid)/100 + (w.mood - 50)*0.004 + fxAdd(w,'willing')/100 + (dr >= LUST_EAGER ? BP.acceptEager : 0) + (reck ? BP.acceptReckless : 0), 0.02, 0.95);
@@ -385,28 +382,4 @@ function samRescue(w, h){
   if(S.sam.strength + S.sam.charm/2 + rnd(0, BP.samRoll) + (samAtHouse(h) && S.samWeek.security ? (BP.watchBonus ?? 15) : 0) >= BP.samCheck){
     moodAdd(w, BP.samMood); gainTrust(w, BP.samTrust); S.sam.energy = Math.max(0, S.sam.energy - BP.samCost); return 'sam'; }
   S.sam.energy = Math.max(0, S.sam.energy - BP.failCost); h.rep = clamp(h.rep - BP.failRep); moodAdd(w, -BP.failMood); minorTrust(w); return 'samfail';
-}
-// Sam's answer to the pushy clients security couldn't handle this week (one event for all of them).
-// (Old flow, kept only so an event queued by an older version still resolves: Sam now steps in during the week, samRescue.)
-function samStepIn(c){
-  const w = findW(c.wid), h = H(c.h); if(!w || !h) return null;
-  const r = S.sam.energy >= BAL.props.samEnergyMin ? samRescue(w, h) : null; if(r==='sam') countUp(w,'rescued'); return r || 'samfail';
-}
-function pushyEvent(calls){
-  const BP = BAL.props, names = Array.from(new Set(calls.map(c=>(findW(c.wid)||{}).name).filter(Boolean)));
-  if(!names.length) return null;
-  const n = calls.length, fee = (BP.watchFee||40) * n, first = findW(calls[0].wid);
-  const stay = c => { const w = findW(c.wid), h = H(c.h); if(!w || !h) return; moodAdd(w, -BP.noneMood); h.rep = clamp(h.rep - BP.noneRep); };
-  return {title:'Trouble downstairs', who: first ? first.id : null, scene:'portrait',
-    text:`${n>1?`${n} times this week, a`:'A'} client got pushy with ${names.join(', ')}, and security couldn't handle it. Someone came running to fetch Sam.${calls.some(c=>samAtHouse(H(c.h))) && S.samWeek.security?'':' (Sam wasn\'t standing watch there.)'}
-
-Sam's Strength ${Math.round(S.sam.strength)}, Charm ${Math.round(S.sam.charm)}, energy ${Math.round(S.sam.energy)}.`,
-    choices:[
-      {label:'Step in yourself', fx(){ const r = calls.map(samStepIn), ok = r.filter(x=>x==='sam').length, bad = r.filter(x=>x==='samfail').length;
-        return `${ok?`Sam settled it ${ok>1?ok+' times':''} himself. ${names.length>1?'They':'She'} won't forget it.`:''}${bad?` ${bad>1?bad+' times':'Once'} it went badly: a loud scene and a bad story about the house.`:''}`.trim(); }},
-      {label:`Call the town watch (${fmt(fee)})`, fx(){ if(S.gold < fee){ calls.forEach(stay); return 'Sam can\'t cover the fee. By the time anyone comes, it\'s over. She got away from him, shaken.'; }
-        S.gold -= fee; calls.forEach(c=>{ const h = H(c.h); if(h) h.rep = clamp(h.rep - (BP.watchRep ?? 0.5)); const w = findW(c.wid); if(w) minorTrust(w); });
-        return `−${fmt(fee)}. The watch hauls him off. Not the house's proudest moment, but nobody got hurt.`; }},
-      {label:'Let her handle it', fx(){ calls.forEach(stay); return `${names.join(', ')} got away from him, shaken. Word gets around that nobody came.`; }}
-    ]};
 }

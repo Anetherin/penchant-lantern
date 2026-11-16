@@ -3,7 +3,7 @@
    DEDICATED INTRO SCENES
    House arrivals (starter, NG+, and buyHouse), partner introductions
    (starter and NG+), and the NG++ Shrine + Bound Vessel awakening.
-   Wording & images live in data/goddess/intros.json (read via GOD.*).
+   Wording & images live in data/goddess/intros.json and partner-intros.json (read via GOD.*).
    ===================================================================== */
 function introNgppTier(w){
   if(!S || !w || !((S.ngppCycle||0) > 0 && (w.wasLover || (w.reborn||0) > 0))) return -1;
@@ -59,10 +59,12 @@ function introPartnerEvent(p, opts={}){
   const N = NAMED[p.key] || {}, PG = N.goddess || {};
   const h = S.houses[0], ctx = {name: p.name, first: p.name.split(' ')[0], partner: p.name.split(' ')[0], house: h ? h.name : 'the house', goddess: GN(), sam: 'Sam', cycle: S.cycle || 1};
   const sc = PI.image ? (dynScene('intro_partner_' + p.key, PI.image) || 'portrait') : 'portrait';
-  const handNote = !G().left && PG.hand ? introFill(PG.hand, ctx) : '';
-  const commentNote = !G().left && (PI.goddess || PG.comment) ? introFill(PI.goddess || PG.comment, ctx) : '';
-  const godNote = [handNote, commentNote].filter(Boolean).join('\n\n');
-  const open = [N.partnerStory, PI.arrival ? introFill(PI.arrival, ctx) : `${p.name} stands beside you beneath the double moon.`].filter(Boolean).join('\n\n');
+  // Seliora's aside after the result: the intro's own (her hand in the meeting), else her short remark about this partner
+  const godNote = G().left ? '' : introFill(PI.goddess || PG.comment || '', ctx);
+  // lead-in pages: the intro's own pages (how you met, how she ends up at your door), else her story + arrival line
+  const pages = Array.isArray(PI.pages) && PI.pages.length
+    ? PI.pages.map(pg=>({text: introFill(pg.text, ctx), btn: introFill(pg.btn || 'Continue', ctx), scene: sc}))
+    : [{text: [N.partnerStory, PI.arrival ? introFill(PI.arrival, ctx) : `${p.name} stands beside you beneath the double moon.`].filter(Boolean).join('\n\n'), btn: `Talk with ${ctx.first}`, scene: sc}];
   const voice = PI.greet ? introFill(PI.greet, ctx) : (N.partnerStory || p.backstory || '');
   const back = PI.note ? `\n\n${introFill(PI.note, ctx)}` : '';
   const chList = Array.isArray(PI.choices) && PI.choices.length ? PI.choices : [
@@ -73,7 +75,7 @@ function introPartnerEvent(p, opts={}){
     title: `${p.name}`,
     who: p.id,
     scene: sc,
-    pre: [{text: open, btn: `Talk with ${ctx.first}`, scene: sc}],
+    pre: pages,
     text: `${voice}${back}`,
     choices: chList.map(c=>({
       label: introFill(c.label, ctx),

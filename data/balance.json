@@ -25,7 +25,7 @@
     "tidy: maidPerAgil = extra tidiness per point of the maid's Agility (0-100; an agility-50 maid adds about 8% over an average one). starting value, losses (perService room service, perVisitor), maid gain per week = (maidBase + service skill x maidPerSkill) x outfit bonus x her tidy fx, and the three effect tiers (rep per week, mood, energy recovery multiplier) at high (>=75), low (<45) and bad (<20). maidEase/maidMax: a maid's weekly gain is x (100 - tidiness)/maidEase (at most maidMax), so maids hold a house around a level instead of pinning it at 100: one average maid keeps a 6-8 lady house near 70. Bands: high (>= high) small bonus, neutral up to there, low (< low), bad (< bad) costs reputation, mood, rest and client satisfaction (fx.*.sat).",
     "rep: positive popularity changes are scaled by max(gainMin, gainBase - rep/gainDiv). Losses are not.",
     "prestige: House Class/Prestige (0-100). Each week h.prestige drifts toward a structural target (house base + bedroom tier/beds + decor + drinks + price + amenities + tidiness + full attendant coverage + Madame/Host Charm+Charisma) plus operational shifts (1:1 attendants & charismatic leaders raise it; Exhibitionist open-air acts, free samples compared against house prestige, host fluffing when rooms are full, walkouts, crowding, pushy failures and unshielded demon drains shift/lower it). Low prestige drives demand, staff propositions, action wants, and rowdy/thirsty preference; high prestige draws merchants & nobles, raises skill/amenity/quarters expectations, softens price-tier penalties, boosts company-only work, and rewards rich clients with extra satisfaction & fees when standards are met.",
-    "props: propositions. talkDown = pushy-client chance she talks him down herself before security is tried: (Wits x .6 + Charm x .4)/100 x talkDown; talkMood = her mood change when she has to (negative). penalty/maxPenalty = main-job output lost per accepted proposition (non-must jobs). accept* = chance a non-must lady accepts (acceptBase + (lust-acceptLustMid)/100 + willing fx, +acceptEager when eager, +acceptReckless when reckless); onChance / offSlip = chance when \"Open to propositions\" is on / off-but-reckless; alt / altMust = chance of a counter-offer. attendantExpect = share of attendant propositions where the client expected her to offer (expectSat if she declines). self* = reckless ladies propositioning clients. Pushy resolution: security power vs a roll in securityRoll; else Sam (if his energy >= samEnergyMin) checks strength + charm/2 + roll(0..samRoll) >= samCheck; else none. Costs/mood effects follow. When security fails a pushy client and Sam has the energy, he is sent for and the player decides after the report (one event for the week): step in (the old samCheck roll), call the town watch (watchFee per incident, watchRep reputation each), or let her handle it (none penalties). nights: nights in a working week. A pushy client nobody stops (Sam too tired, or his step-in fails) ends her night: escorts lose nightCap clients of the week, everyone else 1/nights of her job's output and that share of the week's propositions. Sam steps in on the spot when he has samEnergyMin energy (Strength + Charm/2 + samRoll vs samCheck, +watchBonus if he stood watch); there is no more after-report event.",
+    "props: propositions. talkDown = pushy-client chance she talks him down herself before security is tried: (Wits x .6 + Charm x .4)/100 x talkDown; talkMood = her mood change when she has to (negative). penalty/maxPenalty = main-job output lost per accepted proposition (non-must jobs). accept* = chance a non-must lady accepts (acceptBase + (lust-acceptLustMid)/100 + willing fx, +acceptEager when eager, +acceptReckless when reckless); alt / altMust = chance of a counter-offer. attendantExpect = share of attendant propositions where the client expected her to offer (expectSat if she declines). self* = reckless ladies propositioning clients. Pushy resolution: security power vs a roll in securityRoll; else Sam (if his energy >= samEnergyMin) checks strength + charm/2 + roll(0..samRoll) >= samCheck; else none. Costs/mood effects follow. When security fails and Sam is at the house with the energy, he steps in on the spot (samRescue, the samCheck roll); nobody stopping it costs the none penalties. nights: nights in a working week. A pushy client nobody stops (Sam too tired, or his step-in fails) ends her night: escorts lose nightCap clients of the week, everyone else 1/nights of her job's output and that share of the week's propositions. Sam steps in on the spot when he has samEnergyMin energy (Strength + Charm/2 + samRoll vs samCheck, +watchBonus if he stood watch); there is no more after-report event.",
     "houseGate: ladies who come with a house (role 'house') can't trust Sam past base + perBeat x (that house's story beat) until the house story is finished (3 beats: 40 + 20 x 3 = 100). Arc beats for them wait for the story too. gap = weeks before beat 1 / 2 / 3 can start (first, later, later); retry = weeks before a beat comes back after a failed check.",
     "wardrobe: costMult scales every outfit/underwear price (lower = easier to get clothes). eventChance = relative weight of each of the 'someone gave her an outfit' random events (data/events.json).",
     "svc.askMore: after a service that didn't finish her (built lust or left her frustrated), a lady with sufficient lewdness and lust may ask the client for more (chance, modulated by client stamina), offering a lust-spending/finishing service from her menu; it pays fee x its normal price. svc.poorFinishAt / svc.secondRound: clients who didn't finish (non-finishing act or quality below poorFinishAt) or who have stamina left may propose another round.",
@@ -50,7 +50,8 @@
     "amenities.classroom (teaching formula): each lady behind the teacher gains floor(gap x rate x teacher x learner) (stats use round((gap x rate + statFlat) x teacher x learner)). teacher = (base + Management/100 x manageW + Wits/100 x witsW) x outfit/job bonus (teacher) x her teach fx x her output; learner = (learnBase + Wits/100 x learnWits) x her learn fx (x humanMult for humans). An average teacher and learner come to about 1. The madame's coaching (jobs.madameCoach) also uses her teach fx and the learner's learn fx. Subject (h.teachSkill): a skill, a stat ('stat:<key>'), a service, or a set (all skills / all stats / all services / everything / a job's stats + skill, plus services for menu jobs); a set of n subjects teaches each at rate x n^-setExp. Services can only be taught by a teacher who knows them and has lewdness >= the service's th + svcLewd.",
     "tutor: paid tutoring per lady (her sheet → Tutoring; js/logic/spending.js). Each week at the week's end Sam pays cost (x tier cost, x 1 + perCycle x (cycle-1)) for every lady with a tutor; skipped with a report note if the purse can't cover it. focus weak = her `weakStats` lowest stats (by statOf) at stat each and her `weakSkills` lowest trade skills at skill each; focus job = the stats her job uses (train.stat.byJob weights) at stat x weight, her job's skill at skill, other skills x others, and for menu jobs every menu service at svc. All gains x tier gain x her learn fx and personality 'train' liking. herEnergy = her energy per week; counts toward counts.lessons.",
     "gifts: buying gifts for trust (her sheet → Gifts). tiers {cost, trust, mood}: trust goes through gainTrust (diminishing near the top, house-story caps still apply), mood x personality 'gift' liking (Greedy x greedy). Each gift to the same lady in one week costs x (1 + weekStep x gifts so far this week); cost x (1 + perCycle x (cycle-1)). beforeDebt: 'locked' (only once the debt is paid), 'action' (before that, each gift costs one of Sam's actions and energy; free after) or 'free'. Counts as a gift (counts.gifts).",
-    "goddess: the overarching story (js/logic/goddess.js, wording in data/goddess.json, docs/GODDESS.md). fullReborn = Reincarnated stacks that count as fully reincarnated (max carry); the binding comes at the first rebirth after a lady has lived such a life (reborn > fullReborn). events: before the binding, chance per week = base + perCycle x (cycle-1), at most max, at least gap weeks apart; bound = chance of a jealous remark after the binding (x 0.5 + jealousy/100). jealousy 0-100: perHire per new lady, perPrivate per private moment with someone else, perLady per lady past rosterRef, -decay weekly, perLover x lovers carried + perCycle at each rebirth before the binding, nightCut/talkCut when Sam spends time with her; mid/high = text tiers. love 0-100: bind (at the binding), night, talk; stay = love needed for her to stay at full divinity. mood: drifts toward base + love x perLove - jealousy x perJealous; below ignoreBelow she half the time ignores your guidance. divinity 0-max: bindTo after the binding, +finish per night, 1 action + 1 per perAction. power = (base + perDiv x divinity) x (1 + perReborn x (fully reborn ladies + their lives past full)). actions: indulge (ladies with the most lust: lust off, mood, energy, lewd), business (income share and rep in a random house), watch (chance she stops each pushy client in the house with the most trouble, max), tutelage (the least skilled working lady: job skill + a stat), whim (random of those x mult), claim (jealousy/per chance per action: she keeps Sam up (samEnergy) or monopolizes a new lady (mood)). night: AP + cost energy; a finishing tier-3 service (inside her) gives Sam restore + perDiv x divinity energy, +divinity.finish, love.night, mood; finishing outside: half the energy, love.outside, outsideMood; no finish: -noneLove, -noneMood. neglect: from `after` weeks without a night, -love/-mood every week; a jealous claim on a lady with no night within claimWeeks: -claimLove/-claimMood. indulge.practice = service skill the lady gains."
+    "goddess: the overarching story (js/logic/goddess.js, wording in data/goddess.json, docs/GODDESS.md). fullReborn = Reincarnated stacks that count as fully reincarnated (max carry); the binding comes at the first rebirth after a lady has lived such a life (reborn > fullReborn). events: before the binding, chance per week = base + perCycle x (cycle-1), at most max, at least gap weeks apart; bound = chance of a jealous remark after the binding (x 0.5 + jealousy/100). jealousy 0-100: perHire per new lady, perPrivate per private moment with someone else, perLady per lady past rosterRef, -decay weekly, perLover x lovers carried + perCycle at each rebirth before the binding, nightCut when Sam spends a night with her; mid/high = text tiers. love 0-100: bind (at the binding), night, talk; stay = love needed for her to stay at full divinity. mood: drifts toward base + love x perLove - jealousy x perJealous; below ignoreBelow she half the time ignores your guidance. divinity 0-max: bindTo after the binding, +finish per night, 1 action + 1 per perAction. power = (base + perDiv x divinity) x (1 + perReborn x (fully reborn ladies + their lives past full)). actions: indulge (ladies with the most lust: lust off, mood, energy, lewd), business (income share and rep in a random house), watch (chance she stops each pushy client in the house with the most trouble, max), tutelage (the least skilled working lady: job skill + a stat), whim (random of those x mult), claim (jealousy/per chance per action: she keeps Sam up (samEnergy) or monopolizes a new lady (mood)). night: AP + cost energy; a finishing tier-3 service (inside her) gives Sam restore + perDiv x divinity energy, +divinity.finish, love.night, mood; finishing outside: half the energy, love.outside, outsideMood; no finish: -noneLove, -noneMood. neglect: from `after` weeks without a night, -love/-mood every week; a jealous claim on a lady with no night within claimWeeks: -claimLove/-claimMood. indulge.practice = service skill the lady gains.",
+    "svc.angel: an angel whose lewdness reaches lanternLewd can become a Lantern Angel. With trust >= lanternTrust she asks Sam first (accepting: +lanternAcceptTrust trust, +lanternAcceptMood mood; refusing: lanternRefuseMood). Below that her personality decides: lewd multiplier >= 1 and not Modest takes it on her own (+lanternAutoMood); a reserved one waits until she trusts Sam enough to ask, or gives in at lanternLewd + lanternOwn."
   ],
   "lewd": {
     "_note": "Lewdness diminishing returns (lewdUp). Each source has a cap: full gain below cap-band, half at the cap, none past cap+band. Services: cap = service th + capOver. softCap: default cap for sources without one; past it only daring dates, traits and stories push her further.",
@@ -237,7 +238,7 @@
         "purse": 0.75
       }
     },
-    "vessel": {"fills":[2,5,9],"insideFill":2,"outsideFill":1,"teaseFill":0.5,"startLewd":42,"startTrust":25,"awakenedTrust":10,"awakenedEnergy":5},
+    "vessel": {"fills":[2,5,9],"insideFill":2,"outsideFill":1,"teaseFill":0.5,"startLewd":42,"startTrust":25,"awakenedTrust":10},
     "purse": 600,
     "saleValue": 0,
     "improveShare": 1,
@@ -346,7 +347,6 @@
       "possessLikeSat": 18,
       "possessOkSat": 5,
       "possessFreakSat": -22,
-      "soloFutaChance": 0.6,
       "pairChance": 0.4,
       "pairLewd": 45,
       "pairBond": 10,
@@ -354,9 +354,8 @@
       "pairLust": 30
     },
     "android": {"fee":15,"perEnergy":0.4,"chargerDiscount":0.4,"adaptDraw":1.2,"adaptChance":0.55,"adaptFanChance":0.85,"adaptFee":1.18,"adaptSat":10},
-    "angel": {"lanternLewd":60,"lanternTrust":50,"lanternAutoMood":6,"lanternAcceptTrust":4,"lanternAcceptMood":8,"lanternRefuseMood":-4},
+    "angel": {"lanternLewd":60,"lanternTrust":50,"lanternOwn":15,"lanternAutoMood":6,"lanternAcceptTrust":4,"lanternAcceptMood":8,"lanternRefuseMood":-4},
     "refusalMood": 15,
-    "denHalves": true,
     "poorFinishAt": 0.42,
     "secondRound": {"unfinChance":0.5,"finChance":0.14,"fee":0.7,"poorPen":0.18,"declineSat":-6,"acceptSat":6},
     "askMore": {"lewd":45,"chance":0.35,"fee":0.7}
@@ -377,7 +376,6 @@
     "attendantCoverBond": 2,
     "attendantCoverCap": 4,
     "attendantBondTrustPer": 0.008,
-    "attendantBondWeight": 0.015,
     "madameMoodLoss": 0.7,
     "madameMatchSat": 6,
     "madamePopGap": 10,
@@ -503,8 +501,6 @@
   "props": {
     "talkDown": 0.35,
     "talkMood": -2,
-    "watchFee": 40,
-    "watchRep": 0.5,
     "penalty": 0.08,
     "maxPenalty": 0.5,
     "acceptBase": 0.15,
@@ -513,8 +509,6 @@
     "acceptReckless": 0.45,
     "jobBonus": {"bartender":0.25,"host":0.25,"attendant":0.2,"chapel":0.1,"madame":0.1,"promoter":0.05,"maid":0,"security":-0.2},
     "jobMood": {"bartender":35,"host":35,"attendant":35,"chapel":40,"madame":45,"promoter":45,"maid":55,"security":65},
-    "onChance": 0.9,
-    "offSlip": 0.35,
     "alt": 0.55,
     "altMust": 0.7,
     "sidegradeSat": 5,
@@ -525,7 +519,6 @@
     "recklessMin": 1,
     "recklessMax": 3,
     "selfAccept": 0.55,
-    "selfFee": 0.8,
     "propFee": 0.8,
     "securityRoll": [30,110],
     "samEnergyMin": 15,
@@ -1200,7 +1193,6 @@
       "perLover": 4,
       "perCycle": 6,
       "nightCut": 15,
-      "talkCut": 5,
       "mid": 30,
       "high": 60
     },

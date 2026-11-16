@@ -3,24 +3,24 @@
     {
       "title": "The Umbrella",
       "scene": "sam_date",
-      "text": "Akari finds you on a bench in the afternoon crush of the market street, an umbrella folded in her lap that the cloudless sky has no use for. She admits she'd been a few steps behind you and Kenta at the Tokyo crosswalk that day, the umbrella she didn't need shoved in her bag and a pack of your favorite sour candy crinkling in her pocket. \"Just walking by,\" she says, too quickly, picking at the umbrella's strap. Then, in a smaller voice: \"Kenta stopped to tie his shoe. He's fine. He's definitely fine.\" Her smile is very bright, and her eyes are not. She looks at you as if daring you to disagree.",
+      "text": "Akari finds you on a bench in the afternoon crush of the market street. She sits down next to you with the umbrella folded across her lap. The sky is cloudless and has no use for it.\n\nShe's quiet, which isn't like her. She picks at the umbrella's strap.\n\n\"I was a few steps behind you two. At the crossing.\" She says it quickly. \"Just walking by. I had this in my bag, and a pack of those sour candies you like. I was going to catch up and pretend it was an accident.\"\n\nShe digs in her pocket and shows you. The packet is still sealed. It's gone soft at the corners from being carried.\n\n\"Kenta stopped to tie his shoe,\" she says, in a smaller voice. \"He was way back. He's fine. He's definitely fine. He's probably eaten everything in my fridge by now.\"\n\nHer smile is very bright and her eyes aren't. She looks at you as if she's daring you to say otherwise.",
       "ngpp": [
-        "Right as she snaps the umbrella strap, she freezes looking down at the bench slats—like she remembers gripping these exact splintery planks beside you once before.",
-        "\"Wait... I remember every afternoon walking home behind you and Kenta,\" Akari whispers softly, blinking sideways down the street. \"So why did sitting on THIS bench feel like déjà vu from a totally different life?\"",
-        "She drops her forehead briefly against your sleeve without teasing first. \"Earth makes sense in my head, Sam—and everything erased in this town still somehow remembers leaning into your shoulder right here.\""
+        "She's snapping the umbrella strap open and shut when she stops and looks down at the bench slats. She runs a thumbnail along the grain. \"Weird,\" she says, \"I feel like I've gripped this exact splintery plank before. Next to you.\" She laughs it off, a little too fast.",
+        "\"I remember every afternoon walking home behind you and Kenta,\" Akari says, blinking down the street. \"Every one. So why does sitting on this bench feel like I've done it in a different life? With the same sour candies?\" She holds the packet tighter.",
+        "She drops her forehead against your sleeve without teasing first. \"Earth makes sense in my head, Sam,\" she says. \"And the part of me I can't explain remembers leaning on your shoulder, right here, on this bench. I know it did. I'm not making it up.\""
       ],
       "choices": [
         {
           "label": "\"He's fine. He's the luckiest guy I know.\"",
           "t": 5,
           "m": 8,
-          "res": "Something in her shoulders unlocks. She leans against your arm and, for a whole minute, the loudest girl in the market does not make a single joke, which is a personal record. \"Thanks for not saying it was nothing,\" she mumbles."
+          "res": "\"He's fine. He's the luckiest guy I know,\" you say. Something in her shoulders unlocks. She leans against your arm, and for a whole minute the loudest girl in the market doesn't make a single joke, which is a personal record. \"Thanks for not saying it was nothing,\" she mumbles. She keeps the packet in her fist and doesn't offer you one."
         },
         {
           "label": "Keep it light, just nod along",
           "t": 1,
           "m": 2,
-          "res": "\"Yeah,\" she says, relieved and a little disappointed, and snaps the umbrella open under the clear sky just to have something to do. \"Obviously. Totally fine.\""
+          "res": "You nod along and keep it light. \"Yeah,\" she says, relieved and a little disappointed, and snaps the umbrella open under the clear sky just to have something to do with her hands. \"Obviously. Totally fine.\" She holds it over both of you for a minute, in full sun, and neither of you mentions it."
         }
       ],
       "image": {
@@ -32,12 +32,12 @@
     {
       "title": "What a Coincidence",
       "scene": "shower",
-      "text": "Steam rolls out when you push open the washroom door, and there is Akari in the tub with her chin propped on her folded arms, bubbles piled artfully around her, a single rubber duck positioned like a prop. It is obvious she has been waiting a good while; her fingertips are wrinkled. She gasps, one hand fluttering to her mouth, a performance worthy of a very bad high-school drama club play. \"Oh no. Sam. You've caught me. What a coincidence.\" The duck bobs between you, unconvinced.",
+      "text": "Steam rolls out when you push open the washroom door. Akari is in the tub.\n\nShe has her chin propped on her folded arms on the rim. The bubbles are piled up around her with some care. There's a single rubber duck, and it has been placed. Her fingertips are wrinkled, so she has been in here waiting for a good while.\n\nShe gasps. One hand flutters up to her mouth. You've seen better acting at a school festival.\n\n\"Oh no. Sam. You've caught me in the bath. What a coincidence.\"\n\nThe duck bobs between you. It doesn't look convinced.\n\nShe holds the pose. She has clearly planned what happens next, and she's waiting for your line. A patch of bubbles slides slowly off her shoulder, and she moves a little to stop it, and then she isn't quite sure whether she meant to.",
       "byIntim": {
         "1": {
           "title": "Bubble Timing",
           "scene": "shower",
-          "text": "You step into the washroom mist and find Akari already peeking over a mountain of scented foam, cheeks bright pink—yet she skips the fake theatrical gasp this time, flicking a warm bubble straight onto your sleeve instead. \"Took you long enough, Sam,\" she grins breathlessly, pulling her wet shoulders just out of the foam. \"Come wash my back? Strictly dramatic necessity.\"",
+          "text": "You step into the steam, and Akari is peeking at you over a mountain of scented foam. Her cheeks are bright pink.\n\nShe skips the fake gasp this time. She flicks a handful of bubbles onto your sleeve.\n\n\"Took you long enough, Sam. I've been in here so long I've gone wrinkly.\" She sits up a little, so that her wet shoulders and the tops of her tits come out of the foam, and she watches to see whether you look. You do, and she grins. \"Come and wash my back? I can't reach. It's a matter of dramatic necessity.\"",
           "choices": [
             {
               "label": "Kneel beside the rim and scrub her shoulders slowly",
@@ -46,21 +46,21 @@
               "l": 2,
               "private": true,
               "acts": ["massage_give","kiss","manual_give"],
-              "res": "Her stage bravado vanishes the second warm soapy hands glide down her bare spine; Akari turns sharply on her knees in the suds, catching your collar to pull you down into a dizzy, foam-tipped kiss.",
-              "fallbackRes": "She chatters at half her usual speed while your knuckles ease the tightness from her shoulders, leaning happily back against your chest."
+              "res": "She sits up in the foam to watch you work, and then she can't. You kneel by the rim, take the sponge and start on her shoulders. Her stage bravado goes the second your soapy hands slide down her bare spine. She turns sharply on her knees in the suds, catches your collar and pulls you down toward her wet mouth.",
+              "fallbackRes": "She chatters at half her usual speed while your knuckles work the knots out of her shoulders. By the end she's stopped talking altogether and is just leaning back against your chest, with her eyes shut and her cheeks pink. \"That's not in the script,\" she says, very quietly. \"Don't stop yet. Please.\""
             },
             {
               "label": "Flick foam back at her and step out grinning",
               "t": 2,
               "m": 5,
-              "res": "\"Hey! Unfair counterattack!\" she squeaks behind the latch, giggling fiercely."
+              "res": "You scoop up a handful of foam, throw it at her face and step back out of the steam, grinning. \"Hey! Unfair counterattack!\" she squeaks, through the door and a mouthful of bubbles. You hear her splash and giggle, and then a pause. Then, much more quietly, she says, \"Rematch. Tomorrow. I'll be ready.\""
             }
           ]
         },
         "3": {
           "title": "Improvised Script",
           "scene": "bath",
-          "text": "Steam curls softly around flushed bare skin when you push the door open—Akari isn't hiding behind bubbles tonight. Sitting up in the hot water with wet hair stuck to her collarbone, she kicks the rubber duck straight onto the mat and reaches both hands out toward your hoodie. \"No acting tonight, Sam. Bolt the latch and get in here.\"",
+          "text": "Steam curls around bare skin when you open the door. Akari isn't hiding behind any bubbles tonight.\n\nShe's sitting up in the hot water, naked, with her wet hair stuck to her collarbone and her nipples hard in the cooler air. She kicks the rubber duck over the side onto the mat. Then she reaches out with both hands and gets hold of the front of your hoodie.\n\n\"No acting tonight, Sam. I'm done with the script.\" She pulls. \"Bolt the latch and get in here with me. I've been wet for you since lunch, and I'm tired of pretending it's the bath.\"",
           "choices": [
             {
               "label": "Drop your clothes and climb straight into the tub with her",
@@ -69,7 +69,7 @@
               "l": 4,
               "private": true,
               "acts": ["cowgirl","missionary","oral_give"],
-              "res": "Hot water sloshes clear onto the cedar boards as Akari pulls you down and straddles your lap eagerly, biting down on a bright gasp as you thrust deep inside her through the rising mist."
+              "res": "You drop your clothes on the mat, and she watches every piece go. \"There he is,\" she says. You climb in, and the water slops over the rim onto the cedar boards. Akari grabs your shoulders and pulls you down against her, her wet tits against your chest and her mouth hot on your neck."
             },
             {
               "label": "Slide behind her and touch her slowly under the water",
@@ -78,7 +78,7 @@
               "l": 3,
               "private": true,
               "acts": ["manual_give","oral_give","massage_give"],
-              "res": "She melts straight back against your bare chest, panting softly into your neck as your hands trace every inch below the warm water."
+              "res": "You slide in behind her, and she melts back against your bare chest, pushing her wet hair aside for you. Her breath catches against your jaw. Your hands come around her waist and rest there, low, under the surface, while she talks too fast about nothing. \"Okay,\" she says, and her voice drops. \"Okay, I'm not talking anymore.\""
             }
           ]
         }
@@ -88,19 +88,19 @@
           "label": "Back out and close the door",
           "t": 1,
           "m": -4,
-          "res": "\"Coward!\" she yells after you, over the sound of a furious duck-squeak. The door shuts on her cackling, and you can hear her sulking happily for a full minute afterward."
+          "res": "You back out and close the door. \"Coward!\" she yells after you, over the squeak of a furious duck. The door shuts on her cackling, and you can hear her sulking happily for a full minute afterward. Then the water sloshes, and she calls, \"I'll leave the duck out for you tomorrow. Think about what you did.\""
         },
         {
           "label": "\"You're Kenta's sister.\"",
           "t": -2,
           "m": -6,
-          "res": "A sponge hits the door as it closes. \"I KNOW whose sister I am!\" A minute later, from inside, much quieter, the water barely stirring: \"...I'm tired of only being that.\""
+          "res": "\"You're Kenta's sister.\" A sponge hits the door as it closes. \"I KNOW whose sister I am!\" You stand in the corridor, and a minute later you hear her, from inside, much quieter, with the water barely stirring. \"I'm tired of only being that.\" You don't know whether she meant you to hear it, and you don't go back in."
         },
         {
           "label": "Burst out laughing",
           "m": 5,
           "t": 2,
-          "res": "She tries to stay offended, lips pressed flat, eyebrows drawn down. It lasts four seconds before she slides under the bubbles and laughs until the water sloshes onto the floor."
+          "res": "You burst out laughing, and she tries to stay offended, lips pressed flat and eyebrows drawn down. It lasts four seconds. Then she slides under the bubbles and comes up laughing so hard the water slops onto the floor. \"You're supposed to say my line,\" she wheezes. \"What was my line?\" She never did write down your part."
         }
       ],
       "image": {
@@ -113,7 +113,7 @@
     {
       "title": "Game Night",
       "scene": "casual",
-      "text": "Akari organizes a staff \"game night\" in the lounge, with a card game she half remembers from Kenta's apartment and invents the rest of as she goes, rules shouted over the clinking of mugs. She wins. Loudly, with a victory dance. Halfway through the next round she realizes you have been quietly sliding her the right cards for an hour, a nudge here, a pointed pause there, and the whole table goes slightly blurry for her as she stops mid-cheer. \"You always did that,\" she says, very quiet in the lamplight. \"I thought I was imagining it.\"",
+      "text": "Akari organizes a staff game night in the lounge. It's a card game she half remembers from Kenta's apartment. She invents the other half as she goes and shouts the new rules over the clinking of mugs.\n\nNobody understands it. Everybody is having a good time.\n\nShe wins. She wins loudly, and there's a victory dance with pointing.\n\nHalfway through the next round she stops in the middle of a cheer.\n\nShe has just watched you do it. You held a card a moment too long, then set it down where she could take it. Now she's thinking back, and she can see you've been doing that for an hour.\n\nThe table goes a little blurry for her.\n\n\"You always did that,\" she says, very quietly, under the noise. \"At Kenta's. Every game night. I'd win, and he'd complain, and you'd say I was just good at it.\" She looks at the cards in her hand. \"I thought I was imagining it. I thought I was making it up because I wanted it to be true.\"",
       "choices": [
         {
           "label": "Claim your winner's prize after everyone goes upstairs",
@@ -123,19 +123,19 @@
           "l": 3,
           "private": true,
           "acts": ["missionary","oral_give","kiss"],
-          "res": "Once the last mug clears away, Akari shoves the scattered cards across the sofa cushions and pulls you down hard into her lap, whispering breathlessly that she waited six whole years to collect on that cheat."
+          "res": "The last mug goes upstairs, and Akari shoves the scattered cards across the sofa cushions. She grabs you by the front of the hoodie and pulls you down onto the sofa with her, breathless and flushed, knocking cards onto the floor. \"I waited six whole years to collect on that cheat,\" she whispers against your ear. \"So. Collect.\""
         },
         {
           "label": "Stay with her after the others drift off",
           "t": 5,
           "m": 8,
-          "res": "When the others have gone she gathers the cards into a clumsy stack and bumps her shoulder against yours. \"Teach me to cheat properly,\" she says, \"and I'll let you win once.\" The lamp burns lower, and neither of you reaches to turn it up."
+          "res": "When the others have gone she gathers the cards into a clumsy stack and bumps her shoulder against yours. \"Teach me to cheat properly,\" she says, \"and I'll let you win once.\" You show her how to hold a card back. She's terrible at it. The lamp burns lower, and neither of you reaches to turn it up."
         },
         {
           "label": "Keep the mood light and deal another hand",
           "t": 1,
           "m": 2,
-          "res": "\"Rematch,\" she announces, and shuffles so badly that cards spray the floor. She laughs it off, but her eyes linger on you a second longer than the joke needs."
+          "res": "\"Rematch,\" she announces, and shuffles so badly that cards spray over the floor. She laughs it off and goes down on her knees to pick them up. You see her sneak a look at you from under the table, a second longer than the joke needs, with a colour in her cheeks that isn't from the wine."
         }
       ],
       "image": {
@@ -147,31 +147,31 @@
     {
       "title": "Useless",
       "scene": "portrait",
-      "text": "A client complains about Akari, loudly, in front of half the common room, about her fumbled pouring and her chatter. Later you hear a sniffle behind the linen closet door and find her sitting on a stack of folded sheets, a towel clutched to her chest, mascara smudged. \"I'm useless,\" she says. \"I'm just the person who tagged along behind you and Kenta, carrying the snacks.\" She wipes her eyes with the towel. \"I wanted to be someone you'd notice.\"",
+      "text": "A client complains about Akari in front of half the common room. He does it loudly. She spilled his wine when she poured it, and she talked through his whole evening, and he wants to know what he's paying for.\n\nShe laughs it off and apologizes and comps the bottle. She's bright and bouncy until he leaves.\n\nAn hour later you hear a sniffle from behind the linen closet door.\n\nShe's sitting on a stack of folded sheets in the dark, with a towel clutched against her chest. Her mascara has run.\n\n\"I'm useless,\" she says. \"I keep doing the voice and the smile, and it's all I've got. I'm the one who tagged along behind you and Kenta carrying the snacks. That's who I was back home, and I came all the way to another world, and I'm still that.\"\n\nShe wipes her eyes on the towel, which makes it worse.\n\n\"I wanted to be somebody you'd notice. I thought it'd be easier here.\"",
       "ngpp": [
-        "Even crying in the cramped linen closet, she freezes midway to reaching up for your sleeve—like she already remembers how gently you sat beside these exact stacked sheets once before.",
-        "\"Why did this closet smell safe before you even opened the door, Sam?\" she sniffles shakily against your hoodie.",
-        "Akari pulls you straight down beside her onto the sheets without bothering to hide the tears. \"I remember every stupid snack run back in Tokyo, Sam—and every part of me I can't remember still knows you never walk past this door without holding me.\""
+        "She's reaching for your sleeve when she stops. Her hand hovers over the stack of sheets, and her eyes unfocus a little. \"Huh,\" she says, sniffling. \"I know how soft this is. I know it before I touch it.\" She shakes her head and takes your sleeve anyway.",
+        "\"Why does this closet smell safe before you even open the door, Sam?\" she sniffles against your hoodie. \"I knew you'd come. Not hoped. Knew.\" She pulls back and stares at the shelves, her mascara in streaks. \"Is that a thing I'm allowed to know?\"",
+        "Akari pulls you down beside her onto the sheets without bothering to hide her tears. \"I remember every stupid snack run back in Tokyo, Sam,\" she says. \"And the part I can't remember still knows you never walk past this door without sitting down. Don't argue. I'm sure.\""
       ],
       "choices": [
         {
           "label": "\"You don't have to do this. You can quit.\"",
           "t": -6,
           "m": -10,
-          "res": "\"That's not what I wanted you to say.\" She doesn't come out of the closet for an hour, and the linens are folded with fierce, furious precision when she finally does."
+          "res": "\"That's not what I wanted you to say.\" She doesn't come out of the closet for an hour. When she does, the linens are folded with furious, perfect corners, and she works the floor without a word and without a single joke. She does it so well that you realise how much you've asked of her, and you don't know how to take it back."
         },
         {
           "label": "Train her yourself, every evening",
           "grow": {"service":6},
           "t": 6,
           "m": 6,
-          "res": "Every evening for a week, after close, you walk her through it, patient and bad at demonstrating. She is clumsy for three days and then, abruptly, not. She gets better. She gets a lot better, and by the end she's showing off."
+          "res": "Every evening for a week, after close, you walk her through it, patient and bad at demonstrating. She's clumsy for three days. She drops things, laughs in the wrong places and cries once into a pillow. On the fourth day it clicks. She gets better, then a lot better, and by the end of the week she's showing off."
         },
         {
           "label": "Tell her about your own failures",
           "t": 5,
           "m": 8,
-          "res": "You tell her about the truck, about the three jobs you failed to keep, about the time you cried in a convenience store over a vending machine. By the end she is laughing through her tears and hitting you with a towel."
+          "res": "You tell her about the truck, about the three jobs you failed to keep, about the time you cried in a convenience store over a vending machine that ate your last coin. By the end she's laughing through her tears and hitting you with a towel. \"You told Kenta none of that,\" she says. \"Did you?\" You didn't."
         }
       ],
       "image": {"comp":"crying in a linen closet hugging a stack of towels","setting":"cramped linen closet, a sliver of light","sam":false}
@@ -179,19 +179,19 @@
     {
       "title": "Drama Date",
       "scene": "sam_date",
-      "text": "Akari demands a \"proper date, like in the dramas\": umbrella in the rain, a dramatic run toward the station (there is no station), a long meaningful look under a streetlamp. She has storyboarded it. The rain obliges, which she finds suspicious. Halfway through she drops the act, umbrella wilting in her fist and her hair plastered to her cheek. \"I've rehearsed this in my head for years,\" she admits. \"I'm terrible at the real thing.\"",
+      "text": "Akari wants a proper date, like in the dramas, and she has storyboarded it. There are drawings. You're a stick figure with a hood.\n\nScene one is a shared umbrella in the rain. Scene two is a dramatic run to the station. There's no station in Hollowmere, so she's substituted the fountain. Scene three is a long, meaningful look under a streetlamp.\n\nThe rain turns up on schedule. She finds that suspicious and squints at the sky.\n\nYou do the umbrella. You do the run, and she shouts the directions.\n\nUnder the streetlamp she takes up her position and tilts her face to you, and then the whole thing falls apart. The umbrella droops in her fist. Her hair is plastered to her cheek.\n\n\"I've rehearsed this in my head for years,\" she says. \"On the train, in the bath. I know every line of it.\" Her lip wobbles. \"I'm terrible at the real thing. I don't know where to put my hands. You're really here, and I don't know my part.\"",
       "choices": [
         {
           "label": "Commit to every drama cliche",
           "m": 10,
           "t": 3,
-          "res": "You tilt the umbrella, gaze meaningfully, and at the end trip into her arms, on purpose, with an actor's gasp. She nearly dies of happiness, and then of laughing."
+          "res": "You hold the umbrella high, gaze meaningfully into the rain, and at the end of the sentence you trip into her arms on purpose, with an actor's gasp. She nearly dies of happiness, and then of laughing. \"Cut! Do it again!\" she squeals. You do it again, worse, and she films it in her head, with her face pressed against your shoulder."
         },
         {
           "label": "Do it your own way",
           "t": 4,
           "m": 5,
-          "res": "A walk in the drizzle, warm buns from the bakery, a quiet bench under the eaves where you share the last one. \"...Okay,\" she admits, leaning on you. \"This is better than the dramas.\""
+          "res": "You skip the script. A walk in the drizzle, warm buns from the bakery, a quiet bench under the eaves where you share the last one. She goes quiet in the middle of a bite. \"Okay,\" she admits, and leans against you, her hair damp on your collar. \"This is better than the dramas. Don't tell the dramas.\""
         }
       ],
       "image": {"comp":"running dramatically through the rain toward him holding an umbrella","setting":"lantern-lit street in the rain","sam":true}
@@ -199,13 +199,13 @@
     {
       "title": "Not Kenta's Sister",
       "scene": "final",
-      "text": "Akari climbs the ladder onto the roof where you are hiding from the paperwork, a lantern in one hand, her hair whipped loose by the evening wind. She sits down across from you, then stands again, too restless. \"I've had a crush on you since back home, Sam, and I'm done keeping it to myself. I'm not Kenta's sister up here. I'm a grown woman and I know what I want. It's you.\" Her voice cracks on the last word, but she doesn't look away. This time, you don't climb down.",
+      "text": "You're on the roof, hiding from the paperwork, when the ladder creaks. Akari climbs up with a lantern in one hand. The evening wind has pulled her hair loose and the star clip is hanging on by one tooth.\n\nShe sits down across from you. Then she stands up again. She can't keep still.\n\n\"Okay. I'm going to say this, and you're not going to make a joke.\"\n\nShe puts the lantern down.\n\n\"I've had a crush on you since I was sixteen, Sam. It was the haircut, and the bad boss, and all of it. Everybody knew. Kenta knew. I think you knew, and you were too nice to say so.\" She pushes her hair out of her face. \"I'm done keeping it to myself. I'm not Kenta's sister up here. I'm a grown woman, I know what I want, and it's you.\"\n\nHer voice cracks on the last word. She doesn't look away.\n\nThis time you don't climb down.",
       "ngpp": [
-        "Even standing breathless against the roof wind, she touches the lantern rim softly as though she already stood here yelling this confession once before.",
-        "\"Seriously, why does kneeling on these roof tiles feel like finishing an act I already memorized?!\" Akari laughs wetly, gripping your collar tight.",
-        "\"Reset the world a hundred times, Sam—I remember every Tokyo summer behind us, and zero cycles won't ever stop me from climbing onto your roof again!\""
+        "She's holding the lantern high against the evening wind when she stops. Her fingers run over the rim, and she frowns. \"I know this is going to sound strange,\" she says. \"But I think I've stood on this roof and yelled this at you already. I can almost hear it.\"",
+        "\"Why does standing on these roof tiles feel like I rehearsed it?\" Akari laughs wetly, gripping your collar. \"Not in a bath, Sam. Here. I know where the wind comes from. I know where to put my feet. Is there something wrong with me?\" She doesn't wait for the answer.",
+        "\"Reset the world a hundred times, Sam,\" she says, with the lantern at her feet. \"I remember every Tokyo summer, and I remember the roof, and the speech. I've said all of this before, and I'll climb up here again every time. So stop looking so stunned and say something.\""
       ],
-      "goLead": "Akari drops the lantern safely beside the chimney and lunges straight into your arms, kissing you breathlessly before guiding you down the attic hatch toward your bed.",
+      "goLead": "Akari sets the lantern down by the chimney, where it's safe, and throws herself into your arms. She kisses you until she's out of breath, and then she pulls you toward the attic hatch and your bed.",
       "choices": [
         {"label":"Say yes","t":6,"m":12,"res":""},
         {
@@ -213,7 +213,7 @@
           "t": 1,
           "m": -3,
           "hold": true,
-          "res": "Akari nods, brave and bright and just a little crushed. \"I can wait,\" she says, tapping the lantern. \"Don't make me wait longer than a drama season, okay?\""
+          "res": "Akari nods, brave and bright and a little crushed. \"I can wait,\" she says, tapping the lantern, and her voice only shakes at the end. \"Don't make me wait longer than a drama season, okay?\" She picks up the lantern, climbs back down the ladder, and from halfway down you hear her whisper, \"Okay. Okay.\""
         }
       ]
     }

@@ -4,7 +4,7 @@ const EVT = needData('events');
 // text from events.json: ET('noble','ask','res', {name:..., gold:...}) — lists pick one at random
 function ET(...path){
   const vars = (typeof path[path.length-1]==='object') ? path.pop() : {};
-  let t = path.reduce((o,k)=>o && o[k], EVT);
+  let t = path.flatMap(k=>String(k).split('.')).reduce((o,k)=>o && o[k], EVT);   // 'accept.res' and 'accept','res' both work
   if(Array.isArray(t)) t = pick(t);
   return String(t ?? '').replace(/\{(\w+)\}/g, (m,k)=> vars[k]!==undefined ? String(vars[k]) : m);
 }
@@ -259,11 +259,12 @@ function evLanternAsk(w){
   const V = {name:w.name};
   return {title:ET('lantern_ask','title',V), who:w.id, scene:evImg('lantern_ask','portrait'), text:ET('lantern_ask','text',V), choices:[
     {label:ET('lantern_ask','accept.label',V), fx(){
-      w.sub = 'lantern'; w.lantern = true; w.lanternDecided = true; fitLust(w); gainTrust(w, 4); moodAdd(w, 8);
+      const AN = SVC.angel || {};
+      w.sub = 'lantern'; w.lantern = true; w.lanternDecided = true; fitLust(w); gainTrust(w, AN.lanternAcceptTrust ?? 4); moodAdd(w, AN.lanternAcceptMood ?? 8);
       return ET('lantern_ask','accept.res',V);
     }},
     {label:ET('lantern_ask','refuse.label',V), fx(){
-      w.lanternDecided = true; moodAdd(w, -4);
+      w.lanternDecided = true; moodAdd(w, (SVC.angel || {}).lanternRefuseMood ?? -4);
       return ET('lantern_ask','refuse.res',V);
     }}
   ]};

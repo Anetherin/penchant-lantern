@@ -102,7 +102,6 @@ function raceFit(w){
   if(rf && rf.length && !rf.some(x => (w.design.features||'').includes(x))) w.design.features = [pick(rf), w.design.features].filter(Boolean).join(', ');
   if(w.body) Object.entries(ban).forEach(([k,ids])=>{ if(ids.includes(w.body[k])) w.body[k] = BODY_DEF[k] && !ids.includes(BODY_DEF[k]) ? BODY_DEF[k] : Object.keys(bodyOpts(k)).find(x=>!ids.includes(x)); });
 }
-const bodyText = w => { const b = bodyOf(w); return BODY_KEYS.map(k => (bodyOpts(k)[b[k]]||{}).img || '').filter(Boolean).join(', '); };
 const bodyLabel = w => { const b = bodyOf(w); return BODY_KEYS.map(k => (bodyOpts(k)[b[k]]||{}).label || b[k]).join(' · '); };
 
 /* ---------- small helpers built on fx ---------- */

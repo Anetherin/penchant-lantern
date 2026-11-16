@@ -153,7 +153,7 @@ function walkRecruitEvent(key, isPartner){
     : c.wasLover && WALKS.exLoverOpeners && WALKS.exLoverOpeners.length
       ? walkFill(pick(WALKS.exLoverOpeners), fVars)
       : isPartner
-        ? walkFill(PI.story || (WALKS.partnerOpeners || {})[key] || (WALKS.partnerOpeners || {}).default || 'You run into {name}.', fVars)
+        ? walkFill(PI.story || 'You run into {name}.', fVars)
         : walkFill(WALKS.guestIntro || 'You run into {name}. {backstory}', fVars);
   const countPartner = () => { if(isPartner) S.flags.walkPartners = (S.flags.walkPartners || 0) + 1; };
   const markGuest = () => { countPartner(); if(!isPartner){ (S.flags.guestSeen = S.flags.guestSeen || {})[key] = S.week; S.flags.lastGuest = S.week; } };
@@ -169,15 +169,16 @@ function walkRecruitEvent(key, isPartner){
       : PI.hire ? walkFill(PI.hire, fVars) : null;
   const imgSpec = PI.image || (GP && GP.image) || null;
   const sc = imgSpec ? (dynScene('walk_' + key, imgSpec) || 'portrait') : 'portrait';
-  const gAside = isReturning && !G().left && (N.goddess && N.goddess.comment) ? gtxt(N.goddess.comment, {partner: fVars.first, house: h.name, goddess: GN()}) : '';
+  const gAside = (isPartner || isReturning) && !G().left && (N.goddess && N.goddess.comment) ? gtxt(N.goddess.comment, {partner: fVars.first, house: h.name, goddess: GN()}) : '';
   const preOpen = PI.open ? walkFill(PI.open, fVars) : (GP && GP.arrival ? walkFill(GP.arrival, fVars) : '');
-  const pre = preOpen ? [{text: preOpen, aside: gAside, btn: `Step closer to ${fVars.first}`, scene: sc}] : undefined;
+  const pre = preOpen ? [{text: preOpen, btn: `Step closer to ${fVars.first}`, scene: sc}] : undefined;
 
   return {
     title: c.wasLover ? `A Familiar Face: ${c.name}` : isPartner ? `A Chance Meeting: ${c.name}` : `A Visitor in Town: ${c.name}`,
     who: c.id,
     scene: sc,
     pre,
+    aside: gAside,
     text: `${opener}\n\n${walkWorkerSummary(c)}`,
     choices: walkHireChoices(c, h, {
       hireRes,

@@ -19,7 +19,6 @@ function actCost(w, act){
   c *= fxMul(w,'actEnergy') * (act ? fxSub(w,'actEnergyBy',act) : 1) * incenseMul(w,'actEnergy');
   return Math.max(1, c);
 }
-const clientCost = w => actCost(w, null) * 1.8;
 const appeal = w => s100(statOf(w,'beauty'))*0.4 + s100(statOf(w,'charisma'))*0.2 + s100(statOf(w,'charm'))*0.1 + w.popularity*0.5 + fxAdd(w,'appeal') + incenseAdd(w,'appeal');
 // Lewdness gain with diminishing returns: each source has a cap. Full gain below cap - band, half at the cap, nothing by cap + band.
 function lewdUp(w, n, cap){
@@ -398,7 +397,7 @@ function ensureWorker(w){
   if(!w.firsts || !Array.isArray(w.firsts.path)) w.firsts = firstsProfile(w);
   if(w.intim===undefined) w.intim = (w.privateCount>0 || has(w,'Devoted')) ? Math.max(...w.firsts.path) : 0;
   // "Open to propositions": 'on' | 'ask' | 'off' (old saves stored true/false). Must-offer jobs ignore it.
-  if(w.offDuty===undefined) w.offDuty = 'ask'; else if(w.offDuty===true) w.offDuty = 'on'; else if(w.offDuty===false) w.offDuty = 'off';
+  delete w.offDuty;   // old per-lady propositions switch (removed: staff accept when they're willing)
   if(w.samples===undefined) w.samples = false;
   delete w.madameFocus;   // the madame has no focus options any more (she matches clients and coaches courtesans)
   if(!w.body) w.body = rollBody(w.race);

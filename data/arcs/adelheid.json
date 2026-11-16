@@ -3,24 +3,24 @@
     {
       "title": "Poison Taster",
       "scene": "sam_date",
-      "text": "Adelheid insists on tasting all of your food for poison before you touch a fork. Every single meal, silver spoon first, pale blue eyes narrowed behind the scar through her brow while she inspects tavern stew, crusted bread, and one deeply suspicious pear like an assassin hid beneath the peel. Only over the final bite—when you catch her lingering long after your plate sits clean—does she admit stiffly that dinner hour has become her favorite watch.",
+      "text": "Adelheid has decided that your food must be tasted for poison. She means all of it, at every meal.\n\nShe arrives at your table with her own silver spoon. She tries the tavern stew and waits a full minute with her eyes narrowed. She breaks the bread and smells it. She turns one pear over in her gauntlet for so long, as though an assassin might be hiding under the skin, that the cook comes out to ask if something is wrong with it.\n\nYou point out that nobody in Hollowmere wants you dead. You owe most of them money.\n\n\"That is precisely the motive I would expect,\" she says.\n\nShe tastes the last bite and pronounces it safe. Then she doesn't leave. She stands at your shoulder long after the plate is clean.\n\n\"I should say,\" she begins stiffly, with her eyes on the wall, \"that of all my watches, this hour has become the one I look forward to.\"",
       "ngpp": [
-        "Mid-bite she pauses staring down at the spiced stew, muttering faintly that she somehow already knew you dislike fennel.",
-        "\"Forgive an old soldier's odd instinct, Sam,\" she says stiffly, pushing the sweet pear straight toward your preferred side before tasting it.",
-        "Adelheid skips the rigid inspection altogether tonight, sharing the plate openly beside your elbow. \"I cannot recall why I trust your table above any fortress kitchen, Sam—only that I do.\""
+        "Mid-bite she pauses, staring down at the spiced stew. She mutters that she somehow knows you dislike fennel. She sets the spoon down. She cannot tell where she learned it, and it bothers her.",
+        "\"Forgive an old soldier's odd instinct, Sam,\" she says stiffly, pushing the sweet pear toward your preferred side before tasting it. \"I do not know why I know that. I find I do know it.\"",
+        "Adelheid skips the inspection tonight and shares the plate beside your elbow. \"I cannot recall why I trust your table above any fortress kitchen, Sam. I only know that I do. I have trusted it before.\""
       ],
       "choices": [
         {
           "label": "Ask her to stay for the whole meal",
           "t": 5,
           "m": 8,
-          "res": "She sits across from you in her armor, straight-backed, and eats a whole meal as a guest instead of a guard for the first time. She is very bad at it."
+          "res": "She sits across from you in her armor, straight-backed, and eats a whole meal as a guest instead of a guard for the first time. She is very bad at it. She holds the spoon like a dagger. She reports on the stew between bites, as if for the record. By the pear she has stopped checking the doors, and her shoulders have dropped an inch."
         },
         {
           "label": "Tell her she's allowed to finish the pear",
           "t": 1,
           "m": 2,
-          "res": "\"Strictly for safety,\" you say, handing her the pear. {N} accepts it as a sacred duty, and eats it in tiny, reverent bites."
+          "res": "\"Strictly for safety,\" you say, and hand her the pear. {N} accepts it as a sacred duty. She eats it in tiny, reverent bites, with her eyes closed for the first of them, and juice on her chin she doesn't notice. When she's finished she looks at the core with some regret and writes nothing in her log. You decide not to mention it."
         }
       ],
       "image": {
@@ -32,12 +32,12 @@
     {
       "title": "Rain Barrel",
       "scene": "shower",
-      "text": "You cut through the training yard and find Adelheid washing off after practice at the rain barrel, cold water streaming down her scarred shoulders, her short platinum hair plastered flat. She snaps to attention. With the hand holding the towel. Which is, therefore, no longer holding the towel, quite as well as it should.",
+      "text": "You cut through the training yard on your way to the cellar, and Adelheid is at the rain barrel.\n\nShe's been at sword practice since before dawn. The half-plate is stacked neatly on the bench. She is washing with a bucket and a cloth, and cold water is streaming down her scarred shoulders and her short platinum hair is plastered flat to her head. She has a towel held against her front with one hand.\n\nShe sees you, and six years of drill take over.\n\nShe snaps to attention and salutes. She does it with the hand that was holding the towel.\n\nThere's a moment in which the towel, no longer held as well as it should be, considers its options. Adelheid's face goes from white to scarlet. She does not lower the salute, because you haven't returned it.",
       "byIntim": {
         "1": {
           "title": "Out of Armor",
           "scene": "shower",
-          "text": "You step into the washroom after evening watch and find Adelheid already wrapped loosely in a thick linen bath towel, short platinum hair wet at the collar, carefully oiling a fresh bruise along her shoulder. When she sees it's you, she doesn't snap upright or bolt—she only swallows once, steel-blue eyes softening beneath bright scarlet ears. \"Ah... I thought you were already asleep, Sam.\"",
+          "text": "You step into the washroom after the evening watch. Adelheid is already there, wrapped in a thick linen towel, with her short platinum hair wet against her neck. She's working oil into a fresh bruise on her shoulder and not reaching it very well.\n\nShe sees it's you. She doesn't snap upright, and she doesn't bolt. She swallows once. Her ears are scarlet, and her steel-blue eyes have gone soft.\n\n\"Ah. I thought you were already asleep, Sam.\" She looks at the vial in her hand and then back at you. \"I can't reach the back of it. I wouldn't ordinarily ask. I find I would like to ask you.\"",
           "choices": [
             {
               "label": "Take the salve jar and rub her scarred shoulders gently",
@@ -46,21 +46,21 @@
               "l": 2,
               "private": true,
               "acts": ["massage_give","kiss"],
-              "res": "Adelheid closes her eyes tightly as your warm knuckles press through knotted sword-muscle, leaning back into your palms until she turns her face up for a slow, trembling kiss.",
-              "fallbackRes": "She sits stiff as a lance for three seconds before letting out a slow breath and leaning her damp head gently back against your wrist."
+              "res": "You take the jar and rub her scarred shoulders. Adelheid closes her eyes tightly as your knuckles press through knotted sword muscle. She sits stiff as a lance for three seconds, and then the whole line of her back gives. She leans into your palms and breathes out. When you stop, she turns her face up for a slow, trembling kiss.",
+              "fallbackRes": "She sits stiff as a lance for three seconds. Then she lets out a long breath, and the knight goes out of her, and she leans her damp head back against your wrist. You work the bruise gently, with the oil on your thumbs. She says nothing at all. She doesn't ask you to stop, and when you do she stays where she is."
             },
             {
               "label": "Leave a warm cup of cider on the stool and step back",
               "t": 3,
               "m": 4,
-              "res": "\"Thank you, Sam.\" Her quiet smile follows you out into the hall."
+              "res": "You set a warm cup of cider on the stool, look at the wall and step back. \"Thank you, Sam,\" she says, quietly and with some surprise. She picks it up in both hands and drinks. Her quiet smile follows you out into the hall, and you hear her put the vial down and not pick it up again for a long time."
             }
           ]
         },
         "3": {
           "title": "Unarmored",
           "scene": "bath",
-          "text": "Steam fills the washroom from corner to corner, and for once not a scrap of steel sits anywhere near Adelheid. Sitting bare in the cedar tub with water lapping over proud collarbones and faded battle scars, she meets your gaze without flinching and holds out one damp hand. \"Bolt the door, Sam. Duty finished an hour ago.\"",
+          "text": "The washroom is full of steam from wall to wall, and for once there isn't a scrap of steel anywhere near Adelheid. Her sword belt is hanging on the peg by the door. Her armor is somewhere else entirely.\n\nShe's sitting in the cedar tub with the water lapping at her collarbones, naked, her old scars pale against skin flushed pink by the heat. She doesn't cover her tits or look away. She meets your eyes and holds out one wet hand.\n\n\"Bolt the door, Sam. My duty ended an hour ago.\" A very small smile. \"I am told that a knight is permitted to want things, off watch. I want you in here with me.\"",
           "choices": [
             {
               "label": "Slide into the hot tub and hold her close",
@@ -69,7 +69,7 @@
               "l": 4,
               "private": true,
               "acts": ["missionary","oral_give","kiss"],
-              "res": "All knightly stiffness melts instantly in hot water as Adelheid climbs across your thighs, biting down softly on her lip while you guide your cock inside her warmth and move slowly beneath the rising steam."
+              "res": "You slide into the hot water and hold out your arms. All the knightly stiffness melts at once. Adelheid climbs across your thighs, her scarred shoulders streaming, and bites down on her lip as she settles against you. Her hands grip your neck. \"I have wanted to do this,\" she says, in her formal voice, and kisses you with her whole careful self."
             },
             {
               "label": "Kneel beside the tub and take care of her slowly",
@@ -78,7 +78,7 @@
               "l": 3,
               "private": true,
               "acts": ["oral_give","manual_give","massage_give"],
-              "res": "Her hands grip the oak rim until her knuckles blanch as she yields completely to your hands and mouth in the quiet steam."
+              "res": "You kneel beside the tub and take her hand off the rim. Her knuckles are white from the oak. You take her wet knees in your palms, and the hot water breaks against your sleeves. \"Sam,\" she says, once, in the voice of a woman giving an order and discovering she cannot. She yields to you completely, with her head back and her eyes shut."
             }
           ]
         }
@@ -88,19 +88,19 @@
           "label": "Turn around immediately",
           "t": 3,
           "m": 2,
-          "res": "\"Thank you, Sir Sam,\" she says, in a very small voice, after your footsteps retreat. She holds the towel with both hands for the rest of the day."
+          "res": "You turn around at once. \"Thank you, Sir Sam,\" she says, in a very small voice, after your footsteps retreat. She holds the towel with both hands for the rest of the day, and for the rest of the week she checks the yard before she washes. But she salutes you at dinner, and it is not quite the same salute."
         },
         {
           "label": "Salute back",
           "m": 6,
           "t": 1,
-          "res": "She laughs: a real, startled laugh, the first you've ever heard from her, rough and surprised, like a door that hasn't been opened in years."
+          "res": "You salute back. For a moment she is silent. Then she laughs. It's a real, startled laugh, the first you have ever heard from her, rough and surprised, like a door that hasn't been opened in years. She is holding the towel in both hands by then. She laughs until she has to sit down on the bench, scarlet and delighted, and cannot stop."
         },
         {
           "label": "Stammer helplessly",
           "m": 3,
           "l": 1,
-          "res": "You both stand there stammering at each other until a goose interrupts, honking, and the knight loses her last thread of dignity."
+          "res": "You stammer. She stammers back. You stand there in the yard, two grown adults saying nothing in the wrong order, until a goose interrupts, honking, and the knight loses her last thread of dignity. She starts laughing and presses her free hand over her mouth. You are both still standing there when the goose wins."
         }
       ],
       "image": {
@@ -112,7 +112,7 @@
     {
       "title": "Knight and Her Lord",
       "scene": "casual",
-      "text": "You find Adelheid's secret stash of romance novels in her saddlebag, cracked spines, pressed flowers, a ribbon marking every chapter. Every one is about a knight and her lord. She threatens you with her sword, steel flashing, face scarlet to the roots of her hair. Then asks, very quietly, if you've read the third one.",
+      "text": "You're looking for the spare lamp oil in the tack room when you knock Adelheid's saddlebag off its hook.\n\nBooks fall out. There are nine of them, with cracked spines and embossed covers. Flowers have been pressed between the pages, and every one has a ribbon marking a chapter. You pick one up. It's called The Lady's Sworn Sword. So, more or less, are the rest. Every one of them is about a knight and the lord she serves.\n\nThe door bangs open. Adelheid has her sword half out of the scabbard before she sees what you're holding. Then she draws it the rest of the way.\n\n\"Put that down. That is private correspondence. You will forget what you have seen.\" Her face is scarlet to the roots of her hair, and the point of the blade is shaking.\n\nNobody moves. Then she lowers the sword an inch.\n\n\"Have you,\" she asks, very quietly, \"read the third one?\"",
       "choices": [
         {
           "label": "Show her how volume three actually ends",
@@ -122,19 +122,19 @@
           "l": 3,
           "private": true,
           "acts": ["missionary","manual_give","kiss"],
-          "res": "She lowers the blade three inches, drops the dog-eared novel onto the floor, and lets you pull her down beside the barracks lamp—scarlet from jaw to collar as fiction turns real."
+          "res": "She lowers the blade three inches, then drops it, along with the dog-eared novel, onto the floor. She lets you pull her down beside the barracks lamp. Scarlet from jaw to collar, she tells you the third volume was very unrealistic. You tell her you'd like to find out. She takes your face in both hands, and the fiction turns real."
         },
         {
           "label": "Ask which part of the third one is her favorite",
           "t": 5,
           "m": 8,
-          "res": "She tells you, with the sword still half-drawn and her eyes fixed on a point past your shoulder. It is the chapter in the rain. You take detailed notes, as is tradition."
+          "res": "She tells you, with the sword still half drawn and her eyes fixed on a point past your shoulder. It is the chapter in the rain. She describes it in detail, mostly to the wall, in the voice she uses to read orders. You take careful notes, as is tradition, and she lets you. When she's done she sheathes the blade without looking at it."
         },
         {
           "label": "Hand the books back and promise silence",
           "t": 1,
           "m": 2,
-          "res": "You swear silence on your honor, which causes her to blush deeper. {N} sheathes the sword with great ceremony, and asks if you want to borrow volume two."
+          "res": "You swear silence on your honor, which causes her to blush deeper. {N} sheathes the sword with great ceremony, takes the books back one at a time, and puts each in her saddlebag. At the last one she hesitates. \"Would you,\" she says, \"care to borrow volume two?\" She holds it out at arm's length, like a cut flower."
         }
       ],
       "image": {
@@ -146,30 +146,30 @@
     {
       "title": "The Report",
       "scene": "portrait",
-      "text": "The Order demands Adelheid report on \"the sinful nature\" of your business. She's been staring at a blank page for three hours, a candle burned to a stub beside her, the quill chewed ragged. Her oath and her honesty are pulling in opposite directions, and the sound of her sword-hilt tapping the desk fills the room.",
+      "text": "The Radiant Order has sent Adelheid a letter with three seals on it. They require a full report on the hero she is sworn to. In particular they want an account of \"the sinful nature of his enterprise\".\n\nShe has been at the desk for three hours. The page in front of her is blank. The candle has burned down to a stub and the quill is chewed ragged at the end.\n\nIf she writes what the Order expects, she will be lying about the women here, whom she has come to respect. If she writes what's true, they will recall her, or do something worse.\n\nHer oath and her honesty have never pulled in different directions before. She doesn't know what to do with her hands, so one of them is tapping her sword hilt against the edge of the desk, over and over.\n\nShe looks up when you come in. \"I do not know how to describe you to them,\" she says. \"I've tried. I keep describing a good man.\"",
       "ngpp": [
-        "Even before lifting the quill, she pauses frowning—as if she already defended this quiet ledger before an inquisitor in some half-forgotten dream.",
-        "\"Strangely, I know how every line of this defense ends before writing a word, Sam,\" she mutters softly, gripping the parchment tight.",
-        "Adelheid signs her name cleanly down the page without hesitation. \"No tribunal erases what my heart knows of this house, Sam. Let them read the truth.\""
+        "She lifts the quill, then stops. She frowns, as if she has already defended this ledger and this house before an inquisitor, in a dream she can't place. The ink dries on the nib.",
+        "\"Strangely, I know how every line of this defense ends before I write it, Sam,\" she mutters, gripping the parchment. \"I have done this before. I am almost sure. I lost nothing. I think I won.\"",
+        "Adelheid signs her name down the page without hesitation. \"No tribunal erases what my heart knows of this house, Sam. I have written this letter in other lives. Let them read the truth again.\""
       ],
       "choices": [
         {
           "label": "\"Tell them the truth.\"",
           "t": 6,
           "m": 3,
-          "res": "She writes three pages: fair wages, rest days, no one here against her will. She reads them twice and seals them with pride, the wax pressed hard."
+          "res": "\"Tell them the truth.\" She writes three pages. Fair wages, rest days, no one here against her will. She reads them twice and seals them with pride, the wax pressed hard. The Order's courier takes them at dawn. She stands at the gate until he's out of sight, then comes back and sits beside you, close, and doesn't say anything."
         },
         {
           "label": "\"Could you... leave some things out?\"",
           "t": -8,
           "m": -10,
-          "res": "Her face goes hard. \"I will not lie, Sam Takahashi. Not even for you.\" It's a long, cold week, and she guards your door like a stranger."
+          "res": "\"I will not lie, Sam Takahashi.\" Her face goes hard, and the quill snaps in her fingers. \"Not even for you. I would have thought you knew that.\" It is a long, cold week. She guards your door like a stranger, and speaks to you only in reports. You catch her watching you once, and she turns the page."
         },
         {
           "label": "Go to the Order with her",
           "t": 8,
           "m": 5,
-          "res": "You answer their questions yourself, politely, for four hours. Adelheid stands beside you the entire time, shoulders squared, not once looking away."
+          "res": "You go to the Order with her. You answer their questions yourself, politely, for four hours, about wages and rest days and the girls. Adelheid stands beside you the entire time, shoulders squared, not once looking away. When it is over, outside in the rain, she takes your sleeve and holds it a long moment, saying nothing."
         }
       ],
       "image": {"comp":"sitting at a desk staring at a blank page, quill frozen, troubled expression","setting":"barracks room by candlelight","sam":false}
@@ -177,10 +177,10 @@
     {
       "title": "Swordplay",
       "scene": "sam_training",
-      "text": "Adelheid decides a house owner cannot rely solely on locks and good manners, so she drags you out into the frost-crisp yard at dawn and thrusts a weighted ashwood practice sword into your hands. Your wrists howl by the fifth parry and an outraged rooster heckles from the coop roof, yet her platinum hair catches first sun as she adjusts your grip patiently: \"Feet wider, Sam. Guard high. Again.\"",
+      "text": "Adelheid decides that a house owner can't rely on locks and good manners alone. She fetches you out into the yard at dawn, with frost still on the cobbles, and puts a weighted ashwood practice sword in your hands.\n\nIt's heavier than it looks. By the fifth parry your wrists are howling. By the tenth, a rooster has come out onto the coop roof to heckle.\n\nShe's a good teacher, which surprises you. She doesn't shout. She walks around you, moves your elbow two inches with one finger, and steps back to look. The first sun catches her hair.\n\n\"Feet wider, Sam. Guard high. Again.\"\n\nYou do it again. You're terrible. She nods as if you weren't.\n\n\"I will not always be at your door,\" she says, adjusting your grip. \"I intend to be. But I've read enough accounts to know how they tend to go. I would sleep better if you could hold a blade for one minute. Again.\"",
       "byIntim": {
         "2": {
-          "text": "Adelheid drags you into the frost-crisp yard at dawn with two ashwood practice blades, standing noticeably closer than any sergeant should while correcting your elbow height and resting warm ungloved fingers lightly along your forearm. \"Feet wider, Sam. Guard high,\" she murmurs—though her eyes drop briefly to your mouth whenever you step inside her reach."
+          "text": "Adelheid has you out in the frosty yard at dawn again with two ashwood practice blades. She stands closer than any sergeant would. When she corrects the height of your elbow, her bare fingers stay on your forearm afterward.\n\n\"Feet wider, Sam. Guard high.\"\n\nHer voice is as level as ever. But every time you step inside her reach, her eyes drop to your mouth for a moment before she remembers the lesson. She's left her gauntlets on the bench this morning, and her collar is unlaced.\n\nOn the next pass she lets you get much nearer than she should. You suspect that a knight of her skill doesn't make that mistake by accident."
         }
       },
       "image": {
@@ -194,12 +194,12 @@
           "sam": {"strength":2},
           "t": 3,
           "m": 6,
-          "res": "You drop. Twice. She tries looking stern, fails miserably, and lets her warm hand linger on your shoulder long past helping you up."
+          "res": "You practice until you drop. You drop twice, and once into the water trough. She tries to look stern, fails, and lets her warm hand linger on your shoulder long past helping you up. By midday the rooster has fallen silent and your wrists have stopped hurting in the way that means something. \"Again,\" she says, but she says it softly."
         },
         {
           "label": "Let her win on purpose",
           "m": -3,
-          "res": "She knows. She hates that. Her scar-split brow lowers dangerously. \"Again, and properly this time.\""
+          "res": "You let her win on purpose. She knows, and she hates that. Her scar-split brow lowers dangerously. She stops the bout, sets her blade point down on the cobbles and says, quietly, that she does not need to be handled. \"Again, and properly this time.\" You do it properly, and lose, and she is visibly pleased."
         },
         {
           "label": "Disarm her and collect a reward back inside",
@@ -210,20 +210,20 @@
           "l": 2,
           "private": true,
           "acts": ["kiss","oral_give","missionary"],
-          "res": "On the seventh exchange you catch her blade cleanly, step inside her reach, and walk a flushed, smiling knight straight back through the warm side door."
+          "res": "On the seventh exchange you catch her blade, step inside her reach, and hold it there. Adelheid goes still. A flush climbs her neck. Then she drops her sword on the frosty cobbles and walks with you, smiling, back through the warm side door. \"A reward,\" she says, in her formal voice, \"is not forbidden.\" She locks it behind you."
         }
       ]
     },
     {
       "title": "The Amended Oath",
       "scene": "final",
-      "text": "Adelheid kneels in the empty chapel hall to renew her oath, the candlelight turning her short hair to silver, then stays kneeling. \"My oath was to guard you. I would like to amend it.\" Her voice is steady but her hand, when she takes yours, trembles. \"To stand beside you—as yours, Sam.\" She rises, and doesn't let go.",
+      "text": "Adelheid asks you to come with her to the chapel hall after the house has closed. It's empty at this hour. A few candles are burning, and they turn her short hair to silver.\n\nShe kneels, lays her sword across her palms, and renews her oath to you, as she does every month. Sword and life, to the one who was promised. You've stopped trying to talk her out of it.\n\nWhen she has finished, she stays on her knees.\n\n\"My oath was to guard you,\" she says. \"I swore it before I had met you, to a hero in a foretelling. I would like to amend it, now that I know who you are.\" Her voice is steady. Her hand, when she takes yours, is not. \"I wish to stand beside you, and not behind your shoulder. I wish to be yours, Sam, and I am asking whether you'll have me.\"\n\nShe rises, and she doesn't let go of your hand.",
       "ngpp": [
-        "Her voice trembles slightly over the final vow—not from doubt, only the sudden vertigo of feeling she has knelt on these stones for you before.",
-        "\"Forgive me,\" Adelheid whispers, holding your hand fast in the candlelight. \"Why does pledging beside you feel like coming home to a vow already sworn?\"",
-        "\"Time and memory both bow before what steel remembers, Sam,\" Adelheid whispers steadily as she rises straight into your arms. \"Every cycle, my oath belongs to you.\""
+        "Her voice trembles over the final vow, and it isn't doubt. It is a sudden vertigo, as if she has knelt on these stones for you before, in other candlelight, and does not know how.",
+        "\"Forgive me,\" Adelheid whispers, holding your hand fast. \"Why does pledging beside you feel like coming home to a vow already sworn?\" She looks at the candles, then at you. \"I think I have said this.\"",
+        "\"Time and memory both bow to what steel remembers, Sam,\" Adelheid says, and rises into your arms. \"I have knelt here before. I have asked this before. Every cycle, my oath belongs to you.\""
       ],
-      "goLead": "Adelheid sets her sword belt reverently beside the chapel candles and steps straight into your arms, kissing you with shaken, resolute warmth as the latch clicks shut.",
+      "goLead": "Adelheid unbuckles her sword belt and sets it down beside the chapel candles. Then she steps into your arms and kisses you, shaken and certain, as the latch clicks shut behind you.",
       "choices": [
         {"label":"Say yes","t":6,"m":12,"res":""},
         {
@@ -231,7 +231,7 @@
           "t": 1,
           "m": -3,
           "hold": true,
-          "res": "{N} bows her head, stiff with discipline. \"I can wait. Don't make it too long.\" She resumes her post by your door, and stands one pace closer."
+          "res": "{N} bows her head, stiff with discipline. \"I can wait. Don't make it too long.\" She resumes her post by your door, and stands one pace closer. When you look back down the hall she is still looking at the floor, with the faintest smile on her face."
         }
       ]
     }
