@@ -37,7 +37,7 @@
             "sam": true
           },
           "go": "Stay",
-          "goRes": "You peel off her nightgown and ease your cock slowly into her tight, scorching pussy, Zelda clinging to your shoulders with breathless, unguarded cries until dawn.",
+          "goRes": "You peel off her nightgown and ease your cock slowly into her tight, scorching pussy, Zelda clinging to your shoulders with breathless, unguarded cries as you fuck her.",
           "wait": "\"Are you certain?\"",
           "waitRes": "\"I am,\" she smiles softly. \"Though I admire your care—ask again whenever you are ready; I am in no hurry.\""
         },
@@ -207,7 +207,7 @@
             "sam": true
           },
           "go": "Stay with her",
-          "goRes": "You sink your cock deep into her pussy in the warm, glowing fountain—the water shining blindingly bright with every orgasm until dawn has the whole house whispering.",
+          "goRes": "You sink your cock deep into her pussy in the warm, glowing fountain—the water shining blindingly bright with every orgasm, loud enough that the whole house is whispering by morning.",
           "wait": "\"Are you sure?\"",
           "waitRes": "\"Terribly sure,\" Cotera laughs softly. \"Still, I admire your care—a fairy can wait a little longer.\""
         },
@@ -376,9 +376,10 @@
             "sam": true
           },
           "go": "Join her",
-          "goRes": "You climb between her thighs and drive your cock into her pussy, her body alternating between feverish heat and gasping shivers as she rides you until dawn.",
+          "goRes": "You climb between her thighs and drive your cock into her pussy, her body alternating between feverish heat and gasping shivers as you fuck her until you both cum.",
           "wait": "\"Try asking nicely first.\"",
-          "waitRes": "\"Nicely? At our age?\" She bursts out laughing, eyes glinting gold. \"Fine—please, little boss. Tomorrow night.\""
+          "waitRes": "\"Nicely? At our age?\" She bursts out laughing, eyes glinting gold. \"Fine—please, little boss. Tomorrow night.\"",
+          "act": "missionary"
         },
         "jump": {
           "title": "Elemental Overload",

@@ -96,7 +96,8 @@
           "go": "Take the gun off the table",
           "goRes": "You move the pistol to the dresser, and she lets out a slow, startled sigh—pulling you down onto the mattress and straddling your hips, grinding her wet pussy against your cock with fierce, unguarded passion.",
           "wait": "\"You don't have to.\"",
-          "waitRes": "\"I know I don't—that is precisely why it matters.\" Chin raised, she nods once. \"Ask again next week; the offer stands.\""
+          "waitRes": "\"I know I don't—that is precisely why it matters.\" Chin raised, she nods once. \"Ask again next week; the offer stands.\"",
+          "act": "cowgirl"
         },
         "jump": {
           "title": "Hostile Takeover",
@@ -150,7 +151,7 @@
             "sam": true
           },
           "go": "Teach her",
-          "goRes": "You lay her back in the moonlight and sink your cock slowly into her tight, trembling pussy, Hsin gasping in wide-eyed wonder at every thrust until dawn.",
+          "goRes": "You lay her back in the moonlight and sink your cock slowly into her tight, trembling pussy, Hsin gasping in wide-eyed wonder at every thrust.",
           "wait": "\"Are you sure?\"",
           "waitRes": "\"Spirits rarely lie.\" She offers a serene smile. \"Wait if you must—the moon always returns.\"",
           "act": "missionary"

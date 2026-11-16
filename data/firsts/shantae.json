@@ -153,7 +153,8 @@
           "go": "Let her stay",
           "goRes": "She climbs onto the mattress, sheds her tattered clothes, and straddles your lap—giggling and moaning breathlessly as the night turns wild fast.",
           "wait": "\"Not tonight.\"",
-          "waitRes": "\"Okay, okay!\" She ducks back under the bedframe. \"I'll just hang out down here—super quietly. Probably.\""
+          "waitRes": "\"Okay, okay!\" She ducks back under the bedframe. \"I'll just hang out down here—super quietly. Probably.\"",
+          "act": "cowgirl"
         },
         "jump": {
           "title": "Surprise Kiss",

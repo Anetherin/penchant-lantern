@@ -39,7 +39,8 @@
           "go": "Stay",
           "goRes": "She needs no audience tonight—pulling you down between her bare thighs and arching beneath every deep thrust of your cock into her pussy until the candle burns dry on the first quiet night that belongs entirely to her.",
           "wait": "\"Are you sure it's me you want?\"",
-          "waitRes": "\"Ask me again in a week,\" Mio smiles, her thumb lingering on your sleeve. \"I'll give you the exact same answer—louder, probably.\""
+          "waitRes": "\"Ask me again in a week,\" Mio smiles, her thumb lingering on your sleeve. \"I'll give you the exact same answer—louder, probably.\"",
+          "act": "missionary"
         },
         "jump": {
           "title": "Too Long Staring",
@@ -151,7 +152,8 @@
           "go": "Stay",
           "goRes": "You pull her shift off and sink your cock into her pussy, Hibiki wrapping her wings and legs tight around you like a velvet curtain as she gasps your name in the dark.",
           "wait": "\"Are you sure? It's a big song.\"",
-          "waitRes": "\"I wrote it for you, Sam—of course I'm sure.\" She laughs shakily. \"Take your time; it's a long tour.\""
+          "waitRes": "\"I wrote it for you, Sam—of course I'm sure.\" She laughs shakily. \"Take your time; it's a long tour.\"",
+          "act": "missionary"
         },
         "jump": {
           "title": "Stage Dive",
@@ -1166,7 +1168,8 @@
           "go": "Stay",
           "goRes": "You roll her onto her back and fuck her, sinking your cock deep into her pussy, moving from slow and drowsy to breathless and intense before she finally drifts off curled in your arms.",
           "wait": "\"Are you sure? You seem nervous.\"",
-          "waitRes": "\"A little,\" Nai smiles easily. \"Though I'm much better at nervous when you're right here.\""
+          "waitRes": "\"A little,\" Nai smiles easily. \"Though I'm much better at nervous when you're right here.\"",
+          "act": "missionary"
         },
         "jump": {
           "title": "Too Pleasant",
@@ -1278,7 +1281,8 @@
           "go": "Take all of her",
           "goRes": "You press her back into the sheets and sink your cock deep into her pussy, fucking her through long, shuddering orgasms until the woman who divided her soul across seven bodies clings to you with everything in one place.",
           "wait": "\"Are you sure you want all your defenses down?\"",
-          "waitRes": "\"No,\" Tomoe admits softly, resting her forehead against your shoulder. \"Which is how I know the data is real. Ask me again tomorrow night.\""
+          "waitRes": "\"No,\" Tomoe admits softly, resting her forehead against your shoulder. \"Which is how I know the data is real. Ask me again tomorrow night.\"",
+          "act": "missionary"
         },
         "jump": {
           "title": "Feedback Loop",
