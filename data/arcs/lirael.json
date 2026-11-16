@@ -3,7 +3,7 @@
     {
       "title": "Whoever Finds This",
       "scene": "sam_date",
-      "text": "Lirael meets you at the old iron postbox in the alley after close, a single lamp throwing your shadows long across the cobbles. From her satchel she draws a yellowed letter, soft at the folds from years of handling: the very first one, addressed to \"Whoever finds this.\" She reads it aloud in a clear, careful clerk's voice that trembles at the end. \"I never thought anyone would write back.\" Her long ears are drooping, and her fingers smooth the paper as if it might tear. \"And then you did.\"",
+      "text": "Lirael asks you to meet her after close at the old iron postbox, in the alley behind the post house. A single lamp throws both your shadows long across the cobbles. The box is rusted at the hinges, and the ground in front of it has been swept clean.\n\nShe takes a letter out of her satchel. It has gone yellow, and the folds are soft from being opened so many times. It's the first one. It was hers, written before she knew your name, and addressed to \"Whoever finds this.\"\n\nShe reads it aloud in her clear, careful clerk's voice. It's a lonely girl's letter, about nothing in particular: the weather, a book, what the sorting room sounds like when it's empty. Her voice holds until the last line.\n\n\"'I don't suppose anyone will write back.'\" Her long ears have drooped. She smooths the paper as if it might tear. \"I was certain of that, Sam. I put it in the box so I could stop thinking about it. And then you did.\"",
       "ngpp": [
         "Refolding the yellowed margin, she pauses staring at the cobbles—as though she once stood beneath this exact alley lamp listening to your voice read those lines.",
         "\"How strange, Sam...\" Lirael whispers, clutching the paper tight. \"I remember ten years of envelopes across worlds—so why does holding your sleeve here feel like muscle memory?\"",
@@ -32,12 +32,12 @@
     {
       "title": "Ink Stains",
       "scene": "shower",
-      "text": "You open the washroom door and find Lirael in the tub, a stack of waterproofed letters balanced on the rim, reading with a soft smile and a damp pencil behind one long ear. She looks up. Her hand slaps the water and a fan of drops lands across the top page. \"I read them here,\" she says, mortified, pressing the letters to her chest. \"It's the only quiet room in the building.\"",
+      "text": "You open the washroom door, and Lirael is in the tub.\n\nThere's a stack of letters balanced on the rim, each one wrapped in oilcloth against the damp. She's reading the top one with a soft, private smile, and she has a pencil tucked behind one long ear. She has been writing small notes in the margins.\n\nShe looks up.\n\nHer hand slaps down on the water, and a fan of drops lands across the page. She makes a noise like a mouse being trodden on and pulls the whole stack against her chest.\n\n\"I read them in here,\" she says. She's mortified. Her ears have gone red all the way along. \"It's the only quiet room in the building. Nobody ever needs a clerk in the bath.\" She seems to realize what she's holding against herself, and what it is covering, and how little. \"They're yours. The letters. I didn't want you to know I still read them.\"",
       "byIntim": {
         "1": {
           "title": "Margin Steam",
           "scene": "shower",
-          "text": "Lirael isn't hiding behind waterproof envelopes when you step inside tonight; sitting softly at the tub rim wrapped in a thin cotton towel with ink faint on her left thumb, she sets her pencil down and turns rosy-eared toward you. \"Your ink smudges easily in steam, Sam,\" she whispers shyly, lifting one damp curl off her collarbone. \"Stay and help me scrub the rest off?\"",
+          "text": "Lirael isn't hiding behind a stack of oilcloth envelopes when you come in tonight. She's sitting on the rim of the tub in a thin cotton towel, with ink on her left thumb and her hair loose, and she puts her pencil down when she sees you.\n\nHer ears go pink, and she doesn't look away.\n\n\"Your ink smudges in the steam, Sam,\" she says quietly. She holds out her hand to show you the grey smear across her fingers, and another on her collarbone where she must have touched it. \"I've got it everywhere. Would you stay and help me wash it off?\"",
           "choices": [
             {
               "label": "Kneel beside her, wash the ink gently off her shoulders, and kiss her",
@@ -60,7 +60,7 @@
         "3": {
           "title": "Postmarked in Steam",
           "scene": "bath",
-          "text": "The old waterproof letters sit dry and neatly ribbon-tied on the bench outside the water tonight. In the hot cedar tub, silver-blonde hair piled high off slender bare shoulders, Lirael holds both wet arms out cleanly through swirling steam with an unhurried, brave smile. \"No mail routes left between us, Sam. Lock the door.\"",
+          "text": "The letters are outside the water tonight. They're dry and tied in their ribbon on the bench, where she has set them down carefully.\n\nLirael is in the hot cedar tub with her pale hair piled up off her bare shoulders. Her spectacles are folded on the sill. She isn't holding anything in front of her, and the water only comes to her ribs.\n\nShe holds both wet arms out to you through the steam. Her smile is slow and brave.\n\n\"There aren't any mail routes left between us, Sam. I counted.\" A drop runs down between her tits. \"Lock the door and come here. I've read enough about you. I want to feel you.\"",
           "choices": [
             {
               "label": "Slip into the hot bathwater and draw her into your lap",
@@ -115,7 +115,7 @@
     {
       "title": "Notes Across the Sofa",
       "scene": "casual",
-      "text": "You fall into an easy habit: sitting at opposite ends of the lounge sofa after close, writing each other notes instead of talking, and passing them across with your feet. It is a ridiculous, wonderful way to flirt. The fire ticks, paper rustles, and Lirael's replies grow longer every night, her handwriting looping as she gets braver. Tonight's note has a P.S. in very small letters, crowded into the corner like a secret.",
+      "text": "You and Lirael have fallen into a habit. After close, you sit at opposite ends of the lounge sofa and write each other notes. You don't talk. You pass the notes across the cushions with your feet.\n\nIt's a ridiculous way to flirt, and it's wonderful.\n\nThe fire ticks. Paper rustles. She can say things in ink that she can't say with you looking at her, and every night her replies have been getting longer. Her handwriting loops more as she gets braver. Last night's note described your laugh, and it ran to a page and a half.\n\nTonight's comes across folded twice. It's about nothing much: the weather, a parcel that went astray.\n\nThere's a P.S. at the bottom. It's in very small letters and crowded into the corner like a secret. You have to tilt it toward the fire to read it.\n\nAt the other end of the sofa, Lirael has pulled her knees up and is watching you over them. She isn't breathing.",
       "choices": [
         {
           "label": "Walk straight to her end of the sofa and answer in person",
@@ -149,7 +149,7 @@
     {
       "title": "Wrong Address",
       "scene": "portrait",
-      "text": "A letter arrives for you with no stamp, no postmark, and an address in a handwriting you haven't used in years: your own, from long ago. It reads: \"To whoever I become. I hope you're not lonely anymore.\" Lirael reads over your shoulder, and the sorting-room hum around you both seems to fade. She goes very still, long ears flat. \"If a letter can cross,\" she says quietly, \"so can a person. What if the box takes you back?\"",
+      "text": "A letter arrives for you with no stamp and no postmark. Lirael finds it in the morning sort and brings it to you herself, holding it by the edges.\n\nThe address is in handwriting you haven't used in years. It's your own, from when you were sixteen.\n\nInside there's one line. \"To whoever I become. I hope you're not lonely anymore.\"\n\nYou remember writing it. You posted it in the old red box behind the home on a bad night, and you never told anyone.\n\nLirael reads it over your shoulder. The hum of the sorting room seems to fade around the two of you. She goes very still, and her ears lie flat.\n\n\"That box only ever went one way,\" she says. \"From you to me, and back again. It has never delivered anything this late.\" She swallows. \"If a letter can still cross, Sam, then so can a person. What if it takes you back?\"",
       "ngpp": [
         "Staring down at your old loops beside her knuckles, she blinks quietly—like a voice once wrote \"Not lonely\" on that exact blank reverse.",
         "\"Strange... I feel as though I already pressed that iron box silent beside you once before, Sam,\" she murmurs softly.",
@@ -180,7 +180,7 @@
     {
       "title": "Full Moon Post",
       "scene": "sam_date",
-      "text": "Under a full moon Lirael takes you up onto the post house roof to sort the night's collection by lantern light, bundles tied with twine, the slate cold beneath you both. She lets her shoulders and ears relax, her clerk's stiffness softening in the silver air. Between letters, she hums the tune she once wrote in the margin of her second note, and you realize you've been humming it for years without knowing where it came from.",
+      "text": "On the night of the full moon, Lirael takes you up onto the roof of the post house to sort the late collection by lantern light. She says the full-moon post has always been done up here. She doesn't know why. The clerk before her did it, and so did the clerk before him.\n\nThe slates are cold. The bundles are tied with twine, and she undoes each knot with one pull.\n\nShe's different up here. Her shoulders come down and her ears relax. The stiffness she wears behind the counter goes out of her in the silver light, and she sorts with her legs stretched out, tossing letters into piles without looking.\n\nBetween bundles she hums. It's a small tune with a turn in the middle.\n\nYou know it. You've been humming it for years, washing up, waiting for trains. You never knew where you'd got it from.\n\nShe wrote it in the margin of her second letter, in a line of tiny notes. You must have picked it out on something, once, and kept it.",
       "choices": [
         {
           "label": "Hum along",
@@ -204,13 +204,13 @@
     {
       "title": "Meeting the Man",
       "scene": "final",
-      "text": "Lirael sets her satchel down in the doorway of your room, a thing she has never done in front of you. \"For ten years I wrote to a name,\" she says. \"I'd like to meet the man.\" She is trembling, ears dipping, one foot hooked around her own ankle. \"I'm not good at saying things out loud. So I'll say the short version.\" She takes your hand, and her ink-stained fingertips are warm. \"Stay, Sam.\" The door closes behind you both.",
+      "text": "Lirael comes to your door after the house has gone quiet. She stands there with the strap of her satchel wound around her fingers.\n\nThen she unwinds it, takes the satchel off, and sets it down in the doorway. You've never seen her put it down in front of you. Everything she owns that matters is in it.\n\n\"For fifteen years I've known a name,\" she says. \"I knew the handwriting. I knew what made him laugh, and what he was afraid of at sixteen.\" She's trembling. Her ears keep dipping, and she has one foot hooked around her own ankle. \"I'd like to know the man. All of him.\"\n\nShe takes a breath.\n\n\"I'm not good at saying things out loud. You know that. I had a long version and I've lost it, so here is the short one.\" She takes your hand. Her inky fingertips are warm. \"Let me stay, Sam.\"\n\nThe door closes behind you both.",
       "ngpp": [
         "Even setting down her satchel feels oddly familiar—like this ink-stained confession has already crossed worlds and cycles alike.",
         "\"My sorting bag feels light as air at your doorway, Sam,\" she breathes shyly, \"like I have finally delivered myself right where I kept aiming.\"",
         "\"Let the post house lose every ledger on file, Sam,\" Lirael whispers warmly as she shuts the latch. \"Every version of my heart stays addressed to this room.\""
       ],
-      "goLead": "Lirael steps straight inside your arms, setting her small spectacles gently on the bedside table before lifting her flushed face up to meet your mouth.",
+      "goLead": "Lirael steps into your arms. She takes off her spectacles, sets them carefully on the bedside table, and lifts her flushed face to your mouth.",
       "choices": [
         {"label":"Say yes","t":6,"m":12,"res":""},
         {

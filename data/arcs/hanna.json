@@ -3,7 +3,7 @@
     {
       "title": "The Off-Duty Ledger",
       "scene": "sam_date",
-      "text": "Hanna traps you at a corner bakery table with two mugs of cider and a thick sheaf of folded guild forms she has annotated in bright blue ink. Half the pages are real bounty tallies; the other half turn out to be a hand-drawn seating chart of which adventurers tip best, which merchants blush when complimented, and a tiny margin doodle of your hoodie marked \"Terrible disguise, 10/10 charm.\" She catches you reading upside down and snaps the paper flat, freckles flushing bright across her nose. \"Trade secrets! Eyes on your pastry, Sam!\"",
+      "text": "Hanna traps you at a corner table in the bakery with two mugs of cider and a thick sheaf of guild forms. She's annotated them in bright blue ink.\n\n\"Business meeting,\" she says. \"Very serious. Sit.\"\n\nHalf the pages are real. They're bounty tallies, with her corrections. The other half are something else. There's a hand-drawn seating chart of the guild hall. It shows which adventurers tip best, which merchants blush when you compliment them, and who has been seen leaving whose room.\n\nIn one margin there's a small doodle of a hooded figure. It's labeled \"Terrible disguise. 10/10 charm.\"\n\nYou're reading it upside down. She catches you and slaps the paper flat. The freckles across her nose have gone bright pink.\n\n\"Trade secrets! Eyes on your pastry, Sam!\" She pulls the whole stack toward her side of the table. \"That one's old, anyway. It's from before I knew you. I've got much better material now.\"",
       "ngpp": [
         "Right next to the hoodie doodle she pauses with a sudden squint, muttering that she could've sworn she drew a little lantern beside it before.",
         "\"Okay, creepy question,\" she mutters over her cider, squinting at her own ink. \"Did I already tell you that hoodie disguise joke? Why'd my hand write 'still 10/10' under it?\"",
@@ -32,10 +32,10 @@
     {
       "title": "Filing Error",
       "scene": "shower",
-      "text": "You open the washroom door assuming nobody's inside—and find Hanna perched on the tub rim wrapped in a thin towel, one damp blonde curl plastered over her eyebrow while she dries a stack of soaked index cards over a candle stub. She yelps, nearly drops the cards into the bathwater, and then narrows her eyes at you with pure theatrical indignation. \"Knock much?! And before you ask—no, these aren't about you. Mostly.\"",
+      "text": "You open the washroom door on the assumption that nobody is in there.\n\nHanna is perched on the rim of the tub in a thin towel. One damp blonde curl is plastered across her eyebrow. She has a stack of soaked index cards, and she's drying them one at a time over a candle stub.\n\nShe yelps. The cards very nearly go back into the water.\n\nThen she recovers, and narrows her eyes at you. It's pure theater.\n\n\"Knock much?! I could have been doing anything in here!\" She's holding a card over the flame by one corner. It's starting to smoke. \"And before you ask, no, these aren't about you.\"\n\nShe looks at the card in her hand.\n\n\"Mostly.\"\n\nShe turns it face down on her knee. You saw the first word on it before she did, and it was your name.",
       "byIntim": {
         "1": {
-          "text": "You push open the washroom door and find Hanna sitting sideways on the bath rim wrapped in a short towel, damp curls clinging to her freckles while she sets her dry stack of cards down cleanly. Instead of yelping, she flashes a sly, breathless grin and hooks one finger through your hoodie pocket. \"Terrible timing, Sam—unless you're finally collecting on that proper live interview?\"",
+          "text": "You push open the washroom door. Hanna is sitting sideways on the rim of the bath in a short towel, with wet curls sticking to her freckles. She puts her stack of cards down, dry side up.\n\nShe doesn't yelp. She gives you a sly, breathless grin, and hooks one finger into the pocket of your hoodie.\n\n\"Terrible timing, Sam.\" She tugs you a step closer. \"Unless you've finally come to give me that interview. I've got a lot of questions, and I'd rather not ask them with my clothes on. I do my best work face to face.\"",
           "choices": [
             {
               "label": "Step into the steam and claim her live interview at the tub rim",
@@ -55,7 +55,7 @@
           ]
         },
         "3": {
-          "text": "You open the washroom door to find Hanna up to her chest in hot bubbles, wet golden hair piled loosely with one stray curl over her grin. Seeing you, she hooks one bare foot up against the doorjamb, kicks the brass latch shut herself, and reaches cleanly out of the foam. \"Knock? Please—you already know the bath schedule by heart, Sam. Drop the shirt and get in here before the water cools.\"",
+          "text": "You open the washroom door. Hanna is up to her chest in hot bubbles, with her wet gold hair piled up and one curl hanging over her grin.\n\nShe sees you. She lifts one bare foot out of the water, sets it against the door, and kicks the latch shut herself. Then she stands up in the tub. Foam slides down off her tits and her stomach, and she lets you watch it go.\n\n\"Knock? Please. You know the bath schedule by heart.\" She crooks a finger. \"Get your shirt off and get in here, Sam. I've been thinking about your cock all afternoon, and the water won't stay hot forever.\"",
           "choices": [
             {
               "label": "Climb straight into the steaming bath under her",
@@ -114,7 +114,7 @@
     {
       "title": "After Last Call",
       "scene": "casual",
-      "text": "The common room is dark except for one low lantern behind the counter, where Hanna is perched barefoot on a tall stool swinging her legs and counting tip coins into neat brass stacks. When you lean across the bar beside her, all her usual rapid-fire chatter slows down. She reaches out, straightens your collar with light, warm fingers, and doesn't pull her hand back. \"Funny thing,\" she says quietly, looking down at your shirt button instead of your eyes. \"I spent five years writing down everybody else's secrets. Never realized how nice it is when someone already knows mine.\"",
+      "text": "The common room is dark except for one low lantern behind the counter. Hanna is sitting on a tall stool with her shoes off, swinging her legs and counting the night's tips into neat brass stacks.\n\nShe's been talking since you came down. It's about the cook's feud with the fishmonger, and a knight who has been in three times this week and won't say why.\n\nYou lean on the bar beside her. The talking slows down, and then it stops.\n\nShe reaches out and straightens your collar with light, warm fingers. She doesn't take her hand away afterward.\n\n\"Funny thing,\" she says quietly. She's looking at your shirt button and not at your eyes. \"I spent five years at that desk writing down everybody else's secrets. I knew the whole town's business. Nobody knew a thing about me. I made sure of it.\" Her thumb moves on your collar. \"I never realized how nice it'd be when somebody already knew mine.\"",
       "choices": [
         {
           "label": "Cover her hand with yours on your collar",
@@ -149,7 +149,7 @@
     {
       "title": "Head Clerkship",
       "scene": "portrait",
-      "text": "An official messenger from the Adventurers' Guild stops by before noon with an offer stamped in red wax: the Guild's head clerk just retired, and the Guildmaster wants Hanna back—double her old pay, her own corner office, and a seat on the trade council. Hanna reads the letter twice on the front steps, twirling her pencil between her knuckles until it snaps cleanly in half. She looks up at you, all teasing gone for once. \"It's everything I thought I wanted two years ago,\" she says softly. \"Say the word, Sam—what do you think I should do?\"",
+      "text": "A messenger from the Adventurers' Guild comes by before noon with a letter stamped in red wax.\n\nThe head clerk has retired. The Guildmaster wants Hanna back. He's offering double her old pay, a corner office of her own, and a seat on the trade council.\n\nShe reads it twice on the front steps. She's twirling her pencil between her knuckles as she goes, faster and faster, and on the second read-through it snaps in half.\n\nShe looks up at you. For once there's no teasing in her face.\n\n\"It's everything I thought I wanted, two years ago,\" she says softly. \"I used to lie awake planning what I'd do with that office. I had the curtains picked out.\"\n\nShe turns the two halves of the pencil over in her palm.\n\n\"I walked out because I was sick of knowing everybody's story and not having one. I've got one now. Say the word, Sam. What do you think I should do?\"",
       "ngpp": [
         "Staring at the red wax seal, she snaps her pencil right on beat—then blinks down at the wood as though remembering the exact crack.",
         "\"Weirdest déjà vu,\" she mutters softly over the offer letter. \"Why does double pay already sound like bad news compared to staying on your porch?\"",
@@ -184,7 +184,7 @@
     {
       "title": "Off the Market",
       "scene": "sam_date",
-      "text": "Hanna drags you up to the bell-tower overlook above the market street just before sunset, dangling a bag of warm honey almonds between her knees as the evening lamps flicker to life all across Hollowmere. Down below, adventurers spill out of the Guild hall toward the tavern row. Hanna leans her head firmly onto your shoulder, sighing with contentment. \"Look at all of 'em,\" she grins lazily. \"Sixteen parties, forty rumors, and for once I don't care who's sneaking off with whom—because the best story in town is sitting right next to me.\"",
+      "text": "Hanna drags you up the bell tower above the market street just before sunset. She's got a bag of warm honey almonds, and she sits down at the overlook with it between her knees.\n\nThe evening lamps are coming on all across Hollowmere. Down below, the guild hall doors open, and the adventurers spill out toward tavern row in twos and threes.\n\nShe used to know every one of them. She could have told you their tabs and who they were sweet on. From up here she could still point out who's avoiding whom.\n\nShe leans her head on your shoulder and sighs.\n\n\"Look at them all,\" she says lazily. \"Sixteen parties. I can count about forty rumors from here. See those two by the fountain? Something's definitely going on there.\" She eats an almond. \"And for once I don't care. I've spent my whole life watching other people's stories from behind a counter. The best one in town is sitting right next to me, and I'm in it.\"",
       "choices": [
         {
           "label": "Kiss her temple and pull her closer",
@@ -209,13 +209,13 @@
     {
       "title": "Front Page",
       "scene": "final",
-      "text": "Hanna shuts your bedroom door with her heel and leans against it, wearing nothing but your spare oversized shirt and a breathless, bright-eyed grin that sends heat straight through your chest. She crosses the rug in four steps, climbs straight onto your lap on the edge of the bed, and frames your face between warm palms. \"No more margin notes, no more rumors, no more standing behind somebody else's counter,\" she whispers, pressing her forehead to yours as her hips settle firmly against yours. \"I want the whole thing, Sam—every week, every cycle, no secrets left. Tell me I'm yours.\"",
+      "text": "Hanna shuts your bedroom door with her heel and leans back against it.\n\nShe's wearing your spare shirt and nothing else. It comes halfway down her thighs. She's grinning, bright-eyed and out of breath, and the sight of her goes through you like heat.\n\nShe crosses the rug in four steps and climbs into your lap on the edge of the bed. Her hands come up to frame your face.\n\n\"I've been writing this down all week,\" she whispers. \"I couldn't get it right, so I'm just going to say it.\"\n\nShe presses her forehead to yours. Her hips settle against you.\n\n\"No more margin notes. No more rumors. I'm done standing behind somebody else's counter and writing about what other people get.\" Her breath is warm on your mouth. \"I want the whole thing, Sam. Every week, every cycle, and nothing kept back. I know everybody's secret in this town. Mine is that I'm in love with you. Tell me I'm yours.\"",
       "ngpp": [
         "Even buttoned in nothing but your oversized shirt, she pauses mid-stride across the rug, shivering with a sudden flash of heat she can't explain.",
         "\"Okay, laugh at me,\" she breathes right against your chin, hips rocking gently in your lap. \"Why does straddling you in this shirt already feel like my favorite habit?\"",
         "\"Reset the cycle all she wants,\" Hanna whispers fiercely, unbuttoning the stolen shirt right in your palms. \"My body never forgot this bed, Sam. Claim me front page tonight.\""
       ],
-      "goLead": "You peel your oversized shirt cleanly off Hanna's freckled shoulders and lay her back into the sheets, where her bright laughter catches instantly into low, eager gasps against your throat.",
+      "goLead": "You peel your shirt up off Hanna's freckled shoulders and lay her back on the sheets. She's laughing, and then the laugh turns into a low, eager gasp against your throat.",
       "choices": [
         {"label":"Say yes","t":6,"m":12,"res":""},
         {

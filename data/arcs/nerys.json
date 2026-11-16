@@ -3,7 +3,7 @@
     {
       "title": "Inconvenient Feelings",
       "scene": "sam_date",
-      "text": "Nerys complains at impressive volume that your shared summoning contract forces her to feel it whenever your spirits dip—a nagging cold pull right beneath her ribs like an unpatched loophole. \"It is deeply inconvenient. Stop having gloomy thoughts immediately.\" Her barbed tail lashes the lounge cushion furiously—until she gives up muttering, drops straight onto the settee beside you thigh-to-thigh, folds both bat wings tight around her shoulders, and stubbornly refuses to budge until you smile.",
+      "text": "Nerys finds you alone in the lounge with the debt schedule and announces, at impressive volume, that this has to stop.\n\n\"The contract carries your moods to me. I didn't write that part. It sits right here,\" she says, and jabs two fingers under her own ribs, \"like a cold draft through a clause somebody forgot to close. It is deeply inconvenient. Stop having gloomy thoughts immediately.\"\n\nYou tell her it doesn't work that way. Her tail lashes the cushion. She paces to the window, comes back, and reads you the relevant paragraph of the contract, which doesn't help her case.\n\nThen she gives up. She drops onto the settee beside you with her thigh against yours, folds both wings tight around her shoulders and stares straight ahead.\n\n\"I'm staying here until it stops,\" she says. \"Purely for my own comfort. Smile whenever you're ready.\"",
       "ngpp": [
         "Mid-scowl, she blinks down at your wrist as though confused why curling her tail around your ankle felt automatic.",
         "\"Honestly, Sam—why do I feel like we've sat on this exact lumpy sofa negotiating feelings already?\"",
@@ -32,10 +32,10 @@
     {
       "title": "Oops",
       "scene": "shower",
-      "text": "You open the washroom door to find Nerys lounging in the tub, steam clinging to her violet hair, bat wings draped over the rim, very obviously waiting. \"Oops,\" she says, not moving at all, one slender tail tip dipping in the water to draw lazy circles.",
+      "text": "You open the washroom door, and Nerys is lying back in the tub.\n\nSteam clings to her violet hair. Her wings are draped over the rim on either side like a cloak hung up to dry, and the tip of her tail is drawing slow circles on the water. There's a glass of wine on the stool, positioned so that she can reach it without sitting up. She has been here for some time, and she has been waiting.\n\n\"Oops,\" she says, and doesn't move.\n\nShe watches you over the rim of the tub with one eyebrow raised. The contract hums faintly between you. Whatever you're feeling right now is going straight to her, so she already knows how this is landing, and she's enjoying it.",
       "byIntim": {
         "1": {
-          "text": "You open the washroom door to find Nerys perched along the steaming cedar rim in a sheer towel that hides almost nothing, violet hair clinging damply to bare shoulders while her tail taps an unhurried invitation against the wood. \"Careful,\" she purrs, sliding a hand up her wet collarbone as crimson eyes catch yours. \"Keep staring like that, darling, and I might charge you a kiss for admission.\"",
+          "text": "You open the washroom door, and Nerys is sitting on the cedar rim of the tub in a towel so thin and so wet that it isn't hiding anything. Her violet hair is stuck to her bare shoulders. Her tail taps the wood slowly, like someone counting.\n\n\"Careful,\" she says. She slides one hand up over her collarbone and watches your eyes follow it. \"The contract tells me exactly what that look means, darling. Keep it up and I'll charge you a kiss for admission.\"\n\nShe tilts her chin up and waits to see whether you'll pay.",
           "choices": [
             {
               "label": "Step close and collect your admission across the bath rim",
@@ -57,7 +57,7 @@
         "3": {
           "title": "Contract Benefit",
           "scene": "bath",
-          "text": "Nerys doesn't even pretend it was an accident this time. Steam clings to bare plum-toned curves as she reclines across the hot tub with her bat wings draped over the rim, lazily dragging one wet finger up her thigh. \"You knocked late, darling,\" she purrs, violet eyes gleaming. \"Come earn your signature in hot water.\"",
+          "text": "Nerys doesn't pretend it's an accident this time.\n\nShe's lying back in the hot water with her wings over the rim and nothing on at all. Steam beads on her pale blue skin and runs down between her tits. She drags one wet finger slowly up the inside of her own thigh and watches you watch it.\n\n\"You knocked late, darling.\" Her eyes are bright. Through the contract she can feel exactly how hard you've just gotten, and she smiles about it. \"Shut the door and get in. I intend to collect on every clause tonight.\"",
           "choices": [
             {
               "label": "Step into the tub and take what she's offering",
@@ -109,7 +109,7 @@
     {
       "title": "Research Material",
       "scene": "casual",
-      "text": "You find Nerys reading a romance novel in the lounge, curled into a cushion with her horns tilted toward the lamp and her tail beating time behind her. She hides it in a panic, wings snapping shut, then throws a pillow at you. Later you find it on your bed with a page dog-eared and a note in her sharp, looping hand: \"For research.\"",
+      "text": "You find Nerys in the lounge in the dead hour of the afternoon, curled so far into a cushion that only her horns show over the top. She's reading. Her tail is beating time against the armrest.\n\nThe book has a pink cover with a couple embracing on it.\n\nShe sees you and the wings snap shut around it. A second later a pillow hits you in the face. \"It's research,\" she says. \"On mortal expectations. For professional purposes.\" Then she sweeps out with the book under her arm and her chin in the air.\n\nTwo hundred years of brokering what other people want, and you have never once heard her say what she does.\n\nThat night the book is on your bed. One page is dog-eared, chapter seven, and there's a note tucked in at the fold in her sharp, looping hand. It says: \"For research. Be thorough.\"",
       "choices": [
         {
           "label": "Test chapter seven with her on the cushions",
@@ -143,7 +143,7 @@
     {
       "title": "Leash",
       "scene": "portrait",
-      "text": "A demon noble mocks Nerys in front of the whole lounge for being \"leashed to a human,\" his smile smooth as polished brass. She laughs it off, chin high, one wing flicking. That night, she snaps at you over nothing at all: a misplaced quill, a draft, the way you breathe. The contract hums uncomfortably between you.",
+      "text": "A demon noble comes through Hollowmere with a retinue and takes the best table in the lounge. He knows Nerys. He greets her by an old title, and then he looks from her to you and laughs.\n\n\"Leashed to a human,\" he says, loudly enough for the room. His smile is as smooth as polished brass. \"And such a small one. Did you lose a wager, or have you simply gotten tired?\"\n\nShe laughs it off. Her chin is high and one wing flicks, and she says something cutting about his tailor. Everyone thinks she's won.\n\nBut you felt it land. For the first time the contract runs the other way, and something cold comes through it and sits under your own ribs.\n\nThat night she snaps at you over nothing: a misplaced quill, a draft, the way you breathe. The contract hums between you like a wire pulled too tight. She won't look at it, and she won't look at you.",
       "ngpp": [
         "When the brass-voiced demon steps inside, Nerys freezes halfway through turning a glass—like she remembers throwing a smug idiot out of this exact lounge before.",
         "\"Tell me we've humiliated a pompous bastard like him already, Sam,\" Nerys mutters quietly behind her hand, wings twitching with phantom certainty.",
@@ -177,10 +177,10 @@
     {
       "title": "Night Market",
       "scene": "sam_date",
-      "text": "Nerys hauls you straight into the smoky red alleys of the Underdistrict night market, steering briskly between sizzling brazier carts while buying every alarming delicacy in sight: glowing amber skewers, squid-ink dumplings, and something still wriggling hopefully inside a paper cone. She watches you chew with the rapt fascination of an alchemist testing poison on a favorite lab assistant—while her tail stays looped possessively around your sleeve.",
+      "text": "Nerys takes you by the sleeve after dark and hauls you down into the red alleys of the Underdistrict night market, where the lanterns are the wrong color and nobody asks what anything is.\n\nShe buys every alarming thing in sight. There are skewers that glow amber, and dumplings as black as ink. There's something in a paper cone that is still moving, hopefully. She pays for all of it herself and hands each one to you with great ceremony.\n\nThen she watches you chew. She has the rapt attention of an alchemist testing a new compound on her favorite assistant.\n\n\"Well?\" she demands, after every mouthful. Whatever you answer, she can already feel the true one, and she laughs at the gap between the two.\n\nHer tail has been looped around your sleeve since the first stall. You realize, halfway through the dumplings, that she's showing you where she comes from, and she's nervous about whether you'll like it.",
       "byIntim": {
         "2": {
-          "text": "Nerys drags you through the lantern-lit Underdistrict market buying every dubious skewer and plum liquor cup she can pile into your arms—grinning wickedly whenever you swallow something glowing. In the quiet archway back toward the surface, her tail slides lower around your waist instead of your sleeve, pulling you against warm plum-toned skin."
+          "text": "Nerys drags you through the red lanterns of the Underdistrict market and piles your arms with every doubtful skewer and cup of plum liquor she can find. She grins every time you swallow something that glows.\n\nShe's showing you off as much as she's showing you around. Two stallholders greet her by name, look at you, and get a stare from her that closes the subject.\n\nIn the quiet archway on the way back up to the surface, her tail slides down from your sleeve and around your waist, and she pulls you against her. Her skin is warm through your shirt. \"You ate all of it,\" she says, close to your mouth. \"Nobody ever eats all of it. I believe you've earned dessert.\""
         }
       },
       "choices": [
@@ -216,13 +216,13 @@
     {
       "title": "Clause Kept",
       "scene": "final",
-      "text": "A demon scholar in ink-black robes offers to dissolve the contract, paperwork spread on the table with a flourish. Nerys tears it up in front of him, every page. \"I'll keep it,\" she tells you afterward, in the empty lounge, looking anywhere but at you: the candles, the ceiling, her own claws. \"I've grown... attached.\" Then she looks straight at you, and stops pretending.",
+      "text": "A demon scholar in ink-black robes arrives with a satchel and a solution. He has found the flaw in clause fourteen. He can dissolve the contract by sundown, with no penalty to either party. He spreads the paperwork across the lounge table with a flourish and offers Nerys his pen.\n\nShe reads every page. Then she tears them in half, one at a time, and hands him back the pieces.\n\nWhen he's gone, the two of you are alone in the empty lounge. She looks at the candles. She looks at the ceiling, and at her own claws.\n\n\"I found the loophole myself, months ago,\" she says. \"I didn't use it. I'll keep the contract. I've grown attached.\" The word costs her something. \"I spent two centuries arranging what other people want, Sam, and I was careful never to want anything myself. It turns out I'm bad at it. I want you, and I have no terms to offer.\"\n\nThen she looks straight at you and stops pretending.",
       "ngpp": [
         "Even tearing up the scholar's parchment feels oddly familiar—like she's already chosen you over hell's lawyers once before.",
         "\"Don't smirk like you knew I'd rip it, Sam,\" she mutters softly as the scholar retreats, though her tail already coils behind your belt.",
         "\"Let the heavens or the underworld keep resetting the ink,\" Nerys purrs against your mouth. \"I'm never signing away from you, darling.\""
       ],
-      "goLead": "Nerys closes the distance in two smooth strides, wings sweeping shut around you both as she catches your lip between her teeth and backs you toward the velvet cushions.",
+      "goLead": "Nerys closes the distance in two strides. Her wings sweep shut around you both, she catches your lower lip between her teeth, and she walks you backward toward the velvet cushions.",
       "choices": [
         {"label":"Say yes","t":6,"m":12,"res":""},
         {

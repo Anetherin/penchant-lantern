@@ -3,7 +3,7 @@
     {
       "title": "Bedside Manner",
       "scene": "sam_date",
-      "text": "Elowen insists on an afternoon \"check-up\" behind the dried-herb curtains, babbling nervously about willow tincture and mountain wind while rosemary sprigs slip loose from her pale braid. Even when your breathing sounds completely ordinary, her slender fingers stay pressed lightly against the pulse in your wrist far longer than any apothecary textbook prescribes—until she finally looks down at the floorboards and admits how much less lonely Hollowmere feels with you across the desk.",
+      "text": "Elowen asks you to come by for an afternoon check-up. She says it's routine, although she has never mentioned a routine before.\n\nShe has you sit behind the curtain of drying herbs in the corner she's made into a clinic. She listens to your chest and looks at your tongue. All the while she talks, quickly, about willow tincture and the mountain wind and a dock worker's sprained wrist. Sprigs of rosemary keep slipping out of her braid.\n\nYour breathing is ordinary. So is everything else. She takes your pulse last, with two cool fingers on your wrist, and counts.\n\nShe finishes counting. Her fingers stay where they are.\n\n\"It's very steady,\" she says to the floorboards. Then, more quietly: \"I walked into this town with a letter for a physician who had been dead six years. I've been on my own a long while, Sam. Hollowmere feels much less empty with you across the desk.\"",
       "ngpp": [
         "When her fingers settle over your wrist, she catches herself pausing in surprise—as though she already memorized your resting heartbeat long before tonight.",
         "\"Forgive me, Sam,\" Elowen whispers, blush creeping softly up her long pointed ears as she brews tea without checking your cup. \"My hands know your pulse far better than our acquaintance allows.\"",
@@ -32,12 +32,12 @@
     {
       "title": "Tea Service",
       "scene": "walkin",
-      "text": "Elowen brings herbal tea to your room at exactly the moment you're changing, the tray balanced carefully in both hands, a little steam rising off the pot. She sees. The tray hits the floor with a crash of porcelain, and the smell of mint and lemon balm rises from the rug. You stand frozen with one arm in a sleeve, and neither of you breathes.",
+      "text": "Elowen brings tea up to your room in the evening, as she has started doing, with the tray held carefully in both hands and a little steam rising off the pot.\n\nShe knocks with her elbow and comes in on the knock. That has never mattered before. Tonight you're halfway through changing your shirt.\n\nShe sees.\n\nThe tray hits the floor. Porcelain goes everywhere, and the smell of mint and lemon balm comes up off the rug. You stand frozen with one arm in a sleeve. She stands frozen with her hands still shaped around a tray that is no longer there. Her ears are turning red from the tips down.\n\nNeither of you breathes. A cup that somehow survived rolls slowly across the boards and comes to rest against your foot.",
       "byIntim": {
         "1": {
           "title": "Herb Oil & Steam",
           "scene": "walkin",
-          "text": "Elowen knocks softly before slipping inside with a warm clay vial of rosemary-infused massage oil and two cups of lemon-balm tea. Seeing you half-dressed from the washroom only makes her pointed ears flush delicate rose instead of fleeing. \"Your shoulders have been knotted all week, Sam,\" she murmurs shyly, uncorking the warm oil. \"If you sit on the bed... I won't drop the cups this time.\"",
+          "text": "Elowen knocks properly this time and waits to be asked in. She has a warm clay vial of rosemary oil in one hand and two cups of lemon-balm tea balanced in the other.\n\nYou're half-dressed from the washroom. Her ears flush, and she looks, and she doesn't run.\n\n\"Your shoulders have been knotted all week, Sam. I can see it in how you carry the ledgers.\" She sets the cups down on the sill, where they'll be safe, and pulls the cork with her thumb. \"If you'd sit on the edge of the bed, I could do something about it. I promise not to drop anything tonight.\"",
           "choices": [
             {
               "label": "Let her warm oiled hands work your shoulders—and return the favor",
@@ -60,7 +60,7 @@
         "3": {
           "title": "Chamomile & Bare Skin",
           "scene": "bath",
-          "text": "Elowen doesn't carry a tray tonight—she meets you inside the steam-filled washroom wearing only a loose linen shift damp across her curves, warm rosemary bath oil already swirling through the tub. Her green eyes hold yours steady beneath flushed elven ears. \"Medical advice, Sam: you are far too tense—and tonight the healer prescribes both hands.\"",
+          "text": "Elowen doesn't bring a tray tonight. She meets you in the washroom, where the tub is already full and the steam smells of rosemary.\n\nShe's wearing a loose linen shift and nothing else. It has gone damp and clings to her tits and her hips, and she knows it does. She doesn't cover herself. Her ears are pink and her green eyes stay on yours.\n\n\"Medical advice, Sam. You are far too tense.\" She draws the shift's lacing loose with one finger. \"Tonight the healer prescribes both hands, and she intends to supervise the whole treatment.\"",
           "choices": [
             {
               "label": "Pull her bare into the warm oil and water",
@@ -118,7 +118,7 @@
     {
       "title": "Flower Crowns",
       "scene": "casual",
-      "text": "You go flower-picking outside the walls \"for medicine,\" a basket on Elowen's arm and the smell of crushed clover under your boots. Somewhere in the second hour the herb list is forgotten. Elowen weaves you a flower crown with quick, careful fingers. You make a terrible one back, lopsided and shedding petals. She wears it all day.",
+      "text": "You go out past the walls with Elowen to gather herbs. She has a basket on her arm and a list in her neat hand: yarrow, feverfew, and something for the cook's cough.\n\nFor the first hour you do gather herbs. She shows you which leaves to take and which to leave for next year, and she's patient when you bring her the wrong plant twice.\n\nSomewhere in the second hour the list is forgotten. The meadow smells of crushed clover and the sun is warm. Elowen sits down in the grass and weaves you a flower crown, with the same quick, careful fingers that tie off a bandage. She sets it on your head and adjusts it very seriously.\n\nYou make her one back. It's terrible. It's lopsided, and it sheds petals when you lift it.\n\nShe wears it all day. She wears it back through the town gate, past the guards, with her chin up.",
       "choices": [
         {
           "label": "Pull her down into the clover when you're both alone",
@@ -152,7 +152,7 @@
     {
       "title": "Burnout",
       "scene": "portrait",
-      "text": "Elowen has been healing the dock workers for free, every night, for weeks, coming home with salt on her hem and shadows under her green eyes. Today she collapses in the kitchen mid-sentence about willow bark. Her rosemary sprig has come loose from her braid, and her hands are cold.",
+      "text": "For weeks Elowen has been going down to the docks every night after her work at the house is done. She treats the dock workers for free. She comes home near dawn with salt on her hem and shadows under her eyes, and she says she isn't tired.\n\nNobody asked her to do it. She saw that the dock had no healer, and she couldn't leave it alone.\n\nToday she collapses in the kitchen, in the middle of a sentence about willow bark. You catch her before she reaches the floor. She weighs almost nothing. The sprig of rosemary has come loose from her braid, and her hands are cold.\n\nShe comes round with her head on your arm and tries to sit up straight away.\n\n\"I'm quite all right,\" she says. \"I only need a moment. There's a man with a crushed foot who's expecting me at six.\"",
       "ngpp": [
         "Halfway to catching her elbow, you swear she blinks in sleepy recognition—as though she already dreamed waking up with you tucking a wool blanket around her knees.",
         "\"Don't scold me yet, Sam...\" she mumbles deliriously against your hoodie, fingers gripping your sleeve like she already knows how stubbornly you insist on soup.",
@@ -190,10 +190,10 @@
     {
       "title": "Starlight",
       "scene": "sam_date",
-      "text": "Elowen leads you up the wind-swept ridge above Hollowmere on a crystal-clear night, spreading her travel cloak cleanly across cool clover so you can trace the summer dome overhead. One by one she names the constellations of her distant cedar glade in quiet, silver syllables—her posture loosening, her voice growing softer and steadier each time her fingertip touches your sleeve to point out another star.",
+      "text": "Elowen leads you up the windy ridge above Hollowmere on a night so clear that both moons throw shadows. She spreads her travelling cloak over the cool clover and sits, and pats the place beside her.\n\nThen she teaches you her sky. She names the constellations of the cedar glade where she was born, one at a time, in quiet silver syllables you can't pronounce. There's the Loom, and the Heron, and the Two Sisters Who Would Not Speak. Each one has a story, and each story is older than the town below you.\n\nShe touches your sleeve each time she points, so that you'll look in the right place.\n\nAs she talks, her shoulders come down. Her voice gets softer and steadier. You understand that she hasn't said these names aloud to anyone in a very long time, and that she kept them until she had someone to give them to.",
       "byIntim": {
         "2": {
-          "text": "Elowen leads you up the quiet ridge above Hollowmere and spreads her warm cloak across the damp clover, curling comfortably against your shoulder right away. She still traces her homeland's constellations overhead in silver elven syllables, though every few names she turns her flushed face softly into your collar instead of watching the dark."
+          "text": "Elowen leads you up the quiet ridge above Hollowmere and spreads her cloak over the clover. Tonight she doesn't sit beside you. She curls straight in against your shoulder, as if she's been waiting all day to do it.\n\nShe still names her homeland's constellations for you, in soft silver syllables: the Loom, the Heron, the Two Sisters. But she keeps losing her place. Every few names she turns her warm face into your collar and stays there.\n\n\"I've forgotten which one comes next,\" she admits against your neck. She doesn't sound sorry about it. Her hand has found its way under your hoodie and is resting flat on your chest, over your heartbeat."
         }
       },
       "choices": [
@@ -229,13 +229,13 @@
     {
       "title": "Long-Lived",
       "scene": "final",
-      "text": "Elowen kisses you first, very quickly, in the herb garden after dusk with moths circling the lamp, then hides her face in your shirt. \"Elves live a long time,\" she mumbles into the grey cotton. \"I'd like to spend some of it with you.\" Her braid smells of rosemary and rain. She doesn't let go of your hand all the way back to her room.",
+      "text": "Elowen asks you to come and look at the herb garden after dusk. There's nothing to see. It's dark, and moths are circling the lamp over the bench.\n\nShe kisses you. It's very quick and it lands slightly off-center. Then she hides her face in the front of your shirt.\n\n\"Elves live a long time,\" she mumbles into the grey cotton. \"I'm a hundred and eighteen. For most of that, people have only come to me when something hurt.\" Her fingers tighten in your sleeve. \"You'll be gone long before I am. I've done the sums, and I did them again to be sure. I would still like to spend some of my time with you, Sam. As much as you'll give me.\"\n\nHer braid smells of rosemary and rain.\n\nShe doesn't let go of your hand all the way back to her room, and at the door she doesn't let go of it either.",
       "ngpp": [
         "Even as she pulls you up the quiet stairs, her grip feels oddly unhesitant—like another heart inside hers already remembers every bend of the hall.",
         "\"Elves measure years differently,\" she whispers against your shirt, smiling tremulously. \"So why does it feel as though I have waited several lifetimes just for this evening, Sam?\"",
         "\"No erased cycle can take away what my chest remembers,\" Elowen whispers against your neck as she closes the bedroom door. \"Every year I live belongs here with you, Sam.\""
       ],
-      "goLead": "Inside the herb-scented bedroom, Elowen closes the door quietly and lifts her face up into your palms, trembling softly as her braid slips over bare shoulders.",
+      "goLead": "In her bedroom, among the hanging herbs, Elowen shuts the door quietly and lifts her face into your hands. She's trembling a little, and her braid has slipped forward over one bare shoulder.",
       "choices": [
         {"label":"Say yes","t":6,"m":12,"res":""},
         {

@@ -3,7 +3,7 @@
     {
       "title": "Sammy",
       "scene": "sam_date",
-      "text": "Kanako ruffles your hair and calls you \"Sammy\" in front of the whole staff. Again. Her plum-red lipstick leaves a faint smudge on your cheek, and everyone pretends not to notice. Later she finds you on the back steps, warm lamplight on her beauty mark and the pins coming loose from her hair—just like Friday nights leaning over Apartment 3B's rusted balcony back home. \"You've grown up a lot, haven't you, Sammy? When did that happen?\"",
+      "text": "Kanako ruffles your hair and calls you \"Sammy\" in front of the whole staff. It's the third time this week. Her red lipstick leaves a smudge on your cheek, and everybody pretends not to see it.\n\nYou're the owner of the house. You have a debt the size of a small castle. The new girls look at you, and then at her, and try to work it out.\n\nLater she finds you on the back steps. The lamp is behind her, and the pins are coming loose from her hair, the way they used to by the end of a Friday when she'd lean on the balcony rail next door.\n\nShe sits down beside you with two glasses and pours.\n\n\"I watched you with the wine merchant today,\" she says. \"He tried to short you a crate, and you just looked at him until he fixed it.\" She tilts her head. The beauty mark moves when she smiles. \"You've grown up a lot, haven't you, Sammy? When did that happen? I must have been looking somewhere else.\"",
       "ngpp": [
         "Even tossing her head back with that Apartment 3B laugh, she freezes one second looking at your boots on the step—like she remembers leaning on THIS wooden rail before.",
         "\"Six years across the hall in Tokyo I never forgot a drink order, Sammy,\" she murmurs sideways at you, bewildered, \"so why did I pour two plum wines for this exact back step before checking?\"",
@@ -28,12 +28,12 @@
     {
       "title": "Shampoo",
       "scene": "walkin",
-      "text": "Kanako walks in on you in the bath, doesn't blink, sets the shampoo on the edge of the tub, and keeps chatting about the bar schedule, like it's nothing. Her red lipstick and the beauty mark under her eye are the only things steady in the steam. Your ears, meanwhile, are doing something unprecedented.",
+      "text": "You're in the bath when the door opens and Kanako walks in with a bottle of shampoo.\n\nShe doesn't blink. She sets it down on the edge of the tub by your shoulder, where you can reach it.\n\n\"You were out, so I got the good one from the market. Now, about Thursday.\" She leans against the washstand and starts on the bar schedule. Two of the girls want to swap. The plum wine is running low. She has thoughts about the new bartender's pouring.\n\nShe's talking to you exactly as she would across a kitchen table. For six years she came into your apartment to check that you'd eaten, and she never knocked then either.\n\nThe red lipstick and the beauty mark are the only steady things in the steam.\n\nYour ears are doing something they've never done before. She hasn't noticed. She's counting bottles on her fingers.",
       "byIntim": {
         "1": {
           "title": "Behind Your Ears",
           "scene": "shower",
-          "text": "Kanako strolls straight into the steamy washroom with a silk robe belted loosely at her waist, rolls both wide sleeves up to her elbows, and kneels briskly behind the rim of your tub. \"Sit still, Sammy—your hair smells like cheap bar smoke,\" she purrs smoothly, pouring warm scented shampoo over her palms—though the smirk over her beauty mark falters just slightly as her fingers slide across your collarbone.",
+          "text": "Kanako strolls into the steamy washroom in a silk robe, belted loosely at the waist. She rolls both wide sleeves up to her elbows and kneels down behind the rim of your tub.\n\n\"Sit still, Sammy. Your hair smells like cheap bar smoke.\" She pours warm shampoo into her palms and works it into your scalp with strong, slow fingers. She's humming.\n\nThen her hands slide down to rinse the back of your neck, and across your collarbone, and she stops humming. Her fingers stay where they are. In the washstand mirror you can see the smile over her beauty mark slip a little.\n\n\"Well,\" she says, more quietly. \"These weren't here six years ago.\"",
           "choices": [
             {
               "label": "Tip your head back into her hands and pull her mouth down",
@@ -56,7 +56,7 @@
         "3": {
           "title": "Silk on the Floor",
           "scene": "bath",
-          "text": "Steam fills the washroom in warm amber haze when Kanako steps inside, slips the sash cleanly off her silk kimono so it pools beside the tub, and steps bare-legged over the cedar rim without breaking eye contact. \"Lock the bolt, Sammy,\" she murmurs huskily, sinking warm and wet straight between your knees. \"This mama worked double shifts all week—you owe me proper service.\"",
+          "text": "The washroom is full of warm amber steam when Kanako comes in. She looks at you in the tub. She pulls the sash of her silk robe and lets the whole thing slide off her shoulders onto the floor.\n\nShe's naked under it. She steps over the cedar rim without taking her eyes off yours and sinks down into the hot water between your knees, with her full tits against your chest.\n\n\"Lock the bolt, Sammy,\" she murmurs. Her voice has gone low and rough. \"I worked double shifts all week looking after everyone in this house. Tonight you're going to look after me, and I want it done properly.\"",
           "choices": [
             {
               "label": "Slide both hands under her thighs and take her in the tub",
@@ -107,7 +107,7 @@
     {
       "title": "Since When",
       "scene": "casual",
-      "text": "A drunk client gets grabby with Kanako and you step in without thinking, a hand on the man's wrist, a voice you didn't know you had. Afterward the bar is quiet, glasses ringing faintly. She leans on the counter, silent for a long time. \"Since when do you protect me, Sammy?\" She doesn't ruffle your hair. She just looks at you, like she's seeing you for the first time.",
+      "text": "It's late and the bar is nearly empty. A drunk client reaches across the counter, gets a handful of Kanako's dress and pulls.\n\nShe's dealt with this for nine years. She has a look for it, and a line, and she's already opening her mouth to use them.\n\nYou get there first. You don't decide to. Your hand is on the man's wrist, and you hear yourself tell him to let go in a voice you didn't know you had. He lets go. He pays, and he leaves.\n\nAfterward the bar is very quiet. A glass is still ringing faintly on the shelf.\n\nKanako leans on the counter and says nothing for a long time. She doesn't laugh, and she doesn't ruffle your hair.\n\n\"Since when do you protect me, Sammy?\"\n\nShe looks at you as though you've walked in through the door for the first time, and she has to work out how your evening went.",
       "choices": [
         {
           "label": "Lift her right onto the empty bar counter and show her",
@@ -141,7 +141,7 @@
     {
       "title": "Matchmaker",
       "scene": "portrait",
-      "text": "Kanako has found you \"a nice girl\" and set up a dinner, a candle on the table and her own best lipstick on, fussing at your collar. She's very proud of herself. Her laugh is the loudest thing in the room. Her fingers, straightening your cuff, are not quite steady.",
+      "text": "Kanako has found you a nice girl.\n\nShe's very proud of herself. The girl is a baker's daughter, twenty-six, and good with figures. Kanako has arranged a dinner. She's set a table in the corner with a candle on it, and she's wearing her own best lipstick for the occasion, which you don't point out.\n\nShe fusses with your collar. She tells you to sit up straight and to ask the girl about herself. Her laugh is the loudest thing in the room.\n\n\"You need somebody, Sammy. You can't just have a house full of women and a ledger. Somebody your own age, who'll make sure you eat.\"\n\nShe straightens your cuff. Her fingers aren't quite steady on the button.\n\nShe's twenty-nine. She fed you for six years. She's sending you off to dinner with somebody else, and she's smiling very hard, and you don't think she knows why her hands are shaking.",
       "ngpp": [
         "Right as she smooths your collar, her thumb pauses over your pulse—like some half-woken ghost remembers doing this jealous act already.",
         "\"Why did fixing your tie just make my own chest hurt worse than last time, Sammy?\" she mutters softly under her breath, lipstick smile cracking slightly.",
@@ -175,10 +175,10 @@
     {
       "title": "Last Call",
       "scene": "sam_date",
-      "text": "Kanako tracks down a tiny six-seat tavern tucked behind the dye vats that feels uncannily like a back-alley Tokyo snack bar—low scarred counter, amber mirror, warm smoke curling near the rafters. She orders two chilled plum wines off memory without reading the chalkboard at all, resting her chin in one palm beside you exactly the way she used to across Apartment 3B's balcony rail.",
+      "text": "Kanako has found a place. It's behind the dye vats, down an alley you'd never have gone into. It has six seats, a low scarred counter and a cloudy amber mirror, and the smoke hangs up near the rafters.\n\nIt could be a snack bar off any back street at home. She says so, and she's delighted.\n\nShe orders two chilled plum wines without looking at the chalkboard. Then she puts her chin in her palm and turns to you. She used to do exactly that across the balcony rail, with a cigarette going and her work shoes kicked off.\n\n\"I ran a bar like this for nine years,\" she says. \"I knew every man's order and what his wife was called. I'd lock up at two and go home, and there'd be a light on next door, because you were still up.\" She turns her glass. \"I used to like that. I never asked myself why. I've started asking.\"",
       "byIntim": {
         "2": {
-          "text": "Kanako leads you to a tiny six-seat tavern behind the dye vats—cracked mirror, warm amber smoke, quiet enough to hear ice clink in plum wine. Midway through her second glass her knee stays pressed warmly under the counter against yours while plum-painted lips curve into a slow, unguarded smile meant only for you."
+          "text": "Kanako takes you to the tiny six-seat tavern behind the dye vats. It has a cracked mirror and warm amber smoke, and it's quiet enough to hear the ice move in the plum wine.\n\nShe's halfway down her second glass. Her knee has been pressed against yours under the counter since the first, and she hasn't moved it.\n\nShe isn't doing the laugh tonight. She's looking at you with her chin in her hand and smiling slowly, and the smile isn't for the room.\n\n\"I keep catching myself watching your hands,\" she says. \"It's a problem, Sammy. I've got a bar to run.\" Her foot hooks around your ankle. \"They close at midnight here. I don't feel like going home to my own room.\""
         }
       },
       "choices": [
@@ -214,13 +214,13 @@
     {
       "title": "Not the Boy Next Door",
       "scene": "final",
-      "text": "Kanako corners you in the kitchen late at night, the lamp low, a pot cooling on the stove, flustered for once in her life, plum lipstick smudged where she's been biting her lip. \"I spent six years in Tokyo telling myself you were the boy next door, Sammy. You're not. You haven't been for a long time.\" She kisses you, laughs at her own blush, and kisses you deeper.",
+      "text": "Kanako corners you in the kitchen late at night. The lamp is low and there's a pot cooling on the stove. She made too much again, out of habit.\n\nShe's flustered. You have never seen that before. Her lipstick is smudged where she has been biting her lip, and she keeps picking up the ladle and putting it down.\n\n\"I went to my room and I couldn't sleep, so I came down to cook. And I worked something out, stirring.\" She laughs, and it comes out wrong. \"I spent six years telling myself you were the boy next door. I said it every time I brought you dinner. I think I was saying it so I wouldn't have to look.\"\n\nShe puts the ladle down for good.\n\n\"You're not the boy next door, Sammy. You haven't been for a long time. I'm the last one in this house to notice, and I'm supposed to be the one who can read people.\"\n\nShe kisses you. She laughs at her own blush, and kisses you again, deeper.",
       "ngpp": [
         "Caught off-guard by her own breathless tremor, she murmurs softly that closing this kitchen door feels frighteningly like coming home.",
         "\"I remember six years next door in Tokyo, Sammy,\" she whispers shakily against your chin, \"and somehow my hips still recognize this exact stove corner from a life erased.\"",
         "\"Let the heavens rewrite the calendar all they want, Sammy,\" Kanako purrs warm and fierce against your throat. \"You stopped being the boy next door lifetimes ago.\""
       ],
-      "goLead": "Kanako slides warm palms straight under the hem of your hoodie, pressing flushed curves flush against you as the kitchen latch locks behind you both.",
+      "goLead": "Kanako slides her warm hands up under your hoodie and presses herself against you from knee to chest. Behind her, the kitchen latch clicks shut.",
       "choices": [
         {"label":"Say yes","t":6,"m":12,"res":""},
         {

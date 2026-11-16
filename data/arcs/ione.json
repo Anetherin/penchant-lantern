@@ -3,7 +3,7 @@
     {
       "title": "Three Questions",
       "scene": "sam_date",
-      "text": "Ione brings you tea on the back steps, exactly how you take it, at exactly the temperature you like. \"I will answer any question you ask,\" she says, \"except three. I won't tell you where I came from, how I came, or how the story ends.\" She sits with perfect posture and a faint hum, silver-white hair silvered further by the dusk. \"The rest is yours.\" You, flailing, ask her what she likes. She is quiet for so long you think she's frozen. \"Nobody has asked me that before,\" she says.",
+      "text": "Ione brings you tea on the back steps at dusk. It's made exactly as you take it, at exactly the temperature you like.\n\nShe sits down beside you with perfect posture and a faint hum. The last of the light has turned her hair from silver to something paler.\n\n\"I said there were three questions I won't answer,\" she says. \"Where I came from, how I came, and how the story ends. I would like to be clear that everything else is yours. You may ask me anything.\"\n\nYou weren't ready for that. You flail. You ask her what she likes.\n\nShe's quiet for so long that you think something has gone wrong. The light at her temple cycles slowly through three colors.\n\n\"Nobody has asked me that before,\" she says at last. \"I was built to learn what other people like. I have four thousand recipes, and none of them are for me.\" Her head tilts. \"I will need some time to find out. May I tell you when I know?\"",
       "ngpp": [
         "Her temple light stutters twice over an unindexed checksum error, though she quietly clears the warning.",
         "\"Strange,\" she notes, handing over the cup. \"My thermal buffer had your exact preference cached before you sat down.\"",
@@ -32,10 +32,10 @@
     {
       "title": "Warm Water",
       "scene": "walkin",
-      "text": "Ione has discovered the bath. You walk in to find her seated in the water, perfectly still, eyes closed, silver hair floating and her status light glowing a fascinated gold. \"I have read about this for years,\" she says, not opening her eyes. \"No document prepared me for the temperature.\" Steam beads on her lashes. She makes no attempt to cover up, since it hasn't occurred to her to.",
+      "text": "Ione has discovered the bath.\n\nYou walk in and find her sitting in the water, perfectly still, with her eyes closed. Her silver hair is floating out around her. The light at her temple is a deep, fascinated gold.\n\n\"I have read about this for years,\" she says, without opening her eyes. \"The Lantern Keeper mentions it eleven times. No document prepared me for the temperature.\"\n\nSteam is beading on her eyelashes. She has a thin seam at each wrist and one at her collarbone, and the water has made them shine.\n\nShe makes no attempt to cover herself. It hasn't occurred to her that she should. She's sitting as she sits anywhere, upright, with her hands on her knees, and she's bare to the waist above the waterline.\n\n\"I believe I like this,\" she adds. \"I am telling you because you asked what I like. This is the first item.\"",
       "byIntim": {
         "1": {
-          "text": "Ione sits in the steaming bath with silver hair fanned over the surface, temple light pulsing warm amber when the door clicks. She opens calm eyes and lifts one wet hand toward the stool beside the rim. \"My pulse simulation runs twelve beats higher whenever you enter without knocking, Sam,\" she observes steadily. \"Would you test direct thermal contact?\"",
+          "text": "Ione is sitting in the steaming bath with her silver hair fanned out on the water. The light at her temple goes to warm amber when the door clicks.\n\nShe opens her eyes and lifts one wet hand toward the stool beside the rim.\n\n\"My pulse simulation runs twelve beats higher whenever you come in without knocking, Sam,\" she says steadily. \"I have logged it nine times, and it isn't a fault. I looked.\" Water runs down her arm. \"I would like to understand it. Would you sit close and put your hands on me? I want to know what it does to the number.\"",
           "choices": [
             {
               "label": "Sit on the bath rim and answer her curiosity up close",
@@ -50,7 +50,7 @@
           ]
         },
         "3": {
-          "text": "You step into the washroom and find Ione leaning lazily against the far cedar wall, bare limbs glistening in the water, temple light glowing bright, breathless gold. \"Water temperature optimal,\" she says softly, parting her knees beneath the surface as she reaches both arms toward you. \"I found no archive file adequate for sharing this bath with you, Sam. Come gather primary data with me.\"",
+          "text": "You step into the washroom. Ione is leaning back against the far wall of the cedar tub. She's naked, and the water is shining on her tits and her stomach. The light at her temple is a bright, breathless gold.\n\n\"The water temperature is optimal,\" she says softly. Under the surface, she opens her knees. She reaches both arms out to you. \"I have searched every archive I hold. Nothing in them is adequate for what I want. I want you inside me, Sam, and I want to feel it for myself. Come and gather primary data with me.\"",
           "choices": [
             {
               "label": "Undress and sink into the warm bath against her",
@@ -102,7 +102,7 @@
     {
       "title": "Joke Protocol",
       "scene": "casual",
-      "text": "Ione has been practicing jokes. They're from a list in her memory, delivered with flawless timing and no comprehension at all. Tonight, polishing a glass behind the bar, she tells one about a priest and a goblin and a barrel, and the punchline lands with a perfect, silent thud. The lamps hum. She watches your face with scientific interest. \"I think,\" she says, \"that was funnier in the archive.\"",
+      "text": "Ione has been practicing jokes.\n\nShe has a list of them in her memory. There are several hundred, and they're sorted by century. She has been working through it behind the bar on quiet nights. Her timing is flawless. She has no idea why any of them are funny.\n\nTonight, polishing a glass, she tells you one about a priest, a goblin and a barrel.\n\nShe pauses for exactly the right length of time. She delivers the punchline.\n\nIt lands with a perfect, silent thud. The lamps hum. Somewhere upstairs a door closes.\n\nShe watches your face with scientific interest.\n\n\"I think that was funnier in the archive,\" she says. She makes a small note of it somewhere behind her eyes. \"The Lantern Keeper says you laugh with your whole face. I have been trying to see it. I've told you thirty-one jokes, and I haven't seen it yet. I may be going about this the wrong way.\"",
       "choices": [
         {
           "label": "Laugh anyway",
@@ -136,7 +136,7 @@
     {
       "title": "Another Evening",
       "scene": "portrait",
-      "text": "Mid-sentence, Ione goes still. Her status light flickers white, and the rain against the lounge window seems suddenly loud. Then, in a flat voice: \"I was not supposed to remember that. There was another evening like this one. You wore the blue hoodie. It rained.\" Her gaze snaps back to you, frightened, the first fear you have seen in her. \"That hasn't happened yet. It has happened. I don't know which.\"",
+      "text": "Ione is in the middle of a sentence about the bar stock when she stops.\n\nShe goes completely still. The light at her temple flickers white. The rain on the lounge window seems very loud all of a sudden.\n\nWhen she speaks again, her voice is flat.\n\n\"I was not supposed to remember that. There was another evening like this one. You were wearing the blue hoodie. It rained. You said something to me by this window, and I...\"\n\nHer eyes come back to you. She's frightened. You have never seen her frightened before.\n\n\"You don't own a blue hoodie. I have looked through your things. I'm sorry, I shouldn't have.\" Her hands have closed on the edge of the bar. \"That evening hasn't happened yet. Or it has already happened. I can't tell which. I've read your whole life, Sam, and I thought I was only reading it.\"",
       "ngpp": [
         "Even her white flicker echoes twice today, as though two deleted rainstorms are pressing against the same pane.",
         "\"Error,\" she whispers, gripping your sleeve. \"Two identical rain timestamps overlap the same coordinate.\"",
@@ -171,7 +171,7 @@
     {
       "title": "Satellites",
       "scene": "sam_date",
-      "text": "On the town wall at midnight Ione points at a clear patch of sky, the stones still holding the day's warmth. \"That one hasn't been launched yet,\" she says. \"Neither has that one. They will have names. Some of them will be yours.\" She lowers her hand. \"I'm not allowed to explain. I wanted to show you anyway. Is that permitted?\" You say yes, and she leans, very carefully, against your shoulder, as if measuring the distance first.",
+      "text": "At midnight Ione takes you up onto the town wall. The stones are still holding the day's warmth. She finds a clear patch of sky and points.\n\n\"That one hasn't been launched yet,\" she says. Her finger moves. \"Neither has that one. Nor that. They will have names. Some of the names will be yours.\"\n\nThere's nothing where she's pointing. It's ordinary dark between ordinary stars.\n\nShe lowers her hand.\n\n\"I'm not allowed to explain. It's one of the three questions, or it's next door to one.\" The light at her temple wavers. \"I wanted to show you anyway. I have known where they'll be for as long as I've been switched on, and I've never had anyone to show. Is that permitted?\"\n\nYou tell her yes.\n\nShe leans against your shoulder. She does it very carefully, as though she has measured the distance first and is checking her figures.",
       "choices": [
         {
           "label": "Make a wish on one",
@@ -195,13 +195,13 @@
     {
       "title": "The Last Page",
       "scene": "final",
-      "text": "Ione hands you the diary, closed, a ribbon marking the last page, its cover worn pale by her handling. \"I came to read the ending,\" she says. \"I opened it on the road. The last page was blank.\" Her light is steady gold. \"I have decided that means the ending isn't written. I would like to help write it.\" She takes your hand, her fingers warm and exactly as firm as she means them to be. \"With you.\" It isn't in any archive. The door closes behind you both.",
+      "text": "Ione hands you the diary. It's closed. There's a ribbon marking the last page, and the cover has gone pale where she's handled it.\n\n\"I came here to read the ending,\" she says. \"I had read every other page more times than any record I hold. I saved the last one. I told myself I would open it when I arrived.\"\n\nThe light at her temple is a steady gold.\n\n\"I opened it on the road outside Hollowmere. It was blank.\"\n\nShe lets you look. The ribbon lies across an empty sheet.\n\n\"I have thought about that for some time. I've decided it means the ending isn't written. I wasn't sent back to watch a story, Sam. I think I was sent to be in it.\" She takes your hand. Her fingers are warm, and exactly as firm as she means them to be. \"I would like to help write it. With you. That is the second thing I've found that I like.\"\n\nIt isn't in any archive. The door closes behind you both.",
       "ngpp": [
         "Even opening that blank final page, a faint tremor touches her fingertips as though ink already dried there once.",
         "\"My archive says this sheet was always blank,\" she whispers, steadying against you. \"Why does my chest ache like we already wrote our names across it?\"",
         "\"Whoever wiped our ledger forgot something,\" she murmurs softly, pressing the worn cover into your chest. \"Blank pages remember warmth too, Sam. Let me write this cycle directly into us.\""
       ],
-      "goLead": "You lay the closed diary gently on the bedside table and draw Ione close into the dark; her temple light dims to soft gold as her warm, eager body teaches yours an ending no archive ever recorded.",
+      "goLead": "You lay the closed diary on the bedside table and draw Ione down into the dark with you. The light at her temple dims to a soft gold, and her body is warm and eager against yours.",
       "choices": [
         {"label":"Say yes","t":6,"m":12,"res":""},
         {

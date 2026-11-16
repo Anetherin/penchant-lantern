@@ -3,7 +3,7 @@
     {
       "title": "Margin Notes",
       "scene": "sam_date",
-      "text": "Past closing, Marisol drags two tall wooden stools into the cramped back office and hauls down three leather-bound ledgers stamped with her father's blurred crest. Every margin is crowded with years of her own furious, exact red ink—tallies corrected to the half-copper, debts traced through three shell buyers—while brass hoop earrings sway beside her jaw in the lamp glow. \"He never listened once,\" she says, tapping an old column with one ink-stained thumb without lifting her eyes. \"You actually do, Sam.\"",
+      "text": "Past closing, Marisol drags two tall stools into the cramped back office and takes three ledgers down from the top shelf. They're bound in leather, and each has her father's crest stamped on the cover, rubbed nearly smooth.\n\nShe opens the first one under the lamp. His figures run down the middle of every page in a big, confident hand. Hers are in the margins. There are years of them, in red ink, small and furious and exact. She corrected his tallies to the half-copper. She traced one debt through three false buyers. In one corner a twelve-year-old has written THIS IS WRONG and underlined it twice.\n\n\"I used to leave these open on his desk,\" she says. Her gold hoops sway as she turns the page. \"He'd close them without reading and tell me I had a good head.\"\n\nShe taps a column with an inky thumb and doesn't look up.\n\n\"He never listened to me once. You actually do, Sam. I haven't decided what to do about that.\"",
       "ngpp": [
         "Flipping backward through red columns, she freezes suddenly staring at an old ink flourish—like she's already shown you this exact dusty ledger page once before.",
         "\"Wait—why did I set the red inkwell beside your left elbow instead of your right, Sam?\" Marisol mutters sideways, eyeing her own hand sharply.",
@@ -32,12 +32,12 @@
     {
       "title": "Invoice Ambush",
       "scene": "walkin",
-      "text": "Marisol barges into the washroom mid-argument about invoices, waving a handful of paper, sees you in the tub, and keeps arguing. Her gold hoops swing with every point, and her amber eyes fix on the ceiling at the third. She is competitive enough to not give ground even now, and you are too wet to take notes.",
+      "text": "You're in the tub with your eyes shut when the washroom door bangs open.\n\n\"The linen invoice is wrong again, and before you say anything, I have the last three months right here.\" Marisol is waving a fistful of paper. She gets four steps into the room before she sees where you are.\n\nShe doesn't stop. She has never once given ground in the middle of an argument, and it seems she isn't going to start now.\n\n\"Twelve sheets billed, nine delivered. Second point.\" Her gold hoops swing with every item. Her eyes have gone up to the ceiling, and they stay there, as though the rest of her case were written on it. \"Second point, the laundress is his cousin.\"\n\nShe's on her third point now. You're too wet to take notes. A drop of condensation falls from the ceiling onto the invoice, and she keeps going.",
       "byIntim": {
         "1": {
           "title": "Settling Balances",
           "scene": "shower",
-          "text": "Marisol kicks the washroom door open waving an invoice as usual—then catches sight of you waist-deep in hot mist, shuts the latch softly behind her, and drops straight onto the bath bench tossing the parchment onto the dry shelf. Her gold hoops catch warm steam as she leans dangerously close over the rim. \"Still owe me two silver on Tuesday's wine tab, Sam. Paying in coin or labor?\"",
+          "text": "Marisol kicks the washroom door open with an invoice in her hand, as usual. Then she sees you waist-deep in the steam, and she shuts the door quietly behind her and drops the latch.\n\nThe invoice goes onto the dry shelf. She sits down on the bath bench and leans over the rim, close enough that her hoops swing forward and her curls start to frizz in the heat.\n\n\"You still owe me two silver for Tuesday's wine, Sam.\" Her eyes move down your chest to the waterline and come back up without any hurry. \"I've been thinking about how to collect. Are you paying in coin, or in labor?\"",
           "choices": [
             {
               "label": "Pull her down to the tub edge and pay up properly",
@@ -60,7 +60,7 @@
         "3": {
           "title": "Waterproof Ledger",
           "scene": "bath",
-          "text": "Marisol doesn't bother bringing paper into the washroom tonight. Unfastening her silk blouse right beside the steaming cedar tub while her dark curls stick softly to damp collarbones, she steps cleanly over the rim into hot water facing you across bare knees. \"New house policy, Sam: disputes after nine get settled naked in the tub.\"",
+          "text": "Marisol doesn't bring any paper into the washroom tonight.\n\nShe stands beside the steaming tub and unbuttons her blouse, looking at you the whole time. Her dark curls are already sticking to her collarbones. The blouse goes over the stool, and the skirt follows it, and then she steps over the rim naked and sits down in the hot water facing you, with her knees against yours.\n\n\"New house policy, Sam.\" She leans forward until her tits brush your chest. \"Any dispute after nine gets settled in the tub, with nothing on. I have several disputes.\"",
           "choices": [
             {
               "label": "Pull her onto your lap in the hot water",
@@ -111,7 +111,7 @@
     {
       "title": "House Rules",
       "scene": "casual",
-      "text": "Marisol beats you at cards four times in a row, snapping each hand down with relish, curls bouncing. Then she lets you win once, badly, with a deliberately terrible bluff. \"I wanted to see your face,\" she says, and laughs until she can't breathe, gold hoops swinging, one hand pressed to her ribs.",
+      "text": "Marisol challenges you to cards in the lounge on a slow night, and you learn that she grew up playing against dockhands.\n\nShe beats you four times in a row. She snaps each winning hand down on the table with relish, and her curls bounce. She keeps the score on the back of a receipt in red ink, and she adds it up aloud.\n\nThe fifth hand, you win. You can't work out how. She had two queens and she folded to a bluff so bad that you'd been embarrassed to make it.\n\nYou look at your cards, and you look at her.\n\n\"I wanted to see your face,\" she says.\n\nThen she laughs until she can't breathe. She has one hand pressed to her ribs and her hoops are swinging, and there are tears in her eyes. You've never seen her laugh like that. You think she probably didn't do much of it in this room, growing up.",
       "choices": [
         {
           "label": "Demand a rematch, with stakes",
@@ -145,7 +145,7 @@
     {
       "title": "A Letter",
       "scene": "portrait",
-      "text": "A letter arrives from Marisol's father, creased and salt-stained. He's alive, across the sea, and in debt again. She reads it three times at the ledger desk, jaw tight, and wants to sell something, anything, to bail him out. The ink on her fingers has begun to smear the page.",
+      "text": "A letter comes for Marisol on the morning boat. It's creased and stained with salt, and the hand on the front is one she has been looking for in the post for a long time.\n\nHer father is alive. He's across the sea, in a port town with a warm climate. He writes that he's well and that he misses her cooking. In the last paragraph he mentions that he's in some difficulty over money, and that it's nothing she should worry about.\n\nShe reads it three times at the ledger desk with her jaw set.\n\nThen she starts going through the house accounts, looking for something to sell. She tries the good glassware, and then her mother's earrings. The ink on her fingers has started to smear the letter.\n\n\"He doesn't even ask,\" she says. \"He just leaves it lying there where I'll trip over it. He knows exactly what I'm like.\" Her voice cracks on the last word.",
       "ngpp": [
         "Staring down at the sea-stained postmark, Marisol frowns uneasily—as if some stubborn instinct already warns her how clean a refusal feels.",
         "\"Funny, Sam—I swear we sat at this desk until sunrise crossing out that old fool's numbers once before,\" she mutters softly without looking up.",
@@ -178,10 +178,10 @@
     {
       "title": "Her Mother",
       "scene": "sam_date",
-      "text": "Before noon rush, Marisol walks you quietly up the steep goat path behind the east ward to a small pale headstone where sea wind combs through silver-green meadow grass and one faded silk ribbon flutters against the granite. Her mother's. For the first time since you met, the gold hoops stay still at her ears and both hands sink deep into her coat pockets while she watches the harbor gulls turn below.",
+      "text": "Before the noon rush, Marisol asks if you have an hour. She doesn't say what for.\n\nShe walks you up the steep goat path behind the east ward, to the top of the hill where the wind comes in off the sea. There's a small pale headstone in the meadow grass, and one faded silk ribbon is tied around it.\n\nIt's her mother's.\n\nFor the first time since you met her, Marisol isn't moving. The gold hoops hang still. Both her hands are deep in her coat pockets. She watches the gulls turn over the harbor below.\n\n\"She kept the books before I did,\" she says after a while. \"She taught me the red ink. He didn't start making mistakes until she was gone.\" She breathes out. \"I come up here when I've balanced a hard month, to tell her. I've never brought anyone with me. I wanted her to see who I'm working with.\"",
       "byIntim": {
         "2": {
-          "text": "Before noon rush, Marisol walks you quietly up the steep goat path behind the east ward to a small pale headstone where sea wind combs through silver-green meadow grass and one faded silk ribbon flutters against the granite. After fixing the ribbon without speaking, she slips one warm hand unhesitatingly straight into your hoodie pocket beside yours, leaning softly against your shoulder while harbor gulls turn far below."
+          "text": "Before the noon rush, Marisol walks you up the goat path behind the east ward to the small pale headstone in the meadow grass. The sea wind is cold today. She reties the faded ribbon without speaking and stands back.\n\nThen she puts her hand straight into the pocket of your hoodie, beside yours, and laces her fingers through them. She leans her whole weight against your shoulder.\n\n\"I told her about you last month,\" she says. \"I said you could count, and that you listen. I didn't tell her the rest.\" Her thumb moves across your knuckles. \"I think she's worked it out. She always knew what I wanted before I did.\""
         }
       },
       "choices": [
@@ -217,13 +217,13 @@
     {
       "title": "A New Deed",
       "scene": "final",
-      "text": "Marisol tears the old deed in half and writes a new one with both your names, her ink-stained fingers steady. The candle gutters in the ledger room where she grew up. \"Partners,\" she says. \"In every sense. Don't make me say it twice, Sam.\" Then she kisses you, gold hoops cool against your cheek, and shuts the door firmly behind you both.",
+      "text": "Marisol asks you to come to the ledger room after closing, and to bring the deed.\n\nThe candle is guttering on the desk where she did her sums as a child. She takes the deed from you and reads it through once. Then she tears it in half.\n\nBefore you can speak, she has pulled a fresh sheet toward her and started to write. Her ink-stained fingers are perfectly steady. She copies the terms out in full, from memory, and at the bottom she writes two names where there used to be one.\n\n\"Partners,\" she says, and turns it around for you to sign. \"In the house, and in the debt, and in the rest of it. In every sense, Sam. Don't make me say it twice. I can do sums all night, but I'm no good at this part.\"\n\nThen she comes around the desk and kisses you. Her hoops are cool against your cheek. She reaches past you and shuts the door, firmly.",
       "ngpp": [
         "Right as she tears the old deed, her hands pause for half a beat—smiling sideways as though this ink already belongs beside your name.",
         "\"Wait—did I already write two names on this exact parchment line in some fever dream, Sam?\" she laughs breathlessly, pulling you closer.",
         "\"Every ledger in Hollowmere can burn to ash and reset at dawn, partner,\" Marisol whispers fiercely against your lips. \"My name only ever sits beside yours.\""
       ],
-      "goLead": "Marisol tosses the fresh quill aside and shoves ledgers cleanly off the desk edge, pulling you hard against her waist in the candlelight.",
+      "goLead": "Marisol tosses the quill aside and sweeps the ledgers off the edge of the desk with her forearm. She pulls you hard against her by the waist in the candlelight.",
       "choices": [
         {"label":"Say yes","t":6,"m":12,"res":""},
         {

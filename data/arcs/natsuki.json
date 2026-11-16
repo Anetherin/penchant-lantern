@@ -3,7 +3,7 @@
     {
       "title": "Scars and Bets",
       "scene": "sam_date",
-      "text": "Out on the sunset ramparts where stone still holds afternoon warmth, Natsuki tugs up the hem of her tank top far enough to show the pale jagged scar beneath her ribs—the souvenir from week one alone across the portal, long before she found you. Three years of monster contracts and cold hostel straw stack quietly between you while you remember trading melting summer popsicles on curb concrete back home. \"I kept thinking: if Sam walked up right now, he'd do something stupid and somehow keep us breathing,\" she laughs roughly, leaning into your shoulder. \"Then you washed up and inherited a brothel.\"",
+      "text": "Natsuki takes you up onto the old ramparts at sunset, where the stone is still warm from the afternoon. She sits down on the edge with her legs over the drop, as she used to sit on the wall behind the school.\n\nShe pulls up the hem of her shirt to show you a scar below her ribs. It's pale and ragged. She got it in her first week here, from something with too many teeth, before she had learned how to hold a sword.\n\n\"Nobody stitched it. I didn't know who to ask.\" She lets the shirt fall. \"Three years, Sam. Cold hostels. Contracts I couldn't read. I got good because the alternative was dying.\"\n\nYou remember the two of you on the curb outside the corner shop, with ice pops melting down your wrists.\n\n\"I kept thinking, if Sam walked up right now, he'd do something stupid and we'd somehow both come out breathing.\" She laughs, roughly, and leans into your shoulder. \"Then you finally turn up, and you've inherited a brothel.\"",
       "ngpp": [
         "Even while laughing about summer popsicles back home, she stops half a beat staring at the wall lantern—like a ghost of sharing this same stone bench tugged her sleeve.",
         "\"Funny, Sam—I remember every single stupid bike race back home clear as yesterday, yet sitting beside you on THIS town wall feels like we already settled in here once.\"",
@@ -28,12 +28,12 @@
     {
       "title": "Incoming",
       "scene": "shower",
-      "text": "You walk into the washroom. Natsuki is in the bath, steam rising, chestnut hair plastered to her forehead, mid-hum. A bar of soap is already in the air at adventurer speed. There's no malice in it, just fifteen years of reflex and a very small, very red face.",
+      "text": "You walk into the washroom without knocking. You've been walking into rooms that Natsuki is in since you were six.\n\nShe's in the bath. Steam is rising, her chestnut hair is plastered to her forehead, and she's humming something from a cartoon you both watched.\n\nThe soap is already in the air.\n\nShe doesn't mean anything by it. It's fifteen years of reflex. When you were nine it was a pillow, and when you were twelve it was a shoe. The difference is that she now throws at adventurer speed, and that she is not nine.\n\nBehind the soap, coming toward your face, you can see hers. It's very small and very red. Her other arm has gone across her chest. Her mouth is open, and she's about to call you something she hasn't called you since middle school.",
       "byIntim": {
         "1": {
           "title": "Soap & Pride",
           "scene": "shower",
-          "text": "You open the washroom door to find Natsuki mid-soak with chestnut hair pinned up and a towel draped carelessly across the tub bench—she reaches for the soap bar out of pure childhood reflex, pauses with her cheeks burning scarlet, and drops her arm back into the water with a huff. \"Ugh, quit grinning like that, idiot! If you're coming in, at least scrub the spot between my shoulder blades I can't reach.\"",
+          "text": "You open the washroom door. Natsuki is in the bath with her hair pinned up and her towel thrown over the bench, out of reach.\n\nShe goes for the soap out of pure reflex. Her arm comes back. Then she stops, with her cheeks burning, and drops her hand into the water with a huff.\n\n\"Quit grinning like that, idiot.\" She sinks down until the water's at her chin and glares at you over it. \"Fine. If you're coming in, make yourself useful. There's a spot between my shoulder blades I haven't been able to reach in three years.\" She turns her bare back to you, and her ears are scarlet.",
           "choices": [
             {
               "label": "Kneel beside the tub and scrub her scarred back gently",
@@ -56,7 +56,7 @@
         "3": {
           "title": "No More Clothes Between Us",
           "scene": "bath",
-          "text": "Steam rolls out thick when you open the washroom door, and Natsuki sits bare in the deep wooden tub with one scarred leg hooked over the rim, glaring playfully up at you through damp chestnut bangs. \"Took you long enough, Sam. Three years waiting in this city—get out of those clothes and get in here before the water cools.\"",
+          "text": "Steam rolls out when you open the washroom door.\n\nNatsuki is sitting in the deep wooden tub with one scarred leg hooked over the rim. She's naked and she isn't covering anything. Water is running down her tits and over the hard muscle of her stomach. She looks up at you through her wet fringe with the grin she used to get before a race.\n\n\"Took you long enough, Sam.\" She flicks water at you. \"I waited three years in this city. I'm not waiting for you to fold your clothes. Strip off and get in here before it goes cold. I've got plans for you, and they're not gentle.\"",
           "choices": [
             {
               "label": "Strip down and climb straight into the tub with her",
@@ -107,7 +107,7 @@
     {
       "title": "Almost Taiyaki",
       "scene": "casual",
-      "text": "You find a stall selling something almost like taiyaki, warm and sweet-smelling in the evening crowd. Natsuki buys ten. Halfway through the fifth she goes quiet, paper bag crumpling in her fist. \"Back home in high school I always figured I'd end up nagging you over dinner someday. Dumb, right?\" She doesn't look at you; she watches a lantern bob down the street.",
+      "text": "In the evening market the two of you find a stall selling something that is almost taiyaki. The shape is wrong, and it's more a frog than a fish. But the batter is right, and the smell stops you both in the middle of the street.\n\nNatsuki buys ten.\n\nShe eats four of them standing up, without saying a word, and she looks happier than you've seen her since she arrived.\n\nHalfway through the fifth she goes quiet. The paper bag crumples slowly in her fist.\n\n\"This is going to sound dumb.\" She isn't looking at you. She's watching a lantern bob away down the street. \"Back in high school I just assumed how it would go. I'd end up nagging you over dinner every night. About vegetables, and your posture. I never decided it. I thought it was obvious.\" She swallows. \"Then I walked down one alley, and I spent three years thinking I'd thrown it away. Dumb, right?\"",
       "choices": [
         {
           "label": "Pull her into the empty alley behind the stall and prove she was right",
@@ -141,7 +141,7 @@
     {
       "title": "Solo Run",
       "scene": "portrait",
-      "text": "Natsuki took a dangerous dungeon contract without telling anyone. She comes back three days later with a broken arm and a sack of gold, grinning through the grime. The grin falters when she sees your face. Her sword is chipped and her plaster is gone, and she swears the fight was \"basically nothing.\"",
+      "text": "Natsuki took a dungeon contract without telling anyone. It was a solo run with a deep floor, and the bounty had sat on the guild board for a month because nobody else would touch it.\n\nShe's gone for three days. You find out where she went from the bartender.\n\nShe comes back through the front door on the third night with her arm in a sling made from her own cloak and a sack of gold over her shoulder. She's grinning through the grime. Her sword is chipped along one edge, and the plaster is gone from her cheek, along with some of the cheek.\n\n\"Basically nothing,\" she announces to the common room. \"Two of them. Maybe five. Look at this haul!\"\n\nThen she sees your face.\n\nThe grin falters. She stands there with the sack still held up. She looks like a kid who has brought home a test with a hundred on it and found that nobody is pleased.",
       "ngpp": [
         "When you pull the bandages out before she finishes talking, she blinks sharply—as though she remembers this exact quiet standoff over her bruises.",
         "\"Why did you grab the splint out of the bottom cupboard before looking, Sam?\" she mutters through gritted teeth, weirdly shaken despite the grin.",
@@ -173,10 +173,10 @@
     {
       "title": "Fireworks",
       "scene": "sam_date",
-      "text": "Natsuki bribes an eccentric guild alchemist out of half his silver stash just to fire makeshift aerial shells \"like the August river festival back home.\" You perch together on the quiet east parapet with dangling boots and a sack of salty fried snacks between you. The first shell splutters green and lopsided; the second climbs high and splits into a wide pink chrysanthemum illuminating every slate rooftop below.",
+      "text": "Natsuki has been up to something with the guild alchemist all week. It has cost her half her savings. Tonight she takes you up onto the east parapet with a sack of salty fried things and makes you sit down and wait.\n\n\"August,\" she says. \"The river festival. We went every year. You always got the goldfish game wrong.\"\n\nDown in the yard, the alchemist lights a fuse and runs.\n\nThe first shell splutters up green and lopsided and goes out with a cough. Natsuki swears at it.\n\nThe second one climbs. It keeps climbing, well past the rooftops. Then it opens into a wide pink chrysanthemum that lights every slate in Hollowmere and hangs there.\n\nShutters are opening all over town. Somebody cheers.\n\nShe doesn't say anything. Her boots are swinging over the drop, and her shoulder is against yours. In the light of the third shell you can see that her eyes are wet, and that she's smiling.",
       "byIntim": {
         "2": {
-          "text": "Natsuki bribes a guild alchemist into launching makeshift fireworks \"like the August festival back home,\" sitting close enough on the east parapet that her bare thigh presses warmly against yours before the fuse even hits. When bright pink sparks flower high across Hollowmere's roofs, she doesn't watch the sky—she turns right toward your profile, eyes bright as lantern sparks."
+          "text": "Natsuki has bribed the guild alchemist into firing off homemade shells, like the August festival back home. She sits down on the east parapet close enough that her bare thigh is pressed along yours before the first fuse is lit.\n\nThe big pink one goes up and opens over the rooftops. All of Hollowmere turns to look at it.\n\nNatsuki doesn't. She has turned to look at you. The light is moving on her face, and her eyes are bright.\n\n\"I planned this for a week,\" she says. \"And now I don't care about the fireworks.\" Her hand closes in the front of your hoodie. \"There's an empty watch-alcove about ten feet behind us. I checked.\""
         }
       },
       "choices": [
@@ -212,13 +212,13 @@
     {
       "title": "Door Kicked In",
       "scene": "final",
-      "text": "Natsuki kicks your door open at dawn, red-faced, sword still on her hip, the lock splintering under her boot. Cold morning light spills in behind her. \"I spent three years here thinking I'd never see you again—and a lifetime back home pretending we were just kids! I'm not wasting another day, Sam.\" She kicks the door shut behind her.",
+      "text": "Natsuki kicks your door open at dawn.\n\nShe has never been good at knocking, but this is new. The lock splinters under her boot. Cold light comes in behind her. She's red in the face, and her sword is still on her hip. She has plainly been up all night walking the walls and arguing with herself.\n\n\"I spent three years here thinking I'd never see you again.\" She's almost shouting. \"And before that I spent a whole life back home pretending we were just kids from the same street. I knew, Sam. I knew when we were fifteen. I was too chicken to say it, so I said 'race you' for ten years.\"\n\nShe takes a breath that shakes.\n\n\"I'm not wasting another day. I love you, you idiot. I'm staying, and it's not for the free meals. It never was.\"\n\nShe kicks the door shut behind her. It doesn't latch any more, so she shoves the chair against it.",
       "ngpp": [
         "Even kicking the latch splinters feels oddly practiced, like another piece of her remembers losing patience at this exact dawn.",
         "\"Don't ask why I feel like I've broken this exact bedroom door already, Sam,\" she growls flushed to her collarbones as she steps toward your bed.",
         "\"Every Earth summer, every wiped cycle in this town—I don't care anymore, Sam,\" Natsuki breathes fiercely as she unbuckles her sword belt. \"You're stuck with me.\""
       ],
-      "goLead": "Natsuki drops her scabbard cleanly onto the chair and shoves you straight back onto the mattress, straddling your waist with fierce, breathless relief.",
+      "goLead": "Natsuki drops her scabbard onto the chair and shoves you back onto the mattress. She climbs on top of you and straddles your waist, fierce and out of breath and laughing.",
       "choices": [
         {"label":"Say yes","t":6,"m":12,"res":""},
         {

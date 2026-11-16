@@ -3,7 +3,7 @@
     {
       "title": "Poison Taster",
       "scene": "sam_date",
-      "text": "Adelheid insists on tasting all of your food for poison before you touch a fork. Every single meal, silver spoon first, pale blue eyes narrowed behind the scar through her brow while she inspects tavern stew, crusted bread, and one deeply suspicious pear like an assassin hid beneath the peel. Only over the final bite—when you catch her lingering long after your plate sits clean—does she admit stiffly that dinner hour has become her favorite watch.",
+      "text": "Adelheid has decided that your food must be tasted for poison. She means all of it, at every meal.\n\nShe arrives at your table with her own silver spoon. She tries the tavern stew and waits a full minute with her eyes narrowed. She breaks the bread and smells it. She turns one pear over in her gauntlet for so long, as though an assassin might be hiding under the skin, that the cook comes out to ask if something is wrong with it.\n\nYou point out that nobody in Hollowmere wants you dead. You owe most of them money.\n\n\"That is precisely the motive I would expect,\" she says.\n\nShe tastes the last bite and pronounces it safe. Then she doesn't leave. She stands at your shoulder long after the plate is clean.\n\n\"I should say,\" she begins stiffly, with her eyes on the wall, \"that of all my watches, this hour has become the one I look forward to.\"",
       "ngpp": [
         "Mid-bite she pauses staring down at the spiced stew, muttering faintly that she somehow already knew you dislike fennel.",
         "\"Forgive an old soldier's odd instinct, Sam,\" she says stiffly, pushing the sweet pear straight toward your preferred side before tasting it.",
@@ -32,12 +32,12 @@
     {
       "title": "Rain Barrel",
       "scene": "shower",
-      "text": "You cut through the training yard and find Adelheid washing off after practice at the rain barrel, cold water streaming down her scarred shoulders, her short platinum hair plastered flat. She snaps to attention. With the hand holding the towel. Which is, therefore, no longer holding the towel, quite as well as it should.",
+      "text": "You cut through the training yard on your way to the cellar, and Adelheid is at the rain barrel.\n\nShe's been at sword practice since before dawn. The half-plate is stacked neatly on the bench. She is washing with a bucket and a cloth, and cold water is streaming down her scarred shoulders and her short platinum hair is plastered flat to her head. She has a towel held against her front with one hand.\n\nShe sees you, and six years of drill take over.\n\nShe snaps to attention and salutes. She does it with the hand that was holding the towel.\n\nThere's a moment in which the towel, no longer held as well as it should be, considers its options. Adelheid's face goes from white to scarlet. She does not lower the salute, because you haven't returned it.",
       "byIntim": {
         "1": {
           "title": "Out of Armor",
           "scene": "shower",
-          "text": "You step into the washroom after evening watch and find Adelheid already wrapped loosely in a thick linen bath towel, short platinum hair wet at the collar, carefully oiling a fresh bruise along her shoulder. When she sees it's you, she doesn't snap upright or bolt—she only swallows once, steel-blue eyes softening beneath bright scarlet ears. \"Ah... I thought you were already asleep, Sam.\"",
+          "text": "You step into the washroom after the evening watch. Adelheid is already there, wrapped in a thick linen towel, with her short platinum hair wet against her neck. She's working oil into a fresh bruise on her shoulder and not reaching it very well.\n\nShe sees it's you. She doesn't snap upright, and she doesn't bolt. She swallows once. Her ears are scarlet, and her steel-blue eyes have gone soft.\n\n\"Ah. I thought you were already asleep, Sam.\" She looks at the vial in her hand and then back at you. \"I can't reach the back of it. I wouldn't ordinarily ask. I find I would like to ask you.\"",
           "choices": [
             {
               "label": "Take the salve jar and rub her scarred shoulders gently",
@@ -60,7 +60,7 @@
         "3": {
           "title": "Unarmored",
           "scene": "bath",
-          "text": "Steam fills the washroom from corner to corner, and for once not a scrap of steel sits anywhere near Adelheid. Sitting bare in the cedar tub with water lapping over proud collarbones and faded battle scars, she meets your gaze without flinching and holds out one damp hand. \"Bolt the door, Sam. Duty finished an hour ago.\"",
+          "text": "The washroom is full of steam from wall to wall, and for once there isn't a scrap of steel anywhere near Adelheid. Her sword belt is hanging on the peg by the door. Her armor is somewhere else entirely.\n\nShe's sitting in the cedar tub with the water lapping at her collarbones, naked, her old scars pale against skin flushed pink by the heat. She doesn't cover her tits or look away. She meets your eyes and holds out one wet hand.\n\n\"Bolt the door, Sam. My duty ended an hour ago.\" A very small smile. \"I am told that a knight is permitted to want things, off watch. I want you in here with me.\"",
           "choices": [
             {
               "label": "Slide into the hot tub and hold her close",
@@ -112,7 +112,7 @@
     {
       "title": "Knight and Her Lord",
       "scene": "casual",
-      "text": "You find Adelheid's secret stash of romance novels in her saddlebag, cracked spines, pressed flowers, a ribbon marking every chapter. Every one is about a knight and her lord. She threatens you with her sword, steel flashing, face scarlet to the roots of her hair. Then asks, very quietly, if you've read the third one.",
+      "text": "You're looking for the spare lamp oil in the tack room when you knock Adelheid's saddlebag off its hook.\n\nBooks fall out. There are nine of them, with cracked spines and embossed covers. Flowers have been pressed between the pages, and every one has a ribbon marking a chapter. You pick one up. It's called The Lady's Sworn Sword. So, more or less, are the rest. Every one of them is about a knight and the lord she serves.\n\nThe door bangs open. Adelheid has her sword half out of the scabbard before she sees what you're holding. Then she draws it the rest of the way.\n\n\"Put that down. That is private correspondence. You will forget what you have seen.\" Her face is scarlet to the roots of her hair, and the point of the blade is shaking.\n\nNobody moves. Then she lowers the sword an inch.\n\n\"Have you,\" she asks, very quietly, \"read the third one?\"",
       "choices": [
         {
           "label": "Show her how volume three actually ends",
@@ -146,7 +146,7 @@
     {
       "title": "The Report",
       "scene": "portrait",
-      "text": "The Order demands Adelheid report on \"the sinful nature\" of your business. She's been staring at a blank page for three hours, a candle burned to a stub beside her, the quill chewed ragged. Her oath and her honesty are pulling in opposite directions, and the sound of her sword-hilt tapping the desk fills the room.",
+      "text": "The Radiant Order has sent Adelheid a letter with three seals on it. They require a full report on the hero she is sworn to. In particular they want an account of \"the sinful nature of his enterprise\".\n\nShe has been at the desk for three hours. The page in front of her is blank. The candle has burned down to a stub and the quill is chewed ragged at the end.\n\nIf she writes what the Order expects, she will be lying about the women here, whom she has come to respect. If she writes what's true, they will recall her, or do something worse.\n\nHer oath and her honesty have never pulled in different directions before. She doesn't know what to do with her hands, so one of them is tapping her sword hilt against the edge of the desk, over and over.\n\nShe looks up when you come in. \"I do not know how to describe you to them,\" she says. \"I've tried. I keep describing a good man.\"",
       "ngpp": [
         "Even before lifting the quill, she pauses frowning—as if she already defended this quiet ledger before an inquisitor in some half-forgotten dream.",
         "\"Strangely, I know how every line of this defense ends before writing a word, Sam,\" she mutters softly, gripping the parchment tight.",
@@ -177,10 +177,10 @@
     {
       "title": "Swordplay",
       "scene": "sam_training",
-      "text": "Adelheid decides a house owner cannot rely solely on locks and good manners, so she drags you out into the frost-crisp yard at dawn and thrusts a weighted ashwood practice sword into your hands. Your wrists howl by the fifth parry and an outraged rooster heckles from the coop roof, yet her platinum hair catches first sun as she adjusts your grip patiently: \"Feet wider, Sam. Guard high. Again.\"",
+      "text": "Adelheid decides that a house owner can't rely on locks and good manners alone. She fetches you out into the yard at dawn, with frost still on the cobbles, and puts a weighted ashwood practice sword in your hands.\n\nIt's heavier than it looks. By the fifth parry your wrists are howling. By the tenth, a rooster has come out onto the coop roof to heckle.\n\nShe's a good teacher, which surprises you. She doesn't shout. She walks around you, moves your elbow two inches with one finger, and steps back to look. The first sun catches her hair.\n\n\"Feet wider, Sam. Guard high. Again.\"\n\nYou do it again. You're terrible. She nods as if you weren't.\n\n\"I will not always be at your door,\" she says, adjusting your grip. \"I intend to be. But I've read enough accounts to know how they tend to go. I would sleep better if you could hold a blade for one minute. Again.\"",
       "byIntim": {
         "2": {
-          "text": "Adelheid drags you into the frost-crisp yard at dawn with two ashwood practice blades, standing noticeably closer than any sergeant should while correcting your elbow height and resting warm ungloved fingers lightly along your forearm. \"Feet wider, Sam. Guard high,\" she murmurs—though her eyes drop briefly to your mouth whenever you step inside her reach."
+          "text": "Adelheid has you out in the frosty yard at dawn again with two ashwood practice blades. She stands closer than any sergeant would. When she corrects the height of your elbow, her bare fingers stay on your forearm afterward.\n\n\"Feet wider, Sam. Guard high.\"\n\nHer voice is as level as ever. But every time you step inside her reach, her eyes drop to your mouth for a moment before she remembers the lesson. She's left her gauntlets on the bench this morning, and her collar is unlaced.\n\nOn the next pass she lets you get much nearer than she should. You suspect that a knight of her skill doesn't make that mistake by accident."
         }
       },
       "image": {
@@ -217,13 +217,13 @@
     {
       "title": "The Amended Oath",
       "scene": "final",
-      "text": "Adelheid kneels in the empty chapel hall to renew her oath, the candlelight turning her short hair to silver, then stays kneeling. \"My oath was to guard you. I would like to amend it.\" Her voice is steady but her hand, when she takes yours, trembles. \"To stand beside you—as yours, Sam.\" She rises, and doesn't let go.",
+      "text": "Adelheid asks you to come with her to the chapel hall after the house has closed. It's empty at this hour. A few candles are burning, and they turn her short hair to silver.\n\nShe kneels, lays her sword across her palms, and renews her oath to you, as she does every month. Sword and life, to the one who was promised. You've stopped trying to talk her out of it.\n\nWhen she has finished, she stays on her knees.\n\n\"My oath was to guard you,\" she says. \"I swore it before I had met you, to a hero in a foretelling. I would like to amend it, now that I know who you are.\" Her voice is steady. Her hand, when she takes yours, is not. \"I wish to stand beside you, and not behind your shoulder. I wish to be yours, Sam, and I am asking whether you'll have me.\"\n\nShe rises, and she doesn't let go of your hand.",
       "ngpp": [
         "Her voice trembles slightly over the final vow—not from doubt, only the sudden vertigo of feeling she has knelt on these stones for you before.",
         "\"Forgive me,\" Adelheid whispers, holding your hand fast in the candlelight. \"Why does pledging beside you feel like coming home to a vow already sworn?\"",
         "\"Time and memory both bow before what steel remembers, Sam,\" Adelheid whispers steadily as she rises straight into your arms. \"Every cycle, my oath belongs to you.\""
       ],
-      "goLead": "Adelheid sets her sword belt reverently beside the chapel candles and steps straight into your arms, kissing you with shaken, resolute warmth as the latch clicks shut.",
+      "goLead": "Adelheid unbuckles her sword belt and sets it down beside the chapel candles. Then she steps into your arms and kisses you, shaken and certain, as the latch clicks shut behind you.",
       "choices": [
         {"label":"Say yes","t":6,"m":12,"res":""},
         {

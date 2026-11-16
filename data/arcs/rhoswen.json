@@ -3,7 +3,7 @@
     {
       "title": "Commoner Tea",
       "scene": "sam_date",
-      "text": "You find Rhoswen on the back porch after dusk, balancing a chipped ceramic mug of cheap street tea on her knee while her leather notebook rests open beside her. Her silver circlet sits on the table instead of her platinum hair, and her long pointed ears flick toward you as the screen door creaks. \"I bought it from the dockside cart,\" she announces with immense pride, holding up a crumpled paper bag of fried dough. \"At court, tea takes forty minutes and three spoons. Out here you simply hold the warm cup. May I write down that it tastes better?\"",
+      "text": "You find Rhoswen on the back porch after dusk. She has a chipped mug of cheap street tea balanced on her knee, and her leather notebook is open beside her.\n\nHer silver circlet is on the table. You have never seen it off her head before. Her long ears flick toward you when the screen door creaks.\n\n\"I bought it from the cart at the docks,\" she announces, with enormous pride. She holds up a crumpled paper bag of fried dough as evidence. \"I stood in a queue. A man with a fish told me to hurry up.\"\n\nShe looks delighted about the man with the fish.\n\n\"At court, tea takes forty minutes and three spoons, and one may not speak until the second pouring. Out here you simply hold the cup while it's warm.\" She picks up her pen. \"May I write down that it tastes better? I want to be accurate, and I suspect I'm biased. Nobody is watching how I hold it.\"",
       "ngpp": [
         "Her pointed ears twitch faintly as you step onto the porch, as though she half-expected the exact weight of your footstep on that loose plank.",
         "\"Strange,\" she murmurs, glancing from the dockside pastry bag to your face. \"I reached for cheap fried dough on pure instinct, as though someone once convinced me it was worth a kingdom.\"",
@@ -32,10 +32,10 @@
     {
       "title": "Margin Notes",
       "scene": "shower",
-      "text": "You knock once on the washroom door—mostly—and push it open to find Rhoswen kneeling beside the steaming tub, hair pinned hastily up, squinting at a damp page of her journal while scrubbing soap out of her sleeve. She freezes, towel slipping an inch off one pale shoulder, emerald eyes wide. \"I dropped it in the bathwater,\" she says weakly, as though caught committing treason. \"The ink under 'Propriety' has bled straight into 'Breakfast.'\"",
+      "text": "You knock once on the washroom door, more or less, and push it open.\n\nRhoswen is kneeling beside the steaming tub. Her hair is pinned up in a hurry. She has a towel around her and a wet sleeve in one hand, and with the other she's holding a page of her journal up to the lamp and squinting at it.\n\nShe freezes. The towel slips an inch off one pale shoulder. Her eyes go wide.\n\n\"I dropped it in the bathwater,\" she says weakly. She sounds like someone caught at treason. \"I was making a note about the soap. The ink under 'Propriety' has run straight into 'Breakfast'.\"\n\nShe turns the page toward you, to show you. It's true. Two hundred years of training are warring in her face with the fact that she's on her knees in a towel.\n\n\"I had rather a lot written under 'Propriety',\" she adds. \"I don't think I can read any of it now.\"",
       "byIntim": {
         "1": {
-          "text": "You open the washroom door to find Rhoswen perched on the bath rim, damp platinum locks pinned high, setting her soaked notebook safely onto the stool when she hears your step. Her pale towel slips neatly off one shoulder, emerald eyes warming beneath pink-tipped ears. \"Propriety seems utterly ruined already,\" she murmurs softly. \"Care to help dry my shoulders instead, Sam?\"",
+          "text": "You open the washroom door. Rhoswen is sitting on the rim of the bath with her damp hair pinned high. When she hears your step, she sets her soaked notebook down on the stool, out of harm's way.\n\nHer towel slides off one shoulder. She lets it stay where it has fallen. The tips of her ears are pink, and her eyes are warm.\n\n\"Propriety appears to be ruined already,\" she says softly. \"I've decided not to mourn it.\" She turns her bare shoulder toward you. \"Would you help me dry my back, Sam? I find I would like to be touched by someone who isn't a lady's maid.\"",
           "choices": [
             {
               "label": "Step into the steam and trace dry warmth across her shoulders",
@@ -55,7 +55,7 @@
           ]
         },
         "3": {
-          "text": "You push the washroom door open to find Rhoswen already rising from the steaming tub without a shred of courtly hurry—bare pale skin glistening, wet platinum hair clinging to her collar, long elven ears tipped bright rose. She sets the towel deliberately onto the chair and turns toward you with quiet daring. \"No notebook today,\" she whispers, holding out one wet hand. \"Come test empirical warmth with me in the water.\"",
+          "text": "You push the washroom door open. Rhoswen is rising out of the steaming tub, and she isn't in any hurry about it.\n\nWater runs down her pale skin, over her small breasts and the curve of her hips. Her wet hair clings to her neck. Her ears have gone bright rose at the tips. She picks up the towel, looks at it, and lays it over the chair.\n\n\"No notebook today,\" she whispers. She holds out one wet hand to you. \"I've written enough about what humans do. Come into the water and do it to me. I want to learn with my body what it's like.\"",
           "choices": [
             {
               "label": "Bolster the latch and join her inside the bath",
@@ -114,7 +114,7 @@
     {
       "title": "Unplanned Hours",
       "scene": "casual",
-      "text": "Late at night in the quiet parlor, Rhoswen has spread half a dozen town maps and ledger scraps across the low table, barefoot for once with her heels tucked under her skirt. She hasn't written a single line in her notebook all evening; instead, she watches you sort receipts by lamplight until her chin rests on her folded arms. \"Two centuries in a silver tower,\" she says softly, \"and nobody ever once asked me what I thought of the weather, or let me sit on the rug without posture correction. I had no idea quiet could feel so greedy.\"",
+      "text": "It's late, and the parlor is quiet. Rhoswen has spread half a dozen town maps and scraps of ledger across the low table. She's sitting on the rug. Her shoes are off, for once, and her heels are tucked up under her skirt.\n\nHer notebook is beside her. She hasn't written a line in it all evening.\n\nShe's been watching you sort receipts by lamplight. Her chin has come down, a little at a time, to rest on her folded arms.\n\n\"I spent two centuries in a silver tower,\" she says softly. \"I had a tutor for deportment and another for conversation. Nobody in all that time asked me what I thought of the weather. Nobody let me sit on a rug without correcting how I sat.\"\n\nHer toes curl against the wool.\n\n\"I've been here for an hour doing nothing at all. I'm not improving myself, and I'm not being observed. I had no idea that quiet could feel so greedy. I keep wanting more of it.\"",
       "choices": [
         {
           "label": "Set the receipts aside and sit on the rug beside her",
@@ -139,7 +139,7 @@
     {
       "title": "The Courier's Seal",
       "scene": "portrait",
-      "text": "An elven courier in silver-trimmed livery waits in the entryway with a wax-sealed scroll bearing her house's stag crest. Rhoswen reads it once in silence, her posture snapping back into rigid court lines until her knuckles turn white around the parchment. Her father has learned where she works—and the carriage home leaves at dawn if she wishes her name scrubbed from the scandal sheets. When the courier steps outside for an answer, Rhoswen turns to you with careful, brittle calm. \"I should not bring trouble to your door.\"",
+      "text": "An elven courier in silver-trimmed livery is waiting in the entryway. He has a scroll, and the wax on it carries the stag crest of her house.\n\nRhoswen reads it once, in silence. You watch her spine go back into its court lines, one vertebra at a time. Her knuckles whiten on the parchment.\n\nHer father has learned where she works. There's a carriage. It leaves at dawn. If she's on it, her name can still be scrubbed from the scandal sheets, and the matter will never be spoken of.\n\nThere's no \"or\" in the letter. In two hundred years, he has never needed to write one.\n\nThe courier steps outside to wait for her answer.\n\nRhoswen turns to you. She's calm, and the calm is thin enough to see through.\n\n\"I should not bring trouble to your door,\" she says. \"He's a patient man, and he has a long reach. I knew that when I walked out. I'd let myself forget it, here.\"",
       "ngpp": [
         "Even before breaking her father's stag seal, her chin lifts instinctively—almost like she already spoke her refusal once before.",
         "\"Weird,\" she murmurs, twisting the torn parchment ribbon. \"My chest does not even hesitate. Why does this silver livery look smaller to me than it used to?\"",
@@ -174,7 +174,7 @@
     {
       "title": "The Unfinished Margin",
       "scene": "sam_date",
-      "text": "Rhoswen brings you up to the quiet terrace garden above the square after midnight, carrying two glasses of pale elven wine and the battered leather notebook that started it all. She hands the book to you open—not to *Human Customs*, but to the last twenty pages, filled cover to cover with tiny, meticulous notes about the way you check on tired staff, the crooked angle of your hoodie pocket, and every time you remembered her tea without asking. \"I stopped studying the town months ago,\" she admits, ears glowing crimson in the moonlight. \"I was never very impartial.\"",
+      "text": "After midnight, Rhoswen brings you up to the terrace garden above the square. She's carrying two glasses of pale elven wine. She's also carrying the battered leather notebook.\n\nShe hands it to you, open.\n\nIt isn't open at Human Customs. It's open near the end. The last twenty pages are full, in her tiny, careful hand, and none of them are about the town.\n\nThey're about you. She's noted how you check on the staff when they're tired. She has a sketch of the crooked angle of your hoodie pocket. She has recorded every time you remembered how she takes her tea without being told, with the date.\n\n\"I stopped studying the town months ago,\" she admits. Her ears are glowing crimson in the moonlight. \"I told myself it was a case study. One subject, observed closely.\" She takes a rather large sip of the wine. \"I was never very impartial. A proper scholar would have noticed by the third page.\"",
       "choices": [
         {
           "label": "Kiss her hand and promise not to read ahead",
@@ -209,13 +209,13 @@
     {
       "title": "Beyond the Text",
       "scene": "final",
-      "text": "In the quiet room at the end of the hall, Rhoswen unclasps her silver circlet and sets it cleanly beside her closed notebook on the bedside table. No pages open tonight, no pen in reach—just platinum hair spilling across bare shoulders as she steps into your arms, steady and deliberate. \"I left a court because every day was already written for me,\" she whispers against your mouth, hands sliding firmly behind your neck. \"You are the only chapter I never want to edit. Let me belong here—with you.\"",
+      "text": "In the quiet room at the end of the hall, Rhoswen unclasps her silver circlet. She sets it down on the bedside table, beside her closed notebook.\n\nThere are no pages open tonight, and no pen in reach. She has taken the pins out, and her platinum hair is loose over her bare shoulders. She steps into your arms. She's steady, and she means it.\n\n\"I left a court because every day there had been written for me before I was born,\" she says against your mouth. \"I knew whom I'd marry, and what I would say at the wedding.\"\n\nHer hands slide up behind your neck.\n\n\"I came here to observe. I've filled a book. You're the only chapter in it I have never wanted to correct.\" She draws back just far enough to look at you. \"I told my father's courier no. I would like to belong somewhere I chose, Sam. Let it be here, with you.\"",
       "ngpp": [
         "Even setting her silver circlet aside tonight carries an uncanny rhythm, like muscle memory returning from a dream.",
         "\"Strange,\" she whispers against your collarbone, \"I unclasped this crown as if I had sworn off marble courts for you once already.\"",
         "\"Whatever goddess rewrote our pages,\" Rhoswen breathes into your mouth, holding you fast, \"she couldn't erase the warmth of this room. Stay my unwritten chapter forever, Sam.\""
       ],
-      "goLead": "You pull Rhoswen gently back onto the pillows while platinum hair fans across your wrists; no elven etiquette survives the first unhurried press of your mouths.",
+      "goLead": "You draw Rhoswen back onto the pillows, and her platinum hair fans out across your wrists. None of her court manners survive the first slow kiss.",
       "choices": [
         {"label":"Say yes","t":6,"m":12,"res":""},
         {

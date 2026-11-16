@@ -3,7 +3,7 @@
     {
       "title": "Dinner Is a Competition",
       "scene": "sam_date",
-      "text": "Ella challenges you to dinner as a competition: whoever orders the better meal wins. She arrives early, naturally, and has already studied the menu. Over the second course she puts down her fork, and the candle flame steadies between you. \"I was across the street. I saw the truck. For three years I've told myself I'd never speak of it.\" Her hand is steady on the glass, but her knuckles are white. \"I'm speaking of it now. Because you're here. Because I can.\"",
+      "text": "Ella challenges you to dinner. It's a competition, naturally. Each of you orders, and whoever chooses the better meal wins.\n\nShe arrives early. By the time you sit down she has read the menu twice, questioned the waiter about the fish, and written something on her cuff.\n\nShe wins the first course. You win the second, by accident, and she tastes yours and is furious.\n\nThen she puts her fork down. The candle flame steadies between you.\n\n\"I was across the street,\" she says. \"I saw the truck.\"\n\nHer hand is still on her glass, but her knuckles are white.\n\n\"You asked me how I got here, and I told you it wasn't on the agenda. I've told myself every day since I woke up that I would never speak of it.\" She looks at you. \"I ran into the road, Takahashi. I didn't decide to. I've never done anything in my life without deciding. I'm speaking of it now because you're here, and I can.\"",
       "ngpp": [
         "Halfway through studying the menu she frowns at the salt cellar as though checking a phantom scorecard, then briskly shakes it off.",
         "\"Odd,\" she murmurs over her wine glass, brow knitted. \"I knew which entrée you'd pass on before you opened your mouth, Takahashi. Lucky guess?\"",
@@ -32,10 +32,10 @@
     {
       "title": "Scoring Points",
       "scene": "shower",
-      "text": "You open the washroom door and find Ella in the tub, hair pinned up with a pencil, a thick book propped on the soap dish, a glasses-fogged glare aimed squarely at the intruder. Steam curls around her. \"You didn't knock,\" she says. \"That's a point to me.\" She doesn't cover up, since the moral high ground is more valuable than modesty, and she turns a page with deliberate calm.",
+      "text": "You open the washroom door, and Ella is in the tub.\n\nHer hair is pinned up with a pencil. There's a thick book propped open on the soap dish. Her reading glasses have fogged, and she glares at you over the top of them through the steam.\n\n\"You didn't knock,\" she says. \"That's a point to me.\"\n\nShe doesn't cover herself. You can see her work it out. The moral high ground is hers, and it's worth more than modesty. If she grabs for a towel, she concedes that something has happened.\n\nSo she turns a page. She does it with great calm.\n\nShe hasn't read a word of it. Her eyes aren't moving, and a flush is climbing slowly up from her collarbones. The water comes about as high as it needs to, and no higher.\n\n\"Well?\" she says, without looking up. \"Are you going to stand in the doorway letting the heat out, or are you going to contest it?\"",
       "byIntim": {
         "1": {
-          "text": "You open the washroom door and find Ella in the tub, hair pinned up with a pencil, glasses fogged over her nose. Instead of snapping, the corner of her mouth twitches upward. \"You didn't knock, Takahashi—that's a point to me,\" she murmurs, tilting her chin so water slides over her collarbone. \"If you want an appeal, step closer instead of standing in the draft.\"",
+          "text": "You open the washroom door, and Ella is in the tub with her hair pinned up on a pencil and her glasses fogged on her nose.\n\nShe doesn't snap at you. The corner of her mouth twitches upward.\n\n\"You didn't knock, Takahashi. That's a point to me.\" She tilts her chin back, and water runs down her throat and over her collarbone. She watches to see whether your eyes follow it, and they do. \"If you'd like to appeal, you'll have to come closer. I don't hear cases from the doorway.\"",
           "choices": [
             {
               "label": "Kneel beside the tub and earn your point back",
@@ -55,7 +55,7 @@
           ]
         },
         "3": {
-          "text": "You open the washroom door to find Ella already pulling the pencil out of her hair, bare shoulders gleaming above the bathwater. She sets her book flat on the stool and leans back, long legs parted lazily under the foam. \"You're late, Sam,\" she says, voice dropping to a smoky challenge. \"I'm three points ahead and bored. Get in here and settle the tie-breaker.\"",
+          "text": "You open the washroom door. Ella is pulling the pencil out of her hair, and it falls loose around her bare shoulders.\n\nShe sets her book down flat on the stool. Then she leans back against the rim with her arms along it. Her tits are out of the water and her long legs are parted under it, and she lets you look.\n\n\"You're late, Sam.\" Her voice has dropped. \"I'm three points ahead, and I'm bored, and I've been touching myself for ten minutes thinking about how you'd lose. Get in here and settle the tie-breaker.\"",
           "choices": [
             {
               "label": "Lock the door and climb into the bath with her",
@@ -114,7 +114,7 @@
     {
       "title": "The Leaderboard",
       "scene": "casual",
-      "text": "Ella turns the staff's daily chores into a points tournament, with a chalkboard leaderboard, little prizes and an appeals process with a very strict deadline. Morale in the house triples; even the cook has started saluting her. She has also, without telling anyone, assigned you a score of her own: a secret column in her notebook headed Observations. She is only caught when it falls out of her apron into the flour dust, and lies there, wide open.",
+      "text": "Ella has reorganized the house chores into a tournament.\n\nThere's a chalkboard in the kitchen now, with a leaderboard on it. There are points for linens, for bar stock, and for punctuality. There are small prizes. There's an appeals process, and it has a very strict deadline.\n\nMorale has tripled. The maids are racing each other on the stairs. The cook has started saluting her.\n\nShe has not told anyone that she's also keeping a score of her own.\n\nYou find out when her notebook falls out of her apron pocket. It lands open in the flour dust on the kitchen floor.\n\nOne column is headed \"Observations\". It's about you, and it runs for pages. It has dates in it. The entries start as marks out of ten for decisions you've made about the house. Further down they stop being about the house.\n\nElla is standing absolutely still, with a tray in her hands. She's looking at the notebook on the floor, and she has gone a color you've never seen on her.",
       "choices": [
         {
           "label": "Stay with her",
@@ -148,7 +148,7 @@
     {
       "title": "The Offer",
       "scene": "portrait",
-      "text": "A merchant house in the capital offers Ella a post as chief of accounts: a salary, a title, a corner office with her name lettered on the door. It's everything she has ever wanted, on paper. She lays the letter in front of you in the quiet ledger room without a word, hands flat on the desk, and watches your face with the intensity of someone grading an exam she has already written the answers to.",
+      "text": "A merchant house in the capital has written to Ella. They've seen what she did with your accounts. They're offering her chief of accounts, with a salary and a title and a corner office that will have her name lettered on the door.\n\nOn paper it's everything she has ever wanted. It ranks her first at something.\n\nShe brings the letter to the ledger room, lays it on the desk in front of you, and says nothing. She puts her hands flat on the wood on either side of it.\n\nThen she watches your face.\n\nYou know this look. She used to stand at the results board with it, already certain of her own mark, waiting to see yours.\n\nShe has decided what she wants you to say. She isn't going to tell you. If she has to ask you for it, it won't count.",
       "ngpp": [
         "As she sets the heavy parchment down, her thumb lingers on the wax crest with an odd, unsettled frown.",
         "\"Funny,\" she says tightly. \"Last night I dreamed I tore a letter with this exact seal straight down the spine.\"",
@@ -183,7 +183,7 @@
     {
       "title": "Rematch",
       "scene": "sam_date",
-      "text": "Ella sets up a chessboard in the courtyard at dusk, with rules, a brass clock and a hand-lettered scoreboard that reads SAM vs. ELLA - GAME 1 OF 1. You play for two hours without speaking, the lanterns coming on one by one, the clock ticking. At the end, she has you cornered. She looks at the board. She looks at you. She doesn't make the winning move.",
+      "text": "Ella sets up a chessboard in the courtyard at dusk. She's brought a brass clock. She's lettered a scoreboard by hand, and it says SAM vs. ELLA, GAME 1 OF 1.\n\n\"One game,\" she says. \"No rematches. I want a result.\"\n\nYou play for two hours without speaking. The lanterns come on one by one around you. The clock ticks. She plays as she always did, three moves ahead and merciless. You play as you always did, which is to say you blunder into something that works.\n\nAt the end she has you cornered. It's mate in one, and you can both see it.\n\nShe looks at the board.\n\nShe looks at you.\n\nHer hand goes out over her queen. It stays there. The clock is still running on her side, and she lets it.\n\nShe doesn't make the move. You have known her for six years, and you've never once seen her fail to take a win.",
       "choices": [
         {
           "label": "Offer a draw",
@@ -217,13 +217,13 @@
     {
       "title": "First Place",
       "scene": "final",
-      "text": "Ella stops you on the stairs, a pencil in her hair and a ledger under her arm, her chin lifted for a fight. \"I have been second to you for years, and I have never minded. Don't tell anyone.\" She takes the pencil out of her hair, lets it fall down around her shoulders, and meets your eyes. \"I'm not competing anymore. I'd like to be on your side of the board.\" She kisses you, decisively, as if it were the winning move.",
+      "text": "Ella stops you on the stairs. She has a pencil in her hair and a ledger under her arm, and her chin is lifted for a fight.\n\n\"I have something to report, and I'd like you not to interrupt.\"\n\nShe sets the ledger down on the step.\n\n\"I came second to you for six years. I told everyone I hated it. I kept every list in a drawer and I looked at them more than was reasonable. I never minded. You were the only one worth losing to. Don't tell anyone.\"\n\nShe takes the pencil out of her hair, and it falls down around her shoulders.\n\n\"I ran into a road for you, and I didn't know why. I know now. I'm not competing any more, Sam. I've looked at the board, and I would like to be on your side of it.\"\n\nShe kisses you. It's decisive, as if it were the winning move, and you suppose it is.",
       "ngpp": [
         "Wait—as her fingers unpin the pencil, she blinks hard at the landing shadows, shaken by how right her pulse already feels.",
         "\"Weird,\" she murmurs against your mouth before pulling back half an inch. \"Like my body already knew the stairs ended here.\"",
         "\"Different life, same second place,\" she whispers into your collar, clinging tight. \"Never mind the goddess's reset. Put me in your column permanently this time, Sam.\""
       ],
-      "goLead": "You catch her by the waist on the landing and draw her straight through your bedroom door, setting ledger and pencil aside while she clings to your collar like she's finally claiming first prize.",
+      "goLead": "You catch her by the waist on the landing and draw her through your bedroom door. The ledger and the pencil get left on the stairs. She has hold of your collar with both hands, like something she's won.",
       "choices": [
         {"label":"Say yes","t":6,"m":12,"res":""},
         {

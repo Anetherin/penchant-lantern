@@ -3,7 +3,7 @@
     {
       "title": "Username",
       "scene": "sam_date",
-      "text": "Emily asks you to meet her on the bridge over the canal after close. She has clearly rehearsed this, and has also clearly forgotten every word, twisting the strap of her satchel as lamplight shivers on the water below. \"Okay. So. This is going to sound insane,\" she says, and then she says your old forum username out loud, in a world where nobody should know it. Her wolf ears are flat against her hair, and her tail is wrapped around her own leg. \"Please tell me I didn't just say a random string of letters to a stranger.\"",
+      "text": "Emily asks you to meet her on the bridge over the canal after close. She's there before you. She's twisting the strap of her satchel in both hands, and the lamplight is shivering on the water below.\n\nShe has plainly rehearsed this. She has just as plainly forgotten every word.\n\n\"Okay. So. This is going to sound insane.\" She takes a breath. \"I told you there was something I had to say, and that I wasn't brave enough yet. I'm still not. I'm doing it anyway.\"\n\nThen she says your old forum username out loud.\n\nNobody in this world should know it. You haven't heard it spoken in your life. You only ever saw it typed, in a little grey box, next to a wolf-girl's avatar.\n\nHer ears are flat against her hair. Her tail is wrapped around her own leg.\n\n\"Please tell me I didn't just say a random string of letters to a stranger,\" she whispers. \"Please. I have been carrying that for a year.\"",
       "ngpp": [
         "Just as she grips your sleeve thanking the universe her dorm mate didn't vanish, she blinks down at the canal ripples in sudden confused déjà vu.",
         "\"Okay, wait—I remember six years of RP threads back in my dorm, Sam,\" she mutters softly, ears twitching. \"So why does standing on THIS cobblestone bridge feel like a scene we already played live?!\"",
@@ -32,12 +32,12 @@
     {
       "title": "Bath Lag",
       "scene": "shower",
-      "text": "You open the washroom door and find Emily in the tub, a notebook balanced on the rim, glasses fogged, one damp wolf ear flopped sideways as she mutters in what is unmistakably her old character's gravelly narrator voice. \"And then the wolf drew her blade and said...\" She looks up. Her tail slaps the water, soaking the notebook's edge. \"I was drafting dialogue,\" she says, mortified. \"Out loud. Like a normal person.\"",
+      "text": "You open the washroom door, and Emily is in the tub.\n\nShe has a notebook balanced on the rim. Her glasses are fogged, and one damp wolf ear has flopped sideways. She's muttering to herself in a low, gravelly voice.\n\nYou know the voice. You read it for six years. It's the narrator she used for her character, the one who always opened a scene.\n\n\"And then the wolf drew her blade, and she said...\"\n\nShe looks up.\n\nHer tail slaps the water and soaks the edge of the notebook. She snatches it up and holds it against her chest. It doesn't cover very much.\n\n\"I was drafting dialogue,\" she says. She's mortified. \"Out loud. In the bath. Like a normal person.\" She pushes her glasses up and they fog again at once. \"I always did it out loud. You just couldn't hear me, because I was typing. Oh no. You know what I sound like now.\"",
       "byIntim": {
         "1": {
           "title": "Reconnecting in Steam",
           "scene": "shower",
-          "text": "You push open the washroom door and find Emily rinsing foam off one fluffy damp wolf ear with her round glasses perched on top of her head. This time she doesn't drop her notebook in panic—she blinks bright-faced through the mist and slides along the bench patting the space beside her tail. \"Oh—hi, Sam. Come scrub the shampoo I missed behind my ears? Purely out-of-character request!\"",
+          "text": "You push open the washroom door. Emily is rinsing foam off one fluffy wolf ear, with her glasses pushed up on top of her head.\n\nShe doesn't drop anything this time. She blinks at you through the steam, goes pink, and slides along the bench. She pats the space next to her tail.\n\n\"Oh. Hi, Sam. Um.\" She points at her own head. \"I can never get the soap out from behind my ears. They're a design flaw. Would you?\" Her tail has started to wag, slowly, and she glances at it and gives up. \"That's an out-of-character request, by the way. That one's just from me.\"",
           "choices": [
             {
               "label": "Kneel beside the tub and brush gently behind her wolf ears",
@@ -60,7 +60,7 @@
         "3": {
           "title": "No Narrator Needed",
           "scene": "bath",
-          "text": "No notebooks balance on the rim tonight. Sitting bare in the steaming bathwater with her grey wolf tail curled lazily around one ankle and her glasses already resting on the towel shelf, Emily flushes clear to the tips of her ears—yet holds both hands cleanly out toward your shirt. \"Server's private, Sam. Lock the door and climb in.\"",
+          "text": "There's no notebook on the rim tonight.\n\nEmily is sitting in the steaming water, naked, with her grey tail curled around one ankle and her glasses already on the towel shelf. She's blushing to the tips of her ears. Her nipples are stiff, and she isn't hiding them. She holds both hands out toward the front of your shirt.\n\n\"The server's private, Sam.\" Her voice wobbles and then steadies. \"Lock the door and climb in. I've written this scene about forty times and deleted it. I want to find out what actually happens when you fuck me.\"",
           "choices": [
             {
               "label": "Slip naked into the hot water with her",
@@ -115,7 +115,7 @@
     {
       "title": "Session Zero",
       "scene": "casual",
-      "text": "Emily talks you into running a campaign again, on paper, in the lounge after close. She has carved dice faces into wooden cubes and written character sheets for both of you in tidy forum-style headers, her tail sweeping the rug as she sets out snacks. It's the same story you abandoned years ago in dorm chats, picked up mid-scene. The fire pops. Halfway through the session, her character says something to yours that isn't in any of the old logs.",
+      "text": "Emily talks you into running the campaign again. It will be on paper this time, in the lounge after close.\n\nShe has prepared. She's carved dice out of wooden cubes and inked the pips herself. She's written out character sheets for both of you, with the tidy headers she always used on the forum. She sets out snacks in labeled bowls, and her tail sweeps the rug while she does it.\n\nIt's the same story. You left it in the middle of a scene, years ago, when your account went quiet. Her wolf and your bard were standing outside a locked door. She has remembered exactly where everyone was.\n\nThe fire pops. You roll, and you narrate. It comes back as if it had never gone.\n\nThen, halfway through the session, her character turns to yours and says something. It isn't in any of the old logs. It's not the sort of thing her wolf ever said.\n\nEmily has stopped looking at her sheet. She's looking at you over the top of it.",
       "choices": [
         {
           "label": "Take it OOC on the hearth rug",
@@ -150,7 +150,7 @@
     {
       "title": "Last Seen",
       "scene": "portrait",
-      "text": "Emily shows you a page of her notebook where she copied out, from memory, the last thing she ever sent you on the forum: \"you there?\" It was never answered. The pencil marks are smudged where her thumb has rubbed them for months. \"I kept checking for three weeks,\" she says quietly, ears drooped. \"Then I woke up here. Sometimes I think if I fall asleep wrong, I'll wake up back in my dorm and you'll still be 'last seen' forever.\"",
+      "text": "Emily shows you a page of her notebook. On it, copied out from memory, is the last thing she ever sent you on the forum.\n\nIt's two words. \"you there?\"\n\nIt was never answered. The pencil has smudged, because her thumb has been over it for months.\n\n\"I kept checking for three weeks,\" she says quietly. Her ears have drooped. \"I'd refresh it between lectures. It said you were last seen on the Tuesday. Then it kept saying that.\" She closes the notebook and holds it shut. \"I didn't know you'd died. I thought I'd done something. I went back through the whole thread, looking for what I'd said wrong.\"\n\nShe pulls her sleeves down over her hands.\n\n\"Then I woke up here. And sometimes I think, if I fall asleep the wrong way, I'll wake up back in my dorm, and it'll still say 'last seen', and it'll say that forever.\"",
       "ngpp": [
         "Right as she points to the pencil smudge from dorm nights, she blinks uneasily—half-convinced she already wrote your reply under that exact line in another dream.",
         "\"Wait... I remember every late exam week on that forum, Sam,\" she whispers softly, \"so why does holding out this page feel like muscle memory from THIS lounge?\"",
@@ -185,7 +185,7 @@
     {
       "title": "New Constellations",
       "scene": "sam_date",
-      "text": "Under a full moon Emily takes you up onto the roof with a blanket and her notebook. None of the stars match the ones back home, so she has been naming the constellations after your old campaign: the Cursed Lute, the Bard Who Never Posted, the Wolf and the Idiot. She lets her ears and tail relax, finally, at ease in the silver light. \"I figured,\" she says, \"if we're stuck here, we should at least have our own sky.\"",
+      "text": "Under a full moon, Emily takes you up onto the roof with a blanket and her notebook.\n\nNone of the stars here match the ones at home. She checked for the first few months, and she kept a list. Then she gave up and started naming them herself.\n\nShe's named them after the campaign. She shows you, pointing with her pencil. There's the Cursed Lute. There's the Bard Who Never Posted, which she says is a joke, mostly. There's a long crooked one near the horizon that she has called the Wolf and the Idiot.\n\n\"You're the idiot,\" she adds. \"In case that wasn't clear.\"\n\nHer ears and her tail have relaxed. She's lying back on the slates in the silver light. She's at ease, and you don't think she's noticed.\n\n\"I figured, if we're stuck here, we ought to have our own sky at least,\" she says. \"I spent a year looking up at somebody else's. It's much better with you in it.\"",
       "choices": [
         {
           "label": "Name one together",
@@ -210,13 +210,13 @@
     {
       "title": "More Than a Username",
       "scene": "final",
-      "text": "Emily stops in the doorway of your room, notebook hugged to her chest, tail wrapped around her own ankle. \"For six years you were a username,\" she says. \"My favorite one. I never wanted more than that, and then I got a whole person, and it turns out I do.\" She is trembling, ears flat. \"I'm bad at saying things out loud. So, short version.\" She takes your hand, and her grip is much surer than her voice. \"Stay online, Sam.\" The door closes behind you both.",
+      "text": "Emily stops in the doorway of your room with her notebook hugged against her chest. Her tail is wrapped around her own ankle.\n\n\"For six years you were a username,\" she says. \"You were my favorite one. I'd see it light up and my whole evening would get better. I never wanted more than that. I told myself so all the time, because it was true, and because we'd never even heard each other's voices.\"\n\nShe's trembling. Her ears are flat.\n\n\"Then I got a whole person. He apologizes to chairs, and he gave me a job before he'd seen my handwriting. And it turns out I do want more. I want all of it.\" She swallows. \"I'm bad at saying things out loud. I've written this down four times, and it was better on paper. So here's the short version.\"\n\nShe takes your hand. Her grip is much surer than her voice.\n\n\"Stay online, Sam.\"\n\nThe door closes behind you both.",
       "ngpp": [
         "Her ears twitch in odd wonder as the bedroom latch clicks—like saying \"stay online\" in this exact doorway echoes across more nights than one.",
         "\"I know Earth's dorms line by line, Sam,\" she breathes against your hoodie, \"so why does standing in this doorway feel like logging straight back home?\"",
         "\"Reset the thread as often as the sky wants, Sam,\" Emily whispers fiercely against your lips, tail wrapping snug behind your calf. \"My account only pairs with yours.\""
       ],
-      "goLead": "Emily sets her worn notebook cleanly on the dresser, pulls her glasses off, and launches straight into your arms onto the bed with ears pinned and tail thumping.",
+      "goLead": "Emily sets her worn notebook down on the dresser and pulls off her glasses. Then she launches herself into your arms and takes you both down onto the bed, ears pinned back and tail thumping.",
       "choices": [
         {"label":"Say yes","t":6,"m":12,"res":""},
         {

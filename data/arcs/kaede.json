@@ -3,7 +3,7 @@
     {
       "title": "Two Stolen Bottles",
       "scene": "sam_date",
-      "text": "Kaede hauls you up the ladder to the roof of the house with two bottles of wine she very obviously did not pay for, the glass still cold and sweating from the cellar. The tiles hold the day's warmth, chimney smoke drifts past the stars, and her copper tail thumps the roof behind her. \"Back in my party, nobody ever had my back. Then this skinny guy in a hoodie jumps in front of a goblin for me.\" She bumps your shoulder with hers. \"Idiot.\" She doesn't move away, and her tail curls lightly around your ankle.",
+      "text": "Kaede hauls you up the ladder to the roof with two bottles of wine she very obviously did not pay for. The glass is still cold and sweating from the cellar. The tiles have kept the day's warmth, chimney smoke drifts across the stars, and somewhere below a late client is singing badly on his way home.\n\nShe pulls the first cork with her teeth and drinks before she passes it over.\n\n\"We were called the Copper Foxes,\" she says to the rooftops. \"Four of us. When the floor went in that dungeon, our leader was the first one out, and he didn't look back to count.\" Her tail thumps the tiles once. \"I learned to check my own corners after that. Then a skinny guy in a hoodie throws himself in front of a crossbow for me, and I've known him about nine seconds.\"\n\nShe bumps your shoulder with hers.\n\n\"Idiot.\"\n\nShe doesn't move away afterward. Her tail settles lightly around your ankle.",
       "ngpp": [
         "Halfway through popping the cork, she pauses squinting at the bottle label as though it tastes like another rooftop altogether.",
         "\"Weird question, Sam—have we ever sat up here drinking cheaper vintage than this? Felt like my tail found your boot on muscle memory.\"",
@@ -32,12 +32,12 @@
     {
       "title": "Wrong Door",
       "scene": "shower",
-      "text": "You shoulder open the washroom door and find Kaede mid-towel, steam curling off her sun-kissed skin, the thin scar on her shoulder pink from the heat. Every single hair on her tail stands straight up like a startled bottlebrush. For one long second the only sound is a dripping tap and your brain emptying itself of all vocabulary.",
+      "text": "You shoulder open the washroom door with a towel over your arm and your mind on the ledger, and Kaede is standing in the middle of the floor with one foot up on the stool.\n\nShe has a towel. It's mostly on. Steam is curling off her sun-browned skin, and the thin scar on her shoulder has gone pink from the heat. She had been humming something, and she has stopped.\n\nEvery hair on her tail stands straight out, like a bottlebrush.\n\nFor one long second the only sound is a tap dripping. You can feel all the words you know leaving your head in an orderly line. Her ears swivel toward you one at a time. You can see her deciding whether this is funny or a fight.",
       "byIntim": {
         "1": {
           "title": "Share the Steam",
           "scene": "shower",
-          "text": "You push open the washroom door to find Kaede perched on the edge of the steaming tub with her wet hair plastered over one collarbone and a towel barely tucked around her thighs. Her fox ears perk upright before softening into a bold, crimson-cheeked grin. \"Forgot how to knock again, Sam—or did you come in here to earn those bruises on your hands?\"",
+          "text": "You push open the washroom door, and Kaede is sitting on the edge of the steaming tub with her wet hair stuck to one collarbone and a towel tucked loosely around her hips. Her ears come up. Her tail does not fluff this time.\n\n\"You forgot how to knock again.\" The grin is bold, but the blush under it is real. She rolls her scarred shoulder and winces. \"Or did you come to be useful? I took a chair leg across the back tonight, breaking up those two dockhands, and I can't reach it.\"\n\nShe holds the soap out to you over her shoulder without turning around, and she waits.",
           "choices": [
             {
               "label": "Offer to scrub the knot out of her scarred shoulder",
@@ -60,7 +60,7 @@
         "3": {
           "title": "No Towel Needed",
           "scene": "bath",
-          "text": "Steam rolls thick through the washroom when you step inside—and Kaede doesn't bother grabbing for the towel draped over the stool. Sitting waist-deep in the hot tub with water glistening over bare breasts and copper skin flushed bright pink, she hooks one damp ankle straight behind your calf. \"Lock the bolt, Sam. Unless you came in here just to stare?\"",
+          "text": "The washroom is thick with steam when you step inside, and Kaede doesn't reach for the towel on the stool.\n\nShe's sitting waist-deep in the tub with her arms along the rim, water running off her bare tits, copper hair dark and loose down her back. She looks you over slowly, the way she looks over a room she's about to clear. Then she hooks one wet ankle behind your calf and pulls.\n\n\"Lock the bolt, Sam.\" Her tail slaps the water. \"Unless you only came in here to stare. I don't mind that either, but I had plans.\"",
           "choices": [
             {
               "label": "Lock the door and get into the tub with her",
@@ -120,7 +120,7 @@
     {
       "title": "Tail Says Otherwise",
       "scene": "casual",
-      "text": "Kaede turns up at your door with a bandaged hand and a bright grin, claiming she got hurt sparring \"for fun.\" The knuckles under the linen are split and puffy, and she smells of liniment and sawdust. She sits on the edge of your bed while you unwind and re-wrap it with clumsy care, and her tail keeps brushing your arm, back and forth, warm and soft. Neither of you mentions it.",
+      "text": "Kaede turns up at your door after closing with a bandaged hand and a grin that's a little too bright. She says she got hurt sparring. \"For fun,\" she adds, before you've asked.\n\nThe linen is a mess. She has plainly tied it one-handed with her teeth. Underneath, the knuckles are split and puffy, and she smells of liniment and sawdust. You've already heard from the bar that a man said something about the new girl, and that Kaede walked him out through the yard.\n\nShe sits on the edge of your bed while you unwind it and start again. You aren't good at this. She watches your hands anyway, as if nobody has ever done it for her, and it's likely nobody has.\n\nHer tail keeps brushing your arm, back and forth, warm and soft. Neither of you mentions it. She doesn't tell you what the man said, and you find you don't need her to.",
       "choices": [
         {
           "label": "Finish the bandage and pull her close",
@@ -154,7 +154,7 @@
     {
       "title": "The Old Party",
       "scene": "portrait",
-      "text": "Kaede's old party leader turns up at the bar in dungeon-stained leathers, trailing the smell of rain and old smoke. He has a new contract, a deep dungeon and a spot for her, if she wants it. The common room goes quiet. Kaede doesn't look at him; she looks at you, ears pinned flat, and waits with her fingers drumming on the counter.",
+      "text": "Kaede's old party leader turns up at the bar on a wet night in dungeon-stained leathers, with the smell of rain and old smoke coming in behind him. He's handsome in a worn way, and he smiles like a man who has always been forgiven.\n\nHe has a new contract. It's a deep delve with a real payout, and there's a place in it for a scout who knows how he works. He says the Foxes should never have broken up, and he doesn't say whose fault that was.\n\nThe common room goes quiet. Somebody sets a mug down very carefully.\n\nKaede doesn't look at him. She's behind the bar with a rag in her fist, and she looks at you. Her ears are pinned flat. Her fingers start drumming on the counter, the way they do when she's counting something.\n\nShe isn't asking your permission. She has decided to find out what you'll say.",
       "ngpp": [
         "When the scarred adventurer steps up to the bar, Kaede flashes an odd, almost impatient look—like she has already told this man no in another life.",
         "\"Why does it feel like he always walks in wearing the same muddy boots?\" Kaede mutters sideways to you, ears pinned tight while waiting on your word.",
@@ -189,10 +189,10 @@
     {
       "title": "Rooftops",
       "scene": "sam_date",
-      "text": "Kaede teaches you to run the rooftops of Hollowmere at night, hopping slate to slate in the moonlight as though gravity were a polite suggestion. You, in your grey hoodie and traveler's cloak, are very, very bad at it. You windmill across a gap, cling to a chimney, and apologize to a pigeon. Kaede crouches on the ridgeline above, hands on her knees, wheezing with laughter.",
+      "text": "Kaede decides you need to learn the rooftops. Her reasoning is that a man who owns a house in Hollowmere should know how to leave it quickly.\n\nShe goes first, slate to slate in the moonlight, as though gravity were only a suggestion. She doesn't make a sound. Her tail streams out behind her for balance, and she looks back at every gap to make sure you're watching how it's done.\n\nYou are in a grey hoodie and a borrowed cloak, and you are very bad at this. You windmill across a gap a child could step over. You cling to a chimney. You apologize to a pigeon.\n\nKaede crouches on the ridge above you with her hands on her knees, wheezing with laughter.\n\n\"Again,\" she manages. \"Do the pigeon again. No, don't. Jump. I'll catch you if it goes wrong. I'm serious, Sam. I will always catch you.\"",
       "byIntim": {
         "2": {
-          "text": "Kaede drags you across Hollowmere's moonlit slate roofs again, though instead of leaving you stranded by a chimney she hops cleanly back into your reach whenever you wobble, fox tail brushing warmly behind your waist. Perched together beside a sun-warmed dormer overlooking twin moons, she grins brightly with flushed cheeks—clearly looking for any excuse to catch you."
+          "text": "Kaede takes you back up onto the rooftops, and tonight she doesn't leave you stranded at the chimney. She stays within arm's reach. Every time you wobble she's already there, with a hand flat on your chest or her tail pressed across the small of your back, and she's slow to take either one away.\n\nYou make three jumps in a row without dying. She whoops, and a shutter bangs open down the street.\n\nAfterward you sit against a dormer that's still warm from the sun, under both moons. She's breathing hard and grinning, with her thigh against yours. She keeps glancing at your mouth and then at the skylight of the empty loft beside you, as if she's working out a route."
         }
       },
       "choices": [
@@ -229,7 +229,7 @@
     {
       "title": "Copper Fox, Kept",
       "scene": "final",
-      "text": "After closing, Kaede corners you in the kitchen, where the stove is still ticking as it cools and one lamp burns low. She drums her fingers on the table, stops, starts again. \"I'm bad at this, so I'll just say it. I'm not going anywhere. Not for the money. For you.\" Her ears are bright red to the tips and her tail won't stop wagging. She takes your hand and pulls you upstairs, shutting the bedroom door cleanly behind you both.",
+      "text": "After closing, Kaede corners you in the kitchen. The stove is ticking as it cools and one lamp is burning low. She has a stack of bar receipts in her hand, the ones with the tally on the backs, and she drops them on the table between you.\n\nShe drums her fingers on them. She stops, and starts again.\n\n\"I'm bad at this, so I'll just say it.\" Her ears are red to the tips. \"I kept the ledger so I'd know when I was allowed to leave. I stopped adding it up a while ago. I'm not going anywhere, Sam. Not for the money, and not because I owe you. For you.\"\n\nHer tail won't stop wagging, and she glares at it.\n\nThen she takes your hand, pulls you toward the stairs, and doesn't let go of it until the bedroom door is shut behind you both.",
       "ngpp": [
         "Even as she pulls you toward the stairs, she laughs breathlessly—like she's waited through more than one quiet kitchen to finally lock this door.",
         "\"Don't laugh, Sam, I swear I've stood by this exact stove blushing my tail off before,\" she murmurs, fingers squeezing yours tight.",
