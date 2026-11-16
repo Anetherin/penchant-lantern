@@ -109,7 +109,7 @@ function evBond(id, aId, bId, shared){
     });
   });
   if(!choices.length) return null;
-  return {title:bondFill(d.title, a, b), who:a.id, scene:d.scene||'casual', text:bondFill(d.text, a, b), choices};
+  return {title:bondFill(d.title, a, b), who:a.id, scene:d.scene||'casual', cloth:d.cloth, text:bondFill(d.text, a, b), choices};
 }
 function bondFx(w, e, partner){
   if(!e) return;

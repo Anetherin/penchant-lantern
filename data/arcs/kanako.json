@@ -41,7 +41,7 @@
               "m": 8,
               "l": 3,
               "private": true,
-              "acts": ["handjob","oral_give","kiss"],
+              "acts": ["manual_give","oral_give","kiss"],
               "res": "Soapy fingers tangle smoothly in your wet hair before sliding low across your chest as you tug Kanako flush down onto the tub edge—smearing plum lipstick straight across your jaw while her breath hitches.",
               "fallbackRes": "Her manicured fingers work slow, maddening circles across your scalp and neck until she murmurs softly under her breath, cheeks rosy beneath the steam."
             },
@@ -64,7 +64,7 @@
               "m": 10,
               "l": 4,
               "private": true,
-              "acts": ["sex_ride","sex_vaginal","oral_give"],
+              "acts": ["cowgirl","missionary","oral_give"],
               "res": "Kanako laughs low in her throat, sinking straight down onto your cock in the hot water as plum-painted lips graze your collarbone and her nails dig deliciously into wet shoulders."
             },
             {
@@ -73,7 +73,7 @@
               "m": 8,
               "l": 3,
               "private": true,
-              "acts": ["oral_give","paizuri","handjob"],
+              "acts": ["oral_give","breast_give","manual_give"],
               "res": "She arches back against the cedar rim breathing hot, breathless praise against your throat while steam curls thick across her slick skin."
             }
           ]
@@ -111,12 +111,12 @@
       "choices": [
         {
           "label": "Lift her right onto the empty bar counter and show her",
-          "if": {"canAct":["sex_vaginal","oral_give","kiss"]},
+          "if": {"canAct":["missionary","oral_give","kiss"]},
           "t": 5,
           "m": 9,
           "l": 4,
           "private": true,
-          "acts": ["sex_vaginal","oral_give","kiss"],
+          "acts": ["missionary","oral_give","kiss"],
           "res": "You lock the front latch and step straight between her parted knees at the mahogany bar; Kanako exhales a hot, stunned laugh against your mouth, wrapping silky legs tightly around your hips."
         },
         {
@@ -175,19 +175,34 @@
     {
       "title": "Last Call",
       "scene": "sam_date",
-      "text": "Kanako finds a tavern that's almost like a tiny snack bar back home, with a low counter, a cracked mirror, and smoky amber light, and takes you there—just the two of you. There's a lute, and a very drunk bard willing to lend it. She orders for both of you without looking at the chalk slate, the exact way she did for six years across Apartment 3B's hallway.",
+      "text": "Kanako tracks down a tiny six-seat tavern tucked behind the dye vats that feels uncannily like a back-alley Tokyo snack bar—low scarred counter, amber mirror, warm smoke curling near the rafters. She orders two chilled plum wines off memory without reading the chalkboard at all, resting her chin in one palm beside you exactly the way she used to across Apartment 3B's balcony rail.",
+      "byIntim": {
+        "2": {
+          "text": "Kanako leads you to a tiny six-seat tavern behind the dye vats—cracked mirror, warm amber smoke, quiet enough to hear ice clink in plum wine. Midway through her second glass her knee stays pressed warmly under the counter against yours while plum-painted lips curve into a slow, unguarded smile meant only for you."
+        }
+      },
       "choices": [
         {
           "label": "Sing, badly",
           "m": 9,
           "t": 3,
-          "res": "She joins in. You are both terrible, the bard weeps with laughter, and it's the best night either of you has had in this world."
+          "res": "She joins straight in beside you. Together you massacre three tavern standards while a tipsy lute player weeps with joy—still the best night either of you has had since crossing worlds."
         },
         {
           "label": "Ask her to sing",
           "t": 4,
           "m": 6,
-          "res": "Her voice is soft, a little rough from years of smoke and laughter. She sings the whole song looking only at you."
+          "res": "Her voice drops low and smoky over the quiet lute chords, singing every verse with soft dark eyes fixed steadily on yours across the glass."
+        },
+        {
+          "label": "Walk her straight upstairs the moment the tavern closes",
+          "if": {"intim":2,"canAct":["kiss","oral_give","cowgirl","missionary"]},
+          "t": 5,
+          "m": 9,
+          "l": 3,
+          "private": true,
+          "acts": ["oral_give","cowgirl","missionary","kiss"],
+          "res": "Kanako drains the last drop of wine in one smooth tilt, catches your hoodie sleeve, and murmurs warmly, \"Come on, Sammy—this mama wants last call in private.\""
         }
       ],
       "image": {

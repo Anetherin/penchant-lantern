@@ -1170,8 +1170,21 @@
   "walk": {
     "energy": 15,
     "mainGoddessChance": 0.75,
-    "weights": {"partner":4.5,"partnerPity":1.8,"guest":4,"goddess":2.2,"goddessBound":0.8,"casual":3,"rest":1.4,"coin":0.7,"flavor":1.4},
-    "ngppWeights": {"partner":2,"partnerPity":0.8,"guest":2.5,"goddessBound":0.8,"casual":4.8,"rest":1.6,"coin":0.7,"flavor":3.5},
+    "partnerCycleMax": 3,
+    "partnerHalve": true,
+    "weights": {
+      "partner": 1.5,
+      "partnerPity": 0.25,
+      "partnerPityMax": 5,
+      "guest": 3.5,
+      "goddess": 2.2,
+      "goddessBound": 0.8,
+      "casual": 3.2,
+      "rest": 1.8,
+      "coin": 1,
+      "flavor": 1.8
+    },
+    "ngppWeights": {"partner":2.4,"partnerPity":0.5,"partnerPityMax":6,"guest":2.5,"goddessBound":0.8,"casual":4.5,"rest":1.6,"coin":0.7,"flavor":3.2},
     "casual": {"tech":3,"charm":1,"extraEnergy":8,"passEnergy":4,"recruitTech":15,"paidChance":0.25,"paidBase":10,"paidPerTech":0.3,"paidMax":45}
   },
   "goddess": {

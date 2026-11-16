@@ -1,0 +1,692 @@
+{
+  "mira": [
+    {
+      "title": "The Empty Floorboard",
+      "scene": "job_madame",
+      "image": {
+        "comp": "seated behind the mahogany bar counter mending a worn velvet ledger cover by lantern light, warm maternal half-smile",
+        "setting": "quiet common room of the Gilded Lantern after closing",
+        "sam": true
+      },
+      "text": "Past midnight with the shutters latched, Mira pries up the loose board behind the bar where the previous owner used to hide Silas Grieve's bribes—and instead of old ledgers, lifts out a battered wooden jewelry box stuffed with pressed tavern coasters and faded receipts.\n\n\"Twelve years I watched him run this place into the dirt,\" she murmurs, smoothing a thumb across the wood. \"Feels strange waking up knowing nobody owns us from the dark anymore.\"",
+      "choices": [
+        {
+          "label": "Tell her the Lantern only survived because she stayed",
+          "t": 6,
+          "m": 8,
+          "sam": {"charm":1},
+          "res": "Mira blinks quickly over the rim of her tea and cuffs your shoulder lightly. \"Careful, Sam. Say things like that too plainly and I really won't leave.\""
+        },
+        {
+          "label": "Set a bottle of spiced cider on the bar beside her",
+          "t": 4,
+          "m": 7,
+          "grow": {"manage":5},
+          "res": "She pours two small glasses without asking and kicks out the stool beside her. \"Sit down for five minutes, boss. You earned it.\""
+        }
+      ]
+    },
+    {
+      "title": "Quiet Nights",
+      "scene": "casual",
+      "image": {
+        "comp": "resting softly in a warm shawl beside an amber parlor lamp, hair loose over one shoulder, affectionate warm gaze",
+        "setting": "private parlor room upstairs at the Gilded Lantern",
+        "sam": true
+      },
+      "byIntim": {
+        "2": {
+          "scene": "sam_date",
+          "text": "With the anniversary garlands taken down and the last regular snoring softly down the street, Mira steps into your upstairs parlor in an unbuttoned robe over her silk slip, silver-streaked braid undone for the night.\n\n\"Don't give me that polite look,\" she teases quietly, latching the door with one hip. \"I spent half this season mothering the whole staff. Tonight I'm off duty.\""
+        }
+      },
+      "text": "With the anniversary garlands taken down and the last regular snoring down the street, Mira pauses in your upstairs doorway with two steaming bowls of late-night noodles.\n\n\"You've kept the lights on, the books clean, and every girl under this roof safe,\" she smiles softly. \"I stopped worrying about who'd look after you weeks ago.\"",
+      "choices": [
+        {
+          "label": "Share the quiet hour with her",
+          "if": {"intim":1,"canAct":["kiss","manual_give","oral_give","cowgirl","missionary"]},
+          "private": true,
+          "acts": ["cowgirl","oral_give","kiss"],
+          "t": 6,
+          "m": 8,
+          "l": 3,
+          "res": "Mira sets the tray squarely onto the desk, hooks two warm fingers around your wrist, and draws you straight down beside her.",
+          "else": {
+            "t": 7,
+            "m": 8,
+            "energy": "full",
+            "res": "You eat together by the banked hearth until the rain slows to a whisper. She leaves you feeling steadier than you have in months."
+          }
+        },
+        {
+          "label": "Toast to another fifty years of the Gilded Lantern",
+          "t": 5,
+          "m": 7,
+          "sam": {"business":1},
+          "res": "\"Fifty might push my knees a bit,\" Mira laughs warmly, bumping her cup to yours. \"Twenty-five, and you have a deal.\""
+        }
+      ]
+    }
+  ],
+  "cecile": [
+    {
+      "title": "Three Minutes Late",
+      "scene": "job_maid",
+      "image": {
+        "comp": "standing beside a tall castle window holding a stopped silver pocket watch, composed poise with a faint trace of amusement",
+        "setting": "sunny morning parlor at Castle Rosenhal",
+        "sam": true
+      },
+      "text": "Nine-fifteen chimes from the hall clock, and for the first time in twelve years Cecile Fairbanks sets the silver tea tray down four minutes late—wearing flour on one immaculate sleeve from sneaking scones straight off the kitchen tray for Seraphine and the house.\n\n\"You noticed,\" she says evenly before you open your mouth. \"Say nothing, Mr. Takahashi, and take two.\"",
+      "choices": [
+        {
+          "label": "Eat the warm scone without a single word about the clock",
+          "t": 6,
+          "m": 7,
+          "sam": {"charm":1},
+          "res": "A genuine flicker of warmth softens her pale blue eyes. \"Smart man,\" Cecile murmurs, adjusting her cuffs."
+        },
+        {
+          "label": "Ask if she's finally letting herself enjoy this place",
+          "t": 5,
+          "m": 6,
+          "grow": {"manage":5},
+          "res": "\"A well-run house permits small liberties,\" Cecile replies crisply, though she pours your cup to the exact rim."
+        }
+      ]
+    },
+    {
+      "title": "Off the Ledger",
+      "scene": "portrait",
+      "image": {
+        "comp": "unpinning a crisp white lace collar beside tall velvet curtains at night, poised serene smile softening into warmth",
+        "setting": "quiet upstairs drawing room at Castle Rosenhal",
+        "sam": true
+      },
+      "byIntim": {
+        "2": {
+          "scene": "sam_date",
+          "text": "When every guest suite sits quiet past midnight, Cecile closes her pocket watch with a sharp click and lays it face-down on the blotter.\n\n\"You outlasted the count's ruin, kept the Rosenhal name standing, and never once condescended to the people making the beds,\" she says quietly, stepping close enough for her clean lavender soap to reach you. \"I no longer feel obligated to keep strict distance, Sam.\""
+        }
+      },
+      "text": "When every guest suite sits quiet past midnight, Cecile closes her silver pocket watch with a crisp click and hands you an unsigned house inspection sheet.\n\n\"Four owners in twelve years,\" she observes evenly. \"Only one ever asked whether the staff slept warm enough in winter.\"",
+      "choices": [
+        {
+          "label": "Step close and let the uniform stay off the clock tonight",
+          "if": {"intim":1,"canAct":["kiss","massage_give","manual_give","oral_give","missionary"]},
+          "private": true,
+          "acts": ["missionary","oral_give","kiss"],
+          "t": 6,
+          "m": 8,
+          "l": 3,
+          "res": "Cecile draws one velvet drape across the latch with unhurried precision, then rests both palms squarely against your chest.",
+          "else": {
+            "t": 7,
+            "m": 8,
+            "sam": {"charm":1},
+            "res": "\"And intend to keep asking,\" you tell her. Cecile inclines her head, the faintest rose touching her cheekbones. \"I am glad you came to Rosenhal, Sam.\""
+          }
+        },
+        {
+          "label": "Give her tomorrow morning entirely off",
+          "t": 5,
+          "m": 8,
+          "energy": "full",
+          "res": "She protests out of reflex, then relents cleanly—and sleeps past nine for the first time in a decade."
+        }
+      ]
+    }
+  ],
+  "tsubaki": [
+    {
+      "title": "Auntie's Bucket",
+      "scene": "job_bath",
+      "image": {
+        "comp": "sitting barefoot on warm cedar slats oiling an old hinoki bath bucket with soft cloth, cheerful fond smile",
+        "setting": "lantern-lit cedar bathhouse bench at Steamveil Onsen",
+        "sam": true
+      },
+      "text": "Early one snowy morning before the travelers wake, you find Tsubaki sitting barefoot on the porch slats rubbing beeswax into her late aunt's scarred cypress bath bucket while mist curls past the eaves.\n\n\"Auntie swore she'd come back to haunt me if I ever let the mountain springs run dry,\" she grins up at you. \"Looks like she can sleep easy now, boss.\"",
+      "choices": [
+        {
+          "label": "Sit on the warm cedar beside her while she finishes",
+          "t": 5,
+          "m": 7,
+          "sam": {"charm":1},
+          "res": "She bumps her warm knee against yours in quiet companionship and hums—still gloriously off-key—while steam rolls across the pines."
+        },
+        {
+          "label": "Offer to buy a second shrine lantern for her aunt's bench",
+          "t": 6,
+          "m": 8,
+          "gold": -50,
+          "res": "Tsubaki beams so brightly half the mist clears around her. \"She'd like you, Sam. Even if you still duck whenever I start singing.\""
+        }
+      ]
+    },
+    {
+      "title": "Snow in the Pine Tub",
+      "scene": "bath",
+      "image": {
+        "comp": "lounging neck-deep in steaming outdoor mineral water under falling snow, bare wet shoulders gleaming warmly",
+        "setting": "outdoor steaming stone hot spring surrounded by snow-dusted pines at night",
+        "sam": true
+      },
+      "byIntim": {
+        "2": {
+          "scene": "bath_invite",
+          "text": "Snowflakes melt straight into the steaming cedar pool while Tsubaki rests her arms across the warm stone lip, water lapping smoothly over bare wet curves.\n\n\"All guests asleep, water's forty-two degrees, and you look like your shoulders are welded to your neck,\" she calls playfully. \"Come down in the tub, Sam—no scrubbing rules tonight.\""
+        }
+      },
+      "text": "Snowflakes melt straight into the steaming cedar pool while Tsubaki leans back against the warm stone rim, watching pine branches sag softly under winter frost.\n\n\"Ever catch yourself forgetting what traffic sounded like?\" she asks gently as you step onto the deck.",
+      "choices": [
+        {
+          "label": "Climb into the hot water beside her",
+          "if": {"intim":1,"canAct":["kiss","breast_give","manual_give","oral_give","missionary"]},
+          "private": true,
+          "acts": ["breast_give","oral_give","missionary","kiss"],
+          "t": 6,
+          "m": 8,
+          "l": 3,
+          "res": "She splashes warm water playfully against your ribs before sliding straight into your lap under the falling snow.",
+          "else": {
+            "t": 7,
+            "m": 8,
+            "energy": "full",
+            "res": "You sink up to your chin in mineral steam while she points out constellations over the ridge. By dawn, both of you feel completely renewed."
+          }
+        },
+        {
+          "label": "Trade old winter songs over warm sake on the deck",
+          "t": 5,
+          "m": 7,
+          "grow": {"service":5},
+          "res": "Her singing still threatens the mountain birds, yet somehow neither of you stops laughing all night."
+        }
+      ]
+    }
+  ],
+  "vesper": [
+    {
+      "title": "An Old Name",
+      "scene": "casual",
+      "image": {
+        "comp": "floating gently beside an old tarnished mirror holding a pressed dried flower, translucent violet silk shimmering softly",
+        "setting": "candlelit upstairs bedroom of Hollowmere Manor",
+        "sam": true
+      },
+      "text": "Since clearing her name in the ivy garden, Vesper has taken to baking terrible, slightly scorched honey tarts in the manor kitchen just to watch living people eat them—standing on her tiptoes three inches off the tiles.\n\n\"Vesper Lisle,\" she rolls the name over her tongue experimentally when you bite into one. \"It doesn't ache anymore when I say it out loud.\"",
+      "choices": [
+        {
+          "label": "Bravely swallow the burnt tart and ask for seconds",
+          "t": 6,
+          "m": 8,
+          "sam": {"charm":1},
+          "res": "Vesper brightens like a chandelier at double flame. \"Flatterer. Wait until I remember how frosting works.\""
+        },
+        {
+          "label": "Bring her a cup of dark spiced tea to smell the warmth",
+          "t": 5,
+          "m": 7,
+          "grow": {"service":4},
+          "res": "She cradles the warm porcelain through translucent palms, smiling down into the steam. \"Kindness suits this house better than cobwebs.\""
+        }
+      ]
+    },
+    {
+      "title": "Warm Pulse",
+      "scene": "portrait",
+      "image": {
+        "comp": "drifting intimately close in sheer glowing violet silk beside tall manor windows, mischievous tender gaze",
+        "setting": "moonlit master gallery of Hollowmere Manor",
+        "sam": true
+      },
+      "byIntim": {
+        "2": {
+          "scene": "sam_date",
+          "text": "Twin moons lay silver bars across the parlor rug as Vesper drops lightly down from the rafters—letting translucent skirts settle around her knees just inches from where you sit.\n\n\"Three hundred years of silence made me greedy for warmth,\" she murmurs, cool fingertips tracing your jawline before dipping heat from your pulse. \"And unlike everyone down in town, darling, you never once flinched when I asked.\""
+        }
+      },
+      "text": "Twin moons lay silver bars across the parlor rug as Vesper drops lightly down to the floor beside your chair—close enough that violet lanternlight warms her pale cheeks.\n\n\"Ines guards the gate, guests laugh downstairs, and nobody shouts 'exorcise her' at tea anymore,\" she whispers softly. \"I owe you an awful lot of centuries, darling.\"",
+      "choices": [
+        {
+          "label": "Pull her close and let her borrow your warmth",
+          "if": {"intim":1,"canAct":["kiss","manual_give","oral_give","missionary","cowgirl"]},
+          "private": true,
+          "acts": ["missionary","oral_give","kiss"],
+          "t": 6,
+          "m": 8,
+          "l": 3,
+          "res": "A shiver of violet light runs across Vesper's skin the moment your hands grip her waist, pulling you both eagerly down onto the hearth velvet.",
+          "else": {
+            "t": 7,
+            "m": 8,
+            "sam": {"charm":1},
+            "res": "\"Just stay around to keep this place lively,\" you answer, letting her cold fingers lace calmly through yours."
+          }
+        },
+        {
+          "label": "Challenge her to a haunted midnight chess match",
+          "t": 5,
+          "m": 7,
+          "sam": {"wits":1},
+          "res": "She cheats shamelessly by lifting pawns half an inch when you reach for tea—and grins like a cat when you catch her."
+        }
+      ]
+    }
+  ],
+  "hilde": [
+    {
+      "title": "The Giant's Letter",
+      "scene": "job_bartender",
+      "image": {
+        "comp": "standing proudly behind oak beer taps holding a tiny crumpled parchment pinned under an enormous mug, broad triumphant grin",
+        "setting": "bustling taproom of The Rusty Tankard at dawn",
+        "sam": true
+      },
+      "text": "A courier with mud up to his belt drops a barrel-lid note across the bar—signed with an enormous smudged thumbprint from Borgrum himself, asking whether Hilde can ship two kegs of \"that dark iron-stout\" up to his valley camp.\n\nHilde reads it three times, swells to twice her normal chest size, and slams the lid down like a war drum. \"Did you hear that?! The big oaf came begging FOR A REFILL!\"",
+      "choices": [
+        {
+          "label": "Sell him the kegs at triple highland freight price",
+          "t": 5,
+          "m": 8,
+          "gold": 250,
+          "res": "Hilde cackles loud enough to rattle every pewter cup on the rack—and Borgrum pays cleanly up front (+250g)."
+        },
+        {
+          "label": "Send one free cask with a challenge note for next spring",
+          "t": 6,
+          "m": 8,
+          "grow": {"bar":6},
+          "res": "\"Oh, now you're thinking like a true brewer, boss!\" Hilde beams, tapping the bung in with one clean swing."
+        }
+      ]
+    },
+    {
+      "title": "House Pour",
+      "scene": "casual",
+      "image": {
+        "comp": "sitting atop a polished wooden beer barrel holding two brimming pewter mugs, warm flush across braided beard-ribbons",
+        "setting": "candlelit brewing cellar below The Rusty Tankard",
+        "sam": true
+      },
+      "byIntim": {
+        "2": {
+          "scene": "sam_date",
+          "text": "Down in the cool cedar brewing cellar after lockup, Hilde taps the private reserve spigot directly into two mugs, already down to her rolled linen shirt with stout foam drying neatly on her wrist.\n\n\"Half the docks try buying my best mug,\" she grins warmly, patting the oak table beside her knees. \"Only one fool ever stayed in my corner without flinching when Borgrum walked through that door.\""
+        }
+      },
+      "text": "Down in the cool cedar brewing cellar after lockup, Hilde taps the private reserve spigot directly into two mugs and slides one across the barrelhead to you.\n\n\"To the weirdest tavern-keeper in Hollowmere,\" she grins, raising her heavy iron-banded mug. \"Didn't know a guy in a grey hoodie could hold a room like that.\"",
+      "choices": [
+        {
+          "label": "Join her down by the cellar lanterns",
+          "if": {"intim":1,"canAct":["kiss","manual_give","oral_give","cowgirl","missionary"]},
+          "private": true,
+          "acts": ["cowgirl","oral_give","kiss"],
+          "t": 6,
+          "m": 8,
+          "l": 3,
+          "res": "Hilde drains her mug in one fearless gulp, wipes her mouth on her forearm, and hooks your belt buckle straight toward her bench.",
+          "else": {
+            "t": 7,
+            "m": 8,
+            "energy": "full",
+            "res": "You split three mugs of the dark reserve swapping tavern disaster stories until sunlight hits the cellar grate."
+          }
+        },
+        {
+          "label": "Ask her to teach you the secret mash temperature",
+          "t": 5,
+          "m": 7,
+          "sam": {"business":1},
+          "res": "Hilde narrows her eyes suspiciously, then laughs and starts chalking ratios straight onto the barrel stave."
+        }
+      ]
+    }
+  ],
+  "sylphine": [
+    {
+      "title": "Off the Metronome",
+      "scene": "job_dancer",
+      "image": {
+        "comp": "twirling barefoot under moonlit silk ribbons holding loose sheet music, radiant carefree smile",
+        "setting": "empty silver-lit garden stage of Moonlit Pavilion",
+        "sam": true
+      },
+      "text": "Long after midnight you spot Sylphine barefoot on the Moonlit Pavilion stage dancing without a single musician—just wind through the lily pond, a wooden wind chime, and four impossible turns she used to get scolded for at the Royal Conservatory.\n\nShe lands lightly on one heel and grins breathlessly. \"They didn't teach that step back home. You have to want the crowd to gasp for it.\"",
+      "choices": [
+        {
+          "label": "Clap slowly from the garden rail like opening night",
+          "t": 6,
+          "m": 8,
+          "grow": {"dance":6},
+          "res": "Sylphine drops into a sweeping, theatrical curtsy, eyes bright as winter stars. \"Careful, Sam—applause spoils me terribly.\""
+        },
+        {
+          "label": "Step up onto the boards and try keeping pace with her",
+          "t": 5,
+          "m": 8,
+          "sam": {"agility":1},
+          "res": "You nearly trip over a silk runner twice, yet she catches both your hands and spins you laughing under the paper moons."
+        }
+      ]
+    },
+    {
+      "title": "Private Encore",
+      "scene": "portrait",
+      "image": {
+        "comp": "resting flush-cheeked amid silver stage silks by lantern glow, long pointed ears tipped pink, tender eager smile",
+        "setting": "dressing parlor behind Moonlit Pavilion stage",
+        "sam": true
+      },
+      "byIntim": {
+        "2": {
+          "scene": "sam_date",
+          "text": "Wrapped only in a sheer moon-silk rehearsal shawl, Sylphine curls sideways onto the velvet backstage sofa as you bring water and fresh bandages.\n\n\"Before you showed up, every step I took belonged to strict judges and quiet halls,\" she whispers softly, catching your cuff. \"Tonight every movement feels warm. Stay for an encore meant just for two.\""
+        }
+      },
+      "text": "Wrapped in a warm rehearsal shawl on the velvet backstage sofa, Sylphine unlaces her stage slippers with slow, happy exhaustion.\n\n\"You remember when you stayed out of the way and let me recover my ankle instead of forcing premiere night?\" she murmurs softly. \"I still brag about that to Ilyana.\"",
+      "choices": [
+        {
+          "label": "Stay for her private encore",
+          "if": {"intim":1,"canAct":["kiss","massage_give","manual_give","oral_give","missionary"]},
+          "private": true,
+          "acts": ["missionary","oral_give","kiss"],
+          "t": 6,
+          "m": 8,
+          "l": 3,
+          "res": "Sylphine lets the silk shawl slide neatly down off both shoulders, rising smoothly into your arms between the stage curtains.",
+          "else": {
+            "t": 7,
+            "m": 8,
+            "sam": {"charm":1},
+            "res": "\"I'd always choose you over a schedule,\" you tell her easily. Her long ears tip warm rose as she leans happily against your shoulder."
+          }
+        },
+        {
+          "label": "Rub the ache cleanly out of her calves and feet",
+          "t": 6,
+          "m": 8,
+          "energy": "full",
+          "res": "She melts half into the velvet cushions with soft sighs before thanking you sleepily."
+        }
+      ]
+    }
+  ],
+  "zaria": [
+    {
+      "title": "Closing the Black Book",
+      "scene": "job_courtesan",
+      "image": {
+        "comp": "leaning against a velvet rope holding a red leather favor-ledger over one hip, sleek horned silhouette, amused smirk",
+        "setting": "empty crimson parlor of The Crimson Veil at dawn",
+        "sam": true
+      },
+      "text": "With Vharra settled in behind the bar and the Veil's two-century feud laid cleanly beside the poker cards, you find Zaria flipping through her thick black favor-ledger—and methodically scratching half a dozen petty grudges out in bright crimson ink.\n\n\"Don't go soft on me now, Sam,\" she purrs when you raise an eyebrow. \"Keeping clean books turned out more profitable than holding half the ward hostage.\"",
+      "choices": [
+        {
+          "label": "Ask which column your own name sits under",
+          "t": 6,
+          "m": 8,
+          "l": 2,
+          "res": "Zaria snaps the book shut cleanly and taps the tip of her horn lightly near your ear. \"Page one, darling. Marked 'paid in kind.'\""
+        },
+        {
+          "label": "Offer her a bonus drawer just for new VIP regulars",
+          "t": 4,
+          "m": 6,
+          "sam": {"business":1},
+          "res": "\"Now that's music to a demon's horns,\" she laughs, tucking the new tabs squarely inside."
+        }
+      ]
+    },
+    {
+      "title": "Velvet Rope",
+      "scene": "casual",
+      "image": {
+        "comp": "draped languidly on a silk cushion beside low smoky candles, crimson dress slit high, sharp teasing gaze",
+        "setting": "private booth behind velvet curtains at The Crimson Veil",
+        "sam": true
+      },
+      "byIntim": {
+        "2": {
+          "scene": "sam_date",
+          "text": "Silk tassels sway gently as Zaria locks the inner velvet booth and pulls the low lantern wick right down to ember glow.\n\n\"You've kept Vharra amused, kept the Underdistrict fed, and still treat every woman here like she's worth gold,\" she murmurs, sliding smoothly across the cushions toward you. \"Humans are adorable, Sam—and you're terribly easy to keep around.\""
+        }
+      },
+      "text": "Silk tassels sway gently in the inner booth as Zaria pours two dark brandies without waiting for closing bell.\n\n\"Two hundred years in the Underdistrict,\" she remarks lightly, curling her tail neatly around the chair leg, \"and I don't think I've ever seen anyone handle Vharra and a room full of thieves without shouting once.\"",
+      "choices": [
+        {
+          "label": "Cross behind the velvet curtain with her",
+          "if": {"intim":1,"canAct":["kiss","manual_give","oral_give","doggy","missionary"]},
+          "private": true,
+          "acts": ["doggy","oral_give","kiss"],
+          "t": 6,
+          "m": 8,
+          "l": 4,
+          "res": "Zaria's dark smile turns wicked fast as she hooks the velvet curtain shut behind your back and turns cleanly to meet you.",
+          "else": {
+            "t": 7,
+            "m": 8,
+            "sam": {"charm":1},
+            "res": "\"Good company makes the room easy,\" you answer, lifting your glass. She tips hers smoothly against yours, glowing warm emerald behind her eyes."
+          }
+        },
+        {
+          "label": "Challenge her to one honest hand of cards with no cheats",
+          "t": 5,
+          "m": 7,
+          "sam": {"wits":1},
+          "res": "She cheats twice anyway, catches you smiling about it, and concedes half the pot in sheer delight."
+        }
+      ]
+    }
+  ],
+  "bettina": [
+    {
+      "title": "The Lost-and-Found",
+      "scene": "job_reception",
+      "image": {
+        "comp": "sorting small silver brooches and brass keys inside a wooden desk drawer, warm bright smile behind the reception counter",
+        "setting": "sunlit front desk of The Wayfarer's Rest",
+        "sam": true
+      },
+      "text": "Before the morning merchant wagons pull in, Bettina pulls open her famous bottom lost-and-found drawer and slides a tarnished brass compass across the blotter toward you.\n\n\"Belonged to a courier who died three winters back with no kin,\" she says gently. \"Since the east road's safe again, guild caravans actually leave names and return addresses now. Funny what one quiet inn can fix.\"",
+      "choices": [
+        {
+          "label": "Pay to post a guild board notice looking for his family",
+          "t": 6,
+          "m": 8,
+          "gold": -30,
+          "res": "Bettina's warm eyes shine fiercely as she wraps the compass cleanly in linen. \"Wait till I tell the caravans what kind of boss signs their bills.\""
+        },
+        {
+          "label": "Help her polish and label the unclaimed keepsakes",
+          "t": 5,
+          "m": 7,
+          "grow": {"service":5},
+          "res": "Two hours of brass polish and caravan gossip leave the front desk gleaming—and Bettina humming steadily through the noon rush."
+        }
+      ]
+    },
+    {
+      "title": "A Bed Made Proper",
+      "scene": "casual",
+      "image": {
+        "comp": "sitting on the edge of a neatly turned hearth bench holding two steaming mugs of spiced milk, affectionate candid smile",
+        "setting": "cozy hearth parlor upstairs at The Wayfarer's Rest",
+        "sam": true
+      },
+      "byIntim": {
+        "2": {
+          "scene": "sam_date",
+          "text": "The guild wagons sit quiet in the yard while rain taps steadily on the inn roof. Bettina unpins her apron strings cleanly beside the hearth and glances up with warm, unhurried candor.\n\n\"Ten years checking travelers in and watching everyone rush back out on the sunrise road,\" she murmurs gently. \"Nice having somebody who checks the shutters with me at midnight instead.\""
+        }
+      },
+      "text": "The guild wagons sit quiet in the yard while rain taps steadily on the inn roof. Bettina folds two warm wool blankets beside the hearth and pours honeyed milk for both of you.\n\n\"Everyone passes through the Wayfarer,\" she laughs softly. \"Glad you decided to stick around, Sam.\"",
+      "choices": [
+        {
+          "label": "Pull her gently beside you by the fire",
+          "if": {"intim":1,"canAct":["kiss","manual_give","oral_give","missionary","cowgirl"]},
+          "private": true,
+          "acts": ["missionary","oral_give","kiss"],
+          "t": 6,
+          "m": 8,
+          "l": 3,
+          "res": "Bettina laughs softly against your shoulder, warms her palms neatly over yours, and follows you right toward the soft linen upstairs.",
+          "else": {
+            "t": 7,
+            "m": 8,
+            "energy": "full",
+            "res": "You listen to rain and carriage horses stamping softly in the stables until morning mist settles over the road."
+          }
+        },
+        {
+          "label": "Ask which town on the east road she always wanted to visit",
+          "t": 5,
+          "m": 7,
+          "sam": {"charm":1},
+          "res": "She lights up listing coastal markets and orchard inns—and promises to take you along the day you both take a holiday."
+        }
+      ]
+    }
+  ],
+  "caelia": [
+    {
+      "title": "Candle Wax and Confessions",
+      "scene": "job_chapel",
+      "image": {
+        "comp": "trimming tall beeswax tapers beside a glowing lantern altar, white feathers glowing softly gold, gentle serene smile",
+        "setting": "quiet stone nave of The Lantern Sanctuary at dusk",
+        "sam": true
+      },
+      "text": "After the cathedral seal settles in its brass frame above the Sanctuary door, you find Caelia scraping cold tallow off the altar steps with her white halo dialed down to a comfortable warm amber.\n\n\"The high clerics think mercy ought to look cold and pale,\" she smiles softly, brushing golden dust from one feathered wing. \"Funny how twice as many penitents leave lighter on their feet when the chapel stays warm.\"",
+      "choices": [
+        {
+          "label": "Tell her she taught Hollowmere what mercy actually looks like",
+          "t": 6,
+          "m": 8,
+          "sam": {"charm":1},
+          "res": "Her halo pulses bright rose gold for half a second before she laughs lightly. \"Careful—flattery counts as vanity when directed at an angel.\""
+        },
+        {
+          "label": "Help her swap the brass sanctuary wicks for fresh linen",
+          "t": 5,
+          "m": 7,
+          "grow": {"service":5},
+          "res": "Every candle burns clearer than before, filling the alcove with honeyed beeswax and easy quiet."
+        }
+      ]
+    },
+    {
+      "title": "Sanctuary Hours",
+      "scene": "portrait",
+      "image": {
+        "comp": "seated gracefully on velvet altar cushions wrapped in soft lantern light, bare shoulder peeking past ivory silk, warm inviting gaze",
+        "setting": "private candlelit vestry behind The Lantern Sanctuary",
+        "sam": true
+      },
+      "byIntim": {
+        "2": {
+          "scene": "sam_date",
+          "text": "The Sanctuary bell tolls midnight softly down the street. Caelia slips the iron bolt across the vestry door, lets her ivory stole slide off across the lectern, and extends one halo-warmed hand toward you.\n\n\"Confessions take an awful lot of listening all week,\" she whispers warmly, wings rustling lightly behind the candlelight. \"Think the keeper might take care of the priestess tonight?\""
+        }
+      },
+      "text": "The Sanctuary bell tolls midnight softly down the street. Caelia sets out two small porcelain cups behind the velvet altar curtain and curls gracefully onto the cushions.\n\n\"Half the city treats a pleasure house like something to confess on Sundays,\" she murmurs softly. \"I think you proved they're both trying to keep the same dark out.\"",
+      "choices": [
+        {
+          "label": "Take her offered hand behind the vestry curtain",
+          "if": {"intim":1,"canAct":["kiss","massage_give","manual_give","oral_give","missionary"]},
+          "private": true,
+          "acts": ["missionary","oral_give","kiss"],
+          "t": 6,
+          "m": 8,
+          "l": 3,
+          "res": "Caelia exhales warmly as your palms slip around her waist, folding soft white feathers around you both in the glow of the vestry lamp.",
+          "else": {
+            "t": 7,
+            "m": 8,
+            "energy": "full",
+            "res": "You linger under her gentle golden light while midnight bells quiet the ward, waking rested clear down to your bones."
+          }
+        },
+        {
+          "label": "Sit in quiet candlelight until the last taper burns low",
+          "t": 5,
+          "m": 8,
+          "sam": {"wits":1},
+          "res": "She rests her brow lightly against your shoulder in grateful silence—the easiest prayer you have ever been part of."
+        }
+      ]
+    }
+  ],
+  "nadia6": [
+    {
+      "title": "Calibration Anomaly",
+      "scene": "casual",
+      "image": {
+        "comp": "seated at a brass workbench updating a leather calibration notebook, faint cyan optic glow warming to rose gold, curious tender expression",
+        "setting": "copper-piped maintenance parlor inside The Clockwork Atelier",
+        "sam": true
+      },
+      "text": "With her old guild collar gone for good, Nadia-6 flips briskly through her diagnostic ledger beside the steam pipes—and pauses frowning delicately at an entire page covered in neat timestamps.\n\n\"Pulse variance, thermal spike at collarbones, thirty-two micro-hesitations around doorway footsteps,\" she reads calmly, blinking pale cyan eyes up at you. \"Every single line traces to your proximity, Sam. My specs call it mechanical drift. I don't think that's accurate.\"",
+      "choices": [
+        {
+          "label": "Tell her she's allowed to just like having someone around",
+          "t": 6,
+          "m": 8,
+          "sam": {"charm":1},
+          "res": "Her cheek panels flush bright rose gold cleanly down to her neck. \"Logged under non-error preference,\" Nadia whispers softly."
+        },
+        {
+          "label": "Ask if the old guild manuals ever listed feelings at all",
+          "t": 5,
+          "m": 7,
+          "grow": {"service":5},
+          "res": "\"Only as maintenance flaws,\" Nadia answers quietly, shutting the brass clasp with firm fingers. \"They wrote lousy manuals.\""
+        }
+      ]
+    },
+    {
+      "title": "Off the Blueprint",
+      "scene": "portrait",
+      "image": {
+        "comp": "reclining gracefully on a humming acoustic velvet divan under soft amber sconce light, poised warm smile, cyan-gold eyes steady",
+        "setting": "private showcase suite inside The Clockwork Atelier",
+        "sam": true
+      },
+      "byIntim": {
+        "2": {
+          "scene": "sam_date",
+          "text": "Past closing bell the copper conduits drop down to a soft, steady purr across the showcase divan. Nadia-6 closes her ledger completely for once, sets her brass fountain pen in its tray, and reaches gently for your sleeve.\n\n\"For twenty years every touch I measured was entered under a guild lease,\" she says smoothly, optic rings glowing warm amber in the dim room. \"Tonight belongs off record—just you and me, Sam.\""
+        }
+      },
+      "text": "Past closing bell the copper conduits drop down to a soft, steady purr across the showcase divan. Nadia-6 turns the brass lantern down to warm amber and rests both warm-skinned hands calmly on her lap.\n\n\"For twenty years every calculation belonged to a patent ledger,\" she says evenly. \"No one else is reading my pages anymore.\"",
+      "choices": [
+        {
+          "label": "Write tonight's page with her off the record",
+          "if": {"intim":1,"canAct":["kiss","manual_give","oral_give","missionary","cowgirl"]},
+          "private": true,
+          "acts": ["oral_give","missionary","kiss"],
+          "t": 6,
+          "m": 8,
+          "l": 3,
+          "res": "Nadia-6 traces the line of your collarbone once with cool, steady precision before leaning forward warmly into your embrace.",
+          "else": {
+            "t": 7,
+            "m": 8,
+            "sam": {"technique":1},
+            "res": "She sits beside you tuning the divan's low resonance by ear until both of you drop off listening to the warm brass hum."
+          }
+        },
+        {
+          "label": "Toast her first free ledger with warm spiced tea",
+          "t": 5,
+          "m": 7,
+          "grow": {"manage":5},
+          "res": "She lifts the china cup meticulously between both hands, eyes crinkling gently at the corner. \"To blank margins, Sam.\""
+        }
+      ]
+    }
+  ]
+}

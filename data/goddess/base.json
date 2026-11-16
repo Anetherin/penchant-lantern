@@ -23,6 +23,26 @@
       "setting": "an endless dark space full of floating paper lanterns"
     },
     "open": "The horn is still ringing when the dark fills up with lanterns. Hundreds of them, hanging from nothing.\n\nA woman sits among them as if on a swing, barefoot, a little ember-flame drifting lazily around her shoulder. Her skin glows from within like a lantern, gold markings brightening at her collarbones and hips as she looks you over, slowly, head to toe, like someone deciding what to unwrap first.\n\n\"{sam} Takahashi. Thirty-one years of being nice to people and nobody ever once being nice back on purpose.\" She tilts her head. \"I'm {goddess}. I light the way across, for the ones I pick. I picked you. On a whim, mostly. Don't read into it.\" She smiles like a woman who is reading into it a great deal.",
+    "choices": [
+      {
+        "label": "\"Wait — a pleasure house? Why me?\"",
+        "love": 2,
+        "mood": 2,
+        "res": "\"Because it will force the two most dangerous things onto a quiet man: people depending on you, and people wanting you.\" {goddess} rests her chin in her palm, smiling warmly. \"Try not to apologize to the furniture on your first night.\""
+      },
+      {
+        "label": "\"I just got hit by a truck and you're already flirting?\"",
+        "love": 3,
+        "mood": 3,
+        "res": "Her laugh rings bright enough to make three nearby lanterns bob. \"You noticed! Good. Most people panic about the afterlife for ten minutes first. Keep that eye open when you wake up.\""
+      },
+      {
+        "label": "\"Alright. What's the catch?\"",
+        "love": 1,
+        "mood": 1,
+        "res": "\"Practical right through the collarbone,\" {goddess} murmurs, approving in spite of herself. \"Fine. Since you asked neatly—\""
+      }
+    ],
     "close": "\"There's a debt. There's always a debt, it keeps you honest. Pay it, and if you're still interesting, I'll bring you back and we'll do it again.\" She trails one fingertip down your chest, leans close enough that her warmth fills the dark, and doesn't kiss you. \"I'll be watching. Everything. Give me something worth watching.\"\n\nThe lanterns go out, one by one.\n\nWhen you wake, the lanterns slip away like a dream, and by the time you're tying your shoes there is only a warm smell of candle smoke, and a faint feeling of having forgotten something that mattered.",
     "button": "Wake up"
   },
@@ -408,7 +428,7 @@
         "She pulls you down on top of her and wraps her legs around your waist, guiding your shaft into her wet heat, and for a while there's nothing but her breath against your ear and the rhythm she sets with her heels at your back."
       ],
       "doggy": [
-        "She turns over on her hands and knees and looks back at you over her shoulder, an invitation and a dare. You take her from behind, her hips in your hands, driving deep into her slick folds as her laugh turns into something breathless and wordless."
+        "She turns over on her hands and knees and looks back at you over her shoulder, an invitation and a dare. You take her from behind, her hips in your hands, driving deep into her slick pussy as her laugh turns into something breathless and wordless."
       ]
     },
     "dry": {

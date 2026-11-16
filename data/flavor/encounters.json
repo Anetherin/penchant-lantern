@@ -14,6 +14,36 @@
       "The room reeked of sex, sweat, and warm candle wax by the time they were done, and the bedsheets looked like they'd survived a storm."
     ]
   },
+  "client_yes_bath": {
+    "_note": "Second half of a report highlight when a bath attendant served a bather in the bathhouse.",
+    "_default": [
+      "Steam curled thick around the tiled pool as she slid right in beside him, letting the hot water hide everything except his ragged groans.",
+      "He sank back against the wet stone rim while her slick, oiled hands and mouth went to work beneath the mist, leaving him boneless in the warm water.",
+      "She took her time with him in a quiet corner of the steaming bathhouse until he shuddered hard in the warm pool and barely had the legs to climb out."
+    ]
+  },
+  "client_yes_exhib": {
+    "_note": "Second half of a report highlight when an Exhibitionist served a client in the open lounge alcove.",
+    "_default": [
+      "She didn't bother with a bedroom—just tugged him behind a half-drawn velvet curtain off the lounge, letting muffled gasps drift within earshot of the whole room.",
+      "Right in the curtained alcove off the main floor, she let him have his fill while footsteps passed three paces away, grinning wickedly at the risk.",
+      "With only a thin drape between them and the busy lounge, she rode the thrill of nearly being caught until he came hard and stumbled out crimson-faced."
+    ]
+  },
+  "prop_bath": {
+    "_note": "Bath attendant accepted a proposition in the bathhouse.",
+    "_default": [
+      "She didn't bother leaving the steam—just pulled him into a quiet corner of the bathhouse and took care of him right there in the warm water.",
+      "She glanced around the misty tiles, smiled slowly, and drew him straight into a secluded soaking pool."
+    ]
+  },
+  "prop_exhib": {
+    "_note": "Exhibitionist accepted a proposition in a semi-public alcove instead of upstairs.",
+    "_default": [
+      "Instead of heading upstairs, she tugged him straight behind a half-drawn curtain off the lounge where anyone walking past could hear.",
+      "She skipped the bedrooms entirely and pulled him into a shadowed alcove just off the main floor, thriving on the open risk."
+    ]
+  },
   "client_company": {
     "_note": "Second half of a report highlight when a client only wanted her company.",
     "_default": [
@@ -238,76 +268,6 @@
       "The floor was short a pair of hands, so {name} lent hers for {clients}{did}."
     ]
   },
-  "pushy_talked": {
-    "_note": "A client got pushy and she talked him down herself. Non-graphic.",
-    "_default": [
-      "A client got pushy with {name}, but she kept her cool and talked him down before things escalated.",
-      "Someone wouldn't take no from {name}. One sharp look and a steady voice, and he backed off.",
-      "One guest grew grabby with {name}, but she caught his wrist, held her ground, and cooled him down.",
-      "A client got overly bold with {name}. She talked him down calmly until the tension passed.",
-      "{name} shut down a client who wouldn't take no, using nothing more than a level stare and firm boundaries.",
-      "A drunk patron tried to push his luck with {name}; she defused him cleanly and steered him toward a glass of water.",
-      "A man pressed {name} for more than she'd agreed to. She kept her voice smooth, her limits clear, and he gave up."
-    ]
-  },
-  "pushy_security": {
-    "_note": "A client got pushy and security handled it. Non-graphic.",
-    "_default": [
-      "A client got pushy with {name}, and security promptly threw him out.",
-      "Someone refused to take no from {name}. Security marched him to the door before it went any further.",
-      "A client pressed too hard with {name}, and a guard was at his elbow in seconds, escorting him out.",
-      "When a patron ignored {name}'s refusal, security materialized at his shoulder and showed him the street.",
-      "Security stepped in the moment a guest crowded {name}, depositing him outside before he could protest.",
-      "One patron got grabby with {name}; security removed him smoothly, firmly, and permanently.",
-      "{name} gave a quick signal and a guard was there at once, cutting the pushy client's night short."
-    ]
-  },
-  "pushy_sam": {
-    "_note": "A client got pushy and Sam stepped in. Non-graphic.",
-    "_default": [
-      "A client got pushy with {name}. You stepped in and settled it.",
-      "A patron wouldn't take no for an answer until you intervened and walked him to the door.",
-      "A client crowded {name} and wouldn't back off. You stepped in, pale but resolute, and talked him right out of the house.",
-      "One guest didn't want to hear no from {name}. You stepped between them, adjusted your glasses, and somehow diffused the whole thing.",
-      "A pushy client ran straight into you in the hallway; you held your ground, and the man blinked and left.",
-      "A guest got insistent with {name}, and you hurried in like a determined lantern to send him packing.",
-      "You heard raised voices, rushed upstairs, and planted yourself between {name} and the client—needing a stiff drink afterward."
-    ]
-  },
-  "pushy_samfail": {
-    "_note": "A client got pushy and Sam's attempt went badly. Non-graphic.",
-    "_default": [
-      "A client got pushy with {name}. You stepped in, and it turned into a loud, ugly scene for {house}.",
-      "A patron wouldn't take no from {name}; you intervened with a trembling voice, sparking a shouting match across the lounge of {house}.",
-      "You tried to talk a pushy guest down, tripped over your own words and a rug, and created a spectacle everyone at {house} saw.",
-      "A client got pushy with {name}, and your attempt at authority came out as a squeak—{house} won't live it down all week.",
-      "You stepped between {name} and an aggressive guest, only to get laughed at before the whole lounge of {house}.",
-      "You tried your best, but the pushy patron shoved right past you, leaving {name} to sort out the mess at {house}."
-    ]
-  },
-  "pushy_samcall": {
-    "_note": "A client got pushy, security could not handle it, and Sam was sent for (resolved by the player after the report). Non-graphic.",
-    "_default": [
-      "A client got pushy with {name}. Security couldn't budge him, and someone sprinted to fetch you.",
-      "A patron pushed {name} too far, and the guards couldn't shift him; a runner bolted upstairs for you.",
-      "Security couldn't talk down the client cornering {name}, so someone went flying to summon you.",
-      "A stubborn guest refused to leave {name} alone; while security held him back, a maid ran for you.",
-      "The guards hit a wall with a belligerent patron, and word went out urgently for you.",
-      "A persistent guest kept {name} backed into a corner until security gave up and sent for you."
-    ]
-  },
-  "pushy_none": {
-    "_note": "A client got pushy and nobody was there. Non-graphic.",
-    "_default": [
-      "A client got pushy with {name} with nobody nearby to help; she broke free on her own, visibly shaken.",
-      "{name} had to talk her own way out from under a client who wouldn't take no while the hall stood empty.",
-      "A patron crowded {name} in a quiet corridor out of earshot; she slipped his grasp and hurried downstairs trembling.",
-      "{name} found herself cornered by a guest who wouldn't listen, ducking his reach to make it back to the lounge.",
-      "A pushy guest followed {name} unnoticed; she shut him down herself, shaken but unharmed.",
-      "No guard, no maid, and you weren't nearby—{name} faced down a pushy client alone and escaped on sheer nerve.",
-      "A patron got far too forward with {name} with nobody around; she pulled clear and needed a long quiet moment to steady herself."
-    ]
-  },
   "enc_pushy_talked": {
     "_default": [
       "He got pushy; she talked him down.",
@@ -391,18 +351,6 @@
       "A client lingered around {name} hoping for an invitation that never came.",
       "A patron waited all night for {name} to make the first move before finally drifting out empty-handed.",
       "One client angled hard for an offer from {name} and went home with nothing but a cold cup of tea."
-    ]
-  },
-  "prop_accept_reluctant": {
-    "_note": "She accepted a proposition without much enthusiasm.",
-    "_default": [
-      "{name} accepted a proposition she wasn't particularly excited about, figuring she might as well get it over with.",
-      "{name} agreed to a client's offer with a small shrug, deciding saying yes was easier than arguing.",
-      "{name} took a guest's proposition, though the warmth never quite reached her eyes.",
-      "{name} let out a quiet breath, smoothed her skirt, and accepted an offer she wasn't thrilled over.",
-      "It wasn't what {name} had been hoping for, but she nodded and led him upstairs anyway.",
-      "{name} accepted a client's proposition with all the fervor of someone folding laundry.",
-      "{name} gave a polite, slightly weary yes to an offer she'd rather have passed on."
     ]
   },
   "enc_noroom": {

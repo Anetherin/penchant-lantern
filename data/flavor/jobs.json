@@ -266,54 +266,6 @@
       "The ladies of {house} had willing clients and nowhere to lay them down. Adding bedrooms would pay off fast."
     ]
   },
-  "tidy_high": {
-    "_note": "Weekly note when the house is spotless.",
-    "_default": [
-      "{house} is spotless, and everyone—staff and guests alike—seems to breathe easier for it.",
-      "{house} gleams from floor to rafters this week; even the house cat looks smug about it.",
-      "The floors of {house} shine, the lanterns gleam, and guests keep remarking on how fresh the sheets smell.",
-      "{house} has never looked better. The ladies feel pampered, and the clients linger longer.",
-      "Every corner of {house} sparkles, giving the whole place an inviting, upscale glow.",
-      "Crisp linens, swept floors, and not a cobweb in sight—{house} is a pleasure to walk through.",
-      "The whole of {house} is immaculate, and the staff look rightly proud of themselves."
-    ]
-  },
-  "tidy_low": {
-    "_note": "Weekly note when the house is getting shabby.",
-    "_default": [
-      "{house} is getting noticeably untidy. Guests have started wrinkling their noses, and so have the ladies.",
-      "{house} has cobwebs gathering in the corners, and the rugs look worn. The ladies have started to sigh.",
-      "Dust has settled on the banister at {house}, and a client was seen wiping his hands after leaning on it.",
-      "Too many unwashed glasses and scuffed floors: {house} is starting to slip.",
-      "The lounge at {house} isn't nearly as clean as it used to be, and regulars have started raising eyebrows.",
-      "{house} is looking a little shabby, with smudged windows and sticky tables.",
-      "Nothing catastrophic yet, though {house} badly needs a scrub before clients start taking their coin elsewhere."
-    ]
-  },
-  "tidy_bad": {
-    "_note": "Weekly note when the house is a mess.",
-    "_default": [
-      "{house} is an outright mess. Guests wrinkle their noses at the door and the ladies are miserable.",
-      "{house} is in a sorry state: sticky floors, dusty corners, and a stale smell that follows guests up the stairs.",
-      "Clients at {house} step carefully around the clutter, and the ladies have begun to complain loudly.",
-      "Dirty plates, tangled sheets, and thick cobwebs: {house} is an embarrassment this week.",
-      "The filthy state of {house} has become town gossip, and none of it is flattering.",
-      "{house} is a pigsty. A regular left a polite complaint in the guest book, followed by a much less polite one.",
-      "There's mud on the stairs and a suspicious stain on the lounge rug at {house}. Nobody wants to ask what caused it."
-    ]
-  },
-  "bath_massage": {
-    "_note": "Weekly line for a bath attendant who gave massages.",
-    "_default": [
-      "{name} offered every naked bather a warm oil massage, and almost none of them turned her down.",
-      "{name} moved among the bathers with slick, oiled palms, kneading tense shoulders and lower backs until they groaned.",
-      "{name} turned the bathhouse into a chorus of low, contented sighs, one oiled back after another.",
-      "{name} worked the knots out of grateful, bare-skinned guests while steam curled around the lanterns.",
-      "{name} offered slick poolside massages all week, and the line for her corner of the bath ran out the door.",
-      "{name} pressed her thumbs into tired necks and tight hips, leaving a dozen men boneless and flushed.",
-      "{name} coated her hands in warm cedar oil and gave the bathhouse its busiest week yet."
-    ]
-  },
   "sample_act": {
     "_note": "Report highlight for one free sample a promoter gave on the street ({act} = the service, {lady} = 'offered a massage' style phrase).",
     "_default": [

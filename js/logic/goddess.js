@@ -71,6 +71,7 @@ function goddessPower(){
 const goddessActions = () => 1 + Math.floor((G().divinity||0) / ((GB().divinity||{}).perAction || 25));
 
 /* ---------- scenes (modal with her picture) ---------- */
+let GINTRO = null;
 function gScene(title, text, img, btn, next){
   GNEXT = next || null;
   const sc = img ? (typeof img === 'string' ? img : dynScene('goddess_' + (img.key || title.replace(/\W+/g,'_').toLowerCase()), img)) : 'portrait';
@@ -78,16 +79,35 @@ function gScene(title, text, img, btn, next){
   $('#modal').scrollTop = 0;
   showImg('gImg', godId(), sc || 'portrait');
 }
-function gNext(){ const n = GNEXT; GNEXT = null; closeModal(); if(typeof n === 'function') n(); else render(); }
+function gNext(){ const n = GNEXT; GNEXT = null; GINTRO = null; closeModal(); if(typeof n === 'function') n(); else render(); }
+function gIntroPick(i){
+  if(!GINTRO || !GINTRO.choices[i]) return;
+  const g = G(), c = GINTRO.choices[i];
+  if(c.love) g.love = clamp((g.love||0) + c.love);
+  if(c.mood) g.mood = clamp((g.mood||55) + c.mood);
+  const res = gpara(gtxt(c.res, GINTRO.ctx), GINTRO.after);
+  save();
+  const re = $('#gIntroRes'), ch = $('#gIntroChoices');
+  if(re) re.innerHTML = `<p class="story">${esc(res)}</p>`;
+  if(ch) ch.innerHTML = `<button class="primary" onclick="gNext()">${esc(GINTRO.btn || 'Wake up')}</button>`;
+  const m = $('#modal'); if(m) m.scrollTop = 0;
+}
 
 /* ---------- cycle 1: the intro, before Marguerite's welcome ---------- */
 function goddessIntro(next){
   const g = G(); g.met = true; g.roster = S.workers.length;
-  const I = GOD.intro || {}, h = S.houses[0], p = S.workers.find(w=>w.isPartner), P = ((NAMED[S.partner]||{}).goddess) || {};
+  const I = GOD.intro || {}, h = S.houses[0], p = S.workers.find(w=>w.isPartner);
   const ctx = {house: h ? h.name : 'the house', partner: p ? p.name.split(' ')[0] : 'someone', past: PASTS[S.past] ? PASTS[S.past].label.toLowerCase() : 'office worker'};
-  const text = gpara(gtxt(I.open, ctx), gtxt(((PASTS[S.past]||{}).goddess||{}).intro, ctx), gtxt(h && (HOUSES[h.id]||{}).goddess, ctx), gtxt(P.hand, ctx), gtxt(P.comment, ctx), gtxt(I.close, ctx));
+  const open = gpara(gtxt(I.open, ctx), gtxt(((PASTS[S.past]||{}).goddess||{}).intro, ctx));
+  const after = gtxt(I.close, ctx), ch = Array.isArray(I.choices) ? I.choices : [];
   save();
-  gScene(I.title || 'Before the truck stops ringing', text, I.image, I.button || '…', next);
+  if(!ch.length) return gScene(I.title || 'Before the truck stops ringing', gpara(open, after), I.image, I.button || 'Wake up', next);
+  GNEXT = next || null;
+  GINTRO = {choices: ch, ctx, after, btn: I.button || 'Wake up'};
+  const sc = I.image ? (typeof I.image === 'string' ? I.image : dynScene('goddess_' + (I.image.key || 'intro'), I.image)) : 'portrait';
+  modal(`<h2>${esc(I.title || 'Before the truck stops ringing')}</h2><div id="gImg"></div><p class="story">${esc(open)}</p><div id="gIntroRes"></div><div class="row" id="gIntroChoices">${ch.map((c,i)=>`<button ${i===0?'class="primary"':''} onclick="gIntroPick(${i})">${esc(gtxt(c.label, ctx))}</button>`).join('')}</div>`, {lock:true});
+  $('#modal').scrollTop = 0;
+  showImg('gImg', godId(), sc || 'portrait');
 }
 
 /* ---------- New Game+: her word at every rebirth; the binding at the first one after a lady's full life ---------- */
@@ -100,16 +120,15 @@ function goddessRebirth(info, next){
   g.roster = S.workers.length;
   if(bindReady()) return goddessBind(info, next);
   if(g.bound && !g.left){   // after the binding: a short word, then on with it
-    save(); return gScene(R.boundTitle || `${GN()}`, gpara(gtxt(R.bound && R.bound[dTier()], info), gtxt(info.house && (HOUSES[info.house]||{}).goddess, {house: info.house ? HOUSES[info.house].name : ''})), R.image, 'Continue', next);
+    save(); return gScene(R.boundTitle || `${GN()}`, gtxt(R.bound && R.bound[dTier()], info), R.image, 'Continue', next);
   }
   if(g.left){ if(next) next(); return; }
   const pace = info.weeks && info.planned ? (info.weeks <= info.planned * 0.75 ? 'fast' : info.weeks >= info.planned ? 'slow' : 'steady') : 'steady';
-  const P = ((NAMED[info.partner]||{}).goddess) || {}, pn = info.partner && NAMED[info.partner] ? NAMED[info.partner].name.split(' ')[0] : '';
+  const pn = info.partner && NAMED[info.partner] ? NAMED[info.partner].name.split(' ')[0] : '';
   const ctx = {house: info.house && HOUSES[info.house] ? HOUSES[info.house].name : '', partner: pn, n: (info.lovers||[]).length, names: (info.lovers||[]).join(', '),
     past: info.past && PASTS[info.past] ? PASTS[info.past].label.toLowerCase() : ''};
   const text = gpara(gtxt(R.open, ctx), gtxt(R[pace], ctx), (info.lovers||[]).length ? gtxt(R.lovers, ctx) : gtxt(R.alone, ctx),
     info.past && info.past!=='none' ? gtxt(((PASTS[info.past]||{}).goddess||{}).again, ctx) : '',
-    info.house ? gtxt((HOUSES[info.house]||{}).goddess, ctx) : '', pn ? gpara(gtxt(P.hand, ctx), gtxt(P.comment, ctx)) : '',
     gtxt((R.jealous||{})[jTier()], ctx), gtxt(R.close, ctx));
   save();
   gScene(gtxt(R.title || 'Again, {sam}?', ctx), text, R.image, 'Wake up', next);

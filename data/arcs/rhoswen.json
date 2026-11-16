@@ -63,7 +63,7 @@
               "m": 10,
               "l": 4,
               "private": true,
-              "acts": ["sex_vaginal","oral_give","handjob"],
+              "acts": ["missionary","oral_give","manual_give"],
               "res": "She exhales softly as you pull her bare, slick waist against you beneath the hot water."
             },
             {
@@ -185,12 +185,12 @@
         },
         {
           "label": "Shut the notebook and take her straight back to your bedroom",
-          "if": {"canAct":["sex_vaginal","oral_give","kiss"]},
+          "if": {"canAct":["missionary","oral_give","kiss"]},
           "t": 6,
           "m": 9,
           "l": 3,
           "private": true,
-          "acts": ["sex_vaginal","oral_give","kiss"],
+          "acts": ["missionary","oral_give","kiss"],
           "res": "Wine glasses stay abandoned on the parapet as her trembling smile breaks into an eager nod."
         },
         {

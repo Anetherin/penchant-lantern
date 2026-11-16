@@ -21,15 +21,14 @@ function introHouseEvent(h, w, opts={}){
   const tier = w ? introNgppTier(w) : -1;
   const memLine = tier >= 0 && Array.isArray(HI.ngpp) && HI.ngpp[tier] ? `\n\n${introFill(HI.ngpp[tier], ctx)}` : '';
   const openPage = HI.arrival ? introFill(opts.alreadyHired ? (HI.reopen || HI.arrival) : HI.arrival, ctx) : `You step across the threshold of ${h.name} in ${ctx.loc}.`;
-  const note = opts.purchased ? goddessHouseNote(h.id) : (D.goddess && !G().left ? `\n\n${gtxt(D.goddess, ctx)}` : '');
+  const godAside = opts.purchased ? goddessHouseNote(h.id).trim() : (!G().left && D.goddess ? gtxt(D.goddess, ctx) : '');
   const jNote = opts.jNote || '';
   let greet = '';
   if(opts.alreadyHired && w){
     greet = `${w.name} is already behind the counter when you unlock the main doors, shaking her head with a warm grin. "Took you long enough to bring the rest of the street together, Sam."`;
   } else if(w){
-    greet = HI.greet ? introFill(HI.greet, ctx) : `${w.name} is waiting inside.\n\n${w.backstory}`;
-    if(!HI.greet && w.backstory) greet += `\n\n${w.backstory}`;
-    else if(HI.showBackstory !== false && w.backstory) greet += `\n\n${w.backstory}`;
+    greet = HI.greet ? introFill(HI.greet, ctx) : `${w.name} is waiting inside.`;
+    if((!HI.greet || HI.showBackstory === true) && w.backstory) greet += `\n\n${w.backstory}`;
   } else {
     greet = D.desc || `The lanterns burn low across the empty floor, waiting for your first night of business.`;
   }
@@ -38,7 +37,7 @@ function introHouseEvent(h, w, opts={}){
     title: w ? `${h.name} — ${w.name}` : h.name,
     who: w ? w.id : godId(),
     scene: w ? baseScene : 'portrait',
-    pre: opts.noPre ? undefined : [{text: `${openPage}${note}`, btn: w ? `Meet ${ctx.first}` : 'Look around', scene: baseScene}],
+    pre: opts.noPre ? undefined : [{text: openPage, btn: w ? `Meet ${ctx.first}` : 'Look around', scene: baseScene}],
     text: `${greet}${memLine}${jNote}`,
     choices: chList.map(c=>({
       label: introFill(c.label, ctx),
@@ -48,7 +47,7 @@ function introHouseEvent(h, w, opts={}){
           if(c.m) moodAdd(w, c.m);
           if(c.l) w.lewd = clamp((w.lewd||0) + c.l);
         }
-        return introFill(c.res || '', ctx);
+        return {text: introFill(c.res || '', ctx), aside: godAside};
       }
     }))
   };
@@ -57,12 +56,13 @@ function introPartnerEvent(p, opts={}){
   if(!p) return null;
   const PI = (GOD && GOD.partnerIntros && GOD.partnerIntros[p.key]) || {};
   const N = NAMED[p.key] || {}, PG = N.goddess || {};
-  const h = S.houses[0], ctx = {name: p.name, first: p.name.split(' ')[0], house: h ? h.name : 'the house', goddess: GN(), sam: 'Sam', cycle: S.cycle || 1};
+  const h = S.houses[0], ctx = {name: p.name, first: p.name.split(' ')[0], partner: p.name.split(' ')[0], house: h ? h.name : 'the house', goddess: GN(), sam: 'Sam', cycle: S.cycle || 1};
   const sc = PI.image ? (dynScene('intro_partner_' + p.key, PI.image) || 'portrait') : 'portrait';
-  const gTouch = !G().left && (PI.goddess || PG.comment) ? `\n\n${introFill(PI.goddess || PG.comment, {partner: ctx.first, house: ctx.house, goddess: GN()})}` : '';
-  const open = PI.arrival ? introFill(PI.arrival, ctx) : `${p.name} stands beside you beneath the double moon.`;
+  const handAside = !G().left && PG.hand ? introFill(PG.hand, ctx) : '';
+  const commentAside = !G().left && (PI.goddess || PG.comment) ? introFill(PI.goddess || PG.comment, ctx) : '';
+  const open = [N.partnerStory, PI.arrival ? introFill(PI.arrival, ctx) : `${p.name} stands beside you beneath the double moon.`].filter(Boolean).join('\n\n');
   const voice = PI.greet ? introFill(PI.greet, ctx) : (N.partnerStory || p.backstory || '');
-  const back = PI.note ? `\n\n${introFill(PI.note, ctx)}` : (N.partnerStory && PI.greet ? `\n\n${N.partnerStory}` : '');
+  const back = PI.note ? `\n\n${introFill(PI.note, ctx)}` : '';
   const chList = Array.isArray(PI.choices) && PI.choices.length ? PI.choices : [
     {label:`Glad you're here, ${ctx.first}`, t:4, m:6, res:`${ctx.first} exhales and settles closer. For the first time tonight, neither of you feels quite so lost.`},
     {label:'Let her catch her breath first', t:3, m:4, res:`${ctx.first} gives you a small, grateful nod and takes in the lantern-lit street beside you.`}
@@ -71,7 +71,7 @@ function introPartnerEvent(p, opts={}){
     title: `${p.name}`,
     who: p.id,
     scene: sc,
-    pre: [{text: `${open}${gTouch}`, btn: `Talk with ${ctx.first}`, scene: sc}],
+    pre: [{text: open, aside: handAside, btn: `Talk with ${ctx.first}`, scene: sc}],
     text: `${voice}${back}`,
     choices: chList.map(c=>({
       label: introFill(c.label, ctx),
@@ -79,7 +79,7 @@ function introPartnerEvent(p, opts={}){
         if(c.t) gainTrust(p, c.t);
         if(c.m) moodAdd(p, c.m);
         if(c.l) p.lewd = clamp((p.lewd||0) + c.l);
-        return introFill(c.res || '', ctx);
+        return {text: introFill(c.res || '', ctx), aside: commentAside};
       }
     }))
   };
@@ -121,8 +121,8 @@ function introVesselEvent(vessel){
 function queueStarterIntros(){
   const h = S.houses[0], D = HOUSES[h.id], npc = D && D.npc ? S.workers.find(w=>w.key===D.npc) : null;
   const p = S.workers.find(w=>w.isPartner);
-  if(h) EVQ.push(()=>introHouseEvent(h, npc, {starter:true}));
   if(p && (!npc || p.id !== npc.id)) EVQ.push(()=>introPartnerEvent(p, {starter:true}));
+  if(h) EVQ.push(()=>introHouseEvent(h, npc, {starter:true}));
 }
 function queueNgPlusIntros(newHouse, newPartner){
   if(newHouse){

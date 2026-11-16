@@ -3,7 +3,7 @@
     {
       "title": "Margin Notes",
       "scene": "sam_date",
-      "text": "Marisol shows you her father's old ledgers in the dusty back room, and her own corrections in the margins: years of tidy, furious red ink, her gold hoops catching the lamp. \"He never listened. You actually do, Sam.\" It sounds like an accusation. It isn't. She taps the page with an ink-stained finger and won't look up.",
+      "text": "Past closing, Marisol drags two tall wooden stools into the cramped back office and hauls down three leather-bound ledgers stamped with her father's blurred crest. Every margin is crowded with years of her own furious, exact red ink—tallies corrected to the half-copper, debts traced through three shell buyers—while brass hoop earrings sway beside her jaw in the lamp glow. \"He never listened once,\" she says, tapping an old column with one ink-stained thumb without lifting her eyes. \"You actually do, Sam.\"",
       "ngpp": [
         "Flipping backward through red columns, she freezes suddenly staring at an old ink flourish—like she's already shown you this exact dusty ledger page once before.",
         "\"Wait—why did I set the red inkwell beside your left elbow instead of your right, Sam?\" Marisol mutters sideways, eyeing her own hand sharply.",
@@ -45,7 +45,7 @@
               "m": 8,
               "l": 3,
               "private": true,
-              "acts": ["handjob","oral_give","kiss"],
+              "acts": ["manual_give","oral_give","kiss"],
               "res": "Her competitive smirk cracks instantly into a breathless laugh as you tug her flush against the cedar rim, wet palms gliding smoothly under her skirt until the invoices are forgotten completely.",
               "fallbackRes": "She grins crookedly and hooks two fingers under your wet chin, kissing you warm and slow through the steam before drying off her cuffs."
             },
@@ -68,7 +68,7 @@
               "m": 10,
               "l": 4,
               "private": true,
-              "acts": ["sex_ride","sex_vaginal","oral_give"],
+              "acts": ["cowgirl","missionary","oral_give"],
               "res": "Gold hoops sway wildly against your throat as Marisol straddles your waist, biting her lower lip hard while riding your cock through sloshing bathwater until she wins every single argument."
             },
             {
@@ -77,7 +77,7 @@
               "m": 8,
               "l": 3,
               "private": true,
-              "acts": ["oral_give","handjob","massage_give"],
+              "acts": ["oral_give","manual_give","massage_give"],
               "res": "She tilts her chin high trying to keep her poise—then groans loudly and tangles fingers in your wet hair the moment your mouth finds her."
             }
           ]
@@ -115,12 +115,12 @@
       "choices": [
         {
           "label": "Demand a rematch, with stakes",
-          "if": {"canAct":["sex_vaginal","oral_give","handjob"]},
+          "if": {"canAct":["missionary","oral_give","manual_give"]},
           "t": 5,
           "m": 10,
           "l": 4,
           "private": true,
-          "acts": ["sex_vaginal","oral_give","handjob"],
+          "acts": ["missionary","oral_give","manual_give"],
           "res": "You sweep the deck onto the floor and clear the table cleanly; Marisol shrieks with delighted laughter as you pull her bare hips right onto the ledger desk to collect your winnings immediately."
         },
         {
@@ -178,19 +178,34 @@
     {
       "title": "Her Mother",
       "scene": "sam_date",
-      "text": "Marisol takes you to a small grave on the hill above town, wind combing the long grass, a single faded ribbon tied to the stone. Her mother's. She doesn't say much. The gold hoops are still, for once, and her hand is shoved deep in her pocket.",
+      "text": "Before noon rush, Marisol walks you quietly up the steep goat path behind the east ward to a small pale headstone where sea wind combs through silver-green meadow grass and one faded silk ribbon flutters against the granite. Her mother's. For the first time since you met, the gold hoops stay still at her ears and both hands sink deep into her coat pockets while she watches the harbor gulls turn below.",
+      "byIntim": {
+        "2": {
+          "text": "Before noon rush, Marisol walks you quietly up the steep goat path behind the east ward to a small pale headstone where sea wind combs through silver-green meadow grass and one faded silk ribbon flutters against the granite. After fixing the ribbon without speaking, she slips one warm hand unhesitatingly straight into your hoodie pocket beside yours, leaning softly against your shoulder while harbor gulls turn far below."
+        }
+      },
       "choices": [
         {
           "label": "Bring flowers",
           "t": 4,
           "m": 6,
-          "res": "She tells you three stories about her mother on the walk back, the lemon cake, the singing, the sums on the backs of invoices. She has never told anyone."
+          "res": "She tucks the wild blooms beside the stone and tells you three stories about her mother on the walk back—burnt lemon cake, off-key lullabies, and sums scribbled on invoice backs. She has never told anyone."
         },
         {
           "label": "Just stand with her",
           "t": 5,
           "m": 4,
-          "res": "After a while she leans against your shoulder, all her competitive edges gone soft, and you watch the clouds cross the stone together."
+          "res": "After a while she leans softly into your side, every competitive edge softened cleanly away, and you watch the afternoon cloud shadows cross the stone together."
+        },
+        {
+          "label": "Lead her quietly back into your parlor once you return",
+          "if": {"intim":2,"canAct":["kiss","oral_give","missionary"]},
+          "t": 5,
+          "m": 9,
+          "l": 2,
+          "private": true,
+          "acts": ["kiss","oral_give","missionary"],
+          "res": "Back behind the latched office door away from the street wind, Marisol sheds her wool coat quietly and presses her face into your chest before lifting her lips slowly to yours."
         }
       ],
       "image": {

@@ -43,6 +43,7 @@ function resolveArcBeat(w, base){
     const ks = Object.keys(base.byIntim).map(Number).filter(n=>!Number.isNaN(n) && n <= (w.intim||0)).sort((a,b)=>b-a);
     for(const k of ks){
       if(k > 0 && !getActs().some(a=>actTier(a.id)<=k && canSam(w, a.id))) continue;
+      if(!base.byIntim[String(k)].image) delete b.image;
       Object.assign(b, base.byIntim[String(k)]);
       hasIntimOverride = true;
       break;
@@ -84,6 +85,7 @@ function evArc(w){
       if(e.hold) return res;
       w.arc = i+1; samGainXP(last?40:15);
       let outImg = null, outAi = null, ranPrivate = false;
+      const sctx = (b.scene==='bath' || b.scene==='shower') ? '~~bath' : '';
       const crossStage = !last && e.cross ? firstNext(w) : null;
       if(crossStage && (e.cross === true || e.cross === crossStage)){
         const tPool = tierActs(w, crossStage);
@@ -93,7 +95,7 @@ function evArc(w){
           res = privateCore(w, cAct, {lead: res || `${w.name} pulls you close.`, first:true});
           res += `\n\n♥ ${w.name} and Sam: ${stageName(crossStage)}.`;
           addLog(`${w.name} and Sam: ${stageName(crossStage)}.`);
-          outImg = {wid:w.id, scene:'samact:'+cAct};
+          outImg = {wid:w.id, scene:'samact:'+cAct+sctx};
           outAi = {kind:'arc', wid:w.id, act:cAct, scene:outImg.scene, forSam:true, situation: actSituation(w, cAct, e.situation || b.title)};
           ranPrivate = true;
         }
@@ -102,7 +104,7 @@ function evArc(w){
         const pAct = pickArcAct(w, eligible, e.acts || e.act);
         if(pAct){
           res = privateCore(w, pAct, {lead: res || `${w.name} closes the distance between you.`});
-          outImg = {wid:w.id, scene:'samact:'+pAct};
+          outImg = {wid:w.id, scene:'samact:'+pAct+sctx};
           outAi = {kind:'arc', wid:w.id, act:pAct, scene:outImg.scene, forSam:true, situation: actSituation(w, pAct, e.situation || b.title)};
           ranPrivate = true;
         } else if(e.fallbackRes){

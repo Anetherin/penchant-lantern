@@ -247,144 +247,156 @@
     "\n\nBefore you have even caught your breath, {name} fixes her hair, slips {gold} straight into your hoodie pocket with an amused wink, and disappears back into the street—leaving you staring at the coins, oddly paid and faintly used.",
     "\n\n\"Good hands,\" {name} murmurs lazily, tucking her blouse back in and counting {gold} onto the edge beside your knee before strolling away without another word. You pocket the money anyway, though you feel suspiciously like the hired talent for once."
   ],
-  "partnerOpeners": {
-    "default": "At a corner stall along the Lantern Market, you spot {name}—{backstory} When your eyes meet across the street, she pauses and turns toward you.",
-    "kaede": "Outside a noisy noodle stand near the guild road, a flash of bright copper tail catches your eye. {name} spots you at the exact same moment, fox ears perking upright as she grins and saunters over with her thumbs hooked in her belt.\n\n\"Looking a little soft for this end of town, Sam,\" she teases cleanly. \"Need someone with sharp steel to keep trouble off your ledger?\"",
-    "yui": "Under an arched stone portico near the cloth market, {name} stands frozen in her tailored cardigan and pencil skirt, clutching a black Swingline stapler against her chest while blinking up at Hollowmere's twin moons. When your shadow falls across the cobbles, she whirls—and bursts straight into shocked tears.\n\n\"T-Takahashi-kun?!\" she gasps, grabbing your sleeve with both trembling hands. \"I walked out past the convenience store and—you're here too?!\"",
-    "nerys": "Halfway down a crimson-lit understreet, a low, wicked laugh makes you turn—{name} is leaning effortlessly against a streetlamp, bat wings tucked tight behind her shoulders as slit violet eyes trace you up and down.\n\n\"Oh, fascinating,\" she purrs, tail curling lazily toward your wrist. \"Someone new walked in smelling of debts and bad ideas, Sam. Care to bargain for some help?\"",
-    "elowen": "Under the quiet canopy of the market trees, {name} stands sorting dried chamomile in a woven basket with gentle patience. Sensing your step, she turns with a serene, unhurried smile.\n\n\"Your shoulders carry a heavy week, Sam,\" she observes softly, tilting one long pointed ear. \"If you have an apothecary corner beneath {house}'s eaves, I could use warm rooms.\"",
-    "adelheid": "By the city watch noticeboard, {name} stands straight-spined in spotless half-plate, scanning bounty postings with a furrowed brow. She glances over as you approach and offers a crisp, measuring salute.\n\n\"You look like an innkeeper carrying more trouble than steel, Sam Takahashi,\" she states evenly. \"I prefer honest wages to petty banditry—say the word if your threshold needs a sword.\"",
-    "natsuki": "Beside the river stone parapet, {name} sits calmly with a scarred wooden practice katana resting across her knees, watching the current under a weathered cloak. One glance up at your grey hoodie brings her boots slapping straight onto the cobbles.\n\n\"Sam?!\" she blurts out, three long years of alone-in-Hollowmere exhaustion snapping flat into stunned relief before she punches your arm lightly. \"Idiot—where were you the past three years?!\"",
-    "kanako": "At a quiet corner tea awning, {name} swirls a chipped cup between manicured fingers, crimson lips curving the instant her eyes land on your familiar face amidst a dozen medieval merchants.\n\n\"Well, paint me stunned,\" she murmurs warmly, waving you straight over into the empty chair beside her knee. \"Sammy! Half a block away and I thought my eyes were playing tricks after last call—what in the world happened to Apartment 3B?\"",
-    "akari": "On a sunny bench beside the plaza fountain, {name} jumps clean off the stone with her folded commuter umbrella clutched like a baton the second she spots you.\n\n\"SAM!\" she yells across half the square, sprinting straight into your coat before glancing frantically behind you. \"Thank goodness—I checked three inns looking for Kenta and found you first! Don't even think about walking off without me!\"",
-    "marisol": "On the edge of the spice market, {name} is casually charming a pair of dockworkers into hauling crates twice their weight for free. Catching your eye, she winks and drifts across the lane.\n\n\"Thought I smelled good ambition and terrible bookkeeping, Sam,\" she grins, gold hoops flashing. \"Put me on {house}'s floor and watch your margins double.\"",
-    "lara": "Sweeping the damp front steps of a cramped boardinghouse in a shabby black coat from home, {name} freezes halfway through a stroke when she spots the grey hoodie rounding the lane.\n\n\"Sam...\" she breathes, fingers going chalk-white around the broom handle as dark kohl-lined eyes flood cleanly. \"People in the market talked about a guy in your old coat—tell me you aren't leaving again.\"",
-    "emily": "On the canal bridge, {name} is muttering furiously over an ink-stained spiral notebook while soft grey wolf ears twitch wildly behind round glasses. She freezes mid-sentence when you step onto the planks—and blurts out your old forum tag loud enough to scatter pigeons.\n\n\"Wait—Sam?!\" she squeaks, tail tucking straight behind her knees. \"Okay, don't look at the ears, I didn't pick the character sheet!\"",
-    "lirael": "Beside the iron postbox at the end of the market lane, {name} stands sorting ribbon-tied envelopes with neat clerk's precision. When you step closer, her long ears pinken sharply and she clutches an old yellowed letter against her chest.\n\n\"Wait...\" she whispers, checking your hand against a decade of inked postscripts. \"That coat... and your handwriting on the parcel slip. Are you Sam?\"",
-    "ella": "Beside a quiet stone fountain, {name} stands holding a crisp mechanical pencil above a ledger sheet, looking thoroughly irritated with medieval currency conversion—until she glances up and stops dead.\n\n\"Takahashi?!\" she snaps cleanly, masking a sudden tremor in her shoulders behind crisp posture. \"Of course. You get clipped by a delivery truck and somehow wash up wandering a market square without a tie.\"",
-    "ione": "Sitting outside a cellar wine shop with an unopened leather diary beside one untouched glass, {name} tilts her head at you with calm silver eyes as a pale gold light glows softly at her temple.\n\n\"Trajectory confirmed, Sam Takahashi,\" she murmurs, shutting the worn pages gently. \"Every entry led up to this corner. Might you have a spare room at {house}?\"",
-    "anael": "Beside an unlit crossroads lamppost, {name} stands motionless beneath a pale shawl, amber eyes solemn as twin moons glow overhead. The instant you step near, the glass wick flares bright gold on its own—and she exhales quietly.\n\n\"The Lantern burns only for one crossing soul,\" she murmurs, wings rustling neatly beneath her cloak. \"You must be Sam. Keep pace with me toward {house}, if you please.\""
-  },
   "partnerIntros": {
     "kaede": {
-      "open": "Loud laughter echoes off the timber stalls near the Guild road, where a sharp-eyed red fox beastkin rests one booted heel on an overturned crate.",
+      "open": "Loud laughter echoes off the timber stalls near the Guild road, where a red fox beastkin rests one booted heel on an overturned crate—glaring down two belligerent mercenaries trying to skip a noodle tab.",
       "image": {
         "comp": "leaning lazily near a noisy street noodle stall, red fox ears perked, tail swishing, cocky friendly grin",
         "setting": "bustling cobblestone guild-market lane at afternoon",
         "sam": true
-      }
+      },
+      "story": "When a third drunk reaches for a stool behind her back, you step in without thinking and shove the table edge hard enough to spoil his balance. {name} drops the remaining two before their mugs hit dirt, dusts off her sleeves, and turns bright amber eyes onto you.\n\n\"Not bad for someone in city shoes,\" she grins, copper tail swishing lazily behind her belt. \"Most folks along this row bolt inside. Sounds like you run {house}—got room for a scout tired of babysitting cheap dungeon parties?\"",
+      "hire": "{name} slings her scabbard comfortably over one shoulder and falls into step beside you toward {house}, muttering cheerfully that the old Copper Fox crew can keep their mud."
     },
     "nerys": {
-      "open": "Shadows stretch oddly long beneath a crimson alley awning, smelling faintly of sulfur, cloves, and trouble.",
+      "open": "Ducking down a crimson-lit understreet to price apothecary lamp oil, your boot heel cleanly smudges the final chalk arc across a stone cellar threshold.",
       "image": {
         "comp": "lounging effortlessly against a stone archway in an understreet, bat wings tucked, violet slit eyes gleaming slyly",
         "setting": "lantern-lit cobbled understreet lined with apothecary stalls",
         "sam": true
-      }
+      },
+      "story": "Blue smoke hisses out instantly—and {name} stalks up from the cellar steps looking ready to turn your boots to cinders, until violet slit eyes catch the faint Vane seal and parlor spice lingering on your coat.\n\n\"Oh, how infuriatingly intriguing,\" she purrs instead, bat wings tucking slowly as her barb-tipped tail curls toward your wrist. \"You ruin a perfectly fine ward and reek of mortal debt, Sam. Buy me decent wine at {house}, and I’ll trade your dull evenings for something livelier.\"",
+      "hire": "{name} links one dark-nailed arm smoothly through yours toward {house}, humming with wicked satisfaction that tonight’s ledger just got interesting."
     },
     "elowen": {
-      "open": "Sunbeams filter through leafy market oaks onto a tall elf sorting bundle after bundle of fragrant dried herbs with quiet grace.",
+      "open": "Sunbeams filter through market oaks onto a slender elf kneeling beside an overturned wicker basket, calmly salvaging scattered bundles of chamomile after a runaway mule cart clipped the stall corner.",
       "image": {
         "comp": "holding a woven basket of fresh herbs under sunlit trees, calm gentle green eyes turning toward him",
         "setting": "shaded cobblestone square beneath market oak trees",
         "sam": true
-      }
+      },
+      "story": "You drop straight onto one knee to help gather crushed lavender stems before passing boots trample them, scraping your knuckles lightly on a splintered crate. {name} catches your wrist instantly with cool, steady fingers, rubbing rosemary salve cleanly into the nick.\n\n\"You have a healer’s patience underneath that hurried stride,\" she murmurs softly, pointed ears warming just a fraction beneath twin shadows. \"My old clinic room closed three days back—does {house} have a sunny windowsill going spare?\"",
+      "hire": "{name} settles the repaired herb basket gently onto her forearm and walks steadily beside you back toward {house}."
     },
     "adelheid": {
-      "open": "Beside the iron watch boards, steel plates catch afternoon glare on a straight-backed knight who refuses to slouch even off duty.",
+      "open": "Beside the iron Watch boards, afternoon glare strikes spotless half-plate on a straight-spined knight quietly refusing three shady caravan brokers twice her weight.",
       "image": {
         "comp": "standing beside a wooden town noticeboard in clean armor and crimson cloak, blonde braid, measuring him sharply",
         "setting": "sunlit cobblestone watch plaza in Hollowmere",
         "sam": true
-      }
+      },
+      "story": "When the brokers mutter and slink down the lane, {name} turns her keen grey gaze straight onto you standing near the awning—measuring the calluses on your hands and the tidy brass {house} token pinned to your belt.\n\n\"Honest coin beats dirty silver, Sam Takahashi,\" she states evenly, testing your mettle without blinking. \"I have heard word around the quarter that your staff keep fair hours and lock no doors against their will. If {house} needs steady steel at its gate, name my post.\"",
+      "hire": "{name} adjusts her gauntlet strap with crisp certainty and paces half a step beside your shoulder back to {house}."
     },
     "marisol": {
-      "open": "Laughter rises near the spice carts as a dark-curled promoter charms half the dock crew into shifting freight for free.",
+      "open": "Outside the spice market tax clerk’s table, a sharp-eyed woman with ink-stained fingers is mercilessly tearing an appraiser’s interest schedule apart line by double-counted line.",
       "image": {
         "comp": "standing beside spice crates winking effortlessly, gold hoop earrings gleaming in market daylight",
         "setting": "bright open spice market plaza near the docks",
         "sam": true
-      }
+      },
+      "story": "The clerk retreats sweating into the crowd—and {name} catches sight of the familiar Vane Credit seal sticking neatly out of your pocket notebook. Amber eyes narrow, then spark with wicked amusement.\n\n\"Hold on—Marguerite Vane handed YOU a house deed and still expects her cut by month’s end?\" She taps your ledger cleanly with one ink-smudged thumb, gold hoops swinging. \"My name’s Marisol. Put me in {house}’s front hall and let’s bleed every crooked collector in town dry together.\"",
+      "hire": "{name} flips a copper coin effortlessly across her knuckles and walks straight into stride beside you toward {house}."
     },
     "lirael": {
-      "open": "Beside a crooked iron postbox, slender hands tie neat twine around letters with a care that belongs to someone who keeps every postmark.",
+      "open": "Beside an iron postbox tucked down Post Lane, slender elven hands bind twin linen envelopes with careful twine—every postmark logged neat as brass clockwork.",
       "image": {
         "comp": "clutching a yellowed tied letter beside an old iron postbox, long elven ears flushed pink, hopeful startled gaze",
         "setting": "quiet cobbled post-lane beside an iron letterbox",
         "sam": true
-      }
+      },
+      "story": "Stepping up to mail a guild receipt for {house}, you hand the parcel across—only for {name} to freeze completely, pale pointed ears turning scarlet from collar to tip as she stares down at your looping S on the seal.\n\n\"Wait...\" she breathes, digging a faded, ribbon-tied envelope carefully out of her satchel to compare the ink strokes side by side. \"Ten years of writing into an empty alley box across worlds—that handwriting belongs to Sam. Are you truly running {house} right down this lane?\"",
+      "hire": "{name} shoulders her sorting satchel with shining, disbelief-bright eyes and walks gently beside you back to {house}."
     },
     "anael": {
-      "open": "Streetlamps along the upper lane flicker gold one after another without a lamplighter in sight, stopping beside a still, winged figure.",
+      "open": "Every streetlamp along the crossroads flares warm gold one after another without wind or flint, stopping beside a pale-cloaked sentinel watching quietly from the eaves.",
       "image": {
         "comp": "standing beside a suddenly flaring streetlamp in a pale travel cloak, faint halo and folded wings beneath twilight sky",
         "setting": "quiet stone crossroads under evening sky as streetlamps ignite",
         "sam": true
-      }
+      },
+      "story": "Her snow-white feathers shift neatly behind dark wool as your lantern pin catches the sudden glow, golden eyes studying your bewildered expression with serene, searching patience.\n\n\"So it was your crossing that lit the old Lantern Stone,\" {name} murmurs calmly, folding her wings clear of passing carts. \"The Order sent me to determine what sort of soul burns out of turn in Hollowmere. Taking a post inside {house} strikes me as the tidiest way to keep close watch.\"",
+      "hire": "{name} draws her travel cloak neatly over pale wings and walks serenely beside you down the lamp-lit road toward {house}."
     },
     "yui": {
-      "open": "A crisp modern cardigan stands completely out of place beneath timber eaves, its wearer staring frozen at medieval horse carts like she stepped off the wrong train.",
+      "open": "Under an arched stone portico near the cloth market, a young woman in a crisp office cardigan stares bewilderedly at brass silver-weights—clutching a glaringly out-of-place black stapler tight against her ribs.",
       "image": {
         "comp": "clutching a black office stapler against her cardigan in a cobblestone market, wide shocked eyes lighting up on spotting him",
         "setting": "busy medieval cobblestone lane beside cloth stalls",
         "sam": true
-      }
+      },
+      "story": "A horse cart splashes past and she jumps half a foot, dark hair tumbling across flushed cheeks—right as she looks up and sees your familiar grey hoodie stopping three paces away.\n\n\"T-Takahashi-kun?!\" {name} gasps, all four floors of polite Tokyo reserve vanishing cleanly as she hurries over clutching both sleeves. \"I walked out past the convenience store last week and landed here with half a desk drawer in my pockets! Wait—you’re running {house}?! Don’t leave me behind in this market!\"",
+      "hire": "{name} exhales shakily, adjusts her crooked glasses, and starts mentally sorting {house}’s supply prices before you even reach the end of the lane."
     },
     "natsuki": {
-      "open": "Wood clacks gently against stone on the river bridge, where a scarred traveler in an old cloak rests her practice blade across bruised knees.",
+      "open": "Wood clacks gently against stone along the sunny canal bridge, where a scarred traveler in an old guild cloak cleans river mud out of a worn wooden katana.",
       "image": {
         "comp": "turning sharply from a stone bridge parapet with a wooden katana scabbard across her knees, fierce stunned expression",
         "setting": "mossy stone canal bridge overlooking sunlit water",
         "sam": true
-      }
+      },
+      "story": "Three years of hard mountain trails sit in the set of her shoulders—right until your shadow crosses the bridge planks and she hears you mutter an unmistakable Tokyo curse under your breath over a puddle.\n\n{name} freezes completely, boots slapping stone as she vaults the low wall straight into your path. \"Sam?!\" She punches your shoulder hard enough to rattle teeth before blinking fast through sudden tears. \"Three years I’ve been swinging steel in this dump alone, and YOU wash up carrying keys to {house}?!\"",
+      "hire": "{name} slings the wooden scabbard briskly over her shoulder and matches your stride down the bridge, grumbling happily about demanding the softest pillow at {house}."
     },
     "kanako": {
-      "open": "Warm jasmine perfume cuts straight through roasted chestnut smoke at a shaded sidewalk tea table.",
+      "open": "Warm jasmine perfume cuts neatly past roasted chestnut smoke at a quiet corner tea table, where a poised woman turns an unhurried porcelain cup between manicured fingers.",
       "image": {
         "comp": "seated at a quiet corner tea table in elegant plum lipstick and silk shawl, raising a surprised warm brow",
         "setting": "quiet shaded backstreet cafe table in Hollowmere",
         "sam": true
-      }
+      },
+      "story": "You stop dead beside the awning—half expecting Apartment 3B’s rusty stair rail behind her instead of timber gables—right as {name} glances over her plum lipstick and freezes with a bright, stunned laugh.\n\n\"Well, paint me sober,\" she purrs softly, tugging you straight into the wicker chair beside her knee. \"Look at my little Sammy, all grown up and holding a gentleman’s ledger under two moons! Tell me {house} keeps a proper bottle behind the bar—I’m dying for decent company.\"",
+      "hire": "{name} gathers her silk shawl effortlessly and hooks warm fingers lightly inside your sleeve on the stroll toward {house}."
     },
     "akari": {
-      "open": "By the fountain square, a folded commuter umbrella—obviously from Tokyo—pokes up from a weathered stone bench right beside brightly scuffed sneakers.",
+      "open": "Across the sunlit fountain square, an absurdly familiar bright commuter umbrella leans neatly against a weathered bench right beside scuffed Tokyo sneakers.",
       "image": {
         "comp": "springing off a stone fountain bench waving a folded bright umbrella, ecstatic tears sparkling behind a huge grin",
         "setting": "sunny cobblestone plaza around a stone fountain",
         "sam": true
-      }
+      },
+      "story": "Before you can even call out, {name} hops clean off the stone bench, drops a pastry wrapper, and sprints straight into your coat like four blocks of afternoon traffic just cleared.\n\n\"SAM!!\" she cries breathlessly, laughing through bright, startled eyes while clutching your sleeve tight. \"I checked every traveler register looking for Kenta and walked straight into YOU instead! Don’t you dare vanish off another street corner—I’m coming straight back to {house} with you!\"",
+      "hire": "{name} hooks the commuter umbrella triumphantly over one wrist and skips cheerfully beside you down the lane toward {house}."
     },
     "lara": {
-      "open": "A worn black coat and tired posture sweep dust off a narrow boardinghouse stoop far from any orphanage steps back home.",
+      "open": "Down a narrow cobbled side-lane, a shabby black coat from another world pauses halfway through sweeping damp steps outside an indifferent boardinghouse.",
       "image": {
         "comp": "freezing with a broom on narrow stone steps in a frayed black coat, pale wide dark eyes locking onto his hoodie",
         "setting": "quiet shadowed alley beside a narrow wooden boardinghouse",
         "sam": true
-      }
+      },
+      "story": "You recognize the crooked stitch on that sleeve from Alder Street before she even turns around—and the second {name} sees your grey hoodie in the alley light, the broom slips softly against the wall.\n\n\"Sam...\" she whispers shakily, dark kohl-lined eyes searching your face like she’s afraid dusk mist might swallow you whole. \"People in town spoke about a stranger wearing your coat, yet I didn’t let myself hope. Please—if {house} has one spare corner away from the road, don’t walk away without me.\"",
+      "hire": "{name} drapes her black shawl tighter around narrow shoulders and keeps half a pace from your elbow the whole way home to {house}."
     },
     "emily": {
-      "open": "Pencil scratches frantically over ruled Earth paper on a canal footbridge while fluffy grey wolf ears flick nervously at every passing cart.",
+      "open": "Graph paper rustles furiously on a sunny canal footbridge as soft grey wolf ears twitch anxiously behind round wire spectacles.",
       "image": {
         "comp": "gripping a spiral notebook on a stone footbridge, wolf ears flat behind round glasses, stunned relief",
         "setting": "narrow wooden and stone footbridge over a sunlit canal",
         "sam": true
-      }
+      },
+      "story": "Curious, you lean casually beside the rail and ask whether the dungeon map in her lap needs another healer—before recognizing the tiny hand-drawn crest tucked in the corner margin from six years of Tuesday forum threads.\n\n\"Shadowkin?\" you try quietly. {name} slaps both hands over her crimson cheeks so fast her tail whaps the wood planks. \"SAM?! Oh thank god—okay, look, I didn’t pick the ears, nobody let me edit the sheet after waking up! Please tell me {house} has decent chairs and fewer goblins!\"",
+      "hire": "{name} hugs her battered campaign notebook tight against her chest and trots eagerly beside you toward {house}, grey tail failing completely to stay still."
     },
     "ella": {
-      "open": "By a quiet courtyard well, an immaculate modern collar and sharpened mechanical pencil argue silently against parchment tax schedules.",
+      "open": "Beside a sunlit courtyard well, an immaculate modern collar and sharpened mechanical pencil wage silent war against messy parchment tax brackets.",
       "image": {
         "comp": "standing briskly beside a stone courtyard well holding a modern mechanical pencil over a parchment sheet, sharp eyes softening",
         "setting": "quiet sunlit stone courtyard beside a fountain well",
         "sam": true
-      }
+      },
+      "story": "You clear your throat at the well rim—and {name} whips around, sharp grey eyes locking straight onto your face before snapping straight into brisk, defensive poise to hide the jump in her pulse.\n\n\"Honestly, Takahashi!\" she snaps crisply, though her thumb clutches her pencil white-knuckled. \"Survive a delivery truck across worlds and here you wander a market square without even bringing decent coffee! Wait—{house}? Fine. Someone clearly has to keep you from finishing second to a loan shark on spreadsheets.\"",
+      "hire": "{name} clicks her mechanical pencil cleanly into her pocket and matches your stride step for brisk step toward {house}."
     },
     "ione": {
-      "open": "Outside a dim stone wine cellar, silver hair catches dusk lamps above a small brass-clasped diary resting closed beside an untouched glass.",
+      "open": "Outside a quiet cellar wine shop, moonlight catches sleek silver hair and a warm amber indicator beside the temple of a woman seated calmly over an unopened leather diary.",
       "image": {
         "comp": "seated outside a cellar archway beside a brass-clasped leather diary, silver hair, amber node glowing warmly at her temple",
         "setting": "dusk stone street outside a quiet cellar wine shop",
         "sam": true
-      }
+      },
+      "story": "Even before your footsteps reach the stone steps, {name} turns calmly toward you—measuring your breathing, scuffed boots, and grey hoodie against pages written centuries ahead of Hollowmere.\n\n\"Convergence confirmed: Sam Takahashi,\" she speaks softly, human warmth flickering smoothly behind silver eyes. \"Every line in my archive notes how tirelessly you kept {house} bright without turning anyone away. May I walk back with you and witness how those pages actually begin?\"",
+      "hire": "{name} tucks the brass-clasped diary neatly beneath her arm and paces effortlessly beside you toward {house}."
     }
   },
   "guestIntro": "Passing the fountain plaza, you notice someone who plainly doesn't belong to Hollowmere's usual crowd—{name}. {backstory}",
@@ -682,7 +694,6 @@
     "A faint flicker of amber sparks at your collar as {goddess} mutters in the back of your head: \"Free of charge? How terribly generous of her. Don't expect me to clap.\"",
     "\"She remembers that much without the ring?\" {goddess} hums low against your ear, sharp-edged and possessive. \"Fine. Bring her home. Just remember whose lantern lit your door this morning.\""
   ],
-  "_partnerMemoryTodo": "Custom per-partner 3-tier memory arrays (vague deja vu -> fragments -> clear recognition) can be added under partnerMemoryLines[key] = [tier0, tier1, tier2].",
   "exLoverMemoryTiers": [
     "Halfway across the square, {name} slows to a stop and stares at you for a beat too long, frowning as if a dream slipped out of reach the instant she woke.\n\n\"Sorry—do I know you from somewhere?\" {name} touches her wrist and tilts her head at your lantern-pin. \"I was just walking past {house}, and something made me look twice.\"",
     "{name} catches herself smiling before she even reaches you, then blinks in surprise at her own nerve. Fragments she can't quite place sit behind her eyes—a warm room, a quiet laugh, the cadence of your voice.\n\n\"Funny,\" {name} murmurs, tilting her chin up. \"I swear I've walked back to {house} with you in another life, Sam. Tell me what you're offering.\"",

@@ -58,7 +58,7 @@
               "m": 10,
               "l": 4,
               "private": true,
-              "acts": ["sex_vaginal","oral_give","kiss"],
+              "acts": ["missionary","oral_give","kiss"],
               "res": "She exhales a soft, uncalibrated gasp as your wet chest presses flush against hers."
             },
             {
@@ -112,12 +112,12 @@
         },
         {
           "label": "Step behind the bar and teach her a warmer distraction",
-          "if": {"canAct":["kiss","oral_give","sex_vaginal"]},
+          "if": {"canAct":["kiss","oral_give","missionary"]},
           "t": 5,
           "m": 8,
           "l": 2,
           "private": true,
-          "acts": ["oral_give","sex_vaginal","kiss"],
+          "acts": ["oral_give","missionary","kiss"],
           "res": "She sets the glass down cleanly as you corner her behind the oak counter."
         },
         {

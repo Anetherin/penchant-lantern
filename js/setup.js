@@ -36,7 +36,7 @@ function setupView(){
     body = `<h2>Who's at Sam's side?</h2><p class="muted">Your partner works without wages and already trusts Sam. Each has her own romance story. The others may turn up later looking for paid work.</p>
       <div class="grid">${PARTNERS.filter(partnerOffered).map(k=>{ const n=NAMED[k]; return `<div class="pick ${SETUP.partner===k?'sel':''}" onclick="setupPick('partner','${k}')">
         <div class="row">${miniAvatar(k)}<div><b>${esc(titled(n))}</b> <span class="muted">${RACES[n.race].label}${n.sub?' ('+n.sub+')':''} · ${esc(n.personality)}</span><div class="muted">Trust ${tShow(n.partnerTrust)} · Lewdness ${lShow(n.partnerLewd??n.lewd)} · ${JOBS[n.job].label} · ${n.traits.join(', ')}</div></div></div>
-        <div style="margin-top:4px">${esc(n.partnerStory)}</div>${previewBtn(k)}</div>`; }).join('')}</div>`;
+        <div style="margin-top:4px">${esc(n.partnerBlurb || n.partnerStory)}</div>${previewBtn(k)}</div>`; }).join('')}</div>`;
     ok = !!SETUP.partner;
   } else {
     const D = HOUSES[SETUP.house], n = NAMED[D.npc], p = NAMED[SETUP.partner];

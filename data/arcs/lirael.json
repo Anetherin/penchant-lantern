@@ -68,7 +68,7 @@
               "m": 10,
               "l": 4,
               "private": true,
-              "acts": ["sex_vaginal","oral_give","kiss"],
+              "acts": ["missionary","oral_give","kiss"],
               "res": "Lirael gasps softly into your mouth as warm water swells around your hips, slim thighs trembling happily around your waist as you move deep inside her beneath the lanterns."
             },
             {
@@ -119,12 +119,12 @@
       "choices": [
         {
           "label": "Walk straight to her end of the sofa and answer in person",
-          "if": {"canAct":["kiss","sex_vaginal","oral_give"]},
+          "if": {"canAct":["kiss","missionary","oral_give"]},
           "t": 5,
           "m": 9,
           "l": 3,
           "private": true,
-          "acts": ["sex_vaginal","oral_give","kiss"],
+          "acts": ["missionary","oral_give","kiss"],
           "res": "You read the tiny postscript once, fold the scrap neatly into your pocket, and cross the sofa cushions in one stride—leaving Lirael flushed scarlet and breathless beneath you by the dying hearth embers."
         },
         {

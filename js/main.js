@@ -10,7 +10,7 @@ Now you're standing in a town beneath two moons, clutching the deed to ${esc(D.n
 
 Marguerite Vane adjusts her monocle and informs you the deed comes with its previous owner's debt: ${fmt(S.debt.remaining)} to the Vane Credit House, payable every four weeks. Three missed payments and everything reverts to them.</p>
 <p class="muted">How to play: assign jobs in Roster, set prices in Houses, spend your actions each week, then End Week. Ladies recover energy only when sleeping (mind the beds). Lewdness sets what she enjoys; Trust decides how far past that she'll go with Sam, and some lines wait for the right moment.</p>
-<div class="row"><button class="primary" onclick="closeModal();queueStarterIntros();runQueue()">Step inside ${esc(D.name)}</button></div>`, {lock:true});
+<div class="row"><button class="primary" onclick="closeModal();queueStarterIntros();runQueue()">Continue</button></div>`, {lock:true});
   showImg('introImg', 'npc_marguerite', 'portrait');
 }
 async function init(){

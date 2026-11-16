@@ -68,7 +68,7 @@
               "m": 10,
               "l": 4,
               "private": true,
-              "acts": ["sex_vaginal","sex_ride","oral_give"],
+              "acts": ["missionary","cowgirl","oral_give"],
               "res": "Emily squeaks brightly as hot water rises around your thighs, tangling her wet tail tightly behind your waist as you slide deep inside her until she buries her flushed face against your neck."
             },
             {
@@ -77,7 +77,7 @@
               "m": 8,
               "l": 3,
               "private": true,
-              "acts": ["oral_give","kiss","handjob"],
+              "acts": ["oral_give","kiss","manual_give"],
               "res": "She arches back against the cedar rim clutching the wood tightly, wolf ears quivering as she gasps out every sound she used to spend paragraphs hiding."
             }
           ]
@@ -119,12 +119,12 @@
       "choices": [
         {
           "label": "Take it OOC on the hearth rug",
-          "if": {"canAct":["kiss","oral_give","sex_vaginal"]},
+          "if": {"canAct":["kiss","oral_give","missionary"]},
           "t": 5,
           "m": 10,
           "l": 3,
           "private": true,
-          "acts": ["sex_vaginal","oral_give","kiss"],
+          "acts": ["missionary","oral_give","kiss"],
           "res": "You roll the wooden dice out of reach, pluck the character sheet out of her trembling hands, and pull Emily flush down beside you onto the warm rug—her wolf tail thumping wildly behind your calves."
         },
         {

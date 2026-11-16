@@ -33,6 +33,12 @@
       "setting": "candlelit stage, audience in silhouette"
     },
     "job_bath": {"label":"Work: Bathhouse","comp":"attending guests, carrying towels, cheeky smile","setting":"steamy tiled fantasy bathhouse","bath":true},
+    "job_chapel": {
+      "label": "Work: Chapel",
+      "comp": "tending candles beside a velvet-curtained altar, serene gentle smile",
+      "setting": "quiet candlelit chapel vestry, stained glass",
+      "house": true
+    },
     "job_teacher": {
       "label": "Work: Teacher",
       "comp": "teaching at a slate board with a pointer, patient smile",

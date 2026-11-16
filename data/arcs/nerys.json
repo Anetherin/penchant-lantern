@@ -3,7 +3,7 @@
     {
       "title": "Inconvenient Feelings",
       "scene": "sam_date",
-      "text": "Nerys complains, at length, that the contract makes her feel it when you are sad, a cold little ache under her ribs like a clause she never wrote. \"It's very inconvenient. Stop being sad.\" Her tail lashes the cushion in irritation. Then she sits down next to you on the lounge sofa, thigh to thigh, wings folded tight, and stays until you aren't.",
+      "text": "Nerys complains at impressive volume that your shared summoning contract forces her to feel it whenever your spirits dip—a nagging cold pull right beneath her ribs like an unpatched loophole. \"It is deeply inconvenient. Stop having gloomy thoughts immediately.\" Her barbed tail lashes the lounge cushion furiously—until she gives up muttering, drops straight onto the settee beside you thigh-to-thigh, folds both bat wings tight around her shoulders, and stubbornly refuses to budge until you smile.",
       "ngpp": [
         "Mid-scowl, she blinks down at your wrist as though confused why curling her tail around your ankle felt automatic.",
         "\"Honestly, Sam—why do I feel like we've sat on this exact lumpy sofa negotiating feelings already?\"",
@@ -65,7 +65,7 @@
               "m": 10,
               "l": 4,
               "private": true,
-              "acts": ["sex_ride","oral_give","sex_vaginal"],
+              "acts": ["cowgirl","oral_give","missionary"],
               "res": "She hooks her tail straight around your belt and hauls you half-dressed over the wood rim until you shed everything and sink right between her parted thighs in the steaming water."
             },
             {
@@ -74,7 +74,7 @@
               "m": 8,
               "l": 2,
               "private": true,
-              "acts": ["massage_give","handjob"],
+              "acts": ["massage_give","manual_give"],
               "res": "You glide soapy hands slowly across her breasts and wings until Nerys shivers hard, arching up into your palms with breathless impatience."
             }
           ]
@@ -113,12 +113,12 @@
       "choices": [
         {
           "label": "Test chapter seven with her on the cushions",
-          "if": {"canAct":["sex_vaginal","oral_give"]},
+          "if": {"canAct":["missionary","oral_give"]},
           "t": 5,
           "m": 10,
           "l": 4,
           "private": true,
-          "acts": ["sex_vaginal","oral_give"],
+          "acts": ["missionary","oral_give"],
           "res": "You walk straight back with the dog-eared novel open in one hand. Nerys goes bright plum to the tips of her horns, snaps the book out of your fingers, and shoves you flat onto the velvet cushions to prove she doesn't take notes lightly."
         },
         {
@@ -177,19 +177,34 @@
     {
       "title": "Night Market",
       "scene": "sam_date",
-      "text": "Nerys drags you to the Underdistrict night market, all red lanterns and sizzling oil, and buys you every cursed snack she can find: glowing skewers, black dumplings, something still twitching in a paper cone. She watches with the fixed attention of a woman collecting evidence. Her tail is curled around your sleeve so you can't get lost.",
+      "text": "Nerys hauls you straight into the smoky red alleys of the Underdistrict night market, steering briskly between sizzling brazier carts while buying every alarming delicacy in sight: glowing amber skewers, squid-ink dumplings, and something still wriggling hopefully inside a paper cone. She watches you chew with the rapt fascination of an alchemist testing poison on a favorite lab assistant—while her tail stays looped possessively around your sleeve.",
+      "byIntim": {
+        "2": {
+          "text": "Nerys drags you through the lantern-lit Underdistrict market buying every dubious skewer and plum liquor cup she can pile into your arms—grinning wickedly whenever you swallow something glowing. In the quiet archway back toward the surface, her tail slides lower around your waist instead of your sleeve, pulling you against warm plum-toned skin."
+        }
+      },
       "choices": [
         {
           "label": "Eat everything she hands you",
           "m": 9,
           "t": 2,
-          "res": "One of them makes your ears glow for an hour, and strangers ask for directions to your face. She has never been happier, and tells you so by laughing until she has to lean on you."
+          "res": "One glowing skewer turns your earlobes faintly neon for an hour while street vendors salute you as a patron saint. Nerys laughs so hard she has to brace both hands on your shoulders."
         },
         {
           "label": "Buy her a hair ribbon",
           "t": 4,
           "m": 6,
-          "res": "She acts unimpressed, holding the ribbon between two claws like evidence. She wears it every day after, tied in her violet hair or around the base of her horn."
+          "res": "She inspects the silk between two sharp claws like minor contraband—then wears it wound neatly through her violet locks or hooked round a horn every morning after."
+        },
+        {
+          "label": "Pull her into the quiet archway for dessert",
+          "if": {"intim":2,"canAct":["kiss","oral_give","cowgirl","missionary"]},
+          "t": 5,
+          "m": 9,
+          "l": 3,
+          "private": true,
+          "acts": ["oral_give","cowgirl","kiss"],
+          "res": "\"Greedy mortal,\" Nerys purrs with delighted fangs flashing against your jaw as she backs you straight against the warm alley brick."
         }
       ],
       "image": {

@@ -3,7 +3,7 @@
     {
       "title": "Poison Taster",
       "scene": "sam_date",
-      "text": "Adelheid insists on tasting all of your food for poison. Every meal, spoon first, her steel-blue eyes narrowed and the scar through her eyebrow pulled tight with solemnity. Soup, bread, a suspicious pear. She eventually admits, stiffly, over the last bite of your dinner, that she has started looking forward to dinner time.",
+      "text": "Adelheid insists on tasting all of your food for poison before you touch a fork. Every single meal, silver spoon first, pale blue eyes narrowed behind the scar through her brow while she inspects tavern stew, crusted bread, and one deeply suspicious pear like an assassin hid beneath the peel. Only over the final bite—when you catch her lingering long after your plate sits clean—does she admit stiffly that dinner hour has become her favorite watch.",
       "ngpp": [
         "Mid-bite she pauses staring down at the spiced stew, muttering faintly that she somehow already knew you dislike fennel.",
         "\"Forgive an old soldier's odd instinct, Sam,\" she says stiffly, pushing the sweet pear straight toward your preferred side before tasting it.",
@@ -68,7 +68,7 @@
               "m": 10,
               "l": 4,
               "private": true,
-              "acts": ["sex_vaginal","oral_give","kiss"],
+              "acts": ["missionary","oral_give","kiss"],
               "res": "All knightly stiffness melts instantly in hot water as Adelheid climbs across your thighs, biting down softly on her lip while you guide your cock inside her warmth and move slowly beneath the rising steam."
             },
             {
@@ -77,7 +77,7 @@
               "m": 8,
               "l": 3,
               "private": true,
-              "acts": ["oral_give","handjob","massage_give"],
+              "acts": ["oral_give","manual_give","massage_give"],
               "res": "Her hands grip the oak rim until her knuckles blanch as she yields completely to your hands and mouth in the quiet steam."
             }
           ]
@@ -116,12 +116,12 @@
       "choices": [
         {
           "label": "Show her how volume three actually ends",
-          "if": {"canAct":["kiss","handjob","sex_vaginal"]},
+          "if": {"canAct":["kiss","manual_give","missionary"]},
           "t": 5,
           "m": 9,
           "l": 3,
           "private": true,
-          "acts": ["sex_vaginal","handjob","kiss"],
+          "acts": ["missionary","manual_give","kiss"],
           "res": "She lowers the blade three inches, drops the dog-eared novel onto the floor, and lets you pull her down beside the barracks lamp—scarlet from jaw to collar as fiction turns real."
         },
         {
@@ -177,19 +177,40 @@
     {
       "title": "Swordplay",
       "scene": "sam_training",
-      "text": "Adelheid decides you must be able to defend yourself, and hands you a practice sword in the cold dawn of the training yard. It's much heavier than it looks. Her stance is flawless, her voice crisp: \"Feet apart, Sam. Grip firm. Again.\" Your wrists are already complaining, and a rooster is laughing at you.",
+      "text": "Adelheid decides a house owner cannot rely solely on locks and good manners, so she drags you out into the frost-crisp yard at dawn and thrusts a weighted ashwood practice sword into your hands. Your wrists howl by the fifth parry and an outraged rooster heckles from the coop roof, yet her platinum hair catches first sun as she adjusts your grip patiently: \"Feet wider, Sam. Guard high. Again.\"",
+      "byIntim": {
+        "2": {
+          "text": "Adelheid drags you into the frost-crisp yard at dawn with two ashwood practice blades, standing noticeably closer than any sergeant should while correcting your elbow height and resting warm ungloved fingers lightly along your forearm. \"Feet wider, Sam. Guard high,\" she murmurs—though her eyes drop briefly to your mouth whenever you step inside her reach."
+        }
+      },
+      "image": {
+        "comp": "demonstrating sword guard posture in a misty morning courtyard, correcting the man's grip on a wooden practice blade",
+        "setting": "dawn inn courtyard with wooden fence and training post",
+        "sam": true
+      },
       "choices": [
         {
           "label": "Practice until you drop",
           "sam": {"strength":2},
           "t": 3,
           "m": 6,
-          "res": "You drop. Twice. She is quietly, enormously proud, and her hand lingers on your shoulder as she helps you up."
+          "res": "You drop. Twice. She tries looking stern, fails miserably, and lets her warm hand linger on your shoulder long past helping you up."
         },
         {
           "label": "Let her win on purpose",
           "m": -3,
           "res": "She knows. She hates that. Her scar-split brow lowers dangerously. \"Again, and properly this time.\""
+        },
+        {
+          "label": "Disarm her and collect a reward back inside",
+          "if": {"intim":2,"canAct":["kiss","oral_give","missionary"]},
+          "sam": {"strength":1},
+          "t": 5,
+          "m": 9,
+          "l": 2,
+          "private": true,
+          "acts": ["kiss","oral_give","missionary"],
+          "res": "On the seventh exchange you catch her blade cleanly, step inside her reach, and walk a flushed, smiling knight straight back through the warm side door."
         }
       ]
     },

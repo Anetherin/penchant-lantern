@@ -40,8 +40,13 @@ const BOT = `async (weeks) => {
   setGForm('futa'); play(2);
   out.push('before nights: over=' + S.over + ' won=' + S.won + ' ap=' + S.ap + ' active=' + goddessActive());
   const l0 = S.goddess.love; play(6); out.push('neglect 6 weeks: love ' + Math.round(l0) + ' -> ' + Math.round(S.goddess.love));
-  const pr = Object.keys(GOD_FORMS).map(r => buildPrompt(NPCS[godNpcId(r)], 'samact:cowgirl') && r).join(',') + ' ' + buildPrompt(NPCS[godNpcId('fox')], 'portrait'); out.push('prompt ok: ' + String(pr && (pr.prompt || pr)).slice(0, 700));
-  out.push('pair prompt: ' + String(buildPrompt(S.workers[0] || NPCS[godNpcId('elf')], 'pair:oral_give:futa:' + godNpcId('cat'))).slice(0, 400)); out.push('svc line: ' + gSvcLine('kiss', 'futa', 'Mira') + ' | ' + gSvcLine('doggy', 'futa', 'Mira'));
+  const fKeys = Object.keys(GOD_FORMS), prAll = fKeys.every(r => !!buildPrompt(NPCS[godNpcId(r)], 'samact:cowgirl')) && !!buildPrompt(NPCS[godNpcId('fox')], 'portrait');
+  if (!prAll) throw new Error('empty form prompt');
+  out.push('prompt ok: ' + fKeys.join(','));
+  const pp = buildPrompt(S.workers[0] || NPCS[godNpcId('elf')], 'pair:oral_give:futa:' + godNpcId('cat'));
+  const sl1 = gSvcLine('kiss', 'futa', 'Mira'), sl2 = gSvcLine('doggy', 'futa', 'Mira');
+  if (!pp || !sl1 || !sl2) throw new Error('empty pair prompt or svc line');
+  out.push('pair+svc ok: pair=' + String(pp.prompt || pp).length + 'c lines=' + sl1.length + '/' + sl2.length + 'c');
   goddessNightMenu(); closeModal(); S.ap = 3; S.sam.energy = 100; goddessNight('kiss'); closeModal(); goddessNight('oral_give'); closeModal();
   let n = 0; while (!S.goddess.ending && n < 60) { S.ap = 3; S.sam.energy = 100; goddessNight(pick(['cowgirl','missionary','doggy'])); closeModal(); drain(); n++; if (n % 2 === 0) play(1); }
   out.push('after bind: div=' + Math.round(S.goddess.divinity) + ' ending=' + S.goddess.ending + ' love=' + Math.round(S.goddess.love) + ' nights=' + S.goddess.nights + ' power=' + goddessPower().toFixed(2));

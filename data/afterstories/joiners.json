@@ -1,0 +1,389 @@
+{
+  "seraphine": [
+    {
+      "title": "The Empty Tower",
+      "scene": "casual",
+      "image": {
+        "comp": "standing beside tall arched stone doorway holding an heirloom velvet crest case, proud gaze softening slightly",
+        "setting": "moonlit upper corridor outside a dusty tower room at Castle Rosenhal",
+        "sam": true
+      },
+      "text": "Weeks after the Rosenhal Ball, you find the east tower door unlocked and a wooden crate stacked in the hall. Seraphine is sorting silver candlesticks from dead moths, sleeves pushed past her wrists.\n\n\"Don't stare,\" she snaps automatically—though without half the ice she wore the night you met. \"If the tower sits empty, the dust migrates downstairs. Someone ought to reclaim the furniture before Cecile puts covers on all of it.\"",
+      "choices": [
+        {
+          "label": "Carry the heavy chest downstairs for her",
+          "t": 4,
+          "m": 5,
+          "sam": {"strength":1},
+          "res": "She pretends she hadn't been wondering how to lift it past the landing. Halfway down the stair, she says quietly, \"Thank you, Sam. I didn't realize how cold those rooms had gotten.\""
+        },
+        {
+          "label": "Ask which pieces she actually wants to keep",
+          "t": 5,
+          "m": 6,
+          "grow": {"manage":4},
+          "res": "Seraphine pauses beside an heirloom mirror, tracing the rose crest lightly with one thumb. \"Just the small desk. And the view. The rest of it belongs to the house now—yours and mine both.\""
+        }
+      ]
+    },
+    {
+      "title": "A Creditor's Name",
+      "scene": "portrait",
+      "image": {
+        "comp": "seated at a velvet salon desk turning a heavy wax-sealed parchment beside a brandy glass, cool aristocratic half-smile",
+        "setting": "private study at Castle Rosenhal lit by brass sconces",
+        "sam": true
+      },
+      "text": "An invitation embossed with a familiar serpent seal waits on your blotter: Duke Vane's cousin, offering to \"forgive\" an old Rosenhal wine tax in exchange for a private suite and Seraphine's company exclusively for his party.\n\nSeraphine reads it over your shoulder, her jaw tightening into noble marble. \"Ten years ago I would have had to smile, say yes, and watch another vulture pick over our name.\"",
+      "choices": [
+        {
+          "label": "Tear the invitation in half in front of her",
+          "t": 6,
+          "m": 8,
+          "sam": {"charm":1},
+          "res": "For half a second Seraphine forgets every lesson in composure she ever learned and laughs—bright, sharp, and fiercely relieved. \"Gods above. Do you know how satisfying that sound was?\""
+        },
+        {
+          "label": "Draft a polite note tripling his rate instead",
+          "t": 5,
+          "m": 7,
+          "gold": 250,
+          "sam": {"business":1},
+          "res": "Two days later the cousin pays double just to save face, never stepping near Seraphine's suite. She pockets her share of the joke with an approving arch of one brow (+250g)."
+        }
+      ]
+    },
+    {
+      "title": "Without the Crest",
+      "scene": "casual",
+      "image": {
+        "comp": "leaning against a castle balcony balustrade under two moons, spinning her gold signet ring thoughtfully on one thumb",
+        "setting": "stone terrace overlooking Hollowmere under twin moons",
+        "sam": true
+      },
+      "byIntim": {
+        "2": {
+          "scene": "sam_date",
+          "image": {
+            "comp": "seated closely beside him on a velvet balcony bench under moonlight, signet ring held out lightly toward his hand, warm intimate gaze",
+            "setting": "moonlit stone balcony outside Castle Rosenhal parlor",
+            "sam": true
+          },
+          "text": "Late after the last carriage pulls away, Seraphine sits out on the west balcony spinning her signet ring onto her thumb and back off again.\n\n\"Strange thing,\" she murmurs as you set two glasses down beside her. \"Before you washed up here in that wretched grey hoodie, I thought losing the Rosenhal title would unmake me. Now when lords call me 'Lady,' it feels smaller than when you just call me Seraphine.\""
+        }
+      },
+      "text": "Late after the last carriage pulls away, Seraphine sits out on the west balcony spinning her signet ring onto her thumb and back off again.\n\n\"Strange thing,\" she murmurs as you set two glasses down beside her. \"Before you washed up here in that wretched grey hoodie, I thought losing the Rosenhal title would unmake me. Now when lords call me 'Lady,' it feels smaller than when you just say my name.\"",
+      "choices": [
+        {
+          "label": "Tell her the title never made her",
+          "if": {"intim":1,"canAct":["kiss","oral_give","manual_give","missionary"]},
+          "private": true,
+          "acts": ["missionary","oral_give","kiss"],
+          "t": 6,
+          "m": 8,
+          "l": 3,
+          "res": "Seraphine slips the signet onto the marble rail, catches your collar, and draws you straight into the warm suite behind her.",
+          "else": {
+            "t": 7,
+            "m": 8,
+            "sam": {"charm":1},
+            "res": "Seraphine closes her fingers around the ring once, then slides her hand across the stone until her knuckles touch yours. \"No,\" she admits softly. \"Perhaps not anymore.\""
+          }
+        },
+        {
+          "label": "Clink glasses to whoever she wants to be next",
+          "t": 5,
+          "m": 7,
+          "grow": {"service":5},
+          "res": "She touches her rim to yours with steady grace. \"To whatever comes next beneath our own roof, Sam.\""
+        }
+      ]
+    }
+  ],
+  "ilyana": [
+    {
+      "title": "The First Curtain",
+      "scene": "casual",
+      "image": {
+        "comp": "seated backstage behind shimmering silk drapes mending a silver moon-lily hairpiece, serene thoughtful gaze",
+        "setting": "backstage dressing nook of Moonlit Pavilion lit by amber lamps",
+        "sam": true
+      },
+      "text": "Ilyana spent a hundred years watching Moonlit Pavilion from the patron's box; tonight you find her sitting on a wooden prop crate backstage, stitching loose silver pearls onto a stage ribbon herself.\n\n\"I thought Sylphine made hosting look effortless,\" she admits when you hand her a pin, slender fingers pausing over the thread. \"I had no idea how loud the guests sound before you step past the curtain.\"",
+      "choices": [
+        {
+          "label": "Remind her everyone here already trusts her grace",
+          "t": 4,
+          "m": 6,
+          "grow": {"manage":5},
+          "res": "Her silver hair gleams as she inclines her head. \"Coming from you, that helps more than century-old etiquette.\""
+        },
+        {
+          "label": "Trade places with her on stage duty for one set",
+          "t": 5,
+          "m": 6,
+          "sam": {"charm":1},
+          "res": "Watching you improvise introductions earns a quiet, genuine laugh from the wings. When she steps out next, her poise never wavers once."
+        }
+      ]
+    },
+    {
+      "title": "Borrowed Light",
+      "scene": "portrait",
+      "image": {
+        "comp": "standing beside glowing moon-lilies in an open garden pavilion, holding a lantern toward two floating blossoms, gentle curious smile",
+        "setting": "lantern-lit elven garden walk at night",
+        "sam": true
+      },
+      "text": "Midway through a slow week, Ilyana walks the garden perimeter with an unlit brass lantern, inspecting the moon-lilies that only bloom when the Pavilion's floor runs late.\n\n\"Elves measure everything in decades,\" she murmurs as you fall into step beside her. \"Then you arrive, hurry half the quarter along in a season, and suddenly a century of quiet feels very... tidy and very cold.\"",
+      "choices": [
+        {
+          "label": "Ask if she regrets trading the box seat for the floor",
+          "t": 5,
+          "m": 7,
+          "l": 2,
+          "res": "Ilyana brushes a pale petal across the back of your wrist. \"Not once. Even when my feet ache at three in the morning—especially then, somehow.\""
+        },
+        {
+          "label": "Offer her the quiet night off to listen to music",
+          "t": 4,
+          "m": 8,
+          "energy": "full",
+          "res": "She leans softly into the silence beneath the eaves, listening until the last guest carriage fades down the avenue."
+        }
+      ]
+    },
+    {
+      "title": "After the Applause",
+      "scene": "casual",
+      "image": {
+        "comp": "resting gracefully on embroidered garden cushions beside warm tea and trailing moonsilk drapes, lingering warm eyes",
+        "setting": "quiet private gallery overlooking the Moonlit Pavilion garden",
+        "sam": true
+      },
+      "byIntim": {
+        "1": {
+          "scene": "sam_date",
+          "text": "The Pavilion clears after midnight, leaving only lily scent and low lantern light across the cushions. Ilyana unpins one silver comb from her hair and looks steadily across the low table at you.\n\n\"You have a strange talent, Sam,\" she says softly. \"In two hundred and sixty years, most people treated me like an heirloom to admire from six paces away. Nobody ever looked across a table and asked what I wanted tonight.\""
+        }
+      },
+      "text": "The Pavilion clears after midnight, leaving only lily scent and low lantern light across the cushions. Ilyana unpins one silver comb from her hair and looks steadily across the low table at you.\n\n\"You have a strange talent, Sam,\" she says softly. \"In two hundred and sixty years, most people treated me like an heirloom to admire from six paces away.\"",
+      "choices": [
+        {
+          "label": "Ask what she wants tonight, then",
+          "if": {"intim":1,"canAct":["kiss","massage_get","manual_give","oral_give","missionary"]},
+          "private": true,
+          "acts": ["missionary","oral_give","kiss"],
+          "t": 6,
+          "m": 8,
+          "l": 3,
+          "res": "Ilyana rises with unhurried silver grace, lets her silk wrap slip off one shoulder, and draws you down beside the pillows.",
+          "else": {
+            "t": 7,
+            "m": 8,
+            "sam": {"charm":1},
+            "res": "\"For you to sit right here until the lanterns burn down,\" Ilyana smiles, resting her palm lightly over yours."
+          }
+        },
+        {
+          "label": "Pour another cup and keep her company till dawn",
+          "t": 5,
+          "m": 7,
+          "grow": {"service":4},
+          "res": "She stays curled comfortably on the cushions until blue daylight rims the garden wall, unhurried for the first time in a century."
+        }
+      ]
+    }
+  ],
+  "ines": [
+    {
+      "title": "Dagger Under the Pillow",
+      "scene": "casual",
+      "image": {
+        "comp": "leaning against a manor doorpost cleaning a silver dagger with an oilcloth, wry half-smile and scarred jaw",
+        "setting": "candlelit upstairs landing of Hollowmere Manor",
+        "sam": true
+      },
+      "text": "You catch Ines sitting on the top step past midnight, methodically wiping protective salt and silver polish off her hunting blade—until Vesper floats straight through the wall beside her holding a steaming mug of chamomile tea.\n\nInes clears her throat and slides the knife out of sight. \"Habit,\" she mutters. \"Hard to unlearn twelve years of sleeping with one eye open.\"",
+      "choices": [
+        {
+          "label": "Tell her she only has to guard the front door now",
+          "t": 5,
+          "m": 6,
+          "grow": {"combat":4},
+          "res": "Ines takes the tea from Vesper without flinching, blowing lightly across the rim. \"Deal. Nobody gets through the manor's gate without answering to me first.\""
+        },
+        {
+          "label": "Challenge her to leave the dagger on the table tonight",
+          "t": 4,
+          "m": 7,
+          "sam": {"strength":1},
+          "res": "She eyes you suspiciously, then drops the scabbard squarely beside the candelabra with a crisp thud. \"Fine. One night. Better lock the pantry if the ghost starts raiding again.\""
+        }
+      ]
+    },
+    {
+      "title": "Former Colleagues",
+      "scene": "portrait",
+      "image": {
+        "comp": "standing squared-shouldered in the manor courtyard holding a folded Order badge, fierce confident glare softened at the edge",
+        "setting": "iron front gates of Hollowmere Manor at twilight",
+        "sam": true
+      },
+      "text": "Two junior initiates from the Order of the Pale Lantern linger outside the iron fence with fresh silver bells and anxious faces, staring up at the woman who resigned over a three-hundred-year-old injustice.\n\nInes marches down the steps, tosses her old silver badge straight into the gravel between their boots, and looks back to see what you want done.",
+      "choices": [
+        {
+          "label": "Back her up at the gate and tell them to take a walk",
+          "t": 6,
+          "m": 8,
+          "sam": {"strength":1},
+          "res": "One look at you standing beside Ines sends both initiates hurrying back up the hill. Back inside, Ines exhales hard and knocks her fist warmly into your shoulder."
+        },
+        {
+          "label": "Invite them inside just to prove Vesper is harmless",
+          "t": 4,
+          "m": 6,
+          "res": "Five minutes of Vesper serving biscuits upside-down from the ceiling cures both initiates of haunting rumors for good. Ines hides a grin in her collar."
+        }
+      ]
+    },
+    {
+      "title": "Off Shift",
+      "scene": "casual",
+      "image": {
+        "comp": "sitting on the edge of a carved wooden bench unbuckling leather bracers in dim firelight, sharp grey-green eyes warm and candid",
+        "setting": "warm hearth parlor of Hollowmere Manor late at night",
+        "sam": true
+      },
+      "byIntim": {
+        "2": {
+          "scene": "sam_date",
+          "text": "Rain drums steadily against the gothic mullions while the hearth pops low. With her coat hung up and no hunters knocking at the iron fence, Ines stretches her shoulders out on the parlor rug and catches you watching.\n\n\"What?\" she smirks, tossing her rolled bandages onto the table. \"Didn't think I knew how to sit still without sharpening silver? Come over here, Sam—I'm off the clock.\""
+        }
+      },
+      "text": "Rain drums steadily against the gothic mullions while the hearth pops low. With her coat hung up and no hunters knocking at the iron fence, Ines stretches her shoulders out on the parlor bench and grins wryly.\n\n\"Funny how a cursed manor ended up feeling safer than half the chapels I slept in,\" she says softly.",
+      "choices": [
+        {
+          "label": "Spend the quiet hour with her by the fire",
+          "if": {"intim":1,"canAct":["kiss","massage_give","manual_give","oral_give","doggy","missionary"]},
+          "private": true,
+          "acts": ["doggy","missionary","oral_give","kiss"],
+          "t": 6,
+          "m": 8,
+          "l": 3,
+          "res": "Ines drops the banter the instant your hands find her waist, tugging you straight down onto the hearth cushions with fierce, greedy heat.",
+          "else": {
+            "t": 7,
+            "m": 8,
+            "sam": {"charm":1},
+            "res": "You pour two fingers of cheap whiskey and share the silence until the embers sink to ash. By the time she heads upstairs, the tension is completely gone from her jaw."
+          }
+        },
+        {
+          "label": "Spar a few slow rounds in the courtyard to wind down",
+          "t": 5,
+          "m": 7,
+          "sam": {"strength":1},
+          "grow": {"combat":5},
+          "res": "Wood clacks on wood beneath the rain eaves until you're both laughing and soaking wet."
+        }
+      ]
+    }
+  ],
+  "vharra": [
+    {
+      "title": "Collecting Something Else",
+      "scene": "casual",
+      "image": {
+        "comp": "leaning lazily over a velvet velvet parlor booth counting gold coins with four curving horns catching emerald lamp glow, wicked smirk",
+        "setting": "dim crimson-and-gold lounge of The Crimson Veil after hours",
+        "sam": true
+      },
+      "text": "For three centuries Vharra collected rent; lately she spends half her mornings hanging around The Crimson Veil's front desk sorting receipts beside you and Zaria just to watch the coin roll in.\n\n\"You realize I used to take forty percent off the top before you showed up,\" she purrs, tapping a gold horn-ring lightly against your ledger. \"Tell me honestly, Sam—what's your angle? You still run the cleanest books in the Underdistrict.\"",
+      "choices": [
+        {
+          "label": "Tell her honest books keep everyone coming back",
+          "t": 4,
+          "m": 6,
+          "sam": {"business":1},
+          "res": "Vharra tilts her horned head, emerald pupils gleaming. \"Annoyingly right as usual. Fine—let's see how high we push next month's column.\""
+        },
+        {
+          "label": "Flirt back and ask if she misses playing landlord",
+          "t": 5,
+          "m": 7,
+          "l": 3,
+          "res": "\"Not once since I started playing house with you and Zaria,\" Vharra grins slowly, hooking a sharp nail under your tie."
+        }
+      ]
+    },
+    {
+      "title": "Old Favors Called",
+      "scene": "portrait",
+      "image": {
+        "comp": "striding into a smoky alley doorway with curled emerald-ringed horns and a satin slit dress, confident mocking smile",
+        "setting": "foggy stone alley beside The Crimson Veil at night",
+        "sam": true
+      },
+      "text": "Three toughs from a rival docks syndicate try shaking down a Velvet courier outside the Veil's back door—until Vharra steps onto the alley steps and drops one corner of a three-hundred-year-old deed on the crates.\n\n\"Remember whose cobblestones your boots are scuffing?\" she asks pleasantly, turning one eyebrow toward you.",
+      "choices": [
+        {
+          "label": "Offer them one polite warning to leave the district",
+          "t": 5,
+          "m": 6,
+          "sam": {"charm":1},
+          "res": "Between your calm tone and Vharra grinning right behind your shoulder, the dock crew vanishes before the streetlamp flickers."
+        },
+        {
+          "label": "Let Vharra remind them whose corner this is",
+          "t": 5,
+          "m": 8,
+          "l": 2,
+          "gold": 120,
+          "res": "Vharra steps past you with wicked delight, talks half their crew out of their coin purses in thirty seconds flat, and tosses you a stray tip (+120g)."
+        }
+      ]
+    },
+    {
+      "title": "Score Settled",
+      "scene": "casual",
+      "image": {
+        "comp": "lounging sideways across a deep crimson settee sipping dark wine, emerald slit eyes fixed playfully on him",
+        "setting": "private crimson back room at The Crimson Veil lit by shaded candles",
+        "sam": true
+      },
+      "byIntim": {
+        "2": {
+          "scene": "sam_date",
+          "text": "Late after Zaria locks the front velvet curtain, Vharra drapes both legs across the back-room settee and holds up an inked slip of parchment marked with your name.\n\n\"Three hundred years of collecting debts,\" she murmurs, emerald eyes bright in the candlelight, \"and somehow you're the only ledger in Hollowmere where I keep losing track of who owes whom.\""
+        }
+      },
+      "text": "Late after Zaria locks the front velvet curtain, Vharra drapes herself lazily across the back-room settee and holds up an inked slip of parchment marked with your name.\n\n\"Three hundred years of collecting debts,\" she murmurs, emerald eyes glowing faintly in the candlelight, \"and somehow you're the only person in the Underdistrict I haven't tired of yet.\"",
+      "choices": [
+        {
+          "label": "Settle the score with her right here",
+          "if": {"intim":1,"canAct":["kiss","manual_give","oral_give","cowgirl","doggy","missionary"]},
+          "private": true,
+          "acts": ["cowgirl","oral_give","kiss"],
+          "t": 6,
+          "m": 8,
+          "l": 4,
+          "res": "Vharra drops the parchment straight onto the rug, straddles your knees, and catches both lapels in fierce, warm hands.",
+          "else": {
+            "t": 7,
+            "m": 8,
+            "sam": {"charm":1},
+            "res": "\"Then leave the score open,\" you tell her, clinking your glass lightly against hers. Vharra laughs low and satisfied. \"Clever mortal.\""
+          }
+        },
+        {
+          "label": "Pour another round and let the night stay easy",
+          "t": 5,
+          "m": 7,
+          "grow": {"service":5},
+          "res": "She stays curled in the velvet booth swapping century-old street gossip until the candle burns all the way to brass."
+        }
+      ]
+    }
+  ]
+}

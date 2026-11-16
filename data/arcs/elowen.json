@@ -3,7 +3,7 @@
     {
       "title": "Bedside Manner",
       "scene": "sam_date",
-      "text": "Elowen insists on a \"check-up\" and spends most of it nervously talking about herbs, rosemary in her braid, fingers pressed to your pulse a few seconds longer than the instructions require. The room smells of chamomile and lamp oil. At the end she admits she's never been this far from home, and that you make it feel less far.",
+      "text": "Elowen insists on an afternoon \"check-up\" behind the dried-herb curtains, babbling nervously about willow tincture and mountain wind while rosemary sprigs slip loose from her pale braid. Even when your breathing sounds completely ordinary, her slender fingers stay pressed lightly against the pulse in your wrist far longer than any apothecary textbook prescribes—until she finally looks down at the floorboards and admits how much less lonely Hollowmere feels with you across the desk.",
       "ngpp": [
         "When her fingers settle over your wrist, she catches herself pausing in surprise—as though she already memorized your resting heartbeat long before tonight.",
         "\"Forgive me, Sam,\" Elowen whispers, blush creeping softly up her long pointed ears as she brews tea without checking your cup. \"My hands know your pulse far better than our acquaintance allows.\"",
@@ -45,7 +45,7 @@
               "m": 8,
               "l": 2,
               "private": true,
-              "acts": ["massage_give","kiss","handjob"],
+              "acts": ["massage_give","kiss","manual_give"],
               "res": "Rosemary oil warms both your palms as you turn the tables gently, kneading the tension from her slender shoulders until Elowen tips her head back against your collarbone with a breathless sigh.",
               "fallbackRes": "Her slender hands glide smoothly down your back until her breath catches and she rests her forehead briefly between your shoulder blades, ears burning bright crimson."
             },
@@ -68,7 +68,7 @@
               "m": 10,
               "l": 4,
               "private": true,
-              "acts": ["sex_vaginal","oral_give","massage_give"],
+              "acts": ["missionary","oral_give","massage_give"],
               "res": "Wet linen peels off easily over her shoulders before you draw Elowen back into the scented bathwater, parting smooth oil-slicked thighs to slide deep inside her while rosemary steam rises all around you both."
             },
             {
@@ -122,12 +122,12 @@
       "choices": [
         {
           "label": "Pull her down into the clover when you're both alone",
-          "if": {"canAct":["kiss","oral_give","sex_vaginal"]},
+          "if": {"canAct":["kiss","oral_give","missionary"]},
           "t": 5,
           "m": 9,
           "l": 3,
           "private": true,
-          "acts": ["sex_vaginal","oral_give","kiss"],
+          "acts": ["missionary","oral_give","kiss"],
           "res": "Hidden behind tall sunlit meadow grass far from the road, Elowen lets the medicine basket tip over sideways as she laughs softly and pulls you down onto her cloak."
         },
         {
@@ -190,19 +190,34 @@
     {
       "title": "Starlight",
       "scene": "sam_date",
-      "text": "Elowen takes you to a hill outside town on a cloudless night, the grass cool and damp, and names the constellations of her homeland, one by one, in the soft old language of the cedar glade. Her finger traces lines across the dark. Her voice grows steadier with every name, and further away.",
+      "text": "Elowen leads you up the wind-swept ridge above Hollowmere on a crystal-clear night, spreading her travel cloak cleanly across cool clover so you can trace the summer dome overhead. One by one she names the constellations of her distant cedar glade in quiet, silver syllables—her posture loosening, her voice growing softer and steadier each time her fingertip touches your sleeve to point out another star.",
+      "byIntim": {
+        "2": {
+          "text": "Elowen leads you up the quiet ridge above Hollowmere and spreads her warm cloak across the damp clover, curling comfortably against your shoulder right away. She still traces her homeland's constellations overhead in silver elven syllables, though every few names she turns her flushed face softly into your collar instead of watching the dark."
+        }
+      },
       "choices": [
         {
           "label": "Listen to every single one",
           "t": 4,
           "m": 7,
-          "res": "There are a lot of them. You don't mind. By the last one her head is on your shoulder, and she's stopped pointing."
+          "res": "There are dozens of them, and you stay silent for every last story. By the final horizon star her cheek rests warmly against your collarbone and she stops pointing altogether."
         },
         {
           "label": "Make up a constellation for her",
           "t": 3,
           "m": 8,
-          "res": "\"The Clumsy Healer.\" She shoves you. She uses the name forever, and writes it into the margins of her star chart in tiny, careful script."
+          "res": "\"The Clumsy Healer.\" She shoves your ribs indignantly—yet copies the shape straight into the margin of her star chart in neat silver ink the next morning."
+        },
+        {
+          "label": "Kiss her softly beneath the open sky",
+          "if": {"intim":2,"canAct":["kiss","massage_give","oral_give","missionary"]},
+          "t": 5,
+          "m": 9,
+          "l": 2,
+          "private": true,
+          "acts": ["kiss","oral_give","missionary"],
+          "res": "Elowen draws a sharp, soft breath as you turn her chin toward yours under twin moons, pulling you right down onto the warm wool cloak."
         }
       ],
       "image": {

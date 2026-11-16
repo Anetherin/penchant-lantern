@@ -8,3 +8,5 @@ const NAMED = Object.fromEntries(Object.entries(charData()).map(([k,c])=>{ const
 const PARTNERS = Object.keys(NAMED).filter(k=>NAMED[k].role==='partner');
 /* ARCS: partner romance arcs, loaded from data/arcs.json in js/stories/partners.js. */
 let ARCS;
+/* AFTER_STORIES: non-partner epilogues & joiner arcs, loaded in js/stories/afterstories.js. */
+let AFTER_STORIES;

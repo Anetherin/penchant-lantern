@@ -859,13 +859,14 @@
       "{name} comes back pink-cheeked and completely relaxed.",
       "The steam rises from the rocks in soft white curls, and the water is exactly the right side of too hot. {name} slides in with a long groan and rests her head on the stone rim.",
       "Birdsong and the sound of running water fill the quiet, and the afternoon light filters through the pines. You close your eyes for a moment, and when you open them, {name} is smiling at you.",
-      "They pass a small flask of cold tea back and forth, saying very little. Every so often {name} sinks to her chin in the water and blows slow bubbles, utterly content."
+      "You pass a small flask of cold tea back and forth, saying very little. Every so often {name} sinks to her chin in the water and blows slow bubbles, utterly content."
     ],
     "image": {
       "snip": "bath",
       "comp": "relaxing together in a steaming outdoor hot spring, flushed and content",
       "setting": "mountain hot spring among rocks and snow-dusted pines",
       "towel": true,
+      "bath": true,
       "away": true
     },
     "spicy": [

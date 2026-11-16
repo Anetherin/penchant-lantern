@@ -154,7 +154,8 @@
       "name": "Knows Every Guest",
       "desc": "She remembers every bather's name and favorite temperature, and her rubdowns are famous.",
       "fx": {"jobBonus":{"bath":1.2},"actQuality":{"massage_give":1.15}}
-    }
+    },
+    "bonds": {"hilde":{"v":25,"note":"Sends mountain bath sake down to the docks in trade for Hilde’s dark stout."}}
   },
   "vesper": {
     "role": "house",
@@ -525,7 +526,8 @@
     },
     "jobs": {"likes":["bath","courtesan"],"dislikes":["promoter"]},
     "body": {"bust":"medium","height":"tall","figure":"soft"},
-    "unique": {"name":"Tide-Told Tales","desc":"The grotto's steam and her stories leave guests soothed.","fx":{"jobBonus":{"bath":1.15},"moodRest":3}}
+    "unique": {"name":"Tide-Told Tales","desc":"The grotto's steam and her stories leave guests soothed.","fx":{"jobBonus":{"bath":1.15},"moodRest":3}},
+    "bonds": {"vesper":{"v":25,"note":"Two women who outlived three owners each, trading dry notes about Hollowmere across centuries."}}
   },
   "caelia": {
     "role": "house",
@@ -581,6 +583,13 @@
       "name": "Heaven on Earth",
       "desc": "Confession in her chapel feels like grace with warm skin.",
       "fx": {"jobBonus":{"chapel":1.2},"propRate":1.15}
+    },
+    "bonds": {
+      "anael": {
+        "v": 25,
+        "kind": "mentor",
+        "note": "Old Order sister who caught the Lamplighter’s spark centuries ago; watches Anael’s reports with an amused eye."
+      }
     }
   },
   "nadia6": {
@@ -632,7 +641,8 @@
     },
     "jobs": {"likes":["courtesan","host","attendant"],"dislikes":["security","maid"]},
     "body": {"bust":"medium","height":"medium","figure":"athletic"},
-    "unique": {"name":"Calibrated Memory","desc":"Refines every touch through steady, patient study.","fx":{"skillGain":1.15,"actQuality":0.05}}
+    "unique": {"name":"Calibrated Memory","desc":"Refines every touch through steady, patient study.","fx":{"skillGain":1.15,"actQuality":0.05}},
+    "bonds": {"ione":{"v":30,"note":"Two artificial women comparing maintenance logs over late-night tea."}}
   },
   "brynna": {
     "role": "house",
@@ -683,7 +693,8 @@
     },
     "jobs": {"likes":["security","bartender","maid"],"dislikes":["dancer"]},
     "body": {"bust":"full","height":"petite","figure":"curvy"},
-    "unique": {"name":"Master Joiner","desc":"Keeps rowdies flat on the floorboards and timbers tight.","fx":{"jobBonus":{"security":1.2},"tidy":1.15}}
+    "unique": {"name":"Master Joiner","desc":"Keeps rowdies flat on the floorboards and timbers tight.","fx":{"jobBonus":{"security":1.2},"tidy":1.15}},
+    "bonds": {"hilde":{"v":35,"kind":"comrades","note":"Two stubborn dwarves who settle every timber dispute over dark stout."}}
   },
   "maren": {
     "role": "house",
@@ -787,6 +798,9 @@
     },
     "jobs": {"likes":["teacher","madame","courtesan"],"dislikes":["promoter","maid"]},
     "body": {"bust":"full","height":"tall","figure":"hourglass"},
-    "unique": {"name":"Private Syllabus","desc":"Turns awkward technique into effortless polish.","fx":{"jobBonus":{"teacher":1.2},"skillGain":1.15}}
+    "unique": {"name":"Private Syllabus","desc":"Turns awkward technique into effortless polish.","fx":{"jobBonus":{"teacher":1.2},"skillGain":1.15}},
+    "bonds": {
+      "seraphine": {"v":35,"note":"Vivienne actually gave Seraphine finishing lessons twenty years back; Seraphine never quite forgot the riding crop."}
+    }
   }
 }

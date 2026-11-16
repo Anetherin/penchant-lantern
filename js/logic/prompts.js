@@ -10,7 +10,7 @@ function keepOnRule(w){ const k = w.key && NAMED[w.key] && NAMED[w.key].keepOn; 
 function isBathScene(scene){
   if(!scene) return false;
   const P = sceneParts(scene);
-  if(P.base.startsWith('act:') && P.ctx==='bath') return true;
+  if((P.base.startsWith('act:') || P.base.startsWith('samact:')) && P.ctx==='bath') return true;
   const sc = SCENES[P.base] || SCENES[P.base.split('.')[0]];
   return !!((sc && (sc.bath || sc.towel)) || (P.ctx && isBathScene(P.ctx)));
 }
