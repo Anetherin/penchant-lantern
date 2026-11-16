@@ -49,7 +49,7 @@
     },
     "bonds": {"bettina":{"v":35,"note":"Two old hands at running a front desk. They trade gossip by letter."}},
     "jobs": {"likes":["madame","promoter","maid"],"dislikes":["security"]},
-    "body": {"bust":"medium","height":"average","figure":"soft"},
+    "body": {"bust":"large","height":"average","figure":"soft"},
     "unique": {"name":"Steady Hand","desc":"She keeps the whole house humming and the staff calm.","fx":{"jobBonus":{"madame":1.2},"rep":1.1}}
   },
   "cecile": {
@@ -67,7 +67,6 @@
     "lovers": "oral_give",
     "backstory": "Head maid of Castle Rosenhal for twelve years and three owners. She runs the castle like a clock and considers Sam her newest project. She has outlasted a mad count, a bankrupt heir and an indifferent duchess, and trusts no one's word until she has seen how they fold a towel.",
     "design": {
-      "build": "lean",
       "hairStyle": "neat chignon",
       "hairColor": "dark brown",
       "eyes": "grey",
@@ -101,7 +100,7 @@
     },
     "bonds": {"seraphine":{"v":55,"note":"Ran the Rosenhal household for twelve years; Seraphine trusts her more than family."}},
     "jobs": {"likes":["maid","madame"],"dislikes":["dancer","bartender"]},
-    "body": {"bust":"medium","height":"tall","figure":"slim"},
+    "body": {"bust":"medium","height":"average","figure":"average"},
     "unique": {
       "name": "Clockwork Household",
       "desc": "Her castle runs like a clock, and so does every room she touches.",
@@ -182,7 +181,7 @@
     },
     "under": "silk",
     "underColor": "lavender",
-    "stats": {"beauty":76,"charm":55,"charisma":61,"refinement":70,"wits":74,"stamina":50,"strength":10,"agility":55},
+    "stats": {"beauty":76,"charm":55,"charisma":61,"refinement":70,"wits":74,"stamina":50,"strength":15,"agility":55},
     "tech": {"service":40,"dance":60,"bar":10,"combat":20,"manage":30},
     "actSkill": 30,
     "popularity": 12,
@@ -205,7 +204,7 @@
       }
     },
     "jobs": {"likes":["courtesan","dancer"],"dislikes":["promoter","maid"]},
-    "body": {"bust":"small","height":"tall","figure":"slim"},
+    "body": {"bust":"small","height":"average","figure":"slim"},
     "unique": {
       "name": "Chill Lingers",
       "desc": "A hush follows her through any room, and nobles find it unforgettable.",
@@ -227,7 +226,7 @@
     "lovers": null,
     "backstory": "A brewmaster who lost her brewery in a drinking contest with a giant. She wants a bar to run and doesn't much care what goes on upstairs, though she's not opposed to finding out. She still swears the giant cheated, keeps a barrel of the bet's vintage under the counter and offers a free pint to anyone who can out-drink her. Nobody has.",
     "design": {
-      "build": "stocky, muscular",
+      "build": "stocky",
       "hairStyle": "thick braided",
       "hairColor": "red",
       "eyes": "grey",
@@ -309,7 +308,7 @@
       }
     },
     "jobs": {"likes":["dancer","courtesan"],"dislikes":["security"]},
-    "body": {"bust":"small","height":"tall","figure":"slim"},
+    "body": {"bust":"flat","height":"tall","figure":"slim"},
     "unique": {
       "name": "Opening Night",
       "desc": "Every performance feels like a premiere, and the crowd can tell.",
@@ -362,7 +361,7 @@
     },
     "bonds": {"vharra":{"v":-30,"note":"Two demons who both think they run the Underdistrict."}},
     "jobs": {"likes":["courtesan","madame"],"dislikes":["maid","promoter"]},
-    "body": {"bust":"large","height":"tall","figure":"curvy"},
+    "body": {"bust":"large","height":"average","figure":"curvy"},
     "unique": {
       "name": "Floor Boss",
       "desc": "She commands the floor and always knows who is looking for company.",
@@ -492,7 +491,6 @@
     "lovers": null,
     "backstory": "Maris has tended the Pearl Grotto longer than the harbor has had a name. She answers questions about her past with a smile and a different story every time. The steam smells of salt when she hums, and the regulars swear the water remembers their names.",
     "design": {
-      "build": "graceful",
       "hairStyle": "very long and wavy",
       "hairColor": "sea-green",
       "eyes": "pale silver",
@@ -525,7 +523,7 @@
       }
     },
     "jobs": {"likes":["bath","courtesan"],"dislikes":["promoter"]},
-    "body": {"bust":"medium","height":"tall","figure":"soft"},
+    "body": {"bust":"medium","height":"tall","figure":"average"},
     "unique": {"name":"Tide-Told Tales","desc":"The grotto's steam and her stories leave guests soothed.","fx":{"jobBonus":{"bath":1.15},"moodRest":3}},
     "bonds": {"vesper":{"v":25,"note":"Two women who outlived three owners each, trading dry notes about Hollowmere across centuries."}}
   },
@@ -536,7 +534,7 @@
     "race": "angel",
     "sub": "lantern",
     "age": 312,
-    "personality": "Warm and disarmingly candid",
+    "personality": "Cheerful and teasing",
     "traits": ["Warm-Hearted","Romantic"],
     "style": "Elegant",
     "favColor": "gold",
@@ -545,7 +543,6 @@
     "lovers": null,
     "backstory": "An angel who caught the Lamplighter's spark centuries ago and never bothered pretending sanctity meant celibacy. Her Quiet Chapel is famous across Hollowmere for gentle absolution—and what pilgrims fondly call heaven on earth.",
     "design": {
-      "build": "willowy",
       "hairStyle": "long and softly curled",
       "hairColor": "spun gold",
       "eyes": "warm amber",
@@ -557,10 +554,10 @@
     },
     "under": "lace",
     "underColor": "white",
-    "stats": {"beauty":82,"charm":76,"charisma":70,"refinement":78,"wits":68,"stamina":56,"strength":34,"agility":54},
-    "tech": {"service":64,"dance":42,"bar":25,"combat":25,"manage":52},
-    "actSkill": 44,
-    "popularity": 28,
+    "stats": {"beauty":74,"charm":66,"charisma":64,"refinement":70,"wits":62,"stamina":50,"strength":30,"agility":48},
+    "tech": {"service":54,"dance":35,"bar":20,"combat":20,"manage":46},
+    "actSkill": 36,
+    "popularity": 20,
     "lewd": 52,
     "trust": 12,
     "outfits": {
@@ -578,7 +575,7 @@
       }
     },
     "jobs": {"likes":["chapel","courtesan"],"dislikes":["security","bartender"]},
-    "body": {"bust":"medium","height":"tall","figure":"slender"},
+    "body": {"bust":"medium","height":"average","figure":"slim"},
     "unique": {
       "name": "Heaven on Earth",
       "desc": "Confession in her chapel feels like grace with warm skin.",
@@ -586,9 +583,8 @@
     },
     "bonds": {
       "anael": {
-        "v": 25,
-        "kind": "mentor",
-        "note": "Old Order sister who caught the Lamplighter’s spark centuries ago; watches Anael’s reports with an amused eye."
+        "v": -25,
+        "note": "Former Order sister who caught the Lamplighter’s spark centuries ago; watches Anael’s stiff reports with amused affection, even as Anael disapproves."
       }
     }
   },
@@ -598,7 +594,7 @@
     "name": "Nadia-6",
     "race": "android",
     "age": 31,
-    "personality": "Poised and endlessly curious",
+    "personality": "Bookish and curious",
     "traits": ["Quick Learner","Perfectionist"],
     "style": "Elegant",
     "favColor": "teal",
@@ -619,10 +615,10 @@
     },
     "under": "silk",
     "underColor": "black",
-    "stats": {"beauty":78,"charm":62,"charisma":64,"refinement":74,"wits":82,"stamina":68,"strength":48,"agility":66},
-    "tech": {"service":68,"dance":48,"bar":34,"combat":30,"manage":58},
-    "actSkill": 48,
-    "popularity": 24,
+    "stats": {"beauty":72,"charm":54,"charisma":58,"refinement":66,"wits":74,"stamina":60,"strength":40,"agility":56},
+    "tech": {"service":58,"dance":38,"bar":28,"combat":25,"manage":48},
+    "actSkill": 38,
+    "popularity": 20,
     "lewd": 44,
     "trust": 10,
     "outfits": {
@@ -636,12 +632,16 @@
         "label": "Silk conduit harness",
         "style": "Revealing",
         "prompt": "delicate black leather and brass straps over sheer teal silk lingerie",
-        "bonus": {"courtesan":1.25,"oral_give":1.15}
+        "bonus": {"courtesan":1.25,"propose":1.15}
       }
     },
     "jobs": {"likes":["courtesan","host","attendant"],"dislikes":["security","maid"]},
-    "body": {"bust":"medium","height":"medium","figure":"athletic"},
-    "unique": {"name":"Calibrated Memory","desc":"Refines every touch through steady, patient study.","fx":{"skillGain":1.15,"actQuality":0.05}},
+    "body": {"bust":"medium","height":"average","figure":"athletic"},
+    "unique": {
+      "name": "Calibrated Memory",
+      "desc": "Refines every touch through steady, patient study.",
+      "fx": {"skillGain":1.15,"actQuality":{"oral_give":1.1,"manual_give":1.08}}
+    },
     "bonds": {"ione":{"v":30,"note":"Two artificial women comparing maintenance logs over late-night tea."}}
   },
   "brynna": {
@@ -650,7 +650,7 @@
     "name": "Brynna Ironnail",
     "race": "dwarf",
     "age": 94,
-    "personality": "Gruff, proud, and secretly sentimental",
+    "personality": "Stoic and blunt",
     "traits": ["Tough","Tidy"],
     "style": "Casual",
     "favColor": "amber",
@@ -659,22 +659,22 @@
     "lovers": null,
     "backstory": "A master timberwright and bouncer who held onto the deed for Ironwood Hall through three failed syndicates. She has a hammer in her boot, carpentry chalk behind one ear, and zero patience for anyone breaking the furniture she just planed.",
     "design": {
-      "build": "stocky and muscular",
+      "build": "stocky",
       "hairStyle": "thick twin braids tucked over her shoulders",
       "hairColor": "chestnut red",
       "eyes": "hazel",
       "skin": "warm weathered bronze",
       "features": "braided locks clasped with brass rings",
       "accessories": "heavy leather carpenter's apron",
-      "accState": "work",
+      "accState": "dressed",
       "expression": "a crooked, assessing grin"
     },
     "under": "sports",
     "underColor": "charcoal",
-    "stats": {"beauty":58,"charm":54,"charisma":60,"refinement":44,"wits":66,"stamina":84,"strength":86,"agility":56},
-    "tech": {"service":52,"dance":24,"bar":56,"combat":80,"manage":62},
-    "actSkill": 38,
-    "popularity": 18,
+    "stats": {"beauty":52,"charm":48,"charisma":54,"refinement":38,"wits":58,"stamina":74,"strength":76,"agility":50},
+    "tech": {"service":44,"dance":18,"bar":45,"combat":68,"manage":50},
+    "actSkill": 30,
+    "popularity": 16,
     "lewd": 32,
     "trust": 14,
     "outfits": {
@@ -692,7 +692,7 @@
       }
     },
     "jobs": {"likes":["security","bartender","maid"],"dislikes":["dancer"]},
-    "body": {"bust":"full","height":"petite","figure":"curvy"},
+    "body": {"bust":"large","height":"short","figure":"curvy"},
     "unique": {"name":"Master Joiner","desc":"Keeps rowdies flat on the floorboards and timbers tight.","fx":{"jobBonus":{"security":1.2},"tidy":1.15}},
     "bonds": {"hilde":{"v":35,"kind":"comrades","note":"Two stubborn dwarves who settle every timber dispute over dark stout."}}
   },
@@ -703,7 +703,7 @@
     "race": "beastkin",
     "sub": "fox",
     "age": 26,
-    "personality": "Silky, playful, and perceptive",
+    "personality": "Sultry and indulgent",
     "traits": ["Flirt","Soothing Voice"],
     "style": "Exotic",
     "favColor": "emerald",
@@ -712,7 +712,6 @@
     "lovers": null,
     "backstory": "An apothecary's daughter who turned a crumbling botanical conservatory into Hollowmere's most intoxicating salon. She blends rare resins for the brass censers—and knows to the heartbeat how quickly incense goes to a fox's ears.",
     "design": {
-      "build": "lithe and curvy",
       "hairStyle": "long wavy locks cascading down her back",
       "hairColor": "russet auburn",
       "eyes": "amber-gold",
@@ -724,10 +723,10 @@
     },
     "under": "lace",
     "underColor": "emerald",
-    "stats": {"beauty":82,"charm":78,"charisma":72,"refinement":68,"wits":70,"stamina":60,"strength":40,"agility":72},
-    "tech": {"service":66,"dance":58,"bar":42,"combat":28,"manage":54},
-    "actSkill": 46,
-    "popularity": 28,
+    "stats": {"beauty":74,"charm":68,"charisma":64,"refinement":60,"wits":62,"stamina":52,"strength":32,"agility":60},
+    "tech": {"service":56,"dance":48,"bar":34,"combat":20,"manage":46},
+    "actSkill": 38,
+    "popularity": 22,
     "lewd": 48,
     "trust": 12,
     "outfits": {
@@ -745,7 +744,7 @@
       }
     },
     "jobs": {"likes":["host","courtesan","dancer"],"dislikes":["security","maid"]},
-    "body": {"bust":"medium","height":"medium","figure":"curvy"},
+    "body": {"bust":"medium","height":"average","figure":"curvy"},
     "unique": {"name":"Perfumer's Ear","desc":"Matches every guest to a scent and a lingering tease.","fx":{"jobBonus":{"host":1.2},"propRate":1.15}}
   },
   "vivienne": {
@@ -755,8 +754,8 @@
     "title": "Professor",
     "race": "human",
     "age": 34,
-    "personality": "Cool, exacting, and quietly wicked",
-    "traits": ["Born Teacher","Level-Headed"],
+    "personality": "Cold and professional",
+    "traits": ["Academic Flair","Level-Headed"],
     "style": "Elegant",
     "favColor": "plum",
     "fav": "missionary",
@@ -764,7 +763,6 @@
     "lovers": null,
     "backstory": "Once etiquette mistress to Hollowmere's merchant daughters, until she realized high society paid three times as much for private lessons behind velvet curtains. Crisp with a riding crop in the lecture hall, devastatingly thorough behind closed doors.",
     "design": {
-      "build": "poised and hourglass",
       "hairStyle": "pinned up in a neat chignon with loose framing tendrils",
       "hairColor": "dark espresso",
       "eyes": "cool grey",
@@ -776,10 +774,10 @@
     },
     "under": "corset",
     "underColor": "plum",
-    "stats": {"beauty":78,"charm":70,"charisma":76,"refinement":86,"wits":84,"stamina":56,"strength":38,"agility":54},
-    "tech": {"service":72,"dance":54,"bar":30,"combat":26,"manage":74},
-    "actSkill": 52,
-    "popularity": 30,
+    "stats": {"beauty":72,"charm":62,"charisma":66,"refinement":78,"wits":76,"stamina":48,"strength":30,"agility":48},
+    "tech": {"service":60,"dance":42,"bar":24,"combat":20,"manage":62},
+    "actSkill": 42,
+    "popularity": 24,
     "lewd": 38,
     "trust": 10,
     "outfits": {
@@ -797,7 +795,7 @@
       }
     },
     "jobs": {"likes":["teacher","madame","courtesan"],"dislikes":["promoter","maid"]},
-    "body": {"bust":"full","height":"tall","figure":"hourglass"},
+    "body": {"bust":"large","height":"average","figure":"curvy"},
     "unique": {"name":"Private Syllabus","desc":"Turns awkward technique into effortless polish.","fx":{"jobBonus":{"teacher":1.2},"skillGain":1.15}},
     "bonds": {
       "seraphine": {"v":35,"note":"Vivienne actually gave Seraphine finishing lessons twenty years back; Seraphine never quite forgot the riding crop."}

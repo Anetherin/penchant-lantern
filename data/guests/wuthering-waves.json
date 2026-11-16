@@ -55,7 +55,7 @@
             "fem_rover": {"v":55,"kind":"comrades","note":"The trusted Arbiter who stood beside Jinzhou in its darkest hour."}
           },
           "jobs": {"likes":["courtesan","madame","dancer"],"dislikes":["bartender"]},
-          "body": {"bust":"medium","height":"short","figure":"slim"},
+          "body": {"bust":"medium","height":"short","figure":"average"},
           "unique": {
             "name": "Magistrate's Bearing",
             "desc": "A magistrate's authority impresses nobles and settles the house.",
@@ -103,7 +103,7 @@
           },
           "bonds": {"fem_rover":{"v":45,"note":"Her favorite dancing partner and most reliable collaborator."}},
           "jobs": {"likes":["courtesan","madame"],"dislikes":["maid","bartender"]},
-          "body": {"bust":"small","height":"short","figure":"slim"},
+          "body": {"bust":"small","height":"short","figure":"average"},
           "unique": {
             "name": "Merchant's Pistol",
             "desc": "A shrewd negotiator with a decorative but credible deterrent.",
@@ -370,7 +370,7 @@
           "lovers": "kiss",
           "backstory": "A prodigy priestess of Septimont who reads fate in the shifting phases of the moon, Iuno grew tired of senators demanding safe prophecies and set out across the sea. She carries a crescent moonbow, dresses in white-and-gold temple silk, and insists she foresaw every decision Sam makes three nights ago.",
           "design": {
-            "build": "graceful, slender",
+            "build": "graceful",
             "hairStyle": "floor-length twin tails with side bangs",
             "hairColor": "midnight blue fading to translucent sky-blue tips",
             "eyes": "luminous azure blue",
@@ -421,7 +421,7 @@
           "lovers": "doggy",
           "backstory": "The undefeated gladiator champion and reigning Ephor of Septimont, Augusta forged her own legend in the sun-drenched colosseum with an oversized broadblade and unyielding willpower. Visiting Hollowmere between campaigns, she treats the Lantern's security like an honor guard and respects only those who meet her blazing gaze without flinching.",
           "design": {
-            "build": "sculpted, statuesque",
+            "build": "sculpted",
             "hairStyle": "long, voluminous wavy",
             "hairColor": "fiery orange-red",
             "eyes": "crimson red with golden-white pupil rings",
@@ -495,7 +495,7 @@
           },
           "bonds": {"fem_rover":{"v":60,"note":"Her cherished anchor to the waking world."}},
           "jobs": {"likes":["dancer","promoter","attendant"],"dislikes":["security"]},
-          "body": {"bust":"medium","height":"average","figure":"slim"},
+          "body": {"bust":"medium","height":"average","figure":"average"},
           "unique": {
             "name": "Starlight Resonance",
             "desc": "Her weightless, starlit songs lift the whole house's spirits and draw crowds from down the street.",
@@ -567,7 +567,7 @@
           "lovers": "kiss",
           "backstory": "An awakened traveler with golden eyes and no memory of where her long journey began, Rover has crossed seas, quieted lament-torn cities, and collected half the east coast's heroines as devoted companions. In Hollowmere she finally sets her sword down for a season, lending Sam her steady blade and quiet magnetism.",
           "design": {
-            "build": "sleek, athletic",
+            "build": "sleek",
             "hairStyle": "medium-length with a half-up ponytail and a longer braided lock at the back",
             "hairColor": "jet black with pale silver-white inner streaks",
             "eyes": "warm golden-amber",

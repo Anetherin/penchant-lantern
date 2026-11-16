@@ -57,7 +57,7 @@
             "pauline": {"v":45,"kind":"comrades","note":"Old friends who swap governance notes and musical numbers."}
           },
           "jobs": {"likes":["host","courtesan","madame"],"dislikes":["security"]},
-          "body": {"bust":"medium","height":"tall","figure":"slim"},
+          "body": {"bust":"medium","height":"tall","figure":"average"},
           "unique": {
             "name": "Heart Blossom",
             "desc": "Her gentle royal warmth soothes the entire house and delights noble patrons.",
@@ -79,7 +79,7 @@
           "lovers": "kiss",
           "backstory": "The tomboy princess of Sarasaland's desert-and-island empire, Daisy has never met a sport she wouldn't play for keeps or a formality she wouldn't skip. She followed Peach to Hollowmere, challenged half the tavern to arm-wrestling on her first night, and has been the loudest, brightest voice on the street ever since.",
           "design": {
-            "build": "energetic, toned",
+            "build": "energetic",
             "hairStyle": "shoulder-length flipped bob with rounded bangs",
             "hairColor": "warm auburn-ginger",
             "eyes": "bright cobalt blue",
@@ -134,7 +134,7 @@
           "lovers": "oral_get",
           "backstory": "The jazz-singing Mayor of New Donk City, a towering metropolis of steel girders and neon marquees, Pauline knows how to run a city council by day and bring down a concert hall by night. Visiting Hollowmere on a cultural exchange, she took one look at the Lantern's stage and asked for a brass band and a spotlight.",
           "design": {
-            "build": "statuesque, glamorous",
+            "build": "glamorous",
             "hairStyle": "long, glossy waves swept over one shoulder",
             "hairColor": "chestnut brown",
             "eyes": "vivid sky blue",
@@ -189,7 +189,7 @@
           "lovers": "missionary",
           "backstory": "Chief archivist, master builder, and treasure-hunting captain of Princess Peach's court, Toadette is a pint-sized dwarven dynamo who can draw up a blueprint before breakfast and organize the whole house by noon. She followed her princess to Hollowmere to make sure the ledgers balance and the bookshelves stay dusted.",
           "design": {
-            "build": "petite, bustling",
+            "build": "bustling",
             "hairStyle": "thick twin rounded braids bobbing at her shoulders",
             "hairColor": "bright magenta-pink",
             "eyes": "dark brown",
@@ -244,7 +244,7 @@
           "lovers": "doggy",
           "backstory": "The fire-breathing Koopa Queen of the dark volcanic keeps, transformed by a magical Super Crown she refuses to take off because she looks phenomenal in it. Loud, bossy, and secretly a hopeless romantic beneath all the spikes, Bowsette marched into the Lantern after Peach arrived—and ended up taking over the bouncer detail because nobody dares start a brawl while she's cracking her knuckles.",
           "design": {
-            "build": "voluptuous, Amazonian",
+            "build": "Amazonian",
             "hairStyle": "long, wild spiky waves with a high ponytail",
             "hairColor": "golden blonde",
             "eyes": "piercing ocean blue",

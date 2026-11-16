@@ -48,7 +48,7 @@
           },
           "bonds": {"cynthia":{"v":30,"note":"Champion and Gym Leader; mutual, wary respect."}},
           "jobs": {"likes":["security","madame"],"dislikes":["dancer","bartender"]},
-          "body": {"bust":"medium","height":"average","figure":"slim"},
+          "body": {"bust":"medium","height":"average","figure":"average"},
           "unique": {
             "name": "Mind Reader",
             "desc": "She reads trouble before it starts, strengthening security and settling pushy clients.",
@@ -217,16 +217,8 @@
           "fav": "massage_give",
           "dislike": "oral_get",
           "lovers": "cowgirl",
-          "backstory": "The fiery water gym leader of a small seaside town, Misty set out to prove she was more than her sisters' shadow, and then proved it over and over. She arrived in Hollowmere hunting the best bathhouse in town and took a job on the spot. She has a short temper, a soft heart for water creatures, and a very loyal companion.",
-          "design": {
-            "hairStyle": "short side ponytail",
-            "hairColor": "orange",
-            "eyes": "teal",
-            "skin": "fair",
-            "accessories": "a dazed yellow duck companion at her heels",
-            "accState": "dressed",
-            "expression": "a bright, quick-tempered grin"
-          },
+          "backstory": "The fiery water gym leader of a small seaside town, Misty set out to prove she was more than her sisters' shadow, and then proved it over and over. She arrived in Hollowmere hunting the best bathhouse in town and took a job on the spot. She has a short temper, a fierce competitive streak, and a soft heart for anyone who earns her trust.",
+          "design": {"hairStyle":"short side ponytail","hairColor":"orange","eyes":"teal","skin":"fair","expression":"a bright, quick-tempered grin"},
           "under": "sports",
           "underColor": "cyan",
           "stats": {"beauty":76,"charm":62,"charisma":66,"refinement":48,"wits":56,"stamina":68,"strength":42,"agility":70},

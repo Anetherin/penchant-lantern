@@ -55,7 +55,7 @@
             "popola": {"v":40,"kind":"comrades","note":"Popola always sets aside a quiet cup of oil-tea for her."}
           },
           "jobs": {"likes":["security","dancer"],"dislikes":["promoter","bartender"]},
-          "body": {"bust":"large","height":"tall","figure":"curvy"},
+          "body": {"bust":"large","height":"average","figure":"curvy"},
           "unique": {
             "name": "Blade of YoRHa",
             "desc": "Her grace with a blade and striking silhouette make the house both completely secure and unforgettable.",
@@ -113,7 +113,7 @@
             "popola": {"v":35,"note":"Popola patches her up without lecturing her."}
           },
           "jobs": {"likes":["security","bartender"],"dislikes":["maid","promoter","host"]},
-          "body": {"bust":"medium","height":"tall","figure":"athletic"},
+          "body": {"bust":"medium","height":"average","figure":"athletic"},
           "unique": {
             "name": "Berserk Mode",
             "desc": "When trouble starts, she hits like a hurricane and never backs down.",
@@ -165,7 +165,7 @@
             "yorha_a2": {"v":35,"note":"Leaves a plate by the back door for the stray prototype."}
           },
           "jobs": {"likes":["bartender","dancer","host"],"dislikes":["maid"]},
-          "body": {"bust":"medium","height":"average","figure":"curvy"},
+          "body": {"bust":"medium","height":"average","figure":"average"},
           "unique": {
             "name": "Song of the Ancients",
             "desc": "Her haunting tavern ballads keep glasses full and guests lingering late into the night.",
@@ -215,7 +215,7 @@
             "yorha_a2": {"v":35,"note":"Keeps spare repair parts on hand whenever A2 returns from patrol."}
           },
           "jobs": {"likes":["madame","attendant","bath"],"dislikes":["promoter"]},
-          "body": {"bust":"medium","height":"average","figure":"curvy"},
+          "body": {"bust":"medium","height":"average","figure":"average"},
           "unique": {
             "name": "Twin Harmony",
             "desc": "Her calm administration keeps the house running smoothly and lowers staff stress.",

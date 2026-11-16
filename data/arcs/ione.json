@@ -46,7 +46,12 @@
               "acts": ["kiss","massage_give"],
               "res": "You sit on the rim and put your hands on her wet shoulders. Her skin is warm and slick and the seam at her collarbone shines under your thumb. \"Documenting baseline warmth,\" she whispers. The number is going up, you can tell by her face. She leans into your hand and then, tentatively, toward your mouth."
             },
-            {"label":"Hand her a towel and step out","t":2,"m":3,"res":"You hand her a towel and step out. \"Acknowledged,\" she murmurs, and her light softens. She is already sinking back into the water. You close the door and lean on it. Inside, she says, almost too quietly to hear, \"Thank you for letting me stay in it,\" and then there is only water."}
+            {
+              "label": "Hand her a towel and step out",
+              "t": 2,
+              "m": 3,
+              "res": "You hand her a towel and step out. \"Acknowledged,\" she murmurs, and her light softens. She is already sinking back into the water. You close the door and lean on it. Inside, she says, almost too quietly to hear, \"Thank you for letting me stay in it,\" and then there is only water."
+            }
           ]
         },
         "3": {
