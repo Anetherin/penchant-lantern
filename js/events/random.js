@@ -318,4 +318,4 @@ function checkEnd(){
     modal(`<h2>Debt Paid! 🎉</h2><p class="story">Marguerite Vane stamps the final receipt. "Paid in full. I confess, Mr. Takahashi, I had money on you failing." She almost smiles.\n\nEverything you've built is yours, free and clear.${chMsg}\n\n${nextDesc}</p><div class="row"><button onclick="closeModal()">Keep playing</button><button onclick="exportBox('ngplus')" title="Only what New Game+ carries; load it any time to start the next cycle again">Export NG+ save</button><button class="primary" onclick="startNGPlus()">New Game+…</button></div>`);
   }
 }
-function restart(){ store.del(KEY_SAVE); EVQ=[]; S=null; closeModal(); TAB='house'; startSetup(); }
+function restart(){ store.del(KEY_SAVE); EVQ=[]; S=null; closeModal(); TAB='house'; startSetup(); if(typeof cloudInit === 'function' && cloudReady()) cloudInit(); }

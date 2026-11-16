@@ -6,7 +6,7 @@
    ===================================================================== */
 const DEFAULT_CLOUD = { url:'https://hollowmere-sync.anetherin.workers.dev', secret:'', autoSave:true, autoMilestone:true, syncLib:false };
 let CLOUD = Object.assign({}, DEFAULT_CLOUD, store.get(KEY_CLOUD) || {});
-const CLOUD_STATE = { connected:false, busy:false, lastErr:'', manifest:{imgs:{}, thumbs:{}}, saves:{slots:{}, extras:{}} };
+const CLOUD_STATE = { connected:false, busy:false, lastErr:'', conflictPausedFor:0, conflictRemote:null, manifest:{imgs:{}, thumbs:{}}, saves:{slots:{}, extras:{}} };
 let CLOUD_CMP = null;
 
 const saveCloudConfig = () => store.set(KEY_CLOUD, CLOUD);
@@ -22,11 +22,19 @@ async function cloudReq(path, opts = {}){
   if(!base || !CLOUD.secret) throw new Error('Cloud sync is not configured.');
   const headers = Object.assign({ Authorization: 'Bearer ' + CLOUD.secret }, opts.headers || {});
   const res = await fetch(base + path, Object.assign({}, opts, { headers }));
-  if(res.status === 401) throw new Error('Invalid sync passphrase.');
+  if(res.status === 401){
+    CLOUD_STATE.connected = false;
+    CLOUD_STATE.lastErr = 'Invalid sync passphrase.';
+    throw new Error('Invalid sync passphrase.');
+  }
   if(!res.ok && res.status !== 404){
     let msg = `HTTP ${res.status}`;
-    try{ const j = await res.json(); if(j && j.error) msg = j.error; }catch(e){}
-    throw new Error(msg);
+    let j = null;
+    try{ j = await res.json(); if(j && j.error) msg = j.error; }catch(e){}
+    const err = new Error(msg);
+    err.status = res.status;
+    if(j && j.conflict){ err.conflict = true; err.remote = j.remote || null; }
+    throw err;
   }
   return res;
 }
@@ -263,32 +271,82 @@ function cloudBuildMeta(data, name, kind, id){
   };
 }
 
-async function cloudSaveSlot(slotId, name, kind = 'full', sourceData = null){
+function cloudIsRemoteNewer(remote, s = S){
+  if(!remote || !s) return false;
+  const baseTs = s.cloudSyncedAt || 0;
+  if(remote.updatedAt && remote.updatedAt > baseTs) return true;
+  const rc = remote.cycle || 1, sc = s.cycle || 1;
+  const rw = remote.week || 1, sw = s.week || 1;
+  return rc > sc || (rc === sc && rw > sw);
+}
+
+async function cloudSaveSlot(slotId, name, kind = 'full', sourceData = null, opts = {}){
   if(!cloudReady()) return null;
   const raw = sourceData || (kind === 'ngplus' ? ngSeed() : S);
   if(!raw) throw new Error(kind === 'ngplus' ? 'New Game+ unlocks once the debt is paid off.' : 'No active game.');
+  const known = CLOUD_STATE.saves && CLOUD_STATE.saves.slots && CLOUD_STATE.saves.slots[slotId];
+  if(!opts.force && S && slotId === S.cloudId && known && cloudIsRemoteNewer(known, S)){
+    const err = new Error('Cloud save is newer than this local save.');
+    err.status = 409;
+    err.conflict = true;
+    err.remote = known;
+    throw err;
+  }
   const payloadObj = JSON.parse(JSON.stringify(raw, saveReplacer));
   const meta = cloudBuildMeta(payloadObj, name, kind, slotId);
+  const body = { meta, data: payloadObj };
+  if(opts.force) body.force = true;
+  else if(opts.baseUpdatedAt !== undefined) body.baseUpdatedAt = opts.baseUpdatedAt;
   const res = await cloudReq(`/saves/slot?id=${encodeURIComponent(slotId)}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ meta, data: payloadObj }),
+    body: JSON.stringify(body),
   });
   const out = await res.json();
   CLOUD_STATE.saves.slots[slotId] = out.meta;
-  if(S && slotId === S.cloudId) S.cloudSyncedAt = out.meta.updatedAt;
+  if(S && slotId === S.cloudId){
+    S.cloudSyncedAt = out.meta.updatedAt;
+    CLOUD_STATE.conflictPausedFor = 0;
+    CLOUD_STATE.conflictRemote = null;
+  }
   return out.meta;
 }
 
+let CLOUD_AUTOSAVE_PROMISE = null;
+let CLOUD_AUTOSAVE_QUEUED = false;
+
 async function cloudAutoSave(){
   if(!cloudReady() || !CLOUD.autoSave || !S) return;
-  ensureCloudRun(S);
-  try{
-    await cloudSaveSlot(S.cloudId, S.cloudName, 'full', S);
-    store.set(KEY_SAVE, S, saveReplacer);
-  }catch(e){
-    CLOUD_STATE.lastErr = e.message;
+  if(CLOUD_AUTOSAVE_PROMISE){
+    CLOUD_AUTOSAVE_QUEUED = true;
+    return CLOUD_AUTOSAVE_PROMISE;
   }
+  CLOUD_AUTOSAVE_PROMISE = (async () => {
+    do {
+      CLOUD_AUTOSAVE_QUEUED = false;
+      if(!cloudReady() || !CLOUD.autoSave || !S) break;
+      ensureCloudRun(S);
+      const known = CLOUD_STATE.saves && CLOUD_STATE.saves.slots && CLOUD_STATE.saves.slots[S.cloudId];
+      if(CLOUD_STATE.conflictPausedFor && known && known.updatedAt === CLOUD_STATE.conflictPausedFor) break;
+      try{
+        await cloudSaveSlot(S.cloudId, S.cloudName, 'full', S, { baseUpdatedAt: S.cloudSyncedAt || 0 });
+        store.set(KEY_SAVE, S, saveReplacer);
+      }catch(e){
+        CLOUD_STATE.lastErr = e.message;
+        if(e.conflict && e.remote){
+          CLOUD_STATE.saves.slots[S.cloudId] = e.remote;
+          CLOUD_STATE.conflictRemote = e.remote;
+          if(CLOUD_STATE.conflictPausedFor !== e.remote.updatedAt){
+            toast('Cloud auto-save paused: newer save exists in cloud.');
+            cloudOpenConflictModal(e.remote, 'auto');
+          }
+          break;
+        }
+      }
+    } while(CLOUD_AUTOSAVE_QUEUED);
+  })();
+  try{ return await CLOUD_AUTOSAVE_PROMISE; }
+  finally { CLOUD_AUTOSAVE_PROMISE = null; CLOUD_AUTOSAVE_QUEUED = false; }
 }
 
 async function cloudSaveMilestone(){
@@ -299,8 +357,92 @@ async function cloudSaveMilestone(){
   const slotId = `${S.cloudId}_c${S.cycle||1}_ngp`;
   const name = `${S.cloudName} · Cycle ${S.cycle||1} Clear (NG+)`;
   try{
-    await cloudSaveSlot(slotId, name, 'ngplus', seed);
+    await cloudSaveSlot(slotId, name, 'ngplus', seed, { force: true });
   }catch(e){}
+}
+
+function cloudOpenConflictModal(remote, source = 'auto'){
+  if(!S || !remote) return;
+  CLOUD_STATE.conflictRemote = remote;
+  const rCyc = cloudCycleLabel(remote);
+  const lCyc = (S.ngppCycle||0) > 0 ? `NG++${S.ngppCycle}` : `C${S.cycle||1}`;
+  const reason = source === 'auto'
+    ? 'Auto-save was blocked to prevent overwriting a newer cloud save from another session or device.'
+    : source === 'manual'
+    ? 'The cloud slot has newer progress than when this device last synced.'
+    : 'A newer cloud save was found for this run.';
+  modal2(`<h2>Cloud Save Conflict</h2>
+    <p class="muted">${esc(reason)}</p>
+    <div class="cmp-grid">
+      <div class="cmp-card">
+        <b>This Device (Local)</b>
+        <div><b>${esc(S.cloudName || 'Current Run')}</b></div>
+        <div class="muted">${lCyc} · Week ${S.week || 1} · ${fmt(S.gold || 0)}</div>
+        <div class="muted">Last synced: ${esc(fmtTime(S.cloudSyncedAt))}</div>
+      </div>
+      <div class="cmp-card">
+        <b>Cloud (Remote)</b>
+        <div><b>${esc(remote.name || remote.id)}</b></div>
+        <div class="muted">${rCyc} · Week ${remote.week || 1} · ${fmt(remote.gold || 0)}</div>
+        <div class="muted">Saved: ${esc(fmtTime(remote.updatedAt))}</div>
+      </div>
+    </div>
+    <div class="row" style="margin-top:10px">
+      <button class="primary" onclick="cloudResolveConflict('load')">Load Cloud Save</button>
+      <button onclick="cloudResolveConflict('fork')">Save Local as New Cloud Run</button>
+      <button onclick="cloudResolveConflict('overwrite')">Overwrite Cloud with Local</button>
+      <button onclick="cloudResolveConflict('pause')">Keep Local (Pause Sync)</button>
+    </div>`);
+}
+
+async function cloudResolveConflict(action){
+  const remote = CLOUD_STATE.conflictRemote || (S && CLOUD_STATE.saves && CLOUD_STATE.saves.slots[S.cloudId]);
+  if(action === 'load'){
+    if(!remote) return closeModal2();
+    closeModal2();
+    await cloudLoadSlot(remote.id);
+    return;
+  }
+  if(action === 'fork'){
+    if(!S) return closeModal2();
+    const nextName = prompt('Name for this forked cloud run:', `${S.cloudName || 'Run'} (Copy)`);
+    if(!nextName || !nextName.trim()) return;
+    S.cloudId = 'run_' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+    S.cloudName = nextName.trim().slice(0, 80);
+    S.cloudSyncedAt = 0;
+    CLOUD_STATE.conflictPausedFor = 0;
+    CLOUD_STATE.conflictRemote = null;
+    try{
+      await cloudSaveSlot(S.cloudId, S.cloudName, 'full', S, { baseUpdatedAt: 0 });
+      save();
+      closeModal2();
+      toast(`Saved as new cloud run "${S.cloudName}".`);
+      if(TAB === 'settings') render();
+    }catch(e){
+      toast('Could not fork cloud run: ' + e.message);
+    }
+    return;
+  }
+  if(action === 'overwrite'){
+    if(!S) return closeModal2();
+    if(!confirm(`Overwrite the newer cloud save (${remote ? `${cloudCycleLabel(remote)} · Wk ${remote.week}` : 'remote'}) with this device's save (Wk ${S.week})?`)) return;
+    try{
+      await cloudSaveSlot(S.cloudId, S.cloudName, 'full', S, { force: true });
+      save();
+      closeModal2();
+      toast(`Overwrote cloud save "${S.cloudName}".`);
+      if(TAB === 'settings') render();
+    }catch(e){
+      toast('Overwrite failed: ' + e.message);
+    }
+    return;
+  }
+  if(action === 'pause'){
+    CLOUD_STATE.conflictPausedFor = (remote && remote.updatedAt) || Date.now();
+    closeModal2();
+    toast('Kept local save. Cloud auto-save paused for this conflict.');
+    if(TAB === 'settings') render();
+  }
 }
 
 async function cloudLoadSlot(slotId){
@@ -314,16 +456,88 @@ async function cloudLoadSlot(slotId){
     if(!d.cloudId) d.cloudId = slotId;
     if(!d.cloudName && pkg.meta && pkg.meta.name) d.cloudName = pkg.meta.name;
     d.cloudSyncedAt = (pkg.meta && pkg.meta.updatedAt) || Date.now();
+    const wasSetup = !!SETUP;
     S = migrate(d);
     SETUP = null;
+    NGS = null;
+    EVQ = [];
+    CUR_EV = null;
+    SHEET = null;
+    if(wasSetup) TAB = 'house';
+    CLOUD_STATE.conflictPausedFor = 0;
+    CLOUD_STATE.conflictRemote = null;
     save();
     closeModal();
     toast(`Loaded "${S.cloudName}".`);
     render();
-    if(S.ngSeed && S.won) startNGPlus();
+    if((S.ngSeed || (pkg.meta && pkg.meta.kind === 'ngplus')) && S.won) startNGPlus();
   }catch(e){
     toast('Could not load save: ' + e.message);
   }
+}
+
+const cloudCycleLabel = sl => (sl.ngppCycle||0) > 0 ? `NG++${sl.ngppCycle}` : `C${sl.cycle||1}`;
+
+function cloudSlotsSorted(kindFilter = 'all'){
+  const all = Object.values((CLOUD_STATE.saves && CLOUD_STATE.saves.slots) || {})
+    .sort((a,b) => (b.updatedAt||0) - (a.updatedAt||0));
+  if(kindFilter === 'ngplus') return all.filter(sl => sl.kind === 'ngplus');
+  if(kindFilter === 'full') return all.filter(sl => sl.kind !== 'ngplus');
+  return all;
+}
+
+function cloudSavesTableHTML(slots, opts = {}){
+  if(!slots.length) return `<p class="muted">${esc(opts.empty || 'No cloud saves found.')}</p>`;
+  return `<table><thead><tr><th>Name</th><th>Type</th><th>Progress</th><th>Updated</th><th>${opts.manage ? 'Actions' : ''}</th></tr></thead><tbody>
+    ${slots.map(sl => {
+      const isNgp = sl.kind === 'ngplus';
+      const curMark = opts.manage && S && sl.id === S.cloudId ? ' <span class="tag">active</span>' : '';
+      const prog = [cloudCycleLabel(sl), `Wk ${sl.week||1}`, sl.gold !== undefined ? fmt(sl.gold||0) : '', !opts.manage && sl.workers !== undefined ? `${sl.workers} staff` : ''].filter(Boolean).join(' · ');
+      const actions = opts.manage
+        ? `<div class="row" style="margin:0">
+            <button class="sm" onclick="cloudLoadSlot('${esc(sl.id)}')">${isNgp ? 'Load NG+' : 'Load'}</button>
+            <button class="sm" onclick="cloudOverwriteSlot('${esc(sl.id)}')">Overwrite</button>
+            <button class="sm" onclick="cloudRenameSlot('${esc(sl.id)}')">Rename</button>
+            <button class="sm" onclick="cloudExportSlot('${esc(sl.id)}')" title="Download local .json copy">⬇</button>
+            <button class="sm" onclick="cloudDeleteSlot('${esc(sl.id)}')">🗑</button>
+          </div>`
+        : `<button class="sm primary" onclick="cloudLoadSlot('${esc(sl.id)}')">${isNgp ? 'Load NG+' : 'Load'}</button>`;
+      return `<tr>
+        <td><b>${esc(sl.name||sl.id)}</b>${curMark}${sl.house?`<div class="muted" style="font-size:11px">${esc(sl.house)}</div>`:''}</td>
+        <td>${isNgp ? '<span class="tag act">NG+</span>' : '<span class="tag house">Full</span>'}</td>
+        <td>${prog}</td>
+        <td class="muted">${esc(fmtTime(sl.updatedAt))}</td>
+        <td>${actions}</td>
+      </tr>`;
+    }).join('')}
+  </tbody></table>`;
+}
+
+async function cloudConnectWith(url, secret, silent = false){
+  CLOUD.url = String(url || '').trim().replace(/\/+$/, '');
+  CLOUD.secret = String(secret || '').trim();
+  saveCloudConfig();
+  if(!cloudReady()){
+    CLOUD_STATE.connected = false;
+    CLOUD_STATE.lastErr = '';
+    if(!silent) toast('Enter both URL and passphrase.');
+    return false;
+  }
+  CLOUD_STATE.busy = true;
+  try{
+    return await cloudRefresh(silent);
+  } finally {
+    CLOUD_STATE.busy = false;
+  }
+}
+
+function cloudDisconnect(){
+  CLOUD.secret = '';
+  saveCloudConfig();
+  CLOUD_STATE.connected = false;
+  CLOUD_STATE.lastErr = '';
+  CLOUD_STATE.saves = {slots:{}, extras:{}};
+  CLOUD_STATE.manifest = {imgs:{}, thumbs:{}};
 }
 
 async function cloudExportSlot(slotId){
@@ -344,7 +558,7 @@ async function cloudOverwriteSlot(slotId){
   const kind = cur.kind === 'ngplus' && S && S.won ? 'ngplus' : 'full';
   if(!confirm(`Overwrite cloud slot "${cur.name}" with your current ${kind === 'ngplus' ? 'NG+ seed' : 'save'}?`)) return;
   try{
-    await cloudSaveSlot(slotId, cur.name, kind);
+    await cloudSaveSlot(slotId, cur.name, kind, null, { force: true });
     toast(`Updated "${cur.name}".`);
     if(TAB === 'settings') render();
   }catch(e){
@@ -513,15 +727,19 @@ async function cloudClearLocalCache(){
 
 async function cloudInit(){
   if(!cloudReady()) return;
+  CLOUD_STATE.busy = true;
+  if(SETUP && !S && SETUP.step === -1 && typeof setupView === 'function') setupView();
   const ok = await cloudRefresh(true);
+  CLOUD_STATE.busy = false;
+  if(SETUP && !S && SETUP.step === -1 && typeof setupView === 'function'){ setupView(); return; }
   if(!ok) return;
   if(S){
     ensureCloudRun(S);
     const slot = CLOUD_STATE.saves.slots[S.cloudId];
-    if(slot && slot.updatedAt > Math.max(S.localSavedAt || 0, S.cloudSyncedAt || 0) + 2000 && !SETUP && !MODAL_LOCK){
-      modal(`<h2>Newer Cloud Save Available</h2>
-        <p>The cloud save for <b>${esc(slot.name)}</b> (Cycle ${slot.cycle}, Week ${slot.week}, saved ${esc(fmtTime(slot.updatedAt))}) is newer than this browser's local save (Week ${S.week}).</p>
-        <div class="row"><button class="primary" onclick="cloudLoadSlot('${esc(slot.id)}')">Load Cloud Save</button><button onclick="closeModal()">Keep Local</button></div>`);
+    const newerTime = !!(slot && slot.updatedAt > Math.max(S.localSavedAt || 0, S.cloudSyncedAt || 0) + 2000);
+    const olderProg = !!(slot && ((slot.cycle || 1) > (S.cycle || 1) || ((slot.cycle || 1) === (S.cycle || 1) && (slot.week || 1) > (S.week || 1))));
+    if(slot && (newerTime || olderProg) && !SETUP && !MODAL_LOCK){
+      cloudOpenConflictModal(slot, 'startup');
     }
   }
   if(TAB === 'settings') render();

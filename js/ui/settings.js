@@ -121,12 +121,12 @@ function renameCurrentRun(){
   save();
   toast(`Run renamed to "${S.cloudName}".`);
   if(cloudReady() && CLOUD_STATE.saves.slots[S.cloudId]){
-    cloudSaveSlot(S.cloudId, S.cloudName, 'full', S).catch(()=>{});
+    cloudSaveSlot(S.cloudId, S.cloudName, 'full', S, { baseUpdatedAt: S.cloudSyncedAt || 0 }).catch(()=>{});
   }
 }
 function viewCloudSettings(){
   const ready = cloudReady(), conn = CLOUD_STATE.connected;
-  const slots = Object.values((CLOUD_STATE.saves && CLOUD_STATE.saves.slots) || {}).sort((a,b)=>(b.updatedAt||0)-(a.updatedAt||0));
+  const slots = cloudSlotsSorted('all');
   const stats = cloudLocalPermStats();
   const statusHtml = !ready ? '<span class="muted">not configured</span>'
     : conn ? '<span class="good">connected</span>'
@@ -147,30 +147,13 @@ function viewCloudSettings(){
       ${ready?`<button onclick="refreshCloudUI()">↻ Refresh</button>`:''}
     </div>
     ${conn ? `
+    ${CLOUD_STATE.conflictRemote ? `<p class="warn"><b>Cloud sync conflict:</b> A newer cloud save (${cloudCycleLabel(CLOUD_STATE.conflictRemote)} · Wk ${CLOUD_STATE.conflictRemote.week||1}, saved ${esc(fmtTime(CLOUD_STATE.conflictRemote.updatedAt))}) exists. Auto-save is paused to protect it. <button class="sm" onclick="cloudOpenConflictModal(CLOUD_STATE.conflictRemote,'manual')">Resolve Conflict…</button></p>` : ''}
     <h3 style="margin-top:12px">Cloud Saves</h3>
     <div class="row">
       <button class="primary" onclick="cloudSaveCurrentRun()">Save "${esc(S.cloudName||'Current Run')}" to Cloud</button>
       <button onclick="cloudNewSnapshotPrompt()">+ New Named Snapshot</button>
     </div>
-    ${slots.length ? `<table><thead><tr><th>Name</th><th>Type</th><th>Progress</th><th>Updated</th><th>Actions</th></tr></thead><tbody>
-      ${slots.map(sl=>{
-        const curMark = S && sl.id === S.cloudId ? ' <span class="tag">active</span>' : '';
-        const cyc = (sl.ngppCycle||0) > 0 ? `NG++${sl.ngppCycle}` : `C${sl.cycle||1}`;
-        return `<tr>
-          <td><b>${esc(sl.name||sl.id)}</b>${curMark}<div class="muted" style="font-size:11px">${esc(sl.house||'')}</div></td>
-          <td>${sl.kind==='ngplus'?'<span class="tag act">NG+</span>':'Full'}</td>
-          <td>${cyc} · Wk ${sl.week||1} · ${fmt(sl.gold||0)}</td>
-          <td class="muted">${esc(fmtTime(sl.updatedAt))}</td>
-          <td><div class="row" style="margin:0">
-            <button class="sm" onclick="cloudLoadSlot('${esc(sl.id)}')">Load</button>
-            <button class="sm" onclick="cloudOverwriteSlot('${esc(sl.id)}')">Overwrite</button>
-            <button class="sm" onclick="cloudRenameSlot('${esc(sl.id)}')">Rename</button>
-            <button class="sm" onclick="cloudExportSlot('${esc(sl.id)}')" title="Download local .json copy">⬇</button>
-            <button class="sm" onclick="cloudDeleteSlot('${esc(sl.id)}')">🗑</button>
-          </div></td>
-        </tr>`;
-      }).join('')}
-    </tbody></table>` : '<p class="muted">No cloud saves yet.</p>'}
+    ${cloudSavesTableHTML(slots, { manage: true, empty: 'No cloud saves yet.' })}
     <div class="row" style="margin-top:8px">
       <button class="sm" onclick="cloudPushExtra('settings')">Push Settings</button>
       <button class="sm" onclick="cloudPullExtra('settings')">Pull Settings</button>
@@ -187,15 +170,21 @@ function viewCloudSettings(){
     </div>` : ''}</section>`;
 }
 async function saveCloudUI(){
-  CLOUD.url = ($('#c_url') && $('#c_url').value || '').trim().replace(/\/+$/, '');
-  CLOUD.secret = ($('#c_secret') && $('#c_secret').value || '').trim();
   CLOUD.autoSave = $('#c_autoSave') ? $('#c_autoSave').checked : true;
   CLOUD.autoMilestone = $('#c_autoMile') ? $('#c_autoMile').checked : true;
   CLOUD.syncLib = $('#c_syncLib') ? $('#c_syncLib').checked : false;
-  saveCloudConfig();
-  if(!cloudReady()){ CLOUD_STATE.connected = false; toast('Cloud settings saved.'); return render(); }
+  const url = $('#c_url') ? $('#c_url').value : CLOUD.url;
+  const secret = $('#c_secret') ? $('#c_secret').value : CLOUD.secret;
+  if(!String(url||'').trim() || !String(secret||'').trim()){
+    CLOUD.url = String(url||'').trim().replace(/\/+$/, '');
+    CLOUD.secret = String(secret||'').trim();
+    saveCloudConfig();
+    CLOUD_STATE.connected = false;
+    toast('Cloud settings saved.');
+    return render();
+  }
   toast('Connecting to Cloudflare Worker…');
-  const ok = await cloudRefresh(false);
+  const ok = await cloudConnectWith(url, secret, false);
   if(ok) toast('Connected to Cloudflare R2!');
   render();
 }
@@ -210,11 +199,17 @@ async function cloudSaveCurrentRun(){
   ensureCloudRun(S);
   try{
     toast('Saving run to cloud…');
-    await cloudSaveSlot(S.cloudId, S.cloudName, 'full', S);
+    await cloudSaveSlot(S.cloudId, S.cloudName, 'full', S, { baseUpdatedAt: S.cloudSyncedAt || 0 });
     save();
     toast(`Saved "${S.cloudName}" to cloud.`);
     render();
   }catch(e){
+    if(e.conflict && e.remote){
+      CLOUD_STATE.saves.slots[S.cloudId] = e.remote;
+      cloudOpenConflictModal(e.remote, 'manual');
+      render();
+      return;
+    }
     toast('Cloud save failed: ' + e.message);
   }
 }
@@ -234,7 +229,7 @@ async function doCloudNewSnapshot(){
   const kind = ($('#snap_kind') && $('#snap_kind').value) || 'full';
   const slotId = 'snap_' + Date.now().toString(36) + Math.random().toString(36).slice(2,5);
   try{
-    await cloudSaveSlot(slotId, name, kind);
+    await cloudSaveSlot(slotId, name, kind, null, { force: true });
     closeModal();
     toast(`Saved snapshot "${name}".`);
     if(TAB === 'settings') render();
@@ -254,22 +249,13 @@ async function cloudOpenSlotsModal(){
     return;
   }
   await cloudRefresh(false);
-  const slots = Object.values((CLOUD_STATE.saves && CLOUD_STATE.saves.slots) || {}).sort((a,b)=>(b.updatedAt||0)-(a.updatedAt||0));
+  const slots = cloudSlotsSorted('all');
   modal(`<h2>Load Cloud Save</h2>
-    ${slots.length ? `<table><thead><tr><th>Name</th><th>Type</th><th>Progress</th><th>Updated</th><th></th></tr></thead><tbody>
-      ${slots.map(sl=>{
-        const cyc = (sl.ngppCycle||0) > 0 ? `NG++${sl.ngppCycle}` : `C${sl.cycle||1}`;
-        return `<tr><td><b>${esc(sl.name||sl.id)}</b></td><td>${sl.kind==='ngplus'?'NG+':'Full'}</td><td>${cyc} · Wk ${sl.week||1}</td><td class="muted">${esc(fmtTime(sl.updatedAt))}</td><td><button class="sm primary" onclick="cloudLoadSlot('${esc(sl.id)}')">Load</button></td></tr>`;
-      }).join('')}
-    </tbody></table>` : '<p class="muted">No cloud saves found.</p>'}
+    ${cloudSavesTableHTML(slots)}
     <div class="row" style="margin-top:10px">${SETUP?'<button onclick="setupView()">← Back</button>':'<button onclick="closeModal()">Close</button>'}</div>`, {lock:!!SETUP, wide:true});
 }
 async function connectFromSetupModal(){
-  CLOUD.url = ($('#cm_url') && $('#cm_url').value || '').trim().replace(/\/+$/, '');
-  CLOUD.secret = ($('#cm_secret') && $('#cm_secret').value || '').trim();
-  saveCloudConfig();
-  if(!cloudReady()) return toast('Enter both URL and passphrase.');
-  const ok = await cloudRefresh(false);
+  const ok = await cloudConnectWith($('#cm_url') && $('#cm_url').value, $('#cm_secret') && $('#cm_secret').value, false);
   if(ok) cloudOpenSlotsModal();
 }
 async function cleanImages(){
