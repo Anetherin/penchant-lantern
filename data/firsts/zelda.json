@@ -376,9 +376,10 @@
             "sam": true
           },
           "go": "Join her",
-          "goRes": "You climb between her thighs and drive your cock into her pussy, her body alternating between feverish heat and gasping shivers as she rides you until you both cum.",
+          "goRes": "You climb between her thighs and drive your cock into her pussy, her body alternating between feverish heat and gasping shivers as you fuck her until you both cum.",
           "wait": "\"Try asking nicely first.\"",
-          "waitRes": "\"Nicely? At our age?\" She bursts out laughing, eyes glinting gold. \"Fine—please, little boss. Tomorrow night.\""
+          "waitRes": "\"Nicely? At our age?\" She bursts out laughing, eyes glinting gold. \"Fine—please, little boss. Tomorrow night.\"",
+          "act": "missionary"
         },
         "jump": {
           "title": "Elemental Overload",

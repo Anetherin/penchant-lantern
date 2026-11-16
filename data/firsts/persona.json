@@ -209,7 +209,8 @@
           "go": "Stay",
           "goRes": "She turns down the lamp, strips off the rest of her clothes, and straddles your hips, sinking onto your cock—letting you see the breathless, unguarded woman behind the deadpan doctor.",
           "wait": "\"Are you sure?\"",
-          "waitRes": "\"Doctor's orders: never ask me twice.\" Her gaze softens. \"Take your time; I'm a night owl anyway.\""
+          "waitRes": "\"Doctor's orders: never ask me twice.\" Her gaze softens. \"Take your time; I'm a night owl anyway.\"",
+          "act": "cowgirl"
         },
         "jump": {
           "title": "Emergency",

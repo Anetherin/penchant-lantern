@@ -39,7 +39,8 @@
           "go": "Go in with her",
           "goRes": "She latches the door with a flick of her mind—and then with her hand—before letting the plum silk drop and sinking down onto your cock, gasping softly as every telepathic barrier shatters.",
           "wait": "\"Are you sure?\"",
-          "waitRes": "\"I am never unsure—occasionally afraid, which is tonight.\" She smiles faintly. \"Take your time; I have already seen how this ends.\""
+          "waitRes": "\"I am never unsure—occasionally afraid, which is tonight.\" She smiles faintly. \"Take your time; I have already seen how this ends.\"",
+          "act": "cowgirl"
         },
         "jump": {
           "title": "All Thoughts at Once",
@@ -206,9 +207,10 @@
             "sam": true
           },
           "go": "Stay",
-          "goRes": "You pull the oversized shirt over her head and sink slowly inside her, Leaf wrapping her legs around you and whispering \"Home\" against your neck as she shudders.",
+          "goRes": "You pull the oversized shirt over her head and sink your cock slowly into her pussy, Leaf wrapping her legs around you and whispering \"Home\" against your neck as she shudders.",
           "wait": "\"Sure about this?\"",
-          "waitRes": "\"I've never been surer of a route in my life.\" She grins warmly. \"Take your time—the map isn't going anywhere.\""
+          "waitRes": "\"I've never been surer of a route in my life.\" She grins warmly. \"Take your time—the map isn't going anywhere.\"",
+          "act": "missionary"
         },
         "jump": {
           "title": "Shortcut",
@@ -321,7 +323,8 @@
           "go": "Stay",
           "goRes": "She bolts the door with a sharp click, straddles your hips on the mattress, and rides your cock until every ounce of dragon-tamer pride melts into breathless cries beneath you.",
           "wait": "\"You're sure?\"",
-          "waitRes": "\"Don't insult me.\" Then, softer: \"I am—ask again in a few days if you must; my answer won't change.\""
+          "waitRes": "\"Don't insult me.\" Then, softer: \"I am—ask again in a few days if you must; my answer won't change.\"",
+          "act": "cowgirl"
         },
         "jump": {
           "title": "Provoked",
