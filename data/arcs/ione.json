@@ -43,15 +43,10 @@
               "m": 8,
               "l": 2,
               "private": true,
-              "acts": ["kiss", "massage_give"],
+              "acts": ["kiss","massage_give"],
               "res": "\"Documenting baseline warmth,\" she whispers as your fingers glide along her wet shoulders."
             },
-            {
-              "label": "Hand her a towel and step out",
-              "t": 2,
-              "m": 3,
-              "res": "\"Acknowledged,\" she murmurs, light softening as you give her the room."
-            }
+            {"label":"Hand her a towel and step out","t":2,"m":3,"res":"\"Acknowledged,\" she murmurs, light softening as you give her the room."}
           ]
         },
         "3": {
@@ -63,7 +58,7 @@
               "m": 10,
               "l": 4,
               "private": true,
-              "acts": ["sex_vaginal", "oral_give", "kiss"],
+              "acts": ["sex_vaginal","oral_give","kiss"],
               "res": "She exhales a soft, uncalibrated gasp as your wet chest presses flush against hers."
             },
             {
@@ -117,12 +112,12 @@
         },
         {
           "label": "Step behind the bar and teach her a warmer distraction",
-          "if": {"canAct": ["kiss", "oral_give", "sex_vaginal"]},
+          "if": {"canAct":["kiss","oral_give","sex_vaginal"]},
           "t": 5,
           "m": 8,
           "l": 2,
           "private": true,
-          "acts": ["oral_give", "sex_vaginal", "kiss"],
+          "acts": ["oral_give","sex_vaginal","kiss"],
           "res": "She sets the glass down cleanly as you corner her behind the oak counter."
         },
         {

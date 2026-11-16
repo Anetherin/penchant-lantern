@@ -45,7 +45,7 @@
               "m": 8,
               "l": 2,
               "private": true,
-              "acts": ["massage_give", "kiss", "handjob"],
+              "acts": ["massage_give","kiss","handjob"],
               "res": "Her stage bravado vanishes the second warm soapy hands glide down her bare spine; Akari turns sharply on her knees in the suds, catching your collar to pull you down into a dizzy, foam-tipped kiss.",
               "fallbackRes": "She chatters at half her usual speed while your knuckles ease the tightness from her shoulders, leaning happily back against your chest."
             },
@@ -68,7 +68,7 @@
               "m": 10,
               "l": 4,
               "private": true,
-              "acts": ["sex_ride", "sex_vaginal", "oral_give"],
+              "acts": ["sex_ride","sex_vaginal","oral_give"],
               "res": "Hot water sloshes clear onto the cedar boards as Akari pulls you down and straddles your lap eagerly, biting down on a bright gasp as you thrust deep inside her through the rising mist."
             },
             {
@@ -77,7 +77,7 @@
               "m": 8,
               "l": 3,
               "private": true,
-              "acts": ["handjob", "oral_give", "massage_give"],
+              "acts": ["handjob","oral_give","massage_give"],
               "res": "She melts straight back against your bare chest, panting softly into your neck as your hands trace every inch below the warm water."
             }
           ]
@@ -117,12 +117,12 @@
       "choices": [
         {
           "label": "Claim your winner's prize after everyone goes upstairs",
-          "if": {"canAct": ["kiss", "oral_give", "sex_vaginal"]},
+          "if": {"canAct":["kiss","oral_give","sex_vaginal"]},
           "t": 5,
           "m": 9,
           "l": 3,
           "private": true,
-          "acts": ["sex_vaginal", "oral_give", "kiss"],
+          "acts": ["sex_vaginal","oral_give","kiss"],
           "res": "Once the last mug clears away, Akari shoves the scattered cards across the sofa cushions and pulls you down hard into her lap, whispering breathlessly that she waited six whole years to collect on that cheat."
         },
         {
@@ -162,7 +162,7 @@
         },
         {
           "label": "Train her yourself, every evening",
-          "grow": {"service": 6},
+          "grow": {"service":6},
           "t": 6,
           "m": 6,
           "res": "Every evening for a week, after close, you walk her through it, patient and bad at demonstrating. She is clumsy for three days and then, abruptly, not. She gets better. She gets a lot better, and by the end she's showing off."
@@ -174,7 +174,7 @@
           "res": "You tell her about the truck, about the three jobs you failed to keep, about the time you cried in a convenience store over a vending machine. By the end she is laughing through her tears and hitting you with a towel."
         }
       ],
-      "image": {"comp": "crying in a linen closet hugging a stack of towels", "setting": "cramped linen closet, a sliver of light", "sam": false}
+      "image": {"comp":"crying in a linen closet hugging a stack of towels","setting":"cramped linen closet, a sliver of light","sam":false}
     },
     {
       "title": "Drama Date",
@@ -194,7 +194,7 @@
           "res": "A walk in the drizzle, warm buns from the bakery, a quiet bench under the eaves where you share the last one. \"...Okay,\" she admits, leaning on you. \"This is better than the dramas.\""
         }
       ],
-      "image": {"comp": "running dramatically through the rain toward him holding an umbrella", "setting": "lantern-lit street in the rain", "sam": true}
+      "image": {"comp":"running dramatically through the rain toward him holding an umbrella","setting":"lantern-lit street in the rain","sam":true}
     },
     {
       "title": "Not Kenta's Sister",
@@ -207,7 +207,7 @@
       ],
       "goLead": "Akari drops the lantern safely beside the chimney and lunges straight into your arms, kissing you breathlessly before guiding you down the attic hatch toward your bed.",
       "choices": [
-        {"label": "Say yes", "t": 6, "m": 12, "res": ""},
+        {"label":"Say yes","t":6,"m":12,"res":""},
         {
           "label": "Not yet",
           "t": 1,

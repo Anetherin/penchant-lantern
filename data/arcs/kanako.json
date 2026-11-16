@@ -23,7 +23,7 @@
           "res": "You bow your head and let her. {N}'s fingers linger in your hair a second past the joke, and then she tucks a loose pin back into place and says nothing."
         }
       ],
-      "image": {"comp": "ruffling his hair in front of the staff, laughing", "setting": "lively bar during staff meeting", "sam": true}
+      "image": {"comp":"ruffling his hair in front of the staff, laughing","setting":"lively bar during staff meeting","sam":true}
     },
     {
       "title": "Shampoo",
@@ -41,7 +41,7 @@
               "m": 8,
               "l": 3,
               "private": true,
-              "acts": ["handjob", "oral_give", "kiss"],
+              "acts": ["handjob","oral_give","kiss"],
               "res": "Soapy fingers tangle smoothly in your wet hair before sliding low across your chest as you tug Kanako flush down onto the tub edge—smearing plum lipstick straight across your jaw while her breath hitches.",
               "fallbackRes": "Her manicured fingers work slow, maddening circles across your scalp and neck until she murmurs softly under her breath, cheeks rosy beneath the steam."
             },
@@ -64,7 +64,7 @@
               "m": 10,
               "l": 4,
               "private": true,
-              "acts": ["sex_ride", "sex_vaginal", "oral_give"],
+              "acts": ["sex_ride","sex_vaginal","oral_give"],
               "res": "Kanako laughs low in her throat, sinking straight down onto your cock in the hot water as plum-painted lips graze your collarbone and her nails dig deliciously into wet shoulders."
             },
             {
@@ -73,7 +73,7 @@
               "m": 8,
               "l": 3,
               "private": true,
-              "acts": ["oral_give", "paizuri", "handjob"],
+              "acts": ["oral_give","paizuri","handjob"],
               "res": "She arches back against the cedar rim breathing hot, breathless praise against your throat while steam curls thick across her slick skin."
             }
           ]
@@ -111,12 +111,12 @@
       "choices": [
         {
           "label": "Lift her right onto the empty bar counter and show her",
-          "if": {"canAct": ["sex_vaginal", "oral_give", "kiss"]},
+          "if": {"canAct":["sex_vaginal","oral_give","kiss"]},
           "t": 5,
           "m": 9,
           "l": 4,
           "private": true,
-          "acts": ["sex_vaginal", "oral_give", "kiss"],
+          "acts": ["sex_vaginal","oral_give","kiss"],
           "res": "You lock the front latch and step straight between her parted knees at the mahogany bar; Kanako exhales a hot, stunned laugh against your mouth, wrapping silky legs tightly around your hips."
         },
         {
@@ -207,7 +207,7 @@
       ],
       "goLead": "Kanako slides warm palms straight under the hem of your hoodie, pressing flushed curves flush against you as the kitchen latch locks behind you both.",
       "choices": [
-        {"label": "Say yes", "t": 6, "m": 12, "res": ""},
+        {"label":"Say yes","t":6,"m":12,"res":""},
         {
           "label": "Not yet",
           "t": 1,

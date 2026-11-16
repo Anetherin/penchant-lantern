@@ -37,7 +37,7 @@ const isFree = w => !!(w.isPartner || w.free);
 function gainTrust(w, n){
   const b = w.trust;
   const ch = n > 0 ? ((typeof hasChallengePerk==='function' && hasChallengePerk('small_troupe') ? 1.15 : 1) * (typeof rebornHouseGrowth==='function' ? rebornHouseGrowth(w) : 1) * (typeof cycleVarMul==='function' ? cycleVarMul('trust', 1) : 1)) : 1;
-  const g = n * pTrust(w) * (n>0 ? fxMul(w,'trustGain') * incenseMul(w,'trustGain') * samBonus('charm') * ch : 1) * (n>0 ? Math.max(0.15, 1 - w.trust/140) : 1);
+  const g = n * pTrust(w) * (n>0 ? fxMul(w,'trustGain') * incenseMul(w,'trustGain') * (nearSam(w) ? samBonus('charm') : 1) * ch : 1) * (n>0 ? Math.max(0.15, 1 - w.trust/140) : 1);
   w.trust = clamp(w.trust + g); capTrust(w); return w.trust - b;
 }
 // The least any activity with Sam builds (balance.json → trust.minor), so nothing they do together is wasted.
@@ -51,8 +51,8 @@ function houseGate(w){
   if(!st || !h || !h.story || h.story.beat >= st.beats.length) return null;
   return {house:h, beat:h.story.beat, cap:BAL.houseGate.base + BAL.houseGate.perBeat*h.story.beat};
 }
-// Comfort of the staff quarters (bed level or bedroom tier, whichever is lower) against what a house this famous is expected to offer (balance.json → quarters).
-const housingComfort = h => Math.min(h.beds||0, h.tier||0), housingExpect = h => Math.min(3, Math.floor(h.rep/BAL.quarters.repPerLevel)), housingShort = h => Math.max(0, housingExpect(h) - housingComfort(h));
+// Comfort of the staff quarters (bed level or bedroom tier, whichever is lower) against what a house of this class/prestige is expected to offer (balance.json → quarters).
+const housingComfort = h => Math.min(h.beds||0, h.tier||0), housingExpect = h => Math.min(3, Math.floor(housePrestige(h) / (BAL.quarters.prestigePerLevel || BAL.quarters.repPerLevel))), housingShort = h => Math.max(0, housingExpect(h) - housingComfort(h));
 const houseTrustCap = w => { const g = houseGate(w); return g ? g.cap : 100; };
 function capTrust(w){ const c = houseTrustCap(w); if(w.trust > c) w.trust = c; return w.trust; }
 function enforceTrustCaps(){ if(typeof S!=='undefined' && S && S.workers) S.workers.forEach(capTrust); }

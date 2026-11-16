@@ -13,7 +13,7 @@
       "A portrait in the hallway has started winking at guests. Business is up.",
       "Something rearranged all the furniture in the lounge overnight. Into a much better layout, honestly."
     ],
-    "lean": {"label":"Lean into it","res":"Word spreads. Thrill-seekers line up. +reputation."},
+    "lean": {"label":"Lean into it","res":"Word spreads. Thrill-seekers line up. +house popularity."},
     "exorcist": {
       "label": "Call an exorcist (60g)",
       "res": "The exorcist leaves in tears.",
@@ -142,7 +142,7 @@
     "guard": {"label":"Let {guard} handle it","res":"{guard} throws him out in about four seconds. The regulars applaud."},
     "sam": {
       "label": "Step in yourself",
-      "win": "You talk him down. Mostly by being so polite it's confusing. +reputation.",
+      "win": "You talk him down. Mostly by being so polite it's confusing. +house popularity.",
       "lose": "You take a punch, then the drunk falls asleep on his own. You get a black eye and a lot of sympathy."
     },
     "pay": {"label":"Pay for the damage","res":"Broken chairs and a cracked mirror: {gold}."}

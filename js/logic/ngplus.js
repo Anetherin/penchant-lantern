@@ -40,13 +40,13 @@ const keptWhy = h => h.id===homeHouse() ? 'home' : (S.starters||[]).includes(h.i
 const NG_BOONS = {
   purse:   {label:'Deep Pockets', desc:'Start with 2,500g extra in hand.'},
   ap:      {label:'Seasoned Owner', desc:'+1 action every week, for good.'},
-  renown:  {label:'A Name in Hollowmere', desc:'+15 renown, and the new house opens with +10 reputation.'},
+  renown:  {label:'A Name in Hollowmere', desc:'+15 renown, and the new house opens with +10 popularity.'},
   recruit: {label:'Friends at the Guild', desc:'3 extra candidates now; signing bonuses are 25% cheaper from now on.'},
   grace:   {label:'Lenient Lender', desc:'The new debt is 15% smaller.'},
   devotion:{label:'Fated Meeting', desc:'Your new partner starts with +15 trust and +10 lewdness.'},
   loyal:   {label:'Old Loyalties', desc:'Ladies who come back from a past life ask only half the usual raise for each life.'},
   memory:  {label:'Vivid Memories', desc:'Ladies who carry over keep 15% more of the skills and stats they built (still at most 65%).'},
-  clone:   {label:'Shadow Clone', desc:'Sam learned to be in two places at once. Ladies from every house can find him at night, not just the house he sleeps in.'}
+  clone:   {label:'Shadow Clone', desc:'Sam learned to be in two places at once. His bonuses, watch, books, classes, and late-night visits reach every house, not just where he sleeps.'}
 };
 // What was spent on the home house's rooms, tiers, quarters, beds, annex and upgrades (tracked in h.spent by buyUpgrade).
 const improvementsValue = h => Math.round((h && h.spent) || 0);
@@ -107,7 +107,7 @@ function ngNumbers(boon, house, opts){
   const keptExtra = keptOpt.reduce((a,h)=>a + (HOUSES[h.id].debt || 0) * (B.keptHouseShare ?? 0.25) * cycMul, 0);
   const loverExtra = loverCount * (B.loverDebt ?? 1800) * cycMul;
   const nh = house && HOUSES[house] ? HOUSES[house].debt * (B.newHouseShare ?? 1) * cycMul : 0;
-  const scaleMul = 1 + keptOpt.length * (B.perKeptHouse ?? 0.18) + loverCount * (B.perLover ?? 0.22);
+  const scaleMul = 1 + keptOpt.length * (B.perKeptHouse ?? 0) + loverCount * (B.perLover ?? 0.22);
   let debt = (base + extra + keptExtra + loverExtra + nh) * scaleMul;
   if(boon==='grace') debt *= 0.85;
   if(hasChallengePerk('ahead_of_time')) debt *= 0.9;
@@ -252,7 +252,7 @@ function ngView(){
       const friends = ngFriends(), residents = ngResidents(), leaving = S.workers.filter(w=>!lovers.includes(w) && !friends.includes(w) && !residents.includes(w));
       const F = BAL.ngplus.friends || {}, maxGen = S.cycle || 1, genFriends = S.workers.filter(w=>!lovers.includes(w) && !w.isPartner && !w.key && w.trust >= (F.trust ?? 100));
       body = `<h2>Ready for round ${N.cycle}?</h2><div class="card">
-        <b>Keeps:</b> ${S.houses.filter(keptHouse).map(h=>`${esc(h.name)} (${keptWhy(h)})`).join(', ')}, each with its rooms, upgrades and story (its reputation starts over, keeping ${Math.round((BAL.ngplus.carry||0)*100)}% of what it had gained), Sam's level${BAL.ngplus.samReset.stats||BAL.ngplus.samReset.appraisal?'':', stats and Appraisal'}, the regulars there and your image library. Your savings stay behind.<br>
+        <b>Keeps:</b> ${S.houses.filter(keptHouse).map(h=>`${esc(h.name)} (${keptWhy(h)})`).join(', ')}, each with its rooms, upgrades and story (its popularity starts over, keeping ${Math.round((BAL.ngplus.carry||0)*100)}% of what it had gained), Sam's level${BAL.ngplus.samReset.stats||BAL.ngplus.samReset.appraisal?'':', stats and Appraisal'}, the regulars there and your image library. Your savings stay behind.<br>
         ${BAL.ngplus.samReset.stats||BAL.ngplus.samReset.appraisal?`<b>Sam:</b> keeps his level (Lv ${S.sam.lvl||1}); ${[BAL.ngplus.samReset.stats&&'training and story stat gains',BAL.ngplus.samReset.appraisal&&'Appraisal'].filter(Boolean).join(' and ')} start over${BAL.ngplus.samReset.stats&&BAL.ngplus.carry?` (he keeps ${Math.round(BAL.ngplus.carry*100)}% of his trained stats)`:''}.<br>`:''}
         <b>Lovers who stay:</b> ${lovers.length ? lovers.map(w=>`${esc(w.name)}${NGS.perks[w.id]?` (${esc(NGS.perks[w.id])})`:''}${ngRomance(NGS,w)==='reset'?' ↺ starting over':' ♥ still his lover'}`).join(', ') + '. They draw wages again (' + Math.round((BAL.ngplus.rebornWage||0)*100) + '% more for each life carried over); their skills, popularity, trust and lewdness start over, keeping ' + carryTxt() + ' of the skills and stats they\'d built (Reincarnated makes the climb back faster). A lover starting over begins her story with Sam again at the first chapter, firsts included.' : 'none. Only Devoted lovers come along.'}<br>
         ${residents.length?`<b>Back with their houses:</b> ${residents.map(w=>esc(w.name)).join(', ')}. They start over like the lovers (no perk), with a Reincarnated stack and the same wage rise.<br>`:''}
@@ -453,8 +453,8 @@ function ngBegin(){
     return [k, n]; }).filter(([,o])=>o.v || o.kind));
   S.regulars = (S.regulars||[]).filter(r=>keptIds.has(r.house));
   S.houses = S.houses.filter(h=>keptIds.has(h.id));
-  // kept houses keep rooms, upgrades and story; their reputation goes back to the house's starting value plus ngplus.carry of what it had gained; auto-feasts and auto-tutors reset
-  S.houses.forEach(h=>{ const D = HOUSES[h.id]; if(D) h.rep = Math.round(D.rep + (B.carry||0) * Math.max(0, (h.rep||0) - D.rep)); delete h.autoFeast; });
+  // kept houses keep rooms, upgrades and story; their popularity goes back to the house's starting value plus ngplus.carry of what it had gained; auto-feasts and auto-tutors reset
+  S.houses.forEach(h=>{ const D = HOUSES[h.id]; if(D){ h.rep = Math.round(D.rep + (B.carry||0) * Math.max(0, (h.rep||0) - D.rep)); const dp = D.prestige ?? 50; h.prestige = clamp(Math.round(dp + (B.carry||0) * ((h.prestige ?? dp) - dp))); } delete h.autoFeast; });
   delete S.autoTutor;
   // each kept house's resident comes with the house: if she wasn't working for Sam she's back, fresh
   S.houses.forEach(h=>{ const D = HOUSES[h.id]; if(D && D.npc && !isHired(D.npc)){ const npc = rebirthNamed(makeNamed(D.npc), true); npc.house = h.id; npc.locked = h.id; npc.contract = 999; assignStart(npc, NAMED[D.npc].job); S.workers.push(npc); } restoreStoryJoin(h, true); });

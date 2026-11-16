@@ -45,7 +45,7 @@
               "m": 8,
               "l": 2,
               "private": true,
-              "acts": ["massage_give", "kiss"],
+              "acts": ["massage_give","kiss"],
               "res": "Her ears twitch wildly and flatten into pure bliss the moment your warm thumbs trace along the base—until Emily twists around, fogged glasses forgotten, and kisses you clumsily through the steam.",
               "fallbackRes": "Her wolf tail flops hopelessly over your knee while she melts against your palms with a soft, muffled whimper."
             },
@@ -68,7 +68,7 @@
               "m": 10,
               "l": 4,
               "private": true,
-              "acts": ["sex_vaginal", "sex_ride", "oral_give"],
+              "acts": ["sex_vaginal","sex_ride","oral_give"],
               "res": "Emily squeaks brightly as hot water rises around your thighs, tangling her wet tail tightly behind your waist as you slide deep inside her until she buries her flushed face against your neck."
             },
             {
@@ -77,7 +77,7 @@
               "m": 8,
               "l": 3,
               "private": true,
-              "acts": ["oral_give", "kiss", "handjob"],
+              "acts": ["oral_give","kiss","handjob"],
               "res": "She arches back against the cedar rim clutching the wood tightly, wolf ears quivering as she gasps out every sound she used to spend paragraphs hiding."
             }
           ]
@@ -119,12 +119,12 @@
       "choices": [
         {
           "label": "Take it OOC on the hearth rug",
-          "if": {"canAct": ["kiss", "oral_give", "sex_vaginal"]},
+          "if": {"canAct":["kiss","oral_give","sex_vaginal"]},
           "t": 5,
           "m": 10,
           "l": 3,
           "private": true,
-          "acts": ["sex_vaginal", "oral_give", "kiss"],
+          "acts": ["sex_vaginal","oral_give","kiss"],
           "res": "You roll the wooden dice out of reach, pluck the character sheet out of her trembling hands, and pull Emily flush down beside you onto the warm rug—her wolf tail thumping wildly behind your calves."
         },
         {
@@ -218,7 +218,7 @@
       ],
       "goLead": "Emily sets her worn notebook cleanly on the dresser, pulls her glasses off, and launches straight into your arms onto the bed with ears pinned and tail thumping.",
       "choices": [
-        {"label": "Say yes", "t": 6, "m": 12, "res": ""},
+        {"label":"Say yes","t":6,"m":12,"res":""},
         {
           "label": "Not yet",
           "t": 1,

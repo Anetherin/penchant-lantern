@@ -231,15 +231,15 @@
     ]
   },
   "job_samples_rep_good": {
-    "_note": "Note when a promoter's samples raised the house's name.",
+    "_note": "Note when a promoter's samples elevated the house's prestige.",
     "_default": [
       "{name}'s street samples had the whole district buzzing about {house}.",
       "{name}'s teasers were an instant sensation; men were whispering about {house} in every tavern from the harbor to the hill.",
       "{name} left such an unforgettable impression that strangers started asking for {house} by name.",
-      "The samples {name} gave out were bold, skillful, and unforgettable, sending {house}'s reputation soaring.",
+      "The samples {name} gave out were bold, skillful, and refined, lifting {house}'s standing across town.",
       "{name}'s wicked little teasers left the market flushed and curious. {house} came out looking legendary.",
       "Every man who got a taste from {name} on the street had nothing but praise for {house} afterward.",
-      "{name} handled her street samples with such skill that {house} now has a reputation to live up to."
+      "{name} handled her street samples with such poise that {house} now has a touch of class to live up to."
     ]
   },
   "job_samples_rep_bad": {

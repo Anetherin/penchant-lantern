@@ -43,7 +43,7 @@
               "m": 8,
               "l": 2,
               "private": true,
-              "acts": ["kiss", "massage_give"],
+              "acts": ["kiss","massage_give"],
               "res": "She arches smoothly into your hands as steam curls around her wings."
             },
             {
@@ -65,7 +65,7 @@
               "m": 10,
               "l": 4,
               "private": true,
-              "acts": ["sex_ride", "oral_give", "sex_vaginal"],
+              "acts": ["sex_ride","oral_give","sex_vaginal"],
               "res": "She hooks her tail straight around your belt and hauls you half-dressed over the wood rim until you shed everything and sink right between her parted thighs in the steaming water."
             },
             {
@@ -74,7 +74,7 @@
               "m": 8,
               "l": 2,
               "private": true,
-              "acts": ["massage_give", "handjob"],
+              "acts": ["massage_give","handjob"],
               "res": "You glide soapy hands slowly across her breasts and wings until Nerys shivers hard, arching up into your palms with breathless impatience."
             }
           ]
@@ -113,12 +113,12 @@
       "choices": [
         {
           "label": "Test chapter seven with her on the cushions",
-          "if": {"canAct": ["sex_vaginal", "oral_give"]},
+          "if": {"canAct":["sex_vaginal","oral_give"]},
           "t": 5,
           "m": 10,
           "l": 4,
           "private": true,
-          "acts": ["sex_vaginal", "oral_give"],
+          "acts": ["sex_vaginal","oral_give"],
           "res": "You walk straight back with the dog-eared novel open in one hand. Nerys goes bright plum to the tips of her horns, snaps the book out of your fingers, and shoves you flat onto the velvet cushions to prove she doesn't take notes lightly."
         },
         {
@@ -209,7 +209,7 @@
       ],
       "goLead": "Nerys closes the distance in two smooth strides, wings sweeping shut around you both as she catches your lip between her teeth and backs you toward the velvet cushions.",
       "choices": [
-        {"label": "Say yes", "t": 6, "m": 12, "res": ""},
+        {"label":"Say yes","t":6,"m":12,"res":""},
         {
           "label": "Not yet",
           "t": 1,

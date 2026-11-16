@@ -113,7 +113,7 @@
       "text": [
         "{regular} has been telling everyone in town about {house}, and about {name} in particular. A few new faces have turned up asking for her."
       ],
-      "thanks": "You stand him a drink. Reputation +2."
+      "thanks": "You stand him a drink. House popularity +2."
     },
     "patron": {
       "title": "{regular} Offers a Tutor",

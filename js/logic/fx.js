@@ -262,13 +262,22 @@ function raceReact(w, clsId, c){
 // traits weight, without replacement, skipping excl in either direction. Regulars get none (client = null everywhere).
 function makeClient(h, cls, screen=0){
   const C = BAL.clients, T = C.traits, odds = C.traitCount || [1], tr = [];
-  const WT = C.wait || {};
+  const WT = C.wait || {}, pr = housePrestige(h);
+  const lowTilt = clamp((45 - pr) / 45, 0, 1), highTilt = clamp((pr - 55) / 45, 0, 1);
   let r = Math.random(), n = 1; for(let i=0;i<odds.length;i++){ r -= odds[i]; if(r <= 0){ n = i + 1; break; } n = i + 1; }
   let keys = Object.keys(T);
   while(tr.length < n && keys.length){
     const k = weighted(keys, x => {
       const tx = T[x];
       let w = (tx.w ?? 1) * ((cls.traits||{})[x] ?? 1);
+      if(lowTilt > 0){
+        if((tx.rowdy||0) > 0 || tx.thirsty || (tx.prop||1) > 1.15 || x==='thrillSeeker') w *= 1 + lowTilt * 0.35;
+        else if(tx.qualityFee || (tx.fee != null && tx.fee > 1.1 && !(tx.rowdy||0))) w *= Math.max(0.55, 1 - lowTilt * 0.35);
+      }
+      if(highTilt > 0){
+        if(tx.qualityFee || (tx.fee != null && tx.fee > 1) || (tx.tips != null && tx.tips > 1) || (tx.patience||0) > 0) w *= 1 + highTilt * 0.35;
+        else if((tx.rowdy||0) > 0 || tx.thirsty || (tx.pushy||0) > 0.1) w *= Math.max(0.45, 1 - highTilt * 0.45);
+      }
       if(screen > 0){
         if((tx.rowdy||0) > 0 || (tx.pushy||0) > 0 || (tx.fee != null && tx.fee < 1)) w *= Math.max(0.25, 1 - screen * (WT.screenSafe ?? 0.45));
         else if((tx.fee != null && tx.fee > 1) || (tx.tips != null && tx.tips > 1)) w *= 1 + screen * (WT.screenGood ?? 0.35);

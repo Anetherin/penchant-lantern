@@ -83,7 +83,7 @@ function regularsCard(h){
 }
 // Tidiness (h.tidy 0-100): label and colour class by tier (balance.json → tidy).
 function tidyTier(h){ const T = BAL.tidy, t = h.tidy ?? T.start; return t >= T.high ? 'high' : t < T.bad ? 'bad' : t < T.low ? 'low' : 'ok'; }
-const tidyLabel = h => ({high:'spotless: reputation, mood, rest and clients all benefit a little', ok:'presentable', low:'getting shabby: reputation, mood, rest and clients suffer', bad:'a mess: reputation, mood, rest and clients suffer badly'})[tidyTier(h)];
+const tidyLabel = h => ({high:'spotless: house popularity, prestige, mood, rest and clients all benefit', ok:'presentable', low:'getting shabby: house popularity, prestige, mood, rest and clients suffer', bad:'a mess: house popularity, prestige, mood, rest and clients suffer badly'})[tidyTier(h)];
 const tidyCls = h => ({high:'good', ok:'', low:'warn', bad:'warn'})[tidyTier(h)];
 function autoFeastSel(h){
   return `<select onchange="setAutoFeast('${h.id}',this.value)" title="Thrown automatically at the end of each week (before the house works) if you haven't feasted here yet and the purse covers it."><option value="">Auto: off</option>${BAL.feast.tiers.map(t=>`<option value="${t.id}" ${h.autoFeast===t.id?'selected':''}>Auto: ${esc(t.label)}</option>`).join('')}</select>`;
@@ -109,9 +109,9 @@ function notesCard(lines){ return lines.length ? `<section class="card agenda"><
 function houseRow(h){
   const L = S.lastReport, lh = L && L.houses ? L.houses.find(x=>x.id===h.id) : null;
   const ws = S.workers.filter(w=>w.house===h.id), resting = ws.filter(w=>w.job==='rest').length, sl = sleepers(h).length, bd = bedsFor(h), ap = attendantPairs(h);
-  const tidy = Math.round(h.tidy ?? BAL.tidy.start), bedCls = sl < bd ? 'good' : sl > bd ? 'warn' : '';
+  const tidy = Math.round(h.tidy ?? BAL.tidy.start), bedCls = sl < bd ? 'good' : sl > bd ? 'warn' : '', pr = Math.round(housePrestige(h));
   return `<tr><td><a href="#" onclick="S.cur='${h.id}';HOUSE_ALL=false;render();return false"><b class="${bedCls}">${esc(h.name)}</b></a>${h.id===samHouse().id?' <span title="Sam sleeps here">🧑</span>':''}</td>
-    <td>${Math.round(h.rep)}</td><td><span class="${bedCls}">${ws.length}</span>${resting?` <span class="muted">(${resting} resting)</span>`:''}${ap.courts?` <span class="${ap.atts>=ap.courts?'good':'muted'}" title="Attendants / Courtesans (${ap.atts}/${ap.courts})">🎀 ${ap.atts}/${ap.courts}</span>`:''}</td>
+    <td>${Math.round(h.rep)}</td><td>${pr} <span class="muted">(${prestigeTier(pr).label})</span></td><td><span class="${bedCls}">${ws.length}</span>${resting?` <span class="muted">(${resting} resting)</span>`:''}${ap.courts?` <span class="${ap.atts>=ap.courts?'good':'muted'}" title="Attendants / Courtesans (${ap.atts}/${ap.courts})">🎀 ${ap.atts}/${ap.courts}</span>`:''}</td>
     <td class="${bedCls}">${sl}/${bd} <span class="muted">${esc(BEDS[h.beds||0].label)}</span></td>
     <td>${lh&&lh.roomCap?`${lh.roomsUsed}/${lh.roomCap}${lh.short?' <span class="warn">short</span>':''}`:`–/${h.rooms*BAL.rooms.perRoom}`} <span class="muted">${h.rooms} bedroom${h.rooms===1?'':'s'}</span></td>
     <td class="${tidyCls(h)}">${tidy}</td>
@@ -138,7 +138,7 @@ function propertiesCard(){
     <div class="muted">${comeLine}Rooms ${rooms} (cap ${cap}${dmg?`, ${dmg} damaged`:''}) · Upkeep ~${fmt(P.upkeep+15*rooms)}/wk${P.minPop?` · Escorts should have popularity ${P.minPop}+`:''}</div>
     ${P.premium?`<div class="${locked?'warn':'good'}">Requires Sam level ${P.level} (now ${S.sam.lvl||1}) and renown ${P.renown} (now ${Math.round(S.rep)})</div>`:''}
     <div class="row"><button onclick="buyHouse('${k}')" ${S.gold<houseCost(k)||locked?'disabled':''}>Buy · ${fmt(houseCost(k))}</button><span class="muted">deed ${fmt(P.cost)} × ${houseBuyMult().toFixed(0)} (rises each week of the cycle)${S.houses.length>1?` +${Math.round(BAL.houses.priceStep*100*(S.houses.length-1))}% for the ${S.houses.length} houses you own`:''}${upFee?` + ${fmt(upFee)} saved upgrades`:''}</span></div></div></div>`; }).join('');
-  return `<section class="card"><h2>Properties for Sale</h2><p class="muted">Each house has its own clientele, reputation, staff, and resident.</p><div class="grid">${props||'<span class="muted">You own every house in Hollowmere!</span>'}</div></section>`;
+  return `<section class="card"><h2>Properties for Sale</h2><p class="muted">Each house has its own clientele, popularity, class, staff, and resident.</p><div class="grid">${props||'<span class="muted">You own every house in Hollowmere!</span>'}</div></section>`;
 }
 // Debt card (All houses page only). Gone once the debt is paid.
 function debtCard(){
@@ -155,7 +155,7 @@ function viewAllHouses(){
   return `${houseTabs('house')}${notesCard(notes)}<section class="card"><h2>All houses</h2>
     <div class="grid2"><div>Houses: <b>${S.houses.length}</b> · Ladies: <b>${S.workers.length}</b> (${S.workers.filter(w=>w.job==='rest').length} resting)</div><div>Staff beds: <b class="${sl>bd?'warn':''}">${sl}/${bd}</b></div>
     ${L?`<div>Last week: <b>${L.served}</b> clients · income <b>${fmt(L.income)}</b></div><div>Net after wages, upkeep${L.cuts?', cuts':''}${L.tutor?', tutoring':''}: <b>${fmt(reportNet(L))}</b></div>`:''}</div>
-    <div style="overflow-x:auto"><table class="htable"><thead><tr><th>House</th><th>Rep</th><th>Ladies</th><th title="Staff who need a bed / beds (quarters ×2 + extra beds)">Staff beds</th><th title="Room sessions used last week / capacity">Client rooms</th><th>Tidy</th><th>Clients</th><th>Income / upkeep</th><th>Sat.</th><th>Feast</th></tr></thead>
+    <div style="overflow-x:auto"><table class="htable"><thead><tr><th>House</th><th>Pop.</th><th>Class</th><th>Ladies</th><th title="Staff who need a bed / beds (quarters ×2 + extra beds)">Staff beds</th><th title="Room sessions used last week / capacity">Client rooms</th><th>Tidy</th><th>Clients</th><th>Income / upkeep</th><th>Sat.</th><th>Feast</th></tr></thead>
     <tbody>${S.houses.map(houseRow).join('')}</tbody></table></div>
     <p class="muted">Client rooms and money are from last week's report. Tap a house's name to open it.</p></section>
     ${debtCard()}
@@ -167,16 +167,17 @@ function viewHouse(){
   const amen = Object.keys(UPGRADES).filter(k=>h.up[k]).map(k=>UPGRADES[k].label).join(', ') || 'none';
   const staff = Object.entries(JOBS).map(([k,J])=>{ const ws=S.workers.filter(w=>w.house===h.id && w.job===k); return ws.length?`<div><b>${J.label}</b>: ${ws.map(w=>esc(w.name)).join(', ')}</div>`:''; }).join('');
   const L = S.lastReport, lh = L && L.houses ? L.houses.find(x=>x.id===h.id) : null;
-  const rp = D.rebornPool ? `<div class="good" style="margin-bottom:6px">🔥 Working Reincarnations here: <b>${shrineRebornSum(h)}${D.rebornPool.cap?'/'+D.rebornPool.cap:''}</b> → +${Math.round((shrineMult(h,'perFee')-1)*100)}% fees, +${Math.round((shrineMult(h,'perGrowth')-1)*100)}% trust &amp; skill growth, +${Math.round((shrineMult(h,'perRep')-1)*100)}% reputation</div>` : '';
+  const rp = D.rebornPool ? `<div class="good" style="margin-bottom:6px">🔥 Working Reincarnations here: <b>${shrineRebornSum(h)}${D.rebornPool.cap?'/'+D.rebornPool.cap:''}</b> → +${Math.round((shrineMult(h,'perFee')-1)*100)}% fees, +${Math.round((shrineMult(h,'perGrowth')-1)*100)}% trust &amp; skill growth, +${Math.round((shrineMult(h,'perRep')-1)*100)}% house popularity</div>` : '';
+  const hp = Math.round(housePrestige(h)), pTier = prestigeTier(hp);
   return `${houseTabs('house')}${notesCard(houseNotes(h))}<section class="card"><h2>${esc(h.name)} <span class="tag house">${D.loc}</span></h2><p class="muted">${D.desc}</p>${D.perk?`<div class="good" style="margin-bottom:6px">✦ <b>${esc(D.perk.label)}:</b> ${esc(D.perk.desc)}</div>`:''}${rp}<div class="grid2">
-      <div>Reputation: <b>${Math.round(h.rep)}</b></div><div>Building: <b>${roomsUsed(h)}/${houseSize(h)}</b> rooms used${h.damaged?` <span class="warn">(${h.damaged} damaged)</span>`:''}</div>
-      <div>Bedrooms: <b>${h.rooms}</b> · ${ROOM_NAMES[h.tier]} · <span title="Room services per week: ${BAL.rooms.perRoom} per bedroom">${h.rooms*BAL.rooms.perRoom} sessions/wk${lh&&lh.roomCap?` (last week ${lh.roomsUsed}/${lh.roomCap})`:''}</span>${housingShort(h)?` · <span class="warn" title="Expected comfort ${housingExpect(h)} (beds and bedroom tier, 0-3) at this reputation; yours is ${housingComfort(h)}. Staff lose mood each week.">Staff expect better beds/rooms at this reputation</span>`:''}</div>
+      <div>Popularity: <b>${Math.round(h.rep)}</b> · Class: <b title="House prestige (0-100): drives client class, skill &amp; amenity expectations, and proposition vs salon tone.">${hp} (${pTier.label})</b>${lh&&Math.abs(lh.prestigeDelta||0)>=0.05?` <span class="${lh.prestigeDelta>0?'good':'warn'}">(${lh.prestigeDelta>0?'+':''}${Math.round(lh.prestigeDelta*10)/10})</span>`:''}</div><div>Building: <b>${roomsUsed(h)}/${houseSize(h)}</b> rooms used${h.damaged?` <span class="warn">(${h.damaged} damaged)</span>`:''}</div>
+      <div>Bedrooms: <b>${h.rooms}</b> · ${ROOM_NAMES[h.tier]} · <span title="Room services per week: ${BAL.rooms.perRoom} per bedroom">${h.rooms*BAL.rooms.perRoom} sessions/wk${lh&&lh.roomCap?` (last week ${lh.roomsUsed}/${lh.roomCap})`:''}</span>${housingShort(h)?` · <span class="warn" title="Expected comfort ${housingExpect(h)} (beds and bedroom tier, 0-3) at this class; yours is ${housingComfort(h)}. Staff lose mood each week.">Staff expect better beds/rooms at this class</span>`:''}</div>
       <div>Tidiness: <b class="${tidyCls(h)}">${Math.round(h.tidy ?? BAL.tidy.start)}</b> <span class="muted">${tidyLabel(h)}</span></div><div>Staff beds: <b>${sleepers(h).length}/${bedsFor(h)}</b> · ${BEDS[h.beds||0].label}${sleepers(h).length>bedsFor(h)?' <span class="warn">(not enough!)</span>':''}</div>
       <div>Pricing: <select onchange="setPrice(+this.value)">${PRICES.map((p,i)=>`<option value="${i}" ${i===h.price?'selected':''}>${p.label}</option>`).join('')}</select></div>
       <div>Amenities: ${amen}</div>${D.minPop?`<div class="muted">Standard: escorts need popularity ${D.minPop}+</div>`:''}
       <div class="muted">Clientele: ${TIERS.map((t,i)=>D.cls[i]>=1.3?`<b>${TIER_LABEL(t)}s ↑</b>`:D.cls[i]<=0.5?`${TIER_LABEL(t)}s ↓`:'').filter(Boolean).join(', ')||'balanced'}</div></div>
       ${incensePicker(h)}
-      <p class="muted">Higher prices earn more per client but draw fewer of them, unless reputation is high.</p></section>
+      <p class="muted">Higher prices earn more per client but draw fewer of them, unless popularity or class is high.</p></section>
     <section class="card"><h2>Positions</h2>${h.up.classroom ? `<div class="row">📚 Classroom subject ${teachSelect(h, S.workers.find(w=>w.house===h.id && w.job==='teacher'))}</div>` : ''}<div class="grid2">${(()=>{ const ap = attendantPairs(h); return Object.entries(JOBS).filter(([k])=>k!=='rest').map(([k,J])=>{ const ws=S.workers.filter(w=>w.house===h.id && w.job===k), mx=slotsFor(h,k); return mx||ws.length?`<div><b>${J.label}</b> <span class="muted">${ws.length}/${mx}</span>${k==='courtesan'&&ws.length?` <span class="${ap.atts>=ap.courts?'good':'muted'}" title="Attendants assigned / Courtesans">🎀 ${ap.atts}/${ap.courts}</span>`:''}${ws.length?': '+ws.map(w=>{ const p = k==='courtesan' ? ap.byCourt.get(w.id) : k==='attendant' ? ap.byAtt.get(w.id) : null; return esc(w.name) + (p ? ` <span class="muted" title="${k==='courtesan'?'Attended by':'Attending'} ${esc(p.name)}">(🎀 ${esc(p.name.split(' ')[0])})</span>` : ''); }).join(', '):''}</div>`:''; }).join(''); })()}
       ${S.workers.filter(w=>w.house===h.id && w.job==='rest').length?`<div><b>Resting</b>: ${S.workers.filter(w=>w.house===h.id && w.job==='rest').map(w=>esc(w.name)).join(', ')}</div>`:''}</div></section>
     ${feastCard(h)}

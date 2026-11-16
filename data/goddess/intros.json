@@ -36,8 +36,18 @@
         "{first} doesn't even pretend to be surprised when you cross the threshold. She slides the cider right to your preferred spot. \"Welcome back, Sam. Don't ask me how I know which chair you like—just sit.\""
       ],
       "choices": [
-        {"label": "Clink glasses and promise to look after the place", "t": 5, "m": 6, "res": "{first} lets out a quiet breath she didn't realize she was holding. \"Good answer, Sam. Follow me—I'll show you which locks stick.\""},
-        {"label": "Ask her to walk you through the ledgers right away", "t": 3, "m": 4, "res": "\"Practical. I like that.\" {first} pulls the heavy house book from beneath the counter with a crisp slap."}
+        {
+          "label": "Clink glasses and promise to look after the place",
+          "t": 5,
+          "m": 6,
+          "res": "{first} lets out a quiet breath she didn't realize she was holding. \"Good answer, Sam. Follow me—I'll show you which locks stick.\""
+        },
+        {
+          "label": "Ask her to walk you through the ledgers right away",
+          "t": 3,
+          "m": 4,
+          "res": "\"Practical. I like that.\" {first} pulls the heavy house book from beneath the counter with a crisp slap."
+        }
       ]
     },
     "castle": {
@@ -54,8 +64,18 @@
         "{first} folds her watch shut before you even reach the stair, faint rose touching her cheekbones. \"Tea is already poured, Sam. Forgive the liberty—I simply knew you'd ask.\""
       ],
       "choices": [
-        {"label": "\"I'm counting on you, {first}. Show me how this place runs.\"", "t": 5, "m": 6, "res": "Her chin lifts a fraction, pleased in spite of strict training. \"Very well. We begin with the west wing.\""},
-        {"label": "Admire how spotless she kept the halls", "t": 4, "m": 5, "res": "\"Standards are what separate a castle from a ruin,\" {first} replies crisply, though the corner of her mouth softens."}
+        {
+          "label": "\"I'm counting on you, {first}. Show me how this place runs.\"",
+          "t": 5,
+          "m": 6,
+          "res": "Her chin lifts a fraction, pleased in spite of strict training. \"Very well. We begin with the west wing.\""
+        },
+        {
+          "label": "Admire how spotless she kept the halls",
+          "t": 4,
+          "m": 5,
+          "res": "\"Standards are what separate a castle from a ruin,\" {first} replies crisply, though the corner of her mouth softens."
+        }
       ]
     },
     "onsen": {
@@ -72,8 +92,18 @@
         "{first} pats the warm stone beside her before you even kick off your boots. \"Come on, Sam. The water's the exact temperature you like—don't ask me how I knew.\""
       ],
       "choices": [
-        {"label": "Take her up on that tour of the springs", "t": 5, "m": 6, "res": "\"That's the spirit,\" {first} laughs, rising barefoot in a rustle of yukata silk."},
-        {"label": "Tell her you'll make {house} worth every copper", "t": 4, "m": 5, "res": "\"Ooh, ambitious.\" Her eyes glint warmly in the mist. \"Hold that promise, Sam.\""}
+        {
+          "label": "Take her up on that tour of the springs",
+          "t": 5,
+          "m": 6,
+          "res": "\"That's the spirit,\" {first} laughs, rising barefoot in a rustle of yukata silk."
+        },
+        {
+          "label": "Tell her you'll make {house} worth every copper",
+          "t": 4,
+          "m": 5,
+          "res": "\"Ooh, ambitious.\" Her eyes glint warmly in the mist. \"Hold that promise, Sam.\""
+        }
       ]
     },
     "hollow": {
@@ -90,8 +120,18 @@
         "She drops right to floor height and loops both translucent arms loosely behind your neck. \"I can't remember a thing past the veil, yet my name rolled right off your tongue in my head. Don't waste me this time, darling.\""
       ],
       "choices": [
-        {"label": "\"Ghost or not, let's bring this manor back to life.\"", "t": 5, "m": 7, "res": "\"Oh, I like you already,\" {first} beams, spinning a lazy loop overhead as dust settles in gold motes."},
-        {"label": "Match her grin and ask which rooms aren't drafty", "t": 4, "m": 5, "res": "\"Only the best ones, naturally. Come see what the living miss.\""}
+        {
+          "label": "\"Ghost or not, let's bring this manor back to life.\"",
+          "t": 5,
+          "m": 7,
+          "res": "\"Oh, I like you already,\" {first} beams, spinning a lazy loop overhead as dust settles in gold motes."
+        },
+        {
+          "label": "Match her grin and ask which rooms aren't drafty",
+          "t": 4,
+          "m": 5,
+          "res": "\"Only the best ones, naturally. Come see what the living miss.\""
+        }
       ]
     },
     "tankard": {
@@ -108,8 +148,18 @@
         "\"Welcome home, Sam,\" {first} blurts out—then blinks at herself and laughs hard, sloshing foam over the oak. \"Don't ask why that slipped out, just drink!\""
       ],
       "choices": [
-        {"label": "Drink the pint down and praise the brew", "t": 5, "m": 7, "res": "\"Ha! Now there's an owner with proper taste!\" {first} slams a friendly fist on the bar."},
-        {"label": "\"Point me to the cellar ledgers, {first}.\"", "t": 4, "m": 4, "res": "\"Right to business, eh? Come on down—the good barrels are waiting.\""}
+        {
+          "label": "Drink the pint down and praise the brew",
+          "t": 5,
+          "m": 7,
+          "res": "\"Ha! Now there's an owner with proper taste!\" {first} slams a friendly fist on the bar."
+        },
+        {
+          "label": "\"Point me to the cellar ledgers, {first}.\"",
+          "t": 4,
+          "m": 4,
+          "res": "\"Right to business, eh? Come on down—the good barrels are waiting.\""
+        }
       ]
     },
     "pavilion": {
@@ -126,8 +176,18 @@
         "{first} meets your eyes without hesitation, a warm hush behind her grace. \"I cannot recall the first dance we shared, Sam—yet my pulse remembered you at the gate.\""
       ],
       "choices": [
-        {"label": "\"Promise I'll let the dancers shine here.\"", "t": 5, "m": 6, "res": "\"Then the lilies will bloom all season,\" {first} smiles gently, tucking a ribbon behind her ear."},
-        {"label": "Stand quietly with her by the lotus pool", "t": 4, "m": 5, "res": "She exhales a quiet breath, pleased by a new owner who knows when not to rush."}
+        {
+          "label": "\"Promise I'll let the dancers shine here.\"",
+          "t": 5,
+          "m": 6,
+          "res": "\"Then the lilies will bloom all season,\" {first} smiles gently, tucking a ribbon behind her ear."
+        },
+        {
+          "label": "Stand quietly with her by the lotus pool",
+          "t": 4,
+          "m": 5,
+          "res": "She exhales a quiet breath, pleased by a new owner who knows when not to rush."
+        }
       ]
     },
     "veil": {
@@ -144,8 +204,18 @@
         "{first} unfolds lazily off the velvet and steps straight inside your personal space, grinning sharp. \"No idea how you slipped into my head, darling—only that every lock in the Veil feels made for your key.\""
       ],
       "choices": [
-        {"label": "Accept the ruby glass and grin right back", "t": 5, "m": 7, "res": "\"Oh, you might actually survive the Underdistrict,\" {first} laughs softly, clinking glass to yours."},
-        {"label": "\"Keep the floor sharp—I'll handle the house debts.\"", "t": 4, "m": 5, "res": "\"Music to a demoness's ears, handsome. Come see the back suites.\""}
+        {
+          "label": "Accept the ruby glass and grin right back",
+          "t": 5,
+          "m": 7,
+          "res": "\"Oh, you might actually survive the Underdistrict,\" {first} laughs softly, clinking glass to yours."
+        },
+        {
+          "label": "\"Keep the floor sharp—I'll handle the house debts.\"",
+          "t": 4,
+          "m": 5,
+          "res": "\"Music to a demoness's ears, handsome. Come see the back suites.\""
+        }
       ]
     },
     "sanctuary": {
@@ -162,8 +232,18 @@
         "\"Welcome back to sanctuary, Sam,\" {first} whispers before catching herself with a surprised, delighted blush. \"Let's not question why the candles burned brighter the moment you came in.\""
       ],
       "choices": [
-        {"label": "\"Teach me how this cloister keeps peace.\"", "t": 5, "m": 6, "res": "\"With pleasure—and far fewer robes than the High Cathedral prefers,\" {first} purrs."},
-        {"label": "Offer her a warm hand by the altar steps", "t": 4, "m": 5, "res": "Her halo brightens in gentle amber as she squeezes your fingers cleanly."}
+        {
+          "label": "\"Teach me how this cloister keeps peace.\"",
+          "t": 5,
+          "m": 6,
+          "res": "\"With pleasure—and far fewer robes than the High Cathedral prefers,\" {first} purrs."
+        },
+        {
+          "label": "Offer her a warm hand by the altar steps",
+          "t": 4,
+          "m": 5,
+          "res": "Her halo brightens in gentle amber as she squeezes your fingers cleanly."
+        }
       ]
     },
     "atelier": {
@@ -180,8 +260,18 @@
         "\"Welcome home, Sam,\" {first} murmurs, pressing two fingertips cleanly to her collar where an old memory buzzes warmly. \"My logs read empty—yet every gear in my frame remembers your name.\""
       ],
       "choices": [
-        {"label": "\"Call me Sam—and let's run this house together.\"", "t": 5, "m": 6, "res": "Soft rose warms her cheek plates. \"Parameters updated gladly, Sam.\""},
-        {"label": "Inspect the humming brass suites with her", "t": 4, "m": 5, "res": "{first} glides proudly ahead, explaining every valve and acoustic cushion in precise detail."}
+        {
+          "label": "\"Call me Sam—and let's run this house together.\"",
+          "t": 5,
+          "m": 6,
+          "res": "Soft rose warms her cheek plates. \"Parameters updated gladly, Sam.\""
+        },
+        {
+          "label": "Inspect the humming brass suites with her",
+          "t": 4,
+          "m": 5,
+          "res": "{first} glides proudly ahead, explaining every valve and acoustic cushion in precise detail."
+        }
       ]
     },
     "wayfarer": {
@@ -198,8 +288,18 @@
         "\"About time you got back, Sam!\" {first} blurs out mid-hug before pausing, wide-eyed and smiling anyway. \"Dunno where that came from—must've dreamed you up last winter.\""
       ],
       "choices": [
-        {"label": "Grab a warm roll and pitch in with the ledger", "t": 5, "m": 7, "res": "\"Now you're talking!\" {first} beams, sliding the guest book right under your elbow."},
-        {"label": "Promise the crossroads will stay safe under your watch", "t": 4, "m": 5, "res": "She nods warmly, visibly relieved to have steady hands beside the hearth."}
+        {
+          "label": "Grab a warm roll and pitch in with the ledger",
+          "t": 5,
+          "m": 7,
+          "res": "\"Now you're talking!\" {first} beams, sliding the guest book right under your elbow."
+        },
+        {
+          "label": "Promise the crossroads will stay safe under your watch",
+          "t": 4,
+          "m": 5,
+          "res": "She nods warmly, visibly relieved to have steady hands beside the hearth."
+        }
       ]
     },
     "skyhook": {
@@ -216,8 +316,13 @@
         "{first} drops down right in front of you and bumps her shoulder solidly against yours. \"No logs, no charts—yet every rope on this ship knows your boots, Sam. Ready to fly this tavern again?\""
       ],
       "choices": [
-        {"label": "Pop the cork and toast the view", "t": 5, "m": 7, "res": "\"Ha! That's my new landlord!\" {first} cheers above the cliff wind."},
-        {"label": "Ask about the moored hull behind the bar", "t": 4, "m": 5, "res": "Her grin turns proud and wistful at once. \"Someday, Sam, I'll show you she still has wings.\""}
+        {"label":"Pop the cork and toast the view","t":5,"m":7,"res":"\"Ha! That's my new landlord!\" {first} cheers above the cliff wind."},
+        {
+          "label": "Ask about the moored hull behind the bar",
+          "t": 4,
+          "m": 5,
+          "res": "Her grin turns proud and wistful at once. \"Someday, Sam, I'll show you she still has wings.\""
+        }
       ]
     },
     "pearl": {
@@ -234,8 +339,18 @@
         "\"So the tide brought you back to the steps,\" {first} whispers, sea-glass eyes surprisingly gentle beneath the pearl glow. \"The water remembers every footstep even when my mind wakes empty.\""
       ],
       "choices": [
-        {"label": "\"The Grotto is in good hands, {first}.\"", "t": 5, "m": 6, "res": "A rare, quiet smile curves her lips as warm pearl light deepens across the pool."},
-        {"label": "Walk the tide ledges slowly beside her", "t": 4, "m": 5, "res": "She paces cleanly beside you, nodding when you avoid the slick wet limestone."}
+        {
+          "label": "\"The Grotto is in good hands, {first}.\"",
+          "t": 5,
+          "m": 6,
+          "res": "A rare, quiet smile curves her lips as warm pearl light deepens across the pool."
+        },
+        {
+          "label": "Walk the tide ledges slowly beside her",
+          "t": 4,
+          "m": 5,
+          "res": "She paces cleanly beside you, nodding when you avoid the slick wet limestone."
+        }
       ]
     },
     "foundry": {
@@ -252,8 +367,18 @@
         "\"Welcome back to the iron hall, Sam!\" {first} grins wide, clapping your shoulder hard enough to sting. \"Couldn't tell you why that felt like greeting an old partner—only that we're finishing the rafters this time.\""
       ],
       "choices": [
-        {"label": "\"Show me the weak beams—let's fix her up.\"", "t": 5, "m": 7, "res": "\"Ha! Hands that aren't scared of splinters!\" {first} leads you straight toward the gallery stairs."},
-        {"label": "Promise steady timber funds and better ale", "t": 4, "m": 5, "res": "\"Say less, Sam. You keep the coin flowing and I'll build you a fortress.\""}
+        {
+          "label": "\"Show me the weak beams—let's fix her up.\"",
+          "t": 5,
+          "m": 7,
+          "res": "\"Ha! Hands that aren't scared of splinters!\" {first} leads you straight toward the gallery stairs."
+        },
+        {
+          "label": "Promise steady timber funds and better ale",
+          "t": 4,
+          "m": 5,
+          "res": "\"Say less, Sam. You keep the coin flowing and I'll build you a fortress.\""
+        }
       ]
     },
     "conservatory": {
@@ -270,8 +395,18 @@
         "\"There you are, darling,\" {first} sighs softly, leaning lightly into your arm before blinking in amused surprise. \"Forgive me—my hands remembered your shoulders faster than my head caught up.\""
       ],
       "choices": [
-        {"label": "\"Teach me what these blooms can do.\"", "t": 5, "m": 6, "res": "\"Oh, gladly,\" {first} purrs, drawing you toward the warmest bench beneath the dome."},
-        {"label": "Breathe in the warm air and compliment her house", "t": 4, "m": 6, "res": "Her fox ears perk high with delight. \"Wait until midnight, Sam—the best buds haven't opened yet.\""}
+        {
+          "label": "\"Teach me what these blooms can do.\"",
+          "t": 5,
+          "m": 6,
+          "res": "\"Oh, gladly,\" {first} purrs, drawing you toward the warmest bench beneath the dome."
+        },
+        {
+          "label": "Breathe in the warm air and compliment her house",
+          "t": 4,
+          "m": 6,
+          "res": "Her fox ears perk high with delight. \"Wait until midnight, Sam—the best buds haven't opened yet.\""
+        }
       ]
     },
     "lyceum": {
@@ -288,8 +423,18 @@
         "\"Back for advanced tuition, Sam?\" {first} murmurs with a sudden, razor-warm smile that surprises even her. \"No memories on record—yet something tells me you never flinch in my classroom.\""
       ],
       "choices": [
-        {"label": "\"I'm a fast learner, Professor.\"", "t": 5, "m": 6, "res": "Her poised eyebrow arches in genuine approval. \"We shall test that thesis shortly, Sam.\""},
-        {"label": "\"Keep the academy sharp—I'll fund the velvet.\"", "t": 4, "m": 5, "res": "{first} inclines her head neatly. \"Then let us tour the upper practice salons.\""}
+        {
+          "label": "\"I'm a fast learner, Professor.\"",
+          "t": 5,
+          "m": 6,
+          "res": "Her poised eyebrow arches in genuine approval. \"We shall test that thesis shortly, Sam.\""
+        },
+        {
+          "label": "\"Keep the academy sharp—I'll fund the velvet.\"",
+          "t": 4,
+          "m": 5,
+          "res": "{first} inclines her head neatly. \"Then let us tour the upper practice salons.\""
+        }
       ]
     }
   },
@@ -303,8 +448,18 @@
       "arrival": "When Marguerite Vane's carriage rattles out of sight, someone vaults cleanly down off the courtyard wall beside you—boots landing without a sound, bright red fox tail flicking dust off her travel cloak.",
       "greet": "{first} taps a notched training blade over one shoulder and sizes up the crooked inn sign with a sharp grin.\n\n\"Alright, Sam—this place looks half-held together by string and prayers, and I've got zero intention of watching an unarmed guy from another world get mugged on night one. You handle the books and the talking; I'll keep drunks off the stairs.\"",
       "choices": [
-        {"label": "\"Glad to have someone watching my back, {first}.\"", "t": 5, "m": 7, "res": "Her fox ears flick upright and she bumps her shoulder smartly into yours. \"Just don't walk into dark alleys alone and we'll get along great.\""},
-        {"label": "\"Try not to scare off paying customers on week one.\"", "t": 3, "m": 5, "res": "{first} laughs sharply, leaning her sword against the doorframe. \"No promises—only the rowdy ones!\""}
+        {
+          "label": "\"Glad to have someone watching my back, {first}.\"",
+          "t": 5,
+          "m": 7,
+          "res": "Her fox ears flick upright and she bumps her shoulder smartly into yours. \"Just don't walk into dark alleys alone and we'll get along great.\""
+        },
+        {
+          "label": "\"Try not to scare off paying customers on week one.\"",
+          "t": 3,
+          "m": 5,
+          "res": "{first} laughs sharply, leaning her sword against the doorframe. \"No promises—only the rowdy ones!\""
+        }
       ]
     },
     "nerys": {
@@ -316,8 +471,13 @@
       "arrival": "Shadow curls warmly off the porch stone before any footstep sounds, smelling faintly of sulfur and night-blooming spice. By the time you blink, {name} is leaning beside the lantern post like she owns the lease on your pulse.",
       "greet": "One dark-nailed finger hooks gently under your chin, tilting your face toward the amber lamp glow while her slit pupils narrow in wicked delight.\n\n\"Freshly summoned, bruised knees, already drowning in debt...\" {first} purrs softly against your ear. \"What an irresistible little bargain, Sam. Keep me fed, keep me entertained, and let's see how quickly this boring town melts.\"",
       "choices": [
-        {"label": "\"Just don't burn the inn down for fun.\"", "t": 4, "m": 7, "res": "{first} laughs low in her throat, tail tip brushing your wrist. \"No fun unless you're watching, darling.\""},
-        {"label": "\"Welcome to {house}, {first}. Let's make coin.\"", "t": 5, "m": 5, "res": "\"Practical devilry. I adore that in a mortal.\""}
+        {
+          "label": "\"Just don't burn the inn down for fun.\"",
+          "t": 4,
+          "m": 7,
+          "res": "{first} laughs low in her throat, tail tip brushing your wrist. \"No fun unless you're watching, darling.\""
+        },
+        {"label":"\"Welcome to {house}, {first}. Let's make coin.\"","t":5,"m":5,"res":"\"Practical devilry. I adore that in a mortal.\""}
       ]
     },
     "elowen": {
@@ -329,8 +489,18 @@
       "arrival": "While your head still rings from twin moons and Marguerite Vane's ink, a cool hand smelling cleanly of crushed chamomile and cedar presses a small ceramic cup into yours.",
       "greet": "{name} steps smoothly onto the porch beside you, woven herb basket resting over one slender forearm, long elven ears tilting softly toward your breathing.\n\n\"Drink slowly, Sam,\" she murmurs in a cadence smooth as river water over stone. \"Your pulse is still racing from the crossing. Let me tend the bruises inside these walls—some wounds here require medicine, and others simply need gentle hands.\"",
       "choices": [
-        {"label": "Drink the warm tea and thank her", "t": 5, "m": 7, "res": "Some of the ache behind your eyes eases at once. {first} offers a rare, soft smile. \"We will take this one evening at a time.\""},
-        {"label": "\"You really know how to steady a rough landing.\"", "t": 4, "m": 5, "res": "\"I have had long practice waiting on lost travelers,\" {first} replies quietly."}
+        {
+          "label": "Drink the warm tea and thank her",
+          "t": 5,
+          "m": 7,
+          "res": "Some of the ache behind your eyes eases at once. {first} offers a rare, soft smile. \"We will take this one evening at a time.\""
+        },
+        {
+          "label": "\"You really know how to steady a rough landing.\"",
+          "t": 4,
+          "m": 5,
+          "res": "\"I have had long practice waiting on lost travelers,\" {first} replies quietly."
+        }
       ]
     },
     "adelheid": {
@@ -342,8 +512,18 @@
       "arrival": "Boot heels click precisely across the paving stones behind you, accompanied by the clean oil-and-steel chime of real armor worn by someone who hasn't taken a true rest in weeks.",
       "greet": "{name} sets one gauntleted hand firmly over the pommel of her longsword and inclines her head in crisp knightly salute.\n\n\"You have stepped into perilous footing with very little steel to your name, Sam Takahashi,\" she says evenly, grey eyes scanning the street before returning to your face. \"A pleasure house may not be a noble garrison, yet honor follows conduct, not stone. Keep your word beneath this roof, and my blade guards your threshold.\"",
       "choices": [
-        {"label": "\"Call me Sam—and thank you for standing with me.\"", "t": 5, "m": 6, "res": "Her shoulders ease a fraction, steel discipline softening into quiet warmth. \"Very well... Sam.\""},
-        {"label": "\"With you at the door, nobody's pushing us around.\"", "t": 4, "m": 5, "res": "\"On my oath,\" {first} answers crisply, stepping inside to inspect the locks."}
+        {
+          "label": "\"Call me Sam—and thank you for standing with me.\"",
+          "t": 5,
+          "m": 6,
+          "res": "Her shoulders ease a fraction, steel discipline softening into quiet warmth. \"Very well... Sam.\""
+        },
+        {
+          "label": "\"With you at the door, nobody's pushing us around.\"",
+          "t": 4,
+          "m": 5,
+          "res": "\"On my oath,\" {first} answers crisply, stepping inside to inspect the locks."
+        }
       ]
     },
     "marisol": {
@@ -355,8 +535,18 @@
       "arrival": "Before Vane's carriage clears the corner, a slim woman with brass ink-stains on her thumb and gleaming gold hoops has already plucked the spare deed copy straight off the table.",
       "greet": "{name} whistles low through her teeth at the debt column, then drops onto the ledger stool and crosses one boot neatly over the other.\n\n\"Well, Sam—if you plan on surviving Vane Credit House, you're going to need someone who can actually count fast without weeping over spilled wine,\" she grins sharply, tapping your chest with the rolled parchment. \"Half this quarter owes my family ghosts anyway. Split the work fair with me, and we'll make every creditor choke.\"",
       "choices": [
-        {"label": "\"Deal—partners on the numbers.\"", "t": 5, "m": 7, "res": "Her dark curls bounce as she snaps the ledger shut. \"That's what I wanted to hear, partner!\""},
-        {"label": "\"Show me where the previous owner buried his mistakes.\"", "t": 4, "m": 5, "res": "\"Pull up a chair, Sam. Grab tea—it's a long list.\""}
+        {
+          "label": "\"Deal—partners on the numbers.\"",
+          "t": 5,
+          "m": 7,
+          "res": "Her dark curls bounce as she snaps the ledger shut. \"That's what I wanted to hear, partner!\""
+        },
+        {
+          "label": "\"Show me where the previous owner buried his mistakes.\"",
+          "t": 4,
+          "m": 5,
+          "res": "\"Pull up a chair, Sam. Grab tea—it's a long list.\""
+        }
       ]
     },
     "lirael": {
@@ -368,8 +558,18 @@
       "arrival": "Quiet footsteps pause just inside the doorway light—not a stranger's stride, yet carrying ten years of ink, postage wax, and late-night margins you never imagined had a face.",
       "greet": "{name} clutches a worn, ribbon-tied bundle of letters tight against her wool coat, pale pointed ears trembling faintly in the evening chill as she checks your face against a hundred imagined sketches.\n\n\"You're... taller than your handwriting made you sound,\" she whispers softly, eyes shining beneath the porch lamp. \"Wait—Sam. It really is you on this side of the postbox. I left the sorting office the hour my last envelope came back warm.\"",
       "choices": [
-        {"label": "\"You actually came looking for me, {first}...\"", "t": 5, "m": 7, "res": "Her shoulders drop in shaky, radiant relief. \"I promised I'd write until someone answered—even across worlds.\""},
-        {"label": "Offer her a warm chair out of the night chill", "t": 4, "m": 5, "res": "{first} tucks the old letters neatly inside her coat and steps beside you into the lamp glow."}
+        {
+          "label": "\"You actually came looking for me, {first}...\"",
+          "t": 5,
+          "m": 7,
+          "res": "Her shoulders drop in shaky, radiant relief. \"I promised I'd write until someone answered—even across worlds.\""
+        },
+        {
+          "label": "Offer her a warm chair out of the night chill",
+          "t": 4,
+          "m": 5,
+          "res": "{first} tucks the old letters neatly inside her coat and steps beside you into the lamp glow."
+        }
       ]
     },
     "anael": {
@@ -381,8 +581,18 @@
       "arrival": "Every streetlamp along the block flares bright gold without wind or flint—and beneath the closest awning stands a winged sentinel watching you with quiet, unearthly stillness.",
       "greet": "{name} folds snow-white feathers neatly behind her shoulders as her halo dims down to a warm candle ring so she doesn't draw stares from the street.\n\n\"Sam Takahashi,\" she says softly, voice clear as struck crystal. \"Every lantern within the Quiet Lamp blazed the instant your soul crossed the threshold. I was sent to observe whether you spell ruin for Hollowmere—so do try not to embarrass either of us while I take notes.\"",
       "choices": [
-        {"label": "\"Stick around then, {first}—judge for yourself.\"", "t": 5, "m": 6, "res": "A quiet crease softens the corner of her mouth. \"I fully intend to, Sam.\""},
-        {"label": "Hold the door open out of the night air", "t": 4, "m": 5, "res": "\"Thank you,\" {first} murmurs, folding one wing carefully past the timber frame."}
+        {
+          "label": "\"Stick around then, {first}—judge for yourself.\"",
+          "t": 5,
+          "m": 6,
+          "res": "A quiet crease softens the corner of her mouth. \"I fully intend to, Sam.\""
+        },
+        {
+          "label": "Hold the door open out of the night air",
+          "t": 4,
+          "m": 5,
+          "res": "\"Thank you,\" {first} murmurs, folding one wing carefully past the timber frame."
+        }
       ]
     },
     "yui": {
@@ -394,8 +604,18 @@
       "arrival": "Amidst brass oil lamps and parchment ledgers, a sleek black stapler sits glaringly out of place beside an inkwell. A small, familiar gasp catches in the doorway right behind you.",
       "greet": "{name} freezes mid-step, dark hair falling slightly over one flushed cheek as she stares at your grey hoodie like she's seeing a ghost walk out of the fourth-floor elevator back in Tokyo.\n\n\"T-Takahashi-kun...?\" her voice cracks completely before rushing forward to grab your sleeve with both cold hands. \"Wait—that's really you! No overtime bell, no last train, and my stapler came across with me! Don't let go for a second, Sam—tell me I'm not dreaming on my desk!\"",
       "choices": [
-        {"label": "Grip her hands firmly and tell her you're both really here", "t": 6, "m": 8, "res": "{first} lets out a wet, breathless laugh and presses her forehead briefly against your sleeve. \"Okay... okay. At least I don't have to face another weird world alone.\""},
-        {"label": "Point out her red stapler already sits on the counter", "t": 4, "m": 6, "res": "She blinks at it, bursts out giggling through her tears, and straightens her skirt with sudden fierce resolve."}
+        {
+          "label": "Grip her hands firmly and tell her you're both really here",
+          "t": 6,
+          "m": 8,
+          "res": "{first} lets out a wet, breathless laugh and presses her forehead briefly against your sleeve. \"Okay... okay. At least I don't have to face another weird world alone.\""
+        },
+        {
+          "label": "Point out her red stapler already sits on the counter",
+          "t": 4,
+          "m": 6,
+          "res": "She blinks at it, bursts out giggling through her tears, and straightens her skirt with sudden fierce resolve."
+        }
       ]
     },
     "natsuki": {
@@ -407,8 +627,18 @@
       "arrival": "Steel rings softly inside an oiled scabbard out in the yard—and then a voice you grew up scraping knees beside cuts straight through three years of impossible distance.",
       "greet": "{name} drops cleanly off the low garden wall, worn guild cloak dusted with highway mud, eyes narrowing sharply until recognition slams straight through her chest.\n\n\"No way,\" she breathes—three years of lonely wandering falling off her shoulders in one heartbeat before she marches over and flicks your forehead hard. \"Three years in this world, Sam! Three whole years swinging iron at monsters and sleeping in awful inns, and YOU wash up right down the street running a parlor?!\"",
       "choices": [
-        {"label": "Rub your forehead and pull her into a tight hug", "t": 6, "m": 8, "res": "{first} freezes half a second—then drops her hand onto your hoodie back, gripping tight. \"Idiot,\" she mutters against your neck. \"Glad you finally caught up.\""},
-        {"label": "\"Hey—someone had to keep the lights on for you, Natsuki.\"", "t": 5, "m": 7, "res": "She snorts, wiping the corner of her eye with one scarred knuckle, grin wicked again. \"Save me the soft bed upstairs, then.\""}
+        {
+          "label": "Rub your forehead and pull her into a tight hug",
+          "t": 6,
+          "m": 8,
+          "res": "{first} freezes half a second—then drops her hand onto your hoodie back, gripping tight. \"Idiot,\" she mutters against your neck. \"Glad you finally caught up.\""
+        },
+        {
+          "label": "\"Hey—someone had to keep the lights on for you, Natsuki.\"",
+          "t": 5,
+          "m": 7,
+          "res": "She snorts, wiping the corner of her eye with one scarred knuckle, grin wicked again. \"Save me the soft bed upstairs, then.\""
+        }
       ]
     },
     "kanako": {
@@ -420,8 +650,18 @@
       "arrival": "Warm jasmine perfume cuts neatly through Hollowmere woodsmoke—too crisp, too familiar, tasting exactly like late Fridays leaning over Apartment 3B's rusted balcony rail back home.",
       "greet": "{name} taps a brass pipe lightly against her palm, looks from your bewildered face to Marguerite Vane's ridiculous ledger, and breaks into a slow, husky laugh that knocks half the tension straight out of your ribs.\n\n\"Well, look what the moons washed up—my little Sammy, all grown up and holding keys to a brothel!\" she coos, smoothing down your rumpled collar with warm palms. \"Relax, sweetheart. You kept me company on my worst nights back in Tokyo; turnabout's fair play.\"",
       "choices": [
-        {"label": "\"{first}-san... thank goodness someone sane ended up here too.\"", "t": 5, "m": 8, "res": "She laughs softly and pinches your cheek. \"Sane is generous, Sammy—but I sure know how to pour a drink and run a room.\""},
-        {"label": "Pour her a glass right behind the bar", "t": 5, "m": 7, "res": "\"Oh, you already remember how I take it,\" {first} purrs, sliding onto a stool with effortless poise."}
+        {
+          "label": "\"{first}-san... thank goodness someone sane ended up here too.\"",
+          "t": 5,
+          "m": 8,
+          "res": "She laughs softly and pinches your cheek. \"Sane is generous, Sammy—but I sure know how to pour a drink and run a room.\""
+        },
+        {
+          "label": "Pour her a glass right behind the bar",
+          "t": 5,
+          "m": 7,
+          "res": "\"Oh, you already remember how I take it,\" {first} purrs, sliding onto a stool with effortless poise."
+        }
       ]
     },
     "akari": {
@@ -433,8 +673,18 @@
       "arrival": "Quick sneakers—honest-to-God Earth sneakers, mud-flecked from a dirt road—skid across the threshold mats right before a brightly folded commuter umbrella pokes through the curtain.",
       "greet": "{name} halts halfway inside, cheeks rosy from running half the market street, and breaks into a radiant grin that wipes every ounce of medieval gloom right out of the hall.\n\n\"Surprise, Sam!!\" she chirps brightly—then immediately drops the peppy act just enough to lunge straight into your ribs, hiding her face against your jacket. \"Wait—don't tease me, I checked three towns looking for Kenta and found YOU first, and I don't care how weird this place is—I'm NOT letting you out of sight again!\"",
       "choices": [
-        {"label": "Pat her back firmly and promise she stays safe here", "t": 6, "m": 8, "res": "{first} sniffles once, laughs fiercely against your shirt, and pops back upright beaming. \"Right! House rule one: no disappearing! Kenta would kill you!\""},
-        {"label": "\"Did you actually bring an umbrella to a dry town, Akari?\"", "t": 4, "m": 7, "res": "\"It was raining at the crosswalk!\" she protests indignantly, hugging the umbrella strap tight with bright eyes."}
+        {
+          "label": "Pat her back firmly and promise she stays safe here",
+          "t": 6,
+          "m": 8,
+          "res": "{first} sniffles once, laughs fiercely against your shirt, and pops back upright beaming. \"Right! House rule one: no disappearing! Kenta would kill you!\""
+        },
+        {
+          "label": "\"Did you actually bring an umbrella to a dry town, Akari?\"",
+          "t": 4,
+          "m": 7,
+          "res": "\"It was raining at the crosswalk!\" she protests indignantly, hugging the umbrella strap tight with bright eyes."
+        }
       ]
     },
     "lara": {
@@ -446,8 +696,18 @@
       "arrival": "Nobody heard the latch click, yet when you turn toward the hallway lamp, a familiar shabby black coat stands pressed shyly beside the coat pegs as if waiting permission to breathe the same air.",
       "greet": "{name}'s fingers twist slowly around the frayed hem of her sleeve, kohl-ringed eyes tracking the exact grey hoodie you wore on the back steps back home.\n\n\"Rumors crossed three towns about a strange boy wearing Alder Street's coat,\" she whispers softly, voice barely louder than the wick hiss. \"I didn't believe it until I saw the way you lean on one foot when you're tired, Sam. Please don't send me back down the road tonight.\"",
       "choices": [
-        {"label": "\"You're never stuck on the road again, {first}. Come inside.\"", "t": 6, "m": 8, "res": "A long, shaky exhale breaks out of her chest as she steps quietly into the lamplight beside you."},
-        {"label": "Hang her dusty coat up carefully beside yours", "t": 5, "m": 7, "res": "{first} watches both coats hanging together on the peg, dark eyes softening with quiet wonder."}
+        {
+          "label": "\"You're never stuck on the road again, {first}. Come inside.\"",
+          "t": 6,
+          "m": 8,
+          "res": "A long, shaky exhale breaks out of her chest as she steps quietly into the lamplight beside you."
+        },
+        {
+          "label": "Hang her dusty coat up carefully beside yours",
+          "t": 5,
+          "m": 7,
+          "res": "{first} watches both coats hanging together on the peg, dark eyes softening with quiet wonder."
+        }
       ]
     },
     "emily": {
@@ -459,8 +719,18 @@
       "arrival": "Someone coughs softly near the parlor shelves—accompanied by the unmistakable rustle of graph paper and a fluffy tail thumping erratically against the doorframe.",
       "greet": "{name} pushes round glasses up her nose with ink-smudged fingers, grey wolf ears folding flat in sudden total panic before she blurts out your old forum handle like a prayer.\n\n\"Wait—okay, don't freak out about the ears, I didn't choose them—Sam?!\" she squeaks, slamming both hands over her notebook as her tail wraps straight around her own calf. \"Our Tuesday thread went 'last seen' six weeks ago and then I woke up here with teeth sharper than my pens!\"",
       "choices": [
-        {"label": "\"Shadowkin? Wait—you really brought your campaign notes?!\"", "t": 6, "m": 8, "res": "Her wolf ears snap straight upright like lightning rods! \"You remembered! Half the lore literally came true in this place, Sam!\""},
-        {"label": "Pull up two mugs of cider and tell her to catch her breath", "t": 5, "m": 6, "res": "{first} flops dramatically onto the hearth bench, tail wagging slowly behind her ankles."}
+        {
+          "label": "\"Shadowkin? Wait—you really brought your campaign notes?!\"",
+          "t": 6,
+          "m": 8,
+          "res": "Her wolf ears snap straight upright like lightning rods! \"You remembered! Half the lore literally came true in this place, Sam!\""
+        },
+        {
+          "label": "Pull up two mugs of cider and tell her to catch her breath",
+          "t": 5,
+          "m": 6,
+          "res": "{first} flops dramatically onto the hearth bench, tail wagging slowly behind her ankles."
+        }
       ]
     },
     "ella": {
@@ -472,8 +742,18 @@
       "arrival": "Crisp heels cross the floorboards in a rhythm you'd recognize blindfolded from four years of department honors seminars and rival coffee runs back home.",
       "greet": "{name} sweeps one sharp glance over Marguerite Vane's interest schedule, pulls a mechanical pencil straight out of her blazer pocket—from another universe entirely—and taps the red subtotal twice.\n\n\"Honestly, Takahashi—even hit by a delivery truck, you still sign terrible initial contracts,\" she remarks dryly, though the tremor in her wrist gives away how hard she ran once she heard your last name in town. \"Move over. If we're stuck in this absurd city, I'm not letting you lose to a loan shark on spreadsheets.\"",
       "choices": [
-        {"label": "\"Glad you found me, {first}. Grab a chair—we've got work.\"", "t": 5, "m": 7, "res": "Her poised mask cracks into a brief, fierce smile. \"Naturally, Sam. Try to keep up.\""},
-        {"label": "\"Admit it—you were worried when you saw the street.\"", "t": 4, "m": 6, "res": "Color flashes sharply across her cheekbones. \"I'm merely protecting my benchmark, Sam. Now hand me that inkwell.\""}
+        {
+          "label": "\"Glad you found me, {first}. Grab a chair—we've got work.\"",
+          "t": 5,
+          "m": 7,
+          "res": "Her poised mask cracks into a brief, fierce smile. \"Naturally, Sam. Try to keep up.\""
+        },
+        {
+          "label": "\"Admit it—you were worried when you saw the street.\"",
+          "t": 4,
+          "m": 6,
+          "res": "Color flashes sharply across her cheekbones. \"I'm merely protecting my benchmark, Sam. Now hand me that inkwell.\""
+        }
       ]
     },
     "ione": {
@@ -485,8 +765,18 @@
       "arrival": "Night air hushes cleanly around the courtyard fountain—and a faint, melodic hum answers your pulse before your eyes catch silver hair shimmering beneath twin moons.",
       "greet": "{name} closes a worn leather diary marked with brass clasps and tilts her head at an exact, curious angle as the pale indicator beside her temple shifts from cyan to warm amber.\n\n\"Visual match confirmed: Sam Takahashi, cycle entrance,\" she speaks smoothly, stepping inside without disturbing a drop of dew. \"My archive names this building, this hour, and your grey jacket—yet the pages after tonight are blank. May I stay and observe how you fill them?\"",
       "choices": [
-        {"label": "\"Let's write those blank pages together, {first}.\"", "t": 5, "m": 7, "res": "Her amber node pulses twice in soft wonder. \"Hypothesis noted happily, Sam.\""},
-        {"label": "Offer her warm tea even if she doesn't need it", "t": 4, "m": 6, "res": "She cups the porcelain gently between warm-skinned palms, studying the steam like scripture."}
+        {
+          "label": "\"Let's write those blank pages together, {first}.\"",
+          "t": 5,
+          "m": 7,
+          "res": "Her amber node pulses twice in soft wonder. \"Hypothesis noted happily, Sam.\""
+        },
+        {
+          "label": "Offer her warm tea even if she doesn't need it",
+          "t": 4,
+          "m": 6,
+          "res": "She cups the porcelain gently between warm-skinned palms, studying the steam like scripture."
+        }
       ]
     }
   }

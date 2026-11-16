@@ -266,21 +266,126 @@
     "anael": "Beside an unlit crossroads lamppost, {name} stands motionless beneath a pale shawl, amber eyes solemn as twin moons glow overhead. The instant you step near, the glass wick flares bright gold on its own—and she exhales quietly.\n\n\"The Lantern burns only for one crossing soul,\" she murmurs, wings rustling neatly beneath her cloak. \"You must be Sam. Keep pace with me toward {house}, if you please.\""
   },
   "partnerIntros": {
-    "kaede": {"open": "Loud laughter echoes off the timber stalls near the Guild road, where a sharp-eyed red fox beastkin rests one booted heel on an overturned crate.", "image": {"comp": "leaning lazily near a noisy street noodle stall, red fox ears perked, tail swishing, cocky friendly grin", "setting": "bustling cobblestone guild-market lane at afternoon", "sam": true}},
-    "nerys": {"open": "Shadows stretch oddly long beneath a crimson alley awning, smelling faintly of sulfur, cloves, and trouble.", "image": {"comp": "lounging effortlessly against a stone archway in an understreet, bat wings tucked, violet slit eyes gleaming slyly", "setting": "lantern-lit cobbled understreet lined with apothecary stalls", "sam": true}},
-    "elowen": {"open": "Sunbeams filter through leafy market oaks onto a tall elf sorting bundle after bundle of fragrant dried herbs with quiet grace.", "image": {"comp": "holding a woven basket of fresh herbs under sunlit trees, calm gentle green eyes turning toward him", "setting": "shaded cobblestone square beneath market oak trees", "sam": true}},
-    "adelheid": {"open": "Beside the iron watch boards, steel plates catch afternoon glare on a straight-backed knight who refuses to slouch even off duty.", "image": {"comp": "standing beside a wooden town noticeboard in clean armor and crimson cloak, blonde braid, measuring him sharply", "setting": "sunlit cobblestone watch plaza in Hollowmere", "sam": true}},
-    "marisol": {"open": "Laughter rises near the spice carts as a dark-curled promoter charms half the dock crew into shifting freight for free.", "image": {"comp": "standing beside spice crates winking effortlessly, gold hoop earrings gleaming in market daylight", "setting": "bright open spice market plaza near the docks", "sam": true}},
-    "lirael": {"open": "Beside a crooked iron postbox, slender hands tie neat twine around letters with a care that belongs to someone who keeps every postmark.", "image": {"comp": "clutching a yellowed tied letter beside an old iron postbox, long elven ears flushed pink, hopeful startled gaze", "setting": "quiet cobbled post-lane beside an iron letterbox", "sam": true}},
-    "anael": {"open": "Streetlamps along the upper lane flicker gold one after another without a lamplighter in sight, stopping beside a still, winged figure.", "image": {"comp": "standing beside a suddenly flaring streetlamp in a pale travel cloak, faint halo and folded wings beneath twilight sky", "setting": "quiet stone crossroads under evening sky as streetlamps ignite", "sam": true}},
-    "yui": {"open": "A crisp modern cardigan stands completely out of place beneath timber eaves, its wearer staring frozen at medieval horse carts like she stepped off the wrong train.", "image": {"comp": "clutching a black office stapler against her cardigan in a cobblestone market, wide shocked eyes lighting up on spotting him", "setting": "busy medieval cobblestone lane beside cloth stalls", "sam": true}},
-    "natsuki": {"open": "Wood clacks gently against stone on the river bridge, where a scarred traveler in an old cloak rests her practice blade across bruised knees.", "image": {"comp": "turning sharply from a stone bridge parapet with a wooden katana scabbard across her knees, fierce stunned expression", "setting": "mossy stone canal bridge overlooking sunlit water", "sam": true}},
-    "kanako": {"open": "Warm jasmine perfume cuts straight through roasted chestnut smoke at a shaded sidewalk tea table.", "image": {"comp": "seated at a quiet corner tea table in elegant plum lipstick and silk shawl, raising a surprised warm brow", "setting": "quiet shaded backstreet cafe table in Hollowmere", "sam": true}},
-    "akari": {"open": "By the fountain square, a folded commuter umbrella—obviously from Tokyo—pokes up from a weathered stone bench right beside brightly scuffed sneakers.", "image": {"comp": "springing off a stone fountain bench waving a folded bright umbrella, ecstatic tears sparkling behind a huge grin", "setting": "sunny cobblestone plaza around a stone fountain", "sam": true}},
-    "lara": {"open": "A worn black coat and tired posture sweep dust off a narrow boardinghouse stoop far from any orphanage steps back home.", "image": {"comp": "freezing with a broom on narrow stone steps in a frayed black coat, pale wide dark eyes locking onto his hoodie", "setting": "quiet shadowed alley beside a narrow wooden boardinghouse", "sam": true}},
-    "emily": {"open": "Pencil scratches frantically over ruled Earth paper on a canal footbridge while fluffy grey wolf ears flick nervously at every passing cart.", "image": {"comp": "gripping a spiral notebook on a stone footbridge, wolf ears flat behind round glasses, stunned relief", "setting": "narrow wooden and stone footbridge over a sunlit canal", "sam": true}},
-    "ella": {"open": "By a quiet courtyard well, an immaculate modern collar and sharpened mechanical pencil argue silently against parchment tax schedules.", "image": {"comp": "standing briskly beside a stone courtyard well holding a modern mechanical pencil over a parchment sheet, sharp eyes softening", "setting": "quiet sunlit stone courtyard beside a fountain well", "sam": true}},
-    "ione": {"open": "Outside a dim stone wine cellar, silver hair catches dusk lamps above a small brass-clasped diary resting closed beside an untouched glass.", "image": {"comp": "seated outside a cellar archway beside a brass-clasped leather diary, silver hair, amber node glowing warmly at her temple", "setting": "dusk stone street outside a quiet cellar wine shop", "sam": true}}
+    "kaede": {
+      "open": "Loud laughter echoes off the timber stalls near the Guild road, where a sharp-eyed red fox beastkin rests one booted heel on an overturned crate.",
+      "image": {
+        "comp": "leaning lazily near a noisy street noodle stall, red fox ears perked, tail swishing, cocky friendly grin",
+        "setting": "bustling cobblestone guild-market lane at afternoon",
+        "sam": true
+      }
+    },
+    "nerys": {
+      "open": "Shadows stretch oddly long beneath a crimson alley awning, smelling faintly of sulfur, cloves, and trouble.",
+      "image": {
+        "comp": "lounging effortlessly against a stone archway in an understreet, bat wings tucked, violet slit eyes gleaming slyly",
+        "setting": "lantern-lit cobbled understreet lined with apothecary stalls",
+        "sam": true
+      }
+    },
+    "elowen": {
+      "open": "Sunbeams filter through leafy market oaks onto a tall elf sorting bundle after bundle of fragrant dried herbs with quiet grace.",
+      "image": {
+        "comp": "holding a woven basket of fresh herbs under sunlit trees, calm gentle green eyes turning toward him",
+        "setting": "shaded cobblestone square beneath market oak trees",
+        "sam": true
+      }
+    },
+    "adelheid": {
+      "open": "Beside the iron watch boards, steel plates catch afternoon glare on a straight-backed knight who refuses to slouch even off duty.",
+      "image": {
+        "comp": "standing beside a wooden town noticeboard in clean armor and crimson cloak, blonde braid, measuring him sharply",
+        "setting": "sunlit cobblestone watch plaza in Hollowmere",
+        "sam": true
+      }
+    },
+    "marisol": {
+      "open": "Laughter rises near the spice carts as a dark-curled promoter charms half the dock crew into shifting freight for free.",
+      "image": {
+        "comp": "standing beside spice crates winking effortlessly, gold hoop earrings gleaming in market daylight",
+        "setting": "bright open spice market plaza near the docks",
+        "sam": true
+      }
+    },
+    "lirael": {
+      "open": "Beside a crooked iron postbox, slender hands tie neat twine around letters with a care that belongs to someone who keeps every postmark.",
+      "image": {
+        "comp": "clutching a yellowed tied letter beside an old iron postbox, long elven ears flushed pink, hopeful startled gaze",
+        "setting": "quiet cobbled post-lane beside an iron letterbox",
+        "sam": true
+      }
+    },
+    "anael": {
+      "open": "Streetlamps along the upper lane flicker gold one after another without a lamplighter in sight, stopping beside a still, winged figure.",
+      "image": {
+        "comp": "standing beside a suddenly flaring streetlamp in a pale travel cloak, faint halo and folded wings beneath twilight sky",
+        "setting": "quiet stone crossroads under evening sky as streetlamps ignite",
+        "sam": true
+      }
+    },
+    "yui": {
+      "open": "A crisp modern cardigan stands completely out of place beneath timber eaves, its wearer staring frozen at medieval horse carts like she stepped off the wrong train.",
+      "image": {
+        "comp": "clutching a black office stapler against her cardigan in a cobblestone market, wide shocked eyes lighting up on spotting him",
+        "setting": "busy medieval cobblestone lane beside cloth stalls",
+        "sam": true
+      }
+    },
+    "natsuki": {
+      "open": "Wood clacks gently against stone on the river bridge, where a scarred traveler in an old cloak rests her practice blade across bruised knees.",
+      "image": {
+        "comp": "turning sharply from a stone bridge parapet with a wooden katana scabbard across her knees, fierce stunned expression",
+        "setting": "mossy stone canal bridge overlooking sunlit water",
+        "sam": true
+      }
+    },
+    "kanako": {
+      "open": "Warm jasmine perfume cuts straight through roasted chestnut smoke at a shaded sidewalk tea table.",
+      "image": {
+        "comp": "seated at a quiet corner tea table in elegant plum lipstick and silk shawl, raising a surprised warm brow",
+        "setting": "quiet shaded backstreet cafe table in Hollowmere",
+        "sam": true
+      }
+    },
+    "akari": {
+      "open": "By the fountain square, a folded commuter umbrella—obviously from Tokyo—pokes up from a weathered stone bench right beside brightly scuffed sneakers.",
+      "image": {
+        "comp": "springing off a stone fountain bench waving a folded bright umbrella, ecstatic tears sparkling behind a huge grin",
+        "setting": "sunny cobblestone plaza around a stone fountain",
+        "sam": true
+      }
+    },
+    "lara": {
+      "open": "A worn black coat and tired posture sweep dust off a narrow boardinghouse stoop far from any orphanage steps back home.",
+      "image": {
+        "comp": "freezing with a broom on narrow stone steps in a frayed black coat, pale wide dark eyes locking onto his hoodie",
+        "setting": "quiet shadowed alley beside a narrow wooden boardinghouse",
+        "sam": true
+      }
+    },
+    "emily": {
+      "open": "Pencil scratches frantically over ruled Earth paper on a canal footbridge while fluffy grey wolf ears flick nervously at every passing cart.",
+      "image": {
+        "comp": "gripping a spiral notebook on a stone footbridge, wolf ears flat behind round glasses, stunned relief",
+        "setting": "narrow wooden and stone footbridge over a sunlit canal",
+        "sam": true
+      }
+    },
+    "ella": {
+      "open": "By a quiet courtyard well, an immaculate modern collar and sharpened mechanical pencil argue silently against parchment tax schedules.",
+      "image": {
+        "comp": "standing briskly beside a stone courtyard well holding a modern mechanical pencil over a parchment sheet, sharp eyes softening",
+        "setting": "quiet sunlit stone courtyard beside a fountain well",
+        "sam": true
+      }
+    },
+    "ione": {
+      "open": "Outside a dim stone wine cellar, silver hair catches dusk lamps above a small brass-clasped diary resting closed beside an untouched glass.",
+      "image": {
+        "comp": "seated outside a cellar archway beside a brass-clasped leather diary, silver hair, amber node glowing warmly at her temple",
+        "setting": "dusk stone street outside a quiet cellar wine shop",
+        "sam": true
+      }
+    }
   },
   "guestIntro": "Passing the fountain plaza, you notice someone who plainly doesn't belong to Hollowmere's usual crowd—{name}. {backstory}",
   "events": [
@@ -356,8 +461,16 @@
         {
           "label": "Sort out his ledger for him",
           "check": {"stat":"business","need":42,"past":"salaryman"},
-          "win": {"gold":35,"sam":{"business":2},"res":"Ten minutes with a borrowed pen untangles an entire column of double-counted wool tariffs. He presses {gold} into your palm in pure relief."},
-          "lose": {"gold":15,"sam":{"business":1},"res":"You spot two arithmetic errors before your eyes cross—still enough to earn a grateful {gold} finder's tip."}
+          "win": {
+            "gold": 35,
+            "sam": {"business":2},
+            "res": "Ten minutes with a borrowed pen untangles an entire column of double-counted wool tariffs. He presses {gold} into your palm in pure relief."
+          },
+          "lose": {
+            "gold": 15,
+            "sam": {"business":1},
+            "res": "You spot two arithmetic errors before your eyes cross—still enough to earn a grateful {gold} finder's tip."
+          }
         },
         {
           "label": "Point him toward your house for a drink tonight",
@@ -375,7 +488,12 @@
         {
           "label": "Play his game and watch his wrists",
           "check": {"stat":"wits","need":44,"app":2},
-          "win": {"gold":30,"sam":{"wits":1},"appXP":6,"res":"His left thumb gave it away before the second pass. You scoop up {gold} before he decides he's suddenly out of change."},
+          "win": {
+            "gold": 30,
+            "sam": {"wits":1},
+            "appXP": 6,
+            "res": "His left thumb gave it away before the second pass. You scoop up {gold} before he decides he's suddenly out of change."
+          },
           "lose": {"gold":-15,"sam":{"wits":1},"res":"Too fast. You drop 15g, though you catch the trick the moment he pockets the cups."}
         },
         {
@@ -394,7 +512,12 @@
         {
           "label": "Haul the sacks up to his shop",
           "check": {"stat":"strength","need":36,"past":"gym"},
-          "win": {"gold":25,"sam":{"strength":2},"energy":-8,"res":"It leaves your hoodie dusty and your arms burning, yet every sack makes it inside before the drizzle starts. He presses {gold} on you and insists you take a loaf."},
+          "win": {
+            "gold": 25,
+            "sam": {"strength":2},
+            "energy": -8,
+            "res": "It leaves your hoodie dusty and your arms burning, yet every sack makes it inside before the drizzle starts. He presses {gold} on you and insists you take a loaf."
+          },
           "lose": {"gold":10,"sam":{"strength":1},"energy":-8,"res":"It takes twice as many trips as you expected, earning {gold} and a sore lower back."}
         },
         {
@@ -475,13 +598,28 @@
         {
           "label": "Step between them and back them off",
           "check": {"stat":"strength","need":42,"past":"gym"},
-          "win": {"gold":20,"rep":2,"sam":{"strength":2},"res":"Your tone—and the unexpected solidity behind it—convince them to find an easier street. The tailor presses {gold} on you in thanks."},
-          "lose": {"energy":-10,"rep":1,"sam":{"strength":1},"res":"You take a bruised rib pulling the kid clear before the watch whistle sounds down the block."}
+          "win": {
+            "gold": 20,
+            "rep": 2,
+            "sam": {"strength":2},
+            "res": "Your tone—and the unexpected solidity behind it—convince them to find an easier street. The tailor presses {gold} on you in thanks."
+          },
+          "lose": {
+            "energy": -10,
+            "rep": 1,
+            "sam": {"strength":1},
+            "res": "You take a bruised rib pulling the kid clear before the watch whistle sounds down the block."
+          }
         },
         {
           "label": "Bluff that the city watch captain is right behind you",
           "check": {"stat":"charm","need":40},
-          "win": {"gold":15,"rep":2,"sam":{"charm":2},"res":"They bolt down the side lane before checking the corner. The tailor thanks you breathless and hands over {gold}."},
+          "win": {
+            "gold": 15,
+            "rep": 2,
+            "sam": {"charm":2},
+            "res": "They bolt down the side lane before checking the corner. The tailor thanks you breathless and hands over {gold}."
+          },
           "lose": {"sam":{"charm":1},"res":"They glare, hesitate just long enough for the tailor to bolt past, and slink off cursing."}
         }
       ]

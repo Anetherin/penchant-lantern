@@ -45,7 +45,7 @@
               "m": 8,
               "l": 2,
               "private": true,
-              "acts": ["massage_give", "kiss"],
+              "acts": ["massage_give","kiss"],
               "res": "Adelheid closes her eyes tightly as your warm knuckles press through knotted sword-muscle, leaning back into your palms until she turns her face up for a slow, trembling kiss.",
               "fallbackRes": "She sits stiff as a lance for three seconds before letting out a slow breath and leaning her damp head gently back against your wrist."
             },
@@ -68,7 +68,7 @@
               "m": 10,
               "l": 4,
               "private": true,
-              "acts": ["sex_vaginal", "oral_give", "kiss"],
+              "acts": ["sex_vaginal","oral_give","kiss"],
               "res": "All knightly stiffness melts instantly in hot water as Adelheid climbs across your thighs, biting down softly on her lip while you guide your cock inside her warmth and move slowly beneath the rising steam."
             },
             {
@@ -77,7 +77,7 @@
               "m": 8,
               "l": 3,
               "private": true,
-              "acts": ["oral_give", "handjob", "massage_give"],
+              "acts": ["oral_give","handjob","massage_give"],
               "res": "Her hands grip the oak rim until her knuckles blanch as she yields completely to your hands and mouth in the quiet steam."
             }
           ]
@@ -116,12 +116,12 @@
       "choices": [
         {
           "label": "Show her how volume three actually ends",
-          "if": {"canAct": ["kiss", "handjob", "sex_vaginal"]},
+          "if": {"canAct":["kiss","handjob","sex_vaginal"]},
           "t": 5,
           "m": 9,
           "l": 3,
           "private": true,
-          "acts": ["sex_vaginal", "handjob", "kiss"],
+          "acts": ["sex_vaginal","handjob","kiss"],
           "res": "She lowers the blade three inches, drops the dog-eared novel onto the floor, and lets you pull her down beside the barracks lamp—scarlet from jaw to collar as fiction turns real."
         },
         {
@@ -172,7 +172,7 @@
           "res": "You answer their questions yourself, politely, for four hours. Adelheid stands beside you the entire time, shoulders squared, not once looking away."
         }
       ],
-      "image": {"comp": "sitting at a desk staring at a blank page, quill frozen, troubled expression", "setting": "barracks room by candlelight", "sam": false}
+      "image": {"comp":"sitting at a desk staring at a blank page, quill frozen, troubled expression","setting":"barracks room by candlelight","sam":false}
     },
     {
       "title": "Swordplay",
@@ -181,7 +181,7 @@
       "choices": [
         {
           "label": "Practice until you drop",
-          "sam": {"strength": 2},
+          "sam": {"strength":2},
           "t": 3,
           "m": 6,
           "res": "You drop. Twice. She is quietly, enormously proud, and her hand lingers on your shoulder as she helps you up."
@@ -204,7 +204,7 @@
       ],
       "goLead": "Adelheid sets her sword belt reverently beside the chapel candles and steps straight into your arms, kissing you with shaken, resolute warmth as the latch clicks shut.",
       "choices": [
-        {"label": "Say yes", "t": 6, "m": 12, "res": ""},
+        {"label":"Say yes","t":6,"m":12,"res":""},
         {
           "label": "Not yet",
           "t": 1,

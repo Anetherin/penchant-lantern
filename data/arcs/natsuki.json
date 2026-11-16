@@ -23,7 +23,7 @@
           "res": "\"Totally on purpose,\" you lie. {N} grins, rubs her plaster, and punches your shoulder, softer than she'd like to admit."
         }
       ],
-      "image": {"comp": "showing him a scar on her arm, sitting on a fence, half-smiling", "setting": "town wall walkway at sunset", "sam": true}
+      "image": {"comp":"showing him a scar on her arm, sitting on a fence, half-smiling","setting":"town wall walkway at sunset","sam":true}
     },
     {
       "title": "Incoming",
@@ -41,7 +41,7 @@
               "m": 8,
               "l": 2,
               "private": true,
-              "acts": ["massage_give", "kiss"],
+              "acts": ["massage_give","kiss"],
               "res": "Natsuki stiffens for two stubborn seconds as warm lather works over old sword-calluses and pale scars—before tipping her head back with a sharp breath to catch your mouth in a hot, wet kiss.",
               "fallbackRes": "She grumbles the whole time about your terrible massage technique, though she leans squarely back against your knuckles until her ears glow pink."
             },
@@ -64,7 +64,7 @@
               "m": 10,
               "l": 4,
               "private": true,
-              "acts": ["sex_ride", "sex_vaginal", "oral_give"],
+              "acts": ["sex_ride","sex_vaginal","oral_give"],
               "res": "Before you settle waist-deep in the hot water, Natsuki pins your shoulders straight back against the wood and sinks cleanly down onto your cock—riding you hard with damp cheek pressed fiercely to yours."
             },
             {
@@ -73,7 +73,7 @@
               "m": 8,
               "l": 3,
               "private": true,
-              "acts": ["oral_give", "handjob", "kiss"],
+              "acts": ["oral_give","handjob","kiss"],
               "res": "She gasps loudly when your hands slide low under the hot water, gripping your neck tightly while mist hides nothing between you both."
             }
           ]
@@ -111,12 +111,12 @@
       "choices": [
         {
           "label": "Pull her into the empty alley behind the stall and prove she was right",
-          "if": {"canAct": ["kiss", "sex_vaginal", "oral_give"]},
+          "if": {"canAct":["kiss","sex_vaginal","oral_give"]},
           "t": 5,
           "m": 9,
           "l": 3,
           "private": true,
-          "acts": ["sex_vaginal", "oral_give", "kiss"],
+          "acts": ["sex_vaginal","oral_give","kiss"],
           "res": "You catch her wrist before she walks away, draw her behind the quiet lantern wall away from the crowd, and pin her warm mouth under yours until the paper bag hits the stones."
         },
         {
@@ -168,7 +168,7 @@
           "res": "\"Next time, you come with me,\" she says, laughing a little. \"Deal?\" You say deal, and she spits in her palm to shake on it."
         }
       ],
-      "image": {"comp": "limping in with a broken arm in a sling and a sack of gold, defiant grin", "setting": "inn entrance hall at night", "sam": false}
+      "image": {"comp":"limping in with a broken arm in a sling and a sack of gold, defiant grin","setting":"inn entrance hall at night","sam":false}
     },
     {
       "title": "Fireworks",
@@ -205,7 +205,7 @@
       ],
       "goLead": "Natsuki drops her scabbard cleanly onto the chair and shoves you straight back onto the mattress, straddling your waist with fierce, breathless relief.",
       "choices": [
-        {"label": "Say yes", "t": 6, "m": 12, "res": ""},
+        {"label":"Say yes","t":6,"m":12,"res":""},
         {
           "label": "Not yet",
           "t": 1,
