@@ -13,15 +13,15 @@ const booksCut = () => Math.min(0.6, 0.1 + S.sam.business*0.003 + samUpFx('books
 const samLog = t => S.samWeek.acts.push(t);
 const xpNeed = l => 60 + 40*l;
 const apMax = () => 3 + Math.floor((S.sam.lvl||1)/5) + (hasBoon('ap')?1:0) + (hasChallengePerk('starlight_debt')?1:0);   // +1 action every 5 levels (5, 10, 15, 20...)
-// Sam's stats (0-100). Each also works passively (balance.json → sam.bonus, x stat/100): Charm → trust the ladies gain (gainTrust),
-// Business → house income (endWeek), Strength → security in every house (simHouse) and weekly recovery, Wits → stat training and
+// Sam's stats (0-100). Each also works passively (balance.json → sam.bonus, x stat/100): Charm → trust the ladies gain (gainTrust, at Sam's house unless samReach),
+// Business → house income (endWeek, at Sam's house unless samReach), Strength → security (simHouse, at Sam's house unless samReach) and weekly recovery, Wits → stat training and
 // Appraisal XP, Technique → service skills he teaches and how much he satisfies (samRelease).
 const SAM_STATS = ['charm','business','strength','wits','technique'];
 const samBonus = (k, stat=k) => 1 + (((BAL.sam||{}).bonus||{})[k] || 0) * ((typeof S!=='undefined' && S && S.sam ? S.sam[stat] : 0) || 0) / 100;
-const SAM_BONUS_TIP = {charm:'More trust from everything the ladies do with him', business:'Every house earns more', strength:'Keeps trouble away in every house; recovers more energy each week', wits:'Stat training goes further; Appraisal XP', technique:'Service practice goes further; leaves her more satisfied'};
+const SAM_BONUS_TIP = {charm:'More trust from everything the ladies do with him (at his house without Reach)', business:'Earns more at the house where he sleeps (every house with Reach)', strength:'Keeps trouble away where he sleeps; recovers more energy each week', wits:'Stat training goes further; Appraisal XP', technique:'Service practice goes further; leaves her more satisfied'};
 function samBonusLine(){
-  const p = k => Math.round((samBonus(k) - 1)*100), B = (BAL.sam||{}).bonus||{};
-  return `<br>Always on: Charm +${p('charm')}% trust gained · Business +${p('business')}% house income · Strength +${Math.round((S.sam.strength||0)*(B.security||0))} security everywhere, +${Math.round((samBonus('rest','strength')-1)*100)}% weekly recovery · Wits +${p('wits')}% stat training and Appraisal XP · Technique: better service practice.`;
+  const p = k => Math.round((samBonus(k) - 1)*100), B = (BAL.sam||{}).bonus||{}, where = samReach() ? 'every house' : (typeof samHouse==='function' && samHouse() ? esc(samHouse().name) : 'his house');
+  return `<br>Always on: Charm +${p('charm')}% trust gained (${where}) · Business +${p('business')}% income (${where}) · Strength +${Math.round((S.sam.strength||0)*(B.security||0))} security (${where}), +${Math.round((samBonus('rest','strength')-1)*100)}% weekly recovery · Wits +${p('wits')}% stat training and Appraisal XP · Technique: better service practice.`;
 }
 // Walk/event gold payouts vary randomly around base and scale gently with the relevant Sam stat.
 function samGold(base, stat='business', spread=0.2){
@@ -59,33 +59,35 @@ function samWork(kind){
     title='Behind the Bar'; text=`Sam pours drinks all evening. ${hasPast('bartender')?'Old habits: he flips a bottle and the whole room cheers.':'He over-explains the menu to everyone, but people seem to find it charming.'}\n\n+${fmt(inc)} · Charm +2`;
     samLog(`Tended bar (+${fmt(inc)})`);
   } else if(kind==='security'){
-    const sec = Math.round((20 + S.sam.strength) * (1 + samUpFx('watch'))); S.samWeek.security += sec; samStat('strength',2);
-    title='On Watch'; text=`Sam makes the rounds of every house, looking as stern as a thin man in a hoodie can. Nobody starts anything, which he decides to count as a win.\n\nSecurity bonus +${sec} in all houses this week · Strength +2`;
+    const sec = Math.round((20 + S.sam.strength) * (1 + samUpFx('watch'))), where = samReach() ? 'in all houses' : `at ${samHouse().name}`;
+    S.samWeek.security += sec; samStat('strength',2);
+    title='On Watch'; text=`Sam ${samReach()?'makes the rounds of every house':`stands watch at ${samHouse().name}`}, looking as stern as a thin man in a hoodie can. Nobody starts anything, which he decides to count as a win.\n\nSecurity bonus +${sec} ${where} this week · Strength +2`;
     samLog('Stood watch');
   } else if(kind==='books'){
+    const where = samReach() ? 'across every house' : `at ${samHouse().name}`;
     S.samWeek.books = true; samStat('business',2); samStat('wits',1);
-    title='Doing the Books'; text=`Sam rebuilds the ledger as a spreadsheet, by hand, on parchment. The staff watch with a mix of horror and respect.\n\nUpkeep reduced by ${Math.round(booksCut()*100)}% this week · Business +2 · Wits +1`;
+    title='Doing the Books'; text=`Sam rebuilds the ledger as a spreadsheet, by hand, on parchment. The staff watch with a mix of horror and respect.\n\nUpkeep reduced by ${Math.round(booksCut()*100)}% ${where} this week · Business +2 · Wits +1`;
     samLog('Did the books');
   } else if(kind==='rounds'){
-    // a word with everyone: small trust and mood for every lady in every house (balance.json → sam.rounds*)
+    // a word with everyone: small trust and mood for ladies at Sam's house (every house with samReach)
     const B = BAL.sam, rm = 1 + samUpFx('rounds'), rt = B.roundsTrust * rm, rmood = B.roundsMood * rm; let n = 0;
-    S.workers.forEach(w=>{ gainTrust(w, rt); moodAdd(w, rmood); n++; });
+    S.workers.filter(nearSam).forEach(w=>{ gainTrust(w, rt); moodAdd(w, rmood); n++; });
     samStat('charm',1);
-    title='Making the Rounds'; text=`Sam walks through every house with a notebook, asking everyone how they're doing and actually writing down the answers. A leaky window gets fixed, someone's favorite tea gets restocked, and the whole staff notices that he noticed.\n\n${n} ladies: trust ${tDelta(rt)}, mood +${Math.round(rmood*10)/10} · Charm +1`;
+    title='Making the Rounds'; text=`Sam walks through ${samReach()?'every house':samHouse().name} with a notebook, asking everyone how they're doing and actually writing down the answers. A leaky window gets fixed, someone's favorite tea gets restocked, and the whole staff notices that he noticed.\n\n${n} ladies: trust ${tDelta(rt)}, mood +${Math.round(rmood*10)/10} · Charm +1`;
     samLog('Made the rounds');
   } else if(kind==='lesson'){
-    // skill class: everyone working learns her own job's skill (Hospitality for jobs without one); madames and teachers also a little of every other skill
+    // skill class: everyone working at Sam's house learns her own job's skill (Hospitality for jobs without one); madames and teachers also a little of every other skill
     const SM = {service:'charm', dance:'charm', bar:'charm', combat:'strength', manage:'business'}, GROW = {service:'charm', dance:'agility', bar:'charm', combat:'strength', manage:'refinement'};
-    const who = S.workers.filter(w=>w.job!=='rest'), base = BAL.sam.lessonShare * lessonMul(), by = {}, broad = (BAL.train.broad||{}).lesson ?? 0.3;
+    const who = S.workers.filter(w=>w.job!=='rest' && nearSam(w)), base = BAL.sam.lessonShare * lessonMul(), by = {}, broad = (BAL.train.broad||{}).lesson ?? 0.3;
     who.forEach(w=>{ const k = trainSkillOf(w), g = (4 + S.sam[SM[k]]/25) * base, m = pm(w,'train') * fxMul(w,'learn');
       grow(w, k, g * m); if(broadJob(w)) TECH_KEYS.forEach(o=>{ if(o!==k) grow(w, o, g * m * broad); });
       statXP(w, GROW[k] || 'charm', g*0.4); minorTrust(w); countUp(w, 'lessons'); (by[k] = by[k] || []).push(w.name); });
     const ks = Object.keys(by); Array.from(new Set(ks.map(k=>SM[k]))).forEach(st=>samStat(st, ks.length > 1 ? 1 : 2));
-    title = 'Skill Class'; text = who.length ? `Sam gathers the staff for an afternoon of lessons, a table for each trade. He brought handouts. Nobody asked for handouts.\n\n${ks.map(k=>`${TECH_LABEL[k]}: ${by[k].join(', ')}`).join('\n')}${who.some(broadJob)?'\n(The madame and teachers drift between tables and pick up a little of everything.)':''}\n\nSam's ${Array.from(new Set(ks.map(k=>cap(SM[k])))).join(', ')} +${ks.length > 1 ? 1 : 2}` : `Sam sets out chairs and handouts. Everyone is off resting. He reads the handout to himself.`;
+    title = 'Skill Class'; text = who.length ? `Sam gathers the staff ${samReach()?'':'at '+samHouse().name+' '}for an afternoon of lessons, a table for each trade. He brought handouts. Nobody asked for handouts.\n\n${ks.map(k=>`${TECH_LABEL[k]}: ${by[k].join(', ')}`).join('\n')}${who.some(broadJob)?'\n(The madame and teachers drift between tables and pick up a little of everything.)':''}\n\nSam's ${Array.from(new Set(ks.map(k=>cap(SM[k])))).join(', ')} +${ks.length > 1 ? 1 : 2}` : `Sam sets out chairs and handouts. Nobody here is working right now. He reads the handout to himself.`;
     samLog(`Held a skill class${who.length?` (${who.length})`:''}`);
   } else if(kind==='statclass'){
-    // stat class: everyone working trains the stats her job uses (madames and teachers: all of them), at lessons.stat.share of one-on-one coaching
-    const ST = BAL.train.stat || {}, who = S.workers.filter(w=>w.job!=='rest');
+    // stat class: everyone working at Sam's house trains the stats her job uses (madames and teachers: all of them), at lessons.stat.share of one-on-one coaching
+    const ST = BAL.train.stat || {}, who = S.workers.filter(w=>w.job!=='rest' && nearSam(w));
     const g = ((ST.base ?? 12) + (S.sam.wits||0) * (ST.perWits ?? 0.2)) * samBonus('wits') * (ST.spread ?? 0.5) * ((BAL.lessons||{}).stat||{}).share * lessonMul();
     who.forEach(w=>{ const m = pm(w,'train') * fxMul(w,'learn'); trainStatsOf(w).forEach(([k,wt])=>statXP(w, k, g * wt * m)); minorTrust(w); countUp(w, 'lessons'); });
     samStat('wits', 2);
@@ -367,20 +369,21 @@ function samTrain(id, mode='skill'){
 function demoAct(w){ return bestSamAct(w) || null; }
 function demoOpen(w){ const D = (BAL.lessons||{}).demo || {}; if(has(w,'Modest')) return false; return has(w,'Exhibitionist') || w.lewd >= (D.openLewd ?? 45); }
 function demoMenu(){
-  const D = (BAL.lessons||{}).demo || {};
-  const ok = S.workers.filter(w=>demoAct(w) && demoOpen(w)), shy = S.workers.filter(w=>demoAct(w) && !demoOpen(w));
-  modal(`<h2>A Demonstration</h2><p class="muted">Sam and a partner show the staff how it's done. Everyone watching learns that service and gets worked up; she does her favorite (or the furthest they've gone). She has to be comfortable with an audience. Repeat partners may develop a taste for it. (${samTrainCost(D.energy ?? 30)} energy)</p>
-    ${ok.length ? `<div class="row">${ok.map(w=>`<button onclick="samDemo('${w.id}')">${esc(titled(w))} · ${esc(actLabel(demoAct(w)))}</button>`).join('')}</div>` : '<p>Nobody is ready for an audience yet.</p>'}
+  const D = (BAL.lessons||{}).demo || {}, pool = S.workers.filter(nearSam);
+  const ok = pool.filter(w=>demoAct(w) && demoOpen(w)), shy = pool.filter(w=>demoAct(w) && !demoOpen(w));
+  modal(`<h2>A Demonstration</h2><p class="muted">Sam and a partner show the staff ${samReach()?'across every house':`at ${esc(samHouse().name)}`} how it's done. Everyone watching learns that service and gets worked up; she does her favorite (or the furthest they've gone). She has to be comfortable with an audience. Repeat partners may develop a taste for it. (${samTrainCost(D.energy ?? 30)} energy)</p>
+    ${ok.length ? `<div class="row">${ok.map(w=>`<button onclick="samDemo('${w.id}')">${esc(titled(w))} · ${esc(actLabel(demoAct(w)))}</button>`).join('')}</div>` : '<p>Nobody here is ready for an audience yet.</p>'}
     ${shy.length ? `<p class="muted">Not in front of everyone: ${shy.map(w=>esc(w.name)+(has(w,'Modest')?' (modest)':'')).join(', ')}</p>` : ''}
     <div class="row"><button onclick="closeModal()">Back</button></div>`);
 }
 function samDemo(id){
   const w = findW(id), D = (BAL.lessons||{}).demo || {}; if(!w) return;
+  if(!nearSam(w)) return toast(`${w.name} is at another house.`);
   const act = demoAct(w); if(!act || !demoOpen(w)) return toast(`${w.name} isn't up for that.`);
   if(!useAP(samTrainCost(D.energy ?? 30))) return;
   const text = privateCore(w, act, {lead: flavor('demo_lead', w)});
   countUp(w, 'demos'); lewdUp(w, 1, svcLewdCap(act,'client') + 10);
-  const g = (6 + (S.sam.technique||0)/20) * (D.watchSkill ?? 0.5) * lessonMul(), cap0 = svcLewdCap(act,'client'), watchers = S.workers.filter(o=>o!==w);
+  const g = (6 + (S.sam.technique||0)/20) * (D.watchSkill ?? 0.5) * lessonMul(), cap0 = svcLewdCap(act,'client'), watchers = S.workers.filter(o=>o!==w && nearSam(o));
   let warm = 0;
   watchers.forEach(o=>{
     growAct(o, act, g * pm(o,'train') * fxMul(o,'learn'));

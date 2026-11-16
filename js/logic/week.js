@@ -369,10 +369,10 @@ function endNight(X, w, pr){
   if(X.capc && X.capc[w.id] !== undefined) X.capc[w.id] = Math.max(pr.served, X.capc[w.id] - (BP.nightCap ?? 2));
   pr.skipNights = (pr.skipNights||0) + 1;
 }
-// Sam answers a call for help (Strength + Charm/2 + roll vs props.samCheck; standing watch this week helps).
+// Sam answers a call for help (Strength + Charm/2 + roll vs props.samCheck; standing watch this week helps at his house).
 function samRescue(w, h){
   const BP = BAL.props;
-  if(S.sam.strength + S.sam.charm/2 + rnd(0, BP.samRoll) + (S.samWeek.security ? (BP.watchBonus ?? 15) : 0) >= BP.samCheck){
+  if(S.sam.strength + S.sam.charm/2 + rnd(0, BP.samRoll) + (samAtHouse(h) && S.samWeek.security ? (BP.watchBonus ?? 15) : 0) >= BP.samCheck){
     moodAdd(w, BP.samMood); gainTrust(w, BP.samTrust); S.sam.energy = Math.max(0, S.sam.energy - BP.samCost); return 'sam'; }
   S.sam.energy = Math.max(0, S.sam.energy - BP.failCost); h.rep = clamp(h.rep - BP.failRep); moodAdd(w, -BP.failMood); minorTrust(w); return 'samfail';
 }
@@ -388,7 +388,7 @@ function pushyEvent(calls){
   const n = calls.length, fee = (BP.watchFee||40) * n, first = findW(calls[0].wid);
   const stay = c => { const w = findW(c.wid), h = H(c.h); if(!w || !h) return; moodAdd(w, -BP.noneMood); h.rep = clamp(h.rep - BP.noneRep); };
   return {title:'Trouble downstairs', who: first ? first.id : null, scene:'portrait',
-    text:`${n>1?`${n} times this week, a`:'A'} client got pushy with ${names.join(', ')}, and security couldn't handle it. Someone came running to fetch Sam.${S.samWeek.security?'':' (Sam wasn\'t standing watch.)'}
+    text:`${n>1?`${n} times this week, a`:'A'} client got pushy with ${names.join(', ')}, and security couldn't handle it. Someone came running to fetch Sam.${calls.some(c=>samAtHouse(H(c.h))) && S.samWeek.security?'':' (Sam wasn\'t standing watch there.)'}
 
 Sam's Strength ${Math.round(S.sam.strength)}, Charm ${Math.round(S.sam.charm)}, energy ${Math.round(S.sam.energy)}.`,
     choices:[
@@ -570,15 +570,16 @@ function simHouse(h, R){
   const madF = mad ? (0.5 + (s100(mad.tech.manage) + s100(statOf(mad,'wits'))*0.4 + s100(statOf(mad,'charm'))*0.35 + s100(statOf(mad,'charisma'))*0.25)/200) * ob(mad,'madame') * jb(mad,'madame') : 0;
   const danceDraw = byJob('dancer').reduce((a,w)=>a + (1 + w.popularity/30 + s100(w.tech.dance)/50)*ob(w,'dancer')*jb(w,'dancer'), 0) * housePerkVal(h, 'danceMult', 1);
   const secs = byJob('security');
+  const atSam = samAtHouse(h), samSec = atSam ? S.samWeek.security : 0;
   let secPow = secs.reduce((a,w)=>a + (s100(w.tech.combat) + s100(statOf(w,'strength'))*0.3 + s100(statOf(w,'agility'))*0.25 + fxAdd(w,'security'))*ob(w,'security')*jb(w,'security'), 0);
   if(h.up.guard) secPow *= 1.8;
-  secPow += S.samWeek.security + (S.sam.strength||0) * ((BAL.sam.bonus||{}).security || 0);   // Sam's reputation alone keeps some trouble away
+  if(atSam) secPow += samSec + (S.sam.strength||0) * ((BAL.sam.bonus||{}).security || 0);   // Sam's presence only watches his own house unless samReach()
   // Wits-based screening (client value + calmer traits) and Charm/Charisma-based poise at the door (smaller stop penalty)
   const secScreenRaw = secs.reduce((a,w)=>a + (s100(statOf(w,'wits'))*0.65 + s100(statOf(w,'charisma'))*0.2 + s100(w.tech.combat)*0.15)/100 * ob(w,'security') * jb(w,'security'), 0);
-  const secScreen = clamp(secScreenRaw * (h.up.guard ? 1.2 : 1) + (S.samWeek.security > 0 ? (S.sam.wits||0)/250 : 0), 0, 1.5);
+  const secScreen = clamp(secScreenRaw * (h.up.guard ? 1.2 : 1) + (samSec > 0 ? (S.sam.wits||0)/250 : 0), 0, 1.5);
   const secGraceRaw = secs.length
     ? secs.reduce((a,w)=>Math.max(a, (s100(statOf(w,'charm'))*0.5 + s100(statOf(w,'charisma'))*0.5)/100 * ob(w,'security') * jb(w,'security')), 0)
-    : (S.samWeek.security > 0 ? clamp((S.sam.charm||0)/100, 0, 1) : 0);
+    : (samSec > 0 ? clamp((S.sam.charm||0)/100, 0, 1) : 0);
   const secGrace = clamp(secGraceRaw + (secs.length && h.up.guard ? 0.1 : 0), 0, 1);
   const barN = h.up.bar ? byJob('bartender').length : 0, attendants = byJob('attendant');
   // attendants (balance.json → jobs.attendant*): her quality = Hospitality / Charm / Wits x outfit/job bonus x output. With a madame, bonded pairs match first.
@@ -722,7 +723,7 @@ function simHouse(h, R){
     return {w, pr, ent:0, warm:0, fin:0, cap, maxCap: cap}; });
   const hostOK = x => x.cap >= 0.5 && x.w.energy >= maxEnergy(x.w)*0.2;
   const waitBuf = (WT.doorQueue ?? 2) + X.hosts.filter(hostOK).length * (WT.hostQueue ?? 4) + (barBt ? (WT.barQueue ?? 2) : 0) + (dancers.length ? (WT.stageQueue ?? 2) : 0);
-  let secStopLeft = (secs.length || S.samWeek.security > 0) ? Math.round(((secs.length ? (WT.secStopBase ?? 8) : 0) + secPow / (WT.secStopDiv ?? 15)) * (h.up.guard ? 1.4 : 1)) : 0;
+  let secStopLeft = (secs.length || samSec > 0) ? Math.round(((secs.length ? (WT.secStopBase ?? 8) : 0) + secPow / (WT.secStopDiv ?? 15)) * (h.up.guard ? 1.4 : 1)) : 0;
   let overflowEntered = 0;
   // how comfortable it is to wait here (offsets unattended walkout risk)
   const comfortNow = () => (h.up.garden ? WT.garden : 0) + WT.decorPer*(h.decor||0) + (hr.tidy0 >= TY.high ? WT.tidy : 0) + (h.up.bath ? WT.bath : 0) + (barBt ? WT.bar : 0) + (dancers.length ? WT.stage : 0) + WT.hostPer * X.hosts.filter(hostOK).length;
@@ -1038,7 +1039,7 @@ function simHouse(h, R){
   if(W.length && Math.random() < clamp((0.12 + demand/120 + (hr.left||0)*(WT.leaveIncident ?? 0.035) + (hr.crowdOver||0)*(CR.incidentPer ?? 0.005) - secPow/250) * (HD.trouble||1) * rowdyF * (1 + barN*J.barRowdy) * incenseHouseMul(h,'pushy'), 0.03, 0.6)) EVQ.push(()=>evIncident(h));
   if(HD.haunted && Math.random()<0.15) EVQ.push(()=>evHaunt(h));
   let up = HD.upkeep + (HD.ngppOnly ? 15 * Math.max(0, (h.ngppLevel||1) - 1) : 0) + 12*h.rooms + 6*(h.quarters||0) + h.tier*20 + (h.beds||0)*4*bedsFor(h) + (h.extraBeds||0)*3 + (h.annex?30:0) + (h.decor||0)*BAL.amenities.decor.upkeep + (h.up.bar ? (BAL.amenities.drinks.upkeep[h.drinks||0]||0) : 0) + Object.keys(h.up).filter(k=>h.up[k] && !HD.up[k]).reduce((a,k)=>a+(UPGRADES[k].upkeep||0), 0);
-  if(S.samWeek.books) up = Math.round(up * (1 - booksCut()));
+  if(atSam && S.samWeek.books) up = Math.round(up * (1 - booksCut()));
   up = Math.round(up * ((h.bonus&&h.bonus.upkeep)||1) * (1 + h.rep/150) * cycleVarMul('upkeep', 1) * (hasChallengePerk('ahead_of_time') ? 0.9 : 1));
   hr.upkeep = up;
   if(h.bonus && h.bonus.charter){ hr.income += h.bonus.charter; R.led.bar += h.bonus.charter; }
@@ -1082,10 +1083,10 @@ function endWeek(){
   const log = t => R.lines.push(t);
   autoFeasts(R);   // home.js: houses set to feast automatically, before the work week
   autoStuds(R);    // sam.js: auto-hire studs for demons whose lust meets their threshold
-  let satSum = 0;
-  S.houses.forEach(h=>{ const hr = simHouse(h, R); R.houses.push(hr); R.income += hr.income; R.upkeep += hr.upkeep; R.served += hr.served; R.turned += hr.turned; R.left += hr.left||0; R.stopped += hr.stopped||0; satSum += hr.sat; });
-  // Sam's Business: his deals and pricing lift every house's takings (balance.json → sam.bonus.business)
-  R.bizBonus = Math.round(R.income * (samBonus('business') - 1));
+  let satSum = 0, bizIncome = 0;
+  S.houses.forEach(h=>{ const hr = simHouse(h, R); R.houses.push(hr); R.income += hr.income; if(samAtHouse(h)) bizIncome += hr.income; R.upkeep += hr.upkeep; R.served += hr.served; R.turned += hr.turned; R.left += hr.left||0; R.stopped += hr.stopped||0; satSum += hr.sat; });
+  // Sam's Business: his deals and pricing lift takings where he sleeps (every house with samReach)
+  R.bizBonus = Math.round(bizIncome * (samBonus('business') - 1));
   R.perkBonus = Math.round(R.income * ((hasChallengePerk('lean_house') ? 0.1 : 0) + (hasChallengePerk('starlight_debt') ? 0.15 : 0)));
   R.income += R.bizBonus + R.perkBonus;
   R.wages = S.workers.reduce((a,w)=>a+(isFree(w)?0:w.wage), 0);

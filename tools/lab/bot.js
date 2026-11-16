@@ -184,7 +184,7 @@ function samTurn(){
       const act = getActs().find(a => gNightKind(a.id) === 'inside');
       if (act) { goddessNight(act.id); goddessDone = true; quiet(); resolveEvents(); continue; }
     }
-    if (!rounds && S.sam.energy >= 25 && S.workers.some(w => w.trust < P.roundsTrust)) { samWork('rounds'); rounds = true; }
+    if (!rounds && S.sam.energy >= 25 && S.workers.some(w => nearSam(w) && w.trust < P.roundsTrust)) { samWork('rounds'); rounds = true; }
     else if (P.partnerDates && !dated && p && S.ap >= 2 && S.sam.energy >= 40) { try { samDate(p.id, 'walk'); } catch (e) {} dated = true; }
     else if ((S.ngppCycle || 0) > 0 && P.ngppWalk !== false && walks < 2 && S.sam.energy >= (((BAL.walk || {}).energy ?? 15) + 5) && S.houses.some(h => staffIn(h).length < Math.min(P.maxStaff, 6))) { samWalk(); walks++; }
     else if (P.scoutWhenShort && S.sam.energy >= 25 && S.houses.some(h => staffIn(h).length < P.scoutWhenShort) && S.candidates.filter(c => S.gold - c.signing >= P.reserve).length < 2) samWork('scout');

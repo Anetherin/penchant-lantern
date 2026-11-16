@@ -46,7 +46,7 @@ const NG_BOONS = {
   devotion:{label:'Fated Meeting', desc:'Your new partner starts with +15 trust and +10 lewdness.'},
   loyal:   {label:'Old Loyalties', desc:'Ladies who come back from a past life ask only half the usual raise for each life.'},
   memory:  {label:'Vivid Memories', desc:'Ladies who carry over keep 15% more of the skills and stats they built (still at most 65%).'},
-  clone:   {label:'Shadow Clone', desc:'Sam learned to be in two places at once. Ladies from every house can find him at night, not just the house he sleeps in.'}
+  clone:   {label:'Shadow Clone', desc:'Sam learned to be in two places at once. His bonuses, watch, books, classes, and late-night visits reach every house, not just where he sleeps.'}
 };
 // What was spent on the home house's rooms, tiers, quarters, beds, annex and upgrades (tracked in h.spent by buyUpgrade).
 const improvementsValue = h => Math.round((h && h.spent) || 0);
@@ -107,7 +107,7 @@ function ngNumbers(boon, house, opts){
   const keptExtra = keptOpt.reduce((a,h)=>a + (HOUSES[h.id].debt || 0) * (B.keptHouseShare ?? 0.25) * cycMul, 0);
   const loverExtra = loverCount * (B.loverDebt ?? 1800) * cycMul;
   const nh = house && HOUSES[house] ? HOUSES[house].debt * (B.newHouseShare ?? 1) * cycMul : 0;
-  const scaleMul = 1 + keptOpt.length * (B.perKeptHouse ?? 0.18) + loverCount * (B.perLover ?? 0.22);
+  const scaleMul = 1 + keptOpt.length * (B.perKeptHouse ?? 0) + loverCount * (B.perLover ?? 0.22);
   let debt = (base + extra + keptExtra + loverExtra + nh) * scaleMul;
   if(boon==='grace') debt *= 0.85;
   if(hasChallengePerk('ahead_of_time')) debt *= 0.9;

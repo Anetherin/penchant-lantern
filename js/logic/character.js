@@ -37,7 +37,7 @@ const isFree = w => !!(w.isPartner || w.free);
 function gainTrust(w, n){
   const b = w.trust;
   const ch = n > 0 ? ((typeof hasChallengePerk==='function' && hasChallengePerk('small_troupe') ? 1.15 : 1) * (typeof rebornHouseGrowth==='function' ? rebornHouseGrowth(w) : 1) * (typeof cycleVarMul==='function' ? cycleVarMul('trust', 1) : 1)) : 1;
-  const g = n * pTrust(w) * (n>0 ? fxMul(w,'trustGain') * incenseMul(w,'trustGain') * samBonus('charm') * ch : 1) * (n>0 ? Math.max(0.15, 1 - w.trust/140) : 1);
+  const g = n * pTrust(w) * (n>0 ? fxMul(w,'trustGain') * incenseMul(w,'trustGain') * (nearSam(w) ? samBonus('charm') : 1) * ch : 1) * (n>0 ? Math.max(0.15, 1 - w.trust/140) : 1);
   w.trust = clamp(w.trust + g); capTrust(w); return w.trust - b;
 }
 // The least any activity with Sam builds (balance.json → trust.minor), so nothing they do together is wasted.
