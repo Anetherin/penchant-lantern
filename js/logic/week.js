@@ -1,18 +1,7 @@
 'use strict';
 /* =====================================================================
-   WEEK RESOLUTION (coaching, simulation & endWeek; services in services.js, UI in ui/report.js)
+   WEEK RESOLUTION (classroom, simulation & endWeek; services in services.js, UI in ui/report.js)
    ===================================================================== */
-// The madame coaches her courtesans: if she is clearly more popular (balance.json → jobs.madamePopGap), every service skill
-// (and Service) she is better at grows by madameCoach x the gap, rounded down (1000-unit skills: 1% of a 300-point gap = +3).
-// Attendants (who never serve, so their popularity says nothing) learn from her too: they only need her to be at least as popular (gap 0).
-function madameCoach(mad, w, pr){
-  const J = BAL.jobs; if(!J.madameCoach) return;
-  const gap = w.job==='attendant' ? 0 : J.madamePopGap; if(mad===w || mad.popularity < w.popularity + gap) return;
-  let n = 0; const rate = J.madameCoach * fxMul(mad,'teach') * fxMul(w,'learn');
-  Object.keys(w.acts||{}).forEach(id=>{ const m = mad.acts && mad.acts[id]; if(!m) return; const d = Math.floor((m.skill - w.acts[id].skill) * rate); if(d > 0){ w.acts[id].skill = clampK(w.acts[id].skill + d); n++; } });
-  const ds = Math.floor(((mad.tech.service||0) - (w.tech.service||0)) * rate); if(ds > 0){ w.tech.service = clampK(w.tech.service + ds); n++; }
-  if(n){ pr.coached = n; pr.why.push({t:`${mad.name} coached her`, good:true}); countUp(mad, 'taught'); }
-}
 // Classroom: the teacher's subject is h.teachSkill (a TECH_KEYS skill or a service id); null/invalid = her best tech skill.
 // Every other lady in the house who is behind her gains floor(gap x amenities.classroom.rate x teacher x learner) (humans x humanMult), capped by clampK.
 // teacher = (base + Management x manageW + Wits x witsW) x outfit/job bonus x teach fx x her output; learner = learnBase + Wits x learnWits, x learn fx.
@@ -70,7 +59,7 @@ function classroomTeach(h, W, t, tpr, R, hr){
 }
 function attQFor(x, pr){
   const J = BAL.jobs || {};
-  return clamp((s100(x.tech.service)*J.attendantSkillW + s100(statOf(x,'charm'))*J.attendantCharmW + s100(statOf(x,'wits'))*(J.attendantWitsW ?? J.attendantRefW))/100 * ob(x,'attendant') * fxSub(x,'jobBonus','attendant') * (pr ? outputMult(x, pr) : 1), 0, J.attendantQMax || 2);
+  return clamp((s100(x.tech.service)*J.attendantSkillW + s100(statOf(x,'charm'))*J.attendantCharmW + s100(statOf(x,'wits'))*(J.attendantWitsW ?? J.attendantRefW))/100 * ob(x,'attendant') * fxSub(x,'jobBonus','attendant') * refMul(x, houseOf(x), 'attendant') * (pr ? outputMult(x, pr) : 1), 0, J.attendantQMax || 2);
 }
 function attendantPairs(h, R){
   const J = BAL.jobs || {}, ws = S.workers.filter(w=>w.house===h.id);
@@ -155,7 +144,7 @@ function updatePrestige(h, hr, W, R, info){
   if(hr.demonDrains){ const dp = hr.demonDrains * Math.abs(PR.demonDrain ?? 0.4); op -= dp; note('unshielded demon drain', -dp); }
   if(hr.served > 0) op += clamp((hr.sat/hr.served - 52) / (PR.satDriftDiv ?? 20), -(PR.satDriftCap ?? 1.5), PR.satDriftCap ?? 1.5);
   target = clamp(target, 0, 100);
-  h.prestige = clamp(p0 + (target - p0) * (PR.driftRate ?? 0.18) + op);
+  h.prestige = clamp(p0 + (target - p0) * (PR.driftRate ?? 0.18) * (hasPast('concierge') ? 1.3 : 1) + op);
   hr.prestige = h.prestige; hr.prestigeDelta = h.prestige - p0; hr.prestigeReasons = reasons;
 }
 function simHouse(h, R){
@@ -168,7 +157,7 @@ function simHouse(h, R){
   const byJob = j => W.filter(w=>w.job===j);
   const jb = (w, j) => fxSub(w, 'jobBonus', j);
   const mad = byJob('madame')[0], mgmt = !!mad;   // the madame matches clients to the lady whose menu fits
-  const madF = mad ? (0.5 + (s100(mad.tech.manage) + s100(statOf(mad,'wits'))*0.4 + s100(statOf(mad,'charm'))*0.35 + s100(statOf(mad,'charisma'))*0.25)/200) * ob(mad,'madame') * jb(mad,'madame') : 0;
+  const madF = mad ? (0.5 + (s100(mad.tech.manage) + s100(statOf(mad,'wits'))*0.4 + s100(statOf(mad,'charm'))*0.35 + s100(statOf(mad,'charisma'))*0.25)/200) * ob(mad,'madame') * jb(mad,'madame') * refMul(mad, h, 'madame') : 0;
   const danceDraw = byJob('dancer').reduce((a,w)=>a + (1 + w.popularity/30 + s100(w.tech.dance)/50)*ob(w,'dancer')*jb(w,'dancer'), 0) * housePerkVal(h, 'danceMult', 1);
   const secs = byJob('security');
   const atSam = samAtHouse(h), samSec = atSam ? S.samWeek.security : 0;
@@ -452,7 +441,7 @@ function simHouse(h, R){
         // she keeps him company (wait.sat is cancelled, he leaves happier), and warms up an open-minded client with a light service, never to the finish
         hx.cap -= 1; hx.ent++; hr.hosted.ent++; countUp(hx.w, 'hosted');
         const hw = hx.w;
-        waitAdj += HS.sat * (0.6 + s100(statOf(hw,'charm'))/125) + HS.satSkill * qualityOf(hw, null) * cMul(client,'hostLike');
+        waitAdj += HS.sat * (0.6 + s100(statOf(hw,'charm'))/125) * refMul(hw, h, 'host') + HS.satSkill * qualityOf(hw, null) * cMul(client,'hostLike');
         const fq = hostFluff(hx, client, cls, ri(1, HS.fluffMax));
         if(fq > 0){ fluffed = true; fluffQ = fq; waitAdj += HS.fluffSat + HS.fluffSkill * fluffQ; }
       } else if(barHelped || danceHelped){
@@ -509,14 +498,14 @@ function simHouse(h, R){
     const houseFeeMult = (HD.feeMult || 1) * ((HD.classFee && (HD.classFee[cls.id] ?? HD.classFee[cls.tier])) || 1) * shrineMult(h, 'perFee') * (cls.tier==='rich' ? cycleVarMul('richFee', 1) : 1);
     const rich = cls.tier==='merchant' || cls.tier==='noble', qualMet = q >= expQ, amenMet = amenScore >= expAmen;
     const prestigeFeeMult = ((highF > 0 && rich && qualMet && amenMet) ? 1 + highF * (PR.richFeeBonus ?? 0.18) : 1) * (!act && highF > 0 ? 1 + highF * (PR.highCompFee ?? 0.45) : 1);
-    const inc = Math.round(base * P.mult * feeQualMult(q) * cm * (1+madF*0.15) * fxMul(w,'clientFee') * incenseMul(w,'clientFee') * jb(w,w.job) * (react==='like' ? SVC.raceLikeFee : 1) * (below?0.75:1) * (reg ? (regQuirk(reg).tip||1) : 1) * cMul(client,'fee',X,w) * (act ? cQual(client,q) : cMul(client,'compFee',X)) * (spPoss ? spPoss.feeMult : 1) * (adShift ? adShift.feeMult : 1) * houseFeeMult * prestigeFeeMult * BAL.income.escort);
+    const inc = Math.round(base * P.mult * feeQualMult(q) * cm * (1+madF*0.15) * fxMul(w,'clientFee') * incenseMul(w,'clientFee') * jb(w,w.job) * (react==='like' ? SVC.raceLikeFee : 1) * (below?0.75:1) * (reg ? (regQuirk(reg).tip||1) : 1) * cMul(client,'fee',X,w) * (act ? cQual(client,q) : cMul(client,'compFee',X)) * (spPoss ? spPoss.feeMult : 1) * (adShift ? adShift.feeMult : 1) * houseFeeMult * prestigeFeeMult * refMul(w, h, 'fee') * BAL.income.escort);
     const altSat = outcome==='alt' ? (altDiff === 0 ? (BP.sidegradeSat ?? 5) : altDiff >= 2 ? (BP.downgradeSat ?? -4) : 3) : 0;
     const amenSat = Math.min(5, amenScore*2) - Math.max(0, expAmen - amenScore)*(PR.amenMissSat ?? 6) + (highF > 0 && amenScore > expAmen ? Math.min(PR.amenSurplusCap ?? 8, (amenScore - expAmen)*(PR.amenSurplusSat ?? 2.5))*highF : 0);
     const qualSat = -Math.max(0, expQ - q)*((PR.qualMissSatBase ?? 10) + (pr0/100)*(PR.qualMissSatPer ?? 24)) + (highF > 0 && rich && qualMet ? highF * (PR.richSatBonus ?? 12) : 0);
     const actionSat = outcome==='no' ? -lowF*(PR.lowActionMissSat ?? 10) : outcome==='comp' ? (highF*(PR.highCompSat ?? 6) - lowF*(PR.lowCompSat ?? 4)) : 0;
     const isThrill = !!client && client.traits.some(t => t.id==='thrillSeeker');
     const exhibSat = (act && has(w,'Exhibitionist')) ? (pr0 >= 50 && rich && !isThrill ? -((pr0 - 45)/55)*(PR.exhibNobleSat ?? 8) : (pr0 < 40 || cHas(client,'rowdy') || thirsty || isThrill) ? (PR.exhibRowdySat ?? 3) : 0) : 0;
-    const sat0 = clamp(- below*0.5 - Math.max(0, repEff - BAL.clients.pickFrom)*BAL.clients.pickPer + q*100 + 6 + rnd(-15,15) + amenSat + qualSat + actionSat + exhibSat - (h.price-1)*6*(1 - highF*(PR.priceTolCut ?? 0.55)) + (HD.sat||0) + incenseAdd(w,'sat') + ((hr.tidyFx && hr.tidyFx.sat) || 0) + attHelp(w) * J.attendantSatPer + (matched && outcome==='yes' ? J.madameMatchSat : 0) + (outcome==='yes'?8:outcome==='alt'?altSat:outcome==='no'?-8:0)
+    const sat0 = clamp(- below*0.5 - Math.max(0, repEff - BAL.clients.pickFrom)*BAL.clients.pickPer + q*100 + 6 + rnd(-15,15) + ((BAL.refine||{}).sat||0) * refScore(w) * refK(h) + amenSat + qualSat + actionSat + exhibSat - (h.price-1)*6*(1 - highF*(PR.priceTolCut ?? 0.55)) + (HD.sat||0) + incenseAdd(w,'sat') + ((hr.tidyFx && hr.tidyFx.sat) || 0) + attHelp(w) * J.attendantSatPer + (matched && outcome==='yes' ? J.madameMatchSat : 0) + (outcome==='yes'?8:outcome==='alt'?altSat:outcome==='no'?-8:0)
       + (fxSubC(w,'classBonus',cls)-1)*SVC.classBonusSat + (react==='like' ? SVC.raceLikeSat : react==='dislike' ? SVC.raceDislikeSat : 0)
       + waitAdj - crowdSatNow() + cAdd(client,'satAdd') + cStatSat(client, w, sp) + (spPoss ? spPoss.satAdd : 0) + (adShift ? adShift.satAdd : 0) + (thirsty && outcome==='no' ? BAL.clients.thirsty.sat : 0));
     if(thirsty && outcome==='no') thirstyMiss(client, true);
@@ -540,7 +529,7 @@ function simHouse(h, R){
     const ctx = has(w,'Exhibitionist') ? 'exhib' : (reck0 ? 'reckless' : '');
     const e = {cls:cls.id, want, act, outcome, altDiff: outcome==='alt'?altDiff:undefined, reg: reg ? reg.name : null, note, sat:Math.round(sat), expr: ser ? ser.expr : null, react, encore, encoreKind, roundDeclined, more, possess: spPoss ? spPoss.react : null, adapt: adShift ? adShift.adapt : null, spiritFuta: !!spPoss, lantern, heat, ctx, step: helper && !coveredFor ? w.job : undefined, coveredFor};
     pr.enc.push(encFx(w, pr, s0, e));
-    if(reg) regAfter(reg, w, sat, inc); else if(sat>=75 && (!bestNew || sat>bestNew.sat)) bestNew = {sat, w, cls, regM: cMul(client,'regular')};
+    if(reg) regAfter(reg, w, sat, inc); else if(sat>=75 && (!bestNew || sat>bestNew.sat)) bestNew = {sat, w, cls, regM: cMul(client,'regular') * ((act && actById(act).regular) || 1)};
   }
   maybeNewRegular(h, bestNew, R);
   escorts.forEach(w=>{ R.per[w.id].cap = capc[w.id]; });   // her client limit this week (report: what kept her from seeing more)
@@ -554,10 +543,10 @@ function simHouse(h, R){
   const bathers = Math.round((hr.served + overflowEntered*0.5) * J.bathShare), baths = byJob('bath');
   W.forEach(w=>{
     const j = w.job, pr = R.per[w.id], om = outputMult(w, pr);
-    if(j==='bartender'){ const bm = housePerkVal(h, 'barMult', 1); const inc = Math.round(((J.barBase + visitors*J.barPerVisitor) * (0.5+(s100(w.tech.bar)+s100(statOf(w,'charisma')))/200) * (1 + J.barAgil * s100(statOf(w,'agility'))/100) * jb(w,'bartender') * (S.flags.ironsong?1.15:1) * ob(w,'bartender') * ((h.bonus&&h.bonus.bar)||1) * (BAL.amenities.drinks.bar[h.drinks||0] ?? 1) * om + visitors * (J.barTips||0) * (0.5 + w.popularity/100) * (0.5 + s100(statOf(w,'charisma'))/100) * om * (X.tipN ? X.tipSum / X.tipN : 1)) * bm); hr.income+=inc; R.led.bar+=inc; pr.earned+=inc; grow(w,'bar',2); statXP(w,'charisma',1.5); statXP(w,'agility',0.3); countUp(w,'bar',Math.max(1,Math.round(visitors/8))); }
+    if(j==='bartender'){ const bm = housePerkVal(h, 'barMult', 1); const inc = Math.round(((J.barBase + visitors*J.barPerVisitor) * (0.5+(s100(w.tech.bar)+s100(statOf(w,'charisma')))/200) * (1 + J.barAgil * s100(statOf(w,'agility'))/100) * jb(w,'bartender') * (S.flags.ironsong?1.15:1) * ob(w,'bartender') * ((h.bonus&&h.bonus.bar)||1) * (BAL.amenities.drinks.bar[h.drinks||0] ?? 1) * om + visitors * (J.barTips||0) * (0.5 + w.popularity/100) * (0.5 + s100(statOf(w,'charisma'))/100) * om * fxMul(w,'tips') * (X.tipN ? X.tipSum / X.tipN : 1)) * bm); hr.income+=inc; R.led.bar+=inc; pr.earned+=inc; grow(w,'bar',2); statXP(w,'charisma',1.5); statXP(w,'agility',0.3); countUp(w,'bar',Math.max(1,Math.round(visitors/8))); }
     if(j==='dancer'){
       const dm = housePerkVal(h, 'danceMult', 1);
-      const tips = Math.round(visitors * J.tipsBase * (0.5 + w.popularity/100) * (0.5 + s100(statOf(w,'charisma'))/100) * Math.sqrt(P.mult) * ob(w,'dancer') * dm);
+      const tips = Math.round(visitors * J.tipsBase * (0.5 + w.popularity/100) * (0.5 + s100(statOf(w,'charisma'))/100) * Math.sqrt(P.mult) * ob(w,'dancer') * dm * fxMul(w,'tips'));
       const inc = Math.round((12+w.popularity*0.8) * (0.5+s100(w.tech.dance)/100) * (0.8 + s100(statOf(w,'agility'))/250) * Math.sqrt(P.mult) * jb(w,'dancer') * ob(w,'dancer') * dm) + tips;
       hr.income+=inc; R.led.dance+=inc; pr.earned+=inc; w.popularity=clamp(w.popularity+(2+(s100(statOf(w,'agility'))>=60?1:0))*housePerkVal(h,'popGain',1)); repAdd(h, J.danceRep * (0.5 + w.popularity/100)); lewdUp(w, 0.5*(has(w,'Exhibitionist')?3:1), has(w,'Exhibitionist') ? BAL.lewd.danceExhib : BAL.lewd.dance); grow(w,'dance',2); statXP(w,'agility',1); statXP(w,'charisma',0.5); statXP(w,'beauty',1); countUp(w,'dance',Math.max(1,Math.round(visitors/8))); }
     if(j==='bath'){
@@ -604,20 +593,19 @@ function simHouse(h, R){
     }
     if(j==='maid'){ const add = (TY.maidBase + s100(w.tech.service)*TY.maidPerSkill + s100(statOf(w,'agility'))*TY.maidPerAgil) * ob(w,'maid') * jb(w,'maid') * fxMul(w,'tidy') * om; maidAdd += add; pr.tidied = add; grow(w,'service',1.5); statXP(w,'stamina',1.5); statXP(w,'agility',0.3); }
     if(j==='chapel'){   // tends visitors; willing propositions earn extra reputation and chapel donations instead of service fees (balance.json → amenities.chapel)
-      const C = BAL.amenities.chapel, cm = housePerkVal(h, 'chapelMult', 1), rm = w.race==='angel' ? 1 : (C.nonAngelMult ?? 0.5), propBoost = 1 + Math.min(C.propDonMax ?? 1, (pr.chapelProps||0) * (C.propDonBonus ?? 0.25)), cb = jb(w,'chapel') * ob(w,'chapel') * rm, don = Math.round(visitors * chapelClassMul(X, C) * C.donation * (0.5 + s100(statOf(w,'charm'))/100) * cb * propBoost * cm * om);
+      const C = BAL.amenities.chapel, cm = housePerkVal(h, 'chapelMult', 1), rm = w.race==='angel' ? 1 : (C.nonAngelMult ?? 0.5), propBoost = 1 + Math.min(C.propDonMax ?? 1, (pr.chapelProps||0) * (C.propDonBonus ?? 0.25)), cb = jb(w,'chapel') * ob(w,'chapel') * rm, don = Math.round(visitors * chapelClassMul(X, C) * C.donation * (0.5 + s100(statOf(w,'charm'))/100) * refMul(w, h, 'chapel') * cb * propBoost * cm * om);
       hr.income += don; R.led.chapel += don; pr.earned += don; pr.tended = Math.round(visitors * chapelClassMul(X, C)); hr.chapel = (hr.chapel||0) + don;
-      repAdd(h, C.rep * cb * cm); w.popularity = clamp(w.popularity + C.pop * rm * housePerkVal(h, 'popGain', 1)); moodAdd(w, C.mood); gainTrust(w, C.trust); grow(w,'service',1); statXP(w,'charm',1); pr.why.push({t:'tended the chapel', good:true});
+      repAdd(h, C.rep * cb * cm); w.popularity = clamp(w.popularity + C.pop * rm * housePerkVal(h, 'popGain', 1)); moodAdd(w, C.mood); gainTrust(w, C.trust); grow(w,'service',1); statXP(w,'charm',1); statXP(w,'refinement',0.5 + 0.5*refK(h)); pr.why.push({t:'tended the chapel', good:true});
       if(pr.chapelProps) pr.why.push({t:`accepted ${pr.chapelProps} chapel offering${pr.chapelProps>1?'s':''}`, good:true});
     }
     if(j==='teacher'){ classroomTeach(h, W, w, pr, R, hr); statXP(w,'wits',1.5); }
     if(j==='security'){ grow(w,'combat',1.5); w.trust = clamp(w.trust+0.3); statXP(w,'agility',0.5); statXP(w,'strength',0.5); statXP(w,'wits',0.5); statXP(w,'charisma',0.3); }
     if(j==='madame'){ grow(w,'manage',2); statXP(w,'wits',1); statXP(w,'refinement',0.5); statXP(w,'charisma',0.5); }
     if(j==='promoter'){ grow(w,'service',2); statXP(w,'charisma',1.5); }
-    if(j==='host'){ grow(w,'service',1.5); statXP(w,'charm',1.5); const hx = X.hosts.find(x=>x.w===w);
+    if(j==='host'){ grow(w,'service',1.5); statXP(w,'charm',1.5); statXP(w,'refinement',0.5*refK(h)); const hx = X.hosts.find(x=>x.w===w);
       if(hx && (hx.ent || hx.fin)){ pr.host = {ent:hx.ent, warm:hx.warm, fin:hx.fin}; (pr.notes = pr.notes||[]).push(`${w.name} kept ${hx.ent} waiting client${hx.ent===1?'':'s'} company${hx.warm?`, warmed up ${hx.warm}`:''}${hx.fin?`, finished ${hx.fin}`:''}.`); pr.why.push({t:'kept the lounge company', good:true}); } }
-    if(j==='attendant'){ grow(w,'service',1.5); statXP(w,'charm',1); statXP(w,'wits',1); }
-    if(j==='courtesan' && pr.served) statXP(w,'stamina', Math.min(3, pr.served*0.4));
-    if((j==='courtesan' || j==='attendant') && mad) madameCoach(mad, w, pr);
+    if(j==='attendant'){ grow(w,'service',1.5); statXP(w,'charm',1); statXP(w,'wits',1); statXP(w,'refinement',0.5*refK(h)); }
+    if(j==='courtesan' && pr.served){ statXP(w,'stamina', Math.min(3, pr.served*0.4)); statXP(w,'refinement', Math.min(1, pr.served*0.15) * refK(h)); }
     if(j==='courtesan' && ownAttMap.has(w.id)){ const a = ownAttMap.get(w.id), f = 0.5 + attQFor(a, R.per[a.id])/2, bv = typeof bondV==='function' ? bondV(w, a) : 0;
       moodAdd(w, Math.round(J.attendantOwnMood*f)); gainTrust(w, J.attendantOwnTrust*f + bv*(J.attendantBondTrustPer ?? 0.008));
       if(typeof addBond==='function') addBond(w, a, J.attendantOwnBond ?? 2);
@@ -642,7 +630,7 @@ function simHouse(h, R){
   // --- tidiness: room services and visitors make a mess, maids clean it up
   // maids pull toward clean with diminishing returns: x (100 - tidiness)/maidEase, at most maidMax (balance.json → tidy)
   if(W.length){ const ease = clamp((100 - hr.tidy0) / (TY.maidEase || 50), 0, TY.maidMax || 1.5); maidAdd *= ease;
-    h.tidy = clamp(hr.tidy0 - (TY.perService*hr.roomsUsed + TY.perVisitor*visitors) * (h.up.laundry ? BAL.amenities.laundry.decay : 1) + maidAdd); hr.tidy = h.tidy; hr.maidAdd = maidAdd; }
+    h.tidy = clamp(hr.tidy0 - (TY.perService*hr.roomsUsed + TY.perVisitor*visitors) * (h.up.laundry ? BAL.amenities.laundry.decay : 1) * (hasPast('concierge') ? 0.8 : 1) + maidAdd); hr.tidy = h.tidy; hr.maidAdd = maidAdd; }
   const rowdyF = X.rowdyN ? clamp(X.rowdySum / X.rowdyN / 0.07, 0.5, 2) : 1;
   if(W.length && Math.random() < clamp((0.12 + demand/120 + (hr.left||0)*(WT.leaveIncident ?? 0.035) + (hr.crowdOver||0)*(CR.incidentPer ?? 0.005) - secPow/250) * (HD.trouble||1) * rowdyF * (1 + barN*J.barRowdy) * incenseHouseMul(h,'pushy'), 0.03, 0.6)) EVQ.push(()=>evIncident(h));
   if(HD.haunted && Math.random()<0.15) EVQ.push(()=>evHaunt(h));
@@ -749,7 +737,6 @@ function endWeek(){
     if(h.up.garden) moodAdd(w, BAL.amenities.garden.mood * gardenMult(w));
     const houseMood = housePerkVal(h, 'moodRest', 0) + incenseAdd(w, 'mood') + ((hrw && hrw.chapelMood) || 0);
     if(houseMood) moodAdd(w, houseMood);
-    if(hasPast('cook')) moodAdd(w, 2);
     const o = getOutfit(w); if(o.style===w.style){ moodAdd(w, 3); why('loves her outfit', true); }
     if(has(w,'Greedy') && pr.earned>250){ moodAdd(w, 4); why('made good money', true); }
     if(pr.earned > 0 && !isFree(w)){

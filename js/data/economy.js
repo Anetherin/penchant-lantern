@@ -94,6 +94,11 @@ const PRESTIGE_TIERS = [
   {min:0,  id:'rowdy',       label:'Rowdy'}
 ];
 const housePrestige = h => { const D = h && HOUSES[h.id]; return h && h.prestige != null ? h.prestige : (D && D.prestige != null ? D.prestige : 50); };
+// Refinement pays off as a house goes upscale (balance.json → refine). refK: 0 at or below refine.from, 1 at class 100.
+// refScore: her Refinement around 50, like client stat tastes (-0.5..1). refMul(w, h, k) = 1 + refine[k] x refScore x refK.
+const refK = h => { const from = (BAL.refine||{}).from ?? 35; return clamp((housePrestige(h) - from) / (100 - from), 0, 1); };
+const refScore = w => clamp((s100(statOf(w,'refinement')) - 50)/50, -0.5, 1);
+const refMul = (w, h, k) => 1 + (((BAL.refine||{})[k]) || 0) * refScore(w) * refK(h);
 const prestigeTier = v => PRESTIGE_TIERS.find(t => (v ?? 50) >= t.min) || PRESTIGE_TIERS[PRESTIGE_TIERS.length - 1];
 // Sam's past lives: the one he picked at the start, plus one more per New Game+ cycle if he chooses (S.pasts).
 const samPasts = () => (typeof S!=='undefined' && S) ? (S.pasts && S.pasts.length ? S.pasts : (S.past ? [S.past] : [])) : [];

@@ -1,15 +1,5 @@
 {
   "traits": {
-    "Second Wind": {
-      "desc": "Carries 15 extra energy into every week and recovers 5% faster.",
-      "fx": {"energyBank":15,"energyRec":1.05},
-      "ngPerk": true,
-      "gen": false,
-      "hidden": false,
-      "earn": null,
-      "ngOnly": false,
-      "excl": []
-    },
     "Practiced": {
       "desc": "Everything she does improves 20% faster: skills and stats (including your coaching).",
       "fx": {"skillGain":1.2,"statGain":1.2},
@@ -21,8 +11,8 @@
       "excl": []
     },
     "Beloved": {
-      "desc": "Settled, happy, and sure of her place.",
-      "fx": {"trustGain":1.2,"moodRest":4},
+      "desc": "Settled, happy, and sure of her place: resting mood +4, asks 10% lower wages, and re-signs gladly.",
+      "fx": {"moodRest":4,"wage":0.9,"renew":0.2},
       "ngPerk": true,
       "gen": false,
       "hidden": false,
@@ -111,8 +101,8 @@
       "excl": []
     },
     "Wellspring": {
-      "desc": "Carries 25 extra energy into each week.",
-      "fx": {"energyBank":25},
+      "desc": "Carries 25 extra energy into each week and recovers 5% faster.",
+      "fx": {"energyBank":25,"energyRec":1.05},
       "gen": false,
       "hidden": false,
       "earn": null,
@@ -120,10 +110,19 @@
       "ngPerk": true,
       "excl": []
     },
-    "Fond Memories": {"desc":"Resting mood +6.","fx":{"moodRest":6},"gen":false,"hidden":false,"earn":null,"ngOnly":false,"ngPerk":true,"excl":[]},
-    "Born Teacher": {
-      "desc": "Teaches and coaches 25% more, as teacher or madame; madame work +10%; skills improve 10% faster.",
-      "fx": {"jobBonus":{"madame":1.1},"teach":1.25,"skillGain":1.1},
+    "Fond Memories": {
+      "desc": "Remembers every friend she made last time: her bonds grow 50% faster; resting mood +3.",
+      "fx": {"bondGain":1.5,"moodRest":3},
+      "gen": false,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": true,
+      "excl": []
+    },
+    "Born Madame": {
+      "desc": "Ran a house in another life and it shows: madame work +20%, +8 Wits.",
+      "fx": {"jobBonus":{"madame":1.2},"stats":{"wits":8}},
       "gen": false,
       "hidden": false,
       "earn": null,
@@ -162,7 +161,7 @@
       "excl": []
     },
     "Headmistress": {
-      "desc": "Passes on 25% more when teaching or coaching; teacher work +15%.",
+      "desc": "Passes on 25% more when teaching; teacher work +15%.",
       "fx": {"teach":1.25,"jobBonus":{"teacher":1.15}},
       "gen": false,
       "hidden": false,
@@ -188,8 +187,8 @@
       "ngOnly": false,
       "ngPerk": true,
       "excl": [],
-      "desc": "Learns 30% more from your coaching and lessons, the madame, and the classroom.",
-      "fx": {"learn":1.3}
+      "desc": "Learns 40% more from your coaching and lessons, tutors, and the classroom; +5 Wits.",
+      "fx": {"learn":1.4,"stats":{"wits":5}}
     },
     "Street Darling": {
       "gen": false,
@@ -255,6 +254,11 @@
       "desc": "Honed across lifetimes: +10 Strength, +10 Stamina, +15 security, +15 max energy.",
       "ngPerk": true,
       "fx": {"stats":{"strength":10,"stamina":10},"security":15,"maxEnergy":15}
+    },
+    "Old Regulars": {
+      "desc": "Half of Hollowmere remembers her from somewhere: 50% more likely to win a regular, +20% tips.",
+      "ngPerk": true,
+      "fx": {"regular":1.5,"tips":1.2}
     }
   }
 }

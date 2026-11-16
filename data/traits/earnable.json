@@ -61,8 +61,8 @@
       "excl": []
     },
     "Seasoned": {
-      "desc": "Thirty weeks on, nothing much surprises her: +10 max energy, services cost 3% less energy.",
-      "fx": {"maxEnergy":10,"actEnergy":0.97},
+      "desc": "Thirty weeks on, this is her house: +10 max energy, and she re-signs more readily.",
+      "fx": {"maxEnergy":10,"renew":0.1},
       "earn": {"weeks":30},
       "gen": false,
       "hidden": false,
@@ -191,8 +191,8 @@
       "excl": []
     },
     "Watchful": {
-      "desc": "Ten weeks on security: +12 security, +5 Strength.",
-      "fx": {"security":12,"stats":{"strength":5}},
+      "desc": "Ten weeks on the door taught her to read a crowd before it turns: security work +10%, +6 Wits.",
+      "fx": {"jobBonus":{"security":1.1},"stats":{"wits":6}},
       "gen": false,
       "hidden": false,
       "earn": {"job":"security","weeks":10},
@@ -251,7 +251,7 @@
       "excl": []
     },
     "Schoolmistress": {
-      "desc": "Passes on 15% more when teaching or coaching; +5 Refinement.",
+      "desc": "Ten weeks at the front of the classroom: passes on 15% more when teaching; +5 Refinement.",
       "fx": {"teach":1.15,"stats":{"refinement":5}},
       "gen": false,
       "hidden": false,
@@ -261,7 +261,7 @@
       "excl": []
     },
     "Mentor's Eye": {
-      "desc": "Passes on 10% more when teaching or coaching; skills improve 5% faster.",
+      "desc": "Passes on 10% more when teaching; skills improve 5% faster.",
       "fx": {"teach":1.1,"skillGain":1.05},
       "gen": false,
       "hidden": false,
@@ -435,23 +435,18 @@
       "earn": {"count":"svcByAct.breast_get","at":15},
       "fx": {"actQuality":{"breast_get":1.15},"stats":{"beauty":4}}
     },
-    "Silver Barker": {
-      "desc": "Steers foot traffic through the door out of sheer instinct: promoter work +15%, promoting +15%, +4 Charisma.",
-      "earn": {"job":"promoter","weeks":14},
-      "fx": {"jobBonus":{"promoter":1.15},"promote":1.15,"stats":{"charisma":4}}
-    },
     "Iron Post": {
-      "desc": "Spots trouble before a glass hits the floor: security work +15%, +10 security, +4 Strength.",
-      "earn": {"job":"security","weeks":14},
-      "fx": {"jobBonus":{"security":1.15},"security":10,"stats":{"strength":4}}
+      "desc": "Twenty-five weeks on the door, and nobody tests her twice: +15 security, +6 Strength.",
+      "earn": {"job":"security","weeks":25},
+      "fx": {"security":15,"stats":{"strength":6}}
     },
     "Seasoned Tutor": {
-      "desc": "Makes every lesson stick: teacher work +15%, teaches 18% more, +4 Wits, +4 Refinement.",
-      "earn": {"job":"teacher","weeks":12},
-      "fx": {"jobBonus":{"teacher":1.15},"teach":1.18,"stats":{"wits":4,"refinement":4}}
+      "desc": "Twenty-five weeks of lessons, and she has a plan for every pupil: teacher work +15%, +6 Wits.",
+      "earn": {"job":"teacher","weeks":25},
+      "fx": {"jobBonus":{"teacher":1.15},"stats":{"wits":6}}
     },
-    "Fleet Step": {
-      "desc": "Moves with effortless speed and balance: +6 Agility, services cost 6% less energy.",
+    "Effortless": {
+      "desc": "Moves with no wasted motion: +6 Agility, services cost 6% less energy.",
       "earn": {"stat":"agility","at":80},
       "fx": {"stats":{"agility":6},"actEnergy":0.94}
     },
@@ -459,6 +454,16 @@
       "desc": "Carries herself like old nobility even off the clock: +6 Refinement, nobles and officials pay 8% more.",
       "earn": {"stat":"refinement","at":80},
       "fx": {"stats":{"refinement":6},"classBonus":{"noble":1.08,"official":1.08}}
+    },
+    "Standing Appointment": {
+      "desc": "Three clients have made her their regular: 20% more likely to win another, and her services earn 3% more.",
+      "earn": {"count":"regulars","at":3},
+      "fx": {"regular":1.2,"clientFee":1.03}
+    },
+    "House Sister": {
+      "desc": "Twenty weeks in one house with friends around her: her bonds grow 25% faster; resting mood +2.",
+      "earn": {"weeks":20,"bonds":2},
+      "fx": {"bondGain":1.25,"moodRest":2}
     }
   }
 }

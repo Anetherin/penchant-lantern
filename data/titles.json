@@ -31,7 +31,7 @@
     },
     "professor": {
       "label": "Professor",
-      "desc": "Passes on 20% more when teaching or coaching, +6 Wits.",
+      "desc": "Passes on 20% more when teaching, +6 Wits.",
       "fx": {"teach":1.2,"stats":{"wits":6}},
       "seed": true,
       "earn": {"all":[{"job":"teacher","weeks":12},{"count":"taught","at":50}]}

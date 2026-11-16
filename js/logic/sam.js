@@ -109,7 +109,7 @@ function samRest(){
 }
 function samChat(id){
   const w = findW(id), d = DATES.chat; if(!w || !useAP(samDateCost(d.energy))) return;
-  const m = pmAny(w,d.like), tg = gainTrust(w, d.trust * rnd(0.6,1.4) * (has(w,'Romantic')?1.4:1) * (has(w,'Shy')?1.2:1) * m);
+  const m = pmAny(w,d.like), tg = gainTrust(w, d.trust * rnd(0.6,1.4) * (hasPast('support') ? 1.2 : 1) * (has(w,'Romantic')?1.4:1) * (has(w,'Shy')?1.2:1) * m);
   moodAdd(w, d.mood*m - (m<1?3:0)); w._samTime = (w._samTime||0) + 1; samStat('charm',1); samXP(5); samLog(`Chatted with ${w.name}`); checkUnlocks();
   save(); render(); closeModal();
   const topic = ET('chat', NAMED[w.key] && Object.values(NAMED[w.key].bonds||{}).some(x=>x.kind==='home') || ['yui','natsuki','kanako','akari','lara','ella','emily'].includes(w.key) ? 'home' : (S.cycle||1)>=2 && Math.random()<0.3 ? 'ng' : 'topics');

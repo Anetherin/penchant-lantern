@@ -51,6 +51,26 @@ function statCell(w, k, employee, label){
 }
 const isGuest = w => !!(w && w.key && NAMED[w.key] && NAMED[w.key].role==='drifter');
 const nameBadge = w => isGuest(w) ? `<span class="tag guest" title="Visiting guest${NAMED[w.key].pack && GUEST_PACKS[NAMED[w.key].pack] ? ' · '+esc(GUEST_PACKS[NAMED[w.key].pack].label||NAMED[w.key].pack) : ''}">☄</span>` : (w && w.named ? '<span class="tag">★</span>' : (w && w.favorite ? '<span class="tag act" title="Favorited (reincarnates as an old friend at max trust)">★</span>' : ''));
+// Anything with a title tooltip inside the app (trait / perk / title tags, hint spans) shows it in a small popover on tap,
+// since touch screens have no hover. Buttons, links, inputs and other controls keep their normal tap; a tag on a
+// clickable card shows its text instead of opening the card (tap anywhere else on the card to open it).
+function tipPop(el){
+  let box = document.getElementById('tipPop');
+  if(!el){ if(box) box.style.display = 'none'; return; }
+  if(!box){ box = document.createElement('div'); box.id = 'tipPop'; document.body.appendChild(box); }
+  box.innerHTML = `<b>${esc(el.textContent.trim())}</b><br>${esc(el.getAttribute('title'))}`;
+  box.style.display = 'block';
+  const r = el.getBoundingClientRect(), bw = box.offsetWidth, bh = box.offsetHeight;
+  box.style.left = Math.max(6, Math.min(window.innerWidth - bw - 6, r.left + r.width/2 - bw/2)) + 'px';
+  box.style.top = (r.bottom + bh + 8 > window.innerHeight ? Math.max(6, r.top - bh - 6) : r.bottom + 6) + 'px';
+}
+if(typeof document !== 'undefined') document.addEventListener('click', e => {
+  const el = e.target && e.target.closest ? e.target : null, ctl = 'button, a, select, label, input, summary';
+  const tag = el && el.closest('.tag[title]'), hint = el && el.closest('span[title], b[title], div.muted[title]');
+  if(tag && tag.getAttribute('title') && !tag.closest(ctl)){ e.stopPropagation(); tipPop(tag); }   // a tag on a clickable card shows its text instead of opening the card
+  else if(hint && hint.getAttribute('title') && !hint.closest(ctl + ', [onclick]')) tipPop(hint);
+  else tipPop(null);
+}, true);
 function traitTags(w){ return (w.reborn?`<span class="tag act" title="${esc(rebornDesc(w))}">♻ Reincarnated${w.reborn>1?' ×'+w.reborn:''}</span> `:'') + (w.unique?`<span class="tag act" title="${esc(w.unique.desc||'')}">★ ${esc(w.unique.name)}</span> `:'') + (w.ngPerks||[]).map(t=>`<span class="tag act" title="${esc(TRAITS[t]?TRAITS[t].desc:'')}">✦ ${esc(t)}</span>`).join(' ') + ' ' + (w.traits||[]).filter(t=>!TRAITS[t]||!TRAITS[t].hidden||S.sam.appraisal>=3).map(t=>`<span class="tag ${TRAITS[t]&&TRAITS[t].hidden?'hid':''} ${TRAITS[t]&&TRAITS[t].story?'act':''}" title="${esc(TRAITS[t]?TRAITS[t].desc:'')}">${esc(t)}</span>`).join(' '); }
 function jobOptions(w){ return Object.entries(JOBS).map(([k,J])=>{ const why = k===w.job ? null : canDo(w,k); return `<option value="${k}" ${k===w.job?'selected':''} ${why?'disabled':''}>${why?'🔒 ':''}${J.label}</option>`; }).join(''); }
 // House picker, shared by Houses, Roster, Recruit and Upgrades: the picked house (S.cur) and the "All houses" choice (HOUSE_ALL) carry
@@ -251,20 +271,23 @@ function rosterTypeIs(w, t){
   return t[0]==='r' && r === +t.slice(1);
 }
 const rosterOrder = list => list.map((w,i)=>[w,i]).sort((a,b)=>rosterRank(a[0])-rosterRank(b[0]) || a[1]-b[1]).map(x=>x[0]);
+// The filter row folds away behind one line; it starts folded on a narrow (phone) screen and remembers what you chose.
+let ROSTER_FILTERS_OPEN = typeof window !== 'undefined' ? window.innerWidth > 760 : true;
 function rosterFilterBar(base){
   const R = ROSTER_VIEW, sel = (k, opts) => `<select onchange="setRosterView('${k}',this.value)">${opts.map(o=>`<option value="${o[0]}" ${R[k]===o[0]?'selected':''}>${esc(o[1])}</option>`).join('')}</select>`;
   base = base || S.workers;
   const jobs = Object.keys(JOBS).filter(j=>base.some(w=>w.job===j) || R.job===j);
   const races = [...new Set(base.map(w=>w.race))].filter(Boolean).sort();
   if(R.race!=='all' && !races.includes(R.race)) races.push(R.race);
-  return `<div class="row">
+  const active = Object.entries(R).filter(([k,v])=>k==='sort' ? v : v!=='all').length;
+  return `<details class="filters" ${ROSTER_FILTERS_OPEN?'open':''} ontoggle="ROSTER_FILTERS_OPEN=this.open"><summary>Filters & sort${active?` <span class="tag">${active} on</span>`:''}</summary><div class="row">
     <label>Type ${sel('type', ROSTER_TYPES)}</label>
     <label>Job ${sel('job', [['all','All'],['working','Working (not resting)'],...jobs.map(j=>[j, JOBS[j].label])])}</label>
     <label>Race ${sel('race', [['all','All'],...races.map(r=>[r, (RACES[r]&&RACES[r].label)||r])])}</label>
     <label>Lust ${sel('lust', [['all','All'],['eager','Restless / eager'],['low','Low']])}</label>
     <label>Energy ${sel('energy', [['all','All'],['rested','Rested (85%+)'],['tired','Tired (under 35%)']])}</label>
     <label>Trust ${sel('trust', [['all','All'],['high',`High (Trust ${tShow(70)}+)`],['mid',`Mid (Trust ${tShow(30)}-${tShow(70)-1})`],['low',`Low (under ${tShow(30)})`]])}</label>
-    <label>Sort ${sel('sort', [['','Default'],['trust','Trust'],['lust','Lust'],['lewd','Lewdness'],['popularity','Popularity'],['energy','Energy'],['mood','Mood']])}</label></div>`;
+    <label>Sort ${sel('sort', [['','Default'],['trust','Trust'],['lust','Lust'],['lewd','Lewdness'],['popularity','Popularity'],['energy','Energy'],['mood','Mood']])}</label></div></details>`;
 }
 function rosterFiltered(list){
   const R = ROSTER_VIEW;

@@ -217,7 +217,7 @@ function evIncident(h){
   return {title:ET('incident','title',V), who:sec?sec.id:null, scene:'job_security', text:ET('incident','text',V), choices:ch};
 }
 // How keen she is to stay (0-1), from trust and mood. See data/balance.json → renewal.
-function renewWill(w, boost=0){ const B = BAL.renewal; return (w.trust*0.6 + w.mood*0.4)/100 + (has(w,'Loyal')?B.loyal:0) + boost; }
+function renewWill(w, boost=0){ const B = BAL.renewal; return (w.trust*0.6 + w.mood*0.4)/100 + (has(w,'Loyal')?B.loyal:0) + fxAdd(w,'renew') + boost; }
 function renewFee(w, wage, s){ const B = BAL.renewal; return s >= B.freeAt ? 0 : Math.round(wage * B.feeWeeks * Math.pow((B.freeAt - s)/B.freeAt, 1.2)); }
 // odds she says yes: certain above refuseBelow, falling toward 15% at zero
 const renewOdds = s => { const B = BAL.renewal; return s >= B.refuseBelow ? 1 : 0.15 + 0.85*Math.max(0,s)/B.refuseBelow; };

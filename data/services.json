@@ -14,7 +14,8 @@
     "tiredAt (optional): energy fraction (0-1, e.g. 0.45) below which a tired lady prefers not to perform this strenuous service.",
     "ask = how the weekly report phrases it. client: what he asks for, after \"asked\" (\"asked for oral\", \"asked to go down on her\"). lady: what SHE does when she's the one offering, after \"she\" (\"she offered to go down on him\"). Custom services without ask fall back to their label.",
     "image.exposed: true = the picture shows her bare between the legs, so the prompt names her pubic hair (snippets.json → clothing.pubic) unless the clothing wording already does.",
-    "pair = lines for two women together (any two women; used by js/logic/goddess.js gSvcLine): fem = both women, futa = {partner} is a futanari. {name} = the woman whose side the id names (she gives for _give, receives for _get), {partner} = the other woman. Positions (tier 3) only need futa."
+    "pair = lines for two women together (any two women; used by js/logic/goddess.js gSvcLine): fem = both women, futa = {partner} is a futanari. {name} = the woman whose side the id names (she gives for _give, receives for _get), {partner} = the other woman. Positions (tier 3) only need futa.",
+    "Who leads (tier 3 positions): regular = x her chance to turn a satisfied client into a regular (missionary: face to face, the one men come back for). selfLed: true = she sets the pace, so how good it is for HER (lust drop, not being left frustrated) is at least 0.6 + 0.6 x her skill at it instead of resting on his technique (cowgirl: dearer and more tiring, but reliable release). techLed = he leads, so his technique counts x this much in both directions around the average 0.85 (doggy: easy on her energy, great with a skilled client, frustrating with a clumsy one). See actTech in js/logic/services.js."
   ],
   "services": [
     {
@@ -488,18 +489,18 @@
     },
     {
       "id": "missionary",
-      "stats": {"stamina":1},
+      "stats": {"charm":0.5,"stamina":0.5},
       "label": "Missionary",
       "tier": 3,
       "th": 56,
       "price": 58,
-      "energy": 11,
+      "energy": 10,
       "tiredAt": 0.22,
       "lust": -8,
       "finish": true,
       "want": 1,
       "kind": "give",
-      "desc": "sex, him on top",
+      "desc": "sex, him on top, face to face",
       "ask": {"client":"to take her to bed","lady":"took him to bed"},
       "dress": {"min":"partial","fullAt":55},
       "image": {
@@ -534,7 +535,8 @@
           "{partner} laid {name} back among the pillows and took things slow, her body over {name}'s. {name} saw stars.",
           "{name} was held down, kissed, and thoroughly fucked by {partner}, who took her time making her cum."
         ]
-      }
+      },
+      "regular": 1.5
     },
     {
       "id": "cowgirl",
@@ -542,10 +544,10 @@
       "label": "Cowgirl",
       "tier": 3,
       "th": 60,
-      "price": 64,
-      "energy": 12,
+      "price": 68,
+      "energy": 14,
       "tiredAt": 0.45,
-      "lust": -9,
+      "lust": -11,
       "finish": true,
       "want": 1,
       "kind": "give",
@@ -581,7 +583,8 @@
           "{partner} lay back and let {name} take charge, which {name} did with considerable and gratifying enthusiasm.",
           "{name} straddled {partner} and set the pace herself while {partner} watched, flushed and approving."
         ]
-      }
+      },
+      "selfLed": true
     },
     {
       "id": "doggy",
@@ -589,8 +592,8 @@
       "label": "Doggy",
       "tier": 3,
       "th": 64,
-      "price": 64,
-      "energy": 12,
+      "price": 62,
+      "energy": 9,
       "tiredAt": 0.3,
       "lust": -9,
       "finish": true,
@@ -631,7 +634,8 @@
           "{partner} took {name} from behind, one hand firm at her hip. {name} gripped the headboard and thanked her.",
           "{name} found herself bent over the arm of a chair with {partner} behind her, murmuring praise into her hair."
         ]
-      }
+      },
+      "techLed": 1.6
     }
   ]
 }

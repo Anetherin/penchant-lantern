@@ -228,7 +228,7 @@ function earnEligible(w, e){
   if(e.trust!==undefined) return w.trust >= e.trust;
   if(e.lewd!==undefined) return w.lewd >= e.lewd;
   if(e.job) return countOf(w, 'jobWeeks.'+e.job) >= (e.weeks||1);
-  if(e.weeks!==undefined) return countOf(w, 'weeksWorked') >= e.weeks;
+  if(e.weeks!==undefined) return countOf(w, 'weeksWorked') >= e.weeks && (!e.bonds || (typeof S!=='undefined' && S && S.workers.filter(x=>x!==w && x.house===w.house && bondV(w,x) >= 30).length >= e.bonds));
   return false;
 }
 // Weekly check: returns the names of traits she developed this week.

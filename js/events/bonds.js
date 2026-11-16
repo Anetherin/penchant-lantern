@@ -10,6 +10,7 @@ const bondOf = (a,b) => (S.bonds||{})[bkey(a,b)] || {v:0};
 const bondV = (a,b) => bondOf(a,b).v;
 function addBond(a, b, n){
   if(!a || !b || a===b || !n) return;
+  if(n > 0) n *= Math.sqrt(fxMul(a,'bondGain') * fxMul(b,'bondGain'));   // traits: Sisterly, Loner, Fond Memories...
   S.bonds = S.bonds || {}; const k = bkey(a,b), o = S.bonds[k] || (S.bonds[k] = {v:0});
   o.v = Math.max(-100, Math.min(100, o.v + n));
 }

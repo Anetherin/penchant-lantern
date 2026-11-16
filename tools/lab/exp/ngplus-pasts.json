@@ -3,7 +3,7 @@
   "scenario": "ngplus",
   "runs": 12,
   "ng": { "house": "wayfarer", "boon": "ap" },
-  "each": { "ng.past": ["none", "bartender", "gym", "otaku", "cook", "massage", "tutor"] },
+  "each": { "ng.past": ["none", "bartender", "gym", "planner", "support", "concierge", "massage", "tutor"] },
   "baseline": false,
   "breakdown": []
 }
