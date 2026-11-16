@@ -45,7 +45,7 @@
               "m": 8,
               "l": 2,
               "private": true,
-              "acts": ["massage_give", "kiss", "handjob"],
+              "acts": ["massage_give","kiss","handjob"],
               "res": "Rosemary oil warms both your palms as you turn the tables gently, kneading the tension from her slender shoulders until Elowen tips her head back against your collarbone with a breathless sigh.",
               "fallbackRes": "Her slender hands glide smoothly down your back until her breath catches and she rests her forehead briefly between your shoulder blades, ears burning bright crimson."
             },
@@ -68,7 +68,7 @@
               "m": 10,
               "l": 4,
               "private": true,
-              "acts": ["sex_vaginal", "oral_give", "massage_give"],
+              "acts": ["sex_vaginal","oral_give","massage_give"],
               "res": "Wet linen peels off easily over her shoulders before you draw Elowen back into the scented bathwater, parting smooth oil-slicked thighs to slide deep inside her while rosemary steam rises all around you both."
             },
             {
@@ -77,7 +77,7 @@
               "m": 8,
               "l": 2,
               "private": true,
-              "acts": ["kiss", "massage_give"],
+              "acts": ["kiss","massage_give"],
               "res": "She melts contentedly back against your bare chest in the warm rosemary water, sighing softly while your lips brush her neck and ear tips."
             }
           ]
@@ -98,7 +98,7 @@
         },
         {
           "label": "\"You're a healer. You've seen it all, right?\"",
-          "if": {"lewd": 30},
+          "if": {"lewd":30},
           "m": 4,
           "l": 3,
           "res": "\"Not... all,\" she says faintly, fanning her flushed face with a hand.",
@@ -122,12 +122,12 @@
       "choices": [
         {
           "label": "Pull her down into the clover when you're both alone",
-          "if": {"canAct": ["kiss", "oral_give", "sex_vaginal"]},
+          "if": {"canAct":["kiss","oral_give","sex_vaginal"]},
           "t": 5,
           "m": 9,
           "l": 3,
           "private": true,
-          "acts": ["sex_vaginal", "oral_give", "kiss"],
+          "acts": ["sex_vaginal","oral_give","kiss"],
           "res": "Hidden behind tall sunlit meadow grass far from the road, Elowen lets the medicine basket tip over sideways as she laughs softly and pulls you down onto her cloak."
         },
         {
@@ -178,7 +178,7 @@
           "t": 6,
           "m": 10,
           "res": "One night a week, with help from the apothecary's apprentices. She hugs you so hard your ribs creak, and presses her damp face against your hoodie.",
-          "cantAfford": {"t": 2, "m": 2, "res": "You can't afford it. She thanks you for trying."}
+          "cantAfford": {"t":2,"m":2,"res":"You can't afford it. She thanks you for trying."}
         }
       ],
       "image": {
@@ -222,7 +222,7 @@
       ],
       "goLead": "Inside the herb-scented bedroom, Elowen closes the door quietly and lifts her face up into your palms, trembling softly as her braid slips over bare shoulders.",
       "choices": [
-        {"label": "Say yes", "t": 6, "m": 12, "res": ""},
+        {"label":"Say yes","t":6,"m":12,"res":""},
         {
           "label": "Not yet",
           "t": 1,

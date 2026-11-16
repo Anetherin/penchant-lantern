@@ -45,7 +45,7 @@
               "m": 8,
               "l": 3,
               "private": true,
-              "acts": ["massage_give", "kiss"],
+              "acts": ["massage_give","kiss"],
               "res": "Kaede lets the towel slip to her waist with a shaky breath as your warm, soapy palms knead down her bare shoulder blades—until she spins around in the mist, grabs your collar, and pulls your mouth straight onto hers.",
               "fallbackRes": "Her fox tail thumps against the wet wood as your warm palms work along her shoulders until she leans back shivering softly against your chest."
             },
@@ -68,7 +68,7 @@
               "m": 10,
               "l": 4,
               "private": true,
-              "acts": ["sex_ride", "sex_vaginal", "oral_give"],
+              "acts": ["sex_ride","sex_vaginal","oral_give"],
               "res": "You kick your boots off fast and slide into the steaming water across from her—before Kaede climbs straight over your lap with a fierce, wicked grin, sinking down onto your cock until hot bathwater sloshes clean over the rim."
             },
             {
@@ -77,7 +77,7 @@
               "m": 8,
               "l": 2,
               "private": true,
-              "acts": ["kiss", "massage_give", "handjob"],
+              "acts": ["kiss","massage_give","handjob"],
               "res": "You kneel beside the tub rubbing warm lather across her shoulders and breasts until she groans, twists around, and drags your wet shirt straight toward the water."
             }
           ]
@@ -92,7 +92,7 @@
         },
         {
           "label": "Compliment her",
-          "if": {"lewd": 40},
+          "if": {"lewd":40},
           "t": 2,
           "m": 6,
           "l": 3,
@@ -124,12 +124,12 @@
       "choices": [
         {
           "label": "Finish the bandage and pull her close",
-          "if": {"canAct": ["sex_vaginal", "oral_give", "kiss"]},
+          "if": {"canAct":["sex_vaginal","oral_give","kiss"]},
           "t": 5,
           "m": 9,
           "l": 3,
           "private": true,
-          "acts": ["sex_vaginal", "oral_give", "kiss"],
+          "acts": ["sex_vaginal","oral_give","kiss"],
           "res": "The moment you tie off the linen, Kaede catches your collar with her good hand and tumbles back across the mattress, pulling you down with her tail tight around your waist."
         },
         {
@@ -193,7 +193,7 @@
       "choices": [
         {
           "label": "Keep trying",
-          "sam": {"strength": 1},
+          "sam": {"strength":1},
           "t": 3,
           "m": 6,
           "res": "By the end of the night you make one jump cleanly. She cheers loud enough to wake the whole street, and a shutter bangs open below you both. Neither of you cares."
@@ -222,7 +222,7 @@
       ],
       "goLead": "Kaede pushes the bedroom door shut with her heel and wraps both arms straight around your neck, her copper tail tangling behind your thighs as she kisses you fiercely.",
       "choices": [
-        {"label": "Say yes", "t": 6, "m": 12, "res": ""},
+        {"label":"Say yes","t":6,"m":12,"res":""},
         {
           "label": "Not yet",
           "t": 1,

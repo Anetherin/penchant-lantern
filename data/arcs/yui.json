@@ -45,7 +45,7 @@
               "m": 8,
               "l": 2,
               "private": true,
-              "acts": ["massage_give", "kiss", "handjob"],
+              "acts": ["massage_give","kiss","handjob"],
               "res": "Yui's small, warm hands tremble lightly as soapy lather glides down your collarbones—and when you lean up to catch her damp lips through the steam, she makes a soft, helpless sound and lets the towel fall.",
               "fallbackRes": "Her small soap-slick hands tremble against your shoulders for two heartbeats before settling into slow, careful circles while she leans her flushed forehead gently against your neck."
             },
@@ -68,7 +68,7 @@
               "m": 10,
               "l": 4,
               "private": true,
-              "acts": ["sex_vaginal", "oral_give", "handjob"],
+              "acts": ["sex_vaginal","oral_give","handjob"],
               "res": "Yui climbs straight into your lap the moment warm water closes over your waist, clinging tightly around your shoulders as she gasps your name in quiet, unguarded bliss beneath the mist."
             },
             {
@@ -77,7 +77,7 @@
               "m": 8,
               "l": 3,
               "private": true,
-              "acts": ["massage_give", "kiss", "handjob"],
+              "acts": ["massage_give","kiss","handjob"],
               "res": "She leans softly back against your bare chest, shivering beneath every slow pass of your soapy hands until her hips press insistently back against yours."
             }
           ]
@@ -116,12 +116,12 @@
       "choices": [
         {
           "label": "Step around the table and kiss six years of waiting right off her lips",
-          "if": {"canAct": ["kiss", "handjob", "oral_give"]},
+          "if": {"canAct":["kiss","handjob","oral_give"]},
           "t": 5,
           "m": 9,
           "l": 3,
           "private": true,
-          "acts": ["oral_give", "handjob", "kiss"],
+          "acts": ["oral_give","handjob","kiss"],
           "res": "You push the terrible bowls aside and cup her burning cheeks in both hands; Yui drops her chopsticks at once and pulls you close, glasses bumping your nose as six years of quiet office yearning finally spills loose."
         },
         {
@@ -172,7 +172,7 @@
           "res": "She laughs and wipes her eyes under her glasses. (The mage turns out to be a fraud. Neither of you is disappointed.)"
         }
       ],
-      "image": {"comp": "holding a crumpled flyer with shaking hands, looking up at him with teary eyes", "setting": "quiet office at dusk", "sam": true}
+      "image": {"comp":"holding a crumpled flyer with shaking hands, looking up at him with teary eyes","setting":"quiet office at dusk","sam":true}
     },
     {
       "title": "Festival Night",
@@ -209,7 +209,7 @@
       ],
       "goLead": "Yui sets her spectacles cleanly beside the bedside lantern and tugs you down by your hoodie strings, pressing flushed, trembling warmth straight against your chest.",
       "choices": [
-        {"label": "Say yes", "t": 6, "m": 12, "res": ""},
+        {"label":"Say yes","t":6,"m":12,"res":""},
         {
           "label": "Not yet",
           "t": 1,

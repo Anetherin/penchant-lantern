@@ -45,7 +45,7 @@
               "m": 8,
               "l": 2,
               "private": true,
-              "acts": ["massage_give", "kiss"],
+              "acts": ["massage_give","kiss"],
               "res": "Warm suds chase faint cobalt ink down her pale shoulder blades while her pointed ears turn bright pink—and when you lean in against her damp throat, Lirael turns shyly and kisses you softly through the mist.",
               "fallbackRes": "Her delicate shoulders soften completely beneath warm soapy palms until she leans lightly sideways against your sleeve."
             },
@@ -68,7 +68,7 @@
               "m": 10,
               "l": 4,
               "private": true,
-              "acts": ["sex_vaginal", "oral_give", "kiss"],
+              "acts": ["sex_vaginal","oral_give","kiss"],
               "res": "Lirael gasps softly into your mouth as warm water swells around your hips, slim thighs trembling happily around your waist as you move deep inside her beneath the lanterns."
             },
             {
@@ -77,7 +77,7 @@
               "m": 8,
               "l": 3,
               "private": true,
-              "acts": ["oral_give", "kiss", "massage_give"],
+              "acts": ["oral_give","kiss","massage_give"],
               "res": "Ink-stained fingers clutch your damp shoulders tight while soft elven gasps ring clear through the warm steam."
             }
           ]
@@ -119,12 +119,12 @@
       "choices": [
         {
           "label": "Walk straight to her end of the sofa and answer in person",
-          "if": {"canAct": ["kiss", "sex_vaginal", "oral_give"]},
+          "if": {"canAct":["kiss","sex_vaginal","oral_give"]},
           "t": 5,
           "m": 9,
           "l": 3,
           "private": true,
-          "acts": ["sex_vaginal", "oral_give", "kiss"],
+          "acts": ["sex_vaginal","oral_give","kiss"],
           "res": "You read the tiny postscript once, fold the scrap neatly into your pocket, and cross the sofa cushions in one stride—leaving Lirael flushed scarlet and breathless beneath you by the dying hearth embers."
         },
         {
@@ -175,7 +175,7 @@
           "res": "\"You can't burn what's already happened,\" she says. She spends the night sweeping the postbox in silence, one slow stroke after another, ears low."
         }
       ],
-      "image": {"comp": "reading a letter over his shoulder, ears drooped, fear in her eyes", "setting": "lamp-lit lounge corner at night", "sam": true}
+      "image": {"comp":"reading a letter over his shoulder, ears drooped, fear in her eyes","setting":"lamp-lit lounge corner at night","sam":true}
     },
     {
       "title": "Full Moon Post",
@@ -212,7 +212,7 @@
       ],
       "goLead": "Lirael steps straight inside your arms, setting her small spectacles gently on the bedside table before lifting her flushed face up to meet your mouth.",
       "choices": [
-        {"label": "Say yes", "t": 6, "m": 12, "res": ""},
+        {"label":"Say yes","t":6,"m":12,"res":""},
         {
           "label": "Not yet",
           "t": 1,

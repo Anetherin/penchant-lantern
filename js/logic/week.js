@@ -3,12 +3,12 @@
    WEEK RESOLUTION
    ===================================================================== */
 function pickClass(h, screen=0){
-  const p = h.price, cw = HOUSES[h.id].cls, WT = (BAL.clients && BAL.clients.wait) || {};
+  const p = h.price, cw = HOUSES[h.id].cls, WT = (BAL.clients && BAL.clients.wait) || {}, pr = housePrestige(h);
   const ws = [
-    Math.max(3, 50-10*p) * (screen > 0 ? Math.max(0.5, 1 - screen * (WT.screenTrimLow ?? 0.25)) : 1),
-    30 + (S.flags.guild?8:0),
-    (15+4*p) * (screen > 0 ? 1 + screen * (WT.screenMerchant ?? 0.3) : 1),
-    (Math.max(1, 5+4*p+h.rep/10) + ((h.decor||0)>=3 ? BAL.amenities.decor.noble : 0)) * (screen > 0 ? 1 + screen * (WT.screenNoble ?? 0.55) : 1)
+    Math.max(3, 55 - 8*p - pr*0.35) * (screen > 0 ? Math.max(0.5, 1 - screen * (WT.screenTrimLow ?? 0.25)) : 1),
+    30 + (S.flags.guild?8:0) + Math.max(0, 45 - pr)*0.2,
+    (10 + 4*p + pr*0.25) * (screen > 0 ? 1 + screen * (WT.screenMerchant ?? 0.3) : 1),
+    (Math.max(1, 2 + 4*p + Math.max(0, pr - 20)*0.45) + ((h.decor||0)>=3 ? BAL.amenities.decor.noble : 0)) * (screen > 0 ? 1 + screen * (WT.screenNoble ?? 0.55) : 1)
   ];
   // pick a tier (economy.json → tiers, same order as the houses' cls weights), then a class within it by `share`
   const tier = weighted(TIERS, (t,i)=>ws[i]*cw[i]*(t==='merchant'&&h.bonus&&h.bonus.merchant||1));
@@ -248,7 +248,7 @@ function clientProposeRound(X, w, A, o, guyUnfin, poorFinish){
 function runService(X, w, A, o){
   const pr = X.R.per[w.id], act = A.id, stam = cStamina(o.cls, o.client);
   pr.acts[act] = (pr.acts[act]||0)+1; growAct(w, act, 0.7); lewdUp(w, o.reluct?0.6:0.3, svcLewdCap(act,'client'));
-  w.energy -= o.ecost; if(!o.noRoom) X.useRoom(w);
+  w.energy -= o.ecost; if(!o.noRoom){ X.useRoom(w); if(has(w,'Exhibitionist') && X.hr){ X.hr.exhibActs++; if(X.hr.roomsUsed >= X.hr.roomCap) X.hr.exhibFullActs++; } }
   const reck0 = restless(w), qv = o.q ?? qualityOf(w, act);
   const poorFinish = !!A.finish && qv < (SVC.poorFinishAt ?? 0.42) && Math.random() < 0.75;
   const guyUnfin = !A.finish || poorFinish;
@@ -272,6 +272,7 @@ function runService(X, w, A, o){
       if(ex){ encore = ex.id; encoreKind = 'lady'; if(ex.drained) note = 'drained'; }
     }
   }
+  if(note === 'drained' && !X.h.up.sigil && X.hr) X.hr.demonDrains++;
   return {ser, note, encore, encoreKind, roundDeclined, reck0, more: more ? more.id : null, satAdj};
 }
 // Race shift effects: spirit reverse possession (solo_futa, client, or futa x fem housemate) and android per-client appearance adaptation.
@@ -493,9 +494,75 @@ function attendantPairs(h, R){
   }
   return {byCourt, byAtt, courts:courts.length, atts:atts.length, attSorted:atts};
 }
+// Amenity & quarters elegance score (0..5+) evaluated against a house's prestige expectations.
+function houseAmenityScore(h, tidy0){
+  const TY = BAL.tidy, U = h.up || {};
+  let s = (h.tier||0)*0.8 + (h.beds||0)*0.25 + (h.decor||0)*0.55 + (U.bar ? (1 + (h.drinks||0)*0.25)*0.45 : 0);
+  s += (U.bath?0.45:0) + (U.garden?0.35:0) + (U.stage?0.3:0) + (U.guard?0.2:0) + (U.classroom?0.25:0) + (U.suite?0.2:0);
+  s += tidy0 >= TY.high ? 0.45 : tidy0 < TY.bad ? -0.8 : tidy0 < TY.low ? -0.35 : 0;
+  return s;
+}
+// Move house class/prestige (0-100) toward its structural target plus this week's operational shifts.
+function updatePrestige(h, hr, W, R, info){
+  const PR = BAL.prestige, HD = HOUSES[h.id], TY = BAL.tidy;
+  const p0 = housePrestige(h), reasons = [];
+  const note = (text, delta) => { if(Math.abs(delta) >= 0.05) reasons.push({t:text, d:delta}); };
+  if(!PR || !W.length){ h.prestige = p0; hr.prestige = p0; hr.prestigeDelta = 0; hr.prestigeReasons = reasons; return; }
+  const U = h.up || {};
+  let target = (HD.prestige ?? 50) + ((h.tier||0) - 1)*(PR.tierPer ?? 5) + ((h.beds||0) - 1)*(PR.bedPer ?? 3)
+    + (h.decor||0)*(PR.decorPer ?? 3.5) + (U.bar ? ((h.drinks||0) - 0.5)*(PR.drinksPer ?? 3) : 0) + (h.price - 1)*(PR.pricePer ?? 4)
+    + (U.garden?3:0) + (U.bath?2:0) + (U.classroom?3:0) + (U.stage?2:0) + (U.guard?2:0) + (U.suite?2:0) + (info.angelChapel?4:0);
+  target += hr.tidy0 >= TY.high ? (PR.tidyHigh ?? 4) : hr.tidy0 < TY.bad ? (PR.tidyBad ?? -10) : hr.tidy0 < TY.low ? (PR.tidyLow ?? -4) : 0;
+  let op = 0;
+  // Every working courtesan having a dedicated attendant elevates the house's tone
+  if(info.courts > 0){
+    const cov = Math.min(1, info.ownAtts / info.courts);
+    if(info.ownAtts >= info.courts){ target += (PR.attAllTarget ?? 6); op += (PR.attAllDirect ?? 1); note('every courtesan had an attendant', PR.attAllDirect ?? 1); }
+    else if(cov > 0){ target += cov * (PR.attPartialTarget ?? 4); }
+  }
+  // Charming & charismatic madame and hosts elevate prestige
+  if(info.leaders.length){
+    const avgPoise = info.leaders.reduce((a,w)=>a + (s100(statOf(w,'charm')) + s100(statOf(w,'charisma')))/2, 0) / info.leaders.length;
+    target += clamp((avgPoise - (PR.leadNeutral ?? 45)) / (PR.leadDiv ?? 10) * info.leaders.length, -4, PR.leadTargetCap ?? 9);
+    if(avgPoise > (PR.leadDirectAt ?? 55)){
+      const ld = Math.min(PR.leadDirectCap ?? 1.2, (avgPoise - (PR.leadDirectAt ?? 55)) / (PR.leadDirectDiv ?? 25));
+      op += ld; note('charming/charismatic madame & hosts', ld);
+    }
+  }
+  // Tidy / shabby direct weekly nudge
+  if(hr.tidy0 >= TY.high){ op += 0.4; note('spotless house', 0.4); }
+  else if(hr.tidy0 < TY.bad){ op -= 1.5; note('filthy house', -1.5); }
+  else if(hr.tidy0 < TY.low){ op -= 0.5; note('shabby house', -0.5); }
+  // Less classy events & habits
+  if(hr.exhibActs){
+    const exPen = Math.min(PR.exhibActCap ?? 3.5, hr.exhibActs * Math.abs(PR.exhibAct ?? 0.35))
+      + Math.min(PR.exhibFullCap ?? 3.0, (hr.exhibFullActs||0) * Math.abs(PR.exhibFullAct ?? 0.45));
+    op -= exPen; note(hr.exhibFullActs ? 'open exhibitionism with rooms full' : 'exhibitionist acts', -exPen);
+  }
+  if(hr.samplesLowPopPen){
+    const sp = Math.min(PR.samplesCap ?? 4, hr.samplesLowPopPen);
+    op -= sp; note('free street samples with low popularity', -sp);
+  }
+  if(hr.fullFluff){
+    const fp = Math.min(PR.fullFluffCap ?? 3.5, hr.fullFluff * Math.abs(PR.fullFluff ?? 0.5));
+    op -= fp; note('hosts fluffing while rooms were full', -fp);
+  }
+  if(hr.left){ const lp = Math.min(PR.leaveCap ?? 2, hr.left * Math.abs(PR.leave ?? 0.25)); op -= lp; note('clients walked out', -lp); }
+  if(hr.crowdOver > 0){ const cp = Math.min(PR.crowdCap ?? 2, hr.crowdOver * Math.abs(PR.crowdPer ?? 0.15)); op -= cp; note('overcrowding', -cp); }
+  const pFail = ((hr.pushy&&hr.pushy.samfail)||0) + ((hr.pushy&&hr.pushy.none)||0);
+  if(pFail){ const pp = Math.min(PR.pushyCap ?? 2.4, pFail * Math.abs(PR.pushyFail ?? 0.6)); op -= pp; note('unhandled pushy clients', -pp); }
+  if(hr.demonDrains){ const dp = hr.demonDrains * Math.abs(PR.demonDrain ?? 0.4); op -= dp; note('unshielded demon drain', -dp); }
+  if(hr.served > 0) op += clamp((hr.sat/hr.served - 52) / (PR.satDriftDiv ?? 20), -(PR.satDriftCap ?? 1.5), PR.satDriftCap ?? 1.5);
+  target = clamp(target, 0, 100);
+  h.prestige = clamp(p0 + (target - p0) * (PR.driftRate ?? 0.18) + op);
+  hr.prestige = h.prestige; hr.prestigeDelta = h.prestige - p0; hr.prestigeReasons = reasons;
+}
 function simHouse(h, R){
-  const HD = HOUSES[h.id], W = S.workers.filter(w=>w.house===h.id), P = PRICES[h.price], J = BAL.jobs, BP = BAL.props, TY = BAL.tidy;
+  const HD = HOUSES[h.id], W = S.workers.filter(w=>w.house===h.id), P = PRICES[h.price], J = BAL.jobs, BP = BAL.props, TY = BAL.tidy, PR = BAL.prestige || {};
+  const pr0 = housePrestige(h), lowF = clamp((50 - pr0)/50, 0, 1), highF = clamp((pr0 - 50)/50, 0, 1);
+  const amenScore = houseAmenityScore(h, h.tidy ?? TY.start), expAmen = (pr0/100) * (PR.amenExpectMax ?? 3.2), expQ = (PR.qualBase ?? 0.25) + (pr0/100) * (PR.qualPerPrestige ?? 0.4);
   const hr = {id:h.id, name:h.name, income:0, served:0, turned:0, sat:0, upkeep:0, short:0, roomsUsed:0, roomCap:h.rooms*BAL.rooms.perRoom, tidy0:h.tidy ?? TY.start, tidy:h.tidy ?? TY.start, tidyFx:null,
+    prestige0:pr0, prestige:pr0, prestigeDelta:0, prestigeReasons:[], exhibActs:0, exhibFullActs:0, fullFluff:0, samplesLowPopPen:0, demonDrains:0,
     promoDraw:0, selfProps:0, accProps:0, stepIn:0, waited:0, left:0, stopped:0, guestsIn:0, crowdCap:0, crowdOver:0, hosted:{ent:0, warm:0, fin:0}, pushy:{total:0, talked:0, security:0, sam:0, samfail:0, none:0, samcall:0}, calls:[]};
   const byJob = j => W.filter(w=>w.job===j);
   const jb = (w, j) => fxSub(w, 'jobBonus', j);
@@ -526,11 +593,13 @@ function simHouse(h, R){
   X.useRoom = w => { if(!has(w,'Exhibitionist')) hr.roomsUsed++; };
   hr.tidyFx = hr.tidy0 >= TY.high ? TY.fx.high : hr.tidy0 < TY.bad ? TY.fx.bad : hr.tidy0 < TY.low ? TY.fx.low : null;
   const repEff = h.rep*0.75 + S.rep*0.25, DM = BAL.demand || {};
-  const priceDem = P.demand * (P.repReq ? clamp(repEff / P.repReq, DM.priceRepMulMin ?? 0.15, DM.priceRepMulMax ?? 1.15) : 1);
+  const priceEff = Math.max(repEff, pr0 * (PR.priceEffWeight ?? 0.85));
+  const priceDem = P.demand * (P.repReq ? clamp(priceEff / P.repReq, DM.priceRepMulMin ?? 0.15, DM.priceRepMulMax ?? 1.15) : 1);
   let dBase = ((DM.base ?? 5) + repEff*(DM.perRep ?? 0.5) + danceDraw*(DM.danceMult ?? 1.5)) * HD.demand * priceDem * rnd(0.85,1.15);
   if(HD.haunted) dBase *= 0.45 + Math.min(1, h.rep/(HD.hauntRep||40))*0.8;
   dBase *= (h.bonus&&h.bonus.demand) || 1;
   dBase *= BAL.amenities.decor.demand[h.decor||0] ?? 1;
+  dBase *= 1 + lowF * (PR.lowDemandBonus ?? 0.25);
   dBase *= ((hr.tidyFx && hr.tidyFx.demand) || 1) * cycleVarMul('demand', 1);   // word gets around about a shabby house (balance.json → tidy.fx.*.demand)
   const v0 = W.length ? Math.max(1, Math.round(dBase)) + danceDraw*2 : 0;   // expected visitors, for proposition rates
   const escorts = W.filter(w=>JOBS[w.job].cat==='escort');
@@ -550,7 +619,7 @@ function simHouse(h, R){
   W.forEach(w=>{
     const j = w.job, rate = PROP_RATE[j]; if(!rate) return;
     const pr = R.per[w.id], must = !!JOBS[j].must;
-    const n = Math.round(v0 * rate * barBoost * housePerkVal(h, 'propMult', 1) * fxMul(w,'propRate') * incenseMul(w,'prop') * (0.4 + appeal(w)/100) * ob(w,'propose') * rnd(0.6,1.4));
+    const n = Math.round(v0 * rate * barBoost * housePerkVal(h, 'propMult', 1) * (1 + lowF * (PR.lowPropRate ?? 0.45)) * fxMul(w,'propRate') * incenseMul(w,'prop') * (0.4 + appeal(w)/100) * ob(w,'propose') * rnd(0.6,1.4));
     for(let i=0;i<n;i++){
       const cls = pickClass(h), client = makeClient(h, cls); if(Math.random() > clamp((cls.prop ?? 1) * cMul(client,'prop',X) * cJob(client,j), 0, 1)) continue; noteClient(X, client);
       const s0 = encSnap(w, pr), want = pickWant(cls, w, client), expects = j==='attendant' && Math.random() < BP.attendantExpect; pr.props++;
@@ -629,6 +698,7 @@ function simHouse(h, R){
       }
       if(!sN){ spendLust(w, J.samplesLust); w.popularity = clamp(w.popularity + (J.samplesPopTease ?? 0.3)); }   // nothing on her menu light enough: smiles and teasing only
       const dr = (qualityOf(w) - 0.5) * J.samplesRep; if(dr > 0) repAdd(h, dr); else h.rep = clamp(h.rep + dr);
+      if(h.rep < (PR.samplesPopRef ?? 55)) hr.samplesLowPopPen += Math.abs(PR.samplesBase ?? 1.2) + ((PR.samplesPopRef ?? 55) - h.rep) / (PR.samplesDiv ?? 35);
       if(Math.abs(dr) >= 0.05) (pr.notes = pr.notes||[]).push(flavor(dr > 0 ? 'job_samples_rep_good' : 'job_samples_rep_bad', w));
     }
     pr.draw = d; promoDraw += d * priceDem; countUp(w,'promo', Math.max(1, Math.round(d * priceDem)));
@@ -672,7 +742,7 @@ function simHouse(h, R){
     }
     return {barHelped, danceHelped};
   };
-  // host warm-up in the lounge: returns avg quality if any fluff happened, else 0
+  // host warm-up (takes an open room if one is free, else in the lounge): returns avg quality if any fluff happened, else 0
   const hostFluff = (hx, client, cls, maxActs) => {
     const hw = hx.w, hpr = hx.pr;
     if(cOpen(client) < HS.fluffOpen || hw.offDuty === 'off') return 0;
@@ -686,7 +756,13 @@ function simHouse(h, R){
       hr.income += fee; R.led.host += fee; hpr.earned += fee; hw.energy -= ec; hx.cap -= 1; hw.lust = Math.min(100, (hw.lust||0) + HS.lust); fitLust(hw);
       hpr.acts[id] = (hpr.acts[id]||0) + 1; growAct(hw, id, 0.3); done++; qSum += aq;
     }
-    if(done){ hx.warm++; hr.hosted.warm++; countUp(hw, 'warm'); return qSum / done; }
+    if(done){
+      hx.warm++; hr.hosted.warm++; countUp(hw, 'warm');
+      if(!has(hw,'Exhibitionist') && hr.roomsUsed < hr.roomCap) hr.roomsUsed++;
+      else if(has(hw,'Exhibitionist')){ hr.exhibActs++; if(hr.roomsUsed >= hr.roomCap) hr.exhibFullActs++; }
+      else hr.fullFluff++;
+      return qSum / done;
+    }
     return 0;
   };
   // host finishes a waiting guest herself if he's willing and a room is open
@@ -738,7 +814,7 @@ function simHouse(h, R){
     const menuOf = x => helper ? offeredMenu(x) : x.menu;
     const fits = (x, id) => menuOf(x).includes(id) && canClient(x,id) && !nim(x,id) && !tooTiredFor(x,id) && energyOK(x, id, 0.15) && lightOK(x, id);
     const thirsty = cHas(client,'thirsty');
-    const wantsIt = thirsty || Math.random() < Math.min(1, (helper ? J.propWant.other : J.propWant.courtesan) * barBoost * cMul(client,'prop',X));
+    const wantsIt = thirsty || Math.random() < Math.min(1, (helper ? J.propWant.other : J.propWant.courtesan) * barBoost * cMul(client,'prop',X) * (1 + lowF * (PR.lowPropWant ?? 0.35)));
     // With a madame the client is matched: she scores the free ladies for him (willingness, skill at his want, his likes/draw, balanced load) and picks the best.
     // Without one he takes whoever is free: appeal and draw count only to the power clients.nativeMatch.
     const matchMode = mgmt && !helper && !fw, nm = BAL.clients.nativeMatch ?? 1;
@@ -828,9 +904,16 @@ function simHouse(h, R){
     const below = Math.max(0, (HD.minPop||0) - w.popularity);
     const spPoss = act ? spiritPossess(X, w, client, pr) : null, adShift = androidAdapt(w, client, pr);
     const houseFeeMult = (HD.feeMult || 1) * ((HD.classFee && (HD.classFee[cls.id] ?? HD.classFee[cls.tier])) || 1) * shrineMult(h, 'perFee') * (cls.tier==='rich' ? cycleVarMul('richFee', 1) : 1);
-    const inc = Math.round(base * P.mult * feeQualMult(q) * cm * (1+madF*0.15) * fxMul(w,'clientFee') * incenseMul(w,'clientFee') * jb(w,w.job) * (react==='like' ? SVC.raceLikeFee : 1) * (below?0.75:1) * (reg ? (regQuirk(reg).tip||1) : 1) * cMul(client,'fee',X,w) * (act ? cQual(client,q) : cMul(client,'compFee',X)) * (spPoss ? spPoss.feeMult : 1) * (adShift ? adShift.feeMult : 1) * houseFeeMult * BAL.income.escort);
+    const rich = cls.tier==='merchant' || cls.tier==='noble', qualMet = q >= expQ, amenMet = amenScore >= expAmen;
+    const prestigeFeeMult = ((highF > 0 && rich && qualMet && amenMet) ? 1 + highF * (PR.richFeeBonus ?? 0.18) : 1) * (!act && highF > 0 ? 1 + highF * (PR.highCompFee ?? 0.45) : 1);
+    const inc = Math.round(base * P.mult * feeQualMult(q) * cm * (1+madF*0.15) * fxMul(w,'clientFee') * incenseMul(w,'clientFee') * jb(w,w.job) * (react==='like' ? SVC.raceLikeFee : 1) * (below?0.75:1) * (reg ? (regQuirk(reg).tip||1) : 1) * cMul(client,'fee',X,w) * (act ? cQual(client,q) : cMul(client,'compFee',X)) * (spPoss ? spPoss.feeMult : 1) * (adShift ? adShift.feeMult : 1) * houseFeeMult * prestigeFeeMult * BAL.income.escort);
     const altSat = outcome==='alt' ? (altDiff === 0 ? (BP.sidegradeSat ?? 5) : altDiff >= 2 ? (BP.downgradeSat ?? -4) : 3) : 0;
-    const sat0 = clamp(- below*0.5 - Math.max(0, repEff - BAL.clients.pickFrom)*BAL.clients.pickPer + q*100 + 6 + rnd(-15,15) + h.tier*5 - (h.price-1)*6 + (h.up.bath?4:0) + (HD.sat||0) + incenseAdd(w,'sat') + ((hr.tidyFx && hr.tidyFx.sat) || 0) + attHelp(w) * J.attendantSatPer + (matched && outcome==='yes' ? J.madameMatchSat : 0) + (outcome==='yes'?8:outcome==='alt'?altSat:outcome==='no'?-8:0)
+    const amenSat = Math.min(5, amenScore*2) - Math.max(0, expAmen - amenScore)*(PR.amenMissSat ?? 6) + (highF > 0 && amenScore > expAmen ? Math.min(PR.amenSurplusCap ?? 8, (amenScore - expAmen)*(PR.amenSurplusSat ?? 2.5))*highF : 0);
+    const qualSat = -Math.max(0, expQ - q)*((PR.qualMissSatBase ?? 10) + (pr0/100)*(PR.qualMissSatPer ?? 24)) + (highF > 0 && rich && qualMet ? highF * (PR.richSatBonus ?? 12) : 0);
+    const actionSat = outcome==='no' ? -lowF*(PR.lowActionMissSat ?? 10) : outcome==='comp' ? (highF*(PR.highCompSat ?? 6) - lowF*(PR.lowCompSat ?? 4)) : 0;
+    const isThrill = !!client && client.traits.some(t => t.id==='thrillSeeker');
+    const exhibSat = (act && has(w,'Exhibitionist')) ? (pr0 >= 50 && rich && !isThrill ? -((pr0 - 45)/55)*(PR.exhibNobleSat ?? 8) : (pr0 < 40 || cHas(client,'rowdy') || thirsty || isThrill) ? (PR.exhibRowdySat ?? 3) : 0) : 0;
+    const sat0 = clamp(- below*0.5 - Math.max(0, repEff - BAL.clients.pickFrom)*BAL.clients.pickPer + q*100 + 6 + rnd(-15,15) + amenSat + qualSat + actionSat + exhibSat - (h.price-1)*6*(1 - highF*(PR.priceTolCut ?? 0.55)) + (HD.sat||0) + incenseAdd(w,'sat') + ((hr.tidyFx && hr.tidyFx.sat) || 0) + attHelp(w) * J.attendantSatPer + (matched && outcome==='yes' ? J.madameMatchSat : 0) + (outcome==='yes'?8:outcome==='alt'?altSat:outcome==='no'?-8:0)
       + (fxSubC(w,'classBonus',cls)-1)*SVC.classBonusSat + (react==='like' ? SVC.raceLikeSat : react==='dislike' ? SVC.raceDislikeSat : 0)
       + waitAdj - crowdSatNow() + cAdd(client,'satAdd') + cStatSat(client, w, sp) + (spPoss ? spPoss.satAdd : 0) + (adShift ? adShift.satAdd : 0) + (thirsty && outcome==='no' ? BAL.clients.thirsty.sat : 0));
     if(thirsty && outcome==='no') thirstyMiss(client, true);
@@ -979,6 +1062,12 @@ function simHouse(h, R){
   let beds = bedsFor(h); hr.floor = [];
   S.workers.filter(w=>w.house===h.id && !['spirit','android'].includes(w.race)).sort((a,b)=>(b.isPartner||b.locked?1:0)-(a.isPartner||a.locked?1:0)).forEach(w=>{ if(beds>0){ beds--; w._bed = BEDS[h.beds||0].rest; } else { w._bed = FLOOR_REST; hr.floor.push(w.name); } });
   hr.avgSat = avg; hr.rep = h.rep;
+  updatePrestige(h, hr, W, R, {
+    courts: byJob('courtesan').length,
+    ownAtts: ownAttMap.size,
+    leaders: [mad, ...X.hosts.map(x=>x.w)].filter(Boolean),
+    angelChapel: !!(h.up.chapel && byJob('chapel').some(x=>x.race==='angel'))
+  });
   return hr;
 }
 function endWeek(){
@@ -1032,7 +1121,7 @@ function endWeek(){
     if(w.job==='rest'){ moodAdd(w, 8); w.health += 15; why('a week off', true); }
     w.health = clamp(w.health+5);
     if(w._bed===FLOOR_REST && !['spirit','android'].includes(w.race)){ moodAdd(w, -3); why('slept on the floor', false); }
-    else if(housingShort(h) && !['spirit','android','demon'].includes(w.race)){ moodAdd(w, -BAL.quarters.moodPer*housingShort(h)); why('expects better quarters in a house this famous', false); }
+    else if(housingShort(h) && !['spirit','android','demon'].includes(w.race)){ moodAdd(w, -BAL.quarters.moodPer*housingShort(h)); why('expects better quarters in a house of this prestige', false); }
     if(!(isVessel(w) && vesselStage(w) < 1)) w.mood += (BAL.mood.restingPoint + fxAdd(w,'moodRest') + (has(w,'Loyal')?5:0) + (has(w,'Devoted')?10:0) - w.mood) * BAL.mood.drift * fxMul(w,'moodDrift');
     if(cycleVarAdd('mood', 0)) moodAdd(w, cycleVarAdd('mood', 0));
     const extraAcc = Math.max(0, pr.acc - Math.max(0, pr.served - pr.comp));
@@ -1217,7 +1306,7 @@ function endWeek(){
 
   (R.houses||[]).forEach(hr=>{
     if(hr.short) log(`🚪 ${flavor('rooms_short', null, {house:hr.name})} (${hr.short} client${hr.short>1?'s':''} couldn't get a room; ${hr.roomsUsed}/${hr.roomCap} room sessions used.)`);
-    if(hr.crowdOver) log(`👥 ${hr.name} was overcrowded (${hr.guestsIn}/${hr.crowdCap} guests inside — +${hr.crowdOver} over house capacity; satisfaction and reputation suffered).`);
+    if(hr.crowdOver) log(`👥 ${hr.name} was overcrowded (${hr.guestsIn}/${hr.crowdCap} guests inside — +${hr.crowdOver} over house capacity; satisfaction, popularity and prestige suffered).`);
     const T = BAL.tidy, tk = hr.tidy >= T.high ? 'high' : hr.tidy < T.bad ? 'bad' : hr.tidy < T.low ? 'low' : null;
     if(tk) log(`${tk==='high'?'✨':'🧹'} ${flavor('tidy_'+tk, null, {house:hr.name})} (tidiness ${Math.round(hr.tidy)})`);
     if(hr.classroom) log(`📚 Classroom: ${hr.classroom.teacher} taught ${hr.classroom.subject.toLowerCase()} to ${hr.classroom.n} lad${hr.classroom.n===1?'y':'ies'}.`);
@@ -1311,7 +1400,8 @@ function repWaitTxt(h, full){
 function repHouseExtra(h){
   if(h.roomCap===undefined) return '';
   const pu = h.pushy||{};
-  return `rooms ${h.roomsUsed}/${h.roomCap}${h.short?` <span class="warn">(short on rooms)</span>`:''}${h.crowdOver?` · <span class="warn">crowded ${h.guestsIn}/${h.crowdCap}</span>`:''} · tidiness ${Math.round(h.tidy0)}→<b class="${h.tidy>=BAL.tidy.high?'good':h.tidy<BAL.tidy.low?'warn':''}">${Math.round(h.tidy)}</b>${h.promoDraw?` · promoter draw +${Math.round(h.promoDraw)}`:''}${h.stepIn?` · stepped in for ${h.stepIn}`:''}${h.waited||h.left||h.stopped?` · ${[h.waited?`${h.waited} waited`:'',h.left?`${h.left} left`:'',h.stopped?`${h.stopped} held at door`:''].filter(Boolean).join(', ')}`:''}${h.selfProps?` · restless ladies made ${h.selfProps} proposition${h.selfProps>1?'s':''} themselves`:''}${pu.total?` · pushy clients ${pu.total}: <span class="good">${(pu.talked||0)+(pu.security||0)+(pu.sam||0)} handled</span>${(pu.samfail||0)+(pu.none||0)?`, <span class="warn">${(pu.samfail||0)+(pu.none||0)} went badly</span>`:''}`:''}${ctraitsLine(h)}`;
+  const prTxt = h.prestige!==undefined ? ` · class ${Math.round(h.prestige0??h.prestige)}→<b>${Math.round(h.prestige)}</b> (${prestigeTier(h.prestige).label}${h.prestigeReasons&&h.prestigeReasons.length?`: ${h.prestigeReasons.map(x=>`<span class="${x.d>0?'good':'warn'}">${x.d>0?'+':'−'} ${esc(x.t)}</span>`).join(', ')}`:''})` : '';
+  return `rooms ${h.roomsUsed}/${h.roomCap}${h.short?` <span class="warn">(short on rooms)</span>`:''}${h.crowdOver?` · <span class="warn">crowded ${h.guestsIn}/${h.crowdCap}</span>`:''} · tidiness ${Math.round(h.tidy0)}→<b class="${h.tidy>=BAL.tidy.high?'good':h.tidy<BAL.tidy.low?'warn':''}">${Math.round(h.tidy)}</b>${prTxt}${h.promoDraw?` · promoter draw +${Math.round(h.promoDraw)}`:''}${h.stepIn?` · stepped in for ${h.stepIn}`:''}${h.waited||h.left||h.stopped?` · ${[h.waited?`${h.waited} waited`:'',h.left?`${h.left} left`:'',h.stopped?`${h.stopped} held at door`:''].filter(Boolean).join(', ')}`:''}${h.selfProps?` · restless ladies made ${h.selfProps} proposition${h.selfProps>1?'s':''} themselves`:''}${pu.total?` · pushy clients ${pu.total}: <span class="good">${(pu.talked||0)+(pu.security||0)+(pu.sam||0)} handled</span>${(pu.samfail||0)+(pu.none||0)?`, <span class="warn">${(pu.samfail||0)+(pu.none||0)} went badly</span>`:''}`:''}${ctraitsLine(h)}`;
 }
 function repAll(R){
   const net = R.income - R.wages - R.upkeep - (R.cuts||0) - (R.recharge||0) - (R.tutor||0), L = R.led;
@@ -1319,7 +1409,7 @@ function repAll(R){
     + `<tr><td>Wages</td><td class="warn">−${fmt(R.wages)}</td></tr><tr><td>Upkeep</td><td class="warn">−${fmt(R.upkeep)}</td></tr>` + (R.cuts ? `<tr><td>Profit cuts</td><td class="warn">−${fmt(R.cuts)}</td></tr>` : '') + (R.recharge ? `<tr><td>Recharging</td><td class="warn">−${fmt(R.recharge)}</td></tr>` : '') + (R.tutor ? `<tr><td>Tutors</td><td class="warn">−${fmt(R.tutor)}</td></tr>` : '')
     + (L.sam?`<tr><td class="muted">Sam's bar shifts (already in your purse)</td><td class="good">+${fmt(L.sam)}</td></tr>`:'')
     + `<tr><th>Net</th><th class="${net>=0?'good':'warn'}">${fmt(net)}</th></tr>`;
-  const houseRows = (R.houses||[]).map(h=>{ const wt = repWaitTxt(h, false); return `<tr><td>${repLink('h:'+h.id, esc(h.name))}</td><td>${h.served}${wt?` <span class="${h.left?'warn':'muted'}">(${wt})</span>`:''}</td><td>${fmt(h.income)}</td><td>${fmt(h.upkeep)}</td><td>${Math.round(h.avgSat)}</td><td>${Math.round(h.rep)}</td></tr>`; }).join('');
+  const houseRows = (R.houses||[]).map(h=>{ const wt = repWaitTxt(h, false); return `<tr><td>${repLink('h:'+h.id, esc(h.name))}</td><td>${h.served}${wt?` <span class="${h.left?'warn':'muted'}">(${wt})</span>`:''}</td><td>${fmt(h.income)}</td><td>${fmt(h.upkeep)}</td><td>${Math.round(h.avgSat)}</td><td>${Math.round(h.rep)}</td><td>${h.prestige!==undefined?`${Math.round(h.prestige)} <span class="muted">(${prestigeTier(h.prestige).label})</span>`:'—'}</td></tr>`; }).join('');
   const per = Object.values(R.per||{});
   const ladyRows = (R.houses||[]).map(h=>{ const ps = per.filter(p=>p.house===h.id); if(!ps.length) return '';
     return `<tr><th colspan="6" style="text-align:left">${repLink('h:'+h.id, esc(h.name))}</th></tr>` + ps.map(p=>{ const n = R.hl.filter(x=>x.wid===p.id).length;
@@ -1328,7 +1418,7 @@ function repAll(R){
   return `<div class="grid2"><div>Clients served: <b>${R.served}</b>${allWt?` <span class="${R.left||(!R.stopped&&R.turned)?'warn':'muted'}">(${allWt}; more staff or rooms needed)</span>`:''}</div>
       <div>Avg. satisfaction: <b>${Math.round(R.avgSat)}</b> · Renown: <b>${Math.round(R.rep)}</b></div></div>
     <div class="grid2"><div><h3 style="margin-top:10px">Ledger</h3><table>${ledger}</table></div>
-      <div><h3 style="margin-top:10px">Houses</h3><table><tr><th>House</th><th>Clients</th><th>Income</th><th>Upkeep</th><th>Sat.</th><th>Rep</th></tr>${houseRows}</table></div></div>
+      <div><h3 style="margin-top:10px">Houses</h3><table><tr><th>House</th><th>Clients</th><th>Income</th><th>Upkeep</th><th>Sat.</th><th>Pop.</th><th>Class</th></tr>${houseRows}</table></div></div>
     ${(R.houses||[]).map(h=>{ const x = repHouseExtra(h); return x ? `<div class="muted"><b>${esc(h.name)}</b>: ${x}</div>` : ''; }).join('')}
     ${R.samActs&&R.samActs.length?`<h3 style="margin-top:10px">Sam's week</h3><div class="muted">${R.samActs.map(esc).join(' · ')}</div>`:''}
     ${R.lines.length?`<h3 style="margin-top:10px">Notes</h3>${R.lines.map(l=>`<div>${esc(l)}</div>`).join('')}`:''}
@@ -1408,7 +1498,7 @@ function repHouse(R, hid){
   const h = (R.houses||[]).find(x=>x.id===hid); if(!h) return repAll(R);
   const ps = Object.values(R.per||{}).filter(p=>p.house===hid), x = repHouseExtra(h);
   return `<h3>${esc(h.name)}</h3>
-    <div class="grid2"><div>Clients: <b>${h.served}</b>${repWaitTxt(h, true)?` <span class="${h.left||(!h.stopped&&h.turned)?'warn':'muted'}">(${repWaitTxt(h, true)})</span>`:''} · Satisfaction <b>${Math.round(h.avgSat)}</b> · Rep <b>${Math.round(h.rep)}</b></div><div>Income <b class="good">${fmt(h.income)}</b> · Upkeep <b class="warn">${fmt(h.upkeep)}</b></div></div>
+    <div class="grid2"><div>Clients: <b>${h.served}</b>${repWaitTxt(h, true)?` <span class="${h.left||(!h.stopped&&h.turned)?'warn':'muted'}">(${repWaitTxt(h, true)})</span>`:''} · Satisfaction <b>${Math.round(h.avgSat)}</b> · Popularity <b>${Math.round(h.rep)}</b> · Class <b>${h.prestige!==undefined?`${Math.round(h.prestige)} (${prestigeTier(h.prestige).label})`:'—'}</b></div><div>Income <b class="good">${fmt(h.income)}</b> · Upkeep <b class="warn">${fmt(h.upkeep)}</b></div></div>
     ${x?`<div class="muted">${x}</div>`:''}
     ${ps.map(p=>{ const n = R.hl.filter(z=>z.wid===p.id).length;
       return `<div class="rep-w">${repHead(p)}${repWhy(p)}<div class="row"><button class="sm" onclick="repGo('w:${p.id}')">📜 ${n ? `Her ${n} encounter${n>1?'s':''}` : 'Her week'} →</button></div></div>`; }).join('') || '<p class="muted">Nobody worked here this week.</p>'}`;

@@ -428,7 +428,7 @@
     "button": {"1":"Kiss her again","2":"Don't stop—","3":"Almost…"}
   },
   "vessel": {
-    "stageLabels": ["Empty vessel", "Stirring vessel", "Quickening vessel", "Awakened vessel"],
+    "stageLabels": ["Empty vessel","Stirring vessel","Quickening vessel","Awakened vessel"],
     "awakenedTitle": "Awakened Vessel",
     "dormantMood": "Mood: dormant (fill the vessel to stir her)",
     "backstory": "Shaped like {form} when this cycle turned—quiet-eyed, pliable, and waiting like an empty vessel for you to fill her with a soul of her own.",

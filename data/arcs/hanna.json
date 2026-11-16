@@ -43,7 +43,7 @@
               "m": 8,
               "l": 2,
               "private": true,
-              "acts": ["kiss", "handjob"],
+              "acts": ["kiss","handjob"],
               "res": "\"Best filing error all week,\" she breathes as your mouth finds hers through the steam."
             },
             {
@@ -63,7 +63,7 @@
               "m": 10,
               "l": 4,
               "private": true,
-              "acts": ["sex_ride", "sex_vaginal", "oral_give"],
+              "acts": ["sex_ride","sex_vaginal","oral_give"],
               "res": "She laughs softly against your lips as her slick thighs settle astride your hips in the bubbles."
             },
             {
@@ -125,12 +125,12 @@
         },
         {
           "label": "Lock the front bolt and lift her onto the empty bar",
-          "if": {"canAct": ["sex_vaginal", "oral_give", "handjob"]},
+          "if": {"canAct":["sex_vaginal","oral_give","handjob"]},
           "t": 5,
           "m": 9,
           "l": 3,
           "private": true,
-          "acts": ["oral_give", "sex_vaginal", "handjob"],
+          "acts": ["oral_give","sex_vaginal","handjob"],
           "res": "Brass coins clatter across the counter as she hooks her ankles straight behind your waist."
         },
         {

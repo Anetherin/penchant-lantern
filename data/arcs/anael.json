@@ -43,7 +43,7 @@
               "m": 8,
               "l": 2,
               "private": true,
-              "acts": ["massage_give", "kiss"],
+              "acts": ["massage_give","kiss"],
               "res": "A shiver runs down every primary feather as your palms trace the warm curve of her wing-joint."
             },
             {
@@ -63,7 +63,7 @@
               "m": 10,
               "l": 4,
               "private": true,
-              "acts": ["sex_vaginal", "oral_give", "kiss"],
+              "acts": ["sex_vaginal","oral_give","kiss"],
               "res": "Warm white wings fold instinctively around your back as she pulls you down into the water with her."
             },
             {
@@ -123,12 +123,12 @@
         },
         {
           "label": "Thumb the berry stain off her lip and take her upstairs",
-          "if": {"canAct": ["kiss", "oral_give", "sex_vaginal"]},
+          "if": {"canAct":["kiss","oral_give","sex_vaginal"]},
           "t": 5,
           "m": 8,
           "l": 2,
           "private": true,
-          "acts": ["kiss", "oral_give", "sex_vaginal"],
+          "acts": ["kiss","oral_give","sex_vaginal"],
           "res": "Her halo flares warm amber the second your thumb brushes her berry-sweet lower lip."
         },
         {

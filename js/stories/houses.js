@@ -76,7 +76,7 @@ const STORIES = {
       pay('Throw a spring festival', 300, h, ()=>{ storyAdvance(h,60); h.bonus.demand = 1.25; h.rep=clamp(h.rep+5); return `The festival draws travelers from three valleys. Business at ${h.name} is permanently up (+25% clients).\n\n${RN(h)}, flushed and happy: "Don't you dare pay me anymore. This is my home, and you saved it."` + freeResident(h); }),
       {label:'Not yet', fx(){ storyRetry(h); return `${RN(h)} pouts. "Soon, then."`; }}]})
   ]},
-  hollow:{title:'Unfinished Business', hint:['The manor\'s reputation is attracting attention.','Vesper\'s past is hidden somewhere in the manor.','Someone wants to make amends.'], beats:[
+  hollow:{title:'Unfinished Business', hint:['The manor\'s popularity is attracting attention.','Vesper\'s past is hidden somewhere in the manor.','Someone wants to make amends.'], beats:[
     h=>({title:'Unfinished Business (1/3)', who:storyNpc('ines'), text:`A woman in a long black coat kicks the door in, silver dagger drawn. "Ines Varga, Order of the Pale Lantern. I'm here to exorcise the spirit of this house."\n\n${RN(h)} floats down the stairs. "Oh good, a guest."`, choices:[
       check('Bar the door','Strength',S.sam.strength,32, ()=>{ storyAdvance(h); return 'Ines is shoved, protesting, back onto the front step. She camps outside. For a week.'; }, ()=>{ storyRetry(h); return 'Ines gets past you easily. Vesper, offended, rattles every window in the house until she leaves.'; }),
       check('Ask her to wait a week','Charm',S.sam.charm,36, ()=>{ storyAdvance(h); return 'Ines, against her better judgment, agrees to "observe." She takes a room. She pays for it.'; }, ()=>{ storyRetry(h); return '"Absolutely not." She\'ll be back.'; }),

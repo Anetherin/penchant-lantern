@@ -43,7 +43,7 @@
               "m": 8,
               "l": 2,
               "private": true,
-              "acts": ["kiss", "massage_give"],
+              "acts": ["kiss","massage_give"],
               "res": "\"Acceptable opening argument,\" she breathes as steam clings to both of you."
             },
             {
@@ -63,7 +63,7 @@
               "m": 10,
               "l": 4,
               "private": true,
-              "acts": ["sex_vaginal", "oral_give", "sex_ride"],
+              "acts": ["sex_vaginal","oral_give","sex_ride"],
               "res": "\"About time,\" she whispers, catching your wet wrists before you even sit down."
             },
             {
@@ -124,12 +124,12 @@
         },
         {
           "label": "Pull her into the pantry for an off-the-record review",
-          "if": {"canAct": ["kiss", "oral_give", "sex_vaginal"]},
+          "if": {"canAct":["kiss","oral_give","sex_vaginal"]},
           "t": 5,
           "m": 8,
           "l": 2,
           "private": true,
-          "acts": ["oral_give", "sex_vaginal", "kiss"],
+          "acts": ["oral_give","sex_vaginal","kiss"],
           "res": "Flour dusts her apron as you nudge the pantry bolt shut, and her brisk composure breaks at once."
         },
         {
@@ -193,12 +193,12 @@
         },
         {
           "label": "Sweep the pieces aside and raise the stakes upstairs",
-          "if": {"canAct": ["sex_vaginal", "oral_give"]},
+          "if": {"canAct":["sex_vaginal","oral_give"]},
           "t": 6,
           "m": 10,
           "l": 3,
           "private": true,
-          "acts": ["sex_vaginal", "sex_ride", "oral_give"],
+          "acts": ["sex_vaginal","sex_ride","oral_give"],
           "res": "Her breath catches as you tip the brass clock off and take her hand toward the stairs."
         },
         {

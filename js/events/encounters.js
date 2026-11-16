@@ -122,7 +122,7 @@ function evReckless(w){
   const n = ri(2,4), cut = samGold(n * 22 * (1 + (h?h.rep:10)/100), 'business', 0.25);
   return {title:`${w.name} Freelances`, who:w.id, scene:'companion', text:`On her night off, ${w.name} got restless, went down to the lounge, and quietly took ${n} clients to bed of her own choosing. Off the books. She's back now, glowing, slightly guilty, and holding out an envelope: ${fmt(cut)}.`,
     choices:[
-      {label:'Take the money and let it slide', fx(){ S.gold += cut; w.energy = clamp(w.energy-25, 0, maxEnergy(w)); w.lust = clamp(w.lust-45); moodAdd(w, 6); if(h) h.rep = clamp(h.rep-1); return {text:`+${fmt(cut)}. She's thrilled. One of the clients complained about the "irregular service," though (−1 reputation).`, ai:{kind:'reckless', wid:w.id, scene:'companion', situation:`on her night off she slipped down to the lounge and took ${n} clients of her own choosing, off the books.`}}; }},
+      {label:'Take the money and let it slide', fx(){ S.gold += cut; w.energy = clamp(w.energy-25, 0, maxEnergy(w)); w.lust = clamp(w.lust-45); moodAdd(w, 6); if(h) h.rep = clamp(h.rep-1); return {text:`+${fmt(cut)}. She's thrilled. One of the clients complained about the "irregular service," though (−1 house popularity).`, ai:{kind:'reckless', wid:w.id, scene:'companion', situation:`on her night off she slipped down to the lounge and took ${n} clients of her own choosing, off the books.`}}; }},
       {label:'Talk to her about it', fx(){ S.gold += cut; w.energy = clamp(w.energy-25, 0, maxEnergy(w)); w.lust = clamp(w.lust-45); gainTrust(w, 2); moodAdd(w, -3); return `+${fmt(cut)}. You explain why the house needs to know who's where. She listens. She also asks to work more evenings.`; }}]};
 }
 

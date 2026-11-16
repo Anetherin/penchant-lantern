@@ -86,6 +86,15 @@ const clsTier = id => ((CLASSES.find(c=>c.id===id)||{}).tier || id);
 // Report wording for an anonymous client of a class (people.json → clients, else "a laborer").
 const clientWho = id => { const d = CLIENT_DESC[id]; return d && d.length ? pick(d) : 'a ' + TIER_LABEL(id).toLowerCase(); };
 const HOUSES = ECON.houses;
+const PRESTIGE_TIERS = [
+  {min:80, id:'prestigious', label:'Prestigious'},
+  {min:65, id:'refined',     label:'Refined'},
+  {min:45, id:'respectable', label:'Respectable'},
+  {min:25, id:'casual',      label:'Casual'},
+  {min:0,  id:'rowdy',       label:'Rowdy'}
+];
+const housePrestige = h => { const D = h && HOUSES[h.id]; return h && h.prestige != null ? h.prestige : (D && D.prestige != null ? D.prestige : 50); };
+const prestigeTier = v => PRESTIGE_TIERS.find(t => (v ?? 50) >= t.min) || PRESTIGE_TIERS[PRESTIGE_TIERS.length - 1];
 // Sam's past lives: the one he picked at the start, plus one more per New Game+ cycle if he chooses (S.pasts).
 const samPasts = () => (typeof S!=='undefined' && S) ? (S.pasts && S.pasts.length ? S.pasts : (S.past ? [S.past] : [])) : [];
 const hasPast = k => samPasts().includes(k);

@@ -41,7 +41,7 @@ const STORY_EXTRA = {
       {label:'Hide behind the bar', fx(){ RES(h,{t:-5, m:-4}); storyAdvance(h,10); return `${RN(h)} notices. ${RN(h)} remembers.`; }}]}),
     end:h=>({who:RID(h), scene:'job_bartender', text:`The first barrel of Ironsong ale in years is tapped at the Tankard. ${RN(h)} is crying into it and pretending she isn't.`, choices:[
       {label:'Ship it to every house you own', fx(){ S.flags.ironsong=true; storyAdvance(h,60); return 'Ironsong ale flows in every house (bar income +15% everywhere).'; }},
-      {label:'Keep it Tankard-exclusive', fx(){ h.bonus.bar=(h.bonus.bar||1)*1.2; h.rep=clamp(h.rep+6); storyAdvance(h,60); return 'People cross the whole city for a pint (Tankard bar income +20% more, +reputation).'; }}]})},
+      {label:'Keep it Tankard-exclusive', fx(){ h.bonus.bar=(h.bonus.bar||1)*1.2; h.rep=clamp(h.rep+6); storyAdvance(h,60); return 'People cross the whole city for a pint (Tankard bar income +20% more, +house popularity).'; }}]})},
   pavilion:{hintMid:'Rehearsals are underway.', hintEnd:'The Moonlily Festival is coming.',
     mid:h=>({who:RID(h), scene:'job_dancer', text:`${RN(h)} twists her ankle in rehearsal, three days before the season's big premiere.`, choices:[
       {label:'Postpone and let her rest', fx(){ const R=resident(h); if(R) R.energy=maxEnergy(R); RES(h,{t:6, m:4}); h.rep=clamp(h.rep-1); storyAdvance(h,20); return 'The premiere slips a week. She heals fully, and she doesn\'t forget that you chose her over the schedule.'; }},
@@ -86,5 +86,5 @@ function storyCard(h){
   const st = STORIES[h.id]; if(!st || !h.story) return '';
   const b = h.story.beat, done = b>=st.beats.length;
   const need = STORY_REP[b]||0;
-  return `<section class="card"><h2>📖 ${esc(st.title)} <span class="muted">(${Math.min(b,st.beats.length)}/${st.beats.length})</span></h2>${done?'<span class="good">Complete!</span>':`<div class="muted">${esc(st.hint[b])}</div><div class="muted">Next chapter: ${h.rep<need?`needs this house's reputation at ${need} (now ${Math.round(h.rep)})`:'coming soon'}.</div>`}</section>`;
+  return `<section class="card"><h2>📖 ${esc(st.title)} <span class="muted">(${Math.min(b,st.beats.length)}/${st.beats.length})</span></h2>${done?'<span class="good">Complete!</span>':`<div class="muted">${esc(st.hint[b])}</div><div class="muted">Next chapter: ${h.rep<need?`needs this house's popularity at ${need} (now ${Math.round(h.rep)})`:'coming soon'}.</div>`}</section>`;
 }
