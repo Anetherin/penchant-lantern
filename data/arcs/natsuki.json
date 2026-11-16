@@ -5,22 +5,22 @@
       "scene": "sam_date",
       "text": "Natsuki takes you up onto the old ramparts at sunset, where the stone is still warm from the afternoon. She sits down on the edge with her legs over the drop, as she used to sit on the wall behind the school.\n\nShe pulls up the hem of her shirt to show you a scar below her ribs. It's pale and ragged. She got it in her first week here, from something with too many teeth, before she had learned how to hold a sword.\n\n\"Nobody stitched it. I didn't know who to ask.\" She lets the shirt fall. \"Three years, Sam. Cold hostels. Contracts I couldn't read. I got good because the alternative was dying.\"\n\nYou remember the two of you on the curb outside the corner shop, with ice pops melting down your wrists.\n\n\"I kept thinking, if Sam walked up right now, he'd do something stupid and we'd somehow both come out breathing.\" She laughs, roughly, and leans into your shoulder. \"Then you finally turn up, and you've inherited a brothel.\"",
       "ngpp": [
-        "Even while laughing about summer popsicles back home, she stops half a beat staring at the wall lantern—like a ghost of sharing this same stone bench tugged her sleeve.",
-        "\"Funny, Sam—I remember every single stupid bike race back home clear as yesterday, yet sitting beside you on THIS town wall feels like we already settled in here once.\"",
-        "\"Three years alone wasn't enough to shake me loose, idiot,\" Natsuki mutters, leaning firmly against your arm despite wiped cycles. \"I remember Earth—and every rib in my chest knows this wall bench belongs to us too.\""
+        "She's laughing about the ice pops when she stops mid-sentence. She looks at the stone under her, then at the lantern on the wall, and frowns. \"Weird,\" she says. \"Felt like I'd sat here before. Like someone tugged my sleeve.\" Then she shrugs it off and steals a look at you.",
+        "\"I remember every stupid bike race back home,\" she says slowly. \"Every one. But this wall, this bench, you next to me, that feels remembered too, and it shouldn't.\" She twists the hem of her shirt in her fist. \"Sam, have we done this already?\"",
+        "\"Three years alone didn't shake me loose,\" Natsuki says, leaning on your arm. \"Whatever happened before this didn't either. I remember Earth. I remember this wall, too, and you sitting right here. Don't look at me like that, idiot. I know what I know.\""
       ],
       "choices": [
         {
           "label": "Trace the scar gently with your eyes only",
           "t": 5,
           "m": 8,
-          "res": "You don't touch it, but you look, and you let her see you looking. She goes quiet in a way she never was in the old neighborhood, and moves the plaster on her cheek back into place."
+          "res": "You don't touch it. You look, and you let her see you looking. She goes quiet in a way she never was on the old street. She keeps her shirt hem in her fist a moment longer than she needs to. Then she nudges the plaster on her cheek back into place and says, \"Okay. That's enough of that,\" and she doesn't sound annoyed at all."
         },
         {
           "label": "Admit the dumb thing was on purpose",
           "t": 1,
           "m": 2,
-          "res": "\"Totally on purpose,\" you lie. {N} grins, rubs her plaster, and punches your shoulder, softer than she'd like to admit."
+          "res": "\"Totally on purpose,\" you say. \"I planned the whole thing. Other world, brothel, everything.\" {N} stares at you for a second. Then she grins, rubs the plaster on her cheek and punches your shoulder, softer than she'd like to admit. \"Idiot. You couldn't plan a sandwich.\" She leaves her shoulder against yours afterward, and neither of you mentions it."
         }
       ],
       "image": {"comp":"showing him a scar on her arm, sitting on a fence, half-smiling","setting":"town wall walkway at sunset","sam":true}
@@ -42,14 +42,14 @@
               "l": 2,
               "private": true,
               "acts": ["massage_give","kiss"],
-              "res": "Natsuki stiffens for two stubborn seconds as warm lather works over old sword-calluses and pale scars—before tipping her head back with a sharp breath to catch your mouth in a hot, wet kiss.",
-              "fallbackRes": "She grumbles the whole time about your terrible massage technique, though she leans squarely back against your knuckles until her ears glow pink."
+              "res": "You open the door wider and kneel beside the tub with the brush. Natsuki stiffens for two stubborn seconds as the lather goes over her back, over the sword calluses and the pale scars. Then her shoulders drop. She tips her head back against your arm with a sharp breath, her wet hair on your sleeve, and turns her face up toward yours.",
+              "fallbackRes": "She grumbles the whole time about your terrible technique. Press harder, then lighter, then harder again. She leans back against your knuckles all the same, and by the end her ears are pink and she's stopped complaining. \"Okay,\" she says. \"That was fine. Don't tell anyone I said that.\""
             },
             {
               "label": "Toss her the bath brush and close the door cleanly",
               "t": 2,
               "m": 4,
-              "res": "\"Chicken,\" she calls after you, though she's laughing against the splash of hot water."
+              "res": "You toss the brush into the tub. It lands with a splash near her knee, and you step back and pull the door shut. \"Chicken!\" she yells through the wood. She's laughing, and you hear her kicking water. A second later, quieter: \"Thanks. For not making it weird.\" You're not sure she meant you to hear that."
             }
           ]
         },
@@ -65,7 +65,7 @@
               "l": 4,
               "private": true,
               "acts": ["cowgirl","missionary","oral_give"],
-              "res": "Before you settle waist-deep in the hot water, Natsuki pins your shoulders straight back against the wood and sinks cleanly down onto your cock—riding you hard with damp cheek pressed fiercely to yours."
+              "res": "You strip fast, and she watches every piece of clothing hit the floor. The water is almost too hot when you climb in. Natsuki doesn't wait for you to settle. She grabs your shoulders and pushes you back against the wooden wall, her wet tits against your chest and her mouth at your ear. \"Told you,\" she says. \"Not gentle.\""
             },
             {
               "label": "Pin her lightly against the rim and take your time",
@@ -74,7 +74,7 @@
               "l": 3,
               "private": true,
               "acts": ["oral_give","manual_give","kiss"],
-              "res": "She gasps loudly when your hands slide low under the hot water, gripping your neck tightly while mist hides nothing between you both."
+              "res": "You press her back against the rim of the tub, slowly, one hand on the wood beside her head. The other slides down her wet stomach, and she hisses and grips the back of your neck hard. The steam hides nothing. \"Take your time,\" she says. \"I'll hate it. I'll hate it more if you stop.\" Her heels slip on the tub floor."
             }
           ]
         }
@@ -83,18 +83,18 @@
         {
           "label": "Duck",
           "m": 4,
-          "res": "You don't duck fast enough. She feels terrible. She laughs anyway, pressing the heel of her hand against her mouth."
+          "res": "You duck, but not fast enough. The soap clips your ear and skitters across the tiles. {N} makes a noise that's half apology and half laugh, and she presses the heel of her hand to her mouth. \"Sorry! Reflex!\" Her face is still red, and she's already sliding lower in the water. \"Next time, knock. I mean it this time.\""
         },
         {
           "label": "Take it like a man",
           "t": 2,
           "m": 6,
-          "res": "Direct hit, right between the eyes. \"Nice reflexes, hero,\" she says, sinking up to her nose in the water, amber eyes bright with mischief."
+          "res": "You stand there and let it come. The soap hits you right between the eyes with a smack you can hear in the hall. \"Nice reflexes, hero,\" she says, sinking up to her nose in the water. Her amber eyes are bright, and she's shaking with laughter. When you wipe your face she's still looking, and she doesn't look away first."
         },
         {
           "label": "Apologize through the door",
           "t": 2,
-          "res": "\"Knock next time, idiot!\" She sounds like she's grinning, and you hear the soap splash into the tub as she forgives you."
+          "res": "You back out, shut the door, and say sorry to the wood. For a moment there's only dripping. \"Knock next time, idiot!\" She sounds like she's grinning. You hear the soap plop into the tub, and then her voice again, lower. \"You're forgiven. Go away. Not far away, though.\""
         }
       ],
       "image": {
@@ -117,19 +117,19 @@
           "l": 3,
           "private": true,
           "acts": ["missionary","oral_give","kiss"],
-          "res": "You catch her wrist before she walks away, draw her behind the quiet lantern wall away from the crowd, and pin her warm mouth under yours until the paper bag hits the stones."
+          "res": "You catch her wrist before she can turn away and draw her behind the stall, into the alley where the lantern light gives out. She lets you. You put her back against the brick and kiss her until the paper bag drops and the last taiyaki rolls into the gutter. \"Not dumb,\" you say against her mouth. \"Say it again,\" she says, and pulls you in by the hoodie."
         },
         {
           "label": "Tell her it isn't dumb",
           "t": 5,
           "m": 8,
-          "res": "\"It isn't dumb.\" Your voice cracks on the second word. She crushes the bag completely and says nothing, but she doesn't stop you from taking her hand."
+          "res": "\"It isn't dumb.\" Your voice cracks on the second word. Natsuki crushes the paper bag into a ball and says nothing. She stares at the lantern until it's gone around the corner. But when you take her hand she doesn't pull away, and after a minute her thumb starts moving over your knuckles, the way it did when you were kids."
         },
         {
           "label": "Steal the last taiyaki to break the tension",
           "t": 1,
           "m": 2,
-          "res": "You steal the last one, deadpan. {N} yelps, chases you three stalls down, and laughs herself breathless. Her ears are red when she catches up."
+          "res": "You reach into the bag, take the last one and bite its head off before she can stop you. {N} yells. She chases you three stalls down the street, past a woman selling cabbages, who yells too. When she catches you she's laughing so hard she can't hit you. Her ears are red. \"That was supposed to be mine,\" she says, and takes the tail."
         }
       ],
       "image": {
@@ -143,29 +143,29 @@
       "scene": "portrait",
       "text": "Natsuki took a dungeon contract without telling anyone. It was a solo run with a deep floor, and the bounty had sat on the guild board for a month because nobody else would touch it.\n\nShe's gone for three days. You find out where she went from the bartender.\n\nShe comes back through the front door on the third night with her arm in a sling made from her own cloak and a sack of gold over her shoulder. She's grinning through the grime. Her sword is chipped along one edge, and the plaster is gone from her cheek, along with some of the cheek.\n\n\"Basically nothing,\" she announces to the common room. \"Two of them. Maybe five. Look at this haul!\"\n\nThen she sees your face.\n\nThe grin falters. She stands there with the sack still held up. She looks like a kid who has brought home a test with a hundred on it and found that nobody is pleased.",
       "ngpp": [
-        "When you pull the bandages out before she finishes talking, she blinks sharply—as though she remembers this exact quiet standoff over her bruises.",
-        "\"Why did you grab the splint out of the bottom cupboard before looking, Sam?\" she mutters through gritted teeth, weirdly shaken despite the grin.",
-        "She drops straight into the chair before you even scold her, holding out her good arm with rough quiet surrender. \"Yeah, yeah—I knew you'd look at me like that, idiot. Patch me up.\""
+        "When you pull the bandages out before she's finished talking, she blinks. She says nothing, but her eyes stay on your hands, as if she's watched them do this before. \"Lucky guess,\" she mutters, and she doesn't sound like she believes it.",
+        "\"You went to the bottom cupboard for the splint without looking,\" she says through gritted teeth. \"We never kept it there. Did we?\" She tries to grin, and it doesn't hold. \"Sam, I feel like I've sat in this chair with this exact arm. It's creeping me out.\"",
+        "She drops into the chair before you say a word and holds out her good arm. \"Yeah, yeah. I knew you'd look at me like that, idiot.\" Her voice is rough. \"Don't ask how. I've done this before, I'm sure of it. So patch me up first. Then you can yell.\""
       ],
       "choices": [
         {
           "label": "Yell at her",
           "t": -4,
           "m": -8,
-          "res": "\"You don't get to disappear on me twice!\" It comes out wrong, too loud, too raw. You don't talk for a while."
+          "res": "\"You don't get to disappear on me twice!\" It comes out wrong, too loud and too raw, and the whole common room goes quiet. {N} lowers the sack. She opens her mouth to shout back, and doesn't. She sets the gold on a table and walks upstairs with her good arm held stiff. You don't talk for the rest of the night."
         },
         {
           "label": "Patch her up, quietly",
           "health": 20,
           "t": 6,
           "m": 6,
-          "res": "You don't say anything. You don't have to. She leans her head against yours, breathing out three years of tension."
+          "res": "You don't say anything. You take her to the kitchen, cut the cloak off her arm, clean the gash and bind it, and she lets you without a single joke. Her hand shakes once, and you hold it still. When you're done she leans her forehead against yours and breathes out, long and slow. The sack of gold sits forgotten on the floor."
         },
         {
           "label": "Make her promise",
           "t": 4,
           "m": 2,
-          "res": "\"Next time, you come with me,\" she says, laughing a little. \"Deal?\" You say deal, and she spits in her palm to shake on it."
+          "res": "\"Next time, you come with me,\" she says, trying to laugh, and holds out her good hand. \"Deal?\" It isn't what you meant. But she looks at you like it's the only thing she has to offer. You say deal. She spits in her palm and you shake on it, and neither of you mentions how bad the sling looks."
         }
       ],
       "image": {"comp":"limping in with a broken arm in a sling and a sack of gold, defiant grin","setting":"inn entrance hall at night","sam":false}
@@ -184,13 +184,13 @@
           "label": "Hold her hand",
           "t": 4,
           "m": 8,
-          "res": "Her scarred fingers tremble for one second, then lace firmly between yours. Gold light washes over her cheek as the finale bursts, and she never pulls back."
+          "res": "You take her hand. Her scarred fingers shake for one second, and then they lace between yours and hold. The finale goes up in gold and white, and the light runs over her cheek. She doesn't pull back or make a joke. She watches the sky, squeezes once, and keeps her hand where it is until the smoke drifts over the roofs."
         },
         {
           "label": "Tell her you missed her, all three years",
           "t": 6,
           "m": 6,
-          "res": "She punches your shoulder hard enough to sting, then cries fiercely against your hoodie before laughing while the last rocket drowns everything out."
+          "res": "\"I missed you,\" you say. \"All three years. I didn't know where you were, and I missed you anyway.\" She hits your shoulder hard enough to sting. Then her face crumples, and she cries into your hoodie with her fist knotted in the fabric. The last rockets go off and drown her out. When she laughs, it's wet and angry and relieved all at once."
         },
         {
           "label": "Pull her down into the empty watch-alcove once the smoke clears",
@@ -200,7 +200,7 @@
           "l": 3,
           "private": true,
           "acts": ["kiss","oral_give","cowgirl"],
-          "res": "As the last pink ember fades above the watchtower, Natsuki catches both sides of your collar and pulls you eagerly back into the lantern-lit alcove."
+          "res": "The last pink ember is still sinking over the watchtower when Natsuki catches both sides of your collar. She doesn't say anything this time. She pulls you into the alcove, where the lantern light is a thin gold strip on the stone and the air smells of old rope and smoke. She gets her back against the wall and drags you in, her breath hot on your mouth."
         }
       ],
       "image": {
@@ -214,9 +214,9 @@
       "scene": "final",
       "text": "Natsuki kicks your door open at dawn.\n\nShe has never been good at knocking, but this is new. The lock splinters under her boot. Cold light comes in behind her. She's red in the face, and her sword is still on her hip. She has plainly been up all night walking the walls and arguing with herself.\n\n\"I spent three years here thinking I'd never see you again.\" She's almost shouting. \"And before that I spent a whole life back home pretending we were just kids from the same street. I knew, Sam. I knew when we were fifteen. I was too chicken to say it, so I said 'race you' for ten years.\"\n\nShe takes a breath that shakes.\n\n\"I'm not wasting another day. I love you, you idiot. I'm staying, and it's not for the free meals. It never was.\"\n\nShe kicks the door shut behind her. It doesn't latch any more, so she shoves the chair against it.",
       "ngpp": [
-        "Even kicking the latch splinters feels oddly practiced, like another piece of her remembers losing patience at this exact dawn.",
-        "\"Don't ask why I feel like I've broken this exact bedroom door already, Sam,\" she growls flushed to her collarbones as she steps toward your bed.",
-        "\"Every Earth summer, every wiped cycle in this town—I don't care anymore, Sam,\" Natsuki breathes fiercely as she unbuckles her sword belt. \"You're stuck with me.\""
+        "The latch splinters, and she freezes with her boot still raised. Something about the sound is familiar. She shakes her head. \"Huh,\" she says. \"Weird. Feels like I've lost my temper at this exact dawn before.\" Then she goes on shouting at you.",
+        "\"Don't ask why I feel like I've broken this door already,\" she growls. She's flushed to her collarbones, and she isn't looking at your face. \"I know where the chair goes. I know you'll say nothing for ten seconds. I don't get how.\"",
+        "\"I don't care how it works anymore,\" Natsuki says. She unbuckles her sword belt and lets it drop. \"Earth, this town, whatever came before. I remember all of it, and I remember saying this to you. I'm saying it again, Sam. You're stuck with me.\""
       ],
       "goLead": "Natsuki drops her scabbard onto the chair and shoves you back onto the mattress. She climbs on top of you and straddles your waist, fierce and out of breath and laughing.",
       "choices": [
@@ -226,7 +226,7 @@
           "t": 1,
           "m": -3,
           "hold": true,
-          "res": "{N} scowls, then softens. \"I can wait. Don't make it too long.\" She repairs the door herself on the way out, badly, and mutters about not being patient."
+          "res": "{N} scowls, then it drains out of her face. \"I can wait,\" she says. \"Don't make it long, idiot.\" She picks up her scabbard and looks at the wrecked latch. On the way out she tries to fix the door herself, badly, hammering it with her fist and muttering about patience."
         }
       ]
     }

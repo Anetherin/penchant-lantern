@@ -5,22 +5,22 @@
       "scene": "sam_date",
       "text": "Kanako ruffles your hair and calls you \"Sammy\" in front of the whole staff. It's the third time this week. Her red lipstick leaves a smudge on your cheek, and everybody pretends not to see it.\n\nYou're the owner of the house. You have a debt the size of a small castle. The new girls look at you, and then at her, and try to work it out.\n\nLater she finds you on the back steps. The lamp is behind her, and the pins are coming loose from her hair, the way they used to by the end of a Friday when she'd lean on the balcony rail next door.\n\nShe sits down beside you with two glasses and pours.\n\n\"I watched you with the wine merchant today,\" she says. \"He tried to short you a crate, and you just looked at him until he fixed it.\" She tilts her head. The beauty mark moves when she smiles. \"You've grown up a lot, haven't you, Sammy? When did that happen? I must have been looking somewhere else.\"",
       "ngpp": [
-        "Even tossing her head back with that Apartment 3B laugh, she freezes one second looking at your boots on the step—like she remembers leaning on THIS wooden rail before.",
-        "\"Six years across the hall in Tokyo I never forgot a drink order, Sammy,\" she murmurs sideways at you, bewildered, \"so why did I pour two plum wines for this exact back step before checking?\"",
-        "Kanako slides straight against your arm without pretending she's only teasing the neighbor kid. \"Reset all the inns you want—every version of me still ends up sharing smoke and night air with you, Sammy.\""
+        "She's mid-laugh, head thrown back, when she stops and looks at your boots on the step. Then at the wooden rail beside her. A small line appears between her brows. \"Funny,\" she says. \"I feel like I've leaned on that before.\" She shakes it off and tops up your glass.",
+        "\"Six years across the hall, and I never forgot a drink order,\" she says, turning the bottle in her hand. \"So why did I pour two plum wines before I asked what you wanted? Why this step, Sammy?\" She laughs, but she's frowning at the glasses.",
+        "Kanako doesn't pretend she's teasing the neighbor kid. She slides against your arm and stays there. \"Reset the inn as often as you like,\" she says. \"Every version of me ends up on a back step at night, sharing smoke with you. I remember, Sammy. I'm not confused.\""
       ],
       "choices": [
         {
           "label": "Tell her it happened somewhere around the truck",
           "t": 5,
           "m": 8,
-          "res": "\"Somewhere around the truck,\" you say. She laughs, loud and bright, then goes quiet and watches you a beat too long over the rim of her glass."
+          "res": "\"Somewhere around the truck,\" you say. She laughs, loud and bright, and the new girls peeking through the door duck away. Then she goes quiet. She looks at you over the rim of her glass for a beat too long, and when she speaks again her voice is lower. \"Well. I missed it. I don't like that I missed it.\""
         },
         {
           "label": "Let her ruffle your hair again",
           "t": 1,
           "m": 2,
-          "res": "You bow your head and let her. {N}'s fingers linger in your hair a second past the joke, and then she tucks a loose pin back into place and says nothing."
+          "res": "You bow your head and let her. {N}'s fingers linger in your hair a second past the joke. She tucks a loose pin back into her own and says nothing for a while. The lamp hums. When she finally picks up her glass, she holds it with both hands, like something might slip, and she doesn't call you Sammy again that night."
         }
       ],
       "image": {"comp":"ruffling his hair in front of the staff, laughing","setting":"lively bar during staff meeting","sam":true}
@@ -42,14 +42,14 @@
               "l": 3,
               "private": true,
               "acts": ["manual_give","oral_give","kiss"],
-              "res": "Soapy fingers tangle smoothly in your wet hair before sliding low across your chest as you tug Kanako flush down onto the tub edge—smearing plum lipstick straight across your jaw while her breath hitches.",
-              "fallbackRes": "Her manicured fingers work slow, maddening circles across your scalp and neck until she murmurs softly under her breath, cheeks rosy beneath the steam."
+              "res": "You tip your head back into her hands. \"Sit still, Sammy,\" she says, and her voice has gone rough. Soapy fingers drift down over your collarbone and she leans over the tub, her robe gaping, her lipstick a hand's width from your jaw. You catch her wrist and pull her mouth down to yours.",
+              "fallbackRes": "Her manicured fingers work slow circles across your scalp and neck, and stay there longer than the shampoo needs. She hums, and the hum catches. When she rinses the suds away her cheeks are pink beneath the steam. \"Don't look at me in the mirror,\" she murmurs. \"I'm working.\" She doesn't move her hands."
             },
             {
               "label": "Let her wash your hair and trade quiet bar gossip",
               "t": 3,
               "m": 5,
-              "res": "\"Such a polite boy when you aren't staring,\" she teases lightly, flicking warm suds across your nose before slipping out."
+              "res": "You let her wash your hair, and the two of you trade bar gossip. Who's skimming the tips, which regular is in love with whom. \"Such a polite boy when you're not staring,\" she teases, and flicks warm suds across your nose. She dries her hands, takes her time about it, and slips out, leaving the door ajar."
             }
           ]
         },
@@ -65,7 +65,7 @@
               "l": 4,
               "private": true,
               "acts": ["cowgirl","missionary","oral_give"],
-              "res": "Kanako laughs low in her throat, sinking straight down onto your cock in the hot water as plum-painted lips graze your collarbone and her nails dig deliciously into wet shoulders."
+              "res": "She laughs at the bolt, then throws it herself. \"Look at you, with your mouth open,\" she says, and settles against you in the hot water. Her tits are slick against your chest, her red mouth is at your ear. Your hands find her waist. She takes them and moves them lower, down her hips, with a small, pleased sound."
             },
             {
               "label": "Work her over slowly with mouth and hands against the rim",
@@ -74,7 +74,7 @@
               "l": 3,
               "private": true,
               "acts": ["oral_give","breast_give","manual_give"],
-              "res": "She arches back against the cedar rim breathing hot, breathless praise against your throat while steam curls thick across her slick skin."
+              "res": "You lift her back against the cedar rim, and she goes willingly, with a long breath. \"Slow,\" she says. \"I've been on my feet since noon.\" You start with your hands on her shoulders and your mouth at her throat. Steam curls up around her flushed skin, and she tells you exactly what she likes, in the voice she uses on the staff."
             }
           ]
         }
@@ -83,19 +83,19 @@
         {
           "label": "Insist she leave",
           "t": 2,
-          "res": "\"So shy, Sammy!\" she giggles, and goes. Her laugh carries all the way down the corridor, a touch too bright, and she forgets the schedule on the stool."
+          "res": "You tell her to go. \"So shy, Sammy!\" she giggles, and gathers her papers. Her laugh carries all the way down the corridor, a touch too bright, and she forgets the schedule on the stool. You find it later, and on the back she's drawn a small, sloppy heart and then scribbled it out."
         },
         {
           "label": "Act just as casual",
           "m": 5,
           "l": 2,
-          "res": "She falters. Just a little. Her eyes flick down, then away, and the lipstick-red smile stays fixed. Interesting."
+          "res": "You lean back in the water and ask about Thursday. She falters. Just a little. Her eyes flick down, then away, and the lipstick smile stays fixed while she counts bottles on her fingers and loses count twice. When she leaves she walks a bit too quickly. It's the first time you've seen her not know where to put her hands."
         },
         {
           "label": "\"I'm a grown man, Kanako.\"",
           "t": 3,
           "m": -2,
-          "res": "She stops mid-sentence. Looks at you. Leaves without a word, and you can hear her not laughing all the way down the hall."
+          "res": "\"I'm a grown man, Kanako.\" She stops mid-sentence. She looks at you, properly, for the first time in six years. Then she sets the schedule on the stool and leaves without a word. You can hear her not laughing all the way down the corridor, and a door closing somewhere, hard."
         }
       ],
       "image": {
@@ -117,19 +117,19 @@
           "l": 4,
           "private": true,
           "acts": ["missionary","oral_give","kiss"],
-          "res": "You lock the front latch and step straight between her parted knees at the mahogany bar; Kanako exhales a hot, stunned laugh against your mouth, wrapping silky legs tightly around your hips."
+          "res": "You lock the front latch, lift her onto the empty bar, and stand between her knees. Kanako exhales a stunned, hot laugh against your mouth. \"Sammy, the whole street can see,\" she says, and then she hooks her fingers in your hoodie and pulls you in, and her lipstick comes off on your jaw in a long red smear."
         },
         {
           "label": "Tell her since always",
           "t": 5,
           "m": 8,
-          "res": "\"Since always,\" you say, and it comes out smaller than you intended. She takes a slow breath. When she nods, her hand rests on yours for a moment."
+          "res": "\"Since always,\" you say, and it comes out smaller than you meant. Kanako takes a slow breath and doesn't joke. She looks at the glass still ringing on the shelf. When she nods, her hand comes down over yours on the counter and stays. \"Okay,\" she says. \"Okay. Let me think about that. Don't go anywhere.\""
         },
         {
           "label": "Pour her a drink and say nothing",
           "t": 1,
           "m": 2,
-          "res": "You pour her a glass without a word. {N} drinks it slowly, looking at you over the rim, and for once she's the one who forgets to joke."
+          "res": "You pour her a glass without a word and slide it across. {N} drinks it slowly, looking at you over the rim. For once she's the one who forgets to joke. She sets the glass down, runs her thumb around its edge, and finally says, \"The good chair's behind the bar. Sit.\" Then she makes you a drink too."
         }
       ],
       "image": {
@@ -143,27 +143,27 @@
       "scene": "portrait",
       "text": "Kanako has found you a nice girl.\n\nShe's very proud of herself. The girl is a baker's daughter, twenty-six, and good with figures. Kanako has arranged a dinner. She's set a table in the corner with a candle on it, and she's wearing her own best lipstick for the occasion, which you don't point out.\n\nShe fusses with your collar. She tells you to sit up straight and to ask the girl about herself. Her laugh is the loudest thing in the room.\n\n\"You need somebody, Sammy. You can't just have a house full of women and a ledger. Somebody your own age, who'll make sure you eat.\"\n\nShe straightens your cuff. Her fingers aren't quite steady on the button.\n\nShe's twenty-nine. She fed you for six years. She's sending you off to dinner with somebody else, and she's smiling very hard, and you don't think she knows why her hands are shaking.",
       "ngpp": [
-        "Right as she smooths your collar, her thumb pauses over your pulse—like some half-woken ghost remembers doing this jealous act already.",
-        "\"Why did fixing your tie just make my own chest hurt worse than last time, Sammy?\" she mutters softly under her breath, lipstick smile cracking slightly.",
-        "She reaches to adjust your cuff—then drops both hands and laughs crookedly. \"Forget the dinner stunt, Sammy. You and I both know I can't stand watching anyone else look at you.\""
+        "As she smooths your collar, her thumb stops over your pulse. Her face goes blank for a second, like a woman hearing a song from another room. \"Odd,\" she says. \"I could swear I've done this before. Stood here, wanting to do the opposite.\" She tugs your collar straight anyway.",
+        "\"Why does fixing your tie make my chest hurt more than it should?\" she mutters, a crack running through the lipstick smile. \"I've done this already, Sammy. Some other night. It ended badly, and I can't remember how.\" She straightens your cuff, then lets go of it too quickly.",
+        "She reaches for your cuff, and then drops both hands and laughs crookedly. \"Forget the dinner. I tried this and it hurt, and I remember that it hurt.\" Her eyes are bright. \"I can't stand watching anyone else look at you, Sammy. Not any more. I'm done pretending.\""
       ],
       "choices": [
         {
           "label": "Go on the date to make her happy",
           "t": -3,
           "m": -6,
-          "res": "She asks how it went. Twice. She doesn't seem happy with either answer, and she wipes the same glass for a quarter of an hour."
+          "res": "You go. The baker's daughter is nice, and clever, and you keep looking at the candle. When you get back, Kanako asks how it went. Twice. She doesn't seem happy with either answer, and she wipes the same glass for a quarter of an hour. She smiles every time you look, and it never reaches her eyes."
         },
         {
           "label": "\"It's always been you. You know that.\"",
           "t": 5,
           "m": -4,
-          "res": "Kanako opens her mouth, closes it, and leaves. She doesn't sleep that night. Neither do you."
+          "res": "\"It's always been you. You know that.\" Kanako opens her mouth. She closes it. The candle has burned half down. She presses her hand flat against her collar, then picks up her bag and leaves without the lipstick smile, without a word. She doesn't sleep that night. Neither do you."
         },
         {
           "label": "Politely refuse",
           "t": 2,
-          "res": "\"You're impossible, Sammy,\" she sighs, and fusses with your collar once more. She looks relieved, and a little guilty about it."
+          "res": "You tell the girl politely that it's off, and why. \"You're impossible, Sammy,\" Kanako sighs, and fusses with your collar once more. She looks relieved, and a little guilty about it. She blows out the candle at the corner table and sits down in the girl's chair. \"I'll eat it. Somebody has to.\""
         }
       ],
       "image": {
@@ -186,13 +186,13 @@
           "label": "Sing, badly",
           "m": 9,
           "t": 3,
-          "res": "She joins straight in beside you. Together you massacre three tavern standards while a tipsy lute player weeps with joy—still the best night either of you has had since crossing worlds."
+          "res": "She joins in at once, flat and loud and delighted. Together you massacre three tavern standards while a tipsy lute player weeps with joy. She leans her shoulder into yours on the high notes, and the six seats clap, and for an hour neither of you thinks about the debt. It's the best night you've had since crossing worlds."
         },
         {
           "label": "Ask her to sing",
           "t": 4,
           "m": 6,
-          "res": "Her voice drops low and smoky over the quiet lute chords, singing every verse with soft dark eyes fixed steadily on yours across the glass."
+          "res": "Her voice drops low and smoky over the lute chords. She sings every verse with her dark eyes on yours across the glass, and it isn't a bar song any more. The lute player slows down to follow her. When she finishes, nobody claps for a moment. Then Kanako laughs, a little shakily, and orders another round."
         },
         {
           "label": "Walk her straight upstairs the moment the tavern closes",
@@ -202,7 +202,7 @@
           "l": 3,
           "private": true,
           "acts": ["oral_give","cowgirl","missionary","kiss"],
-          "res": "Kanako drains the last drop of wine in one smooth tilt, catches your hoodie sleeve, and murmurs warmly, \"Come on, Sammy—this mama wants last call in private.\""
+          "res": "Kanako drains the last of her wine and puts the glass down with a click. She catches your hoodie sleeve and gets up on legs that are steadier than she's pretending. \"Come on, Sammy,\" she murmurs. \"This mama wants last call in private.\" She keeps hold of the sleeve all the way up the stairs."
         }
       ],
       "image": {
@@ -216,9 +216,9 @@
       "scene": "final",
       "text": "Kanako corners you in the kitchen late at night. The lamp is low and there's a pot cooling on the stove. She made too much again, out of habit.\n\nShe's flustered. You have never seen that before. Her lipstick is smudged where she has been biting her lip, and she keeps picking up the ladle and putting it down.\n\n\"I went to my room and I couldn't sleep, so I came down to cook. And I worked something out, stirring.\" She laughs, and it comes out wrong. \"I spent six years telling myself you were the boy next door. I said it every time I brought you dinner. I think I was saying it so I wouldn't have to look.\"\n\nShe puts the ladle down for good.\n\n\"You're not the boy next door, Sammy. You haven't been for a long time. I'm the last one in this house to notice, and I'm supposed to be the one who can read people.\"\n\nShe kisses you. She laughs at her own blush, and kisses you again, deeper.",
       "ngpp": [
-        "Caught off-guard by her own breathless tremor, she murmurs softly that closing this kitchen door feels frighteningly like coming home.",
-        "\"I remember six years next door in Tokyo, Sammy,\" she whispers shakily against your chin, \"and somehow my hips still recognize this exact stove corner from a life erased.\"",
-        "\"Let the heavens rewrite the calendar all they want, Sammy,\" Kanako purrs warm and fierce against your throat. \"You stopped being the boy next door lifetimes ago.\""
+        "The kitchen latch clicks, and she stops with her hand on it. \"Strange,\" she says, with a breathless little laugh. \"It feels like I've shut this door before. Like I'm coming home.\" She presses her palm flat against her sternum, as though checking it's still there.",
+        "\"I remember six years next door in Tokyo, Sammy,\" she whispers, her lips against your chin. \"And I remember this stove, and this corner. I know where the ladle goes. I couldn't have learned that.\" She looks up. \"Tell me I'm not losing my mind.\"",
+        "\"Let the heavens rewrite the calendar,\" Kanako says against your throat. Her voice is warm and certain. \"I remember. Not everything, but enough. You stopped being the boy next door lifetimes ago, Sammy, and I knew it then too. I'm not confused any more.\""
       ],
       "goLead": "Kanako slides her warm hands up under your hoodie and presses herself against you from knee to chest. Behind her, the kitchen latch clicks shut.",
       "choices": [
@@ -228,7 +228,7 @@
           "t": 1,
           "m": -3,
           "hold": true,
-          "res": "{N} laughs, but it's soft. \"I can wait, Sammy. Don't make it too long.\" She ruffles your hair, slowly this time, like a question."
+          "res": "{N} laughs, but it's soft. \"I can wait, Sammy. Don't make it too long.\" She turns the stove off and wraps the pot in a cloth for you, out of habit. At the door she ruffles your hair, slowly this time, like a question, and leaves her hand there a second longer than the joke needs."
         }
       ]
     }

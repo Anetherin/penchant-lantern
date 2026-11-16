@@ -5,22 +5,22 @@
       "scene": "sam_date",
       "text": "Hanna traps you at a corner table in the bakery with two mugs of cider and a thick sheaf of guild forms. She's annotated them in bright blue ink.\n\n\"Business meeting,\" she says. \"Very serious. Sit.\"\n\nHalf the pages are real. They're bounty tallies, with her corrections. The other half are something else. There's a hand-drawn seating chart of the guild hall. It shows which adventurers tip best, which merchants blush when you compliment them, and who has been seen leaving whose room.\n\nIn one margin there's a small doodle of a hooded figure. It's labeled \"Terrible disguise. 10/10 charm.\"\n\nYou're reading it upside down. She catches you and slaps the paper flat. The freckles across her nose have gone bright pink.\n\n\"Trade secrets! Eyes on your pastry, Sam!\" She pulls the whole stack toward her side of the table. \"That one's old, anyway. It's from before I knew you. I've got much better material now.\"",
       "ngpp": [
-        "Right next to the hoodie doodle she pauses with a sudden squint, muttering that she could've sworn she drew a little lantern beside it before.",
-        "\"Okay, creepy question,\" she mutters over her cider, squinting at her own ink. \"Did I already tell you that hoodie disguise joke? Why'd my hand write 'still 10/10' under it?\"",
-        "\"Don't laugh,\" she says softly, sliding the blue-ink ledger halfway toward you. \"Every page in this stack feels like notes from a life we already lived, Sam. Tell me I'm not losing it.\""
+        "Next to the hooded doodle she stops and squints at her own ink. \"Huh,\" she mutters. \"I could have sworn I drew a little lantern beside that.\" She taps the page with her pencil, shrugs, and tells herself she's just tired from the night shift.",
+        "\"Okay, creepy question,\" she says over her cider, squinting at her ink. \"Did I already tell you the hoodie disguise joke? Why did my hand write 'still 10/10' under it? I never wrote that. Don't look at me like I'm the one being weird.\"",
+        "\"Don't laugh,\" she says, and slides the blue ink ledger halfway toward you. \"Every page in this stack reads like notes from a life we already lived, Sam. I know what's on the next page. I wrote it down, I think, and then it got lost. Tell me I'm not losing it.\""
       ],
       "choices": [
         {
           "label": "Demand to see the rest of your margin notes",
           "t": 5,
           "m": 8,
-          "res": "She tries to swat your hands away, fails, and ends up laughing into her cider while giving you a wildly exaggerated dramatic reading of every rumor she ever heard about you."
+          "res": "You reach for the stack and she swats your hands away. She fails, and ends up laughing into her cider, one hand holding the ledger down. Then she gives you a wildly exaggerated, dramatic reading of every rumor she's ever heard about you, with voices. The baker looks over. She doesn't stop. By the end her freckles are bright pink, and she has not once looked at the real pages."
         },
         {
           "label": "Ask why she really left the Guild desk",
           "t": 4,
           "m": 6,
-          "res": "Her grin softens into something real. \"Because standing behind a counter hearing everyone else's stories gets old, Sam. I wanted to actually live in one for a change.\""
+          "res": "Her grin softens into something real. \"Because standing behind a counter hearing everyone else's stories gets old, Sam,\" she says. She turns her mug a quarter turn on the table. \"I knew the whole town's business and none of it was mine. I wanted to actually live in one, for a change.\" She looks at you, and doesn't joke. The cider goes cold between you."
         }
       ],
       "image": {
@@ -44,13 +44,13 @@
               "l": 2,
               "private": true,
               "acts": ["kiss","manual_give"],
-              "res": "\"Best filing error all week,\" she breathes as your mouth finds hers through the steam."
+              "res": "You step into the steam and she tips her face up to you. Her wet curls are cold against your wrist. You put a hand behind her neck and she lets you hold her there. \"Best filing error all week,\" she breathes, and her hand slides into the pocket of your hoodie and stays. You kiss her, and the candle gutters."
             },
             {
               "label": "Leave her to dry her cards with a promise for later",
               "t": 2,
               "m": 4,
-              "res": "\"I'm holding you to that after hours,\" she calls brightly behind the latch."
+              "res": "You tell her to take her time with the cards, and promise her the interview later. She goes pink to the ears. \"I'm holding you to that after hours,\" she calls brightly behind the latch. She is trying to sound casual, and she is not. You hear her laugh once, alone, and then the scrape of a stool."
             }
           ]
         },
@@ -64,14 +64,14 @@
               "l": 4,
               "private": true,
               "acts": ["cowgirl","missionary","oral_give"],
-              "res": "She laughs softly against your lips as her slick thighs settle astride your hips in the bubbles."
+              "res": "You pull your shirt off and she watches every inch of it with a grin. The water is hot as you climb in. She lowers herself into your lap, wet thighs settling astride your hips in the bubbles, and she laughs softly against your lips. \"Told you,\" she says. \"It won't stay hot forever.\" Her hands are already in your hair."
             },
             {
               "label": "Wash the soap across her shoulders and tease her about gossip",
               "t": 4,
               "m": 7,
               "l": 2,
-              "res": "She melts back against your chest with a happy groan. \"Okay, better than any ledger.\""
+              "res": "You take the soap and wash it across her shoulders instead, and tease her about gossip. She melts back against your chest with a happy groan and tips her head to give you her neck. \"Okay,\" she says. \"Better than any ledger.\" She's slow and loose in your hands. She tells you three rumors and forgets the third."
             }
           ]
         }
@@ -81,7 +81,7 @@
           "label": "Apologize and shut the door fast",
           "t": 2,
           "m": 4,
-          "res": "\"Smooth exit!\" she calls through the wood. Five minutes later she slides a single dry index card under your door reading: IOUs: 1 proper knock (collectable tonight)."
+          "res": "You apologize and shut the door fast. \"Smooth exit!\" she calls through the wood, and you hear a wet card slap onto the tiles. Five minutes later she slides a single dry index card under your door. It reads: IOUs, 1 proper knock (collectable tonight). The handwriting is steady. The underline isn't."
         },
         {
           "label": "Ask which card has your name on it",
@@ -89,11 +89,11 @@
           "t": 3,
           "m": 7,
           "l": 2,
-          "res": "Hanna smirks, deliberately letting the towel dip an inch at her collarbone as she holds a card between two fingers. \"Depends—are you offering a live interview?\"",
+          "res": "You ask which card has your name on it. Hanna smirks and lets the towel dip an inch at her collarbone. She holds a card between two fingers, just out of reach. \"Depends,\" she says. \"Are you offering a live interview?\" Her eyes don't leave your face. She tucks the card against her chest, and she is, for once, in no hurry at all.",
           "else": {
             "t": 1,
             "m": -2,
-            "res": "\"Classified!\" she announces, tossing a wet sponge straight at your chest before slamming the latch shut with a bright laugh."
+            "res": "\"Classified!\" she announces, and throws a wet sponge straight at your chest. It hits with a slap. You step back, and she slams the latch shut with a bright laugh. You hear her bump into the stool, and then you hear her whispering something to herself that sounds a lot like your name."
           }
         },
         {
@@ -101,7 +101,7 @@
           "t": 2,
           "m": 5,
           "l": 1,
-          "res": "\"Now that's executive support,\" she grins, tugging the towel tight around her thighs while you lean politely against the doorframe."
+          "res": "You offer to hold the candle so she doesn't burn the cards. \"Now that's executive support,\" she says with a grin, and tugs the towel tight around her thighs. You lean on the doorframe and hold the stub steady while she dries the cards one by one. She keeps the one with your name face down on her knee the whole time."
         }
       ],
       "image": {
@@ -121,7 +121,7 @@
           "t": 5,
           "m": 8,
           "l": 1,
-          "res": "Her fingers curl into your shirt at once, freckles glowing in the amber light. \"Yeah,\" she whispers, leaning forward until her forehead rests against your chin. \"Like that.\""
+          "res": "You cover her hand with yours where it rests on your collar. Her fingers curl into your shirt at once, and her freckles glow in the amber light. \"Yeah,\" she whispers. She leans forward until her forehead rests against your chin, and stays there. The coins sit uncounted. She doesn't say another word about the knight."
         },
         {
           "label": "Lock the front bolt and lift her onto the empty bar",
@@ -131,13 +131,13 @@
           "l": 3,
           "private": true,
           "acts": ["oral_give","missionary","manual_give"],
-          "res": "Brass coins clatter across the counter as she hooks her ankles straight behind your waist."
+          "res": "You throw the front bolt and come back to her. You lift her onto the empty bar and brass coins clatter across the counter. She laughs, breathless, and hooks her ankles behind your waist. \"I just counted those,\" she says. Her hands pull your shirt free, and she tips your mouth down to hers. The lantern is the only light left."
         },
         {
           "label": "Pour two nightcaps and stay by the counter",
           "t": 4,
           "m": 7,
-          "res": "She hops down to sit on the counter right beside you, bumping her knee against yours while the quiet house settles around you both."
+          "res": "You pour two nightcaps and stay by the counter. She hops down to sit on the bar beside you, and bumps her knee against yours. The quiet house settles around you both. She sips, and doesn't tell you anything for a while, which for Hanna is a gift. When she leans on your shoulder, you let her."
         }
       ],
       "image": {
@@ -151,28 +151,28 @@
       "scene": "portrait",
       "text": "A messenger from the Adventurers' Guild comes by before noon with a letter stamped in red wax.\n\nThe head clerk has retired. The Guildmaster wants Hanna back. He's offering double her old pay, a corner office of her own, and a seat on the trade council.\n\nShe reads it twice on the front steps. She's twirling her pencil between her knuckles as she goes, faster and faster, and on the second read-through it snaps in half.\n\nShe looks up at you. For once there's no teasing in her face.\n\n\"It's everything I thought I wanted, two years ago,\" she says softly. \"I used to lie awake planning what I'd do with that office. I had the curtains picked out.\"\n\nShe turns the two halves of the pencil over in her palm.\n\n\"I walked out because I was sick of knowing everybody's story and not having one. I've got one now. Say the word, Sam. What do you think I should do?\"",
       "ngpp": [
-        "Staring at the red wax seal, she snaps her pencil right on beat—then blinks down at the wood as though remembering the exact crack.",
-        "\"Weirdest déjà vu,\" she mutters softly over the offer letter. \"Why does double pay already sound like bad news compared to staying on your porch?\"",
-        "\"Look at me holding a fancy corner-office scroll and already tearing the corner,\" she says quietly, freckles warm. \"I already chose you over that marble desk once, Sam. Didn't even have to think.\""
+        "She stares at the red wax and snaps her pencil on the beat, then blinks down at the two halves. She remembers the sound of it. She doesn't say so. She sets the pieces down on the step and straightens them with one finger.",
+        "\"Weirdest déjà vu,\" she mutters over the offer letter. \"Why does double pay already sound like bad news compared to staying on your porch? I haven't even finished reading it.\" She looks at you sideways. \"I think I've turned this down. I'd like to say it out loud and see.\"",
+        "\"Look at me holding a fancy corner office scroll and already tearing the corner,\" she says quietly, and her freckles are warm. \"I already chose you over that marble desk once, Sam. Didn't even have to think. I'm not weighing it this time. I'm just telling you I know.\""
       ],
       "choices": [
         {
           "label": "\"I'd hate to lose you, yet I won't hold you back.\"",
           "t": 4,
           "m": 2,
-          "res": "Hanna exhales slowly, then laughs—a little wetly—and crumples the red-wax offer into her pocket. \"Good answer, Sam. Mostly because I'd already decided not to go.\""
+          "res": "You tell her you'd hate to lose her and you won't hold her back. Hanna exhales slowly and laughs, a little wetly. Then she crumples the red wax offer into her pocket. \"Good answer, Sam. Mostly because I'd already decided not to go,\" she says. She wipes her eye with her wrist, and then she punches your arm, once, lightly."
         },
         {
           "label": "\"Stay here with me. This place isn't half as bright without you.\"",
           "t": 6,
           "m": 8,
-          "res": "Her face lights up bright enough to outshine the porch lantern. She grabs the messenger's ink pen, scribbles \"Position already filled—by me, somewhere better\" across the bottom, and hands it back."
+          "res": "You tell her to stay, and that this place isn't half as bright without her. Her face lights up bright enough to outshine the porch lantern. She grabs the messenger's ink pen and scribbles across the bottom of the letter: Position already filled, by me, somewhere better. She hands it back to him with a flourish and kisses you on the cheek."
         },
         {
           "label": "\"Double pay is hard to argue with.\"",
           "t": -3,
           "m": -7,
-          "res": "Her smile goes flat in half a second. \"Right. Good business sense.\" She walks inside without waiting for you—though when morning comes, she is still behind your desk, quiet and unusually distant."
+          "res": "You say double pay is hard to argue with. Her smile goes flat in half a second. \"Right. Good business sense,\" she says. She walks inside without waiting for you. She doesn't slam anything. When morning comes she is still behind your desk, quiet and unusually distant, sorting receipts into neat piles, and she doesn't tease you once."
         }
       ],
       "image": {
@@ -191,13 +191,13 @@
           "t": 5,
           "m": 8,
           "l": 2,
-          "res": "She turns her face up before you can pull away, catching your mouth in a warm, sweet kiss that tastes like honey and dusk."
+          "res": "You kiss her temple and pull her closer. She turns her face up before you can pull away and catches your mouth, and it is a warm, sweet kiss that tastes like honey and dusk. The almond bag tips over between her knees and neither of you picks it up. Down in the square, the lamps keep coming on, one by one."
         },
         {
           "label": "Tell her you're glad she walked out on the Guild",
           "t": 4,
           "m": 7,
-          "res": "\"Best impulse decision I ever made,\" she says happily, lacing her fingers tight through yours until the stars come out."
+          "res": "You tell her you're glad she walked out on the Guild. \"Best impulse decision I ever made,\" she says happily, and she laces her fingers tight through yours. She doesn't tease you about it. She points out the two by the fountain, and then, quietly, she stops pointing at anyone, and you watch the stars come out together."
         }
       ],
       "image": {
@@ -211,9 +211,9 @@
       "scene": "final",
       "text": "Hanna shuts your bedroom door with her heel and leans back against it.\n\nShe's wearing your spare shirt and nothing else. It comes halfway down her thighs. She's grinning, bright-eyed and out of breath, and the sight of her goes through you like heat.\n\nShe crosses the rug in four steps and climbs into your lap on the edge of the bed. Her hands come up to frame your face.\n\n\"I've been writing this down all week,\" she whispers. \"I couldn't get it right, so I'm just going to say it.\"\n\nShe presses her forehead to yours. Her hips settle against you.\n\n\"No more margin notes. No more rumors. I'm done standing behind somebody else's counter and writing about what other people get.\" Her breath is warm on your mouth. \"I want the whole thing, Sam. Every week, every cycle, and nothing kept back. I know everybody's secret in this town. Mine is that I'm in love with you. Tell me I'm yours.\"",
       "ngpp": [
-        "Even buttoned in nothing but your oversized shirt, she pauses mid-stride across the rug, shivering with a sudden flash of heat she can't explain.",
-        "\"Okay, laugh at me,\" she breathes right against your chin, hips rocking gently in your lap. \"Why does straddling you in this shirt already feel like my favorite habit?\"",
-        "\"Reset the cycle all she wants,\" Hanna whispers fiercely, unbuttoning the stolen shirt right in your palms. \"My body never forgot this bed, Sam. Claim me front page tonight.\""
+        "Buttoned in nothing but your oversized shirt, she pauses mid stride on the rug. A flash of heat goes over her face, and she doesn't know why. She presses her hand flat to her chest, laughs at herself, and closes the last few steps.",
+        "\"Okay, laugh at me,\" she says against your chin, her hips settling in your lap. \"Why does straddling you in this shirt already feel like my favorite habit? I've never done this. I know exactly where my knees go.\" Her grin is shaky, and her hands are not.",
+        "\"Reset the cycle all she wants,\" Hanna says, and undoes the first button of the stolen shirt under your hands. \"My body never forgot this bed, Sam. I know what I said last time. I'm saying it again, on the record. Put me on the front page tonight.\""
       ],
       "goLead": "You peel your shirt up off Hanna's freckled shoulders and lay her back on the sheets. She's laughing, and then the laugh turns into a low, eager gasp against your throat.",
       "choices": [
@@ -223,7 +223,7 @@
           "t": 1,
           "m": -3,
           "hold": true,
-          "res": "Hanna blinks, swallows hard, and manages a crooked smile as she climbs off your lap. \"Okay,\" she says softly, pulling the oversized shirt tighter around herself. \"Wait's on the record. Just don't keep a girl on hold too long.\""
+          "res": "Hanna blinks and swallows hard, and manages a crooked smile as she climbs off your lap. \"Okay,\" she says softly, and pulls the oversized shirt tighter around herself. \"Wait's on the record.\" She fetches her boots from the rug and doesn't put them on. \"Just don't keep a girl on hold too long. I'm bad at it.\""
         }
       ]
     }

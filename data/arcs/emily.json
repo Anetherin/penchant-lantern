@@ -5,22 +5,22 @@
       "scene": "sam_date",
       "text": "Emily asks you to meet her on the bridge over the canal after close. She's there before you. She's twisting the strap of her satchel in both hands, and the lamplight is shivering on the water below.\n\nShe has plainly rehearsed this. She has just as plainly forgotten every word.\n\n\"Okay. So. This is going to sound insane.\" She takes a breath. \"I told you there was something I had to say, and that I wasn't brave enough yet. I'm still not. I'm doing it anyway.\"\n\nThen she says your old forum username out loud.\n\nNobody in this world should know it. You haven't heard it spoken in your life. You only ever saw it typed, in a little grey box, next to a wolf-girl's avatar.\n\nHer ears are flat against her hair. Her tail is wrapped around her own leg.\n\n\"Please tell me I didn't just say a random string of letters to a stranger,\" she whispers. \"Please. I have been carrying that for a year.\"",
       "ngpp": [
-        "Just as she grips your sleeve thanking the universe her dorm mate didn't vanish, she blinks down at the canal ripples in sudden confused déjà vu.",
-        "\"Okay, wait—I remember six years of RP threads back in my dorm, Sam,\" she mutters softly, ears twitching. \"So why does standing on THIS cobblestone bridge feel like a scene we already played live?!\"",
-        "\"Don't laugh, Shadowkin,\" Emily whispers, leaning straight against your sleeve despite blank Hollowmere logs. \"My dorm room's clear in my head—and somehow my tail already knows the exact speed you walk across this bridge.\""
+        "She grips your sleeve, and for a second she stops and looks down at the ripples on the canal. Something crosses her face. She has the odd feeling she has stood on this bridge before, saying these same words. She shakes her head and the feeling goes.",
+        "\"Wait.\" She frowns at the cobblestones. \"I remember six years of threads from my dorm, Sam. So why does this bridge feel like a scene we already played? I know where you'll stand before you move.\" Her ears twitch. You step to exactly that spot.",
+        "\"Don't laugh, Shadowkin,\" Emily says, and leans against your sleeve before you've offered it. \"I know this is the first time on paper. It isn't the first time for my tail. It knows how fast you walk across this bridge.\" She says it flatly, like a fact she checked."
       ],
       "choices": [
         {
           "label": "Say \"Shadowkin?\"",
           "t": 5,
           "m": 8,
-          "res": "She makes a noise you have only ever seen typed as a keysmash. Then she grabs your sleeve with both hands and holds on, tail thumping the bridge stones, until the lamp oil needs a refill."
+          "res": "She makes a noise you have only ever seen typed as a keysmash. Then she grabs your sleeve with both hands and holds on. Her tail thumps the bridge stones, and her glasses slip down her nose, and she doesn't fix them. \"It's really you,\" she says into your coat. \"It's really, actually you.\" The lamp oil runs low before she lets go."
         },
         {
           "label": "\"You still owe me the end of that campaign.\"",
           "t": 4,
           "m": 7,
-          "res": "\"It was YOUR turn to post!\" she says, outraged, ears snapping upright, and then she starts crying and laughing at the same time and has to take off her glasses to wipe them."
+          "res": "\"It was YOUR turn to post!\" she says, outraged, and her ears snap upright. Then her face crumples. She is crying and laughing at the same time, and she has to take off her glasses to wipe them on her sleeve. \"Six years. A year here. And you pick now to bring up the campaign.\" She leans on your shoulder anyway."
         }
       ],
       "image": {
@@ -46,14 +46,14 @@
               "l": 2,
               "private": true,
               "acts": ["massage_give","kiss"],
-              "res": "Her ears twitch wildly and flatten into pure bliss the moment your warm thumbs trace along the base—until Emily twists around, fogged glasses forgotten, and kisses you clumsily through the steam.",
-              "fallbackRes": "Her wolf tail flops hopelessly over your knee while she melts against your palms with a soft, muffled whimper."
+              "res": "Her ears twitch hard when your thumbs find the base of them, then flatten and go limp. The soap runs down her neck. She makes a small, helpless sound and leans back into your chest. Then she twists around, fogged glasses forgotten, and kisses you. It is clumsy and wet and she doesn't stop for a while.",
+              "fallbackRes": "You rinse the soap from behind her ears and she melts against your palms. Her tail flops over your knee and stays there. She whispers that nobody has ever done that, and that she'd like you to keep doing it, and you keep doing it until the water goes cool."
             },
             {
               "label": "Rescue her notebook from the spray and wish her luck writing",
               "t": 3,
               "m": 5,
-              "res": "\"Hero!\" she beams, tucking the damp spiral book safely onto the dry towel rack."
+              "res": "You lift the notebook off the wet rim before the next splash gets it, and she looks at you like you've pulled someone out of a river. \"Hero,\" she says. You put it on the dry towel rack. She tells you the scene she was drafting, quietly, with her ears pink, and you stay on the bench and listen to the end of it."
             }
           ]
         },
@@ -69,7 +69,7 @@
               "l": 4,
               "private": true,
               "acts": ["missionary","cowgirl","oral_give"],
-              "res": "Emily squeaks brightly as hot water rises around your thighs, tangling her wet tail tightly behind your waist as you slide deep inside her until she buries her flushed face against your neck."
+              "res": "You strip, and she watches every button with her lip between her teeth. The water is hot around your legs as you climb in. Emily squeaks, then laughs at herself, and her wet tail curls around your waist to pull you closer. Her hands are on your chest and her face is flushed. \"Okay,\" she breathes. \"Okay. Here we go.\""
             },
             {
               "label": "Kiss down her wet collarbones slowly in the steam",
@@ -78,7 +78,7 @@
               "l": 3,
               "private": true,
               "acts": ["oral_give","kiss","manual_give"],
-              "res": "She arches back against the cedar rim clutching the wood tightly, wolf ears quivering as she gasps out every sound she used to spend paragraphs hiding."
+              "res": "You sit on the edge of the tub and kiss her collarbone, then lower, slowly, through the steam. Her breath catches. She grips the cedar rim and her ears quiver. She starts to say your name and gives up halfway. Every sound she used to spend paragraphs hiding comes out of her now, and she lets it."
             }
           ]
         }
@@ -88,21 +88,21 @@
           "label": "Apologize and back out",
           "t": 2,
           "m": 3,
-          "res": "\"It's fine!\" she squeaks. That evening a note slides under your door: brb dying of embarrassment, signed with a tiny wolf doodle chewing its own tail."
+          "res": "\"It's fine!\" she squeaks, from somewhere behind the notebook, and you shut the door and stand in the hallway with your face hot. You hear a lot of splashing. That evening a note slides under your door. It says brb dying of embarrassment, and it's signed with a tiny wolf doodle chewing its own tail."
         },
         {
           "label": "Answer in your old character's voice",
           "t": 3,
           "m": 7,
           "l": 1,
-          "res": "She stares, then answers back in character, and you finish the whole scene through the door with you politely facing the hallway. She laughs so hard the water sloshes, and the narrator voice cracks completely."
+          "res": "You answer in the voice of your old character, the bard, with a flourish nobody can see. There is a long silence. Then she answers back, in character, and the two of you play the whole scene through the door, you facing the hallway. She laughs so hard the water sloshes, and the narrator voice cracks completely."
         },
         {
           "label": "Stand there, flustered",
           "t": 1,
           "m": 3,
           "l": 2,
-          "res": "Her ears go straight back. \"Lag,\" she whispers, clutching the notebook. \"You're lagging. Please reconnect.\" You try, fail, and she giggles into her hands until her glasses fall in the water."
+          "res": "Her ears go flat. \"Lag,\" she whispers, clutching the notebook. \"You're lagging. Please reconnect.\" You open your mouth and nothing useful comes out. You try again and fail again. She starts giggling into her hands, and then her glasses slip off her nose and drop into the water with a small plop."
         }
       ],
       "image": {
@@ -125,20 +125,20 @@
           "l": 3,
           "private": true,
           "acts": ["missionary","oral_give","kiss"],
-          "res": "You roll the wooden dice out of reach, pluck the character sheet out of her trembling hands, and pull Emily flush down beside you onto the warm rug—her wolf tail thumping wildly behind your calves."
+          "res": "You roll the wooden dice out of reach and take the character sheet from her trembling hands. She doesn't object. You pull her down beside you on the hearth rug, and the fire is warm on her cheek. She's breathing fast, and her tail thumps against your calves. \"Is this in character?\" she whispers. \"No,\" you say. She kisses you first."
         },
         {
           "label": "Answer in character",
           "t": 5,
           "m": 8,
-          "res": "You do. She drops a die, picks it up, drops it again, and finally hides behind her character sheet with only the tips of her ears showing, quivering."
+          "res": "You answer in character, in your bard's voice, with the line she hoped you'd pick. She drops a die and picks it up. She drops it again. Finally she hides behind her character sheet with only the tips of her ears showing, and they are quivering. \"That was in the notes,\" she says, muffled. \"I didn't think you'd read the notes.\""
         },
         {
           "label": "Ask, out of character, if she meant it",
           "t": 4,
           "m": 6,
           "l": 1,
-          "res": "\"OOC?\" she says, very small, ears dipping behind the paper. \"...Yeah. OOC, I meant it.\" The dice sit forgotten between you."
+          "res": "\"OOC?\" she says, very small, and her ears dip behind the paper. The fire pops. She lowers the sheet an inch. \"Yeah. OOC, I meant it. I've meant it for a while.\" She turns a die over in her fingers and doesn't look at it. The game sits forgotten between you, and neither of you reaches to restart it."
         }
       ],
       "image": {
@@ -152,28 +152,28 @@
       "scene": "portrait",
       "text": "Emily shows you a page of her notebook. On it, copied out from memory, is the last thing she ever sent you on the forum.\n\nIt's two words. \"you there?\"\n\nIt was never answered. The pencil has smudged, because her thumb has been over it for months.\n\n\"I kept checking for three weeks,\" she says quietly. Her ears have drooped. \"I'd refresh it between lectures. It said you were last seen on the Tuesday. Then it kept saying that.\" She closes the notebook and holds it shut. \"I didn't know you'd died. I thought I'd done something. I went back through the whole thread, looking for what I'd said wrong.\"\n\nShe pulls her sleeves down over her hands.\n\n\"Then I woke up here. And sometimes I think, if I fall asleep the wrong way, I'll wake up back in my dorm, and it'll still say 'last seen', and it'll say that forever.\"",
       "ngpp": [
-        "Right as she points to the pencil smudge from dorm nights, she blinks uneasily—half-convinced she already wrote your reply under that exact line in another dream.",
-        "\"Wait... I remember every late exam week on that forum, Sam,\" she whispers softly, \"so why does holding out this page feel like muscle memory from THIS lounge?\"",
-        "Emily presses her pen directly into your knuckles without hesitation. \"I remember Earth—and zero wiped Hollowmere cycles can keep me from knowing your handwriting belongs right under that line, Sam.\""
+        "She points to the pencil smudge and then stops, her finger in the air. For a moment she looks as if she has already written your answer under that line. She frowns at the page, then at you, and shakes it off with a small laugh.",
+        "\"Wait.\" Her voice goes thin. \"I remember every exam week on that forum, Sam. So why does holding this page out feel like something I've done in this exact lounge, in this chair, with you next to me?\" She has gone pale. She doesn't take the page back.",
+        "Emily puts her pencil into your hand before you ask. \"I remember Earth,\" she says, steady now. \"I also remember this room, and this page, and your handwriting going right under that line. I don't know how. I'm sure of it, though. I'm not guessing.\""
       ],
       "choices": [
         {
           "label": "\"I'm here.\"",
           "t": 5,
           "m": 6,
-          "res": "She reads your face like a chat window, waiting for the typing indicator. Then she nods, and holds your sleeve for a long time anyway, just to be sure it's real."
+          "res": "She looks at your face like a chat window, waiting for the typing indicator. It doesn't need to appear. You are here and you are answering. She nods slowly and takes your sleeve in her fist. She holds on for a long time, long after she has stopped needing proof, just to be sure it's real."
         },
         {
           "label": "Write the reply under it",
           "t": 6,
           "m": 5,
-          "res": "You take her pencil and write under her line: yeah. sorry for the lag. She presses the notebook to her chest, her tail thumping once, and laughs wetly into the cover."
+          "res": "You take her pencil and write under her line: yeah. sorry for the lag. Her breath stops. She reads it twice, then presses the notebook to her chest, and her tail thumps once against the chair. She laughs, and the laugh is wet, and she says the reply is three months late and the best she's ever had."
         },
         {
           "label": "\"Let's not think about it.\"",
           "t": -3,
           "m": -6,
-          "res": "\"Right. Sure.\" Her ears droop and her tail goes still. She spends the evening rereading her notebook alone by the fire, and the page stays dry only by effort."
+          "res": "\"Right. Sure.\" Her ears droop and her tail goes still. She says nothing else. She sits by the fire with the notebook and rereads it alone for the rest of the evening, and it stays dry only because she tries very hard. When you leave she doesn't look up, and the page is still open."
         }
       ],
       "image": {
@@ -191,14 +191,14 @@
           "label": "Name one together",
           "t": 4,
           "m": 8,
-          "res": "You argue happily for an hour over a single cluster of stars and settle on The Streak. She writes it down in her best forum-header lettering, tail wagging the blanket into a heap."
+          "res": "You argue happily for an hour over a single cluster of stars. She wants a name from the campaign. You want one that's rude. You settle on The Streak, and she writes it into the notebook in her best forum-header lettering. Her tail wags the blanket into a heap, and she has to stop writing to fix it, and she doesn't mind."
         },
         {
           "label": "Ask which one is her",
           "t": 3,
           "m": 6,
           "l": 1,
-          "res": "She points to two stars close together and doesn't explain. She tucks her ears under your chin for a moment, and she doesn't have to."
+          "res": "She points to two stars close together, low in the east, and says nothing. You wait. She doesn't explain, and after a moment she tucks her ears under your chin, the way a cat would, and keeps them there. The stars are still above you. She hasn't said which one is you. She doesn't have to, and you don't ask."
         }
       ],
       "image": {
@@ -212,9 +212,9 @@
       "scene": "final",
       "text": "Emily stops in the doorway of your room with her notebook hugged against her chest. Her tail is wrapped around her own ankle.\n\n\"For six years you were a username,\" she says. \"You were my favorite one. I'd see it light up and my whole evening would get better. I never wanted more than that. I told myself so all the time, because it was true, and because we'd never even heard each other's voices.\"\n\nShe's trembling. Her ears are flat.\n\n\"Then I got a whole person. He apologizes to chairs, and he gave me a job before he'd seen my handwriting. And it turns out I do want more. I want all of it.\" She swallows. \"I'm bad at saying things out loud. I've written this down four times, and it was better on paper. So here's the short version.\"\n\nShe takes your hand. Her grip is much surer than her voice.\n\n\"Stay online, Sam.\"\n\nThe door closes behind you both.",
       "ngpp": [
-        "Her ears twitch in odd wonder as the bedroom latch clicks—like saying \"stay online\" in this exact doorway echoes across more nights than one.",
-        "\"I know Earth's dorms line by line, Sam,\" she breathes against your hoodie, \"so why does standing in this doorway feel like logging straight back home?\"",
-        "\"Reset the thread as often as the sky wants, Sam,\" Emily whispers fiercely against your lips, tail wrapping snug behind your calf. \"My account only pairs with yours.\""
+        "The latch clicks, and her ears twitch. She says \"stay online\" and then pauses, as if the words are older than the doorway. She glances at the frame and back at you, puzzled, and tightens her grip on your hand.",
+        "\"I know Earth's dorms line by line, Sam,\" she says against your shirt. \"So why does standing in this doorway feel like logging back in? I've been here. I've said this. I just can't remember the part where it ends.\" She holds on tighter and waits for you to answer.",
+        "\"Reset the thread as often as the sky wants,\" Emily says against your lips, and her tail wraps behind your calf. \"I don't care. I know this door. I know you. My account only pairs with yours, and I'm not asking for permission this time. I'm telling you.\""
       ],
       "goLead": "Emily sets her worn notebook down on the dresser and pulls off her glasses. Then she launches herself into your arms and takes you both down onto the bed, ears pinned back and tail thumping.",
       "choices": [
@@ -224,7 +224,7 @@
           "t": 1,
           "m": -3,
           "hold": true,
-          "res": "Emily nods, ears wobbling. \"I can wait,\" she says, clutching the notebook. \"Just don't go idle on me.\""
+          "res": "Emily nods, and her ears wobble, and she holds the notebook tight against her chest. \"Okay. I can wait,\" she says. \"I've waited longer for less.\" She smiles, and it nearly holds. \"Just don't go idle on me. I'd notice. I always notice when you go quiet.\" She squeezes your hand once and lets go."
         }
       ]
     }

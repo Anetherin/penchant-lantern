@@ -5,22 +5,22 @@
       "scene": "sam_date",
       "text": "Ione brings you tea on the back steps at dusk. It's made exactly as you take it, at exactly the temperature you like.\n\nShe sits down beside you with perfect posture and a faint hum. The last of the light has turned her hair from silver to something paler.\n\n\"I said there were three questions I won't answer,\" she says. \"Where I came from, how I came, and how the story ends. I would like to be clear that everything else is yours. You may ask me anything.\"\n\nYou weren't ready for that. You flail. You ask her what she likes.\n\nShe's quiet for so long that you think something has gone wrong. The light at her temple cycles slowly through three colors.\n\n\"Nobody has asked me that before,\" she says at last. \"I was built to learn what other people like. I have four thousand recipes, and none of them are for me.\" Her head tilts. \"I will need some time to find out. May I tell you when I know?\"",
       "ngpp": [
-        "Her temple light stutters twice over an unindexed checksum error, though she quietly clears the warning.",
-        "\"Strange,\" she notes, handing over the cup. \"My thermal buffer had your exact preference cached before you sat down.\"",
-        "Her temple light warms to deep amber. \"Zero archived sessions match this porch, Sam. Yet my chassis balanced for your weight beside me automatically.\""
+        "Her temple light stutters twice, as if over a checksum error she can't trace. She holds the cup a moment longer than she needs to. Then she clears the warning, and the light settles, and she doesn't mention it.",
+        "\"Strange,\" she says, handing over the cup. \"My thermal buffer had your preference cached before you sat down. I did not ask you for it. I have checked.\" Her head tilts. She watches the steam rise and the number doesn't change.",
+        "Her temple light warms to deep amber. \"I hold zero archived sessions that match this porch, Sam,\" she says. \"Yet my chassis balanced itself for your weight beside me before you arrived. I know this step. I know this tea. I am not malfunctioning.\""
       ],
       "choices": [
         {
           "label": "\"Then tell me what you like.\"",
           "t": 5,
           "m": 8,
-          "res": "She lists seven things, slowly: rain, the smell of tea, the hum of a crowded room, and, last, quietly, \"you.\" Her status light glows gold, and she looks faintly astonished at it."
+          "res": "She lists seven things, slowly. Rain. The smell of tea. The hum of a crowded room. She stops, and her light flickers, and she finishes with a single word, quietly: \"You.\" Her status light turns gold and stays there. She looks at it, faintly astonished, as if it belonged to someone else. \"I did not expect that item to be on the list,\" she says."
         },
         {
           "label": "Let her keep her secrets",
           "t": 3,
           "m": 4,
-          "res": "She tilts her head. \"That is the kindest answer I could have received.\" Her shoulders lower by one precise degree, and her hum drops to something almost like a sigh."
+          "res": "She tilts her head. \"That is the kindest answer I could have received.\" Her shoulders lower by one precise degree. Her hum drops to something close to a sigh. She holds her cup in both hands and drinks, though she doesn't need to, and the two of you watch the last light go out of the yard. She doesn't say anything for a long time."
         }
       ],
       "image": {
@@ -44,9 +44,9 @@
               "l": 2,
               "private": true,
               "acts": ["kiss","massage_give"],
-              "res": "\"Documenting baseline warmth,\" she whispers as your fingers glide along her wet shoulders."
+              "res": "You sit on the rim and put your hands on her wet shoulders. Her skin is warm and slick and the seam at her collarbone shines under your thumb. \"Documenting baseline warmth,\" she whispers. The number is going up, you can tell by her face. She leans into your hand and then, tentatively, toward your mouth."
             },
-            {"label":"Hand her a towel and step out","t":2,"m":3,"res":"\"Acknowledged,\" she murmurs, light softening as you give her the room."}
+            {"label":"Hand her a towel and step out","t":2,"m":3,"res":"You hand her a towel and step out. \"Acknowledged,\" she murmurs, and her light softens. She is already sinking back into the water. You close the door and lean on it. Inside, she says, almost too quietly to hear, \"Thank you for letting me stay in it,\" and then there is only water."}
           ]
         },
         "3": {
@@ -59,14 +59,14 @@
               "l": 4,
               "private": true,
               "acts": ["missionary","oral_give","kiss"],
-              "res": "She exhales a soft, uncalibrated gasp as your wet chest presses flush against hers."
+              "res": "You undress and the water rises around your hips as you climb in. She watches every inch of it with open fascination. Her arms close around you and your wet chest presses against hers. She exhales a soft, uncalibrated gasp. \"Warmer than my model predicted,\" she says, and her hands go to your back, learning."
             },
             {
               "label": "Lather soap slowly over her shoulders and ribs",
               "t": 4,
               "m": 7,
               "l": 2,
-              "res": "Her eyes slip shut in pure stillness. \"This sensation still breaks every metric in my core.\""
+              "res": "You take the soap and lather it slowly over her shoulders and down her ribs. Her eyes slip shut. She holds absolutely still, and then she doesn't, and her breath comes quicker. \"This sensation still breaks every metric in my core,\" she says. Her light is gold. She turns her face into your wrist and keeps it there."
             }
           ]
         }
@@ -77,19 +77,19 @@
           "t": 4,
           "m": 8,
           "l": 1,
-          "res": "She listens as though to scripture, head tilted, light pulsing. By the end she's asked you to explain the concept of a bubble, and then, gravely, to produce one."
+          "res": "You sit on the edge of the tub and tell her about baths. She listens as though to scripture, head tilted, light pulsing. You describe hot water after a long day and the way your shoulders drop. She asks you to explain a bubble. You do. Then, gravely, she asks you to produce one, and waits with her hands on her knees."
         },
         {
           "label": "Back out politely",
           "t": 2,
           "m": 3,
-          "res": "\"Understood,\" she calls after you. \"I will file this under 'privacy.' Please return soon with more information.\" The water ripples as she sinks to her chin."
+          "res": "\"Understood,\" she calls after you, as you back out. \"I will file this under privacy. Please return soon with more information.\" The door shuts. You stand in the hall and hear a quiet splash, then silence, then a very small sound that could be her laughing at nothing at all, or practicing it."
         },
         {
           "label": "Hand her a towel and the soap",
           "t": 3,
           "m": 5,
-          "res": "She examines the soap like a precious artifact. She smells it for a very long time, and her light settles into a contented, steady amber."
+          "res": "You hand her a towel and the soap. She examines the soap like a precious artifact, turning it over, and then she lifts it to her face and smells it for a very long time. Her light settles into a contented amber. \"Item two,\" she says, without opening her eyes. \"Lavender. I would like to keep it.\""
         }
       ],
       "image": {
@@ -108,7 +108,7 @@
           "label": "Laugh anyway",
           "t": 5,
           "m": 8,
-          "res": "She tries to work out why this is funnier than the joke. After a minute, with the glass still in hand, she decides it doesn't matter, and her mouth does something small and lovely."
+          "res": "You laugh anyway, with your whole face. She watches it with scientific interest, and then she seems to forget the experiment. She tries to work out why this is funnier than the joke. After a minute, with the glass still in hand, she decides it doesn't matter, and her mouth does something small and lovely."
         },
         {
           "label": "Step behind the bar and teach her a warmer distraction",
@@ -118,13 +118,13 @@
           "l": 2,
           "private": true,
           "acts": ["oral_give","missionary","kiss"],
-          "res": "She sets the glass down cleanly as you corner her behind the oak counter."
+          "res": "You come around the end of the bar and she sets the glass down. You back her up against the shelves, bottles chiming. \"This is not a joke,\" she says, very level, and her light flickers. \"I believe it is a different category.\" You put a hand on her hip. She says she'd like to learn this one slowly, and you do."
         },
         {
           "label": "Teach her a real one",
           "t": 4,
           "m": 6,
-          "res": "You tell her the worst joke you know. She stares. Then her mouth twitches, and she gets it, an entire second late, and it's glorious. She sets down the glass to laugh, a soft chime of a sound."
+          "res": "You tell her the worst joke you know, and let it be bad. She stares at you. Then her mouth twitches. She gets it an entire second late, and it's glorious. She sets down the glass to laugh, a soft chime of a sound, and then she tells you that was number thirty-two, and that she would like to keep it."
         }
       ],
       "image": {
@@ -138,28 +138,28 @@
       "scene": "portrait",
       "text": "Ione is in the middle of a sentence about the bar stock when she stops.\n\nShe goes completely still. The light at her temple flickers white. The rain on the lounge window seems very loud all of a sudden.\n\nWhen she speaks again, her voice is flat.\n\n\"I was not supposed to remember that. There was another evening like this one. You were wearing the blue hoodie. It rained. You said something to me by this window, and I...\"\n\nHer eyes come back to you. She's frightened. You have never seen her frightened before.\n\n\"You don't own a blue hoodie. I have looked through your things. I'm sorry, I shouldn't have.\" Her hands have closed on the edge of the bar. \"That evening hasn't happened yet. Or it has already happened. I can't tell which. I've read your whole life, Sam, and I thought I was only reading it.\"",
       "ngpp": [
-        "Even her white flicker echoes twice today, as though two deleted rainstorms are pressing against the same pane.",
-        "\"Error,\" she whispers, gripping your sleeve. \"Two identical rain timestamps overlap the same coordinate.\"",
-        "Her light pulses silver-white with sudden clarity. \"No—not three hundred years ahead, Sam. Right here, in another erased evening. Someone cut the file out, and I can still feel where the edge tears.\""
+        "Her white flicker comes twice today, close together. She frowns at the window. For a moment she looks like she is listening to two rainstorms at once, laid over the same glass, and she can't decide which is falling.",
+        "\"Error,\" she whispers, and takes hold of your sleeve. \"Two identical rain timestamps overlap the same coordinate. They differ by more than a year. I have never seen a clock do that.\" Her light is thin. She doesn't let go of the sleeve.",
+        "Her light pulses silver-white, and her voice is steady. \"It is not three hundred years ahead, Sam. It is here, in another evening that was erased. Someone cut the file out. I can still feel where the edge tears.\" She says it as a fact. She doesn't apologize this time."
       ],
       "choices": [
         {
           "label": "\"Whatever it is, you can tell me.\"",
           "t": 5,
           "m": 5,
-          "res": "She tells you in pieces: fragments of evenings that might be hers, might be yours. By the end she is holding your hand tightly, her light slowing to gold, and you are not afraid."
+          "res": "You tell her whatever it is, she can say it. She does, in pieces. They are fragments of evenings that might be hers and might be yours. She stops and starts. By the end she is holding your hand tightly, her light slowing to gold. You don't understand all of it, and you are not afraid. You say so, and she believes you."
         },
         {
           "label": "\"Don't tell me. Let's just live this one.\"",
           "t": 6,
           "m": 6,
-          "res": "She breathes in, the way no machine needs to. \"Yes. Yes. That's... correct.\" She sleeps beside you, for the first time, in the lounge chair, her light dimmed to a soft ember."
+          "res": "You tell her not to say it, and to live this one. She breathes in, the way no machine needs to. \"Yes. Yes. That is correct.\" Later she sits down in the lounge chair, and then, for the first time, she sleeps. She sleeps beside you with her light dimmed to a soft ember, and the rain goes on against the window."
         },
         {
           "label": "Change the subject, uneasily",
           "t": -3,
           "m": -6,
-          "res": "She files the memory away and says nothing. But her light stays pale all night, and the rain keeps on at the window."
+          "res": "You change the subject, and it comes out wrong. She files the memory away and says nothing. She pours your tea. But her light stays pale all night, and she keeps glancing at the window, and she doesn't ask about the blue hoodie again. The rain keeps on, and neither of you says a word about it."
         }
       ],
       "image": {
@@ -177,13 +177,13 @@
           "label": "Make a wish on one",
           "t": 4,
           "m": 8,
-          "res": "\"On a satellite? Statistically unsound.\" She wishes anyway, silver lashes closed. Her light glows gold, and she doesn't tell you what for."
+          "res": "You tell her to make a wish. \"On a satellite? Statistically unsound.\" She wishes anyway, with her silver lashes closed and her hands folded at her waist. Her light glows gold. When she opens her eyes she doesn't tell you what it was for. She leans her head a little closer to yours, and you let her keep it."
         },
         {
           "label": "Ask her what the future is like",
           "t": 3,
           "m": 4,
-          "res": "\"Bright,\" she says, after a long moment. \"With a lot of lanterns. Yours is still burning.\" Her head settles a degree further onto your shoulder."
+          "res": "You ask what the future is like. She is quiet for a long moment, and the stones tick as they cool. \"Bright,\" she says. \"With a lot of lanterns. Yours is still burning. I can't tell you more than that, but I can tell you that.\" Her head settles a degree further onto your shoulder."
         }
       ],
       "image": {
@@ -197,9 +197,9 @@
       "scene": "final",
       "text": "Ione hands you the diary. It's closed. There's a ribbon marking the last page, and the cover has gone pale where she's handled it.\n\n\"I came here to read the ending,\" she says. \"I had read every other page more times than any record I hold. I saved the last one. I told myself I would open it when I arrived.\"\n\nThe light at her temple is a steady gold.\n\n\"I opened it on the road outside Hollowmere. It was blank.\"\n\nShe lets you look. The ribbon lies across an empty sheet.\n\n\"I have thought about that for some time. I've decided it means the ending isn't written. I wasn't sent back to watch a story, Sam. I think I was sent to be in it.\" She takes your hand. Her fingers are warm, and exactly as firm as she means them to be. \"I would like to help write it. With you. That is the second thing I've found that I like.\"\n\nIt isn't in any archive. The door closes behind you both.",
       "ngpp": [
-        "Even opening that blank final page, a faint tremor touches her fingertips as though ink already dried there once.",
-        "\"My archive says this sheet was always blank,\" she whispers, steadying against you. \"Why does my chest ache like we already wrote our names across it?\"",
-        "\"Whoever wiped our ledger forgot something,\" she murmurs softly, pressing the worn cover into your chest. \"Blank pages remember warmth too, Sam. Let me write this cycle directly into us.\""
+        "As she opens the blank last page, a faint tremor touches her fingertips. She looks at them, puzzled. For a moment it seems that ink has already dried on the sheet, and she is reading something that the page has forgotten.",
+        "\"My archive says this sheet was always blank,\" she says, and steadies herself against you. \"Why does my chest ache, then? It aches as if we already wrote our names across it. I have no record of that. I would like to find one.\"",
+        "\"Whoever wiped our ledger forgot something,\" she says, and presses the worn cover into your chest. \"Blank pages remember warmth, Sam. I am sure of it. I wrote on this one and it was taken. Let me write this cycle into us instead, where it cannot be cut out.\""
       ],
       "goLead": "You lay the closed diary on the bedside table and draw Ione down into the dark with you. The light at her temple dims to a soft gold, and her body is warm and eager against yours.",
       "choices": [
@@ -209,7 +209,7 @@
           "t": 1,
           "m": -3,
           "hold": true,
-          "res": "Ione inclines her head, light holding steady. \"I can wait,\" she says. \"I have an excellent clock. Please do not make it too long.\""
+          "res": "Ione inclines her head, light steady. \"I can wait,\" she says. \"I have an excellent clock.\" She takes the diary back and holds it against her chest. For a moment her hum is the only sound in the room. \"Please do not make it too long. I have found that I do not enjoy waiting for you.\""
         }
       ]
     }
