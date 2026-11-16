@@ -56,9 +56,9 @@
   ];
   window.HOLLOWMERE_FILES = FILES;
   // Editable data, loaded before any script runs. Each becomes window.PL_DATA['<name>'].
-  var DATA_FILES = ['balance', 'economy', 'services', 'personalities', 'people', 'races', 'traits', 'titles', 'body', 'wardrobe', 'characters', 'guests', 'arcs', 'afterstories', 'regulars', 'bonds', 'scenes', 'dates', 'events', 'walks', 'snippets', 'ai-prompts', 'flavor', 'firsts', 'goddess'];
+  var DATA_FILES = ['balance', 'economy', 'services', 'personalities', 'people', 'races', 'traits', 'titles', 'body', 'wardrobe', 'characters', 'guests', 'arcs', 'afterstories', 'housestories', 'regulars', 'bonds', 'scenes', 'dates', 'events', 'walks', 'snippets', 'ai-prompts', 'flavor', 'firsts', 'goddess'];
   // Data sets kept as a folder of parts (data/<name>/index.json + parts) instead of one file.
-  var DATA_DIRS = ['characters', 'guests', 'arcs', 'afterstories', 'flavor', 'firsts', 'goddess', 'traits'];
+  var DATA_DIRS = ['characters', 'guests', 'arcs', 'afterstories', 'housestories', 'flavor', 'firsts', 'goddess', 'traits'];
   window.HOLLOWMERE_DATA = DATA_FILES;
   window.HOLLOWMERE_DATA_DIRS = DATA_DIRS;
 

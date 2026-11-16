@@ -1,8 +1,8 @@
-// Story check: plays every scripted intro, walk meeting, romance arc and after-story through every page and choice
+// Story check: plays every scripted intro, walk meeting, house story, romance arc and after-story through every page and choice
 // (plus the Lantern Angel decision), and fails on
 // page errors, leftover {placeholders}, "undefined"/"null"/"NaN" in shown text, empty pages, or broken structure.
 // Covers what tools/smoke.mjs never reaches (it only starts as Kaede at the Gilded Lantern and picks random choices).
-// Usage: node tools/story-check.mjs [--words]      (--words prints a word count per partner intro and arc)
+// Usage: node tools/story-check.mjs [--words]      (--words prints a word count per partner intro, arc and house story)
 // Needs `playwright`; set CHROME=/path/to/chrome if needed.
 import { createRequire } from 'node:module';
 import path from 'node:path';
@@ -83,6 +83,39 @@ const CHECK = `async () => {
       if (out && typeof out.after === 'function') { out.after(); look('house ' + hid + ' goddess note', document.querySelector('#modalBox .story').textContent, true); GNEXT = null; closeModal(); } });
   }
 
+  // 3b. every house story: each chapter's lead-in pages (data/housestories), its choice page, and every choice both ways
+  // (a check is forced to pass, then to fail, by pinning the first Math.random call)
+  const houseWords = {}, rnd = Math.random;
+  for (const hid of Object.keys(STORIES)) {
+    fresh(starters.includes(hid) ? hid : starters[0], PARTNERS[0]);
+    let h = H(hid); if (!h) { S.gold = 1e7; S.cycle = 2; try { buyHouse(hid); } catch (e) {} EVQ = []; CUR_EV = null; closeModal(); h = H(hid); }
+    if (!h) { bad.push('story ' + hid + ': could not open the house'); continue; }
+    const st = STORIES[hid], HS = HSTORY[hid] || []; let lead = 0, page = 0;
+    if (st.hint.length !== st.beats.length) bad.push('story ' + hid + ': ' + st.hint.length + ' hints for ' + st.beats.length + ' chapters');
+    if (HS.length !== st.beats.length) bad.push('story ' + hid + ': ' + HS.length + ' lead-ins in data/housestories for ' + st.beats.length + ' chapters');
+    for (let b = 0; b < st.beats.length; b++) {
+      const at = 'story ' + hid + ' chapter ' + (b + 1), set = () => { h.story.beat = b; S.gold = 1e7; S.sam.energy = 100; };
+      set(); let ev0; try { ev0 = houseStoryEvent(h, b); } catch (e) { bad.push(at + ': threw ' + e.message); continue; }
+      if (!ev0) { bad.push(at + ': no event'); continue; }
+      if (!ev0.pre || !ev0.pre.length) bad.push(at + ': no lead-in page');
+      (ev0.pre || []).forEach((pg, i) => { lead += look(at + ' page ' + (i + 1), pg.text, true); if (!S.workers.some(w => w.id === pg.who) && !NPCS[pg.who]) bad.push(at + ' page ' + (i + 1) + ': nobody to picture (' + pg.who + ')'); });
+      page += look(at + ' choice page', ev0.text, true);
+      if (!S.workers.some(w => w.id === ev0.who) && !NPCS[ev0.who]) bad.push(at + ': nobody to picture (' + ev0.who + ')');
+      if (!ev0.choices.length) bad.push(at + ': no choices');
+      for (let c = 0; c < ev0.choices.length; c++) for (const roll of [0, 0.999]) {
+        set(); let first = true; Math.random = () => first ? (first = false, roll) : rnd();   // only the check's own roll is pinned
+        try { const ev = houseStoryEvent(h, b); look(at + ' label ' + c, ev.choices[c].label, true); look(at + ' choice ' + c + (roll ? ' (fail)' : ' (pass)'), outText(ev.choices[c].fx()), true); }
+        catch (e) { bad.push(at + ' choice ' + c + ': threw ' + e.message); }
+        Math.random = rnd;
+      }
+    }
+    // shown for real once: the pages advance and the choices appear on the last one
+    h.story.beat = 0; showEvent(houseStoryEvent(h, 0)); let g = 0; while (CUR_EV.pre && CUR_EV.pre.length && g++ < 9) evPre();
+    if (!document.querySelector('#evChoices button[onclick^="evChoice"]')) bad.push('story ' + hid + ': choices not shown after the lead-in');
+    CUR_EV = null; closeModal(); EVQ = [];
+    houseWords[hid] = {beats: st.beats.length, lead, page};
+  }
+
   // 4. romance arcs and after-stories: every beat at every intimacy stage, every choice
   const runBeats = (kind, key, w, beats, evOf, idx) => {
     let total = 0;
@@ -143,7 +176,7 @@ const CHECK = `async () => {
   EVQ = []; CUR_EV = null; a.trust = LT + 20; a.lewd = Math.max(a.lewd, LL + 2); endWeek(); closeModal(); if (!a.lanternDecided || a.sub === 'lantern') bad.push('lantern: a reserved angel should ask once she trusts Sam');
   a = angel(shy, LT - 30, LL + (SVC.angel.lanternOwn ?? 15) + 2); if (a.sub !== 'lantern') bad.push('lantern: a reserved angel far past the threshold should give in on her own');
   store.del(KEY_SAVE);
-  return {bad, words, partners: PARTNERS.length, arcs: Object.keys(ARCS).length, afters: Object.keys(AFTER_STORIES).length};
+  return {bad, words, houseWords, partners: PARTNERS.length, arcs: Object.keys(ARCS).length, afters: Object.keys(AFTER_STORIES).length};
 }`;
 
 const TYPES = {'.html':'text/html','.js':'text/javascript','.css':'text/css','.json':'application/json'};
@@ -164,7 +197,8 @@ let res;
 try { res = await page.evaluate(`(${CHECK})()`); } catch (e) { errors.push('check crashed: ' + e.message); res = {bad: [], words: {}}; }
 await browser.close(); server.close();
 if (WORDS) { console.log('key        intro  choice  aside  arc beats/words'); for (const [k, w] of Object.entries(res.words)) console.log(k.padEnd(10), String(w.intro ?? '-').padStart(5), String(w.choices ?? '-').padStart(7), String(w.aside ?? '-').padStart(6), '  ', w.arcBeats ? `${w.arcBeats}/${w.arcWords}` : '-'); }
+if (WORDS) { console.log('\nhouse story   chapters  lead-in  choice pages'); for (const [k, w] of Object.entries(res.houseWords || {})) console.log(k.padEnd(13), String(w.beats).padStart(8), String(w.lead).padStart(8), String(w.page).padStart(13)); }
 const all = [...errors.map(e => 'page error: ' + e), ...res.bad];
 console.log(all.length ? `story-check: ${all.length} problem${all.length > 1 ? 's' : ''}\n  ` + all.slice(0, 60).join('\n  ') + (all.length > 60 ? `\n  ... and ${all.length - 60} more` : '')
-  : `story-check: ok (${res.partners} partner intros, ${res.arcs} arcs, ${res.afters} after-stories, every page and choice)`);
+  : `story-check: ok (${res.partners} partner intros, ${Object.keys(res.houseWords || {}).length} house stories, ${res.arcs} arcs, ${res.afters} after-stories, every page and choice)`);
 process.exit(all.length ? 1 : 0);
