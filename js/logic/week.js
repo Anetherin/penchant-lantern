@@ -971,5 +971,6 @@ function endWeek(){
   S.lastReport = R;
   addLog(`Week ${R.week}: income ${fmt(R.income)}, wages ${fmt(R.wages)}, upkeep ${fmt(R.upkeep)}${R.cuts?`, cuts ${fmt(R.cuts)}`:''}${R.recharge?`, recharging ${fmt(R.recharge)}`:''}${R.tutor?`, tutors ${fmt(R.tutor)}`:''}.`);
   save(); render();
+  if(typeof cloudAutoSave === 'function') cloudAutoSave();
   showReport(R, true);
 }

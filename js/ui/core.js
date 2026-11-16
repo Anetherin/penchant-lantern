@@ -9,6 +9,14 @@ function modal(html, opts={}){
   $('#modal').classList.remove('hidden');
 }
 function closeModal(){ $('#modal').classList.add('hidden'); MODAL_LOCK=false; SHEET=null; }
+let MODAL2_CLOSE = null;
+function modal2(html, onClose){
+  MODAL2_CLOSE = onClose || null;
+  const b = $('#modal2Box'); b.className = 'modal-box wide';
+  b.innerHTML = '<button class="xbtn" onclick="closeModal2()">✕</button>' + html;
+  $('#modal2').classList.remove('hidden');
+}
+function closeModal2(){ $('#modal2').classList.add('hidden'); if(MODAL2_CLOSE){ const fn = MODAL2_CLOSE; MODAL2_CLOSE = null; fn(); } }
 function toast(t){ const box=$('#toast'); while(box.children.length>=4) box.firstChild.remove(); const d=document.createElement('div'); d.textContent=t; box.appendChild(d); setTimeout(()=>d.remove(), 3400); }
 // next (optional): {label, onclick} replaces OK with a button that leads on (e.g. a date's invitation after its 🔥 scene).
 function showResult(title, text, wid, scene, ai, next){

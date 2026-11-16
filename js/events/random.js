@@ -310,6 +310,7 @@ function checkEnd(){
       }
     }
     save();
+    if(typeof cloudSaveMilestone === 'function') cloudSaveMilestone();
     const ngpp = typeof isNGPPNext==='function' && isNGPPNext();
     const nextDesc = ngpp
       ? `NG++ is now unlocked: soft-reset into The Lantern Shrine with a new Bound Vessel while keeping Sam's boons, past lives, Challenge Perks, and raised ceilings.`

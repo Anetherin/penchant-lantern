@@ -16,6 +16,7 @@ Marguerite Vane adjusts her monocle and informs you the deed comes with its prev
 async function init(){
   await idbOpen();
   const th = await idbAll('thumbs'); THUMBS = th || {};
+  IMG_META = (await idbAll('meta')) || {};
   IMGKEYS = new Set((await imgKeysAll()) || []);
   // the saved library was 0-100 before the 0-1000 stats change
   if(store.get('gilded_lantern_libv') !== 13){ LIB.forEach(w=>{ scaleWorker(w); migrateWorker(w); }); saveLib(); store.set('gilded_lantern_libv', 13); }
@@ -25,5 +26,6 @@ async function init(){
   S = store.get(KEY_SAVE);
   if(!S || !Array.isArray(S.workers)){ S = null; startSetup(); }
   else { migrate(S); save(); render(); if(S.ngSeed && S.won) startNGPlus(); }
+  if(typeof cloudInit === 'function') cloudInit();
 }
 init();

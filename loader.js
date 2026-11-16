@@ -23,6 +23,7 @@
     'js/logic/ai.js',
     'js/logic/imagegen.js',
     'js/logic/state.js',
+    'js/logic/cloud.js',
     'js/logic/commands.js',
     'js/ui/wardrobe.js',
     'js/logic/sam.js',
@@ -66,6 +67,7 @@
     '<div id="app"><nav id="tabs"></nav><main id="view"><p style="padding:20px;color:#a898b3">Loading Hollowmere Nights…</p></main></div>',
     '<footer><button class="primary" id="endBtn" onclick="endWeek()">End Week ▶</button></footer>',
     '<div id="modal" class="modal hidden" onclick="if(event.target===this&&!MODAL_LOCK)closeModal()"><div id="modalBox" class="modal-box"></div></div>',
+    '<div id="modal2" class="modal modal2 hidden" onclick="if(event.target===this)closeModal2()"><div id="modal2Box" class="modal-box wide"></div></div>',
     '<div id="toast"></div>',
     '<input type="file" id="upFile" accept="image/*" style="display:none">',
     '<input type="file" id="upJson" accept=".json,application/json" style="display:none">'
