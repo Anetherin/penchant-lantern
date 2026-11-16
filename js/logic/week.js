@@ -539,9 +539,9 @@ function updatePrestige(h, hr, W, R, info){
       + Math.min(PR.exhibFullCap ?? 3.0, (hr.exhibFullActs||0) * Math.abs(PR.exhibFullAct ?? 0.45));
     op -= exPen; note(hr.exhibFullActs ? 'open exhibitionism with rooms full' : 'exhibitionist acts', -exPen);
   }
-  if(hr.samplesLowPopPen){
-    const sp = Math.min(PR.samplesCap ?? 4, hr.samplesLowPopPen);
-    op -= sp; note('free street samples with low popularity', -sp);
+  if(hr.samplesPrestige){
+    const sp = clamp(hr.samplesPrestige, -(PR.samplesCap ?? 4), PR.samplesGainCap ?? 2.2);
+    op += sp; note(sp > 0 ? 'classy street samples above house standing' : 'cheap street samples below house class', sp);
   }
   if(hr.fullFluff){
     const fp = Math.min(PR.fullFluffCap ?? 3.5, hr.fullFluff * Math.abs(PR.fullFluff ?? 0.5));
@@ -562,7 +562,7 @@ function simHouse(h, R){
   const pr0 = housePrestige(h), lowF = clamp((50 - pr0)/50, 0, 1), highF = clamp((pr0 - 50)/50, 0, 1);
   const amenScore = houseAmenityScore(h, h.tidy ?? TY.start), expAmen = (pr0/100) * (PR.amenExpectMax ?? 3.2), expQ = (PR.qualBase ?? 0.25) + (pr0/100) * (PR.qualPerPrestige ?? 0.4);
   const hr = {id:h.id, name:h.name, income:0, served:0, turned:0, sat:0, upkeep:0, short:0, roomsUsed:0, roomCap:h.rooms*BAL.rooms.perRoom, tidy0:h.tidy ?? TY.start, tidy:h.tidy ?? TY.start, tidyFx:null,
-    prestige0:pr0, prestige:pr0, prestigeDelta:0, prestigeReasons:[], exhibActs:0, exhibFullActs:0, fullFluff:0, samplesLowPopPen:0, demonDrains:0,
+    prestige0:pr0, prestige:pr0, prestigeDelta:0, prestigeReasons:[], exhibActs:0, exhibFullActs:0, fullFluff:0, samplesPrestige:0, demonDrains:0,
     promoDraw:0, selfProps:0, accProps:0, stepIn:0, waited:0, left:0, stopped:0, guestsIn:0, crowdCap:0, crowdOver:0, hosted:{ent:0, warm:0, fin:0}, pushy:{total:0, talked:0, security:0, sam:0, samfail:0, none:0, samcall:0}, calls:[]};
   const byJob = j => W.filter(w=>w.job===j);
   const jb = (w, j) => fxSub(w, 'jobBonus', j);
@@ -686,21 +686,22 @@ function simHouse(h, R){
       d *= J.samplesDraw; w.energy -= J.samplesEnergy; pr.samples = true;
       // the samples are real (light) services from her client menu, given away on the street: no fee, no room, but they count as services
       const sIds = offeredMenu(w).filter(id=>SAMPLE_LIGHT.includes(id) && actById(id) && canClient(w,id) && !nim(w,id) && !actBanned(w,id));
-      let sN = 0;
+      let sN = 0, qSum = 0;
       for(let k = ri(J.samplesMin ?? 1, J.samplesMax ?? 3); k>0 && sIds.length; k--){
         const f = pickFav(w, sIds), id = (f && Math.random()<0.5) ? f : pick(sIds), A = actById(id);
         if(w.energy - actCost(w, id)*0.5 < maxEnergy(w)*0.2) break;
-        const s0 = encSnap(w, pr);
+        const s0 = encSnap(w, pr), qId = qualityOf(w, id);
         w.energy -= actCost(w, id)*0.5; growAct(w, id, 0.3); lewdUp(w, 0.2, svcLewdCap(id,'client'));
         const ser = serveAct(w, A, {tech:0.8, reluct:false, pr, h});
-        pr.samp = pr.samp || {}; pr.samp[id] = (pr.samp[id]||0) + 1; sN++;
-        w.popularity = clamp(w.popularity + (J.samplesPop ?? 0.8) * (0.5 + qualityOf(w, id)));   // the street remembers the girl who gave it away
+        pr.samp = pr.samp || {}; pr.samp[id] = (pr.samp[id]||0) + 1; sN++; qSum += qId;
+        w.popularity = clamp(w.popularity + (J.samplesPop ?? 0.8) * (0.5 + qId));   // the street remembers the girl who gave it away
         pr.enc.push(encFx(w, pr, s0, {cls:pickClass(h).id, act:id, outcome:'yes', sample:true, note:ser.note, expr:ser.expr, ctx:'sample'}));
       }
       if(!sN){ spendLust(w, J.samplesLust); w.popularity = clamp(w.popularity + (J.samplesPopTease ?? 0.3)); }   // nothing on her menu light enough: smiles and teasing only
-      const dr = (qualityOf(w) - 0.5) * J.samplesRep; if(dr > 0) repAdd(h, dr); else h.rep = clamp(h.rep + dr);
-      if(h.rep < (PR.samplesPopRef ?? 55)) hr.samplesLowPopPen += Math.abs(PR.samplesBase ?? 1.2) + ((PR.samplesPopRef ?? 55) - h.rep) / (PR.samplesDiv ?? 35);
-      if(Math.abs(dr) >= 0.05) (pr.notes = pr.notes||[]).push(flavor(dr > 0 ? 'job_samples_rep_good' : 'job_samples_rep_bad', w));
+      const qEff = sN ? qSum / sN : qualityOf(w), ladyClass = clamp(qEff * 70 + s100(statOf(w,'refinement')) * 0.15 + (w.popularity||0) * 0.2, 0, 100);
+      const sp = clamp(((ladyClass - pr0) / (PR.samplesDiv ?? 25)) * (sN ? 1 : 0.6), -(PR.samplesNegCap ?? 3), PR.samplesPosCap ?? 1.8);
+      hr.samplesPrestige += sp;
+      if(Math.abs(sp) >= 0.15) (pr.notes = pr.notes||[]).push(flavor(sp > 0 ? 'job_samples_rep_good' : 'job_samples_rep_bad', w));
     }
     pr.draw = d; promoDraw += d * priceDem; countUp(w,'promo', Math.max(1, Math.round(d * priceDem)));
     if(J.promoterRep) repAdd(h, d * priceDem * J.promoterRep);

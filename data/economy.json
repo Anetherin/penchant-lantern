@@ -30,7 +30,7 @@
       "cat": "staff",
       "energy": 15,
       "skill": "service",
-      "desc": "Draws clients in. With free samples the draw is bigger, but it tires her, affects house popularity, and lowers prestige if popularity is low. Unlimited positions."
+      "desc": "Draws clients and house popularity. Free samples boost draw and her own popularity, tire her out, and raise or lower house class depending on how she compares to the house's prestige. Unlimited positions."
     },
     "attendant": {
       "label": "Attendant",
