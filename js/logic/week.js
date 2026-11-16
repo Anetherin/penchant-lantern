@@ -46,7 +46,6 @@ function teachList(h, t){
   return [TECH_KEYS.reduce((a,x)=>(t.tech[x]||0) > (t.tech[a]||0) ? x : a, TECH_KEYS[0])];   // auto, or a subject she can't teach (yet)
 }
 // What the class covers this week (label for the report and the picker's "Auto").
-function teachSubject(h, t){ const L = teachList(h, t), k = h.teachSkill; return L.length > 1 ? k : L[0]; }
 function classroomTeach(h, W, t, tpr, R, hr){
   const C = BAL.amenities.classroom, L = teachList(h, t), split = Math.pow(L.length, -(C.setExp ?? 0.5)), tp = teachPower(t, tpr), label = L.length > 1 ? teachSetLabel(h.teachSkill) : subjectLabel(L[0]);
   let n = 0, gain = 0;

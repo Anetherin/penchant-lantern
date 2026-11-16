@@ -75,10 +75,7 @@
         "trust": 85
       }
     ],
-    "goddess": {
-      "hand": "Seliora flicked a goblin ambush onto the road a few steps in front of a certain fox-eared scout, and made sure Sam would stumble in at exactly the wrong, right moment. A favor had to start somewhere, after all.",
-      "comment": "\"The scout who keeps tallies?\" {goddess} wrinkles her nose. \"She's counting favors. I'm counting her.\""
-    },
+    "goddess": {"comment":"\"The scout who keeps tallies?\" {goddess} wrinkles her nose. \"She's counting favors. I'm counting her.\""},
     "partnerBlurb": "A quick-footed fox-eared scout who owes Sam a debt and refuses to leave his side until it’s settled."
   },
   "yui": {
@@ -160,7 +157,6 @@
       }
     ],
     "goddess": {
-      "hand": "Sam never saw the accountant two desks over cross the street with him. {goddess} did, and she nudged Yui's fall a week early so she could arrive first and find her feet.",
       "comment": "\"Yui, from the office.\" {goddess} sounds odd. \"I let her come. She's tidy, and she knows you in ways I can't. That last part is annoying.\""
     },
     "partnerBlurb": "Sam’s quiet coworker from the next desk over, just as baffled to wash up here as he is."
@@ -243,10 +239,7 @@
         "trust": 85
       }
     ],
-    "goddess": {
-      "hand": "The summoning circle was Nerys's own; the hole in the sky above it was {goddess}'s. Seliora aimed Sam's fall at the exact spot, and she's smug that the contract clause she never saw trigger did so.",
-      "comment": "\"A contract devil, hm.\" {goddess} laughs. \"She's read the fine print. I wrote the clause she missed. Don't tell her.\""
-    },
+    "goddess": {"comment":"\"A contract devil, hm.\" {goddess} laughs. \"She's read the fine print. I wrote the clause she missed. Don't tell her.\""},
     "partnerBlurb": "A sharp-tongued demon whose interrupted summoning ritual bound her directly to Sam’s contract."
   },
   "elowen": {
@@ -329,7 +322,6 @@
       }
     ],
     "goddess": {
-      "hand": "Elowen didn't just happen to be on that stretch of road. {goddess} left a fever on the wind, dropped Sam where a healer would find him, and let two lonely people do the rest.",
       "comment": "\"The healer. Three days she nursed you.\" {goddess} sniffs. \"I only helped a little. And I'm entirely not jealous of her cool hands on your forehead.\""
     },
     "partnerBlurb": "A gentle elven herbalist who pulled Sam off the road and keeps finding excuses to check his pulse.",
@@ -412,7 +404,6 @@
       }
     ],
     "goddess": {
-      "hand": "The Order's foretelling of a hero was no accident: {goddess} whispered it into a vision, years early. She only left out the hoodie, and that, she admits, is her favorite part.",
       "comment": "\"The knight.\" {goddess} bursts out laughing. \"I promised her a hero. She got you. I'm not sorry. Her oath is delightful. Be gentle with it.\""
     },
     "partnerBlurb": "A sworn knight of the Radiant Order trying to square an ancient prophecy with a pleasure house."
@@ -499,7 +490,6 @@
       }
     ],
     "goddess": {
-      "hand": "Natsuki's shortcut through the alley was no shortcut: {goddess} opened a door three years early, and left it ajar with a lantern on the far side so the girl would last until Sam came.",
       "comment": "\"The sword-girl who punched you.\" {goddess} smirks. \"Good. Someone should. She's very loyal, and I've started watching for her fists.\""
     },
     "partnerBlurb": "Sam’s childhood friend who vanished three years ago and carved out a new life here with a blade."
@@ -584,7 +574,6 @@
       }
     ],
     "goddess": {
-      "hand": "{goddess} put Kanako at the right drink stall in the right town, and left a particular recipe on her tongue. Some people deserve to be found by a neighbor who knows how they take their coffee.",
       "comment": "\"Kanako. Sammy.\" {goddess} mimics the voice and wrinkles her nose. \"A nickname, from a woman who knows what you eat for breakfast. I'm taking notes.\""
     },
     "partnerBlurb": "Sam’s warm, teasing neighbor from Apartment 3B, unexpectedly turning up in Hollowmere too."
@@ -668,7 +657,6 @@
       }
     ],
     "goddess": {
-      "hand": "Akari wasn't meant to cross that street. {goddess} lengthened the walk signal by one second, which is how a spare umbrella and an old crush ended up in the same world as Sam.",
       "comment": "\"Kenta's little sister.\" {goddess} looks at her nails. \"Young, and brave. I let her come because she asked. That's a rule I don't have, and I'm already regretting it.\""
     },
     "partnerBlurb": "Kenta’s younger sister, carrying a familiar commuter umbrella and a years-long crush on Sam."
@@ -749,7 +737,6 @@
       }
     ],
     "goddess": {
-      "hand": "{goddess} steered the old owner out of the picture, politely, then steered a tired stranger to the deed. She wanted the Lantern to have someone who'd listen to its books.",
       "comment": "\"The accountant's daughter.\" {goddess} nods slowly. \"She forgave nobody and taught you everything. I hate how much I like her.\""
     },
     "partnerBlurb": "The fiery daughter of the house’s previous owner, dead set on keeping Sam from ruining the books.",
@@ -838,10 +825,7 @@
         "trust": 85
       }
     ],
-    "goddess": {
-      "hand": "A rumor of a hoodied stranger in Hollowmere drifted to Lara on a very particular wind. {goddess} sent it. She doesn't like it when the ones who are left behind stay that way.",
-      "comment": "\"Lara, the orphanage girl.\" {goddess} says it softly, for once. \"She's been left too often. Don't be one more. I mean it.\""
-    },
+    "goddess": {"comment":"\"Lara, the orphanage girl.\" {goddess} says it softly, for once. \"She's been left too often. Don't be one more. I mean it.\""},
     "partnerBlurb": "Sam’s oldest friend from the orphanage, who followed rumors across towns just to make sure he was alright."
   },
   "emily": {
@@ -928,7 +912,6 @@
       }
     ],
     "goddess": {
-      "hand": "Emily woke in her character's body because {goddess} heard a lonely wolf-girl typing into the night and decided the story was worth a real ending. The rumor that led her to Sam was a bonus.",
       "comment": "\"The wolf-girl. Shadowkin.\" {goddess} laughs. \"Six years of campaigns, and you never once noticed. I did. I'm very proud of myself.\""
     },
     "partnerBlurb": "A wolf-eared adventurer who overheard tavern gossip about a suspiciously familiar returner."
@@ -1014,7 +997,6 @@
       }
     ],
     "goddess": {
-      "hand": "The postbox in the alley was old, enchanted and not very quiet. {goddess} stirred it ten years ago, once, so two lonely teenagers could find each other. She's been waiting for the ownership notice ever since.",
       "comment": "\"Lirael, the letter girl.\" {goddess} smiles. \"Ten years of letters, and you never thought to wonder who carried them. I did. It was a pleasure.\""
     },
     "partnerBlurb": "An elven postal clerk holding her breath over a certain familiar signature on an ownership notice."
@@ -1105,7 +1087,6 @@
       }
     ],
     "goddess": {
-      "hand": "{goddess} could have saved Ella from the crosswalk. She didn't. Her rival was the only person who'd pushed Sam his whole life, and a world without rankings seemed wrong for either of them.",
       "comment": "\"Ella, the runner-up.\" {goddess} smiles thinly. \"She kept all your sheets in a drawer. I read them. We both know exactly what that means.\""
     },
     "partnerBlurb": "Sam’s fierce academic rival from back home, suddenly stuck in a world with no rankings to measure."
@@ -1190,7 +1171,6 @@
       }
     ],
     "goddess": {
-      "hand": "{goddess} reached three centuries forward, picked one particular android off a charging dock and pointed her backwards. Some stories need their reader to meet the author. She will not say more.",
       "comment": "\"The android with the diary.\" {goddess} pauses. \"She's read how it ends. I haven't. If she tells you, don't tell me. ...Tell me.\""
     },
     "partnerBlurb": "An antique android running on twelve percent charge, convinced she crossed centuries to deliver one message."
@@ -1280,7 +1260,6 @@
       }
     ],
     "goddess": {
-      "hand": "Sam is the unsent soul the Order is hunting, because {goddess} never sent him: she plucked him out of line. The Lantern Stone burned out of sheer surprise. Anael just happens to be the one who found it.",
       "comment": "\"An angel, writing reports.\" {goddess} laughs. \"About me, in a roundabout way. Her handwriting's gotten warmer. I'm not jealous, I'm a professional.\""
     },
     "partnerBlurb": "An angel of the Order dispatched to watch the unsent soul who lit a lantern by accident."

@@ -1,0 +1,600 @@
+{
+  "_readme": [
+    "Partner introductions (js/stories/intros.js → introPartnerEvent), one per partner key from data/characters/partners.json. Played after the Vane welcome in cycle 1 and when you pick a new partner at a rebirth.",
+    "pages: lead-in pages shown one at a time before the choices ([{text, btn}]): how you met her, then how she ends up at your door. greet: the last page, mostly her own voice, shown with the choices.",
+    "choices: [{label, t, m, l, res}] = trust / mood / lewdness change and the result text. goddess: Seliora's aside, shown on its own screen after the result (skipped once she has left).",
+    "image: {comp, setting, sam}. comp is pose and action only: her hair, eyes, build and outfit are added by the code, so don't describe them here.",
+    "Narration is second person (docs/WRITING.md); nothing here should assume a particular house (use {house}). Placeholders: {name}, {first}, {house}, {goddess}, {sam}, {cycle}."
+  ],
+  "partnerIntros": {
+    "kaede": {
+      "image": {
+        "comp": "leaning against a doorframe with her arms crossed, one finger held up as if counting, cocky grin",
+        "setting": "lantern-lit cobbled street outside a pleasure house at dusk",
+        "sam": true
+      },
+      "pages": [
+        {
+          "btn": "Hit the ditch",
+          "text": "The deed comes later. First there is the road.\n\nYou come to on a cart track outside Hollowmere with grass in your hood and a glowing window blinking in the corner of your eye. Somebody is shouting. Twenty paces off, a fox-eared woman is backing toward the ditch with a knife in each hand, laughing at the three goblins in front of her.\n\nShe hasn't seen the fourth one, up on the bank, winding a crossbow.\n\nYou don't decide anything. You run, your foot finds a loose stone, and you hit her at hip height. The bolt goes through the place her spine was. The two of you go into the ditch together."
+        },
+        {
+          "btn": "Follow her to town",
+          "text": "She finishes the fight before you've worked out which way is up. Then she hauls you out of the ditch by your hood and stands there looking at the bolt in the mud, and at you, and at the bolt.\n\n\"Nobody does that,\" she says.\n\n\"I tripped.\"\n\n\"Nobody trips in that direction.\" Her ears are flat. Her tail is not. \"Kaede. Scout. You're coming with me, because you will be dead by sundown otherwise.\"\n\nBy the town gate she has learned that you own a pleasure house and owe a fortune on it, and she has to sit down on a milestone until she stops laughing. She waits outside Marguerite Vane's office the whole time you're in there."
+        }
+      ],
+      "greet": "When you reach {house} with the deed in your hand, Kaede is already leaning in the doorway, looking the place over like a job she hasn't quoted for yet.\n\n\"So.\" She holds up one finger. \"One life saved. Mine. That goes on the ledger, and I pay what I owe.\" The finger turns and points at the door. \"Until we're square, I'm this. I've never guarded anything but my own back, but I'm good at noticing trouble, and you attract it.\"\n\nShe looks you up and down, hoodie to shoes.\n\n\"Also, you're cute when you panic. That part isn't on the ledger. That's just something I noticed.\"",
+      "choices": [
+        {
+          "label": "\"You don't owe me anything. I really did trip.\"",
+          "t": 5,
+          "m": 6,
+          "res": "\"That's what makes it worth so much, idiot.\" She says it to the door hinge instead of to you. \"People have stood behind me my whole life. You're the first one who ended up in front.\" Then she goes inside to see which locks she'll need to replace, and her tail is swinging."
+        },
+        {
+          "label": "\"Then you're hired. What does a door cost?\"",
+          "t": 4,
+          "m": 7,
+          "res": "\"A room, three meals, and you not dying. I'm serious about the last one.\" She shakes on it, and holds your hand a second longer than a handshake takes. Her palm is all callus. \"Rule one: you don't walk into an alley without me. Rule two is the same rule.\""
+        },
+        {
+          "label": "\"Cute, huh?\"",
+          "t": 3,
+          "m": 8,
+          "l": 1,
+          "res": "Her grin goes crooked. She steps in close, pulls your hood up over your head and tugs the strings tight. \"Don't let it go to your head. It's a small head.\" She walks in ahead of you, and the insides of her ears are pink the whole way down the hall."
+        }
+      ],
+      "goddess": "You won't remember this part, any more than you remember her.\n\nSomewhere above the road, {goddess} lies on her stomach in the dark with a lantern in front of her, watching a fox-eared scout check the locks of {house}. All it took was one goblin moved six paces to the left and one stone loosened under your shoe.\n\n\"A favor has to start somewhere,\" she tells the little flame at her shoulder. Then the scout's tail brushes your leg in the doorway, and the smile goes thin. \"She's counting what she owes you. I'm counting how often she looks.\""
+    },
+    "nerys": {
+      "image": {
+        "comp": "standing with a long contract scroll unrolled between her hands, glaring over the top of it, tail lashing",
+        "setting": "doorstep of a pleasure house at dusk, warm lanterns",
+        "sam": true
+      },
+      "pages": [
+        {
+          "btn": "Lift your hand",
+          "text": "Before the deed, there is the falling.\n\nYou remember the horn. Then cold air, a great deal of it, and a ring of candles coming up fast. You land on your back in the middle of a chalk circle in a ruined chapel outside Hollowmere, and your right hand slaps down flat on a sheet of parchment.\n\nA demon stands over you with one arm still raised and the last word of something very long still in her mouth. Violet hair, curled horns, small wings half open. She looks at your hand. She looks at the parchment, where the ink is crawling out from under your palm and writing a name on the empty line.\n\nIt is your name.\n\n\"No,\" she says. \"No, no, no.\""
+        },
+        {
+          "btn": "Walk to town, with company",
+          "text": "She snatches the contract up and reads it standing over you, tail lashing.\n\n\"Clause fourteen, part c. 'Should the summoned party fail to appear, this contract binds whosoever occupies the circle.'\" Her voice climbs. \"I wrote that clause. I have written it into every contract for two hundred years. It has never triggered. It was boilerplate!\"\n\nHer name is Nerys. The circle was supposed to bring her a wealthy patron and a villa on the southern coast. It brought her a thin man in a grey hoodie. She can't go far from you until the terms are met, and she doesn't yet know what the terms are, because the contract rewrote those too.\n\nShe follows you all the way into town, reading the fine print aloud."
+        }
+      ],
+      "greet": "Nerys stops at the door of {house} and reads the sign. Then she reads it again, the way she read the clause.\n\n\"A pleasure house. Naturally.\" She rolls the contract shut and taps you on the chest with it. \"Let me be clear, Sam. I am not staying. I am supervising my own contract until I find the loophole, and I will find it, because I wrote every word of the thing.\"\n\nOne dark nail lifts your chin so she can look at you properly.\n\n\"Until then you will keep me fed and you will keep me entertained. And you will stop feeling so sorry about all this. The contract carries it straight to me, and it itches.\"",
+      "choices": [
+        {
+          "label": "\"Sorry about your circle. And the villa.\"",
+          "t": 4,
+          "m": 5,
+          "res": "\"You're apologizing to me for being summoned by me.\" She stares at you for a long moment. \"Two centuries, and nobody has ever said sorry about the villa.\" She turns away to inspect the lanterns over the door, so you can't see what her face is doing. The itch under her ribs has stopped, and she doesn't mention it."
+        },
+        {
+          "label": "\"Then help me run it while you look for your loophole.\"",
+          "t": 5,
+          "m": 6,
+          "res": "\"I've brokered other people's appetites for two hundred years. I suppose I can manage one house full of them.\" She sweeps past you through the door as if she holds the deed. \"First lesson, mortal. Nobody pays for what they want. They pay for being allowed to want it. Write that down.\""
+        },
+        {
+          "label": "\"What happens if you never find one?\"",
+          "t": 3,
+          "m": 7,
+          "l": 1,
+          "res": "Her tail goes still. \"Then I'm bound to a debtor in a hoodie until one of us expires, and I don't expire.\" She leans in until her mouth is beside your ear. \"So you had better be worth reading, Sam.\" The tip of her tail draws one slow line across your wrist before she goes inside."
+        }
+      ],
+      "goddess": "You won't remember the lanterns. She remembers everything.\n\n{goddess} turns the chapel over in her hands inside a paper lantern, and admires her aim. The circle was the demon's. The hole in the sky above it was not.\n\n\"She thinks she wrote that clause. I gave her the idea a hundred and ninety years ago, over a very good bottle. I plan ahead.\" She watches Nerys press two fingers under her own ribs, where your mood sits now, and her smile cools. \"A demon who feels it whenever your heart sinks. That was meant to be my job. She's only better at it by contract.\""
+    },
+    "elowen": {
+      "image": {
+        "comp": "standing on a doorstep holding out a small steaming cup in both hands, a herb satchel on her shoulder, shy hopeful smile",
+        "setting": "front steps of a pleasure house at twilight, lanterns",
+        "sam": true
+      },
+      "pages": [
+        {
+          "btn": "Open your eyes",
+          "text": "The deed comes later. First there are three days you only have in pieces.\n\nCedar smoke. A cool cloth on your forehead, changed before it can warm. Fingers on your wrist and a low voice counting in a language you don't know, losing its place and starting again.\n\nWhen you finally wake, you're on a cot in a herb-drying shed at the edge of the Hollowmere road. Bundles of leaves hang from every rafter. An elf is asleep sitting up against the side of the cot, a honey-blonde braid over her shoulder, freckles across her nose. Two of her fingers are still on your pulse."
+        },
+        {
+          "btn": "Let her walk you to town",
+          "text": "She wakes, sees you looking, and takes her hand back so fast she knocks over a bowl.\n\n\"You're awake! Good. That's good. I found you on the road, you were burning up.\" She's picking up spilled leaves and not looking at you. \"It isn't in any of the herbals. I checked all four. Twice. I'm Elowen. I didn't know your name, so I've been calling you 'the patient', which I realize is not very personal.\"\n\nThe fever broke yesterday. Your legs haven't been told. She walks you into Hollowmere at a pace she insists is medically necessary, and sits on the bench outside Marguerite Vane's office until you come out holding a deed and looking worse than when you went in."
+        }
+      ],
+      "greet": "At the door of {house}, Elowen presses a small cup into your hands. Chamomile, and something green you can't name.\n\n\"Drink it slowly, Sam.\" She reads the sign over the door, and the tips of her long ears go pink, but she doesn't step back. \"Strictly speaking, you don't need a healer any more. Your color is back.\"\n\nShe adjusts the strap of her satchel. Then she adjusts it again.\n\n\"But it was a fever I had never seen, and it would be irresponsible not to observe you for a while longer. A house like this must have people who need looking after. Bruises. Sore backs. I could be useful here, I think. If there's a room.\"",
+      "choices": [
+        {
+          "label": "\"There's a room. Stay as long as you like.\"",
+          "t": 5,
+          "m": 7,
+          "res": "The breath goes out of her as though she's been holding it since the shed. \"Then I'll fetch my things. It isn't much. Four herbals and a kettle.\" She gets three steps down the street before she comes back, lays her fingers on your wrist and counts under her breath. \"Just to be sure,\" she says."
+        },
+        {
+          "label": "\"Three days. You sat with me for three days.\"",
+          "t": 4,
+          "m": 6,
+          "res": "\"Anyone would have.\" You both know that isn't true. Her eyes drop to the cup in your hands. \"I've lived a long time, and people mostly come to me when something hurts. It was nice to have someone to sit with, even one who was asleep.\" She smiles at the cup. \"You're better company awake.\""
+        },
+        {
+          "label": "\"Were you holding my wrist the whole time?\"",
+          "t": 3,
+          "m": 6,
+          "l": 1,
+          "res": "Her ears go from pink to red. \"That's how a pulse is taken. It's standard practice.\" It isn't, for three days running, and her voice knows it. She takes the empty cup from you, and her fingers stay against yours a little longer than the cup needs. \"It's a very steady pulse,\" she adds, quietly."
+        }
+      ],
+      "goddess": "You won't remember this. That's the arrangement.\n\n{goddess} sits among her lanterns with her chin on her knee, watching the healer count your pulse again on the doorstep. The fever was hers: a small one, left on the wind, the kind that takes three days and one patient person. She set you down on the stretch of road an elf walks every morning.\n\n\"Two lonely people and a bad temperature. I hardly did anything.\" The flame at her shoulder flickers. \"I meant for her to keep you alive. I never told her to go on holding your wrist.\""
+    },
+    "adelheid": {
+      "image": {
+        "comp": "standing at attention beside a doorway with one hand on the pommel of her sword, chin up, a faint blush",
+        "setting": "cobbled doorstep of a pleasure house under evening lanterns",
+        "sam": true
+      },
+      "pages": [
+        {
+          "btn": "Climb out of the trough",
+          "text": "Before the deed, there is the yard of the Radiant Order's chapter house, at dawn.\n\nThe foretelling says the hero from another world will come down in light, here, on this morning. A knight in polished half-plate has kept vigil on her knees since midnight to greet him.\n\nYou do come down. There's a flash, then a yell, and then the horse trough.\n\nWhen you surface, coughing, the knight is still kneeling. Short platinum hair, a scar through one eyebrow, steel-blue eyes fixed on a thin man in a soaked grey hoodie. Her jaw works once.\n\nThen she draws her sword, lays it across her palms, and says the whole oath anyway. Her sword and her life, to the one who was promised. Her voice cracks only once, on \"hero\"."
+        },
+        {
+          "btn": "Walk to Hollowmere, under escort",
+          "text": "\"I am Dame Adelheid Valk,\" she says, getting to her feet. \"What holy charge do you carry?\"\n\nYou carry a sheet of wet paper. You hold it out. She reads the words \"pleasure house\", and then reads them again in case they change.\n\nThe silence that follows is very long.\n\n\"The foretelling,\" she says at last, \"does not specify the nature of the hero's enterprise.\" She sheathes her sword with great care. \"An oath is not unsworn because the facts are inconvenient.\"\n\nShe escorts you to Hollowmere half a pace behind your left shoulder and glares at everyone who looks at you. Marguerite Vane takes one look at her and conducts the whole meeting with the door open."
+        }
+      ],
+      "greet": "Adelheid has inspected {house} by the time you finish reading your own deed.\n\n\"The locks are a disgrace. The back stair is undefended. I counted four windows a child could open.\" She plants herself beside the door with her hand on her pommel. \"I swore my sword to the one who would come. I did not swear to approve of his business, and I will guard it all the same. Honor follows a person's conduct, not their address.\"\n\nShe clears her throat. For the first time she looks unsure.\n\n\"One practical matter. The foretelling says nothing of what you eat in the morning. I would need to know that. For reasons of security.\"",
+      "choices": [
+        {
+          "label": "\"Start by calling me Sam.\"",
+          "t": 5,
+          "m": 6,
+          "res": "She tries it like someone stepping off a ledge. \"...Sam.\" Her ears turn red beneath the cropped hair. \"That's highly irregular. A knight doesn't address her charge by—\" She stops. \"Sam,\" she says again, more quietly, and then she finds something urgent to examine on the door hinge."
+        },
+        {
+          "label": "\"I'm not a hero, Adelheid. I fell in a trough.\"",
+          "t": 4,
+          "m": 5,
+          "res": "\"Heroes rarely look like heroes at first. I have read a great many accounts.\" Some of those accounts live in her saddlebag and have embossed covers, and she'd die before saying so. \"You stood up out of the trough and apologized to the horse. I've sworn myself to worse men for less. I am content.\""
+        },
+        {
+          "label": "\"Eggs, mostly. And you can stop sleeping in the armor.\"",
+          "t": 4,
+          "m": 7,
+          "res": "\"Eggs,\" she repeats, committing it to memory like scripture. Then the rest of the sentence reaches her. \"I don't— How did you know about the armor?\" She looks down at the dent a pauldron has left in her collar, and for one second the paragon of her chapter almost laughs."
+        }
+      ],
+      "goddess": "You won't remember her saying any of this.\n\n{goddess} hangs upside down among the lanterns, hair trailing, delighted. Six years ago she breathed a foretelling into the sleep of an elderly prioress: a hero, a light, a morning. She left out the hoodie on purpose. It's her favorite part.\n\n\"I promised her a hero and delivered you into a trough. I'm not sorry.\" She watches the knight take up her post at your door, and the laugh fades. \"She spent six years on her knees waiting for you. I waited longer than that, and nobody wrote me a prophecy.\""
+    },
+    "marisol": {
+      "image": {
+        "comp": "perched on a tall stool with a heavy ledger open on her knee and a pen behind her ear, pointing at the page, sharp grin",
+        "setting": "cramped back office of a pleasure house, shelves of ledgers, one lamp",
+        "sam": true
+      },
+      "pages": [
+        {
+          "btn": "Step into the office",
+          "text": "Your first evening in {house}, there is already a light on in the back office.\n\nA woman sits on the ledger stool with her boots hooked on the rung, dark curls tied back, gold hoops catching the lamp, a pen going fast in red ink. She doesn't look up when you come in.\n\n\"You're him, then. 'Whoever shows up.'\" She slides a scrap of paper across the desk with one ink-stained finger. It's a note in a man's loose handwriting, and it reads, in full: Sorry.\n\n\"My father. He left a deed, a debt and that. I'm Marisol Vey. I've kept these books since I was tall enough to reach them.\""
+        },
+        {
+          "btn": "Look at the page",
+          "text": "\"Here are my options,\" she says, still writing. \"I contest the deed. That's a year in court, Vane wins either way, and the house rots while we argue. Or.\"\n\nShe turns the ledger around and pushes it toward you. A page of her father's figures, with a debt column running down the right side.\n\n\"Tell me what you see.\"\n\nYou're tired, you've been dead once this week, and columns of numbers are the one thing in this world that look like home. You follow the figures down and put your finger on the third line, where a payment was entered twice.\n\nMarisol stops writing."
+        }
+      ],
+      "greet": "\"Huh,\" Marisol says. She looks at your finger on the page, and then, for the first time, at you. \"He never found that one. Eleven years and he never found it.\"\n\nShe shuts the ledger and folds her arms on top of it.\n\n\"Fine. Here's my offer, Sam. I don't fight you for the deed. I stay, I keep the books honest, and I shout at you when you're about to do something stupid, which I can already tell will be often. In return I get to find out what kind of person takes on a house like this on purpose.\"\n\nOne eyebrow goes up.\n\n\"So far the answer is 'a tired one who can count'. I've worked for worse.\"",
+      "choices": [
+        {
+          "label": "\"Partners, then. On the numbers.\"",
+          "t": 5,
+          "m": 7,
+          "res": "\"Partners.\" She spits in her palm before she thinks about it, winces, wipes the hand on her skirt and offers you the other one. \"Dock habit. Don't tell anyone.\" Her grip is hard and inky. \"First order of business: we find every mistake he buried. Get tea. It's a long list.\""
+        },
+        {
+          "label": "\"I'm sorry about your father.\"",
+          "t": 4,
+          "m": 5,
+          "res": "\"Don't be. He's somewhere warm, winning at cards with money that should be in that column.\" The pen taps the desk twice. \"I check the post every morning. That isn't forgiveness, I just like to know where people are.\" She pulls the second stool out with her foot. \"Sit down. You can be sorry and add at the same time.\""
+        },
+        {
+          "label": "\"I didn't take it on purpose. I woke up holding it.\"",
+          "t": 4,
+          "m": 6,
+          "res": "She laughs, one short surprised bark. \"And you came in and read the books anyway. Most men who win a pleasure house go straight upstairs.\" She opens the ledger again and turns it so you can both see. \"Then we're the same, you and me. Neither of us asked for it. Third line. Show me how you spotted that.\""
+        }
+      ],
+      "goddess": "You won't remember her, so she can say what she likes.\n\n{goddess} holds {house} up in a lantern and peers in at the lit office window. Moving the old owner along was simple and it wasn't cruel: a card game in a port three weeks south, and a winning streak she hasn't let end.\n\n\"I wanted the house to have somebody who would listen to its books.\" She watches Marisol pull out the second stool for you, and her mouth twists. \"I didn't plan for the bookkeeper to start listening to you. I can't decide if I like her. It's annoying.\""
+    },
+    "lirael": {
+      "image": {
+        "comp": "standing on a doorstep clutching a ribbon-tied bundle of old letters to her chest, satchel strap wound around her fingers, eyes shining",
+        "setting": "lantern-lit porch of a pleasure house at dusk",
+        "sam": true
+      },
+      "pages": [
+        {
+          "btn": "Sign for it",
+          "text": "The knock on the door of {house} is so soft that you almost miss it.\n\nAn elf stands on the step in a dark green postal jacket with brass buttons, round spectacles, pale hair in a side braid. The strap of her satchel is wound twice around her fingers. She has plainly practiced this, and she has plainly lost her place.\n\n\"Delivery,\" she says. \"For Sam Takahashi. It requires a signature.\"\n\nShe holds out a form and a pen. You sign. She watches your hand make the looping S, and a small sound gets out of her before she can stop it."
+        },
+        {
+          "btn": "Look at her",
+          "text": "\"That isn't the delivery,\" she says. \"I'm sorry. I needed to see you write it.\"\n\nOut of the satchel comes a bundle of letters tied with a faded ribbon. The envelope on top is addressed in a sixteen-year-old's handwriting. Yours. To whoever finds this.\n\nYou remember the old red postbox behind the home on Alder Street. You remember a pen friend who signed herself Quill, and five years of letters about nothing and everything. Then the road crew pulled the box out one spring, and there was nowhere left to send a reply.\n\nYou had always assumed Quill lived a few towns over."
+        }
+      ],
+      "greet": "\"You're taller than your handwriting,\" Lirael says, and then she covers her mouth with her fingers.\n\n\"I had a speech. It was three pages long and I've forgotten every word of it.\" Her ears are trembling. \"I'm Lirael. Lirael Quill. I sort the post in Hollowmere. Your ownership notice came across my counter and I knew the S before I'd read the name.\"\n\nShe holds the letters against her chest with both arms.\n\n\"You're real, Sam. You're a few streets away from me. I kept the box swept for ten years in case you wrote again, and now you're standing in a doorway, and I don't know what I'm supposed to do with my hands.\"",
+      "choices": [
+        {
+          "label": "\"Quill. You're real too.\"",
+          "t": 5,
+          "m": 7,
+          "res": "Her shoulders come down all at once. \"I am. I've checked.\" She laughs, and it comes out wet. \"You wrote once that you didn't think anybody would notice if you vanished. I noticed. It took me ten years to say so, and I'm sorry it took that long.\""
+        },
+        {
+          "label": "\"They tore the postbox out. I never stopped wanting to write.\"",
+          "t": 6,
+          "m": 6,
+          "res": "She goes very still. \"I thought I'd said something wrong. I read my last letter over so many times that the folds went soft.\" She takes off her spectacles, wipes them, and puts them back on crooked. \"A road crew. All this time it was a road crew.\" She breathes in, and it shakes. \"I'm going to need to sit down.\""
+        },
+        {
+          "label": "\"Come inside. Read me the speech.\"",
+          "t": 4,
+          "m": 8,
+          "res": "\"I told you, I've forgotten it.\" But she steps over the threshold and looks around the hall as if she's checking it against a description. \"It started, 'Dear Sam, you don't know me.' That part wasn't true, which is probably why it wouldn't stay in my head.\" She gives you the first letter to hold while she remembers the rest."
+        }
+      ],
+      "goddess": "You won't remember who carried them.\n\n{goddess} sits cross-legged in the dark with fifteen years of other people's post spread around her like a card game. She woke the old box once, for a lonely elf and a lonely boy. After that she delivered every letter herself, because nobody else was going to.\n\n\"Yes, I read them. Don't make that face. I was the postage.\" She picks up an envelope and turns it over without opening it. \"She has five years of you tied up in a ribbon. I have all thirty-one, and there isn't a page of it I'm allowed to show you.\""
+    },
+    "anael": {
+      "image": {
+        "comp": "standing beneath a lit street lantern writing in a small notebook, wings folded, looking up with calm curiosity",
+        "setting": "cobbled crossroads at dusk beside an old stone lantern, a pleasure house behind",
+        "sam": true
+      },
+      "pages": [
+        {
+          "btn": "Go and look",
+          "text": "On your first evening as an owner, every lamp on the street outside {house} flares gold at once. No wind. Nobody near them.\n\nAt the crossroads stands the Lantern Stone, an old stone lamp that people here walk around without seeing. You bumped into it on your first day and apologized to it out of habit. According to everyone you've asked, it hasn't held a flame in four hundred years.\n\nIt's burning now.\n\nUnder it stands a woman with white wings folded at her back and a ring of light behind her head, dimmed as far as it will go, like a lamp turned low for company. She is writing in a small notebook."
+        },
+        {
+          "btn": "Hear her out",
+          "text": "\"You are the one who apologized to it,\" she says, without looking up. \"The baker saw you. He was very clear.\"\n\nHer name is Anael Hallowell, a Warden of the Quiet Lamp. Her Order tends the lanterns that are lit for souls who arrive in this world unsent, so that they can find their way. The Stone lit itself on the night you came. Nobody sent you, and nobody lit it.\n\n\"There is no rule for this,\" she says. She seems to find that upsetting and interesting in about equal parts. \"I have been dispatched to observe until I understand the mechanism. You arrived that same night, Sam Takahashi. That makes you a person of interest.\"\n\nShe closes the notebook on her finger to keep the page."
+        }
+      ],
+      "greet": "Anael walks back to {house} beside you, and the lamps brighten one by one as she passes. She pretends not to notice.\n\n\"Observation requires proximity,\" she says at the door. \"And patience. I'm told it also requires tea, though that may be a custom of this town and not of the method.\"\n\nShe studies the sign, the red lanterns and the painted shutters. Her expression doesn't change. She makes a note.\n\n\"I should be honest with you. If you prove to be a danger to Hollowmere, I am bound to report it. So far my notes read: 'Thin. Courteous. Apologizes to masonry.'\" The corner of her mouth moves. \"I expect to be here for some time.\"",
+      "choices": [
+        {
+          "label": "\"Then stay and see for yourself.\"",
+          "t": 5,
+          "m": 6,
+          "res": "\"That is my intention.\" She folds one wing in to get through the doorframe, and a single white feather comes loose and lands on your sleeve. She looks at it and decides not to take it back. \"An observer should keep some distance from her subject. Let us agree that I am keeping it.\""
+        },
+        {
+          "label": "\"What happens to a soul that arrives unsent?\"",
+          "t": 4,
+          "m": 5,
+          "res": "\"Usually they're lost. They drift until a lantern finds them.\" Her pen has stopped. \"You weren't lost. You landed, you were handed a debt, and you said thank you to the woman who handed it over.\" She closes the notebook. \"I have tended lamps for three hundred and eighty-nine years, and I don't know what you are. I find I don't mind.\""
+        },
+        {
+          "label": "\"Tea, then. How do angels take it?\"",
+          "t": 4,
+          "m": 7,
+          "res": "\"I have no idea. Nobody has asked.\" She thinks it over with real seriousness. \"Hot, I think. With company.\" At the kitchen table she holds the cup in both hands and watches the steam, and somewhere behind her the halo comes up one soft notch brighter. She doesn't notice that either."
+        }
+      ],
+      "goddess": "You won't remember this, and the angel isn't going to work it out soon.\n\n{goddess} lies back among her lanterns and laughs until the nearest ones swing. The Order is hunting for whoever sent an unsent soul. Nobody sent you. She lifted you out of the line with two fingers, and the Lantern Stone lit from the shock of it.\n\n\"They sent their best Warden to find the culprit. She's writing reports about me and addressing them to you.\" The laughing stops as Anael's feather settles on your sleeve. \"Three hundred and eighty-nine years old, and she's only now learning how she takes her tea. Don't you dare be the reason.\""
+    },
+    "yui": {
+      "image": {
+        "comp": "standing frozen in a doorway hugging an account book to her chest, eyes wide and wet behind thin glasses",
+        "setting": "front hall of a pleasure house at twilight, an office stapler sitting on the counter",
+        "sam": true
+      },
+      "pages": [
+        {
+          "btn": "Turn around",
+          "text": "There's a stapler on the counter of {house}.\n\nIt's black, heavy and scuffed along one edge, with the office-supply sticker still stuck to its base. It's sitting beside an inkwell and a brass oil lamp as if all three of them belong to the same century.\n\nYou have used this stapler. It lived two desks down from yours for six years, and you borrowed it every month-end and always brought it back.\n\nBehind you, in the doorway, somebody takes a short, sharp breath."
+        },
+        {
+          "btn": "Say her name",
+          "text": "Mori from accounts. Yui. She has a neat black bob, thin glasses and a cardigan you've seen across the office on a hundred Mondays, and she's holding a local account book against her chest like a shield.\n\nIt comes out of her all at once. She was on the same crossing. She woke up here a week ago with the stapler in her coat pocket. She has learned the coins, found bookkeeping work in the market, and established that nobody in this world has invented the spreadsheet.\n\n\"Then the grain merchant said a man in a grey hooded jacket had signed for a pleasure house. And I thought, there are no hooded jackets here. There's only one.\""
+        }
+      ],
+      "greet": "Yui has hold of your sleeve with both hands. She notices, lets go, bows, apologizes, and takes hold of it again.\n\n\"Takahashi-san. No. Sam. I'm going to call you Sam. There's no HR in this world, I asked around.\" She's laughing and crying together and seems annoyed at herself for both. \"I thought I was the only one. I've been keeping a list of things I miss, and there was nobody to read it to.\"\n\nShe pushes her glasses up with one knuckle.\n\n\"I've already looked at your debt schedule. I'm sorry. I was nervous, and it was lying on the desk. It's very bad, Sam. But I can fix some of it. I'd like to stay and fix it, if that's all right.\"",
+      "choices": [
+        {
+          "label": "Take her hands. \"It's real. We're both really here.\"",
+          "t": 6,
+          "m": 8,
+          "res": "Her fingers are freezing and she's holding on hard. \"Okay,\" she says. \"Okay. Okay.\" She presses her forehead against your sleeve for exactly three seconds, the way a person might allow herself one biscuit. \"I'm fine now. Show me the office. I work better after I've cried, everybody in accounts knew that.\""
+        },
+        {
+          "label": "\"You brought the stapler.\"",
+          "t": 4,
+          "m": 7,
+          "res": "She looks at it and bursts out laughing through the tears. \"I didn't bring it! It was in my pocket! I died holding office supplies, Sam!\" She wipes her eyes with the heel of her hand. \"It's the only thing I have from home. And now you.\" She says the last part to the stapler, and then goes scarlet."
+        },
+        {
+          "label": "\"What's on the list?\"",
+          "t": 5,
+          "m": 6,
+          "res": "\"Instant noodles. Vending machines. The sound the train doors make.\" She counts them off on her fingers. \"The window by the copier. Month-end, which I can't explain. And the—\" She stops herself. The next thing on the list is a person, and he sat two desks away from her. \"It's a long list,\" she says. \"I'll read you the rest some other time.\""
+        }
+      ],
+      "goddess": "You won't remember this. She hopes Yui won't either.\n\n{goddess} sits in the dark turning a small black stapler over in her fingers. It's a copy, and she made it for the pleasure of the detail. You never saw who else was on that crossing. She did, and she tipped the accountant's fall a week early so that Yui would land first and have time to find her feet.\n\n\"Six years at two desks' distance, and she filed all of it under 'later'.\" She puts the stapler down very gently. \"I know how that goes. My seat was worse than hers.\""
+    },
+    "natsuki": {
+      "image": {
+        "comp": "standing in a yard with a sheathed sword on her hip, fists clenched, grinning through tears",
+        "setting": "back yard of a pleasure house at dusk, lanterns on the wall",
+        "sam": true
+      },
+      "pages": [
+        {
+          "btn": "Turn around",
+          "text": "You hear steel first, out in the yard behind {house}. A sword is being pushed home into its sheath by somebody who has done it ten thousand times.\n\nThen a voice says, \"Oi. Bean sprout.\"\n\nNobody has called you that in three years. Nobody else ever called you that at all.\n\nShe is standing by the gate in road-worn leather armor, with short chestnut hair, a sticking plaster on one cheek and a sword at her hip. Natsuki Hayama grew up three doors down from you and won every race the two of you ever ran. She took a shortcut home one evening and was never seen again. You put up the posters yourself, and kept putting them up for a year."
+        },
+        {
+          "btn": "Let her finish",
+          "text": "She walks straight up to you and stares, as if you might be a trick of the light. Then her face crumples and she is crying. Then she punches you in the shoulder, hard, and cries harder.\n\n\"Three years! I came out of that alley into a forest, Sam! I couldn't read a single sign. I carried a sword for a caravan because it was the first job anyone offered, and I got good at it, because the other thing you can do out there is die.\"\n\nShe scrubs her face on her forearm.\n\n\"And you wash up a few streets from my guild hall, and the first thing I hear is that you've inherited a brothel. Of course you have. Obviously.\""
+        }
+      ],
+      "greet": "Natsuki sniffs, straightens up and puts her hands on her hips. You've known that pose since you were six. It means the decision is already made and you're only being informed.\n\n\"Right. You need a guard. Don't argue, your arms look like boiled noodles.\" She points at the house and then at herself. \"I'm staying. It's for the free meals. That's the only reason, and you're going to agree with me.\"\n\nHer eyes are still red, and her grin is the one you grew up with.\n\n\"I had a whole speech for if I ever got home, you know. It was mostly yelling. I'm glad you get to hear it. Say something, Sam, before I start crying again.\"",
+      "choices": [
+        {
+          "label": "Hug her. \"I looked for you for a year.\"",
+          "t": 6,
+          "m": 8,
+          "res": "She goes stiff, and then her arms lock around your ribs hard enough to hurt. \"Idiot,\" she says into your neck. \"You were supposed to give up. Everybody gives up.\" She doesn't let go for a long time. When she finally does, she hits your arm again, much more gently. \"A whole year. You really are stupid.\""
+        },
+        {
+          "label": "\"Natsu.\"",
+          "t": 5,
+          "m": 7,
+          "res": "She turns her back on you so fast her scabbard swings. \"Don't. I haven't heard that in three years. Give me a second.\" Her shoulders go up and come down once. When she turns around again she's grinning as if nothing happened. \"Okay. You can say it again now. Just the once.\""
+        },
+        {
+          "label": "\"For the free meals. Understood.\"",
+          "t": 4,
+          "m": 7,
+          "res": "\"Good. Glad that's clear.\" She hooks an arm around your neck and steers you toward the kitchen the way she steered you home from school. \"I eat a lot these days, so I hope this place makes money. Race you to the door. No, forget it, you'd lose, and I've only just got you back.\""
+        }
+      ],
+      "goddess": "You won't remember this either. She's used to it.\n\n{goddess} watches the two of you through a lantern, her chin on her fist. That alley was never a shortcut. She opened a door three years early and left a light burning on the far side, so the girl would last until you came.\n\n\"I needed somebody here who would hit you when you had it coming. I'm not allowed to leave marks yet.\" She watches Natsuki's arm settle around your neck, easy as breathing, and her gold eyes narrow. \"She won every race you ever ran against her, you know. She isn't going to win this one.\""
+    },
+    "kanako": {
+      "image": {
+        "comp": "sitting on a bar stool with her chin in her hand and a glass in the other, a warm teasing smile",
+        "setting": "bar counter of a pleasure house in the evening, amber lamps",
+        "sam": true
+      },
+      "pages": [
+        {
+          "btn": "Follow the sound",
+          "text": "Jasmine perfume gets through the woodsmoke of {house} before anything else does. You know it. It lived on the other side of a thin wall for six years.\n\nThen comes the laugh from the bar, loud and unhurried, the kind that fills a room and makes everyone in it feel they've been let in on something. You know that too. You used to hear it through your kitchen wall on Friday nights and feel a little less alone.\n\nShe's sitting on a stool at your counter with her dark hair pinned up, red lipstick, a beauty mark under her left eye. She has found the good bottle, and she has poured two glasses."
+        },
+        {
+          "btn": "Sit down",
+          "text": "\"There he is,\" Kanako says, as if you're late for dinner.\n\nShe tells it like a story from someone else's evening. A bag of groceries, a crossing, a horn. Then a drinks stall under two moons, with a boy behind it pouring so badly that she took the bottle out of his hand. By nightfall she was running the place.\n\n\"Then a customer tells me the new owner of {house} bumped into a chair and said sorry to it.\" She slides the second glass across to you. \"And I thought, I know exactly one man who does that. I spent six years teaching him to sort his recycling.\""
+        }
+      ],
+      "greet": "Kanako turns on her stool and looks you over. Then she reaches out and straightens the collar of your hoodie with both hands, which nobody else has ever thought needed doing.\n\n\"Sammy. Look at you. Have you eaten today? No, you haven't, I can tell by your neck.\" She clicks her tongue. \"And a brothel, sweetheart. Honestly. I leave you alone for one death.\"\n\nShe smiles the way she used to over the balcony rail.\n\n\"Lucky for you, I ran a room for nine years. I'll take your bar. I'll know how a man's night went from the way he opens the door, and I'll make sure you get a hot meal. Don't look at me like that. Somebody has to do it.\"",
+      "choices": [
+        {
+          "label": "\"Kanako-san. I'm really glad it's you.\"",
+          "t": 5,
+          "m": 8,
+          "res": "\"Of course you are. I'm delightful.\" She pinches your cheek. Her eyes are brighter than the lamp accounts for. \"It's good to see a face that knows mine, Sammy. Everybody here thinks I just appeared one day already knowing how to do this.\" She clinks her glass against yours. \"To the neighbors.\""
+        },
+        {
+          "label": "\"Black, one sugar if it's been a bad day.\"",
+          "t": 6,
+          "m": 7,
+          "res": "Her glass stops on its way up. \"My coffee.\" For once the laugh doesn't come. \"Nobody in this whole world knows that. You remembered it from through a wall?\" She gives you a long look and doesn't seem to finish whatever she's adding up. Then she ruffles your hair. \"What a good neighbor you were. Drink up.\""
+        },
+        {
+          "label": "\"You could stop calling me Sammy.\"",
+          "t": 3,
+          "m": 6,
+          "res": "\"I could.\" She appears to think it over. \"I'm not going to. You were twenty-five and couldn't boil an egg when I met you, and you'll be Sammy when you're eighty.\" She leans across the bar and looks at you a moment longer than she usually does. \"Although you do stand up straighter here. Hm.\" Then she goes to see what you've got in the kitchen."
+        }
+      ],
+      "goddess": "You won't remember her doing the voice.\n\n\"Sammy,\" says {goddess}, in a very good imitation, and wrinkles her nose. She set the woman down beside the right stall in the right town and put the taste for a certain recipe back on her tongue. Somebody ought to be met by a neighbor who knows how they take their coffee.\n\n\"She fed you for six years and never once saw how you looked at her. I saw it. I saw it for both of you, and it was unbearable.\" She flicks the lantern with one fingernail. \"She's still not looking. Good. Let her take her time.\""
+    },
+    "akari": {
+      "image": {
+        "comp": "bursting through a doorway with a folded umbrella held up like a sword, laughing with wet eyes",
+        "setting": "front hall of a pleasure house at dusk, paper lanterns",
+        "sam": true
+      },
+      "pages": [
+        {
+          "btn": "Brace yourself",
+          "text": "You hear sneakers on the floorboards of {house}. Real ones, rubber soles, running.\n\nA folded commuter umbrella comes through the door curtain ahead of its owner, like a sword.\n\n\"Found you!\"\n\nPink-blonde hair, a star-shaped clip, an oversized hoodie, road dust to the knees. Akari Kurosawa is your best friend's little sister. She has been at the edge of your evenings for years, stealing the controller and bringing the snacks and walking you to the station when you'd missed the last train.\n\nShe drops the umbrella, runs the length of the hall and hits you square in the ribs."
+        },
+        {
+          "btn": "Hold on to her",
+          "text": "She does all her talking into the front of your hoodie.\n\nShe was a few steps behind you and Kenta at the crossing. She says she was only walking by, with the spare umbrella, in case it rained. Kenta had stopped to tie his shoe. He's fine. He was well back from the road, so he has to be fine, and she has told herself that every night since.\n\nShe woke up in a field. She has walked through three towns asking after a tall idiot and a thin one, and all anybody could tell her about was the thin one.\n\n\"So I ran. I ran from the market, and I think I knocked over a fruit stand. You'll have to pay for that. Sorry.\""
+        }
+      ],
+      "greet": "Akari steps back, wipes her eyes on her sleeve and sets her feet like someone about to make an announcement.\n\n\"Okay. New rule. Here, I'm not 'Kenta's little sister'. Nobody in this whole world knows Kenta.\" Her chin comes up. \"I'm Akari, I'm twenty-three, and I'm staying wherever you are. You don't get a vote.\"\n\nThen she takes in the hall properly for the first time. The red lanterns. The curtains. A painting on the far wall that leaves very little out.\n\n\"Sam,\" she says slowly, and the grin spreads across her face. \"Sam, is this a— Oh my god. You? You own one of these?\" She's delighted. \"This is the best thing that's ever happened. Show me everything.\"",
+      "choices": [
+        {
+          "label": "\"You're safe here, Akari. I promise.\"",
+          "t": 6,
+          "m": 8,
+          "res": "The grin wobbles. \"Don't be nice to me, I only just stopped crying.\" She picks up the umbrella and holds it against her chest. \"House rule one: nobody disappears. Kenta would kill you if you lost me.\" She says it lightly, and then she takes hold of the edge of your sleeve and keeps hold of it."
+        },
+        {
+          "label": "\"You brought an umbrella to another world.\"",
+          "t": 4,
+          "m": 7,
+          "res": "\"It was going to rain at the crossing!\" Her ears go pink. \"It was an excuse, okay? I was going to say, 'Oh, Sam, you forgot yours, share mine.' I'd rehearsed it.\" She hears what she's just told you, and decides to stand by it. \"It was a good plan. It still is. I'm keeping the umbrella.\""
+        },
+        {
+          "label": "\"So who are you, if you're not Kenta's sister?\"",
+          "t": 4,
+          "m": 8,
+          "l": 1,
+          "res": "\"Good question!\" She turns once on the spot, arms out, hoodie flaring. \"Somebody you have to look at properly, for a start.\" She stops much closer to you than she started and tips her head back. \"You never teased me, back home. Not once. You can start now. I can take it.\""
+        }
+      ],
+      "goddess": "You won't remember that she almost said no.\n\n{goddess} sits with her knees drawn up, frowning into a lantern at a pink-haired girl holding on to your sleeve. That one wasn't meant to cross. All it took was holding the walk signal one second longer.\n\n\"She asked. Every New Year, at the same little shrine, the same wish, with your name in it. I don't take requests.\" She rests her chin on her knees. \"I took one. She's young and she's brave and she's going to say out loud all the things I only get to think. I'm regretting it already.\""
+    },
+    "lara": {
+      "image": {
+        "comp": "standing by a row of coat pegs with a small crushed cake box held in both hands, an anxious half-smile",
+        "setting": "dim hallway of a pleasure house at night, one lamp",
+        "sam": true
+      },
+      "pages": [
+        {
+          "btn": "Look again",
+          "text": "Nobody heard the latch.\n\nBut when you turn toward the lamp in the hall of {house}, there's a black coat beside the pegs that wasn't there a moment ago, and there's somebody in it. She's keeping very still, like a person who is waiting to hear whether she's allowed to be here.\n\nA long black ponytail, a silver stud in her nose, kohl around her eyes, dark plum lipstick bitten at one corner. Lara Patel grew up three doors along the corridor from you on Alder Street. She was the one person who never lost your number.\n\nShe is holding a small cardboard box in both hands. One side of it is crushed."
+        },
+        {
+          "btn": "Say her name",
+          "text": "\"There was a rumor,\" Lara says. Her voice is hardly louder than the lamp. \"It was three provinces away from here. A stranger in a grey hood had taken over a pleasure house in a town called Hollowmere. Everybody who told it thought it was funny.\"\n\nHer thumb runs back and forth along the dented edge of the box.\n\n\"I thought, that's him. Nobody else would do that by accident.\"\n\nShe doesn't tell you how she crossed, and you find you can't ask yet. Her coat is worn through at both elbows. There's straw caught in the hem. She has come a long way on foot, and she slept wherever would have her."
+        }
+      ],
+      "greet": "\"I'm not asking for anything,\" Lara says quickly. \"I can clean. I'm awake at night anyway. I don't take up much room, you know that.\"\n\nHer eyes are on your shoes. They always went there when the thing she needed to say mattered too much.\n\n\"Just don't send me back down the road tonight, Sam. Please.\"\n\nShe holds the box out. Whatever is inside stopped being a cake a long time ago.\n\n\"I was three streets away when it happened. I was coming over to surprise you.\" Her mouth tries to smile. \"Happy birthday. It's very late. I'm sorry about the icing.\"",
+      "choices": [
+        {
+          "label": "\"You're never going back on the road. Come in.\"",
+          "t": 6,
+          "m": 8,
+          "res": "She breathes out, long and shaking, as if she has been holding it for three provinces. \"Okay,\" she whispers. Then she seems to need to hear it again. \"Okay.\" She steps into the lamplight properly, and you see how tired she is, and that she's been crying, and that she has just stopped."
+        },
+        {
+          "label": "Take the box. \"You carried this the whole way?\"",
+          "t": 5,
+          "m": 7,
+          "res": "\"I couldn't put it down. If I put it down, that meant I'd stopped looking.\" She watches you lift the lid on a flat grey ruin with one bent candle in it. A small laugh gets out of her, the first you've heard. \"It was chocolate. It was really nice, once.\""
+        },
+        {
+          "label": "Hang her coat on the peg next to yours",
+          "t": 5,
+          "m": 7,
+          "res": "She lets you take it off her shoulders. In the black dress underneath she looks smaller, and more like the girl from the corridor. She stands looking at the two coats side by side on their pegs for a while. \"On Alder Street they'd have told us off for that,\" she says. \"Doubling up.\" She doesn't move hers."
+        }
+      ],
+      "goddess": "You won't remember her being gentle. Hardly anyone would believe it.\n\n{goddess} holds the lantern closer than usual. Yes, the rumor on the wind was hers. So was the door, and she doesn't open doors for grief. The dead are missed all the time. If she answered every time, there would be no line at all.\n\n\"She stood at that crossing every night for a month, holding a cake.\" The little flame at her shoulder burns low. \"So I opened one. She has been left by everyone who ever said they would stay. Don't you be one more, {sam}. I mean that.\""
+    },
+    "emily": {
+      "image": {
+        "comp": "hovering in a doorway clutching a thick notebook to her chest, wolf ears flat, tail wrapped around her own leg",
+        "setting": "front parlor of a pleasure house in the evening, hearth light and bookshelves",
+        "sam": true
+      },
+      "pages": [
+        {
+          "btn": "Look round",
+          "text": "Somebody coughs near the parlor shelves of {house}. It sounds like a cough that took a long time to work up to.\n\nThen you hear a soft, uneven thumping. It's a tail hitting the doorframe, and its owner clearly can't make it stop.\n\nShe's standing half in the room and half out of it. A grey hoodie with the sleeves pulled down over her hands, round glasses, long chestnut hair, grey wolf ears pressed flat. She's hugging a thick notebook, and there's graph paper sticking out of it.\n\n\"Hi,\" she says. \"Sorry. Hi. Are you the owner? They said the owner was called Sam.\""
+        },
+        {
+          "btn": "Hear her out",
+          "text": "Her name is Emily. She has been doing odd jobs around Hollowmere for about a year, copying and mapping and filing for the guild.\n\n\"I heard a story in a tavern,\" she says to the notebook. \"About an owner who bumped into a chair and apologized to it. And who explained his house rules to a room full of people by saying, 'Okay, so, lore-wise.'\"\n\nHer ears flick up and flatten again.\n\n\"I used to know somebody who talked like that. Not in person. It was a long time ago, and far away.\" She almost says something else. You can see it get as far as her teeth and stop there. \"Anyway. I thought I'd come and look. That's all.\""
+        }
+      ],
+      "greet": "Emily keeps looking at you and then away, as if she's comparing you to a picture she isn't going to show you.\n\n\"So. Don't freak out about the ears. I didn't choose them.\" She winces. \"That's not true, I did choose them, a long time ago, on a form. I didn't know it would be binding. It's a whole thing.\"\n\nHer tail has wrapped itself around her own calf. She looks down at it as though it has let her down.\n\n\"I'm good with records. Maps, lists, who owes what to whom. I'm quiet and I don't eat much.\" She takes a breath. \"I'd like to work here, if you'll have me. There's something I need to tell you, and I'm not brave enough for it yet. I thought that if I stayed close, I'd get there.\"",
+      "choices": [
+        {
+          "label": "\"Take your time. The job's yours.\"",
+          "t": 5,
+          "m": 7,
+          "res": "Both ears come up before she can stop them. \"Really? You haven't even seen my handwriting.\" She hugs the notebook harder. \"Okay. Good. Thank you.\" She starts for the door and comes back. \"You're exactly how I thought you'd be,\" she says, very fast, and then she leaves before you can ask her what that means."
+        },
+        {
+          "label": "\"Is that a hex map in your notebook?\"",
+          "t": 5,
+          "m": 8,
+          "res": "She looks down at the corner of graph paper and makes a noise like a kettle. \"It's nothing! It's a hobby. It's a campaign setting, it's really old—\" She stops and looks up slowly. \"You know what a hex map is.\" Her tail thumps the doorframe twice. \"Nobody here knows what a hex map is.\""
+        },
+        {
+          "label": "Bring two mugs of cider and let her breathe",
+          "t": 4,
+          "m": 6,
+          "res": "She folds herself onto the hearth bench and holds the mug in both sleeves. For a while neither of you says anything, and it's the comfortable kind of quiet, like sitting with someone you've done this with a thousand times. \"This is nice,\" she says into the steam. \"It's a lot like I pictured.\" She doesn't say what she pictured."
+        }
+      ],
+      "goddess": "You won't remember this, and that is the only reason she's telling you.\n\n{goddess} is stretched out among her lanterns, reading over a wolf-girl's shoulder. For six years a lonely student typed to you every night under the name Shadowkin. You never met. You never heard her voice. Then you went quiet, and she kept on typing into the dark.\n\n\"I heard her. She writes very well.\" She twirls a finger, and far below a grey tail thumps a doorframe. \"So I gave her the body she'd been describing. She's still angry about the tail, and I think the tail is my best work. She'll tell you who she is when she's ready. Don't rush her. I'm enjoying this.\""
+    },
+    "ella": {
+      "image": {
+        "comp": "standing at a desk with one hand flat on a sheet of figures and a mechanical pencil in the other, a sharp sideways look",
+        "setting": "office of a pleasure house at dusk, ledger shelves and a lamp",
+        "sam": true
+      },
+      "pages": [
+        {
+          "btn": "Turn around",
+          "text": "Heels cross the floorboards of {house} in a rhythm you would know with your eyes shut. For six years it came down the department corridor just ahead of every results list.\n\n\"Takahashi.\"\n\nElla Dott stands at your desk with Marguerite Vane's interest schedule in one hand. Sleek blonde hair, a white blouse, a silver pen clipped at her collar. Her name sat directly above yours or directly below it on every ranking the department ever posted.\n\nWith her other hand she takes a mechanical pencil from her pocket. It's the first one you've seen in this world. She clicks it twice and circles a figure."
+        },
+        {
+          "btn": "Ask how she got here",
+          "text": "\"That isn't on today's agenda,\" Ella says, without looking up.\n\nShe gives you the rest in order, like minutes. She has been in this world long enough to learn its arithmetic. It has no rankings of any kind, and she checked. She heard your surname in the market this morning and came directly. She walked, she says. Her hair is coming loose on one side and she's breathing through her nose, so she's lying.\n\n\"Four-week terms. Compound.\" The pencil taps the page. \"And you initialed it. You were hit by a truck, and you still found a way to sign the worst contract in the room.\"\n\nHer hand is perfectly steady. Her knuckles are white."
+        }
+      ],
+      "greet": "Ella puts the schedule down and turns to face you, arms folded.\n\n\"Move over. I'm not going to watch you lose to a moneylender on arithmetic. It would reflect on me.\" She pulls your chair out and sits in it. \"For six years you were the only person who made me work for anything. Then you took a desk job, and I had nobody. I haven't forgiven you for that, and you can assume I'm not going to.\"\n\nShe squares the papers. They were already square.\n\n\"There is nothing to measure in this world, Sam. No lists at all. So I'll need a new benchmark.\" Her eyes come up to yours and stay there. \"You'll do. Try to keep up.\"",
+      "choices": [
+        {
+          "label": "\"I'm glad you found me, Ella.\"",
+          "t": 5,
+          "m": 7,
+          "res": "For one second the mask comes off, and the smile underneath is fierce and very young. Then she has it back in place. \"Naturally you are. Your books are a disaster.\" She doesn't look at you when she adds, \"I'm also not displeased. Write that down somewhere. I won't be saying it again.\""
+        },
+        {
+          "label": "\"You ran here.\"",
+          "t": 4,
+          "m": 6,
+          "res": "Color climbs her cheekbones. \"I walked briskly. There's a difference, and it's measurable.\" She tucks the loose hair behind her ear with the pencil. \"I was protecting my benchmark. If you died a second time I would have to find another one, and the pool in this town is shallow.\" Under the desk, her foot has stopped tapping."
+        },
+        {
+          "label": "\"First to find three errors in this ledger wins.\"",
+          "t": 5,
+          "m": 8,
+          "res": "Her eyes light up. \"Wins what?\" She already has the ledger open and the pencil moving. \"Never mind. I'll decide when I've won.\" She gets to three first. You find a fourth one that she missed, and she looks at you with something that might be outrage and might be joy. \"Again,\" she says."
+        }
+      ],
+      "goddess": "You won't remember this. Ella hasn't forgotten any of it.\n\n{goddess} sits very upright among the lanterns, which she seldom does. She could have stopped that woman at the kerb. Ella saw the truck, and she saw you, and she stepped off the pavement toward you. {goddess} let her finish the step.\n\n\"She was the only one who ever pushed you. A world without her seemed wrong for you.\" She draws a short line in the air with one finger, and then a second line just above it. \"She kept every list you two were on, in a drawer. I read them all. I keep lists as well. Mine start earlier than hers.\""
+    },
+    "ione": {
+      "image": {
+        "comp": "standing very straight with a leather-bound diary held in both hands, head tilted at a precise curious angle, the light at her temple glowing amber",
+        "setting": "stone courtyard of a pleasure house under two moons, a fountain and lanterns",
+        "sam": true
+      },
+      "pages": [
+        {
+          "btn": "Step into the courtyard",
+          "text": "The courtyard of {house} goes quiet as if someone has put a hand over it.\n\nUnderneath the quiet there's a hum. It's faint and even and a little musical, and it's coming from the woman standing by the fountain.\n\nA silver-white bob, pale skin with a thin seam at each wrist, and a small ring of light at her temple that pulses cyan. Her posture is perfect. It stays perfect right up until she sways, very slightly, and corrects it.\n\n\"Sam Takahashi,\" she says. \"Identity confirmed. I have a message, and it is to be delivered in person.\" Her eyes search your face as though it's a page she has read many times and never seen. \"The message is: 'You did it.'\""
+        },
+        {
+          "btn": "Ask her what you did",
+          "text": "\"I am not able to say.\"\n\nShe holds up a leather-bound book with brass clasps. The title is tooled into the cover: The Lantern Keeper.\n\n\"I will answer any question you ask me except three. I won't tell you where I came from. I won't tell you how I came. And I won't tell you how this ends.\" She opens the book. The first two-thirds are written close and small, and every page is signed with a looping S. After that the pages are blank. \"It names this building, this hour and your grey jacket. The entries stop tonight.\"\n\nShe closes it with great care.\n\n\"I am at twelve percent charge. I would like to sit down. I would also like to stay.\""
+        }
+      ],
+      "greet": "She sits on the rim of the fountain with her hands folded, and the light at her temple settles from cyan to a warm amber.\n\n\"I am designated Ione-7. You may shorten it.\" She thinks. \"You will shorten it. That is in the book.\"\n\nShe looks around the courtyard and up at the lit windows. It's the look of someone seeing a famous place in person for the first time.\n\n\"I can tend your bar. I hold four thousand recipes, and this century has the ingredients for nine of them. I also know how you take your tea, though you have never told anyone.\" The amber light flickers. \"I am sorry. I should not have known that yet. I will try to be surprised in the correct order.\"",
+      "choices": [
+        {
+          "label": "\"Then let's fill in the blank pages, Ione.\"",
+          "t": 5,
+          "m": 7,
+          "res": "The light at her temple pulses twice. \"Ione,\" she repeats, as though checking the word against a record and finding that it matches. \"Yes. That is how it begins.\" She holds the diary out to you, open at the first empty page. You don't have a pen. She has one ready in her other hand."
+        },
+        {
+          "label": "Bring her tea, even if she doesn't need it",
+          "t": 4,
+          "m": 6,
+          "res": "She takes the cup in both hands and watches the steam. \"I can't taste it. I can measure the temperature, and I can see who brought it.\" She lifts it to her mouth all the same, since that's what a person does with tea. \"Seventy-one degrees. In the book it is always seventy-one degrees. I had wondered if that part was true.\""
+        },
+        {
+          "label": "\"You've read about me?\"",
+          "t": 4,
+          "m": 7,
+          "res": "\"More times than any other record in my memory.\" She says it as a plain fact. \"He laughs with his whole face. He never turns away a lost soul. He apologizes to furniture.\" She tilts her head at the exact angle she arrived with. \"I thought the author was being kind to you. I see now that he was only being accurate.\""
+        }
+      ],
+      "goddess": "You won't remember this. One of you three knows how it ends, and it isn't her.\n\n{goddess} holds the lantern at arm's length, which she does with nothing else. She reached three hundred years ahead, lifted one particular android off a charging dock, and turned her to face the past. Some stories need the reader to meet the author.\n\n\"She's read the ending and I haven't.\" She says it lightly, and the flame at her shoulder gives her away. \"I could look. I don't look. I want to be surprised by you for once.\" There is a pause. \"If she ever tells you, don't tell me.\" A longer one. \"Tell me.\""
+    }
+  }
+}

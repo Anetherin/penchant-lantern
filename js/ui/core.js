@@ -222,12 +222,6 @@ function agendaHTML(){
 }
 let ROSTER_VIEW = {type:'all', job:'all', race:'all', lust:'all', energy:'all', trust:'all', sort:''};
 function setRosterView(k, v){ ROSTER_VIEW[k] = v; render(); }
-function rosterType(w){
-  const n = w.key && NAMED[w.key];
-  if(!n) return 'generic';
-  if(n.role==='drifter') return 'guest';
-  return 'story';   // partners, house residents, story and guild ladies: everyone written into the game's own story
-}
 // Default order: house-bound ladies (residents, story joins), partners, other story characters, guests, generics; ties keep hiring order.
 function rosterRank(w){
   const n = w.key && NAMED[w.key]; if(!n) return 4;

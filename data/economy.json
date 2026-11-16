@@ -991,8 +991,8 @@
       "desc": "Thin, but surprisingly strong. Strength +20; recovers more energy.",
       "sam": {"strength":20},
       "goddess": {
-        "intro": "\"You went to the gym three times a week and never once looked at yourself in the mirror.\" {goddess} pokes his arm. \"Thin, and sturdy underneath. I like a surprise.\"",
-        "again": "\"The gym rat, back again.\" She squeezes his bicep and pretends to be unimpressed. \"Still thin. Still strong. Still mine to watch.\""
+        "intro": "\"You went to the gym three times a week and never once looked at yourself in the mirror.\" {goddess} pokes your arm. \"Thin, and sturdy underneath. I like a surprise.\"",
+        "again": "\"The gym rat, back again.\" She squeezes your bicep and pretends to be unimpressed. \"Still thin. Still strong. Still mine to watch.\""
       }
     },
     "otaku": {

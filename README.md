@@ -72,4 +72,5 @@ Scene snippets, AI prompts and flavor text live in `data/`, so anyone who can se
 - `node tools/build.mjs` to rebuild the single-file version (`dist/hollowmere-nights.html`).
 - `node tools/smoke.mjs [weeks]` plays the game headlessly and fails on any page error (needs Playwright).
 - `node tools/goddess-smoke.mjs [weeks per cycle]` runs the goddess arc through binding and ending headlessly.
+- `node tools/story-check.mjs [--words]` plays every intro, romance arc and after-story through every page and choice, and fails on leftover `{placeholders}`, empty text or errors.
 - `node tools/lab/lab.mjs <spec>` runs seeded, paired balance experiments (see `tools/lab/README.md`).

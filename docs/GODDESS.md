@@ -1,10 +1,10 @@
 # The goddess (Seliora, the Lamplighter)
 
-The overarching story. Code: `js/logic/goddess.js`. Story wording, her look, forms, teases and dedicated intros: `data/goddess/` (`base.json`, `teases.json`, `intros.json`). Her remarks about houses and past lives: `economy.json → houses[id].goddess`, `pasts[k].goddess`; about partners: `characters.json → <key>.goddess`. Her lines with ladies: `services.json → pair.fem/futa`; with Sam: `flavor.json → private_act`. Numbers: `data/balance.json → goddess`.
+The overarching story. Code: `js/logic/goddess.js`. Story wording, her look, forms, teases and dedicated intros: `data/goddess/` (`base.json`, `teases.json`, `intros.json`, `partner-intros.json`). Her remarks about houses and past lives: `economy.json → houses[id].goddess`, `pasts[k].goddess`; about partners: `characters.json → <key>.goddess.comment`, and her aside after each partner intro (`goddess/partner-intros.json → <key>.goddess`: how she arranged the meeting). Her lines with ladies: `services.json → pair.fem/futa`; with Sam: `flavor.json → private_act`. Numbers: `data/balance.json → goddess`.
 Test: `node tools/goddess-smoke.mjs [weeks per cycle]` (plays to the binding, every focus, nights until her ending).
 
 ## Arc
-- **Cycle 1:** she brings Sam over. Her intro plays before Marguerite's welcome and comments on his past life, his house and his partner (including how she had a hand in meeting her).
+- **Cycle 1:** she brings Sam over. Her intro plays before Marguerite's welcome and comments on his past life. After the partner and house intros she gets an aside of her own (shown to the player; Sam doesn't remember her yet): how she arranged the meeting with his partner, and what she thinks of the house.
 - **Every rebirth (NG+ / NG++):** a scene before the Vane contract. It reacts to how fast he paid, which lovers he brought, a new past life, the new house and the new partner, plus a jealousy line.
 - **Before the binding (cycles 1-5):** weekly chance of an event (`events.base` + `events.perCycle` × (cycle-1), max `events.max`, plus overdue `catchUp`), and she can also turn up during Sam's walks (`js/events/walks.js`, `data/walks.json → goddess`). She mostly turns up **in disguise**: another race's form with an alias, always with the same hair, eyes and skin. The lantern-dream fades when Sam wakes, so at first he doesn't recognize her.
   - Stranger (cycles 1-2): a strange girl flirts, kisses and gets handsy, then vanishes before he finishes.

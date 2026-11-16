@@ -26,7 +26,6 @@ Object.entries(GOD_FORMS).forEach(([r, f], i)=>{
     seed:7130417 + i*101, lewd:95, trust:100, traits:[], acts:{}, menu:[], counts:{}, body:Object.assign({}, BODY_DEF, f.body || {}),
     design:{build:f.build || '', hairStyle:f.hairStyle || lk.hairStyle || '', hairColor:f.hair || lk.hair || '', eyes:f.eyes || lk.eyes || '', skin:f.skin || lk.skin || '', features:[lk.signature, f.features].filter(Boolean).join(', ')}};
 });
-const GOD_ID = godNpcId(GOD_TRUE);   // her own form: story scenes before the binding
 const GFOCUS = ['indulge','business','watch','tutelage','whim'];
 let GNEXT = null, GW = {biz:{}, watch:{}, saved:0};   // GW: this week's effects, rebuilt by goddessPlan()
 

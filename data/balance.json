@@ -503,8 +503,6 @@
   "props": {
     "talkDown": 0.35,
     "talkMood": -2,
-    "watchFee": 40,
-    "watchRep": 0.5,
     "penalty": 0.08,
     "maxPenalty": 0.5,
     "acceptBase": 0.15,

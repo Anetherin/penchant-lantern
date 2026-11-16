@@ -76,10 +76,6 @@ function repHead(p){
     <div class="muted">${p.served?`${p.served} client${p.served>1?'s':''} · `:''}${p.props?`propositioned ${p.props}× · accepted ${p.acc} · `:''}${p.reluct?`<span class="pink">${p.reluct} as a favor</span> · `:''}${p.notMood?`<span class="warn">not in the mood ×${p.notMood}</span> · `:''}${p.noRoom?`<span class="warn">no room ×${p.noRoom}</span> · `:''}${p.eWork===undefined?`Energy ${p.e0}→${p.e1} · Mood ${p.m0}→${p.m1}${p.why&&p.why.length?` <span class="muted">(${p.why.map(x=>`<span class="${x.good?'good':'warn'}">${esc(x.t)}</span>`).join(', ')})</span>`:''}${p.slept?` · slept: ${p.slept}`:''}`:''}${p.solo?' · <span class="pink">a night to herself</span>':''}${p.missed?' · <span class="warn">missed Sam</span>':''}${p.night==='good'?' · <span class="good">great week</span>':p.night==='bad'?' · <span class="warn">rough week</span>':''}${p.lust!==undefined?` · lust ${p.l0!==undefined?p.l0+'→':''}${p.lust}`:''}</div>
     <div>${svc}</div>${(p.notes||[]).map(n=>`<div class="muted">${esc(n)}</div>`).join('')}</div></div>`;
 }
-function repHl(R, p, all){
-  const here = !!findAny(p.id);
-  return R.hl.map((h,i)=>({h,i})).filter(x=>x.h.wid===p.id && (all || !x.h.more)).map(({h,i})=>`<div class="hl">${esc(h.text)} ${here?`<button class="sm" id="hl${i}_t" onclick="toggleImgBtn('hl${i}','${p.id}','${h.scene}')">🖼 Show image</button>`:''}<div id="hl${i}" class="hlimg" data-ext="1"></div></div>`).join('');
-}
 // What changed for her this week and why (house and lady pages): mood reasons, energy spent vs slept off, what capped her
 // clients, and every stat/skill/service that moved. Older reports (no t1) only get what they recorded.
 const sgn = (n, f) => (n>0?'+':n<0?'−':'') + (f ? f(Math.abs(n)) : Math.abs(Math.round(n)));

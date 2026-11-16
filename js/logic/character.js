@@ -19,7 +19,6 @@ function actCost(w, act){
   c *= fxMul(w,'actEnergy') * (act ? fxSub(w,'actEnergyBy',act) : 1) * incenseMul(w,'actEnergy');
   return Math.max(1, c);
 }
-const clientCost = w => actCost(w, null) * 1.8;
 const appeal = w => s100(statOf(w,'beauty'))*0.4 + s100(statOf(w,'charisma'))*0.2 + s100(statOf(w,'charm'))*0.1 + w.popularity*0.5 + fxAdd(w,'appeal') + incenseAdd(w,'appeal');
 // Lewdness gain with diminishing returns: each source has a cap. Full gain below cap - band, half at the cap, nothing by cap + band.
 function lewdUp(w, n, cap){
