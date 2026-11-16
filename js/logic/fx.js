@@ -72,6 +72,7 @@ function statBonusParts(w, k){
   if(SD){ add(SD.label || w.sub, SD.mods && SD.mods[k]); add(SD.label || w.sub, fxs(SD.fx)); }
   const b = bodyOf(w); BODY_KEYS.forEach(bk => { const o = bodyOpts(bk)[b[bk]]; if(o) add('Body', fxs(o.fx)); });
   if(w.unique) add(w.unique.name || 'Unique', fxs(w.unique.fx));
+  const tt = w.titleId && typeof TITLES!=='undefined' && TITLES[w.titleId]; if(tt) add(tt.label || w.title || 'Title', fxs(tt.fx));
   const o = getOutfit(w), u = getUnder(w);
   add('Outfit', wornStat(o, k)); add('Underwear', wornStat(u, k));
   return out;

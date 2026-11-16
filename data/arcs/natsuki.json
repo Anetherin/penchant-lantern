@@ -3,7 +3,7 @@
     {
       "title": "Scars and Bets",
       "scene": "sam_date",
-      "text": "Natsuki shows you the scar she got her first week here, three years ago, alone, a pale ridge along her ribs just visible above the hem of her tank top. Back then you were still trading convenience-store popsicles on summer break while she fought monsters for dry bread. \"I kept thinking: if Sam were here, he'd do something dumb and it'd somehow be fine.\" She laughs, rough and warm. \"Then you washed up and ran a brothel.\"",
+      "text": "Out on the sunset ramparts where stone still holds afternoon warmth, Natsuki tugs up the hem of her tank top far enough to show the pale jagged scar beneath her ribs—the souvenir from week one alone across the portal, long before she found you. Three years of monster contracts and cold hostel straw stack quietly between you while you remember trading melting summer popsicles on curb concrete back home. \"I kept thinking: if Sam walked up right now, he'd do something stupid and somehow keep us breathing,\" she laughs roughly, leaning into your shoulder. \"Then you washed up and inherited a brothel.\"",
       "ngpp": [
         "Even while laughing about summer popsicles back home, she stops half a beat staring at the wall lantern—like a ghost of sharing this same stone bench tugged her sleeve.",
         "\"Funny, Sam—I remember every single stupid bike race back home clear as yesterday, yet sitting beside you on THIS town wall feels like we already settled in here once.\"",
@@ -64,7 +64,7 @@
               "m": 10,
               "l": 4,
               "private": true,
-              "acts": ["sex_ride","sex_vaginal","oral_give"],
+              "acts": ["cowgirl","missionary","oral_give"],
               "res": "Before you settle waist-deep in the hot water, Natsuki pins your shoulders straight back against the wood and sinks cleanly down onto your cock—riding you hard with damp cheek pressed fiercely to yours."
             },
             {
@@ -73,7 +73,7 @@
               "m": 8,
               "l": 3,
               "private": true,
-              "acts": ["oral_give","handjob","kiss"],
+              "acts": ["oral_give","manual_give","kiss"],
               "res": "She gasps loudly when your hands slide low under the hot water, gripping your neck tightly while mist hides nothing between you both."
             }
           ]
@@ -111,12 +111,12 @@
       "choices": [
         {
           "label": "Pull her into the empty alley behind the stall and prove she was right",
-          "if": {"canAct":["kiss","sex_vaginal","oral_give"]},
+          "if": {"canAct":["kiss","missionary","oral_give"]},
           "t": 5,
           "m": 9,
           "l": 3,
           "private": true,
-          "acts": ["sex_vaginal","oral_give","kiss"],
+          "acts": ["missionary","oral_give","kiss"],
           "res": "You catch her wrist before she walks away, draw her behind the quiet lantern wall away from the crowd, and pin her warm mouth under yours until the paper bag hits the stones."
         },
         {
@@ -173,19 +173,34 @@
     {
       "title": "Fireworks",
       "scene": "sam_date",
-      "text": "Natsuki bribes an alchemist to make fireworks \"like the summer festival back home.\" You watch together from the town wall, legs dangling, a bag of unidentifiable snacks between you. The first burst is the wrong color. The second is almost right, a pink chrysanthemum blooming over Hollowmere's rooftops.",
+      "text": "Natsuki bribes an eccentric guild alchemist out of half his silver stash just to fire makeshift aerial shells \"like the August river festival back home.\" You perch together on the quiet east parapet with dangling boots and a sack of salty fried snacks between you. The first shell splutters green and lopsided; the second climbs high and splits into a wide pink chrysanthemum illuminating every slate rooftop below.",
+      "byIntim": {
+        "2": {
+          "text": "Natsuki bribes a guild alchemist into launching makeshift fireworks \"like the August festival back home,\" sitting close enough on the east parapet that her bare thigh presses warmly against yours before the fuse even hits. When bright pink sparks flower high across Hollowmere's roofs, she doesn't watch the sky—she turns right toward your profile, eyes bright as lantern sparks."
+        }
+      },
       "choices": [
         {
           "label": "Hold her hand",
           "t": 4,
           "m": 8,
-          "res": "Her hand is shaking. Then it isn't. The final burst lights her face gold, and she doesn't take her hand back."
+          "res": "Her scarred fingers tremble for one second, then lace firmly between yours. Gold light washes over her cheek as the finale bursts, and she never pulls back."
         },
         {
           "label": "Tell her you missed her, all three years",
           "t": 6,
           "m": 6,
-          "res": "She punches your arm. Then she cries. Then she laughs, and the next firework drowns out whatever she says into your shoulder."
+          "res": "She punches your shoulder hard enough to sting, then cries fiercely against your hoodie before laughing while the last rocket drowns everything out."
+        },
+        {
+          "label": "Pull her down into the empty watch-alcove once the smoke clears",
+          "if": {"intim":2,"canAct":["kiss","oral_give","cowgirl","missionary"]},
+          "t": 5,
+          "m": 9,
+          "l": 3,
+          "private": true,
+          "acts": ["kiss","oral_give","cowgirl"],
+          "res": "As the last pink ember fades above the watchtower, Natsuki catches both sides of your collar and pulls you eagerly back into the lantern-lit alcove."
         }
       ],
       "image": {

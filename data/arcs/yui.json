@@ -45,7 +45,7 @@
               "m": 8,
               "l": 2,
               "private": true,
-              "acts": ["massage_give","kiss","handjob"],
+              "acts": ["massage_give","kiss","manual_give"],
               "res": "Yui's small, warm hands tremble lightly as soapy lather glides down your collarbones—and when you lean up to catch her damp lips through the steam, she makes a soft, helpless sound and lets the towel fall.",
               "fallbackRes": "Her small soap-slick hands tremble against your shoulders for two heartbeats before settling into slow, careful circles while she leans her flushed forehead gently against your neck."
             },
@@ -68,7 +68,7 @@
               "m": 10,
               "l": 4,
               "private": true,
-              "acts": ["sex_vaginal","oral_give","handjob"],
+              "acts": ["missionary","oral_give","manual_give"],
               "res": "Yui climbs straight into your lap the moment warm water closes over your waist, clinging tightly around your shoulders as she gasps your name in quiet, unguarded bliss beneath the mist."
             },
             {
@@ -77,7 +77,7 @@
               "m": 8,
               "l": 3,
               "private": true,
-              "acts": ["massage_give","kiss","handjob"],
+              "acts": ["massage_give","kiss","manual_give"],
               "res": "She leans softly back against your bare chest, shivering beneath every slow pass of your soapy hands until her hips press insistently back against yours."
             }
           ]
@@ -116,12 +116,12 @@
       "choices": [
         {
           "label": "Step around the table and kiss six years of waiting right off her lips",
-          "if": {"canAct":["kiss","handjob","oral_give"]},
+          "if": {"canAct":["kiss","manual_give","oral_give"]},
           "t": 5,
           "m": 9,
           "l": 3,
           "private": true,
-          "acts": ["oral_give","handjob","kiss"],
+          "acts": ["oral_give","manual_give","kiss"],
           "res": "You push the terrible bowls aside and cup her burning cheeks in both hands; Yui drops her chopsticks at once and pulls you close, glasses bumping your nose as six years of quiet office yearning finally spills loose."
         },
         {
@@ -177,19 +177,34 @@
     {
       "title": "Festival Night",
       "scene": "sam_date",
-      "text": "Yui drags you to the harvest festival, all lantern strings and fried dough, and wins you a prize at the ring toss: a deeply ugly stuffed wyvern with mismatched button eyes. She insists you carry it all night. People stare. She enjoys that more than she'll admit, her cheeks pink with cider and delight.",
+      "text": "Yui pulls you by the cuff straight into Hollowmere's lantern-hung harvest festival—fried honey dough, shouting barkers, cider cups warmed over pine embers—and somehow nails three consecutive brass rings onto a spinning bottle to win an absurdly crooked stuffed wyvern with mismatched button eyes. She insists you carry it under one arm all evening while giggling behind her collar whenever town guards salute the mascot.",
+      "byIntim": {
+        "2": {
+          "text": "Yui pulls you through the lantern-strung harvest festival holding tight to your elbow instead of your sleeve, cheeks bright pink from spiced cider and crowd heat. After winning a crooked stuffed wyvern at the ring toss, she tucks both your fingers gently inside her coat pocket where nobody in the square can see—whispering softly that she doesn't feel like sharing the walk home."
+        }
+      },
       "choices": [
         {
           "label": "Wear it like a hat, proudly",
           "m": 9,
           "t": 2,
-          "res": "She laughs so hard she has to sit down on a barrel, glasses crooked. For the rest of the night, strangers toast the hat."
+          "res": "Yui laughs so hard she has to sit down on an ale keg while strangers cheer your awful posture and crooked spectacles gleam beneath paper lanterns."
         },
         {
           "label": "Win her one back",
           "t": 3,
           "m": 6,
-          "res": "It takes eleven tries, a lot of coins and a vendor's pity. She keeps the slightly-less-ugly griffin on her desk forever, between the stapler and the abacus."
+          "res": "It takes eleven tries, half a silver pouch, and clear pity from the stallkeeper—yet her slightly-less-ugly griffin keeps guard right beside her stapler forever."
+        },
+        {
+          "label": "Slip home early before the lantern parade ends",
+          "if": {"intim":2,"canAct":["kiss","manual_give","oral_give","missionary"]},
+          "t": 5,
+          "m": 9,
+          "l": 3,
+          "private": true,
+          "acts": ["missionary","oral_give","kiss"],
+          "res": "Yui tucks the stuffed wyvern neatly onto the entryway shelf, latches your bedroom door, and pushes her glasses straight onto the table before kissing you breathlessly."
         }
       ],
       "image": {

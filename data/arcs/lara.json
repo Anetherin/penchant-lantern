@@ -45,7 +45,7 @@
               "m": 8,
               "l": 2,
               "private": true,
-              "acts": ["massage_give","kiss","handjob"],
+              "acts": ["massage_give","kiss","manual_give"],
               "res": "Lara's cool fingertips warm rapidly against your wet shoulders until the trembling stops altogether; when you turn to kiss her damp temple and lips, she sighs quietly and leans straight into your chest.",
               "fallbackRes": "Her quiet hands trace careful circles across your back until the shivers leave her shoulders and she rests her cheek softly beside your arm."
             },
@@ -68,7 +68,7 @@
               "m": 10,
               "l": 4,
               "private": true,
-              "acts": ["sex_vaginal","oral_give","kiss"],
+              "acts": ["missionary","oral_give","kiss"],
               "res": "Lara anchors both thin arms securely around your neck as you ease inside her warmth slowly—her dark kohl-lined eyes holding yours steady without a trace of fear as soft gasps echo off the cedar walls."
             },
             {
@@ -77,7 +77,7 @@
               "m": 8,
               "l": 2,
               "private": true,
-              "acts": ["kiss","handjob","massage_give"],
+              "acts": ["kiss","manual_give","massage_give"],
               "res": "She tucks her cold toes between yours under the water, melting into quiet breathless shivers beneath your hands and mouth."
             }
           ]
@@ -118,12 +118,12 @@
       "choices": [
         {
           "label": "Take her upstairs out of the fog and warm her up properly",
-          "if": {"canAct":["kiss","sex_vaginal","oral_give"]},
+          "if": {"canAct":["kiss","missionary","oral_give"]},
           "t": 5,
           "m": 9,
           "l": 3,
           "private": true,
-          "acts": ["sex_vaginal","oral_give","kiss"],
+          "acts": ["missionary","oral_give","kiss"],
           "res": "You wrap your hoodie around her cold shoulders and guide her softly upstairs; once the door shuts on the fog, Lara pulls you straight onto the bed, clinging warmly until every chill vanishes."
         },
         {

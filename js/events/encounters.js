@@ -23,12 +23,13 @@ function canVisit(w, trustMin, lewdMin, lustMin){
 }
 // One shared result: run privateCore without spending an action. The encounter's own line leads, then the service's
 // own line (flavor.json → private_act) instead of the generic private-time text; the picture switches to the service.
-function encounterResult(w, act, intro, kind, situation, drain){
+function encounterResult(w, act, intro, kind, situation, drain, ctx){
   if(drain) S.sam.energy = Math.max(0, S.sam.energy - drain);
   const text = privateCore(w, act, {lead:intro});   // privateCore spends her lust
   samLog(`${kind==='reckless'?'Swept off by':'A visit from'} ${w.name}`);
   if(wantsAgain(w)){ const id = w.id; EVQ.unshift(()=>evAgain(findW(id))); }
-  return {text, img:{wid:w.id, scene:'samact:'+act}, ai:{kind, wid:w.id, act, scene:'samact:'+act, forSam:true, situation: actSituation(w, act, situation)}};
+  const scene = 'samact:'+act + (ctx ? '~~'+ctx : '');
+  return {text, img:{wid:w.id, scene}, ai:{kind, wid:w.id, act, scene, forSam:true, situation: actSituation(w, act, situation)}};
 }
 
 /* ---------- Sam rests ---------- */
@@ -115,7 +116,7 @@ function evReckless(w){
   if(act && w.trust>=40 && nearSam(w) && Math.random()<0.55){
     return {title:`${w.name} Can't Wait`, who:w.id, scene:'enc_reckless', text:`${w.name} has been restless for days, and tonight she's done waiting. She catches you in the hallway between errands, pushes you into the nearest storeroom, locks the door behind you, and is already pulling at your belt.`,
       choices:[
-        {label:'Go along with it', fx(){ return encounterResult(w, act, `It is not quick. She takes everything she's been wanting, and you emerge much later, extremely tired. (Sam's energy −35)`, 'reckless', 'She ambushed Sam in a storeroom after days of pent-up desire.', 35); }},
+        {label:'Go along with it', fx(){ return encounterResult(w, act, `It is not quick. She takes everything she's been wanting, and you emerge much later, extremely tired. (Sam's energy −35)`, 'reckless', 'She ambushed Sam in a storeroom after days of pent-up desire.', 35, 'storeroom'); }},
         {label:'"Not here, not now"', fx(){ refusalHit(w, 6); w.lust = clamp(w.lust-8); return `${w.name} lets you go with a frustrated groan. She is going to be distracted all week.` + refusalNote(w); }}]};
   }
   // freelancing: took clients off the books
@@ -161,7 +162,7 @@ function evLoverJealous(w, o){
     choices:[
       {label:'Make it up to her (−20 energy, 40g)', fx(){ S.sam.energy = Math.max(0, S.sam.energy-20); S.gold -= 40; w.neglect = 0; moodAdd(w, 8); gainTrust(w,2); w._samTime = (w._samTime||0)+1; return `You take ${w.name} out for the evening and don't talk about work once. She forgives you somewhere around dessert.`; }},
       {label:`Talk to her and ${o.name} together`, fx(){
-        if(easy){ gainTrust(w,2); gainTrust(o,2); addBond(w, o, 10); w.neglect = 0; moodAdd(w, 4); moodAdd(o, 2); return `It's awkward for about five minutes. Then ${o.name} laughs, ${w.name} laughs, and the three of them end up drafting a schedule. It has a lot of hearts on it.`; }
+        if(easy){ gainTrust(w,2); gainTrust(o,2); addBond(w, o, 10); w.neglect = 0; moodAdd(w, 4); moodAdd(o, 2); return `It's awkward for about five minutes. Then ${o.name} laughs, ${w.name} laughs, and the three of you end up drafting a schedule. It has a lot of hearts on it.`; }
         moodAdd(w, -5); moodAdd(o, -4); addBond(w, o, -10); return `That went badly. ${w.name} and ${o.name} are now very politely not speaking to each other, or to you.`; }},
       {label:'Let it blow over', fx(){ addBond(w, o, -6); moodAdd(w, -8); w.trust = clamp(w.trust-3); return `${w.name} stops bringing it up. That's worse.`; }}]};
 }

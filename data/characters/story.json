@@ -241,7 +241,8 @@
     "outfits": {"sig_rhoswen":{"label":"Court gown","style":"Elegant","prompt":"a flowing pale-green silk court gown","bonus":{"noble":1.3,"dancer":1.1}}},
     "jobs": {"likes":["attendant","promoter"],"dislikes":["bartender","courtesan"]},
     "body": {"bust":"small","height":"tall","figure":"slim"},
-    "unique": {"name":"Court Manners","desc":"Impeccable breeding that nobles adore.","fx":{"classBonus":{"noble":1.2},"wardrobe":5}}
+    "unique": {"name":"Court Manners","desc":"Impeccable breeding that nobles adore.","fx":{"classBonus":{"noble":1.2},"wardrobe":5}},
+    "bonds": {"ines":{"v":30,"kind":"comrades","note":"Crossed paths on cold road contracts before either hung up her traveling cloak."}}
   },
   "hanna": {
     "role": "guild",

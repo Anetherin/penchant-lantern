@@ -31,13 +31,14 @@ const STORY_JOINS = {castle:['seraphine', true], hollow:['ines', false], pavilio
 const RN = h => { const R = resident(h); return R ? R.name : 'the staff'; };
 const RID = h => { const R = resident(h); return R ? R.id : null; };
 const SSTR = h => Math.max(S.sam.strength, secOf(h));
-function housePrivate(R, acts, lead, situation, extra){
+function housePrivate(R, acts, lead, situation, extra, ctx){
   const list = Array.isArray(acts) ? acts : [acts];
   const ok = R ? list.filter(id=>canSam(R, id) && samStance(R, id)!=='no') : [];
   const act = R && (ok[0] || bestSamAct(R));
   if(!R || !act) return lead + (extra ? `\n\n${extra}` : '');
   const text = privateCore(R, act, {lead}) + (extra ? `\n\n${extra}` : '');
-  return {text, img:{wid:R.id, scene:'samact:'+act}, ai:{kind:'private', wid:R.id, act, scene:'samact:'+act, forSam:true, situation: actSituation(R, act, situation)}};
+  const sc = 'samact:'+act + (ctx ? '~~'+ctx : '');
+  return {text, img:{wid:R.id, scene:sc}, ai:{kind:'private', wid:R.id, act, scene:sc, forSam:true, situation: actSituation(R, act, situation)}};
 }
 const STORIES = {
   lantern:{title:'The Grieve Debt', hint:['A stranger will come asking about the old owner\'s debts.','Mira is looking into the old ledgers.','Time to deal with Silas Grieve for good.'], beats:[

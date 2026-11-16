@@ -1,0 +1,6 @@
+{
+  "_readme": [
+    "Non-partner epilogues & house-joiner arcs (js/stories/afterstories.js).",
+    "Each key holds 2-3 beats unlocked after the character's home house story is complete. Unlike partner arcs, these never grant Devoted."
+  ]
+}

@@ -232,6 +232,161 @@
         },
         {"label":"Leave them be","a":{"mood":4},"b":{"mood":4},"bond":3,"res":"They're completely happy in each other's orbit. That's enough."}
       ]
+    },
+    {
+      "id": "comrades_sparring",
+      "kind": "comrades",
+      "weight": 3,
+      "a": {},
+      "b": {},
+      "title": "Steel in the Courtyard",
+      "scene": "casual",
+      "text": [
+        "{a} and {b} have cleared the laundry crates out of the courtyard to settle a three-month-old argument with wooden practice blades. Half the kitchen staff is already leaning out the back window placing bets."
+      ],
+      "choices": [
+        {
+          "label": "Put 25g on the bout to keep it lively",
+          "needsGold": 25,
+          "gold": -25,
+          "a": {"mood":8,"grow":{"combat":4}},
+          "b": {"mood":8,"grow":{"combat":4}},
+          "bond": 8,
+          "res": "Clatter, shouts, two broken flowerpots, and a draw both of them fiercely dispute over cold ale afterward. Neither stops grinning all evening."
+        },
+        {
+          "label": "Step between them with wooden sticks yourself",
+          "sam": {"strength":2},
+          "a": {"trust":3,"mood":5},
+          "b": {"trust":3,"mood":5},
+          "bond": 6,
+          "res": "They unite immediately to knock your practice blade into the cabbage barrel, then haul you up laughing to buy the next round."
+        },
+        {
+          "label": "Remind them not to smash the porch steps",
+          "a": {"mood":3},
+          "b": {"mood":3},
+          "bond": 4,
+          "res": "They move three paces toward the alley and keep swinging—far more carefully around your carpentry."
+        }
+      ]
+    },
+    {
+      "id": "mentor_tea",
+      "kind": "mentor",
+      "weight": 2,
+      "a": {},
+      "b": {},
+      "title": "Trade Secrets",
+      "scene": "portrait",
+      "text": [
+        "{a} sits {b} down in the quiet parlor before evening bell with two cups of tea and an hour's worth of hard-won advice about reading troublesome patrons before they cross the sill."
+      ],
+      "choices": [
+        {
+          "label": "Listen in and pay for supper afterward (20g)",
+          "needsGold": 20,
+          "gold": -20,
+          "a": {"mood":5,"trust":2},
+          "b": {"mood":6,"trust":3,"grow":{"manage":3,"service":3}},
+          "bond": 7,
+          "res": "{b} absorbs every word without pride, and {a} lingers after supper looking quietly pleased to have someone actually listening."
+        },
+        {
+          "label": "Leave them their quiet hour",
+          "a": {"mood":3},
+          "b": {"mood":4,"grow":{"service":3}},
+          "bond": 5,
+          "res": "They stay tucked into the corner booth until lanterns flare, trading notes in low, easy voices."
+        }
+      ]
+    },
+    {
+      "id": "midnight_confidantes",
+      "bondMin": 20,
+      "weight": 2,
+      "a": {"moodBelow":78},
+      "b": {},
+      "title": "Two in the Kitchen",
+      "scene": "casual",
+      "text": [
+        "At two in the morning you wander down for water and find {a} and {b} wrapped in blankets over cooling soup pots, whispering furiously and jumping half a foot when the stair creaks."
+      ],
+      "choices": [
+        {
+          "label": "Sit down and hear out what kept them up",
+          "a": {"mood":7,"trust":3},
+          "b": {"mood":7,"trust":3},
+          "bond": 6,
+          "res": "Ten minutes of lukewarm broth turns into an hour of dark secrets, awful puns, and both of them resting far easier afterward."
+        },
+        {
+          "label": "Leave the good cider on the counter and slip back upstairs",
+          "a": {"mood":5,"trust":2},
+          "b": {"mood":5,"trust":2},
+          "bond": 6,
+          "res": "You hear muffled laughter from the kitchen five minutes later. Both of them look noticeably brighter at noon."
+        }
+      ]
+    },
+    {
+      "id": "shared_wardrobe",
+      "bondMin": 35,
+      "weight": 2,
+      "a": {"working":true},
+      "b": {"working":true},
+      "title": "Borrowed Silks",
+      "scene": "casual",
+      "text": [
+        "{a} and {b} ambush you in the hall wearing each other's colors and pins, laughing behind their cuffs as they demand to know which silhouette works better."
+      ],
+      "choices": [
+        {
+          "label": "Say both of them could wear potato sacks and fill the parlor",
+          "a": {"mood":6,"trust":2,"popularity":2},
+          "b": {"mood":6,"trust":2,"popularity":2},
+          "bond": 6,
+          "res": "That earns a twin burst of delighted laughter—and a packed lounge all evening."
+        },
+        {
+          "label": "Give honest styling notes on both looks",
+          "sam": {"charm":1},
+          "a": {"mood":5,"popularity":3},
+          "b": {"mood":5,"popularity":3},
+          "bond": 5,
+          "res": "They swap ribbons cleanly on the spot, thoroughly pleased that you actually noticed the details."
+        }
+      ]
+    },
+    {
+      "id": "cold_truce",
+      "bondMax": -25,
+      "weight": 2,
+      "a": {"working":true},
+      "b": {"working":true},
+      "title": "Back to Back",
+      "scene": "casual",
+      "text": [
+        "A loud drunken table nearly tips over in the front lounge—before security can cross the floor, {a} catches the swinging lantern and {b} smoothly talks the ring-leader right onto the curb without breaking stride."
+      ],
+      "choices": [
+        {
+          "label": "Pour them both a drink and point out they make a scary team",
+          "a": {"mood":6,"trust":2},
+          "b": {"mood":6,"trust":2},
+          "bond": 14,
+          "res": "They glare at each other for two stubborn seconds, then grudgingly clink mugs over the counter. Half the ice between them cracks clean away."
+        },
+        {
+          "label": "Slip each of them a small bonus for saving the glassware (30g)",
+          "needsGold": 30,
+          "gold": -30,
+          "a": {"mood":5,"trust":2},
+          "b": {"mood":5,"trust":2},
+          "bond": 10,
+          "res": "Coin buys quiet truce—at least until next week, though they stop glaring across tables quite so hard."
+        }
+      ]
     }
   ],
   "shared": [
@@ -255,7 +410,7 @@
           "a": {"lust":-30,"mood":5},
           "b": {"lust":-30,"mood":5},
           "bond": 8,
-          "res": "By dawn the sheets are soaked in sweat and cum and nobody has gotten a wink of sleep. (Your energy −30)",
+          "res": "By dawn the sheets are damp with sweat and neither of you has gotten a wink of sleep. (Your energy −30)",
           "acts": true
         },
         {
@@ -286,7 +441,7 @@
           "samEnergy": -40,
           "a": {"lust":-35},
           "b": {"lust":-35},
-          "res": "It is an exhausting, sweat-soaked, cum-sticky night, and neither of them shows you a shred of mercy. (Your energy −40)",
+          "res": "It is an exhausting, breathless, sweat-soaked night, and neither of them shows you a shred of mercy. (Your energy −40)",
           "acts": true
         },
         {
@@ -350,7 +505,7 @@
           "b": {"mood":3},
           "sam": {"technique":2},
           "bond": 6,
-          "res": "You end up a thoroughly spent, cum-drained, trembling visual aid. (Your energy −25)",
+          "res": "You end up a thoroughly spent, flushed, trembling visual aid. (Your energy −25)",
           "acts": true
         },
         {"label":"\"I have paperwork\"","res":"{a} clicks her tongue in disappointment. \"Fine. We'll practice on a pillow instead.\""}
@@ -366,6 +521,7 @@
       "b": {"trustMin":60,"lewdMin":35},
       "title": "Room for One More",
       "scene": "bath",
+      "cloth": "nude",
       "text": [
         "{a} and {b} are soaking naked in the steaming bath after a long week, and they've caught you pacing past the open doorway three times. \"Stop hovering and strip down—get in.\""
       ],
@@ -380,6 +536,103 @@
         },
         {"label":"Keep walking","a":{"mood":-1},"b":{"mood":-1},"res":"Their teasing laughter echoes down the corridor after you."}
       ]
+    },
+    {
+      "id": "late_shift_afterglow",
+      "bondMin": 25,
+      "weight": 2,
+      "ai": "shared",
+      "a": {"working":true,"trustMin":65,"intimate":true},
+      "b": {"working":true,"trustMin":65,"intimate":true},
+      "title": "After Closing Bell",
+      "scene": "casual",
+      "text": [
+        "You turn the key in the front latch and find {a} and {b} draped across the velvet parlor cushions—heels kicked off, wine poured, both flushed and still wound tight from a busy shift. When {a} catches your eye, {b} pats the empty cushion right between them."
+      ],
+      "choices": [
+        {
+          "label": "{act}",
+          "private": ["a","b"],
+          "samEnergy": -25,
+          "a": {"lust":-25,"mood":6},
+          "b": {"lust":-25,"mood":6},
+          "bond": 7,
+          "res": "The parlor lamps burn low while both of them take their sweet time unwinding over you until midnight. (Your energy −25)",
+          "acts": true
+        },
+        {
+          "label": "Share the wine and let them rest",
+          "a": {"mood":5,"energy":10},
+          "b": {"mood":5,"energy":10},
+          "bond": 4,
+          "res": "You pour a glass beside them and trade tired shift stories until both head happily upstairs."
+        }
+      ],
+      "dynamic": "collaborative"
+    },
+    {
+      "id": "mentor_practical",
+      "kind": "mentor",
+      "weight": 2,
+      "ai": "shared_lesson",
+      "a": {"trustMin":70,"lewdMin":45,"intimate":true},
+      "b": {"trustMin":55,"intimate":true},
+      "title": "{a}'s Evening Seminar",
+      "scene": "casual",
+      "text": [
+        "{a} brings a poised, flushed {b} up to your door with a calm smile. \"She's mastered poise and small talk,\" {a} explains smoothly. \"Tonight we work on stamina and attention—with you as the exam.\""
+      ],
+      "choices": [
+        {
+          "label": "{act}",
+          "private": ["a","b"],
+          "samEnergy": -25,
+          "a": {"mood":4},
+          "b": {"mood":5,"trust":4},
+          "sam": {"technique":2},
+          "bond": 7,
+          "res": "{b} graduates with honors while {a} looks thoroughly satisfied with both pupil and visual aid. (Your energy −25)",
+          "acts": true
+        },
+        {
+          "label": "\"Class can wait till tomorrow\"",
+          "a": {"mood":-1},
+          "b": {"mood":2},
+          "res": "{b} exhales quietly with relief while {a} promises to reschedule."
+        }
+      ],
+      "dynamic": "lesson"
+    },
+    {
+      "id": "pillow_talk_three",
+      "bondMin": 45,
+      "weight": 2,
+      "ai": "shared",
+      "a": {"devoted":true,"trustMin":80,"moodBelow":85},
+      "b": {"trustMin":75,"lewdMin":40},
+      "title": "Slow Morning",
+      "scene": "casual",
+      "text": [
+        "Sunlight spills late across your mattress, catching {a} curled neatly against your chest and {b} sprawled across the foot of the quilt with stolen tea. Nobody wants to be the first one to unlock the front door."
+      ],
+      "choices": [
+        {
+          "label": "Stay in bed an extra hour with both of them",
+          "samEnergy": 12,
+          "a": {"mood":8,"trust":3,"energy":10},
+          "b": {"mood":8,"trust":3,"energy":10},
+          "bond": 7,
+          "res": "Warm skin, tangled sheets, lazy kisses across bare shoulders, and nobody rushing for once. All three of you start the week wide awake. (Your energy +12)"
+        },
+        {
+          "label": "Get up and cook them breakfast",
+          "sam": {"charm":1},
+          "a": {"mood":6,"energy":15},
+          "b": {"mood":6,"energy":15},
+          "bond": 5,
+          "res": "You march down in pajamas to raid the pantry, leaving both women beaming over warm plates in bed."
+        }
+      ]
     }
   ],
   "dynamics": {
@@ -392,6 +645,10 @@
       "kiss": "An unhurried tangle of wandering hands, bare skin, and open-mouthed kisses three ways. Nobody is keeping score.",
       "cowgirl": "{a} and {b} take turns straddling you, lacing their fingers together across your chest for balance and laughing breathlessly as they ride.",
       "oral_give": "They suck and stroke your cock in tandem, trading licks, strokes, and wicked glances over your hips, thoroughly pleased with themselves.",
+      "doggy": "{b} kisses along {a}'s spine and slides hot hands underneath her while you take {a} from behind, trading places smoothly mid-breath.",
+      "manual_give": "Four warm, oiled hands work smoothly up and down your cock together in effortless rhythm until neither stops teasing.",
+      "breast_give": "Pressed tightly from both sides, soft warm breasts trap your cock cleanly between them while they trade teasing grins right above.",
+      "massage_give": "Warm oil glides beneath four synchronized hands sweeping down your neck, ribs, and thighs until your breath drops low.",
       "missionary": "{b} stays curled flush against your side the entire time, kissing your neck and whispering dirty encouragement while you thrust into {a}."
     },
     "competitive": {
@@ -399,6 +656,8 @@
       "prompt": "the two rivals compete for his attention, each trying to outdo the other",
       "_default": "Every touch is a ruthless contest. Each of them is determined to be the one who makes you cum hardest.",
       "oral_give": "It turns into a fierce contest immediately: who can take your cock deeper and make your knees buckle first.",
+      "doggy": "Each shoves the other lightly off the pillows to take the next thrust herself, daring you aloud to pick which hips move harder.",
+      "manual_give": "Both hands clamp briskly over opposite halves of your cock, daring each other aloud over whose grip draws the sharper gasp.",
       "cowgirl": "They bicker breathlessly over whose turn it is on top, then bounce harder to prove who rides you better.",
       "breast_give": "A matter of fierce pride, apparently—both of them pressing their bare chests around you to see who draws the louder groan.",
       "caress": "Even the kissing and touching turns into a cutthroat competition, leaving you dizzy and surrounded.",

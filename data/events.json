@@ -45,10 +45,7 @@
       "pass": "{name} politely passes. You send regrets. She appreciates being asked."
     },
     "decline": {"label":"Decline politely","res":"The messenger sniffs and leaves."},
-    "image": {
-      "comp": "on the arm of a richly dressed nobleman at a glittering party, poised elegant smile",
-      "setting": "opulent noble ballroom, chandeliers"
-    }
+    "image": {"comp":"holding a wax-sealed parchment invitation, curious half-smile","setting":"velvet lounge, warm candlelight","house":true}
   },
   "guild": {
     "_vars": "{gold} (the fee)",
@@ -75,7 +72,7 @@
     "title": "An Offer from the Thorn",
     "text": "{name} admits Isolde Thorne offered her a position at the Velvet Thorn, with better pay. She hasn't decided.",
     "raise": {"label":"Offer a raise (+30%)","res":"{name} stays. \"Okay. You actually value me. Noted.\""},
-    "talk": {"label":"Talk it through","stay":"They talk for an hour. {name} decides she'd rather stay.","go":"{name} hugs you goodbye. She's going."},
+    "talk": {"label":"Talk it through","stay":"You talk for an hour. {name} decides she'd rather stay.","go":"{name} hugs you goodbye. She's going."},
     "choose": {"label":"Let her choose","stay":"{name} turns Isolde down.","go":"{name} takes the offer."},
     "image": {
       "comp": "holding a fancy embossed letter, conflicted expression, glancing at a rival's calling card",
@@ -117,7 +114,7 @@
   "quiet": {
     "title": "A Quiet Moment",
     "text": "{name} finds you on the back steps after closing and sits next to you. \"You know, you're not what I expected. In a good way.\"",
-    "stay": {"label":"Stay and talk","res":"They watch the two moons rise."},
+    "stay": {"label":"Stay and talk","res":"You sit together and watch the two moons rise."},
     "image": {
       "comp": "sitting on the back steps next to him sharing a pot of tea, talking quietly, shoulders touching",
       "setting": "back steps of an inn at dusk, lanterns coming on, town rooftops",
@@ -152,12 +149,12 @@
     "topics": [
       "about her hometown",
       "about the strangest client of the week",
-      "about Sam's old world. She refuses to believe in trains",
+      "about your old world. She refuses to believe in trains",
       "over tea in the kitchen",
       "about what she wants to do with her life",
       "about whether \"isekai\" is a real word (she insists it is not)"
     ],
-    "home": ["about home, and what they miss most"],
+    "home": ["about home, and what you both miss most"],
     "ng": [
       "about the returners everyone at the guild is suddenly talking about",
       "about whether she'd want to remember, if she came back",
@@ -181,8 +178,7 @@
     },
     "image": {
       "comp": "standing in front of a full-length mirror modeling her new outfit with a delighted smile",
-      "setting": "lantern-lit market stall clearing, colorful fabric awnings",
-      "house": true
+      "setting": "lantern-lit market stall clearing, colorful fabric awnings"
     }
   },
   "outfit_regular": {
@@ -235,7 +231,7 @@
     "keep": {"label":"\"It's wonderful. Wear it.\"","res":["{name} glows. {outfit} is hers, and she made it."]},
     "share": {"label":"\"Let the whole house enjoy it.\"","res":["{name} blushes and nods. {outfit} goes into the house wardrobe."]},
     "image": {
-      "comp": "standing beside a sunlit kitchen table in her freshly tailored outfit, glowing with quiet pride",
+      "comp": "standing beside a wooden kitchen table in her freshly tailored outfit, glowing with quiet pride",
       "setting": "warm kitchen and sewing table, soft candlelight",
       "house": true
     }
@@ -271,7 +267,7 @@
       "title": "Déjà Vu",
       "text": [
         "{name} stops halfway through setting a table, a plate in each hand. \"I've done this before,\" she says slowly. \"Not this table. This moment. You were standing right there, and you said...\" She frowns. \"I don't remember what you said. Only that I liked it.\"",
-        "{name} wakes you before dawn, sitting on the end of your bed. \"I had the strangest dream. We'd already met. I already knew how you take your tea.\" She holds up the cup she brought him. It's exactly right."
+        "{name} wakes you before dawn, sitting on the end of your bed. \"I had the strangest dream. We'd already met. I already knew how you take your tea.\" She holds up the cup she brought you. It's exactly right."
       ],
       "truth": {
         "label": "Tell her the truth",
@@ -296,7 +292,7 @@
       "text": "Anael finds you at the crossroads after close. The old Lantern Stone is burning, steadier than before. \"It has been lit {cycle} times now,\" she says. \"The Order's records only allow for once. I have been instructed to file a correction.\" She looks at the flame, then at you. \"I have not decided what the correction should say.\"",
       "stay": {
         "label": "Stay with her a while",
-        "res": "They watch the flame until the bells ring midnight. When Anael finally writes her report, it is three pages long and none of it is about the lamp."
+        "res": "You watch the flame together until the bells ring midnight. When Anael finally writes her report, it is three pages long and none of it is about the lamp."
       },
       "ask": {
         "label": "Ask what the Order thinks it means",
@@ -356,8 +352,8 @@
     },
     "skip": {"label":"Not this year","res":"{name} watches the crowning from the edge of the square and cheers for the winner."},
     "image": {
-      "comp": "standing on a festive town-square stage beneath bunting and paper lanterns, radiant confident smile",
-      "setting": "sunny bustling town square street fair, cheering crowd, colorful banners"
+      "comp": "standing beside a colorful street-fair voting board beneath bunting, amused confident smile",
+      "setting": "sunny bustling town square street fair, colorful banners"
     }
   },
   "title_arena": {
@@ -374,8 +370,8 @@
     },
     "pass": {"label":"Not this time","res":"{name} grumbles, but sits in the stands and heckles the finalists with real expertise."},
     "image": {
-      "comp": "ready in a fighting stance at the center of a sandy stone arena, confident fierce grin",
-      "setting": "crowded Adventurers' Guild stone fighting pit in bright daylight, banners and spectators"
+      "comp": "stretching her shoulders and checking her stance beside an arena wall, confident eager grin",
+      "setting": "stone courtyard outside the Adventurers' Guild fighting pit in bright daylight, banners"
     }
   },
   "riddle": {
@@ -413,8 +409,8 @@
     },
     "leave": {"label":"Leave her be","res":"You give her space. By morning she is composed again, but she doesn't quite meet your eyes."},
     "image": {
-      "comp": "two women sitting side by side, one wiping her eyes while the other gently rests a hand on her shoulder",
-      "setting": "staff common room in the evening, warm lamplight",
+      "comp": "sitting alone at the end of a dimly lit hallway hugging her knees, eyes glistening",
+      "setting": "quiet hallway in the evening, warm lamplight",
       "house": true
     }
   },
@@ -432,8 +428,9 @@
     },
     "decline": {"label":"Politely refuse","res":"{bard} shrugs, plays a song for her supper, and moves on to the next town."},
     "image": {
-      "comp": "standing tall on a small stage mid-song, facing a travelling bard with a lute, crowd cheering",
-      "setting": "lively stage in a pleasure house common room, lanterns and a crowd"
+      "comp": "standing near the edge of the common room with a challenged smirk while patrons point her way toward a bard with a lute",
+      "setting": "lively pleasure house common room, lanterns and a crowd",
+      "house": true
     }
   },
   "lantern_ask": {
@@ -464,8 +461,8 @@
     ],
     "ok": {"label":"Noted"},
     "image": {
-      "comp": "standing composed in a lantern-lit corridor, black-and-amber feathered wings folded and glowing amber halo",
-      "setting": "pleasure house hallway, warm lantern glow",
+      "comp": "standing composed with black-and-amber feathered wings spread lazily and glowing amber halo",
+      "setting": "pleasure house breakfast room, warm morning light",
       "house": true
     }
   }

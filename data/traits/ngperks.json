@@ -1,0 +1,260 @@
+{
+  "traits": {
+    "Second Wind": {
+      "desc": "Carries 15 extra energy into every week and recovers 5% faster.",
+      "fx": {"energyBank":15,"energyRec":1.05},
+      "ngPerk": true,
+      "gen": false,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "excl": []
+    },
+    "Practiced": {
+      "desc": "Everything she does improves 20% faster: skills and stats (including your coaching).",
+      "fx": {"skillGain":1.2,"statGain":1.2},
+      "ngPerk": true,
+      "gen": false,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "excl": []
+    },
+    "Beloved": {
+      "desc": "Settled, happy, and sure of her place.",
+      "fx": {"trustGain":1.2,"moodRest":4},
+      "ngPerk": true,
+      "gen": false,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "excl": []
+    },
+    "Bond Remembered": {
+      "desc": "Remembers everything with you: trust grows 25% faster, slightly more willing.",
+      "fx": {"trustGain":1.25,"willing":5},
+      "gen": false,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": true,
+      "excl": []
+    },
+    "Steady Heart": {
+      "desc": "Mood changes are 20% smaller; resting mood +3.",
+      "fx": {"moodDelta":0.8,"moodRest":3},
+      "gen": false,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": true,
+      "excl": []
+    },
+    "Hollowmere Star": {
+      "desc": "Her name is known: +4 appeal, services earn 8% more.",
+      "fx": {"appeal":4,"clientFee":1.08},
+      "gen": false,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": true,
+      "excl": []
+    },
+    "Tireless Spirit": {
+      "desc": "+20 max energy; recovers 10% faster.",
+      "fx": {"maxEnergy":20,"energyRec":1.1},
+      "gen": false,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": true,
+      "excl": []
+    },
+    "Knows the Ropes": {
+      "desc": "Services cost 10% less energy; skills improve 10% faster.",
+      "fx": {"actEnergy":0.9,"skillGain":1.1},
+      "gen": false,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": true,
+      "excl": []
+    },
+    "House Favorite": {
+      "desc": "Happy clients lift the house's name 15% more; propositioned 10% more.",
+      "fx": {"rep":1.15,"propRate":1.1},
+      "gen": false,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": true,
+      "excl": []
+    },
+    "Golden Touch": {
+      "desc": "Nobles and merchants pay 10% more.",
+      "fx": {"classBonus":{"noble":1.1,"merchant":1.1}},
+      "gen": false,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": true,
+      "excl": []
+    },
+    "Settled Mind": {
+      "desc": "Never becomes reckless; mood returns to rest 20% faster.",
+      "fx": {"noReckless":true,"moodDrift":1.2},
+      "gen": false,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": true,
+      "excl": []
+    },
+    "Wellspring": {
+      "desc": "Carries 25 extra energy into each week.",
+      "fx": {"energyBank":25},
+      "gen": false,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": true,
+      "excl": []
+    },
+    "Fond Memories": {"desc":"Resting mood +6.","fx":{"moodRest":6},"gen":false,"hidden":false,"earn":null,"ngOnly":false,"ngPerk":true,"excl":[]},
+    "Born Teacher": {
+      "desc": "Teaches and coaches 25% more, as teacher or madame; madame work +10%; skills improve 10% faster.",
+      "fx": {"jobBonus":{"madame":1.1},"teach":1.25,"skillGain":1.1},
+      "gen": false,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": true,
+      "excl": []
+    },
+    "Old Flame": {
+      "desc": "Lewdness grows 20% faster; +8 willingness.",
+      "fx": {"lewdGain":1.2,"willing":8},
+      "gen": false,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": true,
+      "excl": []
+    },
+    "Guardian of the House": {
+      "desc": "+15 security when she stands guard; security work +15%.",
+      "fx": {"security":15,"jobBonus":{"security":1.15}},
+      "gen": false,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": true,
+      "excl": []
+    },
+    "Showstopper": {
+      "desc": "Dancing +12%, bartending +10%, +2 appeal.",
+      "fx": {"jobBonus":{"dancer":1.12,"bartender":1.1},"appeal":2},
+      "gen": false,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": true,
+      "excl": []
+    },
+    "Headmistress": {
+      "desc": "Passes on 25% more when teaching or coaching; teacher work +15%.",
+      "fx": {"teach":1.25,"jobBonus":{"teacher":1.15}},
+      "gen": false,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": true,
+      "excl": []
+    },
+    "Perfect Hostess": {
+      "desc": "Hosting and attendant work +15%, +2 appeal.",
+      "fx": {"jobBonus":{"host":1.15,"attendant":1.15},"appeal":2},
+      "gen": false,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": true,
+      "excl": []
+    },
+    "Quick Study": {
+      "gen": false,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": true,
+      "excl": [],
+      "desc": "Learns 30% more from your coaching and lessons, the madame, and the classroom.",
+      "fx": {"learn":1.3}
+    },
+    "Street Darling": {
+      "gen": false,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": true,
+      "excl": [],
+      "desc": "The whole street knows her: promoting draws 20% more clients, +2 appeal.",
+      "fx": {"promote":1.2,"appeal":2}
+    },
+    "Sacred Vessel": {
+      "desc": "Chapel work +25%, pilgrims and clerics pay 20% more, house reputation +10%, +8 Charm.",
+      "fx": {"jobBonus":{"chapel":1.25},"classBonus":{"pilgrim":1.2,"cleric":1.2},"rep":1.1,"stats":{"charm":8}},
+      "gen": false,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": true,
+      "excl": []
+    },
+    "Siren of the House": {
+      "desc": "+10 Beauty, +10 Charisma, +4 appeal, services earn 10% more.",
+      "fx": {"appeal":4,"clientFee":1.1,"stats":{"beauty":10,"charisma":10}},
+      "gen": false,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": true,
+      "excl": []
+    },
+    "Queen of the Velvet": {
+      "desc": "Master of private suites: courtesan work +15%, services earn 10% more, +8 Beauty.",
+      "ngPerk": true,
+      "fx": {"jobBonus":{"courtesan":1.15},"clientFee":1.1,"stats":{"beauty":8}}
+    },
+    "Steam Empress": {
+      "desc": "Bathhouse work +18%, massage quality +15%, recovers 8% more energy, +8 Stamina.",
+      "ngPerk": true,
+      "fx": {"jobBonus":{"bath":1.18},"actQuality":{"massage_give":1.15},"energyRec":1.08,"stats":{"stamina":8}}
+    },
+    "Mistress of Order": {
+      "desc": "Maid work +18%, cleaning +25%, resting mood +3, +8 Agility.",
+      "ngPerk": true,
+      "fx": {"jobBonus":{"maid":1.18},"tidy":1.25,"moodRest":3,"stats":{"agility":8}}
+    },
+    "Lantern's Voice": {
+      "desc": "Promoter work +18%, promoting +18%, bards and merchants pay 12% more, +8 Charisma.",
+      "ngPerk": true,
+      "fx": {"jobBonus":{"promoter":1.18},"promote":1.18,"classBonus":{"bard":1.12,"merchant":1.12},"stats":{"charisma":8}}
+    },
+    "Scholar's Mind": {
+      "desc": "Stats and skills grow 12% faster, teaches and learns 15% more, +10 Wits.",
+      "ngPerk": true,
+      "fx": {"statGain":1.12,"skillGain":1.12,"teach":1.15,"learn":1.15,"stats":{"wits":10}}
+    },
+    "Porcelain Poise": {
+      "desc": "Aristocratic bearing across lives: +10 Refinement, nobles and officials pay 12% more, +3 appeal.",
+      "ngPerk": true,
+      "fx": {"stats":{"refinement":10},"classBonus":{"noble":1.12,"official":1.12},"appeal":3}
+    },
+    "Unyielding Frame": {
+      "desc": "Honed across lifetimes: +10 Strength, +10 Stamina, +15 security, +15 max energy.",
+      "ngPerk": true,
+      "fx": {"stats":{"strength":10,"stamina":10},"security":15,"maxEnergy":15}
+    }
+  }
+}

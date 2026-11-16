@@ -26,12 +26,15 @@
     'js/logic/commands.js',
     'js/ui/wardrobe.js',
     'js/logic/sam.js',
+    'js/logic/dates.js',
     'js/logic/spending.js',
     'js/logic/home.js',
+    'js/logic/services.js',
     'js/logic/week.js',
     'js/events/core.js',
     'js/stories/houses.js',
     'js/stories/partners.js',
+    'js/stories/afterstories.js',
     'js/stories/house-extras.js',
     'js/stories/ngplus-houses.js',
     'js/events/regulars.js',
@@ -46,14 +49,15 @@
     'js/events/walks.js',
     'js/ui/core.js',
     'js/ui/sheet.js',
+    'js/ui/report.js',
     'js/ui/settings.js',
     'js/main.js'
   ];
   window.HOLLOWMERE_FILES = FILES;
   // Editable data, loaded before any script runs. Each becomes window.PL_DATA['<name>'].
-  var DATA_FILES = ['balance', 'economy', 'services', 'personalities', 'people', 'races', 'traits', 'titles', 'body', 'wardrobe', 'characters', 'guests', 'arcs', 'regulars', 'bonds', 'scenes', 'dates', 'events', 'walks', 'snippets', 'ai-prompts', 'flavor', 'firsts', 'goddess'];
+  var DATA_FILES = ['balance', 'economy', 'services', 'personalities', 'people', 'races', 'traits', 'titles', 'body', 'wardrobe', 'characters', 'guests', 'arcs', 'afterstories', 'regulars', 'bonds', 'scenes', 'dates', 'events', 'walks', 'snippets', 'ai-prompts', 'flavor', 'firsts', 'goddess'];
   // Data sets kept as a folder of parts (data/<name>/index.json + parts) instead of one file.
-  var DATA_DIRS = ['characters', 'guests', 'arcs', 'flavor', 'firsts', 'goddess'];
+  var DATA_DIRS = ['characters', 'guests', 'arcs', 'afterstories', 'flavor', 'firsts', 'goddess', 'traits'];
   window.HOLLOWMERE_DATA = DATA_FILES;
   window.HOLLOWMERE_DATA_DIRS = DATA_DIRS;
 

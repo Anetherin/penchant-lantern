@@ -36,6 +36,15 @@ function actPose(id, ctx){
 // ctx is 'date_<key>' or 'date_<key>.<i>' (i = spicy variant index; its image can add to or replace the pose, and move the setting)
 function dateCtx(ctx){ const m = /^date_([^.]+)(?:\.(\d+))?$/.exec(ctx||''); if(!m || !DATES[m[1]]) return null; const d = DATES[m[1]], sp = m[2] != null ? (d.spicy||[])[+m[2]] : null; return {d, sp: sp && sp.image ? sp : null}; }
 const dateSetting = ctx => { const c = dateCtx(ctx); return (c && ((c.sp && c.sp.image.setting) || (c.d.image && c.d.image.setting))) || SCENE_DATA.samRoom; };
+function samCtxSetting(ctx, h){
+  if(!ctx) return null;
+  const HD = h ? HOUSES[h.id] : null, hs = HD ? ', ' + HD.setting : '';
+  if(ctx==='bath') return (h && h.up && h.up.bath ? SCENE_DATA.bathhouse : SCENES.bath.setting) + hs;
+  if(ctx==='storeroom') return (SCENES.enc_reckless && SCENES.enc_reckless.setting) || SCENE_DATA.samRoom;
+  if(ctx==='exhib') return (SCENE_DATA.exhibSetting || 'semi-public alcove off the lounge') + hs;
+  if(ctx==='chapel') return (SCENE_DATA.chapelSetting || 'candlelit chapel vestry') + hs;
+  return null;
+}
 function svcExpr(w, id, P, withSam){
   const e = (P && P.expr) || (w && typeof exprFor==='function' ? exprFor(w, id, id ? (withSam ? samStance(w,id)==='ask' : clientStance(w,id)==='ask') : false) : '');
   return exprText(e, id);
@@ -67,7 +76,7 @@ function sceneInfo(k, w){
     return {label:'A night together', pov:true, sam:true, comp:pick([].concat(SCENE_DATA.orgyPose || ['the women crowded around the viewer on the bed, pov'])), setting:SCENE_DATA.orgyRoom || SCENE_DATA.samRoom, expr:svcExpr(w, null, P, true),
       client: os.length ? 'the other women: ' + os.map(short).join('; ') : ''}; }
   if(k.startsWith('demo:')){ const id = k.slice(5); return {label:'Demonstration: '+actLabel(id), sam:true, comp:actPose(id,'demo'), client:'the man is ' + SAM_LOOK, setting:SCENE_DATA.demoRoom || 'a candlelit parlor, other women watching', snip:'act_'+id, expr:svcExpr(w, id, P, true)}; }
-  if(k.startsWith('samact:')){ const id = k.slice(7), a=actById(id); return {label:'Sam: '+actLabel(id), pov:true, sam:true, comp:(()=>{ const c = dateCtx(P.ctx), pose = actPose(id,'sam'), si = c && c.sp && c.sp.image; return si && si.comp ? (si.replace ? si.comp : pose + ', ' + si.comp) : pose; })(), setting:(typeof gTeaseSetting==='function' && gTeaseSetting(P.ctx)) || (typeof walkSetting==='function' && walkSetting(P.ctx)) || dateSetting(P.ctx), snip:'act_'+id, expr:svcExpr(w, id, P, true)}; }
+  if(k.startsWith('samact:')){ const id = k.slice(7), a=actById(id); return {label:'Sam: '+actLabel(id), pov:true, sam:true, comp:(()=>{ const c = dateCtx(P.ctx), pose = actPose(id,'sam'), si = c && c.sp && c.sp.image; return si && si.comp ? (si.replace ? si.comp : pose + ', ' + si.comp) : pose; })(), setting:(typeof gTeaseSetting==='function' && gTeaseSetting(P.ctx)) || (typeof walkSetting==='function' && walkSetting(P.ctx)) || samCtxSetting(P.ctx, h) || dateSetting(P.ctx), snip:'act_'+id, expr:svcExpr(w, id, P, true)}; }
   const sc = Object.assign({}, SCENES[k] || SCENES.portrait);
   // bath scenes at home happen in the house's bathhouse when it has one (scenes.json → bathhouse); "away" keeps its own place
   if((sc.bath || sc.towel) && !sc.away && h && h.up && h.up.bath){ sc.setting = SCENE_DATA.bathhouse || sc.setting; sc.house = true; }

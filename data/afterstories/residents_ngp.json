@@ -1,0 +1,342 @@
+{
+  "rinna": [
+    {
+      "title": "Tethered Clouds",
+      "scene": "job_bartender",
+      "image": {
+        "comp": "perched casually on a cliffside ship rail adjusting brass wind goggles, dragon tail swaying in sunset breeze, bright carefree grin",
+        "setting": "open-air cliffside quarterdeck bar of The Skyhook Tavern",
+        "sam": true
+      },
+      "text": "After that impossible sunset flight around the harbor, half the cliffside taverns keep staring up at the Skyhook's rigging waiting for Rinna to cast off again for good—yet here she is hammering an extra bench straight onto the quarterdeck.\n\n\"Tobbin asked when I'm selling the place and flying south,\" she chuckles, spinning a brass spanner across her thumb. \"Told him the clouds don't have decent rum or a boss crazy enough to fly a tavern with me.\"",
+      "choices": [
+        {
+          "label": "Promise her a flight day whenever the skies clear",
+          "t": 6,
+          "m": 8,
+          "sam": {"charm":1},
+          "res": "Rinna's dragon tail thumps solidly against the hull boards. \"Hold you to that, cap'n!\""
+        },
+        {
+          "label": "Help her anchor the storm awning before gale season",
+          "t": 5,
+          "m": 7,
+          "grow": {"bar":5},
+          "res": "Thirty minutes of knotted rigging and sailor profanity later, the deck bar looks windproof enough to ride out a hurricane."
+        }
+      ]
+    },
+    {
+      "title": "Harbor Horizon",
+      "scene": "casual",
+      "image": {
+        "comp": "leaning side-by-side against the captain's taffrail at midnight sharing cloud-rum from one bottle, warm teasing dragon-eyed smile",
+        "setting": "starlit cliffside deck of The Skyhook above harbor lights",
+        "sam": true
+      },
+      "byIntim": {
+        "2": {
+          "scene": "sam_date",
+          "text": "Lanterns swing slowly on hemp lines above the quarterdeck while harbor fog rolls softly under the hull. Rinna pulls the cork out of her best spiced bottle with her teeth and tosses you a warm look over one bare shoulder.\n\n\"Sixty years hauling crates through sleet,\" she purrs smoothly, sliding into your space beside the wheel. \"Best haul I ever docked was right on these cliffs, boss.\""
+        }
+      },
+      "text": "Lanterns swing slowly on hemp lines above the quarterdeck while harbor fog rolls softly under the hull. Rinna passes her spiced bottle cleanly across the wheel.\n\n\"Sixty years chasing horizons,\" she smiles easily under the twin moons. \"Funny how the anchorage turned out to be the part worth keeping.\"",
+      "choices": [
+        {
+          "label": "Take her below to the captain's bunk",
+          "if": {"intim":1,"canAct":["kiss","manual_give","oral_give","cowgirl","missionary"]},
+          "private": true,
+          "acts": ["cowgirl","oral_give","kiss"],
+          "t": 6,
+          "m": 8,
+          "l": 3,
+          "res": "Rinna hooks two claws lightly under your chin, grinning wickedly as she walks you straight backward down the cabin stair.",
+          "else": {"t":7,"m":8,"energy":"full","res":"You watch the night freighters drift silently across the cove until sunrise paints the sails pink."}
+        },
+        {
+          "label": "Challenge her to a tally of tall tales till dawn",
+          "t": 5,
+          "m": 7,
+          "sam": {"wits":1},
+          "res": "Every third story includes a different sea monster—and every single dent in the deck mysteriously changes origin before breakfast."
+        }
+      ]
+    }
+  ],
+  "maris": [
+    {
+      "title": "Salt and Wildflowers",
+      "scene": "casual",
+      "image": {
+        "comp": "kneeling beside a steaming marble basin arranging fresh highland wildflowers into jade bowls, serene delighted expression",
+        "setting": "quiet iridescent cavern hall inside The Pearl Grotto",
+        "sam": true
+      },
+      "text": "True to her word, Maris starts sneaking out up the coast road once a week now that the Drowned Bell sleeps cleanly beneath the waves—returning every dusk with wildflowers, spruce cones, or strange mountain stones lined along the jade bath rim.\n\n\"Three centuries of hearing sea tide and stone echoes,\" she sighs softly, drifting her fingers across pine needles. \"I had forgotten dirt could smell this loud.\"",
+      "choices": [
+        {
+          "label": "Offer to hike the ridge trail with her next off-day",
+          "t": 6,
+          "m": 8,
+          "sam": {"charm":1},
+          "res": "Her pale sea-glass eyes brighten unmistakably through the mist. \"Hold that promise, land-dweller. I want to see the tops of the cedars.\""
+        },
+        {
+          "label": "Steep one of her mountain herbs into the warm side pool",
+          "t": 5,
+          "m": 8,
+          "grow": {"service":5},
+          "res": "Pine and salt steam swirl cleanly across the marble hall—regulars start asking about \"the Grotto's miracle air\" before nightfall."
+        }
+      ]
+    },
+    {
+      "title": "Silent Tide",
+      "scene": "bath",
+      "image": {
+        "comp": "gliding gently waist-deep in glowing turquoise cavern water beneath soft pearl light, wet silver hair clinging to bare shoulders",
+        "setting": "lantern-lit private turquoise tide pool inside The Pearl Grotto",
+        "sam": true
+      },
+      "byIntim": {
+        "2": {
+          "scene": "bath_invite",
+          "text": "The Grotto's luminous pearls glow low pearl-blue above the midnight tide pool. Maris rises smoothly through warm turquoise water right beside the marble stair, wet hair clinging smoothly along bare shoulders.\n\n\"Not a single bell ringing in the dark,\" she murmurs against the quiet lap of water, holding one warm palm out across the surface. \"Come float with me awhile, Sam—no bargains required.\""
+        }
+      },
+      "text": "The Grotto's luminous pearls glow low pearl-blue above the midnight tide pool while Maris floats calmly along the surface, listening to nothing louder than water against stone.\n\n\"Funny how freeing it is to stay somewhere only because you choose the lock on the door,\" she whispers warmly.",
+      "choices": [
+        {
+          "label": "Slip down into the warm glowing pool beside her",
+          "if": {"intim":1,"canAct":["kiss","manual_give","oral_give","missionary","cowgirl"]},
+          "private": true,
+          "acts": ["missionary","oral_give","kiss"],
+          "t": 6,
+          "m": 8,
+          "l": 3,
+          "res": "Warm salt water surges gently around your ribs as Maris glides straight against your chest, lips warm and unhurried against yours.",
+          "else": {
+            "t": 7,
+            "m": 8,
+            "energy": "full",
+            "res": "You rest along the shallow warm stone listening to the gentle cavern tide until every tired muscle lets go completely."
+          }
+        },
+        {
+          "label": "Sit at the water's edge trading quiet histories",
+          "t": 5,
+          "m": 7,
+          "sam": {"wits":1},
+          "res": "For the first time, she tells one story about her past that stays exactly the same from start to finish—and smiles softly when you catch it."
+        }
+      ]
+    }
+  ],
+  "brynna": [
+    {
+      "title": "Square Beams",
+      "scene": "job_security",
+      "image": {
+        "comp": "planing a thick oak bar counter with steady calloused hands, carpentry chalk behind one ear, satisfied gruff smirk",
+        "setting": "newly rebuilt timber gallery of Ironwood Hall",
+        "sam": true
+      },
+      "text": "Every sealed wing in Ironwood Hall is open and steaming cleanly, yet you still catch Brynna out in the upper corridor at dawn planing down one sticky parlor door hinge with a heavy steel rasp.\n\n\"Syndicates treated this hall like kindling,\" she grunts cleanly, testing the latch once until it clicks with dead-flat precision. \"Feels right, hearing timber settle under folks who actually mend what cracks.\"",
+      "choices": [
+        {
+          "label": "Hand her a fresh brass handle for the final suite",
+          "t": 6,
+          "m": 8,
+          "sam": {"technique":1},
+          "res": "Brynna checks the weight approvingly, drives the screws home cleanly, and nods once. \"Best boss this hall's seen in three decades.\""
+        },
+        {
+          "label": "Tell her she doesn't have to carry every hammer alone now",
+          "t": 5,
+          "m": 7,
+          "grow": {"combat":4},
+          "res": "She scoffs under her breath, then leans her shoulder briefly against yours. \"Maybe. Just keep folks' boots off my fresh varnish.\""
+        }
+      ]
+    },
+    {
+      "title": "Boiler Warmth",
+      "scene": "casual",
+      "image": {
+        "comp": "resting on a thick wool bench beside a glowing cast-iron dwarven boiler stove, unlaced leather apron, unexpectedly tender smile",
+        "setting": "warm timber hearth parlor inside Ironwood Hall at night",
+        "sam": true
+      },
+      "byIntim": {
+        "2": {
+          "scene": "sam_date",
+          "text": "Warm cedar steam purrs smoothly out of the cellar boiler while rain hammers the tin eaves overhead. Brynna drops her tool belt onto the hearth rug with a heavy leather thud and unbuttons two thick collar studs.\n\n\"Good wood holds when pressure hits,\" she rumbles softly, catching your gaze across the firelight. \"Same goes for good company, boss.\""
+        }
+      },
+      "text": "Warm cedar steam purrs smoothly out of the cellar boiler while rain hammers the tin eaves overhead. Brynna wipes oak dust cleanly off her knuckles and slides a heavy pewter mug of mulled cider your way.\n\n\"First roof I ever nailed shut stayed yours through winter,\" she says gruffly, looking almost shy about it. \"Worth every splinter.\"",
+      "choices": [
+        {
+          "label": "Pull up close beside her by the warm stove",
+          "if": {"intim":1,"canAct":["kiss","massage_give","manual_give","oral_give","missionary"]},
+          "private": true,
+          "acts": ["massage_give","oral_give","missionary","kiss"],
+          "t": 6,
+          "m": 8,
+          "l": 3,
+          "res": "Brynna laughs low in her chest, strong calloused palms gripping your hoodie hard as she draws you right onto the heavy wool rug.",
+          "else": {
+            "t": 7,
+            "m": 8,
+            "energy": "full",
+            "res": "You stretch out beside the cast-iron stove swapping dry carpenter jokes until morning sunlight dries the porch planks."
+          }
+        },
+        {
+          "label": "Rub the knots out of her sore forearms after work",
+          "t": 6,
+          "m": 8,
+          "sam": {"strength":1},
+          "res": "She groans deeply in shameless relief and mutters, \"Fine. Maybe those soft city hands have some use after all.\""
+        }
+      ]
+    }
+  ],
+  "maren": [
+    {
+      "title": "Secret Blends",
+      "scene": "job_host",
+      "image": {
+        "comp": "measuring amber resin drops into tiny labeled glass vials beneath hanging orchids, four fluffy fox tails swaying mischievously",
+        "setting": "sunlit apothecary potting bench inside The Glass Conservatory",
+        "sam": true
+      },
+      "text": "Morning sun turns the glasshouse mist warm gold as Maren bottles the first batch of moon-orchid oil—tucking one plain corked vial straight into your shirt pocket while your hands hold two brass bowls.\n\n\"Not for the parlor censers,\" she purrs softly, bright fox ears tilting toward your chin. \"Called 'quiet night.' Keeps your pulse steadier when the whole town tries working you ragged.\"",
+      "choices": [
+        {
+          "label": "Ask her to test a drop right on your wrist",
+          "t": 6,
+          "m": 8,
+          "l": 2,
+          "res": "Cedar, night jasmine, and warm skin smoke curls between your faces as Maren smiles slowly against your knuckles. \"Worked already, didn't it?\""
+        },
+        {
+          "label": "Offer to label the Spice Guild reserve crates with her",
+          "t": 5,
+          "m": 7,
+          "grow": {"manage":5},
+          "res": "She hands you her finest quill and spends an hour inventing delightfully scandalous names for every new jar."
+        }
+      ]
+    },
+    {
+      "title": "Under Glass",
+      "scene": "casual",
+      "image": {
+        "comp": "curled lazily across a velvet glasshouse chaise under twin moonlight, silky tails fanned around her hips, languid seductive eyes",
+        "setting": "midnight moonlit dome of The Glass Conservatory with glowing hanging censers",
+        "sam": true
+      },
+      "byIntim": {
+        "2": {
+          "scene": "sam_date",
+          "text": "Twin moons glaze the arched glass silver while the dusk-orchid censers coil warm spice low across the floor. Maren lounges across a deep crimson chaise with her four sleek tails curled cleanly around bare calves.\n\n\"Glass keeps every scent inside, remember?\" she teases softly, holding up a ribbon between two fingers. \"Door's latched, Sam. Breathe deep.\""
+        }
+      },
+      "text": "Twin moons glaze the arched glass silver while the dusk-orchid censers coil warm spice low across the floor. Maren beckons you lazily onto the velvet chaise beside the fountain.\n\n\"Most owners treat a parlor like gold coins and locks,\" she murmurs softly. \"You actually watered the orchids. Don't think I didn't notice.\"",
+      "choices": [
+        {
+          "label": "Join her on the velvet chaise beneath the glass dome",
+          "if": {"intim":1,"canAct":["kiss","manual_give","oral_give","cowgirl","missionary"]},
+          "private": true,
+          "acts": ["cowgirl","oral_give","kiss"],
+          "t": 6,
+          "m": 8,
+          "l": 4,
+          "res": "Soft fox tails brush lightly over your wrists before Maren pulls your tie straight down toward warm jasmine-scented skin.",
+          "else": {
+            "t": 7,
+            "m": 8,
+            "sam": {"charm":1},
+            "res": "\"Good gardens deserve tending,\" you smile easily. She drapes one light tail over your knee and hums warmly beneath the moonlight."
+          }
+        },
+        {
+          "label": "Drink plum tea together watching mist gather on the dome",
+          "t": 5,
+          "m": 8,
+          "energy": "full",
+          "res": "Sweet warm air unknots every muscle until the stars pale cleanly above the glass panels."
+        }
+      ]
+    }
+  ],
+  "vivienne": [
+    {
+      "title": "Passing Marks",
+      "scene": "portrait",
+      "image": {
+        "comp": "perched on the corner of a dark mahogany lectern grading parchment with a slim fountain pen, poised knowing half-smile over spectacles",
+        "setting": "quiet candlelit lecture salon at The Velvet Lyceum",
+        "sam": true
+      },
+      "text": "With the Academy board eating out of her palm and half the upper avenue jostling for evening invitations, Vivienne finally lays down a folded evaluation card stamped with the Lyceum's own red wax.\n\n\"Posture: still borderline slouching,\" she reads crisply without glancing up from her spectacles. \"Judgment under fire, fairness to staff, and capacity to silence three pompous governors before midnight: exemplary. Consider yourself graduated, Sam.\"",
+      "choices": [
+        {
+          "label": "Ask what extra-credit seminar comes next",
+          "t": 6,
+          "m": 8,
+          "l": 2,
+          "res": "She taps the edge of the velvet blotter softly with her riding crop, eyes glinting warmly. \"Careful, Mr. Takahashi. Private tuition carries steeper demands.\""
+        },
+        {
+          "label": "Frame the wax-sealed card cleanly above the salon door",
+          "t": 5,
+          "m": 7,
+          "sam": {"business":1},
+          "res": "Vivienne lets out one rare, genuine laugh behind her gloved hand. \"Absurd man. Leave it where every patron sees it.\""
+        }
+      ]
+    },
+    {
+      "title": "After Seminar",
+      "scene": "casual",
+      "image": {
+        "comp": "standing beside tall gilded parlor mirrors unpinning her dark chignon, rimless spectacles resting on the table, cool intimate composure",
+        "setting": "private velvet mirror suite at The Velvet Lyceum at night",
+        "sam": true
+      },
+      "byIntim": {
+        "2": {
+          "scene": "sam_date",
+          "text": "Candlelight repeats softly down four gilded mirrors after the last carriage pulls cleanly out of the courtyard. Vivienne sets her rimless spectacles neatly beside the brandy decanter and lets her dark chignon spill loose over warm bare shoulders.\n\n\"No students, no noble callers, no syllabus,\" she murmurs, cool composure melting into slow wicked warmth. \"Lock the door, Sam.\""
+        }
+      },
+      "text": "Candlelight repeats softly down four gilded mirrors after the last carriage pulls cleanly out of the courtyard. Vivienne sets her rimless spectacles neatly beside the brandy decanter.\n\n\"I left high society expecting common coin and stiff manners,\" she reflects smoothly. \"You turned this academy into something far sharper.\"",
+      "choices": [
+        {
+          "label": "Lock the gilded mirror suite behind you",
+          "if": {"intim":1,"canAct":["kiss","manual_give","oral_give","cowgirl","missionary"]},
+          "private": true,
+          "acts": ["missionary","cowgirl","oral_give","kiss"],
+          "t": 6,
+          "m": 8,
+          "l": 4,
+          "res": "Vivienne catches your tie slowly between polished fingers, guiding you backward right onto the deep velvet divan before the mirror.",
+          "else": {
+            "t": 7,
+            "m": 8,
+            "sam": {"charm":1},
+            "res": "\"Good faculty sets the tone,\" you answer, handing her a glass of warm brandy. She touches her rim cleanly to yours. \"Always, Sam.\""
+          }
+        },
+        {
+          "label": "Let her dictate the quiet evening pace over old plum wine",
+          "t": 5,
+          "m": 7,
+          "grow": {"manage":5},
+          "res": "Even off the clock her wit stays razor-keen, turning an empty salon into the liveliest hour of your week."
+        }
+      ]
+    }
+  ]
+}

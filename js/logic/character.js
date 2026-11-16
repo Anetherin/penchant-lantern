@@ -527,10 +527,10 @@ function makeNamed(key, asPartner){
   w.outfit = 'sig_'+key; w.owned = ['sig_'+key];
   w.ownedUnder = Array.from(new Set(['plain', d.under]));
   w.seed = (hashStr(key)*7 + 12345) % 999999999;
-  delete w.role; delete w.partnerTrust; delete w.partnerStory; delete w.partnerLewd;
+  delete w.role; delete w.partnerTrust; delete w.partnerStory; delete w.partnerBlurb; delete w.partnerLewd;
   if(asPartner){ w.isPartner = true; w.trust = D.partnerTrust; if(D.partnerLewd!==undefined) w.lewd = D.partnerLewd; w.mood = 75; w.backstory = D.partnerStory + '\n\n' + D.backstory; w.contract = 999; }
-  else if(D.partnerStory){ w.backstory = D.partnerStory + '\n\n' + D.backstory; }
   if(ARCS[key]) w.arc = 0;
+  if(AFTER_STORIES && AFTER_STORIES[key]) w.after = 0;
   delete w.jobLikes; delete w.jobDislikes; delete w.firsts; delete w.intim;   // rolled for the generic base; hers come from her data
   delete w.titleId; w.titles = [];   // the generic base's; syncTitles takes hers from her data
   restoreCloset(w);

@@ -1,0 +1,464 @@
+{
+  "traits": {
+    "Exhibitionist": {
+      "desc": "Dancing raises lewdness faster; comfortable with less clothing; needs no room for services.",
+      "fx": {"jobBonus":{"dancer":1.2},"wardrobe":15},
+      "hidden": true,
+      "gen": false,
+      "earn": {"count":"demos","at":3},
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": ["Prim","Shy"]
+    },
+    "Skilled Hands": {
+      "desc": "Years of rubbing tired shoulders: her massages are in demand (+15% quality).",
+      "fx": {"actQuality":{"massage_give":1.15}},
+      "earn": {"count":"massage","at":40},
+      "gen": false,
+      "hidden": false,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Natural Performer": {
+      "desc": "The stage has stopped scaring her. People come to watch; +8 Charisma.",
+      "fx": {"jobBonus":{"dancer":1.1},"appeal":2,"stats":{"charisma":8}},
+      "earn": {"count":"dance","at":30},
+      "gen": false,
+      "hidden": false,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Bar Veteran": {
+      "desc": "She can read a room, and a glass, from across the floor: bartending +10%, +4 Wits.",
+      "fx": {"jobBonus":{"bartender":1.1},"stats":{"wits":4}},
+      "earn": {"count":"bar","at":30},
+      "gen": false,
+      "hidden": false,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Crowd Favorite": {
+      "desc": "Half the town knows her name: +3 appeal, +5% fees, +8 Charisma.",
+      "fx": {"appeal":3,"clientFee":1.05,"stats":{"charisma":8}},
+      "earn": {"stat":"popularity","at":70},
+      "gen": false,
+      "hidden": false,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Confidante": {
+      "desc": "She trusts you completely, and it shows: she settles easily; +8 Charm.",
+      "fx": {"trustGain":1.1,"moodRest":3,"stats":{"charm":8}},
+      "earn": {"trust":90},
+      "gen": false,
+      "hidden": false,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Seasoned": {
+      "desc": "Thirty weeks on, nothing much surprises her: +10 max energy, services cost 3% less energy.",
+      "fx": {"maxEnergy":10,"actEnergy":0.97},
+      "earn": {"weeks":30},
+      "gen": false,
+      "hidden": false,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Unflappable": {
+      "desc": "She has stared down enough pushy customers to take most things in stride.",
+      "fx": {"moodDelta":0.85},
+      "earn": {"count":"rowdy","at":5},
+      "gen": false,
+      "hidden": false,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": ["Sensitive"]
+    },
+    "Headliner": {
+      "desc": "A dozen weeks on stage and the house knows her act by heart; +5 Charisma.",
+      "fx": {"jobBonus":{"dancer":1.08},"rep":1.15,"stats":{"charisma":5}},
+      "earn": {"job":"dancer","weeks":12},
+      "gen": false,
+      "hidden": false,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Iron Liver": {
+      "desc": "Sixty bar shifts' worth of practice: bartending +5%, +5 max energy, +5 Stamina.",
+      "fx": {"jobBonus":{"bartender":1.05},"maxEnergy":5,"stats":{"stamina":5}},
+      "gen": false,
+      "hidden": false,
+      "earn": {"count":"bar","at":60},
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Pitch Perfect": {
+      "desc": "Her promotion work draws 15% more.",
+      "fx": {"promote":1.15},
+      "gen": false,
+      "hidden": false,
+      "earn": {"count":"promo","at":25},
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Guardian Instinct": {
+      "desc": "She has pulled people out of trouble before: +10 security, house reputation +5%, +5 Strength.",
+      "fx": {"security":10,"rep":1.05,"stats":{"strength":5}},
+      "gen": false,
+      "hidden": false,
+      "earn": {"count":"rescued","at":3},
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Sure Hands": {
+      "desc": "Manual services are 15% better.",
+      "fx": {"actQuality":{"manual_give":1.15}},
+      "gen": false,
+      "hidden": false,
+      "earn": {"count":"svcByAct.manual_give","at":25},
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Practiced Kisses": {
+      "desc": "Kisses are 15% better received.",
+      "fx": {"actQuality":{"kiss":1.15}},
+      "gen": false,
+      "hidden": false,
+      "earn": {"count":"svcByAct.kiss","at":30},
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Tireless": {
+      "desc": "A hundred and twenty services in: each costs 7% less energy.",
+      "fx": {"actEnergy":0.93},
+      "gen": false,
+      "hidden": false,
+      "earn": {"count":"svc","at":120},
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Encore Favorite": {
+      "desc": "Clients ask for another round more often (+8%) and pick her (+2 appeal).",
+      "fx": {"encore":0.08,"appeal":2},
+      "gen": false,
+      "hidden": false,
+      "earn": {"count":"encore","at":6},
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Close Companion": {
+      "desc": "Evenings with you have put her at ease: trust grows 10% faster, resting mood +3.",
+      "fx": {"trustGain":1.1,"moodRest":3},
+      "gen": false,
+      "hidden": false,
+      "earn": {"count":"privateSam","at":10},
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Bath Whisperer": {
+      "desc": "Ten weeks in the baths: bath work +15%, +4 Beauty.",
+      "fx": {"jobBonus":{"bath":1.15},"stats":{"beauty":4}},
+      "gen": false,
+      "hidden": false,
+      "earn": {"job":"bath","weeks":10},
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "House Proud": {
+      "desc": "Ten weeks as a maid: cleans 20% better, maid work +10%.",
+      "fx": {"tidy":1.2,"jobBonus":{"maid":1.1}},
+      "gen": false,
+      "hidden": false,
+      "earn": {"job":"maid","weeks":10},
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Watchful": {
+      "desc": "Ten weeks on security: +12 security, +5 Strength.",
+      "fx": {"security":12,"stats":{"strength":5}},
+      "gen": false,
+      "hidden": false,
+      "earn": {"job":"security","weeks":10},
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Steady Hostess": {
+      "desc": "Ten weeks running the house: madame work +15%, +4 Wits.",
+      "fx": {"jobBonus":{"madame":1.15},"stats":{"wits":4}},
+      "gen": false,
+      "hidden": false,
+      "earn": {"job":"madame","weeks":10},
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Practiced Charmer": {
+      "desc": "Ten weeks as a courtesan: courtesan work +12%, services earn 3% more.",
+      "fx": {"jobBonus":{"courtesan":1.12},"clientFee":1.03},
+      "gen": false,
+      "hidden": false,
+      "earn": {"job":"courtesan","weeks":10},
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Uninhibited": {
+      "desc": "Highly at ease with her own lewdness: more comfortable undressing and slightly more willing.",
+      "fx": {"wardrobe":10,"willing":5},
+      "gen": false,
+      "hidden": false,
+      "earn": {"lewd":85},
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": ["Prim","Shy"]
+    },
+    "Practiced Host": {
+      "desc": "Hosting work +12%; +4 Charisma.",
+      "fx": {"jobBonus":{"host":1.12},"stats":{"charisma":4}},
+      "gen": false,
+      "hidden": false,
+      "earn": {"job":"host","weeks":10},
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Warm-Up Artist": {
+      "desc": "Hosting work +6%, +2 appeal.",
+      "fx": {"jobBonus":{"host":1.06},"appeal":2},
+      "gen": false,
+      "hidden": false,
+      "earn": {"count":"warm","at":40},
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Schoolmistress": {
+      "desc": "Passes on 15% more when teaching or coaching; +5 Refinement.",
+      "fx": {"teach":1.15,"stats":{"refinement":5}},
+      "gen": false,
+      "hidden": false,
+      "earn": {"job":"teacher","weeks":10},
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Mentor's Eye": {
+      "desc": "Passes on 10% more when teaching or coaching; skills improve 5% faster.",
+      "fx": {"teach":1.1,"skillGain":1.05},
+      "gen": false,
+      "hidden": false,
+      "earn": {"count":"taught","at":40},
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Right Hand": {
+      "desc": "Attendant work +15%; +4 Wits.",
+      "fx": {"jobBonus":{"attendant":1.15},"stats":{"wits":4}},
+      "gen": false,
+      "hidden": false,
+      "earn": {"job":"attendant","weeks":10},
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Quiet Grace": {
+      "desc": "Chapel work +15%, resting mood +3, +5 Charm.",
+      "fx": {"jobBonus":{"chapel":1.15},"moodRest":3,"stats":{"charm":5}},
+      "gen": false,
+      "hidden": false,
+      "earn": {"job":"chapel","weeks":10},
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Barkeep's Calm": {
+      "desc": "Bartending +8%; bad and good mood swings 5% smaller.",
+      "fx": {"jobBonus":{"bartender":1.08},"moodDelta":0.95},
+      "gen": false,
+      "hidden": false,
+      "earn": {"job":"bartender","weeks":10},
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Town Crier": {
+      "desc": "Promoting +12%; +8 Charisma.",
+      "fx": {"promote":1.12,"stats":{"charisma":8}},
+      "gen": false,
+      "hidden": false,
+      "earn": {"job":"promoter","weeks":10},
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Sharp Mind": {
+      "desc": "Twenty classroom lessons sharpened her: +10 Wits.",
+      "fx": {"stats":{"wits":10}},
+      "gen": false,
+      "hidden": false,
+      "earn": {"count":"lessons","at":20},
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Magnetic": {
+      "desc": "Twenty-five weeks of drawing people in: +10 Charisma.",
+      "fx": {"stats":{"charisma":10}},
+      "gen": false,
+      "hidden": false,
+      "earn": {"job":"promoter","weeks":25},
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Light on Her Feet": {
+      "desc": "Thirty weeks of dancing, and she barely touches the floor: +10 Agility.",
+      "fx": {"stats":{"agility":10}},
+      "gen": false,
+      "hidden": false,
+      "earn": {"job":"dancer","weeks":30},
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Velvet Tongue": {
+      "desc": "Oral services are 15% better received.",
+      "fx": {"actQuality":{"oral_give":1.15}},
+      "gen": false,
+      "hidden": false,
+      "earn": {"count":"svcByAct.oral_give","at":25},
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Plush Embrace": {
+      "desc": "Chest services are 15% better received; +5 Beauty.",
+      "fx": {"actQuality":{"breast_give":1.15},"stats":{"beauty":5}},
+      "gen": false,
+      "hidden": false,
+      "earn": {"count":"svcByAct.breast_give","at":25},
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Deep Devotion": {
+      "desc": "Twenty nights with you have made her effortless in bed: missionary and cowgirl +12% quality, +5 Stamina.",
+      "fx": {"actQuality":{"missionary":1.12,"cowgirl":1.12},"stats":{"stamina":5}},
+      "gen": false,
+      "hidden": false,
+      "earn": {"count":"privateSam","at":20},
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Life of the Lounge": {
+      "desc": "Sixty waiting guests entertained: hosting +12%, +6 Charisma, +6 Charm.",
+      "fx": {"jobBonus":{"host":1.12},"stats":{"charisma":6,"charm":6}},
+      "gen": false,
+      "hidden": false,
+      "earn": {"count":"hosted","at":60},
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Iron Stamina": {
+      "desc": "Sixty services in and she barely breaks a sweat: +15 max energy, +10 Stamina.",
+      "fx": {"maxEnergy":15,"stats":{"stamina":10}},
+      "gen": false,
+      "hidden": false,
+      "earn": {"count":"svc","at":60},
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Poised & Polished": {
+      "desc": "Twenty weeks as a courtesan have honed her grace: +10 Refinement, nobles pay 10% more.",
+      "fx": {"classBonus":{"noble":1.1},"stats":{"refinement":10}},
+      "gen": false,
+      "hidden": false,
+      "earn": {"job":"courtesan","weeks":20},
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Heart-to-Heart": {
+      "desc": "Unmatched closeness face-to-face: missionary quality +12%, trust grows 10% faster, +4 Charm.",
+      "earn": {"count":"svcByAct.missionary","at":25},
+      "fx": {"actQuality":{"missionary":1.12},"trustGain":1.1,"stats":{"charm":4}}
+    },
+    "In the Saddle": {
+      "desc": "Takes the reins effortlessly on top: cowgirl quality +12%, +5 Agility, +4 Stamina.",
+      "earn": {"count":"svcByAct.cowgirl","at":25},
+      "fx": {"actQuality":{"cowgirl":1.12},"stats":{"agility":5,"stamina":4}}
+    },
+    "Arch & Rhythm": {
+      "desc": "Knows every angle from behind: doggy quality +12%, +5 Stamina, +4 Strength.",
+      "earn": {"count":"svcByAct.doggy","at":25},
+      "fx": {"actQuality":{"doggy":1.12},"stats":{"stamina":5,"strength":4}}
+    },
+    "Yielding Warmth": {
+      "desc": "Melts under a partner's hands: getting a massage pleases clients 15% more, resting mood +2.",
+      "earn": {"count":"svcByAct.massage_get","at":15},
+      "fx": {"actQuality":{"massage_get":1.15},"moodRest":2}
+    },
+    "Responsive": {
+      "desc": "Every gasp and shudder reads like an invitation: receiving a handjob pleases clients 15% more, +3 Beauty.",
+      "earn": {"count":"svcByAct.manual_get","at":20},
+      "fx": {"actQuality":{"manual_get":1.15},"stats":{"beauty":3}}
+    },
+    "Heavy-Lidded": {
+      "desc": "Unmistakable pleasure when someone goes down on her: receiving oral pleases clients 15% more, +3 Charm.",
+      "earn": {"count":"svcByAct.oral_get","at":18},
+      "fx": {"actQuality":{"oral_get":1.15},"stats":{"charm":3}}
+    },
+    "Lush Poise": {
+      "desc": "Enjoys having her chest worshipped and shows it: receiving breast play pleases clients 15% more, +4 Beauty.",
+      "earn": {"count":"svcByAct.breast_get","at":15},
+      "fx": {"actQuality":{"breast_get":1.15},"stats":{"beauty":4}}
+    },
+    "Silver Barker": {
+      "desc": "Steers foot traffic through the door out of sheer instinct: promoter work +15%, promoting +15%, +4 Charisma.",
+      "earn": {"job":"promoter","weeks":14},
+      "fx": {"jobBonus":{"promoter":1.15},"promote":1.15,"stats":{"charisma":4}}
+    },
+    "Iron Post": {
+      "desc": "Spots trouble before a glass hits the floor: security work +15%, +10 security, +4 Strength.",
+      "earn": {"job":"security","weeks":14},
+      "fx": {"jobBonus":{"security":1.15},"security":10,"stats":{"strength":4}}
+    },
+    "Seasoned Tutor": {
+      "desc": "Makes every lesson stick: teacher work +15%, teaches 18% more, +4 Wits, +4 Refinement.",
+      "earn": {"job":"teacher","weeks":12},
+      "fx": {"jobBonus":{"teacher":1.15},"teach":1.18,"stats":{"wits":4,"refinement":4}}
+    },
+    "Fleet Step": {
+      "desc": "Moves with effortless speed and balance: +6 Agility, services cost 6% less energy.",
+      "earn": {"stat":"agility","at":80},
+      "fx": {"stats":{"agility":6},"actEnergy":0.94}
+    },
+    "Salon Grace": {
+      "desc": "Carries herself like old nobility even off the clock: +6 Refinement, nobles and officials pay 8% more.",
+      "earn": {"stat":"refinement","at":80},
+      "fx": {"stats":{"refinement":6},"classBonus":{"noble":1.08,"official":1.08}}
+    }
+  }
+}
