@@ -206,13 +206,29 @@ async function handleSaves(request, url, env, path) {
         return err(env, 'Invalid JSON body');
       }
       if (!body || !body.data) return err(env, 'Missing save data');
+      const idx = await readJson(bucket, SAVES_INDEX_KEY, { slots: {}, extras: {} });
+      idx.slots = idx.slots || {};
+      const existing = idx.slots[id];
+      const nextMeta = body.meta || {};
+      if (existing && !body.force) {
+        const baseTs = Number(body.baseUpdatedAt || 0);
+        const newerTime = !!(existing.updatedAt && existing.updatedAt > baseTs);
+        const curCyc = existing.cycle || 1, newCyc = nextMeta.cycle || 1;
+        const curWk = existing.week || 1, newWk = nextMeta.week || 1;
+        const olderProgress = newCyc < curCyc || (newCyc === curCyc && newWk < curWk);
+        if (newerTime || olderProgress) {
+          return json(env, {
+            error: 'Cloud save is newer than this local save.',
+            conflict: true,
+            remote: existing,
+          }, 409);
+        }
+      }
       const now = Date.now();
-      const meta = Object.assign({}, body.meta || {}, { id, updatedAt: now });
+      const meta = Object.assign({}, nextMeta, { id, updatedAt: now });
       const payload = JSON.stringify({ meta, data: body.data });
       meta.bytes = payload.length;
       await bucket.put(r2Key, payload, { httpMetadata: { contentType: 'application/json' } });
-      const idx = await readJson(bucket, SAVES_INDEX_KEY, { slots: {}, extras: {} });
-      idx.slots = idx.slots || {};
       idx.slots[id] = meta;
       await writeJson(bucket, SAVES_INDEX_KEY, idx);
       return json(env, { ok: true, meta });
