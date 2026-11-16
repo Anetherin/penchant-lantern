@@ -14,6 +14,7 @@ Object.assign(NPCS, {
   npc_kurogane:{id:'npc_kurogane', male:true, name:'Master Kurogane', seed:7714, look:'a stern older innkeeper with a grey topknot and a black haori bearing a golden crane crest'},
   npc_borgrum:{id:'npc_borgrum', male:true, name:'Borgrum the Hill Giant', seed:8815, look:'an enormous hill giant with a braided beard, a barrel-sized tankard and a booming grin'},
   npc_valois:{id:'npc_valois', male:true, name:'Maestro Valois', seed:9916, look:'a thin, elegant elven critic with a monocle, a feathered quill and a disdainful expression'},
+  npc_thackery:{id:'npc_thackery', male:true, name:'Master Artificer Thackery', seed:2120, look:'a stiff, grey-whiskered guild artificer in a leather master\'s apron over a waistcoat, brass loupe pushed up on his forehead, a sour pinched expression'},
   npc_oskar:{id:'npc_oskar', male:true, name:'Red Oskar', seed:1017, look:'a rugged bandit chief with a red beard, an eyepatch and a battered leather coat'}
 });
 function storyNpc(key){ const id='n_'+key; if(!NPCS[id]) NPCS[id] = makeNamed(key); return id; }

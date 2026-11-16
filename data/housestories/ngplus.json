@@ -1,0 +1,144 @@
+{
+  "skyhook": [
+    {
+      "pages": [
+        "The cellar of {house} is the old ship's hold. The ribs of the hull curve up on either side of you, and the floor slopes a little toward the bow, so that anything round rolls away the moment you put it down.\n\nYou are down here doing inventory, because nobody has done one in sixty years. {first} labelled most of it herself. Her handwriting gets worse the older the crate. There is one marked RUM (GOOD) and another marked RUM (DO NOT), and a third that just says ASK ME, and after that NO DON'T.",
+        "You have reached the back wall when you hear it. It's a small, regular sound, like a clock in another room, and it is coming from under a tarpaulin.\n\n{first} comes down the ladder with her tricorn pushed back, whistling. She sees where you are standing, and the whistle trails off. Her scaled tail has gone straight and still. It's the only part of her that can't lie, and at the moment it looks very guilty."
+      ]
+    },
+    {
+      "pages": [
+        "It is a full house tonight, with three ships in on the same wind. {first} is behind the bar with her sleeves rolled, pouring with one hand and pointing at the ceiling with the other. There is a dent in one of the deck beams up there. Tonight it is where a cannonball from a customs sloop bounced off, and she caught it in her hat.\n\nLast week the same dent was a wyvern. The sky-sailors know that. They're cheering anyway.",
+        {
+          "text": "There is an old man standing just inside the door. He has a sailor's roll to his walk, a grey beard and a coat that has been patched at both elbows. He listens to the whole story, right to the hat. He doesn't laugh.\n\n\"It was a harpoon,\" he says, into the quiet after the cheer. \"It was our own, and you were the one who fired it, Captain.\"\n\n{first} has stopped pouring. Ale is running over the rim of the mug and across the bar, and she hasn't noticed.",
+          "scene": "casual"
+        }
+      ]
+    },
+    {
+      "pages": [
+        "You can tell something is wrong by the way the bar empties. Nobody panics. Men finish their drinks in one swallow, put down exact change, and remember that they left something on their ship. Inside two minutes there are nine customers left, and all nine have honest faces.\n\nThrough the big stern windows you can see why. A navy cutter has tied up at the end of the moorings. She's white and brass, and every line on her is coiled just so.",
+        {
+          "text": "{first} takes off her tricorn and puts it under the bar. You have never seen her without it. Her copper hair is flat where the hat was, and she looks younger and much less sure of herself.\n\n\"If anybody asks, I'm the cook,\" she says. \"I've been the cook for years. You hired me in good faith.\"\n\nThere are boots on the gangway. They're in step, and they are polished.",
+          "who": "ev"
+        }
+      ]
+    },
+    {
+      "pages": [
+        "For months now you have woken to hammering. It starts at first light and comes from somewhere under your floor. {first} said she was fixing a leak, and you believed her until the bar stools began to go missing. Then it was the long table, and after that the good oak panelling from the back snug.\n\nYou find all of it eventually. It has been planed down and pegged into the gaps in the old hull, and tarred over. The stern windows have new glass, and the rudder has been rehung.",
+        "Tonight she takes you up a ladder you didn't know was there, onto what you had always thought was the roof. It is a deck. There is a ship's wheel under a canvas cover, and when she pulls the cover off the brass has been polished until it shows your face.\n\nThe moorings creak below. The wind is coming steadily off the cliffs. {first} puts both hands on the wheel and doesn't speak for a moment. You notice that her tail is wrapped twice around the binnacle."
+      ]
+    }
+  ],
+  "pearl": [
+    {
+      "pages": [
+        "You don't so much find {house} as get let into it. There is a door in the harbour wall and a stair cut down through the rock, and at the bottom the sea has hollowed out a room the size of a cathedral. The pools steam. The pearls set into the roof give a light like a full moon through cloud.\n\nIt is quiet tonight. A dozen guests are soaking, and nobody speaks above a murmur. {first} moves between the pools with an armful of linen, humming. The steam smells of salt whenever she does.",
+        "You are checking the towel shelves at midnight when the light changes. Every pearl in the roof dims at once, like a lamp being turned down. The water in the pools goes still. Even the dripping stops.\n\nThen something tolls. You feel it in the soles of your feet before you hear it, and it comes from a long way below you.\n\nA guest screams. {first} doesn't even look up. She is folding a towel into thirds, and she takes a great deal of care over it."
+      ]
+    },
+    {
+      "pages": [
+        "Guests who have run up a harbour stair at midnight in a towel tend to talk about it. By the end of the week the story is all over the fish market, and it has reached the harbour office.\n\n{first} doesn't seem troubled. She has started lighting more candles and tells anyone who asks that the Grotto is having its roof cleaned. But twice you have found her standing by the deepest pool with her hand flat on the water, the way you would settle a horse.",
+        {
+          "text": "The harbourmaster comes down in person, and he doesn't enjoy it. He takes the stair one step at a time with a hand on the wall. At the bottom he gets out his spyglass, wipes it carefully, and puts it away again without looking through it.\n\nHe has a document case under his arm, with a seal on it old enough to have gone black. His eyes go to the water, and then to {first}, and he seems to decide that he would much rather talk to you.",
+          "who": "ev"
+        }
+      ]
+    },
+    {
+      "pages": [
+        "{first} has told you where she comes from four times. She was a merchant's daughter from the southern isles. She was a shipwrecked priestess. Once she claimed to be the harbour's first lighthouse keeper, and once, with a perfectly straight face, a very old oyster. She tells each story beautifully, and you have never been able to catch her out.\n\nTonight, after the last guest has gone up the stair, she doesn't start on the linens. She sits down at the edge of the deepest pool and puts her bare feet in the water. Her sea-green hair is loose down her back.",
+        "\"Sit,\" she says. \"I'm going to tell you another one.\"\n\nYou sit. The pearls overhead are steady. Down in the dark water, a long way below her feet, you can just make out the outline of something huge and green.\n\n\"The others were kinder than this one,\" {first} says. \"That's why I told them. This one is true. You'll know, because I won't enjoy telling it.\""
+      ]
+    },
+    {
+      "pages": [
+        "The Bell rings every night now, and each night it comes a little earlier. Last week it tolled once at midnight. Yesterday it was three times, an hour after sunset, and a crack ran across the floor of the cold pool.\n\nThe pearls flicker. Half the regulars have stopped coming. The other half come in order to say they did, and leave quickly. {first} hasn't slept in days. Her silver eyes are shadowed. Twice you have caught her answering a question that nobody in the room had asked.",
+        "\"It knows,\" she says tonight. The two of you are alone in the Grotto. \"I told somebody, and I said out loud that I would like to leave. It has been three hundred years, and now it has noticed that I'm not content.\"\n\nShe walks to the edge of the deepest pool. The water is moving in slow rings, though nothing has touched it. Each toll shakes dust down from the roof.\n\n\"I'm not sorry I told you,\" she says. \"I want you to know that, whatever happens next.\""
+      ]
+    }
+  ],
+  "foundry": [
+    {
+      "pages": [
+        "The first real storm of the season shows you what you have bought. {house} has a great many rooms, and tonight it is raining in most of them.\n\n{first} walks you along the upper gallery with a lantern. She has put buckets under the worst of it, and she knows the note each one makes as it fills. She points with the handle of her hammer. That door is nailed shut. That one has been bricked up. That whole wing was boarded over from the inside, and the boards have her own chalk on them.",
+        "\"That was the tax assessor,\" she says. \"He counts rooms. Twenty years back the syndicate that held this place walled up half of it and swore it was a cottage. Then they went bust, and so did the two after them. I kept the deed dry and I kept the rats down, and I waited for an owner with more sense than money.\"\n\nShe stops under a beam as thick as your waist. It has dropped at one end, and water is running down it in a steady thread. She looks at the beam, and then she looks at you, and she seems to be working out how much you weigh."
+      ]
+    },
+    {
+      "pages": [
+        "{first} can do nearly anything with timber. She will tell you, grudgingly, that stone is a different trade. The great hearth in the hall has been cold for twenty years. Its flue is sunk under the floor, and she has no way of knowing what is down there.\n\n\"There's one mason on Foundry Row worth the name,\" she says. She says it like someone admitting to a debt. \"Krag. He laid half this street. He also told my mother that I'd never make a joiner, and I haven't spoken to him in sixty years.\"\n\nShe sends for him anyway. She planes a door while she waits, and she is rougher with it than the door deserves.",
+        {
+          "text": "He arrives without knocking, as she said he would. He walks the hall once with his hands behind his back and looks at the joints in her new beams. She watches him look, with her arms folded over her apron and her jaw set.\n\nHe finds nothing to say about the beams. From him, that seems to be praise. Then he gets down on one knee at the hearth, drops a plumb line into the dark, and listens to it.",
+          "who": "ev"
+        }
+      ]
+    },
+    {
+      "pages": [
+        "With the flue clear, the cellar can finally be reached, and nobody wants to reach it. Twenty years of slag and clinker have been shovelled down there by people who didn't plan on coming back. It takes you and {first} a week with barrows.\n\nShe works without talking. She fills two barrows in the time you fill one, and she doesn't mention it. On the fifth day she starts filling yours for you when you aren't looking.",
+        "On the seventh day her shovel hits something that rings.\n\nIt isn't stone, and it isn't the dull clank of scrap either. The note is deep and clean, and it carries on for a second after the blow. {first} stops. She scrapes the slag back with the side of her boot and uncovers a curve of black iron as wide as a cart, bolted with rivets the size of her fist.\n\n\"Well,\" she says. She crouches and lays her palm flat on it. \"Somebody built this to last. Give me the lantern, boss.\""
+      ]
+    },
+    {
+      "pages": [
+        "The last week is all small work, and {first} won't let anyone else do it. She oils every board in the great hall on her knees, working with the grain. She hangs forty iron lanterns from the rafters and takes six of them down again because the chains were a finger's width uneven. She goes over every joint in the place with a mallet and a hard look.\n\nYou hand her things. It's most of what you have done all season, and she has stopped pretending that you're in the way.",
+        "On the last evening she lights the hearth. The flue draws at the first try. The fire catches and roars, and heat rolls out across the floor and up into the galleries. Somewhere upstairs a door that had been stuck for twenty years swings open on its own.\n\n{first} stands in the middle of the hall with soot on her forehead and oil to the elbows. She turns all the way around once, looking up. There are no buckets anywhere, and nothing is dripping."
+      ]
+    }
+  ],
+  "conservatory": [
+    {
+      "pages": [
+        "The crate comes up from the river docks packed in wet moss. It has been three months at sea, and it cost {first} everything she had put by. She won't tell you the number. She signs for it with her ears flat and carries it into the glasshouse herself, held against her chest.\n\nInside is a root ball the size of two fists and one stem. On the stem is a single bud, shut tight, so dark a red that it's nearly black.",
+        "She shows it to you properly that night, after the guests have gone. The glass overhead is fogged, and the air is warm and wet and smells of earth. {first} is kneeling on the tiles by the pot with a lamp. Her fox tail is curled around her ankles.\n\n\"The traders call it a dusk orchid,\" she says. \"It blooms once, at midnight, and nobody can say which midnight. My father tried to grow one for eleven years. He used to say it could tell when you were anxious.\" She laughs, and she doesn't sound sure about it. \"So I am being very calm.\""
+      ]
+    },
+    {
+      "pages": [
+        "People have started asking what is in the censers. They ask casually. Guests come out of the suites loose-shouldered and a little dazed, and they would like to know, purely out of interest, what that scent was.\n\n{first} gives each of them a different answer, and all of the answers are wrong. The real ones are in a set of small green notebooks that she keeps in a locked drawer. The key hangs on a ribbon inside her bodice. She mentions this to people who ask, and she enjoys it.",
+        "Tonight's guest doesn't ask. He has booked three different suites in three weeks, and in each one he spent a long time standing by the vent. He wears a Spice Guild pin on his collar and carries a flat leather case. He has been perfectly polite to everyone.\n\nNow he is sitting across from {first} in the lounge. He puts a pouch on the table between them, and it lands heavily."
+      ]
+    },
+    {
+      "pages": [
+        "The seasonal salon is ten days off. It is the night {house} opens every suite at once and half the Terrace Gardens comes to be seen here. {first} has been planning it since spring. She has a seating chart, and a second one in case of rain.\n\nShe doesn't have any resin. The suites have been full all month, so the censers have burned day and night, and the store cupboard that should have lasted until winter is down to dust and a few empty tins.",
+        "She brings you the problem with a shipping manifest in one hand. Her ears keep tipping back, however hard she tries to hold them up.\n\n\"Temple-grade myrrh comes by caravan, and lotus resin by sea,\" she says. \"Both of them can be here in time. Neither is cheap in a hurry.\" She hesitates. \"Or there's what is growing under this roof already, and my father's notebooks, and a great deal of guessing. I'm good at guessing. I should warn you that it does sometimes catch fire.\""
+      ]
+    },
+    {
+      "pages": [
+        "The salon is the best night {house} has ever had. Every suite is taken. The terrace doors are open, and the censers are breathing gold smoke up into the palms. People who are ordinarily too grand to enjoy themselves are doing it anyway.\n\n{first} is everywhere. She pours, she seats people, she laughs at the right moments. And every quarter of an hour she slips away between the ferns to a pot in the corner and comes back just a little more wound up.",
+        "At a quarter to midnight she gives up pretending. She takes your wrist and pulls you through the leaves to the corner, where she has set one lamp on the tiles.\n\nThe bud has split. A line of crimson shows down one side, no wider than a thread, and the air around it is already sweet enough to taste.\n\n\"Don't breathe on it,\" {first} whispers. Her tail is lashing. \"Don't look at it too hard either. Oh, I can't watch.\" She keeps watching."
+      ]
+    }
+  ],
+  "lyceum": [
+    {
+      "pages": [
+        "The letter arrives in the morning post, on paper so heavy that it barely folds. {first} reads it at breakfast without any change of expression. She finishes her tea. Then she tells you that she will see you in the lecture hall at nine tonight, and that you should be punctual.\n\nYou spend the day feeling as if you have been sent a note from the headmistress. You are the owner of the building, and it doesn't help in the least.",
+        "At nine the hall is lit by a single branch of candles. The gilded mirrors along both walls repeat it until the room seems to go on forever. The benches are empty. {first} stands at the lectern with her spectacles on and the letter laid in front of her.\n\n\"That is from Lady Ashcombe,\" she says. \"I taught her three daughters to curtsey. She writes that she has heard what I teach now. She asks, very kindly, whether it's true that the Lyceum has become a house where anyone at all may walk in off the square.\""
+      ]
+    },
+    {
+      "pages": [
+        "Academy Square is named for the Royal Academy, which takes up the whole north side of it behind a row of marble columns. {house} stands on the south side. For forty years it was the Academy's finishing school for young ladies, and the word 'Lyceum' is still cut into the stone above your door.\n\nThe Academy would like that word back. It has said so in three letters. {first} answered the first two herself, in handwriting that could cut glass. She didn't answer the third.",
+        "This afternoon three governors cross the square on foot, in their robes, with a clerk behind them carrying a box of papers. They are shown into the small salon. They don't sit down until they are asked to.\n\n{first} asks them. Then she takes four glasses and a bottle of plum wine from the cabinet and pours without hurrying. She sets one glass in front of each governor, and the fourth in front of the chair at the head of the table. She doesn't take that chair herself. She stands behind it and looks at you over her spectacles."
+      ]
+    },
+    {
+      "pages": [
+        "With the governors seen off, {first} goes back to the work she actually cares about. For a fortnight the lamp in her study burns past midnight. The staff get used to finding notes under their doors, written in a crisp sloping hand: your posture on the stairs, the way you hold a fan, you laughed before he had finished the joke.\n\nShe observes every practice session from the back of the hall. She doesn't interrupt. She makes a small mark in a notebook, and everyone in the room hears the pencil.",
+        "Tonight she brings the notebook to your office, along with a bound document as thick as your thumb. The cover reads 'Advanced Evening Syllabus'.\n\n\"The staff are good,\" she says. \"They could be exceptional. They can't see themselves, and that is the difficulty. A pupil who can't see her own mistake will go on making it gracefully for the rest of her life.\" She turns the document toward you and opens it at a page of figures. \"I have costed it. Please sit down before you read the total.\""
+      ]
+    },
+    {
+      "pages": [
+        "The first open soirée at {house} is by invitation, and {first} wrote every invitation herself. Lady Ashcombe is on the list. She was sent the first one.\n\nThey arrive at eight in a line of carriages that reaches around the square. They have come expecting to be scandalised, and what they get is an evening of real elegance. The staff's manners are better than their own. By ten most of them have forgotten why they meant to disapprove. By eleven Lady Ashcombe is asking, in a low voice, about private membership.",
+        "You watch {first} through all of it. She doesn't smile at anyone. She moves through the rooms with her hands clasped behind her back, and wherever she passes, shoulders straighten and fans come up to the proper angle. Once, across the salon, she catches your eye and gives you the smallest nod you have ever seen.\n\nThe last guests leave after midnight. The applause in the hall goes on for some time after she has stopped acknowledging it, and there are envelopes on every side table."
+      ]
+    }
+  ]
+}

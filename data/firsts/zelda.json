@@ -95,7 +95,8 @@
           "go": "Choose her",
           "goRes": "You climb onto the cushions and sink your cock deep into her pussy, Midna arching beneath you with breathless, unguarded cries as the twilight outside glows brighter.",
           "wait": "\"Are you sure?\"",
-          "waitRes": "\"Of course I am,\" Midna purrs—before adding softly, \"I like that you asked. I'll be waiting.\""
+          "waitRes": "\"Of course I am,\" Midna purrs—before adding softly, \"I like that you asked. I'll be waiting.\"",
+          "act": "missionary"
         },
         "jump": {
           "title": "Impulse Control",
@@ -151,7 +152,8 @@
           "go": "Stay with her",
           "goRes": "She leads you upstairs still humming softly, stripping off her ranch dress and straddling your hips—riding your cock with warm, breathless abandon all night long.",
           "wait": "\"Are you sure?\"",
-          "waitRes": "\"Mm-hm,\" Malon smiles warmly. \"I love that you check, though—take a week if you need; I've got plenty of songs.\""
+          "waitRes": "\"Mm-hm,\" Malon smiles warmly. \"I love that you check, though—take a week if you need; I've got plenty of songs.\"",
+          "act": "cowgirl"
         },
         "jump": {
           "title": "Sudden Song",
@@ -319,7 +321,8 @@
           "go": "Stay with her",
           "goRes": "You lay her back on the sheets and sink your cock deep into her pussy, holding her close through every breathless, trembling cry until she sleeps curled warmly against your chest.",
           "wait": "\"Are you certain?\"",
-          "waitRes": "\"More certain than I have ever been of a royal decree,\" Hilda smiles faintly. \"Come back to me when you are ready.\""
+          "waitRes": "\"More certain than I have ever been of a royal decree,\" Hilda smiles faintly. \"Come back to me when you are ready.\"",
+          "act": "missionary"
         },
         "jump": {
           "title": "Unplanned Decree",

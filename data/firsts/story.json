@@ -29,7 +29,8 @@
           "go": "Give it a good memory",
           "goRes": "She exhales a breath she's held since her house fell, letting you lay her back naked onto the antique sheets and push your cock deep into her tight, soaking pussy, fucking her until the carved oak headboard knocks in the firelight.",
           "wait": "\"You deserve more than a commoner.\"",
-          "waitRes": "\"I decide what I deserve.\" Her voice wavers as her signet ring flashes in the firelight. \"Ask me again once you stop being an idiot.\""
+          "waitRes": "\"I decide what I deserve.\" Her voice wavers as her signet ring flashes in the firelight. \"Ask me again once you stop being an idiot.\"",
+          "act": "missionary"
         }
       }
     },
@@ -119,16 +120,17 @@
       "events": {
         "3": {
           "title": "Rent Is Due",
-          "text": "Her Underdistrict office hasn't changed a bit: bowls of gold sovereigns, crimson lamplight, and thick cedar smoke. Vharra sprawls across a velvet chaise with a massive ledger resting over her bare thighs, horns catching the red glow and golden piercings gleaming. Crooking one clawed finger at you with pure, predatory appetite, she purrs, \"You've lived rent-free in my head for weeks, Sam—and rent is due.\"",
+          "text": "You have been sent for. The note said only 'my office', and it had a time on it.\n\nHer office in the Underdistrict hasn't changed. There are bowls of gold sovereigns on every flat surface, which she keeps the way other people keep flowers. The lamps are crimson. The air is thick with cedar smoke.\n\nVharra is lying along a velvet chaise with an enormous ledger open across her bare thighs. The lamplight is on her four horns and all the gold in them. She doesn't look up until she has finished the line she is writing.\n\n\"I've been going over your account,\" she says. \"You've been living in my head for weeks, Sam. You take up a great deal of room. You have never paid me a copper for it.\" She crooks one clawed finger at you. Her emerald eyes are very bright. \"Rent is due.\"",
           "image": {
-            "comp": "lounging on a velvet chaise with a huge ledger, crooking a finger at him, greedy delighted smile, horns and gold jewelry",
+            "comp": "lounging on a velvet chaise with a huge ledger across her thighs, crooking a finger at him, greedy delighted smile",
             "setting": "opulent underground office, gold coins, red lamplight",
             "sam": true
           },
           "go": "Pay in full",
           "goRes": "Vharra lets out a low, throaty laugh—\"Interest accrues from the moment you stepped inside\"—hauling you onto the chaise by your lapels, kicking the ledger onto the floor, and riding your cock mercilessly until you cum and have paid every copper.",
           "wait": "\"I'd like a payment plan.\"",
-          "waitRes": "\"Everybody asks for one.\" Tapping her pen against her teeth with glittering eyes, she scribbles in the margin. \"Late fee applied—and I do love collecting.\""
+          "waitRes": "\"Everybody asks for one.\" Tapping her pen against her teeth with glittering eyes, she scribbles in the margin. \"Late fee applied—and I do love collecting.\"",
+          "act": "cowgirl"
         }
       }
     },
@@ -220,7 +222,8 @@
           "go": "Give her the exclusive",
           "goRes": "She doesn't breathe a word to a soul—though the entire guild guesses by noon anyway after she spends all night riding your cock and crying out your name.",
           "wait": "\"Can it be embargoed?\"",
-          "waitRes": "\"Embargoed!\" She laughs shakily, slipping her boots back on. \"One week—then we go to print, and the front page is yours.\""
+          "waitRes": "\"Embargoed!\" She laughs shakily, slipping her boots back on. \"One week—then we go to print, and the front page is yours.\"",
+          "act": "cowgirl"
         }
       }
     }

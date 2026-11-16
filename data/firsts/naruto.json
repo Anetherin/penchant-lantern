@@ -151,7 +151,8 @@
           "go": "Take her hand",
           "goRes": "You pull her down onto the stage cushions and fuck her, your cock buried in her hot, wet pussy while she arches beneath you with breathless, unscripted moans until she cums.",
           "wait": "\"Are you sure?\"",
-          "waitRes": "\"Oh, honey—I read minds for a living, and I'm sure.\" Her smile softens. \"Ask me again whenever you're ready.\""
+          "waitRes": "\"Oh, honey—I read minds for a living, and I'm sure.\" Her smile softens. \"Ask me again whenever you're ready.\"",
+          "act": "missionary"
         },
         "jump": {
           "title": "Cutting the Line",
@@ -263,7 +264,8 @@
           "go": "Stay",
           "goRes": "She's just as commanding in bed—straddling your hips, riding your cock at a relentless pace, and admitting drowsily at dawn that she forgot every item on her list.",
           "wait": "\"Not tonight.\"",
-          "waitRes": "\"Understood.\" She straightens, pulling her robe shut. \"I'll be waiting when you're ready—that's a promise.\""
+          "waitRes": "\"Understood.\" She straightens, pulling her robe shut. \"I'll be waiting when you're ready—that's a promise.\"",
+          "act": "cowgirl"
         },
         "jump": {
           "title": "Rowdy Client",
@@ -319,7 +321,8 @@
           "go": "Stay",
           "goRes": "She pulls you down onto the futon, wrapping her lush, warm body around yours and riding your cock with fierce, breathless abandon, her heavy tits bouncing in your face until morning.",
           "wait": "\"Are you sure, Tsunade?\"",
-          "waitRes": "\"Ha—cautious kid.\" She pats your cheek fondly. \"Of course I'm sure. Make me wait if you want; I taught patience to half a continent.\""
+          "waitRes": "\"Ha—cautious kid.\" She pats your cheek fondly. \"Of course I'm sure. Make me wait if you want; I taught patience to half a continent.\"",
+          "act": "cowgirl"
         },
         "jump": {
           "title": "Sudden Bonus",
@@ -487,7 +490,8 @@
           "go": "Stay in",
           "goRes": "You climb onto the mattress, and she mounts you immediately—riding your cock hard, loud, and relentlessly until both of you are drenched in sweat.",
           "wait": "\"Are you sure?\"",
-          "waitRes": "\"Nope—that's half the thrill.\" She grins, rolling over onto your pillows. \"Wake me up when you stop overthinking.\""
+          "waitRes": "\"Nope—that's half the thrill.\" She grins, rolling over onto your pillows. \"Wake me up when you stop overthinking.\"",
+          "act": "cowgirl"
         },
         "jump": {
           "title": "Spontaneous",
@@ -599,7 +603,8 @@
           "go": "Say her name softly",
           "goRes": "\"Mei,\" you whisper, and her iron composure melts completely—she arches greedy beneath you as you fuck her, her pussy clenching around your cock while she gasps your name until she cums.",
           "wait": "\"Are you certain?\"",
-          "waitRes": "\"Certain?\" Mei smiles, genuinely touched. \"For the first time in years, yes—and I adore that you asked.\""
+          "waitRes": "\"Certain?\" Mei smiles, genuinely touched. \"For the first time in years, yes—and I adore that you asked.\"",
+          "act": "missionary"
         },
         "jump": {
           "title": "Overdue",
@@ -655,7 +660,8 @@
           "go": "Help her",
           "goRes": "You lay her back among the sheets and push your cock slowly into her pussy, fucking her while Konan arches beneath you with breathless, startled cries as paper cranes flutter softly from the shelves.",
           "wait": "\"Are you sure?\"",
-          "waitRes": "\"I will be,\" Konan answers honestly. \"Thank you for asking—I will tell you when I am ready.\""
+          "waitRes": "\"I will be,\" Konan answers honestly. \"Thank you for asking—I will tell you when I am ready.\"",
+          "act": "missionary"
         },
         "jump": {
           "title": "Sudden Gust",

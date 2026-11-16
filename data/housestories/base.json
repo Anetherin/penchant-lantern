@@ -1,0 +1,10 @@
+{
+  "_readme": [
+    "Lead-in pages for the house stories (js/stories/houses.js, house-extras.js, ngplus-houses.js → houseStoryEvent).",
+    "One list per house id, one entry per chapter in play order (starter houses have 5 chapters, New Game+ houses 4). Each entry: pages = the pages shown before the chapter's choice page.",
+    "A page is a string, or {text, btn, scene, who}: btn = button label (default Continue), scene = image scene for that page, who:\"ev\" = picture the chapter's own character (the visitor) instead of the resident.",
+    "Prose only: the choice page, the checks and every result line stay in the JS files, and the last page here should lead straight into that choice page.",
+    "Placeholders: {first} / {name} = the house's resident, {house}, {loc}. Other characters (Seraphine, Ines, Ilyana, Vharra, the visitors) are written by name.",
+    "Follow docs/WRITING.md: second person, plain words, and nothing more intimate than the chapter itself plays."
+  ]
+}

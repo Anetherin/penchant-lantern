@@ -95,7 +95,8 @@
           "go": "Let her claim you",
           "goRes": "She sinks down onto your cock with a low, throaty groan, pinning your wrists to the pillows and riding you with overwhelming, tireless strength until she comes shuddering in your arms.",
           "wait": "\"Stay as long as you want.\"",
-          "waitRes": "She stretches out beside you on the mattress, pulling you tight against her warm chest until morning."
+          "waitRes": "She stretches out beside you on the mattress, pulling you tight against her warm chest until morning.",
+          "act": "cowgirl"
         },
         "jump": {
           "title": "Bounty Claimed",

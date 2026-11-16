@@ -95,7 +95,8 @@
           "go": "Climb into bed",
           "goRes": "She straddles your hips immediately and sinks down onto your cock with a loud, happy gasp, riding you hard and fast until she collapses breathless across your chest.",
           "wait": "\"Short speeches suit you.\"",
-          "waitRes": "\"Good!\" Daisy laughs, pulling you down into a tight hug under the covers. \"Because I'm not going anywhere.\""
+          "waitRes": "\"Good!\" Daisy laughs, pulling you down into a tight hug under the covers. \"Because I'm not going anywhere.\"",
+          "act": "cowgirl"
         },
         "jump": {
           "title": "Fast Break",
@@ -151,7 +152,8 @@
           "go": "Take her to bed",
           "goRes": "You lay her across the silk sheets and sink your cock deep into her hot, wet pussy, Pauline's jazz-singer contralto breaking into breathless, musical moans until dawn.",
           "wait": "\"You don't have to perform for me.\"",
-          "waitRes": "\"That's why it's you, darling,\" Pauline whispers, pulling a silk robe around her shoulders and kissing your cheek. \"Stay and hold me tonight.\""
+          "waitRes": "\"That's why it's you, darling,\" Pauline whispers, pulling a silk robe around her shoulders and kissing your cheek. \"Stay and hold me tonight.\"",
+          "act": "missionary"
         },
         "jump": {
           "title": "Backstage Heat",
@@ -263,7 +265,8 @@
           "go": "Make her yours",
           "goRes": "You pull her down onto the mattress and drive your cock deep into her scorching, wet pussy, Bowsette wrapping her heavy tail around your leg and crying out your name as she comes hard beneath you.",
           "wait": "\"You never need a castle to keep me here.\"",
-          "waitRes": "Bowsette sniffles once, glares at the wall to hide her happy tears, and tackles you into a bone-crushing hug under the blankets."
+          "waitRes": "Bowsette sniffles once, glares at the wall to hide her happy tears, and tackles you into a bone-crushing hug under the blankets.",
+          "act": "missionary"
         },
         "jump": {
           "title": "Shell Shock",
@@ -319,7 +322,8 @@
           "go": "Hold her gaze and take her",
           "goRes": "Whether face-to-face or bent over the pillows in her favorite position, her spectral body turns hot and solid around your cock, Boosette gasping and crying out until she comes in your arms.",
           "wait": "\"You're too pretty to hide.\"",
-          "waitRes": "Boosette's whole face glows bright pink before she tackles you into the pillows, hiding her face against your neck."
+          "waitRes": "Boosette's whole face glows bright pink before she tackles you into the pillows, hiding her face against your neck.",
+          "act": "doggy"
         },
         "jump": {
           "title": "Haunted From Behind",

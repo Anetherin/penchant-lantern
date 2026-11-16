@@ -37,9 +37,10 @@
             "sam": true
           },
           "go": "Take her hand",
-          "goRes": "You carry her up the stairs to your room, peeling off her harem silks and sinking deep into her heat—Shantae arching beneath you with breathless, joyful cries until sunrise.",
+          "goRes": "You carry her up the stairs to your room, peeling off her harem silks and sinking your cock deep into her pussy—Shantae arching beneath you with breathless, joyful cries until sunrise.",
           "wait": "\"Maybe tomorrow.\"",
-          "waitRes": "\"Okay!\" She bounces on her bare toes, grinning brightly. \"I'll practice—tomorrow, with extra hip-sway.\""
+          "waitRes": "\"Okay!\" She bounces on her bare toes, grinning brightly. \"I'll practice—tomorrow, with extra hip-sway.\"",
+          "act": "missionary"
         },
         "jump": {
           "title": "Impulse Spin",
@@ -95,7 +96,8 @@
           "go": "Be plundered",
           "goRes": "You surrender gladly as she straddles your hips and rides your cock like a conquering pirate—until her fierce bravado breaks into breathless, clinging moans.",
           "wait": "\"I'm not ready.\"",
-          "waitRes": "\"Pity.\" She raises her rum glass in a sly toast. \"Still, any good captain knows how to wait for high tide.\""
+          "waitRes": "\"Pity.\" She raises her rum glass in a sly toast. \"Still, any good captain knows how to wait for high tide.\"",
+          "act": "cowgirl"
         },
         "jump": {
           "title": "Cutthroat",

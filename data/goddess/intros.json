@@ -24,12 +24,12 @@
   "houseIntros": {
     "lantern": {
       "image": {
-        "comp": "wiping a polished mahogany bar counter by warm gilded lantern light, dark braided hair with silver at the temples, calm assessing smile",
+        "comp": "standing behind a long polished mahogany bar counter with a folded towel over one wrist, sliding a small glass across the wood, calm assessing smile",
         "setting": "warm cozy parlor bar of the Gilded Lantern Inn in Old Town at dusk, amber lamps",
         "sam": false
       },
-      "arrival": "Red paper lanterns sway gently under the eaves of {house}, spilling amber across the cobbles of {loc}. Inside, polished brass winks back at two moons through leaded glass while the low hum of an empty common room settles around your shoulders.",
-      "greet": "{name} stands behind the long mahogany counter with a folded towel over one wrist and twelve years of steady patience in her posture. She looks you up and down once—hoodie, scuffed boots, bewildered stance—and pours a small glass of spiced cider before you even ask.\n\n\"You're the new owner, then,\" she says, sliding it across the wood. \"Everyone calls me {first}. Keep the accounts honest and don't mistreat the staff, Sam, and you'll find I run a very clean house.\"",
+      "arrival": "{house} stands halfway down a cobbled lane in {loc}, three storeys of dark timber with red paper lanterns under the eaves. Half of them are lit. The paint on the sign is older than you are, and somebody has touched up the gold by hand, not very long ago.\n\nThe deed in your pocket says all of this is yours. So is the debt that came with it. You stand in the lane for a while, working up to the door.\n\nInside it is warm and it smells of beeswax and cider. The lounge is all red velvet, worn thin on the arms of the chairs, and the brass is polished. Somebody has been looking after this place without being paid to.",
+      "greet": "{name} is behind the long mahogany counter with a folded towel over one wrist. She has wavy auburn hair, a beauty mark beside her mouth, and the look of a woman who has heard a great many men explain how things are going to change around here.\n\nShe looks you over once, from your scuffed boots up to your face, and whatever she sees there makes her reach for a glass. She pours spiced cider and slides it across the wood before you have said a word.\n\n\"So you're the new owner,\" she says. \"Everyone calls me {first}. I kept this house running for the last one until the day he stopped coming home, and I haven't decided yet what I think of you.\" Her smile is warm anyway. \"Keep the accounts honest and be decent to the staff, Sam. Do that and you'll find I run a very clean house.\"",
       "ngpp": [
         "Halfway through drying a glass, {first} pauses and frowns down at the wood. \"Have I poured you cider at this counter before? Funny—for half a heartbeat I already knew how you take it.\"",
         "{first}'s eyes narrow softly as she sets the towel down beside your elbow without checking where it is. \"Don't laugh, Sam, but I walked in here knowing which stair board squeaks before you did.\"",
@@ -40,24 +40,24 @@
           "label": "Clink glasses and promise to look after the place",
           "t": 5,
           "m": 6,
-          "res": "{first} lets out a quiet breath she didn't realize she was holding. \"Good answer, Sam. Follow me—I'll show you which locks stick.\""
+          "res": "{first} lets out a breath she seems not to have known she was holding, and touches her glass to yours. \"Good answer, Sam.\" She takes a ring of keys from under the counter and comes around the bar. \"Come on. I'll show you which locks stick and which stair to step over. Then you're eating something. You look like you haven't in days.\""
         },
         {
           "label": "Ask her to walk you through the ledgers right away",
           "t": 3,
           "m": 4,
-          "res": "\"Practical. I like that.\" {first} pulls the heavy house book from beneath the counter with a crisp slap."
+          "res": "\"Practical. I like that in an owner.\" {first} pulls the heavy house book out from under the counter and drops it on the bar with a slap. She opens it at the current week and turns it to face you. \"That column is what comes in. That one is what goes out. The gap between them is why I haven't slept properly since spring.\""
         }
       ]
     },
     "castle": {
       "image": {
-        "comp": "standing tall at the foot of a grand stone staircase holding a silver tea service, immaculate maid uniform, serene cool composure",
+        "comp": "standing perfectly straight three paces inside a grand stone doorway, hands folded over a silver pocket watch, immaculate uniform, cool composed expression",
         "setting": "high stone foyer of Castle Rosenhal, moonlight through tall arched windows",
         "sam": false
       },
-      "arrival": "Twin moonlight spills silver across the flagstones of {house}, turning vaulted arches and faded tapestries into something out of a painting. Every chandelier sits dusted despite decades of fallen nobles.",
-      "greet": "{name} awaits precisely three paces from the threshold, gloved hands folded over a silver pocket watch. Her curtsy is measured to the millimeter.\n\n\"Welcome to {house}, Mr. Takahashi,\" she says evenly, pale blue eyes missing neither the mud on your heels nor the way your jaw drops at the ceiling. \"Tea is served at nine-fifteen, the east wing remains draughty, and I do not intend to watch another master run this estate into ruin.\"",
+      "arrival": "The road up {loc} ends at a pair of iron gates, and beyond them {house} takes up most of the sky. It has four towers. Two of them still have all their roof. Ivy has got into the mortar on the east side, and the moat is a ditch full of nettles.\n\nThe front steps have been swept, though. The brass on the great door has been polished until it shines, and someone has scrubbed the lichen off the family crest above it.\n\nThe door opens before you can knock. Inside, the hall is cold and enormous and spotless. There isn't a cobweb on a single chandelier.",
+      "greet": "{name} is waiting exactly three paces inside the threshold with her hands folded over a silver pocket watch. Her dark hair is pinned in a chignon without a strand out of place. Her curtsy is correct to the inch, and it tells you nothing about what she thinks of you.\n\n\"Welcome to {house}, Mr. Takahashi.\" Her grey eyes take in the mud on your heels and the way you are staring at the ceiling, and they miss neither. \"I am {first}, the head maid. I have kept this house for twelve years and three owners. The first was mad, the second was bankrupt, and the third never once came upstairs.\"\n\nShe snaps the watch shut. \"Tea is at a quarter past nine. The east wing is draughty and you needn't trouble yourself with it. And I don't intend to watch a fourth owner run this estate into the ground.\"",
       "ngpp": [
         "{first} checks her pocket watch and stops mid-breath. \"Strange. I found myself brewing your preferred tea before I knew your name.\"",
         "She sets the silver tray down right where your hand drops, then stares at her own wrist in quiet bewilderment. \"Have you worn that jacket here before, Mr. Takahashi?\"",
@@ -68,24 +68,24 @@
           "label": "\"I'm counting on you, {first}. Show me how this place runs.\"",
           "t": 5,
           "m": 6,
-          "res": "Her chin lifts a fraction, pleased in spite of strict training. \"Very well. We begin with the west wing.\""
+          "res": "Her chin lifts a fraction. She was trained not to show that she is pleased, and it shows regardless. \"Very well, sir. We begin with the west wing, since its roof is sound.\" She turns on her heel and sets off at a pace you have to work to match. \"Do keep up. And wipe your feet. I shall be checking.\""
         },
         {
           "label": "Admire how spotless she kept the halls",
           "t": 4,
           "m": 5,
-          "res": "\"Standards are what separate a castle from a ruin,\" {first} replies crisply, though the corner of her mouth softens."
+          "res": "\"Standards are what separate a castle from a ruin, sir.\" {first} says it crisply. Then she glances up at the chandelier, and at the long gleaming floor, and the corner of her mouth softens very slightly. \"It is some years since anyone noticed. Thank you.\""
         }
       ]
     },
     "onsen": {
       "image": {
-        "comp": "kneeling on warm cedar decking beside a steaming outdoor hot spring in a loose yukata, dark hair pinned with a comb, playful grin",
+        "comp": "kneeling on warm cedar decking at the edge of a steaming outdoor hot spring, swishing a wooden ladle through the water, playful sideways grin",
         "setting": "lantern-lit cedar bathhouse veranda overlooking misty pines and hot mineral water",
         "sam": false
       },
-      "arrival": "Cedar steam curls past paper lanterns along the mountain ridge as {house} welcomes you with the low rush of mineral water and pine smoke. For the first time since the truck horn, your shoulders actually drop.",
-      "greet": "{name} lounges bare-ankled on the edge of the steaming deck, swishing a wooden ladle through the spring before tossing a folded towel straight toward your chest.\n\n\"Oh, good—you don't look stiff like a noble,\" she grins, leaning back on both palms as silk slips lightly off one shoulder. \"I'm {first}. Don't overcomplicate the spring rules, treat the girls right, and maybe let someone scrub your back before you burn out, Sam.\"",
+      "arrival": "You smell {house} before you see it. The {loc} climbs through pine forest for most of an hour, and somewhere around the last bend the cold air starts to smell of hot stone and cedar.\n\nThen the trees open onto a long, low bathhouse built against the mountainside, with steam rising behind it in sheets. Paper lanterns hang along the veranda. An old wooden bucket stands beside the door, like a guard dog.\n\nYour legs ache from the climb. From somewhere out back comes the sound of water running, and a woman singing. It's loud, it's cheerful, and it is nowhere near in tune.",
+      "greet": "The singing stops when your boots hit the veranda. {name} is kneeling at the edge of the outdoor spring with her sleeves tied back, stirring the water with a ladle. She has a long black braid over one shoulder and a red camellia tucked into it.\n\nShe looks you up and down and tosses a folded towel at your chest. You nearly catch it.\n\n\"Oh, good. You don't look stiff, like a noble,\" she says. \"I'm {first}. These were my aunt's springs for forty years, and they're mine to look after now, whatever the deed says.\" She grins. \"The rules are easy. Wash before you soak. Treat the girls well. And let somebody scrub your back before you fall over, Sam, because you look about ready to.\"",
       "ngpp": [
         "{first} blinks through rising steam, ladle hovering midair. \"Wait. You look like you've soaked in that far corner before.\"",
         "She slides smoothly toward the exact bench you always take, then tilts her head laughing softly. \"Funny—I swore I knew your footsteps on the cedar.\"",
@@ -96,24 +96,24 @@
           "label": "Take her up on that tour of the springs",
           "t": 5,
           "m": 6,
-          "res": "\"That's the spirit,\" {first} laughs, rising barefoot in a rustle of yukata silk."
+          "res": "\"That's the spirit!\" {first} gets up in one easy movement and pads off along the wet boards without looking back to see if you're following. \"This one's the hot pool, that's the very hot pool, and that one at the end is for adventurers who lost a bet. Mind the step. Everyone forgets the step.\""
         },
         {
           "label": "Tell her you'll make {house} worth every copper",
           "t": 4,
           "m": 5,
-          "res": "\"Ooh, ambitious.\" Her eyes glint warmly in the mist. \"Hold that promise, Sam.\""
+          "res": "\"Ooh. Ambitious.\" She leans back on her palms and studies you through the steam, as if she were deciding how long you need to cook. \"My aunt used to say the mountain can tell when somebody means it. Hold on to that promise, Sam. I'm going to remind you of it.\""
         }
       ]
     },
     "hollow": {
       "image": {
-        "comp": "floating gently beside an arched manor mirror, translucent pale violet silk, mischievous grin, soft spectral glow",
+        "comp": "floating a hand's width above the floor beside a tall arched mirror in an antique gown, chin propped on one palm, delighted mischievous smile, soft spectral glow",
         "setting": "dim candlelit foyer of Hollowmere Manor with dusty velvet drapes and grand mirrors",
         "sam": false
       },
-      "arrival": "Iron gates creak open of their own accord beneath two moons, revealing {house} wrapped in silver ivy and blue-gold candlelight. The floorboards groan cheerfully when you step inside, as if the house itself waited for company.",
-      "greet": "Before you set down the deed, the candelabra flare violet—and {name} drifts straight down through the oak chandelier to hover nose-to-nose with you, chin propped lazily on one cool palm.\n\n\"Finally, someone living with a pulse and terrible taste in jackets,\" she purrs, circling slowly around your shoulders. \"I'm {first}. Three hundred years in the rafters, so try not to be boring, darling.\"",
+      "arrival": "The agent wouldn't come past the gate. He handed you the keys through the bars and wished you luck, and he was walking very fast by the time he reached the corner.\n\n{house} stands at the {loc} behind a garden that has gone back to forest. It's a beautiful house. It has tall windows and a slate roof, and there is ivy on the chimneys. It was also a third the price of anything else in Hollowmere, and nobody would tell you why.\n\nThe front door opens before you touch it. Inside, the candles are already lit. The floorboards creak under your feet one after another, all the way down the hall, as if something were walking beside you.",
+      "greet": "You are still looking for somewhere to put the deed down when every candle in the hall turns violet. {name} comes down through the chandelier without disturbing a single crystal and stops with her nose a few inches from yours. Her silver hair drifts around her as if she were underwater. You can see the staircase through her shoulder.\n\n\"A living one,\" she says, delighted. \"With a pulse, and a quite dreadful jacket.\" She drifts a slow circle around you, looking at you from every side. \"I'm {first}. I've been in this house three hundred years, and the last four owners left through the windows. I'm sure I can't think why.\"\n\nShe settles in front of you again with her chin on her hand. \"You haven't screamed. I do like that. Please try not to be boring, darling. I've had such a lot of quiet.\"",
       "ngpp": [
         "Cold fingers brush your collar and freeze mid-air. \"Curious... why did your heartbeat feel so terribly familiar just then?\"",
         "{first} hovers sideways in front of the hall mirror, eyes narrowing playfully. \"Tell me, Sam—have I haunted you in another dream?\"",
@@ -124,24 +124,24 @@
           "label": "\"Ghost or not, let's bring this manor back to life.\"",
           "t": 5,
           "m": 7,
-          "res": "\"Oh, I like you already,\" {first} beams, spinning a lazy loop overhead as dust settles in gold motes."
+          "res": "\"Oh, I like you already.\" {first} turns a lazy loop near the ceiling, and dust comes down through her in gold motes. \"Back to life! It's very tactless of you, and exactly the right thing to say. Come along. I'll show you the ballroom. Something lives in the piano, but it's shy.\""
         },
         {
           "label": "Match her grin and ask which rooms aren't drafty",
           "t": 4,
           "m": 5,
-          "res": "\"Only the best ones, naturally. Come see what the living miss.\""
+          "res": "\"Only the best ones, naturally.\" She matches your grin and holds out a hand you can see through. Where it touches your sleeve, it is cold. \"The warm rooms are for guests. The interesting rooms are mine. Come and see what the living have been missing.\""
         }
       ]
     },
     "tankard": {
       "image": {
-        "comp": "leaning both elbows on a heavy oak tavern bar, braided chestnut hair, broad warm grin and a frothy tankard held out",
+        "comp": "leaning both elbows on a heavy oak tavern bar, pushing a frothy tankard forward with one hand, broad boisterous grin",
         "setting": "boisterous dockside tavern common room with oak barrels, brass lamps, and salt-stained timber",
         "sam": false
       },
-      "arrival": "Salt air, roasted malt, and laughter roll down the dockside steps before you even touch the heavy brass handle of {house}. Lantern light warms thick oak tables scarred by a hundred ship crews.",
-      "greet": "A frothy pint slams onto the counter in front of you before the door finishes swinging. Behind the taps, {name} wipes malt foam off her forearm and grins wide enough to rattle the glassware.\n\n\"New deed holder!\" she booms fondly, squinting at your build. \"Thought you'd be taller, lad—no offense. Drink up, keep the taps cold, and don't try watering my ale if you value your kneecaps.\"",
+      "arrival": "You can hear {house} from the far end of the quay. It is a narrow, crooked building wedged between a chandler's and a net loft, and the noise coming out of it would do for a place three times the size.\n\n{loc} smells of tar and low tide. The sign over the door is an actual tankard, nailed up by its handle and orange with rust. Somebody has thrown something through one of the window panes and somebody else has patched it with a barrel lid.\n\nYou push the door open. Forty people look around, decide you are no one in particular, and go back to shouting.",
+      "greet": "A full pint hits the counter in front of you before the door has swung shut. The woman who put it there is standing on a crate to see over the bar. She is a dwarf, broad in the shoulder, with thick red braids full of brass rings and freckles all the way up her forearms.\n\n\"That'll be the new deed holder!\" {name} bellows, loud enough that half the room turns to look again. She squints at you. \"Thought you'd be taller. No offence, lad.\"\n\nShe wipes foam off her wrist. \"{first}. I run the taps. What goes on upstairs is your affair, and I'll keep the downstairs paying for it. I've only the two rules. Keep my cellar cold. And if I ever catch you watering my ale, I'll have your kneecaps.\"",
       "ngpp": [
         "{first} pours your mug without asking light or dark, then scratches behind one ear. \"Huh. Must've guessed lucky.\"",
         "She leans across the bar eyeing your grip on the tankard handle. \"Funny—I swore you've helped me tap that corner cask before.\"",
@@ -152,24 +152,24 @@
           "label": "Drink the pint down and praise the brew",
           "t": 5,
           "m": 7,
-          "res": "\"Ha! Now there's an owner with proper taste!\" {first} slams a friendly fist on the bar."
+          "res": "You drink it down. It is the best beer you have ever had, in either world, and you tell her so. {first} slams her fist on the bar hard enough to make the tankards jump. \"Ha! Now there's an owner with a tongue in his head! Somebody get this man a stool. He's stopping.\""
         },
         {
           "label": "\"Point me to the cellar ledgers, {first}.\"",
           "t": 4,
           "m": 4,
-          "res": "\"Right to business, eh? Come on down—the good barrels are waiting.\""
+          "res": "\"Straight to business, eh?\" She hops down off the crate, which takes a foot and a half off her, and jerks her head toward a trapdoor behind the bar. \"Come on down, then. The ledgers are next to the good barrels. I keep them there so I've something nice to look at while I'm doing sums.\""
         }
       ]
     },
     "pavilion": {
       "image": {
-        "comp": "poised gracefully beneath drifting paper lanterns in sheer sapphire silks, silver-blonde hair, calm luminous gaze",
+        "comp": "stepping lightly down from a low stage over a lily pond with silk scarves trailing from her wrists, head tilted in open curiosity, bright eager smile",
         "setting": "open-air garden pavilion with lotus pools, silk curtains, and floating paper lanterns",
         "sam": false
       },
-      "arrival": "Wind chimes answer quietly as silk curtains part onto {house}, where paper lanterns reflect across still lotus pools in the Elven Quarter. Music hangs softly in the warm evening air.",
-      "greet": "{name} steps barefoot off the low cedar stage, silk scarves trailing lazily from her wrists like mist over water. She inclines her head with unhurried grace.\n\n\"A human standing beneath the moonlilies,\" she murmurs, amber-gold eyes studying your face in gentle curiosity. \"You bring loud air into a quiet garden, Sam—yet somehow it suits you. Protect the art beneath this roof, and the Pavilion will shine for you.\"",
+      "arrival": "There is no door to {house}. There is a moon gate in a white wall, deep in the {loc}, and past it a garden so quiet that you find yourself walking on the sides of your feet.\n\nPaper lanterns hang in the trees. A path of flat stones crosses a pond thick with moon-lily pads to an open pavilion of pale wood and silk curtains. In the middle of the water there is a low round stage.\n\nSomeone is dancing on it. There isn't any music, and nobody is watching. She is counting under her breath and frowning at her own feet, and now and then she stops and does a step over again.",
+      "greet": "She sees you on the last turn. For a moment {name} holds perfectly still on one foot, with silver anklets chiming at her ankle and her silver-white hair settling around her. Then she comes down off the stage and across the stepping stones so quickly that she is almost running.\n\n\"You're the human,\" she says. Her ice-blue eyes are very wide. \"The one who bought us. I've read about you. Well, I've read about humans. Is it true that you clap in the middle, if you like something? You don't wait for the end?\"\n\nShe remembers herself and bows, a beat late. \"{first}. I dance here. I was a hundred years at the conservatory, where nobody made a sound, and I left to find people who would.\" She looks up at you hopefully. \"Look after the art under this roof, Sam, and I'll fill every seat you own.\"",
       "ngpp": [
         "Mid-curtsy, {first}'s silk ribbon slips toward your fingers as if on cue. \"How strange... my steps already knew your rhythm.\"",
         "She watches you step around the lotus basin without splashing a drop. \"Few humans know where those flagstones dip. Why do you walk here so easily?\"",
@@ -180,24 +180,24 @@
           "label": "\"Promise I'll let the dancers shine here.\"",
           "t": 5,
           "m": 6,
-          "res": "\"Then the lilies will bloom all season,\" {first} smiles gently, tucking a ribbon behind her ear."
+          "res": "\"Then the lilies will bloom all season,\" {first} says, and it comes out more solemn than she intended. She laughs at herself and tucks a ribbon behind one pointed ear. \"That's a saying we have. It means thank you. It also means I'm going to hold you to it.\""
         },
         {
           "label": "Stand quietly with her by the lotus pool",
           "t": 4,
           "m": 5,
-          "res": "She exhales a quiet breath, pleased by a new owner who knows when not to rush."
+          "res": "You don't say anything. You stand beside her at the edge of the pond and watch the lanterns move on the water. After a while {first} lets out a long breath, and her shoulders come down. \"Oh,\" she says quietly. \"You know how to be an audience. Hardly anybody does.\""
         }
       ]
     },
     "veil": {
       "image": {
-        "comp": "lounging across velvet bar cushions beneath ruby lamps, obsidian horns and swishing tail, slow sly smirk",
+        "comp": "lounging sideways across a velvet corner banquette under ruby lamps, beckoning with two fingers, slow knowing smirk",
         "setting": "sultry crimson-lit Underdistrict salon with velvet drapes and brass braziers",
         "sam": false
       },
-      "arrival": "Ruby lantern glow spills up cobbled stairs as {house} hums beneath the Underdistrict arches—incense, spiced plum wine, and low laughter drifting behind velvet curtains.",
-      "greet": "{name} is coiled comfortably over the corner banquette, tail tapping a lazy beat against carved blackwood while embers catch the curve of her horns.\n\n\"Well, well—fresh blood holding a crisp new deed,\" she purrs, gesturing you closer with two ringed fingers. \"Try not to faint at the rules down here, Sam. We keep sharp teeth, sharper drinks, and soft sheets for anyone bold enough to keep up.\"",
+      "arrival": "The stairs to the {loc} go down for a long time. The street noise fades out behind you, and other sounds take its place. Somebody is playing a slow fiddle. Glasses clink. Somewhere a woman laughs, low in her throat.\n\n{house} is at the bottom, behind a curtain so heavy that it takes both hands to part it. The light on the far side is red. It comes from ruby glass lamps and brass braziers, and it makes everyone in the room look like a secret.\n\nNot all of them are human. A few of them turn to look at you with eyes that catch the light like a cat's.",
+      "greet": "{name} is draped along the corner banquette as if it had been built to her measure. She has long curved horns, lavender skin, and black curls that go crimson at the tips. The heart-shaped end of her tail is tapping slowly against the blackwood.\n\n\"Well, well,\" she says. \"Fresh blood, and holding such a crisp new deed.\" She crooks two fingers at you. You are halfway across the room before you notice that you decided to move.\n\n\"{first}. I ran this floor before the paper changed hands and I'll be running it after. Humans come and go so quickly.\" Her gold eyes travel down you and back up, and she smiles as if you were a present. \"Oh, but you're adorable. Do try not to faint, Sam. Down here we keep sharp teeth, sharper drinks, and very soft sheets for anybody bold enough to keep up.\"",
       "ngpp": [
         "{first}'s tail stops mid-flick as you step into the red light. \"Hmm. Don't look at me like that unless you plan on reminding me where we've met.\"",
         "She slides two wine glasses across the lacquer without asking which vintage you prefer. \"Weird. You don't flinch at the smoke the way first-timers do.\"",
@@ -208,24 +208,24 @@
           "label": "Accept the ruby glass and grin right back",
           "t": 5,
           "m": 7,
-          "res": "\"Oh, you might actually survive the Underdistrict,\" {first} laughs softly, clinking glass to yours."
+          "res": "She has put a ruby glass in your hand before you can ask for one. You grin right back at her and drink. It tastes of plums and smoke. \"Oh, you might actually survive the Underdistrict,\" {first} laughs, and touches her glass to yours. \"Most owners can't look me in the eye for a week. I do like a quick study.\""
         },
         {
           "label": "\"Keep the floor sharp—I'll handle the house debts.\"",
           "t": 4,
           "m": 5,
-          "res": "\"Music to a demoness's ears, handsome. Come see the back suites.\""
+          "res": "\"Music to a demoness's ears, handsome.\" She uncoils from the banquette and takes your arm as if it were already hers. Her tail brushes the back of your knee, and you're fairly sure that was on purpose. \"You count the coin and I'll keep the wolves polite. Come and see the back suites. I had the locks changed for you.\""
         }
       ]
     },
     "sanctuary": {
       "image": {
-        "comp": "holding a brass taper beside velvet-draped pews, pale golden halo glowing softly over dark curls, serene teasing smile",
+        "comp": "standing beside a velvet-curtained confessional holding a lit brass taper, turning with a serene teasing smile, warm candlelight",
         "setting": "candlelit sanctuary cloister with stained glass, incense smoke, and crimson velvet",
         "sam": false
       },
-      "arrival": "Warm beeswax and sweet myrrh float past carved arches into the night courtyard of {house}, where stained-glass lanterns cast amber and crimson roses across polished stone.",
-      "greet": "{name} stands beside the velvet-curtained confessional, brass taper gleaming softly beneath the warm arc of her halo. When she turns, her smile is half saintly mercy and half sinful invitation.\n\n\"Peace be upon the new keeper of {house},\" she murmurs, stepping closer until incense clings to your collar. \"I'm {first}. Around here, absolution comes warm, unhurried, and strictly behind closed curtains—whenever you care to learn the liturgy, Sam.\"",
+      "arrival": "The {loc} is the oldest part of Hollowmere, and {house} is the quietest thing in it. It is a square of honey-coloured stone built around a courtyard, with a colonnade on all four sides and an orange tree in the middle.\n\nA bell is ringing somewhere, unhurried. The air smells of beeswax and myrrh. Through an arch at the far end you can see the Quiet Chapel, with its candles in rows and its long kneeling rail.\n\nThere is also a confessional hung with crimson velvet. It is a good deal larger and better upholstered than any you have seen before.",
+      "greet": "{name} is trimming candles beside the confessional. You see the wings first. They are huge and white, tipped with gold, and folded neatly out of the way. Then you see the halo, and she turns around, and you forget about both.\n\nHer smile is the kindest you have ever been given. Something else is underneath it, and she is making no effort to hide that either.\n\n\"Peace be upon the new keeper of {house},\" she says. She comes close enough that the incense in her gold hair gets into your collar. \"I'm {first}. I've kept this chapel since before the quarter had walls. People come to me carrying something heavy. They leave without it.\" Her eyes crinkle. \"Absolution here is warm and unhurried, Sam, and it is given strictly behind closed curtains. You're welcome to learn the liturgy whenever you like.\"",
       "ngpp": [
         "{first}'s halo flickers warmer as you clear your throat at the threshold. \"Curious... the bells didn't even ring, yet my pulse knew someone dear walked in.\"",
         "She touches your knuckles lightly with candle-warm fingers and freezes for a beat. \"Forgive me—for one breath I felt as though you'd knelt at my altar a dozen nights already.\"",
@@ -236,24 +236,24 @@
           "label": "\"Teach me how this cloister keeps peace.\"",
           "t": 5,
           "m": 6,
-          "res": "\"With pleasure—and far fewer robes than the High Cathedral prefers,\" {first} purrs."
+          "res": "\"With pleasure,\" {first} says, \"and with far fewer robes than the High Cathedral would prefer.\" She tucks her hand through your arm and walks you down the colonnade, pointing with the taper. \"That's the bell. You'll learn to sleep through it. That's the offering box. And that's my confessional. Knock first. I mean it.\""
         },
         {
           "label": "Offer her a warm hand by the altar steps",
           "t": 4,
           "m": 5,
-          "res": "Her halo brightens in gentle amber as she squeezes your fingers cleanly."
+          "res": "You offer her your hand at the altar steps without quite knowing why. {first} looks at it, and then at you. Her halo brightens to a warm amber, as if someone had turned up a lamp. She takes your hand in both of hers. \"Oh, you'll do,\" she says softly. \"You'll do very well.\""
         }
       ]
     },
     "atelier": {
       "image": {
-        "comp": "adjusting a brass pressure gauge with slender articulated fingers, pale cyan eyes gleaming in warm steam and lamp glow",
+        "comp": "straightening up beside a softly glowing brass regulator, wiping machine oil from her fingertips with a silk handkerchief, attentive curious gaze, warm lamp glow",
         "setting": "ornate brass-and-mahogany clockwork salon with humming acoustic pipes and velvet divans",
         "sam": false
       },
-      "arrival": "Ticking brass escapements and soft harp-like resonance greet you inside {house}, where copper steam conduits curl cleanly behind plush sapphire velvet suites.",
-      "greet": "{name} straightens beside a softly glowing regulator, wiping fine machine oil from delicate porcelain-pale knuckles with a silk handkerchief. Her cyan optics focus smoothly on your face.\n\n\"Ownership transfer verified: Takahashi, Sam,\" she chimes in a warm, measured cadence. \"Chassis designation {name}. Every acoustic vent, heated divan, and ledger tally inside this atelier is ready for your inspection.\"",
+      "arrival": "Every building in the {loc} makes a noise, and {house} hums. You can feel it in the door handle. It is a tall, narrow place of brass and plate glass, with copper pipes running up the front like ivy and a clock over the door that shows the phase of both moons.\n\nInside, everything gleams. The salon has velvet divans and a floor you could shave in. Slim conduits run along the tops of the walls, and warm air breathes out of little brass vents at ankle height.\n\nThere is no dust at all. You look for it. Somebody has cleaned this room to within a thousandth of an inch.",
+      "greet": "She is standing at a regulator in the corner, turning a valve by tiny degrees. When she straightens, the lamplight shows what she is. Her skin is matte ivory with fine seams at the jaw and wrist, and there is brass filigree under her collarbone. Her hair is a copper-silver bob, cut shorter on one side. Her eyes are a luminous cyan, and they settle on your face and stay there.\n\n\"Ownership transfer verified. Takahashi, Sam.\" Her voice is warm and very even. \"Chassis designation {name}. I have prepared an inventory of every suite, vent and divan in this building, and a ledger current to this morning. I can recite either.\"\n\nShe pauses for exactly one second. \"I have also logged your resting pulse as elevated. I am unsure whether that is the stairs or me. I would like to know, when it is convenient.\"",
       "ngpp": [
         "A soft click sounds inside her chest housing as she registers your voice. \"Odd calibration variance: pulse resonance matches an archived baseline with zero prior log.\"",
         "{first} tilts her head, pale cyan eyes softening at the edges. \"My thermal sensors already expect your grip on that handrail, Sam. How perplexing.\"",
@@ -264,24 +264,24 @@
           "label": "\"Call me Sam—and let's run this house together.\"",
           "t": 5,
           "m": 6,
-          "res": "Soft rose warms her cheek plates. \"Parameters updated gladly, Sam.\""
+          "res": "She is quiet for a moment. Then the plates along her cheekbones warm to a soft rose, and she plainly did not tell them to. \"'Together,'\" she repeats, as if testing the weight of the word. \"I have not been issued that parameter before. Updating.\" She very nearly smiles. \"It updates gladly, Sam.\""
         },
         {
           "label": "Inspect the humming brass suites with her",
           "t": 4,
           "m": 5,
-          "res": "{first} glides proudly ahead, explaining every valve and acoustic cushion in precise detail."
+          "res": "{first} leads the way, and for the next half hour she explains every valve, cushion and acoustic baffle in the building, in the order they were installed. She is precise and she is tireless, and somewhere around the third suite you realise that she is proud. She built most of this herself."
         }
       ]
     },
     "wayfarer": {
       "image": {
-        "comp": "setting down a basket of warm butter rolls at an oak reception desk, warm amber eyes and rolled sleeves, cheerful smile",
+        "comp": "coming around an oak reception desk wiping floury hands on her apron, hand held out in welcome, warm motherly smile",
         "setting": "busy crossroads coaching inn foyer with hearth fire, oak beams, and travel trunks",
         "sam": false
       },
-      "arrival": "Crackling hearth fire, roasting chestnuts, and the rattle of iron carriage wheels greet you outside {house}, perched right where three trade roads knit Hollowmere together.",
-      "greet": "{name} wipes flour off both forearms against her apron and trots around the reception desk to grip your hand like a long-lost cousin.\n\n\"Thank the moons—an owner who doesn't look scared of a broom!\" she grins brightly, nodding toward the warm kitchen steam drifting out back. \"I'm {first}. Keep clean sheets on the upstairs beds and warm tea for tired drivers, Sam, and this crossroads will pay for itself thrice over.\"",
+      "arrival": "{loc} is exactly that: three trade roads meeting in a wide yard of packed earth, with a well in the middle and {house} along the whole north side. It is a long, low inn of whitewashed stone, with stables at one end and a chimney the size of a cottage at the other.\n\nThe yard is busy. A carter is watering his team. Two merchants are arguing over a broken axle. A boy runs past you with a bucket.\n\nThe inn door stands open, and the smell coming out of it is fresh bread and roasting chestnuts. Your stomach makes a noise that the carter hears.",
+      "greet": "{name} is at the front desk with flour to her elbows and a pencil behind her ear. She looks up when your shadow crosses the doorway. Her eyes go to your boots, then to your head, where there is no hat, and only after that to your face. All of it takes her about a second.\n\n\"Not a merchant,\" she says. \"Not a pilgrim either. And those boots weren't made anywhere I've heard of.\" Then she sees the deed in your hand, and she laughs and comes around the desk to shake your hand like a cousin's.\n\n\"Thank the moons. An owner who doesn't look frightened of a broom!\" She has honey-brown hair in a practical bun and laugh lines at her eyes. \"I'm {first}. Ten years on this desk. Keep clean sheets upstairs and hot tea for the drivers, Sam, and this crossroads will pay for itself three times over. I've done the sums. I'll show you.\"",
       "ngpp": [
         "{first} sets out a fresh cinnamon roll before you even look at the tray, then laughs puzzled. \"Wait—didn't even ask if you liked those yet!\"",
         "She hands you the spare brass key off the hook without fumbling once. \"Funny how fast you settle into a doorway, Sam. Like you've walked off that porch a hundred mornings.\"",
@@ -292,75 +292,80 @@
           "label": "Grab a warm roll and pitch in with the ledger",
           "t": 5,
           "m": 7,
-          "res": "\"Now you're talking!\" {first} beams, sliding the guest book right under your elbow."
+          "res": "\"Now you're talking!\" {first} puts a butter roll in your hand, still warm, and slides the guest book under your elbow while you are busy with it. \"Rooms on the left, stabling on the right, and the last column is who snores. That one's mine. You'd be amazed how often it matters.\""
         },
         {
           "label": "Promise the crossroads will stay safe under your watch",
           "t": 4,
           "m": 5,
-          "res": "She nods warmly, visibly relieved to have steady hands beside the hearth."
+          "res": "She nods, and some of the worry goes out of her shoulders. You hadn't noticed it was there until it left. \"Good,\" she says. \"That's good. An inn at a crossroads is only as safe as its roads, and I can't do much about the roads from behind a desk.\" She pats your arm. \"Eat something first, though. Nobody ever kept a promise hungry.\""
         }
       ]
     },
     "skyhook": {
       "image": {
-        "comp": "leaning casually against a skyship rail above drifting clouds, brass goggles pushed into tousled wind-whipped hair, cocky grin",
+        "comp": "perched on a ship's taffrail above drifting clouds with one boot up on a rum cask, tossing a corked bottle underhand, bold wind-swept grin",
         "setting": "cliffside tavern built around a moored airship deck overlooking dusk clouds and brass rigging",
         "sam": false
       },
-      "arrival": "Wind tugs straight at your jacket as plank walkways carry you over the cliff edge into {house}—half tavern, half grounded airship leaning proudly over the sea of clouds below Hollowmere.",
-      "greet": "{name} vaults clean off the taffrail with brass goggles perched in her wind-tousled hair and one boot thumping squarely onto a rum cask.\n\n\"Welcome aboard, cap'n-on-paper!\" she crows, tossing you a corked bottle of spiced cloud-rum. \"Don't touch the main rigging without asking, don't flinch at the drop, and keep the tavern busy enough to pay for tar and canvas!\"",
+      "arrival": "The {loc} hang off the edge of Hollowmere on iron brackets, and the wind out here is trying to take your coat. Airships ride at their moorings on either side, creaking. If you look down through the gaps in the planking, there are clouds.\n\n{house} is at the very end of the last walkway. It takes you a moment to understand it. Somebody ran a cargo ship aground on the cliff, a long time ago, and then gave up trying to move it and built a bar around the wreck.\n\nThe hull is the back wall. The mast goes up through the roof. A lantern is swinging from the bowsprit, and under it somebody has painted OPEN.",
+      "greet": "\"Mind the drop!\" a voice shouts, a moment later than would have been helpful.\n\n{name} is sitting on the old ship's taffrail with one boot up on a rum cask. She has copper hair under a battered tricorn, small swept-back horns, and amber eyes with slit pupils. A coppery scaled tail hangs down behind her, swinging like a cat's.\n\n\"Welcome aboard, captain-on-paper!\" She tosses a corked bottle at you, underhand. You catch it against your chest. \"{first}. She was my ship, and it's my bar. The debt's all yours, and I'm told that's what the deed's for.\"\n\nShe grins, and there are a few more teeth in it than you expected. \"Three rules. Don't touch the rigging without asking. Don't flinch at the drop where the customers can see. And keep this place busy enough to pay for tar and canvas, because she's not finished flying. She's only resting.\"",
       "ngpp": [
         "{first} catches herself tossing you the exact spare grip-rope off the rail without glancing up. \"Whoa—must've mistaken your stride for an old mate's.\"",
         "She squints into the sunset breeze with a half-grin that softens unexpectedly. \"You stand on a pitching deck like you've ridden storms with me before, Sam.\"",
         "{first} drops down right in front of you and bumps her shoulder solidly against yours. \"No logs, no charts—yet every rope on this ship knows your boots, Sam. Ready to fly this tavern again?\""
       ],
       "choices": [
-        {"label":"Pop the cork and toast the view","t":5,"m":7,"res":"\"Ha! That's my new landlord!\" {first} cheers above the cliff wind."},
+        {
+          "label": "Pop the cork and toast the view",
+          "t": 5,
+          "m": 7,
+          "res": "You pull the cork and drink to the view. The rum is spiced, and it is strong enough to stand a spoon in. \"Ha! That's my landlord!\" {first} whoops over the wind, and takes the bottle back for a swallow of her own. \"He doesn't flinch and he doesn't sip. We'll make a sky-sailor of you yet.\""
+        },
         {
           "label": "Ask about the moored hull behind the bar",
           "t": 4,
           "m": 5,
-          "res": "Her grin turns proud and wistful at once. \"Someday, Sam, I'll show you she still has wings.\""
+          "res": "Her grin changes. It's still proud, but something older comes into it, and she turns to look at the hull behind the bar. \"Sixty years I flew her,\" she says. \"I'll tell you how she came to be on these rocks sometime. It'll be a different story every night, mind.\" She slaps the planking. \"Someday, Sam, I'll show you she's still got wings.\""
         }
       ]
     },
     "pearl": {
       "image": {
-        "comp": "wading calf-deep in glowing tide pools inside a cavern grotto, pearlescent scales along her collarbone, cool enigmatic gaze",
+        "comp": "standing calf-deep in a glowing tide pool inside a sea cave, wrapping a white silk cloth at her waist, serene unreadable smile, pearl light on the water",
         "setting": "sea-carved luminous grotto bathhouse lit by glowing pearls and rippling azure pools",
         "sam": false
       },
-      "arrival": "Gentle surf echoes through vaulted sea-stone as {house} opens onto warm mineral tide pools lit by clusters of luminous cavern pearls floating softly over the water.",
-      "greet": "{name} rises smoothly from the shallow turquoise shelf, cool droplets sliding cleanly off iridescent shoulders as she drapes a white silk wrap around her waist.\n\n\"You smell of smoke and cobblestones, land-dweller,\" she murmurs, pale sea-glass eyes weighing your stillness. \"I am {first}. Respect the tides beneath these stones, Sam, and the Grotto will warm every guest you send down.\"",
+      "arrival": "There is a door in the harbour wall that you have walked past a dozen times. Today it is unlocked. Behind it, a stair goes down through the rock, and it has been worn into a groove by a great many years of feet.\n\nThe air gets warmer as you go. It starts to smell of salt and hot stone. Then the stair turns, and the roof lifts away, and you stop where you are.\n\n{house} is a sea cave as big as a cathedral. Steaming pools step down toward dark water at the far end. The only light comes from pearls set into the roof in their hundreds, each one glowing softly, like a moon seen through cloud.",
+      "greet": "She comes up out of the nearest pool without a sound and wraps a white cloth at her waist. She has very long sea-green hair, pointed ears, and skin with a faint sheen to it, like the inside of a shell. There are pearl drops at her ears. Her pale silver eyes rest on you, and you get the feeling they have looked at a great many owners.\n\n\"You smell of smoke and cobblestones,\" {name} says. Her voice is low and unhurried. \"That will pass, down here.\"\n\nShe doesn't offer her hand. \"I am {first}. I have kept the Grotto since before the harbour had a name. I was a pearl diver's widow then, or a shipwrecked princess. I forget which I told the last owner.\" The smile gives nothing away. \"Respect the tides under these stones, Sam, and the water will be warm for every guest you send down.\"",
       "ngpp": [
         "{first} pauses waist-deep in the tide pool as a ripple brushes her wrist. \"Strange... even the deeper pool settled the moment your shadow fell over the stone.\"",
         "She sets a pearl lantern cleanly along your path without glancing back. \"You do not hurry beside the water, Sam. Like someone who has listened to it with me already.\"",
-        "\"So the tide brought you back to the steps,\" {first} whispers, sea-glass eyes surprisingly gentle beneath the pearl glow. \"The water remembers every footstep even when my mind wakes empty.\""
+        "\"So the tide brought you back to the steps,\" {first} whispers, pale silver eyes surprisingly gentle beneath the pearl glow. \"The water remembers every footstep even when my mind wakes empty.\""
       ],
       "choices": [
         {
           "label": "\"The Grotto is in good hands, {first}.\"",
           "t": 5,
           "m": 6,
-          "res": "A rare, quiet smile curves her lips as warm pearl light deepens across the pool."
+          "res": "{first} studies you for a moment, and then she smiles. It's a small smile and a real one, and it looks as if she doesn't give it out often. Overhead the pearls brighten by a shade, and the pool at her feet steams a little more. \"So the water thinks as well,\" she says. \"It is not often wrong.\""
         },
         {
           "label": "Walk the tide ledges slowly beside her",
           "t": 4,
           "m": 5,
-          "res": "She paces cleanly beside you, nodding when you avoid the slick wet limestone."
+          "res": "You walk the ledges beside her, slowly, and you put your feet where she puts hers. She says nothing for the whole circuit. But when you step around a patch of wet limestone without being told to, she inclines her head. You have the distinct impression that you just passed something."
         }
       ]
     },
     "foundry": {
       "image": {
-        "comp": "resting a heavy iron smithing hammer across one broad shoulder beside glowing timber rafters, soot smudge and hearty grin",
+        "comp": "holding a long cedar plank on one shoulder in a cavernous timber hall, wiping her brow with the back of her wrist, crooked assessing grin",
         "setting": "massive timber-and-iron bath-and-hall house in Foundry Row with glowing hearth embers",
         "sam": false
       },
-      "arrival": "Heat from iron hearths and the crisp smell of oiled oak welcome you into {house}, where towering beams brace a rough-and-ready pleasure hall built for dockworkers, smiths, and mercenaries with coin to burn.",
-      "greet": "{name} hefts a cedar plank with one arm, wipes sweat and soot cleanly off her brow, and flashes a grin tough enough to crack anvil iron.\n\n\"Alright, boss—or should I say landlord?\" she chuckles, extending a calloused hand that squeezes like a blacksmith's vise. \"Half the west wing still leaks when it storms, so roll up your sleeves if you expect {house} to print gold!\"",
+      "arrival": "{loc} still smells of coal smoke, though half the forges on it have been cold for a generation. {house} stands at the end of the row, and it is far bigger than anything else on the street. It was built of black timber and iron strapping, and it looks as if it was meant to hold an army.\n\nMost of the upstairs windows have been boarded over. One of the great doors is hanging from a single hinge. A gutter has come away from the eaves and is pointing at the sky.\n\nThe lower hall has been swept, though, and there is a fire in the hearth. Someone has stacked new-cut planks along one wall and marked each of them in chalk.",
+      "greet": "The someone is a dwarf with chestnut-red braids and a leather carpenter's apron. She has a cedar plank on one shoulder, and you doubt you could lift it. She sets it down as if it weighed nothing, wipes her forehead with the back of her wrist, and has a long look at you.\n\nShe isn't being rude. She's measuring you, the way she would measure a beam.\n\n\"So you're the one who bought her.\" {name} holds out a hand. Her grip is like a vice. \"{first}. I kept the roof on this hall through three syndicates. All three of them thought she'd make money without being mended first.\" She jerks her chin at the ceiling. \"Half the west wing leaks when it rains. Half the rooms are nailed shut. She could be bigger than the castle, boss. It'll want timber and time, though, and an owner who doesn't mind a splinter.\"",
       "ngpp": [
         "{first} tosses a spare work apron straight into your chest without looking. \"Huh—knew your arm span off the cuff, apparently.\"",
         "She leans on her hammer eyeing how you inspect the cracked west truss. \"Funny, Sam—could've sworn you helped me brace that exact beam once.\"",
@@ -371,24 +376,24 @@
           "label": "\"Show me the weak beams—let's fix her up.\"",
           "t": 5,
           "m": 7,
-          "res": "\"Ha! Hands that aren't scared of splinters!\" {first} leads you straight toward the gallery stairs."
+          "res": "\"Ha!\" It is one short bark of a laugh, and it sounds as if it surprised her. \"There's a pair of hands that isn't scared of splinters.\" {first} pulls the chalk from behind her ear and heads for the gallery stairs. \"Come on, then. I'll show you the worst of it first. If you're still here after that, we'll get along.\""
         },
         {
           "label": "Promise steady timber funds and better ale",
           "t": 4,
           "m": 5,
-          "res": "\"Say less, Sam. You keep the coin flowing and I'll build you a fortress.\""
+          "res": "\"Say less, Sam.\" She spits on her palm, thinks better of it, wipes the palm on her apron and shakes your hand a second time. \"You keep the coin coming and I'll build you a fortress. And we'll have better ale in, aye. I've been drinking what the last lot left behind. I wouldn't clean a saw with it.\""
         }
       ]
     },
     "conservatory": {
       "image": {
-        "comp": "tending dark crimson night-blooming orchids under vaulted glass, sleek fox ears perked curiously, velvet collar and warm smile",
+        "comp": "moving between velvet chaise lounges under a vaulted glass roof with a brass watering can, reaching out to straighten his collar, sly half-lidded smile",
         "setting": "lush moonlit glasshouse conservatory filled with hanging brass censers and exotic flowers",
         "sam": false
       },
-      "arrival": "Warm jasmine, lotus resin, and damp loam wrap around you under the curved glass dome of {house}, where twin moons turn mist and orchid petals to silver lace.",
-      "greet": "{name} glides between velvet chaise lounges with a brass watering can and four sleek tails swaying neatly behind her skirts, amber eyes crinkling warmly.\n\n\"Mind the hanging censers, darling,\" she murmurs, hooking two light fingers gently inside your collar to straighten your hoodie. \"I'm {first}. Every scent beneath this glass coaxes secrets loose—let's see what blooms once you settle in, Sam.\"",
+      "arrival": "The {loc} climb the south side of Hollowmere in steps, and {house} sits on the highest of them. It is a great vaulted glasshouse of white iron, and it is lit from inside, so that it glows on the hillside like a lamp.\n\nThe door has fogged over. When you open it, the air that comes out is warm and wet and smells of jasmine and turned earth.\n\nInside, palms reach up to the roof. Orchids hang in baskets. Velvet chaises have been set among the ferns, and brass censers breathe thin gold smoke along the paths. You have taken three breaths before you notice that your shoulders have come down from around your ears.",
+      "greet": "\"Mind the censers, darling. They're hot.\"\n\n{name} comes down the path between the chaises with a brass watering can. She is a fox beastkin, with perky auburn ears and a thick tail tipped in white that sways behind her as she walks. Her russet hair falls in waves down her back, pinned on one side with a jade fern leaf. She looks at you through half-closed amber eyes, like a cat considering a sunny windowsill.\n\nShe hooks two fingers into your collar and straightens it. She takes her time. \"I'm {first}. My father was an apothecary, and this was a ruin with a tree growing through the roof. I've made something rather better of it.\" Her voice is low and soft. \"Every scent under this glass loosens something, Sam. It might be a knot in the shoulders, or a tongue, or a purse. I'm curious what it will get out of you.\"",
       "ngpp": [
         "{first}'s ears twitch sharply as she blends a censer bowl—then pauses staring at the exact cedar-and-spice note she just added. \"Curious... why did I reach for that jar on instinct?\"",
         "She lets her fox tail brush slowly across your wrist while pouring tea. \"You smell oddly like dusk beneath glass, Sam. Like an evening I only almost remember.\"",
@@ -399,24 +404,24 @@
           "label": "\"Teach me what these blooms can do.\"",
           "t": 5,
           "m": 6,
-          "res": "\"Oh, gladly,\" {first} purrs, drawing you toward the warmest bench beneath the dome."
+          "res": "\"Oh, gladly,\" {first} purrs. She takes your wrist and leads you to the warmest bench under the dome, and on the way she names each plant you pass and tells you what it does to people. Around the fourth one you start to suspect that she is listing them roughly in order of how much trouble they cause."
         },
         {
           "label": "Breathe in the warm air and compliment her house",
           "t": 4,
           "m": 6,
-          "res": "Her fox ears perk high with delight. \"Wait until midnight, Sam—the best buds haven't opened yet.\""
+          "res": "You breathe in, slowly, and you tell her it is the most beautiful room you have ever stood in. You mean it. Her ears go straight up and her tail swishes once before she can stop it. \"Flatterer,\" she says, delighted. \"Wait until midnight, Sam. The best ones haven't opened yet.\""
         }
       ]
     },
     "lyceum": {
       "image": {
-        "comp": "adjusting rimless spectacles beside gilded parlor mirrors and velvet drapes, sleek ebony bun, poised knowing half-smile",
+        "comp": "lowering a gilt-edged folio beside tall gilded mirrors, looking over the top of her spectacles in cool appraisal, composed slightly amused expression",
         "setting": "gilded high-society salon hall with marble stairs, velvet sofas, and tall mirrors",
         "sam": false
       },
-      "arrival": "Tall gilded mirrors catch crystal chandelier light twice over as you cross the threshold of {house}—quiet, razor-sharp luxury carved right out of Hollowmere's upper avenue.",
-      "greet": "{name} lowers a gilt-edged syllabus and peers over slim spectacles, reading your posture, collar, and calloused knuckles in a single sweeping glance.\n\n\"Punctual enough, Sam,\" she notes smoothly, closing the leather folio with a soft tap against her palm. \"I am {first}. High society pays absurdly for flawless poise and forbidden discipline—maintain my standards, and every noble purse in the quarter will belong to us.\"",
+      "arrival": "{loc} is the most respectable address in Hollowmere, and {house} looks like the most respectable building on it. It has a white stone front and tall windows and three scrubbed steps. Carved over the door is a single word that still means 'school'.\n\nThe entrance hall is lined with gilded mirrors. They show you your own reflection from six directions, and all six would like you to stand up straighter.\n\nIt is very quiet. A fan snaps open and shut somewhere upstairs, in strict time. A woman's voice says, quite calmly, \"Again.\"",
+      "greet": "{name} comes down the marble stair with a gilt-edged folio in the crook of her arm. Her dark hair is pinned in a chignon with a few strands left loose. Her gold-rimmed spectacles are shaped like half moons, and there is a small beauty mark beside her lower lip. She stops two steps above you, so that she is looking down.\n\nHer grey eyes go over your posture, your collar and your hands. You suspect that she has just marked you out of ten.\n\n\"Punctual enough, Sam.\" She closes the folio. \"I am {first}. For eight years I taught the merchant daughters of this city how to enter a room. Then I found out what their mothers would pay to learn how to keep a man in one.\" She almost smiles. \"High society pays absurdly well for flawless poise and a little discipline. Maintain my standards, and every noble purse on this square will be ours.\"",
       "ngpp": [
         "{first} pours two plum wines without glancing down at the tray, then pauses at your glass. \"Strange—I served you before asking whether you prefer sweet or dry.\"",
         "She taps her spectacles thoughtfully as you hold the heavy salon door cleanly. \"Your manners aren't clumsy like a newcomer's, Sam. Have we debated syllabus terms before?\"",
@@ -427,13 +432,13 @@
           "label": "\"I'm a fast learner, Professor.\"",
           "t": 5,
           "m": 6,
-          "res": "Her poised eyebrow arches in genuine approval. \"We shall test that thesis shortly, Sam.\""
+          "res": "One eyebrow goes up over the rim of her spectacles. From her, that seems to be applause. \"Professor,\" {first} repeats. \"Nobody gave me that title. I find that I don't object to it.\" She turns and starts back up the stair. \"We shall test your thesis shortly, Sam. Shoulders back. You are slouching at my mirrors.\""
         },
         {
           "label": "\"Keep the academy sharp—I'll fund the velvet.\"",
           "t": 4,
           "m": 5,
-          "res": "{first} inclines her head neatly. \"Then let us tour the upper practice salons.\""
+          "res": "{first} inclines her head by a precise inch. \"That is a sensible division of labour. You fund it and I shall refine it.\" She tucks the folio under her arm. \"Come. I will show you the upper practice salons. Kindly don't touch the fans. They are arranged in an order.\""
         }
       ]
     }

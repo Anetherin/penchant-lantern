@@ -10,8 +10,8 @@ function runQueue(){
   if(!ev) return runQueue();
   showEvent(ev);
 }
-// ev.pre: optional pages shown before the choices ([{text, btn, scene}]; the goddess's teases: her arrival, then Sam
-// wondering). They are display only: evChoice works from any page, so test drains that pick choices directly skip them.
+// ev.pre: optional pages shown before the choices ([{text, btn, scene, who}]; the goddess's teases: her arrival, then Sam
+// wondering; house chapters: the lead-in, pictured with the resident via who). They are display only: evChoice works from any page, so test drains that pick choices directly skip them.
 function showEvent(ev){
   EV_AFTER = null;
   CUR_EV = ev;
@@ -21,7 +21,7 @@ function showEvent(ev){
     <p class="muted" id="evAside" style="font-style:italic;margin-bottom:8px;${aside?'':'display:none'}">${esc(aside)}</p>
     <p class="story" id="evText">${esc(pg ? pg.text : ev.text)}</p><div id="evRes"></div>
     <div class="row" id="evChoices">${pg ? `<button class="primary" onclick="evPre()">${esc(pg.btn || 'Continue')}</button>` : evButtons(ev)}</div>`, {lock:true});
-  if(ev.who) showImg('evImg', ev.who, (pg && pg.scene) || ev.scene || 'portrait', ev.cloth);
+  if(ev.who) showImg('evImg', (pg && pg.who) || ev.who, (pg && pg.scene) || ev.scene || 'portrait', ev.cloth);
 }
 const evButtons = ev => ev.choices.map((c,i)=>`<button ${i===0?'class="primary"':''} onclick="evChoice(${i})">${esc(c.label)}</button>`).join('');
 // next pre-page, or the event's own text and choices (the picture changes only if the page names another scene)
@@ -32,8 +32,8 @@ function evPre(){
   const ae = $('#evAside'); if(ae){ ae.textContent = aside; ae.style.display = aside ? '' : 'none'; }
   $('#evText').textContent = pg ? pg.text : ev.text;
   $('#evChoices').innerHTML = pg ? `<button class="primary" onclick="evPre()">${esc(pg.btn || 'Continue')}</button>` : evButtons(ev);
-  const sc = (pg && pg.scene) || ev.scene || 'portrait';
-  if(ev.who && sc !== ((was && was.scene) || ev.scene || 'portrait')) showImg('evImg', ev.who, sc, ev.cloth);
+  const who = p => (p && p.who) || ev.who, sc = p => (p && p.scene) || ev.scene || 'portrait';
+  if(ev.who && (sc(pg) !== sc(was) || who(pg) !== who(was))) showImg('evImg', who(pg), sc(pg), ev.cloth);
   $('#modal').scrollTop = 0;
 }
 function evContinue(){

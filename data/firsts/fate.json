@@ -39,7 +39,8 @@
           "go": "Pull her into bed",
           "goRes": "You lay her back on the pillows and sink your cock slowly into her tight, scorching pussy, Rin wrapping her stocking-clad legs around your waist and gasping your name until dawn.",
           "wait": "\"You never have to be perfect with me.\"",
-          "waitRes": "Rin's eyes mist over before she hides her blushing face against your collarbone. \"Don't let go of me tonight, okay?\""
+          "waitRes": "Rin's eyes mist over before she hides her blushing face against your collarbone. \"Don't let go of me tonight, okay?\"",
+          "act": "missionary"
         },
         "jump": {
           "title": "Defenseless",
@@ -151,7 +152,8 @@
           "go": "Take all of her",
           "goRes": "She sinks down onto your cock with a low, shivering moan, her long legs wrapping around you as she rides you with deep, unhurried passion until she comes trembling against your chest.",
           "wait": "\"You've always been beautiful to me.\"",
-          "waitRes": "Medusa's breath catches, and she kisses you deeply before pulling the covers over you both. \"Don't make me wait past tomorrow.\""
+          "waitRes": "Medusa's breath catches, and she kisses you deeply before pulling the covers over you both. \"Don't make me wait past tomorrow.\"",
+          "act": "cowgirl"
         },
         "jump": {
           "title": "Silent Pounce",
@@ -207,7 +209,8 @@
           "go": "Make her yours",
           "goRes": "You lay her down on the pillows and sink your cock deep into her wet, clinging pussy, Sakura holding onto you with fierce, breathless devotion and crying out your name every time she cums.",
           "wait": "\"I'm not going anywhere, Sakura.\"",
-          "waitRes": "\"Promise me,\" she whispers, curling tightly against your chest under the blankets with her fingers twined in yours."
+          "waitRes": "\"Promise me,\" she whispers, curling tightly against your chest under the blankets with her fingers twined in yours.",
+          "act": "missionary"
         },
         "jump": {
           "title": "Possessive Bloom",
@@ -263,7 +266,8 @@
           "go": "Make her yours",
           "goRes": "You lay her gently on the pillows and ease your cock into her tight, scorching pussy, Illya wrapping her arms and legs around you with breathless, crying gasps as her crimson circuits glow against your skin until dawn.",
           "wait": "\"You've never been a doll to me, Illya.\"",
-          "waitRes": "Her crimson eyes glisten before she hugs your neck tightly under the covers. \"Stay with me all night, promise?\""
+          "waitRes": "Her crimson eyes glisten before she hugs your neck tightly under the covers. \"Stay with me all night, promise?\"",
+          "act": "missionary"
         },
         "jump": {
           "title": "Spoiled Decree",

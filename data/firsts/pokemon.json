@@ -95,7 +95,8 @@
           "go": "Stay",
           "goRes": "You slide the black silk off her shoulders and sink your cock deep into her pussy, the undefeated Champion arching beneath you with breathless, unguarded moans all night long.",
           "wait": "\"Are you sure?\"",
-          "waitRes": "\"I am rarely uncertain—merely unaccustomed to asking.\" She smiles warmly. \"Take whatever time you need; I excel at patience.\""
+          "waitRes": "\"I am rarely uncertain—merely unaccustomed to asking.\" She smiles warmly. \"Take whatever time you need; I excel at patience.\"",
+          "act": "missionary"
         },
         "jump": {
           "title": "Dust and Lamplight",
@@ -263,7 +264,8 @@
           "go": "Stay",
           "goRes": "She laughs softly at her own nerves, pulls you down onto the sea-blue sheets, and rides you with breathless, wholehearted intensity until morning.",
           "wait": "\"You sure?\"",
-          "waitRes": "\"Don't ask like I'm fragile!\" Then, much quieter: \"...Yes. Wait if you need to—I'll be ready.\""
+          "waitRes": "\"Don't ask like I'm fragile!\" Then, much quieter: \"...Yes. Wait if you need to—I'll be ready.\"",
+          "act": "cowgirl"
         },
         "jump": {
           "title": "Cannonball",
@@ -375,7 +377,8 @@
           "go": "Stay",
           "goRes": "She laughs in pure delight, drags you onto the mattress by both hands, and straddles your hips—sinking down onto your cock and riding you warm, loud, and wholehearted until you cum inside her.",
           "wait": "\"Are you sure?\"",
-          "waitRes": "\"I am—though ask me again tomorrow too,\" she grins. \"No rush; I'm slow at this part.\""
+          "waitRes": "\"I am—though ask me again tomorrow too,\" she grins. \"No rush; I'm slow at this part.\"",
+          "act": "cowgirl"
         },
         "jump": {
           "title": "Last Call",
@@ -487,7 +490,8 @@
           "go": "Say yes",
           "goRes": "She lets out a triumphant whoop, claps both hands over her mouth, and tackles you onto the mattress—riding you breathless until the lamp burns out.",
           "wait": "\"Sure about this?\"",
-          "waitRes": "\"Loud-sure,\" she grins, tossing her hair. \"Take your time—I'll bring snacks while I wait.\""
+          "waitRes": "\"Loud-sure,\" she grins, tossing her hair. \"Take your time—I'll bring snacks while I wait.\"",
+          "act": "cowgirl"
         },
         "jump": {
           "title": "Dare Accepted",

@@ -39,7 +39,8 @@
           "go": "Hold her close",
           "goRes": "You lay her back on the sheets and sink your cock deep into her hot, tight pussy, 2B wrapping her long legs around your waist and crying out your name as every prohibition shatters.",
           "wait": "\"You're free to choose every night here.\"",
-          "waitRes": "2B exhales a quiet, shaky breath and curls into your arms under the blanket, holding your hand over her heart."
+          "waitRes": "2B exhales a quiet, shaky breath and curls into your arms under the blanket, holding your hand over her heart.",
+          "act": "missionary"
         },
         "jump": {
           "title": "System Override",
@@ -151,7 +152,8 @@
           "go": "Love her",
           "goRes": "You pull her down and sink your cock deep into her warm, wet pussy, Devola singing out your name in breathless, shivering cries as she rides you until dawn.",
           "wait": "\"You and Popola are safe here forever.\"",
-          "waitRes": "Tears glisten on her lashes before she smiles radiantly and pulls you into a tight embrace under the covers."
+          "waitRes": "Tears glisten on her lashes before she smiles radiantly and pulls you into a tight embrace under the covers.",
+          "act": "cowgirl"
         },
         "jump": {
           "title": "Tavern Fever",

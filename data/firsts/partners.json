@@ -29,7 +29,8 @@
           "go": "\"Then clear it.\"",
           "goRes": "She tackles you onto the mattress and rides your cock with the fierce, breathless intensity of a boss fight—her fox tail wrapped tightly around your wrist while she cums, crying out your name, and keeps riding you until dawn.",
           "wait": "\"That's what doors are for.\"",
-          "waitRes": "\"Doors are for people who knock.\" She swings one leg back over the sill with a wicked grin, tail swishing. \"Next time I'm not leaving.\""
+          "waitRes": "\"Doors are for people who knock.\" She swings one leg back over the sill with a wicked grin, tail swishing. \"Next time I'm not leaving.\"",
+          "act": "cowgirl"
         }
       }
     },
@@ -76,7 +77,8 @@
           "go": "\"Then stay.\"",
           "goRes": "You pull her nightshift over her head and push your cock slowly into her tight, eager pussy, fucking her unhurriedly until morning finds her curled against your chest with a radiant, astonished smile.",
           "wait": "\"There will be other nights.\"",
-          "waitRes": "\"Yeah.\" She laughs softly, wiping her eyes with her sleeve and squeezing your hand. \"I'm getting much better at not running for the train.\""
+          "waitRes": "\"Yeah.\" She laughs softly, wiping her eyes with her sleeve and squeezing your hand. \"I'm getting much better at not running for the train.\"",
+          "act": "missionary"
         }
       }
     },
@@ -87,7 +89,7 @@
       "events": {
         "3": {
           "title": "Contract Terms",
-          "text": "Nerys perches on the edge of your desk with her legs parted, a glowing demonic contract unrolled across her bare thighs and her bat wings half-spread as a violet magic circle pulses beneath her heels. \"Clause forty-one,\" she purrs, slit pupils gleaming in the candlelight. \"The bound party is entitled to full, physical sustenance—and I've been unreasonably starved.\"",
+          "text": "It is late, and you are still at your desk. So is Nerys. She is sitting on the edge of it with her legs parted and a contract unrolled across her bare thighs. The script on it is glowing. Her bat wings are half open, and a violet circle has lit up on the floor under her heels.\n\nYou don't remember her coming in. You have a feeling the door was locked.\n\n\"I've been reviewing our agreement,\" she says. Her slit pupils catch the candlelight. \"You're a very fair employer, Sam. You pay on time, and you never raise your voice. It's almost a pity.\" She runs one fingernail down the page until it stops. \"Clause forty-one. The bound party is entitled to full physical sustenance. Those are your words. You signed it.\" She leans toward you. \"I have been unreasonably starved, and I'm calling it in.\"",
           "image": {
             "comp": "sitting on a desk with crossed legs, holding a glowing contract scroll, smirking down at him, bat wings spread",
             "setting": "his study at night, candlelight, a magic circle glowing on the floor",
@@ -96,7 +98,8 @@
           "go": "Read clause forty-two",
           "goRes": "There is no clause forty-two—Nerys invents it on the spot, sweeping your papers off the desk, straddling your lap, and riding your cock hard while her wings wrap tightly around you both.",
           "wait": "\"I'm still reading the fine print.\"",
-          "waitRes": "Nerys groans and flops backward across your desk, wings splayed over your ledgers. \"Humans. Read your fine print—I'm billing you with interest.\""
+          "waitRes": "Nerys groans and flops backward across your desk, wings splayed over your ledgers. \"Humans. Read your fine print—I'm billing you with interest.\"",
+          "act": "cowgirl"
         }
       }
     },
@@ -255,7 +258,8 @@
           "go": "\"Like what?\"",
           "goRes": "She shows you instead of telling you—pulling you down onto the sheets and riding your cock with low, breathless, private groans meant for your ears alone.",
           "wait": "\"Sammy's fine.\"",
-          "waitRes": "\"Coward.\" She ruffles your hair, fond and slightly relieved, gripping the doorknob. \"I'll ask again—you know I will.\""
+          "waitRes": "\"Coward.\" She ruffles your hair, fond and slightly relieved, gripping the doorknob. \"I'll ask again—you know I will.\"",
+          "act": "cowgirl"
         }
       }
     },
@@ -343,7 +347,8 @@
           "go": "Pour the wine",
           "goRes": "The cork pops with a soft sigh as you lay her back bare on the sheets and sink your cock into her pussy, Marisol laughing wet-eyed and arching into every thrust until dawn.",
           "wait": "\"Your father's wine?\"",
-          "waitRes": "\"He's not around to object.\" She finishes your glass gently with a bruised, fond smile. \"Next time—neither the bottle nor I am going anywhere.\""
+          "waitRes": "\"He's not around to object.\" She finishes your glass gently with a bruised, fond smile. \"Next time—neither the bottle nor I am going anywhere.\"",
+          "act": "missionary"
         }
       }
     },
@@ -390,7 +395,8 @@
           "go": "Let her stay",
           "goRes": "The lamp goes out as you peel away the black silk and ease your cock gently into her pussy, fucking her slowly and holding her close through soft, shuddering cries until she wakes peacefully at dawn listening to you breathe.",
           "wait": "\"Come back when you're sure.\"",
-          "waitRes": "\"I'm already sure,\" she whispers softly, picking up her ribbon. \"Though I can wait until you are.\""
+          "waitRes": "\"I'm already sure,\" she whispers softly, picking up her ribbon. \"Though I can wait until you are.\"",
+          "act": "missionary"
         }
       }
     },
@@ -560,7 +566,8 @@
           "go": "Take her hand",
           "goRes": "You slip the white gown off her shoulders and fuck her slowly beneath a canopy of warm white wings—morning light revealing scattered white-gold feathers across the floorboards that she leaves untouched.",
           "wait": "\"Keep the lamp lit tonight.\"",
-          "waitRes": "\"As you wish.\" She relights the wick with a touch and folds her wings serenely. \"I shall wait.\""
+          "waitRes": "\"As you wish.\" She relights the wick with a touch and folds her wings serenely. \"I shall wait.\"",
+          "act": "missionary"
         }
       }
     }

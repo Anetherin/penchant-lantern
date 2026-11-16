@@ -123,7 +123,8 @@
           "go": "Get in",
           "goRes": "The sake goes completely cold on the rock as she straddles your lap in the hot water and sinks down onto your cock—and for once, the loud voice that fills the bathhouse every night breaks into soft, breathless gasps right against your ear.",
           "wait": "\"I should check the boilers.\"",
-          "waitRes": "Tsubaki laughs so hard she slips under and comes up sputtering, wet hair in her eyes. \"The boilers! Fine, boss—go check your boilers. Next time I'm dragging you in myself.\""
+          "waitRes": "Tsubaki laughs so hard she slips under and comes up sputtering, wet hair in her eyes. \"The boilers! Fine, boss—go check your boilers. Next time I'm dragging you in myself.\"",
+          "act": "cowgirl"
         }
       }
     },
@@ -167,7 +168,7 @@
       "events": {
         "3": {
           "title": "A Wager",
-          "text": "The tavern is empty after closing, chairs stacked, the last lamp swinging overhead as two enormous tankards slam onto the bar hard enough to rattle the coins. \"Drinking contest,\" Hilde declares, cracking her knuckles. \"Loser does whatever the winner demands.\" You lose so catastrophically it becomes local legend. Hilde, barely flushed, rests one heavy boot on your stool rung, smelling of malt, woodsmoke, and victory. \"Upstairs, boss. Take off your clothes—I'm collecting.\"",
+          "text": "The tavern is empty. The chairs are stacked and the last lamp is swinging on its hook. Hilde bangs two enormous tankards down on the bar, hard enough to make the coins in the till jump.\n\n\"Drinking contest,\" she says, and cracks her knuckles. \"Loser does whatever the winner wants. That's the old rule. It's how I lost a brewery.\"\n\nYou know better. You do it anyway, because of the way she's grinning.\n\nYou lose. It isn't close. The dockers will be telling it for years: the owner of the Tankard went under the bar after six, and the barmaid finished his seventh for him. When the room stops turning, Hilde is standing over you with one boot on the rung of your stool. She is barely flushed. She smells of malt and woodsmoke.\n\n\"Upstairs, boss,\" she says. \"And get your clothes off. I'm collecting.\"",
           "image": {
             "comp": "slamming an empty tankard on the bar, flushed and grinning triumphantly at him",
             "setting": "empty tavern bar after closing, tankards everywhere",
@@ -176,7 +177,8 @@
           "go": "Pay up",
           "goRes": "Hilde doesn't believe in half-measures, hauling you upstairs by the collar, shoving you flat onto the mattress, and riding your cock with powerful, unapologetic greed until you cum and you're completely spent.",
           "wait": "\"I demand a rematch.\"",
-          "waitRes": "She laughs loud enough to rattle the rafters, slapping the bar. \"Fine! Rematch next week—train up, boss, because I'm not going easy on you.\""
+          "waitRes": "She laughs loud enough to rattle the rafters, slapping the bar. \"Fine! Rematch next week—train up, boss, because I'm not going easy on you.\"",
+          "act": "cowgirl"
         }
       }
     },
@@ -255,7 +257,8 @@
           "go": "\"Yes, ma'am.\"",
           "goRes": "She straddles your hips, sinks all the way down onto your cock with a wicked, throaty groan, and rides you relentlessly—asking for nothing in return except every gasp you have.",
           "wait": "\"Can I owe you?\"",
-          "waitRes": "\"Everyone owes me something.\" She unbolts the door with a theatrical sigh, tail flicking. \"I'll add it to your tab—with compounding interest, little human.\""
+          "waitRes": "\"Everyone owes me something.\" She unbolts the door with a theatrical sigh, tail flicking. \"I'll add it to your tab—with compounding interest, little human.\"",
+          "act": "cowgirl"
         }
       }
     },
@@ -334,7 +337,8 @@
           "go": "\"Aye, captain.\"",
           "goRes": "Rinna lets out a delighted laugh, hauls you straight onto the bunk, and rides your cock until the old ship timbers groan in time with the headboard.",
           "wait": "\"I get seasick.\"",
-          "waitRes": "\"We're on a CLIFF!\" She cackles, slapping the doorframe, before ruffling your hair. \"Next week, then—I'll bring the rum.\""
+          "waitRes": "\"We're on a CLIFF!\" She cackles, slapping the doorframe, before ruffling your hair. \"Next week, then—I'll bring the rum.\"",
+          "act": "cowgirl"
         }
       }
     },
@@ -400,9 +404,10 @@
             "sam": true
           },
           "go": "Answer her prayer",
-          "goRes": "You push slowly into her tight heat until her wings flare wide against the silk drapes, her breathless cries ringing like vesper bells as you fuck her across the altar cushions.",
+          "goRes": "You push your cock slowly into her tight pussy until her wings flare wide against the silk drapes, her breathless cries ringing like vesper bells as you fuck her across the altar cushions.",
           "wait": "\"Another evening?\"",
-          "waitRes": "Caelia laughs softly and pulls a silk shawl back over one shoulder, eyes gleaming gold. \"Whenever you're ready to sin properly, owner.\""
+          "waitRes": "Caelia laughs softly and pulls a silk shawl back over one shoulder, eyes gleaming gold. \"Whenever you're ready to sin properly, owner.\"",
+          "act": "missionary"
         }
       }
     },
@@ -468,7 +473,8 @@
           "go": "Break it in",
           "goRes": "Not a single mortise squeaks as you tumble her back onto the thick mattress and bury your cock deep inside her tight, hot pussy while her strong hands claw the bedding.",
           "wait": "\"Inspection first.\"",
-          "waitRes": "\"Craftsman's pride, huh?\" She snorts, tossing a pillow at your boots as she tugs the robe shut. \"Wait till you see it hold us next week.\""
+          "waitRes": "\"Craftsman's pride, huh?\" She snorts, tossing a pillow at your boots as she tugs the robe shut. \"Wait till you see it hold us next week.\"",
+          "act": "missionary"
         }
       }
     },
