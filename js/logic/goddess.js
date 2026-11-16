@@ -87,7 +87,8 @@ function gIntroPick(i){
   if(c.mood) g.mood = clamp((g.mood||55) + c.mood);
   const res = gpara(gtxt(c.res, GINTRO.ctx), GINTRO.after);
   save();
-  const re = $('#gIntroRes'), ch = $('#gIntroChoices');
+  const op = $('#gIntroOpen'), re = $('#gIntroRes'), ch = $('#gIntroChoices');
+  if(op) op.style.display = 'none';
   if(re) re.innerHTML = `<p class="story">${esc(res)}</p>`;
   if(ch) ch.innerHTML = `<button class="primary" onclick="gNext()">${esc(GINTRO.btn || 'Wake up')}</button>`;
   const m = $('#modal'); if(m) m.scrollTop = 0;
@@ -105,7 +106,7 @@ function goddessIntro(next){
   GNEXT = next || null;
   GINTRO = {choices: ch, ctx, after, btn: I.button || 'Wake up'};
   const sc = I.image ? (typeof I.image === 'string' ? I.image : dynScene('goddess_' + (I.image.key || 'intro'), I.image)) : 'portrait';
-  modal(`<h2>${esc(I.title || 'Before the truck stops ringing')}</h2><div id="gImg"></div><p class="story">${esc(open)}</p><div id="gIntroRes"></div><div class="row" id="gIntroChoices">${ch.map((c,i)=>`<button ${i===0?'class="primary"':''} onclick="gIntroPick(${i})">${esc(gtxt(c.label, ctx))}</button>`).join('')}</div>`, {lock:true});
+  modal(`<h2>${esc(I.title || 'Before the truck stops ringing')}</h2><div id="gImg"></div><p class="story" id="gIntroOpen">${esc(open)}</p><div id="gIntroRes"></div><div class="row" id="gIntroChoices">${ch.map((c,i)=>`<button ${i===0?'class="primary"':''} onclick="gIntroPick(${i})">${esc(gtxt(c.label, ctx))}</button>`).join('')}</div>`, {lock:true});
   $('#modal').scrollTop = 0;
   showImg('gImg', godId(), sc || 'portrait');
 }

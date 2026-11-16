@@ -1,27 +1,20 @@
-# Balance pass: lab results
+# Balance lab notes
 
-Made with `tools/lab` (see `tools/lab/README.md`); rerun any line with `node tools/lab/lab.mjs <spec>`.
-Everything uses the lab's default player (Lantern, Kaede, salaryman unless varied), 12–16 paired seeds.
-These are comparisons under one fixed player, not absolute truths. Δ figures are paired means; "±" is the 95% CI.
+Made with `tools/lab` (see `tools/lab/README.md`); rerun any spec with `node tools/lab/lab.mjs <spec>` (available specs live in `tools/lab/exp/`).
+Results below use the lab's fixed policy player (`tools/lab/bot.js`) and 12–16 paired seeds unless noted. Δ figures are paired means; "±" is the 95% CI.
 
-## Pass 2 (2026-11-11): support jobs, Sam's actions, NG+
+> [!NOTE]
+> Pass 1 (2026-11-10) and Pass 2 (2026-11-11) were measured **before** the later queue/security/crowding overhaul, house class/prestige system, and Cycle-1 / NG+ debt rebalance in `balance.json` and `economy.json`. Re-run the specs in `tools/lab/exp/` (`houses-all`, `jobs-all`, `ngplus-houses`, `ngpp`, `pricing-campaign`, `amenities`, `sam-actions-campaign`, `races`) for current numbers.
 
-Changes (all numbers in `balance.json`):
-- **Security:** an unhandled pushy client (nobody there, or Sam's step-in fails) **ends her night**: a courtesan loses
-  `props.nightCap` (2) clients of the week, anyone else 1/`props.nights` (6) of her output and that share of her
-  propositions. Sam steps in **on the spot** during the week (+`watchBonus` if he stood watch), so the report already
-  shows it; the after-report "Trouble downstairs" event is gone.
-- **Tidiness:** maid gain x (100 − tidiness)/`maidEase` (35, max ×1.5): one maid holds a mid house at ~65–70 instead of
-  pinning 100. Bands: ≥80 small bonus, 50–80 neutral, <50 shabby, **<30 a mess** (−1.5 rep/week, −6 mood, rest ×0.9,
-  −10 client satisfaction, −20% demand).
-- **Promoter:** draw 3 + (Charisma + Hospitality)/15, ×(1 + (1 − rep/60)) while the house is little known, 2nd/3rd
-  promoter ×0.6^k, word of mouth +0.03 rep per client drawn.
-- **Training** (re-checked on the no-picker training + classes from main): one-on-one skill training 8 + Technique×0.08
-  (was 4 + Technique/25), her energy 6 (was 14). Stat coaching kept as designed (multi-stat by job).
-- **NG+ loan:** keeps cycle 1's payment shape (`debt.ngplus.fewer/flatter` 0; was fewer, flatter, front-loaded payments
-  each cycle) and grows through `ngplus.debtShare` 0.9 (was 0.7) and `perCycle` 0.35 (was 0.2).
+## Current tuning highlights (`balance.json` / `economy.json`)
+- **Queue, security & crowding (`clients.wait`, `clients.crowd`, `clients.host`):** overflow clients wait instead of vanishing immediately (`waitBuf` from door, hosts, bar, stage); Wits-based security screens client value/traits (`screenMerchant`, `screenNoble`, `screenTrimLow`, `screenSafe`) and Charm/Charisma caps excess overflow cleanly; `crowd.perSpace` (5) caps comfortable capacity before satisfaction/bail/rep penalties.
+- **House class & popularity (`prestige`):** house `rep` is **House Popularity**; `h.prestige` (`0–100`) tracks **House Class** toward a structural target (tier, beds, decor, drinks, price, amenities, tidiness, attendants, leadership) plus operational shifts. Low prestige favors demand and propositions; high prestige attracts merchants/nobles and raises quality/amenity expectations.
+- **NG+ & Cycle-1 debt (`debt`, `ngplus`):** Cycle 1 uses `13` payments every `4` weeks (`ramp: 8`); NG+ trims up to 1 payment / 0.75 ramp per cycle (`minPayments: 11`, `minRamp: 4`) and adds `debtShare: 0.9`, `perCycle: 0.35`, `keptHouseShare: 0.25`, `perLover: 0.08`, `loverDebt: 1500` (`perKeptHouse: 0`).
+- **Tidiness & Promoters (`tidy`, `jobs`):** `tidy.high: 80`, `low: 50`, `bad: 30`, `maidEase: 35`, `maidMax: 1.5`; promoters draw `2 + (Charisma + Hospitality)/15` (`promoterLowRep: 0.4`, `promoterStack: 0.6`, `promoterRep: 0.03`), and free samples shift `h.prestige` vs the promoter's polish.
 
-Results:
+## Historical baseline: Pass 2 (2026-11-11, pre-queue/prestige/debt overhaul)
+
+Snapshot comparison from `tools/lab` on the 2026-11-11 tuning (security `endNight` + on-the-spot Sam rescue, diminishing maid tidiness, promoter low-rep boost, `8 + Technique×0.08` skill training, `debt.ngplus.fewer/flatter: 0`):
 
 | | before | after |
 |---|---|---|
@@ -35,34 +28,10 @@ Results:
 | NG+ cycles 2-5, home house only | 34, 32, 34, 34 | 35, 38, 39, 40 wks |
 | NG+ boons spread | −7.6 (Deep Pockets) … +1.6 wks | −0.8 … +4.2 wks |
 
-Sam's spare action over a whole cycle 1 (`sam-actions-campaign`, Δ weeks to clear vs bartending at 33): stat class
-+0.5, skill class +0.7, books +1, scouting/napping +1.8, dates +2, stat coaching +2.5, rounds +3, skill training +3.4
-(was +8.3 before this pass), service practice +4.2, demonstrations +4.4. Practice/demos also build lust, lewdness and
-intimacy, which the lab player doesn't value. Money actions win
-on speed, the others trade 2–3 weeks for trust, skills and stats (which also carry into NG+). Over 12-week windows
-(`sam-actions`), books ≈ bartending (books cuts upkeep ~40%), and security/scouting only pay when there are incidents
-or open beds.
+Sam's spare action over cycle 1 (`sam-actions-campaign`, Δ weeks vs bartending at 33): stat class +0.5, skill class +0.7, books +1, scouting/napping +1.8, dates +2, stat coaching +2.5, rounds +3, skill training +3.4, service practice +4.2, demonstrations +4.4.
+What a stat point was worth (`stat-value`): +5 to every stat on every lady ≈ +220/wk mid; Beauty and Stamina ≈ 2.5g/wk per point, Charm ~1.2.
 
-What a stat point is worth (`stat-value`): +5 to every stat on every lady ≈ +220/week mid; per lady-point Beauty and
-Stamina ≈ 2.5g/week, Charm ~1.2, Wits/Refinement/Agility/Strength near 0 for income, Charisma ≈ 0 (now feeds promoters).
-
-## Still open
-
-1. **Support jobs vs a courtesan.** The first maid/promoter now clearly earns its place, but moving two *more* ladies
-   into promoter/maid/security/host still costs 200–470/wk (a courtesan nets ~475/wk). A courtesan slot is the
-   bottleneck. If you want support roles closer to that, raise what each does per house size rather than per lady.
-2. **NG+ trap houses:** with the new loan, Skyhook (80% game over) and Pearl (40%) as the cycle-2 house, and Tankard
-   (30%), are still traps for this player; Veil (28 wks) and Castle (30) are easiest. Skyhook/Pearl debt is 45k/55k
-   before the per-cycle scaling.
-3. **Starting houses** spread 16 (Veil) to 34 (Onsen) weeks; Onsen and Tankard have the weakest mid/late game.
-4. **Demons** (by design) are strongest as courtesans and weak elsewhere: −200/wk mid, −500/wk late if every generic is
-   one. Spirits/androids came out strong after this pass (+240 to +380/wk late when every generic is one); unexplained.
-5. NG+ cycle 3 is the easiest one when you keep every house (29 wks vs 35/36 around it): the third house arrives
-   with residents and upgrades but its debt only joins at the next cycle.
-
-## Pass 1 (2026-11-10), before the changes above
-
-- Starting houses spread 18–34 weeks to clear; Castle best late game, Onsen/Tankard weakest.
-- Partners: Nerys strongest in both cycles; Adelheid weakest start (+14.5 wks), Marisol/Lirael +6.
-- Sam's pasts: salaryman strongest for this player; Otaku and Tutor need training play to show anything.
-- (The pass 1 note that NG+ took "~65 weeks" was a lab bug: it reported the absolute week. Cycle 2 took ~34.)
+### Open questions to re-check after recent changes
+1. **Support jobs vs courtesan slot:** stacking multiple support ladies beyond the first maid/promoter/host/attendant still trades away courtesan slot revenue (`jobs-all`, `roles-comp`).
+2. **House and NG+ balance:** re-benchmark all 15 standard/NG+ houses (`houses-all`, `ngplus-houses`, `ngpp`) after the Cycle-1 / NG+ debt and `prestige` changes.
+3. **Race & amenity balance:** re-check `races`, `amenities`, `sanctuary-chapel`, and `demon-sigil` under the current queue/prestige rules.
