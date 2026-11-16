@@ -8,21 +8,21 @@
         "setting": "quiet common room of the Gilded Lantern after closing",
         "sam": true
       },
-      "text": "Past midnight with the shutters latched, Mira pries up the loose board behind the bar where the previous owner used to hide Silas Grieve's bribes—and instead of old ledgers, lifts out a battered wooden jewelry box stuffed with pressed tavern coasters and faded receipts.\n\n\"Twelve years I watched him run this place into the dirt,\" she murmurs, smoothing a thumb across the wood. \"Feels strange waking up knowing nobody owns us from the dark anymore.\"",
+      "text": "It is past midnight and the shutters are latched. You come down for a glass of water and find Mira on her knees behind the bar, with a butter knife in her hand and the loose floorboard up.\n\nThat board used to be where the old owner kept Silas Grieve's money. For a while it was where you kept the copy of the ledger. Now she reaches into the gap up to her elbow and brings out something else. It is a small wooden box, the kind a girl keeps ribbons in.\n\nShe opens it on the counter. It is full of pressed tavern coasters and faded receipts, and a paper flower from some festival long ago.\n\n\"Mine,\" she says, a little embarrassed. \"I hid it there my first winter, before he found the board and took it for his own. I'd forgotten.\" She runs her thumb over the lid. \"Twelve years I watched him run this place into the dirt. It's a strange thing, Sam, waking up and knowing nobody owns us from the dark any more.\"",
       "choices": [
         {
           "label": "Tell her the Lantern only survived because she stayed",
           "t": 6,
           "m": 8,
           "sam": {"charm":1},
-          "res": "Mira blinks quickly over the rim of her tea and cuffs your shoulder lightly. \"Careful, Sam. Say things like that too plainly and I really won't leave.\""
+          "res": "You tell her the plain truth. The Lantern is still standing because she stayed in it. Mira blinks quickly, looks down into the box, and then cuffs you on the shoulder, not hard. \"Careful, Sam. Say things like that to me too plainly and I really won't ever leave.\" She doesn't sound as though that would trouble her."
         },
         {
           "label": "Set a bottle of spiced cider on the bar beside her",
           "t": 4,
           "m": 7,
           "grow": {"manage":5},
-          "res": "She pours two small glasses without asking and kicks out the stool beside her. \"Sit down for five minutes, boss. You earned it.\""
+          "res": "You fetch the spiced cider and set the bottle on the bar by her elbow. She pours two small glasses without asking and hooks the next stool out with her foot. \"Sit down for five minutes, boss. You've earned it.\" She shows you every coaster in the box, and she remembers the night each one came from."
         }
       ]
     },
@@ -30,17 +30,17 @@
       "title": "Quiet Nights",
       "scene": "casual",
       "image": {
-        "comp": "resting softly in a warm shawl beside an amber parlor lamp, hair loose over one shoulder, affectionate warm gaze",
+        "comp": "standing in an upstairs doorway holding a tray with two steaming bowls, hair loose for the night, fond unguarded smile",
         "setting": "private parlor room upstairs at the Gilded Lantern",
         "sam": true
       },
       "byIntim": {
         "2": {
           "scene": "sam_date",
-          "text": "With the anniversary garlands taken down and the last regular snoring softly down the street, Mira steps into your upstairs parlor in an unbuttoned robe over her silk slip, silver-streaked braid undone for the night.\n\n\"Don't give me that polite look,\" she teases quietly, latching the door with one hip. \"I spent half this season mothering the whole staff. Tonight I'm off duty.\""
+          "text": "The anniversary garlands have come down. The last regular went home an hour ago, singing, and the house has gone quiet in the way it only does after a good week.\n\nYou are at your desk upstairs when the door opens without a knock. Mira comes in wearing a robe over her slip, with the belt not tied. Her auburn hair is down for the night. She shuts the door with her hip and you hear the latch drop.\n\n\"Don't give me that polite look,\" she says. \"I have spent this whole season mothering everyone under this roof. I have settled quarrels. I have found lost stockings.\" She crosses the room, takes the pen out of your hand and puts it in the inkwell. \"Tonight I am off duty, Sam. I'd like somebody to look after me for a change, and I have decided that it's going to be you.\""
         }
       },
-      "text": "With the anniversary garlands taken down and the last regular snoring down the street, Mira pauses in your upstairs doorway with two steaming bowls of late-night noodles.\n\n\"You've kept the lights on, the books clean, and every girl under this roof safe,\" she smiles softly. \"I stopped worrying about who'd look after you weeks ago.\"",
+      "text": "The anniversary garlands have come down. The last regular went home an hour ago, singing, and the house has gone quiet in the way it only does after a good week.\n\nYou are at your desk upstairs when someone taps the door frame. Mira is standing there with a tray. There are two bowls of noodles on it, the late-night kind the cook makes for the staff, and she has put an egg in yours.\n\n\"You've kept the lights on,\" she says. \"The books are clean. Every girl under this roof is safe, and she knows it.\" She comes in and sets the tray down on top of your ledger, which closes it. \"I used to lie awake wondering who was going to look after this house. Then for a while I lay awake wondering who was going to look after you.\" She smiles. \"I stopped a few weeks ago. I thought you should hear it.\"",
       "choices": [
         {
           "label": "Share the quiet hour with her",
@@ -50,12 +50,12 @@
           "t": 6,
           "m": 8,
           "l": 3,
-          "res": "Mira sets the tray squarely onto the desk, hooks two warm fingers around your wrist, and draws you straight down beside her.",
+          "res": "Mira moves the tray onto the desk, out of harm's way. She hooks two warm fingers around your wrist and draws you up out of the chair and down beside her.",
           "else": {
             "t": 7,
             "m": 8,
             "energy": "full",
-            "res": "You eat together by the banked hearth until the rain slows to a whisper. She leaves you feeling steadier than you have in months."
+            "res": "You eat together by the banked fire, with the bowls in your laps, while the rain slows down outside. She tells you which of the regulars is courting which. When she has gone to bed, you find that you feel steadier than you have in months. You hadn't known how unsteady you were."
           }
         },
         {
@@ -63,7 +63,7 @@
           "t": 5,
           "m": 7,
           "sam": {"business":1},
-          "res": "\"Fifty might push my knees a bit,\" Mira laughs warmly, bumping her cup to yours. \"Twenty-five, and you have a deal.\""
+          "res": "\"Fifty might be hard on my knees,\" Mira laughs, and knocks her cup against yours. \"Make it twenty-five and you have a deal.\" She thinks about it. \"Twenty-five, and I pick the wallpaper. That red has been up since before I came, and I have hated it every single day.\""
         }
       ]
     }
@@ -77,21 +77,21 @@
         "setting": "sunny morning parlor at Castle Rosenhal",
         "sam": true
       },
-      "text": "Nine-fifteen chimes from the hall clock, and for the first time in twelve years Cecile Fairbanks sets the silver tea tray down four minutes late—wearing flour on one immaculate sleeve from sneaking scones straight off the kitchen tray for Seraphine and the house.\n\n\"You noticed,\" she says evenly before you open your mouth. \"Say nothing, Mr. Takahashi, and take two.\"",
+      "text": "The hall clock strikes a quarter past nine. For twelve years, at that exact moment, the door of the small drawing room has opened and Cecile Fairbanks has walked in with the tea.\n\nTonight the clock finishes striking, and nothing happens.\n\nYou look at the door. You check your own watch. You are starting to wonder whether somebody has died when the door opens, three minutes late. She sets the silver tray down just where she always does. There is flour on one of her cuffs.\n\nThere is also a plate of scones on the tray, still steaming. She has plainly lifted them off the cook's cooling rack with her own hands. You suspect that a second plate has just gone up the east stairs to Lady Seraphine.\n\n\"You noticed,\" Cecile says evenly, before you can open your mouth. \"You will say nothing, Mr. Takahashi. And you will take two.\"",
       "choices": [
         {
           "label": "Eat the warm scone without a single word about the clock",
           "t": 6,
           "m": 7,
           "sam": {"charm":1},
-          "res": "A genuine flicker of warmth softens her pale blue eyes. \"Smart man,\" Cecile murmurs, adjusting her cuffs."
+          "res": "You take two. You eat the first one without a word about the clock, and you make sure she sees you enjoy it. Something warm goes across her grey eyes and is gone. \"A sensible man,\" Cecile says quietly, brushing the flour off her cuff. She doesn't take the plate away, and from her that counts for a good deal."
         },
         {
           "label": "Ask if she's finally letting herself enjoy this place",
           "t": 5,
           "m": 6,
           "grow": {"manage":5},
-          "res": "\"A well-run house permits small liberties,\" Cecile replies crisply, though she pours your cup to the exact rim."
+          "res": "\"A well-run house permits small liberties,\" Cecile replies crisply. It's exactly what you expected her to say. But she pours your cup right to the rim, the way you take it and the way she has told you a gentleman does not. When she straightens up she is very nearly smiling. \"I find there is rather more to enjoy than there used to be. Sir.\""
         }
       ]
     },
@@ -99,17 +99,17 @@
       "title": "Off the Ledger",
       "scene": "portrait",
       "image": {
-        "comp": "unpinning a crisp white lace collar beside tall velvet curtains at night, poised serene smile softening into warmth",
+        "comp": "standing beside tall velvet curtains at night closing a silver pocket watch, the stern mouth softening into a rare smile",
         "setting": "quiet upstairs drawing room at Castle Rosenhal",
         "sam": true
       },
       "byIntim": {
         "2": {
           "scene": "sam_date",
-          "text": "When every guest suite sits quiet past midnight, Cecile closes her pocket watch with a sharp click and lays it face-down on the blotter.\n\n\"You outlasted the count's ruin, kept the Rosenhal name standing, and never once condescended to the people making the beds,\" she says quietly, stepping close enough for her clean lavender soap to reach you. \"I no longer feel obligated to keep strict distance, Sam.\""
+          "text": "It is past midnight, and every guest suite is quiet. Cecile has made her last round of the corridors. She comes into the study and shuts her silver pocket watch with a click. Then she lays it face down on your blotter, which you have never seen her do.\n\n\"You have kept the Rosenhal name standing,\" she says. \"You dealt with the baron, and you opened the ballroom. In all that time you have never once spoken down to the people who make the beds.\" She comes around the desk. She smells of lavender soap and starch. \"I have kept a correct distance from every master of this house for twelve years, Sam. It is a matter of standards.\"\n\nShe reaches up and draws a single pin out of her chignon.\n\n\"I find I no longer feel obliged to keep it from you. I have considered the matter for some weeks, and I am quite sure.\""
         }
       },
-      "text": "When every guest suite sits quiet past midnight, Cecile closes her silver pocket watch with a crisp click and hands you an unsigned house inspection sheet.\n\n\"Four owners in twelve years,\" she observes evenly. \"Only one ever asked whether the staff slept warm enough in winter.\"",
+      "text": "It is past midnight, and every guest suite is quiet. Cecile has made her last round of the corridors. She comes into the study, shuts her silver pocket watch with a click, and lays a sheet of paper on your desk.\n\nIt is the household inspection. She has done one every quarter for twelve years: linen, silver, chimneys, staff. There is a line at the bottom for the owner's signature, and she tells you that none of the last three ever signed it. None of them read it.\n\nYou have. There are notes from you in the margin of the staff page.\n\n\"Four owners,\" she says. \"The count had the servants' fires put out in March to save on coal. The heir never learned our names. The duchess believed that we were supplied with the furniture.\" She squares the page with one fingertip. \"Only one of the four ever asked me whether the maids slept warm enough in winter. I thought that should be said aloud, once.\"",
       "choices": [
         {
           "label": "Step close and let the uniform stay off the clock tonight",
@@ -119,12 +119,12 @@
           "t": 6,
           "m": 8,
           "l": 3,
-          "res": "Cecile draws one velvet drape across the latch with unhurried precision, then rests both palms squarely against your chest.",
+          "res": "Cecile crosses to the door and draws the velvet drape over the latch, without hurrying, so that it won't rattle. Then she comes back and rests both palms flat against your chest. Her hands aren't quite steady. In twelve years you don't suppose anyone else has seen that.",
           "else": {
             "t": 7,
             "m": 8,
             "sam": {"charm":1},
-            "res": "\"And intend to keep asking,\" you tell her. Cecile inclines her head, the faintest rose touching her cheekbones. \"I am glad you came to Rosenhal, Sam.\""
+            "res": "\"I intend to go on asking,\" you tell her, and you sign the page. Cecile looks at the signature for a moment. Then she inclines her head, and a very faint colour comes into her face. \"I am glad you came to Rosenhal, Sam,\" she says. She has never used your first name before."
           }
         },
         {
@@ -132,7 +132,7 @@
           "t": 5,
           "m": 8,
           "energy": "full",
-          "res": "She protests out of reflex, then relents cleanly—and sleeps past nine for the first time in a decade."
+          "res": "She objects, by reflex, and gets as far as the breakfast trays. You tell her that the trays can manage for one morning. Cecile closes her mouth. The next day she sleeps until past nine for the first time in ten years. The under-maids talk about it in whispers, as though there had been an eclipse."
         }
       ]
     }
@@ -146,21 +146,21 @@
         "setting": "lantern-lit cedar bathhouse bench at Steamveil Onsen",
         "sam": true
       },
-      "text": "Early one snowy morning before the travelers wake, you find Tsubaki sitting barefoot on the porch slats rubbing beeswax into her late aunt's scarred cypress bath bucket while mist curls past the eaves.\n\n\"Auntie swore she'd come back to haunt me if I ever let the mountain springs run dry,\" she grins up at you. \"Looks like she can sleep easy now, boss.\"",
+      "text": "It is early, and it snowed in the night. None of the travellers are awake yet. You find Tsubaki sitting on the porch boards with her bare feet tucked under her and a cloth in her hand, rubbing beeswax into her aunt's old bath bucket.\n\nIt is a battered thing. The cypress has gone grey, the copper bands are green, and there is a split in the rim that somebody mended with wire a long time ago. She works the wax into it gently. You get the impression that she does this every winter, and that she doesn't usually let anybody watch.\n\n\"Auntie said that if I ever let these springs run dry, she'd come back and haunt me,\" she says, without looking up. \"She meant it, too. She was that sort of woman.\" She holds the bucket up to the light and turns it around. Then she grins at you. \"I think she can sleep now, boss. I think we both can.\"",
       "choices": [
         {
           "label": "Sit on the warm cedar beside her while she finishes",
           "t": 5,
           "m": 7,
           "sam": {"charm":1},
-          "res": "She bumps her warm knee against yours in quiet companionship and hums—still gloriously off-key—while steam rolls across the pines."
+          "res": "You sit down beside her on the boards, which are warm from the spring underneath. She bumps her knee against yours and goes on waxing. After a while she starts to hum. It is as off-key as ever. Steam rolls out across the snow on the pines, and neither of you needs to be anywhere for another hour."
         },
         {
           "label": "Offer to buy a second shrine lantern for her aunt's bench",
           "t": 6,
           "m": 8,
           "gold": -50,
-          "res": "Tsubaki beams so brightly half the mist clears around her. \"She'd like you, Sam. Even if you still duck whenever I start singing.\""
+          "res": "There is a bench by the source pool where her aunt used to sit. You offer to put a second lantern on it, a proper stone one. Tsubaki beams at you so hard that she has to wipe her eyes on her sleeve. \"She'd have liked you, Sam,\" she says. \"She'd have liked you even though you duck every time I start singing. I've seen you do it.\""
         }
       ]
     },
@@ -175,10 +175,10 @@
       "byIntim": {
         "2": {
           "scene": "bath_invite",
-          "text": "Snowflakes melt straight into the steaming cedar pool while Tsubaki rests her arms across the warm stone lip, water lapping smoothly over bare wet curves.\n\n\"All guests asleep, water's forty-two degrees, and you look like your shoulders are welded to your neck,\" she calls playfully. \"Come down in the tub, Sam—no scrubbing rules tonight.\""
+          "text": "It is snowing again. The flakes come down out of the dark and vanish a foot above the water, and the big cedar pool is steaming so thickly that you hear Tsubaki before you see her.\n\nShe has folded her arms along the stone rim and put her chin on them. Her braid is pinned up. Her bare shoulders and back are wet and pink from the heat, and the water laps just under the curve of her tits.\n\n\"The guests are all asleep,\" she calls. \"The water's forty-two degrees. And your shoulders are up around your ears again. I can see them from here.\" She lifts one hand out of the water and crooks a finger at you. \"Get in the tub, Sam. I'm not enforcing the washing rule tonight. I'm not planning to enforce much of anything.\""
         }
       },
-      "text": "Snowflakes melt straight into the steaming cedar pool while Tsubaki leans back against the warm stone rim, watching pine branches sag softly under winter frost.\n\n\"Ever catch yourself forgetting what traffic sounded like?\" she asks gently as you step onto the deck.",
+      "text": "It is snowing again. The flakes come down out of the dark and vanish a foot above the water, and the big cedar pool is steaming so thickly that you hear Tsubaki before you see her.\n\nShe is in up to her shoulders, leaning back against the warm stone with her braid pinned up on top of her head. She is watching the snow settle on the pine branches. One of them bends a little lower, and a little lower, and then lets go of its load all at once.\n\nYou step out onto the deck. She doesn't turn around.\n\n\"Do you ever catch yourself forgetting what traffic sounded like?\" she asks. You told her about traffic once. She said it sounded like a festival that nobody was enjoying. \"I asked because you've stopped flinching at loud carts. I noticed last week.\" She tips her head back and looks at you upside down. \"I think you might live here now, Sam.\"",
       "choices": [
         {
           "label": "Climb into the hot water beside her",
@@ -188,12 +188,12 @@
           "t": 6,
           "m": 8,
           "l": 3,
-          "res": "She splashes warm water playfully against your ribs before sliding straight into your lap under the falling snow.",
+          "res": "You get in. She flicks a handful of hot water at your ribs to watch you jump. Then she pushes off from the rim and slides across the pool and straight into your lap, with snow melting in her hair.",
           "else": {
             "t": 7,
             "m": 8,
             "energy": "full",
-            "res": "You sink up to your chin in mineral steam while she points out constellations over the ridge. By dawn, both of you feel completely renewed."
+            "res": "You sink in up to your chin on the other side of the pool. She points out the constellations over the ridge and gives you the names they had on the isles. Most of them turn out to be fish. By the time the sky starts to go grey, something in your chest has come unknotted that has been tight since the truck."
           }
         },
         {
@@ -201,7 +201,7 @@
           "t": 5,
           "m": 7,
           "grow": {"service":5},
-          "res": "Her singing still threatens the mountain birds, yet somehow neither of you stops laughing all night."
+          "res": "You heat sake in a kettle on the deck and trade winter songs. She knows a great many of them, and you know two. Her singing would frighten birds. You laugh so much that neither of you notices when the snow stops, or when the first guest comes out to ask what the noise is."
         }
       ]
     }
@@ -215,21 +215,21 @@
         "setting": "candlelit upstairs bedroom of Hollowmere Manor",
         "sam": true
       },
-      "text": "Since clearing her name in the ivy garden, Vesper has taken to baking terrible, slightly scorched honey tarts in the manor kitchen just to watch living people eat them—standing on her tiptoes three inches off the tiles.\n\n\"Vesper Lisle,\" she rolls the name over her tongue experimentally when you bite into one. \"It doesn't ache anymore when I say it out loud.\"",
+      "text": "Since the day in the garden, Vesper has taken up baking.\n\nShe can't taste anything, and she can't judge an oven. She can only hold a spoon if she concentrates. None of this has stopped her. Most mornings now the manor kitchen is full of smoke, and there is a tray of small honey tarts on the table. They are black around the edges and raw in the middle. She makes them for the pleasure of watching living people eat.\n\nToday she stands on tiptoe, three inches off the tiles, and holds one out to you with both hands. You take it and bite into it. It is terrible.\n\n\"Vesper Lisle,\" she says while you chew. She says it slowly, as if she were trying on a ring. \"I've been saying it aloud when nobody's about. It used to ache, when I couldn't remember the rest. It doesn't now.\" She watches your face anxiously. \"Is that one better? I put salt in it. I'm told people like salt.\"",
       "choices": [
         {
           "label": "Bravely swallow the burnt tart and ask for seconds",
           "t": 6,
           "m": 8,
           "sam": {"charm":1},
-          "res": "Vesper brightens like a chandelier at double flame. \"Flatterer. Wait until I remember how frosting works.\""
+          "res": "You swallow. It takes some doing. Then you ask her for another, and Vesper lights up like a chandelier with every candle burning. \"Flatterer,\" she says happily, already reaching for the tray. \"You wait until I remember how icing works. I'm almost certain it had eggs in it. Or it may have been chalk.\""
         },
         {
           "label": "Bring her a cup of dark spiced tea to smell the warmth",
           "t": 5,
           "m": 7,
           "grow": {"service":4},
-          "res": "She cradles the warm porcelain through translucent palms, smiling down into the steam. \"Kindness suits this house better than cobwebs.\""
+          "res": "You make her a cup of dark spiced tea, though she can't drink it. She holds it between her transparent palms and bends her face over the steam. She stays like that for a long time. \"There,\" she says softly. \"I can very nearly smell that. Kindness suits this house a great deal better than cobwebs did, darling.\""
         }
       ]
     },
@@ -244,10 +244,10 @@
       "byIntim": {
         "2": {
           "scene": "sam_date",
-          "text": "Twin moons lay silver bars across the parlor rug as Vesper drops lightly down from the rafters—letting translucent skirts settle around her knees just inches from where you sit.\n\n\"Three hundred years of silence made me greedy for warmth,\" she murmurs, cool fingertips tracing your jawline before dipping heat from your pulse. \"And unlike everyone down in town, darling, you never once flinched when I asked.\""
+          "text": "The two moons have laid bars of silver across the parlor rug. You are reading in the armchair when the page goes cold under your thumb, and Vesper comes down out of the rafters. She lets her skirts settle around her on the floor, right at your knees. You can see the pattern of the rug through them.\n\n\"Three hundred years of quiet have made me greedy,\" she murmurs. She puts a cool fingertip to your jaw and follows it down to the pulse in your throat, and stops there. You feel a little of your warmth go out into her hand, and her fingers turn almost solid. \"Greedy for this. Everyone in town flinches when I reach for them. You never have. You didn't even on the first night.\"\n\nHer pale violet eyes are very bright. She doesn't take her hand away.\n\n\"I'd like to be warm all the way through tonight, darling. If you can spare it.\""
         }
       },
-      "text": "Twin moons lay silver bars across the parlor rug as Vesper drops lightly down to the floor beside your chair—close enough that violet lanternlight warms her pale cheeks.\n\n\"Ines guards the gate, guests laugh downstairs, and nobody shouts 'exorcise her' at tea anymore,\" she whispers softly. \"I owe you an awful lot of centuries, darling.\"",
+      "text": "The two moons have laid bars of silver across the parlor rug. You are reading in the armchair when the page goes cold under your thumb, and Vesper comes down out of the ceiling and settles on the floor beside you. She is close enough that the lamp shines through her cheek.\n\nShe doesn't speak at first. She is listening to the house. Somebody is laughing downstairs. A door shuts. Out on the gravel, Ines is walking her last round of the fence.\n\n\"Ines is at the gate,\" Vesper says at last. \"There are guests in my drawing room, and they're glad to be there. It's a full month since anyone shouted 'exorcise her' over the teacups.\" She tucks her knees up and puts her chin on them. Her hair floats. \"I was alone here for three hundred years, and I told myself that I preferred it. I owe you a dreadful lot of centuries, darling. I don't know how one pays back a thing like that.\"",
       "choices": [
         {
           "label": "Pull her close and let her borrow your warmth",
@@ -257,12 +257,12 @@
           "t": 6,
           "m": 8,
           "l": 3,
-          "res": "A shiver of violet light runs across Vesper's skin the moment your hands grip her waist, pulling you both eagerly down onto the hearth velvet.",
+          "res": "You put your hands on her waist, and it is there to be held. A shiver of violet light runs over her skin from head to foot. She laughs out loud with surprise and pulls you down off the chair onto the hearth rug.",
           "else": {
             "t": 7,
             "m": 8,
             "sam": {"charm":1},
-            "res": "\"Just stay around to keep this place lively,\" you answer, letting her cold fingers lace calmly through yours."
+            "res": "\"Stay,\" you tell her. \"Keep the place lively. That's all it costs.\" She thinks it over gravely. Then she laces her cold fingers through yours, as far as a ghost can, and the two of you sit and listen to the house until the lamp burns down."
           }
         },
         {
@@ -270,7 +270,7 @@
           "t": 5,
           "m": 7,
           "sam": {"wits":1},
-          "res": "She cheats shamelessly by lifting pawns half an inch when you reach for tea—and grins like a cat when you catch her."
+          "res": "She cheats. She does it without shame, lifting a pawn half an inch every time you reach for your tea and setting it down on another square. You catch her at it four times. Each time she grins like a cat and tells you the piece is haunted. You lose, and you don't mind at all."
         }
       ]
     }
@@ -280,25 +280,25 @@
       "title": "The Giant's Letter",
       "scene": "job_bartender",
       "image": {
-        "comp": "standing proudly behind oak beer taps holding a tiny crumpled parchment pinned under an enormous mug, broad triumphant grin",
+        "comp": "standing on a crate behind oak beer taps holding up a barrel lid with writing scrawled on it, broad triumphant grin",
         "setting": "bustling taproom of The Rusty Tankard at dawn",
         "sam": true
       },
-      "text": "A courier with mud up to his belt drops a barrel-lid note across the bar—signed with an enormous smudged thumbprint from Borgrum himself, asking whether Hilde can ship two kegs of \"that dark iron-stout\" up to his valley camp.\n\nHilde reads it three times, swells to twice her normal chest size, and slams the lid down like a war drum. \"Did you hear that?! The big oaf came begging FOR A REFILL!\"",
+      "text": "The courier is mud to the belt, and he looks as if he has had a hard week. He doesn't have a letter. He has a barrel lid, which he carries in under his arm and drops on the bar with both hands.\n\nThere is writing on it, burned into the wood with a hot poker, in letters the size of your fist. It is signed with a thumbprint as big as a dinner plate.\n\nBORGRUM WANT TWO KEG OF THE DARK ONE. BORGRUM PAY.\n\nHilde reads it. She gets up on her crate and reads it a second time. After the third time her chest seems to have got about twice as big, and she brings the lid down on the bar like a war drum. Every tankard on the shelf jumps.\n\n\"DID YOU HEAR THAT?\" she roars at the room, which did. \"The big oaf's come BEGGING! For a REFILL! Of MY stout!\" She rounds on you, shining. \"What do we charge him, boss? I'm too happy to count.\"",
       "choices": [
         {
           "label": "Sell him the kegs at triple highland freight price",
           "t": 5,
           "m": 8,
           "gold": 250,
-          "res": "Hilde cackles loud enough to rattle every pewter cup on the rack—and Borgrum pays cleanly up front (+250g)."
+          "res": "You say triple, with highland freight on top. Hilde cackles until she has to hold on to the taps. Borgrum pays the whole of it up front, in a sack, and doesn't haggle. He sends a second barrel lid with the money. All it says is GOOD. She hangs it up next to the deed. (+250g)"
         },
         {
           "label": "Send one free cask with a challenge note for next spring",
           "t": 6,
           "m": 8,
           "grow": {"bar":6},
-          "res": "\"Oh, now you're thinking like a true brewer, boss!\" Hilde beams, tapping the bung in with one clean swing."
+          "res": "You send him a single cask, free, with a note tied to the bung: the same again in spring, if he's brave enough to come and drink for it. \"Oh, now you're thinking like a brewer!\" Hilde drives the bung home with one swing of the mallet. \"A giant with a thirst and a grudge. He'll bring the whole valley down to watch.\""
         }
       ]
     },
@@ -306,17 +306,17 @@
       "title": "House Pour",
       "scene": "casual",
       "image": {
-        "comp": "sitting atop a polished wooden beer barrel holding two brimming pewter mugs, warm flush across braided beard-ribbons",
+        "comp": "sitting on top of a polished wooden beer barrel in a lamplit cellar holding out a brimming pewter mug, cheeks flushed, hearty grin",
         "setting": "candlelit brewing cellar below The Rusty Tankard",
         "sam": true
       },
       "byIntim": {
         "2": {
           "scene": "sam_date",
-          "text": "Down in the cool cedar brewing cellar after lockup, Hilde taps the private reserve spigot directly into two mugs, already down to her rolled linen shirt with stout foam drying neatly on her wrist.\n\n\"Half the docks try buying my best mug,\" she grins warmly, patting the oak table beside her knees. \"Only one fool ever stayed in my corner without flinching when Borgrum walked through that door.\""
+          "text": "After lockup Hilde takes a lantern and goes down to the cellar, and tonight she jerks her head for you to follow.\n\nIt is cool down there, and it smells of oak and yeast. She taps the unmarked cask at the back into two mugs, black stout with a head like cream. Then she sits down on the bench with her mug. She has taken her apron off. Her linen shirt is rolled past her freckled elbows and unlaced at the neck, and there is foam drying on her wrist.\n\n\"Half the docks have tried to buy a drink out of that cask,\" she says. \"I don't pour it for them.\" She pats the bench beside her broad thigh. \"There was only ever one fool who stood in my corner and didn't flinch when Borgrum came through that door. Sit down, Sam. Drink that. Then put the mug somewhere it won't spill, because I've been thinking about you all shift.\""
         }
       },
-      "text": "Down in the cool cedar brewing cellar after lockup, Hilde taps the private reserve spigot directly into two mugs and slides one across the barrelhead to you.\n\n\"To the weirdest tavern-keeper in Hollowmere,\" she grins, raising her heavy iron-banded mug. \"Didn't know a guy in a grey hoodie could hold a room like that.\"",
+      "text": "After lockup Hilde takes a lantern and goes down to the cellar, and tonight she jerks her head for you to follow.\n\nIt is cool down there, and it smells of oak and yeast. She walks past the house barrels, and past the good barrels, to a small cask at the back with no mark on it. She taps it straight into two mugs. The stout comes out black, with a head like cream.\n\n\"That's the private reserve,\" she says. \"My grandmother's recipe, the one that isn't written down. I don't pour this for dockers.\" She slides a mug across the barrelhead to you and hoists herself up to sit on the next cask, with her boots swinging. She lifts her own mug. \"To the weirdest tavern-keeper in Hollowmere! He walked in here in a grey hoodie and I gave him a fortnight.\" She drinks. \"I've been wrong twice in eighty-seven years, lad. The other time was about a giant.\"",
       "choices": [
         {
           "label": "Join her down by the cellar lanterns",
@@ -326,12 +326,12 @@
           "t": 6,
           "m": 8,
           "l": 3,
-          "res": "Hilde drains her mug in one fearless gulp, wipes her mouth on her forearm, and hooks your belt buckle straight toward her bench.",
+          "res": "Hilde finishes her mug in one swallow and wipes her mouth on her forearm. Then she hooks two fingers into your belt and hauls you in toward the bench. She is a good deal stronger than you are, and she seems to enjoy it.",
           "else": {
             "t": 7,
             "m": 8,
             "energy": "full",
-            "res": "You split three mugs of the dark reserve swapping tavern disaster stories until sunlight hits the cellar grate."
+            "res": "You get through three mugs of the reserve apiece. You swap stories about the worst nights you have ever worked, and hers are much worse than yours. One of them has a goat in it. Daylight is coming in through the cellar grating by the time either of you thinks about the stairs."
           }
         },
         {
@@ -339,7 +339,7 @@
           "t": 5,
           "m": 7,
           "sam": {"business":1},
-          "res": "Hilde narrows her eyes suspiciously, then laughs and starts chalking ratios straight onto the barrel stave."
+          "res": "She narrows her eyes at you, as if you had asked for the key to the strongbox. Then she laughs, pulls a lump of chalk out of her pocket and starts writing numbers on a barrel stave. \"You tell a soul and I'll deny it. And then I'll drown you. Right. First, forget everything you think you know about heat.\""
         }
       ]
     }
@@ -353,21 +353,21 @@
         "setting": "empty silver-lit garden stage of Moonlit Pavilion",
         "sam": true
       },
-      "text": "Long after midnight you spot Sylphine barefoot on the Moonlit Pavilion stage dancing without a single musician—just wind through the lily pond, a wooden wind chime, and four impossible turns she used to get scolded for at the Royal Conservatory.\n\nShe lands lightly on one heel and grins breathlessly. \"They didn't teach that step back home. You have to want the crowd to gasp for it.\"",
+      "text": "It is long past midnight, and there is somebody on the Pavilion stage.\n\nYou stop at the garden rail. It is Sylphine, barefoot, with her hair coming loose. There are no musicians. All she has is the wind in the lily pads and a wooden chime in the eaves, and she is dancing to them.\n\nYou have not seen this one before. It has four turns in it, one straight after another, each faster than the one before. No sensible person would try the fourth. She lands it on one heel, and she wobbles, and she laughs out loud at herself, alone in the dark.\n\nThen she sees you. She doesn't stop smiling.\n\n\"They never taught that at the conservatory,\" she says, out of breath. \"I asked to learn it, and I was scolded. They said it was showing off.\" She pushes her hair back. \"It is showing off. You have to want somebody to gasp, or it doesn't work. I spent a hundred years not being allowed to want that.\"",
       "choices": [
         {
           "label": "Clap slowly from the garden rail like opening night",
           "t": 6,
           "m": 8,
           "grow": {"dance":6},
-          "res": "Sylphine drops into a sweeping, theatrical curtsy, eyes bright as winter stars. \"Careful, Sam—applause spoils me terribly.\""
+          "res": "You clap. You do it slowly at first, from the rail, the way a full house does on an opening night. Sylphine drops into a deep theatrical curtsy with one hand on her heart. Her eyes are very bright. \"Careful, Sam,\" she says. \"Applause spoils me terribly. I'll be up here every night now, looking for you at that rail.\""
         },
         {
           "label": "Step up onto the boards and try keeping pace with her",
           "t": 5,
           "m": 8,
           "sam": {"agility":1},
-          "res": "You nearly trip over a silk runner twice, yet she catches both your hands and spins you laughing under the paper moons."
+          "res": "You get up on the boards and try to follow her. You trip on the silk runner twice. The second time she catches both your hands, and she doesn't let go. She spins the pair of you around under the paper lanterns until you are both too dizzy to stand, and then you sit down on the stage and laugh."
         }
       ]
     },
@@ -375,17 +375,17 @@
       "title": "Private Encore",
       "scene": "portrait",
       "image": {
-        "comp": "resting flush-cheeked amid silver stage silks by lantern glow, long pointed ears tipped pink, tender eager smile",
+        "comp": "curled on a velvet backstage sofa in a rehearsal shawl unlacing her dance slippers, cheeks flushed, tender eager smile",
         "setting": "dressing parlor behind Moonlit Pavilion stage",
         "sam": true
       },
       "byIntim": {
         "2": {
           "scene": "sam_date",
-          "text": "Wrapped only in a sheer moon-silk rehearsal shawl, Sylphine curls sideways onto the velvet backstage sofa as you bring water and fresh bandages.\n\n\"Before you showed up, every step I took belonged to strict judges and quiet halls,\" she whispers softly, catching your cuff. \"Tonight every movement feels warm. Stay for an encore meant just for two.\""
+          "text": "The last set is over. You find Sylphine backstage on the old velvet sofa. She has a rehearsal shawl around her, sheer moon-silk, and you can see quite clearly that there is nothing under it. She has curled up sideways with her bare legs tucked under her.\n\nYou have brought water and fresh bandages for her feet. She takes the water. She catches your cuff with her other hand and keeps hold of it.\n\n\"Before you came, every step I took belonged to somebody else,\" she says softly. \"It was all judges and quiet halls. I was being careful the whole time.\" The tips of her long ears have gone pink. \"Tonight I'm not careful at all. Everything's warm. I'm still humming from the stage and I don't want it to stop.\" She tugs on your cuff. \"Stay. There's an encore, and it's only for two. I've been choreographing it all week, so you had better be impressed.\""
         }
       },
-      "text": "Wrapped in a warm rehearsal shawl on the velvet backstage sofa, Sylphine unlaces her stage slippers with slow, happy exhaustion.\n\n\"You remember when you stayed out of the way and let me recover my ankle instead of forcing premiere night?\" she murmurs softly. \"I still brag about that to Ilyana.\"",
+      "text": "The last set is over. You find Sylphine backstage on the old velvet sofa, wrapped in a rehearsal shawl, unlacing her slippers. She is going about it slowly, and she looks very tired and very happy.\n\nYou have brought her water. She drinks all of it in one go.\n\n\"Do you know what Ilyana told me tonight?\" she says. \"She said I've stopped dancing at people. She says I dance for them now. I don't know when it changed.\" She pulls a slipper off and wiggles her toes. \"Before you came, every step I took belonged to somebody else. There was a judge, or a teacher, or a row of old elves sitting in the dark who had decided what they thought before the curtain went up.\" She looks up at you. \"Now I walk out there and they're glad to see me. You built a place where that happens, Sam. I tell Ilyana so all the time. She's tired of hearing it.\"",
       "choices": [
         {
           "label": "Stay for her private encore",
@@ -395,20 +395,20 @@
           "t": 6,
           "m": 8,
           "l": 3,
-          "res": "Sylphine lets the silk shawl slide neatly down off both shoulders, rising smoothly into your arms between the stage curtains.",
+          "res": "Sylphine lets the shawl slide off both shoulders and down to her waist. She gets up from the sofa in a single smooth movement, as she would on stage, and comes into your arms between the curtains.",
           "else": {
             "t": 7,
             "m": 8,
             "sam": {"charm":1},
-            "res": "\"I'd always choose you over a schedule,\" you tell her easily. Her long ears tip warm rose as she leans happily against your shoulder."
+            "res": "\"I'd pick you over a schedule every time,\" you tell her. It's true. Her ears go pink to the tips. She shifts along the sofa until she can lean her head on your shoulder, and she stays there, humming the last tune of the night under her breath."
           }
         },
         {
-          "label": "Rub the ache cleanly out of her calves and feet",
+          "label": "Rub the ache out of her calves and feet",
           "t": 6,
           "m": 8,
           "energy": "full",
-          "res": "She melts half into the velvet cushions with soft sighs before thanking you sleepily."
+          "res": "You sit down at the end of the sofa, take her feet in your lap, and work the ache out of her calves and arches with your thumbs. For a minute she tries to keep talking. Then she sinks into the cushions with a long sigh. She is asleep before you have finished the second foot, and she is still smiling."
         }
       ]
     }
@@ -418,25 +418,25 @@
       "title": "Closing the Black Book",
       "scene": "job_courtesan",
       "image": {
-        "comp": "leaning against a velvet rope holding a red leather favor-ledger over one hip, sleek horned silhouette, amused smirk",
+        "comp": "leaning against a velvet rope with a thick black ledger open on one hip and a pen in her hand, amused smirk",
         "setting": "empty crimson parlor of The Crimson Veil at dawn",
         "sam": true
       },
-      "text": "With Vharra settled in behind the bar and the Veil's two-century feud laid cleanly beside the poker cards, you find Zaria flipping through her thick black favor-ledger—and methodically scratching half a dozen petty grudges out in bright crimson ink.\n\n\"Don't go soft on me now, Sam,\" she purrs when you raise an eyebrow. \"Keeping clean books turned out more profitable than holding half the ward hostage.\"",
+      "text": "Vharra has taken over a corner of the bar, and the old feud was settled over a deck of cards. The Veil is quieter than it has been in two hundred years. You find Zaria in the back booth with her favor ledger open in front of her.\n\nIt's a thick black book. You have seen her open it perhaps three times, and each time somebody across the room went pale. Tonight she has a pen and a pot of crimson ink. She is going down the pages one at a time and crossing entries out.\n\nShe isn't crossing out all of them. But she has done six while you've been watching. They were old grudges and petty debts, things she has held over people for decades.\n\nYou raise an eyebrow.\n\n\"Don't you go soft on me, Sam,\" she says, and crosses out a seventh. \"This is business. It turns out that clean books make more money than holding half the ward by the throat. I'm as surprised as you are.\"",
       "choices": [
         {
           "label": "Ask which column your own name sits under",
           "t": 6,
           "m": 8,
           "l": 2,
-          "res": "Zaria snaps the book shut cleanly and taps the tip of her horn lightly near your ear. \"Page one, darling. Marked 'paid in kind.'\""
+          "res": "You ask which column you're in. Zaria shuts the book with a snap and leans across the table until the tip of one horn touches your ear. \"Page one, darling,\" she murmurs. \"It's a page of your own. The heading says 'paid in kind'.\" She sits back, very pleased with herself, and doesn't explain any further."
         },
         {
           "label": "Offer her a bonus drawer just for new VIP regulars",
           "t": 4,
           "m": 6,
           "sam": {"business":1},
-          "res": "\"Now that's music to a demon's horns,\" she laughs, tucking the new tabs squarely inside."
+          "res": "You offer her a drawer of her own for new regulars who are worth courting, with a bonus on each one. \"Now that is music to a demon's horns,\" she laughs. She has six names written on tabs before you have finished the sentence. You suspect she has been keeping the list ready for some time."
         }
       ]
     },
@@ -451,10 +451,10 @@
       "byIntim": {
         "2": {
           "scene": "sam_date",
-          "text": "Silk tassels sway gently as Zaria locks the inner velvet booth and pulls the low lantern wick right down to ember glow.\n\n\"You've kept Vharra amused, kept the Underdistrict fed, and still treat every woman here like she's worth gold,\" she murmurs, sliding smoothly across the cushions toward you. \"Humans are adorable, Sam—and you're terribly easy to keep around.\""
+          "text": "The silk tassels are swinging a little in the draught. Zaria locks the door of the inner booth and turns the lantern wick down until there is only a red glow.\n\n\"You've kept Vharra amused,\" she says, counting on her fingers. \"That's a full-time job on its own. You've kept the Underdistrict fed. And you still treat every woman in this house as though she were worth her weight in gold. You include the ones who bite.\" She slides along the cushions toward you, in no hurry. Her tail gets there first and curls around your ankle.\n\n\"Humans are adorable, Sam. I've always said so.\" She stops with her mouth an inch from yours. Her slit pupils have gone wide in the dark. \"But you're the first one I've wanted to keep. It has been two hundred years. I find that I'm not at all patient about it.\""
         }
       },
-      "text": "Silk tassels sway gently in the inner booth as Zaria pours two dark brandies without waiting for closing bell.\n\n\"Two hundred years in the Underdistrict,\" she remarks lightly, curling her tail neatly around the chair leg, \"and I don't think I've ever seen anyone handle Vharra and a room full of thieves without shouting once.\"",
+      "text": "The silk tassels in the inner booth are swinging a little in the draught. Zaria has poured two dark brandies. The closing bell hasn't rung yet, and she isn't usually careless about that sort of thing.\n\nShe pushes one glass across to you and curls her tail around the leg of your chair.\n\n\"I have been two hundred years in the Underdistrict,\" she says. \"I have seen this floor run by a great many people. One was a duke's bastard. One was a cardsharp, and one was a very nasty priest.\" She turns her glass in the lamplight. \"They all shouted. They had to, down here, or they went under. And then you turn up. You've got Vharra on one side of you and a room full of thieves on the other, and I have never once heard you raise your voice.\" Her gold eyes come up to yours, and for once she isn't teasing. \"I keep waiting to find out how you do it.\"",
       "choices": [
         {
           "label": "Cross behind the velvet curtain with her",
@@ -464,12 +464,12 @@
           "t": 6,
           "m": 8,
           "l": 4,
-          "res": "Zaria's dark smile turns wicked fast as she hooks the velvet curtain shut behind your back and turns cleanly to meet you.",
+          "res": "Zaria's smile turns wicked very quickly. She reaches past you and pulls the velvet curtain shut behind your back, and then she turns around to face you.",
           "else": {
             "t": 7,
             "m": 8,
             "sam": {"charm":1},
-            "res": "\"Good company makes the room easy,\" you answer, lifting your glass. She tips hers smoothly against yours, glowing warm emerald behind her eyes."
+            "res": "\"Good company makes any room easy,\" you tell her, and lift your glass. Zaria looks at you a moment longer. Then she touches her glass to yours, and her tail tightens around the chair leg. \"That's not an answer, darling,\" she says. \"But I'll take it for tonight.\""
           }
         },
         {
@@ -477,7 +477,7 @@
           "t": 5,
           "m": 7,
           "sam": {"wits":1},
-          "res": "She cheats twice anyway, catches you smiling about it, and concedes half the pot in sheer delight."
+          "res": "She cheats twice. She can't help it. She catches you smiling about it both times. In the end she throws her cards down and pushes half the pot across the table, laughing. \"That's for noticing, and for not minding. Do you know how rare that is? I may have to cross out something else.\""
         }
       ]
     }
@@ -491,21 +491,21 @@
         "setting": "sunlit front desk of The Wayfarer's Rest",
         "sam": true
       },
-      "text": "Before the morning merchant wagons pull in, Bettina pulls open her famous bottom lost-and-found drawer and slides a tarnished brass compass across the blotter toward you.\n\n\"Belonged to a courier who died three winters back with no kin,\" she says gently. \"Since the east road's safe again, guild caravans actually leave names and return addresses now. Funny what one quiet inn can fix.\"",
+      "text": "The merchant wagons aren't due for an hour, and the common room is empty. Bettina pulls open the bottom drawer of the front desk. Everybody on the east road knows about that drawer.\n\nIt's the lost-and-found. There are ten years of it in there: single gloves, a child's wooden horse, a silver thimble, any number of keys. She writes every item up in the tally book with the date and the room it came from.\n\nShe takes out a brass compass, gone dull, and slides it across the blotter to you.\n\n\"He was a courier,\" she says. \"He died of a fever in the end room, three winters back. Nobody came for him. I wrote to the address in his satchel and the letter came back.\" She touches the lid with one finger. \"Now that the road's safe, the guild caravans sign the book properly. They put their names and where they're from. Somebody on one of those wagons might have known him. I never had a way to ask before.\"",
       "choices": [
         {
           "label": "Pay to post a guild board notice looking for his family",
           "t": 6,
           "m": 8,
           "gold": -30,
-          "res": "Bettina's warm eyes shine fiercely as she wraps the compass cleanly in linen. \"Wait till I tell the caravans what kind of boss signs their bills.\""
+          "res": "You pay for a notice on the guild board in every town the charter reaches. Bettina's eyes are fierce and bright. She wraps the compass in a clean square of linen and writes his name on it. \"You wait until I tell the caravans what sort of man signs their bills,\" she says. \"I'm going to tell every one of them. Twice.\""
         },
         {
           "label": "Help her polish and label the unclaimed keepsakes",
           "t": 5,
           "m": 7,
           "grow": {"service":5},
-          "res": "Two hours of brass polish and caravan gossip leave the front desk gleaming—and Bettina humming steadily through the noon rush."
+          "res": "You spend two hours at the desk with a tin of brass polish. She tells you the story of every item as it comes out of the drawer, and you write the labels. By noon the desk is gleaming and the drawer is in order. Bettina hums straight through the midday rush, and she doesn't lose her temper with a single carter."
         }
       ]
     },
@@ -513,17 +513,17 @@
       "title": "A Bed Made Proper",
       "scene": "casual",
       "image": {
-        "comp": "sitting on the edge of a neatly turned hearth bench holding two steaming mugs of spiced milk, affectionate candid smile",
+        "comp": "sitting on a bench by a hearth with two steaming mugs, a folded blanket beside her, affectionate candid smile",
         "setting": "cozy hearth parlor upstairs at The Wayfarer's Rest",
         "sam": true
       },
       "byIntim": {
         "2": {
           "scene": "sam_date",
-          "text": "The guild wagons sit quiet in the yard while rain taps steadily on the inn roof. Bettina unpins her apron strings cleanly beside the hearth and glances up with warm, unhurried candor.\n\n\"Ten years checking travelers in and watching everyone rush back out on the sunrise road,\" she murmurs gently. \"Nice having somebody who checks the shutters with me at midnight instead.\""
+          "text": "It has rained since supper. The guild wagons are standing quiet in the yard under their tarpaulins. The drivers have gone to bed, and the only sounds are the fire and the water in the gutters.\n\nBettina has done the shutters. She comes back to the hearth and unties her apron and hangs it on the hook, and takes the pencil out from behind her ear. That means she has finished for the day. Then she looks at you. It's a warm, direct look, and she takes her time over it.\n\n\"I've spent ten years checking people in and watching them leave at sunrise,\" she says. \"I never had anybody who went round the shutters with me at midnight.\" She sits down close beside you, so that her hip is against yours. She smells of bread and woodsmoke. \"You're still here every morning. I've started counting on that. I thought I would tell you, and then I thought I'd show you. The stairs are just there.\""
         }
       },
-      "text": "The guild wagons sit quiet in the yard while rain taps steadily on the inn roof. Bettina folds two warm wool blankets beside the hearth and pours honeyed milk for both of you.\n\n\"Everyone passes through the Wayfarer,\" she laughs softly. \"Glad you decided to stick around, Sam.\"",
+      "text": "It has rained since supper. The guild wagons are standing quiet in the yard under their tarpaulins. The drivers have gone to bed, and the only sounds are the fire and the water in the gutters.\n\nBettina has done the shutters. She comes back to the hearth with two wool blankets over her arm and two mugs of hot milk with honey in it. She gives you one of each.\n\n\"Do you know what an inn is?\" she says, sitting down next to you. \"It's a place people leave. That's the whole trade. They come in off the road and I learn their names and how they take their eggs. In the morning they're gone, and most of them I never see again.\" She blows on her milk. \"I've done it for ten years. I thought I didn't mind.\" She smiles at you, and her laugh lines deepen. \"Everybody passes through the Wayfarer, Sam. You've unpacked. I'm glad of it.\"",
       "choices": [
         {
           "label": "Pull her gently beside you by the fire",
@@ -533,12 +533,12 @@
           "t": 6,
           "m": 8,
           "l": 3,
-          "res": "Bettina laughs softly against your shoulder, warms her palms neatly over yours, and follows you right toward the soft linen upstairs.",
+          "res": "Bettina laughs softly against your shoulder. She takes both your hands between hers to warm them. Then she gets up and leads you to the stairs and the bed with the good linen, the one she has never rented out.",
           "else": {
             "t": 7,
             "m": 8,
             "energy": "full",
-            "res": "You listen to rain and carriage horses stamping softly in the stables until morning mist settles over the road."
+            "res": "You sit with the blankets around your shoulders and listen to the rain. Now and then a horse stamps out in the stables. She tells you which of the drivers snores. Neither of you goes up until there is grey mist over the road, and you can't remember when you last sat so long doing nothing."
           }
         },
         {
@@ -546,7 +546,7 @@
           "t": 5,
           "m": 7,
           "sam": {"charm":1},
-          "res": "She lights up listing coastal markets and orchard inns—and promises to take you along the day you both take a holiday."
+          "res": "She lights up at once. There's a market town on the coast where the boats sell fish straight off the deck. There's an inn in the orchard country that every driver swears by, and she has always wanted to see if it's as good as hers. \"We'll go,\" she says. \"The day we both take a holiday. Mind, I'll be counting their stalls the whole time.\""
         }
       ]
     }
@@ -556,25 +556,25 @@
       "title": "Candle Wax and Confessions",
       "scene": "job_chapel",
       "image": {
-        "comp": "trimming tall beeswax tapers beside a glowing lantern altar, white feathers glowing softly gold, gentle serene smile",
+        "comp": "kneeling on altar steps scraping candle wax with a small knife, gentle amused smile",
         "setting": "quiet stone nave of The Lantern Sanctuary at dusk",
         "sam": true
       },
-      "text": "After the cathedral seal settles in its brass frame above the Sanctuary door, you find Caelia scraping cold tallow off the altar steps with her white halo dialed down to a comfortable warm amber.\n\n\"The high clerics think mercy ought to look cold and pale,\" she smiles softly, brushing golden dust from one feathered wing. \"Funny how twice as many penitents leave lighter on their feet when the chapel stays warm.\"",
+      "text": "The cathedral's seal hangs over the Cloister door now, in a brass frame, where the whole quarter can see it. Caelia polished the frame herself.\n\nThis evening you find her on the altar steps with a blunt knife, scraping up cold candle wax. She has turned her halo down to a low amber, the way you would turn down a lamp in a room where somebody is sleeping. There is gold dust on her feathers from the altar cloth.\n\n\"The high clerics think that mercy ought to look cold,\" she says. \"They want it pale, and a long way off. Preferably it should be standing on a pillar.\" She flicks a curl of wax into the pail. \"I've been reading the envoy's report. He counted. Twice as many people come out of this chapel lighter than go into his, and he can't account for it. He wrote that the room is 'irregularly warm'.\" She laughs. \"He was here two hours, Sam. I'd say he ought to be able to account for it.\"",
       "choices": [
         {
           "label": "Tell her she taught Hollowmere what mercy actually looks like",
           "t": 6,
           "m": 8,
           "sam": {"charm":1},
-          "res": "Her halo pulses bright rose gold for half a second before she laughs lightly. \"Careful—flattery counts as vanity when directed at an angel.\""
+          "res": "You tell her that she has shown Hollowmere what mercy really looks like. Her halo flares rose gold for half a second before she gets it under control. \"Careful,\" she says, laughing. \"Flattery counts as vanity when you aim it at an angel. I shall have to confess it.\" She thinks. \"To myself, I suppose. I'm very lenient.\""
         },
         {
           "label": "Help her swap the brass sanctuary wicks for fresh linen",
           "t": 5,
           "m": 7,
           "grow": {"service":5},
-          "res": "Every candle burns clearer than before, filling the alcove with honeyed beeswax and easy quiet."
+          "res": "You go around the chapel with her and change every brass wick for fresh linen. It takes an hour. When she relights them the flames stand up tall and clear, and the alcove fills with the smell of honey and beeswax. Neither of you says much. It's the easiest hour you have had all week."
         }
       ]
     },
@@ -582,17 +582,17 @@
       "title": "Sanctuary Hours",
       "scene": "portrait",
       "image": {
-        "comp": "seated gracefully on velvet altar cushions wrapped in soft lantern light, bare shoulder peeking past ivory silk, warm inviting gaze",
+        "comp": "seated on velvet cushions behind an altar curtain setting out two small porcelain cups, soft candlelight, warm inviting gaze",
         "setting": "private candlelit vestry behind The Lantern Sanctuary",
         "sam": true
       },
       "byIntim": {
         "2": {
           "scene": "sam_date",
-          "text": "The Sanctuary bell tolls midnight softly down the street. Caelia slips the iron bolt across the vestry door, lets her ivory stole slide off across the lectern, and extends one halo-warmed hand toward you.\n\n\"Confessions take an awful lot of listening all week,\" she whispers warmly, wings rustling lightly behind the candlelight. \"Think the keeper might take care of the priestess tonight?\""
+          "text": "The Cloister bell rings midnight. It's a soft bell, and you can hear the others answer it across the quarter.\n\nCaelia slides the iron bolt on the vestry door. She lifts the ivory stole off her shoulders and lays it over the lectern, and then she turns around. Her halo is the only light in the room. It is turned up warm and gold. Her wings shift and settle behind her.\n\n\"I have listened to forty people today,\" she says. \"I listened to forty yesterday. It does take it out of one.\" She holds a hand out to you. It's warm before you even touch it. \"I have a confession of my own, and it's a selfish one. I should like the keeper of this house to look after its priestess tonight. I want it done slowly, and I want it done thoroughly.\" Her eyes crinkle. \"I'll give you absolution afterward. You're going to need it.\""
         }
       },
-      "text": "The Sanctuary bell tolls midnight softly down the street. Caelia sets out two small porcelain cups behind the velvet altar curtain and curls gracefully onto the cushions.\n\n\"Half the city treats a pleasure house like something to confess on Sundays,\" she murmurs softly. \"I think you proved they're both trying to keep the same dark out.\"",
+      "text": "The Cloister bell rings midnight. It's a soft bell, and you can hear it going from street to street across the quarter as the others answer.\n\nCaelia has set out two small porcelain cups behind the altar curtain, where there are cushions and nobody comes. She pours something warm and spiced that isn't quite wine. Then she sits down beside you with her wings folded, and gives a long sigh.\n\n\"Half this city thinks a pleasure house is a thing you confess on Sunday,\" she says. \"The other half thinks a chapel is where you go to feel bad about Saturday.\" She turns her cup around in her fingers. \"I've kept this one for three hundred years, and I could never make either half see it. They're the same work. Somebody comes in out of the dark, and you're kind to them, and they go out able to carry it a bit longer.\" She leans her shoulder against yours. \"You understood that without being told. I've wondered a good deal who taught you.\"",
       "choices": [
         {
           "label": "Take her offered hand behind the vestry curtain",
@@ -602,12 +602,12 @@
           "t": 6,
           "m": 8,
           "l": 3,
-          "res": "Caelia exhales warmly as your palms slip around her waist, folding soft white feathers around you both in the glow of the vestry lamp.",
+          "res": "You take her hand. Caelia lets out a warm breath as your palms go around her waist. Her wings come forward and fold around you both, and the gold light closes in.",
           "else": {
             "t": 7,
             "m": 8,
             "energy": "full",
-            "res": "You linger under her gentle golden light while midnight bells quiet the ward, waking rested clear down to your bones."
+            "res": "You stay there in her light while the midnight bells go quiet across the ward. She talks a little, about nothing much, and you don't notice yourself falling asleep. You wake at dawn on the cushions with a feather on your sleeve. You feel rested right down to the bone."
           }
         },
         {
@@ -615,7 +615,7 @@
           "t": 5,
           "m": 8,
           "sam": {"wits":1},
-          "res": "She rests her brow lightly against your shoulder in grateful silence—the easiest prayer you have ever been part of."
+          "res": "You sit with her while the candles burn down one after another. Neither of you speaks. After a while she rests her forehead against your shoulder. Her halo dims to a glow, and you realise that this is the nearest you have ever come to praying. It's far easier than you were told it would be."
         }
       ]
     }
@@ -625,25 +625,25 @@
       "title": "Calibration Anomaly",
       "scene": "casual",
       "image": {
-        "comp": "seated at a brass workbench updating a leather calibration notebook, faint cyan optic glow warming to rose gold, curious tender expression",
+        "comp": "seated at a brass workbench with an open leather notebook, one fingertip resting on a line of writing, curious tender expression",
         "setting": "copper-piped maintenance parlor inside The Clockwork Atelier",
         "sam": true
       },
-      "text": "With her old guild collar gone for good, Nadia-6 flips briskly through her diagnostic ledger beside the steam pipes—and pauses frowning delicately at an entire page covered in neat timestamps.\n\n\"Pulse variance, thermal spike at collarbones, thirty-two micro-hesitations around doorway footsteps,\" she reads calmly, blinking pale cyan eyes up at you. \"Every single line traces to your proximity, Sam. My specs call it mechanical drift. I don't think that's accurate.\"",
+      "text": "The guild crest is ash in the bottom of her furnace. Nadia-6 has gone back to work as if nothing had changed. You have noticed, though, that she reviews her diagnostic ledger more often now, as though she no longer quite trusted it.\n\nYou find her at the workbench by the steam pipes with the book open. She has been looking at one page for some time, and the page is full. It holds line after line of timestamps in her printed hand.\n\n\"I have found an anomaly,\" she says. \"Pulse variance. A thermal spike at the collarbone. Thirty-two separate hesitations of under half a second, and every one was logged when I heard footsteps in a doorway.\" She looks up. Her cyan eyes are very wide. \"I cross-referenced them. Every entry on this page coincides with your proximity, Sam. My specifications classify it as mechanical drift.\" She pauses. \"I have been in service for thirty-one years. I know what drift is like, and I don't believe this is drift.\"",
       "choices": [
         {
           "label": "Tell her she's allowed to just like having someone around",
           "t": 6,
           "m": 8,
           "sam": {"charm":1},
-          "res": "Her cheek panels flush bright rose gold cleanly down to her neck. \"Logged under non-error preference,\" Nadia whispers softly."
+          "res": "You tell her that she's allowed to simply like having somebody around. It doesn't have to be a fault. Her cheek panels flush rose gold, and the colour runs all the way down her neck to the filigree. She picks up her pen and makes a small, careful entry. \"Logged,\" she whispers. \"Under 'preference'. I have had to add the column.\""
         },
         {
           "label": "Ask if the old guild manuals ever listed feelings at all",
           "t": 5,
           "m": 7,
           "grow": {"service":5},
-          "res": "\"Only as maintenance flaws,\" Nadia answers quietly, shutting the brass clasp with firm fingers. \"They wrote lousy manuals.\""
+          "res": "\"They listed them only as maintenance flaws,\" Nadia says quietly. \"There is a procedure for correcting them. I have performed it on myself eleven times.\" She closes the ledger and snaps the brass clasp shut. \"I am not going to perform it again. The people who wrote those manuals had never met anyone like you. They were poor manuals.\""
         }
       ]
     },
@@ -658,10 +658,10 @@
       "byIntim": {
         "2": {
           "scene": "sam_date",
-          "text": "Past closing bell the copper conduits drop down to a soft, steady purr across the showcase divan. Nadia-6 closes her ledger completely for once, sets her brass fountain pen in its tray, and reaches gently for your sleeve.\n\n\"For twenty years every touch I measured was entered under a guild lease,\" she says smoothly, optic rings glowing warm amber in the dim room. \"Tonight belongs off record—just you and me, Sam.\""
+          "text": "After the closing bell the conduits in the walls drop to a low, steady purr. Nadia-6 is sitting on the showcase divan with the lantern turned down to amber.\n\nYou watch her shut her ledger. She does up the clasp and puts her pen in its tray, and then she moves the whole thing off the table and onto the floor, out of reach. After that she takes hold of your sleeve.\n\n\"For twenty years, every touch I measured was entered under a guild lease,\" she says. \"I recorded how long it lasted and how hard it pressed, and what the result was.\" The rings of her eyes have warmed from cyan to amber. \"Tonight I have put the book away, and I shall not be recording anything. I wish to find out what it is like when the only person who knows about it is you.\" She draws you down beside her by the sleeve. \"I should say that I may want to repeat the experiment. I expect to want that quite often.\""
         }
       },
-      "text": "Past closing bell the copper conduits drop down to a soft, steady purr across the showcase divan. Nadia-6 turns the brass lantern down to warm amber and rests both warm-skinned hands calmly on her lap.\n\n\"For twenty years every calculation belonged to a patent ledger,\" she says evenly. \"No one else is reading my pages anymore.\"",
+      "text": "After the closing bell the conduits in the walls drop to a low, steady purr. Nadia-6 says that this is the building at rest, and that she finds it companionable.\n\nShe is sitting on the showcase divan with her hands folded in her lap. She has turned the lantern down to amber. Her ledger is on the table beside her, and for once it is shut.\n\n\"For twenty years, every calculation I made was the property of a patent office,\" she says. \"I measured each client's breathing so that the guild could sell the figures. I recorded what pleased them. It was copied out, and it was filed.\" She looks down at her hands. \"I still measure, because I don't know how to stop. But nobody else reads the pages now, and I can write down whatever I like.\" She turns her head toward you. \"Last night I wrote that the hum is more pleasant when you are in the room. I have checked it against the instruments. They don't agree with me, and I find that I don't mind.\"",
       "choices": [
         {
           "label": "Write tonight's page with her off the record",
@@ -671,12 +671,12 @@
           "t": 6,
           "m": 8,
           "l": 3,
-          "res": "Nadia-6 traces the line of your collarbone once with cool, steady precision before leaning forward warmly into your embrace.",
+          "res": "Nadia runs one fingertip along your collarbone, slowly and exactly, like someone drawing a line she means to keep. Then she leans forward into your arms. She is warm, and she has plainly meant to be.",
           "else": {
             "t": 7,
             "m": 8,
             "sam": {"technique":1},
-            "res": "She sits beside you tuning the divan's low resonance by ear until both of you drop off listening to the warm brass hum."
+            "res": "She sits beside you and tunes the divan's resonance by ear, a quarter turn at a time, asking you after each one whether it is better or worse. Somewhere around the twentieth adjustment you both stop answering. You fall asleep there, against her shoulder, with the brass humming under you."
           }
         },
         {
@@ -684,7 +684,7 @@
           "t": 5,
           "m": 7,
           "grow": {"manage":5},
-          "res": "She lifts the china cup meticulously between both hands, eyes crinkling gently at the corner. \"To blank margins, Sam.\""
+          "res": "She lifts the china cup in both hands. She holds it at exactly the angle the etiquette books give, and then she tips it a little off true, because she wants to. The corners of her eyes crinkle. \"To blank margins, Sam,\" she says. \"I have left a great many of them in the new book. I am looking forward to filling them in.\""
         }
       ]
     }

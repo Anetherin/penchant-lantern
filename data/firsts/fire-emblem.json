@@ -95,7 +95,8 @@
           "go": "Stay",
           "goRes": "You slide her robe off her shoulders, settle between her parted thighs, eat her pussy until she shakes, then fuck her slow and deep until dawn without a single prayer spoken.",
           "wait": "\"Are you sure?\"",
-          "waitRes": "\"I am older than most mountains, Sam, and I am certain.\" A tender smile. \"Take the night to be sure—I shall be waiting.\""
+          "waitRes": "\"I am older than most mountains, Sam, and I am certain.\" A tender smile. \"Take the night to be sure—I shall be waiting.\"",
+          "act": "missionary"
         },
         "jump": {
           "title": "Quiet Hour",
@@ -151,7 +152,8 @@
           "go": "Let her examine you",
           "goRes": "Your pulse is, she declares breathlessly while straddling your hips, positively scandalous—and she sinks down onto your cock and rides you for hours as treatment.",
           "wait": "\"Doctor, I'm fine.\"",
-          "waitRes": "\"Doctors hear that every day, and it's always a lie.\" She pats your cheek with a wicked wink. \"Rest tonight, then—I'll check on you later.\""
+          "waitRes": "\"Doctors hear that every day, and it's always a lie.\" She pats your cheek with a wicked wink. \"Rest tonight, then—I'll check on you later.\"",
+          "act": "cowgirl"
         },
         "jump": {
           "title": "Opera Fever",
@@ -207,7 +209,8 @@
           "go": "Welcome her",
           "goRes": "She climbs on and rides your cock with fierce, demanding intensity—and by dawn she's curled purring against your chest, deeply offended at how good it felt.",
           "wait": "\"Think it over more.\"",
-          "waitRes": "\"I have thought—you are the slow one.\" She snorts, brushing her fingers along your arm. \"Do not keep me waiting long.\""
+          "waitRes": "\"I have thought—you are the slow one.\" She snorts, brushing her fingers along your arm. \"Do not keep me waiting long.\"",
+          "act": "cowgirl"
         },
         "jump": {
           "title": "Claw Marks",
@@ -543,7 +546,8 @@
           "go": "Make her yours",
           "goRes": "You lay her back on the pillows and sink your cock deep into her pussy, Tiki wrapping her arms and legs around you with soft, breathless cries that last until morning light.",
           "wait": "\"Are you sure?\"",
-          "waitRes": "\"I have had three thousand years to think it over,\" Tiki laughs softly. \"Come find me tomorrow night.\""
+          "waitRes": "\"I have had three thousand years to think it over,\" Tiki laughs softly. \"Come find me tomorrow night.\"",
+          "act": "missionary"
         },
         "jump": {
           "title": "Wide Awake",
@@ -711,7 +715,8 @@
           "go": "Hold her",
           "goRes": "You lay her gently on the bed and slide your cock into her tight pussy, fucking her with slow, steady warmth until her earnest sighs turn into breathless, crying orgasms in your arms.",
           "wait": "\"Take all the time you want.\"",
-          "waitRes": "\"I have all the time in the world now,\" Lucina whispers, resting her cheek against your chest. \"Thank you, Sam.\""
+          "waitRes": "\"I have all the time in the world now,\" Lucina whispers, resting her cheek against your chest. \"Thank you, Sam.\"",
+          "act": "missionary"
         },
         "jump": {
           "title": "Tactical Directness",

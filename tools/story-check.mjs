@@ -151,6 +151,12 @@ const CHECK = `async () => {
     if (n.role === 'guild' && !ARCS[k]) bad.push('coverage: guild lady ' + k + ' has no arc');
     if ((n.role === 'house' || n.role === 'story') && !AFTER_STORIES[k]) bad.push('coverage: ' + n.role + ' lady ' + k + ' has no after-story');
   }
+  // 5b. firsts: every scene has its four lines, and a named service exists at that scene's stage (firstAct ignores it otherwise)
+  for (const [k, c] of Object.entries(FIRST_CHARS)) for (const [grp, evs] of [['', c.events || {}], ['pent ', c.pent || {}]]) for (const [st, e] of Object.entries(evs)) {
+    const at = 'first ' + k + ' ' + grp + st; look(at + ' text', e.text, true); look(at + ' goRes', e.goRes, true); look(at + ' waitRes', e.waitRes, true);
+    if (e.act && !getActs().some(x => x.id === e.act)) bad.push(at + ': unknown act ' + e.act);
+    else if (e.act && st !== 'jump' && actTier(e.act) !== +st) bad.push(at + ': act ' + e.act + ' is stage ' + actTier(e.act));
+  }
   // 6. walk meetings: every partner met on a walk (first meeting), each hire choice
   for (const k of PARTNERS) {
     fresh(starters[0], PARTNERS.find(x => x !== k)); S.gold = 1e6;

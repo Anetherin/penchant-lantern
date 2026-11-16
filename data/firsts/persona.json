@@ -39,7 +39,8 @@
           "go": "Stay",
           "goRes": "You lay her back amidst the deep-blue sheets and sink your cock slowly into her scorching, tight pussy, Margaret clinging to your shoulders with breathless, unguarded cries until morning.",
           "wait": "\"Are you certain?\"",
-          "waitRes": "\"I am—though I understand if you need certainty too.\" She smiles gently. \"I will keep the tea warm for as long as it takes.\""
+          "waitRes": "\"I am—though I understand if you need certainty too.\" She smiles gently. \"I will keep the tea warm for as long as it takes.\"",
+          "act": "missionary"
         },
         "jump": {
           "title": "Closing Time at the Velvet",
@@ -95,7 +96,8 @@
           "go": "Stay",
           "goRes": "She draws the velvet curtains, drops the silk wrap, and rides your cock with dramatic, breathless passion until the peach lamp burns dry.",
           "wait": "\"You're sure?\"",
-          "waitRes": "\"Darling, I waited eleven years for the right man—I can survive eleven more days.\" She waves a hand. \"Just don't make it eleven years.\""
+          "waitRes": "\"Darling, I waited eleven years for the right man—I can survive eleven more days.\" She waves a hand. \"Just don't make it eleven years.\"",
+          "act": "cowgirl"
         },
         "jump": {
           "title": "Curtain Call Early",
@@ -375,7 +377,8 @@
           "go": "Stay",
           "goRes": "You pull off her nightgown and ease slowly inside her, Kasumi wrapping her flexible legs around your waist with soft, breathless cries—far better than any scripted finale.",
           "wait": "\"Are you sure?\"",
-          "waitRes": "\"I'm sure about you,\" she whispers, bowing slightly. \"Though I'd gladly take a little more rehearsal time.\""
+          "waitRes": "\"I'm sure about you,\" she whispers, bowing slightly. \"Though I'd gladly take a little more rehearsal time.\"",
+          "act": "missionary"
         },
         "jump": {
           "title": "Off Balance",
@@ -431,7 +434,8 @@
           "go": "\"I want.\"",
           "goRes": "She grins triumphantly, straddles your hips, and rides you hard with a breathless, happy laugh—taking full control of the night.",
           "wait": "\"You're sure?\"",
-          "waitRes": "\"Completely sure about me,\" she smiles softly. \"Checking first is exactly why it's you—take your time.\""
+          "waitRes": "\"Completely sure about me,\" she smiles softly. \"Checking first is exactly why it's you—take your time.\"",
+          "act": "cowgirl"
         },
         "jump": {
           "title": "Runway Walk",

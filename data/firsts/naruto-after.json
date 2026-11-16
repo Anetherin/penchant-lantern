@@ -207,7 +207,8 @@
           "go": "Go upstairs",
           "goRes": "What starts out like a wrestling match turns slow, sweaty, and intensely tender—Choko straddling your hips and riding your cock until she collapses onto your chest with a stubborn, satisfied grip.",
           "wait": "\"Only if you're sure.\"",
-          "waitRes": "\"I'm sure, idiot.\" She punches your shoulder lightly, grinning. \"Come find me whenever you're ready.\""
+          "waitRes": "\"I'm sure, idiot.\" She punches your shoulder lightly, grinning. \"Come find me whenever you're ready.\"",
+          "act": "cowgirl"
         },
         "jump": {
           "title": "Dare",
@@ -263,7 +264,8 @@
           "go": "Step aside and let her in",
           "goRes": "You lay her back on the sheets and ease your cock slowly into her pussy, Saya clinging to your shoulders with breathless, startled cries as step three exceeds every calculation.",
           "wait": "\"Slow down. I'm not going anywhere.\"",
-          "waitRes": "\"Of course.\" Saya tucks the paper into her sleeve. \"Protocols can be revised—I'll rewrite it.\""
+          "waitRes": "\"Of course.\" Saya tucks the paper into her sleeve. \"Protocols can be revised—I'll rewrite it.\"",
+          "act": "missionary"
         },
         "jump": {
           "title": "Unscheduled",
@@ -431,7 +433,8 @@
           "go": "Let her stay",
           "goRes": "The most polished woman in the house comes completely undone beneath you as you fuck her, crying out your name as she cums without a single rehearsed line before falling asleep against your chest.",
           "wait": "\"Are you sure? There's no rush.\"",
-          "waitRes": "\"There's nothing to rush for,\" Maki smiles softly, lingering at the door. \"Ask me again soon.\""
+          "waitRes": "\"There's nothing to rush for,\" Maki smiles softly, lingering at the door. \"Ask me again soon.\"",
+          "act": "missionary"
         },
         "jump": {
           "title": "Off Script",
@@ -543,7 +546,8 @@
           "go": "Tell her she is beautiful",
           "goRes": "You tell her she's breathtaking, lay her back amidst the river of twilight hair, and fuck her slowly, your cock deep in her pussy—anchor her so thoroughly she never vanishes.",
           "wait": "\"You don't have to do this tonight.\"",
-          "waitRes": "\"I know,\" Yori whispers, leaving the cloak hung on its peg. \"I just wanted you to finally see me.\""
+          "waitRes": "\"I know,\" Yori whispers, leaving the cloak hung on its peg. \"I just wanted you to finally see me.\"",
+          "act": "missionary"
         },
         "jump": {
           "title": "Quiet Thunder",
@@ -655,7 +659,8 @@
           "go": "Stay",
           "goRes": "The frost vanishes from the windowpane as you slide your cock into her pussy, the Ice Princess arching beneath you with soft, unguarded cries before falling asleep pressed tight against your chest.",
           "wait": "\"You don't have to be strong in here.\"",
-          "waitRes": "\"Don't tell me what I have to do,\" Yukine mutters, voice trembling with fondness. \"Another night—don't forget.\""
+          "waitRes": "\"Don't tell me what I have to do,\" Yukine mutters, voice trembling with fondness. \"Another night—don't forget.\"",
+          "act": "missionary"
         },
         "jump": {
           "title": "Sharp Tongue",
@@ -991,7 +996,8 @@
           "go": "Take her hand",
           "goRes": "She leads you to her mattress, stripping away her dress and spreading her legs for your cock, arching beneath you as you fuck her with soft, breathless gasps—and to her pride, not a single doll moves.",
           "wait": "\"Tell me it's not just the coat.\"",
-          "waitRes": "\"It isn't the coat,\" Marina laughs delightedly. \"Ask me again soon.\""
+          "waitRes": "\"It isn't the coat,\" Marina laughs delightedly. \"Ask me again soon.\"",
+          "act": "missionary"
         },
         "jump": {
           "title": "Loose Thread",
@@ -1103,7 +1109,8 @@
           "go": "Stay",
           "goRes": "You slide beneath the sheet and push your cock slowly into her pussy, the cool, unflappable spirit arching beneath you with breathless, unguarded gasps all night.",
           "wait": "\"Are you sure you want this?\"",
-          "waitRes": "\"Don't make me answer twice,\" Kamiko replies dryly—\"though yes. I'll wait. Briefly.\""
+          "waitRes": "\"Don't make me answer twice,\" Kamiko replies dryly—\"though yes. I'll wait. Briefly.\"",
+          "act": "missionary"
         },
         "jump": {
           "title": "Unflappable, Mostly",

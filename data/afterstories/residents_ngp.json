@@ -4,25 +4,25 @@
       "title": "Tethered Clouds",
       "scene": "job_bartender",
       "image": {
-        "comp": "perched casually on a cliffside ship rail adjusting brass wind goggles, dragon tail swaying in sunset breeze, bright carefree grin",
+        "comp": "crouched on a ship's quarterdeck above the clouds fitting a wooden bench into place with a spanner in one hand, bright carefree grin",
         "setting": "open-air cliffside quarterdeck bar of The Skyhook Tavern",
         "sam": true
       },
-      "text": "After that impossible sunset flight around the harbor, half the cliffside taverns keep staring up at the Skyhook's rigging waiting for Rinna to cast off again for good—yet here she is hammering an extra bench straight onto the quarterdeck.\n\n\"Tobbin asked when I'm selling the place and flying south,\" she chuckles, spinning a brass spanner across her thumb. \"Told him the clouds don't have decent rum or a boss crazy enough to fly a tavern with me.\"",
+      "text": "The whole of the Cliffside Docks watched the old ship go up that evening. Since then every tavern on the moorings has been waiting to see her cast off for good. There's a book running on it. The favourite is 'before the autumn gales'.\n\nSo it surprises people to see what Rinna is doing this morning. She is up on the quarterdeck with a spanner and a mouthful of bolts, and she is fixing a bench to the planking. It's a long bench for customers, and it faces the view.\n\n\"Tobbin asked me when I'm selling up and flying south,\" she says around the bolts. She spits one into her palm and drives it home. \"I told him I flew for sixty years, and I never had a home port. There wasn't one to come back to.\" She sits back on her heels and spins the spanner over her thumb. Her tail is swinging. \"There's no decent rum up in the clouds. And there's no boss up there mad enough to fly a tavern with me. I checked.\"",
       "choices": [
         {
           "label": "Promise her a flight day whenever the skies clear",
           "t": 6,
           "m": 8,
           "sam": {"charm":1},
-          "res": "Rinna's dragon tail thumps solidly against the hull boards. \"Hold you to that, cap'n!\""
+          "res": "You promise her a flight day, whenever the sky is clear and the bar can spare her. Her tail thumps the hull boards hard enough to shake the bench. \"I'll hold you to that, captain-on-paper,\" she says. \"First clear morning. You're taking the wheel for the landing, too. It's time you learned what your own building does.\""
         },
         {
           "label": "Help her anchor the storm awning before gale season",
           "t": 5,
           "m": 7,
           "grow": {"bar":5},
-          "res": "Thirty minutes of knotted rigging and sailor profanity later, the deck bar looks windproof enough to ride out a hurricane."
+          "res": "The two of you rig the storm awning over the deck bar before the gales come. It takes half an hour, a great deal of knotted line, and every piece of sailor's language she knows. When it's done she hangs her full weight off the ridge rope to test it. It doesn't move. \"There,\" she says. \"She'll ride out a hurricane. So will the rum.\""
         }
       ]
     },
@@ -30,17 +30,17 @@
       "title": "Harbor Horizon",
       "scene": "casual",
       "image": {
-        "comp": "leaning side-by-side against the captain's taffrail at midnight sharing cloud-rum from one bottle, warm teasing dragon-eyed smile",
+        "comp": "leaning on a ship's taffrail at midnight holding out an uncorked bottle, lanterns swinging overhead, warm teasing smile",
         "setting": "starlit cliffside deck of The Skyhook above harbor lights",
         "sam": true
       },
       "byIntim": {
         "2": {
           "scene": "sam_date",
-          "text": "Lanterns swing slowly on hemp lines above the quarterdeck while harbor fog rolls softly under the hull. Rinna pulls the cork out of her best spiced bottle with her teeth and tosses you a warm look over one bare shoulder.\n\n\"Sixty years hauling crates through sleet,\" she purrs smoothly, sliding into your space beside the wheel. \"Best haul I ever docked was right on these cliffs, boss.\""
+          "text": "The lanterns are swinging on their lines above the quarterdeck. The fog has come in under the hull, so that the Skyhook seems to be floating on it. The bar closed an hour ago.\n\nRinna pulls the cork out of her best bottle with her teeth and spits it over the rail. Her tricorn is hanging on the binnacle. Her shirt has slipped off one sun-brown shoulder, and she hasn't pulled it back up.\n\n\"I hauled crates through sleet for sixty years,\" she says. She comes around the wheel and stands very close to you, and her tail curls around the back of your knee. \"There was brandy and silk, and other people's gold. Once it was a whole brass band.\" Her slit pupils have gone wide in the lantern light. \"The best cargo I ever landed walked up that gangway by itself, in a grey hoodie, with a deed in its hand. The captain's bunk is right below us, boss. I checked the ropes on it this morning.\""
         }
       },
-      "text": "Lanterns swing slowly on hemp lines above the quarterdeck while harbor fog rolls softly under the hull. Rinna passes her spiced bottle cleanly across the wheel.\n\n\"Sixty years chasing horizons,\" she smiles easily under the twin moons. \"Funny how the anchorage turned out to be the part worth keeping.\"",
+      "text": "The lanterns are swinging on their lines above the quarterdeck. The fog has come in under the hull, so that the Skyhook seems to be floating on it. The bar closed an hour ago.\n\nRinna is leaning on the wheel. She has a bottle of the spiced rum, and she passes it to you across the spokes without wiping the neck.\n\n\"I chased horizons for sixty years,\" she says. \"You know what happens when you reach one? There's another. You'd think someone would have warned me.\" She takes the bottle back and drinks. \"I used to feel sorry for harbour folk. I'd see the same faces on the same dock every time I came in, and I'd think, you poor bastards.\" She looks down the length of the deck at the benches and the awning and the lantern on the bowsprit. \"It's a funny thing. The anchorage was the part worth keeping. I had to run aground to find that out.\"",
       "choices": [
         {
           "label": "Take her below to the captain's bunk",
@@ -50,15 +50,20 @@
           "t": 6,
           "m": 8,
           "l": 3,
-          "res": "Rinna hooks two claws lightly under your chin, grinning wickedly as she walks you straight backward down the cabin stair.",
-          "else": {"t":7,"m":8,"energy":"full","res":"You watch the night freighters drift silently across the cove until sunrise paints the sails pink."}
+          "res": "Rinna hooks two claws under your chin, very lightly. She grins and walks you backward across the deck and down the cabin stair, and she doesn't once look where she's going.",
+          "else": {
+            "t": 7,
+            "m": 8,
+            "energy": "full",
+            "res": "You stand at the rail together and watch the night freighters cross the cove with their lamps lit. She names each ship by its rigging and tells you what it's really carrying. Neither of you goes below. When the sun comes up it turns the fog pink, and she takes off her hat to look at it."
+          }
         },
         {
           "label": "Challenge her to a tally of tall tales till dawn",
           "t": 5,
           "m": 7,
           "sam": {"wits":1},
-          "res": "Every third story includes a different sea monster—and every single dent in the deck mysteriously changes origin before breakfast."
+          "res": "You trade tall tales until dawn and keep a tally on the deck in chalk. Every third story of hers has a sea monster in it, and it's a different one each time. By breakfast every dent in the hull has two new explanations. You have lost by eleven, and you don't believe a word of it."
         }
       ]
     }
@@ -72,21 +77,21 @@
         "setting": "quiet iridescent cavern hall inside The Pearl Grotto",
         "sam": true
       },
-      "text": "True to her word, Maris starts sneaking out up the coast road once a week now that the Drowned Bell sleeps cleanly beneath the waves—returning every dusk with wildflowers, spruce cones, or strange mountain stones lined along the jade bath rim.\n\n\"Three centuries of hearing sea tide and stone echoes,\" she sighs softly, drifting her fingers across pine needles. \"I had forgotten dirt could smell this loud.\"",
+      "text": "Maris goes out once a week now. She takes the harbour stair in the morning and the coast road after it, and she comes back at dusk.\n\nShe never says where she has been. She doesn't need to, because she brings it back with her. There's a row of things along the rim of the jade pool. It has grown every week since the Bell went quiet: wildflowers in a cup, a spruce cone, three grey stones from a streambed, and a feather.\n\nTonight she has a branch of pine. She is kneeling at the pool's edge, running the needles through her fingers and holding them up to her face.\n\n\"I had three centuries of tide and stone,\" she says. \"That was everything I could hear, and everything I could smell.\" She breathes in. \"I had forgotten that earth could be so loud. There was a field today that had a smell, Sam. The whole field did. I stood in it until a farmer asked whether I was unwell.\"",
       "choices": [
         {
           "label": "Offer to hike the ridge trail with her next off-day",
           "t": 6,
           "m": 8,
           "sam": {"charm":1},
-          "res": "Her pale sea-glass eyes brighten unmistakably through the mist. \"Hold that promise, land-dweller. I want to see the tops of the cedars.\""
+          "res": "You offer to walk the ridge trail with her on her next day out. Her silver eyes brighten, and it shows even through the steam. \"I shall hold you to that,\" she says. \"I want to see the tops of the cedars. I have only ever seen the roots, where they come down through the rock. I should like to know what they've been doing up there.\""
         },
         {
           "label": "Steep one of her mountain herbs into the warm side pool",
           "t": 5,
           "m": 8,
           "grow": {"service":5},
-          "res": "Pine and salt steam swirl cleanly across the marble hall—regulars start asking about \"the Grotto's miracle air\" before nightfall."
+          "res": "You steep a handful of her mountain herbs in the warm side pool. Pine and salt go up together in the steam and drift across the whole cave. By nightfall the regulars are asking what has been done to the air. Maris tells each of them something different, and none of it is true. She seems to be enjoying herself a great deal."
         }
       ]
     },
@@ -94,17 +99,17 @@
       "title": "Silent Tide",
       "scene": "bath",
       "image": {
-        "comp": "gliding gently waist-deep in glowing turquoise cavern water beneath soft pearl light, wet silver hair clinging to bare shoulders",
+        "comp": "floating on her back in a glowing sea-cave pool under soft pearl light, long wet hair fanned out on the water, serene contented smile",
         "setting": "lantern-lit private turquoise tide pool inside The Pearl Grotto",
         "sam": true
       },
       "byIntim": {
         "2": {
           "scene": "bath_invite",
-          "text": "The Grotto's luminous pearls glow low pearl-blue above the midnight tide pool. Maris rises smoothly through warm turquoise water right beside the marble stair, wet hair clinging smoothly along bare shoulders.\n\n\"Not a single bell ringing in the dark,\" she murmurs against the quiet lap of water, holding one warm palm out across the surface. \"Come float with me awhile, Sam—no bargains required.\""
+          "text": "The pearls have dimmed themselves for the night. They glow a low blue over the tide pool, and the Grotto is so quiet that you can hear the water moving against the stone.\n\nMaris comes up out of it right beside the marble stair where you are standing. The water runs off her bare shoulders and down between her tits. Her wet hair clings to her all the way to the waist. She doesn't reach for the cloth on the step.\n\n\"There's no bell,\" she says softly. \"I have been listening for an hour, to be sure. There is nothing ringing anywhere in the dark.\" She holds out her hand to you across the water, palm up. \"I kept watch in this pool for three hundred years, Sam. I should like to be in it for another reason tonight. Come in. There is no bargain, and the sea wants nothing for it. I do. I would rather show you what.\""
         }
       },
-      "text": "The Grotto's luminous pearls glow low pearl-blue above the midnight tide pool while Maris floats calmly along the surface, listening to nothing louder than water against stone.\n\n\"Funny how freeing it is to stay somewhere only because you choose the lock on the door,\" she whispers warmly.",
+      "text": "The pearls have dimmed themselves for the night. They glow a low blue over the tide pool, and the Grotto is so quiet that you can hear the water moving against the stone.\n\nMaris is floating on her back in the middle of it. Her sea-green hair has spread out around her. Her eyes are closed.\n\nShe knows you are there. She always does.\n\n\"I used to listen for it,\" she says. \"I listened every night for three hundred years, in case the Bell stirred. I would lie in the water like this, and I wasn't resting. I was keeping watch.\" She opens her eyes and looks up at the roof. \"There's nothing down there now. I can leave by that stair whenever I like, and I do. I come back down it every evening.\" She turns her head on the water and looks at you. \"It is a different thing to stay in a place when you are the one who holds the key. I hadn't known how different it would be.\"",
       "choices": [
         {
           "label": "Slip down into the warm glowing pool beside her",
@@ -114,12 +119,12 @@
           "t": 6,
           "m": 8,
           "l": 3,
-          "res": "Warm salt water surges gently around your ribs as Maris glides straight against your chest, lips warm and unhurried against yours.",
+          "res": "You go down the steps. The warm salt water comes up around your ribs, and Maris glides in against your chest. She puts her mouth on yours and takes her time.",
           "else": {
             "t": 7,
             "m": 8,
             "energy": "full",
-            "res": "You rest along the shallow warm stone listening to the gentle cavern tide until every tired muscle lets go completely."
+            "res": "You lie back on the warm shelf of stone in the shallows and listen to the tide moving in the cave. She floats nearby. Neither of you speaks. Every tired muscle you have lets go, one after another, and when you wake the pearls are bright again and it is morning."
           }
         },
         {
@@ -127,7 +132,7 @@
           "t": 5,
           "m": 7,
           "sam": {"wits":1},
-          "res": "For the first time, she tells one story about her past that stays exactly the same from start to finish—and smiles softly when you catch it."
+          "res": "You sit with your feet in the water and trade histories. You tell her about a city with no stars. She tells you one story about her past, and for the first time it stays the same from beginning to end. You catch it, and she sees that you have. She smiles down at the pool. \"That one I shall only tell you,\" she says."
         }
       ]
     }
@@ -141,21 +146,21 @@
         "setting": "newly rebuilt timber gallery of Ironwood Hall",
         "sam": true
       },
-      "text": "Every sealed wing in Ironwood Hall is open and steaming cleanly, yet you still catch Brynna out in the upper corridor at dawn planing down one sticky parlor door hinge with a heavy steel rasp.\n\n\"Syndicates treated this hall like kindling,\" she grunts cleanly, testing the latch once until it clicks with dead-flat precision. \"Feels right, hearing timber settle under folks who actually mend what cracks.\"",
+      "text": "There isn't a sealed wing left in Ironwood Hall. Every room is open and warm and paying for itself. As far as anyone else can see, the work is done.\n\nYou find Brynna in the upper corridor at dawn anyway. She has one of the parlor doors off its hinges and laid across two trestles, and she is taking a steel rasp to the edge of it. It was sticking. It stuck by about the thickness of a playing card, and you'd never have noticed. She did, and it has been bothering her for a week.\n\nShe rehangs it and swings it. It shuts with a flat, soft click.\n\n\"Three syndicates treated this hall like kindling,\" she says. \"If a thing cracked, they nailed a board over it and raised the rent.\" She swings the door once more and listens. \"It's a good sound, timber settling under folk who mend what breaks. I didn't expect to hear it again in my lifetime, and I've a long one.\"",
       "choices": [
         {
           "label": "Hand her a fresh brass handle for the final suite",
           "t": 6,
           "m": 8,
           "sam": {"technique":1},
-          "res": "Brynna checks the weight approvingly, drives the screws home cleanly, and nods once. \"Best boss this hall's seen in three decades.\""
+          "res": "You hand her the brass handle for the last suite. She weighs it in her palm, grunts her approval, and drives the screws home in four turns each. Then she nods to you, once. \"Best boss this hall's had in thirty years,\" she says. \"That's not much of a compliment, mind. You've seen what the others were like.\""
         },
         {
           "label": "Tell her she doesn't have to carry every hammer alone now",
           "t": 5,
           "m": 7,
           "grow": {"combat":4},
-          "res": "She scoffs under her breath, then leans her shoulder briefly against yours. \"Maybe. Just keep folks' boots off my fresh varnish.\""
+          "res": "You tell her that she doesn't have to carry every hammer herself any more. Brynna snorts. Then, for about a second, she leans her shoulder against yours. It's like being leaned on by a wall. \"Maybe,\" she says. \"I'll think on it. Just you keep folk's boots off my varnish while I do.\""
         }
       ]
     },
@@ -170,10 +175,10 @@
       "byIntim": {
         "2": {
           "scene": "sam_date",
-          "text": "Warm cedar steam purrs smoothly out of the cellar boiler while rain hammers the tin eaves overhead. Brynna drops her tool belt onto the hearth rug with a heavy leather thud and unbuttons two thick collar studs.\n\n\"Good wood holds when pressure hits,\" she rumbles softly, catching your gaze across the firelight. \"Same goes for good company, boss.\""
+          "text": "Rain is hammering on the tin of the eaves. Down in the cellar the old dwarven boiler is ticking over, and the whole room is warm and smells of cedar.\n\nBrynna unbuckles her tool belt and lets it drop on the hearth rug. It lands heavily. Her carpenter's apron follows it. Then she undoes the top two studs of her collar with one thick finger, and she watches you while she does it.\n\n\"Good timber holds when the weight comes on,\" she says. Her voice is low. \"It doesn't creak about it and it doesn't shift. You can't tell which wood will do that until you've loaded it.\" She sits down on the wool rug by the stove and looks up at you across the firelight. \"I've loaded you a fair bit this year, boss, and you've held. Come down here. I've had my hands on this hall all season, and I'd like to put them on something else.\""
         }
       },
-      "text": "Warm cedar steam purrs smoothly out of the cellar boiler while rain hammers the tin eaves overhead. Brynna wipes oak dust cleanly off her knuckles and slides a heavy pewter mug of mulled cider your way.\n\n\"First roof I ever nailed shut stayed yours through winter,\" she says gruffly, looking almost shy about it. \"Worth every splinter.\"",
+      "text": "Rain is hammering on the tin of the eaves. Down in the cellar the old dwarven boiler is ticking over, and the whole room is warm and smells of cedar.\n\nBrynna has finished for the day. She wipes the oak dust off her knuckles with a rag, pours two pewter mugs of mulled cider from the pan on the stove, and pushes one along the bench to you. She doesn't say anything for a while. She is not much of a talker, and you've learned to wait.\n\n\"I've built a fair few things,\" she says in the end. She is looking at the boiler and not at you. \"There were mills and bridges, and I did the roof of half this row. I'd finish, and somebody else would move in, and I'd go.\" She turns the mug around in her hands. \"This is the first roof I ever nailed down and then stopped under. It was yours all winter, and it was mine as well.\" Her ears have gone red. \"It was worth every splinter. That's all I wanted to say.\"",
       "choices": [
         {
           "label": "Pull up close beside her by the warm stove",
@@ -183,12 +188,12 @@
           "t": 6,
           "m": 8,
           "l": 3,
-          "res": "Brynna laughs low in her chest, strong calloused palms gripping your hoodie hard as she draws you right onto the heavy wool rug.",
+          "res": "Brynna laughs, low in her chest. She gets a fistful of your hoodie in each hard hand and pulls you down onto the rug beside her.",
           "else": {
             "t": 7,
             "m": 8,
             "energy": "full",
-            "res": "You stretch out beside the cast-iron stove swapping dry carpenter jokes until morning sunlight dries the porch planks."
+            "res": "You stretch out on the bench by the stove and swap carpenter's jokes. Hers are very dry, and they are mostly about masons. You don't understand most of them. She laughs at all of yours anyway, and by the time the rain stops the sun is drying the porch boards."
           }
         },
         {
@@ -196,7 +201,7 @@
           "t": 6,
           "m": 8,
           "sam": {"strength":1},
-          "res": "She groans deeply in shameless relief and mutters, \"Fine. Maybe those soft city hands have some use after all.\""
+          "res": "You take her forearm in both hands and dig your thumbs into the muscle. It is like kneading a ship's cable. She groans out loud, with no shame at all, and her head tips back against the wall. \"Fine,\" she mutters. \"I'll grant that those soft city hands are good for something. Do the other one.\""
         }
       ]
     }
@@ -206,25 +211,25 @@
       "title": "Secret Blends",
       "scene": "job_host",
       "image": {
-        "comp": "measuring amber resin drops into tiny labeled glass vials beneath hanging orchids, four fluffy fox tails swaying mischievously",
+        "comp": "measuring drops of amber oil into tiny labelled glass vials under hanging orchids, glancing up with a sly half-lidded smile",
         "setting": "sunlit apothecary potting bench inside The Glass Conservatory",
         "sam": true
       },
-      "text": "Morning sun turns the glasshouse mist warm gold as Maren bottles the first batch of moon-orchid oil—tucking one plain corked vial straight into your shirt pocket while your hands hold two brass bowls.\n\n\"Not for the parlor censers,\" she purrs softly, bright fox ears tilting toward your chin. \"Called 'quiet night.' Keeps your pulse steadier when the whole town tries working you ragged.\"",
+      "text": "The morning sun is coming through the fogged glass and turning the mist in the Conservatory to gold. Maren is at her workbench under the orchids with a row of tiny vials and a glass dropper. She is bottling the first of the dusk-orchid oil.\n\nShe has you holding two brass bowls. You can't put either of them down. She knows that perfectly well.\n\nShe corks one plain vial without a label, steps in close, and tucks it into your shirt pocket. She leaves her fingers there a moment longer than she needs to. Her ears tilt forward.\n\n\"That one isn't for the censers,\" she says in her low voice. \"I made it for you. I call it 'quiet night'. It has cedar in it, and a little jasmine, and one thing I'm not going to tell you.\" She pats the pocket. \"It keeps the pulse steady. This whole town has been working you ragged, Sam, and I've watched it. Somebody ought to look after the gardener.\"",
       "choices": [
         {
           "label": "Ask her to test a drop right on your wrist",
           "t": 6,
           "m": 8,
           "l": 2,
-          "res": "Cedar, night jasmine, and warm skin smoke curls between your faces as Maren smiles slowly against your knuckles. \"Worked already, didn't it?\""
+          "res": "You ask her to try it on you. She takes your wrist, turns it over, and puts a single drop on the pulse. It smells of cedar and night jasmine and warm skin. Maren bends her head over it, and you feel her smile against your knuckles. \"There,\" she murmurs. \"It worked already, didn't it? You've stopped holding your breath.\""
         },
         {
           "label": "Offer to label the Spice Guild reserve crates with her",
           "t": 5,
           "m": 7,
           "grow": {"manage":5},
-          "res": "She hands you her finest quill and spends an hour inventing delightfully scandalous names for every new jar."
+          "res": "She hands you her best quill, and the two of you label the reserve crates for the Spice Guild. She spends the whole hour making up names for the new blends. Each is more scandalous than the last, and she watches your ears while she reads them out. Three of them go on the jars. You will have to explain them to customers."
         }
       ]
     },
@@ -232,17 +237,17 @@
       "title": "Under Glass",
       "scene": "casual",
       "image": {
-        "comp": "curled lazily across a velvet glasshouse chaise under twin moonlight, silky tails fanned around her hips, languid seductive eyes",
+        "comp": "curled lazily along a velvet chaise under a moonlit glass dome, beckoning with one hand, languid inviting eyes",
         "setting": "midnight moonlit dome of The Glass Conservatory with glowing hanging censers",
         "sam": true
       },
       "byIntim": {
         "2": {
           "scene": "sam_date",
-          "text": "Twin moons glaze the arched glass silver while the dusk-orchid censers coil warm spice low across the floor. Maren lounges across a deep crimson chaise with her four sleek tails curled cleanly around bare calves.\n\n\"Glass keeps every scent inside, remember?\" she teases softly, holding up a ribbon between two fingers. \"Door's latched, Sam. Breathe deep.\""
+          "text": "Both moons are up, and the arched glass overhead has gone silver. The censers are burning low, and their smoke lies along the floor in thin gold layers.\n\nMaren is stretched out on the crimson chaise. Her dress is undone down the front, and she is lying on her side, with her tail curled over her bare calves. She is holding up a ribbon between two fingers. It's the one off the door. She has taken the 'open' sign down.\n\n\"The glass keeps every scent in. Do you remember?\" she says. \"I've had 'quiet night' in the censers for an hour. It's the strong one. I didn't make it to steady anything.\" The tip of her tail flicks. Her amber eyes have gone dark, and her ears are pricked forward. \"The door's latched, Sam. Breathe in, and then come here. I've been waiting on this chaise since sunset, and foxes aren't patient.\""
         }
       },
-      "text": "Twin moons glaze the arched glass silver while the dusk-orchid censers coil warm spice low across the floor. Maren beckons you lazily onto the velvet chaise beside the fountain.\n\n\"Most owners treat a parlor like gold coins and locks,\" she murmurs softly. \"You actually watered the orchids. Don't think I didn't notice.\"",
+      "text": "Both moons are up, and the arched glass overhead has gone silver. The censers are burning low. Their smoke lies along the floor in thin gold layers and curls when you walk through it.\n\nMaren is on the velvet chaise by the fountain with her shoes off. She beckons you over lazily. You sit, and she lays her tail across your knees as if it were a blanket.\n\n\"I've been thinking about owners,\" she says. \"I've known a few. To most of them a house like this is so many coins with a lock on the door. They can tell you what a suite earns in a night, and they've never once sat in it.\" She tips her head back to look at the orchids hanging over you. \"You watered those. It was in your first week, when nobody had asked you to, and you got it wrong. I had to go round after you.\" Her eyes slide over to yours, half shut. \"Don't think I didn't notice, Sam. I notice everything that grows.\"",
       "choices": [
         {
           "label": "Join her on the velvet chaise beneath the glass dome",
@@ -252,12 +257,12 @@
           "t": 6,
           "m": 8,
           "l": 4,
-          "res": "Soft fox tails brush lightly over your wrists before Maren pulls your tie straight down toward warm jasmine-scented skin.",
+          "res": "Her tail brushes over your wrists, soft and warm. Then Maren takes hold of the front of your shirt and pulls you down toward her. Her skin smells of jasmine.",
           "else": {
             "t": 7,
             "m": 8,
             "sam": {"charm":1},
-            "res": "\"Good gardens deserve tending,\" you smile easily. She drapes one light tail over your knee and hums warmly beneath the moonlight."
+            "res": "\"A good garden deserves tending,\" you say. Maren hums, pleased, and settles her tail more comfortably across your knee. She stays like that for the rest of the evening, warm against your side, naming the orchids for you one by one in a voice that could put a whole city to sleep."
           }
         },
         {
@@ -265,7 +270,7 @@
           "t": 5,
           "m": 8,
           "energy": "full",
-          "res": "Sweet warm air unknots every muscle until the stars pale cleanly above the glass panels."
+          "res": "You drink plum tea and watch the mist gather on the inside of the dome and run down in slow lines. She tells you which plants are asleep and which are only pretending. The warm, sweet air undoes every knot in your back, one at a time. You are still there when the stars go pale above the glass."
         }
       ]
     }
@@ -279,21 +284,21 @@
         "setting": "quiet candlelit lecture salon at The Velvet Lyceum",
         "sam": true
       },
-      "text": "With the Academy board eating out of her palm and half the upper avenue jostling for evening invitations, Vivienne finally lays down a folded evaluation card stamped with the Lyceum's own red wax.\n\n\"Posture: still borderline slouching,\" she reads crisply without glancing up from her spectacles. \"Judgment under fire, fairness to staff, and capacity to silence three pompous governors before midnight: exemplary. Consider yourself graduated, Sam.\"",
+      "text": "The Academy board has stopped writing letters. Half of Academy Square is angling for an invitation to the next soirée. Vivienne has not said a word about any of it.\n\nThis afternoon she sends for you. She is sitting on the corner of the lectern in the empty hall with a pen in her hand, and she has a card in front of her. It is a folded evaluation card, the kind she fills in for the staff every month. This one is sealed in the Lyceum's own red wax.\n\nYour name is on the front.\n\n\"Posture,\" she reads, without looking up from her spectacles. \"Still slouches. This is marginal, and I have noted it before.\" She turns the card over. \"Judgment under pressure. Fairness to staff. Ability to silence three pompous governors before the wine was finished.\" She caps her pen. \"Exemplary, in each case. I do not use that word often.\" Her grey eyes come up to yours. \"You may consider yourself graduated, Sam. I confess that I didn't expect it.\"",
       "choices": [
         {
           "label": "Ask what extra-credit seminar comes next",
           "t": 6,
           "m": 8,
           "l": 2,
-          "res": "She taps the edge of the velvet blotter softly with her riding crop, eyes glinting warmly. \"Careful, Mr. Takahashi. Private tuition carries steeper demands.\""
+          "res": "You ask what the extra-credit seminar is. Vivienne taps her riding crop once against the edge of the blotter. Her eyes glint. \"Do be careful, Mr. Takahashi,\" she says. \"Private tuition is a good deal more demanding than the general course. I set the reading myself. I have never yet had a student finish it.\""
         },
         {
-          "label": "Frame the wax-sealed card cleanly above the salon door",
+          "label": "Frame the wax-sealed card above the salon door",
           "t": 5,
           "m": 7,
           "sam": {"business":1},
-          "res": "Vivienne lets out one rare, genuine laugh behind her gloved hand. \"Absurd man. Leave it where every patron sees it.\""
+          "res": "You have the card framed and hung over the salon door, wax seal and all, where every patron walks under it. Vivienne looks up at it. Then she laughs, behind her hand. It's a real laugh, and it lasts one breath. You have never heard it before. \"Absurd man,\" she says. \"Leave it there. Let them all see what my standards produce.\""
         }
       ]
     },
@@ -301,17 +306,17 @@
       "title": "After Seminar",
       "scene": "casual",
       "image": {
-        "comp": "standing beside tall gilded parlor mirrors unpinning her dark chignon, rimless spectacles resting on the table, cool intimate composure",
+        "comp": "standing beside tall gilded mirrors setting her spectacles down next to a brandy decanter, cool composure with a hint of warmth",
         "setting": "private velvet mirror suite at The Velvet Lyceum at night",
         "sam": true
       },
       "byIntim": {
         "2": {
           "scene": "sam_date",
-          "text": "Candlelight repeats softly down four gilded mirrors after the last carriage pulls cleanly out of the courtyard. Vivienne sets her rimless spectacles neatly beside the brandy decanter and lets her dark chignon spill loose over warm bare shoulders.\n\n\"No students, no noble callers, no syllabus,\" she murmurs, cool composure melting into slow wicked warmth. \"Lock the door, Sam.\""
+          "text": "The last carriage has gone out of the courtyard. The candles in the mirror suite are burning down, and each one is repeated four times in the gilded glass.\n\nVivienne takes off her spectacles and sets them down beside the brandy decanter. Then she reaches up and draws the pins out of her chignon, one after another, and lays them in a row. Her dark hair comes down over her bare shoulders. You see it in all four mirrors at once.\n\n\"There are no students,\" she says. \"There are no callers, and there isn't a syllabus.\" The cool voice is the same, but it is slower and lower than usual. She turns to face you, and she is smiling. It is a wicked smile, and she has never let it out in the lecture hall. \"I have been composed for fourteen hours, Sam. I am very tired of it. Lock the door. Then come here and help me to stop.\""
         }
       },
-      "text": "Candlelight repeats softly down four gilded mirrors after the last carriage pulls cleanly out of the courtyard. Vivienne sets her rimless spectacles neatly beside the brandy decanter.\n\n\"I left high society expecting common coin and stiff manners,\" she reflects smoothly. \"You turned this academy into something far sharper.\"",
+      "text": "The last carriage has gone out of the courtyard. The candles in the mirror suite are burning down, and each one is repeated four times in the gilded glass.\n\nVivienne takes off her spectacles and sets them down beside the brandy decanter. She pinches the bridge of her nose. It is the first time you have seen her look tired, and she has allowed you to see it.\n\n\"I should tell you why I left,\" she says. \"I was very good at my work. I taught the daughters of this city to pour tea and say nothing. It took me eight years to understand that I was training them to be furniture.\" She pours two glasses and gives you one. \"I came here expecting common coin and coarse manners. I thought I would be the sharpest thing in the building.\" She almost smiles. \"You have made it into a place where a woman is paid to be clever. I had not thought that could be done. I was wrong, and I dislike that. I wanted you to know.\"",
       "choices": [
         {
           "label": "Lock the gilded mirror suite behind you",
@@ -321,12 +326,12 @@
           "t": 6,
           "m": 8,
           "l": 4,
-          "res": "Vivienne catches your tie slowly between polished fingers, guiding you backward right onto the deep velvet divan before the mirror.",
+          "res": "You lock the door. Vivienne takes your collar between two fingers and walks you backward, a step at a time, until the backs of your knees meet the velvet divan in front of the mirror.",
           "else": {
             "t": 7,
             "m": 8,
             "sam": {"charm":1},
-            "res": "\"Good faculty sets the tone,\" you answer, handing her a glass of warm brandy. She touches her rim cleanly to yours. \"Always, Sam.\""
+            "res": "\"Good faculty sets the tone,\" you tell her, and hand her back her glass. Vivienne looks at you for a moment without her spectacles. Then she touches the rim of her glass to yours. \"Always, Sam,\" she says. It is the warmest you have ever heard her."
           }
         },
         {
@@ -334,7 +339,7 @@
           "t": 5,
           "m": 7,
           "grow": {"manage":5},
-          "res": "Even off the clock her wit stays razor-keen, turning an empty salon into the liveliest hour of your week."
+          "res": "You leave the pace of the evening to her, and she is good at setting one. She pours the old plum wine and takes the soirée apart for you, guest by guest. She is wickedly accurate, and you laugh until your ribs hurt. With her in it, an empty salon turns into the liveliest hour of your week."
         }
       ]
     }
