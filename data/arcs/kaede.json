@@ -5,22 +5,22 @@
       "scene": "sam_date",
       "text": "Kaede hauls you up the ladder to the roof with two bottles of wine she very obviously did not pay for. The glass is still cold and sweating from the cellar. The tiles have kept the day's warmth, chimney smoke drifts across the stars, and somewhere below a late client is singing badly on his way home.\n\nShe pulls the first cork with her teeth and drinks before she passes it over.\n\n\"We were called the Copper Foxes,\" she says to the rooftops. \"Four of us. When the floor went in that dungeon, our leader was the first one out, and he didn't look back to count.\" Her tail thumps the tiles once. \"I learned to check my own corners after that. Then a skinny guy in a hoodie throws himself in front of a crossbow for me, and I've known him about nine seconds.\"\n\nShe bumps your shoulder with hers.\n\n\"Idiot.\"\n\nShe doesn't move away afterward. Her tail settles lightly around your ankle.",
       "ngpp": [
-        "Halfway through popping the cork, she pauses squinting at the bottle label as though it tastes like another rooftop altogether.",
-        "\"Weird question, Sam—have we ever sat up here drinking cheaper vintage than this? Felt like my tail found your boot on muscle memory.\"",
-        "She doesn't even pretend it's casual this time, hooking her tail squarely behind your ankle. \"Don't ask me how I knew you like sitting by the east chimney, Sam. Just pour.\""
+        "She stops with the cork half out and stares at the label. For a second her ears tilt as if she's heard this exact pop before, on some other roof. \"Huh,\" she says. She shakes it off and drinks.",
+        "\"Weird question, Sam. Have we sat up here before? Drinking cheaper stuff than this?\" Her tail has already found your boot and hooked around the ankle, like it knows the way. She frowns at it. She doesn't move it.",
+        "She doesn't pretend it's casual this time. Her tail goes straight behind your ankle. \"Don't ask me how I know you like the east chimney, Sam. I do. We've done this. I don't know how many times. Just pour.\""
       ],
       "choices": [
         {
           "label": "Stay on the roof with her",
           "t": 5,
           "m": 8,
-          "res": "You find the bottle in your hand somehow empty and the stars somehow lower. Kaede's tail never unwinds from your ankle, and neither of you points it out."
+          "res": "You stay. The second bottle goes the way of the first, and the stars seem to come down a little. She tells you about the friend who didn't make it out, and you don't say anything clever. Her tail never unwinds from your ankle. Neither of you points it out, and when she finally climbs down she does it backwards, so she can keep looking at you."
         },
         {
           "label": "Pass the conversation back to her wine",
           "t": 1,
           "m": 2,
-          "res": "{N} snorts into the bottle and lets you off the hook. Her tail still sneaks one lazy swish against your leg as you climb down."
+          "res": "You ask whether the wine is any good and point at the label. {N} snorts into the neck of the bottle, and you can see her shoulders loosen as she lets you change the subject. She rates the vintage a six, then a seven, then argues with herself about it. Her tail still sneaks one lazy swish against your leg as you both climb down."
         }
       ],
       "image": {
@@ -46,14 +46,14 @@
               "l": 3,
               "private": true,
               "acts": ["massage_give","kiss"],
-              "res": "Kaede lets the towel slip to her waist with a shaky breath as your warm, soapy palms knead down her bare shoulder blades—until she spins around in the mist, grabs your collar, and pulls your mouth straight onto hers.",
-              "fallbackRes": "Her fox tail thumps against the wet wood as your warm palms work along her shoulders until she leans back shivering softly against your chest."
+              "res": "You take the soap and kneel behind her on the wet boards. She lets the towel drop to her waist and blows out a shaky breath. Your slick palms work down her bare shoulder blades, over the old scar, and the knot under it finally gives. She spins around in the steam, grabs your collar and pulls your mouth onto hers.",
+              "fallbackRes": "You work the knot out of her shoulder with your thumbs, slow and steady, until the muscle goes soft under the soap. Her tail thumps against the wet wood twice and then goes still. She leans back against your chest, eyes shut, and stays there with her wet hair on your shirt. Neither of you says anything. It's enough."
             },
             {
               "label": "Hand her a fresh towel and give her space",
               "t": 2,
               "m": 3,
-              "res": "\"Gentleman tonight, huh?\" She smirks as she catches the linen, tail curling warmly around your wrist for one lingering second."
+              "res": "You hand her a fresh towel and look at the wall. \"Gentleman tonight, huh?\" she says. She takes it, and you hear her rubbing her hair dry behind you. When you glance back, her grin is crooked and pleased, and her tail has curled around your wrist. It stays there a long, lingering second before she lets go."
             }
           ]
         },
@@ -69,7 +69,7 @@
               "l": 4,
               "private": true,
               "acts": ["cowgirl","missionary","oral_give"],
-              "res": "You kick your boots off fast and slide into the steaming water across from her—before Kaede climbs straight over your lap with a fierce, wicked grin, sinking down onto your cock until hot bathwater sloshes clean over the rim."
+              "res": "You lock the bolt, kick your boots off and get in with your clothes half on. Water slops over the rim. Kaede doesn't wait for you to settle. She climbs over your lap with a wicked grin, her wet tits against your shirt and her hands already at your belt. Her tail slaps the water behind her, and she kisses you hard."
             },
             {
               "label": "Tease her and wash her back first",
@@ -78,7 +78,7 @@
               "l": 2,
               "private": true,
               "acts": ["kiss","massage_give","manual_give"],
-              "res": "You kneel beside the tub rubbing warm lather across her shoulders and breasts until she groans, twists around, and drags your wet shirt straight toward the water."
+              "res": "You kneel beside the tub and rub lather across her shoulders, down her back, then around the front over her tits. She groans. She tries to keep the grin going and doesn't manage it. When she twists around, the water runs off her arms, and she drags your wet shirt toward the tub with both fists, still laughing at you."
             }
           ]
         }
@@ -88,7 +88,7 @@
           "label": "Apologize and bolt",
           "t": 1,
           "m": -2,
-          "res": "Kaede laughs about it for ten straight minutes. Through the door. Loudly enough that the whole corridor learns what happened, and at dinner she toasts you with a spoon."
+          "res": "You back out and apologize to the door. Kaede laughs for ten minutes. She does it through the wood and loudly enough that the whole corridor learns what happened. At dinner she toasts you with a spoon, and every time you look up she is watching you with her ears pricked and her tail swinging, very pleased with herself."
         },
         {
           "label": "Compliment her",
@@ -96,18 +96,18 @@
           "t": 2,
           "m": 6,
           "l": 3,
-          "res": "She grins, tail slowly settling, and doesn't bother holding the towel very hard. \"Smooth, Sam. Real smooth.\" The warmth in her voice outlasts the steam.",
+          "res": "You tell her she looks good, and you mean it. She grins, and her tail slowly settles. She doesn't hold the towel very hard. \"Smooth, Sam. Real smooth.\" She takes her time looking you over in return, from boots to hair, and her voice drops when she says it. The warmth in it outlasts the steam.",
           "else": {
             "t": -2,
             "m": -4,
-            "res": "\"GET OUT.\" The towel hits you square in the face, still warm and smelling of her soap, and the door slams hard enough to rattle the hinges."
+            "res": "\"GET OUT.\" The towel hits you square in the face. It's still warm and smells of her soap. The door slams behind you hard enough to rattle the hinges, and you hear her swear on the other side, then a thump that might be the stool. You'll be apologizing for this one for a few days."
           }
         },
         {
           "label": "Stand there like an idiot",
           "m": 3,
           "l": 2,
-          "res": "\"Take a picture, it lasts longer.\" You have no idea how she knows that phrase, but she is smirking when she says it, tail fluffed with pride rather than panic."
+          "res": "You stand there and say nothing at all. \"Take a picture, it lasts longer,\" she says. You have no idea how she knows that phrase, but she is smirking when she says it. Her tail is fluffed with pride, not panic. She lets you look a few seconds longer before she throws the soap at your head."
         }
       ],
       "image": {
@@ -130,19 +130,19 @@
           "l": 3,
           "private": true,
           "acts": ["missionary","oral_give","kiss"],
-          "res": "The moment you tie off the linen, Kaede catches your collar with her good hand and tumbles back across the mattress, pulling you down with her tail tight around your waist."
+          "res": "You tie off the linen, and Kaede catches your collar with her good hand before you can sit back. She tips over onto the mattress and pulls you down with her, her tail tight around your waist and her bandaged fist braced beside your head. She is grinning and out of breath, and she kisses you before you can ask if her hand hurts."
         },
         {
           "label": "Finish the bandage slowly",
           "t": 5,
           "m": 8,
-          "res": "You take your time over the knot, and she lets you, eyes on your hands instead of the wall. Her tail stops pretending it's accidental."
+          "res": "You take your time over the knot. She lets you, with her eyes on your hands instead of the wall. When it's done you smooth the edge flat with your thumb, and she turns her hand over and looks at it as if it belongs to someone else. Her tail stops pretending to be an accident. It wraps around your wrist and stays."
         },
         {
           "label": "Tie it off and tease her about sparring",
           "t": 1,
           "m": 2,
-          "res": "\"For fun,\" you repeat, deadpan. {N} flicks your ear for it, but her laugh is soft and she stays seated a minute longer than she needs to."
+          "res": "\"For fun,\" you repeat, deadpan, and pull the knot tight. {N} flicks your ear for it. Then she laughs, low and a little rough, and she doesn't get up. She sits on the edge of your bed a minute longer than she needs to and bumps her knee against yours. Her tail slides across your forearm once, back and forth."
         }
       ],
       "image": {
@@ -156,28 +156,28 @@
       "scene": "portrait",
       "text": "Kaede's old party leader turns up at the bar on a wet night in dungeon-stained leathers, with the smell of rain and old smoke coming in behind him. He's handsome in a worn way, and he smiles like a man who has always been forgiven.\n\nHe has a new contract. It's a deep delve with a real payout, and there's a place in it for a scout who knows how he works. He says the Foxes should never have broken up, and he doesn't say whose fault that was.\n\nThe common room goes quiet. Somebody sets a mug down very carefully.\n\nKaede doesn't look at him. She's behind the bar with a rag in her fist, and she looks at you. Her ears are pinned flat. Her fingers start drumming on the counter, the way they do when she's counting something.\n\nShe isn't asking your permission. She has decided to find out what you'll say.",
       "ngpp": [
-        "When the scarred adventurer steps up to the bar, Kaede flashes an odd, almost impatient look—like she has already told this man no in another life.",
-        "\"Why does it feel like he always walks in wearing the same muddy boots?\" Kaede mutters sideways to you, ears pinned tight while waiting on your word.",
-        "Kaede doesn't even wait for the captain to finish his pitch before sliding closer to your elbow. \"Same answer as always, Sam. Just say the word.\""
+        "The scarred adventurer steps up to the bar, and Kaede gives him an odd, impatient look. It's as if she has already told this man no, and was hoping he wouldn't make her do it twice.",
+        "\"Why does it feel like he always walks in wearing the same muddy boots?\" she mutters, out of the side of her mouth. Her ears are pinned. She's waiting for you to say the word, and she knows what it will be.",
+        "She doesn't let the captain finish his pitch. She slides along the bar until her shoulder is against your elbow. \"Same answer as always, Sam. I've given it before. Just say the word, and I'll give it again.\""
       ],
       "choices": [
         {
           "label": "\"Go, if it's what you want.\"",
           "t": 4,
           "m": -4,
-          "res": "She stays. Later she grumbles into her cup: \"You weren't supposed to make it easy.\" But she sits close all night."
+          "res": "\"Go, if it's what you want,\" you say. You mean it, and it costs you. Kaede's ears drop. She stays. Later she mutters into her cup, \"You weren't supposed to make it easy.\" She doesn't look at you while she says it. But she sits close the rest of the night, hip to hip, and her tail stays on your side of the bench."
         },
         {
           "label": "\"Stay. Please.\"",
           "t": 6,
           "m": 6,
-          "res": "Kaede turns the leader down without even looking at him, and the ex-captain leaves with his ears burning. Her tail slaps your leg twice under the bar, hard, happy."
+          "res": "\"Stay. Please.\" She turns the leader down without looking at him, and he leaves with his ears burning and his contract folded back into his coat. The common room breathes out. Under the bar her tail slaps your leg twice, hard, happy. She wipes down the same patch of counter for a full minute so nobody will see her face."
         },
         {
           "label": "Say nothing",
           "t": -6,
           "m": -10,
-          "res": "She leaves for two days without a word. When she comes back, she doesn't mention it. Neither do you. It sits between you for a while, like a bill nobody wants to read."
+          "res": "You say nothing. The old captain waits, and so does the room, and you let it run out. Kaede puts the rag down and leaves for two days without a word. When she comes back she doesn't mention it, and neither do you. It sits between you for a while, like a bill nobody wants to read, and her tail stays down."
         }
       ],
       "image": {
@@ -201,13 +201,13 @@
           "sam": {"strength":1},
           "t": 3,
           "m": 6,
-          "res": "By the end of the night you make one jump cleanly. She cheers loud enough to wake the whole street, and a shutter bangs open below you both. Neither of you cares."
+          "res": "You keep trying. You slip, scrape both palms and hit a gutter with your knee. Near midnight you finally clear a gap cleanly. Kaede cheers loud enough to wake the whole street, and a shutter bangs open below you both. Neither of you cares. She hauls you in by the hood and rubs your hair flat, grinning, and says that is two out of fifty."
         },
         {
           "label": "Fake a sprained ankle so she carries you",
           "m": 8,
           "l": 2,
-          "res": "She sees right through it, ears twitching with delight. She carries you anyway, the whole way home, over her shoulder and grumbling that you weigh nothing."
+          "res": "You grab your ankle and groan. She sees through it at once, and her ears twitch with delight. She carries you anyway, the whole way home, over her shoulder like a sack of flour, grumbling that you weigh nothing. You can feel her laughing through her ribs. She doesn't put you down until the kitchen door, and then she does it slowly."
         },
         {
           "label": "Duck through the attic skylight together into the empty loft",
@@ -217,7 +217,7 @@
           "l": 3,
           "private": true,
           "acts": ["cowgirl","oral_give","kiss"],
-          "res": "Kaede drops cleanly down through the skylight onto piled spare blankets, grinning wide as she tugs your collar straight after her."
+          "res": "Kaede drops through the skylight onto a pile of spare blankets and looks up at you with a grin. Then she hooks a finger into your collar and tugs you in after her. You land half on top of her. Dust floats in the moonlight. She pulls your hoodie up over your head and kisses you, breathing hard, her tail already around your thigh."
         }
       ],
       "image": {
@@ -231,9 +231,9 @@
       "scene": "final",
       "text": "After closing, Kaede corners you in the kitchen. The stove is ticking as it cools and one lamp is burning low. She has a stack of bar receipts in her hand, the ones with the tally on the backs, and she drops them on the table between you.\n\nShe drums her fingers on them. She stops, and starts again.\n\n\"I'm bad at this, so I'll just say it.\" Her ears are red to the tips. \"I kept the ledger so I'd know when I was allowed to leave. I stopped adding it up a while ago. I'm not going anywhere, Sam. Not for the money, and not because I owe you. For you.\"\n\nHer tail won't stop wagging, and she glares at it.\n\nThen she takes your hand, pulls you toward the stairs, and doesn't let go of it until the bedroom door is shut behind you both.",
       "ngpp": [
-        "Even as she pulls you toward the stairs, she laughs breathlessly—like she's waited through more than one quiet kitchen to finally lock this door.",
-        "\"Don't laugh, Sam, I swear I've stood by this exact stove blushing my tail off before,\" she murmurs, fingers squeezing yours tight.",
-        "\"Forget whatever got scrubbed off the calendar, Sam,\" Kaede whispers fierce and bright against your throat. \"Every cycle ends with me backing you into this room.\""
+        "She laughs as she pulls you toward the stairs, breathless and a little puzzled. It feels like she's waited through more than one quiet kitchen to finally get to lock this door, and she can't say why.",
+        "\"Don't laugh, Sam. I swear I've stood by this exact stove blushing my tail off before.\" Her fingers squeeze yours tight. She looks at the stove, then at you, as if one of them should explain it.",
+        "\"Forget whatever got scrubbed off the calendar,\" she whispers, against your throat. \"I know it happened. Every time, it ends with me backing you into this room. I'm done pretending I don't remember.\""
       ],
       "goLead": "Kaede pushes the bedroom door shut with her heel and wraps both arms straight around your neck, her copper tail tangling behind your thighs as she kisses you fiercely.",
       "choices": [
@@ -243,7 +243,7 @@
           "t": 1,
           "m": -3,
           "hold": true,
-          "res": "{N} nods too fast. \"I can wait. Don't make it too long.\" Her tail droops, then perks up again, stubborn."
+          "res": "{N} nods too fast. \"I can wait. Don't make it too long.\" Her tail droops, then perks up again, stubborn. She squares the stack of receipts and tucks it under her arm. At the door she points at you, ears still red. \"Soon, Sam.\" She sounds almost angry about it."
         }
       ]
     }

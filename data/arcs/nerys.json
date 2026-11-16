@@ -5,22 +5,22 @@
       "scene": "sam_date",
       "text": "Nerys finds you alone in the lounge with the debt schedule and announces, at impressive volume, that this has to stop.\n\n\"The contract carries your moods to me. I didn't write that part. It sits right here,\" she says, and jabs two fingers under her own ribs, \"like a cold draft through a clause somebody forgot to close. It is deeply inconvenient. Stop having gloomy thoughts immediately.\"\n\nYou tell her it doesn't work that way. Her tail lashes the cushion. She paces to the window, comes back, and reads you the relevant paragraph of the contract, which doesn't help her case.\n\nThen she gives up. She drops onto the settee beside you with her thigh against yours, folds both wings tight around her shoulders and stares straight ahead.\n\n\"I'm staying here until it stops,\" she says. \"Purely for my own comfort. Smile whenever you're ready.\"",
       "ngpp": [
-        "Mid-scowl, she blinks down at your wrist as though confused why curling her tail around your ankle felt automatic.",
-        "\"Honestly, Sam—why do I feel like we've sat on this exact lumpy sofa negotiating feelings already?\"",
-        "\"Spare me the stoic act,\" Nerys murmurs, hooking her tail firmly around your ankle without pretending otherwise. \"I don't care which cycle wrote the fine print, I hate seeing you grim.\""
+        "She is scowling mid-sentence, and stops. She looks down at where her tail has curled around your ankle, as if it did that without asking her. It felt automatic. She can't think why.",
+        "\"Honestly, Sam, why do I feel like we've sat on this exact lumpy sofa negotiating feelings already?\" She frowns at the cushion, then at you. \"You tell me. You look as if you know the answer.\"",
+        "\"Spare me the stoic act,\" Nerys murmurs. She hooks her tail round your ankle and doesn't pretend otherwise. \"I don't care which cycle wrote the fine print. I have sat here before and I hated seeing you grim then too.\""
       ],
       "choices": [
         {
           "label": "Let her sit there and stay quiet",
           "t": 5,
           "m": 8,
-          "res": "You sit in silence long enough for the candles to gutter. She keeps muttering that she's only doing this for her own comfort. Her tail wraps lightly around your ankle."
+          "res": "You sit and say nothing. The candles gutter. She keeps muttering that she's only doing this for her own comfort, and you let her. After a while the muttering stops. Her tail wraps around your ankle, loose at first, then tighter. Through the contract you feel something in her unclench, and you know she feels you notice. She doesn't move her leg away."
         },
         {
           "label": "Tell her sadness is non-negotiable",
           "t": 1,
           "m": 2,
-          "res": "\"Read the fine print,\" you say. {N} narrows her magenta eyes, sniffs, and stays exactly where she is, tail twitching in what might be amusement."
+          "res": "\"Read the fine print,\" you say. \"Sadness is non-negotiable.\" {N} narrows her magenta eyes and sniffs. She doesn't leave. She sits there with her wings folded and her tail twitching in what might be amusement, and she tells you the clause you quoted doesn't exist. She says it twice. She also doesn't ask you to stop."
         }
       ],
       "image": {
@@ -44,13 +44,13 @@
               "l": 2,
               "private": true,
               "acts": ["kiss","massage_give"],
-              "res": "She arches smoothly into your hands as steam curls around her wings."
+              "res": "You step up to the tub and she tilts her chin, collecting her toll before you can offer it. Her wet hands slide up your chest and into your collar. She arches into you, wings spread over the rim, and steam curls around you both. \"Admission paid,\" she murmurs against your mouth. \"Now we discuss the rest of the evening.\""
             },
             {
               "label": "Leave her a dry towel and a promise for later",
               "t": 2,
               "m": 4,
-              "res": "\"Tease,\" she mutters softly, tail flicking lazily back into the foam."
+              "res": "You leave a dry towel on the stool and a promise on the air. \"Later,\" you say. \"Properly.\" She watches you go with one eyebrow up. \"Tease,\" she mutters. Her tail flicks back into the foam, lazy and pleased. Through the contract you feel her turn the word over, and the heat of it follows you down the corridor."
             }
           ]
         },
@@ -66,7 +66,7 @@
               "l": 4,
               "private": true,
               "acts": ["cowgirl","oral_give","missionary"],
-              "res": "She hooks her tail straight around your belt and hauls you half-dressed over the wood rim until you shed everything and sink right between her parted thighs in the steaming water."
+              "res": "You shut the door and step in. Nerys hooks her tail around your belt and hauls you half dressed over the cedar rim. Hot water soaks your trousers. She pulls your shirt over your head herself, wet hands on your chest, and spreads her thighs around your hips. \"Every clause,\" she reminds you, and bites your lip. She isn't joking."
             },
             {
               "label": "Tease her slowly with soap and warm water",
@@ -75,7 +75,7 @@
               "l": 2,
               "private": true,
               "acts": ["massage_give","manual_give"],
-              "res": "You glide soapy hands slowly across her breasts and wings until Nerys shivers hard, arching up into your palms with breathless impatience."
+              "res": "You take the soap and start at her shoulders. She tips her head back against the rim as your lathered hands slide down her collarbone, across her tits, along the leathery edge of one wing. Nerys shivers hard. Her breath comes short and impatient. \"Darling,\" she says, to the ceiling, \"you are being thorough on purpose.\" You are."
             }
           ]
         }
@@ -85,18 +85,18 @@
           "label": "Leave politely",
           "t": 3,
           "m": -3,
-          "res": "She looks almost disappointed. Almost. The tail tip stills, then goes back to circles as the door shuts, unmistakably sulky."
+          "res": "You say you'll go, and you hold the door a moment so she can see you mean it. She looks almost disappointed. Almost. The tail tip stills, then goes back to circles on the water. You hear the wine glass clink after the latch falls. Through the contract her sulk is plain, and so is the warmth under it."
         },
         {
           "label": "Call her bluff and sit down on the stool",
           "l": 3,
           "m": 8,
-          "res": "For once, SHE is the one who goes red, the blue-tinted skin of her cheeks darkening to plum. She recovers quickly. Mostly. Her wings give her away with a small, flustered rustle."
+          "res": "You pull the stool over and sit down, an arm's length from the tub. Nerys goes red. The blue-tinted skin of her cheeks darkens to plum. She recovers quickly. Mostly. She reaches for the wine and nearly knocks it over, and her wings give her away with a small, flustered rustle. She asks how long you intend to stay. You say a while."
         },
         {
           "label": "Toss her a towel",
           "m": 2,
-          "res": "She catches it with her tail and drapes it over your head instead. \"Amateur,\" she says, but she is smiling at the water."
+          "res": "You toss her a towel. She catches it with her tail and drops it over your head instead. \"Amateur,\" she says, and sinks lower in the water so only her horns and her eyes show above the foam. She is smiling at the surface. Through the contract you can feel she isn't sorry you came in, and she knows you can feel it too."
         }
       ],
       "image": {
@@ -119,19 +119,19 @@
           "l": 4,
           "private": true,
           "acts": ["missionary","oral_give"],
-          "res": "You walk straight back with the dog-eared novel open in one hand. Nerys goes bright plum to the tips of her horns, snaps the book out of your fingers, and shoves you flat onto the velvet cushions to prove she doesn't take notes lightly."
+          "res": "You walk back with the dog-eared novel open in one hand, thumb on chapter seven. Nerys goes plum to the tips of her horns and snaps the book out of your fingers. \"Not so fast. The passage has footnotes.\" She shoves you onto the velvet cushions to prove she doesn't take notes lightly, straddles your hips, and pins your wrists with a grin full of fang."
         },
         {
           "label": "Read the dog-eared page and find her",
           "t": 5,
           "m": 8,
-          "res": "The page is, frankly, upsetting for a man of your experience. You find her anyway and say nothing; she studies the ceiling with enormous interest, tail curling round the chair leg."
+          "res": "You read the page. It is, frankly, upsetting for a man of your experience. You find her anyway and say nothing. She studies the ceiling with enormous interest, tail curled round the chair leg. After a minute she asks if the author got the details right. You say some of them. She nods once, writes it down, and does not look at you again."
         },
         {
           "label": "Return it with a thoughtful review",
           "t": 1,
           "m": 2,
-          "res": "You return it with a detailed critique of the pacing, as is tradition. {N} looks mortified, then argues about the ending until midnight."
+          "res": "You return the book with a detailed critique of the pacing, as is tradition. {N} looks mortified, then argues about the ending until midnight. She wants the heroine to win by contract law. You say it's a romance, not a trial. She says it is both. By the end she's laughing, and she keeps the book on her pillow."
         }
       ],
       "image": {
@@ -145,27 +145,27 @@
       "scene": "portrait",
       "text": "A demon noble comes through Hollowmere with a retinue and takes the best table in the lounge. He knows Nerys. He greets her by an old title, and then he looks from her to you and laughs.\n\n\"Leashed to a human,\" he says, loudly enough for the room. His smile is as smooth as polished brass. \"And such a small one. Did you lose a wager, or have you simply gotten tired?\"\n\nShe laughs it off. Her chin is high and one wing flicks, and she says something cutting about his tailor. Everyone thinks she's won.\n\nBut you felt it land. For the first time the contract runs the other way, and something cold comes through it and sits under your own ribs.\n\nThat night she snaps at you over nothing: a misplaced quill, a draft, the way you breathe. The contract hums between you like a wire pulled too tight. She won't look at it, and she won't look at you.",
       "ngpp": [
-        "When the brass-voiced demon steps inside, Nerys freezes halfway through turning a glass—like she remembers throwing a smug idiot out of this exact lounge before.",
-        "\"Tell me we've humiliated a pompous bastard like him already, Sam,\" Nerys mutters quietly behind her hand, wings twitching with phantom certainty.",
-        "Nerys doesn't even rise to the bait alone this time; she hooks a sharp glance straight to you across the room. \"Go on, darling. Remind me how well you ruin an arrogant fool's evening.\""
+        "When the brass-voiced demon steps inside, Nerys freezes halfway through turning a glass. Her wings twitch. It's the look of a woman who has thrown a smug fool out of this lounge before, and can't think when.",
+        "\"Tell me we've humiliated a pompous bastard like him already, Sam,\" she mutters behind her hand. Her wings are twitching with certainty. \"I can taste the tailor jokes before I say them. I've said them.\"",
+        "Nerys doesn't take the bait alone. She flicks a sharp glance across the room to you. \"Go on, darling. Remind me how you ruin an arrogant fool's evening. I know you did. I only forgot the details.\""
       ],
       "choices": [
         {
           "label": "Defend her, publicly, the next day",
           "t": 6,
           "m": 6,
-          "res": "You have the demon noble thrown out, politely and with witnesses. Nerys pretends not to care. Her tail gives her away, wrapped around your wrist for the rest of the evening."
+          "res": "You have the noble shown out the next day, politely, with witnesses, and his bill paid in full. Nerys pretends not to care. She tells you it was an unnecessary expense. Her tail gives her away, wrapped around your wrist for the rest of the evening. Through the contract the cold finally lifts from under your ribs."
         },
         {
           "label": "Let her handle it",
           "m": -4,
-          "res": "She does, loudly, in three languages and with a surprising amount of cutlery. Then she sulks for days, wings drawn up around her like a cloak."
+          "res": "You let her handle it. She does, loudly, in three languages and with a surprising amount of cutlery. The noble leaves with his dignity in pieces. Then she sulks for days, wings drawn up around her like a cloak, and doesn't say why. Through the contract it feels like she expected you to step in and you didn't."
         },
         {
           "label": "Offer to break the contract",
           "t": -8,
           "m": -12,
-          "res": "She goes very still. \"You want me gone?\" Her voice is dangerously even. It takes you a long, miserable hour to fix that, and a promise you don't intend to break."
+          "res": "You offer to break the contract. She goes very still. \"You want me gone?\" Her voice is dangerously even. The wire between you pulls so tight it hurts. It takes a long, miserable hour to fix, and a promise you don't intend to break. She tells you the next time you want her gone, to say it plainly."
         }
       ],
       "image": {
@@ -188,13 +188,13 @@
           "label": "Eat everything she hands you",
           "m": 9,
           "t": 2,
-          "res": "One glowing skewer turns your earlobes faintly neon for an hour while street vendors salute you as a patron saint. Nerys laughs so hard she has to brace both hands on your shoulders."
+          "res": "You eat all of it. One glowing skewer turns your earlobes neon for an hour, and the street vendors salute you as a patron saint. Nerys laughs so hard she has to brace both hands on your shoulders. \"Nobody eats all of it,\" she says, wiping her eyes. She keeps your sleeve in her fist for the walk home."
         },
         {
           "label": "Buy her a hair ribbon",
           "t": 4,
           "m": 6,
-          "res": "She inspects the silk between two sharp claws like minor contraband—then wears it wound neatly through her violet locks or hooked round a horn every morning after."
+          "res": "You buy the ribbon, a plain length of dark violet silk. She inspects it between two sharp claws like contraband and says it is overpriced. Then she winds it through her hair, on the spot, and checks it in a polished tray. She wears it hooked round a horn every morning after, and never explains."
         },
         {
           "label": "Pull her into the quiet archway for dessert",
@@ -204,7 +204,7 @@
           "l": 3,
           "private": true,
           "acts": ["oral_give","cowgirl","kiss"],
-          "res": "\"Greedy mortal,\" Nerys purrs with delighted fangs flashing against your jaw as she backs you straight against the warm alley brick."
+          "res": "\"Greedy mortal,\" Nerys purrs, fangs flashing against your jaw. She backs you into the warm brick of the archway and her wings close around you both. Her hands go under your shirt, and she kisses you hard enough to make you forget the crowd. Through the contract she feels every beat of it, and she smiles against your mouth."
         }
       ],
       "image": {
@@ -218,9 +218,9 @@
       "scene": "final",
       "text": "A demon scholar in ink-black robes arrives with a satchel and a solution. He has found the flaw in clause fourteen. He can dissolve the contract by sundown, with no penalty to either party. He spreads the paperwork across the lounge table with a flourish and offers Nerys his pen.\n\nShe reads every page. Then she tears them in half, one at a time, and hands him back the pieces.\n\nWhen he's gone, the two of you are alone in the empty lounge. She looks at the candles. She looks at the ceiling, and at her own claws.\n\n\"I found the loophole myself, months ago,\" she says. \"I didn't use it. I'll keep the contract. I've grown attached.\" The word costs her something. \"I spent two centuries arranging what other people want, Sam, and I was careful never to want anything myself. It turns out I'm bad at it. I want you, and I have no terms to offer.\"\n\nThen she looks straight at you and stops pretending.",
       "ngpp": [
-        "Even tearing up the scholar's parchment feels oddly familiar—like she's already chosen you over hell's lawyers once before.",
-        "\"Don't smirk like you knew I'd rip it, Sam,\" she mutters softly as the scholar retreats, though her tail already coils behind your belt.",
-        "\"Let the heavens or the underworld keep resetting the ink,\" Nerys purrs against your mouth. \"I'm never signing away from you, darling.\""
+        "She tears the scholar's pages in half and stops, holding the pieces. It feels familiar, as if she has chosen you over hell's lawyers before. She doesn't know where from. She just knows she would again.",
+        "\"Don't smirk like you knew I'd rip it, Sam,\" she mutters as the scholar retreats. Her tail is already coiled behind your belt. \"Fine. I think I did know. Don't make anything of it.\"",
+        "\"Let heaven or the underworld keep resetting the ink,\" Nerys purrs against your mouth. \"I remember enough. I'm never signing away from you, darling. Not in this life, and not in any of the ones I forgot.\""
       ],
       "goLead": "Nerys closes the distance in two strides. Her wings sweep shut around you both, she catches your lower lip between her teeth, and she walks you backward toward the velvet cushions.",
       "choices": [
@@ -230,7 +230,7 @@
           "t": 1,
           "m": -3,
           "hold": true,
-          "res": "{N} lifts one eyebrow. \"I can wait. Don't make it too long.\" Her tail flicks once, a clause left open, and she leaves the torn paper on your desk."
+          "res": "{N} lifts one eyebrow. \"I can wait. Don't make it too long.\" Her tail flicks once, a clause left open. She squares the torn paper into a neat pile on your desk. At the door she says, \"Soon, darling,\" in the voice she uses for a deal already signed."
         }
       ]
     }
