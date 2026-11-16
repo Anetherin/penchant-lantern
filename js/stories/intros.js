@@ -12,6 +12,7 @@ function introNgppTier(w){
 function introFill(txt, ctx){
   return String(txt||'').replace(/\{(\w+)\}/g, (m,k)=> ctx[k]!==undefined ? String(ctx[k]) : m);
 }
+const introGoddessAfter = (title, text) => text ? () => gScene(title, text, 'portrait', 'Continue', runQueue) : undefined;
 function introHouseEvent(h, w, opts={}){
   if(!h) return null;
   const D = HOUSES[h.id] || {}, HI = (GOD && GOD.houseIntros && GOD.houseIntros[h.id]) || {};
@@ -21,7 +22,7 @@ function introHouseEvent(h, w, opts={}){
   const tier = w ? introNgppTier(w) : -1;
   const memLine = tier >= 0 && Array.isArray(HI.ngpp) && HI.ngpp[tier] ? `\n\n${introFill(HI.ngpp[tier], ctx)}` : '';
   const openPage = HI.arrival ? introFill(opts.alreadyHired ? (HI.reopen || HI.arrival) : HI.arrival, ctx) : `You step across the threshold of ${h.name} in ${ctx.loc}.`;
-  const godAside = opts.purchased ? goddessHouseNote(h.id).trim() : (!G().left && D.goddess ? gtxt(D.goddess, ctx) : '');
+  const godNote = opts.purchased ? goddessHouseNote(h.id).trim() : (!G().left && D.goddess ? gtxt(D.goddess, ctx) : '');
   const jNote = opts.jNote || '';
   let greet = '';
   if(opts.alreadyHired && w){
@@ -47,7 +48,7 @@ function introHouseEvent(h, w, opts={}){
           if(c.m) moodAdd(w, c.m);
           if(c.l) w.lewd = clamp((w.lewd||0) + c.l);
         }
-        return {text: introFill(c.res || '', ctx), aside: godAside};
+        return {text: introFill(c.res || '', ctx), after: introGoddessAfter(`${GN()} — ${h.name}`, godNote)};
       }
     }))
   };
@@ -58,8 +59,9 @@ function introPartnerEvent(p, opts={}){
   const N = NAMED[p.key] || {}, PG = N.goddess || {};
   const h = S.houses[0], ctx = {name: p.name, first: p.name.split(' ')[0], partner: p.name.split(' ')[0], house: h ? h.name : 'the house', goddess: GN(), sam: 'Sam', cycle: S.cycle || 1};
   const sc = PI.image ? (dynScene('intro_partner_' + p.key, PI.image) || 'portrait') : 'portrait';
-  const handAside = !G().left && PG.hand ? introFill(PG.hand, ctx) : '';
-  const commentAside = !G().left && (PI.goddess || PG.comment) ? introFill(PI.goddess || PG.comment, ctx) : '';
+  const handNote = !G().left && PG.hand ? introFill(PG.hand, ctx) : '';
+  const commentNote = !G().left && (PI.goddess || PG.comment) ? introFill(PI.goddess || PG.comment, ctx) : '';
+  const godNote = [handNote, commentNote].filter(Boolean).join('\n\n');
   const open = [N.partnerStory, PI.arrival ? introFill(PI.arrival, ctx) : `${p.name} stands beside you beneath the double moon.`].filter(Boolean).join('\n\n');
   const voice = PI.greet ? introFill(PI.greet, ctx) : (N.partnerStory || p.backstory || '');
   const back = PI.note ? `\n\n${introFill(PI.note, ctx)}` : '';
@@ -71,7 +73,7 @@ function introPartnerEvent(p, opts={}){
     title: `${p.name}`,
     who: p.id,
     scene: sc,
-    pre: [{text: open, aside: handAside, btn: `Talk with ${ctx.first}`, scene: sc}],
+    pre: [{text: open, btn: `Talk with ${ctx.first}`, scene: sc}],
     text: `${voice}${back}`,
     choices: chList.map(c=>({
       label: introFill(c.label, ctx),
@@ -79,7 +81,7 @@ function introPartnerEvent(p, opts={}){
         if(c.t) gainTrust(p, c.t);
         if(c.m) moodAdd(p, c.m);
         if(c.l) p.lewd = clamp((p.lewd||0) + c.l);
-        return {text: introFill(c.res || '', ctx), aside: commentAside};
+        return {text: introFill(c.res || '', ctx), after: introGoddessAfter(`${GN()} — ${p.name}`, godNote)};
       }
     }))
   };
@@ -89,6 +91,7 @@ function introShrineEvent(h){
   const SI = (GOD && GOD.shrineIntro) || {};
   const ctx = {house: h.name, goddess: GN(), cycle: S.cycle || 1, ngpp: S.ngppCycle || 1};
   const sc = SI.image ? (dynScene('intro_shrine', SI.image) || 'portrait') : 'portrait';
+  const shrineGod = !G().left && (HOUSES[h.id]||{}).goddess ? gtxt(HOUSES[h.id].goddess, ctx) : '';
   return {
     title: `${h.name}`,
     who: godId(),
@@ -97,7 +100,7 @@ function introShrineEvent(h){
     text: introFill(SI.text || `Lanternlight pools softly across ${h.name}, carrying the faint warm memory of cycles before this one.`, ctx),
     choices: [{
       label: introFill(SI.button || 'Light the first lantern', ctx),
-      fx(){ G().mood = clamp((G().mood||55) + 4); return introFill(SI.res || 'The wick catches in warm amber, and the Shrine hums awake.', ctx); }
+      fx(){ G().mood = clamp((G().mood||55) + 4); return {text: introFill(SI.res || 'The wick catches in warm amber, and the Shrine hums awake.', ctx), after: introGoddessAfter(`${GN()} — ${h.name}`, shrineGod)}; }
     }]
   };
 }

@@ -2,7 +2,9 @@
 /* =====================================================================
    EVENTS
    ===================================================================== */
+let EV_AFTER = null;
 function runQueue(){
+  EV_AFTER = null;
   if(!EVQ.length){ CUR_EV=null; render(); checkEnd(); return; }
   let ev = null; try{ ev = EVQ.shift()(); }catch(e){ console.warn('event skipped', e); ev = null; }
   if(!ev) return runQueue();
@@ -11,6 +13,7 @@ function runQueue(){
 // ev.pre: optional pages shown before the choices ([{text, btn, scene}]; the goddess's teases: her arrival, then Sam
 // wondering). They are display only: evChoice works from any page, so test drains that pick choices directly skip them.
 function showEvent(ev){
+  EV_AFTER = null;
   CUR_EV = ev;
   const pg = ev.pre && ev.pre.length ? ev.pre[0] : null;
   const aside = (pg ? pg.aside : ev.aside) || '';
@@ -33,15 +36,23 @@ function evPre(){
   if(ev.who && sc !== ((was && was.scene) || ev.scene || 'portrait')) showImg('evImg', ev.who, sc, ev.cloth);
   $('#modal').scrollTop = 0;
 }
+function evContinue(){
+  const after = EV_AFTER; EV_AFTER = null;
+  CUR_EV = null; closeModal();
+  if(typeof after === 'function') after();
+  else runQueue();
+}
 function evChoice(i){
   const ev = CUR_EV; if(!ev) return;
   EV_NOTES = [];
   const out = ev.choices[i].fx() || '';
-  let res = typeof out==='object' ? (out.text||'') : out;
-  const aside = typeof out==='object' ? (out.aside||'') : '';
+  const isObj = out && typeof out==='object';
+  let res = isObj ? (out.text||'') : out;
+  const aside = isObj ? (out.aside||'') : '';
+  EV_AFTER = isObj && typeof out.after==='function' ? out.after : (typeof ev.after==='function' ? ev.after : null);
   if(EV_NOTES.length){ res = (res ? res + '\n\n' : '') + EV_NOTES.join('\n'); EV_NOTES = []; }
   checkUnlocks(); save(); render();
-  $('#evChoices').innerHTML = `${out.ai?aiBtn('evAi', out.ai.kind, out.ai.wid, out.ai):''}<button class="primary" onclick="closeModal();runQueue()">Continue</button>`;
+  $('#evChoices').innerHTML = `${out.ai?aiBtn('evAi', out.ai.kind, out.ai.wid, out.ai):''}<button class="primary" onclick="evContinue()">Continue</button>`;
   $('#evRes').innerHTML = (res ? `<p class="story"><i>${esc(res)}</i></p>` : '') + (aside ? `<p class="muted" style="font-style:italic;margin-top:8px">${esc(aside)}</p>` : '') + (out.ai?'<div id="evAi"></div>':'') + (out.img?'<div id="evResImg"></div>':'');
   if(out.img) showImg('evResImg', out.img.wid, out.img.scene, out.img.cloth);
   if(out.ai && SET.ai.on && SET.ai.auto) aiWrite('evAi', out.ai.kind, out.ai.wid, out.ai);
