@@ -264,7 +264,7 @@
             "nami": {"v":45,"kind":"mentor","note":"A fellow Sand wind user. Temari taught her the fans."}
           },
           "jobs": {"likes":["security","madame","courtesan"],"dislikes":["maid"]},
-          "body": {"bust":"medium","height":"tall","figure":"athletic"},
+          "body": {"bust":"medium","height":"average","figure":"athletic"},
           "unique": {
             "name": "Wind Scythe",
             "desc": "Her great fan can clear a room, which rowdy clients quickly learn.",
@@ -275,8 +275,8 @@
           "job": "madame",
           "title": "Lady",
           "name": "Tsunade Senju",
-          "race": "elf",
-          "age": 168,
+          "race": "human",
+          "age": 54,
           "personality": "Proud and sharp-tongued",
           "traits": ["Greedy","Party Animal"],
           "style": "Elegant",
@@ -290,7 +290,7 @@
             "hairColor": "golden blonde",
             "eyes": "honey brown",
             "skin": "fair",
-            "features": "pointed elf ears and a violet diamond mark on her forehead",
+            "features": "a violet diamond mark on her forehead",
             "expression": "a bold, commanding smirk"
           },
           "under": "silk",
@@ -323,7 +323,7 @@
             "mei": {"v":25,"note":"Old colleagues from the village heads' council."}
           },
           "jobs": {"likes":["madame","teacher","courtesan"],"dislikes":["maid"]},
-          "body": {"bust":"huge","height":"tall","figure":"curvy"},
+          "body": {"bust":"huge","height":"average","figure":"curvy"},
           "unique": {"name":"Hundred Seals","desc":"The stored chakra of a legendary healer gives her an extra reserve of energy.","fx":{"energyBank":40}}
         },
         "shizune": {
@@ -338,15 +338,8 @@
           "fav": "missionary",
           "dislike": "doggy",
           "lovers": "kiss",
-          "backstory": "Tsunade's assistant from the Leaf, a shinobi village across the eastern sea, still chasing down her mentor's debts and her mentor's tab. Shizune keeps impeccable books and a pet piglet named Tonton, who has opinions about clients.",
-          "design": {
-            "hairStyle": "short straight bob",
-            "hairColor": "black",
-            "eyes": "dark",
-            "skin": "fair",
-            "accessories": "a small pink pig with a pearl necklace that follows her everywhere",
-            "accState": "dressed"
-          },
+          "backstory": "Tsunade's assistant from the Leaf, a shinobi village across the eastern sea, still chasing down her mentor's debts and her mentor's tab. Shizune keeps impeccable books and still finds time to worry about everyone else.",
+          "design": {"hairStyle":"short straight bob","hairColor":"black","eyes":"dark","skin":"fair"},
           "under": "plain",
           "underColor": "navy",
           "stats": {"beauty":58,"charm":55,"charisma":60,"refinement":60,"wits":60,"stamina":50,"strength":30,"agility":45},
@@ -371,7 +364,7 @@
           },
           "bonds": {"tsunade":{"v":70,"note":"Twenty years of cleaning up after her."}},
           "jobs": {"likes":["promoter","madame","teacher"],"dislikes":["courtesan"]},
-          "body": {"bust":"small","height":"average","figure":"slim"},
+          "body": {"bust":"small","height":"average","figure":"average"},
           "unique": {
             "name": "Impeccable Books",
             "desc": "Her record-keeping keeps the house orderly and its managers sharp.",
@@ -413,7 +406,7 @@
             "anko": {"v":55,"note":"Drinking buddies for twenty years."}
           },
           "jobs": {"likes":["courtesan","dancer","teacher"],"dislikes":["promoter"]},
-          "body": {"bust":"medium","height":"tall","figure":"curvy"},
+          "body": {"bust":"medium","height":"average","figure":"curvy"},
           "unique": {"name":"Crimson Illusion","desc":"Her eyes make men forget what they were saying.","fx":{"appeal":4,"classBonus":{"noble":1.1}}}
         },
         "anko": {
@@ -434,7 +427,7 @@
             "hairColor": "dark violet",
             "eyes": "light brown, slit-pupiled",
             "skin": "fair",
-            "features": "a curse-mark tattoo on her neck and small snake-scale patches on her shoulders",
+            "features": "a curse-mark tattoo on her neck, small snake-scale patches on her shoulders and a slender scaled snake tail",
             "expression": "a wild, teasing grin"
           },
           "under": "sheer",
@@ -508,7 +501,7 @@
           },
           "bonds": {"sakura":{"v":-15,"note":"Old history over the same aloof man. Neither will admit it still stings."}},
           "jobs": {"likes":["bath","madame"],"dislikes":["maid"]},
-          "body": {"bust":"small","height":"average","figure":"slim"},
+          "body": {"bust":"small","height":"average","figure":"average"},
           "unique": {"name":"Sensor","desc":"She feels where tension and trouble are before they arrive.","fx":{"jobBonus":{"bath":1.15},"security":8}}
         },
         "mei": {
@@ -647,7 +640,7 @@
             "himawari": {"v":70,"kind":"family","note":"Her favorite niece, whom she spoils rotten."}
           },
           "jobs": {"likes":["security","courtesan","dancer"],"dislikes":["maid"]},
-          "body": {"bust":"medium","height":"average","figure":"slim"},
+          "body": {"bust":"medium","height":"average","figure":"average"},
           "unique": {
             "name": "Rotation Palm",
             "desc": "Her spinning Gentle Fist palm strikes deflect rowdy troublemakers without breaking a teacup.",

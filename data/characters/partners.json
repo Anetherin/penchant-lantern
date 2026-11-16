@@ -128,7 +128,7 @@
     },
     "bonds": {"kanako":{"v":20,"kind":"home"},"akari":{"v":20,"kind":"home"}},
     "jobs": {"likes":["promoter","teacher","madame"],"dislikes":["dancer","security"]},
-    "body": {"bust":"small","height":"average","figure":"slim"},
+    "body": {"bust":"small","height":"short","figure":"slim"},
     "unique": {
       "name": "Spreadsheet Wizardry",
       "desc": "She turns the house's numbers into a quiet advantage.",
@@ -211,7 +211,7 @@
       }
     },
     "jobs": {"likes":["courtesan","dancer"],"dislikes":["maid","promoter"]},
-    "body": {"bust":"large","height":"tall","figure":"curvy"},
+    "body": {"bust":"medium","height":"average","figure":"curvy"},
     "unique": {
       "name": "Contract Clause",
       "desc": "A fine-print mind that sweetens her service and draws admirers.",
@@ -270,9 +270,9 @@
     },
     "under": "plain",
     "underColor": "white",
-    "stats": {"beauty":70,"charm":52,"charisma":44,"refinement":65,"wits":65,"stamina":45,"strength":15,"agility":45},
+    "stats": {"beauty":78,"charm":56,"charisma":44,"refinement":65,"wits":65,"stamina":45,"strength":15,"agility":45},
     "tech": {"service":58,"dance":30,"bar":10,"combat":10,"manage":30},
-    "actSkill": 0,
+    "actSkill": 8,
     "popularity": 10,
     "lewd": 12,
     "trust": 25,
@@ -281,7 +281,7 @@
         "label": "Healer's robes",
         "style": "Elegant",
         "prompt": "soft white healer's robes with green embroidery",
-        "bonus": {"courtesan":1.1,"promoter":1.1},
+        "bonus": {"courtesan":1.15,"bath":1.15},
         "accessories": "a leather herb satchel",
         "accState": "dressed"
       },
@@ -293,7 +293,7 @@
       }
     },
     "jobs": {"likes":["bath","courtesan","maid"],"dislikes":["dancer","security"]},
-    "body": {"bust":"medium","height":"average","figure":"slim"},
+    "body": {"bust":"medium","height":"average","figure":"average"},
     "unique": {
       "name": "Healer's Touch",
       "desc": "Her massages restore the body, and she recovers a little faster herself.",
@@ -410,7 +410,7 @@
   },
   "natsuki": {
     "role": "partner",
-    "job": "security",
+    "job": "host",
     "name": "Natsuki Hayama",
     "race": "human",
     "age": 25,
@@ -447,7 +447,7 @@
         "label": "Veteran adventurer gear",
         "style": "Sporty",
         "prompt": "fitted leather adventurer armor",
-        "bonus": {"security":1.3,"adventurer":1.2},
+        "bonus": {"host":1.2,"security":1.3,"adventurer":1.2},
         "accessories": "a worn blue scarf and a katana at her hip",
         "accState": "dressed"
       },
@@ -464,7 +464,7 @@
       "yui": {"v":20,"kind":"home"},
       "kanako": {"v":20,"kind":"home"}
     },
-    "jobs": {"likes":["security","bartender"],"dislikes":["promoter","maid"]},
+    "jobs": {"likes":["host","security","bartender"],"dislikes":["promoter","maid"]},
     "body": {"bust":"medium","height":"average","figure":"athletic"},
     "unique": {"name":"Bottomless Appetite","desc":"She eats like a horse and recovers like one too.","fx":{"maxEnergy":15,"energyRec":1.1}},
     "vignettes": [
@@ -545,7 +545,7 @@
     },
     "bonds": {"akari":{"v":25,"kind":"home"}},
     "jobs": {"likes":["bartender","host","courtesan"],"dislikes":["security"]},
-    "body": {"bust":"large","height":"average","figure":"soft"},
+    "body": {"bust":"huge","height":"average","figure":"soft"},
     "unique": {
       "name": "Snack-Bar Mama",
       "desc": "A hostess who can read a room and a man's mood from the doorway. Hosting comes naturally.",
@@ -580,7 +580,7 @@
   },
   "akari": {
     "role": "partner",
-    "job": "courtesan",
+    "job": "dancer",
     "name": "Akari Kurosawa",
     "race": "human",
     "age": 23,
@@ -607,9 +607,9 @@
     },
     "under": "lace",
     "underColor": "pink",
-    "stats": {"beauty":68,"charm":60,"charisma":70,"refinement":20,"wits":20,"stamina":55,"strength":20,"agility":50},
-    "tech": {"service":8,"dance":12,"bar":5,"combat":3,"manage":3},
-    "actSkill": 0,
+    "stats": {"beauty":70,"charm":64,"charisma":72,"refinement":26,"wits":28,"stamina":58,"strength":24,"agility":56},
+    "tech": {"service":22,"dance":28,"bar":18,"combat":8,"manage":10},
+    "actSkill": 8,
     "popularity": 8,
     "lewd": 58,
     "trust": 30,
@@ -618,7 +618,7 @@
         "label": "Hoodie and shorts",
         "style": "Cute",
         "prompt": "an oversized pink hoodie, denim shorts and sneakers",
-        "bonus": {"commoner":1.15,"propose":1.1}
+        "bonus": {"dancer":1.15,"commoner":1.15,"propose":1.1}
       },
       "sp_akari": {
         "label": "\"Grown-up\" outfit",
@@ -627,8 +627,8 @@
         "bonus": {"courtesan":1.2,"propose":1.2}
       }
     },
-    "jobs": {"likes":["courtesan","dancer","bartender"],"dislikes":["promoter"]},
-    "body": {"bust":"large","height":"average","figure":"curvy"},
+    "jobs": {"likes":["dancer","courtesan","bartender"],"dislikes":["promoter"]},
+    "body": {"bust":"large","height":"short","figure":"curvy"},
     "unique": {
       "name": "Never Gives Up",
       "desc": "She is clumsy at everything and refuses to quit, so she improves fast.",
@@ -712,7 +712,7 @@
       }
     },
     "jobs": {"likes":["promoter","madame"],"dislikes":["maid"]},
-    "body": {"bust":"medium","height":"average","figure":"slim"},
+    "body": {"bust":"medium","height":"average","figure":"average"},
     "unique": {"name":"Born Behind the Counter","desc":"She grew up in this house and sells it better than anyone.","fx":{"promote":1.2,"clientFee":1.05}},
     "vignettes": [
       {
@@ -772,8 +772,8 @@
     },
     "under": "lace",
     "underColor": "black",
-    "stats": {"beauty":64,"charm":40,"charisma":32,"refinement":45,"wits":45,"stamina":55,"strength":25,"agility":45},
-    "tech": {"service":20,"dance":10,"bar":8,"combat":5,"manage":30},
+    "stats": {"beauty":65,"charm":46,"charisma":38,"refinement":50,"wits":50,"stamina":58,"strength":28,"agility":52},
+    "tech": {"service":34,"dance":12,"bar":12,"combat":8,"manage":34},
     "actSkill": 5,
     "popularity": 5,
     "lewd": 25,
@@ -840,9 +840,9 @@
     "traits": ["Studious","Shy"],
     "style": "Cute",
     "favColor": "burgundy",
-    "fav": "kiss",
-    "dislike": "breast_give",
-    "lovers": "missionary",
+    "fav": "manual_give",
+    "dislike": "doggy",
+    "lovers": "cowgirl",
     "partnerTrust": 65,
     "partnerLewd": 30,
     "backstory": "Back on Earth, Emily was \"Shadowkin\": the wolf-girl character she played for six years in a tiny text roleplay forum, and the username Sam talked to almost every night. They ran campaigns together, argued about anime, kept each other company through bad sleep schedules and worse exams. It was strictly friendship: they never met, never even voice-called, and neither of them ever wanted it to be anything else. Then Sam's account went quiet. A few weeks later Emily went to sleep in her dorm and woke up in this world, in the body of the character she'd been writing all those years: grey wolf ears, a tail she still can't control, and a name she'd only ever typed.",
@@ -859,8 +859,8 @@
     },
     "under": "silk",
     "underColor": "silver",
-    "stats": {"beauty":62,"charm":50,"charisma":44,"refinement":55,"wits":74,"stamina":60,"strength":35,"agility":55},
-    "tech": {"service":20,"dance":10,"bar":10,"combat":25,"manage":35},
+    "stats": {"beauty":62,"charm":52,"charisma":50,"refinement":44,"wits":72,"stamina":66,"strength":48,"agility":64},
+    "tech": {"service":24,"dance":16,"bar":14,"combat":42,"manage":32},
     "actSkill": 5,
     "popularity": 6,
     "lewd": 28,
@@ -881,13 +881,13 @@
         "bonus": {"adventurer":1.2,"courtesan":1.1}
       }
     },
-    "bonds": {"kaede":{"v":20,"note":"Fox and wolf in one house: Kaede teases, Emily lets her (and takes notes for a character)."}},
+    "bonds": {"kaede":{"v":20,"note":"Fox and wolf in one house: Kaede teases her about her tail, and Emily takes notes for a campaign NPC."}},
     "jobs": {"likes":["attendant","teacher","promoter"],"dislikes":["security","dancer"]},
-    "body": {"bust":"medium","height":"average","figure":"soft"},
+    "body": {"bust":"small","height":"average","figure":"average"},
     "unique": {
       "name": "Lore Keeper",
-      "desc": "She keeps a mental character sheet for every client, quirks and all, which smooths her work as an attendant.",
-      "fx": {"jobBonus":{"attendant":1.2,"promoter":1.1},"skillGain":1.1}
+      "desc": "She keeps a mental character sheet for every client and turns every shift into fast experience.",
+      "fx": {"jobBonus":{"attendant":1.18},"statGain":1.12,"learn":1.15}
     },
     "vignettes": [
       {
@@ -926,9 +926,9 @@
     "traits": ["Romantic","Shy"],
     "style": "Elegant",
     "favColor": "burgundy",
-    "fav": "kiss",
-    "dislike": "breast_give",
-    "lovers": "missionary",
+    "fav": "manual_give",
+    "dislike": "doggy",
+    "lovers": "cowgirl",
     "partnerTrust": 65,
     "partnerLewd": 30,
     "backstory": "Lirael Quill is an elven sorting clerk at the Hollowmere post house, the sort of person who can tell a letter's whole story from its smudges. Years ago, lonely and very young by elven reckoning, she dropped a note addressed to no one into the old enchanted postbox in the alley behind the post house, and got an answer from another lonely teenager named Sam, writing from somewhere that, as far as she could tell, did not exist. For years they wrote about nothing and everything. It was friendship and nothing more: two lonely people with good handwriting. When the replies stopped, she kept the postbox swept anyway.",
@@ -944,8 +944,8 @@
     },
     "under": "silk",
     "underColor": "silver",
-    "stats": {"beauty":62,"charm":50,"charisma":44,"refinement":55,"wits":75,"stamina":60,"strength":35,"agility":55},
-    "tech": {"service":20,"dance":10,"bar":10,"combat":25,"manage":35},
+    "stats": {"beauty":64,"charm":52,"charisma":42,"refinement":64,"wits":76,"stamina":50,"strength":24,"agility":50},
+    "tech": {"service":30,"dance":12,"bar":10,"combat":15,"manage":40},
     "actSkill": 5,
     "popularity": 6,
     "lewd": 28,
@@ -968,7 +968,7 @@
     },
     "bonds": {"kaede":{"v":20,"note":"Fox and elf in one house: Kaede teases, Lirael lets her."}},
     "jobs": {"likes":["teacher","attendant","promoter"],"dislikes":["security","dancer"]},
-    "body": {"bust":"medium","height":"average","figure":"soft"},
+    "body": {"bust":"small","height":"average","figure":"average"},
     "unique": {
       "name": "Postmistress's Memory",
       "desc": "She remembers every client's name and quirks, which smooths her work as an attendant.",
@@ -1003,7 +1003,7 @@
   },
   "ella": {
     "role": "partner",
-    "job": "promoter",
+    "job": "teacher",
     "name": "Ella Dott",
     "race": "human",
     "age": 27,
@@ -1020,7 +1020,6 @@
     "backstory": "Ella Dott spent six years finishing a close second to a man who treated rankings as a mild annoyance, and she has never quite forgiven him for it. Her name sat directly beneath or above Sam's on every published list the department posted, and in all that time she kept every sheet, filed in a drawer she told nobody about. When he took an office job instead of the fellowship they both applied for, she took it as a personal insult. It was, though she'd never say so, the only time anyone had let her down by not being her rival.",
     "partnerStory": "Ella Dott was the one name always above or below Sam's: entrance results, published lists, the final thesis marks. The rivalry was loud, and the respect was a secret. She was across the street when the truck came, and she has not stopped hearing the sound. Now she is here, in a world with no rankings at all, and the only thing she wants to measure is how long he will let her stay close.",
     "design": {
-      "build": "lean",
       "hairStyle": "sleek long straight",
       "hairColor": "golden blonde",
       "eyes": "bright blue",
@@ -1042,7 +1041,7 @@
         "label": "Tailored blouse and skirt",
         "style": "Elegant",
         "prompt": "a crisp white blouse, a fitted navy pencil skirt, a thin gold belt and polished heels",
-        "bonus": {"promoter":1.25,"merchant":1.2}
+        "bonus": {"teacher":1.2,"promoter":1.15,"merchant":1.15}
       },
       "sp_ella": {
         "label": "Gala gown",
@@ -1057,12 +1056,12 @@
       "adelheid": {"v":-10,"note":"Two perfectionists, one question: who is more punctual."},
       "lara": {"v":20,"kind":"home","note":"Both washed up from Earth; Ella secretly brings Lara extra pastries whenever she sits up too late."}
     },
-    "jobs": {"likes":["promoter","madame"],"dislikes":["maid","bartender"]},
-    "body": {"bust":"medium","height":"tall","figure":"slim"},
+    "jobs": {"likes":["teacher","promoter","madame"],"dislikes":["maid","bartender"]},
+    "body": {"bust":"small","height":"average","figure":"slim"},
     "unique": {
       "name": "Perfect Score",
-      "desc": "She treats every goal as an exam and keeps learning faster than anyone around her.",
-      "fx": {"skillGain":1.2,"promote":1.1}
+      "desc": "She treats every goal as an exam, learning faster herself and drilling others just as hard.",
+      "fx": {"skillGain":1.2,"teach":1.1}
     },
     "vignettes": [
       {
@@ -1142,7 +1141,7 @@
     },
     "bonds": {"yui":{"v":15,"kind":"home","note":"Yui is fascinated by the one person here who has actually seen a spreadsheet engine."}},
     "jobs": {"likes":["bartender","attendant"],"dislikes":["dancer","courtesan"]},
-    "body": {"bust":"medium","height":"tall","figure":"slim"},
+    "body": {"bust":"medium","height":"average","figure":"slim"},
     "unique": {
       "name": "Perfect Pour",
       "desc": "A flawless memory for orders and a battery bank that lets her work past her limits.",
@@ -1214,7 +1213,7 @@
         "label": "Warden's robes",
         "style": "Elegant",
         "prompt": "flowing white and gold robes",
-        "bonus": {"madame":1.25,"noble":1.2},
+        "bonus": {"madame":1.25,"chapel":1.2,"noble":1.2},
         "accessories": "a lantern-shaped gold brooch",
         "accState": "dressed"
       },
@@ -1228,7 +1227,10 @@
     "bonds": {
       "nerys": {"v":-30,"note":"Heaven and hell have never agreed on anything. Nerys likes to remind her."},
       "adelheid": {"v":25,"note":"Two believers in an order who both have a weakness for the same hero."},
-      "konan": {"v":25,"note":"Konan's rebels called themselves angels. Anael finds this adorable."}
+      "caelia": {
+        "v": -25,
+        "note": "An old Order sister who fell far from doctrine. Anael disapproves of Caelia’s velvet chapel—though she keeps reading her letters."
+      }
     },
     "jobs": {"likes":["chapel","madame","attendant"],"dislikes":["bartender","dancer"]},
     "body": {"bust":"medium","height":"tall","figure":"curvy"},

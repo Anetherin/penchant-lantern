@@ -24,7 +24,8 @@
     "tall": {"label":"Tall","img":"tall","weight":2,"fx":{"jobBonus":{"dancer":1.08,"security":1.08},"classBonus":{"noble":1.05}}}
   },
   "figure": {
-    "slim": {"label":"Slim","img":"slim figure","weight":4,"fx":{"jobBonus":{"dancer":1.05}}},
+    "average": {"label":"Average","img":"","weight":4,"fx":{}},
+    "slim": {"label":"Slim","img":"slim figure","weight":3,"fx":{"jobBonus":{"dancer":1.05}}},
     "athletic": {"label":"Athletic","img":"athletic toned figure","weight":2,"fx":{"security":10,"maxEnergy":5}},
     "curvy": {"label":"Curvy","img":"curvy figure","weight":3,"fx":{"appeal":3,"classBonus":{"merchant":1.05}}},
     "soft": {"label":"Soft","img":"soft plump figure","weight":2,"fx":{"actQuality":{"massage_give":1.15},"maxEnergy":5,"jobBonus":{"bath":1.08}}}

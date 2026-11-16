@@ -71,7 +71,7 @@
             "hilda_lorule": {"v":45,"note":"Two princesses who look like mirror images and understand the weight of a crown."}
           },
           "jobs": {"likes":["courtesan","madame","dancer"],"dislikes":["bartender","maid"]},
-          "body": {"bust":"medium","height":"tall","figure":"slim"},
+          "body": {"bust":"medium","height":"average","figure":"slim"},
           "unique": {"name":"Wisdom","desc":"A princess's sharp mind and graceful bearing.","fx":{"classBonus":{"noble":1.2},"skillGain":1.1}}
         },
         "midna": {
@@ -89,7 +89,6 @@
           "lovers": "oral_give",
           "backstory": "The rightful queen of a realm of twilight, Midna spent a long stretch cursed into a tiny imp and enjoyed none of it. Back in her true form, she is tall, imperious and wickedly amused by everything, Sam very much included.",
           "design": {
-            "build": "willowy",
             "hairStyle": "very long, flowing",
             "hairColor": "flame orange",
             "eyes": "red with golden sclera",
@@ -193,7 +192,6 @@
           "lovers": "breast_get",
           "backstory": "Cotera, a great fairy, used to live in a healing fountain and grant weary travelers their strength back. She has moved into the bathhouse, which she considers a fountain with better gossip, and her laugh echoes off the tiles.",
           "design": {
-            "build": "voluptuous",
             "hairStyle": "enormous and voluminous",
             "hairColor": "magenta",
             "eyes": "golden",
@@ -244,7 +242,7 @@
           "lovers": "doggy",
           "backstory": "A desert warrior-thief and sage from a clan of women, Nabooru only ever stole from people who deserved it. She says the house security job is a vacation. Nobody has tried her.",
           "design": {
-            "build": "toned, long-legged",
+            "build": "long-legged",
             "hairStyle": "high ponytail",
             "hairColor": "deep red",
             "eyes": "gold",
@@ -328,7 +326,7 @@
           },
           "bonds": {"zelda":{"v":45,"note":"Two princesses who look like mirror images and understand the weight of a crown."}},
           "jobs": {"likes":["madame","courtesan","promoter"],"dislikes":["maid","bartender"]},
-          "body": {"bust":"medium","height":"tall","figure":"slim"},
+          "body": {"bust":"medium","height":"average","figure":"average"},
           "unique": {
             "name": "Mirror Crown",
             "desc": "She has ruled a kingdom in ruin and knows how to hold a house together under pressure.",
@@ -349,7 +347,7 @@
           "lovers": "breast_give",
           "backstory": "When the twin desert sorceresses Koume and Kotake fuse into one body, the result is Twinrova: a statuesque elemental spirit of fire and ice who is four centuries old, wildly vain about her fused youth, and twice as much trouble as any single woman in the house.",
           "design": {
-            "build": "voluptuous hourglass",
+            "build": "hourglass",
             "hairStyle": "extremely long swirling elemental braids",
             "hairColor": "blazing flame-orange and icy cyan",
             "eyes": "glowing gold",

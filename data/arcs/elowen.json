@@ -178,7 +178,11 @@
           "t": 6,
           "m": 10,
           "res": "You pay for it. One night a week, with help from the apothecary's apprentices, and a proper cot and clean linen for the dock workers. She hugs you so hard your ribs creak. She presses her damp face against your hoodie and says thank you into it, several times, getting quieter each time. She doesn't let go for a while.",
-          "cantAfford": {"t":2,"m":2,"res":"You can't afford it, and you tell her so. She takes your hand and thanks you for trying. \"It is more than anyone else has offered, Sam.\" She says she will keep going to the docks on her own, but only three nights a week, and she makes you promise to check."}
+          "cantAfford": {
+            "t": 2,
+            "m": 2,
+            "res": "You can't afford it, and you tell her so. She takes your hand and thanks you for trying. \"It is more than anyone else has offered, Sam.\" She says she will keep going to the docks on her own, but only three nights a week, and she makes you promise to check."
+          }
         }
       ],
       "image": {

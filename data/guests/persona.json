@@ -157,7 +157,7 @@
             "takemi": {"v":30,"note":"The doctor patched her up after a long run of overtime."}
           },
           "jobs": {"likes":["teacher","maid","courtesan"],"dislikes":["security"]},
-          "body": {"bust":"medium","height":"average","figure":"curvy"},
+          "body": {"bust":"medium","height":"average","figure":"average"},
           "unique": {
             "name": "Side-Job Veteran",
             "desc": "Years of juggling jobs make her an energetic, adaptable worker with cheerful stamina. Also a patient teacher.",
@@ -231,7 +231,6 @@
           "lovers": "missionary",
           "backstory": "A prosecutor with a reputation for never losing a case she's decided to win, Sae Niijima lives on strong coffee, long hours and the kind of control that exhausts people. She is exacting, fair and fiercely loyal to the family she raised, and she has begun to wonder what her life might look like if it had a day off. She is here on a sabbatical she insists is only to audit the books.",
           "design": {
-            "build": "lean",
             "hairStyle": "long asymmetrically parted on the right side",
             "hairColor": "ashen-brown",
             "eyes": "brown",
@@ -321,7 +320,7 @@
           },
           "bonds": {"ann":{"v":30,"kind":"comrades","note":"Compared notes on fighting and fashion."}},
           "jobs": {"likes":["host","attendant"],"dislikes":["security"]},
-          "body": {"bust":"large","height":"average","figure":"slim"},
+          "body": {"bust":"medium","height":"average","figure":"average"},
           "unique": {
             "name": "Hostess of the Inn",
             "desc": "She sets guests at ease and keeps the place spotless.",

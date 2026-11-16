@@ -211,7 +211,7 @@
           "lovers": "cowgirl",
           "backstory": "The last of a rabbit shapeshifter people from the warring continents beyond the southern straits, Panne trusts very few humans and says so. The ones she does trust, she would die for.",
           "design": {
-            "build": "toned, long-limbed",
+            "build": "long-limbed",
             "hairStyle": "long and wild",
             "hairColor": "brown",
             "eyes": "brown",
@@ -238,7 +238,7 @@
           },
           "bonds": {"lethe":{"v":30,"note":"Two shapeshifters who recognize each other."}},
           "jobs": {"likes":["courtesan","security"],"dislikes":["promoter"]},
-          "body": {"bust":"small","height":"tall","figure":"athletic"},
+          "body": {"bust":"small","height":"average","figure":"athletic"},
           "unique": {"name":"Guardian's Loyalty","desc":"Slow to trust, but fiercely devoted once she does.","fx":{"trustGain":1.15,"security":8}}
         },
         "corrin": {
@@ -346,7 +346,7 @@
             "corrin": {"v":25,"kind":"comrades","note":"Royals who have swapped war stories."}
           },
           "jobs": {"likes":["host","attendant"],"dislikes":["bartender"]},
-          "body": {"bust":"medium","height":"average","figure":"slim"},
+          "body": {"bust":"medium","height":"average","figure":"average"},
           "unique": {"name":"Radiant Princess","desc":"Her grace and honesty are noticed by every noble.","fx":{"classBonus":{"noble":1.2},"rep":1.1}}
         },
         "byleth": {
@@ -538,7 +538,6 @@
           "lovers": "kiss",
           "backstory": "A thousand-year-old manakete from the warring continents beyond the southern straits who refuses to act her age because being solemn is boring. Nowi treats the dance floor like a playground, hoards shiny trinkets in her room, and is much wiser about people's hearts than she ever lets on.",
           "design": {
-            "build": "petite",
             "hairStyle": "very long wavy",
             "hairColor": "blonde fading to mint green",
             "eyes": "bright pink-violet",

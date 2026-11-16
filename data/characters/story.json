@@ -45,7 +45,7 @@
       }
     },
     "jobs": {"likes":["courtesan","madame"],"dislikes":["maid","bartender"]},
-    "body": {"bust":"medium","height":"tall","figure":"slim"},
+    "body": {"bust":"medium","height":"average","figure":"average"},
     "unique": {"name":"Noble Hostess","desc":"She knows exactly how to charm nobility.","fx":{"classBonus":{"noble":1.25}}}
   },
   "ilyana": {
@@ -64,7 +64,6 @@
     "lovers": "missionary",
     "backstory": "The Pavilion's elven patroness for a century. She decided she would rather be part of it than own it from afar. She funded its first stage out of boredom and kept it out of affection, and now wants to know how it feels from the other side of the curtain.",
     "design": {
-      "build": "lean",
       "hairStyle": "very long flowing",
       "hairColor": "silver",
       "eyes": "pale gold",
@@ -149,7 +148,7 @@
     },
     "bonds": {"vesper":{"v":-40,"note":"She came to exorcise Vesper. Vesper has not forgotten."}},
     "jobs": {"likes":["security","bartender"],"dislikes":["dancer"]},
-    "body": {"bust":"medium","height":"tall","figure":"athletic"},
+    "body": {"bust":"medium","height":"average","figure":"athletic"},
     "unique": {"name":"Ghost Hunter's Eye","desc":"She notices danger before anyone else does.","fx":{"security":15}}
   },
   "vharra": {
@@ -199,7 +198,7 @@
       }
     },
     "jobs": {"likes":["courtesan","madame"],"dislikes":["maid","security"]},
-    "body": {"bust":"large","height":"tall","figure":"curvy"},
+    "body": {"bust":"huge","height":"tall","figure":"curvy"},
     "unique": {
       "name": "Landlord's Cut",
       "desc": "She always takes a little more from every deal, and nobody minds.",
@@ -221,7 +220,6 @@
     "lovers": "missionary",
     "backstory": "A noble elf who walked away from a stifling court to see how humans actually live. Curious, very proper, and quietly thrilled to be somewhere scandalous. She carries a leather notebook of observations, blushes at her own boldness, and has never been so happy to be called \"miss\" instead of \"my lady.\"",
     "design": {
-      "build": "lean",
       "hairStyle": "long straight",
       "hairColor": "platinum blonde",
       "eyes": "emerald",
@@ -240,7 +238,7 @@
     "trust": 10,
     "outfits": {"sig_rhoswen":{"label":"Court gown","style":"Elegant","prompt":"a flowing pale-green silk court gown","bonus":{"noble":1.3,"dancer":1.1}}},
     "jobs": {"likes":["attendant","promoter"],"dislikes":["bartender","courtesan"]},
-    "body": {"bust":"small","height":"tall","figure":"slim"},
+    "body": {"bust":"small","height":"average","figure":"slim"},
     "unique": {"name":"Court Manners","desc":"Impeccable breeding that nobles adore.","fx":{"classBonus":{"noble":1.2},"wardrobe":5}},
     "bonds": {"ines":{"v":30,"kind":"comrades","note":"Crossed paths on cold road contracts before either hung up her traveling cloak."}}
   },
