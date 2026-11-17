@@ -3,6 +3,8 @@
    GAME STATE
    ===================================================================== */
 // A house's base debt (economy.json → houses.<id>.debt) x balance.json → debt.houseMult. Cycle 1 starts with it; NG+ shares are built from it too.
+// Cycle 1's starting debt: the house's, less a partner's partnerDebtCut (named data, e.g. Marisol talks the Credit House down).
+const startDebt = (house, partner) => Math.round(houseDebt(house) * (1 - (((typeof NAMED!=='undefined' && NAMED[partner]) || {}).partnerDebtCut || 0)));
 const houseDebt = id => Math.round(((HOUSES[id]||{}).debt || 0) * ((BAL.debt||{}).houseMult ?? 1));
 const NPCS = {
   npc_marguerite:{id:'npc_marguerite', name:'Marguerite Vane', race:'human', sub:'', age:38,
@@ -44,7 +46,7 @@ function newGame(cfg){
     houses:[makeHouse(cfg.house)],
     sam:{energy:100, ...BAL.sam.base, appraisal:1, appXP:0, first:true, lvl:1, xp:0},
     samWeek:{security:0, books:false, income:0, acts:[]},
-    debt:{total:houseDebt(cfg.house), remaining:houseDebt(cfg.house), carry:0, strikes:0},
+    debt:{total:startDebt(cfg.house, cfg.partner), remaining:startDebt(cfg.house, cfg.partner), carry:0, strikes:0},
     workers:[], candidates:[], alumni:[], log:[],
     flags:{hilde:false, taunt:false, poachCD:0, partnerCD:3}, lastReport:null, over:false, won:false };
   S.houses.forEach(h=>{ h.since = 1; h.story = {beat:0,wk:0}; });

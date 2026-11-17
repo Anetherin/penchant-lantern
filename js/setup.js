@@ -128,7 +128,7 @@ function setupView(){
     ok = !!SETUP.partner;
   } else {
     const D = HOUSES[SETUP.house], n = NAMED[D.npc], p = NAMED[SETUP.partner];
-    body = `<h2>Ready?</h2><div class="card"><b>Sam Takahashi</b>, former ${PASTS[SETUP.past].label.toLowerCase()}.<br>Owner of <b>${D.name}</b> (${D.loc}), along with its debt of ${fmt(houseDebt(SETUP.house))}.<br>${n.name} runs things there as ${JOBS[n.job].label.toLowerCase()}.<br>At his side: <b>${p.name}</b>.</div>
+    body = `<h2>Ready?</h2><div class="card"><b>Sam Takahashi</b>, former ${PASTS[SETUP.past].label.toLowerCase()}.<br>Owner of <b>${D.name}</b> (${D.loc}), along with its debt of ${fmt(startDebt(SETUP.house, SETUP.partner))}${startDebt(SETUP.house, SETUP.partner) < houseDebt(SETUP.house) ? ` (${esc(p.name)} talked it down from ${fmt(houseDebt(SETUP.house))})` : ''}.<br>${n.name} runs things there as ${JOBS[n.job].label.toLowerCase()}.<br>At his side: <b>${p.name}</b>.</div>
       <div class="row" style="margin-top:8px"><label class="muted">Save name <input id="setup_save_name" value="${esc(SETUP.cloudName || D.name)}" placeholder="e.g. Main Run" oninput="SETUP.cloudName=this.value"></label></div>`;
     ok = true;
   }

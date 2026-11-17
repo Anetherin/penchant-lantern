@@ -1072,6 +1072,8 @@ function endWeek(){
       }
     }
   }
+  // samTrain fx (traits/uniques, data/traits/base.json): ladies who work near Sam drill him a little every week (e.g. Adelheid: Strength)
+  S.workers.filter(w=>w.job!=='guild' && nearSam(w)).forEach(w=>fxList(w).forEach(f=>{ if(f.samTrain) Object.entries(f.samTrain).forEach(([k,n])=>{ if(SAM_STATS.includes(k)) samStat(k, n); }); }));
   const netXp = R.income - R.wages - R.upkeep - (R.cuts||0);
   if(netXp > 0) samGainXP(Math.min(30, Math.round(netXp/60)));
   S.week++; S.ap = apMax(); samEnergyAdd(samRecover(BAL.samHome.weekly) * samBonus('rest','strength') + (samUpFx('weekly')||0) + (hasPast('gym')?20:0));

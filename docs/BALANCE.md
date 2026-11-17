@@ -134,3 +134,11 @@ Changes:
 - **Promoters read last week's door:** `h.lastFlow` keeps last week's promoter draw and turn-aways; with turn-aways she pulls her draw toward (last draw − turned away), by accuracy `promoterReadBase` 0.25 + Wits/`promoterReadWits` 140, + `promoterReadBond` 0.2 if she has bond >= `promoterBondAt` 30 with the house's security. `hr.promoHeld` = how much she held back.
 - **Androids:** charging `fee` 25 → 30, `perEnergy` 1.2 → 1.5. **Spirits:** `maxEnergy` −20 → −30 and `fatigue` 1.25 (work wears their Health faster).
 - **Lab speed:** warm-up snapshots are cached on disk across experiments and reruns (see `docs/TESTING.md`); default `--conc` = cores − 1.
+
+### Round 4d (2026-11-17, from the round-4b full run; not yet measured)
+Round 4b full run (`temp-balance-results.md`, 12 seeds): 9 PASS · 2 FAIL · 3 WARN. NG++ at the Shrine took 78 weeks with 60% game overs (100% without the guild); the Veil (premium) cleared cycle 1 fastest (20 weeks vs Lantern 26); Adelheid +7.9 weeks vs Kaede, Marisol and Lirael ~+6. `demons-poor-off-service` flipped because the all-demon house earns less to begin with (578 vs 732): the check should compare per-lady earnings in the job, not house totals (to do).
+- **NG++ purse:** `ngplus.ngppPurse` 1000 (was the shared 600); NG++ still starts with only the Bound Vessel.
+- **Veil debt** 38,500 → 48,000 (x `debt.houseMult`).
+- **Adelheid:** her unique adds guild progress x1.2, injuries x0.8 and the new `samTrain` fx ({strength: 0.6}: Sam gains 0.6 Strength a week while she works near him, `endWeek`). Security matters little early; this makes her the Watch / guild partner.
+- **Marisol:** `partnerDebtCut` 0.15 (named data): as the starting partner the house's cycle-1 debt is 15% smaller (`startDebt()` in state.js, shown on the setup summary).
+- **Lirael:** unique → attendant x1.25 (was 1.2), +30% regulars, skill x1.1; Beauty 64→67, Charm 52→58, Stamina 50→56.

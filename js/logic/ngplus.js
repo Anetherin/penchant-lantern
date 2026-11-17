@@ -97,7 +97,7 @@ function ngNumbers(boon, house, opts){
     if(cv && cv.debt) debt *= cv.debt;
     if(ch && ch.debt) debt *= ch.debt;
     debt = Math.round(debt);
-    const purse = Math.round((B.purse + (boon==='purse' || hasBoon('purse') ? 2500 : 0)) * (ch && ch.purse!==undefined ? ch.purse : 1));
+    const purse = Math.round(((B.ngppPurse ?? B.purse) + (boon==='purse' || hasBoon('purse') ? 2500 : 0)) * (ch && ch.purse!==undefined ? ch.purse : 1));
     return {ngpp:true, ngppCycle:ngppCyc, houseKey:hk, gross:debt, debt, house:0, base:Math.round(base), impr:Math.round(imprRaw), extra, keptExtra:0, loverExtra:0, keptCount:0, loverCount:0, scaleMul:1, sold:[], sale:0, purse, cycle:cyc};
   }
   const og = homeHouse(), kept = S.houses.filter(keptHouse), impr = kept.reduce((a,h)=>a + improvementsValue(h), 0);
