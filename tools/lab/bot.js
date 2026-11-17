@@ -69,6 +69,7 @@ LAB.POLICY = {
   guildLadies: 2,        // at most this many ladies away on contracts at a time (they earn nothing at the house that week)
   guildPick: 'support',  // who goes: 'support' (non-courtesans first, then the weakest earners) | 'fighters' (best contract power, any job)
   guildSam: 'auto',      // 'auto': Sam joins a contract only when the ladies alone wouldn't finish it in time; true = whenever a contract has room; false = never
+  guildEarnCap: 1.25,    // only send ladies who earned at most this x the contract's day rate last week (a top courtesan stays home)
   guildSafety: 1.15,     // take/staff a contract only if projected progress x weeks left >= remaining work x this
   payOff: true,
   scoutWhenShort: 4,     // Sam scouts instead of his spare action while a house has fewer ladies than this and few candidates are affordable          // pay the whole debt as soon as gold covers it plus the reserve
@@ -219,8 +220,10 @@ function samSpare(){
 }
 // ---------- Adventurers' Guild ----------
 const gEarn = w => { const per = ((S.lastReport || {}).per || {})[w.id]; return per ? per.earned || 0 : 0; };
+// a contract's day rate, roughly (base.json perWeek x rank bonus): a lady who earns clearly more at home stays home
+const gRate = C => { const pw = C.perWeek || [0, 0]; return (pw[0] + pw[1]) / 2 * cycleMul((GDB.gold || {}).perCycle) * (1 + ((GDB.pay || {}).rankRate ?? 0.08) * GLD().rank); };
 function guildPool(C){
-  const L = S.workers.filter(w => w.job !== 'guild' && !w._lock && !w.isPartner && w.trust >= jobTrust(w, 'guild') && w.energy >= maxEnergy(w) * 0.6 && w.health >= 50 && !AMEN[w.job]);
+  const L = S.workers.filter(w => gEarn(w) <= gRate(C) * (P.guildEarnCap ?? 1.25) && w.job !== 'guild' && !w._lock && !w.isPartner && w.trust >= jobTrust(w, 'guild') && w.energy >= maxEnergy(w) * 0.6 && w.health >= 50 && !AMEN[w.job]);
   const score = w => P.guildPick === 'fighters' ? ladyGuildPower(w, C) : ladyGuildPower(w, C) - (w.job === 'courtesan' ? 40 : 0) - gEarn(w) / 20;
   return L.sort((a, b) => score(b) - score(a));
 }

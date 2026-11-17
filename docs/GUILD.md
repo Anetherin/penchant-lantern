@@ -26,7 +26,11 @@ Code: `js/logic/guild.js`. Data: `data/guild/` (`base` numbers, `text` contract 
 - **Ranks.** Copper, Iron, Bronze, Silver, Gold, Mithril. Each rank-up is a story beat at the desk (`ranks.json`): Iron points
   Rhoswen to Sam, Bronze brings Hanna, Silver brings Vesna (rescued from the Barrow), Gold brings Brunhild (impressed in the pit).
 - **Sam's perks.** Doing contracts himself earns Sam guild perks (`base.json → perks`), kept for good across cycles.
-- **NG+.** Rank, merit, fame and the board reset each cycle (the guild doesn't know the reborn Sam); perks stay, and tools with `carry` stay.
+- **Higher contracts.** Each contract has a `minPower`: members under it add much less, so high-rank contracts clear slowly without strong
+  members, but pay more, have more slots, and day rates grow with Sam's rank (`pay.rankRate`). The board leans toward his own rank.
+  Day rates stay well under a good courtesan's week: sending a top courtesan is never worth it for the money.
+- **NG+.** Sam keeps his rank and merit; fame halves, contracts and the board are cleared, and the people his rank brought in are offered
+  again as candidates (`guildNewCycle`). The first NG++ resets the guild once (`S.guildReset`). Perks always stay; tools with `carry` stay.
 
 ## Party scenes (`scenes.json`)
 

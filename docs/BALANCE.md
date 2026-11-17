@@ -97,3 +97,11 @@ Results of the first run: `temp-balance-results.md`. Changes:
 - New night incidents (`incidents`): without security a house now loses some gold, tidiness, satisfaction and popularity each week, so Watch and the security job have something to stop.
 - Group nights and demonstrations are flavor; don't tune them for pace (drop them from `sam-actions-balanced` or loosen its band).
 Rerun: `c1-baseline` (expect ~36-40 weeks again), `guild.json`, `sam-focus`, `security-value`, `promoter-value`, `ngplus-carry`.
+
+### Round 3 (2026-11-17, not yet measured)
+Round 2 results: `temp-balance-results.md` (cycle 1 back to 36.9 weeks; guild neutral on pace but −580/wk late; Floor fastest, Classes slow; NG+ lovers now −18 weeks and 0-2 lovers rarely win).
+- Guild: `minPower` per contract (members under it add much less), delve/wyvern 5 slots and more work, day rates x (1 + 0.08 x rank), board leans toward Sam's rank. NG+ keeps rank and merit (first NG++ resets once). Bot only sends ladies who earned at most 1.25x the day rate (`guildEarnCap`).
+- Floor `nights` 4 → 3.4; Classes 2.0 → 2.2; NG+ `debtShare` 0.9 → 0.8 and `loverDebt` 1200 → 1700.
+- Promoter and security checks now compare the lady working vs. the same lady idle (`mutate job rest` vs `promoter`/`security`): she should earn about a wage (Δtotal > 40). The security check counts night incidents too (`trouble` = unhandled pushy + unhandled incidents; also `incidents`, `incHandled`, `damage`). Incident frequency unchanged on purpose.
+- Walks: `walk.partnerByFound` [14, 0.6, 0.6] (first partner in a walk or two, later ones ~10 walks each with pity 0.15 up to 8), coin weight 1 → 0.7, flavor 1.8 → 2.4, seven new flavor/rest events.
+Rerun: `check.mjs`, `guild.json`, `sam-focus`, `ngplus-carry`, `sam-actions-campaign`.

@@ -409,9 +409,10 @@ function ngBegin(){
     S.gold = N.purse;
     S.debt = Object.assign({total:N.debt, remaining:N.debt, carry:0, strikes:0, start:S.week-1}, ngPlan(N.cycle));
     S.won = false; S.over = false; S.lastReport = null; EVQ = []; delete S.ngSeed;
-    S.guild = null; S.flags.partnerCD = 3; S.flags.walkPartners = 0; S.flags.walkNoPartner = 0; S.ap = apMax(); S.sam.energy = samMaxEnergy();
+    S.flags.partnerCD = 3; S.flags.walkPartners = 0; S.flags.walkNoPartner = 0; S.ap = apMax(); S.sam.energy = samMaxEnergy();
     refreshCandidates(hasBoon('recruit') ? 3 : 0, hasBoon('recruit') ? 1.15 : 1);
     inviteFriend(true); checkUnlocks(true);
+    guildNewCycle(true);   // guild.js: the first NG++ resets the guild once
     addLog(`NG++${N.ngppCycle} (Cycle ${S.cycle}): Sam wakes at ${HDn.name} with an empty vessel and a loan of ${fmt(N.debt)}.`);
     queueNgppIntros(shrine, vessel);
     NGS = null; save(); if(typeof cloudAutoSave === 'function') cloudAutoSave(); TAB = 'house'; render();
@@ -488,10 +489,11 @@ function ngBegin(){
   S.gold = N.purse;
   S.debt = Object.assign({total:N.debt, remaining:N.debt, carry:0, strikes:0, start:S.week-1}, ngPlan(N.cycle));
   S.won = false; S.over = false; S.lastReport = null; EVQ = []; delete S.ngSeed;
-  S.guild = null; S.flags.partnerCD = 3; S.flags.walkPartners = 0; S.flags.walkNoPartner = 0; S.ap = apMax(); S.sam.energy = samMaxEnergy();
+  S.flags.partnerCD = 3; S.flags.walkPartners = 0; S.flags.walkNoPartner = 0; S.ap = apMax(); S.sam.energy = samMaxEnergy();
   refreshCandidates(hasBoon('recruit') ? 3 : 0, hasBoon('recruit') ? 1.15 : 1);
   inviteFriend(true);   // the first week already shows an old friend
   checkUnlocks(true);
+  guildNewCycle(false);   // guild.js: Sam keeps his rank; the rank's people come back as candidates
   addLog(`New Game+ (cycle ${S.cycle}): Sam keeps ${HDo.name} and takes on a new debt of ${fmt(N.debt)}.`);
   queueNgPlusIntros(C.house && H(C.house), C.partner && C.partner!=='none' ? S.workers.find(w=>w.key===C.partner) : null);
   NGS = null; save(); if(typeof cloudAutoSave === 'function') cloudAutoSave(); TAB = 'house'; render();

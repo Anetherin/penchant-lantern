@@ -10,7 +10,9 @@
     "scenes: chance per contract per week that its party has a scene (at most scenes.maxPerWeek overall). trust/lewd gates: duo (Sam + her), trio (Sam + two), yuri (two ladies, bloom tag), pair (two ladies, no Sam).",
     "outfit: the guild-only outfit (wardrobe.json → guild) the first clear of a contract puts in the house wardrobe. loot: chance on every completion that the client adds a shop outfit the house doesn't own yet.",
     "fits: {traits, titles, sam (Sam's guild perks)} that suit the contract. bonus: each lady with a fitting trait or active title adds fitEach (and Sam with a fitting perk), up to fitMax; finishing early adds earlyPerWeek per spare week (up to earlyMax); overshooting the work adds overPer x the overshoot share (up to overMax). A total bonus of at least `excellent` is an excellent job: merit x excellentMerit.",
-    "Ladies' share of the pay (their day rates plus their share of purse and bonus) counts as their earnings (report, profit cut); Sam's share goes straight to the purse."
+    "Ladies' share of the pay (their day rates plus their share of purse and bonus) counts as their earnings (report, profit cut); Sam's share goes straight to the purse.",
+    "minPower: the stat threshold of a higher contract: a member whose power is under it only adds power x power.under x (power / minPower), so high contracts clear slowly without strong members. pay.rankRate: day rates x (1 + rankRate x guild rank). board.lowerRank: offers of contracts below Sam's rank are weighted x lowerRank per rank of difference (the board leans toward his own rank).",
+    "carry: in New Game+ the guild keeps Sam's rank and merit (fame x fameKeep; contracts, board and parties are cleared, and the rank's people are offered again as candidates). The first NG++ resets the guild once (S.guildReset)."
   ],
   "levels": [
     {"id":"copper","label":"Copper","merit":0},
@@ -20,9 +22,9 @@
     {"id":"gold","label":"Gold","merit":280},
     {"id":"mithril","label":"Mithril","merit":450}
   ],
-  "board": {"size":3,"perRank":0.5,"active":1,"activePerRank":0.5,"join":20},
+  "board": {"size":3,"perRank":0.5,"active":1,"activePerRank":0.5,"join":20,"lowerRank":0.5},
   "gold": {"perCycle":0.25},
-  "power": {"energyFloor":0.4,"samMult":1,"former":1.25},
+  "power": {"energyFloor":0.4,"samMult":1,"former":1.25,"under":0.5},
   "safety": {"div":160,"min":0.25,"sam":0.85},
   "fame": {"max":100,"draw":0.25,"base":6,"decay":0.5},
   "fail": {"merit":5,"fame":3,"trust":1},
@@ -53,7 +55,8 @@
       "desc": "Ride with a merchant's wagons to the river towns and back. Bandits are rare, mud is not.",
       "outfit": "g_caravan",
       "perWeek": [75,95],
-      "fits": {"traits":["Former Adventurer","Tough","Hardy","Brave","Strong Back"],"titles":["captain","paladin","packbound"],"sam":["roadwise"]}
+      "fits": {"traits":["Former Adventurer","Tough","Hardy","Brave","Strong Back"],"titles":["captain","paladin","packbound"],"sam":["roadwise"]},
+      "minPower": 0
     },
     "porter": {
       "label": "Dungeon Porter",
@@ -78,7 +81,8 @@
       "desc": "Carry a delving party's packs, lamps and loot through the upper halls of the Barrow. Heavy, dull, and well paid for both.",
       "outfit": null,
       "perWeek": [85,105],
-      "fits": {"traits":["Strong Back","Tough","Hardy","Iron Stamina","Tireless"],"titles":["untiring","lionheart"],"sam":["delver"]}
+      "fits": {"traits":["Strong Back","Tough","Hardy","Iron Stamina","Tireless"],"titles":["untiring","lionheart"],"sam":["delver"]},
+      "minPower": 0
     },
     "herbs": {
       "label": "Fenwood Herb Run",
@@ -103,7 +107,8 @@
       "desc": "Gather moonmoss and lustbloom for the apothecaries. The bloom's pollen is the reason the pay is good and the gloves are thick.",
       "outfit": "g_herbs",
       "perWeek": [65,85],
-      "fits": {"traits":["Studious","Academic Flair","Nimble Fingers","Prudent","Country Charm"],"titles":["healer","greatfairy","archivist"],"sam":[]}
+      "fits": {"traits":["Studious","Academic Flair","Nimble Fingers","Prudent","Country Charm"],"titles":["healer","greatfairy","archivist"],"sam":[]},
+      "minPower": 0
     },
     "arena": {
       "label": "Arena Bout",
@@ -132,7 +137,8 @@
         "traits": ["Brawler","Showy","Brave","Bold Laugh","Crowd Favorite"],
         "titles": ["champion","unbeaten","lionheart","iron_belle"],
         "sam": ["pitfighter"]
-      }
+      },
+      "minPower": 30
     },
     "ball": {
       "label": "Bodyguard at the Noble Ball",
@@ -161,7 +167,8 @@
         "traits": ["Elegant","Well-Bred","Graceful","Poised & Polished","Silver-Tongued"],
         "titles": ["lady","dame","countess","baroness","princess"],
         "sam": ["silvertongue"]
-      }
+      },
+      "minPower": 30
     },
     "courier": {
       "label": "Exchange Courier",
@@ -190,7 +197,8 @@
         "traits": ["Fleet-Footed","Trade-Wise","Level-Headed","Shrewd","Organised"],
         "titles": ["postmistress","quicksilver","treasurer"],
         "sam": ["roadwise"]
-      }
+      },
+      "minPower": 38
     },
     "hunt": {
       "label": "Monster Hunt",
@@ -219,14 +227,15 @@
         "traits": ["Former Adventurer","Shield-Sister","Brave","Steady Nerves","Seasoned Adventurer"],
         "titles": ["packbound","stormrider","undaunted"],
         "sam": ["slayer"]
-      }
+      },
+      "minPower": 42
     },
     "delve": {
       "label": "Deep Delve",
       "icon": "🕯️",
       "rank": 3,
-      "slots": 4,
-      "work": 420,
+      "slots": 5,
+      "work": 520,
       "weeks": 4,
       "energy": 40,
       "wear": 3,
@@ -248,14 +257,15 @@
         "traits": ["Former Adventurer","Tough","Steady Nerves","Iron Stamina","Seasoned Adventurer"],
         "titles": ["undaunted","archivist","foundry_warden"],
         "sam": ["delver"]
-      }
+      },
+      "minPower": 50
     },
     "wyvern": {
       "label": "Wyvern Cull",
       "icon": "🐉",
       "rank": 4,
-      "slots": 4,
-      "work": 600,
+      "slots": 5,
+      "work": 760,
       "weeks": 4,
       "energy": 45,
       "wear": 4,
@@ -277,7 +287,8 @@
         "traits": ["Shield-Sister","Former Adventurer","Brave","Brawler","Seasoned Adventurer"],
         "titles": ["champion","paladin","stormrider","lionheart","packbound"],
         "sam": ["slayer"]
-      }
+      },
+      "minPower": 60
     }
   },
   "perks": {
@@ -306,5 +317,6 @@
   },
   "loot": {"chance":0.3},
   "bonus": {"fitEach":0.08,"fitMax":0.32,"earlyPerWeek":0.12,"earlyMax":0.24,"overPer":0.5,"overMax":0.2,"excellent":0.2,"excellentMerit":1.25},
-  "pay": {"failShare":0.25}
+  "pay": {"failShare":0.25,"rankRate":0.08},
+  "carry": {"ngplus":"keep","fameKeep":0.5}
 }

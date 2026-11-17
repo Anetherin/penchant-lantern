@@ -16,6 +16,8 @@ export function metrics(r){
   const H0 = W.map(x => (x.houses || [])[0]).filter(Boolean), hav = k => mean(H0.map(x => x[k]).filter(Number.isFinite));
   m.tidy = hav('tidy'); m.tidyEnd = (H0.at(-1) || {}).tidy; m.promo = hav('promo'); m.lost = hav('lost');
   m.pushy = mean(H0.map(x => x.pushy ? x.pushy.total : 0)); m.unhandled = mean(H0.map(x => x.pushy ? (x.pushy.none || 0) + (x.pushy.samfail || 0) + (x.pushy.samcall || 0) : 0));
+  m.incidents = mean(H0.map(x => x.incidents ? x.incidents.bad || 0 : 0)); m.incHandled = mean(H0.map(x => x.incidents ? x.incidents.ok || 0 : 0)); m.damage = mean(H0.map(x => x.damage || 0));
+  m.trouble = m.unhandled + m.incidents;   // everything nobody handled: pushy clients + night incidents
   // money made per working generic lady-week (earned - wage)
   const per = W.flatMap(x => x.per || []).filter(p => p.job !== 'rest' && !p.key);
   m.perLady = mean(per.map(p => p.earned - p.wage));

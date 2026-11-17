@@ -51,7 +51,8 @@ function samWalk(){
   const g = G();
   const opts = [];
   if(exLovers.length) opts.push({cat:'exlover', w:(W.partner ?? 1.5) + 1.2});
-  if(canPartner) opts.push({cat:'partner', w:((W.partner ?? 1.5) + (W.partnerPity ?? 0.25) * pity) * mult});
+  const byF = !ngpp && Array.isArray(B.partnerByFound) && B.partnerByFound.length ? B.partnerByFound[Math.min(found, B.partnerByFound.length - 1)] : null;   // first partner very likely, later ones rarer
+  if(canPartner) opts.push({cat:'partner', w: byF != null ? byF + (W.partnerPity ?? 0.25) * pity : ((W.partner ?? 1.5) + (W.partnerPity ?? 0.25) * pity) * mult});
   else if(guests.length) opts.push({cat:'guest', w:W.guest ?? 3.5});
   if(!g.left) opts.push({cat:'goddess', w: g.bound ? (W.goddessBound ?? 0.8) : (W.goddess ?? 2.2)});
   if((WALKS.casual || []).length) opts.push({cat:'casual', w:W.casual ?? 3.2});
@@ -386,6 +387,10 @@ function applyWalkOutcome(o, vars){
   if(o.workerTrust && vars._worker){
     const tg = gainTrust(vars._worker, o.workerTrust);
     notes.push(`${vars._worker.name} trust ${tDelta(tg)}`);
+  }
+  if(o.mood){   // everyone at Sam's house
+    const L = S.workers.filter(w=>w.house===samHouse().id); L.forEach(w=>moodAdd(w, o.mood));
+    if(L.length) notes.push(`Mood +${o.mood} at ${samHouse().name}`);
   }
   if(o.outfitDiscount){
     const ok = walkShopOutfit();

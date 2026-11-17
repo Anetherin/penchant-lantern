@@ -5,7 +5,7 @@
     "casual: encounters with randomly generated NPCs (buffs Sam's Technique). Placeholders: {name}, {race}, {act}, {job}, {house}.",
     "casualRecruit: follow-up when Sam's Technique meets walk.casual.recruitTech after a casual encounter. Placeholders: {name}, {race}, {house}.",
     "partnerIntros: meeting an unchosen partner on a walk, one entry per partner key: open (where you see her; its own page, also shown before the NG++ memory lines, so keep it neutral), story (the meeting and her pitch, shown with the hire choices), hire (result when she joins), image {comp, setting, sam} (comp = pose only). They tell the same meeting as data/goddess/partner-intros.json (the starter-partner version); keep the two in step. Once she has been recruited in an earlier cycle (NG++), partnerMemoryLines / partnerMemoryHire [3 tiers by how often she has come back] replace story / hire. Placeholders: {name}, {first}, {house}, {loc}, {goddess}.",
-    "events: rest / coin / flavor walk events (type: 'rest' | 'coin' | 'flavor'). Choices declare declarative effects (energy, gold, rep, sam, appXP, mood, trust, outfit, regularLoyalty) and optional stat check (check: {stat, label, need, win, lose})."
+    "events: rest / coin / flavor walk events (type: 'rest' | 'coin' | 'flavor'). Choices declare declarative effects (energy, gold, rep, sam, appXP, mood (everyone at Sam's house), workerMood/workerTrust (needWorker's {lady}), outfitDiscount, regularLoyalty) and optional stat check (check: {stat, label, need, win, lose})."
   ],
   "goddess": {
     "disguise": [
@@ -680,6 +680,132 @@
           "energy": 8,
           "res": "The walk home passes twice as fast with {lady} trading idle remarks about every shop window on the street."
         }
+      ]
+    },
+    {
+      "id": "rain_awning",
+      "cat": "flavor",
+      "title": "Caught in the Rain",
+      "text": "The sky over Hollowmere opens without warning. You duck under a cobbler's awning and find yourself shoulder to shoulder with a flower seller, a soaked priest and a cat that clearly owns the place.",
+      "choices": [
+        {
+          "label": "Wait it out and listen to the gossip",
+          "sam": {"charm":1},
+          "appXP": 4,
+          "res": "By the time the rain eases you know which baker is courting which widow, what the priest really thinks of the bishop, and that the cat is called Magistrate."
+        },
+        {
+          "label": "Buy the flower seller's last bunch for {house} (-15g)",
+          "gold": -15,
+          "rep": 1,
+          "res": "You walk home damp and smelling of violets. The bunch ends up in a chipped jug on the front counter, and three clients ask about it."
+        }
+      ]
+    },
+    {
+      "id": "street_chess",
+      "cat": "flavor",
+      "title": "Chess by the Fountain",
+      "text": "An old man with a waxed moustache sits at a fold-out board by the fountain, a sign propped against his stool: BEAT ME, WIN A COPPER. LOSE, BUY ME TEA.",
+      "choices": [
+        {
+          "label": "Sit down and play",
+          "check": {"stat":"wits","need":40,"past":"tutor"},
+          "win": {"sam":{"wits":2},"res":"You win in thirty-one moves. He laughs, pays his copper, and makes you promise a rematch next week."},
+          "lose": {"gold":-5,"sam":{"wits":1},"res":"He takes your queen with a pawn and the most smug sip of tea you've ever seen. You buy the tea."}
+        },
+        {"label":"Watch a game and move on","energy":4,"res":"You watch him dismantle a cocky student in twelve moves. It's oddly restful."}
+      ]
+    },
+    {
+      "id": "festival_prep",
+      "cat": "flavor",
+      "title": "Lanterns on Ribbon Lane",
+      "text": "Shopkeepers on Ribbon Lane are stringing paper lanterns between the eaves for some saint's day nobody can quite name. A ladder wobbles. Someone shouts for an extra pair of hands.",
+      "choices": [
+        {
+          "label": "Hold the ladder and hang a few",
+          "sam": {"strength":1},
+          "rep": 1,
+          "res": "An hour later the lane glows orange and the shopkeepers know your name and your house. One of them winks when he says it."
+        },
+        {
+          "label": "Buy a lantern for {house} (-20g)",
+          "gold": -20,
+          "rep": 1,
+          "res": "The paper lantern gets hung over the front door. The ladies argue for a while about whether it's tacky, then all of them light it."
+        }
+      ]
+    },
+    {
+      "id": "temple_steps",
+      "cat": "flavor",
+      "title": "On the Temple Steps",
+      "text": "A young acolyte is sweeping the temple steps and very carefully not looking at you. You realize he knows exactly who you are and what you run.",
+      "choices": [
+        {
+          "label": "Say good morning anyway",
+          "sam": {"charm":1},
+          "res": "He goes red, mumbles a blessing, and then, after a pause, asks whether the ladies are well. You tell him they are. He looks relieved."
+        },
+        {
+          "label": "Drop a donation in the box (-25g)",
+          "gold": -25,
+          "rep": 1,
+          "res": "The coins clink. The acolyte stops pretending not to see you and bows, a little stiffly. Word gets around that the Lantern's owner tithes."
+        }
+      ]
+    },
+    {
+      "id": "street_food",
+      "cat": "rest",
+      "title": "The Skewer Stall",
+      "text": "Smoke and garlic drift from a skewer stall by the river bridge. The cook flips meat over a coal brazier and shouts prices nobody listens to.",
+      "choices": [
+        {
+          "label": "Eat standing by the river (-6g)",
+          "gold": -6,
+          "energy": 10,
+          "res": "Charred, salty, too hot to hold. You eat three and watch the barges go by until your feet stop aching."
+        },
+        {
+          "label": "Bring a bag home for the ladies (-30g)",
+          "gold": -30,
+          "energy": 4,
+          "mood": 3,
+          "res": "The bag doesn't survive the front hall. Somebody fights somebody else for the last skewer, and everyone is in a better mood for it."
+        }
+      ]
+    },
+    {
+      "id": "lost_child",
+      "cat": "flavor",
+      "title": "Lost in the Market",
+      "text": "A little boy is standing in the middle of the fish market, very still, trying not to cry. Everyone is stepping around him.",
+      "choices": [
+        {
+          "label": "Help him find his mother",
+          "energy": -5,
+          "sam": {"charm":1},
+          "rep": 1,
+          "res": "It takes twenty minutes and a lot of crouching to ask stallholders. His mother finds you first and hugs him so hard he squeaks. She thanks you twice and never asks what you do for a living."
+        },
+        {"label":"Fetch the market warden","res":"The warden knows the boy by name and sighs like it isn't the first time. You leave them to it."}
+      ]
+    },
+    {
+      "id": "rival_window",
+      "cat": "flavor",
+      "title": "The Rival's Window",
+      "text": "You pass a rival house in daylight. Its front windows are freshly washed, a new sign gleams over the door, and a girl in a very good dress is laughing with a merchant on the step.",
+      "choices": [
+        {
+          "label": "Take notes on what they're doing right",
+          "sam": {"business":1},
+          "appXP": 3,
+          "res": "Fresh flowers by the door, a menu card in the window, prices that are only a little higher than yours. You write it all down."
+        },
+        {"label":"Keep walking","energy":3,"res":"Not your house, not your problem. Today, anyway."}
       ]
     }
   ],

@@ -53,8 +53,8 @@ function guildLoot(C){
 /* ---------- the board ---------- */
 function guildOffer(type){
   const C = GCON[type], g = GLD(), gm = cycleMul((GDB.gold||{}).perCycle) * (hasGuildPerk('delver') ? 1.1 : 1);
-  const pw = C.perWeek || [0,0];
-  return {uid:'gc'+(g.next++), type, gold:Math.round(rnd(C.gold[0], C.gold[1]) * gm / 10) * 10, rate:Math.round(rnd(pw[0], pw[1]) * gm / 5) * 5, weeks:C.weeks};
+  const pw = C.perWeek || [0,0], rk = 1 + ((GDB.pay||{}).rankRate ?? 0.08) * g.rank;
+  return {uid:'gc'+(g.next++), type, gold:Math.round(rnd(C.gold[0], C.gold[1]) * gm / 10) * 10, rate:Math.round(rnd(pw[0], pw[1]) * gm * rk / 5) * 5, weeks:C.weeks};
 }
 function guildRefreshBoard(){
   const g = GLD(), types = Object.keys(GCON).filter(k=>GCON[k].rank <= g.rank);
@@ -62,7 +62,7 @@ function guildRefreshBoard(){
   g.board = []; g.boardWk = S.week;
   // the newest rank's contracts turn up a little more often; every type at most twice
   for(let i=0; i<guildBoardSize(); i++){
-    const t = weighted(types.filter(k=>g.board.filter(o=>o.type===k).length < 2), k=>1 + (GCON[k].rank === g.rank ? 0.6 : 0));
+    const t = weighted(types.filter(k=>g.board.filter(o=>o.type===k).length < 2), k=>(GCON[k].rank === g.rank ? 1.6 : 1) * Math.pow((GDB.board||{}).lowerRank ?? 0.5, Math.max(0, g.rank - GCON[k].rank - 1)));
     if(t) g.board.push(guildOffer(t));
   }
 }
@@ -134,10 +134,12 @@ function ladyGuildPower(w, C){
   let sw = 0, sv = 0;
   Object.entries(all).forEach(([k,wt])=>{ sv += wt * s100(statOf(w,k)); sw += wt; });
   Object.entries(tech).forEach(([k,wt])=>{ sv += wt * s100(w.tech[k]||0); sw += wt; });
-  const base = sw ? sv / sw : 0, ef = clamp(w.energy / Math.max(1, maxEnergy(w)), P.energyFloor ?? 0.4, 1);
+  const base = gUnder(sw ? sv / sw : 0, C), ef = clamp(w.energy / Math.max(1, maxEnergy(w)), P.energyFloor ?? 0.4, 1);
   return base * ef * fxMul(w, 'guild') * (hasPast('courier') ? 1.15 : 1);
 }
-const samGuildPower = C => gWeighted(k=>S.sam[k]||0, C.sam) * ((GDB.power||{}).samMult ?? 1) * (S.samWeek.focusEff||0) * (hasPast('courier') ? 1.15 : 1);
+// under a higher contract's minPower a member only adds a fraction (base.json → power.under)
+const gUnder = (p, C) => !C.minPower || p >= C.minPower ? p : p * ((GDB.power||{}).under ?? 0.5) * (p / C.minPower);
+const samGuildPower = C => gUnder(gWeighted(k=>S.sam[k]||0, C.sam), C) * ((GDB.power||{}).samMult ?? 1) * (S.samWeek.focusEff||0) * (hasPast('courier') ? 1.15 : 1);
 function guildHurtChance(C, avg, samThere, w){
   const SF = GDB.safety || {};
   let p = C.risk * Math.max(SF.min ?? 0.25, 1 - avg / (SF.div ?? 160));
@@ -361,6 +363,19 @@ function gYuri(a, b, C){
   if(act) ch.unshift({label:f(s.close.label), fx(){ addBond(a, b, 8); [a,b].forEach(w=>{ moodAdd(w, 6); lewdUp(w, 2, svcLewdCap(act,'client')); spendLust(w, 30); countUp(w, 'yuri'); });
     return {text:f(s.close.res) + `\n\n${a.name.split(' ')[0]} & ${b.name.split(' ')[0]} much closer · Lewdness + · Lust −`, img:{wid:a.id, scene:`pair:${act}:fem:${b.id}`}}; }});
   return {title:f(s.title), who:a.id, scene:sc || 'casual', text:f(s.text), choices:ch};
+}
+
+/* ---------- New Game+ ---------- */
+// NG+ keeps Sam's rank and merit (the guild remembers him); contracts, board and parties are cleared, fame fades, and the people his rank
+// brought in are offered again. The first NG++ resets the guild once (S.guildReset). Called from ngplus.js after the new cycle is set up.
+function guildNewCycle(ngpp){
+  if(!S.guild) return;
+  if(ngpp && !S.guildReset){ S.guild = null; S.guildReset = true; return; }
+  const g = S.guild; g.active = []; g.board = []; g.boardWk = 0; g.fame = Math.round((g.fame||0) * ((GDB.carry||{}).fameKeep ?? 0.5));
+  S.workers.forEach(w=>{ if(w.job==='guild'){ delete w.gc; delete w.gPrev; w.job = 'rest'; } });
+  if(S.samFocus && S.samFocus.kind==='guild') S.samFocus = {kind:'office', topic:'auto'};
+  if(g.joined) for(let r=1; r<=g.rank; r++){ const U = GUILD_UNLOCKS[r] || {}; if(U.recruit) guildRecruit(U.recruit); if(U.outfit && WARDROBE[U.outfit] && !S.houseWardrobe.includes(U.outfit)) S.houseWardrobe.push(U.outfit); if(U.item && BAL.samUps[U.item] && !hasSamUp(U.item)){ S.samUps = S.samUps || {}; S.samUps[U.item] = true; } }
+  if(g.joined) guildRefreshBoard();
 }
 
 /* ---------- joining (rest-day errand) ---------- */

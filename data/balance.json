@@ -56,7 +56,8 @@
     "rest: energy. Max energy = maxBase + maxPerStamina x Stamina (0-100) (+ maxEnergy fx): Stamina is how much she has. Recovery: her bed (economy.json beds rest) x energyRec fx x (strBase + strPer x Strength/100) x incense x tidiness: Strength is how fast she gets it back. After each work night she sleeps: that x night (never above her max). The rest day adds that x restDay; a week off x week (+ bath with a Bathhouse). Services cost their services.json energy (no Stamina discount any more). wear: each work night costs Health nightBase + nightPerSpent x (energy spent that night / max) (x her fatigue fx; dwarves 0.4), an unhandled pushy client props.nightHealth more, and recovery is cut by (100 - Health)/100 x per (at most max); a week off heals restHeal Health, a Garden mends amenities.garden.health a week (elves double). So a lady who only does her job is roughly energy-neutral but slowly wears down, and one who takes a lot of propositions or clients runs down fast. Auto-rest (her sheet, on by default) takes her off below 35% energy or once wear cuts autoRest of her recovery, and back at 85% energy; while auto-resting she keeps her job (shown as resting) and its position, and static effects of it stay (a madame still adds her courtesan positions), but she does none of the work. Below 30 Health she is unwell and must rest. Androids charge to full every night (for a fee per energy, paid at the week's end) and feeding demons never wear down; spirits take no bed but recover like everyone else at the house's bed tier (their nerf is lower max energy, races.json fx maxEnergy).",
     "nights: the week runs night by night (simHouse). Each night an escort takes up to base + Stamina(0-100)/perStamina clients (+ nightCap fx; the fraction is rolled each night), between min and max, while her energy lasts; then she sleeps (rest.night).",
     "focus: Sam's weekly focus (js/logic/focus.js), worked during the six nights at his house (every house with samReach). cost = energy paid at the week's end (less workEnergy upgrades); with less energy left it runs at energy/cost. xp = Sam XP. rest (Off duty): restEnergy back instead. office: upkeep cut (booksCut) and madame matching with Sam's madame factor (0.5 + (Business + Wits x0.4 + Charm x0.6)/200) x share without a working madame, x withMadame on top of hers. floor: at houses with a bar, (base + Charm x perCharm + 0-25) x nights gold; sat = client satisfaction, mood/trust = for the ladies near him. watch: security (20 + Strength) x mult, trust for the ladies near him, and his step-in bonus. classes: skill or stat class at mult x one class.",
-    "incidents: smaller trouble on the work nights (simHouse, after the nights): odds per night = base + perGuest x guests a night (at most max), x the house's trouble, rowdiness, bartenders, incense and its class (rowdyTier). Each is a weighted type; security handles it with chance secPow / (secPow + diff x handle.div/40) (Guard Post x handle.guard; Sam's Watch is in secPow), clamped to handle.min..max. Unhandled: gold [min,max] in damages (added to upkeep), tidy (tidiness lost), sat (client satisfaction, feeds popularity), rep (house popularity lost), prestige, mood / trust (one lady), lostClient (a client's fee lost). Wording: events.json → nightIncidents."
+    "incidents: smaller trouble on the work nights (simHouse, after the nights): odds per night = base + perGuest x guests a night (at most max), x the house's trouble, rowdiness, bartenders, incense and its class (rowdyTier). Each is a weighted type; security handles it with chance secPow / (secPow + diff x handle.div/40) (Guard Post x handle.guard; Sam's Watch is in secPow), clamped to handle.min..max. Unhandled: gold [min,max] in damages (added to upkeep), tidy (tidiness lost), sat (client satisfaction, feeds popularity), rep (house popularity lost), prestige, mood / trust (one lady), lostClient (a client's fee lost). Wording: events.json → nightIncidents.",
+    "walk.partnerByFound: partner weight by how many partners Sam has already found on walks this cycle ([first, second, third...]; the last repeats; replaces weights.partner x halving outside NG++): the first is very likely in the first couple of walks, later ones need ~10 walks each (partnerPity per partner-less walk, up to partnerPityMax). With partnerCycleMax 3 a cycle, five cycles of a walk or two a week find every partner before NG++."
   ],
   "lewd": {
     "_note": "Lewdness diminishing returns (lewdUp). Each source has a cap: full gain below cap-band, half at the cap, none past cap+band. Services: cap = service th + capOver. softCap: default cap for sources without one; past it only daring dates, traits and stories push her further.",
@@ -140,12 +141,12 @@
   },
   "demolish": {"share":0.25},
   "ngplus": {
-    "debtShare": 0.9,
+    "debtShare": 0.8,
     "perCycle": 0.35,
     "perKeptHouse": 0,
     "keptHouseShare": 0.25,
     "perLover": 0,
-    "loverDebt": 1200,
+    "loverDebt": 1700,
     "ngppDebt": 50000,
     "ngppStep": 50000,
     "ngppHouse": "shrine",
@@ -1179,18 +1180,19 @@
     "partnerHalve": true,
     "weights": {
       "partner": 1.5,
-      "partnerPity": 0.25,
-      "partnerPityMax": 5,
+      "partnerPity": 0.15,
+      "partnerPityMax": 8,
       "guest": 3.5,
       "goddess": 2.2,
       "goddessBound": 0.8,
       "casual": 3.2,
       "rest": 1.8,
-      "coin": 1,
-      "flavor": 1.8
+      "coin": 0.7,
+      "flavor": 2.4
     },
     "ngppWeights": {"partner":2.4,"partnerPity":0.5,"partnerPityMax":6,"guest":2.5,"goddessBound":0.8,"casual":4.5,"rest":1.6,"coin":0.7,"flavor":3.2},
-    "casual": {"tech":3,"charm":1,"extraEnergy":8,"passEnergy":4,"recruitTech":15,"paidChance":0.25,"paidBase":10,"paidPerTech":0.3,"paidMax":45}
+    "casual": {"tech":3,"charm":1,"extraEnergy":8,"passEnergy":4,"recruitTech":15,"paidChance":0.25,"paidBase":10,"paidPerTech":0.3,"paidMax":45},
+    "partnerByFound": [14,0.6,0.6]
   },
   "goddess": {
     "fullReborn": 4,
@@ -1246,9 +1248,9 @@
     "xp": 8,
     "restEnergy": 30,
     "office": {"share":0.7,"withMadame":0.2},
-    "floor": {"base":30,"perCharm":1.2,"nights":4,"sat":4,"mood":1,"trust":0.3},
+    "floor": {"base":30,"perCharm":1.2,"nights":3.4,"sat":4,"mood":1,"trust":0.3},
     "watch": {"mult":1,"trust":1},
-    "classes": {"mult":2}
+    "classes": {"mult":2.2}
   },
   "incidents": {
     "base": 0.06,
