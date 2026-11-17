@@ -7,7 +7,7 @@
     {"name": "fewer 1 flatter 1", "patch": {"balance": {"debt": {"ngplus": {"fewer": 1, "flatter": 1}}}}},
     {"name": "same as c1", "patch": {"balance": {"debt": {"ngplus": {"fewer": 0, "flatter": 0}}}}}
   ],
-  "columns": ["c2len", "c3len", "c4len", "c5len", "c3debt", "c4debt", "c5debt", "c2over", "c3over", "c4over", "c5over"],
-  "delta": ["c2len", "c3len", "c4len", "c4over"],
+  "columns": ["c2weeks", "c3weeks", "c4weeks", "c5weeks", "c3debt", "c4debt", "c5debt", "c2over", "c3over", "c4over", "c5over"],
+  "delta": ["c2weeks", "c3weeks", "c4weeks", "c4over"],
   "breakdown": []
 }

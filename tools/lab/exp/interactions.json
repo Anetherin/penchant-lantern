@@ -1,0 +1,14 @@
+{
+  "desc": "Choices varied together over a full first cycle: house x partner x Sam's past. Look for a choice whose effect flips or grows with another (e.g. a partner who only shines in one house).",
+  "scenario": "campaign",
+  "runs": 12,
+  "baseline": false,
+  "each": {
+    "start.house": ["lantern", "hollow", "tankard", "castle"],
+    "start.partner": ["kaede", "nerys", "adelheid"],
+    "start.past": ["salaryman", "gym"]
+  },
+  "columns": ["weeksToWin", "winRate", "netMid", "netLate", "worth20", "missed", "sat", "left", "over"],
+  "delta": [],
+  "breakdown": []
+}

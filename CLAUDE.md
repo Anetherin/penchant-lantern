@@ -53,4 +53,4 @@
 - After changes: `node tools/build.mjs && node tools/smoke.mjs 30` (Playwright; `CHROME=` for a custom browser).
 - Goddess/NG+ flow: `node tools/goddess-smoke.mjs [weeks per cycle]`.
 - Story text: `node tools/story-check.mjs [--words]` plays every partner intro, walk meeting, house arrival, house story chapter (each check passing and failing), romance arc and after-story through every page, intimacy stage and choice (raw `{placeholders}`, empty text, thrown errors, missing stories). Run it after editing `data/arcs/`, `data/afterstories/`, `data/housestories/`, `data/goddess/` or the house story JS.
-- Balance lab: `node tools/lab/lab.mjs <spec>` (specs in `tools/lab/exp/`, docs in `tools/lab/README.md`, notes in `docs/BALANCE.md`). Keep `tools/lab/bot.js` in sync if game APIs change.
+- Balance lab: `node tools/lab/lab.mjs <spec>` (specs in `tools/lab/exp/`, docs in `tools/lab/README.md`, notes in `docs/BALANCE.md`); design intents as pass/fail checks: `node tools/lab/check.mjs [--quick] [--only id]` (`tools/lab/checks.json`). Keep `tools/lab/bot.js` in sync if game APIs change.

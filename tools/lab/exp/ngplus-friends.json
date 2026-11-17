@@ -4,6 +4,6 @@
   "ng": { "house": "wayfarer", "past": "none", "boon": "ap", "lovers": 1 },
   "variants": [ {"name": "base"} ],
   "each": { "ng.friends": [0, 2, 4] },
-  "columns": ["c1won", "ngDebt", "ngStaff", "winWeek", "net", "missed", "staff", "sat", "left", "over"],
+  "columns": ["c1won", "ngDebt", "ngStaff", "ngWeeks", "net", "missed", "staff", "sat", "left", "over"],
   "breakdown": []
 }

@@ -1,0 +1,12 @@
+{
+  "desc": "Race as courtesans: every generic lady (and every hire in the measured weeks) is this race and works as a courtesan. perLady is what one of them earns over her wage; the intent is that demons lead here.",
+  "scenario": "mid",
+  "weeks": 12,
+  "runs": 12,
+  "by": { "scenario": ["mid", "late"] },
+  "mutate": { "raceWho": "all", "raceNew": true, "job": "courtesan", "jobWho": "generics", "force": true, "minTrust": 45 },
+  "each": { "mutate.race": ["human", "elf", "beastkin/fox", "beastkin/cat", "beastkin/wolf", "beastkin/rabbit", "beastkin/dragon", "demon", "dwarf", "spirit", "angel", "android"] },
+  "columns": ["total", "net", "perLady", "served", "sat", "repGain", "left"],
+  "delta": ["total", "perLady", "sat"],
+  "breakdown": []
+}

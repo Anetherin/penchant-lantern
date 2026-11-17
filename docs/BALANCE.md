@@ -4,7 +4,31 @@ Made with `tools/lab` (see `tools/lab/README.md`); rerun any spec with `node too
 Results below use the lab's fixed policy player (`tools/lab/bot.js`) and 12–16 paired seeds unless noted. Δ figures are paired means; "±" is the 95% CI.
 
 > [!NOTE]
+> The lab's default player changed on 2026-11-16 (security when incidents pile up, a second maid when tidiness sags, decor/drinks after the debt, better picks for support roles) and `winWeek`/`gold26` were replaced by `weeksToWin`/`worth20`. Use `"policy": {"preset": "legacy"}` to compare against the old player.
+>
 > Pass 1 (2026-11-10) and Pass 2 (2026-11-11) were measured **before** the later queue/security/crowding overhaul, house class/prestige system, and Cycle-1 / NG+ debt rebalance in `balance.json` and `economy.json`. Re-run the specs in `tools/lab/exp/` (`houses-all`, `jobs-all`, `ngplus-houses`, `ngpp`, `pricing-campaign`, `amenities`, `sam-actions-campaign`, `races`) for current numbers.
+
+## Intent checks: first pass (2026-11-16, `check.mjs --quick`, 6 seeds, adaptive bot)
+
+`node tools/lab/check.mjs` tests the design intents in `tools/lab/checks.json` (edit the thresholds there). Quick-run results, to be confirmed with a full run (12–16 seeds):
+
+| check | result | what it showed |
+|---|---|---|
+| cycle1-winnable | PASS | every run clears the debt, ~30 weeks |
+| tidiness-neutral-70 | PASS | 60 vs 70: no difference (both in the neutral band) |
+| tidiness-penalty-below-30 | PASS mid / UNSURE late | tidiness 25 costs ~430 g/week (more than 10%) |
+| promoter-pays | **FAIL** | a promoter **loses** money early (−144 Lantern, −195 Manor) and in the mid-game Manor: she draws extra clients (+13/wk) the house can't seat, so turn-aways jump (1 → 8.6/wk) and popularity drops. Promoter draw may need to scale with free capacity, or turn-aways hurt less early |
+| security-stops-incidents | WARN | security cuts incidents, but late-game she costs ~90 g/week (not significant) |
+| demons-top-courtesans | **FAIL** | as all-courtesan houses, demons rank #8 of 12 mid-game and #2 late; androids, wolves and foxes lead mid |
+| demons-poor-off-service | PASS | demons lose more than humans when moved to promoter/bartender/host/security |
+| sam-actions-balanced | FAIL (noisy) | security, rounds and dates ~3.7 weeks slower than bartending; within noise at 6 seeds, recheck at full size |
+| ngplus-a-bit-harder | **FAIL** | some NG+ runs end in game over (0 lovers: 17%, 3 lovers: 33%) |
+| ngplus-lovers-speed-up | **FAIL** | carrying more lovers is **slower**: 3 lovers +8.8 weeks vs 0; lover debt (`loverDebt`, `perLover`) seems to outgrow what they bring |
+| ngplus-slow-climb | WARN | later cycles are not longer than cycle 2 |
+| ngpp-harder-still | WARN | NG++ runs mostly end in game over (5 of 6). Partly the bot: it stops looking for staff at 6 ladies in NG++, and income stays ~100 g/week. Fix the bot before reading this as balance |
+| cheap-houses-pay-off-faster / premium-houses-earn-more-later | PASS | starters pay off faster; premium houses earn more post-debt (`houses-plateau`) |
+
+Also found while building the checks: decor/drinks bought during the debt delay cycle-1 payoff by ~3.4 weeks for +300 g/week late-game net, so they don't pay back before the debt is due (the bot now buys them only after the debt is cleared).
 
 ## Current tuning highlights (`balance.json` / `economy.json`)
 - **Queue, security & crowding (`clients.wait`, `clients.crowd`, `clients.host`):** overflow clients wait instead of vanishing immediately (`waitBuf` from door, hosts, bar, stage); Wits-based security screens client value/traits (`screenMerchant`, `screenNoble`, `screenTrimLow`, `screenSafe`) and Charm/Charisma caps excess overflow cleanly; `crowd.perSpace` (5) caps comfortable capacity before satisfaction/bail/rep penalties.

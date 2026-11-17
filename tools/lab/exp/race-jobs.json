@@ -1,0 +1,13 @@
+{
+  "desc": "Race x job: every generic lady (and every hire during the measured weeks) is this race; two of them are forced into the job. Δ is against the same race's default assignment, so it shows where each race belongs. Compare a job across races with the means. Needed amenities (race or job) are granted free.",
+  "scenario": "mid",
+  "weeks": 12,
+  "runs": 12,
+  "by": { "mutate.race": ["human", "elf", "beastkin/fox", "beastkin/wolf", "demon", "dwarf", "spirit", "angel", "android"] },
+  "mutate": { "raceWho": "all", "raceNew": true, "jobWho": 2, "force": true, "minTrust": 45 },
+  "each": { "mutate.job": ["courtesan", "promoter", "bartender", "security", "dancer", "host", "attendant", "maid"] },
+  "columns": ["total", "net", "perLady", "repGain", "sat", "served", "left"],
+  "delta": ["total", "net", "sat", "left"],
+  "breakdown": ["racejob"],
+  "breakdownFor": "*"
+}
