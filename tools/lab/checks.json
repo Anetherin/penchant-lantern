@@ -234,8 +234,8 @@
     },
     {
       "id": "demons-top-courtesans",
-      "intent": "Demons are meant to be the strongest courtesans. Soft since round 4g: late-game race gaps are within noise (demon 122 vs rabbit 124, ±21).",
-      "exp": "races-courtesan",
+      "intent": "Demons are meant to be the strongest courtesans. Measured in a mixed house (races-mixed: two ladies of the race among the usual staff), since rare races turn up one or two at a time; all-race houses (races-courtesan) mix in house-level effects and come out within noise late. Soft: an aim, not a rule.",
+      "exp": "races-mixed",
       "expect": [
         {
           "rank": "mid · demon",
