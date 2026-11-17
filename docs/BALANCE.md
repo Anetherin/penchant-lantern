@@ -45,6 +45,11 @@ Androids' edge is capacity: they take no bed, so a full house fits more of them 
 Δ weekly total vs wolf houses (mid / late): fee 15 + 0.4/energy (old) +11 / +482 · 0.8 −35 / +322 · 1.2 −14 / +198 · 1.6 −47 / +166 · 1.2 + fee 30 −92 / +99.
 **Changed:** `svc.android` fee 15 → 25, perEnergy 0.4 → 1.2 (between the last two rows). Demons sit at −200 / +16 on the same scale.
 
+### Energy & fatigue (2026-11-16, campaign, 6 seeds)
+Before: support staff netted +20 to +40 energy a week on Proper beds and never rested; courtesans sat at about −1 a week and rested 0% of the time, so energy barely mattered.
+**Changed:** `balance.json → rest` (new): working recovery bed x (`work` 0.7 + `workFree` 0.25 x unspent share) (was 0.75 + 0.25), plus `fatigue` (each working week adds 0.1 + spent/max; recovery x (1 − 0.1 x fatigue), floor 0.4; auto-rest at a 35% cut; a week off clears it). Staff job energy raised (madame 26, promoter/maid 28–30, attendant 22, security/bartender 30, dancer 32, bath 24, teacher 30, chapel 20, host 26). Dwarves `energyRec` 1.25 → 1.4 and `fatigue` 0.4. Androids recharge what they used every working week (fee per energy). Spirits `workRec` 36 → 30.
+Result (bot): courtesans and staff now take a week off every ~6–10 weeks (dwarves rarely); cycle-1 win 28 → ~34 weeks (fatigue off: 30, fatigue 0.12/auto-rest 0.4: 39). Resting earlier is more efficient than grinding (a rest week recovers bed x 1.6).
+
 ## Current tuning highlights (`balance.json` / `economy.json`)
 - **Queue, security & crowding (`clients.wait`, `clients.crowd`, `clients.host`):** overflow clients wait instead of vanishing immediately (`waitBuf` from door, hosts, bar, stage); Wits-based security screens client value/traits (`screenMerchant`, `screenNoble`, `screenTrimLow`, `screenSafe`) and Charm/Charisma caps excess overflow cleanly; `crowd.perSpace` (5) caps comfortable capacity before satisfaction/bail/rep penalties.
 - **House class & popularity (`prestige`):** house `rep` is **House Popularity**; `h.prestige` (`0–100`) tracks **House Class** toward a structural target (tier, beds, decor, drinks, price, amenities, tidiness, attendants, leadership) plus operational shifts. Low prestige favors demand and propositions; high prestige attracts merchants/nobles and raises quality/amenity expectations.

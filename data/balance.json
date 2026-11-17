@@ -1219,5 +1219,5 @@
       "chance": {"stranger":0.5,"suspicion":1,"reveal":1,"game":0.85,"true":0}
     }
   },
-  "rest": {"work":0.55,"workFree":0.25,"week":1.6,"bath":10,"fatigue":{"per":0.12,"base":0.1,"min":0.4,"autoRest":0.4}}
+  "rest": {"work":0.7,"workFree":0.25,"week":1.6,"bath":10,"fatigue":{"per":0.1,"base":0.1,"min":0.4,"autoRest":0.35}}
 }
