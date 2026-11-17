@@ -190,7 +190,9 @@ const ownsUnder = (w,k) => (w.ownedUnder||[]).includes(k) || houseUnderStock().i
 const ownedOutfits = w => Array.from(new Set([...(w.owned||[]), ...houseStock()])).filter(k=>WARDROBE[k]);
 const baselineCut = () => { const C = BAL.wardrobe.cut; return Math.min(C.maxBase, C.base + Math.max(0, ((typeof S!=='undefined'&&S&&S.cycle)||1) - 1) * C.perCycle); };
 const defaultCut = w => isFree(w) ? 0 : baselineCut();
-const workerCut = w => !w || w.cut===undefined || w.cut==='base' ? defaultCut(w) : clamp(+w.cut||0, 0, 0.9);
+// cutFloor (named data): a lady who insists on her share. She keeps at least baselineCut() + cutFloor (so it rises with the cycle's baseline) until she's Devoted.
+const cutFloor = w => { const f = w && w.key && NAMED[w.key] ? NAMED[w.key].cutFloor : 0; return f && !has(w,'Devoted') ? Math.min(0.9, baselineCut() + f) : 0; };
+const workerCut = w => !w ? 0 : Math.max(cutFloor(w), w.cut===undefined || w.cut==='base' ? defaultCut(w) : clamp(+w.cut||0, 0, 0.9));
 function wantedOutfits(w, budget){
   const avail = Object.entries(WARDROBE).filter(([k,o])=>o && !o.owner && !o.uniform && !o.guild && !ownsOutfit(w,k) && wardrobeOK(w,k) && outfitCost(o)>0);
   const styleWant = avail.filter(([,o])=>o.style===w.style);

@@ -1,7 +1,7 @@
 {
   "traits": {
     "Exhibitionist": {
-      "desc": "Dancing raises lewdness faster; comfortable with less clothing; needs no room for services.",
+      "desc": "Dancing +20%; comfortable with less clothing; serves clients without needing a room (rowdy crowds love it, refined houses less so).",
       "fx": {"jobBonus":{"dancer":1.2},"wardrobe":15},
       "hidden": true,
       "gen": false,
@@ -41,8 +41,8 @@
       "excl": []
     },
     "Crowd Favorite": {
-      "desc": "Half the town knows her name: +3 appeal, +5% fees, +8 Charisma.",
-      "fx": {"appeal":3,"clientFee":1.05,"stats":{"charisma":8}},
+      "desc": "Half the town knows her name: +3 appeal, +15% tips on stage and behind the bar, +8 Charisma.",
+      "fx": {"appeal":3,"tips":1.15,"stats":{"charisma":8}},
       "earn": {"stat":"popularity","at":70},
       "gen": false,
       "hidden": false,
@@ -51,8 +51,8 @@
       "excl": []
     },
     "Confidante": {
-      "desc": "She trusts you completely, and it shows: she settles easily; +8 Charm.",
-      "fx": {"trustGain":1.1,"moodRest":3,"stats":{"charm":8}},
+      "desc": "She trusts you completely, and it shows: resting mood +3, bad weeks hit her 15% softer; +8 Charm.",
+      "fx": {"moodRest":3,"moodLoss":0.85,"stats":{"charm":8}},
       "earn": {"trust":90},
       "gen": false,
       "hidden": false,
@@ -71,8 +71,8 @@
       "excl": []
     },
     "Unflappable": {
-      "desc": "She has stared down enough pushy customers to take most things in stride.",
-      "fx": {"moodDelta":0.85},
+      "desc": "She has stared down enough pushy customers to take most things in stride: bad nights hit her 15% softer, +6 security.",
+      "fx": {"moodLoss":0.85,"security":6},
       "earn": {"count":"rowdy","at":5},
       "gen": false,
       "hidden": false,
@@ -101,8 +101,8 @@
       "excl": []
     },
     "Pitch Perfect": {
-      "desc": "Her promotion work draws 15% more.",
-      "fx": {"promote":1.15},
+      "desc": "Her promotion work draws 10% more, and the people she pulls in come back (+15% chance to win a regular).",
+      "fx": {"promote":1.1,"regular":1.15},
       "gen": false,
       "hidden": false,
       "earn": {"count":"promo","at":25},
@@ -131,8 +131,8 @@
       "excl": []
     },
     "Practiced Kisses": {
-      "desc": "Kisses are 15% better received.",
-      "fx": {"actQuality":{"kiss":1.15}},
+      "desc": "Kisses are 10% better received, and they tend to turn into propositions (+5%).",
+      "fx": {"actQuality":{"kiss":1.1},"propRate":1.05},
       "gen": false,
       "hidden": false,
       "earn": {"count":"svcByAct.kiss","at":30},
@@ -141,8 +141,8 @@
       "excl": []
     },
     "Tireless": {
-      "desc": "A hundred and twenty services in: each costs 7% less energy.",
-      "fx": {"actEnergy":0.93},
+      "desc": "A hundred and twenty services in: each costs 5% less energy and she recovers 8% faster.",
+      "fx": {"actEnergy":0.95,"energyRec":1.08},
       "gen": false,
       "hidden": false,
       "earn": {"count":"svc","at":120},
@@ -161,8 +161,8 @@
       "excl": []
     },
     "Close Companion": {
-      "desc": "Evenings with you have put her at ease: trust grows 10% faster, resting mood +3.",
-      "fx": {"trustGain":1.1,"moodRest":3},
+      "desc": "Evenings with you have put her at ease: +5 willingness, resting mood +3.",
+      "fx": {"willing":5,"moodRest":3},
       "gen": false,
       "hidden": false,
       "earn": {"count":"privateSam","at":10},
@@ -181,8 +181,8 @@
       "excl": []
     },
     "House Proud": {
-      "desc": "Ten weeks as a maid: cleans 20% better, maid work +10%.",
-      "fx": {"tidy":1.2,"jobBonus":{"maid":1.1}},
+      "desc": "Ten weeks as a maid: cleans 20% better and takes pride in the place (resting mood +2).",
+      "fx": {"tidy":1.2,"moodRest":2},
       "gen": false,
       "hidden": false,
       "earn": {"job":"maid","weeks":10},
@@ -201,8 +201,8 @@
       "excl": []
     },
     "Steady Hostess": {
-      "desc": "Ten weeks running the house: madame work +15%, +4 Wits.",
-      "fx": {"jobBonus":{"madame":1.15},"stats":{"wits":4}},
+      "desc": "Ten weeks running the house: madame work +12%, house reputation +5%, +4 Wits.",
+      "fx": {"jobBonus":{"madame":1.12},"rep":1.05,"stats":{"wits":4}},
       "gen": false,
       "hidden": false,
       "earn": {"job":"madame","weeks":10},
@@ -211,8 +211,8 @@
       "excl": []
     },
     "Practiced Charmer": {
-      "desc": "Ten weeks as a courtesan: courtesan work +12%, services earn 3% more.",
-      "fx": {"jobBonus":{"courtesan":1.12},"clientFee":1.03},
+      "desc": "Ten weeks as a courtesan: courtesan work +10%, and clients ask for another round a little more often.",
+      "fx": {"jobBonus":{"courtesan":1.1},"encore":0.05},
       "gen": false,
       "hidden": false,
       "earn": {"job":"courtesan","weeks":10},
@@ -281,8 +281,8 @@
       "excl": []
     },
     "Quiet Grace": {
-      "desc": "Chapel work +15%, resting mood +3, +5 Charm.",
-      "fx": {"jobBonus":{"chapel":1.15},"moodRest":3,"stats":{"charm":5}},
+      "desc": "Chapel work +12%; pilgrims speak well of the house (reputation +5%); +5 Charm.",
+      "fx": {"jobBonus":{"chapel":1.12},"rep":1.05,"stats":{"charm":5}},
       "gen": false,
       "hidden": false,
       "earn": {"job":"chapel","weeks":10},
@@ -301,8 +301,8 @@
       "excl": []
     },
     "Town Crier": {
-      "desc": "Promoting +12%; +8 Charisma.",
-      "fx": {"promote":1.12,"stats":{"charisma":8}},
+      "desc": "Promoting +12%, house reputation +5%; +8 Charisma.",
+      "fx": {"promote":1.12,"rep":1.05,"stats":{"charisma":8}},
       "gen": false,
       "hidden": false,
       "earn": {"job":"promoter","weeks":10},
@@ -371,8 +371,8 @@
       "excl": []
     },
     "Life of the Lounge": {
-      "desc": "Sixty waiting guests entertained: hosting +12%, +6 Charisma, +6 Charm.",
-      "fx": {"jobBonus":{"host":1.12},"stats":{"charisma":6,"charm":6}},
+      "desc": "Sixty waiting guests entertained: hosting +10%, guests end up asking her upstairs (+10% propositions), +6 Charisma, +6 Charm.",
+      "fx": {"jobBonus":{"host":1.1},"propRate":1.1,"stats":{"charisma":6,"charm":6}},
       "gen": false,
       "hidden": false,
       "earn": {"count":"hosted","at":60},
@@ -381,8 +381,8 @@
       "excl": []
     },
     "Iron Stamina": {
-      "desc": "Sixty services in and she barely breaks a sweat: +15 max energy, +10 Stamina.",
-      "fx": {"maxEnergy":15,"stats":{"stamina":10}},
+      "desc": "Sixty services in and she barely breaks a sweat: work wears her down 20% slower; +10 Stamina.",
+      "fx": {"fatigue":0.8,"stats":{"stamina":10}},
       "gen": false,
       "hidden": false,
       "earn": {"count":"svc","at":60},
@@ -391,8 +391,8 @@
       "excl": []
     },
     "Poised & Polished": {
-      "desc": "Twenty weeks as a courtesan have honed her grace: +10 Refinement, nobles pay 10% more.",
-      "fx": {"classBonus":{"noble":1.1},"stats":{"refinement":10}},
+      "desc": "Twenty weeks as a courtesan have honed her grace: +10 Refinement, nobles pay 10% more, and her composure lifts the house's name 5%.",
+      "fx": {"classBonus":{"noble":1.1},"rep":1.05,"stats":{"refinement":10}},
       "gen": false,
       "hidden": false,
       "earn": {"job":"courtesan","weeks":20},
@@ -446,9 +446,9 @@
       "fx": {"jobBonus":{"teacher":1.15},"stats":{"wits":6}}
     },
     "Effortless": {
-      "desc": "Moves with no wasted motion: +6 Agility, services cost 6% less energy.",
+      "desc": "Moves with no wasted motion: +6 Agility, services cost 5% less energy, and work wears her down 10% slower.",
       "earn": {"stat":"agility","at":80},
-      "fx": {"stats":{"agility":6},"actEnergy":0.94}
+      "fx": {"actEnergy":0.95,"fatigue":0.9,"stats":{"agility":6}}
     },
     "Salon Grace": {
       "desc": "Carries herself like old nobility even off the clock: +6 Refinement, nobles and officials pay 8% more.",
@@ -461,9 +461,9 @@
       "fx": {"regular":1.2,"clientFee":1.03}
     },
     "House Sister": {
-      "desc": "Twenty weeks in one house with friends around her: her bonds grow 25% faster; resting mood +2.",
+      "desc": "Twenty weeks in one house with friends around her: her bonds grow 25% faster, and bad weeks hit her 10% softer.",
       "earn": {"weeks":20,"bonds":2},
-      "fx": {"bondGain":1.25,"moodRest":2}
+      "fx": {"bondGain":1.25,"moodLoss":0.9}
     },
     "Seasoned Adventurer": {
       "desc": "Has a few guild contracts behind her: +15% contract progress, 20% fewer injuries, +5 Strength.",

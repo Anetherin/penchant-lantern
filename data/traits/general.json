@@ -1,7 +1,7 @@
 {
   "traits": {
     "Shy": {
-      "desc": "Lewdness grows slowly; trust grows faster; less comfortable undressing.",
+      "desc": "Lewdness grows slowly and she's less comfortable undressing, but chats and dates with you build 20% more trust.",
       "fx": {"lewdGain":0.5,"willing":-5,"wardrobe":-10},
       "gen": true,
       "excl": ["Eager","Uninhibited","Exhibitionist"],
@@ -192,8 +192,8 @@
       "excl": ["Early Riser"]
     },
     "Hardy": {
-      "desc": "Shrugs off a bad week: mood losses hit her 20% softer; +4 Stamina.",
-      "fx": {"moodLoss":0.8,"stats":{"stamina":4}},
+      "desc": "Shrugs off a bad week: mood losses hit her 20% softer and work wears her down 15% slower; +4 Stamina.",
+      "fx": {"moodLoss":0.8,"fatigue":0.85,"stats":{"stamina":4}},
       "gen": true,
       "hidden": false,
       "earn": null,
@@ -202,8 +202,8 @@
       "excl": ["Delicate"]
     },
     "Delicate": {
-      "desc": "-10 max energy; nobles pay 15% more for her company; +6 Refinement, +4 Beauty.",
-      "fx": {"maxEnergy":-10,"classBonus":{"noble":1.15},"stats":{"refinement":6,"beauty":4}},
+      "desc": "-10 max energy and work wears her down 15% faster; nobles pay 15% more for her company; +6 Refinement, +4 Beauty.",
+      "fx": {"maxEnergy":-10,"fatigue":1.15,"classBonus":{"noble":1.15},"stats":{"refinement":6,"beauty":4}},
       "gen": true,
       "hidden": false,
       "earn": null,
@@ -621,7 +621,16 @@
       "ngPerk": false,
       "excl": []
     },
-    "Borrowed Memories": {"desc":"Stats improve 12% faster.","fx":{"statGain":1.12},"gen":true,"hidden":false,"earn":null,"ngOnly":true,"ngPerk":false,"excl":[]},
+    "Borrowed Memories": {
+      "desc": "Lessons feel like remembering: stats improve 8% faster and she picks up 15% more from lessons, tutors and the classroom.",
+      "fx": {"statGain":1.08,"learn":1.15},
+      "gen": true,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": true,
+      "ngPerk": false,
+      "excl": []
+    },
     "Second Chances": {
       "desc": "+8 max energy; becomes reckless a little later.",
       "fx": {"maxEnergy":8,"recklessAt":5},
@@ -683,7 +692,7 @@
       "excl": []
     },
     "Eager Student": {
-      "desc": "Picks up 20% more from a teacher or the madame; +4 Wits.",
+      "desc": "Picks up 20% more from the classroom, Sam's classes and paid tutors; +4 Wits.",
       "fx": {"learn":1.2,"stats":{"wits":4}},
       "gen": true,
       "hidden": false,
@@ -810,9 +819,9 @@
       "fx": {"jobBonus":{"madame":1.1},"teach":1.12,"stats":{"wits":4}}
     },
     "Supple": {
-      "desc": "Bends where others break: +6 Agility, +4 Beauty, doggy quality +10%.",
+      "desc": "Bends where others break: doggy and cowgirl cost her less energy (-15% / -10%), doggy +6% quality; +6 Agility, +4 Beauty.",
       "gen": true,
-      "fx": {"actQuality":{"doggy":1.1},"stats":{"agility":6,"beauty":4}}
+      "fx": {"actQuality":{"doggy":1.06},"actEnergyBy":{"doggy":0.85,"cowgirl":0.9},"stats":{"agility":6,"beauty":4}}
     },
     "Modest Needs": {
       "desc": "Lives simply and saves what she earns: asks 12% lower wages.",

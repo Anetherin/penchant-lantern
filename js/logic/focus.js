@@ -7,7 +7,7 @@
    Hooks: samFocusRun() at the start of endWeek (before the houses run); simHouse reads focusOn(kind, h).
    ===================================================================== */
 const FOCUS = {
-  office:  {icon:'📒', label:'Office',   desc:'Cuts upkeep (Business). Matches clients with the right courtesan and attendants with the right courtesans, like a madame: most of a madame\'s effect where there is none (or she\'s resting), a little on top of hers. No income.'},
+  office:  {icon:'📒', label:'Office',   desc:'Cuts upkeep and lifts each house\'s takings a few percent (both grow with Business). Matches clients with the right courtesan and attendants with the right courtesans, like a madame: most of a madame\'s effect where there is none (or she\'s resting), a little on top of hers.'},
   floor:   {icon:'🍺', label:'Floor',    desc:'Works the bar and the lounge: income where there is a bar (Charm), happier clients who wait less restlessly, and a little mood and trust for the ladies.'},
   watch:   {icon:'🛡️', label:'Watch',    desc:'Security all week (Strength), his step-in bonus every night, and more trust: the ladies feel safe with him around.'},
   guild:   {icon:'⚔️', label:'Guild',    desc:'Goes out on a guild contract with (or instead of) the ladies: pick it on the Guild tab. He is away all week, so none of the at-house work happens.'},
@@ -23,6 +23,8 @@ function setFocus(kind, topic){
   if(kind==='guild'){ if(!guildOn()) return toast('Sam has to register at the Adventurers\' Guild first.'); TAB = 'guild'; return render(); }   // the contract is picked on the Guild tab
   if(FOCUS[kind]){ if(f.kind==='guild') f.topic = 'auto'; f.kind = kind; } if(FOCUS_TOPICS[topic]) f.topic = topic; save(); render(); }
 // How hard Sam worked this focus this week at house h (0-1), or 0 if it's another focus or he isn't there.
+// Office: house takings x (1 + officeMul() x effort) at every house he reaches (balance.json → focus.office.incomeBase/perBusiness/incomeMax): tighter books, fewer comped drinks, better supplier prices.
+const officeMul = () => { const O = (BAL.focus||{}).office || {}; return Math.min(O.incomeMax ?? 0.12, (O.incomeBase ?? 0) + (S.sam.business||0) * (O.perBusiness ?? 0)); };
 const focusOn = (kind, h) => (S.samWeek && S.samWeek.focus === kind && (!h || samAtHouse(h))) ? (S.samWeek.focusEff || 0) : 0;
 // Sam as a madame (Office): the madame formula with his Business for her Management, Wits and Charm (balance.json → focus.office).
 const samMadF = () => 0.5 + ((S.sam.business||0) + (S.sam.wits||0)*0.4 + (S.sam.charm||0)*0.6) / 200;
@@ -65,7 +67,8 @@ function samFocusRun(){
     what = `stood watch (security +${sec}, the ladies trust him a little more)`;
   } else if(k==='office'){
     sw.books = true; sw.booksEff = eff; samStat('business', 2*eff); samStat('wits', eff);
-    what = `ran the office (upkeep −${Math.round(booksCut()*eff*100)}%, matched clients and attendants${S.houses.some(h=>samAtHouse(h) && S.workers.some(w=>w.house===h.id && w.job==='madame')) ? ' alongside the madame' : ''})`;
+    const om = officeMul() * eff;
+    what = `ran the office (${om >= 0.005 ? `takings +${Math.round(om*100)}%, ` : ''}upkeep −${Math.round(booksCut()*eff*100)}%, matched clients and attendants${S.houses.some(h=>samAtHouse(h) && S.workers.some(w=>w.house===h.id && w.job==='madame')) ? ' alongside the madame' : ''})`;
   } else if(k==='floor'){
     const Fl = F.floor || {}; let inc = 0;
     S.houses.filter(h=>samAtHouse(h) && h.up.bar).forEach(h=>{

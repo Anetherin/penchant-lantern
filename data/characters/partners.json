@@ -168,7 +168,7 @@
     "race": "demon",
     "age": 205,
     "personality": "Proud and sharp-tongued",
-    "traits": ["Eager","Exhibitionist"],
+    "traits": ["Eager"],
     "style": "Revealing",
     "favColor": "purple",
     "fav": "cowgirl",
@@ -191,7 +191,7 @@
     "tech": {"service":35,"dance":45,"bar":20,"combat":25,"manage":15},
     "actSkill": 55,
     "popularity": 15,
-    "lewd": 82,
+    "lewd": 65,
     "trust": 15,
     "outfits": {
       "sig_nerys": {
@@ -240,7 +240,8 @@
       }
     ],
     "goddess": {"comment":"\"A contract devil, hm.\" {goddess} laughs. \"She's read the fine print. I wrote the clause she missed. Don't tell her.\""},
-    "partnerBlurb": "A sharp-tongued demon whose interrupted summoning ritual bound her directly to Sam’s contract."
+    "partnerBlurb": "A sharp-tongued demon whose interrupted summoning ritual bound her directly to Sam’s contract.",
+    "cutFloor": 0.3
   },
   "elowen": {
     "role": "partner",
@@ -380,7 +381,11 @@
     "bonds": {"nerys":{"v":-40,"note":"A holy knight and a demon who both claim Sam. It goes about how you'd expect."}},
     "jobs": {"likes":["security"],"dislikes":["dancer","courtesan"]},
     "body": {"bust":"medium","height":"tall","figure":"athletic"},
-    "unique": {"name":"Oath of the Order","desc":"A knight's discipline: hard to rattle and hard to get past.","fx":{"security":12,"recklessAt":10}},
+    "unique": {
+      "name": "Oath of the Order",
+      "desc": "A knight's discipline: hard to rattle, hard to get past, at home on a contract (as your starting partner she vouches for Sam at the Adventurers' Guild: he starts registered, at Iron rank), and she drills you in the yard every morning (+0.6 Strength a week while she works where you are).",
+      "fx": {"security":12,"recklessAt":10,"guild":1.2,"guildSafe":0.8,"samTrain":{"strength":0.6}}
+    },
     "vignettes": [
       {
         "title": "Relics of the Hero",
@@ -406,7 +411,9 @@
     "goddess": {
       "comment": "\"The knight.\" {goddess} bursts out laughing. \"I promised her a hero. She got you. I'm not sorry. Her oath is delightful. Be gentle with it.\""
     },
-    "partnerBlurb": "A sworn knight of the Radiant Order trying to square an ancient prophecy with a pleasure house."
+    "partnerBlurb": "A sworn knight of the Radiant Order trying to square an ancient prophecy with a pleasure house.",
+    "startGuild": true,
+    "startGuildRank": 1
   },
   "natsuki": {
     "role": "partner",
@@ -713,7 +720,11 @@
     },
     "jobs": {"likes":["promoter","madame"],"dislikes":["maid"]},
     "body": {"bust":"medium","height":"average","figure":"average"},
-    "unique": {"name":"Born Behind the Counter","desc":"She grew up in this house and sells it better than anyone.","fx":{"promote":1.2,"clientFee":1.05}},
+    "unique": {
+      "name": "Born Behind the Counter",
+      "desc": "She grew up in this house and sells it better than anyone. As your starting partner she talks the Credit House down: the house's debt is 15% smaller.",
+      "fx": {"promote":1.2,"clientFee":1.05}
+    },
     "vignettes": [
       {
         "title": "Margins",
@@ -740,7 +751,8 @@
       "comment": "\"The accountant's daughter.\" {goddess} nods slowly. \"She forgave nobody and taught you everything. I hate how much I like her.\""
     },
     "partnerBlurb": "The fiery daughter of the house’s previous owner, dead set on keeping Sam from ruining the books.",
-    "bonds": {"yui":{"v":25,"note":"Spotted each other’s red ink across a table and immediately started arguing ledger columns."}}
+    "bonds": {"yui":{"v":25,"note":"Spotted each other’s red ink across a table and immediately started arguing ledger columns."}},
+    "partnerDebtCut": 0.15
   },
   "lara": {
     "role": "partner",
@@ -950,7 +962,7 @@
     },
     "under": "silk",
     "underColor": "silver",
-    "stats": {"beauty":64,"charm":52,"charisma":42,"refinement":64,"wits":76,"stamina":50,"strength":24,"agility":50},
+    "stats": {"beauty":67,"charm":58,"charisma":42,"refinement":64,"wits":76,"stamina":56,"strength":24,"agility":50},
     "tech": {"service":30,"dance":12,"bar":10,"combat":15,"manage":40},
     "actSkill": 5,
     "popularity": 6,
@@ -977,8 +989,8 @@
     "body": {"bust":"small","height":"average","figure":"average"},
     "unique": {
       "name": "Postmistress's Memory",
-      "desc": "She remembers every client's name and quirks, which smooths her work as an attendant.",
-      "fx": {"jobBonus":{"attendant":1.2,"promoter":1.1},"skillGain":1.1}
+      "desc": "She remembers every client's name and quirks: attendant work +25%, promoting +10%, clients 30% more likely to become her regulars, and she learns 10% faster.",
+      "fx": {"jobBonus":{"attendant":1.25,"promoter":1.1},"regular":1.3,"skillGain":1.1}
     },
     "vignettes": [
       {

@@ -376,6 +376,16 @@ function simHouse(h, R){
     pr.draw = d; promoDraw += d * priceDem; countUp(w,'promo', Math.max(1, Math.round(d * priceDem)));
     if(J.promoterRep) repAdd(h, d * priceDem * J.promoterRep);
   });
+  // promoters read last week (h.lastFlow): clients turned away mean she pulls back. How well she reads it: promoterReadBase + Wits/promoterReadWits,
+  // + promoterReadBond if she's on good terms (bond >= promoterBondAt) with the house's security, who tells her how the door went. Best reader leads.
+  const LF = h.lastFlow;
+  if(promoDraw > 0 && LF && LF.promo > 0){
+    const secs = byJob('security');
+    const acc = Math.max(...byJob('promoter').map(w=>clamp((J.promoterReadBase ?? 0.25) + s100(statOf(w,'wits')) / (J.promoterReadWits ?? 140)
+      + (secs.some(x=>bondV(w, x) >= (J.promoterBondAt ?? 30)) ? (J.promoterReadBond ?? 0.2) : 0), 0, 1)));
+    const want = LF.turned > 0 ? Math.max(0, LF.promo - LF.turned) : promoDraw;   // no turn-aways last week: push as hard as she can
+    if(want < promoDraw){ const before = promoDraw; promoDraw = promoDraw * (1 - acc) + want * acc; hr.promoHeld = Math.round(before - promoDraw); }
+  }
   // promoters fill empty rooms: draw beyond what the escorts can take (nightly caps x nights x promoterCapUse) mostly fizzles (x promoterOverflow),
   // so a full house doesn't pay for walkouts it didn't need
   if(promoDraw > 0){
@@ -761,6 +771,7 @@ function simHouse(h, R){
   let beds = bedsFor(h); hr.floor = [];
   S.workers.filter(w=>w.house===h.id && !['spirit','android'].includes(w.race)).sort((a,b)=>(b.isPartner||b.locked?1:0)-(a.isPartner||a.locked?1:0)).forEach(w=>{ if(beds>0){ beds--; w._bed = BEDS[h.beds||0].rest; } else { w._bed = FLOOR_REST; hr.floor.push(w.name); } });
   hr.avgSat = avg; hr.rep = h.rep;
+  h.lastFlow = {promo: Math.round(hr.promoDraw || 0), turned: hr.turned, served: hr.served};   // what the promoters read next week
   updatePrestige(h, hr, W, R, {
     courts: byJob('courtesan').length,
     ownAtts: ownAttMap.size,
@@ -777,7 +788,7 @@ function endWeek(){
   guildTidy();     // guild.js: ladies (and Sam's focus) on contracts that ended go back to work
   const focusLine = samFocusRun();   // Sam's weekly focus (focus.js): pays its energy, sets what simHouse reads
   const R = {v3:true, v5:true, v6:true, week:S.week, lines:[], per:{}, hl:[], houses:[], income:0, wages:0, upkeep:0, recharge:0, cuts:0, served:0, turned:0, left:0, stopped:0, selfProps:0,
-    led:{escort:0, offduty:0, bar:0, dance:0, bath:0, chapel:0, host:0, guild:0, sam:S.samWeek.income}, samActs:S.samWeek.acts.slice()};
+    led:{escort:0, offduty:0, bar:0, dance:0, bath:0, chapel:0, host:0, guild:0, office:0, sam:S.samWeek.income}, samActs:S.samWeek.acts.slice()};
   S.workers.forEach(w=>R.per[w.id]={id:w.id, name:w.name, job:w.job, prevJob:w.job==='rest' ? w.prevJob : undefined, house:w.house, served:0, comp:0, acts:{}, props:0, acc:0, earned:0, e0:Math.round(w.energy), m0:Math.round(w.mood), l0:Math.round(w.lust||0), enc:[], why:[], notes:[],
     t0:w.trust||0, lw0:w.lewd||0, p0:w.popularity||0, st0:Object.assign({}, w.stats), tk0:Object.assign({}, w.tech), ak0:Object.fromEntries(Object.entries(w.acts||{}).map(([k,a])=>[k, a.skill||0]))});
   const log = t => R.lines.push(t);
@@ -785,7 +796,8 @@ function endWeek(){
   autoFeasts(R);   // home.js: houses set to feast automatically, before the work week
   autoStuds(R);    // sam.js: auto-hire studs for demons whose lust meets their threshold
   let satSum = 0;
-  S.houses.forEach(h=>{ const hr = simHouse(h, R); R.houses.push(hr); R.income += hr.income; R.upkeep += hr.upkeep; R.served += hr.served; R.turned += hr.turned; R.left += hr.left||0; R.stopped += hr.stopped||0; satSum += hr.sat; });
+  S.houses.forEach(h=>{ const hr = simHouse(h, R); const oe = focusOn('office', h); if(oe && hr.income > 0){ const ob = Math.round(hr.income * officeMul() * oe); hr.income += ob; hr.office = ob; R.led.office += ob; }
+    R.houses.push(hr); R.income += hr.income; R.upkeep += hr.upkeep; R.served += hr.served; R.turned += hr.turned; R.left += hr.left||0; R.stopped += hr.stopped||0; satSum += hr.sat; });
   guildWeek(R);   // guild.js: contract progress, injuries, rewards (adds to R.income)
   R.perkBonus = Math.round(R.income * ((hasChallengePerk('lean_house') ? 0.1 : 0) + (hasChallengePerk('starlight_debt') ? 0.15 : 0)));
   R.income += R.perkBonus;
@@ -1060,6 +1072,8 @@ function endWeek(){
       }
     }
   }
+  // samTrain fx (traits/uniques, data/traits/base.json): ladies who work near Sam drill him a little every week (e.g. Adelheid: Strength)
+  S.workers.filter(w=>w.job!=='guild' && nearSam(w)).forEach(w=>fxList(w).forEach(f=>{ if(f.samTrain) Object.entries(f.samTrain).forEach(([k,n])=>{ if(SAM_STATS.includes(k)) samStat(k, n); }); }));
   const netXp = R.income - R.wages - R.upkeep - (R.cuts||0);
   if(netXp > 0) samGainXP(Math.min(30, Math.round(netXp/60)));
   S.week++; S.ap = apMax(); samEnergyAdd(samRecover(BAL.samHome.weekly) * samBonus('rest','strength') + (samUpFx('weekly')||0) + (hasPast('gym')?20:0));

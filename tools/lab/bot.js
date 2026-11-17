@@ -59,6 +59,7 @@ LAB.POLICY = {
   reserve: 300,          // keep this much gold on top of last week's costs and an upcoming debt payment
   roundsTrust: 35,       // Sam makes the rounds when any lady is below this trust
   partnerDates: true,    // one date a week with the partner while AP allows (builds toward Devoted -> NG+ carries)
+  walkPartners: true,    // one walk a week (cycle 1 and NG+) while this cycle's walk partners aren't all found (balance.json → walk.partnerCycleMax): a real player walks to find partners
   samDefault: 'rest',    // what Sam does with spare rest-day AP: scout | rounds | date | walk | orgy | trainStat | trainSkill | trainService | demo | rest
   focus: 'auto',         // Sam's weekly focus: office | floor | watch | classes | rest | auto (watch after unhandled trouble, office without a madame, floor with a bar, else office)
   focusTopic: 'auto',    // classes: auto | skill | stat
@@ -69,7 +70,10 @@ LAB.POLICY = {
   guildLadies: 2,        // at most this many ladies away on contracts at a time (they earn nothing at the house that week)
   guildPick: 'support',  // who goes: 'support' (non-courtesans first, then the weakest earners) | 'fighters' (best contract power, any job)
   guildSam: 'auto',      // 'auto': Sam joins a contract only when the ladies alone wouldn't finish it in time; true = whenever a contract has room; false = never
-  guildEarnCap: 1.25,    // only send ladies who earned at most this x the contract's day rate last week (a top courtesan stays home)
+  guildEarnCap: 1.25,    // only send ladies whose best of the last 4 working weeks is at most this x the contract's day rate (a top courtesan stays home)
+  goddessGuild: true,    // bound Seliora takes the Guild work focus while a contract is running
+  guildPartners: true,   // partners can go too (the earnings cap still keeps a partner who earns well at home; Adelheid-style fighters go)
+  guildSpare: true,      // never send the madame or a house's only maid/security/attendant/promoter/host (false = old behaviour)
   guildSafety: 1.15,     // take/staff a contract only if projected progress x weeks left >= remaining work x this
   payOff: true,
   scoutWhenShort: 4,     // Sam scouts instead of his spare action while a house has fewer ladies than this and few candidates are affordable          // pay the whole debt as soon as gold covers it plus the reserve
@@ -98,7 +102,7 @@ LAB.POLICY = {
   flushMul: 3
 };
 // the fixed player the Pass 1/2 numbers in docs/BALANCE.md were measured with: spec "policy": {"preset": "legacy"}
-LAB.PRESETS = { legacy: { security: false, tidyFloor: 0, classUpkeep: false, maxStaff: 10, bedTier: false, guild: false }, noGuild: { guild: false } };
+LAB.PRESETS = { legacy: { security: false, tidyFloor: 0, classUpkeep: false, maxStaff: 10, bedTier: false, guild: false, walkPartners: false, guildSpare: false, guildPartners: false }, noGuild: { guild: false } };
 // base, then each override's preset (if it names one) under that override's own fields
 const withPreset = (base, ...os) => os.reduce((acc, o) => Object.assign(acc, (o && o.preset && LAB.PRESETS[o.preset]) || {}, o || {}), Object.assign({}, base));
 let P = Object.assign({}, LAB.POLICY);
@@ -219,11 +223,14 @@ function samSpare(){
   return samWork(k);
 }
 // ---------- Adventurers' Guild ----------
-const gEarn = w => { const per = ((S.lastReport || {}).per || {})[w.id]; return per ? per.earned || 0 : 0; };
+// what she earns at home: the best of her last few working weeks (a rest or guild week doesn't make a top courtesan look cheap)
+const gEarn = w => { const h = (((S._lab || {}).earn) || {})[w.id]; if (h && h.length) return Math.max(...h); const per = ((S.lastReport || {}).per || {})[w.id]; return per ? per.earned || 0 : 0; };
+// support ladies the house can't spare: the madame, and the only maid/security/attendant/promoter/host of her house
+const gSpare = w => w.job !== 'madame' && (!['maid', 'security', 'attendant', 'promoter', 'host'].includes(w.job) || S.workers.filter(x => x.house === w.house && x.job === w.job).length > 1);
 // a contract's day rate, roughly (base.json perWeek x rank bonus): a lady who earns clearly more at home stays home
 const gRate = C => { const pw = C.perWeek || [0, 0]; return (pw[0] + pw[1]) / 2 * cycleMul((GDB.gold || {}).perCycle) * (1 + ((GDB.pay || {}).rankRate ?? 0.08) * GLD().rank); };
 function guildPool(C){
-  const L = S.workers.filter(w => gEarn(w) <= gRate(C) * (P.guildEarnCap ?? 1.25) && w.job !== 'guild' && !w._lock && !w.isPartner && w.trust >= jobTrust(w, 'guild') && w.energy >= maxEnergy(w) * 0.6 && w.health >= 50 && !AMEN[w.job]);
+  const L = S.workers.filter(w => gEarn(w) <= gRate(C) * (P.guildEarnCap ?? 1.25) && w.job !== 'guild' && !w._lock && (P.guildPartners !== false || !w.isPartner) && w.trust >= jobTrust(w, 'guild') && w.energy >= maxEnergy(w) * 0.6 && w.health >= 50 && !AMEN[w.job] && (P.guildSpare === false || gSpare(w)));
   const score = w => P.guildPick === 'fighters' ? ladyGuildPower(w, C) : ladyGuildPower(w, C) - (w.job === 'courtesan' ? 40 : 0) - gEarn(w) / 20;
   return L.sort((a, b) => score(b) - score(a));
 }
@@ -289,7 +296,9 @@ function samTurn(){
       const act = getActs().find(a => gNightKind(a.id) === 'inside');
       if (act) { goddessNight(act.id); goddessDone = true; quiet(); resolveEvents(); continue; }
     }
-    if (!rounds && S.sam.energy >= 25 && S.workers.some(w => nearSam(w) && w.trust < P.roundsTrust)) { samWork('rounds'); rounds = true; }
+    const wB = BAL.walk || {};
+    if (P.walkPartners && !walks && !(S.ngppCycle > 0) && (S.flags.walkPartners || 0) < (wB.partnerCycleMax ?? 3) && typeof openWalkPartners === 'function' && openWalkPartners().length && S.sam.energy >= (wB.energy ?? 15) + 10) { samWalk(); walks++; }
+    else if (!rounds && S.sam.energy >= 25 && S.workers.some(w => nearSam(w) && w.trust < P.roundsTrust)) { samWork('rounds'); rounds = true; }
     else if (P.partnerDates && !dated && p && S.ap >= 2 && S.sam.energy >= 40) { try { samDate(p.id, 'walk'); } catch (e) {} dated = true; }
     else if ((S.ngppCycle || 0) > 0 && P.ngppWalk !== false && walks < 2 && S.sam.energy >= (((BAL.walk || {}).energy ?? 15) + 5) && S.houses.some(h => staffIn(h).length < Math.min(cap(), P.ngppWalkUntil ?? 10))) { samWalk(); walks++; }
     else if (P.scoutWhenShort && S.sam.energy >= 25 && S.houses.some(h => staffIn(h).length < P.scoutWhenShort) && S.candidates.filter(c => S.gold - c.signing >= P.reserve).length < 2) samWork('scout');
@@ -301,7 +310,9 @@ function samTurn(){
 // one week of play; returns the metrics row
 function playWeek(){
   for (const h of S.houses.slice().sort((a, b) => staffIn(a).length - staffIn(b).length)) manageHouse(h);
-  S.cur = S.houses[0].id; manageGuild(); samTurn(); pickFocus(); quiet(); resolveEvents();
+  S.cur = S.houses[0].id; manageGuild();
+  if (P.goddessGuild !== false && typeof goddessActive === 'function' && goddessActive() && GFOCUS.includes('guild')) { const g = G(); if (guildOn() && GLD().active.length) { if (g.focus !== 'guild') { g._labPrev = g.focus; g.focus = 'guild'; } } else if (g.focus === 'guild') g.focus = g._labPrev || 'indulge'; }   // bound Seliora works guild contracts while one runs
+  samTurn(); pickFocus(); quiet(); resolveEvents();
   if (P.payOff && !S.won && S.debt.remaining > 0 && S.gold >= S.debt.remaining + reserveGold()) { try { payOffDebt(); } catch (e) {} quiet(); resolveEvents(); }
   const HOLD = (S._lab || {}).hold || {}; if (HOLD.tidy != null) S.houses.forEach(h => { h.tidy = HOLD.tidy; });
   const before = new Set(S.workers.map(w => w.id)), wk = S.week, strikes0 = S.debt.strikes;
@@ -310,12 +321,13 @@ function playWeek(){
   const R = S.lastReport; if (!R || R.week !== wk) return null;
   const left = [...before].filter(id => !S.workers.some(w => w.id === id)).length;
   const per = Object.values(R.per).map(p => { const w = who[p.id] || {};
-    return { race: w.race || '?', sub: w.sub || '', job: p.job, earned: Math.round(p.earned || 0), wage: w.free ? 0 : (w.wage || 0), served: p.served || 0, key: w.key || null, house: p.house }; });
+    return { race: w.race || '?', sub: w.sub || '', job: p.job, earned: Math.round(p.earned || 0), wage: w.free ? 0 : (w.wage || 0), recharge: Math.round(p.recharge || 0), served: p.served || 0, key: w.key || null, house: p.house }; });
   const hs = R.houses.map(x => ({ id: x.id, served: x.served, turned: x.turned, sat: Math.round((x.avgSat || 0) * 10) / 10, rooms: x.roomsUsed, cap: x.roomCap,
     prestige: Math.round((x.prestige ?? housePrestige(H(x.id))) * 10) / 10,
     tidy: Math.round(x.tidy), promo: Math.round((x.promoDraw || 0) * 10) / 10, pushy: x.pushy ? Object.assign({}, x.pushy) : null, incidents: x.incidents ? Object.assign({}, x.incidents) : null, damage: x.damage || 0, lost: x.nightsLost || 0, demand: x.demand || 0, maidAdd: Math.round((x.maidAdd || 0) * 10) / 10, tidy0: Math.round(x.tidy0), visitors: x.visitors || 0,
     jobs: Object.fromEntries(Object.entries(Object.values(R.per).filter(p => p.house === x.id).reduce((a, p) => (a[p.job] = (a[p.job] || 0) + 1, a), {}))) }));
-  const L = S._lab = S._lab || {}; L.hist = L.hist || {};
+  const L = S._lab = S._lab || {}; L.hist = L.hist || {}; L.earn = L.earn || {};
+  Object.values(R.per).forEach(p => { if (p.job === 'rest' || p.job === 'guild') return; const a = L.earn[p.id] = L.earn[p.id] || []; a.push(Math.round(p.earned || 0)); if (a.length > 4) a.shift(); });
   hs.forEach(x => { const a = L.hist[x.id] = L.hist[x.id] || []; a.push({ pushy: x.pushy ? x.pushy.total : 0, tidy: x.tidy }); if (a.length > 3) a.shift(); });
   const W = S.workers, avg = f => W.length ? W.reduce((a, w) => a + f(w), 0) / W.length : 0;
   return { wk, cycle: S.cycle || 1, gold: Math.round(S.gold), debt: Math.round(S.debt.remaining), net: Math.round(R.income - R.wages - R.upkeep - (R.recharge || 0) - (R.cuts || 0) - (R.tutor || 0)),
@@ -353,7 +365,9 @@ LAB.mutate = M => { if (!M) return {};
     const need = (RACES[r] || {}).needs; if (need && !homeH().up[need]) { homeH().up[need] = true; info.grantedRace = need; }   // e.g. a Tethering Stone for spirits
     if (M.raceNew) P.hireRace = M.race; }   // later hires in the measured weeks are that race too
   if (M.job) { const h = homeH(), J = JOBS[M.job]; if (J && J.needs && !h.up[J.needs]) { h.up[J.needs] = true; info.granted = J.needs; }
-    const who = M.jobWho === 'everyone' ? staffIn(h).filter(w => !w.isPartner && !w.locked) : generics(M.jobWho ?? 2);
+    let who = M.jobWho === 'everyone' ? staffIn(h).filter(w => !w.isPartner && !w.locked) : generics(M.jobWho ?? 2);
+    // jobFill: too few generics (e.g. an early house: resident + partner only) -> fill up with other non-partner ladies (the house resident first)
+    if (M.jobFill && typeof M.jobWho === 'number' && who.length < M.jobWho) who = who.concat(staffIn(h).filter(w => !w.isPartner && !who.includes(w))).slice(0, M.jobWho);
     who.forEach(w => { w._lock = M.job; w._force = !!M.force; if (!canDo(w, M.job) || M.force) w.job = M.job; }); info.locked = who.length; }
   if (M.statAll) S.workers.forEach(w => STAT_KEYS.forEach(k => { w.stats[k] = clampK(w.stats[k] + M.statAll * SKL); }));   // +N (0-100 scale) to every stat
   if (M.stat) S.workers.forEach(w => Object.entries(M.stat).forEach(([k, n]) => { w.stats[k] = clampK(w.stats[k] + n * SKL); }));
@@ -430,7 +444,7 @@ LAB.run = async (J) => {
   const st = Object.assign({ house: 'lantern', partner: 'kaede', past: 'salaryman' }, J.start || {});
   const sc = J.scenario, warmCap = J.maxWarm || (sc === 'ngplus' ? 160 : 104);
   const track = () => { for (const k of ['mid', 'late']) if (!out.phases[k] && PHASE[k]()) out.phases[k] = S.week; };
-  if (J.snap) LAB.restore(J.snap);
+  if (J.snap) { LAB.restore(J.snap); const I = J.snapInfo || {}; Object.assign(out.phases, I.phases || {}); if (I.c1won !== undefined) out.info.c1won = I.c1won; }
   else {
     LAB.reseed(J.seed);
     newGame({ past: st.past, house: st.house, partner: st.partner }); quiet();
@@ -440,11 +454,13 @@ LAB.run = async (J) => {
   }
   out.info.entry = S.week;
   if (S.over || ((sc === 'ngplus' || sc === 'plateau') && !S.won) || ((sc === 'mid' || sc === 'late') && !PHASE[sc]())) { out.unreached = true; out.info.week = S.week; return out; }
-  if (J.wantSnap) out.snap = LAB.snapshot();
+  if (J.wantSnap) { out.snap = LAB.snapshot(); out.snapInfo = { phases: Object.assign({}, out.phases), c1won: out.info.c1won }; }
   // from here on every variant shares one random stream
   LAB.reseed((J.seed * 7919 + 17) >>> 0);
   if (J.patch && J.patchAt !== 'start') LAB.applyPatch(J.patch);
   if (sc === 'early') P = withPreset(LAB.POLICY, EARLY_POLICY, J.policy || {});
+  // phase experiments: no partner walks in the measured weeks (a partner joining mid-measurement is noise); the warm-up still walks
+  if (['early', 'mid', 'late'].includes(sc) && !(J.policy && 'walkPartners' in J.policy)) P = withPreset(P, { walkPartners: false });
   if (J.phasePolicy) P = withPreset(P, J.phasePolicy);
   const W = J.weeks || (sc === 'campaign' || sc === 'ngplus' ? 104 : sc === 'plateau' ? 26 : 12), C = sc === 'ngplus' ? (J.cycles || 1) : 1;
   out.info.cyc = []; out.info.cap = W;

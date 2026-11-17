@@ -41,7 +41,7 @@ const NG_BOONS = {
   purse:   {label:'Deep Pockets', desc:'Start every cycle with 2,500g extra in hand.'},
   ap:      {label:'Seasoned Owner', desc:'+1 action every week, for good.'},
   renown:  {label:'A Name in Hollowmere', desc:'Every cycle starts with +15 renown, and its new house opens with +10 popularity.'},
-  recruit: {label:'Friends at the Guild', desc:'3 extra, better candidates at the start of every cycle; signing bonuses are 25% cheaper for good.'},
+  recruit: {label:'Friends in Town', desc:'3 extra, better candidates at the start of every cycle; signing bonuses are 25% cheaper for good.'},
   grace:   {label:'Lenient Lender', desc:'Every new debt is 10% smaller, for good.'},
   devotion:{label:'Fated Meeting', desc:'Every new partner, this cycle and after, starts with +15 trust and +10 lewdness.'},
   loyal:   {label:'Old Loyalties', desc:'Ladies who come back from a past life ask only half the usual raise for each life.'},
@@ -97,16 +97,16 @@ function ngNumbers(boon, house, opts){
     if(cv && cv.debt) debt *= cv.debt;
     if(ch && ch.debt) debt *= ch.debt;
     debt = Math.round(debt);
-    const purse = Math.round((B.purse + (boon==='purse' || hasBoon('purse') ? 2500 : 0)) * (ch && ch.purse!==undefined ? ch.purse : 1));
+    const purse = Math.round(((B.ngppPurse ?? B.purse) + (boon==='purse' || hasBoon('purse') ? 2500 : 0)) * (ch && ch.purse!==undefined ? ch.purse : 1));
     return {ngpp:true, ngppCycle:ngppCyc, houseKey:hk, gross:debt, debt, house:0, base:Math.round(base), impr:Math.round(imprRaw), extra, keptExtra:0, loverExtra:0, keptCount:0, loverCount:0, scaleMul:1, sold:[], sale:0, purse, cycle:cyc};
   }
   const og = homeHouse(), kept = S.houses.filter(keptHouse), impr = kept.reduce((a,h)=>a + improvementsValue(h), 0);
   const cycMul = 1 + B.perCycle * Math.max(0, cyc - 2);
   const keptOpt = kept.filter(h=>h.id !== og), loverCount = carriedLovers().length;
-  const base = HOUSES[og].debt * B.debtShare * cycMul, extra = impr * B.improveShare;
-  const keptExtra = keptOpt.reduce((a,h)=>a + (HOUSES[h.id].debt || 0) * (B.keptHouseShare ?? 0.25) * cycMul, 0);
+  const base = houseDebt(og) * B.debtShare * cycMul, extra = impr * B.improveShare;
+  const keptExtra = keptOpt.reduce((a,h)=>a + houseDebt(h.id) * (B.keptHouseShare ?? 0.25) * cycMul, 0);
   const loverExtra = loverCount * (B.loverDebt ?? 1800) * cycMul;
-  const nh = house && HOUSES[house] ? HOUSES[house].debt * (B.newHouseShare ?? 1) * cycMul : 0;
+  const nh = house && HOUSES[house] ? houseDebt(house) * (B.newHouseShare ?? 1) * cycMul : 0;
   const scaleMul = 1 + keptOpt.length * (B.perKeptHouse ?? 0) + loverCount * (B.perLover ?? 0.22);
   let debt = (base + extra + keptExtra + loverExtra + nh) * scaleMul;
   if(boon==='grace' || hasBoon('grace')) debt *= 0.9;

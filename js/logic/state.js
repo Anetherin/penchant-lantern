@@ -2,6 +2,10 @@
 /* =====================================================================
    GAME STATE
    ===================================================================== */
+// A house's base debt (economy.json → houses.<id>.debt) x balance.json → debt.houseMult. Cycle 1 starts with it; NG+ shares are built from it too.
+// Cycle 1's starting debt: the house's, less a partner's partnerDebtCut (named data, e.g. Marisol talks the Credit House down).
+const startDebt = (house, partner) => Math.round(houseDebt(house) * (1 - (((typeof NAMED!=='undefined' && NAMED[partner]) || {}).partnerDebtCut || 0)));
+const houseDebt = id => Math.round(((HOUSES[id]||{}).debt || 0) * ((BAL.debt||{}).houseMult ?? 1));
 const NPCS = {
   npc_marguerite:{id:'npc_marguerite', name:'Marguerite Vane', race:'human', sub:'', age:38,
     design:{build:'tall and lean',hairStyle:'severe bun',hairColor:'black',eyes:'steel-grey',skin:'pale',features:'thin red lips',accessories:'a silver monocle',expression:'a cool, appraising gaze'}, outfit:'custom', customOutfit:'a tailored black coat with silver buttons', under:'plain', imgVar:{}, seed:4417021, lewd:0, trust:0, traits:[]},
@@ -42,7 +46,7 @@ function newGame(cfg){
     houses:[makeHouse(cfg.house)],
     sam:{energy:100, ...BAL.sam.base, appraisal:1, appXP:0, first:true, lvl:1, xp:0},
     samWeek:{security:0, books:false, income:0, acts:[]},
-    debt:{total:HD.debt, remaining:HD.debt, carry:0, strikes:0},
+    debt:{total:startDebt(cfg.house, cfg.partner), remaining:startDebt(cfg.house, cfg.partner), carry:0, strikes:0},
     workers:[], candidates:[], alumni:[], log:[],
     flags:{hilde:false, taunt:false, poachCD:0, partnerCD:3}, lastReport:null, over:false, won:false };
   S.houses.forEach(h=>{ h.since = 1; h.story = {beat:0,wk:0}; });
@@ -51,6 +55,7 @@ function newGame(cfg){
   const p = makeNamed(cfg.partner, true); p.house = cfg.house;
   S.workers.push(npc, p);
   assignStart(npc, NAMED[HD.npc].job); assignStart(p, ['courtesan','bartender','dancer','bath'].includes(NAMED[cfg.partner].job) ? NAMED[cfg.partner].job : 'courtesan');
+  if(NAMED[cfg.partner].startGuild && typeof GLD==='function'){ const g = GLD(); g.joined = true; g.rank = Math.max(g.rank || 0, NAMED[cfg.partner].startGuildRank || 0); g.merit = Math.max(g.merit || 0, ((GDB.levels||[])[g.rank]||{}).merit || 0); guildRefreshBoard(); for(let r=0; r<=g.rank; r++) EVQ.push(()=>guildBeatEvent(r)); }   // she brings Sam to the Adventurers' Guild on day one (named data startGuild / startGuildRank; the skipped rank beats still play, so their unlocks arrive)
   refreshCandidates();
   checkUnlocks(true);
   addLog(`Sam Takahashi wakes up in Hollowmere with a deed to ${HD.name}, a debt, and a status window only he can see.`);

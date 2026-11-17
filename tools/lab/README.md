@@ -115,7 +115,7 @@ If the bot does something silly, fix the policy and rerun everything; `policy` o
   The old `winWeek` (winners only) is still available as a column. NG+: `ngWeeks` (same, for the first NG+ cycle), `cNweeks` per cycle, `ngRatio` = NG+ cycle length / cycle-1 length.
 - `worth13` / `worth20` = gold minus remaining debt at week 13 / 20: every run has these (unlike `gold26`, which only counted runs still going).
 
-- `net` = income − wages − upkeep − recharging − cuts − tutors per week; `perLady` = what a working generic lady earns on her own ledger minus wage.
+- `net` = income − wages − upkeep − recharging − cuts − tutors per week; `perLady` = what a generic lady earns on her own ledger minus wage and (androids) charging fees, per lady-week; her rest weeks count too.
   Promoters, maids, security, hosts and attendants mostly help others, so judge jobs by **Δ net** in `jobs.json` / `jobs-all.json`, not `perLady`.
 - `midAt`/`lateAt` = week the phase started; `winWeek` = week the debt was cleared; `missed` = missed payments;
   `left` = ladies who quit; `over` = share of game overs.
