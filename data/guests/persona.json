@@ -294,6 +294,8 @@
             "hairColor": "black",
             "eyes": "dark brown",
             "skin": "fair",
+            "accessories": "a red hairband",
+            "accState": "dressed",
             "expression": "a gentle smile that easily breaks into a delighted laugh"
           },
           "under": "silk",
@@ -306,15 +308,17 @@
           "trust": 28,
           "outfits": {
             "sig_yukiko": {
-              "label": "Innkeeper's haori",
-              "style": "Elegant",
-              "prompt": "a crimson open-front haori over a cream blouse and a dark pleated skirt",
-              "bonus": {"host":1.25,"noble":1.15}
+              "label": "Red winter cardigan",
+              "style": "Cute",
+              "prompt": "a bright red knit cardigan with black sailor collar and yellow scarf, a dark pleated skirt, black tights and brown loafers",
+              "bonus": {"host":1.2,"attendant":1.15},
+              "accessories": "red-framed glasses",
+              "accState": "dressed"
             },
             "sp_yukiko": {
               "label": "Inn kimono",
               "style": "Elegant",
-              "prompt": "a formal vermilion kimono with gold cranes and a pale obi",
+              "prompt": "a formal pink kimono with white cranes and a green obi",
               "bonus": {"noble":1.2,"courtesan":1.15}
             }
           },
