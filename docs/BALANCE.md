@@ -159,3 +159,11 @@ Round 4d (`temp-balance-results.md`): 6 PASS · 4 WARN · 4 FAIL. Cycle 1 now 31
 - `promoter-pays`: the popularity part is soft (Hollow starts well known; slower growth with a crowd is fine).
 - `races-courtesan` now includes `angel/lantern` (Lantern Angels were never measured as courtesans).
 - Rare races (androids, spirits, demons, angels) are meant to be slightly strong; next step is playtesting rather than more tuning.
+
+### Round 4g (2026-11-17, from the round-4f full run; not yet measured)
+Round 4f (`test/balance-round-4e` → `temp-balance-results.md`, 12-16 seeds): 7 PASS · 4 WARN · 3 FAIL. Cycle 1 31 weeks (all won). Partners 28 (Nerys) to 35 (Lirael/Anael); Adelheid 33 (was 53). NG++ 61 weeks, 30% game over (was 78/60%). NG+ lovers: 1-5 carried within ~3 weeks of each other (31-35), 0 lovers +15 weeks, 83% wins. Spirit houses +914/wk late, but spirits earn about what humans do per lady: their edge is taking no bed. Floor focus −475/wk late, −200 early (the Lantern has no bar early, so Floor earned nothing there).
+- **NG+ `debtShare` 0.9 → 1.0** (the intended value; ratio was 1.09 with room to 1.5).
+- **Floor:** `nights` 3.4 → 3.8 (cut from 4 in round 2 when it was the fastest focus), new `noBar` 0.35: without a bar Sam works the lounge for tips at 35% of bar income.
+- **House debts:** starters about −5% (Lantern 25k, Onsen 31k, Hollow 42k, Tankard 17.5k, Wayfarer 31.5k), the two premiums that still clear fastest up (Sanctuary 52k, Atelier 95k); Castle, Pavilion and Veil unchanged (already slower, one game over each). All x `debt.houseMult`.
+- **Checks:** `demons-top-courtesans` and `cheap-houses-pay-off-faster` are soft (noise-level gaps / roughly even is fine); `ngplus-a-bit-harder` wants ≥ 0.9 wins with lovers and ≥ 0.75 (soft) with none.
+- **New `races-mixed`:** two ladies of a race in an otherwise normal house (rare races show up one or two at a time). Decide on spirit nerfs from this, not from all-spirit houses.

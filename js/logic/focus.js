@@ -8,7 +8,7 @@
    ===================================================================== */
 const FOCUS = {
   office:  {icon:'📒', label:'Office',   desc:'Cuts upkeep and lifts each house\'s takings a few percent (both grow with Business). Matches clients with the right courtesan and attendants with the right courtesans, like a madame: most of a madame\'s effect where there is none (or she\'s resting), a little on top of hers.'},
-  floor:   {icon:'🍺', label:'Floor',    desc:'Works the bar and the lounge: income where there is a bar (Charm), happier clients who wait less restlessly, and a little mood and trust for the ladies.'},
+  floor:   {icon:'🍺', label:'Floor',    desc:'Works the bar and the lounge: income by Charm (full at a bar, lounge tips without one), happier clients who wait less restlessly, and a little mood and trust for the ladies.'},
   watch:   {icon:'🛡️', label:'Watch',    desc:'Security all week (Strength), his step-in bonus every night, and more trust: the ladies feel safe with him around.'},
   guild:   {icon:'⚔️', label:'Guild',    desc:'Goes out on a guild contract with (or instead of) the ladies: pick it on the Guild tab. He is away all week, so none of the at-house work happens.'},
   classes: {icon:'🎓', label:'Classes',  desc:'Afternoon classes for everyone working: a skill class (her job\'s skill) or a stat class (the stats her job uses). Auto alternates.'},
@@ -71,12 +71,12 @@ function samFocusRun(){
     what = `ran the office (${om >= 0.005 ? `takings +${Math.round(om*100)}%, ` : ''}upkeep −${Math.round(booksCut()*eff*100)}%, matched clients and attendants${S.houses.some(h=>samAtHouse(h) && S.workers.some(w=>w.house===h.id && w.job==='madame')) ? ' alongside the madame' : ''})`;
   } else if(k==='floor'){
     const Fl = F.floor || {}; let inc = 0;
-    S.houses.filter(h=>samAtHouse(h) && h.up.bar).forEach(h=>{
-      inc += Math.round(((Fl.base ?? 30) + S.sam.charm * (Fl.perCharm ?? 1.2) + rnd(0,25)) * (Fl.nights ?? 4) * (hasPast('bartender')?1.5:1) * (1 + samUpFx('bartend')) * (hasGuildPerk('silvertongue') ? 1.15 : 1) * (hasChallengePerk('iron_ledger') ? 1.15 : 1) * eff); });
+    S.houses.filter(h=>samAtHouse(h)).forEach(h=>{
+      inc += Math.round((h.up.bar ? 1 : (Fl.noBar ?? 0)) * ((Fl.base ?? 30) + S.sam.charm * (Fl.perCharm ?? 1.2) + rnd(0,25)) * (Fl.nights ?? 4) * (hasPast('bartender')?1.5:1) * (1 + samUpFx('bartend')) * (hasGuildPerk('silvertongue') ? 1.15 : 1) * (hasChallengePerk('iron_ledger') ? 1.15 : 1) * eff); });
     if(inc){ S.gold += inc; sw.income += inc; }
     near.forEach(w=>{ moodAdd(w, (Fl.mood ?? 1) * eff); gainTrust(w, (Fl.trust ?? 0.3) * eff); });
     samStat('charm', 2*eff);
-    what = `worked the floor (${inc ? `+${fmt(inc)} at the bar, ` : 'no bar, '}happier clients and staff)`;
+    what = `worked the floor (${inc ? `+${fmt(inc)} at the ${S.houses.some(h=>samAtHouse(h) && h.up.bar) ? 'bar' : 'lounge'}, ` : ''}happier clients and staff)`;
   } else if(k==='classes'){
     const topic = f.topic==='auto' ? (S.week % 2 ? 'skill' : 'stat') : f.topic, mult = ((F.classes||{}).mult ?? 2.5) * eff;
     what = 'held ' + (topic==='stat' ? samStatClass(mult) : samSkillClass(mult));

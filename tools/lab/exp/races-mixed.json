@@ -1,0 +1,12 @@
+{
+  "desc": "Rare races in a mixed house: two generic ladies in the home house become this race (everyone else stays as rolled, later hires are random) and the bot assigns jobs as usual. Spirits and androids take no bed, so the bot may fit more staff (watch the staff column). This is the realistic case: rare races turn up one or two at a time.",
+  "scenario": "mid",
+  "weeks": 12,
+  "runs": 16,
+  "by": { "scenario": ["mid", "late"] },
+  "mutate": { "raceWho": 2 },
+  "each": { "mutate.race": ["human", "demon", "spirit", "android", "angel", "dwarf"] },
+  "columns": ["total", "net", "perLady", "staff", "served", "sat", "repGain", "left"],
+  "delta": ["total", "net", "sat"],
+  "breakdown": ["race"]
+}
