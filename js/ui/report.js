@@ -100,11 +100,11 @@ function repWhy(p){
   const chg = (label, a, b, f) => { if(a===undefined || b===undefined) return ''; const d = b - a; if(Math.abs(d) < 0.05) return ''; return `${label} <span class="${cls(d)}">${sgn(d, f)}</span>`; };
   const W = (p.why||[]), good = W.filter(x=>x.good).map(x=>esc(x.t)), bad = W.filter(x=>!x.good).map(x=>esc(x.t));
   if(p.m0!==undefined && p.m1!==undefined) out.push(`<div><b>Mood</b> ${p.m0}→<span class="${cls(p.m1-p.m0)}">${p.m1}</span>${bad.length?` · <span class="warn">down: ${bad.join(', ')}</span>`:''}${good.length?` · <span class="good">up: ${good.join(', ')}</span>`:''}${p.disN?` · ${p.disN} service${p.disN>1?'s':''} she dislikes`:''}${p.reluct?` · ${p.reluct} as a favor`:''}${p.grudging?` · ${p.grudging} grudging proposition${p.grudging>1?'s':''}`:''}</div>`);
-  if(p.eWork!==undefined) out.push(`<div><b>Energy</b> ${p.e0}→${p.e1} · spent ${p.eWork} working${p.solo?' (and a night alone)':''} · recovered ${p.eRec}${p.slept?` (${esc(p.slept)})`:''}</div>`);
+  if(p.eWork!==undefined) out.push(`<div><b>Energy</b> ${p.e0}→${p.e1} · spent ${p.eWork} working${p.solo?' (and a night alone)':''} · ${p.eNight?`slept off ${p.eNight} between nights, `:''}recovered ${p.eRec} on the ${p.job==='rest'?'week off':'rest day'}${p.slept?` (${esc(p.slept)})`:''}</div>`);
   // clients and what held her back
   const lim = [];
   if(p.cap!==undefined){
-    if(p.served >= p.cap) lim.push(`hit her limit of ${p.cap} clients`);
+    if(p.served >= p.cap) lim.push(`hit her limit of ${p.cap} clients over the nights`);
     else if(p.lowE) lim.push('ran low on energy');
     else if(!p.nightsLost && !p.noRoom) lim.push(`room for ${p.cap - p.served} more, but no more clients picked her`);
   }
@@ -114,7 +114,6 @@ function repWhy(p){
   if(p.fedOnly) lim.push(`<span class="warn">only feeding services ×${p.fedOnly}</span>`);
   if(p.solo) lim.push('<span class="pink">spent a night alone</span>');
   if(p.accProp && p.job && !(JOBS[p.job]||{}).must) lim.push(`propositions took time from her job (${p.accProp})`);
-  if(p.skipNights) lim.push('skipped propositions after her night ended');
   const es = p.encSum;
   const cl = p.served || p.props || (es && (es.svc+es.no+es.comp)) ? `${p.served?`${p.served} client${p.served>1?'s':''}`:''}${es?`${p.served?' · ':''}${es.svc} service${es.svc===1?'':'s'}, ${es.comp} company only${es.no?`, ${es.no} turned down`:''}`:''}${p.props?` · propositioned ${p.props}×, accepted ${p.acc}`:''}` : '';
   if(cl || lim.length) out.push(`<div><b>Clients</b> ${cl || 'none'}${lim.length?` · ${lim.join(' · ')}`:''}</div>`);

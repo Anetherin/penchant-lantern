@@ -27,11 +27,28 @@ This file is for big ideas when I have a fresh batch of Claude usage.
 - Check the tone and length of various stories, arcs, and bonds.
 
 
+## Week structure (done 2026-11-17, branch feat/week-nights-focus)
+- The week stays the turn. A turn is **a rest day, then six work nights**: Sam's actions (dates, private time, walks, scouting, rounds, guild visits) happen on the rest day, when the ladies are off too; his work moves to a weekly **focus** that runs during the six nights. Say so explicitly in the UI ("3 actions left today", "End the week", report = the six nights).
+- **Clients per night instead of per week.** Each night a courtesan takes up to her nightly cap (1-3 from Stamina; can go higher as stat caps rise in NG+, plus trait/race bonuses), limited by energy. After each night a small rest calculation (bed quality, how hard the night was) gives back some energy, so a strong lady can sustain her cap and a tired one tapers off. The full sleep recovery stays at week's end. Replaces the flat `capc = 10` in `simHouse`; an unhandled pushy client then costs exactly one night's clients (replaces `props.nightCap`). Rebalance with the lab afterward: every income number shifts.
+- Still open: internal keys that say "night" for something weekly (`goodNight`/`badNight`), and a pass over flavor text that calls the whole turn a day.
+
+## Sam's weekly focus (done 2026-11-17; Guild focus waits for the guild pass)
+Sam picks one focus per week (costs a share of his weekly energy, so a hard week leaves less for the rest day). He never unlocks a second one. Moving work out of actions: bartending, watch, books, skill class and stat class stop being action buttons; rounds and scouting stay rest-day actions. Demonstration is undecided (rest-day action or cut).
+- **Office:** cuts upkeep (the current books), no direct income. Works as a madame: pairs courtesans with clients and attendants with the right courtesans (a share of a madame's effect normally, most of it when the house's madame is off or missing).
+- **Floor:** income if the house has a bar (bartending), keeps waiting clients happy, small mood and trust boost for the ladies.
+- **Watch:** the current watch bonus plus his step-in rescue bonus all week, and a larger trust boost (the ladies feel safe).
+- **Classes:** skill or stat class (pick the topic or Auto), current lesson math.
+- **Guild:** works a contract (below). He's away, so none of the at-house effects apply that week.
+- Goddess idea: post-binding she could grant extra focus-like help; unlike Sam she can actually take clients herself. Future/low priority: a small number of female clients interested in women (would let Sam's focus or the goddess serve them).
+
 ## Adventurers' Guild
-- Turn the guild into a quest board with ranks instead of a three-visit recruit button. Each week Sam (Strength or Wits check) or a lady (Combat, Strength, Agility) can take a job: caravan escort, dungeon porter, arena bout. A lady on a job is away from her house that week.
+- Turn the guild into a quest board with ranks instead of a three-visit recruit button. Sam takes contracts through his **Guild** focus; ladies take them as their **job** for the week (Combat, Strength, Agility, plus Wits/Charm/Refinement for some). Sam and ladies can also go together.
+- Contract types: caravan escort, dungeon porter, arena bout, monster hunt, bodyguard at a noble's ball (courtesan skills count). Each has a rank, checks, party slots, a reward and a risk. Possibly multi-week contracts (a progress bar the party fills each week); still to decide.
+- Sam + a lady with enough trust and lust on the same contract unlocks exclusive scenes (campfire, shared tent, after a fight) and trust/bond gains.
 - A bad roll injures whoever went. This is the one thing that would give Health a purpose (injured = rests until healed; chapel / bathhouse speed it up). If the quest board doesn't happen, drop Health entirely.
-- Rewards: gold, unique outfits or Sam items, a boost to adventurer and mercenary clients, guild rank.
+- Rewards: gold, unique outfits, guild rank, a boost to adventurer and mercenary clients. **Sam's items come mostly from contracts** (see Sam's items); some items persist into NG+, plus a couple of guild perks.
 - Each rank-up is a story beat with a girl in it: Hanna at the desk, Rhoswen, then party members Sam rescued, outbid or impressed. Former Adventurer / Brawler / Shield-Sister ladies should get an edge.
+- Still to design: the contract list and checks per rank, how rank progresses, which items/perks come from where, which carry into NG+.
 
 ## Isolde (rival)
 - Give her a storyline instead of one taunt at week 5 and the poaching event. Beats trigger on town renown: taunt, poaching, a price war (a 2-3 week event), a festival wager, a truce, then romance.

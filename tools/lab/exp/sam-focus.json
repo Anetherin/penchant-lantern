@@ -1,0 +1,29 @@
+{
+  "desc": "Sam's weekly focus over a whole first cycle (Lantern): week the debt is cleared and income per phase. Spare actions stay on rest.",
+  "scenario": "campaign",
+  "weeks": 104,
+  "runs": 16,
+  "each": {
+    "policy.focus": [
+      "auto",
+      "office",
+      "floor",
+      "watch",
+      "classes",
+      "rest"
+    ]
+  },
+  "columns": [
+    "weeksToWin",
+    "netEarly",
+    "netMid",
+    "netLate",
+    "worth20",
+    "rep",
+    "trust",
+    "sat",
+    "left",
+    "unhandled"
+  ],
+  "breakdown": []
+}

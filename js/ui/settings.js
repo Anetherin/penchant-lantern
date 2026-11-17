@@ -138,7 +138,7 @@ function viewCloudSettings(){
       <label>Sync passphrase <input id="c_secret" type="password" value="${esc(CLOUD.secret||'')}" placeholder="Your SYNC_SECRET"></label>
     </div>
     <div class="row">
-      <label class="chk"><input type="checkbox" id="c_autoSave" ${CLOUD.autoSave!==false?'checked':''}> Auto-save active run at End Week</label>
+      <label class="chk"><input type="checkbox" id="c_autoSave" ${CLOUD.autoSave!==false?'checked':''}> Auto-save active run at the end of each week</label>
       <label class="chk"><input type="checkbox" id="c_autoMile" ${CLOUD.autoMilestone!==false?'checked':''}> Auto-snapshot NG+ seed when debt is paid</label>
       <label class="chk"><input type="checkbox" id="c_syncLib" ${CLOUD.syncLib?'checked':''}> Include Library characters in cloud image sync</label>
     </div>

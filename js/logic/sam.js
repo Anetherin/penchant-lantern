@@ -4,8 +4,8 @@
    ===================================================================== */
 function useAP(cost=20){
   if(S.over) return false;
-  if(S.ap<=0){ toast('Sam is out of actions this week. End the week to continue.'); return false; }
-  if(S.sam.energy<cost){ toast('Sam is too tired. Have him rest, or end the week.'); return false; }
+  if(S.ap<=0){ toast('Sam is out of rest-day actions. Work the nights to continue.'); return false; }
+  if(S.sam.energy<cost){ toast('Sam is too tired. Have him rest, or work the nights.'); return false; }
   S.ap--; S.sam.energy -= cost; samGainXP(6); return true;
 }
 // Do the books: share of upkeep cut this week (Business, the ledger tool, and the office worker's spreadsheet habit). Capped at 60%.
@@ -52,47 +52,16 @@ const samTrainCost = (base=20) => Math.max(5, base - samUpFx('trainEnergy'));
 const samDateCost = (base=15) => Math.max(4, base - samUpFx('dateEnergy'));
 const samPrivCost = (base=15, free=false) => Math.max(4, base - Math.round(samUpFx('privEnergy') * (free ? 0.5 : 1)));
 function samWork(kind){
+  if(!['rounds','scout'].includes(kind)) return;   // bar, watch, books and classes are a weekly focus now (focus.js)
   if(!useAP(samWorkCost(25))) return;
   let title='', text='';
-  if(kind==='bartend'){
-    const inc = Math.round((30 + S.sam.charm*1.2 + rnd(0,25)) * (hasPast('bartender')?1.5:1) * (1 + samUpFx('bartend')) * (hasChallengePerk('iron_ledger') ? 1.15 : 1)); S.gold += inc; S.samWeek.income += inc; samStat('charm',2);
-    title='Behind the Bar'; text=`You pour drinks all evening. ${hasPast('bartender')?'Old habits kick in: you flip a bottle and the whole room cheers.':'You over-explain the menu to everyone, though people seem to find it charming.'}\n\n+${fmt(inc)} · Sam's Charm +2`;
-    samLog(`Tended bar (+${fmt(inc)})`);
-  } else if(kind==='security'){
-    const sec = Math.round((20 + S.sam.strength) * (1 + samUpFx('watch'))), where = samReach() ? 'in all houses' : `at ${samHouse().name}`;
-    S.samWeek.security += sec; samStat('strength',2);
-    title='On Watch'; text=`You ${samReach()?'make the rounds of every house':`stand watch at ${samHouse().name}`}, looking as stern as a thin guy in a hoodie can. Nobody starts anything, which you decide to count as a win.\n\nSecurity bonus +${sec} ${where} this week · Sam's Strength +2`;
-    samLog('Stood watch');
-  } else if(kind==='books'){
-    const where = samReach() ? 'across every house' : `at ${samHouse().name}`;
-    S.samWeek.books = true; samStat('business',2); samStat('wits',1);
-    title='Doing the Books'; text=`You rebuild the ledger as a spreadsheet, by hand, on parchment. The staff watch with a mix of horror and respect.\n\nUpkeep reduced by ${Math.round(booksCut()*100)}% ${where} this week · Sam's Business +2 · Sam's Wits +1`;
-    samLog('Did the books');
-  } else if(kind==='rounds'){
+  if(kind==='rounds'){
     // a word with everyone: small trust and mood for ladies at Sam's house (every house with samReach)
     const B = BAL.sam, rm = 1 + samUpFx('rounds'), rt = B.roundsTrust * rm, rmood = B.roundsMood * rm; let n = 0;
     S.workers.filter(nearSam).forEach(w=>{ gainTrust(w, rt); moodAdd(w, rmood); n++; });
     samStat('charm',1);
     title='Making the Rounds'; text=`You walk through ${samReach()?'every house':samHouse().name} with a notebook, asking everyone how they're doing and actually writing down the answers. A leaky window gets fixed, someone's favorite tea gets restocked, and the whole staff notices that you noticed.\n\n${n} ladies: trust ${tDelta(rt)}, mood +${Math.round(rmood*10)/10} · Sam's Charm +1`;
     samLog('Made the rounds');
-  } else if(kind==='lesson'){
-    // skill class: everyone working at Sam's house learns her own job's skill (Hospitality for jobs without one); madames and teachers also a little of every other skill
-    const SM = {service:'charm', dance:'charm', bar:'charm', combat:'strength', manage:'business'}, GROW = {service:'charm', dance:'agility', bar:'charm', combat:'strength', manage:'refinement'};
-    const who = S.workers.filter(w=>w.job!=='rest' && nearSam(w)), base = BAL.sam.lessonShare * lessonMul(), by = {}, broad = (BAL.train.broad||{}).lesson ?? 0.3;
-    who.forEach(w=>{ const k = trainSkillOf(w), g = (4 + S.sam[SM[k]]/25) * base, m = pm(w,'train') * fxMul(w,'learn');
-      grow(w, k, g * m); if(broadJob(w)) TECH_KEYS.forEach(o=>{ if(o!==k) grow(w, o, g * m * broad); });
-      statXP(w, GROW[k] || 'charm', g*0.4); minorTrust(w); countUp(w, 'lessons'); (by[k] = by[k] || []).push(w.name); });
-    const ks = Object.keys(by); Array.from(new Set(ks.map(k=>SM[k]))).forEach(st=>samStat(st, ks.length > 1 ? 1 : 2));
-    title = 'Skill Class'; text = who.length ? `You gather the staff ${samReach()?'':'at '+samHouse().name+' '}for an afternoon of lessons, a table for each trade. You brought handouts. Nobody asked for handouts.\n\n${ks.map(k=>`${TECH_LABEL[k]}: ${by[k].join(', ')}`).join('\n')}${who.some(broadJob)?'\n(The madame and teachers drift between tables and pick up a little of everything.)':''}\n\nSam's ${Array.from(new Set(ks.map(k=>cap(SM[k])))).join(', ')} +${ks.length > 1 ? 1 : 2}` : `You set out chairs and handouts. Nobody here is working right now. You read the handout to yourself.`;
-    samLog(`Held a skill class${who.length?` (${who.length})`:''}`);
-  } else if(kind==='statclass'){
-    // stat class: everyone working at Sam's house trains the stats her job uses (madames and teachers: all of them), at lessons.stat.share of one-on-one coaching
-    const ST = BAL.train.stat || {}, who = S.workers.filter(w=>w.job!=='rest' && nearSam(w));
-    const g = ((ST.base ?? 12) + (S.sam.wits||0) * (ST.perWits ?? 0.2)) * samBonus('wits') * (ST.spread ?? 0.5) * ((BAL.lessons||{}).stat||{}).share * lessonMul();
-    who.forEach(w=>{ const m = pm(w,'train') * fxMul(w,'learn'); trainStatsOf(w).forEach(([k,wt])=>statXP(w, k, g * wt * m)); minorTrust(w); countUp(w, 'lessons'); });
-    samStat('wits', 2);
-    title = 'Stat Class'; text = who.length ? `You turn the common room into a training hall for the afternoon: a posture corner, a mirror corner, a table of ledgers turned into arithmetic drills, and a stretch of floor for anyone who needs to run. Everyone works on what her job asks of her.\n\n${who.length} ladies trained · Sam's Wits +2` : `You set up stations for a stat class. Everyone is off resting. You do the stretches yourself.`;
-    samLog(`Held a stat class${who.length?` (${who.length})`:''}`);
   } else if(kind==='scout'){
     const nc = 2 + Math.round(samUpFx('scout')); addCandidates(nc, 1.1 + S.sam.business/400); samXP(10); samStat('charm',1); samStat('wits',1);
     title='Scouting'; text=`You walk the market and the guild hall, quietly using [Appraisal] on anyone who looks like they might want a job.\n\n+${nc} candidates · Appraisal XP +${Math.round(10*samBonus('wits'))} · Sam's Wits +1`;

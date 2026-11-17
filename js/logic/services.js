@@ -378,13 +378,12 @@ function pushyCheck(X, w, cls, pr, client){
   hr.pushy[res]++; (pr.notes = pr.notes||[]).push(flavor('pushy_'+res, w));
   return res;
 }
-// Her night is over: one night's worth of clients off her week (escorts), 1/nights off her job's output (outputMult), and she
-// skips that share of the propositions still coming (props loop, pr.skipProps).
+// Her night is over: no more clients tonight (escorts), 1/nights off her job's output (outputMult), a little Health, and she
+// skips the rest of tonight's offers.
 function endNight(X, w, pr){
-  const BP = BAL.props, n = BP.nights || 6;
   pr.nightsLost = (pr.nightsLost||0) + 1; X.hr.nightsLost = (X.hr.nightsLost||0) + 1;
-  if(X.capc && X.capc[w.id] !== undefined) X.capc[w.id] = Math.max(pr.served, X.capc[w.id] - (BP.nightCap ?? 2));
-  pr.skipNights = (pr.skipNights||0) + 1;
+  pr.nightOver = true;   // no more clients or offers for her tonight (simHouse's night loop)
+  w.health = clamp(w.health - (BAL.props.nightHealth ?? 4));   // it shook her up
 }
 // Sam answers a call for help (Strength + Charm/2 + roll vs props.samCheck; standing watch this week helps at his house).
 function samRescue(w, h){

@@ -1,30 +1,52 @@
 {
-  "desc": "Sam's spare actions: what he does with AP left after rounds and one partner date. Includes walk and orgy.",
+  "desc": "Sam's spare rest-day actions: what he does with AP left after rounds and one partner date. Includes walk and orgy.",
   "scenario": "mid",
   "weeks": 12,
   "runs": 16,
-  "by": { "scenario": ["early", "mid", "late"] },
+  "by": {
+    "scenario": [
+      "early",
+      "mid",
+      "late"
+    ]
+  },
   "each": {
     "phasePolicy.samDefault": [
-      "security",
-      "books",
       "scout",
       "rounds",
-      "lesson",
       "date",
       "walk",
       "orgy",
       "rest",
-      "statclass",
       "trainStat",
       "trainSkill",
       "trainService",
       "demo"
     ]
   },
-  "columns": ["total", "net", "sam", "upkeep", "repGain", "sat", "trust", "mood", "unhandled", "left"],
-  "delta": ["total", "net", "repGain", "trust"],
+  "columns": [
+    "total",
+    "net",
+    "sam",
+    "upkeep",
+    "repGain",
+    "sat",
+    "trust",
+    "mood",
+    "unhandled",
+    "left"
+  ],
+  "delta": [
+    "total",
+    "net",
+    "repGain",
+    "trust"
+  ],
   "breakdown": [],
-  "variants": [{ "name": "base" }],
+  "variants": [
+    {
+      "name": "base"
+    }
+  ],
   "baseline": true
 }

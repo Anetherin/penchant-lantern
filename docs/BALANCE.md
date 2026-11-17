@@ -79,3 +79,7 @@ What a stat point was worth (`stat-value`): +5 to every stat on every lady ≈ +
 1. **Support jobs vs courtesan slot:** stacking multiple support ladies beyond the first maid/promoter/host/attendant still trades away courtesan slot revenue (`jobs-all`, `roles-comp`).
 2. **House and NG+ balance:** re-benchmark all 15 standard/NG+ houses (`houses-all`, `ngplus-houses`, `ngpp`) after the Cycle-1 / NG+ debt and `prestige` changes.
 3. **Race & amenity balance:** re-check `races`, `amenities`, `sanctuary-chapel`, and `demon-sigil` under the current queue/prestige rules.
+
+### Nights & Sam's focus (2026-11-17, campaign, 10-12 seeds)
+The week now runs as six nights plus a rest day: per-night client caps (`nights`: 1 + Stamina/50, demons +1), sleep after every night (`rest.night`), the rest day (`rest.restDay`) instead of `rest.work/workFree`, Health wear per night (`rest.wear.nightBase/nightPerSpent`). Sam's bar/watch/books/classes moved from actions to a weekly focus (`focus`).
+Cycle-1 win on main (after the energy rework) was ~53 weeks at 12 seeds (win rate 0.9). With nights: rest.night 0.25 / restDay 0.5 → 26 weeks; 0.10 / 0.30 → 45; 0.13 / 0.40 with perStamina 50 → **36 weeks, win rate 1.0** (chosen; close to the ~34 the energy rework aimed for). Courtesans serve ~7 clients a week (main: ~4.7).
