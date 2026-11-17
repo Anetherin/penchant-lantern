@@ -140,7 +140,7 @@
     "perCycle": 0.35,
     "perKeptHouse": 0,
     "keptHouseShare": 0.25,
-    "perLover": 0.08,
+    "perLover": 0,
     "loverDebt": 1500,
     "ngppDebt": 50000,
     "ngppStep": 50000,
@@ -354,7 +354,7 @@
       "pairEnergy": 14,
       "pairLust": 30
     },
-    "android": {"fee":15,"perEnergy":0.4,"chargerDiscount":0.4,"adaptDraw":1.2,"adaptChance":0.55,"adaptFanChance":0.85,"adaptFee":1.18,"adaptSat":10},
+    "android": {"fee":25,"perEnergy":1.2,"chargerDiscount":0.4,"adaptDraw":1.2,"adaptChance":0.55,"adaptFanChance":0.85,"adaptFee":1.18,"adaptSat":10},
     "angel": {"lanternLewd":60,"lanternTrust":50,"lanternOwn":15,"lanternAutoMood":6,"lanternAcceptTrust":4,"lanternAcceptMood":8,"lanternRefuseMood":-4},
     "refusalMood": 15,
     "poorFinishAt": 0.42,

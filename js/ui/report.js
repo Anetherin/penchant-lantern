@@ -6,10 +6,26 @@
 // each lady's card with her two highlights), 'w:<lady id>' (her card and every encounter she had; saved images show by default, SET.repImg).
 // Wide screens get a side list of views; narrow ones a dropdown (css .rep-nav / .rep-sel).
 let REPV = null;
+// Ladies in the report follow the roster's order (Filters & sort: default rank, or the chosen sort); anyone who left goes last.
+function repPer(R, hid){
+  const idx = new Map(S.workers.map((w,i)=>[w.id, i])), live = id => S.workers[idx.get(id)];
+  const ps = Object.values(R.per||{}).filter(p=>!hid || p.house===hid), ord = new Map(rosterOrder(ps.map(p=>live(p.id)).filter(Boolean)).map((w,i)=>[w.id, i]));
+  const k = ROSTER_VIEW.sort, val = p => { const w = live(p.id); return w && k ? (w[k]||0) : 0; };
+  return ps.slice().sort((a,b)=>(k ? val(b)-val(a) : 0) || (ord.get(a.id) ?? 1e9) - (ord.get(b.id) ?? 1e9));
+}
+// Prev/next buttons for a house or lady page (shown above and below it)
+function repPN(R, v){
+  const hs = (R.houses||[]).filter(h=>Object.values(R.per||{}).some(p=>p.house===h.id));
+  if(v.startsWith('h:')){ const i = hs.findIndex(h=>h.id===v.slice(2)), prev = hs[i-1], next = hs[i+1];
+    return `<div class="row rep-pn"><button class="sm" onclick="repGo('all')">← All houses</button>${prev?`<button class="sm" onclick="repGo('h:${prev.id}')">‹ ${esc(prev.name)}</button>`:''}${next?`<button class="sm" onclick="repGo('h:${next.id}')">${esc(next.name)} ›</button>`:''}</div>`; }
+  const p = (R.per||{})[v.slice(2)] || Object.values(R.per||{}).find(x=>x.id===v.slice(2)); if(!p) return '';
+  const ps = repPer(R, p.house), i = ps.findIndex(x=>x.id===p.id), prev = ps[i-1], next = ps[i+1], h = (R.houses||[]).find(x=>x.id===p.house);
+  return `<div class="row rep-pn">${h?`<button class="sm" onclick="repGo('h:${h.id}')">← ${esc(h.name)}</button>`:''}${prev?`<button class="sm" onclick="repGo('w:${prev.id}')">‹ ${esc(prev.name)}</button>`:''}${next?`<button class="sm" onclick="repGo('w:${next.id}')">${esc(next.name)} ›</button>`:''}</div>`;
+}
 function showReport(R, fromWeek){
   if(!R) return;
   REPV = {R, fromWeek:!!fromWeek, view:'all'};
-  const per = Object.values(R.per||{}), hs = (R.houses||[]).filter(h=>per.some(p=>p.house===h.id));
+  const per = repPer(R), hs = (R.houses||[]).filter(h=>per.some(p=>p.house===h.id));
   const navItem = (v, label, cls) => `<button class="rep-tab ${cls||''}" data-v="${esc(v)}" onclick="repGo('${esc(v)}')">${label}</button>`;
   // side list: the houses, and under the house being viewed only that house's ladies (repGo shows/hides them)
   const nav = navItem('all','📊 All houses') + hs.map(h=>navItem('h:'+h.id, '🏠 '+esc(h.name)) + per.filter(p=>p.house===h.id).map(p=>navItem('w:'+p.id, esc(p.name), 'sub" data-h="'+esc(h.id))).join('')).join('');
@@ -54,7 +70,7 @@ function repAll(R){
     + (L.sam?`<tr><td class="muted">Sam's bar shifts (already in your purse)</td><td class="good">+${fmt(L.sam)}</td></tr>`:'')
     + `<tr><th>Net</th><th class="${net>=0?'good':'warn'}">${fmt(net)}</th></tr>`;
   const houseRows = (R.houses||[]).map(h=>{ const wt = repWaitTxt(h, false); return `<tr><td>${repLink('h:'+h.id, esc(h.name))}</td><td>${h.served}${wt?` <span class="${h.left?'warn':'muted'}">(${wt})</span>`:''}</td><td>${fmt(h.income)}</td><td>${fmt(h.upkeep)}</td><td>${Math.round(h.avgSat)}</td><td>${Math.round(h.rep)}</td><td>${h.prestige!==undefined?`${Math.round(h.prestige)} <span class="muted">(${prestigeTier(h.prestige).label})</span>`:'—'}</td></tr>`; }).join('');
-  const per = Object.values(R.per||{});
+  const per = repPer(R);
   const ladyRows = (R.houses||[]).map(h=>{ const ps = per.filter(p=>p.house===h.id); if(!ps.length) return '';
     return `<tr><th colspan="6" style="text-align:left">${repLink('h:'+h.id, esc(h.name))}</th></tr>` + ps.map(p=>{ const n = R.hl.filter(x=>x.wid===p.id).length;
       return `<tr><td>${repLink('w:'+p.id, esc(p.name))}</td><td>${JOBS[p.job]?JOBS[p.job].label:esc(p.job)}</td><td>${p.served||0}</td><td>${p.earned?fmt(p.earned):'—'}</td><td>${p.m0}→<span class="${p.m1>=p.m0?'good':'warn'}">${p.m1}</span></td><td>${n?`${n} 📜`:''}${p.night==='good'?' <span class="good">★</span>':p.night==='bad'?' <span class="warn">!</span>':''}</td></tr>`; }).join(''); }).join('');
@@ -136,20 +152,21 @@ function repGroups(R, p){
 }
 function repHouse(R, hid){
   const h = (R.houses||[]).find(x=>x.id===hid); if(!h) return repAll(R);
-  const ps = Object.values(R.per||{}).filter(p=>p.house===hid), x = repHouseExtra(h);
-  return `<h3>${esc(h.name)}</h3>
+  const ps = repPer(R, hid), x = repHouseExtra(h), pn = repPN(R, 'h:'+hid);
+  return `${pn}<h3>${esc(h.name)}</h3>
     <div class="grid2"><div>Clients: <b>${h.served}</b>${repWaitTxt(h, true)?` <span class="${h.left||(!h.stopped&&h.turned)?'warn':'muted'}">(${repWaitTxt(h, true)})</span>`:''} · Satisfaction <b>${Math.round(h.avgSat)}</b> · Popularity <b>${Math.round(h.rep)}</b> · Class <b>${h.prestige!==undefined?`${Math.round(h.prestige)} (${prestigeTier(h.prestige).label})`:'—'}</b></div><div>Income <b class="good">${fmt(h.income)}</b> · Upkeep <b class="warn">${fmt(h.upkeep)}</b></div></div>
     ${x?`<div class="muted">${x}</div>`:''}
     ${ps.map(p=>{ const n = R.hl.filter(z=>z.wid===p.id).length;
-      return `<div class="rep-w">${repHead(p)}${repWhy(p)}<div class="row"><button class="sm" onclick="repGo('w:${p.id}')">📜 ${n ? `Her ${n} encounter${n>1?'s':''}` : 'Her week'} →</button></div></div>`; }).join('') || '<p class="muted">Nobody worked here this week.</p>'}`;
+      return `<div class="rep-w">${repHead(p)}${repWhy(p)}<div class="row"><button class="sm" onclick="repGo('w:${p.id}')">📜 ${n ? `Her ${n} encounter${n>1?'s':''}` : 'Her week'} →</button></div></div>`; }).join('') || '<p class="muted">Nobody worked here this week.</p>'}
+    <div style="margin-top:10px">${pn}</div>`;
 }
 function repLady(R, wid){
   const p = (R.per||{})[wid] || Object.values(R.per||{}).find(x=>x.id===wid); if(!p) return repAll(R);
-  const ps = Object.values(R.per||{}).filter(x=>x.house===p.house), i = ps.indexOf(p), prev = ps[i-1], next = ps[i+1], h = (R.houses||[]).find(x=>x.id===p.house);
-  const hl = repGroups(R, p);
-  return `<div class="row rep-pn">${h?`<button class="sm" onclick="repGo('h:${h.id}')">← ${esc(h.name)}</button>`:''}${prev?`<button class="sm" onclick="repGo('w:${prev.id}')">‹ ${esc(prev.name)}</button>`:''}${next?`<button class="sm" onclick="repGo('w:${next.id}')">${esc(next.name)} ›</button>`:''}</div>
+  const hl = repGroups(R, p), pn = repPN(R, 'w:'+p.id);
+  return `${pn}
     <div class="rep-w">${repHead(p)}${repWhy(p)}</div>
-    <h3 style="margin-top:10px">Her clients</h3>${hl || '<p class="muted">Nothing worth writing down.</p>'}`;
+    <h3 style="margin-top:10px">Her clients</h3>${hl || '<p class="muted">Nothing worth writing down.</p>'}
+    <div style="margin-top:10px">${pn}</div>`;
 }
 // Lady page: an encounter that already has a saved picture shows it straight away (nothing new is generated; 🖼 does that)
 async function repShowSaved(R, wid){

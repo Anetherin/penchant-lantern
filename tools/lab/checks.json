@@ -320,8 +320,8 @@
       ]
     },
     {
-      "id": "ngplus-lovers-speed-up",
-      "intent": "Carrying more ladies into NG+ makes the cycle faster.",
+      "id": "ngplus-lovers-neutral",
+      "intent": "Carrying lovers into NG+ is roughly neutral: one, three or five lovers clear the cycle within ~4 weeks of each other, so there's no need to grind walks for more.",
       "exp": "ngplus-carry",
       "expect": [
         {
@@ -329,10 +329,10 @@
             "3"
           ],
           "to": [
-            "0"
+            "1"
           ],
           "metric": "ngWeeks",
-          "lt": 0
+          "abs": 4
         },
         {
           "compare": [
@@ -342,7 +342,7 @@
             "1"
           ],
           "metric": "ngWeeks",
-          "lt": 0
+          "abs": 4
         }
       ]
     },
