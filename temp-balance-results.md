@@ -1,58 +1,69 @@
-# Balance Test Results (`feat/guild-contracts` · Round 2)
+# Balance Test Results (`main` · `1b2f37b`)
 
-Run on 2026-11-17 at commit `62e92f4` (*Balance round 2: guild day rates and bonuses, more lady income and upkeep, night incidents, promoter fills spare rooms*).
+Run on 2026-11-17 on branch `feat/balance-tuning` (branched from `main` at `1b2f37b`).
 
 ## 1. Build & Smoke Checks
 
-- `node tools/build.mjs`: built `dist/hollowmere-nights.html` (46 scripts + 27 data files, 3146 KB).
+- `node tools/build.mjs`: built `dist/hollowmere-nights.html` (46 scripts + 27 data files, 3155 KB).
 - `node tools/smoke.mjs 30`:
-  - `index.html`: reached week 31, 3 workers, 91987g, no errors.
-  - `dist/hollowmere-nights.html`: reached week 31, 3 workers, 85869g, no errors.
+  - `index.html`: reached week 31, 3 workers, 82838g, no errors.
+  - `dist/hollowmere-nights.html`: reached week 31, 3 workers, 91638g, no errors.
+- `node tools/goddess-smoke.mjs`:
+  - `index.html`: reached week 186, 1 workers, 3214g, no errors.
+  - `dist/hollowmere-nights.html`: reached week 186, 1 workers, 3206g, no errors.
 
 ## 2. Balance Intent Checks (`node tools/lab/check.mjs`)
 
-**5 PASS · 8 FAIL · 1 WARN** (vs 4 PASS · 8 FAIL · 2 WARN in round 1)
+**7 PASS · 5 FAIL · 2 WARN**
 
 - **PASS**:
-  - `cycle1-winnable` (`c1-baseline`, **now passing**): `winRate` `1.00` (≥ 0.95), `weeksToWin` `36.9` (in `[20, 45]`), `missed` `0.13` (≤ 0.2).
-  - `tidiness-penalty-below-30` (`tidiness`): `-229` mid, `-513` late.
-  - `ngpp-harder-still` (`ngpp`, **now passing**): `+7.30` weeks vs NG+.
-  - `cheap-houses-pay-off-faster` (`houses-all`): `-5.30` weeks.
-  - `premium-houses-earn-more-later` (`houses-plateau`): `+5,592` net.
+  - `cycle1-winnable` (`c1-baseline`): `winRate` `1.00` (≥ 0.95), `weeksToWin` `36.6` (in `[20, 45]`), `missed` `0.00` (≤ 0.2).
+  - `tidiness-neutral-70` (`tidiness`, **now passing**): mid `-2.93%`, late `-2.24%`.
+  - `tidiness-penalty-below-30` (`tidiness`): `-221` mid, `-566` late.
+  - `security-stops-incidents` (`security-value`, **now passing**): cuts trouble `-0.41 ± 0.13` mid / `-0.80 ± 0.13` late; `+95.1 ± 105` total mid, `+154 ± 82.8` total late.
+  - `demons-poor-off-service` (`race-jobs`, **now passing**): demon promoter (`-5.56`), bartender (`-53.8`), host (`-318`), security (`-101`) all cost more than human.
+  - `ngplus-lovers-neutral` (`ngplus-carry`, **now passing**): `ngWeeks` `[3]-[1]` `0.58`, `[5]-[1]` `1.58` (within `|x| ≤ 4`).
+  - `premium-houses-earn-more-later` (`houses-plateau`): `+6,558` net.
 - **FAIL**:
-  - `tidiness-neutral-70` (`tidiness`): mid tidy 60 Δtotal `-37.1 ± 37.5` (`-7.60%` of 488, exceeds `≤ 5%`); late passes (`-1.22%`).
-  - `promoter-pays` (`promoter-value`): adding a promoter still loses money (`-139 ± 64.0` early Lantern, `-210 ± 108` mid Lantern, `-108 ± 129` early Hollow, `-167 ± 196` mid Hollow).
-  - `security-stops-incidents` (`security-value`): cuts mid unhandled incidents (`-0.09 ± 0.05`), `0.00 ± 0.00` late; mid Δtotal `-253 ± 118` (WARN), late Δtotal `+90.8 ± 148` (PASS).
-  - `demons-top-courtesans` (`races-courtesan`): demons rank #3 mid (`39.8` vs android `55.7`) and #4 late (`68.5` vs android `81.3`).
-  - `demons-poor-off-service` (`race-jobs`): demon promoter (`+6.43`), bartender (`+63.2`), and security (`+22.6`) outperformed human; only host (`-179`) passed.
-  - `sam-actions-balanced` (`sam-actions-campaign`): `scout`, `rounds`, `date`, `rest`, `trainStat`, `trainSkill`, and `trainService` all pass (`|x| ≤ 3`); only `walk` (`-6.69 ± 2.39`) fails.
-  - `ngplus-a-bit-harder` (`ngplus-carry`): `ngRatio` passes (`1.47`), 3 and 5 lovers pass (`0.92` winRate), but base (`0.75`), 0 (`0.17`), 1 (`0.67`), and 2 (`0.42`) lovers fail `winRate ≥ 0.9`.
-  - `ngplus-lovers-neutral` (`ngplus-carry`): carrying 3 or 5 lovers clears `-17.8` / `-18.4` weeks faster than 1 lover (target `|x| ≤ 4`).
+  - `promoter-pays` (`promoter-value`): `0.00 ± 0.00` on both `Δ total` and `Δ repGain` for Lantern and Hollow (the experiment/setup produced identical runs between `+promoter` and `base`).
+  - `demons-top-courtesans` (`races-courtesan`): demons rank #2 mid (`46.0` vs `beastkin/rabbit` `47.2`) and #2 late (`79.1` vs `android` `96.8`).
+  - `sam-actions-balanced` (`sam-actions-campaign`): `rounds` (`+4.13 ± 8.05`) and `walk` (`-6.63 ± 2.87`) fall outside `|x| ≤ 3`; `scout`, `date`, `rest`, `trainStat`, `trainSkill`, `trainService` pass.
+  - `ngplus-a-bit-harder` (`ngplus-carry`): all `winRate`s now pass (`0.92`–`1.00`), but `ngRatio` is `0.93` (below `[1, 1.5]`).
+  - `cheap-houses-pay-off-faster` (`houses-all`): `+7.48` weeks (starters took longer than premiums).
 - **WARN**:
-  - `ngplus-slow-climb` (`ngplus-cycles`): `c5weeks` all `46.8` / home `30.2`, `c5over` all `0.20` (home `0.00` PASS).
+  - `ngplus-slow-climb` (`ngplus-cycles`): `c5weeks` all `35.5` (PASS), home `28.8` (WARN), `c5over` `0.09` / `0.00` (PASS).
+  - `ngpp-harder-still` (`ngpp`): `+35.2` weeks vs NG+ (exceeds `< 15` cap).
 
 ## 3. Guild (`tools/lab/exp/guild.json`, 10 seeds)
 
 | variant | weeksToWin | winRate | netEarly | netMid | netLate | worth20 | Δ weeksToWin | Δ netMid | Δ netLate |
 |---|---|---|---|---|---|---|---|---|---|
-| no guild | 37 | 1.0 | 522 | 585 | 1,590 | -17,101 | – | – | – |
-| guild (default) | 37 | 1.0 | 479 | 531 | 1,006 | -15,412 | +0.8 ± 4.2 | -54.1 ± 171.9 | **-583.5 ± 256.8** |
-| Sam always goes | 34 | 1.0 | 472 | 475 | 1,051 | -15,599 | -2.4 ± 4.3 | -110.6 ± 169.9 | **-538.7 ± 238.1** |
-| fighters | 38 | 1.0 | 468 | 454 | 1,061 | -16,642 | +1.4 ± 4.8 | -131.1 ± 134.4 | **-529.0 ± 217.3** |
-| busy guild | 36 | 1.0 | 479 | 549 | 1,065 | -15,799 | -0.1 ± 4.8 | -36.9 ± 167.2 | **-525.0 ± 336.4** |
+| no guild | 35 | 1.0 | 522 | 662 | 1,810 | -16,171 | – | – | – |
+| guild (default) | 38 | 1.0 | 477 | 479 | 1,136 | -16,770 | +2.9 ± 5.1 | **-182.5 ± 119.7** | **-674.4 ± 321.0** |
+| Sam always goes | 33 | 1.0 | 469 | 450 | 1,273 | -15,613 | -1.9 ± 4.5 | **-212.4 ± 121.9** | **-537.5 ± 278.8** |
+| fighters | 37 | 1.0 | 467 | 458 | 1,264 | -17,405 | +2.2 ± 4.5 | **-203.6 ± 101.7** | **-546.1 ± 327.4** |
+| busy guild | 38 | 1.0 | 477 | 493 | 1,086 | -17,148 | +2.5 ± 4.6 | **-168.5 ± 117.6** | **-723.9 ± 260.8** |
 
-- Huge improvement over round 1: `guild (default)` now matches `no guild` on `weeksToWin` (`37`, 1.0 winRate) and beats it on `worth20` (`+1,690`), with `Sam always goes` clearing in `34` weeks.
-- In `c1-baseline`, the `guild` job now credits `144` earned / `109` net per lady-week (`902` lady-weeks), sitting right between `dancer` (`156` net) and `bartender` (`88` net).
+- In `c1-baseline`, the `guild` job averages `140` earned / `106` net per lady-week (`780` lady-weeks).
 
 ## 4. Sam's Weekly Focus (`tools/lab/exp/sam-focus.json`, 16 seeds)
 
 | variant | weeksToWin | netEarly | netMid | netLate | worth20 | Δ weeksToWin | Δ netMid | Δ netLate | Δ worth20 |
 |---|---|---|---|---|---|---|---|---|---|
-| base / auto | 37 | 498 | 511 | 1,054 | -16,023 | – | – | – | – |
-| office | 37 | 498 | 516 | 1,016 | -16,771 | +0.4 ± 1.1 | +4.1 ± 25.5 | -38.4 ± 77.1 | -747.5 ± 855.9 |
-| floor | 33 | 427 | 422 | 929 | -15,068 | **-4.0 ± 2.7** | **-89.4 ± 88.5** | -124.8 ± 249.1 | +955.8 ± 2,486 |
-| watch | 43 | 429 | 468 | 1,011 | -18,541 | +6.1 ± 8.0 | -43.2 ± 54.2 | -43.1 ± 171.3 | **-2,517 ± 2,019** |
-| classes | 42 | 405 | 413 | 1,272 | -18,167 | +4.9 ± 8.3 | **-98.5 ± 77.7** | +217.8 ± 232.7 | **-2,143 ± 1,306** |
-| rest | 53 | 417 | 386 | 958 | -19,243 | **+16.2 ± 12.2** | **-125.7 ± 83.2** | -79.0 ± 159.4 | **-3,220 ± 1,731** |
+| base / auto | 37 | 493 | 484 | 1,244 | -16,407 | – | – | – | – |
+| office | 39 | 493 | 475 | 1,122 | -17,118 | +1.9 ± 2.6 | -8.1 ± 47.5 | -122.7 ± 182.7 | -711.1 ± 1,303 |
+| floor | 33 | 459 | 429 | 946 | -16,156 | **-3.3 ± 3.0** | -54.2 ± 93.5 | **-298.2 ± 193.3** | +251.5 ± 2,145 |
+| watch | 42 | 433 | 487 | 1,202 | -18,276 | +4.9 ± 9.3 | +3.1 ± 107.7 | -45.0 ± 246.0 | **-1,869 ± 1,864** |
+| classes | 35 | 413 | 545 | 1,410 | -16,627 | -1.4 ± 3.8 | +61.5 ± 91.4 | +165.2 ± 272.4 | -220.1 ± 2,372 |
+| rest | 43 | 448 | 493 | 1,073 | -17,419 | +6.5 ± 7.6 | +9.9 ± 82.0 | -171.1 ± 227.8 | -1,011 ± 2,218 |
 
-- `floor` is now the fastest focus (`33` wks, **-4.0 ± 2.7**), `office` / `auto` tie at `37` wks, while `classes` (`42` wks, **-98.5 netMid**, **-2,143 worth20**) and `watch` (`43` wks, **-2,517 worth20**) lag behind `office` in cycle-1 speed.
+- `floor` (`33` wks, **-3.3 ± 3.0**), `classes` (`35` wks, `-1.4 ± 3.8`), `base`/`auto` (`37` wks), and `office` (`39` wks) are much closer together now, with `classes` leading `netMid` (`545`) and `netLate` (`1,410`).
+
+## 5. Walk Pacing (`tools/lab/exp/walk-partners.json`, 12 seeds)
+
+| variant | n | weeksToWin | partners | netMid | worth20 | Δ weeksToWin | Δ netLate |
+|---|---|---|---|---|---|---|---|
+| walks | 12 | 30 | 2.6 | 624 | -11,175 | – | – |
+| walks, stop at 30 | 12 | 28 | 2.5 | 624 | -11,175 | **-2.3 ± 1.9** | **-74.2 ± 65.7** |
+
+- Finding partners on walks averages `2.5–2.6` partners per cycle (out of cap 3) and clears the debt in `28–30` weeks.
