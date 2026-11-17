@@ -1,0 +1,17 @@
+{
+  "desc": "Lover debt: current (flat loverDebt per lover + perLover multiplier on the whole debt) vs flat only vs multiplier only, with 0/1/3/5 lovers carried. Goal: carrying lovers is roughly neutral (ngWeeks flat across lover counts). Wayfarer, Seasoned Owner, no past.",
+  "scenario": "ngplus",
+  "runs": 8,
+  "ng": { "house": "wayfarer", "past": "none", "boon": "ap" },
+  "baseline": false,
+  "variants": [
+    { "name": "current" },
+    { "name": "flat only", "patch": { "balance": { "ngplus": { "perLover": 0 } } } },
+    { "name": "mult only", "patch": { "balance": { "ngplus": { "loverDebt": 0 } } } },
+    { "name": "neither", "patch": { "balance": { "ngplus": { "perLover": 0, "loverDebt": 0 } } } }
+  ],
+  "each": { "ng.lovers": [0, 1, 3, 5] },
+  "columns": ["c1won", "c2lovers", "ngDebt", "ngWeeks", "winRate", "net", "missed", "left", "over"],
+  "delta": [],
+  "breakdown": []
+}

@@ -1,0 +1,18 @@
+{
+  "desc": "Tidiness held at a fixed level for every measured week (base = 70, meant to be neutral). Intent: 60-90 close to neutral, a noticeable penalty below 30. 'free' lets it drift as normal.",
+  "scenario": "mid",
+  "weeks": 12,
+  "runs": 16,
+  "by": { "scenario": ["mid", "late"] },
+  "variants": [
+    { "name": "base", "mutate": { "holdTidy": 70 } },
+    { "name": "tidy 90", "mutate": { "holdTidy": 90 } },
+    { "name": "tidy 60", "mutate": { "holdTidy": 60 } },
+    { "name": "tidy 45", "mutate": { "holdTidy": 45 } },
+    { "name": "tidy 25", "mutate": { "holdTidy": 25 } },
+    { "name": "free" }
+  ],
+  "columns": ["total", "net", "tidy", "served", "sat", "repGain", "mood", "left"],
+  "delta": ["total", "net", "sat", "repGain"],
+  "breakdown": []
+}

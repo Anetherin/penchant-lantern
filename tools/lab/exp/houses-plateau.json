@@ -1,0 +1,11 @@
+{
+  "desc": "What each Cycle-1 house earns once it's built up: cycle 1 played to the win, then 26 post-debt weeks (the bot now buys decor and drinks). Pair with houses-all (weeks to pay off): cheaper houses should pay off faster but earn less here.",
+  "scenario": "plateau",
+  "weeks": 26,
+  "runs": 12,
+  "baseline": false,
+  "each": { "start.house": ["lantern", "onsen", "hollow", "tankard", "wayfarer", "castle", "pavilion", "veil", "sanctuary", "atelier"] },
+  "columns": ["total", "net", "income", "upkeep", "perLady", "served", "sat", "staff", "repGain"],
+  "delta": [],
+  "breakdown": []
+}

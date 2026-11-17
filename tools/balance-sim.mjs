@@ -5,6 +5,7 @@
 //   PAIRED=1 (B and M: every race gets identical seeded base rolls: lady k of run r is the same profile for all races; in M all ladies share one profile),
 //   TRAIN=<amount> (B and M: each week every lady gains <amount> (0-100 scale, before race growth bonuses) on 2 random stats and her main job skill; Sam makes the rounds if he has AP).
 // M does not report enthusiast share: R.per[].enc is deleted by endWeek before the report is stored.
+import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
 import path from 'node:path';
 import fs from 'node:fs';
@@ -16,7 +17,7 @@ for (const m of ['playwright', process.env.PLAYWRIGHT_PATH, '/opt/node-tools/nod
   try { pw = require(m); break; } catch {}
 }
 if (!pw) throw new Error('Cannot find module playwright');
-const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const argv = process.argv.slice(2); let PATCH = null; const pi = argv.indexOf('--patch');
 if (pi >= 0) { PATCH = JSON.parse(fs.readFileSync(argv[pi+1], 'utf8')); argv.splice(pi, 2); }
 const MODE = argv[0] || 'AB', RA = +argv[1] || 8, RB = +argv[2] || 6;

@@ -28,11 +28,11 @@ function chooseDefaultEvent(CUR_EV){
   // Walk recruit events: always take free hires if room/policy allows; otherwise apply or hire if flush
   if (ch[0] && /Invite her into|Welcome her back/.test(ch[0].label || '')) {
     const h = curH();
-    if (h && staffIn(h).length < P.maxStaff) return 0;
+    if (h && staffIn(h).length < cap()) return 0;
   }
   if (ch[0] && /^Hire her for /.test(ch[0].label || '')) {
     const h = curH(), candIdx = ch.findIndex(c => /to apply|Candidates/.test(c.label || ''));
-    if (h && staffIn(h).length < P.maxStaff && sleepers(h).length < bedsFor(h) && S.gold >= reserveGold() + 300) return 0;
+    if (h && staffIn(h).length < cap() && sleepers(h).length < bedsFor(h) && S.gold >= reserveGold() + 300) return 0;
     if (candIdx >= 0) return candIdx;
   }
   return Math.floor(Math.random() * ch.length);
@@ -48,7 +48,7 @@ function resolveEvents(){ let g = 0;
 // ---------- policy (the "player") ----------
 // Defaults are a sensible, not optimal, player. Experiments override any field (spec "policy").
 LAB.POLICY = {
-  maxStaff: 10,          // per house
+  maxStaff: null,        // per house; null = keep hiring until every bed is taken and no room is left for more staff quarters
   rooms: true,           // buy bedrooms when clients were turned away / rooms ran short
   beds: true,            // buy extra beds / staff quarters to fit hires
   upgrades: true,        // buy amenities from `amenities` (in order, one per house per week)
@@ -74,17 +74,49 @@ LAB.POLICY = {
   cut: null,             // if set ('base' or 0..0.9), set profit cut for workers in house
   tutor: null,           // if set ('weak'|'job'), set tutor focus for workers
   tutorTier: 'tutor',
-  teachSkill: null       // if set and house has classroom, set teachSkill
+  teachSkill: null,      // if set and house has classroom, set teachSkill
+  bedTier: 'auto',       // 'auto': upgrade staff bed quality (better rest) when flush, up to Feather beds during the debt and Luxury after; a number = target tier (0-3); false = never
+  demonFeedOnly: null,   // demons' "Feeding only" setting: null (off) | % of max energy below which she only takes services that feed her | 'always'
+  demonAutoStud: null,   // demons' auto-stud lust threshold: null (off) | lust level | 'always'
+  // adaptive play (a sensible player reacts to the weekly report; set any of these to false/0 for the old fixed player)
+  security: 'auto',      // 'auto': keep 1 security lady once the house has `targetsAt` ladies and averaged >= secWhen incidents/week (last 3 weeks); true = always; false = never
+  secWhen: 1,
+  tidyFloor: 55,         // keep a second maid while tidiness (3-week average) is below this; 0 = off
+  classUpkeep: 'afterDebt', // 'afterDebt' | true | false: when flush (gold >= flushMul x cost + reserve), buy the next decor tier, then drinks tier (needs the bar), once the house has amenityStaff ladies.
+                         // Default waits for the debt to be cleared: in cycle 1 it cost ~3.4 weeks of payoff for +300/wk late net (2026-11-16).
+  flushMul: 3
 };
+// the fixed player the Pass 1/2 numbers in docs/BALANCE.md were measured with: spec "policy": {"preset": "legacy"}
+LAB.PRESETS = { legacy: { security: false, tidyFloor: 0, classUpkeep: false, maxStaff: 10, bedTier: false } };
+// base, then each override's preset (if it names one) under that override's own fields
+const withPreset = (base, ...os) => os.reduce((acc, o) => Object.assign(acc, (o && o.preset && LAB.PRESETS[o.preset]) || {}, o || {}), Object.assign({}, base));
 let P = Object.assign({}, LAB.POLICY);
+const cap = () => P.maxStaff ?? Infinity;
 
 function reserveGold(){
   const LR = S.lastReport, upk = LR ? LR.upkeep + LR.wages : 150;
   let due = 0; try { const nd = nextDue(); if (nd.amount > 0 && nd.week - S.week <= 2) due = nd.amount; } catch (e) {}
   return P.reserve + upk + due;
 }
+// house history from the lab's weekly rows (kept in S so snapshots carry it): [{pushy, tidy}], newest last
+const hist = h => ((S._lab || {}).hist || {})[h.id] || [];
+const avgOf = (a, f) => a.length ? a.reduce((x, y) => x + f(y), 0) / a.length : 0;
+function targetsFor(h){
+  if (staffIn(h).length < P.targetsAt) return {};
+  const T = Object.assign({}, P.targets || {}), H3 = hist(h).slice(-3);
+  if (P.security === true || (P.security === 'auto' && H3.length && avgOf(H3, x => x.pushy) >= P.secWhen)) T.security = Math.max(T.security || 0, 1);
+  if (P.tidyFloor && H3.length && avgOf(H3, x => x.tidy) < P.tidyFloor) T.maid = Math.max(T.maid || 0, 2);
+  return T;
+}
+// who to move into a support role: suited to it (the stats the sim reads, docs/STATS.md) and not one of the top earners; partners last
+const st = (w, k) => s100(statOf(w, k)), tk = (w, k) => s100((w.tech || {})[k] || 0);
+const FIT = { promoter: w => st(w, 'charisma') + st(w, 'charm') * 0.5, maid: w => st(w, 'agility') + st(w, 'stamina') * 0.5,
+  security: w => tk(w, 'combat') + st(w, 'strength') * 0.3 + st(w, 'agility') * 0.25 + st(w, 'wits') * 0.3, host: w => st(w, 'charm') + st(w, 'refinement'),
+  attendant: w => st(w, 'refinement') + st(w, 'charm'), madame: w => tk(w, 'manage') + st(w, 'wits'), teacher: w => st(w, 'wits') + st(w, 'charisma') };
+function supportScore(w, j){ const per = ((S.lastReport || {}).per || {})[w.id], earned = per ? per.earned || 0 : 0;
+  return (FIT[j] ? FIT[j](w) : 50) / (1 + earned / 300) - (w.isPartner ? 1000 : 0); }
 function jobOrder(h, cnt){
-  const T = staffIn(h).length >= P.targetsAt ? (P.targets || {}) : {}, need = Object.keys(T).filter(j => cnt(j) < T[j]);
+  const T = targetsFor(h), need = Object.keys(T).filter(j => cnt(j) < T[j]);
   return ['bath', 'dancer', 'bartender', ...need, 'courtesan', 'attendant', 'promoter', 'maid']; }
 function tryJob(w, j){ if (canDo(w, j)) return false; setJob(w.id, j); quiet(); return w.job === j; }
 function manageJobs(h){
@@ -103,11 +135,11 @@ function manageJobs(h){
   mine.forEach(w => { if (!free(w) || w.job !== 'rest' || w.energy <= maxEnergy(w) * 0.6) return;
     for (const j of jobOrder(h, cnt)) { if (AMEN[j] && (!h.up[AMEN[j]] || cnt(j) >= 1)) continue; if (tryJob(w, j)) return; } });
   if (P.fillTargets && staffIn(h).length >= P.targetsAt) {
-    const T = P.targets || {};
+    const T = targetsFor(h);
     for (const [j, want] of Object.entries(T)) {
       if (!JOBS[j] || cnt(j) >= want) continue;
-      const pool = mine.filter(w => free(w) && w.job !== j && !AMEN[w.job] && (!JOBS[j].needs || h.up[JOBS[j].needs]));
-      pool.sort((a, b) => (a.job === 'rest' ? 0 : 1) - (b.job === 'rest' ? 0 : 1) || b.energy - a.energy);
+      const pool = mine.filter(w => free(w) && w.job !== j && !AMEN[w.job] && (!JOBS[j].needs || h.up[JOBS[j].needs]) && !(T[w.job] && cnt(w.job) <= T[w.job]));
+      pool.sort((a, b) => supportScore(b, j) - supportScore(a, j));
       for (const w of pool) {
         if (cnt(j) >= want) break;
         const was = w.job; w.job = 'rest';
@@ -115,8 +147,8 @@ function manageJobs(h){
       }
     }
   }
-  if (P.resort) { const T = staffIn(h).length >= P.targetsAt ? (P.targets || {}) : {};
-    mine.forEach(w => { if (!free(w) || !['promoter', 'maid', 'attendant'].includes(w.job) || cnt(w.job) <= (T[w.job] || 0)) return;
+  if (P.resort) { const T = targetsFor(h);
+    mine.forEach(w => { if (!free(w) || !['promoter', 'maid', 'attendant', 'security'].includes(w.job) || cnt(w.job) <= (T[w.job] || 0)) return;
       const was = w.job; w.job = 'rest'; if (!tryJob(w, 'courtesan')) w.job = was; }); }
 }
 function hireScore(c){ return P.hire === 'best' ? STAT_KEYS.reduce((a, k) => a + s100(c.stats[k]), 0) / Math.max(50, c.signing) : -c.signing; }
@@ -131,6 +163,14 @@ function manageHouse(h){
       buyUpgrade(k); quiet(); break; } }
   if (h.up.incense && P.incense && h.incense !== P.incense) { setIncense(P.incense); quiet(); }
   if (h.up.classroom && P.teachSkill && h.teachSkill !== P.teachSkill) { setTeachSkill(h.id, P.teachSkill); quiet(); }
+  if (P.classUpkeep && (P.classUpkeep !== 'afterDebt' || S.won || S.debt.remaining <= 0) && staffIn(h).length >= P.amenityStaff) {
+    const flush = k => S.gold >= upgradeCost(h, k) * P.flushMul + reserveGold();
+    if ((h.decor || 0) < 3 && flush('decor')) { buyUpgrade('decor'); quiet(); }
+    else if (h.up.bar && (h.drinks || 0) < 3 && flush('drinks')) { buyUpgrade('drinks'); quiet(); } }
+  if (P.bedTier !== false && P.bedTier != null && staffIn(h).length >= P.amenityStaff) {
+    const want = P.bedTier === 'auto' ? (S.won || S.debt.remaining <= 0 ? 3 : 2) : +P.bedTier;
+    if ((h.beds || 0) < want && S.gold >= upgradeCost(h, 'beds') * (P.bedTier === 'auto' ? P.flushMul : 1) + reserveGold()) { buyUpgrade('beds'); quiet(); } }
+  staffIn(h).forEach(w => { if (w.race !== 'demon') return; if (P.demonFeedOnly != null) w.feedOnly = P.demonFeedOnly; if (P.demonAutoStud != null) w.autoStud = P.demonAutoStud; });
   if (P.decor && (h.decor || 0) < P.decor && S.gold >= upgradeCost(h, 'decor') + reserveGold()) { buyUpgrade('decor'); quiet(); }
   if (P.drinks && h.up.bar && (h.drinks || 0) < P.drinks && S.gold >= upgradeCost(h, 'drinks') + reserveGold()) { buyUpgrade('drinks'); quiet(); }
   if (staffIn(h).some(w => w.race === 'demon') && !h.up.sigil && S.gold >= upgradeCost(h, 'sigil') + reserveGold()) { buyUpgrade('sigil'); quiet(); }
@@ -140,7 +180,7 @@ function manageHouse(h){
     if (need && !h.up[need] && S.gold >= upgradeCost(h, need) + P.reserve) { buyUpgrade(need); quiet(); } S.candidates = S.candidates.filter(c => c.race === R[0] && (!R[1] || c.sub === R[1]));
     while (S.candidates.length < 3) { let c, t = 0; do { c = genWorker({ race: R[0] }); } while (R[1] && c.sub !== R[1] && ++t < 200); c.signing = signingFor(c); S.candidates.push(c); } }
   for (let g = 0; g < 6; g++) {
-    if (staffIn(h).length >= P.maxStaff) break;
+    if (staffIn(h).length >= cap()) break;
     if (sleepers(h).length >= bedsFor(h)) { if (!P.beds) break;
       if ((h.extraBeds || 0) < maxExtraBeds(h) && S.gold > reserveGold() + upgradeCost(h, 'extraBed')) { buyUpgrade('extraBed'); quiet(); continue; }
       if (roomsUsed(h) + 1 <= houseSize(h) && S.gold > reserveGold() + upgradeCost(h, 'quarters') + 150) { buyUpgrade('quarters'); quiet(); continue; }
@@ -186,7 +226,7 @@ function samTurn(){
     }
     if (!rounds && S.sam.energy >= 25 && S.workers.some(w => nearSam(w) && w.trust < P.roundsTrust)) { samWork('rounds'); rounds = true; }
     else if (P.partnerDates && !dated && p && S.ap >= 2 && S.sam.energy >= 40) { try { samDate(p.id, 'walk'); } catch (e) {} dated = true; }
-    else if ((S.ngppCycle || 0) > 0 && P.ngppWalk !== false && walks < 2 && S.sam.energy >= (((BAL.walk || {}).energy ?? 15) + 5) && S.houses.some(h => staffIn(h).length < Math.min(P.maxStaff, 6))) { samWalk(); walks++; }
+    else if ((S.ngppCycle || 0) > 0 && P.ngppWalk !== false && walks < 2 && S.sam.energy >= (((BAL.walk || {}).energy ?? 15) + 5) && S.houses.some(h => staffIn(h).length < Math.min(cap(), P.ngppWalkUntil ?? 10))) { samWalk(); walks++; }
     else if (P.scoutWhenShort && S.sam.energy >= 25 && S.houses.some(h => staffIn(h).length < P.scoutWhenShort) && S.candidates.filter(c => S.gold - c.signing >= P.reserve).length < 2) samWork('scout');
     else if (S.sam.energy >= 35) { try { samSpare(); } catch (e) { samWork('bartend'); } }
     else samRest();
@@ -198,6 +238,7 @@ function playWeek(){
   for (const h of S.houses.slice().sort((a, b) => staffIn(a).length - staffIn(b).length)) manageHouse(h);
   S.cur = S.houses[0].id; samTurn(); resolveEvents();
   if (P.payOff && !S.won && S.debt.remaining > 0 && S.gold >= S.debt.remaining + reserveGold()) { try { payOffDebt(); } catch (e) {} quiet(); resolveEvents(); }
+  const HOLD = (S._lab || {}).hold || {}; if (HOLD.tidy != null) S.houses.forEach(h => { h.tidy = HOLD.tidy; });
   const before = new Set(S.workers.map(w => w.id)), wk = S.week, strikes0 = S.debt.strikes;
   const who = Object.fromEntries(S.workers.map(w => [w.id, { race: w.race, sub: w.sub, key: w.key, free: w.free, wage: w.wage }]));
   endWeek(); quiet(); resolveEvents();
@@ -209,6 +250,8 @@ function playWeek(){
     prestige: Math.round((x.prestige ?? housePrestige(H(x.id))) * 10) / 10,
     tidy: Math.round(x.tidy), promo: Math.round((x.promoDraw || 0) * 10) / 10, pushy: x.pushy ? Object.assign({}, x.pushy) : null, lost: x.nightsLost || 0, demand: x.demand || 0, maidAdd: Math.round((x.maidAdd || 0) * 10) / 10, tidy0: Math.round(x.tidy0), visitors: x.visitors || 0,
     jobs: Object.fromEntries(Object.entries(Object.values(R.per).filter(p => p.house === x.id).reduce((a, p) => (a[p.job] = (a[p.job] || 0) + 1, a), {}))) }));
+  const L = S._lab = S._lab || {}; L.hist = L.hist || {};
+  hs.forEach(x => { const a = L.hist[x.id] = L.hist[x.id] || []; a.push({ pushy: x.pushy ? x.pushy.total : 0, tidy: x.tidy }); if (a.length > 3) a.shift(); });
   const W = S.workers, avg = f => W.length ? W.reduce((a, w) => a + f(w), 0) / W.length : 0;
   return { wk, cycle: S.cycle || 1, gold: Math.round(S.gold), debt: Math.round(S.debt.remaining), net: Math.round(R.income - R.wages - R.upkeep - (R.recharge || 0) - (R.cuts || 0) - (R.tutor || 0)),
     income: Math.round(R.income), wages: Math.round(R.wages), upkeep: Math.round(R.upkeep), sam: Math.round(R.led.sam || 0), rep: Math.round(homeH().rep * 10) / 10, prestige: Math.round(housePrestige(homeH()) * 10) / 10,
@@ -226,9 +269,10 @@ const PHASE = {
   late: () => roomsUsed(homeH()) >= houseSize(homeH())
 };
 const EARLY_POLICY = { maxStaff: 4, upgrades: false, rooms: false };
+// plateau: cycle 1 played to the win (shared warm-up), then `weeks` (default 26) post-debt weeks: what the built-up house earns
 
 // ---------- mutations (applied at phase start, after the reseed) ----------
-function generics(n){ const g = staffIn(homeH()).filter(w => !w.key).sort((a, b) => String(a.id).localeCompare(String(b.id))); return n === 'all' || n == null ? g : g.slice(0, n); }
+function generics(n){ const g = staffIn(homeH()).filter(w => !w.key).sort((a, b) => String(a.id).localeCompare(String(b.id))); return n === 'all' || n === 'generics' || n == null ? g : g.slice(0, n); }   // 'generics' = all of them (was slicing to 0)
 function raceLewd(race, sub){ const sd = subData(race, sub); return ((RACES[race].mods || {}).lewd || 0) + ((sd && sd.mods || {}).lewd || 0); }
 function setRace(w, race, sub){
   if (race === 'beastkin' && !sub) sub = Object.keys(RACES.beastkin.subs || {})[0];
@@ -240,7 +284,9 @@ LAB.mutate = M => { if (!M) return {};
   const info = {};
   if (M.trust != null) S.workers.forEach(w => w.trust = clamp(w.trust + M.trust));
   if (M.minTrust != null) S.workers.forEach(w => w.trust = Math.max(w.trust, M.minTrust));
-  if (M.race) { const [r, s] = M.race.split('/'); const who = generics(M.raceWho ?? 'all'); who.forEach(w => setRace(w, r, s)); info.raced = who.length; }
+  if (M.race) { const [r, s] = M.race.split('/'); const who = generics(M.raceWho ?? 'all'); who.forEach(w => setRace(w, r, s)); info.raced = who.length;
+    const need = (RACES[r] || {}).needs; if (need && !homeH().up[need]) { homeH().up[need] = true; info.grantedRace = need; }   // e.g. a Tethering Stone for spirits
+    if (M.raceNew) P.hireRace = M.race; }   // later hires in the measured weeks are that race too
   if (M.job) { const h = homeH(), J = JOBS[M.job]; if (J && J.needs && !h.up[J.needs]) { h.up[J.needs] = true; info.granted = J.needs; }
     const who = M.jobWho === 'everyone' ? staffIn(h).filter(w => !w.isPartner && !w.locked) : generics(M.jobWho ?? 2);
     who.forEach(w => { w._lock = M.job; w._force = !!M.force; if (!canDo(w, M.job) || M.force) w.job = M.job; }); info.locked = who.length; }
@@ -254,6 +300,7 @@ LAB.mutate = M => { if (!M) return {};
   if (M.upgrades) M.upgrades.forEach(k => { homeH().up[k] = true; });
   if (M.incense) { homeH().up.incense = true; homeH().incense = M.incense; }
   if (M.bindGoddess) { const g = G(); g.bound = true; g.left = false; g.divinity = M.divinity ?? 5; g.love = M.love ?? 70; }
+  if (M.holdTidy != null) { S._lab = S._lab || {}; (S._lab.hold = S._lab.hold || {}).tidy = M.holdTidy; info.holdTidy = M.holdTidy; }   // every house's tidiness is reset to this before each measured week
   return info;
 };
 
@@ -264,7 +311,7 @@ LAB.HOUSE_RANK = ['veil', 'castle', 'hollow', 'wayfarer', 'lantern', 'sanctuary'
 function setLovers(n){
   S.workers.forEach(w => { if (has(w, 'Devoted')) w.traits = w.traits.filter(t => t !== 'Devoted'); });
   S.workers.slice().sort((a, b) => (b.isPartner ? 1 : 0) - (a.isPartner ? 1 : 0) || b.trust - a.trust).slice(0, n)
-    .forEach(w => { w.traits.push('Devoted'); w.isPartner = true; w.wage = 0; w.contract = 999; });
+    .forEach(w => { w.traits.push('Devoted'); w.isPartner = true; w.wage = 0; w.contract = 999; w.trust = 100; });   // a real Devoted lover has maxed trust; her training is whatever she actually got
 }
 function setFriends(n){
   const G = S.workers.filter(w => !w.key && !has(w, 'Devoted')).sort((a, b) => b.trust - a.trust);
@@ -311,7 +358,7 @@ LAB.restore = snap => { S = migrate(JSON.parse(snap)); EVQ = []; CUR_EV = null; 
 // job: {seed, scenario, start:{house,partner,past}, weeks, policy, patch, patchAt:'start'|'phase', mutate, ng, maxWarm, snap, wantSnap}
 LAB.run = async (J) => {
   const out = { seed: J.seed, scenario: J.scenario, weeks: [], phases: {}, info: {} };
-  P = Object.assign({}, LAB.POLICY, J.policy || {});
+  P = withPreset(LAB.POLICY, J.policy || {});
   Object.assign(LAB.PHASES, J.phases || {});
   if (J.patch && J.patchAt === 'start') LAB.applyPatch(J.patch);
   store.del(KEY_SAVE); EVQ = []; CUR_EV = null; NGS = null; SETUP = null;
@@ -324,18 +371,18 @@ LAB.run = async (J) => {
     newGame({ past: st.past, house: st.house, partner: st.partner }); quiet();
     // warm-up: play the baseline policy until the phase starts
     if (sc === 'mid' || sc === 'late') { while (!PHASE[sc]() && !S.over && S.week <= warmCap) { playWeek(); } }
-    if (sc === 'ngplus') { while (!S.won && !S.over && S.week <= warmCap) { const r = playWeek(); track(); } out.info.c1won = S.won ? S.week - 1 : null; }
+    if (sc === 'ngplus' || sc === 'plateau') { while (!S.won && !S.over && S.week <= warmCap) { const r = playWeek(); track(); } out.info.c1won = S.won ? S.week - 1 : null; }
   }
   out.info.entry = S.week;
-  if (S.over || (sc === 'ngplus' && !S.won) || ((sc === 'mid' || sc === 'late') && !PHASE[sc]())) { out.unreached = true; out.info.week = S.week; return out; }
+  if (S.over || ((sc === 'ngplus' || sc === 'plateau') && !S.won) || ((sc === 'mid' || sc === 'late') && !PHASE[sc]())) { out.unreached = true; out.info.week = S.week; return out; }
   if (J.wantSnap) out.snap = LAB.snapshot();
   // from here on every variant shares one random stream
   LAB.reseed((J.seed * 7919 + 17) >>> 0);
   if (J.patch && J.patchAt !== 'start') LAB.applyPatch(J.patch);
-  if (sc === 'early') P = Object.assign({}, LAB.POLICY, EARLY_POLICY, J.policy || {});
-  if (J.phasePolicy) Object.assign(P, J.phasePolicy);
-  const W = J.weeks || (sc === 'campaign' || sc === 'ngplus' ? 104 : 12), C = sc === 'ngplus' ? (J.cycles || 1) : 1;
-  out.info.cyc = [];
+  if (sc === 'early') P = withPreset(LAB.POLICY, EARLY_POLICY, J.policy || {});
+  if (J.phasePolicy) P = withPreset(P, J.phasePolicy);
+  const W = J.weeks || (sc === 'campaign' || sc === 'ngplus' ? 104 : sc === 'plateau' ? 26 : 12), C = sc === 'ngplus' ? (J.cycles || 1) : 1;
+  out.info.cyc = []; out.info.cap = W;
   for (let c = 0; c < C; c++) {
     if (sc === 'ngplus') { if (c > 0 && !S.won) break; const ng = enterNG(J.ng); if (c === 0) out.info.ng = ng; out.info.cyc.push(Object.assign(ng, { cycle: S.cycle, start: S.week })); }
     if (c === 0) out.info.mut = LAB.mutate(J.mutate);
@@ -343,7 +390,7 @@ LAB.run = async (J) => {
     for (let i = 0; i < W && !S.over; i++) {
       const r = playWeek(); if (!r) { out.info.stalled = S.week; break; }
       out.weeks.push(r); track();
-      if (S.won && J.stopOnWin !== false) break;
+      if (S.won && J.stopOnWin !== false && sc !== 'plateau') break;
     }
     if (sc === 'ngplus') Object.assign(out.info.cyc.at(-1), { len: S.won ? S.week - w0 : null, won: !!S.won, over: !!S.over, staffEnd: S.workers.length,
       lovers: S.workers.filter(w => has(w, 'Devoted')).length, friendsEnd: S.workers.filter(w => !w.key && w.trust >= 100).length });

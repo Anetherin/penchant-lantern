@@ -1,4 +1,5 @@
 // NG+ vs cycle-1 difficulty sim. Usage: node tools/ngplus-sim.mjs [runs=3] [conc=3] ; env HOUSES=lantern,tankard,wayfarer BOONS=purse,ap
+import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
 import path from 'node:path';
 import fs from 'node:fs';
@@ -11,7 +12,7 @@ for (const m of ['playwright', process.env.PLAYWRIGHT_PATH, '/opt/node-tools/nod
   try { pw = require(m); break; } catch {}
 }
 if (!pw) throw new Error('Cannot find module playwright');
-const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const RUNS = +process.argv[2] || 3, CONC = +process.argv[3] || 3;
 const OUT = process.env.OUT || path.join(os.tmpdir(), 'ngplus-sim.out.json');
 const TYPES = {'.html':'text/html','.js':'text/javascript','.css':'text/css','.json':'application/json'};

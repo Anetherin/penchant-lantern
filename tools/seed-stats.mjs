@@ -2,9 +2,10 @@
 // Usage: node tools/seed-stats.mjs   (then: node tools/fmt-json.mjs)
 // Marker: tools/seeded-stats.json lists the ladies this script has seeded (safe to recompute); anyone who already has
 // both stats and is not listed is treated as hand-edited and left alone. Only charisma/wits are ever written.
+import { fileURLToPath } from 'node:url';
 import fs from 'node:fs';
 import path from 'node:path';
-const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 import { partFiles, readJSON, loadData } from './data.mjs';
 // characters/ and guests/ are split folders: each part file is read, seeded and written back on its own.
 const charParts = partFiles('characters').map(p => ({ ...p, d: readJSON(p.file) }));

@@ -21,10 +21,10 @@
   },
   "columns": [
     "c1won",
-    "c2len",
-    "c3len",
-    "c4len",
-    "c5len",
+    "c2weeks",
+    "c3weeks",
+    "c4weeks",
+    "c5weeks",
     "c2debt",
     "c3debt",
     "c4debt",
@@ -39,10 +39,10 @@
     "c5over"
   ],
   "delta": [
-    "c2len",
-    "c3len",
-    "c4len",
-    "c5len",
+    "c2weeks",
+    "c3weeks",
+    "c4weeks",
+    "c5weeks",
     "c4over"
   ],
   "breakdown": []

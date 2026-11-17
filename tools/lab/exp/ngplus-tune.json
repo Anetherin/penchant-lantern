@@ -9,7 +9,7 @@
     {"name": "tuned · 0 lovers", "ng": {"lovers": 0}, "patch": {"balance": {"debt": {"ngplus": {"fewer": 0, "flatter": 0}}, "ngplus": {"debtShare": 0.9, "perCycle": 0.35}}}},
     {"name": "tuned · 3 lovers", "ng": {"lovers": 3}, "patch": {"balance": {"debt": {"ngplus": {"fewer": 0, "flatter": 0}}, "ngplus": {"debtShare": 0.9, "perCycle": 0.35}}}}
   ],
-  "columns": ["c2len", "c3len", "c4len", "c5len", "c2debt", "c3debt", "c4debt", "c5debt", "c2over", "c3over", "c4over", "c5over"],
-  "delta": ["c2len", "c3len", "c4len", "c5len"],
+  "columns": ["c2weeks", "c3weeks", "c4weeks", "c5weeks", "c2debt", "c3debt", "c4debt", "c5debt", "c2over", "c3over", "c4over", "c5over"],
+  "delta": ["c2weeks", "c3weeks", "c4weeks", "c5weeks"],
   "breakdown": []
 }

@@ -1,10 +1,11 @@
 // Builds a single self-contained HTML file (dist/hollowmere-nights.html) from the split sources.
 // Usage: node tools/build.mjs
 // Useful as a fallback: paste the result straight into Perchance's HTML panel (no GitHub Pages needed).
+import { fileURLToPath } from 'node:url';
 import fs from 'node:fs';
 import path from 'node:path';
 import { loadData, isSplit } from './data.mjs';
-const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const loader = fs.readFileSync(path.join(root, 'loader.js'), 'utf8');
 const files = [...loader.matchAll(/^\s*'(js\/[^']+\.js)',?$/gm)].map(m => m[1]);
 const markup = [...loader.match(/var MARKUP = \[([\s\S]*?)\]\.join/)[1].matchAll(/'((?:[^'\\]|\\.)*)'/g)].map(m => m[1].replace(/\\'/g, "'")).join('\n');

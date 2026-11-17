@@ -1,0 +1,20 @@
+{
+  "desc": "Android charging fees (svc.android: fee + perEnergy x energy recharged per week) in all-android courtesan houses vs wolf-beastkin and demon houses for reference. Goal: androids in the pack, not far ahead.",
+  "scenario": "mid",
+  "weeks": 12,
+  "runs": 8,
+  "by": { "scenario": ["mid", "late"] },
+  "mutate": { "raceWho": "all", "raceNew": true, "job": "courtesan", "jobWho": "generics", "force": true, "minTrust": 45 },
+  "variants": [
+    { "name": "base", "mutate": { "race": "beastkin/wolf" } },
+    { "name": "demon", "mutate": { "race": "demon" } },
+    { "name": "android 0.4 (current)", "mutate": { "race": "android" } },
+    { "name": "android 0.8", "mutate": { "race": "android" }, "patch": { "balance": { "svc": { "android": { "perEnergy": 0.8 } } } } },
+    { "name": "android 1.2", "mutate": { "race": "android" }, "patch": { "balance": { "svc": { "android": { "perEnergy": 1.2 } } } } },
+    { "name": "android 1.6", "mutate": { "race": "android" }, "patch": { "balance": { "svc": { "android": { "perEnergy": 1.6 } } } } },
+    { "name": "android 1.2 + fee 30", "mutate": { "race": "android" }, "patch": { "balance": { "svc": { "android": { "perEnergy": 1.2, "fee": 30 } } } } }
+  ],
+  "columns": ["total", "net", "perLady", "served", "sat", "repGain", "left"],
+  "delta": ["total", "net", "perLady"],
+  "breakdown": []
+}

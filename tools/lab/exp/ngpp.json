@@ -8,7 +8,7 @@
     { "name": "ng++ (shrine)", "ng": { "bindGoddess": true } },
     { "name": "ng+ (wayfarer)", "ng": { "bindGoddess": false, "house": "wayfarer" } }
   ],
-  "columns": ["c1won", "c2len", "c3len", "c2debt", "c3debt", "c2staff", "c3staff", "c2over", "c3over"],
-  "delta": ["c2len", "c3len"],
+  "columns": ["c1won", "c2weeks", "c3weeks", "c2debt", "c3debt", "c2staff", "c3staff", "c2over", "c3over"],
+  "delta": ["c2weeks", "c3weeks"],
   "breakdown": []
 }

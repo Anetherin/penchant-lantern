@@ -21,6 +21,6 @@
       "demo"
     ]
   },
-  "columns": ["winWeek", "netEarly", "netMid", "netLate", "gold26", "rep", "trust", "sat", "left"],
+  "columns": ["weeksToWin", "netEarly", "netMid", "netLate", "worth20", "rep", "trust", "sat", "left"],
   "breakdown": []
 }

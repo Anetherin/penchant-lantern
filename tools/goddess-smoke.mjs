@@ -1,6 +1,7 @@
 // Goddess smoke test: plays 5 cycles of NG+ to her binding, every focus, nights until her ending. Usage: node tools/goddess-smoke.mjs [weeks per cycle]
 // starts a new game and plays N weeks with a simple bot, failing on any page error.
 // Usage: node tools/smoke.mjs [weeks]      (needs `playwright`; set CHROME=/path/to/chrome if needed)
+import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
 import path from 'node:path';
 import fs from 'node:fs';
@@ -11,7 +12,7 @@ for (const m of ['playwright', process.env.PLAYWRIGHT_PATH, '/opt/node-tools/nod
   try { pw = require(m); break; } catch {}
 }
 if (!pw) throw new Error('Cannot find module playwright');
-const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const WEEKS = +process.argv[2] || 30;
 
 const BOT = `async (weeks) => {

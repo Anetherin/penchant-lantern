@@ -1,0 +1,446 @@
+{
+  "_readme": "Design intents as automated checks, run by tools/lab/check.mjs (format at the top of that file). Each check names an experiment (a spec in tools/lab/exp/ or an inline one) and what should hold. soft = an aim (WARN), not a rule (FAIL). Edit freely: thresholds here are first guesses, tune them as the design settles.",
+  "checks": [
+    {
+      "id": "cycle1-winnable",
+      "intent": "A sensible player clears the cycle-1 debt without game overs, well inside the 52-week schedule but not trivially fast.",
+      "exp": {
+        "name": "c1-baseline",
+        "scenario": "campaign",
+        "runs": 16,
+        "variants": [
+          {
+            "name": "base"
+          }
+        ],
+        "breakdown": [
+          "job",
+          "race"
+        ]
+      },
+      "expect": [
+        {
+          "mean": "base",
+          "metric": "winRate",
+          "gte": 0.95
+        },
+        {
+          "mean": "base",
+          "metric": "weeksToWin",
+          "between": [
+            20,
+            45
+          ]
+        },
+        {
+          "mean": "base",
+          "metric": "missed",
+          "lte": 0.2
+        }
+      ]
+    },
+    {
+      "id": "tidiness-neutral-70",
+      "intent": "Tidiness is neutral around 70: holding it at 60 changes little.",
+      "exp": "tidiness",
+      "expect": [
+        {
+          "delta": [
+            "mid · tidy 60",
+            "late · tidy 60"
+          ],
+          "metric": "total",
+          "pct": 5
+        }
+      ]
+    },
+    {
+      "id": "tidiness-penalty-below-30",
+      "intent": "Below 30 tidiness there is a noticeable penalty (at least 10% of weekly takings), worse than at 45.",
+      "exp": "tidiness",
+      "expect": [
+        {
+          "delta": [
+            "mid · tidy 25",
+            "late · tidy 25"
+          ],
+          "metric": "total",
+          "lt": "-10%",
+          "sig": true
+        },
+        {
+          "compareDelta": [
+            "mid · tidy 25"
+          ],
+          "to": [
+            "mid · tidy 45"
+          ],
+          "metric": "total",
+          "lt": 0
+        }
+      ]
+    },
+    {
+      "id": "promoter-pays",
+      "intent": "Support jobs matter: a promoter is worth more than the courtesan slot she gives up early on and in slow houses like the Manor.",
+      "exp": {
+        "name": "promoter-value",
+        "scenario": "mid",
+        "weeks": 12,
+        "runs": 16,
+        "by": {
+          "start.house": [
+            "lantern",
+            "hollow"
+          ],
+          "scenario": [
+            "early",
+            "mid"
+          ]
+        },
+        "variants": [
+          {
+            "name": "base",
+            "phasePolicy": {
+              "targets": {
+                "maid": 1,
+                "promoter": 0
+              },
+              "targetsAt": 3,
+              "fillTargets": true
+            }
+          },
+          {
+            "name": "+promoter",
+            "phasePolicy": {
+              "targets": {
+                "maid": 1,
+                "promoter": 1
+              },
+              "targetsAt": 3,
+              "fillTargets": true
+            }
+          }
+        ],
+        "columns": [
+          "total",
+          "net",
+          "promo",
+          "served",
+          "turned",
+          "repGain"
+        ],
+        "delta": [
+          "total",
+          "net",
+          "repGain"
+        ],
+        "breakdown": []
+      },
+      "expect": [
+        {
+          "delta": [
+            "early · lantern · +promoter",
+            "mid · lantern · +promoter"
+          ],
+          "metric": "total",
+          "gt": 0
+        },
+        {
+          "delta": [
+            "early · hollow · +promoter",
+            "mid · hollow · +promoter"
+          ],
+          "metric": "total",
+          "gt": 0,
+          "sig": true
+        }
+      ]
+    },
+    {
+      "id": "security-stops-incidents",
+      "intent": "Unhandled incidents end a lady's night; a security lady should cut them clearly and not cost money overall.",
+      "exp": {
+        "name": "security-value",
+        "scenario": "mid",
+        "weeks": 12,
+        "runs": 16,
+        "by": {
+          "scenario": [
+            "mid",
+            "late"
+          ]
+        },
+        "variants": [
+          {
+            "name": "base",
+            "phasePolicy": {
+              "security": false
+            }
+          },
+          {
+            "name": "+security",
+            "phasePolicy": {
+              "security": true,
+              "fillTargets": true
+            }
+          }
+        ],
+        "columns": [
+          "total",
+          "net",
+          "pushy",
+          "unhandled",
+          "lost",
+          "sat",
+          "repGain"
+        ],
+        "delta": [
+          "total",
+          "unhandled",
+          "lost",
+          "sat"
+        ],
+        "breakdown": []
+      },
+      "expect": [
+        {
+          "delta": "*",
+          "metric": "unhandled",
+          "lt": 0,
+          "sig": true
+        },
+        {
+          "delta": "*",
+          "metric": "total",
+          "gt": "-3%",
+          "soft": true
+        }
+      ]
+    },
+    {
+      "id": "demons-top-courtesans",
+      "intent": "Demons are meant to be the strongest courtesans.",
+      "exp": "races-courtesan",
+      "expect": [
+        {
+          "rank": "mid · demon",
+          "among": "mid · *",
+          "metric": "perLady",
+          "top": 1
+        },
+        {
+          "rank": "late · demon",
+          "among": "late · *",
+          "metric": "perLady",
+          "top": 1
+        }
+      ]
+    },
+    {
+      "id": "demons-poor-off-service",
+      "intent": "...but risky where services are rare: moving demons into promoter/bartender/host/security costs more than it does for humans.",
+      "exp": "race-jobs",
+      "expect": [
+        {
+          "compareDelta": [
+            "demon · promoter"
+          ],
+          "to": [
+            "human · promoter"
+          ],
+          "metric": "total",
+          "lt": 0
+        },
+        {
+          "compareDelta": [
+            "demon · bartender"
+          ],
+          "to": [
+            "human · bartender"
+          ],
+          "metric": "total",
+          "lt": 0
+        },
+        {
+          "compareDelta": [
+            "demon · host"
+          ],
+          "to": [
+            "human · host"
+          ],
+          "metric": "total",
+          "lt": 0
+        },
+        {
+          "compareDelta": [
+            "demon · security"
+          ],
+          "to": [
+            "human · security"
+          ],
+          "metric": "total",
+          "lt": 0
+        }
+      ]
+    },
+    {
+      "id": "sam-actions-balanced",
+      "intent": "Sam's spare actions are roughly balanced: none clears the cycle-1 debt more than ~3 weeks faster or slower than tending bar.",
+      "exp": "sam-actions-campaign",
+      "expect": [
+        {
+          "delta": "*",
+          "metric": "weeksToWin",
+          "abs": 3
+        }
+      ]
+    },
+    {
+      "id": "ngplus-a-bit-harder",
+      "intent": "NG+ is harder than cycle 1 (a bit longer is fine): cycle 2 takes 1.0-1.5x as long, without game overs.",
+      "exp": "ngplus-carry",
+      "expect": [
+        {
+          "mean": "base",
+          "metric": "ngRatio",
+          "between": [
+            1.0,
+            1.5
+          ]
+        },
+        {
+          "mean": [
+            "base",
+            "*"
+          ],
+          "metric": "winRate",
+          "gte": 0.9
+        }
+      ]
+    },
+    {
+      "id": "ngplus-lovers-neutral",
+      "intent": "Carrying lovers into NG+ is roughly neutral: one, three or five lovers clear the cycle within ~4 weeks of each other, so there's no need to grind walks for more.",
+      "exp": "ngplus-carry",
+      "expect": [
+        {
+          "compare": [
+            "3"
+          ],
+          "to": [
+            "1"
+          ],
+          "metric": "ngWeeks",
+          "abs": 4
+        },
+        {
+          "compare": [
+            "5"
+          ],
+          "to": [
+            "1"
+          ],
+          "metric": "ngWeeks",
+          "abs": 4
+        }
+      ]
+    },
+    {
+      "id": "ngplus-slow-climb",
+      "soft": true,
+      "intent": "Over several NG+ cycles difficulty rises slowly (later cycles at least as long as cycle 2), without game overs.",
+      "exp": "ngplus-cycles",
+      "expect": [
+        {
+          "mean": "*",
+          "metric": "c5weeks",
+          "gte": "@c2weeks"
+        },
+        {
+          "mean": "*",
+          "metric": "c5over",
+          "lte": 0.1
+        }
+      ]
+    },
+    {
+      "id": "ngpp-harder-still",
+      "soft": true,
+      "intent": "NG++ (Lantern Shrine) is harder still than standard NG+, but not by dragging on.",
+      "exp": "ngpp",
+      "expect": [
+        {
+          "compare": [
+            "ng++ (shrine)"
+          ],
+          "to": [
+            "ng+ (wayfarer)"
+          ],
+          "metric": "c2weeks",
+          "gt": 0
+        },
+        {
+          "compare": [
+            "ng++ (shrine)"
+          ],
+          "to": [
+            "ng+ (wayfarer)"
+          ],
+          "metric": "c2weeks",
+          "lt": 15
+        }
+      ]
+    },
+    {
+      "id": "cheap-houses-pay-off-faster",
+      "intent": "Starter houses clear the debt faster than premium ones...",
+      "exp": "houses-all",
+      "expect": [
+        {
+          "compare": [
+            "lantern",
+            "onsen",
+            "hollow",
+            "tankard",
+            "wayfarer"
+          ],
+          "to": [
+            "castle",
+            "pavilion",
+            "veil",
+            "sanctuary",
+            "atelier"
+          ],
+          "metric": "weeksToWin",
+          "lt": 0
+        }
+      ]
+    },
+    {
+      "id": "premium-houses-earn-more-later",
+      "intent": "...but premium houses earn more once built up (post-debt plateau).",
+      "exp": "houses-plateau",
+      "expect": [
+        {
+          "compare": [
+            "castle",
+            "pavilion",
+            "veil",
+            "sanctuary",
+            "atelier"
+          ],
+          "to": [
+            "lantern",
+            "onsen",
+            "hollow",
+            "tankard",
+            "wayfarer"
+          ],
+          "metric": "net",
+          "gt": 0
+        }
+      ]
+    }
+  ]
+}

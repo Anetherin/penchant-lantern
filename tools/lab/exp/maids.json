@@ -4,6 +4,6 @@
   "by": { "start.house": ["lantern", "hollow"] },
   "variants": [ {"name": "base"} ],
   "each": { "policy.targets": [ {"name": "no maid", "maid": 0, "promoter": 1}, {"name": "2 maids", "maid": 2, "promoter": 1} ] },
-  "columns": ["winWeek", "netMid", "netLate", "gold26", "tidy", "rep", "sat", "left"],
+  "columns": ["weeksToWin", "netMid", "netLate", "worth20", "tidy", "rep", "sat", "left"],
   "breakdown": []
 }
