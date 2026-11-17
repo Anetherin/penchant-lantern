@@ -149,6 +149,43 @@ function updatePrestige(h, hr, W, R, info){
 }
 // Her client limit for one night (balance.json → nights): base + Stamina / perStamina (+ nightCap fx), at least min, at most max.
 // The fraction is rolled each night, so 2.4 means 2 most nights and 3 some nights.
+// Small trouble on the work nights (balance.json → incidents, wording events.json → nightIncidents): brawls, drunks, clients who won't leave,
+// thieves, jealous spouses, peepers, messes, vandals. Security (secPow: security ladies, Guard Post, Sam on Watch) handles each with a
+// chance; unhandled ones cost gold (hr.damage, added to upkeep), tidiness, client satisfaction (X.unsat), popularity, prestige or a lady's mood.
+function nightIncidents(h, hr, X, W, R, o){
+  const I = BAL.incidents; if(!I || !W.length) return;
+  const HD = HOUSES[h.id], T = noMeta(I.types), HDL = I.handle || {}, J = BAL.jobs, EVI = (typeof EVT!=='undefined' && EVT.nightIncidents) || {};
+  const tierM = (I.rowdyTier||{})[(prestigeTier(housePrestige(h))||{}).label] ?? 1;
+  const p = clamp((I.base + (o.visitors / o.NIGHTS) * I.perGuest) * (HD.trouble||1) * tierM * Math.sqrt(o.rowdyF) * (1 + o.barN*J.barRowdy*0.5) * incenseHouseMul(h,'pushy'), 0, I.max ?? 0.45);
+  const guard = o.secs.length ? pick(o.secs) : null, lines = [], tally = {ok:0, bad:0};
+  for(let n=0; n<o.NIGHTS; n++){
+    if(Math.random() >= p) continue;
+    const k = weighted(Object.keys(T), t=>T[t].w||1), t = T[k], lady = pick(W), E = EVI[k] || {};
+    const okP = clamp(o.secPow * (h.up.guard ? (HDL.guard ?? 1.3) : 1) / Math.max(1, o.secPow + (t.diff||25) * (HDL.div ?? 40) / 40), HDL.min ?? 0.05, HDL.max ?? 0.95);
+    const who = guard ? guard.name.split(' ')[0] : (focusOn('watch', h) ? 'Sam' : 'Someone');
+    const V = {house:h.name, guard:who, lady:lady.name.split(' ')[0], gold:''};
+    if(o.secPow > 0 && Math.random() < okP){
+      tally.ok++; if(guard){ const pr = R.per[guard.id]; guard.trust = clamp(guard.trust + 0.2); grow(guard, 'combat', 0.3); if(pr && lines.length < 2) (pr.notes = pr.notes||[]).push(gFillEv(E.ok, V)); }
+      continue;
+    }
+    tally.bad++;
+    if(t.gold){ const g = ri(t.gold[0], t.gold[1]); hr.damage = (hr.damage||0) + g; V.gold = fmt(g); }
+    if(t.tidy) h.tidy = clamp((h.tidy ?? 70) - t.tidy);
+    if(t.sat) X.unsat += t.sat;
+    if(t.rep) h.rep = clamp(h.rep - t.rep);
+    if(t.prestige) h.prestige = clamp((h.prestige ?? 50) - t.prestige);
+    if(t.mood) moodAdd(lady, t.mood);
+    if(t.trust) lady.trust = clamp(lady.trust + t.trust);
+    if(t.lostClient && hr.served){ const fee = Math.round(hr.income / Math.max(1, hr.served)) * t.lostClient; hr.income -= fee; R.led.escort -= fee; }
+    if(lines.length < 3) lines.push(`⚠️ ${gFillEv(E.bad, V) || `${(E.label||k)} at ${h.name}.`}`);
+  }
+  hr.incidents = tally;
+  lines.forEach(l=>R.lines.push(l));
+  if(tally.bad > lines.length) R.lines.push(`⚠️ ${tally.bad - lines.length} more trouble${tally.bad - lines.length > 1 ? 's' : ''} at ${h.name} nobody handled.`);
+  if(tally.ok) R.lines.push(`🛡️ ${h.name}: security handled ${tally.ok} incident${tally.ok>1?'s':''}${tally.bad ? `, ${tally.bad} got through` : ''}.`);
+  else if(tally.bad && !o.secs.length) R.lines.push(`🛡️ ${h.name} has no security: ${tally.bad} incident${tally.bad>1?'s':''} this week went unhandled${hr.damage ? ` (${fmt(hr.damage)} in damages)` : ''}.`);
+}
+const gFillEv = (t, V) => t ? String(Array.isArray(t) ? pick(t) : t).replace(/\{(\w+)\}/g, (m,k)=>V[k] != null ? V[k] : m) : '';
 function nightCapOf(w){
   const N = BAL.nights || {}, raw = (N.base ?? 1) + s100(statOf(w,'stamina')) / (N.perStamina ?? 40) + fxAdd(w,'nightCap');
   const c = Math.floor(raw) + (Math.random() < raw - Math.floor(raw) ? 1 : 0);
@@ -339,6 +376,12 @@ function simHouse(h, R){
     pr.draw = d; promoDraw += d * priceDem; countUp(w,'promo', Math.max(1, Math.round(d * priceDem)));
     if(J.promoterRep) repAdd(h, d * priceDem * J.promoterRep);
   });
+  // promoters fill empty rooms: draw beyond what the escorts can take (nightly caps x nights x promoterCapUse) mostly fizzles (x promoterOverflow),
+  // so a full house doesn't pay for walkouts it didn't need
+  if(promoDraw > 0){
+    const capEst = escorts.reduce((a,w)=>a + nightCapOf(w), 0) * NIGHTS * (J.promoterCapUse ?? 0.7), spare = Math.max(0, capEst - dBase);
+    if(promoDraw > spare){ hr.promoWasted = Math.round((promoDraw - spare) * (1 - (J.promoterOverflow ?? 0.25))); promoDraw = spare + (promoDraw - spare) * (J.promoterOverflow ?? 0.25); }
+  }
   hr.promoDraw = promoDraw;
   const demand = W.length ? Math.max(1, Math.round(dBase + promoDraw)) : 0;
 
@@ -691,9 +734,11 @@ function simHouse(h, R){
   const rowdyF = X.rowdyN ? clamp(X.rowdySum / X.rowdyN / 0.07, 0.5, 2) : 1;
   if(W.length && Math.random() < clamp((0.12 + demand/120 + (hr.left||0)*(WT.leaveIncident ?? 0.035) + (hr.crowdOver||0)*(CR.incidentPer ?? 0.005) - secPow/250) * (HD.trouble||1) * rowdyF * (1 + barN*J.barRowdy) * incenseHouseMul(h,'pushy'), 0.03, 0.6)) EVQ.push(()=>evIncident(h));
   if(HD.haunted && Math.random()<0.15) EVQ.push(()=>evHaunt(h));
+  nightIncidents(h, hr, X, W, R, {secPow, visitors, NIGHTS, rowdyF, barN, secs});
   let up = HD.upkeep + (HD.ngppOnly ? 15 * Math.max(0, (h.ngppLevel||1) - 1) : 0) + 12*h.rooms + 6*(h.quarters||0) + h.tier*20 + (h.beds||0)*4*bedsFor(h) + (h.extraBeds||0)*3 + (h.annex?30:0) + (h.decor||0)*BAL.amenities.decor.upkeep + (h.up.bar ? (BAL.amenities.drinks.upkeep[h.drinks||0]||0) : 0) + Object.keys(h.up).filter(k=>h.up[k] && !HD.up[k]).reduce((a,k)=>a+(UPGRADES[k].upkeep||0), 0);
   if(atSam && S.samWeek.books) up = Math.round(up * (1 - booksCut() * (S.samWeek.booksEff ?? 1)));
-  up = Math.round(up * ((h.bonus&&h.bonus.upkeep)||1) * (1 + h.rep/150) * cycleVarMul('upkeep', 1) * (hasChallengePerk('ahead_of_time') ? 0.9 : 1));
+  up = Math.round(up * (BAL.houses.upkeepMult ?? 1) * ((h.bonus&&h.bonus.upkeep)||1) * (1 + h.rep/150) * cycleVarMul('upkeep', 1) * (hasChallengePerk('ahead_of_time') ? 0.9 : 1));
+  up += hr.damage || 0;   // nightIncidents: unhandled brawls, thefts and vandals
   hr.upkeep = up;
   if(h.bonus && h.bonus.charter){ hr.income += h.bonus.charter; R.led.bar += h.bonus.charter; }
   // travelers' room & board (economy.json → houses.<id>.lodging), grows with reputation

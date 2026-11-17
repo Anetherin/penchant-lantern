@@ -286,7 +286,7 @@
     },
     {
       "id": "sam-actions-balanced",
-      "intent": "Sam's spare rest-day actions are roughly balanced: none clears the cycle-1 debt more than ~3 weeks faster or slower than the first one listed.",
+      "intent": "Sam's spare rest-day actions (except group nights and demonstrations, which are flavor) are roughly balanced: none clears the cycle-1 debt more than ~3 weeks faster or slower than the first one listed.",
       "exp": "sam-actions-campaign",
       "expect": [
         {

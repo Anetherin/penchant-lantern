@@ -237,7 +237,7 @@ function manageGuild(){
   // take the best-paying offer the available ladies (plus Sam, if allowed) can finish in time
   if (room() > 0 && guildAway() < (P.guildLadies ?? 2)){
     const best = g.board.map(o => { const C = GCON[o.type], pool = guildPool(C).slice(0, Math.min(C.slots - (P.guildSam ? 1 : 0), (P.guildLadies ?? 2) - guildAway()));
-        const proj = gProj(C, pool, P.guildSam !== false && C.slots > pool.length); return { o, C, ok: proj * o.weeks >= C.work * (P.guildSafety ?? 1.15), val: o.gold / o.weeks }; })
+        const proj = gProj(C, pool, P.guildSam !== false && C.slots > pool.length); return { o, C, ok: proj * o.weeks >= C.work * (P.guildSafety ?? 1.15), val: o.gold / o.weeks + (o.rate || 0) * Math.max(1, pool.length) }; })
       .filter(x => x.ok).sort((a, b) => b.val - a.val)[0];
     if (best){ takeContract(best.o.uid); quiet(); }
   }
@@ -310,7 +310,7 @@ function playWeek(){
     return { race: w.race || '?', sub: w.sub || '', job: p.job, earned: Math.round(p.earned || 0), wage: w.free ? 0 : (w.wage || 0), served: p.served || 0, key: w.key || null, house: p.house }; });
   const hs = R.houses.map(x => ({ id: x.id, served: x.served, turned: x.turned, sat: Math.round((x.avgSat || 0) * 10) / 10, rooms: x.roomsUsed, cap: x.roomCap,
     prestige: Math.round((x.prestige ?? housePrestige(H(x.id))) * 10) / 10,
-    tidy: Math.round(x.tidy), promo: Math.round((x.promoDraw || 0) * 10) / 10, pushy: x.pushy ? Object.assign({}, x.pushy) : null, lost: x.nightsLost || 0, demand: x.demand || 0, maidAdd: Math.round((x.maidAdd || 0) * 10) / 10, tidy0: Math.round(x.tidy0), visitors: x.visitors || 0,
+    tidy: Math.round(x.tidy), promo: Math.round((x.promoDraw || 0) * 10) / 10, pushy: x.pushy ? Object.assign({}, x.pushy) : null, incidents: x.incidents ? Object.assign({}, x.incidents) : null, damage: x.damage || 0, lost: x.nightsLost || 0, demand: x.demand || 0, maidAdd: Math.round((x.maidAdd || 0) * 10) / 10, tidy0: Math.round(x.tidy0), visitors: x.visitors || 0,
     jobs: Object.fromEntries(Object.entries(Object.values(R.per).filter(p => p.house === x.id).reduce((a, p) => (a[p.job] = (a[p.job] || 0) + 1, a), {}))) }));
   const L = S._lab = S._lab || {}; L.hist = L.hist || {};
   hs.forEach(x => { const a = L.hist[x.id] = L.hist[x.id] || []; a.push({ pushy: x.pushy ? x.pushy.total : 0, tidy: x.tidy }); if (a.length > 3) a.shift(); });

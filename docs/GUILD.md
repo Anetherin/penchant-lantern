@@ -15,6 +15,10 @@ Code: `js/logic/guild.js`. Data: `data/guild/` (`base` numbers, `text` contract 
   A contract that isn't done by its deadline fails (merit, fame and a little trust lost). Contracts can take several weeks.
 - **Risk.** Each week each member may be injured (`risk`, cut by party power and by Sam's presence): Health loss. Under 30 Health she
   rests until she heals (the existing Health rules). Former Adventurer / Brawler / Shield-Sister ladies get an edge (`fx guild`, `guildSafe`).
+- **Pay.** A base purse plus a day rate per member (ladies and Sam) for every week worked, paid on completion (a failed contract pays
+  `pay.failShare` of the day rates). Bonuses (`base.json → bonus`): ladies with fitting traits or titles and Sam with a fitting guild perk
+  (`contracts.<id>.fits`), spare weeks, and overshooting the work. A big enough bonus is an *excellent* job (more merit). The ladies'
+  shares count as their earnings (profit cut, report).
 - **Rewards.** Gold, merit (rank), fame (more adventurer and mercenary clients at every house), popularity, stat practice and trust
   for the ladies, Sam XP, and the first time a contract type is finished, one of Sam's tools (`balance.json → samUps`, `guild: <contract>`)
   and its guild-only outfit (`wardrobe.json → guild`, never sold; into the house wardrobe). Every completion also has a `loot.chance` of a

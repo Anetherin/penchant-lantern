@@ -53,7 +53,8 @@ function guildLoot(C){
 /* ---------- the board ---------- */
 function guildOffer(type){
   const C = GCON[type], g = GLD(), gm = cycleMul((GDB.gold||{}).perCycle) * (hasGuildPerk('delver') ? 1.1 : 1);
-  return {uid:'gc'+(g.next++), type, gold:Math.round(rnd(C.gold[0], C.gold[1]) * gm / 10) * 10, weeks:C.weeks};
+  const pw = C.perWeek || [0,0];
+  return {uid:'gc'+(g.next++), type, gold:Math.round(rnd(C.gold[0], C.gold[1]) * gm / 10) * 10, rate:Math.round(rnd(pw[0], pw[1]) * gm / 5) * 5, weeks:C.weeks};
 }
 function guildRefreshBoard(){
   const g = GLD(), types = Object.keys(GCON).filter(k=>GCON[k].rank <= g.rank);
@@ -172,7 +173,7 @@ function guildWeek(R){
         w.health = clamp(w.health - (C.wear ?? 2) * fxMul(w,'fatigue'));
         Object.entries(C.stats||{}).forEach(([k,wt])=>statXP(w, k, (WK.statXP ?? 0.6) * wt * cap));
         Object.entries(C.tech||{}).forEach(([k,wt])=>grow(w, k, (WK.combat ?? 1.2) * wt * cap));
-        gainTrust(w, (WK.trust ?? 0.4) * cap); countUp(w, 'guildWeeks');
+        gainTrust(w, (WK.trust ?? 0.4) * cap); countUp(w, 'guildWeeks'); (c.lw = c.lw || {})[w.id] = (c.lw[w.id]||0) + 1;
         if(Math.random() < guildHurtChance(C, avg, sam, w)){
           const n = ri(C.hurt[0], C.hurt[1]); w.health = clamp(w.health - n); moodAdd(w, -4); hurt.push(w);
           R.lines.push(`🩹 ${gFill(gText(c.type,'hurt'), {name:w.name})} (Health −${n})`);
@@ -181,6 +182,7 @@ function guildWeek(R){
         pr.guild = C.label;
       });
       if(sam){
+        c.sw = (c.sw||0) + 1;
         samGainXP(WK.samXP ?? 6);
         const top = Object.entries(C.sam||{}).sort((a,b)=>b[1]-a[1])[0]; if(top) samStat(top[0], 1.5 * (S.samWeek.focusEff||0));
         if(Math.random() < guildHurtChance(C, avg, true) * 0.6){ const n = ri(10, 20); S.sam.energy = Math.max(0, S.sam.energy - n); R.lines.push(`🩹 Sam took a knock on the ${C.label} (energy −${n}).`); }
@@ -195,6 +197,28 @@ function guildWeek(R){
   guildScenes(parties);
   g.fame = Math.max(0, g.fame - ((GDB.fame||{}).decay ?? 0.5));
 }
+// How well it went (base.json → bonus): fitting traits / titles / Sam's perks, spare weeks, overshoot. Returns {mult, notes}.
+function guildBonus(c, C){
+  const B = GDB.bonus || {}, F = C.fits || {}, notes = [];
+  const fit = Object.keys(c.lw||{}).map(findW).filter(Boolean).filter(w=>(F.traits||[]).some(t=>has(w,t)) || (w.titleId && (F.titles||[]).includes(w.titleId)));
+  const samFit = (c.sw||0) > 0 && (F.sam||[]).some(hasGuildPerk);
+  const fb = Math.min(B.fitMax ?? 0.32, (fit.length + (samFit ? 1 : 0)) * (B.fitEach ?? 0.08));
+  if(fb) notes.push(`the right people for it (${[...fit.map(w=>w.name.split(' ')[0]), ...(samFit ? ['Sam'] : [])].join(', ')}) +${Math.round(fb*100)}%`);
+  const spare = Math.max(0, c.due - S.week), eb = Math.min(B.earlyMax ?? 0.24, spare * (B.earlyPerWeek ?? 0.12));
+  if(eb) notes.push(`${spare} week${spare>1?'s':''} early +${Math.round(eb*100)}%`);
+  const ob = Math.min(B.overMax ?? 0.2, Math.max(0, (c.prog - C.work) / C.work) * (B.overPer ?? 0.5));
+  if(ob >= 0.01) notes.push(`went above and beyond +${Math.round(ob*100)}%`);
+  return {mult: 1 + fb + eb + ob, bonus: fb + eb + ob, notes};
+}
+// Pays the party: day rates for weeks worked plus the purse (share x purse on a failure: day rates only). Ladies' shares count as their earnings.
+function guildPay(c, R, mult, share){
+  const lw = c.lw || {}, weeks = Object.values(lw).reduce((a,n)=>a+n, 0) + (c.sw||0), rate = c.rate || 0, purse = share == null ? c.gold : 0, f = share ?? 1;
+  let total = 0;
+  Object.entries(lw).forEach(([id, n])=>{ const w = findW(id); const g = Math.round((rate * n * f + (weeks ? purse * n / weeks : 0)) * mult); total += g; if(w && R && R.per[id]) R.per[id].earned += g; });
+  total += Math.round((rate * (c.sw||0) * f + (weeks ? purse * (c.sw||0) / weeks : purse * (weeks ? 0 : 1))) * mult);
+  S.gold += total; if(R){ R.income += total; R.led.guild = (R.led.guild||0) + total; }
+  return total;
+}
 // A contract ends: rewards or the penalty, the party goes home, the result is told as an event.
 function guildEnd(c, ok, R, ladies, sam){
   const g = GLD(), C = GCON[c.type], D = GDB.done || {}, cap = hasGuildPerk('captain') ? 1.5 : 1;
@@ -202,25 +226,28 @@ function guildEnd(c, ok, R, ladies, sam){
   g.active = g.active.filter(x=>x!==c);
   let body = '', tag = '';
   if(ok){
-    S.gold += c.gold; if(R){ R.income += c.gold; R.led.guild = (R.led.guild||0) + c.gold; }
-    g.merit += C.merit; g.fame = Math.min((GDB.fame||{}).max ?? 100, g.fame + (C.fame||0));
+    const bn = guildBonus(c, C), excellent = bn.bonus >= ((GDB.bonus||{}).excellent ?? 0.2), merit = Math.round(C.merit * (excellent ? ((GDB.bonus||{}).excellentMerit ?? 1.25) : 1));
+    const paid = guildPay(c, R, bn.mult);
+    g.merit += merit; g.fame = Math.min((GDB.fame||{}).max ?? 100, g.fame + (C.fame||0));
     g.done[c.type] = (g.done[c.type]||0) + 1;
     ladies.forEach(w=>{ gainTrust(w, (D.trust ?? 2) * cap); moodAdd(w, D.mood ?? 6); w.popularity = clamp(w.popularity + (C.pop||0));
       Object.entries(C.stats||{}).forEach(([k,wt])=>statXP(w, k, (D.statXP ?? 1.2) * wt * cap)); Object.entries(C.tech||{}).forEach(([k,wt])=>grow(w, k, (D.combat ?? 2) * wt * cap));
       countUp(w, 'guildDone'); });
     if(sam){ g.samDone[c.type] = (g.samDone[c.type]||0) + 1; samXP(10); }
     body = gFill(gText(c.type, sam ? 'doneSam' : 'done'), {party:gNames(ladies.length ? ladies : [{name:'Sam'}])});
-    tag = `+${fmt(c.gold)} · Merit +${C.merit} (${guildRankLabel()})${C.fame ? ` · Guild fame +${C.fame}` : ''}${C.pop && ladies.length ? ` · Popularity +${C.pop}` : ''}${ladies.length ? ' · Trust +' : ''}`;
+    if(bn.notes.length) body += `\n\n${excellent ? 'An excellent job: ' : 'A good job: '}${bn.notes.join(', ')}.`;
+    tag = `+${fmt(paid)} · Merit +${merit} (${guildRankLabel()})${C.fame ? ` · Guild fame +${C.fame}` : ''}${C.pop && ladies.length ? ` · Popularity +${C.pop}` : ''}${ladies.length ? ' · Trust +' : ''}`;
     const loot = guildLoot(C); if(loot){ body += `\n\n${loot}`; tag += ` · New outfit for the house wardrobe`; }
     if(C.item && BAL.samUps[C.item] && !hasSamUp(C.item)){ S.samUps = S.samUps || {}; S.samUps[C.item] = true; body += `\n\n${gFill(GITEMS[C.item] || `Sam earned the ${BAL.samUps[C.item].label}.`)}`; tag += ` · New tool: ${BAL.samUps[C.item].label}`; }
-    if(R) R.lines.push(`✅ ${C.icon} ${C.label} complete: +${fmt(c.gold)}, merit +${C.merit}.`);
+    if(R) R.lines.push(`✅ ${C.icon} ${C.label} complete${excellent ? ' (excellent)' : ''}: +${fmt(paid)}, merit +${merit}.`);
     guildPerkCheck(); guildRankCheck();
   } else {
     const F = GDB.fail || {};
     g.merit = Math.max(GLEVELS[g.rank].merit, g.merit - (F.merit ?? 5)); g.fame = Math.max(0, g.fame - (F.fame ?? 3));
     ladies.forEach(w=>{ w.trust = clamp(w.trust - (F.trust ?? 1)); moodAdd(w, -4); });
     body = gFill(gText(c.type, 'fail'), {party:gNames(ladies.length ? ladies : [{name:'Sam'}])}) || `The ${C.label} ran out of time.`;
-    tag = `Merit −${F.merit ?? 5} · Guild fame −${F.fame ?? 3}`;
+    const paid = guildPay(c, R, 1, (GDB.pay||{}).failShare ?? 0.25);
+    tag = `${paid ? `+${fmt(paid)} for the days worked · ` : ''}Merit −${F.merit ?? 5} · Guild fame −${F.fame ?? 3}`;
     if(R) R.lines.push(`❌ ${C.icon} ${C.label} failed.`);
   }
   ladies.forEach(guildRelease);
@@ -363,7 +390,7 @@ function guildTabHTML(){
   const pool = S.workers.filter(w=>!onContract(w) && !canDo(w,'guild'));
   const actCard = c => { const C = GCON[c.type], party = guildParty(c), left = guildSlotsLeft(c), samOn = samOnContract(c), wl = c.due - S.week + 1;
     const est = party.reduce((a,w)=>a + ladyGuildPower(w, C), 0) + (samOn ? gWeighted(k=>S.sam[k]||0, C.sam) : 0);
-    return `<div class="card" style="margin:6px 0"><b>${C.icon} ${esc(C.label)}</b> <span class="muted">· ${fmt(c.gold)} · ${wl} week${wl===1?'':'s'} left · party ${GCON[c.type].slots - left}/${C.slots}</span>
+    return `<div class="card" style="margin:6px 0"><b>${C.icon} ${esc(C.label)}</b> <span class="muted">· ${fmt(c.gold)} + ${fmt(c.rate||0)}/member-week · ${wl} week${wl===1?'':'s'} left · party ${GCON[c.type].slots - left}/${C.slots}</span>
       ${bar('Progress', Math.round(c.prog||0), C.work, 't')}
       <div class="muted">${est ? `About ${Math.round(est)} progress a week with this party${est * wl < C.work - (c.prog||0) ? ' <span class="warn">(not enough to finish in time)</span>' : ''}.` : '<span class="warn">Nobody is on it.</span>'} Risk: ${Math.round(guildHurtChance(C, est / Math.max(1, party.length + (samOn?1:0)), samOn) * 100)}% per member a week.</div>
       <div class="row">${party.map(w=>`<button class="sm" onclick="unassignGuild('${w.id}')" title="Send her back to ${esc(w.gPrev && JOBS[w.gPrev] ? JOBS[w.gPrev].label : 'rest')}">✕ ${esc(w.name)}</button>`).join('')}
@@ -371,7 +398,7 @@ function guildTabHTML(){
         ${left > 0 && pool.length ? `<select onchange="if(this.value)assignGuild('${c.uid}',this.value)"><option value="">＋ Add a lady…</option>${pool.map(w=>`<option value="${w.id}">${esc(w.name)} · ${Math.round(ladyGuildPower(w, C))}${w.energy < maxEnergy(w)*0.4 ? ' · tired' : ''}</option>`).join('')}</select>` : ''}
         <button class="sm" onclick="dropContract('${c.uid}')">Give up</button></div></div>`; };
   const offer = o => { const C = GCON[o.type], full = g.active.length >= guildActiveMax();
-    return `<div class="row"><div style="flex:1"><b>${C.icon} ${esc(C.label)}</b> <span class="muted">· ${fmt(o.gold)} · ${o.weeks} week${o.weeks===1?'':'s'} · up to ${C.slots} (Sam included) · merit ${C.merit} · uses ${Object.keys(Object.assign({}, C.stats, C.tech)).join(', ')}${(()=>{ const f = [C.item && BAL.samUps[C.item] && !hasSamUp(C.item) ? BAL.samUps[C.item].label : '', C.outfit && WARDROBE[C.outfit] && !S.houseWardrobe.includes(C.outfit) ? WARDROBE[C.outfit].label : ''].filter(Boolean); return f.length ? ` · <span class="pink">first clear: ${esc(f.join(' + '))}</span>` : ''; })()}</span><div class="muted">${esc(C.desc)}</div></div><button ${full?'disabled title="Too many contracts running"':''} onclick="takeContract('${o.uid}')">Take</button></div>`; };
+    return `<div class="row"><div style="flex:1"><b>${C.icon} ${esc(C.label)}</b> <span class="muted">· ${fmt(o.gold)} + ${fmt(o.rate||0)} per member a week · ${o.weeks} week${o.weeks===1?'':'s'} · up to ${C.slots} (Sam included) · merit ${C.merit} · uses ${Object.keys(Object.assign({}, C.stats, C.tech)).join(', ')}${(()=>{ const f = [C.item && BAL.samUps[C.item] && !hasSamUp(C.item) ? BAL.samUps[C.item].label : '', C.outfit && WARDROBE[C.outfit] && !S.houseWardrobe.includes(C.outfit) ? WARDROBE[C.outfit].label : ''].filter(Boolean); return f.length ? ` · <span class="pink">first clear: ${esc(f.join(' + '))}</span>` : ''; })()}</span><div class="muted">${esc(C.desc)}${(C.fits||{}).traits ? ` <i>Pays extra for: ${esc([...(C.fits.traits||[]), ...(C.fits.titles||[]).map(t=>(TITLES[t]||{}).label||t)].join(', '))}.</i>` : ''}</div></div><button ${full?'disabled title="Too many contracts running"':''} onclick="takeContract('${o.uid}')">Take</button></div>`; };
   return `<section class="card"><h2>⚔️ Adventurers' Guild</h2>
       <div>Rank <b>${guildRankLabel()}</b> · Merit ${g.merit}${nx ? ` / ${nx.merit} for ${nx.label}` : ' (highest rank)'} · Fame ${Math.round(g.fame)} <span class="muted">(more adventurer and mercenary clients)</span></div>
       ${nx ? bar('Next rank', pct, 100, 't') : ''}

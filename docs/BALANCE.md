@@ -87,3 +87,13 @@ Cycle-1 win on main (after the energy rework) was ~53 weeks at 12 seeds (win rat
 ### Adventurers' Guild (2026-11-17, not yet measured)
 - New: guild contracts (`data/guild/base.json`), the bot's guild player (`tools/lab/bot.js`, on by default) and `tools/lab/exp/guild.json`. Business no longer adds passive income and Strength no longer adds passive security, so earlier income numbers shift (mostly at Sam's house).
 - To tune: contract `gold` vs what the same ladies earn at home (a contract should pay a bit more than a week of support-staff work, less than a good courtesan's week, plus rank/items/outfits), `work`/`weeks` (most contracts finishable by 1-2 average early ladies, hunts/delves/wyverns need a real party), `risk`/`hurt` (injuries should sting but not bench people for long), `levels` merit pacing (Silver mid cycle 1, Gold late, Mithril maybe NG+), and fame's client draw.
+
+### Round 2 changes after the first guild lab run (2026-11-17, not yet measured)
+Results of the first run: `temp-balance-results.md`. Changes:
+- Guild pay: purse + day rate per member per week worked (about a support lady's week, under a courtesan's), plus up to ~+75% for fitting traits/titles/Sam perks, finishing early and overshooting; the ladies' shares count as their earnings. Goal: contracts net positive vs. keeping her home on support work.
+- Ladies earn more (`income.escort` 1.25 → 1.4), upkeep is up (`houses.upkeepMult` 1.25) so the Office focus matters more. Business stays without passive income; if Office still trails Classes/Floor after this, give Office some income back.
+- Classes focus 2.5 → 2.0; NG+ `loverDebt` 1500 → 1200.
+- Promoters only fill spare capacity (`jobs.promoterCapUse`, `promoterOverflow`): the first run showed a promoter losing money and popularity because her extra clients were turned away (samples were off).
+- New night incidents (`incidents`): without security a house now loses some gold, tidiness, satisfaction and popularity each week, so Watch and the security job have something to stop.
+- Group nights and demonstrations are flavor; don't tune them for pace (drop them from `sam-actions-balanced` or loosen its band).
+Rerun: `c1-baseline` (expect ~36-40 weeks again), `guild.json`, `sam-focus`, `security-value`, `promoter-value`, `ngplus-carry`.
