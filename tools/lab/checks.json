@@ -286,7 +286,7 @@
     },
     {
       "id": "sam-actions-balanced",
-      "intent": "Sam's spare actions are roughly balanced: none clears the cycle-1 debt more than ~3 weeks faster or slower than tending bar.",
+      "intent": "Sam's spare rest-day actions are roughly balanced: none clears the cycle-1 debt more than ~3 weeks faster or slower than the first one listed.",
       "exp": "sam-actions-campaign",
       "expect": [
         {

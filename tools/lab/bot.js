@@ -59,7 +59,9 @@ LAB.POLICY = {
   reserve: 300,          // keep this much gold on top of last week's costs and an upcoming debt payment
   roundsTrust: 35,       // Sam makes the rounds when any lady is below this trust
   partnerDates: true,    // one date a week with the partner while AP allows (builds toward Devoted -> NG+ carries)
-  samDefault: 'bartend', // what Sam does with spare AP: bartend | security | books | scout | rounds | lesson | statclass | trainStat | trainSkill | trainService | demo | date | rest
+  samDefault: 'rest',    // what Sam does with spare rest-day AP: scout | rounds | date | walk | orgy | trainStat | trainSkill | trainService | demo | rest
+  focus: 'auto',         // Sam's weekly focus: office | floor | watch | classes | rest | auto (watch after unhandled trouble, office without a madame, floor with a bar, else office)
+  focusTopic: 'auto',    // classes: auto | skill | stat
   payOff: true,
   scoutWhenShort: 4,     // Sam scouts instead of his spare action while a house has fewer ladies than this and few candidates are affordable          // pay the whole debt as soon as gold covers it plus the reserve
   targets: { maid: 1, promoter: 1 }, // support staff kept per house once it has `targetsAt` ladies; everyone else courtesan-first
@@ -195,18 +197,27 @@ function samSpare(){
   const k = P.samDefault, earners = S.workers.filter(w => w.job === 'courtesan' || (JOBS[w.job] || {}).must);
   const pickW = () => { const L = (earners.length ? earners : S.workers); return L[(trainI++) % L.length]; };
   if (k === 'rest') return samRest();
-  if (k === 'lesson' || k === 'statclass') return samWork(k);
-  if (k === 'trainStat') { const w = pickW(); return w ? samTrain(w.id, 'stat') : samWork('bartend'); }
-  if (k === 'trainSkill') { const w = pickW(); return w ? samTrain(w.id, 'skill') : samWork('bartend'); }
+  if (k === 'trainStat') { const w = pickW(); return w ? samTrain(w.id, 'stat') : samRest(); }
+  if (k === 'trainSkill') { const w = pickW(); return w ? samTrain(w.id, 'skill') : samRest(); }
   if (k === 'trainService') { const L = S.workers.filter(w => getActs().some(a => canSam(w, a.id))); const w = L[(trainI++) % (L.length || 1)];
-    return w ? samTrain(w.id, 'service') : samWork('bartend'); }
-  if (k === 'demo') { const w = S.workers.find(w => demoAct(w) && demoOpen(w)); return w ? samDemo(w.id) : samWork('bartend'); }
+    return w ? samTrain(w.id, 'service') : samRest(); }
+  if (k === 'demo') { const w = S.workers.find(w => demoAct(w) && demoOpen(w)); return w ? samDemo(w.id) : samRest(); }
   if (k === 'walk') return samWalk();
   if (k === 'orgy') { const O = BAL.orgy || {}, ws = staffIn(homeH()).filter(w => !orgyWhy(w)).slice(0, O.max ?? 5);
     if (ws.length >= (O.min ?? 2) && S.sam.energy >= orgyCost(ws.length)) { orgyMenu(); ws.forEach(w => orgyPick(w.id)); samOrgy(); return; }
-    return samWork('bartend'); }
-  if (k === 'date') { const w = S.workers.slice().sort((a, b) => a.trust - b.trust)[0]; if (!w) return samWork('bartend'); return samDate(w.id, 'walk'); }
+    return samRest(); }
+  if (k === 'date') { const w = S.workers.slice().sort((a, b) => a.trust - b.trust)[0]; if (!w) return samRest(); return samDate(w.id, 'walk'); }
   return samWork(k);
+}
+function pickFocus(){
+  const k = P.focus || 'auto';
+  if (k !== 'auto') return setFocus(k, P.focusTopic);
+  const h = samHouse(), hr = S.lastReport && (S.lastReport.houses || []).find(x => x.id === h.id);
+  const fails = hr && hr.pushy ? (hr.pushy.none || 0) + (hr.pushy.samfail || 0) : 0;
+  if (fails >= 2) return setFocus('watch');
+  if (!S.workers.some(w => w.house === h.id && w.job === 'madame')) return setFocus('office');
+  if (h.up.bar) return setFocus('floor');
+  return setFocus('office');
 }
 function samTurn(){
   let rounds = false, dated = false, goddessDone = false, walks = 0, g = 0;
@@ -228,7 +239,7 @@ function samTurn(){
     else if (P.partnerDates && !dated && p && S.ap >= 2 && S.sam.energy >= 40) { try { samDate(p.id, 'walk'); } catch (e) {} dated = true; }
     else if ((S.ngppCycle || 0) > 0 && P.ngppWalk !== false && walks < 2 && S.sam.energy >= (((BAL.walk || {}).energy ?? 15) + 5) && S.houses.some(h => staffIn(h).length < Math.min(cap(), P.ngppWalkUntil ?? 10))) { samWalk(); walks++; }
     else if (P.scoutWhenShort && S.sam.energy >= 25 && S.houses.some(h => staffIn(h).length < P.scoutWhenShort) && S.candidates.filter(c => S.gold - c.signing >= P.reserve).length < 2) samWork('scout');
-    else if (S.sam.energy >= 35) { try { samSpare(); } catch (e) { samWork('bartend'); } }
+    else if (S.sam.energy >= 35) { try { samSpare(); } catch (e) { samRest(); } }
     else samRest();
     quiet(); resolveEvents();
   }
@@ -236,7 +247,7 @@ function samTurn(){
 // one week of play; returns the metrics row
 function playWeek(){
   for (const h of S.houses.slice().sort((a, b) => staffIn(a).length - staffIn(b).length)) manageHouse(h);
-  S.cur = S.houses[0].id; samTurn(); resolveEvents();
+  S.cur = S.houses[0].id; samTurn(); pickFocus(); quiet(); resolveEvents();
   if (P.payOff && !S.won && S.debt.remaining > 0 && S.gold >= S.debt.remaining + reserveGold()) { try { payOffDebt(); } catch (e) {} quiet(); resolveEvents(); }
   const HOLD = (S._lab || {}).hold || {}; if (HOLD.tidy != null) S.houses.forEach(h => { h.tidy = HOLD.tidy; });
   const before = new Set(S.workers.map(w => w.id)), wk = S.week, strikes0 = S.debt.strikes;
