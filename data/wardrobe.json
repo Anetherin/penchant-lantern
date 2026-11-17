@@ -8,7 +8,8 @@
     "Named ladies' signature and special outfits live with them in characters/*.json and guests/*.json.",
     "uniform: an outfit tagged with a job (b_maid) is never rolled for generic ladies; she wears it automatically while she holds that job, unless she has a job outfit set (w.jobOutfit[job]).",
     "bath: true marks an outfit that can be worn in bath scenes (e.g. yukata, swimsuit, bathrobe, bikini).",
-    "stats: optional {stat:n} on an outfit or undergarment (0-100 scale; beauty, charm, charisma, refinement, wits, stamina, strength, agility). A bonus on top of her trained stats that may exceed the cap. bonus keys also include host, teacher and chapel."
+    "stats: optional {stat:n} on an outfit or undergarment (0-100 scale; beauty, charm, charisma, refinement, wits, stamina, strength, agility). A bonus on top of her trained stats that may exceed the cap. bonus keys also include host, teacher and chapel.",
+    "guild: outfits that can't be bought; they come from the Adventurers' Guild (guild = the contract whose first clear gives it, or rankN for a rank-up) and go into the house wardrobe. cost is only their value (gifting, display)."
   ],
   "base": {
     "b_corset": {
@@ -560,5 +561,101 @@
     "gold": "#d9a94e",
     "silver": "#c8ccd4",
     "brown": "#6b4a2e"
+  },
+  "guild": {
+    "g_tabard": {
+      "label": "Guild colors",
+      "style": "Sporty",
+      "cost": 220,
+      "lewd": 0,
+      "guild": "rank2",
+      "prompt": "a crisp blue-and-gold Adventurers' Guild tabard over a white linen shirt, fitted brown trousers and tall boots",
+      "bonus": {"adventurer":1.15,"promoter":1.1},
+      "stats": {"charisma":2,"strength":1}
+    },
+    "g_caravan": {
+      "label": "Caravan rider's leathers",
+      "style": "Sporty",
+      "cost": 260,
+      "lewd": 0,
+      "guild": "caravan",
+      "prompt": "a fitted tan leather riding jacket over a cream blouse, dusty riding breeches and a wide-brimmed traveler's hat",
+      "accessories": "a wide-brimmed traveler's hat",
+      "accState": "dressed",
+      "bonus": {"adventurer":1.15,"security":1.1},
+      "stats": {"stamina":3,"agility":2}
+    },
+    "g_herbs": {
+      "label": "Fenwood gatherer's wrap",
+      "style": "Exotic",
+      "cost": 240,
+      "lewd": 15,
+      "guild": "herbs",
+      "prompt": "a moss-green linen wrap dress that leaves the shoulders bare, tied at the waist with a woven belt, a sprig of pink lustbloom tucked behind one ear",
+      "bonus": {"propose":1.15,"commoner":1.1},
+      "stats": {"charm":2,"beauty":2}
+    },
+    "g_arena": {
+      "label": "Pit fighter's harness",
+      "style": "Revealing",
+      "cost": 320,
+      "lewd": 30,
+      "guild": "arena",
+      "prompt": "a black leather chest harness over a cropped red top, studded bracers and a short slit fighting skirt",
+      "bonus": {"adventurer":1.2,"security":1.15},
+      "stats": {"strength":3,"charisma":2}
+    },
+    "g_ball": {
+      "label": "Masquerade gown",
+      "style": "Elegant",
+      "cost": 420,
+      "lewd": 5,
+      "guild": "ball",
+      "prompt": "a midnight-blue masquerade ball gown with silver embroidery, long silk gloves and a silver filigree half-mask",
+      "accessories": "a silver filigree half-mask",
+      "accState": "dressed",
+      "bonus": {"noble":1.2,"host":1.15},
+      "stats": {"refinement":4,"charm":2}
+    },
+    "g_courier": {
+      "label": "Exchange courier's coat",
+      "style": "Sporty",
+      "cost": 300,
+      "lewd": 0,
+      "guild": "courier",
+      "prompt": "a fitted burgundy courier's coat with brass buttons over tight cream riding breeches and polished tall boots",
+      "bonus": {"merchant":1.2,"promoter":1.1},
+      "stats": {"wits":3,"agility":2}
+    },
+    "g_hunt": {
+      "label": "Huntress's furs",
+      "style": "Exotic",
+      "cost": 340,
+      "lewd": 20,
+      "guild": "hunt",
+      "prompt": "a cropped grey wolf-fur mantle over a brown leather bandeau and a short hide skirt, bone-bead necklace, fur-trimmed boots",
+      "bonus": {"adventurer":1.2,"security":1.1},
+      "stats": {"strength":2,"stamina":2,"agility":2}
+    },
+    "g_delve": {
+      "label": "Delver's harness",
+      "style": "Sporty",
+      "cost": 360,
+      "lewd": 15,
+      "guild": "delve",
+      "prompt": "a snug charcoal-grey delver's bodysuit crossed with leather straps, a small brass lamp clipped at the hip, fingerless gloves",
+      "bonus": {"security":1.15,"adventurer":1.1},
+      "stats": {"stamina":3,"wits":2}
+    },
+    "g_wyvern": {
+      "label": "Wyvernscale mail",
+      "style": "Exotic",
+      "cost": 800,
+      "lewd": 25,
+      "guild": "wyvern",
+      "prompt": "fitted bikini-cut armor of iridescent green wyvern scales with gold trim and a short crimson half-cape",
+      "bonus": {"adventurer":1.25,"noble":1.1},
+      "stats": {"strength":4,"charisma":4,"beauty":2}
+    }
   }
 }

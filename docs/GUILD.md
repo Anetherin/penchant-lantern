@@ -16,7 +16,9 @@ Code: `js/logic/guild.js`. Data: `data/guild/` (`base` numbers, `text` contract 
 - **Risk.** Each week each member may be injured (`risk`, cut by party power and by Sam's presence): Health loss. Under 30 Health she
   rests until she heals (the existing Health rules). Former Adventurer / Brawler / Shield-Sister ladies get an edge (`fx guild`, `guildSafe`).
 - **Rewards.** Gold, merit (rank), fame (more adventurer and mercenary clients at every house), popularity, stat practice and trust
-  for the ladies, Sam XP, and the first time a contract type is finished, one of Sam's tools (`balance.json → samUps`, `guild: <contract>`).
+  for the ladies, Sam XP, and the first time a contract type is finished, one of Sam's tools (`balance.json → samUps`, `guild: <contract>`)
+  and its guild-only outfit (`wardrobe.json → guild`, never sold; into the house wardrobe). Every completion also has a `loot.chance` of a
+  shop outfit the house doesn't own yet. Bronze rank brings the Guild colors tabard.
 - **Ranks.** Copper, Iron, Bronze, Silver, Gold, Mithril. Each rank-up is a story beat at the desk (`ranks.json`): Iron points
   Rhoswen to Sam, Bronze brings Hanna, Silver brings Vesna (rescued from the Barrow), Gold brings Brunhild (impressed in the pit).
 - **Sam's perks.** Doing contracts himself earns Sam guild perks (`base.json → perks`), kept for good across cycles.

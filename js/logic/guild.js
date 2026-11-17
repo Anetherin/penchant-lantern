@@ -16,7 +16,7 @@ const GSCN = (GDATA.scenes && typeof GDATA.scenes === 'object') ? GDATA.scenes :
 const GBEATS = ((GDATA.ranks || {}).beats) || [];
 const GPERKS = noMeta(GDATA.perks);
 // what each rank brings along (ranks.json tells the story; this is the mechanics)
-const GUILD_UNLOCKS = {1:{recruit:'rhoswen', item:'pass'}, 2:{recruit:'hanna'}, 3:{recruit:'vesna'}, 4:{recruit:'brunhild'}};
+const GUILD_UNLOCKS = {1:{recruit:'rhoswen', item:'pass'}, 2:{recruit:'hanna', outfit:'g_tabard'}, 3:{recruit:'vesna'}, 4:{recruit:'brunhild'}};
 
 function GLD(){
   if(!S.guild) S.guild = {joined:false, rank:0, merit:0, fame:0, board:[], active:[], done:{}, samDone:{}, next:1};
@@ -32,6 +32,23 @@ const gText = (type, k) => { const T = GTXT[type] || {}; return (T[k] && T[k].le
 const gNames = ws => ws.map(w=>w.name.split(' ')[0]).join(', ').replace(/, ([^,]*)$/, ' and $1');
 // Adventurer/mercenary client draw at every house (services.js pickClass): a little for joining, more with fame.
 const guildDraw = () => guildOn() ? ((GB.fame||{}).base ?? 6) + GLD().fame * ((GB.fame||{}).draw ?? 0.25) : 0;
+
+// Outfits as rewards (wardrobe.json → guild for the guild-only ones): they go to the house wardrobe. Returns the line to tell, or ''.
+const guildOutfitWhere = o => !o || !o.guild ? '' : /^rank(\d)$/.test(o.guild) ? `reach ${guildRankLabel(+o.guild.slice(4))} rank` : GCON[o.guild] ? `first ${GCON[o.guild].label}` : 'guild reward';
+function guildGiveOutfit(k, first){
+  const o = WARDROBE[k]; if(!o || S.houseWardrobe.includes(k)) return '';
+  S.houseWardrobe.push(k); addLog(`👗 ${o.label} joined the house wardrobe (guild reward).`);
+  return gFill(first ? GDATA.outfitFirst || 'The guild adds {outfit} to the reward.' : GDATA.outfits || ['The client adds {outfit} to the reward.'], {outfit:o.label});
+}
+function guildLoot(C){
+  let out = '';
+  if(C.outfit && GUILD_OUTFITS[C.outfit]) out = guildGiveOutfit(C.outfit, true);
+  if(!out && Math.random() < ((GB.loot||{}).chance ?? 0.3)){
+    const pool = Object.keys(SHOP_OUTFITS).filter(k=>!WARDROBE[k].uniform && !S.houseWardrobe.includes(k));
+    if(pool.length) out = guildGiveOutfit(pick(pool), false);
+  }
+  return out;
+}
 
 /* ---------- the board ---------- */
 function guildOffer(type){
@@ -194,6 +211,7 @@ function guildEnd(c, ok, R, ladies, sam){
     if(sam){ g.samDone[c.type] = (g.samDone[c.type]||0) + 1; samXP(10); }
     body = gFill(gText(c.type, sam ? 'doneSam' : 'done'), {party:gNames(ladies.length ? ladies : [{name:'Sam'}])});
     tag = `+${fmt(c.gold)} · Merit +${C.merit} (${guildRankLabel()})${C.fame ? ` · Guild fame +${C.fame}` : ''}${C.pop && ladies.length ? ` · Popularity +${C.pop}` : ''}${ladies.length ? ' · Trust +' : ''}`;
+    const loot = guildLoot(C); if(loot){ body += `\n\n${loot}`; tag += ` · New outfit for the house wardrobe`; }
     if(C.item && BAL.samUps[C.item] && !hasSamUp(C.item)){ S.samUps = S.samUps || {}; S.samUps[C.item] = true; body += `\n\n${gFill(GITEMS[C.item] || `Sam earned the ${BAL.samUps[C.item].label}.`)}`; tag += ` · New tool: ${BAL.samUps[C.item].label}`; }
     if(R) R.lines.push(`✅ ${C.icon} ${C.label} complete: +${fmt(c.gold)}, merit +${C.merit}.`);
     guildPerkCheck(); guildRankCheck();
@@ -245,6 +263,7 @@ function guildBeatEvent(rank){
   const r = U.recruit ? guildRecruit(U.recruit) : null;
   let note = '';
   if(U.item && BAL.samUps[U.item] && !hasSamUp(U.item)){ S.samUps = S.samUps || {}; S.samUps[U.item] = true; note += `\nNew tool: ${BAL.samUps[U.item].label}. ${BAL.samUps[U.item].desc}`; }
+  if(U.outfit && WARDROBE[U.outfit] && !S.houseWardrobe.includes(U.outfit)){ guildGiveOutfit(U.outfit, true); note += `\nNew outfit for the house wardrobe: ${WARDROBE[U.outfit].label}.`; }
   if(r) note += `\n${r.name} has been added to your candidates.`;
   else if(U.recruit && NAMED[U.recruit] && isHired(U.recruit)) note += `\n(${NAMED[U.recruit].name} already works for you.)`;
   if(rank > 0) note = `\nGuild rank: ${guildRankLabel(rank)}. The board offers more, and ${guildActiveMax()} contract${guildActiveMax()>1?'s':''} can run at once.` + note;
@@ -352,7 +371,7 @@ function guildTabHTML(){
         ${left > 0 && pool.length ? `<select onchange="if(this.value)assignGuild('${c.uid}',this.value)"><option value="">＋ Add a lady…</option>${pool.map(w=>`<option value="${w.id}">${esc(w.name)} · ${Math.round(ladyGuildPower(w, C))}${w.energy < maxEnergy(w)*0.4 ? ' · tired' : ''}</option>`).join('')}</select>` : ''}
         <button class="sm" onclick="dropContract('${c.uid}')">Give up</button></div></div>`; };
   const offer = o => { const C = GCON[o.type], full = g.active.length >= guildActiveMax();
-    return `<div class="row"><div style="flex:1"><b>${C.icon} ${esc(C.label)}</b> <span class="muted">· ${fmt(o.gold)} · ${o.weeks} week${o.weeks===1?'':'s'} · up to ${C.slots} (Sam included) · merit ${C.merit} · uses ${Object.keys(Object.assign({}, C.stats, C.tech)).join(', ')}${C.item && BAL.samUps[C.item] && !hasSamUp(C.item) ? ` · <span class="pink">first clear: ${esc(BAL.samUps[C.item].label)}</span>` : ''}</span><div class="muted">${esc(C.desc)}</div></div><button ${full?'disabled title="Too many contracts running"':''} onclick="takeContract('${o.uid}')">Take</button></div>`; };
+    return `<div class="row"><div style="flex:1"><b>${C.icon} ${esc(C.label)}</b> <span class="muted">· ${fmt(o.gold)} · ${o.weeks} week${o.weeks===1?'':'s'} · up to ${C.slots} (Sam included) · merit ${C.merit} · uses ${Object.keys(Object.assign({}, C.stats, C.tech)).join(', ')}${(()=>{ const f = [C.item && BAL.samUps[C.item] && !hasSamUp(C.item) ? BAL.samUps[C.item].label : '', C.outfit && WARDROBE[C.outfit] && !S.houseWardrobe.includes(C.outfit) ? WARDROBE[C.outfit].label : ''].filter(Boolean); return f.length ? ` · <span class="pink">first clear: ${esc(f.join(' + '))}</span>` : ''; })()}</span><div class="muted">${esc(C.desc)}</div></div><button ${full?'disabled title="Too many contracts running"':''} onclick="takeContract('${o.uid}')">Take</button></div>`; };
   return `<section class="card"><h2>⚔️ Adventurers' Guild</h2>
       <div>Rank <b>${guildRankLabel()}</b> · Merit ${g.merit}${nx ? ` / ${nx.merit} for ${nx.label}` : ' (highest rank)'} · Fame ${Math.round(g.fame)} <span class="muted">(more adventurer and mercenary clients)</span></div>
       ${nx ? bar('Next rank', pct, 100, 't') : ''}

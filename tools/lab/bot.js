@@ -62,6 +62,14 @@ LAB.POLICY = {
   samDefault: 'rest',    // what Sam does with spare rest-day AP: scout | rounds | date | walk | orgy | trainStat | trainSkill | trainService | demo | rest
   focus: 'auto',         // Sam's weekly focus: office | floor | watch | classes | rest | auto (watch after unhandled trouble, office without a madame, floor with a bar, else office)
   focusTopic: 'auto',    // classes: auto | skill | stat
+  // Adventurers' Guild (js/logic/guild.js). Numbers are a first pass: expect to tune contract gold/work/risk in data/guild/base.json.
+  guild: 'auto',         // 'auto': register once the home house has guildAt ladies, then keep up to guildContracts contracts staffed; false = never
+  guildAt: 4,
+  guildContracts: 1,     // contracts running at once (also capped by the guild's own limit for Sam's rank)
+  guildLadies: 2,        // at most this many ladies away on contracts at a time (they earn nothing at the house that week)
+  guildPick: 'support',  // who goes: 'support' (non-courtesans first, then the weakest earners) | 'fighters' (best contract power, any job)
+  guildSam: 'auto',      // 'auto': Sam joins a contract only when the ladies alone wouldn't finish it in time; true = whenever a contract has room; false = never
+  guildSafety: 1.15,     // take/staff a contract only if projected progress x weeks left >= remaining work x this
   payOff: true,
   scoutWhenShort: 4,     // Sam scouts instead of his spare action while a house has fewer ladies than this and few candidates are affordable          // pay the whole debt as soon as gold covers it plus the reserve
   targets: { maid: 1, promoter: 1 }, // support staff kept per house once it has `targetsAt` ladies; everyone else courtesan-first
@@ -89,7 +97,7 @@ LAB.POLICY = {
   flushMul: 3
 };
 // the fixed player the Pass 1/2 numbers in docs/BALANCE.md were measured with: spec "policy": {"preset": "legacy"}
-LAB.PRESETS = { legacy: { security: false, tidyFloor: 0, classUpkeep: false, maxStaff: 10, bedTier: false } };
+LAB.PRESETS = { legacy: { security: false, tidyFloor: 0, classUpkeep: false, maxStaff: 10, bedTier: false, guild: false }, noGuild: { guild: false } };
 // base, then each override's preset (if it names one) under that override's own fields
 const withPreset = (base, ...os) => os.reduce((acc, o) => Object.assign(acc, (o && o.preset && LAB.PRESETS[o.preset]) || {}, o || {}), Object.assign({}, base));
 let P = Object.assign({}, LAB.POLICY);
@@ -123,12 +131,12 @@ function jobOrder(h, cnt){
 function tryJob(w, j){ if (canDo(w, j)) return false; setJob(w.id, j); quiet(); return w.job === j; }
 function manageJobs(h){
   const mine = staffIn(h), cnt = j => mine.filter(x => x.job === j).length;
-  mine.forEach(w => { if (w.job !== 'rest' && w.energy < maxEnergy(w) * 0.30) w.job = 'rest'; });
+  mine.forEach(w => { if (w.job !== 'rest' && w.job !== 'guild' && w.energy < maxEnergy(w) * 0.30) w.job = 'rest'; });
   // locked ladies (job experiments) go back to their job as soon as they're rested
   // locked ladies (job experiments) take their job whenever they can; until then they're assigned like everyone else
   mine.forEach(w => { if (!w._lock || w.job === w._lock) return; const rested = w.job !== 'rest' || w.energy > maxEnergy(w) * 0.6; if (!rested) return;
     const was = w.job; w.job = 'rest'; if (!tryJob(w, w._lock)) { if (w._force) w.job = w._lock; else w.job = was; } });
-  const free = w => !w._lock || w.job !== w._lock;
+  const free = w => (!w._lock || w.job !== w._lock) && w.job !== 'guild';
   // one lady on each amenity job the house has (from anyone rested and not locked)
   for (const j of Object.keys(AMEN)) { if (!h.up[AMEN[j]] || cnt(j) >= 1 || j === 'chapel' || j === 'teacher') continue;
     const pool = mine.filter(w => free(w) && !AMEN[w.job] && !canDo(w, j));
@@ -209,7 +217,50 @@ function samSpare(){
   if (k === 'date') { const w = S.workers.slice().sort((a, b) => a.trust - b.trust)[0]; if (!w) return samRest(); return samDate(w.id, 'walk'); }
   return samWork(k);
 }
+// ---------- Adventurers' Guild ----------
+const gEarn = w => { const per = ((S.lastReport || {}).per || {})[w.id]; return per ? per.earned || 0 : 0; };
+function guildPool(C){
+  const L = S.workers.filter(w => w.job !== 'guild' && !w._lock && !w.isPartner && w.trust >= jobTrust(w, 'guild') && w.energy >= maxEnergy(w) * 0.6 && w.health >= 50 && !AMEN[w.job]);
+  const score = w => P.guildPick === 'fighters' ? ladyGuildPower(w, C) : ladyGuildPower(w, C) - (w.job === 'courtesan' ? 40 : 0) - gEarn(w) / 20;
+  return L.sort((a, b) => score(b) - score(a));
+}
+const guildAway = () => S.workers.filter(w => w.job === 'guild').length;
+// Projected weekly progress of a party (ladies + optionally Sam at full effort).
+const gProj = (C, ws, sam) => ws.reduce((a, w) => a + ladyGuildPower(w, C), 0) + (sam ? gWeighted(k => S.sam[k] || 0, C.sam) : 0);
+function manageGuild(){
+  if (!P.guild || typeof guildOn !== 'function') return;
+  if (!guildOn()){
+    if (staffIn(homeH()).length >= (P.guildAt ?? 4) && S.ap > 0 && S.sam.energy >= 30){ samGuild(); quiet(); resolveEvents(); }
+    return;
+  }
+  const g = GLD(), room = () => Math.min(P.guildContracts ?? 1, guildActiveMax()) - g.active.length;
+  // take the best-paying offer the available ladies (plus Sam, if allowed) can finish in time
+  if (room() > 0 && guildAway() < (P.guildLadies ?? 2)){
+    const best = g.board.map(o => { const C = GCON[o.type], pool = guildPool(C).slice(0, Math.min(C.slots - (P.guildSam ? 1 : 0), (P.guildLadies ?? 2) - guildAway()));
+        const proj = gProj(C, pool, P.guildSam !== false && C.slots > pool.length); return { o, C, ok: proj * o.weeks >= C.work * (P.guildSafety ?? 1.15), val: o.gold / o.weeks }; })
+      .filter(x => x.ok).sort((a, b) => b.val - a.val)[0];
+    if (best){ takeContract(best.o.uid); quiet(); }
+  }
+  // staff every active contract until it's projected to finish
+  for (const c of g.active){
+    const C = GCON[c.type], left = Math.max(0, C.work - (c.prog || 0)), wl = Math.max(1, c.due - S.week + 1);
+    const need = () => gProj(C, guildParty(c), false) * wl < left * (P.guildSafety ?? 1.15);
+    for (const w of guildPool(C)){ if (!need() || guildSlotsLeft(c) <= (P.guildSam === true ? 1 : 0) || guildAway() >= (P.guildLadies ?? 2)) break; assignGuild(c.uid, w.id); quiet(); }
+  }
+}
+// Sam goes on a contract (his focus) when the policy wants him there; returns true if he did.
+function guildFocus(){
+  if (!P.guild || P.guildSam === false || typeof guildOn !== 'function' || !guildOn()) return false;
+  for (const c of GLD().active){
+    const C = GCON[c.type], left = Math.max(0, C.work - (c.prog || 0)), wl = Math.max(1, c.due - S.week + 1);
+    if (samOnContract(c)) return true;
+    const short = gProj(C, guildParty(c), false) * wl < left * (P.guildSafety ?? 1.15);
+    if (guildSlotsLeft(c) > 0 && (P.guildSam === true || short)){ samJoinContract(c.uid); return true; }
+  }
+  return false;
+}
 function pickFocus(){
+  if (guildFocus()) return;
   const k = P.focus || 'auto';
   if (k !== 'auto') return setFocus(k, P.focusTopic);
   const h = samHouse(), hr = S.lastReport && (S.lastReport.houses || []).find(x => x.id === h.id);
@@ -247,7 +298,7 @@ function samTurn(){
 // one week of play; returns the metrics row
 function playWeek(){
   for (const h of S.houses.slice().sort((a, b) => staffIn(a).length - staffIn(b).length)) manageHouse(h);
-  S.cur = S.houses[0].id; samTurn(); pickFocus(); quiet(); resolveEvents();
+  S.cur = S.houses[0].id; manageGuild(); samTurn(); pickFocus(); quiet(); resolveEvents();
   if (P.payOff && !S.won && S.debt.remaining > 0 && S.gold >= S.debt.remaining + reserveGold()) { try { payOffDebt(); } catch (e) {} quiet(); resolveEvents(); }
   const HOLD = (S._lab || {}).hold || {}; if (HOLD.tidy != null) S.houses.forEach(h => { h.tidy = HOLD.tidy; });
   const before = new Set(S.workers.map(w => w.id)), wk = S.week, strikes0 = S.debt.strikes;
@@ -265,7 +316,7 @@ function playWeek(){
   hs.forEach(x => { const a = L.hist[x.id] = L.hist[x.id] || []; a.push({ pushy: x.pushy ? x.pushy.total : 0, tidy: x.tidy }); if (a.length > 3) a.shift(); });
   const W = S.workers, avg = f => W.length ? W.reduce((a, w) => a + f(w), 0) / W.length : 0;
   return { wk, cycle: S.cycle || 1, gold: Math.round(S.gold), debt: Math.round(S.debt.remaining), net: Math.round(R.income - R.wages - R.upkeep - (R.recharge || 0) - (R.cuts || 0) - (R.tutor || 0)),
-    income: Math.round(R.income), wages: Math.round(R.wages), upkeep: Math.round(R.upkeep), sam: Math.round(R.led.sam || 0), rep: Math.round(homeH().rep * 10) / 10, prestige: Math.round(housePrestige(homeH()) * 10) / 10,
+    income: Math.round(R.income), wages: Math.round(R.wages), upkeep: Math.round(R.upkeep), sam: Math.round(R.led.sam || 0), guild: Math.round(R.led.guild || 0), grank: (S.guild && S.guild.rank) || 0, gaway: Object.values(R.per).filter(p => p.job === 'guild').length, rep: Math.round(homeH().rep * 10) / 10, prestige: Math.round(housePrestige(homeH()) * 10) / 10,
     staff: W.length, served: R.served, turned: R.turned, sat: hs.length ? hs[0].sat : 0, missed: S.debt.strikes > strikes0 ? 1 : 0, strikes: S.debt.strikes,
     mood: Math.round(avg(w => w.mood)), trust: Math.round(avg(w => w.trust)), left, houses: hs, per, over: !!S.over, won: !!S.won };
 }

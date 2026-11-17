@@ -2,7 +2,8 @@
   "_readme": [
     "Adventurers' Guild contract flavor (docs/GUILD.md). text.<contract id> has week (report lines, third person), done (the ladies come home and tell you, Sam stayed home), doneSam (you were there), fail (neutral, Sam present or not), hurt (one line).",
     "Placeholders: {party} = the names of the party as a group, {name} = the injured lady. Use only these two. The items block holds one entry per samUps key earned from a contract (plus 'pass', handed over at Iron rank).",
-    "Narration is second person ('you' = Sam). Report lines use 'Sam' by name when they need him. No sex in these lines; it is flavor about the work."
+    "Narration is second person ('you' = Sam). Report lines use 'Sam' by name when they need him. No sex in these lines; it is flavor about the work.",
+    "outfits: a shop outfit the client adds to the reward ({outfit} = its name). outfitFirst: the guild-only outfit from a contract's first clear ({outfit})."
   ],
   "text": {
     "caravan": {
@@ -273,5 +274,11 @@
     "chalkboard": "The surveyors leave you a big slate they used for maps, too heavy to haul back up. You drag it home and prop it in the classroom, where it turns out to be just as good for teaching. A faint chalk outline of a drowned corridor is still in one corner.",
     "manual": "The hunt's old captain gives you a thick, battered coaching manual, tabbed and annotated in a dozen hands. \"Teaches a pup to hunt,\" he says. You read it by lamplight and find its margin notes work on people too.",
     "pass": "Hanna slides a stamped card with a brass edge across the desk. \"Guild Pass. It gets you past the front board to the good one, where the better folk pin their names when they want work. Don't lose it, Sam.\" She does not tell you how many people she had to annoy to get it."
-  }
+  },
+  "outfits": [
+    "The client throws in something extra with the purse: {outfit}. It goes straight into the house wardrobe.",
+    "Hanna slides a wrapped bundle across the desk with the pay. \"Bonus from the client. Don't ask me why they had it.\" It's {outfit}, and it goes into the house wardrobe.",
+    "Somebody's spare kit turns up in the saddlebags on the way home: {outfit}. Nobody claims it, so the house wardrobe does."
+  ],
+  "outfitFirst": "And for a first clear, the guild hands over its own reward: {outfit}, the kind of thing you can't buy anywhere in Hollowmere. It's in the house wardrobe now."
 }

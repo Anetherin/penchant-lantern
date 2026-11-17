@@ -43,7 +43,8 @@ Sam picks one focus per week (costs a share of his weekly energy, so a hard week
 
 ## Adventurers' Guild (first pass done 2026-11-17, branch feat/guild-contracts; see docs/GUILD.md)
 - Done: quest board, ranks Copper→Mithril, 9 contract types, ladies' `guild` job + Sam's Guild focus, multi-week progress, injuries (Health), gold/merit/fame/popularity rewards, Sam's tools from contracts, 6 Sam perks, rank beats (Rhoswen, Hanna, new Vesna and Brunhild), party scenes (duo, trio, pair, lustbloom yuri), Seasoned Adventurer earnable trait, courier past life.
-- Still open: lab bot policy for contracts and a balance pass on contract gold vs house income; unique outfits as rewards; more contract types and scenes per tag; Vesna/Brunhild after-stories and bond events; whether rank should carry partially into NG+.
+- Outfits: 9 guild-only outfits (first clear of each contract, Bronze rank tabard) plus a chance of a shop outfit on every completion.
+- Still open: balance pass on contract numbers (bot plays the guild now: tools/lab/exp/guild.json); more contract types and scenes per tag; Vesna/Brunhild after-stories and bond events; whether rank should carry partially into NG+.
 - Turn the guild into a quest board with ranks instead of a three-visit recruit button. Sam takes contracts through his **Guild** focus; ladies take them as their **job** for the week (Combat, Strength, Agility, plus Wits/Charm/Refinement for some). Sam and ladies can also go together.
 - Contract types: caravan escort, dungeon porter, arena bout, monster hunt, bodyguard at a noble's ball (courtesan skills count). Each has a rank, checks, party slots, a reward and a risk. Possibly multi-week contracts (a progress bar the party fills each week); still to decide.
 - Sam + a lady with enough trust and lust on the same contract unlocks exclusive scenes (campfire, shared tent, after a fight) and trust/bond gains.

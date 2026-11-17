@@ -4,6 +4,7 @@ function buyOutfit(id, k){
   const w=findW(id), o=WARDROBE[k]; if(!w||!o) return;
   if(ownsOutfit(w,k)) return;
   if(o.owner) return toast(spUnlocked(w, k) ? 'Already unlocked.' : `Unlocks at trust ${tShow(spTrust(w, k))}.`);
+  if(o.guild) return toast('Only the Adventurers\' Guild has these.');
   const cost = outfitCost(o);
   if(S.gold < cost) return toast('Not enough gold.');
   S.gold -= cost; S.houseWardrobe.push(k);   // outfits Sam buys go to the shared house wardrobe
@@ -43,9 +44,10 @@ function openWardrobe(id){
     if(wearing) act = '<span class="good">Wearing</span>';
     else if(owned) act = `<button class="sm" onclick="equipOutfit('${id}','${k}')" ${ok?'':'disabled title="Not comfortable yet"'}>Wear</button>`;
     else if(o.owner) act = `<span class="muted">${spUnlocked(w,k)?'':'🔒 trust '+tShow(spTrust(w,k))}</span>`;
+    else if(o.guild) act = `<span class="muted" title="Can't be bought: a guild reward">⚔️ ${esc(guildOutfitWhere(o))}</span>`;
     else act = `<button class="sm" onclick="buyOutfit('${id}','${k}')" ${S.gold<outfitCost(o)?'disabled':''}>Buy ${fmt(outfitCost(o))}</button>`;
     if(inHouse) act += ` <button class="sm" onclick="giftHouseItem('${id}','outfit','${k}')" title="Give it to her to keep. Counts as a gift (10 energy)">🎁 Gift</button>`;
-    const tag = o.owner ? (k.startsWith('sig_')?' <span class="tag">Signature</span>':' <span class="tag">Special</span>') : (BASE_OUTFITS[k]?' <span class="muted">(basic)</span>':'');
+    const tag = o.owner ? (k.startsWith('sig_')?' <span class="tag">Signature</span>':' <span class="tag">Special</span>') : (BASE_OUTFITS[k]?' <span class="muted">(basic)</span>':o.guild?' <span class="tag">Guild</span>':'');
     const accTag = o.accessories ? ` <span class="muted" title="Includes accessory: ${esc(o.accessories)}">· 🎀 ${esc(o.accessories)}</span>` : '';
     const n = imgCountFor(w, `o:${k}:`);
     return `<tr><td>${esc(o.label)}${tag}${inHouse||(S.houseWardrobe.includes(k)&&w.owned.includes(k))?' <span class="tag house" title="In the shared house wardrobe">🏠 house</span>':''}${o.lewd?` <span class="muted">(lewd ${lShow(o.lewd)}+)</span>`:''}${accTag}${n?` <span class="tag hid" title="Saved images with this outfit">📷 ${n}</span>`:''}</td><td>${o.style===w.style?'<b class="good">'+o.style+'</b>':o.style}</td><td class="muted">${bonusText(o.bonus,o.stats)}</td><td>${act}</td></tr>`;

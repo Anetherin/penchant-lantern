@@ -25,7 +25,9 @@ const plainBase = () => Object.keys(BASE_OUTFITS).filter(k=>!BASE_OUTFITS[k].uni
 // sig_ = starting outfit, sp_ = unlocks at trust 60 (or as a lover), or at its own "unlock" trust if set.
 const SIG_OUTFITS = {};
 Object.entries(charData()).forEach(([k,c])=>Object.entries(c.outfits||{}).forEach(([ok,o])=>{ SIG_OUTFITS[ok] = Object.assign({owner:k}, o); }));
-const WARDROBE = Object.assign({}, BASE_OUTFITS, SHOP_OUTFITS, SIG_OUTFITS);
+// Guild-only outfits (wardrobe.json → guild): never sold; contracts and rank-ups put them in the house wardrobe (guild.js).
+const GUILD_OUTFITS = Object.fromEntries(Object.entries(WARDROBE_DATA.guild||{}).filter(([k])=>!k.startsWith('_')));
+const WARDROBE = Object.assign({}, BASE_OUTFITS, SHOP_OUTFITS, GUILD_OUTFITS, SIG_OUTFITS);
 const UNDER = WARDROBE_DATA.under;
 const BONUS_LABEL = {maid:'Maid',promoter:'Promoter',attendant:'Attendant',host:'Host',teacher:'Teaching',chapel:'Chapel',bartender:'Bar',propose:'Propositions',security:'Security',adventurer:'Adventurer clients',noble:'Noble clients',merchant:'Merchant clients',commoner:'Commoner clients',dancer:'Dance',bath:'Bath',courtesan:'Courtesan',madame:'Madame'};
 const bonusText = (b, st) => Object.entries(b||{}).map(([k,v])=>`${BONUS_LABEL[k]||k} +${Math.round((v-1)*100)}%`).concat(Object.entries(st||{}).filter(([,v])=>v).map(([k,v])=>`${k.charAt(0).toUpperCase()+k.slice(1)} ${v>0?'+':'-'}${Math.abs(Math.round(v*SKL))}`)).join(', ') || '—';

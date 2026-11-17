@@ -97,9 +97,10 @@ leaves demons' Feeding only / auto-stud off unless `demonFeedOnly` / `demonAutoS
 early when it can. Optional policy knobs cover `decor`, `drinks`, `incense`, `price`, `cut`, `tutor`/`tutorTier`, and `teachSkill`.
 Sam handles goddess nights when needed, makes the rounds when anyone is under 35 trust, dates his partner once a week, walks in NG++ when short on staff, and
 does `samDefault` otherwise (`bartend | security | books | scout | rounds | lesson | statclass | trainStat | trainSkill | trainService | demo | walk | orgy | date | rest`), scouting
-instead while a house has under `scoutWhenShort` ladies and few affordable candidates. Houses are managed emptiest first. Event choices are random (seeded), except Contract Renewal (renew) and affordable walk recruits.
+instead while a house has under `scoutWhenShort` ladies and few affordable candidates.
+**Guild** (`guild: 'auto'`): registers once the home house has `guildAt` (4) ladies, takes the best gold-per-week offer the free ladies can finish in time (x `guildSafety`), keeps up to `guildContracts` (1) running with at most `guildLadies` (2) away (`guildPick`: `support` sends non-courtesans and low earners first, `fighters` the strongest), and sends Sam (`guildSam: 'auto'`) only when the ladies alone wouldn't finish. Rows add `guild` (contract gold), `grank` and `gaway`. `"policy": {"preset": "noGuild"}` turns it off. Contract numbers are a first pass: see `tools/lab/exp/guild.json`. Houses are managed emptiest first. Event choices are random (seeded), except Contract Renewal (renew) and affordable walk recruits.
 
-`"policy": {"preset": "legacy"}` restores the fixed pre-2026-11-16 player (10 ladies per house, no security, no second maid, no bed or class upkeep) for comparing with old notes.
+`"policy": {"preset": "legacy"}` restores the fixed pre-2026-11-16 player (10 ladies per house, no security, no second maid, no bed or class upkeep, no guild) for comparing with old notes.
 
 Because every variant uses the same player, results are comparisons, not absolute truths: a choice the bot never makes
 (feasts, decor, cuts, tutoring, dates with others) won't show its value unless a spec turns it on.

@@ -7,7 +7,8 @@
     "  gold [min,max] (x cycleMul(gold.perCycle)), merit, fame (adventurer/mercenary client draw), pop (popularity for each lady on completion), tags (which party scenes fit: camp, road, delve, fight, ball, bloom), item (samUps key Sam earns the first time; null for none), desc.",
     "power: a member's weekly progress = (weighted stat average) x energy factor x fx 'guild' (traits) x perks; Sam's = weighted Sam stats x his focus effort. safety: injury chance x (1 - power/safety.div), x fx 'guildSafe'.",
     "perks: Sam's guild perks (S.guildPerks, kept for good across cycles). need: {contract: id or [ids], sam: n} = Sam went on that many completed contracts of those kinds; or {rank: n}. fx is read by code (hasGuildPerk).",
-    "scenes: chance per contract per week that its party has a scene (at most scenes.maxPerWeek overall). trust/lewd gates: duo (Sam + her), trio (Sam + two), yuri (two ladies, bloom tag), pair (two ladies, no Sam)."
+    "scenes: chance per contract per week that its party has a scene (at most scenes.maxPerWeek overall). trust/lewd gates: duo (Sam + her), trio (Sam + two), yuri (two ladies, bloom tag), pair (two ladies, no Sam).",
+    "outfit: the guild-only outfit (wardrobe.json → guild) the first clear of a contract puts in the house wardrobe. loot: chance on every completion that the client adds a shop outfit the house doesn't own yet."
   ],
   "levels": [
     {"id":"copper","label":"Copper","merit":0},
@@ -47,7 +48,8 @@
       "pop": 1,
       "tags": ["road","camp"],
       "item": "cloak",
-      "desc": "Ride with a merchant's wagons to the river towns and back. Bandits are rare, mud is not."
+      "desc": "Ride with a merchant's wagons to the river towns and back. Bandits are rare, mud is not.",
+      "outfit": "g_caravan"
     },
     "porter": {
       "label": "Dungeon Porter",
@@ -69,7 +71,8 @@
       "pop": 0,
       "tags": ["delve"],
       "item": "boots",
-      "desc": "Carry a delving party's packs, lamps and loot through the upper halls of the Barrow. Heavy, dull, and well paid for both."
+      "desc": "Carry a delving party's packs, lamps and loot through the upper halls of the Barrow. Heavy, dull, and well paid for both.",
+      "outfit": null
     },
     "herbs": {
       "label": "Fenwood Herb Run",
@@ -91,7 +94,8 @@
       "pop": 0,
       "tags": ["camp","bloom"],
       "item": "tonic",
-      "desc": "Gather moonmoss and lustbloom for the apothecaries. The bloom's pollen is the reason the pay is good and the gloves are thick."
+      "desc": "Gather moonmoss and lustbloom for the apothecaries. The bloom's pollen is the reason the pay is good and the gloves are thick.",
+      "outfit": "g_herbs"
     },
     "arena": {
       "label": "Arena Bout",
@@ -113,7 +117,8 @@
       "pop": 4,
       "tags": ["fight"],
       "item": "whistle",
-      "desc": "A pairs bout in the Hollowmere pit. Blunted steel, a loud crowd, and a purse for whoever is still standing."
+      "desc": "A pairs bout in the Hollowmere pit. Blunted steel, a loud crowd, and a purse for whoever is still standing.",
+      "outfit": "g_arena"
     },
     "ball": {
       "label": "Bodyguard at the Noble Ball",
@@ -135,7 +140,8 @@
       "pop": 3,
       "tags": ["ball"],
       "item": "kit",
-      "desc": "Guard a baron's daughter at her debut without looking like a guard. Courtesan manners count as much as a sword."
+      "desc": "Guard a baron's daughter at her debut without looking like a guard. Courtesan manners count as much as a sword.",
+      "outfit": "g_ball"
     },
     "courier": {
       "label": "Exchange Courier",
@@ -157,7 +163,8 @@
       "pop": 0,
       "tags": ["road","camp"],
       "item": "ledger",
-      "desc": "Carry sealed contracts for the Merchants' Exchange to the coast and bring back signatures. Rivals pay well to lose them on the way."
+      "desc": "Carry sealed contracts for the Merchants' Exchange to the coast and bring back signatures. Rivals pay well to lose them on the way.",
+      "outfit": "g_courier"
     },
     "hunt": {
       "label": "Monster Hunt",
@@ -179,7 +186,8 @@
       "pop": 2,
       "tags": ["camp","fight"],
       "item": "manual",
-      "desc": "A pack of something with too many teeth is taking sheep in the hill farms. Track it, corner it, end it."
+      "desc": "A pack of something with too many teeth is taking sheep in the hill farms. Track it, corner it, end it.",
+      "outfit": "g_hunt"
     },
     "delve": {
       "label": "Deep Delve",
@@ -201,7 +209,8 @@
       "pop": 3,
       "tags": ["delve","camp","fight"],
       "item": "chalkboard",
-      "desc": "Map the drowned lower halls of the Barrow for the guild's surveyors. Weeks underground, and the maps are worth more than the gold."
+      "desc": "Map the drowned lower halls of the Barrow for the guild's surveyors. Weeks underground, and the maps are worth more than the gold.",
+      "outfit": "g_delve"
     },
     "wyvern": {
       "label": "Wyvern Cull",
@@ -223,7 +232,8 @@
       "pop": 5,
       "tags": ["camp","fight"],
       "item": null,
-      "desc": "A nesting pair on the Greyspine crags. The crown pays by the head, and the bards pay by the story."
+      "desc": "A nesting pair on the Greyspine crags. The crown pays by the head, and the bards pay by the story.",
+      "outfit": "g_wyvern"
     }
   },
   "perks": {
@@ -249,5 +259,6 @@
       "desc": "One more contract can run at once, and every contract pays 10% more gold."
     },
     "captain": {"label":"Party Captain","need":{"rank":4},"desc":"Ladies on contracts gain 50% more trust and stat practice from them."}
-  }
+  },
+  "loot": {"chance":0.3}
 }

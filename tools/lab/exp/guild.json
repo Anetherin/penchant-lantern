@@ -1,0 +1,14 @@
+{
+  "desc": "Adventurers' Guild: a full first cycle at the Lantern without the guild, with the default guild player, with Sam always going, with fighters picked by power, and with up to 2 contracts and 3 ladies away. First pass: contract gold/work/risk in data/guild/base.json are untuned.",
+  "scenario": "campaign",
+  "weeks": 104,
+  "runs": 10,
+  "variants": [
+    {"name": "no guild", "policy": {"guild": false}},
+    {"name": "guild (default)", "policy": {}},
+    {"name": "Sam always goes", "policy": {"guildSam": true}},
+    {"name": "fighters", "policy": {"guildPick": "fighters"}},
+    {"name": "busy guild", "policy": {"guildContracts": 2, "guildLadies": 3}}
+  ],
+  "breakdown": ["job"]
+}
