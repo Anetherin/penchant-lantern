@@ -27,12 +27,12 @@ This file is for big ideas when I have a fresh batch of Claude usage.
 - Check the tone and length of various stories, arcs, and bonds.
 
 
-## Week structure (decided)
+## Week structure (done 2026-11-17, branch feat/week-nights-focus)
 - The week stays the turn. A turn is **a rest day, then six work nights**: Sam's actions (dates, private time, walks, scouting, rounds, guild visits) happen on the rest day, when the ladies are off too; his work moves to a weekly **focus** that runs during the six nights. Say so explicitly in the UI ("3 actions left today", "End the week", report = the six nights).
 - **Clients per night instead of per week.** Each night a courtesan takes up to her nightly cap (1-3 from Stamina; can go higher as stat caps rise in NG+, plus trait/race bonuses), limited by energy. After each night a small rest calculation (bed quality, how hard the night was) gives back some energy, so a strong lady can sustain her cap and a tired one tapers off. The full sleep recovery stays at week's end. Replaces the flat `capc = 10` in `simHouse`; an unhandled pushy client then costs exactly one night's clients (replaces `props.nightCap`). Rebalance with the lab afterward: every income number shifts.
-- Clean up wording that says "night" for something weekly (`goodNight`/`badNight` → week) and anything that says "day" for the whole turn.
+- Still open: internal keys that say "night" for something weekly (`goodNight`/`badNight`), and a pass over flavor text that calls the whole turn a day.
 
-## Sam's weekly focus (decided)
+## Sam's weekly focus (done 2026-11-17; Guild focus waits for the guild pass)
 Sam picks one focus per week (costs a share of his weekly energy, so a hard week leaves less for the rest day). He never unlocks a second one. Moving work out of actions: bartending, watch, books, skill class and stat class stop being action buttons; rounds and scouting stay rest-day actions. Demonstration is undecided (rest-day action or cut).
 - **Office:** cuts upkeep (the current books), no direct income. Works as a madame: pairs courtesans with clients and attendants with the right courtesans (a share of a madame's effect normally, most of it when the house's madame is off or missing).
 - **Floor:** income if the house has a bar (bartending), keeps waiting clients happy, small mood and trust boost for the ladies.
