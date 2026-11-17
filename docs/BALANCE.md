@@ -174,3 +174,10 @@ Round 4g (`test/balance-round-4g`): 8 PASS · 5 WARN · 1 FAIL. Floor now level 
 - **`demons-top-courtesans`** now ranks per-lady earnings in `races-mixed` (still soft).
 - **NG+ `loverDebt` 1,700 → 3,700** per carried lover: more lovers had started to clear faster and earn more.
 - **Open:** NG++ at the Shrine read 86 weeks with 70% game overs (was 61 / 30%) though nothing in 4g touches it (flat 50k debt, no bar so auto-focus never picks Floor). Likely seed noise at 10 runs; rerun `ngpp --runs 24` before acting.
+
+### Round 4i (2026-11-17, from the round-4h run; not yet measured)
+Round 4h (`test/balance-round-4h`): `loverDebt` 3,700 overshot: NG+ ratio 1.54, default run 83% wins, and 5 lovers were still fastest (34 wks vs 1 lover 41; +890/wk pays back the extra 18.5k in ~20 weeks), so a flat per-lover fee only hurt 1-3 lover runs. `ngplus-carry` CIs were ±11-17 weeks at 12 seeds (3 lovers slower than 2 is noise). NG++ at 24 seeds: 69 weeks, 40% game over (4g's 86/70% was mostly noise; 4f read 61/30%); without the guild it always fails. `demons-top-courtesans` passes in `races-mixed` (#1 mid and late).
+- **NG+ `loverDebt` 3,700 → 2,000.**
+- **Lovers raise the profit-cut baseline:** `wardrobe.cut.perLover` 0.02: each lover carried into a cycle adds 2% to paid ladies' baseline cut for that cycle (`S.ngLovers`, set at rebirth; 0 in NG++; on top of the `maxBase` cap). Shown on the NG+ summary. This scales with the house's earnings, so it bites harder the more a lover-heavy run earns.
+- `ngplus-carry` and `ngpp` now default to 24 runs.
+- **Open:** is ~40% game over in NG++ (and the guild being required there) the intended difficulty?

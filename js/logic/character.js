@@ -188,7 +188,8 @@ const houseUnderStock = () => (typeof S!=='undefined' && S && S.houseUnder) || [
 const ownsOutfit = (w,k) => (w.owned||[]).includes(k) || houseStock().includes(k);
 const ownsUnder = (w,k) => (w.ownedUnder||[]).includes(k) || houseUnderStock().includes(k);
 const ownedOutfits = w => Array.from(new Set([...(w.owned||[]), ...houseStock()])).filter(k=>WARDROBE[k]);
-const baselineCut = () => { const C = BAL.wardrobe.cut; return Math.min(C.maxBase, C.base + Math.max(0, ((typeof S!=='undefined'&&S&&S.cycle)||1) - 1) * C.perCycle); };
+// Paid ladies' baseline profit cut: base + perCycle per NG+ cycle (capped at maxBase), plus perLover for each lover carried into this cycle (S.ngLovers, set at rebirth).
+const baselineCut = () => { const C = BAL.wardrobe.cut, on = typeof S!=='undefined' && S; return Math.min(C.maxBase, C.base + Math.max(0, ((on&&S.cycle)||1) - 1) * C.perCycle) + ((on&&S.ngLovers)||0) * (C.perLover ?? 0); };
 const defaultCut = w => isFree(w) ? 0 : baselineCut();
 // cutFloor (named data): a lady who insists on her share. She keeps at least baselineCut() + cutFloor (so it rises with the cycle's baseline) until she's Devoted.
 const cutFloor = w => { const f = w && w.key && NAMED[w.key] ? NAMED[w.key].cutFloor : 0; return f && !has(w,'Devoted') ? Math.min(0.9, baselineCut() + f) : 0; };
