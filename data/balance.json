@@ -57,7 +57,7 @@
     "nights: the week runs night by night (simHouse). Each night an escort takes up to base + Stamina(0-100)/perStamina clients (+ nightCap fx; the fraction is rolled each night), between min and max, while her energy lasts; then she sleeps (rest.night).",
     "focus: Sam's weekly focus (js/logic/focus.js), worked during the six nights at his house (every house with samReach). cost = energy paid at the week's end (less workEnergy upgrades); with less energy left it runs at energy/cost. xp = Sam XP. rest (Off duty): restEnergy back instead. office: upkeep cut (booksCut) and madame matching with Sam's madame factor (0.5 + (Business + Wits x0.4 + Charm x0.6)/200) x share without a working madame, x withMadame on top of hers. floor: at houses with a bar, (base + Charm x perCharm + 0-25) x nights gold; sat = client satisfaction, mood/trust = for the ladies near him. watch: security (20 + Strength) x mult, trust for the ladies near him, and his step-in bonus. classes: skill or stat class at mult x one class.",
     "incidents: smaller trouble on the work nights (simHouse, after the nights): odds per night = base + perGuest x guests a night (at most max), x the house's trouble, rowdiness, bartenders, incense and its class (rowdyTier). Each is a weighted type; security handles it with chance secPow / (secPow + diff x handle.div/40) (Guard Post x handle.guard; Sam's Watch is in secPow), clamped to handle.min..max. Unhandled: gold [min,max] in damages (added to upkeep), tidy (tidiness lost), sat (client satisfaction, feeds popularity), rep (house popularity lost), prestige, mood / trust (one lady), lostClient (a client's fee lost). Wording: events.json → nightIncidents.",
-    "walk.partnerOdds: chance a walk finds a partner, by how many Sam has already found on walks this cycle (outside NG++): each one is about twice as hard as the last (soft cap); partnerCycleMax (5) is the hard cap. Every walk without one raises the chance by partnerPity x that partner's odds (up to partnerPityMax walks). Expected walks: ~2, ~3, ~6, ~12, ~20."
+    "walk.partnerOdds: chance a walk finds a partner, by how many Sam has already found on walks this cycle ([1st, 2nd, 3rd]); partnerCycleMax (3) is the hard cap, so 15 partners spread over five cycles and there is always someone left to pick. NG++: always ngppPartnerOdds (no cap)."
   ],
   "lewd": {
     "_note": "Lewdness diminishing returns (lewdUp). Each source has a cap: full gain below cap-band, half at the cap, none past cap+band. Services: cap = service th + capOver. softCap: default cap for sources without one; past it only daring dates, traits and stories push her further.",
@@ -1176,7 +1176,7 @@
   "walk": {
     "energy": 15,
     "mainGoddessChance": 0.75,
-    "partnerCycleMax": 5,
+    "partnerCycleMax": 3,
     "partnerHalve": true,
     "weights": {
       "partner": 1.5,
@@ -1192,7 +1192,8 @@
     },
     "ngppWeights": {"partner":2.4,"partnerPity":0.5,"partnerPityMax":6,"guest":2.5,"goddessBound":0.8,"casual":4.5,"rest":1.6,"coin":0.7,"flavor":3.2},
     "casual": {"tech":3,"charm":1,"extraEnergy":8,"passEnergy":4,"recruitTech":15,"paidChance":0.25,"paidBase":10,"paidPerTech":0.3,"paidMax":45},
-    "partnerOdds": [0.6,0.3,0.15,0.08,0.045]
+    "partnerOdds": [0.3,0.1,0.05],
+    "ngppPartnerOdds": 0.3
   },
   "goddess": {
     "fullReborn": 4,

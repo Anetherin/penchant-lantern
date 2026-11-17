@@ -51,9 +51,9 @@ function samWalk(){
   const g = G();
   const opts = [];
   if(exLovers.length) opts.push({cat:'exlover', w:(W.partner ?? 1.5) + 1.2});
-  // partnerOdds: the chance this walk finds one, by how many were found this cycle (each about twice as hard as the last), plus pity
-  const PO = !ngpp && Array.isArray(B.partnerOdds) && B.partnerOdds.length ? B.partnerOdds[Math.min(found, B.partnerOdds.length - 1)] : null;
-  const partnerP = PO != null ? Math.min(0.9, PO * (1 + (W.partnerPity ?? 0.25) * pity)) : null;
+  // partnerOdds: the chance this walk finds one, by how many were found this cycle (30% / 10% / 5%, then the cap); NG++: always ngppPartnerOdds
+  const PO = ngpp ? B.ngppPartnerOdds : Array.isArray(B.partnerOdds) && B.partnerOdds.length ? B.partnerOdds[Math.min(found, B.partnerOdds.length - 1)] : null;
+  const partnerP = PO != null ? Math.min(0.9, PO) : null;
   if(!canPartner && guests.length) opts.push({cat:'guest', w:W.guest ?? 3.5});
   if(!g.left) opts.push({cat:'goddess', w: g.bound ? (W.goddessBound ?? 0.8) : (W.goddess ?? 2.2)});
   if((WALKS.casual || []).length) opts.push({cat:'casual', w:W.casual ?? 3.2});
