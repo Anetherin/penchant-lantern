@@ -38,12 +38,12 @@ const optionalHouses = () => S.houses.filter(h=>h.id!==homeHouse() && keepable(h
 const keptHouse = h => h.id===homeHouse() || (keepable(h) && !(NGS && NGS.keep && NGS.keep[h.id]===false));
 const keptWhy = h => h.id===homeHouse() ? 'home' : (S.starters||[]).includes(h.id) ? 'starter' : 'story complete';
 const NG_BOONS = {
-  purse:   {label:'Deep Pockets', desc:'Start with 2,500g extra in hand.'},
+  purse:   {label:'Deep Pockets', desc:'Start every cycle with 2,500g extra in hand.'},
   ap:      {label:'Seasoned Owner', desc:'+1 action every week, for good.'},
-  renown:  {label:'A Name in Hollowmere', desc:'+15 renown, and the new house opens with +10 popularity.'},
-  recruit: {label:'Friends at the Guild', desc:'3 extra candidates now; signing bonuses are 25% cheaper from now on.'},
-  grace:   {label:'Lenient Lender', desc:'The new debt is 15% smaller.'},
-  devotion:{label:'Fated Meeting', desc:'Your new partner starts with +15 trust and +10 lewdness.'},
+  renown:  {label:'A Name in Hollowmere', desc:'Every cycle starts with +15 renown, and its new house opens with +10 popularity.'},
+  recruit: {label:'Friends at the Guild', desc:'3 extra, better candidates at the start of every cycle; signing bonuses are 25% cheaper for good.'},
+  grace:   {label:'Lenient Lender', desc:'Every new debt is 10% smaller, for good.'},
+  devotion:{label:'Fated Meeting', desc:'Every new partner, this cycle and after, starts with +15 trust and +10 lewdness.'},
   loyal:   {label:'Old Loyalties', desc:'Ladies who come back from a past life ask only half the usual raise for each life.'},
   memory:  {label:'Vivid Memories', desc:'Ladies who carry over keep 15% more of the skills and stats they built (still at most 65%).'},
   clone:   {label:'Shadow Clone', desc:'Sam learned to be in two places at once. His bonuses, watch, books, classes, and late-night visits reach every house, not just where he sleeps.'}
@@ -92,12 +92,12 @@ function ngNumbers(boon, house, opts){
     const imprRaw = ngppCyc >= 2 ? ((shrineNow && shrineNow.spent) || (savedShrine && savedShrine.spent) || 0) : 0;
     const extra = Math.round(imprRaw * (B.improveShare ?? 1));
     let debt = base + extra;
-    if(boon==='grace') debt *= 0.85;
+    if(boon==='grace' || hasBoon('grace')) debt *= 0.9;
     if(hasChallengePerk('ahead_of_time')) debt *= 0.9;
     if(cv && cv.debt) debt *= cv.debt;
     if(ch && ch.debt) debt *= ch.debt;
     debt = Math.round(debt);
-    const purse = Math.round((B.purse + (boon==='purse' ? 2500 : 0)) * (ch && ch.purse!==undefined ? ch.purse : 1));
+    const purse = Math.round((B.purse + (boon==='purse' || hasBoon('purse') ? 2500 : 0)) * (ch && ch.purse!==undefined ? ch.purse : 1));
     return {ngpp:true, ngppCycle:ngppCyc, houseKey:hk, gross:debt, debt, house:0, base:Math.round(base), impr:Math.round(imprRaw), extra, keptExtra:0, loverExtra:0, keptCount:0, loverCount:0, scaleMul:1, sold:[], sale:0, purse, cycle:cyc};
   }
   const og = homeHouse(), kept = S.houses.filter(keptHouse), impr = kept.reduce((a,h)=>a + improvementsValue(h), 0);
@@ -109,13 +109,13 @@ function ngNumbers(boon, house, opts){
   const nh = house && HOUSES[house] ? HOUSES[house].debt * (B.newHouseShare ?? 1) * cycMul : 0;
   const scaleMul = 1 + keptOpt.length * (B.perKeptHouse ?? 0) + loverCount * (B.perLover ?? 0.22);
   let debt = (base + extra + keptExtra + loverExtra + nh) * scaleMul;
-  if(boon==='grace') debt *= 0.85;
+  if(boon==='grace' || hasBoon('grace')) debt *= 0.9;
   if(hasChallengePerk('ahead_of_time')) debt *= 0.9;
   if(cv && cv.debt) debt *= cv.debt;
   if(ch && ch.debt) debt *= ch.debt;
   debt = Math.round(debt);
   const sold = S.houses.filter(h=>!keptHouse(h)), sale = Math.round(sold.reduce((a,h)=>a + HOUSES[h.id].cost*B.saleValue, 0));   // surrendered houses reduce the debt; no gold changes hands
-  const purse = Math.round((B.purse + (boon==='purse' ? 2500 : 0)) * (ch && ch.purse!==undefined ? ch.purse : 1));   // savings stay behind
+  const purse = Math.round((B.purse + (boon==='purse' || hasBoon('purse') ? 2500 : 0)) * (ch && ch.purse!==undefined ? ch.purse : 1));   // savings stay behind
   return {ngpp:false, gross:debt, debt:Math.max(0, debt - sale), house:Math.round(nh), base:Math.round(base), impr, extra:Math.round(extra), keptExtra:Math.round(keptExtra), loverExtra:Math.round(loverExtra), keptCount:keptOpt.length, loverCount, scaleMul, sold, sale, purse, cycle:cyc};
 }
 // NG+ save: a trimmed copy of a won game holding only what New Game+ can carry (Devoted lovers, old friends, alumni, the
@@ -405,12 +405,12 @@ function ngBegin(){
     samPasts().forEach(k=>{ if(PASTS[k]) PASTS[k].fx(S.sam); });
     const vessel = createBoundVessel(C.vesselForm || unboundVesselForms()[0] || Object.keys(GOD_FORMS)[0], hk);
     S.workers = [vessel];
-    if(C.boon==='renown'){ H(hk).rep = clamp(H(hk).rep + 10); S.rep = clamp(S.rep + 15); } else S.rep = HDn.rep;
+    if(hasBoon('renown')){ H(hk).rep = clamp(H(hk).rep + 10); S.rep = clamp(S.rep + 15); } else S.rep = HDn.rep;
     S.gold = N.purse;
     S.debt = Object.assign({total:N.debt, remaining:N.debt, carry:0, strikes:0, start:S.week-1}, ngPlan(N.cycle));
     S.won = false; S.over = false; S.lastReport = null; EVQ = []; delete S.ngSeed;
     S.flags.partnerCD = 3; S.flags.walkPartners = 0; S.flags.walkNoPartner = 0; S.ap = apMax(); S.sam.energy = samMaxEnergy();
-    refreshCandidates(C.boon==='recruit' ? 3 : 0, C.boon==='recruit' ? 1.15 : 1);
+    refreshCandidates(hasBoon('recruit') ? 3 : 0, hasBoon('recruit') ? 1.15 : 1);
     inviteFriend(true); checkUnlocks(true);
     addLog(`NG++${N.ngppCycle} (Cycle ${S.cycle}): Sam wakes at ${HDn.name} with an empty vessel and a loan of ${fmt(N.debt)}.`);
     queueNgppIntros(shrine, vessel);
@@ -468,12 +468,12 @@ function ngBegin(){
   if(C.past && C.past!=='none' && PASTS[C.past] && !hasPast(C.past)){ S.pasts = [...samPasts(), C.past]; PASTS[C.past].fx(S.sam); }
   if(C.partner && C.partner!=='none'){
     const p = rebirthNamed(makeNamed(C.partner, true)); p.house = og;
-    if(C.boon==='devotion'){ p.trust = clamp(p.trust+15); p.lewd = clamp(p.lewd+10); }
+    if(hasBoon('devotion')){ p.trust = clamp(p.trust+15); p.lewd = clamp(p.lewd+10); }
     S.workers.push(p); assignStart(p, ['courtesan','bartender','dancer','bath'].includes(NAMED[C.partner].job) ? NAMED[C.partner].job : 'courtesan');
     S.partner = C.partner;
   }
   S.partners = Array.from(new Set([...(S.partners||[]).filter(k=>S.workers.some(w=>w.key===k)), ...(C.partner && C.partner!=='none' ? [C.partner] : [])]));
-  const h0 = H(og); if(C.boon==='renown') h0.rep = clamp(h0.rep + 10);
+  const h0 = H(og); if(hasBoon('renown')) h0.rep = clamp(h0.rep + 10);
   // Sam, money, debt
   const samOld = Object.fromEntries(Object.keys(BAL.sam.base).map(k=>[k, S.sam[k]||0]));
   if(B.samReset.stats){   // base + perLevel x (lvl-1), then every past life's bonuses again
@@ -484,12 +484,12 @@ function ngBegin(){
   if(B.samReset.stats) Object.keys(samOld).forEach(k=>{ S.sam[k] = clamp(Math.round(S.sam[k] + (B.carry||0)*Math.max(0, samOld[k] - S.sam[k])), 0, samCap()); });   // he keeps ngplus.carry of what he'd trained
   // Sam's own things (balance.json → samUps): the ones without carry stay behind; he sleeps at his home house again
   S.samUps = Object.fromEntries(Object.entries(S.samUps||{}).filter(([k,v])=>v && (BAL.samUps[k]||{}).carry)); S.samHome = og;
-  if(C.boon==='renown') S.rep = clamp(S.rep + 15);
+  if(hasBoon('renown')) S.rep = clamp(S.rep + 15);
   S.gold = N.purse;
   S.debt = Object.assign({total:N.debt, remaining:N.debt, carry:0, strikes:0, start:S.week-1}, ngPlan(N.cycle));
   S.won = false; S.over = false; S.lastReport = null; EVQ = []; delete S.ngSeed;
   S.flags.partnerCD = 3; S.flags.walkPartners = 0; S.flags.walkNoPartner = 0; S.ap = apMax(); S.sam.energy = samMaxEnergy();
-  refreshCandidates(C.boon==='recruit' ? 3 : 0, C.boon==='recruit' ? 1.15 : 1);
+  refreshCandidates(hasBoon('recruit') ? 3 : 0, hasBoon('recruit') ? 1.15 : 1);
   inviteFriend(true);   // the first week already shows an old friend
   checkUnlocks(true);
   addLog(`New Game+ (cycle ${S.cycle}): Sam keeps ${HDo.name} and takes on a new debt of ${fmt(N.debt)}.`);

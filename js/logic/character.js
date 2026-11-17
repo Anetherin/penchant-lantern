@@ -326,7 +326,7 @@ function wageFor(w){
   // balance.json → wages.formula: linear terms, then x (1 + curve x (avg of stats/skill/popularity / 100)^2) so good ladies ask a lot more
   const F = (BAL.wages||{}).formula || {}, lvl = (st + tc + (w.popularity||0)) / 300;
   const base = (F.base ?? 8) + st*(F.stat ?? 0.3) + tc*(F.tech ?? 0.2) + (w.popularity||0)*(F.pop ?? 0.3) + (has(w,'Ambitious')?8:0) + (has(w,'Greedy')?6:0);
-  return Math.round(base * (1 + (F.curve ?? 0) * lvl * lvl) * ((sd && sd.wage) ?? raceOf(w).wage ?? 1) * rb);
+  return Math.round(base * (1 + (F.curve ?? 0) * lvl * lvl) * ((sd && sd.wage) ?? raceOf(w).wage ?? 1) * rb * fxMul(w,'wage'));
 }
 function signingFor(w){
   if(w && w.wasLover) return 0;
@@ -399,7 +399,7 @@ function ensureWorker(w){
   // "Open to propositions": 'on' | 'ask' | 'off' (old saves stored true/false). Must-offer jobs ignore it.
   delete w.offDuty;   // old per-lady propositions switch (removed: staff accept when they're willing)
   if(w.samples===undefined) w.samples = false;
-  delete w.madameFocus;   // the madame has no focus options any more (she matches clients and coaches courtesans)
+  delete w.madameFocus;   // the madame has no focus options any more (she matches clients)
   if(!w.body) w.body = rollBody(w.race);
   if(w.race==='angel' && w.sub==='lantern') w.lantern = true;
   w.counts = w.counts || {};

@@ -96,7 +96,7 @@ function samDate(id, k){
   if(S.gold<cost) return toast('Not enough gold.');
   if(!dateListed(w, d)) return toast(d.needsUp ? `${houseOf(w).name} needs a ${(UPGRADES[d.needsUp]||{label:d.needsUp}).label}.` : `${w.name} and Sam aren't there yet.`);
   if(!useAP(samDateCost(d.energy))) return; S.gold -= cost;
-  const m = pmAny(w,d.like), tg = gainTrust(w, d.trust * (has(w,'Romantic')?1.4:1) * (d.trustMult||1) * m);
+  const m = pmAny(w,d.like), tg = gainTrust(w, d.trust * (hasPast('support') ? 1.2 : 1) * (has(w,'Romantic')?1.4:1) * (d.trustMult||1) * m);
   moodAdd(w, d.mood*m - (m<1?3:0)); w.dates++; w._samTime = (w._samTime||0) + 1;   // a date counts as time with Sam (lovers' neglect)
   const lg = d.lewd ? lewdUp(w, d.lewd * (m>1 ? 1.25 : m<1 ? 0.6 : 1), d.lewdCap) : 0;
   if(d.lust){ w.lust += d.lust * fxMul(w,'lustBuild'); fitLust(w); }

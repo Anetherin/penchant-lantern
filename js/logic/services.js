@@ -113,10 +113,20 @@ function hlText(w, e){
 }
 // One service for one client, from her side: mood, lust (per service, technique, favorites), demon feeding, expression.
 // o = {tech, reluct, pr, h}. Returns {note, expr, frustrated, fed, drained}.
+// How good it is for HER (her lust drop, whether she's left frustrated). Normally that is his technique. A service she leads
+// (services.json selfLed: cowgirl) goes at her pace, so her own skill at it sets a floor; one he leads (techLed: doggy) swings
+// harder on his technique, in both directions.
+function actTech(w, a, t){
+  let tech = t ?? 0.85;
+  if(a.techLed) tech = Math.max(0.1, 0.85 + (tech - 0.85) * a.techLed);
+  if(a.selfLed) tech = Math.max(tech, 0.6 + 0.6 * s100(actSkill(w, a.id))/100);
+  return tech;
+}
 function serveAct(w, a, o){
   const B = BAL.lust, act = a.id, pr = o.pr, fav = isFav(w,act), dis = isDislike(w,act), reck = restless(w), eager = w.lust >= LUST_EAGER;
   const expr = exprFor(w, act, o.reluct);
   let frustrated = false, fed = 0, drained = false;
+  const tech = actTech(w, a, o.tech);
   if(o.reluct){ moodAdd(w, -2); pr.reluct = (pr.reluct||0)+1; }
   if(fav){ moodAdd(w, 1.5); pr.favN = (pr.favN||0)+1; }
   if(dis){ moodAdd(w, -2.5); pr.disN = (pr.disN||0)+1; }
@@ -125,8 +135,8 @@ function serveAct(w, a, o){
   else if(a.lust >= 0){   // giving, kissing, massages: with a client it's work, not foreplay. Only an insatiable lady (svcLustBuild fx) gets worked up by it.
     if(fxHas(w,'svcLustBuild')){ w.lust += a.lust * (0.4 + w.lewd/100) * (fav?1.5:1) * (dis?0.6:1) * fxMul(w,'lustBuild'); fitLust(w); }
   } else {
-    const k = (o.tech ?? 0.85) * (fav?1.5:1) * (dis?0.6:1) * fxSub(w,'actQuality',act);
-    frustrated = !!a.finish && (o.tech ?? 0.85) * (w.lust/60) < SVC.frustrateAt;
+    const k = tech * (fav?1.5:1) * (dis?0.6:1) * fxSub(w,'actQuality',act);
+    frustrated = !!a.finish && tech * (w.lust/60) < SVC.frustrateAt;
     if(frustrated){ w.lust += SVC.frustrateLust; fitLust(w); moodAdd(w, -1); pr.frustN = (pr.frustN||0)+1; }
     else spendLust(w, -a.lust * k);
   }

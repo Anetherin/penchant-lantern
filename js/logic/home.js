@@ -26,7 +26,8 @@ function buySamUp(k){
   S.gold -= u.cost; S.samUps = S.samUps || {}; S.samUps[k] = true;
   toast(`Bought: ${u.label}`); save(); render();
 }
-const feastCost = t => Math.round(t.cost * cycleMul(BAL.feast.perCycle));
+const feastPast = () => hasPast('planner') ? 1.3 : 1;   // the event planner's feasts cost less and land better
+const feastCost = t => Math.round(t.cost * cycleMul(BAL.feast.perCycle) / feastPast());
 // One feast at house h (shared by the button and the weekly auto-feast). Returns {t, n, total, tr} or an error string.
 function feastAt(h, t){
   if(h.feastWk === S.week) return 'This house already feasted this week.';
@@ -36,7 +37,7 @@ function feastAt(h, t){
   if(S.gold < total) return 'Not enough gold.';
   S.gold -= total; h.feastWk = S.week;
   let tr = 0;
-  L.forEach(w=>{ tr += gainTrust(w, t.trust); moodAdd(w, t.mood); });
+  L.forEach(w=>{ tr += gainTrust(w, t.trust * feastPast()); moodAdd(w, t.mood * feastPast()); });
   addLog(`🍽️ ${t.label} at ${h.name} (${L.length} ladies, −${fmt(total)})`);
   return {t, n:L.length, total, tr};
 }
@@ -45,7 +46,7 @@ function throwFeast(tierId){
   const r = feastAt(h, t); if(typeof r === 'string') return toast(r);
   samLog(`Threw a ${t.label.toLowerCase()} at ${h.name}`);
   save(); render();
-  showResult(t.label, `${t.text.replace(/\{house\}/g, h.name)}\n\n${r.n} ladies · Trust ${tDelta(r.tr/r.n)} each · Mood +${t.mood} each · −${fmt(r.total)}`);
+  showResult(t.label, `${t.text.replace(/\{house\}/g, h.name)}\n\n${r.n} ladies · Trust ${tDelta(r.tr/r.n)} each · Mood +${Math.round(t.mood * feastPast())} each · −${fmt(r.total)}`);
 }
 // Auto-feast (h.autoFeast = tier id or null): thrown at the start of endWeek for every house that hasn't feasted yet.
 function setAutoFeast(id, tierId){ const h = H(id); if(!h) return; h.autoFeast = tierId || null; save(); render(); }

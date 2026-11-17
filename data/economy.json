@@ -9,7 +9,7 @@
     "beds / floorRest: staff beds and how much they rest. amenitySize: building space each amenity takes (0 = takes no room). decor: house décor tiers (h.decor, label / cost; demand and upkeep per tier are in balance.json → amenities.decor). drinks: the bar's drinks menu tiers (h.drinks 0-3, needs the Bar, no room; income and proposition multipliers and upkeep per tier are in balance.json → amenities.drinks). classroom + teacher job: one teacher per house teaches a skill (h.teachSkill, null = her best tech skill) to the others (balance.json → amenities.classroom). A job with \"race\" is only for that race. An upgrade with \"needs\" requires another upgrade built first. racePerks: shown on sheets (the effects live in data/races.json and code).",
     "roomMult / roomNames / roomTierCost: client room tiers. prices: house price levels (mult = fee multiplier, demand = client multiplier).",
     "houses: every house. cls = clientele weights [commoner, adventurer, merchant, noble]. rep = starting popularity (how well known the house is). prestige = starting class/prestige (0-100, how upscale it is: drives client class, expectations, and propositions vs refinements). npc = the named lady who comes with it (characters.json). setting = image backdrop. starter = pickable at the start; premium houses unlock with level / renown; ngplus = unlocks from cycle 2. damaged = sealed/damaged rooms that subtract from usable size until repaired. perk = {label, desc} displayed in UI; mechanical perk fields (repGain, propMult, bathMult, restMult, barMult, classFee, danceMult, popGain, feeMult, chapelMult, chapelPropCoin, chargeMult, skillGain, moodRest, buildDisc, incenseMult, trainMult) are read by logic.",
-    "pasts: Sam's past lives at the start; sam = his starting stat bonuses. Other past perks (cook's free dinners, massage training bonus) are in code.",
+    "pasts: Sam's past lives at the start; sam = his starting stat bonuses. Other past perks (books, bar income, recovery, training, feasts, trust from chats and dates, tidiness and class drift) are in code (hasPast).",
     "upgrades.mood (race houses): weekly mood bonus for ladies of that race working or living in the house.",
     "hauntRep (haunted houses): house popularity at which the haunting stops scaring clients off (demand ramps from 45% to 125% of normal by then; default 40).",
     "lodging: weekly room-and-board income from travelers, x(1 + popularity/50). sat: flat satisfaction bonus for every client (a welcoming house).",
@@ -995,24 +995,6 @@
         "again": "\"The gym rat, back again.\" She squeezes your bicep and pretends to be unimpressed. \"Still thin. Still strong. Still mine to watch.\""
       }
     },
-    "otaku": {
-      "label": "Isekai otaku",
-      "desc": "He has read this story a hundred times. Wits +10; Appraisal starts at Lv 2.",
-      "sam": {"appraisal":2,"appXP":60,"wits":10},
-      "goddess": {
-        "intro": "\"Don't look so smug. I know you've read this story a hundred times.\" {goddess} lies back on the lanterns. \"Truck, goddess, new world. You even know to ask about the stats. It's adorable. Don't skip my lines.\"",
-        "again": "\"Oh good, you remember being a genre expert.\" She laughs. \"Now you know exactly how many clichés you're living in. I'm one of them, and I'm quite pleased with myself.\""
-      }
-    },
-    "cook": {
-      "label": "Line cook",
-      "desc": "Staff meals and home cooking. Dinners are free; everyone +2 mood each week.",
-      "sam": {"charm":4},
-      "goddess": {
-        "intro": "\"Staff meals and midnight noodles for coworkers who never said thank you.\" {goddess} sniffs the air as if she can smell them. \"I did. Feed people here and see what happens.\"",
-        "again": "\"Your cooking again!\" She is already hovering over an invisible pot. \"I'll allow that one. Save me a bowl, would you?\""
-      }
-    },
     "massage": {
       "label": "Massage therapist",
       "desc": "Good hands, zero experience otherwise. Technique +15; training is more effective.",
@@ -1029,6 +1011,33 @@
       "goddess": {
         "intro": "\"Six years of cram school, drilling teenagers for exams they'd forget.\" {goddess} tilts her head. \"A teacher who never got a thank-you. Teach this house something, and I'll be thanking you myself.\"",
         "again": "\"Teacher again.\" She folds her hands behind her back, mock-prim. \"Tell me, professor, do I get extra credit for supervising you?\""
+      }
+    },
+    "planner": {
+      "label": "Event planner",
+      "desc": "He ran other people's parties for a living. Business +8, Charm +6; feasts cost 30% less and land 30% better.",
+      "sam": {"business":8,"charm":6},
+      "goddess": {
+        "intro": "\"You planned two hundred weddings and never once got asked to dance.\" {goddess} counts them off on her fingers. \"Seating charts, cake tastings, a clipboard. Here, the party is yours. Try enjoying one.\"",
+        "again": "\"The party planner. Good.\" She is already rearranging invisible place cards. \"Throw them a feast and put me at the head of the table. I won't come. Do it anyway.\""
+      }
+    },
+    "support": {
+      "label": "Customer support rep",
+      "desc": "Three years of listening to angry strangers until they calmed down. Charm +10; chats and dates build 20% more trust.",
+      "sam": {"charm":10},
+      "goddess": {
+        "intro": "\"Three years on a headset, saying 'I understand how frustrating that must be' and meaning it.\" {goddess} tilts her head. \"You listen. Do you know how rare that is in a man? The women here are going to notice.\"",
+        "again": "\"Oh, the listener again.\" She props her chin on her hand. \"Go on, then. Ask me how my day was. I want to see the face you make.\""
+      }
+    },
+    "concierge": {
+      "label": "Hotel night clerk",
+      "desc": "He kept a business hotel spotless on the graveyard shift. Wits +6, Business +6; his houses lose tidiness 20% slower and settle into their class 30% faster.",
+      "sam": {"wits":6,"business":6},
+      "goddess": {
+        "intro": "\"Night shift at a business hotel. Folded towels, squared pillows, a front desk nobody thanked.\" {goddess} runs a finger along a lantern, checking for dust. \"You'll keep a clean house. I like a clean house.\"",
+        "again": "\"The night clerk. You do love a tidy lobby.\" She yawns, very prettily. \"Keep the lamps trimmed. Someone has to notice these things, and I'm busy.\""
       }
     }
   },

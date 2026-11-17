@@ -38,7 +38,7 @@ function ngppSavedCost(id){
 }
 function newGame(cfg){
   const HD = HOUSES[cfg.house];
-  S = { v:37, cloudId: cfg.cloudId || ('run_' + Date.now().toString(36) + Math.random().toString(36).slice(2,6)), cloudName: (cfg.cloudName || '').trim() || HD.name, localSavedAt: Date.now(), cloudSyncedAt: 0, samHome:cfg.house, samUps:{}, starters:[cfg.house], houseWardrobe:[], houseUnder:[], closets:{}, week:1, gold:600, rep:HD.rep, ap:3, cur:cfg.house, home:cfg.house, cycle:1, ngppCycle:0, ngppHouses:{}, cycleVar:null, challenge:null, challengePerks:[], vessels:[], boons:[], past:cfg.past, pasts:[cfg.past], partner:cfg.partner, partners:[cfg.partner],
+  S = { v:38, cloudId: cfg.cloudId || ('run_' + Date.now().toString(36) + Math.random().toString(36).slice(2,6)), cloudName: (cfg.cloudName || '').trim() || HD.name, localSavedAt: Date.now(), cloudSyncedAt: 0, samHome:cfg.house, samUps:{}, starters:[cfg.house], houseWardrobe:[], houseUnder:[], closets:{}, week:1, gold:600, rep:HD.rep, ap:3, cur:cfg.house, home:cfg.house, cycle:1, ngppCycle:0, ngppHouses:{}, cycleVar:null, challenge:null, challengePerks:[], vessels:[], boons:[], past:cfg.past, pasts:[cfg.past], partner:cfg.partner, partners:[cfg.partner],
     houses:[makeHouse(cfg.house)],
     sam:{energy:100, ...BAL.sam.base, appraisal:1, appXP:0, first:true, lvl:1, xp:0},
     samWeek:{security:0, books:false, income:0, acts:[]},
@@ -69,7 +69,13 @@ function scaleWorker(w){
   STAT_KEYS.forEach(k=>{ if(w.stats) w.stats[k] = K(w.stats[k]); }); TECH_KEYS.forEach(k=>{ if(w.tech) w.tech[k] = K(w.tech[k]); });
   Object.values(w.acts||{}).forEach(a=>{ a.skill = K(a.skill); });
 }
+// Traits and NG+ perks renamed or merged in v38 (null = dropped). Applied to every lady in a save, whatever its version.
+const TRAIT_RENAME = {'Second Breath':'Tough', 'Breathtaking':'Striking', 'Crowd Magnet':'Memorable', 'Velvet Touch':'Bedroom Eyes', 'Lithe Dancer':'Supple',
+  'Silver Barker':'Town Crier', 'Fleet Step':'Effortless', 'Second Wind':'Wellspring', 'Born Teacher':'Born Madame'};
+const PAST_RENAME = {cook:'planner', otaku:'support'};
+function renameTraits(w){ if(w) ['traits','ngPerks'].forEach(k=>{ if(Array.isArray(w[k]) && w[k].some(t=>TRAIT_RENAME[t]!==undefined)) w[k] = Array.from(new Set(w[k].map(t=>TRAIT_RENAME[t]!==undefined ? TRAIT_RENAME[t] : t).filter(Boolean))); }); }
 function migrateWorker(w){
+  renameTraits(w);
   // old service ids (caress, manual, oral, paizuri) -> current ids, everywhere a lady keys something by service
   Object.entries(ACT_ALIAS).forEach(([o,n])=>{
     if(w.acts && w.acts[o]){ w.acts[n] = w.acts[n] || w.acts[o]; delete w.acts[o]; }
@@ -179,7 +185,10 @@ function migrate(s){
   if(ov < 37){   // house class / prestige
     s.houses.forEach(h=>{ if(h.prestige===undefined) h.prestige = ((HOUSES[h.id]||{}).prestige ?? 50); });
   }
-  s.v = 37; s.samUps = s.samUps || {}; s.houseWardrobe = s.houseWardrobe || []; s.houseUnder = s.houseUnder || []; s.home = s.home || (s.houses[0]||{}).id; s.samHome = s.samHome || s.home || (s.houses[0]||{}).id; s.cycle = s.cycle || 1; s.ngppCycle = s.ngppCycle || 0; s.ngppHouses = s.ngppHouses || {}; s.cycleVar = s.cycleVar || null; s.challenge = s.challenge || null; s.challengePerks = s.challengePerks || []; s.vessels = s.vessels || []; s.boons = s.boons || []; s.partners = s.partners || (s.partner ? [s.partner] : []);
+  if(ov < 38){ (s.workers||[]).concat(s.candidates||[], s.alumni||[], Object.values(s.lives||{}), Object.values(s.vessels||{})).forEach(renameTraits); }   // renamed / merged traits and NG+ perks
+  if(s.past && PAST_RENAME[s.past]) s.past = PAST_RENAME[s.past];
+  if(Array.isArray(s.pasts)) s.pasts = Array.from(new Set(s.pasts.map(k=>PAST_RENAME[k] || k)));
+  s.v = 38; s.samUps = s.samUps || {}; s.houseWardrobe = s.houseWardrobe || []; s.houseUnder = s.houseUnder || []; s.home = s.home || (s.houses[0]||{}).id; s.samHome = s.samHome || s.home || (s.houses[0]||{}).id; s.cycle = s.cycle || 1; s.ngppCycle = s.ngppCycle || 0; s.ngppHouses = s.ngppHouses || {}; s.cycleVar = s.cycleVar || null; s.challenge = s.challenge || null; s.challengePerks = s.challengePerks || []; s.vessels = s.vessels || []; s.boons = s.boons || []; s.partners = s.partners || (s.partner ? [s.partner] : []);
   s.regulars = s.regulars || []; s.bonds = s.bonds || {}; s.flags = Object.assign({partnerCD:3}, s.flags||{});
   s.sam.lvl = s.sam.lvl || 1; s.sam.xp = s.sam.xp || 0;
   s.houses.forEach(h=>{ if(h.tidy===undefined) h.tidy = BAL.tidy.start; if(h.prestige===undefined) h.prestige = ((HOUSES[h.id]||{}).prestige ?? 50); h.since = h.since || 1; h.story = h.story || {beat:0,wk:0}; h.bonus = h.bonus || {}; if(h.spent===undefined) h.spent = 0;

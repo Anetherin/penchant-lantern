@@ -3,6 +3,6 @@
   "scenario": "campaign",
   "weeks": 104,
   "runs": 12,
-  "each": { "start.past": ["salaryman", "bartender", "gym", "otaku", "cook", "massage", "tutor"] },
+  "each": { "start.past": ["salaryman", "bartender", "gym", "planner", "support", "concierge", "massage", "tutor"] },
   "breakdown": ["named"]
 }
