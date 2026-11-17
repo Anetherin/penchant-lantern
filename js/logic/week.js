@@ -701,18 +701,18 @@ function endWeek(){
     const RB = BAL.rest || {};   // balance.json → rest
     let rec = w.job==='rest' ? rest*(RB.week ?? 1.6) + (h.up.bath ? (RB.bath ?? 10) : 0) : rest*((RB.work ?? 0.75) + (RB.workFree ?? 0.25)*freeFrac);
     if(w.race==='spirit') rec = w.job==='rest' ? SVC.spirit.restRec : SVC.spirit.workRec;
-    // fatigue (balance.json → rest.fatigue): weeks of work without a break wear her down, so even a well-rested lady on a good bed
-    // recovers less each working week until she takes one. A week off clears it. Demons (they feed) and androids (they charge) don't tire this way.
-    const FT = RB.fatigue || {};
-    if(w.job==='rest' || ['demon','android'].includes(w.race)) w.fatigue = 0;
-    else if(FT.per){ const fm = Math.max(FT.min ?? 0.4, 1 - (w.fatigue||0)*FT.per); rec *= fm; pr.fatigue = Math.round((1-fm)*100);
-      w.fatigue = (w.fatigue||0) + ((FT.base ?? 0.1) + spent/mx) * fxMul(w,'fatigue'); }
+    // wear (balance.json → rest.wear): weeks of work without a break cost her Health, and a worn-down lady recovers less while working
+    // (fatigueCut). A week off heals it. Demons (they feed) and androids (they charge) don't wear down this way.
+    const WR = RB.wear || {};
+    if(w.job!=='rest' && !['demon','android'].includes(w.race) && WR.per){
+      const cut = fatigueCut(w); rec *= 1 - cut; pr.fatigue = Math.round(cut*100);
+      w.health = clamp(w.health - ((WR.base ?? 2) + (WR.perSpent ?? 8) * spent/mx) * fxMul(w,'fatigue')); }
     if(w.race==='demon') rec = w.job==='rest' ? rec*(SVC.demon.restMult ?? 0.7) : -SVC.demon.hunger;   // demons don't sleep and burn hunger every working week: they feed on desire instead (serveAct); on a week off, on men in town
     if(w.race==='demon' && w.job==='rest' && restless(w) && Math.random() < SVC.demon.restDrainChance){   // a restless one can overdo it, and the town notices
       S.rep = clamp(S.rep - SVC.demon.restRepDrain); pr.drains = (pr.drains||0)+1; (pr.notes = pr.notes||[]).push(flavor('rest_demon_drain', w));
       log(`😈 ${w.name} fed a little too hard on her week off. Talk around town is not kind (reputation −${SVC.demon.restRepDrain}).`); }
     const e0 = w.energy;
-    if(w.race==='android') rec = w.job==='rest' ? Math.max(rec, maxEnergy(w) - w.energy) : Math.max(rec, pr.e0 - w.energy);   // androids plug in: a week off charges to full, a working week tops up what she used (both for a fee)
+    if(w.race==='android') rec = Math.max(rec, maxEnergy(w) - w.energy);   // androids plug in every night and charge to full (for a fee)
     pr.eWork = Math.round(pr.e0 - e0); w.energy += rec; pr.eRec = Math.round(w.energy - e0); pr.slept = w._bed===FLOOR_REST ? 'floor' : w.race==='spirit' ? 'spirit' : w.race==='android' ? 'charging' : w.race==='demon' ? 'none' : BEDS[h.beds||0].label;
     if(w.race==='android'){ const got = Math.max(0, Math.min(w.energy, energyCap(w)) - e0), A = SVC.android;
       if(got > 0){ const fee = Math.round((A.fee + A.perEnergy*got) * (h.up.charger ? 1 - A.chargerDiscount : 1) * housePerkVal(h, 'chargeMult', 1)); S.gold -= fee; R.recharge += fee; pr.recharge = fee; } }
@@ -722,9 +722,10 @@ function endWeek(){
     if(pr.eagerN) why('was in the mood for her clients', true);
     if(pr.disN) why('had to do things she dislikes', false);
     if(pr.reluct) why('did a few things as a favor', false);
-    if(w.job==='rest'){ moodAdd(w, 8); w.health += 15; why('a week off', true); }
-    if((pr.fatigue||0) >= 20) why(`worn down from weeks without a break (recovery −${pr.fatigue}%)`, false);
-    w.health = clamp(w.health+5);
+    if(w.job==='rest'){ moodAdd(w, 8); w.health += (RB.wear||{}).restHeal ?? 15; why('a week off', true); }
+    if((pr.fatigue||0) >= 20) why(`worn down from weeks without a break (health ${Math.round(w.health)}, recovery −${pr.fatigue}%)`, false);
+    if(h.up.garden) w.health += BAL.amenities.garden.health * gardenMult(w);   // the garden mends a little wear every week
+    w.health = clamp(w.health);
     if(w._bed===FLOOR_REST && !['spirit','android'].includes(w.race)){ moodAdd(w, -3); why('slept on the floor', false); }
     else if(housingShort(h) && !['spirit','android','demon'].includes(w.race)){ moodAdd(w, -BAL.quarters.moodPer*housingShort(h)); why('expects better quarters in a house of this prestige', false); }
     if(!(isVessel(w) && vesselStage(w) < 1)) w.mood += (BAL.mood.restingPoint + fxAdd(w,'moodRest') + (has(w,'Loyal')?5:0) + (has(w,'Devoted')?10:0) - w.mood) * BAL.mood.drift * fxMul(w,'moodDrift');

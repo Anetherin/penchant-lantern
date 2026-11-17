@@ -268,7 +268,7 @@
       "label": "Garden",
       "cost": 550,
       "upkeep": 10,
-      "desc": "Everyone in the house gains a little mood and rests a little better. Elves get double. Takes no room."
+      "desc": "Everyone in the house gains a little mood and mends a little wear (Health) each week. Elves get double. Takes no room."
     },
     "incense": {
       "label": "Incense Burner",

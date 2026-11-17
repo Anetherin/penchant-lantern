@@ -157,7 +157,7 @@ function restMult(w){
   let m = fxMul(w, 'energyRec') * incenseMul(w, 'energyRec');
   const h = (typeof S!=='undefined' && S) ? houseOf(w) : null;
   m *= housePerkVal(h, 'restMult', 1);
-  if(h && h.up && h.up.garden) m *= 1 + BAL.amenities.garden.rest * gardenMult(w);
+  if(w && typeof statOf==='function') m *= ((BAL.rest||{}).strBase ?? 0.8) + s100(statOf(w,'strength'))/100 * ((BAL.rest||{}).strPer ?? 0.4);   // Strength: how fast she recovers
   return m;
 }
 /* ---------- amenity helpers (data/balance.json → amenities) ---------- */
