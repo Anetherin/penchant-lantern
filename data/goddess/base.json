@@ -185,7 +185,12 @@
       "desc": "She takes the least practiced working lady as her pupil: job skill and a stat.",
       "report": "{goddess} tutored {lady} in {skill}. She's a demanding teacher."
     },
-    "whim": {"label":"Her whim","desc":"No guidance at all. She does what she feels like, a little more strongly than usual."}
+    "whim": {"label":"Her whim","desc":"No guidance at all. She does what she feels like, a little more strongly than usual."},
+    "guild": {
+      "label": "Guild work",
+      "desc": "She joins whichever guild contract has the most left to do and does a frightening share of it herself. With no contract running she works a house instead.",
+      "report": "{goddess} went out with the party on the {contract}. The monsters did not enjoy it, and the clerk is still filling in the paperwork."
+    }
   },
   "claim": {
     "sam": [

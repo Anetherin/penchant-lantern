@@ -151,3 +151,11 @@ Round 4d (`temp-balance-results.md`): 6 PASS · 4 WARN · 4 FAIL. Cycle 1 now 31
 - **NG+:** carrying 0 lovers won only 75% (later all-houses cycles 33% game over at c5): `debtShare` 0.9 → 0.85 (ratio was 1.35, room to spare).
 - **`demons-poor-off-service` made soft:** it compares each race against its own default house, which flips with small changes (see the check's intent). Demons are #1 courtesans mid and tied with rabbits late (123 vs 125).
 - **Open:** NG++ unchanged by the 1,000 purse (78 weeks, 60% game over; 100% without the guild): it starts with only the Vessel against 50k. Promoter still costs popularity at Hollow (repGain 16 → 3.8) although turn-aways barely rose (0.5 → 1.8), so it's something else (lower satisfaction from the extra clients?).
+
+### Round 4f (2026-11-17, design calls; not yet measured)
+- NG+ `debtShare` back to 0.9: 75% wins with no lovers carried is fine (collecting houses without lovers is meant to be hard).
+- NG++ `ngppPurse` 1200 (double the NG+ purse). NG++ is where difficulty ramps up, so its 50k debt stays.
+- Bound Seliora gets a **Guild work** focus (`GFOCUS` 'guild', `goddess.actions.guild.progress` 30 x her power per action, on the contract with the most work left; no contract → business). The lab bot uses it while a contract runs (`policy.goddessGuild`).
+- `promoter-pays`: the popularity part is soft (Hollow starts well known; slower growth with a crowd is fine).
+- `races-courtesan` now includes `angel/lantern` (Lantern Angels were never measured as courtesans).
+- Rare races (androids, spirits, demons, angels) are meant to be slightly strong; next step is playtesting rather than more tuning.

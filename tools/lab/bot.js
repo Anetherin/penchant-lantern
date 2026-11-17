@@ -71,6 +71,7 @@ LAB.POLICY = {
   guildPick: 'support',  // who goes: 'support' (non-courtesans first, then the weakest earners) | 'fighters' (best contract power, any job)
   guildSam: 'auto',      // 'auto': Sam joins a contract only when the ladies alone wouldn't finish it in time; true = whenever a contract has room; false = never
   guildEarnCap: 1.25,    // only send ladies whose best of the last 4 working weeks is at most this x the contract's day rate (a top courtesan stays home)
+  goddessGuild: true,    // bound Seliora takes the Guild work focus while a contract is running
   guildPartners: true,   // partners can go too (the earnings cap still keeps a partner who earns well at home; Adelheid-style fighters go)
   guildSpare: true,      // never send the madame or a house's only maid/security/attendant/promoter/host (false = old behaviour)
   guildSafety: 1.15,     // take/staff a contract only if projected progress x weeks left >= remaining work x this
@@ -309,7 +310,9 @@ function samTurn(){
 // one week of play; returns the metrics row
 function playWeek(){
   for (const h of S.houses.slice().sort((a, b) => staffIn(a).length - staffIn(b).length)) manageHouse(h);
-  S.cur = S.houses[0].id; manageGuild(); samTurn(); pickFocus(); quiet(); resolveEvents();
+  S.cur = S.houses[0].id; manageGuild();
+  if (P.goddessGuild !== false && typeof goddessActive === 'function' && goddessActive() && GFOCUS.includes('guild')) { const g = G(); if (guildOn() && GLD().active.length) { if (g.focus !== 'guild') { g._labPrev = g.focus; g.focus = 'guild'; } } else if (g.focus === 'guild') g.focus = g._labPrev || 'indulge'; }   // bound Seliora works guild contracts while one runs
+  samTurn(); pickFocus(); quiet(); resolveEvents();
   if (P.payOff && !S.won && S.debt.remaining > 0 && S.gold >= S.debt.remaining + reserveGold()) { try { payOffDebt(); } catch (e) {} quiet(); resolveEvents(); }
   const HOLD = (S._lab || {}).hold || {}; if (HOLD.tidy != null) S.houses.forEach(h => { h.tidy = HOLD.tidy; });
   const before = new Set(S.workers.map(w => w.id)), wk = S.week, strikes0 = S.debt.strikes;

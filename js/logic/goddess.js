@@ -26,7 +26,7 @@ Object.entries(GOD_FORMS).forEach(([r, f], i)=>{
     seed:7130417 + i*101, lewd:95, trust:100, traits:[], acts:{}, menu:[], counts:{}, body:Object.assign({}, BODY_DEF, f.body || {}),
     design:{build:f.build || '', hairStyle:f.hairStyle || lk.hairStyle || '', hairColor:f.hair || lk.hair || '', eyes:f.eyes || lk.eyes || '', skin:f.skin || lk.skin || '', features:[lk.signature, f.features].filter(Boolean).join(', ')}};
 });
-const GFOCUS = ['indulge','business','watch','tutelage','whim'];
+const GFOCUS = ['indulge','business','watch','tutelage','guild','whim'];
 let GNEXT = null, GW = {biz:{}, watch:{}, saved:0};   // GW: this week's effects, rebuilt by goddessPlan()
 
 function ensureGoddess(){
@@ -162,6 +162,7 @@ function goddessPlan(){
     const claim = (g.jealousy||0) / ((A.claim||{}).per ?? 150);
     if(Math.random() < claim) kind = 'claim';
     else if((g.mood||0) < (M.ignoreBelow ?? 35) && Math.random() < 0.5) kind = 'whim';
+    if(kind==='guild' && !(typeof guildOn==='function' && guildOn() && GLD().active.length)) kind = 'business';   // no contract running: she works a house instead
     let mul = 1;
     if(kind==='whim'){ kind = pick(['indulge','business','watch','tutelage']); mul = (A.whim||{}).mult ?? 1.25; }
     const q = p * mul;
@@ -181,6 +182,11 @@ function goddessPlan(){
       const h = (worst && H(worst.id)) || pick(S.houses);
       GW.watch[h.id] = Math.min(Wt.max ?? 0.9, (GW.watch[h.id]||0) + (Wt.chance ?? 0.5) * q);
       lines.push(gtxt((F.watch||{}).report, {house:h.name}));
+    } else if(kind==='guild'){
+      // she goes out with a party: progress on the contract with the most work left (balance.json → goddess.actions.guild.progress x her power)
+      const Gd = A.guild || {}, c = GLD().active.slice().sort((a,b)=>(GCON[b.type].work - (b.prog||0)) - (GCON[a.type].work - (a.prog||0)))[0];
+      c.prog = (c.prog||0) + (Gd.progress ?? 30) * q;
+      lines.push(gtxt((F.guild||{}).report, {contract:GCON[c.type].label}));
     } else if(kind==='tutelage'){
       const T = A.tutelage || {}, pool = S.workers.filter(w=>w.job!=='rest'); if(!pool.length) continue;
       const w = pool.slice().sort((a,b)=>(a.tech[trainSkillOf(a)]||0) - (b.tech[trainSkillOf(b)]||0))[0];

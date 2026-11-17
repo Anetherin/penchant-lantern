@@ -82,7 +82,7 @@
     },
     {
       "id": "promoter-pays",
-      "intent": "A promoter fills empty rooms: in a house with idle rooms (early, Lantern / Hollow), one lady promoting instead of sitting idle brings in more than her keep (about a wage).",
+      "intent": "A promoter fills empty rooms: in a house with idle rooms (early, Lantern / Hollow), one lady promoting instead of sitting idle brings in more than her keep (about a wage). The popularity part is soft: a house that starts well known (Hollow) grows its name more slowly with a crowd, which is fine (2026-11-17).",
       "exp": {
         "name": "promoter-value",
         "scenario": "early",
