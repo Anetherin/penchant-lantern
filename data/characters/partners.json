@@ -791,16 +791,11 @@
         "prompt": "a floor-length black velvet gown with deep plum embroidery and long sleeves",
         "bonus": {"noble":1.2,"courtesan":1.15}
       },
-      "sp_lara_schoolgirl": {
-        "label": "Gothic schoolgirl",
+      "sp_lara_past": {
+        "label": "Gothic past",
         "style": "Revealing",
-        "prompt": "a slightly oversized white button-up blouse deliberately unbuttoned low to reveal a black lace bra underneath, a loosened school tie hanging casually, a normal-length pleated dark skirt, ripped fishnet stockings and knee-high black leather boots with buckles",
+        "prompt": "a slightly oversized white blouse deliberately unbuttoned low to reveal a black lace bra, a loosened tie, a pleated dark skirt, ripped fishnet stockings and knee high boots",
         "bonus": {"courtesan":1.2,"propose":1.15},
-        "hairStyle": "sleek high ponytail",
-        "eyes": "dark brown",
-        "features": "a silver nose stud, dark gothic makeup with bold sharply winged black eyeliner and dark burgundy lipstick",
-        "replaceFeatures": true,
-        "expression": "a cool, confident gaze"
       }
     },
     "bonds": {
