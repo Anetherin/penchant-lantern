@@ -55,6 +55,10 @@ function bondLines(w){
 /* ---------- requirements ---------- */
 function bondReqOK(w, r){
   r = r || {};
+  const any = (v, x) => [].concat(v).includes(x);
+  if(r.key!==undefined && !any(r.key, w.key)) return false;
+  if(r.job!==undefined && !any(r.job, w.job)) return false;
+  if(r.race!==undefined && !any(r.race, w.race)) return false;
   if(r.devoted!==undefined && has(w,'Devoted')!==r.devoted) return false;
   if(r.trustMin!==undefined && w.trust < r.trustMin) return false;
   if(r.lewdMin!==undefined && w.lewd < r.lewdMin) return false;
@@ -74,6 +78,7 @@ function bondPairOK(d, a, b){
   if(d.bondMin!==undefined && o.v < d.bondMin) return false;
   if(d.bondMax!==undefined && o.v > d.bondMax) return false;
   if(d.dynamic==='lesson' && !getActs().some(x=>canSam(a,x.id) && canSam(b,x.id) && actSkill(a,x.id) > actSkill(b,x.id))) return false;
+  if(d.pair && (a.key!==d.pair[0] || b.key!==d.pair[1])) return false;   // named pair: a is pair[0], b is pair[1] (every ordered pair is tried)
   if(d.kind){ if(o.kind!==d.kind) return false; if(d.kind==='mentor' && o.from!==a.id) return false; }
   return bondReqOK(a, d.a) && bondReqOK(b, d.b);
 }

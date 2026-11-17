@@ -1,0 +1,235 @@
+{
+  "_readme": [
+    "Lady Isolde Thorne, owner of the Velvet Thorn and Sam's rival (js/events/isolde.js; numbers in balance.json → isolde). She never joins: she runs her own house.",
+    "beats: one entry per story beat, in order (taunt, visit, pricewar, wager, truce, lovers). Each has title, text and its choices; 'again' texts replace 'text' in a later cycle once she got that far before (she half-remembers him). A value can be a list (one is picked).",
+    "nights: her encounters with Sam after the truce. Each: id, title, setting (image backdrop), act (service id for the picture), text (the lead-in, ends where the player picks an approach), finish (the closing lines), lovers: true = only once they're lovers, false = only before.",
+    "approach: how Sam plays it. yield (she takes control), take (Sam tries to: Strength + Technique check, win / lose), contest (who breaks first: Technique check, win / lose). The result is the approach line, then the night's finish.",
+    "arrive: lead lines when Sam goes to the Thorn (visit) or she turns up at his house (comes). join: her answer when he asks her to work for him. referral: weekly report line when the Thorn sends its overflow.",
+    "Placeholders: {house} = Sam's home house, {lady} = the lady in the wager, {gold}, {stake}. Follow docs/WRITING.md: second person, direct words. Rough and competitive, always wanted on both sides."
+  ],
+  "beats": {
+    "taunt": {
+      "title": "The Velvet Thorn",
+      "text": "A tall demon woman in red velvet sweeps into the lobby and looks around like she's pricing the furniture. Ash-grey skin, crimson curls piled high, gold cuffs on two long curved horns, a spade-tipped tail flicking behind her skirts.\n\n\"Lady Isolde Thorne, of the Velvet Thorn.\" She doesn't offer her hand. \"I came to see what the newcomer bought.\" Her violet eyes go from the scuffed floor to the girls on the stairs and finally to your hoodie. \"...Charming.\"",
+      "again": "A tall demon woman in red velvet sweeps into the lobby, stops dead, and stares at you a beat too long, like a word on the tip of her tongue.\n\n\"Lady Isolde Thorne, of the Velvet Thorn,\" she says at last. \"Have we met? No. I'd remember a hoodie that sad.\" Her tail flicks once. \"I came to see what the newcomer bought.\"",
+      "banter": {
+        "label": "Banter back",
+        "win": "\"Two hundred and sixty years and you still dress like a funeral,\" you say. \"Charming.\"\n\nThe girls on the stairs go very quiet. Isolde stares at you, and then she laughs, a real one, low and surprised. \"Oh, I'm going to enjoy ruining you,\" she says on her way out. Word of it is all over the market by evening. (+renown)",
+        "lose": "Your comeback arrives about ten seconds late. Isolde is already halfway out the door, and the last thing you see is her tail curling into a lazy question mark."
+      },
+      "polite": {
+        "label": "Stay polite",
+        "res": "\"Welcome to Hollowmere,\" you say. \"Drop by whenever.\"\n\n\"We'll see how long you last,\" she says, and leaves a calling card on the counter: black, embossed with a single red thorn."
+      }
+    },
+    "visit": {
+      "title": "An Invitation to the Thorn",
+      "text": "The card comes on a silver tray, carried by a footman who waits for your answer: Lady Thorne would be delighted to show the newcomer how it is done.\n\nThe Velvet Thorn is three floors of red lacquer and low light on the best street in the Lantern Quarter. Everything is quiet, expensive and perfectly run. Isolde walks you through it herself, a glass of something dark in her hand, the long slit in her gown showing a grey thigh with every step. Her girls don't flirt with you. They watch you the way she does.\n\nAt the top of the stairs she turns, close enough that her horn nearly brushes your hair. \"Well? Say something clever. You did last time.\"",
+      "again": "The card comes on a silver tray. The Velvet Thorn is exactly as you somehow expected it: three floors of red lacquer and low light, every girl in her place.\n\nIsolde walks you through it with a glass in her hand and a frown she can't explain. \"You keep looking at the right doors before I open them,\" she says at the top of the stairs. \"I don't like it. Say something clever.\"",
+      "compliment": {
+        "label": "\"It's beautiful. I'm stealing everything.\"",
+        "res": "Isolde's smile goes sharp and pleased. \"You can try.\" She clinks her glass against nothing and sends you home with a bottle of the dark stuff. It's the best thing you've ever drunk, and you suspect that was the point."
+      },
+      "needle": {
+        "label": "Find the one flaw",
+        "win": "You point at the hostess desk: the girl there can see the door or the stairs, never both, and twice tonight a client has waited unseen. Isolde follows your eyes, goes very still, then turns back to you with something new in her face. \"Get out of my house,\" she says, almost fondly. You catch a glimpse of her moving the desk as you leave.",
+        "lose": "You point at the hostess desk and say it's in the wrong place. \"It's in the right place for the second door,\" Isolde says, \"which you haven't found.\" She pats your cheek. \"Run along.\""
+      },
+      "challenge": {
+        "label": "\"Give it a year. I'll be bigger.\"",
+        "res": "\"A year.\" She steps in until you can smell her, smoke and something sweet. \"I'll hold you to that, Takahashi. I want to watch your face when you lose.\" She doesn't step back. Neither do you. A footman eventually coughs."
+      }
+    },
+    "pricewar": {
+      "title": "A Price War",
+      "text": "Placards go up all over the Lantern Quarter overnight: THE VELVET THORN, every service, a fifth off. Sign by the fountain, sign by the guild, a sign nailed directly across the street from {house}.\n\nYour regulars are polite about it. They also aren't here. By the second night your ladies are watching the door, and by the third a card arrives: *Feeling the pinch? Kisses, I.*",
+      "again": "Placards go up all over the Lantern Quarter overnight: THE VELVET THORN, every service, a fifth off. You knew she'd do it. You don't know how you knew. One is nailed across the street from {house}, with a card: *Feeling the pinch? Kisses, I.*",
+      "match": {
+        "label": "Match her prices",
+        "res": "You cut your prices to the copper. The house stays full and everyone works twice as hard for less. Somewhere across the Quarter, Isolde is doing the same arithmetic and liking it just as little."
+      },
+      "hold": {
+        "label": "Hold your prices and wait her out",
+        "res": "You keep your prices. Some of your regulars drift off to the Thorn for a few weeks. The ones who stay tip like they're making a point."
+      },
+      "confront": {
+        "label": "Go to the Thorn and call it off",
+        "win": "You walk into her office unannounced and lay out the numbers: at those prices she's losing money on every client and so are you, and the only winner is the Credit House. Isolde listens with her chin on her hand. \"You did my books,\" she says. \"That's either adorable or obscene.\" The placards come down the next morning.",
+        "lose": "You walk into her office and try to talk her down. She lets you finish, then pours herself a drink. \"No,\" she says pleasantly. The placards stay up, and you hold your prices out of pure spite."
+      }
+    },
+    "wager": {
+      "title": "The Lantern Wager",
+      "text": "Isolde arrives in person this time, which is never good. \"The festival committee wants a showcase,\" she says, peeling off her gloves finger by finger. \"One girl from my house, one from yours, the whole Quarter judging. I thought we might make it interesting.\"\n\nShe's already looking past you at {lady}.",
+      "gold": {
+        "label": "Bet {stake}g on {lady}",
+        "win": "{lady} walks out under the lanterns and the Quarter forgets the Thorn's girl was ever there. The applause goes on long enough that Isolde has to count your gold out in front of everyone. She does it slowly, looking at you the whole time. (+{gold}g, +renown)",
+        "lose": "The Thorn's girl is flawless, and Isolde knew she would be. {lady} holds her own, but the Quarter picks the house it's used to. Isolde takes your purse without counting it. \"Buy her something nice from me,\" she says. (−{gold}g)"
+      },
+      "kiss": {
+        "label": "\"Loser kisses the winner. In public.\"",
+        "win": "{lady} wins, and the square knows it before the judges do. Isolde walks straight up to you through the crowd, grabs your collar and kisses you like a punishment: hard, with teeth, her tail wrapped around your thigh, long enough that people start whistling. She lets go and wipes her mouth with her thumb. \"Don't get used to it.\" (+renown)",
+        "lose": "The Thorn's girl wins. Isolde waits, eyebrows up, and the whole square waits with her. You cross to her, take her face in your hands and kiss her properly, slowly, until her nails dig into your arms and she forgets to look bored. When you let go her violet eyes are dark. \"...Well,\" she says, and for once that's all."
+      },
+      "decline": {"label":"Decline","res":"\"Afraid?\" Isolde asks. \"Smart,\" she answers herself, and goes to find a house that'll lose to her instead."}
+    },
+    "truce": {
+      "title": "A Truce at the Thorn",
+      "text": "Her note just says: *My office. Tonight. Come alone or don't come.*\n\nThe Velvet Thorn's top floor is one long room, black wood and red silk, a desk the size of a bed and a fire that throws her shadow across the ceiling, horns and all. Isolde pours two glasses and slides one across.\n\n\"We are bleeding each other,\" she says. \"Poaching, placards, wagers. The Credit House loves it. I don't.\" She leans back and crosses her legs, slow. \"So. A truce. My girls stay mine, yours stay yours, nobody undercuts anybody.\" Her tail finds your ankle under the desk. \"Unless you'd rather keep fighting.\"",
+      "again": "Her note just says: *My office. Tonight. Come alone or don't come.*\n\nBlack wood, red silk, a fire throwing her horns across the ceiling. You know the room. You've never been here. Isolde pours two glasses and watches you take yours like it's the hundredth time.\n\n\"A truce,\" she says. \"My girls stay mine, yours stay yours.\" Her tail finds your ankle under the desk. \"Or we keep fighting. I keep dreaming we already did.\"",
+      "kiss": {
+        "label": "Get up and kiss her",
+        "res": "You come around the desk. She stands to meet you, and the first kiss is a collision: her teeth catch your lip, your hand fists in her curls, her nails go straight under your shirt and drag. Neither of you says yes. Neither of you has to. She shoves the ledgers off the desk with one sweep of her arm."
+      },
+      "leave": {
+        "label": "Shake on it and go home",
+        "res": "You put your hand out. She stares at it, then takes it, and her grip is hot and very strong. \"Coward,\" she says softly. The truce holds. The invitation, she makes clear, stays open."
+      },
+      "first": "Afterwards she lies across the desk with her gown around her waist and her horns resting on a ruined ledger, breathing hard, looking at the ceiling. \"That,\" she says, \"is not a truce.\" Then she pulls you back down by the collar."
+    },
+    "lovers": {
+      "title": "Isolde Stays",
+      "text": "For once she doesn't throw you out afterwards. Isolde lies on her side in the wreck of her sheets, tail draped over your legs, tracing a scratch she left on your chest with one claw.\n\n\"I have run this house for a hundred and ninety years,\" she says. \"Nobody comes up those stairs without an appointment. You come up them like you own them.\" She doesn't look at you. \"I find I keep the evening free.\"",
+      "join": {
+        "label": "\"Come work with me.\"",
+        "res": "She laughs, sits up, and looks at you like you've said something sweet and very stupid. \"I'd kill you within a month, pet. Or worse, I'd like it.\" She kisses you, slow for once. \"I'm the Thorn. You're the Lantern. Come up the stairs whenever you want.\""
+      },
+      "stay": {
+        "label": "\"Then keep it free.\"",
+        "res": "\"Don't make it sound romantic,\" she says, and pulls the sheet over both of you, and doesn't let go of your hand until morning."
+      }
+    }
+  },
+  "arrive": {
+    "visit": [
+      "The footman at the Velvet Thorn doesn't ask your name anymore. He just points up the stairs.",
+      "You go to the Thorn after dark. Isolde is in her office, pretending to read, and doesn't look up when you close the door behind you. \"You're late,\" she says. You didn't say you were coming.",
+      "The girls at the Thorn smirk at you all the way up the stairs. One of them mouths good luck."
+    ],
+    "comes": [
+      "Isolde doesn't knock. You look up from your desk and she's already in your office at {house}, leaning against the door she's just locked. \"You've been neglecting me,\" she says. \"I don't permit that.\"",
+      "Your ladies come to get you, wide-eyed: there's a demon in red velvet in your office, and she says she isn't leaving.",
+      "A black carriage stops outside {house} past midnight. The door opens. Isolde doesn't get out. She just crooks one claw."
+    ]
+  },
+  "nights": [
+    {
+      "id": "desk",
+      "title": "Her Office, Her Rules",
+      "act": "doggy",
+      "lovers": false,
+      "setting": "a long dark office with black wood and red silk, a huge desk swept clear, firelight",
+      "text": "She's at her desk with her hair down for once, crimson curls spilling over one horn. \"Close the door.\" You do. \"Lock it.\" You do.\n\nShe stands, turns her back to you and puts both hands flat on the desk, gown already unlaced. \"Well?\" Her tail lashes once, impatient. \"You've been staring at this desk for three visits.\"",
+      "finish": "By the end the desk has moved half a foot across the floor and there are four long scratches in the varnish where her claws went in. She comes with your name in her teeth, shaking, and drags you over the edge right after her. She stays bent over the wood for a long minute, laughing breathlessly. \"Get out,\" she says. \"Same time next week.\""
+    },
+    {
+      "id": "mirror",
+      "title": "The Mirror Room",
+      "act": "cowgirl",
+      "lovers": false,
+      "setting": "a private room with mirrored walls and ceiling, red velvet chaise, low candlelight",
+      "text": "The Thorn has a room with mirrors on every wall and the ceiling, kept for clients who pay a great deal. Isolde takes you there, pushes you down on the velvet chaise and climbs on top of you still half dressed, watching herself in the ceiling.\n\n\"I want to see your face from every side when you lose,\" she says, and sinks down on you inch by slow inch.",
+      "finish": "There's nowhere to look that isn't her: grey skin flushed dark, curls stuck to her throat, her tail coiled hard around your thigh, a hundred Isoldes riding a hundred of you. When she finally comes she throws her head back and every mirror does it with her. You don't last a second longer. She collapses on your chest and says, muffled, \"Your face was ridiculous. I loved it.\""
+    },
+    {
+      "id": "carriage",
+      "title": "A Long Way Round",
+      "act": "oral_get",
+      "lovers": null,
+      "setting": "inside a moving black lacquered carriage at night, red velvet seats, curtains drawn, lantern light",
+      "text": "Her carriage takes the long way through the Quarter. The curtains are drawn. Isolde sits across from you with her legs crossed, then uncrosses them, then gets down on her knees on the carriage floor between yours without a word.\n\n\"The driver goes round until I knock,\" she says, unbuttoning you with two claws. \"I haven't decided when I'll knock.\"",
+      "finish": "She takes her time and makes sure you know she's taking it: slow when you want fast, deep when you're trying not to make a sound with the driver a wall away. When you finally come she holds you there and swallows, eyes on yours. Then she wipes her mouth, sits back, and knocks twice on the roof. \"Your stop,\" she says, perfectly composed, except for the color in her cheeks."
+    },
+    {
+      "id": "bath",
+      "title": "The Thorn's Private Bath",
+      "act": "missionary",
+      "lovers": null,
+      "setting": "a private sunken bath of black marble, steam, red petals on the water, candles",
+      "text": "Her private bath is black marble and so hot the air shimmers. She's already in it when you're shown in, arms spread along the rim, horns beaded with steam.\n\n\"Strip,\" she says. \"Slowly. I've had a long day and I want something to look at.\" When you get in she wraps her legs around your waist and pulls you to her before you've found the bottom.",
+      "finish": "You end up on the wide marble step with her on her back half out of the water, heels locked behind you, nails raking your shoulders every time you thrust deep. She bites your neck when she comes, hard enough to leave a mark for a week, and holds on until you follow her. Afterwards she floats on her back in the steam, tail drifting, utterly smug. \"Go home wet. Let them wonder.\""
+    },
+    {
+      "id": "office_sam",
+      "title": "Your Desk, Her Rules",
+      "act": "cowgirl",
+      "lovers": null,
+      "comes": true,
+      "setting": "Sam's small cluttered office at night, ledgers and a cheap desk lamp, a demon woman in red velvet on his chair",
+      "text": "She shoves your ledgers aside, pushes your chair back from the desk with you in it and climbs into your lap, velvet skirts and all. \"Your office is tiny,\" she says against your mouth. \"Your chair is cheap. And I can hear your girls listening at the door.\"\n\nShe reaches down between you. \"Let's give them something to listen to.\"",
+      "finish": "Your cheap chair does not survive. Neither does the lamp. She rides you on the floor among scattered ledgers, loud on purpose, one hand over your mouth so you're the only one who can't make a sound, until she shudders apart and you go with her. She stands, smooths her gown and steps over you. \"Tell your girls I said good night.\""
+    },
+    {
+      "id": "roof",
+      "title": "On the Roof of the Thorn",
+      "act": "missionary",
+      "lovers": true,
+      "setting": "a rooftop terrace above the Lantern Quarter at night, red paper lanterns strung below, a blanket on warm tiles",
+      "text": "She takes you up through a trapdoor onto the roof of the Thorn. The whole Lantern Quarter glows below, red and gold. There's a blanket already laid out, and wine, and Isolde, who never plans anything sentimental, refusing to look at you.\n\n\"It's for the view,\" she says. \"Don't say anything.\" Then she pulls you down on top of her.",
+      "finish": "It's still a fight, it's always a fight: she flips you twice and you flip her back, laughing, her nails in your back and her heels in your thighs. But at the end she holds your face in both hands and looks at you the whole time she comes, and doesn't say anything clever at all. You lie there after with the city humming under you and her tail around your wrist."
+    },
+    {
+      "id": "rival_night",
+      "title": "Settling a Score",
+      "act": "doggy",
+      "lovers": true,
+      "setting": "a lavish red bedroom in a high-class house, black silk sheets in disarray, torn velvet, firelight",
+      "text": "One of your girls beat one of hers at the market this week, and Isolde is in a mood about it. She meets you at the door of her bedroom already furious and already undressed, horns gleaming, tail lashing.\n\n\"You,\" she says, and backs you against the door, \"are insufferable,\" and bites your lip, \"and I am going to make you pay for it.\"",
+      "finish": "She makes you pay, and then you make her pay, and the sheets go and then a pillow bursts and you finish on the floor with her on her hands and knees and your hand in her curls, both of you shouting. Afterwards she lies sprawled across you, scratched and bitten and glowing. \"I think,\" she says, \"we should fight more often.\""
+    },
+    {
+      "id": "slow",
+      "title": "No Rush",
+      "act": "oral_give",
+      "lovers": true,
+      "setting": "a lavish red bedroom, late morning light through gauze curtains, a demon woman lying back on black silk",
+      "text": "For once you stay the night, and in the morning she's still asleep, on her back, one arm flung over her eyes and her tail hanging off the bed. Two hundred and sixty years old and she sleeps like she's fallen off something.\n\nYou kiss your way down her stomach. She wakes up halfway, makes a noise she'll deny later, and grabs one of your hands to hold.",
+      "finish": "You take it slow, and she lets you, which she's never done. She comes with her thighs clamped around your head and her claws tearing the silk, saying your first name for the first time. Then she drags you up and gets on top of you and returns the favor at her own pace, which is not slow at all. Breakfast is very late."
+    }
+  ],
+  "approach": {
+    "yield": {
+      "label": "Let her take control",
+      "res": [
+        "You let her have you. She takes it as a compliment and a challenge: pins your wrists, sets the pace, stops every time you get close just to watch your face. It's maddening. It's incredible.",
+        "You don't fight her. Isolde notices, and it makes her slower, crueler and more thorough. She uses you exactly how she wants and narrates it in your ear.",
+        "You let her lead. She rides the edge of your patience like she's been doing it for centuries, which she has."
+      ]
+    },
+    "take": {
+      "label": "Take control [Strength + Technique {p}%]",
+      "win": [
+        "You catch her wrist when she reaches for you, turn her around and pin her. She fights it just enough to make you work for it, then goes loose and furious and wet. \"Fine,\" she hisses. \"Fine. Don't you dare stop.\" (+renown: she can't stop the girls from gossiping.)",
+        "She tries to push you down. You don't go. For a moment it's a real struggle, her strength against yours, and then you have her pinned with her tail thrashing and her eyes blown dark. She's never looked happier."
+      ],
+      "lose": [
+        "You try to take charge. Isolde laughs, hooks a leg behind yours and you're on your back before you know it, her knee on your chest. \"Cute,\" she says, and makes you pay for trying, slowly, for a very long time.",
+        "You make a grab for control. She lets you think you have it for exactly three seconds. Then the tail gets involved and it's over. She's merciless about it. You can barely walk afterwards."
+      ]
+    },
+    "contest": {
+      "label": "Make it a contest: first to break loses [Technique {p}%]",
+      "win": [
+        "\"First one to beg loses,\" you say. Isolde smiles like a shark. She doesn't beg. She swears, she bites, she threatens your life in two languages, and then she begs. You'll never let her forget it.",
+        "It becomes a war of attrition: her claws, her mouth, every trick of two centuries against everything you've learned in Hollowmere. She breaks first, gasping your name, and she's furious, and she's grinning."
+      ],
+      "lose": [
+        "\"First one to beg loses,\" you say. You last longer than anyone she's ever played this with, she tells you afterwards. You still beg. She makes you say it twice.",
+        "You go into it confident. Isolde has two hundred and sixty years of practice and a prehensile tail. You lose, loudly, and she savors every second of it."
+      ]
+    }
+  },
+  "join": [
+    "\"Work for you?\" She laughs into your neck. \"Pet, if I worked for you, who would you fight?\"",
+    "\"No.\" She doesn't even open her eyes. \"Ask me again and I'll bite you somewhere your girls will see.\"",
+    "\"I'm the Thorn,\" she says. \"I don't get picked. I do the picking.\""
+  ],
+  "joinLabel": "Ask her to come work for you",
+  "referral": [
+    "🌹 The Velvet Thorn was full this week and sent its overflow to {house}, with a card: *Don't spoil them. I.* (+{gold}g)",
+    "🌹 A few of the Thorn's clients turned up at {house} with Isolde's card. (+{gold}g)"
+  ],
+  "log": {"night":"A night with Isolde","truce":"A truce with the Velvet Thorn","lovers":"Isolde keeps her evenings free for Sam"},
+  "visitLabel": "🌹 Visit the Velvet Thorn",
+  "visitTip": "Spend the evening with Isolde Thorne at the Velvet Thorn."
+}
