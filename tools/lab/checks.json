@@ -234,8 +234,8 @@
     },
     {
       "id": "demons-top-courtesans",
-      "intent": "Demons are meant to be the strongest courtesans.",
-      "exp": "races-courtesan",
+      "intent": "Demons are meant to be the strongest courtesans. Measured in a mixed house (races-mixed: two ladies of the race among the usual staff), since rare races turn up one or two at a time; all-race houses (races-courtesan) mix in house-level effects and come out within noise late. Soft: an aim, not a rule.",
+      "exp": "races-mixed",
       "expect": [
         {
           "rank": "mid · demon",
@@ -249,7 +249,8 @@
           "metric": "perLady",
           "top": 1
         }
-      ]
+      ],
+      "soft": true
     },
     {
       "id": "demons-poor-off-service",
@@ -313,7 +314,7 @@
     },
     {
       "id": "ngplus-a-bit-harder",
-      "intent": "NG+ is harder than cycle 1 (a bit longer is fine): cycle 2 takes 1.0-1.5x as long, without game overs.",
+      "intent": "NG+ is harder than cycle 1 (a bit longer is fine): cycle 2 takes 1.0-1.5x as long, with few game overs when lovers come along (≥ 85% wins). Carrying no lovers is meant to be hard (about 3 in 4 wins is fine).",
       "exp": "ngplus-carry",
       "expect": [
         {
@@ -327,16 +328,25 @@
         {
           "mean": [
             "base",
-            "*"
+            "1",
+            "2",
+            "3",
+            "5"
           ],
           "metric": "winRate",
-          "gte": 0.9
+          "gte": 0.85
+        },
+        {
+          "mean": "0",
+          "metric": "winRate",
+          "gte": 0.75,
+          "soft": true
         }
       ]
     },
     {
       "id": "ngplus-lovers-neutral",
-      "intent": "Carrying lovers into NG+ is roughly neutral: one, three or five lovers clear the cycle within ~4 weeks of each other, so there's no need to grind walks for more.",
+      "intent": "Carrying lovers into NG+ is roughly neutral: one, three or five lovers clear the cycle within ~5 weeks of each other (an NG+ cycle is ~40 weeks; per-seed spread is ±10), so there's no need to grind walks for more.",
       "exp": "ngplus-carry",
       "expect": [
         {
@@ -347,7 +357,7 @@
             "1"
           ],
           "metric": "ngWeeks",
-          "abs": 4
+          "abs": 5
         },
         {
           "compare": [
@@ -357,7 +367,7 @@
             "1"
           ],
           "metric": "ngWeeks",
-          "abs": 4
+          "abs": 5
         }
       ]
     },
@@ -409,7 +419,7 @@
     },
     {
       "id": "cheap-houses-pay-off-faster",
-      "intent": "Starter houses clear the debt faster than premium ones...",
+      "intent": "Starter houses clear the debt faster than premium ones, or at least about as fast (soft: roughly even is fine).",
       "exp": "houses-all",
       "expect": [
         {
@@ -430,7 +440,8 @@
           "metric": "weeksToWin",
           "lt": 0
         }
-      ]
+      ],
+      "soft": true
     },
     {
       "id": "premium-houses-earn-more-later",

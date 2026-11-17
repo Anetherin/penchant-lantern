@@ -267,6 +267,7 @@ function ngView(){
         <b>New:</b> ${NGS.partner&&NGS.partner!=='none'?`${esc(NAMED[NGS.partner].name)} at Sam's side`:'no new partner'}${NGS.boon?`. Perk: <b>${NG_BOONS[NGS.boon].label}</b>`:''}. ✦ houses (and more) can be bought during the cycle.<br>
         ${N.sold.length?`<b>${N.sale?'Sold to the Credit House':'Surrendered to the Credit House'}:</b> ${N.sold.map(h=>esc(h.name)).join(', ')}${N.sale?` (${fmt(N.sale)}, off the debt)`:''}.<br>`:''}
         <b>Debt:</b> ${fmt(N.debt)} (${esc(HDo.name)} ${fmt(N.base)} + improvements ${fmt(N.extra)}${N.keptExtra?` + ${N.keptCount} kept houses ${fmt(N.keptExtra)}`:''}${N.loverExtra?` + ${N.loverCount} lovers ${fmt(N.loverExtra)}`:''}${N.house?` + ${esc(HOUSES[NGS.house].name)} ${fmt(N.house)}`:''}${N.scaleMul>1?`, scaled ×${N.scaleMul.toFixed(2)}`:''})${N.sale?`, minus ${fmt(N.sale)} for the sold houses`:''}, due over ${ngPlan(N.cycle).payments*BAL.debt.every} weeks.<br>
+        ${N.loverCount && BAL.wardrobe.cut.perLover ? `<b>Profit cuts:</b> paid ladies' baseline ${Math.round((Math.min(BAL.wardrobe.cut.maxBase, BAL.wardrobe.cut.base + Math.max(0, N.cycle - 1) * BAL.wardrobe.cut.perCycle) + N.loverCount * BAL.wardrobe.cut.perLover) * 100)}% (+${Math.round(BAL.wardrobe.cut.perLover*100)}% per lover you bring back).<br>` : ''}
         <b>Purse:</b> ${fmt(N.purse)} (starting purse; your savings stay behind)</div>`;
     }
     ok = true;
@@ -354,6 +355,7 @@ function ngBegin(){
   const B = BAL.ngplus, og = homeHouse(), HDo = HOUSES[og], N = ngNumbers(C.boon, C.house, {ngpp:C.ngpp, challenge:C.challenge}), lovers = carriedLovers(), friends = ngFriends();
   if(lovers.some(w=>!C.perks[w.id] && NG_PERKS().some(t=>!(w.ngPerks||[]).includes(t)))) return;
   const gInfo = {weeks: S.week - ((S.debt && S.debt.start) || 0), planned: ((S.debt && S.debt.payments) || BAL.debt.payments) * BAL.debt.every, house: N.ngpp ? N.houseKey : C.house, partner:C.partner, past:C.past, lovers: lovers.map(w=>w.name.split(' ')[0]), ngpp: !!N.ngpp, ngppCycle: N.ngppCycle||0};
+  S.ngLovers = N.ngpp ? 0 : lovers.length;   // each carried lover raises paid ladies' baseline cut (wardrobe.cut.perLover)
   S.cycle = N.cycle;   // set first: generics rolled from here on can get ngOnly traits and higher ceilings
   S.boons = S.boons || []; if(C.boon && !S.boons.includes(C.boon)) S.boons.push(C.boon);
   S.cycleVar = C.cycleVar || pick(Object.keys(CYCLE_VARS));

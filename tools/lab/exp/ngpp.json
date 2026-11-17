@@ -1,7 +1,7 @@
 {
   "desc": "NG++ Lantern Shrine soft reset: 2 NG++ cycles (Seliora bound going into cycle 2) vs standard NG+.",
   "scenario": "ngplus",
-  "runs": 10,
+  "runs": 24,
   "cycles": 2,
   "ng": {
     "past": "none",
