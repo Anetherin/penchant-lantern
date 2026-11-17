@@ -2,9 +2,13 @@
 /* =====================================================================
    CHARACTER LOGIC
    ===================================================================== */
-const maxEnergy = w => Math.max(20, Math.round(60 + s100(statOf(w,'stamina'))*0.6 + fxAdd(w,'maxEnergy')));
+// Stamina sets how much she has (balance.json → rest.maxBase + maxPerStamina x Stamina 0-100); Strength sets how fast she gets it back (restMult).
+const maxEnergy = w => Math.max(20, Math.round(((BAL.rest||{}).maxBase ?? 50) + s100(statOf(w,'stamina'))*((BAL.rest||{}).maxPerStamina ?? 1) + fxAdd(w,'maxEnergy')));
 // energy can be banked above max (energyBank fx); it is simply spent first
 const energyCap = w => maxEnergy(w) + fxAdd(w,'energyBank');
+// Wear (balance.json → rest.wear): share of her working-week recovery lost to low Health from weeks without a break (0-1).
+const fatigueCut = w => { const R = (BAL.rest||{}).wear || {}; return R.per ? Math.min(R.max ?? 0.6, Math.max(0, (100 - (w.health ?? 100))/100 * R.per)) : 0; };
+const wornDown = w => w.job!=='rest' && fatigueCut(w) >= (((BAL.rest||{}).wear||{}).autoRest ?? 0.35);
 const actArr = v => (Array.isArray(v) ? v : v ? [v] : []).map(actKey);
 const isFav = (w, id) => actArr(w && w.fav).includes(actKey(id));
 const isDislike = (w, id) => actArr(w && w.dislike).includes(actKey(id));
@@ -13,7 +17,6 @@ const pickFav = (w, ids) => { const f = actArr(w && w.fav).filter(id=>!ids || id
 // Energy per client: depends on the service, her stamina, and how she feels about it.
 function actCost(w, act){
   let c = act ? ((actById(act)||{}).energy || 10) : 5;
-  c *= 1.2 - s100(statOf(w,'stamina'))/250;
   if(act){ if(isFav(w,act)) c *= 0.75; if(isDislike(w,act)) c *= 1.35; if(clientStance(w,act)==='ask') c *= 1.25; }
   if(act && BAL.svc.staminaEnergy !== false){ const st = (actById(act)||{}).stats; if(st && st.stamina) c *= 1.1 - s100(statOf(w,'stamina'))/500; }
   c *= fxMul(w,'actEnergy') * (act ? fxSub(w,'actEnergyBy',act) : 1) * incenseMul(w,'actEnergy');

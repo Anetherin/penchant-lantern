@@ -10,7 +10,7 @@ function canDo(w, job){
   if(job!=='rest' && w.trust < jobTrust(w,job)) return `${w.name} doesn't trust Sam enough for that yet (needs trust ${tShow(jobTrust(w,job))}).`;
   if(job==='courtesan' && !getActs().some(a=>clientStance(w,a.id,'courtesan')!=='no')) return `${w.name} isn't comfortable with that yet.`;
   if(J.needs && !h.up[J.needs]) return `${h.name} needs a ${UPGRADES[J.needs].label}.`;
-  const used = S.workers.filter(x=>x!==w && x.house===h.id && x.job===job).length, max = slotsFor(h, job);
+  const used = S.workers.filter(x=>x!==w && x.house===h.id && (x.job===job || (job!=='rest' && x.job==='rest' && x.prevJob===job))).length, max = slotsFor(h, job);
   if(used >= max) return max===0 && ECON.slots[job] && ECON.slots[job].byJob ? `Needs a ${JOBS[ECON.slots[job].byJob].label} in ${h.name} first.` : `No open ${J.label} positions in ${h.name} (${max}).`;
   return null;
 }
@@ -23,7 +23,7 @@ function setJob(id, job){
   const w = findW(id); if(!w) return;
   const msg = canDo(w, job);
   if(msg) toast(msg); else {
-    w.job = job;
+    w.job = job; delete w.prevJob;
     if(MENU_JOBS.includes(job) && !w.menu.length){ w.menu = getActs().filter(a=>clientStance(w,a.id)==='yes').map(a=>a.id); if(w.menu.length) toast(`${w.name}'s menu: ${w.menu.map(actLabel).join(', ')}. Add "~" favors on her sheet.`); }
     save();
   }

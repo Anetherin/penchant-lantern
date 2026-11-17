@@ -21,35 +21,35 @@
     "madame": {
       "label": "Madame",
       "cat": "staff",
-      "energy": 20,
+      "energy": 26,
       "skill": "manage",
       "desc": "Runs the house: calmer moods, prevents overwork, +1 courtesan position (+1 more per 200 Management/Wits/Charm/Charisma, up to +6 at 1000), clients matched to willing & skilled ladies, and pairs bonded attendants. Steps in for overwhelmed courtesans; can be propositioned."
     },
     "promoter": {
       "label": "Promoter",
       "cat": "staff",
-      "energy": 15,
+      "energy": 28,
       "skill": "service",
       "desc": "Draws clients and house popularity. Free samples boost draw and her own popularity, tire her out, and raise or lower house class depending on how she compares to the house's prestige. Unlimited positions."
     },
     "attendant": {
       "label": "Attendant",
       "cat": "staff",
-      "energy": 15,
+      "energy": 22,
       "skill": "service",
       "desc": "The madame's and courtesans' assistant: eases workload and fatigue, keeps clients happier, and builds a bond with her paired courtesan for extra trust. Can cover services a tired or unwilling courtesan refuses, and steps in when courtesans are swamped."
     },
     "security": {
       "label": "Security",
       "cat": "staff",
-      "energy": 20,
+      "energy": 30,
       "skill": "combat",
       "desc": "Handles pushy clients, screens out troublemakers for higher-value guests (Wits), and keeps excess crowds at the door for minimal penalty (Charm/Charisma). Builds trust."
     },
     "bartender": {
       "label": "Bartender",
       "cat": "staff",
-      "energy": 20,
+      "energy": 30,
       "skill": "bar",
       "needs": "bar",
       "desc": "Sells drinks. Needs a Bar. The house gets more propositions, more rowdiness and more reckless clients."
@@ -57,7 +57,7 @@
     "dancer": {
       "label": "Dancer",
       "cat": "staff",
-      "energy": 25,
+      "energy": 32,
       "skill": "dance",
       "needs": "stage",
       "desc": "Draws crowds, earns tips, builds popularity. Expects propositions and serves them from her menu.",
@@ -66,7 +66,7 @@
     "bath": {
       "label": "Bath Attendant",
       "cat": "staff",
-      "energy": 12,
+      "energy": 24,
       "skill": "service",
       "needs": "bath",
       "desc": "Tends the bathhouse; always offers bathers a massage. Expects propositions and serves them from her menu.",
@@ -75,7 +75,7 @@
     "teacher": {
       "label": "Teacher",
       "cat": "staff",
-      "energy": 18,
+      "energy": 30,
       "skill": "service",
       "needs": "classroom",
       "desc": "Teaches one subject (a trade skill or a service, chosen below) to every lady in the house who is behind her in it. Humans learn faster. Takes no clients. One position."
@@ -83,14 +83,14 @@
     "maid": {
       "label": "Maid",
       "cat": "staff",
-      "energy": 15,
+      "energy": 30,
       "skill": "service",
       "desc": "Keeps the house tidy (tidiness drives house popularity, prestige, mood and rest). Wears a maid uniform while on the job. Unlimited positions."
     },
     "chapel": {
       "label": "Chapel Keeper",
       "cat": "staff",
-      "energy": 10,
+      "energy": 20,
       "skill": "service",
       "needs": "chapel",
       "desc": "Tends the Quiet Chapel: draws house and personal popularity, prestige, and donations (other races work at half effectiveness, and visitors are disappointed if no angel works as chapel keeper, host, security or maid). Visitors often proposition her discreetly—willing keepers earn extra house popularity and higher donations instead of service fees. Two positions."
@@ -105,7 +105,7 @@
     "host": {
       "label": "Host",
       "cat": "staff",
-      "energy": 14,
+      "energy": 26,
       "skill": "service",
       "desc": "Keeps clients company while they wait for a courtesan: conversation, drinks, and a little warming up for those open to it (light services out in the lounge, never to the finish). A skilled host keeps people waiting longer and happier, and her warm-ups make courtesans—especially novices—far more effective. Can be propositioned, which takes her off the floor for a while."
     }
@@ -268,7 +268,7 @@
       "label": "Garden",
       "cost": 550,
       "upkeep": 10,
-      "desc": "Everyone in the house gains a little mood and rests a little better. Elves get double. Takes no room."
+      "desc": "Everyone in the house gains a little mood and mends a little wear (Health) each week. Elves get double. Takes no room."
     },
     "incense": {
       "label": "Incense Burner",

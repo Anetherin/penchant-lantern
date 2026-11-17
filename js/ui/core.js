@@ -72,7 +72,12 @@ if(typeof document !== 'undefined') document.addEventListener('click', e => {
   else tipPop(null);
 }, true);
 function traitTags(w){ return (w.reborn?`<span class="tag act" title="${esc(rebornDesc(w))}">♻ Reincarnated${w.reborn>1?' ×'+w.reborn:''}</span> `:'') + (w.unique?`<span class="tag act" title="${esc(w.unique.desc||'')}">★ ${esc(w.unique.name)}</span> `:'') + (w.ngPerks||[]).map(t=>`<span class="tag act" title="${esc(TRAITS[t]?TRAITS[t].desc:'')}">✦ ${esc(t)}</span>`).join(' ') + ' ' + (w.traits||[]).filter(t=>!TRAITS[t]||!TRAITS[t].hidden||S.sam.appraisal>=3).map(t=>`<span class="tag ${TRAITS[t]&&TRAITS[t].hidden?'hid':''} ${TRAITS[t]&&TRAITS[t].story?'act':''}" title="${esc(TRAITS[t]?TRAITS[t].desc:'')}">${esc(t)}</span>`).join(' '); }
-function jobOptions(w){ return Object.entries(JOBS).map(([k,J])=>{ const why = k===w.job ? null : canDo(w,k); return `<option value="${k}" ${k===w.job?'selected':''} ${why?'disabled':''}>${why?'🔒 ':''}${J.label}</option>`; }).join(''); }
+// An auto-resting lady (w.prevJob) shows her job, marked resting; picking a job (or Rest) by hand ends auto-rest (setJob).
+function jobOptions(w){ const cur = w.job==='rest' && w.prevJob && JOBS[w.prevJob] ? w.prevJob : w.job;
+  return Object.entries(JOBS).map(([k,J])=>{ const why = k===w.job || k===cur ? null : canDo(w,k), lab = k===cur && cur!==w.job ? `${J.label} · 😴 resting` : k==='rest' && cur!==w.job ? 'Rest (keep her off)' : J.label;
+    return `<option value="${k}" ${k===cur?'selected':''} ${why?'disabled':''}>${why?'🔒 ':''}${lab}</option>`; }).join(''); }
+// "Madame (resting)" for an auto-resting lady, else her job's label. p = a report row (job, prevJob) or a lady.
+const jobLabelOf = p => p.job==='rest' && p.prevJob && JOBS[p.prevJob] ? `${JOBS[p.prevJob].label} (resting)` : JOBS[p.job] ? JOBS[p.job].label : String(p.job||'');
 // House picker, shared by Houses, Roster, Recruit and Upgrades: the picked house (S.cur) and the "All houses" choice (HOUSE_ALL) carry
 // across tabs. withAll = this tab offers "All houses"; tabs without it (Recruit, Upgrades) show S.cur and leave HOUSE_ALL as it was.
 function houseTabs(withAll){

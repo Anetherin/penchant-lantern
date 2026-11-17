@@ -674,7 +674,7 @@ function endWeek(){
   goddessPlan();   // her actions this week (goddess.js), before the houses run
   const R = {v3:true, v5:true, v6:true, week:S.week, lines:[], per:{}, hl:[], houses:[], income:0, wages:0, upkeep:0, recharge:0, cuts:0, served:0, turned:0, left:0, stopped:0, selfProps:0,
     led:{escort:0, offduty:0, bar:0, dance:0, bath:0, chapel:0, host:0, sam:S.samWeek.income}, samActs:S.samWeek.acts.slice()};
-  S.workers.forEach(w=>R.per[w.id]={id:w.id, name:w.name, job:w.job, house:w.house, served:0, comp:0, acts:{}, props:0, acc:0, earned:0, e0:Math.round(w.energy), m0:Math.round(w.mood), l0:Math.round(w.lust||0), enc:[], why:[], notes:[],
+  S.workers.forEach(w=>R.per[w.id]={id:w.id, name:w.name, job:w.job, prevJob:w.job==='rest' ? w.prevJob : undefined, house:w.house, served:0, comp:0, acts:{}, props:0, acc:0, earned:0, e0:Math.round(w.energy), m0:Math.round(w.mood), l0:Math.round(w.lust||0), enc:[], why:[], notes:[],
     t0:w.trust||0, lw0:w.lewd||0, p0:w.popularity||0, st0:Object.assign({}, w.stats), tk0:Object.assign({}, w.tech), ak0:Object.fromEntries(Object.entries(w.acts||{}).map(([k,a])=>[k, a.skill||0]))});
   const log = t => R.lines.push(t);
   autoFeasts(R);   // home.js: houses set to feast automatically, before the work week
@@ -698,14 +698,20 @@ function endWeek(){
     const mx = maxEnergy(w), spent = Math.max(0, pr.e0 - w.energy), freeFrac = clamp(1 - spent/mx, 0.1, 1, );
     let rest = (w._bed ?? BEDS[h.beds||0].rest);
     rest *= restMult(w) * (tfx ? tfx.rec : 1);
-    let rec = w.job==='rest' ? rest*1.6 + (h.up.bath?10:0) : rest*(0.75 + 0.25*freeFrac);
-    if(w.race==='spirit') rec = w.job==='rest' ? SVC.spirit.restRec : SVC.spirit.workRec;
+    const RB = BAL.rest || {};   // balance.json → rest
+    let rec = w.job==='rest' ? rest*(RB.week ?? 1.6) + (h.up.bath ? (RB.bath ?? 10) : 0) : rest*((RB.work ?? 0.75) + (RB.workFree ?? 0.25)*freeFrac);
+    // wear (balance.json → rest.wear): weeks of work without a break cost her Health, and a worn-down lady recovers less while working
+    // (fatigueCut). A week off heals it. Demons (they feed) and androids (they charge) don't wear down this way.
+    const WR = RB.wear || {};
+    if(w.job!=='rest' && !['demon','android'].includes(w.race) && WR.per){
+      const cut = fatigueCut(w); rec *= 1 - cut; pr.fatigue = Math.round(cut*100);
+      w.health = clamp(w.health - ((WR.base ?? 2) + (WR.perSpent ?? 8) * spent/mx) * fxMul(w,'fatigue')); }
     if(w.race==='demon') rec = w.job==='rest' ? rec*(SVC.demon.restMult ?? 0.7) : -SVC.demon.hunger;   // demons don't sleep and burn hunger every working week: they feed on desire instead (serveAct); on a week off, on men in town
     if(w.race==='demon' && w.job==='rest' && restless(w) && Math.random() < SVC.demon.restDrainChance){   // a restless one can overdo it, and the town notices
       S.rep = clamp(S.rep - SVC.demon.restRepDrain); pr.drains = (pr.drains||0)+1; (pr.notes = pr.notes||[]).push(flavor('rest_demon_drain', w));
       log(`😈 ${w.name} fed a little too hard on her week off. Talk around town is not kind (reputation −${SVC.demon.restRepDrain}).`); }
     const e0 = w.energy;
-    if(w.race==='android' && w.job==='rest') rec = Math.max(rec, maxEnergy(w) - w.energy);   // resting androids charge to full
+    if(w.race==='android') rec = Math.max(rec, maxEnergy(w) - w.energy);   // androids plug in every night and charge to full (for a fee)
     pr.eWork = Math.round(pr.e0 - e0); w.energy += rec; pr.eRec = Math.round(w.energy - e0); pr.slept = w._bed===FLOOR_REST ? 'floor' : w.race==='spirit' ? 'spirit' : w.race==='android' ? 'charging' : w.race==='demon' ? 'none' : BEDS[h.beds||0].label;
     if(w.race==='android'){ const got = Math.max(0, Math.min(w.energy, energyCap(w)) - e0), A = SVC.android;
       if(got > 0){ const fee = Math.round((A.fee + A.perEnergy*got) * (h.up.charger ? 1 - A.chargerDiscount : 1) * housePerkVal(h, 'chargeMult', 1)); S.gold -= fee; R.recharge += fee; pr.recharge = fee; } }
@@ -715,8 +721,10 @@ function endWeek(){
     if(pr.eagerN) why('was in the mood for her clients', true);
     if(pr.disN) why('had to do things she dislikes', false);
     if(pr.reluct) why('did a few things as a favor', false);
-    if(w.job==='rest'){ moodAdd(w, 8); w.health += 15; why('a week off', true); }
-    w.health = clamp(w.health+5);
+    if(w.job==='rest'){ moodAdd(w, 8); w.health += (RB.wear||{}).restHeal ?? 15; why('a week off', true); }
+    if((pr.fatigue||0) >= 20) why(`worn down from weeks without a break (health ${Math.round(w.health)}, recovery −${pr.fatigue}%)`, false);
+    if(h.up.garden) w.health += BAL.amenities.garden.health * gardenMult(w);   // the garden mends a little wear every week
+    w.health = clamp(w.health);
     if(w._bed===FLOOR_REST && !['spirit','android'].includes(w.race)){ moodAdd(w, -3); why('slept on the floor', false); }
     else if(housingShort(h) && !['spirit','android','demon'].includes(w.race)){ moodAdd(w, -BAL.quarters.moodPer*housingShort(h)); why('expects better quarters in a house of this prestige', false); }
     if(!(isVessel(w) && vesselStage(w) < 1)) w.mood += (BAL.mood.restingPoint + fxAdd(w,'moodRest') + (has(w,'Loyal')?5:0) + (has(w,'Devoted')?10:0) - w.mood) * BAL.mood.drift * fxMul(w,'moodDrift');
@@ -842,8 +850,8 @@ function endWeek(){
     }
     // auto-rest
     if(w.autoRest){
-      if(w.job!=='rest' && w.energy < maxEnergy(w)*0.35){ w.prevJob = w.job; w.job = 'rest'; log(`😴 ${w.name} is worn out and will rest next week.`); }
-      else if(w.job==='rest' && w.prevJob && w.energy >= maxEnergy(w)*0.85){ const pj = w.prevJob; delete w.prevJob; if(!canDo(w,pj)){ w.job = pj; log(`💪 ${w.name} is rested and back to work as ${JOBS[pj].label}.`); } }
+      if(w.job!=='rest' && (w.energy < maxEnergy(w)*0.35 || wornDown(w))){ log(`😴 ${w.name} is ${w.energy < maxEnergy(w)*0.35 ? 'worn out' : 'worn down after weeks without a break'} and will rest next week.`); w.prevJob = w.job; w.job = 'rest'; }
+      else if(w.job==='rest' && w.prevJob && w.energy >= maxEnergy(w)*0.85){ const pj = w.prevJob; delete w.prevJob; const no = canDo(w,pj); if(!no){ w.job = pj; log(`💪 ${w.name} is rested and back to work as ${JOBS[pj].label}.`); } else log(`${w.name} is rested but can't go back to ${JOBS[pj].label} (${no}) Give her a job.`); }
     }
     // how she took the week's clients, by personality (data/personalities.json goodNight/badNight, flavor good_night/bad_night)
     if(pr.served >= 2){

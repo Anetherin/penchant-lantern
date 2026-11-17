@@ -13,8 +13,8 @@ Reference for the 8-stat system (`STAT_KEYS`, implemented in save v27).
 | Charisma | CHAR | Working a room | `appeal`, promoter draw, dancer tips/statXP, bartender income/tips/statXP, security door grace/statXP, street fair, guild companion, madame `madameScore`/statXP, prestige leader bonus |
 | Refinement | REFI | Poise, manners, class | Scales with House Class (`refMul`, `balance.json → refine`): courtesan/step-in fees and client satisfaction, madame strength, host soothing, attendant quality, chapel donations. Also noble/official/cleric/neatFreak/devotedGuest client preferences, patron & noble-companion events |
 | Wits | WITS | Brains, reasoning | Learning & teaching (`classroomTeach`, `learnPower`, `teachPower`), madame `madameScore`, attendant `attQFor`, security client screening, pushy talk-down, Cheapskate fee recovery (`cheat`), scholar/curious/connoisseur client preferences |
-| Stamina | STAM | Endurance | Max energy (`maxEnergy`), stamina-tagged service quality & energy cost discount, courtesan/bath/maid/security statXP, sailor/laborer/adventurer/mercenary client preferences |
-| Strength | STR | Physical power | Security power (`secPow`) & statXP, arena events, firm massage (`massage_give`, `doggy`), mercenary/brawnFan/watchman client preferences |
+| Stamina | STAM | Endurance | Max energy (`maxEnergy` = 50 + Stamina, `balance.json → rest`), stamina-tagged service quality, courtesan/bath/maid/security statXP, sailor/laborer/adventurer/mercenary client preferences |
+| Strength | STR | Physical power | Energy recovery (`restMult`: x 0.8–1.2), security power (`secPow`) & statXP, arena events, firm massage (`massage_give`, `doggy`), mercenary/brawnFan/watchman client preferences |
 | Agility | AGIL | Speed, grace, flexibility | Dancer income & pop bonus, security power (`secPow`), arena events, maid tidiness (`tidy.maidPerAgil`), bartender visitor bonus (`jobs.barAgil`), athletic services (`massage_give`, `manual_give`, `cowgirl`), thrillSeeker/graceSeeker/adventurer client preferences |
 
 Short labels live in `STAT_SHORT` (`js/data/characters.js`).

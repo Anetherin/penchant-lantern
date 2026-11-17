@@ -63,7 +63,7 @@ function doubleThreesomeMenu(id, oid){
   const w = findW(id), o = findW(oid), acts = w && o ? duoActs(w, o) : [];
   if(!w || !o || !acts.length) return closeModal();
   const need = samPrivCost(12, true);
-  const btns = acts.map(a=>`<button class="sm" onclick="doubleThreesomeRun('${w.id}','${o.id}','${a}')">${esc(actLabel(a))}</button>`).join(' ');
+  const btns = acts.map(a=>`<button class="sm" onclick="doubleThreesomeRun('${w.id}','${o.id}','${a}')">${esc(samActLabel(a))}</button>`).join(' ');
   modal(`<h2>Late Night Together: ${esc(w.name)} &amp; ${esc(o.name)}</h2><p class="muted">Both of your lovers are wide awake and willing. Pick what the three of you share tonight (Sam takes ${need} energy, no action).</p><div class="row">${btns}</div><div class="row"><button onclick="closeModal()">Never mind</button></div>`);
 }
 function doubleThreesomeRun(id, oid, act){
@@ -76,9 +76,9 @@ function doubleThreesomeRun(id, oid, act){
   const t2 = privateCore(o, act, {lead:`${o.name} presses right in beside her, trading breaths and kisses as the two of them share you without an ounce of jealousy.`, turn:false});
   addBond(w, o, 6);
   samStat('technique', 3); samXP(6);
-  samLog(`Shared night with ${w.name} & ${o.name} [${actLabel(act)}]`);
+  samLog(`Shared night with ${w.name} & ${o.name} [${samActLabel(act)}]`);
   save(); render(); closeModal();
-  showResult(`Three in One Bed (${actLabel(act)})`, `${t1}\n\n${t2}\n\n${doubleBondTag(w, o)}`, w.id, 'duo:'+act+':'+o.id);
+  showResult(`Three in One Bed (${samActLabel(act)})`, `${t1}\n\n${t2}\n\n${doubleBondTag(w, o)}`, w.id, 'duo:'+act+':'+o.id);
 }
 // Daring variants offered on a date (dates.json → spicy). With acts: the one she'd do (favorite, else the highest-th she's keen on, else the first she's comfortable with).
 function spicyAct(w, sp){
