@@ -134,13 +134,11 @@
           "backstory": "An ancient mythic spirit whose Mystic Eyes can turn the unwary to stone, Medusa wears an enchanted visor or framed glasses so she can live quietly among mortals. Self-conscious about her statuesque height and fiercely protective of Sakura, she spends her afternoons reading novels in the sunny window and her nights moving like silk in the dark.",
           "design": {
             "build": "long-legged",
-            "hairStyle": "ankle-length, straight and flowing with long side locks",
-            "hairColor": "vivid violet-purple",
-            "eyes": "crimson-violet with rectangular pupils",
+            "hairStyle": "ankle-length, straight and flowing with side swept bangs and long side locks",
+            "hairColor": "light magenta-purple",
+            "eyes": "crimson-violet",
             "skin": "pale",
-            "features": "a small violet triangular sigil on her forehead",
-            "accessories": "an ornate purple-and-gold blindfold visor with a serpent motif",
-            "accState": "dressed",
+            "features": "a burgundy serpent insignia on her forehead",
             "expression": "a cool, composed expression"
           },
           "under": "sheer",
@@ -155,15 +153,17 @@
             "sig_rider": {
               "label": "Gorgon dress",
               "style": "Revealing",
-              "prompt": "a form-fitting sleeveless black turtleneck mini-dress with a keyhole chest cutout, a short split skirt, long black gloves and thigh-high heeled boots",
-              "bonus": {"courtesan":1.3,"security":1.2}
+              "prompt": "a form-fitting low cut sleeveless black mini-dress long black detached sleeves and black thigh-high heeled boots, magenta accents",
+              "bonus": {"courtesan":1.3,"security":1.2},
+            "accessories": "an ornate dark purple blindfold",
+            "accState": "under"
             },
             "sp_rider": {
               "label": "Bookshop casual",
               "style": "Cute",
-              "prompt": "a fitted white turtleneck sweater with a long denim skirt and dark boots",
+              "prompt": "a fitted black turtleneck sweater with a dark jeans and dark boots",
               "bonus": {"attendant":1.2,"commoner":1.2},
-              "accessories": "slender Mystic Eye Killer glasses",
+              "accessories": "slender glasses",
               "accState": "always"
             }
           },
@@ -257,7 +257,7 @@
           "fav": "kiss",
           "dislike": "doggy",
           "lovers": "missionary",
-          "backstory": "An alchemical homunculus crafted by the Einzbern family in a frozen northern castle to serve as a living vessel of magecraft, Illya is older than her petite frame suggests—and thoroughly tired of winter, rituals, and lonely halls. In Hollowmere she plays the spoiled little aristocrat, clings to Sam's arm whenever she pleases, and dazzles noble guests with effortless snow-fairy grace.",
+          "backstory": "An alchemical homunculus crafted by the Einzbern family in a frozen northern castle to serve as a living vessel of magecraft, Illya is thoroughly tired of winter, rituals, and lonely halls. In Hollowmere she plays the spoiled little aristocrat, clings to Sam's arm whenever she pleases, and dazzles noble guests with effortless snow-fairy grace.",
           "design": {
             "build": "delicate",
             "hairStyle": "waist-length straight with neat blunt bangs",
