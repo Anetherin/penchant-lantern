@@ -1,7 +1,7 @@
 {
   "traits": {
     "Shy": {
-      "desc": "Lewdness grows slowly; trust grows faster; less comfortable undressing.",
+      "desc": "Lewdness grows slowly and she's less comfortable undressing, but chats and dates with you build 20% more trust.",
       "fx": {"lewdGain":0.5,"willing":-5,"wardrobe":-10},
       "gen": true,
       "excl": ["Eager","Uninhibited","Exhibitionist"],
@@ -683,7 +683,7 @@
       "excl": []
     },
     "Eager Student": {
-      "desc": "Picks up 20% more from a teacher or the madame; +4 Wits.",
+      "desc": "Picks up 20% more from the classroom, Sam's classes and paid tutors; +4 Wits.",
       "fx": {"learn":1.2,"stats":{"wits":4}},
       "gen": true,
       "hidden": false,

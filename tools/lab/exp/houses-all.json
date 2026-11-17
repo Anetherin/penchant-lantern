@@ -4,6 +4,30 @@
   "weeks": 104,
   "runs": 12,
   "baseline": false,
-  "each": { "start.house": ["lantern", "onsen", "hollow", "tankard", "wayfarer", "castle", "pavilion", "veil", "sanctuary", "atelier"] },
-  "breakdown": []
+  "each": {
+    "start.house": [
+      "lantern",
+      "onsen",
+      "hollow",
+      "tankard",
+      "wayfarer",
+      "castle",
+      "pavilion",
+      "veil",
+      "sanctuary",
+      "atelier"
+    ]
+  },
+  "breakdown": [],
+  "columns": [
+    "weeksToWin",
+    "winRate",
+    "netEarly",
+    "netMid",
+    "netLate",
+    "worth20",
+    "guild",
+    "partners",
+    "over"
+  ]
 }

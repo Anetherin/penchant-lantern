@@ -1,7 +1,7 @@
 {
   "traits": {
     "Exhibitionist": {
-      "desc": "Dancing raises lewdness faster; comfortable with less clothing; needs no room for services.",
+      "desc": "Dancing +20%; comfortable with less clothing; serves clients without needing a room (rowdy crowds love it, refined houses less so).",
       "fx": {"jobBonus":{"dancer":1.2},"wardrobe":15},
       "hidden": true,
       "gen": false,

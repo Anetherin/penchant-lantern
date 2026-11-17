@@ -7,7 +7,7 @@
    Hooks: samFocusRun() at the start of endWeek (before the houses run); simHouse reads focusOn(kind, h).
    ===================================================================== */
 const FOCUS = {
-  office:  {icon:'📒', label:'Office',   desc:'Cuts upkeep (Business). Matches clients with the right courtesan and attendants with the right courtesans, like a madame: most of a madame\'s effect where there is none (or she\'s resting), a little on top of hers. No income.'},
+  office:  {icon:'📒', label:'Office',   desc:'Cuts upkeep and brings in a little from the books (Business). Matches clients with the right courtesan and attendants with the right courtesans, like a madame: most of a madame\'s effect where there is none (or she\'s resting), a little on top of hers.'},
   floor:   {icon:'🍺', label:'Floor',    desc:'Works the bar and the lounge: income where there is a bar (Charm), happier clients who wait less restlessly, and a little mood and trust for the ladies.'},
   watch:   {icon:'🛡️', label:'Watch',    desc:'Security all week (Strength), his step-in bonus every night, and more trust: the ladies feel safe with him around.'},
   guild:   {icon:'⚔️', label:'Guild',    desc:'Goes out on a guild contract with (or instead of) the ladies: pick it on the Guild tab. He is away all week, so none of the at-house work happens.'},
@@ -65,7 +65,9 @@ function samFocusRun(){
     what = `stood watch (security +${sec}, the ladies trust him a little more)`;
   } else if(k==='office'){
     sw.books = true; sw.booksEff = eff; samStat('business', 2*eff); samStat('wits', eff);
-    what = `ran the office (upkeep −${Math.round(booksCut()*eff*100)}%, matched clients and attendants${S.houses.some(h=>samAtHouse(h) && S.workers.some(w=>w.house===h.id && w.job==='madame')) ? ' alongside the madame' : ''})`;
+    const Of = F.office || {}, oi = Math.round(S.houses.filter(h=>samAtHouse(h)).length * ((Of.income ?? 0) + S.sam.business * (Of.perBusiness ?? 0)) * eff);   // supplier haggling and collected tabs
+    if(oi){ S.gold += oi; sw.income += oi; }
+    what = `ran the office (${oi ? `+${fmt(oi)} from the books, ` : ''}upkeep −${Math.round(booksCut()*eff*100)}%, matched clients and attendants${S.houses.some(h=>samAtHouse(h) && S.workers.some(w=>w.house===h.id && w.job==='madame')) ? ' alongside the madame' : ''})`;
   } else if(k==='floor'){
     const Fl = F.floor || {}; let inc = 0;
     S.houses.filter(h=>samAtHouse(h) && h.up.bar).forEach(h=>{

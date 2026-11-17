@@ -1,0 +1,16 @@
+{
+  "desc": "Nerys as the starting partner (Lantern, full cycle 1): she earned 3-5k/week from week 1 in a 3-seed tooling run (demon night cap + half-cost services + Exhibitionist's no-room serving + lewd 82), clearing the debt in ~12-15 weeks. Variants: her data as is vs candidate fixes. Kaede is the reference partner.",
+  "scenario": "campaign",
+  "weeks": 104,
+  "runs": 12,
+  "patchAt": "start",
+  "variants": [
+    { "name": "kaede (ref)", "start": { "partner": "kaede" } },
+    { "name": "nerys as is", "start": { "partner": "nerys" } },
+    { "name": "nerys lewd 55", "start": { "partner": "nerys" }, "patch": { "characters": { "nerys": { "lewd": 55 } } } },
+    { "name": "nerys no Exhibitionist", "start": { "partner": "nerys" }, "patch": { "characters": { "nerys": { "traits": ["Eager"] } } } },
+    { "name": "nerys lewd 55, no Exhibitionist", "start": { "partner": "nerys" }, "patch": { "characters": { "nerys": { "lewd": 55, "traits": ["Eager"] } } } }
+  ],
+  "columns": ["weeksToWin", "winRate", "netEarly", "netMid", "netLate", "worth13", "worth20", "mood", "left"],
+  "breakdown": ["named"]
+}

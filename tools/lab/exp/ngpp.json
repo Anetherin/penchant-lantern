@@ -3,12 +3,60 @@
   "scenario": "ngplus",
   "runs": 10,
   "cycles": 2,
-  "ng": { "past": "none", "boon": "ap", "cycleVar": "none", "bindGoddess": true },
+  "ng": {
+    "past": "none",
+    "boon": "ap",
+    "cycleVar": "none",
+    "bindGoddess": true
+  },
   "variants": [
-    { "name": "ng++ (shrine)", "ng": { "bindGoddess": true } },
-    { "name": "ng+ (wayfarer)", "ng": { "bindGoddess": false, "house": "wayfarer" } }
+    {
+      "name": "ng++ (shrine)",
+      "ng": {
+        "bindGoddess": true
+      }
+    },
+    {
+      "name": "ng+ (wayfarer)",
+      "ng": {
+        "bindGoddess": false,
+        "house": "wayfarer"
+      }
+    },
+    {
+      "name": "ng++ (shrine), no guild",
+      "ng": {
+        "bindGoddess": true
+      },
+      "policy": {
+        "guild": false
+      }
+    },
+    {
+      "name": "ng+ (wayfarer), no guild",
+      "ng": {
+        "bindGoddess": false,
+        "house": "wayfarer"
+      },
+      "policy": {
+        "guild": false
+      }
+    }
   ],
-  "columns": ["c1won", "c2weeks", "c3weeks", "c2debt", "c3debt", "c2staff", "c3staff", "c2over", "c3over"],
-  "delta": ["c2weeks", "c3weeks"],
+  "columns": [
+    "c1won",
+    "c2weeks",
+    "c3weeks",
+    "c2debt",
+    "c3debt",
+    "c2staff",
+    "c3staff",
+    "c2over",
+    "c3over"
+  ],
+  "delta": [
+    "c2weeks",
+    "c3weeks"
+  ],
   "breakdown": []
 }

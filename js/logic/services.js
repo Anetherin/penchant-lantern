@@ -289,6 +289,7 @@ function runService(X, w, A, o){
       if(ex){ encore = ex.id; encoreKind = 'lady'; if(ex.drained) note = 'drained'; }
     }
   }
+  if(encore) countUp(w, 'encore');   // Encore Favorite (earnable.json)
   if(note === 'drained' && !X.h.up.sigil && X.hr) X.hr.demonDrains++;
   return {ser, note, encore, encoreKind, roundDeclined, reck0, more: more ? more.id : null, satAdj};
 }

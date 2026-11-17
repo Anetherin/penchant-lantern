@@ -41,7 +41,7 @@ const NG_BOONS = {
   purse:   {label:'Deep Pockets', desc:'Start every cycle with 2,500g extra in hand.'},
   ap:      {label:'Seasoned Owner', desc:'+1 action every week, for good.'},
   renown:  {label:'A Name in Hollowmere', desc:'Every cycle starts with +15 renown, and its new house opens with +10 popularity.'},
-  recruit: {label:'Friends at the Guild', desc:'3 extra, better candidates at the start of every cycle; signing bonuses are 25% cheaper for good.'},
+  recruit: {label:'Friends in Town', desc:'3 extra, better candidates at the start of every cycle; signing bonuses are 25% cheaper for good.'},
   grace:   {label:'Lenient Lender', desc:'Every new debt is 10% smaller, for good.'},
   devotion:{label:'Fated Meeting', desc:'Every new partner, this cycle and after, starts with +15 trust and +10 lewdness.'},
   loyal:   {label:'Old Loyalties', desc:'Ladies who come back from a past life ask only half the usual raise for each life.'},

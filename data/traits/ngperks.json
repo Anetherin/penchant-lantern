@@ -101,7 +101,7 @@
       "excl": []
     },
     "Wellspring": {
-      "desc": "Carries 25 extra energy into each week and recovers 5% faster.",
+      "desc": "Can hold 25 energy above her max and recovers 5% faster.",
       "fx": {"energyBank":25,"energyRec":1.05},
       "gen": false,
       "hidden": false,
