@@ -81,8 +81,6 @@ function ngNumbers(boon, house, opts){
   const ngpp = opts && opts.ngpp!==undefined ? opts.ngpp : isNGPPNext();
   const chId = opts && opts.challenge!==undefined ? opts.challenge : (NGS && NGS.challenge);
   const ch = chId && CYCLE_CHALLENGES[chId] ? CYCLE_CHALLENGES[chId] : null;
-  const cvId = opts && opts.cycleVar!==undefined ? opts.cycleVar : (NGS && NGS.cycleVar);
-  const cv = cvId && CYCLE_VARS[cvId] ? CYCLE_VARS[cvId] : null;
   if(ngpp){
     const ngppCyc = (S.ngppCycle||0) + 1, hk = B.ngppHouse || 'shrine';
     const step = B.ngppStep !== undefined ? B.ngppStep : Math.round((B.ngppDebt ?? 50000) * (B.ngppPerCycle ?? 1));
@@ -94,7 +92,6 @@ function ngNumbers(boon, house, opts){
     let debt = base + extra;
     if(boon==='grace' || hasBoon('grace')) debt *= 0.9;
     if(hasChallengePerk('ahead_of_time')) debt *= 0.9;
-    if(cv && cv.debt) debt *= cv.debt;
     if(ch && ch.debt) debt *= ch.debt;
     debt = Math.round(debt);
     const purse = Math.round(((B.ngppPurse ?? B.purse) + (boon==='purse' || hasBoon('purse') ? 2500 : 0)) * (ch && ch.purse!==undefined ? ch.purse : 1));
@@ -111,7 +108,6 @@ function ngNumbers(boon, house, opts){
   let debt = (base + extra + keptExtra + loverExtra + nh) * scaleMul;
   if(boon==='grace' || hasBoon('grace')) debt *= 0.9;
   if(hasChallengePerk('ahead_of_time')) debt *= 0.9;
-  if(cv && cv.debt) debt *= cv.debt;
   if(ch && ch.debt) debt *= ch.debt;
   debt = Math.round(debt);
   const sold = S.houses.filter(h=>!keptHouse(h)), sale = Math.round(sold.reduce((a,h)=>a + HOUSES[h.id].cost*B.saleValue, 0));   // surrendered houses reduce the debt; no gold changes hands
@@ -151,8 +147,7 @@ function startNGPlus(){
   const ngpp = isNGPPNext(), unb = unboundVesselForms(), forms = Object.keys(GOD_FORMS);
   const offers = ngpp ? [] : shuffle(Object.keys(HOUSES).filter(k=>!H(k) && !HOUSES[k].premium && !HOUSES[k].ngppOnly && (!isNGHouse(k) || (S.cycle||1)+1 >= 2))).slice(0, BAL.ngplus.houseOffers||4);
   NGS = {step:0, ngpp, partner:ngpp?'none':null, vesselForm: ngpp ? (unb[0] || forms[0]) : null,
-    keep:Object.fromEntries(optionalHouses().map(h=>[h.id,true])), boon:null, perks:{}, romance:{}, house:null, past:null,
-    cycleVar: pick(Object.keys(CYCLE_VARS)), challenge:'none', offers};
+    keep:Object.fromEntries(optionalHouses().map(h=>[h.id,true])), boon:null, perks:{}, romance:{}, house:null, past:null, challenge:'none', offers};
   ngView();
 }
 function ngKeep(id){ if(!NGS || !NGS.keep || !optionalHouses().some(h=>h.id===id)) return; NGS.keep[id] = NGS.keep[id]===false; ngView(); }
@@ -163,8 +158,8 @@ const ngRomance = (C, w) => ((C && C.romance) || {})[w.id] === 'reset' ? 'reset'
 function ngRomancePick(wid, v){ (NGS.romance = NGS.romance || {})[wid] = v === 'reset' ? 'reset' : 'keep'; ngView(); }
 const pastsLeft = () => Object.keys(PASTS).filter(k=>!hasPast(k));
 const ngSteps = () => NGS && NGS.ngpp
-  ? ['Bound vessel', 'Sam\'s perk', ...(pastsLeft().length ? ['Another past life'] : []), ...(carriedLovers().length ? ['Lovers\' perks'] : []), 'Cycle & challenge', 'Begin']
-  : ['New partner', ...(optionalHouses().length ? ['Houses'] : []), ...(NGS && NGS.offers.length ? ['New house'] : []), 'Sam\'s perk', ...(pastsLeft().length ? ['Another past life'] : []), ...(carriedLovers().length ? ['Lovers\' perks'] : []), 'Cycle & challenge', 'Begin'];
+  ? ['Bound vessel', 'Sam\'s perk', ...(pastsLeft().length ? ['Another past life'] : []), ...(carriedLovers().length ? ['Lovers\' perks'] : []), 'Challenge', 'Begin']
+  : ['New partner', ...(optionalHouses().length ? ['Houses'] : []), ...(NGS && NGS.offers.length ? ['New house'] : []), 'Sam\'s perk', ...(pastsLeft().length ? ['Another past life'] : []), ...(carriedLovers().length ? ['Lovers\' perks'] : []), 'Challenge', 'Begin'];
 function ngNav(d){ NGS.step = Math.max(0, Math.min(ngSteps().length-1, NGS.step + d)); ngView(); }
 function ngView(){
   const st = NGS.step, og = homeHouse(), steps = ngSteps(), cur = steps[st], lovers = carriedLovers();
@@ -221,11 +216,9 @@ function ngView(){
             <select onchange="ngPerkPick('${w.id}',this.value)"><option value="">Choose a perk…</option>${left.map(t=>`<option value="${esc(t)}" ${cp===t?'selected':''}>${esc(t)}</option>`).join('')}</select></div>
           <div class="muted">${cp ? esc(TRAITS[cp].desc||'') : (left.length ? '' : 'She has every perk already.')}</div></div>`; }).join('')}`;
     ok = lovers.every(w=>NGS.perks[w.id] || !NG_PERKS().some(t=>!(w.ngPerks||[]).includes(t)));
-  } else if(cur==='Cycle & challenge'){
-    const cv = CYCLE_VARS[NGS.cycleVar] || {};
-    body = `<h2>This cycle's tide &amp; challenge</h2>
-      <div class="card"><b>Rolled Cycle Variable:</b> <span class="tag house">${esc(cv.label||NGS.cycleVar)}</span><div class="muted" style="margin-top:4px">${esc(cv.desc||'')}</div></div>
-      <p class="muted" style="margin-top:10px">Optionally bind yourself to a <b>Cycle Challenge</b>. Clear the cycle's debt without breaking its rule to earn a permanent Challenge Perk across all future cycles.</p>
+  } else if(cur==='Challenge'){
+    body = `<h2>This cycle's challenge</h2>
+      <p class="muted">Optionally bind yourself to a <b>Cycle Challenge</b>. Clear the cycle's debt without breaking its rule to earn a permanent Challenge Perk across all future cycles.</p>
       <div class="grid"><div class="pick ${NGS.challenge==='none'?'sel':''}" onclick="ngPick('challenge','none')"><b>Standard Cycle</b><div class="muted">No extra restriction or challenge reward.</div></div>
         ${Object.entries(CYCLE_CHALLENGES).filter(([k])=>ngChallengeOk(k, NGS) || hasChallengePerk(k)).map(([k,ch])=>{
         const got = hasChallengePerk(k), locked = !got && !ngChallengeOk(k, NGS);
@@ -236,7 +229,7 @@ function ngView(){
         </div>`; }).join('')}</div>`;
     ok = !!NGS.challenge;
   } else {
-    const N = ngNumbers(NGS.boon), HDo = HOUSES[og], cv = CYCLE_VARS[NGS.cycleVar] || {}, ch = CYCLE_CHALLENGES[NGS.challenge] || {};
+    const N = ngNumbers(NGS.boon), HDo = HOUSES[og], ch = CYCLE_CHALLENGES[NGS.challenge] || {};
     if(N.ngpp){
       const hk = N.houseKey || 'shrine', cap = (BAL.ngplus.ngppRoomStart ?? 10) + (BAL.ngplus.ngppRoomStep ?? 5) * Math.max(0, N.ngppCycle - 1);
       const vf = GOD_FORMS[NGS.vesselForm] || {};
@@ -245,7 +238,6 @@ function ngView(){
         <b>Bound Vessel:</b> ${esc(vf.label||NGS.vesselForm)} arrives at ${esc(HOUSES[hk].name)} as an empty vessel—quiet and blank until Sam fills her up.<br>
         <b>Prior lovers (${lovers.length}):</b> lover stories reset; they keep their Reincarnated stacks, final NG+ perks, and slowly awakening memories when met again (no signing bonus; ${esc(GN())} notices).<br>
         ${NGS.past&&NGS.past!=='none'?`<b>Another past life:</b> ${esc(PASTS[NGS.past].label)}.<br>`:''}
-        <b>Cycle Variable:</b> ${esc(cv.label||'None')} (${esc(cv.desc||'')}).<br>
         <b>Challenge:</b> ${esc(ch.label||'Standard Cycle')}${ch.perk?` — reward: <b>${esc(ch.perk)}</b> (${esc(ch.perkDesc||'')})`:''}.<br>
         <b>Debt:</b> ${fmt(N.debt)} ${N.impr ? `(${fmt(N.base)} Shrine loan + ${fmt(N.extra)} saved Shrine upgrades)` : `(NG++${N.ngppCycle} Shrine loan: ${fmt(BAL.ngplus.ngppDebt ?? 50000)} base + ${fmt(BAL.ngplus.ngppStep ?? 50000)} per NG++ cycle)`}, due over ${ngPlan(N.cycle).payments*BAL.debt.every} weeks. <b>Purse:</b> ${fmt(N.purse)}.</div>`;
     } else {
@@ -263,7 +255,7 @@ function ngView(){
         ${NGS.past&&NGS.past!=='none'?`<b>Another past life:</b> ${esc(PASTS[NGS.past].label)}.<br>`:''}
         <b>Reincarnated:</b> every lady who stays gains a stack (faster trust, lewdness, skill and stat growth; wages ${Math.round((BAL.ngplus.rebornWage||0)*100)}% higher per stack).<br>
         <b>Sam:</b> max energy ${100 + (BAL.sam.energyPerCycle||0)*(N.cycle-1)}. <b>Higher ceiling:</b> stats and skills reach ${BAL.ngplus.cap.base + BAL.ngplus.cap.perCycle*(N.cycle-1)} (Sam's ${(BAL.ngplus.cap.base + BAL.ngplus.cap.perCycle*(N.cycle-1))/SKL}).<br>
-        <b>Cycle Variable:</b> ${esc(cv.label||'None')} (${esc(cv.desc||'')}). <b>Challenge:</b> ${esc(ch.label||'Standard Cycle')}.<br>
+        <b>Challenge:</b> ${esc(ch.label||'Standard Cycle')}.<br>
         <b>New:</b> ${NGS.partner&&NGS.partner!=='none'?`${esc(NAMED[NGS.partner].name)} at Sam's side`:'no new partner'}${NGS.boon?`. Perk: <b>${NG_BOONS[NGS.boon].label}</b>`:''}. ✦ houses (and more) can be bought during the cycle.<br>
         ${N.sold.length?`<b>${N.sale?'Sold to the Credit House':'Surrendered to the Credit House'}:</b> ${N.sold.map(h=>esc(h.name)).join(', ')}${N.sale?` (${fmt(N.sale)}, off the debt)`:''}.<br>`:''}
         <b>Debt:</b> ${fmt(N.debt)} (${esc(HDo.name)} ${fmt(N.base)} + improvements ${fmt(N.extra)}${N.keptExtra?` + ${N.keptCount} kept houses ${fmt(N.keptExtra)}`:''}${N.loverExtra?` + ${N.loverCount} lovers ${fmt(N.loverExtra)}`:''}${N.house?` + ${esc(HOUSES[NGS.house].name)} ${fmt(N.house)}`:''}${N.scaleMul>1?`, scaled ×${N.scaleMul.toFixed(2)}`:''})${N.sale?`, minus ${fmt(N.sale)} for the sold houses`:''}, due over ${ngPlan(N.cycle).payments*BAL.debt.every} weeks.<br>
@@ -358,7 +350,6 @@ function ngBegin(){
   S.ngLovers = N.ngpp ? 0 : lovers.length;   // each carried lover raises paid ladies' baseline cut (wardrobe.cut.perLover)
   S.cycle = N.cycle;   // set first: generics rolled from here on can get ngOnly traits and higher ceilings
   S.boons = S.boons || []; if(C.boon && !S.boons.includes(C.boon)) S.boons.push(C.boon);
-  S.cycleVar = C.cycleVar || pick(Object.keys(CYCLE_VARS));
   S.challenge = C.challenge && C.challenge!=='none' ? C.challenge : null;
   S.flags = S.flags || {}; S.flags.boughtHouse = false;
 
@@ -411,7 +402,7 @@ function ngBegin(){
     S.gold = N.purse;
     S.debt = Object.assign({total:N.debt, remaining:N.debt, carry:0, strikes:0, start:S.week-1}, ngPlan(N.cycle));
     S.won = false; S.over = false; S.lastReport = null; EVQ = []; delete S.ngSeed;
-    S.flags.partnerCD = 3; S.flags.walkPartners = 0; S.flags.walkNoPartner = 0; S.ap = apMax(); S.sam.energy = samMaxEnergy();
+    S.flags.walkPartners = 0; townEvReset(); S.ap = apMax(); S.sam.energy = samMaxEnergy();
     refreshCandidates(hasBoon('recruit') ? 3 : 0, hasBoon('recruit') ? 1.15 : 1);
     inviteFriend(true); checkUnlocks(true);
     guildNewCycle(true);   // guild.js: the first NG++ resets the guild once
@@ -491,7 +482,7 @@ function ngBegin(){
   S.gold = N.purse;
   S.debt = Object.assign({total:N.debt, remaining:N.debt, carry:0, strikes:0, start:S.week-1}, ngPlan(N.cycle));
   S.won = false; S.over = false; S.lastReport = null; EVQ = []; delete S.ngSeed;
-  S.flags.partnerCD = 3; S.flags.walkPartners = 0; S.flags.walkNoPartner = 0; S.ap = apMax(); S.sam.energy = samMaxEnergy();
+  S.flags.walkPartners = 0; townEvReset(); S.ap = apMax(); S.sam.energy = samMaxEnergy();
   refreshCandidates(hasBoon('recruit') ? 3 : 0, hasBoon('recruit') ? 1.15 : 1);
   inviteFriend(true);   // the first week already shows an old friend
   checkUnlocks(true);

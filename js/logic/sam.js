@@ -29,7 +29,7 @@ function samGold(base, stat='business', spread=0.2){
   return Math.max(1, Math.round(base * rnd(1 - spread, 1 + spread) * (0.8 + v / 160)));
 }
 // Max energy grows with each New Game+ cycle (balance.json → sam.energyPerCycle).
-const samMaxEnergy = () => 100 + ((BAL.sam||{}).energyPerCycle || 0) * Math.max(0, ((typeof S!=='undefined' && S ? S.cycle : 1) || 1) - 1) + (hasChallengePerk('iron_ledger') ? 15 : 0) + cycleVarAdd('samEnergy', 0);
+const samMaxEnergy = () => 100 + ((BAL.sam||{}).energyPerCycle || 0) * Math.max(0, ((typeof S!=='undefined' && S ? S.cycle : 1) || 1) - 1) + (hasChallengePerk('iron_ledger') ? 15 : 0) + townAdd('samEnergy', 0);
 const samEnergyAdd = n => { S.sam.energy = clamp(S.sam.energy + n, 0, samMaxEnergy()); };
 function samGainXP(n){
   S.sam.xp = (S.sam.xp||0) + n; S.sam.lvl = S.sam.lvl || 1;
@@ -46,7 +46,7 @@ function samXP(n){
   if(lv > S.sam.appraisal){ S.sam.appraisal = lv; note(`[Appraisal] leveled up to Lv ${lv}! ${lv===2?'Exact stats and lewdness are now visible.':'Hidden traits and everyone\'s preferences are now visible.'}`); }
 }
 function samStat(k,n){ S.sam[k] = clamp((S.sam[k]||0)+n, 0, samCap()); }
-const lessonMul = () => (hasPast('massage') ? 1.15 : 1) * (hasPast('tutor') ? 1.2 : 1) * (1 + samUpFx('lesson')) * cycleVarMul('learn', 1);
+const lessonMul = () => (hasPast('massage') ? 1.15 : 1) * (hasPast('tutor') ? 1.2 : 1) * (1 + samUpFx('lesson')) * townMul('learn', 1);
 const samWorkCost = (base=25) => Math.max(5, base - samUpFx('workEnergy'));
 const samTrainCost = (base=20) => Math.max(5, base - samUpFx('trainEnergy'));
 const samDateCost = (base=15) => Math.max(4, base - samUpFx('dateEnergy'));

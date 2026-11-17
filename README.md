@@ -11,7 +11,7 @@ optional text generation (`ai-text-plugin`).
 - `data/`: **the files you edit by hand.** Each starts with a `_readme` explaining its fields (for a folder, in its `base.json`).
   The big sets are folders of smaller files: `data/<name>/index.json` lists the parts, which are merged in that order
   (objects key by key, lists joined end to end). To add a part (say a new guest pack), create the file and add its name
-  to `index.json`; a scalar defined in two parts is an error in `node tools/build.mjs`.
+  to `index.json`; a scalar defined in two parts is an error in `node tools/check-data.mjs`.
   | File / Folder | What's in it |
   |---|---|
   | `services.json` | Services: thresholds, prices, stat weights, AI description, image poses per context (client / Sam / two ladies), report lines |
@@ -49,7 +49,6 @@ optional text generation (`ai-text-plugin`).
 - `js/events`, `js/stories`: random events, regulars, bonds, firsts, encounters, walks; house stories, partner arcs, after-stories, intros, NG+ house stories.
 - `js/ui`: main screens (`core`), lady sheet (`sheet`), weekly report (`report`), wardrobe modal (`wardrobe`), settings (`settings`).
 - `perchance/panel.html`: the small shim you paste into Perchance's HTML panel.
-- `dist/hollowmere-nights.html`: a single-file build (`node tools/build.mjs`), handy as a fallback paste. Not committed (it conflicted on every merge); build it locally when you need it.
 
 ## Perchance setup
 
@@ -70,7 +69,7 @@ Scene snippets, AI prompts and flavor text live in `data/`, so anyone who can se
 
 - Serve the folder and open `index.html` (e.g. `python3 -m http.server`, then http://localhost:8000). Opening it
   as a file won't work, because the browser blocks loading `data/*.json` from disk. Generation is disabled outside Perchance.
-- `node tools/build.mjs` to rebuild the single-file version (`dist/hollowmere-nights.html`).
+- `node tools/check-data.mjs` checks that every script exists and no data key is defined in two part files.
 - `node tools/smoke.mjs [weeks]` plays the game headlessly and fails on any page error (needs Playwright).
 - `node tools/goddess-smoke.mjs [weeks per cycle]` runs the goddess arc through binding and ending headlessly.
 - `node tools/story-check.mjs [--words]` plays every intro, romance arc and after-story through every page and choice, and fails on leftover `{placeholders}`, empty text or errors.

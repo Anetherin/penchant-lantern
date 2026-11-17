@@ -41,5 +41,5 @@ The text has to agree with the service the game actually runs next.
   `{alias}`...) and only add ones the section's `_readme` lists. Losing `{name}` is harmless, but an unknown one shows up raw.
 - **Structure.** Don't change keys, list lengths or non-text fields (`pers`, `traits`, `lewdMin`, effects, `image`). The
   `pers` / `traits` tags decide which lady a template variant fits.
-- **Pasting edits from another model.** Run `node tools/build.mjs`: it fails if a key is defined in two part files (for
+- **Pasting edits from another model.** Run `node tools/check-data.mjs`: it fails if a key is defined in two part files (for
   example a character pasted into the wrong pack). Then run `node tools/smoke.mjs 30`.

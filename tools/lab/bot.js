@@ -402,7 +402,6 @@ function enterNG(ng){
   if (ng.friends != null) setFriends(ng.friends);
   if (ng.bindGoddess) { const g = G(); g.bound = true; g.left = false; g.divinity = ng.divinity ?? 5; g.love = ng.love ?? 70; }
   startNGPlus(); quiet();
-  if (ng.cycleVar != null) NGS.cycleVar = ng.cycleVar === 'none' ? null : ng.cycleVar;
   if (ng.challenge != null) NGS.challenge = ng.challenge;
   if (ng.vesselForm != null && NGS.ngpp) NGS.vesselForm = ng.vesselForm;
   const free = PARTNERS.filter(k => !S.workers.some(w => w.key === k));
@@ -421,10 +420,9 @@ function enterNG(ng){
   if (ng.keep === 'home') Object.keys(NGS.keep).forEach(k => NGS.keep[k] = false);
   carriedLovers().forEach(w => { const p = (ng.perk && NG_PERKS().includes(ng.perk) && !(w.ngPerks || []).includes(ng.perk)) ? ng.perk : NG_PERKS().find(t => !(w.ngPerks || []).includes(t)); if (p) NGS.perks[w.id] = p;
     if (ng.romance) NGS.romance[w.id] = ng.romance; });
-  const info = { ngpp: !!NGS.ngpp, cycleVar: NGS.cycleVar, challenge: NGS.challenge, lovers: carriedLovers().length, partner: NGS.partner, boon: NGS.boon, past: NGS.past, newHouse: NGS.house, offers: NGS.offers.slice() };
+  const info = { ngpp: !!NGS.ngpp, challenge: NGS.challenge, lovers: carriedLovers().length, partner: NGS.partner, boon: NGS.boon, past: NGS.past, newHouse: NGS.house, offers: NGS.offers.slice() };
   try { const N = ngNumbers(NGS.boon, NGS.house); info.debt = Math.round(N.debt); info.ngppCycle = N.ngppCycle || 0; } catch (e) {}
   ngBegin(); quiet(); resolveEvents();
-  if (ng.cycleVar === 'none') delete S.cycleVar;
   info.houses = S.houses.map(h => h.id); info.staff = S.workers.length; info.debtTotal = Math.round(S.debt.total);
   return info;
 }

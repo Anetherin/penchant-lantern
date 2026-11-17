@@ -24,7 +24,10 @@ async function init(){
   // saved images keyed by an old service id ('act:oral', 'samact:paizuri', ...) move to the new id
   for(const k of [...IMGKEYS]){ const nk = actKeyScene(k); if(nk!==k && !IMGKEYS.has(nk)){ const v = await imgGet(k); if(v){ await imgPut(nk, v); await imgDel(k); } } }
   S = store.get(KEY_SAVE);
-  if(!S || !Array.isArray(S.workers)){ S = null; startSetup(); }
+  const old = S;
+  if(S && Array.isArray(S.workers) && saveTooOld(S)){   // keep the old save aside rather than overwriting it, and start fresh
+    store.set(KEY_SAVE + '_old', S); setTimeout(()=>toast(tooOldMsg(old) + ' It was kept aside; a new game starts.'), 500); }
+  if(!S || !Array.isArray(S.workers) || saveTooOld(S)){ S = null; startSetup(); }
   else { migrate(S); save(); render(); if(S.ngSeed && S.won) startNGPlus(); }
   if(typeof cloudInit === 'function') cloudInit();
 }

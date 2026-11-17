@@ -33,12 +33,12 @@ function svcLewdCap(id, who){
   const A = actById(id) || {}, L = BAL.lewd, raw = (A.th ?? 30) + L.capOver[who];   // who: 'sam' | 'client'
   return who === 'sam' && L.tierCaps && L.tierCaps[A.tier] != null ? Math.min(raw, L.tierCaps[A.tier]) : raw;
 }
-const lewdMult = w => fxMul(w,'lewdGain') * ((PERS[w.personality]||{}).lewd || 1) * ((S && HOUSES[(houseOf(w)||{}).id]||{}).lewdBoost || 1) * (typeof cycleVarMul==='function' ? cycleVarMul('lewd', 1) : 1);
+const lewdMult = w => fxMul(w,'lewdGain') * ((PERS[w.personality]||{}).lewd || 1) * ((S && HOUSES[(houseOf(w)||{}).id]||{}).lewdBoost || 1) * (typeof townMul==='function' ? townMul('lewd', 1) : 1);
 const isFree = w => !!(w.isPartner || w.free);
 // Trust from Sam's attention: personality, race, and diminishing returns near the top.
 function gainTrust(w, n){
   const b = w.trust;
-  const ch = n > 0 ? ((typeof hasChallengePerk==='function' && hasChallengePerk('small_troupe') ? 1.15 : 1) * (typeof rebornHouseGrowth==='function' ? rebornHouseGrowth(w) : 1) * (typeof cycleVarMul==='function' ? cycleVarMul('trust', 1) : 1)) : 1;
+  const ch = n > 0 ? ((typeof hasChallengePerk==='function' && hasChallengePerk('small_troupe') ? 1.15 : 1) * (typeof rebornHouseGrowth==='function' ? rebornHouseGrowth(w) : 1) * (typeof townMul==='function' ? townMul('trust', 1) : 1)) : 1;
   const g = n * pTrust(w) * (n>0 ? fxMul(w,'trustGain') * incenseMul(w,'trustGain') * (nearSam(w) ? samBonus('charm') : 1) * ch : 1) * (n>0 ? Math.max(0.15, 1 - w.trust/140) : 1);
   w.trust = clamp(w.trust + g); capTrust(w); return w.trust - b;
 }
@@ -336,10 +336,10 @@ function wageFor(w){
 }
 function signingFor(w){
   if(w && w.wasLover) return 0;
-  return Math.max(60, Math.round(w.wage * rnd(5,8) * (raceOf(w).signing ?? 1) * (0.9 + (S?S.rep:10)/150) * (hasBoon('recruit')?0.75:1) * cycleVarMul('signing', 1)));
+  return Math.max(60, Math.round(w.wage * rnd(5,8) * (raceOf(w).signing ?? 1) * (0.9 + (S?S.rep:10)/150) * (hasBoon('recruit')?0.75:1) * townMul('signing', 1)));
 }
 // Skills work in 1000-units: n is the old 0-100 amount (x SKL), with a diminishing curve (1 - v/growDen(), i.e. statCap() + 300).
-const skillMult = w => fxMul(w,'skillGain') * incenseMul(w,'skillGain') * housePerkVal(typeof S!=='undefined' && S && w && w.house ? houseOf(w) : null, 'skillGain', 1) * rebornHouseGrowth(w) * (hasChallengePerk('small_troupe') ? 1.15 : 1) * cycleVarMul('learn', 1);
+const skillMult = w => fxMul(w,'skillGain') * incenseMul(w,'skillGain') * housePerkVal(typeof S!=='undefined' && S && w && w.house ? houseOf(w) : null, 'skillGain', 1) * rebornHouseGrowth(w) * (hasChallengePerk('small_troupe') ? 1.15 : 1) * townMul('learn', 1);
 function grow(w,k,n){ n *= SKL * skillMult(w); w.tech[k] = clampK((w.tech[k]||0) + n*(1 - (w.tech[k]||0)/growDen())); }
 function growAct(w,id,n){ id = actKey(id); if(!w.acts[id]) return; n *= SKL * skillMult(w); const s=w.acts[id].skill; w.acts[id].skill = clampK(s + n*(1 - s/growDen())); }
 function allNames(){ return S ? [...S.workers, ...S.candidates, ...(S.alumni||[])].map(w=>w.name) : []; }
@@ -586,7 +586,7 @@ const LUST_EAGER = BAL.lust.eager || 60;
 function lustProfile(w){
   if(isVessel(w) && vesselStage(w) < 2) return {build:0, drop:1, floor:0, max:0};
   const L = BAL.lust, B = L.build, Pf = L.profile, P = PERS[w.personality]||{};
-  const build = (B.base + w.lewd*B.perLewd + ((has(w,'Eager')||has(w,'Exhibitionist'))?B.eagerTrait:0) + (w.job==='rest'?B.resting:0)) * (P.lustBuild||1) * fxMul(w,'lustBuild') * incenseMul(w,'lust') * cycleVarMul('lustBuild', 1);
+  const build = (B.base + w.lewd*B.perLewd + ((has(w,'Eager')||has(w,'Exhibitionist'))?B.eagerTrait:0) + (w.job==='rest'?B.resting:0)) * (P.lustBuild||1) * fxMul(w,'lustBuild') * incenseMul(w,'lust') * townMul('lustBuild', 1);
   const drop = (Pf.dropAtLewd0 + (Pf.dropAtLewd100 - Pf.dropAtLewd0) * w.lewd/100) * fxMul(w,'lustDrop');
   const max = 100 + fxAdd(w,'lustMax');
   const floor = Math.min(60, max, w.lewd*Pf.floorPerLewd + fxAdd(w,'lustFloor'));

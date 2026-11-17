@@ -46,27 +46,22 @@ function samWalk(){
   const partners = openWalkPartners(), guests = openWalkGuests(), exLovers = openWalkExLovers();
   const found = S.flags.walkPartners || 0, maxP = ngpp ? Infinity : (B.partnerCycleMax ?? 3);
   const canPartner = partners.length > 0 && found < maxP;
-  const mult = (!ngpp && B.partnerHalve !== false) ? Math.pow(0.5, found) : 1;
-  const pity = Math.min(S.flags.walkNoPartner || 0, W.partnerPityMax ?? 5);
   const g = G();
   const opts = [];
-  if(exLovers.length) opts.push({cat:'exlover', w:(W.partner ?? 1.5) + 1.2});
+  if(exLovers.length) opts.push({cat:'exlover', w:W.exLover ?? 2.7});
   // partnerOdds: the chance this walk finds one, by how many were found this cycle (30% / 10% / 5%, then the cap); NG++: always ngppPartnerOdds
-  const PO = ngpp ? B.ngppPartnerOdds : Array.isArray(B.partnerOdds) && B.partnerOdds.length ? B.partnerOdds[Math.min(found, B.partnerOdds.length - 1)] : null;
-  const partnerP = PO != null ? Math.min(0.9, PO) : null;
+  const PO = ngpp ? (B.ngppPartnerOdds ?? 0.3) : (B.partnerOdds || [0.3])[Math.min(found, (B.partnerOdds || [0.3]).length - 1)];
+  const partnerP = Math.min(0.9, PO);
   if(!canPartner && guests.length) opts.push({cat:'guest', w:W.guest ?? 3.5});
   if(!g.left) opts.push({cat:'goddess', w: g.bound ? (W.goddessBound ?? 0.8) : (W.goddess ?? 2.2)});
   if((WALKS.casual || []).length) opts.push({cat:'casual', w:W.casual ?? 3.2});
   ['rest','coin','flavor'].forEach(cat => {
     if(walkEligibleEvents(cat).length) opts.push({cat:cat, w:W[cat] ?? 1.5});
   });
-  if(canPartner){ const others = opts.reduce((a,o)=>a+o.w, 0);   // weight that gives exactly partnerP (or the old weight in NG++)
-    opts.push({cat:'partner', w: partnerP != null ? others * partnerP / (1 - partnerP) : ((W.partner ?? 1.5) + (W.partnerPity ?? 0.25) * pity) * mult}); }
+  if(canPartner){ const others = opts.reduce((a,o)=>a+o.w, 0);   // the weight that gives exactly partnerP
+    opts.push({cat:'partner', w: others * partnerP / (1 - partnerP)}); }
 
   const picked = opts.length ? weighted(opts, o => o.w).cat : 'rest';
-  if(picked === 'partner' || picked === 'exlover') S.flags.walkNoPartner = 0;
-  else if(canPartner) S.flags.walkNoPartner = (S.flags.walkNoPartner || 0) + 1;
-  S.flags.walks = (S.flags.walks || 0) + 1;
 
   let ev = null;
   if(picked === 'exlover') ev = walkRecruitEvent(pick(exLovers), true);

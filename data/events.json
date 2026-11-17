@@ -309,12 +309,58 @@
       "text": "A folded card arrives with no seal, only a hand-drawn lantern and an address above a teahouse. Inside: a dozen people who all, in one way or another, should not remember what they remember. A former schoolteacher. A sellsword who apologises to everyone. A woman who still checks her pockets for a phone. Someone hands you tea. \"Welcome back,\" they say, and it's clear they've said it many times before.",
       "join": {
         "label": "Become a regular",
-        "res": "The Circle meets on the last night of each month. People talk. Some of them are looking for work, and now they know where to find it. (+renown. Someone from Sam's old world is already waiting among your candidates.)"
+        "res": "The Circle meets on the last night of each month. People talk, and some of them are looking for work. (+renown. Someone else who doesn't belong to this world is already waiting among your candidates.)"
       },
       "visit": {
         "label": "Just stay for the tea",
         "res": "It's good tea. You leave with a full stomach and a strange, light feeling, like being remembered by strangers."
       }
+    }
+  },
+  "townEvents": {
+    "_note": "Town events (balance.json → townEvents has the numbers, label and desc). One page when an event starts; the label/desc and its length are added under the text. {weeks} = how long it runs. Lists pick one at random.",
+    "festival": {
+      "title": "The Lantern Festival",
+      "text": [
+        "Paper lanterns go up along every street in Hollowmere overnight, strung roof to roof until the whole city glows orange after dark. Stalls crowd the squares, the taverns stop closing, and the roads in are thick with visitors who came for the lights and stay for the nights.\n\nA crier on the corner shouts the festival schedule twice an hour. Busiest weeks of the year, everyone tells you. Also the rowdiest.",
+        "You wake to drums. The Lantern Festival has started a day early, and by noon there are so many strangers in the streets that you can barely cross to the market. Every one of them has coin and nowhere to spend the night.\n\nIt's good for business. It's also a lot of drunk men far from home."
+      ],
+      "ok": "Light the lanterns"
+    },
+    "austerity": {
+      "title": "A Credit Audit",
+      "text": [
+        "A clerk from the Vane Credit House arrives with a ledger under one arm and a list of every business in the district. The Credit House is auditing its borrowers, and for the next few weeks every supplier in town wants payment up front and a little extra for the trouble.\n\nThe merchants and nobles who still come through your door, though, are in a generous mood. Nothing makes a rich man spend like watching his rivals count coppers."
+      ],
+      "ok": "Tighten the purse strings"
+    },
+    "warm_winds": {
+      "title": "Warm Winds",
+      "text": [
+        "A hot wind comes up from the south and doesn't leave. The nights stay sticky, nobody sleeps well, and the ladies drift around the house in as little as they can get away with. Tempers run short. Everything else runs high.\n\nYou catch yourself staring more than once. So do they."
+      ],
+      "ok": "Open the windows"
+    },
+    "iron_watch": {
+      "title": "City Watch Crackdown",
+      "text": [
+        "The City Watch doubles its patrols after a brawl in the Underdistrict ends in a fire. Armored pairs walk past your door every hour, and the clients who like to push their luck have suddenly found their manners.\n\nThe flip side: every lady looking for work knows the Watch is checking papers, and the ones willing to sign anywhere want more for the risk."
+      ],
+      "ok": "Behave for a while"
+    },
+    "scholars": {
+      "title": "Academy Exams",
+      "text": [
+        "Exam season at the city's academies. The city fills with tutors, crib sheets and nervous students, and every bookshop runs late. For a few weeks, anyone who wants to learn something can find someone to teach it, cheap.\n\nThe downside is the clientele: the students are broke and too busy to visit, and the town is talking about grades instead of your houses."
+      ],
+      "ok": "Hit the books"
+    },
+    "crimson_nights": {
+      "title": "Crimson Nights",
+      "text": [
+        "The moon rises red three nights running. The old women in the market say it's a lucky omen for lovers; the priests say it's just dust from the south. Either way, you feel wide awake, and the ladies are softer with you than usual, lingering when they pass you in the hall.\n\nYou don't question it."
+      ],
+      "ok": "Enjoy it"
     }
   },
   "title_patron": {

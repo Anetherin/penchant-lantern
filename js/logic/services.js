@@ -155,7 +155,7 @@ const ENC_NOTE = k => k ? flavor('enc_'+k) : '';
 
 /* ---------- jobs, propositions & rough clients (docs/OVERHAUL.md §5-6) ---------- */
 // Reputation gains get harder as the house grows: max(gainMin, gainBase - rep/gainDiv). Losses are unchanged.
-const repGain = (h, n) => n > 0 ? n * housePerkVal(h, 'repGain', 1) * shrineMult(h, 'perRep') * cycleVarMul('rep', 1) * Math.max(BAL.rep.gainMin, BAL.rep.gainBase - h.rep/BAL.rep.gainDiv) : n;
+const repGain = (h, n) => n > 0 ? n * housePerkVal(h, 'repGain', 1) * shrineMult(h, 'perRep') * townMul('rep', 1) * Math.max(BAL.rep.gainMin, BAL.rep.gainBase - h.rep/BAL.rep.gainDiv) : n;
 function repAdd(h, n){ h.rep = clamp(h.rep + repGain(h, n)); }
 // Each accepted proposition costs a non-must lady 8% of her main job's output that week (max 50%); chapel keepers aren't penalized.
 // A night ended by an unhandled pushy client costs her 1/nights of the week's output (balance.json → props.nights).
@@ -364,7 +364,7 @@ function askMore(X, w, A, o, ser){
 // After she says no, a pushy client may try to force the issue (non-graphic). Security power (house) vs a roll; else Sam, if he is
 // around; else nobody. She may first talk him down (wits .6 + charm .4, props.talkDown). Returns 'talked' | 'security' | 'sam' | 'samfail' | 'none' | null (he took no for an answer).
 function pushyCheck(X, w, cls, pr, client){
-  const BP = BAL.props, chance = clamp(((cls.pushy||0) + (cls.reckless||0)*0.5 + X.barN*BAL.jobs.barReckless + cAdd(client,'pushy',X)) * cMul(client,'pushyMult',X) * incenseMul(w,'pushy') * cycleVarMul('pushy', 1), 0, BP.maxPushy);
+  const BP = BAL.props, chance = clamp(((cls.pushy||0) + (cls.reckless||0)*0.5 + X.barN*BAL.jobs.barReckless + cAdd(client,'pushy',X)) * cMul(client,'pushyMult',X) * incenseMul(w,'pushy') * townMul('pushy', 1), 0, BP.maxPushy);
   if(Math.random() >= chance) return null;
   const h = X.h, hr = X.hr; let res;
   countUp(w,'rowdy'); pr.pushy = (pr.pushy||0)+1; hr.pushy.total++;

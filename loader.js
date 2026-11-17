@@ -121,7 +121,6 @@
     });
   }
   Promise.all(DATA_FILES.map(function(n){
-    if(window.PL_DATA[n]) return null;   // already inlined (single-file build)
     return loadSet(n).then(function(d){ window.PL_DATA[n] = d; });
   })).then(loadScripts, function(e){ fail('Couldn\'t load ' + e.message); });
 

@@ -57,7 +57,7 @@ A run that never reaches its phase is counted as "unreached" (warm-up cap `maxWa
   "mutate": { ... },                 // applied at phase start, see below
   "ng":     { "boon": "ap" | [per cycle], "partner": "auto", "past": "none", "house": "wayfarer" | [per cycle] | "none" | "auto" (first offer) | "best" (LAB.HOUSE_RANK),
               "keep": "all" | "home", "lovers": n, "friends": n, "perk": "...", "romance": "keep" | "reset",
-              "cycleVar": "none" | "...", "challenge": "none" | "...", "vesselForm": "...", "bindGoddess": true, "divinity": 5, "love": 70 },
+              "challenge": "none" | "...", "vesselForm": "...", "bindGoddess": true, "divinity": 5, "love": 70 },
   "cycles": 4,                       // ngplus: number of NG+ cycles to play (cN* columns per cycle)
   "variants": [ { "name": "base" }, { "name": "x", "patch": {...} } ],
   "each":   { "mutate.race": ["elf", "demon"] },     // one variant per value (cartesian over several keys); adds "base"

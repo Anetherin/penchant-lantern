@@ -42,13 +42,13 @@ function ngppSavedCost(id){
 }
 function newGame(cfg){
   const HD = HOUSES[cfg.house];
-  S = { v:40, samFocus:{kind:'office', topic:'auto'}, cloudId: cfg.cloudId || ('run_' + Date.now().toString(36) + Math.random().toString(36).slice(2,6)), cloudName: (cfg.cloudName || '').trim() || HD.name, localSavedAt: Date.now(), cloudSyncedAt: 0, samHome:cfg.house, samUps:{}, starters:[cfg.house], houseWardrobe:[], houseUnder:[], closets:{}, week:1, gold:600, rep:HD.rep, ap:3, cur:cfg.house, home:cfg.house, cycle:1, ngppCycle:0, ngppHouses:{}, cycleVar:null, challenge:null, challengePerks:[], vessels:[], boons:[], past:cfg.past, pasts:[cfg.past], partner:cfg.partner, partners:[cfg.partner],
+  S = { v:41, samFocus:{kind:'office', topic:'auto'}, cloudId: cfg.cloudId || ('run_' + Date.now().toString(36) + Math.random().toString(36).slice(2,6)), cloudName: (cfg.cloudName || '').trim() || HD.name, localSavedAt: Date.now(), cloudSyncedAt: 0, samHome:cfg.house, samUps:{}, starters:[cfg.house], houseWardrobe:[], houseUnder:[], closets:{}, week:1, gold:600, rep:HD.rep, ap:3, cur:cfg.house, home:cfg.house, cycle:1, ngppCycle:0, ngppHouses:{}, townEv:null, townEvNext:(BAL.townEvents||{}).firstWeek ?? 4, challenge:null, challengePerks:[], vessels:[], boons:[], past:cfg.past, pasts:[cfg.past], partner:cfg.partner, partners:[cfg.partner],
     houses:[makeHouse(cfg.house)],
     sam:{energy:100, ...BAL.sam.base, appraisal:1, appXP:0, first:true, lvl:1, xp:0},
     samWeek:{security:0, books:false, income:0, acts:[]},
     debt:{total:startDebt(cfg.house, cfg.partner), remaining:startDebt(cfg.house, cfg.partner), carry:0, strikes:0},
     workers:[], candidates:[], alumni:[], log:[],
-    flags:{hilde:false, taunt:false, poachCD:0, partnerCD:3}, lastReport:null, over:false, won:false };
+    flags:{taunt:false, poachCD:0}, lastReport:null, over:false, won:false };
   S.houses.forEach(h=>{ h.since = 1; h.story = {beat:0,wk:0}; });
   PASTS[cfg.past].fx(S.sam);
   const npc = makeNamed(HD.npc); npc.house = cfg.house; npc.locked = cfg.house; npc.contract = 999; npc.trust = clamp(npc.trust+10);
@@ -98,95 +98,19 @@ function migrateWorker(w){
   if(JM[w.job]) w.job = JM[w.job]; if(JM[w.prevJob]) w.prevJob = JM[w.prevJob];
   ['jobLikes','jobDislikes'].forEach(k=>{ if(Array.isArray(w[k])) w[k] = Array.from(new Set(w[k].map(j=>JM[j]||j))); });
 }
+// Saves older than SAVE_MIN aren't converted any more (only the last few versions are). Callers check saveTooOld first.
+const SAVE_MIN = 36;
+const saveTooOld = s => !!s && (s.v || 0) < SAVE_MIN;
+const tooOldMsg = s => `That save is from an older version (v${(s && s.v) || 0}) that this build no longer converts (v${SAVE_MIN}+ only).`;
 function migrate(s){
   s.alumni = s.alumni || [];
   const ov = s.v || 0;
-  if(!s.houses){
-    s.houses = [{id:'lantern', name:HOUSES.lantern.name, rooms:s.rooms||2, tier:s.roomTier||0, up:s.up||{}, price:s.price??1, rep:s.rep||10}];
-    s.cur = 'lantern'; s.past = s.past || 'salaryman';
-    (s.workers||[]).forEach(w=>{ w.house='lantern'; if(w.id==='n_mira'||w.id==='n_kaede'||w.id==='n_hilde'||w.id==='n_rhoswen'||w.id==='n_hanna'){ w.key=w.id.slice(2); } });
-    s.debt.total = s.debt.total || 15470;
-    delete s.rooms; delete s.roomTier; delete s.up; delete s.price;
-  }
-  if(s.v<5) s.lastReport = null;
-  if(s.v<6) s.built = s.built || 0;
-  if(s.v<7){   // the partners that had arcs when v7 shipped ('mio' is what old saves carry; the data key is now 'akari'; later partners never existed in v<7 saves)
-    (s.workers||[]).concat(s.candidates||[],s.alumni||[]).forEach(w=>{ if(w.key && ['kaede','yui','nerys','elowen','adelheid','marisol','natsuki','kanako','mio','akari'].includes(w.key)) w.arc = [0,1,3,6][w.arc||0] ?? 0; });
-    s.houses.forEach(h=>{ if(h.story) h.story.beat = [0,2,3,4][h.story.beat] ?? h.story.beat; });
-  }
-  if(ov < 13) (s.workers||[]).concat(s.candidates||[],s.alumni||[]).forEach(scaleWorker);
   (s.workers||[]).concat(s.candidates||[],s.alumni||[]).forEach(migrateWorker);
-  if(ov < 14) s.lastReport = null;
   s.pasts = Array.isArray(s.pasts) && s.pasts.length ? s.pasts : (s.past ? [s.past] : []);
-  if(s.samUps && s.samUps.suite){ delete s.samUps.suite; const sh = (s.houses||[]).find(h=>h.id===(s.samHome||s.home)) || (s.houses||[])[0]; if(sh){ sh.up = sh.up || {}; sh.up.suite = true; } }
   s.starters = s.starters || [s.home || (s.houses[0]||{}).id];
-  if(ov < 21){   // the Lounge is gone (Castle Rosenhal and the Pearl Grotto no longer start with one): refund what was paid for it once; bartenders need a Bar now
-    s.houses.forEach(h=>{ if(h.up && h.up.lounge){ delete h.up.lounge; if(!['castle','pearl'].includes(h.id)){ s.gold = (s.gold||0) + 1100; h.spent = Math.max(0, (h.spent||0) - 1100); (s.log = s.log||[]).unshift({wk:s.week, t:`${h.name}: the Lounge was removed from the game. The 1,100g it cost has been refunded.`}); } } });
-    (s.workers||[]).forEach(w=>{ const h = s.houses.find(x=>x.id===w.house); if(w.job==='bartender' && h && !(h.up||{}).bar) w.job = 'rest'; });
-  }
-  if(ov < 22){   // amenity rework: Moon Garden -> Garden, Grooming Den -> Incense Burner, Forge Hearth -> Workshop
-    const REN = {grove:'garden', den:'incense', hearth:'workshop'};
-    s.houses.forEach(h=>{ h.up = h.up || {}; Object.keys(REN).forEach(o=>{ if(h.up[o]){ delete h.up[o]; h.up[REN[o]] = true; } }); });
-    if(s.builtBy) Object.keys(REN).forEach(o=>{ if(s.builtBy[o]){ s.builtBy[REN[o]] = (s.builtBy[REN[o]]||0) + s.builtBy[o]; delete s.builtBy[o]; } });
-  }
-  if(ov < 23){   // Wine Cellar -> tiered Drinks upgrade (h.drinks 0-3); classroom + teacher
-    s.houses.forEach(h=>{ h.up = h.up || {}; if(h.up.cellar){ delete h.up.cellar; h.drinks = 2; } });
-    if(s.builtBy && s.builtBy.cellar){ s.builtBy.drinks = (s.builtBy.drinks||0) + s.builtBy.cellar; delete s.builtBy.cellar; }
-  }
   s.houses.forEach(h=>{ if(h.drinks===undefined) h.drinks = 0; if(h.teachSkill===undefined) h.teachSkill = null; });
-  s.houses.forEach(h=>{ if(h.decor===undefined) h.decor = 0; if(h.wsDisc===undefined) h.wsDisc = 0; if(!h.incense) h.incense = 'calm'; });
-  if(ov < 24){   // race/sub stat mods and the Elegant / Former Adventurer / Tough boosts are a live bonus now (statBonus): take back what creation baked in
-    (s.workers||[]).concat(s.candidates||[],s.alumni||[]).forEach(w=>{
-      if(!w || !w.stats || w.key) return;   // named and guest ladies were never given the mods; creator-made ones start from a genWorker draft (baked values pre-filled in the form), so they're treated as generic too
-      const R = RACES[w.race], SD = w.race==='beastkin' ? subData(w.race, w.sub) : null, tr = t => (w.traits||[]).includes(t);
-      STAT_KEYS.forEach(k=>{
-        let d = ((R && R.mods && R.mods[k]) || 0) * SKL + ((SD && SD.mods && SD.mods[k]) || 0) * SKL;
-        if(k==='refinement' && tr('Elegant')) d += 100;
-        if(k==='strength' && tr('Former Adventurer')) d += 100;
-        if(k==='stamina' && tr('Tough')) d += 100;
-        w.stats[k] = Math.max(0, Math.round(w.stats[k] - d));
-      });
-    });
-  }
-  if(ov < 27){   // Charisma and Wits (docs/STATS.md): named ladies take their data values, everyone else starts from charm / refinement + her personality lean
-    (s.workers||[]).concat(s.candidates||[],s.alumni||[]).forEach(w=>{
-      if(!w || !w.stats) return;
-      const D = w.key && NAMED[w.key], add = [];
-      Object.entries(STAT_FALLBACK).forEach(([k,f])=>{
-        if(w.stats[k]!==undefined) return;
-        const dv = D && D.stats && D.stats[k];
-        if(dv!==undefined) w.stats[k] = clampK(dv*SKL + ri(0,SKL-1)); else { w.stats[k] = w.stats[f] || 0; add.push(k); }
-      });
-      if(add.length) persLean(w, add);
-    });
-  }
-  if(ov < 28){   // Sam's Wits (sam.base.wits + perLevel per level); reincarnated ladies' wages pick up ngplus.rebornWage per life
-    if(s.sam && s.sam.wits===undefined) s.sam.wits = Math.min(100, (BAL.sam.base.wits||0) + BAL.sam.perLevel * ((s.sam.lvl||1) - 1));
-    (s.workers||[]).concat(s.candidates||[], s.alumni||[]).forEach(w=>raceFit(w));   // race appearance rules (races.json → design, body.json → raceBan)
-    (s.workers||[]).concat(s.alumni||[]).forEach(w=>{ if(w && w.reborn && w.wage > 0 && !w.free && !w.isPartner) w.wage = Math.round(w.wage * (1 + (BAL.ngplus.rebornWage||0) * w.reborn)); });
-  }
-  if(ov < 29){   // design.gear split off design.features (data), the Great Fairy got a name (Cotera, title Great Fairy), closets for leaving ladies
-    (s.workers||[]).concat(s.candidates||[], s.alumni||[]).forEach(w=>{
-      const D = w && w.key && NAMED[w.key] && NAMED[w.key].design; if(!D || !w.design) return;
-      if(D.gear && !w.design.gear && (w.design.features||'').includes(D.gear.split(' ').slice(-2).join(' '))){ w.design.gear = D.gear; w.design.features = D.features || ''; }
-      if(w.key==='great_fairy' && w.name==='The Great Fairy'){ w.name = NAMED[w.key].name; w.title = NAMED[w.key].title; delete w.titleId; }
-    });
-  }
+  s.houses.forEach(h=>{ if(h.decor===undefined) h.decor = 0; if(h.wsDisc===undefined) h.wsDisc = 0; if(!h.incense) h.incense = 'calm'; if(h.damaged===undefined) h.damaged = (HOUSES[h.id]||{}).damaged || 0; });
   s.closets = s.closets || {};
-  if(ov < 30){ s.goddess = s.goddess || {met:(s.cycle||1) > 1}; }   // the goddess (goddess.js): an old NG+ save has met her already
-  if(ov < 32){   // design.gear -> design.accessories; w.accState; generic features split into features / accessories / expression
-    (s.workers||[]).concat(s.candidates||[], s.alumni||[]).forEach(w=>{
-      if(!w || !w.design) return;
-      if(w.design.gear){ w.design.accessories = [w.design.accessories, w.design.gear].filter(Boolean).join(', '); delete w.design.gear; }
-      if(!w.accState) w.accState = 'auto';
-    });
-  }
-  if(ov < 33){   // profit cuts, personal clothing purse & auto-dress autonomy
-    s.workers.forEach(w=>{ if(w.cut===undefined) w.cut = 'base'; if(w.purse===undefined) w.purse = 0; if(w.autoDress===undefined) w.autoDress = false; });
-  }
-  if(ov < 34){   // run-down house repairs & expanded incense modes
-    s.houses.forEach(h=>{ if(h.damaged===undefined) h.damaged = (HOUSES[h.id]||{}).damaged || 0; });
-  }
   if(ov < 37){   // house class / prestige
     s.houses.forEach(h=>{ if(h.prestige===undefined) h.prestige = ((HOUSES[h.id]||{}).prestige ?? 50); });
   }
@@ -200,9 +124,15 @@ function migrate(s){
     if(s.flags) delete s.flags.guild;
     if(s.samUps && s.samUps.circle) s.samUps.stones = true;   // owners of the old circle keep both halves
   }
+  if(ov < 41){   // v41: the NG+ cycle variable became town events that come and go inside every cycle; unused flags dropped
+    delete s.cycleVar;
+    if(s.townEvNext === undefined) s.townEvNext = (s.week || 1) + ((BAL.townEvents||{}).firstWeek ?? 4);
+    if(s.flags){ delete s.flags.partnerCD; delete s.flags.hilde; delete s.flags.walks; delete s.flags.walkNoPartner; }
+  }
+  s.townEv = s.townEv || null;
   s.guildPerks = s.guildPerks || [];
-  s.v = 40; s.samUps = s.samUps || {}; s.houseWardrobe = s.houseWardrobe || []; s.houseUnder = s.houseUnder || []; s.home = s.home || (s.houses[0]||{}).id; s.samHome = s.samHome || s.home || (s.houses[0]||{}).id; s.cycle = s.cycle || 1; s.ngppCycle = s.ngppCycle || 0; s.ngppHouses = s.ngppHouses || {}; s.cycleVar = s.cycleVar || null; s.challenge = s.challenge || null; s.challengePerks = s.challengePerks || []; s.vessels = s.vessels || []; s.boons = s.boons || []; s.partners = s.partners || (s.partner ? [s.partner] : []);
-  s.regulars = s.regulars || []; s.bonds = s.bonds || {}; s.flags = Object.assign({partnerCD:3}, s.flags||{});
+  s.v = 41; s.samUps = s.samUps || {}; s.houseWardrobe = s.houseWardrobe || []; s.houseUnder = s.houseUnder || []; s.home = s.home || (s.houses[0]||{}).id; s.samHome = s.samHome || s.home || (s.houses[0]||{}).id; s.cycle = s.cycle || 1; s.ngppCycle = s.ngppCycle || 0; s.ngppHouses = s.ngppHouses || {}; s.challenge = s.challenge || null; s.challengePerks = s.challengePerks || []; s.vessels = s.vessels || []; s.boons = s.boons || []; s.partners = s.partners || (s.partner ? [s.partner] : []);
+  s.regulars = s.regulars || []; s.bonds = s.bonds || {}; s.flags = s.flags || {};
   s.sam.lvl = s.sam.lvl || 1; s.sam.xp = s.sam.xp || 0;
   s.houses.forEach(h=>{ if(h.tidy===undefined) h.tidy = BAL.tidy.start; if(h.prestige===undefined) h.prestige = ((HOUSES[h.id]||{}).prestige ?? 50); h.since = h.since || 1; h.story = h.story || {beat:0,wk:0}; h.bonus = h.bonus || {}; if(h.spent===undefined) h.spent = 0;
     Object.keys(HOUSES[h.id].up||{}).forEach(k=>{ if(!h.up[k]) h.up[k] = true; });   // built-in amenities added to a house later (e.g. Hollowmere's Tethering Stone)
@@ -210,9 +140,6 @@ function migrate(s){
     (s.workers||[]).forEach(w=>{ if(w.key===HOUSES[h.id].npc){ w.locked = h.id; w.house = h.id; } }); });
   s.samWeek = Object.assign({security:0,books:false,income:0,acts:[]}, s.samWeek||{}); if(!s.samWeek.acts) s.samWeek.acts=[];
   (s.workers||[]).concat(s.candidates||[],s.alumni||[]).forEach(w=>{ if(w.key && NAMED[w.key] && (!w.outfit || w.outfit==='custom' || !WARDROBE[w.outfit])){ w.outfit='sig_'+w.key; w.owned=Array.from(new Set([...(w.owned||[]),'sig_'+w.key])); } ensureWorker(w); if(!w.house) w.house = s.houses[0].id; });
-  if(ov < 31 && (s.cycle||1) > 1){   // NG+ used to drop a finished house story's lady (Ines, Vharra...) unless she was a lover: bring her back with her house once
-    const S0 = S; S = s; try { s.houses.forEach(h=>{ const w = restoreStoryJoin(h); if(w) addLog(`${w.name} is back at ${h.name}, where she belongs.`); }); } finally { S = S0; }
-  }
   if(typeof ensureCloudRun === 'function') ensureCloudRun(s);
   if(s.lastReport && !s.lastReport.v5) s.lastReport = null;
   return s;
