@@ -41,8 +41,8 @@
       "excl": []
     },
     "Hollowmere Star": {
-      "desc": "Her name is known: +4 appeal, services earn 8% more.",
-      "fx": {"appeal":4,"clientFee":1.08},
+      "desc": "Her name is known: +4 appeal, 25% more likely to win a regular, services earn 5% more.",
+      "fx": {"appeal":4,"regular":1.25,"clientFee":1.05},
       "gen": false,
       "hidden": false,
       "earn": null,
@@ -131,8 +131,8 @@
       "excl": []
     },
     "Old Flame": {
-      "desc": "Lewdness grows 20% faster; +8 willingness.",
-      "fx": {"lewdGain":1.2,"willing":8},
+      "desc": "Lewdness grows 20% faster, and she never quite cools off (lust floor +10).",
+      "fx": {"lewdGain":1.2,"lustFloor":10},
       "gen": false,
       "hidden": false,
       "earn": null,
@@ -251,9 +251,9 @@
       "fx": {"stats":{"refinement":10},"classBonus":{"noble":1.12,"official":1.12},"appeal":3}
     },
     "Unyielding Frame": {
-      "desc": "Honed across lifetimes: +10 Strength, +10 Stamina, +15 security, +15 max energy.",
+      "desc": "Honed across lifetimes: +10 Strength, +10 Stamina, +15 security, +15 max energy, and work wears her down 20% slower.",
       "ngPerk": true,
-      "fx": {"stats":{"strength":10,"stamina":10},"security":15,"maxEnergy":15}
+      "fx": {"stats":{"strength":10,"stamina":10},"security":15,"maxEnergy":15,"fatigue":0.8}
     },
     "Old Regulars": {
       "desc": "Half of Hollowmere remembers her from somewhere: 50% more likely to win a regular, +20% tips.",

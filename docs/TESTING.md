@@ -109,6 +109,13 @@ The most useful ones:
   - the summary line and every non-PASS row from `tools/lab/out/checks.md`
   - for each FAIL, the relevant table from `tools/lab/out/<experiment>.md`
   - anything in an **Errors** block at the top of a report: that's a crash, not balance
+- **Report format** (write it to `temp-balance-results.md` at the repo root, replacing the old one, and commit it to the branch):
+  1. Header: branch, commit hash, date, machine cores / `--conc`, total run time.
+  2. Build & smoke: one line each (`build`, `smoke 30`, `goddess-smoke`), plus any page errors verbatim.
+  3. Intent checks: the summary line, then **every** row (PASS too) with its numbers and ± CIs, grouped PASS / FAIL / WARN / UNSURE / NO DATA. Mark rows whose result changed since the last report (**now passing** / **now failing**).
+  4. For every experiment run (the checks' own and the extra ones asked for), paste its **full** variant table and paired-Δ table from `tools/lab/out/<experiment>.md`, not just the deltas. Include the `named` / `race` / `job` breakdown tables when the spec has them.
+  5. Anything odd: identical variants (Δ 0 ± 0 usually means the setup didn't take effect), `unreached` runs, game overs, runs stopped at the week cap. Say which runs and seeds.
+  6. No proposals unless asked: if something looks off, say what and where in one or two lines. If you do test a patch, keep it in a separate section with before/after rows, and don't commit data changes.
 - When proposing a tuning change, test it as a patch variant first (section 5) and show the before/after rows. Then rerun the affected checks.
 - If the game's code changes in ways the bot uses (hiring, jobs, upgrades, Sam's actions, NG+), keep `tools/lab/bot.js` in sync and rerun `npm run lab -- phases --runs 2` to confirm it still plays.
 - Other test scripts: `node tools/goddess-smoke.mjs` (goddess / NG+ flow) and `node tools/story-check.mjs` (all story text), after story or goddess edits.
@@ -122,3 +129,11 @@ The most useful ones:
 | every run says `unreached` | the bot never got to that phase (e.g. a mutation broke hiring): open that experiment's `.md` and the run's `pageErrors` |
 | `pageErrors:` in the progress line | a game script threw during play: that's a bug in the game or the bot, worth reporting with the message |
 | very slow | lower `--runs` while exploring, raise `--conc` toward your core count; `--reuse` skips experiments already run |
+
+## 8. Current run list (round 4, 2026-11-17)
+
+On `feat/balance-tuning`, after `npm run build && npm run smoke` and `node tools/goddess-smoke.mjs`:
+1. `npm run lab -- nerys` (Nerys after her nerf vs Kaede and her old numbers; `named` breakdown).
+2. `npm run check` (full size).
+3. Extra experiments, full tables: `npm run lab -- guild`, `sam-focus`, `houses-all`, `ngpp`, `partners`, `walk-partners`.
+Expected shifts from round 4, so don't read them as regressions: the bot now walks once a week for partners (cycle 1 and NG+ get faster), the guild bot keeps top earners and sole support staff home, `perLady` now subtracts android charging and counts rest weeks, the promoter check now actually moves a lady.

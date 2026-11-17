@@ -168,7 +168,7 @@
     "race": "demon",
     "age": 205,
     "personality": "Proud and sharp-tongued",
-    "traits": ["Eager","Exhibitionist"],
+    "traits": ["Eager"],
     "style": "Revealing",
     "favColor": "purple",
     "fav": "cowgirl",
@@ -191,7 +191,7 @@
     "tech": {"service":35,"dance":45,"bar":20,"combat":25,"manage":15},
     "actSkill": 55,
     "popularity": 15,
-    "lewd": 82,
+    "lewd": 65,
     "trust": 15,
     "outfits": {
       "sig_nerys": {
@@ -240,7 +240,8 @@
       }
     ],
     "goddess": {"comment":"\"A contract devil, hm.\" {goddess} laughs. \"She's read the fine print. I wrote the clause she missed. Don't tell her.\""},
-    "partnerBlurb": "A sharp-tongued demon whose interrupted summoning ritual bound her directly to Sam’s contract."
+    "partnerBlurb": "A sharp-tongued demon whose interrupted summoning ritual bound her directly to Sam’s contract.",
+    "cutFloor": 0.3
   },
   "elowen": {
     "role": "partner",
