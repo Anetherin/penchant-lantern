@@ -790,6 +790,12 @@
         "style": "Elegant",
         "prompt": "a floor-length black velvet gown with deep plum embroidery and long sleeves",
         "bonus": {"noble":1.2,"courtesan":1.15}
+      },
+      "sp_lara_past": {
+        "label": "Gothic past",
+        "style": "Revealing",
+        "prompt": "a slightly oversized white blouse deliberately unbuttoned low to reveal a black lace bra, a loosened tie, a pleated dark skirt, ripped fishnet stockings and knee high boots",
+        "bonus": {"courtesan":1.2,"propose":1.15},
       }
     },
     "bonds": {
