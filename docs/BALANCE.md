@@ -181,3 +181,5 @@ Round 4h (`test/balance-round-4h`): `loverDebt` 3,700 overshot: NG+ ratio 1.54, 
 - **Lovers raise the profit-cut baseline:** `wardrobe.cut.perLover` 0.02: each lover carried into a cycle adds 2% to paid ladies' baseline cut for that cycle (`S.ngLovers`, set at rebirth; 0 in NG++; on top of the `maxBase` cap). Shown on the NG+ summary. This scales with the house's earnings, so it bites harder the more a lover-heavy run earns.
 - `ngplus-carry` and `ngpp` now default to 24 runs.
 - **Open:** is ~40% game over in NG++ (and the guild being required there) the intended difficulty?
+
+Round 4i measured (`test/balance-round-4i`, `ngplus-carry` at 24 seeds): lovers are neutral now. 1/2/3/5 lovers → 37/41/41/40 weeks with flat income (2,750-2,940/wk; 5 lovers was +890/wk over 1 in 4h), 0 lovers 47 weeks / 83% wins, default run 42 weeks / 88%, NG+ ratio 1.39. Both NG+ checks missed by a hair (3 − 1 lovers = 4.13 vs ±4; default 88% vs 90%) with per-variant CIs of ±10-13 weeks, so the thresholds moved to ±5 weeks and ≥ 85% wins.

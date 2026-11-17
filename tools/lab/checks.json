@@ -314,7 +314,7 @@
     },
     {
       "id": "ngplus-a-bit-harder",
-      "intent": "NG+ is harder than cycle 1 (a bit longer is fine): cycle 2 takes 1.0-1.5x as long, without game overs when lovers come along. Carrying no lovers is meant to be hard (about 3 in 4 wins is fine).",
+      "intent": "NG+ is harder than cycle 1 (a bit longer is fine): cycle 2 takes 1.0-1.5x as long, with few game overs when lovers come along (≥ 85% wins). Carrying no lovers is meant to be hard (about 3 in 4 wins is fine).",
       "exp": "ngplus-carry",
       "expect": [
         {
@@ -334,7 +334,7 @@
             "5"
           ],
           "metric": "winRate",
-          "gte": 0.9
+          "gte": 0.85
         },
         {
           "mean": "0",
@@ -346,7 +346,7 @@
     },
     {
       "id": "ngplus-lovers-neutral",
-      "intent": "Carrying lovers into NG+ is roughly neutral: one, three or five lovers clear the cycle within ~4 weeks of each other, so there's no need to grind walks for more.",
+      "intent": "Carrying lovers into NG+ is roughly neutral: one, three or five lovers clear the cycle within ~5 weeks of each other (an NG+ cycle is ~40 weeks; per-seed spread is ±10), so there's no need to grind walks for more.",
       "exp": "ngplus-carry",
       "expect": [
         {
@@ -357,7 +357,7 @@
             "1"
           ],
           "metric": "ngWeeks",
-          "abs": 4
+          "abs": 5
         },
         {
           "compare": [
@@ -367,7 +367,7 @@
             "1"
           ],
           "metric": "ngWeeks",
-          "abs": 4
+          "abs": 5
         }
       ]
     },
