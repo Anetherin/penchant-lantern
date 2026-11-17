@@ -340,7 +340,7 @@ function goddessNightMenu(){
   if(!goddessActive()) return;
   const lab = {inside:'✨ divinity', outside:'he finishes', none:'she won\'t like it'};
   modal(`<h2>A night with ${esc(GN())}</h2><p class="muted">She'll do anything. She only gets her divinity back when Sam finishes inside her; anything that leaves her wanting costs her mood and love.</p>
-    <div class="row" style="flex-wrap:wrap">${getActs().map(a=>{ const k = gNightKind(a.id); return `<button ${k==='inside'?'class="primary"':''} onclick="goddessNight('${a.id}')">${esc(a.label)} <span class="muted">(${lab[k]})</span></button>`; }).join('')}</div>`);
+    <div class="row" style="flex-wrap:wrap">${getActs().map(a=>{ const k = gNightKind(a.id); return `<button ${k==='inside'?'class="primary"':''} onclick="goddessNight('${a.id}')">${esc(samActLabel(a.id))} <span class="muted">(${lab[k]})</span></button>`; }).join('')}</div>`);
 }
 function goddessNight(act){
   const g = G(), N = GB().night || {}, D = GB().divinity || {}, L = GB().love || {}; if(!goddessActive() || !actById(act)) return;
@@ -359,7 +359,7 @@ function goddessNight(act){
   }
   if(back) samEnergyAdd(back);
   g.nights = (g.nights||0) + 1; g.lastNight = S.week; if(g.claimWk && kind!=='none') g.claimWk = 0;
-  samLog(`Night with ${GN()} [${actLabel(act)}]`); samStat('technique', 2); samXP(5);
+  samLog(`Night with ${GN()} [${samActLabel(act)}]`); samStat('technique', 2); samXP(5);
   const nt = GOD.night || {}, ctx = {act: actLabel(act).toLowerCase()};
   const res = kind==='inside' ? `Sam's energy +${back} · ${GN()}'s divinity ${Math.round(before)} → ${Math.round(g.divinity)} · love +`
     : kind==='outside' ? `Sam's energy +${back} · no divinity this time; she noticed.` : `No divinity, and she's not pleased (mood and love −).`;

@@ -27,6 +27,8 @@ function getActs(){
 }
 const actById = id => { id = actKey(id); return getActs().find(a=>a.id===id); };
 const actLabel = id => { const a = actById(id); return a ? a.label : id; };
+// Sam's side of a service (services.json → samLabel): his menus and summaries say who does what to whom.
+const samActLabel = id => { const a = actById(id); return a ? (a.samLabel || a.label) : id; };
 // pose wording for a service in a context (client / sam / duo), picked from the service's variants (services.json → image)
 function actPose(id, ctx){
   const a = actById(id) || {}, I = a.image || {}, list = [].concat(I[ctx] || I.client || a.comp || 'intimate moment').filter(x=>x && !isTodo(x));

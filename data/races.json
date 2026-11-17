@@ -131,7 +131,7 @@
       "mods": {"strength":10,"stamina":5,"beauty":-5,"wits":5},
       "common": true,
       "weight": 10,
-      "fx": {"maxEnergy":25,"energyRec":1.25,"lustBuild":0.75,"jobBonus":{"bartender":1.15}},
+      "fx": {"maxEnergy":25,"energyRec":1.4,"lustBuild":0.75,"jobBonus":{"bartender":1.15},"fatigue":0.4},
       "client": {"like":0.1,"dislike":0.05},
       "wage": 1,
       "alwaysLast": true,

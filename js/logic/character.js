@@ -5,6 +5,9 @@
 const maxEnergy = w => Math.max(20, Math.round(60 + s100(statOf(w,'stamina'))*0.6 + fxAdd(w,'maxEnergy')));
 // energy can be banked above max (energyBank fx); it is simply spent first
 const energyCap = w => maxEnergy(w) + fxAdd(w,'energyBank');
+// Fatigue (balance.json → rest.fatigue): share of her working-week recovery lost to weeks without a break (0-1).
+const fatigueCut = w => { const F = (BAL.rest||{}).fatigue || {}; return F.per ? Math.min(1 - (F.min ?? 0.4), (w.fatigue||0) * F.per) : 0; };
+const wornDown = w => w.job!=='rest' && fatigueCut(w) >= (((BAL.rest||{}).fatigue||{}).autoRest ?? 0.4);
 const actArr = v => (Array.isArray(v) ? v : v ? [v] : []).map(actKey);
 const isFav = (w, id) => actArr(w && w.fav).includes(actKey(id));
 const isDislike = (w, id) => actArr(w && w.dislike).includes(actKey(id));

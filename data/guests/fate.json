@@ -155,8 +155,8 @@
               "style": "Revealing",
               "prompt": "a form-fitting low cut sleeveless black mini-dress long black detached sleeves and black thigh-high heeled boots, magenta accents",
               "bonus": {"courtesan":1.3,"security":1.2},
-            "accessories": "an ornate dark purple blindfold",
-            "accState": "under"
+              "accessories": "an ornate dark purple blindfold",
+              "accState": "under"
             },
             "sp_rider": {
               "label": "Bookshop casual",

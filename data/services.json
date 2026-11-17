@@ -15,7 +15,8 @@
     "ask = how the weekly report phrases it. client: what he asks for, after \"asked\" (\"asked for oral\", \"asked to go down on her\"). lady: what SHE does when she's the one offering, after \"she\" (\"she offered to go down on him\"). Custom services without ask fall back to their label.",
     "image.exposed: true = the picture shows her bare between the legs, so the prompt names her pubic hair (snippets.json → clothing.pubic) unless the clothing wording already does.",
     "pair = lines for two women together (any two women; used by js/logic/goddess.js gSvcLine): fem = both women, futa = {partner} is a futanari. {name} = the woman whose side the id names (she gives for _give, receives for _get), {partner} = the other woman. Positions (tier 3) only need futa.",
-    "Who leads (tier 3 positions): regular = x her chance to turn a satisfied client into a regular (missionary: face to face, the one men come back for). selfLed: true = she sets the pace, so how good it is for HER (lust drop, not being left frustrated) is at least 0.6 + 0.6 x her skill at it instead of resting on his technique (cowgirl: dearer and more tiring, but reliable release). techLed = he leads, so his technique counts x this much in both directions around the average 0.85 (doggy: easy on her energy, great with a skilled client, frustrating with a clumsy one). See actTech in js/logic/services.js."
+    "Who leads (tier 3 positions): regular = x her chance to turn a satisfied client into a regular (missionary: face to face, the one men come back for). selfLed: true = she sets the pace, so how good it is for HER (lust drop, not being left frustrated) is at least 0.6 + 0.6 x her skill at it instead of resting on his technique (cowgirl: dearer and more tiring, but reliable release). techLed = he leads, so his technique counts x this much in both directions around the average 0.85 (doggy: easy on her energy, great with a skilled client, frustrating with a clumsy one). See actTech in js/logic/services.js.",
+    "samLabel = the label in Sam's own menus and summaries (private time, practice, threesomes, nights with the goddess), worded from his side so giving/receiving is clear; label is her side (client menus, reports)."
   ],
   "services": [
     {
@@ -68,7 +69,8 @@
         "futa": [
           "{name} straddles {partner}'s thighs and works warm oil into her shoulders, rocking her hips subtly back against {partner}'s rising heat until {partner}'s hands grip her waist."
         ]
-      }
+      },
+      "samLabel": "She massages you"
     },
     {
       "id": "kiss",
@@ -119,7 +121,8 @@
         "futa": [
           "{name} presses {partner} back into the pillows and kisses her deeply, teasing her tongue while {partner}'s hips roll insistently up against hers."
         ]
-      }
+      },
+      "samLabel": "Kissing"
     },
     {
       "id": "massage_get",
@@ -171,7 +174,8 @@
         "futa": [
           "{name} lies stretched out on the bed, shivering softly as {partner} kneads warm oil into her hips and inner thighs with deliberate, unhurried strokes."
         ]
-      }
+      },
+      "samLabel": "You massage her"
     },
     {
       "id": "manual_give",
@@ -223,7 +227,8 @@
         "futa": [
           "{name} kneels between {partner}'s legs and wraps both oiled hands around her shaft, twisting her wrists smoothly from base to tip until {partner}'s fingers tangle hard in her hair."
         ]
-      }
+      },
+      "samLabel": "She uses her hands on you"
     },
     {
       "id": "breast_give",
@@ -278,7 +283,8 @@
           "{name} gave {partner}'s breasts her devoted attention while the rest of {partner} grew obviously, urgently interested. {name} noticed. {partner} did not care.",
           "{partner} guided {name}'s mouth and hands with a murmur or two, her arousal pressing ever more plainly against her."
         ]
-      }
+      },
+      "samLabel": "She uses her breasts on you"
     },
     {
       "id": "manual_get",
@@ -330,7 +336,8 @@
           "{partner} held {name} close with one arm and took her time with the other hand. {name} stopped trying to stay quiet.",
           "{name} was gathered against {partner}'s eager body while a clever hand did the rest. It was a great deal."
         ]
-      }
+      },
+      "samLabel": "You use your hands on her"
     },
     {
       "id": "breast_get",
@@ -381,7 +388,8 @@
           "{partner} lavished {name}'s breasts with attention, pressing close in a way that made her intentions clear. {name} did not argue.",
           "{name} sat in {partner}'s lap and was thoroughly adored, with {partner}'s hard-to-ignore arousal against her thigh the whole time."
         ]
-      }
+      },
+      "samLabel": "You play with her breasts"
     },
     {
       "id": "oral_get",
@@ -435,7 +443,8 @@
           "{partner} spent the night on devoted attention to {name} before taking things further, plainly impatient herself. {name} needed the next morning to recover.",
           "{name} was thoroughly worshipped by a partner who clearly relished the work and was well aware of her own eagerness."
         ]
-      }
+      },
+      "samLabel": "You go down on her"
     },
     {
       "id": "oral_give",
@@ -485,7 +494,8 @@
           "{name} knelt for {partner} and gave her all her attention, to a chorus of approving murmurs.",
           "{partner} let {name} take her time, stroking her hair and telling her she was doing beautifully."
         ]
-      }
+      },
+      "samLabel": "She goes down on you"
     },
     {
       "id": "missionary",
@@ -536,7 +546,8 @@
           "{name} was held down, kissed, and thoroughly fucked by {partner}, who took her time making her cum."
         ]
       },
-      "regular": 1.5
+      "regular": 1.5,
+      "samLabel": "Missionary"
     },
     {
       "id": "cowgirl",
@@ -584,7 +595,8 @@
           "{name} straddled {partner} and set the pace herself while {partner} watched, flushed and approving."
         ]
       },
-      "selfLed": true
+      "selfLed": true,
+      "samLabel": "Cowgirl (she rides you)"
     },
     {
       "id": "doggy",
@@ -635,7 +647,8 @@
           "{name} found herself bent over the arm of a chair with {partner} behind her, murmuring praise into her hair."
         ]
       },
-      "techLed": 1.6
+      "techLed": 1.6,
+      "samLabel": "Doggy"
     }
   ]
 }

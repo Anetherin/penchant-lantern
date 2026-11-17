@@ -165,7 +165,7 @@ function samTrain(id, mode='skill'){
     samStat('technique',2); samXP(5); w.privateCount++; w._samTime=(w._samTime||0)+1; samLog(`Practiced with ${w.name}`); checkUnlocks();
     save(); render(); closeModal();
     const show = acts.find(a=>isFav(w,a.id)) || acts[acts.length-1], sl = actLine(show.id, w);
-    return showResult(`Practice with ${w.name}`, `${flavor('train_service', w) || `${w.name} decides Sam's education is a shared project.`}${sl ? '\n\n'+sl : ''}${hot?'\n\n'+hot:''}\n\n${acts.map(a=>a.label).join(', ')}: skill +${Math.round(g*SKL)} each · Lust +${lu}${w.lewd < lewdCap ? ' · Lewdness +' : ''} · Trust ${tDelta(tgp)} · Sam's Technique +2`, w.id, 'samact:'+show.id, {kind:'train', act:show.id, scene:'samact:'+show.id, forSam:true});
+    return showResult(`Practice with ${w.name}`, `${flavor('train_service', w) || `${w.name} decides Sam's education is a shared project.`}${sl ? '\n\n'+sl : ''}${hot?'\n\n'+hot:''}\n\n${acts.map(a=>samActLabel(a.id)).join(', ')}: skill +${Math.round(g*SKL)} each · Lust +${lu}${w.lewd < lewdCap ? ' · Lewdness +' : ''} · Trust ${tDelta(tgp)} · Sam's Technique +2`, w.id, 'samact:'+show.id, {kind:'train', act:show.id, scene:'samact:'+show.id, forSam:true});
   }
   // every trade skill, hands-on: her job's skill (Hospitality without one) at full strength, the rest x skill.others
   if(!useAP(samTrainCost(SK.energy ?? 30))) return;
@@ -183,7 +183,7 @@ function privateMenu(id, free){
   if(!opts.length && !canPossess) return toast((w.intim||0)===0 ? `${w.name} and Sam haven't crossed that line yet.` : `${w.name} isn't comfortable with that yet.`);
   const kp = knowsPrefs(w), vAw = isVessel(w) && vesselStage(w) < 3;
   modal(`<h2>Private time with ${esc(w.name)}</h2><p class="muted">What she's comfortable with, with you, as far as you two have gone (${esc(stageName(w.intim)||'nothing yet')}). ${kp?'★ = her favorite.':''}${vAw ? ` 💧 = fills ${w.name} faster (${vesselLabel(w)}).` : ''}</p>
-    <div class="row">${opts.map(a=>`<button onclick="samPrivate('${id}','${a.id}',${free?'true':'false'})">${esc(a.label)}${kp&&isFav(w,a.id)?' ★':''}${samStance(w,a.id)==='ask'?' ~':''}${vAw && gNightKind(a.id)==='inside' ? ' 💧' : ''}</button>`).join('')}${canPossess?`<button onclick="spiritSamMenu('${id}',${free?'true':'false'})">👻 Reverse-possess Sam…</button>`:''}</div>
+    <div class="row">${opts.map(a=>`<button onclick="samPrivate('${id}','${a.id}',${free?'true':'false'})">${esc(samActLabel(a.id))}${kp&&isFav(w,a.id)?' ★':''}${samStance(w,a.id)==='ask'?' ~':''}${vAw && gNightKind(a.id)==='inside' ? ' 💧' : ''}</button>`).join('')}${canPossess?`<button onclick="spiritSamMenu('${id}',${free?'true':'false'})">👻 Reverse-possess Sam…</button>`:''}</div>
     <p class="muted">~ = she'll do it for Sam, but it's a stretch for her (less mood, more lewdness).</p>
     <div class="row"><button onclick="${free?'closeModal()':`openSheet('${id}')`}">Back</button></div>`);
 }
@@ -282,7 +282,7 @@ function privateCore(w, act, o={}){
     fed = `\n\n(${w.name} drinks a little of him with every kiss${deep ? ', and tonight she drinks deep. Sam is a bit lightheaded afterward' : ''}. Energy +${g} for her.)`; }
   if(isLovers(w,act)) gainTrust(w, 2);
   samStat('technique',3); samXP(5); w.privateCount++; w._samTime = (w._samTime||0) + 1;
-  samLog(`Private time with ${w.name} [${actLabel(act)}]`);
+  samLog(`Private time with ${w.name} [${samActLabel(act)}]`);
   let text;
   if(o.lead!==undefined){
     text = [o.lead, o.turn === false ? '' : actTurn(act, w), actLine(act, w)].filter(Boolean).join('\n\n');
@@ -300,12 +300,14 @@ function privateCore(w, act, o={}){
   if(hot) text += `\n\n${hot}`;
   text += fed;
   text += fillVessel(w, act);
-  text += `\n\n[${actLabel(act)}] skill + · ${lg >= 0.3 ? 'Lewdness + · ' : ''}Trust + · Lust ${ld < 0 ? '+'+(-ld) : '−'+ld} · Sam's Technique +3`;
+  text += `\n\n[${samActLabel(act)}] skill + · ${lg >= 0.3 ? 'Lewdness + · ' : ''}Trust + · Lust ${ld < 0 ? '+'+(-ld) : '−'+ld} · Sam's Technique +3`;
   // worked up by it, she may want more: something that actually spends it, if they've crossed that far
   if(builds && !o.more && w.lust >= LUST_EAGER && w.lewd >= SVC.askMore.lewd){
     const ids = getActs().filter(a=>(a.lust ?? -1) < 0 && canSam(w, a.id)).map(a=>a.id);
     if(ids.length){ const id2 = ids.find(id=>isLovers(w,id)) || pickFav(w,ids) || pick(ids);
-      text += '\n\n' + privateCore(w, id2, {lead:`${w.name} isn't done. She pulls you closer and tells you, quietly and very clearly, what she wants next.`, more:true}); }
+      const l1 = w.lust;
+      text += '\n\n— Round two —\n\n' + privateCore(w, id2, {lead:`${w.name} isn't done. She pulls you closer and tells you, quietly and very clearly, what she wants next.`, more:true});
+      text += `\n\n(${samActLabel(act)} got her worked up (lust +${-ld}); the second round, ${samActLabel(id2).toLowerCase()}, is what spent it (lust −${Math.round(l1 - w.lust)}).)`; }
   }
   return text;
 }

@@ -44,7 +44,7 @@ function slotsFor(h, job){
   const u = h.up || {};
   let n = (d.base||0) + Object.entries(d).filter(([k])=>u[k] && !['base','perSize','perRoom','min','perRooms','madame','madameBase','madameStep','byJob'].includes(k)).reduce((a,[,v])=>a+v,0) + (d.perSize ? Math.floor(houseSize(h)/d.perSize) : 0);
   if((d.madame || d.madameBase) && typeof S!=='undefined' && S){
-    const m = S.workers.find(w=>w.house===h.id && w.job==='madame');
+    const m = S.workers.find(w=>w.house===h.id && (w.job==='madame' || (w.job==='rest' && w.prevJob==='madame')));   // an auto-resting madame keeps her positions open
     if(m) n += (d.madameBase ?? d.madame ?? 1) + (d.madameStep ? Math.floor(madameScore(m) / d.madameStep) : 0);
   }
   if(d.perRoom) n += h.rooms * d.perRoom;
