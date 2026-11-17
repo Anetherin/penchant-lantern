@@ -30,6 +30,11 @@ Results below use the lab's fixed policy player (`tools/lab/bot.js`) and 12–16
 
 Also found while building the checks: decor/drinks bought during the debt delay cycle-1 payoff by ~3.4 weeks for +300 g/week late-game net, so they don't pay back before the debt is due (the bot now buys them only after the debt is cleared).
 
+### Follow-ups (2026-11-16, 8–10 seeds)
+- **Bot fills every bed now.** Lantern still tops out at ~10 ladies (its 9 rooms are the limit, not the old cap). Bed-quality upgrades: +205 g/week late-game for ~1 week slower payoff.
+- **Demon settings barely matter.** In all-demon courtesan houses, Feeding only (<50% or always), auto-stud at 60 lust and the Binding Sigil change weekly takings by −22…+60 g (none significant); auto-stud lowers what each demon nets (stud fees). Demons beat humans by a little (+48 mid, +21 late).
+- **Androids are the outlier, not demons weak.** All-android houses earn +211 (mid) / +465 (late) a week over all-demon ones, and serve far more clients: they need no bed, so the same house holds more of them. Look at android capacity (or bed-free races generally) before buffing demons.
+
 ## Current tuning highlights (`balance.json` / `economy.json`)
 - **Queue, security & crowding (`clients.wait`, `clients.crowd`, `clients.host`):** overflow clients wait instead of vanishing immediately (`waitBuf` from door, hosts, bar, stage); Wits-based security screens client value/traits (`screenMerchant`, `screenNoble`, `screenTrimLow`, `screenSafe`) and Charm/Charisma caps excess overflow cleanly; `crowd.perSpace` (5) caps comfortable capacity before satisfaction/bail/rep penalties.
 - **House class & popularity (`prestige`):** house `rep` is **House Popularity**; `h.prestige` (`0–100`) tracks **House Class** toward a structural target (tier, beds, decor, drinks, price, amenities, tidiness, attendants, leadership) plus operational shifts. Low prestige favors demand and propositions; high prestige attracts merchants/nobles and raises quality/amenity expectations.

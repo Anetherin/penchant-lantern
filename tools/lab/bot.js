@@ -28,11 +28,11 @@ function chooseDefaultEvent(CUR_EV){
   // Walk recruit events: always take free hires if room/policy allows; otherwise apply or hire if flush
   if (ch[0] && /Invite her into|Welcome her back/.test(ch[0].label || '')) {
     const h = curH();
-    if (h && staffIn(h).length < P.maxStaff) return 0;
+    if (h && staffIn(h).length < cap()) return 0;
   }
   if (ch[0] && /^Hire her for /.test(ch[0].label || '')) {
     const h = curH(), candIdx = ch.findIndex(c => /to apply|Candidates/.test(c.label || ''));
-    if (h && staffIn(h).length < P.maxStaff && sleepers(h).length < bedsFor(h) && S.gold >= reserveGold() + 300) return 0;
+    if (h && staffIn(h).length < cap() && sleepers(h).length < bedsFor(h) && S.gold >= reserveGold() + 300) return 0;
     if (candIdx >= 0) return candIdx;
   }
   return Math.floor(Math.random() * ch.length);
@@ -48,7 +48,7 @@ function resolveEvents(){ let g = 0;
 // ---------- policy (the "player") ----------
 // Defaults are a sensible, not optimal, player. Experiments override any field (spec "policy").
 LAB.POLICY = {
-  maxStaff: 10,          // per house
+  maxStaff: null,        // per house; null = keep hiring until every bed is taken and no room is left for more staff quarters
   rooms: true,           // buy bedrooms when clients were turned away / rooms ran short
   beds: true,            // buy extra beds / staff quarters to fit hires
   upgrades: true,        // buy amenities from `amenities` (in order, one per house per week)
@@ -75,6 +75,9 @@ LAB.POLICY = {
   tutor: null,           // if set ('weak'|'job'), set tutor focus for workers
   tutorTier: 'tutor',
   teachSkill: null,      // if set and house has classroom, set teachSkill
+  bedTier: 'auto',       // 'auto': upgrade staff bed quality (better rest) when flush, up to Feather beds during the debt and Luxury after; a number = target tier (0-3); false = never
+  demonFeedOnly: null,   // demons' "Feeding only" setting: null (off) | % of max energy below which she only takes services that feed her | 'always'
+  demonAutoStud: null,   // demons' auto-stud lust threshold: null (off) | lust level | 'always'
   // adaptive play (a sensible player reacts to the weekly report; set any of these to false/0 for the old fixed player)
   security: 'auto',      // 'auto': keep 1 security lady once the house has `targetsAt` ladies and averaged >= secWhen incidents/week (last 3 weeks); true = always; false = never
   secWhen: 1,
@@ -84,10 +87,11 @@ LAB.POLICY = {
   flushMul: 3
 };
 // the fixed player the Pass 1/2 numbers in docs/BALANCE.md were measured with: spec "policy": {"preset": "legacy"}
-LAB.PRESETS = { legacy: { security: false, tidyFloor: 0, classUpkeep: false } };
+LAB.PRESETS = { legacy: { security: false, tidyFloor: 0, classUpkeep: false, maxStaff: 10, bedTier: false } };
 // base, then each override's preset (if it names one) under that override's own fields
 const withPreset = (base, ...os) => os.reduce((acc, o) => Object.assign(acc, (o && o.preset && LAB.PRESETS[o.preset]) || {}, o || {}), Object.assign({}, base));
 let P = Object.assign({}, LAB.POLICY);
+const cap = () => P.maxStaff ?? Infinity;
 
 function reserveGold(){
   const LR = S.lastReport, upk = LR ? LR.upkeep + LR.wages : 150;
@@ -163,6 +167,10 @@ function manageHouse(h){
     const flush = k => S.gold >= upgradeCost(h, k) * P.flushMul + reserveGold();
     if ((h.decor || 0) < 3 && flush('decor')) { buyUpgrade('decor'); quiet(); }
     else if (h.up.bar && (h.drinks || 0) < 3 && flush('drinks')) { buyUpgrade('drinks'); quiet(); } }
+  if (P.bedTier !== false && P.bedTier != null && staffIn(h).length >= P.amenityStaff) {
+    const want = P.bedTier === 'auto' ? (S.won || S.debt.remaining <= 0 ? 3 : 2) : +P.bedTier;
+    if ((h.beds || 0) < want && S.gold >= upgradeCost(h, 'beds') * (P.bedTier === 'auto' ? P.flushMul : 1) + reserveGold()) { buyUpgrade('beds'); quiet(); } }
+  staffIn(h).forEach(w => { if (w.race !== 'demon') return; if (P.demonFeedOnly != null) w.feedOnly = P.demonFeedOnly; if (P.demonAutoStud != null) w.autoStud = P.demonAutoStud; });
   if (P.decor && (h.decor || 0) < P.decor && S.gold >= upgradeCost(h, 'decor') + reserveGold()) { buyUpgrade('decor'); quiet(); }
   if (P.drinks && h.up.bar && (h.drinks || 0) < P.drinks && S.gold >= upgradeCost(h, 'drinks') + reserveGold()) { buyUpgrade('drinks'); quiet(); }
   if (staffIn(h).some(w => w.race === 'demon') && !h.up.sigil && S.gold >= upgradeCost(h, 'sigil') + reserveGold()) { buyUpgrade('sigil'); quiet(); }
@@ -172,7 +180,7 @@ function manageHouse(h){
     if (need && !h.up[need] && S.gold >= upgradeCost(h, need) + P.reserve) { buyUpgrade(need); quiet(); } S.candidates = S.candidates.filter(c => c.race === R[0] && (!R[1] || c.sub === R[1]));
     while (S.candidates.length < 3) { let c, t = 0; do { c = genWorker({ race: R[0] }); } while (R[1] && c.sub !== R[1] && ++t < 200); c.signing = signingFor(c); S.candidates.push(c); } }
   for (let g = 0; g < 6; g++) {
-    if (staffIn(h).length >= P.maxStaff) break;
+    if (staffIn(h).length >= cap()) break;
     if (sleepers(h).length >= bedsFor(h)) { if (!P.beds) break;
       if ((h.extraBeds || 0) < maxExtraBeds(h) && S.gold > reserveGold() + upgradeCost(h, 'extraBed')) { buyUpgrade('extraBed'); quiet(); continue; }
       if (roomsUsed(h) + 1 <= houseSize(h) && S.gold > reserveGold() + upgradeCost(h, 'quarters') + 150) { buyUpgrade('quarters'); quiet(); continue; }
@@ -218,7 +226,7 @@ function samTurn(){
     }
     if (!rounds && S.sam.energy >= 25 && S.workers.some(w => nearSam(w) && w.trust < P.roundsTrust)) { samWork('rounds'); rounds = true; }
     else if (P.partnerDates && !dated && p && S.ap >= 2 && S.sam.energy >= 40) { try { samDate(p.id, 'walk'); } catch (e) {} dated = true; }
-    else if ((S.ngppCycle || 0) > 0 && P.ngppWalk !== false && walks < 2 && S.sam.energy >= (((BAL.walk || {}).energy ?? 15) + 5) && S.houses.some(h => staffIn(h).length < Math.min(P.maxStaff, 6))) { samWalk(); walks++; }
+    else if ((S.ngppCycle || 0) > 0 && P.ngppWalk !== false && walks < 2 && S.sam.energy >= (((BAL.walk || {}).energy ?? 15) + 5) && S.houses.some(h => staffIn(h).length < Math.min(cap(), P.ngppWalkUntil ?? 10))) { samWalk(); walks++; }
     else if (P.scoutWhenShort && S.sam.energy >= 25 && S.houses.some(h => staffIn(h).length < P.scoutWhenShort) && S.candidates.filter(c => S.gold - c.signing >= P.reserve).length < 2) samWork('scout');
     else if (S.sam.energy >= 35) { try { samSpare(); } catch (e) { samWork('bartend'); } }
     else samRest();

@@ -4,6 +4,7 @@
 // Covers what tools/smoke.mjs never reaches (it only starts as Kaede at the Gilded Lantern and picks random choices).
 // Usage: node tools/story-check.mjs [--words]      (--words prints a word count per partner intro, arc and house story)
 // Needs `playwright`; set CHROME=/path/to/chrome if needed.
+import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
 import path from 'node:path';
 import fs from 'node:fs';
@@ -15,7 +16,7 @@ for (const m of ['playwright', process.env.PLAYWRIGHT_PATH, '/opt/node-tools/nod
   try { pw = require(m); break; } catch {}
 }
 if (!pw) throw new Error('Cannot find module playwright');
-const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const WORDS = process.argv.includes('--words');
 
 const CHECK = `async () => {

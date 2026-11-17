@@ -1,5 +1,6 @@
 // Balance lab engine: runSpec(spec, opt) plays every (variant, seed) in headless Chrome and returns the results.
 // Used by lab.mjs (CLI) and check.mjs (intent checks). See tools/lab/README.md.
+import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
 import path from 'node:path';
 import fs from 'node:fs';
@@ -12,7 +13,7 @@ for (const m of ['playwright', process.env.PLAYWRIGHT_PATH, '/opt/node-tools/nod
   try { pw = require(m); break; } catch {}
 }
 if (!pw) throw new Error('Cannot find module playwright');
-export const here = path.dirname(new URL(import.meta.url).pathname), root = path.resolve(here, '../..');
+export const here = path.dirname(fileURLToPath(import.meta.url)), root = path.resolve(here, '../..');
 
 // spec name / path -> spec object (name filled in)
 export function loadSpec(ref){

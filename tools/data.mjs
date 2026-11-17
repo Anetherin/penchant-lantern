@@ -3,10 +3,11 @@
 //   data/<name>/index.json      a list of part names; data/<name>/<part>.json are deep-merged in that order.
 // Merge rules (same as loadParts in loader.js): objects merge key by key, arrays are concatenated,
 // any other value defined twice is a conflict (the later part wins; the tools report it).
+import { fileURLToPath } from 'node:url';
 import fs from 'node:fs';
 import path from 'node:path';
 
-export const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
+export const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const loaderSrc = () => fs.readFileSync(path.join(root, 'loader.js'), 'utf8');
 const listVar = (src, name) => [...src.match(new RegExp(`var ${name} = \\[([^\\]]*)\\]`))[1].matchAll(/'([^']+)'/g)].map(m => m[1]);
 
