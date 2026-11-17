@@ -43,10 +43,13 @@ npm run check:quick                         # 6 seeds per experiment: a fast rea
 npm run check                               # full size (12-16 seeds): the one to trust
 npm run check -- --only promoter-pays,demons-top-courtesans
 npm run check -- --reuse                    # reuse results already in tools/lab/out/ (same spec + enough seeds), rerun only what's missing
-npm run check -- --conc 6                   # run 6 games at once (default 4)
+npm run check -- --conc 6                   # run 6 games at once (default: CPU cores - 1)
 ```
 
 **Speed:** set `--conc` to about the number of CPU cores (leave one free if you want to use the machine). On a 2-core cloud box the quick suite took about 25 minutes, so a full run on 2 cores is 1–3 hours; an 8-core desktop with `--conc 7` should be several times faster.
+**Warm-up cache:** mid / late / plateau / NG+ experiments first play the game up to their starting point (the warm-up), then branch into variants. That starting state is saved per seed in `tools/lab/out/cache/<code hash>/` and reused by every other experiment and every rerun with the same start, policy and phases, until any file in `js/`, `data/`, `index.html`, `loader.js` or `tools/lab/bot.js` changes (a new hash starts a fresh cache; delete old hash folders whenever). The run prints `(N warm-ups from the cache)`. `--no-cache` turns it off. Campaign and early experiments start at week 1, so they have nothing to cache.
+**Load:** `--conc` now defaults to (CPU cores − 1). Each game is a Chrome page; going above the core count doesn't make runs faster and can freeze or crash the machine.
+
 The full report is written to `tools/lab/out/checks.md`; each experiment's own report is `tools/lab/out/<experiment>.md`.
 
 The exit code is 1 when anything FAILs, so a script can tell.
@@ -130,10 +133,11 @@ The most useful ones:
 | `pageErrors:` in the progress line | a game script threw during play: that's a bug in the game or the bot, worth reporting with the message |
 | very slow | lower `--runs` while exploring, raise `--conc` toward your core count; `--reuse` skips experiments already run |
 
-## 8. Current run list (round 4, 2026-11-17)
+## 8. Current run list (round 4c, 2026-11-17)
 
 On `feat/balance-tuning`, after `npm run build && npm run smoke` and `node tools/goddess-smoke.mjs`:
 1. `npm run lab -- nerys` (Nerys after her nerf vs Kaede and her old numbers; `named` breakdown).
 2. `npm run check` (full size).
-3. Extra experiments, full tables: `npm run lab -- guild`, `sam-focus`, `houses-all`, `ngpp`, `partners`, `walk-partners`.
-Expected shifts from round 4, so don't read them as regressions: the bot now walks once a week for partners (cycle 1 and NG+ get faster), the guild bot keeps top earners and sole support staff home, `perLady` now subtracts android charging and counts rest weeks, the promoter check now actually moves a lady.
+3. Extra experiments, full tables: `npm run lab -- guild`, `sam-focus`, `houses-all`, `ngpp`, `partners`, `walk-partners`, `promoter-value` is covered by the check.
+Use `--conc` at most (cores − 1); the default already is. If the machine struggles, `--conc 1` and `--runs 8` still give a usable read.
+Expected shifts from round 4, so don't read them as regressions: the bot now walks once a week for partners (cycle 1 and NG+ get faster), the guild bot keeps top earners and sole support staff home, `perLady` now subtracts android charging and counts rest weeks, the promoter check now actually moves a lady; cycle-1 debt is x1.2 (aim: ~28-32 weeks with walk partners).

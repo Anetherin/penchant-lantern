@@ -144,7 +144,7 @@
       "mods": {"charm":10,"refinement":5,"strength":-10},
       "common": false,
       "weight": 2,
-      "fx": {"moodDrift":1.6,"moodDelta":1.3,"classBonus":{"adventurer":1.3},"maxEnergy":-20},
+      "fx": {"moodDrift":1.6,"moodDelta":1.3,"classBonus":{"adventurer":1.3},"maxEnergy":-30,"fatigue":1.25},
       "client": {"like":0.15,"dislike":0.2,"classLike":{"adventurer":0.4}},
       "needs": "tether",
       "design": {

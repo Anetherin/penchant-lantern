@@ -30,7 +30,7 @@
       "cat": "staff",
       "energy": 28,
       "skill": "service",
-      "desc": "Draws clients and house popularity. Free samples boost draw and her own popularity, tire her out, and raise or lower house class depending on how she compares to the house's prestige. Unlimited positions."
+      "desc": "Draws clients and house popularity. She eases off when last week's crowd was more than the house could take (Wits: how well she reads it; a friend on security helps). Free samples boost draw and her own popularity, tire her out, and raise or lower house class depending on how she compares to the house's prestige. Unlimited positions."
     },
     "attendant": {
       "label": "Attendant",

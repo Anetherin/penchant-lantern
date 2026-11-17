@@ -217,7 +217,8 @@ function guildPay(c, R, mult, share){
   const lw = c.lw || {}, weeks = Object.values(lw).reduce((a,n)=>a+n, 0) + (c.sw||0), rate = c.rate || 0, purse = share == null ? c.gold : 0, f = share ?? 1;
   let total = 0;
   Object.entries(lw).forEach(([id, n])=>{ const w = findW(id); const g = Math.round((rate * n * f + (weeks ? purse * n / weeks : 0)) * mult); total += g; if(w && R && R.per[id]) R.per[id].earned += g; });
-  total += Math.round((rate * (c.sw||0) * f + (weeks ? purse * (c.sw||0) / weeks : purse * (weeks ? 0 : 1))) * mult);
+  const samShare = (GDB.pay||{}).samShare ?? 1;   // Sam's own day rate and purse share x this: his weeks away should not out-earn running a house
+  total += Math.round((rate * (c.sw||0) * f + (weeks ? purse * (c.sw||0) / weeks : purse * (weeks ? 0 : 1))) * mult * samShare);
   S.gold += total; if(R){ R.income += total; R.led.guild = (R.led.guild||0) + total; }
   return total;
 }

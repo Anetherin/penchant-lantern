@@ -103,10 +103,10 @@ function ngNumbers(boon, house, opts){
   const og = homeHouse(), kept = S.houses.filter(keptHouse), impr = kept.reduce((a,h)=>a + improvementsValue(h), 0);
   const cycMul = 1 + B.perCycle * Math.max(0, cyc - 2);
   const keptOpt = kept.filter(h=>h.id !== og), loverCount = carriedLovers().length;
-  const base = HOUSES[og].debt * B.debtShare * cycMul, extra = impr * B.improveShare;
-  const keptExtra = keptOpt.reduce((a,h)=>a + (HOUSES[h.id].debt || 0) * (B.keptHouseShare ?? 0.25) * cycMul, 0);
+  const base = houseDebt(og) * B.debtShare * cycMul, extra = impr * B.improveShare;
+  const keptExtra = keptOpt.reduce((a,h)=>a + houseDebt(h.id) * (B.keptHouseShare ?? 0.25) * cycMul, 0);
   const loverExtra = loverCount * (B.loverDebt ?? 1800) * cycMul;
-  const nh = house && HOUSES[house] ? HOUSES[house].debt * (B.newHouseShare ?? 1) * cycMul : 0;
+  const nh = house && HOUSES[house] ? houseDebt(house) * (B.newHouseShare ?? 1) * cycMul : 0;
   const scaleMul = 1 + keptOpt.length * (B.perKeptHouse ?? 0) + loverCount * (B.perLover ?? 0.22);
   let debt = (base + extra + keptExtra + loverExtra + nh) * scaleMul;
   if(boon==='grace' || hasBoon('grace')) debt *= 0.9;

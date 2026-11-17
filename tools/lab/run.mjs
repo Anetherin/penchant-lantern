@@ -5,6 +5,8 @@ import { createRequire } from 'node:module';
 import path from 'node:path';
 import fs from 'node:fs';
 import http from 'node:http';
+import os from 'node:os';
+import crypto from 'node:crypto';
 import { report } from './report.mjs';
 const require = createRequire(import.meta.url);
 let pw;
@@ -43,6 +45,22 @@ const jobFor = (spec, v, seed) => ({ seed, scenario: v.scenario || spec.scenario
 // variants with the same start/policy/phases (and patches only at the phase) share the warm-up: run it once, snapshot, reuse
 const warmKey = j => (j.patchAt === 'start' && j.patch) || j.scenario === 'campaign' || j.scenario === 'early' ? null : JSON.stringify([j.seed, j.scenario === 'plateau' ? 'plateau' : j.scenario, j.start, j.policy, j.phases, j.maxWarm]);
 
+// Disk cache of warm-up snapshots (tools/lab/out/cache/<code hash>/): a mid / late / cycle-1-won state for a seed is reused by every
+// experiment and every rerun until the game or the bot changes (the hash covers index.html, loader.js, js/, data/ and bot.js). --no-cache turns it off.
+let CODE_HASH = null;
+function codeHash(){
+  if (CODE_HASH) return CODE_HASH;
+  const h = crypto.createHash('sha1'), walk = d => fs.readdirSync(d, { withFileTypes: true }).sort((a, b) => a.name.localeCompare(b.name)).forEach(e => {
+    const f = path.join(d, e.name); if (e.isDirectory()) walk(f); else if (/\.(js|json|html|css)$/.test(e.name)) { h.update(path.relative(root, f)); h.update(fs.readFileSync(f)); } });
+  ['index.html', 'loader.js'].forEach(f => { const p = path.join(root, f); if (fs.existsSync(p)) h.update(fs.readFileSync(p)); });
+  walk(path.join(root, 'js')); walk(path.join(root, 'data')); h.update(fs.readFileSync(path.join(here, 'bot.js')));
+  return CODE_HASH = h.digest('hex').slice(0, 12);
+}
+const cacheFile = key => path.join(here, 'out', 'cache', codeHash(), crypto.createHash('sha1').update(key).digest('hex') + '.json');
+function cacheGet(key){ try { return JSON.parse(fs.readFileSync(cacheFile(key), 'utf8')); } catch { return null; } }
+function cachePut(key, val){ try { const f = cacheFile(key); fs.mkdirSync(path.dirname(f), { recursive: true }); fs.writeFileSync(f, JSON.stringify(val)); } catch {} }
+export const defaultConc = () => Math.max(1, (os.cpus() || []).length - 1);
+
 const TYPES = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json' };
 // seeded Math.random, installed before any game script runs
 const RNG = `(() => { let a = 1; window.__labSeed = s => { a = s || 1; }; Math.random = () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; })();`;
@@ -50,7 +68,7 @@ const RNG = `(() => { let a = 1; window.__labSeed = s => { a = s || 1; }; Math.r
 // opt: { runs, conc, seed, weeks, only, quiet, write (default true) }
 export async function runSpec(specIn, opt = {}){
   const spec = loadSpec(specIn);
-  const RUNS = +(opt.runs || spec.runs || 10), CONC = +(opt.conc || spec.conc || 2), SEED0 = +(opt.seed || spec.seed || 1);
+  const RUNS = +(opt.runs || spec.runs || 10), CONC = +(opt.conc || spec.conc || defaultConc()), CACHE = !opt['no-cache'] && !opt.nocache, SEED0 = +(opt.seed || spec.seed || 1);
   if (opt.weeks) spec.weeks = +opt.weeks;
   const variants = expand(spec, opt.only);
   const server = http.createServer((q, r) => {
@@ -77,23 +95,25 @@ export async function runSpec(specIn, opt = {}){
   }
   const t0 = Date.now(), results = Object.fromEntries(variants.map(v => [v.name, []])), queue = [];
   for (let s = SEED0; s < SEED0 + RUNS; s++) variants.forEach(v => queue.push({ v, seed: s }));
-  let done = 0; const total = queue.length, pending = new Map();   // warm key -> promise of snapshot (first job of that key makes it)
+  let done = 0, hits = 0; const total = queue.length, pending = new Map();   // warm key -> promise of snapshot (first job of that key makes it)
   const report1 = (v, out) => { done++;
     if (!opt.quiet) process.stderr.write(`\r${spec.name} ${done}/${total} ${Math.round((Date.now() - t0) / 1000)}s ${v.name} s${out.seed}${out.error ? ' ERROR ' + out.error.slice(0, 120) : ''}${out.pageErrors ? ' pageErrors:' + out.pageErrors[0].slice(0, 80) : ''}      `); };
   async function worker(){
     while (queue.length) {
       const { v, seed } = queue.shift(), job = jobFor(spec, v, seed), key = warmKey(job);
       if (key) {
-        if (pending.has(key)) { const snap = await pending.get(key); if (snap) job.snap = snap; }
+        if (!pending.has(key) && CACHE) { const c = cacheGet(key); if (c) { pending.set(key, Promise.resolve(c)); hits++; } }
+        if (pending.has(key)) { const c = await pending.get(key); if (c) { job.snap = c.snap; job.snapInfo = c.info; } }
         else { let res; pending.set(key, new Promise(r => res = r)); job.wantSnap = true;
-          const out = await runJob(job); res(out.snap || null); delete out.snap; results[v.name].push(out); report1(v, out); continue; }
+          const out = await runJob(job), c = out.snap ? { snap: out.snap, info: out.snapInfo || null } : null;
+          res(c); if (c && CACHE) cachePut(key, c); delete out.snap; delete out.snapInfo; results[v.name].push(out); report1(v, out); continue; }
       }
       const out = await runJob(job); delete out.snap; results[v.name].push(out); report1(v, out);
     }
   }
   try { await Promise.all(Array.from({ length: CONC }, worker)); }
   finally { await browser.close(); server.close(); }
-  if (!opt.quiet) process.stderr.write('\n');
+  if (!opt.quiet) process.stderr.write(`\n${hits ? `(${hits} warm-ups from the cache)\n` : ''}`);
   const stamp = { name: spec.name, at: new Date().toISOString(), runs: RUNS, seed0: SEED0, secs: Math.round((Date.now() - t0) / 1000), spec };
   const md = report(spec, variants, results, stamp);
   if (opt.write !== false) { const outDir = path.join(here, 'out'); fs.mkdirSync(outDir, { recursive: true });

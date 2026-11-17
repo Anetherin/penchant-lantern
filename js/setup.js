@@ -115,7 +115,7 @@ function setupView(){
       <div class="grid">${SETUP.offers.map(k=>{ const D=HOUSES[k], n=NAMED[D.npc]; return `<div class="pick ${SETUP.house===k?'sel':''}" onclick="setupPick('house','${k}')">
         <b>${D.name}</b> <span class="tag house">${D.loc}</span><div class="muted">${D.desc}</div>
         ${D.perk?`<div class="good" style="margin-top:4px">✦ <b>${esc(D.perk.label)}:</b> ${esc(D.perk.desc)}</div>`:''}
-        <div style="margin-top:4px">Debt <b>${fmt(D.debt)}</b> · Class <b>${D.prestige ?? 50}</b> (${prestigeTier(D.prestige ?? 50).label}) · Rooms ${D.rooms} (${ROOM_NAMES[D.tier]}) ${Object.keys(D.up).map(u=>`<span class="tag">${UPGRADES[u].label}</span>`).join('')}</div>
+        <div style="margin-top:4px">Debt <b>${fmt(houseDebt(k))}</b> · Class <b>${D.prestige ?? 50}</b> (${prestigeTier(D.prestige ?? 50).label}) · Rooms ${D.rooms} (${ROOM_NAMES[D.tier]}) ${Object.keys(D.up).map(u=>`<span class="tag">${UPGRADES[u].label}</span>`).join('')}</div>
         <div class="muted">Clientele: ${TIERS.map((t,i)=>D.cls[i]>=1.3?`<b>${TIER_LABEL(t)}s ↑</b>`:D.cls[i]<=0.5?`${TIER_LABEL(t)}s ↓`:'').filter(Boolean).join(', ')||'balanced'}</div>
         <div class="row" style="margin-top:6px">${miniAvatar(D.npc)}<div><b>${esc(titled(n))}</b> · ${JOBS[n.job].label}<div class="muted">${esc(n.personality)}</div></div></div>${previewBtn(D.npc)}</div>`; }).join('')}</div>
 `;
@@ -128,7 +128,7 @@ function setupView(){
     ok = !!SETUP.partner;
   } else {
     const D = HOUSES[SETUP.house], n = NAMED[D.npc], p = NAMED[SETUP.partner];
-    body = `<h2>Ready?</h2><div class="card"><b>Sam Takahashi</b>, former ${PASTS[SETUP.past].label.toLowerCase()}.<br>Owner of <b>${D.name}</b> (${D.loc}), along with its debt of ${fmt(D.debt)}.<br>${n.name} runs things there as ${JOBS[n.job].label.toLowerCase()}.<br>At his side: <b>${p.name}</b>.</div>
+    body = `<h2>Ready?</h2><div class="card"><b>Sam Takahashi</b>, former ${PASTS[SETUP.past].label.toLowerCase()}.<br>Owner of <b>${D.name}</b> (${D.loc}), along with its debt of ${fmt(houseDebt(SETUP.house))}.<br>${n.name} runs things there as ${JOBS[n.job].label.toLowerCase()}.<br>At his side: <b>${p.name}</b>.</div>
       <div class="row" style="margin-top:8px"><label class="muted">Save name <input id="setup_save_name" value="${esc(SETUP.cloudName || D.name)}" placeholder="e.g. Main Run" oninput="SETUP.cloudName=this.value"></label></div>`;
     ok = true;
   }

@@ -440,7 +440,7 @@ LAB.run = async (J) => {
   const st = Object.assign({ house: 'lantern', partner: 'kaede', past: 'salaryman' }, J.start || {});
   const sc = J.scenario, warmCap = J.maxWarm || (sc === 'ngplus' ? 160 : 104);
   const track = () => { for (const k of ['mid', 'late']) if (!out.phases[k] && PHASE[k]()) out.phases[k] = S.week; };
-  if (J.snap) LAB.restore(J.snap);
+  if (J.snap) { LAB.restore(J.snap); const I = J.snapInfo || {}; Object.assign(out.phases, I.phases || {}); if (I.c1won !== undefined) out.info.c1won = I.c1won; }
   else {
     LAB.reseed(J.seed);
     newGame({ past: st.past, house: st.house, partner: st.partner }); quiet();
@@ -450,7 +450,7 @@ LAB.run = async (J) => {
   }
   out.info.entry = S.week;
   if (S.over || ((sc === 'ngplus' || sc === 'plateau') && !S.won) || ((sc === 'mid' || sc === 'late') && !PHASE[sc]())) { out.unreached = true; out.info.week = S.week; return out; }
-  if (J.wantSnap) out.snap = LAB.snapshot();
+  if (J.wantSnap) { out.snap = LAB.snapshot(); out.snapInfo = { phases: Object.assign({}, out.phases), c1won: out.info.c1won }; }
   // from here on every variant shares one random stream
   LAB.reseed((J.seed * 7919 + 17) >>> 0);
   if (J.patch && J.patchAt !== 'start') LAB.applyPatch(J.patch);

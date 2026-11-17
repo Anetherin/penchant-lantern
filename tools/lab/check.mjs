@@ -34,7 +34,7 @@ async function getExp(c){
   const f = path.join(here, 'out', spec.name + '.json');
   if (opt.reuse && fs.existsSync(f)) { const d = JSON.parse(fs.readFileSync(f, 'utf8'));
     if (JSON.stringify(d.spec) === JSON.stringify(spec) && d.runs >= runs) { const r = { spec, results: d.results, variants: d.variants || expand(spec), reused: true }; cache.set(key, r); return r; } }
-  const r = await runSpec(spec, { runs, conc: opt.conc || 4, quiet: !!opt.quiet }); cache.set(key, r); return r;
+  const r = await runSpec(spec, { runs, conc: opt.conc, quiet: !!opt.quiet, 'no-cache': opt['no-cache'] }); cache.set(key, r); return r;
 }
 
 const fmt = x => Number.isFinite(x) ? (Math.abs(x) >= 100 ? Math.round(x).toLocaleString('en-US') : x.toFixed(Math.abs(x) < 10 ? 2 : 1)) : '–';

@@ -376,6 +376,16 @@ function simHouse(h, R){
     pr.draw = d; promoDraw += d * priceDem; countUp(w,'promo', Math.max(1, Math.round(d * priceDem)));
     if(J.promoterRep) repAdd(h, d * priceDem * J.promoterRep);
   });
+  // promoters read last week (h.lastFlow): clients turned away mean she pulls back. How well she reads it: promoterReadBase + Wits/promoterReadWits,
+  // + promoterReadBond if she's on good terms (bond >= promoterBondAt) with the house's security, who tells her how the door went. Best reader leads.
+  const LF = h.lastFlow;
+  if(promoDraw > 0 && LF && LF.promo > 0){
+    const secs = byJob('security');
+    const acc = Math.max(...byJob('promoter').map(w=>clamp((J.promoterReadBase ?? 0.25) + s100(statOf(w,'wits')) / (J.promoterReadWits ?? 140)
+      + (secs.some(x=>bondV(w, x) >= (J.promoterBondAt ?? 30)) ? (J.promoterReadBond ?? 0.2) : 0), 0, 1)));
+    const want = LF.turned > 0 ? Math.max(0, LF.promo - LF.turned) : promoDraw;   // no turn-aways last week: push as hard as she can
+    if(want < promoDraw){ const before = promoDraw; promoDraw = promoDraw * (1 - acc) + want * acc; hr.promoHeld = Math.round(before - promoDraw); }
+  }
   // promoters fill empty rooms: draw beyond what the escorts can take (nightly caps x nights x promoterCapUse) mostly fizzles (x promoterOverflow),
   // so a full house doesn't pay for walkouts it didn't need
   if(promoDraw > 0){
@@ -761,6 +771,7 @@ function simHouse(h, R){
   let beds = bedsFor(h); hr.floor = [];
   S.workers.filter(w=>w.house===h.id && !['spirit','android'].includes(w.race)).sort((a,b)=>(b.isPartner||b.locked?1:0)-(a.isPartner||a.locked?1:0)).forEach(w=>{ if(beds>0){ beds--; w._bed = BEDS[h.beds||0].rest; } else { w._bed = FLOOR_REST; hr.floor.push(w.name); } });
   hr.avgSat = avg; hr.rep = h.rep;
+  h.lastFlow = {promo: Math.round(hr.promoDraw || 0), turned: hr.turned, served: hr.served};   // what the promoters read next week
   updatePrestige(h, hr, W, R, {
     courts: byJob('courtesan').length,
     ownAtts: ownAttMap.size,
