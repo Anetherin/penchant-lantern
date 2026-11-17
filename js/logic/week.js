@@ -700,7 +700,6 @@ function endWeek(){
     rest *= restMult(w) * (tfx ? tfx.rec : 1);
     const RB = BAL.rest || {};   // balance.json → rest
     let rec = w.job==='rest' ? rest*(RB.week ?? 1.6) + (h.up.bath ? (RB.bath ?? 10) : 0) : rest*((RB.work ?? 0.75) + (RB.workFree ?? 0.25)*freeFrac);
-    if(w.race==='spirit') rec = w.job==='rest' ? SVC.spirit.restRec : SVC.spirit.workRec;
     // wear (balance.json → rest.wear): weeks of work without a break cost her Health, and a worn-down lady recovers less while working
     // (fatigueCut). A week off heals it. Demons (they feed) and androids (they charge) don't wear down this way.
     const WR = RB.wear || {};
