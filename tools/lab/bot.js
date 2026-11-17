@@ -71,6 +71,7 @@ LAB.POLICY = {
   guildPick: 'support',  // who goes: 'support' (non-courtesans first, then the weakest earners) | 'fighters' (best contract power, any job)
   guildSam: 'auto',      // 'auto': Sam joins a contract only when the ladies alone wouldn't finish it in time; true = whenever a contract has room; false = never
   guildEarnCap: 1.25,    // only send ladies whose best of the last 4 working weeks is at most this x the contract's day rate (a top courtesan stays home)
+  guildPartners: true,   // partners can go too (the earnings cap still keeps a partner who earns well at home; Adelheid-style fighters go)
   guildSpare: true,      // never send the madame or a house's only maid/security/attendant/promoter/host (false = old behaviour)
   guildSafety: 1.15,     // take/staff a contract only if projected progress x weeks left >= remaining work x this
   payOff: true,
@@ -100,7 +101,7 @@ LAB.POLICY = {
   flushMul: 3
 };
 // the fixed player the Pass 1/2 numbers in docs/BALANCE.md were measured with: spec "policy": {"preset": "legacy"}
-LAB.PRESETS = { legacy: { security: false, tidyFloor: 0, classUpkeep: false, maxStaff: 10, bedTier: false, guild: false, walkPartners: false, guildSpare: false }, noGuild: { guild: false } };
+LAB.PRESETS = { legacy: { security: false, tidyFloor: 0, classUpkeep: false, maxStaff: 10, bedTier: false, guild: false, walkPartners: false, guildSpare: false, guildPartners: false }, noGuild: { guild: false } };
 // base, then each override's preset (if it names one) under that override's own fields
 const withPreset = (base, ...os) => os.reduce((acc, o) => Object.assign(acc, (o && o.preset && LAB.PRESETS[o.preset]) || {}, o || {}), Object.assign({}, base));
 let P = Object.assign({}, LAB.POLICY);
@@ -228,7 +229,7 @@ const gSpare = w => w.job !== 'madame' && (!['maid', 'security', 'attendant', 'p
 // a contract's day rate, roughly (base.json perWeek x rank bonus): a lady who earns clearly more at home stays home
 const gRate = C => { const pw = C.perWeek || [0, 0]; return (pw[0] + pw[1]) / 2 * cycleMul((GDB.gold || {}).perCycle) * (1 + ((GDB.pay || {}).rankRate ?? 0.08) * GLD().rank); };
 function guildPool(C){
-  const L = S.workers.filter(w => gEarn(w) <= gRate(C) * (P.guildEarnCap ?? 1.25) && w.job !== 'guild' && !w._lock && !w.isPartner && w.trust >= jobTrust(w, 'guild') && w.energy >= maxEnergy(w) * 0.6 && w.health >= 50 && !AMEN[w.job] && (P.guildSpare === false || gSpare(w)));
+  const L = S.workers.filter(w => gEarn(w) <= gRate(C) * (P.guildEarnCap ?? 1.25) && w.job !== 'guild' && !w._lock && (P.guildPartners !== false || !w.isPartner) && w.trust >= jobTrust(w, 'guild') && w.energy >= maxEnergy(w) * 0.6 && w.health >= 50 && !AMEN[w.job] && (P.guildSpare === false || gSpare(w)));
   const score = w => P.guildPick === 'fighters' ? ladyGuildPower(w, C) : ladyGuildPower(w, C) - (w.job === 'courtesan' ? 40 : 0) - gEarn(w) / 20;
   return L.sort((a, b) => score(b) - score(a));
 }

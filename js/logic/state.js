@@ -55,6 +55,7 @@ function newGame(cfg){
   const p = makeNamed(cfg.partner, true); p.house = cfg.house;
   S.workers.push(npc, p);
   assignStart(npc, NAMED[HD.npc].job); assignStart(p, ['courtesan','bartender','dancer','bath'].includes(NAMED[cfg.partner].job) ? NAMED[cfg.partner].job : 'courtesan');
+  if(NAMED[cfg.partner].startGuild && typeof GLD==='function'){ const g = GLD(); g.joined = true; g.rank = Math.max(g.rank || 0, NAMED[cfg.partner].startGuildRank || 0); g.merit = Math.max(g.merit || 0, ((GDB.levels||[])[g.rank]||{}).merit || 0); guildRefreshBoard(); for(let r=0; r<=g.rank; r++) EVQ.push(()=>guildBeatEvent(r)); }   // she brings Sam to the Adventurers' Guild on day one (named data startGuild / startGuildRank; the skipped rank beats still play, so their unlocks arrive)
   refreshCandidates();
   checkUnlocks(true);
   addLog(`Sam Takahashi wakes up in Hollowmere with a deed to ${HD.name}, a debt, and a status window only he can see.`);

@@ -253,7 +253,7 @@
     },
     {
       "id": "demons-poor-off-service",
-      "intent": "...but risky where services are rare: moving demons into promoter/bartender/host/security costs more than it does for humans.",
+      "intent": "...but risky where services are rare: moving demons into promoter/bartender/host/security costs more than it does for humans. Soft since 2026-11-17: each race's Δ is taken against that race's own default house, and an all-demon house starts lower than an all-human one, so this comparison flips with small changes. Read it with the racejob breakdown (per-lady earnings by race and job).",
       "exp": "race-jobs",
       "expect": [
         {
@@ -296,7 +296,8 @@
           "metric": "total",
           "lt": 0
         }
-      ]
+      ],
+      "soft": true
     },
     {
       "id": "sam-actions-balanced",

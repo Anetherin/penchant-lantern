@@ -133,10 +133,10 @@ The most useful ones:
 | `pageErrors:` in the progress line | a game script threw during play: that's a bug in the game or the bot, worth reporting with the message |
 | very slow | lower `--runs` while exploring, raise `--conc` toward your core count; `--reuse` skips experiments already run |
 
-## 8. Current run list (round 4d, 2026-11-17)
+## 8. Current run list (round 4e, 2026-11-17)
 
 On `feat/balance-tuning`, after `npm run build && npm run smoke` and `node tools/goddess-smoke.mjs`:
-1. `npm run lab -- partners` and `npm run lab -- nerys` (partner balance after the Adelheid / Marisol / Lirael buffs and Nerys' nerf).
+1. `npm run lab -- partners` and `npm run lab -- nerys` (partner balance; Adelheid now starts at Iron guild rank).
 2. `npm run check` (full size). `ngplus-cycles` is the slowest part (~26 of 45 min last time); if time is short, run it last with `--runs 6`.
 3. Extra experiments, full tables: `npm run lab -- guild`, `sam-focus`, `houses-all`, `ngpp`, `partners`, `walk-partners`, `promoter-value` is covered by the check.
 Use `--conc` at most (cores − 1); the default already is. If the machine struggles, `--conc 1` and `--runs 8` still give a usable read.

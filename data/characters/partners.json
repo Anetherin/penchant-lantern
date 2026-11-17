@@ -383,7 +383,7 @@
     "body": {"bust":"medium","height":"tall","figure":"athletic"},
     "unique": {
       "name": "Oath of the Order",
-      "desc": "A knight's discipline: hard to rattle, hard to get past, at home on a contract, and she drills you in the yard every morning (+0.6 Strength a week while she works where you are).",
+      "desc": "A knight's discipline: hard to rattle, hard to get past, at home on a contract (as your starting partner she vouches for Sam at the Adventurers' Guild: he starts registered, at Iron rank), and she drills you in the yard every morning (+0.6 Strength a week while she works where you are).",
       "fx": {"security":12,"recklessAt":10,"guild":1.2,"guildSafe":0.8,"samTrain":{"strength":0.6}}
     },
     "vignettes": [
@@ -411,7 +411,9 @@
     "goddess": {
       "comment": "\"The knight.\" {goddess} bursts out laughing. \"I promised her a hero. She got you. I'm not sorry. Her oath is delightful. Be gentle with it.\""
     },
-    "partnerBlurb": "A sworn knight of the Radiant Order trying to square an ancient prophecy with a pleasure house."
+    "partnerBlurb": "A sworn knight of the Radiant Order trying to square an ancient prophecy with a pleasure house.",
+    "startGuild": true,
+    "startGuildRank": 1
   },
   "natsuki": {
     "role": "partner",

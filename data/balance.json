@@ -142,7 +142,7 @@
   },
   "demolish": {"share":0.25},
   "ngplus": {
-    "debtShare": 0.9,
+    "debtShare": 0.85,
     "perCycle": 0.35,
     "perKeptHouse": 0,
     "keptHouseShare": 0.25,
