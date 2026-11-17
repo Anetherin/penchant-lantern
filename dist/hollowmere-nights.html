@@ -3787,7 +3787,7 @@ function focusCardHTML(){
    guildDraw() in pickClass, guildTabHTML() for the Guild tab.
    ===================================================================== */
 const GDATA = DATA.guild || {};
-const GB = GDATA;                                   // numbers (base.json) live at the top level
+const GDB = GDATA;                                   // numbers (base.json) live at the top level
 const GCON = noMeta(GDATA.contracts);
 const GLEVELS = GDATA.levels || [{id:'copper', label:'Copper', merit:0}];
 const GTXT = GDATA.text || {}, GGEN = GDATA.generic || {}, GITEMS = noMeta(GDATA.items);
@@ -3804,13 +3804,13 @@ function GLD(){
 const guildOn = () => !!(S && S.guild && S.guild.joined);
 const hasGuildPerk = k => !!(S && (S.guildPerks||[]).includes(k));
 const guildRankLabel = (r = GLD().rank) => (GLEVELS[r] || GLEVELS[GLEVELS.length-1]).label;
-const guildActiveMax = () => { const b = GB.board || {}; return (b.active ?? 1) + Math.floor((b.activePerRank ?? 0.5) * GLD().rank) + (hasGuildPerk('delver') ? 1 : 0); };
-const guildBoardSize = () => { const b = GB.board || {}; return (b.size ?? 3) + Math.floor((b.perRank ?? 0.5) * GLD().rank); };
+const guildActiveMax = () => { const b = GDB.board || {}; return (b.active ?? 1) + Math.floor((b.activePerRank ?? 0.5) * GLD().rank) + (hasGuildPerk('delver') ? 1 : 0); };
+const guildBoardSize = () => { const b = GDB.board || {}; return (b.size ?? 3) + Math.floor((b.perRank ?? 0.5) * GLD().rank); };
 const gFill = (t, o={}) => String(Array.isArray(t) ? pick(t) : (t||'')).replace(/\{(\w+)\}/g, (m, k) => o[k] != null ? o[k] : m);
 const gText = (type, k) => { const T = GTXT[type] || {}; return (T[k] && T[k].length) ? T[k] : (GGEN[k] || []); };
 const gNames = ws => ws.map(w=>w.name.split(' ')[0]).join(', ').replace(/, ([^,]*)$/, ' and $1');
 // Adventurer/mercenary client draw at every house (services.js pickClass): a little for joining, more with fame.
-const guildDraw = () => guildOn() ? ((GB.fame||{}).base ?? 6) + GLD().fame * ((GB.fame||{}).draw ?? 0.25) : 0;
+const guildDraw = () => guildOn() ? ((GDB.fame||{}).base ?? 6) + GLD().fame * ((GDB.fame||{}).draw ?? 0.25) : 0;
 
 // Outfits as rewards (wardrobe.json → guild for the guild-only ones): they go to the house wardrobe. Returns the line to tell, or ''.
 const guildOutfitWhere = o => !o || !o.guild ? '' : /^rank(\d)$/.test(o.guild) ? `reach ${guildRankLabel(+o.guild.slice(4))} rank` : GCON[o.guild] ? `first ${GCON[o.guild].label}` : 'guild reward';
@@ -3822,7 +3822,7 @@ function guildGiveOutfit(k, first){
 function guildLoot(C){
   let out = '';
   if(C.outfit && GUILD_OUTFITS[C.outfit]) out = guildGiveOutfit(C.outfit, true);
-  if(!out && Math.random() < ((GB.loot||{}).chance ?? 0.3)){
+  if(!out && Math.random() < ((GDB.loot||{}).chance ?? 0.3)){
     const pool = Object.keys(SHOP_OUTFITS).filter(k=>!WARDROBE[k].uniform && !S.houseWardrobe.includes(k));
     if(pool.length) out = guildGiveOutfit(pick(pool), false);
   }
@@ -3831,7 +3831,7 @@ function guildLoot(C){
 
 /* ---------- the board ---------- */
 function guildOffer(type){
-  const C = GCON[type], g = GLD(), gm = cycleMul((GB.gold||{}).perCycle) * (hasGuildPerk('delver') ? 1.1 : 1);
+  const C = GCON[type], g = GLD(), gm = cycleMul((GDB.gold||{}).perCycle) * (hasGuildPerk('delver') ? 1.1 : 1);
   return {uid:'gc'+(g.next++), type, gold:Math.round(rnd(C.gold[0], C.gold[1]) * gm / 10) * 10, weeks:C.weeks};
 }
 function guildRefreshBoard(){
@@ -3907,7 +3907,7 @@ function gWeighted(src, weights){
   return sw ? sv / sw : 0;
 }
 function ladyGuildPower(w, C){
-  const P = GB.power || {};
+  const P = GDB.power || {};
   const all = Object.assign({}, C.stats||{}), tech = C.tech||{};
   let sw = 0, sv = 0;
   Object.entries(all).forEach(([k,wt])=>{ sv += wt * s100(statOf(w,k)); sw += wt; });
@@ -3915,9 +3915,9 @@ function ladyGuildPower(w, C){
   const base = sw ? sv / sw : 0, ef = clamp(w.energy / Math.max(1, maxEnergy(w)), P.energyFloor ?? 0.4, 1);
   return base * ef * fxMul(w, 'guild') * (hasPast('courier') ? 1.15 : 1);
 }
-const samGuildPower = C => gWeighted(k=>S.sam[k]||0, C.sam) * ((GB.power||{}).samMult ?? 1) * (S.samWeek.focusEff||0) * (hasPast('courier') ? 1.15 : 1);
+const samGuildPower = C => gWeighted(k=>S.sam[k]||0, C.sam) * ((GDB.power||{}).samMult ?? 1) * (S.samWeek.focusEff||0) * (hasPast('courier') ? 1.15 : 1);
 function guildHurtChance(C, avg, samThere, w){
-  const SF = GB.safety || {};
+  const SF = GDB.safety || {};
   let p = C.risk * Math.max(SF.min ?? 0.25, 1 - avg / (SF.div ?? 160));
   if(samThere) p *= (SF.sam ?? 0.85) * (hasGuildPerk('slayer') ? 0.6 : 1);
   if(w) p *= fxMul(w, 'guildSafe');
@@ -3933,7 +3933,7 @@ function guildTidy(){
 }
 function guildWeek(R){
   if(!guildOn()) return;
-  const g = GLD(), WK = GB.weekly || {}, cap = hasGuildPerk('captain') ? 1.5 : 1, parties = [];
+  const g = GLD(), WK = GDB.weekly || {}, cap = hasGuildPerk('captain') ? 1.5 : 1, parties = [];
   R.guild = R.guild || [];
   g.active.slice().forEach(c=>{
     const C = GCON[c.type]; if(!C){ g.active = g.active.filter(x=>x!==c); return; }
@@ -3972,17 +3972,17 @@ function guildWeek(R){
     else if(S.week >= c.due) guildEnd(c, false, R, ladies, sam);
   });
   guildScenes(parties);
-  g.fame = Math.max(0, g.fame - ((GB.fame||{}).decay ?? 0.5));
+  g.fame = Math.max(0, g.fame - ((GDB.fame||{}).decay ?? 0.5));
 }
 // A contract ends: rewards or the penalty, the party goes home, the result is told as an event.
 function guildEnd(c, ok, R, ladies, sam){
-  const g = GLD(), C = GCON[c.type], D = GB.done || {}, cap = hasGuildPerk('captain') ? 1.5 : 1;
+  const g = GLD(), C = GCON[c.type], D = GDB.done || {}, cap = hasGuildPerk('captain') ? 1.5 : 1;
   ladies = ladies || guildParty(c); sam = sam ?? samOnContract(c);
   g.active = g.active.filter(x=>x!==c);
   let body = '', tag = '';
   if(ok){
     S.gold += c.gold; if(R){ R.income += c.gold; R.led.guild = (R.led.guild||0) + c.gold; }
-    g.merit += C.merit; g.fame = Math.min((GB.fame||{}).max ?? 100, g.fame + (C.fame||0));
+    g.merit += C.merit; g.fame = Math.min((GDB.fame||{}).max ?? 100, g.fame + (C.fame||0));
     g.done[c.type] = (g.done[c.type]||0) + 1;
     ladies.forEach(w=>{ gainTrust(w, (D.trust ?? 2) * cap); moodAdd(w, D.mood ?? 6); w.popularity = clamp(w.popularity + (C.pop||0));
       Object.entries(C.stats||{}).forEach(([k,wt])=>statXP(w, k, (D.statXP ?? 1.2) * wt * cap)); Object.entries(C.tech||{}).forEach(([k,wt])=>grow(w, k, (D.combat ?? 2) * wt * cap));
@@ -3995,7 +3995,7 @@ function guildEnd(c, ok, R, ladies, sam){
     if(R) R.lines.push(`✅ ${C.icon} ${C.label} complete: +${fmt(c.gold)}, merit +${C.merit}.`);
     guildPerkCheck(); guildRankCheck();
   } else {
-    const F = GB.fail || {};
+    const F = GDB.fail || {};
     g.merit = Math.max(GLEVELS[g.rank].merit, g.merit - (F.merit ?? 5)); g.fame = Math.max(0, g.fame - (F.fame ?? 3));
     ladies.forEach(w=>{ w.trust = clamp(w.trust - (F.trust ?? 1)); moodAdd(w, -4); });
     body = gFill(gText(c.type, 'fail'), {party:gNames(ladies.length ? ladies : [{name:'Sam'}])}) || `The ${C.label} ran out of time.`;
@@ -4058,7 +4058,7 @@ const gTags = C => new Set(C.tags||[]);
 function gScenePick(list, C){ const t = gTags(C), fit = (list||[]).filter(s=>(s.tags||[]).some(x=>t.has(x))); return pick(fit.length ? fit : (list||[])); }
 const gImg = (s, key) => s && s.image && s.image.comp ? dynScene('guild_'+key, s.image) : null;
 function guildScenes(parties){
-  const SC = GB.scenes || {}; let n = 0;
+  const SC = GDB.scenes || {}; let n = 0;
   shuffle(parties).forEach(p=>{
     if(n >= (SC.maxPerWeek ?? 1) || Math.random() > (SC.chance ?? 0.55)) return;
     const ids = p.ladies.map(w=>w.id), C = p.C, ev = guildSceneFor(p, SC);
