@@ -6,9 +6,14 @@ function samUpFx(key){
   Object.keys(BAL.samUps||{}).forEach(k=>{ if(!hasSamUp(k)) return; const v = (BAL.samUps[k].fx||{})[key]; if(typeof v==='number') n += v; else if(v) any = true; });
   return key==='reach' ? any : n;
 }
-const samReach = () => !!(samUpFx('reach') || hasBoon('clone'));
+// Two kinds of reach: work (Speaking Stones or the Shadow Clone boon: his focus and passive bonuses run at every house) and visits
+// (Teleport Circle: late-night encounters, rounds, demonstrations and group nights reach every house).
+const samReach = () => !!(samUpFx('link') || hasBoon('clone'));
+const samVisitReach = () => !!samUpFx('reach');
 const samAtHouse = h => samReach() || !!(h && h.id === samHouse().id);
+const samVisits = h => samVisitReach() || !!(h && h.id === samHouse().id);
 const nearSam = w => samAtHouse(w && H(w.house));
+const nearSamV = w => samVisits(w && H(w.house));
 const hasSuite = h => !!(h && h.up && h.up.suite);
 const samBedTier = () => Math.min(3, (samHouse().beds||0) + (hasSuite(samHouse()) ? 1 : 0) + (samUpFx('bedTier')||0));
 const samBedRest = () => BEDS[samBedTier()].rest;
@@ -21,7 +26,7 @@ function moveSam(id){
   toast(`Sam now sleeps at ${h.name}.`); save(); render();
 }
 function buySamUp(k){
-  const u = BAL.samUps[k]; if(!u || hasSamUp(k)) return;
+  const u = BAL.samUps[k]; if(!u || hasSamUp(k) || u.guild) return;
   if(S.gold < u.cost) return toast('Not enough gold.');
   S.gold -= u.cost; S.samUps = S.samUps || {}; S.samUps[k] = true;
   toast(`Bought: ${u.label}`); save(); render();

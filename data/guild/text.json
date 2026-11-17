@@ -1,0 +1,277 @@
+{
+  "_readme": [
+    "Adventurers' Guild contract flavor (docs/GUILD.md). text.<contract id> has week (report lines, third person), done (the ladies come home and tell you, Sam stayed home), doneSam (you were there), fail (neutral, Sam present or not), hurt (one line).",
+    "Placeholders: {party} = the names of the party as a group, {name} = the injured lady. Use only these two. The items block holds one entry per samUps key earned from a contract (plus 'pass', handed over at Iron rank).",
+    "Narration is second person ('you' = Sam). Report lines use 'Sam' by name when they need him. No sex in these lines; it is flavor about the work."
+  ],
+  "text": {
+    "caravan": {
+      "week": [
+        "{party} ride rear guard on the merchant's wagons. The road is mud to the axles.",
+        "{party} spend the week on the river road, counting wheel ruts and anything bandit-shaped in the trees.",
+        "{party} camp under the wagons while rain drums on the tarps. Nobody has been robbed, but everybody is damp.",
+        "The merchant's lead mule has opinions about the route. {party} are outvoted."
+      ],
+      "done": [
+        "{party} come home mud to the knees and absurdly pleased with themselves. The merchant paid in full, they say, and the only bandits were two boys with a stick who asked politely for a toll and left with an apple each. Most of the trip was rain, wet bread, and a mule named Duchess who refused to cross one bridge until somebody sang to her. Somebody did. They tell you who, then spend ten minutes trying to make you promise not to repeat it. Hot baths are demanded. You agree before they finish asking.",
+        "The wagons rolled in at dusk and {party} come straight to you with their boots in their hands. The river towns were small and loud and smelled of fish, they tell you, and every innkeeper wanted to know who they were guarding. One of them said \"a very rich cheese\" and it became the story of the trip. Nothing attacked them. A goose tried. The merchant tipped in coin and a wheel of that same cheese, which is already on your kitchen table, smelling like a verdict.",
+        "{party} drop onto the common-room cushions and tell it in pieces, each one correcting the last. Day three was a washed-out ford, and they pushed a loaded wagon out of it with their shoulders and a great deal of language. Day five was a quiet camp, a fire, and a cold clear sky, and they admit that was nice. The bandits never came, though they saw a lantern in the hills once and sat up all night with their hands on their weapons. It was a shepherd. He waved. They did not wave back until morning."
+      ],
+      "doneSam": [
+        "The last wagon rolls through the Hollowmere gate and the merchant shakes your hand hard enough to hurt. You are filthy, sore in places you did not know you had, and strangely content. {party} are already arguing about who gets the first bath. You remember the ford, the rain, the night the mule would not cross the bridge until someone sang to it, and you are fairly sure you will remember them longer than the gold. The money is good. The stories are better, and you can already hear how they will grow.",
+        "You walk the last mile beside the lead wagon, because your feet had stopped being persuaded by the idea of the seat. {party} walk with you, talking over each other about the trip: the ford, the goose, the innkeeper who tried to sell you the same bed twice. The merchant counts out the pay at the gate and adds a little extra \"for the thin one who carried the water.\" You will not live that down. But your pack is light, your pockets are not, and the road behind you feels like something you finished.",
+        "You come home on a wagon seat with {party} asleep against the cargo behind you. The road was long and wet and mostly boring, and you are surprised how much you liked it. The merchant pays out at the gate, shakes every hand, and says to ask for his wagons by name next season. You will, probably. You have a sunburnt nose and mud in your hair and a very clear idea of what a good road sounds like: wheels, rain, and someone off key, singing to a mule."
+      ],
+      "fail": [
+        "The wagons were late to the river and later coming home, and by the time the party reached the gate the merchant had already hired a guard company from Dunmere. Nobody was robbed, and nobody got paid. The party said little about it, except that the weather was against them and the mule more so. The guild clerk wrote a line in a ledger, and that was that. It happens, and next time the road will be shorter.",
+        "The caravan contract ran out of time on the road. The party did their work, but the rains came early and the ford took four days to cross, and the merchant's deadline passed with the wagons still half a day out. He took the goods and kept the coin. The party came home quiet and damp. The guild noted a missed contract against the party's name and moved on to the next one."
+      ],
+      "hurt": [
+        "{name} turned an ankle pushing a wagon out of the ford.",
+        "{name} took a cart wheel across the shin on the river road.",
+        "{name} caught a bad chill sleeping under the wagons in the rain."
+      ]
+    },
+    "porter": {
+      "week": [
+        "{party} haul packs, lamps and rope down the Barrow's upper halls. The loot goes up heavier than the supplies came down.",
+        "{party} spend the week beneath Hollowmere with a delving party who keep calling them \"the mules.\"",
+        "{party} count coils of rope and bags of salvage by lamplight. Everything smells of damp stone.",
+        "{party} carry what the delvers can't, and listen to what the delvers won't shut up about."
+      ],
+      "done": [
+        "{party} stagger in smelling of wet stone and old candle wax, and a little of something else they refuse to name. Porter work, they tell you, is mostly counting: counting packs, counting rungs, counting how many more stairs. The delvers they carried for were decent, if loud, and one of them tried to tip with a bent copper and a very sincere speech. The pay was real though, and the mud on the stairs was a kind of pride. They hand you the coin and ask where the nearest hot bath is. They will not be carrying anything else today.",
+        "The ladies come up out of the Barrow like people who have been underground too long, blinking at the sun. {party} drop their empty packs by your door and laugh about it. They carried lamps, salvage, a whole iron chest, and one very upset goat that somebody had adopted on the second level. The delvers found a few bad skeletons and a lot of old coins. The porters found the stairs. The pay is better than they expected and the aches are worse. They are, they insist, completely fine.",
+        "{party} tell it the way people tell a story they've been rehearsing on the stairs. The upper halls are dark and cold and drip constantly, and the delving party they carried for argued about everything, including which way was up. The porters did the sensible thing and kept the water and the rope. When a ceiling dropped a few stones, nobody hurt, they sat in the dark for a minute and then laughed. Their backs are sore and their pockets are fuller. They want soup, in that order."
+      ],
+      "doneSam": [
+        "You come up out of the Barrow with a pack on your back that you are fairly sure is heavier than you are. {party} carry theirs like it is nothing, which is rude. The delvers pay out at the surface, in bright coin and louder thanks, and one of them says you are the first employer who ever remembered their names. You sit on a stone in the sunlight for a long moment. Everything aches, and it is the clean ache of work. The coin clinks. The soup tonight will be wonderful.",
+        "Seven flights of damp stairs, one pack of lamp oil, a rope that tried to kill you once, and the delvers found something worth selling, so you all go home paid. {party} help you off the last step because your legs have stopped taking suggestions. Up here the air smells of grass and chimney smoke, and you had no idea how much you'd missed it in two weeks. The delvers thank everyone twice and promise to ask for you by name. You are not sure whether to be flattered or afraid.",
+        "You are the slowest porter the delvers have ever hired, and the most polite, and when the work is finished that seems to count for something. {party} laugh at you all the way up the last stair. At the top, the delvers press the pay into your hand, and the dwarf among them clasps your shoulder with a hand like a shovel. \"Come back and carry for us again, thin man,\" he says. You are too tired to answer. You do raise a hand. That counts."
+      ],
+      "fail": [
+        "The porters did not finish the haul before the delving party's patience ran out. They hired a second crew halfway through and paid off the first with a handshake instead of coin. The party came up from the Barrow tired and quiet and carrying the last of the packs. The guild noted it and moved on.",
+        "The Barrow's upper halls ran longer than the contract. The delvers kept finding side passages and more things to carry, and the weeks ran out before the work did. The party came up with empty hands and aching backs. The guild clerk logged the failure without comment, which was somehow worse than comment."
+      ],
+      "hurt": [
+        "{name} wrenched her back under an overloaded pack in the Barrow.",
+        "{name} slipped on the wet stairs and went down hard with a lamp in each hand.",
+        "{name} took a falling stone to the shoulder in the upper halls."
+      ]
+    },
+    "herbs": {
+      "week": [
+        "{party} work the Fenwood edges for moonmoss, avoiding the pollen when the wind turns.",
+        "{party} fill sacks with moonmoss at dawn and check each other's gloves at noon.",
+        "{party} camp on dry ground at the Fenwood's rim. The bloom smells sweet from here, so they have moved the tent upwind.",
+        "{party} bring lustbloom out of the Fenwood in sealed jars and very serious faces."
+      ],
+      "done": [
+        "{party} come home smelling of green things and clean mud, and they have strict opinions about gloves. The moonmoss was easy, they say, pale and cold and growing in the shade. The lustbloom was the hard part. They wore the apothecary's gloves and the thick scarves and took turns, and when the wind shifted they called a break, walked well away, and sat very still until the air cleared. It worked. The sacks are full, the jars are sealed, and the pay is good. They are all slightly pink and nobody wants to talk about it.",
+        "The ladies come in with moss in their hair and ribbons of fern stuck to their sleeves, laughing. {party} tell you the Fenwood is beautiful and a little unfair: silver light, dripping leaves, and flowers that want you to forget your day. They kept to the rules. Scarves up, gloves on, an upwind watch. They did lose a jar to a startled fox and one of them fell in a bog. But the sacks were full, and the apothecary paid on sight and asked them to come back in the autumn.",
+        "{party} tell it carefully, which is how you know it was a good trip. They found the moonmoss on the north side of old stones, exactly as the apothecary said, and cut it with little knives and a lot of patience. The lustbloom grew in a clearing, in a drift of pale pink, and they worked it in shifts with wet scarves over their faces. A single breath gave one of them the giggles for an hour. They carried it out in sealed jars, delivered it, and collected their pay. The jars are the apothecary's problem now."
+      ],
+      "doneSam": [
+        "You come out of the Fenwood with moss in your hair, a scarf tied over your nose, and a firm new respect for apothecaries. {party} are in the same state and not much calmer. The lustbloom clearing was lovely and a little frightening, a drift of pink with a heavy sweet smell, and you all worked it fast and left. The moonmoss was easier, pale and cool and plentiful. The apothecary weighs the sacks, counts the jars, and pays on the spot. You count your fingers, to be sure they are all there, and then you laugh.",
+        "The Fenwood was cool and quiet and green, and you were useless at first. Then {party} showed you how to find moonmoss on the shady side of old stones, and by the second day you had a rhythm. The lustbloom was another matter. Sealed jars, wet scarves, hands that never wandered near your face. You made it. The apothecary is delighted, the pay is fair, and you carry one jar of sweetly scented moss home for your desk. You are sure you will regret that. You keep it anyway.",
+        "You walk out of the trees with a full sack on your back, a mild headache from the bloom, and a smile you cannot quite explain. {party} are close behind, quiet and pleased, with leaves in their hair. The Fenwood does that to you. It makes the world soft and slow, and it takes some effort to come back into the daylight. The apothecary pays, the jars are sealed, and the afternoon is yours. You have a new appreciation for people who do this for a living."
+      ],
+      "fail": [
+        "The Fenwood did not give up its moss on schedule. The party spent too long on the wrong side of the wood, the bloom was late to open, and the apothecary's deadline passed with the sacks half full. They came home with some moss and no payment, and the apothecary hired someone else.",
+        "The herb run came up short. The wind turned at the wrong time, the party had to retreat from the lustbloom clearing, and the moonmoss they carried back was not enough to fill the order. The apothecary paid for what they had and nothing more. The guild logged it as a failed contract."
+      ],
+      "hurt": [
+        "{name} scraped both forearms crawling through the Fenwood brambles.",
+        "{name} twisted a knee on a mossy root.",
+        "{name} fell in a Fenwood bog and caught a chill."
+      ]
+    },
+    "arena": {
+      "week": [
+        "{party} warm up in the pit's back corridor, to the sound of a crowd that has already bet on them.",
+        "{party} spend the week drilling blunted steel against the pit's resident bruisers.",
+        "{party} wait for the horn in the Hollowmere pit, which smells of sawdust, sweat and fried onions.",
+        "The arena crowd has picked a favorite. It is not yet clear who, but {party} have been asked to sign things."
+      ],
+      "done": [
+        "{party} burst through your door still wearing the pit's sawdust, flushed and loud. They tell you the bout in three overlapping versions. The crowd was enormous. The other pair were big. The horn blew and for a moment nobody moved, and then everyone did. There was a lot of shouting. One of them lost a shoe and kept fighting. When the other pair finally yielded, the crowd threw coin and onions in roughly equal quantities. The purse is on your table. The onions are being eaten. Nobody is allowed to say they were not nervous.",
+        "The ladies come back from the pit with fresh bruises and wider grins, {party} talking all at once. Blunted steel still hurts, they tell you, and a crowd that loud makes your ears ring for hours. They fought the bout smart, using the pit's pillar and the sun in the opposition's eyes, and the purse was fat. A boy waited at the gate for an autograph. One of them signed it. They are insufferable and you cannot find it in you to mind.",
+        "{party} walk in slowly, in the manner of people who have been very loud and are now very tired. The bout was a close one, they say. The other pair were practiced and mean, and for a while it looked bad. Then a lucky sidestep, a bad footing in the sawdust, and the whole crowd rose up as the other pair went down. They won the purse. They also won a few new admirers, one of whom sent a bunch of flowers to the back door. They do not know who. They are fairly sure they like it."
+      ],
+      "doneSam": [
+        "The horn blows, and you do not remember the next minute. You remember the sand, the roar, {party} fighting beside you, and a huge man swinging a blunted sword that you were barely able to duck. Then it is over, you are still standing, and the crowd is throwing coin and onions in the air. The steward pays you at the gate. Your ribs hurt. Your hands are shaking. You are, you realize, grinning, and so is everyone else, and nobody there has any idea who you are or where you live, and that is wonderful.",
+        "You walk out of the pit on your own feet, which is more than you expected. The bout was brief and loud and a little terrifying, and {party} carried most of it, but you stood your ground, swung your sword, and heard the crowd roar your name wrong. The steward counts out the purse. A boy asks you to sign his program. You do, in careful, nerdy handwriting, and he looks at it like it is a wizard's seal.",
+        "The crowd is a wall of noise. You and {party} stand at the center of the pit with the sun overhead and two very large opponents in front of you, and for a long moment you think about every bad choice that brought you here. Then the horn. Then the fight. Then the other pair dropping their blades, the crowd on its feet, and {party} shouting with you. Afterwards you sit in the back corridor with an ice pack and a mug of something terrible, grinning like an idiot. The purse is heavy. The onion is delicious."
+      ],
+      "fail": [
+        "The bout went the wrong way. The party fought hard, but the other pair were bigger and meaner, and the crowd turned away before the horn. The purse went to the other side. The party came home bruised and quiet. The guild noted the loss and a few of the pit's bookmakers noted it with more enthusiasm.",
+        "The party did not make the bout. Something went wrong before the horn: a late arrival, a lost shoe, a missed signal, and the pit steward scratched them from the card. The purse went to the next pair. The party went home sore for nothing. The guild logged the failed contract and the steward sent a small, unfriendly note."
+      ],
+      "hurt": [
+        "{name} took a blunted blade across the ribs in the pit.",
+        "{name} was thrown into the pit wall and came out dizzy.",
+        "{name} jammed a wrist catching a shield rim, and kept fighting anyway."
+      ]
+    },
+    "ball": {
+      "week": [
+        "{party} stand in silk at the baron's ball, smiling pleasantly and watching every hand in the room.",
+        "{party} circle the ballroom in borrowed gowns, close enough to catch a falling girl and far enough to look like guests.",
+        "{party} trade small talk with three counts and a bishop while keeping one eye on the debutante's glass.",
+        "The orchestra plays on. {party} have not sat down in four hours."
+      ],
+      "done": [
+        "{party} sweep in with their shoes in their hands and their hair coming down, positively glowing. The ball went perfectly, they say, which for a guard job means nothing happened. A would-be admirer was steered away with a dance, a rude baron was talked out of making a speech, and the baron's daughter spent the night believing the two nice ladies by her elbow were old family friends. The pay was excellent and the champagne was better. They would like it noted that they did not drop a single canapé. You note it.",
+        "The ladies come home late, and giddy with the effort of being quiet. {party} tell you about the ball in a low conspiratorial hum, like a pair of spies. The debutante was shy and a little drunk. A rival suitor tried twice to get her alone, and both times a small, pleasant, determined lady appeared at his elbow and asked about his horses. Nobody noticed they were guarding anything. The baron paid in gold and sent a note: \"Your staff are a credit to your house.\" You frame it.",
+        "{party} slip in as the sun comes up, gowns rumpled, shoes in hand, and grinning. The ball was long and dull and perfect. They danced with three counts, charmed a bishop, and prevented a spilled glass of wine from reaching the debutante's gown by the width of a hair. Nobody knew. That is the whole job. The baron's wife pressed a tip into each of their hands and asked for a card. They are very proud and very sleepy and they do not take off the gowns until they have admired them in your mirror."
+      ],
+      "doneSam": [
+        "You have never worn so many layers of silk, nor smiled so hard, nor stood so still while looking busy. The ball goes on for six hours, and {party} drift around the room at your side, passing along small signals. A rude count is led gently to the buffet. A jealous suitor is introduced to a very interesting bishop. The debutante gets through the night without a single bad moment, and the baron presses an envelope into your hand at the door. You walk home in the cold dawn with a head full of waltzes and feet that have given up.",
+        "The baron's daughter dances with eleven young men, and you stand behind a pillar with {party} watching every one of them. A nervous count is kept occupied. A bad-tempered uncle is steered away from the wine. When the last waltz ends, the girl turns, finds you, and whispers thank you, quietly, so no one else will hear. You nod like a man who just happened to be there. The baron pays you at the door. Your feet hurt, your cheeks hurt, and you are surprised how much you liked it.",
+        "You spend the night being polite in a great many directions at once. {party} work the room with you: a nod here, a joke there, a small and very well-timed spill that ends a bad conversation. The debutante is safe. The baron is delighted. A countess asks which house you serve, and you tell her, and she writes the name down. You are not sure if that is good or very bad. Either way, you go home with an envelope of gold and a sore smile."
+      ],
+      "fail": [
+        "The ball did not go smoothly. A suitor got too near the debutante, a glass was spilled on the wrong gown, and the baron's steward sent the party home before the last dance. They were not paid in full. They came home quiet, in their borrowed silk, and the guild noted a failed contract.",
+        "The party were found out. A guest noticed the guards, the guards noticed the guest noticing, and a quiet evening became a loud one. The baron's wife dismissed them with thanks and no gold. The guild noted that the contract had not been completed."
+      ],
+      "hurt": [
+        "{name} was stepped on, hard, by a drunk count in dancing slippers.",
+        "{name} twisted an ankle in borrowed heels on the ballroom stairs.",
+        "{name} caught a thrown goblet to the temple."
+      ]
+    },
+    "courier": {
+      "week": [
+        "{party} ride the coast road with sealed Exchange contracts in a locked satchel, and a very dark eye on every stranger.",
+        "{party} spend the week between inns and signing tables, checking seals twice and chasing signatures once.",
+        "{party} rest the horses at a coastal waystation. The satchel does not leave anyone's side.",
+        "Someone followed {party} for two days on the coast road. They are now much better at looking out of windows."
+      ],
+      "done": [
+        "{party} come in off the coast road with the satchel still locked, and nobody will let go of it until you've counted the seals. Every one is intact. They tell you about the rival's agent who followed them for two days, who tried to buy them breakfast, then tried to trip them, and then, finally, just sat on a wall and glared. They signed every document, got every receipt, and rode home. The Exchange paid well and promised to hire them again. They would like to sleep for a week.",
+        "The ladies return with the satchel strapped to a saddle and a look of fierce triumph. {party} tell you about the trip: three towns, five clerks, one rainstorm, and a suspicious innkeeper who wanted to read the contracts for himself. They declined. The rival agents tried a decoy, a spilled drink, and a very bad accent. The ladies were not distracted. The signatures came back, the seals were whole, and the Exchange clerk's face when he saw them was a small and perfect thing.",
+        "{party} arrive tired, dusty, and extremely proud. The satchel is on your table, the Exchange's receipt is in their hands, and they are talking about the trip in whispers, even now, as if rivals might be listening. They rode hard, slept in shifts, and never put the satchel down. A man with a very fine hat tried to buy it off them for gold. They said no, and he followed them for a day. Then they said no again, and he gave up. It was, everyone agrees, a good clean job."
+      ],
+      "doneSam": [
+        "The satchel is heavier than it looks, and you carried it for eight days without letting it out of your reach. {party} rode beside you, one hand on a reins and one eye on every stranger. You were followed for two days by a man in a very fine hat, and at the end he offered you triple the contract's pay for a glance at the seals. You said no. Your voice shook only a little. The Exchange clerk counts every seal twice and then, quietly, breathes out. He pays on the spot. You are told you are an honest man. You are not sure it was a compliment.",
+        "You read the contracts at night, as a precaution, and learned more about coastal grain tariffs than any person should know. {party} kept watch while you read, and the road went by in mud and rain and clean salt wind. At the coast the signatures came back one by one. On the return trip, a man tried to steal the satchel at a market, and a lady of your party removed him from the situation. The Exchange pays handsomely. You go home with a very good ledger-shaped feeling.",
+        "Eight days, three towns, one satchel, and no one stole it. You and {party} ride into Hollowmere at dusk and hand the contracts to the Exchange clerk with the ceremony of a royal gift. He checks the seals with a lens, nods, and counts out the pay. \"The Exchange is grateful,\" he says, like he means it. You are tired to the bones. You also have a new respect for the people who do this every week, and an idea or two about how a house could use a courier of its own."
+      ],
+      "fail": [
+        "The satchel did not make it back on time. The party was delayed at the coast, a signature was missing, and the Exchange clerk was waiting at the desk with a very flat expression. The contract lapsed. The party came home quiet. The guild noted the failure.",
+        "The Exchange's rivals won this round. A seal was broken on the road, a signature went to the wrong party, and the contract was voided before the party reached the city gates. The party were not paid and the clerk was not kind about it. The guild logged a failed contract."
+      ],
+      "hurt": [
+        "{name} was thrown from her horse on a wet stretch of the coast road.",
+        "{name} took a blow from a rival's cudgel while guarding the satchel.",
+        "{name} caught a fever from a damp coastal waystation."
+      ]
+    },
+    "hunt": {
+      "week": [
+        "{party} track the pack across the hill farms, reading broken fences and torn wool.",
+        "{party} set snares and watch the ridgeline from a cold camp. Something is watching back.",
+        "{party} walk the sheep tracks at dawn, counting paw prints that keep getting bigger.",
+        "{party} sleep in shifts in a farmer's barn. The sheep seem to approve."
+      ],
+      "done": [
+        "{party} arrive in the evening with the farmers' blessings, a bundle of grey pelts, and a good deal of quiet. The pack was bigger than they thought: nine of them, lean and clever, and for two nights the hunters could not find them at all. On the third, they were found, in a stony hollow above the old mill. It was a hard fight and it ended well. Nobody is willing to say how close it was. The farmers sent a lamb, three jars of honey, and a sack of potatoes. The pay is excellent. The ladies are very tired and very good at not saying so.",
+        "The ladies come home from the hills smelling of woodsmoke and sheep. {party} tell you the tracking was the hardest part: reading broken fences, a torn scrap of wool, a paw print at the edge of a stream. The pack kept moving. When they finally cornered it, it was fast, and it was smart, and it was over quickly. They are all in one piece. The farmer's wife made them stew and refused any payment for it. The crown pays well enough, they say, but the stew was the real prize.",
+        "{party} sit in your kitchen and tell you the hunt in careful, quiet voices. A pack of something with too many teeth took forty sheep in a month. The hunters set snares and watched the ridgeline in turns and followed the tracks to a hollow in the rocks. What happened next is told in low voices and short sentences, and the end of it is that the sheep are safe. The farmers wept and shook every hand. One of the ladies has a new scar. She is oddly proud."
+      ],
+      "doneSam": [
+        "You remember the hunt as three cold nights and one very long afternoon. {party} tracked the pack through the hills. You mostly carried things and tried to keep up. When the pack finally came, it came out of the dusk in a rush of grey, and for a moment the whole world was teeth and noise. Then it was over. You are all breathing. The farmers come running down the slope, laughing and crying, and press jars of honey into your hands. You sit on a stone, shaking slightly, and think that you will never look at a sheep the same way again.",
+        "The pack is dead, and the hills are quiet, and you are alive, which is the best you can say. {party} stand around you in the dusk, bloodied and tired and grinning. The tracking took days. The fight took minutes. The farmers pay in gold and honey and a very large, very grateful hug from a very large farmer. The captain of the hunt takes you aside and tells you that you did well for a man who has never held a spear. You say thank you. You do not say how much your legs are shaking.",
+        "You come down out of the hills on the fourth day with {party}, a pack of tired muscles, and a story you will tell for years. The hunt was cold, hard and well run. The pack was clever, and the ladies were cleverer. When it ended, the sheep stopped screaming. The farmers wave you in from the gate. They pay in coin and stew, and an old woman gives you a knitted scarf, because you looked thin. You wear it. You do not take it off for a week."
+      ],
+      "fail": [
+        "The pack slipped away. The party tracked it for three weeks through the hills, and every time they closed in it was a ridge ahead and a day behind. The farmers lost more sheep and more patience. The crown's bounty went unpaid. The party came home quiet, and the guild logged the contract as failed.",
+        "The hunt did not end well. The party found the pack, lost it again in the rocks, and ran out of days before they could finish the job. The farmers hired a second party and the crown's coin went elsewhere. The party came home sore and out of luck."
+      ],
+      "hurt": [
+        "{name} was bitten across the forearm by something with too many teeth.",
+        "{name} was knocked down a stony slope in the hunt.",
+        "{name} took a claw across the shoulder in the hollow."
+      ]
+    },
+    "delve": {
+      "week": [
+        "{party} map the drowned halls of the Barrow, one wet corridor and one chalk mark at a time.",
+        "{party} camp on a dry ledge in the lower halls. Water drips somewhere, patiently.",
+        "{party} wade through knee-deep black water with a lamp held high and the survey rope paid out behind.",
+        "{party} find another sealed door. The surveyors mark it \"later\" and everyone agrees that is the best word for it."
+      ],
+      "done": [
+        "{party} come up from the Barrow pale as candles, wet to the hips, and quietly triumphant. Four weeks beneath the town, and the surveyors have their map: eleven halls, three collapsed stairs, one flooded chapel, and a door that none of them would open. They tell you about the cold, the dripping, the dark, and the way a lamp makes everything beyond it somehow worse. They found old coins, old bones, and a very old, very rude carving. The guild paid handsomely. The ladies want hot water, soup, and, for at least a day, a ceiling.",
+        "The ladies come home from the deep with the smell of the Barrow still on them: wet stone, old candle wax, and a faint metallic chill. {party} spread the survey maps on your table, and they are beautiful, fine lines and careful notes and a small chalk drawing of a rat that someone added in the margin. It was cold work and slow work. They lost a day to a flooded corridor and two to a collapsed stair. But the maps are done, the guild is pleased, and the gold is very good.",
+        "{party} tell the story quietly, over soup, the way people tell something they are still thinking about. The lower halls of the Barrow go down and down, wet and black and very old. They mapped every corridor they could reach, marked every trap, and left every sealed door alone. Twice they heard something moving beyond the stone. Neither time did they go to see. The surveyors call the map the best they have seen in a generation. The ladies call it an excuse for a very long bath."
+      ],
+      "doneSam": [
+        "You climb the last stair out of the Barrow with a rolled map under your arm and the strong feeling that you have been underground for a year. {party} come up behind you, pale and muddy and laughing. The lower halls are mapped. Every flooded chapel, every sealed door, every wet and winding stair is on paper, in your handwriting and theirs. The surveyors take the map in both hands as if it were a baby. They pay you in gold, and you stand in the sunlight and breathe for a very long time.",
+        "Four weeks of dripping dark, chalk and rope, and the map is done. You sit on the cold stone at the top of the stairs with {party}, passing a flask, saying nothing. The lower halls were the strangest place you have ever been: silent, drowned, and very old. You mapped a flooded chapel, a collapsed stair, and a door that hummed. Nobody opened it. The surveyors pay out in gold and in thanks, and tell you the maps are worth more than the coin. You think they might be right.",
+        "You come out into daylight like a man leaving a long dream. {party} are with you, blinking, wrapped in damp cloaks, with the survey rolls under their arms. The Barrow's lower halls are on paper now, every corridor and landing and stair, and the surveyors say it is the best work they have seen. The guild pays in gold and in handshakes. You turn once to look at the dark entrance behind you. Then you go home, and sit in front of a fire for a very long time."
+      ],
+      "fail": [
+        "The lower halls were bigger than the surveyors thought. The party mapped what they could, but the water rose, a stair collapsed, and the four weeks ran out before the map was done. The surveyors paid for the work that was complete and not a coin more. The party came home pale and quiet.",
+        "The delve was called off. The water in the lower halls rose faster than any survey had said it would, and the party came up with half a map and a lot of mud. The guild logged the contract as failed, and the surveyors said they would try again in the dry season."
+      ],
+      "hurt": [
+        "{name} slipped on a flooded stair in the lower halls and took the whole flight.",
+        "{name} was hit by a falling stone in the dark.",
+        "{name} caught a chill and a cough from days in the cold water."
+      ]
+    },
+    "wyvern": {
+      "week": [
+        "{party} climb the Greyspine crags with ropes, bows and very little to say.",
+        "{party} watch the wyverns' nest from a ledge, noting every circle and dive.",
+        "{party} spend a cold night under an overhang while something large and unhappy shrieks overhead.",
+        "{party} count the bones around the nest and decide to be careful."
+      ],
+      "done": [
+        "{party} walk in without a word and set a wyvern's tooth on your table, as big as a dagger. The Greyspine, they tell you, is nothing but wind and stone and a very large sky. They watched the nest for two days and climbed for a third. When the first one dove, it was faster than anything they had ever seen. When the second followed, it was worse. It took everything they had. The crown's herald counted the heads and paid in gold. The bards have already asked for names. The ladies would like to wash, eat, and never, ever do that again. They are all grinning.",
+        "The ladies come home from the crags like people who have seen the end of the world and bargained with it. {party} are bruised, windburnt and quiet. The wyverns were not what the stories said. They were bigger. They were smarter. They circled in the thin air and dove from the sun, and it took all four of the party's ropes, every arrow they had, and one very lucky shot. The crown pays by the head. The bards pay by the story. Tonight they will be telling the second kind, and you will be listening.",
+        "{party} tell it in a hush, and then in a rush, and then in a hush again. The climb was hard. The nest was worse. The pair of wyverns came out of the clouds with a shriek you could feel in your teeth, and the fight was loud and wild and very short. When it ended, the crags were silent. They came down the mountain before dark and did not stop until the road. The crown's herald counted the heads twice. One of the ladies is quietly crying with relief, and nobody is going to tease her."
+      ],
+      "doneSam": [
+        "You do not remember the climb. You remember the wind, a high grey sky, and the long thin shriek of something large dropping out of the clouds. {party} shout, and you run, and the crags ring with noise. Then it is quiet. Both wyverns are down, and you are alive, and so is everyone else. The crown's herald counts the heads and sends a messenger to the capital. You sit on a rock, shaking so hard your teeth rattle. The bards will make this a better story than it was. You do not mind. You were there.",
+        "The Greyspine is the highest place you have ever been, and the most beautiful, and the most dangerous. You and {party} climbed for three days. The wyverns came on the fourth, from the sun, with a scream. The fight took a handful of minutes, and you remember every one of them. When the second beast falls, the silence is so wide it hurts. You lean on a boulder and laugh. You are alive. The ladies are alive. The crown will pay in gold, and the bards in songs.",
+        "You come down out of the crags wrapped in a borrowed cloak, with {party} on either side. Nobody speaks until the road. The wyverns are dead, the nest is empty, and the crown's herald is waiting with a ledger and a smile. He counts the heads twice. He pays in gold and in a letter with a seal. You hold the letter in both hands and read it three times. Then you sit at the roadside, and the ladies sit with you, and the whole sky turns slowly pink."
+      ],
+      "fail": [
+        "The wyverns won the crags. The party climbed, fought and fell back, and the nest was still full when the weeks ran out. The crown's herald paid nothing and wrote a letter. The party came home bruised and humbled. The guild logged a failed contract and a very long silence followed.",
+        "The cull failed. The wyverns were quicker than the plans said, the weather turned, and the party was forced down the mountain before they could finish the job. The crown's coin stayed with the crown. The party came home with their lives, which, as they pointed out, was something."
+      ],
+      "hurt": [
+        "{name} was raked across the back by a wyvern's talons.",
+        "{name} fell from a ledge on the Greyspine and landed badly.",
+        "{name} was thrown against the crags by a wing-buffet."
+      ]
+    }
+  },
+  "generic": {
+    "week": [
+      "{party} spend the week on the guild's work, and send word that they are fine.",
+      "{party} are out on a contract. The board says it is going about as expected.",
+      "{party} check in with the guild clerk and report steady progress.",
+      "{party} are tired, muddy, and on schedule."
+    ],
+    "hurt": [
+      "{name} was hurt on a guild contract.",
+      "{name} took a knock on the job and is limping home.",
+      "{name} came back from a contract with a fresh bruise and a worse mood.",
+      "{name} was injured on the work and will need rest."
+    ]
+  },
+  "items": {
+    "cloak": "At the last toll gate the merchant's wife presses a heavy wool cloak into your hands, because you looked cold the whole way. It has deep pockets, and it turns out to be the best thing you own for walking someone home in the rain.",
+    "boots": "The porters' foreman looks at your shoes, winces, and hands you a pair of old boots resoled by a dwarf cobbler in the Barrow market. They are ugly, heavy and unbelievably comfortable. By the second week your feet have stopped complaining.",
+    "tonic": "The apothecary who buys the moonmoss slides a small brown bottle across her counter as a bonus. \"For the one who looks tired,\" she says, and she is looking at you. It tastes terrible. It works.",
+    "whistle": "The pit steward gives you a brass whistle after the bout, \"for the next time somebody needs to be stopped.\" It carries two streets. Several people in the building have already asked you to stop testing it.",
+    "kit": "A grateful footman at the ball hands you a roll of bar tools from the baron's staff cupboard: a shaker, a strainer, a good little knife, and a towel that has seen things. He tells you good bartenders are never off duty.",
+    "ledger": "The Exchange clerk who signs your delivery receipt hands you a ledger bound in grey cloth. It totals columns by itself, and sulks audibly when the numbers are wrong. He says it came with the job and he is glad to be rid of it.",
+    "chalkboard": "The surveyors leave you a big slate they used for maps, too heavy to haul back up. You drag it home and prop it in the classroom, where it turns out to be just as good for teaching. A faint chalk outline of a drowned corridor is still in one corner.",
+    "manual": "The hunt's old captain gives you a thick, battered coaching manual, tabbed and annotated in a dozen hands. \"Teaches a pup to hunt,\" he says. You read it by lamplight and find its margin notes work on people too.",
+    "pass": "Hanna slides a stamped card with a brass edge across the desk. \"Guild Pass. It gets you past the front board to the good one, where the better folk pin their names when they want work. Don't lose it, Sam.\" She does not tell you how many people she had to annoy to get it."
+  }
+}

@@ -6,9 +6,9 @@ function pickClass(h, screen=0){
   const p = h.price, cw = HOUSES[h.id].cls, WT = (BAL.clients && BAL.clients.wait) || {}, pr = housePrestige(h);
   const ws = [
     Math.max(3, 55 - 8*p - pr*0.35) * (screen > 0 ? Math.max(0.5, 1 - screen * (WT.screenTrimLow ?? 0.25)) : 1),
-    30 + (S.flags.guild?8:0) + Math.max(0, 45 - pr)*0.2,
+    30 + guildDraw() + Math.max(0, 45 - pr)*0.2,
     (10 + 4*p + pr*0.25) * (screen > 0 ? 1 + screen * (WT.screenMerchant ?? 0.3) : 1),
-    (Math.max(1, 2 + 4*p + Math.max(0, pr - 20)*0.45) + ((h.decor||0)>=3 ? BAL.amenities.decor.noble : 0)) * (screen > 0 ? 1 + screen * (WT.screenNoble ?? 0.55) : 1)
+    (Math.max(1, 2 + 4*p + Math.max(0, pr - 20)*0.45) * (hasGuildPerk('silvertongue') ? 1.1 : 1) + ((h.decor||0)>=3 ? BAL.amenities.decor.noble : 0)) * (screen > 0 ? 1 + screen * (WT.screenNoble ?? 0.55) : 1)
   ];
   // pick a tier (economy.json → tiers, same order as the houses' cls weights), then a class within it by `share`
   const tier = weighted(TIERS, (t,i)=>ws[i]*cw[i]*(t==='merchant'&&h.bonus&&h.bonus.merchant||1));
@@ -388,7 +388,7 @@ function endNight(X, w, pr){
 // Sam answers a call for help (Strength + Charm/2 + roll vs props.samCheck; standing watch this week helps at his house).
 function samRescue(w, h){
   const BP = BAL.props;
-  if(S.sam.strength + S.sam.charm/2 + rnd(0, BP.samRoll) + (samAtHouse(h) && S.samWeek.security ? (BP.watchBonus ?? 15) : 0) >= BP.samCheck){
+  if(S.sam.strength + S.sam.charm/2 + rnd(0, BP.samRoll) + (samAtHouse(h) && S.samWeek.security ? (BP.watchBonus ?? 15) : 0) + (hasGuildPerk('pitfighter') ? 10 : 0) >= BP.samCheck){
     moodAdd(w, BP.samMood); gainTrust(w, BP.samTrust); S.sam.energy = Math.max(0, S.sam.energy - BP.samCost); return 'sam'; }
   S.sam.energy = Math.max(0, S.sam.energy - BP.failCost); h.rep = clamp(h.rep - BP.failRep); moodAdd(w, -BP.failMood); minorTrust(w); return 'samfail';
 }

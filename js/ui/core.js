@@ -100,11 +100,13 @@ const TABS = [['house','🏠 Houses'],['roster','👥 Roster'],['recruit','📝 
 function render(){
   if(!S) return;
   renderHeader();
-  const tabs = goddessActive() ? [...TABS.slice(0,4), ['goddess','✨ '+GN()], ...TABS.slice(4)] : TABS;
+  let tabs = goddessActive() ? [...TABS.slice(0,4), ['goddess','✨ '+GN()], ...TABS.slice(4)] : TABS;
+  if(guildOn()){ const i = tabs.findIndex(t=>t[0]==='sam') + 1; tabs = [...tabs.slice(0,i), ['guild','⚔️ Guild'], ...tabs.slice(i)]; }
   if(TAB==='goddess' && !goddessActive()) TAB = 'sam';
+  if(TAB==='guild' && !guildOn()) TAB = 'sam';
   if(TAB==='creator') TAB = 'house';
   $('#tabs').innerHTML = tabs.map(([k,l])=>`<button class="${TAB===k?'on':''}" onclick="TAB='${k}';render()">${l}</button>`).join('');
-  const v = {house:viewHouse, roster:viewRoster, recruit:viewRecruit, sam:viewSam, goddess:viewGoddess, upgrades:viewUpgrades, log:viewLog, settings:viewSettings}[TAB];
+  const v = {house:viewHouse, roster:viewRoster, recruit:viewRecruit, sam:viewSam, guild:viewGuild, goddess:viewGoddess, upgrades:viewUpgrades, log:viewLog, settings:viewSettings}[TAB];
   $('#view').innerHTML = v();
   $('#endBtn').disabled = S.over;
 }

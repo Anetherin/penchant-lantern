@@ -14,14 +14,14 @@ const samLog = t => S.samWeek.acts.push(t);
 const xpNeed = l => 60 + 40*l;
 const apMax = () => 3 + Math.floor((S.sam.lvl||1)/5) + (hasBoon('ap')?1:0) + (hasChallengePerk('starlight_debt')?1:0);   // +1 action every 5 levels (5, 10, 15, 20...)
 // Sam's stats (0-100). Each also works passively (balance.json → sam.bonus, x stat/100): Charm → trust the ladies gain (gainTrust, at Sam's house unless samReach),
-// Business → house income (endWeek, at Sam's house unless samReach), Strength → security (simHouse, at Sam's house unless samReach) and weekly recovery, Wits → stat training and
+// Business → Office focus and town deals (no passive income), Strength → Watch focus security, guild contracts and weekly recovery, Wits → stat training and
 // Appraisal XP, Technique → service skills he teaches and how much he satisfies (samRelease).
 const SAM_STATS = ['charm','business','strength','wits','technique'];
 const samBonus = (k, stat=k) => 1 + (((BAL.sam||{}).bonus||{})[k] || 0) * ((typeof S!=='undefined' && S && S.sam ? S.sam[stat] : 0) || 0) / 100;
-const SAM_BONUS_TIP = {charm:'More trust from everything the ladies do with him (at his house without Reach)', business:'Earns more at the house where he sleeps (every house with Reach)', strength:'Keeps trouble away where he sleeps; recovers more energy each week', wits:'Stat training goes further; Appraisal XP', technique:'Service practice goes further; leaves her more satisfied'};
+const SAM_BONUS_TIP = {charm:'More trust from everything the ladies do with him (at his house without Reach)', business:'Office focus: cuts upkeep and pairs clients; better deals in town and in stories', strength:'Watch focus and guild contracts; recovers more energy each week', wits:'Stat training goes further; Appraisal XP', technique:'Service practice goes further; leaves her more satisfied'};
 function samBonusLine(){
   const p = k => Math.round((samBonus(k) - 1)*100), B = (BAL.sam||{}).bonus||{}, where = samReach() ? 'every house' : (typeof samHouse==='function' && samHouse() ? esc(samHouse().name) : 'his house');
-  return `<br>Always on: Charm +${p('charm')}% trust gained (${where}) · Business +${p('business')}% income (${where}) · Strength +${Math.round((S.sam.strength||0)*(B.security||0))} security (${where}), +${Math.round((samBonus('rest','strength')-1)*100)}% weekly recovery · Wits +${p('wits')}% stat training and Appraisal XP · Technique: better service practice.`;
+  return `<br>Always on: Charm +${p('charm')}% trust gained (${where}) · Strength +${Math.round((samBonus('rest','strength')-1)*100)}% weekly recovery · Wits +${p('wits')}% stat training and Appraisal XP · Technique: better service practice.`;
 }
 // Walk/event gold payouts vary randomly around base and scale gently with the relevant Sam stat.
 function samGold(base, stat='business', spread=0.2){
@@ -56,11 +56,11 @@ function samWork(kind){
   if(!useAP(samWorkCost(25))) return;
   let title='', text='';
   if(kind==='rounds'){
-    // a word with everyone: small trust and mood for ladies at Sam's house (every house with samReach)
+    // a word with everyone: small trust and mood for ladies at Sam's house (every house with the Teleport Circle)
     const B = BAL.sam, rm = 1 + samUpFx('rounds'), rt = B.roundsTrust * rm, rmood = B.roundsMood * rm; let n = 0;
-    S.workers.filter(nearSam).forEach(w=>{ gainTrust(w, rt); moodAdd(w, rmood); n++; });
+    S.workers.filter(nearSamV).forEach(w=>{ gainTrust(w, rt); moodAdd(w, rmood); n++; });
     samStat('charm',1);
-    title='Making the Rounds'; text=`You walk through ${samReach()?'every house':samHouse().name} with a notebook, asking everyone how they're doing and actually writing down the answers. A leaky window gets fixed, someone's favorite tea gets restocked, and the whole staff notices that you noticed.\n\n${n} ladies: trust ${tDelta(rt)}, mood +${Math.round(rmood*10)/10} · Sam's Charm +1`;
+    title='Making the Rounds'; text=`You walk through ${samVisitReach()?'every house':samHouse().name} with a notebook, asking everyone how they're doing and actually writing down the answers. A leaky window gets fixed, someone's favorite tea gets restocked, and the whole staff notices that you noticed.\n\n${n} ladies: trust ${tDelta(rt)}, mood +${Math.round(rmood*10)/10} · Sam's Charm +1`;
     samLog('Made the rounds');
   } else if(kind==='scout'){
     const nc = 2 + Math.round(samUpFx('scout')); addCandidates(nc, 1.1 + S.sam.business/400); samXP(10); samStat('charm',1); samStat('wits',1);
@@ -158,7 +158,7 @@ function privateMenu(id, free){
 }
 function spiritSamPool(w){
   const minL = (SVC.spirit||{}).pairLewd ?? 45;
-  return S.workers.filter(o=>o.id!==w.id && (samReach() || o.house===w.house) && !has(o,'Modest') && (o.lewd||0)>=minL);
+  return S.workers.filter(o=>o.id!==w.id && (samVisitReach() || o.house===w.house) && !has(o,'Modest') && (o.lewd||0)>=minL);
 }
 function spiritSamActs(w, o){
   const acts = ['missionary','cowgirl','doggy','oral_give'].filter(a=>actById(a) && actById(a).pair && actById(a).pair.futa && !actBanned(w,a) && (!o || !actBanned(o,a)));
@@ -312,31 +312,6 @@ function hireStud(id){
     `You find ${w.name} a willing stud for the night: a retired gladiator with stamina to spare and a fee to match. Nobody gets drained into a faint, nobody's reputation suffers, and ${w.name} hums all the next morning.`]) + `\n\nEnergy +${r.g} · Lust −${r.ld} · Mood + · Trust + · −${fmt(r.cost)}`, w.id, 'casual', null);
 }
 const guildHas = k => isHired(k) || S.candidates.some(c=>c.key===k);
-const guildDone = () => (S.flags.guild||0) >= 3 || ((S.flags.guild||0) >= 1 && guildHas('rhoswen') && guildHas('hanna'));
-function samGuild(){
-  if(guildDone()) return;
-  if(!useAP(samWorkCost(20))) return;
-  const g = S.flags.guild; let text='', wid=null, scene=null;
-  if(g===0){
-    S.flags.guild = guildHas('rhoswen') && guildHas('hanna') ? 3 : 1;
-    text = `A freckled receptionist practically vaults the counter when she hears what you do for a living. "You own a pleasure house? I'm Hanna! Parties come back from dungeons with full purses and nowhere to spend them. Let's talk."\n\nGuild contracts unlocked.`;
-    const h = makeNamed('hanna'); h.id='npc_hanna'; NPCS.npc_hanna = h; wid='npc_hanna'; scene='portrait';
-  } else if(g===1 && !guildHas('rhoswen')){
-    S.flags.guild = 2; const r = rebirthNamed(makeNamed('rhoswen')); r.signing = r.wasLover ? 0 : signingFor(r); S.candidates.push(r);
-    text = `Hanna leans in. "So. There's an elf. Very proper, very lost, asking about work in places elves do NOT ask about. I may have mentioned you."\n\nRhoswen has been added to your candidates.`; wid = r.id; scene='portrait';
-  } else if(g>=1 && g<3 && S.rep>=30 && !guildHas('hanna')){
-    S.flags.guild = 3; const h = rebirthNamed(makeNamed('hanna')); h.signing = h.wasLover ? 0 : 40; S.candidates.push(h);
-    text = `Hanna slides her resignation letter across the counter to her own supervisor, then turns to you. "Your reception desk is a disgrace and I have opinions. When do I start?"\n\nHanna has been added to your candidates.`; wid = h.id; scene='portrait';
-  } else {
-    if(g===1) S.flags.guild = 2;
-    if(guildHas('rhoswen') && guildHas('hanna')) S.flags.guild = 3;
-    addCandidates(1, 1.1); samXP(6);
-    text = S.flags.guild===2 ? `Hanna gives you the week's gossip and points out a promising job-seeker. "Come back when you've got a better reputation. I have... reasons."\n\n+1 candidate` : `Hanna points out a promising job-seeker and fills you in on the week's gossip.\n\n+1 candidate`;
-  }
-  samXP(4); samLog('Visited the Adventurers\' Guild'); save(); render();
-  showResult('The Adventurers\' Guild', text, wid, scene);
-}
-
 /* ---------- ending things / trying again ---------- */
 function endLovers(id){
   const w = findW(id); if(!w || !has(w,'Devoted')) return;

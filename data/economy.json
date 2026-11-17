@@ -108,6 +108,13 @@
       "energy": 26,
       "skill": "service",
       "desc": "Keeps clients company while they wait for a courtesan: conversation, drinks, and a little warming up for those open to it (light services out in the lounge, never to the finish). A skilled host keeps people waiting longer and happier, and her warm-ups make courtesans—especially novices—far more effective. Can be propositioned, which takes her off the floor for a while."
+    },
+    "guild": {
+      "label": "Guild Contract",
+      "cat": "away",
+      "energy": 0,
+      "skill": "combat",
+      "desc": "Away on an Adventurers' Guild contract for the week (from any house): progress from the contract's stats, gold and merit when it's done, stat practice and trust, and a risk of injury (Health). Pick the contract on the Guild tab."
     }
   },
   "jobTrust": {
@@ -122,7 +129,8 @@
     "dancer": 25,
     "bath": 25,
     "madame": 40,
-    "host": 15
+    "host": 15,
+    "guild": 20
   },
   "slots": {
     "madame": {"base":1},
@@ -970,7 +978,7 @@
   "pasts": {
     "salaryman": {
       "label": "Office worker",
-      "desc": "Spreadsheets were his life. Business +20; doing the books saves more.",
+      "desc": "Spreadsheets were his life. Business +20; his Office focus cuts more upkeep.",
       "sam": {"business":20},
       "goddess": {
         "intro": "\"Eight years of spreadsheets. You reconciled other people's money for a living and nobody ever reconciled you.\" {goddess} sounds almost fond. \"It'll come in handy. Debts are just ledgers that bite.\"",
@@ -979,7 +987,7 @@
     },
     "bartender": {
       "label": "Part-time bartender",
-      "desc": "He can make a cocktail out of anything. Charm +12; tending bar earns 50% more.",
+      "desc": "He can make a cocktail out of anything. Charm +12; working the Floor at a house with a bar earns 50% more.",
       "sam": {"charm":12},
       "goddess": {
         "intro": "\"A part-time bartender, hm.\" {goddess} turns an imaginary glass in her fingers. \"Pouring drinks and listening to strangers. You were practicing for this and didn't even know.\"",
@@ -988,7 +996,7 @@
     },
     "gym": {
       "label": "Gym regular",
-      "desc": "Thin, but surprisingly strong. Strength +20; recovers more energy.",
+      "desc": "Thin, but surprisingly strong. Strength +20 (Watch and guild work); recovers more energy.",
       "sam": {"strength":20},
       "goddess": {
         "intro": "\"You went to the gym three times a week and never once looked at yourself in the mirror.\" {goddess} pokes your arm. \"Thin, and sturdy underneath. I like a surprise.\"",
@@ -1006,7 +1014,7 @@
     },
     "tutor": {
       "label": "Cram-school tutor",
-      "desc": "Six years of drilling teenagers for entrance exams. Wits +15; his stat coaching and lessons go 20% further.",
+      "desc": "Six years of drilling teenagers for entrance exams. Wits +15; his Classes focus and coaching go 20% further.",
       "sam": {"wits":15},
       "goddess": {
         "intro": "\"Six years of cram school, drilling teenagers for exams they'd forget.\" {goddess} tilts her head. \"A teacher who never got a thank-you. Teach this house something, and I'll be thanking you myself.\"",
@@ -1038,6 +1046,15 @@
       "goddess": {
         "intro": "\"Night shift at a business hotel. Folded towels, squared pillows, a front desk nobody thanked.\" {goddess} runs a finger along a lantern, checking for dust. \"You'll keep a clean house. I like a clean house.\"",
         "again": "\"The night clerk. You do love a tidy lobby.\" She yawns, very prettily. \"Keep the lamps trimmed. Someone has to notice these things, and I'm busy.\""
+      }
+    },
+    "courier": {
+      "label": "Bicycle courier",
+      "desc": "Four years of red lights, rain and shortcuts across Tokyo. Strength +8, Wits +8; guild parties he's part of (and the ladies he sends) make 15% more progress, and his Guild focus costs 5 less energy.",
+      "sam": {"strength":8,"wits":8},
+      "goddess": {
+        "intro": "\"A bicycle courier.\" {goddess} sounds delighted. \"Rain, traffic, a bag full of other people's urgent business, and you never once dropped a parcel. Hollowmere has roads too, darling. Longer ones, with teeth.\"",
+        "again": "\"The courier, back on his route.\" She nudges your calf with her foot as if checking the tires. \"Still all legs. Try to come home from the Barrow in one piece this time.\""
       }
     }
   },

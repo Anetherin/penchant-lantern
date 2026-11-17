@@ -176,7 +176,7 @@ function nightRest(h, W, R, hr){
   });
 }
 function simHouse(h, R){
-  const HD = HOUSES[h.id], W = S.workers.filter(w=>w.house===h.id), P = PRICES[h.price], J = BAL.jobs, BP = BAL.props, TY = BAL.tidy, PR = BAL.prestige || {};
+  const HD = HOUSES[h.id], W = S.workers.filter(w=>w.house===h.id && w.job!=='guild'), P = PRICES[h.price], J = BAL.jobs, BP = BAL.props, TY = BAL.tidy, PR = BAL.prestige || {};
   const pr0 = housePrestige(h), lowF = clamp((50 - pr0)/50, 0, 1), highF = clamp((pr0 - 50)/50, 0, 1);
   const amenScore = houseAmenityScore(h, h.tidy ?? TY.start), expAmen = (pr0/100) * (PR.amenExpectMax ?? 3.2), expQ = (PR.qualBase ?? 0.25) + (pr0/100) * (PR.qualPerPrestige ?? 0.4);
   const hr = {id:h.id, name:h.name, income:0, served:0, turned:0, sat:0, upkeep:0, short:0, roomsUsed:0, roomCap:h.rooms*BAL.rooms.perRoom, tidy0:h.tidy ?? TY.start, tidy:h.tidy ?? TY.start, tidyFx:null,
@@ -193,7 +193,7 @@ function simHouse(h, R){
   const atSam = samAtHouse(h), samSec = atSam ? S.samWeek.security : 0;
   let secPow = secs.reduce((a,w)=>a + (s100(w.tech.combat) + s100(statOf(w,'strength'))*0.3 + s100(statOf(w,'agility'))*0.25 + fxAdd(w,'security'))*ob(w,'security')*jb(w,'security'), 0);
   if(h.up.guard) secPow *= 1.8;
-  if(atSam) secPow += samSec + (S.sam.strength||0) * ((BAL.sam.bonus||{}).security || 0);   // Sam's presence only watches his own house unless samReach()
+  if(atSam) secPow += samSec;   // Sam only adds security on his Watch focus (focus.js), at his house unless samReach()
   // Wits-based screening (client value + calmer traits) and Charm/Charisma-based poise at the door (smaller stop penalty)
   const secScreenRaw = secs.reduce((a,w)=>a + (s100(statOf(w,'wits'))*0.65 + s100(statOf(w,'charisma'))*0.2 + s100(w.tech.combat)*0.15)/100 * ob(w,'security') * jb(w,'security'), 0);
   const secScreen = clamp(secScreenRaw * (h.up.guard ? 1.2 : 1) + (samSec > 0 ? (S.sam.wits||0)/250 : 0), 0, 1.5);
@@ -729,21 +729,21 @@ function endWeek(){
   closeModal();
   S.workers.forEach(ensureWorker);
   goddessPlan();   // her actions this week (goddess.js), before the houses run
+  guildTidy();     // guild.js: ladies (and Sam's focus) on contracts that ended go back to work
   const focusLine = samFocusRun();   // Sam's weekly focus (focus.js): pays its energy, sets what simHouse reads
   const R = {v3:true, v5:true, v6:true, week:S.week, lines:[], per:{}, hl:[], houses:[], income:0, wages:0, upkeep:0, recharge:0, cuts:0, served:0, turned:0, left:0, stopped:0, selfProps:0,
-    led:{escort:0, offduty:0, bar:0, dance:0, bath:0, chapel:0, host:0, sam:S.samWeek.income}, samActs:S.samWeek.acts.slice()};
+    led:{escort:0, offduty:0, bar:0, dance:0, bath:0, chapel:0, host:0, guild:0, sam:S.samWeek.income}, samActs:S.samWeek.acts.slice()};
   S.workers.forEach(w=>R.per[w.id]={id:w.id, name:w.name, job:w.job, prevJob:w.job==='rest' ? w.prevJob : undefined, house:w.house, served:0, comp:0, acts:{}, props:0, acc:0, earned:0, e0:Math.round(w.energy), m0:Math.round(w.mood), l0:Math.round(w.lust||0), enc:[], why:[], notes:[],
     t0:w.trust||0, lw0:w.lewd||0, p0:w.popularity||0, st0:Object.assign({}, w.stats), tk0:Object.assign({}, w.tech), ak0:Object.fromEntries(Object.entries(w.acts||{}).map(([k,a])=>[k, a.skill||0]))});
   const log = t => R.lines.push(t);
   if(focusLine) log(focusLine);
   autoFeasts(R);   // home.js: houses set to feast automatically, before the work week
   autoStuds(R);    // sam.js: auto-hire studs for demons whose lust meets their threshold
-  let satSum = 0, bizIncome = 0;
-  S.houses.forEach(h=>{ const hr = simHouse(h, R); R.houses.push(hr); R.income += hr.income; if(samAtHouse(h)) bizIncome += hr.income; R.upkeep += hr.upkeep; R.served += hr.served; R.turned += hr.turned; R.left += hr.left||0; R.stopped += hr.stopped||0; satSum += hr.sat; });
-  // Sam's Business: his deals and pricing lift takings where he sleeps (every house with samReach)
-  R.bizBonus = Math.round(bizIncome * (samBonus('business') - 1));
+  let satSum = 0;
+  S.houses.forEach(h=>{ const hr = simHouse(h, R); R.houses.push(hr); R.income += hr.income; R.upkeep += hr.upkeep; R.served += hr.served; R.turned += hr.turned; R.left += hr.left||0; R.stopped += hr.stopped||0; satSum += hr.sat; });
+  guildWeek(R);   // guild.js: contract progress, injuries, rewards (adds to R.income)
   R.perkBonus = Math.round(R.income * ((hasChallengePerk('lean_house') ? 0.1 : 0) + (hasChallengePerk('starlight_debt') ? 0.15 : 0)));
-  R.income += R.bizBonus + R.perkBonus;
+  R.income += R.perkBonus;
   R.wages = S.workers.reduce((a,w)=>a+(isFree(w)?0:w.wage), 0);
   S.workers.forEach(w=>{ const pr = R.per[w.id], cut = workerCut(w), cg = pr.earned>0 && cut>0 ? Math.round(pr.earned * cut) : 0; pr.cut = cg; if(cg){ w.purse = (w.purse||0) + cg; R.cuts += cg; } });
   S.gold += R.income - R.wages - R.upkeep - R.cuts;
@@ -1020,6 +1020,7 @@ function endWeek(){
   S.week++; S.ap = apMax(); samEnergyAdd(samRecover(BAL.samHome.weekly) * samBonus('rest','strength') + (samUpFx('weekly')||0) + (hasPast('gym')?20:0));
   S.samWeek = {security:0, books:false, income:0, acts:[], focus:null, focusEff:0};
   refreshCandidates();
+  guildNewWeek();   // guild.js: a fresh board
   checkUnlocks(false, R.lines);
   S.lastReport = R;
   addLog(`Week ${R.week}: income ${fmt(R.income)}, wages ${fmt(R.wages)}, upkeep ${fmt(R.upkeep)}${R.cuts?`, cuts ${fmt(R.cuts)}`:''}${R.recharge?`, recharging ${fmt(R.recharge)}`:''}${R.tutor?`, tutors ${fmt(R.tutor)}`:''}.`);

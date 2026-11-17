@@ -1,0 +1,263 @@
+{
+  "brunhild": [
+    {
+      "title": "The Challenge",
+      "scene": "sam_date",
+      "text": "The Gilded Lantern's back room has a heavy oak table nobody uses for dinner anymore. Brunhild has claimed it. She is sitting at it with a tankard in one hand and her sleeve shoved up over a forearm like a roped ham, and the whole room has quietly arranged itself into an audience.\n\n\"Sam!\" Her laugh rolls out over the room and rattles the glasses. \"Sit! A dwarf can't properly respect a man until she's seen what he does with his elbow on a table.\"\n\nShe sets her elbow on the wood. It makes a small, serious thump.\n\nYou know exactly how this ends. So does everyone in the room. Hanna's cousin is already taking bets at the door.\n\n\"Come on, honest man,\" Brunhild says. Her grin is broad and a little hopeful, as if she has been saving this up all week. \"Everyone else folds before I even squeeze. You told a pit full of people no to my face. Let's see if your arm is as brave as your mouth.\"",
+      "ngpp": [
+        "Your hand finds hers across the table before she's finished the challenge. She blinks, a little puzzled, and doesn't squeeze yet. \"You looked at my wrist as if you were counting something,\" she mutters, and shakes her head. \"Odd man.\"",
+        "\"Huh,\" Brunhild says, turning her tankard in her fist. \"I had a whole speech ready. And I would swear you've already lost to me on this table, and got up grinning.\" She cracks her knuckles to cover it. \"No. Can't be. I'd remember a man that stubborn.\"",
+        "She looks at your elbow on the oak and goes quiet for one rare second. \"I've beaten you here before,\" she says. \"I know it. I can feel your shoulder giving, and I can feel myself not wanting to win.\" The grin comes back, slower. \"Go on, Sam. Lose to me again. I'll let you keep trying until you're ninety.\""
+      ],
+      "choices": [
+        {
+          "label": "Take her hand and give it everything",
+          "t": 5,
+          "m": 8,
+          "res": "You take her hand and give it everything. It is like pushing on a drawbridge. Your arm goes down in about a second and a half and the whole room howls. You get up, rub your shoulder, and put your elbow back on the table. She lets you go six rounds. By the sixth she is wiping her eyes and saying, \"By the forge, he keeps coming back,\" and she buys the next round with your name on the tab as a toast."
+        },
+        {
+          "label": "Ask for odds and bet on yourself",
+          "t": 4,
+          "m": 7,
+          "gold": -20,
+          "cantAfford": {
+            "t": 1,
+            "m": 2,
+            "res": "You reach for your purse and find it embarrassingly light. She waves a hand, laughing, and sets the table straight herself. \"Next time, then. I'll wait.\" You still lose. She still counts it as a good match."
+          },
+          "res": "You ask Hanna's cousin for odds and put twenty gold on yourself. The room goes quiet with pity, and then roars. You lose in two seconds. The table shakes. Brunhild kicks back her stool and laughs until she has to hold the wall. \"Twenty gold on a lost cause,\" she says, still wheezing. \"I'll drink to that for a month.\" She slaps you on the back hard enough to dislodge a rib, and it is the friendliest thing anyone has done to you all week."
+        },
+        {
+          "label": "Lose, then demand a rematch every night",
+          "t": 6,
+          "m": 6,
+          "res": "You lose, and you tell her you want a rematch every night until you win. The room cheers and the grin on her face goes crooked. \"Every night,\" she repeats, as if testing the weight of it. \"Nobody's ever asked to come back for more.\" She looks at her own hand for a moment, then flicks the tankard at you. \"Fine. Eight bells. Bring ice for the shoulder.\""
+        }
+      ],
+      "image": {
+        "comp": "sitting at a heavy oak table with her elbow planted for arm wrestling, tankard in her other hand, huge grin, braided copper-red hair, freckled and muscular, a crowd of onlookers behind her",
+        "setting": "cozy lantern-lit tavern back room crowded with cheering patrons",
+        "sam": true
+      }
+    },
+    {
+      "title": "Liniment",
+      "scene": "bath",
+      "text": "Hot water is steaming off the big copper tub in the bathhouse. Brunhild is in it up to her collarbones with her braids pinned up, and her arms are propped on the rim like she owns the place.\n\n\"You sent a boy with liniment,\" she says, not turning around. \"I get liniment from the guild every month. Hanna sends it with a ribbon. I throw out the ribbon.\"\n\nShe flexes her knuckles under the surface. Swollen, scarred, and cracked from years in the pit.\n\n\"You sent it with a note that said 'for the shoulder'. My shoulder is fine. You were the one who lost.\" Her voice is gruff, but she hasn't asked you to leave. \"Nobody sends me anything for being sore. They send gifts to the Anvil. They never think about the woman holding it up.\"\n\nHer ears, you notice, are bright red, and not from the water.",
+      "byIntim": {
+        "1": {
+          "text": "You step into the bathhouse with the liniment jar in hand. Brunhild has her braids pinned up and her bare shoulders slick with water, and she is rolling one knuckle slowly under her thumb as if it is a thing she's thought about for years.\n\n\"Ah, you came yourself,\" she says. She tries to sound casual and her voice comes out half a size too small. \"I could use help with the back of the shoulders. I can't reach them with this hand. That's the whole reason. Nothing else.\"\n\nShe turns her wide, freckled back to you and lets the water run down it.\n\n\"Gently,\" she adds, very quietly. \"It's strange. I'm not used to asking.\"",
+          "choices": [
+            {
+              "label": "Knead the liniment into her shoulders",
+              "t": 4,
+              "m": 8,
+              "l": 2,
+              "private": true,
+              "acts": ["massage_give","kiss"],
+              "res": "You warm the liniment between your palms and knead it into her shoulders. The muscle is dense, hard as oak and rippled with old knots. She holds her breath for the first stroke and lets it out on the second, a long low groan that would embarrass her if she were listening. \"Don't tell the pit,\" she mumbles, with her head dropping forward. \"They'd never believe it anyway.\""
+            },
+            {
+              "label": "Leave the jar on the rim and let her do it herself",
+              "t": 2,
+              "m": 4,
+              "res": "You set the jar on the rim of the tub and say she knows her own body best. Her shoulders drop an inch. \"Aye,\" she says, with the barest edge of disappointment, and then she softens. \"Thank you for the jar. I'll be sore tomorrow.\" She looks at you over her shoulder, ears red. \"Maybe the day after, too. Just in case you happen to have more of that stuff.\""
+            }
+          ]
+        },
+        "3": {
+          "text": "You step into the bathhouse and Brunhild is already standing in the tub, steam rolling off her shoulders. She is short and broad and every inch of her is muscle, with water running down her freckled chest, over the heavy swing of her tits and the hard curve of her stomach, and between her thick thighs. She doesn't cover herself. She plants her hands on her hips and looks at you as if daring you to say something.\n\n\"Don't make it strange,\" she says. Her voice rasps. \"I know what I look like. I look like a brick wall with tits. You came to me and not the other way, so one of us has to say it. I want you in here. I want you to put your hands on me and not be afraid of breaking anything.\"",
+          "choices": [
+            {
+              "label": "Climb into the tub and haul her against you",
+              "t": 5,
+              "m": 10,
+              "l": 4,
+              "private": true,
+              "acts": ["breast_give","missionary","kiss"],
+              "res": "You pull off your shirt and climb in, and she laughs, a hot gusty sound against your throat. You haul her against you and she weighs more than you expected and not one pound of it is soft except the breasts crushed against your chest. Her big hands find your hips. \"Careful,\" she whispers, grinning, \"I might not let go.\" You kiss her and she kisses back like it's a bout she means to win."
+            },
+            {
+              "label": "Wrap her in a towel and kiss her slow",
+              "t": 4,
+              "m": 7,
+              "l": 2,
+              "res": "You wrap her in a towel the size of a bedsheet and kiss her, slowly, until the grin goes out of her face and something quieter takes its place. She shivers against you. \"Nobody wraps me,\" she says into your shoulder. \"I thought you'd be in a hurry.\" You tell her you aren't. Her arms close around you, hard enough to creak your ribs, and she doesn't say anything else for a long while."
+            }
+          ]
+        }
+      },
+      "choices": [
+        {
+          "label": "Say the bruises were earned and offer to ice them",
+          "t": 4,
+          "m": 6,
+          "res": "You tell her the bruises were honestly earned, and offer to fetch ice. She snorts, but her eyes soften. \"Ice. For me.\" She shakes her head at the wall as if the wall had asked something rude. \"Aye. Fine. Bring the ice, Sam. And don't tell anyone I said please.\""
+        },
+        {
+          "label": "Join her on the rim and talk about the pit",
+          "if": {"lewd":30},
+          "t": 4,
+          "m": 8,
+          "l": 1,
+          "res": "You sit on the rim in your boots with your feet in the hot water and ask her about the pit. She talks for an hour. She tells you about the first bout, the last bout, the bored middle, and the roar of a crowd that stopped meaning anything. \"They don't cheer for me,\" she says. \"They cheer for the Anvil. Different thing.\" Her shoulder rests against your knee while she talks, and she doesn't seem to notice.",
+          "else": {
+            "t": 2,
+            "m": 2,
+            "res": "You try to sit down beside the tub, and she snaps the towel off the hook and holds it up like a shield. \"Out,\" she says, not unkindly. \"Not today. I need it quiet in here.\" You go. A minute later you hear her laugh once, at nothing in particular, and the splash of her sinking all the way under."
+          }
+        },
+        {
+          "label": "Leave the jar and go",
+          "t": 1,
+          "m": 1,
+          "res": "You set the jar down by the door and leave. When you check back an hour later, the jar is empty and the lid is screwed on carefully, and sitting on top of it is a polished brass pit token. It's the first one she ever won."
+        }
+      ],
+      "image": {
+        "comp": "soaking up to her collarbones in a steaming copper tub, braided copper-red hair pinned up, freckled muscular shoulders, gruff expression with red ears, towel nearby",
+        "setting": "steamy bathhouse with a large copper tub",
+        "sam": false,
+        "towel": true
+      }
+    },
+    {
+      "title": "Chapter Nine",
+      "scene": "casual",
+      "text": "The storeroom behind the bar is where the good barrels sleep. You only come in for a keg and you stop in the doorway.\n\nBrunhild is sitting on an upturned cask with her boots up on a crate and a very small, very battered book in her hands. It looks like a toy against her fingers. Its cover is gone, and the spine is held with twine.\n\nHer lips are moving. She is reading with her whole body, shoulders hunched, brows knitted. A tear, a single wet fat one, is running through the freckles on her cheek.\n\nShe looks up.\n\nFor a heartbeat her face is stricken, a champion caught with her guard down. Then her whole body locks, and the book disappears into her leather vest with a speed the pit never saw.\n\n\"This is not,\" she says, in a voice that wants to be a roar, \"what it looks like.\"\n\nThere is a long silence. A barrel drips somewhere.\n\n\"It is about a knight,\" she adds, in a much smaller voice. \"He's very honorable. He doesn't know it yet.\"",
+      "ngpp": [
+        "She hears you stop in the doorway, and the book is out of sight before you've said a word. She frowns, as if she had expected a different reaction from herself. \"Why am I hiding it?\" she mutters, and doesn't take it out again.",
+        "\"I know you,\" Brunhild says, staring at you from her cask. The vest is buttoned over the book, but her hand is flat on it, as if for luck. \"You stood there once before and you didn't laugh. How can I know that? Aye, well. Come in. Close the door.\"",
+        "\"Chapter nine,\" she says before you can speak. Her voice is thick. \"The knight kneels at the end of it. I've never told anyone, Sam, but you already know. I think I handed this book to you once, in some other year, and you read it back to me.\" She pulls it out of the vest and holds it in her lap. \"Do it again. Please.\""
+      ],
+      "choices": [
+        {
+          "label": "Sit on the next cask and ask what happens next",
+          "t": 6,
+          "m": 9,
+          "res": "You drag over the next cask and sit and ask what happens to the knight. She stares at you as though you'd offered to swap bodies with her. Then, slowly, as if every word cost a coin, she begins to tell you. By the end she has the book open on her knee and she is reading the dull parts aloud in a rough, careful voice, doing all the voices. She does the lady's voice very badly and very sweetly. You don't laugh once."
+        },
+        {
+          "label": "Say you won't tell a soul and go back to the kegs",
+          "t": 5,
+          "m": 6,
+          "res": "You promise you won't tell a soul and you shoulder the keg and go. At the door she says, gruff, \"Sam.\" You turn. She is looking at the floor. \"Thank you for not,\" and she doesn't finish the sentence. The next morning there is a mug of your favorite tea outside your office door, brewed far too strong, with no note."
+        },
+        {
+          "label": "Tell her you've read worse and ask to borrow it",
+          "if": {"trust":20},
+          "t": 6,
+          "m": 8,
+          "res": "You tell her you've read much worse, and you'd like to borrow it. Her whole face goes through three expressions, and the last one is hope. \"It's the only copy I've got,\" she says. She hands it over like a baby bird, and then snatches it back. \"Tomorrow. Give me the night. I want to finish the knight first.\" The next day you get it back with a flattened wildflower pressed between the last two pages.",
+          "else": {
+            "t": 2,
+            "m": 2,
+            "res": "You ask if you can borrow it. Her face shutters. \"No.\" The word lands like a door. \"Not yet.\" She buttons the vest over it and stands, and she goes past you with her chin up. She stops in the corridor and says, without turning, \"It's not that I don't trust you. It's that it's all I've got.\" Then she's gone."
+          }
+        }
+      ],
+      "image": {
+        "comp": "sitting on an upturned cask reading a tiny worn book, a single tear on her freckled cheek, startled guilty expression, braided copper-red hair, muscular arms, leather vest",
+        "setting": "dim storeroom lined with barrels, warm lantern light",
+        "sam": true
+      }
+    },
+    {
+      "title": "The Cousin from Deepfast",
+      "scene": "portrait",
+      "text": "The man in the entryway is shorter than Brunhild, and twice as wide, and has the kind of beard that comes with a family crest sewn into it. He carries an iron-bound letter case and a single enormous bag, and he is looking around the Gilded Lantern as if he has been told the floor might be contagious.\n\n\"Brunhild Ironvein,\" says the dwarf. \"Daughter of Hrolf, of the Deepfast Ironveins. I'm your cousin Durgan. You have been missed.\"\n\nBrunhild has stopped halfway down the stairs. The laugh is gone out of her. She looks about nine years old.\n\n\"Your mother's well. The clan is well.\" He opens the case. There is a scroll of betrothal in it, with a seal. \"Thorgrim Stonebrow has agreed to take you. He is a respectable smith with four hundred years of hearth ahead of him. This foolishness with the pit and with, forgive me, this house of pleasure, ends now. We leave at first light.\"\n\nBrunhild looks at the scroll. She looks at you.\n\n\"I could break his nose,\" she says quietly. \"I could break every nose in Deepfast. That isn't the same as saying no.\"",
+      "ngpp": [
+        "Brunhild is already scowling before the cousin finishes his greeting. She puts a hand on the banister like she has done this once before and expects to enjoy it less the second time. \"Durgan,\" she says. \"You look old.\"",
+        "\"That scroll smells wrong,\" she says, squinting at it. \"I don't know why. I've never smelled it.\" She comes the rest of the way down the stairs with her fists loose, not clenched, which is the more dangerous way. \"Something tells me I don't need the sword for this one.\"",
+        "\"Cousin,\" Brunhild says, and for once she isn't loud. \"I told you this once already, in a hall that doesn't exist anymore. I said no. I'll say it again, and slower.\" She steps beside you, shoulder to shoulder. \"There's someone here I choose. Sam. That's all I need to say.\""
+      ],
+      "choices": [
+        {
+          "label": "\"Nobody drags her anywhere. She can stay as long as she wants.\"",
+          "t": 6,
+          "m": 8,
+          "res": "You step between the cousin and the stairs and say that nobody drags her anywhere, and she can stay as long as she wants. Durgan looks you up and down, and it takes him a while. Brunhild comes down the last step. She tears the scroll cleanly in half with her bare hands, hands one half back to him, and says, \"Tell my mother I'm well. Tell her I'm happy. Tell her I'm sorry about the nose, it'll heal.\" He leaves with his bag and his dignity. She sits on the bottom stair afterward, shaking."
+        },
+        {
+          "label": "\"It's your life, Brunhild. Whatever you decide, I'll back it.\"",
+          "t": 4,
+          "m": 4,
+          "res": "You tell her it's her life and you'll back whatever she decides. She breathes out. \"Aye,\" she says. \"Aye. Right.\" She straightens up and walks Durgan out to the street herself. When she comes back an hour later, she's quiet, and her eyes are red, but she's still here. \"I told him I'll write,\" she says. \"I will. It's not a no. It's not a yes either. It's me.\""
+        },
+        {
+          "label": "Say nothing and let her handle her own family",
+          "t": -3,
+          "m": -6,
+          "res": "You say nothing and let her handle her own family. She waits one heartbeat for a word you don't give. Then she turns on her heel, takes the cousin by the shoulder, and walks him out the door herself. She comes back pale. She picks up a tankard and doesn't drink from it, and she goes up the stairs two at a time without once looking at you."
+        }
+      ],
+      "image": {
+        "comp": "standing frozen on a staircase, clenched fists, stricken expression, braided copper-red hair, facing a stocky bearded dwarf cousin holding a sealed betrothal scroll, Sam stepping between them",
+        "setting": "lantern-lit entry hall of a pleasure house in the evening",
+        "sam": true
+      }
+    },
+    {
+      "title": "Flowers for the Anvil",
+      "scene": "sam_date",
+      "text": "You have asked Hanna, you have asked Ines, and you have read two of the chapters from a certain battered book. You know what a proper courtship looks like.\n\nSo at dusk you are standing in the Lantern's courtyard with a bunch of wild marigolds in one hand and a hired fiddler in the corner, and you are very aware that you are about to do something nobody has done in forty-three years.\n\nBrunhild comes through the gate wearing her leathers and a scowl. She stops dead.\n\n\"What is this?\" Her voice drops into the dangerous, baffled register of a woman who suspects an ambush. \"There's no bout. There's no tankard. Why are there flowers?\"\n\nYou hold them out. You tell her they're for her, and you'd like to ask her to dance.\n\nShe looks at the marigolds. She looks at the fiddler, who has the sense to keep his eyes on his strings. She takes the flowers as though they might go off.\n\n\"I don't,\" she says. \"I've never. What do I do with my hands?\"",
+      "choices": [
+        {
+          "label": "Take her hands and show her the steps",
+          "t": 6,
+          "m": 10,
+          "l": 1,
+          "res": "You take her big hands in yours and put one on your shoulder, and she is so careful about it that you feel it in your knees. She steps on your foot twice. She apologizes, which she never does, and the second time she laughs and stops being stiff. By the end of the tune she is leading, enormously and gleefully, and you are hanging on. When the fiddle stops she is breathless, red to the hairline, and holding the marigolds against her heart like a shield."
+        },
+        {
+          "label": "Let her lead and promise to follow",
+          "t": 5,
+          "m": 8,
+          "res": "You tell her she can lead and you'll follow. Her chin comes up. \"I can do that,\" she says, with fierce relief, and she sweeps you into a dance that is somewhere between a waltz and a throw. You lose a boot. You are laughing too hard to care. When the song ends she sets you gently back on your feet. \"Nobody's ever followed me,\" she says. \"They ran, or they fought.\" She looks at her hands as if they had done something new."
+        },
+        {
+          "label": "Pass her a cup, claim you're too nervous, and invite her to carry you home",
+          "if": {"canAct":["kiss","breast_give","missionary"]},
+          "t": 6,
+          "m": 9,
+          "l": 3,
+          "private": true,
+          "acts": ["kiss","breast_give","missionary"],
+          "res": "You drain two cups of the courtyard wine for courage and sway, and she catches you in one arm without breaking a sweat. \"You're a lightweight, honest man,\" she says, scooping you against her chest as if you were laundry. She carries you through the courtyard and up the stairs, and her pulse is thundering against your ear the whole way. At the door she sets you down and looks at you, and she is holding her breath. \"You didn't ask me to,\" she says. \"I want to anyway.\"",
+          "else": {
+            "t": 3,
+            "m": 4,
+            "res": "You sway, and she carries you home across her shoulder without a word of complaint, whistling, as if she hasn't just broken a taboo of her own. At your door she sets you down with ridiculous gentleness. \"Sleep it off,\" she says. \"I'll come by tomorrow. I'll bring more flowers. I don't know where I get them.\""
+          }
+        }
+      ],
+      "image": {
+        "comp": "standing in a lantern-lit courtyard holding a bunch of wild marigolds awkwardly, scowling and blushing, braided copper-red hair, studded leather outfit, a fiddler in the background",
+        "setting": "candlelit courtyard at dusk with strings of lanterns",
+        "sam": true
+      }
+    },
+    {
+      "title": "The Lady in the Books",
+      "scene": "final",
+      "text": "Brunhild has taken off the champion's belt. It lies on the dresser with its brass plates dull in the candlelight. She stands in the middle of your room in just her shift, and she is trying to hold her arms like she has seen ladies do in pictures, and failing.\n\nHer face is the color of her hair.\n\n\"I have told myself for years I don't want it,\" she says, in a very small, very quick voice. \"Flowers. Dancing. Being, being fussed over. I said it was for other women. I said the Anvil doesn't need it.\" She swallows. \"The Anvil is a story other people made up. Under her there's just me. And I would like, once, to be treated like the lady in the books.\"\n\nShe takes a breath that fills the whole room.\n\n\"I don't know how to be that. I'd be terrible. I'd break the chair. But you don't laugh when I read to you, and you stood in front of a sealed contract for me, and I think you'd be gentle with it. Will you? Will you have me, Sam? For good. Not as the champion. As the one under it.\"",
+      "ngpp": [
+        "She sets the belt down on the dresser with a care she does not give anything else. She stops, hand flat on the brass, and looks puzzled at how natural it feels. \"Strange,\" she says. \"I could have sworn I'd done this before.\"",
+        "\"I remember the marigolds,\" Brunhild says, and her whole face turns scarlet at it. \"I remember it was clumsy, and you didn't care. How could I know that? The pit never taught me that. A goddess did something, didn't she.\" She laughs, shakily. \"Fine. She's welcome to have messed with my life, if she gave me back this.\"",
+        "\"Third time,\" she says, and then, quietly, \"or the hundredth. I've lost count, and I don't mind it.\" She holds out both of her scarred hands. \"Every time, you find me with a book, and I find you with your arm on the table. Choose me again, Sam. I'm asking plainly. I'd choose you first.\""
+      ],
+      "goLead": "You pick Brunhild up, which is a thing nobody has done to her by choice in her life, and she goes completely, silently still in your arms. Then she puts her face in your neck and lets you carry her to the bed.",
+      "choices": [
+        {"label":"Say yes","t":6,"m":12,"res":""},
+        {
+          "label": "Not yet",
+          "t": 1,
+          "m": -3,
+          "hold": true,
+          "res": "Brunhild nods, once, hard, as if taking a blow she expected. \"Aye,\" she says. \"Right. Then I'll be patient. I've fought tougher.\" She puts the belt back on and doesn't meet your eyes, and she smiles the Anvil's loud, flat, wide smile all the way to the door. It doesn't quite reach her eyes. She takes the little book out of her vest and holds it to her chest as she goes."
+        }
+      ]
+    }
+  ]
+}

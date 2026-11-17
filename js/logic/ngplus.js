@@ -46,7 +46,7 @@ const NG_BOONS = {
   devotion:{label:'Fated Meeting', desc:'Every new partner, this cycle and after, starts with +15 trust and +10 lewdness.'},
   loyal:   {label:'Old Loyalties', desc:'Ladies who come back from a past life ask only half the usual raise for each life.'},
   memory:  {label:'Vivid Memories', desc:'Ladies who carry over keep 15% more of the skills and stats they built (still at most 65%).'},
-  clone:   {label:'Shadow Clone', desc:'Sam learned to be in two places at once. His bonuses, watch, books, classes, and late-night visits reach every house, not just where he sleeps.'}
+  clone:   {label:'Shadow Clone', desc:'Sam learned to be in two places at once. His weekly focus and always-on bonuses reach every house, not just where he sleeps (like the Speaking Stones, for good). Late-night visits still need the Teleport Circle.'}
 };
 // What was spent on the home house's rooms, tiers, quarters, beds, annex and upgrades (tracked in h.spent by buyUpgrade).
 const improvementsValue = h => Math.round((h && h.spent) || 0);
@@ -409,7 +409,7 @@ function ngBegin(){
     S.gold = N.purse;
     S.debt = Object.assign({total:N.debt, remaining:N.debt, carry:0, strikes:0, start:S.week-1}, ngPlan(N.cycle));
     S.won = false; S.over = false; S.lastReport = null; EVQ = []; delete S.ngSeed;
-    S.flags.partnerCD = 3; S.flags.walkPartners = 0; S.flags.walkNoPartner = 0; S.ap = apMax(); S.sam.energy = samMaxEnergy();
+    S.guild = null; S.flags.partnerCD = 3; S.flags.walkPartners = 0; S.flags.walkNoPartner = 0; S.ap = apMax(); S.sam.energy = samMaxEnergy();
     refreshCandidates(hasBoon('recruit') ? 3 : 0, hasBoon('recruit') ? 1.15 : 1);
     inviteFriend(true); checkUnlocks(true);
     addLog(`NG++${N.ngppCycle} (Cycle ${S.cycle}): Sam wakes at ${HDn.name} with an empty vessel and a loan of ${fmt(N.debt)}.`);
@@ -488,7 +488,7 @@ function ngBegin(){
   S.gold = N.purse;
   S.debt = Object.assign({total:N.debt, remaining:N.debt, carry:0, strikes:0, start:S.week-1}, ngPlan(N.cycle));
   S.won = false; S.over = false; S.lastReport = null; EVQ = []; delete S.ngSeed;
-  S.flags.partnerCD = 3; S.flags.walkPartners = 0; S.flags.walkNoPartner = 0; S.ap = apMax(); S.sam.energy = samMaxEnergy();
+  S.guild = null; S.flags.partnerCD = 3; S.flags.walkPartners = 0; S.flags.walkNoPartner = 0; S.ap = apMax(); S.sam.energy = samMaxEnergy();
   refreshCandidates(hasBoon('recruit') ? 3 : 0, hasBoon('recruit') ? 1.15 : 1);
   inviteFriend(true);   // the first week already shows an old friend
   checkUnlocks(true);

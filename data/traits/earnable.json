@@ -464,6 +464,16 @@
       "desc": "Twenty weeks in one house with friends around her: her bonds grow 25% faster; resting mood +2.",
       "earn": {"weeks":20,"bonds":2},
       "fx": {"bondGain":1.25,"moodRest":2}
+    },
+    "Seasoned Adventurer": {
+      "desc": "Has a few guild contracts behind her: +15% contract progress, 20% fewer injuries, +5 Strength.",
+      "fx": {"guild":1.15,"guildSafe":0.8,"stats":{"strength":5}},
+      "earn": {"count":"guildDone","at":4},
+      "gen": false,
+      "hidden": false,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
     }
   }
 }

@@ -484,6 +484,20 @@
       "desc": "Kiss and oral quality +10%, trust grows 10% faster, +8 Charm.",
       "fx": {"actQuality":{"kiss":1.1,"oral_give":1.1},"trustGain":1.1,"stats":{"charm":8}},
       "earn": {"stat":"charm","at":92}
+    },
+    "packbound": {
+      "label": "the Packbound",
+      "after": true,
+      "desc": "Guards 10% better and bad news stings her less; +4 Stamina.",
+      "fx": {"jobBonus":{"security":1.1},"moodDelta":0.92,"stats":{"stamina":4}},
+      "arc": "vesna"
+    },
+    "lionheart": {
+      "label": "the Anvil",
+      "after": true,
+      "desc": "Promotes 10% better; +4 Strength, +4 Charisma.",
+      "fx": {"promote":1.1,"stats":{"strength":4,"charisma":4}},
+      "arc": "brunhild"
     }
   }
 }

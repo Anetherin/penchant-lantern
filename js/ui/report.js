@@ -65,7 +65,7 @@ function repHouseExtra(h){
 }
 function repAll(R){
   const net = R.income - R.wages - R.upkeep - (R.cuts||0) - (R.recharge||0) - (R.tutor||0), L = R.led;
-  const ledger = [['Escort fees',L.escort],['Propositions',L.offduty],['Bar',L.bar],['Stage',L.dance],['Bathhouse',L.bath],['Chapel donations',L.chapel],['Hosting',L.host],["Sam's dealings (Business)",R.bizBonus]].filter(x=>x[1]).map(([k,v])=>`<tr><td>${k}</td><td class="good">+${fmt(v)}</td></tr>`).join('')
+  const ledger = [['Escort fees',L.escort],['Propositions',L.offduty],['Bar',L.bar],['Stage',L.dance],['Bathhouse',L.bath],['Chapel donations',L.chapel],['Hosting',L.host],['Guild contracts',L.guild]].filter(x=>x[1]).map(([k,v])=>`<tr><td>${k}</td><td class="good">+${fmt(v)}</td></tr>`).join('')
     + `<tr><td>Wages</td><td class="warn">−${fmt(R.wages)}</td></tr><tr><td>Upkeep</td><td class="warn">−${fmt(R.upkeep)}</td></tr>` + (R.cuts ? `<tr><td>Profit cuts</td><td class="warn">−${fmt(R.cuts)}</td></tr>` : '') + (R.recharge ? `<tr><td>Recharging</td><td class="warn">−${fmt(R.recharge)}</td></tr>` : '') + (R.tutor ? `<tr><td>Tutors</td><td class="warn">−${fmt(R.tutor)}</td></tr>` : '')
     + (L.sam?`<tr><td class="muted">Sam's bar shifts (already in your purse)</td><td class="good">+${fmt(L.sam)}</td></tr>`:'')
     + `<tr><th>Net</th><th class="${net>=0?'good':'warn'}">${fmt(net)}</th></tr>`;

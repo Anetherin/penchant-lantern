@@ -38,13 +38,13 @@ function ngppSavedCost(id){
 }
 function newGame(cfg){
   const HD = HOUSES[cfg.house];
-  S = { v:39, samFocus:{kind:'office', topic:'auto'}, cloudId: cfg.cloudId || ('run_' + Date.now().toString(36) + Math.random().toString(36).slice(2,6)), cloudName: (cfg.cloudName || '').trim() || HD.name, localSavedAt: Date.now(), cloudSyncedAt: 0, samHome:cfg.house, samUps:{}, starters:[cfg.house], houseWardrobe:[], houseUnder:[], closets:{}, week:1, gold:600, rep:HD.rep, ap:3, cur:cfg.house, home:cfg.house, cycle:1, ngppCycle:0, ngppHouses:{}, cycleVar:null, challenge:null, challengePerks:[], vessels:[], boons:[], past:cfg.past, pasts:[cfg.past], partner:cfg.partner, partners:[cfg.partner],
+  S = { v:40, samFocus:{kind:'office', topic:'auto'}, cloudId: cfg.cloudId || ('run_' + Date.now().toString(36) + Math.random().toString(36).slice(2,6)), cloudName: (cfg.cloudName || '').trim() || HD.name, localSavedAt: Date.now(), cloudSyncedAt: 0, samHome:cfg.house, samUps:{}, starters:[cfg.house], houseWardrobe:[], houseUnder:[], closets:{}, week:1, gold:600, rep:HD.rep, ap:3, cur:cfg.house, home:cfg.house, cycle:1, ngppCycle:0, ngppHouses:{}, cycleVar:null, challenge:null, challengePerks:[], vessels:[], boons:[], past:cfg.past, pasts:[cfg.past], partner:cfg.partner, partners:[cfg.partner],
     houses:[makeHouse(cfg.house)],
     sam:{energy:100, ...BAL.sam.base, appraisal:1, appXP:0, first:true, lvl:1, xp:0},
     samWeek:{security:0, books:false, income:0, acts:[]},
     debt:{total:HD.debt, remaining:HD.debt, carry:0, strikes:0},
     workers:[], candidates:[], alumni:[], log:[],
-    flags:{guild:0, hilde:false, taunt:false, poachCD:0, partnerCD:3}, lastReport:null, over:false, won:false };
+    flags:{hilde:false, taunt:false, poachCD:0, partnerCD:3}, lastReport:null, over:false, won:false };
   S.houses.forEach(h=>{ h.since = 1; h.story = {beat:0,wk:0}; });
   PASTS[cfg.past].fx(S.sam);
   const npc = makeNamed(HD.npc); npc.house = cfg.house; npc.locked = cfg.house; npc.contract = 999; npc.trust = clamp(npc.trust+10);
@@ -189,7 +189,14 @@ function migrate(s){
   if(s.past && PAST_RENAME[s.past]) s.past = PAST_RENAME[s.past];
   if(Array.isArray(s.pasts)) s.pasts = Array.from(new Set(s.pasts.map(k=>PAST_RENAME[k] || k)));
   if(ov < 39 && !s.samFocus) s.samFocus = {kind:'office', topic:'auto'};   // v39: Sam's bar, watch, books and classes became a weekly focus
-  s.v = 39; s.samUps = s.samUps || {}; s.houseWardrobe = s.houseWardrobe || []; s.houseUnder = s.houseUnder || []; s.home = s.home || (s.houses[0]||{}).id; s.samHome = s.samHome || s.home || (s.houses[0]||{}).id; s.cycle = s.cycle || 1; s.ngppCycle = s.ngppCycle || 0; s.ngppHouses = s.ngppHouses || {}; s.cycleVar = s.cycleVar || null; s.challenge = s.challenge || null; s.challengePerks = s.challengePerks || []; s.vessels = s.vessels || []; s.boons = s.boons || []; s.partners = s.partners || (s.partner ? [s.partner] : []);
+  if(ov < 40){   // v40: the guild became contracts and ranks; the Teleport Circle split (Speaking Stones = work reach); guild tools are earned, not bought
+    const gf = (s.flags||{}).guild || 0;
+    if(gf >= 1 && !s.guild){ const r = gf >= 3 ? 2 : gf >= 2 ? 1 : 0, L = ((DATA.guild||{}).levels)||[]; s.guild = {joined:true, rank:r, merit:(L[r]||{}).merit||0, fame:0, board:[], active:[], done:{}, samDone:{}, next:1}; }
+    if(s.flags) delete s.flags.guild;
+    if(s.samUps && s.samUps.circle) s.samUps.stones = true;   // owners of the old circle keep both halves
+  }
+  s.guildPerks = s.guildPerks || [];
+  s.v = 40; s.samUps = s.samUps || {}; s.houseWardrobe = s.houseWardrobe || []; s.houseUnder = s.houseUnder || []; s.home = s.home || (s.houses[0]||{}).id; s.samHome = s.samHome || s.home || (s.houses[0]||{}).id; s.cycle = s.cycle || 1; s.ngppCycle = s.ngppCycle || 0; s.ngppHouses = s.ngppHouses || {}; s.cycleVar = s.cycleVar || null; s.challenge = s.challenge || null; s.challengePerks = s.challengePerks || []; s.vessels = s.vessels || []; s.boons = s.boons || []; s.partners = s.partners || (s.partner ? [s.partner] : []);
   s.regulars = s.regulars || []; s.bonds = s.bonds || {}; s.flags = Object.assign({partnerCD:3}, s.flags||{});
   s.sam.lvl = s.sam.lvl || 1; s.sam.xp = s.sam.xp || 0;
   s.houses.forEach(h=>{ if(h.tidy===undefined) h.tidy = BAL.tidy.start; if(h.prestige===undefined) h.prestige = ((HOUSES[h.id]||{}).prestige ?? 50); h.since = h.since || 1; h.story = h.story || {beat:0,wk:0}; h.bonus = h.bonus || {}; if(h.spent===undefined) h.spent = 0;

@@ -1,0 +1,54 @@
+{
+  "brunhild": {
+    "role": "guild",
+    "job": "promoter",
+    "name": "Brunhild Ironvein",
+    "race": "dwarf",
+    "age": 46,
+    "personality": "Rowdy and boisterous",
+    "traits": ["Brawler","Tough"],
+    "style": "Sporty",
+    "favColor": "copper",
+    "fav": "breast_get",
+    "dislike": "massage_give",
+    "lovers": "cowgirl",
+    "backstory": "The Anvil: undefeated champion of the Hollowmere arena pit, and so bored of winning that she has started pulling her punches just to hear the crowd groan. When a crooked promoter tried to bribe Sam's side to throw a bout against her, Sam refused flat out in front of the whole house. She won honestly anyway, hauled the promoter over the rail by his collar, quit the pit on the spot, and decided she liked the honest nerd's guts. Inside the Lantern everyone is either afraid of her or wants to fight her. Nobody has ever courted her. She drinks hard, laughs harder, arm-wrestles anyone who stands still, and has never once been called pretty. She says she doesn't want to be. She also keeps a battered chivalric romance wrapped in a spare shirt at the bottom of her kit bag, and would die before admitting it.",
+    "design": {
+      "hairStyle": "thick copper-red braids pinned up",
+      "hairColor": "copper red",
+      "eyes": "hazel",
+      "skin": "ruddy, freckled all over",
+      "features": "a broken-and-healed nose, freckles on her shoulders and chest, a booming laugh",
+      "accessories": "braided beard-style hair rings of brass",
+      "accState": "always",
+      "expression": "a wide, challenging grin"
+    },
+    "under": "sports",
+    "underColor": "brown",
+    "stats": {"beauty":62,"charm":45,"charisma":70,"refinement":25,"wits":45,"stamina":90,"strength":92,"agility":40},
+    "tech": {"service":15,"dance":10,"bar":55,"combat":85,"manage":30},
+    "actSkill": 15,
+    "popularity": 40,
+    "lewd": 30,
+    "trust": 10,
+    "outfits": {
+      "sig_brunhild": {
+        "label": "Pit champion's leathers",
+        "style": "Sporty",
+        "prompt": "a studded leather pit-fighter's halter and kilt with a champion's belt of hammered brass plates and bare muscled arms",
+        "bonus": {"adventurer":1.25,"mercenary":1.25}
+      }
+    },
+    "jobs": {"likes":["promoter","security","bartender"],"dislikes":["maid","attendant"]},
+    "body": {"bust":"huge","height":"short","figure":"athletic"},
+    "unique": {
+      "name": "Champion's Draw",
+      "desc": "Half the town comes to see the Anvil, and the other half comes to dare her.",
+      "fx": {"promote":1.2,"classBonus":{"adventurer":1.15,"mercenary":1.15}}
+    },
+    "bonds": {
+      "ines": {"v":25,"kind":"rivals","note":"Sparring rivals. Neither has ever admitted to winning less than half of the bouts."},
+      "hanna": {"v":35,"note":"Hanna has been betting on her for years, and has the winnings to prove it."}
+    }
+  }
+}
