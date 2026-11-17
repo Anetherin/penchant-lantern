@@ -1,0 +1,520 @@
+{
+  "_readme": [
+    "Guild party scenes (js/logic/guild.js, docs/GUILD.md). Picked by the contract's tags (camp, road, delve, fight, ball, bloom) and who went.",
+    "duo: Sam + one lady. text = the setup, ends on a hinge. tender (no sex: trust, mood) and close (private time via privateCore; lead is the lead-in, the game appends the act's line, so lead names no act; acts = ids she may do with him).",
+    "trio: Sam + two ladies. close.lead = the first lady pulls him in, close.lead2 = the second joins; neither names a specific act. tender is non-sexual.",
+    "pair: two ladies, no Sam, no sex; third-person narration; exactly two choices with bond and mood. yuri: two ladies, bloom contracts only, third person; close.res is fixed explicit text (acts only picks the picture), decline is a fine outcome.",
+    "Placeholders: {N} = her name (duo), {a} / {b} = the two ladies' names (trio, pair, yuri), {C} = the contract's label. image objects describe Sam in the third person."
+  ],
+  "scenes": {
+    "duo": [
+      {
+        "id": "duo_camp_rain",
+        "tags": ["camp"],
+        "title": "Rain on the Canvas",
+        "text": "The rain has been hammering the tent since dusk, and the one dry bedroll you were promised on {C} turned out to be one dry bedroll between two people. {N} lies on her side facing you, hair damp, blanket pulled to her chin, the lantern turned low. Every gust makes the walls breathe in and out. Your knee is against her thigh. Neither of you moves it.\n\n\"You're shivering,\" she says. \"Come here, then. Body heat. It's practical.\" She lifts the edge of the blanket, and under it she is warm and, you notice, wearing very little. Her eyes hold yours, steady and amused. The rain drums on. Whatever you do next, she's letting you pick.",
+        "tender": {
+          "label": "Hold her until the rain stops",
+          "res": "You tuck in behind her and pull the blanket over both of you, one arm around her waist. She settles back against your chest with a long sigh, and her cold toes find your shins. You trade ridiculous stories about the worst weather you've each ever been caught in, and her laugh shakes through you both. At some point she twists around and kisses you, slow and warm, and then she falls asleep with her hand over yours. She is snoring faintly when the rain finally eases."
+        },
+        "close": {
+          "label": "Slide under the blanket with her",
+          "lead": "You slide in and the blanket closes over both of you, and the heat of her is almost a shock. {N} pulls you flush against her, wet hair cold on your neck and breath hot at your ear. You push her damp shirt up over her breasts while she tugs at your belt, both of you breathing hard, whispering to keep quiet and failing. \"Nobody can hear us in this,\" she murmurs against your jaw.",
+          "acts": ["kiss","manual_give","breast_give","missionary","cowgirl"]
+        },
+        "image": {
+          "comp": "{N} lying under a blanket in a small canvas tent, flushed, shirt pushed up, pulling him close by his belt",
+          "setting": "a cramped tent at night during heavy rain, one low lantern, canvas walls shaking in the wind",
+          "sam": true
+        }
+      },
+      {
+        "id": "duo_camp_fire",
+        "tags": ["camp"],
+        "title": "Your Watch, Her Company",
+        "text": "It's your watch, and {N} has decided to keep you company for it. The fire has burned down to orange coals, the wagons of {C} are quiet, and the stars are out thick over the road. She sits close enough that her shoulder presses yours and passes you a tin cup of something that burns going down. She was telling you about a job gone wrong years ago, and she has trailed off halfway through, watching the coals instead.\n\nThen she turns, firelight on one side of her face, and looks at your mouth, then your eyes, as if checking whether you noticed. \"I'm not tired,\" she says quietly. \"Are you?\" The cup is empty. Neither of you has moved away. The fire pops.",
+        "tender": {
+          "label": "Share the blanket and the watch",
+          "res": "You pull the blanket over both of you and she leans her head on your shoulder, finishing the story she started. It ends badly and funnily, and she laughs at her own younger self. You take turns naming constellations, making up the ones you don't know, and hers are rude. Somewhere in the second hour she kisses you, soft and unhurried, then settles back against you. You keep the watch together, warm and quiet, until the sky goes grey."
+        },
+        "close": {
+          "label": "Lead her out of the firelight",
+          "lead": "You take her hand and she comes with you, past the last wagon to a patch of grass where only the coals still glow. She drops her coat on the ground and pulls you down after her. Her fingers find your shirt buttons while yours find the laces at her throat. The night air is cold on bare skin for about a second, then she's pressed against you, all heat. \"Quiet,\" she whispers, already breathless.",
+          "acts": ["kiss","manual_give","oral_give","cowgirl","missionary","doggy"]
+        },
+        "image": {
+          "comp": "{N} sitting on a spread coat in the grass, half undressed, firelight on her skin, reaching up to pull him down to her",
+          "setting": "a dark roadside camp, dying campfire coals, wagons in silhouette, stars overhead",
+          "sam": true
+        }
+      },
+      {
+        "id": "duo_camp_feet",
+        "tags": ["camp"],
+        "title": "Blisters",
+        "text": "Day nine of {C}, and {N} has been limping since the ford. When you find her at the edge of camp she has her boots off and her feet propped on a log, wincing at a blister the size of a coin. She tries to wave you off, it's nothing, then gives up when you kneel and pull the lantern over. Her skin is warm under your hands.\n\nYou clean the blister and wrap it. She has gone quiet, watching you work with an odd, soft look, her toes curling when you press your thumb into her arch. \"Nobody's done that for me in a long time,\" she says. Her hand comes down to rest in your hair. It lingers there, and her breathing has changed.",
+        "tender": {
+          "label": "Rub her feet until she sleeps",
+          "res": "You keep at it, working your thumbs along her arches and up her calves while she makes small, helpless noises into her cloak. She tells you it's the best thing that has happened to her all week, then amends it to the best thing all month. When you finally set her feet down she catches your wrist, pulls you in and kisses you on the cheek, then the corner of your mouth. \"Stay till I'm asleep,\" she says. You do."
+        },
+        "close": {
+          "label": "Let her pull you up beside her",
+          "lead": "{N} tugs your hand and you sit on the log beside her, and then she's turned and kissing you, her bandaged foot hooked behind your calf. She pushes your shirt off one shoulder, then sits back, flushed, to pull her own tunic over her head. Her breasts are bare in the lantern light, nipples hard in the cool air. \"My feet hurt,\" she says, \"and everything else is fine. Do something about everything else.\"",
+          "acts": ["kiss","breast_give","manual_give","oral_give","cowgirl"]
+        },
+        "image": {
+          "comp": "{N} seated on a log with her tunic off and one foot bandaged, kissing him and pulling him closer",
+          "setting": "the edge of a travellers' camp at night, lantern on the ground, wagons and tents behind",
+          "sam": true
+        }
+      },
+      {
+        "id": "duo_road_spring",
+        "tags": ["road"],
+        "title": "The Drivers' Hot Spring",
+        "text": "The road passes a hot spring the wagon drivers swear by, steam rising out of a hollow of black rock and moss. Everyone else is asleep or arguing about dinner, and you find {N} already in the water up to her collarbones, hair knotted on top of her head, eyes closed, looking like someone who has forgotten there's a contract at all. {C} can wait an hour.\n\nShe opens one eye. She doesn't cover herself and she doesn't look away. \"The water's perfect,\" she says. \"There's room.\" The steam hides most of her, and not as much as you'd think. You're standing at the edge with your boots in your hand and her smile is turning slowly wicked as she waits to see what you do.",
+        "tender": {
+          "label": "Soak beside her and talk",
+          "res": "You undress, a little shyly, and slide in at the far end. The water is almost too hot and it takes the ache out of everything. {N} floats over, tips her head back on the rock beside yours, and for a long while neither of you says anything. Then she tells you what she thinks about on long roads, and you tell her what you think about on yours. She kisses you once before you climb out, warm and wet,."
+        },
+        "close": {
+          "label": "Slip into the water with her",
+          "lead": "You leave your boots on the rock and get in, and the heat closes over you. {N} meets you halfway across the pool, water running off her shoulders, her arms sliding around your neck. Her skin is slick and hot against yours, her breasts pressed to your chest, your hands on her waist. Steam curls around you both. \"I've been thinking about this since the ford,\" she breathes into your ear.",
+          "acts": ["kiss","manual_give","breast_give","cowgirl","oral_get"]
+        },
+        "image": {
+          "comp": "{N} in a steaming rock pool, wet skin, arms around his neck and legs around his hips",
+          "setting": "a natural hot spring in black mossy rock beside a road, steam rising, evening light",
+          "sam": true
+        }
+      },
+      {
+        "id": "duo_delve_cramped",
+        "tags": ["delve"],
+        "title": "The Porter's Alcove",
+        "text": "The Barrow's third landing has a niche behind a collapsed arch, barely wide enough for two packs and two people. {C} has you sheltering there while a patrol of something large shuffles past in the dark beyond. You're pressed full length against {N}, her back to the stone, your hand flat on the wall by her head. Her heart thumps against your chest. The lamp is shuttered. Dust sifts down.\n\nThe footsteps fade, and still neither of you shifts. In the black you hear her swallow. \"They're gone,\" she whispers, not letting go of your shirt. \"Probably.\" Her thigh slides between yours. \"We should wait to be sure.\"",
+        "tender": {
+          "label": "Stay quiet and wait it out",
+          "res": "You hold perfectly still, and she holds you. It takes a long time before either of you breathes properly. You count the minutes by her pulse against your chest. When the silence has lasted long enough she lets out a shaky, relieved laugh into your neck, and you both start to shake with it, trying not to make a sound. She kisses your jaw in the dark, once, grateful. Then you ease the lamp open and carry on, a little closer than before."
+        },
+        "close": {
+          "label": "Kiss her in the dark",
+          "lead": "You find her mouth in the dark and she gives a muffled gasp and kisses back, hard, fists in your shirt. Her hands go under it and across your ribs, then lower. You work her belt free by feel and she does the same to yours, both of you holding your breath at every small noise the stone makes. The pack drops. Her bare thigh is hot against your hip. \"Quiet,\" she breathes, and that makes her shiver. \"Please, quiet.\"",
+          "acts": ["kiss","manual_give","missionary","oral_give","doggy"]
+        },
+        "image": {
+          "comp": "{N} pressed against a stone wall in a cramped dark alcove, shirt open, one leg hooked around his hip, biting her lip to stay quiet",
+          "setting": "a narrow collapsed niche in a dungeon corridor, a shuttered lamp glowing at the edges, dust in the air",
+          "sam": true
+        }
+      },
+      {
+        "id": "duo_delve_lamp",
+        "tags": ["delve"],
+        "title": "Lamplight Camp",
+        "text": "You've made a camp of sorts in a dry side chamber of the Barrow: two bedrolls, one lamp, wall carvings of long-dead gods who have seen worse. {N} is sorting the day's finds by lamplight, cheeks smudged with soot, and she has been quietly humming for a quarter hour. You've been watching her instead of counting coins.\n\nShe finally catches you at it and puts down a silver ring. \"Down here you lose track of when it's night,\" she says. \"And of what you were going to do when the work was done.\" She crawls across the stone toward you, the lamp glinting in her eyes, and stops with her hands on either side of your knees, close enough to kiss.",
+        "tender": {
+          "label": "Pull her down to rest",
+          "res": "You pat the bedroll and she folds down beside you, her head on your arm. You talk about nothing, about what you'll spend the pay on, what you'd eat if you could have anything. She makes you promise a roast dinner. Eventually she kisses you good night, a sweet slow one, and curls into your side. The old carved gods watch the two of you doze, and you set the lamp to the lowest flame."
+        },
+        "close": {
+          "label": "Kiss her back",
+          "lead": "You kiss her and she sinks into it, her hands sliding up your chest. The lamp throws your shadows huge on the carved wall. She unbuttons your shirt while you pull hers over her head, soot and sweat and warm skin everywhere. The stone is cold under your knees and she's hot against your front, laughing breathlessly into your mouth as you both fumble with straps and laces. \"The gods can look away,\" she says. \"I want you now.\"",
+          "acts": ["kiss","breast_give","manual_give","oral_give","missionary","cowgirl"]
+        },
+        "image": {
+          "comp": "{N} kneeling over him on a bedroll, shirt half off, soot on her cheek, lamplight on her skin",
+          "setting": "a dry side chamber of an ancient dungeon, carved stone walls, a single oil lamp, bedrolls on the floor",
+          "sam": true
+        }
+      },
+      {
+        "id": "duo_fight_after",
+        "tags": ["fight"],
+        "title": "Still Standing",
+        "text": "The ambush is over. It took six minutes and felt like an hour. Now the road smells of smoke and wet iron, and {N} stands over the last of them with her chest heaving and blood on her cheek that isn't hers. {C} is, for now, done.\n\nShe turns, wild-eyed, finds you in one piece, and crosses the distance in three strides. She grabs your collar. Her hands are shaking, and she's grinning, half-hysterical with how alive she feels. \"You're alive,\" she says. \"I'm alive.\" Her forehead bumps yours. \"I need to do something with this, right now, or I'll burst.\" Her grip tightens. The question hangs between your mouths.",
+        "tender": {
+          "label": "Hold her until the shaking stops",
+          "res": "You wrap your arms around her and she crashes into you, still trembling, her breath ragged against your neck. You don't say anything clever. You just hold on, one hand on the back of her head, until her heartbeat slows and her laugh turns into a long exhale. She wipes her face on your sleeve, leaving a smear, and kisses you hard and quick on the mouth. \"Thank you,\" she says. \"For not making it weird.\" She picks up her sword."
+        },
+        "close": {
+          "label": "Give her something to do with it",
+          "lead": "You kiss her and she makes a hungry noise and answers with everything she has left, backing you into the side of the wagon. Her hands are rough and shaky and fast, dragging at your clothes while yours drag at hers. Her skin is hot under the armor straps and her pulse is jumping everywhere. \"Don't be gentle,\" she growls against your ear. \"I'm not made of glass. I'm made of leftover adrenaline.\"",
+          "acts": ["kiss","manual_give","missionary","doggy","cowgirl","oral_give"]
+        },
+        "image": {
+          "comp": "{N} grabbing him by the collar with blood-smudged cheek and heaving chest, pulling him in for a rough kiss against a wagon",
+          "setting": "a roadside after a bandit ambush, smoke, overturned crates, a wagon at dusk",
+          "sam": true
+        }
+      },
+      {
+        "id": "duo_fight_pit",
+        "tags": ["fight"],
+        "title": "Under the Stands",
+        "text": "The roar of the Hollowmere pit is still ringing in your ears when {N} drags you into the empty equipment room under the stands and shoves the door shut. She's sweat-slick, bruised along one side of her ribs, hair stuck to her neck, the purse from {C} clinking in her fist.\n\n\"Did you see?\" she says, breathless, eyes shining. \"Did you see that last throw? The whole crowd...\" She cuts herself off and drops the purse. The noise of the stands thumps through the ceiling. She backs you slowly against the weapon rack, hands flat on your chest, and you can feel her pulse through her palms. \"Tell me I was good,\" she says, a dare in her voice, and waits.",
+        "tender": {
+          "label": "Tell her she was magnificent",
+          "res": "\"The best thing I've ever seen,\" you say, and mean it, and she goes red from the neck up. You make her sit, find a clean cloth, and clean the cut over her brow while you list every move you remember. She corrects two of them. By the end she's laughing, and glowing, and a little shy, and she kisses you softly on the forehead as thanks. \"Come to the next one,\" she says. \"I'll fight better with you watching.\""
+        },
+        "close": {
+          "label": "Show her how good she was",
+          "lead": "You tell her. You tell her with your hands on her waist and your mouth at her throat, and she melts against the weapon rack. Her skin is salty and hot from the fight. She pulls your hands up under her ruined shirt to the bruised ribs, and you touch them gently, and she says \"Don't be careful.\" Then she's tearing at your belt. Above you the crowd stamps on the boards, and dust sifts down.",
+          "acts": ["kiss","manual_give","breast_give","oral_give","missionary","cowgirl"]
+        },
+        "image": {
+          "comp": "{N} backing him against a weapon rack in a sweaty fight outfit, bruised, flushed and grinning, hands on his chest",
+          "setting": "a cramped equipment room beneath arena stands, weapon racks, dust falling from the boards overhead",
+          "sam": true
+        }
+      },
+      {
+        "id": "duo_ball_alcove",
+        "tags": ["ball"],
+        "title": "Behind the Curtain",
+        "text": "Three hours into the baron's ball, the baron's daughter is safely dancing, and {N} has been given the quiet job of looking decorative. She's in silk borrowed for {C}, and when you find her at the edge of the terrace she hooks a finger in your sleeve and tugs you through a curtain into a dim alcove with a stone bench and a window onto the garden.\n\nMusic drifts in. \"If one more lord asks if I'm 'available' I will scream,\" she murmurs. \"I would much rather be available to someone who asked nicely.\" She's close enough that her perfume fills the space. Beyond the curtain, footsteps pass and fade. Her hand rests on your belt, light and daring.",
+        "tender": {
+          "label": "Dance with her at the window",
+          "res": "You take her hand and walk her through a slow waltz in the little alcove, a step each way, her silk skirts whispering against your legs. She's good at it. You're not. She leads without making it obvious and rests her cheek against yours, humming the tune along with the distant strings. When the music ends she curtsies, solemn, and then kisses you on the mouth, just once, and straightens her gown. \"Back to work,\" she says, still smiling."
+        },
+        "close": {
+          "label": "Ask nicely",
+          "lead": "\"May I?\" you ask, and she laughs, delighted, and says yes. You kiss her, and the silk of her gown rustles as she pulls you onto the bench. Her bodice laces come loose under your fingers and her breasts spill into your hands, warm in the garden-scented dark. She hitches her skirts up with a naughty smile while the orchestra swells. \"Quickly and quietly,\" she whispers, \"and don't you dare crease the silk.\"",
+          "acts": ["kiss","breast_give","manual_give","oral_give","cowgirl","doggy"]
+        },
+        "image": {
+          "comp": "{N} in a ball gown with loosened bodice, seated on a stone bench pulling him close by his lapels, skirts rucked up",
+          "setting": "a dim alcove behind a velvet curtain off a noble ballroom, a window onto a moonlit garden",
+          "sam": true
+        }
+      },
+      {
+        "id": "duo_bloom_glade",
+        "tags": ["bloom"],
+        "title": "Gold Pollen",
+        "text": "The lustbloom glade at the far end of {C} is as pretty as promised: knee-high flowers the colour of bruised plums, gold pollen drifting in the afternoon light. You both tied cloths over your faces, but the wind turned and you've each breathed in plenty. Everything is too warm and a little too bright.\n\n{N}'s cheeks are flushed, her pupils wide, her gloved hands fumbling at the clasp of her collar. \"Okay,\" she says, breathless. \"Okay, this is the thing the apothecaries warned about.\" She laughs, swaying closer, her gaze dropping to your mouth. \"I'm completely myself,\" she adds. \"Just very, very warm. Tell me what you want to do about it.\"",
+        "tender": {
+          "label": "Walk her to the cold stream",
+          "res": "You steer her out of the glade by the hand, both of you giggling and sweating, and plunge your feet and then your heads into the cold stream. The shock clears the fog. She surfaces gasping, hair streaming, and flicks water in your face. You sit on the bank wrapped in her cloak until you're both steadier, and she leans on your shoulder. \"Ask me again when it wears off,\" she says, with a look that is not at all unserious."
+        },
+        "close": {
+          "label": "Take her up on it",
+          "lead": "She doesn't wait for an answer. She tugs you down into the flowers and kisses you, her mouth hot and a little sweet from the pollen. Her gloves come off and her bare hands are everywhere, popping buttons, pushing cloth aside, and you do the same. The petals are soft under her back and gold dust glitters on her bare shoulders. \"Please,\" she whispers, impatient with every inch of clothing left. \"I can't wait.\"",
+          "acts": ["kiss","manual_give","breast_give","oral_give","missionary","cowgirl","doggy"]
+        },
+        "image": {
+          "comp": "{N} lying among purple flowers with gold pollen on her bare shoulders, flushed, pulling him down to kiss her",
+          "setting": "a sunlit glade of knee-high plum-coloured flowers with drifting gold pollen, a stream nearby",
+          "sam": true
+        }
+      }
+    ],
+    "trio": [
+      {
+        "id": "trio_camp_tent",
+        "tags": ["camp"],
+        "title": "One Tent, Three Bedrolls",
+        "text": "The cold came in hard on the second night of {C}, and the quartermaster's idea of a supply list turned out to be two tents for four people. So it's {a}, {b} and you, in one tent meant for two, lying shoulder to shoulder to shoulder with a single lantern burning low. {a} has stolen your blanket. {b} has stolen {a}'s. Someone's cold feet are on your calf.\n\n\"This is ridiculous,\" says {a}, not moving. \"Sleeping in a pile is just a survival technique,\" says {b}, scooting closer until she's flush against your other side. They look at each other across your chest. Then they both look at you, and the wicked little silence stretches while the wind snaps the canvas.",
+        "tender": {
+          "label": "Share the blankets and keep warm",
+          "res": "You get the blankets sorted into something fair, and the three of you end up in a warm heap with you in the middle. {a} tucks her head under your chin and {b} drapes an arm across your ribs, and for a while they bicker softly about who snores. You tell them the story of a place where everyone sleeps on a floor cushion. They each kiss your cheek, one on each side, and then they are both asleep. You are very warm."
+        },
+        "close": {
+          "label": "Let the night get warmer",
+          "lead": "{a} is the first to move: she rolls over, hooks a hand in your collar and kisses you, deep and slow, while {b} watches with a grin that is anything but shy. Her hand slides under your shirt. Her skin is warm in the cold air and she is pulling you on top of her, breathing hard. \"Don't just lie there,\" she says into your mouth, and then your shirt is gone. The lantern glows on her flushed throat and the cold has been entirely forgotten.",
+          "lead2": "{b} stops pretending to sleep. She props herself up on one elbow and drags the blanket down, and her hand goes to your thigh. She kisses the back of your neck, then {a}'s shoulder, and laughs low. She peels her own shirt off, bare and warm beside the two of you, and wriggles in close. \"Move over,\" she murmurs. \"I'm not missing this.\"",
+          "acts": ["kiss","manual_give","breast_give","oral_give","oral_get","missionary","cowgirl"]
+        },
+        "image": {
+          "comp": "two women in a small tent, one kissing him deeply as she pulls him on top of her while the other lies beside them undressing and smiling, all three in a tangle of blankets",
+          "setting": "a small canvas tent at night in cold weather, one lantern, blankets heaped",
+          "sam": true
+        }
+      },
+      {
+        "id": "trio_camp_dice",
+        "tags": ["camp"],
+        "title": "Forfeits",
+        "text": "By the fire at {C}'s camp, the dice have been going around for an hour and the stakes were never money. {a} lost the first round and had to sing, badly, in a sea shanty voice. {b} lost the second and had to recite the worst thing she's ever eaten. Now you've lost, and the two of them have gone suspiciously quiet.\n\n\"Forfeit,\" says {a}, eyes bright, on her knees beside the fire. {b} sits cross-legged and pours more wine. \"I think it should be a kiss,\" she says. \"From each of us.\" The coals glow. They both turn their faces towards you in the firelight, flushed with wine and laughter, and wait to see if you're a man who pays his debts.",
+        "tender": {
+          "label": "Pay the forfeit with two cheek kisses",
+          "res": "You pay it the safe way, on each cheek with great ceremony, and they hoot and demand a better one. You give each a slow, proper kiss on the hand, and they both swoon theatrically into the grass. The dice come out again. You lose the next three rounds on purpose, which gets you a song, a story, and a headlock. By the time the fire is embers, everyone is laughing, and nobody wants to go to bed."
+        },
+        "close": {
+          "label": "Pay in full",
+          "lead": "You pay it in full. {a} gets there first, grabbing your shirt front and pulling you into a long kiss that tastes of wine, and when she lets go she's breathing hard. \"My turn,\" says {b}, but she doesn't wait for one. She's already on her knees behind you, mouth at your ear, hands sliding down your chest. {a} laughs and starts undoing her own laces. The dice scatter in the grass. Nobody cares who won.",
+          "lead2": "{b} takes over the moment {a} lets you go. She turns your head with a finger and kisses you, hot and a little rough, while {a} sits back on her heels and watches, hungry. Then {b} drags her in too, and for a moment the three of you are a laughing, kissing, wine-flavored knot beside the fire. \"Forfeit's not done,\" {b} says. \"Not until we've all paid.\"",
+          "acts": ["kiss","manual_give","breast_give","oral_give","oral_get","cowgirl","doggy"]
+        },
+        "image": {
+          "comp": "two women kneeling by a campfire kissing him in turn, wine cups and dice scattered in the grass, laughing and flushed",
+          "setting": "a campfire at a roadside camp at night, wagons behind, dice and cups on the grass",
+          "sam": true
+        }
+      },
+      {
+        "id": "trio_delve_rest",
+        "tags": ["delve"],
+        "title": "Rest Chamber",
+        "text": "The Barrow's fourth landing has a rest chamber the delvers keep clean: a dry floor, a stack of old blankets, a door that bars from inside. {C} has pushed all three of you past the point of caution, and you've finally stopped. {a} sits against the wall sorting arrows with trembling fingers. {b} is pulling off her boots and swearing at them. The lamp is turned down.\n\nYou are all alive, and that's all anyone is thinking about. {a} looks up at you with the dazed, hungry look that follows a bad fight, and {b} follows her gaze, and neither of them looks away. The door is barred. The dark pushes at the edges of the lamp. Nobody says a word.",
+        "tender": {
+          "label": "Make them rest and eat",
+          "res": "You do the unromantic thing and make them eat. Hard bread and dried apples go round, then water, then the last square of chocolate you were saving, split three ways. They protest, then lean on you from both sides. {a} tells you the thing she saw in the dark that scared her, and {b} tells hers. You listen until both have stopped shaking. You each get one kiss on the temple, and then you watch the door while they sleep."
+        },
+        "close": {
+          "label": "Let them take the edge off",
+          "lead": "{a} stands, crosses the stone and takes your face in both hands, kissing you as if the dark were something she could push away with her mouth. She tastes of dust and fear and life. Her fingers shake on your buckles, then stop shaking. She backs you toward the blankets, undressing as she goes, flesh bright in the dim lamp. \"I need to feel something that isn't a wall,\" she whispers, and from the floor, {b} watches with her breath coming fast.",
+          "lead2": "{b} doesn't wait her turn. She slides up behind you, her arms around your waist and her mouth against your neck, and she smiles into your skin when she feels how hard you are. \"Don't leave me out,\" she says. \"I nearly died too.\" She pulls {a} in with one hand, and the three of you sink down onto the blankets together, hands and mouths everywhere, the lamp throwing long shadows up the old stone.",
+          "acts": ["kiss","manual_give","breast_give","oral_give","oral_get","missionary","doggy"]
+        },
+        "image": {
+          "comp": "two women pulling him down onto a pile of blankets in a stone chamber, half undressed, one kissing him while the other embraces him from behind",
+          "setting": "a barred rest chamber in an ancient dungeon, old blankets on the floor, one lamp turned low",
+          "sam": true
+        }
+      },
+      {
+        "id": "trio_fight_inn",
+        "tags": ["fight"],
+        "title": "The Inn After the Hunt",
+        "text": "The hunt is done and the beast is hauled off, and the inn at {C}'s road's end has exactly one private bathroom with a tub big enough for three. You didn't plan it that way. It's just that {a} was filthy and {b} was filthier, and the innkeeper pointed at the steaming tub and said it was free tonight for heroes.\n\nSo you sit on the edge with your feet in the water, watching the two of them peel off blood-stiff leathers. They are bruised, grinning and fantastically relaxed. {a} sinks to her chin in the water and groans. {b} sits on the rim, legs crossed, wet hair dripping. \"Well?\" she says. \"Are you coming in, or just watching?\" The steam curls up between you all.",
+        "tender": {
+          "label": "Scrub their backs",
+          "res": "You get in, mostly clothed, and make yourself useful. A bar of soap, a sponge, two sets of aching shoulders. {a} moans at every knot you find. {b} makes you swap places so she can have her turn, and tells you it's the best thing anyone has done for her in a month. By the time the water cools they're both pink, boneless and sleepy. They kiss you on the cheek at the same moment, giggling, and stay put on either side of you."
+        },
+        "close": {
+          "label": "Get into the tub",
+          "lead": "You strip and climb in, and the hot water is heaven. {a} wades over to you at once, slick and warm, and kisses you, one wet hand sliding down your chest. {b} slips in behind her, watching, a delighted gleam in her eye. Then {a} tilts her head back and {b} kisses her too, and you realise the two of them have been planning this since the beast fell. The bath water laps at the edge of the tub. \"Told you,\" {b} says to {a}, smug.",
+          "lead2": "{b} slides through the water until she's pressed against your side, her wet breasts against your arm, her mouth against your ear. \"Both of us,\" she says, low, \"is better than one.\" She kisses {a}'s shoulder, then your throat, and her hand goes under the water and wraps around your thigh. {a} laughs breathlessly, pulls her into a kiss, and the water sloshes over the edge onto the floor.",
+          "acts": ["kiss","manual_give","breast_give","oral_give","oral_get","cowgirl"]
+        },
+        "image": {
+          "comp": "two women in a large wooden bathtub with him, wet skin, one kissing him while the other kisses her neck and slides a hand under the water",
+          "setting": "a steamy inn bathroom with a big wooden tub, lantern light, discarded blood-stained leathers on the floor",
+          "sam": true
+        }
+      },
+      {
+        "id": "trio_bloom_glade",
+        "tags": ["bloom"],
+        "title": "Three in the Flowers",
+        "text": "You all thought the cloths would be enough. They weren't. In the lustbloom glade of {C}, the gold pollen has gotten into everything: your hair, your collars, your lungs. {a} is fanning herself with a glove and laughing too much. {b} has taken off her jacket and then her boots and now is looking at her own bare feet in the grass as if they were fascinating.\n\n\"It's the bloom,\" {a} says, to nobody, and licks her lips. \"Just the bloom.\" {b} gives a low, delighted laugh, because they both know it's not only the bloom, and then they turn together and look at you, flushed and bright-eyed, their hands already drifting to their buttons. The flowers sway. The sun is warm. Everyone is waiting.",
+        "tender": {
+          "label": "Haul them to the cold stream",
+          "res": "You grab a wrist in each hand and march them out of the flowers and down to the stream, protesting and giggling, and then dunk them gently into the cold water, one after the other. They shriek and splash you back. By the time you all collapse on the bank, soaked and gasping and clear-headed, they've gone from heat to hilarity. They lie with their heads on your chest and take turns saying that you're a spoilsport, and a good man."
+        },
+        "close": {
+          "label": "Fall into the flowers with them",
+          "lead": "{a} gets her hands on you first. She tugs you down into the plum-coloured flowers, kissing you with open, hungry greed, and by the time she's finished with your shirt she's laughing and shaking. The pollen glitters on her lips. \"I'm not going to remember any of this properly,\" she says, \"so you'd better make it worth remembering.\" She pulls you on top of her, and the flowers close around you, soft and sweet-smelling.",
+          "lead2": "{b} crawls through the flowers to join in, bare-shouldered, gold dust in her hair, and presses a kiss to the side of your neck. Then she takes {a}'s chin and kisses her, long and slow, while her other hand slides down your back. \"Share,\" she says against {a}'s mouth, and {a} laughs and makes room. The three of you roll together in the petals, sticky with pollen, all hands and mouths and heat.",
+          "acts": ["kiss","manual_give","breast_give","oral_give","oral_get","missionary","cowgirl","doggy"]
+        },
+        "image": {
+          "comp": "two flushed women covered in gold pollen lying in flowers with him, one kissing him while the other kisses her shoulder, clothes half off",
+          "setting": "a sunlit glade of plum-coloured lustbloom flowers with drifting gold pollen",
+          "sam": true
+        }
+      }
+    ],
+    "pair": [
+      {
+        "id": "pair_camp_watch",
+        "tags": ["camp"],
+        "title": "Second Watch",
+        "text": "{a} and {b} have drawn the second watch together, which means three hours of cold air, a fading fire, and nothing to do but talk. For the first hour they argue amiably about whether the smoke is going into {a}'s eyes on purpose. Then the camp goes properly quiet, wagons creaking, and {b} stops pretending to scan the dark and begins to scan {a} instead.\n\n\"You haven't asked about the scar on your arm,\" {a} says at last. {b} turns her sleeve down. \"You haven't asked about the one on yours,\" she says. A long silence follows, and the fire settles. They could say something real, or they could keep making jokes. They've both noticed that they're sitting very close.",
+        "choices": [
+          {
+            "label": "Trade the true stories",
+            "res": "{a} tells the story of her scar first, plainly, and not for sympathy. {b} answers with hers, which is funnier and sadder. By the third hour they've told each other more than anyone else in the party knows, and the watch passes in a warm, easy hush. When the next pair comes to relieve them, {b} bumps {a}'s shoulder with hers and neither wants to go to sleep.",
+            "bond": 5,
+            "mood": 3
+          },
+          {
+            "label": "Keep it light and tease",
+            "res": "They keep it light: {a} invents increasingly absurd origin stories for {b}'s scar, and {b} gets her revenge with a ridiculous account of {a}'s. They run out of breath laughing, shushing each other so the camp won't wake. It isn't deep, but it's easy, and when their shift ends they walk to the tents with their elbows linked.",
+            "bond": 3,
+            "mood": 2
+          }
+        ]
+      },
+      {
+        "id": "pair_road_patch",
+        "tags": ["road"],
+        "title": "Patching Up",
+        "text": "The road is quiet again, but not before a bandit's knife opened a long, ugly cut along {b}'s forearm. She has been ignoring it for an hour, one hand clamped around the bandage she made with her teeth and her sleeve. {a} watched this for as long as she could stand, and now she's halted the wagons' trailing guard, dragged {b} behind a tree and pulled out the little kit.\n\n\"Sit,\" says {a}. \"It's fine,\" says {b}. \"Sit,\" says {a} again, in the voice of someone who has not been refused in years. {b} looks at the road, at the tree, at {a}'s hands waiting, and her pride and her good sense start to argue in front of her.",
+        "choices": [
+          {
+            "label": "Let her do it properly",
+            "res": "{b} sits and lets {a} clean the cut, and it stings like fire. {a} talks the whole time to keep her mind off it, about nothing, about a cat she once owned. The stitches are small and neat. When she ties off the bandage {b} says a quiet thank you and means it, and {a} says only that next time she'll be reminded to ask sooner. They walk on side by side.",
+            "bond": 5,
+            "mood": 3
+          },
+          {
+            "label": "Insist she's fine and joke it off",
+            "res": "{b} insists she's fine, makes three terrible jokes about her arm, and lets {a} bandage it anyway, wincing every other breath. {a} tells her she's a terrible patient. {b} says she's an excellent one, she just hates the process. They fall into a bickering rhythm that lasts to the next milestone, and the bandage stays on.",
+            "bond": 3,
+            "mood": 2
+          }
+        ]
+      },
+      {
+        "id": "pair_delve_lockpick",
+        "tags": ["delve"],
+        "title": "The Trick With the Pick",
+        "text": "The Barrow's locked door is old, rust-bitten, and has been defeating {b} for ten minutes. She crouches at it with her tongue between her teeth, scowling, twisting a pick that keeps slipping. Behind her, {a} watches with her arms folded, the lamp held high.\n\n\"You're pushing,\" {a} says. {b} stops, scowls harder. \"Excuse me?\" \"You're pushing. A lock isn't a fight, it's a conversation.\" She crouches beside her and holds out her hand. This is the moment: {b} can hand over the pick, or {b} can pretend she wasn't just about to give up.",
+        "choices": [
+          {
+            "label": "Hand over the pick and watch",
+            "res": "{b} gives her the pick, and {a} shows her: light fingers, listening, the tiny click of each pin. It takes her three tries to get it herself. When the door finally swings open on a puff of old air, they both let out a whoop and then clap hands over each other's mouths in the echoing dark. {b} has learned a trick, and gained a teacher.",
+            "bond": 6,
+            "mood": 3
+          },
+          {
+            "label": "Ask her to guide from behind",
+            "res": "\"Show me,\" {b} says, instead, and {a} sits behind her with her hands over {b}'s. They work the pins together, slowly, breath mingling, until the lock gives with a satisfying clunk. {b} is quiet a moment. \"That was the nicest anyone's ever taught me anything,\" she mutters, and {a} says nothing, but lingers a second longer than she needs to.",
+            "bond": 4,
+            "mood": 3
+          }
+        ]
+      },
+      {
+        "id": "pair_fight_scars",
+        "tags": ["fight"],
+        "title": "Scars and Ice",
+        "text": "The arena day is done and the two of them are sitting on the edge of the pit's wooden bench with a bucket of ice between their feet. {a} has a swelling bruise on her ribs. {b} has a split lip and a limp. They've won, which is something, and the crowd's noise is finally dying away.\n\n{a} lifts her shirt to look at the bruise and {b} whistles at the older marks across her stomach. \"Where'd you get that one?\" she asks. {a} looks down, then at {b}'s forearm, and a slow, challenging smile spreads across her face. \"Let's see yours, and I'll tell you mine. Every scar gets a story.\" She holds out a hand.",
+        "choices": [
+          {
+            "label": "Trade story for story",
+            "res": "They go scar by scar, each with its own story, and each story gets a groan or a gasp. {b}'s worst is a stupid childhood accident, {a}'s is the closest she's ever come to dying. By the end of the bucket they have a shared joke about a goat. They leave the pit arm in arm, held up by each other.",
+            "bond": 5,
+            "mood": 4
+          },
+          {
+            "label": "Win the bet with a made-up one",
+            "res": "{b} invents a scar story so outrageous, with a dragon and a bard and a cursed spoon, that {a} laughs so hard she has to lie down. {a} counters with an even wilder one. By the end it's a tall-tale contest, and no clear winner, and both of them are wheezing. They leave the pit sore in the ribs from laughing rather than from fighting.",
+            "bond": 3,
+            "mood": 4
+          }
+        ]
+      },
+      {
+        "id": "pair_ball_dance",
+        "tags": ["ball"],
+        "title": "The Debutante's Curtsey",
+        "text": "In a quiet corner of the baron's ballroom, behind a pillar and a potted palm, {a} is trying to teach {b} how to curtsey. {b} is a fine fighter and a terrible lady. Her knees go the wrong way and her gown snags every time. {a}, who's been trained to this since childhood, watches with impeccable patience and a visibly twitching mouth.\n\n\"Again,\" {a} says. {b} tries again and nearly takes out the palm. A passing footman gives them a very careful look. {b} turns red and glares, daring {a} to laugh, and {a} has just enough dignity left to decide whether she will.",
+        "choices": [
+          {
+            "label": "Laugh together and keep trying",
+            "res": "{a} loses the battle and laughs, and {b} joins her, and for a while they just hold on to the palm and wheeze. Then {a} shows her again, hands on {b}'s hips, patient and kind, and the next curtsey is nearly graceful. {b} beams. They go back to the ballroom side by side, heads high, sharing a secret.",
+            "bond": 5,
+            "mood": 3
+          },
+          {
+            "label": "Let her stew and be proud",
+            "res": "{a} keeps a straight face, but squeezes {b}'s hand as she walks her out. \"You were wonderful,\" she says quietly, \"for a woman who fights wolves for a living.\" {b} grumbles but smiles, and spends the evening trying to hide how pleased she is. For the rest of the ball they exchange tiny signals across the room.",
+            "bond": 3,
+            "mood": 2
+          }
+        ]
+      },
+      {
+        "id": "pair_camp_braids",
+        "tags": ["camp"],
+        "title": "Braids by the Fire",
+        "text": "After a long day on the road, {a} has her hair down for the first time in a week, and it's an impossible tangle. {b} has been watching her fight with it for a quarter of an hour, wincing at every yank, until she finally puts her tea down and shuffles across the log.\n\n\"Give me that comb,\" she says. {a} hesitates, because she doesn't let people touch her hair, and everyone knows it. The fire pops. The sky is clear and the camp is warm, and {b} just holds out a hand and waits. {a}'s shoulders drop a little. It's a small thing, and it isn't a small thing at all.",
+        "choices": [
+          {
+            "label": "Hand over the comb",
+            "res": "{a} hands over the comb. {b} works the tangles out patiently, from the ends upward, and her fingers are gentle. {a} closes her eyes. Neither speaks for a long time. When the braid is done {b} ties it off with a bit of red thread from her pocket. {a} touches it, quiet, and says she'll keep the thread.",
+            "bond": 6,
+            "mood": 4
+          },
+          {
+            "label": "Trade: braid hers in return",
+            "res": "\"Only if I get to do yours after,\" {a} says, and {b} laughs and agrees. They end up back to back by the fire, each braiding the other's hair and trading terrible gossip about the rest of the party. The braids come out crooked. They wear them anyway the next morning, and tell no one.",
+            "bond": 4,
+            "mood": 3
+          }
+        ]
+      }
+    ],
+    "yuri": [
+      {
+        "id": "yuri_glade_confession",
+        "tags": ["bloom"],
+        "title": "Something Neither Had Said",
+        "text": "The lustbloom glade is warm and gold, and the pollen drifts in lazy spirals between {a} and {b}. They've been circling each other for weeks, the lingering looks in the common room, the hand that stays a moment too long on a shoulder. Neither has ever said it, and the herb run has a way of loosening tongues.\n\nBy now both of them are flushed to the collarbones, breathing deep, and {a} has sat down in the flowers because her knees have stopped helping. {b} sits next to her. \"It's the bloom,\" {a} says, voice rough. \"It makes everything easy to say.\" She turns her head. \"I wanted to say it before the bloom. I'd like to kiss you. Not because of the pollen. The pollen's only the reason I'm brave.\" {b} grins, wide and relieved. \"Me too,\" she says. \"Since the spring.\"",
+        "close": {
+          "label": "Kiss her at last",
+          "res": "{b} kisses her first, and {a} makes a small, startled, happy sound and kisses back with everything. It's clumsy and then it isn't. The gold pollen glitters on their lips as they sink back into the flowers. {a} pulls open {b}'s collar and puts her mouth to the hollow of her throat, then lower, and {b} arches up, gasping, her fingers in {a}'s hair. Then her hand slides under {a}'s skirt, and {a} says her name, and the pollen makes it all go sweetly slow. They take their time, hands finding the places the other likes, mouths following, until they are both shaking and laughing and out of breath. Afterwards they lie there tangled in the petals, and {b} says, \"Well, that was months overdue.\" {a} kisses her smile.",
+          "acts": ["kiss","manual_give","breast_give","oral_give"]
+        },
+        "decline": {
+          "label": "Laugh and cool off first",
+          "res": "They both look at each other, and then start laughing, because it's too much too soon. They stagger to the stream and splash cold water over their faces until the heat fades. Neither takes back a word. {a} tucks a flower behind {b}'s ear, and says to ask her again tomorrow, sober. {b} says she will, and they walk back to camp holding hands."
+        },
+        "image": {
+          "comp": "two women kneeling in a field of plum-coloured flowers, flushed, kissing, one with her hand at the other's collar, gold pollen on their lips",
+          "setting": "a sunlit glade of lustbloom flowers with drifting gold pollen"
+        }
+      },
+      {
+        "id": "yuri_glade_dare",
+        "tags": ["bloom"],
+        "title": "Dared by the Flowers",
+        "text": "{a} and {b} have competed over everything since the day they met: who carries more, who cooks worse, who is better in a fight. Now, in the glade, the pollen has them both flushed, bright-eyed and teasing, and the bickering has turned into something much warmer.\n\n\"I could take you,\" {b} says, and {a} raises an eyebrow. \"Take me where?\" \"Anywhere,\" {b} breathes. The joke dies in her mouth. They look at each other, a long second, neither smiling now. This has been waiting in every argument. The pollen didn't put it there. It just took away the reasons not to say it. {a}'s hand finds {b}'s wrist and tugs her closer, and {b} lets herself be tugged, her eyes wide, delighted. \"Say yes,\" {a} says. \"I'm saying yes,\" {b} answers.",
+        "close": {
+          "label": "Settle the dare",
+          "res": "They tumble together into the flowers, still competing, who can kiss deeper, who can get the other's shirt off first. It's {b}, by a hair, and {a} swears about it into her mouth. They are hot and slippery with pollen sweat, breasts bare against breasts, and when {a} takes a nipple between her lips {b} cries out, shocked and delighted. She gets her revenge a minute later with two fingers inside {a} and her thumb on her clit, grinning wickedly while {a} bucks and curses. Then it's {a}'s turn to go down between her thighs, and {b} grabs fistfuls of flowers and comes with a shout that startles a flock of birds. They lie there wheezing. \"I won,\" {a} says. \"Absolutely not,\" says {b}, laughing.",
+          "acts": ["kiss","manual_give","breast_give","oral_give"]
+        },
+        "decline": {
+          "label": "Call it a draw and cool off",
+          "res": "They end up in the stream, shrieking at the cold, soaked to the skin and laughing. The dare is declared a draw, to be settled sober, with rules, in a proper bed. They walk back to camp shoulder to shoulder, each trying to out-stroll the other, both of them grinning, and neither of them says no."
+        },
+        "image": {
+          "comp": "two women rolling in plum-coloured flowers, shirts off, one kissing the other's breast while the other pulls her closer, laughing and flushed",
+          "setting": "a sunlit glade of lustbloom flowers with drifting gold pollen"
+        }
+      },
+      {
+        "id": "yuri_glade_masks",
+        "tags": ["bloom"],
+        "title": "Masks Off",
+        "text": "The cloths are supposed to keep the pollen out. {a} tore hers climbing over a root, and {b} has been giving her half of hers, which means they've both breathed in plenty, and now they're nose to nose in a patch of flowers, sharing a single mask, which feels increasingly like a bad excuse.\n\n\"This isn't working,\" {a} says. Her pupils are huge. \"No,\" {b} agrees, and doesn't move. Her heartbeat is visible in her throat. She has wanted to kiss {a} for as long as she can remember and has never found the right moment, and the pollen has not made this up. It has only made the moment arrive. {a} lowers the cloth, slowly, and holds {b}'s gaze, asking. {b} answers by pulling the cloth away altogether.",
+        "close": {
+          "label": "Let the mask fall",
+          "res": "The mask falls and their mouths meet, hungry and sweet. {b} lays {a} back in the flowers and kisses her throat, then her collarbone, then pushes her shirt up and takes her breast in her mouth while {a} gasps and tangles a hand in her hair. They fumble each other's trousers open, laughing at the buttons, and then there are fingers sliding in wet heat, and {a} moans, loud and unashamed. {b} slips down between her legs and licks, slow and thorough, till {a} is shaking, then crawls up to share the taste in a kiss. {a} rolls her over and returns every favour. When they're done they are both pollen-gilded and utterly limp, and {a} says into {b}'s shoulder, \"We should have done this ages ago.\"",
+          "acts": ["kiss","manual_give","breast_give","oral_give"]
+        },
+        "decline": {
+          "label": "Tie the mask back on",
+          "res": "They both laugh, nervously, and {b} ties the mask back on. \"Later,\" she says. \"I'd like to do this when I'm not shaking.\" {a} nods, and they walk out of the glade in step, the single cloth between them, sharing a look that promises a great deal. At the stream they splash each other cheerfully and talk about everything but the kiss they almost had."
+        },
+        "image": {
+          "comp": "two women lying in flowers sharing one torn cloth mask, flushed, one kissing the other's throat while pushing her shirt up",
+          "setting": "a sunlit glade of lustbloom flowers with drifting gold pollen"
+        }
+      },
+      {
+        "id": "yuri_glade_stream",
+        "tags": ["bloom"],
+        "title": "Wet to the Skin",
+        "text": "They tried the cold stream first. It was {b}'s idea, and a good one, except that cold water on a body already full of lustbloom pollen has a way of making everything sharper. Now {a} and {b} are standing hip-deep in the water at the edge of the glade, shirts soaked and clinging, nipples hard and showing, and neither is looking anywhere but at the other.\n\n\"That didn't help,\" {a} says. {b} laughs, shaky. \"It helped something.\" She wades closer, and her hand settles on {a}'s waist as if it had always belonged there. They've shared a bed and a bath before in the house, as friends, and both of them know it was never quite as innocent as they said. The pollen isn't deciding anything. It just lets them stop pretending.",
+        "close": {
+          "label": "Stop pretending",
+          "res": "{a} pulls her in by the wet shirt and kisses her, and the cold doesn't matter at all. They peel each other out of clinging cloth right there in the shallows, laughing at the knots and the sleeves, until the clothes float away and they have to grab them back. Skin to skin, {b} lifts {a} onto the flat rock at the bank and kneels in the water between her thighs, kissing slowly upward from her knee. {a} drops her head back and spreads her legs wider, and when {b}'s tongue finds her clit she gasps at the sky. Her fingers dig into {b}'s wet hair. She comes quickly, loudly, and drags {b} up to kiss her hard, tasting herself, then slides a hand between {b}'s legs to return it. After, they sit with their feet in the stream, shoulders touching, shamelessly pleased.",
+          "acts": ["kiss","manual_give","breast_give","oral_give"]
+        },
+        "decline": {
+          "label": "Splash her and head back",
+          "res": "{a} splashes her, hard, and the moment breaks into a water fight. They chase each other out of the stream, and wring out their shirts on the bank, and agree to spend a night properly, in a proper bed, on a proper day off. {b} winks when she says it. They walk back to camp, shirts steaming in the sun, closer than they've been all season."
+        },
+        "image": {
+          "comp": "two women standing hip-deep in a stream in soaked clinging shirts, one kissing the other and sliding a hand under the wet cloth, flushed",
+          "setting": "a forest stream at the edge of a sunlit lustbloom glade, drifting gold pollen, mossy bank"
+        }
+      }
+    ]
+  }
+}

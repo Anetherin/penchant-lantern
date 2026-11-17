@@ -1,0 +1,50 @@
+{
+  "characters": {
+    "vesna": {
+      "pace": "slow",
+      "path": [1,2,3],
+      "init": false,
+      "events": {
+        "1": {
+          "title": "Scent",
+          "text": "Vesna has you backed against the stable wall with one hand flat on your chest, nose an inch from your throat. She is sniffing you the way she sniffs everyone, slowly, top to bottom. Her ears are low and her tail is perfectly still. \"I've decided,\" she says gruffly, not meeting your eyes. \"I want to kiss you. Don't make it a thing.\"",
+          "image": {
+            "comp": "pressing him against a stable wall with one hand on his chest, nose near his throat, ears low, stern and a little flustered",
+            "setting": "quiet stable at dusk, hay and lantern light",
+            "sam": true
+          },
+          "go": "Let her",
+          "goRes": "She kisses like she tracks, in small careful steps, and then all at once. Her fingers dig into your shirt and a low rumble starts in her chest. She pulls back and looks at your mouth as if it owed her something. \"Again,\" she says.",
+          "wait": "\"Take your time.\"",
+          "waitRes": "\"Time,\" she mutters, and lets go of your shirt. \"Fine.\" Her tail gives one hard thump against the wall behind her. She pretends it didn't."
+        },
+        "2": {
+          "title": "Hands",
+          "text": "Vesna sits on the end of your bed with her boots still on, her back to the wall, and a plate of cold chicken balanced on her knee. She has been eating in silence for several minutes. Then she sets the plate down and wipes her hands on her trousers with great deliberation. \"Come here,\" she says. \"Hands. And mouth. I want to see what you do.\"",
+          "image": {
+            "comp": "sitting on the edge of a bed with her back to the wall, a plate set aside, ears pricked, direct amber stare",
+            "setting": "his bedroom at night, a single candle",
+            "sam": true
+          },
+          "go": "Show her",
+          "goRes": "She takes you in her fist before you've finished unbuckling, and her fingers slide under your hand and into place, gruff directions on her tongue: slower, there, harder. Then her mouth finds yours, and then her mouth finds your throat, and her tail sweeps the sheets as you take her wet pussy in your hand.",
+          "wait": "\"One step at a time.\"",
+          "waitRes": "\"Steps.\" She considers this. \"Good. Steps are how you track.\" She picks the chicken back up. \"Tomorrow, then. I'm not going anywhere.\""
+        },
+        "3": {
+          "title": "Her Say",
+          "text": "Vesna comes to your room with her cloak off and her hair down, and she shuts the door behind her without checking the window. It's the first time. \"I'll say it once,\" she says, and starts on her belt. \"I trust you. Don't make me regret it. Get on the bed and let me look at you.\"",
+          "image": {
+            "comp": "standing inside his bedroom door unbuckling her belt, grey hair loose, ears forward, serious and a little vulnerable",
+            "setting": "his bedroom at night, moonlight through the window",
+            "sam": true
+          },
+          "go": "Pull her onto the bed",
+          "goRes": "She straddles you without ceremony and sinks down onto your cock with a long, shaking growl, both hands braced on your chest and her eyes on the door for exactly three strokes. Then she forgets it. \"Mine,\" she says, rolling her hips, and her tail wraps tight around your leg.",
+          "wait": "\"Are you sure?\"",
+          "waitRes": "\"Don't ask me that.\" A long breath. \"Ask me tomorrow. I'll say the same.\" She puts her cloak back on, slowly, and sits beside you on the bed. She doesn't leave."
+        }
+      }
+    }
+  }
+}

@@ -41,7 +41,10 @@ Sam picks one focus per week (costs a share of his weekly energy, so a hard week
 - **Guild:** works a contract (below). He's away, so none of the at-house effects apply that week.
 - Goddess idea: post-binding she could grant extra focus-like help; unlike Sam she can actually take clients herself. Future/low priority: a small number of female clients interested in women (would let Sam's focus or the goddess serve them).
 
-## Adventurers' Guild
+## Adventurers' Guild (first pass done 2026-11-17, branch feat/guild-contracts; see docs/GUILD.md)
+- Done: quest board, ranks Copper→Mithril, 9 contract types, ladies' `guild` job + Sam's Guild focus, multi-week progress, injuries (Health), gold/merit/fame/popularity rewards, Sam's tools from contracts, 6 Sam perks, rank beats (Rhoswen, Hanna, new Vesna and Brunhild), party scenes (duo, trio, pair, lustbloom yuri), Seasoned Adventurer earnable trait, courier past life.
+- Outfits: 9 guild-only outfits (first clear of each contract, Bronze rank tabard) plus a chance of a shop outfit on every completion.
+- Still open: balance pass on contract numbers (bot plays the guild now: tools/lab/exp/guild.json); more contract types and scenes per tag; Vesna/Brunhild after-stories and bond events; whether rank should carry partially into NG+.
 - Turn the guild into a quest board with ranks instead of a three-visit recruit button. Sam takes contracts through his **Guild** focus; ladies take them as their **job** for the week (Combat, Strength, Agility, plus Wits/Charm/Refinement for some). Sam and ladies can also go together.
 - Contract types: caravan escort, dungeon porter, arena bout, monster hunt, bodyguard at a noble's ball (courtesan skills count). Each has a rank, checks, party slots, a reward and a risk. Possibly multi-week contracts (a progress bar the party fills each week); still to decide.
 - Sam + a lady with enough trust and lust on the same contract unlocks exclusive scenes (campfire, shared tent, after a fight) and trust/bond gains.
@@ -58,5 +61,5 @@ Sam picks one focus per week (costs a share of his weekly energy, so a hard week
 ## Mid-cycle events
 - Move the cycle variables (Lantern Festival, Credit Audit, Warm Winds, City Watch Crackdown...) from cycle-long modifiers to 2-3 week events inside a cycle, so something happens between debt payments.
 
-## Sam's items
-- The Teleport Circle does exactly what the Shadow Clone boon does. Most other items are "one action x1.3". Trim or give them distinct jobs.
+## Sam's items (done 2026-11-17)
+- Teleport Circle split into Speaking Stones (focus + passive reach) and the Circle (visits reach); Shadow Clone = the Stones' half. The tool items now come from guild contracts (first clear) or the Iron rank-up; the shop keeps the coffee maker, notebook, Stones and Circle.

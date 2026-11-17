@@ -127,7 +127,7 @@ const RANDOM_EVENTS = [
       {label:ET('noble','ask','label',V), fx(){ if(w.lewd>=15 || w.trust>=30){ S.gold+=pay; w.popularity=clamp(w.popularity+5); w.energy=clamp(w.energy-25,0,maxEnergy(w)); S.rep=clamp(S.rep+2); return ET('noble','ask','res',V); } w.trust=clamp(w.trust+2); return ET('noble','ask','pass',V); }},
       {label:ET('noble','decline','label',V), fx(){ S.rep=clamp(S.rep-1); return ET('noble','decline','res',V); }}]};
   }},
-  {w:2, ok:()=>S.flags.guild>=1 && anyW(w=>w.job!=='rest' && w.energy>=30).length>0, make(){
+  {w:2, ok:()=>guildOn() && anyW(w=>w.job!=='rest' && w.energy>=30).length>0, make(){
     const w = weighted(anyW(x=>x.job!=='rest' && x.energy>=30), x=>s100(statOf(x,'charisma'))+x.popularity);
     const pay = samGold(Math.round(180 * (1+S.rep/150)), 'business', 0.3), V = {name:w.name, gold:fmt(pay)};
     return {title:ET('guild','title',V), who:w.id, scene:evImg('guild','companion'), text:ET('guild','text',V), choices:[

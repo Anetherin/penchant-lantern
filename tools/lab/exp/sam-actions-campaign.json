@@ -1,5 +1,5 @@
 {
-  "desc": "Sam's spare rest-day action over a whole first cycle (Lantern): week the debt is cleared and income per phase.",
+  "desc": "Sam's spare rest-day action over a whole first cycle (Lantern): week the debt is cleared and income per phase. Group nights and demonstrations are flavor and left out.",
   "scenario": "campaign",
   "weeks": 104,
   "runs": 16,
@@ -9,12 +9,10 @@
       "rounds",
       "date",
       "walk",
-      "orgy",
       "rest",
       "trainStat",
       "trainSkill",
-      "trainService",
-      "demo"
+      "trainService"
     ]
   },
   "columns": [

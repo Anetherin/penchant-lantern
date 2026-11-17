@@ -49,7 +49,7 @@ optional text generation (`ai-text-plugin`).
 - `js/events`, `js/stories`: random events, regulars, bonds, firsts, encounters, walks; house stories, partner arcs, after-stories, intros, NG+ house stories.
 - `js/ui`: main screens (`core`), lady sheet (`sheet`), weekly report (`report`), wardrobe modal (`wardrobe`), settings (`settings`).
 - `perchance/panel.html`: the small shim you paste into Perchance's HTML panel.
-- `dist/hollowmere-nights.html`: a single-file build (`node tools/build.mjs`), handy as a fallback paste.
+- `dist/hollowmere-nights.html`: a single-file build (`node tools/build.mjs`), handy as a fallback paste. Not committed (it conflicted on every merge); build it locally when you need it.
 
 ## Perchance setup
 

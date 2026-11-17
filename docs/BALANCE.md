@@ -83,3 +83,26 @@ What a stat point was worth (`stat-value`): +5 to every stat on every lady ≈ +
 ### Nights & Sam's focus (2026-11-17, campaign, 10-12 seeds)
 The week now runs as six nights plus a rest day: per-night client caps (`nights`: 1 + Stamina/50, demons +1), sleep after every night (`rest.night`), the rest day (`rest.restDay`) instead of `rest.work/workFree`, Health wear per night (`rest.wear.nightBase/nightPerSpent`). Sam's bar/watch/books/classes moved from actions to a weekly focus (`focus`).
 Cycle-1 win on main (after the energy rework) was ~53 weeks at 12 seeds (win rate 0.9). With nights: rest.night 0.25 / restDay 0.5 → 26 weeks; 0.10 / 0.30 → 45; 0.13 / 0.40 with perStamina 50 → **36 weeks, win rate 1.0** (chosen; close to the ~34 the energy rework aimed for). Courtesans serve ~7 clients a week (main: ~4.7).
+
+### Adventurers' Guild (2026-11-17, not yet measured)
+- New: guild contracts (`data/guild/base.json`), the bot's guild player (`tools/lab/bot.js`, on by default) and `tools/lab/exp/guild.json`. Business no longer adds passive income and Strength no longer adds passive security, so earlier income numbers shift (mostly at Sam's house).
+- To tune: contract `gold` vs what the same ladies earn at home (a contract should pay a bit more than a week of support-staff work, less than a good courtesan's week, plus rank/items/outfits), `work`/`weeks` (most contracts finishable by 1-2 average early ladies, hunts/delves/wyverns need a real party), `risk`/`hurt` (injuries should sting but not bench people for long), `levels` merit pacing (Silver mid cycle 1, Gold late, Mithril maybe NG+), and fame's client draw.
+
+### Round 2 changes after the first guild lab run (2026-11-17, not yet measured)
+Results of the first run: `temp-balance-results.md`. Changes:
+- Guild pay: purse + day rate per member per week worked (about a support lady's week, under a courtesan's), plus up to ~+75% for fitting traits/titles/Sam perks, finishing early and overshooting; the ladies' shares count as their earnings. Goal: contracts net positive vs. keeping her home on support work.
+- Ladies earn more (`income.escort` 1.25 → 1.4), upkeep is up (`houses.upkeepMult` 1.25) so the Office focus matters more. Business stays without passive income; if Office still trails Classes/Floor after this, give Office some income back.
+- Classes focus 2.5 → 2.0; NG+ `loverDebt` 1500 → 1200.
+- Promoters only fill spare capacity (`jobs.promoterCapUse`, `promoterOverflow`): the first run showed a promoter losing money and popularity because her extra clients were turned away (samples were off).
+- New night incidents (`incidents`): without security a house now loses some gold, tidiness, satisfaction and popularity each week, so Watch and the security job have something to stop.
+- Group nights and demonstrations are flavor; don't tune them for pace (drop them from `sam-actions-balanced` or loosen its band).
+Rerun: `c1-baseline` (expect ~36-40 weeks again), `guild.json`, `sam-focus`, `security-value`, `promoter-value`, `ngplus-carry`.
+
+### Round 3 (2026-11-17, not yet measured)
+Round 2 results: `temp-balance-results.md` (cycle 1 back to 36.9 weeks; guild neutral on pace but −580/wk late; Floor fastest, Classes slow; NG+ lovers now −18 weeks and 0-2 lovers rarely win).
+- Guild: `minPower` per contract (members under it add much less), delve/wyvern 5 slots and more work, day rates x (1 + 0.08 x rank), board leans toward Sam's rank. NG+ keeps rank and merit (first NG++ resets once). Bot only sends ladies who earned at most 1.25x the day rate (`guildEarnCap`).
+- Floor `nights` 4 → 3.4; Classes 2.0 → 2.2; NG+ `debtShare` 0.9 → 0.8 and `loverDebt` 1200 → 1700.
+- Promoter and security checks now compare the lady working vs. the same lady idle (`mutate job rest` vs `promoter`/`security`): she should earn about a wage (Δtotal > 40). The security check counts night incidents too (`trouble` = unhandled pushy + unhandled incidents; also `incidents`, `incHandled`, `damage`). Incident frequency unchanged on purpose.
+- Walks: `walk.partnerByFound` [14, 0.6, 0.6] (first partner in a walk or two, later ones ~10 walks each with pity 0.15 up to 8), coin weight 1 → 0.7, flavor 1.8 → 2.4, seven new flavor/rest events.
+Rerun: `check.mjs`, `guild.json`, `sam-focus`, `ngplus-carry`, `sam-actions-campaign`.
+- Walks (revised): `walk.partnerOdds` [0.3, 0.1, 0.05] = chance per walk by partners already found this cycle, hard cap `partnerCycleMax` 3 (15 partners over five cycles leaves someone to pick every cycle); NG++ always `ngppPartnerOdds` 0.3, no cap. Measure with `tools/lab/exp/walk-partners.json` (`partners` column).

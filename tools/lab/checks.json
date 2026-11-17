@@ -82,20 +82,16 @@
     },
     {
       "id": "promoter-pays",
-      "intent": "Support jobs matter: a promoter is worth more than the courtesan slot she gives up early on and in slow houses like the Manor.",
+      "intent": "A promoter fills empty rooms: in a house with idle rooms (early, Lantern / Hollow), one lady promoting instead of sitting idle brings in more than her keep (about a wage).",
       "exp": {
         "name": "promoter-value",
-        "scenario": "mid",
+        "scenario": "early",
         "weeks": 12,
         "runs": 16,
         "by": {
           "start.house": [
             "lantern",
             "hollow"
-          ],
-          "scenario": [
-            "early",
-            "mid"
           ]
         },
         "variants": [
@@ -106,8 +102,12 @@
                 "maid": 1,
                 "promoter": 0
               },
-              "targetsAt": 3,
-              "fillTargets": true
+              "targetsAt": 3
+            },
+            "mutate": {
+              "job": "rest",
+              "jobWho": 1,
+              "force": true
             }
           },
           {
@@ -115,10 +115,14 @@
             "phasePolicy": {
               "targets": {
                 "maid": 1,
-                "promoter": 1
+                "promoter": 0
               },
-              "targetsAt": 3,
-              "fillTargets": true
+              "targetsAt": 3
+            },
+            "mutate": {
+              "job": "promoter",
+              "jobWho": 1,
+              "force": true
             }
           }
         ],
@@ -139,27 +143,22 @@
       },
       "expect": [
         {
-          "delta": [
-            "early · lantern · +promoter",
-            "mid · lantern · +promoter"
-          ],
+          "delta": "*",
           "metric": "total",
-          "gt": 0
+          "gt": 40,
+          "sig": true
         },
         {
-          "delta": [
-            "early · hollow · +promoter",
-            "mid · hollow · +promoter"
-          ],
-          "metric": "total",
+          "delta": "*",
+          "metric": "repGain",
           "gt": 0,
-          "sig": true
+          "soft": true
         }
       ]
     },
     {
       "id": "security-stops-incidents",
-      "intent": "Unhandled incidents end a lady's night; a security lady should cut them clearly and not cost money overall.",
+      "intent": "Security is a support job that earns her keep: one lady on security instead of sitting idle clearly cuts unhandled trouble (pushy clients + night incidents) and pays back about a wage in what she saves.",
       "exp": {
         "name": "security-value",
         "scenario": "mid",
@@ -176,13 +175,22 @@
             "name": "base",
             "phasePolicy": {
               "security": false
+            },
+            "mutate": {
+              "job": "rest",
+              "jobWho": 1,
+              "force": true
             }
           },
           {
             "name": "+security",
             "phasePolicy": {
-              "security": true,
-              "fillTargets": true
+              "security": false
+            },
+            "mutate": {
+              "job": "security",
+              "jobWho": 1,
+              "force": true
             }
           }
         ],
@@ -191,14 +199,18 @@
           "net",
           "pushy",
           "unhandled",
+          "incidents",
+          "incHandled",
+          "damage",
+          "trouble",
           "lost",
           "sat",
           "repGain"
         ],
         "delta": [
           "total",
-          "unhandled",
-          "lost",
+          "trouble",
+          "damage",
           "sat"
         ],
         "breakdown": []
@@ -206,14 +218,14 @@
       "expect": [
         {
           "delta": "*",
-          "metric": "unhandled",
+          "metric": "trouble",
           "lt": 0,
           "sig": true
         },
         {
           "delta": "*",
           "metric": "total",
-          "gt": "-3%",
+          "gt": 40,
           "soft": true
         }
       ]
@@ -286,7 +298,7 @@
     },
     {
       "id": "sam-actions-balanced",
-      "intent": "Sam's spare rest-day actions are roughly balanced: none clears the cycle-1 debt more than ~3 weeks faster or slower than the first one listed.",
+      "intent": "Sam's spare rest-day actions (except group nights and demonstrations, which are flavor) are roughly balanced: none clears the cycle-1 debt more than ~3 weeks faster or slower than the first one listed.",
       "exp": "sam-actions-campaign",
       "expect": [
         {

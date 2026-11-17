@@ -1,0 +1,241 @@
+{
+  "vesna": [
+    {
+      "title": "The Doorstep",
+      "scene": "casual",
+      "text": "There is a dead rabbit outside your door.\n\nIt's been gutted and skinned, and laid on a clean square of cloth with its feet tucked under, like something set out on a plate. It is still faintly warm. There's no note. A few grey hairs have caught on the doorframe.\n\nYou find Vesna across the yard, up on the low roof of the woodshed, with her back to the chimney and her cloak around her knees. She watched you open the door. She didn't flick one wolf ear while you looked at the rabbit.\n\n\"Eat,\" she says.\n\nThree weeks since your party pulled her out of the Barrow, and she still hasn't slept in a bed. She sleeps on that roof, and eats standing up with her eyes on the gate.\n\n\"You fed me for three weeks,\" she adds, as if it's an invoice. \"Now it's even.\"\n\nShe looks at you, and then at the rabbit, and waits. It dawns on you slowly that this isn't a gift. She's watching what you do with it.",
+      "ngpp": [
+        "Her ears swing toward your footsteps before you reach the door. She frowns down at the rabbit she left, as if something about the cloth is wrong, and she folds it tighter without knowing why.",
+        "\"I do not leave food for strangers,\" Vesna mutters, dropping lightly down from the roof. \"Yet I knew you'd take the cloth back. Folded.\" She sniffs the air between you, slow and puzzled. \"You smell like a place I've slept.\"",
+        "\"Do not say it,\" she says, and sits on the step beside the rabbit with her shoulder almost touching yours. \"I know this doorstep, Sam. I have left you meat before. I do not remember what came after. I think it was good.\""
+      ],
+      "choices": [
+        {
+          "label": "Take the rabbit to the kitchen and cook it for both of you",
+          "t": 5,
+          "m": 8,
+          "res": "You take the rabbit to the kitchen and put it on to roast, and you don't call her down. She comes on her own, an hour later, when the smell reaches the yard. She checks the windows and sits at the end of the table nearest the door. You put half on her plate. She eats all of it without looking up. \"Good,\" she says, which is more than she's said all week."
+        },
+        {
+          "label": "Thank her and ask her to come sleep inside",
+          "t": 1,
+          "m": -3,
+          "res": "You thank her and ask her to come sleep inside. Her ears go flat. \"Walls fall,\" she says, and that's the whole of her answer. She watches you carry the rabbit in. Next morning there is a second rabbit on the doorstep, and she has moved her cloak a few feet further from the house."
+        }
+      ],
+      "image": {
+        "comp": "crouching on a low shed roof with her back against a chimney, cloak around her knees, grey wolf ears pricked, amber eyes watching him warily, a skinned rabbit laid on a cloth on the doorstep below",
+        "setting": "a rear yard at dawn, woodshed roof, a door with a rabbit laid out on a cloth",
+        "sam": true
+      }
+    },
+    {
+      "title": "Bad at Tracking",
+      "scene": "sam_date",
+      "text": "Vesna takes you out past the last of the market gardens, where the hedges give way to wet leaf mould and bracken. She walks ahead of you without a sound.\n\nYou crack a branch on the third step.\n\nShe stops. She doesn't turn around. One grey ear rotates back to you and stays there, uncomfortably long.\n\n\"Deer,\" she says at last, crouching, and points at a smudge in the mud that you would have called a puddle. \"Doe. Two hours. Limping on the left fore.\" She glances back at you. \"Where did she go?\"\n\nYou look at the smudge, and then at the forest. You pick a direction. Vesna closes her eyes briefly, like someone learning what kind of dog she's been patient with.\n\n\"Not that way,\" she says. \"That's where you came from.\"\n\nThe corner of her mouth moves. It might even be a smile. It's out of practice.",
+      "ngpp": [
+        "She pauses before she corrects you. Her nostrils flare, and she looks at your boots rather than at the track. \"You step heel first,\" she says quietly. \"Someone taught you wrong. Or taught you right, and you forgot.\"",
+        "\"You're getting worse at this,\" Vesna says, and then stops, because that makes no sense. She puts a hand against her own ear as if to check it's hers. \"You were better. You read a trail like a page, once. I remember you walking behind me. I remember not minding.\"",
+        "\"I've tracked you before,\" she says into the quiet, tail low behind her. \"Not in this forest. Somewhere with snow. I followed your prints for two days and when I found you, you were laughing at me.\" She doesn't smile. She is very still. \"Do not explain. Just keep walking beside me.\""
+      ],
+      "choices": [
+        {
+          "label": "Ask her to show you how she does it, and do exactly what she says",
+          "t": 5,
+          "m": 7,
+          "res": "You ask her to show you, and you do exactly what she says. Toe first. Weight low. Breathe out as you step. She corrects your feet with the flat of her boot, twice. By the end of the hour you've lost the doe and found a rabbit hole, and she admits you didn't break anything else. On the way home she walks half a pace behind you instead of ahead."
+        },
+        {
+          "label": "Admit you're hopeless and ask her to lead",
+          "t": 4,
+          "m": 6,
+          "l": 1,
+          "res": "You tell her you're hopeless, and ask her to lead. \"Yes,\" she says, with total agreement, and puts your hand in the small of her back. \"Hold on. Don't talk.\" She leads you through the wood like that for an hour, warm through the jerkin, her tail swaying against your hip."
+        }
+      ],
+      "image": {
+        "comp": "crouching in damp forest mud pointing at an animal track, looking back over her shoulder at him with dry patient amusement, grey wolf ears and tail, a pale scar on her left forearm",
+        "setting": "misty woodland edge at morning, bracken and wet leaves",
+        "sam": true
+      }
+    },
+    {
+      "title": "Warm Water",
+      "scene": "shower",
+      "text": "The bathhouse is empty, or you thought it was.\n\nVesna is sitting in the empty end of the big tub with the water up to her collarbones and her back pressed hard to the tiled wall. Her eyes are on the door. Her wet grey hair is down for the first time, clinging to her shoulders.\n\nShe doesn't cover herself or jump. She looks at you just long enough to decide you aren't a threat, and then she sniffs, once.\n\n\"Soap,\" she says. \"Ink. Hanna's tea.\" A pause. \"You've been at the guild.\"\n\nThe scar across her left forearm is white against the water, long and ragged, like something tried to unpick her. She sees you looking and lets you look.\n\n\"First time I've been clean in a month,\" she says. \"Nobody told me I stunk.\" Her ears dip, very slightly. \"Would've been nice.\"",
+      "byIntim": {
+        "1": {
+          "text": "Vesna is in the bath when you come in, same end, same wall. She looks at you, sniffs, and says nothing, which is how she says welcome.\n\nHer shoulders are bare above the water, and the scar lies across the rim of the tub where she can't hide it. She isn't trying to.\n\n\"Come here,\" she says, gruff. \"My back's been wrong since the Barrow. Can't reach the place.\" She turns, putting her spine to a door she can't see. You realise how large that is. \"Slow. Don't talk.\"",
+          "choices": [
+            {
+              "label": "Kneel behind her and work the knots out of her back",
+              "t": 4,
+              "m": 8,
+              "l": 2,
+              "private": true,
+              "acts": ["kiss","massage_get"],
+              "res": "You kneel at the rim and put your thumbs either side of her spine. She stiffens, and then, at the first slow press, goes loose, with a low sound closer to a growl than a moan. Her tail curls round your wrist under the water. She tips her head back to look at you upside down, amber eyes half closed. \"Again,\" she says. Then: \"Closer.\" You kiss her, and she lets you."
+            },
+            {
+              "label": "Hand her a towel and leave the water to her",
+              "t": 2,
+              "m": 4,
+              "res": "You hand her a towel and tell her to take as long as she likes. You're nearly out of the door when she says, to the wall, \"Stay near.\" You sit on the bench outside with your back to the door, and neither of you speaks, and she takes an hour."
+            }
+          ]
+        },
+        "3": {
+          "text": "Vesna rises out of the water without any ceremony. Water streams down her long legs and her flat belly, over small, firm breasts, and off the scar on her forearm. Her wet tail hangs heavy at her back.\n\nShe wrings out her hair, looks at you, and doesn't bother with the towel.\n\n\"I'm bad at words,\" she says. \"Plain, then. I want your hands on me. I want your mouth. I want to see the door while you do it.\" She steps out and crowds you back against the tiles, warm and smelling of soap and wolf. \"If I growl, it's good. If I stop, it's not.\"",
+          "choices": [
+            {
+              "label": "Let her pin you to the wall, and put your hands on her hips",
+              "t": 5,
+              "m": 10,
+              "l": 4,
+              "private": true,
+              "acts": ["cowgirl","manual_give","oral_get"],
+              "res": "You let her pin you to the tiles, and put your hands on her wet hips. She presses her whole length against you, and her tail wraps tight around your thigh. She sniffs your throat, deliberate, then bites the edge of it, hard enough that you feel it in your cock. \"Good,\" she mutters, and unbuckles your belt without once taking her eyes off the door. \"You smell like a place I'd stay.\""
+            },
+            {
+              "label": "Pull the blanket from the bench round her and kiss her slowly",
+              "t": 4,
+              "m": 7,
+              "l": 2,
+              "res": "You wrap the blanket round her shoulders and kiss her, slowly, and she goes very still. Then her hand fists in your shirt and she kisses back, blunt and hungry, with a low rumble in her chest. \"Not yet,\" she says against your lip, ears pinned back with how badly she wants it. \"On my say. Soon.\" She doesn't let go of your shirt."
+            }
+          ]
+        }
+      },
+      "choices": [
+        {
+          "label": "Apologise and back out",
+          "t": 2,
+          "m": 4,
+          "res": "You apologise and back out, and the door shuts. A moment later you hear her say, through the wood, \"No harm.\" Later a damp towel appears folded on your chair with a single grey hair coiled on top, and you're not sure it's an accident."
+        },
+        {
+          "label": "Sit on the bench and say nothing, in case she wants company",
+          "if": {"lewd":35},
+          "t": 3,
+          "m": 7,
+          "l": 2,
+          "res": "You sit on the bench by the wall and say nothing. She lets you stay. After a long time she says, \"You can look at it,\" and turns her forearm up to the lamp. \"Cave roof. Slab the size of a cart. Bone came through. I set it myself.\" She looks at it as if still checking the work. \"Healed crooked. It's fine.\"",
+          "else": {
+            "t": 1,
+            "m": -2,
+            "res": "You sit on the bench and say nothing. Her ears go flat. \"Out,\" she says, not unkindly. You go, and for the rest of the day she is careful to stay on the far side of every room."
+          }
+        },
+        {
+          "label": "Tell her the water is hot, and she can stay as long as she needs",
+          "t": 2,
+          "m": 5,
+          "l": 1,
+          "res": "You tell her the water is hot and she can stay as long as she needs. \"Warm,\" she says, as though it's a new word, and slides lower until the surface reaches her chin. She closes her eyes, but her ears stay pointed at you. An hour later she is still in there, and someone has stoked the fire."
+        }
+      ],
+      "image": {
+        "comp": "sitting in a steaming wooden bath with her back against the tiled wall, wet grey hair down over her shoulders, wolf ears damp and pointed at the door, a pale scar across her left forearm resting on the rim",
+        "setting": "steamy tiled bathhouse, one lamp, a door in view",
+        "sam": false,
+        "towel": true
+      }
+    },
+    {
+      "title": "The Gilded Spur",
+      "scene": "portrait",
+      "text": "Three adventurers are standing in the hall of the Lantern. They've left their packs by the door, as people do who plan to be asked to stay. The one in front has a gold spur pinned to his cloak, and a smile he's been practising on the road.\n\n\"Vesna,\" he says. His voice cracks on it. \"Gods. We heard in Hollowmere that you were alive.\"\n\nYou are standing next to her on the stairs. You feel the change in her before you see it, as though the room has dropped a degree. Her ears are flat to her skull. Her tail is rigid. She has put the scarred arm behind her back, and her other hand hangs open near a knife she hasn't drawn.\n\n\"We dug for days,\" says the man with the spur. \"You have to believe that, Ves. We'd never have left you.\"\n\nVesna says nothing. She's reading him. Her nostrils work once, twice, and her lip pulls back off one canine.\n\n\"He's lying,\" she says, very quietly, to you. \"He's not good at it. He's sweating.\"",
+      "ngpp": [
+        "Her ears are flat before the man opens his mouth. \"Corvin,\" she says, and something in it is old and tired, as if she has said it before, and never liked the answer.",
+        "\"I've done this before,\" she says to the man with the spur, steady. \"I know your face going soft like that. You'll run if he stands next to me.\" She doesn't look at you. \"He will.\"",
+        "\"I was afraid of you once,\" Vesna says. \"Another time. I don't remember when. I know how it ends, and I know who's at my shoulder.\" Her tail loosens. \"Say what you came to say.\""
+      ],
+      "choices": [
+        {
+          "label": "Step in front of her and tell them she's with this house now",
+          "t": 6,
+          "m": 8,
+          "res": "You step down in front of her and tell them she's with this house now, and anything they have to say about the Barrow, they can say to you. The man with the spur opens his mouth, sees Vesna's face over your shoulder, and closes it. His friends are already looking at their boots. They leave their packs behind. Vesna leans her forehead briefly against your back. \"Pack,\" she says, as if tasting the word, and goes to shut the door."
+        },
+        {
+          "label": "Tell her to hear them out, and see if she wants to forgive",
+          "t": 2,
+          "m": -4,
+          "res": "You suggest she hear them out. Her ears go back, and something crosses her face that is worse than anger. \"Forgive,\" she says, like a bone she can't chew. She listens to every word, expressionless, and sends them away. She doesn't look at you for the rest of the day."
+        },
+        {
+          "label": "Say nothing and let her handle it",
+          "t": -3,
+          "m": -6,
+          "res": "You say nothing and let her handle it. She waits one heartbeat for you to move, and you don't. Her face closes, and she answers the three of them herself in about eight words. They leave. She goes up to the roof and doesn't come down for two days. When she does, there is a rabbit on your doorstep, and you can't tell if it is a test or a goodbye."
+        }
+      ],
+      "image": {
+        "comp": "standing stiff on a staircase with ears flat and lip curled, one hand behind her back hiding a scar, hand near a knife, glaring at three adventurers below, him standing close at her side",
+        "setting": "lantern-lit entrance hall of a brothel-inn, packs dropped by the door, afternoon",
+        "sam": true
+      }
+    },
+    {
+      "title": "Full Moon",
+      "scene": "sam_date",
+      "text": "It is a clear night, and the moon is the size of a plate. Vesna has been walking the roofline since dusk.\n\nYou find her on the ridge of the Lantern, tail lashing, going from the chimney to the gable end and back, and pausing every time to lift her chin at the sky like something is calling her. Her amber eyes are huge. She hasn't eaten, which worries you most.\n\n\"Can't sit,\" she says when you come up beside her. \"Skin's wrong. Everything's loud.\" She rubs her scarred forearm hard. \"Whole town smells like a hundred people, and I want to go and find the one that's mine.\"\n\nShe stops. She has said more than she meant to. Her ears go flat and then, slowly, come back up.\n\n\"Before the Spur, I ran. Pack ran with me. Haven't run in a year.\"\n\nShe holds out her hand to you. It's the first time she has offered one.",
+      "ngpp": [
+        "She turns before you reach the roof. \"You came,\" she says, as if that surprised her, and then her ears tilt, as if it shouldn't have.",
+        "\"I've run under this moon with you,\" Vesna says, wetting her lips. \"My legs know the way. Left, then the ditch, then the stile.\" She laughs once, short and strange. \"They remember a pack I haven't met.\"",
+        "\"Don't say anything,\" she says, fingers tight around yours. \"I know whose pack it was. Run with me, Sam. Like we did. I want to see if you still catch up.\""
+      ],
+      "choices": [
+        {
+          "label": "Take her hand and run the hills with her until the moon sets",
+          "t": 6,
+          "m": 9,
+          "l": 1,
+          "res": "You take her hand, and she pulls you off the roof and out into the fields, running flat out. You can't keep up. She runs back for you every hundred yards, grinning in the moonlight, and tows you up the next slope by the wrist. By the time the moon is low you're both lying in the wet grass, panting. She puts her head on your chest and listens to your heart. \"Mine,\" she mutters, almost asleep. She doesn't take it back."
+        },
+        {
+          "label": "Take her down to your room and let her work it off with you",
+          "if": {"canAct":["cowgirl","kiss","oral_give"]},
+          "t": 6,
+          "m": 9,
+          "l": 3,
+          "private": true,
+          "acts": ["cowgirl","kiss","oral_give"],
+          "res": "You lead her down from the roof, and she comes at once. In the corridor she pins you to the wall by the collar and kisses you, hot and rough and a little fanged, and growls when you kiss back. \"Not sleeping,\" she says into your mouth. Behind your door she shoves you onto the bed and straddles you with her eyes on the window, and says \"Mine\" like a bite."
+        },
+        {
+          "label": "Sit on the roof with her and let her talk it out",
+          "t": 5,
+          "m": 7,
+          "res": "You sit on the ridge and let her talk. It takes most of an hour to get ten sentences out: the sound the ceiling made, how long the dark was, the fish with no eyes. When she runs out, she stays where she is, shoulder against yours, and watches the moon go over. \"Didn't want to run alone,\" she says at last, so softly you almost miss it."
+        }
+      ],
+      "image": {
+        "comp": "standing on a rooftop ridge under an enormous full moon, loose grey hair, tail lashing, amber eyes bright, holding out one hand to him, restless and wild",
+        "setting": "tiled rooftop ridge at night under a huge full moon, sleeping town below",
+        "sam": true
+      }
+    },
+    {
+      "title": "Back to You",
+      "scene": "final",
+      "text": "It's past midnight when you hear the knock. It's the softest knock you have ever heard, and you're fairly sure it was made with a knuckle held in her teeth.\n\nVesna is standing in your doorway with her boots in her hand and her cloak left outside. She smells of the stable and woodsmoke. She is looking at the room, at the bed and the window and the single door, and you watch her do it. She counts the exits. She does it once, slowly, like a ritual.\n\nThen she puts her boots down by the wall, steps in, and shuts the door behind her.\n\nShe doesn't lie down against the wall. She lies down in the middle of the bed, lets you lie down beside her, and rolls onto her side with her back to you. Her tail curls round your hip.\n\n\"Never done that,\" she says to the dark. \"Back to someone.\" It's a long while before she speaks again. \"I'm bad at this. So: I stay. You feed me. I watch the door, you watch the bed, and nobody goes in the ground alone again.\"\n\nShe turns her head just far enough that you see one amber eye.\n\n\"You're my pack, Sam. I'm yours. Say yes.\"",
+      "ngpp": [
+        "She turns her back to you as though it were a habit. Her tail finds your hip in the dark without searching, and her ears lie flat in the way of an animal that has done this before and been safe.",
+        "\"I know this bed,\" Vesna mutters into the pillow. \"Never against the wall. Always this side.\" A dry little laugh. \"I think I spent every life looking for a wall, and it was you.\"",
+        "\"Whatever rewrote the world,\" she says, low and plain, her hand finding yours behind her, \"it can't take this. I know the sound of you breathing, Sam. I'll come back to it again.\" She squeezes. \"Say yes. Or I sleep right here until you do.\""
+      ],
+      "goLead": "You pull Vesna round to face you and she comes with a low rumble, ears up, eyes open. All the doors in the room are still behind her, and for once she isn't counting them.",
+      "choices": [
+        {"label":"Say yes","t":6,"m":12,"res":""},
+        {
+          "label": "Not yet",
+          "t": 1,
+          "m": -3,
+          "hold": true,
+          "res": "Vesna goes still under your hand, and then she nods once, hard, like a woman taking an arrow without making a sound. \"Right,\" she says. She sits up, gets her boots, and doesn't look at you. At the door she stops. \"Wolf's patient,\" she says. \"I waited three weeks in the dark. I can wait on you.\" Her voice isn't quite level. In the morning there is a rabbit on your doorstep, and a second cloth beside it, folded in half."
+        }
+      ]
+    }
+  ]
+}

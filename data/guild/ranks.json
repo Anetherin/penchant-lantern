@@ -1,0 +1,73 @@
+{
+  "_readme": [
+    "Adventurers' Guild rank-up story beats (docs/GUILD.md). ranks.beats: one beat per rank, 0 = registration, 1-5 = Iron, Bronze, Silver, Gold, Mithril.",
+    "Each beat: rank, title, pages (2-3 pages of prose), end (closing text), btn (button label). No placeholders; names are written out. Narration is second person ('you' = Sam); 'Sam' appears in dialogue."
+  ],
+  "ranks": {
+    "beats": [
+      {
+        "rank": 0,
+        "title": "Registration",
+        "pages": [
+          "The Adventurers' Guild hall is a long timber building by the east gate, loud with boots and smelling of wet wool, ale and oiled leather. A great board covers one wall, crowded with notices pinned three deep. You stand just inside the door with your hands in your sleeves, a thin man in clean clothes among people who look like they have fought bears. Nobody looks at you twice, except the young woman behind the counter, who is watching you over a stack of forms with a sharp, curious smile.\n\n\"New face,\" she says. \"Name and trade?\"\n\n\"Sam Takahashi,\" you say. \"I run a, ah. A pleasure house.\"",
+          "The pen stops. Then she is over the counter. She actually vaults it, one hand on the wood, and lands in front of you with her freckled face shining.\n\n\"A pleasure house. A real one. Do you know how many of my adventurers have been sneaking out to the Lantern? I have a list.\" She catches herself, straightens her uniform, and hurries back around the counter with a very bad attempt at dignity. \"Hanna Weiss, reception. Sorry. Welcome to the guild, Sam. Sit, sign here, here, and here, and try not to look worried. Everyone looks worried.\"",
+          "Hanna registers you at Copper in four minutes and talks through all of them. Contracts live on the board: caravans, herb runs, porter work, bigger jobs as you rank up. Six ranks, Copper, Iron, Bronze, Silver, Gold, Mithril, and finished contracts earn the merit to climb.\n\n\"Your ladies can sign on too,\" she says, tapping the party line. \"The guild doesn't care what they do at night, only whether they show up.\"\n\nA door opens behind her and a gray, one-armed bear of a man fills it. Guildmaster Aldric Brand looks at you, at the form, at Hanna's grin.\n\n\"That the brothel man?\"\n\n\"Sam,\" you say.\n\nBrand grunts, long and thorough, with opinions in it, and shuts his door."
+        ],
+        "end": "Hanna hands you a copper badge on a leather cord and a copy of the board. \"Ignore him,\" she whispers. \"That was a warm welcome, for Brand. Come back any week and I'll show you what's new. And Sam? Bring a lady or two. I want to meet them.\" You tuck the badge into your coat. You are a Copper adventurer now. It still feels like a joke you have not been told.",
+        "btn": "Continue"
+      },
+      {
+        "rank": 1,
+        "title": "Iron",
+        "pages": [
+          "The iron badge is heavier than the copper one, and Hanna insists on pinning it herself. \"Look at you,\" she says, standing back. \"A real, working, paying-his-dues adventurer. Brand said 'adequate.' That's practically a parade.\"\n\nShe digs under the counter and comes up with a stamped card edged in brass. \"Guild Pass. Iron rank and up. It gets you past the front board to the good one, in the back room, where the better folk pin their names when they want work. Don't lose it, Sam. People would be annoyed.\"",
+          "She does not let go of the pass right away. She turns it over twice, and her voice drops, which is how you know it is gossip.\n\n\"There is an elf who comes in,\" she says. \"Rhoswen. Noble, one of the old courts, the real thing. She walked out of it all one morning with a trunk and a notebook and no plan. Very proper. Very lost. She sits in the corner reading the board like a menu, and last week she asked me about work in places elves do not ask about.\"\n\nHanna smiles at the ceiling.\n\n\"I may have mentioned you.\""
+        ],
+        "end": "\"Do not make that face,\" Hanna says. \"She was asking about somewhere kind. I know a kind house when I hear about one.\" She presses the pass into your hand. \"If an elf with a very straight back turns up at your door, be gentle, and offer her tea. I'll tell her where to find you.\" Rhoswen has been pointed your way.",
+        "btn": "Continue"
+      },
+      {
+        "rank": 2,
+        "title": "Bronze",
+        "pages": [
+          "The bronze badge has barely cooled when you notice that Hanna is not at her desk. She is in Brand's office, with the door open, holding a single sheet of paper in both hands like a dish she is about to serve.\n\n\"Guildmaster,\" she says. \"Eight years. I have filed every bounty in this town, and every one of your insults, and I have been very good at both. This is my resignation.\"\n\nBrand looks at the page. He looks at her. Then he takes it, reads it twice, and says, \"Took you long enough.\"",
+          "She comes out of the office a little pink and a lot lighter, and walks straight past her own desk to where you are standing with your badge in your hand.\n\n\"I love this place,\" she says, lowering her voice. \"I do. But I've watched every adventurer in Hollowmere walk out that door for eight years, and I have not once gone with them. And I've seen your reception desk. Sam, it is a disgrace. I have opinions about the seating. I have opinions about the ledger.\"\n\nShe puts both hands on your sleeve and grins.\n\n\"When do I start?\""
+        ],
+        "end": "Brand says nothing, which for him is blessing. Hanna is already pulling her blue cape off its hook and packing a small crate of pens, the guild's good ink, and a mug that reads \"World's Most Patient.\" She hands the desk keys to a very nervous junior clerk. Hanna Weiss is joining your staff, and she is going to rearrange everything.",
+        "btn": "Continue"
+      },
+      {
+        "rank": 3,
+        "title": "Silver",
+        "pages": [
+          "The silver badge comes with a job. A report has reached the guild of a collapsed tunnel in the lower halls of the Barrow, three weeks old, and nobody has been willing to go and look. Brand slides the notice across the desk himself. \"You are the nearest party with a map,\" he says. \"Go and look. Do not be heroic.\"\n\nThe lower halls are cold and wet and very quiet. Your lamp makes a small gold bubble in the dark. Past a half-fallen arch, the passage ends in a mound of broken stone, and from somewhere behind it comes the slow, patient sound of dripping water, and something else. Something breathing.",
+          "You find her in a pocket under the fallen ceiling, sitting with her back to the wall and a short blade across her knees. She is a grey-wolf beastkin, tall and lean, with grey hair cropped short, amber eyes, wolf ears flat against her skull, and a long scar down her left forearm. Her tail twitches once. Her clothes are in rags. Beside her is a neat pile of cave-fish bones.\n\n\"Stay there,\" she says. Her voice is dry and low. She sniffs, long and slow, and her ears go forward a little. \"You smell like soap and fear. Not a threat.\"",
+          "She refuses help three times. She has been fine for three weeks, she says, on cave fish and spite. On the fourth try she stands, sways, and lets you take her arm.\n\nHer name is Vesna Greyhollow, twenty-eight, tracker. Her old party, the Gilded Spur, were with her when the ceiling came down. They dug for an hour, then left.\n\n\"They did not come back,\" she says, flat as a plank. \"I counted.\"\n\nIn the guild hall she eats three bowls of stew without a word. She has no party, no coin, and will not go back to the Spur. You tell her about the house, the work, and the bed nobody will ask her to earn."
+        ],
+        "end": "Vesna studies you with those amber eyes for a long time. Her ears twitch. \"You do not lie well,\" she says finally. \"That is something. I will think about it.\" She goes back to the stew. It is not a yes, but it is not a no. Vesna Greyhollow is added as a candidate, and you leave her the second bowl.",
+        "btn": "Continue"
+      },
+      {
+        "rank": 4,
+        "title": "Gold",
+        "pages": [
+          "The gold badge is earned in the pit. The arena is packed that evening, a bowl of noise and torchlight and sawdust, and the champion is called out first: Brunhild \"the Anvil\" Ironvein. She is a dwarf, short and wide and heavily muscled, with braided copper-red hair, freckles across a broad nose, and a laugh that rolls like a barrel down a staircase. She has not lost a bout in six years. She looks bored.\n\nYour side is booked against her. You have barely sat down in the back corridor when a man in a velvet coat slides in beside you.",
+          "He is the promoter, rings on every finger, smiling like a coin. He talks quickly and quietly. A purse, he says, a heavy one, for a very small thing: go down in the second round. Let the crowd have a show. Nobody will be hurt, and nobody will know. The bookmakers have their reasons.\n\nYou stand up. You say, loudly enough for the whole corridor to turn, and then the whole pit when you walk out onto the sand, \"No. I will not throw a fight. You can keep your purse.\"\n\nThe crowd goes quiet. Then it roars.",
+          "Brunhild heard every word. She looks at you across the sand, grinning, and then she fights you straight. It is the cleanest, hardest bout of your life. She wins, honestly, and she offers a hand to pull you up from the sawdust.\n\nThen she turns, walks to the rail, and hauls the promoter over it by the collar of his velvet coat. She drops him in the pit. The crowd goes wild. She hands her belt to a steward, says the pit is done with her, and the pit is done.\n\n\"Honest,\" she says to you, laughing. \"And brave. Show me this house you run.\""
+        ],
+        "end": "Brunhild slings a battered pack over one huge shoulder, shakes your hand until your arm tingles, and laughs all the way out through the gate. \"I've been bored for six years, little man,\" she says. \"You are the first interesting thing that has happened to me since I put on this belt.\" Brunhild Ironvein is added as a candidate.",
+        "btn": "Continue"
+      },
+      {
+        "rank": 5,
+        "title": "Mithril",
+        "pages": [
+          "The guild hall is almost empty when they call you in. Hanna is with you, in a staff badge and her old blue cape, because she said she would not miss it. Guildmaster Aldric Brand stands at the head of the long table with a small box in his one hand, and a face like a closed gate.\n\n\"Mithril,\" he says. \"Six ranks. Forty years I have seen men and women climb them, and most are big, and most are fools.\" He looks at you, thin and nerdy and a little embarrassed. \"You are neither. I do not know what you are.\"",
+          "He opens the box. The badge is silver-white and impossibly light, and Brand pins it to your coat himself, with a hard, awkward hand. He does not say well done. He clears his throat, looks at the ceiling, and says, \"Hmph.\"\n\nThen, much quieter, \"A man who runs a brothel and keeps his word. I would not have believed it. Don't make me look foolish.\"\n\nBeside you, Hanna is making a small, wet sound. She is crying, a little, and pretending she is not. \"There's dust,\" she says. \"This hall is filthy. I'll write a note.\""
+        ],
+        "end": "You walk out into the evening with Hanna on your arm and a mithril badge on your chest, and the whole of Hollowmere in front of you. A year ago you were a stranger with a debt and a bad idea. Now you have a house, a staff, and friends. The badge catches the last of the light. You are, for the first time in a long while, exactly where you should be.",
+        "btn": "Continue"
+      }
+    ]
+  }
+}

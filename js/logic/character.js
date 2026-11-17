@@ -192,7 +192,7 @@ const baselineCut = () => { const C = BAL.wardrobe.cut; return Math.min(C.maxBas
 const defaultCut = w => isFree(w) ? 0 : baselineCut();
 const workerCut = w => !w || w.cut===undefined || w.cut==='base' ? defaultCut(w) : clamp(+w.cut||0, 0, 0.9);
 function wantedOutfits(w, budget){
-  const avail = Object.entries(WARDROBE).filter(([k,o])=>o && !o.owner && !o.uniform && !ownsOutfit(w,k) && wardrobeOK(w,k) && outfitCost(o)>0);
+  const avail = Object.entries(WARDROBE).filter(([k,o])=>o && !o.owner && !o.uniform && !o.guild && !ownsOutfit(w,k) && wardrobeOK(w,k) && outfitCost(o)>0);
   const styleWant = avail.filter(([,o])=>o.style===w.style);
   const pool = styleWant.length ? styleWant : avail;
   const afford = budget!==undefined ? pool.filter(([,o])=>outfitCost(o)<=budget) : [];

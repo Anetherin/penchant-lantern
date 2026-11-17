@@ -195,21 +195,21 @@ function samSpicy(id, k, i){
 function demoAct(w){ return bestSamAct(w) || null; }
 function demoOpen(w){ const D = (BAL.lessons||{}).demo || {}; if(has(w,'Modest')) return false; return has(w,'Exhibitionist') || w.lewd >= (D.openLewd ?? 45); }
 function demoMenu(){
-  const D = (BAL.lessons||{}).demo || {}, pool = S.workers.filter(nearSam);
+  const D = (BAL.lessons||{}).demo || {}, pool = S.workers.filter(nearSamV);
   const ok = pool.filter(w=>demoAct(w) && demoOpen(w)), shy = pool.filter(w=>demoAct(w) && !demoOpen(w));
-  modal(`<h2>A Demonstration</h2><p class="muted">Sam and a partner show the staff ${samReach()?'across every house':`at ${esc(samHouse().name)}`} how it's done. Everyone watching learns that service and gets worked up; she does her favorite (or the furthest they've gone). She has to be comfortable with an audience. Repeat partners may develop a taste for it. (${samTrainCost(D.energy ?? 30)} energy)</p>
+  modal(`<h2>A Demonstration</h2><p class="muted">Sam and a partner show the staff ${samVisitReach()?'across every house':`at ${esc(samHouse().name)}`} how it's done. Everyone watching learns that service and gets worked up; she does her favorite (or the furthest they've gone). She has to be comfortable with an audience. Repeat partners may develop a taste for it. (${samTrainCost(D.energy ?? 30)} energy)</p>
     ${ok.length ? `<div class="row">${ok.map(w=>`<button onclick="samDemo('${w.id}')">${esc(titled(w))} · ${esc(actLabel(demoAct(w)))}</button>`).join('')}</div>` : '<p>Nobody here is ready for an audience yet.</p>'}
     ${shy.length ? `<p class="muted">Not in front of everyone: ${shy.map(w=>esc(w.name)+(has(w,'Modest')?' (modest)':'')).join(', ')}</p>` : ''}
     <div class="row"><button onclick="closeModal()">Back</button></div>`);
 }
 function samDemo(id){
   const w = findW(id), D = (BAL.lessons||{}).demo || {}; if(!w) return;
-  if(!nearSam(w)) return toast(`${w.name} is at another house.`);
+  if(!nearSamV(w)) return toast(`${w.name} is at another house.`);
   const act = demoAct(w); if(!act || !demoOpen(w)) return toast(`${w.name} isn't up for that.`);
   if(!useAP(samTrainCost(D.energy ?? 30))) return;
   const text = privateCore(w, act, {lead: flavor('demo_lead', w)});
   countUp(w, 'demos'); lewdUp(w, 1, svcLewdCap(act,'client') + 10);
-  const g = (6 + (S.sam.technique||0)/20) * (D.watchSkill ?? 0.5) * lessonMul(), cap0 = svcLewdCap(act,'client'), watchers = S.workers.filter(o=>o!==w && nearSam(o));
+  const g = (6 + (S.sam.technique||0)/20) * (D.watchSkill ?? 0.5) * lessonMul(), cap0 = svcLewdCap(act,'client'), watchers = S.workers.filter(o=>o!==w && nearSamV(o));
   let warm = 0;
   watchers.forEach(o=>{
     growAct(o, act, g * pm(o,'train') * fxMul(o,'learn'));
@@ -220,7 +220,7 @@ function samDemo(id){
   checkUnlocks(); save(); render(); closeModal();
   showResult(`A Demonstration: ${actLabel(act)}`, `${text}\n\n${flavor('demo_watch', w)}\n\n${watchers.length} watched and learned ${actLabel(act).toLowerCase()} (+${Math.round(g*SKL)} each)${warm?` · ${warm} got rather worked up (lust, lewdness)`:''}${watchers.length>warm?` · the modest ones spent it staring at the ceiling`:''} · Sam's Technique +2`, w.id, 'demo:'+act, {kind:'private', act, scene:'demo:'+act, forSam:true, situation:`a demonstration lesson: she and Sam show the other ladies of the house how it's done while they watch`});
 }
-// Group nights (balance.json → orgy): one action, Sam's energy per lady, 2-5 ladies from one house (any house, unless samReach()).
+// Group nights (balance.json → orgy): one action, Sam's energy per lady, 2-5 ladies from one house (any house, unless samVisitReach()).
 // Each lady goes through canSam/bestSamAct and privateCore like any private time; every pair bonds; longer text and several pictures.
 let ORGY = null;
 const orgyCost = n => { const O = BAL.orgy || {}, per = Math.max(8, (O.perGirl ?? 20) - samUpFx('orgyEnergy')); return Math.round(per * n + (O.ramp ?? 0) * n * (n-1) / 2); };
@@ -240,16 +240,16 @@ function orgyMenu(){ ORGY = {sel:[]}; orgyDraw(); }
 function orgyPick(id){ if(!ORGY) return; const O = BAL.orgy || {}, i = ORGY.sel.indexOf(id);
   if(i >= 0) ORGY.sel.splice(i, 1);
   else { const w = findW(id), first = ORGY.sel[0] && findW(ORGY.sel[0]);
-    if(first && !samReach() && first.house !== w.house) ORGY.sel = [];   // one house at a time without reach
+    if(first && !samVisitReach() && first.house !== w.house) ORGY.sel = [];   // one house at a time without reach
     if(ORGY.sel.length >= (O.max ?? 5)) return toast(`${O.max ?? 5} is plenty. More than plenty.`);
     ORGY.sel.push(id); }
   orgyDraw(); }
 function orgyDraw(){
   const O = BAL.orgy || {}, sel = ORGY.sel, n = sel.length, cost = orgyCost(n), first = sel[0] && findW(sel[0]);
-  const btn = w => { const why = orgyWhy(w), on = sel.includes(w.id), other = first && !samReach() && first.house !== w.house;
+  const btn = w => { const why = orgyWhy(w), on = sel.includes(w.id), other = first && !samVisitReach() && first.house !== w.house;
     return `<button class="${on?'primary':''}" ${why?`disabled title="${esc(why)}"`:''} onclick="orgyPick('${w.id}')" ${other?'style="opacity:.6"':''}>${on?'✓ ':''}${esc(titled(w))} <span class="muted" title="Lust: ${esc(lustLabel(w))}">🔥${knows(w,true) ? `${Math.round(w.lust||0)}/${Math.round(lustProfile(w).max)}` : '?'}</span>${why?` <span class="muted">(${esc(why)})</span>`:''}</button>`; };
   const houses = S.houses.map(h=>{ const ws = S.workers.filter(w=>w.house===h.id && (orgyAct(w) || (w.intim||0) > 0)); return ws.length ? `<h3 style="margin-top:8px">${esc(h.name)}</h3><div class="row">${ws.map(btn).join('')}</div>` : ''; }).join('');
-  modal(`<h2>Gather the girls</h2><p class="muted">One night, ${O.min ?? 2}-${O.max ?? 5} ladies. Each does the furthest she's comfortable with (or her favorite) with Sam (spending her lust), and everyone gets closer to everyone. ${samReach()?'Sam can bring them together from any house.':'All from one house (picking someone from another house starts over).'} One action; ${O.perGirl ?? 20} of Sam's energy per lady.</p>
+  modal(`<h2>Gather the girls</h2><p class="muted">One night, ${O.min ?? 2}-${O.max ?? 5} ladies. Each does the furthest she's comfortable with (or her favorite) with Sam (spending her lust), and everyone gets closer to everyone. ${samVisitReach()?'Sam can bring them together from any house.':'All from one house (picking someone from another house starts over).'} One action; ${O.perGirl ?? 20} of Sam's energy per lady.</p>
     ${houses || '<p>Nobody is there yet with Sam.</p>'}
     <div class="row" style="margin-top:10px"><button class="primary" ${n < (O.min ?? 2) || S.sam.energy < cost || S.ap <= 0 ? 'disabled' : ''} onclick="samOrgy()">🔥 Tonight (${n} · ${cost} energy${S.sam.energy < cost ? ', Sam is too tired' : ''})</button><button onclick="ORGY=null;closeModal()">Back</button></div>`);
 }
@@ -276,7 +276,7 @@ function orgyFemText(act, a, b){
 function samOrgy(){
   const O = BAL.orgy || {}, ws = (ORGY ? ORGY.sel : []).map(findW).filter(w=>w && !orgyWhy(w));
   if(ws.length < (O.min ?? 2)) return toast('Not enough company for that.');
-  if(!samReach() && ws.some(w=>w.house !== ws[0].house)) return toast('They need to be in the same house.');
+  if(!samVisitReach() && ws.some(w=>w.house !== ws[0].house)) return toast('They need to be in the same house.');
   if(!useAP(orgyCost(ws.length))) return;
   ORGY = null;
   const first = ws[0], names = ws.map(w=>w.name.split(' ')[0]), list = names.length > 1 ? names.slice(0,-1).join(', ') + ' and ' + names[names.length-1] : names[0];

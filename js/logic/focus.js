@@ -10,13 +10,18 @@ const FOCUS = {
   office:  {icon:'📒', label:'Office',   desc:'Cuts upkeep (Business). Matches clients with the right courtesan and attendants with the right courtesans, like a madame: most of a madame\'s effect where there is none (or she\'s resting), a little on top of hers. No income.'},
   floor:   {icon:'🍺', label:'Floor',    desc:'Works the bar and the lounge: income where there is a bar (Charm), happier clients who wait less restlessly, and a little mood and trust for the ladies.'},
   watch:   {icon:'🛡️', label:'Watch',    desc:'Security all week (Strength), his step-in bonus every night, and more trust: the ladies feel safe with him around.'},
+  guild:   {icon:'⚔️', label:'Guild',    desc:'Goes out on a guild contract with (or instead of) the ladies: pick it on the Guild tab. He is away all week, so none of the at-house work happens.'},
   classes: {icon:'🎓', label:'Classes',  desc:'Afternoon classes for everyone working: a skill class (her job\'s skill) or a stat class (the stats her job uses). Auto alternates.'},
   rest:    {icon:'🛌', label:'Off duty', desc:'Takes the week easy: no work, energy back instead.'}
 };
 const FOCUS_TOPICS = {auto:'Auto', skill:'Skill class', stat:'Stat class'};
 const samFocus = () => (S.samFocus && FOCUS[S.samFocus.kind]) ? S.samFocus : (S.samFocus = {kind:'office', topic:'auto'});
-const samFocusCost = () => samFocus().kind==='rest' ? 0 : Math.max(5, ((BAL.focus||{}).cost ?? 25) - samUpFx('workEnergy'));
-function setFocus(kind, topic){ const f = samFocus(); if(FOCUS[kind]) f.kind = kind; if(FOCUS_TOPICS[topic]) f.topic = topic; save(); render(); }
+// where his focus is worked: away on a contract, at every house (Speaking Stones / Shadow Clone), or at his own
+const samFocusCost = () => samFocus().kind==='rest' ? 0 : Math.max(5, ((BAL.focus||{}).cost ?? 25) - samUpFx('workEnergy') - (samFocus().kind==='guild' ? (hasGuildPerk('roadwise') ? 10 : 0) + (hasPast('courier') ? 5 : 0) : 0));
+function setFocus(kind, topic){
+  const f = samFocus();
+  if(kind==='guild'){ if(!guildOn()) return toast('Sam has to register at the Adventurers\' Guild first.'); TAB = 'guild'; return render(); }   // the contract is picked on the Guild tab
+  if(FOCUS[kind]){ if(f.kind==='guild') f.topic = 'auto'; f.kind = kind; } if(FOCUS_TOPICS[topic]) f.topic = topic; save(); render(); }
 // How hard Sam worked this focus this week at house h (0-1), or 0 if it's another focus or he isn't there.
 const focusOn = (kind, h) => (S.samWeek && S.samWeek.focus === kind && (!h || samAtHouse(h))) ? (S.samWeek.focusEff || 0) : 0;
 // Sam as a madame (Office): the madame formula with his Business for her Management, Wits and Charm (balance.json → focus.office).
@@ -54,7 +59,7 @@ function samFocusRun(){
   samGainXP(Math.round((F.xp ?? 8) * eff));
   let what = '';
   if(k==='watch'){
-    const W = F.watch || {}, sec = Math.round((20 + S.sam.strength) * (1 + samUpFx('watch')) * (W.mult ?? 1) * eff);
+    const W = F.watch || {}, sec = Math.round((20 + S.sam.strength) * (1 + samUpFx('watch')) * (W.mult ?? 1) * (hasGuildPerk('pitfighter') ? 1.25 : 1) * eff);
     sw.security += sec; samStat('strength', 2*eff);
     near.forEach(w=>gainTrust(w, (W.trust ?? 1) * eff));
     what = `stood watch (security +${sec}, the ladies trust him a little more)`;
@@ -64,7 +69,7 @@ function samFocusRun(){
   } else if(k==='floor'){
     const Fl = F.floor || {}; let inc = 0;
     S.houses.filter(h=>samAtHouse(h) && h.up.bar).forEach(h=>{
-      inc += Math.round(((Fl.base ?? 30) + S.sam.charm * (Fl.perCharm ?? 1.2) + rnd(0,25)) * (Fl.nights ?? 4) * (hasPast('bartender')?1.5:1) * (1 + samUpFx('bartend')) * (hasChallengePerk('iron_ledger') ? 1.15 : 1) * eff); });
+      inc += Math.round(((Fl.base ?? 30) + S.sam.charm * (Fl.perCharm ?? 1.2) + rnd(0,25)) * (Fl.nights ?? 4) * (hasPast('bartender')?1.5:1) * (1 + samUpFx('bartend')) * (hasGuildPerk('silvertongue') ? 1.15 : 1) * (hasChallengePerk('iron_ledger') ? 1.15 : 1) * eff); });
     if(inc){ S.gold += inc; sw.income += inc; }
     near.forEach(w=>{ moodAdd(w, (Fl.mood ?? 1) * eff); gainTrust(w, (Fl.trust ?? 0.3) * eff); });
     samStat('charm', 2*eff);
@@ -72,6 +77,10 @@ function samFocusRun(){
   } else if(k==='classes'){
     const topic = f.topic==='auto' ? (S.week % 2 ? 'skill' : 'stat') : f.topic, mult = ((F.classes||{}).mult ?? 2.5) * eff;
     what = 'held ' + (topic==='stat' ? samStatClass(mult) : samSkillClass(mult));
+  } else if(k==='guild'){
+    const c = guildContract(f.topic);
+    samLog(`${D.label} focus`);
+    return c ? `${D.icon} Sam went out on the ${GCON[c.type].label}${tired}.` : `${D.icon} Sam had no contract to work.`;
   }
   samLog(`${D.label} focus`);
   return `${D.icon} Sam ${what} at ${esc(where)}${tired}.`;
@@ -80,10 +89,11 @@ function samFocusRun(){
 // Sam's sheet: the focus picker.
 function focusCardHTML(){
   const f = samFocus(), cost = samFocusCost(), where = samReach() ? 'every house' : esc(samHouse().name);
-  const btn = k => `<button class="${f.kind===k?'primary':''}" onclick="setFocus('${k}')" title="${esc(FOCUS[k].desc)}">${FOCUS[k].icon} ${FOCUS[k].label}</button>`;
-  const topic = f.kind==='classes' ? `<div class="row">Classes: <select onchange="setFocus('classes', this.value)">${Object.entries(FOCUS_TOPICS).map(([k,l])=>`<option value="${k}" ${f.topic===k?'selected':''}>${l}</option>`).join('')}</select></div>` : '';
+  const btn = k => k==='guild' && !guildOn() ? '' : `<button class="${f.kind===k?'primary':''}" onclick="setFocus('${k}')" title="${esc(FOCUS[k].desc)}">${FOCUS[k].icon} ${FOCUS[k].label}</button>`;
+  const gc = f.kind==='guild' ? guildContract(f.topic) : null;
+  const topic = gc ? `<div class="row">On contract: <b>${GCON[gc.type].icon} ${esc(GCON[gc.type].label)}</b></div>` : f.kind==='classes' ? `<div class="row">Classes: <select onchange="setFocus('classes', this.value)">${Object.entries(FOCUS_TOPICS).map(([k,l])=>`<option value="${k}" ${f.topic===k?'selected':''}>${l}</option>`).join('')}</select></div>` : '';
   const short = cost && S.sam.energy < cost ? ` <span class="warn">Sam has ${Math.round(S.sam.energy)} energy left: he'll work at ${Math.round(S.sam.energy/cost*100)}%.</span>` : '';
   return `<section class="card"><h2>This Week's Work</h2>
     <div class="row">${Object.keys(FOCUS).map(btn).join('')}</div>${topic}
-    <p class="muted"><b>${FOCUS[f.kind].icon} ${FOCUS[f.kind].label}:</b> ${esc(FOCUS[f.kind].desc)} ${cost ? `Costs ${cost} energy when the week ends, at ${where}.` : ''}${short}</p></section>`;
+    <p class="muted"><b>${FOCUS[f.kind].icon} ${FOCUS[f.kind].label}:</b> ${esc(FOCUS[f.kind].desc)} ${cost ? `Costs ${cost} energy when the week ends${f.kind==='guild' ? '' : `, at ${where}`}.` : ''}${short}</p></section>`;
 }

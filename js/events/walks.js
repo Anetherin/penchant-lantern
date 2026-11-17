@@ -51,13 +51,17 @@ function samWalk(){
   const g = G();
   const opts = [];
   if(exLovers.length) opts.push({cat:'exlover', w:(W.partner ?? 1.5) + 1.2});
-  if(canPartner) opts.push({cat:'partner', w:((W.partner ?? 1.5) + (W.partnerPity ?? 0.25) * pity) * mult});
-  else if(guests.length) opts.push({cat:'guest', w:W.guest ?? 3.5});
+  // partnerOdds: the chance this walk finds one, by how many were found this cycle (30% / 10% / 5%, then the cap); NG++: always ngppPartnerOdds
+  const PO = ngpp ? B.ngppPartnerOdds : Array.isArray(B.partnerOdds) && B.partnerOdds.length ? B.partnerOdds[Math.min(found, B.partnerOdds.length - 1)] : null;
+  const partnerP = PO != null ? Math.min(0.9, PO) : null;
+  if(!canPartner && guests.length) opts.push({cat:'guest', w:W.guest ?? 3.5});
   if(!g.left) opts.push({cat:'goddess', w: g.bound ? (W.goddessBound ?? 0.8) : (W.goddess ?? 2.2)});
   if((WALKS.casual || []).length) opts.push({cat:'casual', w:W.casual ?? 3.2});
   ['rest','coin','flavor'].forEach(cat => {
     if(walkEligibleEvents(cat).length) opts.push({cat:cat, w:W[cat] ?? 1.5});
   });
+  if(canPartner){ const others = opts.reduce((a,o)=>a+o.w, 0);   // weight that gives exactly partnerP (or the old weight in NG++)
+    opts.push({cat:'partner', w: partnerP != null ? others * partnerP / (1 - partnerP) : ((W.partner ?? 1.5) + (W.partnerPity ?? 0.25) * pity) * mult}); }
 
   const picked = opts.length ? weighted(opts, o => o.w).cat : 'rest';
   if(picked === 'partner' || picked === 'exlover') S.flags.walkNoPartner = 0;
@@ -386,6 +390,10 @@ function applyWalkOutcome(o, vars){
   if(o.workerTrust && vars._worker){
     const tg = gainTrust(vars._worker, o.workerTrust);
     notes.push(`${vars._worker.name} trust ${tDelta(tg)}`);
+  }
+  if(o.mood){   // everyone at Sam's house
+    const L = S.workers.filter(w=>w.house===samHouse().id); L.forEach(w=>moodAdd(w, o.mood));
+    if(L.length) notes.push(`Mood +${o.mood} at ${samHouse().name}`);
   }
   if(o.outfitDiscount){
     const ok = walkShopOutfit();

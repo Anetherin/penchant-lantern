@@ -1,0 +1,55 @@
+{
+  "vesna": {
+    "role": "guild",
+    "job": "security",
+    "name": "Vesna Greyhollow",
+    "race": "beastkin",
+    "sub": "wolf",
+    "age": 28,
+    "personality": "Stoic and blunt",
+    "traits": ["Former Adventurer","Loyal"],
+    "style": "Sporty",
+    "favColor": "moss green",
+    "fav": "massage_get",
+    "dislike": "missionary",
+    "lovers": "cowgirl",
+    "backstory": "A grey-wolf tracker who was left for dead in the Barrow's lower halls when a ceiling came down. Her old party, the Gilded Spur, never came back for her. She lasted three weeks on cave fish and spite before Sam's guild party, newly Silver, found her. She doesn't trust parties or promises, and she won't sleep indoors with her back to a room. She sniffs people to read them, says very little, and is bad at feelings and very good at noticing. Once she commits she is pack-loyal to the bone. Feed her first.",
+    "design": {
+      "hairStyle": "shaggy, often tied back",
+      "hairColor": "grey",
+      "eyes": "amber",
+      "skin": "weathered, sun-browned",
+      "features": "grey wolf ears, a bushy grey wolf tail and a pale scar across her left forearm",
+      "accessories": "a frayed leather hair cord",
+      "accState": "always",
+      "expression": "a flat, watchful stare"
+    },
+    "under": "plain",
+    "underColor": "charcoal",
+    "stats": {"beauty":58,"charm":28,"charisma":34,"refinement":22,"wits":68,"stamina":78,"strength":72,"agility":80},
+    "tech": {"service":10,"dance":8,"bar":12,"combat":78,"manage":14},
+    "actSkill": 8,
+    "popularity": 8,
+    "lewd": 15,
+    "trust": 8,
+    "outfits": {
+      "sig_vesna": {
+        "label": "Tracker's leathers",
+        "style": "Sporty",
+        "prompt": "a patched grey ranger's jerkin over a linen shirt, leather bracers, a hooded travelling cloak, worn boots and trousers cut to leave room for her tail",
+        "bonus": {"security":1.3,"adventurer":1.15}
+      }
+    },
+    "jobs": {"likes":["security","promoter"],"dislikes":["host","dancer"]},
+    "body": {"bust":"small","height":"tall","figure":"athletic"},
+    "unique": {
+      "name": "Tracker's Nose",
+      "desc": "She reads every client by scent the moment he walks in, and trouble never gets past the door.",
+      "fx": {"security":12,"classBonus":{"adventurer":1.15,"mercenary":1.1}}
+    },
+    "bonds": {
+      "ines": {"v":30,"kind":"comrades","note":"Knew each other from the road. Neither asks the other how she's sleeping, and both notice."},
+      "hanna": {"v":25,"note":"Hanna filed her death notice, and then her un-death. She still keeps a copy of both, and Vesna lets her."}
+    }
+  }
+}

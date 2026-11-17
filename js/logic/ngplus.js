@@ -46,7 +46,7 @@ const NG_BOONS = {
   devotion:{label:'Fated Meeting', desc:'Every new partner, this cycle and after, starts with +15 trust and +10 lewdness.'},
   loyal:   {label:'Old Loyalties', desc:'Ladies who come back from a past life ask only half the usual raise for each life.'},
   memory:  {label:'Vivid Memories', desc:'Ladies who carry over keep 15% more of the skills and stats they built (still at most 65%).'},
-  clone:   {label:'Shadow Clone', desc:'Sam learned to be in two places at once. His bonuses, watch, books, classes, and late-night visits reach every house, not just where he sleeps.'}
+  clone:   {label:'Shadow Clone', desc:'Sam learned to be in two places at once. His weekly focus and always-on bonuses reach every house, not just where he sleeps (like the Speaking Stones, for good). Late-night visits still need the Teleport Circle.'}
 };
 // What was spent on the home house's rooms, tiers, quarters, beds, annex and upgrades (tracked in h.spent by buyUpgrade).
 const improvementsValue = h => Math.round((h && h.spent) || 0);
@@ -412,6 +412,7 @@ function ngBegin(){
     S.flags.partnerCD = 3; S.flags.walkPartners = 0; S.flags.walkNoPartner = 0; S.ap = apMax(); S.sam.energy = samMaxEnergy();
     refreshCandidates(hasBoon('recruit') ? 3 : 0, hasBoon('recruit') ? 1.15 : 1);
     inviteFriend(true); checkUnlocks(true);
+    guildNewCycle(true);   // guild.js: the first NG++ resets the guild once
     addLog(`NG++${N.ngppCycle} (Cycle ${S.cycle}): Sam wakes at ${HDn.name} with an empty vessel and a loan of ${fmt(N.debt)}.`);
     queueNgppIntros(shrine, vessel);
     NGS = null; save(); if(typeof cloudAutoSave === 'function') cloudAutoSave(); TAB = 'house'; render();
@@ -492,6 +493,7 @@ function ngBegin(){
   refreshCandidates(hasBoon('recruit') ? 3 : 0, hasBoon('recruit') ? 1.15 : 1);
   inviteFriend(true);   // the first week already shows an old friend
   checkUnlocks(true);
+  guildNewCycle(false);   // guild.js: Sam keeps his rank; the rank's people come back as candidates
   addLog(`New Game+ (cycle ${S.cycle}): Sam keeps ${HDo.name} and takes on a new debt of ${fmt(N.debt)}.`);
   queueNgPlusIntros(C.house && H(C.house), C.partner && C.partner!=='none' ? S.workers.find(w=>w.key===C.partner) : null);
   NGS = null; save(); if(typeof cloudAutoSave === 'function') cloudAutoSave(); TAB = 'house'; render();

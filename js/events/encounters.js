@@ -17,7 +17,7 @@ const releaseSamAct = w => { const ok = id => id && canSam(w,id) && samStance(w,
   const f = actArr(w.fav).find(ok); if(f) return f; const l = actArr(w.lovers).find(ok); if(l) return l;
   const a = getActs().filter(x=>ok(x.id)).sort((x,y)=>y.th-x.th)[0] || getActs().find(x=>releases(x.id) && canSam(w,x.id)); return a ? a.id : null; };
 const needSamAct = w => releaseSamAct(w) || bestSamAct(w);
-const idleForClients = w => JOBS[w.job] && JOBS[w.job].cat!=='escort';
+const idleForClients = w => JOBS[w.job] && JOBS[w.job].cat!=='escort' && w.job!=='guild';
 function canVisit(w, trustMin, lewdMin, lustMin){
   return w.trust>=trustMin && w.lewd>=lewdMin && w.lust>=lustMin && w.energy>=maxEnergy(w)*0.3 && !!(restless(w) ? releaseSamAct(w) : bestSamAct(w));
 }
@@ -34,7 +34,7 @@ function encounterResult(w, act, intro, kind, situation, drain, ctx){
 
 /* ---------- Sam rests ---------- */
 function restVisitor(){
-  const c = S.workers.filter(w=>canVisit(w, 55, 40, 40) && nearSam(w));
+  const c = S.workers.filter(w=>canVisit(w, 55, 40, 40) && nearSamV(w));
   if(!c.length || Math.random() > 0.35) return null;
   return weighted(c, w=>w.trust + w.lust);
 }
@@ -70,7 +70,7 @@ function queueEncounters(){
   let used = queueRegularDrama() ? 1 : 0;
   used += queueFirsts();   // a lady crossing a line with Sam (js/events/firsts.js)
   // lovers at high lust come looking for Sam (they wait for him rather than going it alone)
-  const lovers = S.workers.filter(w=>has(w,'Devoted') && restless(w) && w.energy>=maxEnergy(w)*0.2 && releaseSamAct(w) && nearSam(w));
+  const lovers = S.workers.filter(w=>has(w,'Devoted') && restless(w) && w.energy>=maxEnergy(w)*0.2 && releaseSamAct(w) && nearSamV(w));
   if(lovers.length && Math.random() < 0.75){ const id = pick(lovers).id; used++; EVQ.push(()=>evLoverWaiting(findW(id))); }
   // two or more lovers: jealousy when one is left out
   if(used<2) used += queueLoverDynamics();
@@ -87,8 +87,8 @@ function queueEncounters(){
     used++; const id = sl.id, morning = Math.random() < 0.5; EVQ.push(()=>evSleepIn(findW(id), morning));
   }
   // late-night visits from ladies who weren't seeing clients (not the one already in his bed)
-  const c = S.workers.filter(w=>idleForClients(w) && canVisit(w, 60, 45, 55) && nearSam(w) && !(restless(w) && sleepInLady() === w));
-  if(c.length && used<2 && Math.random() < 0.12 + 0.05*c.length){ const w = pick(c), id = w.id; EVQ.push(()=>evLateVisit(findW(id))); }
+  const c = S.workers.filter(w=>idleForClients(w) && canVisit(w, 60, 45, 55) && nearSamV(w) && !(restless(w) && sleepInLady() === w));
+  if(c.length && used<2 && S.samWeek.focus!=='guild' && Math.random() < 0.12 + 0.05*c.length){ const w = pick(c), id = w.id; EVQ.push(()=>evLateVisit(findW(id))); }
 }
 function evLateVisit(w){
   if(!w || !canVisit(w, 60, 45, 40)) return null;
@@ -113,7 +113,7 @@ function evLoverWaiting(w){
 function evReckless(w){
   if(!w || w.lust < lustHigh(w)-10) return null;
   const act = releaseSamAct(w), h = houseOf(w);
-  if(act && w.trust>=40 && nearSam(w) && Math.random()<0.55){
+  if(act && w.trust>=40 && nearSamV(w) && Math.random()<0.55){
     return {title:`${w.name} Can't Wait`, who:w.id, scene:'enc_reckless', text:`${w.name} has been restless for days, and tonight she's done waiting. She catches you in the hallway between errands, pushes you into the nearest storeroom, locks the door behind you, and is already pulling at your belt.`,
       choices:[
         {label:'Go along with it', fx(){ return encounterResult(w, act, `It is not quick. She takes everything she's been wanting, and you emerge much later, extremely tired. (Sam's energy −35)`, 'reckless', 'She ambushed Sam in a storeroom after days of pent-up desire.', 35, 'storeroom'); }},

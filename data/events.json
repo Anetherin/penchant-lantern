@@ -465,5 +465,93 @@
       "setting": "pleasure house breakfast room, warm morning light",
       "house": true
     }
+  },
+  "nightIncidents": {
+    "_readme": "Report lines for the small night incidents (balance.json → incidents). bad = nobody handled it, ok = security (or Sam on watch) did. {house}, {guard} (who handled it), {lady} (the lady it happened to), {gold}.",
+    "brawl": {
+      "label": "Brawl",
+      "bad": [
+        "Two drovers settled an argument with a chair at {house}. The chair lost. Damages {gold}.",
+        "A fistfight broke out in the lounge at {house} and took a table and a lamp with it ({gold})."
+      ],
+      "ok": [
+        "{guard} broke up a fight in the lounge before the first chair moved.",
+        "{guard} walked two red-faced brawlers out the door, one in each hand."
+      ]
+    },
+    "drunk": {
+      "label": "Shouting drunk",
+      "bad": [
+        "A drunk spent half the night shouting about his ex-wife in {house}'s lounge. Nobody enjoyed it.",
+        "Someone sang the same bawdy verse at {house} for an hour. Clients left in a worse mood than they came."
+      ],
+      "ok": [
+        "{guard} talked a shouting drunk into a cab and a glass of water.",
+        "{guard} steered a loud drunk out into the night air before the lounge soured."
+      ]
+    },
+    "linger": {
+      "label": "Won't leave",
+      "bad": [
+        "A client at {house} refused to leave {lady}'s room after his hour was up, and the next client gave up waiting.",
+        "A sulking regular camped in a room at {house} until dawn. One booking was lost."
+      ],
+      "ok": [
+        "{guard} reminded an overstaying client that the hour was over. He found his boots quickly.",
+        "{guard} knocked once on a door at {house} and the client remembered an early start."
+      ]
+    },
+    "thief": {
+      "label": "Thief",
+      "bad": [
+        "Somebody lifted a purse from behind the counter at {house} ({gold}).",
+        "A smiling stranger left {house} with the night's tips ({gold})."
+      ],
+      "ok": [
+        "{guard} caught a pickpocket working the lounge and took back what he'd lifted.",
+        "{guard} spotted a hand in the tip jar and a very surprised thief at the end of it."
+      ]
+    },
+    "spouse": {
+      "label": "Jealous spouse",
+      "bad": [
+        "A furious wife came looking for her husband at {house} and found him with {lady}. The whole street heard about it.",
+        "A jealous husband stormed {house} shouting for his wife's lover and made {lady} cry before he left."
+      ],
+      "ok": [
+        "{guard} met a furious spouse at the door and kept the scene on the step, not in the rooms.",
+        "{guard} calmed a jealous husband at the door and sent him home with a story he could live with."
+      ]
+    },
+    "peeper": {
+      "label": "Peeper",
+      "bad": [
+        "{lady} caught a man peering through a gap in the shutters at {house}. She didn't sleep well.",
+        "Someone drilled a spyhole into {lady}'s room at {house}. She's rattled."
+      ],
+      "ok": [
+        "{guard} caught a peeper at the shutters and saw him off with a black eye.",
+        "{guard} found a man under {lady}'s window and made sure he won't come back."
+      ]
+    },
+    "mess": {
+      "label": "Mess",
+      "bad": [
+        "A client was sick all over {house}'s front hall. It took most of the morning.",
+        "Somebody knocked over a whole keg in {house}'s lounge. The floor is still sticky."
+      ],
+      "ok": ["{guard} got a green-faced client outside just in time.","{guard} caught a wobbling keg before it went over."]
+    },
+    "vandal": {
+      "label": "Vandal",
+      "bad": [
+        "Someone carved rude pictures into {house}'s front door ({gold} to fix).",
+        "A rival's lackey smashed {house}'s lantern ({gold})."
+      ],
+      "ok": [
+        "{guard} chased off a lad with a knife and bad intentions toward the front door.",
+        "{guard} caught a vandal with a paint pot and made him scrub the wall he'd started on."
+      ]
+    }
   }
 }

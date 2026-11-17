@@ -7,6 +7,7 @@ function canDo(w, job){
   const h = houseOf(w);
   if(J.race && w.race!==J.race) return `Only ${(RACES[J.race]||{label:J.race}).label.toLowerCase()}s can work as ${J.label}.`;
   if(job!=='rest' && w.health<30) return `${w.name} is too unwell to work.`;
+  if(job==='guild' && w.job!=='guild'){ const g = guildCanJoin(w); if(g) return g; }
   if(job!=='rest' && w.trust < jobTrust(w,job)) return `${w.name} doesn't trust Sam enough for that yet (needs trust ${tShow(jobTrust(w,job))}).`;
   if(job==='courtesan' && !getActs().some(a=>clientStance(w,a.id,'courtesan')!=='no')) return `${w.name} isn't comfortable with that yet.`;
   if(J.needs && !h.up[J.needs]) return `${h.name} needs a ${UPGRADES[J.needs].label}.`;
@@ -21,8 +22,10 @@ const MENU_JOBS = ['courtesan','dancer','bath','host'];
 function safeJob(w, pref){ for(const j of [pref,'courtesan','promoter','attendant','maid']) if(j && JOBS[j] && !canDo(w,j)) return j; return 'rest'; }
 function setJob(id, job){
   const w = findW(id); if(!w) return;
+  if(job==='guild' && w.job!=='guild') return guildJobMenu(id);   // guild.js: pick the contract
   const msg = canDo(w, job);
   if(msg) toast(msg); else {
+    if(w.job==='guild' && job!=='guild'){ delete w.gc; delete w.gPrev; }
     w.job = job; delete w.prevJob;
     if(MENU_JOBS.includes(job) && !w.menu.length){ w.menu = getActs().filter(a=>clientStance(w,a.id)==='yes').map(a=>a.id); if(w.menu.length) toast(`${w.name}'s menu: ${w.menu.map(actLabel).join(', ')}. Add "~" favors on her sheet.`); }
     save();
