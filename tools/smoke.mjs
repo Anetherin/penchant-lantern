@@ -24,6 +24,7 @@ const BOT = `async (weeks) => {
     if (p && S.ap > 0) { samDate(p.id, 'walk'); closeModal(); }
     if (S.ap > 0) { samWork('rounds'); closeModal(); }
     if (S.ap > 0) { samRest(); closeModal(); }
+    setFocus(['office','floor','watch','classes','rest'][i % 5], ['auto','skill','stat'][i % 3]);
     if (i === 1) { S.gold = Math.max(S.gold, 9000); buyUpgrade('suite'); buySamUp('notebook'); closeModal(); }
     if (i === 4) { S.gold = Math.max(S.gold, 200000); const k = Object.keys(HOUSES).find(k => !H(k) && houseOffered(k) && !HOUSES[k].premium); if (k) buyHouse(k); CUR_EV = null; EVQ = []; closeModal(); setAutoFeast(S.houses[S.houses.length-1].id, BAL.feast.tiers[0].id); }
     if (i % 2) throwFeast(BAL.feast.tiers[0].id); closeModal();
