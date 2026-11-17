@@ -1,0 +1,12 @@
+{
+  "desc": "Walk pacing: a first cycle at the Lantern with walks as Sam's spare action. 'partners' = partners found on walks this cycle (hard cap walk.partnerCycleMax). Expect the first within a week or two and about 3-4 by week 30.",
+  "scenario": "campaign",
+  "weeks": 104,
+  "runs": 12,
+  "variants": [
+    {"name": "walks", "policy": {"samDefault": "walk"}},
+    {"name": "walks, stop at 30", "policy": {"samDefault": "walk"}, "weeks": 30}
+  ],
+  "columns": ["weeksToWin", "partners", "netMid", "worth20"],
+  "breakdown": []
+}

@@ -319,7 +319,7 @@ function playWeek(){
   hs.forEach(x => { const a = L.hist[x.id] = L.hist[x.id] || []; a.push({ pushy: x.pushy ? x.pushy.total : 0, tidy: x.tidy }); if (a.length > 3) a.shift(); });
   const W = S.workers, avg = f => W.length ? W.reduce((a, w) => a + f(w), 0) / W.length : 0;
   return { wk, cycle: S.cycle || 1, gold: Math.round(S.gold), debt: Math.round(S.debt.remaining), net: Math.round(R.income - R.wages - R.upkeep - (R.recharge || 0) - (R.cuts || 0) - (R.tutor || 0)),
-    income: Math.round(R.income), wages: Math.round(R.wages), upkeep: Math.round(R.upkeep), sam: Math.round(R.led.sam || 0), guild: Math.round(R.led.guild || 0), grank: (S.guild && S.guild.rank) || 0, gaway: Object.values(R.per).filter(p => p.job === 'guild').length, rep: Math.round(homeH().rep * 10) / 10, prestige: Math.round(housePrestige(homeH()) * 10) / 10,
+    income: Math.round(R.income), wages: Math.round(R.wages), upkeep: Math.round(R.upkeep), sam: Math.round(R.led.sam || 0), guild: Math.round(R.led.guild || 0), partners: (S.flags && S.flags.walkPartners) || 0, grank: (S.guild && S.guild.rank) || 0, gaway: Object.values(R.per).filter(p => p.job === 'guild').length, rep: Math.round(homeH().rep * 10) / 10, prestige: Math.round(housePrestige(homeH()) * 10) / 10,
     staff: W.length, served: R.served, turned: R.turned, sat: hs.length ? hs[0].sat : 0, missed: S.debt.strikes > strikes0 ? 1 : 0, strikes: S.debt.strikes,
     mood: Math.round(avg(w => w.mood)), trust: Math.round(avg(w => w.trust)), left, houses: hs, per, over: !!S.over, won: !!S.won };
 }

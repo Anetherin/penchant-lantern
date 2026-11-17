@@ -51,14 +51,17 @@ function samWalk(){
   const g = G();
   const opts = [];
   if(exLovers.length) opts.push({cat:'exlover', w:(W.partner ?? 1.5) + 1.2});
-  const byF = !ngpp && Array.isArray(B.partnerByFound) && B.partnerByFound.length ? B.partnerByFound[Math.min(found, B.partnerByFound.length - 1)] : null;   // first partner very likely, later ones rarer
-  if(canPartner) opts.push({cat:'partner', w: byF != null ? byF + (W.partnerPity ?? 0.25) * pity : ((W.partner ?? 1.5) + (W.partnerPity ?? 0.25) * pity) * mult});
-  else if(guests.length) opts.push({cat:'guest', w:W.guest ?? 3.5});
+  // partnerOdds: the chance this walk finds one, by how many were found this cycle (each about twice as hard as the last), plus pity
+  const PO = !ngpp && Array.isArray(B.partnerOdds) && B.partnerOdds.length ? B.partnerOdds[Math.min(found, B.partnerOdds.length - 1)] : null;
+  const partnerP = PO != null ? Math.min(0.9, PO * (1 + (W.partnerPity ?? 0.25) * pity)) : null;
+  if(!canPartner && guests.length) opts.push({cat:'guest', w:W.guest ?? 3.5});
   if(!g.left) opts.push({cat:'goddess', w: g.bound ? (W.goddessBound ?? 0.8) : (W.goddess ?? 2.2)});
   if((WALKS.casual || []).length) opts.push({cat:'casual', w:W.casual ?? 3.2});
   ['rest','coin','flavor'].forEach(cat => {
     if(walkEligibleEvents(cat).length) opts.push({cat:cat, w:W[cat] ?? 1.5});
   });
+  if(canPartner){ const others = opts.reduce((a,o)=>a+o.w, 0);   // weight that gives exactly partnerP (or the old weight in NG++)
+    opts.push({cat:'partner', w: partnerP != null ? others * partnerP / (1 - partnerP) : ((W.partner ?? 1.5) + (W.partnerPity ?? 0.25) * pity) * mult}); }
 
   const picked = opts.length ? weighted(opts, o => o.w).cat : 'rest';
   if(picked === 'partner' || picked === 'exlover') S.flags.walkNoPartner = 0;

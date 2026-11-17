@@ -12,7 +12,7 @@ export function metrics(r){
   const avg = k => mean(W.map(x => x[k]));
   Object.assign(m, { total: mean(W.map(x => x.net + x.sam)), net: avg('net'), income: avg('income'), wages: avg('wages'), upkeep: avg('upkeep'), sam: avg('sam'), served: avg('served'), turned: avg('turned'), sat: avg('sat'),
     mood: avg('mood'), trust: last.trust, gold: last.gold, debt: last.debt, rep: last.rep, repGain: last.rep - (first.rep - 0), staff: last.staff,
-    missed: W.reduce((a, x) => a + x.missed, 0), left: W.reduce((a, x) => a + x.left, 0), over: last.over ? 1 : 0, won: last.won ? 1 : 0 });
+    partners: last.partners || 0, missed: W.reduce((a, x) => a + x.missed, 0), left: W.reduce((a, x) => a + x.left, 0), over: last.over ? 1 : 0, won: last.won ? 1 : 0 });
   const H0 = W.map(x => (x.houses || [])[0]).filter(Boolean), hav = k => mean(H0.map(x => x[k]).filter(Number.isFinite));
   m.tidy = hav('tidy'); m.tidyEnd = (H0.at(-1) || {}).tidy; m.promo = hav('promo'); m.lost = hav('lost');
   m.pushy = mean(H0.map(x => x.pushy ? x.pushy.total : 0)); m.unhandled = mean(H0.map(x => x.pushy ? (x.pushy.none || 0) + (x.pushy.samfail || 0) + (x.pushy.samcall || 0) : 0));
