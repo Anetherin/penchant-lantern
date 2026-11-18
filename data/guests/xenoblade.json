@@ -56,7 +56,7 @@
             "vanea": {"v":25,"note":"Respects Vanea's quiet wisdom and grace under sorrow."}
           },
           "jobs": {"likes":["chapel","host","teacher"],"dislikes":["bartender","maid"]},
-          "body": {"bust":"small","height":"short","figure":"slim"},
+          "body": {"bust":"small","height":"short","figure":"average"},
           "unique": {
             "name": "Elemental Discharge",
             "desc": "Her poised ether arts and royal dignity uplift the chapel and charm highborn patrons.",
@@ -381,7 +381,7 @@
             }
           },
           "jobs": {"likes":["security","courtesan"],"dislikes":["maid","attendant"]},
-          "body": {"bust":"large","height":"tall","figure":"curvy"},
+          "body": {"bust":"large","height":"short","figure":"curvy"},
           "unique": {
             "name": "Phase Transfer Cannon",
             "desc": "Overwhelming combat specs make her a terrifying bouncer and a fearless guild operative.",
@@ -429,7 +429,7 @@
           },
           "bonds": {"nia":{"v":15,"note":"Former Torna comrades who still trade sharp barbs."}},
           "jobs": {"likes":["security","bartender"],"dislikes":["maid","host"]},
-          "body": {"bust":"small","height":"tall","figure":"slim"},
+          "body": {"bust":"small","height":"average","figure":"average"},
           "unique": {
             "name": "Tornan Fury",
             "desc": "Her explosive temper and spear mastery keep rowdy adventurers firmly in line.",
