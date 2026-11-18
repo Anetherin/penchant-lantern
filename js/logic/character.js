@@ -119,7 +119,7 @@ function outfitKey(w, scene){
   }
   return w.outfit;
 }
-function getOutfit(w, scene){ const ok = (scene && (SCENES[sceneBase(scene)]||{}).outfit) || outfitKey(w, scene); if(ok==='custom') return {label:'Her own outfit', style:w.style, prompt:w.customOutfit||'an elegant dress', bonus:{}, custom:true}; return WARDROBE[ok] || BASE_OUTFITS.b_corset; }
+function getOutfit(w, scene){ const wr = sceneWear(scene); if(wr) return {label:'As described', style:w.style, prompt:wr, bonus:{}, custom:true}; const ok = (scene && (SCENES[sceneBase(scene)]||{}).outfit) || outfitKey(w, scene); if(ok==='custom') return {label:'Her own outfit', style:w.style, prompt:w.customOutfit||'an elegant dress', bonus:{}, custom:true}; return WARDROBE[ok] || BASE_OUTFITS.b_corset; }
 function getUnder(w){ if(w.under==='custom') return {label:'Custom', prompt:w.customUnder||'simple lace underwear', bonus:{}, style:w.style}; return UNDER[w.under] || UNDER.plain; }
 const usesColor = o => /\{color\}/.test(o.prompt||'');
 // Lantern Angels deepen their wings to black-and-amber and shift their halo glow to pleasure-lantern amber.
@@ -174,6 +174,8 @@ function accListText(w, scene){
   const d = (w && w.design) || {}, o = (w && w.outfit && getOutfit(w, scene)) || {};
   return [d.accessories, o.accessories && o.accessories !== d.accessories ? `${o.accessories} (${o.label||'outfit'})` : ''].filter(Boolean).join(', ');
 }
+// a story image's wear (scenes.json / dynScene image.wear) replaces the outfit wording for that moment: what the text says she has on
+const sceneWear = scene => { const sc = scene && SCENES[sceneBase(scene)]; return (sc && typeof sc.wear === 'string' && sc.wear.trim()) || ''; };
 function outfitText(w, scene){ return getOutfit(w, scene).prompt; }   // outfit colors are written into the prompt
 function underText(w, scene){ return w.under==='none' ? null : getUnder(w).prompt.replace(/\{color\}/g, favColorOf(w, scene)); }   // undergarments come in her favorite color
 function ob(w,k){ return ((getOutfit(w).bonus||{})[k]||1) * ((getUnder(w).bonus||{})[k]||1); }
@@ -321,6 +323,9 @@ function defaultCloth(w, scene){
   if(base==='sam_spirit_futa') return comfortCloth(w, true, true);
   if(base==='spirit_futa') return comfortCloth(w, false, true);
   if(base.startsWith('orgy:')) return comfortCloth(w, true, true);
+  // story moments (image.cloth): the dress level the text describes, as written (the story already decided she's comfortable)
+  const C = (SCENES[base]||{}).cloth; if(C && CLOTH.some(x=>x.id===C) && !(C==='under' && w.under==='none')) return C;
+  if(C==='under') return 'partial';   // "in her underwear" without any: her clothes half off instead
   // invitations and the like (scenes.json / dates.json image "undress": "partial" | "under"): as far as that, within her comfort with Sam
   const U = (SCENES[base]||{}).undress;
   if(U){ const ix = x => CLOTH.findIndex(y=>y.id===x), cap = comfortCloth(w, true, false), lv = Math.min(ix(U), ix(cap)); return CLOTH[Math.max(0, lv)].id; }
