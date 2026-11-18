@@ -106,7 +106,9 @@
       "image": {
         "comp": "snapping to attention beside a rain barrel, soaking wet, covering herself with one arm and saluting with the other",
         "setting": "training yard behind an inn, afternoon",
-        "sam": false
+        "sam": false,
+        "cloth": "dressed",
+        "wear": "a small linen towel held against her front"
       }
     },
     {

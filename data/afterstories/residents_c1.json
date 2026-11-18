@@ -377,7 +377,9 @@
       "image": {
         "comp": "curled on a velvet backstage sofa in a rehearsal shawl unlacing her dance slippers, cheeks flushed, tender eager smile",
         "setting": "dressing parlor behind Moonlit Pavilion stage",
-        "sam": true
+        "sam": true,
+        "cloth": "dressed",
+        "wear": "a sheer moon-silk rehearsal shawl and dance slippers"
       },
       "byIntim": {
         "2": {

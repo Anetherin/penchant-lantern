@@ -72,7 +72,9 @@
           "image": {
             "comp": "standing in a bedroom doorway at night, holding the door frame, shy brave smile",
             "setting": "his bedroom at night, warm lamplight",
-            "sam": true
+            "sam": true,
+            "cloth": "partial",
+            "wear": "a thin nightshift slipping off one shoulder"
           },
           "go": "\"Then stay.\"",
           "goRes": "You pull her nightshift over her head and push your cock slowly into her tight, eager pussy, fucking her unhurriedly until morning finds her curled against your chest with a radiant, astonished smile.",
@@ -140,7 +142,8 @@
           "image": {
             "comp": "sitting on a blanket under a sky full of stars, holding his hand, shy hopeful smile",
             "setting": "grassy hilltop at night, sweeping starry sky, town lights far below",
-            "sam": true
+            "sam": true,
+            "cloth": "nude"
           },
           "go": "Stay under the stars",
           "goRes": "You lay her back on the blanket beneath the open sky and ease your cock slowly into her pussy, Elowen clinging to your shoulders with soft, breathless cries before naming constellations curled against your chest.",
@@ -161,7 +164,8 @@
           "image": {
             "comp": "standing stiffly in armor holding a closed romance novel, cheeks scarlet, kissing him with her eyes squeezed shut",
             "setting": "spartan barracks room, a candle, a stack of romance novels",
-            "sam": true
+            "sam": true,
+            "wear": "a knight's plate armor"
           },
           "go": "Kiss her back",
           "goRes": "\"That,\" she rasps breathlessly, scarlet to her collar, \"was a dramatic reading.\" She doesn't let go of your hand, the steel of her gauntlet warming against your fingers.",
@@ -187,7 +191,9 @@
           "image": {
             "comp": "unbuckling her armored gauntlets beside a candlelit bed, steady determined gaze at him",
             "setting": "his bedroom at night, candlelight, armor pieces on a chair",
-            "sam": true
+            "sam": true,
+            "cloth": "partial",
+            "wear": "a white linen shift slipping off her shoulders under half-unbuckled plate armor"
           },
           "go": "\"Then I'll say it.\"",
           "goRes": "Beneath all that steel, the Dame who guarded relics turns out to be fiercely passionate and deeply responsive—clinging tightly to you as you thrust your cock deep into her pussy all night long.",
@@ -220,7 +226,8 @@
           "image": {
             "comp": "standing in a doorway in dented armor, dropping a bag of gold, flushed and fierce, sword still on her hip",
             "setting": "his room at night, lamplight",
-            "sam": true
+            "sam": true,
+            "wear": "dented plate armor"
           },
           "go": "\"Welcome home.\"",
           "goRes": "Armor plates and gold coins scatter across the floorboards as you tackle her onto the bed, driving your cock deep into her pussy while she gasps your name like she's finally come home.",
@@ -253,7 +260,8 @@
           "image": {
             "comp": "leaning against a closed bedroom door, blushing, warm teasing smile, hair let down",
             "setting": "his bedroom at night, a single lamp",
-            "sam": true
+            "sam": true,
+            "cloth": "partial"
           },
           "go": "\"Like what?\"",
           "goRes": "She shows you instead of telling you—pulling you down onto the sheets and riding your cock with low, breathless, private groans meant for your ears alone.",
@@ -287,7 +295,8 @@
           "image": {
             "comp": "sitting cross-legged on a bed in pajamas, patting the blanket beside her, mischievous excited grin",
             "setting": "his bedroom at night, lamplight",
-            "sam": true
+            "sam": true,
+            "wear": "loose pajamas"
           },
           "go": "Start episode two",
           "goRes": "Akari proves she studied every detail—giggling breathlessly at first before going quiet and wide-eyed as your hands and mouths explore each other, her fingers around your cock and yours working her pussy, while the snacks scatter onto the floor.",
@@ -297,7 +306,13 @@
         "3": {
           "title": "Season Finale",
           "text": "Akari stands in your doorway holding a crooked handmade poster reading SEASON FINALE like a shield, her hair loose and her pajamas unbuttoned low over her chest. Dropping the sign, her playful act melts into real heat. \"No more cliffhangers, Sam—I'm not Kenta's little sister tonight. Take me to bed.\"",
-          "image": {"comp":"holding up a handmade sign in a doorway, nervous brave grin, hair down","setting":"his bedroom doorway at night","sam":true},
+          "image": {
+            "comp": "holding up a handmade sign in a doorway, nervous brave grin, hair down",
+            "setting": "his bedroom doorway at night",
+            "sam": true,
+            "cloth": "partial",
+            "wear": "loose pajamas unbuttoned low over her chest"
+          },
           "go": "Let her in",
           "goRes": "You peel off her pajamas and fuck her thoroughly—Akari gasping and clinging to your back before giving the night ten out of ten and demanding an immediate renewal.",
           "wait": "\"Save it for season two?\"",
@@ -342,7 +357,9 @@
           "image": {
             "comp": "sitting on a bed holding two glasses of red wine, a dusty bottle beside her, warm resolute smile",
             "setting": "his bedroom at night, lamplight",
-            "sam": true
+            "sam": true,
+            "cloth": "partial",
+            "wear": "a dress unlaced down the back and slipping off her shoulders"
           },
           "go": "Pour the wine",
           "goRes": "The cork pops with a soft sigh as you lay her back bare on the sheets and sink your cock into her pussy, Marisol laughing wet-eyed and arching into every thrust until dawn.",
@@ -390,7 +407,9 @@
           "image": {
             "comp": "standing by his bed with her long dark hair loose, holding a black ribbon, looking steadily at him",
             "setting": "his bedroom, moonlight through the window",
-            "sam": true
+            "sam": true,
+            "cloth": "dressed",
+            "wear": "a sheer black nightdress with thin straps"
           },
           "go": "Let her stay",
           "goRes": "The lamp goes out as you peel away the black silk and ease your cock gently into her pussy, fucking her slowly and holding her close through soft, shuddering cries until she wakes peacefully at dawn listening to you breathe.",
@@ -425,7 +444,9 @@
           "image": {
             "comp": "standing in his doorway at midnight in an oversized hoodie with the hood half down over her wolf ears, resolute and shy",
             "setting": "his bedroom doorway, lamp glow",
-            "sam": true
+            "sam": true,
+            "cloth": "dressed",
+            "wear": "an oversized hoodie and nothing underneath"
           },
           "go": "Let her in",
           "goRes": "The door bolts shut and nobody says goodnight for hours—you fuck Emily in the dark while she arches beneath you, wolf ears pinned back and tail lashing across the sheets as she gasps your name.",
@@ -493,7 +514,9 @@
           "image": {
             "comp": "standing beside a chessboard with a toppled king, one hand extended toward him, bright blue eyes steady",
             "setting": "his bedroom, candlelight, chessboard on a low table",
-            "sam": true
+            "sam": true,
+            "cloth": "partial",
+            "wear": "a blouse unbuttoned low"
           },
           "go": "Take her hand",
           "goRes": "The board stays forgotten as you undress her slowly and fuck her in bed—Ella arching beneath you with breathless, unscripted cries and zero regrets about forfeiting.",
@@ -561,7 +584,9 @@
           "image": {
             "comp": "standing at his window in a soft white gown, wings half-open, a single lamp cupped in her hands",
             "setting": "his bedroom at night, an open window, moonlight",
-            "sam": true
+            "sam": true,
+            "cloth": "dressed",
+            "wear": "a sheer white silk gown"
           },
           "go": "Take her hand",
           "goRes": "You slip the white gown off her shoulders and fuck her slowly beneath a canopy of warm white wings—morning light revealing scattered white-gold feathers across the floorboards that she leaves untouched.",

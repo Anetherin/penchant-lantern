@@ -34,7 +34,9 @@
           "image": {
             "comp": "sitting on the edge of a bed in a silk robe, choker catching candlelight, a rare uncertain smile",
             "setting": "her bedroom, candles and a wine bottle on the nightstand",
-            "sam": true
+            "sam": true,
+            "cloth": "partial",
+            "wear": "a loose silk robe hanging open"
           },
           "go": "Stay",
           "goRes": "She needs no audience tonight—pulling you down between her bare thighs and arching beneath every deep thrust of your cock into her pussy until the candle burns dry on the first quiet night that belongs entirely to her.",
@@ -78,7 +80,9 @@
           "image": {
             "comp": "sitting close on a porch step in a soft wrap dress, head tilted up toward him, blushing and sincere",
             "setting": "house porch at night, moths around the lantern, quiet street",
-            "sam": true
+            "sam": true,
+            "cloth": "dressed",
+            "wear": "a soft blue wrap dress"
           },
           "go": "Hold her close",
           "goRes": "You pull her into your lap and slip your hands beneath the soft wrap dress to cup her breasts and stroke her pussy, her steady guard melting into breathless, trembling gasps against your neck.",
@@ -134,7 +138,9 @@
           "image": {
             "comp": "sitting at a dressing-room mirror with her back to him, looking over a bare shoulder with a playful dare",
             "setting": "backstage dressing room, bulbs round the mirror, costume rack",
-            "sam": true
+            "sam": true,
+            "cloth": "partial",
+            "wear": "a laced stage bodice dropped forward off the shoulders"
           },
           "go": "Help her",
           "goRes": "The clasp gives easily—and as your hands slide around her bare waist and breasts, Hibiki drops to her knees before you, takes your cock in her mouth, and for once runs completely out of banter.",
@@ -147,7 +153,9 @@
           "image": {
             "comp": "sitting on the edge of a bed with her guitar laid aside, wings folded, soft vulnerable smile",
             "setting": "Sam's bedroom, one lamp low, guitar stand in the corner",
-            "sam": true
+            "sam": true,
+            "cloth": "dressed",
+            "wear": "a loose silk shift"
           },
           "go": "Stay",
           "goRes": "You pull her shift off and sink your cock into her pussy, Hibiki wrapping her wings and legs tight around you like a velvet curtain as she gasps your name in the dark.",
@@ -318,7 +326,8 @@
           "image": {
             "comp": "sitting on the edge of a tub with her feet in warm water, hair buns loosened, quiet vulnerable smile",
             "setting": "bathhouse after hours, warm steam, lamps low",
-            "sam": true
+            "sam": true,
+            "cloth": "nude"
           },
           "go": "Stay",
           "goRes": "You join her on the warm bathhouse cushions, your cock sliding deep into her pussy while she clings to your neck—loud, breathless, and completely unguarded.",
@@ -374,7 +383,9 @@
           "image": {
             "comp": "sitting on a rooftop at dusk, gold silk wrapping her shoulders, hand held out to him, calm affectionate smile",
             "setting": "rooftop at dusk, a faint wind and the first stars",
-            "sam": true
+            "sam": true,
+            "cloth": "partial",
+            "wear": "loose gold silk wrapped around the shoulders"
           },
           "go": "Take her hand",
           "goRes": "You unwrap the gold silk on the warm roof tiles and slide your cock slowly into her pussy, fucking her in a long, unhurried rhythm under the stars.",
@@ -387,7 +398,9 @@
           "image": {
             "comp": "standing sleepily in a sunlit room with her sash half undone, copper hair loose, unabashed languid smile",
             "setting": "Sam's sunlit bedroom, curtains stirring",
-            "sam": true
+            "sam": true,
+            "cloth": "partial",
+            "wear": "a silk robe with the sash half undone"
           },
           "go": "Pull her close",
           "goRes": "She melts into your arms on the sunlit mattress, warm and boneless, guiding your hand between her thighs and making the entire afternoon vanish without a glance at the clock.",
@@ -417,7 +430,9 @@
           "image": {
             "comp": "standing before a mirror with one strap slipped, looking back at him with a quiet steady gaze",
             "setting": "her bedroom, three dresses laid on the bed, lamp glow",
-            "sam": true
+            "sam": true,
+            "cloth": "partial",
+            "wear": "an evening gown with the straps slipped off the shoulders"
           },
           "go": "Look at her",
           "goRes": "You step behind her before the mirror, running your hands over her bare tits and ass and down between her thighs until every trace of polished composure dissolves into breathless shivers.",
@@ -430,7 +445,9 @@
           "image": {
             "comp": "standing at a door in a plain robe with her hair loose and no jewelry, earnest and a little frightened",
             "setting": "Sam's bedroom doorway, warm lamplight",
-            "sam": true
+            "sam": true,
+            "cloth": "dressed",
+            "wear": "a thin silk robe"
           },
           "go": "Let her stay",
           "goRes": "The most polished woman in the house comes completely undone beneath you as you fuck her, crying out your name as she cums without a single rehearsed line before falling asleep against your chest.",
@@ -444,7 +461,9 @@
           "image": {
             "comp": "laughing in a pantry doorway with wine stains on her navy dress, hand fisted in his hoodie",
             "setting": "pantry shelves, lantern light, jars behind her",
-            "sam": true
+            "sam": true,
+            "cloth": "dressed",
+            "wear": "a navy silk gown stained with wine"
           },
           "go": "Come here",
           "goRes": "She hikes up her ruined dress among the pantry shelves, shoving her hand down your pants and pulling you into a fierce, messy kiss that abandons every rule she ever wrote.",
@@ -487,7 +506,9 @@
           "image": {
             "comp": "sitting inside a cozy blanket fort with her paint wiped off, soft smile, mechanical hand resting over his",
             "setting": "her room, a blanket fort lit by one candle",
-            "sam": true
+            "sam": true,
+            "cloth": "partial",
+            "wear": "a robe hanging open over the shoulders"
           },
           "go": "Crawl in",
           "goRes": "You crawl inside the warm canopy of blankets and fuck her slowly, your cock deep in her pussy, Saki breathless and amazed at every single sensation.",
@@ -543,7 +564,8 @@
           "image": {
             "comp": "standing barefoot in a bedroom with very long blue-purple hair finally loose, her mask in her hand, tentative wondering smile",
             "setting": "a small bedroom lit by a single lamp, cloak on a peg",
-            "sam": true
+            "sam": true,
+            "cloth": "nude"
           },
           "go": "Tell her she is beautiful",
           "goRes": "You tell her she's breathtaking, lay her back amidst the river of twilight hair, and fuck her slowly, your cock deep in her pussy—anchor her so thoroughly she never vanishes.",
@@ -600,7 +622,9 @@
           "image": {
             "comp": "sitting on the edge of a bed in a pale green sundress, hands folded, tearful hopeful smile",
             "setting": "Sam's bedroom, evening light through the curtains",
-            "sam": true
+            "sam": true,
+            "cloth": "dressed",
+            "wear": "a pale green sundress"
           },
           "go": "Hold her",
           "goRes": "You peel off the green sundress and slide your cock slowly into her pussy, Nozomi clinging to you with tender, breathless sighs—sleeping safely for the first time without one ear open.",
@@ -656,7 +680,9 @@
           "image": {
             "comp": "sitting on the edge of a bed in white silk, ribbon undone and near-black hair spilling, quietly resolute",
             "setting": "her cold bedroom, frost on the window, a single lamp",
-            "sam": true
+            "sam": true,
+            "cloth": "dressed",
+            "wear": "a sheer white silk nightgown"
           },
           "go": "Stay",
           "goRes": "The frost vanishes from the windowpane as you slide your cock into her pussy, the Ice Princess arching beneath you with soft, unguarded cries before falling asleep pressed tight against your chest.",
@@ -713,7 +739,9 @@
           "image": {
             "comp": "standing in a moonlit window with a red ribbon held out in her palm, hair down, wild tender grin",
             "setting": "Sam's bedroom window, night wind and moonlight",
-            "sam": true
+            "sam": true,
+            "cloth": "dressed",
+            "wear": "a loose sleeveless shift"
           },
           "go": "Take the ribbon",
           "goRes": "You tie the ribbon around her wrist and pull her onto the mattress and fuck her, the fastest girl in town meeting every thrust of your cock with breathless, wild laughter.",
@@ -743,7 +771,9 @@
           "image": {
             "comp": "sitting at a table in a loose dark sweater with silver-white hair over one eye, quiet tired smile",
             "setting": "her small room at midnight, one lamp and neat gear on a shelf",
-            "sam": true
+            "sam": true,
+            "cloth": "dressed",
+            "wear": "a loose dark sweater with the sleeves rolled up"
           },
           "go": "Sit with her",
           "goRes": "Her kiss is slow, aching, and deeply tender, a single tear slipping down her cheek without apology as she leans into your warmth.",
@@ -756,7 +786,9 @@
           "image": {
             "comp": "lifting her arms to tug at a loose dark sweater, silver-white hair messy, nervous wry smile",
             "setting": "her room, lamplight, a folded note on the table",
-            "sam": true
+            "sam": true,
+            "cloth": "dressed",
+            "wear": "a loose dark sweater"
           },
           "go": "Help her",
           "goRes": "You pull the sweater over her head and run your hands over her bare breasts, waist, and between her thighs, drawing a startled, breathless laugh as years of tension finally melt away.",
@@ -881,7 +913,9 @@
           "image": {
             "comp": "sitting on the edge of a bed with her blindfold set aside, calm unfocused eyes turned toward him, tender smile",
             "setting": "her bedroom, a soft lamp, a blindfold with a note-plate on the nightstand",
-            "sam": true
+            "sam": true,
+            "cloth": "partial",
+            "wear": "a thin nightgown slipping off one shoulder"
           },
           "go": "Stay",
           "goRes": "You peel off her nightgown and fuck her in the dark, Kotone laughing softly and gasping at every sound and every thrust of your cock until she cums.",
@@ -1050,7 +1084,9 @@
           "image": {
             "comp": "sitting on a counter with her ponytail loose, warm tired smile, one hand patting the space beside her",
             "setting": "kitchen at night, the sign turned, a single bowl steaming",
-            "sam": true
+            "sam": true,
+            "cloth": "partial",
+            "wear": "a blouse unbuttoned halfway"
           },
           "go": "Sit beside her",
           "goRes": "You carry her upstairs to bed, peeling off her clothes and fucking her slowly until the girl who takes care of everyone finally gets taken care of.",
@@ -1106,7 +1142,8 @@
           "image": {
             "comp": "lying back against pillows with her long uneven black hair spread across them, small honest smile",
             "setting": "Sam's bedroom, sheets, a lamp turned low",
-            "sam": true
+            "sam": true,
+            "cloth": "nude"
           },
           "go": "Stay",
           "goRes": "You slide beneath the sheet and push your cock slowly into her pussy, the cool, unflappable spirit arching beneath you with breathless, unguarded gasps all night.",
@@ -1163,7 +1200,8 @@
           "image": {
             "comp": "in bed with the covers pulled to her shoulders, black hair on the pillow, eyes soft and warm, relaxed smile",
             "setting": "her bedroom, the lantern low, rumpled sheets",
-            "sam": true
+            "sam": true,
+            "cloth": "nude"
           },
           "go": "Stay",
           "goRes": "You roll her onto her back and fuck her, sinking your cock deep into her pussy, moving from slow and drowsy to breathless and intense before she finally drifts off curled in your arms.",
@@ -1263,7 +1301,9 @@
           "image": {
             "comp": "sitting on the edge of a desk with her green silk top loosened, guiding his hand to her ribs, concentric violet eyes half-lidded",
             "setting": "madame's office at night, warm lamplight and sealed scrolls",
-            "sam": true
+            "sam": true,
+            "cloth": "partial",
+            "wear": "a loosened forest-green silk top"
           },
           "go": "Test the threshold",
           "goRes": "Her clinical composure fractures within a minute—gasping against your mouth as your hands cup her breasts and your fingers stroke her wet pussy while her own deft hands unbuckle your belt and work your cock.",
@@ -1276,7 +1316,8 @@
           "image": {
             "comp": "kneeling naked on a bed with her dark brown hair loose over her shoulders, three black studs below her collarbone, intense unguarded gaze",
             "setting": "Sam's bedroom at night, single lantern burning low",
-            "sam": true
+            "sam": true,
+            "cloth": "nude"
           },
           "go": "Take all of her",
           "goRes": "You press her back into the sheets and sink your cock deep into her pussy, fucking her through long, shuddering orgasms until the woman who divided her soul across seven bodies clings to you with everything in one place.",
