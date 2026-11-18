@@ -1,0 +1,60 @@
+# Runs the quick checks on every PR and push; deploys to GitHub Pages only from main, and only if they pass.
+# Needs Settings → Pages → Build and deployment → Source: "GitHub Actions".
+name: Checks & Pages
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      CHROME: /usr/bin/google-chrome
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      # The runner image already has Chrome; skip Playwright's own browser download (minutes) and use it.
+      - name: Install Playwright
+        run: npm install --no-audit --no-fund
+        env:
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
+      - name: Data check
+        run: node tools/check-data.mjs
+      - name: Story check
+        run: node tools/story-check.mjs
+      - name: Smoke (30 weeks)
+        run: node tools/smoke.mjs 30
+      - name: Goddess / NG+ smoke
+        run: node tools/goddess-smoke.mjs
+
+  deploy:
+    needs: checks
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - id: deployment
+        uses: actions/deploy-pages@v4
