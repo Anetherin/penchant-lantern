@@ -19,15 +19,18 @@ jobs:
   checks:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    env:
+      CHROME: /usr/bin/google-chrome
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      # The runner image already has Chrome; skip Playwright's own browser download (minutes) and use it.
       - name: Install Playwright
-        run: |
-          npm install --no-audit --no-fund
-          npx playwright install --with-deps chromium
+        run: npm install --no-audit --no-fund
+        env:
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
       - name: Data check
         run: node tools/check-data.mjs
       - name: Story check
