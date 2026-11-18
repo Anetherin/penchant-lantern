@@ -453,6 +453,7 @@ async function cloudLoadSlot(slotId){
     const pkg = await res.json();
     const d = pkg && pkg.data;
     if(!d || !Array.isArray(d.workers)) return toast('Invalid cloud save.');
+    if(saveTooOld(d)) return toast(tooOldMsg(d));
     if(!d.cloudId) d.cloudId = slotId;
     if(!d.cloudName && pkg.meta && pkg.meta.name) d.cloudName = pkg.meta.name;
     d.cloudSyncedAt = (pkg.meta && pkg.meta.updatedAt) || Date.now();

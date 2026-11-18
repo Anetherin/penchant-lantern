@@ -1,9 +1,0 @@
-{
-  "desc": "NG+ cycle variables compared cleanly in Cycle 2 (Wayfarer, Seasoned Owner, no past).",
-  "scenario": "ngplus",
-  "runs": 12,
-  "ng": { "house": "wayfarer", "boon": "ap", "past": "none" },
-  "each": { "ng.cycleVar": ["none", "festival", "austerity", "warm_winds", "iron_watch", "scholars", "crimson_nights"] },
-  "baseline": false,
-  "breakdown": []
-}

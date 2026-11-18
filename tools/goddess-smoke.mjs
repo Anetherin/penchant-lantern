@@ -69,9 +69,7 @@ const server = http.createServer((q, r) => {
 const PORT = server.address().port;
 const browser = await pw.chromium.launch(Object.assign({args:['--no-proxy-server']}, process.env.CHROME ? { executablePath: process.env.CHROME } : {}));
 let failed = false;
-for (const target of ['index.html', 'dist/hollowmere-nights.html']) {
-  const file = path.join(root, target);
-  if (!fs.existsSync(file)) { console.log(`skip ${target} (not built)`); continue; }
+for (const target of ['index.html']) {
   const page = await browser.newPage();
   const errors = [];
   page.on('pageerror', e => errors.push(e.message));

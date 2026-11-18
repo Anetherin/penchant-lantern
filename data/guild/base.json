@@ -24,7 +24,7 @@
   ],
   "board": {"size":3,"perRank":0.5,"active":1,"activePerRank":0.5,"join":20,"lowerRank":0.5},
   "gold": {"perCycle":0.25},
-  "power": {"energyFloor":0.4,"samMult":1,"former":1.25,"under":0.5},
+  "power": {"energyFloor":0.4,"samMult":1,"under":0.5},
   "safety": {"div":160,"min":0.25,"sam":0.85},
   "fame": {"max":100,"draw":0.25,"base":6,"decay":0.5},
   "fail": {"merit":5,"fame":3,"trust":1},

@@ -3,7 +3,7 @@
 How to run the game's automated tests and balance experiments on your own machine, by hand or through an AI agent (Gemini, Claude...).
 Everything here is headless: a script plays the game in a hidden Chrome window with a fixed "player" (`tools/lab/bot.js`), so nobody has to click through anything.
 
-- **Quick sanity check after any change:** `npm run build && npm run smoke`
+- **Quick sanity check after any change:** `npm run check:data && npm run smoke`
 - **Do the numbers still match the design?** `npm run check:quick` (about 20–40 min), then `npm run check` (full size, 1–3 h)
 - **One question, one experiment:** `npm run lab -- <experiment>`, e.g. `npm run lab -- races-courtesan`
 
@@ -18,7 +18,7 @@ Everything here is headless: a script plays the game in a hidden Chrome window w
    That fetches Playwright and its own Chromium; nothing else is needed. (To use your own Chrome instead, set `CHROME` to its path, e.g. `CHROME="C:\Program Files\Google\Chrome\Application\chrome.exe"`.)
 3. Smoke test the setup (takes under a minute):
    ```
-   npm run build
+   npm run check:data
    npm run lab -- phases --runs 2
    ```
    You should see a markdown table with `early`, `mid` and `late` rows. If so, everything works.
@@ -78,7 +78,8 @@ The most useful ones:
 | `sam-actions`, `sam-actions-campaign` | what Sam's spare action is worth | phases / cycle 1 |
 | `stat-value` | what +5 to one stat is worth | mid |
 | `ngplus-carry`, `ngplus-friends` | lovers / old friends carried into NG+ | cycle 2 |
-| `ngplus-boons`, `ngplus-houses`, `ngplus-partners`, `ngplus-pasts`, `ngplus-vars` | NG+ choices | cycle 2 |
+| `ngplus-boons`, `ngplus-houses`, `ngplus-partners`, `ngplus-pasts` | NG+ choices | cycle 2 |
+| `town-events` | each town event forced on vs none | mid |
 | `ngplus-cycles`, `ngplus-loan`, `ngplus-tune` | several NG+ cycles in a row | cycles 2-5 |
 | `ngpp` | NG++ (Lantern Shrine) vs standard NG+ | cycles 2-3 |
 
@@ -100,7 +101,7 @@ The most useful ones:
    ```
    (`patch.balance` merges into `data/balance.json`, `patch.economy` into `economy.json`, also `races`, `traits`, `characters`, `houses`.)
    A spec file in `tools/lab/exp/` is easier than inline JSON for anything longer.
-2. When a patch looks right, put the numbers into `data/`, run `node tools/fmt-json.mjs`, `npm run build`, `npm run smoke`.
+2. When a patch looks right, put the numbers into `data/`, run `node tools/fmt-json.mjs`, `npm run check:data`, `npm run smoke`.
 3. Rerun the affected checks (`npm run check -- --only <ids>`) and, before merging, the full suite.
 4. Write what changed and the before/after numbers into `docs/BALANCE.md`.
 
@@ -114,7 +115,7 @@ The most useful ones:
   - anything in an **Errors** block at the top of a report: that's a crash, not balance
 - **Report format** (write it to `temp-balance-results.md` at the repo root, replacing the old one, and commit it to the branch):
   1. Header: branch, commit hash, date, machine cores / `--conc`, total run time.
-  2. Build & smoke: one line each (`build`, `smoke 30`, `goddess-smoke`), plus any page errors verbatim.
+  2. Data check & smoke: one line each (`check:data`, `smoke 30`, `goddess-smoke`), plus any page errors verbatim.
   3. Intent checks: the summary line, then **every** row (PASS too) with its numbers and ± CIs, grouped PASS / FAIL / WARN / UNSURE / NO DATA. Mark rows whose result changed since the last report (**now passing** / **now failing**).
   4. For every experiment run (the checks' own and the extra ones asked for), paste its **full** variant table and paired-Δ table from `tools/lab/out/<experiment>.md`, not just the deltas. Include the `named` / `race` / `job` breakdown tables when the spec has them.
   5. Anything odd: identical variants (Δ 0 ± 0 usually means the setup didn't take effect), `unreached` runs, game overs, runs stopped at the week cap. Say which runs and seeds.
@@ -135,7 +136,7 @@ The most useful ones:
 
 ## 8. Current run list (round 4e, 2026-11-17)
 
-On `feat/balance-tuning`, after `npm run build && npm run smoke` and `node tools/goddess-smoke.mjs`:
+On `feat/balance-tuning`, after `npm run check:data && npm run smoke` and `node tools/goddess-smoke.mjs`:
 1. `npm run lab -- partners` and `npm run lab -- nerys` (partner balance; Adelheid now starts at Iron guild rank).
 2. `npm run check` (full size). `ngplus-cycles` is the slowest part (~26 of 45 min last time); if time is short, run it last with `--runs 6`.
 3. Extra experiments, full tables: `npm run lab -- guild`, `sam-focus`, `houses-all`, `ngpp`, `partners`, `walk-partners`, `promoter-value` is covered by the check.

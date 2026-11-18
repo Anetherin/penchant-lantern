@@ -93,7 +93,7 @@ const raceDesign = (race, sub) => { const sd = sub ? subData(race, sub) : null; 
 const raceBuilds = (race, sub) => { const D = raceDesign(race, sub); return D.builds || BUILDS.filter(b=>!(D.noBuilds||[]).includes(b)); };
 const raceSkins = (race, sub) => raceDesign(race, sub).skins || null;
 const raceFeatures = (race, sub) => raceDesign(race, sub).features || null;
-// Brings a generic lady's design and body in line with those rules (used at creation and by the v28 migration). Keeps what already fits.
+// Brings a generic lady's design and body in line with those rules (used by the balance lab's race mutation, tools/lab/bot.js). Keeps what already fits.
 function raceFit(w){
   if(!w || w.key || !w.design) return;
   const B = raceBuilds(w.race, w.sub), Sk = raceSkins(w.race, w.sub), rf = raceFeatures(w.race, w.sub), ban = (BODY.raceBan||{})[w.race] || {};
@@ -123,11 +123,13 @@ function vesselLabel(w){
   return L[Math.min(3, Math.max(0, vesselStage(w)))] || L[0];
 }
 
-const CYCLE_VARS = (BAL.ngplus && BAL.ngplus.cycleVars) || {};
 const CYCLE_CHALLENGES = (BAL.ngplus && BAL.ngplus.cycleChallenges) || {};
-const activeCycleVar = () => (typeof S!=='undefined' && S && S.cycleVar && CYCLE_VARS[S.cycleVar]) ? CYCLE_VARS[S.cycleVar] : null;
-const cycleVarMul = (k, def=1) => { const v = activeCycleVar(); return v && v[k]!==undefined ? v[k] : def; };
-const cycleVarAdd = (k, def=0) => { const v = activeCycleVar(); return v && v[k]!==undefined ? v[k] : def; };
+// Town events (balance.json → townEvents, wording events.json → townEvents; scheduled by townEventWeek in random.js):
+// S.townEv = {id, start, end} runs for weeks start..end-1 and sets the multipliers in its list entry.
+const townEventList = () => (BAL.townEvents && BAL.townEvents.list) || {};
+const activeTownEv = () => { const e = typeof S!=='undefined' && S && S.townEv; return e && S.week >= e.start && S.week < e.end ? townEventList()[e.id] || null : null; };
+const townMul = (k, def=1) => { const v = activeTownEv(); return v && v[k]!==undefined ? v[k] : def; };
+const townAdd = (k, def=0) => { const v = activeTownEv(); return v && v[k]!==undefined ? v[k] : def; };
 const hasChallengePerk = id => !!(typeof S!=='undefined' && S && S.challengePerks && S.challengePerks.includes(id));
 
 function shrineRebornSum(h){
@@ -208,7 +210,7 @@ function raceBlock(w, h){
 function statXP(w, key, n){
   if(!w.stats || w.stats[key]===undefined) return;
   const v = w.stats[key];
-  w.stats[key] = clampK(v + n * fxMul(w, 'statGain') * incenseMul(w, 'statGain') * rebornHouseGrowth(w) * cycleVarMul('learn', 1) * Math.max(0.05, 1 - v/growDen()));
+  w.stats[key] = clampK(v + n * fxMul(w, 'statGain') * incenseMul(w, 'statGain') * rebornHouseGrowth(w) * townMul('learn', 1) * Math.max(0.05, 1 - v/growDen()));
 }
 
 /* ---------- counters (w.counts) and developable traits ---------- */

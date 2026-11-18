@@ -1,0 +1,17 @@
+{
+  "desc": "Town events compared in mid game: each one forced on (3 weeks on, 1 off) vs none. Events are random in normal play.",
+  "scenario": "mid",
+  "weeks": 12,
+  "runs": 12,
+  "variants": [
+    { "name": "none", "patch": { "balance": { "townEvents": { "off": true } } } },
+    { "name": "festival", "patch": { "balance": { "townEvents": { "only": "festival", "gap": [1, 1], "weeks": [3, 3] } } } },
+    { "name": "austerity", "patch": { "balance": { "townEvents": { "only": "austerity", "gap": [1, 1], "weeks": [3, 3] } } } },
+    { "name": "warm_winds", "patch": { "balance": { "townEvents": { "only": "warm_winds", "gap": [1, 1], "weeks": [3, 3] } } } },
+    { "name": "iron_watch", "patch": { "balance": { "townEvents": { "only": "iron_watch", "gap": [1, 1], "weeks": [3, 3] } } } },
+    { "name": "scholars", "patch": { "balance": { "townEvents": { "only": "scholars", "gap": [1, 1], "weeks": [3, 3] } } } },
+    { "name": "crimson_nights", "patch": { "balance": { "townEvents": { "only": "crimson_nights", "gap": [1, 1], "weeks": [3, 3] } } } }
+  ],
+  "baseline": false,
+  "breakdown": []
+}

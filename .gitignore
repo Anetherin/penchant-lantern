@@ -2,4 +2,3 @@ node_modules/
 .DS_Store
 tools/*.out.json
 tools/lab/out/
-dist/

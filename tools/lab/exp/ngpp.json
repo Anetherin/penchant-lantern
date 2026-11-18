@@ -3,10 +3,10 @@
   "scenario": "ngplus",
   "runs": 24,
   "cycles": 2,
+  "patch": { "balance": { "townEvents": { "off": true } } },
   "ng": {
     "past": "none",
     "boon": "ap",
-    "cycleVar": "none",
     "bindGoddess": true
   },
   "variants": [

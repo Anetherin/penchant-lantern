@@ -103,7 +103,7 @@ Round 2 results: `temp-balance-results.md` (cycle 1 back to 36.9 weeks; guild ne
 - Guild: `minPower` per contract (members under it add much less), delve/wyvern 5 slots and more work, day rates x (1 + 0.08 x rank), board leans toward Sam's rank. NG+ keeps rank and merit (first NG++ resets once). Bot only sends ladies who earned at most 1.25x the day rate (`guildEarnCap`).
 - Floor `nights` 4 → 3.4; Classes 2.0 → 2.2; NG+ `debtShare` 0.9 → 0.8 and `loverDebt` 1200 → 1700.
 - Promoter and security checks now compare the lady working vs. the same lady idle (`mutate job rest` vs `promoter`/`security`): she should earn about a wage (Δtotal > 40). The security check counts night incidents too (`trouble` = unhandled pushy + unhandled incidents; also `incidents`, `incHandled`, `damage`). Incident frequency unchanged on purpose.
-- Walks: `walk.partnerByFound` [14, 0.6, 0.6] (first partner in a walk or two, later ones ~10 walks each with pity 0.15 up to 8), coin weight 1 → 0.7, flavor 1.8 → 2.4, seven new flavor/rest events.
+- Walks (later replaced by `walk.partnerOdds` [0.3, 0.1, 0.05]): `walk.partnerByFound` [14, 0.6, 0.6] (first partner in a walk or two, later ones ~10 walks each with pity 0.15 up to 8), coin weight 1 → 0.7, flavor 1.8 → 2.4, seven new flavor/rest events.
 Rerun: `check.mjs`, `guild.json`, `sam-focus`, `ngplus-carry`, `sam-actions-campaign`.
 - Walks (revised): `walk.partnerOdds` [0.3, 0.1, 0.05] = chance per walk by partners already found this cycle, hard cap `partnerCycleMax` 3 (15 partners over five cycles leaves someone to pick every cycle); NG++ always `ngppPartnerOdds` 0.3, no cap. Measure with `tools/lab/exp/walk-partners.json` (`partners` column).
 

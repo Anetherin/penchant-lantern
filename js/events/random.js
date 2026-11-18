@@ -77,7 +77,8 @@ const TITLE_EVENTS = [
 // New Game+ (cycle 2+): word spreads that people come back (events.json → returners). Flags are per cycle.
 const cyc = () => (S && S.cycle) || 1;
 const RET = (...a) => ET('returners', ...a);
-const ngPartnerOpen = () => PARTNERS.filter(k=>NAMED[k].ngplus && !isHired(k));
+// a visiting guest (a drifter from one of the guest packs) who isn't working for Sam or waiting among the candidates
+const openGuests = () => Object.keys(NAMED).filter(k=>NAMED[k].role==='drifter' && !isHired(k) && !(SET.packsOff||{})[NAMED[k].pack]);
 const RETURNER_EVENTS = [
   {w:2, ok:()=>cyc()>=2 && S.flags.rumorCy!==cyc() && debtWeek()>=3, make(){
     S.flags.rumorCy = cyc();
@@ -109,10 +110,45 @@ const RETURNER_EVENTS = [
   {w:2, ok:()=>cyc()>=3 && !S.flags.circle && debtWeek()>=4, make(){
     S.flags.circle = true;
     return {title:RET('circle','title'), text:RET('circle','text'), choices:[
-      {label:RET('circle','join','label'), fx(){ S.rep = clamp(S.rep+4); const open = ngPartnerOpen(); if(open.length){ const c = makeNamed(pick(open)); c.signing = signingFor(c); S.candidates.push(c); addLog(`${c.name} found Sam through the Returners' Circle. (Candidates)`); } return RET('circle','join','res'); }},
+      {label:RET('circle','join','label'), fx(){ S.rep = clamp(S.rep+4); const open = openGuests(); if(open.length){ const k = pick(open), c = makeNamed(k); c.keep = false; c.stay = GUEST_VISITS.stayWeeks + 1; (S.flags.guestSeen = S.flags.guestSeen || {})[k] = S.week; c.signing = signingFor(c); S.candidates.push(c); addLog(`${c.name} found Sam through the Returners' Circle. (Candidates)`); } return RET('circle','join','res'); }},
       {label:RET('circle','visit','label'), fx(){ samEnergyAdd(20); return RET('circle','visit','res'); }}]};
   }}
 ];
+// Town events (balance.json → townEvents, wording events.json → townEvents): every gap weeks the town gets a 2-3 week event
+// whose multipliers apply while it runs (townMul / townAdd in fx.js). Any cycle; called by endWeek once the week has turned.
+function townEventWeek(R){
+  const T = BAL.townEvents || {}, L = townEventList(), e = S.townEv;
+  const span = a => Array.isArray(a) ? ri(a[0], a[1]) : (a || 4);
+  if(e && S.week >= e.end){
+    const d = L[e.id] || {};
+    R.lines.push(`🏮 ${d.label || e.id} is over.`); addLog(`${d.label || e.id} is over.`);
+    S.townEvLast = e.id; S.townEv = null; S.townEvNext = S.week + span(T.gap);
+    return;
+  }
+  if(e || T.off) return;
+  if(S.townEvNext == null) S.townEvNext = S.week + span(T.gap);
+  if(S.week < S.townEvNext) return;
+  let ids = Object.keys(L).filter(k=>!T.only || k===T.only);
+  if(ids.length > 1) ids = ids.filter(k=>k!==S.townEvLast);
+  if(!ids.length) return;
+  const id = pick(ids), d = L[id], weeks = span(T.weeks);
+  S.townEv = {id, start:S.week, end:S.week + weeks};
+  R.lines.push(`🏮 ${d.label}, for the next ${weeks} weeks: ${d.desc}`); addLog(`${d.label} begins (${weeks} weeks): ${d.desc}`);
+  EVQ.push(()=>evTownEvent(id, weeks));
+}
+function evTownEvent(id, weeks){
+  const d = townEventList()[id] || {}, V = {weeks};
+  return {title:ET('townEvents', id, 'title', V) || d.label, text:ET('townEvents', id, 'text', V) + `\n\n${d.desc || ''} (${weeks} weeks)`,
+    choices:[{label:ET('townEvents', id, 'ok', V) || 'Noted', fx(){ return ''; }}]};
+}
+// A new cycle starts without one, and the first comes after firstWeek weeks (NG+ / NG++ in ngplus.js).
+function townEvReset(){ S.townEv = null; S.townEvNext = S.week + ((BAL.townEvents||{}).firstWeek ?? 4); }
+// the header chip while one runs
+function townEvChip(){
+  const v = activeTownEv(); if(!v) return '';
+  const left = S.townEv.end - S.week;
+  return `<span class="tag act" title="${esc(v.desc || '')} (${left} more week${left===1?'':'s'})">🏮 ${esc(v.label)}</span>`;
+}
 const RANDOM_EVENTS = [
   {w:3, ok:()=>anyW(w=>w.mood<55 && w.job!=='rest').length>0, make(){
     const w = pick(anyW(x=>x.mood<55 && x.job!=='rest')), V = {name:w.name};

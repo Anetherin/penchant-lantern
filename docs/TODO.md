@@ -58,8 +58,10 @@ Sam picks one focus per week (costs a share of his weekly energy, so a hard week
 - Leaning rival-to-lover who never joins in cycle 1 (she runs her own house). From NG+ she can join as a madame and bring her house as a purchase. Still open: whether she ever joins at all.
 - More rival events in general, tied to her house's standing against Sam's.
 
-## Mid-cycle events
-- Move the cycle variables (Lantern Festival, Credit Audit, Warm Winds, City Watch Crackdown...) from cycle-long modifiers to 2-3 week events inside a cycle, so something happens between debt payments.
+## Town events (done 2026-11-17, branch chore/cleanup-mid-cycle-events)
+- The NG+ cycle variables are now town events: every 4-7 weeks, in any cycle (cycle 1 too), one runs for 2-3 weeks with an announcement page and a header chip (`balance.json → townEvents`, wording `events.json → townEvents`). Effects were raised a bit since they no longer last a whole cycle; Crimson Nights lost its debt part. Lab: `town-events`.
+- Still open: more events (the Isolde price war and festival wager could be town events), choices on the announcement page, and events tied to one house instead of the whole town.
+- The Returners' Circle (cycle 3+) now brings a visiting guest instead of an NG+ partner, so partners only come from walks and partner picks.
 
 ## Sam's items (done 2026-11-17)
 - Teleport Circle split into Speaking Stones (focus + passive reach) and the Circle (visits reach); Shadow Clone = the Stones' half. The tool items now come from guild contracts (first clear) or the Iron rank-up; the shop keeps the coffee maker, notebook, Stones and Circle.

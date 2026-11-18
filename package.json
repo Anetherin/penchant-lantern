@@ -4,7 +4,7 @@
   "description": "Hollowmere Nights (Penchant Lantern). Dev tools only: the game itself needs no install. See docs/TESTING.md.",
   "type": "module",
   "scripts": {
-    "build": "node tools/build.mjs",
+    "check:data": "node tools/check-data.mjs",
     "smoke": "node tools/smoke.mjs 30",
     "lab": "node tools/lab/lab.mjs",
     "check": "node tools/lab/check.mjs",
