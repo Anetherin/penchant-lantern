@@ -99,17 +99,17 @@ function persLine(w){
   const J = a => a.map(j=>JOBS[j]?JOBS[j].label:j).join(', ') || 'nothing in particular';
   return `<div class="muted">Jobs she'll do now: ${Object.keys(JOB_TRUST).filter(j=>w.trust>=jobTrust(w,j)).map(j=>JOBS[j].label).join(', ')||'none yet'}</div><div class="muted">Enjoys working as: <b>${J(jobLikes(w))}</b>${jobDislikes(w).length?` · Would rather not: <b>${J(jobDislikes(w))}</b>`:''}</div>`;
 }
-// Everything Sam carries: his past lives, New Game+ perks, cycle variable, challenge, and challenge perks.
+// Everything Sam carries: his past lives, New Game+ perks, current town event, challenge, and challenge perks.
 function samPerksHTML(){
   const P = samPasts().filter(k=>PASTS[k]), B = (S.boons||[]).filter(k=>NG_BOONS[k]);
-  const CV = activeCycleVar(), CH = S.challenge && CYCLE_CHALLENGES[S.challenge] ? CYCLE_CHALLENGES[S.challenge] : null;
+  const CV = activeTownEv(), CH = S.challenge && CYCLE_CHALLENGES[S.challenge] ? CYCLE_CHALLENGES[S.challenge] : null;
   const CP = (S.challengePerks||[]).filter(k=>CYCLE_CHALLENGES[k]);
   const tag = (t, d, cls='tag act') => `<span class="${cls}" title="${esc(d)}">${t}</span>`;
   const tags = [
     ...P.map(k=>tag('✧ '+esc(PASTS[k].label), PASTS[k].desc)),
     ...B.map(k=>tag('✦ '+esc(NG_BOONS[k].label), NG_BOONS[k].desc)),
     ...CP.map(k=>tag('🏆 '+esc(CYCLE_CHALLENGES[k].perk), CYCLE_CHALLENGES[k].perkDesc, 'tag good')),
-    ...(CV ? [tag('🌊 '+esc(CV.label), CV.desc, 'tag house')] : []),
+    ...(CV ? [tag('🏮 '+esc(CV.label), CV.desc || '', 'tag house')] : []),
     ...(CH ? [tag('🎯 '+esc(CH.label), CH.desc, 'tag warn')] : [])
   ];
   if(!tags.length) return '';
@@ -117,7 +117,7 @@ function samPerksHTML(){
     + P.map(k=>`<div class="muted">Past life (${esc(PASTS[k].label)}): ${esc(PASTS[k].desc)}</div>`).join('')
     + B.map(k=>`<div class="muted">${esc(NG_BOONS[k].label)}: ${esc(NG_BOONS[k].desc)}</div>`).join('')
     + CP.map(k=>`<div class="good">Challenge Perk (${esc(CYCLE_CHALLENGES[k].perk)}): ${esc(CYCLE_CHALLENGES[k].perkDesc)}</div>`).join('')
-    + (CV ? `<div class="muted">Cycle Variable (${esc(CV.label)}): ${esc(CV.desc)}</div>` : '')
+    + (CV ? `<div class="muted">Town event (${esc(CV.label)}): ${esc(CV.desc || '')}</div>` : '')
     + (CH ? `<div class="muted">Active Challenge (${esc(CH.label)}): ${esc(CH.desc)}</div>` : '');
 }
 function viewSam(){
