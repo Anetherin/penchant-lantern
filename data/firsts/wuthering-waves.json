@@ -656,7 +656,7 @@
           "text": "Rover sits on the rooftop steps after patrol, her sword resting across her knees and the white feather in her dark hair stirring in the night breeze. When you sit beside her with two mugs of cider, her golden-amber eyes warm with rare relief. \"Every city I visit asks me to save it,\" she says quietly, leaning her shoulder against yours. \"You're the first person who only asked if I'd eaten. May I kiss you, Sam?\"",
           "image": {
             "comp": "sitting on rooftop steps at night with a mug of cider, golden-amber eyes warm and soft, feather ornament in her hair",
-            "setting": "rooftop steps overlooking Hollowmere's lanterns at night",
+            "setting": "rooftop steps overlooking the town's lanterns at night",
             "sam": true
           },
           "go": "Kiss her",

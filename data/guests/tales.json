@@ -77,7 +77,7 @@
             "hairColor": "pastel rose-pink",
             "eyes": "turquoise-blue",
             "skin": "fair",
-            "features": "a glowing red Exsphere gem set in a silver plate beneath her collar",
+            "features": "a glowing red gem set in a silver plate beneath her collar",
             "expression": "a quiet, deadpan gaze"
           },
           "under": "plain",
@@ -128,7 +128,7 @@
             "hairColor": "warm sandy orange-blonde",
             "eyes": "bright blue",
             "skin": "fair",
-            "features": "a glowing red core crystal on the left side of her forehead",
+            "features": "a small glowing red crystal jewel on the left side of her forehead",
             "accessories": "twin oversized orange-and-pink floral hair clips on both sides of her head",
             "accState": "always",
             "expression": "a bright, starry-eyed smile"
@@ -453,7 +453,7 @@
             "hairColor": "flaxen blonde",
             "eyes": "blue",
             "skin": "pale ivory",
-            "accessories": "a green hair ribbon, a black ribbon choker and a yellow-and-white frilled parasol with a dangling Normin mascot",
+            "accessories": "a green hair ribbon, a black ribbon choker and a yellow-and-white frilled parasol with a dangling plushie mascot charm",
             "accState": "dressed",
             "expression": "a deadpan, unimpressed stare"
           },

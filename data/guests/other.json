@@ -83,9 +83,9 @@
             "sig_samus": {
               "label": "Zero Suit",
               "style": "Revealing",
-              "prompt": "a skin-tight glossy cyan-and-navy futuristic Zero Suit bodysuit with glowing pink-red Chozo insignia on the chest and back, and cyan high-heeled jet boots",
+              "prompt": "a skin-tight glossy cyan-and-navy futuristic bodysuit with glowing pink-red geometric insignia on the chest and back, and cyan high-heeled jet boots",
               "bonus": {"security":1.35,"courtesan":1.2},
-              "accessories": "a sleek silver Paralyzer pistol at her hip",
+              "accessories": "a sleek silver futuristic pistol at her hip",
               "accState": "dressed"
             },
             "sp_samus": {

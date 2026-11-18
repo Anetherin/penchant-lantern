@@ -715,7 +715,7 @@
             "sig_shiori": {
               "label": "Proctor's uniform",
               "style": "Elegant",
-              "prompt": "a dark high-collared jonin uniform with a harness of colored cartridges",
+              "prompt": "a dark high-collared tactical ninja uniform with a harness of colored cartridges",
               "bonus": {"promoter":1.3,"security":1.15}
             },
             "sp_shiori": {
@@ -1147,7 +1147,7 @@
             "hairColor": "pale rose-blush",
             "eyes": "warm amber-brown",
             "skin": "light warm synthetic",
-            "features": "three tiny black chakra-receiver studs in a triangle below her left collarbone",
+            "features": "three tiny black metallic piercing studs in a triangle below her left collarbone",
             "accessories": "simple dark-metal earrings",
             "accState": "always",
             "expression": "a warm, approachable smile"
@@ -1176,7 +1176,7 @@
               "favColor": "gold",
               "hairStyle": "elaborate braided crown gathered into a neat bun",
               "eyes": "vivid royal-purple",
-              "features": "a single black chakra-receiver stud at the base of her throat and faint geometric seal lines along her arms",
+              "features": "a single black metallic piercing stud at the base of her throat and faint geometric seal lines along her arms",
               "replaceFeatures": true,
               "accessories": "a thin gold circlet",
               "accState": "always",
@@ -1190,7 +1190,7 @@
               "favColor": "gold",
               "hairStyle": "many small braids decorated with tiny gold rings and ornaments",
               "eyes": "gold",
-              "features": "two black chakra-receiver studs along her left jawline, heavy glamorous makeup and dark seal tattoos on the backs of her hands",
+              "features": "two black metallic piercing studs along her left jawline, heavy glamorous makeup and dark seal tattoos on the backs of her hands",
               "replaceFeatures": true,
               "accessories": "layered gold necklaces, stacked bracelets and many rings",
               "accState": "always",
@@ -1204,7 +1204,7 @@
               "favColor": "crimson",
               "hairStyle": "high, tightly controlled braided ponytail",
               "eyes": "scarlet",
-              "features": "four black chakra-receiver studs across the bridge of her nose and mechanical seam lines at her shoulders and elbows",
+              "features": "four black metallic piercing studs across the bridge of her nose and mechanical seam lines at her shoulders and elbows",
               "replaceFeatures": true,
               "accessories": "",
               "expression": "a calm, disciplined scowl"
@@ -1217,7 +1217,7 @@
               "favColor": "lavender",
               "hairStyle": "long, completely loose and messy",
               "eyes": "muted blue",
-              "features": "five tiny black chakra-receiver studs in an arc along the back of her neck",
+              "features": "five tiny black metallic piercing studs in an arc along the back of her neck",
               "replaceFeatures": true,
               "accessories": "",
               "expression": "a sleepy, unbothered half-smile"
@@ -1230,7 +1230,7 @@
               "favColor": "orange",
               "hairStyle": "two substantial braided buns",
               "eyes": "vivid orange",
-              "features": "six black chakra-receiver studs framing her navel and glowing seal-script along her ribs",
+              "features": "six black metallic piercing studs framing her navel and glowing seal-script along her ribs",
               "replaceFeatures": true,
               "accessories": "",
               "expression": "a contented, hungry half-smile"
@@ -1243,7 +1243,7 @@
               "favColor": "pink",
               "hairStyle": "long, sleek and loose with a small delicate temple braid",
               "eyes": "vivid fuchsia-pink",
-              "features": "seven tiny black chakra-receiver studs arranged in a vertical line down her sternum and a beauty mark below her left eye",
+              "features": "seven tiny black metallic piercing studs arranged in a vertical line down her sternum and a beauty mark below her left eye",
               "replaceFeatures": true,
               "accessories": "delicate silver chain jewelry",
               "accState": "always",

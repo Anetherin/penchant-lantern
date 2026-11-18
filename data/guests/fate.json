@@ -22,7 +22,7 @@
             "hairColor": "dark brown-black",
             "eyes": "bright aqua-blue",
             "skin": "fair",
-            "features": "crimson Command Seals on the back of her left hand",
+            "features": "a small ornate crimson glyph mark on the back of her left hand",
             "expression": "a confident, teasing smirk that easily turns flustered"
           },
           "under": "lace",
@@ -290,7 +290,7 @@
               "style": "Elegant",
               "prompt": "an ornate ethereal white-and-gold ceremonial gown woven from crystallized prana with golden shoulder filigree and a sheer white veil",
               "bonus": {"courtesan":1.3,"noble":1.3},
-              "accessories": "a golden Einzbern tiara",
+              "accessories": "an ornate golden tiara",
               "accState": "always",
               "favColor": "gold"
             }

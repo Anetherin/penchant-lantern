@@ -49,7 +49,7 @@
               "style": "Elegant",
               "hairColor": "golden blonde",
               "hairStyle": "long straight with two front locks wrapped in gold",
-              "prompt": "a regal pink and white Hylian gown with a blue royal-crest tabard and gold shoulder pauldrons",
+              "prompt": "a regal pink and white royal gown with a blue royal-crest tabard and gold shoulder pauldrons",
               "accessories": "a gold tiara with a blue jewel, blue drop earrings and long white gloves",
               "accState": "under",
               "bonus": {"noble":1.25,"courtesan":1.2}
@@ -59,7 +59,7 @@
               "style": "Cute",
               "hairColor": "golden blonde",
               "hairStyle": "long straight with two thick front locks tied in white bands",
-              "prompt": "a pink and white Skyloft tunic dress with a brown waist belt, a white Sailcloth shawl and knee-high brown boots",
+              "prompt": "a pink and white tunic dress with a brown waist belt, a white woven shawl and knee-high brown boots",
               "accessories": "purple hair ribbons",
               "accState": "always",
               "bonus": {"courtesan":1.2,"commoner":1.25}
@@ -118,7 +118,7 @@
               "label": "Fused Shadow regalia",
               "style": "Revealing",
               "prompt": "a sheer dark twilight wrap with glowing cyan runes, leaving her legs and midriff bare",
-              "accessories": "the ornate dark stone helmet-crown of the Fused Shadow",
+              "accessories": "an ornate asymmetrical dark stone helmet-crown with a glowing eye motif",
               "accState": "always",
               "bonus": {"dancer":1.25,"propose":1.2}
             }
@@ -322,8 +322,8 @@
             "sig_hilda_lorule": {
               "label": "Lorulean royal gown",
               "style": "Elegant",
-              "prompt": "a regal dark purple and black Hylian-style gown with a lavender inverted-crest tabard, gold shoulder pauldrons and a high magenta collar",
-              "accessories": "a tall golden staff topped with an inverted Triforce crest",
+              "prompt": "a regal dark purple and black royal gown with a lavender inverted-crest tabard, gold shoulder pauldrons and a high magenta collar",
+              "accessories": "a tall golden staff topped with an inverted golden-triangle crest",
               "accState": "dressed",
               "bonus": {"madame":1.3,"noble":1.25}
             }
@@ -373,7 +373,7 @@
             "sig_twinrova": {
               "label": "Sorceress silks",
               "style": "Revealing",
-              "prompt": "a low-cut dark blue Gerudo sorceress crop top exposing her cleavage and midriff, loose white harem pants with a jeweled gold sash, and gold armlets",
+              "prompt": "a low-cut dark blue desert sorceress crop top exposing her cleavage and midriff, loose white harem pants with a jeweled gold sash, and gold armlets",
               "bonus": {"courtesan":1.3,"adventurer":1.2}
             }
           },

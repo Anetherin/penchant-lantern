@@ -37,8 +37,8 @@
             "sig_melia": {
               "label": "High Entia royal dress",
               "style": "Elegant",
-              "prompt": "a strapless lavender and purple High Entia dress with a white detached-sleeve bolero cloak, elbow-length white gloves, short white bloomers and thigh-high white boots",
-              "accessories": "an arched silver-and-violet High Entia tiara and an ornate ether staff topped with glowing crystals",
+              "prompt": "a strapless lavender and purple royal dress with a white detached-sleeve bolero cloak, elbow-length white gloves, short white bloomers and thigh-high white boots",
+              "accessories": "an arched silver-and-violet tiara and an ornate magic staff topped with glowing crystals",
               "accState": "dressed",
               "bonus": {"chapel":1.3,"noble":1.2}
             },
@@ -82,7 +82,7 @@
             "eyes": "warm brown",
             "skin": "warm tan",
             "features": "a small beauty mark below the left side of her lower lip",
-            "accessories": "a blue-feathered Colony 6 headband and gold hoop earrings",
+            "accessories": "a blue-feathered headband and gold hoop earrings",
             "accState": "always",
             "expression": "a warm, caring smile"
           },
@@ -99,7 +99,7 @@
               "label": "Colony 6 medic uniform",
               "style": "Sporty",
               "prompt": "a short blue top under a cropped brown vest exposing her cleavage and toned midriff, white shorts with a brown hip belt, brown gloves and dark brown thigh-high boots",
-              "accessories": "an ether sniper rifle slung across her back",
+              "accessories": "a futuristic glowing sniper rifle slung across her back",
               "accState": "dressed",
               "bonus": {"bath":1.3,"security":1.15}
             },
@@ -184,8 +184,8 @@
             "hairColor": "flame red",
             "eyes": "crimson-amber",
             "skin": "fair",
-            "features": "a glowing emerald cross-shaped core crystal at her sternum",
-            "accessories": "a crimson headband tiara with golden ether accents",
+            "features": "a glowing emerald cross-shaped gem at her sternum",
+            "accessories": "a crimson headband tiara with golden glowing accents",
             "accState": "always",
             "expression": "a warm, bashful smile"
           },
@@ -201,13 +201,13 @@
             "sig_pyra": {
               "label": "Aegis crimson suit",
               "style": "Revealing",
-              "prompt": "a form-fitting crimson and black bodysuit with an open back, glowing orange ether lines, very short black shorts with a gold half-skirt belt, long fingerless gloves, thigh-high armored boots and a trailing translucent red scarf",
+              "prompt": "a form-fitting crimson and black bodysuit with an open back, glowing orange energy lines, very short black shorts with a gold half-skirt belt, long fingerless gloves, thigh-high armored boots and a trailing translucent red scarf",
               "bonus": {"attendant":1.3,"courtesan":1.15}
             },
             "sp_pyra": {
               "label": "Gormotti hooded cloak",
               "style": "Cute",
-              "prompt": "a brown hooded travel cloak with cat-ear peaks worn over her crimson and black Aegis bodysuit",
+              "prompt": "a brown hooded travel cloak with cat-ear peaks worn over her crimson and black futuristic bodysuit",
               "bonus": {"attendant":1.2,"adventurer":1.2}
             }
           },
@@ -242,7 +242,7 @@
             "hairColor": "golden blonde",
             "eyes": "golden-amber",
             "skin": "fair",
-            "features": "a glowing emerald cross-shaped core crystal at her sternum",
+            "features": "a glowing emerald cross-shaped gem at her sternum",
             "accessories": "a white and gold tiara circlet",
             "accState": "always",
             "expression": "a proud, confident smirk"
@@ -259,13 +259,13 @@
             "sig_mythra": {
               "label": "Aegis light dress",
               "style": "Revealing",
-              "prompt": "a fitted white and gold bodice dress with a diamond chest cutout, glowing green ether lines, a short pleated white skirt, detached white sleeves and white thigh-high boots with gold trim",
+              "prompt": "a fitted white and gold bodice dress with a diamond chest cutout, glowing green energy lines, a short pleated white skirt, detached white sleeves and white thigh-high boots with gold trim",
               "bonus": {"security":1.3,"noble":1.2}
             },
             "sp_mythra": {
               "label": "Massive Melee leggings",
               "style": "Elegant",
-              "prompt": "a white and gold Aegis bodice dress with a black mesh chest panel, sheer black full-length tights and white thigh-high boots",
+              "prompt": "a white and gold ornate bodice dress with a black mesh chest panel, sheer black full-length tights and white thigh-high boots",
               "bonus": {"security":1.25,"dancer":1.2}
             }
           },
@@ -300,8 +300,8 @@
             "hairColor": "mint-emerald green",
             "eyes": "glowing emerald green",
             "skin": "fair",
-            "features": "a radiant emerald cross-shaped core crystal on her chest and floating translucent green light-wings behind her shoulders",
-            "accessories": "a white and gold winged Aegis headband",
+            "features": "a radiant emerald cross-shaped gem on her chest and floating translucent green light-wings behind her shoulders",
+            "accessories": "a white and gold winged headband",
             "accState": "always",
             "expression": "a serene, luminous smile"
           },
@@ -317,7 +317,7 @@
             "sig_pneuma": {
               "label": "True Aegis armor",
               "style": "Elegant",
-              "prompt": "a sleek white and gold bodysuit with glowing emerald ether lines, armored hip plates, long trailing ribbons of light and thigh-high white-and-gold boots",
+              "prompt": "a sleek white and gold bodysuit with glowing emerald energy lines, armored hip plates, long trailing ribbons of light and thigh-high white-and-gold boots",
               "bonus": {"courtesan":1.3,"security":1.2}
             }
           },
@@ -352,7 +352,7 @@
             "hairColor": "silver-white",
             "eyes": "piercing blue",
             "skin": "dark tan synthetic",
-            "features": "a glowing purple inverted-triangle core crystal at her sternum",
+            "features": "a glowing purple inverted-triangle gem at her sternum",
             "expression": "a cold, predatory smirk"
           },
           "under": "sheer",
@@ -367,7 +367,7 @@
             "sig_telos": {
               "label": "Obsidian combat frame",
               "style": "Revealing",
-              "prompt": "a high-cut black and gold cybernetic leotard bodysuit with a deep plunging neckline, glowing purple ether lines, a short pleated strap skirt, armored gauntlets and thigh-high black mechanical heel boots",
+              "prompt": "a high-cut black and gold cybernetic leotard bodysuit with a deep plunging neckline, glowing purple energy lines, a short pleated strap skirt, armored gauntlets and thigh-high black mechanical heel boots",
               "accessories": "a dark gold-trimmed mechanical visor headband pushed up on her forehead, thin glasses and a massive black-and-gold energy scythe",
               "accState": "dressed",
               "bonus": {"security":1.35,"courtesan":1.15}
@@ -408,7 +408,7 @@
             "hairColor": "jet-black",
             "eyes": "blue with red ring accents",
             "skin": "fair",
-            "features": "a jagged red Flesh Eater core crystal beneath her collar",
+            "features": "a jagged red crystal gem beneath her collar",
             "expression": "an irritable, sharp-eyed scowl"
           },
           "under": "plain",
@@ -424,7 +424,7 @@
               "label": "Tornan warrior armor",
               "style": "Exotic",
               "prompt": "a short white kimono with sleeves tied back by red ribbons over a black turtleneck leotard, an open-sided floral hakama-style skirt, lacquered crimson-and-black shoulder armor, long black gloves, black thigh-high socks and geta-heeled boots",
-              "accessories": "a long Cobra Bardiche spear",
+              "accessories": "a long ornate polearm spear",
               "accState": "dressed",
               "bonus": {"security":1.3,"adventurer":1.2}
             }
@@ -473,7 +473,7 @@
               "label": "Driver's yellow jumpsuit",
               "style": "Sporty",
               "prompt": "a baggy yellow hooded jumpsuit with cat-ear peaks, white and gold chest armor plating, a brown utility belt and oversized red-and-white flared boots",
-              "accessories": "twin glowing water-ether rings",
+              "accessories": "twin glowing blue energy rings",
               "accState": "dressed",
               "bonus": {"bath":1.25,"adventurer":1.2}
             },
@@ -481,13 +481,13 @@
               "label": "Awakened Blade form",
               "style": "Elegant",
               "prompt": "a flowing white, red and gold shrine-maiden leotard gown with gold filigree armor, long detached white-and-red ribbon sleeves and vibrant red boots",
-              "hairStyle": "two very long low twintails reaching past her knees bound with red shimenawa ropes",
+              "hairStyle": "two very long low twintails reaching past her knees bound with braided red ceremonial ropes",
               "hairColor": "silver-white",
               "eyes": "bright golden with cat-like slit pupils",
-              "features": "long tufted silver-white fox-like cat ears, a glowing turquoise-and-red Flesh Eater core crystal at her chest, and red facial markings",
+              "features": "long tufted silver-white fox-like cat ears, a glowing turquoise-and-red crystal gem at her chest, and red facial markings",
               "replaceFeatures": true,
               "favColor": "crimson",
-              "accessories": "a ceremonial water-ether catalyst scimitar",
+              "accessories": "a ceremonial glowing blue-bladed scimitar",
               "accState": "dressed",
               "bonus": {"bath":1.35,"courtesan":1.25}
             }

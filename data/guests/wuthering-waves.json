@@ -489,7 +489,7 @@
             "sig_aemeath": {
               "label": "Synchronist suit",
               "style": "Cute",
-              "prompt": "a sleek white-and-charcoal futuristic Synchronist dress with glowing rose-pink and cyan circuit accents, detached sleeves and thigh straps",
+              "prompt": "a sleek white-and-charcoal futuristic dress with glowing rose-pink and cyan circuit accents, detached sleeves and thigh straps",
               "bonus": {"dancer":1.3,"promoter":1.15}
             }
           },
@@ -521,7 +521,7 @@
             "hairColor": "pure white with crimson-red inner streaks and tips",
             "eyes": "vivid crimson",
             "skin": "pale",
-            "features": "a glowing red Tacet Mark on her upper chest and red camellia blossoms in her hair",
+            "features": "a glowing red star-shaped tattoo mark on her upper chest and red camellia blossoms in her hair",
             "expression": "a dangerously playful, half-lidded smile"
           },
           "under": "sheer",
@@ -572,7 +572,7 @@
             "hairColor": "jet black with pale silver-white inner streaks",
             "eyes": "warm golden-amber",
             "skin": "fair",
-            "features": "a glowing Tacet Mark on the back of her right hand",
+            "features": "a glowing geometric mark on the back of her right hand",
             "accessories": "a white feather hair ornament pinned at her temple",
             "accState": "always",
             "expression": "a calm, attentive half-smile"

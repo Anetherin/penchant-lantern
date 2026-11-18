@@ -42,7 +42,7 @@
             "sp_lyn": {
               "label": "Blade Lord attire",
               "style": "Sporty",
-              "prompt": "a teal and white Sacaean tunic dress with gold embroidery, a white fur-trimmed shoulder mantle and knee-high brown boots",
+              "prompt": "a teal and white embroidered tunic dress with gold trim, a white fur-trimmed shoulder mantle and knee-high brown boots",
               "bonus": {"security":1.25,"noble":1.2}
             }
           },
@@ -273,7 +273,7 @@
             "eyes": "red",
             "skin": "pale",
             "features": "long pointed ears",
-            "accessories": "a glowing dragonstone amulet",
+            "accessories": "a glowing crystalline amulet",
             "accState": "always"
           },
           "under": "silk",
@@ -296,7 +296,7 @@
             "sp_corrin": {
               "label": "Nohr Noble armor",
               "style": "Revealing",
-              "prompt": "a sleek black and gold Nohrian armor-dress with dark thigh-high cutouts, a flowing black cape and bare feet",
+              "prompt": "a sleek black and gold ornate armor-dress with dark thigh-high cutouts, a flowing black cape and bare feet",
               "bonus": {"security":1.2,"courtesan":1.2}
             }
           },
@@ -556,7 +556,7 @@
             "eyes": "bright pink-violet",
             "skin": "fair",
             "features": "long pointed ears",
-            "accessories": "a glowing green dragonstone pendant",
+            "accessories": "a glowing green crystal pendant",
             "accState": "always",
             "expression": "a bright, playful grin"
           },
@@ -624,7 +624,7 @@
             "sig_tharja": {
               "label": "Plegian dark mage",
               "style": "Revealing",
-              "prompt": "a sheer black mesh bodysuit under a cropped black and gold Plegian cape, a high-cut black bikini-style wrap and gold wrist and ankle cuffs",
+              "prompt": "a sheer black mesh bodysuit under a cropped black and gold ornate cape, a high-cut black bikini-style wrap and gold wrist and ankle cuffs",
               "bonus": {"courtesan":1.3,"adventurer":1.15}
             }
           },
@@ -659,8 +659,8 @@
             "hairColor": "navy blue",
             "eyes": "deep blue",
             "skin": "fair",
-            "features": "the circular Brand of the Exalt in her left eye",
-            "accessories": "the exalted sword Falchion at her hip",
+            "features": "a small glowing circular crest mark in her left iris",
+            "accessories": "an ornate gold-hilted longsword at her hip",
             "accState": "dressed",
             "expression": "an earnest, determined gaze"
           },
@@ -676,7 +676,7 @@
             "sig_lucina": {
               "label": "Ylissean Lord",
               "style": "Sporty",
-              "prompt": "a navy blue and silver Ylissean tunic over a fitted undershirt, a blue cape with a silver clasp, leather gauntlets and tall boots",
+              "prompt": "a navy blue and silver royal tunic over a fitted undershirt, a blue cape with a silver clasp, leather gauntlets and tall boots",
               "bonus": {"security":1.35,"adventurer":1.2}
             },
             "sp_lucina": {
@@ -684,7 +684,7 @@
               "style": "Sporty",
               "hairStyle": "tucked up short",
               "prompt": "a navy blue tunic, silver shoulder pauldrons, a flowing blue cape and tall boots",
-              "accessories": "a butterfly-shaped silver mask and the sword Falchion at her hip",
+              "accessories": "a butterfly-shaped silver mask and an ornate gold-hilted sword at her hip",
               "accState": "dressed",
               "bonus": {"security":1.25,"noble":1.2}
             }

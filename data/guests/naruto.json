@@ -315,9 +315,9 @@
             "sp_tsunade": {
               "label": "Fifth Hokage robes",
               "style": "Elegant",
-              "prompt": "sweeping white and crimson ceremonial Hokage robes over her low-cut grey kimono top",
+              "prompt": "sweeping white and crimson ceremonial robes with red flame motifs over her low-cut grey kimono top",
               "bonus": {"madame":1.25,"noble":1.25},
-              "accessories": "a red-and-white wide conical Hokage hat",
+              "accessories": "a red-and-white wide conical ceremonial hat",
               "accState": "dressed"
             }
           },
@@ -695,7 +695,7 @@
             "sp_himawari": {
               "label": "Nine-Tails awakening",
               "style": "Exotic",
-              "prompt": "a cropped yellow short-sleeved t-shirt with an orange sunflower graphic and loose blue denim jeans, wreathed in a flickering golden-orange chakra aura",
+              "prompt": "a cropped yellow short-sleeved t-shirt with an orange sunflower graphic and loose blue denim jeans, wreathed in a flickering golden-orange energy aura",
               "bonus": {"security":1.35,"adventurer":1.25},
               "hairStyle": "long, wild and floating upward in nine tail-like locks",
               "eyes": "glowing crimson-orange with vertical slit pupils",
