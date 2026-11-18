@@ -32,7 +32,7 @@ function tutorRow(w){
     <select onchange="setTutorTier('${w.id}',this.value)">${tiers.map(([k,t])=>`<option value="${k}" ${tutorTier(w)===k?'selected':''}>${esc(t.label)} · ${fmt(tutorCost(w,k))}/wk</option>`).join('')}</select>
     ${w.tutor ? `<span class="muted">${esc(tutorSummary(w))}</span>` : ''}</div>`;
 }
-// Tutoring for a whole group at once (Sam tab → Errands). Groups follow the roster order (rosterRank in ui/core.js), plus houses and jobs.
+// Tutoring for a whole group at once (Sam tab → Management). Groups follow the roster order (rosterRank in ui/core.js), plus houses and jobs.
 let TUT_ALL = null;
 function tutorGroups(){
   const G = [['all','Everyone'],['perm','Permanent: story characters & guests'],['story','Story: house ladies, partners & other story characters'],['r0','House ladies'],['r1','Partners'],['r2','Other story characters'],['r3','Guests'],['r4','Generic ladies']];
@@ -118,7 +118,7 @@ function giftCore(w, k, cost){
   countUp(w, 'gifts');
   return {tg, m};
 }
-// Gifts for a whole group (Sam tab → Errands), same groups as group tutoring. Skips ladies at max trust or held by their house's story.
+// Gifts for a whole group (Sam tab → Management), same groups as group tutoring. Skips ladies at max trust or held by their house's story.
 let GIFT_ALL = null;
 const giftRoom = w => w.trust < Math.min(100, houseTrustCap(w));
 function giftAllMenu(){
