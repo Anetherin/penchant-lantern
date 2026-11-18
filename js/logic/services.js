@@ -98,10 +98,10 @@ function hlText(w, e){
     }
     return `${cap(who)} propositioned ${N} ${where}, asking ${askClient(e.want)}. She turned him down.`;
   }
-  // a solo reverse possession with a client is its own encounter: the possession, not the service he asked for (report.js groups it alone)
+  // a solo reverse possession with a client is its own encounter: the possession (plus any follow-up service), not the service he asked for (report.js groups it alone)
   if(e.possess && e.act){
     const lead = e.where ? `${cap(who)} propositioned ${N} ${PROP_WHERE[e.where]}.` : `${cap(who)} came for ${N}.`;
-    return `${lead} ${flavor('enc_possess_' + e.possess, w)}${encTxt}`;
+    return `${lead} ${flavor('enc_possess_' + e.possess, w)}${encTxt}${more}`;
   }
   const extra = [e.adapt && flavor('enc_adapt', w, e.adapt), e.lantern && flavor('enc_lantern_angel', w), e.heat && e.note!=='drained' && e.note!=='frustrated' && flavor('enc_beast_heat', w)].filter(Boolean).join(' ');
   const tail = extra ? ' ' + extra : '';
