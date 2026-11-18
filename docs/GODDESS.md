@@ -1,6 +1,6 @@
 # The goddess (Seliora, the Lamplighter)
 
-The overarching story. Code: `js/logic/goddess.js`. Story wording, her look, forms, teases and dedicated intros: `data/goddess/` (`base.json`, `teases.json`, `intros.json`, `partner-intros.json`). Her remarks about houses and past lives: `economy.json → houses[id].goddess`, `pasts[k].goddess`; about partners: `characters.json → <key>.goddess.comment`, and her aside after each partner intro (`goddess/partner-intros.json → <key>.goddess`: how she arranged the meeting). Her lines with ladies: `services.json → pair.fem/futa`; with Sam: `flavor.json → private_act`. Numbers: `data/balance.json → goddess`.
+The overarching story. Code: `js/logic/goddess.js`. Story wording, her look, forms, teases and dedicated intros: `data/goddess/` (`base.json`, `teases.json`, `intros.json`, `partner-intros.json`). Her remarks about houses and past lives: `economy.json → houses[id].goddess`, `pasts[k].goddess`; about partners: `characters/partners.json → <key>.goddess.comment`, and her aside after each partner intro (`goddess/partner-intros.json → <key>.goddess`: how she arranged the meeting). Her lines with ladies: `services.json → pair.fem/futa`; with Sam: `flavor/sam.json → private_act`. Numbers: `data/balance.json → goddess`.
 Test: `node tools/goddess-smoke.mjs [weeks per cycle]` (plays to the binding, every focus, nights until her ending).
 
 ## Arc

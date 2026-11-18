@@ -17,7 +17,7 @@ optional text generation (`ai-text-plugin`).
   | `services.json` | Services: thresholds, prices, stat weights, AI description, image poses per context (client / Sam / two ladies), report lines |
   | `snippets.json` | Your own image wording for POV, bath, mishap, solo and duo scenes, and how each clothing state is described |
   | `ai-prompts.json` | The prompts sent to the AI text plugin, plus style guidance and outcome cues |
-  | `characters/` | Named ladies, their outfits and starting bonds (`house`, `partners`, `story` = story + guild ladies) |
+  | `characters/` | Named ladies, their outfits and starting bonds (`house`, `partners`, `story` = house-story joiners, `guild`) |
   | `guests/` | Visiting/crossover ladies, one file per pack |
   | `firsts/` | Firsts with Sam: shared rules + templates in `base`, then each lady's own scenes by group (`house`, `partners`, `story`, one file per guest pack) |
   | `arcs/` | Partner romance arcs, one file per partner |
@@ -29,12 +29,12 @@ optional text generation (`ai-text-plugin`).
   | `personalities.json` | Personalities, stat leans, preferences, and expression shifts |
   | `races.json` | Races, beastkin/angel subs, stat mods, fx, client like/dislike, appearance rules |
   | `traits/` | Traits (`general`, `earnable`, `ngperks`) and `fx` schema in `base.json` |
-  | `titles.json` | Honorifics/ranks, perks, and earnable/story titles |
+  | `titles.json` | Honorifics/ranks and their perks; tiered lines where a higher title replaces the one it grows from |
   | `body.json` | Bust, height, figure options, prompt wording, and effects |
   | `people.json` | Generic names, appearance pools, accessories, expressions, hooks, gifts, client descriptions |
   | `wardrobe.json` | Outfits, undergarments, colors |
   | `scenes.json` / `dates.json` | Image scenes and backdrops; date types with their text, stats, and images |
-  | `walks.json` | Sam's walk encounters: goddess disguises/strolls, casual encounters, partner/guest openers, town events |
+  | `walks/` | Sam's walk encounters: goddess disguises/strolls, casual encounters, guest openers, town events (`base`), partner meetings and NG++ returns (`partners`) |
   | `economy.json` | Jobs, job slots, houses (class/prestige, perks, repairs), upgrades, decor/drinks, prices, client classes, Sam's past lives |
   | `events.json` | Random events, chats and gifts |
   | `flavor/` | Random lines per personality: `sam` (private time, lovers, nights, gifts), `jobs`, `encounters` (clients, pushy clients), `training` |
@@ -43,10 +43,11 @@ optional text generation (`ai-text-plugin`).
 
   If the page says a file isn't valid JSON, look for a missing comma or quote. `node tools/fmt-json.mjs` tidies them.
   Style rules for scene text (voice, wording, which lines may name an act) are in `docs/WRITING.md`.
+  To add a partner, house, story lady or guest, follow the checklist in `docs/CONTENT.md` (every file to touch, and typical lengths).
 - `css/style.css`: all styles.
 - `js/core`: config (scene snippets, service categories, defaults) and utilities/storage.
 - `js/data`: characters, races, jobs, houses, wardrobe, scenes, named characters.
-- `js/logic`: character rules, effects (`fx`), titles, image prompts, AI/image generation, state, player commands, Sam, dates/demos/orgies, spending (tutors/gifts/cuts), Sam's home/feasts, services & propositions, weekly simulation, New Game+, goddess.
+- `js/logic`: character rules, effects (`fx`), titles, image prompts, AI/image generation, state, player commands, Sam, dates/demos/orgies, spending (tutors/gifts/cuts), Sam's home/feasts, services & propositions, weekly simulation (`staff` → `week` → `endweek`), guild, New Game+, goddess, lingering.
 - `js/events`, `js/stories`: random events, regulars, bonds, firsts, encounters, walks; house stories, partner arcs, after-stories, intros, NG+ house stories.
 - `js/ui`: main screens (`core`), lady sheet (`sheet`), weekly report (`report`), wardrobe modal (`wardrobe`), settings (`settings`).
 - `perchance/panel.html`: the small shim you paste into Perchance's HTML panel.
@@ -75,3 +76,16 @@ Scene snippets, AI prompts and flavor text live in `data/`, so anyone who can se
 - `node tools/goddess-smoke.mjs [weeks per cycle]` runs the goddess arc through binding and ending headlessly.
 - `node tools/story-check.mjs [--words]` plays every intro, romance arc and after-story through every page and choice, and fails on leftover `{placeholders}`, empty text or errors.
 - `node tools/lab/lab.mjs <spec>` runs seeded, paired balance experiments (see `tools/lab/README.md`).
+
+## Docs
+
+| Doc | For |
+|---|---|
+| `docs/CONTENT.md` | Adding characters and houses: every file to touch and how long each piece should be |
+| `docs/WRITING.md` | House style for all scene text |
+| `docs/STATS.md` | The eight stats, formulas and service stat weights |
+| `docs/GODDESS.md`, `docs/GUILD.md` | How the goddess storyline and the Adventurers' Guild work |
+| `docs/TESTING.md` | Running tests and balance checks (by hand or by an agent) |
+| `docs/BALANCE.md` | Balance lab results and tuning history |
+| `docs/TODO.md` | Big open ideas |
+| `CLAUDE.md` | Code map for AI agents (systems, key functions, where things live) |
