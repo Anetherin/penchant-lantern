@@ -17,7 +17,7 @@
           "lovers": "cowgirl",
           "backstory": "The heiress of a famous family of inventors, Bulma has already built, bankrolled and broken more gadgets than anyone in her own world cares to count. She came to Hollowmere chasing a rumor about rare crystals and stayed when she realized the house could use a proper marketing mind. She will tell you she's the smartest person in the room, and she is usually right.",
           "design": {
-            "hairStyle": "short, sleek and swept to one side",
+            "hairStyle": "braided ponytail with a red ribbo",
             "hairColor": "turquoise",
             "eyes": "blue",
             "skin": "fair",
@@ -55,7 +55,7 @@
             "android18": {"v":35,"kind":"comrades","note":"Old friends who appreciate fine clothes and prize money."}
           },
           "jobs": {"likes":["promoter","madame"],"dislikes":["security"]},
-          "body": {"bust":"large","height":"average","figure":"curvy"},
+          "body": {"bust":"average","height":"average","figure":"curvy"},
           "unique": {
             "name": "Genius Inventor",
             "desc": "Her gadgets and her quick mind keep the house buzzing and the crowds coming.",
