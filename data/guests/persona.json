@@ -179,11 +179,11 @@
           "lovers": "oral_get",
           "backstory": "Tae Takemi runs a back-alley clinic and a drip-feed of experimental medicines, and is the only doctor in the district who will see anyone, no questions asked. She is dry, blunt, a bit of a night owl and unfazed by blood, fever or anyone's vanity. She came to Hollowmere for the herbs, stayed for the tea, and has opinions about everybody's posture.",
           "design": {
-            "hairStyle": "short, wavy and tousled",
-            "hairColor": "dark brown",
-            "eyes": "dark grey",
+            "hairStyle": "messy bob cut with blunt bangs",
+            "hairColor": "dark blue",
+            "eyes": "brown",
             "skin": "fair",
-            "accessories": "a thin silver choker",
+            "accessories": "a black choker with silver studs",
             "accState": "always",
             "expression": "a tired, teasing half-smile"
           },
@@ -199,7 +199,7 @@
             "sig_takemi": {
               "label": "Clinic coat",
               "style": "Sporty",
-              "prompt": "an open white doctor's coat over a fitted black dress and dark tights",
+              "prompt": "an open white doctor's coat over a fitted black dress and dark boots",
               "bonus": {"bath":1.25,"commoner":1.15},
               "accessories": "a stethoscope around her neck",
               "accState": "dressed"
