@@ -200,7 +200,7 @@
             "may": {"v":30,"kind":"comrades","note":"Old friends who swap trail stories."}
           },
           "jobs": {"likes":["attendant","promoter"],"dislikes":["madame"]},
-          "body": {"bust":"medium","height":"average","figure":"athletic"},
+          "body": {"bust":"small","height":"average","figure":"athletic"},
           "unique": {"name":"Wanderer's Spirit","desc":"She never tires of the road, and her cheer is catching.","fx":{"maxEnergy":8,"promote":1.1}},
           "title": "Trainer"
         },
@@ -249,7 +249,7 @@
             "sabrina": {"v":20,"note":"Fellow gym leaders who see each other at regional meetings."}
           },
           "jobs": {"likes":["bath","security"],"dislikes":["madame"]},
-          "body": {"bust":"medium","height":"average","figure":"athletic"},
+          "body": {"bust":"small","height":"average","figure":"athletic"},
           "unique": {
             "name": "Water Gym Leader",
             "desc": "At home in steam and water, she lifts the bathhouse and eases every ache.",
@@ -503,7 +503,7 @@
             "shauna": {"v":35,"kind":"comrades","note":"Loves trading festival routines and showcase tips with Shauna."}
           },
           "jobs": {"likes":["dancer","promoter","host"],"dislikes":["security"]},
-          "body": {"bust":"medium","height":"average","figure":"slim"},
+          "body": {"bust":"small","height":"average","figure":"slim"},
           "unique": {
             "name": "No Need to Worry",
             "desc": "Her unshakable optimism and contest poise turn every stage performance into a crowd favorite.",
@@ -562,7 +562,7 @@
             "may": {"v":35,"kind":"comrades","note":"Swap stage choreography and festival snacks after shifts."}
           },
           "jobs": {"likes":["host","dancer","promoter"],"dislikes":["madame"]},
-          "body": {"bust":"medium","height":"average","figure":"curvy"},
+          "body": {"bust":"small","height":"average","figure":"curvy"},
           "unique": {
             "name": "Memory Maker",
             "desc": "She treats every evening like a festival with friends, winning regulars and cheering the whole floor.",
