@@ -363,12 +363,10 @@
           "trust": 26,
           "outfits": {
             "sig_kasumi": {
-              "label": "Gymnast leotard",
-              "style": "Sporty",
-              "prompt": "a white and rose gymnast leotard with a short wrap skirt and soft slippers",
-              "bonus": {"dancer":1.3,"commoner":1.1},
-              "accessories": "a long satin gymnastics ribbon",
-              "accState": "dressed"
+              "label": "Shujin Academy uniform",
+              "style": "Cute",
+              "prompt": "a fitted black school blazer with a crest badge over a white turtleneck with a small red bow at the collar, a dark red-and-black pleated plaid skirt, black tights and red loafers",
+              "bonus": {"dancer":1.25,"attendant":1.15}
             },
             "sp_kasumi": {
               "label": "Violet thief suit",
@@ -376,6 +374,14 @@
               "prompt": "a fitted black high-collared leotard with a long dark tailcoat, red waist sash, thigh-high black boots and red gloves",
               "bonus": {"dancer":1.2,"security":1.2},
               "accessories": "a black domino mask",
+              "accState": "dressed"
+            },
+            "sp_kasumi_leotard": {
+              "label": "Gymnast leotard",
+              "style": "Sporty",
+              "prompt": "a white and rose gymnast leotard with a short wrap skirt and soft slippers",
+              "bonus": {"dancer":1.3,"commoner":1.1},
+              "accessories": "a long satin gymnastics ribbon",
               "accState": "dressed"
             }
           },

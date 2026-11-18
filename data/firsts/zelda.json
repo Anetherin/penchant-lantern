@@ -404,6 +404,66 @@
           "waitRes": "\"The wallpaper can be replaced!\" Twinrova huffs, fanning herself with a frosted hand. \"Bedroom, ten minutes—don't be late.\""
         }
       }
+    },
+    "saria": {
+      "events": {
+        "1": {
+          "title": "Forest Tune",
+          "text": "Late at night in the empty lounge, Saria sits on the stone hearth bench softly playing her wooden ocarina—a bright, wistful melody that makes the quiet room feel like sunlit woods. Setting the instrument into her lap when you sit beside her, she smiles warmly with rosy cheeks. \"Whenever you carry too much on your shoulders, you always come listen. May I thank you with a kiss, Sam?\"",
+          "image": {
+            "comp": "seated on a hearth bench cradling a wooden ocarina, leaning gently closer with a warm affectionate smile",
+            "setting": "quiet lounge beside the stone hearth at night, glowing embers",
+            "sam": true
+          },
+          "go": "Kiss her",
+          "goRes": "Her kiss is soft, sweet, and unhurried, Saria resting both hands gently on your lapels before letting out a quiet, happy sigh. \"Mm... that song always sounded happier with you near.\"",
+          "wait": "\"Play one more tune first.\"",
+          "waitRes": "\"Gladly!\" Saria beams warmly, raising the ocarina back to her lips with a fond little wink."
+        },
+        "2": {
+          "title": "Quiet Woods",
+          "text": "In the peaceful garden pavilion at dusk, Saria unbuckles her brown leather belt and leans against your chest as evening fireflies drift between the trellises. Catching your hand softly, she guides your palm beneath her green tunic over warm, bare skin. \"We Kokiri spend lifetimes looking the same while watching whole kingdoms change,\" she whispers shyly. \"I'm glad you're right here where I can touch you, Sam.\"",
+          "image": {
+            "comp": "leaning against his chest in a dim garden pavilion, guiding his hand shyly beneath her green tunic",
+            "setting": "garden pavilion at dusk, drifting fireflies and climbing vines",
+            "sam": true,
+            "cloth": "partial",
+            "wear": "her forest-green Kokiri tunic with the belt unbuckled"
+          },
+          "go": "Touch her",
+          "goRes": "You kiss her pointed ears and neck while sliding your hands beneath her wrap skirt to stroke her soaked pussy, Saria shivering softly as her eager hands and mouth wrap around your cock until you cum.",
+          "wait": "\"I'm not going anywhere, Saria.\"",
+          "waitRes": "Saria's worried eyes brighten at once, resting her cheek happily against your collarbone. \"Good. Keep that promise.\""
+        },
+        "3": {
+          "title": "Heart of the Woods",
+          "text": "Saria stands beside your bed having slipped cleanly out of her green tunic and boots, clutching only a small folded blanket against her front before letting it drop shyly to the floorboards. Climbing onto the sheets beside you, she takes both of your hands: \"A forest sage guards an entire temple alone—tonight, I don't want to be alone at all. Stay with me, Sam.\"",
+          "image": {
+            "comp": "kneeling bare beside him on the bed holding both his hands, gentle tender smile",
+            "setting": "Sam's bedroom at night, wooden ocarina on the nightstand, soft lamplight",
+            "sam": true,
+            "cloth": "nude"
+          },
+          "go": "Stay with her",
+          "goRes": "You lay her tenderly onto the pillows and ease your cock slowly into her tight, wet pussy, kissing her deeply as she clings around your shoulders with soft, breathless gasps until you finish together.",
+          "wait": "\"Are you certain?\"",
+          "waitRes": "\"I am,\" Saria smiles gently, tucking herself warmly beneath your arm under the quilt. \"Ask again whenever you're ready.\"",
+          "act": "missionary"
+        },
+        "jump": {
+          "title": "Ocarina Echo",
+          "text": "After calming a packed, rowdy lounge with an impromptu flute tune, Saria catches your sleeve behind the pantry door, still flushed and breathless from applause—and surprises you with a warm, lingering kiss. \"Everyone else loved the music, Sam, yet I was playing the whole time just for you,\" she whispers against your mouth.",
+          "image": {
+            "comp": "pulling him behind a pantry door flushed and smiling brightly after a performance, leaning into an eager kiss",
+            "setting": "quiet pantry corner beside the bustling lounge, soft lantern light",
+            "sam": true
+          },
+          "go": "Kiss her back",
+          "goRes": "You lift her gently onto a crate behind the door, hiking up her green wrap skirt to slide your fingers between her bare thighs while she gasps happily against your lips.",
+          "wait": "\"Save an encore for later.\"",
+          "waitRes": "\"An encore just for two,\" she giggles softly, tapping your nose before slipping back out to the hearth."
+        }
+      }
     }
   }
 }

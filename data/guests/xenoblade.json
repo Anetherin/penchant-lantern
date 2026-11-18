@@ -1,0 +1,510 @@
+{
+  "packs": {
+    "xenoblade": {
+      "label": "Xenoblade",
+      "characters": {
+        "melia": {
+          "job": "chapel",
+          "title": "Princess",
+          "name": "Melia Antiqua",
+          "race": "angel",
+          "age": 188,
+          "personality": "Calm and elegant",
+          "traits": ["Elegant","Loyal"],
+          "style": "Elegant",
+          "favColor": "lavender",
+          "fav": "kiss",
+          "dislike": "doggy",
+          "lovers": "missionary",
+          "backstory": "Princess of a proud winged sky-people, Melia endured loss, duty and war with quiet grace before stepping away from her throne to see how ordinary lives unfold. She speaks with measured formality, hides a dry sense of humor behind her composure, and secretly welcomes a place where nobody bows before speaking to her.",
+          "design": {
+            "hairStyle": "shoulder-length curly ringlets",
+            "hairColor": "silver-white",
+            "eyes": "teal",
+            "skin": "fair",
+            "features": "small snow-white feathered head-wings above her ears and a faint golden halo",
+            "expression": "a regal, composed smile"
+          },
+          "under": "silk",
+          "underColor": "lavender",
+          "stats": {"beauty":80,"charm":68,"charisma":70,"refinement":82,"wits":78,"stamina":48,"strength":28,"agility":54},
+          "tech": {"service":40,"dance":30,"bar":15,"combat":65,"manage":60},
+          "actSkill": 25,
+          "popularity": 24,
+          "lewd": 20,
+          "trust": 24,
+          "outfits": {
+            "sig_melia": {
+              "label": "High Entia royal dress",
+              "style": "Elegant",
+              "prompt": "a strapless lavender and purple High Entia dress with a white detached-sleeve bolero cloak, elbow-length white gloves, short white bloomers and thigh-high white boots",
+              "accessories": "an arched silver-and-violet High Entia tiara and an ornate ether staff topped with glowing crystals",
+              "accState": "dressed",
+              "bonus": {"chapel":1.3,"noble":1.2}
+            },
+            "sp_melia": {
+              "label": "Queen's regalia",
+              "style": "Elegant",
+              "prompt": "a structured white and gold royal gown with a dark high-collared cape, gold filigree trim and white thigh-high boots",
+              "accessories": "a golden royal crown",
+              "accState": "always",
+              "bonus": {"madame":1.25,"noble":1.25}
+            }
+          },
+          "bonds": {
+            "sharla": {"v":35,"kind":"comrades","note":"Steady companions from a long journey across two titans."},
+            "vanea": {"v":25,"note":"Respects Vanea's quiet wisdom and grace under sorrow."}
+          },
+          "jobs": {"likes":["chapel","host","teacher"],"dislikes":["bartender","maid"]},
+          "body": {"bust":"small","height":"short","figure":"average"},
+          "unique": {
+            "name": "Elemental Discharge",
+            "desc": "Her poised ether arts and royal dignity uplift the chapel and charm highborn patrons.",
+            "fx": {"jobBonus":{"chapel":1.2},"classBonus":{"noble":1.15}}
+          }
+        },
+        "sharla": {
+          "job": "bath",
+          "name": "Sharla",
+          "race": "human",
+          "age": 25,
+          "personality": "Warm and motherly",
+          "traits": ["Warm-Hearted","Former Adventurer"],
+          "style": "Sporty",
+          "favColor": "crimson",
+          "fav": "massage_give",
+          "dislike": "manual_get",
+          "lovers": "cowgirl",
+          "backstory": "A seasoned combat medic and sharpshooter from a fallen colony, Sharla spent years patching up wounded soldiers while keeping everyone's spirits together like a big sister. In Hollowmere, she runs the steam rooms with brisk, practical warmth—though she gets surprisingly flustered whenever someone insists on taking care of her instead.",
+          "design": {
+            "hairStyle": "short chin-length bob with a side-swept bang",
+            "hairColor": "dark brown",
+            "eyes": "warm brown",
+            "skin": "warm tan",
+            "features": "a small beauty mark beneath her left eye",
+            "accessories": "gold hoop earrings",
+            "accState": "always",
+            "expression": "a warm, caring smile"
+          },
+          "under": "sports",
+          "underColor": "crimson",
+          "stats": {"beauty":76,"charm":74,"charisma":68,"refinement":52,"wits":62,"stamina":72,"strength":56,"agility":60},
+          "tech": {"service":50,"dance":25,"bar":30,"combat":72,"manage":45},
+          "actSkill": 25,
+          "popularity": 18,
+          "lewd": 32,
+          "trust": 28,
+          "outfits": {
+            "sig_sharla": {
+              "label": "Colony 6 medic uniform",
+              "style": "Sporty",
+              "prompt": "a cropped crimson-and-white halter top exposing her cleavage and toned midriff, matching dark shorts with a white hip belt, fingerless gloves and tall brown boots",
+              "accessories": "an ether sniper rifle slung across her back",
+              "accState": "dressed",
+              "bonus": {"bath":1.3,"security":1.15}
+            },
+            "sp_sharla": {
+              "label": "Makna jungle wrap",
+              "style": "Revealing",
+              "prompt": "a tribal patterned bikini top with feathered shoulder trim, a low-slung wrap skirt and strappy sandals",
+              "bonus": {"bath":1.25,"courtesan":1.2}
+            }
+          },
+          "bonds": {"melia":{"v":35,"kind":"comrades","note":"Steady companions from a long journey across two titans."}},
+          "jobs": {"likes":["bath","attendant","security"],"dislikes":["dancer"]},
+          "body": {"bust":"large","height":"average","figure":"curvy"},
+          "unique": {
+            "name": "Healing Bullet",
+            "desc": "A combat medic's steady hands make her massages restorative and keep the bathhouse thriving.",
+            "fx": {"jobBonus":{"bath":1.2},"actQuality":{"massage_give":1.25}}
+          }
+        },
+        "vanea": {
+          "job": "teacher",
+          "title": "Lady",
+          "name": "Vanea",
+          "race": "android",
+          "age": 420,
+          "personality": "Gentle and dreamy",
+          "traits": ["Elegant","Patient Tutor"],
+          "style": "Exotic",
+          "favColor": "gold",
+          "fav": "massage_give",
+          "dislike": "doggy",
+          "lovers": "missionary",
+          "backstory": "Daughter of an ancient Machina leader and guardian of her people's forgotten arts, Vanea carries centuries of quiet sorrow with unfailing grace. Built in the image of a gentle goddess, she prefers mentoring the younger staff and tending to quiet rooms—slowly discovering that her synthetic frame can still learn warmth.",
+          "design": {
+            "hairStyle": "long swept-back metallic-sheen locks",
+            "hairColor": "silver-grey",
+            "eyes": "glowing crimson",
+            "skin": "dark charcoal-grey synthetic",
+            "features": "ornate gold and bronze biomechanical plating and intricate gold-filigree mechanical wing-crests at her hips and shoulders",
+            "expression": "a serene, compassionate gaze"
+          },
+          "under": "silk",
+          "underColor": "gold",
+          "stats": {"beauty":78,"charm":68,"charisma":64,"refinement":80,"wits":86,"stamina":68,"strength":48,"agility":56},
+          "tech": {"service":45,"dance":20,"bar":25,"combat":55,"manage":72},
+          "actSkill": 25,
+          "popularity": 18,
+          "lewd": 20,
+          "trust": 24,
+          "outfits": {
+            "sig_vanea": {
+              "label": "Machina royal plating",
+              "style": "Exotic",
+              "prompt": "ornate gold and crimson biomechanical armor panels sculpted over a fitted dark synthetic bodysuit with a high wing-shaped collar and gilded greaves",
+              "bonus": {"teacher":1.3,"merchant":1.2}
+            }
+          },
+          "bonds": {"melia":{"v":25,"note":"Shares a quiet bond with Melia over lost kingdoms and surviving kin."}},
+          "jobs": {"likes":["teacher","attendant","madame"],"dislikes":["bartender","dancer"]},
+          "body": {"bust":"large","height":"tall","figure":"curvy"},
+          "unique": {
+            "name": "Meyneth's Grace",
+            "desc": "Millennia of Machina engineering wisdom make her a patient instructor and a calming presence.",
+            "fx": {"jobBonus":{"teacher":1.2},"teach":1.15,"moodRest":3}
+          }
+        },
+        "pyra": {
+          "job": "attendant",
+          "name": "Pyra",
+          "race": "android",
+          "age": 24,
+          "personality": "Warm and motherly",
+          "traits": ["Loyal","Warm Hospitality"],
+          "style": "Revealing",
+          "favColor": "crimson",
+          "fav": "breast_give",
+          "dislike": "doggy",
+          "lovers": "missionary",
+          "backstory": "The gentle, flame-bearing half of the legendary Aegis, Pyra wakes up early to cook breakfast for the entire house and blushes furiously whenever anyone praises her figure. Despite possessing world-shaping power inside the emerald crystal on her chest, all she really wants is a quiet hearth, good tea, and someone gentle to come home to.",
+          "design": {
+            "hairStyle": "short layered bob with long side locks",
+            "hairColor": "flame red",
+            "eyes": "amber-gold",
+            "skin": "fair",
+            "features": "a glowing emerald cross-shaped core crystal at her sternum",
+            "accessories": "a crimson headband tiara with golden ether accents",
+            "accState": "always",
+            "expression": "a warm, bashful smile"
+          },
+          "under": "lace",
+          "underColor": "crimson",
+          "stats": {"beauty":86,"charm":80,"charisma":76,"refinement":68,"wits":66,"stamina":74,"strength":64,"agility":68},
+          "tech": {"service":55,"dance":35,"bar":45,"combat":78,"manage":55},
+          "actSkill": 30,
+          "popularity": 28,
+          "lewd": 34,
+          "trust": 32,
+          "outfits": {
+            "sig_pyra": {
+              "label": "Aegis crimson suit",
+              "style": "Revealing",
+              "prompt": "a form-fitting crimson and black bodysuit with an open back, glowing orange ether lines, very short black shorts with a gold half-skirt belt, long fingerless gloves, thigh-high armored boots and a trailing translucent red scarf",
+              "bonus": {"attendant":1.3,"courtesan":1.15}
+            },
+            "sp_pyra": {
+              "label": "Gormotti hooded cloak",
+              "style": "Cute",
+              "prompt": "a brown hooded travel cloak with cat-ear peaks worn over her crimson and black Aegis bodysuit",
+              "bonus": {"attendant":1.2,"adventurer":1.2}
+            }
+          },
+          "bonds": {
+            "mythra": {"v":95,"kind":"family","note":"Her other half and sister in every way that counts."},
+            "pneuma": {"v":95,"kind":"family","note":"The harmony they share when neither holds back."},
+            "nia": {"v":55,"kind":"comrades","note":"Warm friends who tease each other endlessly in the kitchen."}
+          },
+          "jobs": {"likes":["attendant","host","courtesan"],"dislikes":["security"]},
+          "body": {"bust":"huge","height":"average","figure":"curvy"},
+          "unique": {
+            "name": "Aegis Flame",
+            "desc": "Her gentle warmth and legendary cooking keep the whole house comfortable and well-tended.",
+            "fx": {"jobBonus":{"attendant":1.2,"host":1.15},"moodRest":3}
+          }
+        },
+        "mythra": {
+          "job": "security",
+          "name": "Mythra",
+          "race": "android",
+          "age": 24,
+          "personality": "Proud and sharp-tongued",
+          "traits": ["Tough","Striking"],
+          "style": "Revealing",
+          "favColor": "gold",
+          "fav": "cowgirl",
+          "dislike": "manual_give",
+          "lovers": "missionary",
+          "backstory": "The dazzling, sharp-tongued light aspect of the Aegis, Mythra projects effortless superiority while secretly worrying she'll break something—or hurt someone—if she gets careless. She stays strictly out of the kitchen (by unanimous house decree), guards the doors with blinding speed, and gets defensive the instant anyone catches her looking soft.",
+          "design": {
+            "hairStyle": "very long, cascading past her hips with swept bangs",
+            "hairColor": "golden blonde",
+            "eyes": "golden-amber",
+            "skin": "fair",
+            "features": "a glowing emerald cross-shaped core crystal at her sternum",
+            "accessories": "a white and gold tiara circlet",
+            "accState": "always",
+            "expression": "a proud, confident smirk"
+          },
+          "under": "silk",
+          "underColor": "white",
+          "stats": {"beauty":88,"charm":62,"charisma":78,"refinement":70,"wits":72,"stamina":76,"strength":70,"agility":74},
+          "tech": {"service":45,"dance":40,"bar":25,"combat":92,"manage":45},
+          "actSkill": 25,
+          "popularity": 28,
+          "lewd": 38,
+          "trust": 22,
+          "outfits": {
+            "sig_mythra": {
+              "label": "Aegis light dress",
+              "style": "Revealing",
+              "prompt": "a fitted white and gold bodice dress with a diamond chest cutout, glowing green ether lines, a short pleated white skirt, detached white sleeves and white thigh-high boots with gold trim",
+              "bonus": {"security":1.3,"noble":1.2}
+            },
+            "sp_mythra": {
+              "label": "Massive Melee leggings",
+              "style": "Elegant",
+              "prompt": "a white and gold Aegis bodice dress with a black mesh chest panel, sheer black full-length tights and white thigh-high boots",
+              "bonus": {"security":1.25,"dancer":1.2}
+            }
+          },
+          "bonds": {
+            "pyra": {"v":95,"kind":"family","note":"Her gentler half, whom she protects fiercely while pretending not to fuss."},
+            "pneuma": {"v":95,"kind":"family","note":"The true form she only trusts around someone worth everything."},
+            "nia": {"v":50,"kind":"comrades","note":"Sharp banter partners who always watch each other's backs."}
+          },
+          "jobs": {"likes":["security","courtesan","dancer"],"dislikes":["maid","attendant"]},
+          "body": {"bust":"huge","height":"average","figure":"curvy"},
+          "unique": {
+            "name": "Foresight",
+            "desc": "She sees trouble coming a second before it happens, keeping the doors secure and her partners sharp.",
+            "fx": {"security":18,"jobBonus":{"security":1.15},"appeal":3}
+          }
+        },
+        "pneuma": {
+          "job": "courtesan",
+          "name": "Pneuma",
+          "race": "android",
+          "age": 25,
+          "personality": "Calm and elegant",
+          "traits": ["Elegant","Graceful"],
+          "style": "Elegant",
+          "favColor": "emerald",
+          "fav": "missionary",
+          "dislike": "doggy",
+          "lovers": "kiss",
+          "backstory": "The awakened union of Pyra's tenderness and Mythra's brilliance, Pneuma moves through the house with radiant composure and effortless grace. Where her two halves hesitate or snap, Pneuma speaks plainly with luminous certainty—choosing to stay in Hollowmere not out of duty, but simply because she likes who she becomes here.",
+          "design": {
+            "hairStyle": "long high ponytail with long bangs framing her face",
+            "hairColor": "mint-emerald green",
+            "eyes": "glowing emerald green",
+            "skin": "fair",
+            "features": "a radiant emerald cross-shaped core crystal on her chest and floating translucent green light-wings behind her shoulders",
+            "accessories": "a white and gold winged Aegis headband",
+            "accState": "always",
+            "expression": "a serene, luminous smile"
+          },
+          "under": "silk",
+          "underColor": "emerald",
+          "stats": {"beauty":90,"charm":76,"charisma":80,"refinement":78,"wits":78,"stamina":76,"strength":70,"agility":76},
+          "tech": {"service":60,"dance":55,"bar":35,"combat":94,"manage":65},
+          "actSkill": 35,
+          "popularity": 30,
+          "lewd": 34,
+          "trust": 28,
+          "outfits": {
+            "sig_pneuma": {
+              "label": "True Aegis armor",
+              "style": "Elegant",
+              "prompt": "a sleek white and gold bodysuit with glowing emerald ether lines, armored hip plates, long trailing ribbons of light and thigh-high white-and-gold boots",
+              "bonus": {"courtesan":1.3,"security":1.2}
+            }
+          },
+          "bonds": {
+            "pyra": {"v":95,"kind":"family","note":"Every warm memory Pyra holds lives inside her."},
+            "mythra": {"v":95,"kind":"family","note":"All of Mythra's fierce resolve, finally at peace."},
+            "nia": {"v":55,"kind":"comrades","note":"Trusts Nia completely—the one friend who sees past the light."}
+          },
+          "jobs": {"likes":["courtesan","security","host"],"dislikes":["bartender"]},
+          "body": {"bust":"huge","height":"average","figure":"curvy"},
+          "unique": {
+            "name": "Light of the Conduit",
+            "desc": "Pyra's warmth and Mythra's brilliance in harmony: she excels in every room she enters.",
+            "fx": {"jobBonus":{"courtesan":1.18},"appeal":4,"clientFee":1.08}
+          }
+        },
+        "telos": {
+          "job": "security",
+          "name": "T-elos",
+          "race": "android",
+          "age": 26,
+          "personality": "Cold and professional",
+          "traits": ["Brawler","Fiery"],
+          "style": "Revealing",
+          "favColor": "black",
+          "fav": "doggy",
+          "dislike": "kiss",
+          "lovers": "cowgirl",
+          "backstory": "An obsessive, razor-sharp combat android rebuilt to surpass her rival prototype, T-elos stepped into Hollowmere wearing a deadly smile and an oversized scythe—only to find nobody here was afraid of her. Beneath the ruthless swagger and clinical arrogance, she treats intimacy like a duel she refuses to lose.",
+          "design": {
+            "hairStyle": "long, straight and sleek with parted bangs",
+            "hairColor": "dark blue-black",
+            "eyes": "piercing blue",
+            "skin": "dark tan synthetic",
+            "expression": "a cold, predatory smirk"
+          },
+          "under": "sheer",
+          "underColor": "black",
+          "stats": {"beauty":84,"charm":50,"charisma":66,"refinement":56,"wits":74,"stamina":86,"strength":88,"agility":86},
+          "tech": {"service":35,"dance":40,"bar":25,"combat":96,"manage":45},
+          "actSkill": 30,
+          "popularity": 22,
+          "lewd": 44,
+          "trust": 18,
+          "outfits": {
+            "sig_telos": {
+              "label": "Obsidian combat frame",
+              "style": "Revealing",
+              "prompt": "a high-cut black and gold cybernetic leotard bodysuit with a deep plunging neckline, glowing purple ether lines, a short pleated strap skirt, armored gauntlets and thigh-high black mechanical heel boots",
+              "accessories": "a dark gold-trimmed mechanical visor headband pushed up on her forehead, thin glasses and a massive black-and-gold energy scythe",
+              "accState": "dressed",
+              "bonus": {"security":1.35,"courtesan":1.15}
+            },
+            "sp_telos": {
+              "label": "Unvisored frame",
+              "style": "Revealing",
+              "prompt": "a sleek black and gold cybernetic leotard bodysuit with glowing crimson circuit lines, sheer black stockings and heeled boots",
+              "accessories": "thin gold-rimmed glasses",
+              "accState": "dressed",
+              "bonus": {"courtesan":1.25,"teacher":1.2}
+            }
+          },
+          "jobs": {"likes":["security","courtesan"],"dislikes":["maid","attendant"]},
+          "body": {"bust":"large","height":"short","figure":"curvy"},
+          "unique": {
+            "name": "Phase Transfer Cannon",
+            "desc": "Overwhelming combat specs make her a terrifying bouncer and a fearless guild operative.",
+            "fx": {"security":22,"jobBonus":{"security":1.15},"guild":1.2}
+          }
+        },
+        "patroka": {
+          "job": "security",
+          "name": "Patroka",
+          "race": "human",
+          "age": 25,
+          "personality": "Proud and sharp-tongued",
+          "traits": ["Tough","Brawler"],
+          "style": "Exotic",
+          "favColor": "crimson",
+          "fav": "cowgirl",
+          "dislike": "massage_give",
+          "lovers": "doggy",
+          "backstory": "A prickly warrior of Torna who fought with a spear twice her weight and trusted almost nobody outside her scarred little circle, Patroka has a terrible temper and zero patience for small talk. Yet anyone stubborn enough to stand their ground past her glare discovers someone fiercely loyal beneath the lacquer armor.",
+          "design": {
+            "hairStyle": "very long, straight down to her thighs with blunt bangs",
+            "hairColor": "jet-black",
+            "eyes": "blue with red ring accents",
+            "skin": "fair",
+            "features": "a jagged red Flesh Eater core crystal beneath her collar",
+            "expression": "an irritable, sharp-eyed scowl"
+          },
+          "under": "plain",
+          "underColor": "black",
+          "stats": {"beauty":74,"charm":52,"charisma":64,"refinement":48,"wits":60,"stamina":74,"strength":72,"agility":72},
+          "tech": {"service":30,"dance":25,"bar":25,"combat":86,"manage":35},
+          "actSkill": 20,
+          "popularity": 14,
+          "lewd": 30,
+          "trust": 16,
+          "outfits": {
+            "sig_patroka": {
+              "label": "Tornan warrior armor",
+              "style": "Exotic",
+              "prompt": "a short white kimono with sleeves tied back by red ribbons over a black turtleneck leotard, an open-sided floral hakama-style skirt, lacquered crimson-and-black shoulder armor, long black gloves, black thigh-high socks and geta-heeled boots",
+              "accessories": "a long Cobra Bardiche spear",
+              "accState": "dressed",
+              "bonus": {"security":1.3,"adventurer":1.2}
+            }
+          },
+          "bonds": {"nia":{"v":15,"note":"Former Torna comrades who still trade sharp barbs."}},
+          "jobs": {"likes":["security","bartender"],"dislikes":["maid","host"]},
+          "body": {"bust":"small","height":"average","figure":"average"},
+          "unique": {
+            "name": "Tornan Fury",
+            "desc": "Her explosive temper and spear mastery keep rowdy adventurers firmly in line.",
+            "fx": {"security":16,"classBonus":{"adventurer":1.15}}
+          }
+        },
+        "nia": {
+          "job": "bath",
+          "name": "Nia",
+          "race": "beastkin",
+          "sub": "cat",
+          "age": 23,
+          "personality": "Proud and sharp-tongued",
+          "traits": ["Loyal","Soothing Voice"],
+          "style": "Sporty",
+          "favColor": "yellow",
+          "fav": "massage_give",
+          "dislike": "manual_give",
+          "lovers": "cowgirl",
+          "backstory": "A sarcastic Gormotti healer hiding an extraordinary secret beneath a baggy yellow jumpsuit, Nia talks tough, rolls her eyes at romantic nonsense, and still stays up late tending to everyone's bruises. Once she trusts Sam enough to drop the hoodie and reveal her true Blade form, her pride turns unexpectedly tender.",
+          "design": {
+            "hairStyle": "short chin-length bob",
+            "hairColor": "silver-white",
+            "eyes": "amber-gold",
+            "skin": "fair",
+            "features": "silver-white cat ears and three small red facial markings on her cheeks and nose bridge",
+            "expression": "a sassy, snaggle-toothed grin"
+          },
+          "under": "sports",
+          "underColor": "white",
+          "stats": {"beauty":74,"charm":66,"charisma":70,"refinement":44,"wits":62,"stamina":74,"strength":50,"agility":78},
+          "tech": {"service":45,"dance":30,"bar":30,"combat":74,"manage":35},
+          "actSkill": 25,
+          "popularity": 18,
+          "lewd": 30,
+          "trust": 24,
+          "outfits": {
+            "sig_nia": {
+              "label": "Driver's yellow jumpsuit",
+              "style": "Sporty",
+              "prompt": "a baggy yellow hooded jumpsuit with cat-ear peaks, white and gold chest armor plating, a brown utility belt and oversized red-and-white flared boots",
+              "accessories": "twin glowing water-ether rings",
+              "accState": "dressed",
+              "bonus": {"bath":1.25,"adventurer":1.2}
+            },
+            "sp_nia": {
+              "label": "Awakened Blade form",
+              "style": "Elegant",
+              "prompt": "a flowing translucent white and turquoise shrine-maiden leotard gown with gold filigree armor, long trailing ribbon sleeves and bare legs with gold anklets",
+              "hairStyle": "very long flowing locks reaching past her knees",
+              "hairColor": "silver-white with soft pink tips",
+              "eyes": "bright golden with cat-like slit pupils",
+              "features": "long tufted silver-white fox-like cat ears, a glowing turquoise-and-red Flesh Eater core crystal at her chest, and red facial markings",
+              "replaceFeatures": true,
+              "favColor": "turquoise",
+              "accessories": "a ceremonial water-ether catalyst scimitar",
+              "accState": "dressed",
+              "bonus": {"bath":1.35,"courtesan":1.25}
+            }
+          },
+          "bonds": {
+            "pyra": {"v":55,"kind":"comrades","note":"Warm friends who tease each other endlessly in the kitchen."},
+            "mythra": {"v":50,"kind":"comrades","note":"Sharp banter partners who always watch each other's backs."},
+            "pneuma": {"v":55,"kind":"comrades","note":"Shares an unspoken closeness with both halves of the Aegis."},
+            "patroka": {"v":15,"note":"Former Torna comrades who still trade sharp barbs."}
+          },
+          "jobs": {"likes":["bath","attendant","security"],"dislikes":["madame"]},
+          "body": {"bust":"small","height":"short","figure":"slim"},
+          "unique": {
+            "name": "Redeeming Waters",
+            "desc": "Her regenerative water ether washes away fatigue in the bathhouse and invigorates her housemates.",
+            "fx": {"jobBonus":{"bath":1.2},"energyRec":1.12}
+          }
+        }
+      }
+    }
+  }
+}

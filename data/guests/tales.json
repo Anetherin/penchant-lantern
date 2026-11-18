@@ -1,0 +1,536 @@
+{
+  "packs": {
+    "tales": {
+      "label": "Tales of",
+      "characters": {
+        "sheena": {
+          "job": "courtesan",
+          "name": "Sheena Fujibayashi",
+          "race": "human",
+          "age": 23,
+          "personality": "Hot-blooded and competitive",
+          "traits": ["Loyal","Warm-Hearted"],
+          "style": "Exotic",
+          "favColor": "magenta",
+          "fav": "cowgirl",
+          "dislike": "manual_give",
+          "lovers": "missionary",
+          "backstory": "A kunoichi and spirit summoner from a hidden village of shadows, Sheena once set out on an impossible assassination mission only to join the very people she was sent to kill. She walks into any room radiating confidence—then immediately trips over the rug or turns scarlet the second anyone flirts back for real.",
+          "design": {
+            "hairStyle": "long high ponytail with bangs framing her face",
+            "hairColor": "dark indigo-black",
+            "eyes": "warm brown",
+            "skin": "fair",
+            "accessories": "a pink hair ribbon and paper talisman charms",
+            "accState": "dressed",
+            "expression": "a flustered, determined smile"
+          },
+          "under": "silk",
+          "underColor": "magenta",
+          "stats": {"beauty":80,"charm":68,"charisma":70,"refinement":54,"wits":62,"stamina":68,"strength":54,"agility":76},
+          "tech": {"service":45,"dance":45,"bar":25,"combat":76,"manage":40},
+          "actSkill": 25,
+          "popularity": 20,
+          "lewd": 36,
+          "trust": 28,
+          "outfits": {
+            "sig_sheena": {
+              "label": "Mizuho summoner gi",
+              "style": "Exotic",
+              "prompt": "a low-cut dark indigo shinobi gi top showing generous cleavage, a bright azalea-pink obi sash, detached sleeves, tight black pants, fingerless gloves and sandals",
+              "bonus": {"courtesan":1.25,"security":1.2}
+            },
+            "sp_sheena": {
+              "label": "Successor's kimono",
+              "style": "Elegant",
+              "prompt": "a formal purple and crimson silk kimono with floral embroidery and a gold brocade obi",
+              "bonus": {"courtesan":1.3,"noble":1.15}
+            }
+          },
+          "bonds": {
+            "presea": {"v":45,"kind":"comrades","note":"Quietly watches out for Presea and makes sure nobody underestimates her."},
+            "marta": {"v":30,"kind":"comrades","note":"Fellow travelers who swap stories from across both worlds."}
+          },
+          "jobs": {"likes":["courtesan","security","dancer"],"dislikes":["maid"]},
+          "body": {"bust":"large","height":"average","figure":"curvy"},
+          "unique": {
+            "name": "Summoner's Pact",
+            "desc": "Trained to bargain with elemental spirits, she commands attention while keeping a surprisingly tender heart.",
+            "fx": {"jobBonus":{"courtesan":1.15},"appeal":3,"security":8}
+          }
+        },
+        "presea": {
+          "job": "security",
+          "name": "Presea Combatir",
+          "race": "dwarf",
+          "age": 48,
+          "personality": "Stoic and blunt",
+          "traits": ["Tough","Strong Back"],
+          "style": "Cute",
+          "favColor": "pink",
+          "fav": "missionary",
+          "dislike": "oral_give",
+          "lovers": "kiss",
+          "backstory": "A quiet lumberjack whose physical growth was halted for decades by an artificial Exsphere parasite, Presea survived years of numbed emotion before regaining her feelings one steady step at a time. She rarely wastes words, adores soft paw pads and stuffed animals, and swings a battleaxe heavy enough to splinter an oak door.",
+          "design": {
+            "hairStyle": "very long, messy twin pigtails",
+            "hairColor": "pastel rose-pink",
+            "eyes": "turquoise-blue",
+            "skin": "fair",
+            "features": "a glowing red Exsphere gem set in a silver plate beneath her collar",
+            "expression": "a quiet, deadpan gaze"
+          },
+          "under": "plain",
+          "underColor": "white",
+          "stats": {"beauty":66,"charm":54,"charisma":50,"refinement":52,"wits":60,"stamina":84,"strength":90,"agility":58},
+          "tech": {"service":30,"dance":15,"bar":25,"combat":90,"manage":35},
+          "actSkill": 20,
+          "popularity": 14,
+          "lewd": 20,
+          "trust": 24,
+          "outfits": {
+            "sig_presea": {
+              "label": "Ozette axewoman dress",
+              "style": "Cute",
+              "prompt": "a sleeveless black short dress ending above her knees, gray gauntlets, a waist belt with a strapped dagger and tall gray boots",
+              "accessories": "a massive double-bladed battle axe and a small carved wooden paw charm",
+              "accState": "dressed",
+              "bonus": {"security":1.35,"maid":1.15}
+            }
+          },
+          "bonds": {"sheena":{"v":45,"kind":"comrades","note":"Trusts Sheena implicitly—she is one of the first people who treated her like an equal."}},
+          "jobs": {"likes":["security","maid"],"dislikes":["promoter","bartender"]},
+          "body": {"bust":"flat","height":"short","figure":"slim"},
+          "unique": {
+            "name": "Exsphere Might",
+            "desc": "Her compact frame hides staggering strength that intimidates troublemakers and shrugs off heavy labor.",
+            "fx": {"security":18,"jobBonus":{"security":1.15},"maxEnergy":15}
+          }
+        },
+        "marta": {
+          "job": "attendant",
+          "name": "Marta Lualdi",
+          "race": "human",
+          "age": 22,
+          "personality": "Cheerful and teasing",
+          "traits": ["Romantic","Eager"],
+          "style": "Cute",
+          "favColor": "coral",
+          "fav": "kiss",
+          "dislike": "doggy",
+          "lovers": "missionary",
+          "backstory": "Headstrong, affectionate and unabashedly sentimental, Marta spent years carrying a glowing core crystal on her forehead and chasing after someone she decided was worth protecting. In Hollowmere, she puts that fierce devotion into tending rooms, arranging fresh flowers, and flirting shamelessly with Sam whenever he lingers nearby.",
+          "design": {
+            "hairStyle": "very long wavy locks falling past her waist",
+            "hairColor": "warm sandy orange-blonde",
+            "eyes": "bright blue",
+            "skin": "fair",
+            "features": "a glowing red core crystal on the left side of her forehead",
+            "accessories": "twin oversized orange-and-pink floral hair clips on both sides of her head",
+            "accState": "always",
+            "expression": "a bright, starry-eyed smile"
+          },
+          "under": "lace",
+          "underColor": "pink",
+          "stats": {"beauty":74,"charm":72,"charisma":70,"refinement":50,"wits":54,"stamina":62,"strength":42,"agility":66},
+          "tech": {"service":40,"dance":45,"bar":25,"combat":55,"manage":35},
+          "actSkill": 25,
+          "popularity": 16,
+          "lewd": 34,
+          "trust": 32,
+          "outfits": {
+            "sig_marta": {
+              "label": "Vanguard spinner dress",
+              "style": "Cute",
+              "prompt": "a white caped mantle with orange lining and a brown collar over a fitted brown skirt-dress, white arm warmers, white gloves, black leggings and orange strapped boots",
+              "accessories": "twin bladed spinner chakrams at her hips",
+              "accState": "dressed",
+              "bonus": {"attendant":1.25,"dancer":1.2}
+            }
+          },
+          "bonds": {"sheena":{"v":30,"kind":"comrades","note":"Admires Sheena's courage and asks endless questions about summoning."}},
+          "jobs": {"likes":["attendant","dancer","host"],"dislikes":["security"]},
+          "body": {"bust":"flat","height":"average","figure":"slim"},
+          "unique": {
+            "name": "Devoted Heart",
+            "desc": "Once she decides she cares for someone, she throws her whole spirit into supporting them.",
+            "fx": {"jobBonus":{"attendant":1.2},"trustGain":1.15}
+          }
+        },
+        "milla": {
+          "job": "courtesan",
+          "name": "Milla Maxwell",
+          "race": "spirit",
+          "age": 320,
+          "personality": "Proud and sharp-tongued",
+          "traits": ["Brave","Striking"],
+          "style": "Revealing",
+          "favColor": "lavender",
+          "fav": "cowgirl",
+          "dislike": "massage_give",
+          "lovers": "missionary",
+          "backstory": "The Lord of Spirits who stepped down from a lonely shrine to walk among mortals, Milla observes human appetites with fearless curiosity and zero embarrassment. She takes pride in mastering everything she tries—swordwork, fine dining, or pleasure—and approaches intimacy with the blunt, regal expectation that she will set the pace.",
+          "design": {
+            "hairStyle": "very long wavy locks with a side braid",
+            "hairColor": "golden blonde with soft teal-green tips",
+            "eyes": "magenta-pink",
+            "skin": "luminous fair",
+            "features": "four faint elemental spirit wisps of fire, wind, water and earth drifting around her shoulders",
+            "expression": "a bold, imperious smile"
+          },
+          "under": "sheer",
+          "underColor": "purple",
+          "stats": {"beauty":86,"charm":62,"charisma":78,"refinement":72,"wits":76,"stamina":74,"strength":68,"agility":72},
+          "tech": {"service":50,"dance":40,"bar":25,"combat":88,"manage":55},
+          "actSkill": 35,
+          "popularity": 28,
+          "lewd": 46,
+          "trust": 24,
+          "outfits": {
+            "sig_milla": {
+              "label": "Lord of Spirits vestments",
+              "style": "Revealing",
+              "prompt": "an asymmetrical lavender halter mini-dress accented with dark maroon and black strapping, long black-and-red gloves and tall lavender boots",
+              "accessories": "an ornate elemental broadsword at her hip",
+              "accState": "dressed",
+              "bonus": {"courtesan":1.3,"adventurer":1.2}
+            },
+            "sp_milla": {
+              "label": "Fractured dimension jacket",
+              "style": "Sporty",
+              "prompt": "a cropped white jacket over a black bikini-style top, denim shorts and tall boots",
+              "bonus": {"security":1.25,"promoter":1.2}
+            }
+          },
+          "bonds": {
+            "lailah": {"v":35,"kind":"comrades","note":"Two ancient spirits who discuss mortal eccentricities over tea."},
+            "edna": {"v":25,"note":"Amused by Edna's bone-dry sarcasm."}
+          },
+          "jobs": {"likes":["courtesan","security","promoter"],"dislikes":["maid"]},
+          "body": {"bust":"large","height":"tall","figure":"curvy"},
+          "unique": {
+            "name": "Four Great Spirits",
+            "desc": "The Lord of Spirits treats mortal appetites with regal curiosity and effortless command.",
+            "fx": {"jobBonus":{"courtesan":1.18},"appeal":4,"classBonus":{"adventurer":1.15}}
+          }
+        },
+        "cheria": {
+          "job": "attendant",
+          "name": "Cheria Barnes",
+          "race": "human",
+          "age": 23,
+          "personality": "Warm and motherly",
+          "traits": ["Warm Hospitality","Soothing Voice"],
+          "style": "Cute",
+          "favColor": "lilac",
+          "fav": "massage_give",
+          "dislike": "doggy",
+          "lovers": "missionary",
+          "backstory": "Raised as a frontier healer who overcame childhood frailty through grit and warmth, Cheria tends to everyone around her with quick hands, home-cooked soup, and gentle scolding whenever anyone skips sleep. She spoils Sophie like family, hides throwing knives under her cuffs, and melts completely the moment someone turns that care back on her.",
+          "design": {
+            "hairStyle": "shoulder-length layered bob with half-up twin tails",
+            "hairColor": "soft rose-pink",
+            "eyes": "warm brown",
+            "skin": "fair",
+            "accessories": "twin black hair ribbons",
+            "accState": "always",
+            "expression": "a caring, slightly fussy smile"
+          },
+          "under": "lace",
+          "underColor": "white",
+          "stats": {"beauty":76,"charm":76,"charisma":68,"refinement":64,"wits":66,"stamina":64,"strength":40,"agility":64},
+          "tech": {"service":50,"dance":30,"bar":30,"combat":55,"manage":50},
+          "actSkill": 25,
+          "popularity": 18,
+          "lewd": 28,
+          "trust": 32,
+          "outfits": {
+            "sig_cheria": {
+              "label": "Lhant healer's dress",
+              "style": "Cute",
+              "prompt": "a white long-sleeved blouse with dark maroon trim and a blue brooch pinned at her chest, a lilac miniskirt, black tights and white boots",
+              "accessories": "a set of silver throwing knives hidden at her waist",
+              "accState": "dressed",
+              "bonus": {"attendant":1.3,"bath":1.15}
+            },
+            "sp_cheria": {
+              "label": "Innocent Maiden gown",
+              "style": "Elegant",
+              "prompt": "a flowing white and rose formal gown with lace sleeves and ribbon accents",
+              "bonus": {"host":1.25,"noble":1.2}
+            }
+          },
+          "bonds": {"sophie":{"v":65,"kind":"family","note":"Like a beloved younger sister whom she always makes sure eats and sleeps."}},
+          "jobs": {"likes":["attendant","bath","maid"],"dislikes":["security"]},
+          "body": {"bust":"medium","height":"average","figure":"curvy"},
+          "unique": {
+            "name": "Relief Healer",
+            "desc": "Her attentive care and homemade cooking keep the staff rested and the rooms spotless.",
+            "fx": {"jobBonus":{"attendant":1.2,"bath":1.1},"tidy":1.15}
+          }
+        },
+        "sophie": {
+          "job": "security",
+          "name": "Sophie Lhant",
+          "race": "android",
+          "age": 220,
+          "personality": "Gentle and dreamy",
+          "traits": ["Loyal","Fleet-Footed"],
+          "style": "Cute",
+          "favColor": "lavender",
+          "fav": "kiss",
+          "dislike": "doggy",
+          "lovers": "missionary",
+          "backstory": "An ancient humanoid combat construct who woke without memories and learned the meaning of family from the friends who named her, Sophie watches the world with quiet, literal honesty. She adores crab-apples, fiercely guards everyone under the roof, and asks earnest questions about love that make everyone else blush first.",
+          "design": {
+            "hairStyle": "long wavy locks tied in twin low pigtails",
+            "hairColor": "light lavender-purple",
+            "eyes": "violet-purple",
+            "skin": "flawless porcelain synthetic",
+            "accessories": "winged white-and-pink hair clips",
+            "accState": "always",
+            "expression": "a curious, earnest gaze"
+          },
+          "under": "plain",
+          "underColor": "white",
+          "stats": {"beauty":74,"charm":64,"charisma":60,"refinement":52,"wits":56,"stamina":82,"strength":80,"agility":86},
+          "tech": {"service":35,"dance":40,"bar":20,"combat":90,"manage":30},
+          "actSkill": 20,
+          "popularity": 16,
+          "lewd": 18,
+          "trust": 32,
+          "outfits": {
+            "sig_sophie": {
+              "label": "Protos Heis combat suit",
+              "style": "Cute",
+              "prompt": "a white and dark indigo hooded tunic dress with gold trim, detached sleeves and dark purple thigh-high boots",
+              "bonus": {"security":1.3,"attendant":1.15}
+            }
+          },
+          "bonds": {"cheria":{"v":65,"kind":"family","note":"Cheria taught her how to dress, cook, and smile like family."}},
+          "jobs": {"likes":["security","attendant","dancer"],"dislikes":["madame"]},
+          "body": {"bust":"small","height":"short","figure":"slim"},
+          "unique": {
+            "name": "Protos Heis",
+            "desc": "Built to protect those she cherishes, she moves like lightning whenever trouble threatens the house.",
+            "fx": {"security":18,"jobBonus":{"security":1.15},"energyRec":1.1}
+          }
+        },
+        "alisha": {
+          "job": "security",
+          "title": "Princess",
+          "name": "Alisha Diphda",
+          "race": "human",
+          "age": 23,
+          "personality": "Earnest and dutiful",
+          "traits": ["Loyal","Well-Bred"],
+          "style": "Elegant",
+          "favColor": "rose",
+          "fav": "missionary",
+          "dislike": "doggy",
+          "lovers": "kiss",
+          "backstory": "A conscientious knight-princess who fought for peace even when her own court mocked her ideals, Alisha wears light plate as naturally as royal silk. Polite, hardworking and quick to shoulder everyone else's burdens, she comes to Hollowmere seeking breathing room from politics—and discovers how freeing it feels to be wanted without a crown.",
+          "design": {
+            "hairStyle": "curly side-ponytail with criss-crossed bangs",
+            "hairColor": "ash-blonde",
+            "eyes": "emerald green",
+            "skin": "fair",
+            "accessories": "a white-and-yellow floral hair clip",
+            "accState": "always",
+            "expression": "a noble, earnest smile"
+          },
+          "under": "silk",
+          "underColor": "white",
+          "stats": {"beauty":78,"charm":68,"charisma":70,"refinement":76,"wits":66,"stamina":68,"strength":60,"agility":64},
+          "tech": {"service":35,"dance":30,"bar":20,"combat":76,"manage":55},
+          "actSkill": 20,
+          "popularity": 22,
+          "lewd": 24,
+          "trust": 28,
+          "outfits": {
+            "sig_alisha": {
+              "label": "Hyland knight-princess tunic",
+              "style": "Elegant",
+              "prompt": "a sleeveless rose-pink and white royal tunic with gold filigree trim, black shorts, silver-and-black armored gauntlets and greaves",
+              "accessories": "a long knight's lance",
+              "accState": "dressed",
+              "bonus": {"security":1.25,"noble":1.25}
+            },
+            "sp_alisha": {
+              "label": "Diplomat's blue regalia",
+              "style": "Elegant",
+              "prompt": "a navy-blue and white bodice dress with a high collar, a flowing skirt and a feathered cavalier hat",
+              "bonus": {"host":1.25,"noble":1.2}
+            }
+          },
+          "bonds": {
+            "lailah": {"v":45,"kind":"comrades","note":"Trusts Lailah deeply as an old friend and gentle counselor."},
+            "edna": {"v":35,"kind":"comrades","note":"Endures Edna's endless teasing with sincere patience."}
+          },
+          "jobs": {"likes":["security","host","chapel"],"dislikes":["bartender"]},
+          "body": {"bust":"medium","height":"average","figure":"athletic"},
+          "unique": {
+            "name": "Squire's Resolve",
+            "desc": "A princess who fights on the front lines inspires respect from nobles and watchmen alike.",
+            "fx": {"security":12,"classBonus":{"noble":1.15,"adventurer":1.1}}
+          }
+        },
+        "lailah": {
+          "job": "host",
+          "name": "Lailah",
+          "race": "spirit",
+          "age": 500,
+          "personality": "Cheerful and teasing",
+          "traits": ["Elegant","Warm Hospitality"],
+          "style": "Elegant",
+          "favColor": "scarlet",
+          "fav": "kiss",
+          "dislike": "doggy",
+          "lovers": "cowgirl",
+          "backstory": "An ancient Seraph of Fire bound by old oaths who spent centuries waiting in a sacred lake for someone pure enough to carry her flame, Lailah greets every crisis with radiant grace and atrocious puns. Playful, warm and surprisingly sly beneath her saintly manners, she charms guests effortlessly while steering every conversation away from ancient secrets.",
+          "design": {
+            "hairStyle": "extremely long high ponytail reaching her ankles",
+            "hairColor": "silver-white fading into fiery crimson-pink at the tips",
+            "eyes": "emerald green",
+            "skin": "luminous pearl-white",
+            "accessories": "an ornate red-and-gold winged circlet headband",
+            "accState": "always",
+            "expression": "a serene smile breaking into a mischievous giggle"
+          },
+          "under": "silk",
+          "underColor": "red",
+          "stats": {"beauty":82,"charm":76,"charisma":76,"refinement":78,"wits":74,"stamina":66,"strength":44,"agility":60},
+          "tech": {"service":50,"dance":40,"bar":35,"combat":65,"manage":60},
+          "actSkill": 30,
+          "popularity": 26,
+          "lewd": 32,
+          "trust": 28,
+          "outfits": {
+            "sig_lailah": {
+              "label": "Lady of the Lake gown",
+              "style": "Elegant",
+              "prompt": "a flowing white, scarlet and lavender floor-length seraphic gown with split coattails, a structured gold collar and red gem-set heels",
+              "accessories": "drifting paper fire-seals",
+              "accState": "dressed",
+              "bonus": {"host":1.3,"chapel":1.2}
+            }
+          },
+          "bonds": {
+            "alisha": {"v":45,"kind":"comrades","note":"Fondly watches over the earnest princess like an older sister."},
+            "edna": {"v":50,"kind":"comrades","note":"Rarely ruffled by Edna's barbs, usually answering with an even worse pun."},
+            "symonne": {"v":20,"note":"Always leaves an open seat and warm tea for the bitter seraph."},
+            "milla": {"v":35,"kind":"comrades","note":"Two ancient spirits who discuss mortal eccentricities over tea."}
+          },
+          "jobs": {"likes":["host","chapel","attendant"],"dislikes":["security"]},
+          "body": {"bust":"large","height":"tall","figure":"curvy"},
+          "unique": {
+            "name": "Lady of the Lake",
+            "desc": "Her warm laughter, terrible puns, and ancient seraphic grace disarm even the tensest room.",
+            "fx": {"jobBonus":{"host":1.2,"chapel":1.15},"moodRest":3}
+          }
+        },
+        "edna": {
+          "job": "promoter",
+          "name": "Edna",
+          "race": "spirit",
+          "age": 450,
+          "personality": "Proud and sharp-tongued",
+          "traits": ["Aloof","Level-Headed"],
+          "style": "Cute",
+          "favColor": "amber",
+          "fav": "massage_get",
+          "dislike": "manual_give",
+          "lovers": "cowgirl",
+          "backstory": "An Earth Seraph who spent centuries perched atop a lonely mountain holding a frilled parasol and honing her sarcasm to a razor edge, Edna speaks in a flat deadpan that leaves both smug nobles and rowdy regulars flustered. Though she pretends everything around her is tedious, she remembers everyone's favorite tea and secretly hates being left alone.",
+          "design": {
+            "hairStyle": "twin drill pigtails with blunt bangs",
+            "hairColor": "flaxen blonde",
+            "eyes": "amber-gold",
+            "skin": "pale ivory",
+            "accessories": "blue hair ribbons and a yellow-and-white frilled parasol with a dangling Normin mascot",
+            "accState": "dressed",
+            "expression": "a deadpan, unimpressed stare"
+          },
+          "under": "lace",
+          "underColor": "white",
+          "stats": {"beauty":74,"charm":52,"charisma":64,"refinement":68,"wits":78,"stamina":58,"strength":46,"agility":56},
+          "tech": {"service":35,"dance":25,"bar":25,"combat":74,"manage":55},
+          "actSkill": 25,
+          "popularity": 20,
+          "lewd": 28,
+          "trust": 20,
+          "outfits": {
+            "sig_edna": {
+              "label": "Earth Seraph coat dress",
+              "style": "Cute",
+              "prompt": "a frilled white gothic-lolita coat dress with black lining, a pleated skirt, dark elbow-length gloves and sturdy brown boots",
+              "bonus": {"promoter":1.25,"security":1.2}
+            }
+          },
+          "bonds": {
+            "lailah": {"v":50,"kind":"comrades","note":"Secretly relies on Lailah's warmth, though she calls her puns a crime."},
+            "alisha": {"v":35,"kind":"comrades","note":"Teases Alisha relentlessly while always stepping in to cover her blind spots."},
+            "symonne": {"v":-20,"kind":"rivals","note":"Refuses to let Symonne wallow in self-pity unchallenged."}
+          },
+          "jobs": {"likes":["promoter","security","host"],"dislikes":["maid","bartender"]},
+          "body": {"bust":"small","height":"short","figure":"slim"},
+          "unique": {
+            "name": "Umbrella of Earth",
+            "desc": "Her dry verbal jabs curiously draw a crowd of regulars who enjoy being teased, and nobody dares get pushy with her.",
+            "fx": {"promote":1.15,"security":12}
+          }
+        },
+        "symonne": {
+          "job": "courtesan",
+          "name": "Symonne",
+          "race": "spirit",
+          "age": 420,
+          "personality": "Gloomy but devoted",
+          "traits": ["Brooding","Bedroom Eyes"],
+          "style": "Exotic",
+          "favColor": "violet",
+          "fav": "oral_give",
+          "dislike": "kiss",
+          "lovers": "missionary",
+          "backstory": "A disillusioned Seraph of illusions who spent years casting waking nightmares for a fallen lord because she couldn't bear looking at an ugly world unmasked, Symonne expects betrayal and mocks optimism—yet cannot quite walk away from genuine kindness. In the lantern-lit rooms upstairs, she weaves velvet mirages that wrap clients in quiet decadence.",
+          "design": {
+            "hairStyle": "long twin pigtails with bangs framing her face",
+            "hairColor": "jet-black with deep violet highlights",
+            "eyes": "crimson red",
+            "skin": "pale porcelain-white",
+            "accessories": "dark plum feather hair ornaments and a slender illusionist's baton",
+            "accState": "dressed",
+            "expression": "a weary, cynical half-smile"
+          },
+          "under": "sheer",
+          "underColor": "black",
+          "stats": {"beauty":74,"charm":54,"charisma":64,"refinement":66,"wits":74,"stamina":54,"strength":36,"agility":60},
+          "tech": {"service":50,"dance":35,"bar":20,"combat":65,"manage":45},
+          "actSkill": 35,
+          "popularity": 18,
+          "lewd": 42,
+          "trust": 16,
+          "outfits": {
+            "sig_symonne": {
+              "label": "Illusionist's dark dress",
+              "style": "Exotic",
+              "prompt": "a gothic black and deep-violet layered dress with sheer lace sleeves, dark corset lacing, gartered stockings and heeled boots",
+              "bonus": {"courtesan":1.3,"dancer":1.15}
+            }
+          },
+          "bonds": {
+            "lailah": {"v":20,"note":"Irritated by Lailah's relentless cheer, yet keeps coming back to her table."},
+            "edna": {"v":-20,"kind":"rivals","note":"Trades razor-sharp barbs with Edna whenever they cross paths in the hall."}
+          },
+          "jobs": {"likes":["courtesan","dancer"],"dislikes":["promoter","host"]},
+          "body": {"bust":"flat","height":"short","figure":"slim"},
+          "unique": {
+            "name": "Weaver of Phantoms",
+            "desc": "Her lingering illusions make every private chamber feel like a waking dream clients never want to leave.",
+            "fx": {"jobBonus":{"courtesan":1.2},"clientFee":1.08}
+          }
+        }
+      }
+    }
+  }
+}

@@ -528,6 +528,124 @@
           "waitRes": "She lets out a shaky laugh. \"Fair enough—tell me when it's for real.\" Her grin is brighter than ever."
         }
       }
+    },
+    "dawn": {
+      "events": {
+        "1": {
+          "title": "Backstage Mirror",
+          "text": "Dawn sits in front of the dressing-room mirror after her dance set, smoothing down her pink skirt and checking her watch before catching your reflection behind her. Spinning right around on the stool with a bright, teasing wink, she catches your sleeve. \"Every great performance needs a grand finale—and I saved one offstage just for you. Kiss me, Sam!\"",
+          "image": {
+            "comp": "spinning on a dressing-room stool with a bright playful wink, tugging his sleeve toward her",
+            "setting": "backstage dressing room at night, bulb-lit mirror and folded stage ribbons",
+            "sam": true
+          },
+          "go": "Kiss her",
+          "goRes": "She giggles breathlessly against your lips before lingering with her arms around your neck, beaming afterward. \"No need to worry—that definitely deserved a ten!\"",
+          "wait": "\"Save the encore for later.\"",
+          "waitRes": "\"Ooh, building suspense!\" Dawn grins brightly, tapping her watch. \"Just don't keep a star waiting too long!\""
+        },
+        "2": {
+          "title": "No Need to Worry",
+          "text": "In the quiet rehearsal loft after hours, Dawn kicks off her pink boots and tugs her black sweater-dress up over her thighs, flashing a nervous yet determined grin as she pulls you onto the practice cushions beside her. \"I always act confident in front of crowds—but alone with you, my heart's going a mile a minute,\" she admits softly, sliding her hand down toward your belt. \"Touch me, Sam.\"",
+          "image": {
+            "comp": "sitting on practice cushions with boots kicked off, smiling shyly while reaching for his belt",
+            "setting": "empty upstairs rehearsal loft at night, soft lamp glow",
+            "sam": true,
+            "cloth": "partial",
+            "wear": "a black V-neck mini-dress hiked up with pink boots off"
+          },
+          "go": "Touch her",
+          "goRes": "Her confident grin turns into soft, breathless gasps as your hands explore beneath her short pink skirt and peel down her lace panties, before her eager hands and warm tongue bring your cock to climax.",
+          "wait": "\"We can take it slow, Dawn.\"",
+          "waitRes": "Dawn exhales happily and leans her head onto your shoulder. \"Thanks, Sam. Just sitting close helps already.\""
+        },
+        "3": {
+          "title": "Spotlight for Two",
+          "text": "Dawn waits beside your bed completely free of stage ribbons and scarves, wearing nothing but a warm blush in the soft lamplight. Tugging the corner of your quilt nervously, she looks up with bright, steady eyes: \"Forget the whole crowd downstairs tonight—the only audience I want is you, Sam. Stay with me.\"",
+          "image": {
+            "comp": "kneeling bare beside him on the bed holding the quilt corner with bright earnest eyes",
+            "setting": "Sam's bedroom at midnight, soft pink bedside lamp",
+            "sam": true,
+            "cloth": "nude"
+          },
+          "go": "Stay with her",
+          "goRes": "She straddles your hips and eases eagerly onto your cock, laughing softly through breathless gasps as she rides you with joyful, uninhibited rhythm until you cum together.",
+          "wait": "\"Are you sure, Dawn?\"",
+          "waitRes": "\"Totally sure!\" she smiles warmly, sliding beneath the covers against your side. \"No rush at all—I'm right here.\"",
+          "act": "cowgirl"
+        },
+        "jump": {
+          "title": "Curtain Call",
+          "text": "Still glowing from a standing ovation on the lounge stage, Dawn dashes straight into the side corridor, throws her arms around your neck, and plants a breathless, ecstatic kiss onto your lips. \"Did you see the crowd?! Wait—forget them, I wanted to kiss you first!\"",
+          "image": {
+            "comp": "throwing her arms around his neck backstage right after a show, flushed and laughing mid-kiss",
+            "setting": "backstage curtain corridor, warm glowing stage lights",
+            "sam": true
+          },
+          "go": "Celebrate together",
+          "goRes": "Laughing against her mouth, you back her into the empty dressing alcove and slide your hands straight beneath her pink skirt to stroke her damp panties while she clutches your shoulders.",
+          "wait": "\"Catch your breath first, star!\"",
+          "waitRes": "\"Haha, right—water first!\" she grins breathlessly, squeezing your hand tight before dashing for her bottle."
+        }
+      }
+    },
+    "shauna": {
+      "events": {
+        "1": {
+          "title": "Making a Memory",
+          "text": "Shauna drags you quietly out onto the lantern-lit roof balcony just as distant town fireworks pop softly over the rooftops, leaning her chin happily on your shoulder as colors reflect off the tiles. Turning her face toward yours with a warm, affectionate grin, she whispers: \"You know how I collect great memories everywhere I go? Give me one right now—kiss me, Sam.\"",
+          "image": {
+            "comp": "leaning her chin near his shoulder on a balcony watching distant lights, turning with a warm affectionate grin",
+            "setting": "rooftop balcony at night, warm town lanterns and distant fireworks",
+            "sam": true
+          },
+          "go": "Kiss her",
+          "goRes": "She melts happily into your arms, kissing back sweetly until the sparks fade, then beams wide: \"Best memory of the whole trip—hands down!\"",
+          "wait": "\"Enjoy the view a little longer.\"",
+          "waitRes": "\"Mm, okay!\" Shauna leans comfortably against your side anyway, lacing her fingers loosely with yours."
+        },
+        "2": {
+          "title": "After the Fireworks",
+          "text": "Sitting barefoot on your rug after lockup with her pink bag tossed onto a chair, Shauna scoots straight between your knees and rests her palms cheerfully on your thighs—before blushing brightly as she slides them higher toward your belt. \"I'm always bright and loud in the foyer, Sam, yet with you I want something closer,\" she murmurs shyly. \"Show me how it feels.\"",
+          "image": {
+            "comp": "kneeling on the rug between his knees, resting her hands shyly on his thighs with a bright affectionate blush",
+            "setting": "quiet upstairs room at night, low warm lamp",
+            "sam": true
+          },
+          "go": "Touch her",
+          "goRes": "You peel up her magenta top and unbutton her lace-trimmed denim shorts to tease her bare breasts and wet pussy while she drops smiling onto her elbows to kiss and suck your cock until you cum.",
+          "wait": "\"Easy, Shauna—we've got all night.\"",
+          "waitRes": "She laughs softly and tucks her head against your knee. \"Hehe, true! I just get excited around you.\""
+        },
+        "3": {
+          "title": "Unforgettable Night",
+          "text": "Shauna waits under your sheets wearing nothing at all, grinning brightly even as pink rises across her warm shoulders when you climb onto the mattress beside her. Pulling the blanket down past her waist, she opens her arms wide: \"No crowd, no stage—just you and me making a memory neither of us will ever forget, Sam.\"",
+          "image": {
+            "comp": "lying beneath an open sheet holding out her arms with a warm, bright affectionate grin",
+            "setting": "Sam's bedroom at night, soft golden lantern light",
+            "sam": true,
+            "cloth": "nude"
+          },
+          "go": "Hold her close",
+          "goRes": "You kiss her breathless and ease your cock slowly into her warm, eager pussy, Shauna wrapping her arms and legs around you with happy, uninhibited gasps until you cum together.",
+          "wait": "\"Are you sure, Shauna?\"",
+          "waitRes": "\"Super sure!\" she grins softly, kissing your cheek. \"Wait if you want though—I'm happy just cuddling too.\"",
+          "act": "missionary"
+        },
+        "jump": {
+          "title": "Festival Impulse",
+          "text": "When you catch Shauna humming happily while hanging paper lanterns in the empty courtyard, she hops down off the low stool straight into your arms and kisses you soundly before laughing against your lips. \"Couldn't wait any longer—you looked way too handsome standing under the lights!\"",
+          "image": {
+            "comp": "hopping down off a stool straight into his arms beneath strung paper lanterns, laughing mid-kiss",
+            "setting": "lantern-lit courtyard at dusk, paper garlands overhead",
+            "sam": true
+          },
+          "go": "Kiss her back",
+          "goRes": "Catching her securely around the waist, you spin her against the courtyard pillar and slide your warm hands under her top and frilled shorts while she giggles breathlessly against your mouth.",
+          "wait": "\"Careful on that stool!\"",
+          "waitRes": "\"Caught me already, didn't you?\" she grins brightly, grabbing your hand to finish hanging the last lantern."
+        }
+      }
     }
   }
 }
