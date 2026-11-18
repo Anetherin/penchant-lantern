@@ -3,22 +3,26 @@
    ISOLDE THORNE — Sam's rival at the Velvet Thorn (wording data/isolde.json, numbers balance.json → isolde).
    Beats in order: taunt → visit → price war → wager → truce (first night) → lovers. After the truce Sam can visit her on the
    rest day, and she turns up at his house when he stays away. She never joins: she runs her own house.
-   S.isolde = {stage (index into ISO_BEATS; 5 = truce done, 6 = lovers), wk (week of the last beat), best (furthest stage in any
-   cycle: later cycles need less renown and use the 'again' texts), desire, nights, wins, truce, lovers, lastNight, visitWk, lastId}
+   NG+ doesn't restart her: an unfinished story carries on, and the cycles after it's finished also get her games (wagers).
+   Only NG++ restarts it, every NG++ cycle, with texts by how much she remembers (isoTier: deja, pull, hungry).
+   S.isolde = {stage (index into ISO_BEATS; 5 = truce done, 6 = lovers), wk (week of the last beat), desire, nights, wins,
+   truce, lovers, doneCycle (cycle the story finished in), lastNight, visitWk, lastId, gameWk, lastGame}
    ===================================================================== */
 const ISO = needData('isolde');
 const ISO_ID = 'npc_isolde';
 const ISO_BEATS = ['taunt', 'visit', 'pricewar', 'wager', 'truce', 'lovers'];
 const ISB = () => BAL.isolde || {};
 function iso(){
-  if(!S.isolde) S.isolde = {stage:0, wk:0, best:0, desire:0, nights:0, wins:0, truce:false, lovers:false, lastNight:0, visitWk:-99, lastId:null};
+  if(!S.isolde) S.isolde = isoFresh();
   return S.isolde;
 }
+const isoFresh = () => ({stage:0, wk:0, desire:0, nights:0, wins:0, truce:false, lovers:false, doneCycle:0, lastNight:0, visitWk:-99, lastId:null, gameWk:0, lastGame:null});
 function isoT(v, V){ if(Array.isArray(v)) v = pick(v); return String(v ?? '').replace(/\{(\w+)\}/g, (m,k)=>V && V[k]!==undefined ? String(V[k]) : m); }
 const isoVars = extra => Object.assign({house: ((S.houses||[]).find(h=>h.id===S.home) || S.houses[0] || {}).name || 'your house'}, extra || {});
-// a beat she already got past in an earlier cycle reads as half-remembered
-const isoBeatText = (k, V) => { const B = ISO.beats[k], I = iso(); return isoT(I.best > ISO_BEATS.indexOf(k) && B.again ? B.again : B.text, V); };
-function isoAdvance(){ const I = iso(); I.stage++; I.wk = S.week; I.best = Math.max(I.best||0, I.stage); }
+// NG++ cycle 1: a vague déjà vu, 2: an attraction she resents, 3+: she knows exactly what she wants (beats' ngpp texts)
+const isoTier = () => { const n = (S && S.ngppCycle) || 0; return n <= 0 ? null : n === 1 ? 'deja' : n === 2 ? 'pull' : 'hungry'; };
+const isoBeatText = (k, V) => { const B = ISO.beats[k], t = isoTier(); return isoT(t && B.ngpp && B.ngpp[t] ? B.ngpp[t] : B.text, V); };
+function isoAdvance(){ const I = iso(); I.stage++; I.wk = S.week; }
 const isoDesire = n => { const I = iso(); I.desire = clamp((I.desire||0) + n); };
 // the ready beat (or null): far enough into the cycle, gap weeks since the last one, enough town renown
 function isoBeatReady(){
@@ -26,7 +30,7 @@ function isoBeatReady(){
   if(!k || k==='lovers') return null;
   if(debtWeek() < (B.firstWeek ?? 5)) return null;
   if(I.stage > 0 && S.week - I.wk < (B.gap ?? 3)) return null;
-  const need = (B.renown||{})[k] || 0, mult = (I.best||0) > I.stage ? (B.again ?? 0.6) : 1;
+  const need = (B.renown||{})[k] || 0, mult = ((S.ngppCycle||0) >= 2) ? (B.ngppRenown ?? 0.6) : 1;
   if(S.rep < need * mult) return null;
   if(k==='pricewar' && S.townEv) return null;   // waits for the town to quiet down
   if(k==='wager' && !isoWagerLady()) return null;
@@ -43,6 +47,7 @@ function isoldeWeek(R){
   const k = isoBeatReady();
   if(k){ EVQ.push(()=>isoBeatReady()===k ? evIsoldeBeat(k) : null); }
   else if(isoLoversReady()) EVQ.push(()=>isoLoversReady() ? evIsoldeLovers() : null);
+  else if(isoGamesOn() && S.week - (I.gameWk||0) >= ((B.games||{}).gap ?? 4) && Math.random() < ((B.games||{}).chance ?? 0.5)){ I.gameWk = S.week; EVQ.push(()=>evIsoldeGame()); }
   else if(I.stage >= 5){
     const C = B.comes || {}, since = S.week - Math.max(I.lastNight||0, I.visitWk||0, I.wk||0);
     if(since >= (C.after ?? 4) && Math.random() < (C.chance ?? 0.3)) EVQ.push(()=>evIsoldeNight('comes'));
@@ -52,11 +57,14 @@ function isoldeWeek(R){
     if(Math.random() < (F.chance ?? 0.25)){ const g = Math.round((F.base ?? 80) * (1 + (F.perCycle ?? 0.25) * ((S.cycle||1) - 1))); S.gold += g; R.lines.push(isoT(ISO.referral, isoVars({gold:fmt(g)}))); }
   }
 }
-// a new cycle (NG+ / NG++): the world starts over, she only half-remembers (best keeps how far it went)
+// a new cycle (ngBegin, after S.ngppCycle is set): NG+ carries her story on as it is; every NG++ cycle starts it over
 function isoNewCycle(){
-  const I = iso(); I.best = Math.max(I.best||0, I.stage||0);
-  Object.assign(I, {stage:0, wk:0, desire:0, nights:0, truce:false, lovers:false, lastNight:0, visitWk:-99, lastId:null});
+  const I = iso();
+  if((S.ngppCycle||0) > 0){ S.isolde = Object.assign(isoFresh(), {wins:I.wins||0}); return; }
+  I.wk = Math.min(I.wk||0, S.week); I.gameWk = 0;
 }
+// her games: NG+ only, from the cycle after her story finished
+const isoGamesOn = () => { const I = iso(); return !((S.ngppCycle||0) > 0) && I.lovers && I.doneCycle && (S.cycle||1) > I.doneCycle; };
 
 /* ---------- the beats ---------- */
 function evIsoldeBeat(k){
@@ -94,8 +102,8 @@ function evIsoldeBeat(k){
 }
 function evIsoldeLovers(){
   const B = ISO.beats.lovers, V = isoVars(), I = iso();
-  const done = () => { I.lovers = true; isoAdvance(); samLog(isoT(ISO.log.lovers)); };
-  return {title:isoT(B.title, V), who:ISO_ID, scene:'sam_date', text:isoT(B.text, V), choices:[
+  const done = () => { I.lovers = true; I.doneCycle = S.cycle || 1; isoAdvance(); samLog(isoT(ISO.log.lovers)); };
+  return {title:isoT(B.title, V), who:ISO_ID, scene:'sam_date', text:isoBeatText('lovers', V), choices:[
     {label:B.join.label, fx(){ done(); return isoT(B.join.res, V); }},
     {label:B.stay.label, fx(){ done(); return isoT(B.stay.res, V); }}]};
 }
@@ -138,7 +146,30 @@ function isoNightResult(n, line, o){
   return {text, img:{wid:ISO_ID, scene:`samact:${n.act}~~iso_${n.id}`}};
 }
 // image backdrop for her nights (scenes.js samact: chain)
-const isoSetting = ctx => { const m = /^iso_(.+)$/.exec(ctx||''); if(!m) return null; const n = (ISO.nights||[]).find(x=>x.id===m[1]); return n ? n.setting : null; };
+const isoSetting = ctx => { const m = /^iso_(.+)$/.exec(ctx||''); if(!m) return null; const n = [...(ISO.nights||[]), ...(ISO.games||[])].find(x=>x.id===m[1]); return n ? n.setting : null; };
+
+/* ---------- her games (NG+ repeatables) ---------- */
+function evIsoldeGame(){
+  if(!isoGamesOn()) return null;
+  const I = iso(), G = ISB().games || {}, L = (ISO.games||[]).filter(g=>g.id!==I.lastGame);
+  const g = pick(L.length ? L : ISO.games); if(!g) return null;
+  I.lastGame = g.id;
+  const V = isoVars(), stat = S.sam[g.stat] || 0;
+  const p = clamp(Math.round((G.checkBase ?? 20) + stat * (G.checkPer ?? 0.6)), 10, 90), pr = Math.max(5, p - (G.raiseMinus ?? 10));
+  const play = (chance, mult) => {
+    const won = Math.random()*100 < chance, gold = Math.round((G.gold ?? 300) * mult * (1 + 0.25 * ((S.cycle||1) - 1)));
+    const cost = (G.samEnergy ?? 30) + (won ? 0 : (G.lostEnergy ?? 15));
+    S.sam.energy = Math.max(0, S.sam.energy - cost); samStat(g.stat, 1); samStat('technique', 1);
+    if(won){ S.gold += gold; S.rep = clamp(S.rep + (G.renown ?? 2) * mult); I.wins = (I.wins||0) + 1; } else S.gold = Math.max(0, S.gold - gold);
+    isoDesire(6); I.nights = (I.nights||0) + 1; I.lastNight = S.week; samLog(isoT(ISO.log.night));
+    return {text: isoT(won ? g.win : g.lose, V) + `\n\n(${won ? '+' : '−'}${fmt(gold)}g${won ? ', +renown' : ''}; Sam's energy −${cost})`,
+      img:{wid:ISO_ID, scene:`samact:${won ? g.winAct : g.loseAct}~~iso_${g.id}`}};
+  };
+  return {title:isoT(g.title, V), who:ISO_ID, scene:'casual', text:isoT(g.text, V), choices:[
+    {label:isoT(g.bet, {p}), fx(){ return play(p, 1); }},
+    {label:isoT(g.raise, {p:pr}), fx(){ return play(pr, 2); }},
+    {label:isoT(ISO.gameDecline || 'Not tonight'), fx(){ isoDesire(-2); return isoT(ISO.gameDeclineRes || 'She pouts, and promises to ask again.'); }}]};
+}
 
 /* ---------- Sam's rest-day visit ---------- */
 const isoCanVisit = () => !!(S && S.isolde && S.isolde.stage >= 5);

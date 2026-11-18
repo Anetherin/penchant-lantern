@@ -55,7 +55,7 @@ Sam picks one focus per week (costs a share of his weekly energy, so a hard week
 
 ## Isolde (rival) (done 2026-11-17, branch feat/isolde-bonds-housetext)
 - Storyline in js/events/isolde.js + data/isolde.json (numbers balance.json → isolde): taunt → tour of the Velvet Thorn → price war (a town event) → festival wager → truce (first night) → lovers. Beats need town renown and a few weeks between them. After the truce Sam can visit her on the rest day (Errands) and she turns up if he stays away; nights are rough and competitive (let her lead / take control / make it a contest). She never joins. Poaching stops after the truce; once lovers, the Thorn sends overflow some weeks.
-- New cycles start her over, but beats she already reached need less renown and use "again" texts (she half-remembers).
+- NG+ carries her story over (unfinished ones continue); NG+ cycles after it's finished get her games, repeatable wagers (cards, Demonfire, rooftop race, last one standing, repeat clients, owner's night). NG++ restarts it every NG++ cycle: déjà vu (1), an attraction she resents (2), openly hungry (3+).
 - Still open: more nights (especially lovers ones), rival events tied to her house's standing against Sam's, a goddess reaction to her.
 
 ## Town events (done 2026-11-17, branch chore/cleanup-mid-cycle-events)

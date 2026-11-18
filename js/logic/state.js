@@ -130,7 +130,7 @@ function migrate(s){
     if(s.flags){ delete s.flags.partnerCD; delete s.flags.hilde; delete s.flags.walks; delete s.flags.walkNoPartner; }
   }
   if(ov < 42){   // v42: Isolde's storyline (isolde.js): the old one-off taunt counts as her first beat
-    if(s.flags && s.flags.taunt && !s.isolde) s.isolde = {stage:1, wk:s.week||0, best:1, desire:0, nights:0, wins:0, truce:false, lovers:false, lastNight:0, visitWk:-99, lastId:null};
+    if(s.flags && s.flags.taunt && !s.isolde) s.isolde = {stage:1, wk:s.week||0, desire:0, nights:0, wins:0, truce:false, lovers:false, doneCycle:0, lastNight:0, visitWk:-99, lastId:null, gameWk:0, lastGame:null};
     if(s.flags) delete s.flags.taunt;
   }
   s.townEv = s.townEv || null;
