@@ -297,7 +297,7 @@ function ngReset(w){
     const b = w.base0 || {}; w.trust = b.trust ?? (B.baseTrust ?? 15); w.lewd = Math.min(w.lewd, b.lewd ?? (B.baseLewd ?? 25));
   }
   w.lust = Math.min(w.lust||0, LUST_EAGER);
-  w.popularity = 0; w.arcWk = 0; if(w.after!==undefined) w.after = 0; w.afterWk = 0; w.earnedLast = 0; w.purse = 0; w.energy = maxEnergy(w);
+  w.popularity = 0; w.arcWk = 0; w.afterWk = 0;   // epilogue progress (w.after) stays across lives w.earnedLast = 0; w.purse = 0; w.energy = maxEnergy(w);
   w.tutor = null; delete w.tutorTier;
 }
 // Past lives of named ladies (S.lives[key]): what she'd built and how many Reincarnated stacks she has.
@@ -308,7 +308,7 @@ function ngReset(w){
 //    she comes back as she left, stacks and all, no new stack.
 // rebirthNamed(n, newLife): newLife forces a new life even for a same-life entry (a kept house's resident recreated at NG+).
 const lifeOf = (w, same, opts={}) => ({name:w.name, reborn: opts.reborn!==undefined ? opts.reborn : (w.reborn||0), same: !!same, needsReset: !!opts.needsReset,
-  wasLover: !!(w.wasLover || opts.wasLover), reMet: opts.reMet!==undefined ? opts.reMet : (w.reMet||0), ngPerks: (w.ngPerks||[]).slice(),
+  wasLover: !!(w.wasLover || opts.wasLover), after: w.after || 0, reMet: opts.reMet!==undefined ? opts.reMet : (w.reMet||0), ngPerks: (w.ngPerks||[]).slice(),
   stats: Object.assign({}, w.stats), tech: Object.assign({}, w.tech),
   acts: Object.fromEntries(Object.entries(w.acts||{}).map(([k,a])=>[k, a.skill||0])), titles: (w.titles||[]).slice(), titleId: w.titleId || null});
 function rememberLife(w, same, into, opts){
@@ -326,6 +326,7 @@ function rebirthNamed(n, newLife){
   if(!L.same || newLife){ ngReset(n); n.reborn = L.needsReset ? L.reborn : L.reborn + 1; }
   if(L.ngPerks && L.ngPerks.length) n.ngPerks = Array.from(new Set([...(n.ngPerks||[]), ...L.ngPerks]));
   if(L.wasLover) n.wasLover = true;
+  if(L.after) n.after = Math.max(n.after || 0, L.after);
   if(L.titles && L.titles.length){ n.titles = [...new Set([...(n.titles||[]), ...L.titles])]; if(L.titleId) n.titleId = L.titleId; syncTitles(n); }
   if(!n.free) n.wage = wageFor(n);
   if(n.wasLover) n.signing = 0;
