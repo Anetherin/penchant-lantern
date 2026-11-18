@@ -6,7 +6,7 @@
           "title": "Tea Etiquette",
           "text": "Jinhsi serves tea in the quiet ceremony room with a poise that could still a storm. When you fumble your porcelain cup, she steadies your fingers with a warm, lingering touch. \"A magistrate learns to carry a thousand burdens without a ripple,\" she whispers, lavender-grey eyes searching yours as the gold dragon-horn ornament in her hair catches the lamplight. \"Yet I find myself wishing someone would take one from me.\"",
           "image": {
-            "comp": "pouring tea with graceful precision, gold eyes lifted to him, composed smile with the faintest tremor",
+            "comp": "pouring tea with graceful precision, eyes lifted to him, composed smile with the faintest tremor",
             "setting": "tea room with paper screens, a low table and soft lantern glow",
             "sam": true
           },
@@ -46,9 +46,9 @@
         },
         "jump": {
           "title": "Dragon Impulse",
-          "text": "Festival drums thunder down the street below as Jinhsi grips the balcony rail, cheeks flushed hot with the rhythm. Turning to you with golden eyes blazing in the lantern glow, her careful mask of office shatters completely. \"Forgive me—it is the dragon blood. Tonight I have zero restraint left.\"",
+          "text": "Festival drums thunder down the street below as Jinhsi grips the balcony rail, cheeks flushed hot with the rhythm. Turning to you with lavender-grey eyes blazing in the lantern glow, her careful mask of office shatters completely. \"Forgive me—it is the dragon blood. Tonight I have zero restraint left.\"",
           "image": {
-            "comp": "gripping a balcony rail with the glow of festival lanterns behind her, turned to him, golden eyes bright",
+            "comp": "gripping a balcony rail with the glow of festival lanterns behind her, turned to him, eyes bright",
             "setting": "balcony above a festival street with drums, lanterns and fireworks",
             "sam": true
           },
@@ -135,7 +135,7 @@
         },
         "2": {
           "title": "Riddle",
-          "text": "Hsin sits cross-legged on the tea-room mat with her white tail curled around her knees, silver eyes glinting as you miss another riddle. Leaning forward until her chest brushes your arm, she slides a warm hand onto your thigh. \"Wrong again—now let me collect the forfeit.\"",
+          "text": "Hsin sits cross-legged on the tea-room mat with her white tail curled around her knees, glowing red-yellow eyes glinting as you miss another riddle. Leaning forward until her chest brushes your arm, she slides a warm hand onto your thigh. \"Wrong again—now let me collect the forfeit.\"",
           "image": {
             "comp": "leaning across a low table with a glimmer in her eyes, tail curled, playful and enigmatic",
             "setting": "tea room with a low table and a single moonlit window",
@@ -148,7 +148,7 @@
         },
         "3": {
           "title": "Mortal Shape",
-          "text": "Hsin sits naked on the edge of your bed in the silver moonlight, white ears twitching and tail sweeping across the quilt. \"I have worn mortal flesh for centuries without truly feeling it—until you looked at me,\" she whispers, eyes shining silver. \"Teach a guardian spirit what a body is made for, Sam.\"",
+          "text": "Hsin sits naked on the edge of your bed in the silver moonlight, white ears twitching and tail sweeping across the quilt. \"I have worn mortal flesh without truly feeling it—until you looked at me,\" she whispers, eyes glowing like warm embers. \"Teach a guardian spirit what a body is made for, Sam.\"",
           "image": {
             "comp": "sitting at the edge of a bed with folded hands, ears twitching, curious and soft-eyed",
             "setting": "Sam's bedroom with moonlight across the quilt",
@@ -156,16 +156,16 @@
             "cloth": "nude"
           },
           "go": "Teach her",
-          "goRes": "You lay her back in the moonlight and sink your cock slowly into her tight, trembling pussy, Hsin gasping in wide-eyed wonder at every thrust.",
+          "goRes": "She climbs onto your lap in the moonlight and sinks slowly onto your cock, Hsin gasping in wide-eyed wonder as she rides you.",
           "wait": "\"Are you sure?\"",
           "waitRes": "\"Spirits rarely lie.\" She offers a serene smile. \"Wait if you must—the moon always returns.\"",
-          "act": "missionary"
+          "act": "cowgirl"
         },
         "jump": {
           "title": "Fox Fire",
-          "text": "Hsin traps you at the foot of the dark stairs, her eyes glowing pale silver and her white tail coiling tightly around your waist. \"A guardian spirit has no business craving mortal touch,\" she murmurs—before pressing her mouth hungrily to yours. \"Yet I want all of you right now.\"",
+          "text": "Hsin traps you at the foot of the dark stairs, her eyes glowing red-gold and her white tail coiling tightly around your waist. \"A guardian spirit has no business craving mortal touch,\" she murmurs—before pressing her mouth hungrily to yours. \"Yet I want all of you right now.\"",
           "image": {
-            "comp": "kissing him at the foot of a staircase with pale glowing eyes, tail wrapped around his arm",
+            "comp": "kissing him at the foot of a staircase with glowing eyes, tail wrapped around his arm",
             "setting": "dark stairwell with a single lantern and white petals drifting",
             "sam": true
           },
@@ -514,7 +514,8 @@
           "go": "Take her to bed",
           "goRes": "You pull her down onto the mattress and drive your cock deep into her hot, wet pussy, matching her fierce strength thrust for thrust until she cries out against your throat.",
           "wait": "\"You don't have to fight for a place here.\"",
-          "waitRes": "Her fierce eyes soften into a rare, tender smile. \"I know, Sam. That is why I chose your bed.\""
+          "waitRes": "Her fierce eyes soften into a rare, tender smile. \"I know, Sam. That is why I chose your bed.\"",
+          "act": "missionary"
         },
         "jump": {
           "title": "Trial by Combat",
@@ -655,7 +656,7 @@
           "text": "Rover sits on the rooftop steps after patrol, her sword resting across her knees and the white feather in her dark hair stirring in the night breeze. When you sit beside her with two mugs of cider, her golden-amber eyes warm with rare relief. \"Every city I visit asks me to save it,\" she says quietly, leaning her shoulder against yours. \"You're the first person who only asked if I'd eaten. May I kiss you, Sam?\"",
           "image": {
             "comp": "sitting on rooftop steps at night with a mug of cider, golden-amber eyes warm and soft, feather ornament in her hair",
-            "setting": "rooftop steps overlooking Hollowmere's lanterns at night",
+            "setting": "rooftop steps overlooking the town's lanterns at night",
             "sam": true
           },
           "go": "Kiss her",

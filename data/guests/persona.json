@@ -43,7 +43,10 @@
               "accState": "dressed"
             }
           },
-          "bonds": {"takemi":{"v":20,"note":"Margaret finds the doctor's medical stories fascinating."}},
+          "bonds": {
+            "takemi": {"v":20,"note":"Margaret finds the doctor's medical stories fascinating."},
+            "yukiko": {"v":35,"kind":"home","note":"Remembers the quiet inn heiress from the fog-shrouded town."}
+          },
           "jobs": {"likes":["attendant","host","bath"],"dislikes":["dancer"]},
           "body": {"bust":"medium","height":"tall","figure":"slim"},
           "unique": {
@@ -70,7 +73,7 @@
             "hairColor": "dark brown",
             "eyes": "brown",
             "skin": "fair",
-            "features": "flawless makeup and a beauty mark beneath one eye",
+            "features": "flawless makeup",
             "expression": "a flirtatious, needy wink"
           },
           "under": "lace",
@@ -97,7 +100,10 @@
               "bonus": {"bath":1.2,"courtesan":1.2}
             }
           },
-          "bonds": {"kawakami":{"v":25,"note":"Old acquaintances who commiserate over men and rent."}},
+          "bonds": {
+            "kawakami": {"v":25,"note":"Old acquaintances who commiserate over men and rent."},
+            "yukiko": {"v":35,"note":"Her former homeroom student from Yasogami High, who grew into a poised rival hostess."}
+          },
           "jobs": {"likes":["courtesan","dancer","host"],"dislikes":["maid","security"]},
           "body": {"bust":"medium","height":"average","figure":"curvy"},
           "unique": {
@@ -119,14 +125,7 @@
           "dislike": "doggy",
           "lovers": "cowgirl",
           "backstory": "Sadayo Kawakami was a hardworking teacher who also kept up a string of side jobs: a maid cafe, a hostess bar, and one regrettable stretch as a paid companion, to cover debts she had no right to be carrying. She is bubbly and tired, easily moved, and utterly convinced that effort is the only thing she can control. Hollowmere is the first place that pays well enough that she can finally stop running.",
-          "design": {
-            "hairStyle": "unkempt shoulder-length",
-            "hairColor": "dark brown",
-            "eyes": "brown",
-            "skin": "fair",
-            "features": "a small beauty mark beneath her lip",
-            "expression": "a warm, slightly tired smile"
-          },
+          "design": {"hairStyle":"unkempt shoulder-length","hairColor":"dark brown","eyes":"brown","skin":"fair","expression":"a warm, slightly tired smile"},
           "under": "lace",
           "underColor": "pink",
           "stats": {"beauty":68,"charm":66,"charisma":74,"refinement":48,"wits":48,"stamina":55,"strength":25,"agility":55},
@@ -154,7 +153,9 @@
           },
           "bonds": {
             "kashiwagi": {"v":25,"note":"Old acquaintances who commiserate over men and rent."},
-            "takemi": {"v":30,"note":"The doctor patched her up after a long run of overtime."}
+            "takemi": {"v":30,"note":"The doctor patched her up after a long run of overtime."},
+            "ann": {"v":30,"note":"Her former student, whom she still nags out of habit."},
+            "kasumi": {"v":30,"note":"A hardworking student she keeps a protective eye on."}
           },
           "jobs": {"likes":["teacher","maid","courtesan"],"dislikes":["security"]},
           "body": {"bust":"medium","height":"average","figure":"average"},
@@ -199,7 +200,7 @@
             "sig_takemi": {
               "label": "Clinic coat",
               "style": "Sporty",
-              "prompt": "an open white doctor's coat over a fitted black dress and dark boots",
+              "prompt": "an open white doctor's coat over a fitted dark olive-green mini-dress with a red belt and dark boots",
               "bonus": {"bath":1.25,"commoner":1.15},
               "accessories": "a stethoscope around her neck",
               "accState": "dressed"
@@ -207,7 +208,9 @@
           },
           "bonds": {
             "kawakami": {"v":30,"note":"The doctor patched her up after a long run of overtime."},
-            "margaret": {"v":20,"note":"Margaret finds the doctor's medical stories fascinating."}
+            "margaret": {"v":20,"note":"Margaret finds the doctor's medical stories fascinating."},
+            "sae": {"v":20,"note":"A prosecutor and a back-alley doctor. They keep their distance on principle."},
+            "ann": {"v":25,"note":"Patches her up whenever she overdoes a shoot or a shift."}
           },
           "jobs": {"likes":["bath","attendant"],"dislikes":["dancer"]},
           "body": {"bust":"medium","height":"average","figure":"athletic"},
@@ -267,7 +270,11 @@
               "favColor": "crimson"
             }
           },
-          "bonds": {"takemi":{"v":20,"note":"A prosecutor and an unlicensed doctor. They keep their distance on principle."}},
+          "bonds": {
+            "takemi": {"v":20,"note":"A prosecutor and a back-alley doctor. They keep their distance on principle."},
+            "ann": {"v":10,"note":"Polite but guarded history."},
+            "kasumi": {"v":10,"note":"Wary civility."}
+          },
           "jobs": {"likes":["madame","promoter"],"dislikes":["dancer","bartender"]},
           "body": {"bust":"medium","height":"tall","figure":"slim"},
           "unique": {
@@ -322,7 +329,11 @@
               "bonus": {"noble":1.2,"courtesan":1.15}
             }
           },
-          "bonds": {"ann":{"v":30,"kind":"comrades","note":"Compared notes on fighting and fashion."}},
+          "bonds": {
+            "ann": {"v":30,"kind":"comrades","note":"Compared notes on fighting and fashion."},
+            "kashiwagi": {"v":35,"note":"Her former homeroom teacher from Yasogami High—Yukiko still smiles politely through her lectures."},
+            "margaret": {"v":35,"kind":"home","note":"An enigmatic attendant from her days investigating the Midnight Channel."}
+          },
           "jobs": {"likes":["host","attendant"],"dislikes":["security"]},
           "body": {"bust":"medium","height":"average","figure":"average"},
           "unique": {
@@ -385,11 +396,7 @@
               "accState": "dressed"
             }
           },
-          "bonds": {
-            "ann": {"v":45,"kind":"comrades","note":"She looks up to Ann like a senpai."},
-            "kawakami": {"v":30,"note":"Her school teacher, who worries about her."},
-            "sae": {"v":10,"note":"Wary civility."}
-          },
+          "bonds": {"kawakami":{"v":30,"note":"Her school teacher, who worries about her."},"sae":{"v":10,"note":"Wary civility."}},
           "jobs": {"likes":["dancer","attendant"],"dislikes":["security"]},
           "body": {"bust":"medium","height":"average","figure":"athletic"},
           "unique": {

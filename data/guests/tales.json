@@ -77,7 +77,7 @@
             "hairColor": "pastel rose-pink",
             "eyes": "turquoise-blue",
             "skin": "fair",
-            "features": "a glowing red Exsphere gem set in a silver plate beneath her collar",
+            "features": "a glowing red gem set in a silver plate beneath her collar",
             "expression": "a quiet, deadpan gaze"
           },
           "under": "plain",
@@ -98,7 +98,10 @@
               "bonus": {"security":1.35,"maid":1.15}
             }
           },
-          "bonds": {"sheena":{"v":45,"kind":"comrades","note":"Trusts Sheena implicitly—she is one of the first people who treated her like an equal."}},
+          "bonds": {
+            "sheena": {"v":45,"kind":"comrades","note":"Trusts Sheena implicitly—she is one of the first people who treated her like an equal."},
+            "marta": {"v":30,"kind":"comrades","note":"Fellow travelers who fought side by side across two worlds."}
+          },
           "jobs": {"likes":["security","maid"],"dislikes":["promoter","bartender"]},
           "body": {"bust":"flat","height":"short","figure":"slim"},
           "unique": {
@@ -125,7 +128,7 @@
             "hairColor": "warm sandy orange-blonde",
             "eyes": "bright blue",
             "skin": "fair",
-            "features": "a glowing red core crystal on the left side of her forehead",
+            "features": "a small glowing red crystal jewel on the left side of her forehead",
             "accessories": "twin oversized orange-and-pink floral hair clips on both sides of her head",
             "accState": "always",
             "expression": "a bright, starry-eyed smile"
@@ -148,7 +151,10 @@
               "bonus": {"attendant":1.25,"dancer":1.2}
             }
           },
-          "bonds": {"sheena":{"v":30,"kind":"comrades","note":"Admires Sheena's courage and asks endless questions about summoning."}},
+          "bonds": {
+            "sheena": {"v":30,"kind":"comrades","note":"Admires Sheena's courage and asks endless questions about summoning."},
+            "presea": {"v":30,"kind":"comrades","note":"Admires Presea's quiet strength and brings her cute paw-print charms."}
+          },
           "jobs": {"likes":["attendant","dancer","host"],"dislikes":["security"]},
           "body": {"bust":"flat","height":"average","figure":"slim"},
           "unique": {
@@ -161,7 +167,7 @@
           "job": "courtesan",
           "name": "Milla Maxwell",
           "race": "spirit",
-          "age": 320,
+          "age": 22,
           "personality": "Proud and sharp-tongued",
           "traits": ["Brave","Striking"],
           "style": "Revealing",
@@ -203,7 +209,7 @@
             }
           },
           "bonds": {
-            "lailah": {"v":35,"kind":"comrades","note":"Two ancient spirits who discuss mortal eccentricities over tea."},
+            "lailah": {"v":35,"kind":"home","note":"Two spirits from sister worlds who discuss mortal eccentricities over tea."},
             "edna": {"v":25,"note":"Amused by Edna's bone-dry sarcasm."}
           },
           "jobs": {"likes":["courtesan","security","promoter"],"dislikes":["maid"]},
@@ -303,7 +309,7 @@
             "sig_sophie": {
               "label": "Protos Heis combat suit",
               "style": "Cute",
-              "prompt": "a white and dark indigo hooded tunic dress with gold trim, detached sleeves and dark purple thigh-high boots",
+              "prompt": "a fitted gray inner bodysuit under a pink-and-white sleeveless vest tunic with magenta lining, a black belt connected to white flared leg warmers, dark blue-purple gauntlets fastened with red rings and light pink shoes",
               "bonus": {"security":1.3,"attendant":1.15}
             }
           },
@@ -379,7 +385,7 @@
           "job": "host",
           "name": "Lailah",
           "race": "spirit",
-          "age": 500,
+          "age": 1000,
           "personality": "Cheerful and teasing",
           "traits": ["Elegant","Warm Hospitality"],
           "style": "Elegant",
@@ -419,7 +425,7 @@
             "alisha": {"v":45,"kind":"comrades","note":"Fondly watches over the earnest princess like an older sister."},
             "edna": {"v":50,"kind":"comrades","note":"Rarely ruffled by Edna's barbs, usually answering with an even worse pun."},
             "symonne": {"v":20,"note":"Always leaves an open seat and warm tea for the bitter seraph."},
-            "milla": {"v":35,"kind":"comrades","note":"Two ancient spirits who discuss mortal eccentricities over tea."}
+            "milla": {"v":35,"kind":"home","note":"Two spirits from sister worlds who discuss mortal eccentricities over tea."}
           },
           "jobs": {"likes":["host","chapel","attendant"],"dislikes":["security"]},
           "body": {"bust":"large","height":"tall","figure":"curvy"},
@@ -433,7 +439,7 @@
           "job": "promoter",
           "name": "Edna",
           "race": "spirit",
-          "age": 450,
+          "age": 1000,
           "personality": "Proud and sharp-tongued",
           "traits": ["Aloof","Level-Headed"],
           "style": "Cute",
@@ -443,11 +449,11 @@
           "lovers": "cowgirl",
           "backstory": "An Earth Seraph who spent centuries perched atop a lonely mountain holding a frilled parasol and honing her sarcasm to a razor edge, Edna speaks in a flat deadpan that leaves both smug nobles and rowdy regulars flustered. Though she pretends everything around her is tedious, she remembers everyone's favorite tea and secretly hates being left alone.",
           "design": {
-            "hairStyle": "twin drill pigtails with blunt bangs",
+            "hairStyle": "short with a single side ponytail on the left and blunt bangs",
             "hairColor": "flaxen blonde",
-            "eyes": "amber-gold",
+            "eyes": "blue",
             "skin": "pale ivory",
-            "accessories": "blue hair ribbons and a yellow-and-white frilled parasol with a dangling Normin mascot",
+            "accessories": "a green hair ribbon, a black ribbon choker and a yellow-and-white frilled parasol with a dangling plushie mascot charm",
             "accState": "dressed",
             "expression": "a deadpan, unimpressed stare"
           },
@@ -461,16 +467,17 @@
           "trust": 20,
           "outfits": {
             "sig_edna": {
-              "label": "Earth Seraph coat dress",
+              "label": "Earth Seraph frilled dress",
               "style": "Cute",
-              "prompt": "a frilled white gothic-lolita coat dress with black lining, a pleated skirt, dark elbow-length gloves and sturdy brown boots",
+              "prompt": "a sleeveless white and yellow frilled dress adorned with a large yellow floral bow, a pleated skirt, oversized dark elbow-length gloves and sturdy brown boots",
               "bonus": {"promoter":1.25,"security":1.2}
             }
           },
           "bonds": {
             "lailah": {"v":50,"kind":"comrades","note":"Secretly relies on Lailah's warmth, though she calls her puns a crime."},
             "alisha": {"v":35,"kind":"comrades","note":"Teases Alisha relentlessly while always stepping in to cover her blind spots."},
-            "symonne": {"v":-20,"kind":"rivals","note":"Refuses to let Symonne wallow in self-pity unchallenged."}
+            "symonne": {"v":-20,"kind":"rivals","note":"Refuses to let Symonne wallow in self-pity unchallenged."},
+            "milla": {"v":25,"note":"Finds the Lord of Spirits surprisingly entertaining to tease."}
           },
           "jobs": {"likes":["promoter","security","host"],"dislikes":["maid","bartender"]},
           "body": {"bust":"small","height":"short","figure":"slim"},
@@ -494,8 +501,8 @@
           "lovers": "missionary",
           "backstory": "A disillusioned Seraph of illusions who spent years casting waking nightmares for a fallen lord because she couldn't bear looking at an ugly world unmasked, Symonne expects betrayal and mocks optimism—yet cannot quite walk away from genuine kindness. In the lantern-lit rooms upstairs, she weaves velvet mirages that wrap clients in quiet decadence.",
           "design": {
-            "hairStyle": "long twin pigtails with bangs framing her face",
-            "hairColor": "jet-black with deep violet highlights",
+            "hairStyle": "short bob cut with two long braided twin-tails",
+            "hairColor": "dark violet",
             "eyes": "crimson red",
             "skin": "pale porcelain-white",
             "accessories": "dark plum feather hair ornaments and a slender illusionist's baton",

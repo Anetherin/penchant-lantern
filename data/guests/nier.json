@@ -45,7 +45,7 @@
             "sp_yorha_2b": {
               "label": "Self-destruct leotard",
               "style": "Revealing",
-              "prompt": "a high-cut white-and-black YoRHa leotard bodysuit with a sheer mesh back, black opera gloves and thigh-high heeled boots",
+              "prompt": "a high-cut white-and-black gothic leotard bodysuit with a sheer mesh back, black opera gloves and thigh-high heeled boots",
               "bonus": {"courtesan":1.25,"dancer":1.25}
             }
           },

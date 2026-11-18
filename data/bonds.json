@@ -27,6 +27,7 @@
   ],
   "kinds": {
     "mentor": {"from":"Mentor to","to":"Learning from"},
+    "family": {"from":"Family with","to":"Family with"},
     "home": {"from":"Fellow otherworlder with","to":"Fellow otherworlder with"},
     "comrades": {"from":"Old comrades with","to":"Old comrades with"},
     "rivals": {"from":"Sparring rivals with","to":"Sparring rivals with"}

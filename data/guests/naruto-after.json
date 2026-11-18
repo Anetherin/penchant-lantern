@@ -7,7 +7,7 @@
           "job": "courtesan",
           "name": "Mio Tanabe",
           "race": "human",
-          "age": 27,
+          "age": 24,
           "personality": "Bold and flirtatious",
           "traits": ["Exhibitionist","Ambitious"],
           "style": "Revealing",
@@ -47,7 +47,11 @@
               "bonus": {"promoter":1.15,"commoner":1.2}
             }
           },
-          "bonds": {"maki":{"v":15,"note":"Mio borrowed half of Maki's playbook. Maki has noticed."}},
+          "bonds": {
+            "maki": {"v":15,"note":"Mio borrowed half of Maki's playbook. Maki has noticed."},
+            "emi": {"v":35,"note":"Emi is one of the few people whose quiet check-ins Mio never deflects."},
+            "saki": {"v":45,"kind":"comrades","note":"Close Suna friends who survived the worst of the Exam together."}
+          },
           "jobs": {"likes":["courtesan","dancer"],"dislikes":["maid"]},
           "body": {"bust":"medium","height":"average","figure":"average"},
           "unique": {
@@ -95,10 +99,11 @@
           },
           "bonds": {
             "hibiki": {"v":60,"kind":"comrades","note":"Squadmates since the Exam."},
-            "yori": {"v":25,"note":"Both from Ame. Emi is the only one who never loses track of her."}
+            "yori": {"v":25,"note":"Both from Ame. Emi is the only one who never loses track of her."},
+            "mio_tanabe": {"v":35,"note":"Kindred helpers who look out for each other when the work gets heavy."}
           },
           "jobs": {"likes":["security","maid","madame"],"dislikes":["dancer"]},
-          "body": {"bust":"medium","height":"average","figure":"athletic"},
+          "body": {"bust":"medium","height":"tall","figure":"athletic"},
           "unique": {"name":"Stillness","desc":"Troublemakers seem to find themselves unable to move.","fx":{"security":15}}
         },
         "hibiki": {
@@ -145,7 +150,11 @@
               "bonus": {"noble":1.2,"courtesan":1.15}
             }
           },
-          "bonds": {"emi":{"v":60,"kind":"comrades","note":"Squadmates since the Exam."}},
+          "bonds": {
+            "emi": {"v":60,"kind":"comrades","note":"Squadmates since the Exam."},
+            "kotone": {"v":50,"kind":"comrades","note":"Close childhood friends from the Sound village."},
+            "maki": {"v":35,"note":"Friends who bonded instantly over stagecraft and presentation."}
+          },
           "jobs": {"likes":["dancer","bartender","courtesan"],"dislikes":["security"]},
           "body": {"bust":"flat","height":"short","figure":"slim"},
           "unique": {"name":"Vampire-Rock Concert","desc":"Her stage shows are the talk of the town.","fx":{"jobBonus":{"dancer":1.25},"appeal":3}}
@@ -356,7 +365,7 @@
           },
           "bonds": {"juju":{"v":35,"kind":"comrades","note":"Old squadmates."}},
           "jobs": {"likes":["courtesan","bath"],"dislikes":["maid","security"]},
-          "body": {"bust":"large","height":"average","figure":"athletic"},
+          "body": {"bust":"large","height":"tall","figure":"athletic"},
           "unique": {"name":"Gentle Breeze","desc":"Her relaxed company eases tired bodies and tired moods.","fx":{"energyRec":1.15,"moodRest":3}}
         },
         "maki": {
@@ -406,7 +415,11 @@
           },
           "bonds": {
             "mei": {"v":40,"note":"A distant Terumi cousin. Mei keeps offering marriage advice and Maki keeps taking notes."},
-            "choko": {"v":55,"note":"Close friends since the Exam."}
+            "choko": {"v":55,"note":"Close friends since the Exam."},
+            "saki": {"v":40,"kind":"comrades","note":"Old Team 11 squadmates who still look out for each other."},
+            "mio_tanabe": {"v":15,"note":"Mio borrowed half of Maki's playbook. Maki has noticed."},
+            "marina": {"v":45,"note":"Friends through clothes. Marina alters her dresses and always asks who it's for."},
+            "hibiki": {"v":35,"note":"Friends through shared dedication to deliberate presentation."}
           },
           "jobs": {"likes":["courtesan","madame","dancer"],"dislikes":["bartender","maid"]},
           "body": {"bust":"medium","height":"average","figure":"curvy"},
@@ -459,7 +472,11 @@
               "bonus": {"merchant":1.15,"noble":1.15}
             }
           },
-          "bonds": {"juju":{"v":40,"note":"Friends who nearly broke over a prosthetic, and mended it."}},
+          "bonds": {
+            "juju": {"v":40,"note":"Friends who nearly broke over a prosthetic, and mended it."},
+            "maki": {"v":40,"kind":"comrades","note":"Old Team 11 squadmates."},
+            "mio_tanabe": {"v":45,"kind":"comrades","note":"Close Suna friends she would cross a continent to bring home."}
+          },
           "jobs": {"likes":["dancer","bartender","courtesan"],"dislikes":["maid"]},
           "body": {"bust":"small","height":"short","figure":"slim"},
           "unique": {
@@ -618,7 +635,7 @@
           "job": "security",
           "name": "Hana Sarutobi",
           "race": "beastkin",
-          "sub": "cheetah",
+          "sub": "cat",
           "age": 24,
           "personality": "Hot-blooded and competitive",
           "traits": ["Tough","Former Adventurer"],
@@ -658,7 +675,8 @@
           },
           "bonds": {
             "juju": {"v":65,"note":"An intense friendship that started the moment they met."},
-            "yukine": {"v":50,"kind":"comrades","note":"Squadmates who started out butting heads."}
+            "yukine": {"v":50,"kind":"comrades","note":"Squadmates who started out butting heads."},
+            "tobari": {"v":60,"kind":"rivals","note":"Sparring rivals and closest friends, no hidden resentment."}
           },
           "jobs": {"likes":["security","bartender"],"dislikes":["maid"]},
           "body": {"bust":"small","height":"average","figure":"athletic"},
@@ -676,7 +694,7 @@
           "fav": "missionary",
           "dislike": "cowgirl",
           "lovers": "kiss",
-          "backstory": "Once the lead exam proctor for the Alliance villages across the eastern sea and a meticulous contingency planner, Shiori lost her husband and her best friend in the same war. She took the job because she needed something to do with her hands. The first signs of her picking herself back up are starting to show.",
+          "backstory": "Once the lead exam proctor for the Alliance villages across the eastern sea and a meticulous contingency planner, Shiori lost her husband to a delayed mission and her closest friend to a twenty-year betrayal. She took the job because she needed something to do with her hands. The first signs of her picking herself back up are starting to show.",
           "design": {
             "build": "mature",
             "hairStyle": "high spiky side ponytail",
@@ -697,7 +715,7 @@
             "sig_shiori": {
               "label": "Proctor's uniform",
               "style": "Elegant",
-              "prompt": "a dark high-collared jonin uniform with a harness of colored cartridges",
+              "prompt": "a dark high-collared tactical ninja uniform with a harness of colored cartridges",
               "bonus": {"promoter":1.3,"security":1.15}
             },
             "sp_shiori": {
@@ -710,7 +728,8 @@
           },
           "bonds": {
             "mio_tanabe": {"v":40,"kind":"mentor","note":"Shiori mentored her squad. She worries about her."},
-            "saya": {"v":30,"kind":"mentor","note":"Shiori mentored her squad for a rotation."}
+            "saya": {"v":30,"kind":"mentor","note":"Shiori mentored her squad for a rotation."},
+            "tomoe": {"v":-35,"note":"Her former best friend of twenty-three years, whose betrayal shattered her old life."}
           },
           "jobs": {"likes":["promoter","security"],"dislikes":["courtesan","bath"]},
           "body": {"bust":"medium","height":"average","figure":"athletic"},
@@ -801,7 +820,7 @@
             },
             "sp_kotone": {"label":"Plum silk qipao","style":"Elegant","prompt":"a deep plum silk qipao with silver thread","bonus":{"noble":1.25,"courtesan":1.15}}
           },
-          "bonds": {"hibiki":{"v":20,"note":"Both from the Sound village. Hibiki is a little jealous; Kotone has no idea why."}},
+          "bonds": {"hibiki":{"v":50,"kind":"comrades","note":"Close childhood friends from the Sound village."}},
           "jobs": {"likes":["madame","maid"],"dislikes":["courtesan"]},
           "body": {"bust":"large","height":"tall","figure":"curvy"},
           "unique": {
@@ -854,7 +873,7 @@
             }
           },
           "bonds": {
-            "hana": {"v":60,"note":"Sparring rivals and closest friends, no hidden resentment."},
+            "hana": {"v":60,"kind":"rivals","note":"Sparring rivals and closest friends, no hidden resentment."},
             "ebina": {"v":30,"note":"Easy, low-maintenance training partners."},
             "saya": {"v":-10,"note":"Respects Saya. Would prefer the beetles stay off her."}
           },
@@ -1099,17 +1118,21 @@
             },
             "sp_ebina": {"label":"Beach day","style":"Revealing","prompt":"a black bikini top with a sheer black sarong","bonus":{"dancer":1.15,"commoner":1.2}}
           },
-          "bonds": {"nai":{"v":45,"kind":"comrades","note":"Old squadmates."},"juju":{"v":40,"note":"Ebina just redirects Juju into the next drill."}},
+          "bonds": {
+            "nai": {"v":45,"kind":"comrades","note":"Old squadmates."},
+            "juju": {"v":40,"note":"Ebina just redirects Juju into the next drill."},
+            "tobari": {"v":30,"note":"Easy, low-maintenance training partners."}
+          },
           "keepOn": {"item":"her opaque round black sunglasses","trust":90},
           "jobs": {"likes":["dancer","madame"],"dislikes":["security"]},
-          "body": {"bust":"medium","height":"average","figure":"athletic"},
+          "body": {"bust":"medium","height":"tall","figure":"athletic"},
           "unique": {"name":"Planned Itinerary","desc":"She plans her time perfectly and recovers well.","fx":{"energyRec":1.1,"jobBonus":{"dancer":1.1}}}
         },
         "tomoe": {
           "job": "madame",
           "name": "Tomoe Mitama",
           "race": "android",
-          "age": 48,
+          "age": 39,
           "personality": "Mysterious and aloof",
           "traits": ["Ambitious","Elegant"],
           "style": "Exotic",
@@ -1124,7 +1147,7 @@
             "hairColor": "pale rose-blush",
             "eyes": "warm amber-brown",
             "skin": "light warm synthetic",
-            "features": "three tiny black chakra-receiver studs in a triangle below her left collarbone",
+            "features": "three tiny black metallic piercing studs in a triangle below her left collarbone",
             "accessories": "simple dark-metal earrings",
             "accState": "always",
             "expression": "a warm, approachable smile"
@@ -1153,7 +1176,7 @@
               "favColor": "gold",
               "hairStyle": "elaborate braided crown gathered into a neat bun",
               "eyes": "vivid royal-purple",
-              "features": "a single black chakra-receiver stud at the base of her throat and faint geometric seal lines along her arms",
+              "features": "a single black metallic piercing stud at the base of her throat and faint geometric seal lines along her arms",
               "replaceFeatures": true,
               "accessories": "a thin gold circlet",
               "accState": "always",
@@ -1167,7 +1190,7 @@
               "favColor": "gold",
               "hairStyle": "many small braids decorated with tiny gold rings and ornaments",
               "eyes": "gold",
-              "features": "two black chakra-receiver studs along her left jawline, heavy glamorous makeup and dark seal tattoos on the backs of her hands",
+              "features": "two black metallic piercing studs along her left jawline, heavy glamorous makeup and dark seal tattoos on the backs of her hands",
               "replaceFeatures": true,
               "accessories": "layered gold necklaces, stacked bracelets and many rings",
               "accState": "always",
@@ -1181,7 +1204,7 @@
               "favColor": "crimson",
               "hairStyle": "high, tightly controlled braided ponytail",
               "eyes": "scarlet",
-              "features": "four black chakra-receiver studs across the bridge of her nose and mechanical seam lines at her shoulders and elbows",
+              "features": "four black metallic piercing studs across the bridge of her nose and mechanical seam lines at her shoulders and elbows",
               "replaceFeatures": true,
               "accessories": "",
               "expression": "a calm, disciplined scowl"
@@ -1194,7 +1217,7 @@
               "favColor": "lavender",
               "hairStyle": "long, completely loose and messy",
               "eyes": "muted blue",
-              "features": "five tiny black chakra-receiver studs in an arc along the back of her neck",
+              "features": "five tiny black metallic piercing studs in an arc along the back of her neck",
               "replaceFeatures": true,
               "accessories": "",
               "expression": "a sleepy, unbothered half-smile"
@@ -1207,7 +1230,7 @@
               "favColor": "orange",
               "hairStyle": "two substantial braided buns",
               "eyes": "vivid orange",
-              "features": "six black chakra-receiver studs framing her navel and glowing seal-script along her ribs",
+              "features": "six black metallic piercing studs framing her navel and glowing seal-script along her ribs",
               "replaceFeatures": true,
               "accessories": "",
               "expression": "a contented, hungry half-smile"
@@ -1220,7 +1243,7 @@
               "favColor": "pink",
               "hairStyle": "long, sleek and loose with a small delicate temple braid",
               "eyes": "vivid fuchsia-pink",
-              "features": "seven tiny black chakra-receiver studs arranged in a vertical line down her sternum and a beauty mark below her left eye",
+              "features": "seven tiny black metallic piercing studs arranged in a vertical line down her sternum and a beauty mark below her left eye",
               "replaceFeatures": true,
               "accessories": "delicate silver chain jewelry",
               "accState": "always",
@@ -1243,7 +1266,7 @@
             }
           },
           "bonds": {
-            "shiori": {"v":-35,"note":"Former comrades in the shadows; Shiori spent years hunting her network."},
+            "shiori": {"v":-35,"note":"Her former best friend and fellow proctor, whom she left behind in the ruins of Exam 3."},
             "saki": {"v":25,"note":"Tomoe admires her puppet-craft engineering; Saki guards her blueprints around her."},
             "nozomi": {"v":-25,"note":"Nozomi once answered to her network and walked away from it."}
           },

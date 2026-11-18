@@ -6,20 +6,21 @@
           "title": "Would You Like to Stay",
           "text": "Margaret has served you tea three evenings running, always the same blue porcelain cup, always the same composed line. Tonight she sets the pot down and stays standing beside your chair. \"Would you like to... stay a while longer? I have asked countless travelers that question—and never once meant it until you.\"",
           "image": {
-            "comp": "pouring tea from a pot with white-gloved hands, composed expression, a tentative smile",
+            "comp": "pouring tea from a porcelain pot with poised hands, composed expression, a tentative smile",
             "setting": "small quiet salon, blue teapot, deep-blue curtains, lamplight",
             "sam": true
           },
           "go": "\"I would.\"",
-          "goRes": "She peels off one white glove slowly with her teeth, cups your bare cheek, and kisses you—polite at first, then deep, warm, and entirely unrehearsed.",
+          "goRes": "She sets her compendium aside, cups your bare cheek with cool fingers, and kisses you—polite at first, then deep, warm, and entirely unrehearsed.",
           "wait": "\"Not yet, perhaps.\"",
-          "waitRes": "\"Of course.\" Her serene smile holds. \"I have watched guests depart for centuries—I can wait for one who intends to stay.\""
+          "waitRes": "\"Of course.\" Her serene smile holds. \"I have watched guests depart for centuries—I can wait for one who intends to stay.\"",
+          "act": "kiss"
         },
         "2": {
           "title": "A Small Experiment",
-          "text": "Margaret has a hypothesis she wishes to test, sitting poised on the velvet settee with her gloves removed and her hands folded in her lap. \"I have never been touched simply for pleasure—not once,\" she admits, her regal composure wavering slightly as she parts her knees. \"Would you touch me without purpose, Sam? Purely as an experiment.\"",
+          "text": "Margaret has a hypothesis she wishes to test, sitting poised on the velvet settee with her compendium set aside and her hands folded in her lap. \"I have never been touched simply for pleasure—not once,\" she admits, her regal composure wavering slightly as she parts her knees. \"Would you touch me without purpose, Sam? Purely as an experiment.\"",
           "image": {
-            "comp": "sitting very straight on a settee, gloves off, hands trembling slightly, curious steady eyes",
+            "comp": "sitting very straight on a settee, compendium set aside, hands trembling slightly, curious steady eyes",
             "setting": "quiet blue salon, steam rising from a teapot, soft lamplight",
             "sam": true
           },
@@ -30,9 +31,9 @@
         },
         "3": {
           "title": "One Who Stays",
-          "text": "Margaret has laid her blue headband and white gloves neatly on the nightstand, her uniform folded over a chair while she sits bare-shouldered on the edge of the blue-curtained bed with her silver hair unbound. \"Everyone who has ever entered my room was gone by dawn,\" she whispers, letting her silk shift slip down her waist. \"I want you to be the first man still in my bed when I open my eyes.\"",
+          "text": "Margaret has laid her blue headband and leather compendium neatly on the nightstand, her uniform folded over a chair while she sits bare-shouldered on the edge of the blue-curtained bed with her silver hair unbound. \"Everyone who has ever entered my room was gone by dawn,\" she whispers, letting her silk shift slip down her waist. \"I want you to be the first man still in my bed when I open my eyes.\"",
           "image": {
-            "comp": "sitting on the edge of a blue-curtained bed, headband and gloves set aside, hair unpinned, quiet hope in her eyes",
+            "comp": "sitting on the edge of a blue-curtained bed, headband set aside, hair unpinned, quiet hope in her eyes",
             "setting": "her room, deep blue hangings, one candle, a small clock ticking",
             "sam": true,
             "cloth": "partial",
@@ -46,16 +47,16 @@
         },
         "jump": {
           "title": "Closing Time at the Velvet",
-          "text": "A drunk patron sneers that Margaret will vanish at dawn like a dream. She goes dead silent, then intercepts you in the corridor and kisses you with sudden, desperate urgency, pressing her body hard against yours. \"I am real,\" she breathes against your mouth, her gloved hands tearing at your coat. \"Prove I'm real, Sam.\"",
+          "text": "A drunk patron sneers that Margaret will vanish at dawn like a dream. She goes dead silent, then intercepts you in the corridor and kisses you with sudden, desperate urgency, pressing her body hard against yours. \"I am real,\" she breathes against your mouth, her slender hands tearing at your coat. \"Prove I'm real, Sam.\"",
           "image": {
-            "comp": "kissing him urgently in a corridor, gloves gripping his coat, eyes bright and wet",
+            "comp": "kissing him urgently in a corridor, hands gripping his coat, eyes bright and wet",
             "setting": "long lantern-lit corridor, blue wallpaper",
             "sam": true
           },
           "go": "\"You're here.\"",
           "goRes": "You haul her into her salon, unfasten her uniform, and pin her over the settee, your hand between her thighs and hers around your cock, holding her tight through every shudder so the world never fades.",
           "wait": "\"Let's sit down.\"",
-          "waitRes": "She nods shakily. \"Yes—sit, and hold my hand.\" Her gloved fingers are trembling, yet they refuse to let go."
+          "waitRes": "She nods shakily. \"Yes—sit, and hold my hand.\" Her cool fingers are trembling, yet they refuse to let go."
         }
       }
     },
@@ -135,7 +136,8 @@
           "go": "Kiss her back",
           "goRes": "She tastes warm and faintly salty from happy tears, melting against you without an ounce of guard. \"Sorry—that was unprofessional. I'd do it again in a heartbeat.\"",
           "wait": "\"Sleep first.\"",
-          "waitRes": "\"Right—sleep.\" She yawns softly. \"Thank you for not turning it into a debt; I have enough of those.\""
+          "waitRes": "\"Right—sleep.\" She yawns softly. \"Thank you for not turning it into a debt; I have enough of those.\"",
+          "act": "kiss"
         },
         "2": {
           "title": "Weekend Dress",
@@ -195,7 +197,8 @@
           "go": "Follow the doctor's orders",
           "goRes": "She kisses like she talks—unhurried, low-key, and unexpectedly intoxicating. \"Hm,\" Tae murmurs against your lips. \"Zero adverse side effects.\"",
           "wait": "\"Not yet, doc.\"",
-          "waitRes": "\"Fine.\" She shrugs, releasing your wrist. \"Refractory patients are my favorite—they always come back.\""
+          "waitRes": "\"Fine.\" She shrugs, releasing your wrist. \"Refractory patients are my favorite—they always come back.\"",
+          "act": "kiss"
         },
         "2": {
           "title": "Posture Check",
@@ -313,7 +316,8 @@
           "go": "Return the kiss",
           "goRes": "Courteous even mid-kiss, she parts her lips sweetly before dissolving into another breathless giggle against your shoulder. \"Sorry—it's not you!\"",
           "wait": "\"Perhaps another time.\"",
-          "waitRes": "\"Of course—I am a patient hostess.\" She composes herself with glowing ears. \"Though the offer remains on the menu.\""
+          "waitRes": "\"Of course—I am a patient hostess.\" She composes herself with glowing ears. \"Though the offer remains on the menu.\"",
+          "act": "kiss"
         },
         "2": {
           "title": "Hot Spring Hosting",
@@ -367,7 +371,9 @@
           "image": {
             "comp": "landing a dance pose and stumbling into his arms, wide-eyed, cheeks red, a quick shy kiss",
             "setting": "practice room with a mirror wall and a wooden floor, soft evening light",
-            "sam": true
+            "sam": true,
+            "cloth": "dressed",
+            "wear": "a white and rose gymnast leotard with a short wrap skirt"
           },
           "go": "Kiss her again",
           "goRes": "The second kiss is slower and far warmer, Kasumi trembling softly against you before beaming like the whole routine finally clicked.",
@@ -380,7 +386,9 @@
           "image": {
             "comp": "lying on a floor mat, one leg lifted, hands covering her blushing face, peeking through her fingers",
             "setting": "practice room after hours, mirror wall, a single lamp",
-            "sam": true
+            "sam": true,
+            "cloth": "dressed",
+            "wear": "a white and rose gymnast leotard with a short wrap skirt"
           },
           "go": "Don't stop",
           "goRes": "You kneel beside her on the warm mat and slide your hands beneath her practice clothes, Kasumi gasping softly and laughing breathlessly at her own boldness.",
@@ -466,7 +474,7 @@
         },
         "jump": {
           "title": "Runway Walk",
-          "text": "After you help shut down a handsy patron, Ann struts down the crowded hall like a fashion runway, pivots sharply, and kisses you breathless in front of everyone. \"That's for having my back—and here's for what we're about to do upstairs,\" she purrs, dropping one red glove at your feet.",
+          "text": "After you help shut down a handsy patron, Ann struts down the crowded hall like a fashion runway, pivots sharply, and kisses you breathless in front of everyone. \"That's for having my back—and here's for what we're about to do upstairs,\" she purrs, tugging you toward the stairs by your lapel.",
           "image": {
             "comp": "mid-kiss in a crowded hall, red jacket flaring, a confident grin as she pulls him closer",
             "setting": "the lamp-lit main hall, the bar behind, guests turning to look",

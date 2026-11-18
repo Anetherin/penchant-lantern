@@ -36,16 +36,17 @@
             "sig_lyn": {
               "label": "Plainswoman's dress",
               "style": "Sporty",
-              "prompt": "a blue sleeveless dress slit high at both sides, a gold sash, white leggings and tall boots",
+              "prompt": "a blue sleeveless dress slit high at both sides exposing her bare thighs, a gold sash and tall boots",
               "bonus": {"security":1.3,"adventurer":1.15}
             },
             "sp_lyn": {
               "label": "Blade Lord attire",
               "style": "Sporty",
-              "prompt": "a teal and white Sacaean tunic dress with gold embroidery, a white fur-trimmed shoulder mantle and knee-high brown boots",
+              "prompt": "a teal and white embroidered tunic dress with gold trim, a white fur-trimmed shoulder mantle and knee-high brown boots",
               "bonus": {"security":1.25,"noble":1.2}
             }
           },
+          "bonds": {"eirika":{"v":25,"kind":"comrades","note":"Kindred spirits from across the southern straits who trade sword drills."}},
           "jobs": {"likes":["security","bartender"],"dislikes":["promoter"]},
           "body": {"bust":"medium","height":"average","figure":"athletic"},
           "unique": {"name":"Plains Swordswoman","desc":"A restless swordswoman who never tires of patrol.","fx":{"security":12,"maxEnergy":5}}
@@ -54,8 +55,9 @@
           "job": "madame",
           "title": "Lady",
           "name": "Rhea",
-          "race": "spirit",
-          "age": 598,
+          "race": "beastkin",
+          "sub": "dragon",
+          "age": 1200,
           "personality": "Warm and motherly",
           "traits": ["Elegant","Loyal"],
           "style": "Elegant",
@@ -99,7 +101,10 @@
               "accState": "dressed"
             }
           },
-          "bonds": {"manuela":{"v":20,"note":"Rhea keeps her employed. Manuela keeps her out of the wine."}},
+          "bonds": {
+            "manuela": {"v":20,"note":"Rhea keeps her employed. Manuela keeps her out of the wine."},
+            "byleth": {"v":40,"note":"The vessel of her dearest hope, whom she watches over with maternal devotion."}
+          },
           "jobs": {"likes":["madame","teacher","bath"],"dislikes":["bartender"]},
           "body": {"bust":"large","height":"tall","figure":"curvy"},
           "unique": {"name":"Serene Presence","desc":"Her calm authority settles the whole floor.","fx":{"rep":1.2,"jobBonus":{"madame":1.15}}}
@@ -147,7 +152,10 @@
               "bonus": {"bath":1.2,"courtesan":1.15}
             }
           },
-          "bonds": {"rhea":{"v":20,"note":"Old employer."}},
+          "bonds": {
+            "rhea": {"v":20,"note":"Old employer."},
+            "byleth": {"v":35,"kind":"comrades","note":"Fellow Garreg Mach instructor who listens to all her tavern stories."}
+          },
           "jobs": {"likes":["dancer","teacher","bartender"],"dislikes":["maid"]},
           "body": {"bust":"large","height":"average","figure":"curvy"},
           "unique": {"name":"Aria","desc":"A diva's voice and entrance.","fx":{"jobBonus":{"dancer":1.2},"appeal":3}}
@@ -214,9 +222,9 @@
             "build": "long-limbed",
             "hairStyle": "long and wild",
             "hairColor": "brown",
-            "eyes": "brown",
-            "skin": "dark brown",
-            "features": "long upright brown rabbit ears, a fluffy tail and dark facial markings",
+            "eyes": "crimson red",
+            "skin": "fair skin accented with soft dark brown fur along her shoulders and hips",
+            "features": "long lop brown rabbit ears draping over her shoulders, a fluffy tail and dark facial markings",
             "accessories": "a fur-trimmed collar",
             "accState": "under"
           },
@@ -236,9 +244,13 @@
               "bonus": {"courtesan":1.2,"adventurer":1.2}
             }
           },
-          "bonds": {"lethe":{"v":30,"note":"Two shapeshifters who recognize each other."}},
+          "bonds": {
+            "lethe": {"v":30,"note":"Two shapeshifters who recognize each other."},
+            "lucina": {"v":30,"kind":"comrades","note":"Fought side by side to rewrite a ruined future."},
+            "nowi": {"v":25,"kind":"comrades","note":"Two long-lived shapeshifters from the same campaign."}
+          },
           "jobs": {"likes":["courtesan","security"],"dislikes":["promoter"]},
-          "body": {"bust":"small","height":"average","figure":"athletic"},
+          "body": {"bust":"medium","height":"average","figure":"athletic"},
           "unique": {"name":"Guardian's Loyalty","desc":"Slow to trust, but fiercely devoted once she does.","fx":{"trustGain":1.15,"security":8}}
         },
         "corrin": {
@@ -261,7 +273,7 @@
             "eyes": "red",
             "skin": "pale",
             "features": "long pointed ears",
-            "accessories": "a glowing dragonstone amulet",
+            "accessories": "a glowing crystalline amulet",
             "accState": "always"
           },
           "under": "silk",
@@ -284,7 +296,7 @@
             "sp_corrin": {
               "label": "Nohr Noble armor",
               "style": "Revealing",
-              "prompt": "a sleek black and gold Nohrian armor-dress with dark thigh-high cutouts, a flowing black cape and bare feet",
+              "prompt": "a sleek black and gold ornate armor-dress with dark thigh-high cutouts, a flowing black cape and bare feet",
               "bonus": {"security":1.2,"courtesan":1.2}
             }
           },
@@ -343,7 +355,8 @@
           },
           "bonds": {
             "celica": {"v":30,"kind":"comrades","note":"Princesses of far-off realms: kindred spirits."},
-            "corrin": {"v":25,"kind":"comrades","note":"Royals who have swapped war stories."}
+            "corrin": {"v":25,"kind":"comrades","note":"Royals who have swapped war stories."},
+            "lyn": {"v":25,"kind":"comrades","note":"Kindred spirits from across the southern straits."}
           },
           "jobs": {"likes":["host","attendant"],"dislikes":["bartender"]},
           "body": {"bust":"medium","height":"average","figure":"average"},
@@ -538,12 +551,12 @@
           "lovers": "kiss",
           "backstory": "A thousand-year-old manakete from the warring continents beyond the southern straits who refuses to act her age because being solemn is boring. Nowi treats the dance floor like a playground, hoards shiny trinkets in her room, and is much wiser about people's hearts than she ever lets on.",
           "design": {
-            "hairStyle": "very long wavy",
+            "hairStyle": "very long wavy twin pigtails",
             "hairColor": "blonde fading to mint green",
             "eyes": "bright pink-violet",
             "skin": "fair",
             "features": "long pointed ears",
-            "accessories": "a glowing green dragonstone pendant",
+            "accessories": "a glowing green crystal pendant",
             "accState": "always",
             "expression": "a bright, playful grin"
           },
@@ -559,13 +572,14 @@
             "sig_nowi": {
               "label": "Manakete's silks",
               "style": "Revealing",
-              "prompt": "a pink and purple ruffled bikini-style top with a detached collar and capelet, a short white and gold skirt, and tall purple-and-pink striped boots",
+              "prompt": "a pink and purple ruffled bikini-style top with a detached collar and capelet, short white and gold puffed shorts, and tall purple-and-pink striped boots",
               "bonus": {"dancer":1.3,"adventurer":1.15}
             }
           },
           "bonds": {
             "tiki": {"v":45,"note":"Fellow manaketes who understand how fast mortal centuries fly by."},
-            "tharja": {"v":30,"note":"Nowi isn't scared of her hexes at all, which Tharja secretly appreciates."}
+            "tharja": {"v":30,"note":"Nowi isn't scared of her hexes at all, which Tharja secretly appreciates."},
+            "panne": {"v":25,"kind":"comrades","note":"Old campmates from the Shepherds."}
           },
           "jobs": {"likes":["dancer","promoter"],"dislikes":["maid","madame"]},
           "body": {"bust":"small","height":"short","figure":"slim"},
@@ -610,7 +624,7 @@
             "sig_tharja": {
               "label": "Plegian dark mage",
               "style": "Revealing",
-              "prompt": "a sheer black mesh bodysuit under a cropped black and gold Plegian cape, a high-cut black bikini-style wrap and gold wrist and ankle cuffs",
+              "prompt": "a sheer black mesh bodysuit under a cropped black and gold ornate cape, a high-cut black bikini-style wrap and gold wrist and ankle cuffs",
               "bonus": {"courtesan":1.3,"adventurer":1.15}
             }
           },
@@ -645,8 +659,8 @@
             "hairColor": "navy blue",
             "eyes": "deep blue",
             "skin": "fair",
-            "features": "a faint star-shaped mark in her left eye",
-            "accessories": "the exalted sword Falchion at her hip",
+            "features": "a small glowing circular crest mark in her left iris",
+            "accessories": "an ornate gold-hilted longsword at her hip",
             "accState": "dressed",
             "expression": "an earnest, determined gaze"
           },
@@ -662,7 +676,7 @@
             "sig_lucina": {
               "label": "Ylissean Lord",
               "style": "Sporty",
-              "prompt": "a navy blue and silver Ylissean tunic over a fitted undershirt, a blue cape with a silver clasp, leather gauntlets and tall boots",
+              "prompt": "a navy blue and silver royal tunic over a fitted undershirt, a blue cape with a silver clasp, leather gauntlets and tall boots",
               "bonus": {"security":1.35,"adventurer":1.2}
             },
             "sp_lucina": {
@@ -670,14 +684,15 @@
               "style": "Sporty",
               "hairStyle": "tucked up short",
               "prompt": "a navy blue tunic, silver shoulder pauldrons, a flowing blue cape and tall boots",
-              "accessories": "a butterfly-shaped silver mask and the sword Falchion at her hip",
+              "accessories": "a butterfly-shaped silver mask and an ornate gold-hilted sword at her hip",
               "accState": "dressed",
               "bonus": {"security":1.25,"noble":1.2}
             }
           },
           "bonds": {
             "tiki": {"v":40,"note":"Lucina reveres the Voice of the Divine Dragon; Tiki spoils her gently."},
-            "tharja": {"v":15,"note":"Comrades from the same war."}
+            "tharja": {"v":15,"note":"Comrades from the same war."},
+            "panne": {"v":30,"kind":"comrades","note":"A trusted comrade who fought alongside her parents and her alike."}
           },
           "jobs": {"likes":["security","attendant"],"dislikes":["dancer","courtesan"]},
           "body": {"bust":"small","height":"average","figure":"athletic"},

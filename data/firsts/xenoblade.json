@@ -23,7 +23,7 @@
             "setting": "her bedroom at dusk, warm lantern light",
             "sam": true,
             "cloth": "partial",
-            "wear": "an unlaced lavender High Entia dress slipping off her shoulders"
+            "wear": "an unlaced lavender royal dress slipping off her shoulders"
           },
           "go": "Touch her",
           "goRes": "Her royal poise dissolves into soft, breathless gasps as your hands cup her bare breasts and slide between her thighs while her slender fingers stroke your cock until you come.",
@@ -73,17 +73,18 @@
           "go": "Kiss her",
           "goRes": "She melts into your kiss with a low, contented sigh, her fingers tangling warmly in your collar. \"Mm... better than any healing ether.\"",
           "wait": "\"Drink your tea while it's hot.\"",
-          "waitRes": "Sharla laughs warmly and leans her head against your shoulder anyway. \"Always looking after me—all right, boss.\""
+          "waitRes": "Sharla laughs warmly and leans her head against your shoulder anyway. \"Always looking after me—all right, boss.\"",
+          "act": "kiss"
         },
         "2": {
           "title": "Medic's Exam",
-          "text": "Sharla traps you gently on the massage table in the empty bathhouse back room, straddling your thighs with a teasing glint in her smile as she unbuttons your collar. \"As the house medic, I couldn't help noticing how tense you've been all week,\" she purrs, slipping her cropped crimson halter aside so her warm, heavy breasts brush your chest. \"Hold still—let me check your pulse properly.\"",
+          "text": "Sharla traps you gently on the massage table in the empty bathhouse back room, straddling your thighs with a teasing glint in her smile as she unbuttons your collar. \"As the house medic, I couldn't help noticing how tense you've been all week,\" she purrs, slipping her cropped vest and blue top aside so her warm, heavy breasts brush your chest. \"Hold still—let me check your pulse properly.\"",
           "image": {
             "comp": "straddling his thighs on a massage table, leaning down with a teasing affectionate grin",
             "setting": "bathhouse massage room, warm steam and cedar oil lamps",
             "sam": true,
             "cloth": "partial",
-            "wear": "a cropped crimson halter top pulled aside over bare breasts and dark shorts"
+            "wear": "a cropped brown vest and short blue top pulled aside over bare breasts and white shorts"
           },
           "go": "Let her examine you",
           "goRes": "Her steady medic's hands make short work of your belt, stroking and sucking your cock with warm, unhurried skill while you squeeze her bare breasts and ass until you cum.",
@@ -114,7 +115,7 @@
             "sam": true
           },
           "go": "Stay behind the screen",
-          "goRes": "You press her back against the warm cedar wall, pulling down her dark shorts to stroke her wet pussy while she gasps into your neck and tugs at your belt.",
+          "goRes": "You press her back against the warm cedar wall, pulling down her white shorts to stroke her wet pussy while she gasps into your neck and tugs at your belt.",
           "wait": "\"Check the pipes first!\"",
           "waitRes": "\"Ugh, practical man!\" Sharla groans playfully, kissing your cheek before turning the valve. \"You owe me one tonight.\""
         }
@@ -133,14 +134,15 @@
           "go": "Kiss her",
           "goRes": "Her lips are surprisingly soft and warm beneath yours, Vanea exhaling slowly in quiet wonder as her hand tightens around yours. \"...Extraordinary. Every sensor in me feels awake.\"",
           "wait": "\"Take all the time you need.\"",
-          "waitRes": "\"You are deeply patient,\" Vanea smiles gently, folding her hands. \"I shall cherish this quiet hour regardless.\""
+          "waitRes": "\"You are deeply patient,\" Vanea smiles gently, folding her hands. \"I shall cherish this quiet hour regardless.\"",
+          "act": "kiss"
         },
         "2": {
           "title": "Unarmored",
           "text": "In her workshop-turned-bedroom, Vanea unlatches the ornate gold shoulder plates from her frame, leaving her fitted dark synthetic bodysuit parted across her generous chest. Guiding your palm slowly over the smooth, warm charcoal plating of her collarbone and breast, she watches your face intently. \"Tell me if this feels unnatural to you—or if it pleases you.\"",
           "image": {
             "comp": "standing in her room with shoulder armor removed, guiding his hand over her chest, serene vulnerable gaze",
-            "setting": "dimly lit bedroom with Machina tools and soft warm lamps",
+            "setting": "dimly lit bedroom with metallic mechanical tools and soft warm lamps",
             "sam": true,
             "cloth": "partial",
             "wear": "a dark synthetic bodysuit parted across the chest with shoulder armor removed"
@@ -203,7 +205,7 @@
             "setting": "quiet parlor at night, fireplace embers glowing",
             "sam": true,
             "cloth": "partial",
-            "wear": "her crimson Aegis suit pulled down off her shoulders"
+            "wear": "her crimson bodysuit pulled down off her shoulders"
           },
           "go": "Hold and touch her",
           "goRes": "You peel the crimson top down to bare her huge breasts, kissing and squeezing them while she gasps helplessly and takes your cock eagerly into her warm mouth.",
@@ -321,7 +323,7 @@
             "setting": "private chamber at night, soft emerald glow",
             "sam": true,
             "cloth": "partial",
-            "wear": "her white-and-gold Aegis bodysuit opened down the chest"
+            "wear": "her white-and-gold futuristic bodysuit opened down the chest"
           },
           "go": "Touch all of her",
           "goRes": "You kiss her breasts and drop to your knees to lick her soaking pussy until she trembles, before Pneuma sinks gently down and takes your cock deep in her warm mouth.",
@@ -489,7 +491,8 @@
           "go": "Get on with it",
           "goRes": "She lets out a startled squeak that turns into a purr deep in her throat as you kiss her warm lips, pushing back afterward with bright red ears. \"Hmph—not half bad.\"",
           "wait": "\"Maybe once you put the towel down.\"",
-          "waitRes": "\"Ha! Funny,\" Nia snorts, flicking your forehead before grinning warmly. \"Suit yourself—my offer stands.\""
+          "waitRes": "\"Ha! Funny,\" Nia snorts, flicking your forehead before grinning warmly. \"Suit yourself—my offer stands.\"",
+          "act": "kiss"
         },
         "2": {
           "title": "Out of the Jumpsuit",
@@ -499,7 +502,7 @@
             "setting": "private bathhouse alcove at night, shimmering water light",
             "sam": true,
             "cloth": "partial",
-            "wear": "her yellow Driver jumpsuit unzipped to the waist"
+            "wear": "her yellow jumpsuit unzipped to the waist"
           },
           "go": "Touch her",
           "goRes": "Her sharp tongue turns into soft, purring gasps as you kiss her breasts and stroke between her thighs while her eager hands and warm tongue pleasure your cock until you come.",
@@ -508,7 +511,7 @@
         },
         "3": {
           "title": "Nothing Hidden",
-          "text": "Nia waits on your bed wearing nothing at all, silver-white skin glowing faintly in the candlelight as she folds her knees nervously beneath her. \"I spent half my life hiding behind loud jokes and oversized coats,\" she whispers, reaching out to tug your sleeve. \"No secrets tonight, Sam. Just me and you.\"",
+          "text": "Nia waits on your bed wearing nothing at all, fair skin glowing faintly in the candlelight as she folds her knees nervously beneath her. \"I spent half my life hiding behind loud jokes and oversized coats,\" she whispers, reaching out to tug your sleeve. \"No secrets tonight, Sam. Just me and you.\"",
           "image": {
             "comp": "kneeling naked on his bed in warm candlelight, tugging his sleeve with a soft unguarded smile",
             "setting": "Sam's bedroom at night, gentle lamplight",

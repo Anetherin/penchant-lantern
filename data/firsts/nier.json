@@ -67,7 +67,7 @@
           "text": "A2 sits on the roof tiles with a whetstone in hand, her long silver-white hair whipping in the wind as you climb up with a mug of warm cider. She glares suspiciously at the mug, takes a sip, and goes quiet. \"You keep feeding me and giving me a roof without asking me to kill anything,\" she mutters, setting the blade down and grabbing your collar with a rough blush. \"Shut up and let me kiss you before it gets weird.\"",
           "image": {
             "comp": "sitting on roof tiles at dusk, grabbing his collar with one hand, long silver hair blowing, fierce blushing scowl",
-            "setting": "rooftop at sunset overlooking Hollowmere",
+            "setting": "rooftop at sunset overlooking a lantern-lit town",
             "sam": true
           },
           "go": "Let her kiss you",
@@ -102,7 +102,8 @@
           "go": "Keep her close",
           "goRes": "You pull her down onto the mattress and drive your cock deep into her tight, wet pussy, A2 digging her fingers into your shoulders with low, ragged moans until she comes hard around you.",
           "wait": "\"You have a home here for good.\"",
-          "waitRes": "\"...Yeah,\" A2 murmurs, flopping onto your pillows and pulling you down beside her. \"Don't you forget it.\""
+          "waitRes": "\"...Yeah,\" A2 murmurs, flopping onto your pillows and pulling you down beside her. \"Don't you forget it.\"",
+          "act": "missionary"
         },
         "jump": {
           "title": "Overheated Core",
