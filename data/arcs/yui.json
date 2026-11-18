@@ -55,7 +55,15 @@
               "m": 5,
               "res": "She exhales a shaky little laugh, wiping her lenses on her apron while promising not to log \"one soaked cardigan\" under operating losses."
             }
-          ]
+          ],
+          "image": {
+            "comp": "kneeling beside the wooden rim with cloth and soap, glasses fogged, cardigan folded aside, bright red cheeks, shy earnest look",
+            "pov": true,
+            "sam": false,
+            "bath": false,
+            "towel": false,
+            "wear": "a blouse with the sleeves rolled to the elbows"
+          }
         },
         "3": {
           "title": "Closing Entries",
@@ -80,7 +88,15 @@
               "acts": ["massage_give","kiss","manual_give"],
               "res": "She leans softly back against your bare chest, shivering beneath every slow pass of your soapy hands until her hips press insistently back against yours."
             }
-          ]
+          ],
+          "image": {
+            "comp": "sitting in the cedar tub with dark hair pinned up, glasses off, both wet hands lifted out of the water, blurry-eyed brave look, nothing held in front of her",
+            "cloth": "nude",
+            "wear": "",
+            "towel": false,
+            "bath": true,
+            "sam": true
+          }
         }
       },
       "choices": [
@@ -180,7 +196,11 @@
       "text": "Yui takes hold of your cuff and pulls you into Hollowmere's harvest festival. There are lanterns strung across the square, and fried honey dough, and barkers shouting. Cider is being warmed over pine embers.\n\nShe has a list of the stalls. She has put them in order.\n\nAt the ring toss she studies the spinning bottle for a full minute, with her lips moving. She's working out the rotation. Then she lands three brass rings in a row and wins the largest prize on the rack.\n\nIt's a stuffed wyvern. It's badly made, with a crooked neck and two button eyes that don't match.\n\nShe insists that you carry it. You carry it under one arm all evening. She walks beside you giggling into her collar, because the town guards have decided it's a mascot and keep saluting it.\n\n\"We never did anything like this,\" she says, quite happily. \"Six years, and we never once went anywhere. I'm making up the difference.\"",
       "byIntim": {
         "2": {
-          "text": "Yui pulls you through the lantern-strung festival holding your elbow, and not your sleeve. Her cheeks are bright pink from the spiced cider and the heat of the crowd.\n\nShe wins the crooked stuffed wyvern at the ring toss and makes you carry it. Then, in the middle of the square, she takes your free hand and tucks it into her coat pocket with hers, where nobody can see.\n\nHer fingers lace through yours in the dark of the pocket and squeeze.\n\n\"The lantern parade is at nine,\" she says, close to your ear. \"It's the best part. I had it on the list.\" Her thumb strokes the inside of your wrist. \"I don't feel like sharing you with a parade. Could we go home early?\""
+          "text": "Yui pulls you through the lantern-strung festival holding your elbow, and not your sleeve. Her cheeks are bright pink from the spiced cider and the heat of the crowd.\n\nShe wins the crooked stuffed wyvern at the ring toss and makes you carry it. Then, in the middle of the square, she takes your free hand and tucks it into her coat pocket with hers, where nobody can see.\n\nHer fingers lace through yours in the dark of the pocket and squeeze.\n\n\"The lantern parade is at nine,\" she says, close to your ear. \"It's the best part. I had it on the list.\" Her thumb strokes the inside of your wrist. \"I don't feel like sharing you with a parade. Could we go home early?\"",
+          "image": {
+            "comp": "walking close with her hand tucked in a coat pocket laced with his, whispering at his ear, cheeks pink from cider, holding a crooked stuffed wyvern",
+            "sam": true
+          }
         }
       },
       "choices": [

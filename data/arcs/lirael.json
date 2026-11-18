@@ -55,7 +55,12 @@
               "m": 5,
               "res": "She buries her glowing face straight into the warm linen, muffled laughter ringing sweetly in the steam."
             }
-          ]
+          ],
+          "image": {
+            "comp": "sitting on the rim of the tub in a thin cotton towel, ink smudged on thumb and collarbone, loose hair, holding out an inky hand, ears pink",
+            "towel": true,
+            "sam": true
+          }
         },
         "3": {
           "title": "Postmarked in Steam",
@@ -80,7 +85,14 @@
               "acts": ["oral_give","kiss","massage_give"],
               "res": "Ink-stained fingers clutch your damp shoulders tight while soft elven gasps ring clear through the warm steam."
             }
-          ]
+          ],
+          "image": {
+            "comp": "sitting in the hot cedar tub with pale hair piled up, both wet arms held out, slow brave smile, water at her ribs, letters tied in ribbon on the bench",
+            "cloth": "nude",
+            "wear": "",
+            "towel": false,
+            "bath": true
+          }
         }
       },
       "choices": [

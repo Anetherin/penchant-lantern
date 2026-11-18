@@ -34,7 +34,9 @@
           "image": {
             "comp": "standing beside his bed with her hair untied and loose, wearing black lace underwear and thigh-highs, earnest vulnerable blush",
             "setting": "Sam's bedroom by lamplight, black hair ribbons on the nightstand",
-            "sam": true
+            "sam": true,
+            "cloth": "dressed",
+            "wear": "black lace bra and panties and black thigh-high stockings"
           },
           "go": "Pull her into bed",
           "goRes": "You lay her back on the pillows and sink your cock slowly into her tight, scorching pussy, Rin wrapping her stocking-clad legs around your waist and gasping your name as you fuck her.",
@@ -78,7 +80,9 @@
           "image": {
             "comp": "sitting on her bed with her silver armor on a stand beside her, guiding his hand to her chest, brave blushing gaze",
             "setting": "tidy knightly quarters, armor stand and candle sconce",
-            "sam": true
+            "sam": true,
+            "cloth": "dressed",
+            "wear": "a blue and white under-dress"
           },
           "go": "Teach her gently",
           "goRes": "You unlace her blue dress to kiss her small, firm breasts and stroke her wet pussy until her solemn composure breaks into soft, trembling gasps as her hands eagerly explore your cock.",
@@ -91,7 +95,8 @@
           "image": {
             "comp": "kneeling naked on the bed with her golden hair unbound and blue ribbon in hand, tender devoted smile",
             "setting": "Sam's bedroom by warm candlelight",
-            "sam": true
+            "sam": true,
+            "cloth": "nude"
           },
           "go": "Take her vow",
           "goRes": "You draw her down onto the sheets and sink your cock slowly into her tight, hot pussy, Artoria gasping and holding you with all her knightly strength as she comes in your arms.",
@@ -147,7 +152,8 @@
           "image": {
             "comp": "kneeling naked on his bed wearing only her slender glasses, floor-length violet hair spilling around them, tender sultry gaze",
             "setting": "Sam's moonlit bedroom",
-            "sam": true
+            "sam": true,
+            "cloth": "nude"
           },
           "go": "Take all of her",
           "goRes": "She sinks down onto your cock with a low, shivering moan, her long legs wrapping around you as she rides you with deep, unhurried passion until she comes trembling against your chest.",
@@ -191,7 +197,9 @@
           "image": {
             "comp": "kneeling between his knees with her cardigan and blouse unbuttoned, guiding his hands to her chest, flushed devoted gaze",
             "setting": "Sam's bedroom at night, tea tray on the table and warm lamplight",
-            "sam": true
+            "sam": true,
+            "cloth": "partial",
+            "wear": "an unbuttoned pink cardigan and unbuttoned white blouse"
           },
           "go": "Don't hold back",
           "goRes": "She whimpers softly as you kiss and knead her full breasts, then eagerly wraps her soft tits and warm mouth around your cock until you come across her cleavage.",
@@ -204,7 +212,8 @@
           "image": {
             "comp": "kneeling naked on his bed with only her pink hair ribbon, lush curves in warm candlelight, tearfully happy and devoted smile",
             "setting": "Sam's bedroom at midnight, warm candlelight",
-            "sam": true
+            "sam": true,
+            "cloth": "nude"
           },
           "go": "Make her yours",
           "goRes": "You lay her down on the pillows and sink your cock deep into her wet, clinging pussy, Sakura holding onto you with fierce, breathless devotion and crying out your name every time she cums.",
@@ -248,7 +257,9 @@
           "image": {
             "comp": "sitting on her bed with her blouse unbuttoned and faint crimson circuits glowing on her chest, guiding his hands, flushed earnest gaze",
             "setting": "velvet-draped bedroom at night, warm candlelight",
-            "sam": true
+            "sam": true,
+            "cloth": "partial",
+            "wear": "an unbuttoned white blouse"
           },
           "go": "Trace her circuits",
           "goRes": "Every brush of your fingers and tongue across her chest and between her thighs draws high, shivering gasps as her circuits flare bright crimson, before her warm hands and mouth eagerly stroke and suck your cock.",
@@ -261,7 +272,8 @@
           "image": {
             "comp": "kneeling naked on his bed with her long silver-white hair spilling over her shoulders, crimson eyes tender and unguarded",
             "setting": "Sam's bedroom at midnight, warm candlelight",
-            "sam": true
+            "sam": true,
+            "cloth": "nude"
           },
           "go": "Make her yours",
           "goRes": "You lay her gently on the pillows and ease your cock into her tight, scorching pussy, Illya wrapping her arms and legs around you with breathless, crying gasps as her crimson circuits glow against your skin until dawn.",

@@ -51,7 +51,15 @@
               "m": 4,
               "res": "You toss the brush into the tub. It lands with a splash near her knee, and you step back and pull the door shut. \"Chicken!\" she yells through the wood. She's laughing, and you hear her kicking water. A second later, quieter: \"Thanks. For not making it weird.\" You're not sure she meant you to hear that."
             }
-          ]
+          ],
+          "image": {
+            "comp": "sunk in the bath to her chin, hair pinned up, glaring over the water with burning cheeks, ears scarlet",
+            "cloth": "nude",
+            "wear": "",
+            "towel": false,
+            "bath": true,
+            "sam": true
+          }
         },
         "3": {
           "title": "No More Clothes Between Us",
@@ -76,7 +84,15 @@
               "acts": ["oral_give","manual_give","kiss"],
               "res": "You press her back against the rim of the tub, slowly, one hand on the wood beside her head. The other slides down her wet stomach, and she hisses and grips the back of your neck hard. The steam hides nothing. \"Take your time,\" she says. \"I'll hate it. I'll hate it more if you stop.\" Her heels slip on the tub floor."
             }
-          ]
+          ],
+          "image": {
+            "comp": "sitting in the deep tub with one scarred leg hooked over the rim, water running down breasts and abs, wet fringe, confident race-day grin",
+            "cloth": "nude",
+            "wear": "",
+            "towel": false,
+            "bath": true,
+            "sam": true
+          }
         }
       },
       "choices": [
@@ -176,7 +192,10 @@
       "text": "Natsuki has been up to something with the guild alchemist all week. It has cost her half her savings. Tonight she takes you up onto the east parapet with a sack of salty fried things and makes you sit down and wait.\n\n\"August,\" she says. \"The river festival. We went every year. You always got the goldfish game wrong.\"\n\nDown in the yard, the alchemist lights a fuse and runs.\n\nThe first shell splutters up green and lopsided and goes out with a cough. Natsuki swears at it.\n\nThe second one climbs. It keeps climbing, well past the rooftops. Then it opens into a wide pink chrysanthemum that lights every slate in Hollowmere and hangs there.\n\nShutters are opening all over town. Somebody cheers.\n\nShe doesn't say anything. Her boots are swinging over the drop, and her shoulder is against yours. In the light of the third shell you can see that her eyes are wet, and that she's smiling.",
       "byIntim": {
         "2": {
-          "text": "Natsuki has bribed the guild alchemist into firing off homemade shells, like the August festival back home. She sits down on the east parapet close enough that her bare thigh is pressed along yours before the first fuse is lit.\n\nThe big pink one goes up and opens over the rooftops. All of Hollowmere turns to look at it.\n\nNatsuki doesn't. She has turned to look at you. The light is moving on her face, and her eyes are bright.\n\n\"I planned this for a week,\" she says. \"And now I don't care about the fireworks.\" Her hand closes in the front of your hoodie. \"There's an empty watch-alcove about ten feet behind us. I checked.\""
+          "text": "Natsuki has bribed the guild alchemist into firing off homemade shells, like the August festival back home. She sits down on the east parapet close enough that her bare thigh is pressed along yours before the first fuse is lit.\n\nThe big pink one goes up and opens over the rooftops. All of Hollowmere turns to look at it.\n\nNatsuki doesn't. She has turned to look at you. The light is moving on her face, and her eyes are bright.\n\n\"I planned this for a week,\" she says. \"And now I don't care about the fireworks.\" Her hand closes in the front of your hoodie. \"There's an empty watch-alcove about ten feet behind us. I checked.\"",
+          "image": {
+            "comp": "sitting on the parapet with her thigh pressed along his, face turned to him not the fireworks, hand gripping the front of his hoodie, light moving on her face"
+          }
         }
       },
       "choices": [

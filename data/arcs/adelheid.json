@@ -55,7 +55,13 @@
               "m": 4,
               "res": "You set a warm cup of cider on the stool, look at the wall and step back. \"Thank you, Sam,\" she says, quietly and with some surprise. She picks it up in both hands and drinks. Her quiet smile follows you out into the hall, and you hear her put the vial down and not pick it up again for a long time."
             }
-          ]
+          ],
+          "image": {
+            "comp": "sitting on the bench working oil into a bruised shoulder, glancing back with soft eyes, ears scarlet, damp short hair",
+            "setting": "steamy wooden washroom, lamplit",
+            "towel": true,
+            "wear": "a thick linen towel wrapped around her body"
+          }
         },
         "3": {
           "title": "Unarmored",
@@ -80,7 +86,15 @@
               "acts": ["oral_give","manual_give","massage_give"],
               "res": "You kneel beside the tub and take her hand off the rim. Her knuckles are white from the oak. You take her wet knees in your palms, and the hot water breaks against your sleeves. \"Sam,\" she says, once, in the voice of a woman giving an order and discovering she cannot. She yields to you completely, with her head back and her eyes shut."
             }
-          ]
+          ],
+          "image": {
+            "comp": "sitting in a cedar tub with water at her collarbones, old scars on flushed skin, holding out one wet hand, calm direct gaze",
+            "cloth": "nude",
+            "wear": "",
+            "towel": false,
+            "bath": true,
+            "setting": "steamy cedar bathhouse, sword belt on a peg by the door"
+          }
         }
       },
       "choices": [
@@ -106,7 +120,9 @@
       "image": {
         "comp": "snapping to attention beside a rain barrel, soaking wet, covering herself with one arm and saluting with the other",
         "setting": "training yard behind an inn, afternoon",
-        "sam": false
+        "sam": false,
+        "cloth": "dressed",
+        "wear": "a small linen towel held against her front"
       }
     },
     {
@@ -180,7 +196,11 @@
       "text": "Adelheid decides that a house owner can't rely on locks and good manners alone. She fetches you out into the yard at dawn, with frost still on the cobbles, and puts a weighted ashwood practice sword in your hands.\n\nIt's heavier than it looks. By the fifth parry your wrists are howling. By the tenth, a rooster has come out onto the coop roof to heckle.\n\nShe's a good teacher, which surprises you. She doesn't shout. She walks around you, moves your elbow two inches with one finger, and steps back to look. The first sun catches her hair.\n\n\"Feet wider, Sam. Guard high. Again.\"\n\nYou do it again. You're terrible. She nods as if you weren't.\n\n\"I will not always be at your door,\" she says, adjusting your grip. \"I intend to be. But I've read enough accounts to know how they tend to go. I would sleep better if you could hold a blade for one minute. Again.\"",
       "byIntim": {
         "2": {
-          "text": "Adelheid has you out in the frosty yard at dawn again with two ashwood practice blades. She stands closer than any sergeant would. When she corrects the height of your elbow, her bare fingers stay on your forearm afterward.\n\n\"Feet wider, Sam. Guard high.\"\n\nHer voice is as level as ever. But every time you step inside her reach, her eyes drop to your mouth for a moment before she remembers the lesson. She's left her gauntlets on the bench this morning, and her collar is unlaced.\n\nOn the next pass she lets you get much nearer than she should. You suspect that a knight of her skill doesn't make that mistake by accident."
+          "text": "Adelheid has you out in the frosty yard at dawn again with two ashwood practice blades. She stands closer than any sergeant would. When she corrects the height of your elbow, her bare fingers stay on your forearm afterward.\n\n\"Feet wider, Sam. Guard high.\"\n\nHer voice is as level as ever. But every time you step inside her reach, her eyes drop to your mouth for a moment before she remembers the lesson. She's left her gauntlets on the bench this morning, and her collar is unlaced.\n\nOn the next pass she lets you get much nearer than she should. You suspect that a knight of her skill doesn't make that mistake by accident.",
+          "image": {
+            "comp": "standing close correcting his grip on a wooden practice blade, bare fingers resting on his forearm, eyes dropping to his mouth",
+            "wear": "a plain tunic with the collar unlaced, bare hands"
+          }
         }
       },
       "image": {

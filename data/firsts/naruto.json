@@ -34,7 +34,9 @@
           "image": {
             "comp": "sitting at the edge of a bed in a plain nightgown, hair loose, hands folded, gazing at him steadily with shy resolve",
             "setting": "her small tidy room, one candle, a window open to the night garden",
-            "sam": true
+            "sam": true,
+            "cloth": "partial",
+            "wear": "a plain nightgown slipping off one shoulder"
           },
           "go": "Stay",
           "goRes": "You peel off her nightgown and push slowly into her tight, trembling pussy, holding her close as her shy gasps turn into soft, clinging moans while you fuck her until the candle burns dry.",
@@ -90,7 +92,9 @@
           "image": {
             "comp": "sitting on the edge of an infirmary cot with a bottle and two cups, guard lowered, vulnerable half smile",
             "setting": "infirmary at night, one lamp, herbs hanging to dry",
-            "sam": true
+            "sam": true,
+            "cloth": "partial",
+            "wear": "a blouse unbuttoned low with the sleeves rolled up"
           },
           "go": "Be there",
           "goRes": "All the tough bravado melts at once as her clothes hit the floor, her strong legs wrapping around your waist and her gasps of your name turning ragged as your cock drives deep into her pussy.",
@@ -147,7 +151,8 @@
           "image": {
             "comp": "hand extended toward him, hair half unpinned, glowing from performance, soft real smile for once",
             "setting": "empty stage, footlights burning low, drawn curtain",
-            "sam": true
+            "sam": true,
+            "cloth": "nude"
           },
           "go": "Take her hand",
           "goRes": "You pull her down onto the stage cushions and fuck her, your cock buried in her hot, wet pussy while she arches beneath you with breathless, unscripted moans until she cums.",
@@ -191,7 +196,9 @@
           "image": {
             "comp": "wiping her hands on a leather apron, flushed from the forge heat, teasing eyebrow raised, forge glow on her face",
             "setting": "back-yard workshop, glowing forge, anvil, scattered tools",
-            "sam": true
+            "sam": true,
+            "cloth": "dressed",
+            "wear": "a sleeveless top and a leather smith's apron"
           },
           "go": "Find out",
           "goRes": "Her calloused palms are surprisingly gentle and relentlessly thorough, stroking your cock and teasing the head beside the glowing coals until your knees shake.",
@@ -260,7 +267,9 @@
           "image": {
             "comp": "standing in a loose robe with hair down for once, arms crossed in self-conscious pride, small blush",
             "setting": "her tidy room with the iron fan mounted on the wall, warm candlelight",
-            "sam": true
+            "sam": true,
+            "cloth": "partial",
+            "wear": "a loose silk robe"
           },
           "go": "Stay",
           "goRes": "She's just as commanding in bed—straddling your hips, riding your cock at a relentless pace, and admitting drowsily at dawn that she forgot every item on her list.",
@@ -317,7 +326,9 @@
           "image": {
             "comp": "sitting on a futon with a single sake cup, vulnerable honest smile, loose hair, lamplight on her face",
             "setting": "her private suite, futon, scrolls, warm lamp",
-            "sam": true
+            "sam": true,
+            "cloth": "partial",
+            "wear": "a kimono with the sash loosened and hanging open"
           },
           "go": "Stay",
           "goRes": "She pulls you down onto the futon, wrapping her lush, warm body around yours and riding your cock with fierce, breathless abandon, her heavy tits bouncing in your face until morning.",
@@ -374,7 +385,9 @@
           "image": {
             "comp": "sitting close beside him in the dim office, hand over his, serious soft expression, blushing",
             "setting": "office after the lamp is out, moonlight through the window",
-            "sam": true
+            "sam": true,
+            "cloth": "partial",
+            "wear": "a dark tunic unbuttoned at the top"
           },
           "go": "Have her",
           "goRes": "You pull her down onto the office sofa and slide your cock slowly into her warm, eager pussy while she stifles soft cries against your shoulder.",
@@ -430,7 +443,9 @@
           "image": {
             "comp": "sitting on a bed with tea untouched on the table, offering her hand, crimson eyes shining",
             "setting": "her elegant room, rain on the shutters, one candle",
-            "sam": true
+            "sam": true,
+            "cloth": "partial",
+            "wear": "a gown hanging open"
           },
           "go": "Be with her",
           "goRes": "You strip away her gown and sink your cock deep into her pussy, fucking her through long, shuddering waves of orgasm while the rain falls outside.",
@@ -486,7 +501,8 @@
           "image": {
             "comp": "sprawled on a bed with a bag of sweets, grin turning sincere, snake-slit eyes warm",
             "setting": "his bedroom, rumpled blankets, a window with night sky",
-            "sam": true
+            "sam": true,
+            "cloth": "nude"
           },
           "go": "Stay in",
           "goRes": "You climb onto the mattress, and she mounts you immediately—riding your cock hard, loud, and relentlessly until both of you are drenched in sweat.",
@@ -543,7 +559,9 @@
           "image": {
             "comp": "standing in a doorway with a tea tray, glasses fogged, hair messy, earnest hopeful face",
             "setting": "her small room, tea set, folded laundry",
-            "sam": true
+            "sam": true,
+            "cloth": "dressed",
+            "wear": "a loose nightshift"
           },
           "go": "Stay with her",
           "goRes": "You pull her into bed, strip away her nightshift, and fuck her, your cock deep in her pussy while she clings to your back, gasping and biting your shoulder through every orgasm.",
@@ -599,7 +617,9 @@
           "image": {
             "comp": "standing in a silk robe with hair unpinned, expecting, gaze both bold and shy",
             "setting": "her opulent bedroom, silk drapes, evening light",
-            "sam": true
+            "sam": true,
+            "cloth": "partial",
+            "wear": "a heavy silk robe slipping off the shoulders"
           },
           "go": "Say her name softly",
           "goRes": "\"Mei,\" you whisper, and her iron composure melts completely—she arches greedy beneath you as you fuck her, her pussy clenching around your cock while she gasps your name until she cums.",
@@ -656,7 +676,9 @@
           "image": {
             "comp": "sitting on a bed with a sheet of paper in her lap, wings loosened, hopeful tentative expression",
             "setting": "her small room scattered with paper cranes, soft candlelight",
-            "sam": true
+            "sam": true,
+            "cloth": "partial",
+            "wear": "a robe hanging open"
           },
           "go": "Help her",
           "goRes": "You lay her back among the sheets and push your cock slowly into her pussy, fucking her while Konan arches beneath you with breathless, startled cries as paper cranes flutter softly from the shelves.",
@@ -713,7 +735,9 @@
           "image": {
             "comp": "kneeling on his bed with her hair ribbons untied and kimono tunic slipping off her shoulders, tender unguarded smile",
             "setting": "Sam's bedroom by candlelight",
-            "sam": true
+            "sam": true,
+            "cloth": "partial",
+            "wear": "a brown kimono tunic hanging open"
           },
           "go": "Pull her close",
           "goRes": "You peel off her tunic and sink your cock into her tight, wet pussy, Hanabi gasping against your neck as her playful bravado melts into fierce, clinging moans with every thrust.",
@@ -756,7 +780,9 @@
           "image": {
             "comp": "curled close on a parlor sofa with her fluffy fox tail across his lap, guiding his hand under her cropped sunflower t-shirt, flushed earnest gaze",
             "setting": "cozy back parlor, rain on the window and warm lamplight",
-            "sam": true
+            "sam": true,
+            "cloth": "dressed",
+            "wear": "a cropped yellow sunflower t-shirt"
           },
           "go": "Touch her",
           "goRes": "Her fox ears tremble as your hands cup her full breasts and unbutton her loose jeans to stroke her wet pussy, while her warm, eager fingers wrap around your cock.",
@@ -769,7 +795,9 @@
           "image": {
             "comp": "kneeling on his bed with her top set aside, fox ears angled shyly, warm azure eyes earnest and glowing",
             "setting": "Sam's bedroom at night, soft candlelight",
-            "sam": true
+            "sam": true,
+            "cloth": "dressed",
+            "wear": "shorts and nothing on top, bare breasts"
           },
           "go": "Hold her",
           "goRes": "You pull her into your arms and sink your cock slowly into her hot, tight pussy, Himawari wrapping her legs and fluffy tail around your waist with soft, breathless cries until she comes in your arms.",

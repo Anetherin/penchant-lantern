@@ -25,7 +25,9 @@
         "image": {
           "comp": "{N} lying under a blanket in a small canvas tent, flushed, shirt pushed up, pulling him close by his belt",
           "setting": "a cramped tent at night during heavy rain, one low lantern, canvas walls shaking in the wind",
-          "sam": true
+          "sam": true,
+          "cloth": "partial",
+          "wear": "a thin shirt pushed up"
         }
       },
       {
@@ -45,7 +47,8 @@
         "image": {
           "comp": "{N} sitting on a spread coat in the grass, half undressed, firelight on her skin, reaching up to pull him down to her",
           "setting": "a dark roadside camp, dying campfire coals, wagons in silhouette, stars overhead",
-          "sam": true
+          "sam": true,
+          "cloth": "partial"
         }
       },
       {
@@ -65,7 +68,8 @@
         "image": {
           "comp": "{N} seated on a log with her tunic off and one foot bandaged, kissing him and pulling him closer",
           "setting": "the edge of a travellers' camp at night, lantern on the ground, wagons and tents behind",
-          "sam": true
+          "sam": true,
+          "cloth": "partial"
         }
       },
       {
@@ -105,7 +109,9 @@
         "image": {
           "comp": "{N} pressed against a stone wall in a cramped dark alcove, shirt open, one leg hooked around his hip, biting her lip to stay quiet",
           "setting": "a narrow collapsed niche in a dungeon corridor, a shuttered lamp glowing at the edges, dust in the air",
-          "sam": true
+          "sam": true,
+          "cloth": "partial",
+          "wear": "an open shirt"
         }
       },
       {
@@ -125,7 +131,8 @@
         "image": {
           "comp": "{N} kneeling over him on a bedroll, shirt half off, soot on her cheek, lamplight on her skin",
           "setting": "a dry side chamber of an ancient dungeon, carved stone walls, a single oil lamp, bedrolls on the floor",
-          "sam": true
+          "sam": true,
+          "cloth": "partial"
         }
       },
       {
@@ -185,7 +192,9 @@
         "image": {
           "comp": "{N} in a ball gown with loosened bodice, seated on a stone bench pulling him close by his lapels, skirts rucked up",
           "setting": "a dim alcove behind a velvet curtain off a noble ballroom, a window onto a moonlit garden",
-          "sam": true
+          "sam": true,
+          "cloth": "partial",
+          "wear": "a silk ball gown with a loosened bodice"
         }
       },
       {
@@ -228,7 +237,8 @@
         "image": {
           "comp": "two women in a small tent, one kissing him deeply as she pulls him on top of her while the other lies beside them undressing and smiling, all three in a tangle of blankets",
           "setting": "a small canvas tent at night in cold weather, one lantern, blankets heaped",
-          "sam": true
+          "sam": true,
+          "cloth": "partial"
         }
       },
       {
@@ -270,7 +280,8 @@
         "image": {
           "comp": "two women pulling him down onto a pile of blankets in a stone chamber, half undressed, one kissing him while the other embraces him from behind",
           "setting": "a barred rest chamber in an ancient dungeon, old blankets on the floor, one lamp turned low",
-          "sam": true
+          "sam": true,
+          "cloth": "partial"
         }
       },
       {
@@ -312,7 +323,8 @@
         "image": {
           "comp": "two flushed women covered in gold pollen lying in flowers with him, one kissing him while the other kisses her shoulder, clothes half off",
           "setting": "a sunlit glade of plum-coloured lustbloom flowers with drifting gold pollen",
-          "sam": true
+          "sam": true,
+          "cloth": "partial"
         }
       }
     ],
@@ -474,7 +486,8 @@
         },
         "image": {
           "comp": "two women rolling in plum-coloured flowers, shirts off, one kissing the other's breast while the other pulls her closer, laughing and flushed",
-          "setting": "a sunlit glade of lustbloom flowers with drifting gold pollen"
+          "setting": "a sunlit glade of lustbloom flowers with drifting gold pollen",
+          "cloth": "partial"
         }
       },
       {
@@ -493,7 +506,8 @@
         },
         "image": {
           "comp": "two women lying in flowers sharing one torn cloth mask, flushed, one kissing the other's throat while pushing her shirt up",
-          "setting": "a sunlit glade of lustbloom flowers with drifting gold pollen"
+          "setting": "a sunlit glade of lustbloom flowers with drifting gold pollen",
+          "cloth": "partial"
         }
       },
       {

@@ -34,7 +34,9 @@
           "image": {
             "comp": "standing in a doorway wet from rain, green ponytail dripping, awkward but earnest expression",
             "setting": "Sam's bedroom with a small fire lit, rain streaming down the window",
-            "sam": true
+            "sam": true,
+            "cloth": "partial",
+            "wear": "a soaked tunic hanging open and wet breeches clinging to her skin"
           },
           "go": "Let her in",
           "goRes": "You strip off the rest of her wet clothes, pull her under your sheets, and fuck her until she's flushed, panting and warm all the way through, the storm forgotten.",
@@ -90,7 +92,9 @@
           "image": {
             "comp": "sitting at the edge of a large bed in a loose robe, hands folded, a nervous but dignified smile",
             "setting": "elegant bedroom with soft candlelight and heavy curtains",
-            "sam": true
+            "sam": true,
+            "cloth": "partial",
+            "wear": "a loose robe falling open off her bare shoulders"
           },
           "go": "Stay",
           "goRes": "You slide her robe off her shoulders, settle between her parted thighs, eat her pussy until she shakes, then fuck her slow and deep until she cums again, without a single prayer spoken.",
@@ -121,7 +125,9 @@
           "image": {
             "comp": "taking a theatrical bow in a stage dress, one hand holding his, a playful and slightly vulnerable smile",
             "setting": "empty stage and hall after the show, a single lantern left lit",
-            "sam": true
+            "sam": true,
+            "cloth": "dressed",
+            "wear": "a low-cut stage gown"
           },
           "go": "Kiss her",
           "goRes": "She hums a startled, delighted note right against your mouth, then parts her lips and kisses you like you're the only audience that matters.",
@@ -147,7 +153,9 @@
           "image": {
             "comp": "leaning in the doorway with a doctor's bag over one shoulder, hand on his chest, teasing smile",
             "setting": "Sam's bedroom lit by a single lamp, a bottle and two glasses on the table",
-            "sam": true
+            "sam": true,
+            "cloth": "dressed",
+            "wear": "an unbuttoned white physician's coat hanging open with nothing underneath"
           },
           "go": "Let her examine you",
           "goRes": "Your pulse is, she declares breathlessly while straddling your hips, positively scandalous—and she sinks down onto your cock and rides you for hours as treatment.",
@@ -261,7 +269,8 @@
           "image": {
             "comp": "sitting on a nest of blankets, patting the space beside her, long ears low and shy, tall frame folded small",
             "setting": "her private room with blankets heaped like a nest and a low lantern",
-            "sam": true
+            "sam": true,
+            "cloth": "nude"
           },
           "go": "Sit with her",
           "goRes": "You crawl into the nest of blankets beside her, wrap her up in your arms, and fuck her slowly, your cock sliding into her warm, wet pussy.",
@@ -317,7 +326,9 @@
           "image": {
             "comp": "sitting cross-legged on a bed holding an unfinished letter, glancing up with open sincerity",
             "setting": "Sam's bedroom with a quilt, lamplight, a night window",
-            "sam": true
+            "sam": true,
+            "cloth": "dressed",
+            "wear": "a loose nightshift slipping off one bare shoulder"
           },
           "go": "Let her choose",
           "goRes": "You pull her shift off and push your cock into her scorching, tight pussy, holding her close as she gasps your name against your neck.",
@@ -373,7 +384,9 @@
           "image": {
             "comp": "seated on the edge of a bed in a simple nightgown, hands clasped, brave and anxious",
             "setting": "Sam's room by candlelight, a plain coverlet and an open window",
-            "sam": true
+            "sam": true,
+            "cloth": "dressed",
+            "wear": "a thin nightgown"
           },
           "go": "Be patient with her",
           "goRes": "You slip off her nightgown and fuck her slowly, tenderly, your cock deep in her pussy, until her nervous trembling gives way to breathless cries and clinging hands.",
@@ -429,7 +442,9 @@
           "image": {
             "comp": "standing very straight in a doorway, gripping the doorknob, deadpan with a flicker of nerves",
             "setting": "Sam's room at midnight, a single candle",
-            "sam": true
+            "sam": true,
+            "cloth": "dressed",
+            "wear": "a loose short sleeping shift leaving the thighs bare"
           },
           "go": "Test the hypothesis",
           "goRes": "She strips off her shift with clinical precision—and once your cock is inside her pussy, her deadpan composure shatters into breathless gasps. In the morning she whispers that the results are conclusive.",
@@ -485,7 +500,9 @@
           "image": {
             "comp": "standing in a white sleeping gown with hands clasped at her chest, flushed, hopeful smile",
             "setting": "Sam's bedroom with a single candle and a rain-streaked window",
-            "sam": true
+            "sam": true,
+            "cloth": "dressed",
+            "wear": "a sheer white sleeping gown"
           },
           "go": "Welcome her",
           "goRes": "You assure her it wasn't blasphemy as you peel off the white gown and fuck her slowly, your cock deep in her pussy, interrupted only by soft gasps and breathless giggles.",
@@ -541,7 +558,8 @@
           "image": {
             "comp": "kneeling naked on his bed with her long green hair loose over her shoulders, tender unguarded smile",
             "setting": "Sam's bedroom by warm candlelight",
-            "sam": true
+            "sam": true,
+            "cloth": "nude"
           },
           "go": "Make her yours",
           "goRes": "You lay her back on the pillows and sink your cock deep into her pussy, Tiki wrapping her arms and legs around you with soft, breathless cries that last until morning light.",
@@ -598,7 +616,8 @@
           "image": {
             "comp": "kneeling on his bed with her dragonstone pendant gleaming on her bare chest, flushed and earnest",
             "setting": "Sam's bedroom at night, warm lamplight",
-            "sam": true
+            "sam": true,
+            "cloth": "partial"
           },
           "go": "Hold her close",
           "goRes": "You pull her down into the sheets and slide your cock into her tight pussy, fucking her slowly until she clings to your neck with breathless cries and falls asleep curled across your chest.",
@@ -641,7 +660,9 @@
           "image": {
             "comp": "kneeling between his knees in a candlelit room, guiding his hands to her chest, dark obsessive gaze softening",
             "setting": "her bedroom, purple candles and a chalk circle on the rug",
-            "sam": true
+            "sam": true,
+            "cloth": "dressed",
+            "wear": "a sheer black mesh bodysuit"
           },
           "go": "Stay in the circle",
           "goRes": "There is no spell at all—just Tharja gasping under your hands as you peel back the sheer mesh and stroke her pussy while her warm mouth and tongue worship your cock.",
@@ -654,7 +675,8 @@
           "image": {
             "comp": "standing naked at the foot of a candlelit bed, long black hair loose, dark eyes intense and vulnerable",
             "setting": "Sam's bedroom at midnight, flickering candlelight",
-            "sam": true
+            "sam": true,
+            "cloth": "nude"
           },
           "go": "Pull her into bed",
           "goRes": "You pull her down onto the mattress and sink your cock deep into her scorching pussy, Tharja clinging to you with fierce, nails-in-your-back devotion as she cums again and again.",
@@ -697,7 +719,9 @@
           "image": {
             "comp": "standing in her room in an undershirt with a gaudy dress on the bed behind her, mortified earnest blush, holding his hand",
             "setting": "her tidy bedroom, warm lamplight",
-            "sam": true
+            "sam": true,
+            "cloth": "dressed",
+            "wear": "a plain undershirt and shorts"
           },
           "go": "Skip the dress",
           "goRes": "You laugh softly and pull her close, slipping off her undershirt to kiss her breasts and slide your hand into her shorts—Lucina gasping and clinging to your shoulders as her warrior's stiffness melts away.",
@@ -710,7 +734,9 @@
           "image": {
             "comp": "standing barefoot beside her bed with her sword set aside, navy hair loose over bare shoulders, brave tender smile",
             "setting": "bedroom by candlelight, sword resting on a chair",
-            "sam": true
+            "sam": true,
+            "cloth": "dressed",
+            "wear": "a simple navy sleeping shift slipping off bare shoulders"
           },
           "go": "Hold her",
           "goRes": "You lay her gently on the bed and slide your cock into her tight pussy, fucking her with slow, steady warmth until her earnest sighs turn into breathless, crying orgasms in your arms.",

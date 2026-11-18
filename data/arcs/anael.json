@@ -52,7 +52,11 @@
               "m": 4,
               "res": "\"Thank you, Sam,\" she breathes, pressing the linen tightly to her glowing throat."
             }
-          ]
+          ],
+          "image": {
+            "comp": "perched on the rim of a tub in a towel, wings opened a little with halo glowing amber, shy blush, holding out a dry linen cloth",
+            "towel": true
+          }
         },
         "3": {
           "text": "You push the washroom door open. Anael is standing beside the steaming bath, ankle-deep in the first step of it. Her towel is already folded on the stool.\n\nHalo-light spills gold across her bare tits and her hips and the long white sweep of her feathers. She turns to face you. She's trembling slightly, and she isn't ashamed. Her wings open just wide enough to make a space between them the size of you.\n\n\"Protocol left this house a long time ago,\" she says softly. \"I've stopped pretending I miss it. Come into the water with me, Sam, and put your hands wherever you like.\"",
@@ -73,7 +77,14 @@
               "l": 2,
               "res": "She leans back against your chest with a long, helpless sigh, her halo dimming to warm ember."
             }
-          ]
+          ],
+          "image": {
+            "comp": "standing ankle-deep beside the bath, bare body in golden halo-light, wings opened wide to make a space, trembling soft smile",
+            "cloth": "nude",
+            "wear": "",
+            "towel": false,
+            "bath": true
+          }
         }
       },
       "choices": [

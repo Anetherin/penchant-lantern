@@ -91,7 +91,9 @@
           "image": {
             "comp": "sitting on a bed with legs crossed and a rum glass, mischievous smile",
             "setting": "her room decked out like a ship's cabin with sails and rope and lantern light",
-            "sam": true
+            "sam": true,
+            "cloth": "dressed",
+            "wear": "a silk chemise unlaced low"
           },
           "go": "Be plundered",
           "goRes": "You surrender gladly as she straddles your hips and rides your cock like a conquering pirate—until her fierce bravado breaks into breathless, clinging moans.",

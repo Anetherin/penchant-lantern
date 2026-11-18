@@ -34,7 +34,9 @@
           "image": {
             "comp": "sitting on the edge of a blue-curtained bed, headband and gloves set aside, hair unpinned, quiet hope in her eyes",
             "setting": "her room, deep blue hangings, one candle, a small clock ticking",
-            "sam": true
+            "sam": true,
+            "cloth": "partial",
+            "wear": "a silk shift slipping off her shoulders"
           },
           "go": "Stay",
           "goRes": "You lay her back amidst the deep-blue sheets and sink your cock slowly into her scorching, tight pussy, Margaret clinging to your shoulders with breathless, unguarded cries until morning.",
@@ -65,7 +67,9 @@
           "image": {
             "comp": "descending a staircase in dramatic fashion, one hand on the banister, other hand reaching toward him, playful smile",
             "setting": "grand staircase at midnight, red carpet, hanging lanterns",
-            "sam": true
+            "sam": true,
+            "cloth": "dressed",
+            "wear": "a plunging wine-red silk robe"
           },
           "go": "Take a bow, and kiss her",
           "goRes": "Vain, delighted, and suddenly completely sincere, she parts her lips beneath yours and sighs softly. \"Mm—a standing ovation.\"",
@@ -78,7 +82,9 @@
           "image": {
             "comp": "standing before a mirror in a silk robe slipping from one shoulder, glancing back at him, playful and flushed",
             "setting": "her dressing room, a big mirror, outfits on a rail, perfume bottles",
-            "sam": true
+            "sam": true,
+            "cloth": "partial",
+            "wear": "a wine-red silk robe slipping off her shoulders over sheer lace lingerie"
           },
           "go": "Help her decide",
           "goRes": "She has dressed for a hundred dramatic entrances, yet none ended with her bare breasts pressed against your thighs while her lips suck your cock and her hands stroke you breathless.",
@@ -91,7 +97,9 @@
           "image": {
             "comp": "at a vanity with a bare face, laughing, turning on her stool toward him, eyes shining",
             "setting": "her dressing room, gold-framed mirror, soft peach lamplight",
-            "sam": true
+            "sam": true,
+            "cloth": "partial",
+            "wear": "an open silk wrap hanging loose"
           },
           "go": "Stay",
           "goRes": "She draws the velvet curtains, drops the silk wrap, and rides your cock with dramatic, breathless passion until the peach lamp burns dry.",
@@ -135,7 +143,9 @@
           "image": {
             "comp": "sitting on a bench with sore feet, soft cream cardigan, holding his hand with a shy smile",
             "setting": "quiet corner of the market at dusk, stalls closing, lanterns being lit",
-            "sam": true
+            "sam": true,
+            "cloth": "dressed",
+            "wear": "a soft cream cardigan and a floral skirt"
           },
           "go": "Let her thank you",
           "goRes": "Back in her bedroom, her gratitude is earnest, breathless, and delightfully thorough—her hands and mouth on your cock until you cum, leaving you both tangled and smiling before she drifts off against your chest.",
@@ -148,7 +158,9 @@
           "image": {
             "comp": "sitting on the bed in a soft nightgown, hands in her lap, tired but luminous smile",
             "setting": "her small neat room, a mending basket, warm lamp",
-            "sam": true
+            "sam": true,
+            "cloth": "partial",
+            "wear": "a thin cotton nightgown with the straps sliding off her shoulders"
           },
           "go": "Stay",
           "goRes": "You peel off her nightgown and ease your cock into her pussy, Sadayo crying a little, laughing at herself, and clinging to your back through every shuddering orgasm.",
@@ -204,7 +216,9 @@
           "image": {
             "comp": "sitting on a cot with a mug of tea, coat off, drowsy honest eyes, a small rare smile",
             "setting": "back-alley clinic room, shelves of tonics, one warm lamp",
-            "sam": true
+            "sam": true,
+            "cloth": "dressed",
+            "wear": "a black camisole and lace panties"
           },
           "go": "Stay",
           "goRes": "She turns down the lamp, strips off the rest of her clothes, and straddles your hips, sinking onto your cock—letting you see the breathless, unguarded woman behind the deadpan doctor.",
@@ -248,7 +262,8 @@
           "image": {
             "comp": "standing in a doorway with two cups of coffee, loose blouse, an uncertain stern face dissolving into nerves",
             "setting": "his room at midnight, coffee steaming, desk lamp",
-            "sam": true
+            "sam": true,
+            "wear": "a loose white blouse with the sleeves rolled up and slim trousers"
           },
           "go": "Accept item two",
           "goRes": "You unfasten her blouse and explore her bare breasts, then slide your fingers into her pussy, Sae trembling and gasping as years of rigid discipline melt away under your hands and mouth.",
@@ -261,7 +276,9 @@
           "image": {
             "comp": "leaning against a doorframe with her suit jacket off, hair down, composed but vulnerable eyes",
             "setting": "her room, a neat desk with files stacked, an unmade bed, warm lamplight",
-            "sam": true
+            "sam": true,
+            "cloth": "dressed",
+            "wear": "a navy silk camisole unlaced at the cleavage and charcoal suit trousers"
           },
           "go": "Stay",
           "goRes": "She exhales a career's worth of tension as you strip her bare and sink your cock deep into her pussy—Sae crying out your name without a shred of prosecutor's restraint.",
@@ -304,7 +321,8 @@
           "image": {
             "comp": "kneeling behind him in a bath robe with a cloth, composure cracking, a soft blush on her cheeks",
             "setting": "private stone bath, steam, a wooden bucket, lantern light",
-            "sam": true
+            "sam": true,
+            "cloth": "nude"
           },
           "go": "Accept her hospitality",
           "goRes": "You pull her around onto your lap in the hot spring, trading wet, hungry kisses while your hands explore every slick curve beneath the steam.",
@@ -317,7 +335,9 @@
           "image": {
             "comp": "kneeling by a made futon in an inn-style room, formal posture, trembling hands, glowing eyes",
             "setting": "her tatami room, a vermilion screen, one paper lantern",
-            "sam": true
+            "sam": true,
+            "cloth": "dressed",
+            "wear": "a loose yukata parting over the thighs"
           },
           "go": "Stay",
           "goRes": "She lets the yukata fall open, taking your cock into her tight, scorching pussy—and when you fumble with her sash afterward, a shared laughing fit takes you both.",
@@ -373,7 +393,9 @@
           "image": {
             "comp": "standing in her doorway in a long cotton nightgown, hands clasped tightly, earnest blushing smile",
             "setting": "her tidy room, ribbons pinned to a board, a pink lamp",
-            "sam": true
+            "sam": true,
+            "cloth": "dressed",
+            "wear": "a long thin cotton nightgown"
           },
           "go": "Stay",
           "goRes": "You pull off her nightgown and ease slowly inside her, Kasumi wrapping her flexible legs around your waist with soft, breathless cries—far better than any scripted finale.",
@@ -415,9 +437,11 @@
           "title": "Fitting Room",
           "text": "Ann drags you into the fitting room to critique one daring outfit after another—ending with a scrap of crimson lace that barely covers anything at all. Spinning before the lit mirror, she glances back over her bare shoulder with dark, teasing eyes. \"Honest review? Actually, don't talk—come show me.\"",
           "image": {
-            "comp": "posing in a fitted red dress in front of a mirror, glancing over her shoulder at him with a playful, daring smile",
+            "comp": "posing in skimpy crimson lace in front of a mirror, glancing over her bare shoulder at him with a playful, daring smile",
             "setting": "fitting room with a big mirror, clothes on a rail, warm lights",
-            "sam": true
+            "sam": true,
+            "cloth": "dressed",
+            "wear": "a skimpy scrap of crimson lace"
           },
           "go": "Stay a bit",
           "goRes": "You step up behind her before the mirror, sliding your hands over her bare curves while she drops to her knees and unfastens your belt with a wicked grin.",
@@ -430,7 +454,9 @@
           "image": {
             "comp": "sitting on the edge of his bed in her red jacket, legs crossed, bold smile softening into sincerity",
             "setting": "his bedroom, a lamp turned low, night air from the window",
-            "sam": true
+            "sam": true,
+            "cloth": "dressed",
+            "wear": "an open red jacket and nothing else"
           },
           "go": "\"I want.\"",
           "goRes": "She grins triumphantly, straddles your hips, and rides you hard with a breathless, happy laugh—taking full control of the night.",
