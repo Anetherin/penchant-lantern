@@ -34,7 +34,9 @@
           "image": {
             "comp": "standing in a simple nightgown with long hair down, holding his hands, gentle nervous smile",
             "setting": "her guest suite, tall window, moonlight, books on a table",
-            "sam": true
+            "sam": true,
+            "cloth": "dressed",
+            "wear": "a sheer white nightgown with the straps slipping off the shoulders"
           },
           "go": "Stay",
           "goRes": "You peel off her nightgown and ease your cock slowly into her tight, scorching pussy, Zelda clinging to your shoulders with breathless, unguarded cries as you fuck her.",
@@ -90,7 +92,8 @@
           "image": {
             "comp": "reclining on cushions like a throne, one leg crossed, wicked smile fading into genuine vulnerability",
             "setting": "her private room, shadow curtain, a crown-shaped candle",
-            "sam": true
+            "sam": true,
+            "cloth": "nude"
           },
           "go": "Choose her",
           "goRes": "You climb onto the cushions and sink your cock deep into her pussy, Midna arching beneath you with breathless, unguarded cries as the twilight outside glows brighter.",
@@ -204,7 +207,8 @@
           "image": {
             "comp": "floating close with his hand pressed to her chest, silver moonlight, soft smile",
             "setting": "bathhouse at night, moonlight on glowing water",
-            "sam": true
+            "sam": true,
+            "cloth": "nude"
           },
           "go": "Stay with her",
           "goRes": "You sink your cock deep into her pussy in the warm, glowing fountain—the water shining blindingly bright with every orgasm, loud enough that the whole house is whispering by morning.",
@@ -260,7 +264,9 @@
           "image": {
             "comp": "sitting on the edge of a plain bed with arms resting on her knees, steady honest gaze",
             "setting": "her spare room, a spear on the wall, a single lamp, bedroll",
-            "sam": true
+            "sam": true,
+            "cloth": "partial",
+            "wear": "an open silk wrap"
           },
           "go": "Stay",
           "goRes": "Fierce and demanding at first before melting into breathless, clinging moans as you fuck her pussy, she admits quietly afterward that you're the finest haul of her life.",
@@ -316,7 +322,9 @@
           "image": {
             "comp": "standing beside her bed with her dark violet hair loose over bare shoulders, crimson eyes shining, vulnerable smile",
             "setting": "her bedroom at night, soft lamplight on dark purple drapes",
-            "sam": true
+            "sam": true,
+            "cloth": "dressed",
+            "wear": "a loose lavender slip"
           },
           "go": "Stay with her",
           "goRes": "You lay her back on the sheets and sink your cock deep into her pussy, holding her close through every breathless, trembling cry until she sleeps curled warmly against your chest.",
@@ -373,7 +381,8 @@
           "image": {
             "comp": "reclining naked on a bed with fire and ice braids spread across the pillows, gold jewelry gleaming, inviting smirk",
             "setting": "bedroom lit by floating fire and ice wisps, desert curtains",
-            "sam": true
+            "sam": true,
+            "cloth": "nude"
           },
           "go": "Join her",
           "goRes": "You climb between her thighs and drive your cock into her pussy, her body alternating between feverish heat and gasping shivers as you fuck her until you both cum.",

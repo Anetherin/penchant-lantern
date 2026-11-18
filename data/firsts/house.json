@@ -37,7 +37,9 @@
           "image": {
             "comp": "standing beside a lamplit bed in a dressing robe, hair down, holding out her hand to him",
             "setting": "warm private bedroom above the lounge, lamplight",
-            "sam": true
+            "sam": true,
+            "cloth": "partial",
+            "wear": "a loose silk robe hanging open"
           },
           "go": "Stay",
           "goRes": "She takes your hand, pulls you across the threshold, and bolts the door on the bustling house she has carried on her back for years. Tonight nobody needs her but you, and she arches beneath you with a deep, grateful moan as you push your cock into her wet pussy.",
@@ -152,7 +154,9 @@
           "image": {
             "comp": "glowing softly in moonlight, solid and warm, pulling him toward a canopy bed by both hands",
             "setting": "old manor bedroom under a full moon, curtains stirring",
-            "sam": true
+            "sam": true,
+            "cloth": "partial",
+            "wear": "an antique gown slipping off her shoulders"
           },
           "go": "Don't waste a minute",
           "goRes": "You peel away the rest of her gown and push your cock into her pussy, Vesper gasping and laughing at the sheer rush of weight, heat, and friction—clinging tight to you as you fuck her until dawn dissolves her back into silver mist.",
@@ -206,7 +210,9 @@
           "image": {
             "comp": "barefoot on an empty stage in a loose rehearsal dress, holding out a page of notes to him with a sly smile",
             "setting": "dim rehearsal stage, a single candle, curtains drawn",
-            "sam": true
+            "sam": true,
+            "cloth": "dressed",
+            "wear": "a sheer white practice dress and nothing underneath"
           },
           "go": "Read the notes",
           "goRes": "Sylphine is obsessive about proper blocking—guiding your hands beneath her thin dress onto her bare pussy, then dropping to her knees on the stage boards to suck your cock and rehearse every detail until you're breathless.",
@@ -219,7 +225,9 @@
           "image": {
             "comp": "standing in a bedroom doorway with her hair loose and her dancing shoes in one hand, soft determined smile",
             "setting": "his bedroom at night, moonlight through the window",
-            "sam": true
+            "sam": true,
+            "cloth": "partial",
+            "wear": "a silk shift slipping off her shoulders"
           },
           "go": "Let her in",
           "goRes": "She wraps her flexible dancer's legs high around your waist as you drive your cock into her pussy, gasping your name between breaths—having completely forgotten how to count the beat.",
@@ -252,7 +260,8 @@
           "image": {
             "comp": "leaning back against a closed door in a lavish room, looking him over with a slow confident smile",
             "setting": "the Veil's finest suite, silk drapes, red candlelight",
-            "sam": true
+            "sam": true,
+            "cloth": "nude"
           },
           "go": "\"Yes, ma'am.\"",
           "goRes": "She straddles your hips, sinks all the way down onto your cock with a wicked, throaty groan, and rides you relentlessly—asking for nothing in return except every gasp you have.",
@@ -299,7 +308,9 @@
           "image": {
             "comp": "sliding a brass room key across a counter toward him, eyebrow raised, playful smile",
             "setting": "inn reception desk late at night, a single lamp",
-            "sam": true
+            "sam": true,
+            "cloth": "partial",
+            "wear": "a blouse unbuttoned halfway down her chest"
           },
           "go": "Take the key",
           "goRes": "Room six has the widest mattress in the Wayfarer, and Bettina puts every inch of it to use—losing track of the hours as you fuck her well past midnight without charging a single copper.",
@@ -401,7 +412,8 @@
           "image": {
             "comp": "kneeling bare on white silk cushions beneath her glowing halo, parting her knees as she reaches for him",
             "setting": "draped private chapel vestry lit by stained glass and golden halo light",
-            "sam": true
+            "sam": true,
+            "cloth": "nude"
           },
           "go": "Answer her prayer",
           "goRes": "You push your cock slowly into her tight pussy until her wings flare wide against the silk drapes, her breathless cries ringing like vesper bells as you fuck her across the altar cushions.",
@@ -435,7 +447,8 @@
           "image": {
             "comp": "reclining bare in the turquoise-lit charging cradle, gripping the velvet edge with parted thighs",
             "setting": "glowing brass-and-turquoise charging cradle room",
-            "sam": true
+            "sam": true,
+            "cloth": "nude"
           },
           "go": "Disable limiters",
           "goRes": "You brace over the cradle and drive deep into her slick synthetic heat, Nadia gasping in ragged, breathless bursts as her heels lock tight behind your waist.",
@@ -468,7 +481,9 @@
           "image": {
             "comp": "lounging bare-shouldered on a newly built ironwood bedstead with open amber velvet",
             "setting": "newly repaired timber-and-stone bedroom glowing with hearthlight",
-            "sam": true
+            "sam": true,
+            "cloth": "partial",
+            "wear": "a loose amber velvet wrap hanging open"
           },
           "go": "Break it in",
           "goRes": "Not a single mortise squeaks as you tumble her back onto the thick mattress and bury your cock deep inside her tight, hot pussy while her strong hands claw the bedding.",
@@ -502,7 +517,9 @@
           "image": {
             "comp": "half-undressed among tall greenhouse ferns, pulling his hand beneath her emerald silk skirt",
             "setting": "steamy botanical corner beside a warm stone fountain",
-            "sam": true
+            "sam": true,
+            "cloth": "partial",
+            "wear": "an emerald silk gown pushed down to her waist"
           },
           "go": "Touch her",
           "goRes": "She whimpers softly into your shoulder as your thumb circles her swelling clit and two fingers sink deep, her fox ears trembling violently in the damp heat.",
@@ -515,7 +532,8 @@
           "image": {
             "comp": "stretched bare across a velvet daybed covered in orchid petals while rain hits the glass dome above",
             "setting": "rainy night under a warm glass conservatory dome with glowing censers",
-            "sam": true
+            "sam": true,
+            "cloth": "nude"
           },
           "go": "Claim her",
           "goRes": "You sink into the petals between her parted thighs and slide all the way into her drenched pussy, Maren crying out beneath the glass roof as her tail whips around your hips.",
@@ -548,7 +566,9 @@
           "image": {
             "comp": "leaning over a velvet chaise before a tall gilt mirror in sheer plum chiffon and stockings, looking back",
             "setting": "candlelit mirror salon of the Velvet Lyceum",
-            "sam": true
+            "sam": true,
+            "cloth": "dressed",
+            "wear": "sheer plum chiffon and silk stockings"
           },
           "go": "Grade her body",
           "goRes": "Watching in the tall mirror as your cock drives deep from behind sends a shudder straight through her spine, the composed professor clutching the velvet cushion while gasping for more.",

@@ -149,7 +149,8 @@
       "comp": "a goddess and a man embracing in bed, her skin glow fading, gold markings dimming and the ember-flame guttering, lantern-light dying around them, tears and a smile",
       "setting": "an endless dark space full of floating paper lanterns going out one by one",
       "sam": true,
-      "pov": true
+      "pov": true,
+      "cloth": "nude"
     },
     "text": "This time the lanterns don't wait for you to wake. {goddess} is there before the dark is finished, and she doesn't say \"again.\"\n\n\"{names} has lived it all now. Everything a life can carry. And so have I, watching you.\" She pulls you down with her. \"I told you it was a whim. It wasn't. Years, {sam}. Years of watching you be kind when nobody was looking: the stray cat you fed every single morning for two years, all the little things nobody ever thanked you for. I wanted you the whole time. I'm done watching.\"\n\nShe doesn't stop you this time. She holds on, and when you finish inside her the light goes out of her like a breath let go: the glow under her skin, the gold markings, the little ember-flame, the warmth that never came from anywhere. Every lantern goes dark at once.\n\nWhat's left is a woman with gold eyes, shaking, laughing, holding on to you.",
     "after": "\"Oh,\" she says. \"Oh, that's cold. Is it always this cold?\" She burrows into you. \"I'm yours now. All of me, the little that's left. I wanted you since before the truck, and I'd never have said so with the light still on. You'll have to build me back up, {sam}.\"\n\nShe has a tab of her own now. She'll do what she likes each week. You can tell her what you'd like; she might even listen.",
@@ -208,7 +209,8 @@
       "comp": "a goddess with faintly glowing bronze skin lying close against a man in bed at night, gold markings softly lit, a small ember-flame floating over them, content smile",
       "setting": "Sam's bedroom at night, lantern-light",
       "sam": true,
-      "pov": true
+      "pov": true,
+      "cloth": "nude"
     },
     "open": {
       "low": [
