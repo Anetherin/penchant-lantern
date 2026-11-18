@@ -46,9 +46,9 @@
             }
           },
           "bonds": {
-            "kurenai": {"v":60,"kind":"mentor","note":"Kurenai was her first squad leader back in the Leaf."},
             "sakura": {"v":40,"kind":"comrades","note":"Leaf peers."},
             "ino": {"v":35,"kind":"comrades","note":"Leaf peers."},
+            "tenten": {"v":30,"kind":"comrades","note":"Leaf comrades."},
             "hanabi": {"v":65,"kind":"family","note":"Her younger sister and closest confidante."},
             "himawari": {"v":75,"kind":"family","note":"Her beloved daughter, who inherited her gentle heart and a nine-tailed spark."}
           },
@@ -70,7 +70,7 @@
           "style": "Sporty",
           "favColor": "pink",
           "fav": "cowgirl",
-          "dislike": "oral_give",
+          "dislike": "doggy",
           "lovers": "missionary",
           "backstory": "A field medic from the Leaf, a shinobi village across the eastern sea with a punch that has gone through walls (literally, ask the landlord). She left over a long-distance relationship that stayed long-distance, and is done waiting on anyone.",
           "design": {
@@ -103,7 +103,7 @@
             }
           },
           "bonds": {
-            "tsunade": {"v":55,"note":"Tsunade taught her everything she knows, including how to drink."},
+            "hinata": {"v":40,"kind":"comrades","note":"Leaf peers."},
             "ino": {"v":45,"note":"Best friends and lifelong rivals, in that order."},
             "karin": {"v":-15,"note":"Old history over the same aloof man. Neither will admit it still stings."}
           },
@@ -155,7 +155,11 @@
               "bonus": {"dancer":1.2,"merchant":1.2}
             }
           },
-          "bonds": {"sakura":{"v":45,"note":"Best friends and lifelong rivals, in that order."},"hinata":{"v":35,"kind":"comrades","note":"Leaf peers."}},
+          "bonds": {
+            "sakura": {"v":45,"note":"Best friends and lifelong rivals, in that order."},
+            "hinata": {"v":35,"kind":"comrades","note":"Leaf peers."},
+            "temari": {"v":20,"note":"Rivals in sharp tongues."}
+          },
           "jobs": {"likes":["dancer","courtesan"],"dislikes":["maid"]},
           "body": {"bust":"medium","height":"average","figure":"curvy"},
           "unique": {"name":"Mind Reader","desc":"She reads clients like open books and charms them accordingly.","fx":{"clientFee":1.1,"appeal":3}}
@@ -208,7 +212,7 @@
             "juju": {"v":50,"kind":"mentor","note":"Juju is from her toolsmith line and calls her Great-Grandma Tenten. Tenten hates it."}
           },
           "jobs": {"likes":["bartender","security"],"dislikes":["maid"]},
-          "body": {"bust":"small","height":"average","figure":"athletic"},
+          "body": {"bust":"small","height":"short","figure":"athletic"},
           "unique": {
             "name": "Never Misses",
             "desc": "Nothing slips past her, whether it's a thrown knife or a rowdy client.",
@@ -362,7 +366,7 @@
               "bonus": {"security":1.2,"promoter":1.15}
             }
           },
-          "bonds": {"tsunade":{"v":70,"note":"Twenty years of cleaning up after her."}},
+          "bonds": {"sakura":{"v":45,"kind":"comrades","note":"Fellow apprentices under Lady Tsunade."}},
           "jobs": {"likes":["promoter","madame","teacher"],"dislikes":["courtesan"]},
           "body": {"bust":"small","height":"average","figure":"average"},
           "unique": {
@@ -469,7 +473,7 @@
           "lovers": "kiss",
           "backstory": "A sensor and healer from the wandering Uzumaki clan, Karin can feel a person's life energy from across a room. She claims she's here strictly for the pay. She has also asked twice whether Sam is single.",
           "design": {
-            "hairStyle": "long and messy on one side, short and neat on the other",
+            "hairStyle": "short and spiky on one side, long and straight on the other",
             "hairColor": "vivid red",
             "eyes": "red",
             "skin": "fair",
@@ -522,7 +526,7 @@
             "hairColor": "auburn",
             "eyes": "green",
             "skin": "fair",
-            "features": "dark blue lipstick",
+            "features": "glossy coral-pink lipstick",
             "accessories": "a dark mesh choker",
             "accState": "always",
             "expression": "a sultry, dangerous smile"
@@ -543,7 +547,10 @@
               "bonus": {"madame":1.3,"noble":1.15}
             }
           },
-          "bonds": {"tsunade":{"v":25,"note":"Old colleagues from the village heads' council."}},
+          "bonds": {
+            "tsunade": {"v":25,"note":"Old colleagues from the village heads' council."},
+            "maki": {"v":40,"note":"A distant Terumi cousin who actually listens to her marriage advice."}
+          },
           "jobs": {"likes":["madame","courtesan"],"dislikes":["maid","promoter"]},
           "body": {"bust":"large","height":"tall","figure":"curvy"},
           "unique": {
@@ -653,7 +660,7 @@
           "race": "beastkin",
           "sub": "fox",
           "age": 21,
-          "personality": "Sweet and bubbly",
+          "personality": "Cheerful and teasing",
           "traits": ["Sunny Disposition","Loyal"],
           "style": "Cute",
           "favColor": "sunflower yellow",
@@ -670,7 +677,7 @@
             "features": "two thin whisker marks on each cheek, dark fox ears and a fluffy orange fox tail",
             "expression": "a warm, radiant smile"
           },
-          "under": "cotton",
+          "under": "plain",
           "underColor": "yellow",
           "stats": {"beauty":68,"charm":70,"charisma":64,"refinement":48,"wits":52,"stamina":68,"strength":62,"agility":64},
           "tech": {"service":50,"dance":35,"bar":25,"combat":60,"manage":15},

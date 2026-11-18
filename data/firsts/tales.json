@@ -253,7 +253,8 @@
           "go": "Lean up and kiss her",
           "goRes": "Her kiss tastes faintly of cinnamon and warmth, Cheria resting her gentle hand along your jaw before sighing happily. \"There. Now eat before I lecture you again.\"",
           "wait": "\"Eat together with me first.\"",
-          "waitRes": "Her mild frown melts instantly into a soft smile. \"Well—if you insist on being sensible, fine!\""
+          "waitRes": "Her mild frown melts instantly into a soft smile. \"Well—if you insist on being sensible, fine!\"",
+          "act": "kiss"
         },
         "2": {
           "title": "Off-Duty Care",
@@ -317,13 +318,13 @@
         },
         "2": {
           "title": "Learning Warmth",
-          "text": "In the quiet loft room after patrol, Sophie unfastens the front clasp of her white-and-indigo hooded dress and takes both of your hands, placing your palms gently against her bare chest. \"Sometimes when you smile at me, my pulse beats faster than in combat,\" she murmurs steadily, looking straight up into your face. \"I want to understand what your hands feel like when nothing is in the way.\"",
+          "text": "In the quiet loft room after patrol, Sophie unfastens the front clasp of her pink-and-white Protos Heis vest and takes both of your hands, placing your palms gently against her bare chest. \"Sometimes when you smile at me, my pulse beats faster than in combat,\" she murmurs steadily, looking straight up into your face. \"I want to understand what your hands feel like when nothing is in the way.\"",
           "image": {
-            "comp": "standing in her loft room with her hooded dress unfastened at the front, placing his palms calmly over her chest",
+            "comp": "standing in her loft room with her combat vest unfastened at the front, placing his palms calmly over her chest",
             "setting": "quiet loft room at night, single warm lamp",
             "sam": true,
             "cloth": "partial",
-            "wear": "her white-and-indigo combat dress unclasped down the chest"
+            "wear": "her pink-and-white combat vest unclasped down the chest"
           },
           "go": "Teach her gently",
           "goRes": "You kiss down her throat and cup her small, warm breasts while easing your fingers gently between her thighs, Sophie letting out startled, soft gasps as she learns how eagerly her body responds.",
@@ -437,7 +438,7 @@
         },
         "2": {
           "title": "Unsealed Flame",
-          "text": "Behind closed curtains in her room, Lailah unclasps the structured gold collar of her seraphic gown, letting the white-and-scarlet silk slide down over her lush breasts to pool softly around her waist. Stepping close with glowing cheeks and unguarded warmth, she takes your hand onto her bare curve. \"For five centuries I guarded ancient secrets alone. Let me share this warmth with you instead.\"",
+          "text": "Behind closed curtains in her room, Lailah unclasps the structured gold collar of her seraphic gown, letting the white-and-scarlet silk slide down over her lush breasts to pool softly around her waist. Stepping close with glowing cheeks and unguarded warmth, she takes your hand onto her bare curve. \"For a thousand years I guarded ancient secrets alone. Let me share this warmth with you instead.\"",
           "image": {
             "comp": "standing behind drawn curtains with her gold collar unclasped and gown slipped to her waist, guiding his hand warmly",
             "setting": "her candlelit bedroom, scarlet curtains drawn",
@@ -493,7 +494,8 @@
           "go": "Kiss her",
           "goRes": "Her deadpan poise falters by half a heartbeat when your lips brush gently against hers, Edna stepping back with faintly pink ears and lifting her parasol straight between you. \"Adequate.\"",
           "wait": "\"Don't want to ruin your coat.\"",
-          "waitRes": "\"Wise,\" she replies evenly, tucking herself neatly beneath your side of the awning anyway."
+          "waitRes": "\"Wise,\" she replies evenly, tucking herself neatly beneath your side of the awning anyway.",
+          "act": "kiss"
         },
         "2": {
           "title": "Deadpan Honesty",
@@ -503,7 +505,7 @@
             "setting": "quiet upstairs window seat at night, moonlight and soft lamp",
             "sam": true,
             "cloth": "partial",
-            "wear": "her frilled white gothic coat dress unbuttoned down the front with boots off"
+            "wear": "her frilled white and yellow dress loosened down the front with boots off"
           },
           "go": "Settle it",
           "goRes": "Her stoic little facade breaks into sharp, muffled gasps against your palm as your hands and tongue tease her bare breasts and wet pussy until she trembles completely undone.",

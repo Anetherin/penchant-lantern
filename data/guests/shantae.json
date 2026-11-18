@@ -79,8 +79,7 @@
             "hairColor": "purple",
             "eyes": "red",
             "skin": "pale purple",
-            "features": "large hoop earrings",
-            "accessories": "a large red and purple skull-badged pirate hat",
+            "accessories": "a large red and purple skull-badged pirate hat and large gold hoop earrings",
             "accState": "always",
             "expression": "a wicked smirk"
           },
@@ -96,7 +95,7 @@
             "sig_risky": {
               "label": "Pirate captain",
               "style": "Revealing",
-              "prompt": "a purple skull bustier, purple harem pants, and a brown belt worn looosely",
+              "prompt": "a purple skull bustier, purple harem pants, and a brown belt worn loosely",
               "bonus": {"madame":1.3,"adventurer":1.2}
             }
           },
@@ -136,15 +135,15 @@
           "trust": 30,
           "outfits": {
             "sig_rotty": {
-              "label": "Patchwork tunic",
+              "label": "Zombie crop top",
               "style": "Cute",
-              "prompt": "a patched striped crop tunic, a ragged short skirt and mismatched stockings",
-              "bonus": {"commoner":1.2,"attendant":1.15}
+              "prompt": "a torn purple cropped tank top, dark blue denim short-shorts with a skull belt buckle, a yellow headband and brown boots with purple socks",
+              "bonus": {"commoner":1.2,"host":1.15}
             }
           },
           "bonds": {"shantae":{"v":45,"kind":"comrades","note":"Fast friends who share every adventure."}},
           "jobs": {"likes":["host","attendant"],"dislikes":["security"]},
-          "body": {"bust":"medium","height":"short","figure":"soft"},
+          "body": {"bust":"medium","height":"short","figure":"slim"},
           "unique": {
             "name": "Undead Constitution",
             "desc": "She never seems to tire, and her sunny mood keeps the night shift lively.",

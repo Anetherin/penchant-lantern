@@ -70,7 +70,8 @@
           "go": "Thank her with a kiss",
           "goRes": "She sputters, turns bright red, and swats your arm with a dish towel—before grabbing your collar and kissing you back hungrily.",
           "wait": "\"Not yet, Chi-Chi.\"",
-          "waitRes": "\"Hmph.\" She smooths her apron, cheeks burning. \"Then eat the second helping. I'm not giving up.\""
+          "waitRes": "\"Hmph.\" She smooths her apron, cheeks burning. \"Then eat the second helping. I'm not giving up.\"",
+          "act": "kiss"
         },
         "2": {
           "title": "Martial Arts",
@@ -211,7 +212,7 @@
             "comp": "kneeling on his bed in black sports underwear, blonde hair loose, cool blue eyes soft and earnest",
             "setting": "Sam's bedroom by lamplight, denim vest on a chair",
             "sam": true,
-            "cloth": "dressed",
+            "cloth": "under",
             "wear": "black sports underwear"
           },
           "go": "Keep up with her",

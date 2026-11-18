@@ -124,14 +124,15 @@
           "title": "Sticky Notes",
           "text": "Juniper arrives forty minutes late to breakfast with three sticky notes clinging to her lab coat. When you peel one off—reading \"tell Sam. SOON.\" in her loopy handwriting—she gasps, turning bright pink. \"Oh! That was the reminder. May I... show you instead of trying to explain?\"",
           "image": {
-            "comp": "holding a sticky note to her chest, flustered, glasses slightly crooked, hopeful smile",
+            "comp": "holding a sticky note to her chest, flustered, hopeful smile",
             "setting": "sunny breakfast room, papers and notebooks scattered across the table",
             "sam": true
           },
           "go": "Let her show you",
           "goRes": "She kisses you softly, then—ever the thorough researcher—kisses you again, deeper. \"Right,\" she whispers breathlessly. \"Hypothesis confirmed.\"",
           "wait": "\"Maybe let's eat first.\"",
-          "waitRes": "\"Eat! Yes, of course!\" Blushing furiously, she sticks the note straight onto your cuff. \"So you don't forget I asked.\""
+          "waitRes": "\"Eat! Yes, of course!\" Blushing furiously, she sticks the note straight onto your cuff. \"So you don't forget I asked.\"",
+          "act": "kiss"
         },
         "2": {
           "title": "Field Notes",
@@ -148,9 +149,9 @@
         },
         "3": {
           "title": "A Very Late Night",
-          "text": "\"I'm late—I'm always late, except I refused to be late for this,\" Juniper says breathlessly in her doorway, lab coat discarded and auburn hair spilling loose over a thin sleeping shift. \"Stay with me tonight, Sam. All night, if you'll have me.\"",
+          "text": "\"I'm late—I'm always late, except I refused to be late for this,\" Juniper says breathlessly in her doorway, lab coat discarded and honey-brown hair spilling loose over a thin sleeping shift. \"Stay with me tonight, Sam. All night, if you'll have me.\"",
           "image": {
-            "comp": "holding a teacup in the doorway of her room, hair down, glasses off, sincere and nervous",
+            "comp": "holding a teacup in the doorway of her room, hair down, sincere and nervous",
             "setting": "her tidy room, books everywhere, a green lamp lit",
             "sam": true,
             "cloth": "dressed",
@@ -172,7 +173,7 @@
           "go": "\"Bad place. Good idea.\"",
           "goRes": "Her breathless giggle turns into a sharp gasp as you pin her against the shelves, hiking up her skirt among the fallen folders to slide your hand between her thighs.",
           "wait": "\"Let's find a bed first.\"",
-          "waitRes": "\"Beds! Very sound methodology.\" She grabs your hand, adjusting her glasses. \"Please lead—I'll definitely get lost.\""
+          "waitRes": "\"Beds! Very sound methodology.\" She grabs your hand, smoothing her lab coat. \"Please lead—I'll definitely get lost.\""
         }
       }
     },
@@ -193,9 +194,9 @@
         },
         "2": {
           "title": "Off the Map",
-          "text": "Leaf drags you up the grassy hill behind the house at dusk, spreading her jacket out on the earth and pulling you down beside her under the first fireflies. \"I've traveled from the northern lights to the southern coast, and nowhere ever felt like this,\" she whispers, sliding her warm hands beneath your shirt.",
+          "text": "Leaf drags you up the grassy hill behind the house at dusk, spreading a picnic blanket out on the earth and pulling you down beside her under the first fireflies. \"I've traveled from the northern lights to the southern coast, and nowhere ever felt like this,\" she whispers, sliding her warm hands beneath your shirt.",
           "image": {
-            "comp": "lying on a spread jacket in the grass, tugging him down, wide-open happy grin, sun hat beside her",
+            "comp": "lying on a spread blanket in the grass, tugging him down, wide-open happy grin, sun hat beside her",
             "setting": "grassy hillside behind the house at dusk, town lanterns below",
             "sam": true
           },
@@ -206,7 +207,7 @@
         },
         "3": {
           "title": "Journey's End, Maybe",
-          "text": "Leaf has finally unpacked her travel bag—her vest hanging on a peg, her sun hat perched on the bedpost, and nothing on beneath an oversized shirt that slips off one bare shoulder. \"I never unpack anywhere, Sam—until tonight. Stay in my bed.\"",
+          "text": "Leaf has finally unpacked her travel bag—her pack hanging on a peg, her sun hat perched on the bedpost, and nothing on beneath an oversized shirt that slips off one bare shoulder. \"I never unpack anywhere, Sam—until tonight. Stay in my bed.\"",
           "image": {
             "comp": "sitting cross-legged on a bed in an oversized shirt, empty travel pack beside her, soft smile",
             "setting": "cozy attic room, travel map pinned to the wall, warm lamp",
@@ -224,11 +225,11 @@
           "title": "Shortcut",
           "text": "Leaf takes a wrong turn in the corridors again and bursts into your room soaked from an evening downpour, laughing breathlessly. Tossing her wet hat onto your chair, she kisses you hard before the thought even finishes. \"Best wrong turn ever—is it alright if I strip off these wet clothes and stay?\"",
           "image": {
-            "comp": "shaking rain from her hair, laughing, leaning in to kiss him, wet jacket half off",
+            "comp": "shaking rain from her hair, laughing, leaning in to kiss him, wet top clinging",
             "setting": "his bedroom on a rainy evening, window streaked with rain",
             "sam": true,
             "cloth": "partial",
-            "wear": "a soaked jacket sliding half off her shoulders"
+            "wear": "a soaked sky-blue sleeveless top and red skirt"
           },
           "go": "\"Stay.\"",
           "goRes": "Rain drums against the windowpane all night while you peel away her soaked clothes and warm her up thoroughly in bed.",
@@ -241,7 +242,7 @@
       "events": {
         "1": {
           "title": "After the Water Cools",
-          "text": "Misty is draining the bathhouse for the night when you bring her a fresh stack of towels. Leaning on her mop with damp red hair clinging to her neck, she glares defensively through a bright blush. \"You always help out—nobody else bothers. And I'm only red because of the steam!\"",
+          "text": "Misty is draining the bathhouse for the night when you bring her a fresh stack of towels. Leaning on her mop with damp orange hair clinging to her neck, she glares defensively through a bright blush. \"You always help out—nobody else bothers. And I'm only red because of the steam!\"",
           "image": {
             "comp": "leaning on a mop, damp hair in its side tail, blushing and defiant, stepping closer",
             "setting": "the empty bathhouse at closing, steam and tile, wooden buckets",
@@ -250,7 +251,8 @@
           "go": "Kiss her",
           "goRes": "She kisses like she battles—fierce and head-on at first, before softening with a breathless laugh against your mouth. \"Okay... that's much better.\"",
           "wait": "\"Maybe not here.\"",
-          "waitRes": "\"Fine,\" she huffs, cheeks scarlet. \"Though I hate waiting—so you owe me.\""
+          "waitRes": "\"Fine,\" she huffs, cheeks scarlet. \"Though I hate waiting—so you owe me.\"",
+          "act": "kiss"
         },
         "2": {
           "title": "Pool Rules",
@@ -269,7 +271,7 @@
         },
         "3": {
           "title": "Calm Waters",
-          "text": "Misty's bedroom door stands ajar, and you find her sitting on the mattress with her boots lined up neatly and her red hair spilling unbound down her bare back. \"I never do anything halfway, Sam,\" she mutters, meeting your eyes with fierce, flushed honesty. \"If you stay tonight, I'm all in. Stay.\"",
+          "text": "Misty's bedroom door stands ajar, and you find her sitting on the mattress with her boots lined up neatly and her orange hair spilling unbound down her bare back. \"I never do anything halfway, Sam,\" she mutters, meeting your eyes with fierce, flushed honesty. \"If you stay tonight, I'm all in. Stay.\"",
           "image": {
             "comp": "sitting on the bed hugging her knees, hair loose, blunt but shy eyes, a little smile",
             "setting": "her small tidy room, a fish-shaped lamp, sea-blue blanket",
@@ -349,7 +351,7 @@
             "sam": true
           },
           "go": "Kiss her back",
-          "goRes": "Her fury channels straight into raw hunger as she hauls you up the stairs into her bedroom, tearing off her cape and gown and shoving your hand between her legs.",
+          "goRes": "Her fury channels straight into raw hunger as she hauls you up the stairs into her bedroom, tearing off her cape and bodysuit and shoving your hand between her legs.",
           "wait": "\"Take a breath.\"",
           "waitRes": "\"I am breathing!\" She catches herself, exhales, and glares at the ceiling. \"...Slowly, then. As you wish.\""
         }

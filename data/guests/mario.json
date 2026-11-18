@@ -52,7 +52,7 @@
           },
           "bonds": {
             "daisy": {"v":75,"kind":"comrades","note":"Best friends and royal cousins in spirit—Daisy drags her into trouble and Peach bails them out."},
-            "toadette": {"v":65,"kind":"mentor","note":"Her loyal castle archivist and favorite baking tester."},
+            "toadette": {"v":65,"kind":"comrades","note":"Her loyal castle archivist and favorite baking tester."},
             "bowsette": {"v":25,"note":"A very complicated history of kidnappings, kart races, and reluctant tea parties."},
             "pauline": {"v":45,"kind":"comrades","note":"Old friends who swap governance notes and musical numbers."}
           },
@@ -156,13 +156,13 @@
             "sig_pauline": {
               "label": "Starlight stage gown",
               "style": "Elegant",
-              "prompt": "a strapless glittering scarlet-red floor-length jazz gown with a high leg slit and a gold bracelet",
+              "prompt": "a halter-neck glittering scarlet-red floor-length jazz gown with a high leg slit and a gold bracelet",
               "bonus": {"dancer":1.3,"noble":1.2}
             },
             "sp_pauline": {
               "label": "Mayor's pantsuit",
               "style": "Elegant",
-              "prompt": "a sharp crimson tailored pantsuit over a plunging purple silk camisole and wide-brimmed red hat",
+              "prompt": "a sharp crimson tailored pantsuit over a plunging purple silk camisole and wide-brimmed purple hat with a red ribbon band",
               "bonus": {"madame":1.3,"merchant":1.2}
             }
           },
@@ -180,7 +180,7 @@
           "name": "Toadette",
           "race": "dwarf",
           "age": 52,
-          "personality": "Sweet and bubbly",
+          "personality": "Cheerful and teasing",
           "traits": ["Sunny Disposition","Loyal"],
           "style": "Cute",
           "favColor": "magenta pink",
@@ -198,7 +198,7 @@
             "accState": "dressed",
             "expression": "a cheerful, rosy-cheeked beam"
           },
-          "under": "cotton",
+          "under": "plain",
           "underColor": "pink",
           "stats": {"beauty":64,"charm":72,"charisma":66,"refinement":52,"wits":70,"stamina":72,"strength":48,"agility":64},
           "tech": {"service":55,"dance":30,"bar":35,"combat":25,"manage":62},
@@ -220,13 +220,13 @@
               "bonus": {"attendant":1.2,"adventurer":1.25}
             }
           },
-          "bonds": {"peach":{"v":65,"note":"Her beloved Princess, whom she serves with cheerful pride."}},
+          "bonds": {"peach":{"v":65,"kind":"comrades","note":"Her beloved Princess, whom she serves with cheerful pride."}},
           "jobs": {"likes":["maid","attendant","madame"],"dislikes":["security"]},
           "body": {"bust":"medium","height":"short","figure":"soft"},
           "unique": {
             "name": "Chief Builder",
             "desc": "She keeps the house spotless, organized, and running below budget.",
-            "fx": {"tidy":1.25,"upkeep":0.9,"jobBonus":{"maid":1.15}}
+            "fx": {"tidy":1.25,"wage":0.9,"jobBonus":{"maid":1.15}}
           }
         },
         "bowsette": {

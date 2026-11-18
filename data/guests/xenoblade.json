@@ -8,7 +8,7 @@
           "title": "Princess",
           "name": "Melia Antiqua",
           "race": "angel",
-          "age": 188,
+          "age": 89,
           "personality": "Calm and elegant",
           "traits": ["Elegant","Loyal"],
           "style": "Elegant",
@@ -22,7 +22,7 @@
             "hairColor": "silver-white",
             "eyes": "teal",
             "skin": "fair",
-            "features": "small snow-white feathered head-wings above her ears and a faint golden halo",
+            "features": "small snow-white feathered head-wings above her ears",
             "expression": "a regal, composed smile"
           },
           "under": "silk",
@@ -71,23 +71,23 @@
           "personality": "Warm and motherly",
           "traits": ["Warm-Hearted","Former Adventurer"],
           "style": "Sporty",
-          "favColor": "crimson",
+          "favColor": "blue",
           "fav": "massage_give",
           "dislike": "manual_get",
           "lovers": "cowgirl",
           "backstory": "A seasoned combat medic and sharpshooter from a fallen colony, Sharla spent years patching up wounded soldiers while keeping everyone's spirits together like a big sister. In Hollowmere, she runs the steam rooms with brisk, practical warmth—though she gets surprisingly flustered whenever someone insists on taking care of her instead.",
           "design": {
-            "hairStyle": "short chin-length bob with a side-swept bang",
-            "hairColor": "dark brown",
+            "hairStyle": "shoulder-length hair tied back",
+            "hairColor": "cool black",
             "eyes": "warm brown",
             "skin": "warm tan",
-            "features": "a small beauty mark beneath her left eye",
-            "accessories": "gold hoop earrings",
+            "features": "a small beauty mark below the left side of her lower lip",
+            "accessories": "a blue-feathered Colony 6 headband and gold hoop earrings",
             "accState": "always",
             "expression": "a warm, caring smile"
           },
           "under": "sports",
-          "underColor": "crimson",
+          "underColor": "white",
           "stats": {"beauty":76,"charm":74,"charisma":68,"refinement":52,"wits":62,"stamina":72,"strength":56,"agility":60},
           "tech": {"service":50,"dance":25,"bar":30,"combat":72,"manage":45},
           "actSkill": 25,
@@ -98,7 +98,7 @@
             "sig_sharla": {
               "label": "Colony 6 medic uniform",
               "style": "Sporty",
-              "prompt": "a cropped crimson-and-white halter top exposing her cleavage and toned midriff, matching dark shorts with a white hip belt, fingerless gloves and tall brown boots",
+              "prompt": "a short blue top under a cropped brown vest exposing her cleavage and toned midriff, white shorts with a brown hip belt, brown gloves and dark brown thigh-high boots",
               "accessories": "an ether sniper rifle slung across her back",
               "accState": "dressed",
               "bonus": {"bath":1.3,"security":1.15}
@@ -124,7 +124,7 @@
           "title": "Lady",
           "name": "Vanea",
           "race": "android",
-          "age": 420,
+          "age": 4200,
           "personality": "Gentle and dreamy",
           "traits": ["Elegant","Patient Tutor"],
           "style": "Exotic",
@@ -182,7 +182,7 @@
           "design": {
             "hairStyle": "short layered bob with long side locks",
             "hairColor": "flame red",
-            "eyes": "amber-gold",
+            "eyes": "crimson-amber",
             "skin": "fair",
             "features": "a glowing emerald cross-shaped core crystal at her sternum",
             "accessories": "a crimson headband tiara with golden ether accents",
@@ -349,9 +349,10 @@
           "backstory": "An obsessive, razor-sharp combat android rebuilt to surpass her rival prototype, T-elos stepped into Hollowmere wearing a deadly smile and an oversized scythe—only to find nobody here was afraid of her. Beneath the ruthless swagger and clinical arrogance, she treats intimacy like a duel she refuses to lose.",
           "design": {
             "hairStyle": "long, straight and sleek with parted bangs",
-            "hairColor": "dark blue-black",
+            "hairColor": "silver-white",
             "eyes": "piercing blue",
             "skin": "dark tan synthetic",
+            "features": "a glowing purple inverted-triangle core crystal at her sternum",
             "expression": "a cold, predatory smirk"
           },
           "under": "sheer",
@@ -380,6 +381,7 @@
               "bonus": {"courtesan":1.25,"teacher":1.2}
             }
           },
+          "bonds": {"mythra":{"v":20,"kind":"rivals","note":"Two proud Blades who size up each other's combat specs."}},
           "jobs": {"likes":["security","courtesan"],"dislikes":["maid","attendant"]},
           "body": {"bust":"large","height":"short","figure":"curvy"},
           "unique": {
@@ -427,7 +429,7 @@
               "bonus": {"security":1.3,"adventurer":1.2}
             }
           },
-          "bonds": {"nia":{"v":15,"note":"Former Torna comrades who still trade sharp barbs."}},
+          "bonds": {"nia":{"v":15,"kind":"comrades","note":"Former Torna comrades who still trade sharp barbs."}},
           "jobs": {"likes":["security","bartender"],"dislikes":["maid","host"]},
           "body": {"bust":"small","height":"average","figure":"average"},
           "unique": {
@@ -455,7 +457,7 @@
             "hairColor": "silver-white",
             "eyes": "amber-gold",
             "skin": "fair",
-            "features": "silver-white cat ears and three small red facial markings on her cheeks and nose bridge",
+            "features": "silver-white cat ears and three small white facial markings on her cheeks and nose bridge",
             "expression": "a sassy, snaggle-toothed grin"
           },
           "under": "sports",
@@ -478,13 +480,13 @@
             "sp_nia": {
               "label": "Awakened Blade form",
               "style": "Elegant",
-              "prompt": "a flowing translucent white and turquoise shrine-maiden leotard gown with gold filigree armor, long trailing ribbon sleeves and bare legs with gold anklets",
-              "hairStyle": "very long flowing locks reaching past her knees",
-              "hairColor": "silver-white with soft pink tips",
+              "prompt": "a flowing white, red and gold shrine-maiden leotard gown with gold filigree armor, long detached white-and-red ribbon sleeves and vibrant red boots",
+              "hairStyle": "two very long low twintails reaching past her knees bound with red shimenawa ropes",
+              "hairColor": "silver-white",
               "eyes": "bright golden with cat-like slit pupils",
               "features": "long tufted silver-white fox-like cat ears, a glowing turquoise-and-red Flesh Eater core crystal at her chest, and red facial markings",
               "replaceFeatures": true,
-              "favColor": "turquoise",
+              "favColor": "crimson",
               "accessories": "a ceremonial water-ether catalyst scimitar",
               "accState": "dressed",
               "bonus": {"bath":1.35,"courtesan":1.25}
@@ -494,7 +496,7 @@
             "pyra": {"v":55,"kind":"comrades","note":"Warm friends who tease each other endlessly in the kitchen."},
             "mythra": {"v":50,"kind":"comrades","note":"Sharp banter partners who always watch each other's backs."},
             "pneuma": {"v":55,"kind":"comrades","note":"Shares an unspoken closeness with both halves of the Aegis."},
-            "patroka": {"v":15,"note":"Former Torna comrades who still trade sharp barbs."}
+            "patroka": {"v":15,"kind":"comrades","note":"Former Torna comrades who still trade sharp barbs."}
           },
           "jobs": {"likes":["bath","attendant","security"],"dislikes":["madame"]},
           "body": {"bust":"small","height":"short","figure":"slim"},

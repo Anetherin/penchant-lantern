@@ -36,12 +36,13 @@
             "setting": "Sam's bedroom with a small fire lit, rain streaming down the window",
             "sam": true,
             "cloth": "partial",
-            "wear": "a soaked tunic hanging open and wet breeches clinging to her skin"
+            "wear": "a soaked blue slit dress hanging open at the shoulders"
           },
           "go": "Let her in",
           "goRes": "You strip off the rest of her wet clothes, pull her under your sheets, and fuck her until she's flushed, panting and warm all the way through, the storm forgotten.",
           "wait": "\"Dry off first.\"",
-          "waitRes": "\"Right. Practical.\" She huffs, though a grin tugs at her mouth. \"I'll dry by the fire—don't think I'm leaving your bed.\""
+          "waitRes": "\"Right. Practical.\" She huffs, though a grin tugs at her mouth. \"I'll dry by the fire—don't think I'm leaving your bed.\"",
+          "act": "missionary"
         },
         "jump": {
           "title": "Overdue Challenge",
@@ -88,7 +89,7 @@
         },
         "3": {
           "title": "A Night Without Vigil",
-          "text": "Rhea is waiting in her room with the candles lit low, her silver hair unbound and spilling past her waist over bare shoulders as her robe falls open. \"I have kept vigil for the faithful for six hundred years,\" she whispers, her hands trembling slightly on her sash. \"Tonight I wish to be nothing more than a woman thoroughly taken in bed. Will you stay?\"",
+          "text": "Rhea is waiting in her room with the candles lit low, her mint-green hair unbound and spilling past her waist over bare shoulders as her robe falls open. \"I have kept vigil for the faithful for over a thousand years,\" she whispers, her hands trembling slightly on her sash. \"Tonight I wish to be nothing more than a woman thoroughly taken in bed. Will you stay?\"",
           "image": {
             "comp": "sitting at the edge of a large bed in a loose robe, hands folded, a nervous but dignified smile",
             "setting": "elegant bedroom with soft candlelight and heavy curtains",
@@ -275,7 +276,8 @@
           "go": "Sit with her",
           "goRes": "You crawl into the nest of blankets beside her, wrap her up in your arms, and fuck her slowly, your cock sliding into her warm, wet pussy.",
           "wait": "\"Is this a lot to ask?\"",
-          "waitRes": "\"It is a great deal to give,\" she says gravely. \"Think on it—I will keep the nest warm.\""
+          "waitRes": "\"It is a great deal to give,\" she says gravely. \"Think on it—I will keep the nest warm.\"",
+          "act": "missionary"
         },
         "jump": {
           "title": "Spring Hare",
@@ -421,7 +423,8 @@
           "go": "Lean over and kiss her",
           "goRes": "Her eyes widen by a fraction before she grabs your collar, pulls you across the table corner, and kisses you with startling, thorough focus.",
           "wait": "\"Maybe later.\"",
-          "waitRes": "\"Understood.\" She turns the page, her quill hovering a beat too long. \"I will revise the schedule.\""
+          "waitRes": "\"Understood.\" She turns the page, her quill hovering a beat too long. \"I will revise the schedule.\"",
+          "act": "kiss"
         },
         "2": {
           "title": "Massage Hours",
@@ -622,7 +625,8 @@
           "go": "Hold her close",
           "goRes": "You pull her down into the sheets and slide your cock into her tight pussy, fucking her slowly until she clings to your neck with breathless cries and falls asleep curled across your chest.",
           "wait": "\"Let's take our time.\"",
-          "waitRes": "\"I've got a thousand years,\" Nowi grins softly, tugging your blanket over her shoulders, \"though I'd rather not wait that long!\""
+          "waitRes": "\"I've got a thousand years,\" Nowi grins softly, tugging your blanket over her shoulders, \"though I'd rather not wait that long!\"",
+          "act": "missionary"
         },
         "jump": {
           "title": "Pounce",
@@ -730,7 +734,7 @@
         },
         "3": {
           "title": "A Future of Her Own",
-          "text": "Lucina unbuckles Falchion and sets the scabbard across her chair—the furthest she has ever left her blade—before turning to you in a simple navy sleeping shift. The faint star-shaped mark in her left eye catches the candlelight as she lets the shift fall. \"My whole life belonged to history,\" she whispers, stepping into your arms. \"Tonight belongs to me, and I want to give it to you.\"",
+          "text": "Lucina unbuckles Falchion and sets the scabbard across her chair—the furthest she has ever left her blade—before turning to you in a simple navy sleeping shift. The faint Brand of the Exalt in her left eye catches the candlelight as she lets the shift fall. \"My whole life belonged to history,\" she whispers, stepping into your arms. \"Tonight belongs to me, and I want to give it to you.\"",
           "image": {
             "comp": "standing barefoot beside her bed with her sword set aside, navy hair loose over bare shoulders, brave tender smile",
             "setting": "bedroom by candlelight, sword resting on a chair",

@@ -150,7 +150,8 @@
           "go": "Approve the agenda",
           "goRes": "She unfastens your trousers and drops to her knees on the plush rug, wrapping her red lips and warm hands around your cock with smooth, unhurried mastery until you come.",
           "wait": "\"Let's finish the actual budget first.\"",
-          "waitRes": "Pauline laughs—rich and musical—and picks up her pen. \"Ten more minutes of numbers, then I'm adjourning us to the bedroom.\""
+          "waitRes": "Pauline laughs—rich and musical—and picks up her pen. \"Ten more minutes of numbers, then I'm adjourning us to the bedroom.\"",
+          "act": "oral_give"
         },
         "3": {
           "title": "After the Spotlight",
@@ -197,7 +198,8 @@
           "go": "Kiss her back",
           "goRes": "She lets out a happy little squeak against your mouth, hugging your neck tightly before beaming up at you. \"Gold star officially awarded!\"",
           "wait": "\"Don't fall off the crate!\"",
-          "waitRes": "\"I'm a master builder—my crates never wobble!\" Toadette giggles, hopping down into your arms anyway."
+          "waitRes": "\"I'm a master builder—my crates never wobble!\" Toadette giggles, hopping down into your arms anyway.",
+          "act": "kiss"
         },
         "2": {
           "title": "Blueprint for Two",

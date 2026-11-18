@@ -52,7 +52,7 @@
         "samus": {
           "job": "security",
           "name": "Samus Aran",
-          "race": "android",
+          "race": "human",
           "age": 28,
           "personality": "Stoic and blunt",
           "traits": ["Tough","Former Adventurer"],
@@ -61,7 +61,7 @@
           "fav": "cowgirl",
           "dislike": "manual_give",
           "lovers": "missionary",
-          "backstory": "A legendary galactic bounty hunter infused with ancient Chozo cybernetics and alien DNA, Samus has hunted apex predators across a dozen star systems and blown up half the planets she visited. Taking a rare shore leave in Hollowmere with her heavy Power Suit stored in sub-space, she guards the Lantern in her sleek Zero Suit and enjoys finally sleeping in a bed that isn't inside a gunship.",
+          "backstory": "A legendary galactic bounty hunter infused with ancient Chozo warrior genetics and alien DNA, Samus has hunted apex predators across a dozen star systems and blown up half the planets she visited. Taking a rare shore leave in Hollowmere with her heavy Power Suit stored in sub-space, she guards the Lantern in her sleek Zero Suit and enjoys finally sleeping in a bed that isn't inside a gunship.",
           "design": {
             "build": "Amazonian",
             "hairStyle": "long high ponytail with bangs framing her face",

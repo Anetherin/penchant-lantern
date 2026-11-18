@@ -62,9 +62,9 @@
       "events": {
         "1": {
           "title": "Imp No More",
-          "text": "Midna perches on the edge of the bar counter like it's her personal throne, crimson hair cascading down her back and a wicked smirk curving her lips. \"I was trapped as a tiny imp far too long—yet you never ignored me even then,\" she purrs, hooking her fingers into your hoodie strings and tugging you between her knees. \"I'm going to kiss you now; do try to look honored.\"",
+          "text": "Midna perches on the edge of the bar counter like it's her personal throne, flame-orange hair cascading down her back and a wicked smirk curving her lips. \"I was trapped as a tiny imp far too long—yet you never ignored me even then,\" she purrs, hooking her fingers into your hoodie strings and tugging you between her knees. \"I'm going to kiss you now; do try to look honored.\"",
           "image": {
-            "comp": "perched on the edge of a bar counter, long crimson hair, wicked amused smile, tugging his hoodie strings",
+            "comp": "perched on the edge of a bar counter, long hair, wicked amused smile, tugging his hoodie strings",
             "setting": "bar after hours, shimmering twilight light, empty stools",
             "sam": true
           },
@@ -96,16 +96,16 @@
             "cloth": "nude"
           },
           "go": "Choose her",
-          "goRes": "You climb onto the cushions and sink your cock deep into her pussy, Midna arching beneath you with breathless, unguarded cries as the twilight outside glows brighter.",
+          "goRes": "You climb onto the cushions and she straddles your hips, sinking down onto your cock with breathless, unguarded cries as the twilight outside glows brighter.",
           "wait": "\"Are you sure?\"",
           "waitRes": "\"Of course I am,\" Midna purrs—before adding softly, \"I like that you asked. I'll be waiting.\"",
-          "act": "missionary"
+          "act": "cowgirl"
         },
         "jump": {
           "title": "Impulse Control",
           "text": "Midna is mid-tease about a smudge on your hoodie when she stops, narrows her glowing eyes, and mutters, \"Oh, forget the grand seduction plan.\" Grabbing your collar, she slams you back against the hallway wall and kisses you hungrily while grinding her hips against yours.",
           "image": {
-            "comp": "grabbing his collar with a smug flushed grin, red hair tumbling, eyes bright",
+            "comp": "grabbing his collar with a smug flushed grin, hair tumbling, eyes bright",
             "setting": "upstairs hallway, a window showing twilight, lantern glow",
             "sam": true
           },
@@ -271,7 +271,8 @@
           "go": "Stay",
           "goRes": "Fierce and demanding at first before melting into breathless, clinging moans as you fuck her pussy, she admits quietly afterward that you're the finest haul of her life.",
           "wait": "\"Are you sure?\"",
-          "waitRes": "\"I wouldn't have asked if I wasn't,\" Nabooru smirks. \"Take the night to think—I'm not going anywhere.\""
+          "waitRes": "\"I wouldn't have asked if I wasn't,\" Nabooru smirks. \"Take the night to think—I'm not going anywhere.\"",
+          "act": "missionary"
         },
         "jump": {
           "title": "Quick Hands",
@@ -351,9 +352,9 @@
       "events": {
         "1": {
           "title": "Double Trouble",
-          "text": "Twinrova lounges across two barstools after closing, one braid radiating desert heat and the other frosting the rim of her glass. \"Four hundred years and we've never agreed on a man this fast,\" she purrs, crooked grin curving as she hooks a finger into your belt loop. \"Come closer, little boss—let's see if you prefer fire or ice.\"",
+          "text": "Twinrova lounges across two barstools after closing, one ponytail radiating desert heat and the other frosting the rim of her glass. \"Four hundred years and we've never agreed on a man this fast,\" she purrs, crooked grin curving as she hooks a finger into your belt loop. \"Come closer, little boss—let's see if you prefer fire or ice.\"",
           "image": {
-            "comp": "lounging across barstools with swirling fire and ice braids, glowing gold eyes, wicked sultry grin",
+            "comp": "lounging across barstools with swirling fire and ice ponytails, wicked sultry grin",
             "setting": "empty bar at night, frost and ember-glow on the counter",
             "sam": true
           },
@@ -377,9 +378,9 @@
         },
         "3": {
           "title": "Four Centuries Young",
-          "text": "Twinrova's room smells of desert incense and ozone, her gold jewelry gleaming against bare greenish-grey skin as she reclines across the bed with her elemental braids spilled over the pillows. \"Do you know how much magic it takes to stay this gorgeous?\" she murmurs, beckoning you with a crooked finger. \"Come make use of it before the night cools off.\"",
+          "text": "Twinrova's room smells of desert incense and ozone, her gold jewelry gleaming against bare greenish-grey skin as she reclines across the bed with her elemental ponytails spilled over the pillows. \"Do you know how much magic it takes to stay this gorgeous?\" she murmurs, beckoning you with a crooked finger. \"Come make use of it before the night cools off.\"",
           "image": {
-            "comp": "reclining naked on a bed with fire and ice braids spread across the pillows, gold jewelry gleaming, inviting smirk",
+            "comp": "reclining naked on a bed with fire and ice ponytails spread across the pillows, gold jewelry gleaming, inviting smirk",
             "setting": "bedroom lit by floating fire and ice wisps, desert curtains",
             "sam": true,
             "cloth": "nude"
@@ -387,7 +388,7 @@
           "go": "Join her",
           "goRes": "You climb between her thighs and drive your cock into her pussy, her body alternating between feverish heat and gasping shivers as you fuck her until you both cum.",
           "wait": "\"Try asking nicely first.\"",
-          "waitRes": "\"Nicely? At our age?\" She bursts out laughing, eyes glinting gold. \"Fine—please, little boss. Tomorrow night.\"",
+          "waitRes": "\"Nicely? At our age?\" She bursts out laughing, eyes glinting with fire and ice. \"Fine—please, little boss. Tomorrow night.\"",
           "act": "missionary"
         },
         "jump": {
