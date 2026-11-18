@@ -405,7 +405,7 @@
           "title": "Staying",
           "text": "Lara waits beside your bed in a sheer black nightdress with her long dark hair unbound, twisting her ponytail ribbon in pale fingers and her plum lipstick wiped clean. \"If I share your bed tonight, it's because I ache for you—not because I'm scared of sleeping alone,\" she whispers, letting the black straps slide off her shoulders.",
           "image": {
-            "comp": "standing by his bed with her long dark hair loose, holding a black ribbon, looking steadily at him",
+            "comp": "standing by his bed with her long hair loose, holding a black ribbon, looking steadily at him",
             "setting": "his bedroom, moonlight through the window",
             "sam": true,
             "cloth": "dressed",
@@ -512,7 +512,7 @@
           "title": "Final Round",
           "text": "Ella waits in your bedroom beside an ivory chessboard and two glasses of wine, her blouse unbuttoned low in the firelight. Before you can touch a piece, she tips her own king over with one slender finger. \"I forfeit,\" she whispers, her usual poised gaze wavering with sudden heat as she holds out her hand.",
           "image": {
-            "comp": "standing beside a chessboard with a toppled king, one hand extended toward him, bright blue eyes steady",
+            "comp": "standing beside a chessboard with a toppled king, one hand extended toward him, eyes steady",
             "setting": "his bedroom, candlelight, chessboard on a low table",
             "sam": true,
             "cloth": "partial",
@@ -548,7 +548,7 @@
           "title": "Unlogged",
           "text": "Ione sits on the edge of your bed with immaculate posture, the Lantern Keeper's diary shut on the nightstand and her temple glowing soft gold in the dim light as she unfastens her dress. \"I have disabled my memory archive for the night,\" she says softly, holding out her hand. \"Everything we do belongs solely to us.\"",
           "image": {
-            "comp": "sitting on the edge of his bed with her hand held out to him, silver hair catching candlelight, a steady gold glow at her temple",
+            "comp": "sitting on the edge of his bed with her hand held out to him, hair catching candlelight, a steady gold glow at her temple",
             "setting": "his bedroom, candlelight",
             "sam": true
           },

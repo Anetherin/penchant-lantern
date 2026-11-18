@@ -24,7 +24,7 @@
         }
       ],
       "image": {
-        "comp": "crouching on a low shed roof with her back against a chimney, cloak around her knees, grey wolf ears pricked, amber eyes watching him warily, a skinned rabbit laid on a cloth on the doorstep below",
+        "comp": "crouching on a low shed roof with her back against a chimney, cloak around her knees, wolf ears pricked, eyes watching him warily, a skinned rabbit laid on a cloth on the doorstep below",
         "setting": "a rear yard at dawn, woodshed roof, a door with a rabbit laid out on a cloth",
         "sam": true
       }
@@ -54,7 +54,7 @@
         }
       ],
       "image": {
-        "comp": "crouching in damp forest mud pointing at an animal track, looking back over her shoulder at him with dry patient amusement, grey wolf ears and tail, a pale scar on her left forearm",
+        "comp": "crouching in damp forest mud pointing at an animal track, looking back over her shoulder at him with dry patient amusement, wolf ears and tail, a pale scar on her left forearm",
         "setting": "misty woodland edge at morning, bracken and wet leaves",
         "sam": true
       }
@@ -84,7 +84,7 @@
             }
           ],
           "image": {
-            "comp": "sitting in the bath turning her bare scarred back to the viewer, scarred forearm on the rim, wet grey hair down, ears flat, braced stillness",
+            "comp": "sitting in the bath turning her bare scarred back to the viewer, scarred forearm on the rim, wet hair down, ears flat, braced stillness",
             "towel": true,
             "sam": true
           }
@@ -148,7 +148,7 @@
         }
       ],
       "image": {
-        "comp": "sitting in a steaming wooden bath with her back against the tiled wall, wet grey hair down over her shoulders, wolf ears damp and pointed at the door, a pale scar across her left forearm resting on the rim",
+        "comp": "sitting in a steaming wooden bath with her back against the tiled wall, wet hair down over her shoulders, wolf ears damp and pointed at the door, a pale scar across her left forearm resting on the rim",
         "setting": "steamy tiled bathhouse, one lamp, a door in view",
         "sam": false,
         "towel": true
@@ -224,7 +224,7 @@
         }
       ],
       "image": {
-        "comp": "standing on a rooftop ridge under an enormous full moon, loose grey hair, tail lashing, amber eyes bright, holding out one hand to him, restless and wild",
+        "comp": "standing on a rooftop ridge under an enormous full moon, loose hair, tail lashing, eyes bright, holding out one hand to him, restless and wild",
         "setting": "tiled rooftop ridge at night under a huge full moon, sleeping town below",
         "sam": true
       }

@@ -32,7 +32,7 @@
           "title": "Out of the Rain",
           "text": "A thunderstorm finally drives Lyn off the roof. She shows up in your doorway soaked to the skin, her wet clothes clinging to every curve, scowling at the ceiling like it's a personal insult. \"Don't say a word—I'm not used to sleeping indoors.\" She hovers, dripping, before peeling off her soaked tunic and baring her chest in the firelight. \"I'm not spending the night alone, Sam. Make room.\"",
           "image": {
-            "comp": "standing in a doorway wet from rain, green ponytail dripping, awkward but earnest expression",
+            "comp": "standing in a doorway wet from rain, ponytail dripping, awkward but earnest expression",
             "setting": "Sam's bedroom with a small fire lit, rain streaming down the window",
             "sam": true,
             "cloth": "partial",
@@ -371,7 +371,7 @@
           "title": "A Princess Off Duty",
           "text": "Eirika asks you to walk with her through the evening market—not as royalty, just as an ordinary woman. By the quiet canal edge, hair loose and cheeks flushed from chasing a runaway paper lantern, she catches your hands and pulls them to her waist. \"Is this what it's like to just be a person?\" she whispers, leaning into you in the shadows.",
           "image": {
-            "comp": "standing at a canal edge with hair loose, laughing, flushed with delight",
+            "comp": "standing at a canal edge with her hair loose, laughing, flushed with delight",
             "setting": "evening market by a canal with paper lanterns and warm lights",
             "sam": true
           },
@@ -533,7 +533,7 @@
           "title": "Three Thousand Springs",
           "text": "You find Tiki half-asleep on the sunny veranda rail, her long emerald ponytail draped over her lap. Opening one green eye as you bring a blanket, she catches your sleeve with a warm, drowsy smile. \"Whenever I close my eyes for too long, the people I care for are gone when I wake,\" she murmurs, sitting up closer to you. \"Kiss me, Sam, so I know I'm wide awake right now.\"",
           "image": {
-            "comp": "sitting on a sunny veranda rail holding his sleeve, long emerald ponytail over her shoulder, warm sleepy smile",
+            "comp": "sitting on a sunny veranda rail holding his sleeve, long ponytail over her shoulder, warm sleepy smile",
             "setting": "sunlit veranda with hanging lanterns and afternoon warmth",
             "sam": true
           },
@@ -559,7 +559,7 @@
           "title": "No More Sleeping",
           "text": "Tiki slips into your bedroom at midnight with her golden tiara set aside and her emerald hair spilling loose down her bare back, letting her crimson dress pool at her feet. \"I spent centuries asleep because waking hurt too much,\" she whispers, climbing into your lap on the edge of the mattress. \"Tonight I don't want to sleep a single wink. Make me yours.\"",
           "image": {
-            "comp": "kneeling naked on his bed with her long green hair loose over her shoulders, tender unguarded smile",
+            "comp": "kneeling naked on his bed with her long hair loose over her shoulders, tender unguarded smile",
             "setting": "Sam's bedroom by warm candlelight",
             "sam": true,
             "cloth": "nude"
@@ -591,7 +591,7 @@
           "title": "Shiny Things",
           "text": "Nowi spreads her collection of shiny pebbles, brass buttons, and glass beads across your desk, then points straight at your face. \"You're my favorite thing in the house, Sam, and you don't fit in my treasure box,\" she declares, leaning over the desk on her elbows with bright pink-violet eyes. \"So I decided I'm going to kiss you to mark you as mine instead!\"",
           "image": {
-            "comp": "leaning across a desk covered in shiny trinkets, long blonde-to-green wavy hair, bright playful grin",
+            "comp": "leaning across a desk covered in shiny trinkets, long wavy hair, bright playful grin",
             "setting": "Sam's office desk, scattered glass beads and warm lamplight",
             "sam": true
           },
@@ -649,7 +649,7 @@
           "title": "Love Hex",
           "text": "You catch Tharja behind the parlor pillar with an open dark tome and a strand of your hair wound around her finger. Instead of hiding it, she steps out into the lamplight, dark violet eyes locked on yours beneath her blunt bangs. \"The hex was supposed to make you come to me,\" she murmurs in a low, husky voice. \"Since you're already here, hold still while I test the side effects.\"",
           "image": {
-            "comp": "stepping out from behind a pillar with a dark tome held to her chest, dark eyes fixed on him, sly flushed smile",
+            "comp": "stepping out from behind a pillar with a dark tome held to her chest, eyes fixed on him, sly flushed smile",
             "setting": "dim parlor corner, flickering candle sconces",
             "sam": true
           },
@@ -677,7 +677,7 @@
           "title": "Body and Soul",
           "text": "Tharja stands at the foot of your bed at midnight with her tome left behind and her black hair falling loose around her bare shoulders, peeling off the sheer mesh until she stands completely naked in the candlelight. \"No hexes tonight, Sam,\" she whispers, her voice trembling with raw honesty. \"You already have all of me—take the rest.\"",
           "image": {
-            "comp": "standing naked at the foot of a candlelit bed, long black hair loose, dark eyes intense and vulnerable",
+            "comp": "standing naked at the foot of a candlelit bed, long hair loose, eyes intense and vulnerable",
             "setting": "Sam's bedroom at midnight, flickering candlelight",
             "sam": true,
             "cloth": "nude"
@@ -691,7 +691,7 @@
           "title": "No More Watching",
           "text": "You turn into the linen alcove and find Tharja right behind you, kicking the door shut and pinning you against the shelves with a fierce blush across her pale cheeks. \"I've watched three different women laugh with you today and I'm out of patience,\" she hisses, grabbing your belt. \"Look at me instead.\"",
           "image": {
-            "comp": "pinning him against shelves in a dim alcove, pale cheeks flushed, dark eyes blazing with possessive heat",
+            "comp": "pinning him against shelves in a dim alcove, pale cheeks flushed, eyes blazing with possessive heat",
             "setting": "dim linen alcove, closed door behind her",
             "sam": true
           },

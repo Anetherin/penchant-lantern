@@ -7,29 +7,30 @@
       "events": {
         "1": {
           "title": "Noblesse Oblige",
-          "text": "Etiquette lessons take place in the faded ballroom, afternoon light slanting through tall windows as dust motes drift in the gold. Seraphine has drilled you on court bows for an hour, her signet ring glinting on her glove. \"A lord kisses a lady's hand like so.\" You oblige. \"Adequate.\" Yet she refuses to withdraw her fingers, lifting her chin in that proud, terrified way with cheeks flushed crimson. \"Now—not the hand.\"",
+          "text": "Etiquette lessons take place in the faded ballroom, afternoon light slanting through tall windows as dust motes drift in the gold. Seraphine has drilled you on court bows, posture, and the precise tilt of a wine glass for an hour, her signet ring glinting on her glove every time she corrects your wrist. \"A lord kisses a lady's hand like so—without slobbering on the silk.\" You oblige, brushing your lips across her knuckles. \"Adequate.\" Yet she refuses to withdraw her fingers, her pulse jumping under the thin glove as she lifts her chin in that proud, terrified way with cheeks flushed crimson. \"Now—not the hand.\"",
           "image": {
             "comp": "standing in a faded grand hall, holding out her gloved hand to him, chin raised, cheeks pink",
             "setting": "dusty ballroom of an old castle, tall windows, afternoon light",
             "sam": true
           },
           "go": "\"Not the hand.\"",
-          "goRes": "\"...Acceptable,\" Seraphine breathes against your mouth, her gloved fingers gripping your sleeve tightly as you deepen the kiss beneath the scandalized portraits of her Rosenhal ancestors.",
+          "goRes": "\"...Acceptable,\" Seraphine breathes against your mouth, her gloved fingers gripping your sleeve tightly as you step inside her guard and deepen the kiss beneath the scandalized oil portraits of her Rosenhal ancestors.",
           "wait": "Kiss her hand again",
-          "waitRes": "\"Coward.\" She sweeps toward the door in a rustle of silk skirts, spine straight—yet at the threshold you catch her smile, the hand you kissed pressed over her heart."
+          "waitRes": "\"Coward.\" She sweeps toward the door in a sharp rustle of silk skirts, spine straight—yet at the threshold you catch her quick, sideways smile, the hand you kissed pressed flat over her heart."
         },
         "3": {
           "title": "The Rosenhal Bed",
-          "text": "The castle's great bedchamber is chilly in the corners and warm near the hearth. Seraphine stands beside the four-hundred-year-old carved oak Rosenhal bed, one hand steadying herself on a bedpost as her pale gold hair spills unbound over bare shoulders for the first time. Letting her gown drop to the stone floor, her voice trembles slightly. \"Every Rosenhal was miserable in this bed—give it one good memory tonight.\"",
+          "text": "The castle's great bedchamber is chilly in the corners and warm near the hearth, where logs pop and throw amber light across faded tapestries. Seraphine stands beside the four-hundred-year-old carved oak Rosenhal bed, one hand steadying herself on a bedpost as her pale gold hair spills unbound over bare shoulders for the first time since you met her. She unlaces her gown without looking away from you, letting the heavy silk drop to the stone floor in a pooling whisper, her voice trembling slightly around the edge of her pride. \"Every Rosenhal was miserable in this bed—arranged marriages, cold sheets, duty without heat. Give it one good memory tonight.\"",
           "image": {
             "comp": "standing beside an enormous antique four-poster bed, proud chin, blushing, letting her hair down",
             "setting": "grand castle bedchamber, faded tapestries, firelight",
-            "sam": true
+            "sam": true,
+            "cloth": "nude"
           },
           "go": "Give it a good memory",
-          "goRes": "She exhales a breath she's held since her house fell, letting you lay her back naked onto the antique sheets and push your cock deep into her tight, soaking pussy, fucking her until the carved oak headboard knocks in the firelight.",
+          "goRes": "She exhales a breath she's held since her house fell, letting you lay her back naked onto the antique sheets and push your cock deep into her tight, soaking pussy, fucking her with slow, steady strokes until the carved oak headboard knocks in the firelight and she clings to your shoulders.",
           "wait": "\"You deserve more than a commoner.\"",
-          "waitRes": "\"I decide what I deserve.\" Her voice wavers as her signet ring flashes in the firelight. \"Ask me again once you stop being an idiot.\"",
+          "waitRes": "\"I decide what I deserve, not you and certainly not my dead cousins.\" Her voice wavers as her signet ring flashes in the firelight. \"Ask me again once you stop being an idiot.\"",
           "act": "missionary"
         }
       }
@@ -89,29 +90,30 @@
       "events": {
         "1": {
           "title": "Something in the Dark",
-          "text": "Midnight patrol at Hollowmere Manor means a swinging lantern, a pouch of salt, and Ines gripping your sleeve hard enough to bruise. When a shrieking white figure lunges out of the shadows—only for Vesper to burst out giggling—Ines tackles you flat onto the floorboards, landing squarely on top of you with her chest heaving and the pale scar along her jaw flushed. Neither of you moves before she slams her mouth onto yours.",
+          "text": "Midnight patrol at Hollowmere Manor means a swinging lantern, a heavy pouch of rock salt, and Ines gripping your sleeve hard enough to bruise whenever a floorboard settles. She swears the east wing has a draft that doesn't belong to any window, and she's been muttering exorcism wards under her breath for twenty minutes. When a shrieking white figure lunges out of the shadows—only for Vesper to burst out giggling mid-swoop—Ines reacts on pure hunter instinct and tackles you flat onto the floorboards. She lands squarely on top of you with her chest heaving, knees pinning your hips, and the pale scar along her jaw flushed dark. Neither of you moves for a beat before she slams her mouth onto yours.",
           "image": {
             "comp": "sprawled on top of him on a dark manor floor, lantern rolling away, startled then determined",
             "setting": "dark manor corridor at midnight, a fallen lantern, a faint ghostly glow",
             "sam": true
           },
           "go": "Stay right there",
-          "goRes": "Down the corridor, Vesper lets out a delighted cheer—and Ines, flushed and fierce, tosses a pinch of salt over her shoulder without breaking the kiss.",
+          "goRes": "Down the corridor, Vesper lets out a delighted cheer and drifts tactfully through a wall—and Ines, flushed and fierce, tosses a pinch of salt over her shoulder without breaking the kiss or shifting off your lap.",
           "wait": "\"I think the ghost's gone.\"",
-          "waitRes": "\"Right—ghost.\" She scrambles upright, brushing her knees with scarlet ears. \"Patrol continues separately—and breathe a word of this to Vesper and you're dead.\""
+          "waitRes": "\"Right—ghost. False alarm.\" She scrambles upright, brushing dust off her knees with scarlet ears. \"Patrol continues separately—and breathe a word of this to Vesper and you're dead.\""
         },
         "3": {
           "title": "Salt Circle",
-          "text": "A neat white ring of salt encircles your bedframe, and Ines kneels inside it clutching the pouch in one fist while candlelight glints off her black bob and silver earrings. Closing the final gap in the line with her fingers, her serious expression breaks into a wicked, heated grin as she tugs her shirt over her head. \"Protection—nobody gets in or out until morning.\"",
+          "text": "A neat white ring of salt encircles your bedframe from headboard to footboard, and Ines kneels right inside it clutching the half-empty pouch in one fist while candlelight glints off her silver earrings. She checks both corners with a hunter's habit, then closes the final gap in the line with her bare fingers. The moment the circle seals, her serious expression breaks into a wicked, heated grin and she tugs her shirt up over her head, tossing it onto the salt. \"Standard protective ward—nothing gets in, and nobody gets out until morning.\"",
           "image": {
             "comp": "kneeling inside a circle of salt around a bed, holding a salt pouch, sly heated grin",
             "setting": "candlelit manor bedroom, salt circle on the floorboards",
-            "sam": true
+            "sam": true,
+            "cloth": "partial"
           },
           "go": "\"Nobody?\"",
-          "goRes": "You pull her naked onto the mattress inside the salt circle and fuck her hard—and when a ghost rattles the wall in protest, Ines yells back breathlessly between gasps to mind its own haunting.",
+          "goRes": "You pull her naked onto the mattress inside the salt circle and fuck her hard, her legs locking around your waist—and when a curious ghost rattles the wainscoting in protest, Ines yells back breathlessly between gasps to mind its own haunting.",
           "wait": "\"What about bathroom breaks?\"",
-          "waitRes": "She laughs hard enough to smudge the salt line with her knee. \"Fine—bathroom breaks. Next week I'm redrawing it, and you're holding the salt.\""
+          "waitRes": "She laughs hard enough to smudge the salt line with her knee, ruining the ward completely. \"Fine—bathroom breaks. Next week I'm redrawing it, and you're holding the salt.\""
         }
       }
     },
@@ -122,16 +124,16 @@
       "events": {
         "3": {
           "title": "Rent Is Due",
-          "text": "You have been sent for. The note said only 'my office', and it had a time on it.\n\nHer office in the Underdistrict hasn't changed. There are bowls of gold sovereigns on every flat surface, which she keeps the way other people keep flowers. The lamps are crimson. The air is thick with cedar smoke.\n\nVharra is lying along a velvet chaise with an enormous ledger open across her bare thighs. The lamplight is on her four horns and all the gold in them. She doesn't look up until she has finished the line she is writing.\n\n\"I've been going over your account,\" she says. \"You've been living in my head for weeks, Sam. You take up a great deal of room. You have never paid me a copper for it.\" She crooks one clawed finger at you. Her emerald eyes are very bright. \"Rent is due.\"",
+          "text": "You have been sent for. The note said only 'my office', sealed in crimson wax, and it had an exact time on it—two minutes before midnight.\n\nHer office in the Underdistrict hasn't changed. There are shallow brass bowls of gold sovereigns on every flat surface, which she keeps the way other people keep cut flowers. The lamps burn crimson behind smoked glass, and the air is thick with cedar smoke and expensive ink.\n\nVharra is lying along a velvet chaise with an enormous leather-bound ledger open across her bare thighs, one ankle hooked casually over the armrest. The lamplight catches her four curling horns and every gold ring pierced through them. She doesn't look up until she has finished the line she is writing, inked it dry, and blotted the page.\n\n\"I've been going over your account,\" she says, tapping the nib against her lower lip. \"You've been living in my head for weeks, Sam. You take up a great deal of room, and you have never paid me a single copper for the lease.\" She shuts the ledger with a soft thud and crooks one clawed finger at you, her slit-pupil eyes bright and wicked in the red glow. \"Rent is due.\"",
           "image": {
             "comp": "lounging on a velvet chaise with a huge ledger across her thighs, crooking a finger at him, greedy delighted smile",
             "setting": "opulent underground office, gold coins, red lamplight",
             "sam": true
           },
           "go": "Pay in full",
-          "goRes": "Vharra lets out a low, throaty laugh—\"Interest accrues from the moment you stepped inside\"—hauling you onto the chaise by your lapels, kicking the ledger onto the floor, and riding your cock mercilessly until you cum and have paid every copper.",
+          "goRes": "Vharra lets out a low, throaty laugh—\"Interest accrues from the moment you stepped inside, landlord's rules\"—hauling you onto the chaise by your lapels, kicking the heavy ledger onto the rug, and riding your cock mercilessly until your hips lock, you cum deep inside her, and you have paid every last copper.",
           "wait": "\"I'd like a payment plan.\"",
-          "waitRes": "\"Everybody asks for one.\" Tapping her pen against her teeth with glittering eyes, she scribbles in the margin. \"Late fee applied—and I do love collecting.\"",
+          "waitRes": "\"Everybody asks for one, and nobody ever reads the fine print.\" Tapping her pen against her teeth with glittering eyes, she scribbles a new figure in the margin. \"Late fee applied—and I do love collecting in person.\"",
           "act": "cowgirl"
         }
       }

@@ -263,7 +263,7 @@
           "scene": "sam_date",
           "text": "The two moons have laid bars of silver across the parlor rug. You are reading in the armchair when the page goes cold under your thumb, and Vesper comes down out of the rafters. She lets her skirts settle around her on the floor, right at your knees. You can see the pattern of the rug through them.\n\n\"Three hundred years of quiet have made me greedy,\" she murmurs. She puts a cool fingertip to your jaw and follows it down to the pulse in your throat, and stops there. You feel a little of your warmth go out into her hand, and her fingers turn almost solid. \"Greedy for this. Everyone in town flinches when I reach for them. You never have. You didn't even on the first night.\"\n\nHer pale violet eyes are very bright. She doesn't take her hand away.\n\n\"I'd like to be warm all the way through tonight, darling. If you can spare it.\"",
           "image": {
-            "comp": "kneeling on the floor at his knees in a pool of sheer skirts, cool fingertip at his jaw, translucent fingers turning solid, bright pale violet eyes",
+            "comp": "kneeling on the floor at his knees in a pool of sheer skirts, cool fingertip at his jaw, translucent fingers turning solid, bright eyes",
             "setting": "moonlit parlor with bars of silver moonlight across the rug at Hollowmere Manor"
           }
         }
@@ -692,7 +692,7 @@
       "title": "Off the Blueprint",
       "scene": "portrait",
       "image": {
-        "comp": "reclining gracefully on a humming acoustic velvet divan under soft amber sconce light, poised warm smile, cyan-gold eyes steady",
+        "comp": "reclining gracefully on a humming acoustic velvet divan under soft amber sconce light, poised warm smile, eyes steady",
         "setting": "private showcase suite inside The Clockwork Atelier",
         "sam": true
       },
