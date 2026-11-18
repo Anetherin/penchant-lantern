@@ -342,7 +342,7 @@ function spiritPairShift(h, W, R){
     moodAdd(w, 4); moodAdd(o, 4); lewdUp(w, 0.8, 95); lewdUp(o, 0.8, 95); addBond(w, o, S0.pairBond ?? 10);
     const pLine = A && A.pair && A.pair.futa && A.pair.futa.length ? pick(A.pair.futa).replace(/\{name\}/g, o.name).replace(/\{partner\}/g, w.name) : '';
     const text = [flavor('spirit_pair_futa', w, {other: o.name}), pLine].filter(Boolean).join(' ');
-    R.hl.push({wid:w.id, text, act, scene:`pair:${act}:futa:${o.id}`, pairFuta:true, spiritFuta:true});
+    R.hl.push({wid:w.id, text, act, scene:`pair:${act}:selffuta:${o.id}`, pairFuta:true, spiritFuta:true});
   });
 }
 // After a service that didn't satisfy her (built lust or left her frustrated), a willing lady may propose escalating to a finishing/lust-spending service.

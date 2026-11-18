@@ -98,8 +98,8 @@ const actSkill = (w,id) => (w.acts&&w.acts[actKey(id)]) ? w.acts[actKey(id)].ski
 // Scene keys can carry extras after the base: 'act:oral_give~lost_in_it~prop' (~expression, ~context). sceneParts splits them.
 function sceneParts(k){ const p = String(k||'').split('~'); return {base:p[0], expr:p[1]||'', ctx:p[2]||''}; }
 const sceneBase = k => sceneParts(k).base;
-const isSvcScene = k => /^(act:|samact:|duo:|pair:|demo:|orgy:|solo$)/.test(sceneBase(k));
-const isIntimateScene = k => isSvcScene(k) || sceneBase(k)==='sam_spirit_futa';
+const isSvcScene = k => /^(act:|samact:|duo:|pair:|demo:|orgy:|solo$|sam_spirit_futa$|spirit_futa$)/.test(sceneBase(k));
+const isIntimateScene = isSvcScene;
 // Swim scenes (dates.json image "swim": true): she wears an owned bath-compatible outfit (swimsuit first), if she has one.
 function swimOutfit(w, scene){
   if(!isSwimScene(scene)) return null;
@@ -317,6 +317,7 @@ function defaultCloth(w, scene){
   if(base.startsWith('pair:')) return actCloth(w, base.split(':')[1], false);
   if(base==='solo') return comfortCloth(w, false, true);
   if(base==='sam_spirit_futa') return comfortCloth(w, true, true);
+  if(base==='spirit_futa') return comfortCloth(w, false, true);
   if(base.startsWith('orgy:')) return comfortCloth(w, true, true);
   // invitations and the like (scenes.json / dates.json image "undress": "partial" | "under"): as far as that, within her comfort with Sam
   const U = (SCENES[base]||{}).undress;

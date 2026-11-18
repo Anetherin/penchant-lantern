@@ -211,7 +211,7 @@ function spiritSamPair(id, oid, act, free){
   const pLine = A && A.pair && A.pair.futa && A.pair.futa.length ? pick(A.pair.futa).replace(/\{name\}/g, o.name).replace(/\{partner\}/g, w.name) : '';
   const open = flavor('spirit_pair_futa', w, {other:o.name});
   const text = `${[open, pLine].filter(Boolean).join('\n\n')}\n\n${w.name} & ${o.name}: Bond + · Trust + · Mood + · Lust −${ldW} / −${ldO}`;
-  const scene = `pair:${act}:futa:${o.id}`;
+  const scene = `pair:${act}:selffuta:${o.id}`;
   checkUnlocks(); save(); render(); closeModal();
   showResult(`${w.name} & ${o.name}`, text, w.id, scene, {kind:'private', act, with:o.id, scene, forSam:true, spiritFuta:true});
 }

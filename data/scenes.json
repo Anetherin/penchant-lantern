@@ -9,7 +9,8 @@
     "people: head-count tags that open every intimate image prompt (client = her with a client, pov = with Sam, duo = two ladies with Sam, solo = alone). Intimate prompts lead with these and the pose, then her description, so the pose isn't lost at the end of a long prompt.",
     "demoRoom: where Sam's demonstrations happen (scene demo:<service>); people.demo opens their prompts. The man in them is Sam (SAM_DESC).",
     "orgy: Sam's group nights (scene orgy:<lady ids>). people.orgy opens the prompt ({n} = number of women), orgyPose = poses (one is picked), orgyRoom = setting. The first lady is described in full, the others briefly.",
-    "people.pair_fem / pair_futa: head-count tags for two women together (scene pair:<service>:<fem|futa>:<other id>, the second woman described after the first; poses from services.json image.fem / image.futa)."
+    "people.pair_fem / pair_futa: head-count tags for two women together (scene pair:<service>:<fem|futa>:<other id>, the second woman described after the first; poses from services.json image.fem / image.futa).",
+    "sam_spirit_futa / spirit_futa: a spirit alone with the cock she borrowed by reverse possession (from Sam / from a client); the man isn't in the picture. Scenes can set people (a people key, e.g. solo_futa) to pick their head-count tags. futaPhrase: added to the futanari's description in two-women futa scenes (pair:...:futa / selffuta)."
   ],
   "scenes": {
     "portrait": {"label":"Portrait","comp":"upper body portrait, looking at viewer","setting":"warm softly blurred background"},
@@ -90,9 +91,8 @@
     },
     "sam_spirit_futa": {
       "label": "Reverse possession with Sam",
-      "sam": true,
-      "pov": true,
-      "comp": "futanari spirit sitting upright on the bed keeping her female body with an erect cock between her thighs while a man watches from the edge of the bed, pov",
+      "people": "solo_futa",
+      "comp": "sitting back on the bed, legs spread, stroking her own erect penis with one hand, the other hand on her breast, masturbating, looking down at it with a wicked grin",
       "setting": "Sam's modest bedroom lit by a single lantern"
     },
     "sam_training": {
@@ -180,6 +180,13 @@
       "undress": "under",
       "comp": "standing in her half-open bedroom door at night, looking back at the viewer over her shoulder, inviting him in with a soft smile",
       "setting": "dim bedroom doorway, warm candlelight spilling into the hallway"
+    },
+    "spirit_futa": {
+      "label": "Reverse possession (client)",
+      "people": "solo_futa",
+      "house": true,
+      "comp": "kneeling on the bed, stroking her own erect penis with both hands, masturbating, flushed and grinning",
+      "setting": "a candlelit client room"
     }
   },
   "rooms": [
@@ -202,7 +209,8 @@
     "demo": "1girl, 1boy, hetero, audience, multiple girls watching in the background",
     "orgy": "{n}girls, 1boy, group sex, hetero, pov",
     "pair_fem": "2girls, yuri",
-    "pair_futa": "2girls, futanari, futa with female"
+    "pair_futa": "2girls, futanari, futa with female",
+    "solo_futa": "1girl, solo, futanari, erect penis"
   },
   "demoRoom": "a candlelit parlor in the pleasure house, the other women watching from cushions and couches around them",
   "orgyRoom": "a large bed piled with cushions in a lantern-lit room, sheets everywhere",
@@ -210,5 +218,6 @@
     "the women crowded around the viewer on the bed, tangled together, pov, looking at the viewer",
     "one riding the viewer while the others kiss and touch her and him, pov",
     "the women lying in a heap on the bed reaching for the viewer, pov"
-  ]
+  ],
+  "futaPhrase": "erect penis, futanari"
 }

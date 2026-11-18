@@ -110,10 +110,12 @@ function buildPrompt(w, sceneKey, cloth){
   // intimate scenes lead with who is in the picture and what they're doing: image models weigh the start of a prompt most, and a long
   // description first lets the pose drift to whatever the model draws most often
   if(svc){
-    const n = sceneBase(sceneKey).startsWith('orgy:') ? (PP.orgy||'').replace('{n}', sceneBase(sceneKey).slice(5).split(',').length) : sceneBase(sceneKey).startsWith('duo:') ? PP.duo : sceneBase(sceneKey).startsWith('pair:') ? (PP['pair_' + sceneBase(sceneKey).split(':')[2]] || PP.pair_fem) : sceneBase(sceneKey).startsWith('demo:') ? PP.demo : sc.pov ? PP.pov : sc.client ? PP.client : PP.solo;
+    const n = sc.people ? PP[sc.people] : sceneBase(sceneKey).startsWith('orgy:') ? (PP.orgy||'').replace('{n}', sceneBase(sceneKey).slice(5).split(',').length) : sceneBase(sceneKey).startsWith('duo:') ? PP.duo : sceneBase(sceneKey).startsWith('pair:') ? (PP['pair_' + sceneBase(sceneKey).split(':')[2].replace('selffuta','futa')] || PP.pair_fem) : sceneBase(sceneKey).startsWith('demo:') ? PP.demo : sc.pov ? PP.pov : sc.client ? PP.client : PP.solo;
     const duo = /^(duo|pair|orgy):/.test(sceneBase(sceneKey));   // a duo's "client" is the second woman's full description: it goes after hers
     parts.push(n, sc.pov && "first-person POV, from the viewer's perspective", !duo && sc.client, sc.comp, sc.snip && getSnippet(sc.snip), sc.snip2 && getSnippet(sc.snip2));
-    parts.push(charDesc(w, cloth, sceneKey), clothes, duo && sc.client, sc.expr, sc.setting);
+    // her block (label, look, clothes, extra, expression) stays together so the expression isn't read as the other woman's
+    const me = [(sc.selfTag ? sc.selfTag + ': ' : '') + charDesc(w, cloth, sceneKey), clothes, sc.selfExtra, sc.expr].filter(Boolean).join(', ');
+    parts.push(...(duo && sc.otherFirst ? [sc.client, me] : [me, duo && sc.client]), sc.setting);
     if(sc.pov) parts.push(getSnippet('pov'));
     return cleanText(stripTodo(parts.filter(Boolean).join(', ')));
   }

@@ -47,9 +47,10 @@ function samCtxSetting(ctx, h){
   if(ctx==='chapel') return (SCENE_DATA.chapelSetting || 'candlelit chapel vestry') + hs;
   return null;
 }
-function svcExpr(w, id, P, withSam){
+// noAct: leave out the service's own expression lines (snippets.json, written for scenes with a man), e.g. for two women together
+function svcExpr(w, id, P, withSam, noAct){
   const e = (P && P.expr) || (w && typeof exprFor==='function' ? exprFor(w, id, id ? (withSam ? samStance(w,id)==='ask' : clientStance(w,id)==='ask') : false) : '');
-  return exprText(e, id);
+  return exprText(e, noAct ? null : id);
 }
 function sceneInfo(k, w){
   const h = w && S ? houseOf(w) : null, HD = h ? HOUSES[h.id] : null, P = sceneParts(k); k = P.base;
@@ -67,10 +68,18 @@ function sceneInfo(k, w){
     return {label:'Sam & two: '+actLabel(id), pov:true, sam:true, comp:[actPose(id,'duo'), SCENE_DATA.duoPhrase, D.prompt].filter(Boolean).join(', '),
       setting:SCENE_DATA.samRoom, snip:'act_'+id, snip2:'duo', expr:svcExpr(w, id, P, true),
       client: o ? (()=>{ const oc = defaultCloth(o, 'samact:'+id); return `the second woman: ${charDesc(o, oc, 'samact:'+id)}, ${clothText(o, oc, 'samact:'+id).replace(/\{pubic\}/g, pubicText(o, 'samact:'+id))}`; })() : ''}; }
-  // two women together (the goddess with a lady): pair:<service>:<fem|futa>:<other id>; poses from services.json image.fem / image.futa
-  if(k.startsWith('pair:')){ const [, id, mode, oid] = k.split(':'), o = findAny(oid);
-    return {label:'Two women: '+actLabel(id), comp:actPose(id, mode==='futa' ? 'futa' : 'fem'), setting:ROOM_SETTING(h), snip:'act_'+id, expr:svcExpr(w, id, P, true),
-      client: o ? (()=>{ const oc = defaultCloth(o, k); return `the other woman: ${charDesc(o, oc, k)}, ${clothText(o, oc, k).replace(/\{pubic\}/g, pubicText(o, k))}`; })() : ''}; }
+  // two women together: pair:<service>:<fem|futa|selffuta>:<other id>; poses from services.json image.fem / image.futa.
+  // fem = both women; futa = the other one is the futanari (the goddess with a lady); selffuta = she is (a spirit using a borrowed cock).
+  // Futa poses are written with the service's {name} as "the woman" and {partner} as "the futanari". Each woman is labelled and the
+  // futanari is described first, right after the head-count tags, so the model keeps track of who has the penis.
+  // The service's own snippet is skipped when it names a man (missionary's "man on top"), which would pull one into the picture.
+  if(k.startsWith('pair:')){ const [, id, mode, oid] = k.split(':'), o = findAny(oid), futa = mode==='futa' || mode==='selffuta';
+    const ex = getSnippet('act_'+id), desc = x => { const c = defaultCloth(x, k); return `${charDesc(x, c, k)}, ${clothText(x, c, k).replace(/\{pubic\}/g, pubicText(x, k))}`; };
+    const base = {label:'Two women: '+actLabel(id), comp:actPose(id, futa ? 'futa' : 'fem'), setting:ROOM_SETTING(h), snip:/\bman\b/i.test(ex) ? null : 'act_'+id, expr:svcExpr(w, id, P, true, true)};
+    if(!futa) return Object.assign(base, {client: o ? 'the other woman: ' + desc(o) : ''});
+    const F = SCENE_DATA.futaPhrase || 'erect penis, futanari';
+    return mode==='selffuta' ? Object.assign(base, {selfTag:'the futanari', selfExtra:F, client: o ? 'the woman: ' + desc(o) : ''})
+      : Object.assign(base, {selfTag:'the woman', otherFirst:true, client: o ? `the futanari: ${desc(o)}, ${F}` : ''}); }
   // Sam's demonstration class: seen from the room, Sam is the man, the other ladies watch (scenes.json → demoRoom / people.demo)
   // group nights (sam.js samOrgy): the first lady in full, the others briefly (scenes.json → orgyPose / orgyRoom / people.orgy)
   if(k.startsWith('orgy:')){ const os = k.slice(5).split(',').map(findAny).filter(o=>o && w && o.id!==w.id);
