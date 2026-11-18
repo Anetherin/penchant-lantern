@@ -8,7 +8,7 @@
     "goodNight / badNight: mood change after a week where clients loved her / a rough week with bad clients.",
     "lustBuild: multiplier on how fast her lust builds each week.",
     "expr: optional map that shifts the expression she shows during services (bored / professional / into / lost) to another one (data/snippets.json → expressions), e.g. a shy lady is 'flustered' instead of 'into it'.",
-    "stats: stat leans on the 0-100 scale, added to a new generic lady's rolled stats (and used by tools/seed-stats.mjs for named ladies). Keys: beauty, charm, charisma, refinement, wits, stamina, strength, agility."
+    "stats: stat leans on the 0-100 scale, added to a new generic lady's rolled stats. Keys: beauty, charm, charisma, refinement, wits, stamina, strength, agility."
   ],
   "Cheerful and teasing": {
     "likes": ["chat","gift","walk"],

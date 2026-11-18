@@ -1,0 +1,189 @@
+{
+  "rhoswen": {
+    "role": "guild",
+    "job": "attendant",
+    "name": "Rhoswen",
+    "race": "elf",
+    "age": 212,
+    "personality": "Calm and elegant",
+    "traits": ["Elegant","Shy"],
+    "style": "Elegant",
+    "favColor": "emerald",
+    "fav": "kiss",
+    "dislike": "doggy",
+    "lovers": "missionary",
+    "backstory": "A noble elf who walked away from a stifling court to see how humans actually live. Curious, very proper, and quietly thrilled to be somewhere scandalous. She carries a leather notebook of observations, blushes at her own boldness, and has never been so happy to be called \"miss\" instead of \"my lady.\"",
+    "design": {
+      "hairStyle": "long straight",
+      "hairColor": "platinum blonde",
+      "eyes": "emerald",
+      "skin": "porcelain",
+      "features": "long pointed elf ears",
+      "accessories": "a delicate silver circlet",
+      "accState": "always"
+    },
+    "under": "silk",
+    "underColor": "white",
+    "stats": {"beauty":80,"charm":50,"charisma":50,"refinement":85,"wits":88,"stamina":35,"strength":20,"agility":50},
+    "tech": {"service":40,"dance":55,"bar":10,"combat":15,"manage":40},
+    "actSkill": 5,
+    "popularity": 10,
+    "lewd": 14,
+    "trust": 10,
+    "outfits": {"sig_rhoswen":{"label":"Court gown","style":"Elegant","prompt":"a flowing pale-green silk court gown","bonus":{"noble":1.3,"dancer":1.1}}},
+    "jobs": {"likes":["attendant","promoter"],"dislikes":["bartender","courtesan"]},
+    "body": {"bust":"small","height":"average","figure":"slim"},
+    "unique": {"name":"Court Manners","desc":"Impeccable breeding that nobles adore.","fx":{"classBonus":{"noble":1.2},"wardrobe":5}},
+    "bonds": {"ines":{"v":30,"kind":"comrades","note":"Crossed paths on cold road contracts before either hung up her traveling cloak."}}
+  },
+  "hanna": {
+    "role": "guild",
+    "job": "promoter",
+    "name": "Hanna Weiss",
+    "race": "human",
+    "age": 27,
+    "personality": "Cheerful and teasing",
+    "traits": ["Romantic"],
+    "style": "Cute",
+    "favColor": "sky blue",
+    "fav": "breast_give",
+    "dislike": null,
+    "lovers": "missionary",
+    "backstory": "The Adventurers' Guild's most efficient receptionist and its biggest gossip. She's been dying for an excuse to see the inside of a pleasure house. She knows every adventurer's tab and secret crush by heart, and has been quietly cataloguing which of them visit the Lantern.",
+    "design": {
+      "hairStyle": "shoulder-length",
+      "hairColor": "honey blonde",
+      "eyes": "blue",
+      "skin": "fair",
+      "features": "freckles across her nose",
+      "expression": "a cheerful, helpful smile"
+    },
+    "under": "lace",
+    "underColor": "sky blue",
+    "stats": {"beauty":58,"charm":68,"charisma":81,"refinement":45,"wits":45,"stamina":50,"strength":25,"agility":40},
+    "tech": {"service":70,"dance":20,"bar":30,"combat":10,"manage":50},
+    "actSkill": 15,
+    "popularity": 25,
+    "lewd": 28,
+    "trust": 30,
+    "outfits": {
+      "sig_hanna": {"label":"Guild uniform","style":"Cute","prompt":"a neat guild uniform with a short blue cape","bonus":{"promoter":1.25,"adventurer":1.15}}
+    },
+    "bonds": {
+      "kaede": {"v":35,"note":"Hanna processed every one of Kaede's bounty claims, and gossiped about all of them."},
+      "rhoswen": {"v":30,"note":"Guild friends."}
+    },
+    "jobs": {"likes":["promoter","host","bartender"],"dislikes":["maid"]},
+    "body": {"bust":"medium","height":"average","figure":"curvy"},
+    "unique": {
+      "name": "Guild Gossip",
+      "desc": "She knows everyone's business, and tells enough of it to bring customers in.",
+      "fx": {"promote":1.25,"propRate":1.1}
+    }
+  },
+  "vesna": {
+    "role": "guild",
+    "job": "security",
+    "name": "Vesna Greyhollow",
+    "race": "beastkin",
+    "sub": "wolf",
+    "age": 28,
+    "personality": "Stoic and blunt",
+    "traits": ["Former Adventurer","Loyal"],
+    "style": "Sporty",
+    "favColor": "moss green",
+    "fav": "massage_get",
+    "dislike": "missionary",
+    "lovers": "cowgirl",
+    "backstory": "A grey-wolf tracker who was left for dead in the Barrow's lower halls when a ceiling came down. Her old party, the Gilded Spur, never came back for her. She lasted three weeks on cave fish and spite before Sam's guild party, newly Silver, found her. She doesn't trust parties or promises, and she won't sleep indoors with her back to a room. She sniffs people to read them, says very little, and is bad at feelings and very good at noticing. Once she commits she is pack-loyal to the bone. Feed her first.",
+    "design": {
+      "hairStyle": "shaggy, often tied back",
+      "hairColor": "grey",
+      "eyes": "amber",
+      "skin": "weathered, sun-browned",
+      "features": "grey wolf ears, a bushy grey wolf tail and a pale scar across her left forearm",
+      "accessories": "a frayed leather hair cord",
+      "accState": "always",
+      "expression": "a flat, watchful stare"
+    },
+    "under": "plain",
+    "underColor": "charcoal",
+    "stats": {"beauty":58,"charm":28,"charisma":34,"refinement":22,"wits":68,"stamina":78,"strength":72,"agility":80},
+    "tech": {"service":10,"dance":8,"bar":12,"combat":78,"manage":14},
+    "actSkill": 8,
+    "popularity": 8,
+    "lewd": 15,
+    "trust": 8,
+    "outfits": {
+      "sig_vesna": {
+        "label": "Tracker's leathers",
+        "style": "Sporty",
+        "prompt": "a patched grey ranger's jerkin over a linen shirt, leather bracers, a hooded travelling cloak, worn boots and trousers cut to leave room for her tail",
+        "bonus": {"security":1.3,"adventurer":1.15}
+      }
+    },
+    "jobs": {"likes":["security","promoter"],"dislikes":["host","dancer"]},
+    "body": {"bust":"small","height":"tall","figure":"athletic"},
+    "unique": {
+      "name": "Tracker's Nose",
+      "desc": "She reads every client by scent the moment he walks in, and trouble never gets past the door.",
+      "fx": {"security":12,"classBonus":{"adventurer":1.15,"mercenary":1.1}}
+    },
+    "bonds": {
+      "ines": {"v":30,"kind":"comrades","note":"Knew each other from the road. Neither asks the other how she's sleeping, and both notice."},
+      "hanna": {"v":25,"note":"Hanna filed her death notice, and then her un-death. She still keeps a copy of both, and Vesna lets her."}
+    }
+  },
+  "brunhild": {
+    "role": "guild",
+    "job": "promoter",
+    "name": "Brunhild Ironvein",
+    "race": "dwarf",
+    "age": 46,
+    "personality": "Rowdy and boisterous",
+    "traits": ["Brawler","Tough"],
+    "style": "Sporty",
+    "favColor": "copper",
+    "fav": "breast_get",
+    "dislike": "massage_give",
+    "lovers": "cowgirl",
+    "backstory": "The Anvil: undefeated champion of the Hollowmere arena pit, and so bored of winning that she has started pulling her punches just to hear the crowd groan. When a crooked promoter tried to bribe Sam's side to throw a bout against her, Sam refused flat out in front of the whole house. She won honestly anyway, hauled the promoter over the rail by his collar, quit the pit on the spot, and decided she liked the honest nerd's guts. Inside the Lantern everyone is either afraid of her or wants to fight her. Nobody has ever courted her. She drinks hard, laughs harder, arm-wrestles anyone who stands still, and has never once been called pretty. She says she doesn't want to be. She also keeps a battered chivalric romance wrapped in a spare shirt at the bottom of her kit bag, and would die before admitting it.",
+    "design": {
+      "hairStyle": "thick copper-red braids pinned up",
+      "hairColor": "copper red",
+      "eyes": "hazel",
+      "skin": "ruddy, freckled all over",
+      "features": "a broken-and-healed nose, freckles on her shoulders and chest, a booming laugh",
+      "accessories": "braided beard-style hair rings of brass",
+      "accState": "always",
+      "expression": "a wide, challenging grin"
+    },
+    "under": "sports",
+    "underColor": "brown",
+    "stats": {"beauty":62,"charm":45,"charisma":70,"refinement":25,"wits":45,"stamina":90,"strength":92,"agility":40},
+    "tech": {"service":15,"dance":10,"bar":55,"combat":85,"manage":30},
+    "actSkill": 15,
+    "popularity": 40,
+    "lewd": 30,
+    "trust": 10,
+    "outfits": {
+      "sig_brunhild": {
+        "label": "Pit champion's leathers",
+        "style": "Sporty",
+        "prompt": "a studded leather pit-fighter's halter and kilt with a champion's belt of hammered brass plates and bare muscled arms",
+        "bonus": {"adventurer":1.25,"mercenary":1.25}
+      }
+    },
+    "jobs": {"likes":["promoter","security","bartender"],"dislikes":["maid","attendant"]},
+    "body": {"bust":"huge","height":"short","figure":"athletic"},
+    "unique": {
+      "name": "Champion's Draw",
+      "desc": "Half the town comes to see the Anvil, and the other half comes to dare her.",
+      "fx": {"promote":1.2,"classBonus":{"adventurer":1.15,"mercenary":1.15}}
+    },
+    "bonds": {
+      "ines": {"v":25,"kind":"rivals","note":"Sparring rivals. Neither has ever admitted to winning less than half of the bouts."},
+      "hanna": {"v":35,"note":"Hanna has been betting on her for years, and has the winnings to prove it."}
+    }
+  }
+}

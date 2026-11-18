@@ -161,7 +161,7 @@ const CHECK = `async () => {
   // 6. walk meetings: every partner met on a walk (first meeting), each hire choice
   for (const k of PARTNERS) {
     fresh(starters[0], PARTNERS.find(x => x !== k)); S.gold = 1e6;
-    const WI = (WALKS.partnerIntros || {})[k]; if (!WI) { bad.push('walk ' + k + ': no entry in walks.json partnerIntros'); continue; }
+    const WI = (WALKS.partnerIntros || {})[k]; if (!WI) { bad.push('walk ' + k + ': no entry in walks/partners.json partnerIntros'); continue; }
     const ev0 = walkRecruitEvent(k, true);
     if (!ev0.pre || !ev0.pre.length) bad.push('walk ' + k + ': no opening page');
     (ev0.pre || []).forEach(pg => look('walk ' + k + ' open', pg.text, true)); look('walk ' + k + ' story', ev0.text, true); look('walk ' + k + ' aside', ev0.aside, false);

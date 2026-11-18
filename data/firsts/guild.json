@@ -1,0 +1,192 @@
+{
+  "characters": {
+    "rhoswen": {
+      "pace": "slow",
+      "path": [1,2,3],
+      "init": false,
+      "events": {
+        "1": {
+          "title": "Field Study",
+          "text": "Rhoswen clutches a leather journal titled HUMAN CUSTOMS with ink-stained, trembling fingers, her silver circlet slightly askew and her pointed elven ears blazing pink. Open to a blank page headed simply \"Kissing (?)\", she lifts her chin with courtly poise. \"I wish to observe this firsthand—purely for scholarly accuracy.\"",
+          "image": {
+            "comp": "holding an open notebook and quill, looking up at him with earnest scholarly curiosity and pink cheeks",
+            "setting": "quiet garden bench at dusk, roses",
+            "sam": true
+          },
+          "go": "Help her research",
+          "goRes": "She forgets her quill entirely as it rolls across the stone path—pulling back breathless to ask, with immense dignity, whether the trial ought to be repeated immediately.",
+          "wait": "\"Maybe a book would be better?\"",
+          "waitRes": "\"I have already read the texts.\" She snaps the journal shut, mildly affronted. \"They were wholly inadequate—I shall make a note of that.\""
+        },
+        "2": {
+          "title": "Further Study",
+          "text": "The leather journal is dog-eared from constant handling now as Rhoswen hands it to you open to a page titled FURTHER QUESTIONS—covering intimate touch and arousal in immaculate, slightly shaky script. Pivoting rigidly to stare at a vase of lilies with crimson ears, she whispers, \"Please... take your time answering.\"",
+          "image": {
+            "comp": "staring hard at a vase while holding out an open notebook to him, ears red to the tips",
+            "setting": "elegant guest room, afternoon light",
+            "sam": true
+          },
+          "go": "Answer her questions",
+          "goRes": "Her journal flutters forgotten to the floorboards as you guide her hands over your cock and slide yours beneath her dress to her bare pussy, Rhoswen gasping softly while asking breathless follow-ups with her fingers and mouth.",
+          "wait": "\"One question at a time.\"",
+          "waitRes": "\"Of course—sound methodology.\" She underlines a line three times with a trembling quill, composed save for her scarlet ears."
+        },
+        "3": {
+          "title": "Conclusions",
+          "text": "\"I have reached my final conclusion,\" Rhoswen announces in the formal courtly cadence she uses whenever she's terrified, closing her journal and unpinning her gown so it slips off her bare shoulders. \"The study demands a concluding practical trial—and I wish to conduct it in bed with you.\"",
+          "image": {
+            "comp": "setting a closed notebook on a nightstand, unpinning her elegant hair, calm but blushing",
+            "setting": "his bedroom at night, moonlight",
+            "sam": true,
+            "cloth": "partial",
+            "wear": "a gown slipping off her shoulders"
+          },
+          "go": "Conduct the experiment",
+          "goRes": "Her regal composure shatters into breathless wonder as you ease your cock into her pussy—Rhoswen laughing softly against your neck, \"I expected to feel prepared,\" before arching into every deep thrust.",
+          "wait": "\"Are you certain?\"",
+          "waitRes": "\"I am never uncertain.\" A beat, followed by the faintest tremor: \"Ask again in a week—I shall be just as certain, and far less rehearsed.\""
+        }
+      }
+    },
+    "hanna": {
+      "pace": "normal",
+      "path": [1,2,3],
+      "init": false,
+      "events": {
+        "1": {
+          "title": "Gossip",
+          "text": "The guild hall is packed to the rafters—tankards thumping, adventurers shouting over bounties—when Hanna leans across the reception counter with a pencil tucked behind her ear and freckles flushing across her nose. \"Half the guild already thinks we're sleeping together, and I hate inaccurate rumors,\" she declares loudly, grabbing your collar. \"So I'm fixing it.\"",
+          "image": {
+            "comp": "grabbing his collar over a guild reception counter, freckled, mischievous grin",
+            "setting": "busy adventurers' guild hall, notice boards, afternoon",
+            "sam": true
+          },
+          "go": "Help her fix it",
+          "goRes": "Half the hall erupts into cheers and someone in the back collects on a bet while Hanna kisses you breathless, refusing to release your collar for a long moment afterward.",
+          "wait": "\"Everyone's watching!\"",
+          "waitRes": "\"That's the entire POINT!\" She lets go with a theatrical sigh and a bright grin. \"Fine—somewhere private next time, zero spectators.\""
+        },
+        "2": {
+          "title": "Off the Record",
+          "text": "The guild records room smells of dust and old parchment. Hanna throws the deadbolt with a sharp click and leans back against the door, twirling the keyring around one finger as her freckled nose wrinkles. \"Nothing that happens in here goes into the files,\" she purrs—an obvious lie, since she files everything—reaching straight for your belt.",
+          "image": {
+            "comp": "leaning against tall shelves of scrolls in a records room, keys dangling from one finger, playful smile",
+            "setting": "guild records room, shelves of scrolls, a single lamp",
+            "sam": true
+          },
+          "go": "Go off the record",
+          "goRes": "Hanna drops to her knees among the towering scroll shelves, stroking and sucking your cock with eager hands and mouth until she's breathless—and you're certain she'll still file a very explicit report later.",
+          "wait": "\"Someone might need a record.\"",
+          "waitRes": "\"Ugh, PROCEDURE.\" She unlocks the door with an exaggerated groan and a grin. \"Fine—you owe me, and I keep exhaustive accounts.\""
+        },
+        "3": {
+          "title": "Exclusive",
+          "text": "Hanna kicks her boots off inside your bedroom door and stacks them neatly in the corner, lamplight catching the freckles across her cheeks as she unbuttons her shirt. For five years she's had the juiciest gossip in Hollowmere, yet tonight her voice drops quiet and sincere. \"I've traded every rumor in town for five years—tonight I want an exclusive just for me.\"",
+          "image": {
+            "comp": "kicking off her shoes in a bedroom, freckled, grinning and a little nervous",
+            "setting": "his bedroom at night, lamplight",
+            "sam": true
+          },
+          "go": "Give her the exclusive",
+          "goRes": "She doesn't breathe a word to a soul—though the entire guild guesses by noon anyway after she spends all night riding your cock and crying out your name.",
+          "wait": "\"Can it be embargoed?\"",
+          "waitRes": "\"Embargoed!\" She laughs shakily, slipping her boots back on. \"One week—then we go to print, and the front page is yours.\"",
+          "act": "cowgirl"
+        }
+      }
+    },
+    "vesna": {
+      "pace": "slow",
+      "path": [1,2,3],
+      "init": false,
+      "events": {
+        "1": {
+          "title": "Scent",
+          "text": "Vesna has you backed against the stable wall with one hand flat on your chest, nose an inch from your throat. She is sniffing you the way she sniffs everyone, slowly, top to bottom. Her ears are low and her tail is perfectly still. \"I've decided,\" she says gruffly, not meeting your eyes. \"I want to kiss you. Don't make it a thing.\"",
+          "image": {
+            "comp": "pressing him against a stable wall with one hand on his chest, nose near his throat, ears low, stern and a little flustered",
+            "setting": "quiet stable at dusk, hay and lantern light",
+            "sam": true
+          },
+          "go": "Let her",
+          "goRes": "She kisses like she tracks, in small careful steps, and then all at once. Her fingers dig into your shirt and a low rumble starts in her chest. She pulls back and looks at your mouth as if it owed her something. \"Again,\" she says.",
+          "wait": "\"Take your time.\"",
+          "waitRes": "\"Time,\" she mutters, and lets go of your shirt. \"Fine.\" Her tail gives one hard thump against the wall behind her. She pretends it didn't."
+        },
+        "2": {
+          "title": "Hands",
+          "text": "Vesna sits on the end of your bed with her boots still on, her back to the wall, and a plate of cold chicken balanced on her knee. She has been eating in silence for several minutes. Then she sets the plate down and wipes her hands on her trousers with great deliberation. \"Come here,\" she says. \"Hands. And mouth. I want to see what you do.\"",
+          "image": {
+            "comp": "sitting on the edge of a bed with her back to the wall, a plate set aside, ears pricked, direct amber stare",
+            "setting": "his bedroom at night, a single candle",
+            "sam": true
+          },
+          "go": "Show her",
+          "goRes": "She takes you in her fist before you've finished unbuckling, and her fingers slide under your hand and into place, gruff directions on her tongue: slower, there, harder. Then her mouth finds yours, and then her mouth finds your throat, and her tail sweeps the sheets as you take her wet pussy in your hand.",
+          "wait": "\"One step at a time.\"",
+          "waitRes": "\"Steps.\" She considers this. \"Good. Steps are how you track.\" She picks the chicken back up. \"Tomorrow, then. I'm not going anywhere.\""
+        },
+        "3": {
+          "title": "Her Say",
+          "text": "Vesna comes to your room with her cloak off and her hair down, and she shuts the door behind her without checking the window. It's the first time. \"I'll say it once,\" she says, and starts on her belt. \"I trust you. Don't make me regret it. Get on the bed and let me look at you.\"",
+          "image": {
+            "comp": "standing inside his bedroom door unbuckling her belt, grey hair loose, ears forward, serious and a little vulnerable",
+            "setting": "his bedroom at night, moonlight through the window",
+            "sam": true
+          },
+          "go": "Pull her onto the bed",
+          "goRes": "She straddles you without ceremony and sinks down onto your cock with a long, shaking growl, both hands braced on your chest and her eyes on the door for exactly three strokes. Then she forgets it. \"Mine,\" she says, rolling her hips, and her tail wraps tight around your leg.",
+          "wait": "\"Are you sure?\"",
+          "waitRes": "\"Don't ask me that.\" A long breath. \"Ask me tomorrow. I'll say the same.\" She puts her cloak back on, slowly, and sits beside you on the bed. She doesn't leave."
+        }
+      }
+    },
+    "brunhild": {
+      "pace": "normal",
+      "path": [1,2,3],
+      "init": false,
+      "events": {
+        "1": {
+          "title": "Dare",
+          "text": "Brunhild slams her tankard down and plants herself in front of you, arms crossed over her big chest, freckled and red-faced and not quite meeting your eyes. \"I've pinned half the guild and not one of them ever asked me the other thing,\" she growls. \"So I'm asking. Do you kiss? Properly? Because I want to know before I lose my nerve, and if you laugh I'll break something.\"",
+          "image": {
+            "comp": "arms crossed and chin jutting, scowling to hide a blush, braided copper-red hair, freckled and muscular",
+            "setting": "lantern-lit tavern back room, evening",
+            "sam": true
+          },
+          "go": "Kiss her",
+          "goRes": "She grabs your collar with one fist and hauls you up on your toes, and it is clumsy and fierce and over too soon. She pulls back, panting, with her nose a hand's breadth from yours, and booms, \"Again. I wasn't ready,\" and kisses you harder.",
+          "wait": "\"Not here, in front of everyone.\"",
+          "waitRes": "\"Hah! Aye. Fair.\" She cuffs your shoulder in a way that nearly puts you through the wall, and she looks away at once, red to the ears. \"Later, then. Don't make me ask twice. It nearly killed me.\""
+        },
+        "2": {
+          "title": "Show Me",
+          "text": "Brunhild is sitting on the edge of the bed with her boots off, big hands knotted in her lap, doing her best to look bored and failing. \"I've fought for my life a hundred times,\" she says, gruff. \"This is worse. I don't know what to do with my hands. Show me. Don't be gentle, I'll break the other way. Just show me.\"",
+          "image": {
+            "comp": "sitting on the edge of a bed with clenched hands in her lap, red-faced and defiant, braided copper-red hair, heavy bust, freckled",
+            "setting": "his bedroom, warm lamplight",
+            "sam": true
+          },
+          "go": "Show her",
+          "goRes": "You guide her big, rough hands to your cock and slide your own up under her shift to her cunt, hot and wet and already soaked, and she swears in Dwarvish and then laughs, and then swears again, grinding into your fingers while her mouth finds yours and her hands, after about a minute, remember exactly how strong they are.",
+          "wait": "\"Slow, Brunhild. We have time.\"",
+          "waitRes": "\"Time.\" She says it as though tasting it. \"Nobody's ever given me time.\" She blows out a breath that shakes. \"Right. Slow. But if I get bored, I'll tell you, and you'll hear it from three streets over.\""
+        },
+        "3": {
+          "title": "All the Way",
+          "text": "Brunhild has blown out every candle but one and is standing in the middle of the room with her arms at her sides, naked and enormous and trying to look like the Anvil. Her chest is rising and falling. \"Don't treat me like glass,\" she says, \"and don't treat me like iron either. Treat me like the woman who reads the books. And then fuck me, Sam. I've waited long enough.\"",
+          "image": {
+            "comp": "standing nude beside a single candle, hands at her sides, heavy bust, thick muscular thighs, braided copper-red hair loose, freckled all over, defiant blushing stare",
+            "setting": "his bedroom at night, a single candle",
+            "sam": true,
+            "cloth": "nude"
+          },
+          "go": "Take her to bed",
+          "goRes": "You lay her back on the sheets and she pulls you in with her whole body, thighs locked around your hips, and you sink your cock into her cunt as she gasps and then roars with laughter and then moans your name, rolling you onto your back so she can ride you, her big tits swinging and her braids tumbling loose, saying \"Aye, that's it, that's it\" through her teeth.",
+          "wait": "\"Are you sure?\"",
+          "waitRes": "\"I faced down forty thousand people in the pit and never once got my knees to shake.\" She laughs, and her knees are shaking. \"Aye. I'm sure. Ask me again tomorrow and I'll say it louder.\""
+        }
+      }
+    }
+  }
+}
