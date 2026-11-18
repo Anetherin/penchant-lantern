@@ -12,7 +12,7 @@ Most of the game is data, so a new partner, guest or story lady needs no code. A
   the `_readme` tells you *what each field means*.
 - Keys are lowercase with no spaces (`nerys`, `pearl`) and must be unique across `data/characters/` and `data/guests/`.
 - All scene text follows `docs/WRITING.md`: second person ("you" = Sam), plain explicit words, and nothing more intimate
-  than the game plays at that point. Every character is an adult.
+  than the game plays at that point. Every character is an adult, and minors should be aged up as appropriate.
 - Stats, skills, lewdness and trust in data files are on the `0-100` scale (the game converts stats to `0-1000`). Fill in
   all 8 stats (`beauty, charm, charisma, refinement, wits, stamina, strength, agility`); nothing seeds missing ones.
 - `image` objects (`comp`, `setting`, `sam`...) describe pose, action and place only. Her hair, eyes, horns, outfit and
