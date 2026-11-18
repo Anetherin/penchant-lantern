@@ -82,7 +82,12 @@
               "m": 4,
               "res": "You hand her a towel and tell her to take as long as she likes. You're nearly out of the door when she says, to the wall, \"Stay near.\" You sit on the bench outside with your back to the door, and neither of you speaks, and she takes an hour."
             }
-          ]
+          ],
+          "image": {
+            "comp": "sitting in the bath turning her bare scarred back to the viewer, scarred forearm on the rim, wet grey hair down, ears flat, braced stillness",
+            "towel": true,
+            "sam": true
+          }
         },
         "3": {
           "text": "Vesna rises out of the water without any ceremony. Water streams down her long legs and her flat belly, over small, firm breasts, and off the scar on her forearm. Her wet tail hangs heavy at her back.\n\nShe wrings out her hair, looks at you, and doesn't bother with the towel.\n\n\"I'm bad at words,\" she says. \"Plain, then. I want your hands on me. I want your mouth. I want to see the door while you do it.\" She steps out and crowds you back against the tiles, warm and smelling of soap and wolf. \"If I growl, it's good. If I stop, it's not.\"",
@@ -103,7 +108,15 @@
               "l": 2,
               "res": "You wrap the blanket round her shoulders and kiss her, slowly, and she goes very still. Then her hand fists in your shirt and she kisses back, blunt and hungry, with a low rumble in her chest. \"Not yet,\" she says against your lip, ears pinned back with how badly she wants it. \"On my say. Soon.\" She doesn't let go of your shirt."
             }
-          ]
+          ],
+          "image": {
+            "comp": "rising out of the water, streaming down long legs and flat belly, small firm breasts, wet tail hanging, wringing out hair then crowding him against the tiles, intense direct stare",
+            "cloth": "nude",
+            "wear": "",
+            "towel": false,
+            "bath": true,
+            "sam": true
+          }
         }
       },
       "choices": [

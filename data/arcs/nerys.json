@@ -52,7 +52,11 @@
               "m": 4,
               "res": "You leave a dry towel on the stool and a promise on the air. \"Later,\" you say. \"Properly.\" She watches you go with one eyebrow up. \"Tease,\" she mutters. Her tail flicks back into the foam, lazy and pleased. Through the contract you feel her turn the word over, and the heat of it follows you down the corridor."
             }
-          ]
+          ],
+          "image": {
+            "comp": "sitting on the cedar rim in a thin soaked towel, violet hair stuck to bare shoulders, tail tapping, hand sliding up her collarbone, chin raised teasing",
+            "towel": true
+          }
         },
         "3": {
           "title": "Contract Benefit",
@@ -77,7 +81,14 @@
               "acts": ["massage_give","manual_give"],
               "res": "You take the soap and start at her shoulders. She tips her head back against the rim as your lathered hands slide down her collarbone, across her tits, along the leathery edge of one wing. Nerys shivers hard. Her breath comes short and impatient. \"Darling,\" she says, to the ceiling, \"you are being thorough on purpose.\" You are."
             }
-          ]
+          ],
+          "image": {
+            "comp": "lying back in the hot water with wings over the rim, steam beading on pale blue skin, dragging a wet finger up her inner thigh, bright knowing smile",
+            "cloth": "nude",
+            "wear": "",
+            "towel": false,
+            "bath": true
+          }
         }
       },
       "choices": [
@@ -180,7 +191,12 @@
       "text": "Nerys takes you by the sleeve after dark and hauls you down into the red alleys of the Underdistrict night market, where the lanterns are the wrong color and nobody asks what anything is.\n\nShe buys every alarming thing in sight. There are skewers that glow amber, and dumplings as black as ink. There's something in a paper cone that is still moving, hopefully. She pays for all of it herself and hands each one to you with great ceremony.\n\nThen she watches you chew. She has the rapt attention of an alchemist testing a new compound on her favorite assistant.\n\n\"Well?\" she demands, after every mouthful. Whatever you answer, she can already feel the true one, and she laughs at the gap between the two.\n\nHer tail has been looped around your sleeve since the first stall. You realize, halfway through the dumplings, that she's showing you where she comes from, and she's nervous about whether you'll like it.",
       "byIntim": {
         "2": {
-          "text": "Nerys drags you through the red lanterns of the Underdistrict market and piles your arms with every doubtful skewer and cup of plum liquor she can find. She grins every time you swallow something that glows.\n\nShe's showing you off as much as she's showing you around. Two stallholders greet her by name, look at you, and get a stare from her that closes the subject.\n\nIn the quiet archway on the way back up to the surface, her tail slides down from your sleeve and around your waist, and she pulls you against her. Her skin is warm through your shirt. \"You ate all of it,\" she says, close to your mouth. \"Nobody ever eats all of it. I believe you've earned dessert.\""
+          "text": "Nerys drags you through the red lanterns of the Underdistrict market and piles your arms with every doubtful skewer and cup of plum liquor she can find. She grins every time you swallow something that glows.\n\nShe's showing you off as much as she's showing you around. Two stallholders greet her by name, look at you, and get a stare from her that closes the subject.\n\nIn the quiet archway on the way back up to the surface, her tail slides down from your sleeve and around your waist, and she pulls you against her. Her skin is warm through your shirt. \"You ate all of it,\" she says, close to your mouth. \"Nobody ever eats all of it. I believe you've earned dessert.\"",
+          "image": {
+            "comp": "pulled against him in a quiet archway, tail wrapped around his waist, face close to his mouth, smug warm smile",
+            "setting": "quiet stone archway under red lanterns, underground market",
+            "sam": true
+          }
         }
       },
       "choices": [

@@ -55,7 +55,12 @@
               "m": 5,
               "res": "\"Thank you,\" you say, and take the cup, and sit. She pours two steady cups without spilling a drop, visibly proud of herself. She tucks her knees up on the quilt beside yours. You drink the lemon balm while she rests her head against the wall and tells you which of the dock workers has a bad shoulder. It is the first time she has sat on your bed."
             }
-          ]
+          ],
+          "image": {
+            "comp": "standing by the edge of the bed holding a clay vial of oil, warm shy smile, ears flushed, steady not fleeing",
+            "setting": "small bedroom, lamplit, tea cups on the sill",
+            "sam": true
+          }
         },
         "3": {
           "title": "Chamomile & Bare Skin",
@@ -80,7 +85,15 @@
               "acts": ["kiss","massage_give"],
               "res": "You slip into the tub behind her and draw her back against your chest. She melts into the rosemary water with a sigh. Your lips find her neck and the tip of one long ear, and she shivers and turns her head to be kissed properly. Her hand finds yours under the water and holds it. Nobody speaks for a long time."
             }
-          ]
+          ],
+          "image": {
+            "comp": "standing beside a full steaming tub, one finger loosening the lacing at her chest, ears pink, direct green-eyed gaze",
+            "setting": "steamy wooden washroom, rosemary steam",
+            "bath": false,
+            "towel": false,
+            "cloth": "partial",
+            "wear": "a loose damp linen shift clinging to her breasts and hips, lacing loosened"
+          }
         }
       },
       "choices": [
@@ -197,7 +210,8 @@
       "text": "Elowen leads you up the windy ridge above Hollowmere on a night so clear that both moons throw shadows. She spreads her travelling cloak over the cool clover and sits, and pats the place beside her.\n\nThen she teaches you her sky. She names the constellations of the cedar glade where she was born, one at a time, in quiet silver syllables you can't pronounce. There's the Loom, and the Heron, and the Two Sisters Who Would Not Speak. Each one has a story, and each story is older than the town below you.\n\nShe touches your sleeve each time she points, so that you'll look in the right place.\n\nAs she talks, her shoulders come down. Her voice gets softer and steadier. You understand that she hasn't said these names aloud to anyone in a very long time, and that she kept them until she had someone to give them to.",
       "byIntim": {
         "2": {
-          "text": "Elowen leads you up the quiet ridge above Hollowmere and spreads her cloak over the clover. Tonight she doesn't sit beside you. She curls straight in against your shoulder, as if she's been waiting all day to do it.\n\nShe still names her homeland's constellations for you, in soft silver syllables: the Loom, the Heron, the Two Sisters. But she keeps losing her place. Every few names she turns her warm face into your collar and stays there.\n\n\"I've forgotten which one comes next,\" she admits against your neck. She doesn't sound sorry about it. Her hand has found its way under your hoodie and is resting flat on your chest, over your heartbeat."
+          "text": "Elowen leads you up the quiet ridge above Hollowmere and spreads her cloak over the clover. Tonight she doesn't sit beside you. She curls straight in against your shoulder, as if she's been waiting all day to do it.\n\nShe still names her homeland's constellations for you, in soft silver syllables: the Loom, the Heron, the Two Sisters. But she keeps losing her place. Every few names she turns her warm face into your collar and stays there.\n\n\"I've forgotten which one comes next,\" she admits against your neck. She doesn't sound sorry about it. Her hand has found its way under your hoodie and is resting flat on your chest, over your heartbeat.",
+          "image": {"comp":"curled against his shoulder on a cloak over clover, face turned into his collar, hand flat on his chest"}
         }
       },
       "choices": [

@@ -55,7 +55,15 @@
               "m": 5,
               "res": "You scoop up a handful of foam, throw it at her face and step back out of the steam, grinning. \"Hey! Unfair counterattack!\" she squeaks, through the door and a mouthful of bubbles. You hear her splash and giggle, and then a pause. Then, much more quietly, she says, \"Rematch. Tomorrow. I'll be ready.\""
             }
-          ]
+          ],
+          "image": {
+            "comp": "sitting up in a foam-filled bath, wet shoulders out of the bubbles, flicking foam at him, sly grin, pink cheeks",
+            "cloth": "nude",
+            "wear": "",
+            "towel": false,
+            "bath": true,
+            "sam": true
+          }
         },
         "3": {
           "title": "Improvised Script",
@@ -80,7 +88,15 @@
               "acts": ["manual_give","oral_give","massage_give"],
               "res": "You slide in behind her, and she melts back against your bare chest, pushing her wet hair aside for you. Her breath catches against your jaw. Your hands come around her waist and rest there, low, under the surface, while she talks too fast about nothing. \"Okay,\" she says, and her voice drops. \"Okay, I'm not talking anymore.\""
             }
-          ]
+          ],
+          "image": {
+            "comp": "sitting up in hot water, wet hair stuck to collarbone, hard nipples, rubber duck kicked aside, pulling him by the front of his hoodie, eager look",
+            "cloth": "nude",
+            "wear": "",
+            "towel": false,
+            "bath": true,
+            "sam": true
+          }
         }
       },
       "choices": [

@@ -52,7 +52,11 @@
               "m": 3,
               "res": "You hand her a towel and step out. \"Acknowledged,\" she murmurs, and her light softens. She is already sinking back into the water. You close the door and lean on it. Inside, she says, almost too quietly to hear, \"Thank you for letting me stay in it,\" and then there is only water."
             }
-          ]
+          ],
+          "image": {
+            "comp": "seated in the bath, silver hair fanned on the water, eyes open, one wet hand lifted toward the stool, amber glow at her temple, earnest look",
+            "towel": true
+          }
         },
         "3": {
           "text": "You step into the washroom. Ione is leaning back against the far wall of the cedar tub. She's naked, and the water is shining on her tits and her stomach. The light at her temple is a bright, breathless gold.\n\n\"The water temperature is optimal,\" she says softly. Under the surface, she opens her knees. She reaches both arms out to you. \"I have searched every archive I hold. Nothing in them is adequate for what I want. I want you inside me, Sam, and I want to feel it for myself. Come and gather primary data with me.\"",
@@ -73,7 +77,14 @@
               "l": 2,
               "res": "You take the soap and lather it slowly over her shoulders and down her ribs. Her eyes slip shut. She holds absolutely still, and then she doesn't, and her breath comes quicker. \"This sensation still breaks every metric in my core,\" she says. Her light is gold. She turns her face into your wrist and keeps it there."
             }
-          ]
+          ],
+          "image": {
+            "comp": "leaning back against the far wall of the tub, water shining on breasts and stomach, knees parted under the surface, both arms reaching out, bright gold glow at her temple",
+            "cloth": "nude",
+            "wear": "",
+            "towel": false,
+            "bath": true
+          }
         }
       },
       "choices": [

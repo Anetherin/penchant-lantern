@@ -55,7 +55,12 @@
               "m": 3,
               "res": "You hand her a fresh towel and look at the wall. \"Gentleman tonight, huh?\" she says. She takes it, and you hear her rubbing her hair dry behind you. When you glance back, her grin is crooked and pleased, and her tail has curled around your wrist. It stays there a long, lingering second before she lets go."
             }
-          ]
+          ],
+          "image": {
+            "comp": "sitting on the edge of the tub with a towel around her hips, wet hair stuck to a collarbone, scarred shoulder rolled, holding out soap over her shoulder without turning, bold blush",
+            "towel": true,
+            "sam": true
+          }
         },
         "3": {
           "title": "No Towel Needed",
@@ -80,7 +85,15 @@
               "acts": ["kiss","massage_give","manual_give"],
               "res": "You kneel beside the tub and rub lather across her shoulders, down her back, then around the front over her tits. She groans. She tries to keep the grin going and doesn't manage it. When she twists around, the water runs off her arms, and she drags your wet shirt toward the tub with both fists, still laughing at you."
             }
-          ]
+          ],
+          "image": {
+            "comp": "waist-deep in the tub with arms along the rim, water running off bare breasts, copper hair dark and loose, hooking a wet ankle behind his calf, tail slapping the water, predatory grin",
+            "cloth": "nude",
+            "wear": "",
+            "towel": false,
+            "bath": true,
+            "sam": true
+          }
         }
       },
       "choices": [
@@ -192,7 +205,8 @@
       "text": "Kaede decides you need to learn the rooftops. Her reasoning is that a man who owns a house in Hollowmere should know how to leave it quickly.\n\nShe goes first, slate to slate in the moonlight, as though gravity were only a suggestion. She doesn't make a sound. Her tail streams out behind her for balance, and she looks back at every gap to make sure you're watching how it's done.\n\nYou are in a grey hoodie and a borrowed cloak, and you are very bad at this. You windmill across a gap a child could step over. You cling to a chimney. You apologize to a pigeon.\n\nKaede crouches on the ridge above you with her hands on her knees, wheezing with laughter.\n\n\"Again,\" she manages. \"Do the pigeon again. No, don't. Jump. I'll catch you if it goes wrong. I'm serious, Sam. I will always catch you.\"",
       "byIntim": {
         "2": {
-          "text": "Kaede takes you back up onto the rooftops, and tonight she doesn't leave you stranded at the chimney. She stays within arm's reach. Every time you wobble she's already there, with a hand flat on your chest or her tail pressed across the small of your back, and she's slow to take either one away.\n\nYou make three jumps in a row without dying. She whoops, and a shutter bangs open down the street.\n\nAfterward you sit against a dormer that's still warm from the sun, under both moons. She's breathing hard and grinning, with her thigh against yours. She keeps glancing at your mouth and then at the skylight of the empty loft beside you, as if she's working out a route."
+          "text": "Kaede takes you back up onto the rooftops, and tonight she doesn't leave you stranded at the chimney. She stays within arm's reach. Every time you wobble she's already there, with a hand flat on your chest or her tail pressed across the small of your back, and she's slow to take either one away.\n\nYou make three jumps in a row without dying. She whoops, and a shutter bangs open down the street.\n\nAfterward you sit against a dormer that's still warm from the sun, under both moons. She's breathing hard and grinning, with her thigh against yours. She keeps glancing at your mouth and then at the skylight of the empty loft beside you, as if she's working out a route.",
+          "image": {"comp":"sitting against a sun-warmed dormer, breathless and grinning, thigh pressed to his, glancing at his mouth"}
         }
       },
       "choices": [

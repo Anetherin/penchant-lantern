@@ -55,7 +55,14 @@
               "m": 5,
               "res": "She squeaks as hot spray hits her collar, then dumps a whole wooden scoop back over your head laughing wildly."
             }
-          ]
+          ],
+          "image": {
+            "comp": "sitting on the bath bench leaning over the rim, hoops swinging, curls frizzing in the heat, eyes moving down slowly, teasing look",
+            "pov": true,
+            "sam": false,
+            "bath": false,
+            "towel": false
+          }
         },
         "3": {
           "title": "Waterproof Ledger",
@@ -80,7 +87,16 @@
               "acts": ["oral_give","manual_give","massage_give"],
               "res": "She tilts her chin high trying to keep her poise—then groans loudly and tangles fingers in your wet hair the moment your mouth finds her."
             }
-          ]
+          ],
+          "image": {
+            "comp": "stepping into the hot water naked and sitting facing him, knees against his, leaning forward with breasts brushing his chest, dark curls on collarbones, sly smile",
+            "pov": true,
+            "sam": false,
+            "bath": true,
+            "towel": false,
+            "cloth": "nude",
+            "wear": ""
+          }
         }
       },
       "choices": [
@@ -181,7 +197,10 @@
       "text": "Before the noon rush, Marisol asks if you have an hour. She doesn't say what for.\n\nShe walks you up the steep goat path behind the east ward, to the top of the hill where the wind comes in off the sea. There's a small pale headstone in the meadow grass, and one faded silk ribbon is tied around it.\n\nIt's her mother's.\n\nFor the first time since you met her, Marisol isn't moving. The gold hoops hang still. Both her hands are deep in her coat pockets. She watches the gulls turn over the harbor below.\n\n\"She kept the books before I did,\" she says after a while. \"She taught me the red ink. He didn't start making mistakes until she was gone.\" She breathes out. \"I come up here when I've balanced a hard month, to tell her. I've never brought anyone with me. I wanted her to see who I'm working with.\"",
       "byIntim": {
         "2": {
-          "text": "Before the noon rush, Marisol walks you up the goat path behind the east ward to the small pale headstone in the meadow grass. The sea wind is cold today. She reties the faded ribbon without speaking and stands back.\n\nThen she puts her hand straight into the pocket of your hoodie, beside yours, and laces her fingers through them. She leans her whole weight against your shoulder.\n\n\"I told her about you last month,\" she says. \"I said you could count, and that you listen. I didn't tell her the rest.\" Her thumb moves across your knuckles. \"I think she's worked it out. She always knew what I wanted before I did.\""
+          "text": "Before the noon rush, Marisol walks you up the goat path behind the east ward to the small pale headstone in the meadow grass. The sea wind is cold today. She reties the faded ribbon without speaking and stands back.\n\nThen she puts her hand straight into the pocket of your hoodie, beside yours, and laces her fingers through them. She leans her whole weight against your shoulder.\n\n\"I told her about you last month,\" she says. \"I said you could count, and that you listen. I didn't tell her the rest.\" Her thumb moves across your knuckles. \"I think she's worked it out. She always knew what I wanted before I did.\"",
+          "image": {
+            "comp": "standing close at a small headstone, hand tucked in his pocket laced with his, leaning her weight against his shoulder, quiet tender look"
+          }
         }
       },
       "choices": [

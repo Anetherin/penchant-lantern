@@ -52,7 +52,12 @@
               "m": 4,
               "res": "You tell her to take her time with the cards, and promise her the interview later. She goes pink to the ears. \"I'm holding you to that after hours,\" she calls brightly behind the latch. She is trying to sound casual, and she is not. You hear her laugh once, alone, and then the scrape of a stool."
             }
-          ]
+          ],
+          "image": {
+            "comp": "sitting sideways on the rim of the bath in a short towel, wet curls on freckles, hooking a finger in his pocket and tugging him closer, sly breathless grin",
+            "towel": true,
+            "sam": true
+          }
         },
         "3": {
           "text": "You open the washroom door. Hanna is up to her chest in hot bubbles, with her wet gold hair piled up and one curl hanging over her grin.\n\nShe sees you. She lifts one bare foot out of the water, sets it against the door, and kicks the latch shut herself. Then she stands up in the tub. Foam slides down off her tits and her stomach, and she lets you watch it go.\n\n\"Knock? Please. You know the bath schedule by heart.\" She crooks a finger. \"Get your shirt off and get in here, Sam. I've been thinking about your cock all afternoon, and the water won't stay hot forever.\"",
@@ -73,7 +78,15 @@
               "l": 2,
               "res": "You take the soap and wash it across her shoulders instead, and tease her about gossip. She melts back against your chest with a happy groan and tips her head to give you her neck. \"Okay,\" she says. \"Better than any ledger.\" She's slow and loose in your hands. She tells you three rumors and forgets the third."
             }
-          ]
+          ],
+          "image": {
+            "comp": "standing up in a bubble bath, foam sliding off her breasts and stomach, wet gold hair piled up, crooking a finger, cheeky grin",
+            "cloth": "nude",
+            "wear": "",
+            "towel": false,
+            "bath": true,
+            "sam": true
+          }
         }
       },
       "choices": [

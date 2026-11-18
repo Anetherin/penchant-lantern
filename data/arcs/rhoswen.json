@@ -52,7 +52,11 @@
               "m": 4,
               "res": "You pass her a dry towel and tease her about wet ink. \"I shall switch to charcoal tomorrow,\" she retorts, and she means to sound cross and fails. She wraps the towel around herself and sits very straight. Her ears are pink, and she is smiling after you as you go, and she is still smiling when the door closes."
             }
-          ]
+          ],
+          "image": {
+            "comp": "sitting on the rim of the bath with damp hair pinned high, towel slipped off one shoulder, turning a bare shoulder toward him, pink ear tips, warm gaze",
+            "towel": true
+          }
         },
         "3": {
           "text": "You push the washroom door open. Rhoswen is rising out of the steaming tub, and she isn't in any hurry about it.\n\nWater runs down her pale skin, over her small breasts and the curve of her hips. Her wet hair clings to her neck. Her ears have gone bright rose at the tips. She picks up the towel, looks at it, and lays it over the chair.\n\n\"No notebook today,\" she whispers. She holds out one wet hand to you. \"I've written enough about what humans do. Come into the water and do it to me. I want to learn with my body what it's like.\"",
@@ -73,7 +77,14 @@
               "l": 2,
               "res": "You take the warm linen and wrap her in it, then kiss slowly down her throat. She shivers in the damp towel. Her fingers tangle in your collar and pull, and she tips her head to give you more. \"Propriety,\" she whispers, breathless, \"does not seem to be covering this chapter.\" You keep going."
             }
-          ]
+          ],
+          "image": {
+            "comp": "rising from the steaming tub, water running down pale skin, small breasts and hips, wet hair clinging, hand held out, ears bright rose",
+            "cloth": "nude",
+            "wear": "",
+            "towel": false,
+            "bath": true
+          }
         }
       },
       "choices": [

@@ -64,7 +64,12 @@
               "m": 4,
               "res": "You set the jar on the rim of the tub and say she knows her own body best. Her shoulders drop an inch. \"Aye,\" she says, with the barest edge of disappointment, and then she softens. \"Thank you for the jar. I'll be sore tomorrow.\" She looks at you over her shoulder, ears red. \"Maybe the day after, too. Just in case you happen to have more of that stuff.\""
             }
-          ]
+          ],
+          "image": {
+            "comp": "turning her broad freckled back, braids pinned up, water running down bare shoulders, gruff shy look over her shoulder",
+            "sam": true,
+            "towel": true
+          }
         },
         "3": {
           "text": "You step into the bathhouse and Brunhild is already standing in the tub, steam rolling off her shoulders. She is short and broad and every inch of her is muscle, with water running down her freckled chest, over the heavy swing of her tits and the hard curve of her stomach, and between her thick thighs. She doesn't cover herself. She plants her hands on her hips and looks at you as if daring you to say something.\n\n\"Don't make it strange,\" she says. Her voice rasps. \"I know what I look like. I look like a brick wall with tits. You came to me and not the other way, so one of us has to say it. I want you in here. I want you to put your hands on me and not be afraid of breaking anything.\"",
@@ -85,7 +90,14 @@
               "l": 2,
               "res": "You wrap her in a towel the size of a bedsheet and kiss her, slowly, until the grin goes out of her face and something quieter takes its place. She shivers against you. \"Nobody wraps me,\" she says into your shoulder. \"I thought you'd be in a hurry.\" You tell her you aren't. Her arms close around you, hard enough to creak your ribs, and she doesn't say anything else for a long while."
             }
-          ]
+          ],
+          "image": {
+            "comp": "standing in the copper tub, short and broad and muscular, water running down freckled body, hands on hips, defiant challenging look",
+            "cloth": "nude",
+            "wear": "",
+            "towel": false,
+            "bath": true
+          }
         }
       },
       "choices": [

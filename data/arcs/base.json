@@ -7,6 +7,6 @@
     "Conditions: if:{lewd:40} (her stat at least that; also supports trust, mood, intim, ngpp, canAct:[...], canNext:true) uses this choice's effects or hides/branches to else:{...}.",
     "Intimacy & private time: byIntim:{\"1\":{...},\"3\":{...}} overrides beat text/choices at w.intim >= tier; choice private:true triggers privateCore with acts:[...], optional cross stage unlock, and goLead text on beat 6 final.",
     "NG++ déjà vu: ngpp can be a 3-element array [tier0, tier1, tier2] or {tier: text} appended on NG++ runs based on how many cycles she has returned.",
-    "image (optional): {comp, setting, sam, towel} a picture for that beat instead of the generic scene. The scene key still decides bath/walk-in handling."
+    "image (optional): {comp, setting, sam, pov, towel, bath, cloth, wear} a picture for that beat instead of the generic scene (cloth/wear: what the text says she has on, see scenes.json _readme). A byIntim variant can carry its own image, laid over the beat image (give just what differs); a variant without one shows the generic scene."
   ]
 }
