@@ -202,7 +202,7 @@ function guildWeek(R){
 // How well it went (base.json → bonus): fitting traits / titles / Sam's perks, spare weeks, overshoot. Returns {mult, notes}.
 function guildBonus(c, C){
   const B = GDB.bonus || {}, F = C.fits || {}, notes = [];
-  const fit = Object.keys(c.lw||{}).map(findW).filter(Boolean).filter(w=>(F.traits||[]).some(t=>has(w,t)) || (w.titleId && (F.titles||[]).includes(w.titleId)));
+  const fit = Object.keys(c.lw||{}).map(findW).filter(Boolean).filter(w=>(F.traits||[]).some(t=>has(w,t)) || (w.titleId && titleLine(w.titleId).some(t=>(F.titles||[]).includes(t))));
   const samFit = (c.sw||0) > 0 && (F.sam||[]).some(hasGuildPerk);
   const fb = Math.min(B.fitMax ?? 0.32, (fit.length + (samFit ? 1 : 0)) * (B.fitEach ?? 0.08));
   if(fb) notes.push(`the right people for it (${[...fit.map(w=>w.name.split(' ')[0]), ...(samFit ? ['Sam'] : [])].join(', ')}) +${Math.round(fb*100)}%`);

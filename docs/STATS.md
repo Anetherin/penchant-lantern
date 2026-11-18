@@ -1,4 +1,4 @@
-# Stat expansion: Charisma, Wits, and body stats in services
+# Stats: the eight lady stats, formulas and service weights
 
 Reference for the 8-stat system (`STAT_KEYS`, implemented in save v27).
 
@@ -29,7 +29,7 @@ All reads of lady stats go through `statOf(w, k)` and `s100(v)` (`js/logic/fx.js
 - **Service quality (`qualityOf(w, act)`, `services.js`)**:
   - Without act (company): `(service*0.5 + beauty*0.25 + charm*0.25)/100`
   - With act: `(actSkill*0.45 + beauty*0.25 + charm*0.15 + svcStat*0.15)/100 * fxSub('actQuality', act)`
-- **Madame (`madF`, `madameScore`, `week.js` / `economy.js`)**: `manage` + weighted `wits` (0.4), `charm` (0.35), `charisma` (0.25).
+- **Madame (`madF`, `madameScore`, `week.js` / `js/data/economy.js`)**: `manage` + weighted `wits` (0.4), `charm` (0.35), `charisma` (0.25).
 - **Security (`week.js`)**: `secPow` uses `combat + strength*0.3 + agility*0.25`; door tier/trait screening (`secScreen`) uses `wits*0.65 + charisma*0.2 + combat*0.15`; door crowd grace (`secGrace`) uses `charm*0.5 + charisma*0.5`.
 - **Attendant (`attQFor`, `week.js`)**: `service*attendantSkillW + charm*attendantCharmW + wits*attendantWitsW`.
 - **Promoter (`week.js`)**: draw `promoterBase + (charisma + service)/promoterDiv`.
@@ -95,5 +95,5 @@ Client classes (`data/economy.json → classes`) and client traits (`data/balanc
   - `spirit`: charm +10, refinement +5, strength −10
   - `angel`: refinement +10, beauty +5, charm +5, strength −5 (sub `lantern`: charm +5, charisma +5)
   - `android`: stamina +5, refinement +5, wits +10, charm −5
-- **Named ladies (36 in `data/characters/`, 110 in `data/guests/`):** `tools/seed-stats.mjs` fills missing `charisma`/`wits` using `tools/seeded-stats.json` (never overwriting hand-edited entries) and writes `tools/stat-review.csv`.
+- **Named ladies (`data/characters/`, `data/guests/`):** every entry sets all 8 stats by hand on the 0-100 scale (see `docs/CONTENT.md`).
 - **Earnable stat traits (`data/traits/earnable.json`):** `Sharp Mind` (wits +10, 20 `lessons`), `Magnetic` (charisma +10, 25 weeks promoting), `Light on Her Feet` (agility +10, 30 weeks dancing), alongside `dates.json`, `titles.json`, and `wardrobe.json` stat bonuses.
