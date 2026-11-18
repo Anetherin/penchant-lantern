@@ -166,7 +166,7 @@
           "scene": "sam_date",
           "text": "After midnight the Pavilion empties. What's left is the smell of lilies, and the lanterns burning low, and the cushions in the private gallery where the two of you have taken to ending the night.\n\nIlyana pours the tea herself. Then she reaches up, draws one of the silver combs out of her hair and lays it on the table. A length of silver comes loose and falls over her shoulder. She leaves it there.\n\n\"You have a strange talent, Sam,\" she says. \"In two hundred and sixty years, almost everyone I met has treated me like an heirloom. I was to be admired from six paces, and dusted.\" Her pale gold eyes are steady on yours. \"Nobody ever looked across a table at me and asked what I wanted tonight. You may ask. I have had time to think of an answer.\"",
           "image": {
-            "comp": "seated close on gallery cushions pouring tea, one silver comb laid on the table, silver hair loose over one shoulder, steady pale gold gaze"
+            "comp": "seated close on gallery cushions pouring tea, one silver comb laid on the table, hair loose over one shoulder, steady pale gold gaze"
           }
         }
       },
@@ -254,7 +254,7 @@
       "title": "Off Shift",
       "scene": "casual",
       "image": {
-        "comp": "sitting on the edge of a carved wooden bench unbuckling leather bracers in dim firelight, sharp grey-green eyes warm and candid",
+        "comp": "sitting on the edge of a carved wooden bench unbuckling leather bracers in dim firelight, sharp eyes warm and candid",
         "setting": "warm hearth parlor of Hollowmere Manor late at night",
         "sam": true
       },
@@ -364,7 +364,7 @@
           "scene": "sam_date",
           "text": "Zaria has locked the front curtain and gone to bed. Vharra hasn't. You find her in the back room, lying along the settee with both legs over the arm and a glass of dark wine in her hand. She is holding a slip of parchment up to the candle.\n\nYour name is at the top of it. Under that are two columns in her handwriting, with dates. A good many of the recent entries are only a date and a small mark. She doesn't explain the marks. You can guess.\n\n\"I've kept a ledger on everybody for three hundred years,\" she says. \"I have never been in anyone's debt for longer than a week.\" She turns the slip so that you can see the bottom line, crossed out and rewritten four times. \"You're the only one in Hollowmere I keep losing track of. I can't tell which of us owes the other.\" Her emerald eyes come up from the page. \"I thought we might work on it tonight. I intend to be thorough.\"",
           "image": {
-            "comp": "lying along a settee with both legs over the arm, holding a parchment slip up to a candle, wine glass in hand, emerald eyes lifting from the page"
+            "comp": "lying along a settee with both legs over the arm, holding a parchment slip up to a candle, wine glass in hand, eyes lifting from the page"
           }
         }
       },

@@ -24,7 +24,7 @@
         }
       ],
       "image": {
-        "comp": "sitting upright on a back step holding a teacup, silver-white hair and a softly glowing temple light, looking at him with calm curiosity",
+        "comp": "sitting upright on a back step holding a teacup, hair and a softly glowing temple light, looking at him with calm curiosity",
         "setting": "back steps of a lantern-lit inn at dusk",
         "sam": true
       }
@@ -54,7 +54,7 @@
             }
           ],
           "image": {
-            "comp": "seated in the bath, silver hair fanned on the water, eyes open, one wet hand lifted toward the stool, amber glow at her temple, earnest look",
+            "comp": "seated in the bath, hair fanned on the water, eyes open, one wet hand lifted toward the stool, amber glow at her temple, earnest look",
             "towel": true
           }
         },
@@ -109,7 +109,7 @@
         }
       ],
       "image": {
-        "comp": "seated in a bath with her eyes closed and a calm wondering expression, silver-white hair damp, a faint gold glow at her temple",
+        "comp": "seated in a bath with her eyes closed and a calm wondering expression, hair damp, a faint gold glow at her temple",
         "setting": "steamy wooden washroom",
         "sam": false,
         "towel": true

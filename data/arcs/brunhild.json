@@ -36,7 +36,7 @@
         }
       ],
       "image": {
-        "comp": "sitting at a heavy oak table with her elbow planted for arm wrestling, tankard in her other hand, huge grin, braided copper-red hair, freckled and muscular, a crowd of onlookers behind her",
+        "comp": "sitting at a heavy oak table with her elbow planted for arm wrestling, tankard in her other hand, huge grin, braided hair, freckled and muscular, a crowd of onlookers behind her",
         "setting": "cozy lantern-lit tavern back room crowded with cheering patrons",
         "sam": true
       }
@@ -128,7 +128,7 @@
         }
       ],
       "image": {
-        "comp": "soaking up to her collarbones in a steaming copper tub, braided copper-red hair pinned up, freckled muscular shoulders, gruff expression with red ears, towel nearby",
+        "comp": "soaking up to her collarbones in a steaming copper tub, braided hair pinned up, freckled muscular shoulders, gruff expression with red ears, towel nearby",
         "setting": "steamy bathhouse with a large copper tub",
         "sam": false,
         "towel": true
@@ -170,7 +170,7 @@
         }
       ],
       "image": {
-        "comp": "sitting on an upturned cask reading a tiny worn book, a single tear on her freckled cheek, startled guilty expression, braided copper-red hair, muscular arms, leather vest",
+        "comp": "sitting on an upturned cask reading a tiny worn book, a single tear on her freckled cheek, startled guilty expression, braided hair, muscular arms, leather vest",
         "setting": "dim storeroom lined with barrels, warm lantern light",
         "sam": true
       }
@@ -205,7 +205,7 @@
         }
       ],
       "image": {
-        "comp": "standing frozen on a staircase, clenched fists, stricken expression, braided copper-red hair, facing a stocky bearded dwarf cousin holding a sealed betrothal scroll, Sam stepping between them",
+        "comp": "standing frozen on a staircase, clenched fists, stricken expression, braided hair, facing a stocky bearded dwarf cousin holding a sealed betrothal scroll, Sam stepping between them",
         "setting": "lantern-lit entry hall of a pleasure house in the evening",
         "sam": true
       }
@@ -245,7 +245,7 @@
         }
       ],
       "image": {
-        "comp": "standing in a lantern-lit courtyard holding a bunch of wild marigolds awkwardly, scowling and blushing, braided copper-red hair, studded leather outfit, a fiddler in the background",
+        "comp": "standing in a lantern-lit courtyard holding a bunch of wild marigolds awkwardly, scowling and blushing, braided hair, studded leather outfit, a fiddler in the background",
         "setting": "candlelit courtyard at dusk with strings of lanterns",
         "sam": true
       }

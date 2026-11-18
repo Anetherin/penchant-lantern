@@ -33,6 +33,14 @@ const CHECK = `async () => {
   };
   const fresh = (house, partner) => { store.del(KEY_SAVE); EVQ = []; CUR_EV = null; newGame({past:'salaryman', house, partner}); closeModal(); G().met = true; };
   const outText = o => (o && typeof o === 'object') ? o.text : o;
+  const LOOK_RE = /\\b(blonde|brunette|auburn|redhead|(?:red|grey|gray|blue|green|violet|amber|gold|golden|dark|silver|white|black|brown|copper|crimson|emerald)[- ]+(?:eyes|eyed|hair|ponytail|braid|braids|locks|waves|curls|tail|wings))\\b/i;
+  const checkImg = (where, img, prose) => {
+    if (!img || typeof img !== 'object') return;
+    if (img.comp && LOOK_RE.test(img.comp)) bad.push(where + ': image.comp repeats hair/eye look (' + img.comp.match(LOOK_RE)[0] + '): ' + img.comp);
+    if (prose && (img.towel || img.bath) && img.cloth !== 'nude' && /\\b(completely naked|stark naked|bare breasts|bare tits)\\b/i.test(prose)) {
+      bad.push(where + ': image has bath/towel without cloth:"nude" but prose says naked/bare');
+    }
+  };
   const starters = Object.keys(HOUSES).filter(k => !HOUSES[k].ngplus && !HOUSES[k].ngppOnly);
 
   // 1. cycle-1 opening: her intro with every answer, then the Vane welcome
@@ -138,6 +146,10 @@ const CHECK = `async () => {
     const isP = PARTNERS.includes(key); fresh(starters[0], isP ? key : PARTNERS[0]);
     let w = S.workers.find(x => x.key === key); if (!w) { w = makeNamed(key, false); w.house = S.houses[0].id; S.workers.push(w); }
     const n = runBeats('arc', key, w, ARCS[key], evArc, 'arc');
+    ARCS[key].forEach((b, i) => {
+      checkImg('arc ' + key + ' beat ' + (i + 1), b.image, b.text);
+      for (const [ik, iv] of Object.entries(b.byIntim || {})) checkImg('arc ' + key + ' beat ' + (i + 1) + ' byIntim.' + ik, iv.image, iv.text || b.text);
+    });
     if (!has(w, 'Devoted')) bad.push('arc ' + key + ': the last beat did not make her a lover');
     words[key] = Object.assign(words[key] || {}, {arcBeats: ARCS[key].length, arcWords: n});
   }
@@ -145,6 +157,10 @@ const CHECK = `async () => {
     fresh(starters[0], PARTNERS[0]);
     let w = S.workers.find(x => x.key === key); if (!w) { w = makeNamed(key, false); w.house = S.houses[0].id; S.workers.push(w); }
     runBeats('after', key, w, AFTER_STORIES[key], evAfterStory, 'after');
+    AFTER_STORIES[key].forEach((b, i) => {
+      checkImg('after ' + key + ' beat ' + (i + 1), b.image, b.text);
+      for (const [ik, iv] of Object.entries(b.byIntim || {})) checkImg('after ' + key + ' beat ' + (i + 1) + ' byIntim.' + ik, iv.image, iv.text || b.text);
+    });
   }
   // 5. coverage: every lady the game writes itself has a story of her own
   for (const [k, n] of Object.entries(NAMED)) {
@@ -152,12 +168,26 @@ const CHECK = `async () => {
     if (n.role === 'guild' && !ARCS[k]) bad.push('coverage: guild lady ' + k + ' has no arc');
     if ((n.role === 'house' || n.role === 'story') && !AFTER_STORIES[k]) bad.push('coverage: ' + n.role + ' lady ' + k + ' has no after-story');
   }
-  // 5b. firsts: every scene has its four lines, and a named service exists at that scene's stage (firstAct ignores it otherwise)
-  for (const [k, c] of Object.entries(FIRST_CHARS)) for (const [grp, evs] of [['', c.events || {}], ['pent ', c.pent || {}]]) for (const [st, e] of Object.entries(evs)) {
-    const at = 'first ' + k + ' ' + grp + st; look(at + ' text', e.text, true); look(at + ' goRes', e.goRes, true); look(at + ' waitRes', e.waitRes, true);
-    if (e.act && !getActs().some(x => x.id === e.act)) bad.push(at + ': unknown act ' + e.act);
-    else if (e.act && st !== 'jump' && actTier(e.act) !== +st) bad.push(at + ': act ' + e.act + ' is stage ' + actTier(e.act));
+  // 5b. firsts: every scene has its four lines, valid image, matching path stages, and a named service exists at that scene's stage (firstAct ignores it otherwise)
+  for (const [k, c] of Object.entries(FIRST_CHARS)) {
+    for (const st of (c.path || [])) if (!(c.events || {})[String(st)]) bad.push('first ' + k + ': path has stage ' + st + ' without events.' + st);
+    for (const [grp, evs] of [['', c.events || {}], ['pent ', c.pent || {}]]) for (const [st, e] of Object.entries(evs)) {
+      const at = 'first ' + k + ' ' + grp + st; look(at + ' text', e.text, true); look(at + ' goRes', e.goRes, true); look(at + ' waitRes', e.waitRes, true);
+      if (!e.image) bad.push(at + ': missing image');
+      else checkImg(at, e.image, e.text);
+      if (e.act && !getActs().some(x => x.id === e.act)) bad.push(at + ': unknown act ' + e.act);
+      else if (e.act && st !== 'jump' && actTier(e.act) !== +st) bad.push(at + ': act ' + e.act + ' is stage ' + actTier(e.act));
+    }
   }
+  // 5c. goddess teases: check image/cloth consistency and text
+  (GOD.teases || []).forEach((t, i) => {
+    const at = 'goddess tease ' + i;
+    checkImg(at, t.image, t.text);
+    if (!t.text || !String(t.text).trim()) bad.push(at + ': empty text');
+    (t.choices || []).forEach((ch, ci) => {
+      if (!ch.label || !String(ch.label).trim()) bad.push(at + ' choice ' + ci + ': empty label');
+    });
+  });
   // 6. walk meetings: every partner met on a walk (first meeting), each hire choice
   for (const k of PARTNERS) {
     fresh(starters[0], PARTNERS.find(x => x !== k)); S.gold = 1e6;

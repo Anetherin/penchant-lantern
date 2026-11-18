@@ -122,7 +122,7 @@
           "title": "Fresh Cream",
           "text": "Malon tops off a glass at the bar and slides it across to you while humming a ranch tune, her long red hair resting over one shoulder. \"Fresh from my family's herd—best in Hyrule,\" she smiles, biting her lip with rosy cheeks. \"Truth is, I came to deliver milk and stayed because of you—and it keeps coming out sounding like dairy.\"",
           "image": {
-            "comp": "leaning over a bar counter with a glass, cheeky bashful smile, long red hair over one shoulder",
+            "comp": "leaning over a bar counter with a glass, cheeky bashful smile, long hair over one shoulder",
             "setting": "the house bar, wooden counter, glass jars of cream, afternoon light",
             "sam": true
           },
@@ -135,7 +135,7 @@
           "title": "Lullaby",
           "text": "Malon hums a soft ranch lullaby while wiping down the bar after closing, watching you lean drowsily on the counter. Coming around the wood with a warm, teasing smile, she takes your hand and guides it onto her waist. \"Works on restless foals and tired owners alike—let me use my hands on you.\"",
           "image": {
-            "comp": "taking his hand with a sweet teasing smile, long red hair swaying, humming softly",
+            "comp": "taking his hand with a sweet teasing smile, long hair swaying, humming softly",
             "setting": "bar after closing, lamplight, wiping cloth in hand",
             "sam": true
           },
@@ -162,7 +162,7 @@
           "title": "Sudden Song",
           "text": "Malon is stacking mugs in the back room when she bursts into joyful song mid-sentence, claps a hand over her mouth, and turns bright red. \"Sorry—I always sing when I'm happy, and you make me ridiculously happy!\" Hopping up to kiss your cheek, then your mouth, she giggles breathlessly. \"I regret nothing!\"",
           "image": {
-            "comp": "hopping up to kiss him with a stack of mugs behind her, giggling, flushed, long red hair bouncing",
+            "comp": "hopping up to kiss him with a stack of mugs behind her, giggling, flushed, long hair bouncing",
             "setting": "bar back room, mugs and bottles, warm light",
             "sam": true
           },
@@ -236,7 +236,7 @@
           "title": "Spoils",
           "text": "Nabooru tosses a small velvet pouch into your lap—revealing a gleaming silver ring inside. \"Lifted it off a bandit who deserved worse. Not a proposal—a trophy,\" she grins, leaning against the doorframe with arms crossed and a flicker of nerves beneath her Gerudo swagger. \"I owe you a kiss for every decent thing you've done here, and I'm starting now.\"",
           "image": {
-            "comp": "leaning in a doorway with arms folded, confident grin, high red ponytail, a flicker of nerves",
+            "comp": "leaning in a doorway with arms folded, confident grin, high ponytail, a flicker of nerves",
             "setting": "the security post by the front door, a lantern, a stack of crates",
             "sam": true
           },
@@ -278,7 +278,7 @@
           "title": "Quick Hands",
           "text": "Nabooru has already pickpocketed your quill, ledger notes, and coin purse before you even blink. \"Just testing your reflexes,\" she grins—tucking the purse back into your pocket while grabbing your collar and kissing you breathless. \"And you didn't see that coming either.\"",
           "image": {
-            "comp": "tucking a wallet back into his pocket while kissing him, grinning, quick-handed, red ponytail swinging",
+            "comp": "tucking a wallet back into his pocket while kissing him, grinning, quick-handed, ponytail swinging",
             "setting": "security desk, scattered quills and papers, lantern light",
             "sam": true
           },
@@ -295,7 +295,7 @@
           "title": "Mirror Royal",
           "text": "Hilda stands by the lounge window at twilight, her tall staff resting against the frame and crimson eyes reflecting the street lamps. \"In Lorule I spent every waking hour trying to salvage a crumbling crown,\" she says quietly, turning to face you. \"Here, nothing is crumbling, and I still find myself watching you. May I learn what a kiss feels like when nothing is at stake?\"",
           "image": {
-            "comp": "standing by a window at twilight with her staff resting beside her, crimson eyes soft, tentative regal smile",
+            "comp": "standing by a window at twilight with her staff resting beside her, eyes soft, tentative regal smile",
             "setting": "lounge window at twilight, warm lanterns outside",
             "sam": true
           },
@@ -321,7 +321,7 @@
           "title": "No More Borrowed Light",
           "text": "Hilda waits for you in her bedchamber wearing only a loose lavender slip, her dark violet hair brushed out over bare shoulders. \"Once, I tried to steal another princess's light because I thought my world was empty,\" she says softly, letting the slip fall to the floor. \"I don't want borrowed light anymore. Stay with me tonight.\"",
           "image": {
-            "comp": "standing beside her bed with her dark violet hair loose over bare shoulders, crimson eyes shining, vulnerable smile",
+            "comp": "standing beside her bed with her hair loose over bare shoulders, eyes shining, vulnerable smile",
             "setting": "her bedroom at night, soft lamplight on dark purple drapes",
             "sam": true,
             "cloth": "dressed",
@@ -337,7 +337,7 @@
           "title": "Unplanned Decree",
           "text": "You catch Hilda staring at you from the top of the stairs, and when you walk up to ask what's wrong, she catches your hoodie in both hands. \"I am tired of being the solemn shadow in the corner,\" she breathes, crimson eyes blazing with sudden resolve as she pulls you into her doorway. \"Tonight I am taking what I want.\"",
           "image": {
-            "comp": "pulling him by his hoodie into a doorway, crimson eyes bright, solemn composure broken by a fierce blush",
+            "comp": "pulling him by his hoodie into a doorway, eyes bright, solemn composure broken by a fierce blush",
             "setting": "upstairs doorway, warm lantern light",
             "sam": true
           },

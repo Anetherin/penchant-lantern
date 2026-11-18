@@ -260,7 +260,7 @@
           "scene": "sam_date",
           "text": "Both moons are up, and the arched glass overhead has gone silver. The censers are burning low, and their smoke lies along the floor in thin gold layers.\n\nMaren is stretched out on the crimson chaise. Her dress is undone down the front, and she is lying on her side, with her tail curled over her bare calves. She is holding up a ribbon between two fingers. It's the one off the door. She has taken the 'open' sign down.\n\n\"The glass keeps every scent in. Do you remember?\" she says. \"I've had 'quiet night' in the censers for an hour. It's the strong one. I didn't make it to steady anything.\" The tip of her tail flicks. Her amber eyes have gone dark, and her ears are pricked forward. \"The door's latched, Sam. Breathe in, and then come here. I've been waiting on this chaise since sunset, and foxes aren't patient.\"",
           "image": {
-            "comp": "lying on her side along a crimson chaise, tail curled over her bare calves, holding a ribbon up between two fingers, dark amber eyes, ears pricked",
+            "comp": "lying on her side along a crimson chaise, tail curled over her bare calves, holding a ribbon up between two fingers, ears pricked",
             "cloth": "partial",
             "wear": "a dress undone down the front"
           }
@@ -334,7 +334,7 @@
           "scene": "sam_date",
           "text": "The last carriage has gone out of the courtyard. The candles in the mirror suite are burning down, and each one is repeated four times in the gilded glass.\n\nVivienne takes off her spectacles and sets them down beside the brandy decanter. Then she reaches up and draws the pins out of her chignon, one after another, and lays them in a row. Her dark hair comes down over her bare shoulders. You see it in all four mirrors at once.\n\n\"There are no students,\" she says. \"There are no callers, and there isn't a syllabus.\" The cool voice is the same, but it is slower and lower than usual. She turns to face you, and she is smiling. It is a wicked smile, and she has never let it out in the lecture hall. \"I have been composed for fourteen hours, Sam. I am very tired of it. Lock the door. Then come here and help me to stop.\"",
           "image": {
-            "comp": "standing before gilded mirrors with hairpins laid in a row, dark hair loose over bare shoulders, spectacles set aside, slow wicked smile"
+            "comp": "standing before gilded mirrors with hairpins laid in a row, hair loose over bare shoulders, spectacles set aside, slow wicked smile"
           }
         }
       },
