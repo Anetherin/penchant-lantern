@@ -1,10 +1,18 @@
 {
   "_readme": [
-    "Lead-in pages for the house stories (js/stories/houses.js, house-extras.js, ngplus-houses.js → houseStoryEvent).",
-    "One list per house id, one entry per chapter in play order (starter houses have 5 chapters, New Game+ houses 4). Each entry: pages = the pages shown before the chapter's choice page.",
-    "A page is a string, or {text, btn, scene, who}: btn = button label (default Continue), scene = image scene for that page, who:\"ev\" = picture the chapter's own character (the visitor) instead of the resident.",
-    "Prose only: the choice page, the checks and every result line stay in the JS files, and the last page here should lead straight into that choice page.",
-    "Placeholders: {first} / {name} = the house's resident, {house}, {loc}. Other characters (Seraphine, Ines, Ilyana, Vharra, the visitors) are written by name.",
+    "Text of the house stories (js/stories/houses.js, house-extras.js, ngplus-houses.js). The JS keeps the logic (checks, costs, effects, conditions); every line the player reads is here and is fetched with HT(h, chapterIndex, 'dotted.path', vars).",
+    "One list per house id, one entry per chapter in play order (starter houses have 5 chapters, New Game+ houses 4). Each entry: pages = lead-in pages shown before the choice page, hint = the line on the house's story card while this chapter is next, text = the choice page, choices = {id: {label, ...results}}.",
+    "A lead-in page is a string, or {text, btn, scene, who}: btn = button label (default Continue), scene = image scene for that page, who:\"ev\" = picture the chapter's own character (the visitor) instead of the resident.",
+    "A choice has its label (a check adds [Stat %], a payment adds the cost) and its results: res (any single result), win / lose (a check passing / failing), or descriptive keys when one choice has several outcomes. lead / situation / extra feed housePrivate (scene lead-in text, AI situation line, closing line); base = a first part that a later line builds on ({base}). Where the JS picks between two versions the key holds an object (text.intimate / text.plain, label.intimate / label.plain).",
+    "Any value may be a list of strings: one is picked at random each time.",
+    "titles = the story title per house id (top level of each part file). common = shared lines (cantAfford, freeResident, joins, joinsFree) in this file.",
+    "Placeholders: {resident} = the resident's full name (or 'the staff' when she is not there), {first} = her first name, {house}, {loc}; {name}, {lust}, {bed}, {base} are passed by the chapter that uses them. Other characters (Seraphine, Ines, Ilyana, Vharra, the visitors) are written by name. A lead-in page also knows {name} = the resident's full name.",
     "Follow docs/WRITING.md: second person, plain words, and nothing more intimate than the chapter itself plays."
-  ]
+  ],
+  "common": {
+    "cantAfford": "You can't afford that right now. (This will come up again.)",
+    "freeResident": "\n\n({name} now works without wages.)",
+    "joins": "\n\n({name} joins {house}.)",
+    "joinsFree": "\n\n({name} joins {house}, working without wages.)"
+  }
 }

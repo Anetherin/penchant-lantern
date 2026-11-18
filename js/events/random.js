@@ -128,13 +128,20 @@ function townEventWeek(R){
   if(e || T.off) return;
   if(S.townEvNext == null) S.townEvNext = S.week + span(T.gap);
   if(S.week < S.townEvNext) return;
-  let ids = Object.keys(L).filter(k=>!T.only || k===T.only);
+  let ids = Object.keys(L).filter(k=>T.only ? k===T.only : L[k].random !== false);
   if(ids.length > 1) ids = ids.filter(k=>k!==S.townEvLast);
   if(!ids.length) return;
-  const id = pick(ids), d = L[id], weeks = span(T.weeks);
-  S.townEv = {id, start:S.week, end:S.week + weeks};
-  R.lines.push(`🏮 ${d.label}, for the next ${weeks} weeks: ${d.desc}`); addLog(`${d.label} begins (${weeks} weeks): ${d.desc}`);
+  const id = pick(ids), weeks = span(T.weeks);
+  startTownEvent(id, weeks, R);
   EVQ.push(()=>evTownEvent(id, weeks));
+}
+// Starts a town event now (story beats use this too, e.g. Isolde's price war: list entries with random:false never roll on their own).
+// Takes over from whatever runs; R (optional) = this week's report.
+function startTownEvent(id, weeks, R){
+  const d = townEventList()[id]; if(!d) return;
+  S.townEv = {id, start:S.week, end:S.week + weeks};
+  if(R) R.lines.push(`🏮 ${d.label}, for the next ${weeks} weeks: ${d.desc}`);
+  addLog(`${d.label} begins (${weeks} weeks): ${d.desc}`);
 }
 function evTownEvent(id, weeks){
   const d = townEventList()[id] || {}, V = {weeks};
@@ -201,13 +208,7 @@ const RANDOM_EVENTS = [
         moodAdd(w, -3); repAdd(h, -1); return ET('bardduel','accept','lose',V); }},
       {label:ET('bardduel','decline','label',V), fx(){ return ET('bardduel','decline','res',V); }}]};
   }},
-  {w:2, ok:()=>S.week>=5 && !S.flags.taunt, make(){
-    S.flags.taunt = true;
-    return {title:ET('taunt','title'), who:'npc_isolde', scene:'portrait', text:ET('taunt','text'), choices:[
-      {label:ET('taunt','banter','label'), fx(){ if(S.sam.charm + rnd(0,50) > 40){ S.rep=clamp(S.rep+3); samStat('charm',2); return ET('taunt','banter','win'); } S.rep=clamp(S.rep-1); return ET('taunt','banter','lose'); }},
-      {label:ET('taunt','polite','label'), fx(){ return ET('taunt','polite','res'); }}]};
-  }},
-  {w:2, ok:()=>S.week>=10 && S.rep>=30 && !S.flags.poachCD && anyW(w=>w.trust<50 && !has(w,'Loyal') && !isFree(w) && !w.locked).length>0, make(){
+  {w:2, ok:()=>S.week>=10 && S.rep>=30 && !S.flags.poachCD && !iso().truce && anyW(w=>w.trust<50 && !has(w,'Loyal') && !isFree(w) && !w.locked).length>0, make(){
     S.flags.poachCD = 8;
     const w = pick(anyW(x=>x.trust<50 && !has(x,'Loyal') && !isFree(x) && !x.locked)), V = {name:w.name};
     const leave = () => { stashCloset(w); S.workers=S.workers.filter(x=>x!==w); addLog(`${w.name} left for the Velvet Thorn.`); };

@@ -1,10 +1,30 @@
 {
+  "titles": {
+    "skyhook": "Contraband Winds",
+    "pearl": "The Drowned Bell",
+    "foundry": "Raising the Rafters",
+    "conservatory": "Night-Blooming Blend",
+    "lyceum": "Final Examination"
+  },
   "skyhook": [
     {
       "pages": [
         "The cellar of {house} is the old ship's hold. The ribs of the hull curve up on either side of you, and the floor slopes a little toward the bow, so that anything round rolls away the moment you put it down.\n\nYou are down here doing inventory, because nobody has done one in sixty years. {first} labelled most of it herself. Her handwriting gets worse the older the crate. There is one marked RUM (GOOD) and another marked RUM (DO NOT), and a third that just says ASK ME, and after that NO DON'T.",
         "You have reached the back wall when you hear it. It's a small, regular sound, like a clock in another room, and it is coming from under a tarpaulin.\n\n{first} comes down the ladder with her tricorn pushed back, whistling. She sees where you are standing, and the whistle trails off. Her scaled tail has gone straight and still. It's the only part of her that can't lie, and at the moment it looks very guilty."
-      ]
+      ],
+      "hint": "Something is hidden in the Skyhook's cellar.",
+      "text": "You pull the tarpaulin off. It is a crate, bound in iron, and it is ticking. {resident} looks at it, then at you, with the expression of a captain who knows exactly how it got there. \"So. Funny story. I may have agreed to hold that for someone in, ah, 1180.\"",
+      "choices": {
+        "open": {
+          "label": "Open it carefully",
+          "win": "Inside: a clockwork navigation engine, very old, very valuable, and very much not ticking down to anything. A collector buys it the same evening. +400g",
+          "lose": "A spring goes off in your face. Nothing explodes, but nobody's brave enough to try again this week."
+        },
+        "deal": {
+          "label": "Make {resident} deal with her own crate",
+          "res": "{resident} grumbles, hauls it to the cliff edge and drops it into the clouds. \"There. Problem solved.\" Somewhere below, something goes \"bong.\""
+        }
+      }
     },
     {
       "pages": [
@@ -13,7 +33,20 @@
           "text": "There is an old man standing just inside the door. He has a sailor's roll to his walk, a grey beard and a coat that has been patched at both elbows. He listens to the whole story, right to the hat. He doesn't laugh.\n\n\"It was a harpoon,\" he says, into the quiet after the cheer. \"It was our own, and you were the one who fired it, Captain.\"\n\n{first} has stopped pouring. Ale is running over the rim of the mug and across the bar, and she hasn't noticed.",
           "scene": "casual"
         }
-      ]
+      ],
+      "hint": "Rinna's old first mate is in port.",
+      "text": "The old man crosses the floor and salutes {resident}. \"Tobbin, Captain, in case you'd forgotten the face. The old crew's back together. One last run, and we need you at the helm.\"\n\n{resident} doesn't answer right away. She looks at you.",
+      "choices": {
+        "go": {
+          "label": "\"Go. The Skyhook will be here when you get back.\"",
+          "res": "She's gone four days. She comes back windburned, grinning, with 300g of \"honest\" salvage and a story she won't stop telling. \"Thanks, boss. I needed that.\""
+        },
+        "retire": {
+          "label": "Talk Tobbin into retiring here instead",
+          "win": "Tobbin takes one look at the bar, the view, and the free drinks, and decides retirement sounds nice. He becomes the Skyhook's most loyal (and loudest) regular.",
+          "lose": "Tobbin laughs and says he'll ask again next time he's in port."
+        }
+      }
     },
     {
       "pages": [
@@ -22,13 +55,39 @@
           "text": "{first} takes off her tricorn and puts it under the bar. You have never seen her without it. Her copper hair is flat where the hat was, and she looks younger and much less sure of herself.\n\n\"If anybody asks, I'm the cook,\" she says. \"I've been the cook for years. You hired me in good faith.\"\n\nThere are boots on the gangway. They're in step, and they are polished.",
           "who": "ev"
         }
-      ]
+      ],
+      "hint": "The air navy has noticed the Skyhook.",
+      "text": "Commodore Ashby Vell of the air navy inspects the Skyhook with a white glove. \"Unlicensed moorings, undeclared cargo, and a proprietor with... colorful history. I could close this place by morning, Mr. Takahashi. Or we could discuss a license.\"",
+      "choices": {
+        "license": {
+          "label": "Buy the license",
+          "res": "Ashby stamps the papers with obvious disappointment. Licensed moorings bring licensed ships: the Skyhook gets busier."
+        },
+        "paperwork": {
+          "label": "Find a hole in his paperwork",
+          "win": "The moorings predate the navy's charter by thirty years. Ashby reads your brief twice and leaves without a word. The regulars talk about it for weeks.",
+          "lose": "Ashby smiles. \"I'll be back with an inspector.\""
+        }
+      }
     },
     {
       "pages": [
         "For months now you have woken to hammering. It starts at first light and comes from somewhere under your floor. {first} said she was fixing a leak, and you believed her until the bar stools began to go missing. Then it was the long table, and after that the good oak panelling from the back snug.\n\nYou find all of it eventually. It has been planed down and pegged into the gaps in the old hull, and tarred over. The stern windows have new glass, and the rudder has been rehung.",
         "Tonight she takes you up a ladder you didn't know was there, onto what you had always thought was the roof. It is a deck. There is a ship's wheel under a canvas cover, and when she pulls the cover off the brass has been polished until it shows your face.\n\nThe moorings creak below. The wind is coming steadily off the cliffs. {first} puts both hands on the wheel and doesn't speak for a moment. You notice that her tail is wrapped twice around the binnacle."
-      ]
+      ],
+      "hint": "Rinna has one last flight in her.",
+      "text": "{resident} has spent months fixing the wreck the Skyhook was built around. Tonight she wants to see if it flies.\n\n\"Just once. Just to the edge of the clouds. You're coming with me.\"",
+      "choices": {
+        "helm": {
+          "label": "Take the helm together",
+          "win": "The old ship groans off its cradle and climbs, wobbling, into the sunset. The whole dock cheers. When you land, {resident} kisses the deck, then you, then the deck again.\n\n\"Keep my wages. A captain doesn't charge her own crew.\"",
+          "lose": "A rope snaps. The ship settles back into its cradle with a sad creak. \"Next week,\" Rinna says. \"We'll get her up.\""
+        },
+        "alone": {
+          "label": "Let her fly it alone",
+          "res": "You watch from the cliff as {resident} takes the old ship around the harbor once and brings her home. She's crying a little when she lands, and pretends it's the wind."
+        }
+      }
     }
   ],
   "pearl": [
@@ -36,7 +95,21 @@
       "pages": [
         "You don't so much find {house} as get let into it. There is a door in the harbour wall and a stair cut down through the rock, and at the bottom the sea has hollowed out a room the size of a cathedral. The pools steam. The pearls set into the roof give a light like a full moon through cloud.\n\nIt is quiet tonight. A dozen guests are soaking, and nobody speaks above a murmur. {first} moves between the pools with an armful of linen, humming. The steam smells of salt whenever she does.",
         "You are checking the towel shelves at midnight when the light changes. Every pearl in the roof dims at once, like a lamp being turned down. The water in the pools goes still. Even the dripping stops.\n\nThen something tolls. You feel it in the soles of your feet before you hear it, and it comes from a long way below you.\n\nA guest screams. {first} doesn't even look up. She is folding a towel into thirds, and she takes a great deal of care over it."
-      ]
+      ],
+      "hint": "Guests hear something under the grotto at night.",
+      "text": "The guests flee up the stair in their towels. The pearls come slowly back. {resident} puts the folded towel on the shelf and picks up the next one. \"It does that,\" she says. \"Ignore it.\"",
+      "choices": {
+        "dive": {
+          "label": "Dive in and look",
+          "win": "Far below the tide pools, you glimpse a huge bronze bell, green with age, chained to the rock. You surface gasping. Maris won't meet your eyes.",
+          "lose": "The water is far colder and deeper than it looks. You surface empty-handed and shivering."
+        },
+        "ask": {
+          "label": "Ask {resident} about it",
+          "win": "\"There is a bell,\" {resident} admits at last. \"I was asked to keep it quiet. I have, mostly.\"",
+          "lose": "{resident} tells you it's the tide. Then that it's a ghost. Then that it's none of your business."
+        }
+      }
     },
     {
       "pages": [
@@ -45,19 +118,54 @@
           "text": "The harbourmaster comes down in person, and he doesn't enjoy it. He takes the stair one step at a time with a hand on the wall. At the bottom he gets out his spyglass, wipes it carefully, and puts it away again without looking through it.\n\nHe has a document case under his arm, with a seal on it old enough to have gone black. His eyes go to the water, and then to {first}, and he seems to decide that he would much rather talk to you.",
           "who": "ev"
         }
-      ]
+      ],
+      "hint": "The harbormaster wants a word about the Grotto's lease.",
+      "text": "Harbormaster Quill polishes his spyglass. \"The Grotto sits on harbor land, Mr. Takahashi. The old lease says whoever owns it keeps 'the Bell' silent. Guests are complaining. If it rings again, the guild takes the Grotto back.\"",
+      "choices": {
+        "lease": {
+          "label": "Pay to have the lease rewritten",
+          "res": "Quill strikes out the clause with visible relief. \"Between us, nobody's known what it meant for a century.\""
+        },
+        "read": {
+          "label": "Read the lease properly",
+          "win": "The lease also says the harbor owes the Grotto keeper \"a pearl's weight in silver yearly.\" It hasn't been paid in a century. Quill pays the first installment, sweating. +250g",
+          "lose": "The lease is written in archaic Harbor Cant. You need more time."
+        }
+      }
     },
     {
       "pages": [
         "{first} has told you where she comes from four times. She was a merchant's daughter from the southern isles. She was a shipwrecked priestess. Once she claimed to be the harbour's first lighthouse keeper, and once, with a perfectly straight face, a very old oyster. She tells each story beautifully, and you have never been able to catch her out.\n\nTonight, after the last guest has gone up the stair, she doesn't start on the linens. She sits down at the edge of the deepest pool and puts her bare feet in the water. Her sea-green hair is loose down her back.",
         "\"Sit,\" she says. \"I'm going to tell you another one.\"\n\nYou sit. The pearls overhead are steady. Down in the dark water, a long way below her feet, you can just make out the outline of something huge and green.\n\n\"The others were kinder than this one,\" {first} says. \"That's why I told them. This one is true. You'll know, because I won't enjoy telling it.\""
-      ]
+      ],
+      "hint": "Maris has been keeping a secret.",
+      "text": "{resident} finally tells you the truth. Three hundred years ago she made a bargain with the sea: the Grotto, its warmth and its pearls, in exchange for staying to keep the Bell asleep. She has never left the harbor since.\n\n\"I don't regret it. But I'd like to see a forest again, someday.\"",
+      "choices": {
+        "free": {
+          "label": "\"Then we find a way to set you free.\"",
+          "res": "{resident} looks at you for a long moment. \"You really mean that.\" It isn't a question."
+        },
+        "alone": {"label":"\"You don't have to carry this alone anymore.\"","res":"For the first time you've seen, {resident} laughs without hiding it."}
+      }
     },
     {
       "pages": [
         "The Bell rings every night now, and each night it comes a little earlier. Last week it tolled once at midnight. Yesterday it was three times, an hour after sunset, and a crack ran across the floor of the cold pool.\n\nThe pearls flicker. Half the regulars have stopped coming. The other half come in order to say they did, and leave quickly. {first} hasn't slept in days. Her silver eyes are shadowed. Twice you have caught her answering a question that nobody in the room had asked.",
         "\"It knows,\" she says tonight. The two of you are alone in the Grotto. \"I told somebody, and I said out loud that I would like to leave. It has been three hundred years, and now it has noticed that I'm not content.\"\n\nShe walks to the edge of the deepest pool. The water is moving in slow rings, though nothing has touched it. Each toll shakes dust down from the roof.\n\n\"I'm not sorry I told you,\" she says. \"I want you to know that, whatever happens next.\""
-      ]
+      ],
+      "hint": "The Drowned Bell is waiting.",
+      "text": "\"The bargain can be ended,\" {resident} says, looking down into the water. \"Someone has to pay the Bell's toll in my place. It has to be a gift the sea will accept.\"",
+      "choices": {
+        "pearls": {
+          "label": "Offer the sea a fortune in pearls",
+          "res": "The pearls sink, glowing, into the dark. The Bell tolls once more, softly, then never again. {resident} walks out of the harbor and up into the hills the next morning, and comes back that evening with an armful of wildflowers.\n\n\"I'm staying,\" she says. \"By choice, this time. Keep my wages.\""
+        },
+        "bell": {
+          "label": "Ring the Bell yourself, and bargain",
+          "win": "You dive, ring the Bell with both fists, and somehow talk the sea into a better deal: the Grotto stays warm, the pearls keep glowing, and {resident} is free to come and go as she likes.\n\nShe stays. \"Someone has to keep an eye on you. Keep my wages.\"",
+          "lose": "The sea is not in a bargaining mood. You are fished out of the pool half-frozen."
+        }
+      }
     }
   ],
   "foundry": [
@@ -65,7 +173,17 @@
       "pages": [
         "The first real storm of the season shows you what you have bought. {house} has a great many rooms, and tonight it is raining in most of them.\n\n{first} walks you along the upper gallery with a lantern. She has put buckets under the worst of it, and she knows the note each one makes as it fills. She points with the handle of her hammer. That door is nailed shut. That one has been bricked up. That whole wing was boarded over from the inside, and the boards have her own chalk on them.",
         "\"That was the tax assessor,\" she says. \"He counts rooms. Twenty years back the syndicate that held this place walled up half of it and swore it was a cottage. Then they went bust, and so did the two after them. I kept the deed dry and I kept the rats down, and I waited for an owner with more sense than money.\"\n\nShe stops under a beam as thick as your waist. It has dropped at one end, and water is running down it in a steady thread. She looks at the beam, and then she looks at you, and she seems to be working out how much you weigh."
-      ]
+      ],
+      "hint": "The west wing timbers groan every time the wind blows.",
+      "text": "{resident} tosses you a pry bar. \"If that beam goes, the gallery goes with it. Help me brace it and I can have the first of those doors open tonight.\"",
+      "choices": {
+        "brace": {
+          "label": "Brace the main beam together",
+          "win": "Timber snaps straight into place. You pry open one sealed wing on the spot (-1 damaged room)!",
+          "lose": "The rusted iron bolt refuses to budge tonight."
+        },
+        "crew": {"label":"Hire a roofing crew","res":"Shingles go up before nightfall and one sealed wing opens up (-1 damaged room)."}
+      }
     },
     {
       "pages": [
@@ -74,19 +192,45 @@
           "text": "He arrives without knocking, as she said he would. He walks the hall once with his hands behind his back and looks at the joints in her new beams. She watches him look, with her arms folded over her apron and her jaw set.\n\nHe finds nothing to say about the beams. From him, that seems to be praise. Then he gets down on one knee at the hearth, drops a plumb line into the dark, and listens to it.",
           "who": "ev"
         }
-      ]
+      ],
+      "hint": "An old dwarven mason has an eye on Ironwood Hall.",
+      "text": "Foreman Krag thumps a boot against the stone hearth. \"I built half the foundries on this street, lad. That sunken flue can heat eighteen rooms easy—if you clear the slag and pay union timber rates.\"",
+      "choices": {
+        "bargain": {
+          "label": "Bargain down timber costs",
+          "win": "Krag respects a hard ledger. He clears the flue himself and knocks a discount off every plank.",
+          "lose": "Krag shakes his beard slowly and walks out whistling."
+        }
+      }
     },
     {
       "pages": [
         "With the flue clear, the cellar can finally be reached, and nobody wants to reach it. Twenty years of slag and clinker have been shovelled down there by people who didn't plan on coming back. It takes you and {first} a week with barrows.\n\nShe works without talking. She fills two barrows in the time you fill one, and she doesn't mention it. On the fifth day she starts filling yours for you when you aren't looking.",
         "On the seventh day her shovel hits something that rings.\n\nIt isn't stone, and it isn't the dull clank of scrap either. The note is deep and clean, and it carries on for a second after the blow. {first} stops. She scrapes the slag back with the side of her boot and uncovers a curve of black iron as wide as a cart, bolted with rivets the size of her fist.\n\n\"Well,\" she says. She crouches and lays her palm flat on it. \"Somebody built this to last. Give me the lantern, boss.\""
-      ]
+      ],
+      "hint": "Locked doors hide the hall's sunken hearth.",
+      "text": "It is a dwarven forge-boiler, and it is intact. {resident} walks all the way around it, knocking on the plates. \"Get this lit and it'll steam towels for the whole hall and dry timber in half the time. The manifold's shot, though. That's fiddly work.\"",
+      "choices": {
+        "rebuild": {
+          "label": "Rebuild the boiler manifold",
+          "win": "Steam hisses smoothly through brass pipes. Another sealed room unlatches (-1 damaged room)!",
+          "lose": "A gasket blows warm soot in both your faces. Try again next week."
+        }
+      }
     },
     {
       "pages": [
         "The last week is all small work, and {first} won't let anyone else do it. She oils every board in the great hall on her knees, working with the grain. She hangs forty iron lanterns from the rafters and takes six of them down again because the chains were a finger's width uneven. She goes over every joint in the place with a mallet and a hard look.\n\nYou hand her things. It's most of what you have done all season, and she has stopped pretending that you're in the way.",
         "On the last evening she lights the hearth. The flue draws at the first try. The fire catches and roars, and heat rolls out across the floor and up into the galleries. Somewhere upstairs a door that had been stuck for twenty years swings open on its own.\n\n{first} stands in the middle of the hall with soot on her forehead and oil to the elbows. She turns all the way around once, looking up. There are no buckets anywhere, and nothing is dripping."
-      ]
+      ],
+      "hint": "Ironwood Hall is ready for its grand reopening.",
+      "text": "The great hall finally gleams with oiled oak and hung iron lanterns. {resident} leans on her maul, exhausted and grinning ear to ear. \"She's loud, she's huge, and she's ours, boss.\"",
+      "choices": {
+        "raise": {
+          "label": "Raise a tankard to Ironwood Hall",
+          "res": "Half of Foundry Row pours in to celebrate (+12% clients). {resident} waves off her ledger. \"Keep my pay. Nobody walks out on work she built with her own two hands.\""
+        }
+      }
     }
   ],
   "conservatory": [
@@ -94,25 +238,63 @@
       "pages": [
         "The crate comes up from the river docks packed in wet moss. It has been three months at sea, and it cost {first} everything she had put by. She won't tell you the number. She signs for it with her ears flat and carries it into the glasshouse herself, held against her chest.\n\nInside is a root ball the size of two fists and one stem. On the stem is a single bud, shut tight, so dark a red that it's nearly black.",
         "She shows it to you properly that night, after the guests have gone. The glass overhead is fogged, and the air is warm and wet and smells of earth. {first} is kneeling on the tiles by the pot with a lamp. Her fox tail is curled around her ankles.\n\n\"The traders call it a dusk orchid,\" she says. \"It blooms once, at midnight, and nobody can say which midnight. My father tried to grow one for eleven years. He used to say it could tell when you were anxious.\" She laughs, and she doesn't sound sure about it. \"So I am being very calm.\""
-      ]
+      ],
+      "hint": "An exotic orchid cutting refuses to bloom.",
+      "text": "\"One drop of its nectar doubles the pull of any censer in the house,\" {resident} murmurs. \"If we can keep it alive that long. The glass is sweating, Sam. It's too wet in here, or it's too dry, and I can't tell which any more.\"",
+      "choices": {
+        "adjust": {
+          "label": "Adjust the glasshouse humidity by hand",
+          "win": "Condensation clears cleanly off the panes. The petals stir open a fraction.",
+          "lose": "Too damp—two leaves curl back before you open the louvers."
+        }
+      }
     },
     {
       "pages": [
         "People have started asking what is in the censers. They ask casually. Guests come out of the suites loose-shouldered and a little dazed, and they would like to know, purely out of interest, what that scent was.\n\n{first} gives each of them a different answer, and all of the answers are wrong. The real ones are in a set of small green notebooks that she keeps in a locked drawer. The key hangs on a ribbon inside her bodice. She mentions this to people who ask, and she enjoys it.",
         "Tonight's guest doesn't ask. He has booked three different suites in three weeks, and in each one he spent a long time standing by the vent. He wears a Spice Guild pin on his collar and carries a flat leather case. He has been perfectly polite to everyone.\n\nNow he is sitting across from {first} in the lounge. He puts a pouch on the table between them, and it lands heavily."
-      ]
+      ],
+      "hint": "A rival perfumer tries to poach Maren's recipes.",
+      "text": "\"For the notebooks,\" the Spice Guild man says. \"All of them. If that figure is short, you may name another.\"\n\n{resident} doesn't touch the pouch. One fox ear tilts back toward you, and she waits.",
+      "choices": {
+        "charm": {
+          "label": "Out-charm the guild buyer into becoming a patron",
+          "win": "He leaves the gold anyway—for a private table every Friday instead.",
+          "lose": "He snaps his briefcase shut and threatens to undercut your resin suppliers."
+        }
+      }
     },
     {
       "pages": [
         "The seasonal salon is ten days off. It is the night {house} opens every suite at once and half the Terrace Gardens comes to be seen here. {first} has been planning it since spring. She has a seating chart, and a second one in case of rain.\n\nShe doesn't have any resin. The suites have been full all month, so the censers have burned day and night, and the store cupboard that should have lasted until winter is down to dust and a few empty tins.",
         "She brings you the problem with a shipping manifest in one hand. Her ears keep tipping back, however hard she tries to hold them up.\n\n\"Temple-grade myrrh comes by caravan, and lotus resin by sea,\" she says. \"Both of them can be here in time. Neither is cheap in a hurry.\" She hesitates. \"Or there's what is growing under this roof already, and my father's notebooks, and a great deal of guessing. I'm good at guessing. I should warn you that it does sometimes catch fire.\""
-      ]
+      ],
+      "hint": "The conservatory vents need a rare resin.",
+      "text": "{resident} lays the manifest on your desk. All five censers have to be full on the night of the salon, one way or the other.",
+      "choices": {
+        "resin": {"label":"Import a full crate of temple resin","res":"Sweet golden smoke fills every suite to the rafters."},
+        "blend": {
+          "label": "Mix a custom house blend with Maren",
+          "win": "Your improvised amber-orchid blend lingers three times longer than guild stock.",
+          "lose": "A smoky cough drives you both out onto the terrace until sunset."
+        }
+      }
     },
     {
       "pages": [
         "The salon is the best night {house} has ever had. Every suite is taken. The terrace doors are open, and the censers are breathing gold smoke up into the palms. People who are ordinarily too grand to enjoy themselves are doing it anyway.\n\n{first} is everywhere. She pours, she seats people, she laughs at the right moments. And every quarter of an hour she slips away between the ferns to a pot in the corner and comes back just a little more wound up.",
         "At a quarter to midnight she gives up pretending. She takes your wrist and pulls you through the leaves to the corner, where she has set one lamp on the tiles.\n\nThe bud has split. A line of crimson shows down one side, no wider than a thread, and the air around it is already sweet enough to taste.\n\n\"Don't breathe on it,\" {first} whispers. Her tail is lashing. \"Don't look at it too hard either. Oh, I can't watch.\" She keeps watching."
-      ]
+      ],
+      "hint": "The moon-orchid is about to open.",
+      "text": "Midnight strikes and the black-crimson dusk orchid unfurls completely under the glass dome, flooding the Conservatory with warm, dizzying sweetness. {resident} presses close against your arm, grinning.",
+      "choices": {
+        "breathe": {
+          "label": "Let the glasshouse breathe",
+          "base": "Patrons linger past dawn (+12% clients). {resident} tucks an orchid behind your ear. \"No wages from me, darling—you helped bloom the best room in town.\"",
+          "lead": "{base} Once the last guest steps out onto the terrace, she pulls you down beneath the blooming glass dome.",
+          "situation": "Beneath the blooming midnight orchid in the glasshouse conservatory, Maren pulls Sam down beside her."
+        }
+      }
     }
   ],
   "lyceum": [
@@ -120,25 +302,59 @@
       "pages": [
         "The letter arrives in the morning post, on paper so heavy that it barely folds. {first} reads it at breakfast without any change of expression. She finishes her tea. Then she tells you that she will see you in the lecture hall at nine tonight, and that you should be punctual.\n\nYou spend the day feeling as if you have been sent a note from the headmistress. You are the owner of the building, and it doesn't help in the least.",
         "At nine the hall is lit by a single branch of candles. The gilded mirrors along both walls repeat it until the room seems to go on forever. The benches are empty. {first} stands at the lectern with her spectacles on and the letter laid in front of her.\n\n\"That is from Lady Ashcombe,\" she says. \"I taught her three daughters to curtsey. She writes that she has heard what I teach now. She asks, very kindly, whether it's true that the Lyceum has become a house where anyone at all may walk in off the square.\""
-      ]
+      ],
+      "hint": "Former students want a private salon.",
+      "text": "{resident} folds the letter and picks up her riding crop. She taps it once against the oak. \"Either this salon's standards are beyond reproach by the time I answer her, or society will call us a common brothel. We begin with the owner. Stand up straight.\"",
+      "choices": {
+        "review": {
+          "label": "Review the etiquette ledger with her",
+          "win": "She lowers the crop with a faint smile. \"Better. You don't embarrass easily, Sam.\"",
+          "lose": "Professor Vivienne marks a crisp red X beside your posture."
+        }
+      }
     },
     {
       "pages": [
         "Academy Square is named for the Royal Academy, which takes up the whole north side of it behind a row of marble columns. {house} stands on the south side. For forty years it was the Academy's finishing school for young ladies, and the word 'Lyceum' is still cut into the stone above your door.\n\nThe Academy would like that word back. It has said so in three letters. {first} answered the first two herself, in handwriting that could cut glass. She didn't answer the third.",
         "This afternoon three governors cross the square on foot, in their robes, with a clerk behind them carrying a box of papers. They are shown into the small salon. They don't sit down until they are asked to.\n\n{first} asks them. Then she takes four glasses and a bottle of plum wine from the cabinet and pours without hurrying. She sets one glass in front of each governor, and the fourth in front of the chair at the head of the table. She doesn't take that chair herself. She stands behind it and looks at you over her spectacles."
-      ]
+      ],
+      "hint": "The Academy board disputes your charter.",
+      "text": "The eldest governor clears his throat. The Academy contests your use of the name \"Lyceum\" and expects it off the door by the end of term. All three of them are waiting for a flustered apology.\n\n{resident} says nothing at all. The negotiation is yours.",
+      "choices": {
+        "prove": {
+          "label": "Prove the deed carries legacy naming rights",
+          "win": "One governor turns pale at the original founders' clause; the other two immediately ask about private membership.",
+          "lose": "They adjourn in icy silence. Prepare stronger paperwork."
+        }
+      }
     },
     {
       "pages": [
         "With the governors seen off, {first} goes back to the work she actually cares about. For a fortnight the lamp in her study burns past midnight. The staff get used to finding notes under their doors, written in a crisp sloping hand: your posture on the stairs, the way you hold a fan, you laughed before he had finished the joke.\n\nShe observes every practice session from the back of the hall. She doesn't interrupt. She makes a small mark in a notebook, and everyone in the room hears the pencil.",
         "Tonight she brings the notebook to your office, along with a bound document as thick as your thumb. The cover reads 'Advanced Evening Syllabus'.\n\n\"The staff are good,\" she says. \"They could be exceptional. They can't see themselves, and that is the difficulty. A pupil who can't see her own mistake will go on making it gracefully for the rest of her life.\" She turns the document toward you and opens it at a page of figures. \"I have costed it. Please sit down before you read the total.\""
-      ]
+      ],
+      "hint": "Vivienne writes an advanced curriculum.",
+      "text": "The total is for full-length gilded mirrors in every practice booth, and imported velvet drapes to hang between them. {resident} holds out a pen for your signature beside hers.",
+      "choices": {
+        "mirrors": {"label":"Outfit the mirror suites","res":"Every suite shines like a noble salon. Clients notice immediately."},
+        "hall": {"label":"Start with the main hall first","res":"Vivienne arches one eyebrow, nods slowly, and drills the staff twice as hard anyway."}
+      }
     },
     {
       "pages": [
         "The first open soirée at {house} is by invitation, and {first} wrote every invitation herself. Lady Ashcombe is on the list. She was sent the first one.\n\nThey arrive at eight in a line of carriages that reaches around the square. They have come expecting to be scandalised, and what they get is an evening of real elegance. The staff's manners are better than their own. By ten most of them have forgotten why they meant to disapprove. By eleven Lady Ashcombe is asking, in a low voice, about private membership.",
         "You watch {first} through all of it. She doesn't smile at anyone. She moves through the rooms with her hands clasped behind her back, and wherever she passes, shoulders straighten and fans come up to the proper angle. Once, across the salon, she catches your eye and gives you the smallest nod you have ever seen.\n\nThe last guests leave after midnight. The applause in the hall goes on for some time after she has stopped acknowledging it, and there are envelopes on every side table."
-      ]
+      ],
+      "hint": "Graduation night at the Velvet Lyceum.",
+      "text": "The Velvet Lyceum's first open soirée ends in applause and discreet envelopes stuffed with gold. {resident} removes her spectacles, polishes one lens, and locks the salon door behind the last carriage.",
+      "choices": {
+        "tuition": {
+          "label": "Accept her private tuition",
+          "base": "Nobles book out next month on the spot (+12% clients). {resident} slips her contract into the desk drawer. \"Keep my wages, Sam. Consider it a scholarship.\"",
+          "lead": "{base} Locking the gilded mirror suite behind you, Vivienne taps the edge of the velvet desk with a knowing smile.",
+          "situation": "After the Velvet Lyceum premiere, Vivienne locks the salon door with Sam."
+        }
+      }
     }
   ]
 }

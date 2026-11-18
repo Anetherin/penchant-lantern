@@ -33,7 +33,7 @@ This file is for big ideas when I have a fresh batch of Claude usage.
 - Still open: internal keys that say "night" for something weekly (`goodNight`/`badNight`), and a pass over flavor text that calls the whole turn a day.
 
 ## Sam's weekly focus (done 2026-11-17; Guild focus waits for the guild pass)
-Sam picks one focus per week (costs a share of his weekly energy, so a hard week leaves less for the rest day). He never unlocks a second one. Moving work out of actions: bartending, watch, books, skill class and stat class stop being action buttons; rounds and scouting stay rest-day actions. Demonstration is undecided (rest-day action or cut).
+Sam picks one focus per week (costs a share of his weekly energy, so a hard week leaves less for the rest day). He never unlocks a second one. Moving work out of actions: bartending, watch, books, skill class and stat class stop being action buttons; rounds and scouting stay rest-day actions. Demonstration stays a rest-day action as it is (decided 2026-11-17).
 - **Office:** cuts upkeep (the current books), no direct income. Works as a madame: pairs courtesans with clients and attendants with the right courtesans (a share of a madame's effect normally, most of it when the house's madame is off or missing).
 - **Floor:** income if the house has a bar (bartending), keeps waiting clients happy, small mood and trust boost for the ladies.
 - **Watch:** the current watch bonus plus his step-in rescue bonus all week, and a larger trust boost (the ladies feel safe).
@@ -44,7 +44,7 @@ Sam picks one focus per week (costs a share of his weekly energy, so a hard week
 ## Adventurers' Guild (first pass done 2026-11-17, branch feat/guild-contracts; see docs/GUILD.md)
 - Done: quest board, ranks Copper→Mithril, 9 contract types, ladies' `guild` job + Sam's Guild focus, multi-week progress, injuries (Health), gold/merit/fame/popularity rewards, Sam's tools from contracts, 6 Sam perks, rank beats (Rhoswen, Hanna, new Vesna and Brunhild), party scenes (duo, trio, pair, lustbloom yuri), Seasoned Adventurer earnable trait, courier past life.
 - Outfits: 9 guild-only outfits (first clear of each contract, Bronze rank tabard) plus a chance of a shop outfit on every completion.
-- Still open: balance pass on contract numbers (bot plays the guild now: tools/lab/exp/guild.json); more contract types and scenes per tag; Vesna/Brunhild after-stories and bond events; whether rank should carry partially into NG+.
+- Contract numbers are fine for now (2026-11-17). Vesna and Brunhild have bond events now (data/bonds.json p_vesna_*, p_brunhild_*). Still open: more contract types and scenes per tag; Vesna/Brunhild after-stories; whether rank should carry partially into NG+.
 - Turn the guild into a quest board with ranks instead of a three-visit recruit button. Sam takes contracts through his **Guild** focus; ladies take them as their **job** for the week (Combat, Strength, Agility, plus Wits/Charm/Refinement for some). Sam and ladies can also go together.
 - Contract types: caravan escort, dungeon porter, arena bout, monster hunt, bodyguard at a noble's ball (courtesan skills count). Each has a rank, checks, party slots, a reward and a risk. Possibly multi-week contracts (a progress bar the party fills each week); still to decide.
 - Sam + a lady with enough trust and lust on the same contract unlocks exclusive scenes (campfire, shared tent, after a fight) and trust/bond gains.
@@ -53,10 +53,10 @@ Sam picks one focus per week (costs a share of his weekly energy, so a hard week
 - Each rank-up is a story beat with a girl in it: Hanna at the desk, Rhoswen, then party members Sam rescued, outbid or impressed. Former Adventurer / Brawler / Shield-Sister ladies should get an edge.
 - Still to design: the contract list and checks per rank, how rank progresses, which items/perks come from where, which carry into NG+.
 
-## Isolde (rival)
-- Give her a storyline instead of one taunt at week 5 and the poaching event. Beats trigger on town renown: taunt, poaching, a price war (a 2-3 week event), a festival wager, a truce, then romance.
-- Leaning rival-to-lover who never joins in cycle 1 (she runs her own house). From NG+ she can join as a madame and bring her house as a purchase. Still open: whether she ever joins at all.
-- More rival events in general, tied to her house's standing against Sam's.
+## Isolde (rival) (done 2026-11-17, branch feat/isolde-bonds-housetext)
+- Storyline in js/events/isolde.js + data/isolde.json (numbers balance.json → isolde): taunt → tour of the Velvet Thorn → price war (a town event) → festival wager → truce (first night) → lovers. Beats need town renown and a few weeks between them. After the truce Sam can visit her on the rest day (Errands) and she turns up if he stays away; nights are rough and competitive (let her lead / take control / make it a contest). She never joins. Poaching stops after the truce; once lovers, the Thorn sends overflow some weeks.
+- NG+ carries her story over (unfinished ones continue); NG+ cycles after it's finished get her games, repeatable wagers (cards, Demonfire, rooftop race, last one standing, repeat clients, owner's night). NG++ restarts it every NG++ cycle: déjà vu (1), an attraction she resents (2), openly hungry (3+).
+- Still open: more nights (especially lovers ones), rival events tied to her house's standing against Sam's, a goddess reaction to her.
 
 ## Town events (done 2026-11-17, branch chore/cleanup-mid-cycle-events)
 - The NG+ cycle variables are now town events: every 4-7 weeks, in any cycle (cycle 1 too), one runs for 2-3 weeks with an announcement page and a header chip (`balance.json → townEvents`, wording `events.json → townEvents`). Effects were raised a bit since they no longer last a whole cycle; Crimson Nights lost its debt part. Lab: `town-events`.

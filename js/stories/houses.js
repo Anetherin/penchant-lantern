@@ -4,8 +4,26 @@
    lighter second chapter and an epilogue from house-extras.js (five in all).
    Chapters trigger as the house's popularity grows (STORY_REP in house-extras.js).
    A failed check just means the chapter comes back a few weeks later.
-   Each chapter's lead-in pages live in data/housestories/ (houseStoryEvent).
+   All chapter text lives in data/housestories/ (lead-in pages, choice page, hint, labels, results; fetched with HT()
+   below); the checks, costs and effects stay here.
    ===================================================================== */
+// data/housestories/: per house id one entry per chapter {pages, hint, text, choices:{id:{label, res|win|lose|...}}}, plus
+// titles{} and common{}. HT(h, b, path, vars) = text at a dotted path of chapter b (a list picks one at random); {resident},
+// {first}, {house}, {loc} are filled automatically, anything else comes from vars. HC(path, vars) = same for common{}.
+const HSTORY = noMeta(needData('housestories'));
+const storyTitle = id => (HSTORY.titles || {})[id] || id;
+const storyHints = id => (HSTORY[id] || []).map(c => c.hint || '');
+function textFill(t, ctx, vars){
+  if(Array.isArray(t)) t = t[Math.floor(Math.random()*t.length)];
+  if(typeof t !== 'string') return '';
+  return t.replace(/\{(\w+)\}/g, (m, k) => vars && vars[k] !== undefined ? vars[k] : ctx && ctx[k] !== undefined ? ctx[k] : m);
+}
+function HT(h, b, path, vars){
+  let t = (HSTORY[h.id] || [])[b]; path.split('.').forEach(k => { t = t == null ? t : t[k]; });
+  const R = resident(h);
+  return textFill(t, {resident:RN(h), first:R ? R.name.split(' ')[0] : '', house:h.name, loc:(HOUSES[h.id]||{}).loc || 'Hollowmere'}, vars);
+}
+function HC(path, vars){ let t = HSTORY.common; path.split('.').forEach(k => { t = t == null ? t : t[k]; }); return textFill(t, null, vars); }
 const pct = (v,dc) => clamp(Math.round(55 + (v + ((S&&S.sam.lvl)||1)*2 - 2 - dc)*1.4), 15, 95);
 const rollP = p => Math.random()*100 < p;
 const resident = h => S.workers.find(w=>w.key===HOUSES[h.id].npc);
@@ -18,14 +36,14 @@ const storyGap = h => BAL.houseGate.gap[Math.min(h.story.beat, BAL.houseGate.gap
 // A failed check comes back after houseGate.retry weeks (the wait check is week - story.wk >= gap, so shift wk by the difference).
 function storyRetry(h){ h.story.wk = S.week + BAL.houseGate.retry - storyGap(h); }
 function check(label, stat, val, dc, win, lose){ const p = pct(val,dc); return {label:`${label} [${stat} ${p}%]`, fx(){ return rollP(p) ? win() : lose(); }}; }
-function pay(label, cost, h, win){ return {label:`${label} (${fmt(cost)})`, fx(){ if(S.gold<cost){ storyRetry(h); return 'You can\'t afford that right now. (This will come up again.)'; } S.gold-=cost; return win(); }}; }
-function freeResident(h){ const R = resident(h); if(!R) return ''; R.free = true; R.wage = 0; R.contract = 999; R.trust = clamp(R.trust+15); if(!has(R,'Loyal')) R.traits.push('Loyal'); return `\n\n(${R.name} now works without wages.)`; }
+function pay(label, cost, h, win){ return {label:`${label} (${fmt(cost)})`, fx(){ if(S.gold<cost){ storyRetry(h); return HC('cantAfford'); } S.gold-=cost; return win(); }}; }
+function freeResident(h){ const R = resident(h); if(!R) return ''; R.free = true; R.wage = 0; R.contract = 999; R.trust = clamp(R.trust+15); if(!has(R,'Loyal')) R.traits.push('Loyal'); return HC('freeResident', {name:R.name}); }
 function joinNamed(key, h, free){
   if(isHired(key)) return '';
   const w = rebirthNamed(makeNamed(key)); w.house = h.id; w.locked = h.id; w.contract = 999; w.trust = clamp(w.trust+20);
   if(free){ w.free = true; w.wage = 0; w.contract = 999; }
   S.workers.push(w); assignStart(w, NAMED[key].job); delete NPCS['n_'+key]; checkUnlocks(true);
-  return `\n\n(${w.name} joins ${h.name}${free?', working without wages':''}.)`;
+  return HC(free ? 'joinsFree' : 'joins', {name:w.name, house:h.name});
 }
 // Ladies a house story brings in for good (joinNamed in its last beat): house id -> [key, free]. NG+ treats them like the
 // house's resident: they come back with a kept house whose story is done (ngplus.js houseLadies / residentHouse).
@@ -43,110 +61,110 @@ function housePrivate(R, acts, lead, situation, extra, ctx){
   return {text, img:{wid:R.id, scene:sc}, ai:{kind:'private', wid:R.id, act, scene:sc, forSam:true, situation: actSituation(R, act, situation)}};
 }
 const STORIES = {
-  lantern:{title:'The Grieve Debt', hint:['A stranger will come asking about the old owner\'s debts.','Mira is looking into the old ledgers.','Time to deal with Silas Grieve for good.'], beats:[
-    h=>({who:'npc_silas', text:`A broad man with a scarred jaw lets himself into ${h.name} like he owns it. "Silas Grieve. The old owner paid my employer for 'protection.' Payments stopped when he vanished. I assume you'll be resuming them."\n\nBehind the counter, ${RN(h)} has gone very pale.`, choices:[
-      pay('Pay him', 200, h, ()=>{ storyAdvance(h,20); return '"Smart man." He pockets the coin. He will, it turns out, be back for more.'; }),
-      check('Throw him out','Strength',SSTR(h),35, ()=>{ storyAdvance(h); h.rep=clamp(h.rep+2); return 'Silas ends up on the street, mostly out of surprise. "You\'ll regret that," he says, straightening his coat.'; }, ()=>{ S.sam.energy=Math.max(0,S.sam.energy-30); storyRetry(h); return 'It does not go well. Silas leaves anyway, laughing. "I\'ll be back for an answer."'; }),
-      check('Talk him in circles','Charm',S.sam.charm,38, ()=>{ storyAdvance(h); return 'You bury him in so many questions about invoices and payment terms that Silas leaves to find a headache powder. Now you know exactly what he wants.'; }, ()=>{ storyRetry(h); return 'Silas is not amused. "One week. Then we talk properly."'; })]}),
-    h=>({who:RID(h), scene:'job_madame', text:`${RN(h)} drops a second, hidden ledger on your desk. "The old man kept two sets of books. I never knew. If there's anything in here about Grieve, it's buried in his chicken-scratch."`, choices:[
-      check('Go through it yourself','Business',S.sam.business,45, ()=>{ S.gold+=600; storyAdvance(h); return 'Three pots of tea later, you find it: proof the "protection" was extortion, and the location of 600g hidden under the floorboards. +600g'; }, ()=>{ storyRetry(h); return 'The numbers refuse to add up. You will try again with fresh eyes.'; }),
-      check(`Let ${RN(h)} handle it`,'Management',resident(h)?s100(resident(h).tech.manage):0,50, ()=>{ S.gold+=600; storyAdvance(h); return `${RN(h)} cracks it in one evening: proof of extortion, and 600g hidden under the floorboards. +600g`; }, ()=>{ storyRetry(h); return `${RN(h)} needs more time with it.`; })]}),
-    h=>({who:'npc_silas', text:`Silas Grieve is back, with two large friends. "Last chance, Takahashi."\n\nYou have the ledger in your coat.`, choices:[
-      check('Take the ledger to the city watch','Business',S.sam.business,55, ()=>{ storyAdvance(h,60); h.rep=clamp(h.rep+5); return `The watch is very interested in the ledger. Silas and friends spend the night in a cell and the rest of the month leaving town.\n\n${RN(h)} watches them go, then turns to you. "Keep my wages. This place is as much mine as yours now."` + freeResident(h); }, ()=>{ storyRetry(h); return 'The watch captain is "very busy." Silas smirks and gives you another week.'; }),
-      check('Show him the door, for good','Strength',SSTR(h),60, ()=>{ storyAdvance(h,60); h.rep=clamp(h.rep+5); return `It's short and loud. When the dust settles, Silas is limping toward the docks and the regulars are buying you drinks.\n\n${RN(h)} squeezes your arm. "Keep my wages. This place is home."` + freeResident(h); }, ()=>{ S.sam.energy=0; storyRetry(h); return 'You end up on the floor. Silas laughs. "Next week."'; }),
-      check('Offer him a better deal','Charm',S.sam.charm,55, ()=>{ storyAdvance(h,60); h.rep=clamp(h.rep+5); return `You point out that his boss has been skimming from Silas too. It's in the ledger. Silas reads it twice, swears, and leaves to have a very different conversation.\n\n${RN(h)} lets out a long breath. "Keep my wages. I'm not going anywhere."` + freeResident(h); }, ()=>{ storyRetry(h); return 'Silas isn\'t buying it. Yet.'; })]})
+  lantern:{title:storyTitle('lantern'), hint:storyHints('lantern'), beats:[
+    h=>({who:'npc_silas', text:HT(h,0,'text'), choices:[
+      pay(HT(h,0,'choices.pay.label'), 200, h, ()=>{ storyAdvance(h,20); return HT(h,0,'choices.pay.res'); }),
+      check(HT(h,0,'choices.throw.label'),'Strength',SSTR(h),35, ()=>{ storyAdvance(h); h.rep=clamp(h.rep+2); return HT(h,0,'choices.throw.win'); }, ()=>{ S.sam.energy=Math.max(0,S.sam.energy-30); storyRetry(h); return HT(h,0,'choices.throw.lose'); }),
+      check(HT(h,0,'choices.talk.label'),'Charm',S.sam.charm,38, ()=>{ storyAdvance(h); return HT(h,0,'choices.talk.win'); }, ()=>{ storyRetry(h); return HT(h,0,'choices.talk.lose'); })]}),
+    h=>({who:RID(h), scene:'job_madame', text:HT(h,2,'text'), choices:[
+      check(HT(h,2,'choices.self.label'),'Business',S.sam.business,45, ()=>{ S.gold+=600; storyAdvance(h); return HT(h,2,'choices.self.win'); }, ()=>{ storyRetry(h); return HT(h,2,'choices.self.lose'); }),
+      check(HT(h,2,'choices.delegate.label'),'Management',resident(h)?s100(resident(h).tech.manage):0,50, ()=>{ S.gold+=600; storyAdvance(h); return HT(h,2,'choices.delegate.win'); }, ()=>{ storyRetry(h); return HT(h,2,'choices.delegate.lose'); })]}),
+    h=>({who:'npc_silas', text:HT(h,3,'text'), choices:[
+      check(HT(h,3,'choices.watch.label'),'Business',S.sam.business,55, ()=>{ storyAdvance(h,60); h.rep=clamp(h.rep+5); return HT(h,3,'choices.watch.win') + freeResident(h); }, ()=>{ storyRetry(h); return HT(h,3,'choices.watch.lose'); }),
+      check(HT(h,3,'choices.door.label'),'Strength',SSTR(h),60, ()=>{ storyAdvance(h,60); h.rep=clamp(h.rep+5); return HT(h,3,'choices.door.win') + freeResident(h); }, ()=>{ S.sam.energy=0; storyRetry(h); return HT(h,3,'choices.door.lose'); }),
+      check(HT(h,3,'choices.deal.label'),'Charm',S.sam.charm,55, ()=>{ storyAdvance(h,60); h.rep=clamp(h.rep+5); return HT(h,3,'choices.deal.win') + freeResident(h); }, ()=>{ storyRetry(h); return HT(h,3,'choices.deal.lose'); })]})
   ]},
-  castle:{title:'The Lady in the East Tower', hint:['Cecile is hiding something about the castle.','Someone is coming for Lady Seraphine.','Lady Seraphine has something to say.'], beats:[
-    h=>({who:storyNpc('seraphine'), text:`${RN(h)} finally admits it: "The last Rosenhal never left. Lady Seraphine lives in the east tower. She has nowhere else to go."\n\nThat night you meet her on the stairs: sharp eyes, threadbare silk, and absolutely furious that a commoner owns her home.`, choices:[
-      {label:'Tell her she can stay', fx(){ storyAdvance(h); return '"How generous," she says icily, "of you, in my house." But she doesn\'t slam the door.'; }},
-      check('Offer her tea and a truce','Charm',S.sam.charm,40, ()=>{ storyAdvance(h); h.rep=clamp(h.rep+2); return 'She accepts the tea. She criticizes the tea. She drinks all of the tea. It\'s a start.'; }, ()=>{ storyAdvance(h); return 'She declines, coldly. Still, she stays.'; })]}),
-    h=>({who:'npc_gerhardt', text:`Baron Gerhardt Kessel arrives with a contract. "The Rosenhal debts are mine now. Lady Seraphine will settle them as my bride, by the end of the month."\n\nSeraphine says nothing. Her hands are shaking.`, choices:[
-      check('Humiliate him in front of the guests','Charm',S.sam.charm,55, ()=>{ storyAdvance(h); h.rep=clamp(h.rep+4); return 'You read the baron\'s contract aloud, typos and all, to a lounge full of nobles. The laughter follows Gerhardt all the way to his carriage.'; }, ()=>{ storyRetry(h); return 'The baron sneers and gives them a week.'; }),
-      pay('Buy the debt outright', 1500, h, ()=>{ storyAdvance(h); return 'You pay the baron in full. Gerhardt counts it twice and leaves, disappointed. Seraphine doesn\'t speak to you for a day. Then she leaves a thank-you note on your pillow.'; }),
-      check('Have him escorted off the grounds','Strength',SSTR(h),60, ()=>{ storyAdvance(h); h.rep=clamp(h.rep-2); return 'The baron is escorted out, loudly. Some guests are scandalized. Seraphine is not.'; }, ()=>{ storyRetry(h); return 'The baron\'s guards outnumber yours. "One week," he says.'; })]}),
-    h=>({who:storyNpc('seraphine'), text:`Seraphine finds you in the great hall. "I have no money, a title worth nothing, and no intention of leaving. But I know every noble in the kingdom, and I know how to host them." She holds out her hand. "Let me earn my keep, Mr. Takahashi."`, choices:[
-      {label:'Welcome her to the staff', fx(){ storyAdvance(h,60); h.rep=clamp(h.rep+5); return 'Within a week, the nobles start coming back.' + joinNamed('seraphine', h, true); }}]})
+  castle:{title:storyTitle('castle'), hint:storyHints('castle'), beats:[
+    h=>({who:storyNpc('seraphine'), text:HT(h,0,'text'), choices:[
+      {label:HT(h,0,'choices.stay.label'), fx(){ storyAdvance(h); return HT(h,0,'choices.stay.res'); }},
+      check(HT(h,0,'choices.tea.label'),'Charm',S.sam.charm,40, ()=>{ storyAdvance(h); h.rep=clamp(h.rep+2); return HT(h,0,'choices.tea.win'); }, ()=>{ storyAdvance(h); return HT(h,0,'choices.tea.lose'); })]}),
+    h=>({who:'npc_gerhardt', text:HT(h,2,'text'), choices:[
+      check(HT(h,2,'choices.humiliate.label'),'Charm',S.sam.charm,55, ()=>{ storyAdvance(h); h.rep=clamp(h.rep+4); return HT(h,2,'choices.humiliate.win'); }, ()=>{ storyRetry(h); return HT(h,2,'choices.humiliate.lose'); }),
+      pay(HT(h,2,'choices.buy.label'), 1500, h, ()=>{ storyAdvance(h); return HT(h,2,'choices.buy.res'); }),
+      check(HT(h,2,'choices.escort.label'),'Strength',SSTR(h),60, ()=>{ storyAdvance(h); h.rep=clamp(h.rep-2); return HT(h,2,'choices.escort.win'); }, ()=>{ storyRetry(h); return HT(h,2,'choices.escort.lose'); })]}),
+    h=>({who:storyNpc('seraphine'), text:HT(h,3,'text'), choices:[
+      {label:HT(h,3,'choices.welcome.label'), fx(){ storyAdvance(h,60); h.rep=clamp(h.rep+5); return HT(h,3,'choices.welcome.res') + joinNamed('seraphine', h, true); }}]})
   ]},
-  onsen:{title:'Cold Springs', hint:['Something is wrong with the springs.','Someone upstream is responsible.','The springs need a proper celebration.'], beats:[
-    h=>({who:RID(h), scene:'job_bath', text:`${RN(h)} pulls you aside, worried. "The springs are cooling. Every day a little more. My aunt said this never happened in forty years."`, choices:[
-      check('Hike up the mountain to look','Strength',S.sam.strength,30, ()=>{ storyAdvance(h); return 'Halfway up, you find a fresh stone dam diverting the hot water. Carved into it: the crest of the Golden Crane Inn.'; }, ()=>{ storyRetry(h); return 'You turn back, wheezing, halfway up. You\'ll try again.'; }),
-      check('Ask the regulars','Charm',S.sam.charm,34, ()=>{ storyAdvance(h); return 'An old woodcutter mentions "the Golden Crane\'s men" building something upstream.'; }, ()=>{ storyRetry(h); return 'Nobody knows anything. Or nobody\'s saying.'; })]}),
-    h=>({who:'npc_kurogane', text:`Master Kurogane of the Golden Crane Inn doesn't even pretend. "The mountain's water goes where it is most appreciated. My guests appreciate it more than yours."`, choices:[
-      check('File a water-rights claim','Business',S.sam.business,50, ()=>{ storyAdvance(h); return 'The magistrate rules for the Onsen. Kurogane has to tear down his own dam, which is very satisfying to watch.'; }, ()=>{ storyRetry(h); return 'The magistrate wants more paperwork.'; }),
-      check('Tear the dam down yourself','Strength',SSTR(h),55, ()=>{ storyAdvance(h); return 'One very long night with crowbars later, hot water comes roaring back down the mountain.'; }, ()=>{ storyRetry(h); return 'Kurogane\'s guards chase you off.'; }),
-      check('Propose sharing the water','Charm',S.sam.charm,50, ()=>{ storyAdvance(h); return 'Kurogane agrees to share, grudgingly, in exchange for your recipe for "convenience-store egg sandwiches."'; }, ()=>{ storyRetry(h); return 'Kurogane laughs at you.'; })]}),
-    h=>({who:RID(h), scene:'job_bath', text:`"We should celebrate," ${RN(h)} says. She is practically glowing. "A real spring festival, like back home. Lanterns from here to the road, food stalls, everything!"`, choices:[
-      pay('Throw a spring festival', 300, h, ()=>{ storyAdvance(h,60); h.bonus.demand = 1.25; h.rep=clamp(h.rep+5); return `The festival draws travelers from three valleys. Business at ${h.name} is permanently up (+25% clients).\n\n${RN(h)}, flushed and happy: "Don't you dare pay me anymore. This is my home, and you saved it."` + freeResident(h); }),
-      {label:'Not yet', fx(){ storyRetry(h); return `${RN(h)} pouts. "Soon, then."`; }}]})
+  onsen:{title:storyTitle('onsen'), hint:storyHints('onsen'), beats:[
+    h=>({who:RID(h), scene:'job_bath', text:HT(h,0,'text'), choices:[
+      check(HT(h,0,'choices.hike.label'),'Strength',S.sam.strength,30, ()=>{ storyAdvance(h); return HT(h,0,'choices.hike.win'); }, ()=>{ storyRetry(h); return HT(h,0,'choices.hike.lose'); }),
+      check(HT(h,0,'choices.regulars.label'),'Charm',S.sam.charm,34, ()=>{ storyAdvance(h); return HT(h,0,'choices.regulars.win'); }, ()=>{ storyRetry(h); return HT(h,0,'choices.regulars.lose'); })]}),
+    h=>({who:'npc_kurogane', text:HT(h,2,'text'), choices:[
+      check(HT(h,2,'choices.claim.label'),'Business',S.sam.business,50, ()=>{ storyAdvance(h); return HT(h,2,'choices.claim.win'); }, ()=>{ storyRetry(h); return HT(h,2,'choices.claim.lose'); }),
+      check(HT(h,2,'choices.dam.label'),'Strength',SSTR(h),55, ()=>{ storyAdvance(h); return HT(h,2,'choices.dam.win'); }, ()=>{ storyRetry(h); return HT(h,2,'choices.dam.lose'); }),
+      check(HT(h,2,'choices.share.label'),'Charm',S.sam.charm,50, ()=>{ storyAdvance(h); return HT(h,2,'choices.share.win'); }, ()=>{ storyRetry(h); return HT(h,2,'choices.share.lose'); })]}),
+    h=>({who:RID(h), scene:'job_bath', text:HT(h,3,'text'), choices:[
+      pay(HT(h,3,'choices.festival.label'), 300, h, ()=>{ storyAdvance(h,60); h.bonus.demand = 1.25; h.rep=clamp(h.rep+5); return HT(h,3,'choices.festival.res') + freeResident(h); }),
+      {label:HT(h,3,'choices.later.label'), fx(){ storyRetry(h); return HT(h,3,'choices.later.res'); }}]})
   ]},
-  hollow:{title:'Unfinished Business', hint:['The manor\'s popularity is attracting attention.','Vesper\'s past is hidden somewhere in the manor.','Someone wants to make amends.'], beats:[
-    h=>({who:storyNpc('ines'), text:`A woman in a long black coat kicks the door in, silver dagger drawn. "Ines Varga, Order of the Pale Lantern. I'm here to exorcise the spirit of this house."\n\n${RN(h)} floats down the stairs. "Oh good, a guest."`, choices:[
-      check('Bar the door','Strength',S.sam.strength,32, ()=>{ storyAdvance(h); return 'Ines is shoved, protesting, back onto the front step. She camps outside. For a week.'; }, ()=>{ storyRetry(h); return 'Ines gets past you easily. Vesper, offended, rattles every window in the house until she leaves.'; }),
-      check('Ask her to wait a week','Charm',S.sam.charm,36, ()=>{ storyAdvance(h); return 'Ines, against her better judgment, agrees to "observe." She takes a room. She pays for it.'; }, ()=>{ storyRetry(h); return '"Absolutely not." She\'ll be back.'; }),
-      {label:'Let her try', fx(){ storyAdvance(h); const R=resident(h); if(R) R.trust=clamp(R.trust-5); return 'The exorcism fails spectacularly. Vesper sets Ines\'s eyebrows on fire, very gently. Ines stays, out of sheer professional pride.'; }}]}),
-    h=>({who:RID(h), scene:'casual', text:`"There's something up here," ${RN(h)} says. "Something of mine. I can feel it, but I can't remember what it is."\n\nInes closes her notebook. For once she looks at you as if she would welcome a suggestion.`, choices:[
-      S.sam.appraisal>=2 ? {label:'Use [Appraisal] on the attic', fx(){ storyAdvance(h); return 'Appraisal lights up a locket under the floorboards. Inside: a portrait, and a name. Vesper Lisle, a courtesan condemned three hundred years ago by the Order of the Pale Lantern. For a crime she didn\'t commit.'; }}
-        : check('Search the city archives','Business',S.sam.business,50, ()=>{ storyAdvance(h); return 'In a dusty archive, you find her: Vesper Lisle, a courtesan condemned three hundred years ago by the Order of the Pale Lantern, for a crime she didn\'t commit.'; }, ()=>{ storyRetry(h); return 'The archives are a maze. You will try again.'; })]}),
-    h=>({who:storyNpc('ines'), text:`Ines comes back from the Order's headquarters with a sealed apology three centuries late, and her own resignation. "My order did this. Let me make it right. I'll guard this house, and her, for as long as you'll have me."\n\n${RN(h)} reads the apology twice, then laughs, for the first time in a very long time.`, choices:[
-      {label:'Welcome Ines', fx(){ storyAdvance(h,60); h.rep=clamp(h.rep+4); return `Vesper remembers who she is. "I don't need coin," she says. "I'm dead. I'll stay because I want to."` + freeResident(h) + joinNamed('ines', h, false); }}]})
+  hollow:{title:storyTitle('hollow'), hint:storyHints('hollow'), beats:[
+    h=>({who:storyNpc('ines'), text:HT(h,0,'text'), choices:[
+      check(HT(h,0,'choices.bar.label'),'Strength',S.sam.strength,32, ()=>{ storyAdvance(h); return HT(h,0,'choices.bar.win'); }, ()=>{ storyRetry(h); return HT(h,0,'choices.bar.lose'); }),
+      check(HT(h,0,'choices.wait.label'),'Charm',S.sam.charm,36, ()=>{ storyAdvance(h); return HT(h,0,'choices.wait.win'); }, ()=>{ storyRetry(h); return HT(h,0,'choices.wait.lose'); }),
+      {label:HT(h,0,'choices.try.label'), fx(){ storyAdvance(h); const R=resident(h); if(R) R.trust=clamp(R.trust-5); return HT(h,0,'choices.try.res'); }}]}),
+    h=>({who:RID(h), scene:'casual', text:HT(h,2,'text'), choices:[
+      S.sam.appraisal>=2 ? {label:HT(h,2,'choices.appraisal.label'), fx(){ storyAdvance(h); return HT(h,2,'choices.appraisal.res'); }}
+        : check(HT(h,2,'choices.archives.label'),'Business',S.sam.business,50, ()=>{ storyAdvance(h); return HT(h,2,'choices.archives.win'); }, ()=>{ storyRetry(h); return HT(h,2,'choices.archives.lose'); })]}),
+    h=>({who:storyNpc('ines'), text:HT(h,3,'text'), choices:[
+      {label:HT(h,3,'choices.welcome.label'), fx(){ storyAdvance(h,60); h.rep=clamp(h.rep+4); return HT(h,3,'choices.welcome.res') + freeResident(h) + joinNamed('ines', h, false); }}]})
   ]},
-  tankard:{title:'The Rematch', hint:['An old rival of Hilde\'s is in town.','Hilde needs to prepare.','The contest.'], beats:[
-    h=>({who:'npc_borgrum', text:`The door frame cracks as an enormous hill giant squeezes through. "BORGRUM WANTS ALE." ${RN(h)} goes stiff. "That's him. That's the one who won my brewery." She turns to you. "I want a rematch."`, choices:[
-      {label:'Host the rematch', fx(){ storyAdvance(h); return 'Borgrum laughs so hard the bottles rattle. "ONE MONTH, LITTLE DWARF."'; }},
-      {label:'Talk her out of it', fx(){ const R=resident(h); if(R) moodAdd(R, -10); storyRetry(h); return `${RN(h)} sulks for days. She'll bring it up again.`; }}]}),
-    h=>({who:RID(h), scene:'job_bartender', text:`"House ale won't beat him," ${RN(h)} says with her mouth full. "I need the good stuff. Moonhops from the Elven Quarter. They're not cheap."`, choices:[
-      pay('Buy the moonhops', 200, h, ()=>{ h.story.prep = 20; storyAdvance(h); return 'The cellar smells incredible. Hilde hasn\'t slept in days. She\'s never looked happier.'; }),
-      {label:`Trust ${RN(h)}'s skill`, fx(){ storyAdvance(h); return '"Fine. I\'ll win with house ale," she says, cracking her knuckles.'; }}]}),
-    h=>{ const R=resident(h), v=(R?s100(R.tech.bar):30)+(h.story.prep||0)+S.sam.charm/4; return {who:'npc_borgrum', text:`The whole dock district has packed into ${h.name}. Borgrum sits on two benches. ${RN(h)} sits on a stool, glaring up at him. The first tankards are poured.`, choices:[
-      check('Raise your tankards!',"Hilde's brewing",v,70, ()=>{ storyAdvance(h,60); h.bonus.bar = 1.5; h.rep=clamp(h.rep+6); return `Borgrum goes down like a felled oak. The crowd goes insane. He hands over the deed to Ironsong Brewery, weeping happily.\n\nThe Tankard now serves Ironsong ale (bar income +50%). ${RN(h)}: "You backed me. I'll pour for you for free until the end of time."` + freeResident(h); }, ()=>{ h.rep=clamp(h.rep+2); storyRetry(h); return `Borgrum wins by a single mug. "NEXT MONTH," he bellows, delighted. ${RN(h)} is already planning.`; })]}; }
+  tankard:{title:storyTitle('tankard'), hint:storyHints('tankard'), beats:[
+    h=>({who:'npc_borgrum', text:HT(h,0,'text'), choices:[
+      {label:HT(h,0,'choices.host.label'), fx(){ storyAdvance(h); return HT(h,0,'choices.host.res'); }},
+      {label:HT(h,0,'choices.talkdown.label'), fx(){ const R=resident(h); if(R) moodAdd(R, -10); storyRetry(h); return HT(h,0,'choices.talkdown.res'); }}]}),
+    h=>({who:RID(h), scene:'job_bartender', text:HT(h,2,'text'), choices:[
+      pay(HT(h,2,'choices.moonhops.label'), 200, h, ()=>{ h.story.prep = 20; storyAdvance(h); return HT(h,2,'choices.moonhops.res'); }),
+      {label:HT(h,2,'choices.trust.label'), fx(){ storyAdvance(h); return HT(h,2,'choices.trust.res'); }}]}),
+    h=>{ const R=resident(h), v=(R?s100(R.tech.bar):30)+(h.story.prep||0)+S.sam.charm/4; return {who:'npc_borgrum', text:HT(h,3,'text'), choices:[
+      check(HT(h,3,'choices.raise.label'),HT(h,3,'choices.raise.stat'),v,70, ()=>{ storyAdvance(h,60); h.bonus.bar = 1.5; h.rep=clamp(h.rep+6); return HT(h,3,'choices.raise.win') + freeResident(h); }, ()=>{ h.rep=clamp(h.rep+2); storyRetry(h); return HT(h,3,'choices.raise.lose'); })]}; }
   ]},
-  pavilion:{title:'Opening Night', hint:['The Pavilion\'s patroness wants to meet the new owner.','A famous critic is coming.','The patroness has made a decision.'], beats:[
-    h=>({who:storyNpc('ilyana'), text:`Lady Ilyana Silverbough, the Pavilion's elven patroness for a century, glides in unannounced. "So. A human bought my garden." She studies you like an unusual insect. "Impress me."`, choices:[
-      check('Make conversation','Charm',S.sam.charm,40, ()=>{ storyAdvance(h); return '"Hm. You listen more than you talk. That\'s rare in humans." She leaves you a pressed moon-lily.'; }, ()=>{ storyRetry(h); return '"Hm," she says, and leaves. Not a good "hm."'; }),
-      check(`Let ${RN(h)} dance for her`,'Dance',resident(h)?s100(resident(h).tech.dance):30,55, ()=>{ storyAdvance(h); return 'Ilyana watches without blinking. At the end she says only: "Again, next season."'; }, ()=>{ storyRetry(h); return 'A stumble. Ilyana says nothing, which is worse.'; })]}),
-    h=>({who:'npc_valois', text:`Maestro Valois, the most feared critic in three kingdoms, takes his seat without a word to anyone and uncaps his pen.\n\nBackstage, ${RN(h)} has both hands pressed flat to her stomach. The musicians are all looking at you.`, choices:[
-      check(`${RN(h)} dances the premiere`,'Dance',(resident(h)?s100(resident(h).tech.dance):30)+(h.up.stage?10:0),70, ()=>{ storyAdvance(h); h.rep=clamp(h.rep+5); return 'Valois\'s review is one word long: "Transcendent." Half the city tries to book a table.'; }, ()=>{ h.rep=clamp(h.rep-2); storyRetry(h); return 'Valois writes "Promising." It\'s devastating. They\'ll try again next season.'; })]}),
-    h=>({who:storyNpc('ilyana'), text:`Ilyana arrives with no entourage and one small bag. "I have owned this garden for a hundred years and never once been part of it. I find I would rather be part of it." She sets down the bag. "I'll want a room with a view of the lilies."`, choices:[
-      {label:'Welcome her home', fx(){ storyAdvance(h,60); h.bonus.demand = 1.15; return 'With Ilyana hosting, the Pavilion draws more refined guests than ever (+15% clients).' + joinNamed('ilyana', h, true); }}]})
+  pavilion:{title:storyTitle('pavilion'), hint:storyHints('pavilion'), beats:[
+    h=>({who:storyNpc('ilyana'), text:HT(h,0,'text'), choices:[
+      check(HT(h,0,'choices.talk.label'),'Charm',S.sam.charm,40, ()=>{ storyAdvance(h); return HT(h,0,'choices.talk.win'); }, ()=>{ storyRetry(h); return HT(h,0,'choices.talk.lose'); }),
+      check(HT(h,0,'choices.dance.label'),'Dance',resident(h)?s100(resident(h).tech.dance):30,55, ()=>{ storyAdvance(h); return HT(h,0,'choices.dance.win'); }, ()=>{ storyRetry(h); return HT(h,0,'choices.dance.lose'); })]}),
+    h=>({who:'npc_valois', text:HT(h,2,'text'), choices:[
+      check(HT(h,2,'choices.premiere.label'),'Dance',(resident(h)?s100(resident(h).tech.dance):30)+(h.up.stage?10:0),70, ()=>{ storyAdvance(h); h.rep=clamp(h.rep+5); return HT(h,2,'choices.premiere.win'); }, ()=>{ h.rep=clamp(h.rep-2); storyRetry(h); return HT(h,2,'choices.premiere.lose'); })]}),
+    h=>({who:storyNpc('ilyana'), text:HT(h,3,'text'), choices:[
+      {label:HT(h,3,'choices.welcome.label'), fx(){ storyAdvance(h,60); h.bonus.demand = 1.15; return HT(h,3,'choices.welcome.res') + joinNamed('ilyana', h, true); }}]})
   ]},
-  veil:{title:'The Landlord Below', hint:['The Underdistrict\'s landlord has noticed you.','Vharra is not done with you.','Vharra wants to talk.'], beats:[
-    h=>({who:storyNpc('vharra'), text:`A four-horned demoness drapes herself across the bar. "Vharra. I own the Underdistrict, darling. Including the ground under your little den. Rent is tripling."\n\n${RN(h)} hisses at her.`, choices:[
-      pay('Pay her off', 400, h, ()=>{ storyAdvance(h,20); return '"Good boy." She\'ll want more later. She always does.'; }),
-      check('Flirt back','Charm',S.sam.charm,55, ()=>{ storyAdvance(h); return 'Vharra blinks, then laughs. "Oh, you\'re FUN." Rent stays the same. For now.'; }, ()=>{ storyRetry(h); return 'She pats your cheek. "Adorable. Rent is due next week."'; }),
-      check('Refuse','Strength',SSTR(h),55, ()=>{ storyAdvance(h); return 'Vharra looks around at your security, then at you, and smiles slowly. "Interesting."'; }, ()=>{ storyRetry(h); return 'Vharra laughs and leaves. She\'ll be back.'; })]}),
-    h=>({who:RID(h), scene:'job_security', text:`"Vharra's tenants," ${RN(h)} says. Her tail is lashing. "She's testing us. She wants to see whether we pay, or break, or beg. They'll be back tonight."`, choices:[
-      check('Hold the line','Security',secOf(h)+S.sam.strength/3,55, ()=>{ storyAdvance(h); return 'Night after night, the Veil throws them out. Eventually, they stop coming.'; }, ()=>{ h.rep=clamp(h.rep-3); storyRetry(h); return 'It\'s a bad week. The Veil needs better security.'; })]}),
-    h=>({who:storyNpc('vharra'), text:`Vharra sits down across from you, uninvited. "Fine. You win. Do you know how boring it is, collecting rent for three hundred years?" She leans in. "I'd rather MAKE money. Here. With you. And I'll cut your rent, obviously."`, choices:[
-      {label:'Hire her', fx(){ storyAdvance(h,60); h.bonus.upkeep = 0.7; return `Vharra joins the Veil, and its upkeep drops by 30%.\n\n${RN(h)} rolls her eyes, but she's grinning. "Fine. And you can keep my wages, Zaria's rules. Try not to bore me, Sam."` + joinNamed('vharra', h, false) + freeResident(h); }}]})
+  veil:{title:storyTitle('veil'), hint:storyHints('veil'), beats:[
+    h=>({who:storyNpc('vharra'), text:HT(h,0,'text'), choices:[
+      pay(HT(h,0,'choices.pay.label'), 400, h, ()=>{ storyAdvance(h,20); return HT(h,0,'choices.pay.res'); }),
+      check(HT(h,0,'choices.flirt.label'),'Charm',S.sam.charm,55, ()=>{ storyAdvance(h); return HT(h,0,'choices.flirt.win'); }, ()=>{ storyRetry(h); return HT(h,0,'choices.flirt.lose'); }),
+      check(HT(h,0,'choices.refuse.label'),'Strength',SSTR(h),55, ()=>{ storyAdvance(h); return HT(h,0,'choices.refuse.win'); }, ()=>{ storyRetry(h); return HT(h,0,'choices.refuse.lose'); })]}),
+    h=>({who:RID(h), scene:'job_security', text:HT(h,2,'text'), choices:[
+      check(HT(h,2,'choices.hold.label'),'Security',secOf(h)+S.sam.strength/3,55, ()=>{ storyAdvance(h); return HT(h,2,'choices.hold.win'); }, ()=>{ h.rep=clamp(h.rep-3); storyRetry(h); return HT(h,2,'choices.hold.lose'); })]}),
+    h=>({who:storyNpc('vharra'), text:HT(h,3,'text'), choices:[
+      {label:HT(h,3,'choices.hire.label'), fx(){ storyAdvance(h,60); h.bonus.upkeep = 0.7; return HT(h,3,'choices.hire.res') + joinNamed('vharra', h, false) + freeResident(h); }}]})
   ]},
-  wayfarer:{title:'Roads and Rumors', hint:['The roads are getting dangerous.','Bettina is asking around.','Time to deal with Red Oskar.'], beats:[
-    h=>({who:RID(h), scene:'job_reception', text:`"Red Oskar's gang," ${RN(h)} says. "Bandits, on the east road. They took his wagon, his team and one of his boots. If the merchants stop coming, Sam, we're finished."`, choices:[
-      pay('Hire caravan guards', 300, h, ()=>{ storyAdvance(h); return 'The next three caravans arrive safely. Oskar will not be pleased.'; }),
-      check('Ride out with a caravan','Strength',S.sam.strength,40, ()=>{ storyAdvance(h); h.rep=clamp(h.rep+2); return 'The bandits take one look at the caravan, decide it isn\'t worth it, and leave. You pretend that was the plan.'; }, ()=>{ storyRetry(h); return 'The caravan is robbed. You come back with nothing but a sunburn.'; })]}),
-    h=>({who:RID(h), scene:'job_reception', text:`"Every traveler talks to the innkeeper," ${RN(h)} says. "Give me a few days and I'll find out where Oskar sleeps."`, choices:[
-      check(`Let ${RN(h)} work her network`,'Hospitality',resident(h)?s100(resident(h).tech.service):30,55, ()=>{ storyAdvance(h); return 'Three days and a lot of free pie later: an old mill, two hours east.'; }, ()=>{ storyRetry(h); return 'The trail goes cold. For now.'; }),
-      check('Follow the money','Business',S.sam.business,50, ()=>{ storyAdvance(h); return 'Stolen goods have to be sold somewhere. You trace them to a fence, and the fence to an old mill.'; }, ()=>{ storyRetry(h); return 'The money trail goes nowhere.'; })]}),
-    h=>({who:'npc_oskar', text:`The old mill. Red Oskar looks you up and down. "The innkeeper's boy. You've got guts, I'll give you that."`, choices:[
-      check('Storm the mill','Strength',SSTR(h)+10,60, ()=>{ storyAdvance(h,60); h.bonus.merchant = 1.3; h.rep=clamp(h.rep+5); return `Oskar's gang scatters. The east road is safe, and merchants flood back (+30% merchant clients).\n\n${RN(h)} hugs you so hard you squeak. "No more wages. You saved this inn."` + freeResident(h); }, ()=>{ storyRetry(h); return 'You retreat, bruised. Next time.'; }),
-      check('Offer him honest work','Charm',S.sam.charm,60, ()=>{ storyAdvance(h,60); h.bonus.merchant = 1.3; h.rep=clamp(h.rep+5); return `Oskar laughs, then thinks about it. A month later he's guarding caravans for good money, and merchants flood back (+30% merchant clients).\n\n${RN(h)} shakes her head in disbelief. "No more wages. You saved this inn."` + freeResident(h); }, ()=>{ storyRetry(h); return 'Oskar isn\'t ready to go straight. Yet.'; })]})
+  wayfarer:{title:storyTitle('wayfarer'), hint:storyHints('wayfarer'), beats:[
+    h=>({who:RID(h), scene:'job_reception', text:HT(h,0,'text'), choices:[
+      pay(HT(h,0,'choices.guards.label'), 300, h, ()=>{ storyAdvance(h); return HT(h,0,'choices.guards.res'); }),
+      check(HT(h,0,'choices.ride.label'),'Strength',S.sam.strength,40, ()=>{ storyAdvance(h); h.rep=clamp(h.rep+2); return HT(h,0,'choices.ride.win'); }, ()=>{ storyRetry(h); return HT(h,0,'choices.ride.lose'); })]}),
+    h=>({who:RID(h), scene:'job_reception', text:HT(h,2,'text'), choices:[
+      check(HT(h,2,'choices.network.label'),'Hospitality',resident(h)?s100(resident(h).tech.service):30,55, ()=>{ storyAdvance(h); return HT(h,2,'choices.network.win'); }, ()=>{ storyRetry(h); return HT(h,2,'choices.network.lose'); }),
+      check(HT(h,2,'choices.money.label'),'Business',S.sam.business,50, ()=>{ storyAdvance(h); return HT(h,2,'choices.money.win'); }, ()=>{ storyRetry(h); return HT(h,2,'choices.money.lose'); })]}),
+    h=>({who:'npc_oskar', text:HT(h,3,'text'), choices:[
+      check(HT(h,3,'choices.storm.label'),'Strength',SSTR(h)+10,60, ()=>{ storyAdvance(h,60); h.bonus.merchant = 1.3; h.rep=clamp(h.rep+5); return HT(h,3,'choices.storm.win') + freeResident(h); }, ()=>{ storyRetry(h); return HT(h,3,'choices.storm.lose'); }),
+      check(HT(h,3,'choices.work.label'),'Charm',S.sam.charm,60, ()=>{ storyAdvance(h,60); h.bonus.merchant = 1.3; h.rep=clamp(h.rep+5); return HT(h,3,'choices.work.win') + freeResident(h); }, ()=>{ storyRetry(h); return HT(h,3,'choices.work.lose'); })]})
   ]},
-  sanctuary:{title:'Sacred Ink', hint:['A cathedral inspector wants to shut the Cloister down.','The quarter is whispering about Caelia.','The bishop arrives for an audit.'], beats:[
-    h=>({who:RID(h), scene:'job_chapel', text:`${RN(h)} sets a parchment writ from the High Cathedral across the lectern. "They say a Quiet Chapel shouldn't smell of wine and warm sheets. An auditor comes at month's end to revoke our blessing."`, choices:[
-      check('Find old precedent in the canon','Business',S.sam.business,45, ()=>{ storyAdvance(h); return 'Tucked behind three centuries of tax rolls, an ancient charter explicitly protects "hospices of lantern and mercy." Caelia grins wide enough to show teeth.'; }, ()=>{ storyRetry(h); return 'The church archive clerks stonewall you until dusk.'; }),
-      pay('Donate to the cathedral restoration fund', 300, h, ()=>{ storyAdvance(h); return 'Gold smooths a dozen wrinkled brows. The audit turns polite—at least on paper.'; })]}),
-    h=>({who:RID(h), scene:'casual', text:`Word has spread faster than prayer: pilgrims line the courtyard at dusk asking specifically for ${RN(h)}'s "gentle penance." Half the neighborhood thinks it's scandalous. The other half wants reservations.`, choices:[
-      check('Turn scandal into mystique','Charm',S.sam.charm,50, ()=>{ storyAdvance(h); h.rep=clamp(h.rep+4); return 'You rebrand the evening vigil with velvet ropes and lantern oil. Donations double overnight.'; }, ()=>{ storyRetry(h); return 'A clumsy flyer leaves the clergy bristling. You try again next week.'; })]}),
-    h=>({who:RID(h), scene:'job_chapel', text:`The cathedral envoy arrives unannounced during dusk service, only to freeze at the velvet threshold—watching ${RN(h)}'s golden halo glow warm over half a dozen weeping, smiling, remarkably relaxed merchants.`, choices:[
-      check('Invite the envoy to stay for confession','Charm',S.sam.charm,55, ()=>{ storyAdvance(h,60); h.rep=clamp(h.rep+6); return `He leaves two hours later with untied collar strings, a lighter purse, and a signed renewal seal.\n\n${RN(h)} laughs softly against your chest. "No wages needed, Sam. I belong right here."` + freeResident(h); }, ()=>{ storyRetry(h); return 'The envoy clears his throat stiffly and promises a written ruling next week.'; })]})
+  sanctuary:{title:storyTitle('sanctuary'), hint:storyHints('sanctuary'), beats:[
+    h=>({who:RID(h), scene:'job_chapel', text:HT(h,0,'text'), choices:[
+      check(HT(h,0,'choices.precedent.label'),'Business',S.sam.business,45, ()=>{ storyAdvance(h); return HT(h,0,'choices.precedent.win'); }, ()=>{ storyRetry(h); return HT(h,0,'choices.precedent.lose'); }),
+      pay(HT(h,0,'choices.donate.label'), 300, h, ()=>{ storyAdvance(h); return HT(h,0,'choices.donate.res'); })]}),
+    h=>({who:RID(h), scene:'casual', text:HT(h,2,'text'), choices:[
+      check(HT(h,2,'choices.mystique.label'),'Charm',S.sam.charm,50, ()=>{ storyAdvance(h); h.rep=clamp(h.rep+4); return HT(h,2,'choices.mystique.win'); }, ()=>{ storyRetry(h); return HT(h,2,'choices.mystique.lose'); })]}),
+    h=>({who:RID(h), scene:'job_chapel', text:HT(h,3,'text'), choices:[
+      check(HT(h,3,'choices.confession.label'),'Charm',S.sam.charm,55, ()=>{ storyAdvance(h,60); h.rep=clamp(h.rep+6); return HT(h,3,'choices.confession.win') + freeResident(h); }, ()=>{ storyRetry(h); return HT(h,3,'choices.confession.lose'); })]})
   ]},
-  atelier:{title:'Brass & Pulse', hint:['Nadia-6 has a lockbox in her maintenance bay.','A guild artificer claims Nadia-6 as property.','Nadia-6 wants to wipe her old ledger.'], beats:[
-    h=>({who:RID(h), scene:'casual', text:`"My previous guild installed a loyalty governor," ${RN(h)} says, without turning around. Her eyes glow pale cyan in the brass. "Thirty percent of my earnings are still routed to an old contract key. I did not enter it in the ledger because I am not able to."`, choices:[
-      S.sam.appraisal>=2 ? {label:'Inspect the governor with [Appraisal]', fx(){ storyAdvance(h); return 'Appraisal spots a hairline shunt along the clasp—an illegal guild leash left unrecorded for twenty years.'; }}
-        : check('Trace the brass conduit lock','Technique',S.sam.technique,45, ()=>{ storyAdvance(h); return 'Careful tools lift the brass plate without tripping a single spring. The guild lease is void on its face.'; }, ()=>{ storyRetry(h); return 'A hidden detent locks tight before you finish. Next week.'; })]}),
-    h=>({who:'npc_thackery', scene:'portrait', text:`"Master Artificer Thackery, Tinker's Guild," he says, to the room in general. He holds the bill of sale up for the bailiffs to see. "Property Number Six belongs in our showroom, not a parlor."`, choices:[
-      check('Counter with artisan charter law','Business',S.sam.business,55, ()=>{ storyAdvance(h); h.rep=clamp(h.rep+4); return 'A registered pleasure-house chassis past year twenty is legally emancipated. The bailiffs shrug and escort the artificer out.'; }, ()=>{ storyRetry(h); return 'Thackery waves a guild stamp you don\'t have the paperwork to answer yet. He will be back next week.'; }),
-      pay('Buy out her old patent', 500, h, ()=>{ storyAdvance(h); return 'Five hundred gold closes the guild ledger permanently. Thackery leaves grumbling.'; })]}),
-    h=>({who:RID(h), scene:'portrait', text:`The guild crest on ${RN(h)}'s choker clicks open in her palm. She drops it into the furnace grate without blinking. "My maintenance costs are mine now," she says softly, stepping close to adjust your collar.`, choices:[
-      {label:'Toast to a free Atelier', fx(){ storyAdvance(h,60); h.rep=clamp(h.rep+5); return `${RN(h)} logs a new line in her private ledger—and waves away every copper of her wages. "You keep it, Sam. I am staying right where I chose."` + freeResident(h); }}]})
+  atelier:{title:storyTitle('atelier'), hint:storyHints('atelier'), beats:[
+    h=>({who:RID(h), scene:'casual', text:HT(h,0,'text'), choices:[
+      S.sam.appraisal>=2 ? {label:HT(h,0,'choices.appraisal.label'), fx(){ storyAdvance(h); return HT(h,0,'choices.appraisal.res'); }}
+        : check(HT(h,0,'choices.conduit.label'),'Technique',S.sam.technique,45, ()=>{ storyAdvance(h); return HT(h,0,'choices.conduit.win'); }, ()=>{ storyRetry(h); return HT(h,0,'choices.conduit.lose'); })]}),
+    h=>({who:'npc_thackery', scene:'portrait', text:HT(h,2,'text'), choices:[
+      check(HT(h,2,'choices.law.label'),'Business',S.sam.business,55, ()=>{ storyAdvance(h); h.rep=clamp(h.rep+4); return HT(h,2,'choices.law.win'); }, ()=>{ storyRetry(h); return HT(h,2,'choices.law.lose'); }),
+      pay(HT(h,2,'choices.patent.label'), 500, h, ()=>{ storyAdvance(h); return HT(h,2,'choices.patent.res'); })]}),
+    h=>({who:RID(h), scene:'portrait', text:HT(h,3,'text'), choices:[
+      {label:HT(h,3,'choices.toast.label'), fx(){ storyAdvance(h,60); h.rep=clamp(h.rep+5); return HT(h,3,'choices.toast.res') + freeResident(h); }}]})
   ]}
 };

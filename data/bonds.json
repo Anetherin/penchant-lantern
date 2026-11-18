@@ -5,6 +5,8 @@
     "labels: how a bond shows on her sheet. kinds: special relationships (mentor is one-way: the lady who lists it mentors the other).",
     "events: things that happen between two ladies. shared: scenes where two ladies spend the night with Sam. Both use the same format:",
     "  a / b: requirements for each lady: devoted (true/false), trustMin, lewdMin, moodMin, moodBelow, lustMin, energyBelow / energyAbove (share of max energy), working (not resting), intimate (comfortable with private time with Sam).",
+    "  a / b also take key (named-character key or list), job (job id or list) and race (race id or list): her key / job / race must match one of them.",
+    "  pair: [\"keyA\",\"keyB\"] pins a to keyA and b to keyB (named ladies; the event is tried for every ordered pair, so list the pair once in the order you want {a}/{b}). Pair events usually also set bondMin/bondMax around the seeded value in characters/*.json → bonds.",
     "  bondMin / bondMax / kind: requirements on their bond (kind 'mentor' means a mentors b). sameHouse defaults to true. weight = how often it's picked among eligible ones.",
     "  title / text use {a} and {b} for their names; text can be a list to pick from. scene = image scene (shown for a). ai = prompt key from ai-prompts.json for the ✨ button.",
     "  choices: label, res (result text), and effects: a / b {mood, trust, lewd, lust, energy, popularity, grow:{service:3}, lesson:true (b improves at a's best service)},",
@@ -26,7 +28,8 @@
   "kinds": {
     "mentor": {"from":"Mentor to","to":"Learning from"},
     "home": {"from":"Fellow otherworlder with","to":"Fellow otherworlder with"},
-    "comrades": {"from":"Old comrades with","to":"Old comrades with"}
+    "comrades": {"from":"Old comrades with","to":"Old comrades with"},
+    "rivals": {"from":"Sparring rivals with","to":"Sparring rivals with"}
   },
   "events": [
     {
@@ -387,6 +390,975 @@
           "res": "Coin buys quiet truce—at least until next week, though they stop glaring across tables quite so hard."
         }
       ]
+    },
+    {
+      "id": "g_blowup",
+      "bondMax": -50,
+      "weight": 3,
+      "a": {"working":true},
+      "b": {"working":true},
+      "title": "It Finally Blows",
+      "scene": "companion",
+      "text": [
+        "It starts over a spilled glass and ends with {a} and {b} screaming at each other in the middle of the front lounge, a plate in pieces on the floor between them. Clients are staring. One of the other ladies is already pulling the curtain across. Everything either of them has been swallowing for weeks just came out, and now they both turn to you."
+      ],
+      "choices": [
+        {
+          "label": "Send {b} home for the night",
+          "rep": -2,
+          "a": {"mood":3,"trust":1},
+          "b": {"mood":-7,"trust":-3},
+          "bond": -6,
+          "res": "{b} goes without a word, shoulders rigid, and the lounge is quiet for an hour afterward. {a} gets her peace, and the regulars heard every word of it."
+        },
+        {
+          "label": "Lock them in the office until they talk",
+          "roll": 0.4,
+          "bond": 20,
+          "a": {"trust":2},
+          "b": {"trust":2},
+          "res": "You turn the key and sit on the stairs. There is shouting, a thump, then a long silence, then something that sounds almost like a laugh. They come out red-eyed and not friends, but no longer enemies.",
+          "else": {
+            "bond": -10,
+            "a": {"mood":-5,"energy":-8},
+            "b": {"mood":-5,"energy":-8},
+            "res": "The shouting lasts two hours. When you finally open the door they are both hoarse, exhausted, and further apart than before."
+          }
+        },
+        {
+          "label": "Pay for the damage and the clients' drinks (60g)",
+          "needsGold": 60,
+          "gold": -60,
+          "a": {"mood":-1},
+          "b": {"mood":-1},
+          "bond": 3,
+          "res": "The lounge forgives everything once the wine is free. Neither lady forgives anything, but they both stay quiet and finish the shift."
+        }
+      ]
+    },
+    {
+      "id": "g_pettiness",
+      "bondMin": -20,
+      "bondMax": 0,
+      "weight": 2,
+      "a": {"working":true},
+      "b": {"working":true},
+      "title": "Keeping Score",
+      "scene": "casual",
+      "text": [
+        "{a} and {b} have started a tally. Neither admits it, but you have counted three days of the same chalk marks behind the bar: clients, tips, who got the better room. Today {a} corners you with the numbers, while {b} stands behind her with her arms crossed, ready to dispute every line."
+      ],
+      "choices": [
+        {
+          "label": "Settle it with a tip-sharing day",
+          "a": {"mood":2},
+          "b": {"mood":2},
+          "bond": 9,
+          "res": "You split the night's tips down the middle. They hate it for exactly one evening, then notice they are making more together than apart."
+        },
+        {
+          "label": "Rub out the chalk and tell them to compete on the floor",
+          "a": {"popularity":2},
+          "b": {"popularity":2},
+          "bond": -3,
+          "res": "The clients enjoy the rivalry far more than the ladies do. Both of them are noticeably more polished by the end of the week."
+        },
+        {
+          "label": "Refuse to referee",
+          "a": {"mood":-2},
+          "b": {"mood":-2},
+          "bond": -2,
+          "res": "You hand back the chalk. They stare at it, then at each other, then at you, like you've broken a rule of nature."
+        }
+      ]
+    },
+    {
+      "id": "g_new_hand",
+      "bondMin": -10,
+      "bondMax": 20,
+      "weight": 2,
+      "a": {"working":true,"moodMin":50},
+      "b": {"working":true},
+      "title": "Learning the Ropes",
+      "scene": "casual",
+      "text": [
+        "{a} has taken {b} under her wing for the evening, which is a generous way of saying she is making {b} carry the trays, fetch the good wine and guess which regular likes which chair. It is a little cruel and a little kind. {b} looks to you to see whether she should be offended."
+      ],
+      "choices": [
+        {
+          "label": "Let it run, it's how everyone starts",
+          "a": {"mood":2},
+          "b": {"mood":-1,"grow":{"service":3}},
+          "bond": 6,
+          "res": "By closing {b} knows every regular's name and drink, and has stopped glaring at {a}. They share the last of the cold tea."
+        },
+        {
+          "label": "Tell {a} to go easy on her",
+          "a": {"mood":-2},
+          "b": {"mood":4,"trust":2},
+          "bond": 2,
+          "res": "{a} rolls her eyes but eases off. {b} thanks you quietly, and {a} notices that she did."
+        },
+        {
+          "label": "Take {b}'s tray and show her yourself",
+          "sam": {"charm":1},
+          "b": {"mood":5,"trust":3,"grow":{"service":3}},
+          "a": {"mood":-1},
+          "bond": 4,
+          "res": "The sight of the owner carrying cups embarrasses everyone into behaving. {b} learns more in an hour than in a week of trial and error."
+        }
+      ]
+    },
+    {
+      "id": "g_breakfast_strangers",
+      "bondMin": -10,
+      "bondMax": 15,
+      "weight": 1,
+      "a": {},
+      "b": {},
+      "title": "Across the Breakfast Table",
+      "scene": "casual",
+      "text": [
+        "{a} and {b} have lived under the same roof for weeks and barely exchanged ten words. This morning the only two seats left at breakfast are across from each other, and you can see them both realise it at the same moment."
+      ],
+      "choices": [
+        {
+          "label": "Start a conversation for them",
+          "sam": {"charm":1},
+          "a": {"mood":3},
+          "b": {"mood":3},
+          "bond": 7,
+          "res": "A question about home and a joke about the porridge is all it takes. By the second pot of tea they are comparing scars."
+        },
+        {
+          "label": "Say nothing and pass the bread",
+          "a": {"mood":1},
+          "b": {"mood":1},
+          "bond": 3,
+          "res": "The silence is awkward until {b} asks for the salt. It is a start."
+        }
+      ]
+    },
+    {
+      "id": "g_friends_swap",
+      "bondMin": 40,
+      "weight": 2,
+      "a": {"working":true},
+      "b": {"working":true},
+      "title": "Swapping Tricks",
+      "scene": "casual",
+      "text": [
+        "You find {a} and {b} in the empty lounge before opening, one demonstrating something with her hands and the other copying it a half beat behind, both laughing at the mistakes. They've been trading what each does best for a week now, apparently, and they'd like a quiet room for it."
+      ],
+      "choices": [
+        {
+          "label": "Give them the good room",
+          "a": {"mood":5,"grow":{"service":4}},
+          "b": {"mood":5,"grow":{"service":4}},
+          "bond": 6,
+          "res": "They use the room all afternoon. At supper both of them are sitting a little straighter and holding eye contact a little longer."
+        },
+        {
+          "label": "Join in for ten minutes",
+          "sam": {"technique":1},
+          "a": {"mood":4,"grow":{"service":3}},
+          "b": {"mood":4,"grow":{"service":3}},
+          "bond": 4,
+          "res": "You get criticised by two experts at once. It is educational and you will not be forgetting it."
+        }
+      ]
+    },
+    {
+      "id": "g_birthday_plot",
+      "bondMin": 45,
+      "weight": 1,
+      "a": {"moodMin":55},
+      "b": {},
+      "title": "A Birthday Conspiracy",
+      "scene": "sam_date",
+      "text": [
+        "{a} catches you on the stairs and drags you into a linen closet, whispering. It is {b}'s birthday in three days. {b} has never said a word about it, and {a} has found out anyway. She has a plan involving a cake, a hired fiddler and all the other ladies, and she needs your signature on the budget."
+      ],
+      "choices": [
+        {
+          "label": "Fund the whole thing (50g)",
+          "needsGold": 50,
+          "gold": -50,
+          "a": {"mood":6,"trust":2},
+          "b": {"mood":12,"trust":3},
+          "bond": 10,
+          "res": "{b} walks into the lounge to a hundred candles and a fiddler playing badly on purpose. She cries into {a}'s shoulder and pretends she didn't."
+        },
+        {
+          "label": "Cake only, no fiddler",
+          "a": {"mood":4},
+          "b": {"mood":7,"trust":1},
+          "bond": 6,
+          "res": "A single cake with too many candles. {b} blows them out in one breath, and refuses to say what she wished for."
+        }
+      ]
+    },
+    {
+      "id": "g_walked_in",
+      "bondMin": 70,
+      "weight": 2,
+      "a": {"trustMin":70,"lewdMin":40,"lustMin":40,"intimate":true},
+      "b": {"trustMin":70,"lewdMin":40,"lustMin":40,"intimate":true},
+      "dynamic": "collaborative",
+      "ai": "shared",
+      "title": "The Door Wasn't Locked",
+      "scene": "casual",
+      "text": [
+        "You push open the door to the back room looking for a ledger and stop. {a} is on the divan with her dress around her waist and {b} is kneeling between her knees with her mouth on her, both too far gone to hear the hinge. {a} opens her eyes first, finds you, and does not close her legs. \"Well,\" she pants. \"Are you coming in, or just watching?\""
+      ],
+      "choices": [
+        {
+          "label": "Watch from the doorway",
+          "sam": {"technique":1},
+          "a": {"lust":-25,"mood":6},
+          "b": {"lust":-20,"mood":6},
+          "bond": 5,
+          "res": "You lean on the frame and watch {b} work, {a}'s hands knotted in her hair, until {a} comes with her thighs shaking around {b}'s head. They both look at your lap and grin."
+        },
+        {
+          "label": "{act}",
+          "acts": true,
+          "private": ["a","b"],
+          "samEnergy": -25,
+          "a": {"lust":-25,"mood":6},
+          "b": {"lust":-25,"mood":6},
+          "bond": 6,
+          "res": "The ledger stays where it is. (Your energy −25)"
+        },
+        {
+          "label": "Close the door softly",
+          "a": {"mood":3,"trust":3},
+          "b": {"mood":3,"trust":3},
+          "bond": 3,
+          "res": "You back out and hang the 'do not disturb' sign. They don't thank you out loud. Later {a} presses a kiss on your cheek in the hall."
+        }
+      ]
+    },
+    {
+      "id": "g_after_bad_night",
+      "bondMin": -15,
+      "weight": 3,
+      "a": {"job":"security","working":true,"moodBelow":75},
+      "b": {"job":"security","working":true},
+      "title": "After the Bad Night",
+      "scene": "casual",
+      "text": [
+        "Last night went wrong at the door. Two drunk mercenaries, a thrown bench, and a client who had to be carried out. {a} and {b} are sitting on the front steps in the grey morning, not talking, both with a split knuckle or a bruise they won't mention. They look up when you come out, ready to hear whose fault it was."
+      ],
+      "choices": [
+        {
+          "label": "Sit with them and share the bandages",
+          "a": {"mood":6,"trust":2},
+          "b": {"mood":6,"trust":2},
+          "bond": 9,
+          "res": "You hold the bandages and say nothing about fault. It's the quietest, most useful conversation the three of you have ever had."
+        },
+        {
+          "label": "Give them both the day off (lose a day of door cover)",
+          "rep": -1,
+          "a": {"energy":20,"mood":5},
+          "b": {"energy":20,"mood":5},
+          "bond": 6,
+          "res": "They sleep until noon. The house runs short on muscle for a night, and nothing happens, which is a small miracle."
+        },
+        {
+          "label": "Run a drill: what each of them would do differently",
+          "sam": {"wits":1},
+          "a": {"mood":-1,"grow":{"combat":3}},
+          "b": {"mood":-1,"grow":{"combat":3}},
+          "bond": 3,
+          "res": "They hate every minute of it. By the end they are finishing each other's tactical suggestions."
+        }
+      ]
+    },
+    {
+      "id": "g_attendant_courtesan",
+      "weight": 2,
+      "bondMin": 10,
+      "a": {"job":"courtesan","working":true},
+      "b": {"job":"attendant","working":true},
+      "title": "The Woman Behind the Curtain",
+      "scene": "casual",
+      "text": [
+        "{b} spends every night fixing {a}'s hair, pinning her hem and handing over water between clients, and no one ever thanks her. Tonight {a} finally does, in front of the whole lounge, and {b} goes the colour of a ripe plum. The room waits to see what you will say."
+      ],
+      "choices": [
+        {
+          "label": "Raise {b}'s pay (the house pays more upkeep)",
+          "a": {"mood":4},
+          "b": {"mood":9,"trust":3},
+          "bond": 7,
+          "res": "{b} tries to refuse, fails, and keeps the coins in a tight fist. {a} refills her cup three times that evening."
+        },
+        {
+          "label": "Tell the room she's the reason the shift runs",
+          "a": {"mood":4,"popularity":2},
+          "b": {"mood":7,"trust":2},
+          "bond": 5,
+          "res": "The applause is warm and slightly drunk. {b} hides behind a tray, and {a} stands guard in front of her."
+        }
+      ]
+    },
+    {
+      "id": "g_dance_rehearsal",
+      "weight": 2,
+      "bondMin": -10,
+      "a": {"job":"dancer"},
+      "b": {"job":"dancer"},
+      "title": "Counting Eights",
+      "scene": "casual",
+      "text": [
+        "Behind the stage curtain, {a} and {b} have been rehearsing a pair routine for hours. The steps are fine. The argument is over who leads the turn at the end, and they have both stopped counting out loud. {a} shoves the lantern to one side and asks you to watch it through and pick."
+      ],
+      "choices": [
+        {
+          "label": "Watch and pick a leader",
+          "a": {"mood":-2,"grow":{"dance":4}},
+          "b": {"mood":3,"grow":{"dance":4}},
+          "bond": 2,
+          "res": "You pick {b}. {a} sulks for a full minute, then admits the turn was cleaner. By the third run they are in step."
+        },
+        {
+          "label": "Tell them to alternate the lead each night",
+          "a": {"mood":3,"grow":{"dance":3}},
+          "b": {"mood":3,"grow":{"dance":3}},
+          "bond": 8,
+          "res": "Neither of them has thought of it. By opening night the routine looks like one body with four legs."
+        },
+        {
+          "label": "Add a lift and let them fight about that",
+          "a": {"popularity":3,"grow":{"dance":4}},
+          "b": {"popularity":3,"grow":{"dance":4}},
+          "bond": -2,
+          "res": "There is a bruised hip, two near-collisions, and a finish the crowd roars at. Nobody speaks to you until supper."
+        }
+      ]
+    },
+    {
+      "id": "g_maid_mess",
+      "weight": 2,
+      "a": {"job":"maid","working":true},
+      "b": {"working":true},
+      "title": "Who Left This Here?",
+      "scene": "casual",
+      "text": [
+        "The housemaid {a} stands in the corridor holding a lace stocking at arm's length between two fingers. Behind her are wine rings, a cracked jar of rouge, three damp towels and a slipper on the stairs. {b} has just walked past with one shoe missing. {a} says, very evenly, that someone is going to explain this."
+      ],
+      "choices": [
+        {
+          "label": "Make {b} help clean",
+          "a": {"mood":3},
+          "b": {"mood":-3},
+          "bond": -1,
+          "res": "{b} scrubs wine rings with her sleeves rolled up and her mouth shut. {a} watches her do every inch."
+        },
+        {
+          "label": "Tell {a} to leave a basket at each door",
+          "a": {"mood":-1,"grow":{"manage":3}},
+          "b": {"mood":1},
+          "bond": 4,
+          "res": "{a} calls it a compromise she'll resent forever. By next week the corridor is spotless and she's quietly pleased with the baskets."
+        },
+        {
+          "label": "Pay {a} for the extra work (20g)",
+          "needsGold": 20,
+          "gold": -20,
+          "a": {"mood":6,"trust":2},
+          "b": {"mood":2},
+          "bond": 2,
+          "res": "{a} counts the coins, then folds her duster. The stocking goes into the lost and found with great ceremony."
+        }
+      ]
+    },
+    {
+      "id": "g_two_demons",
+      "weight": 2,
+      "bondMin": -40,
+      "a": {"race":"demon","working":true},
+      "b": {"race":"demon","working":true},
+      "title": "Two Hungers",
+      "scene": "casual",
+      "text": [
+        "Two demons in one house is a problem of arithmetic: there is only so much appetite to go around. {a} and {b} have noticed the same regular at the same table, and both have started making eyes at him. They agree on one thing, which is that it will be settled between them, and they would like you out of the way."
+      ],
+      "choices": [
+        {
+          "label": "Let them bargain",
+          "roll": 0.55,
+          "a": {"mood":5},
+          "b": {"mood":5},
+          "bond": 9,
+          "res": "They settle it over a bottle with the casual cruelty of old merchants. One takes tonight, one takes tomorrow, and both leave pleased.",
+          "else": {
+            "bond": -5,
+            "a": {"mood":-3},
+            "b": {"mood":-3},
+            "res": "The bargaining turns into a contest of insults and the client leaves in alarm, uneaten by anyone."
+          }
+        },
+        {
+          "label": "Offer to feed them both with a double booking",
+          "a": {"popularity":2},
+          "b": {"popularity":2},
+          "bond": 4,
+          "res": "The client looks flattered and terrified. The next morning he stumbles out with the dazed look of a man who has no further questions about his life."
+        },
+        {
+          "label": "Remind them demon feuds cost the house",
+          "rep": -1,
+          "a": {"mood":-2},
+          "b": {"mood":-2},
+          "bond": -2,
+          "res": "They sneer in unison. They do, however, stop looking at the same client."
+        }
+      ]
+    },
+    {
+      "id": "g_android_logs",
+      "weight": 2,
+      "bondMin": -10,
+      "a": {"race":"android"},
+      "b": {"race":["human","elf","beastkin","demon","dwarf","spirit","angel"]},
+      "title": "Idle Hours",
+      "scene": "casual",
+      "text": [
+        "{a} has stopped in the doorway of the lounge, completely still, eyes fixed on {b}, who is crying over a bowl of onions. After four seconds {a} says she has noted the crying and asked a question about it, and would {b} like her to process the moment as a log entry or as a conversation."
+      ],
+      "choices": [
+        {
+          "label": "Tell {a} to sit down and have the conversation",
+          "a": {"mood":4,"trust":2},
+          "b": {"mood":5},
+          "bond": 8,
+          "res": "She sits very upright. {b} tells her it's the onions, and then it isn't, and by the end {a} is holding her hand in the correct position and not letting go."
+        },
+        {
+          "label": "Tell {b} to teach {a} what crying is for",
+          "a": {"mood":3,"grow":{"service":2}},
+          "b": {"mood":2},
+          "bond": 6,
+          "res": "{b} makes {a} a cup of tea and explains. {a} writes the tea ratio down for later."
+        }
+      ]
+    },
+    {
+      "id": "g_dwarf_stout",
+      "weight": 2,
+      "bondMin": 10,
+      "a": {"race":"dwarf"},
+      "b": {"race":"dwarf"},
+      "title": "Under the Beam",
+      "scene": "casual",
+      "text": [
+        "There is a roof beam in the east hall that {a} says is oak and {b} says is pine, and both have been arguing about it since morning. By noon they have a bottle of dark stout, a hand axe, a stepladder and your rented ceiling at stake. The argument is going to be settled one way or another."
+      ],
+      "choices": [
+        {
+          "label": "Hold the ladder and the bet (stakes 15g)",
+          "needsGold": 15,
+          "gold": -15,
+          "a": {"mood":6},
+          "b": {"mood":6},
+          "bond": 9,
+          "res": "It is oak. Both of them accept this in a manner suggesting they knew all along, and nobody pays up. Dwarf sanity is a relative thing."
+        },
+        {
+          "label": "Take the axe away and fetch the carpenter",
+          "a": {"mood":-2},
+          "b": {"mood":-2},
+          "bond": 2,
+          "res": "The carpenter says pine. {a} stays outraged for a day and a half and then brings you a very good stool."
+        }
+      ]
+    },
+    {
+      "id": "p_vesna_ines",
+      "pair": ["vesna","ines"],
+      "kind": "comrades",
+      "bondMin": 15,
+      "weight": 3,
+      "a": {},
+      "b": {},
+      "title": "Neither Asks",
+      "scene": "casual",
+      "text": [
+        "You find {a} and {b} sitting on the back wall at three in the morning, one on each side of a lantern, both awake and each pretending the other isn't. \"Couldn't sleep,\" {b} says. {a} says nothing, which, for her, is a kind of agreement. You know them well enough by now to guess neither will ask the other how she is."
+      ],
+      "choices": [
+        {
+          "label": "Sit between them and say nothing",
+          "a": {"mood":6,"trust":3},
+          "b": {"mood":6,"trust":3},
+          "bond": 8,
+          "res": "Dawn arrives slowly. Somewhere in the middle of it {a} puts her head on {b}'s shoulder and {b} lets her. Neither mentions it at breakfast."
+        },
+        {
+          "label": "Tell them you're the one who can't sleep",
+          "sam": {"charm":1},
+          "a": {"mood":4},
+          "b": {"mood":4,"trust":2},
+          "bond": 5,
+          "res": "They both give you a look, then shift to make room. You talk about nothing, and for once all three of you sleep."
+        }
+      ]
+    },
+    {
+      "id": "p_vesna_hanna",
+      "pair": ["vesna","hanna"],
+      "bondMin": 10,
+      "weight": 3,
+      "a": {},
+      "b": {},
+      "title": "A Copy of Both",
+      "scene": "casual",
+      "text": [
+        "{b} has a leather folder with her. In it, filed with her usual neat tabs, are two guild notices: one declaring {a} dead in the Barrow, and one, three weeks later, declaring her not dead. She wants to burn the first one on {a}'s behalf and has come to ask {a}'s permission. {a} sniffs the paper, and then sniffs {b}. Then she looks at you."
+      ],
+      "choices": [
+        {
+          "label": "Let {b} keep both",
+          "a": {"trust":2,"mood":3},
+          "b": {"mood":5},
+          "bond": 6,
+          "res": "\"Keep it,\" {a} says gruffly. {b} hugs the folder to her chest. Neither of them admits the other has done anything sentimental."
+        },
+        {
+          "label": "Burn the first notice, keep the second",
+          "a": {"mood":6,"trust":3},
+          "b": {"mood":2},
+          "bond": 8,
+          "res": "The paper curls in the grate. {a} watches it burn with her ears flat, then sits very close to {b} for the rest of the evening."
+        }
+      ]
+    },
+    {
+      "id": "p_brunhild_ines",
+      "pair": ["brunhild","ines"],
+      "kind": "rivals",
+      "bondMin": 10,
+      "weight": 3,
+      "a": {"working":true},
+      "b": {"working":true},
+      "title": "The Rematch",
+      "scene": "casual",
+      "text": [
+        "It is the fortieth bout, depending on who you ask, and the stakes are a week of washing up. {a} has cleared the yard with a grin the size of a barrel lid. {b} is stretching her shoulders and swearing under her breath. Half the house is watching. You are, once again, being asked to count the rounds."
+      ],
+      "choices": [
+        {
+          "label": "Referee and call it fair",
+          "sam": {"strength":1},
+          "a": {"mood":6,"grow":{"combat":3}},
+          "b": {"mood":6,"grow":{"combat":3}},
+          "bond": 7,
+          "res": "{a} wins by a hair. {b} demands best of three. {a} lets her have the second and swears she didn't."
+        },
+        {
+          "label": "Bet on {b} (25g)",
+          "needsGold": 25,
+          "gold": -25,
+          "roll": 0.4,
+          "a": {"mood":3},
+          "b": {"mood":9,"grow":{"combat":3}},
+          "bond": 6,
+          "res": "{b} wins on a feint she's been saving for a month. The yard erupts. You win a month of her good ale.",
+          "else": {
+            "a": {"mood":9},
+            "b": {"mood":-2},
+            "bond": 3,
+            "res": "{a} wins, picks up {b}, and carries her around the yard like a trophy. You lose the coin and a little dignity."
+          }
+        },
+        {
+          "label": "End it before someone breaks a table",
+          "a": {"mood":-2},
+          "b": {"mood":-2},
+          "bond": 2,
+          "res": "They both glare at you, then at the table, then at each other. A draw, they agree, which neither of them believes."
+        }
+      ]
+    },
+    {
+      "id": "p_brunhild_hanna",
+      "pair": ["brunhild","hanna"],
+      "bondMin": 15,
+      "weight": 3,
+      "a": {},
+      "b": {},
+      "title": "The Winnings",
+      "scene": "casual",
+      "text": [
+        "{b} marches in with a coin purse the size of a loaf of bread and sets it on the counter in front of {a}. It is, she says cheerfully, years of bets on {a}'s fights, and it is time to either spend it on a proper party or shut up about it. {a} stares at it, then at you."
+      ],
+      "choices": [
+        {
+          "label": "Spend it on a proper party",
+          "a": {"mood":9,"popularity":2},
+          "b": {"mood":9},
+          "bond": 8,
+          "res": "There is a roast, a barrel and a very loud drinking song. {b} cries a little and says it is the smoke."
+        },
+        {
+          "label": "Put it toward the house",
+          "gold": 40,
+          "a": {"mood":3,"trust":2},
+          "b": {"mood":4},
+          "bond": 5,
+          "res": "{a} slides forty gold at you without a word and glares at anyone who comments. {b} raises her mug in your direction, grinning."
+        }
+      ]
+    },
+    {
+      "id": "p_vesna_brunhild",
+      "pair": ["vesna","brunhild"],
+      "bondMin": -30,
+      "bondMax": 25,
+      "weight": 2,
+      "a": {"working":true},
+      "b": {"working":true},
+      "title": "Quiet and Loud",
+      "scene": "casual",
+      "text": [
+        "{b} is telling an arena story at full volume in the lounge. {a} is on the opposite side of the room, ears flat against her skull, nostrils flared against the noise. Every few seconds one of them glances at the other. By the third round of the story {a} has walked all the way across the room and stopped right in front of her."
+      ],
+      "choices": [
+        {
+          "label": "Step in before it turns ugly",
+          "a": {"mood":-1},
+          "b": {"mood":2},
+          "bond": 3,
+          "res": "You ask {b} to take the story outside. She does, laughing. {a} follows with the tray of drinks and sits down without being asked."
+        },
+        {
+          "label": "Let {a} say what she wants",
+          "roll": 0.6,
+          "a": {"mood":5,"trust":2},
+          "b": {"mood":3},
+          "bond": 10,
+          "res": "\"Too loud,\" {a} says. {b} stops mid-word, then drops her voice to a murmur. It is the first time anyone has ever done that for her, and it works.",
+          "else": {
+            "a": {"mood":-4},
+            "b": {"mood":-3},
+            "bond": -8,
+            "res": "\"Too loud,\" says {a}. \"Your face is too loud,\" says {b}. The rest goes about how you'd expect."
+          }
+        }
+      ]
+    },
+    {
+      "id": "p_adelheid_nerys",
+      "pair": ["adelheid","nerys"],
+      "bondMax": -15,
+      "weight": 3,
+      "a": {"working":true},
+      "b": {"working":true},
+      "title": "Holy and Unholy",
+      "scene": "companion",
+      "text": [
+        "{b} has been leaving small gifts outside your door: a cup of wine, a velvet ribbon, a note in perfect handwriting. {a} has been finding them first and pitching them out the window. This morning you find {a} on the landing with her sword half drawn and {b} lounging against the rail, polishing a nail. \"Tell her,\" {a} says through her teeth, \"that you aren't hers.\""
+      ],
+      "choices": [
+        {
+          "label": "\"I'm not anyone's\"",
+          "a": {"mood":-3},
+          "b": {"mood":-3},
+          "bond": -3,
+          "res": "They both turn on you at once, which is the first thing they've agreed on in weeks. You get out of the corridor alive."
+        },
+        {
+          "label": "Take {a}'s side",
+          "a": {"mood":5,"trust":2},
+          "b": {"mood":-4,"trust":-2},
+          "bond": -8,
+          "res": "{a} sheathes her sword with satisfaction. {b} smiles in a way that suggests a long and detailed reckoning."
+        },
+        {
+          "label": "Take {b}'s side",
+          "b": {"mood":5,"trust":2},
+          "a": {"mood":-5,"trust":-2},
+          "bond": -8,
+          "res": "{b} purrs. {a} stands very still and very white, and you spend the rest of the day regretting it."
+        }
+      ]
+    },
+    {
+      "id": "p_adelheid_nerys_truce",
+      "pair": ["adelheid","nerys"],
+      "bondMin": -15,
+      "bondMax": 30,
+      "weight": 2,
+      "a": {"working":true},
+      "b": {"working":true},
+      "title": "A Chair Between Them",
+      "scene": "casual",
+      "text": [
+        "Somehow {a} and {b} have ended up on the same sofa, a cup of tea each, the sofa exactly large enough that their knees touch. Nobody has said anything for ten minutes. Then {b} asks, without her usual smirk, whether the foretelling of the hero says anything about what he eats for breakfast. {a} says no, with a flicker of something very close to a smile."
+      ],
+      "choices": [
+        {
+          "label": "Sit down with them",
+          "a": {"mood":5,"trust":2},
+          "b": {"mood":5,"trust":2},
+          "bond": 10,
+          "res": "You tell them how you take your eggs. They argue about it for an hour. Both of them go to bed having learned the answer."
+        },
+        {
+          "label": "Leave them to it",
+          "a": {"mood":4},
+          "b": {"mood":4},
+          "bond": 7,
+          "res": "You back out of the room. Whatever happens next, neither would thank you for watching."
+        }
+      ]
+    },
+    {
+      "id": "p_anael_nerys",
+      "pair": ["anael","nerys"],
+      "bondMax": 0,
+      "weight": 3,
+      "a": {},
+      "b": {},
+      "title": "Heaven and Hell, Over Tea",
+      "scene": "casual",
+      "text": [
+        "{b} has left a contract on the table in front of {a}, with a quill. The terms are, as always, delightful, and she is quite sure {a} is a hair away from reading past the first clause. {a}, for her part, has put out a holy lamp, and the two of them are facing each other over the table like chess masters. You get the impression they are enjoying this more than either will say."
+      ],
+      "choices": [
+        {
+          "label": "Read the contract aloud",
+          "a": {"mood":3},
+          "b": {"mood":-1},
+          "bond": 2,
+          "res": "The terms are awful and very funny. {a} laughs once, a surprising sound, and pretends to be coughing."
+        },
+        {
+          "label": "Sign it yourself (a joke clause: you owe her a dance)",
+          "sam": {"charm":1},
+          "a": {"mood":2},
+          "b": {"mood":6},
+          "bond": 5,
+          "res": "{b} takes the contract and folds it into her bodice with a flourish. {a} sighs and says she supposes she'll have to be your chaperone."
+        }
+      ]
+    },
+    {
+      "id": "p_ines_vesper",
+      "pair": ["ines","vesper"],
+      "bondMax": -5,
+      "weight": 3,
+      "a": {"working":true},
+      "b": {},
+      "title": "A Silver Dagger and a Cup of Tea",
+      "scene": "casual",
+      "text": [
+        "{b} has begun leaving a cup of tea outside {a}'s door every evening. Every morning {a} has put the cup back, neatly rinsed and slightly cold. Tonight the tea is still steaming when {a} opens the door, a dagger in her fist, and finds {b} standing there with her chin raised in a gown three centuries out of date. \"You'll catch your death,\" {b} says serenely. \"Or I suppose you won't.\""
+      ],
+      "choices": [
+        {
+          "label": "Take the dagger and offer her the cup",
+          "a": {"mood":3},
+          "b": {"mood":3},
+          "bond": 8,
+          "res": "{a} drinks the tea standing in the doorway. It is, she admits, good tea. {b} says she is happy to have been right about it."
+        },
+        {
+          "label": "Stay out of it",
+          "a": {"mood":-1},
+          "b": {"mood":-1},
+          "bond": -2,
+          "res": "The door slams. You hear the cup clink on the floor outside and, a minute later, be picked up."
+        },
+        {
+          "label": "Tell {a} the house is hers to protect",
+          "a": {"mood":5,"trust":3},
+          "b": {"mood":2},
+          "bond": 5,
+          "res": "{a} looks as though no one has ever said this to her. {b} watches with her head tilted, and decides it is acceptable."
+        }
+      ]
+    },
+    {
+      "id": "p_zaria_vharra",
+      "pair": ["zaria","vharra"],
+      "bondMax": -5,
+      "weight": 3,
+      "a": {"working":true},
+      "b": {"working":true},
+      "title": "Two Queens of the Underdistrict",
+      "scene": "companion",
+      "text": [
+        "{a} keeps a ledger of favours. {b} keeps a map of debts. Tonight they have discovered the same man owes both of them, and they have arrived at your office at the same moment, each with a smile you wouldn't trust near a fire. \"Settle it,\" {b} says. \"Whoever he pays first wins.\" {a} says nothing. She is already counting."
+      ],
+      "choices": [
+        {
+          "label": "Make him pay the house first",
+          "gold": 30,
+          "a": {"mood":-2},
+          "b": {"mood":-2},
+          "bond": -3,
+          "res": "The man pays the house. Both demons glare at you in perfect, flattered unison."
+        },
+        {
+          "label": "Split it between them",
+          "a": {"mood":3},
+          "b": {"mood":3},
+          "bond": 6,
+          "res": "They shake on it with theatrical cruelty. Later you hear them in the lounge, quietly tallying the debts of a third demon neither of them likes."
+        },
+        {
+          "label": "Let them duel for it at cards",
+          "roll": 0.5,
+          "a": {"mood":6,"popularity":1},
+          "b": {"mood":-4},
+          "bond": 2,
+          "res": "{a} wins with a card that was not in the deck. {b} laughs, because she'd planted it.",
+          "else": {
+            "a": {"mood":-4},
+            "b": {"mood":6,"popularity":1},
+            "bond": 2,
+            "res": "{b} wins with a card that was not in the deck. {a} laughs, because she'd planted it."
+          }
+        }
+      ]
+    },
+    {
+      "id": "p_ilyana_sylphine",
+      "pair": ["ilyana","sylphine"],
+      "kind": "mentor",
+      "bondMin": 30,
+      "weight": 3,
+      "a": {},
+      "b": {},
+      "title": "The Patroness's Notes",
+      "scene": "portrait",
+      "text": [
+        "{a} has come to the empty stage with a folded sheet of notes she has been writing for a decade. {b} is mid-leap when she sees her, and lands badly from sheer surprise. \"You dance,\" {a} says in her calm, measured voice, \"as though the applause were an apology. Let us rehearse that out of you.\""
+      ],
+      "choices": [
+        {
+          "label": "Sit in the back row to be the audience",
+          "a": {"mood":4},
+          "b": {"mood":6,"trust":3,"grow":{"dance":5}},
+          "bond": 6,
+          "res": "You clap on the wrong beat. {b} laughs, and {a} corrects her posture in a voice like silk. It is the best she has ever danced."
+        },
+        {
+          "label": "Leave them the stage",
+          "a": {"mood":3},
+          "b": {"mood":4,"grow":{"dance":4}},
+          "bond": 5,
+          "res": "They are still there at midnight. When you go by the door, {a} is counting out the beat with her fingers on {b}'s waist."
+        }
+      ]
+    },
+    {
+      "id": "p_natsuki_kaede",
+      "pair": ["natsuki","kaede"],
+      "kind": "comrades",
+      "bondMax": 15,
+      "weight": 3,
+      "a": {"working":true},
+      "b": {"working":true},
+      "title": "Opinions on Swordwork",
+      "scene": "casual",
+      "text": [
+        "{b} is tapping a dagger against her boot. {a} is leaning on a wooden practice sword. The disagreement is whether a short blade or a long one is better in the dark, and both of them have now been right about it for about forty minutes. \"Show me,\" {b} says. \"Show you,\" {a} agrees, and you can feel the floorboards tensing."
+      ],
+      "choices": [
+        {
+          "label": "Hold the lantern while they spar",
+          "a": {"mood":5,"grow":{"combat":4}},
+          "b": {"mood":5,"grow":{"combat":4}},
+          "bond": 8,
+          "res": "A short blade, a long blade, a draw. They glare at each other, then share a sheepish grin, and both ask you to turn the lantern down."
+        },
+        {
+          "label": "Put out the lantern",
+          "a": {"mood":3,"grow":{"combat":3}},
+          "b": {"mood":3,"grow":{"combat":3}},
+          "bond": 6,
+          "res": "Darkness. Two shouts, one crash, and a hurt silence. {b} wins; {a} says she let her. They both keep their daggers sheathed all night."
+        },
+        {
+          "label": "Take both blades",
+          "a": {"mood":-3},
+          "b": {"mood":-3},
+          "bond": -3,
+          "res": "They are furious for exactly one evening and then work together to steal them back."
+        }
+      ]
+    },
+    {
+      "id": "p_rhoswen_ines",
+      "pair": ["rhoswen","ines"],
+      "kind": "comrades",
+      "bondMin": 20,
+      "weight": 3,
+      "a": {},
+      "b": {},
+      "title": "Cold Roads",
+      "scene": "casual",
+      "text": [
+        "{b} has a map spread over the kitchen table and a mug in both hands. {a} sits opposite her, notebook closed, listening. They are remembering a winter contract on the pass that neither of them has mentioned in years. {a} says she wrote it down. {b} says she didn't want it written. Then {a} slides the notebook across."
+      ],
+      "choices": [
+        {
+          "label": "Sit down and listen",
+          "a": {"mood":5,"trust":2},
+          "b": {"mood":5,"trust":2},
+          "bond": 8,
+          "res": "It is a long, quiet story about snow and a very bad night. When it ends, {b} puts her hand on the notebook, and {a} lets her keep it."
+        },
+        {
+          "label": "Bring a bottle and leave it",
+          "a": {"mood":4},
+          "b": {"mood":4},
+          "bond": 5,
+          "res": "You find the bottle empty and the map folded in the morning, along with two ladies who look ten years lighter."
+        }
+      ]
+    },
+    {
+      "id": "p_hanna_kaede",
+      "pair": ["hanna","kaede"],
+      "bondMin": 15,
+      "weight": 3,
+      "a": {"working":true},
+      "b": {"working":true},
+      "title": "Every Bounty, Every Rumour",
+      "scene": "casual",
+      "text": [
+        "{a} knows what {b} claimed on her last forty bounties, and, more annoyingly, what {b} did not. She has taken the ledger out and is reading it aloud in the lounge with a delighted face while {b} sits there with her ears flat. \"Page thirty,\" {a} says sweetly. \"The siren. Do tell.\""
+      ],
+      "choices": [
+        {
+          "label": "Tell {a} to stop",
+          "a": {"mood":-2},
+          "b": {"mood":4,"trust":2},
+          "bond": 2,
+          "res": "{a} closes the ledger with theatrical reluctance. {b} thanks you in the hall by tying a ribbon around your wrist, then pretends she didn't."
+        },
+        {
+          "label": "Ask for page thirty yourself",
+          "sam": {"charm":1},
+          "a": {"mood":6},
+          "b": {"mood":-3},
+          "bond": 5,
+          "res": "{b} refuses to speak for the rest of the evening. The siren story, which is in fact very good, spreads through the house before dawn."
+        },
+        {
+          "label": "Trade a story for a story",
+          "a": {"mood":3,"trust":1},
+          "b": {"mood":5,"trust":2},
+          "bond": 8,
+          "res": "You tell them the funniest thing that happened in your own first week here. They are both appalled and then both laughing, and {a} burns page thirty herself."
+        }
+      ]
     }
   ],
   "shared": [
@@ -631,6 +1603,47 @@
           "b": {"mood":6,"energy":15},
           "bond": 5,
           "res": "You march down in pajamas to raid the pantry, leaving both women beaming over warm plates in bed."
+        }
+      ]
+    },
+    {
+      "id": "inseparable_show",
+      "bondMin": 70,
+      "weight": 2,
+      "ai": "shared",
+      "a": {"trustMin":75,"lewdMin":50,"lustMin":55,"intimate":true},
+      "b": {"trustMin":75,"lewdMin":50,"lustMin":55,"intimate":true},
+      "dynamic": "collaborative",
+      "title": "Command Performance",
+      "scene": "casual",
+      "text": [
+        "{a} and {b} have you sit in the armchair at the foot of your own bed, hands on the arms, and tell you not to move. Then they undress each other very slowly, kissing, neither looking away from you. \"We've been wanting to do this where you can see,\" {a} says into {b}'s neck. {b} nods, breathless, and kneels."
+      ],
+      "choices": [
+        {
+          "label": "Stay in the chair and watch",
+          "sam": {"technique":1},
+          "samEnergy": 5,
+          "a": {"lust":-30,"mood":7},
+          "b": {"lust":-30,"mood":7},
+          "bond": 5,
+          "res": "They take their time. {b} comes first with her face in {a}'s thighs, then {a} turns and pulls her up and does the same for her, eyes on you the whole time. You are stiff and wrecked by the end, and neither of them has so much as touched you. (Your energy +5)"
+        },
+        {
+          "label": "{act}",
+          "acts": true,
+          "private": ["a","b"],
+          "samEnergy": -30,
+          "a": {"lust":-30,"mood":6},
+          "b": {"lust":-30,"mood":6},
+          "bond": 7,
+          "res": "You don't stay in the chair for long. (Your energy −30)"
+        },
+        {
+          "label": "\"Another night\"",
+          "a": {"mood":-1},
+          "b": {"mood":-1},
+          "res": "They look at each other, shrug, and carry on without you. You hear them from the hall."
         }
       ]
     }

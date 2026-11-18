@@ -402,7 +402,7 @@ function ngBegin(){
     S.gold = N.purse;
     S.debt = Object.assign({total:N.debt, remaining:N.debt, carry:0, strikes:0, start:S.week-1}, ngPlan(N.cycle));
     S.won = false; S.over = false; S.lastReport = null; EVQ = []; delete S.ngSeed;
-    S.flags.walkPartners = 0; townEvReset(); S.ap = apMax(); S.sam.energy = samMaxEnergy();
+    S.flags.walkPartners = 0; townEvReset(); isoNewCycle(); S.ap = apMax(); S.sam.energy = samMaxEnergy();
     refreshCandidates(hasBoon('recruit') ? 3 : 0, hasBoon('recruit') ? 1.15 : 1);
     inviteFriend(true); checkUnlocks(true);
     guildNewCycle(true);   // guild.js: the first NG++ resets the guild once
@@ -482,7 +482,7 @@ function ngBegin(){
   S.gold = N.purse;
   S.debt = Object.assign({total:N.debt, remaining:N.debt, carry:0, strikes:0, start:S.week-1}, ngPlan(N.cycle));
   S.won = false; S.over = false; S.lastReport = null; EVQ = []; delete S.ngSeed;
-  S.flags.walkPartners = 0; townEvReset(); S.ap = apMax(); S.sam.energy = samMaxEnergy();
+  S.flags.walkPartners = 0; townEvReset(); isoNewCycle(); S.ap = apMax(); S.sam.energy = samMaxEnergy();
   refreshCandidates(hasBoon('recruit') ? 3 : 0, hasBoon('recruit') ? 1.15 : 1);
   inviteFriend(true);   // the first week already shows an old friend
   checkUnlocks(true);

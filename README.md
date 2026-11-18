@@ -22,7 +22,8 @@ optional text generation (`ai-text-plugin`).
   | `firsts/` | Firsts with Sam: shared rules + templates in `base`, then each lady's own scenes by group (`house`, `partners`, `story`, one file per guest pack) |
   | `arcs/` | Partner romance arcs, one file per partner |
   | `afterstories/` | Post-house-story epilogues & house-joiner arcs (`joiners`, `residents_c1`, `residents_ngp`) |
-  | `housestories/` | Lead-in pages for every house story chapter (`starters1`, `starters2`, `ngplus`); choices and results stay in `js/stories/` |
+  | `housestories/` | All house story text per chapter: lead-in pages, hints, choice labels and results (`starters1`, `starters2`, `ngplus`); the checks and effects stay in `js/stories/` |
+  | `isolde.json` | Isolde Thorne's rivalry beats, her nights with Sam, and her lines |
   | `bonds.json` | Bonds between ladies, their events, shared scenes, dynamics, and double dates |
   | `regulars.json` | Regular clients: names, quirks, event text |
   | `personalities.json` | Personalities, stat leans, preferences, and expression shifts |

@@ -10,7 +10,7 @@ const NPCS = {
   npc_marguerite:{id:'npc_marguerite', name:'Marguerite Vane', race:'human', sub:'', age:38,
     design:{build:'tall and lean',hairStyle:'severe bun',hairColor:'black',eyes:'steel-grey',skin:'pale',features:'thin red lips',accessories:'a silver monocle',expression:'a cool, appraising gaze'}, outfit:'custom', customOutfit:'a tailored black coat with silver buttons', under:'plain', imgVar:{}, seed:4417021, lewd:0, trust:0, traits:[]},
   npc_isolde:{id:'npc_isolde', name:'Lady Isolde Thorne', race:'demon', sub:'', age:260,
-    design:{build:'statuesque',hairStyle:'long curly',hairColor:'crimson',eyes:'violet',skin:'ash-grey',features:'long curved horns and a slender spade-tipped tail',accessories:'gold cuffs on her horns',expression:'an aristocratic, haughty smile'}, outfit:'custom', customOutfit:'a black and red velvet gown', under:'plain', imgVar:{}, seed:8812230, lewd:0, trust:0, traits:[]}
+    design:{build:'statuesque',hairStyle:'long curly',hairColor:'crimson',eyes:'violet',skin:'ash-grey',features:'long curved horns and a slender spade-tipped tail',accessories:'gold cuffs on her horns',expression:'an aristocratic, haughty smile'}, outfit:'custom', customOutfit:'a black and red velvet gown with a high leg slit', under:'garter', imgVar:{}, seed:8812230, lewd:90, trust:60, traits:[], body:{bust:'large', height:'tall', figure:'curvy'}}
 };
 Object.assign(NPCS, {
   npc_silas:{id:'npc_silas', male:true, name:'Silas Grieve', seed:5512, look:'a broad-shouldered man in his forties with a scarred jaw, slicked-back black hair, an expensive dark coat and a menacing smile'},
@@ -42,13 +42,13 @@ function ngppSavedCost(id){
 }
 function newGame(cfg){
   const HD = HOUSES[cfg.house];
-  S = { v:41, samFocus:{kind:'office', topic:'auto'}, cloudId: cfg.cloudId || ('run_' + Date.now().toString(36) + Math.random().toString(36).slice(2,6)), cloudName: (cfg.cloudName || '').trim() || HD.name, localSavedAt: Date.now(), cloudSyncedAt: 0, samHome:cfg.house, samUps:{}, starters:[cfg.house], houseWardrobe:[], houseUnder:[], closets:{}, week:1, gold:600, rep:HD.rep, ap:3, cur:cfg.house, home:cfg.house, cycle:1, ngppCycle:0, ngppHouses:{}, townEv:null, townEvNext:(BAL.townEvents||{}).firstWeek ?? 4, challenge:null, challengePerks:[], vessels:[], boons:[], past:cfg.past, pasts:[cfg.past], partner:cfg.partner, partners:[cfg.partner],
+  S = { v:42, samFocus:{kind:'office', topic:'auto'}, cloudId: cfg.cloudId || ('run_' + Date.now().toString(36) + Math.random().toString(36).slice(2,6)), cloudName: (cfg.cloudName || '').trim() || HD.name, localSavedAt: Date.now(), cloudSyncedAt: 0, samHome:cfg.house, samUps:{}, starters:[cfg.house], houseWardrobe:[], houseUnder:[], closets:{}, week:1, gold:600, rep:HD.rep, ap:3, cur:cfg.house, home:cfg.house, cycle:1, ngppCycle:0, ngppHouses:{}, townEv:null, townEvNext:(BAL.townEvents||{}).firstWeek ?? 4, challenge:null, challengePerks:[], vessels:[], boons:[], past:cfg.past, pasts:[cfg.past], partner:cfg.partner, partners:[cfg.partner],
     houses:[makeHouse(cfg.house)],
     sam:{energy:100, ...BAL.sam.base, appraisal:1, appXP:0, first:true, lvl:1, xp:0},
     samWeek:{security:0, books:false, income:0, acts:[]},
     debt:{total:startDebt(cfg.house, cfg.partner), remaining:startDebt(cfg.house, cfg.partner), carry:0, strikes:0},
     workers:[], candidates:[], alumni:[], log:[],
-    flags:{taunt:false, poachCD:0}, lastReport:null, over:false, won:false };
+    flags:{poachCD:0}, lastReport:null, over:false, won:false };
   S.houses.forEach(h=>{ h.since = 1; h.story = {beat:0,wk:0}; });
   PASTS[cfg.past].fx(S.sam);
   const npc = makeNamed(HD.npc); npc.house = cfg.house; npc.locked = cfg.house; npc.contract = 999; npc.trust = clamp(npc.trust+10);
@@ -129,9 +129,13 @@ function migrate(s){
     if(s.townEvNext === undefined) s.townEvNext = (s.week || 1) + ((BAL.townEvents||{}).firstWeek ?? 4);
     if(s.flags){ delete s.flags.partnerCD; delete s.flags.hilde; delete s.flags.walks; delete s.flags.walkNoPartner; }
   }
+  if(ov < 42){   // v42: Isolde's storyline (isolde.js): the old one-off taunt counts as her first beat
+    if(s.flags && s.flags.taunt && !s.isolde) s.isolde = {stage:1, wk:s.week||0, desire:0, nights:0, wins:0, truce:false, lovers:false, doneCycle:0, lastNight:0, visitWk:-99, lastId:null, gameWk:0, lastGame:null};
+    if(s.flags) delete s.flags.taunt;
+  }
   s.townEv = s.townEv || null;
   s.guildPerks = s.guildPerks || [];
-  s.v = 41; s.samUps = s.samUps || {}; s.houseWardrobe = s.houseWardrobe || []; s.houseUnder = s.houseUnder || []; s.home = s.home || (s.houses[0]||{}).id; s.samHome = s.samHome || s.home || (s.houses[0]||{}).id; s.cycle = s.cycle || 1; s.ngppCycle = s.ngppCycle || 0; s.ngppHouses = s.ngppHouses || {}; s.challenge = s.challenge || null; s.challengePerks = s.challengePerks || []; s.vessels = s.vessels || []; s.boons = s.boons || []; s.partners = s.partners || (s.partner ? [s.partner] : []);
+  s.v = 42; s.samUps = s.samUps || {}; s.houseWardrobe = s.houseWardrobe || []; s.houseUnder = s.houseUnder || []; s.home = s.home || (s.houses[0]||{}).id; s.samHome = s.samHome || s.home || (s.houses[0]||{}).id; s.cycle = s.cycle || 1; s.ngppCycle = s.ngppCycle || 0; s.ngppHouses = s.ngppHouses || {}; s.challenge = s.challenge || null; s.challengePerks = s.challengePerks || []; s.vessels = s.vessels || []; s.boons = s.boons || []; s.partners = s.partners || (s.partner ? [s.partner] : []);
   s.regulars = s.regulars || []; s.bonds = s.bonds || {}; s.flags = s.flags || {};
   s.sam.lvl = s.sam.lvl || 1; s.sam.xp = s.sam.xp || 0;
   s.houses.forEach(h=>{ if(h.tidy===undefined) h.tidy = BAL.tidy.start; if(h.prestige===undefined) h.prestige = ((HOUSES[h.id]||{}).prestige ?? 50); h.since = h.since || 1; h.story = h.story || {beat:0,wk:0}; h.bonus = h.bonus || {}; if(h.spent===undefined) h.spent = 0;

@@ -275,7 +275,7 @@ function simHouse(h, R){
     R.hl.push({wid:w.id, text:flavor('solo', w), act:null, scene:'solo', noAi:true});
   });
   const roomM = ROOM_MULT[h.tier];
-  const propInc = (w, id, cls, c) => { const q = qualityOf(w,id); return Math.round(actById(id).price * P.mult * BP.propFee * feeQualMult(q) * cls.mult * fxMul(w,'clientFee') * incenseMul(w,'clientFee') * BAL.income.escort * cMul(c,'fee',X,w) * cQual(c,q) * townMul('prop', 1) * (cls.tier==='rich' ? townMul('richFee', 1) : 1) * shrineMult(h, 'perFee')); };
+  const propInc = (w, id, cls, c) => { const q = qualityOf(w,id); return Math.round(actById(id).price * P.mult * BP.propFee * feeQualMult(q) * cls.mult * townMul('fee', 1) * fxMul(w,'clientFee') * incenseMul(w,'clientFee') * BAL.income.escort * cMul(c,'fee',X,w) * cQual(c,q) * townMul('prop', 1) * (cls.tier==='rich' ? townMul('richFee', 1) : 1) * shrineMult(h, 'perFee')); };
 
   // --- propositions to staff (courtesans are asked through the main flow below)
   const propN = {};   // weekly offers per lady, spread over the nights
@@ -591,7 +591,7 @@ function simHouse(h, R){
     const base = act ? actById(act).price * roomM * ob(w,'courtesan') : 20 * ob(w,'courtesan');
     const below = Math.max(0, (HD.minPop||0) - w.popularity);
     const spPoss = act ? spiritPossess(X, w, client, pr) : null, adShift = androidAdapt(w, client, pr);
-    const houseFeeMult = (HD.feeMult || 1) * ((HD.classFee && (HD.classFee[cls.id] ?? HD.classFee[cls.tier])) || 1) * shrineMult(h, 'perFee') * (cls.tier==='rich' ? townMul('richFee', 1) : 1);
+    const houseFeeMult = (HD.feeMult || 1) * ((HD.classFee && (HD.classFee[cls.id] ?? HD.classFee[cls.tier])) || 1) * shrineMult(h, 'perFee') * (cls.tier==='rich' ? townMul('richFee', 1) : 1) * townMul('fee', 1);
     const rich = cls.tier==='merchant' || cls.tier==='noble', qualMet = q >= expQ, amenMet = amenScore >= expAmen;
     const prestigeFeeMult = ((highF > 0 && rich && qualMet && amenMet) ? 1 + highF * (PR.richFeeBonus ?? 0.18) : 1) * (!act && highF > 0 ? 1 + highF * (PR.highCompFee ?? 0.45) : 1);
     const inc = Math.round(base * P.mult * feeQualMult(q) * cm * (1+madF*0.15) * fxMul(w,'clientFee') * incenseMul(w,'clientFee') * jb(w,w.job) * (react==='like' ? SVC.raceLikeFee : 1) * (below?0.75:1) * (reg ? (regQuirk(reg).tip||1) : 1) * cMul(client,'fee',X,w) * (act ? cQual(client,q) : cMul(client,'compFee',X)) * (spPoss ? spPoss.feeMult : 1) * (adShift ? adShift.feeMult : 1) * houseFeeMult * prestigeFeeMult * refMul(w, h, 'fee') * BAL.income.escort);
@@ -1080,6 +1080,7 @@ function endWeek(){
   S.samWeek = {security:0, books:false, income:0, acts:[], focus:null, focusEff:0};
   refreshCandidates();
   townEventWeek(R);   // random.js: a town event starts or ends
+  isoldeWeek(R);      // isolde.js: her next beat, a visit, the Thorn's overflow
   guildNewWeek();   // guild.js: a fresh board
   checkUnlocks(false, R.lines);
   S.lastReport = R;

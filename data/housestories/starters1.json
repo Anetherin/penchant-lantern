@@ -1,21 +1,69 @@
 {
+  "titles": {
+    "lantern": "The Grieve Debt",
+    "castle": "The Lady in the East Tower",
+    "onsen": "Cold Springs",
+    "hollow": "Unfinished Business",
+    "tankard": "The Rematch"
+  },
   "lantern": [
     {
       "pages": [
         "Three weeks in, you have learned which stair creaks and which tap runs brown for the first minute. {first} has been teaching you the till every evening after closing. She counts faster than you do, and she is kind about it.\n\nTonight she stops with a stack of silver in her hand. \"The old man used to send me upstairs on the first of every month,\" she says. \"Around this time. He said a supplier was coming and I'd only be in the way. I never saw a single crate.\"",
         "You ask what the supplier sold. {first} shakes her head and goes back to counting, but she has lost her place and has to start the stack again.\n\nThe lounge is nearly empty. Two regulars are arguing about dice by the hearth, and the paper lanterns are swinging a little in the draught from the street door.\n\nThen the draught gets stronger. Nobody knocked."
-      ]
+      ],
+      "hint": "A stranger will come asking about the old owner's debts.",
+      "text": "A broad man with a scarred jaw lets himself into {house} like he owns it. \"Silas Grieve. The old owner paid my employer for 'protection.' Payments stopped when he vanished. I assume you'll be resuming them.\"\n\nBehind the counter, {resident} has gone very pale.",
+      "choices": {
+        "pay": {"label":"Pay him","res":"\"Smart man.\" He pockets the coin. He will, it turns out, be back for more."},
+        "throw": {
+          "label": "Throw him out",
+          "win": "Silas ends up on the street, mostly out of surprise. \"You'll regret that,\" he says, straightening his coat.",
+          "lose": "It does not go well. Silas leaves anyway, laughing. \"I'll be back for an answer.\""
+        },
+        "talk": {
+          "label": "Talk him in circles",
+          "win": "You bury him in so many questions about invoices and payment terms that Silas leaves to find a headache powder. Now you know exactly what he wants.",
+          "lose": "Silas is not amused. \"One week. Then we talk properly.\""
+        }
+      }
     },
     {
       "pages": [
         "You can't sleep. The ledger is sitting on your chest where you dropped it, your candle is a stub, and you have added the same column four times and got four answers.\n\nSomewhere below, the pipes knock. They do that when someone has left the bathhouse boiler stoked, and coal costs money you don't have. You put your boots on over bare feet and go down to bank the fire yourself.\n\nThere is light under the bathhouse door, and steam, and the smell of the good soap that {first} keeps locked in her own cupboard."
-      ]
+      ],
+      "hint": "Mira could use a night off.",
+      "text": "It is three in the morning. You push the bathhouse door open and find {resident} soaking up to her shoulders, with a glass of wine and a romance novel. She doesn't even look up. \"Twelve years I've run this place. This is my first uninterrupted bath in four of them.\"",
+      "choices": {
+        "back": {"label":"Back out with an apology","res":"\"Close the door on your way out, dear.\""},
+        "refill": {
+          "label": "Bring her a refill",
+          "lead": "She sets the book aside as you pour, hooks a wet ankle behind your knee, and murmurs, \"Come here, Sam. The bath's warm and everybody's asleep.\"",
+          "situation": "After hours in the bathhouse, Mira pulls Sam into the warm water.",
+          "res": "She toasts you without opening her eyes. \"You might work out after all, Sam.\""
+        },
+        "book": {"label":"Ask what she's reading","res":"She tells you. In detail. With dramatic readings. You leave enlightened and red to the ears."}
+      }
     },
     {
       "pages": [
         "Since Silas Grieve walked in, {first} has been cleaning. It isn't the ordinary kind. She has emptied the old owner's office down to the boards, shaken out every book, and run a butter knife along the back of every drawer.\n\n\"Twelve years,\" she says, when you ask. Her auburn hair is tied up in a dust cloth and there is a cobweb on her sleeve. \"Twelve years I thought I knew where everything in this house was kept. I'd like to find out what else I got wrong.\"",
         "You hear it from the stairs on the fourth day: a crack of wood, a short silence, and then {first} saying a word you didn't know she used.\n\nShe comes into your room without knocking. The false back of the office wardrobe is still in her other hand."
-      ]
+      ],
+      "hint": "Mira is looking into the old ledgers.",
+      "text": "{resident} drops a second, hidden ledger on your desk. \"The old man kept two sets of books. I never knew. If there's anything in here about Grieve, it's buried in his chicken-scratch.\"",
+      "choices": {
+        "self": {
+          "label": "Go through it yourself",
+          "win": "Three pots of tea later, you find it: proof the \"protection\" was extortion, and the location of 600g hidden under the floorboards. +600g",
+          "lose": "The numbers refuse to add up. You will try again with fresh eyes."
+        },
+        "delegate": {
+          "label": "Let {resident} handle it",
+          "win": "{resident} cracks it in one evening: proof of extortion, and 600g hidden under the floorboards. +600g",
+          "lose": "{resident} needs more time with it."
+        }
+      }
     },
     {
       "pages": [
@@ -24,13 +72,42 @@
           "text": "It is the first of the month. The regulars know something is wrong. Nobody has asked for a second drink in an hour, and the dice players by the hearth have stopped pretending to play.\n\n{first} stands at the end of the counter with both hands flat on the wood. When the street door opens she doesn't flinch, and neither do you. You're fairly proud of that.",
           "who": "ev"
         }
-      ]
+      ],
+      "hint": "Time to deal with Silas Grieve for good.",
+      "text": "Silas Grieve is back, with two large friends. \"Last chance, Takahashi.\"\n\nYou have the ledger in your coat.",
+      "choices": {
+        "watch": {
+          "label": "Take the ledger to the city watch",
+          "win": "The watch is very interested in the ledger. Silas and friends spend the night in a cell and the rest of the month leaving town.\n\n{resident} watches them go, then turns to you. \"Keep my wages. This place is as much mine as yours now.\"",
+          "lose": "The watch captain is \"very busy.\" Silas smirks and gives you another week."
+        },
+        "door": {
+          "label": "Show him the door, for good",
+          "win": "It's short and loud. When the dust settles, Silas is limping toward the docks and the regulars are buying you drinks.\n\n{resident} squeezes your arm. \"Keep my wages. This place is home.\"",
+          "lose": "You end up on the floor. Silas laughs. \"Next week.\""
+        },
+        "deal": {
+          "label": "Offer him a better deal",
+          "win": "You point out that his boss has been skimming from Silas too. It's in the ledger. Silas reads it twice, swears, and leaves to have a very different conversation.\n\n{resident} lets out a long breath. \"Keep my wages. I'm not going anywhere.\"",
+          "lose": "Silas isn't buying it. Yet."
+        }
+      }
     },
     {
       "pages": [
         "{first} finds it while she is looking for something else. That is how she finds most things. It is the house's first licence, folded into eighths at the bottom of the strongbox, with a magistrate's seal the size of a saucer and a date on it.\n\nShe does the sum on her fingers. Then she does it again on paper, because she doesn't believe her fingers.\n\n\"Fifty years next month,\" she says. \"Sam. This house is older than I am, and nobody has ever once thrown it a party.\"",
         "Word gets out, because {first} tells one regular and the regular tells Old Town. By the end of the week there are flowers on the counter with no cards, and a cask from the brewer with a card that just says 'about time'. There is also one very large, very expensive wreath, sent by a man with a scarred jaw who would like it known that he has moved on.\n\n{first} puts that one by the door, where everybody can see it."
-      ]
+      ],
+      "hint": "The Lantern has an anniversary coming up.",
+      "text": "{resident} wants to do it properly. \"A speech from the owner, at the very least,\" she says. \"Or we open the doors and feed the whole street. Your choice, Sam. You're the one paying.\"",
+      "choices": {
+        "speech": {
+          "label": "Give a speech",
+          "win": "Short, warm, and only one joke that falls flat. There isn't a dry eye in the lounge. Everyone here is in a great mood.",
+          "lose": "It runs long. Very long. The applause at the end is mostly relief, but it's still applause."
+        },
+        "party": {"label":"Throw an open party","res":"Half of Old Town shows up. Business is permanently up (+10% clients)."}
+      }
     }
   ],
   "castle": [
@@ -38,12 +115,32 @@
       "pages": [
         "Castle Rosenhal has forty-one rooms. You have keys to thirty-eight of them. {first} says the east tower stairs are unsafe, and she says it the same way every time, in the same words.\n\nBut you are the one who signs for the groceries now. The kitchen sends up one more supper tray every night than there are people to eat it. The tray comes back empty, and the napkin is always folded into a swan.",
         "You don't say anything about it. You wait until {first} is carrying the tray herself, late, with a candle, and you are standing at the bottom of the east stairs when she turns the corner.\n\nShe stops. Nothing on the tray so much as rattles. Her grey eyes go to the tray, then to you, then to the stairs behind you. For the first time since you met her, she doesn't have an answer ready."
-      ]
+      ],
+      "hint": "Cecile is hiding something about the castle.",
+      "text": "{resident} finally admits it: \"The last Rosenhal never left. Lady Seraphine lives in the east tower. She has nowhere else to go.\"\n\nThat night you meet her on the stairs: sharp eyes, threadbare silk, and absolutely furious that a commoner owns her home.",
+      "choices": {
+        "stay": {"label":"Tell her she can stay","res":"\"How generous,\" she says icily, \"of you, in my house.\" But she doesn't slam the door."},
+        "tea": {
+          "label": "Offer her tea and a truce",
+          "win": "She accepts the tea. She criticizes the tea. She drinks all of the tea. It's a start.",
+          "lose": "She declines, coldly. Still, she stays."
+        }
+      }
     },
     {
       "pages": [
         "It starts with the Duchess of Aldermere's steward, who comes to look the castle over before his lady will consider a visit. You pour his tea yourself, to be friendly. You fill the cup to the brim. You hand it to him by the bowl instead of the saucer, and then you shake hands with his footman.\n\nThe steward is very polite about it. He leaves after eleven minutes.\n\n{first} watches the carriage go from the front steps with her hands folded. She doesn't raise her voice. She has never needed to.\n\n\"The small drawing room,\" she says. \"Nine o'clock tomorrow. Bring clean hands.\""
-      ]
+      ],
+      "hint": "Cecile has opinions about your manners.",
+      "text": "{resident} has decided the owner of Castle Rosenhal cannot hold a teacup like that. Lessons begin immediately. There will be a test.",
+      "choices": {
+        "etiquette": {
+          "label": "Pass the etiquette test",
+          "win": "\"Acceptable.\" From Cecile, that is a standing ovation.",
+          "lose": "Cecile sighs the sigh of a woman who has watched three owners fail this exact test."
+        },
+        "laugh": {"label":"Try to make her laugh instead","res":"She does not laugh. The corner of her mouth twitches. The staff talk about it for a week."}
+      }
     },
     {
       "pages": [
@@ -52,7 +149,25 @@
           "text": "This afternoon there is no note. A carriage has come up the hill with six horses where four would do, and a crest on the door that makes {first} set down the silver she is polishing.\n\n\"Kessel,\" she says quietly. \"He bought up her father's debts the week of the funeral. Stay close to her, sir.\"\n\nUp in the gallery, Seraphine has both hands on the rail. She doesn't come down. She doesn't leave either.",
           "who": "ev"
         }
-      ]
+      ],
+      "hint": "Someone is coming for Lady Seraphine.",
+      "text": "Baron Gerhardt Kessel arrives with a contract. \"The Rosenhal debts are mine now. Lady Seraphine will settle them as my bride, by the end of the month.\"\n\nSeraphine says nothing. Her hands are shaking.",
+      "choices": {
+        "humiliate": {
+          "label": "Humiliate him in front of the guests",
+          "win": "You read the baron's contract aloud, typos and all, to a lounge full of nobles. The laughter follows Gerhardt all the way to his carriage.",
+          "lose": "The baron sneers and gives them a week."
+        },
+        "buy": {
+          "label": "Buy the debt outright",
+          "res": "You pay the baron in full. Gerhardt counts it twice and leaves, disappointed. Seraphine doesn't speak to you for a day. Then she leaves a thank-you note on your pillow."
+        },
+        "escort": {
+          "label": "Have him escorted off the grounds",
+          "win": "The baron is escorted out, loudly. Some guests are scandalized. Seraphine is not.",
+          "lose": "The baron's guards outnumber yours. \"One week,\" he says."
+        }
+      }
     },
     {
       "pages": [
@@ -61,7 +176,10 @@
           "text": "Tonight the last guests have gone and the great hall is dark except for the fire. You are stacking chairs, because you still can't watch other people stack chairs.\n\nFootsteps cross the flagstones behind you. They are light and quick, and whoever it is has clearly rehearsed this on the way down. When you turn around her blonde hair is pinned up as if for court. She is turning the signet ring on her finger around and around.",
           "who": "ev"
         }
-      ]
+      ],
+      "hint": "Lady Seraphine has something to say.",
+      "text": "Seraphine finds you in the great hall. \"I have no money, a title worth nothing, and no intention of leaving. But I know every noble in the kingdom, and I know how to host them.\" She holds out her hand. \"Let me earn my keep, Mr. Takahashi.\"",
+      "choices": {"welcome":{"label":"Welcome her to the staff","res":"Within a week, the nobles start coming back."}}
     },
     {
       "pages": [
@@ -70,7 +188,13 @@
           "text": "\"My mother's last ball was in this room,\" Seraphine says. \"I was seven. I was sent to bed at nine and I watched the rest through the banisters.\" She pulls a dust sheet off a chair, looks at the chair, and sits in it as if it were a throne.\n\n{first} already has a notebook open. You can see columns in it. You can see that one of the columns is prices.",
           "who": "ev"
         }
-      ]
+      ],
+      "hint": "The castle hasn't hosted a ball in twenty years.",
+      "text": "Castle Rosenhal hasn't hosted a ball in twenty years. Seraphine and Cecile have already drawn up a guest list. It is very long. It is very expensive.",
+      "choices": {
+        "ball": {"label":"Host the Rosenhal Ball","res":"The ball is the talk of the kingdom. The nobles are back to stay (+15% clients, +renown)."},
+        "later": {"label":"Not this season","res":"Seraphine sighs theatrically. \"Next season, then.\""}
+      }
     }
   ],
   "onsen": [
@@ -78,7 +202,21 @@
       "pages": [
         "The first complaint comes from a swordsman with a bandaged knee, who says the big outdoor pool isn't what it was last winter. You put it down to the knee.\n\nThe second comes from {first}, and she doesn't say a word. She kneels at the edge of the source pool at dawn with her aunt's old wooden bucket, dips it, and holds her bare wrist in the water while she counts under her breath. She does the same thing the next morning, and the morning after that.\n\nShe has also stopped singing. The regulars notice that before they notice the water.",
         "On the fourth morning she finds you in the changing room, stacking towels. She closes the door behind her. Her side braid has come half undone and the red camellia in it is crooked, and you have never seen her leave it crooked."
-      ]
+      ],
+      "hint": "Something is wrong with the springs.",
+      "text": "{resident} pulls you aside, worried. \"The springs are cooling. Every day a little more. My aunt said this never happened in forty years.\"",
+      "choices": {
+        "hike": {
+          "label": "Hike up the mountain to look",
+          "win": "Halfway up, you find a fresh stone dam diverting the hot water. Carved into it: the crest of the Golden Crane Inn.",
+          "lose": "You turn back, wheezing, halfway up. You'll try again."
+        },
+        "regulars": {
+          "label": "Ask the regulars",
+          "win": "An old woodcutter mentions \"the Golden Crane's men\" building something upstream.",
+          "lose": "Nobody knows anything. Or nobody's saying."
+        }
+      }
     },
     {
       "pages": [
@@ -86,7 +224,20 @@
           "text": "You have spent the day carrying firewood up from the road, because the carter won't bring his mule past the second bend. Your shoulders ache. Your shirt is stuck to your back. All you want from the world is forty minutes alone in hot water.\n\nThere is a board by the door of the outdoor spring, hung with wooden tags that say who has it and when. The tag on the hook says OWNER. You check it twice, because you're that sort of person.\n\nYou don't think to check whether somebody has been swapping the tags around for a joke. Somebody has.",
           "scene": "casual"
         }
-      ]
+      ],
+      "hint": "Someone mixed up the bath schedule.",
+      "text": "A mix-up on the bath schedule: you walk into the outdoor spring and find {resident} already soaking up to her collarbone. She just waves you in. \"It's a hot spring, not a crime scene. Get in.\"",
+      "choices": {
+        "sit": {"label":"Sit (at a respectful distance)","res":"You talk until the stars come out. It's the most relaxed you've been since the truck."},
+        "flee": {"label":"Flee","res":"She laughs so hard she slips under the water."},
+        "slide": {
+          "label": "Slide in close beside her",
+          "lead": "\"Bold,\" {resident} purrs as the mist curls over your shoulders, sliding straight against your chest in the hot water.",
+          "situation": "In the outdoor hot spring after hours, Tsubaki closes the distance between them.",
+          "tease": "She raises an eyebrow, then scoots close enough that her warm thigh brushes yours under the mist. \"Bold. Next time, maybe.\"",
+          "rebuff": "She very pointedly moves to the other side of the spring. Awkward."
+        }
+      }
     },
     {
       "pages": [
@@ -95,13 +246,41 @@
           "text": "\"That's our water,\" {first} says, quite calmly. \"I'd know it anywhere. It smells of iron and it leaves the skin soft. He's bathing merchants in my aunt's water.\"\n\nA maid shows you to a room with a view of the gravel. Tea arrives, and it is excellent, which makes things worse. Then the screen slides open on a grey topknot and a black coat with a golden crane on the sleeve.",
           "who": "ev"
         }
-      ]
+      ],
+      "hint": "Someone upstream is responsible.",
+      "text": "Master Kurogane of the Golden Crane Inn doesn't even pretend. \"The mountain's water goes where it is most appreciated. My guests appreciate it more than yours.\"",
+      "choices": {
+        "claim": {
+          "label": "File a water-rights claim",
+          "win": "The magistrate rules for the Onsen. Kurogane has to tear down his own dam, which is very satisfying to watch.",
+          "lose": "The magistrate wants more paperwork."
+        },
+        "dam": {
+          "label": "Tear the dam down yourself",
+          "win": "One very long night with crowbars later, hot water comes roaring back down the mountain.",
+          "lose": "Kurogane's guards chase you off."
+        },
+        "share": {
+          "label": "Propose sharing the water",
+          "win": "Kurogane agrees to share, grudgingly, in exchange for your recipe for \"convenience-store egg sandwiches.\"",
+          "lose": "Kurogane laughs at you."
+        }
+      }
     },
     {
       "pages": [
         "You wake up because somebody is singing. It is loud and it is off-key, and it is a song about a fisherman's wife that has a great many verses. It's coming from the source pool, and it is the best thing you have heard in a month.\n\nBy the time you get down there {first} is already in the water to her knees with her hem tied up, laughing, flinging bucketfuls into the air to watch them steam. The pool is so hot you can't keep a hand in it.",
         "\"Forty years,\" she says, wading out. Her cheeks are pink from the heat. \"My aunt kept these springs for forty years. Every spring, when the snow went, she hung lanterns from here to the road and fed anybody who walked up. Soldiers, peddlers, anybody. She said the mountain likes to be thanked.\"\n\nShe wrings out her hem. She is looking at you sideways, and you already know what she is going to ask."
-      ]
+      ],
+      "hint": "The springs need a proper celebration.",
+      "text": "\"We should celebrate,\" {resident} says. She is practically glowing. \"A real spring festival, like back home. Lanterns from here to the road, food stalls, everything!\"",
+      "choices": {
+        "festival": {
+          "label": "Throw a spring festival",
+          "res": "The festival draws travelers from three valleys. Business at {house} is permanently up (+25% clients).\n\n{resident}, flushed and happy: \"Don't you dare pay me anymore. This is my home, and you saved it.\""
+        },
+        "later": {"label":"Not yet","res":"{resident} pouts. \"Soon, then.\""}
+      }
     },
     {
       "pages": [
@@ -109,7 +288,10 @@
           "text": "The cold comes down off the peaks early this year. The adventurers on the dungeon road arrive with frost in their beards and stay twice as long, and the Onsen has been full every night for three weeks. Nobody on the staff has had a whole day off since the festival.\n\n{first} has taken to standing in the yard at dusk with her face turned up and her eyes shut. She says she's smelling the weather. You thought that was a joke until this evening, when she opens her eyes, nods once, and starts turning the sign on the gate around to CLOSED.",
           "scene": "casual"
         }
-      ]
+      ],
+      "hint": "The first snow is coming.",
+      "text": "First snow on the mountain. {resident} insists everyone take the night off to watch it fall from the hot spring.",
+      "choices": {"close":{"label":"Close for the night","res":"Everyone rests. Grateful regulars chip in for new futons (staff beds upgraded to {bed})."}}
     }
   ],
   "hollow": [
@@ -120,19 +302,67 @@
           "text": "\"People are talking about me in town,\" she tells you happily, from somewhere near the ceiling. \"Somebody wrote to a newspaper. Somebody else wrote to a church.\"\n\nYou ask her which church.\n\nShe hasn't had time to answer when something hits the front door, hard. It isn't a knock. The second blow takes the latch off.",
           "who": "ev"
         }
-      ]
+      ],
+      "hint": "The manor's popularity is attracting attention.",
+      "text": "A woman in a long black coat kicks the door in, silver dagger drawn. \"Ines Varga, Order of the Pale Lantern. I'm here to exorcise the spirit of this house.\"\n\n{resident} floats down the stairs. \"Oh good, a guest.\"",
+      "choices": {
+        "bar": {
+          "label": "Bar the door",
+          "win": "Ines is shoved, protesting, back onto the front step. She camps outside. For a week.",
+          "lose": "Ines gets past you easily. Vesper, offended, rattles every window in the house until she leaves."
+        },
+        "wait": {
+          "label": "Ask her to wait a week",
+          "win": "Ines, against her better judgment, agrees to \"observe.\" She takes a room. She pays for it.",
+          "lose": "\"Absolutely not.\" She'll be back."
+        },
+        "try": {
+          "label": "Let her try",
+          "res": "The exorcism fails spectacularly. Vesper sets Ines's eyebrows on fire, very gently. Ines stays, out of sheer professional pride."
+        }
+      }
     },
     {
       "pages": [
         "Ines left a stack of books on the library table and then made the mistake of telling {first} not to touch them. They are Order manuals, bound in black, with titles like 'On the Bindings of the Restless Dead'.\n\n{first} has read all of them. She can't turn the pages, so she has been getting the candle flames to do it for her, which is why the library smells of singed paper. For three nights you have heard her through the wall. She mutters, and laughs, and once she said \"Oh, that's clever\" in a voice you didn't like at all.",
         "Tonight the muttering stops. You are halfway down the upstairs hall with a lamp when the air ahead of you goes cold enough that you can see your breath. She steps out of the wallpaper. Her pale violet eyes are very bright."
-      ]
+      ],
+      "hint": "Vesper has an experiment in mind.",
+      "text": {
+        "intimate": "{resident} corners you in the upstairs hall, eyes bright with mischief. \"A proper spectral reverse-possession,\" she announces, gesturing toward your belt. \"I keep my body, borrow your cock, and test how much sensation transfers across the veil. Ines threatened to salt the stairs if I tried it on a guest first.\"",
+        "plain": "{resident} corners you in the upstairs hall, drifting three inches off the rug with wicked curiosity. \"They say a spirit can borrow a living man's heat across the veil,\" she murmurs, fingers trailing cold along your jaw. \"Just a small test first, since you haven't quite handed me the rest of yourself yet.\""
+      },
+      "choices": {
+        "let": {
+          "label": {"intimate":"Let her","plain":"Humor her experiment"},
+          "intimate": "Her cool fingers brush your chest and pull the heat straight out of your hips into hers. She spends an hour parading in front of the pier glass, stroking the thick, twitching cock between her thighs until she comes across the floorboards—leaving you breathless, weak-kneed, and thoroughly outclassed by three-hundred-year-old smugness.\n\nLewdness + · Trust + · Mood + · Lust −{lust} · Sam's Technique +2",
+          "plain": "She presses her translucent lips over yours for one shiver-cold, electric heartbeat, then gasps and floats backward through the banister, glowing bright violet. \"Oh. That worked better than I thought.\""
+        },
+        "refuse": {"label":"Politely refuse","res":"\"Spoilsport,\" she sniffs, and walks through a wall."},
+        "joke": {
+          "label": "Make a joke about her being dead",
+          "res": "Every mirror in the house cracks at once. She doesn't speak to you for a week. Ines, quietly: \"That was a bad one.\""
+        }
+      }
     },
     {
       "pages": [
         "{first} has missed three evenings. She has greeted every arrival at this house for three hundred years, and now guests stand in the hall with their coats on, looking at the empty stairs, while you make excuses.\n\nYou find her in the attic every time. She isn't doing anything. She drifts between the trunks with one hand out, like someone feeling for a door in the dark. Where she has passed, the dust on the floor is rimed with frost.",
         "Ines has started coming up as well. She sits on a crate by the hatch with a notebook on her knee, and she writes down where the frost is thickest and what hour it forms. The silver dagger stays on the crate beside her. On the first night her hand kept going to it. Tonight you notice that it hasn't moved in an hour."
-      ]
+      ],
+      "hint": "Vesper's past is hidden somewhere in the manor.",
+      "text": "\"There's something up here,\" {resident} says. \"Something of mine. I can feel it, but I can't remember what it is.\"\n\nInes closes her notebook. For once she looks at you as if she would welcome a suggestion.",
+      "choices": {
+        "appraisal": {
+          "label": "Use [Appraisal] on the attic",
+          "res": "Appraisal lights up a locket under the floorboards. Inside: a portrait, and a name. Vesper Lisle, a courtesan condemned three hundred years ago by the Order of the Pale Lantern. For a crime she didn't commit."
+        },
+        "archives": {
+          "label": "Search the city archives",
+          "win": "In a dusty archive, you find her: Vesper Lisle, a courtesan condemned three hundred years ago by the Order of the Pale Lantern, for a crime she didn't commit.",
+          "lose": "The archives are a maze. You will try again."
+        }
+      }
     },
     {
       "pages": [
@@ -141,13 +371,27 @@
           "text": "\"She won't come back, of course,\" {first} says tonight, to nobody. \"They'll give her a new posting. Somewhere with a proper ghost, one that screams. It's quite all right. I've been left in this house before.\"\n\nThere's a horse on the road. It's being ridden hard, and it turns in at the gate. {first} goes very still, and all the candles in the room lean toward the door.",
           "who": "ev"
         }
-      ]
+      ],
+      "hint": "Someone wants to make amends.",
+      "text": "Ines comes back from the Order's headquarters with a sealed apology three centuries late, and her own resignation. \"My order did this. Let me make it right. I'll guard this house, and her, for as long as you'll have me.\"\n\n{resident} reads the apology twice, then laughs, for the first time in a very long time.",
+      "choices": {
+        "welcome": {"label":"Welcome Ines","res":"Vesper remembers who she is. \"I don't need coin,\" she says. \"I'm dead. I'll stay because I want to.\""}
+      }
     },
     {
       "pages": [
         "Now that {first} has her name back, she wants the rest. She remembers the house as it was: which room was hers, the colour of the drawing room, a pear tree she was fond of. She doesn't remember what came after, and she has decided that she would like to see it.\n\nSo on the first dry morning you and Ines take shears and a billhook out into the garden behind the manor. Nobody has cut it back in living memory. {first} drifts ahead of you both, pale in the sunlight, pointing.",
         "It takes most of the day. The pear tree is still there, and it is enormous. Past it, the ivy has grown over something low and square. Ines stops cutting first. She takes off her gloves, clears the last of it away by hand, and steps back without a word.\n\nIt is a plain stone. The name has nearly worn away. Someone has scratched a lantern into the top of it with a knife, a long time ago."
-      ]
+      ],
+      "hint": "There's a grave somewhere in the overgrown garden.",
+      "text": "{resident} looks at the stone for a long time. \"So that's where I've been,\" she says. Then, softly: \"If I wanted to, I could go now.\"",
+      "choices": {
+        "stay": {"label":"Ask her to stay","res":"\"Someone has to haunt you properly.\" She stays, and the manor feels warmer for it (+20% clients)."},
+        "choice": {
+          "label": "Tell her it's her choice",
+          "res": "She thinks about it for a long time. Then she takes your hand, as much as a ghost can. \"I choose here.\" (+20% clients)"
+        }
+      }
     }
   ],
   "tankard": [
@@ -158,19 +402,42 @@
           "text": "The deckhands are laughing. Then they stop, and so does everyone else, one table at a time. The tankards on the shelf have started to rattle.\n\nSomething very heavy is coming down the street, and it's in no hurry. {first} hasn't turned around. She has gone red to the ears, and her knuckles are white on the tap handle.",
           "who": "ev"
         }
-      ]
+      ],
+      "hint": "An old rival of Hilde's is in town.",
+      "text": "The door frame cracks as an enormous hill giant squeezes through. \"BORGRUM WANTS ALE.\" {resident} goes stiff. \"That's him. That's the one who won my brewery.\" She turns to you. \"I want a rematch.\"",
+      "choices": {
+        "host": {"label":"Host the rematch","res":"Borgrum laughs so hard the bottles rattle. \"ONE MONTH, LITTLE DWARF.\""},
+        "talkdown": {"label":"Talk her out of it","res":"{resident} sulks for days. She'll bring it up again."}
+      }
     },
     {
       "pages": [
         "Two ships tie up at the Docks on the same tide: the Gull's Promise and the Black Marlin. You know nothing about either of them. {first} takes one look out of the window and starts moving the furniture.\n\n\"Marlin lot by the hearth, Gull lot by the door,\" she says, dragging a bench. \"Their captains fought over a woman or a whale thirty years back. Depends who you ask. Keep the middle tables full of dockers and don't, for the love of ale, let anyone sing.\"",
         "It works for two hours. The Marlins drink by the hearth and the Gulls drink by the door, and a wall of dockers sits between them, enjoying being useful.\n\nThen a boy off the Gull's Promise, who can't be a day over twenty and is on his fourth pint, stands up on a stool and starts in on a shanty. It has a verse about the Black Marlin's captain. It has several."
-      ]
+      ],
+      "hint": "The sailors are restless.",
+      "text": "By the second verse both crews are on their feet, and the first chair is already in the air.",
+      "choices": {
+        "wade": {
+          "label": "Wade in",
+          "win": "You end the brawl mostly by accident, standing in the middle and refusing to fall over. The dock talks about it for weeks.",
+          "lose": "{resident} drags you out of the pile by your collar, laughing her head off."
+        },
+        "delegate": {"label":"Let {resident} handle it","res":"She handles it with a barstool. Damages: 50g. Worth it."},
+        "hide": {"label":"Hide behind the bar","res":"{resident} notices. {resident} remembers."}
+      }
     },
     {
       "pages": [
         "You haven't seen {first} above ground in four days. The bar is being run by whoever is nearest it. The cellar door is shut, and there is a sign on it in chalk that reads BREWING. KNOCK AND DIE.\n\nThe smell coming up through the floorboards changes by the hour: bread, then honey, then something like a wet dog, then bread again. Every pot in the kitchen has gone missing, and so have your washtub and two of the chamber pots. You have decided not to ask about the chamber pots.",
         "When you finally go down, you take a plate of food with you as a peace offering. The cellar is hot as an oven. There are copper pipes where there were no pipes before. {first} is standing on a barrel, stirring a vat with an oar, with her red braids tied on top of her head and a look in her eye that you have seen on gamblers.\n\nShe eats the food without looking at it."
-      ]
+      ],
+      "hint": "Hilde needs to prepare.",
+      "text": "\"House ale won't beat him,\" {resident} says with her mouth full. \"I need the good stuff. Moonhops from the Elven Quarter. They're not cheap.\"",
+      "choices": {
+        "moonhops": {"label":"Buy the moonhops","res":"The cellar smells incredible. Hilde hasn't slept in days. She's never looked happier."},
+        "trust": {"label":"Trust {resident}'s skill","res":"\"Fine. I'll win with house ale,\" she says, cracking her knuckles."}
+      }
     },
     {
       "pages": [
@@ -179,13 +446,29 @@
           "text": "The rules are the old ones. The drinkers match each other tankard for tankard, and it's the same ale for both. Whoever is last to stand up and say their own name wins. This time a judge watches the giant's boots.\n\n{first} has slept, for once. She has rebraided her hair with every brass ring she owns. She climbs onto the stool, rolls her shoulders, and winks at you across the room.",
           "who": "ev"
         }
-      ]
+      ],
+      "hint": "The contest.",
+      "text": "The whole dock district has packed into {house}. Borgrum sits on two benches. {resident} sits on a stool, glaring up at him. The first tankards are poured.",
+      "choices": {
+        "raise": {
+          "label": "Raise your tankards!",
+          "stat": "Hilde's brewing",
+          "win": "Borgrum goes down like a felled oak. The crowd goes insane. He hands over the deed to Ironsong Brewery, weeping happily.\n\nThe Tankard now serves Ironsong ale (bar income +50%). {resident}: \"You backed me. I'll pour for you for free until the end of time.\"",
+          "lose": "Borgrum wins by a single mug. \"NEXT MONTH,\" he bellows, delighted. {resident} is already planning."
+        }
+      }
     },
     {
       "pages": [
         "The deed to Ironsong Brewery hangs over the bar in a frame that {first} made herself. It is crooked, and she won't let anyone straighten it.\n\nShe has spent every free morning since the rematch up at the old brewhouse, scrubbing out vats that had held nothing but rainwater and pigeons for years. She came back each time filthy and furious and happy. Her grandmother's yeast was dead. She found a jar of it in a neighbour's cold cellar, where it had been kept alive for forty years as a favour.",
         "Today a dray pulls up outside with one barrel on it. It has new oak staves and iron hoops, and the Ironsong anvil is burned into the lid. {first} won't let the drayman touch it. She rolls it in herself, up the step and across the floor, and sets it on the bar.\n\nThe room has gone quiet. She picks up the mallet and the tap, and then she just stands there and looks at them."
-      ]
+      ],
+      "hint": "The first barrel is nearly ready.",
+      "text": "The first barrel of Ironsong ale in years is tapped at the Tankard. {resident} is crying into it and pretending she isn't.",
+      "choices": {
+        "ship": {"label":"Ship it to every house you own","res":"Ironsong ale flows in every house (bar income +15% everywhere)."},
+        "keep": {"label":"Keep it Tankard-exclusive","res":"People cross the whole city for a pint (Tankard bar income +20% more, +house popularity)."}
+      }
     }
   ]
 }

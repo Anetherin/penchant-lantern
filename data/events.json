@@ -58,16 +58,6 @@
       "setting": "bustling adventurers' guild hall, notice boards"
     }
   },
-  "taunt": {
-    "title": "The Velvet Thorn",
-    "text": "A tall demon woman in red velvet sweeps into the lobby and looks around like she's pricing the furniture. \"Lady Isolde Thorne, of the Velvet Thorn. I came to see what the newcomer bought.\" Her gaze settles on your hoodie. \"...Charming.\"",
-    "banter": {
-      "label": "Banter back",
-      "win": "You land a surprisingly good comeback. Isolde laughs despite herself. Word gets around. +renown.",
-      "lose": "Your comeback arrives about ten seconds late. Isolde is already gone."
-    },
-    "polite": {"label":"Stay polite","res":"\"We'll see how long you last,\" she says, and leaves."}
-  },
   "poach": {
     "title": "An Offer from the Thorn",
     "text": "{name} admits Isolde Thorne offered her a position at the Velvet Thorn, with better pay. She hasn't decided.",
