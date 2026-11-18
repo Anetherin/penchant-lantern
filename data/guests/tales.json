@@ -52,7 +52,7 @@
             "marta": {"v":30,"kind":"comrades","note":"Fellow travelers who swap stories from across both worlds."}
           },
           "jobs": {"likes":["courtesan","security","dancer"],"dislikes":["maid"]},
-          "body": {"bust":"huge","height":"average","figure":"curvy"},
+          "body": {"bust":"large","height":"average","figure":"curvy"},
           "unique": {
             "name": "Summoner's Pact",
             "desc": "Trained to bargain with elemental spirits, she commands attention while keeping a surprisingly tender heart.",
@@ -100,7 +100,7 @@
           },
           "bonds": {"sheena":{"v":45,"kind":"comrades","note":"Trusts Sheena implicitly—she is one of the first people who treated her like an equal."}},
           "jobs": {"likes":["security","maid"],"dislikes":["promoter","bartender"]},
-          "body": {"bust":"small","height":"short","figure":"slim"},
+          "body": {"bust":"flat","height":"short","figure":"slim"},
           "unique": {
             "name": "Exsphere Might",
             "desc": "Her compact frame hides staggering strength that intimidates troublemakers and shrugs off heavy labor.",
@@ -150,7 +150,7 @@
           },
           "bonds": {"sheena":{"v":30,"kind":"comrades","note":"Admires Sheena's courage and asks endless questions about summoning."}},
           "jobs": {"likes":["attendant","dancer","host"],"dislikes":["security"]},
-          "body": {"bust":"small","height":"average","figure":"slim"},
+          "body": {"bust":"flat","height":"average","figure":"slim"},
           "unique": {
             "name": "Devoted Heart",
             "desc": "Once she decides she cares for someone, she throws her whole spirit into supporting them.",
@@ -523,7 +523,7 @@
             "edna": {"v":-20,"kind":"rivals","note":"Trades razor-sharp barbs with Edna whenever they cross paths in the hall."}
           },
           "jobs": {"likes":["courtesan","dancer"],"dislikes":["promoter","host"]},
-          "body": {"bust":"small","height":"short","figure":"slim"},
+          "body": {"bust":"flat","height":"short","figure":"slim"},
           "unique": {
             "name": "Weaver of Phantoms",
             "desc": "Her lingering illusions make every private chamber feel like a waking dream clients never want to leave.",
