@@ -111,7 +111,9 @@ function outfitKey(w, scene){
   const sw = swimOutfit(w, scene); if(sw) return sw;
   const k = w.svcOutfit; if(scene && k && isSvcScene(scene) && (k==='custom' ? w.customOutfit : (WARDROBE[k] && ownsOutfit(w,k)))) return k;
   // a job outfit (w.jobOutfit[job]) or the job's uniform (wardrobe.json → uniform) is worn at work, never in service scenes
-  if(!(scene && isSvcScene(scene)) && w.job){
+  // or off duty with Sam (dates, night visits, invitations: scenes with sam:true that aren't house:true)
+  const sc = scene && SCENES[sceneBase(scene)], offDuty = !!(sc && sc.sam && !sc.house);
+  if(!(scene && isSvcScene(scene)) && !offDuty && w.job){
     const jo = w.jobOutfit && w.jobOutfit[w.job]; if(jo && WARDROBE[jo]) return jo;
     const u = UNIFORMS[w.job]; if(u && !(w.jobOutfit && w.jobOutfit[w.job]===''))  return u;
   }

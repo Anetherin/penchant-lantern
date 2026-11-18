@@ -128,6 +128,22 @@
       "undress": "under",
       "robe": true
     },
+    "enc_sleepin": {
+      "label": "Encounter: Not sleepy yet",
+      "pov": true,
+      "sam": true,
+      "comp": "lying in bed beside the viewer under rumpled sheets, propped up on one elbow, leaning in close with a teasing, hungry look",
+      "setting": "the Owner's Suite at night, a large canopy bed, a single low lamp",
+      "undress": "under"
+    },
+    "enc_wake": {
+      "label": "Encounter: Good morning",
+      "pov": true,
+      "sam": true,
+      "comp": "lying in bed beside the viewer, sheets slipping off her, propped up on one elbow with a sleepy, wicked smile",
+      "setting": "the Owner's Suite in early morning, a large canopy bed, soft grey dawn light through the curtains",
+      "undress": "under"
+    },
     "enc_reckless": {
       "label": "Encounter: The storeroom",
       "pov": true,
