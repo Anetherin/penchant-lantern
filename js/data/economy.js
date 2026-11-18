@@ -40,7 +40,7 @@ function madameScore(w){
 function slotsFor(h, job){
   const d = ECON.slots[job]; if(!d) return 99;
   if(d.as) return slotsFor(h, d.as);
-  if(d.byJob) return (typeof S!=='undefined' && S) ? S.workers.filter(w=>w.house===h.id && w.job===d.byJob).length : 0;
+  if(d.byJob) return (typeof S!=='undefined' && S) ? S.workers.filter(w=>w.house===h.id && (w.job===d.byJob || (w.job==='rest' && w.prevJob===d.byJob))).length : 0;   // a resting lady keeps her positions open
   const u = h.up || {};
   let n = (d.base||0) + Object.entries(d).filter(([k])=>u[k] && !['base','perSize','perRoom','min','perRooms','madame','madameBase','madameStep','byJob'].includes(k)).reduce((a,[,v])=>a+v,0) + (d.perSize ? Math.floor(houseSize(h)/d.perSize) : 0);
   if((d.madame || d.madameBase) && typeof S!=='undefined' && S){
