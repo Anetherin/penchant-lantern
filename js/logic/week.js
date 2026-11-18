@@ -996,7 +996,7 @@ function endWeek(){
     const enc = pr.enc.slice().sort(()=>Math.random()-0.5).sort((a,b)=>(b.act?2:b.want?0:1)+(b.reg?2:0)-(a.act?2:a.want?0:1)-(a.reg?2:0));
     // every encounter goes in the report (her own page lists them all); the first two are her highlights on the house page (more: false)
     pr.encN = enc.length; pr.encSum = enc.reduce((a,e)=>{ a[e.act ? 'svc' : e.want && e.outcome==='no' ? 'no' : 'comp']++; return a; }, {svc:0, no:0, comp:0});
-    enc.slice(0,30).forEach((e,i)=>R.hl.push({wid:w.id, text:hlText(w,e) + (e.note ? ' ' + ENC_NOTE(e.note) : ''), act:e.act||null, cls:e.cls, note:e.note||null, more:i>=2, fee:e.fee, d:e.d, sat:e.sat, outcome:e.outcome, where:e.where||null, chapelProp:!!e.chapelProp, sample:!!e.sample, adapt:!!e.adapt, spiritFuta:!!e.spiritFuta, beastHeat:!!e.heat, scene: e.act ? 'act:'+e.act+'~'+(e.expr||'')+'~'+(e.ctx||'') : e.where ? 'job_'+e.where : 'companion'}));
+    enc.slice(0,30).forEach((e,i)=>R.hl.push({wid:w.id, text:hlText(w,e) + (e.note ? ' ' + ENC_NOTE(e.note) : ''), act:e.act||null, cls:e.cls, note:e.note||null, more:i>=2, fee:e.fee, d:e.d, sat:e.sat, outcome:e.outcome, where:e.where||null, chapelProp:!!e.chapelProp, sample:!!e.sample, adapt:!!e.adapt, spiritFuta:!!e.spiritFuta, beastHeat:!!e.heat, scene: e.act && e.possess ? 'spirit_futa' : e.act ? 'act:'+e.act+'~'+(e.expr||'')+'~'+(e.ctx||'') : e.where ? 'job_'+e.where : 'companion'}));
     delete pr.enc;
     earnCheck(w).forEach(t=>{ log(`✨ ${w.name} has developed a knack: ${t}. ${TRAITS[t].desc}`); addLog(`${w.name} developed the trait ${t}.`); });
     titleCheck(w).forEach(log);
