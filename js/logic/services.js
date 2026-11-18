@@ -98,7 +98,12 @@ function hlText(w, e){
     }
     return `${cap(who)} propositioned ${N} ${where}, asking ${askClient(e.want)}. She turned him down.`;
   }
-  const extra = [e.adapt && flavor('enc_adapt', w, e.adapt), e.possess && flavor('enc_possess_' + e.possess, w), e.lantern && flavor('enc_lantern_angel', w), e.heat && e.note!=='drained' && e.note!=='frustrated' && flavor('enc_beast_heat', w)].filter(Boolean).join(' ');
+  // a solo reverse possession with a client is its own encounter: the possession, not the service he asked for (report.js groups it alone)
+  if(e.possess && e.act){
+    const lead = e.where ? `${cap(who)} propositioned ${N} ${PROP_WHERE[e.where]}.` : `${cap(who)} came for ${N}.`;
+    return `${lead} ${flavor('enc_possess_' + e.possess, w)}${encTxt}`;
+  }
+  const extra = [e.adapt && flavor('enc_adapt', w, e.adapt), e.lantern && flavor('enc_lantern_angel', w), e.heat && e.note!=='drained' && e.note!=='frustrated' && flavor('enc_beast_heat', w)].filter(Boolean).join(' ');
   const tail = extra ? ' ' + extra : '';
   if(!e.want) return `${cap(who)} spent the evening with ${N} in the lounge: wine, conversation, and a lot of laughing. ${flavor('client_company', w)}${tail}`;
   if(e.outcome==='yes'){
