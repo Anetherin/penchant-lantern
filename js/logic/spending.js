@@ -98,13 +98,13 @@ function tutorWeek(R){
 // Before the debt is paid: gifts.beforeDebt = 'locked' | 'action' (each costs one of Sam's actions) | 'free'.
 const giftMode = () => (S.won || S.debt.remaining <= 0) ? 'free' : (BAL.gifts.beforeDebt || 'locked');
 const giftsThisWeek = w => w._giftWk === S.week ? (w._giftN||0) : 0;
-const giftCost = (w, k) => Math.round(BAL.gifts.tiers[k].cost * (1 + BAL.gifts.weekStep * giftsThisWeek(w)) * cycleMul(BAL.gifts.perCycle));
+const giftCost = (w, k) => Math.round(BAL.gifts.tiers[k].cost * Math.pow(BAL.gifts.weekMul ?? 2, giftsThisWeek(w)) * cycleMul(BAL.gifts.perCycle));
 function giftMenu(id){
   const w = findW(id); if(!w) return;
   const G = BAL.gifts, mode = giftMode(), n = giftsThisWeek(w);
   if(mode==='locked') return toast('Buying her gifts opens up once the debt is paid off.');
   const cap = houseTrustCap(w) < 100 && w.trust >= houseTrustCap(w);
-  modal(`<h2>A Gift for ${esc(titled(w))}</h2><p class="muted">Trust ${tShow(w.trust)}${cap ? ` <span class="warn">(held at ${tShow(houseTrustCap(w))} until her house's story moves on)</span>` : ''} · Mood ${Math.round(w.mood)}${n ? ` · ${n} gift${n>1?'s':''} this week (each one more costs ${Math.round(G.weekStep*100)}% more)` : ''}${mode==='action' ? ` · each gift takes one of Sam's actions (${G.energy} energy)` : ''}</p>
+  modal(`<h2>A Gift for ${esc(titled(w))}</h2><p class="muted">Trust ${tShow(w.trust)}${cap ? ` <span class="warn">(held at ${tShow(houseTrustCap(w))} until her house's story moves on)</span>` : ''} · Mood ${Math.round(w.mood)}${n ? ` · ${n} gift${n>1?'s':''} this week (each one more this week costs ×${G.weekMul ?? 2})` : ''}${mode==='action' ? ` · each gift takes one of Sam's actions (${G.energy} energy)` : ''}</p>
     <div class="row">${Object.entries(G.tiers).map(([k,t])=>{ const c = giftCost(w,k); return `<button onclick="buyGift('${w.id}','${k}')" ${S.gold<c?'disabled':''}>${esc(t.label)} · ${fmt(c)}</button>`; }).join('')}</div>
     <div class="row"><button onclick="openSheet('${w.id}')">Back</button></div>`);
 }
@@ -130,7 +130,7 @@ function giftAllDraw(){
   const A = GIFT_ALL, G = BAL.gifts, group = tutorGroupList(A.g), list = group.filter(giftRoom), full = group.length - list.length;
   const sel = (k, opts) => `<select onchange="giftAllSet('${k}',this.value)">${opts.map(([v,l])=>`<option value="${v}" ${A[k]===v?'selected':''}>${esc(l)}</option>`).join('')}</select>`;
   const cost = list.reduce((a,w)=>a + giftCost(w, A.tier), 0);
-  modal(`<h2>🎁 Gifts for everyone</h2><p class="muted">Buys the same gift for every lady in the group who can still grow closer to Sam (not at max trust and not held back by her house's story). Each extra gift for a lady this week costs ${Math.round(G.weekStep*100)}% more.${giftMode()==='action' ? ` Takes one of Sam's actions (${G.energy} energy).` : ''}</p>
+  modal(`<h2>🎁 Gifts for everyone</h2><p class="muted">Buys the same gift for every lady in the group who can still grow closer to Sam (not at max trust and not held back by her house's story). Each extra gift for a lady this week costs ×${G.weekMul ?? 2}.${giftMode()==='action' ? ` Takes one of Sam's actions (${G.energy} energy).` : ''}</p>
     <div class="row"><label>Who ${sel('g', tutorGroups())}</label><label>Gift ${sel('tier', Object.entries(G.tiers).map(([k,t])=>[k, t.label]))}</label></div>
     <p>${list.length ? list.map(w=>`${esc(w.name.split(' ')[0])} <span class="muted">(${tShow(w.trust)})</span>`).join(', ') : '<span class="muted">Nobody in this group has room to grow.</span>'}</p>
     <p class="muted">${list.length} lad${list.length===1?'y':'ies'} · ${fmt(cost)} total${full ? ` · ${full} skipped (max trust or held by her house)` : ''}${S.gold < cost ? ' · <span class="warn">not enough gold for all: gifts go out in roster order until the purse runs out</span>' : ''}</p>
@@ -213,4 +213,39 @@ function wardrobeAllApply(){
   } else if(!A.autoNew && S.autoWardrobe){ S.autoWardrobe.on = false; }
   WARDROBE_ALL = null; save(); render(); refreshSheetInfo(); closeModal();
   toast(`Updated wardrobe & cut settings for ${list.length} lad${list.length===1?'y':'ies'}.`);
+}
+
+/* ---------- Luxuries (balance.json → luxury): money sinks once the debt is paid ---------- */
+// Each one doubles in price with every purchase in the same week (house items count per house).
+const luxOpen = () => !debtOpen();
+function luxUses(k, h){ const U = S.luxWk && S.luxWk.wk === S.week ? S.luxWk.n : {}; return U[h ? k + ':' + h.id : k] || 0; }
+function luxCount(k, h){ if(!S.luxWk || S.luxWk.wk !== S.week) S.luxWk = {wk:S.week, n:{}}; const id = h ? k + ':' + h.id : k; S.luxWk.n[id] = (S.luxWk.n[id]||0) + 1; }
+function luxCost(k, h, per){ const L = BAL.luxury; return Math.round(L[k].cost * (per || 1) * Math.pow(L.weekMul ?? 2, luxUses(k, h)) * cycleMul(L.perCycle)); }
+const luxStaff = h => S.workers.filter(w=>w.house===h.id && w.job!=='guild');
+function buyLuxury(k, hid){
+  if(!luxOpen()) return toast('Luxuries open up once the debt is paid off.');
+  const L = BAL.luxury, h = hid ? H(hid) : null, staff = h ? luxStaff(h) : [];
+  const cost = luxCost(k, h, k==='spa' ? staff.length : 1);
+  if(k==='spa' && !staff.length) return toast('Nobody here to pamper.');
+  if(S.gold < cost) return toast('Not enough gold.');
+  S.gold -= cost; luxCount(k, h);
+  let msg = '';
+  if(k==='tonic'){ samEnergyAdd(samMaxEnergy()); msg = `Sam downs the tonic. It tastes like copper and cinnamon, and he feels ready for anything. (energy full)`; }
+  else if(k==='campaign'){ h.rep = clamp(h.rep + L.campaign.rep); msg = `Criers, painted handbills and free wine at the fountain: all of Hollowmere hears about ${h.name}. (popularity +${L.campaign.rep})`; }
+  else if(k==='spa'){ staff.forEach(w=>{ w.energy = maxEnergy(w); w.health = clamp(w.health + L.spa.health); }); msg = `Masseuses, hot stones and a whole day off the clock: ${staff.length} lad${staff.length===1?'y':'ies'} at ${h.name} come back glowing. (energy full, Health +${L.spa.health})`; }
+  addLog(`💎 ${L[k].label}${h ? ' at ' + h.name : ''} (−${fmt(cost)})`);
+  save(); render(); toast(msg + ` −${fmt(cost)}`);
+}
+function luxBtn(k, h){
+  const L = BAL.luxury, per = k==='spa' && h ? luxStaff(h).length : 1, c = luxCost(k, h, per);
+  return `<button ${S.gold < c || !per ? 'disabled' : ''} onclick="buyLuxury('${k}'${h ? `,'${h.id}'` : ''})">💎 ${esc(L[k].label)} · ${fmt(c)}</button>`;
+}
+function samLuxCard(){
+  if(!luxOpen() || !BAL.luxury) return '';
+  return `<section class="card"><h2>Luxuries</h2><div class="row">${luxBtn('tonic')}</div><p class="muted">No action needed. Each one bought this week doubles the next one's price.</p></section>`;
+}
+function houseLuxCard(h){
+  if(!luxOpen() || !BAL.luxury) return '';
+  const L = BAL.luxury;
+  return `<section class="card"><h2>Luxuries</h2><div class="row">${luxBtn('campaign', h)}${luxBtn('spa', h)}</div><p class="muted">Campaign: house popularity +${L.campaign.rep}. Spa day: everyone living here back to full energy, Health +${L.spa.health} (priced per lady). No action needed; each repeat at this house this week doubles the price.</p></section>`;
 }

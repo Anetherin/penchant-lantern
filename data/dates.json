@@ -1055,7 +1055,7 @@
       "By the time the light fades, the sketchbook is full of half-finished faces and a few honestly lovely lines. {name} peers over your shoulder, and for once says nothing sarcastic at all."
     ],
     "image": {
-      "comp": "posing gracefully while Sam sketches her, a sketchbook in his hands",
+      "comp": "posing like a painter's model on a draped chaise in the window light while Sam sketches her, a sketchbook in his hands",
       "setting": "cozy sunlit room with an easel, charcoal sketches and drapery",
       "undress": "partial"
     },
@@ -1075,7 +1075,7 @@
           "\"Let me see your line,\" murmurs {name}, and the drapery pools at her feet. Your charcoal hangs forgotten over the page, and the sunlight on her shoulders is not a subject he can capture.",
           "{name} lets the cloth slide, one fold at a time, until nothing is left but window light. \"Is this pose all right?\" she asks innocently, watching you forget your own name."
         ],
-        "image": {"comp":"posing nude on draped fabric while Sam sketches her, the sketchbook in his hands"}
+        "image": {"comp":"reclining nude on draped fabric in a classical figure-study pose while Sam sketches her, the sketchbook in his hands"}
       },
       {
         "label": "The sketch can wait",

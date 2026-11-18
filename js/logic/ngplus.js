@@ -120,7 +120,8 @@ function ngNumbers(boon, house, opts){
 function ngSeed(){
   if(!S || !S.won) return null;
   const kh = new Set([homeHouse(), ...S.houses.filter(keepable).map(h=>h.id)]);
-  const s = clone(S), keep = new Set([...carriedLovers(), ...ngFriends(), ...ngResidents(h=>kh.has(h.id))].map(w=>w.id));
+  const s = clone(S), keep = new Set([...carriedLovers(), ...(S.lingerTaken||[]), ...ngFriends(), ...ngResidents(h=>kh.has(h.id))].map(w=>w.id));
+  s.workers.push(...(s.lingerTaken||[])); s.lingerTaken = []; s.lingerSeen = [];   // lovers sleeping in the lantern carry over too
   s.workers.filter(w=>!keep.has(w.id)).forEach(w=>rememberLife(w, false, s));   // the ones left behind lived a life too (see rememberLife)
   s.workers = s.workers.filter(w=>keep.has(w.id));
   const ids = new Set([...keep, ...(s.alumni||[]).map(w=>w.id)]);
@@ -144,6 +145,7 @@ function ngChallengeOk(k, C){
 }
 function startNGPlus(){
   if(!S || !S.won) return toast('New Game+ unlocks once the debt is paid off.');
+  lingerWake();   // lovers sleeping in the lantern come back for the rebirth
   const ngpp = isNGPPNext(), unb = unboundVesselForms(), forms = Object.keys(GOD_FORMS);
   const offers = ngpp ? [] : shuffle(Object.keys(HOUSES).filter(k=>!H(k) && !HOUSES[k].premium && !HOUSES[k].ngppOnly && (!isNGHouse(k) || (S.cycle||1)+1 >= 2))).slice(0, BAL.ngplus.houseOffers||4);
   NGS = {step:0, ngpp, partner:ngpp?'none':null, vesselForm: ngpp ? (unb[0] || forms[0]) : null,
@@ -401,7 +403,7 @@ function ngBegin(){
     if(hasBoon('renown')){ H(hk).rep = clamp(H(hk).rep + 10); S.rep = clamp(S.rep + 15); } else S.rep = HDn.rep;
     S.gold = N.purse;
     S.debt = Object.assign({total:N.debt, remaining:N.debt, carry:0, strikes:0, start:S.week-1}, ngPlan(N.cycle));
-    S.won = false; S.over = false; S.lastReport = null; EVQ = []; delete S.ngSeed;
+    S.won = false; S.over = false; S.lastReport = null; EVQ = []; delete S.ngSeed; delete S.wonWk;
     S.flags.walkPartners = 0; townEvReset(); isoNewCycle(); S.ap = apMax(); S.sam.energy = samMaxEnergy();
     refreshCandidates(hasBoon('recruit') ? 3 : 0, hasBoon('recruit') ? 1.15 : 1);
     inviteFriend(true); checkUnlocks(true);
@@ -481,7 +483,7 @@ function ngBegin(){
   if(hasBoon('renown')) S.rep = clamp(S.rep + 15);
   S.gold = N.purse;
   S.debt = Object.assign({total:N.debt, remaining:N.debt, carry:0, strikes:0, start:S.week-1}, ngPlan(N.cycle));
-  S.won = false; S.over = false; S.lastReport = null; EVQ = []; delete S.ngSeed;
+  S.won = false; S.over = false; S.lastReport = null; EVQ = []; delete S.ngSeed; delete S.wonWk;
   S.flags.walkPartners = 0; townEvReset(); isoNewCycle(); S.ap = apMax(); S.sam.energy = samMaxEnergy();
   refreshCandidates(hasBoon('recruit') ? 3 : 0, hasBoon('recruit') ? 1.15 : 1);
   inviteFriend(true);   // the first week already shows an old friend

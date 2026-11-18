@@ -51,7 +51,7 @@ function firstBlock(w, pent){
   const need = firstNeed(w, s, pent);
   if(w.trust < need) return 'trust';
   if(w.firstHold && S.week < w.firstHold) return 'wait';
-  if(!pent && S.week - (w.intimWk ?? -99) < firstPace(w).gap) return 'wait';
+  if(!pent && S.week - (w.intimWk ?? -99) < paidGap(firstPace(w).gap)) return 'wait';
   return null;
 }
 const firstReady = (w, pent) => !!S && S.workers.includes(w) && !firstBlock(w, pent);
@@ -134,10 +134,12 @@ function firstsLine(w){
   const cur = w.intim||0, s = firstNext(w), blk = s ? firstBlock(w, pentUp(w)) : 'done';
   const steps = w.firsts.path.map(x=>`<span class="${x<=cur?'pink':'muted'}">${x<=cur?'♥':'♡'} ${esc(stageName(x))}</span>`).join(' → ');
   const kp = knowsPrefs(w), k = knows(w, true);
-  const why = !s ? '' : {comfort:`She isn't comfortable going that far with Sam yet.`,
+  const lw = blk==='comfort' ? firstLewdNeed(w, s) : null;
+  const left = blk==='wait' ? Math.max(w.firstHold && S.week < w.firstHold ? w.firstHold - S.week : 0, paidGap(firstPace(w).gap) - (S.week - (w.intimWk ?? -99))) : 0;
+  const why = !s ? '' : {comfort:`She isn't comfortable going that far with Sam yet${k ? (lw !== null ? `: she needs lewdness ${lShow(lw)} (now ${lShow(w.lewd)}), or more trust` : ': more trust and lewdness first') : ' (more lewdness or trust)'}.`,
     trust:`She needs to trust Sam more first${k?` (${tShow(firstNeed(w,s,false))}${pentUp(w)?`, or ${tShow(firstNeed(w,s,true))} while she's this restless`:''})`:''}.`,
     story:'Her story has to move a little further first.',
-    wait:'Give it a little time.'}[blk] || '';
+    wait:`Give it a little time: ${left} more week${left===1?'':'s'}.`}[blk] || '';
   return `<div style="margin-top:4px">With Sam: ${steps}${kp?` <span class="muted">(${w.firsts.pace} pace${w.firsts.init?', makes the first move':''})</span>`:''}</div>`
     + (s ? (blk ? `<div class="muted">Next: ${esc(stageName(s))}. ${why}</div>` : `<div class="pink">${pentUp(w)&&!firstReady(w)?`She's restless enough not to wait.`:`She's ready for the next step.`} <button class="sm" onclick="firstFromSheet('${w.id}')">♥ Take the next step</button> <span class="muted">(1 action)</span></div>`) : '');
 }
