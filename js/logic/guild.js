@@ -96,7 +96,7 @@ function assignGuild(uid, wid){
   if(w.job==='guild' && w.gc===uid) return;
   if(guildSlotsLeft(c) <= 0) return toast(`The party is full (${GCON[c.type].slots}, Sam included).`);
   const no = canDo(w, 'guild'); if(no) return toast(no);
-  if(w.job!=='guild') w.gPrev = w.job==='rest' ? (w.prevJob || null) : w.job;
+  if(w.job!=='guild') w.gPrev = w.job==='rest' ? (w.prevJob || null) : w.standIn ? 'attendant' : w.job; delete w.standIn; delete w.idleRest;
   w.job = 'guild'; w.gc = uid; delete w.prevJob;
   save(); render(); refreshSheetInfo();
 }

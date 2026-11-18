@@ -77,7 +77,7 @@ function jobOptions(w){ const cur = w.job==='rest' && w.prevJob && JOBS[w.prevJo
   return Object.entries(JOBS).map(([k,J])=>{ const why = k===w.job || k===cur ? null : canDo(w,k), lab = k===cur && cur!==w.job ? `${J.label} · 😴 resting` : k==='rest' && cur!==w.job ? 'Rest (keep her off)' : J.label;
     return `<option value="${k}" ${k===cur?'selected':''} ${why?'disabled':''}>${why?'🔒 ':''}${lab}</option>`; }).join(''); }
 // "Madame (resting)" for an auto-resting lady, else her job's label. p = a report row (job, prevJob) or a lady.
-const jobLabelOf = p => p.job==='rest' && p.prevJob && JOBS[p.prevJob] ? `${JOBS[p.prevJob].label} (resting)` : JOBS[p.job] ? JOBS[p.job].label : String(p.job||'');
+const jobLabelOf = p => p.job==='courtesan' && p.standIn ? 'Courtesan (standing in)' : p.job==='rest' && p.prevJob && JOBS[p.prevJob] ? `${JOBS[p.prevJob].label} (resting)` : JOBS[p.job] ? JOBS[p.job].label : String(p.job||'');
 // House picker, shared by Houses, Roster, Recruit and Upgrades: the picked house (S.cur) and the "All houses" choice (HOUSE_ALL) carry
 // across tabs. withAll = this tab offers "All houses"; tabs without it (Recruit, Upgrades) show S.cur and leave HOUSE_ALL as it was.
 function houseTabs(withAll){

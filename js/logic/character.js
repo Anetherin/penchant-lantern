@@ -455,6 +455,7 @@ function ensureWorker(w){
   if(w.privateCount===undefined) w.privateCount = 0;
   if(w.dates===undefined) w.dates = 0;
   if(w.autoRest===undefined) w.autoRest = true;
+  if(w.race==='demon' && w.feedOnly===undefined) w.feedOnly = 25;   // feed-only below 25% energy by default (null = turned off)
   if(w.lust===undefined) w.lust = clamp(Math.round(30 + w.lewd*0.4 + ri(-10,10)));
   if(JOBS[w.job]===undefined) w.job = (w.job==='intimate'||w.job==='specialty') ? 'courtesan' : 'rest';
   if(typeof syncTitles==='function') syncTitles(w);   // titles (data/titles.json): her data seed, old saves' w.title
