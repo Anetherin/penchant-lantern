@@ -381,6 +381,63 @@
             "desc": "She alternates between scorching heat and delicious chill, leaving clients breathless.",
             "fx": {"actQuality":{"cowgirl":1.2,"breast_give":1.2},"appeal":3}
           }
+        },
+        "saria": {
+          "job": "host",
+          "name": "Saria",
+          "race": "elf",
+          "age": 112,
+          "personality": "Warm and motherly",
+          "traits": ["Soothing Voice","Loyal"],
+          "style": "Cute",
+          "favColor": "emerald",
+          "fav": "kiss",
+          "dislike": "doggy",
+          "lovers": "missionary",
+          "backstory": "A forest-born Kokiri who stepped out of her timeless woods as the Sage of the Forest, Saria carries a bright fairy ocarina whose gentle tune steadies anxious hearts. She is warm, patient and disarmingly perceptive—and though she looks light on her feet, she watches over everyone under the roof like a quiet guardian.",
+          "design": {
+            "hairStyle": "short chin-length bob flaring outward at the tips",
+            "hairColor": "bright emerald green",
+            "eyes": "bright blue",
+            "skin": "fair",
+            "features": "long pointed elf ears",
+            "accessories": "a dark green headband and a wooden fairy ocarina",
+            "accState": "dressed",
+            "expression": "a gentle, welcoming smile"
+          },
+          "under": "plain",
+          "underColor": "white",
+          "stats": {"beauty":70,"charm":72,"charisma":68,"refinement":54,"wits":58,"stamina":54,"strength":30,"agility":56},
+          "tech": {"service":35,"dance":45,"bar":25,"combat":25,"manage":40},
+          "actSkill": 20,
+          "popularity": 18,
+          "lewd": 24,
+          "trust": 32,
+          "outfits": {
+            "sig_saria": {
+              "label": "Kokiri forest tunic",
+              "style": "Cute",
+              "prompt": "a forest-green short-sleeved tunic over a darker green undershirt, a brown leather belt, a short green wrap skirt and brown forest boots",
+              "bonus": {"host":1.3,"commoner":1.2}
+            },
+            "sp_saria": {
+              "label": "Sage of the Forest robes",
+              "style": "Elegant",
+              "prompt": "a flowing white and emerald-green sage's dress with gold leaf trim and a glowing green medallion at her collar",
+              "bonus": {"chapel":1.25,"noble":1.2}
+            }
+          },
+          "bonds": {
+            "zelda": {"v":40,"kind":"comrades","note":"Old friends bound by an ancient sage's duty."},
+            "malon": {"v":35,"note":"Warm acquaintances from the old kingdom who trade songs."}
+          },
+          "jobs": {"likes":["host","chapel","attendant"],"dislikes":["security"]},
+          "body": {"bust":"small","height":"short","figure":"slim"},
+          "unique": {
+            "name": "Saria's Song",
+            "desc": "Her lively ocarina melodies lift everyone's spirits in the lounge and put weary guests at ease.",
+            "fx": {"jobBonus":{"host":1.2},"moodRest":4}
+          }
         }
       }
     }

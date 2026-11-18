@@ -1,0 +1,540 @@
+{
+  "characters": {
+    "melia": {
+      "events": {
+        "1": {
+          "title": "Without Ceremony",
+          "text": "You find Melia alone in the quiet chapel after evening candles have burned low, her High Entia tiara resting beside a prayer cushion on the stone bench. \"In Alcamoth, every gesture carries a courtly precedent,\" she says quietly, turning to meet your gaze with warm composure. \"Here, nobody rehearses before speaking to me—nor before leaning closer. Would you kiss me, Sam, simply as yourself?\"",
+          "image": {
+            "comp": "seated beside a prayer bench with her tiara set aside, hands folded, calm tentative smile",
+            "setting": "quiet stone chapel at night, low candle glow",
+            "sam": true
+          },
+          "go": "Kiss her",
+          "goRes": "Her royal posture softens the instant your lips touch, one gloved hand rising shyly to your sleeve while a soft breath catches in her throat. \"...So unhurried. I see why commoners cherish this.\"",
+          "wait": "\"Whenever you're ready, Melia.\"",
+          "waitRes": "She inclines her head with a faint, grateful smile. \"Patience becomes a crown well, Sam. Take whatever time you need.\""
+        },
+        "2": {
+          "title": "Behind the Wings",
+          "text": "Melia asks you to help unlace the back of her High Entia bodice in her quiet room, standing barefoot by the shuttered window with her shoulders drawn taut. When your warm palms linger along her bare waist and brush lightly beneath the delicate feathers at her temple, she shivers and catches your wrist. \"Do not stop,\" she whispers, parting her knees slightly as she leans back against your chest. \"Touch me as a woman tonight, not a ruler.\"",
+          "image": {
+            "comp": "standing barefoot beside a shuttered window with her bodice unlaced, leaning back against his chest, flushed and breathless",
+            "setting": "her bedroom at dusk, warm lantern light",
+            "sam": true,
+            "cloth": "partial",
+            "wear": "an unlaced lavender High Entia dress slipping off her shoulders"
+          },
+          "go": "Touch her",
+          "goRes": "Her royal poise dissolves into soft, breathless gasps as your hands cup her bare breasts and slide between her thighs while her slender fingers stroke your cock until you come.",
+          "wait": "\"Let's pause here tonight.\"",
+          "waitRes": "\"Of course.\" Melia presses your hand briefly against her cheek. \"Your restraint only makes me trust you more.\""
+        },
+        "3": {
+          "title": "No Throne Between Us",
+          "text": "Melia waits beside her bed wearing only a sheer lavender chemise, her crown and staff nowhere in sight as moonlight spills across the floorboards. \"My life was written in decrees and duties before I could even speak,\" she murmurs, sliding the thin straps off her shoulders and letting the silk pool at her feet. \"This night belongs to no empire. Stay with me, Sam.\"",
+          "image": {
+            "comp": "standing bare beside her bed in soft moonlight, holding out one hand with an open tender smile",
+            "setting": "her bedroom at night, moonlight through tall windows",
+            "sam": true,
+            "cloth": "nude"
+          },
+          "go": "Stay with her",
+          "goRes": "You draw her onto the mattress and ease your cock slowly into her tight, warm pussy, Melia clinging to your shoulders with soft, unguarded cries as you fuck her through the night.",
+          "wait": "\"Are you certain?\"",
+          "waitRes": "\"I have never been more certain of anything outside statecraft,\" she smiles softly. \"Yet I will wait as long as you wish.\"",
+          "act": "missionary"
+        },
+        "jump": {
+          "title": "Broken Protocol",
+          "text": "After an exhausting evening soothing nervous travelers, Melia shuts the chapel vestry door behind you both, sets her staff against the wall, and catches your hoodie in both hands. \"For once in my life I refuse to stand on ceremony,\" she breathes, rising onto tiptoe to kiss you hard with scarlet cheeks.",
+          "image": {
+            "comp": "pulling him by his hoodie behind a closed vestry door, cheeks scarlet, determined kiss",
+            "setting": "chapel vestry at night, single wall sconce",
+            "sam": true
+          },
+          "go": "Kiss her back",
+          "goRes": "You lift her onto the carved vestry table and hike up her lavender skirts, sliding your fingers into her wet pussy while she gasps breathlessly against your mouth.",
+          "wait": "\"Breathe first, Princess.\"",
+          "waitRes": "\"Do not call me that right now,\" she mutters against your collar—then laughs softly at herself and steps back."
+        }
+      }
+    },
+    "sharla": {
+      "events": {
+        "1": {
+          "title": "Off Duty",
+          "text": "After closing the bathhouse, Sharla sits on the stone bench soaking her tired calves and patting the space beside her. \"I spend every week tending everybody else's sore shoulders—and somehow you're the only one who remembers to bring me hot tea,\" she smiles, tucking a stray strand behind her ear as you sit close. \"Care to lean a little nearer?\"",
+          "image": {
+            "comp": "sitting on a stone bathhouse bench with feet in warm water, smiling warmly as she leans toward him",
+            "setting": "quiet steamy bathhouse after hours, warm lanterns",
+            "sam": true
+          },
+          "go": "Kiss her",
+          "goRes": "She melts into your kiss with a low, contented sigh, her fingers tangling warmly in your collar. \"Mm... better than any healing ether.\"",
+          "wait": "\"Drink your tea while it's hot.\"",
+          "waitRes": "Sharla laughs warmly and leans her head against your shoulder anyway. \"Always looking after me—all right, boss.\""
+        },
+        "2": {
+          "title": "Medic's Exam",
+          "text": "Sharla traps you gently on the massage table in the empty bathhouse back room, straddling your thighs with a teasing glint in her smile as she unbuttons your collar. \"As the house medic, I couldn't help noticing how tense you've been all week,\" she purrs, slipping her cropped crimson halter aside so her warm, heavy breasts brush your chest. \"Hold still—let me check your pulse properly.\"",
+          "image": {
+            "comp": "straddling his thighs on a massage table, leaning down with a teasing affectionate grin",
+            "setting": "bathhouse massage room, warm steam and cedar oil lamps",
+            "sam": true,
+            "cloth": "partial",
+            "wear": "a cropped crimson halter top pulled aside over bare breasts and dark shorts"
+          },
+          "go": "Let her examine you",
+          "goRes": "Her steady medic's hands make short work of your belt, stroking and sucking your cock with warm, unhurried skill while you squeeze her bare breasts and ass until you cum.",
+          "wait": "\"Maybe after rounds.\"",
+          "waitRes": "\"Fine, fine—patient refuses treatment,\" Sharla winks, hopping off the table. \"Just don't blame me when you come begging for a rubdown later.\""
+        },
+        "3": {
+          "title": "No Rifle, No Duty",
+          "text": "Sharla waits in your bedroom with her ether rifle and medic gear left in the hall, wearing only a loose white bath towel folded high across her full curves. Letting the towel drop onto the chair beside the bed, she climbs under the sheets beside you with flushed cheeks. \"I'm done pretending I only came here to patch people up, Sam. Hold me tonight.\"",
+          "image": {
+            "comp": "kneeling naked on his bed with a towel dropped beside her, warm tender gaze and flushed cheeks",
+            "setting": "his bedroom at night, single warm bedside lamp",
+            "sam": true,
+            "cloth": "nude"
+          },
+          "go": "Hold her",
+          "goRes": "She straddles your hips and sinks down eagerly onto your cock, rolling her curves over you with rich, breathless moans until you both collapse tangled in the warm sheets.",
+          "wait": "\"Sure you don't need rest first?\"",
+          "waitRes": "\"Only with you,\" she smiles softly, curling against your chest under the blanket. \"Tomorrow night, then.\"",
+          "act": "cowgirl"
+        },
+        "jump": {
+          "title": "Steam Room Break",
+          "text": "When you poke your head into the steam room to check the boiler pressure, Sharla catches your arm, hauls you through the mist behind the cedar screen, and kisses you breathless. \"Do you have any idea how hard it is to focus when you walk past in that hoodie?\" she laughs hotly against your lips.",
+          "image": {
+            "comp": "pulling him behind a wooden bath screen through swirling steam, laughing and kissing him hungrily",
+            "setting": "steamy bathhouse room, glowing stone lanterns",
+            "sam": true
+          },
+          "go": "Stay behind the screen",
+          "goRes": "You press her back against the warm cedar wall, pulling down her dark shorts to stroke her wet pussy while she gasps into your neck and tugs at your belt.",
+          "wait": "\"Check the pipes first!\"",
+          "waitRes": "\"Ugh, practical man!\" Sharla groans playfully, kissing your cheek before turning the valve. \"You owe me one tonight.\""
+        }
+      }
+    },
+    "vanea": {
+      "events": {
+        "1": {
+          "title": "Warmth in Steel",
+          "text": "Late at night in the empty classroom, Vanea sits beside a lantern tracing the subtle biomechanical seam along her own wrist as if testing whether it feels warmth. Looking up as you sit beside her, she tilts her head with serene curiosity. \"For centuries I repaired machines while believing tenderness belonged only to flesh,\" she murmurs, laying her cool metallic fingers over your hand. \"May I learn what a kiss feels like, Sam?\"",
+          "image": {
+            "comp": "seated beside him at a classroom desk, reaching out calmly to touch his hand, serene curious expression",
+            "setting": "quiet classroom at night, books and warm lantern light",
+            "sam": true
+          },
+          "go": "Kiss her",
+          "goRes": "Her lips are surprisingly soft and warm beneath yours, Vanea exhaling slowly in quiet wonder as her hand tightens around yours. \"...Extraordinary. Every sensor in me feels awake.\"",
+          "wait": "\"Take all the time you need.\"",
+          "waitRes": "\"You are deeply patient,\" Vanea smiles gently, folding her hands. \"I shall cherish this quiet hour regardless.\""
+        },
+        "2": {
+          "title": "Unarmored",
+          "text": "In her workshop-turned-bedroom, Vanea unlatches the ornate gold shoulder plates from her frame, leaving her fitted dark synthetic bodysuit parted across her generous chest. Guiding your palm slowly over the smooth, warm charcoal plating of her collarbone and breast, she watches your face intently. \"Tell me if this feels unnatural to you—or if it pleases you.\"",
+          "image": {
+            "comp": "standing in her room with shoulder armor removed, guiding his hand over her chest, serene vulnerable gaze",
+            "setting": "dimly lit bedroom with Machina tools and soft warm lamps",
+            "sam": true,
+            "cloth": "partial",
+            "wear": "a dark synthetic bodysuit parted across the chest with shoulder armor removed"
+          },
+          "go": "Show her it pleases you",
+          "goRes": "You kiss the warm seams along her neck and breasts while slipping your fingers inside her tight, slick pussy, Vanea shivering softly as her skilled hands bring your cock to release.",
+          "wait": "\"There's nothing unnatural about you.\"",
+          "waitRes": "Her serene posture relaxes slightly, a soft flush coloring her cheeks. \"Thank you, Sam. Those words mean more than you know.\""
+        },
+        "3": {
+          "title": "Meyneth's Gift",
+          "text": "Vanea waits across her bed completely free of her heavy gilded armor, her dark synthetic curves gleaming softly beneath the candlelight. Extending both hands toward you, she speaks without a trace of ancient sorrow: \"My people built our bodies to endure centuries of war, never for love. Tonight I want to know what it means to be held without armor, Sam.\"",
+          "image": {
+            "comp": "kneeling bare on her bed in warm candlelight, holding both hands out with a serene tender smile",
+            "setting": "her bedroom at midnight, soft gold candlelight",
+            "sam": true,
+            "cloth": "nude"
+          },
+          "go": "Hold her",
+          "goRes": "You lay her gently back against the pillows and slide your cock deep inside her warm pussy, Vanea gasping softly in rapturous astonishment as you move slowly until she shudders beneath you.",
+          "wait": "\"Only if you're ready.\"",
+          "waitRes": "\"I have waited centuries to feel ready,\" she murmurs softly. \"A few more nights beside you will pass like nothing.\"",
+          "act": "missionary"
+        },
+        "jump": {
+          "title": "Unexpected Current",
+          "text": "While reviewing class schedules together after hours, your hand brushes hers over the parchment—and Vanea abruptly sets her quill down, closes the distance between your chairs, and kisses you deeply. \"Forgive me,\" she whispers against your lips, breathless and flushed. \"My curiosity outran my composure.\"",
+          "image": {
+            "comp": "leaning across a desk to kiss him unexpectedly, flushed and breathless beside scattered papers",
+            "setting": "study room at night, scattered lesson notes and oil lamp",
+            "sam": true
+          },
+          "go": "Don't apologize",
+          "goRes": "You pull her gently onto your lap, unlatching the front of her dark bodysuit to caress her bare breasts and slip your hand between her thighs.",
+          "wait": "\"Let's catch our breath first.\"",
+          "waitRes": "\"Yes—of course.\" She steadies herself with one hand on your shoulder, smiling warmly. \"I am not accustomed to impulses.\""
+        }
+      }
+    },
+    "pyra": {
+      "events": {
+        "1": {
+          "title": "Fresh From the Kitchen",
+          "text": "Pyra catches you sneaking through the kitchen after midnight, blushing pink to her ears as she holds out a warm plate of honey tarts—and leans in slightly while you taste one. \"Um... everyone always thanks me for dinner, Sam, but nobody ever stays just to talk with me afterward,\" she admits softly, clasping her hands behind her back. \"Would it be too forward if I asked for a kiss?\"",
+          "image": {
+            "comp": "standing in a warm kitchen holding a plate of pastries, blushing shyly with hopeful eyes",
+            "setting": "quiet kitchen late at night, warm oven glow",
+            "sam": true
+          },
+          "go": "Kiss her",
+          "goRes": "She squeaks softly before melting against your lips, her hands coming to rest gently on your chest as the emerald crystal between them glows warm. \"Mm... I was hoping you'd say yes.\"",
+          "wait": "\"Let's eat the tarts first.\"",
+          "waitRes": "\"Oh—yes, of course!\" Pyra beams brightly, sliding a chair out for you. \"There's plenty left, and I made tea too.\""
+        },
+        "2": {
+          "title": "Soft Warmth",
+          "text": "Sitting beside you on the quiet sitting-room sofa with her boots kicked off, Pyra traces nervous circles over the emerald crystal at her chest before taking your hand and pressing it over her heavy, soft breast beneath her crimson suit. \"Whenever you're near, my ether runs so hot I can barely concentrate,\" she whispers, hiding her scarlet face against your neck. \"Please touch me, Sam.\"",
+          "image": {
+            "comp": "curled close beside him on a sofa, pressing his hand to her chest while hiding her blushing face against his neck",
+            "setting": "quiet parlor at night, fireplace embers glowing",
+            "sam": true,
+            "cloth": "partial",
+            "wear": "her crimson Aegis suit pulled down off her shoulders"
+          },
+          "go": "Hold and touch her",
+          "goRes": "You peel the crimson top down to bare her huge breasts, kissing and squeezing them while she gasps helplessly and takes your cock eagerly into her warm mouth.",
+          "wait": "\"Slow down, Pyra.\"",
+          "waitRes": "\"S-sorry!\" She exhales a shaky laugh, curling her fingers in yours. \"Just sitting close like this helps a lot already.\""
+        },
+        "3": {
+          "title": "Shared Hearth",
+          "text": "Pyra steps into your bedroom clutching a white sheet around her bare shoulders—then takes a steady breath and lets it fall, standing completely naked in the warm lamplight. \"Mythra keeps saying I'm too shy to ask for what I really want,\" she whispers with shimmering eyes as she climbs onto the bed beside you. \"I want you to hold me all night, Sam. Inside me.\"",
+          "image": {
+            "comp": "kneeling naked on his bed with a fallen sheet beside her, tender loving blush",
+            "setting": "Sam's bedroom at night, soft hearth-like candlelight",
+            "sam": true,
+            "cloth": "nude"
+          },
+          "go": "Hold her close",
+          "goRes": "You lay her softly back on the pillows and sink your cock deep into her wet, welcoming pussy, Pyra clinging tightly to your shoulders with sweet, breathless sobs until you cum inside her.",
+          "wait": "\"I'm right here whenever you're ready.\"",
+          "waitRes": "Pyra smiles warmly through her blush and tucks herself under your arm. \"Thank you for being so gentle with me.\"",
+          "act": "missionary"
+        },
+        "jump": {
+          "title": "Boiled Over",
+          "text": "While washing dishes side by side in the steamy kitchen, you casually dry a drop of water off her cheek—and Pyra drops the towel, turns bright scarlet, and kisses you deeply right beside the stove. \"I—I'm sorry! You're just way too sweet to me!\" she gasps breathlessly.",
+          "image": {
+            "comp": "dropping a dish towel to kiss him beside the kitchen sink, wide-eyed and deeply flushed",
+            "setting": "steamy kitchen at night, warm dishes stacked",
+            "sam": true
+          },
+          "go": "Kiss her back",
+          "goRes": "You lift her gently onto the wooden counter, sliding your hands beneath her shorts to finger her soaking pussy while she whimpers sweetly into your mouth.",
+          "wait": "\"Careful of the plates!\"",
+          "waitRes": "\"Eep—right!\" She scrambles down giggling breathlessly, catching a wobbling bowl just in time. \"Give me ten minutes to finish up!\""
+        }
+      }
+    },
+    "mythra": {
+      "events": {
+        "1": {
+          "title": "Not Impressed (Mostly)",
+          "text": "Mythra catches you staring from the stairwell while she stands post in the foyer, marching straight up to poke a finger into your chest with a haughty scowl—that betrays itself with bright red ears. \"Listen up, simpleton. If you think I'm going to blush like Pyra just because you actually handle yourself well around here, you're dead wrong,\" she snaps, before lowering her voice. \"...Though you've earned one kiss. Don't make a big deal out of it.\"",
+          "image": {
+            "comp": "poking his chest with a haughty scowl while blushing furiously, leaning close",
+            "setting": "dim upstairs landing, warm lantern light",
+            "sam": true
+          },
+          "go": "Claim it",
+          "goRes": "She squeaks in surprise when you kiss her properly instead of hesitating, glaring furiously with parted, breathless lips afterward. \"Tch—adequate. Barely.\"",
+          "wait": "\"Ask nicer next time.\"",
+          "waitRes": "\"Wha—?!\" Mythra splutters, crossing her arms tight. \"Fine! Keep walking, idiot—see if I offer twice!\""
+        },
+        "2": {
+          "title": "Foresight Failed",
+          "text": "In the quiet lounge after lockup, Mythra drops onto the velvet sofa beside you and glares at the ceiling. \"My Foresight lets me read every swing in battle three seconds early—so why can't I predict what you're going to do when you sit this close?\" Before you can answer, she yanks your collar down and guides your hand straight beneath her short white skirt.",
+          "image": {
+            "comp": "sprawled beside him on a lounge sofa, glaring sideways with bright red cheeks while grabbing his collar",
+            "setting": "empty velvet lounge at night, low lanterns",
+            "sam": true
+          },
+          "go": "Surprise her",
+          "goRes": "Her proud smirk cracks into sharp, helpless gasps as your fingers work her soaked pussy while she drops between your knees and sucks your cock with fierce, competitive intensity.",
+          "wait": "\"Even Foresight needs a break.\"",
+          "waitRes": "\"Shut up,\" Mythra mutters, slumping against your shoulder anyway. \"...Just stay there a minute.\""
+        },
+        "3": {
+          "title": "Nothing to Hide",
+          "text": "Mythra slams your bedroom door shut behind her, stands rigid for three seconds, and then shrugs her white-and-gold dress off her shoulders until she stands completely bare in the lamplight. \"Look, I'm terrible at delicate speeches,\" she says, cheeks crimson yet gaze unwavering as she climbs straddling onto your lap. \"I want you—all of you—tonight. Tell me you want me too.\"",
+          "image": {
+            "comp": "straddling his lap naked on the bed, proud chin up despite a fierce blush, steady gaze",
+            "setting": "Sam's bedroom at midnight, soft golden lamplight",
+            "sam": true,
+            "cloth": "nude"
+          },
+          "go": "\"I want you, Mythra.\"",
+          "goRes": "Her triumphant grin softens instantly as she sinks down onto your cock, riding you hard and fast until her proud composure shatters into breathless cries on your chest.",
+          "wait": "\"Take a breath first.\"",
+          "waitRes": "She huffs softly, resting her forehead against yours. \"...Okay. Fine. Just don't make me wait too long, okay?\"",
+          "act": "cowgirl"
+        },
+        "jump": {
+          "title": "Blinded by Light",
+          "text": "After tossing a rowdy drunk straight out the front door, Mythra spins on her heel, still buzzing with adrenaline, grabs your hoodie in both hands, and plants a fierce, possessive kiss on your mouth. \"You were watching the whole fight, weren't you?\" she pants against your lips.",
+          "image": {
+            "comp": "grabbing his hoodie right after a scuffle, breathless fierce grin, kissing him hard",
+            "setting": "front foyer after hours, door bolted shut",
+            "sam": true
+          },
+          "go": "Kiss her back",
+          "goRes": "You push her up against the oak foyer wall, hiking up her white skirt to stroke her wet pussy while she gasps fiercely into your mouth and unbuckles your belt.",
+          "wait": "\"Save the adrenaline for upstairs!\"",
+          "waitRes": "\"Oh, you're asking for it now,\" she smirks darkly, dragging you straight toward the stairs by your sleeve."
+        }
+      }
+    },
+    "pneuma": {
+      "events": {
+        "1": {
+          "title": "Luminous Calm",
+          "text": "Pneuma stands on the upper balcony bathed in cool moonlight and the faint emerald glow of her core crystal, turning to smile at you with serene certainty. \"Pyra hesitates out of shyness, and Mythra out of pride,\" she says softly, stepping close enough to lace her fingers through yours. \"I carry them both, Sam—and I know exactly what I want. May I kiss you?\"",
+          "image": {
+            "comp": "standing on a moonlit balcony lacing her fingers through his, serene radiant smile",
+            "setting": "quiet upstairs balcony at night, moonlight",
+            "sam": true
+          },
+          "go": "Kiss her",
+          "goRes": "Her lips blend Pyra's gentle sweetness with Mythra's sudden, breathtaking heat, leaving soft emerald light lingering in the air between you when she parts.",
+          "wait": "\"Wait with me a moment first.\"",
+          "waitRes": "\"Gladly,\" Pneuma smiles warmly, resting her shoulder beside yours at the railing. \"There is no hurry beneath these stars.\""
+        },
+        "2": {
+          "title": "True Resonance",
+          "text": "In the quiet sanctuary of her room, Pneuma unfastens the white-and-gold chest armor over her emerald core, letting the front of her bodysuit fall open over her lush breasts. Drawing your palms over her warm skin, she breathes unevenly as faint green light ripples across her collarbones. \"I want to feel every touch without holding a single part of myself back.\"",
+          "image": {
+            "comp": "standing in her room with her chest armor unfastened, drawing his hands over her bare breasts, glowing serene blush",
+            "setting": "private chamber at night, soft emerald glow",
+            "sam": true,
+            "cloth": "partial",
+            "wear": "her white-and-gold Aegis bodysuit opened down the chest"
+          },
+          "go": "Touch all of her",
+          "goRes": "You kiss her breasts and drop to your knees to lick her soaking pussy until she trembles, before Pneuma sinks gently down and takes your cock deep in her warm mouth.",
+          "wait": "\"We have plenty of nights ahead.\"",
+          "waitRes": "\"We do,\" she agrees gently, fastening her collar with a tender smile. \"Knowing you don't rush only deepens my trust.\""
+        },
+        "3": {
+          "title": "One Whole Heart",
+          "text": "Pneuma awaits you bare on the white sheets, translucent green light-wings faded to a soft golden hush around her curves. Holding out her hand, she whispers with unclouded warmth: \"All my halves agree on one thing tonight, Sam—we belong in your arms. Come lay with me.\"",
+          "image": {
+            "comp": "reclining naked on white sheets in soft warm light, holding out her hand with a radiant tender smile",
+            "setting": "her bedroom at midnight, soft emerald-tinted candlelight",
+            "sam": true,
+            "cloth": "nude"
+          },
+          "go": "Join her",
+          "goRes": "You climb onto the bed and slide your cock deep inside her warm, slick pussy, Pneuma wrapping her arms and legs around you with luminous, breathless sighs until you cum together.",
+          "wait": "\"Are you both certain?\"",
+          "waitRes": "\"Every part of me,\" Pneuma laughs softly, kissing your fingertips. \"Ask again whenever your heart matches mine.\"",
+          "act": "missionary"
+        },
+        "jump": {
+          "title": "Harmonic Surge",
+          "text": "Catching you alone in the candlelit hall after everyone else has turned in, Pneuma steps straight into your space, cups your face in warm hands, and kisses you with sudden, overwhelming warmth. \"Sometimes harmony isn't quiet at all, Sam,\" she breathes against your mouth.",
+          "image": {
+            "comp": "cupping his face in a candlelit hallway, kissing him with radiant breathless heat",
+            "setting": "quiet upstairs hallway at night, warm candles",
+            "sam": true
+          },
+          "go": "Kiss her deeper",
+          "goRes": "You guide her into her chamber and peel down her bodysuit, kissing her bare breasts while your fingers slide eagerly between her thighs.",
+          "wait": "\"Careful—someone might walk by.\"",
+          "waitRes": "\"Then come inside with me,\" she smiles knowingly, tugging you gently toward her door."
+        }
+      }
+    },
+    "telos": {
+      "events": {
+        "1": {
+          "title": "Combat Specs",
+          "text": "After sharpening her energy scythe in the courtyard, T-elos leans back against the stone pillar and sizes you up over the rim of her thin glasses with a predatory smirk. \"Most organics flinch when they stand this close to a weapon built to outclass KOS-MOS,\" she purrs, hooking a finger into your shirt collar and reeling you within an inch of her mouth. \"You didn't blink. Let's test your nerve.\"",
+          "image": {
+            "comp": "leaning against a stone pillar, hooking a finger in his collar with a predatory smirk",
+            "setting": "courtyard at night, moonlight and purple glow",
+            "sam": true
+          },
+          "go": "Test your nerve",
+          "goRes": "You take the initiative and kiss her hard instead of waiting, T-elos letting out a startled, pleased laugh against your lips. \"Oh—bold. Good.\"",
+          "wait": "\"Put the scythe away first.\"",
+          "waitRes": "T-elos chuckles darkly, dismissing the weapon in a flash of purple light. \"Careful, master—playing coy makes you look like prey.\""
+        },
+        "2": {
+          "title": "Overclocked",
+          "text": "T-elos kicks your office door shut behind her, removes her glasses to set them squarely on your desk, and hikes her short pleated skirt high up her dark tan thighs. \"My output has been spiking all night,\" she growls, sliding onto your desk edge and grabbing your belt buckle. \"Drop the paperwork and prove you can handle a superior model.\"",
+          "image": {
+            "comp": "perched on the edge of his desk with her skirt hiked up, grabbing his belt with a fierce challenging smirk",
+            "setting": "Sam's office late at night, ledgers pushed aside",
+            "sam": true
+          },
+          "go": "Show her",
+          "goRes": "You push her back across the desk, parting her sheer black panties to work her slick pussy with your fingers and tongue while her greedy mouth and gloved hands bring your cock to a sharp climax.",
+          "wait": "\"Not on the ledgers.\"",
+          "waitRes": "\"Tch—pedantic.\" She hops down smoothing her skirt, though her smirk stays sharp. \"Then meet me in my quarters in twenty minutes.\""
+        },
+        "3": {
+          "title": "Superior Model",
+          "text": "T-elos waits naked on all fours across your bedsheets, glancing back over her shoulder with a wicked grin while glowing purple lines along her dark chassis dim to a low pulse. \"I don't do gentle romance or timid whispers, Sam,\" she purrs, arching her back deliberately. \"Take me like you mean it—if you can keep up.\"",
+          "image": {
+            "comp": "kneeling naked on the bed glancing back over her shoulder with a challenging wicked smirk",
+            "setting": "Sam's bedroom at midnight, deep shadows and candlelight",
+            "sam": true,
+            "cloth": "nude"
+          },
+          "go": "Take her hard",
+          "goRes": "You grip her hips and thrust your cock deep into her hot, tight pussy from behind, T-elos gasping fiercely into the pillows as you fuck her relentlessly until you both cum.",
+          "wait": "\"Careful what you challenge me to.\"",
+          "waitRes": "\"Oh, I'm counting on it,\" she purrs wickedly, stretching lazily across your sheets. \"Come back when you're ready to lose.\"",
+          "act": "doggy"
+        },
+        "jump": {
+          "title": "Direct Override",
+          "text": "Catching you alone in the dim armory, T-elos pins you effortlessly against the weapon rack with one forearm across your chest and crushes her mouth onto yours. \"Enough polite distance,\" she breathes, grinning fiercely against your lips while her thigh presses between yours.",
+          "image": {
+            "comp": "pinning him effortlessly against an armory rack, kissing him fiercely with a triumphant grin",
+            "setting": "dim armory room, weapon racks and purple lantern",
+            "sam": true
+          },
+          "go": "Push back",
+          "goRes": "You flip her cleanly against the padded bench, shoving her high-cut leotard aside to slide your fingers deep into her wet pussy while she growls in fierce approval.",
+          "wait": "\"Easy, T-elos.\"",
+          "waitRes": "\"Fine—play tame tonight,\" she scoffs, releasing your shoulders with a sharp wink. \"You won't stay tame for long.\""
+        }
+      }
+    },
+    "patroka": {
+      "events": {
+        "1": {
+          "title": "Sharper Than a Spear",
+          "text": "Patroka leans against the back door post nursing a bruised knuckle after tossing out a pair of drunks, glaring up as you hand her a wrapped ice pack. \"I didn't ask for your pity, boss,\" she snaps—before squinting suspiciously when you don't walk away. \"...What? You want a reward for standing there looking decent? Fine. One kiss, and then shut up about it.\"",
+          "image": {
+            "comp": "leaning against a doorframe holding an ice pack, scowling defensively with flushed cheeks",
+            "setting": "back courtyard doorway at dusk, warm lantern light",
+            "sam": true
+          },
+          "go": "Take the kiss",
+          "goRes": "Her scowl melts the second your mouths meet, Patroka gripping your sleeve tighter than she meant to before pulling back furiously red. \"...Shut up. Don't smile like that.\"",
+          "wait": "\"Just keep icing your hand.\"",
+          "waitRes": "\"Tch. Suit yourself,\" she mutters, clutching the ice pack while glaring anywhere except at your face."
+        },
+        "2": {
+          "title": "Beneath the Lacquer",
+          "text": "In the quiet security loft, Patroka has unbuckled her heavy red-and-black shoulder armor and sits cross-legged on the cot in her black turtleneck leotard, scowling at the floorboards. \"People only ever look at a Flesh Eater like a weapon or a freak,\" she mutters harshly, catching your hand and dragging it straight beneath her short kimono hem. \"Show me you don't care.\"",
+          "image": {
+            "comp": "sitting on a cot with armor unbuckled, scowling vulnerably while tugging his hand close",
+            "setting": "quiet upstairs security loft, lantern light",
+            "sam": true,
+            "cloth": "partial",
+            "wear": "a black turtleneck leotard with shoulder armor unbuckled and kimono sleeves loose"
+          },
+          "go": "Show her",
+          "goRes": "Her harsh front collapses into sharp, shivering gasps as your hands explore her bare thighs and tits before she kneels defiantly and takes your cock into her hot mouth.",
+          "wait": "\"You're no weapon to me.\"",
+          "waitRes": "Patroka freezes, blinks hard, and turns her face away with burning ears. \"...Idiots who say stuff like that are dangerous. Stay a while anyway.\""
+        },
+        "3": {
+          "title": "No Longer Alone",
+          "text": "Patroka stands beside your bed having shed every piece of lacquered armor and heavy black fabric, slender and trembling faintly in the soft lamplight. \"Torna taught me to fight and hate until the end,\" she whispers fiercely, climbing onto your lap on the mattress. \"I don't know how to do gentle things, Sam—so teach me tonight.\"",
+          "image": {
+            "comp": "kneeling naked on his lap on the bed, fierce eyes softening with rare vulnerability",
+            "setting": "Sam's bedroom at night, soft warm lamplight",
+            "sam": true,
+            "cloth": "nude"
+          },
+          "go": "Teach her",
+          "goRes": "She grips your shoulders tight and sinks slowly onto your cock, her breath breaking into raw, helpless moans as she rides you until every bit of bitterness dissolves in heat.",
+          "wait": "\"We don't have to rush anything.\"",
+          "waitRes": "\"...Good,\" she mutters, tucking her face stubbornly into your shoulder under the sheet. \"Tomorrow night, then. Don't forget.\"",
+          "act": "cowgirl"
+        },
+        "jump": {
+          "title": "Hair-Trigger",
+          "text": "When you casually compliment how sharp she looked tossing out a troublemaker, Patroka rounds on you in the empty hall, grabs your hoodie in both hands, and kisses you hard enough to knock your breath out. \"Stop saying nice things out of nowhere!\" she snarls breathlessly against your mouth.",
+          "image": {
+            "comp": "grabbing his hoodie in an empty hallway, fiercely blushing while kissing him",
+            "setting": "empty house corridor at night, lantern glow",
+            "sam": true
+          },
+          "go": "Don't stop",
+          "goRes": "You kiss her breathless and pull her into the spare linen room, sliding your hands beneath her hakama skirt to stroke her wet pussy while she gasps furiously into your neck.",
+          "wait": "\"All right, all right—\"",
+          "waitRes": "She releases your collar with a huff, glaring at her boots. \"...You're annoying. Come to the loft later.\""
+        }
+      }
+    },
+    "nia": {
+      "events": {
+        "1": {
+          "title": "Drop the Hood",
+          "text": "Nia lounges on the bathhouse steps after closing with her bulky yellow hood pushed down, ears twitching as she tosses a damp towel at your chest. \"Oy, Sam—you've been hovering around like a love-struck puppy all week,\" she teases, though her ears droop shyly as you catch the towel and step close. \"Look, if you want a kiss, just get on with it before I change my mind.\"",
+          "image": {
+            "comp": "perched on bathhouse steps with her yellow hood pushed back, cheeky grin and shy blush",
+            "setting": "quiet bathhouse after closing, warm rising steam",
+            "sam": true
+          },
+          "go": "Get on with it",
+          "goRes": "She lets out a startled squeak that turns into a purr deep in her throat as you kiss her warm lips, pushing back afterward with bright red ears. \"Hmph—not half bad.\"",
+          "wait": "\"Maybe once you put the towel down.\"",
+          "waitRes": "\"Ha! Funny,\" Nia snorts, flicking your forehead before grinning warmly. \"Suit yourself—my offer stands.\""
+        },
+        "2": {
+          "title": "Out of the Jumpsuit",
+          "text": "In the dimly lit bathhouse alcove, Nia unzips the front of her baggy yellow jumpsuit down to her hips, revealing smooth pale skin and a glowing Flesh Eater core crystal beneath. Catching your hand with a sudden, uncharacteristic tremor, she presses your fingers straight onto her bare chest. \"You don't flinch at what I am, do you? Then put your hands where your mouth is.\"",
+          "image": {
+            "comp": "sitting on a stone rim with her yellow jumpsuit unzipped to the waist, pulling his hand to her bare chest, blushing proudly",
+            "setting": "private bathhouse alcove at night, shimmering water light",
+            "sam": true,
+            "cloth": "partial",
+            "wear": "her yellow Driver jumpsuit unzipped to the waist"
+          },
+          "go": "Touch her",
+          "goRes": "Her sharp tongue turns into soft, purring gasps as you kiss her breasts and stroke between her thighs while her eager hands and warm tongue pleasure your cock until you come.",
+          "wait": "\"Never flinched once, Nia.\"",
+          "waitRes": "Nia blinks, then laughs softly, zipping her collar halfway back up with a fond look. \"...Yeah. I know. You're good like that.\""
+        },
+        "3": {
+          "title": "Nothing Hidden",
+          "text": "Nia waits on your bed wearing nothing at all, silver-white skin glowing faintly in the candlelight as she folds her knees nervously beneath her. \"I spent half my life hiding behind loud jokes and oversized coats,\" she whispers, reaching out to tug your sleeve. \"No secrets tonight, Sam. Just me and you.\"",
+          "image": {
+            "comp": "kneeling naked on his bed in warm candlelight, tugging his sleeve with a soft unguarded smile",
+            "setting": "Sam's bedroom at night, gentle lamplight",
+            "sam": true,
+            "cloth": "nude"
+          },
+          "go": "Stay with her",
+          "goRes": "She climbs eagerly onto your lap and sinks down onto your cock, purring and gasping helplessly against your collarbone as you fuck her slow and deep until you both cum.",
+          "wait": "\"No rush, Nia.\"",
+          "waitRes": "She smiles softly, curling against your side under the covers. \"Cheers, Sam. Tomorrow night, then—and I'm holding you to it.\"",
+          "act": "cowgirl"
+        },
+        "jump": {
+          "title": "Cat's Impulse",
+          "text": "When you catch Nia sneaking extra pickled fish out of the kitchen pantry, she freezes, ears flat, then abruptly shoves the jar aside, grabs your shirt, and kisses you breathless. \"Bribe accepted!\" she blurts out scarlet-faced.",
+          "image": {
+            "comp": "caught by the pantry shelf grabbing his shirt for an impulsive kiss, guilty blushing grin",
+            "setting": "quiet pantry corner at night, single lantern",
+            "sam": true
+          },
+          "go": "Accept the bribe",
+          "goRes": "Laughing softly, you lift her onto the pantry counter and unzip her yellow jumpsuit to slip your hand inside her shorts while she gasps breathlessly against your neck.",
+          "wait": "\"Keep the fish, Nia!\"",
+          "waitRes": "\"Oh, I'm keeping the fish AND the kiss!\" she shoots back grinning, scrambling out the doorway."
+        }
+      }
+    }
+  }
+}
