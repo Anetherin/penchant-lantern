@@ -49,6 +49,7 @@
     'js/setup.js',
     'js/logic/ngplus.js',
     'js/logic/goddess.js',
+    'js/logic/linger.js',
     'js/stories/intros.js',
     'js/events/walks.js',
     'js/ui/core.js',

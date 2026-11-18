@@ -334,7 +334,7 @@ function checkEnd(){
     S.over = true; save();
     modal(`<h2>Game Over</h2><p class="story">The Credit House takes the deeds. You are out on the street with a hoodie, a status window, and a lot of feelings.\n\nYou lasted ${S.week-1} weeks.</p><div class="row"><button class="primary" onclick="restart()">New game</button></div>`, {lock:true});
   } else if(S.debt.remaining<=0 && !S.won){
-    S.won = true;
+    S.won = true; S.wonWk = S.week;
     let chMsg = '';
     if(S.challenge && CYCLE_CHALLENGES[S.challenge]){
       const ch = CYCLE_CHALLENGES[S.challenge];

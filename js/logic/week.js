@@ -1063,7 +1063,7 @@ function endWeek(){
     }
     // romance arcs
     if(ARCS[w.key] && (w.arc||0) < ARCS[w.key].length && !houseGate(w)){
-      const i = w.arc||0, A = BAL.arcs, need = A.need[i], gap = A.gap[i];
+      const i = w.arc||0, A = BAL.arcs, need = A.need[i], gap = paidGap(A.gap[i]);
       const extra = i===2 ? ((w.dates||0)>=A.dates[2] || (w.privateCount||0)>=1) : i===4 ? (w.dates||0)>=A.dates[4] : i===5 ? (w.privateCount||0)>=A.private[5] : true;
       if(w.trust>=need && S.week-(w.arcWk||0) >= gap && extra){ const at = i; EVQ.push(()=> (w.arc||0)===at ? evArc(w) : null); }
     } else if(typeof afterReady==='function'){
@@ -1095,6 +1095,7 @@ function endWeek(){
   seedBonds(); driftBonds();
   sleepInWeek(R);
   goddessAfter(R);
+  lingerWeek(R);
   queueEncounters();
   // auto-renew (setting, on by default): a lady who'll certainly sign again does so at her going rate, bonus paid if Sam can afford it;
   // anyone unsure, or a bonus he can't cover, still gets the renewal event

@@ -6,7 +6,8 @@
     "clothing.aside / aside_commando: used for Modest ladies during services, when her clothes are pulled aside instead of taken off.",
     "clothing.robe_loose / robe_open: night-visit scenes (scenes.json robe:true) at partly undressed / undergarments.",
     "expressions: face wording for how she's taking a service (bored / professional / into it / lost in it, plus flustered and smug from personalities.json → expr). Added to client images. expressionsByAct: per-service face wording added on top of the general one (filled with neutral defaults; edit freely, anything starting with TODO is skipped).",
-    "clothing.pubic: pubic hair wording ({hair} = her hair color; a lady's design.pubic replaces it). {pubic} can be used in any clothing line; it is also added on its own to services marked image.exposed in services.json when the clothing line doesn't mention it."
+    "clothing.pubic: pubic hair wording ({hair} = her hair color; a lady's design.pubic replaces it). {pubic} can be used in any clothing line; it is also added on its own to services marked image.exposed in services.json when the clothing line doesn't mention it.",
+    "clothing.partial_tease / under_tease / nude_tease: invitations, dates and other posed scenes (scenes.json / dates.json image \"undress\", or \"tease\": true) use these instead of partial / under / nude, so she is shown teasing and posing rather than dishevelled. Leave one empty to fall back to the plain wording. poses.tease: one is picked at random and added to those pictures when she isn't fully dressed."
   ],
   "scenes": {
     "pov": "first-person viewer perspective, intimate close framing, warm lantern light, soft shadows",
@@ -18,8 +19,11 @@
   "clothing": {
     "dressed": "wearing {outfit}",
     "partial": "wearing {outfit}, clothes pulled open and askew, {underwear} showing underneath",
+    "partial_tease": "wearing {outfit}, slipped off one shoulder and loosened at the neckline, the hem drawn up her thigh, a teasing glimpse of {underwear}",
     "under": "wearing only {underwear}",
+    "under_tease": "down to just {underwear}, her discarded {outfit} draped beside her",
     "nude": "completely nude, bare breasts, {pubic}",
+    "nude_tease": "nude, artfully posed, {pubic}",
     "aside": "still wearing {outfit}, clothes hiked up and pulled aside, {underwear} pushed aside to reveal {pubic}",
     "aside_commando": "still wearing {outfit}, clothes hiked up and pulled aside, revealing bare breasts and {pubic}",
     "robe_loose": "wearing a thin silk robe loosely tied at the waist, slipping open over {underwear}",
@@ -183,5 +187,16 @@
       "fierce": "pushing back eagerly, fierce flushed grin over her shoulder",
       "languid": "resting her cheek on her forearm, sleepy contented smile"
     }
+  },
+  "poses": {
+    "tease": [
+      "striking an alluring pose, one hand trailing slowly down her side",
+      "glancing back over her bare shoulder with a coy, inviting look",
+      "arching her back slightly, chin lifted, holding the viewer's gaze",
+      "leaning forward with her elbows on her knees, a slow teasing smile",
+      "one arm raised behind her head, the other resting on her hip, posing like a painter's model",
+      "toying with the edge of her clothing as if deciding whether to go further",
+      "reclining languidly, legs crossed, watching the viewer through her lashes"
+    ]
   }
 }

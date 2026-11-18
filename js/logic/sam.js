@@ -29,7 +29,7 @@ function samGold(base, stat='business', spread=0.2){
   return Math.max(1, Math.round(base * rnd(1 - spread, 1 + spread) * (0.8 + v / 160)));
 }
 // Max energy grows with each New Game+ cycle (balance.json → sam.energyPerCycle).
-const samMaxEnergy = () => 100 + ((BAL.sam||{}).energyPerCycle || 0) * Math.max(0, ((typeof S!=='undefined' && S ? S.cycle : 1) || 1) - 1) + (hasChallengePerk('iron_ledger') ? 15 : 0) + townAdd('samEnergy', 0);
+const samMaxEnergy = () => 100 + ((BAL.sam||{}).energyPerCycle || 0) * Math.max(0, ((typeof S!=='undefined' && S ? S.cycle : 1) || 1) - 1) + (hasChallengePerk('iron_ledger') ? 15 : 0) + townAdd('samEnergy', 0) - (typeof lingerEnergyCut==='function' ? lingerEnergyCut() : 0);
 const samEnergyAdd = n => { S.sam.energy = clamp(S.sam.energy + n, 0, samMaxEnergy()); };
 function samGainXP(n){
   S.sam.xp = (S.sam.xp||0) + n; S.sam.lvl = S.sam.lvl || 1;

@@ -43,13 +43,13 @@ function refreshSheetInfo(){
   const cl = comfortCloth(w,false,true), cs = comfortCloth(w,true,true);
   const o = getOutfit(w), u = getUnder(w);
   const anySam = getActs().some(a=>canSam(w,a.id));
-  const arcTxt = ARCS[w.key] ? `<div class="pink">♥ Story: ${(w.arc||0)>=ARCS[w.key].length ? 'Lovers' : `chapter ${w.arc||0}/${ARCS[w.key].length}${(w.arc||0)<ARCS[w.key].length?` <span class="muted">(next: ${ARCS[w.key][w.arc||0].title})</span>`:''}`}${!w.arc&&w.trust<BAL.arcs.need[0]?` <span class="muted">(begins once she trusts Sam: ${tShow(BAL.arcs.need[0])})</span>`:''}</div>` : '';
+  const arcTxt = ARCS[w.key] ? `<div class="pink">♥ Story: ${(w.arc||0)>=ARCS[w.key].length ? 'Lovers' : `chapter ${w.arc||0}/${ARCS[w.key].length}${(w.arc||0)<ARCS[w.key].length?` <span class="muted">(next: ${ARCS[w.key][w.arc||0].title})</span>`:''}`}</div>` : '';
   const afterTxt = AFTER_STORIES && AFTER_STORIES[w.key] ? `<div class="muted">📖 Epilogue: ${(w.after||0)>=AFTER_STORIES[w.key].length ? 'Complete' : `chapter ${w.after||0}/${AFTER_STORIES[w.key].length}${afterHomeDone(w) ? ` (next: ${esc(AFTER_STORIES[w.key][w.after||0].title)})` : ' (continues after her house story)'}`}</div>` : '';
   const vSt = vesselStage(w), vTh = (BAL.ngplus.vessel && BAL.ngplus.vessel.fills) || [2,5,9];
   const persBadge = isVessel(w) && !w.personality ? vesselLabel(w) : esc(w.personality || vesselLabel(w));
   box.innerHTML = `<div class="status"><div class="row"><h3>[ STATUS ] ${esc(titled(w))}</h3>${!w.key && S.workers.includes(w) ? `<button class="sm ${w.favorite?'primary':''}" onclick="toggleFavorite('${w.id}')" title="Favorited generic ladies who reach max trust (1000) reincarnate as 'old friends' in New Game+ (up to 1 per completed cycle).">${w.favorite?'★ Favorited':'☆ Favorite'}</button>` : ''}</div>
     <div class="muted">${raceLabel(w)} · Age ${w.age} · ${persBadge} · Style: ${w.style} · ♥ ${sw(w.favColor)}${w.favColor}</div>
-    <p class="story" style="margin:6px 0" id="bs_${w.id}">${esc(w.backstory)}</p>${SET.ai.on&&!w.named?`<button class="sm" onclick="if(confirm('Replace her backstory with a new AI-written one?'))aiBackstory('bs_${w.id}','${w.id}')">✨ Rewrite backstory</button>`:''}<div>${traitTags(w)}</div>${titleRow(w)}${arcTxt}${afterTxt}${firstsLine(w)}${(()=>{ if(!S.workers.includes(w)) return ''; seedBonds(); const bl = bondLines(w); return bl.length ? `<div class="muted">🤝 ${bl.map(esc).join(' · ')}</div>` : ''; })()}
+    <p class="story" style="margin:6px 0" id="bs_${w.id}">${esc(w.backstory)}</p>${SET.ai.on&&!w.named?`<button class="sm" onclick="if(confirm('Replace her backstory with a new AI-written one?'))aiBackstory('bs_${w.id}','${w.id}')">✨ Rewrite backstory</button>`:''}<div>${traitTags(w)}</div>${titleRow(w)}${arcTxt}${arcReqs(w)}${afterTxt}${afterReqs(w)}${firstsLine(w)}${(()=>{ if(!S.workers.includes(w)) return ''; seedBonds(); const bl = bondLines(w); return bl.length ? `<div class="muted">🤝 ${bl.map(esc).join(' · ')}</div>` : ''; })()}
     <div class="muted">Body: ${esc(bodyLabel(w))}${w.unique?` · <span class="pink" title="${esc(w.unique.desc||'')}">★ ${esc(w.unique.name)}</span>`:''}</div>
     <div class="sgrid" style="margin-top:8px">${STAT_KEYS.map(s=>statCell(w,s,true,s.toUpperCase())).join('')}</div>
     <div class="sgrid" style="margin-top:6px">${TECH_KEYS.map(s=>`<div><span>${TECH_LABEL[s].toUpperCase()}</span><b>${sv(w,w.tech[s],true)}</b></div>`).join('')}<div><span>POPULARITY</span><b>${Math.round(w.popularity)}</b></div>${trustCell(w)}<div title="${k?'':'Appraisal Lv 2 or more trust'}"><span>LEWDNESS</span><b>${k?lShow(w.lewd):'?'}</b></div></div>
@@ -134,6 +134,8 @@ function viewSam(){
       <div class="row"><button onclick="samWork('scout')">🔍 Scout recruits</button><button onclick="samWork('rounds')">🚶 Make the rounds</button><button onclick="demoMenu()" title="Sam and a partner of your choice demonstrate a service for everyone: they all learn it and get worked up.">🔥 Demonstration…</button><button onclick="samWalk()" title="Stroll through Hollowmere: meet unrecruited partners (and guests once all partners are found), run into the goddess in disguise, have casual encounters, or find rest and coin.">🌳 Take a walk</button>${guildOn()?'':'<button onclick="samGuild()" title="Register at the Adventurers\' Guild: contracts for Sam and the ladies, ranks, and the people you meet there.">⚔️ Adventurers\' Guild</button>'}${isoVisitBtn()}<button onclick="orgyMenu()" title="A night with ${(BAL.orgy||{}).min ?? 2}-${(BAL.orgy||{}).max ?? 5} ladies at once: one action, ${(BAL.orgy||{}).perGirl ?? 20} energy per lady.">🔥 Gather the girls…</button><button onclick="samRest()">😴 Rest (+${samRecover(BAL.samHome.nap)} energy)</button></div>
       <p class="muted">Each week starts with a rest day: the ladies are off and Sam has his actions for dates, walks, visits and nights with the ladies (or a nap). Then come six work nights, when he works the focus above. Scouting adds candidates and Appraisal XP (Wits).${samBonusLine()} Rounds and demonstrations reach ${samVisitReach()?'every house':`ladies at ${esc(samHouse().name)}`} (one-on-one training on a lady's sheet works anywhere).</p></section>
     <section class="card"><h2>Management</h2><div class="row"><button onclick="tutorAllMenu()" title="Book (or stop) paid tutors for a whole group at once: no action needed.">📚 Tutoring for everyone…</button><button onclick="giftAllMenu()" ${giftMode()==='locked'?'disabled title="Opens up once the debt is paid off."':'title="Buy the same gift for a whole group (skips ladies at max trust)."'}>🎁 Gifts for everyone…</button><button onclick="wardrobeAllMenu(false)" title="Set profit cuts and self-dressing for a whole group at once.">👗 Cuts &amp; wardrobe…</button></div><p class="muted">Group arrangements for the roster. Tutoring and cuts &amp; wardrobe take no rest-day action.</p></section>
+    ${lingerCard()}
+    ${samLuxCard()}
     ${samHomeCard()}
     <section class="card"><h2>Spend Time with Someone</h2><div class="grid">${rosterOrder(S.workers).map(w=>workerCard(w, S.houses.length>1)).join('')}</div></section>`;
 }
@@ -194,3 +196,36 @@ function viewUpgrades(){
 }
 function miniNamedAvatar(key){ const id='n_'+key; return THUMBS[id] ? `<div class="avatar"><img src="${THUMBS[id]}" alt=""></div>` : `<div class="avatar" style="background:${HAIR_HEX[(NAMED[key].design.hairColor||'').toLowerCase()]||'#b99'}">${esc(initials(NAMED[key].name))}</div>`; }
 function viewLog(){ return `<section class="card"><h2>Log</h2><div class="loglist">${S.log.map(l=>`<div><span class="muted">Wk ${l.wk}</span> · ${esc(l.t)}</div>`).join('')}</div></section>`; }
+
+/* ---------- What the next story step needs (sheet + house page): every condition with ✓ / ✗ ---------- */
+// items: [ok, text]. Checked at the end of each week.
+const reqItem = (ok, text) => `<span class="${ok ? 'good' : 'warn'}">${ok ? '✓' : '✗'} ${text}</span>`;
+const reqLine = (label, items) => items.length ? `<div class="muted" style="font-size:12px">${label}: ${items.map(([ok, t])=>reqItem(ok, t)).join(' · ')} <span class="muted">(checked when the week ends)</span></div>` : '';
+const waitLeft = (since, gap) => Math.max(0, gap - (S.week - since));
+const waitItem = (since, gap) => { const n = waitLeft(since, gap); return [n === 0, n === 0 ? 'enough time has passed' : `${n} more week${n===1?'':'s'}`]; };
+function arcReqs(w){
+  const beats = ARCS[w.key]; if(!beats || (w.arc||0) >= beats.length || !S.workers.includes(w)) return '';
+  const i = w.arc||0, A = BAL.arcs, out = [];
+  const gate = houseGate(w);
+  if(gate) out.push([false, 'her house story has to finish first']);
+  out.push([w.trust >= A.need[i], `trust ${tShow(A.need[i])}${w.trust < A.need[i] ? ` (now ${tShow(w.trust)})` : ''}`]);
+  out.push(waitItem(w.arcWk||0, paidGap(A.gap[i])));
+  if(i===2) out.push([(w.dates||0) >= A.dates[2] || (w.privateCount||0) >= 1, `a date or private time with Sam`]);
+  if(i===4) out.push([(w.dates||0) >= A.dates[4], `${A.dates[4]} date${A.dates[4]===1?'':'s'} with Sam (${w.dates||0} so far)`]);
+  if(i===5) out.push([(w.privateCount||0) >= A.private[5], `private time with Sam`]);
+  return reqLine('Next chapter needs', out);
+}
+function afterReqs(w){
+  const beats = AFTER_STORIES && AFTER_STORIES[w.key]; if(!beats || (w.after||0) >= beats.length || !S.workers.includes(w)) return '';
+  const i = w.after||0, need = AFTER_NEEDS[Math.min(i, AFTER_NEEDS.length-1)], gap = paidGap(AFTER_GAPS[Math.min(i, AFTER_GAPS.length-1)]), out = [];
+  if(!afterHomeDone(w) || houseGate(w)) out.push([false, 'her house story has to finish first']);
+  out.push([w.trust >= need, `trust ${tShow(need)}${w.trust < need ? ` (now ${tShow(w.trust)})` : ''}`]);
+  out.push(waitItem(w.afterWk||0, gap));
+  return reqLine('Next epilogue chapter needs', out);
+}
+// The least lewdness at which she'd go to her next stage with Sam (at her current trust), or null if lewdness alone won't do it.
+function firstLewdNeed(w, s){
+  const was = w.lewd; let at = null;
+  for(let L = Math.ceil(was); L <= 100; L++){ w.lewd = L; if(tierActs(w, s).length){ at = L; break; } }
+  w.lewd = was; return at;
+}

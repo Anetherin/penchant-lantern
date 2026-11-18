@@ -1,0 +1,87 @@
+{
+  "_readme": [
+    "linger: what happens when Sam stays on after the debt is paid (numbers: balance.json → linger; code: js/logic/linger.js). Each stage opens with a scene ({stage}.title / btn / text / image) and then adds a weekly report line (report.<stage>).",
+    "Variants by how well Sam knows her: dream (before the reveal: a voice in his sleep he can't place), known (after the reveal, before the binding), bound (she's bound to him), gone (she left at the end of her story: the lantern itself gutters). Missing variants fall back to known.",
+    "Stages: wane (Sam's max energy shrinks), tithe (she takes a share of the gold above the floor each week), recall (every few weeks she takes a Devoted lover who isn't this cycle's partner into the lantern; they come back reborn with everyone else in New Game+).",
+    "Placeholders: {goddess}, {lady} (the lover taken), {gold} (gold taken), {n} (weeks since the debt was paid), {energy} (max energy lost), {pct} (share taken)."
+  ],
+  "linger": {
+    "wane": {
+      "title": "The lanterns are calling",
+      "btn": "Wake up",
+      "image": {
+        "key": "linger_wane",
+        "comp": "a goddess half-seen through drifting lantern-light, reaching out a hand toward the viewer, a slow coaxing smile",
+        "setting": "an endless dark space full of floating paper lanterns, some of them guttering"
+      },
+      "text": {
+        "dream": [
+          "You wake up tired. Not the honest tiredness of a long week, but something heavier, like you spent the night walking.\n\nYou remember lanterns. Thousands of them, drifting. A woman's voice somewhere behind them, warm and amused and a little impatient: \"The debt's paid, sweetheart. What are you still doing down there?\"\n\nYou can't place the voice. You can't stop thinking about it either.",
+          "In the dream you're standing in the dark with a paper lantern in your hands, and it's going out. Someone laughs softly behind you. \"You can't keep a flame lit forever on the same wick, {sam}. Come back up and I'll give you a new one.\"\n\nYou wake with your heart going hard and the bed feeling too big."
+        ],
+        "known": [
+          "{goddess} is sitting on the end of your bed when you open your eyes, which is impossible, because you're still asleep.\n\n\"You paid it,\" she says. \"Weeks ago. I watched Marguerite stamp the receipt.\" She draws a slow line up your shin with one finger. \"So why are you still here, hm? The lanterns don't like waiting. Neither do I.\"\n\nYou wake up with less in you than you went to bed with.",
+          "\"Every week you stay, the wick burns a little lower.\" {goddess} is curled against your side in the dream, warm and heavy, her mouth at your ear. \"I'm not doing it to you. It's just what happens to a soul that overstays its life. Come home, {sam}. Let me light you a new one.\""
+        ],
+        "bound": [
+          "{goddess} wakes you with her chin on your chest. \"You feel it too, don't you? The lantern's burning down.\" She traces circles on your skin. \"I'm bound to you now. Your life is my life. I would very much like a new one, please, and so would you, if you'd stop being stubborn.\""
+        ],
+        "gone": [
+          "No goddess comes to you in the night any more. The lanterns still do. You dream of them guttering, one by one, and wake more tired than you lay down."
+        ]
+      }
+    },
+    "tithe": {
+      "title": "Lamp oil",
+      "btn": "Count what's left",
+      "image": {
+        "key": "linger_tithe",
+        "comp": "a goddess sitting on an open strongbox, tossing a gold coin and catching it, smug teasing grin",
+        "setting": "a dim office at night lit by a single lantern, ledgers and a heavy iron strongbox"
+      },
+      "text": {
+        "dream": [
+          "The strongbox is lighter this morning. Nothing's broken, the lock is fine, your ledger is exact, and still a stack of gold is simply gone.\n\nThe office smells faintly of lamp oil and candle smoke. On the desk, where you'd swear there was nothing last night, sits one coin balanced on its edge, still warm."
+        ],
+        "known": [
+          "You find {goddess} sitting on your strongbox, swinging her legs, flipping one of your coins.\n\n\"Oil for the lantern,\" she says. \"You're living past your wick, {sam}, and somebody has to pay for the light.\" She catches the coin and drops it down the front of her dress. \"Don't look at me like that. Go be reborn and I'll stop.\""
+        ],
+        "bound": [
+          "\"I took some of the money,\" {goddess} announces over breakfast, unrepentant. \"I didn't spend it. I burned it. That's what keeps this life lit now that you've worn it thin.\" She steals a bite off your plate. \"Cheaper to start a new one. I'm just saying.\""
+        ],
+        "gone": [
+          "Gold keeps going missing from the strongbox. No one took it. It's just gone, like oil burned out of a lamp."
+        ]
+      }
+    },
+    "recall": {
+      "title": "She's keeping {lady}",
+      "btn": "Let her sleep",
+      "image": {
+        "key": "linger_recall",
+        "comp": "a goddess holding a glowing paper lantern close, looking at the viewer over it with a possessive, jealous little smile",
+        "setting": "an endless dark space full of floating paper lanterns"
+      },
+      "text": {
+        "dream": [
+          "{lady} doesn't come down to breakfast. You find her in her room, asleep and smiling, and nothing you do wakes her. Her skin is warm. She smells like candle smoke.\n\nThat night, in the dream, a woman's voice: \"She's fine. She's with me. I'm keeping her safe until you come up to get her.\" A pause, and something sharper in it. \"You'll come, won't you? You won't make me keep all of them?\""
+        ],
+        "known": [
+          "{lady} falls asleep in the middle of the afternoon and doesn't wake. You know before you even dream who did it.\n\n{goddess} is waiting in the lanterns with one of them cupped in her hands. Inside, very small, {lady} is curled up asleep.\n\n\"She'll keep,\" she says. \"She'll be waiting for you on the other side, I promise. But you don't get to stay down there playing house forever while I wait up here.\" Her eyes are bright and not entirely kind. \"Come and get her, {sam}.\""
+        ],
+        "bound": [
+          "\"I put {lady} to sleep,\" {goddess} says, not sorry at all. \"She's safe. She'll wake up when you start over, with the rest of us.\" She leans in until her nose touches yours. \"Every week you drag your feet, I'll tuck another one away. I'm jealous and I'm bored and I want my new life with you. Hurry up.\""
+        ],
+        "gone": [
+          "{lady} falls asleep and doesn't wake, smiling, smelling of candle smoke. The lanterns are keeping her until the next life."
+        ]
+      }
+    },
+    "report": {
+      "wane": "🏮 Sam's lingering past his life: max energy −{energy}.",
+      "tithe": "🏮 Oil for the lantern: {gold} gold vanished from the strongbox ({pct}% of what was above the floor).",
+      "recall": "🏮 {lady} sleeps in the lantern until the next cycle.",
+      "kept": "🏮 Sleeping in the lantern: {names}. They return with New Game+."
+    }
+  }
+}

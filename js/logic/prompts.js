@@ -16,6 +16,15 @@ function isBathScene(scene){
 }
 // A swimming scene (dates.json image: "swim": true). Not a bath scene: no towel, stays where it is.
 const isSwimScene = scene => { const sc = scene && SCENES[sceneBase(scene)]; return !!(sc && sc.swim); };
+// Invitations, dates and other posed pictures (scenes.json / dates.json image "undress" or "tease": true): she's showing off for Sam,
+// so she poses and teases rather than looking pulled apart. Not bath, robe or mishap scenes (caught off guard) or services.
+const TEASE_POSES = (needData('snippets').poses || {}).tease || [];
+function teaseScene(scene){
+  if(!scene || isSvcScene(scene) || isBathScene(scene)) return false;
+  const b = sceneBase(scene), sc = SCENES[b];
+  if(!sc || sc.robe || sc.tease === false || /^(shower|walkin|enc_jealous|enc_reckless|enc_waiting)$/.test(b)) return false;
+  return !!(sc.undress || sc.tease);
+}
 function clothText(w, cloth, scene){
   const keep = keepOnRule(w);
   if(keep) return clothTextBase(w, keep.aside && cloth!=='dressed' ? 'aside' : cloth, scene, keep.aside) + ', still keeping ' + keep.item + ' on';
@@ -47,6 +56,8 @@ function clothTextBase(w, cloth, scene, noTowel){
   if(has(w,'Modest') && (cloth==='dressed'||cloth==='partial') && isSvcScene(scene)){
     t = (!ut && T.aside_commando) || T.aside || t;
   }
+  // posed scenes (invitations, dates: image undress / tease): teasing wording instead of dishevelled clothes (snippets.json → clothing.*_tease)
+  if(cloth!=='dressed' && teaseScene(scene) && T[cloth + '_tease']) t = T[cloth + '_tease'];
   return (t||T.dressed).replace(/\{outfit\}/g, outfitText(w, scene)).replace(/\{underwear\}/g, ut || 'bare skin, nothing underneath');
 }
 // Her body in one phrase: height, build + figure, bust (the build word from her design and the body figure used to be two separate,
@@ -129,7 +140,7 @@ function buildPrompt(w, sceneKey, cloth){
   const mishap = /^(shower|walkin|enc_jealous|enc_reckless|enc_waiting)$/.test(base);
   const expr = sc.expr || (!mishap ? defExpr : '') || (base==='portrait' ? 'gentle smile' : '');
   const comp = (defExpr && !mishap && sc.comp) ? sc.comp.replace(/,\s*(gentle|friendly|cheerful|patient|attentive)\s+smile$/i, '') : sc.comp;
-  parts.push(comp, expr);
+  parts.push(comp, cloth!=='dressed' && teaseScene(sceneKey) && TEASE_POSES.length ? pick(TEASE_POSES) : '', expr);
   if(sc.snip) parts.push(getSnippet(sc.snip));
   if(sc.snip2) parts.push(getSnippet(sc.snip2));
   parts.push(sc.setting);
