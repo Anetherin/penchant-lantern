@@ -4,6 +4,7 @@
     "scenes: pov (every Sam/POV scene), bath, mishap (shower / walk-in), solo (a lady alone at max lust), duo (every shared scene with two ladies). Per-service wording now lives in services.json (image.extra).",
     "clothing: how each clothing state is described. {outfit} and {underwear} are filled in from her wardrobe; commando becomes \"bare skin, nothing underneath\". nude falls back to partial while empty.",
     "clothing.aside / aside_commando: used for Modest ladies during services, when her clothes are pulled aside instead of taken off.",
+    "clothing.robe_loose / robe_open: night-visit scenes (scenes.json robe:true) at partly undressed / undergarments.",
     "expressions: face wording for how she's taking a service (bored / professional / into it / lost in it, plus flustered and smug from personalities.json → expr). Added to client images. expressionsByAct: per-service face wording added on top of the general one (filled with neutral defaults; edit freely, anything starting with TODO is skipped).",
     "clothing.pubic: pubic hair wording ({hair} = her hair color; a lady's design.pubic replaces it). {pubic} can be used in any clothing line; it is also added on its own to services marked image.exposed in services.json when the clothing line doesn't mention it."
   ],
@@ -16,11 +17,13 @@
   },
   "clothing": {
     "dressed": "wearing {outfit}",
-    "partial": "wearing {outfit}, clothes pulled open and askew, visible {underwear}",
+    "partial": "wearing {outfit}, clothes pulled open and askew, {underwear} showing underneath",
     "under": "wearing only {underwear}",
     "nude": "completely nude, bare breasts, {pubic}",
     "aside": "still wearing {outfit}, clothes hiked up and pulled aside, {underwear} pushed aside to reveal {pubic}",
     "aside_commando": "still wearing {outfit}, clothes hiked up and pulled aside, revealing bare breasts and {pubic}",
+    "robe_loose": "wearing a thin silk robe loosely tied at the waist, slipping open over {underwear}",
+    "robe_open": "wearing an open silk robe hanging wide open over {underwear}",
     "pubic": "natural {hair} pubic hair"
   },
   "expressions": {

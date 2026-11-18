@@ -35,7 +35,7 @@
       "style": "Exotic",
       "cost": 80,
       "lewd": 0,
-      "prompt": "a emerald silk wrap dress",
+      "prompt": "an emerald silk wrap dress",
       "bonus": {"merchant":1.08},
       "stats": {"charm":2,"agility":2}
     },
@@ -80,7 +80,7 @@
       "style": "Cute",
       "cost": 70,
       "lewd": 0,
-      "prompt": "a ivory lace-trimmed dress",
+      "prompt": "an ivory lace-trimmed dress",
       "bonus": {"promoter":1.08},
       "stats": {"charm":3,"beauty":2}
     },

@@ -93,7 +93,7 @@ function evSleepIn(w, morning){
   if(!w || !sleepInOK(w)) return null;
   const act = needSamAct(w); if(!act) return null;
   const drain = morning ? 5 : 10, text = flavor(morning ? 'sleepin_morning' : 'sleepin_evening', w);
-  return {title: morning ? 'Good Morning' : 'A Long Evening', who:w.id, scene: morning ? 'enc_rest' : 'enc_late', cloth:textCloth(text), text,
+  return {title: morning ? 'Good Morning' : 'A Long Evening', who:w.id, scene: morning ? 'enc_wake' : 'enc_sleepin', cloth:textCloth(text), text,
     choices:[
       {label: morning ? 'Let the morning wait' : 'Stay up with her', fx(){ return encounterResult(w, act, morning ? `The house can manage without you for a while longer.` : `The lamp goes out much later than planned.`, 'encounter', morning ? 'Sam and she share a bed in the Owner\'s Suite; she woke him in the morning with ideas of her own.' : 'Sam and she share a bed in the Owner\'s Suite; as they turned in for the night she proposed something else.', drain); }},
       {label: morning ? '"Let me sleep a bit"' : '"Let\'s just sleep tonight"', fx(){ refusalHit(w, 2); w.lust = clamp(w.lust-3); return `${w.name} sighs against your shoulder, then settles in anyway.` + refusalNote(w); }}]};
