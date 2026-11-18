@@ -52,7 +52,11 @@
               "m": 3,
               "res": "You concede and shut the door, and she calls through it, \"Smart.\" You stand in the hallway for a moment with your pulse going. Five minutes later there's a cup of tea outside your door. The tag on it says DRAW, in her small square capitals, and the tea is the way you like it."
             }
-          ]
+          ],
+          "image": {
+            "comp": "in the bath, hair pinned up with a pencil, fogged glasses, chin tilted back, water running down her throat, amused smirk",
+            "towel": true
+          }
         },
         "3": {
           "text": "You open the washroom door. Ella is pulling the pencil out of her hair, and it falls loose around her bare shoulders.\n\nShe sets her book down flat on the stool. Then she leans back against the rim with her arms along it. Her tits are out of the water and her long legs are parted under it, and she lets you look.\n\n\"You're late, Sam.\" Her voice has dropped. \"I'm three points ahead, and I'm bored, and I've been touching myself for ten minutes thinking about how you'd lose. Get in here and settle the tie-breaker.\"",
@@ -73,7 +77,14 @@
               "l": 2,
               "res": "You pick up the soap and kneel behind her instead. Her hair comes down under your hands. She leans back against your palms and sighs, long and defeated, and you lean down to tell her exactly how the score stands. She laughs, low in her throat. \"Pure bribery,\" she says. \"Ten points. Keep going.\""
             }
-          ]
+          ],
+          "image": {
+            "comp": "leaning back against the rim with arms along it, hair loose over bare shoulders, breasts above the water, long legs parted under it, heated half-lidded gaze",
+            "cloth": "nude",
+            "wear": "",
+            "towel": false,
+            "bath": true
+          }
         }
       },
       "choices": [

@@ -55,7 +55,14 @@
               "m": 6,
               "res": "You wrap her in the warm towel and sit with her on the bench. She tucks her knees inside the linen and goes quiet. \"The doors in the dream are all shut,\" she says. Then, after a long time, \"Not in this one.\" Her head drifts onto your shoulder, and she's half asleep before the lamp burns down."
             }
-          ]
+          ],
+          "image": {
+            "comp": "kneeling beside the cedar rim turning back her lace cuffs, holding one warm towel, unsteady hands, vulnerable searching look",
+            "pov": true,
+            "sam": false,
+            "bath": false,
+            "towel": false
+          }
         },
         "3": {
           "title": "No Nightmares Tonight",
@@ -80,7 +87,16 @@
               "acts": ["kiss","manual_give","massage_give"],
               "res": "She tucks her cold toes between yours under the water. You pull her against your chest, one hand on her back and the other low on her hip. She shivers, and it isn't from the cold. \"Keep going,\" she whispers, with her mouth against your throat. \"Slowly, please.\" The steam curls around you both, and her breath is hot on your neck."
             }
-          ]
+          ],
+          "image": {
+            "comp": "sitting naked in the hot water across from him, knees between his, dark hair floating, guiding his hand to her bare breast, soft determined gaze",
+            "pov": true,
+            "sam": false,
+            "bath": true,
+            "towel": false,
+            "cloth": "nude",
+            "wear": ""
+          }
         }
       },
       "choices": [

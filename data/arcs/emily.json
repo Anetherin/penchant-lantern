@@ -55,7 +55,11 @@
               "m": 5,
               "res": "You lift the notebook off the wet rim before the next splash gets it, and she looks at you like you've pulled someone out of a river. \"Hero,\" she says. You put it on the dry towel rack. She tells you the scene she was drafting, quietly, with her ears pink, and you stay on the bench and listen to the end of it."
             }
-          ]
+          ],
+          "image": {
+            "comp": "sitting on the bath bench rinsing foam from one fluffy wolf ear, glasses pushed up on her head, pointing at her ear, tail wagging, pink blush",
+            "sam": true
+          }
         },
         "3": {
           "title": "No Narrator Needed",
@@ -80,7 +84,15 @@
               "acts": ["oral_give","kiss","manual_give"],
               "res": "You sit on the edge of the tub and kiss her collarbone, then lower, slowly, through the steam. Her breath catches. She grips the cedar rim and her ears quiver. She starts to say your name and gives up halfway. Every sound she used to spend paragraphs hiding comes out of her now, and she lets it."
             }
-          ]
+          ],
+          "image": {
+            "comp": "sitting in steaming water, grey tail curled around her ankle, blushing to the ear tips, stiff nipples, both hands held out to him, glasses off",
+            "cloth": "nude",
+            "wear": "",
+            "towel": false,
+            "bath": true,
+            "sam": true
+          }
         }
       },
       "choices": [

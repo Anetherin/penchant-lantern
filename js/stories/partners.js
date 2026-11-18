@@ -43,8 +43,10 @@ function resolveArcBeat(w, base){
     const ks = Object.keys(base.byIntim).map(Number).filter(n=>!Number.isNaN(n) && n <= (w.intim||0)).sort((a,b)=>b-a);
     for(const k of ks){
       if(k > 0 && !getActs().some(a=>actTier(a.id)<=k && canSam(w, a.id))) continue;
-      if(!base.byIntim[String(k)].image) delete b.image;
-      Object.assign(b, base.byIntim[String(k)]);
+      // a variant's image is laid over the beat's (so it can give just a new comp / cloth / wear); without one, no story picture
+      const v = base.byIntim[String(k)], img = v.image ? Object.assign({}, base.image || {}, v.image) : null;
+      Object.assign(b, v);
+      if(img) b.image = img; else delete b.image;
       hasIntimOverride = true;
       break;
     }

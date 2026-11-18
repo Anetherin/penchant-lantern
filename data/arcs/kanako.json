@@ -51,7 +51,16 @@
               "m": 5,
               "res": "You let her wash your hair, and the two of you trade bar gossip. Who's skimming the tips, which regular is in love with whom. \"Such a polite boy when you're not staring,\" she teases, and flicks warm suds across your nose. She dries her hands, takes her time about it, and slips out, leaving the door ajar."
             }
-          ]
+          ],
+          "image": {
+            "comp": "kneeling behind the rim of a tub working shampoo into his hair, sleeves rolled to the elbows, smile slipping in the mirror",
+            "pov": true,
+            "sam": false,
+            "bath": false,
+            "towel": false,
+            "cloth": "dressed",
+            "wear": "a silk robe belted loosely at the waist, wide sleeves rolled to the elbows"
+          }
         },
         "3": {
           "title": "Silk on the Floor",
@@ -76,7 +85,16 @@
               "acts": ["oral_give","breast_give","manual_give"],
               "res": "You lift her back against the cedar rim, and she goes willingly, with a long breath. \"Slow,\" she says. \"I've been on my feet since noon.\" You start with your hands on her shoulders and your mouth at her throat. Steam curls up around her flushed skin, and she tells you exactly what she likes, in the voice she uses on the staff."
             }
-          ]
+          ],
+          "image": {
+            "comp": "silk robe sliding off her shoulders onto the floor, stepping over the rim into the tub, full breasts against his chest, low heated gaze",
+            "pov": true,
+            "sam": false,
+            "bath": true,
+            "towel": false,
+            "cloth": "nude",
+            "wear": ""
+          }
         }
       },
       "choices": [
@@ -178,7 +196,8 @@
       "text": "Kanako has found a place. It's behind the dye vats, down an alley you'd never have gone into. It has six seats, a low scarred counter and a cloudy amber mirror, and the smoke hangs up near the rafters.\n\nIt could be a snack bar off any back street at home. She says so, and she's delighted.\n\nShe orders two chilled plum wines without looking at the chalkboard. Then she puts her chin in her palm and turns to you. She used to do exactly that across the balcony rail, with a cigarette going and her work shoes kicked off.\n\n\"I ran a bar like this for nine years,\" she says. \"I knew every man's order and what his wife was called. I'd lock up at two and go home, and there'd be a light on next door, because you were still up.\" She turns her glass. \"I used to like that. I never asked myself why. I've started asking.\"",
       "byIntim": {
         "2": {
-          "text": "Kanako takes you to the tiny six-seat tavern behind the dye vats. It has a cracked mirror and warm amber smoke, and it's quiet enough to hear the ice move in the plum wine.\n\nShe's halfway down her second glass. Her knee has been pressed against yours under the counter since the first, and she hasn't moved it.\n\nShe isn't doing the laugh tonight. She's looking at you with her chin in her hand and smiling slowly, and the smile isn't for the room.\n\n\"I keep catching myself watching your hands,\" she says. \"It's a problem, Sammy. I've got a bar to run.\" Her foot hooks around your ankle. \"They close at midnight here. I don't feel like going home to my own room.\""
+          "text": "Kanako takes you to the tiny six-seat tavern behind the dye vats. It has a cracked mirror and warm amber smoke, and it's quiet enough to hear the ice move in the plum wine.\n\nShe's halfway down her second glass. Her knee has been pressed against yours under the counter since the first, and she hasn't moved it.\n\nShe isn't doing the laugh tonight. She's looking at you with her chin in her hand and smiling slowly, and the smile isn't for the room.\n\n\"I keep catching myself watching your hands,\" she says. \"It's a problem, Sammy. I've got a bar to run.\" Her foot hooks around your ankle. \"They close at midnight here. I don't feel like going home to my own room.\"",
+          "image": {"comp":"leaning on the bar counter with chin in hand, slow private smile, knee pressed against his, glass of plum wine","sam":true}
         }
       },
       "choices": [
