@@ -84,6 +84,32 @@ function attendantPairs(h, R){
   }
   return {byCourt, byAtt, courts:courts.length, atts:atts.length, attSorted:atts};
 }
+// Attendants follow the courtesans (run before the houses each week): when fewer courtesans are working than attendants
+// (one auto-rested, went on a contract, was set to rest), the attendants left without one rest too, keeping their position
+// (w.prevJob, w.idleRest); when courtesans are back and short of an attendant, idle-resting ones return, best first.
+// Only ladies with auto-rest on are moved. Ladies who rested on their own (tired / worn down) come back by the usual rule.
+function syncAttendants(log){
+  S.workers.forEach(w=>{ if(w.idleRest && !(w.job==='rest' && w.prevJob==='attendant')) delete w.idleRest; });
+  S.houses.forEach(h=>{
+    const ws = S.workers.filter(w=>w.house===h.id);
+    const courts = ws.filter(w=>w.job==='courtesan').length, atts = ws.filter(w=>w.job==='attendant');
+    if(atts.length > courts){
+      const ap = attendantPairs(h);
+      atts.filter(a=>!ap.byAtt.has(a.id) && a.autoRest).forEach(a=>{
+        a.prevJob = 'attendant'; a.job = 'rest'; a.idleRest = true;
+        log(`🎀 ${a.name} has no courtesan to attend at ${h.name} this week and takes the time off.`);
+      });
+    } else if(courts > atts.length){
+      const idle = ws.filter(w=>w.idleRest).sort((a,b)=>attQFor(b) - attQFor(a));
+      for(const a of idle.slice(0, courts - atts.length)){
+        delete a.prevJob; delete a.idleRest;
+        const no = canDo(a, 'attendant');
+        if(!no){ a.job = 'attendant'; log(`🎀 ${a.name} is back to attending at ${h.name}.`); }
+        else { a.prevJob = 'attendant'; a.idleRest = true; }
+      }
+    }
+  });
+}
 // Amenity & quarters elegance score (0..5+) evaluated against a house's prestige expectations.
 function houseAmenityScore(h, tidy0){
   const TY = BAL.tidy, U = h.up || {};
@@ -793,6 +819,7 @@ function endWeek(){
     t0:w.trust||0, lw0:w.lewd||0, p0:w.popularity||0, st0:Object.assign({}, w.stats), tk0:Object.assign({}, w.tech), ak0:Object.fromEntries(Object.entries(w.acts||{}).map(([k,a])=>[k, a.skill||0]))});
   const log = t => R.lines.push(t);
   if(focusLine) log(focusLine);
+  syncAttendants(log);   // attendants without a working courtesan rest with her, and come back when she does
   autoFeasts(R);   // home.js: houses set to feast automatically, before the work week
   autoStuds(R);    // sam.js: auto-hire studs for demons whose lust meets their threshold
   let satSum = 0;
@@ -966,7 +993,7 @@ function endWeek(){
     // auto-rest
     if(w.autoRest){
       if(w.job!=='rest' && (w.energy < maxEnergy(w)*0.35 || wornDown(w))){ log(`😴 ${w.name} is ${w.energy < maxEnergy(w)*0.35 ? 'worn out' : 'worn down after weeks without a break'} and will rest next week.`); w.prevJob = w.job; w.job = 'rest'; }
-      else if(w.job==='rest' && w.prevJob && w.energy >= maxEnergy(w)*0.85){ const pj = w.prevJob; delete w.prevJob; const no = canDo(w,pj); if(!no){ w.job = pj; log(`💪 ${w.name} is rested and back to work as ${JOBS[pj].label}.`); } else log(`${w.name} is rested but can't go back to ${JOBS[pj].label} (${no}) Give her a job.`); }
+      else if(w.job==='rest' && w.prevJob && !w.idleRest && w.energy >= maxEnergy(w)*0.85){ const pj = w.prevJob; delete w.prevJob; const no = canDo(w,pj); if(!no){ w.job = pj; log(`💪 ${w.name} is rested and back to work as ${JOBS[pj].label}.`); } else log(`${w.name} is rested but can't go back to ${JOBS[pj].label} (${no}) Give her a job.`); }
     }
     // how she took the week's clients, by personality (data/personalities.json goodNight/badNight, flavor good_night/bad_night)
     if(pr.served >= 2){
