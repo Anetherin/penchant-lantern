@@ -2,11 +2,14 @@
   "_readme": [
     "Titles: honorifics and ranks a lady can hold (js/logic/titles.js). She can hold several (w.titles); the one she goes by (w.titleId, picked on her sheet) is shown with her name and gives its perk. Titles stay with her through New Game+.",
     "label: how it reads. after: true = shown after her name ('Mira, Belle of Hollowmere'), otherwise in front ('Captain Rinna'). desc: the perk, in words (sheet tooltip and the 'earned a title' log line). fx: merged into the effect engine like a trait's (vocabulary: the _readme of traits.json).",
-    "How a title is gained: seed (only from data: characters.json / guests.json 'title', the label or the id), earn (checked weekly, then earnChance per week), event (granted by a random event in js/events/random.js, wording in events.json → title_<id>), arc: '<lady key>' (granted when her romance arc in arcs.json completes), house: '<house id>' (granted to the house's resident when its story completes). A title she already holds is skipped. A title can have several of these.",
+    "How a title is gained: seed (only from data: characters.json / guests.json 'title', the label or the id), earn (checked weekly, then earnChance per week), event (granted by a random event in js/events/random.js, wording in events.json → title_<id>), arc: '<lady key>' (granted when her romance arc in arcs.json completes), house: '<house id>' (granted to the house's resident when its story completes). A title she already holds (or has grown past) is skipped. A title can have several of these.",
+    "Tiers: from: [title ids] makes this title an upgrade of those. Gaining it replaces them (her held list drops the lesser title, and if she went by it she now goes by the new one), so a lady holds one title per line. An earn title with from needs one of them first (Captain -> Dame -> Grand Warden), unless open: true. Arc, house, event and seed titles with from are unique upgrades: they need nothing first but still replace (Lady Vesper -> Vesper, Lady of the Manor). A title can branch into several (Lady -> Baroness / Countess / Lady of the Manor). The tier (shown as stars on her sheet) is 1 + the highest tier it upgrades from; an upgrade's perk should beat what it replaces.",
+    "Retired ids: renamedTitles maps an old id to the title that replaced it (old saves are converted on load).",
     "earn uses the traits.json earn conditions ({count, at}, {stat, at}, {trust}, {lewd}, {weeks}, {job, weeks}) plus {reborn: n} (carried over n times) and {all: [conditions]} (every one must hold).",
     "Creator ladies: a free-text title that matches a label here becomes that title (with its perk); anything else is a custom title with no perk."
   ],
   "earnChance": 0.5,
+  "renamedTitles": {"town_crier":"herald","harbor_star":"grand"},
   "titles": {
     "lady": {
       "label": "Lady",
@@ -20,7 +23,8 @@
       "desc": "+10 security and bad news stings her less; +5 Strength.",
       "fx": {"security":10,"moodDelta":0.92,"stats":{"strength":5}},
       "seed": true,
-      "earn": {"all":[{"job":"security","weeks":20},{"count":"rescued","at":6}]}
+      "earn": {"all":[{"job":"security","weeks":20},{"count":"rescued","at":6}]},
+      "from": ["captain"]
     },
     "captain": {
       "label": "Captain",
@@ -50,9 +54,11 @@
     },
     "queen": {
       "label": "Queen",
-      "desc": "+2 appeal and +8% reputation from her work; +5 Refinement.",
-      "fx": {"appeal":2,"rep":1.08,"stats":{"refinement":5}},
-      "seed": true
+      "desc": "+3 appeal, nobles pay 10% more, +8% reputation from her work; +5 Refinement.",
+      "fx": {"appeal":3,"classBonus":{"noble":1.1},"rep":1.08,"stats":{"refinement":5}},
+      "seed": true,
+      "from": ["princess"],
+      "earn": {"stat":"popularity","at":85}
     },
     "leader": {
       "label": "Leader",
@@ -65,7 +71,8 @@
       "desc": "+2 appeal, +5 Strength, +5 Agility, stats grow 8% faster.",
       "fx": {"appeal":2,"stats":{"strength":5,"agility":5},"statGain":1.08},
       "seed": true,
-      "event": true
+      "event": true,
+      "from": ["leader","trainer"]
     },
     "magistrate": {
       "label": "Magistrate",
@@ -133,7 +140,9 @@
       "after": true,
       "desc": "+4 appeal, +6 Charisma.",
       "fx": {"appeal":4,"stats":{"charisma":6}},
-      "earn": {"stat":"popularity","at":90}
+      "earn": {"stat":"popularity","at":90},
+      "from": ["festival"],
+      "open": true
     },
     "radiant": {
       "label": "the Radiant",
@@ -167,38 +176,44 @@
       "label": "Treasurer",
       "desc": "Promotes 8% better; clients pay 4% more, +5 Wits.",
       "fx": {"jobBonus":{"promoter":1.08},"clientFee":1.04,"stats":{"wits":5}},
-      "arc": "yui"
+      "arc": "yui",
+      "from": ["herald"]
     },
     "countess": {
       "label": "Countess",
-      "desc": "Nobles pay 12% more, +2 appeal; +4 Refinement.",
-      "fx": {"classBonus":{"noble":1.12},"appeal":2,"stats":{"refinement":4}},
-      "arc": "nerys"
+      "desc": "Nobles pay 15% more, merchants 10%; +5% reputation, +3 appeal, +6 Refinement.",
+      "fx": {"classBonus":{"noble":1.15,"merchant":1.1},"rep":1.05,"appeal":3,"stats":{"refinement":6}},
+      "arc": "nerys",
+      "from": ["lady","baroness"]
     },
     "healer": {
       "label": "Healer",
       "desc": "+3 resting mood, recovers 6% more energy, +6 Charm.",
       "fx": {"moodRest":3,"energyRec":1.06,"stats":{"charm":6}},
-      "arc": "elowen"
+      "arc": "elowen",
+      "from": ["doctor"]
     },
     "paladin": {
       "label": "Paladin",
-      "desc": "+10 security; bad news stings her less; +5 Strength.",
-      "fx": {"security":10,"moodDelta":0.9,"stats":{"strength":5}},
-      "arc": "adelheid"
+      "desc": "+14 security, guards 8% better; bad news stings her less; +6 Strength.",
+      "fx": {"security":14,"jobBonus":{"security":1.08},"moodDelta":0.88,"stats":{"strength":6}},
+      "arc": "adelheid",
+      "from": ["captain","dame"]
     },
     "unbeaten": {
       "label": "the Unbeaten",
       "after": true,
-      "desc": "+5 Strength, +5 Agility, guards 8% better.",
-      "fx": {"stats":{"strength":5,"agility":5},"jobBonus":{"security":1.08}},
-      "arc": "natsuki"
+      "desc": "+5 Strength, +5 Agility, guards 12% better.",
+      "fx": {"stats":{"strength":5,"agility":5},"jobBonus":{"security":1.12}},
+      "arc": "natsuki",
+      "from": ["captain"]
     },
     "mama": {
       "label": "Mama",
       "desc": "Bartends 10% better and hosts 8% better, +6 Charm.",
       "fx": {"jobBonus":{"bartender":1.1,"host":1.08},"stats":{"charm":6}},
-      "arc": "kanako"
+      "arc": "kanako",
+      "from": ["taps","hostess"]
     },
     "undaunted": {
       "label": "the Undaunted",
@@ -209,28 +224,49 @@
     },
     "steward": {
       "label": "Steward",
-      "desc": "Promotes 8% better, runs a house 6% better as madame.",
-      "fx": {"jobBonus":{"promoter":1.08,"madame":1.06}},
-      "arc": "marisol"
+      "desc": "Runs a house 12% better as madame, promotes 8% better; +4 Wits.",
+      "fx": {"jobBonus":{"madame":1.12,"promoter":1.08},"stats":{"wits":4}},
+      "arc": "marisol",
+      "from": ["madame"]
     },
     "keeper": {
       "label": "Keeper of Keys",
       "after": true,
-      "desc": "Keeps the house 15% tidier, attends 6% better.",
-      "fx": {"tidy":1.15,"jobBonus":{"attendant":1.06}},
-      "arc": "lara"
+      "desc": "Keeps the house 20% tidier, maid work +5%, attends 6% better.",
+      "fx": {"tidy":1.2,"jobBonus":{"maid":1.05,"attendant":1.06}},
+      "arc": "lara",
+      "from": ["headmaid"]
     },
     "shadowkin": {
       "label": "Shadowkin",
       "after": true,
-      "desc": "Attends 8% better, passes on 8% more when teaching.",
-      "fx": {"jobBonus":{"attendant":1.08},"teach":1.08},
-      "arc": "emily"
+      "desc": "Attends 15% better, passes on 8% more when teaching.",
+      "fx": {"jobBonus":{"attendant":1.15},"teach":1.08},
+      "arc": "emily",
+      "from": ["first_attendant"]
     },
-    "postmistress": {"label":"Postmistress","desc":"Promotes 10% better, passes on 5% more when teaching.","fx":{"promote":1.1,"teach":1.05},"arc":"lirael"},
+    "postmistress": {
+      "label": "Postmistress",
+      "desc": "Promotes 15% better, passes on 5% more when teaching.",
+      "fx": {"promote":1.15,"teach":1.05},
+      "arc": "lirael",
+      "from": ["herald"]
+    },
     "peerless": {"label":"the Peerless","after":true,"desc":"Skills grow 8% faster, stats 5%.","fx":{"skillGain":1.08,"statGain":1.05},"arc":"ella"},
-    "sommelier": {"label":"Sommelier","desc":"Bartends 12% better.","fx":{"jobBonus":{"bartender":1.12}},"arc":"ione"},
-    "warden": {"label":"Warden","desc":"Keeps the chapel 10% better, +2 resting mood.","fx":{"jobBonus":{"chapel":1.1},"moodRest":2},"arc":"anael"},
+    "sommelier": {
+      "label": "Sommelier",
+      "desc": "Bartends 15% better; +4 Wits.",
+      "fx": {"jobBonus":{"bartender":1.15},"stats":{"wits":4}},
+      "arc": "ione",
+      "from": ["taps"]
+    },
+    "warden": {
+      "label": "Warden",
+      "desc": "Keeps the chapel 15% better, +2 resting mood, +5 Charm.",
+      "fx": {"jobBonus":{"chapel":1.15},"moodRest":2,"stats":{"charm":5}},
+      "arc": "anael",
+      "from": ["sister"]
+    },
     "chronicler": {
       "label": "the Chronicler",
       "after": true,
@@ -241,38 +277,50 @@
     "guildheart": {
       "label": "Heart of the Guild",
       "after": true,
-      "desc": "Promotes 12% better; +4 Charm, +4 Charisma.",
-      "fx": {"promote":1.12,"stats":{"charm":4,"charisma":4}},
-      "arc": "hanna"
+      "desc": "Promotes 15% better; +4 Charm, +4 Charisma.",
+      "fx": {"promote":1.15,"stats":{"charm":4,"charisma":4}},
+      "arc": "hanna",
+      "from": ["herald"]
     },
-    "springs": {"label":"Mistress of the Springs","after":true,"desc":"Bath work 12% better.","fx":{"jobBonus":{"bath":1.12}},"house":"onsen"},
+    "springs": {
+      "label": "Mistress of the Springs",
+      "after": true,
+      "desc": "Bath work 18% better, massage quality +10%.",
+      "fx": {"jobBonus":{"bath":1.18},"actQuality":{"massage_give":1.1}},
+      "house": "onsen",
+      "from": ["soother"]
+    },
     "manor": {
       "label": "Lady of the Manor",
       "after": true,
-      "desc": "Adventurers pay 10% more; +6% reputation from her work.",
-      "fx": {"classBonus":{"adventurer":1.1},"rep":1.06},
-      "house": "hollow"
+      "desc": "Nobles and adventurers pay 10% more; +6% reputation from her work.",
+      "fx": {"classBonus":{"noble":1.1,"adventurer":1.1},"rep":1.06},
+      "house": "hollow",
+      "from": ["lady"]
     },
     "stormrider": {
       "label": "the Storm-Rider",
       "after": true,
       "desc": "+8 max energy, bartends 5% better, +5 Agility.",
       "fx": {"maxEnergy":8,"jobBonus":{"bartender":1.05},"stats":{"agility":5}},
-      "house": "skyhook"
+      "house": "skyhook",
+      "from": ["captain"]
     },
     "tidekeeper": {
       "label": "the Tide-Keeper",
       "after": true,
-      "desc": "Bath work 10% better, +2 resting mood.",
-      "fx": {"jobBonus":{"bath":1.1},"moodRest":2},
-      "house": "pearl"
+      "desc": "Bath work 15% better, +2 resting mood.",
+      "fx": {"jobBonus":{"bath":1.15},"moodRest":2},
+      "house": "pearl",
+      "from": ["soother"]
     },
     "cloister_beacon": {
       "label": "Beacon of Grace",
       "after": true,
       "desc": "Chapel work 12% better, pilgrims and clerics pay 10% more.",
       "fx": {"jobBonus":{"chapel":1.12},"classBonus":{"pilgrim":1.1,"cleric":1.1}},
-      "house": "sanctuary"
+      "house": "sanctuary",
+      "from": ["sister"]
     },
     "atelier_muse": {"label":"Clockwork Muse","after":true,"desc":"Skills grow 8% faster, +3 appeal.","fx":{"skillGain":1.08,"appeal":3},"house":"atelier"},
     "foundry_warden": {
@@ -280,20 +328,23 @@
       "after": true,
       "desc": "Guards 12% better, keeps the house 10% tidier, +5 Stamina.",
       "fx": {"jobBonus":{"security":1.12},"tidy":1.1,"stats":{"stamina":5}},
-      "house": "foundry"
+      "house": "foundry",
+      "from": ["captain"]
     },
     "conservatory_rose": {
       "label": "Night-Blooming",
       "after": true,
       "desc": "Hosts 12% better, +2 appeal, +5 Charm.",
       "fx": {"jobBonus":{"host":1.12},"appeal":2,"stats":{"charm":5}},
-      "house": "conservatory"
+      "house": "conservatory",
+      "from": ["hostess"]
     },
     "lyceum_dean": {
       "label": "Preceptress",
-      "desc": "Teaches 15% better, passes on 10% more skill, +5 Wits.",
-      "fx": {"jobBonus":{"teacher":1.15},"teach":1.1,"stats":{"wits":5}},
-      "house": "lyceum"
+      "desc": "Teaches 15% better, passes on 20% more when teaching, +6 Wits.",
+      "fx": {"jobBonus":{"teacher":1.15},"teach":1.2,"stats":{"wits":6}},
+      "house": "lyceum",
+      "from": ["professor"]
     },
     "greatfairy": {
       "label": "Great Fairy",
@@ -312,52 +363,60 @@
       "after": true,
       "desc": "Madame work +15%, resting mood +3, +5 Wits.",
       "fx": {"jobBonus":{"madame":1.15},"moodRest":3,"stats":{"wits":5}},
-      "earn": {"all":[{"job":"madame","weeks":35}]}
+      "earn": {"all":[{"job":"madame","weeks":35}]},
+      "from": ["madame"]
     },
     "maestro": {
       "label": "Maestro",
       "desc": "Dancing +15%, skills improve 5% faster, +6 Agility.",
       "fx": {"jobBonus":{"dancer":1.15},"skillGain":1.05,"stats":{"agility":6}},
-      "earn": {"all":[{"job":"dancer","weeks":25},{"stat":"popularity","at":80}]}
+      "earn": {"all":[{"job":"dancer","weeks":25},{"stat":"popularity","at":80}]},
+      "from": ["prima"]
     },
     "baroness": {
       "label": "Baroness",
-      "desc": "Nobles and merchants pay 10% more, +6 Refinement, +2 appeal.",
-      "fx": {"classBonus":{"noble":1.1,"merchant":1.1},"stats":{"refinement":6},"appeal":2},
-      "earn": {"stat":"popularity","at":85}
+      "desc": "Nobles and merchants pay 10% more, +5% reputation from her work; +6 Refinement, +2 appeal.",
+      "fx": {"classBonus":{"noble":1.1,"merchant":1.1},"rep":1.05,"stats":{"refinement":6},"appeal":2},
+      "earn": {"stat":"popularity","at":85},
+      "from": ["lady"]
     },
     "warden_master": {
       "label": "Grand Warden",
       "after": true,
       "desc": "Security +20, guards 15% better, +6 Strength.",
       "fx": {"security":20,"jobBonus":{"security":1.15},"stats":{"strength":6}},
-      "earn": {"all":[{"job":"security","weeks":30},{"count":"rescued","at":15}]}
+      "earn": {"all":[{"job":"security","weeks":30},{"count":"rescued","at":15}]},
+      "from": ["dame"]
     },
     "archivist": {
       "label": "Archivist",
       "desc": "Teacher work +15%, passes on 20% more when teaching, +8 Wits.",
       "fx": {"jobBonus":{"teacher":1.15},"teach":1.2,"stats":{"wits":8}},
-      "earn": {"all":[{"job":"teacher","weeks":20},{"count":"taught","at":80}]}
+      "earn": {"all":[{"job":"teacher","weeks":20},{"count":"taught","at":80}]},
+      "from": ["professor"]
     },
     "high_priestess": {
       "label": "High Priestess",
       "after": true,
       "desc": "Chapel work +25%, pilgrims and clerics pay 25% more, +8 Charm, +4 Refinement.",
       "fx": {"jobBonus":{"chapel":1.25},"classBonus":{"pilgrim":1.25,"cleric":1.25},"stats":{"charm":8,"refinement":4}},
-      "earn": {"all":[{"job":"chapel","weeks":25},{"trust":95}]}
+      "earn": {"all":[{"job":"chapel","weeks":25},{"trust":95}]},
+      "from": ["sister"]
     },
     "connoisseur": {
       "label": "Connoisseur",
       "desc": "Bartends 15% better, commoners and merchants pay 10% more, +5 Wits.",
       "fx": {"jobBonus":{"bartender":1.15},"classBonus":{"commoner":1.1,"merchant":1.1},"stats":{"wits":5}},
-      "earn": {"count":"bar","at":150}
+      "earn": {"count":"bar","at":150},
+      "from": ["taps"]
     },
     "street_legend": {
       "label": "Legend of the Street",
       "after": true,
       "desc": "Promoting draws 25% more clients, +4 appeal, +8 Charisma.",
       "fx": {"promote":1.25,"appeal":4,"stats":{"charisma":8}},
-      "earn": {"count":"promo","at":100}
+      "earn": {"count":"promo","at":100},
+      "from": ["herald"]
     },
     "suite_queen": {
       "label": "Mistress of the Suite",
@@ -371,21 +430,24 @@
       "after": true,
       "desc": "Bath work +20%, bathhouse income +10%, +6 Beauty.",
       "fx": {"jobBonus":{"bath":1.2},"rep":1.1,"stats":{"beauty":6}},
-      "earn": {"job":"bath","weeks":25}
+      "earn": {"job":"bath","weeks":25},
+      "from": ["soother"]
     },
     "thriceborn": {
       "label": "the Thrice-Born",
       "after": true,
       "desc": "Trust and skills grow 10% faster, max energy +15.",
       "fx": {"trustGain":1.1,"skillGain":1.1,"maxEnergy":15},
-      "earn": {"reborn":3}
+      "earn": {"reborn":3},
+      "from": ["twiceborn"]
     },
     "paragon": {
       "label": "the Paragon",
       "after": true,
       "desc": "All stats grow 10% faster, max energy +20, +5 to all core stats.",
       "fx": {"statGain":1.1,"maxEnergy":20,"stats":{"beauty":5,"charm":5,"charisma":5,"refinement":5,"wits":5,"stamina":5,"strength":5,"agility":5}},
-      "earn": {"all":[{"reborn":3},{"stat":"popularity","at":85},{"trust":90}]}
+      "earn": {"all":[{"reborn":3},{"stat":"popularity","at":85},{"trust":90}]},
+      "from": ["thriceborn"]
     },
     "first_attendant": {
       "label": "First Attendant",
@@ -399,21 +461,24 @@
       "after": false,
       "desc": "Attendant work +18%, nobles and officials pay 10% more, +6 Wits, +4 Refinement.",
       "fx": {"jobBonus":{"attendant":1.18},"classBonus":{"noble":1.1,"official":1.1},"stats":{"wits":6,"refinement":4}},
-      "earn": {"all":[{"job":"attendant","weeks":28},{"stat":"wits","at":75}]}
+      "earn": {"all":[{"job":"attendant","weeks":28},{"stat":"wits","at":75}]},
+      "from": ["first_attendant"]
     },
     "toast": {
       "label": "Toast of the Lantern",
       "after": true,
       "desc": "Courtesan work +15%, services earn 10% more, +3 appeal, +5 Beauty, +5 Charm.",
       "fx": {"jobBonus":{"courtesan":1.15},"clientFee":1.1,"appeal":3,"stats":{"beauty":5,"charm":5}},
-      "earn": {"all":[{"job":"courtesan","weeks":30},{"stat":"popularity","at":80}]}
+      "earn": {"all":[{"job":"courtesan","weeks":30},{"stat":"popularity","at":80}]},
+      "from": ["grand"]
     },
     "maitresse": {
       "label": "Golden Hostess",
       "after": true,
       "desc": "Hosting +18%, happy clients boost reputation 15% more, +6 Charm, +4 Charisma.",
       "fx": {"jobBonus":{"host":1.18},"rep":1.15,"stats":{"charm":6,"charisma":4}},
-      "earn": {"all":[{"job":"host","weeks":25},{"count":"hosted","at":220}]}
+      "earn": {"all":[{"job":"host","weeks":25},{"count":"hosted","at":220}]},
+      "from": ["hostess"]
     },
     "soother": {
       "label": "Stillwater Healer",
@@ -427,14 +492,8 @@
       "after": false,
       "desc": "Maid work +12%, cleaning 25% more thorough, resting mood +2, +5 Stamina.",
       "fx": {"jobBonus":{"maid":1.12},"tidy":1.25,"moodRest":2,"stats":{"stamina":5}},
-      "earn": {"all":[{"job":"maid","weeks":30},{"stat":"stamina","at":70}]}
-    },
-    "town_crier": {
-      "label": "Street Herald",
-      "after": true,
-      "desc": "Promoter work +15%, promoting draws 15% more clients, bards and commoners pay 10% more, +5 Charisma.",
-      "fx": {"jobBonus":{"promoter":1.15},"promote":1.15,"classBonus":{"bard":1.1,"commoner":1.1},"stats":{"charisma":5}},
-      "earn": {"job":"promoter","weeks":15}
+      "earn": {"all":[{"job":"maid","weeks":30},{"stat":"stamina","at":70}]},
+      "from": ["headmaid"]
     },
     "quicksilver": {
       "label": "the Quicksilver",
@@ -457,19 +516,12 @@
       "fx": {"classBonus":{"scholar":1.12,"official":1.12},"stats":{"refinement":8},"appeal":2},
       "earn": {"stat":"refinement","at":90}
     },
-    "harbor_star": {
-      "label": "Harbor Siren",
-      "after": true,
-      "desc": "Sailors and farmhands pay 15% more, propositioned 10% more, +5 Beauty, +5 Charisma.",
-      "fx": {"classBonus":{"sailor":1.15,"farmhand":1.15},"propRate":1.1,"stats":{"beauty":5,"charisma":5}},
-      "earn": {"all":[{"count":"svc","at":120},{"stat":"beauty","at":78}]}
-    },
     "muse": {
       "label": "Muse of Hollowmere",
       "after": true,
       "desc": "Bards and artisans pay 18% more, happy clients boost reputation 10% more, +5 Beauty, +5 Wits.",
       "fx": {"classBonus":{"bard":1.18,"artisan":1.18},"rep":1.1,"stats":{"beauty":5,"wits":5}},
-      "earn": {"all":[{"stat":"charisma","at":85},{"stat":"beauty","at":80}]}
+      "earn": {"stat":"charisma","at":92}
     },
     "luminary": {
       "label": "the Luminary",
@@ -488,16 +540,18 @@
     "packbound": {
       "label": "the Packbound",
       "after": true,
-      "desc": "Guards 10% better and bad news stings her less; +4 Stamina.",
-      "fx": {"jobBonus":{"security":1.1},"moodDelta":0.92,"stats":{"stamina":4}},
-      "arc": "vesna"
+      "desc": "+5 security, guards 12% better and bad news stings her less; +4 Stamina.",
+      "fx": {"security":5,"jobBonus":{"security":1.12},"moodDelta":0.92,"stats":{"stamina":4}},
+      "arc": "vesna",
+      "from": ["captain"]
     },
     "lionheart": {
       "label": "the Anvil",
       "after": true,
-      "desc": "Promotes 10% better; +4 Strength, +4 Charisma.",
-      "fx": {"promote":1.1,"stats":{"strength":4,"charisma":4}},
-      "arc": "brunhild"
+      "desc": "Promotes 15% better; +4 Strength, +4 Charisma.",
+      "fx": {"promote":1.15,"stats":{"strength":4,"charisma":4}},
+      "arc": "brunhild",
+      "from": ["herald"]
     }
   }
 }

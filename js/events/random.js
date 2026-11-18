@@ -38,7 +38,7 @@ const OUTFIT_EVENTS = ['market','regular','friend','made'].map(kind => ({w:BAL.w
 // Events that can grant a title (data/titles.json; wording events.json → title_patron / title_fair / title_arena).
 // One title event at a time across all three (S.flags.titleCD).
 const titleFree = () => !(S.flags.titleCD > S.week);
-const lacks = (w, id) => !(w.titles||[]).includes(id);
+const lacks = (w, id) => !holdsTitle(w, id);   // nor a title that grew out of it
 const patronOK = w => lacks(w,'lady') && s100(statOf(w,'refinement'))>=60 && w.popularity>=50;
 const fairOK = w => lacks(w,'festival') && w.popularity>=35 && w.job!=='rest';
 const arenaOK = w => lacks(w,'champion') && (s100(w.tech.combat||0) + s100(statOf(w,'strength')))/2 >= 50 && w.energy>=40;
