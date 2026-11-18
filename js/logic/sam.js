@@ -134,7 +134,7 @@ function samTrain(id, mode='skill'){
     samStat('technique',2); samXP(5); w.privateCount++; w._samTime=(w._samTime||0)+1; samLog(`Practiced with ${w.name}`); checkUnlocks();
     save(); render(); closeModal();
     const show = acts.find(a=>isFav(w,a.id)) || acts[acts.length-1], sl = actLine(show.id, w);
-    return showResult(`Practice with ${w.name}`, `${flavor('train_service', w) || `${w.name} decides Sam's education is a shared project.`}${sl ? '\n\n'+sl : ''}${hot?'\n\n'+hot:''}\n\n${acts.map(a=>samActLabel(a.id)).join(', ')}: skill +${Math.round(g*SKL)} each · Lust +${lu}${w.lewd < lewdCap ? ' · Lewdness +' : ''} · Trust ${tDelta(tgp)} · Sam's Technique +2`, w.id, 'samact:'+show.id, {kind:'train', act:show.id, scene:'samact:'+show.id, forSam:true});
+    return showResult(`Practice with ${w.name}`, `${flavor('train_service', w) || `${w.name} decides Sam's education is a shared project.`}${sl ? '\n\n'+sl : ''}${hot?'\n\n'+hot:''}\n\n${acts.map(a=>actLabel(a.id)).join(', ')}: skill +${Math.round(g*SKL)} each · Lust +${lu}${w.lewd < lewdCap ? ' · Lewdness +' : ''} · Trust ${tDelta(tgp)} · Sam's Technique +2`, w.id, 'samact:'+show.id, {kind:'train', act:show.id, scene:'samact:'+show.id, forSam:true});
   }
   // every trade skill, hands-on: her job's skill (Hospitality without one) at full strength, the rest x skill.others
   if(!useAP(samTrainCost(SK.energy ?? 30))) return;
@@ -269,7 +269,7 @@ function privateCore(w, act, o={}){
   if(hot) text += `\n\n${hot}`;
   text += fed;
   text += fillVessel(w, act);
-  text += `\n\n[${samActLabel(act)}] skill + · ${lg >= 0.3 ? 'Lewdness + · ' : ''}Trust + · Lust ${ld < 0 ? '+'+(-ld) : '−'+ld} · Sam's Technique +3`;
+  text += `\n\n[${actLabel(act)}] skill + · ${lg >= 0.3 ? 'Lewdness + · ' : ''}Trust + · Lust ${ld < 0 ? '+'+(-ld) : '−'+ld} · Sam's Technique +3`;
   // worked up by it, she may want more: something that actually spends it, if they've crossed that far
   if(builds && !o.more && w.lust >= LUST_EAGER && w.lewd >= SVC.askMore.lewd){
     const ids = getActs().filter(a=>(a.lust ?? -1) < 0 && canSam(w, a.id)).map(a=>a.id);
