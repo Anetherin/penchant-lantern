@@ -70,6 +70,12 @@
     "softCap": 85,
     "lowBoostBelow": 20,
     "lowBoost": 1.3,
+    "influence": {
+      "_note": "Weekly lewdness that rubs off (lewdInfluence, staff.js). Each pulls her toward min(cap, source lewdness - gap) at up to gain per week (tapering to nothing as she reaches it, via lewdUp); none if the source is below minSrc. madame: source = average lewdness of courtesans who served this week. attendant: source = the courtesan she attended. exhib: perAct x (exhibitionist acts in the house this week, at most maxActs) once there were at least minActs, toward cap, for everyone working except skipJobs, stand-ins and other exhibitionists.",
+      "madame": {"gain":0.4,"minSrc":35,"gap":10,"cap":70},
+      "attendant": {"gain":0.4,"minSrc":35,"gap":12,"cap":65},
+      "exhib": {"perAct":0.05,"maxActs":12,"minActs":2,"cap":50,"skipJobs":["teacher","courtesan","chapel","rest","guild"]}
+    },
     "capOver": {"sam":28,"client":20},
     "tierCaps": {"1":54,"2":74,"3":92},
     "stretchCap": 10,

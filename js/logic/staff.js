@@ -126,3 +126,33 @@ function syncAttendants(){
   S.workers.forEach(w=>{ if(was.has(w.id) && w.job==='attendant') lines.push(`🎀 ${w.name} is back to attending at ${houseOf(w).name}.`); });
   return lines;
 }
+
+// Lewdness rubs off (balance.json → lewd.influence). Run once per house per week after the jobs (simHouse):
+//  - madame: pulled toward the average lewdness of the courtesans she ran this week (those who served anyone)
+//  - attendant: pulled toward the lewdness of the courtesan she attended, if that courtesan worked
+//  - exhibitionists' acts out in the open loosen up the staff on the floor who saw them (not teachers, not anyone
+//    working behind a closed door: courtesans, stand-ins, the chapel; not other exhibitionists, who get their own)
+// Each source has a minimum (minSrc / minActs), keeps her gap below the source, and stops at cap; lewdUp's diminishing returns apply.
+function lewdInfluence(h, W, R, hr, attMap){
+  const L = (BAL.lewd || {}).influence; if(!L) return;
+  const band = (BAL.lewd || {}).band ?? 10;
+  const pull = (w, src, k, why) => {
+    const pr = R.per[w.id]; if(!pr || src < (k.minSrc ?? 0)) return;
+    const target = Math.min(k.cap ?? 60, src - (k.gap ?? 0)); if(w.lewd >= target) return;
+    const g = lewdUp(w, k.gain ?? 0.3, target - band);   // full gain until 2 bands short of the target, none at it
+    if(g >= 0.05) (pr.why = pr.why || []).push({t:why, good:true});
+  };
+  const worked = c => { const p = R.per[c.id]; return !!(p && p.served); };
+  const M = L.madame, courts = W.filter(c=>c.job==='courtesan' && worked(c));
+  if(M && courts.length){
+    const avg = courts.reduce((s,c)=>s + c.lewd, 0) / courts.length;
+    W.filter(w=>w.job==='madame').forEach(w=>pull(w, avg, M, 'picked up the courtesans\' habits'));
+  }
+  const A = L.attendant;
+  if(A && attMap) attMap.forEach((a, cid)=>{ const c = W.find(x=>x.id===cid); if(a && c && a.job==='attendant' && worked(c)) pull(a, c.lewd, A, `picked up a few things attending ${c.name}`); });
+  const E = L.exhib, n = hr.exhibActs || 0;
+  if(E && n >= (E.minActs ?? 2)){
+    const skip = E.skipJobs || [], k = Object.assign({}, E, {gain: (E.perAct ?? 0.05) * Math.min(n, E.maxActs ?? 12), minSrc: 0, gap: 0});
+    W.filter(w=>!skip.includes(w.job) && !w.standIn && !has(w,'Exhibitionist')).forEach(w=>pull(w, k.cap ?? 50, k, 'saw a bit too much on the floor'));
+  }
+}
