@@ -297,7 +297,7 @@ function ngReset(w){
     const b = w.base0 || {}; w.trust = b.trust ?? (B.baseTrust ?? 15); w.lewd = Math.min(w.lewd, b.lewd ?? (B.baseLewd ?? 25));
   }
   w.lust = Math.min(w.lust||0, LUST_EAGER);
-  w.popularity = 0; w.arcWk = 0; if(w.after!==undefined) w.after = 0; w.afterWk = 0; w.earnedLast = 0; w.purse = 0; w.energy = maxEnergy(w);
+  w.popularity = 0; w.arcWk = 0; w.afterWk = 0;   // epilogue progress (w.after) stays across lives w.earnedLast = 0; w.purse = 0; w.energy = maxEnergy(w);
   w.tutor = null; delete w.tutorTier;
 }
 // Past lives of named ladies (S.lives[key]): what she'd built and how many Reincarnated stacks she has.
@@ -308,9 +308,29 @@ function ngReset(w){
 //    she comes back as she left, stacks and all, no new stack.
 // rebirthNamed(n, newLife): newLife forces a new life even for a same-life entry (a kept house's resident recreated at NG+).
 const lifeOf = (w, same, opts={}) => ({name:w.name, reborn: opts.reborn!==undefined ? opts.reborn : (w.reborn||0), same: !!same, needsReset: !!opts.needsReset,
-  wasLover: !!(w.wasLover || opts.wasLover), reMet: opts.reMet!==undefined ? opts.reMet : (w.reMet||0), ngPerks: (w.ngPerks||[]).slice(),
+  wasLover: !!(w.wasLover || opts.wasLover), after: w.after || 0, reMet: opts.reMet!==undefined ? opts.reMet : (w.reMet||0), ngPerks: (w.ngPerks||[]).slice(),
   stats: Object.assign({}, w.stats), tech: Object.assign({}, w.tech),
-  acts: Object.fromEntries(Object.entries(w.acts||{}).map(([k,a])=>[k, a.skill||0])), titles: (w.titles||[]).slice(), titleId: w.titleId || null});
+  acts: Object.fromEntries(Object.entries(w.acts||{}).map(([k,a])=>[k, a.skill||0])), titles: (w.titles||[]).slice(), titleId: w.titleId || null,
+  romance: opts.romance !== undefined ? opts.romance : romanceOf(w)});
+// Named ladies keep their story with Sam across lives: arc chapter, firsts (intimacy stage), the counters her arc checks,
+// Devoted, and an Oblivious her arc removed. Non-partners (house residents, story joiners, guild ladies, guests) always do;
+// partners only in NG+ (in NG++ they come back through the memory tiers and their romance starts over).
+// The first NG++ clears every saved romance once (with the house stories); NG++ lovers are remembered without one.
+const keepsRomance = (w, restoring) => !!(w && w.key && NAMED[w.key]) && (NAMED[w.key].role !== 'partner' || !(restoring && (S.ngppCycle||0) > 0));
+function romanceOf(w){
+  if(!keepsRomance(w)) return null;
+  const D = NAMED[w.key];
+  return {arc: w.arc||0, intim: w.intim||0, privateCount: w.privateCount||0, dates: w.dates||0, devoted: has(w,'Devoted'),
+    noOblivious: (D.traits||[]).includes('Oblivious') && !has(w,'Oblivious')};
+}
+function restoreRomance(n, R){
+  if(!R || !keepsRomance(n, true)) return;
+  if(ARCS[n.key]) n.arc = Math.max(n.arc||0, R.arc||0);
+  n.intim = Math.max(n.intim||0, R.intim||0);
+  n.privateCount = Math.max(n.privateCount||0, R.privateCount||0); n.dates = Math.max(n.dates||0, R.dates||0);
+  if(R.devoted && !has(n,'Devoted')) n.traits.push('Devoted');
+  if(R.noOblivious) n.traits = n.traits.filter(t=>t!=='Oblivious');
+}
 function rememberLife(w, same, into, opts){
   if(!w || !w.key || !NAMED[w.key]) return;
   const T = into || S; T.lives = T.lives || {};
@@ -326,6 +346,8 @@ function rebirthNamed(n, newLife){
   if(!L.same || newLife){ ngReset(n); n.reborn = L.needsReset ? L.reborn : L.reborn + 1; }
   if(L.ngPerks && L.ngPerks.length) n.ngPerks = Array.from(new Set([...(n.ngPerks||[]), ...L.ngPerks]));
   if(L.wasLover) n.wasLover = true;
+  if(L.after) n.after = Math.max(n.after || 0, L.after);
+  restoreRomance(n, L.romance);
   if(L.titles && L.titles.length){ n.titles = [...new Set([...(n.titles||[]), ...L.titles])]; if(L.titleId) n.titleId = L.titleId; syncTitles(n); }
   if(!n.free) n.wage = wageFor(n);
   if(n.wasLover) n.signing = 0;
@@ -364,7 +386,7 @@ function ngBegin(){
       const p = C.perks[w.id]; if(p) w.ngPerks = [...(w.ngPerks||[]), p];
       if(w.key && NAMED[w.key]){
         stashCloset(w);
-        rememberLife(w, false, S, {reborn:(w.reborn||0)+1, needsReset:true, wasLover:true});
+        rememberLife(w, false, S, {reborn:(w.reborn||0)+1, needsReset:true, wasLover:true, romance:null});
       } else {
         ngReset(w); ngRomanceReset(w); w.reborn = (w.reborn||0) + 1; w.wasLover = true;
         w.free = false; w.isPartner = false; w.locked = null; w.job = 'rest'; w.contract = 12; w.house = hk; w.seen = {}; w.wage = wageFor(w);
@@ -382,6 +404,7 @@ function ngBegin(){
     (S.alumni||[]).forEach(w=>{ w.house = hk; });
     if(N.ngppCycle === 1){
       S.ngppHouses = {};
+      Object.values(S.lives||{}).forEach(L=>{ delete L.romance; delete L.after; });   // the first NG++ resets house stories, so the story ladies' romances and epilogues start over once too
     } else {
       S.ngppHouses = S.ngppHouses || {};
       S.houses.forEach(h=>{ S.ngppHouses[h.id] = snapshotNgppHouse(h); });

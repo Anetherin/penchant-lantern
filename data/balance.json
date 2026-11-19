@@ -1310,9 +1310,9 @@
   "luxury": {
     "weekMul": 2,
     "perCycle": 0.5,
-    "tonic": {"label":"Alchemist's tonic","cost":600},
-    "campaign": {"label":"Town-wide campaign","cost":1500,"rep":6},
-    "spa": {"label":"Spa day for the staff","cost":150,"health":15},
+    "tonic": {"label":"Alchemist's tonic","cost":6000},
+    "campaign": {"label":"Town-wide campaign","cost":7500,"rep":6},
+    "spa": {"label":"Spa day for the staff","cost":750,"health":15},
     "rush": {"label":"Hurry it along","cost":10000,"mul":1.5,"perCycle":0}
   },
   "linger": {
