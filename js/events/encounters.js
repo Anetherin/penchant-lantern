@@ -25,9 +25,10 @@ function canVisit(w, trustMin, lewdMin, lustMin){
 // own line (flavor.json → private_act) instead of the generic private-time text; the picture switches to the service.
 function encounterResult(w, act, intro, kind, situation, drain, ctx){
   if(drain) S.sam.energy = Math.max(0, S.sam.energy - drain);
+  const l0 = w.lust;
   const text = privateCore(w, act, {lead:intro});   // privateCore spends her lust
   samLog(`${kind==='reckless'?'Swept off by':'A visit from'} ${w.name}`);
-  if(wantsAgain(w)){ const id = w.id; EVQ.unshift(()=>evAgain(findW(id))); }
+  if(wantsAgain(w, l0)){ const id = w.id; EVQ.unshift(()=>evAgain(findW(id))); }
   const scene = 'samact:'+act + (ctx ? '~~'+ctx : '');
   return {text, img:{wid:w.id, scene}, ai:{kind, wid:w.id, act, scene, forSam:true, situation: actSituation(w, act, situation)}};
 }
@@ -130,9 +131,10 @@ function evReckless(w){
 /* ---------- another round ---------- */
 // Still worked up afterward, she wants to keep going: beastkin often (balance.json → again.beastkin), others now and then.
 // Spirits don't (no body to tire out, no stamina to spend). Sam pays in energy either way.
-function wantsAgain(w){
+// l0 = her lust before the first round: the first round spends it, so judging by what's left almost never passed.
+function wantsAgain(w, l0){
   const A = BAL.again; if(!A || !w || w.race==='spirit' || w._again===S.week || !releaseSamAct(w) || w.energy < maxEnergy(w)*0.15) return false;
-  if(w.lust < (w.race==='beastkin' ? LUST_EAGER : lustHigh(w) - 10)) return false;
+  if(Math.max(w.lust, l0 ?? w.lust) < (w.race==='beastkin' ? LUST_EAGER : lustHigh(w) - 10)) return false;
   return Math.random() < (A[w.race] ?? A.other) + fxAdd(w,'encore');
 }
 function evAgain(w){

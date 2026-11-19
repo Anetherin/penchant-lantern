@@ -30,7 +30,7 @@
     "wardrobe: costMult scales every outfit/underwear price (lower = easier to get clothes). eventChance = relative weight of each of the 'someone gave her an outfit' random events (data/events.json). cut: paid ladies' baseline profit cut = base + perCycle per NG+ cycle (at most maxBase), + perLover for each lover carried into this cycle (S.ngLovers).",
     "svc.askMore: after a service that didn't finish her (built lust or left her frustrated), a lady with sufficient lewdness and lust may ask the client for more (chance, modulated by client stamina), offering a lust-spending/finishing service from her menu; it pays fee x its normal price. svc.poorFinishAt / svc.secondRound: clients who didn't finish (non-finishing act or quality below poorFinishAt) or who have stamina left may propose another round.",
     "svc.demon: kissFeed = energy a demon draws from a client's kiss; kissSam (+ kissSamDraw when she's eager, costing Sam kissSamCost extra) from Sam's. restDrainChance / restRepDrain: a restless demon on her week off may drain some poor man in town (town reputation loss; a Demon Sigil doesn't help outside). studCost / studGain / studLust: Sam pays for a stud for the night (sheet button, once a week). hungerDrive: a demon's hunger counts like lust for propositions: drive = lust + (1 - energy/max) x hungerDrive. It lets her proposition clients herself once drive reaches her reckless line (a hungry, not lusty, demon then picks services that feed her), raises her odds of accepting clients' propositions, and she can always take a feeding service she has the energy for. recklessLust / recklessEnergy: a demon is reckless (restless) at lust >= recklessLust (instead of lust.high; her lust max is 120) or whenever her energy is below recklessEnergy.",
-    "again: after a visit or encounter, a lady who is still worked up may want another round (chance by race, other = everyone else except spirits, + her encore fx; beastkin only need to be eager, others nearly restless). samCost = Sam's energy; mood = her mood gain (twice for beastkin). Once a week each. Ladies who come to Sam because they are restless only pick services that spend lust (releaseSamAct).",
+    "again: after private time with Sam, a visit or an encounter, a lady who was worked up going in (judged by her lust before the first round) may want another round (chance by race, other = everyone else except spirits, + her encore fx; beastkin only need to be eager, others nearly restless). samCost = Sam's energy; mood = her mood gain (twice for beastkin). Once a week each. Ladies who come to Sam because they are restless only pick services that spend lust (releaseSamAct).",
     "sam: Sam's house-wide actions. roundsTrust / roundsMood = what Making the rounds gives every lady (trust is 0-100 here, so 0.4 shows as 4); lessonShare = share of a one-on-one training gain that each lady in a lesson gets. base = Sam's starting stats in a new game (and the base for the NG+ rebuild); perLevel = each stat gained per level (samGainXP).",
     "lewd: lewdness gains go through lewdUp(w, n, cap) (character.js): see its _note. Dates add their own caps (dates.json lewdCap, spicy cap).",
     "jobs.bathJoinLewd / bathJoinFee: a bath attendant comfortable with massages and at least this lewd joins bathers in the water (bath massage, x fee), and may ask for more like anyone else.",
@@ -70,6 +70,12 @@
     "softCap": 85,
     "lowBoostBelow": 20,
     "lowBoost": 1.3,
+    "influence": {
+      "_note": "Weekly lewdness that rubs off (lewdInfluence, staff.js). Each pulls her toward min(cap, source lewdness - gap) at up to gain per week (tapering to nothing as she reaches it, via lewdUp); none if the source is below minSrc. madame: source = average lewdness of courtesans who served this week. attendant: source = the courtesan she attended. exhib: perAct x (exhibitionist acts in the house this week, at most maxActs) once there were at least minActs, toward cap, for everyone working except skipJobs, stand-ins and other exhibitionists.",
+      "madame": {"gain":0.4,"minSrc":35,"gap":10,"cap":70},
+      "attendant": {"gain":0.4,"minSrc":35,"gap":12,"cap":65},
+      "exhib": {"perAct":0.05,"maxActs":12,"minActs":2,"cap":50,"skipJobs":["teacher","courtesan","chapel","rest","guild"]}
+    },
     "capOver": {"sam":28,"client":20},
     "tierCaps": {"1":54,"2":74,"3":92},
     "stretchCap": 10,
@@ -124,7 +130,7 @@
     "broad": {"jobs":["madame","teacher"],"stat":0.4,"skillOthers":0.6,"lesson":0.3}
   },
   "solo": {"energyCost":0.15,"lustDrop":40},
-  "again": {"beastkin":0.6,"other":0.2,"samCost":20,"mood":3},
+  "again": {"beastkin":0.75,"other":0.2,"samCost":20,"mood":3},
   "sam": {
     "roundsTrust": 0.4,
     "roundsMood": 1.5,

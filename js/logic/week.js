@@ -655,6 +655,7 @@ function simHouse(h, R){
     R.lines.push(`🕯️ Visitors to ${h.name}'s chapel were disappointed not to see an angel in the chapel or on the floor.`);
   }
   if(h.up.chapel && byJob('chapel').some(x=>x.race==='angel')) hr.chapelMood = BAL.amenities.chapel.angelHouseMood ?? 0;
+  lewdInfluence(h, W, R, hr, ownAttMap);   // lewdness rubs off on madames, attendants and the floor (staff.js)
   spiritPairShift(h, W, R);
   // --- tidiness: room services and visitors make a mess, maids clean it up
   // maids pull toward clean with diminishing returns: x (100 - tidiness)/maidEase, at most maidMax (balance.json → tidy)
