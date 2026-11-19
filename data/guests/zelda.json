@@ -194,11 +194,11 @@
           "lovers": "breast_get",
           "backstory": "Cotera, a great fairy, used to live in a healing fountain and grant weary travelers their strength back. She has moved into the bathhouse, which she considers a fountain with better gossip, and her laugh echoes off the tiles.",
           "design": {
-            "hairStyle": "three long high ponytails",
+            "hairStyle": "tied back into three pigtails",
             "hairColor": "vivid pink-magenta",
             "eyes": "golden",
             "skin": "warm amber with a faint magical shimmer",
-            "features": "long pointed ears and green ivy-like markings across her body",
+            "features": "long pointed ears, dramatic magenta makeup, and green ivy-like markings across her body",
             "expression": "a lavish, indulgent smile"
           },
           "under": "none",
@@ -220,10 +220,10 @@
               "label": "Twilight Fountain",
               "style": "Revealing",
               "hairStyle": "very long, loose flowing waves",
-              "hairColor": "soft rose-blonde",
+              "hairColor": "shimmering pale green",
               "features": "long pointed ears and translucent gossamer fairy wings",
               "replaceFeatures": true,
-              "prompt": "bare skin with a sheer iridescent fairy veil draped across her hips and slim gold armbands and anklets",
+              "prompt": "bare chest with a sheer iridescent fairy veil draped across her hips and slim gold armbands and anklets",
               "bonus": {"bath":1.25,"propose":1.2}
             }
           },
