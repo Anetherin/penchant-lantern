@@ -11,6 +11,8 @@ Code: `js/logic/guild.js`. Data: `data/guild/` (`base` numbers, `text` contract 
 - **Parties.** Each contract has `slots` (Sam counts as one). Ladies join through the Guild tab (or the job picker: job `guild`):
   that is their job for the week, at any house. Sam joins through his **Guild** weekly focus (`S.samFocus = {kind:'guild', topic:uid}`).
   He is away: no office, floor, watch or classes at home that week, and no late-night visits.
+- **Time with Sam.** A week on a contract with Sam counts as time with Sam for every lady in the party (`w._samTime`: clears a lover's
+  neglect and the missed-Sam mood loss) and adds `weekly.samTrust` trust (x Sam's Charm bonus) and `weekly.samMood` mood (x1.5 for Devoted).
 - **Progress.** Every week each member adds power (weighted stats, see `base.json → power`), the total fills the contract's `work`.
   A contract that isn't done by its deadline fails (merit, fame and a little trust lost). Contracts can take several weeks.
 - **Risk.** Each week each member may be injured (`risk`, cut by party power and by Sam's presence): Health loss. Under 30 Health she

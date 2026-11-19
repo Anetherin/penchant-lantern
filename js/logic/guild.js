@@ -176,11 +176,16 @@ function guildWeek(R){
         Object.entries(C.stats||{}).forEach(([k,wt])=>statXP(w, k, (WK.statXP ?? 0.6) * wt * cap));
         Object.entries(C.tech||{}).forEach(([k,wt])=>grow(w, k, (WK.combat ?? 1.2) * wt * cap));
         gainTrust(w, (WK.trust ?? 0.4) * cap); countUp(w, 'guildWeeks'); (c.lw = c.lw || {})[w.id] = (c.lw[w.id]||0) + 1;
+        if(sam){   // a week on the road with Sam is time with Sam: clears lovers' neglect, plus his Charm's trust bonus wherever he lives
+          w._samTime = (w._samTime||0) + 1;
+          gainTrust(w, (WK.samTrust ?? 0.8) * cap * (nearSam(w) ? 1 : samBonus('charm')));
+          moodAdd(w, (WK.samMood ?? 3) * (has(w,'Devoted') ? 1.5 : 1));
+        }
         if(Math.random() < guildHurtChance(C, avg, sam, w)){
           const n = ri(C.hurt[0], C.hurt[1]); w.health = clamp(w.health - n); moodAdd(w, -4); hurt.push(w);
           R.lines.push(`🩹 ${gFill(gText(c.type,'hurt'), {name:w.name})} (Health −${n})`);
           (pr.why = pr.why || []).push({t:'hurt on a guild contract', good:false});
-        } else (pr.why = pr.why || []).push({t:`on the ${C.label}`, good:true});
+        } else (pr.why = pr.why || []).push({t:`on the ${C.label}${sam ? ' with Sam' : ''}`, good:true});
         pr.guild = C.label;
       });
       if(sam){

@@ -7,6 +7,7 @@
     "  gold [min,max] = the base purse, perWeek [min,max] = day rate per member (ladies and Sam) for every week worked, both x cycleMul(gold.perCycle); paid on completion (a failed contract pays pay.failShare of the day rates only). merit, fame (adventurer/mercenary client draw), pop (popularity for each lady on completion), tags (which party scenes fit: camp, road, delve, fight, ball, bloom), item (samUps key Sam earns the first time; null for none), desc.",
     "power: a member's weekly progress = (weighted stat average) x energy factor x fx 'guild' (traits) x perks; Sam's = weighted Sam stats x his focus effort. safety: injury chance x (1 - power/safety.div), x fx 'guildSafe'.",
     "perks: Sam's guild perks (S.guildPerks, kept for good across cycles). need: {contract: id or [ids], sam: n} = Sam went on that many completed contracts of those kinds; or {rank: n}. fx is read by code (hasGuildPerk).",
+    "weekly: each lady per week on a contract: trust, statXP x stat weight, combat x tech weight; Sam: samXP. With Sam in the party it counts as time with Sam (w._samTime: lovers' neglect, missed-Sam mood) and each lady also gains samTrust (x Sam's Charm bonus) and samMood (x1.5 for Devoted lovers).",
     "scenes: chance per contract per week that its party has a scene (at most scenes.maxPerWeek overall). trust/lewd gates: duo (Sam + her), trio (Sam + two), yuri (two ladies, bloom tag), pair (two ladies, no Sam).",
     "outfit: the guild-only outfit (wardrobe.json → guild) the first clear of a contract puts in the house wardrobe. loot: chance on every completion that the client adds a shop outfit the house doesn't own yet.",
     "fits: {traits, titles, sam (Sam's guild perks)} that suit the contract. bonus: each lady with a fitting trait or active title adds fitEach (and Sam with a fitting perk), up to fitMax; finishing early adds earlyPerWeek per spare week (up to earlyMax); overshooting the work adds overPer x the overshoot share (up to overMax). A total bonus of at least `excellent` is an excellent job: merit x excellentMerit.",
@@ -29,7 +30,7 @@
   "fame": {"max":100,"draw":0.25,"base":6,"decay":0.5},
   "fail": {"merit":5,"fame":3,"trust":1},
   "done": {"trust":2,"mood":6,"statXP":1.2,"combat":2},
-  "weekly": {"trust":0.4,"statXP":0.6,"combat":1.2,"samXP":6},
+  "weekly": {"trust":0.4,"statXP":0.6,"combat":1.2,"samXP":6,"samTrust":0.8,"samMood":3},
   "scenes": {"chance":0.55,"maxPerWeek":1,"duoTrust":45,"trioTrust":60,"trioBond":10,"pairBond":0,"yuriLewd":35,"yuriBond":5},
   "contracts": {
     "caravan": {
