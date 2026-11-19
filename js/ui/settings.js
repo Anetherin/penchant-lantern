@@ -13,6 +13,7 @@ function viewSettings(){
       <label class="chk"><input type="checkbox" id="s_lib" ${SET.libraryInPool?'checked':''}> Library characters appear as candidates</label>
       <label class="chk"><input type="checkbox" id="s_autoRenew" ${SET.autoRenew!==false?'checked':''}> Auto-renew contracts at the going rate when a lady is sure to sign (unsure ones, or bonuses you can't afford, still ask)</label></div>
     <div class="row"><button class="primary" onclick="saveSettingsUI()">Save settings</button><span class="muted">Image plugin: ${getPlugin()?'<span class="good">connected</span>':'<span class="warn">not connected</span>'} · Image storage: ${DB?'<span class="good">ready</span>':'<span class="warn">unavailable</span>'}</span></div></section>
+  ${svcImgCard()}
   ${Object.keys(GUEST_PACKS).length ? `<section class="card"><h2>Visiting characters</h2><p class="muted">Crossover guests from <code>data/guests/</code> (one file per pack) pass through as candidates now and then. Switch off any packs you don't want.</p>
     <div class="row">${Object.entries(GUEST_PACKS).map(([k,P])=>`<label class="chk"><input type="checkbox" class="s_pack" data-pack="${esc(k)}" ${(SET.packsOff||{})[k]?'':'checked'}> ${esc(P.label||k)} <span class="muted">(${Object.keys(noMeta(P.characters)).length})</span></label>`).join('')}</div>
     <div class="row"><button class="primary" onclick="savePacksUI()">Save</button></div></section>` : ''}
@@ -36,6 +37,22 @@ function viewSettings(){
 function saveSettingsUI(){
   SET.style = $('#s_style').value; SET.negative = $('#s_neg').value; SET.resolution = $('#s_res').value;
   SET.autoPortrait = $('#s_auto').checked; SET.autoImg = $('#s_autoImg').checked; SET.imgHidden = $('#s_imgHidden').checked; SET.repImg = $('#s_repImg').checked; SET.libraryInPool = $('#s_lib').checked; SET.autoRenew = $('#s_autoRenew').checked; saveSettings(); toast('Settings saved.');
+}
+// Pictures by service (SET.svcImg, js/logic/imagegen.js): one choice per service and per kind of report entry.
+function svcImgCard(){
+  const keys = [...ACTS.slice().sort((a,b)=>(a.tier||1)-(b.tier||1)).map(a=>a.id), ...Object.keys(SVC_IMG_CATS)];
+  const cur = SET.svcImg || {}, n = Object.keys(cur).length;
+  const row = k => `<label class="muted" style="display:flex;gap:6px;align-items:center;justify-content:space-between">${esc(svcImgLabel(k))}${SVC_IMG_CATS[k]?' <span class="muted">(entry)</span>':''}<select class="s_svcimg" data-k="${esc(k)}">${Object.entries(SVC_IMG_MODES).map(([m,l])=>`<option value="${m}" ${m===(cur[k]||'')?'selected':''}>${l}</option>`).join('')}</select></label>`;
+  return `<section class="card"><h2>Pictures by service</h2>
+    <p class="muted">What a lady's weekly report page does with each kind of encounter when you open it. <b>Default</b> follows the report option above (show saved pictures), <b>Show saved</b> shows a saved picture but never generates, <b>Generate</b> makes one if none is saved, <b>Hide picture</b> keeps it behind 🖼, <b>Fold away</b> also folds the entry shut. You can change these from the picker beside each entry on the report too.</p>
+    <label class="chk"><input type="checkbox" id="s_svcImgAll" ${SET.svcImgAll?'checked':''}> Use these everywhere (private time, events, dates and other scenes), not just the report</label>
+    <div class="row">Set all: ${Object.entries(SVC_IMG_MODES).map(([m,l])=>`<button class="sm" onclick="document.querySelectorAll('.s_svcimg').forEach(s=>s.value='${m}')">${l}</button>`).join('')}</div>
+    <details${n?' open':''}><summary>${n ? `${n} custom setting${n>1?'s':''}` : 'All on default'}</summary><div class="grid2" style="margin-top:6px">${keys.map(row).join('')}</div></details>
+    <div class="row"><button class="primary" onclick="saveSvcImgUI()">Save picture settings</button></div></section>`;
+}
+function saveSvcImgUI(){
+  SET.svcImg = {}; document.querySelectorAll('.s_svcimg').forEach(el=>{ if(el.value) SET.svcImg[el.dataset.k] = el.value; });
+  SET.svcImgAll = $('#s_svcImgAll').checked; saveSettings(); toast('Picture settings saved.'); render();
 }
 function savePacksUI(){
   SET.packsOff = {}; document.querySelectorAll('.s_pack').forEach(el=>{ if(!el.checked) SET.packsOff[el.dataset.pack] = true; });

@@ -3,7 +3,8 @@
    WEEKLY REPORT MODAL
    ===================================================================== */
 // Weekly report: three levels. 'all' (every house: ledger, houses, notes, a table of ladies), 'h:<house id>' (that house's numbers and
-// each lady's card with her two highlights), 'w:<lady id>' (her card and every encounter she had; saved images show by default, SET.repImg).
+// each lady's card with her two highlights), 'w:<lady id>' (her card and every encounter she had; saved images show by default, SET.repImg;
+// per service SET.svcImg: show saved / generate / hide / fold away, set in Settings or the picker beside each group).
 // Wide screens get a side list of views; narrow ones a dropdown (css .rep-nav / .rep-sel).
 let REPV = null;
 // Ladies in the report follow the roster's order (Filters & sort: default rank, or the chosen sort); anyone who left goes last.
@@ -45,7 +46,7 @@ function repGo(v){
   const sel = document.querySelector('.rep-sel'); if(sel) sel.value = v;
   main.innerHTML = v.startsWith('h:') ? repHouse(R, v.slice(2)) : v.startsWith('w:') ? repLady(R, v.slice(2)) : repAll(R);
   main.scrollTop = 0; const m = $('#modal'); if(m && window.innerWidth <= 760) m.scrollTop = 0;
-  if(v.startsWith('w:') && SET.repImg !== false) repShowSaved(R, v.slice(2));
+  if(v.startsWith('w:')) repShowSaved(R, v.slice(2));
 }
 const repLink = (v, label) => `<a href="#" onclick="repGo('${esc(v)}');return false">${label}</a>`;
 function repWaitTxt(h, full){
@@ -145,9 +146,17 @@ function repGroups(R, p){
   return [...G.entries()].map(([k, list])=>{
     const first = list[0], fee = list.reduce((a,x)=>a+(x.h.fee||0),0), sats = list.filter(x=>x.h.sat!==undefined), avg = sats.length ? Math.round(sats.reduce((a,x)=>a+x.h.sat,0)/sats.length) : null;
     const img = here ? `<button class="sm" id="hl${first.i}_t" onclick="toggleImgBtn('hl${first.i}','${p.id}','${first.h.scene}')">🖼 Show image</button><div id="hl${first.i}" class="hlimg" data-ext="1"></div>` : '';
-    return `<div class="rep-grp" style="margin:8px 0;padding-top:6px;border-top:1px solid rgba(127,127,127,.25)"><div><b>${esc(title(k))}</b>${list.length>1?` ×${list.length}`:''}${fee?` · <span class="good">${fmt(fee)}</span>`:''}${avg!==null?` · avg sat. ${avg}`:''} ${img}</div>
-      ${list.map(({h})=>`<div class="hl">${esc(h.text)}${encLine(h)}</div>`).join('')}</div>`;
+    const sk = svcImgKey(first.h.scene), sm = sk ? svcImgMode(first.h.scene, 'report') : '';
+    const head = `<b>${esc(title(k))}</b>${list.length>1?` ×${list.length}`:''}${fee?` · <span class="good">${fmt(fee)}</span>`:''}${avg!==null?` · avg sat. ${avg}`:''}`;
+    const body = list.map(({h})=>`<div class="hl">${esc(h.text)}${encLine(h)}</div>`).join('');
+    const box = `<div class="rep-grp" style="margin:8px 0;padding-top:6px;border-top:1px solid rgba(127,127,127,.25)">`;
+    if(sm==='fold') return `${box}<details><summary class="muted">${head} ${repImgPick(sk, sm)}</summary>${img}${body}</details></div>`;
+    return `${box}<div>${head} ${img} ${sk ? repImgPick(sk, sm) : ''}</div>${body}</div>`;
   }).join('');
+}
+// Per-service picture setting, right on the lady's page (global: SET.svcImg, same as Settings → Pictures by service).
+function repImgPick(key, cur){
+  return `<select class="sm rep-imgpick" title="Pictures for every '${esc(svcImgLabel(key))}' entry on lady pages (Settings → Pictures by service)" onclick="event.stopPropagation()" onchange="setSvcImg('${esc(key)}', this.value);repGo(REPV.view)">${Object.entries(SVC_IMG_MODES).map(([m,l])=>`<option value="${m}" ${m===cur?'selected':''}>🖼 ${m?l:`Default (${SET.repImg!==false?'saved':'off'})`}</option>`).join('')}</select>`;
 }
 function repHouse(R, hid){
   const h = (R.houses||[]).find(x=>x.id===hid); if(!h) return repAll(R);
@@ -174,6 +183,9 @@ async function repShowSaved(R, wid){
     if(h.wid!==wid) continue;
     if((REPV && REPV.hide && REPV.hide[wid+'|'+h.scene]) || (S && S.repHide && S.repHide[wid+'|'+h.scene])) continue;
     const box = $('#hl'+i); if(!box || box.dataset.key) continue;
+    const sm = svcImgMode(h.scene, 'report');   // per service: show saved / generate / hide (default: SET.repImg)
+    if(sm==='hide' || sm==='fold' || (!sm && SET.repImg === false)) continue;
+    if(sm==='gen'){ box.dataset.hide = '0'; await showImg('hl'+i, wid, h.scene, null, 'auto'); if(!REPV || REPV.view!=='w:'+wid) return; continue; }
     const cloth = defaultCloth(w, h.scene);
     if(!(await imgGet(imgKey(w, h.scene, cloth))) && !(await imgGet(legacyKey(w, h.scene, cloth)))) continue;
     if(!REPV || REPV.view!=='w:'+wid || !box.isConnected) return;

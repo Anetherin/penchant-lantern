@@ -48,14 +48,28 @@ async function saveImage(key, url, w, scene){
 // mode: 'new' = regenerate now; 'auto' = generate if nothing's saved; 'manual' = only on request; 'local_only' = skip remote pull & auto-gen.
 // Left out, it follows Settings (SET.autoImg). The weekly report passes 'auto' only when its 🎨 button is pressed.
 // Any image can be hidden; hidden boxes show a "Show image" button and don't generate (SET.imgHidden = start hidden).
+// Pictures by service (Settings, or the picker on a lady's report page): SET.svcImg[key] = 'show' (saved ones only) | 'gen' (generate if
+// none is saved) | 'hide' (start hidden) | 'fold' (hidden, and folded away on the report); no entry = default. Keys are service ids
+// (actKey) or the report's other kinds (SVC_IMG_CATS). The report always uses them; elsewhere only with SET.svcImgAll.
+const SVC_IMG_CATS = {companion:'Company only', job:'At work', solo:'A night to herself', casual:'Other moments', spirit:'Reverse possession'};
+const SVC_IMG_MODES = {'':'Default', show:'Show saved', gen:'Generate', hide:'Hide picture', fold:'Fold away'};
+function svcImgKey(scene){
+  const a = sceneAct(scene); if(a) return actKey(a);
+  const b = sceneBase(scene);
+  return b==='solo' ? 'solo' : /^job_/.test(b) ? 'job' : b==='companion' ? 'companion' : b==='casual' ? 'casual' : /spirit_futa$/.test(b) ? 'spirit' : null;
+}
+function svcImgMode(scene, where){ if(where!=='report' && !SET.svcImgAll) return ''; const k = svcImgKey(scene); return (k && (SET.svcImg||{})[k]) || ''; }
+function setSvcImg(key, mode){ SET.svcImg = SET.svcImg || {}; if(mode) SET.svcImg[key] = mode; else delete SET.svcImg[key]; saveSettings(); }
+const svcImgLabel = k => SVC_IMG_CATS[k] || actLabel(k);
 async function showImg(boxId, id, scene, cloth, mode){
   const box = $('#'+boxId); const w = findAny(id); if(!box || !w) return;
   cloth = cloth || samSceneCloth(w, scene) || defaultCloth(w, scene);   // Sam scenes roll their dress level once, here; the buttons below keep it
   const skipRemote = mode === 'local_only';
-  if(mode===undefined) mode = SET.autoImg===false ? 'manual' : 'auto';
+  const sm = mode===undefined ? svcImgMode(scene) : '';   // a per-service setting overrides the global ones (SET.svcImgAll)
+  if(mode===undefined) mode = sm==='gen' ? 'auto' : sm==='show' ? 'manual' : SET.autoImg===false ? 'manual' : 'auto';
   if(mode==='manual' || mode==='local_only') mode = undefined;
   const A0 = `'${boxId}','${id}','${scene}','${cloth}'`;
-  if(box.dataset.hide ? box.dataset.hide==='1' : !!SET.imgHidden){
+  if(box.dataset.hide ? box.dataset.hide==='1' : (sm==='hide' || sm==='fold') ? true : (sm==='show' || sm==='gen') ? false : !!SET.imgHidden){
     box.dataset.key = '';
     if(box.dataset.ext){ box.innerHTML = ''; syncImgBtn(boxId); return; }   // an outside button (weekly report) does the showing
     box.innerHTML = `<div class="row imgshow"><button class="sm" onclick="toggleImg(${A0},false)">🖼 Show image</button></div>`; return;
