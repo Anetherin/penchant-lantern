@@ -95,5 +95,5 @@ function storyCard(h){
   const st = STORIES[h.id]; if(!st || !h.story) return '';
   const b = h.story.beat, done = b>=st.beats.length;
   const need = STORY_REP[b]||0;
-  return `<section class="card"><h2>📖 ${esc(st.title)} <span class="muted">(${Math.min(b,st.beats.length)}/${st.beats.length})</span></h2>${done?'<span class="good">Complete!</span>':`<div class="muted">${esc(st.hint[b])}</div>${reqLine('Next chapter needs', [need > 0 && [h.rep >= need, `house popularity ${need}${h.rep < need ? ` (now ${Math.round(h.rep)})` : ''}`], waitItem(Math.max(h.since||1, h.story.wk||0), storyGap(h))].filter(Boolean))}`}</section>`;
+  return `<section class="card"><h2>📖 ${esc(st.title)} <span class="muted">(${Math.min(b,st.beats.length)}/${st.beats.length})</span></h2>${done?'<span class="good">Complete!</span>':`<div class="muted">${esc(st.hint[b])}</div>${reqLine('Next chapter needs', [need > 0 && [h.rep >= need, `house popularity ${need}${h.rep < need ? ` (now ${Math.round(h.rep)})` : ''}`], waitItem(Math.max(h.since||1, h.story.wk||0), storyGap(h), ['house', h.id], h.rep >= need)].filter(Boolean))}`}</section>`;
 }
