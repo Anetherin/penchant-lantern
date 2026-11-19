@@ -202,17 +202,19 @@ function viewLog(){ return `<section class="card"><h2>Log</h2><div class="loglis
 const reqItem = (ok, text) => `<span class="${ok ? 'good' : 'warn'}">${ok ? '✓' : '✗'} ${text}</span>`;
 const reqLine = (label, items) => items.length ? `<div class="muted" style="font-size:12px">${label}: ${items.map(([ok, t])=>reqItem(ok, t)).join(' · ')} <span class="muted">(checked when the week ends)</span></div>` : '';
 const waitLeft = (since, gap) => Math.max(0, gap - (S.week - since));
-const waitItem = (since, gap) => { const n = waitLeft(since, gap); return [n === 0, n === 0 ? 'enough time has passed' : `${n} more week${n===1?'':'s'}`]; };
+// rush: [kind, id] adds the paid skip button (spending.js → rushBtn) once the debt is paid, when the wait is all that's left.
+const waitItem = (since, gap, rush, othersOk) => { const n = waitLeft(since, gap); return [n === 0, n === 0 ? 'enough time has passed' : `${n} more week${n===1?'':'s'}${rush && othersOk ? ' ' + rushBtn(rush[0], rush[1]) : ''}`]; };
 function arcReqs(w){
   const beats = ARCS[w.key]; if(!beats || (w.arc||0) >= beats.length || !S.workers.includes(w)) return '';
   const i = w.arc||0, A = BAL.arcs, out = [];
   const gate = houseGate(w);
   if(gate) out.push([false, 'her house story has to finish first']);
   out.push([w.trust >= A.need[i], `trust ${tShow(A.need[i])}${w.trust < A.need[i] ? ` (now ${tShow(w.trust)})` : ''}`]);
-  out.push(waitItem(w.arcWk||0, paidGap(A.gap[i])));
+  const wi = out.length; out.push(null);
   if(i===2) out.push([(w.dates||0) >= A.dates[2] || (w.privateCount||0) >= 1, `a date or private time with Sam`]);
   if(i===4) out.push([(w.dates||0) >= A.dates[4], `${A.dates[4]} date${A.dates[4]===1?'':'s'} with Sam (${w.dates||0} so far)`]);
   if(i===5) out.push([(w.privateCount||0) >= A.private[5], `private time with Sam`]);
+  out[wi] = waitItem(w.arcWk||0, paidGap(A.gap[i]), ['arc', w.id], out.every((x, j)=> j===wi || x[0]));
   return reqLine('Next chapter needs', out);
 }
 function afterReqs(w){
@@ -220,7 +222,7 @@ function afterReqs(w){
   const i = w.after||0, need = AFTER_NEEDS[Math.min(i, AFTER_NEEDS.length-1)], gap = paidGap(AFTER_GAPS[Math.min(i, AFTER_GAPS.length-1)]), out = [];
   if(!afterHomeDone(w) || houseGate(w)) out.push([false, 'her house story has to finish first']);
   out.push([w.trust >= need, `trust ${tShow(need)}${w.trust < need ? ` (now ${tShow(w.trust)})` : ''}`]);
-  out.push(waitItem(w.afterWk||0, gap));
+  out.push(waitItem(w.afterWk||0, gap, ['after', w.id], out.every(x=>x[0])));
   return reqLine('Next epilogue chapter needs', out);
 }
 // The least lewdness at which she'd go to her next stage with Sam (at her current trust), or null if lewdness alone won't do it.

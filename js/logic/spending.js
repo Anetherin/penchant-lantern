@@ -236,6 +236,37 @@ function buyLuxury(k, hid){
   addLog(`💎 ${L[k].label}${h ? ' at ' + h.name : ''} (−${fmt(cost)})`);
   save(); render(); toast(msg + ` −${fmt(cost)}`);
 }
+/* ---------- Hurry it along (balance.json → luxury.rush): pay to skip a story wait once the debt is paid ---------- */
+// Skips only the weeks-to-wait gate of a house chapter, romance arc or epilogue chapter (other conditions still apply;
+// the button only shows when the wait is all that's left). Price: cost x mul^(skips this cycle) x (1 + perCycle x (cycle-1)),
+// rounded to 100; the count resets with each rebirth (keyed by S.cycle). The chapter fires when the week ends.
+const rushUses = () => S.rush && S.rush.cycle === (S.cycle||1) ? S.rush.n : 0;
+function rushCost(){ const R = BAL.luxury.rush; return Math.round(R.cost * Math.pow(R.mul ?? 1.5, rushUses()) * cycleMul(R.perCycle) / 100) * 100; }
+function rushTarget(kind, id){
+  if(kind==='house'){ const h = H(id); return h && h.story && STORIES[h.id] ? {h, gap: storyGap(h), name: h.name} : null; }
+  const w = S.workers.find(x=>String(x.id)===String(id)); if(!w) return null;
+  if(kind==='arc') return ARCS[w.key] ? {w, gap: paidGap(BAL.arcs.gap[Math.min(w.arc||0, BAL.arcs.gap.length-1)]), name: w.name} : null;
+  if(kind==='after') return AFTER_STORIES[w.key] ? {w, gap: paidGap(AFTER_GAPS[Math.min(w.after||0, AFTER_GAPS.length-1)]), name: w.name} : null;
+  return null;
+}
+function rushWait(kind, id){
+  if(!luxOpen() || !(BAL.luxury||{}).rush) return toast('That opens up once the debt is paid off.');
+  const t = rushTarget(kind, id); if(!t) return;
+  const cost = rushCost(); if(S.gold < cost) return toast('Not enough gold.');
+  S.gold -= cost; S.rush = {cycle: S.cycle||1, n: rushUses() + 1};
+  const at = S.week - t.gap;
+  if(t.h){ t.h.story.wk = Math.min(t.h.story.wk||0, at); t.h.since = Math.min(t.h.since||1, at); }
+  else if(kind==='arc') t.w.arcWk = Math.min(t.w.arcWk||0, at);
+  else t.w.afterWk = Math.min(t.w.afterWk||0, at);
+  const what = kind==='house' ? `${t.name}'s next chapter` : kind==='arc' ? `${t.name}'s next romance chapter` : `${t.name}'s next epilogue chapter`;
+  addLog(`⏩ Hurried along ${what} (−${fmt(cost)})`);
+  save(); render(); toast(`Gold greases every wheel in Hollowmere. ${what} can happen when the week ends. −${fmt(cost)}`);
+}
+function rushBtn(kind, id){
+  if(!luxOpen() || !(BAL.luxury||{}).rush) return '';
+  const c = rushCost();
+  return `<button class="sm" ${S.gold < c ? 'disabled' : ''} onclick="rushWait('${kind}','${id}')">⏩ Hurry it along · ${fmt(c)}</button>`;
+}
 function luxBtn(k, h){
   const L = BAL.luxury, per = k==='spa' && h ? luxStaff(h).length : 1, c = luxCost(k, h, per);
   return `<button ${S.gold < c || !per ? 'disabled' : ''} onclick="buyLuxury('${k}'${h ? `,'${h.id}'` : ''})">💎 ${esc(L[k].label)} · ${fmt(c)}</button>`;
