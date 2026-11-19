@@ -220,9 +220,11 @@ function samPrivate(id, act, free){
   if(!canSam(w,act)) return toast(`${w.name} isn't comfortable with that yet.`);
   const recv = (actById(act)||{}).kind==='receive';   // receiving services: Sam does the work, and tires less
   if(free){ const c = samPrivCost(recv ? 8 : 15, true); if(S.sam.energy<c) return toast('Sam is too tired.'); S.sam.energy -= c; } else if(!useAP(samPrivCost(recv ? 15 : 30, false))) return;
-  const text = privateCore(w, act);
+  const l0 = w.lust, text = privateCore(w, act);
+  const again = wantsAgain(w, l0);   // still worked up, she may want another round (js/events/encounters.js)
   checkUnlocks(); save(); render(); closeModal();
-  showResult(`Private Time with ${w.name}`, text, w.id, 'samact:'+act, {kind:'private', act, scene:'samact:'+act, forSam:true});
+  showResult(`Private Time with ${w.name}`, text, w.id, 'samact:'+act, {kind:'private', act, scene:'samact:'+act, forSam:true},
+    again ? {label:'Continue', onclick:`EVQ.unshift(()=>evAgain(findW('${w.id}')));runQueue()`} : undefined);
 }
 // Shared effects of private time with Sam (used by the action, encounters, firsts and reckless nights). Returns the story text.
 // o.lead: the moment's own opening (encounters, firsts); it replaces the generic lines, and a short line for the service follows.
