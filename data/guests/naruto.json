@@ -593,7 +593,7 @@
             "sig_konan": {
               "label": "Rain cloak",
               "style": "Exotic",
-              "prompt": "a long black cloak lined with red clouds, open over a fitted white bodysuit",
+              "prompt": "a long black cloak lined with red clouds",
               "bonus": {"dancer":1.25,"adventurer":1.1}
             }
           },
