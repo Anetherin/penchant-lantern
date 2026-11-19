@@ -311,11 +311,12 @@ const lifeOf = (w, same, opts={}) => ({name:w.name, reborn: opts.reborn!==undefi
   wasLover: !!(w.wasLover || opts.wasLover), after: w.after || 0, reMet: opts.reMet!==undefined ? opts.reMet : (w.reMet||0), ngPerks: (w.ngPerks||[]).slice(),
   stats: Object.assign({}, w.stats), tech: Object.assign({}, w.tech),
   acts: Object.fromEntries(Object.entries(w.acts||{}).map(([k,a])=>[k, a.skill||0])), titles: (w.titles||[]).slice(), titleId: w.titleId || null,
-  romance: romanceOf(w)});
-// Non-partner named ladies (house residents, story joiners, guild ladies, guests) keep their story with Sam across lives:
-// arc chapter, firsts (intimacy stage), the counters her arc checks, Devoted, and an Oblivious her arc removed.
-// Partners don't: one who comes back without having been carried as a lover starts her romance over.
-const keepsRomance = w => !!(w && w.key && NAMED[w.key] && NAMED[w.key].role !== 'partner');
+  romance: opts.romance !== undefined ? opts.romance : romanceOf(w)});
+// Named ladies keep their story with Sam across lives: arc chapter, firsts (intimacy stage), the counters her arc checks,
+// Devoted, and an Oblivious her arc removed. Non-partners (house residents, story joiners, guild ladies, guests) always do;
+// partners only in NG+ (in NG++ they come back through the memory tiers and their romance starts over).
+// The first NG++ clears every saved romance once (with the house stories); NG++ lovers are remembered without one.
+const keepsRomance = (w, restoring) => !!(w && w.key && NAMED[w.key]) && (NAMED[w.key].role !== 'partner' || !(restoring && (S.ngppCycle||0) > 0));
 function romanceOf(w){
   if(!keepsRomance(w)) return null;
   const D = NAMED[w.key];
@@ -323,7 +324,7 @@ function romanceOf(w){
     noOblivious: (D.traits||[]).includes('Oblivious') && !has(w,'Oblivious')};
 }
 function restoreRomance(n, R){
-  if(!R || !keepsRomance(n)) return;
+  if(!R || !keepsRomance(n, true)) return;
   if(ARCS[n.key]) n.arc = Math.max(n.arc||0, R.arc||0);
   n.intim = Math.max(n.intim||0, R.intim||0);
   n.privateCount = Math.max(n.privateCount||0, R.privateCount||0); n.dates = Math.max(n.dates||0, R.dates||0);
@@ -385,7 +386,7 @@ function ngBegin(){
       const p = C.perks[w.id]; if(p) w.ngPerks = [...(w.ngPerks||[]), p];
       if(w.key && NAMED[w.key]){
         stashCloset(w);
-        rememberLife(w, false, S, {reborn:(w.reborn||0)+1, needsReset:true, wasLover:true});
+        rememberLife(w, false, S, {reborn:(w.reborn||0)+1, needsReset:true, wasLover:true, romance:null});
       } else {
         ngReset(w); ngRomanceReset(w); w.reborn = (w.reborn||0) + 1; w.wasLover = true;
         w.free = false; w.isPartner = false; w.locked = null; w.job = 'rest'; w.contract = 12; w.house = hk; w.seen = {}; w.wage = wageFor(w);
