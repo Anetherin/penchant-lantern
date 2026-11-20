@@ -118,7 +118,17 @@ function samPerksHTML(){
     + B.map(k=>`<div class="muted">${esc(NG_BOONS[k].label)}: ${esc(NG_BOONS[k].desc)}</div>`).join('')
     + CP.map(k=>`<div class="good">Challenge Perk (${esc(CYCLE_CHALLENGES[k].perk)}): ${esc(CYCLE_CHALLENGES[k].perkDesc)}</div>`).join('')
     + (CV ? `<div class="muted">Town event (${esc(CV.label)}): ${esc(CV.desc || '')}</div>` : '')
-    + (CH ? `<div class="muted">Active Challenge (${esc(CH.label)}): ${esc(CH.desc)}</div>` : '');
+    + (CH ? `<div class="muted">Active Challenge (${esc(CH.label)}): ${esc(CH.desc)}${challengeProgress()}</div>` : '');
+}
+// where the active challenge stands (S.chTrack, random.js → challengeTrack)
+function challengeProgress(){
+  const T = S.chTrack || {}, ch = CYCLE_CHALLENGES[S.challenge] || {}, bits = [];
+  if(ch.within){ const total = ((S.debt && S.debt.payments) || BAL.debt.payments) * BAL.debt.every, el = Math.max(0, (S.week||1) - ((S.debt && S.debt.start) || 0));
+    bits.push(`week ${el} of ${Math.floor(total * ch.within)} allowed`); }
+  if(S.challenge==='iron_ledger') bits.push(`average tidiness of the worst house ${T.weeks ? Math.round(T.tidy / T.weeks) : '—'} / ${ch.tidy ?? 75}, strikes ${(S.debt && S.debt.strikes)||0}`);
+  if(S.challenge==='small_troupe') bits.push(`most staff so far ${Math.max(T.maxStaff||0, S.workers.length)} / ${troupeCap()}`);
+  if(S.challenge==='lean_house' && S.flags && S.flags.boughtHouse) bits.push('failed: a house was bought');
+  return bits.length ? ` <b>(${bits.join(' · ')})</b>` : '';
 }
 function viewSam(){
   const s = S.sam;

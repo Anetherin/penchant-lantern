@@ -4,14 +4,15 @@
     "Each scene: label (shown in the image menu), comp (pose/framing), setting (backdrop), and optional flags: house (adds the house's own setting), sam (Sam is in it), pov (first person), client (who else is in it), snip (a snippets.json slot to append), towel (\"dressed\" means wrapped in a towel here).",
     "Add a new key to add a scene; it shows up in the scene picker on her sheet.",
     "rooms: client room by room tier (shabby, comfortable, lavish, opulent). samRoom: where Sam's private scenes happen. clientPhrase: who's with her in client scenes. duoPhrase: added to scenes with two ladies.",
-    "enc_* scenes are the intros of encounters (nap visits, late knocks, waiting lovers, the storeroom). bath_invite / bath_walkin_relaxed replace the mishap scenes once she and Sam are past that point. Story moments (arc beats, events, firsts) can bring their own image: {comp, setting, sam, pov} on the beat itself.",
+    "enc_* scenes are the intros of encounters (nap visits, late knocks, waiting lovers, the storeroom; enc_again: she wants another round). bath_invite / bath_walkin_relaxed replace the mishap scenes once she and Sam are past that point. Story moments (arc beats, events, firsts) can bring their own image: {comp, setting, sam, pov} on the beat itself.",
     "Scene flags: bath:true = a bathing scene (in the house bathhouse when the house has one, unless away:true; only wardrobe outfits with bath:true stay on, otherwise a towel, underwear or nothing). undress:\"partial\"|\"under\" = invitations and the like: she is shown at most that undressed, within her comfort with Sam. bathhouse = the setting used for bath scenes at a house with a Bathhouse.",
     "Story images can also set cloth (\"dressed\"|\"partial\"|\"under\"|\"nude\": the dress level the text describes, used as written) and wear (a short phrase for what she has on, replacing her outfit for that picture, e.g. \"a thin cotton nightgown\"; works with dressed or partial). robe:true = night-visit scenes: partial/under become a robe over her underwear (snippets.json clothing.robe_loose / robe_open). Scenes with sam:true and no house:true count as off duty: no job uniforms.",
     "people: head-count tags that open every intimate image prompt (client = her with a client, pov = with Sam, duo = two ladies with Sam, solo = alone). Intimate prompts lead with these and the pose, then her description, so the pose isn't lost at the end of a long prompt.",
     "demoRoom: where Sam's demonstrations happen (scene demo:<service>); people.demo opens their prompts. The man in them is Sam (SAM_DESC).",
     "orgy: Sam's group nights (scene orgy:<lady ids>). people.orgy opens the prompt ({n} = number of women), orgyPose = poses (one is picked), orgyRoom = setting. The first lady is described in full, the others briefly.",
     "people.pair_fem / pair_futa: head-count tags for two women together (scene pair:<service>:<fem|futa>:<other id>, the second woman described after the first; poses from services.json image.fem / image.futa).",
-    "sam_spirit_futa / spirit_futa: a spirit alone with the cock she borrowed by reverse possession (from Sam / from a client); the man isn't in the picture. Scenes can set people (a people key, e.g. solo_futa) to pick their head-count tags. futaPhrase: added to the futanari's description in two-women futa scenes (pair:...:futa / selffuta)."
+    "sam_spirit_futa / spirit_futa: a spirit alone with the cock she borrowed by reverse possession (from Sam / from a client); the man isn't in the picture. Scenes can set people (a people key, e.g. solo_futa) to pick their head-count tags. futaPhrase: added to the futanari's description in two-women futa scenes (pair:...:futa / selffuta).",
+    "againPhrase: added to the pose of a Sam scene with the context 'again' ('samact:<act>~~again', or 'again_<ctx>' to keep the first round's place, e.g. again_storeroom): the picture of another round, so it differs from the first."
   ],
   "scenes": {
     "portrait": {"label":"Portrait","comp":"upper body portrait, looking at viewer","setting":"warm softly blurred background"},
@@ -153,6 +154,15 @@
       "setting": "cramped storeroom, crates and barrels, a single swinging lantern",
       "undress": "partial"
     },
+    "enc_again": {
+      "label": "Encounter: She isn't done",
+      "pov": true,
+      "sam": true,
+      "tease": false,
+      "comp": "straddling the viewer in rumpled sheets right after sex, flushed and sweaty, hair messy and stuck to her skin, breathing hard, pulling him back in with a hungry look",
+      "setting": "his bedroom at night, tangled sheets, a single lamp",
+      "undress": "nude"
+    },
     "enc_jealous": {
       "label": "Encounter: Left out",
       "comp": "sitting alone on a window seat hugging her knees, looking away, hurt expression",
@@ -236,5 +246,6 @@
     "one riding the viewer while the others kiss and touch her and him, pov",
     "the women lying in a heap on the bed reaching for the viewer, pov"
   ],
-  "futaPhrase": "erect penis, futanari"
+  "futaPhrase": "erect penis, futanari",
+  "againPhrase": "second round, still flushed and sweaty from the first, messy hair, rumpled sheets"
 }

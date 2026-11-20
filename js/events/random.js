@@ -313,20 +313,36 @@ function evLanternSelf(w){
     {label:ET('lantern_self','ok.label',V), fx(){ return ''; }}
   ]};
 }
+// Goals are judged over the whole cycle where it matters: S.chTrack (challengeTrack, end of every week) keeps the
+// average tidiness and the largest staff count; within = share of the scheduled payment weeks the payoff must beat.
+// Challenges with only mods/adds (the cycle itself is harder) just need the debt paid.
 function challengeMet(id){
-  if(!id || !S || !CYCLE_CHALLENGES[id]) return false;
-  if(id==='lean_house') return !(S.flags && S.flags.boughtHouse);
-  if(id==='ahead_of_time'){
+  const ch = id && S && CYCLE_CHALLENGES[id]; if(!ch) return false;
+  const T = S.chTrack || {};
+  if(ch.within){
     const elapsed = Math.max(1, (S.week||1) - ((S.debt && S.debt.start) || 0));
     const total = ((S.debt && S.debt.payments) || BAL.debt.payments) * BAL.debt.every;
-    return elapsed <= Math.floor(total * 0.7);
+    if(elapsed > Math.floor(total * ch.within)) return false;
   }
-  if(id==='iron_ledger') return (S.debt.strikes||0) === 0 && (S.houses.reduce((a,h)=>a+(h.tidy||0), 0) / Math.max(1, S.houses.length)) >= 65;
-  if(id==='small_troupe') return S.workers.length <= 6;
+  if(id==='lean_house') return !(S.flags && S.flags.boughtHouse);
+  if(id==='ahead_of_time') return true;
+  if(id==='iron_ledger') return (S.debt.strikes||0) === 0 && (T.weeks ? T.tidy / T.weeks : 0) >= (ch.tidy ?? 75);
+  if(id==='small_troupe') return Math.max(T.maxStaff||0, S.workers.length) <= troupeCap();
   if(id==='faithful_flame') return goddessActive() && (G().love||0) >= 75;
   if(id==='full_vessel') return S.workers.some(w=>isVessel(w) && vesselStage(w) >= 3);
-  if(id==='starlight_debt') return true;
-  return false;
+  return !!(ch.mods || ch.adds || id==='starlight_debt');
+}
+// Tight Troupe's head count: base + per carried lover + per extra kept house, fixed when the cycle starts (ngBegin → S.chTrack.cap).
+function troupeCap(){
+  const ch = CYCLE_CHALLENGES.small_troupe || {}, T = S.chTrack || {};
+  return T.cap ?? (ch.base ?? 6);
+}
+function challengeTrack(){
+  if(!S || S.won || !S.challenge) return;
+  const T = S.chTrack = S.chTrack || {};
+  T.weeks = (T.weeks||0) + 1;
+  T.tidy = (T.tidy||0) + Math.min(...S.houses.map(h=>h.tidy||0));   // the worst house counts: every house has to stay tidy
+  T.maxStaff = Math.max(T.maxStaff||0, S.workers.length);
 }
 function checkEnd(){
   if(!S) return;

@@ -135,7 +135,7 @@ function migrate(s){
   }
   s.townEv = s.townEv || null;
   s.guildPerks = s.guildPerks || [];
-  s.v = 42; s.samUps = s.samUps || {}; s.houseWardrobe = s.houseWardrobe || []; s.houseUnder = s.houseUnder || []; s.home = s.home || (s.houses[0]||{}).id; s.samHome = s.samHome || s.home || (s.houses[0]||{}).id; s.cycle = s.cycle || 1; s.ngppCycle = s.ngppCycle || 0; s.ngppHouses = s.ngppHouses || {}; s.challenge = s.challenge || null; s.challengePerks = s.challengePerks || []; s.vessels = s.vessels || []; s.boons = s.boons || []; s.partners = s.partners || (s.partner ? [s.partner] : []);
+  s.v = 42; s.samUps = s.samUps || {}; s.houseWardrobe = s.houseWardrobe || []; s.houseUnder = s.houseUnder || []; s.home = s.home || (s.houses[0]||{}).id; s.samHome = s.samHome || s.home || (s.houses[0]||{}).id; s.cycle = s.cycle || 1; s.ngppCycle = s.ngppCycle || 0; s.ngppHouses = s.ngppHouses || {}; s.challenge = s.challenge || null; s.challengePerks = s.challengePerks || []; if(s.challenge && !s.chTrack){ const T = ((BAL.ngplus||{}).cycleChallenges||{}).small_troupe || {}; s.chTrack = {weeks:0, tidy:0, maxStaff:0, cap:(T.base ?? 6) + (T.perLover ?? 1) * (s.ngLovers||0) + (T.perHouse ?? 2) * Math.max(0, (s.houses||[]).length - 1)}; } s.vessels = s.vessels || []; s.boons = s.boons || []; s.partners = s.partners || (s.partner ? [s.partner] : []);
   s.regulars = s.regulars || []; s.bonds = s.bonds || {}; s.flags = s.flags || {};
   s.sam.lvl = s.sam.lvl || 1; s.sam.xp = s.sam.xp || 0;
   s.houses.forEach(h=>{ if(h.tidy===undefined) h.tidy = BAL.tidy.start; if(h.prestige===undefined) h.prestige = ((HOUSES[h.id]||{}).prestige ?? 50); h.since = h.since || 1; h.story = h.story || {beat:0,wk:0}; h.bonus = h.bonus || {}; if(h.spent===undefined) h.spent = 0;
@@ -173,9 +173,10 @@ function refreshCandidates(extra=0, quality=1){
   // drifters / visiting guests (data/guests.json) wander in now and then, stay a while, and can come back later
   const seen = S.flags.guestSeen = S.flags.guestSeen || {}, V = GUEST_VISITS;
   const drift = Object.keys(NAMED).filter(k=>NAMED[k].role==='drifter' && !isHired(k) && !(SET.packsOff||{})[NAMED[k].pack]
-    && S.week - (seen[k] ?? -999) >= V.stayWeeks + V.cooldownWeeks);
+    && S.week - (seen[k] ?? -999) >= V.stayWeeks + Math.round(V.cooldownWeeks / Math.max(1, guestDrawMul())));
   // dry spells shorten: each week without a guest adds visits.pity to the chance (at most visits.maxChance)
-  const dry = Math.max(0, S.week - (S.flags.lastGuest ?? S.week)), gch = Math.min(V.maxChance ?? 0.8, V.chance + (V.pity ?? 0) * dry);
+  // guestDrawMul (walks.js): higher once the debt is paid (visits.paidMul) and with the Wayfarer's Lantern (samUps fx.guestDraw)
+  const gm = guestDrawMul(), dry = Math.max(0, S.week - (S.flags.lastGuest ?? S.week)), gch = Math.min(Math.min(0.95, (V.maxChance ?? 0.8) * Math.max(1, gm)), (V.chance + (V.pity ?? 0) * dry) * gm);
   if(S.flags.lastGuest === undefined) S.flags.lastGuest = S.week;
   if(drift.length && Math.random()<gch){
     const k = pick(drift), c = makeNamed(k); c.keep = false; c.stay = V.stayWeeks; seen[k] = S.week; S.flags.lastGuest = S.week;

@@ -29,6 +29,7 @@ function endWeek(){
   S.workers.forEach(w=>{ const pr = R.per[w.id], cut = workerCut(w), cg = pr.earned>0 && cut>0 ? Math.round(pr.earned * cut) : 0; pr.cut = cg; if(cg){ w.purse = (w.purse||0) + cg; R.cuts += cg; } });
   S.gold += R.income - R.wages - R.upkeep - R.cuts;
   tutorWeek(R);
+  challengeTrack();   // random.js: cycle-long challenge goals (average tidiness, largest staff)
 
   const leaving = [], renew = [];
   S.workers.forEach(w=>{

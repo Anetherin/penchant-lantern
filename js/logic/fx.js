@@ -128,8 +128,17 @@ const CYCLE_CHALLENGES = (BAL.ngplus && BAL.ngplus.cycleChallenges) || {};
 // S.townEv = {id, start, end} runs for weeks start..end-1 and sets the multipliers in its list entry.
 const townEventList = () => (BAL.townEvents && BAL.townEvents.list) || {};
 const activeTownEv = () => { const e = typeof S!=='undefined' && S && S.townEv; return e && S.week >= e.start && S.week < e.end ? townEventList()[e.id] || null : null; };
-const townMul = (k, def=1) => { const v = activeTownEv(); return v && v[k]!==undefined ? v[k] : def; };
-const townAdd = (k, def=0) => { const v = activeTownEv(); return v && v[k]!==undefined ? v[k] : def; };
+// Cycle challenges (balance.json → ngplus.cycleChallenges) use the same keys: the active one's mods / adds apply all cycle,
+// and every earned perk's perkMods / perkAdds apply for good. So townMul/townAdd = town event x challenge x perks.
+function chMods(field){
+  const out = []; if(typeof S==='undefined' || !S) return out;
+  const cur = S.challenge && CYCLE_CHALLENGES[S.challenge]; if(cur && cur[field]) out.push(cur[field]);
+  const pf = field==='mods' ? 'perkMods' : 'perkAdds';
+  (S.challengePerks||[]).forEach(k=>{ const c = CYCLE_CHALLENGES[k]; if(c && c[pf]) out.push(c[pf]); });
+  return out;
+}
+const townMul = (k, def=1) => { const v = activeTownEv(); let m = v && v[k]!==undefined ? v[k] : def; chMods('mods').forEach(M=>{ if(M[k]!==undefined) m *= M[k]; }); return m; };
+const townAdd = (k, def=0) => { const v = activeTownEv(); let a = v && v[k]!==undefined ? v[k] : def; chMods('adds').forEach(M=>{ if(M[k]!==undefined) a += M[k]; }); return a; };
 const hasChallengePerk = id => !!(typeof S!=='undefined' && S && S.challengePerks && S.challengePerks.includes(id));
 
 function shrineRebornSum(h){

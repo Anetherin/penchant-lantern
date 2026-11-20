@@ -28,9 +28,10 @@ function encounterResult(w, act, intro, kind, situation, drain, ctx){
   const l0 = w.lust;
   const text = privateCore(w, act, {lead:intro});   // privateCore spends her lust
   samLog(`${kind==='reckless'?'Swept off by':'A visit from'} ${w.name}`);
-  if(wantsAgain(w, l0)){ const id = w.id; EVQ.unshift(()=>evAgain(findW(id))); }
+  const again = wantsAgain(w, l0);
+  if(again){ const id = w.id; EVQ.unshift(()=>evAgain(findW(id), ctx)); }
   const scene = 'samact:'+act + (ctx ? '~~'+ctx : '');
-  return {text, img:{wid:w.id, scene}, ai:{kind, wid:w.id, act, scene, forSam:true, situation: actSituation(w, act, situation)}};
+  return {text, again, img:{wid:w.id, scene}, ai:{kind, wid:w.id, act, scene, forSam:true, situation: actSituation(w, act, situation)}};
 }
 
 /* ---------- Sam rests ---------- */
@@ -51,7 +52,8 @@ function restAccept(id, act){
   const w = findW(id); if(!w) return;
   const out = encounterResult(w, act, `${w.name} curls up against you, hands already wandering. The nap does not happen. You do not mind.`, 'encounter', 'Sam was trying to take a nap; she slipped into his room uninvited.', 10);
   checkUnlocks(); save(); render();
-  showResult(`A Visit from ${w.name}`, out.text + '\n\n(Sam still got some rest: Energy +'+(samRecover(BAL.samHome.nap)-10)+' overall)', w.id, out.img.scene, out.ai);
+  showResult(`A Visit from ${w.name}`, out.text + '\n\n(Sam still got some rest: Energy +'+(samRecover(BAL.samHome.nap)-10)+' overall)', w.id, out.img.scene, out.ai,
+    out.again ? {label:'Continue', onclick:'runQueue()'} : undefined);   // she isn't done: the next round follows right away
 }
 function restDecline(id){
   const w = findW(id); if(!w) return;
@@ -137,13 +139,15 @@ function wantsAgain(w, l0){
   if(Math.max(w.lust, l0 ?? w.lust) < (w.race==='beastkin' ? LUST_EAGER : lustHigh(w) - 10)) return false;
   return Math.random() < (A[w.race] ?? A.other) + fxAdd(w,'encore');
 }
-function evAgain(w){
+// ctx: where the first round happened (encounterResult's ctx, e.g. storeroom); the next round is pictured there as
+// 'samact:<act>~~again[_<ctx>]' (scenes.json → againPhrase), and the moment she asks for more as enc_again.
+function evAgain(w, ctx){
   if(!w) return null; const A = BAL.again, act = releaseSamAct(w); if(!act) return null;
   const tired = S.sam.energy < A.samCost;
-  return {title:`${w.name} Isn't Done`, who:w.id, scene:'samact:'+act, text: flavor(w.race==='beastkin' ? 'again_beastkin' : 'again', w) || `${w.name} is still breathing hard, and she hasn't let go of you. "Again," she says. It isn't really a question.`,
+  return {title:`${w.name} Isn't Done`, who:w.id, scene:'enc_again', text: flavor(w.race==='beastkin' ? 'again_beastkin' : 'again', w) || `${w.name} is still breathing hard, and she hasn't let go of you. "Again," she says. It isn't really a question.`,
     choices:[
       {label: tired ? `Keep going (you're running on empty)` : `Keep going (−${A.samCost} energy)`, fx(){ w._again = S.week;
-        const out = encounterResult(w, act, `You are in no position to refuse, and you don't want to. The second time is slower, and she makes it last.`, 'encounter', 'Right after the first time, she wanted more, and he went another round.', A.samCost);
+        const out = encounterResult(w, act, `You are in no position to refuse, and you don't want to. The second time is slower, and she makes it last.`, 'encounter', 'Right after the first time, she wanted more, and he went another round.', A.samCost, 'again' + (ctx ? '_' + ctx : ''));
         moodAdd(w, A.mood); if(w.race==='beastkin') moodAdd(w, A.mood); return out; }},
       {label:'"I need a minute"', fx(){ w._again = S.week; refusalHit(w, 2); return `${w.name} huffs and curls up against you instead.` + refusalNote(w); }}]};
 }
