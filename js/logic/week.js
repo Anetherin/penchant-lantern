@@ -61,7 +61,8 @@ function updatePrestige(h, hr, W, R, info){
     op -= fp; note('hosts fluffing while rooms were full', -fp);
   }
   // restless ladies picking up clients off the books (reckless nights): unvetted clients and irregular service cost class; angels never go reckless
-  if(hr.reckAcc){ const rp = Math.min(PR.recklessCap ?? 2, hr.reckAcc * Math.abs(PR.reckless ?? 0.2)); op -= rp; note('restless ladies picking up clients off the books', -rp); }
+  const reckF = clamp((p0 - (PR.recklessFrom ?? 50)) / (100 - (PR.recklessFrom ?? 50)), 0, 1);   // only a classy house minds; a rowdy one doesn't notice
+  if(hr.reckAcc && reckF > 0){ const rp = Math.min(PR.recklessCap ?? 2, hr.reckAcc * Math.abs(PR.reckless ?? 0.2) * reckF); op -= rp; note('restless ladies picking up clients off the books', -rp); }
   if(hr.left){ const lp = Math.min(PR.leaveCap ?? 2, hr.left * Math.abs(PR.leave ?? 0.25)); op -= lp; note('clients walked out', -lp); }
   if(hr.crowdOver > 0){ const cp = Math.min(PR.crowdCap ?? 2, hr.crowdOver * Math.abs(PR.crowdPer ?? 0.15)); op -= cp; note('overcrowding', -cp); }
   const pFail = ((hr.pushy&&hr.pushy.samfail)||0) + ((hr.pushy&&hr.pushy.none)||0);
@@ -111,11 +112,17 @@ function nightIncidents(h, hr, X, W, R, o){
   else if(tally.bad && !o.secs.length) R.lines.push(`🛡️ ${h.name} has no security: ${tally.bad} incident${tally.bad>1?'s':''} this week went unhandled${hr.damage ? ` (${fmt(hr.damage)} in damages)` : ''}.`);
 }
 const gFillEv = (t, V) => t ? String(Array.isArray(t) ? pick(t) : t).replace(/\{(\w+)\}/g, (m,k)=>V[k] != null ? V[k] : m) : '';
-// lowF (0-1, simHouse): how far below Respectable the house sits; rowdy houses' quick visits fit nights.lowClassCap more clients a night.
-function nightCapOf(w, lowF){
-  const N = BAL.nights || {}, raw = (N.base ?? 1) + s100(statOf(w,'stamina')) / (N.perStamina ?? 40) + fxAdd(w,'nightCap') + (lowF || 0) * (N.lowClassCap ?? 0);
+// capM (classCapMul): rowdy houses are crowded with quick visits, exclusive ones see fewer clients for longer.
+function nightCapOf(w, capM){
+  const N = BAL.nights || {}, raw = ((N.base ?? 1) + s100(statOf(w,'stamina')) / (N.perStamina ?? 40) + fxAdd(w,'nightCap')) * (capM ?? 1);
   const c = Math.floor(raw) + (Math.random() < raw - Math.floor(raw) ? 1 : 0);
   return clamp(c, N.min ?? 1, N.max ?? 6);
+}
+// House capacity by class (balance.json → prestige.capacity): x low at class 0, x 1 at class mid, x high at class 100 (linear between).
+// Scales clients per escort a night, room sessions a week and the door's crowd cap: low class = crowded, high class = exclusive.
+function classCapMul(prestige){
+  const C = (BAL.prestige && BAL.prestige.capacity) || {}, lo = C.low ?? 1, hi = C.high ?? 1, mid = C.mid ?? 50, p = clamp(prestige, 0, 100);
+  return p <= mid ? lo + (1 - lo) * p / mid : 1 + (hi - 1) * (p - mid) / (100 - mid);
 }
 // Spread a weekly count over the nights: night k gets its even share, the remainder lands on random nights (deterministic per call order).
 function splitShare(total, nights, k){
@@ -141,9 +148,9 @@ function nightRest(h, W, R, hr){
 function simHouse(h, R){
   SIM_SEX = 'm';   // character.js: the sex of the client being handled (set per client below; 'm' outside the sim)
   const HD = HOUSES[h.id], W = S.workers.filter(w=>w.house===h.id && w.job!=='guild'), P = PRICES[h.price], J = BAL.jobs, BP = BAL.props, TY = BAL.tidy, PR = BAL.prestige || {};
-  const pr0 = housePrestige(h), lowF = clamp((50 - pr0)/50, 0, 1), highF = clamp((pr0 - 50)/50, 0, 1);
+  const pr0 = housePrestige(h), lowF = clamp((50 - pr0)/50, 0, 1), highF = clamp((pr0 - 50)/50, 0, 1), capM = classCapMul(pr0);
   const amenScore = houseAmenityScore(h, h.tidy ?? TY.start), expAmen = (pr0/100) * (PR.amenExpectMax ?? 3.2), expQ = (PR.qualBase ?? 0.25) + (pr0/100) * (PR.qualPerPrestige ?? 0.4);
-  const hr = {id:h.id, name:h.name, income:0, served:0, turned:0, sat:0, upkeep:0, short:0, roomsUsed:0, roomCap:h.rooms*BAL.rooms.perRoom, tidy0:h.tidy ?? TY.start, tidy:h.tidy ?? TY.start, tidyFx:null,
+  const hr = {id:h.id, name:h.name, income:0, served:0, turned:0, sat:0, upkeep:0, short:0, roomsUsed:0, roomCap:Math.round(h.rooms*BAL.rooms.perRoom*classCapMul(housePrestige(h))), perRoom:BAL.rooms.perRoom*classCapMul(housePrestige(h)), tidy0:h.tidy ?? TY.start, tidy:h.tidy ?? TY.start, tidyFx:null,
     prestige0:pr0, prestige:pr0, prestigeDelta:0, prestigeReasons:[], exhibActs:0, exhibFullActs:0, fullFluff:0, samplesPrestige:0, demonDrains:0,
     promoDraw:0, selfProps:0, accProps:0, stepIn:0, waited:0, left:0, stopped:0, guestsIn:0, crowdCap:0, crowdOver:0, hosted:{ent:0, warm:0, fin:0}, pushy:{total:0, talked:0, security:0, sam:0, samfail:0, none:0, samcall:0}, calls:[]};
   const byJob = j => W.filter(w=>w.job===j);
@@ -278,7 +285,7 @@ function simHouse(h, R){
       pr.props++; hr.selfProps++; R.selfProps++; noteClient(X, client);
       if(Math.random() < clamp(BP.selfAccept + appeal(w)/250 + cAdd(client,'selfAccept',X), 0.3, 0.97) && X.roomOK(w)){
         const A = actById(id), sp = spiritPossess(X, w, client, pr), ad = androidAdapt(w, client, pr);
-        const inc = Math.round(propInc(w, id, cls, client) * (sp ? sp.feeMult : 1) * (ad ? ad.feeMult : 1));
+        const inc = Math.round(propInc(w, id, cls, client) * (sp ? sp.feeMult : 1) * (ad ? ad.feeMult : 1) * (BP.reckFee ?? 1));   // she's the one asking, so she takes what he offers
         hr.income += inc; R.led.offduty += inc; pr.earned += inc; pr.acc++; hr.accProps++; if(!must && w.job!=='chapel') pr.accProp = (pr.accProp||0)+1; hr.reckAcc = (hr.reckAcc||0) + 1;
         if(w.job==='chapel' && actTierOf(A) >= 3 && !h.lanternChapel) hr.chapelScandal = (hr.chapelScandal||0) + 1;   // a restless keeper going all the way
         const rs = runService(X, w, A, {tech:clientTech(cls,null,client), reluct:false, inc, ecost:actCost(w,id), led:'offduty', client, cls, q:qualityOf(w,id)});
@@ -333,7 +340,7 @@ function simHouse(h, R){
   // promoters fill empty rooms: draw beyond what the escorts can take (nightly caps x nights x promoterCapUse) mostly fizzles (x promoterOverflow),
   // so a full house doesn't pay for walkouts it didn't need
   if(promoDraw > 0){
-    const capEst = escorts.reduce((a,w)=>a + nightCapOf(w, lowF), 0) * NIGHTS * (J.promoterCapUse ?? 0.7), spare = Math.max(0, capEst - dBase);
+    const capEst = escorts.reduce((a,w)=>a + nightCapOf(w, capM), 0) * NIGHTS * (J.promoterCapUse ?? 0.7), spare = Math.max(0, capEst - dBase);
     if(promoDraw > spare){ hr.promoWasted = Math.round((promoDraw - spare) * (1 - (J.promoterOverflow ?? 0.25))); promoDraw = spare + (promoDraw - spare) * (J.promoterOverflow ?? 0.25); }
   }
   hr.promoDraw = promoDraw;
@@ -345,7 +352,7 @@ function simHouse(h, R){
   const regs = demand ? regularsVisiting(h) : []; let bestNew = null;
   // hosts (clients.host): capacity per week = perWeek x (1 + service skill/100 x skillPer x 10) x outfit/job bonus x outputMult, minus propCost per accepted proposition
   const WT = BAL.clients.wait, CR = BAL.clients.crowd || {}, HS = BAL.clients.host, HOST_LIGHT = ['kiss','massage_give','manual_give','oral_give','breast_give'];
-  const crowdCap = Math.max(10, houseSize(h) * (CR.perSpace ?? 5)); hr.crowdCap = crowdCap;
+  const crowdCap = Math.max(10, Math.round(houseSize(h) * (CR.perSpace ?? 5) * capM)); hr.crowdCap = crowdCap;
   let nGuests = 0;   // tonight's guests; crowding is judged as if every night of the week were like tonight (crowdCap is a weekly figure)
   const crowdOverNow = () => Math.max(0, nGuests*NIGHTS - crowdCap);
   const crowdSatNow = () => { const ov = crowdOverNow(); return ov > 0 ? Math.min(CR.satCap ?? 45, ov * (CR.satPer ?? 0.45) + ov * ov * (CR.satQuad ?? 0.025)) : 0; };
@@ -578,7 +585,7 @@ function simHouse(h, R){
   for(let night=0; night<NIGHTS; night++){
     X.night = night; nGuests = 0; SIM_SEX = 'm';
     W.forEach(w=>{ const pr = R.per[w.id]; pr.nServed = 0; pr.nE0 = w.energy; pr.nightOver = pr.soloNight === night;
-      if(escorts.includes(w)){ capc[w.id] = pr.nightOver ? 0 : nightCapOf(w, lowF); pr.cap += capc[w.id]; } });
+      if(escorts.includes(w)){ capc[w.id] = pr.nightOver ? 0 : nightCapOf(w, capM); pr.cap += capc[w.id]; } });
     W.forEach(w=>{ const n = splitShare(propN[w.id]||0, NIGHTS, night); if(n) staffProps(w, n); });
     W.forEach(w=>{ const n = (reckN[w.id]||[]).filter(x=>x===night).length; if(n) reckless(w, n); });
     const nd = splitShare(demand, NIGHTS, night);   // regulars are part of the night's demand, as before
@@ -696,7 +703,7 @@ function simHouse(h, R){
   nightIncidents(h, hr, X, W, R, {secPow, visitors, NIGHTS, rowdyF, barN, secs});
   let up = HD.upkeep + (HD.ngppOnly ? 15 * Math.max(0, (h.ngppLevel||1) - 1) : 0) + 12*h.rooms + 6*(h.quarters||0) + h.tier*20 + (h.beds||0)*4*bedsFor(h) + (h.extraBeds||0)*3 + (h.annex?30:0) + (h.decor||0)*BAL.amenities.decor.upkeep + (h.up.bar ? (BAL.amenities.drinks.upkeep[h.drinks||0]||0) : 0) + Object.keys(h.up).filter(k=>h.up[k] && !HD.up[k]).reduce((a,k)=>a+(UPGRADES[k].upkeep||0), 0);
   if(atSam && S.samWeek.books) up = Math.round(up * (1 - booksCut() * (S.samWeek.booksEff ?? 1)));
-  up = Math.round(up * (1 - lowF * (BAL.prestige.lowUpkeep ?? 0)) * (BAL.houses.upkeepMult ?? 1) * ((h.bonus&&h.bonus.upkeep)||1) * (1 + h.rep/150) * townMul('upkeep', 1) * (hasChallengePerk('ahead_of_time') ? 0.9 : 1));
+  up = Math.round(up * (BAL.houses.upkeepMult ?? 1) * ((h.bonus&&h.bonus.upkeep)||1) * (1 + h.rep/150) * townMul('upkeep', 1) * (hasChallengePerk('ahead_of_time') ? 0.9 : 1));
   up += hr.damage || 0;   // nightIncidents: unhandled brawls, thefts and vandals
   hr.upkeep = up;
   if(h.bonus && h.bonus.charter){ hr.income += h.bonus.charter; R.led.bar += h.bonus.charter; }

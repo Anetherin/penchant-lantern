@@ -144,9 +144,13 @@ The most useful ones:
 
 ## 8. Current run list (round 5, 2026-11-20)
 
-On `balance/angels-amber-cheap-houses`, after `npm run check:data && npm run smoke` and `node tools/goddess-smoke.mjs`:
-1. `npm run lab -- incense-phases`, `incense-niches`, `incense-campaign` (amber: does it now beat `none` on `houseNet` anywhere, and stop losing in rich houses?).
-2. `npm run lab -- race-roles-phases` and `race-roles-houses` (angels vs humans/beastkin/dwarves in support jobs; demons' rest rates), plus `race-courtesan-phases` (demons should still lead).
-3. `npm run lab -- houses-all-cf`, `houses-plateau-cf`, `house-class-compete`, `house-class-plateau` (Tankard / low-class houses vs before; class drift from the reckless cost).
-4. `npm run check -- --only demons-top-courtesans` and the full `npm run check` if time allows.
-Skip the 0-lover NG+ variants. Compare against the numbers in the previous `temp-balance-results.md` (round-4 audit, commit 8b7ca10) and mark what moved.
+Branch `balance/angels-amber-cheap-houses` (PR #76). Compare against the previous `temp-balance-results.md` (round-4 audit, commit 8b7ca10, branch `test/balance-audit-2026-11-20`) and mark what moved. Changes being measured: house capacity by class (x1.5 at class 0 → x0.75 at 100), restless ladies' off-the-books clients at half fee and costing class above 50 (angels immune), amber incense buff, drifter guests reborn.
+
+0. `npm run check:data && npm run smoke && node tools/goddess-smoke.mjs`.
+1. **Houses & class (main question):** `npm run lab -- houses-all-cf`, `houses-plateau-cf`, `house-class-compete`, `house-class-plateau`, `interactions`. Report weeksToWin / winRate / houseNet / prestige / served / turned per house vs before. Targets: cycle-1 payoff still roughly even across houses (27–35 weeks; Onsen and Hollow were the slow outliers), the plateau gap between Tankard and Castle clearly smaller than 2,815 vs 14,083, and whether `upscale` still beats `exhib-volume` in every house.
+2. **Races:** `npm run lab -- race-roles-phases`, `race-roles-houses`, `race-courtesan-phases`, `race-bedless-compare`. Do plain angels now beat humans/beastkin/dwarves in support jobs? Did demons keep first place as courtesans, and how did their rest % move?
+3. **Incense:** `npm run lab -- incense-phases`, `incense-niches`, `incense-campaign`. Does amber beat `none` on `houseNet` anywhere now (straw-cot niches first) and stop losing in Veil/Castle/Conservatory?
+4. **NG+ spot check:** `npm run lab -- ngplus-houses-scaling` (capacity changes NG+ income). Skip the 0-lover variants of `ngplus-lovers-stacking`.
+5. **Intent suite:** full `npm run check` (it wasn't run last time). If short on time, at least `--only demons-top-courtesans` plus the house and NG+ rows.
+
+Use `--conc` at most cores − 1; the multi-cycle NG+ specs timed out at `--conc 10` last time, so run those at `--conc 3`. Report format as in section 6, written to `temp-balance-results.md` on a new branch `test/balance-round-5` cut from `balance/angels-amber-cheap-houses`.
