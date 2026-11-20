@@ -179,7 +179,7 @@ function refreshCandidates(extra=0, quality=1){
   const gm = guestDrawMul(), dry = Math.max(0, S.week - (S.flags.lastGuest ?? S.week)), gch = Math.min(Math.min(0.95, (V.maxChance ?? 0.8) * Math.max(1, gm)), (V.chance + (V.pity ?? 0) * dry) * gm);
   if(S.flags.lastGuest === undefined) S.flags.lastGuest = S.week;
   if(drift.length && Math.random()<gch){
-    const k = pick(drift), c = makeNamed(k); c.keep = false; c.stay = V.stayWeeks; seen[k] = S.week; S.flags.lastGuest = S.week;
+    const k = pick(drift), c = rebirthNamed(makeNamed(k));   // a guest from a past life comes back reborn (walks.js does the same) c.keep = false; c.stay = V.stayWeeks; seen[k] = S.week; S.flags.lastGuest = S.week;
     c.signing = signingFor(c); S.candidates.push(c); addLog(`${c.name} is passing through Hollowmere and looking for work. (Candidates)`);
   }
 }

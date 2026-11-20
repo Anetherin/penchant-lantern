@@ -1,0 +1,20 @@
+{
+  "desc": "Post-debt plateau (20 weeks): can built-up low-class houses compete with high-class houses via volume, propositions, and exhibitionism?",
+  "scenario": "plateau",
+  "weeks": 20,
+  "runs": 12,
+  "by": {
+    "start.house": ["tankard", "veil", "lantern", "castle"]
+  },
+  "phasePolicy": { "syncMenu": true, "guild": false },
+  "variants": [
+    { "name": "base" },
+    { "name": "cheap-volume", "phasePolicy": { "price": 0, "samples": true }, "mutate": { "upgrades": ["bar"], "drinks": 2, "syncMenu": true } },
+    { "name": "exhib-2", "mutate": { "addTrait": "Exhibitionist", "traitWho": 2, "minLewd": 50, "syncMenu": true } },
+    { "name": "exhib-volume", "phasePolicy": { "price": 1, "samples": true }, "mutate": { "addTrait": "Exhibitionist", "traitWho": 2, "minLewd": 50, "upgrades": ["bar"], "drinks": 2, "incense": "aphro", "syncMenu": true } },
+    { "name": "upscale", "phasePolicy": { "price": 3 }, "mutate": { "upgrades": ["bar", "garden"], "decor": 3, "drinks": 2, "incense": "velvet", "syncMenu": true } }
+  ],
+  "columns": ["houseNet", "total", "net", "houseInc", "upkeep", "perLady", "served", "turned", "props", "exhibActs", "crowdOver", "sat", "prestige", "repGain", "trouble"],
+  "delta": ["houseNet", "net", "served", "props", "exhibActs", "prestige", "sat"],
+  "breakdown": []
+}

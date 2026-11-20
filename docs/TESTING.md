@@ -142,11 +142,11 @@ The most useful ones:
 | `pageErrors:` in the progress line | a game script threw during play: that's a bug in the game or the bot, worth reporting with the message |
 | very slow | lower `--runs` while exploring, raise `--conc` toward your core count; `--reuse` skips experiments already run |
 
-## 8. Current run list (round 4e, 2026-11-17)
+## 8. Current run list (round 5, 2026-11-20)
 
-On `feat/balance-tuning`, after `npm run check:data && npm run smoke` and `node tools/goddess-smoke.mjs`:
-1. `npm run lab -- partners` and `npm run lab -- nerys` (partner balance; Adelheid now starts at Iron guild rank).
-2. `npm run check` (full size). `ngplus-cycles` is the slowest part (~26 of 45 min last time); if time is short, run it last with `--runs 6`.
-3. Extra experiments, full tables: `npm run lab -- guild`, `sam-focus`, `houses-all`, `ngpp`, `partners`, `walk-partners`, `promoter-value` is covered by the check.
-Use `--conc` at most (cores − 1); the default already is. If the machine struggles, `--conc 1` and `--runs 8` still give a usable read.
-Expected shifts from round 4, so don't read them as regressions: the bot now walks once a week for partners (cycle 1 and NG+ get faster), the guild bot keeps top earners and sole support staff home, `perLady` now subtracts android charging and counts rest weeks, the promoter check now actually moves a lady; cycle-1 debt is x1.2 (aim: ~28-32 weeks with walk partners).
+On `balance/angels-amber-cheap-houses`, after `npm run check:data && npm run smoke` and `node tools/goddess-smoke.mjs`:
+1. `npm run lab -- incense-phases`, `incense-niches`, `incense-campaign` (amber: does it now beat `none` on `houseNet` anywhere, and stop losing in rich houses?).
+2. `npm run lab -- race-roles-phases` and `race-roles-houses` (angels vs humans/beastkin/dwarves in support jobs; demons' rest rates), plus `race-courtesan-phases` (demons should still lead).
+3. `npm run lab -- houses-all-cf`, `houses-plateau-cf`, `house-class-compete`, `house-class-plateau` (Tankard / low-class houses vs before; class drift from the reckless cost).
+4. `npm run check -- --only demons-top-courtesans` and the full `npm run check` if time allows.
+Skip the 0-lover NG+ variants. Compare against the numbers in the previous `temp-balance-results.md` (round-4 audit, commit 8b7ca10) and mark what moved.

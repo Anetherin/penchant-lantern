@@ -1,0 +1,26 @@
+{
+  "desc": "Bedless & rare races (Spirit, Android, Demon, Angel, Lantern Angel vs Human) with and without the bedless capacity bonus (fixedStaff true vs false) across Lantern, Atelier (-40% android charge), and Hollow (built-in Tether).",
+  "scenario": "mid",
+  "weeks": 12,
+  "runs": 12,
+  "baseline": false,
+  "phases": { "midStaff": 7 },
+  "by": {
+    "start.house": ["lantern", "atelier", "hollow"],
+    "scenario": ["mid", "late"],
+    "phasePolicy.fixedStaff": [true, false]
+  },
+  "phasePolicy": { "syncMenu": true, "guild": false },
+  "mutate": { "otherRace": "human", "raceWho": 2, "job": "courtesan", "jobWho": 2, "force": true, "minTrust": 45, "keepNonLantern": true, "syncMenu": true },
+  "variants": [
+    { "name": "base", "mutate": { "race": "human" } },
+    { "name": "demon", "mutate": { "race": "demon" } },
+    { "name": "angel", "mutate": { "race": "angel" } },
+    { "name": "angel/lantern", "mutate": { "race": "angel/lantern" } },
+    { "name": "spirit", "mutate": { "race": "spirit" } },
+    { "name": "android", "mutate": { "race": "android" } }
+  ],
+  "columns": ["houseNet", "total", "net", "testedNet", "testedServed", "testedRest", "testedRech", "recharge", "staff", "served", "sat"],
+  "delta": ["houseNet", "net", "testedNet", "staff", "recharge"],
+  "breakdown": []
+}

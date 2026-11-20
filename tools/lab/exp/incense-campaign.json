@@ -1,0 +1,21 @@
+{
+  "desc": "All 5 incense blends over a full Cycle-1 campaign across 4 houses (Tankard, Veil, Lantern, Castle).",
+  "scenario": "campaign",
+  "weeks": 104,
+  "runs": 12,
+  "by": {
+    "start.house": ["tankard", "veil", "lantern", "castle"]
+  },
+  "policy": { "syncMenu": true },
+  "variants": [
+    { "name": "base", "mutate": { "noIncense": true, "syncMenu": true } },
+    { "name": "calm", "mutate": { "incense": "calm", "syncMenu": true } },
+    { "name": "aphro", "mutate": { "incense": "aphro", "syncMenu": true } },
+    { "name": "focus", "mutate": { "incense": "focus", "syncMenu": true } },
+    { "name": "velvet", "mutate": { "incense": "velvet", "syncMenu": true } },
+    { "name": "amber", "mutate": { "incense": "amber", "syncMenu": true } }
+  ],
+  "columns": ["weeksToWin", "winRate", "cfHE", "cfHM", "cfHL", "houseNet", "guild", "worth20", "rep", "sat", "trouble", "restPct", "statEnd", "skillEnd", "over"],
+  "delta": ["weeksToWin", "cfHE", "cfHM", "cfHL", "houseNet", "statEnd", "skillEnd", "trouble"],
+  "breakdown": []
+}

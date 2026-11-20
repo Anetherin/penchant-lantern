@@ -1,0 +1,20 @@
+{
+  "desc": "NG+ kept houses scaling across Cycles 2-4: home only (no new), home+new (2 houses), 1x prior+new (2/3/4), and 2x prior+new (3/5/7) across Tankard, Lantern, and Castle.",
+  "scenario": "ngplus",
+  "cycles": 3,
+  "runs": 16,
+  "baseline": false,
+  "by": {
+    "start.house": ["tankard", "lantern", "castle"]
+  },
+  "ng": { "past": "none", "boon": "ap", "loversPerCycle": 2 },
+  "variants": [
+    { "name": "base", "ng": { "keepHouses": "home", "house": "best" } },
+    { "name": "home only (no new)", "ng": { "keepHouses": "home", "house": "none" } },
+    { "name": "1x kept + new", "ng": { "keepHouses": "1x", "house": "best" } },
+    { "name": "2x kept + new", "ng": { "keepHouses": "2x", "house": "best" } }
+  ],
+  "columns": ["c1won", "c2houses", "c3houses", "c4houses", "c2weeks", "c3weeks", "c4weeks", "c2over", "c3over", "c4over", "c2debt", "c3debt", "c4debt", "c2cfHE", "c2cfHM", "c2cfHL", "c3cfHE", "c3cfHM", "c3cfHL", "c4cfHE", "c4cfHM", "c4cfHL", "c2hNet", "c3hNet", "c4hNet", "c2guild", "c3guild", "c4guild"],
+  "delta": ["c2weeks", "c3weeks", "c4weeks", "c2cfHE", "c3cfHE", "c4cfHE", "c2hNet", "c3hNet", "c4hNet", "c4over"],
+  "breakdown": []
+}
