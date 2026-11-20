@@ -20,7 +20,7 @@ function updatePrestige(h, hr, W, R, info){
   const U = h.up || {};
   let target = (HD.prestige ?? 50) + ((h.tier||0) - 1)*(PR.tierPer ?? 5) + ((h.beds||0) - 1)*(PR.bedPer ?? 3)
     + (h.decor||0)*(PR.decorPer ?? 3.5) + (U.bar ? ((h.drinks||0) - 0.5)*(PR.drinksPer ?? 3) : 0) + (h.price - 1)*(PR.pricePer ?? 4)
-    + (U.garden?3:0) + (U.bath?2:0) + (U.classroom?3:0) + (U.stage?2:0) + (U.guard?2:0) + (U.suite?2:0) + (info.angelChapel?4:0);
+    + (U.garden?3:0) + (U.bath?2:0) + (U.classroom?3:0) + (U.stage?2:0) + (U.guard?2:0) + (U.suite?2:0) + (info.chapelScandal ? -(PR.chapelClass ?? 4) : info.angelChapel ? (PR.chapelClass ?? 4) : 0);   // a chapel scandal reverses what the chapel adds
   target += hr.tidy0 >= TY.high ? (PR.tidyHigh ?? 4) : hr.tidy0 < TY.bad ? (PR.tidyBad ?? -10) : hr.tidy0 < TY.low ? (PR.tidyLow ?? -4) : 0;
   let op = 0;
   // Every working courtesan having a dedicated attendant elevates the house's tone
@@ -51,6 +51,10 @@ function updatePrestige(h, hr, W, R, info){
   if(hr.samplesPrestige){
     const sp = clamp(hr.samplesPrestige, -(PR.samplesCap ?? 4), PR.samplesGainCap ?? 2.2);
     op += sp; note(sp > 0 ? 'classy street samples above house standing' : 'cheap street samples below house class', sp);
+  }
+  if(info.chapelScandal){
+    const cs = Math.min(PR.chapelScandalCap ?? 3, info.chapelScandal * Math.abs(PR.chapelScandal ?? 0.6));
+    op -= cs; note('chapel keepers going all the way', -cs);
   }
   if(hr.fullFluff){
     const fp = Math.min(PR.fullFluffCap ?? 3.5, hr.fullFluff * Math.abs(PR.fullFluff ?? 0.5));
@@ -140,6 +144,10 @@ function simHouse(h, R){
     promoDraw:0, selfProps:0, accProps:0, stepIn:0, waited:0, left:0, stopped:0, guestsIn:0, crowdCap:0, crowdOver:0, hosted:{ent:0, warm:0, fin:0}, pushy:{total:0, talked:0, security:0, sam:0, samfail:0, none:0, samcall:0}, calls:[]};
   const byJob = j => W.filter(w=>w.job===j);
   const jb = (w, j) => fxSub(w, 'jobBonus', j);
+  // The chapel (balance.json → amenities.chapel): a Lantern Angel keeping it lets every keeper there give full services without
+  // scandal, raises the whole house's lust (h.lanternChapel → lustProfile) and is the only chapel a demon can serve in.
+  h.lanternChapel = !!(h.up.chapel && byJob('chapel').some(isLanternAngel));
+  const chapelIdle = w => w.job==='chapel' && w.race==='demon' && !h.lanternChapel;
   // the madame matches clients to the lady whose menu fits; Sam's Office focus does it too (most of her effect alone, a little on top of hers)
   const FO = (BAL.focus||{}).office || {}, offE = focusOn('office', h), samMad = offE ? samMadF() * offE : 0;
   const mad = byJob('madame')[0], mgmt = !!mad || samMad > 0;
@@ -199,7 +207,7 @@ function simHouse(h, R){
   // --- propositions to staff (courtesans are asked through the main flow below)
   const propN = {};   // weekly offers per lady, spread over the nights
   W.forEach(w=>{
-    const j = w.job, rate = PROP_RATE[j]; if(!rate) return;
+    const j = w.job, rate = PROP_RATE[j]; if(!rate || chapelIdle(w)) return;
     const pr = R.per[w.id], must = !!JOBS[j].must;
     propN[w.id] = Math.round(v0 * rate * barBoost * housePerkVal(h, 'propMult', 1) * (1 + lowF * (PR.lowPropRate ?? 0.45)) * fxMul(w,'propRate') * incenseMul(w,'prop') * (0.4 + appeal(w)/100) * ob(w,'propose') * rnd(0.6,1.4));
   });
@@ -217,7 +225,16 @@ function simHouse(h, R){
         if(pr.nightOver) break;   // her night ended: tonight's other offers never reach her
       } else if(!X.roomOK(w)){ hr.turned++; hr.short++; pr.noRoom = (pr.noRoom||0)+1; e.note = 'noroom'; thirstyMiss(client); }
       else if(j==='chapel'){
-        const A = actById(dec.act), reluct = clientStance(w,dec.act)==='ask', C = BAL.amenities.chapel, rm = w.race==='angel' ? 1 : (C.nonAngelMult ?? 0.5), cm = housePerkVal(h, 'chapelMult', 1);
+        // Keepers offer, they aren't propositioned: only what she's willing to give, and nothing penetrative unless a Lantern
+        // Angel keeps the chapel. A restless keeper may go further anyway, and the scandal reverses the chapel's class (chapelScandal).
+        const C = BAL.amenities.chapel, full = h.lanternChapel, full3 = id => actTierOf(actById(id)||{}) >= 3;
+        if(full3(dec.act) && !full){
+          if(restless(w)) hr.chapelScandal = (hr.chapelScandal||0) + 1;
+          else { const alt = getActs().filter(a=>actTierOf(a) < 3 && clientStance(w,a.id)!=='no' && energyOK(w, a.id, 0.2)).sort((a,b)=>b.th-a.th)[0];
+            if(!alt){ pr.enc.push(encFx(w, pr, s0, e)); continue; }
+            dec.act = alt.id; dec.kind = 'alt'; }
+        }
+        const A = actById(dec.act), reluct = clientStance(w,dec.act)==='ask', rm = w.race==='angel' ? 1 : (C.nonAngelMult ?? 0.5), cm = housePerkVal(h, 'chapelMult', 1);
         const coin = Math.round((HD.chapelPropCoin || 0) * rm * cm);
         pr.acc++; hr.accProps++; pr.chapelProps = (pr.chapelProps||0)+1; repAdd(h, (C.propRep ?? 0.45) * rm * cm);
         if(coin){ hr.income += coin; R.led.chapel += coin; pr.earned += coin; hr.chapel = (hr.chapel||0) + coin; }
@@ -256,6 +273,7 @@ function simHouse(h, R){
         const A = actById(id), sp = spiritPossess(X, w, client, pr), ad = androidAdapt(w, client, pr);
         const inc = Math.round(propInc(w, id, cls, client) * (sp ? sp.feeMult : 1) * (ad ? ad.feeMult : 1));
         hr.income += inc; R.led.offduty += inc; pr.earned += inc; pr.acc++; hr.accProps++; if(!must && w.job!=='chapel') pr.accProp = (pr.accProp||0)+1;
+        if(w.job==='chapel' && actTierOf(A) >= 3 && !h.lanternChapel) hr.chapelScandal = (hr.chapelScandal||0) + 1;   // a restless keeper going all the way
         const rs = runService(X, w, A, {tech:clientTech(cls,null,client), reluct:false, inc, ecost:actCost(w,id), led:'offduty', client, cls, q:qualityOf(w,id)});
         e.act = id; e.outcome = 'yes'; e.note = rs.note; e.expr = rs.ser.expr; e.encore = rs.encore; e.encoreKind = rs.encoreKind; e.roundDeclined = rs.roundDeclined; e.more = rs.more; e.possess = sp ? sp.react : null; e.adapt = ad ? ad.adapt : null; e.spiritFuta = !!sp; e.lantern = w.race==='angel' && w.sub==='lantern' && Math.random()<0.45; e.heat = (w.race==='beastkin' && restless(w));
         e.ctx = w.job==='bath' ? 'bath' : w.job==='chapel' ? 'chapel' : has(w,'Exhibitionist') ? 'exhib' : 'reckless';
@@ -621,7 +639,8 @@ function simHouse(h, R){
       }
     }
     if(j==='maid'){ const add = (TY.maidBase + s100(w.tech.service)*TY.maidPerSkill + s100(statOf(w,'agility'))*TY.maidPerAgil) * ob(w,'maid') * jb(w,'maid') * fxMul(w,'tidy') * om; maidAdd += add; pr.tidied = add; grow(w,'service',1.5); statXP(w,'stamina',1.5); statXP(w,'agility',0.3); }
-    if(j==='chapel'){   // tends visitors; willing propositions earn extra reputation and chapel donations instead of service fees (balance.json → amenities.chapel)
+    if(j==='chapel' && chapelIdle(w)){ pr.why.push({t:'a demon can only keep a chapel a Lantern Angel keeps', good:false}); }
+    else if(j==='chapel'){   // tends visitors; what she offers earns extra reputation and chapel donations instead of service fees (balance.json → amenities.chapel)
       const C = BAL.amenities.chapel, cm = housePerkVal(h, 'chapelMult', 1), rm = w.race==='angel' ? 1 : (C.nonAngelMult ?? 0.5), propBoost = 1 + Math.min(C.propDonMax ?? 1, (pr.chapelProps||0) * (C.propDonBonus ?? 0.25)), cb = jb(w,'chapel') * ob(w,'chapel') * rm, don = Math.round(visitors * chapelClassMul(X, C) * C.donation * (0.5 + s100(statOf(w,'charm'))/100) * refMul(w, h, 'chapel') * cb * propBoost * cm * om);
       hr.income += don; R.led.chapel += don; pr.earned += don; pr.tended = Math.round(visitors * chapelClassMul(X, C)); hr.chapel = (hr.chapel||0) + don;
       repAdd(h, C.rep * cb * cm); w.popularity = clamp(w.popularity + C.pop * rm * housePerkVal(h, 'popGain', 1)); moodAdd(w, C.mood); gainTrust(w, C.trust); grow(w,'service',1); statXP(w,'charm',1); statXP(w,'refinement',0.5 + 0.5*refK(h)); pr.why.push({t:'tended the chapel', good:true});
@@ -655,6 +674,7 @@ function simHouse(h, R){
     R.lines.push(`🕯️ Visitors to ${h.name}'s chapel were disappointed not to see an angel in the chapel or on the floor.`);
   }
   if(h.up.chapel && byJob('chapel').some(x=>x.race==='angel')) hr.chapelMood = BAL.amenities.chapel.angelHouseMood ?? 0;
+  if(hr.chapelScandal) R.lines.push(`🕯️ Word got out that ${h.name}'s chapel offers more than prayer (${hr.chapelScandal}×): the house's class took the hit.`);
   lewdInfluence(h, W, R, hr, ownAttMap);   // lewdness rubs off on madames, attendants and the floor (staff.js)
   spiritPairShift(h, W, R);
   // --- tidiness: room services and visitors make a mess, maids clean it up
@@ -696,7 +716,7 @@ function simHouse(h, R){
     courts: byJob('courtesan').length,
     ownAtts: ownAttMap.size,
     leaders: [mad, ...X.hosts.map(x=>x.w)].filter(Boolean),
-    angelChapel: !!(h.up.chapel && byJob('chapel').some(x=>x.race==='angel'))
+    angelChapel: !!(h.up.chapel && byJob('chapel').some(x=>x.race==='angel')), chapelScandal: hr.chapelScandal || 0
   });
   return hr;
 }

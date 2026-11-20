@@ -591,11 +591,12 @@ function tooTiredFor(w, act){
 function soloChance(w){ const P = PERS[w.personality]||{}; return Math.max(0.05, Math.min(0.9, (P.solo ?? 0.3) + (has(w,'Shy')?0.15:0) + (has(w,'Modest')?0.1:0) - (has(w,'Eager')?0.15:0) - (has(w,'Exhibitionist')?0.1:0))); }
 function lustLabel(w){ return restless(w) ? 'restless' : w.lust>=LUST_EAGER ? 'eager' : w.lust<LUST_LOW ? 'not in the mood' : 'content'; }
 const LUST_EAGER = BAL.lust.eager || 60;
+const isLanternAngel = w => !!(w && w.race==='angel' && w.sub==='lantern');
 // Her lust profile (data/balance.json → lust): weekly build, how much each act spends, floor and ceiling.
 function lustProfile(w){
   if(isVessel(w) && vesselStage(w) < 2) return {build:0, drop:1, floor:0, max:0};
   const L = BAL.lust, B = L.build, Pf = L.profile, P = PERS[w.personality]||{};
-  const build = (B.base + w.lewd*B.perLewd + ((has(w,'Eager')||has(w,'Exhibitionist'))?B.eagerTrait:0) + (w.job==='rest'?B.resting:0)) * (P.lustBuild||1) * fxMul(w,'lustBuild') * incenseMul(w,'lust') * townMul('lustBuild', 1);
+  const build = (B.base + w.lewd*B.perLewd + ((has(w,'Eager')||has(w,'Exhibitionist'))?B.eagerTrait:0) + (w.job==='rest'?B.resting:0)) * (P.lustBuild||1) * fxMul(w,'lustBuild') * incenseMul(w,'lust') * townMul('lustBuild', 1) * (S && w.house && (houseOf(w)||{}).lanternChapel ? (BAL.amenities.chapel.lanternLust ?? 1.25) : 1);   // a Lantern Angel keeping the chapel
   const drop = (Pf.dropAtLewd0 + (Pf.dropAtLewd100 - Pf.dropAtLewd0) * w.lewd/100) * fxMul(w,'lustDrop');
   const max = 100 + fxAdd(w,'lustMax');
   const floor = Math.min(60, max, w.lewd*Pf.floorPerLewd + fxAdd(w,'lustFloor'));

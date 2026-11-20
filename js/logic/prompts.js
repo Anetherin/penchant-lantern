@@ -111,9 +111,12 @@ const getSnippet = k => { const a = k.startsWith('act_') && actById(k.slice(4));
 // unless the clothing wording already covers it.
 const exposedAct = id => !!(((actById(id)||{}).image||{}).exposed);
 function sceneAct(sceneKey){ const b = sceneBase(sceneKey); return b.startsWith('act:') ? b.slice(4) : /^(samact|duo|pair|demo):/.test(b) ? b.split(':')[1] : null; }
+// Safety net: Perchance reads {…} in a prompt as its own syntax and complains, so a placeholder that slipped through unfilled
+// is dropped and any stray brace removed.
+const promptSafe = t => cleanText(String(t).replace(/\{\w*\}/g, '').replace(/[{}]/g, ''));
 function buildPrompt(w, sceneKey, cloth){
   const sc = sceneInfo(sceneKey, w);
-  if(w.male) return cleanText([SET.style, 'adult man', w.look, 'upper body portrait, looking at viewer', 'dramatic lighting'].join(', '));
+  if(w.male) return promptSafe([SET.style, 'adult man', w.look, 'upper body portrait, looking at viewer', 'dramatic lighting'].join(', '));
   cloth = cloth || defaultCloth(w, sceneKey);
   const act = sceneAct(sceneKey), svc = isSvcScene(sceneKey), PP = SCENE_DATA.people || {};
   let clothes = clothText(w, cloth, sceneKey).replace(/\{pubic\}/g, pubicText(w, sceneKey));
@@ -129,7 +132,7 @@ function buildPrompt(w, sceneKey, cloth){
     const me = [(sc.selfTag ? sc.selfTag + ': ' : '') + charDesc(w, cloth, sceneKey), clothes, sc.selfExtra, sc.expr].filter(Boolean).join(', ');
     parts.push(...(duo && sc.otherFirst ? [sc.client, me] : [me, duo && sc.client]), sc.setting);
     if(sc.pov) parts.push(getSnippet('pov'));
-    return cleanText(stripTodo(parts.filter(Boolean).join(', ')));
+    return promptSafe(stripTodo(parts.filter(Boolean).join(', ')));
   }
   if(sc.pov) parts.push("first-person POV, from the viewer's perspective");
   parts.push(charDesc(w, cloth, sceneKey), clothes);
@@ -145,5 +148,5 @@ function buildPrompt(w, sceneKey, cloth){
   if(sc.snip2) parts.push(getSnippet(sc.snip2));
   parts.push(sc.setting);
   if(sc.pov) parts.push(getSnippet('pov'));
-  return cleanText(stripTodo(parts.filter(Boolean).join(', ')));
+  return promptSafe(stripTodo(parts.filter(Boolean).join(', ')));
 }

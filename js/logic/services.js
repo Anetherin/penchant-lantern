@@ -90,6 +90,11 @@ function hlText(w, e){
     const lead = e.bathFirst ? `${cap(who)} came to the bathhouse for a massage, and things escalated in the steam: she ${askLady(e.act)}.` : `${cap(who)} soaked in the bathhouse with ${N}, who ${askLady(e.act)}.`;
     return `${lead} ${flavor('client_yes_bath', w)}${encTxt}${more}`;
   }
+  if(e.where==='chapel'){   // keepers offer rather than get propositioned (week.js staffProps)
+    const where = PROP_WHERE.chapel;
+    if(e.act) return `${cap(who)} lingered after prayers ${where}, and ${N} ${askLady(e.act)}. ${flavor('prop_chapel', w)}${encTxt}${more}`;
+    return `${cap(who)} lingered after prayers ${where}, hoping for more than a blessing. ${N} gave him only the blessing.`;
+  }
   if(e.where){
     const where = PROP_WHERE[e.where];
     if(e.act){
