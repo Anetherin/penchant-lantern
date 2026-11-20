@@ -59,7 +59,7 @@
           "job": "courtesan",
           "name": "Noriko Kashiwagi",
           "race": "human",
-          "age": 31,
+          "age": 42,
           "personality": "Bold and flirtatious",
           "traits": ["Exhibitionist","Romantic"],
           "style": "Revealing",
@@ -69,15 +69,15 @@
           "lovers": "cowgirl",
           "backstory": "Noriko Kashiwagi has spent most of her thirties dressing for an entrance and waiting for a man who deserves it. She is vain, funny, a little dramatic and in no way cruel, with a laugh that makes strangers smile and a talent for turning a bad day into a great story. She came to Hollowmere on the rumor that the people here appreciate good taste.",
           "design": {
-            "hairStyle": "long, glossy and carefully curled",
-            "hairColor": "dark brown",
+            "hairStyle": "straight, shoulder-length with side swept bangs",
+            "hairColor": "light brown",
             "eyes": "brown",
             "skin": "fair",
-            "features": "flawless makeup",
+            "features": "red lipstick",
             "expression": "a flirtatious, needy wink"
           },
           "under": "lace",
-          "underColor": "pink",
+          "underColor": "red",
           "stats": {"beauty":70,"charm":66,"charisma":76,"refinement":40,"wits":40,"stamina":48,"strength":25,"agility":50},
           "tech": {"service":30,"dance":25,"bar":20,"combat":5,"manage":25},
           "actSkill": 25,
@@ -88,8 +88,7 @@
             "sig_kashiwagi": {
               "label": "Statement dress",
               "style": "Revealing",
-              "prompt": "a daring wine-red dress with a deep neckline and high heels",
-              "bonus": {"courtesan":1.25,"merchant":1.15},
+              "prompt": "a tight, partially unbuttoned pink collared blouse, red bra visible, paired with a dark purple, form-fitting pencil skirt"
               "accessories": "large gold earrings and a fur stole",
               "accState": "dressed"
             },
