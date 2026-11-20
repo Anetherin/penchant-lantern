@@ -12,7 +12,8 @@
     "orgy: Sam's group nights (scene orgy:<lady ids>). people.orgy opens the prompt ({n} = number of women), orgyPose = poses (one is picked), orgyRoom = setting. The first lady is described in full, the others briefly.",
     "people.pair_fem / pair_futa: head-count tags for two women together (scene pair:<service>:<fem|futa>:<other id>, the second woman described after the first; poses from services.json image.fem / image.futa).",
     "sam_spirit_futa / spirit_futa: a spirit alone with the cock she borrowed by reverse possession (from Sam / from a client); the man isn't in the picture. Scenes can set people (a people key, e.g. solo_futa) to pick their head-count tags. futaPhrase: added to the futanari's description in two-women futa scenes (pair:...:futa / selffuta).",
-    "againPhrase: added to the pose of a Sam scene with the context 'again' ('samact:<act>~~again', or 'again_<ctx>' to keep the first round's place, e.g. again_storeroom): the picture of another round, so it differs from the first."
+    "againPhrase: added to the pose of a Sam scene with the context 'again' ('samact:<act>~~again', or 'again_<ctx>' to keep the first round's place, e.g. again_storeroom): the picture of another round, so it differs from the first.",
+    "femClients: looks for women clients in their pictures (cpair:<service>:<fem|futa> scenes, js/data/scenes.js); a futanari client also gets futaPhrase."
   ],
   "scenes": {
     "portrait": {"label":"Portrait","comp":"upper body portrait, looking at viewer","setting":"warm softly blurred background"},
@@ -247,5 +248,17 @@
     "the women lying in a heap on the bed reaching for the viewer, pov"
   ],
   "futaPhrase": "erect penis, futanari",
-  "againPhrase": "second round, still flushed and sweaty from the first, messy hair, rumpled sheets"
+  "againPhrase": "second round, still flushed and sweaty from the first, messy hair, rumpled sheets",
+  "femClients": [
+    "a woman with short black hair and sharp eyes",
+    "a curvy redheaded woman with freckles",
+    "a tall woman with braided blonde hair",
+    "a slender woman with long silver hair",
+    "a dark-skinned woman with curly hair",
+    "a busty brunette woman",
+    "an athletic woman with a short undercut",
+    "a plump woman with honey-brown hair",
+    "an elegant older woman with greying hair in a bun",
+    "a petite woman with a pixie cut"
+  ]
 }

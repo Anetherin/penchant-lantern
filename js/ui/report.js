@@ -140,9 +140,9 @@ function encLine(h){
 function repGroups(R, p){
   const here = !!findAny(p.id), G = new Map();
   R.hl.forEach((h,i)=>{ if(h.wid!==p.id) return;
-    const k = h.pairFuta ? 'pair' : h.scene==='solo' ? 'solo' : h.scene==='spirit_futa' ? 'poss' : h.act ? 'act:'+h.act : h.job ? 'job' : h.outcome==='no' ? 'no' : h.where ? 'prop:'+h.where : 'comp';
+    const k = h.pairFuta ? 'pair' : h.scene==='solo' ? 'solo' : h.scene==='spirit_futa' ? 'poss' : h.act ? 'act:'+h.act+(h.csex ? '@'+h.csex : '') : h.job ? 'job' : h.outcome==='no' ? 'no' : h.where ? 'prop:'+h.where : 'comp';
     if(!G.has(k)) G.set(k, []); G.get(k).push({h,i}); });
-  const title = k => k==='pair' ? 'With a housemate (reverse possession)' : k==='poss' ? 'Reverse possession' : k.startsWith('act:') ? actLabel(k.slice(4)) : k==='job' ? 'At work' : k==='solo' ? 'A night to herself' : k==='no' ? 'Turned down' : k.startsWith('prop:') ? 'Propositions that went nowhere' : 'Company only';
+  const title = k => k==='pair' ? 'With a housemate (reverse possession)' : k==='poss' ? 'Reverse possession' : k.startsWith('act:') ? actLabelFor(k.slice(4).split('@')[0], k.split('@')[1]) : k==='job' ? 'At work' : k==='solo' ? 'A night to herself' : k==='no' ? 'Turned down' : k.startsWith('prop:') ? 'Propositions that went nowhere' : 'Company only';
   return [...G.entries()].map(([k, list])=>{
     const first = list[0], fee = list.reduce((a,x)=>a+(x.h.fee||0),0), sats = list.filter(x=>x.h.sat!==undefined), avg = sats.length ? Math.round(sats.reduce((a,x)=>a+x.h.sat,0)/sats.length) : null;
     const img = here ? `<button class="sm" id="hl${first.i}_t" onclick="toggleImgBtn('hl${first.i}','${p.id}','${first.h.scene}')">🖼 Show image</button><div id="hl${first.i}" class="hlimg" data-ext="1"></div>` : '';

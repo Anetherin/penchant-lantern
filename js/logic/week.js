@@ -136,6 +136,7 @@ function nightRest(h, W, R, hr){
   });
 }
 function simHouse(h, R){
+  SIM_SEX = 'm';   // character.js: the sex of the client being handled (set per client below; 'm' outside the sim)
   const HD = HOUSES[h.id], W = S.workers.filter(w=>w.house===h.id && w.job!=='guild'), P = PRICES[h.price], J = BAL.jobs, BP = BAL.props, TY = BAL.tidy, PR = BAL.prestige || {};
   const pr0 = housePrestige(h), lowF = clamp((50 - pr0)/50, 0, 1), highF = clamp((pr0 - 50)/50, 0, 1);
   const amenScore = houseAmenityScore(h, h.tidy ?? TY.start), expAmen = (pr0/100) * (PR.amenExpectMax ?? 3.2), expQ = (PR.qualBase ?? 0.25) + (pr0/100) * (PR.qualPerPrestige ?? 0.4);
@@ -214,9 +215,9 @@ function simHouse(h, R){
   const staffProps = (w, n) => {
     const j = w.job, pr = R.per[w.id], must = !!JOBS[j].must;
     for(let i=0;i<n && !pr.nightOver;i++){
-      const cls = pickClass(h), client = makeClient(h, cls); if(Math.random() > clamp((cls.prop ?? 1) * cMul(client,'prop',X) * cJob(client,j), 0, 1)) continue; noteClient(X, client);
+      const cls = pickClass(h), client = makeClient(h, cls); SIM_SEX = clientSex(client); if(Math.random() > clamp((cls.prop ?? 1) * cMul(client,'prop',X) * cJob(client,j), 0, 1)) continue; noteClient(X, client);
       const s0 = encSnap(w, pr), want = pickWant(cls, w, client), expects = j==='attendant' && Math.random() < BP.attendantExpect; pr.props++;
-      const dec = propDecide(w, want, X), e = {cls:cls.id, want, act:null, outcome:'no', where:j, note:null, expr:null, ctx:'prop'};
+      const dec = propDecide(w, want, X), e = {cls:cls.id, want, act:null, outcome:'no', where:j, note:null, expr:null, ctx:'prop', csex: SIM_SEX==='m' ? undefined : SIM_SEX};
       if(dec.kind === 'no'){
         if(dec.why==='nomood'){ pr.notMood = (pr.notMood||0)+1; e.note = 'nomood'; }
         if(expects){ X.expectMiss++; pr.expectMiss = (pr.expectMiss||0)+1; e.note = 'expect'; }
@@ -264,10 +265,12 @@ function simHouse(h, R){
     const pr = R.per[w.id]; if(pr.nightOver) return;
     const must = !!JOBS[w.job].must, hungry = w.race==='demon' && w.lust < lustHigh(w);   // her hunger, not her lust, got her here
     for(let i=0;i<n && !pr.nightOver;i++){
+      SIM_SEX = 'm';
       let ids = offeredMenu(w).filter(id=>canClient(w,id) && actById(id) && !feedOnly(w,id) && energyOK(w, id, 0.2));
       if(hungry && ids.some(demonFeeds)) ids = ids.filter(demonFeeds);   // a hungry demon goes looking for a meal
       if(!ids.length) break;
-      const f = pickFav(w, ids), id = (f && Math.random()<0.5) ? f : pick(ids), cls = pickClass(h), client = makeClient(h, cls), e = {cls:cls.id, want:id, act:null, outcome:'no', self:true, note:null, expr:null, ctx:'reckless'}, s0 = encSnap(w, pr);
+      const f = pickFav(w, ids), id = (f && Math.random()<0.5) ? f : pick(ids), cls = pickClass(h), client = makeClient(h, cls), e = {cls:cls.id, want:id, act:null, outcome:'no', self:true, note:null, expr:null, ctx:'reckless', csex: clientSex(client)==='m' ? undefined : clientSex(client)}, s0 = encSnap(w, pr);
+      SIM_SEX = clientSex(client); if(clientStance(w, id)==='no'){ SIM_SEX = 'm'; e.csex = undefined; }   // she goes looking for someone she's into
       pr.props++; hr.selfProps++; R.selfProps++; noteClient(X, client);
       if(Math.random() < clamp(BP.selfAccept + appeal(w)/250 + cAdd(client,'selfAccept',X), 0.3, 0.97) && X.roomOK(w)){
         const A = actById(id), sp = spiritPossess(X, w, client, pr), ad = androidAdapt(w, client, pr);
@@ -284,7 +287,7 @@ function simHouse(h, R){
   // --- promoters draw clients (free samples: bigger draw, but it tires her and shows in the house's name)
   // (balance.json → jobs: promoterBase/Div; x (1 + promoterLowRep x (1 - rep/promoterRepRef)) for a house that isn't known yet;
   //  each further promoter x promoterStack; word of mouth: repAdd(promoterRep x draw))
-  let promoDraw = 0;
+  let promoDraw = 0; SIM_SEX = 'm';
   const lowRepM = 1 + (J.promoterLowRep || 0) * Math.max(0, 1 - h.rep / (J.promoterRepRef || 60));
   byJob('promoter').map(w=>({w, q:s100(statOf(w,'charisma')) + s100(w.tech.service)})).sort((a,b)=>b.q-a.q).forEach(({w}, k)=>{
     const pr = R.per[w.id], samples = w.samples && !has(w,'Modest');
@@ -426,6 +429,7 @@ function simHouse(h, R){
   const serveClient = reg => {
     if(secStopLeft > 0 && nGuests*NIGHTS >= crowdCap){ hr.stopped++; secStopLeft--; hr.turned++; return; }
     const cls = reg ? (CLASSES.find(c=>c.id===reg.cls)||pickClass(h, secScreen)) : pickClass(h, secScreen), client = reg ? null : makeClient(h, cls, secScreen);
+    SIM_SEX = clientSex(client);
     const overBefore = crowdOverNow();
     hr.guestsIn++; nGuests++;
     if(overBefore > 0 && !reg && Math.random() < clamp(overBefore * (CR.bailPer ?? 0.015) - cPatience(client, X)*0.5, 0, CR.bailMax ?? 0.65)){ hr.left++; hr.turned++; X.unsat += WT.leaveSat; thirstyMiss(client); return; }
@@ -560,7 +564,13 @@ function simHouse(h, R){
     pr._nm = false;
     const lantern = !!act && w.race==='angel' && w.sub==='lantern' && Math.random()<0.45;
     const ctx = has(w,'Exhibitionist') ? 'exhib' : (reck0 ? 'reckless' : '');
-    const e = {cls:cls.id, want, act, outcome, altDiff: outcome==='alt'?altDiff:undefined, reg: reg ? reg.name : null, note, sat:Math.round(sat), expr: ser ? ser.expr : null, react, encore, encoreKind, roundDeclined, more, possess: spPoss ? spPoss.react : null, adapt: adShift ? adShift.adapt : null, spiritFuta: !!spPoss, lantern, heat, ctx, step: helper && !coveredFor ? w.job : undefined, coveredFor};
+    // a woman nobody would take, with Sam on the Floor here: she tries him instead (balance.json → clients.women.samProp)
+    const SPW = (BAL.clients.women||{}).samProp || {};
+    if(!act && want && SIM_SEX!=='m' && floorE > 0 && S.sam.energy >= (SPW.minEnergy ?? 15) && Math.random() < (SPW.chance ?? 0.3) * floorE){
+      const fee = Math.round(actById(want).price * P.mult * cls.mult * (SPW.fee ?? 0.6));
+      S.sam.energy -= SPW.energy ?? 10; S.rep = clamp(S.rep + (SPW.renown ?? 0.2)); hr.income += fee; R.led.sam += fee; R.samWomen = (R.samWomen||0) + 1;
+    }
+    const e = {cls:cls.id, csex: SIM_SEX==='m' ? undefined : SIM_SEX, want, act, outcome, altDiff: outcome==='alt'?altDiff:undefined, reg: reg ? reg.name : null, note, sat:Math.round(sat), expr: ser ? ser.expr : null, react, encore, encoreKind, roundDeclined, more, possess: spPoss ? spPoss.react : null, adapt: adShift ? adShift.adapt : null, spiritFuta: !!spPoss, lantern, heat, ctx, step: helper && !coveredFor ? w.job : undefined, coveredFor};
     pr.enc.push(encFx(w, pr, s0, e));
     if(reg) regAfter(reg, w, sat, inc); else if(sat>=75 && (!bestNew || sat>bestNew.sat)) bestNew = {sat, w, cls, regM: cMul(client,'regular') * ((act && actById(act).regular) || 1)};
   };
@@ -568,7 +578,7 @@ function simHouse(h, R){
   const regsN = Array.from({length:NIGHTS}, ()=>[]); regs.forEach(r=>regsN[ri(0, NIGHTS-1)].push(r));
   let crowdSum = 0;
   for(let night=0; night<NIGHTS; night++){
-    X.night = night; nGuests = 0;
+    X.night = night; nGuests = 0; SIM_SEX = 'm';
     W.forEach(w=>{ const pr = R.per[w.id]; pr.nServed = 0; pr.nE0 = w.energy; pr.nightOver = pr.soloNight === night;
       if(escorts.includes(w)){ capc[w.id] = pr.nightOver ? 0 : nightCapOf(w); pr.cap += capc[w.id]; } });
     W.forEach(w=>{ const n = splitShare(propN[w.id]||0, NIGHTS, night); if(n) staffProps(w, n); });
@@ -606,7 +616,8 @@ function simHouse(h, R){
       const bathActs = getActs().filter(a=>a.id!=='massage_give' && a.id!=='massage_get' && !actBanned(w, a.id));
       for(let k=0;k<nb;k++){
         const reg = bathRegPool.length && Math.random()<0.25 ? pick(bathRegPool) : null;
-        const cls = reg ? (CLASSES.find(c=>c.id===reg.cls)||pickClass(h)) : pickClass(h), client = reg ? null : makeClient(h, cls), tech = clientTech(cls, reg, client);
+        const cls = reg ? (CLASSES.find(c=>c.id===reg.cls)||pickClass(h)) : pickClass(h), client = reg ? null : makeClient(h, cls, 0, 'bath'), tech = clientTech(cls, reg, client);
+        SIM_SEX = clientSex(client);
         const s0 = encSnap(w, pr);
         let didMassage = false, feeM = 0, serM = null, act2 = null, want2 = null, ser2 = null;
         if(!reg && M && !actBanned(w, M.id) && w.energy - actCost(w, M.id) >= maxEnergy(w)*0.15){
@@ -634,7 +645,7 @@ function simHouse(h, R){
         }
         if(didMassage || act2){
           const usedAct = act2 || M.id, serU = ser2 || serM || {};
-          pr.enc.push(encFx(w, pr, s0, {cls:cls.id, reg:reg?reg.name:null, want:want2||usedAct, act:usedAct, bathFirst:didMassage && !!act2, outcome:'yes', where:'bath', bathWork:true, note:serU.note||null, expr:serU.expr||null, ctx:'bath'}));
+          pr.enc.push(encFx(w, pr, s0, {cls:cls.id, csex: SIM_SEX==='m' ? undefined : SIM_SEX, reg:reg?reg.name:null, want:want2||usedAct, act:usedAct, bathFirst:didMassage && !!act2, outcome:'yes', where:'bath', bathWork:true, note:serU.note||null, expr:serU.expr||null, ctx:'bath'}));
         }
       }
     }
@@ -718,5 +729,6 @@ function simHouse(h, R){
     leaders: [mad, ...X.hosts.map(x=>x.w)].filter(Boolean),
     angelChapel: !!(h.up.chapel && byJob('chapel').some(x=>x.race==='angel')), chapelScandal: hr.chapelScandal || 0
   });
+  SIM_SEX = 'm';
   return hr;
 }

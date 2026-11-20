@@ -68,14 +68,25 @@ function inclination(w,id){ return w.lewd + lewdBoost(w) + comfortOf(w,id) + fxA
 const trustNeed = gap => Math.round(40 + gap*2);
 // Courtesans have the lowest comfort lines (balance.json → jobs.courtesanTh points lower). job defaults to her current one.
 const jobTh = (w, job) => (job || w.job)==='courtesan' ? BAL.jobs.courtesanTh : 0;
+// Who she's into (traits Sapphic / Bisexual / Futa Lover; balance.json → clients.women): the client she's less into needs more lewdness.
+// Default (no trait): into men. SIM_SEX is the sex of the client the week's sim is handling right now (week.js sets it per client;
+// 'm' everywhere else), so every stance check made for that client, menus and alternatives included, sees it.
+let SIM_SEX = 'm';
+function orientGap(w, sex){
+  const WM = BAL.clients.women || {}, g = WM.gap ?? 20;
+  if(sex==='futa') return has(w,'Futa Lover') ? 0 : (WM.futaGap ?? 20);
+  if(sex==='f') return has(w,'Sapphic') || has(w,'Bisexual') ? 0 : g;
+  return has(w,'Sapphic') ? g : 0;
+}
+const clientSex = c => (c && c.sex) || 'm';
 function clientStance(w,id,job){
   const a = actById(id); if(!a || actBanned(w,id)) return 'no';
-  const inc = inclination(w,id) - (isLovers(w,id) ? 30 : 0), th = a.th - jobTh(w, job);
+  const inc = inclination(w,id) - (isLovers(w,id) ? 30 : 0) - orientGap(w, SIM_SEX), th = a.th - jobTh(w, job);
   if(inc >= th) return 'yes';
   if(inc >= th - ASK_BAND && w.trust >= trustNeed(th - inc)) return 'ask';
   return 'no';
 }
-function samLean(w,id){ return inclination(w,id) + w.trust*0.45 + (isLovers(w,id) && w.trust>=40 ? 15 : 0) + (has(w,'Devoted')?20:0) + (typeof isVessel==='function' && isVessel(w) && vesselStage(w)<2 ? 35 : 0) - (has(w,'Oblivious')?45:0); }
+function samLean(w,id){ return inclination(w,id) - (has(w,'Sapphic') ? ((BAL.clients.women||{}).samGap ?? 10) : 0) + w.trust*0.45 + (isLovers(w,id) && w.trust>=40 ? 15 : 0) + (has(w,'Devoted')?20:0) + (typeof isVessel==='function' && isVessel(w) && vesselStage(w)<2 ? 35 : 0) - (has(w,'Oblivious')?45:0); }
 function samStance(w,id){
   const a = actById(id); if(!a || actBanned(w,id)) return 'no';
   if(has(w,'Oblivious') && actKey(id)!=='kiss') return 'no';
@@ -98,7 +109,7 @@ const actSkill = (w,id) => (w.acts&&w.acts[actKey(id)]) ? w.acts[actKey(id)].ski
 // Scene keys can carry extras after the base: 'act:oral_give~lost_in_it~prop' (~expression, ~context). sceneParts splits them.
 function sceneParts(k){ const p = String(k||'').split('~'); return {base:p[0], expr:p[1]||'', ctx:p[2]||''}; }
 const sceneBase = k => sceneParts(k).base;
-const isSvcScene = k => /^(act:|samact:|duo:|pair:|demo:|orgy:|solo$|sam_spirit_futa$|spirit_futa$)/.test(sceneBase(k));
+const isSvcScene = k => /^(act:|cpair:|samact:|duo:|pair:|demo:|orgy:|solo$|sam_spirit_futa$|spirit_futa$)/.test(sceneBase(k));
 const isIntimateScene = isSvcScene;
 // Swim scenes (dates.json image "swim": true): she wears an owned bath-compatible outfit (swimsuit first), if she has one.
 function swimOutfit(w, scene){
@@ -318,7 +329,7 @@ function defaultCloth(w, scene){
   if(typeof isBathScene==='function' && isBathScene(scene)) return clothOK(w,'nude',/^(samact:|duo:|ddate_|date_|bath_invite)/.test(base)) ? 'nude' : 'dressed';
   if(base.startsWith('act:')) return actCloth(w, base.split(':')[1], false, P.ctx);
   if(base.startsWith('samact:') || base.startsWith('duo:') || base.startsWith('demo:')) return actCloth(w, base.split(':')[1], true);
-  if(base.startsWith('pair:')) return actCloth(w, base.split(':')[1], false);
+  if(base.startsWith('pair:') || base.startsWith('cpair:')) return actCloth(w, base.split(':')[1], false);
   if(base==='solo') return comfortCloth(w, false, true);
   if(base==='sam_spirit_futa') return comfortCloth(w, true, true);
   if(base==='spirit_futa') return comfortCloth(w, false, true);
@@ -484,6 +495,13 @@ function persLean(w, only){
   const L = (PERS[w.personality]||{}).stats || {};
   Object.entries(L).forEach(([k,v])=>{ if(w.stats[k]!==undefined && (!only || only.includes(k))) w.stats[k] = clampK(w.stats[k] + v*SKL); });
 }
+// Generic ladies roll who they're into (balance.json → clients.women.orient); Sapphic and Bisexual exclude each other. w.orient marks it done.
+function rollOrient(w){
+  if(!w || w.orient) return; w.orient = true;
+  const O = (BAL.clients.women||{}).orient || {};
+  if(!has(w,'Sapphic') && !has(w,'Bisexual')){ const r = Math.random(); if(r < (O.Sapphic ?? 0)) w.traits.push('Sapphic'); else if(r < (O.Sapphic ?? 0) + (O.Bisexual ?? 0)) w.traits.push('Bisexual'); }
+  if(!has(w,'Futa Lover') && Math.random() < (O['Futa Lover'] ?? 0)) w.traits.push('Futa Lover');
+}
 function genWorker(opts={}){
   const race = opts.race || weighted(Object.keys(RACES), r=>(RACES[r].weight ?? 0) * raceDraw(r));
   const R = RACES[race], q = opts.quality || 1;
@@ -511,6 +529,7 @@ function genWorker(opts={}){
   // from New Game+ cycle 2, generics can arrive with an ngOnly trait (one at 35%)
   if(S && (S.cycle||1) >= 2 && Math.random() < 0.35){ const ng = Object.keys(TRAITS).filter(t=>TRAITS[t].gen && TRAITS[t].ngOnly && !w.traits.includes(t)); if(ng.length) w.traits.push(pick(ng)); }
   if(Math.random()<0.25) w.traits.push(pick(['Exhibitionist','Night Owl']));
+  rollOrient(w);
   persLean(w);
   applyMods(w);
   w.base0 = {trust:w.trust, lewd:w.lewd};   // where she began (New Game+ resets carried lovers to this)

@@ -265,6 +265,7 @@ function privateCore(w, act, o={}){
     text = [open, actTurn(act, w), actLine(act, w)].filter(Boolean).join('\n\n');
   }
   if(isLovers(w,act) && !o.first) text += `\n\n${w.name} wouldn't do this with a client. With you, it's different.`;
+  if(has(w,'Sapphic') && actTier(act) >= 2) text += `\n\n${flavor('private_sapphic', w)}`;   // mostly into women: Sam is her exception
   if(isFav(w,act) && knowsPrefs(w)) text += `\n\n(Her favorite. She's in a very good mood afterward.)`;
   text += pNote(w,'private');
   if(stretch) text += `\n\n(This was a stretch for ${w.name}. She did it for Sam, and it's a little less of a stretch now.)`;

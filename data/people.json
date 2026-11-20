@@ -4,7 +4,8 @@
     "races.json can carry its own names (angel, android) which take precedence over this file; angel/android lists here are the fallback. android 'l' entries are model designations.",
     "names: first (f) and last (l) names per race; every race has an l list (last names, house names or titles like 'of the Ninth Circle'). Beastkin subs in races.json can add their own l list (names.l), used instead of these half the time. builds/hairStyles/hairColors/eyes/skins/demonSkins/features/accessories/expressions: appearance picks for image prompts. Builds are extra nuance only (lithe, graceful...): height, figure and bust come from body.json, so don't repeat them here or in a character's design.build.",
     "hooks: why she came to Hollowmere (used in AI backstories). gifts: what Sam gives when he buys a gift. clients: how anonymous clients are described in reports, per client class.",
-    "features: permanent physical traits (beauty marks, freckles, scars, tattoos, makeup, piercings). accessories: wearable items controlled by her accessory state setting (dressed / under / always / off). expressions: default facial expressions for portraits and non-service scenes (replaced by service expressions in intimate scenes)."
+    "features: permanent physical traits (beauty marks, freckles, scars, tattoos, makeup, piercings). accessories: wearable items controlled by her accessory state setting (dressed / under / always / off). expressions: default facial expressions for portraits and non-service scenes (replaced by service expressions in intimate scenes).",
+    "clientsFem: how a woman client (balance.json → clients.women) is described in reports, by tier; a futanari client is described the same way with 'futanari' in front."
   ],
   "names": {
     "human": {
@@ -1091,5 +1092,35 @@
     "a guarded, watchful gaze",
     "an unbothered, languid expression",
     "a mischievous glint in her eyes"
-  ]
+  ],
+  "clientsFem": {
+    "commoner": [
+      "a seamstress with her week's pay",
+      "a barmaid on her night off",
+      "a farmer's widow in town for market day",
+      "a laundress with strong hands and a shy smile",
+      "a baker who smells of cinnamon"
+    ],
+    "adventurer": [
+      "a scarred swordswoman fresh from the dungeon",
+      "a red-haired archer celebrating a bounty",
+      "a sorceress still smelling of smoke",
+      "a dwarven axewoman with a fresh bandage",
+      "a lean huntress back from the wilds"
+    ],
+    "merchant": [
+      "a spice trader from the coast",
+      "a jeweler with soft hands and a heavy purse",
+      "a caravan mistress who haggles over everything",
+      "a wine importer with expensive taste",
+      "a guild bookkeeper who tips in exact change"
+    ],
+    "noble": [
+      "a silver-haired countess",
+      "a masked lady who gave no name",
+      "a baron's bored younger daughter",
+      "a knight-captain out of uniform",
+      "a duchess's lady-in-waiting on an errand of her own"
+    ]
+  }
 }
