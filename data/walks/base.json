@@ -13,6 +13,7 @@
       {
         "id": "walk_market",
         "title": "A Familiar Face in the Crowd",
+        "act": ["kiss","manual_give"],
         "intro": "Lanternlight catches the gold tips of long black hair three stalls ahead of you in the afternoon market. Before you can look away, {form} steps neatly out of the crowd and falls into step beside you.\n\n\"{alias},\" she says brightly, linking her arm through yours as though you'd arranged to meet here. \"You walk too fast, {sam}. You're going to miss everything worth looking at.\"",
         "wonder": "Her palm is startlingly warm through your sleeve. You try to place her—not one of your staff, and certainly not any townswoman you remember—until she leans in close enough for you to smell faint candle smoke and warm honey.\n\n\"Looking for someone?\" {alias} asks, her eyes bright with amusement.",
         "unknown": true,
@@ -40,6 +41,7 @@
       {
         "id": "walk_bridge",
         "title": "At the Canal Rail",
+        "act": ["kiss","manual_give"],
         "intro": "Halfway across the canal bridge, {form} is leaning over the stone parapet, watching paper boats drift beneath the arches. She glances over her shoulder as your boots hit the cobbles—black hair tipped with gold catching the late sun.\n\n\"Fancy meeting you here,\" {alias} purrs, patting the warm stone beside her. \"Take a break. The ledger won't catch fire if you look at the river for five minutes.\"",
         "wonder": "You lean on the parapet beside her. Within a minute she has pressed her bare hip tight against yours, her palm sliding brazenly over your trousers to trace your growing bulge as if you weren't standing in broad daylight. Something in the effortless way she claims your space makes your pulse hammer.",
         "unknown": true,
@@ -68,6 +70,7 @@
         "id": "walk_shrine",
         "title": "Candle Smoke at the Crossroads",
         "phase": "game",
+        "act": ["manual_give","oral_give","doggy"],
         "intro": "A step off the main road sits an old roadside lantern shrine, mossy and quiet. Standing before the unlit brass bowl is {form}—though when she turns, you already know that gold-tipped black hair and those impossible lamp-bright eyes.\n\n\"{goddess},\" you say flatly. She laughs, delighted, and snaps her fingers so the shrine wick catches with a soft pop.",
         "wonder": "\"Spoilsport,\" she says, strolling straight up until her breasts press against your chest and her fingers hook into your belt. \"Out shopping for trouble without me? Play along as {alias} if you know what's good for you—and remember the rule: you still don't get to cum.\"",
         "needKnows": true,
@@ -96,6 +99,7 @@
         "id": "walk_alley",
         "title": "Out of the Rain",
         "phase": "game",
+        "act": ["manual_give","oral_give","doggy"],
         "intro": "A sudden drizzle drives you under a narrow tavern awning, shaking water from your hoodie—only to find {form} already waiting there, completely dry despite the rain drumming on the street.\n\n\"You're soaked,\" {alias} notes, though her glowing gold eyes have already dropped straight to your groin. You catch that smug little smile and realize the air under the awning smells like warm wax and candle sparks.",
         "wonder": "{goddess} steps right inside your open coat, her warm palms sliding under your shirt and straight down to cup your cock through your damp trousers. \"Nobody can see past the rain,\" she murmurs against your jaw. \"So don't waste it asking dumb questions.\"",
         "needKnows": true,

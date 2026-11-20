@@ -11,7 +11,7 @@
       "btn": "Wake up",
       "image": {
         "key": "linger_wane",
-        "comp": "a goddess half-seen through drifting lantern-light, reaching out a hand toward the viewer, a slow coaxing smile",
+        "comp": "half-seen through drifting lantern-light, reaching out a hand toward the viewer with a slow coaxing smile",
         "setting": "an endless dark space full of floating paper lanterns, some of them guttering"
       },
       "text": {
@@ -36,7 +36,7 @@
       "btn": "Count what's left",
       "image": {
         "key": "linger_tithe",
-        "comp": "a goddess sitting on an open strongbox, tossing a gold coin and catching it, smug teasing grin",
+        "comp": "sitting perched on an open iron strongbox, tossing a gold coin and catching it with a smug teasing grin",
         "setting": "a dim office at night lit by a single lantern, ledgers and a heavy iron strongbox"
       },
       "text": {
@@ -59,7 +59,7 @@
       "btn": "Let her sleep",
       "image": {
         "key": "linger_recall",
-        "comp": "a goddess holding a glowing paper lantern close, looking at the viewer over it with a possessive, jealous little smile",
+        "comp": "holding a glowing paper lantern close to her chest, peering over it at the viewer with a possessive jealous little smile",
         "setting": "an endless dark space full of floating paper lanterns"
       },
       "text": {

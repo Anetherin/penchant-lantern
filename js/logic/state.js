@@ -9,7 +9,7 @@ const houseDebt = id => Math.round(((HOUSES[id]||{}).debt || 0) * ((BAL.debt||{}
 const NPCS = {
   npc_marguerite:{id:'npc_marguerite', name:'Marguerite Vane', race:'human', sub:'', age:38,
     design:{build:'tall and lean',hairStyle:'severe bun',hairColor:'black',eyes:'steel-grey',skin:'pale',features:'thin red lips',accessories:'a silver monocle',expression:'a cool, appraising gaze'}, outfit:'custom', customOutfit:'a tailored black coat with silver buttons', under:'plain', imgVar:{}, seed:4417021, lewd:0, trust:0, traits:[]},
-  npc_isolde:{id:'npc_isolde', name:'Lady Isolde Thorne', race:'demon', sub:'', age:260,
+  npc_isolde:{id:'npc_isolde', name:'Lady Isolde Thorne', race:'demon', sub:'', age:260, favColor:'black', personality:'Hot-blooded and competitive', lust:80,
     design:{build:'statuesque',hairStyle:'long curly',hairColor:'crimson',eyes:'violet',skin:'ash-grey',features:'long curved horns and a slender spade-tipped tail',accessories:'gold cuffs on her horns',expression:'an aristocratic, haughty smile'}, outfit:'custom', customOutfit:'a black and red velvet gown with a high leg slit', under:'garter', imgVar:{}, seed:8812230, lewd:90, trust:60, traits:[], body:{bust:'large', height:'tall', figure:'curvy'}}
 };
 Object.assign(NPCS, {
