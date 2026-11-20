@@ -125,10 +125,11 @@ function evIsoldeNight(how){
   const n = isoPickNight(how), V = isoVars(), A = ISO.approach;
   const lead = isoT((ISO.arrive||{})[how==='comes' ? 'comes' : 'visit'], V);
   const pT = isoTakeP(), pC = isoContestP();
+  // who ends up in control decides the position (approach.*.act) and the night's finish for it (finish.yield / take / contest)
   const choices = [
     {label:isoT(A.yield.label, V), fx(){ return isoNightResult(n, isoT(A.yield.res, V), {how, approach:'yield', won:false}); }},
-    {label:isoT(A.take.label, {p:pT}), fx(){ const won = Math.random()*100 < pT; return isoNightResult(n, isoT(won ? A.take.win : A.take.lose, V), {how, approach:'take', won, lost:!won}); }},
-    {label:isoT(A.contest.label, {p:pC}), fx(){ const won = Math.random()*100 < pC; return isoNightResult(n, isoT(won ? A.contest.win : A.contest.lose, V), {how, approach:'contest', won, lost:!won}); }}];
+    {label:isoT(A.take.label, {p:pT}), fx(){ const won = Math.random()*100 < pT; return isoNightResult(n, isoT(won ? A.take.win : A.take.lose, V), {how, approach:'take', pose: won ? 'take' : 'yield', won, lost:!won}); }},
+    {label:isoT(A.contest.label, {p:pC}), fx(){ const won = Math.random()*100 < pC; return isoNightResult(n, isoT(A.contest.start || '', V), {how, approach:'contest', won, lost:!won, after:isoT(won ? A.contest.win : A.contest.lose, V)}); }}];
   if(I.lovers) choices.push({label:isoT(ISO.joinLabel), fx(){ return isoNightResult(n, isoT(ISO.join, V) + '\n\n' + isoT(A.yield.res, V), {how, approach:'yield', won:false}); }});
   return {title:isoT(n.title, V), who:ISO_ID, scene:'sam_date', text:lead + '\n\n' + isoT(n.text, V), choices};
 }
@@ -142,8 +143,12 @@ function isoNightResult(n, line, o){
   if(o.won){ I.wins = (I.wins||0) + 1; if(o.approach==='take') S.rep = clamp(S.rep + (N.renown ?? 1)); }
   I.nights = (I.nights||0) + 1; I.lastNight = S.week; I.lastId = n.id;
   samLog(isoT(ISO.log.night));
-  const text = line + (o.how==='truce' ? '' : '\n\n' + isoT(n.finish, isoVars())) + (cost ? `\n\n(Sam's energy −${cost})` : '');
-  return {text, img:{wid:ISO_ID, scene:`samact:${n.act}~~iso_${n.id}`}};
+  // the position: the approach's act (a lost take ends up as yield) with that approach's finish; the truce and old string finishes use n.act
+  const pose = o.pose || o.approach, F = n.finish, keyed = pose && F && typeof F==='object' && !Array.isArray(F);
+  const fin = o.how==='truce' ? '' : keyed ? (F[pose] || F.yield) : F;
+  const act = keyed ? (((ISO.approach||{})[pose]||{}).act || n.act) : n.act;
+  const text = [line, fin ? isoT(fin, isoVars()) : '', o.after || ''].filter(Boolean).join('\n\n') + (cost ? `\n\n(Sam's energy −${cost})` : '');
+  return {text, img:{wid:ISO_ID, scene:`samact:${act}~~iso_${n.id}`}};
 }
 // image backdrop for her nights (scenes.js samact: chain)
 const isoSetting = ctx => { const m = /^iso_(.+)$/.exec(ctx||''); if(!m) return null; const n = [...(ISO.nights||[]), ...(ISO.games||[])].find(x=>x.id===m[1]); return n ? n.setting : null; };

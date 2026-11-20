@@ -271,7 +271,8 @@ function raceReact(w, clsId, c){
 
 // Client traits (balance.json → clients.traits): every non-regular client rolls 1-3 (traitCount odds), weighted by trait w x the class's
 // traits weight, without replacement, skipping excl in either direction. Regulars get none (client = null everywhere).
-function makeClient(h, cls, screen=0){
+// where: 'bath' for bathhouse clients (balance.json → clients.women.bathMul). client.sex: 'm' (default), 'f' or 'futa' (clients.women).
+function makeClient(h, cls, screen=0, where){
   const C = BAL.clients, T = C.traits, odds = C.traitCount || [1], tr = [];
   const WT = C.wait || {}, pr = housePrestige(h);
   const lowTilt = clamp((45 - pr) / 45, 0, 1), highTilt = clamp((pr - 55) / 45, 0, 1);
@@ -298,7 +299,9 @@ function makeClient(h, cls, screen=0){
     tr.push(Object.assign({id:k}, T[k]));
     keys = keys.filter(x => x!==k && !(T[k].excl||[]).includes(x) && !(T[x].excl||[]).includes(k));
   }
-  return {cls, traits: tr};
+  const WM = C.women || {}, ws = clamp(((WM.share||{})[cls.tier] ?? 0) * (where==='bath' ? (WM.bathMul ?? 1) : 1) * (1 + (WM.prestigeMul ?? 0) * (pr - 50) / 50), 0, 0.9);
+  const sex = Math.random() < ws ? (Math.random() < (WM.futa ?? 0) ? 'futa' : 'f') : 'm';
+  return {cls, traits: tr, sex};
 }
 const boozeFactor = X => X && X.barN ? 1 + (X.h.drinks||0) * BAL.clients.boozeDrinks : 0;
 // Combine one key over his traits (X gives the bar for the booze parts): fee/prop/tips/compFee/pushyMult multiply, pushy/rowdy/selfAccept add.

@@ -70,52 +70,79 @@ function encFx(w, pr, s0, e){
   const r1 = v => Math.round(v*10)/10, d = {energy:r1(w.energy - s0.e), mood:r1(w.mood - s0.m), lust:r1((w.lust||0) - s0.l), lewd:r1((w.lewd||0) - s0.lw), pop:r1((w.popularity||0) - s0.p)};
   e.fee = Math.round((pr.earned||0) - s0.g); e.d = Object.fromEntries(Object.entries(d).filter(([,v])=>v)); return e;
 }
-function hlText(w, e){
-  const who = e.reg ? `${e.reg}, one of the regulars,` : clientWho(e.cls), N = w.name;
-  const more = e.more ? ` She wanted more afterward and ${askLady(e.more)}.` : '';
-  const encTxt = e.encore ? ' ' + flavor(e.encoreKind==='client_unfin' ? 'client_round_unfin' : e.encoreKind==='client_second' ? 'client_round' : 'encore', w) : e.roundDeclined ? ' ' + flavor('round_declined', w) : '';
-  if(e.sample) return flavor('sample_act', w, {act: actLabel(e.act).toLowerCase(), lady: askLady(e.act)});
+function hlTextBase(w, e){
+  const fem = e.csex==='f', AC = id => fem ? askClientFem(id) : askClient(id), AL = id => fem ? askLadyFem(id) : askLady(id);
+  const who0 = e.reg ? `${e.reg}, one of the regulars,` : clientWho(e.cls), N = w.name;
+  const who = e.csex && !e.reg ? femClientWho(e.cls, e.csex) : who0;
+  const more = e.more ? ` She wanted more afterward and ${AL(e.more)}.` : '';
+  const encTxt = e.encore && e.csex==='f' ? ' She wanted another round, and her client was happy to oblige.' : e.encore ? ' ' + flavor(e.encoreKind==='client_unfin' ? 'client_round_unfin' : e.encoreKind==='client_second' ? 'client_round' : 'encore', w) : e.roundDeclined ? ' ' + flavor('round_declined', w) : '';
+  if(e.sample) return flavor('sample_act', w, {act: actLabel(e.act).toLowerCase(), lady: AL(e.act)});
   if(e.coveredFor){
     const lead = flavor('covered_for', w, {for: e.coveredFor});
-    return `${lead} ${cap(who)} had asked ${askClient(e.want)}. ${(actById(e.act)&&actById(e.act).report&&actById(e.act).report.length) ? pick(actById(e.act).report) : ''}${encTxt}${more}`;
+    return `${lead} ${cap(who)} had asked ${AC(e.want)}. ${(actById(e.act)&&actById(e.act).report&&actById(e.act).report.length) ? pick(actById(e.act).report) : ''}${encTxt}${more}`;
   }
   if(e.step){
     const role = e.step==='madame' ? 'the madame' : 'an attendant', lead = flavor('step_lead', w, {role});
     if(!e.want) return `${lead} ${cap(who)} got her company over wine in the lounge instead of a courtesan's.`;
-    if(e.act) return `${lead} ${cap(who)} asked ${askClient(e.want)}, and ${e.outcome==='alt' ? `she ${askLady(e.act)} instead.` : `she saw to it herself.`}${(actById(e.act)&&actById(e.act).report&&actById(e.act).report.length) ? ' ' + pick(actById(e.act).report) : ''}${encTxt}${more}`;
-    return `${lead} ${cap(who)} asked ${askClient(e.want)}, but that was more than she'd step in for; he settled for her company.`;
+    if(e.act) return `${lead} ${cap(who)} asked ${AC(e.want)}, and ${e.outcome==='alt' ? `she ${AL(e.act)} instead.` : `she saw to it herself.`}${(actById(e.act)&&actById(e.act).report&&actById(e.act).report.length) ? ' ' + pick(actById(e.act).report) : ''}${encTxt}${more}`;
+    return `${lead} ${cap(who)} asked ${AC(e.want)}, but that was more than she'd step in for; he settled for her company.`;
   }
-  if(e.self) return `${flavor('self_prop', w)}${e.act ? ` She ${askLady(e.act)}, and he didn't need asking twice.${encTxt}${more}` : ' This time he politely passed.'}`;
+  if(e.self) return `${flavor('self_prop', w)}${e.act ? ` She ${AL(e.act)}, and he didn't need asking twice.${encTxt}${more}` : ' This time he politely passed.'}`;
   if(e.bathWork){
-    const lead = e.bathFirst ? `${cap(who)} came to the bathhouse for a massage, and things escalated in the steam: she ${askLady(e.act)}.` : `${cap(who)} soaked in the bathhouse with ${N}, who ${askLady(e.act)}.`;
+    const lead = e.bathFirst ? `${cap(who)} came to the bathhouse for a massage, and things escalated in the steam: she ${AL(e.act)}.` : `${cap(who)} soaked in the bathhouse with ${N}, who ${AL(e.act)}.`;
     return `${lead} ${flavor('client_yes_bath', w)}${encTxt}${more}`;
+  }
+  if(e.where==='chapel'){   // keepers offer rather than get propositioned (week.js staffProps)
+    const where = PROP_WHERE.chapel;
+    if(e.act) return `${cap(who)} lingered after prayers ${where}, and ${N} ${askLady(e.act)}. ${flavor('prop_chapel', w)}${encTxt}${more}`;
+    return `${cap(who)} lingered after prayers ${where}, hoping for more than a blessing. ${N} gave him only the blessing.`;
   }
   if(e.where){
     const where = PROP_WHERE[e.where];
     if(e.act){
-      const how = e.where==='chapel' ? flavor('prop_chapel', w) : e.where==='bath' ? flavor('prop_bath', w) : e.ctx==='exhib' ? flavor('prop_exhib', w) : e.outcome==='alt' ? `She ${askLady(e.act)} instead, and he took it.` : 'She thought about it for exactly one second, then took his hand and led him upstairs.';
-      return `${cap(who)} propositioned ${N} ${where}, asking ${askClient(e.want)}. ${how}${encTxt}${more}`;
+      const how = e.where==='chapel' ? flavor('prop_chapel', w) : e.where==='bath' ? flavor('prop_bath', w) : e.ctx==='exhib' ? flavor('prop_exhib', w) : e.outcome==='alt' ? `She ${AL(e.act)} instead, and he took it.` : 'She thought about it for exactly one second, then took his hand and led him upstairs.';
+      return `${cap(who)} propositioned ${N} ${where}, asking ${AC(e.want)}. ${how}${encTxt}${more}`;
     }
-    return `${cap(who)} propositioned ${N} ${where}, asking ${askClient(e.want)}. She turned him down.`;
+    return `${cap(who)} propositioned ${N} ${where}, asking ${AC(e.want)}. She turned him down.`;
   }
   // a solo reverse possession with a client is its own encounter: the possession (plus any follow-up service), not the service he asked for (report.js groups it alone)
   if(e.possess && e.act){
-    const asked = askClient(e.want || e.act), lead = e.where ? `${cap(who)} propositioned ${N} ${PROP_WHERE[e.where]}, asking ${asked}.` : `${cap(who)} came for ${N} and asked ${asked}.`;
+    const asked = AC(e.want || e.act), lead = e.where ? `${cap(who)} propositioned ${N} ${PROP_WHERE[e.where]}, asking ${asked}.` : `${cap(who)} came for ${N} and asked ${asked}.`;
     return `${lead} ${flavor('enc_possess_' + e.possess, w)}${encTxt}${more}`;
   }
   const extra = [e.adapt && flavor('enc_adapt', w, e.adapt), e.lantern && flavor('enc_lantern_angel', w), e.heat && e.note!=='drained' && e.note!=='frustrated' && flavor('enc_beast_heat', w)].filter(Boolean).join(' ');
   const tail = extra ? ' ' + extra : '';
   if(!e.want) return `${cap(who)} spent the evening with ${N} in the lounge: wine, conversation, and a lot of laughing. ${flavor('client_company', w)}${tail}`;
   if(e.outcome==='yes'){
-    const desc = (e.ctx==='exhib' || e.ctx==='bath') ? flavor('client_yes_' + e.ctx, w) : ((actById(e.act)&&actById(e.act).report&&actById(e.act).report.length) ? pick(actById(e.act).report) : flavor('client_yes', w));
-    return `${cap(who)} came for ${N} and asked ${askClient(e.act)}. ${desc}${encTxt}${more}${tail}`;
+    const desc = e.csex ? clientPairLine(e.act, N, e.csex) : (e.ctx==='exhib' || e.ctx==='bath') ? flavor('client_yes_' + e.ctx, w) : ((actById(e.act)&&actById(e.act).report&&actById(e.act).report.length) ? pick(actById(e.act).report) : flavor('client_yes', w));
+    return `${cap(who)} came for ${N} and asked ${AC(e.act)}. ${desc}${encTxt}${more}${tail}`;
   }
   if(e.outcome==='alt'){
     const altEnd = (e.altDiff||0) >= 2 ? 'and he reluctantly settled for it' : e.altDiff === 0 ? 'and he was happy to take that instead' : 'and he happily took it';
-    return `${cap(who)} asked ${N} ${askClient(e.want)}. She said no to that, but ${askLady(e.act)} instead, ${altEnd}.${encTxt}${more}${tail}`;
+    return `${cap(who)} asked ${N} ${AC(e.want)}. She said no to that, but ${AL(e.act)} instead, ${altEnd}.${encTxt}${more}${tail}`;
   }
-  return `${cap(who)} asked ${N} ${askClient(e.want)}. She politely declined, and he settled for her company over a bottle of wine.`;
+  return `${cap(who)} asked ${N} ${AC(e.want)}. She politely declined, and he settled for her company over a bottle of wine.`;
 }
+// A woman client (clients.women): the same report, her pronouns, and the service told as two women (services.json → pair.fem;
+// a futanari client: pair.futa). {name} = the lady, {partner} = her client.
+function hlText(w, e){
+  const t = hlTextBase(w, e);
+  return e.csex ? toHer(t) : t;
+}
+const toHer = t => String(t).replace(/\b(he|him|his|himself|man|gentleman)\b/gi, m => { const map = {he:'she', him:'her', his:'her', himself:'herself', man:'woman', gentleman:'lady'}, r = map[m.toLowerCase()]; return m[0]===m[0].toUpperCase() ? r[0].toUpperCase() + r.slice(1) : r; });
+function clientPairLine(act, name, sex){
+  const P = (((actById(act)||{}).pair)||{})[sex==='futa' ? 'futa' : 'fem'] || [];
+  if(!P.length) return '';
+  const l = pick(P).replace(/\{name\}/g, name).replace(/\{partner\}/g, 'her client');
+  return l[0].toUpperCase() + l.slice(1);
+}
+// people.json → clientsFem by the class's tier; a futanari client is the same woman with 'futanari' in front
+function femClientWho(clsId, sex){
+  const c = CLASSES.find(x=>x.id===clsId), L = ((needData('people').clientsFem)||{})[c ? c.tier : 'commoner'] || ['a woman'];
+  const d = pick(L); return sex==='futa' ? d.replace(/^(an?)\s+/i, 'a futanari ') : d;
+}
+const askClientFem = id => { const a = actById(id); return (a && a.ask && (a.ask.clientFem || a.ask.client)) || 'for ' + actLabel(id).toLowerCase(); };
+const askLadyFem = id => { const a = actById(id); return (a && a.ask && a.ask.ladyFem) || toHer(askLady(id)); };
 // One service for one client, from her side: mood, lust (per service, technique, favorites), demon feeding, expression.
 // o = {tech, reluct, pr, h}. Returns {note, expr, frustrated, fed, drained}.
 // How good it is for HER (her lust drop, whether she's left frustrated). Normally that is his technique. A service she leads

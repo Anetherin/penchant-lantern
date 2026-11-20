@@ -857,6 +857,36 @@
       "gen": true,
       "excl": ["Ambitious"],
       "fx": {"renew":0.12}
+    },
+    "Sapphic": {
+      "desc": "Mostly into women: women clients don't need any extra lewdness from her, men do (balance.json → clients.women.gap), and Sam is the exception she makes. Not exclusive.",
+      "fx": {},
+      "excl": ["Bisexual"],
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "gen": false
+    },
+    "Bisexual": {
+      "desc": "Into men and women alike: women clients need no more lewdness from her than men do.",
+      "fx": {},
+      "excl": ["Sapphic"],
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "gen": false
+    },
+    "Futa Lover": {
+      "desc": "Futanari clients don't need any extra lewdness from her.",
+      "fx": {},
+      "excl": [],
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "ngPerk": false,
+      "gen": false
     }
   }
 }

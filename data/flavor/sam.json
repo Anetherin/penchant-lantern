@@ -614,5 +614,14 @@
       "{name} stares at what you bought her, then up at you. \"This is completely excessive.\" She doesn't give it back—and makes sure to thank you properly later.",
       "It costs more than most of the furniture. {name} says little, though she stays pressed close to your side for the rest of the night."
     ]
+  },
+  "private_sapphic": {
+    "_note": "Private time with a Sapphic lady (mostly into women; traits): an aside that you're her exception. Must not name a specific act.",
+    "_default": [
+      "\"I don't usually do this with men,\" {name} says afterwards, tracing a finger down your chest. \"Don't let it go to your head. You're an exception.\"",
+      "{name} laughs softly when it's over. \"If any of the girls ask, you're the only man who gets this. Which is true, and they'll never believe me.\"",
+      "\"Strange,\" {name} murmurs, still catching her breath. \"I've always liked women. And then there's you.\" She doesn't seem to mind the contradiction.",
+      "{name} props herself up on an elbow and studies you. \"You know you're the only man I'd do this for?\" It isn't quite a question."
+    ]
   }
 }

@@ -27,6 +27,8 @@ function getActs(){
 }
 const actById = id => { id = actKey(id); return getActs().find(a=>a.id===id); };
 const actLabel = id => { const a = actById(id); return a ? a.label : id; };
+// with a woman client (clients.women): her name for it (services.json → femLabel), and who it was with; a futanari client keeps the label
+const actLabelFor = (id, sex) => { const a = actById(id); if(!a || !sex || sex==='m') return actLabel(id); return sex==='futa' ? a.label + ' · futanari client' : (a.femLabel || a.label) + ' · woman client'; };
 // Sam's side of a service (services.json → samLabel): his menus and summaries say who does what to whom.
 const samActLabel = id => { const a = actById(id); return a ? (a.samLabel || a.label) : id; };
 // pose wording for a service in a context (client / sam / duo), picked from the service's variants (services.json → image)
@@ -80,6 +82,11 @@ function sceneInfo(k, w){
     const F = SCENE_DATA.futaPhrase || 'erect penis, futanari';
     return mode==='selffuta' ? Object.assign(base, {selfTag:'the futanari', selfExtra:F, client: o ? 'the woman: ' + desc(o) : ''})
       : Object.assign(base, {selfTag:'the woman', otherFirst:true, client: o ? `the futanari: ${desc(o)}, ${F}` : ''}); }
+  // a woman client with her (clients.women): cpair:<service>:<fem|futa>, posed like two women together, the client from scenes.json → femClients
+  if(k.startsWith('cpair:')){ const [, id, mode] = k.split(':'), futa = mode==='futa', ex = getSnippet('act_'+id), look = pick([].concat(SCENE_DATA.femClients || ['a woman']));
+    const base = {label:(futa ? 'Futanari client: ' : 'Woman client: ') + actLabel(id), comp:actPose(id, futa ? 'futa' : 'fem'), setting:ROOM_SETTING(h), snip:futa && !/\bman\b/i.test(ex) ? 'act_'+id : null, expr:svcExpr(w, id, P, true, true)};   // two women: the fem pose replaces the service's own (penis) snippet
+    if(!futa) return Object.assign(base, {client:'the other woman: a female client, ' + look});
+    return Object.assign(base, {selfTag:'the woman', otherFirst:true, client:`the futanari: a futanari client, ${look}, ${SCENE_DATA.futaPhrase || 'erect penis, futanari'}`}); }
   // Sam's demonstration class: seen from the room, Sam is the man, the other ladies watch (scenes.json → demoRoom / people.demo)
   // group nights (sam.js samOrgy): the first lady in full, the others briefly (scenes.json → orgyPose / orgyRoom / people.orgy)
   if(k.startsWith('orgy:')){ const os = k.slice(5).split(',').map(findAny).filter(o=>o && w && o.id!==w.id);

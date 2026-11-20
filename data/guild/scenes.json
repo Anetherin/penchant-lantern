@@ -4,7 +4,7 @@
     "duo: Sam + one lady. text = the setup, ends on a hinge. tender (no sex: trust, mood) and close (private time via privateCore; lead is the lead-in, the game appends the act's line, so lead names no act; acts = ids she may do with him).",
     "trio: Sam + two ladies. close.lead = the first lady pulls him in, close.lead2 = the second joins; neither names a specific act. tender is non-sexual.",
     "pair: two ladies, no Sam, no sex; third-person narration; exactly two choices with bond and mood. yuri: two ladies, bloom contracts only, third person; close.res is fixed explicit text (acts only picks the picture), decline is a fine outcome.",
-    "Placeholders: {N} = her name (duo), {a} / {b} = the two ladies' names (trio, pair, yuri), {C} = the contract's label. image objects describe Sam in the third person."
+    "Placeholders: {N} = her name (duo), {a} / {b} = the two ladies' names (trio, pair, yuri), {C} = the contract's label. image objects describe Sam in the third person; in them {N} becomes 'she', {a} / {b} 'the first / second woman' (gImg), since raw braces break Perchance."
   ],
   "scenes": {
     "duo": [

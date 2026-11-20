@@ -436,10 +436,10 @@
     ]
   },
   "prop_chapel": {
-    "_note": "Chapel Keeper accepted a discreet proposition.",
+    "_note": "A Chapel Keeper offered a visitor something more than a blessing (follows \"she <offered ...>\"; must not name a specific act).",
     "_default": [
-      "She inclined her head calmly and led him behind the altar curtain—charging nothing, though he pressed a heavy pouch of coin into the chapel alms box afterward.",
-      "She accepted his quiet proposition in the candlelight of the vestry, leaving him flushed, reverent, and eager to refill the chapel donation chest."
+      "She led him behind the altar curtain herself, calm as a sermon, and charged nothing, though he pressed a heavy pouch of coin into the alms box afterward.",
+      "She made the offer quietly in the candlelight of the vestry, and left him flushed, reverent, and eager to refill the donation chest."
     ]
   },
   "covered_for": {

@@ -312,7 +312,10 @@ function guildBeatEvent(rank){
 /* ---------- party scenes ---------- */
 const gTags = C => new Set(C.tags||[]);
 function gScenePick(list, C){ const t = gTags(C), fit = (list||[]).filter(s=>(s.tags||[]).some(x=>t.has(x))); return pick(fit.length ? fit : (list||[])); }
-const gImg = (s, key) => s && s.image && s.image.comp ? dynScene('guild_'+key, s.image) : null;
+// Image text is filled before it reaches the prompt: an unfilled {N} gets read as Perchance's own {a|b} syntax. Names don't help
+// the picture (charDesc describes her), so the placeholders become plain words.
+const G_IMG_VARS = {N:'she', a:'the first woman', b:'the second woman', C:'the contract'};
+const gImg = (s, key) => s && s.image && s.image.comp ? dynScene('guild_'+key, Object.fromEntries(Object.entries(s.image).map(([k,v])=>[k, typeof v==='string' ? gFill(v, G_IMG_VARS) : v]))) : null;
 function guildScenes(parties){
   const SC = GDB.scenes || {}; let n = 0;
   shuffle(parties).forEach(p=>{

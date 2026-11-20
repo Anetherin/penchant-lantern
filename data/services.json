@@ -16,7 +16,8 @@
     "image.exposed: true = the picture shows her bare between the legs, so the prompt names her pubic hair (snippets.json → clothing.pubic) unless the clothing wording already does.",
     "pair = lines for two women together (any two women; used by js/logic/goddess.js gSvcLine): fem = both women, futa = {partner} is a futanari. {name} = the woman whose side the id names (she gives for _give, receives for _get), {partner} = the other woman. Positions (tier 3) only need futa.",
     "Who leads (tier 3 positions): regular = x her chance to turn a satisfied client into a regular (missionary: face to face, the one men come back for). selfLed: true = she sets the pace, so how good it is for HER (lust drop, not being left frustrated) is at least 0.6 + 0.6 x her skill at it instead of resting on his technique (cowgirl: dearer and more tiring, but reliable release). techLed = he leads, so his technique counts x this much in both directions around the average 0.85 (doggy: easy on her energy, great with a skilled client, frustrating with a clumsy one). See actTech in js/logic/services.js.",
-    "samLabel = the label in Sam's own menus and summaries (private time, practice, threesomes, nights with the goddess), worded from his side so giving/receiving is clear; label is her side (client menus, reports)."
+    "samLabel = the label in Sam's own menus and summaries (private time, practice, threesomes, nights with the goddess), worded from his side so giving/receiving is clear; label is her side (client menus, reports).",
+    "femLabel: the service's name in menus and reports when the client is a woman (clients.women); ask.clientFem / ask.ladyFem: the ask wording then. Reports with a woman client use pair.fem (a futanari client: pair.futa) with {name} = the lady and {partner} = her client."
   ],
   "services": [
     {
@@ -34,7 +35,7 @@
       "stats": {"strength":0.5,"agility":0.5},
       "desc": "giving a slow, warm oil massage to ease tension",
       "dress": {"min":"dressed","fullAt":85},
-      "ask": {"client":"for a massage","lady":"offered to give him a massage"},
+      "ask": {"client":"for a massage","lady":"offered to give him a massage","clientFem":"for a massage","ladyFem":"offered to give her a massage"},
       "image": {
         "client": [
           "kneeling beside a reclining man, hands pressing oil into his bare shoulders and back",
@@ -70,7 +71,8 @@
           "{name} straddles {partner}'s thighs and works warm oil into her shoulders, rocking her hips subtly back against {partner}'s rising heat until {partner}'s hands grip her waist."
         ]
       },
-      "samLabel": "She massages you"
+      "samLabel": "She massages you",
+      "femLabel": "Massage (giving)"
     },
     {
       "id": "kiss",
@@ -86,7 +88,7 @@
       "stats": {"charm":1},
       "desc": "deep, lingering kisses and close affectionate touching",
       "dress": {"min":"dressed","fullAt":95},
-      "ask": {"client":"to kiss her","lady":"leaned in to kiss him"},
+      "ask": {"client":"to kiss her","lady":"leaned in to kiss him","clientFem":"to kiss her","ladyFem":"leaned in to kiss her"},
       "image": {
         "client": [
           "seated close beside a man, tilted into a deep lingering kiss, his hand resting at her waist",
@@ -124,7 +126,8 @@
           "{name} presses {partner} back into the pillows and kisses her deeply, teasing her tongue while {partner}'s hips roll insistently up against hers."
         ]
       },
-      "samLabel": "Kissing"
+      "samLabel": "Kissing",
+      "femLabel": "Kissing"
     },
     {
       "id": "massage_get",
@@ -141,7 +144,7 @@
       "mood": 2,
       "desc": "lying back while he rubs warm oil into her shoulders, back and thighs",
       "dress": {"min":"dressed","fullAt":80},
-      "ask": {"client":"to give her a massage","lady":"let him rub her down"},
+      "ask": {"client":"to give her a massage","lady":"let him rub her down","clientFem":"to give her a massage","ladyFem":"let her rub her down"},
       "image": {
         "client": [
           "lying face-down on a massage table, a man's hands rubbing oil into her bare back",
@@ -177,7 +180,8 @@
           "{name} lies stretched out on the bed, shivering softly as {partner} kneads warm oil into her hips and inner thighs with deliberate, unhurried strokes."
         ]
       },
-      "samLabel": "You massage her"
+      "samLabel": "You massage her",
+      "femLabel": "Massage (receiving)"
     },
     {
       "id": "manual_give",
@@ -194,7 +198,12 @@
       "stats": {"agility":1},
       "desc": "stroking him off with skilled, unhurried hands",
       "dress": {"min":"partial","fullAt":75},
-      "ask": {"client":"for a handjob","lady":"offered to use her hands on him"},
+      "ask": {
+        "client": "for a handjob",
+        "lady": "offered to use her hands on him",
+        "clientFem": "to be touched",
+        "ladyFem": "offered to use her fingers on her"
+      },
       "image": {
         "client": [
           "kneeling beside a seated man, both hands wrapped around his shaft, looking up at him with a teasing smile",
@@ -230,7 +239,8 @@
           "{name} kneels between {partner}'s legs and wraps both oiled hands around her shaft, twisting her wrists smoothly from base to tip until {partner}'s fingers tangle hard in her hair."
         ]
       },
-      "samLabel": "She uses her hands on you"
+      "samLabel": "She uses her hands on you",
+      "femLabel": "Fingering her"
     },
     {
       "id": "breast_give",
@@ -247,7 +257,7 @@
       "stats": {"stamina":1},
       "desc": "pressing her bare breasts together around him until he finishes",
       "dress": {"min":"partial","fullAt":70},
-      "ask": {"client":"for titjob","lady":"offered to use her breasts"},
+      "ask": {"client":"for titjob","lady":"offered to use her breasts","clientFem":"for her breasts","ladyFem":"offered her breasts"},
       "image": {
         "client": [
           "kneeling between a man's legs, pressing her bare breasts together around his penis, looking up through her lashes",
@@ -286,7 +296,8 @@
           "{partner} guided {name}'s mouth and hands with a murmur or two, her arousal pressing ever more plainly against her."
         ]
       },
-      "samLabel": "She uses her breasts on you"
+      "samLabel": "She uses her breasts on you",
+      "femLabel": "Breast play (giving)"
     },
     {
       "id": "manual_get",
@@ -300,7 +311,7 @@
       "want": 0.3,
       "kind": "receive",
       "desc": "being pleasured by hand",
-      "ask": {"client":"to touch her","lady":"asked him to touch her"},
+      "ask": {"client":"to touch her","lady":"asked him to touch her","clientFem":"to touch her","ladyFem":"asked her client to touch her"},
       "dress": {"min":"partial","fullAt":55},
       "image": {
         "client": ["lying back on a bed, a man's hand between her thighs"],
@@ -339,7 +350,8 @@
           "{name} was gathered against {partner}'s eager body while a clever hand did the rest. It was a great deal."
         ]
       },
-      "samLabel": "You use your hands on her"
+      "samLabel": "You use your hands on her",
+      "femLabel": "Fingered by her"
     },
     {
       "id": "breast_get",
@@ -353,7 +365,12 @@
       "want": 0.3,
       "kind": "receive",
       "desc": "attention on her chest",
-      "ask": {"client":"to play with her breasts","lady":"let him play with her breasts"},
+      "ask": {
+        "client": "to play with her breasts",
+        "lady": "let him play with her breasts",
+        "clientFem": "to play with her breasts",
+        "ladyFem": "let her play with her breasts"
+      },
       "dress": {"min":"partial","fullAt":55},
       "image": {
         "client": ["a man embracing her from behind, his hands on her breasts"],
@@ -391,7 +408,8 @@
           "{name} sat in {partner}'s lap and was thoroughly adored, with {partner}'s hard-to-ignore arousal against her thigh the whole time."
         ]
       },
-      "samLabel": "You play with her breasts"
+      "samLabel": "You play with her breasts",
+      "femLabel": "Breast play (receiving)"
     },
     {
       "id": "oral_get",
@@ -405,7 +423,12 @@
       "want": 0.3,
       "kind": "receive",
       "desc": "being pleasured with his mouth",
-      "ask": {"client":"to go down on her","lady":"asked him to go down on her"},
+      "ask": {
+        "client": "to go down on her",
+        "lady": "asked him to go down on her",
+        "clientFem": "to go down on her",
+        "ladyFem": "asked her client to go down on her"
+      },
       "dress": {"min":"partial","fullAt":55},
       "image": {
         "client": [
@@ -446,7 +469,8 @@
           "{name} was thoroughly worshipped by a partner who clearly relished the work and was well aware of her own eagerness."
         ]
       },
-      "samLabel": "You go down on her"
+      "samLabel": "You go down on her",
+      "femLabel": "Eaten out by her"
     },
     {
       "id": "oral_give",
@@ -462,7 +486,7 @@
       "want": 1,
       "kind": "give",
       "desc": "using her mouth",
-      "ask": {"client":"for oral","lady":"offered to go down on him"},
+      "ask": {"client":"for oral","lady":"offered to go down on him","clientFem":"to be eaten out","ladyFem":"offered to go down on her"},
       "dress": {"min":"partial","fullAt":55},
       "image": {
         "client": ["her mouth sucking a man's penis, blowjob"],
@@ -497,7 +521,8 @@
           "{partner} let {name} take her time, stroking her hair and telling her she was doing beautifully."
         ]
       },
-      "samLabel": "She goes down on you"
+      "samLabel": "She goes down on you",
+      "femLabel": "Going down on her"
     },
     {
       "id": "missionary",
@@ -513,7 +538,12 @@
       "want": 1,
       "kind": "give",
       "desc": "sex, him on top, face to face",
-      "ask": {"client":"to take her to bed","lady":"took him to bed"},
+      "ask": {
+        "client": "to take her to bed",
+        "lady": "took him to bed",
+        "clientFem": "to grind together",
+        "ladyFem": "took her to bed and wrapped their legs together"
+      },
       "dress": {"min":"partial","fullAt":55},
       "image": {
         "client": [
@@ -549,10 +579,15 @@
         "futa": [
           "{partner} laid {name} back among the pillows and took things slow, her body over {name}'s. {name} saw stars.",
           "{name} was held down, kissed, and thoroughly fucked by {partner}, who took her time making her cum."
+        ],
+        "fem": [
+          "{name} pulled {partner} down onto the bed and tangled their legs together, grinding slow and wet until they were both gasping.",
+          "{name} and {partner} scissored on the sheets, hips rocking, hands everywhere, until {partner} shuddered first and {name} followed."
         ]
       },
       "regular": 1.5,
-      "samLabel": "Missionary"
+      "samLabel": "Missionary",
+      "femLabel": "Scissoring"
     },
     {
       "id": "cowgirl",
@@ -568,7 +603,7 @@
       "want": 1,
       "kind": "give",
       "desc": "sex, her on top",
-      "ask": {"client":"for her on top","lady":"offered to ride him"},
+      "ask": {"client":"for her on top","lady":"offered to ride him","clientFem":"to have her sit on her face","ladyFem":"offered to sit on her face"},
       "dress": {"min":"partial","fullAt":55},
       "image": {
         "client": ["fucking a man"],
@@ -598,10 +633,15 @@
         "futa": [
           "{partner} lay back and let {name} take charge, which {name} did with considerable and gratifying enthusiasm.",
           "{name} straddled {partner} and set the pace herself while {partner} watched, flushed and approving."
+        ],
+        "fem": [
+          "{name} straddled {partner}'s face and rode her tongue at her own pace, one hand braced on the headboard.",
+          "{partner} lay back and pulled {name} up over her mouth, and {name} ground down on her until her thighs shook."
         ]
       },
       "selfLed": true,
-      "samLabel": "Cowgirl (she rides you)"
+      "samLabel": "Cowgirl (she rides you)",
+      "femLabel": "Face-sitting"
     },
     {
       "id": "doggy",
@@ -617,7 +657,12 @@
       "want": 1,
       "kind": "give",
       "desc": "sex from behind",
-      "ask": {"client":"to take her from behind","lady":"let him take her from behind"},
+      "ask": {
+        "client": "to take her from behind",
+        "lady": "let him take her from behind",
+        "clientFem": "to take her from behind",
+        "ladyFem": "got on all fours for her"
+      },
       "dress": {"min":"partial","fullAt":55},
       "image": {
         "client": ["getting fucked from behind by a man"],
@@ -650,10 +695,15 @@
         "futa": [
           "{partner} took {name} from behind, one hand firm at her hip. {name} gripped the headboard and thanked her.",
           "{name} found herself bent over the arm of a chair with {partner} behind her, murmuring praise into her hair."
+        ],
+        "fem": [
+          "{name} went to her hands and knees and {partner} took her from behind with her fingers, a hand firm on her hip.",
+          "{partner} knelt behind {name}, fingers buried in her, and didn't let up until {name} came with her face in the pillows."
         ]
       },
       "techLed": 1.6,
-      "samLabel": "Doggy"
+      "samLabel": "Doggy",
+      "femLabel": "From behind (fingers)"
     }
   ]
 }

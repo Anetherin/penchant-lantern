@@ -11,6 +11,7 @@ function canDo(w, job){
   if(job!=='rest' && w.trust < jobTrust(w,job)) return `${w.name} doesn't trust Sam enough for that yet (needs trust ${tShow(jobTrust(w,job))}).`;
   if(job==='courtesan' && !getActs().some(a=>clientStance(w,a.id,'courtesan')!=='no')) return `${w.name} isn't comfortable with that yet.`;
   if(J.needs && !h.up[J.needs]) return `${h.name} needs a ${UPGRADES[J.needs].label}.`;
+  if(job==='chapel' && w.race==='demon' && !S.workers.some(x=>x!==w && x.house===h.id && x.job==='chapel' && isLanternAngel(x))) return `A demon can only keep ${h.name}'s chapel alongside a Lantern Angel.`;
   const used = S.workers.filter(x=>x!==w && x.house===h.id && ((x.job===job && !(job==='courtesan' && x.standIn)) || (job!=='rest' && x.job==='rest' && x.prevJob===job))).length, max = slotsFor(h, job);
   if(used >= max) return max===0 && ECON.slots[job] && ECON.slots[job].byJob ? `Needs a ${JOBS[ECON.slots[job].byJob].label} in ${h.name} first.` : `No open ${J.label} positions in ${h.name} (${max}).`;
   return null;
