@@ -3,13 +3,14 @@
     "Bodies. w.body = {bust, height, figure}. Each option: label, img (neutral prompt words), weight (generic roll odds), fx (effect engine, see traits.json _readme).",
     "raceSkew: per race, extra weight for options (e.g. dwarves tend to be short). defaults: used for named ladies without a body in their data.",
     "Bust img wording is plain and neutral; edit it freely. Anything starting with TODO is stripped from prompts.",
-    "raceBan: options a race never rolls (dwarves are never tall). raceSkew values can be negative to make an option rare (weights never drop below 0.01)."
+    "raceBan: options a race never rolls (dwarves are never tall). raceSkew values can be negative to make an option rare (weights never drop below 0.01).",
+    "Average options (medium bust, average height and figure) have no img on purpose: the model draws an average body by default, and the words only dilute the prompt. Breast services (services.json image.bust) move the bust wording next to the pose."
   ],
   "defaults": {"bust":"medium","height":"average","figure":"slim"},
   "bust": {
     "flat": {"label":"Flat","img":"flat chest","weight":1,"fx":{"actEnergy":0.92,"actBan":["breast_give"],"appeal":-2}},
     "small": {"label":"Small","img":"small breasts","weight":3,"fx":{"actQuality":{"breast_give":0.8},"stats":{"agility":2}}},
-    "medium": {"label":"Medium","img":"average sized breasts","weight":5,"fx":{}},
+    "medium": {"label":"Medium","img":"","weight":5,"fx":{}},
     "large": {"label":"Large","img":"large breasts","weight":3,"fx":{"actQuality":{"breast_give":1.2},"appeal":3,"actEnergy":1.06}},
     "huge": {
       "label": "Huge",

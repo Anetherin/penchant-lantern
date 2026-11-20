@@ -22,7 +22,7 @@ function endWeek(){
   let satSum = 0;
   S.houses.forEach(h=>{ const hr = simHouse(h, R); const oe = focusOn('office', h); if(oe && hr.income > 0){ const ob = Math.round(hr.income * officeMul() * oe); hr.income += ob; hr.office = ob; R.led.office += ob; }
     R.houses.push(hr); R.income += hr.income; R.upkeep += hr.upkeep; R.served += hr.served; R.turned += hr.turned; R.left += hr.left||0; R.stopped += hr.stopped||0; satSum += hr.sat; });
-  if(R.samWomen) log(`💋 ${R.samWomen} wom${R.samWomen===1?'an':'en'} nobody else would take propositioned Sam on the floor, and he obliged (fees in his column, a little renown).`);
+  if(R.samWomen) log(`💋 ${R.samWomen} wom${R.samWomen===1?'an':'en'} nobody else would take propositioned Sam on the floor, and he obliged (fees in his column, a little renown; see Sam's week in the report).`);
   guildWeek(R);   // guild.js: contract progress, injuries, rewards (adds to R.income)
   R.perkBonus = Math.round(R.income * ((hasChallengePerk('lean_house') ? 0.1 : 0) + (hasChallengePerk('starlight_debt') ? 0.15 : 0)));
   R.income += R.perkBonus;

@@ -34,7 +34,18 @@ const DEFAULT_CLOTH_TEXT = noMeta(needData('snippets').clothing);
 const SNIP_EXPR = noMeta(needData('snippets').expressions||{}), SNIP_EXPR_ACT = noMeta(needData('snippets').expressionsByAct||{});
 const isTodo = s => /^\s*TODO/i.test(String(s||''));
 const stripTodo = s => String(s||'').split(',').filter(x=>!isTodo(x)).join(',');
-function exprText(e, act){ if(!e) return ''; return [SNIP_EXPR[e], (SNIP_EXPR_ACT[actKey(act||'')]||{})[e]].filter(x=>x && !isTodo(x)).join(', '); }
+// The general mood line plus the service's own line. A general piece that repeats the service line, or describes the same
+// part of her face (two smiles, two sets of eyes), is dropped: one face, one description.
+const EXPR_FACE = ['smile','smirk','grin','eyes','gaze','glance','blush','lips','face','expression'];
+function exprText(e, act){
+  if(!e) return '';
+  const g = SNIP_EXPR[e], a = (SNIP_EXPR_ACT[actKey(act||'')]||{})[e], ok = x => x && !isTodo(x);
+  if(!ok(a)) return ok(g) ? g : '';
+  if(!ok(g)) return a;
+  const al = a.toLowerCase(), faces = EXPR_FACE.filter(f => new RegExp('\\b' + f).test(al));
+  const keep = g.split(/,\s*/).filter(s => { const sl = s.trim().toLowerCase(); return sl && !al.includes(sl) && !faces.some(f => new RegExp('\\b' + f).test(sl)); });
+  return [...keep, a].join(', ');
+}
 // AI text prompts (data/ai-prompts.json). {placeholders} are filled from the game.
 const AI_FILE = needData('ai-prompts');
 const DEFAULT_AI_TPL = Object.fromEntries(Object.entries(noMeta(AI_FILE)).filter(([k,v])=>k!=='guidance' && typeof v==='string'));

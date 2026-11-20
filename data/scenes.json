@@ -13,7 +13,11 @@
     "people.pair_fem / pair_futa: head-count tags for two women together (scene pair:<service>:<fem|futa>:<other id>, the second woman described after the first; poses from services.json image.fem / image.futa).",
     "sam_spirit_futa / spirit_futa: a spirit alone with the cock she borrowed by reverse possession (from Sam / from a client); the man isn't in the picture. Scenes can set people (a people key, e.g. solo_futa) to pick their head-count tags. futaPhrase: added to the futanari's description in two-women futa scenes (pair:...:futa / selffuta).",
     "againPhrase: added to the pose of a Sam scene with the context 'again' ('samact:<act>~~again', or 'again_<ctx>' to keep the first round's place, e.g. again_storeroom): the picture of another round, so it differs from the first.",
-    "femClients: looks for women clients in their pictures (cpair:<service>:<fem|futa> scenes, js/data/scenes.js); a futanari client also gets futaPhrase."
+    "femClients: looks for women clients in their pictures (cpair:<service>:<fem|futa> scenes, js/data/scenes.js); a futanari client also gets futaPhrase.",
+    "femClientCloth: what a woman client wears in cpair scenes, by the scene's dress level. In two-women and duo scenes the other woman is as dressed as the first at most (matchCloth in prompts.js). futaPhrase is added to the futanari's own block (her look already reads \"futanari\" instead of \"woman\").",
+    "pairCloth: true = two women in one picture (pair:/cpair:, and duo: threesomes with Sam) are pictured in their underwear or nude (nude when the scene is, or when she wears none), never in their outfits; false = outfits by dress level as in other scenes.",
+    "futaPhraseUnder: futaPhrase when the futanari is in her underwear (pairCloth).",
+    "samfc:<service>:<client index>: Sam with a woman client on the Floor (week.js samProp; report → Sam's week), pictured from his POV like a samact scene. The client is npc_fclient_<i> with femClients[i] as her look (state.js); her dress level follows the service tier (femClientTier)."
   ],
   "scenes": {
     "portrait": {"label":"Portrait","comp":"upper body portrait, looking at viewer","setting":"warm softly blurred background"},
@@ -89,7 +93,7 @@
     "solo": {
       "label": "Alone in her room",
       "snip": "solo",
-      "comp": "alone on her bed, flushed, eyes half closed, fingering her pussy, masturbating, touching herself.",
+      "comp": "alone on her bed, flushed, eyes half closed, fingering her pussy, masturbating, touching herself",
       "setting": "her private bedroom, curtains drawn, a single candle"
     },
     "sam_spirit_futa": {
@@ -223,7 +227,7 @@
     "a lavish bedroom with silk sheets and candlelight",
     "an opulent suite with a canopy bed and rich fabrics"
   ],
-  "samRoom": "Sam's modest bedroom lit by a single lantern",
+  "samRoom": "a modest bedroom lit by a single lantern",
   "chapelSetting": "behind a velvet curtain in the quiet chapel vestry, candlelight",
   "exhibSetting": "in a semi-public curtained alcove off the lantern-lit lounge, risking passers-by",
   "clientPhrase": "with an adult male client",
@@ -247,7 +251,7 @@
     "one riding the viewer while the others kiss and touch her and him, pov",
     "the women lying in a heap on the bed reaching for the viewer, pov"
   ],
-  "futaPhrase": "erect penis, futanari",
+  "futaPhrase": "erect penis",
   "againPhrase": "second round, still flushed and sweaty from the first, messy hair, rumpled sheets",
   "femClients": [
     "a woman with short black hair and sharp eyes",
@@ -260,5 +264,9 @@
     "a plump woman with honey-brown hair",
     "an elegant older woman with greying hair in a bun",
     "a petite woman with a pixie cut"
-  ]
+  ],
+  "femClientCloth": {"dressed":"in her underwear","partial":"in her underwear","under":"in her underwear","nude":"nude"},
+  "pairCloth": true,
+  "futaPhraseUnder": "erect penis out of her underwear",
+  "femClientTier": {"1":"dressed","2":"under","3":"nude"}
 }

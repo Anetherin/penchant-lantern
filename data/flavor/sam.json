@@ -623,5 +623,14 @@
       "\"Strange,\" {name} murmurs, still catching her breath. \"I've always liked women. And then there's you.\" She doesn't seem to mind the contradiction.",
       "{name} props herself up on an elbow and studies you. \"You know you're the only man I'd do this for?\" It isn't quite a question."
     ]
+  },
+  "floor_woman": {
+    "_note": "Weekly report (Sam's week): a woman client nobody else would take propositions Sam while he works the Floor (balance.json → clients.women.samProp). {ask} = what she asked him for (the service's ask.client wording, from Sam's side: \"to go down on her\", \"to take her from behind\"), {house} = the house. Optional keys by service id (Sam's side, e.g. oral_get) override _default.",
+    "_default": [
+      "A woman at the bar at {house} had been turned down twice and wasn't in the mood to hear no a third time. She caught Sam's sleeve, named her price and asked him {ask}. She left smiling and paid him extra.",
+      "One of the women in the lounge at {house} gave up on the staff and set her sights on the man pouring drinks instead. She asked Sam {ask}, he closed the curtain on a private alcove, and she tipped like she meant to come back.",
+      "Nobody at {house} had a free hour for her, so she asked Sam straight out: she wanted him {ask}. He took her upstairs, and she came down flushed, satisfied and a good deal lighter in the purse.",
+      "A regular's friend who'd come along to {house} 'just to watch' ended up pinning Sam in the hallway and asking him {ask}. He obliged. She didn't stay just to watch the next time."
+    ]
   }
 }

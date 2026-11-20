@@ -124,6 +124,14 @@ The most useful ones:
 - If the game's code changes in ways the bot uses (hiring, jobs, upgrades, Sam's actions, NG+), keep `tools/lab/bot.js` in sync and rerun `npm run lab -- phases --runs 2` to confirm it still plays.
 - Other test scripts: `node tools/goddess-smoke.mjs` (goddess / NG+ flow) and `node tools/story-check.mjs` (all story text), after story or goddess edits.
 
+## 6b. Image prompt audit
+
+`node tools/prompt-audit.mjs` (about half a minute) builds ~800 image prompts, seeded: every service as a client scene, Sam scene, duo, two women (fem / futa with the goddess / selffuta with a spirit), woman and futanari clients, demonstrations, group nights, solo, portraits and story scenes, over a cast that covers every bust, height and figure option, several races, a Modest lady, one without underwear and the named starters, at all four dress levels (never below a service's own minimum). It writes `tools/prompt-audit.out.md`: a per-family table (count, rough token length, errors, warnings), the lint findings with an example each, and two sample prompts per family.
+
+- Errors (fix these): thrown errors, braces, `undefined`, TODO text, a man or the viewer in a two-women picture, penis wording in a fem pair, a futa scene without a futanari, a duo without `2girls`.
+- Warnings (judgement): repeats inside one person's block, more than one `pov`, a block naming breasts more than 3 times, dressed scenes with nude wording, two-woman scenes with only one labelled block, ambiguous her/she, and prompts over ~230 tokens (Flux-schnell based models read about 256 T5 tokens, so the end of a long prompt, the setting, may be dropped).
+- `--only pair_futa,duo` limits families, `--seed N` changes the cast, `--json file` dumps every prompt with its lint, `--strict` exits 1 on errors.
+
 ## 7. Troubleshooting
 
 | problem | fix |
