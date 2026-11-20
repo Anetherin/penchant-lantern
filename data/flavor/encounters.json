@@ -420,6 +420,27 @@
       "Her playful trick with reverse possession spooked him badly; seeing what should have been between his own legs growing hard on a floating spirit sent him scrambling for his trousers."
     ]
   },
+  "enc_possess_fem_like": {
+    "_note": "Woman client loved a spirit's reverse possession: the spirit took her inside and she rode along, feeling everything, while the spirit took a housemate to bed ({other} = the housemate).",
+    "_default": [
+      "Halfway through, she drew the client inside herself and went to find {other}. The client felt every kiss and every slick stroke from inside the spirit's body as the two of them tumbled into bed, and when she was poured back into her own skin she was shaking, flushed and begging to book the same again.",
+      "The client asked for reverse possession and got a front-row seat: tucked inside the spirit, she felt {other}'s mouth and fingers as if they were on her own body, and came twice before the spirit let her go."
+    ]
+  },
+  "enc_possess_fem_ok": {
+    "_note": "Woman client was surprised by the reverse possession but rolled with it ({other} = the housemate).",
+    "_default": [
+      "The client gasped when the spirit pulled her inside, and gasped again when {other} answered the door. She rode along, startled and then very much not complaining, until the spirit set her back down in her own body, dazed and grinning.",
+      "Folded inside the spirit, the client didn't quite know what to make of it at first, but by the time {other} had the spirit on her back she'd stopped wondering and started enjoying."
+    ]
+  },
+  "enc_possess_fem_freak": {
+    "_note": "Woman client was unsettled by the reverse possession and cut it short ({other} = the housemate).",
+    "_default": [
+      "The moment the spirit drew her inside, the client panicked. She got a dizzy glimpse of {other} reaching for them both before she wrenched herself back out, shaken, and called it a night.",
+      "The client lasted about as long as one kiss with {other} before the strangeness of feeling it from inside someone else's body got to her. She pulled free, apologised stiffly and left early."
+    ]
+  },
   "spirit_pair_futa": {
     "_note": "A spirit reverse-possessed someone and brought that phantom cock to a willing housemate ({other} = partner).",
     "_default": [

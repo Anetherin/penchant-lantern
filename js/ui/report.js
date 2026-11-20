@@ -81,7 +81,7 @@ function repAll(R){
     <div class="grid2"><div><h3 style="margin-top:10px">Ledger</h3><table>${ledger}</table></div>
       <div><h3 style="margin-top:10px">Houses</h3><table><tr><th>House</th><th>Clients</th><th>Income</th><th>Upkeep</th><th>Sat.</th><th>Pop.</th><th>Class</th></tr>${houseRows}</table></div></div>
     ${(R.houses||[]).map(h=>{ const x = repHouseExtra(h); return x ? `<div class="muted"><b>${esc(h.name)}</b>: ${x}</div>` : ''; }).join('')}
-    ${(R.samActs&&R.samActs.length) || (R.samFem&&R.samFem.length) ? `<h3 style="margin-top:10px">Sam's week</h3>${R.samActs&&R.samActs.length?`<div class="muted">${R.samActs.map(esc).join(' · ')}</div>`:''}${repSamFem(R)}` : ''}
+    ${R.samActs&&R.samActs.length?`<h3 style="margin-top:10px">Sam's week</h3><div class="muted">${R.samActs.map(esc).join(' · ')}</div>`:''}
     ${R.lines.length?`<h3 style="margin-top:10px">Notes</h3>${R.lines.map(l=>`<div>${esc(l)}</div>`).join('')}`:''}
     <h3 style="margin-top:10px">Ladies</h3>${ladyRows ? `<table class="rep-ladies"><tr><th>Name</th><th>Job</th><th>Clients</th><th>Earned</th><th>Mood</th><th></th></tr>${ladyRows}</table>` : '<p class="muted">Nobody worked this week.</p>'}`;
 }
@@ -140,9 +140,9 @@ function encLine(h){
 function repGroups(R, p){
   const here = !!findAny(p.id), G = new Map();
   R.hl.forEach((h,i)=>{ if(h.wid!==p.id) return;
-    const k = h.pairFuta ? 'pair' : h.scene==='solo' ? 'solo' : h.scene==='spirit_futa' ? 'poss' : h.act ? 'act:'+h.act+(h.csex ? '@'+h.csex : '') : h.job ? 'job' : h.outcome==='no' ? 'no' : h.where ? 'prop:'+h.where : 'comp';
+    const k = h.yuri ? 'yuri' : h.pairFuta ? 'pair' : h.possFem ? 'poss' : h.scene==='solo' ? 'solo' : h.scene==='spirit_futa' ? 'poss' : h.act ? 'act:'+h.act+(h.csex ? '@'+h.csex : '') : h.job ? 'job' : h.outcome==='no' ? 'no' : h.where ? 'prop:'+h.where : 'comp';
     if(!G.has(k)) G.set(k, []); G.get(k).push({h,i}); });
-  const title = k => k==='pair' ? 'With a housemate (reverse possession)' : k==='poss' ? 'Reverse possession' : k.startsWith('act:') ? actLabelFor(k.slice(4).split('@')[0], k.split('@')[1]) : k==='job' ? 'At work' : k==='solo' ? 'A night to herself' : k==='no' ? 'Turned down' : k.startsWith('prop:') ? 'Propositions that went nowhere' : 'Company only';
+  const title = k => k==='yuri' ? 'With a housemate' : k==='pair' ? 'With a housemate (reverse possession)' : k==='poss' ? 'Reverse possession' : k.startsWith('act:') ? actLabelFor(k.slice(4).split('@')[0], k.split('@')[1]) : k==='job' ? 'At work' : k==='solo' ? 'A night to herself' : k==='no' ? 'Turned down' : k.startsWith('prop:') ? 'Propositions that went nowhere' : 'Company only';
   return [...G.entries()].map(([k, list])=>{
     const first = list[0], fee = list.reduce((a,x)=>a+(x.h.fee||0),0), sats = list.filter(x=>x.h.sat!==undefined), avg = sats.length ? Math.round(sats.reduce((a,x)=>a+x.h.sat,0)/sats.length) : null;
     const img = here ? `<button class="sm" id="hl${first.i}_t" onclick="toggleImgBtn('hl${first.i}','${p.id}','${first.h.scene}')">🖼 Show image</button><div id="hl${first.i}" class="hlimg" data-ext="1"></div>` : '';
@@ -191,15 +191,4 @@ async function repShowSaved(R, wid){
     if(!REPV || REPV.view!=='w:'+wid || !box.isConnected) return;
     box.dataset.hide = '0'; showImg('hl'+i, wid, h.scene, null, 'manual');
   }
-}
-// Sam's week: the women who propositioned him on the Floor (week.js samProp → R.samFem), each with her picture (samfc scene)
-function repSamFem(R){
-  return (R.samFem||[]).map((f, i)=>{
-    const L = FLAVOR.floor_woman || {}, lines = [].concat(L[f.act] || L._default || []), hn = (HOUSES[f.h]||{}).name || 'the house';
-    const seed = (f.look * 7 + i * 13 + (f.fee||0)) % Math.max(1, lines.length);   // stable per entry, so re-renders keep the same line
-    const text = (lines[seed] || '').replace(/\{ask\}/g, ((actById(f.act)||{}).ask||{}).client || 'for company').replace(/\{house\}/g, hn);
-    const id = 'samfc'+i, scene = `samfc:${f.act}:${f.look}:${f.h}`;
-    return `<div class="hl" style="margin-top:6px">${esc(text)} <span class="muted">· ${esc(samActLabel(f.act))} · <span class="good">${fmt(f.fee)}</span></span>
-      <button class="sm" id="${id}_t" onclick="toggleImgBtn('${id}','npc_fclient_${f.look}','${scene}')">🖼 Show image</button><div id="${id}" class="hlimg" data-ext="1"></div></div>`;
-  }).join('');
 }

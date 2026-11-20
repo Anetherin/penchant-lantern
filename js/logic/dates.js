@@ -16,13 +16,17 @@ function dateRaises(d){
 }
 function dateMenu(id){
   const w = findW(id); if(!w) return;
-  const dbl = has(w,'Devoted') && doublePartners(w).length > 0;
+  const dbl = doubleOK(w) && doublePartners(w).length > 0;
   modal(`<h2>Take ${esc(w.name)} out</h2><p class="muted">Dates build trust and mood. What she enjoys depends on her personality. A great date at high trust might not end at her door.</p>
     <table>${Object.entries(DATES).filter(([k,d])=>dateListed(w,d)).map(([k,d])=>{ const c = dateFor(k).cost, m = pmAny(w,d.like), r = dateRaises(d);
       return `<tr><td><b>${d.label}</b>${m>1?' <span class="good">♥ she\'d love this</span>':m<1?' <span class="warn">not her thing</span>':''}${r?`<br><span class="muted">${esc(r)}</span>`:''}</td><td>${c?fmt(c):'free'}</td><td class="muted">${samDateCost(d.energy)} energy</td><td><button class="sm" onclick="${d.special==='chat'?`samChat('${id}')`:`samDate('${id}','${k}')`}" ${S.gold<c?'disabled':''}>Go</button></td></tr>`; }).join('')}</table>
     <div class="row">${dbl?`<button onclick="doubleDateMenu('${id}')">💞 Double date…</button>`:''}<button onclick="openSheet('${id}')">Back</button></div>`);
 }
-const doublePartners = w => S.workers.filter(o=>o.id!==w.id && has(o,'Devoted')).sort((a,b)=>bondV(w,b)-bondV(w,a));
+// Double dates: lovers (Devoted) and anyone at max trust (balance.json → doubleDate.trust) can go, in any mix
+const doubleOK = w => has(w,'Devoted') || (w.trust||0) >= ((BAL.doubleDate||{}).trust ?? 99);
+const doublePartners = w => S.workers.filter(o=>o.id!==w.id && doubleOK(o)).sort((a,b)=>bondV(w,b)-bondV(w,a));
+// the double date's picture: both women and Sam (prompts.js ddatePrompt), saved per pair
+const ddScene = (dk, o) => `ddate_${dk}~~with:${o.id}`;
 const doubleBondTag = (a, b) => { const v = Math.round(bondV(a,b)), L = BONDS.labels.find(l=>(l.min!==undefined && v>=l.min) || (l.max!==undefined && v<=l.max)); return L ? `${L.label} ${b.name} (${v})` : `Bond ${v}`; };
 function doubleDateMenu(id, pid){
   const w = findW(id), ps = w ? doublePartners(w) : []; if(!w || !ps.length) return dateMenu(id);
@@ -33,7 +37,7 @@ function doubleDateMenu(id, pid){
     const fit = [fw>1?`${w.name} ♥`:fw<1?`${w.name} meh`:'', fo>1?`${o.name} ♥`:fo<1?`${o.name} meh`:''].filter(Boolean).join(' · ');
     return `<tr><td><b>${d.label}</b>${fit?` <span class="muted">(${esc(fit)})</span>`:''}<br><span class="muted">Trust + · Mood + · Bond +${d.bond}${d.lust?' · Lust +':''}</span></td><td>${fmt(d.cost)}</td><td class="muted">${samDateCost(d.energy)} energy</td><td><button class="sm" onclick="doubleDateRun('${w.id}','${o.id}','${k}')" ${S.gold<d.cost?'disabled':''}>Go</button></td></tr>`;
   }).join('');
-  modal(`<h2>Double date: ${esc(w.name)} &amp; ${esc(o.name)}</h2><p class="muted">Take two of your lovers out together. Builds trust, mood, and their bond with each other — and if both are in the mood afterward, the night need not end early.</p>${ps.length>1?`<div class="row" style="margin-bottom:8px">${tabs}</div>`:`<div class="muted" style="margin-bottom:8px">${esc(doubleBondTag(w,o))}</div>`}<table>${rows}</table><div class="row"><button onclick="dateMenu('${w.id}')">Back</button></div>`);
+  modal(`<h2>Double date: ${esc(w.name)} &amp; ${esc(o.name)}</h2><p class="muted">Take two of your lovers (or anyone who trusts you completely) out together. Builds trust, mood, and their bond with each other — and if both are in the mood afterward, the night need not end early.</p>${ps.length>1?`<div class="row" style="margin-bottom:8px">${tabs}</div>`:`<div class="muted" style="margin-bottom:8px">${esc(doubleBondTag(w,o))}</div>`}<table>${rows}</table><div class="row"><button onclick="dateMenu('${w.id}')">Back</button></div>`);
 }
 function doubleDateRun(id, oid, dk){
   const w = findW(id), o = findW(oid), d = DOUBLE_DATES[dk]; if(!w || !o || !d) return;
@@ -54,10 +58,19 @@ function doubleDateRun(id, oid, dk){
   const body = `${bondFill(d.intro, w, o)}\n\n${bondFill(d.lines, w, o)}\n\nTrust + · Mood + · ${doubleBondTag(w, o)} · −${fmt(d.cost)}`;
   samLog(`Double date (${d.label}): ${w.name} & ${o.name}`);
   save(); render(); closeModal();
-  if(!spark) return showResult(`${d.label}: ${w.name} & ${o.name}`, body, w.id, 'ddate_'+dk);
+  if(!spark){
+    // no threesome tonight, but one of them may not want the night to end (dates.json → _double.<date>.oneMore)
+    const keen = [w, o].filter(x=>getActs().some(a=>canSam(x,a.id)) && dateSparks(x, pmAny(x, d.like))).sort((a,b)=>(b.lust||0)-(a.lust||0))[0];
+    if(!keen || !(d.oneMore||[]).length) return showResult(`${d.label}: ${w.name} & ${o.name}`, body, w.id, ddScene(dk, o));
+    const other = keen===w ? o : w, more = bondFill(d.oneMore, keen, other);
+    modal(`<h2>${esc(d.label)}: ${esc(w.name)} &amp; ${esc(o.name)}</h2><div id="ddImg"></div><p class="story">${esc(body)}</p><div id="invImg"></div><p class="story pink">${esc(more)}</p>
+      <div class="row"><button class="primary" onclick="privateMenu('${keen.id}',true)">Go in with ${esc(keen.name)} (private time, no extra action)</button><button onclick="closeModal()">Say goodnight</button></div>`, {lock:true});
+    showImg('ddImg', w.id, ddScene(dk, o)); showImg('invImg', keen.id, 'invite');
+    return;
+  }
   const lead = d.threesomeLead && d.threesomeLead.length ? bondFill(d.threesomeLead, w, o) : `${w.name} and ${o.name} linger together outside your door, clearly reluctant for the evening to end.`;
   modal(`<h2>${esc(d.label)}: ${esc(w.name)} &amp; ${esc(o.name)}</h2><div id="ddImg"></div><p class="story">${esc(body + '\n\n' + lead)}</p><div class="row"><button class="primary" onclick="doubleThreesomeMenu('${w.id}','${o.id}')">🔥 Invite them to your bed (${samPrivCost(12,true)} energy)</button><button onclick="closeModal()">Goodnight</button></div>`, {lock:true});
-  showImg('ddImg', w.id, 'ddate_'+dk);
+  showImg('ddImg', w.id, ddScene(dk, o));
 }
 function doubleThreesomeMenu(id, oid){
   const w = findW(id), o = findW(oid), acts = w && o ? duoActs(w, o) : [];
@@ -71,6 +84,7 @@ function doubleThreesomeRun(id, oid, act){
   const need = samPrivCost(12, true);
   if(S.sam.energy < need) return toast('Sam is too tired.');
   S.sam.energy -= need;
+  const l0 = {[w.id]: w.lust, [o.id]: o.lust};   // their lust going in: one of them may want another round after (encounters.js wantsAgain)
   const lead1 = `Behind the latched door, ${w.name} and ${o.name} waste no time shucking their clothes and pulling you onto the bed—warm hands, slick mouths, and soft breasts pressing against you from both sides.`;
   const t1 = privateCore(w, act, {lead:lead1, turn:false});
   const t2 = privateCore(o, act, {lead:`${o.name} presses right in beside her, trading breaths and kisses as the two of them share you without an ounce of jealousy.`, turn:false});
@@ -78,7 +92,9 @@ function doubleThreesomeRun(id, oid, act){
   samStat('technique', 3); samXP(6);
   samLog(`Shared night with ${w.name} & ${o.name} [${samActLabel(act)}]`);
   save(); render(); closeModal();
-  showResult(`Three in One Bed (${samActLabel(act)})`, `${t1}\n\n${t2}\n\n${doubleBondTag(w, o)}`, w.id, 'duo:'+act+':'+o.id);
+  const again = [w, o].find(x=>wantsAgain(x, l0[x.id]));
+  showResult(`Three in One Bed (${samActLabel(act)})`, `${t1}\n\n${t2}\n\n${doubleBondTag(w, o)}`, w.id, 'duo:'+act+':'+o.id, undefined,
+    again ? {label:`Continue (${again.name} isn't done)`, onclick:`EVQ.unshift(()=>evAgain(findW('${again.id}')));runQueue()`} : undefined);
 }
 // Daring variants offered on a date (dates.json → spicy). With acts: the one she'd do (favorite, else the highest-th she's keen on, else the first she's comfortable with).
 function spicyAct(w, sp){

@@ -1,4 +1,36 @@
 {
+  "yuri_night": {
+    "_note": "Report line when a restless lady at high lust seeks out a free housemate instead of spending the night alone ({name} = the one who went looking, {other} = the housemate). A short service line follows; don't name one act every time.",
+    "_default": [
+      "{name} couldn't stand another night alone, so she padded down the hall and knocked on {other}'s door. They kissed breathless, tugged each other's clothes off, and spent an hour with fingers and tongues buried in each other, then came back downstairs sharing a blanket and giggling.",
+      "{name} slipped into {other}'s bed uninvited, and {other} pulled her in by the hips without a word of complaint. They ground together until both of them were shaking, then lay tangled and sticky, laughing at how loud they'd been.",
+      "Wound too tight to sleep, {name} found {other} awake and equally needy. Two wet mouths, four busy hands and a creaking mattress later, they were both sated and starving for breakfast.",
+      "{name} climbed into {other}'s lap and kissed her until neither of them could think straight. They took turns getting each other off with fingers and lips, then fell asleep in a heap and came down late, flushed and smug.",
+      "{name} wandered into {other}'s room 'just to talk.' Within minutes they were naked, thighs locked together, rocking against each other and moaning into each other's necks until they both came, and they walked back out hand in hand.",
+      "{other} was reading when {name} appeared in her doorway, already half undressed and pink to the ears. She set the book aside, pulled {name} down onto the sheets and licked her to a trembling finish, then got the same favor returned before they both drifted off."
+    ],
+    "Shy but earnest": [
+      "{name} stood outside {other}'s door for ten minutes before she dared knock. Once inside, she whispered a very small 'please' and let {other} undress her, and they kissed and fingered each other slowly until she cried out into a pillow, then crept back to bed glowing and shy.",
+      "{name} confessed to {other} in a stammer that she couldn't sleep, and {other} just smiled and made room. They explored each other with trembling hands and soft mouths, and {name} left with a burning face and a very happy smile."
+    ],
+    "Bookish and curious": [
+      "{name} proposed 'a comparative study' to {other}, who laughed and agreed. They took careful notes on every gasp while their fingers and tongues did the fieldwork, and the conclusion, delivered breathlessly, was that it needed more trials.",
+      "{name} took {other} to bed with the earnest interest she usually saves for a rare book, tracing and tasting every inch. They emerged tousled and giggling, trading very specific compliments."
+    ],
+    "Mysterious and aloof": [
+      "{name} appeared in {other}'s doorway without a word and shut the door behind her. What followed was slow and wordless, mouths and fingers and long shuddering silences, and she left before dawn with a faint, satisfied smile."
+    ],
+    "Proud and sharp-tongued": [
+      "{name} marched into {other}'s room, declared that she was only there because it was convenient, and pushed her onto the bed. They ground and bit and fingered each other until both of them were swearing happily, then split up with the smuggest of smirks.",
+      "{name} told {other} she'd better be good, and {other} proved it with her mouth. {name} returned the favor out of pure competitiveness, and both of them came down the stairs looking very pleased with themselves."
+    ],
+    "Laid-back and lazy": [
+      "{name} flopped onto {other}'s bed and announced she wasn't moving, so {other} did all the work with her fingers and tongue while {name} sighed happily. Later {name} returned the favor, lazily, and they dozed in a warm pile."
+    ],
+    "Calm and elegant": [
+      "{name} invited herself to {other}'s room with a graceful knock and a poured glass of wine. By the end of it the wine was forgotten, their robes lay in a heap, and both of them were flushed and unhurried, still stroking each other's thighs."
+    ]
+  },
   "solo": {
     "_note": "Report line when a lady at max lust spends part of her night alone in her room instead. Shown in the weekly report.",
     "_default": [
@@ -622,15 +654,6 @@
       "{name} laughs softly when it's over. \"If any of the girls ask, you're the only man who gets this. Which is true, and they'll never believe me.\"",
       "\"Strange,\" {name} murmurs, still catching her breath. \"I've always liked women. And then there's you.\" She doesn't seem to mind the contradiction.",
       "{name} props herself up on an elbow and studies you. \"You know you're the only man I'd do this for?\" It isn't quite a question."
-    ]
-  },
-  "floor_woman": {
-    "_note": "Weekly report (Sam's week): a woman client nobody else would take propositions Sam while he works the Floor (balance.json → clients.women.samProp). {ask} = what she asked him for (the service's ask.client wording, from Sam's side: \"to go down on her\", \"to take her from behind\"), {house} = the house. Optional keys by service id (Sam's side, e.g. oral_get) override _default.",
-    "_default": [
-      "A woman at the bar at {house} had been turned down twice and wasn't in the mood to hear no a third time. She caught Sam's sleeve, named her price and asked him {ask}. She left smiling and paid him extra.",
-      "One of the women in the lounge at {house} gave up on the staff and set her sights on the man pouring drinks instead. She asked Sam {ask}, he closed the curtain on a private alcove, and she tipped like she meant to come back.",
-      "Nobody at {house} had a free hour for her, so she asked Sam straight out: she wanted him {ask}. He took her upstairs, and she came down flushed, satisfied and a good deal lighter in the purse.",
-      "A regular's friend who'd come along to {house} 'just to watch' ended up pinning Sam in the hallway and asking him {ask}. He obliged. She didn't stay just to watch the next time."
     ]
   }
 }
