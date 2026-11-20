@@ -10,14 +10,28 @@ function sheetScenes(w){
   getActs().forEach(a=>{ if(canSam(w,a.id)) out.push('samact:'+a.id); });
   return out;
 }
+// Prev / next lady from a sheet or wardrobe: the Roster's current list (selected house or All houses, with its filters
+// and sort). A lady outside that list (opened from the agenda, say) steps through her house's unfiltered list instead.
+function ladyNavList(w){
+  const base = HOUSE_ALL ? S.workers : S.workers.filter(x=>x.house===curH().id), list = rosterFiltered(base);
+  if(list.includes(w)) return list;
+  const hl = rosterOrder(S.workers.filter(x=>x.house===w.house));
+  return hl.includes(w) ? hl : [w];
+}
+function ladyNav(w, fn){
+  const L = ladyNavList(w); if(L.length < 2) return '';
+  const i = L.indexOf(w), prev = L[(i - 1 + L.length) % L.length], next = L[(i + 1) % L.length];
+  return `<div class="row ladynav"><button class="sm" onclick="${fn}('${prev.id}')" title="${esc(prev.name)}">‹ ${esc(prev.name.split(' ')[0])}</button>
+    <span class="muted">${i + 1} / ${L.length}</span><button class="sm" onclick="${fn}('${next.id}')" title="${esc(next.name)}">${esc(next.name.split(' ')[0])} ›</button></div>`;
+}
 function openSheet(id){
   const w = findW(id); if(!w) return; ensureWorker(w);
-  const scenes = sheetScenes(w);
-  modal(`<div class="sheet"><div>
+  const scenes = sheetScenes(w), nav = ladyNav(w, 'openSheet');
+  modal(`${nav}<div class="sheet"><div>
       <div class="row"><select id="sceneSel" onchange="fillCloth();sheetImg()">${scenes.map(s=>`<option value="${s}">${esc(sceneInfo(s,w).label)}</option>`).join('')}</select>
       <select id="clothSel" onchange="sheetImg()"></select></div>
       <div id="sheetImg"></div></div>
-    <div id="sheetInfo"></div></div>`, {wide:true});
+    <div id="sheetInfo"></div></div>${nav}`, {wide:true});
   $('#modal').scrollTop = 0;
   SHEET = id;
   fillCloth(); refreshSheetInfo();
@@ -118,7 +132,17 @@ function samPerksHTML(){
     + B.map(k=>`<div class="muted">${esc(NG_BOONS[k].label)}: ${esc(NG_BOONS[k].desc)}</div>`).join('')
     + CP.map(k=>`<div class="good">Challenge Perk (${esc(CYCLE_CHALLENGES[k].perk)}): ${esc(CYCLE_CHALLENGES[k].perkDesc)}</div>`).join('')
     + (CV ? `<div class="muted">Town event (${esc(CV.label)}): ${esc(CV.desc || '')}</div>` : '')
-    + (CH ? `<div class="muted">Active Challenge (${esc(CH.label)}): ${esc(CH.desc)}</div>` : '');
+    + (CH ? `<div class="muted">Active Challenge (${esc(CH.label)}): ${esc(CH.desc)}${challengeProgress()}</div>` : '');
+}
+// where the active challenge stands (S.chTrack, random.js → challengeTrack)
+function challengeProgress(){
+  const T = S.chTrack || {}, ch = CYCLE_CHALLENGES[S.challenge] || {}, bits = [];
+  if(ch.within){ const total = ((S.debt && S.debt.payments) || BAL.debt.payments) * BAL.debt.every, el = Math.max(0, (S.week||1) - ((S.debt && S.debt.start) || 0));
+    bits.push(`week ${el} of ${Math.floor(total * ch.within)} allowed`); }
+  if(S.challenge==='iron_ledger') bits.push(`average tidiness of the worst house ${T.weeks ? Math.round(T.tidy / T.weeks) : '—'} / ${ch.tidy ?? 75}, strikes ${(S.debt && S.debt.strikes)||0}`);
+  if(S.challenge==='small_troupe') bits.push(`most staff so far ${Math.max(T.maxStaff||0, S.workers.length)} / ${troupeCap()}`);
+  if(S.challenge==='lean_house' && S.flags && S.flags.boughtHouse) bits.push('failed: a house was bought');
+  return bits.length ? ` <b>(${bits.join(' · ')})</b>` : '';
 }
 function viewSam(){
   const s = S.sam;

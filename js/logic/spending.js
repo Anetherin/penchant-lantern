@@ -216,11 +216,17 @@ function wardrobeAllApply(){
 }
 
 /* ---------- Luxuries (balance.json → luxury): money sinks once the debt is paid ---------- */
-// Each one doubles in price with every purchase in the same week (house items count per house).
+// Each one doubles in price with every purchase in the same week (house items count per house). span:'cycle' (the tonic)
+// keeps counting until the next rebirth instead (S.luxCyc, keyed by S.cycle).
 const luxOpen = () => !debtOpen();
-function luxUses(k, h){ const U = S.luxWk && S.luxWk.wk === S.week ? S.luxWk.n : {}; return U[h ? k + ':' + h.id : k] || 0; }
-function luxCount(k, h){ if(!S.luxWk || S.luxWk.wk !== S.week) S.luxWk = {wk:S.week, n:{}}; const id = h ? k + ':' + h.id : k; S.luxWk.n[id] = (S.luxWk.n[id]||0) + 1; }
-function luxCost(k, h, per){ const L = BAL.luxury; return Math.round(L[k].cost * (per || 1) * Math.pow(L.weekMul ?? 2, luxUses(k, h)) * cycleMul(L.perCycle)); }
+const luxSpanCycle = k => ((BAL.luxury||{})[k]||{}).span === 'cycle';
+function luxUses(k, h){ const id = h ? k + ':' + h.id : k;
+  if(luxSpanCycle(k)) return S.luxCyc && S.luxCyc.cycle === (S.cycle||1) ? (S.luxCyc.n[id]||0) : 0;
+  const U = S.luxWk && S.luxWk.wk === S.week ? S.luxWk.n : {}; return U[id] || 0; }
+function luxCount(k, h){ const id = h ? k + ':' + h.id : k;
+  if(luxSpanCycle(k)){ if(!S.luxCyc || S.luxCyc.cycle !== (S.cycle||1)) S.luxCyc = {cycle:S.cycle||1, n:{}}; S.luxCyc.n[id] = (S.luxCyc.n[id]||0) + 1; return; }
+  if(!S.luxWk || S.luxWk.wk !== S.week) S.luxWk = {wk:S.week, n:{}}; S.luxWk.n[id] = (S.luxWk.n[id]||0) + 1; }
+function luxCost(k, h, per){ const L = BAL.luxury; return Math.round(L[k].cost * (per || 1) * Math.pow(L[k].mul ?? L.weekMul ?? 2, luxUses(k, h)) * cycleMul(L.perCycle)); }
 const luxStaff = h => S.workers.filter(w=>w.house===h.id && w.job!=='guild');
 function buyLuxury(k, hid){
   if(!luxOpen()) return toast('Luxuries open up once the debt is paid off.');
@@ -238,10 +244,17 @@ function buyLuxury(k, hid){
 }
 /* ---------- Hurry it along (balance.json → luxury.rush): pay to skip a story wait once the debt is paid ---------- */
 // Skips only the weeks-to-wait gate of a house chapter, romance arc or epilogue chapter (other conditions still apply;
-// the button only shows when the wait is all that's left). Price: cost x mul^(skips this cycle) x (1 + perCycle x (cycle-1)),
-// rounded to 100; the count resets with each rebirth (keyed by S.cycle). The chapter fires when the week ends.
-const rushUses = () => S.rush && S.rush.cycle === (S.cycle||1) ? S.rush.n : 0;
-function rushCost(){ const R = BAL.luxury.rush; return Math.round(R.cost * Math.pow(R.mul ?? 1.5, rushUses()) * cycleMul(R.perCycle) / 100) * 100; }
+// the button only shows when the wait is all that's left). Price: cost x markup x (1 + perCycle x (cycle-1)), rounded to 100.
+// Each skip multiplies the markup by mul; every week that passes keeps weekDecay of the markup above 1 (0.5: halfway back to
+// the base price), and a rebirth resets it (S.rush {cycle, m, wk}). The chapter fires when the week ends.
+function rushMarkup(){
+  const R = BAL.luxury.rush, r = S.rush; if(!r || r.cycle !== (S.cycle||1)) return 1;
+  let m = r.m ?? Math.pow(R.mul ?? 1.5, r.n || 0);   // older saves stored a skip count
+  const weeks = Math.max(0, S.week - (r.wk ?? S.week));
+  for(let i = 0; i < weeks; i++) m = 1 + (m - 1) * (R.weekDecay ?? 0.5);
+  return m;
+}
+function rushCost(){ const R = BAL.luxury.rush; return Math.round(R.cost * rushMarkup() * cycleMul(R.perCycle) / 100) * 100; }
 function rushTarget(kind, id){
   if(kind==='house'){ const h = H(id); return h && h.story && STORIES[h.id] ? {h, gap: storyGap(h), name: h.name} : null; }
   const w = S.workers.find(x=>String(x.id)===String(id)); if(!w) return null;
@@ -253,7 +266,7 @@ function rushWait(kind, id){
   if(!luxOpen() || !(BAL.luxury||{}).rush) return toast('That opens up once the debt is paid off.');
   const t = rushTarget(kind, id); if(!t) return;
   const cost = rushCost(); if(S.gold < cost) return toast('Not enough gold.');
-  S.gold -= cost; S.rush = {cycle: S.cycle||1, n: rushUses() + 1};
+  S.gold -= cost; S.rush = {cycle: S.cycle||1, m: rushMarkup() * (BAL.luxury.rush.mul ?? 1.5), wk: S.week};
   const at = S.week - t.gap;
   if(t.h){ t.h.story.wk = Math.min(t.h.story.wk||0, at); t.h.since = Math.min(t.h.since||1, at); }
   else if(kind==='arc') t.w.arcWk = Math.min(t.w.arcWk||0, at);
@@ -273,7 +286,7 @@ function luxBtn(k, h){
 }
 function samLuxCard(){
   if(!luxOpen() || !BAL.luxury) return '';
-  return `<section class="card"><h2>Luxuries</h2><div class="row">${luxBtn('tonic')}</div><p class="muted">No action needed. Each one bought this week doubles the next one's price.</p></section>`;
+  return `<section class="card"><h2>Luxuries</h2><div class="row">${luxBtn('tonic')}</div><p class="muted">No action needed. ${luxSpanCycle('tonic') ? `Each tonic this cycle raises the next one's price x${BAL.luxury.tonic.mul ?? BAL.luxury.weekMul ?? 2} (it resets at rebirth).` : 'Each one bought this week doubles the next one\'s price.'}</p></section>`;
 }
 function houseLuxCard(h){
   if(!luxOpen() || !BAL.luxury) return '';

@@ -156,7 +156,7 @@ function viewCloudSettings(){
     </div>
     <div class="row">
       <label class="chk"><input type="checkbox" id="c_autoSave" ${CLOUD.autoSave!==false?'checked':''}> Auto-save active run at the end of each week</label>
-      <label class="chk"><input type="checkbox" id="c_autoMile" ${CLOUD.autoMilestone!==false?'checked':''}> Auto-snapshot NG+ seed when debt is paid</label>
+      <label class="chk"><input type="checkbox" id="c_autoMile" ${CLOUD.autoMilestone!==false?'checked':''}> Auto-snapshot NG+ seed when the debt is paid (refreshed when you start New Game+)</label>
       <label class="chk"><input type="checkbox" id="c_syncLib" ${CLOUD.syncLib?'checked':''}> Include Library characters in cloud image sync</label>
     </div>
     <div class="row">

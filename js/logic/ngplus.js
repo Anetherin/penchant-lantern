@@ -226,7 +226,7 @@ function ngView(){
         const got = hasChallengePerk(k), locked = !got && !ngChallengeOk(k, NGS);
         return `<div class="pick ${NGS.challenge===k?'sel':''}" ${got||locked?'style="opacity:.5"':`onclick="ngPick('challenge','${k}')"`}>
           <b>${esc(ch.label)}</b> ${got?'<span class="tag">earned</span>':''}
-          <div class="muted">${esc(ch.desc)}</div>
+          <div class="muted">${esc(ch.desc)}${k==='small_troupe' ? (()=>{ const N0 = ngNumbers(NGS.boon); return ` <b>This cycle: ${(ch.base ?? 6) + (ch.perLover ?? 1) * (N0.loverCount||0) + (ch.perHouse ?? 2) * (N0.keptCount||0)} staff.</b>`; })() : ''}</div>
           <div class="good" style="margin-top:4px">Reward — ${esc(ch.perk)}: ${esc(ch.perkDesc)}</div>
         </div>`; }).join('')}</div>`;
     ok = !!NGS.challenge;
@@ -370,12 +370,17 @@ function ngBegin(){
   const C = NGS; if(!C || !C.boon && !Object.keys(NG_BOONS).every(k=>(S.boons||[]).includes(k))) return;
   const B = BAL.ngplus, og = homeHouse(), HDo = HOUSES[og], N = ngNumbers(C.boon, C.house, {ngpp:C.ngpp, challenge:C.challenge}), lovers = carriedLovers(), friends = ngFriends();
   if(lovers.some(w=>!C.perks[w.id] && NG_PERKS().some(t=>!(w.ngPerks||[]).includes(t)))) return;
+  // refresh the cycle's NG+ snapshot (first taken at payoff) with everything done since, before the rebirth changes S;
+  // cloudSaveMilestone builds the seed synchronously, so only the upload runs after this point
+  if(!S.ngSeed && typeof cloudSaveMilestone === 'function') cloudSaveMilestone();
   const gInfo = {weeks: S.week - ((S.debt && S.debt.start) || 0), planned: ((S.debt && S.debt.payments) || BAL.debt.payments) * BAL.debt.every, house: N.ngpp ? N.houseKey : C.house, partner:C.partner, past:C.past, lovers: lovers.map(w=>w.name.split(' ')[0]), ngpp: !!N.ngpp, ngppCycle: N.ngppCycle||0};
   S.ngLovers = N.ngpp ? 0 : lovers.length;   // each carried lover raises paid ladies' baseline cut (wardrobe.cut.perLover)
   S.cycle = N.cycle;   // set first: generics rolled from here on can get ngOnly traits and higher ceilings
   S.boons = S.boons || []; if(C.boon && !S.boons.includes(C.boon)) S.boons.push(C.boon);
   S.challenge = C.challenge && C.challenge!=='none' ? C.challenge : null;
   S.flags = S.flags || {}; S.flags.boughtHouse = false;
+  { const T = CYCLE_CHALLENGES.small_troupe || {};   // cycle-long challenge tracking (challengeTrack in random.js); Tight Troupe's cap scales with what carried in
+    S.chTrack = {weeks:0, tidy:0, maxStaff:0, cap:(T.base ?? 6) + (T.perLover ?? 1) * (N.loverCount||0) + (T.perHouse ?? 2) * (N.keptCount||0)}; }
 
   if(N.ngpp){
     const hk = N.houseKey || 'shrine', HDn = HOUSES[hk];

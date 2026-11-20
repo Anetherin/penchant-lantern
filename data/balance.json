@@ -19,6 +19,7 @@
     "income.escort: multiplier on all escort and off-duty service fees; qualFloor + qualSlope * q^qualPow converts qualityOf (0..1+) to the fee multiplier (novices barely cover, veterans shine).",
     "demolish: share = fraction of an item's base price (no inflation) it costs to demolish a built amenity, or the last bedroom / staff quarters above the house's starting count. Frees the space, lowers h.spent by the base price, never refunds. Built-in amenities can't be demolished; neither can the Bathhouse, Stage or Bar while someone holds the job that needs it.",
     "ngplus: New Game+ (after paying off the debt). Sam always keeps his home house; his starter houses (S.starters: the first house plus the new house taken each cycle) and any house whose story is finished are kept by default but the player can surrender them on the Houses step (NGS.keep) (rooms, tier, upgrades, beds); other houses are sold for saleValue x their price (0 = surrendered), which reduces the new debt instead of adding gold. New debt = home house debt x debtShare x (1 + perCycle for each cycle after the second) + improvementsValue x improveShare (improvementsValue = gold spent on rooms, tiers, quarters, beds, annex and upgrades in all kept houses, tracked in h.spent). purse = Sam's starting gold (same as a new game; his savings stay behind; the Deep Pockets perk adds 2,500). samReset: stats = Sam keeps his level but his stats are rebuilt as sam.base + sam.perLevel x (level-1) + his past lives; appraisal = Appraisal level and XP start over (past lives such as otaku re-apply their floor). Only Devoted lovers come along (they draw wages again, stats reset: named ones to their data values, generic ones to 50%, popularity 0, trust and lewdness back to where they started: named from data, generic from when they were rolled, else baseTrust/baseLewd) and each picks one NG+ perk (traits.json ngPerk). NG+ houses (economy.json ngplus) and NG+ partners (characters.json ngplus) only appear from cycle 2; NG+ houses are bought during the cycle.Sam also takes a new house each cycle (houseOffers deeds, no premium ones; its debt x newHouseShare x (1 + perCycle for each cycle after the second) joins the new debt; its resident comes along) and may add one more past life (economy.json pasts, each once). reborn: every lady who carries over gains a stack of the Reincarnated perk (w.reborn): trust gain x (1 + trust x stacks), skill gain x (1 + skill x stacks), stat gain x (1 + stat x stacks), lewdness gain x (1 + lewd x stacks). friends: old friends: non-lover guests (guests) and generic ladies (generics) whose trust is at least trust (0-100 internal, 100 = maxed) also get a Reincarnated stack but no perk, and wait in S.alumni; each weekly candidate refresh one of them turns up among the candidates with probability chance (extra to the normal candidates, at most max at a time, and she stays until hired). The first NG+ week always shows one. ngppPurse: Sam's starting gold in NG++ (the Shrine, only the Bound Vessel at first) instead of purse.",
+    "ngplus.cycleChallenges: optional goal picked in the NG+ wizard, judged when the debt is paid; clearing it grants its perk for good. within = share of the scheduled payment weeks the payoff must beat. mods / adds = multipliers / additions applied all cycle while it is active, perkMods / perkAdds = the same applied permanently once earned; both use the town-event keys (demand, prop, pushy, upkeep, fee, richFee, lustBuild, lewd, signing, learn, rep, trust, samEnergy, mood) and stack with town events through townMul / townAdd. A challenge with mods/adds and no other goal just needs the debt paid. iron_ledger.tidy = minimum average (over every week of the cycle) of the untidiest house; small_troupe: most staff at any week's end ≤ base + perLover x lovers carried in + perHouse x extra houses kept, fixed when the cycle starts (S.chTrack).",
     "svc: per-service rules. staminaEnergy = services whose services.json stats list stamina cost her energy x (1.1 - stamina/500) on top of the usual stamina discount (false = off). tech* = the range of a client's technique; frustrateAt = a finishing service leaves her frustrated when technique x (her lust/60) is below this (her lust rises by frustrateLust). encore* = chance (+ her encore fx) and fee share of a reckless lady's second round. race* = enthusiast / put-off clients (data/races.json client). demon: demons don't sleep: each working week costs them hunger energy, and they gain energy per finishing service (feed, or feedReckless when restless, which costs house reputation repDrain unless the house has a Binding Sigil); with Sam she gains samGain and Sam loses samExtra more energy. android: recharge fee (fee + perEnergy x energy restored; the Charging Alcove takes chargerDiscount off). refusalMood = beastkin mood loss when Sam turns down a restless request (a Grooming Den halves it).",
     "jobs: barAgil = bartender income x (1 + barAgil x Agility/100), i.e. up to +10% more visitors served. attendantWitsW (was attendantRefW) = Wits weight of an attendant. courtesanTh = how many points lower a courtesan's comfort lines sit; propWant = chance a client asks for a service (courtesans vs. everyone else who steps in); promoter draw = promoterBase + (charm+service)/promoterDiv clients, samples multiply it (samplesDraw), cost samplesEnergy energy, and she gives samplesMin-samplesMax light services from her client menu for free (kiss, massage, hands, breasts, mouth; half energy, no fee or room; shown in the report; samplesLust lust if none fit); her street polish vs house prestige raises or lowers house prestige (prestige.samplesDiv / samplesNegCap / samplesPosCap / samplesCap / samplesGainCap); each sample raises her own popularity by samplesPop x (0.5 + quality) (samplesPopTease if she only teases); attendant: a courtesan with an attendant spends x (1 - help x attendantEnergyPer, never below attendantEnergyMin) energy and her clients gain help x attendantSatPer satisfaction; a house can have as many attendants as courtesan positions, and each courtesan with her own attendant (most popular first) gets attendantOwnMood mood and attendantOwnTrust trust a week; madame: cuts the house's mood losses to madameMoodLoss and matches clients to a fitting lady (+madameMatchSat sat); stepIn* = how many clients a madame/attendant takes when courtesans are swamped and the energy she needs; bar*: each active bartender (max barPropsMax) with a Bar raises the house proposition rate by barProps (x amenities.drinks.props[h.drinks]; applies to propositions to staff and to the share of clients who ask a courtesan for a service), and adds rowdy chance (barRowdy) and client recklessness (barReckless); a bartender earns (barBase + visitors x barPerVisitor) x skill/charm x amenities.drinks.bar[h.drinks], plus tips = visitors x barTips x (0.5 + popularity/100) x (0.5 + charm/100); bath*: massage offers to bathers (bathShare of visitors, bathCap each); tipsBase / danceRep: dancer tips and reputation. promoterBase/promoterDiv: promoter draw = base + (Charisma + Hospitality)/div; x (1 + promoterLowRep x (1 - rep/promoterRepRef)) while the house is little known; the 2nd/3rd promoter x promoterStack^k; each drawn client also spreads the name (repAdd promoterRep x draw). Promoters fill empty rooms: draw beyond the escorts' spare capacity (nightly caps x nights x promoterCapUse - base demand) only counts x promoterOverflow. promoterRead*: promoters read last week's door (h.lastFlow): if clients were turned away, the draw is pulled toward last week's promoter draw minus the turn-aways, by accuracy = promoterReadBase + Wits/promoterReadWits (+ promoterReadBond with a bond >= promoterBondAt to the house's security), best reader leads (hr.promoHeld = clients she didn't bring in).",
     "rooms.perRoom: room-service sessions per bedroom per week; Exhibitionist ladies don't use a room.",
@@ -43,7 +44,7 @@
     "ngplus.carry: share of what a carried lady (lover or old friend) gained in stats, job skills and service skills above her starting values that she keeps into the next cycle; Sam keeps the same share of his training/story stat gains. Ladies keep more with each life: carryPer x the life she is entering (her 2nd life 20%, 3rd 30%...), at most carryMax, never below carry. rebornWage: each Reincarnated stack raises her wage by this share (wageFor). ngplus.cap: stats and skills top out at base + perCycle x (cycle-1) (ladies 1000, 1100, 1200...; Sam's 0-100 stats use a tenth of that). Trust, lewdness, mood, energy and health are unaffected.",
     "feast: Throw a feast (house tab), once per house per week, no action. Each tier: cost per lady in that house, trust (0-100 scale, still capped by house stories) and mood each lady gets. Wording is in each tier's text.",
     "sam.bonus: Sam's stats (0-100) also work passively, scaled by stat/100: charm = extra share of trust every lady gains, business = extra share of weekly house income, security = Strength x this added to every house's security, rest = extra share of his weekly recovery at Strength 100, wits = extra share of stat training and Appraisal XP. energyPerCycle: Sam's max energy is 100 + this x (cycle-1). Sam gains +1 action every 5 levels.",
-    "samHome: Sam sleeps in one house (S.samHome, default his home house). His weekly recovery (weekly) and naps (nap) scale with that house's staff bed quality: x rest/ref (economy.json beds). Sam's weekly focus and passive bonuses apply only at the house where he sleeps unless he has the Speaking Stones (fx link) or the Shadow Clone boon; late-night encounters, rounds, demonstrations and group nights likewise unless he has the Teleport Circle (fx reach). samUps: Sam's things (Sam tab); carry = kept in New Game+; guild = earned from the Adventurers' Guild instead of bought (a contract id: first clear of that contract; rank1: the Iron rank-up), not sold in the shop; fx: bedTier, weekly (+energy every week), link, reach, and tool fx summed by samUpFx: bartend (+share of Floor bar income), watch (+share of Watch security), books (extra Office upkeep cut), rounds (+share of rounds trust and mood), lesson (+share of class skill gains), scout (+candidates from scouting), workEnergy/trainEnergy/dateEnergy/privEnergy/orgyEnergy (energy saved). The Owner's Suite is a house amenity (economy.json → upgrades.suite).",
+    "samHome: Sam sleeps in one house (S.samHome, default his home house). His weekly recovery (weekly) and naps (nap) scale with that house's staff bed quality: x rest/ref (economy.json beds). Sam's weekly focus and passive bonuses apply only at the house where he sleeps unless he has the Speaking Stones (fx link) or the Shadow Clone boon; late-night encounters, rounds, demonstrations and group nights likewise unless he has the Teleport Circle (fx reach). samUps: Sam's things (Sam tab); carry = kept in New Game+; guild = earned from the Adventurers' Guild instead of bought (a contract id: first clear of that contract; rank1: the Iron rank-up), not sold in the shop; fx: bedTier, weekly (+energy every week), link, reach, and tool fx summed by samUpFx: bartend (+share of Floor bar income), watch (+share of Watch security), books (extra Office upkeep cut), rounds (+share of rounds trust and mood), lesson (+share of class skill gains), scout (+candidates from scouting), guestDraw (x 1 + share on guest visit chance, guest walk weight and guest cooldown speed), workEnergy/trainEnergy/dateEnergy/privEnergy/orgyEnergy (energy saved). The Owner's Suite is a house amenity (economy.json → upgrades.suite).",
     "clients.traits: cheat (Cheapskate) = share of the fee penalty the lady's Wits cancels at 100 (fee 0.8, cheat 0.5: 0.8 at wits 0 to 0.9 at wits 100). Every client (not regulars) rolls 1-3 traits (clients.traitCount = odds of 1/2/3), weighted by w x his class's traits weight (economy.json → classes.traits), skipping excl. hidden: not shown in the report. Keys (all optional): prop (x his chance to want a service / proposition staff), pushy (+ chance he won't take no), pushyMult (x that), rowdy (+ house incident pressure), booze {prop, pushy, rowdy, patience} (added while a bartender works, x (1 + drinks tier x boozeDrinks)), tips (x bar tips), fee (x what he pays), compFee (x when he only wants company), qualityFee [a,b] (fee x (a + quality x b)), selfAccept (+ chance he says yes to a restless lady), likes {races ('beastkin:<sub>' ok), traits (lady traits), restless} with like (enthusiast chance) and draw (pick weight; without a madame only x^nativeMatch), patience (+ chance to wait), open (+ openness to a host's warm-up), thirsty (always wants a service; unserved: thirsty.sat and thirsty.rep), acceptHost (chance he'd rather the host finish him than wait), tech (+ his technique), satAdd (+ satisfaction), hostLike (x host satisfaction bonus), jobProp {job: x his propositions to that job}, stageSpend (x stage spending while waiting), gossip (x his rep effect, clients.gossip.rep per point of satisfaction away from 50), regular (x chance he becomes a regular). stats {stat: weight} = stat taste (see clients.statPref); charmGate {at, below, above} = satisfaction below if her Charm (0-100) is under at, else above; wantStats {stats, mult} = x his chance to ask for a service whose services.json stats include any of them. Client traits never reach image prompts or AI text.",
     "clients.statPref: stat tastes (`stats` on client traits and on economy.json classes; regulars keep their class taste). Score = weighted average of clamp((her stat 0-100 - 50)/50, -0.5, 1), 0 = nothing preferred. draw: x (1 + draw x score) on his pick weight (madame match and free choice); sat: + sat x score satisfaction; fee: x (1 + fee x score) on the main service fee (this is what makes Nobles pay for Refinement). Never used in AI text, image prompts or encounter entries.",
     "clients.nativeMatch: without a madame clients mostly take whoever is free: appeal and race/trait draw count only to this power. clients.wait: with a madame or busy courtesan, everyone waits instead of being immediately turned away: waiting costs sat (canceled by a host, softened to soothedSat when the bar (barCalm + barDrinksCalm per tier) or dancers (danceCalm) entertain him); unattended waiters may leave unhappy (waitLeaveBase / overflow without host/bar/dance), hurting satisfaction (leaveSat), reputation (leaveRep per walkout), and raising incident odds (+leaveIncident per walkout). Waiting clients spend barSpend at an open bar / stageSpend at a staffed stage. Security at the door screens clients by Wits (boosting noble/merchant weights via screenMerchant/screenNoble, trimming commoners via screenTrimLow, and filtering rowdy/troublesome traits via screenSafe/screenGood) and caps excessive overflow past doorQueue+hostQueue/barQueue/stageQueue using secStopBase + secPow/secStopDiv at minimal rep cost (secStopRep, reduced up to secGraceCut by guard Charm/Charisma). clients.crowd: house capacity = houseSize x perSpace; guests entering past that suffer escalating satisfaction penalties (over x satPer + over^2 x satQuad, capped at satCap), bail/walkout risk (bailPer, calmPer), reputation loss (repPer, repQuad), unsatPer, and incidentPer; security stops excess at the door past capacity. clients.host: sat is x (0.6 + her Charm/125); each host entertains perWeek x (1 + service skill/100 x skillPer x 10) waiting clients per week (x outfit/job bonus x her output after accepted propositions; each accepted proposition costs propCost, a warm-up or entertaining 1 each), +sat (+satSkill x quality); clients at least fluffOpen open (0.3 + the open of his traits) get a warm-up (her menu or what she is comfortable with, from kiss / massage / manual / oral / breast give; not if she is set to Off) (a light service in the open, never finished): +fluffSat (+fluffSkill x quality), quality boost (fluffQBase + fluffQGap x (1 - quality)) x hostEffectiveness (fluffEffBase + fluffEffSkill x HostSkill/100), and fluffEnergyMult energy cost on his courtesan visit, tip fluffFee x service price, at most fluffMax per client; a client with acceptHost may have her finish him instead (finishShare of a normal fee, costs finishCost of her capacity); accepted propositions cost propCost. thirsty / gossip: see clients.traits.",
@@ -61,7 +62,7 @@
     "walk.partnerOdds: chance a walk finds a partner, by how many Sam has already found on walks this cycle ([1st, 2nd, 3rd]); partnerCycleMax (3) is the hard cap, so 15 partners spread over five cycles and there is always someone left to pick. NG++: always ngppPartnerOdds (no cap). weights: how likely each other kind of walk is (exLover = a past lover in NG++; partner odds are set by partnerOdds, not a weight).",
     "townEvents: every gap [min, max] weeks (first one from firstWeek) a town event runs for weeks [min, max], in any cycle: list.<id> holds its label, desc and the multipliers it sets while it runs (demand, prop, fee, pushy, upkeep, richFee, lustBuild, lewd, signing, learn, rep, trust; samEnergy and mood are added, mood per week). Wording of the announcement page: events.json → townEvents.<id>. random: false = never rolls on its own (story beats start it, e.g. Isolde's price war). off: true turns them off; only: an id = only that one (for the lab).",
     "isolde: Lady Isolde Thorne of the Velvet Thorn, Sam's rival (js/events/isolde.js, wording data/isolde.json). Beats in order: taunt (from firstWeek weeks into the cycle), visit, pricewar, wager, truce, lovers, each at least gap weeks apart and needing town renown (renown.*). Her story carries over into the next NG+ cycle unfinished; only NG++ restarts it (every NG++ cycle; from NG++ cycle 2 the renown needed is x ngppRenown). pricewar starts the price_war_match / price_war_hold town event for warWeeks. wager: gold stake, renown on a win; your lady's showcase score vs base + perCycle x (cycle-1) +- spread. After the truce: nights (Sam visits on the rest day: visit.energy, every visit.cooldown weeks; or she comes to him after comes.after weeks without one, comes.chance a week). night: Sam's energy cost (lostEnergy more if she wins), Technique gained, her desire per approach, renown when he comes out on top; checkDiv: his Strength+Technique vs her roll. lovers: desire and nights for the lovers beat. referral: once they're lovers, the chance a week the Thorn sends its overflow (base gold x (1 + perCycle x (cycle-1))). games: NG+ cycles after the one her story finished in (not NG++): every gap weeks at most, chance a week, one of her wagers; Sam's chance = checkBase + checkPer x his stat (raise: raiseMinus lower, double gold/renown), gold won or lost, renown on a win, Sam's energy. Poaching stops after the truce.",
-    "luxury: paid shortcuts once the debt is paid (Sam tab → Luxuries for tonic; house page → Luxuries for the rest). Each costs cost x weekMul^(times bought this week; per house for house items) x (1 + perCycle x (cycle-1)). tonic: Sam back to full energy. campaign: +rep house popularity. spa: every lady living in the house back to full energy, +health; cost is per lady. rush: skip the weeks-to-wait of a house chapter, romance arc or epilogue chapter (button on the wait line, shown once the wait is the only thing missing); cost x mul^(skips this cycle) x (1 + perCycle x (cycle-1)), rounded to 100, count resets each rebirth.",
+    "luxury: paid shortcuts once the debt is paid (Sam tab → Luxuries for tonic; house page → Luxuries for the rest). Each costs cost x (its own mul, else weekMul)^(times bought this week; per house for house items) x (1 + perCycle x (cycle-1)); span 'cycle' counts purchases for the whole cycle instead of the week (resets at rebirth). tonic: Sam back to full energy. campaign: +rep house popularity. spa: every lady living in the house back to full energy, +health; cost is per lady. rush: skip the weeks-to-wait of a house chapter, romance arc or epilogue chapter (button on the wait line, shown once the wait is the only thing missing); cost x markup x (1 + perCycle x (cycle-1)), rounded to 100; each skip multiplies the markup by mul, every week that passes keeps weekDecay of the markup above 1 (0.5 = halfway back to the base price), and it resets each rebirth.",
     "linger: pressure to be reborn when Sam stays on after the debt is paid (js/logic/linger.js, wording goddess/linger.json). Linger level = weeks since payoff - grace (grace = graceBase - graceCycle x (cycle-1), at least graceMin). wane (from level wane.from): Sam's max energy -perLevel per level, at most max. tithe (from tithe.from): each week she takes pct (base + perLevel x levels past tithe.from, at most max) of gold above floor x (1 + floorCycle x (cycle-1)). recall (from recall.from, then every recall.every weeks): one Devoted lover who isn't this cycle's partner (not on a guild contract) sleeps in the lantern until New Game+. off: true turns it all off. waitMul: once the debt is paid, story waits (arc, epilogue and house chapter gaps, weeks between firsts) are x waitMul, rounded down."
   ],
   "lewd": {
@@ -167,30 +168,100 @@
       "lean_house": {
         "label": "Lean House",
         "tier": "guild",
-        "desc": "Pay off the cycle debt without buying any extra houses.",
+        "desc": "Pay off the cycle debt without buying any extra houses, within 85% of the scheduled payment weeks.",
         "perk": "Lean Margin",
-        "perkDesc": "+10% all house income permanently."
+        "perkDesc": "+10% all house income permanently.",
+        "within": 0.85
       },
       "ahead_of_time": {
         "label": "Ahead of Schedule",
         "tier": "guild",
-        "desc": "Pay off the debt within 70% of the scheduled payment weeks.",
+        "desc": "Pay off the debt within 55% of the scheduled payment weeks.",
         "perk": "Credit Favored",
-        "perkDesc": "−10% future cycle debt & −10% house upkeep permanently."
+        "perkDesc": "−10% future cycle debt & −10% house upkeep permanently.",
+        "within": 0.55
       },
       "iron_ledger": {
         "label": "Spotless Record",
         "tier": "guild",
-        "desc": "Clear the cycle with 0 missed payment strikes and average house tidiness 65+.",
+        "desc": "Clear the cycle with 0 missed payment strikes and your untidiest house averaging 75+ tidiness over the whole cycle (checked every week, not just at the end).",
         "perk": "Iron Ledger",
-        "perkDesc": "+15 Sam max energy; his Office focus cuts 8 more points of upkeep and his Floor focus earns 15% more at the bar, permanently."
+        "perkDesc": "+15 Sam max energy; his Office focus cuts 8 more points of upkeep and his Floor focus earns 15% more at the bar, permanently.",
+        "tidy": 75
       },
       "small_troupe": {
         "label": "Tight Troupe",
         "tier": "guild",
-        "desc": "Clear the cycle with 6 or fewer staff across all houses.",
+        "desc": "Never have more than 6 staff across all houses at any week's end, +1 per lover you carried in and +2 per extra house you kept (set when the cycle starts).",
         "perk": "Tight Knit",
-        "perkDesc": "+15% trust gain & +15% lady skill gain permanently."
+        "perkDesc": "+15% trust gain & +15% lady skill gain permanently.",
+        "base": 6,
+        "perLover": 1,
+        "perHouse": 2
+      },
+      "wary_town": {
+        "label": "Wary Town",
+        "tier": "guild",
+        "desc": "This cycle Hollowmere keeps its distance: 20% fewer clients come in.",
+        "perk": "Word of Mouth",
+        "perkDesc": "+6% client demand permanently.",
+        "mods": {"demand":0.8},
+        "perkMods": {"demand":1.06}
+      },
+      "hard_bargain": {
+        "label": "Hard Bargain",
+        "tier": "guild",
+        "desc": "This cycle signing bonuses cost 60% more and house upkeep runs 15% higher.",
+        "perk": "Known Employer",
+        "perkDesc": "−15% signing bonuses permanently.",
+        "mods": {"signing":1.6,"upkeep":1.15},
+        "perkMods": {"signing":0.85}
+      },
+      "rough_streets": {
+        "label": "Rough Streets",
+        "tier": "guild",
+        "desc": "This cycle pushy clients are 60% more likely, and town mood costs every lady 2 mood a week.",
+        "perk": "Hard Reputation",
+        "perkDesc": "−15% pushy clients permanently.",
+        "mods": {"pushy":1.6},
+        "adds": {"mood":-2},
+        "perkMods": {"pushy":0.85}
+      },
+      "short_nights": {
+        "label": "Short Nights",
+        "tier": "guild",
+        "desc": "This cycle Sam has 30 less max energy.",
+        "perk": "Second Wind",
+        "perkDesc": "+10 Sam max energy permanently.",
+        "adds": {"samEnergy":-30},
+        "perkAdds": {"samEnergy":10}
+      },
+      "cold_welcome": {
+        "label": "Cold Welcome",
+        "tier": "guild",
+        "desc": "This cycle the ladies warm up slowly: 35% less trust gain.",
+        "perk": "Familiar Face",
+        "perkDesc": "+8% trust gain permanently.",
+        "mods": {"trust":0.65},
+        "perkMods": {"trust":1.08}
+      },
+      "no_shortcuts": {
+        "label": "No Shortcuts",
+        "tier": "guild",
+        "desc": "This cycle training, classes and lessons give 30% less stat and skill growth.",
+        "perk": "Good Habits",
+        "perkDesc": "+8% stat and skill growth permanently.",
+        "mods": {"learn":0.7},
+        "perkMods": {"learn":1.08}
+      },
+      "unknown_name": {
+        "label": "Unknown Name",
+        "tier": "guild",
+        "desc": "This cycle house popularity grows 35% slower and clients pay 10% less.",
+        "perk": "Household Name",
+        "perkDesc": "+8% popularity gain permanently.",
+        "mods": {"rep":0.65,"fee":0.9},
+        "perkMods": {"rep":1.08}
       },
       "faithful_flame": {
         "label": "Faithful Lantern",
@@ -1114,6 +1185,13 @@
       "desc": "Everyone's favorite tea, birthdays and grudges, all in one place. Make the rounds gives x1.5 trust and mood.",
       "fx": {"rounds":0.5}
     },
+    "wayfarer": {
+      "label": "Wayfarer's Lantern",
+      "cost": 5000,
+      "carry": true,
+      "desc": "A brass lantern with a flame that leans toward people who don't belong here. Hung over the door, it draws drifters from other worlds: guests turn up among the candidates and on walks 50% more often, and come back sooner.",
+      "fx": {"guestDraw":0.5}
+    },
     "chalkboard": {
       "label": "Slate Chalkboard",
       "carry": false,
@@ -1316,10 +1394,10 @@
   "luxury": {
     "weekMul": 2,
     "perCycle": 0.5,
-    "tonic": {"label":"Alchemist's tonic","cost":6000},
+    "tonic": {"label":"Alchemist's tonic","cost":6000,"span":"cycle","mul":1.5},
     "campaign": {"label":"Town-wide campaign","cost":7500,"rep":6},
     "spa": {"label":"Spa day for the staff","cost":750,"health":15},
-    "rush": {"label":"Hurry it along","cost":10000,"mul":1.5,"perCycle":0}
+    "rush": {"label":"Hurry it along","cost":10000,"mul":1.5,"perCycle":0,"weekDecay":0.5}
   },
   "linger": {
     "off": false,

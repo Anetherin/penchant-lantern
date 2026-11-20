@@ -17,6 +17,9 @@ const walkSetting = ctx => {
 
 const inCandidates = key => S.candidates.some(c => c.key === key);
 const openWalkPartners = () => PARTNERS.filter(k => !isHired(k) && !inCandidates(k) && partnerOffered(k));
+// Guests (drifters from other worlds) turn up more often once the debt is paid (guests visits.paidMul) and with Sam's
+// Wayfarer's Lantern (balance.json → samUps, fx.guestDraw): scales the candidate visit chance (state.js) and walk weight.
+const guestDrawMul = () => (S && S.won ? (GUEST_VISITS.paidMul ?? 1) : 1) * (1 + samUpFx('guestDraw'));
 const openWalkGuests = () => Object.keys(NAMED).filter(k => NAMED[k].role === 'drifter' && !isHired(k) && !inCandidates(k) && !(SET.packsOff || {})[NAMED[k].pack]);
 const openWalkExLovers = () => Object.keys(NAMED).filter(k => S.lives && S.lives[k] && S.lives[k].wasLover && !isHired(k) && !inCandidates(k) && !(SET.packsOff || {})[NAMED[k].pack]);
 
@@ -52,7 +55,7 @@ function samWalk(){
   // partnerOdds: the chance this walk finds one, by how many were found this cycle (30% / 10% / 5%, then the cap); NG++: always ngppPartnerOdds
   const PO = ngpp ? (B.ngppPartnerOdds ?? 0.3) : (B.partnerOdds || [0.3])[Math.min(found, (B.partnerOdds || [0.3]).length - 1)];
   const partnerP = Math.min(0.9, PO);
-  if(!canPartner && guests.length) opts.push({cat:'guest', w:W.guest ?? 3.5});
+  if(!canPartner && guests.length) opts.push({cat:'guest', w:(W.guest ?? 3.5) * guestDrawMul()});
   if(!g.left) opts.push({cat:'goddess', w: g.bound ? (W.goddessBound ?? 0.8) : (W.goddess ?? 2.2)});
   if((WALKS.casual || []).length) opts.push({cat:'casual', w:W.casual ?? 3.2});
   ['rest','coin','flavor'].forEach(cat => {
