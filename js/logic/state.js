@@ -21,6 +21,8 @@ Object.assign(NPCS, {
   npc_thackery:{id:'npc_thackery', male:true, name:'Master Artificer Thackery', seed:2120, look:'a stiff, grey-whiskered guild artificer in a leather master\'s apron over a waistcoat, brass loupe pushed up on his forehead, a sour pinched expression'},
   npc_oskar:{id:'npc_oskar', male:true, name:'Red Oskar', seed:1017, look:'a rugged bandit chief with a red beard, an eyepatch and a battered leather coat'}
 });
+// Women clients Sam takes on the Floor (samfc scenes): one image subject per look in scenes.json → femClients
+(SCENE_DATA.femClients||[]).forEach((look, i)=>{ NPCS['npc_fclient_'+i] = {id:'npc_fclient_'+i, fclient:true, name:'A woman client', look, seed:4100 + i*37, imgVar:{}}; });
 function storyNpc(key){ const id='n_'+key; if(!NPCS[id]) NPCS[id] = makeNamed(key); return id; }
 const H = id => S.houses.find(h=>h.id===id);
 const curH = () => H(S.cur) || S.houses[0];

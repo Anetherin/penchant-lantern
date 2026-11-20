@@ -330,6 +330,7 @@ function defaultCloth(w, scene){
   if(base.startsWith('act:')) return actCloth(w, base.split(':')[1], false, P.ctx);
   if(base.startsWith('samact:') || base.startsWith('duo:') || base.startsWith('demo:')) return actCloth(w, base.split(':')[1], true);
   if(base.startsWith('pair:') || base.startsWith('cpair:')) return actCloth(w, base.split(':')[1], false);
+  if(base.startsWith('samfc:')) return fclientCloth(scene);
   if(base==='solo') return comfortCloth(w, false, true);
   if(base==='sam_spirit_futa') return comfortCloth(w, true, true);
   if(base==='spirit_futa') return comfortCloth(w, false, true);

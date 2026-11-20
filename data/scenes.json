@@ -16,7 +16,8 @@
     "femClients: looks for women clients in their pictures (cpair:<service>:<fem|futa> scenes, js/data/scenes.js); a futanari client also gets futaPhrase.",
     "femClientCloth: what a woman client wears in cpair scenes, by the scene's dress level. In two-women and duo scenes the other woman is as dressed as the first at most (matchCloth in prompts.js). futaPhrase is added to the futanari's own block (her look already reads \"futanari\" instead of \"woman\").",
     "pairCloth: true = two women in one picture (pair:/cpair:, and duo: threesomes with Sam) are pictured in their underwear or nude (nude when the scene is, or when she wears none), never in their outfits; false = outfits by dress level as in other scenes.",
-    "futaPhraseUnder: futaPhrase when the futanari is in her underwear (pairCloth)."
+    "futaPhraseUnder: futaPhrase when the futanari is in her underwear (pairCloth).",
+    "samfc:<service>:<client index>: Sam with a woman client on the Floor (week.js samProp; report → Sam's week), pictured from his POV like a samact scene. The client is npc_fclient_<i> with femClients[i] as her look (state.js); her dress level follows the service tier (femClientTier)."
   ],
   "scenes": {
     "portrait": {"label":"Portrait","comp":"upper body portrait, looking at viewer","setting":"warm softly blurred background"},
@@ -266,5 +267,6 @@
   ],
   "femClientCloth": {"dressed":"in her underwear","partial":"in her underwear","under":"in her underwear","nude":"nude"},
   "pairCloth": true,
-  "futaPhraseUnder": "erect penis out of her underwear"
+  "futaPhraseUnder": "erect penis out of her underwear",
+  "femClientTier": {"1":"dressed","2":"under","3":"nude"}
 }

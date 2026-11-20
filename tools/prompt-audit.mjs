@@ -45,9 +45,9 @@ const GEN = `async ({only}) => {
   const acts = getActs().filter(a => !a.custom).map(a => a.id);
   const CL = ['dressed','partial','under','nude'];
   const out = [];
-  const fam = k => { const b = sceneBase(k); if (b.startsWith('pair:')) return 'pair_' + b.split(':')[2]; if (b.startsWith('cpair:')) return 'cpair_' + b.split(':')[2]; const p = b.split(':')[0]; return /^(act|samact|duo|demo|orgy)$/.test(p) ? p : b === 'solo' ? 'solo' : b === 'portrait' ? 'portrait' : 'story'; };
+  const fam = k => { const b = sceneBase(k); if (b.startsWith('pair:')) return 'pair_' + b.split(':')[2]; if (b.startsWith('cpair:')) return 'cpair_' + b.split(':')[2]; const p = b.split(':')[0]; return /^(act|samact|duo|demo|orgy|samfc)$/.test(p) ? p : b === 'solo' ? 'solo' : b === 'portrait' ? 'portrait' : 'story'; };
   const add = (w, k, cloth, note) => { if (only.length && !only.includes(fam(k))) return; let p; try { p = buildPrompt(w, k, cloth); } catch (e) { p = 'THROW: ' + e.message; }
-    const b = (w.body || {}); out.push({fam:fam(k), who:w.name + ' (' + w.race + (w.sub ? '/' + w.sub : '') + ')', body:[b.bust, b.height, b.figure].join('/'), scene:k, cloth:cloth || 'default', note:note||'', prompt:p}); };
+    const b = (w.body || {}); out.push({fam:fam(k), who:w.name + ' (' + (w.race || 'client') + (w.sub ? '/' + w.sub : '') + ')', body:[b.bust, b.height, b.figure].join('/'), scene:k, cloth:cloth || 'default', note:note||'', prompt:p}); };
   const other = cast[1], third = cast[2];
   cast.forEach((w, ci) => {
     add(w, 'portrait');
@@ -62,6 +62,7 @@ const GEN = `async ({only}) => {
       if (ci < 4 && god) add(w, 'pair:' + a + ':futa:' + god.id, cl);
       if (w === spirit) add(w, 'pair:' + a + ':selffuta:' + o.id, cl);
     });
+    if (ci === 0) acts.forEach((a, ai) => { const fc = findAny('npc_fclient_' + (ai % 10)); if (fc) add(fc, 'samfc:' + a + ':' + (ai % 10) + ':' + h.id); });
     if (ci < 3) add(w, 'orgy:' + [w.id, other.id, third.id].join(','));
     if (ci < 3) add(w, 'solo');
   });

@@ -168,12 +168,13 @@ const getSnippet = k => { const a = k.startsWith('act_') && actById(k.slice(4));
 // Services whose picture shows her bare between the legs (services.json → image.exposed); pubic hair is named for those
 // unless the clothing wording already covers it.
 const exposedAct = id => !!(((actById(id)||{}).image||{}).exposed);
-function sceneAct(sceneKey){ const b = sceneBase(sceneKey); return b.startsWith('act:') ? b.slice(4) : /^(samact|duo|pair|cpair|demo):/.test(b) ? b.split(':')[1] : null; }
+function sceneAct(sceneKey){ const b = sceneBase(sceneKey); return b.startsWith('act:') ? b.slice(4) : /^(samact|duo|pair|cpair|demo|samfc):/.test(b) ? b.split(':')[1] : null; }
 // Safety net: Perchance reads {…} in a prompt as its own syntax and complains, so a placeholder that slipped through unfilled
 // is dropped and any stray brace removed.
 const promptSafe = t => cleanText(String(t).replace(/\{\w*\}/g, '').replace(/[{}]/g, ''));
 function buildPrompt(w, sceneKey, cloth){
   if(w.male) return promptSafe([SET.style, 'adult man', w.look, 'upper body portrait, looking at viewer', 'dramatic lighting'].join(', '));
+  if(w.fclient) return fclientPrompt(w, sceneKey, cloth);
   cloth = cloth || defaultCloth(w, sceneKey);
   if(pairScene(sceneKey)) cloth = pairCloth(w, cloth);
   const sc = sceneInfo(sceneKey, w, cloth);
@@ -211,4 +212,14 @@ function buildPrompt(w, sceneKey, cloth){
   parts.push(sc.setting);
   if(sc.pov) parts.push(getSnippet('pov'));
   return promptSafe(stripTodo(dedupeSegs(parts.filter(Boolean).join(', '))));
+}
+// Sam with a woman client on the Floor (samfc:<service>:<look>:<house id>): his POV, like his own scenes, with her look from scenes.json →
+// femClients and clothes by the service's tier (femClientTier). The house's room is the setting.
+function fclientCloth(sceneKey){ const id = sceneBase(sceneKey).split(':')[1]; return ((SCENE_DATA.femClientTier||{})[actTier(id)]) || 'dressed'; }
+function fclientPrompt(w, sceneKey, cloth){
+  const id = sceneBase(sceneKey).split(':')[1], PP = SCENE_DATA.people || {}, c = cloth || fclientCloth(sceneKey);
+  const hid = sceneBase(sceneKey).split(':')[3], h = (S && S.houses && (S.houses.find(x=>x.id===hid) || S.houses[0])) || null, wear = (SCENE_DATA.femClientCloth||{})[c] || '';
+  const lead = dedupeSegs([PP.pov, actPose(id, 'sam'), getSnippet('act_'+id)].filter(Boolean).join(', '));
+  const her = dedupeSegs(['beautiful adult woman, a client', w.look, c==='dressed' ? 'in an elegant evening dress' : wear, exprText('into', id)].filter(Boolean).join(', '));
+  return promptSafe(stripTodo([SET.style, lead, her, dedupeSegs([ROOM_SETTING(h), getSnippet('pov')].join(', '))].filter(Boolean).join(', ')));
 }

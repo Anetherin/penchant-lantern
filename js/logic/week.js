@@ -564,11 +564,14 @@ function simHouse(h, R){
     pr._nm = false;
     const lantern = !!act && w.race==='angel' && w.sub==='lantern' && Math.random()<0.45;
     const ctx = has(w,'Exhibitionist') ? 'exhib' : (reck0 ? 'reckless' : '');
-    // a woman nobody would take, with Sam on the Floor here: she tries him instead (balance.json → clients.women.samProp)
+    // a woman (not a futanari: no Sam/futa scenes) nobody would take, with Sam on the Floor here: she tries him instead (balance.json → clients.women.samProp)
     const SPW = (BAL.clients.women||{}).samProp || {};
-    if(!act && want && SIM_SEX!=='m' && floorE > 0 && S.sam.energy >= (SPW.minEnergy ?? 15) && Math.random() < (SPW.chance ?? 0.3) * floorE){
+    if(!act && want && SIM_SEX==='f' && floorE > 0 && S.sam.energy >= (SPW.minEnergy ?? 15) && Math.random() < (SPW.chance ?? 0.3) * floorE){
       const fee = Math.round(actById(want).price * P.mult * cls.mult * (SPW.fee ?? 0.6));
       S.sam.energy -= SPW.energy ?? 10; S.rep = clamp(S.rep + (SPW.renown ?? 0.2)); hr.income += fee; R.led.sam += fee; R.samWomen = (R.samWomen||0) + 1;
+      // a moment for the report's "Sam's week" (a few per week), with a picture: samfc:<service>:<client look> (scenes.js)
+      const fcN = (SCENE_DATA.femClients||[]).length;
+      if((R.samFem = R.samFem || []).length < (SPW.reportMax ?? 4)) R.samFem.push({act:want, h:h.id, fee, look: fcN ? ri(0, fcN-1) : 0});
     }
     const e = {cls:cls.id, csex: SIM_SEX==='m' ? undefined : SIM_SEX, want, act, outcome, altDiff: outcome==='alt'?altDiff:undefined, reg: reg ? reg.name : null, note, sat:Math.round(sat), expr: ser ? ser.expr : null, react, encore, encoreKind, roundDeclined, more, possess: spPoss ? spPoss.react : null, adapt: adShift ? adShift.adapt : null, spiritFuta: !!spPoss, lantern, heat, ctx, step: helper && !coveredFor ? w.job : undefined, coveredFor};
     pr.enc.push(encFx(w, pr, s0, e));
