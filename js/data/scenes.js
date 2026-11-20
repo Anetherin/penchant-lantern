@@ -71,7 +71,7 @@ function sceneInfo(k, w, cloth){
     const extra = /\b(two women|both|the other|ones?\b)/i.test(pose) ? '' : SCENE_DATA.duoPhrase;   // the pose already says there are two
     return {label:'Sam & two: '+actLabel(id), pov:true, sam:true, comp:[pose, extra, D.prompt].filter(Boolean).join(', '),
       setting:SCENE_DATA.samRoom, snip:'act_'+id, snip2:'duo', expr:svcExpr(w, id, P, true), selfTag:'the first woman',
-      client: o ? (()=>{ const oc = cloth ? matchCloth(o, cloth, sk) : defaultCloth(o, sk); return personBlock('the second woman', [charDesc(o, oc, sk, {noAcc:true}), clothesFor(o, oc, sk)]); })() : ''}; }
+      client: o ? (()=>{ let oc = cloth ? matchCloth(o, cloth, sk) : defaultCloth(o, sk); if(pairScene(k)) oc = pairCloth(o, oc); return personBlock('the second woman', [charDesc(o, oc, sk, {noAcc:true}), clothesFor(o, oc, sk)]); })() : ''}; }
   // two women together: pair:<service>:<fem|futa|selffuta>:<other id>; poses from services.json image.fem / image.futa.
   // fem = both women; futa = the other one is the futanari (the goddess with a lady); selffuta = she is (a spirit using a borrowed cock).
   // Futa poses are written with the service's {name} as "the woman" and {partner} as "the futanari". Each woman is labelled and the

@@ -148,9 +148,10 @@ function matchCloth(o, cloth, scene){
   if(c==='under' && o.under==='none') c = 'partial';
   return c;
 }
-// Two women together (pair: / cpair:): no outfits, which only lengthen the prompt and get swapped between the two. Each
-// woman is in her underwear, or nude when the scene is nude or she wears none (scenes.json → pairCloth: false turns this off).
-const pairScene = scene => /^c?pair:/.test(sceneBase(scene)) && SCENE_DATA.pairCloth !== false;
+// Two women in one picture (pair: / cpair: without Sam, duo: threesomes with him): no outfits, which only lengthen the prompt
+// and get swapped between the two. Each woman is in her underwear, or nude when the scene is nude or she wears none
+// (scenes.json → pairCloth: false turns this off).
+const pairScene = scene => /^(c?pair|duo):/.test(sceneBase(scene)) && SCENE_DATA.pairCloth !== false;
 const pairCloth = (w, c) => c==='nude' || w.under==='none' ? 'nude' : 'under';
 // One person's block: label, look, clothes (and whatever else follows), with repeats inside it removed.
 const personBlock = (label, bits) => dedupeSegs((label ? label + ': ' : '') + bits.filter(Boolean).join(', '));

@@ -15,7 +15,7 @@
     "againPhrase: added to the pose of a Sam scene with the context 'again' ('samact:<act>~~again', or 'again_<ctx>' to keep the first round's place, e.g. again_storeroom): the picture of another round, so it differs from the first.",
     "femClients: looks for women clients in their pictures (cpair:<service>:<fem|futa> scenes, js/data/scenes.js); a futanari client also gets futaPhrase.",
     "femClientCloth: what a woman client wears in cpair scenes, by the scene's dress level. In two-women and duo scenes the other woman is as dressed as the first at most (matchCloth in prompts.js). futaPhrase is added to the futanari's own block (her look already reads \"futanari\" instead of \"woman\").",
-    "pairCloth: true = two women together (pair:/cpair:) are pictured in their underwear or nude (nude when the scene is, or when she wears none), never in their outfits; false = outfits by dress level as in other scenes.",
+    "pairCloth: true = two women in one picture (pair:/cpair:, and duo: threesomes with Sam) are pictured in their underwear or nude (nude when the scene is, or when she wears none), never in their outfits; false = outfits by dress level as in other scenes.",
     "futaPhraseUnder: futaPhrase when the futanari is in her underwear (pairCloth)."
   ],
   "scenes": {
