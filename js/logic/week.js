@@ -196,7 +196,8 @@ function simHouse(h, R){
   W.forEach(w=>{ const pr = R.per[w.id]; pr.nServed = 0; pr.nightOver = false; if(escorts.includes(w)) pr.cap = 0; });
   // max lust: some ladies spend part of a night alone instead (costs energy, fewer clients)
   W.forEach(w=>{
-    if(!restless(w) || has(w,'Devoted') || Math.random() >= soloChance(w)) return;   // lovers wait for Sam
+    if(!restless(w) || has(w,'Devoted') || R.per[w.id].soloNight !== undefined || Math.random() >= soloChance(w)) return;   // lovers wait for Sam
+    if(yuriNight(w, W, R, NIGHTS)) return;   // she goes looking for a housemate instead (balance.json → yuri)
     const pr = R.per[w.id]; pr.solo = true;
     w.energy = Math.max(0, w.energy - Math.round(maxEnergy(w)*BAL.solo.energyCost)); spendLust(w, BAL.solo.lustDrop); moodAdd(w, 3);
     pr.soloNight = ri(0, NIGHTS-1);   // one night of the week she spends alone instead of with clients
@@ -564,18 +565,6 @@ function simHouse(h, R){
     pr._nm = false;
     const lantern = !!act && w.race==='angel' && w.sub==='lantern' && Math.random()<0.45;
     const ctx = has(w,'Exhibitionist') ? 'exhib' : (reck0 ? 'reckless' : '');
-    // a woman (not a futanari: no Sam/futa scenes) nobody would take, with Sam on the Floor here: she tries him instead (balance.json → clients.women.samProp)
-    const SPW = (BAL.clients.women||{}).samProp || {};
-    if(!act && want && SIM_SEX==='f' && floorE > 0 && S.sam.energy >= (SPW.minEnergy ?? 15) && Math.random() < (SPW.chance ?? 0.3) * floorE){
-      const fee = Math.round(actById(want).price * P.mult * cls.mult * (SPW.fee ?? 0.6));
-      S.sam.energy -= SPW.energy ?? 10; S.rep = clamp(S.rep + (SPW.renown ?? 0.2)); hr.income += fee; R.led.sam += fee; R.samWomen = (R.samWomen||0) + 1;
-      // a moment for the report's "Sam's week" (a few per week), with a picture: samfc:<service>:<client look> (scenes.js)
-      const fcN = (SCENE_DATA.femClients||[]).length;
-      // want is the lady's side of it (oral_give: the lady goes down on the client); with Sam in the lady's place it's his side,
-      // so giving and receiving swap (he goes down on her: oral_get, pictured with oral_get's Sam pose)
-      const flip = want.replace(/_(give|get)$/, (m, x) => x==='give' ? '_get' : '_give'), sa = actById(flip) ? flip : want;
-      if((R.samFem = R.samFem || []).length < (SPW.reportMax ?? 4)) R.samFem.push({act:sa, h:h.id, fee, look: fcN ? ri(0, fcN-1) : 0});
-    }
     const e = {cls:cls.id, csex: SIM_SEX==='m' ? undefined : SIM_SEX, want, act, outcome, altDiff: outcome==='alt'?altDiff:undefined, reg: reg ? reg.name : null, note, sat:Math.round(sat), expr: ser ? ser.expr : null, react, encore, encoreKind, roundDeclined, more, possess: spPoss ? spPoss.react : null, adapt: adShift ? adShift.adapt : null, spiritFuta: !!spPoss, lantern, heat, ctx, step: helper && !coveredFor ? w.job : undefined, coveredFor};
     pr.enc.push(encFx(w, pr, s0, e));
     if(reg) regAfter(reg, w, sat, inc); else if(sat>=75 && (!bestNew || sat>bestNew.sat)) bestNew = {sat, w, cls, regM: cMul(client,'regular') * ((act && actById(act).regular) || 1)};
@@ -737,4 +726,34 @@ function simHouse(h, R){
   });
   SIM_SEX = 'm';
   return hr;
+}
+
+// A restless lady may seek out a housemate who's free instead of spending the night alone (balance.json → yuri). Both need
+// the lewdness for it (yuri.lewd, plus orientGap for a woman unless Sapphic/Bisexual); a good bond and a housemate's own lust
+// make her the one picked. They share one night: lust spent, a little lewdness, mood and bond (less than a spirit's
+// reverse-possession tryst). Pictured as pair:<act>:fem:<other> on her page and from the other side on the housemate's.
+const YURI_ACTS = ['kiss','manual_give','manual_get','oral_get','oral_give','breast_get','missionary','cowgirl','doggy'];
+function yuriNight(w, W, R, NIGHTS){
+  const Y = BAL.yuri; if(!Y || Y.off) return false;
+  const need = x => (Y.lewd ?? 40) + orientGap(x, 'f');
+  if((w.lewd||0) < need(w) || has(w,'Modest')) return false;
+  const lean = has(w,'Sapphic') ? (Y.sapphicMul ?? 1.8) : has(w,'Bisexual') ? (Y.biMul ?? 1.3) : 1;
+  if(Math.random() >= Math.min(0.95, (Y.chance ?? 0.4) * lean)) return false;
+  const pool = W.filter(o=>o!==w && !has(o,'Devoted') && !has(o,'Modest') && R.per[o.id] && !R.per[o.id].solo && R.per[o.id].soloNight === undefined
+    && (o.lewd||0) >= need(o) && (o.lust||0) >= (Y.otherLust ?? 30) && o.energy >= maxEnergy(o) * 0.2);
+  if(!pool.length) return false;
+  const o = weighted(pool, x=>1 + Math.max(0, bondV(w, x)) / (Y.bondWeight ?? 20) + (x.lust||0) / 100 + (has(x,'Sapphic') ? 1 : has(x,'Bisexual') ? 0.4 : 0));
+  const top = Math.min(w.lewd, o.lewd) - Math.max(orientGap(w,'f'), orientGap(o,'f'));
+  const acts = YURI_ACTS.filter(id=>{ const A = actById(id); return A && A.pair && (A.pair.fem||[]).length && (A.th||0) <= top && !actBanned(w,id) && !actBanned(o,id); });
+  const act = acts.length ? weighted(acts, id=>1 + (actById(id).th||0)/20) : 'kiss', A = actById(act);
+  const night = ri(0, NIGHTS-1), pw = R.per[w.id], po = R.per[o.id];
+  pw.soloNight = night; po.soloNight = night; pw.yuri = o.id; po.yuri = w.id;
+  [w, o].forEach((x, i)=>{ x.energy = Math.max(0, x.energy - (Y.energy ?? 12)); spendLust(x, (Y.lust ?? 40) * (i ? (Y.otherShare ?? 0.8) : 1)); moodAdd(x, Y.mood ?? 3); lewdUp(x, Y.lewdGain ?? 0.5, Y.lewdCap ?? 90); });
+  addBond(w, o, Y.bond ?? 6);
+  const flip = act.replace(/_(give|get)$/, (m, k) => k==='give' ? '_get' : '_give'), oAct = actById(flip) ? flip : act;
+  const line = (who, other, id) => { const P = (actById(id)||{}).pair || {}; return (P.fem||[]).length ? pick(P.fem).replace(/\{name\}/g, who.name).replace(/\{partner\}/g, other.name) : ''; };
+  const text = [flavor('yuri_night', w, {other: o.name}), line(w, o, act)].filter(Boolean).join(' ');
+  R.hl.push({wid:w.id, text, act, scene:`pair:${act}:fem:${o.id}`, yuri:true, noAi:true});
+  R.hl.push({wid:o.id, text:`${w.name} came looking for her one night. ${line(o, w, oAct)}`.trim(), act:oAct, scene:`pair:${oAct}:fem:${w.id}`, yuri:true, noAi:true});
+  return true;
 }

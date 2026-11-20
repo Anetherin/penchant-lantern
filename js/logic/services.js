@@ -108,7 +108,7 @@ function hlTextBase(w, e){
   // a solo reverse possession with a client is its own encounter: the possession (plus any follow-up service), not the service he asked for (report.js groups it alone)
   if(e.possess && e.act){
     const asked = AC(e.want || e.act), lead = e.where ? `${cap(who)} propositioned ${N} ${PROP_WHERE[e.where]}, asking ${asked}.` : `${cap(who)} came for ${N} and asked ${asked}.`;
-    return `${lead} ${flavor('enc_possess_' + e.possess, w)}${encTxt}${more}`;
+    return `${lead} ${flavor('enc_possess_' + (e.csex==='f' ? 'fem_' : '') + e.possess, w)}${encTxt}${more}`;   // a woman: nothing to borrow, she slips inside her (flavor enc_possess_fem_*)
   }
   const extra = [e.adapt && flavor('enc_adapt', w, e.adapt), e.lantern && flavor('enc_lantern_angel', w), e.heat && e.note!=='drained' && e.note!=='frustrated' && flavor('enc_beast_heat', w)].filter(Boolean).join(' ');
   const tail = extra ? ' ' + extra : '';
@@ -325,7 +325,7 @@ function runService(X, w, A, o){
   if(note === 'drained' && !X.h.up.sigil && X.hr) X.hr.demonDrains++;
   return {ser, note, encore, encoreKind, roundDeclined, reck0, more: more ? more.id : null, satAdj};
 }
-// Race shift effects: spirit reverse possession (solo_futa, client, or futa x fem housemate) and android per-client appearance adaptation.
+// Race shift effects: spirit reverse possession (solo_futa with a man or futanari client, plain solo with a woman, or futa x fem housemate) and android per-client appearance adaptation.
 function spiritPossess(X, w, client, pr){
   const S0 = SVC.spirit || {};
   if(w.race!=='spirit' || (w.lewd||0) < (S0.possessLewd ?? 35)) return null;
@@ -341,7 +341,9 @@ function spiritPossess(X, w, client, pr){
     const r = Math.random();
     react = r < likeC ? 'like' : r < likeC + freakC ? 'freak' : 'ok';
   }
-  pr.possessed = (pr.possessed||0) + 1; lewdUp(w, 0.5, 95);
+  // with a woman there's nothing to borrow: she slips inside her instead (pictured solo, not futa), and it doesn't lead to a housemate tryst
+  if(clientSex(client)==='f') pr.possessedFem = (pr.possessedFem||0) + 1; else pr.possessed = (pr.possessed||0) + 1;
+  lewdUp(w, 0.5, 95);
   return react==='like' ? {react, feeMult: S0.possessLikeFee ?? 1.35, satAdd: S0.possessLikeSat ?? 18}
     : react==='freak' ? {react, feeMult: S0.possessFreakFee ?? 0.75, satAdd: S0.possessFreakSat ?? -22}
     : {react, feeMult: S0.possessOkFee ?? 1.1, satAdd: S0.possessOkSat ?? 5};

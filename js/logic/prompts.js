@@ -168,13 +168,12 @@ const getSnippet = k => { const a = k.startsWith('act_') && actById(k.slice(4));
 // Services whose picture shows her bare between the legs (services.json → image.exposed); pubic hair is named for those
 // unless the clothing wording already covers it.
 const exposedAct = id => !!(((actById(id)||{}).image||{}).exposed);
-function sceneAct(sceneKey){ const b = sceneBase(sceneKey); return b.startsWith('act:') ? b.slice(4) : /^(samact|duo|pair|cpair|demo|samfc):/.test(b) ? b.split(':')[1] : null; }
+function sceneAct(sceneKey){ const b = sceneBase(sceneKey); return b.startsWith('act:') ? b.slice(4) : /^(samact|duo|pair|cpair|demo):/.test(b) ? b.split(':')[1] : null; }
 // Safety net: Perchance reads {…} in a prompt as its own syntax and complains, so a placeholder that slipped through unfilled
 // is dropped and any stray brace removed.
 const promptSafe = t => cleanText(String(t).replace(/\{\w*\}/g, '').replace(/[{}]/g, ''));
 function buildPrompt(w, sceneKey, cloth){
   if(w.male) return promptSafe([SET.style, 'adult man', w.look, 'upper body portrait, looking at viewer', 'dramatic lighting'].join(', '));
-  if(w.fclient) return fclientPrompt(w, sceneKey, cloth);
   cloth = cloth || defaultCloth(w, sceneKey);
   if(pairScene(sceneKey)) cloth = pairCloth(w, cloth);
   const sc = sceneInfo(sceneKey, w, cloth);
@@ -185,7 +184,7 @@ function buildPrompt(w, sceneKey, cloth){
   // description first lets the pose drift to whatever the model draws most often
   if(svc){
     const n = sc.people ? PP[sc.people] : base.startsWith('orgy:') ? (PP.orgy||'').replace('{n}', base.slice(5).split(',').length) : base.startsWith('duo:') ? PP.duo : base.startsWith('pair:') ? (PP['pair_' + base.split(':')[2].replace('selffuta','futa')] || PP.pair_fem) : base.startsWith('cpair:') ? (PP['pair_' + base.split(':')[2]] || PP.pair_fem) : base.startsWith('demo:') ? PP.demo : sc.pov ? PP.pov : sc.client ? PP.client : PP.solo;
-    const duo = /^(duo|pair|cpair|orgy):/.test(base);   // a duo's "client" is the second woman's full description: it goes after hers
+    const duo = /^(duo|pair|orgy):/.test(base);   // a duo's "client" is the second woman's full description: it goes after hers (a woman client's short phrase leads, like a man client's)
     // services about her breasts (services.json → image.bust) name her bust right after the pose, where the model ties it to the act
     const bustUp = act && ((actById(act)||{}).image||{}).bust ? bustText(w, sceneKey) : '';
     // the head-count tags already say pov; the pov snippet at the end sets the framing
@@ -197,6 +196,8 @@ function buildPrompt(w, sceneKey, cloth){
     const all = parts.filter(Boolean).join(', ');
     return promptSafe(stripTodo(duo ? all : dedupeSegs(all)));
   }
+  const ddw = /^ddate_/.test(base) && /^with:/.test(sceneParts(sceneKey).ctx) ? findAny(sceneParts(sceneKey).ctx.slice(5)) : null;
+  if(ddw) return ddatePrompt(w, ddw, sc, sceneKey, cloth, clothes);
   if(sc.pov) parts.push("first-person POV, from the viewer's perspective");
   parts.push(charDesc(w, cloth, sceneKey), clothes);
   if(sc.sam && !sc.pov) parts.push('together with ' + SAM_DESC);
@@ -213,13 +214,13 @@ function buildPrompt(w, sceneKey, cloth){
   if(sc.pov) parts.push(getSnippet('pov'));
   return promptSafe(stripTodo(dedupeSegs(parts.filter(Boolean).join(', '))));
 }
-// Sam with a woman client on the Floor (samfc:<service>:<look>:<house id>): his POV, like his own scenes, with her look from scenes.json →
-// femClients and clothes by the service's tier (femClientTier). The house's room is the setting.
-function fclientCloth(sceneKey){ const id = sceneBase(sceneKey).split(':')[1], c = ((SCENE_DATA.femClientTier||{})[actTier(id)]) || 'dressed'; return c==='under' && exposedAct(id) ? 'nude' : c; }   // bared services (image.exposed) show her nude
-function fclientPrompt(w, sceneKey, cloth){
-  const id = sceneBase(sceneKey).split(':')[1], PP = SCENE_DATA.people || {}, c = cloth || fclientCloth(sceneKey);
-  const hid = sceneBase(sceneKey).split(':')[3], h = (S && S.houses && (S.houses.find(x=>x.id===hid) || S.houses[0])) || null, wear = (SCENE_DATA.femClientCloth||{})[c] || '';
-  const lead = dedupeSegs([PP.pov, actPose(id, 'sam'), getSnippet('act_'+id)].filter(Boolean).join(', '));
-  const her = dedupeSegs(['beautiful adult woman, a client', w.look, c==='dressed' ? 'in an elegant evening dress' : wear, exprText('into', id)].filter(Boolean).join(', '));
-  return promptSafe(stripTodo([SET.style, lead, her, dedupeSegs([ROOM_SETTING(h), getSnippet('pov')].join(', '))].filter(Boolean).join(', ')));
+// A double date (dates.js ddScene: 'ddate_<date>~~with:<other id>'): the three of them, each labelled the way the date's
+// image.comp names them ("the first woman", "the second woman", "the man"), the comp first so the layout holds.
+function ddatePrompt(w, o, sc, sceneKey, cloth, clothes){
+  const oc = defaultCloth(o, sceneKey), bare = cloth==='nude' || isBathScene(sceneKey);
+  const ed = effDesign(w, sceneKey);
+  return promptSafe(stripTodo([SET.style, '2girls, 1boy', sc.comp,
+    personBlock('the first woman', [charDesc(w, cloth, sceneKey), clothes, sc.expr || (ed.expression||'').trim()]),
+    personBlock('the second woman', [charDesc(o, oc, sceneKey, {noAcc:true}), clothesFor(o, oc, sceneKey)]),
+    'the man: ' + (bare ? SAM_LOOK : SAM_DESC), sc.snip && getSnippet(sc.snip), sc.setting].filter(Boolean).join(', ')));
 }

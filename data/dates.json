@@ -10,7 +10,8 @@
     "special: 'chat' = the row runs the chat (trust, mood and energy here; random spread x0.6-1.4, Romantic/Shy bonuses, topics from events.json). special: 'nightin' = after the date, if she is comfortable with anything private, Sam can always go inside (no extra action); otherwise just a cosy evening.",
     "spicy: [ {label, acts:[service ids], lewd (her least lewdness), gain, cap (lewdUp), risk (0-1 chance of being caught), lead (opening text, {name}), nude:true (no act: skinny dipping / figure study; needs her to be comfortable nude), image:{comp, setting, replace} (the variant's own staging: setting is optional and falls back to the date's; for acts comp is added to the service pose, or replaces it with replace:true; nude variants use comp+setting as their own scene and keep the date image's undress/bath/away/swim flags)} ]. Offered as 🔥 buttons after a good date (max 2). Costs Sam 12 energy, no action. With acts: a normal private-time scene (only services she's done with Sam: canSam) with that lead; the act is her favorite if listed, else the highest-th one she says yes to, else the first she's comfortable with.",
     "home: true = the date happens at the house (rooftop, a room, the bathhouse). After a date with 🔥 options Sam picks a daring variant or calls it there (_after.away / _after.home: label of that button, home = text when the evening ends there, invite = text when she asks Sam in; {name}). Either way, if the evening sparks, a second screen offers private time or goodnight.",
-    "spicy lead may be a list of variants (one is picked at random). _after invite/home may be lists too."
+    "spicy lead may be a list of variants (one is picked at random). _after invite/home may be lists too.",
+    "_double (double dates: Sam with two ladies at once; {a} and {b} are the two women, 'you' is Sam): same fields as above plus lines (3), threesomeLead (2, the lead-in if the night ends in a threesome) and oneMore (2: no threesome, but {a} keeps going alone with Sam while {b} says goodnight). image.comp names the people 'the first woman', 'the second woman' and 'the man' (the prompt builder labels each of them with those exact words); no names or placeholders."
   ],
   "_after": {
     "away": {
@@ -69,9 +70,13 @@
         "The wine stays with all three of you all the way up the steps. Outside the bedchamber, {a} leans her shoulder against {b}'s and looks up at you. \"Seems a shame to split up now,\" {b} murmurs."
       ],
       "image": {
-        "comp": "two women flanking a man at a corner table in a candlelit tavern booth, sharing wine and leaning close, flushed smiles",
+        "comp": "the first woman and the second woman flanking the man at a corner table in a candlelit tavern booth, the first woman leaning on his shoulder, the second woman raising a glass, flushed smiles",
         "setting": "intimate candlelit booth at a warm lantern-lit inn, glasses and plates on white linen"
-      }
+      },
+      "oneMore": [
+        "{b} stops at the foot of the stairs and kisses {a}'s cheek, then yours, lingering a heartbeat. \"I'll leave the pair of you to the rest of the wine,\" she says with a warm smile, and goes up alone. {a} catches your hand, flushed from the evening, and pulls you toward her door. \"Come in. I'm not done with you yet.\"",
+        "\"Goodnight, you two,\" {b} says at the landing, squeezing {a}'s arm with a fond little laugh. \"Save me the gossip.\" She slips into her room, and {a} turns to you with the candlelight still in her eyes, her fingers hooked in your sleeve. She opens her door and tugs you across the threshold."
+      ]
     },
     "walk": {
       "label": "Lantern walk & late drinks",
@@ -93,9 +98,13 @@
         "They linger together on the landing until {b} laughs softly, catches {a}'s chin, and asks you whether the fire is lit in your suite or hers."
       ],
       "image": {
-        "comp": "two women arm in arm with a man on a misty stone bridge under warm hanging paper lanterns, laughing close together",
+        "comp": "the first woman and the second woman arm in arm with the man on a misty stone bridge under warm hanging paper lanterns, the man between them, both women laughing close to him",
         "setting": "canal promenade at night, reflections of paper lanterns shimmering on dark water"
-      }
+      },
+      "oneMore": [
+        "{b} unwinds the shawl from her shoulders and tucks it around {a} instead, yawning prettily. \"I'm for bed,\" she says, kissing you both goodnight with no hint of regret. {a} waits until her door has closed, then takes your hand and leads you to her own, her cheeks pink from more than the cold.",
+        "At the landing {b} stretches, grins at the two of you, and says she's had all the lantern light she can handle. \"Don't stay out in the hall,\" she teases, and goes in. {a} laughs, wraps both hands around yours, and pulls you through her doorway with her back already against the door."
+      ]
     },
     "theater": {
       "label": "Private gallery box",
@@ -119,9 +128,13 @@
         "The moment the front latch clicks behind you, {b} looks from {a} to you with unmistakable intent. \"The last act dragged,\" she says softly. \"Let's write a better one.\""
       ],
       "image": {
-        "comp": "two women seated close on either side of a man in a dimly lit velvet theater box, hands entwined, looking at each other warmly",
+        "comp": "the first woman and the second woman seated close on either side of the man in a dimly lit velvet theater box, the first woman holding his hand, the second woman leaning against his shoulder, warm glances",
         "setting": "crimson velvet private theater balcony box, soft chandelier glow from the stage below"
-      }
+      },
+      "oneMore": [
+        "The carriage stops and {b} steps down first, smoothing her skirts. \"The second act wore me out,\" she says, blowing you both a kiss from the step, and heads inside alone. {a} keeps hold of your arm all the way up the stairs, and at her door she turns the latch and draws you in after her.",
+        "{b} says goodnight in the hall with a soft, genuine smile, and a hand on your chest that says thank you. {a} watches her go, then looks up at you, breathless and bright-eyed. \"The play's over,\" she murmurs, \"but I'd like an encore, just us.\" She pulls you into her room."
+      ]
     },
     "springs": {
       "label": "Private bathhouse soak",
@@ -146,9 +159,103 @@
         "Damp towels drop before you even reach the alcove. {b} catches your wrist while {a} slides an arm around her waist, eyes heavy and bright."
       ],
       "image": {
-        "comp": "two bare-shouldered women soaking beside a man in a steaming cedar bathhouse pool, glistening damp skin and warm relaxed smiles",
+        "comp": "the first woman and the second woman soaking bare-shouldered on either side of the man in a steaming cedar bathhouse pool, glistening damp skin, relaxed smiles, the first woman resting her head near his shoulder",
         "setting": "private wooden bathhouse at night, rising steam and warm amber oil lamps",
         "bath": true
+      },
+      "oneMore": [
+        "{b} climbs out of the pool first, wraps herself in a robe, and smiles down at the two of you. \"I'm boiled through. Don't let her get cold,\" she tells you, and pads off barefoot to bed. {a} slides through the water to you, drips on the cedar boards, and takes your hand. \"My room. Now,\" she says, and leads you out.",
+        "\"I'll leave you the last of the plum wine,\" {b} says, rising from the water with a sleepy, fond smile and a kiss for each of you. She heads for her bed, and {a} wraps a towel around both of you, pulling you close. Warm and damp, she leads you to her door and draws you inside."
+      ]
+    },
+    "market": {
+      "label": "Night market & street food",
+      "cost": 18,
+      "energy": 20,
+      "trust": 2.4,
+      "mood": 9,
+      "bond": 5,
+      "lust": 3,
+      "lewd": 1,
+      "lewdCap": 30,
+      "like": "walk",
+      "intro": "The night market is a tangle of lamplight, frying oil and shouting stallholders, and you let {a} and {b} drag you through it by a hand each, past ring-toss booths, skewers of glazed meat and tables of cheap bright trinkets.",
+      "lines": [
+        "{a} wins a tin charm at the ring toss and pins it to {b}'s collar, then spends the next stall wiping honey sauce from the corner of {b}'s mouth with her thumb while you watch.",
+        "{b} dares {a} to try the hottest skewer on the street. Both of them end up red-faced and laughing, sharing one cup of cold cider and leaning into your shoulders.",
+        "Under a string of red lanterns at the end of the row, a fiddler starts a reel and the two of them spin you through it, breathless, with hands lingering at your waist and hips."
+      ],
+      "threesomeLead": [
+        "The market noise fades behind you as you climb the stairs. {a} still has sugar on her lips, and {b} kisses it off her before turning to you, flushed and daring. \"We haven't spent all our coin yet,\" she says.",
+        "Your pockets are full of trinkets and none of you is ready for the night to end. At the landing {a} takes your hand and {b} takes hers, and nobody turns toward a separate door."
+      ],
+      "oneMore": [
+        "{b} yawns into her fist, her arms full of market prizes, and kisses you both on the cheek. \"Goodnight, you two. Thank you for the best evening,\" she says without a trace of envy, and goes to her room. {a} turns the little tin charm over in her fingers, looks at you, and opens her door. \"Come in. I've still got something to show you.\"",
+        "At the landing {b} hands {a} the last skewer, grins, and says her feet have had enough of cobblestones. She leaves you with a warm squeeze of your arm. {a} watches her door close, then pulls you toward her own by your belt, laughing quietly."
+      ],
+      "image": {
+        "comp": "the first woman and the second woman holding the man's hands and pulling him through a crowded night market, the first woman holding a skewer, the second woman laughing with a paper cup, glowing lanterns overhead",
+        "setting": "bustling lantern-lit night market street with food stalls, string lights and festival banners"
+      }
+    },
+    "masquerade": {
+      "label": "Masquerade ball",
+      "cost": 45,
+      "energy": 22,
+      "trust": 2.6,
+      "mood": 9,
+      "bond": 6,
+      "lust": 5,
+      "lewd": 2,
+      "lewdCap": 38,
+      "like": "theater",
+      "intro": "The masquerade fills a candlelit hall with silk, feathers and music. You arrive with {a} on one arm and {b} on the other, all three of you masked, and the whole room seems to turn to watch you cross the floor.",
+      "lines": [
+        "{a} takes the first dance with you while {b} watches over her fan, then cuts in halfway through the song and spins you away with a wicked smile.",
+        "Behind a velvet curtain by the balcony, {a} and {b} lift their masks just enough to kiss each other, and then both turn and kiss you, hands pressing at your chest.",
+        "By the last waltz neither woman bothers to hide how close she is dancing. {a}'s mask hangs from her wrist and {b} has her fingers hooked through your belt."
+      ],
+      "threesomeLead": [
+        "The masks come off at the foot of the stairs, but nobody mentions it. {b} lays hers on the banister, takes {a}'s hand, and looks at you with a slow, dark smile. \"The ball's over,\" she says. \"The rest of the night isn't.\"",
+        "The music still hums in your head as {a} steers you down the upstairs hall, {b} walking backwards in front of you, untying the ribbon of her mask. Nobody says which door."
+      ],
+      "oneMore": [
+        "{b} hands her feathered mask to {a} like a keepsake and curtsies to you both at the top of the stairs. \"I danced my fill,\" she says with a bright, easy smile. \"Go on, the two of you.\" She retires alone. {a} turns the mask in her hands, then pulls you by the lapel to her door, a thrill in her voice. \"Come in, masked stranger.\"",
+        "At the landing {b} kisses {a} on the forehead, kisses your hand, and bows herself off to bed, still humming the last waltz. {a} watches her go with soft affection, then slides her arm around your waist. \"One more dance,\" she says, and draws you into her room."
+      ],
+      "image": {
+        "comp": "the first woman and the second woman in elegant gowns and half masks dancing close with the man in a candlelit ballroom, the first woman holding his hand, the second woman's arm around his waist, flushed smiles",
+        "setting": "grand candlelit masquerade ballroom with marble floor, drifting dancers and gilded balconies"
+      }
+    },
+    "lake": {
+      "label": "Lake boat & dusk picnic",
+      "cost": 22,
+      "energy": 20,
+      "trust": 2.6,
+      "mood": 9,
+      "bond": 6,
+      "lust": 4,
+      "lewd": 1,
+      "lewdCap": 32,
+      "like": ["walk","private"],
+      "intro": "You row a small boat out into the middle of the lake as the sun slips behind the hills, with {a} and {b} sharing the stern bench and a basket of bread, cheese and cold wine between your feet. The water is perfectly still.",
+      "lines": [
+        "{a} trails her fingers in the water, then flicks cold drops over {b}, who retaliates by leaning over to steal a long kiss from you while the boat rocks.",
+        "You pour the wine into tin cups. {b} lies back with her head in your lap and her feet in {a}'s, and the three of you watch the first stars come out over the water.",
+        "As the light fades, the air cools and both women crowd against you under one blanket, their skin warm through thin summer dresses."
+      ],
+      "threesomeLead": [
+        "The oars are stowed and the blanket is still around your shoulders when you reach the house. {a} and {b} are already holding hands behind your back. \"Too cold for separate rooms,\" {b} says, and {a} agrees with a laugh.",
+        "Lake water still clings to their hems as they walk you upstairs. At the landing {a} presses her damp lips to your jaw while {b} takes your other hand and leads you toward the nearest door."
+      ],
+      "oneMore": [
+        "{b} shakes out the blanket on the dock and folds it over {a}'s shoulders. \"I'm for a hot bath and a long sleep,\" she says, kissing you both goodnight, content and unbothered. {a} stays close, still smelling of lake air and wine. She takes your hand, walks you up the stairs, and opens her door.",
+        "On the dock {b} yawns, hugs you, and tells {a} to keep you warm, with a wink and no hint of regret. She wanders up to bed. {a} wraps the blanket around you both, looks up at you with dark, shy eyes, and leads you to her room by the hand."
+      ],
+      "image": {
+        "comp": "the first woman and the second woman sitting close on either side of the man in a small rowboat on a still lake at dusk, the first woman leaning on his shoulder, the second woman holding a wine cup, soft smiles",
+        "setting": "calm lake at sunset, wooden rowboat, picnic basket and a blanket, first stars in a pink sky"
       }
     }
   },
