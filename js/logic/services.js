@@ -360,11 +360,10 @@ function androidAdapt(w, client, pr){
   return {adapt: {hair, eyes, body}, feeMult: A.adaptFee ?? 1.18, satAdd: A.adaptSat ?? 10};
 }
 // A spirit still worked up after a reverse possession takes it to a willing housemate (balance.json → svc.spirit.pair*).
-// After a man or futanari client (or just worked up, pr.possessed / lust) she brings the borrowed cock: futa x fem. After a
-// woman client (pr.possessedFem) there's nothing to borrow: she slips inside the housemate instead, pictured as two women.
-// Lewdness asked of the housemate, from tamest to lewdest: a yuri night (yuri.lewd) < a possession tryst (pairLewd)
-// < the futa version (+ pairFutaExtra unless she's a Futa Lover); a woman also needs clients.women.gap unless Sapphic or
-// Bisexual. Lewdness gained follows the same order (pairLewdGain, pairFutaLewdGain for non-Futa Lovers).
+// After a man or futanari client (or just worked up, pr.possessed / lust) she brings the borrowed cock: the futa tryst,
+// lewder than a yuri night (pairLewd, pairLewdGain; + pairFutaExtra and pairFutaLewdGain unless she's a Futa Lover).
+// After a woman client (pr.possessedFem) nothing about her changed: it's an ordinary yuri night with the housemate,
+// asked and paid like one (balance.json → yuri.lewd / lewdGain / bond). Women also need clients.women.gap unless Sapphic/Bisexual.
 const POSS_FEM_ACTS = ['kiss','manual_get','oral_get','oral_give','breast_get','missionary','cowgirl'];
 function spiritPairShift(h, W, R){
   const S0 = SVC.spirit || {}, futaActs = ['missionary','cowgirl','doggy','oral_give'];
@@ -372,9 +371,9 @@ function spiritPairShift(h, W, R){
     const pr = R.per[w.id];
     if(w.race!=='spirit' || pr.solo || pr.yuri || w.job==='rest' || has(w,'Devoted') || has(w,'Modest')) return;
     const futa = !!pr.possessed || (!pr.possessedFem && (w.lust||0) >= LUST_EAGER);
-    if((w.lewd||0) < (S0.pairLewd ?? 45) || (!futa && !pr.possessedFem)) return;
+    if((w.lewd||0) < (futa ? (S0.pairLewd ?? 45) : ((BAL.yuri||{}).lewd ?? 40)) || (!futa && !pr.possessedFem)) return;
     if(Math.random() >= (S0.pairChance ?? 0.4)) return;
-    const need = o => (S0.pairLewd ?? 45) + orientGap(o, 'f') + (futa && !has(o,'Futa Lover') ? (S0.pairFutaExtra ?? 10) : 0);
+    const Y = BAL.yuri || {}, need = o => (futa ? (S0.pairLewd ?? 45) : (Y.lewd ?? 40)) + orientGap(o, 'f') + (futa && !has(o,'Futa Lover') ? (S0.pairFutaExtra ?? 10) : 0);
     const pool = W.filter(o=>o!==w && !R.per[o.id].solo && !R.per[o.id].yuri && !has(o,'Modest') && !has(o,'Devoted') && (o.lewd||0) >= need(o));
     if(!pool.length) return;
     const o = weighted(pool, x=>1 + Math.max(0, bondV(w, x))/25 + (futa && has(x,'Futa Lover') ? 1 : 0));
@@ -382,12 +381,13 @@ function spiritPairShift(h, W, R){
     const act = pick(choices.length ? choices : [futa ? 'missionary' : 'kiss']), A = actById(act);
     w.energy = clamp(w.energy - (S0.pairEnergy ?? 14)*0.5, 0, maxEnergy(w)); o.energy = clamp(o.energy - (S0.pairEnergy ?? 14)*0.5, 0, maxEnergy(o));
     spendLust(w, S0.pairLust ?? 30); spendLust(o, (S0.pairLust ?? 30)*0.7);
-    const gain = S0.pairLewdGain ?? 0.8, oGain = futa && !has(o,'Futa Lover') ? (S0.pairFutaLewdGain ?? 1.2) : gain;
-    moodAdd(w, 4); moodAdd(o, 4); lewdUp(w, gain, 95); lewdUp(o, oGain, 95); addBond(w, o, S0.pairBond ?? 10);
+    const gain = futa ? (S0.pairLewdGain ?? 0.8) : (Y.lewdGain ?? 0.5), oGain = futa && !has(o,'Futa Lover') ? (S0.pairFutaLewdGain ?? 1.2) : gain;
+    moodAdd(w, 4); moodAdd(o, 4); lewdUp(w, gain, 95); lewdUp(o, oGain, futa ? 95 : (Y.lewdCap ?? 90)); addBond(w, o, futa ? (S0.pairBond ?? 10) : (Y.bond ?? 6));
     // futa lines name the futanari {partner} (the spirit); fem lines name the one whose side the id is (the housemate) {name}
+    if(!futa) pr.yuri = o.id;
     const lines = A && A.pair && A.pair[mode], pLine = lines && lines.length ? pick(lines).replace(/\{name\}/g, o.name).replace(/\{partner\}/g, w.name) : '';
     const text = [flavor(futa ? 'spirit_pair_futa' : 'spirit_pair_fem', w, {other: o.name}), pLine].filter(Boolean).join(' ');
-    R.hl.push({wid:w.id, text, act, scene: futa ? `pair:${act}:selffuta:${o.id}` : `pair:${act}:fem:${o.id}`, pairFuta:true, spiritFuta:futa});
+    R.hl.push(Object.assign({wid:w.id, text, act, scene: futa ? `pair:${act}:selffuta:${o.id}` : `pair:${act}:fem:${o.id}`}, futa ? {pairFuta:true, spiritFuta:true} : {yuri:true, noAi:true}));
   });
 }
 // After a service that didn't satisfy her (built lust or left her frustrated), a willing lady may propose escalating to a finishing/lust-spending service.
