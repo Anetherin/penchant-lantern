@@ -464,6 +464,7 @@
       "pairChance": 0.4,
       "pairLewd": 45,
       "pairFutaExtra": 10,
+      "mateShare": 0.5,
       "pairLewdGain": 0.8,
       "pairFutaLewdGain": 1.2,
       "pairBond": 10,

@@ -173,7 +173,7 @@ function simHouse(h, R){
   const attAvg = attSorted.length ? attSorted.reduce((a,x)=>a+attQFor(x, R.per[x.id]),0)/attSorted.length : 0;
   const attHelp = w => w.job!=='courtesan' ? 0 : ownAttMap.has(w.id) ? attQFor(ownAttMap.get(w.id), R.per[ownAttMap.get(w.id).id]) : attAvg * J.attendantShared;
   const barBoost = 1 + Math.min(barN, J.barPropsMax) * J.barProps * (BAL.amenities.drinks.props[h.drinks||0] ?? 1);   // the bar loosens purses and inhibitions (balance.json → jobs.barProps, amenities.drinks.props)
-  const X = {h, hr, R, P, secPow, barN, mgmt, rowdySum:0, rowdyN:0, expectMiss:0, unsat:0, repSat:0, gossipRep:0, hosts:[]};
+  const X = {h, W, hr, R, P, secPow, barN, mgmt, rowdySum:0, rowdyN:0, expectMiss:0, unsat:0, repSat:0, gossipRep:0, hosts:[]};
   // A thirsty client who ends up unserved (turned away, refused, left): house reputation drops; viaSat = the satisfaction hit is applied to his own visit instead.
   const thirstyMiss = (c, viaSat) => { if(!cHas(c,'thirsty')) return; const T = BAL.clients.thirsty; h.rep = clamp(h.rep - T.rep); if(!viaSat) X.unsat += T.sat; hr.thirstyMiss = (hr.thirstyMiss||0) + 1; };
   X.roomOK = w => has(w,'Exhibitionist') || hr.roomsUsed < hr.roomCap;
@@ -249,7 +249,7 @@ function simHouse(h, R){
         hr.income += inc; R.led.offduty += inc; pr.earned += inc; pr.acc++; hr.accProps++; if(!must) pr.accProp = (pr.accProp||0)+1; if(j==='host') pr.hostProps = (pr.hostProps||0)+1;
         const rs = runService(X, w, A, {tech:clientTech(cls,null,client), reluct, inc, ecost:actCost(w,dec.act), led:'offduty', client, cls, q:qualityOf(w,dec.act)*(reluct?0.85:1)});
         if(!must && !reluct && w.lust < LUST_EAGER && !restless(w)){ moodAdd(w, -BP.reluctantMood); pr.grudging = (pr.grudging||0)+1; }
-        e.act = dec.act; e.outcome = dec.kind; e.note = rs.note; e.expr = rs.ser.expr; e.encore = rs.encore; e.encoreKind = rs.encoreKind; e.roundDeclined = rs.roundDeclined; e.more = rs.more; e.possess = sp ? sp.react : null; e.adapt = ad ? ad.adapt : null; e.spiritFuta = !!sp; e.lantern = w.race==='angel' && w.sub==='lantern' && Math.random()<0.45; e.heat = (w.race==='beastkin' && restless(w));
+        e.act = dec.act; e.outcome = dec.kind; e.note = rs.note; e.expr = rs.ser.expr; e.encore = rs.encore; e.encoreKind = rs.encoreKind; e.roundDeclined = rs.roundDeclined; e.more = rs.more; e.possess = sp ? sp.react : null; e.mate = sp && sp.mate; e.mateAct = sp && sp.mateAct; e.adapt = ad ? ad.adapt : null; e.spiritFuta = !!sp; e.lantern = w.race==='angel' && w.sub==='lantern' && Math.random()<0.45; e.heat = (w.race==='beastkin' && restless(w));
         e.ctx = j==='bath' ? 'bath' : has(w,'Exhibitionist') ? 'exhib' : (rs.reck0 ? 'reckless' : 'prop');
       }
       pr.enc.push(encFx(w, pr, s0, e));
@@ -279,7 +279,7 @@ function simHouse(h, R){
         hr.income += inc; R.led.offduty += inc; pr.earned += inc; pr.acc++; hr.accProps++; if(!must && w.job!=='chapel') pr.accProp = (pr.accProp||0)+1;
         if(w.job==='chapel' && actTierOf(A) >= 3 && !h.lanternChapel) hr.chapelScandal = (hr.chapelScandal||0) + 1;   // a restless keeper going all the way
         const rs = runService(X, w, A, {tech:clientTech(cls,null,client), reluct:false, inc, ecost:actCost(w,id), led:'offduty', client, cls, q:qualityOf(w,id)});
-        e.act = id; e.outcome = 'yes'; e.note = rs.note; e.expr = rs.ser.expr; e.encore = rs.encore; e.encoreKind = rs.encoreKind; e.roundDeclined = rs.roundDeclined; e.more = rs.more; e.possess = sp ? sp.react : null; e.adapt = ad ? ad.adapt : null; e.spiritFuta = !!sp; e.lantern = w.race==='angel' && w.sub==='lantern' && Math.random()<0.45; e.heat = (w.race==='beastkin' && restless(w));
+        e.act = id; e.outcome = 'yes'; e.note = rs.note; e.expr = rs.ser.expr; e.encore = rs.encore; e.encoreKind = rs.encoreKind; e.roundDeclined = rs.roundDeclined; e.more = rs.more; e.possess = sp ? sp.react : null; e.mate = sp && sp.mate; e.mateAct = sp && sp.mateAct; e.adapt = ad ? ad.adapt : null; e.spiritFuta = !!sp; e.lantern = w.race==='angel' && w.sub==='lantern' && Math.random()<0.45; e.heat = (w.race==='beastkin' && restless(w));
         e.ctx = w.job==='bath' ? 'bath' : w.job==='chapel' ? 'chapel' : has(w,'Exhibitionist') ? 'exhib' : 'reckless';
       }
       pr.enc.push(encFx(w, pr, s0, e));
@@ -565,7 +565,7 @@ function simHouse(h, R){
     pr._nm = false;
     const lantern = !!act && w.race==='angel' && w.sub==='lantern' && Math.random()<0.45;
     const ctx = has(w,'Exhibitionist') ? 'exhib' : (reck0 ? 'reckless' : '');
-    const e = {cls:cls.id, csex: SIM_SEX==='m' ? undefined : SIM_SEX, want, act, outcome, altDiff: outcome==='alt'?altDiff:undefined, reg: reg ? reg.name : null, note, sat:Math.round(sat), expr: ser ? ser.expr : null, react, encore, encoreKind, roundDeclined, more, possess: spPoss ? spPoss.react : null, adapt: adShift ? adShift.adapt : null, spiritFuta: !!spPoss, lantern, heat, ctx, step: helper && !coveredFor ? w.job : undefined, coveredFor};
+    const e = {cls:cls.id, csex: SIM_SEX==='m' ? undefined : SIM_SEX, want, act, outcome, altDiff: outcome==='alt'?altDiff:undefined, reg: reg ? reg.name : null, note, sat:Math.round(sat), expr: ser ? ser.expr : null, react, encore, encoreKind, roundDeclined, more, possess: spPoss ? spPoss.react : null, mate: spPoss ? spPoss.mate : undefined, mateAct: spPoss ? spPoss.mateAct : undefined, adapt: adShift ? adShift.adapt : null, spiritFuta: !!spPoss, lantern, heat, ctx, step: helper && !coveredFor ? w.job : undefined, coveredFor};
     pr.enc.push(encFx(w, pr, s0, e));
     if(reg) regAfter(reg, w, sat, inc); else if(sat>=75 && (!bestNew || sat>bestNew.sat)) bestNew = {sat, w, cls, regM: cMul(client,'regular') * ((act && actById(act).regular) || 1)};
   };
