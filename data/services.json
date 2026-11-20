@@ -17,7 +17,8 @@
     "pair = lines for two women together (any two women; used by js/logic/goddess.js gSvcLine): fem = both women, futa = {partner} is a futanari. {name} = the woman whose side the id names (she gives for _give, receives for _get), {partner} = the other woman. Positions (tier 3) only need futa.",
     "Who leads (tier 3 positions): regular = x her chance to turn a satisfied client into a regular (missionary: face to face, the one men come back for). selfLed: true = she sets the pace, so how good it is for HER (lust drop, not being left frustrated) is at least 0.6 + 0.6 x her skill at it instead of resting on his technique (cowgirl: dearer and more tiring, but reliable release). techLed = he leads, so his technique counts x this much in both directions around the average 0.85 (doggy: easy on her energy, great with a skilled client, frustrating with a clumsy one). See actTech in js/logic/services.js.",
     "samLabel = the label in Sam's own menus and summaries (private time, practice, threesomes, nights with the goddess), worded from his side so giving/receiving is clear; label is her side (client menus, reports).",
-    "femLabel: the service's name in menus and reports when the client is a woman (clients.women); ask.clientFem / ask.ladyFem: the ask wording then. Reports with a woman client use pair.fem (a futanari client: pair.futa) with {name} = the lady and {partner} = her client."
+    "femLabel: the service's name in menus and reports when the client is a woman (clients.women); ask.clientFem / ask.ladyFem: the ask wording then. Reports with a woman client use pair.fem (a futanari client: pair.futa) with {name} = the lady and {partner} = her client.",
+    "image.bust: true = the service is about her breasts, so her bust wording (body.json) goes right after the pose instead of in her description."
   ],
   "services": [
     {
@@ -276,7 +277,8 @@
         "futa": [
           "a woman kneeling before a futanari, pressing her bare breasts around the futanari's erect penis, paizuri, looking up"
         ],
-        "extra": "explicit, bare breasts, glistening skin"
+        "extra": "explicit, bare breasts, glistening skin",
+        "bust": true
       },
       "report": [
         "He talked about it at the bar afterward, at length, to anyone who'd listen.",
@@ -388,7 +390,8 @@
         "futa": [
           "a futanari embracing a woman from behind, hands on her breasts",
           "a futanari caressing a woman's breasts, sitting close together"
-        ]
+        ],
+        "bust": true
       },
       "report": [
         "He was unhurried and appreciative, and she was kind about it.",

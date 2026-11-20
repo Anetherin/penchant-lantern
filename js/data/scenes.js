@@ -54,7 +54,7 @@ function svcExpr(w, id, P, withSam, noAct){
   const e = (P && P.expr) || (w && typeof exprFor==='function' ? exprFor(w, id, id ? (withSam ? samStance(w,id)==='ask' : clientStance(w,id)==='ask') : false) : '');
   return exprText(e, noAct ? null : id);
 }
-function sceneInfo(k, w){
+function sceneInfo(k, w, cloth){
   const h = w && S ? houseOf(w) : null, HD = h ? HOUSES[h.id] : null, P = sceneParts(k); k = P.base;
   if(k.startsWith('act:')){
     const id = k.slice(4), bath = P.ctx==='bath';
@@ -65,32 +65,36 @@ function sceneInfo(k, w){
       : ROOM_SETTING(h);
     return {label:'Client: '+actLabel(id), comp:actPose(id,'client'), setting, client:SCENE_DATA.clientPhrase, snip:'act_'+id, expr:svcExpr(w, id, P, false), bath, towel:bath};
   }
-  if(k.startsWith('duo:')){ const [, id, oid, dyn] = k.split(':'), a = actById(id), o = findAny(oid);
-    const D = dyn && typeof BONDS!=='undefined' ? (BONDS.dynamics[dyn]||{}) : {};
-    return {label:'Sam & two: '+actLabel(id), pov:true, sam:true, comp:[actPose(id,'duo'), SCENE_DATA.duoPhrase, D.prompt].filter(Boolean).join(', '),
-      setting:SCENE_DATA.samRoom, snip:'act_'+id, snip2:'duo', expr:svcExpr(w, id, P, true),
-      client: o ? (()=>{ const oc = defaultCloth(o, 'samact:'+id); return `the second woman: ${charDesc(o, oc, 'samact:'+id)}, ${clothText(o, oc, 'samact:'+id).replace(/\{pubic\}/g, pubicText(o, 'samact:'+id))}`; })() : ''}; }
+  // Sam with two ladies: both labelled (the poses say "one ... the other"), the second as dressed as the first (cloth) at most
+  if(k.startsWith('duo:')){ const [, id, oid, dyn] = k.split(':'), o = findAny(oid);
+    const D = dyn && typeof BONDS!=='undefined' ? (BONDS.dynamics[dyn]||{}) : {}, pose = actPose(id,'duo'), sk = 'samact:'+id;
+    const extra = /\b(two women|both|the other|ones?\b)/i.test(pose) ? '' : SCENE_DATA.duoPhrase;   // the pose already says there are two
+    return {label:'Sam & two: '+actLabel(id), pov:true, sam:true, comp:[pose, extra, D.prompt].filter(Boolean).join(', '),
+      setting:SCENE_DATA.samRoom, snip:'act_'+id, snip2:'duo', expr:svcExpr(w, id, P, true), selfTag:'the first woman',
+      client: o ? (()=>{ const oc = cloth ? matchCloth(o, cloth, sk) : defaultCloth(o, sk); return personBlock('the second woman', [charDesc(o, oc, sk, {noAcc:true}), clothesFor(o, oc, sk)]); })() : ''}; }
   // two women together: pair:<service>:<fem|futa|selffuta>:<other id>; poses from services.json image.fem / image.futa.
   // fem = both women; futa = the other one is the futanari (the goddess with a lady); selffuta = she is (a spirit using a borrowed cock).
   // Futa poses are written with the service's {name} as "the woman" and {partner} as "the futanari". Each woman is labelled and the
   // futanari is described first, right after the head-count tags, so the model keeps track of who has the penis.
   // The service's own snippet is skipped when it names a man (missionary's "man on top"), which would pull one into the picture.
   if(k.startsWith('pair:')){ const [, id, mode, oid] = k.split(':'), o = findAny(oid), futa = mode==='futa' || mode==='selffuta';
-    const ex = getSnippet('act_'+id), desc = x => { const c = defaultCloth(x, k); return `${charDesc(x, c, k)}, ${clothText(x, c, k).replace(/\{pubic\}/g, pubicText(x, k))}`; };
+    const ex = getSnippet('act_'+id), desc = (x, f) => { const c = cloth ? matchCloth(x, cloth, k) : defaultCloth(x, k); return [charDesc(x, c, k, {futa:f, noAcc:true}), clothesFor(x, c, k)]; };
     const base = {label:'Two women: '+actLabel(id), comp:actPose(id, futa ? 'futa' : 'fem'), setting:ROOM_SETTING(h), snip:/\bman\b/i.test(ex) ? null : 'act_'+id, expr:svcExpr(w, id, P, true, true)};
-    if(!futa) return Object.assign(base, {client: o ? 'the other woman: ' + desc(o) : ''});
-    const F = SCENE_DATA.futaPhrase || 'erect penis, futanari';
-    return mode==='selffuta' ? Object.assign(base, {selfTag:'the futanari', selfExtra:F, client: o ? 'the woman: ' + desc(o) : ''})
-      : Object.assign(base, {selfTag:'the woman', otherFirst:true, client: o ? `the futanari: ${desc(o)}, ${F}` : ''}); }
-  // a woman client with her (clients.women): cpair:<service>:<fem|futa>, posed like two women together, the client from scenes.json → femClients
+    if(!futa) return Object.assign(base, {selfTag:'the woman', client: o ? personBlock('the other woman', desc(o)) : ''});
+    const F = SCENE_DATA.futaPhrase || 'erect penis';
+    return mode==='selffuta' ? Object.assign(base, {selfTag:'the futanari', selfFuta:true, selfExtra:F, client: o ? personBlock('the woman', desc(o)) : ''})
+      : Object.assign(base, {selfTag:'the woman', otherFirst:true, client: o ? personBlock('the futanari', [...desc(o, true), F]) : ''}); }
+  // a woman client with her (clients.women): cpair:<service>:<fem|futa>, posed like two women together, the client from scenes.json → femClients,
+  // dressed like the scene (scenes.json → femClientCloth)
   if(k.startsWith('cpair:')){ const [, id, mode] = k.split(':'), futa = mode==='futa', ex = getSnippet('act_'+id), look = pick([].concat(SCENE_DATA.femClients || ['a woman']));
+    const cc = ((SCENE_DATA.femClientCloth||{})[cloth || 'dressed']) || '';
     const base = {label:(futa ? 'Futanari client: ' : 'Woman client: ') + actLabel(id), comp:actPose(id, futa ? 'futa' : 'fem'), setting:ROOM_SETTING(h), snip:futa && !/\bman\b/i.test(ex) ? 'act_'+id : null, expr:svcExpr(w, id, P, true, true)};   // two women: the fem pose replaces the service's own (penis) snippet
-    if(!futa) return Object.assign(base, {client:'the other woman: a female client, ' + look});
-    return Object.assign(base, {selfTag:'the woman', otherFirst:true, client:`the futanari: a futanari client, ${look}, ${SCENE_DATA.futaPhrase || 'erect penis, futanari'}`}); }
+    if(!futa) return Object.assign(base, {selfTag:'the woman', client:personBlock('the other woman', [look, cc])});
+    return Object.assign(base, {selfTag:'the woman', otherFirst:true, client:personBlock('the futanari', [look.replace(/\bwoman\b/, 'futanari'), cc, SCENE_DATA.futaPhrase || 'erect penis'])}); }
   // Sam's demonstration class: seen from the room, Sam is the man, the other ladies watch (scenes.json → demoRoom / people.demo)
   // group nights (sam.js samOrgy): the first lady in full, the others briefly (scenes.json → orgyPose / orgyRoom / people.orgy)
   if(k.startsWith('orgy:')){ const os = k.slice(5).split(',').map(findAny).filter(o=>o && w && o.id!==w.id);
-    const short = o => { const d = effDesign(o, k); return [raceLook(o, k), `${[d.hairStyle, d.hairColor].filter(Boolean).join(' ')} hair`, d.skin && `${d.skin} skin`, bodyDesc(o, k), d.features, clothText(o, defaultCloth(o, k), k).replace(/\{pubic\}/g, pubicText(o, k))].filter(Boolean).join(', '); };
+    const short = o => { const d = effDesign(o, k); return [raceLook(o, k), hairText(d), d.skin && nounPhrase(d.skin, 'skin'), bodyDesc(o, k), d.features, clothesFor(o, defaultCloth(o, k), k)].filter(Boolean).join(', '); };
     return {label:'A night together', pov:true, sam:true, comp:pick([].concat(SCENE_DATA.orgyPose || ['the women crowded around the viewer on the bed, pov'])), setting:SCENE_DATA.orgyRoom || SCENE_DATA.samRoom, expr:svcExpr(w, null, P, true),
       client: os.length ? 'the other women: ' + os.map(short).join('; ') : ''}; }
   if(k.startsWith('demo:')){ const id = k.slice(5); return {label:'Demonstration: '+actLabel(id), sam:true, comp:actPose(id,'demo'), client:'the man is ' + SAM_LOOK, setting:SCENE_DATA.demoRoom || 'a candlelit parlor, other women watching', snip:'act_'+id, expr:svcExpr(w, id, P, true)}; }
