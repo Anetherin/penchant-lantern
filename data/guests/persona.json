@@ -90,7 +90,8 @@
               "style": "Revealing",
               "prompt": "a tight, partially unbuttoned pink collared blouse, red bra visible, paired with a dark purple, form-fitting pencil skirt",
               "accessories": "dramatic necklace",
-              "accState": "dressed"
+              "accState": "dressed",
+              "bonus": {"merchant":1.15,"courtesan":1.25}
             },
             "sp_kashiwagi": {
               "label": "Golden beach bikini",
