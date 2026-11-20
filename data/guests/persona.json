@@ -86,10 +86,10 @@
           "trust": 22,
           "outfits": {
             "sig_kashiwagi": {
-              "label": "Statement dress",
+              "label": "Working outfit",
               "style": "Revealing",
-              "prompt": "a tight, partially unbuttoned pink collared blouse, red bra visible, paired with a dark purple, form-fitting pencil skirt"
-              "accessories": "large gold earrings and a fur stole",
+              "prompt": "a tight, partially unbuttoned pink collared blouse, red bra visible, paired with a dark purple, form-fitting pencil skirt",
+              "accessories": "dramatic necklace",
               "accState": "dressed"
             },
             "sp_kashiwagi": {
