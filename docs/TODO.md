@@ -27,6 +27,10 @@ This file is for big ideas when I have a fresh batch of Claude usage.
 - Check the tone and length of various stories, arcs, and bonds.
 
 
+## Night engine
+- Per-client, wave-based night simulation with an optional watch view (tower-defense style): see `docs/NIGHT-ENGINE.md`. Prototype beside `simHouse`, reach parity in the lab, then cut over.
+
+
 ## Follow-ups from finished passes
 Finished designs are documented in CLAUDE.md, docs/GUILD.md and docs/BALANCE.md; only what's still open is kept here.
 - **Week structure:** internal keys that say "night" for something weekly (`goodNight`/`badNight`), and a pass over flavor text that calls the whole turn a day.
