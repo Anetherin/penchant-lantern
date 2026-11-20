@@ -1,0 +1,19 @@
+{
+  "desc": "3 consecutive NG++ cycles (NG++1-3) across cold entry vs realistic mid-stack and high-stack pre-NG++ progression, vs standard NG+ C2-C4.",
+  "scenario": "ngplus",
+  "cycles": 3,
+  "runs": 16,
+  "baseline": false,
+  "start": { "house": "lantern" },
+  "variants": [
+    { "name": "base", "ng": { "bindGoddess": false, "house": "best", "past": "none", "boon": "ap", "loversPerCycle": 2, "keepHouses": "1x" } },
+    { "name": "ng++ cold", "ng": { "bindGoddess": true, "past": "none", "boon": "ap" } },
+    { "name": "ng++ mid-stack", "ng": { "bindGoddess": true, "past": "none", "boon": "recruit", "ngppPrep": { "cycle": 4, "boons": ["ap", "loyal"], "pasts": ["bartender"], "priorLovers": 4, "loverStacks": 2, "guestAlumni": { "count": 3, "stacks": 2 }, "divinity": 20, "love": 75 } } },
+    { "name": "ng++ high-stack", "ng": { "bindGoddess": true, "past": "none", "boon": "memory", "ngppPrep": { "cycle": 6, "boons": ["ap", "recruit", "loyal", "grace"], "pasts": ["bartender", "gym"], "priorLovers": 8, "loverStacks": 4, "guestAlumni": { "count": 6, "stacks": 3 }, "divinity": 40, "love": 80 } } },
+    { "name": "ng++ high-stack (hireFriends)", "ng": { "bindGoddess": true, "past": "none", "boon": "memory", "ngppPrep": { "cycle": 6, "boons": ["ap", "recruit", "loyal", "grace"], "pasts": ["bartender", "gym"], "priorLovers": 8, "loverStacks": 4, "guestAlumni": { "count": 6, "stacks": 3 }, "divinity": 40, "love": 80 } }, "phasePolicy": { "hireFriends": true } },
+    { "name": "ng++ mid-stack (no guild)", "ng": { "bindGoddess": true, "past": "none", "boon": "recruit", "ngppPrep": { "cycle": 4, "boons": ["ap", "loyal"], "pasts": ["bartender"], "priorLovers": 4, "loverStacks": 2, "guestAlumni": { "count": 3, "stacks": 2 }, "divinity": 20, "love": 75 } }, "phasePolicy": { "guild": false } }
+  ],
+  "columns": ["c1won", "r1weeks", "r2weeks", "r3weeks", "r1over", "r2over", "r3over", "r1debt", "r2debt", "r3debt", "r1staff", "r2staff", "r3staff", "r1rebornAvg", "r2rebornAvg", "r3rebornAvg", "r1cfHE", "r1cfHM", "r1cfHL", "r2cfHE", "r2cfHM", "r2cfHL", "r3cfHE", "r3cfHM", "r3cfHL", "r1hNet", "r2hNet", "r3hNet", "r1guild", "r2guild", "r3guild"],
+  "delta": ["r1weeks", "r2weeks", "r3weeks", "r1cfHE", "r2cfHE", "r3cfHE", "r1hNet", "r2hNet", "r3hNet", "r1over", "r2over", "r3over"],
+  "breakdown": []
+}

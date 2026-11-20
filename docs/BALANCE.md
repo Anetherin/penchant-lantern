@@ -183,3 +183,19 @@ Round 4h (`test/balance-round-4h`): `loverDebt` 3,700 overshot: NG+ ratio 1.54, 
 - **Open:** is ~40% game over in NG++ (and the guild being required there) the intended difficulty?
 
 Round 4i measured (`test/balance-round-4i`, `ngplus-carry` at 24 seeds): lovers are neutral now. 1/2/3/5 lovers → 37/41/41/40 weeks with flat income (2,750-2,940/wk; 5 lovers was +890/wk over 1 in 4h), 0 lovers 47 weeks / 83% wins, default run 42 weeks / 88%, NG+ ratio 1.39. Both NG+ checks missed by a hair (3 − 1 lovers = 4.13 vs ±4; default 88% vs 90%) with per-variant CIs of ±10-13 weeks, so the thresholds moved to ±5 weeks and ≥ 85% wins.
+
+### Round 5 (2026-11-20, from the `test/balance-audit-2026-11-20` audit; not yet measured)
+Audit read: amber incense lost money almost everywhere (the −15% fee outweighed the extra shifts, even on straw cots); plain angels rarely beat humans in support jobs; starter houses earn 3–7× less than upper ones at plateau, and cheap pricing lost money in every house. Design calls: angels' edge should be that they never go reckless, so reckless nights get more frequent and costly for everyone else; house class is balanced through capacity: rowdy houses are crowded, classy ones exclusive.
+- **Reckless nights:** `props.recklessMin/Max` 1–3 → 2–4 clients a restless week, at half fee (`props.reckFee` 0.5: she asks, so she takes what he offers). In houses above `prestige.recklessFrom` (50) each one also costs class (`prestige.reckless` 0.35 x how far above 50, at most `recklessCap` 2.5 a week). Angels (`noReckless`) are immune; Lantern Angels aren't.
+- **Capacity by class (`prestige.capacity`, `classCapMul`):** x1.5 at class 0, x1 at 50, x0.75 at 100 (so a rowdy house holds twice what a top house does), applied to clients per escort a night, room sessions a week and the door's crowd cap. The house page shows the scaled sessions.
+- **Amber incense:** act energy −15% (was −10%), recovery +15% (was +10%), fee −5% (was −15%).
+- **Bug:** drifter guests passing through now come back reborn (`rebirthNamed`, as on walks), keeping their past-life stats and stacks.
+- Watch: the capacity cut is a real nerf to Castle/Sanctuary/Pavilion (class 90+); demons go reckless when starving, so check `demons-top-courtesans`; Lantern and Wayfarer sit near 50 and barely move.
+
+### Round 5b (2026-11-20, from the round-5 run on `test/balance-round-5`; not yet measured)
+Round 5 read: Onsen fixed (45 → 33 weeks, no failures), cycle-1 payoff 25–39 weeks everywhere; capacity trimmed Atelier/Pavilion/Sanctuary at plateau but Castle held (14.4k, it earns on fees) and Tankard only reached 3.2k (it sat at class 34–37, x1.16). Pushing a house upmarket (price + decor + drinks) roughly doubled net in every house (Tankard 3.6k → 5.7k, Lantern 4.2k → 9.5k, Castle 15.8k → 30.6k): when the door is already full, price is nearly free money. Amber became the best incense in 11 of 15 cells. Plain angels now win as madame/host/chapel, still not in maid/promoter/security/bartender/attendant. Design call: upmarket growth is fine, but class should differentiate more; low class is a numbers game, high class lives on sparse clients who pay more.
+- **Décor removed** (save v43 refunds what was spent on it). Class now comes from bedroom tier, beds, drinks, amenities, price and how the house is run.
+- **Price tiers compressed:** Cheap x0.75 fee / x1.4 demand (was 0.7 / 1.3), Premium 1.3 / 0.75 (1.4 / 0.72), Luxury 1.6 / 0.56 (1.9 / 0.52), Exclusive 2.0 / 0.42 (2.6 / 0.36). Fair unchanged, so base pay is unchanged.
+- **Capacity steeper:** `prestige.capacity` x2 at class 0, x1 at 50, x0.6 at 100 (was 1.5 / 0.75).
+- **Tankard** starts at class 6 (was 18) so it plays rowdy.
+- **Amber** fee −5%, minus up to 15% more by house class (`classFee`, x class/100): about −8% at Tankard, −20% at Castle. Energy −15% / recovery +15% unchanged. Meant as the cheap houses' play.

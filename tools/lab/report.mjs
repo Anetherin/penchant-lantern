@@ -10,21 +10,42 @@ export function metrics(r){
   const m = { weeks: W.length };
   if (!W.length) return m;
   const avg = k => mean(W.map(x => x[k]));
-  Object.assign(m, { total: mean(W.map(x => x.net + x.sam)), net: avg('net'), income: avg('income'), wages: avg('wages'), upkeep: avg('upkeep'), sam: avg('sam'), served: avg('served'), turned: avg('turned'), sat: avg('sat'),
-    guild: avg('guild'), gaway: avg('gaway'), mood: avg('mood'), trust: last.trust, gold: last.gold, debt: last.debt, rep: last.rep, repGain: last.rep - (first.rep - 0), staff: last.staff,
+  Object.assign(m, { total: mean(W.map(x => x.net + x.sam)), net: avg('net'), houseNet: mean(W.map(x => (x.net || 0) - (x.guild || 0))), income: avg('income'), houseInc: mean(W.map(x => (x.income || 0) - (x.guild || 0))), wages: avg('wages'), upkeep: avg('upkeep'), cuts: avg('cuts'), recharge: avg('recharge'),
+    restPct: avg('restPct'), statEnd: last.statAvg, skillEnd: last.skillAvg,
+    statGain: Number.isFinite(last.statAvg) && Number.isFinite(first.statAvg) ? last.statAvg - first.statAvg : NaN,
+    skillGain: Number.isFinite(last.skillAvg) && Number.isFinite(first.skillAvg) ? last.skillAvg - first.skillAvg : NaN,
+    rebornSum: avg('rebornSum'),
+    sam: avg('sam'), served: avg('served'), turned: avg('turned'), sat: avg('sat'),
+    guild: avg('guild'), gaway: avg('gaway'), mood: avg('mood'), trust: last.trust, gold: last.gold, debt: last.debt, rep: last.rep, repGain: last.rep - (first.rep - 0),
+    prestige: last.prestige, prestigeAvg: avg('prestige'), staff: last.staff,
     partners: last.partners || 0, missed: W.reduce((a, x) => a + x.missed, 0), left: W.reduce((a, x) => a + x.left, 0), over: last.over ? 1 : 0, won: last.won ? 1 : 0 });
   const H0 = W.map(x => (x.houses || [])[0]).filter(Boolean), hav = k => mean(H0.map(x => x[k]).filter(Number.isFinite));
   m.tidy = hav('tidy'); m.tidyEnd = (H0.at(-1) || {}).tidy; m.promo = hav('promo'); m.lost = hav('lost');
+  m.props = hav('accProps'); m.exhibActs = hav('exhibActs'); m.crowdOver = hav('crowdOver');
   m.pushy = mean(H0.map(x => x.pushy ? x.pushy.total : 0)); m.unhandled = mean(H0.map(x => x.pushy ? (x.pushy.none || 0) + (x.pushy.samfail || 0) + (x.pushy.samcall || 0) : 0));
   m.incidents = mean(H0.map(x => x.incidents ? x.incidents.bad || 0 : 0)); m.incHandled = mean(H0.map(x => x.incidents ? x.incidents.ok || 0 : 0)); m.damage = mean(H0.map(x => x.damage || 0));
   m.trouble = m.unhandled + m.incidents;   // everything nobody handled: pushy clients + night incidents
   // money made per generic lady-week (earned - wage - android charging). Rest weeks count: a race that needs weeks off pays for them.
   const per = W.flatMap(x => x.per || []).filter(p => !p.key);
   m.perLady = mean(per.map(p => p.earned - p.wage - (p.recharge || 0)));   // androids' charging fee is her running cost
+  const tper = W.flatMap(x => x.per || []).filter(p => p.tested);
+  if (tper.length) {
+    m.testedNet = mean(tper.map(p => p.earned - p.wage - (p.recharge || 0)));
+    m.testedEarned = mean(tper.map(p => p.earned));
+    m.testedServed = mean(tper.map(p => p.served));
+    m.testedRest = 100 * tper.filter(p => p.job === 'rest').length / tper.length;
+    m.testedRech = mean(tper.map(p => p.recharge || 0));
+  }
   if (last.won) m.winWeek = last.wk;
   const ph = r.phases || {}, cap = (r.info && r.info.cap) || 104;
   // unbiased progress metrics: a run that didn't win counts as the full cap (game over or ran out of weeks)
-  if (r.scenario === 'campaign') { m.weeksToWin = last.won ? last.wk : Math.max(cap, last.wk); m.winRate = last.won ? 1 : 0; }
+  if (r.scenario === 'campaign') {
+    m.weeksToWin = last.won ? last.wk : Math.max(cap, last.wk); m.winRate = last.won ? 1 : 0;
+    const winMean = (a, b) => mean(W.filter(x => x.wk >= a && x.wk <= b).map(x => x.net));
+    const winHMean = (a, b) => mean(W.filter(x => x.wk >= a && x.wk <= b).map(x => (x.net || 0) - (x.guild || 0)));
+    m.cfE = winMean(1, 8); m.cfM = winMean(9, 20); m.cfL = winMean(21, 999);
+    m.cfHE = winHMean(1, 8); m.cfHM = winHMean(9, 20); m.cfHL = winHMean(21, 999);
+  }
   // gold minus remaining debt at week k (every run reaches early weeks; a run that already won keeps its last value)
   const worthAt = k => { const x = W.filter(y => y.wk <= k).at(-1); return x && (x.wk === k || x.won) ? x.gold - x.debt : NaN; };
   m.worth13 = worthAt(13); m.worth20 = worthAt(20);
@@ -34,7 +55,18 @@ export function metrics(r){
     m.netEarly = seg(0, ph.mid ?? 1e9); m.netMid = ph.mid ? seg(ph.mid, ph.late ?? 1e9) : NaN; m.netLate = ph.late ? seg(ph.late, 1e9) : NaN;
     const at = k => (W.find(x => x.wk === k) || {}).gold; m.gold13 = at(13); m.gold26 = at(26); m.gold52 = at(52);
     if (r.info && r.info.ng) { m.ngDebt = r.info.ng.debtTotal; m.ngStaff = r.info.ng.staff; m.c1won = r.info.c1won; m.lovers = r.info.ng.lovers; }
-    (r.info && r.info.cyc || []).forEach(c => { m['c' + c.cycle + 'len'] = c.len ?? NaN; m['c' + c.cycle + 'weeks'] = c.len ?? cap; m['c' + c.cycle + 'debt'] = c.debtTotal; m['c' + c.cycle + 'staff'] = c.staff; m['c' + c.cycle + 'over'] = c.over ? 1 : 0; m['c' + c.cycle + 'lovers'] = c.lovers; });
+    (r.info && r.info.cyc || []).forEach((c, idx) => {
+      const put = p => {
+        m[p + 'len'] = c.len ?? NaN; m[p + 'weeks'] = c.len ?? cap; m[p + 'debt'] = c.debtTotal; m[p + 'staff'] = c.staff;
+        m[p + 'over'] = c.over ? 1 : 0; m[p + 'lovers'] = c.lovers; m[p + 'loversIn'] = c.loversIn; m[p + 'winRate'] = c.won ? 1 : 0;
+        m[p + 'houses'] = c.houses; m[p + 'reborn'] = c.reborn0; m[p + 'rebornAvg'] = c.rebornAvg;
+        m[p + 'cfE'] = c.cfE; m[p + 'cfM'] = c.cfM; m[p + 'cfL'] = c.cfL;
+        m[p + 'cfHE'] = c.cfHE; m[p + 'cfHM'] = c.cfHM; m[p + 'cfHL'] = c.cfHL; m[p + 'hNet'] = c.chNet;
+        m[p + 'net'] = c.cNet; m[p + 'income'] = c.cIncome; m[p + 'wages'] = c.cWages; m[p + 'upkeep'] = c.cUpkeep;
+        m[p + 'cuts'] = c.cCuts; m[p + 'guild'] = c.cGuild; m[p + 'missed'] = c.cMissed;
+      };
+      put('c' + c.cycle); put('r' + (idx + 1));
+    });
     if (r.info && r.info.cyc && r.info.cyc.length) { const c = r.info.cyc[0]; m.winWeek = c.len ?? NaN; m.ngWeeks = c.len ?? cap; m.winRate = c.won ? 1 : 0;
       if (Number.isFinite(m.c1won) && m.c1won > 0) m.ngRatio = m.ngWeeks / m.c1won; }
   }
@@ -47,9 +79,9 @@ export function breakdown(runs, key){
     if (key === 'race' && p.key) return;   // races: generic ladies only (named ones have hand-made stats)
     if (key === 'named' && !p.key) return;
     if (key === 'racejob' && p.key) return;
-    const rc = p.sub ? p.race + '/' + p.sub : p.race, k = key === 'race' ? rc : key === 'named' ? p.key : key === 'racejob' ? rc + ' · ' + p.job : p.job; const b = B[k] = B[k] || { lw: 0, work: 0, earned: 0, wage: 0, served: 0, gen: 0 };
-    b.lw++; if (p.job !== 'rest') b.work++; b.earned += p.earned; b.wage += p.wage; b.served += p.served; if (!p.key) b.gen++; })));
-  return Object.entries(B).map(([k, b]) => ({ k, lw: b.lw, rest: 1 - b.work / b.lw, earned: b.earned / b.lw, wage: b.wage / b.lw, net: (b.earned - b.wage) / b.lw, served: b.served / b.lw, gen: b.gen / b.lw }))
+    const rc = p.sub ? p.race + '/' + p.sub : p.race, k = key === 'race' ? rc : key === 'named' ? p.key : key === 'racejob' ? rc + ' · ' + p.job : p.job; const b = B[k] = B[k] || { lw: 0, work: 0, earned: 0, wage: 0, recharge: 0, served: 0, gen: 0 };
+    b.lw++; if (p.job !== 'rest') b.work++; b.earned += p.earned; b.wage += p.wage; b.recharge += p.recharge || 0; b.served += p.served; if (!p.key) b.gen++; })));
+  return Object.entries(B).map(([k, b]) => ({ k, lw: b.lw, rest: 1 - b.work / b.lw, earned: b.earned / b.lw, wage: b.wage / b.lw, rech: b.recharge / b.lw, net: (b.earned - b.wage - b.recharge) / b.lw, served: b.served / b.lw, gen: b.gen / b.lw }))
     .sort((a, b) => b.net - a.net);
 }
 
@@ -76,7 +108,7 @@ export function report(spec, variants, results, stamp){
   const bname = M.base ? 'base' : variants[0].name;
   const baseOf = v => v.group != null ? (variants.find(x => x.group === v.group && x.name.endsWith('base')) || {}).name : bname;
   if (variants.length > 1 && dcols.length) {
-    L.push('', `Paired Δ vs ${spec.by ? "each group's base" : `**${bname}**`} (mean ± 95% CI over seeds where both ran; **bold** = CI excludes 0):`, '', `| variant | ${dcols.map(c => 'Δ ' + c).join(' | ')} |`, `|---|${dcols.map(() => '---').join('|')}|`);
+    L.push('', `Paired Δ vs ${(spec.by || variants.some(v => v.group != null)) ? "each group's base" : `**${bname}**`} (mean ± 95% CI over seeds where both ran; **bold** = CI excludes 0):`, '', `| variant | ${dcols.map(c => 'Δ ' + c).join(' | ')} |`, `|---|${dcols.map(() => '---').join('|')}|`);
     for (const v of variants) { const bn = baseOf(v); if (!bn || v.name === bn) continue; const base = M[bn];
       L.push(`| ${v.name} | ${dcols.map(c => { const d = M[v.name].map(x => { const b = base.find(y => y.seed === x.seed); return x.m && b && b.m && Number.isFinite(x.m[c]) && Number.isFinite(b.m[c]) ? x.m[c] - b.m[c] : null; }).filter(x => x !== null);
         if (!d.length) return '–'; const mu = mean(d), e = ci(d), s = `${mu >= 0 ? '+' : ''}${f(mu, 1)} ± ${f(e, 1)}`; return Number.isFinite(e) && Math.abs(mu) > e ? `**${s}**` : s; }).join(' | ')} |`); }
@@ -86,8 +118,8 @@ export function report(spec, variants, results, stamp){
     const show = spec.breakdownFor === '*' ? ['*'] : spec.breakdownFor || [bname];
     for (const vn of show) { const pool = vn === '*' ? Object.values(results).flat() : results[vn]; if (!pool) continue;
       const rows = breakdown(pool.filter(r => !r.unreached && !r.error), key); if (!rows.length) continue;
-      L.push('', `Per ${key === 'race' ? 'race (generic ladies)' : key === 'racejob' ? 'race · job (generic ladies)' : key} (${vn === '*' ? 'all variants pooled' : vn}; per lady-week, pooled; earned = her own ledger, not what she draws in for others):`, '', `| ${key} | lady-weeks | rest% | earned | wage | net | served |`, '|---|---|---|---|---|---|---|');
-      rows.forEach(x => L.push(`| ${x.k} | ${x.lw} | ${f(100 * x.rest)} | ${f(x.earned)} | ${f(x.wage)} | ${f(x.net)} | ${f(x.served, 1)} |`)); }
+      L.push('', `Per ${key === 'race' ? 'race (generic ladies)' : key === 'racejob' ? 'race · job (generic ladies)' : key} (${vn === '*' ? 'all variants pooled' : vn}; per lady-week, pooled; earned = her own ledger, not what she draws in for others):`, '', `| ${key} | lady-weeks | rest% | earned | wage | rech | net | served |`, '|---|---|---|---|---|---|---|---|');
+      rows.forEach(x => L.push(`| ${x.k} | ${x.lw} | ${f(100 * x.rest)} | ${f(x.earned)} | ${f(x.wage)} | ${f(x.rech)} | ${f(x.net)} | ${f(x.served, 1)} |`)); }
   }
   L.push('');
   return L.join('\n');

@@ -1,0 +1,31 @@
+{
+  "desc": "Courtesan role by race across early4/mid/late and Tankard/Lantern/Castle (2 tested ladies, rest humans, fixed staff count).",
+  "scenario": "mid",
+  "weeks": 12,
+  "runs": 12,
+  "baseline": false,
+  "by": {
+    "start.house": ["tankard", "lantern", "castle"],
+    "scenario": ["early4", "mid", "late"]
+  },
+  "phasePolicy": { "fixedStaff": true, "syncMenu": true, "guild": false },
+  "mutate": { "otherRace": "human", "raceWho": 2, "job": "courtesan", "jobWho": 2, "force": true, "minTrust": 45, "keepNonLantern": true, "syncMenu": true },
+  "variants": [
+    { "name": "base", "mutate": { "race": "human" } },
+    { "name": "elf", "mutate": { "race": "elf" } },
+    { "name": "beastkin/fox", "mutate": { "race": "beastkin/fox" } },
+    { "name": "beastkin/cat", "mutate": { "race": "beastkin/cat" } },
+    { "name": "beastkin/wolf", "mutate": { "race": "beastkin/wolf" } },
+    { "name": "beastkin/rabbit", "mutate": { "race": "beastkin/rabbit" } },
+    { "name": "beastkin/dragon", "mutate": { "race": "beastkin/dragon" } },
+    { "name": "demon", "mutate": { "race": "demon" } },
+    { "name": "dwarf", "mutate": { "race": "dwarf" } },
+    { "name": "spirit", "mutate": { "race": "spirit" } },
+    { "name": "angel", "mutate": { "race": "angel" } },
+    { "name": "angel/lantern", "mutate": { "race": "angel/lantern" } },
+    { "name": "android", "mutate": { "race": "android" } }
+  ],
+  "columns": ["houseNet", "total", "net", "testedNet", "testedServed", "testedRest", "testedRech", "sat", "repGain", "prestige", "staff"],
+  "delta": ["houseNet", "testedNet", "testedServed", "testedRest", "sat"],
+  "breakdown": []
+}

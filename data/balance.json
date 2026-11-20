@@ -27,8 +27,8 @@
     "rooms.perRoom: room-service sessions per bedroom per week; Exhibitionist ladies don't use a room.",
     "tidy: maidPerAgil = extra tidiness per point of the maid's Agility (0-100; an agility-50 maid adds about 8% over an average one). starting value, losses (perService room service, perVisitor), maid gain per week = (maidBase + service skill x maidPerSkill) x outfit bonus x her tidy fx, and the three effect tiers (rep per week, mood, energy recovery multiplier) at high (>=75), low (<45) and bad (<20). maidEase/maidMax: a maid's weekly gain is x (100 - tidiness)/maidEase (at most maidMax), so maids hold a house around a level instead of pinning it at 100: one average maid keeps a 6-8 lady house near 70. Bands: high (>= high) small bonus, neutral up to there, low (< low), bad (< bad) costs reputation, mood, rest and client satisfaction (fx.*.sat).",
     "rep: positive popularity changes are scaled by max(gainMin, gainBase - rep/gainDiv). Losses are not.",
-    "prestige: House Class/Prestige (0-100). Each week h.prestige drifts toward a structural target (house base + bedroom tier/beds + decor + drinks + price + amenities + tidiness + full attendant coverage + Madame/Host Charm+Charisma) plus operational shifts (1:1 attendants & charismatic leaders raise it; Exhibitionist open-air acts, free samples compared against house prestige, host fluffing when rooms are full, walkouts, crowding, pushy failures and unshielded demon drains shift/lower it). Low prestige drives demand, staff propositions, action wants, and rowdy/thirsty preference; high prestige draws merchants & nobles, raises skill/amenity/quarters expectations, softens price-tier penalties, boosts company-only work, and rewards rich clients with extra satisfaction & fees when standards are met.",
-    "props: propositions. talkDown = pushy-client chance she talks him down herself before security is tried: (Wits x .6 + Charm x .4)/100 x talkDown; talkMood = her mood change when she has to (negative). penalty/maxPenalty = main-job output lost per accepted proposition (non-must jobs). accept* = chance a non-must lady accepts (acceptBase + (lust-acceptLustMid)/100 + willing fx, +acceptEager when eager, +acceptReckless when reckless); alt / altMust = chance of a counter-offer. attendantExpect = share of attendant propositions where the client expected her to offer (expectSat if she declines). self* = reckless ladies propositioning clients. Pushy resolution: security power vs a roll in securityRoll; else Sam (if his energy >= samEnergyMin) checks strength + charm/2 + roll(0..samRoll) >= samCheck; else none. Costs/mood effects follow. When security fails and Sam is at the house with the energy, he steps in on the spot (samRescue, the samCheck roll); nobody stopping it costs the none penalties. nights: work nights in a week (the seventh day is the rest day). A pushy client nobody stops (Sam too tired, or his step-in fails) ends her night: no more clients or offers for her that night, 1/nights of her job's output, and nightHealth Health. Sam steps in on the spot when he has samEnergyMin energy (Strength + Charm/2 + samRoll vs samCheck, +watchBonus if he stood watch); there is no more after-report event.",
+    "prestige: House Class/Prestige (0-100). Each week h.prestige drifts toward a structural target (house base + bedroom tier/beds + drinks + price + amenities + tidiness + full attendant coverage + Madame/Host Charm+Charisma) plus operational shifts (1:1 attendants & charismatic leaders raise it; Exhibitionist open-air acts, free samples compared against house prestige, host fluffing when rooms are full, walkouts, crowding, pushy failures and unshielded demon drains shift/lower it). Low prestige drives demand, staff propositions, action wants, and rowdy/thirsty preference; high prestige draws merchants & nobles, raises skill/amenity/quarters expectations, softens price-tier penalties, boosts company-only work, and rewards rich clients with extra satisfaction & fees when standards are met. reckless / recklessCap / recklessFrom = class lost per client a restless lady picked up off the books (reckless nights; angels never go reckless), x how far the house's class sits above recklessFrom (0 at or below it, full at 100), capped per week. capacity: house capacity by class (classCapMul), x low at class 0, x 1 at mid, x high at class 100 (linear between): scales clients per escort a night (nights), room sessions (rooms.perRoom) and the door's crowd cap (clients.crowd.perSpace). Low class = crowded quick visits, high class = fewer clients for longer.",
+    "props: propositions. talkDown = pushy-client chance she talks him down herself before security is tried: (Wits x .6 + Charm x .4)/100 x talkDown; talkMood = her mood change when she has to (negative). penalty/maxPenalty = main-job output lost per accepted proposition (non-must jobs). accept* = chance a non-must lady accepts (acceptBase + (lust-acceptLustMid)/100 + willing fx, +acceptEager when eager, +acceptReckless when reckless); alt / altMust = chance of a counter-offer. attendantExpect = share of attendant propositions where the client expected her to offer (expectSat if she declines). self* = reckless ladies propositioning clients. Pushy resolution: security power vs a roll in securityRoll; else Sam (if his energy >= samEnergyMin) checks strength + charm/2 + roll(0..samRoll) >= samCheck; else none. Costs/mood effects follow. When security fails and Sam is at the house with the energy, he steps in on the spot (samRescue, the samCheck roll); nobody stopping it costs the none penalties. nights: work nights in a week (the seventh day is the rest day). A pushy client nobody stops (Sam too tired, or his step-in fails) ends her night: no more clients or offers for her that night, 1/nights of her job's output, and nightHealth Health. Sam steps in on the spot when he has samEnergyMin energy (Strength + Charm/2 + samRoll vs samCheck, +watchBonus if he stood watch); there is no more after-report event. recklessMin/recklessMax = how many clients a restless lady picks up herself in a week; reckFee = her fee then (she asks, so she takes what he offers).",
     "houseGate: ladies who come with a house (role 'house') can't trust Sam past base + perBeat x (that house's story beat) until the house story is finished (3 beats: 40 + 20 x 3 = 100). Arc beats for them wait for the story too. gap = weeks before beat 1 / 2 / 3 can start (first, later, later); retry = weeks before a beat comes back after a failed check.",
     "wardrobe: costMult scales every outfit/underwear price (lower = easier to get clothes). eventChance = relative weight of each of the 'someone gave her an outfit' random events (data/events.json). cut: paid ladies' baseline profit cut = base + perCycle per NG+ cycle (at most maxBase), + perLover for each lover carried into this cycle (S.ngLovers).",
     "svc.askMore: after a service that didn't finish her (built lust or left her frustrated), a lady with sufficient lewdness and lust may ask the client for more (chance, modulated by client stamina), offering a lust-spending/finishing service from her menu; it pays fee x its normal price. svc.poorFinishAt / svc.secondRound: clients who didn't finish (non-finishing act or quality below poorFinishAt) or who have stamina left may propose another round.",
@@ -58,7 +58,7 @@
     "goddess: the overarching story (js/logic/goddess.js, wording in data/goddess.json, docs/GODDESS.md). fullReborn = Reincarnated stacks that count as fully reincarnated (max carry); the binding comes at the first rebirth after a lady has lived such a life (reborn > fullReborn). events: before the binding, chance per week = base + perCycle x (cycle-1), at most max, at least gap weeks apart; bound = chance of a jealous remark after the binding (x 0.5 + jealousy/100). jealousy 0-100: perHire per new lady, perPrivate per private moment with someone else, perLady per lady past rosterRef, -decay weekly, perLover x lovers carried + perCycle at each rebirth before the binding, nightCut when Sam spends a night with her; mid/high = text tiers. love 0-100: bind (at the binding), night, talk; stay = love needed for her to stay at full divinity. mood: drifts toward base + love x perLove - jealousy x perJealous; below ignoreBelow she half the time ignores your guidance. divinity 0-max: bindTo after the binding, +finish per night, 1 action + 1 per perAction. power = (base + perDiv x divinity) x (1 + perReborn x (fully reborn ladies + their lives past full)). actions: indulge (ladies with the most lust: lust off, mood, energy, lewd), business (income share and rep in a random house), watch (chance she stops each pushy client in the house with the most trouble, max), tutelage (the least skilled working lady: job skill + a stat), whim (random of those x mult), claim (jealousy/per chance per action: she keeps Sam up (samEnergy) or monopolizes a new lady (mood)). night: AP + cost energy; a finishing tier-3 service (inside her) gives Sam restore + perDiv x divinity energy, +divinity.finish, love.night, mood; finishing outside: half the energy, love.outside, outsideMood; no finish: -noneLove, -noneMood. neglect: from `after` weeks without a night, -love/-mood every week; a jealous claim on a lady with no night within claimWeeks: -claimLove/-claimMood. indulge.practice = service skill the lady gains. actions.guild.progress: guild work focus: contract progress per action x her power, on the active contract with the most work left (no contract: business instead).",
     "svc.angel: an angel whose lewdness reaches lanternLewd can become a Lantern Angel. With trust >= lanternTrust she asks Sam first (accepting: +lanternAcceptTrust trust, +lanternAcceptMood mood; refusing: lanternRefuseMood). Below that her personality decides: lewd multiplier >= 1 and not Modest takes it on her own (+lanternAutoMood); a reserved one waits until she trusts Sam enough to ask, or gives in at lanternLewd + lanternOwn.",
     "rest: energy. Max energy = maxBase + maxPerStamina x Stamina (0-100) (+ maxEnergy fx): Stamina is how much she has. Recovery: her bed (economy.json beds rest) x energyRec fx x (strBase + strPer x Strength/100) x incense x tidiness: Strength is how fast she gets it back. After each work night she sleeps: that x night (never above her max). The rest day adds that x restDay; a week off x week (+ bath with a Bathhouse). Services cost their services.json energy (no Stamina discount any more). wear: each work night costs Health nightBase + nightPerSpent x (energy spent that night / max) (x her fatigue fx; dwarves 0.4), an unhandled pushy client props.nightHealth more, and recovery is cut by (100 - Health)/100 x per (at most max); a week off heals restHeal Health, a Garden mends amenities.garden.health a week (elves double). So a lady who only does her job is roughly energy-neutral but slowly wears down, and one who takes a lot of propositions or clients runs down fast. Auto-rest (her sheet, on by default) takes her off below 35% energy or once wear cuts autoRest of her recovery, and back at 85% energy; while auto-resting she keeps her job (shown as resting) and its position, and static effects of it stay (a madame still adds her courtesan positions), but she does none of the work. Below 30 Health she is unwell and must rest. Androids charge to full every night (for a fee per energy, paid at the week's end) and feeding demons never wear down; spirits take no bed but recover like everyone else at the house's bed tier (their nerf is lower max energy, races.json fx maxEnergy).",
-    "nights: the week runs night by night (simHouse). Each night an escort takes up to base + Stamina(0-100)/perStamina clients (+ nightCap fx; the fraction is rolled each night), between min and max, while her energy lasts; then she sleeps (rest.night).",
+    "nights: the week runs night by night (simHouse). Each night an escort takes up to base + Stamina(0-100)/perStamina clients (+ nightCap fx; the fraction is rolled each night), between min and max, while her energy lasts; then she sleeps (rest.night). The cap is x prestige.capacity by house class.",
     "focus: Sam's weekly focus (js/logic/focus.js), worked during the six nights at his house (every house with samReach). cost = energy paid at the week's end (less workEnergy upgrades); with less energy left it runs at energy/cost. xp = Sam XP. rest (Off duty): restEnergy back instead. office: house takings x (1 + incomeBase + perBusiness x Sam's Business, at most incomeMax) at every house in reach (officeMul(); the books: tighter tabs, supplier prices); upkeep cut (booksCut) and madame matching with Sam's madame factor (0.5 + (Business + Wits x0.4 + Charm x0.6)/200) x share without a working madame, x withMadame on top of hers. floor: at houses with a bar, (base + Charm x perCharm + 0-25) x nights gold (x noBar at houses without one: lounge tips); sat = client satisfaction, mood/trust = for the ladies near him. watch: security (20 + Strength) x mult, trust for the ladies near him, and his step-in bonus. classes: skill or stat class at mult x one class.",
     "incidents: smaller trouble on the work nights (simHouse, after the nights): odds per night = base + perGuest x guests a night (at most max), x the house's trouble, rowdiness, bartenders, incense and its class (rowdyTier). Each is a weighted type; security handles it with chance secPow / (secPow + diff x handle.div/40) (Guard Post x handle.guard; Sam's Watch is in secPow), clamped to handle.min..max. Unhandled: gold [min,max] in damages (added to upkeep), tidy (tidiness lost), sat (client satisfaction, feeds popularity), rep (house popularity lost), prestige, mood / trust (one lady), lostClient (a client's fee lost). Wording: events.json → nightIncidents.",
     "walk.partnerOdds: chance a walk finds a partner, by how many Sam has already found on walks this cycle ([1st, 2nd, 3rd]); partnerCycleMax (3) is the hard cap, so 15 partners spread over five cycles and there is always someone left to pick. NG++: always ngppPartnerOdds (no cap). weights: how likely each other kind of walk is (exLover = a past lover in NG++; partner odds are set by partnerOdds, not a weight).",
@@ -66,7 +66,8 @@
     "isolde: Lady Isolde Thorne of the Velvet Thorn, Sam's rival (js/events/isolde.js, wording data/isolde.json). Beats in order: taunt (from firstWeek weeks into the cycle), visit, pricewar, wager, truce, lovers, each at least gap weeks apart and needing town renown (renown.*). Her story carries over into the next NG+ cycle unfinished; only NG++ restarts it (every NG++ cycle; from NG++ cycle 2 the renown needed is x ngppRenown). pricewar starts the price_war_match / price_war_hold town event for warWeeks. wager: gold stake, renown on a win; your lady's showcase score vs base + perCycle x (cycle-1) +- spread. After the truce: nights (Sam visits on the rest day: visit.energy, every visit.cooldown weeks; or she comes to him after comes.after weeks without one, comes.chance a week). night: Sam's energy cost (lostEnergy more if she wins), Technique gained, her desire per approach, renown when he comes out on top; checkDiv: his Strength+Technique vs her roll. lovers: desire and nights for the lovers beat. referral: once they're lovers, the chance a week the Thorn sends its overflow (base gold x (1 + perCycle x (cycle-1))). games: NG+ cycles after the one her story finished in (not NG++): every gap weeks at most, chance a week, one of her wagers; Sam's chance = checkBase + checkPer x his stat (raise: raiseMinus lower, double gold/renown), gold won or lost, renown on a win, Sam's energy. Poaching stops after the truce.",
     "luxury: paid shortcuts once the debt is paid (Sam tab → Luxuries for tonic; house page → Luxuries for the rest). Each costs cost x (its own mul, else weekMul)^(times bought this week; per house for house items) x (1 + perCycle x (cycle-1)); span 'cycle' counts purchases for the whole cycle instead of the week (resets at rebirth). tonic: Sam back to full energy. campaign: +rep house popularity. spa: every lady living in the house back to full energy, +health; cost is per lady. rush: skip the weeks-to-wait of a house chapter, romance arc or epilogue chapter (button on the wait line, shown once the wait is the only thing missing); cost x markup x (1 + perCycle x (cycle-1)), rounded to 100; each skip multiplies the markup by mul, every week that passes keeps weekDecay of the markup above 1 (0.5 = halfway back to the base price), and it resets each rebirth.",
     "linger: pressure to be reborn when Sam stays on after the debt is paid (js/logic/linger.js, wording goddess/linger.json). Linger level = weeks since payoff - grace (grace = graceBase - graceCycle x (cycle-1), at least graceMin). wane (from level wane.from): Sam's max energy -perLevel per level, at most max. tithe (from tithe.from): each week she takes pct (base + perLevel x levels past tithe.from, at most max) of gold above floor x (1 + floorCycle x (cycle-1)). recall (from recall.from, then every recall.every weeks): one Devoted lover who isn't this cycle's partner (not on a guild contract) sleeps in the lantern until New Game+. off: true turns it all off. waitMul: once the debt is paid, story waits (arc, epilogue and house chapter gaps, weeks between firsts) are x waitMul, rounded down.",
-    "clients.women: some clients are women (client.sex 'f') or futanari ('futa'). share = chance per client by tier, x bathMul for bath clients, x (1 + prestigeMul x (house class - 50)/50); futa = share of those women who are futanari. A lady who isn't Sapphic or Bisexual needs gap more lewdness for a woman (a Sapphic one needs it for men instead, and samGap with Sam); futaGap more for a futanari unless she's a Futa Lover. orient = chances a generic lady rolls each of those traits (Sapphic and Bisexual exclude each other)."
+    "clients.women: some clients are women (client.sex 'f') or futanari ('futa'). share = chance per client by tier, x bathMul for bath clients, x (1 + prestigeMul x (house class - 50)/50); futa = share of those women who are futanari. A lady who isn't Sapphic or Bisexual needs gap more lewdness for a woman (a Sapphic one needs it for men instead, and samGap with Sam); futaGap more for a futanari unless she's a Futa Lover. orient = chances a generic lady rolls each of those traits (Sapphic and Bisexual exclude each other).",
+    "amenities.incense.<mode>.classFee: extra clientFee cut x house class/100 (amber: rushed visits cost more in classy houses)."
   ],
   "lewd": {
     "_note": "Lewdness diminishing returns (lewdUp). Each source has a cap: full gain below cap-band, half at the cap, none past cap+band. Services: cap = service th + capOver. softCap: default cap for sources without one; past it only daring dates, traits and stories push her further.",
@@ -563,7 +564,6 @@
     "driftRate": 0.18,
     "tierPer": 5,
     "bedPer": 3,
-    "decorPer": 3.5,
     "drinksPer": 3,
     "pricePer": 4,
     "tidyHigh": 4,
@@ -621,7 +621,11 @@
     "exhibRowdySat": 3,
     "chapelClass": 4,
     "chapelScandal": 0.6,
-    "chapelScandalCap": 3
+    "chapelScandalCap": 3,
+    "reckless": 0.35,
+    "recklessCap": 2.5,
+    "recklessFrom": 50,
+    "capacity": {"low":2,"mid":50,"high":0.6}
   },
   "props": {
     "talkDown": 0.35,
@@ -641,8 +645,8 @@
     "reluctantMood": 1,
     "attendantExpect": 0.3,
     "expectSat": -6,
-    "recklessMin": 1,
-    "recklessMax": 3,
+    "recklessMin": 2,
+    "recklessMax": 4,
     "selfAccept": 0.55,
     "propFee": 0.8,
     "securityRoll": [30,110],
@@ -661,7 +665,8 @@
     "maxPushy": 0.7,
     "nights": 6,
     "watchBonus": 15,
-    "nightHealth": 4
+    "nightHealth": 4,
+    "reckFee": 0.5
   },
   "houseGate": {"base":40,"perBeat":20,"gap":[2,2,2],"retry":2},
   "wardrobe": {
@@ -972,7 +977,6 @@
       "base": 0.35,
       "max": 0.95,
       "garden": 0.08,
-      "decorPer": 0.05,
       "tidy": 0.06,
       "bath": 0.05,
       "bar": 0.08,
@@ -1138,11 +1142,12 @@
       },
       "amber": {
         "label": "Brisk Ambergris",
-        "desc": "Bright resin that restores stamina at the cost of shorter, lower-paying visits. -10% act energy, +10% rest recovery, +1 mood, and -15% customer service payouts.",
-        "energyRec": 1.1,
-        "actEnergy": 0.9,
+        "desc": "Bright resin that restores stamina at the cost of shorter visits. -15% act energy, +15% rest recovery, +1 mood; client payouts -5%, and up to -15% more the classier the house (rich clients notice a rushed visit).",
+        "energyRec": 1.15,
+        "actEnergy": 0.85,
         "mood": 1,
-        "clientFee": 0.85
+        "clientFee": 0.95,
+        "classFee": 0.15
       }
     },
     "workshop": {"perDwarf":0.04},
@@ -1164,8 +1169,7 @@
       "learnXP": 0.3,
       "svcLewd": 10,
       "setExp": 0.5
-    },
-    "decor": {"demand":[1,1.06,1.105,1.13],"noble":2,"upkeep":5}
+    }
   },
   "houses": {"priceStep":0.25,"buyMin":10,"buyPerWeek":2,"repairBase":350,"repairStep":80,"upkeepMult":1.25},
   "samUps": {

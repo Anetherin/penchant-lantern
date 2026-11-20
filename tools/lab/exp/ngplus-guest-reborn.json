@@ -1,0 +1,21 @@
+{
+  "desc": "NG+ Cycles 2-3 with varying numbers and reincarnation stacks of returning guest alumni (with priority friend hiring vs default hiring).",
+  "scenario": "ngplus",
+  "cycles": 2,
+  "runs": 16,
+  "baseline": false,
+  "start": { "house": "lantern" },
+  "ng": { "house": "best", "past": "none", "boon": "ap", "loversPerCycle": 2, "keepHouses": "1x" },
+  "variants": [
+    { "name": "base", "phasePolicy": { "hireFriends": true } },
+    { "name": "2g x1", "ng": { "guestAlumni": { "count": 2, "stacks": 1 } }, "phasePolicy": { "hireFriends": true } },
+    { "name": "4g x1", "ng": { "guestAlumni": { "count": 4, "stacks": 1 } }, "phasePolicy": { "hireFriends": true } },
+    { "name": "4g x2", "ng": { "guestAlumni": { "count": 4, "stacks": 2 } }, "phasePolicy": { "hireFriends": true } },
+    { "name": "4g x4", "ng": { "guestAlumni": { "count": 4, "stacks": 4 } }, "phasePolicy": { "hireFriends": true } },
+    { "name": "6g x3", "ng": { "guestAlumni": { "count": 6, "stacks": 3 } }, "phasePolicy": { "hireFriends": true } },
+    { "name": "4g x2 (default hire)", "ng": { "guestAlumni": { "count": 4, "stacks": 2 } }, "phasePolicy": { "hireFriends": false } }
+  ],
+  "columns": ["c1won", "c2weeks", "c3weeks", "c2over", "c3over", "c2cfHE", "c2cfHM", "c2cfHL", "c3cfHE", "c3cfHM", "c3cfHL", "c2rebornAvg", "c3rebornAvg", "c2hNet", "c3hNet", "c2net", "c3net", "c2guild", "c3guild"],
+  "delta": ["c2weeks", "c3weeks", "c2cfHE", "c2hNet", "c3hNet", "c2net", "c3net"],
+  "breakdown": []
+}

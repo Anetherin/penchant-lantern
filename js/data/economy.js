@@ -54,7 +54,6 @@ function slotsFor(h, job){
 const BEDS = ECON.beds;
 const FLOOR_REST = ECON.floorRest;
 const AMENITY_SIZE = ECON.amenitySize;
-const DECOR = ECON.decor;
 const DRINKS = ECON.drinks;
 const houseBaseSize = h => {
   const D = (h && HOUSES[h.id]) || {};

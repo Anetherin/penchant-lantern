@@ -1,0 +1,29 @@
+{
+  "desc": "Every support role by race across early4/mid/late at the Lantern (1 tested lady in role, others humans, fixed staff count).",
+  "scenario": "mid",
+  "weeks": 12,
+  "runs": 10,
+  "baseline": false,
+  "start": { "house": "lantern" },
+  "by": {
+    "scenario": ["early4", "mid", "late"],
+    "mutate.job": ["maid", "promoter", "security", "bartender", "host", "attendant", "madame", "chapel"]
+  },
+  "phasePolicy": { "fixedStaff": true, "syncMenu": true, "guild": false },
+  "mutate": { "otherRace": "human", "raceWho": 1, "jobWho": 1, "force": true, "minTrust": 45, "keepNonLantern": true, "clearJob": true, "syncMenu": true },
+  "variants": [
+    { "name": "base", "mutate": { "race": "human" } },
+    { "name": "elf", "mutate": { "race": "elf" } },
+    { "name": "beastkin/fox", "mutate": { "race": "beastkin/fox" } },
+    { "name": "beastkin/wolf", "mutate": { "race": "beastkin/wolf" } },
+    { "name": "demon", "mutate": { "race": "demon" } },
+    { "name": "dwarf", "mutate": { "race": "dwarf" } },
+    { "name": "spirit", "mutate": { "race": "spirit" } },
+    { "name": "angel", "mutate": { "race": "angel" } },
+    { "name": "angel/lantern", "mutate": { "race": "angel/lantern" } },
+    { "name": "android", "mutate": { "race": "android" } }
+  ],
+  "columns": ["houseNet", "total", "net", "testedNet", "testedRest", "testedRech", "sat", "repGain", "prestige", "tidy", "trouble", "props"],
+  "delta": ["houseNet", "net", "testedNet", "sat", "repGain", "trouble"],
+  "breakdown": []
+}

@@ -148,7 +148,7 @@ function houseRow(h){
   return `<tr><td><a href="#" onclick="S.cur='${h.id}';HOUSE_ALL=false;render();return false"><b class="${bedCls}">${esc(h.name)}</b></a>${h.id===samHouse().id?' <span title="Sam sleeps here">🧑</span>':''}</td>
     <td>${Math.round(h.rep)}</td><td>${pr} <span class="muted">(${prestigeTier(pr).label})</span></td><td><span class="${bedCls}">${ws.length}</span>${resting?` <span class="muted">(${resting} resting)</span>`:''}${ap.courts?` <span class="${ap.atts>=ap.courts?'good':'muted'}" title="Attendants / Courtesans (${ap.atts}/${ap.courts})">🎀 ${ap.atts}/${ap.courts}</span>`:''}</td>
     <td class="${bedCls}">${sl}/${bd} <span class="muted">${esc(BEDS[h.beds||0].label)}</span></td>
-    <td>${lh&&lh.roomCap?`${lh.roomsUsed}/${lh.roomCap}${lh.short?' <span class="warn">short</span>':''}`:`–/${h.rooms*BAL.rooms.perRoom}`} <span class="muted">${h.rooms} bedroom${h.rooms===1?'':'s'}</span></td>
+    <td>${lh&&lh.roomCap?`${lh.roomsUsed}/${lh.roomCap}${lh.short?' <span class="warn">short</span>':''}`:`–/${Math.round(h.rooms*BAL.rooms.perRoom*classCapMul(housePrestige(h)))}`} <span class="muted">${h.rooms} bedroom${h.rooms===1?'':'s'}</span></td>
     <td class="${tidyCls(h)}">${tidy}</td>
     <td>${lh?`${lh.served}${(lh.left||lh.stopped||lh.turned)?` <span class="muted">(${lh.left||lh.stopped?[lh.left?`${lh.left} left`:'',lh.stopped?`${lh.stopped} held`:''].filter(Boolean).join(', '):`${lh.turned} away`})</span>`:''}`:'–'}</td>
     <td>${lh?`${fmt(lh.income)} <span class="muted">/ ${fmt(lh.upkeep)}</span>`:'–'}</td>
@@ -206,7 +206,7 @@ function viewHouse(){
   const hp = Math.round(housePrestige(h)), pTier = prestigeTier(hp);
   return `${houseTabs('house')}${notesCard(houseNotes(h))}<section class="card"><h2>${esc(h.name)} <span class="tag house">${D.loc}</span></h2><p class="muted">${D.desc}</p>${D.perk?`<div class="good" style="margin-bottom:6px">✦ <b>${esc(D.perk.label)}:</b> ${esc(D.perk.desc)}</div>`:''}${rp}<div class="grid2">
       <div>Popularity: <b>${Math.round(h.rep)}</b> · Class: <b title="House prestige (0-100): drives client class, skill &amp; amenity expectations, and proposition vs salon tone.">${hp} (${pTier.label})</b>${lh&&Math.abs(lh.prestigeDelta||0)>=0.05?` <span class="${lh.prestigeDelta>0?'good':'warn'}">(${lh.prestigeDelta>0?'+':''}${Math.round(lh.prestigeDelta*10)/10})</span>`:''}</div><div>Building: <b>${roomsUsed(h)}/${houseSize(h)}</b> rooms used${h.damaged?` <span class="warn">(${h.damaged} damaged)</span>`:''}</div>
-      <div>Bedrooms: <b>${h.rooms}</b> · ${ROOM_NAMES[h.tier]} · <span title="Room services per week: ${BAL.rooms.perRoom} per bedroom">${h.rooms*BAL.rooms.perRoom} sessions/wk${lh&&lh.roomCap?` (last week ${lh.roomsUsed}/${lh.roomCap})`:''}</span>${housingShort(h)?` · <span class="warn" title="Expected comfort ${housingExpect(h)} (beds and bedroom tier, 0-3) at this class; yours is ${housingComfort(h)}. Staff lose mood each week.">Staff expect better beds/rooms at this class</span>`:''}</div>
+      <div>Bedrooms: <b>${h.rooms}</b> · ${ROOM_NAMES[h.tier]} · <span title="Room services per week: ${BAL.rooms.perRoom} per bedroom, x${classCapMul(housePrestige(h)).toFixed(2)} at this class (rowdy houses are crowded, exclusive ones see fewer clients for longer)">${Math.round(h.rooms*BAL.rooms.perRoom*classCapMul(housePrestige(h)))} sessions/wk${lh&&lh.roomCap?` (last week ${lh.roomsUsed}/${lh.roomCap})`:''}</span>${housingShort(h)?` · <span class="warn" title="Expected comfort ${housingExpect(h)} (beds and bedroom tier, 0-3) at this class; yours is ${housingComfort(h)}. Staff lose mood each week.">Staff expect better beds/rooms at this class</span>`:''}</div>
       <div>Tidiness: <b class="${tidyCls(h)}">${Math.round(h.tidy ?? BAL.tidy.start)}</b> <span class="muted">${tidyLabel(h)}</span></div><div>Staff beds: <b>${sleepers(h).length}/${bedsFor(h)}</b> · ${BEDS[h.beds||0].label}${sleepers(h).length>bedsFor(h)?' <span class="warn">(not enough!)</span>':''}</div>
       <div>Pricing: <select onchange="setPrice(+this.value)">${PRICES.map((p,i)=>`<option value="${i}" ${i===h.price?'selected':''}>${p.label}</option>`).join('')}</select></div>
       <div>Amenities: ${amen}</div>${D.minPop?`<div class="muted">Standard: escorts need popularity ${D.minPop}+</div>`:''}
@@ -224,7 +224,7 @@ function viewHouse(){
 // Last Week card: client room sessions used, and roughly how many bedrooms that kept busy (perRoom sessions per bedroom a week).
 function roomsLastLine(lh){
   if(!lh || !lh.roomCap) return '';
-  const per = BAL.rooms.perRoom, rooms = Math.round(lh.roomCap / per), busy = Math.round(lh.roomsUsed / per * 10) / 10, pct = Math.round(lh.roomsUsed / lh.roomCap * 100);
+  const per = lh.perRoom || BAL.rooms.perRoom, rooms = Math.round(lh.roomCap / per), busy = Math.round(lh.roomsUsed / per * 10) / 10, pct = Math.round(lh.roomsUsed / lh.roomCap * 100);
   return `<div title="Room sessions used / capacity (${per} per bedroom a week)">Client rooms: <b class="${lh.short?'warn':pct<40?'muted':''}">${lh.roomsUsed}/${lh.roomCap}</b> sessions (${pct}%, ~${busy} of ${rooms} bedroom${rooms===1?'':'s'})${lh.short?` <span class="warn">· ${lh.short} client${lh.short>1?'s':''} couldn't get a room</span>`:''}</div>`;
 }
 function workerCard(w, showHouse){
