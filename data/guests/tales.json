@@ -449,7 +449,7 @@
           "lovers": "cowgirl",
           "backstory": "An Earth Seraph who spent centuries perched atop a lonely mountain holding a frilled parasol and honing her sarcasm to a razor edge, Edna speaks in a flat deadpan that leaves both smug nobles and rowdy regulars flustered. Though she pretends everything around her is tedious, she remembers everyone's favorite tea and secretly hates being left alone.",
           "design": {
-            "hairStyle": "short with a single side ponytail on the left and blunt bangs",
+            "hairStyle": "short with a single short sidetail on the left and blunt bangs",
             "hairColor": "flaxen blonde",
             "eyes": "blue",
             "skin": "pale ivory",
@@ -469,7 +469,7 @@
             "sig_edna": {
               "label": "Earth Seraph frilled dress",
               "style": "Cute",
-              "prompt": "a sleeveless white and yellow frilled dress adorned with a large yellow floral bow, a pleated skirt, oversized dark elbow-length gloves and sturdy brown boots",
+              "prompt": "a short loose sleeveless white and yellow frilled dress, oversized dark gloves and sturdy brown boots",
               "bonus": {"promoter":1.25,"security":1.2}
             }
           },
@@ -480,7 +480,7 @@
             "milla": {"v":25,"note":"Finds the Lord of Spirits surprisingly entertaining to tease."}
           },
           "jobs": {"likes":["promoter","security","host"],"dislikes":["maid","bartender"]},
-          "body": {"bust":"small","height":"short","figure":"slim"},
+          "body": {"bust":"flat","height":"short","figure":"slim"},
           "unique": {
             "name": "Umbrella of Earth",
             "desc": "Her dry verbal jabs curiously draw a crowd of regulars who enjoy being teased, and nobody dares get pushy with her.",
