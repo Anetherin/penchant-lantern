@@ -108,6 +108,10 @@ function hlTextBase(w, e){
   // a solo reverse possession with a client is its own encounter: the possession (plus any follow-up service), not the service he asked for (report.js groups it alone)
   if(e.possess && e.act){
     const asked = AC(e.want || e.act), lead = e.where ? `${cap(who)} propositioned ${N} ${PROP_WHERE[e.where]}, asking ${asked}.` : `${cap(who)} came for ${N} and asked ${asked}.`;
+    if(e.csex==='f' && e.mate){   // a woman client rides along inside her while she takes a housemate to bed (possessMate; flavor enc_possess_fem_*)
+      const m = findAny(e.mate), mn = m ? m.name : 'a housemate';
+      return `${lead} ${flavor('enc_possess_fem_' + e.possess, w, {other: mn})}${encTxt}${more}`;
+    }
     return `${lead} ${flavor('enc_possess_' + e.possess, w)}${encTxt}${more}`;
   }
   const extra = [e.adapt && flavor('enc_adapt', w, e.adapt), e.lantern && flavor('enc_lantern_angel', w), e.heat && e.note!=='drained' && e.note!=='frustrated' && flavor('enc_beast_heat', w)].filter(Boolean).join(' ');
@@ -325,7 +329,7 @@ function runService(X, w, A, o){
   if(note === 'drained' && !X.h.up.sigil && X.hr) X.hr.demonDrains++;
   return {ser, note, encore, encoreKind, roundDeclined, reck0, more: more ? more.id : null, satAdj};
 }
-// Race shift effects: spirit reverse possession (solo_futa, client, or futa x fem housemate) and android per-client appearance adaptation.
+// Race shift effects: spirit reverse possession (solo_futa with a man or futanari client, plain solo with a woman, or futa x fem housemate) and android per-client appearance adaptation.
 function spiritPossess(X, w, client, pr){
   const S0 = SVC.spirit || {};
   if(w.race!=='spirit' || (w.lewd||0) < (S0.possessLewd ?? 35)) return null;
@@ -341,10 +345,33 @@ function spiritPossess(X, w, client, pr){
     const r = Math.random();
     react = r < likeC ? 'like' : r < likeC + freakC ? 'freak' : 'ok';
   }
-  pr.possessed = (pr.possessed||0) + 1; lewdUp(w, 0.5, 95);
-  return react==='like' ? {react, feeMult: S0.possessLikeFee ?? 1.35, satAdd: S0.possessLikeSat ?? 18}
+  // with a woman client there's nothing to borrow: the spirit takes the client inside herself instead, and the client rides
+  // along through an ordinary tryst between the spirit and a willing housemate (possessMate). No housemate free: no possession.
+  let mate = null;
+  if(clientSex(client)==='f'){ mate = possessMate(X, w); if(!mate) return null; }
+  else pr.possessed = (pr.possessed||0) + 1;
+  lewdUp(w, 0.5, 95);
+  const out = react==='like' ? {react, feeMult: S0.possessLikeFee ?? 1.35, satAdd: S0.possessLikeSat ?? 18}
     : react==='freak' ? {react, feeMult: S0.possessFreakFee ?? 0.75, satAdd: S0.possessFreakSat ?? -22}
     : {react, feeMult: S0.possessOkFee ?? 1.1, satAdd: S0.possessOkSat ?? 5};
+  return mate ? Object.assign(out, mate) : out;
+}
+// The housemate for a woman client's reverse possession: an ordinary yuri tryst, asked and paid like a yuri night
+// (balance.json → yuri: lewd + clients.women.gap unless Sapphic/Bisexual, lewdGain, bond), at a fraction of its energy and lust
+// since it's one client's hour, not a night (svc.spirit.mateShare). Returns {mate, mateAct} or null.
+const POSS_MATE_ACTS = ['kiss','manual_give','manual_get','oral_get','oral_give','breast_get','missionary','cowgirl'];
+function possessMate(X, w){
+  const Y = BAL.yuri || {}, S0 = SVC.spirit || {}, k = S0.mateShare ?? 0.5, need = o => (Y.lewd ?? 40) + orientGap(o, 'f');
+  if((w.lewd||0) < need(w)) return null;
+  const pool = ((X && X.W) || []).filter(o=>o!==w && !has(o,'Devoted') && !has(o,'Modest') && (o.lewd||0) >= need(o) && o.energy >= maxEnergy(o) * 0.2);
+  if(!pool.length) return null;
+  const o = weighted(pool, x=>1 + Math.max(0, bondV(w, x)) / (Y.bondWeight ?? 20) + (x.lust||0) / 100);
+  const top = Math.min(w.lewd, o.lewd) - Math.max(orientGap(w,'f'), orientGap(o,'f'));
+  const acts = POSS_MATE_ACTS.filter(id=>{ const A = actById(id); return A && A.pair && (A.pair.fem||[]).length && (A.th||0) <= top && !actBanned(w,id) && !actBanned(o,id); });
+  const act = acts.length ? weighted(acts, id=>1 + (actById(id).th||0)/20) : 'kiss';
+  o.energy = Math.max(0, o.energy - (Y.energy ?? 12) * k); spendLust(o, (Y.lust ?? 40) * k); moodAdd(o, Y.mood ?? 3);
+  lewdUp(o, Y.lewdGain ?? 0.5, Y.lewdCap ?? 90); addBond(w, o, (Y.bond ?? 6) * k);
+  return {mate:o.id, mateAct:act};
 }
 function androidAdapt(w, client, pr){
   const A = SVC.android || {}; if(w.race!=='android') return null;
@@ -357,21 +384,27 @@ function androidAdapt(w, client, pr){
   if(pr) pr.adapted = (pr.adapted||0) + 1;
   return {adapt: {hair, eyes, body}, feeMult: A.adaptFee ?? 1.18, satAdd: A.adaptSat ?? 10};
 }
+// A spirit still worked up after a reverse possession with a man or futanari client (pr.possessed), or just worked up, brings
+// the borrowed cock to a willing housemate: the futa tryst, lewder than a yuri night (balance.json → svc.spirit.pairLewd,
+// pairLewdGain; + pairFutaExtra and pairFutaLewdGain unless she's a Futa Lover; women also need clients.women.gap unless
+// Sapphic/Bisexual). A woman client's possession already had its housemate (possessMate).
 function spiritPairShift(h, W, R){
   const S0 = SVC.spirit || {}, acts = ['missionary','cowgirl','doggy','oral_give'];
   W.forEach(w=>{
     const pr = R.per[w.id];
-    if(w.race!=='spirit' || pr.solo || w.job==='rest' || has(w,'Devoted') || has(w,'Modest')) return;
+    if(w.race!=='spirit' || pr.solo || pr.yuri || w.job==='rest' || has(w,'Devoted') || has(w,'Modest')) return;
     if((w.lewd||0) < (S0.pairLewd ?? 45) || (!pr.possessed && (w.lust||0) < LUST_EAGER)) return;
     if(Math.random() >= (S0.pairChance ?? 0.4)) return;
-    const pool = W.filter(o=>o!==w && !R.per[o.id].solo && !has(o,'Modest') && !has(o,'Devoted') && (o.lewd||0) >= (S0.pairLewd ?? 45));
+    const need = o => (S0.pairLewd ?? 45) + orientGap(o, 'f') + (has(o,'Futa Lover') ? 0 : (S0.pairFutaExtra ?? 10));
+    const pool = W.filter(o=>o!==w && !R.per[o.id].solo && !R.per[o.id].yuri && !has(o,'Modest') && !has(o,'Devoted') && (o.lewd||0) >= need(o));
     if(!pool.length) return;
-    const o = weighted(pool, x=>1 + Math.max(0, bondV(w, x))/25);
+    const o = weighted(pool, x=>1 + Math.max(0, bondV(w, x))/25 + (has(x,'Futa Lover') ? 1 : 0));
     const choices = acts.filter(id=>actById(id) && actById(id).pair && actById(id).pair.futa && !actBanned(w,id) && !actBanned(o,id));
     const act = pick(choices.length ? choices : ['missionary']), A = actById(act);
     w.energy = clamp(w.energy - (S0.pairEnergy ?? 14)*0.5, 0, maxEnergy(w)); o.energy = clamp(o.energy - (S0.pairEnergy ?? 14)*0.5, 0, maxEnergy(o));
     spendLust(w, S0.pairLust ?? 30); spendLust(o, (S0.pairLust ?? 30)*0.7);
-    moodAdd(w, 4); moodAdd(o, 4); lewdUp(w, 0.8, 95); lewdUp(o, 0.8, 95); addBond(w, o, S0.pairBond ?? 10);
+    const gain = S0.pairLewdGain ?? 0.8, oGain = has(o,'Futa Lover') ? gain : (S0.pairFutaLewdGain ?? 1.2);
+    moodAdd(w, 4); moodAdd(o, 4); lewdUp(w, gain, 95); lewdUp(o, oGain, 95); addBond(w, o, S0.pairBond ?? 10);
     const pLine = A && A.pair && A.pair.futa && A.pair.futa.length ? pick(A.pair.futa).replace(/\{name\}/g, o.name).replace(/\{partner\}/g, w.name) : '';
     const text = [flavor('spirit_pair_futa', w, {other: o.name}), pLine].filter(Boolean).join(' ');
     R.hl.push({wid:w.id, text, act, scene:`pair:${act}:selffuta:${o.id}`, pairFuta:true, spiritFuta:true});
