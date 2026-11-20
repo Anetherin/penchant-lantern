@@ -90,11 +90,11 @@ bedrooms when clients are turned away, buys beds/quarters to fit hires, buys ame
 once a house has 5 ladies; keeps 1 maid + 1 promoter, one lady per amenity job, everyone else courtesan-first and
 re-sorted weekly; rests ladies under 30% energy;
 **adapts to the weekly report**: keeps 1 security lady once a house averages `secWhen` (1) incidents a week, a second maid while tidiness averages under `tidyFloor` (55),
-and once the debt is cleared buys decor then drinks tiers when flush (`classUpkeep: 'afterDebt'`; during the debt it cost ~3.4 weeks of payoff for +300/wk late net);
+and once the debt is cleared buys drinks tiers when flush (`classUpkeep: 'afterDebt'`; during the debt it cost ~3.4 weeks of payoff for +300/wk late net);
 fills support roles with the best-suited, lowest-earning lady (partners last);
 upgrades staff bed quality when flush (`bedTier: 'auto'`: up to Feather beds during the debt, Luxury after); in NG++ walks for staff until a house has `ngppWalkUntil` (10) ladies;
 leaves demons' Feeding only / auto-stud off unless `demonFeedOnly` / `demonAutoStud` are set; keeps a reserve for costs and the next payment; pays the debt off
-early when it can. Optional policy knobs cover `decor`, `drinks`, `incense`, `price`, `cut`, `tutor`/`tutorTier`, and `teachSkill`.
+early when it can. Optional policy knobs cover `drinks`, `incense`, `price`, `cut`, `tutor`/`tutorTier`, and `teachSkill`.
 Sam handles goddess nights when needed, makes the rounds when anyone is under 35 trust, dates his partner once a week, walks in NG++ when short on staff, and
 does `samDefault` otherwise (`bartend | security | books | scout | rounds | lesson | statclass | trainStat | trainSkill | trainService | demo | walk | orgy | date | rest`), scouting
 instead while a house has under `scoutWhenShort` ladies and few affordable candidates.
@@ -103,7 +103,7 @@ instead while a house has under `scoutWhenShort` ladies and few affordable candi
 `"policy": {"preset": "legacy"}` restores the fixed pre-2026-11-16 player (10 ladies per house, no security, no second maid, no bed or class upkeep, no guild) for comparing with old notes.
 
 Because every variant uses the same player, results are comparisons, not absolute truths: a choice the bot never makes
-(feasts, decor, cuts, tutoring, dates with others) won't show its value unless a spec turns it on.
+(feasts, cuts, tutoring, dates with others) won't show its value unless a spec turns it on.
 If the bot does something silly, fix the policy and rerun everything; `policy` overrides make it easy to test
 "what if the player did X".
 

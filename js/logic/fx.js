@@ -181,7 +181,9 @@ const gardenMult = w => w.race==='elf' ? BAL.amenities.garden.elfMult : 1;
 function incenseMode(w){ const h = (typeof S!=='undefined' && S && w && w.house) ? houseOf(w) : null; return (h && h.up && h.up.incense) ? (h.incense || 'calm') : null; }
 // Multiplier for key ('pushy', 'lust', 'prop', 'skillGain', 'statGain', 'trustGain', 'energyRec', 'actEnergy') from her house's incense.
 function incenseMul(w, key){
-  const A = BAL.amenities.incense, h = (typeof S!=='undefined' && S && w && w.house) ? houseOf(w) : null, m = incenseMode(w), f = m && A[m] ? A[m][key] : undefined; if(f === undefined) return 1;
+  const A = BAL.amenities.incense, h = (typeof S!=='undefined' && S && w && w.house) ? houseOf(w) : null, m = incenseMode(w);
+  let f = m && A[m] ? A[m][key] : undefined; if(f === undefined) return 1;
+  if(key==='clientFee' && A[m].classFee && h) f -= A[m].classFee * housePrestige(h) / 100;   // amber: a rushed visit costs more in a classy house
   const mult = (w && w.race==='beastkin' ? A.beastMult : 1) * houseIncenseMult(h);
   return Math.max(0.1, 1 + (f - 1) * mult);
 }

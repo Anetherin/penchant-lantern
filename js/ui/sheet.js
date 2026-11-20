@@ -201,7 +201,7 @@ function viewUpgrades(){
   const incSel = incensePicker(h);
   const repairCard = h.damaged > 0 ? card('repair', `Repair Damaged Room (${h.damaged} left)`, 'Clear rubble and rebuild one damaged wing, permanently opening +1 room of usable capacity.', upgradeCost(h,'repair'), false) : '';
   const wsLine = h.up.workshop ? `<p class="muted">Workshop discount: <b>${Math.round(clamp(h.wsDisc||0,0,1)*100)}%</b> of the markup${S.workers.some(w=>w.house===h.id&&w.race==='dwarf')?'':' (no dwarf lives here, so it is not growing)'}.</p>` : '';
-  const dt = Math.min(3,(h.decor||0)+1), drt = Math.min(3,(h.drinks||0)+1), DR = BAL.amenities.drinks, dk = h.drinks||0;
+  const drt = Math.min(3,(h.drinks||0)+1), DR = BAL.amenities.drinks, dk = h.drinks||0;
   return `${houseTabs(false)}<section class="card"><h2>Upgrades: ${esc(h.name)} <span class="muted">(${roomsUsed(h)}/${houseSize(h)} rooms${h.damaged?`, ${h.damaged} damaged`:''})</span></h2>${D.buildDisc?`<p class="good">✦ <b>${esc(D.perk.label)}:</b> all upgrade costs here are ${Math.round(D.buildDisc*100)}% lower.</p>`:''}<div class="grid">
     ${repairCard}
     ${card('room',`Add Bedroom (${h.rooms})`,`Adds ${Math.round(BAL.rooms.perRoom*classCapMul(housePrestige(h)))} room sessions/wk for services (at this class). Takes 1 room. +12g/wk.`,upgradeCost(h,'room'),false,h.rooms>D.rooms)}
@@ -210,7 +210,6 @@ function viewUpgrades(){
     ${card('roomTier',`Refurbish Bedrooms (${ROOM_NAMES[h.tier]})`,'Higher service prices and satisfaction. Changes room scenes.',upgradeCost(h,'roomTier'),h.tier>=3)}
     ${card('beds',`Better Beds (${BEDS[h.beds||0].label})`,`Staff recover more energy. Next: ${BEDS[Math.min(3,(h.beds||0)+1)].label} (rest ${BEDS[Math.min(3,(h.beds||0)+1)].rest}). Proper beds keep a lady even at about 3–4 clients a week.`,upgradeCost(h,'beds'),(h.beds||0)>=3)}
     ${card('annex','Build an Annex','+3 rooms of space. +30g/wk.',upgradeCost(h,'annex'),!!h.annex)}
-    ${card('decor',`Décor (${DECOR[h.decor||0].label}) <span class="muted">(no room)</span>`,`${DECOR[h.decor||0].desc} ${(h.decor||0)>=3?'':`Next: ${DECOR[dt].label}, clients ×${BAL.amenities.decor.demand[dt]} (now ×${BAL.amenities.decor.demand[h.decor||0]}). ${DECOR[dt].desc}`} (+${BAL.amenities.decor.upkeep}g/wk per tier)`,upgradeCost(h,'decor'),(h.decor||0)>=3)}
     ${card('drinks',`Drinks (${DRINKS[dk].label}) <span class="muted">(no room)</span>`,`${DRINKS[dk].desc} ${dk>=3?'':`Next: ${DRINKS[drt].label}, bartender income ×${DR.bar[drt]} (now ×${DR.bar[dk]}), the bar's proposition boost ×${DR.props[drt]} (now ×${DR.props[dk]}). ${DRINKS[drt].desc}`} ${h.up.bar?'':'<span class="warn">Needs a Bar first.</span> '}(${DR.upkeep[dk]}g/wk now${dk>=3?'':`, ${DR.upkeep[drt]}g/wk next`})`,upgradeCost(h,'drinks'),dk>=3,false,'',!h.up.bar)}
     ${Object.entries(UPGRADES).map(([k,u])=>{ const nd = u.needs && !h.up[u.needs] ? u.needs : null; return card(k,`${u.label} <span class="muted">(${sizeTxt(k)})</span>`,`${u.race?`<span class="tag act">for ${esc((RACES[u.race]||{label:u.race}).label.toLowerCase())}s</span> `:''}${u.desc}${nd?` <span class="warn">Needs a ${esc(UPGRADES[nd].label)} first.</span>`:''} (${D.up[k]?'built in':u.upkeep+'g/wk upkeep'})`,upgradeCost(h,k),!!h.up[k],!!h.up[k],k==='incense'?incSel:'',!!nd); }).join('')}</div>
     ${wsLine}

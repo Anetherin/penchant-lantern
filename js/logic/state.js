@@ -25,13 +25,13 @@ function storyNpc(key){ const id='n_'+key; if(!NPCS[id]) NPCS[id] = makeNamed(ke
 const H = id => S.houses.find(h=>h.id===id);
 const curH = () => H(S.cur) || S.houses[0];
 const houseOf = w => (S && (H(w.house) || S.houses[0])) || null;
-function makeHouse(id){ const D = HOUSES[id], h = {id, name:D.name, rooms:D.rooms, quarters:D.quarters, beds:D.beds, tier:D.tier, up:clone(D.up), damaged:D.damaged||0, tidy:BAL.tidy.start, price:1, rep:D.rep, prestige:D.prestige ?? 50, since:S?S.week:1, story:{beat:0,wk:0}, bonus:{}, spent:0, decor:0, drinks:0, teachSkill:null, wsDisc:0, incense:'calm'}; if(D.ngppOnly) h.ngppLevel = Math.max(1, (S && S.ngppCycle) || 1); return h; }
+function makeHouse(id){ const D = HOUSES[id], h = {id, name:D.name, rooms:D.rooms, quarters:D.quarters, beds:D.beds, tier:D.tier, up:clone(D.up), damaged:D.damaged||0, tidy:BAL.tidy.start, price:1, rep:D.rep, prestige:D.prestige ?? 50, since:S?S.week:1, story:{beat:0,wk:0}, bonus:{}, spent:0,  drinks:0, teachSkill:null, wsDisc:0, incense:'calm'}; if(D.ngppOnly) h.ngppLevel = Math.max(1, (S && S.ngppCycle) || 1); return h; }
 function snapshotNgppHouse(h){
-  return {rooms:h.rooms, quarters:h.quarters, beds:h.beds, extraBeds:h.extraBeds||0, tier:h.tier, up:clone(h.up||{}), damaged:h.damaged||0, annex:!!h.annex, decor:h.decor||0, drinks:h.drinks||0, incense:h.incense||'calm', spent:Math.round(h.spent||0), story:clone(h.story||{beat:0,wk:0})};
+  return {rooms:h.rooms, quarters:h.quarters, beds:h.beds, extraBeds:h.extraBeds||0, tier:h.tier, up:clone(h.up||{}), damaged:h.damaged||0, annex:!!h.annex, drinks:h.drinks||0, incense:h.incense||'calm', spent:Math.round(h.spent||0), story:clone(h.story||{beat:0,wk:0})};
 }
 function restoreNgppHouse(h, snap){
   if(!h || !snap) return h;
-  ['rooms','quarters','beds','extraBeds','tier','damaged','annex','decor','drinks','incense','spent'].forEach(k=>{ if(snap[k]!==undefined) h[k] = snap[k]; });
+  ['rooms','quarters','beds','extraBeds','tier','damaged','annex','drinks','incense','spent'].forEach(k=>{ if(snap[k]!==undefined) h[k] = snap[k]; });
   if(snap.up) h.up = clone(snap.up);
   if(snap.story) h.story = clone(snap.story);
   return h;
@@ -42,7 +42,7 @@ function ngppSavedCost(id){
 }
 function newGame(cfg){
   const HD = HOUSES[cfg.house];
-  S = { v:42, samFocus:{kind:'office', topic:'auto'}, cloudId: cfg.cloudId || ('run_' + Date.now().toString(36) + Math.random().toString(36).slice(2,6)), cloudName: (cfg.cloudName || '').trim() || HD.name, localSavedAt: Date.now(), cloudSyncedAt: 0, samHome:cfg.house, samUps:{}, starters:[cfg.house], houseWardrobe:[], houseUnder:[], closets:{}, week:1, gold:600, rep:HD.rep, ap:3, cur:cfg.house, home:cfg.house, cycle:1, ngppCycle:0, ngppHouses:{}, townEv:null, townEvNext:(BAL.townEvents||{}).firstWeek ?? 4, challenge:null, challengePerks:[], vessels:[], boons:[], past:cfg.past, pasts:[cfg.past], partner:cfg.partner, partners:[cfg.partner],
+  S = { v:43, samFocus:{kind:'office', topic:'auto'}, cloudId: cfg.cloudId || ('run_' + Date.now().toString(36) + Math.random().toString(36).slice(2,6)), cloudName: (cfg.cloudName || '').trim() || HD.name, localSavedAt: Date.now(), cloudSyncedAt: 0, samHome:cfg.house, samUps:{}, starters:[cfg.house], houseWardrobe:[], houseUnder:[], closets:{}, week:1, gold:600, rep:HD.rep, ap:3, cur:cfg.house, home:cfg.house, cycle:1, ngppCycle:0, ngppHouses:{}, townEv:null, townEvNext:(BAL.townEvents||{}).firstWeek ?? 4, challenge:null, challengePerks:[], vessels:[], boons:[], past:cfg.past, pasts:[cfg.past], partner:cfg.partner, partners:[cfg.partner],
     houses:[makeHouse(cfg.house)],
     sam:{energy:100, ...BAL.sam.base, appraisal:1, appXP:0, first:true, lvl:1, xp:0},
     samWeek:{security:0, books:false, income:0, acts:[]},
@@ -109,7 +109,7 @@ function migrate(s){
   s.pasts = Array.isArray(s.pasts) && s.pasts.length ? s.pasts : (s.past ? [s.past] : []);
   s.starters = s.starters || [s.home || (s.houses[0]||{}).id];
   s.houses.forEach(h=>{ if(h.drinks===undefined) h.drinks = 0; if(h.teachSkill===undefined) h.teachSkill = null; });
-  s.houses.forEach(h=>{ if(h.decor===undefined) h.decor = 0; if(h.wsDisc===undefined) h.wsDisc = 0; if(!h.incense) h.incense = 'calm'; if(h.damaged===undefined) h.damaged = (HOUSES[h.id]||{}).damaged || 0; });
+  s.houses.forEach(h=>{ if(h.wsDisc===undefined) h.wsDisc = 0; if(!h.incense) h.incense = 'calm'; if(h.damaged===undefined) h.damaged = (HOUSES[h.id]||{}).damaged || 0; });
   s.closets = s.closets || {};
   if(ov < 37){   // house class / prestige
     s.houses.forEach(h=>{ if(h.prestige===undefined) h.prestige = ((HOUSES[h.id]||{}).prestige ?? 50); });
@@ -135,7 +135,11 @@ function migrate(s){
   }
   s.townEv = s.townEv || null;
   s.guildPerks = s.guildPerks || [];
-  s.v = 42; s.samUps = s.samUps || {}; s.houseWardrobe = s.houseWardrobe || []; s.houseUnder = s.houseUnder || []; s.home = s.home || (s.houses[0]||{}).id; s.samHome = s.samHome || s.home || (s.houses[0]||{}).id; s.cycle = s.cycle || 1; s.ngppCycle = s.ngppCycle || 0; s.ngppHouses = s.ngppHouses || {}; s.challenge = s.challenge || null; s.challengePerks = s.challengePerks || []; [...(s.workers||[]), ...(s.candidates||[]), ...(s.alumni||[])].forEach(w=>{ if(w && !w.key && !w.orient && w.traits) rollOrient(w); }); if(s.challenge && !s.chTrack){ const T = ((BAL.ngplus||{}).cycleChallenges||{}).small_troupe || {}; s.chTrack = {weeks:0, tidy:0, maxStaff:0, cap:(T.base ?? 6) + (T.perLover ?? 1) * (s.ngLovers||0) + (T.perHouse ?? 2) * Math.max(0, (s.houses||[]).length - 1)}; } s.vessels = s.vessels || []; s.boons = s.boons || []; s.partners = s.partners || (s.partner ? [s.partner] : []);
+  if((s.v||0) < 43){   // v43: décor was removed (class comes from rooms, beds, drinks, amenities and price): refund what was spent on it
+    const DC = [0, 300, 900, 2200];
+    (s.houses||[]).forEach(h=>{ const n = Math.min(3, h.decor||0), back = DC.slice(1, n+1).reduce((a,b)=>a+b, 0); if(back){ s.gold = (s.gold||0) + back; if(h.spent) h.spent = Math.max(0, h.spent - back); } delete h.decor; });
+  }
+  s.v = 43; s.samUps = s.samUps || {}; s.houseWardrobe = s.houseWardrobe || []; s.houseUnder = s.houseUnder || []; s.home = s.home || (s.houses[0]||{}).id; s.samHome = s.samHome || s.home || (s.houses[0]||{}).id; s.cycle = s.cycle || 1; s.ngppCycle = s.ngppCycle || 0; s.ngppHouses = s.ngppHouses || {}; s.challenge = s.challenge || null; s.challengePerks = s.challengePerks || []; [...(s.workers||[]), ...(s.candidates||[]), ...(s.alumni||[])].forEach(w=>{ if(w && !w.key && !w.orient && w.traits) rollOrient(w); }); if(s.challenge && !s.chTrack){ const T = ((BAL.ngplus||{}).cycleChallenges||{}).small_troupe || {}; s.chTrack = {weeks:0, tidy:0, maxStaff:0, cap:(T.base ?? 6) + (T.perLover ?? 1) * (s.ngLovers||0) + (T.perHouse ?? 2) * Math.max(0, (s.houses||[]).length - 1)}; } s.vessels = s.vessels || []; s.boons = s.boons || []; s.partners = s.partners || (s.partner ? [s.partner] : []);
   s.regulars = s.regulars || []; s.bonds = s.bonds || {}; s.flags = s.flags || {};
   s.sam.lvl = s.sam.lvl || 1; s.sam.xp = s.sam.xp || 0;
   s.houses.forEach(h=>{ if(h.tidy===undefined) h.tidy = BAL.tidy.start; if(h.prestige===undefined) h.prestige = ((HOUSES[h.id]||{}).prestige ?? 50); h.since = h.since || 1; h.story = h.story || {beat:0,wk:0}; h.bonus = h.bonus || {}; if(h.spent===undefined) h.spent = 0;

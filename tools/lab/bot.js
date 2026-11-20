@@ -83,7 +83,6 @@ LAB.POLICY = {
   resort: true,          // every week, move surplus promoters/maids/attendants up to courtesan when they qualify
   repair: true,          // repair damaged rooms (e.g. Ironwood Hall) when out of space or turning clients away
   incense: null,         // if set and house has incense burner, switch to this blend
-  decor: 0,              // target decor tier (0-3)
   drinks: 0,             // target drinks tier (0-3, requires bar)
   price: null,           // if set (0-4), keep house price at this tier
   cut: null,             // if set ('base' or 0..0.9), set profit cut for workers in house
@@ -97,7 +96,7 @@ LAB.POLICY = {
   security: 'auto',      // 'auto': keep 1 security lady once the house has `targetsAt` ladies and averaged >= secWhen incidents/week (last 3 weeks); true = always; false = never
   secWhen: 1,
   tidyFloor: 55,         // keep a second maid while tidiness (3-week average) is below this; 0 = off
-  classUpkeep: 'afterDebt', // 'afterDebt' | true | false: when flush (gold >= flushMul x cost + reserve), buy the next decor tier, then drinks tier (needs the bar), once the house has amenityStaff ladies.
+  classUpkeep: 'afterDebt', // 'afterDebt' | true | false: when flush (gold >= flushMul x cost + reserve), buy the next drinks tier (needs the bar), once the house has amenityStaff ladies.
                          // Default waits for the debt to be cleared: in cycle 1 it cost ~3.4 weeks of payoff for +300/wk late net (2026-11-16).
   flushMul: 3,
   samples: false,        // opt-in: non-Modest promoters hand out free samples
@@ -187,13 +186,11 @@ function manageHouse(h){
   if (h.up.classroom && P.teachSkill && h.teachSkill !== P.teachSkill) { setTeachSkill(h.id, P.teachSkill); quiet(); }
   if (P.classUpkeep && (P.classUpkeep !== 'afterDebt' || S.won || S.debt.remaining <= 0) && staffIn(h).length >= P.amenityStaff) {
     const flush = k => S.gold >= upgradeCost(h, k) * P.flushMul + reserveGold();
-    if ((h.decor || 0) < 3 && flush('decor')) { buyUpgrade('decor'); quiet(); }
-    else if (h.up.bar && (h.drinks || 0) < 3 && flush('drinks')) { buyUpgrade('drinks'); quiet(); } }
+    if (h.up.bar && (h.drinks || 0) < 3 && flush('drinks')) { buyUpgrade('drinks'); quiet(); } }
   if (P.bedTier !== false && P.bedTier != null && staffIn(h).length >= P.amenityStaff) {
     const want = P.bedTier === 'auto' ? (S.won || S.debt.remaining <= 0 ? 3 : 2) : +P.bedTier;
     if ((h.beds || 0) < want && S.gold >= upgradeCost(h, 'beds') * (P.bedTier === 'auto' ? P.flushMul : 1) + reserveGold()) { buyUpgrade('beds'); quiet(); } }
   staffIn(h).forEach(w => { if (w.race !== 'demon') return; if (P.demonFeedOnly != null) w.feedOnly = P.demonFeedOnly; if (P.demonAutoStud != null) w.autoStud = P.demonAutoStud; });
-  if (P.decor && (h.decor || 0) < P.decor && S.gold >= upgradeCost(h, 'decor') + reserveGold()) { buyUpgrade('decor'); quiet(); }
   if (P.drinks && h.up.bar && (h.drinks || 0) < P.drinks && S.gold >= upgradeCost(h, 'drinks') + reserveGold()) { buyUpgrade('drinks'); quiet(); }
   if (staffIn(h).some(w => w.race === 'demon') && !h.up.sigil && S.gold >= upgradeCost(h, 'sigil') + reserveGold()) { buyUpgrade('sigil'); quiet(); }
   if (P.cut != null) staffIn(h).forEach(w => { if (!isFree(w) && w.cut !== P.cut) w.cut = P.cut; });
@@ -435,7 +432,6 @@ LAB.mutate = M => { if (!M) return {};
   if (M.upgrades) M.upgrades.forEach(k => { homeH().up[k] = true; });
   if (M.noIncense) homeH().up.incense = false;
   if (M.incense) { homeH().up.incense = true; homeH().incense = M.incense; }
-  if (M.decor != null) homeH().decor = M.decor;
   if (M.drinks != null) { if (M.drinks > 0) homeH().up.bar = true; homeH().drinks = M.drinks; }
   if (M.bedTier != null) homeH().beds = M.bedTier;
   if (M.bindGoddess) { const g = G(); g.bound = true; g.left = false; g.divinity = M.divinity ?? 5; g.love = M.love ?? 70; }

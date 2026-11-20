@@ -142,15 +142,15 @@ The most useful ones:
 | `pageErrors:` in the progress line | a game script threw during play: that's a bug in the game or the bot, worth reporting with the message |
 | very slow | lower `--runs` while exploring, raise `--conc` toward your core count; `--reuse` skips experiments already run |
 
-## 8. Current run list (round 5, 2026-11-20)
+## 8. Current run list (round 5b, 2026-11-20)
 
-Branch `balance/angels-amber-cheap-houses` (PR #76). Compare against the previous `temp-balance-results.md` (round-4 audit, commit 8b7ca10, branch `test/balance-audit-2026-11-20`) and mark what moved. Changes being measured: house capacity by class (x1.5 at class 0 → x0.75 at 100), restless ladies' off-the-books clients at half fee and costing class above 50 (angels immune), amber incense buff, drifter guests reborn.
+Branch `balance/angels-amber-cheap-houses` (PR #76), on a new branch `test/balance-round-5b` cut from it. Compare against round 5 (`temp-balance-results.md` on `test/balance-round-5`, commit 8c0be0e) and mark what moved. Changes: décor removed, price tiers compressed (Exclusive x2.0 instead of x2.6), capacity x2 at class 0 → x0.6 at 100, Tankard starts at class 6, amber's fee cut grows with house class.
 
 0. `npm run check:data && npm run smoke && node tools/goddess-smoke.mjs`.
-1. **Houses & class (main question):** `npm run lab -- houses-all-cf`, `houses-plateau-cf`, `house-class-compete`, `house-class-plateau`, `interactions`. Report weeksToWin / winRate / houseNet / prestige / served / turned per house vs before. Targets: cycle-1 payoff still roughly even across houses (27–35 weeks; Onsen and Hollow were the slow outliers), the plateau gap between Tankard and Castle clearly smaller than 2,815 vs 14,083, and whether `upscale` still beats `exhib-volume` in every house.
-2. **Races:** `npm run lab -- race-roles-phases`, `race-roles-houses`, `race-courtesan-phases`, `race-bedless-compare`. Do plain angels now beat humans/beastkin/dwarves in support jobs? Did demons keep first place as courtesans, and how did their rest % move?
-3. **Incense:** `npm run lab -- incense-phases`, `incense-niches`, `incense-campaign`. Does amber beat `none` on `houseNet` anywhere now (straw-cot niches first) and stop losing in Veil/Castle/Conservatory?
-4. **NG+ spot check:** `npm run lab -- ngplus-houses-scaling` (capacity changes NG+ income). Skip the 0-lover variants of `ngplus-lovers-stacking`.
-5. **Intent suite:** full `npm run check` (it wasn't run last time). If short on time, at least `--only demons-top-courtesans` plus the house and NG+ rows.
+1. **Class & price (main question):** `npm run lab -- house-class-plateau`, `house-class-compete`, `houses-plateau-cf`, `houses-all-cf`, `interactions`. Does `upscale` still double a house's net, or is the gap to `base` / `exhib-volume` now modest? Where does Tankard land (class, served, turned, houseNet) vs Castle? Is cycle-1 payoff still roughly even (25–39 weeks)?
+2. **Incense:** `npm run lab -- incense-phases`, `incense-niches`, `incense-campaign`. Amber should win in cheap/low-class houses (Tankard, Lantern, straw-cot niches) and not in Castle / Veil / Conservatory; report which incense wins each cell.
+3. **Races:** `npm run lab -- race-roles-phases`, `race-courtesan-phases` (angels in support jobs; demons still #1).
+4. **Intent suite:** full `npm run check`.
+5. **NG+:** `npm run lab -- ngplus-carry` and `ngpp` only if time allows (capacity and prices shift NG+ income).
 
-Use `--conc` at most cores − 1; the multi-cycle NG+ specs timed out at `--conc 10` last time, so run those at `--conc 3`. Report format as in section 6, written to `temp-balance-results.md` on a new branch `test/balance-round-5` cut from `balance/angels-amber-cheap-houses`.
+The `upscale` variants no longer set décor (it's gone); everything else in the specs is unchanged. Use `--conc` at most cores − 1, multi-cycle NG+ specs at `--conc 3`. Report format as in section 6.

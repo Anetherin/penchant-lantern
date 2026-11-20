@@ -6,7 +6,7 @@
 // Amenity & quarters elegance score (0..5+) evaluated against a house's prestige expectations.
 function houseAmenityScore(h, tidy0){
   const TY = BAL.tidy, U = h.up || {};
-  let s = (h.tier||0)*0.8 + (h.beds||0)*0.25 + (h.decor||0)*0.55 + (U.bar ? (1 + (h.drinks||0)*0.25)*0.45 : 0);
+  let s = (h.tier||0)*0.8 + (h.beds||0)*0.25 + (U.bar ? (1 + (h.drinks||0)*0.25)*0.45 : 0);
   s += (U.bath?0.45:0) + (U.garden?0.35:0) + (U.stage?0.3:0) + (U.guard?0.2:0) + (U.classroom?0.25:0) + (U.suite?0.2:0);
   s += tidy0 >= TY.high ? 0.45 : tidy0 < TY.bad ? -0.8 : tidy0 < TY.low ? -0.35 : 0;
   return s;
@@ -19,7 +19,7 @@ function updatePrestige(h, hr, W, R, info){
   if(!PR || !W.length){ h.prestige = p0; hr.prestige = p0; hr.prestigeDelta = 0; hr.prestigeReasons = reasons; return; }
   const U = h.up || {};
   let target = (HD.prestige ?? 50) + ((h.tier||0) - 1)*(PR.tierPer ?? 5) + ((h.beds||0) - 1)*(PR.bedPer ?? 3)
-    + (h.decor||0)*(PR.decorPer ?? 3.5) + (U.bar ? ((h.drinks||0) - 0.5)*(PR.drinksPer ?? 3) : 0) + (h.price - 1)*(PR.pricePer ?? 4)
+    + (U.bar ? ((h.drinks||0) - 0.5)*(PR.drinksPer ?? 3) : 0) + (h.price - 1)*(PR.pricePer ?? 4)
     + (U.garden?3:0) + (U.bath?2:0) + (U.classroom?3:0) + (U.stage?2:0) + (U.guard?2:0) + (U.suite?2:0) + (info.chapelScandal ? -(PR.chapelClass ?? 4) : info.angelChapel ? (PR.chapelClass ?? 4) : 0);   // a chapel scandal reverses what the chapel adds
   target += hr.tidy0 >= TY.high ? (PR.tidyHigh ?? 4) : hr.tidy0 < TY.bad ? (PR.tidyBad ?? -10) : hr.tidy0 < TY.low ? (PR.tidyLow ?? -4) : 0;
   let op = 0;
@@ -195,7 +195,6 @@ function simHouse(h, R){
   let dBase = ((DM.base ?? 5) + repEff*(DM.perRep ?? 0.5) + danceDraw*(DM.danceMult ?? 1.5)) * HD.demand * priceDem * rnd(0.85,1.15);
   if(HD.haunted) dBase *= 0.45 + Math.min(1, h.rep/(HD.hauntRep||40))*0.8;
   dBase *= (h.bonus&&h.bonus.demand) || 1;
-  dBase *= BAL.amenities.decor.demand[h.decor||0] ?? 1;
   dBase *= 1 + lowF * (PR.lowDemandBonus ?? 0.25);
   dBase *= ((hr.tidyFx && hr.tidyFx.demand) || 1) * townMul('demand', 1);   // word gets around about a shabby house (balance.json → tidy.fx.*.demand)
   const v0 = W.length ? Math.max(1, Math.round(dBase)) + danceDraw*2 : 0;   // expected visitors, for proposition rates
@@ -365,7 +364,7 @@ function simHouse(h, R){
   let secStopLeft = (secs.length || samSec > 0) ? Math.round(((secs.length ? (WT.secStopBase ?? 8) : 0) + secPow / (WT.secStopDiv ?? 15)) * (h.up.guard ? 1.4 : 1)) : 0;
   let overflowEntered = 0;
   // how comfortable it is to wait here (offsets unattended walkout risk)
-  const comfortNow = () => (h.up.garden ? WT.garden : 0) + WT.decorPer*(h.decor||0) + (hr.tidy0 >= TY.high ? WT.tidy : 0) + (h.up.bath ? WT.bath : 0) + (barBt ? WT.bar : 0) + (dancers.length ? WT.stage : 0) + WT.hostPer * X.hosts.filter(hostOK).length + floorE * (WT.bar ?? 0);
+  const comfortNow = () => (h.up.garden ? WT.garden : 0) + (hr.tidy0 >= TY.high ? WT.tidy : 0) + (h.up.bath ? WT.bath : 0) + (barBt ? WT.bar : 0) + (dancers.length ? WT.stage : 0) + WT.hostPer * X.hosts.filter(hostOK).length + floorE * (WT.bar ?? 0);
   // waiting clients spend at open bars/stages, which sometimes keeps them occupied and content
   const loungeHelp = (client, cls) => {
     let barHelped = false, danceHelped = false;
@@ -701,7 +700,7 @@ function simHouse(h, R){
   if(W.length && Math.random() < clamp((0.12 + demand/120 + (hr.left||0)*(WT.leaveIncident ?? 0.035) + (hr.crowdOver||0)*(CR.incidentPer ?? 0.005) - secPow/250) * (HD.trouble||1) * rowdyF * (1 + barN*J.barRowdy) * incenseHouseMul(h,'pushy'), 0.03, 0.6)) EVQ.push(()=>evIncident(h));
   if(HD.haunted && Math.random()<0.15) EVQ.push(()=>evHaunt(h));
   nightIncidents(h, hr, X, W, R, {secPow, visitors, NIGHTS, rowdyF, barN, secs});
-  let up = HD.upkeep + (HD.ngppOnly ? 15 * Math.max(0, (h.ngppLevel||1) - 1) : 0) + 12*h.rooms + 6*(h.quarters||0) + h.tier*20 + (h.beds||0)*4*bedsFor(h) + (h.extraBeds||0)*3 + (h.annex?30:0) + (h.decor||0)*BAL.amenities.decor.upkeep + (h.up.bar ? (BAL.amenities.drinks.upkeep[h.drinks||0]||0) : 0) + Object.keys(h.up).filter(k=>h.up[k] && !HD.up[k]).reduce((a,k)=>a+(UPGRADES[k].upkeep||0), 0);
+  let up = HD.upkeep + (HD.ngppOnly ? 15 * Math.max(0, (h.ngppLevel||1) - 1) : 0) + 12*h.rooms + 6*(h.quarters||0) + h.tier*20 + (h.beds||0)*4*bedsFor(h) + (h.extraBeds||0)*3 + (h.annex?30:0) + (h.up.bar ? (BAL.amenities.drinks.upkeep[h.drinks||0]||0) : 0) + Object.keys(h.up).filter(k=>h.up[k] && !HD.up[k]).reduce((a,k)=>a+(UPGRADES[k].upkeep||0), 0);
   if(atSam && S.samWeek.books) up = Math.round(up * (1 - booksCut() * (S.samWeek.booksEff ?? 1)));
   up = Math.round(up * (BAL.houses.upkeepMult ?? 1) * ((h.bonus&&h.bonus.upkeep)||1) * (1 + h.rep/150) * townMul('upkeep', 1) * (hasChallengePerk('ahead_of_time') ? 0.9 : 1));
   up += hr.damage || 0;   // nightIncidents: unhandled brawls, thefts and vandals

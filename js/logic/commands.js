@@ -102,7 +102,6 @@ function upgradeCost(h, k){
   else if(k==='beds') base = BEDS[Math.min(3,(h.beds||0)+1)].cost * Math.max(1,bedsFor(h)/2);
   else if(k==='extraBed') base = 80 + (h.extraBeds||0)*60 + (BEDS[h.beds||0].cost||0)*0.25;
   else if(k==='annex') base = 2500;
-  else if(k==='decor') base = (DECOR[Math.min(3,(h.decor||0)+1)]||{}).cost || 0;
   else if(k==='drinks') base = (DRINKS[Math.min(3,(h.drinks||0)+1)]||{}).cost || 0;
   else if(k==='repair'){ const done = Math.max(0, ((HOUSES[h.id]||{}).damaged||0) - (h.damaged||0)); base = (BAL.houses.repairBase ?? 350) + done * (BAL.houses.repairStep ?? 80); }
   else base = UPGRADES[k] ? UPGRADES[k].cost : 0;
@@ -117,7 +116,6 @@ function buyUpgrade(k){
   else if(k==='roomTier'){ if(h.tier>=3) return toast('Bedrooms are already opulent.'); }
   else if(k==='beds'){ if((h.beds||0)>=3) return toast('Already the best beds in town.'); }
   else if(k==='annex'){ if(h.annex) return toast('Already expanded.'); }
-  else if(k==='decor'){ if((h.decor||0)>=3) return toast('The house is already as grand as it gets.'); }
   else if(k==='drinks'){ if(!h.up.bar) return toast('The drinks menu needs a Bar first.'); if((h.drinks||0)>=3) return toast('The bar already pours the best in Hollowmere.'); }
   else if(k==='extraBed'){ if((h.extraBeds||0) >= maxExtraBeds(h)) return toast('The staff rooms are full. Add staff quarters first.'); }
   else if(k==='repair'){ if(!(h.damaged>0)) return toast('No damaged rooms left to repair.'); }
@@ -131,7 +129,6 @@ function buyUpgrade(k){
   else if(k==='beds'){ h.beds=(h.beds||0)+1; note(`${h.name}: staff now sleep on ${BEDS[h.beds].label.toLowerCase()}.`); }
   else if(k==='extraBed'){ h.extraBeds=(h.extraBeds||0)+1; note(`${h.name}: another bed squeezed into the staff rooms. Beds for ${bedsFor(h)}.`); }
   else if(k==='annex'){ h.annex=true; note(`${h.name}: annex built (+3 rooms of space).`); }
-  else if(k==='decor'){ h.decor=(h.decor||0)+1; note(`${h.name}: redecorated (${DECOR[h.decor].label}).`); }
   else if(k==='drinks'){ h.drinks=(h.drinks||0)+1; note(`${h.name}: the bar now serves ${DRINKS[h.drinks].label.toLowerCase()}.`); }
   else if(k==='repair'){ h.damaged = Math.max(0, (h.damaged||0) - 1); note(`${h.name}: 1 damaged room repaired (${h.damaged ? h.damaged + ' remaining' : 'fully restored'}).`); }
   else if(k==='incense'){ h.up[k]=true; h.incense='calm'; note(`${h.name}: ${UPGRADES[k].label} built.`); }

@@ -191,3 +191,11 @@ Audit read: amber incense lost money almost everywhere (the −15% fee outweighe
 - **Amber incense:** act energy −15% (was −10%), recovery +15% (was +10%), fee −5% (was −15%).
 - **Bug:** drifter guests passing through now come back reborn (`rebirthNamed`, as on walks), keeping their past-life stats and stacks.
 - Watch: the capacity cut is a real nerf to Castle/Sanctuary/Pavilion (class 90+); demons go reckless when starving, so check `demons-top-courtesans`; Lantern and Wayfarer sit near 50 and barely move.
+
+### Round 5b (2026-11-20, from the round-5 run on `test/balance-round-5`; not yet measured)
+Round 5 read: Onsen fixed (45 → 33 weeks, no failures), cycle-1 payoff 25–39 weeks everywhere; capacity trimmed Atelier/Pavilion/Sanctuary at plateau but Castle held (14.4k, it earns on fees) and Tankard only reached 3.2k (it sat at class 34–37, x1.16). Pushing a house upmarket (price + decor + drinks) roughly doubled net in every house (Tankard 3.6k → 5.7k, Lantern 4.2k → 9.5k, Castle 15.8k → 30.6k): when the door is already full, price is nearly free money. Amber became the best incense in 11 of 15 cells. Plain angels now win as madame/host/chapel, still not in maid/promoter/security/bartender/attendant. Design call: upmarket growth is fine, but class should differentiate more; low class is a numbers game, high class lives on sparse clients who pay more.
+- **Décor removed** (save v43 refunds what was spent on it). Class now comes from bedroom tier, beds, drinks, amenities, price and how the house is run.
+- **Price tiers compressed:** Cheap x0.75 fee / x1.4 demand (was 0.7 / 1.3), Premium 1.3 / 0.75 (1.4 / 0.72), Luxury 1.6 / 0.56 (1.9 / 0.52), Exclusive 2.0 / 0.42 (2.6 / 0.36). Fair unchanged, so base pay is unchanged.
+- **Capacity steeper:** `prestige.capacity` x2 at class 0, x1 at 50, x0.6 at 100 (was 1.5 / 0.75).
+- **Tankard** starts at class 6 (was 18) so it plays rowdy.
+- **Amber** fee −5%, minus up to 15% more by house class (`classFee`, x class/100): about −8% at Tankard, −20% at Castle. Energy −15% / recovery +15% unchanged. Meant as the cheap houses' play.

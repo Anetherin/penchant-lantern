@@ -8,7 +8,7 @@ function pickClass(h, screen=0){
     Math.max(3, 55 - 8*p - pr*0.35) * (screen > 0 ? Math.max(0.5, 1 - screen * (WT.screenTrimLow ?? 0.25)) : 1),
     30 + guildDraw() + Math.max(0, 45 - pr)*0.2,
     (10 + 4*p + pr*0.25) * (screen > 0 ? 1 + screen * (WT.screenMerchant ?? 0.3) : 1),
-    (Math.max(1, 2 + 4*p + Math.max(0, pr - 20)*0.45) * (hasGuildPerk('silvertongue') ? 1.1 : 1) + ((h.decor||0)>=3 ? BAL.amenities.decor.noble : 0)) * (screen > 0 ? 1 + screen * (WT.screenNoble ?? 0.55) : 1)
+    (Math.max(1, 2 + 4*p + Math.max(0, pr - 20)*0.45) * (hasGuildPerk('silvertongue') ? 1.1 : 1)) * (screen > 0 ? 1 + screen * (WT.screenNoble ?? 0.55) : 1)
   ];
   // pick a tier (economy.json → tiers, same order as the houses' cls weights), then a class within it by `share`
   const tier = weighted(TIERS, (t,i)=>ws[i]*cw[i]*(t==='merchant'&&h.bonus&&h.bonus.merchant||1));
