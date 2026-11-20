@@ -463,6 +463,9 @@
       "possessFreakSat": -22,
       "pairChance": 0.4,
       "pairLewd": 45,
+      "pairFutaExtra": 10,
+      "pairLewdGain": 0.8,
+      "pairFutaLewdGain": 1.2,
       "pairBond": 10,
       "pairEnergy": 14,
       "pairLust": 30
