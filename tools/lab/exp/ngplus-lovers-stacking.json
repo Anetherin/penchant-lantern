@@ -1,0 +1,21 @@
+{
+  "desc": "NG+ lover scaling across Cycles 2-4: 0 vs (1-4)x prior cycles carried lovers with reincarnation stacking, across Tankard, Lantern, and Castle.",
+  "scenario": "ngplus",
+  "cycles": 3,
+  "runs": 16,
+  "baseline": false,
+  "by": {
+    "start.house": ["tankard", "lantern", "castle"]
+  },
+  "ng": { "house": "best", "past": "none", "boon": "ap", "keepHouses": "1x" },
+  "variants": [
+    { "name": "0 lovers", "ng": { "loversPerCycle": 0 } },
+    { "name": "base", "ng": { "loversPerCycle": 1 } },
+    { "name": "2x lovers", "ng": { "loversPerCycle": 2 } },
+    { "name": "3x lovers", "ng": { "loversPerCycle": 3 } },
+    { "name": "4x lovers", "ng": { "loversPerCycle": 4 } }
+  ],
+  "columns": ["c1won", "c2weeks", "c3weeks", "c4weeks", "c2over", "c3over", "c4over", "c2debt", "c3debt", "c4debt", "c2loversIn", "c3loversIn", "c4loversIn", "c2lovers", "c3lovers", "c4lovers", "c2reborn", "c3reborn", "c4reborn", "c2cfHE", "c2cfHM", "c2cfHL", "c3cfHE", "c3cfHM", "c3cfHL", "c4cfHE", "c4cfHM", "c4cfHL", "c2hNet", "c3hNet", "c4hNet", "c2guild", "c3guild", "c4guild", "c2cuts", "c3cuts", "c4cuts"],
+  "delta": ["c2weeks", "c3weeks", "c4weeks", "c2cfHE", "c3cfHE", "c4cfHE", "c2hNet", "c3hNet", "c4hNet", "c4over"],
+  "breakdown": []
+}

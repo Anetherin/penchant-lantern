@@ -1,0 +1,22 @@
+{
+  "desc": "All 5 incense blends across early4/mid/late and 5 contrasting houses (Tankard, Veil, Lantern, Castle, Conservatory 1.5x).",
+  "scenario": "mid",
+  "weeks": 12,
+  "runs": 12,
+  "by": {
+    "start.house": ["tankard", "veil", "lantern", "castle", "conservatory"],
+    "scenario": ["early4", "mid", "late"]
+  },
+  "phasePolicy": { "syncMenu": true, "guild": false },
+  "variants": [
+    { "name": "base", "mutate": { "noIncense": true, "syncMenu": true } },
+    { "name": "calm", "mutate": { "incense": "calm", "syncMenu": true } },
+    { "name": "aphro", "mutate": { "incense": "aphro", "syncMenu": true } },
+    { "name": "focus", "mutate": { "incense": "focus", "syncMenu": true } },
+    { "name": "velvet", "mutate": { "incense": "velvet", "syncMenu": true } },
+    { "name": "amber", "mutate": { "incense": "amber", "syncMenu": true } }
+  ],
+  "columns": ["houseNet", "total", "net", "perLady", "served", "props", "sat", "mood", "trust", "repGain", "trouble", "damage", "restPct", "statGain", "skillGain"],
+  "delta": ["houseNet", "net", "sat", "trouble", "restPct", "statGain", "skillGain"],
+  "breakdown": []
+}
