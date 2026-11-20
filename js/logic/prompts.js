@@ -215,7 +215,7 @@ function buildPrompt(w, sceneKey, cloth){
 }
 // Sam with a woman client on the Floor (samfc:<service>:<look>:<house id>): his POV, like his own scenes, with her look from scenes.json →
 // femClients and clothes by the service's tier (femClientTier). The house's room is the setting.
-function fclientCloth(sceneKey){ const id = sceneBase(sceneKey).split(':')[1]; return ((SCENE_DATA.femClientTier||{})[actTier(id)]) || 'dressed'; }
+function fclientCloth(sceneKey){ const id = sceneBase(sceneKey).split(':')[1], c = ((SCENE_DATA.femClientTier||{})[actTier(id)]) || 'dressed'; return c==='under' && exposedAct(id) ? 'nude' : c; }   // bared services (image.exposed) show her nude
 function fclientPrompt(w, sceneKey, cloth){
   const id = sceneBase(sceneKey).split(':')[1], PP = SCENE_DATA.people || {}, c = cloth || fclientCloth(sceneKey);
   const hid = sceneBase(sceneKey).split(':')[3], h = (S && S.houses && (S.houses.find(x=>x.id===hid) || S.houses[0])) || null, wear = (SCENE_DATA.femClientCloth||{})[c] || '';

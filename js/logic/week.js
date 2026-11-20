@@ -571,7 +571,10 @@ function simHouse(h, R){
       S.sam.energy -= SPW.energy ?? 10; S.rep = clamp(S.rep + (SPW.renown ?? 0.2)); hr.income += fee; R.led.sam += fee; R.samWomen = (R.samWomen||0) + 1;
       // a moment for the report's "Sam's week" (a few per week), with a picture: samfc:<service>:<client look> (scenes.js)
       const fcN = (SCENE_DATA.femClients||[]).length;
-      if((R.samFem = R.samFem || []).length < (SPW.reportMax ?? 4)) R.samFem.push({act:want, h:h.id, fee, look: fcN ? ri(0, fcN-1) : 0});
+      // want is the lady's side of it (oral_give: the lady goes down on the client); with Sam in the lady's place it's his side,
+      // so giving and receiving swap (he goes down on her: oral_get, pictured with oral_get's Sam pose)
+      const flip = want.replace(/_(give|get)$/, (m, x) => x==='give' ? '_get' : '_give'), sa = actById(flip) ? flip : want;
+      if((R.samFem = R.samFem || []).length < (SPW.reportMax ?? 4)) R.samFem.push({act:sa, h:h.id, fee, look: fcN ? ri(0, fcN-1) : 0});
     }
     const e = {cls:cls.id, csex: SIM_SEX==='m' ? undefined : SIM_SEX, want, act, outcome, altDiff: outcome==='alt'?altDiff:undefined, reg: reg ? reg.name : null, note, sat:Math.round(sat), expr: ser ? ser.expr : null, react, encore, encoreKind, roundDeclined, more, possess: spPoss ? spPoss.react : null, adapt: adShift ? adShift.adapt : null, spiritFuta: !!spPoss, lantern, heat, ctx, step: helper && !coveredFor ? w.job : undefined, coveredFor};
     pr.enc.push(encFx(w, pr, s0, e));

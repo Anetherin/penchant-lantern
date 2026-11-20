@@ -197,7 +197,7 @@ function repSamFem(R){
   return (R.samFem||[]).map((f, i)=>{
     const L = FLAVOR.floor_woman || {}, lines = [].concat(L[f.act] || L._default || []), hn = (HOUSES[f.h]||{}).name || 'the house';
     const seed = (f.look * 7 + i * 13 + (f.fee||0)) % Math.max(1, lines.length);   // stable per entry, so re-renders keep the same line
-    const text = (lines[seed] || '').replace(/\{service\}/g, samActLabel(f.act).replace(/\s*\(.*\)\s*/g, '').toLowerCase()).replace(/\{house\}/g, hn);
+    const text = (lines[seed] || '').replace(/\{ask\}/g, ((actById(f.act)||{}).ask||{}).client || 'for company').replace(/\{house\}/g, hn);
     const id = 'samfc'+i, scene = `samfc:${f.act}:${f.look}:${f.h}`;
     return `<div class="hl" style="margin-top:6px">${esc(text)} <span class="muted">· ${esc(samActLabel(f.act))} · <span class="good">${fmt(f.fee)}</span></span>
       <button class="sm" id="${id}_t" onclick="toggleImgBtn('${id}','npc_fclient_${f.look}','${scene}')">🖼 Show image</button><div id="${id}" class="hlimg" data-ext="1"></div></div>`;
