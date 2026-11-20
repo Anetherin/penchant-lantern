@@ -19,7 +19,7 @@
     "title": "Before the truck stops ringing",
     "image": {
       "key": "intro",
-      "comp": "a radiant goddess with a glowing bronze skin and a small ember-flame at her shoulder, sitting in a dark void lit by hundreds of hanging paper lanterns, looking down with an amused smile, one hand extended",
+      "comp": "sitting effortlessly as if on an invisible swing, barefoot, leaning down with an amused knowing smile, one hand extended",
       "setting": "an endless dark space full of floating paper lanterns"
     },
     "open": "The horn is still ringing when the dark fills up with lanterns. Hundreds of them, hanging from nothing.\n\nA woman sits among them as if on a swing, barefoot, a little ember-flame drifting lazily around her shoulder. Her skin glows from within like a lantern, gold markings brightening at her collarbones and hips as she looks you over, slowly, head to toe, like someone deciding what to unwrap first.\n\n\"{sam} Takahashi. Thirty-one years of being nice to people and nobody ever once being nice back on purpose.\" She tilts her head. \"I'm {goddess}. I light the way across, for the ones I pick. I picked you. On a whim, mostly. Don't read into it.\" She smiles like a woman who is reading into it a great deal.",
@@ -50,8 +50,9 @@
     "title": "Again, {sam}?",
     "image": {
       "key": "rebirth",
-      "comp": "a radiant goddess with glowing bronze skin and a small ember-flame at her shoulder, lounging on a crescent of lantern-light, chin on her hand, smiling down, dress slipping off one shoulder",
-      "setting": "an endless dark space full of floating paper lanterns"
+      "comp": "lounging on her stomach across a crescent of lantern-light, chin propped on her hands, feet kicking idly, smiling down teasingly, dress slipping off one shoulder",
+      "setting": "an endless dark space full of floating paper lanterns",
+      "cloth": "partial"
     },
     "open": [
       "The lanterns again. {goddess} is lying on her stomach across a crescent of light, chin in her hands, feet kicking idly, her dress slipping off one shoulder and no effort made to fix it.\n\n\"Debt paid. Look at you.\" She looks you over, unhurried. \"Come here and let me see what the work did to you.\"",
@@ -112,19 +113,85 @@
   },
   "remarks": {
     "low": [
-      "A warm draft rattles the shutters. A voice, amused: \"{lady}? Cute. You have taste, I'll give you that. Did she make that sound for you? I'd like to hear it again.\"",
-      "Every lantern in {house} flickers at once. Someone giggles. Nobody else hears it.",
-      "You find a single small ember on your pillow, still warm, burning nothing. Under it, in a very elegant hand: \"Busy week? I enjoyed the show.\""
+      {
+        "text": "A warm draft rattles the shutters. A voice, amused: \"{lady}? Cute. You have taste, I'll give you that. Did she make that sound for you? I'd like to hear it again.\"",
+        "image": {
+          "comp": "peering through a half-open lantern-lit shutter at night with an amused knowing smile, faint shimmer of warm mist",
+          "setting": "a shuttered parlor window of a pleasure house at night, hanging paper lanterns",
+          "sam": false,
+          "cloth": "dressed"
+        }
+      },
+      {
+        "text": "Every lantern in {house} flickers at once. Someone giggles. Nobody else hears it.",
+        "image": {
+          "comp": "leaning against a carved doorway beneath flaring paper lanterns, giggling softly behind one hand with mischievous delight",
+          "setting": "lantern-lit corridor of a pleasure house at night, warm glowing light",
+          "sam": false,
+          "cloth": "dressed"
+        }
+      },
+      {
+        "text": "You find a single small ember on your pillow, still warm, burning nothing. Under it, in a very elegant hand: \"Busy week? I enjoyed the show.\"",
+        "image": {
+          "comp": "hovering playfully beside a candlelit bed tracing a glowing fingertip over a handwritten note on the pillow, teasing smirk",
+          "setting": "Sam's bedroom at night, single ember glowing softly on the pillow",
+          "sam": false,
+          "cloth": "partial"
+        }
+      }
     ],
     "mid": [
-      "\"{n} of them now.\" {goddess} is sitting on the end of the bar, invisible to everyone else, swinging her feet. \"I'm not counting. I'm a goddess, I just know.\" Her toe traces a slow line down your leg.",
-      "{goddess} appears in your room the night after you were with someone else. She doesn't say anything. She just sits there glowing at you, pointedly, her dress sliding lower by the minute, until you apologize for something you can't name.",
-      "\"{lady} again?\" The voice is at your ear, warm and dry, and a hand you can't see slides inside your belt and squeezes your cock. \"I'll remember that. I'll want to compare.\""
+      {
+        "text": "\"{n} of them now.\" {goddess} is sitting on the end of the bar, invisible to everyone else, swinging her feet. \"I'm not counting. I'm a goddess, I just know.\" Her toe traces a slow line down your leg.",
+        "image": {
+          "comp": "sitting on the edge of a bar counter swinging her bare feet, leaning back on her hands with an amused jealous smirk",
+          "setting": "the bar of a lantern-lit pleasure house at night",
+          "sam": true,
+          "pov": true,
+          "cloth": "dressed"
+        }
+      },
+      {
+        "text": "{goddess} appears in your room the night after you were with someone else. She doesn't say anything. She just sits there glowing at you, pointedly, her dress sliding lower by the minute, until you apologize for something you can't name.",
+        "image": {
+          "comp": "sitting on the edge of the bed glaring pointedly at the viewer, wrap dress slipping lower off her shoulder, flushed jealous pout",
+          "setting": "Sam's bedroom at night, glowing lantern-light",
+          "sam": true,
+          "pov": true,
+          "cloth": "partial"
+        }
+      },
+      {
+        "text": "\"{lady} again?\" She slips behind you out of the dark, warm and dry at your ear, her hand sliding straight inside your belt to squeeze your cock. \"I'll remember that. I'll want to compare.\"",
+        "scene": "samact:manual_give"
+      }
     ],
     "high": [
-      "Every candle in {house} gutters out at once. In the dark, {goddess}'s voice: \"I brought you here. I could have picked anyone. Don't make me regret it.\" The candles relight themselves, one at a time.",
-      "{goddess} catches you in the hallway, pins you to the wall by the collar and kisses you hard enough to hurt, one hand already down your trousers. \"So you remember who was first,\" she says, and is gone.",
-      "\"How many, {sam}?\" She isn't smiling. Her hand is on your chest, warm and possessive. \"How many before you look up?\""
+      {
+        "text": "Every candle in {house} gutters out at once. In the dark, {goddess}'s voice: \"I brought you here. I could have picked anyone. Don't make me regret it.\" The candles relight themselves, one at a time.",
+        "image": {
+          "comp": "standing close in the dark as candle flames flare back to life around her, intense possessive stare",
+          "setting": "a dim lantern-lit hallway, flickering candles",
+          "sam": true,
+          "pov": true,
+          "cloth": "dressed"
+        }
+      },
+      {
+        "text": "{goddess} catches you in the hallway, pins you to the wall by the collar and kisses you hard enough to hurt, one hand already down your trousers. \"So you remember who was first,\" she says, and is gone.",
+        "scene": "samact:kiss"
+      },
+      {
+        "text": "\"How many, {sam}?\" She isn't smiling. Her hand is on your chest, warm and possessive. \"How many before you look up?\"",
+        "image": {
+          "comp": "pressing one palm flat against the viewer's chest, leaning close with a serious possessive gaze, not smiling",
+          "setting": "a quiet candlelit room at night",
+          "sam": true,
+          "pov": true,
+          "cloth": "dressed"
+        }
+      }
     ]
   },
   "remarkChoices": [
@@ -144,16 +211,19 @@
   ],
   "binding": {
     "title": "Bound",
+    "act": "missionary",
+    "actSetting": "an endless dark space full of floating paper lanterns burning bright gold",
+    "climaxBtn": "Finish inside her",
     "image": {
       "key": "binding",
-      "comp": "a goddess and a man embracing in bed, her skin glow fading, gold markings dimming and the ember-flame guttering, lantern-light dying around them, tears and a smile",
+      "comp": "lying naked in bed clinging tightly to the viewer, tears and a relieved tender smile, lantern glow fading and markings dimming around them",
       "setting": "an endless dark space full of floating paper lanterns going out one by one",
       "sam": true,
       "pov": true,
       "cloth": "nude"
     },
-    "text": "This time the lanterns don't wait for you to wake. {goddess} is there before the dark is finished, and she doesn't say \"again.\"\n\n\"{names} has lived it all now. Everything a life can carry. And so have I, watching you.\" She pulls you down with her. \"I told you it was a whim. It wasn't. Years, {sam}. Years of watching you be kind when nobody was looking: the stray cat you fed every single morning for two years, all the little things nobody ever thanked you for. I wanted you the whole time. I'm done watching.\"\n\nShe doesn't stop you this time. She holds on, and when you finish inside her the light goes out of her like a breath let go: the glow under her skin, the gold markings, the little ember-flame, the warmth that never came from anywhere. Every lantern goes dark at once.\n\nWhat's left is a woman with gold eyes, shaking, laughing, holding on to you.",
-    "after": "\"Oh,\" she says. \"Oh, that's cold. Is it always this cold?\" She burrows into you. \"I'm yours now. All of me, the little that's left. I wanted you since before the truck, and I'd never have said so with the light still on. You'll have to build me back up, {sam}.\"\n\nShe has a tab of her own now. She'll do what she likes each week. You can tell her what you'd like; she might even listen.",
+    "text": "This time the lanterns don't wait for you to wake. {goddess} is there before the dark is finished, and she doesn't say \"again.\"\n\n\"{names} has lived it all now. Everything a life can carry. And so have I, watching you.\" She pulls you down into the warm dark, her bare skin fever-hot against yours as her wrap vanishes like smoke. \"I told you it was a whim. It wasn't. Years, {sam}. Years of watching you be kind when nobody was looking: the stray cat you fed every single morning for two years, all the little things nobody ever thanked you for. I wanted you the whole time. I'm done watching.\"\n\nShe parts her bare thighs, locks her ankles tightly around your waist, and guides your hard cock straight against her soaking, trembling entrance. For the first time there is no hand against your chest, no vanishing act at the last heartbeat—just her eyes blazing wet and wide inches from yours as you sink all the way inside her scorching pussy and start fucking her without holding back. Every lantern overhead burns blinding bright with each deep, desperate thrust. \"Don't pull out,\" she gasps into your mouth, nails digging into your shoulders, pussy clamping hard around your shaft as she comes shaking beneath you. \"Not this time—don't you dare stop, {sam}. Finish inside me. Make me yours.\"",
+    "after": "You bury yourself to the hilt and spill hot and deep inside her—and the light goes out of her like a breath let go: the glow under her skin, the gold markings along her collarbones and hips, the little ember-flame, the unearthly warmth that never came from anywhere. Every paper lantern in the dark goes out at once.\n\nWhat's left in your arms is a breathless mortal-warm woman with bright eyes, shaking, laughing, holding on to you with your cum still warm inside her.\n\n\"Oh,\" she says. \"Oh, that's cold. Is it always this cold?\" She burrows straight against your chest. \"I'm yours now. All of me, the little that's left. I wanted you since before the truck, and I'd never have said so with the light still on. You'll have to build me back up, {sam}.\"\n\nShe has a tab of her own now. She'll do what she likes each week. You can tell her what you'd like; she might even listen.",
     "button": "Hold her"
   },
   "focus": {
@@ -206,7 +276,7 @@
   "night": {
     "image": {
       "key": "night",
-      "comp": "a goddess with faintly glowing bronze skin lying close against a man in bed at night, gold markings softly lit, a small ember-flame floating over them, content smile",
+      "comp": "lying close against the viewer in bed at night, markings softly lit, content loving smile",
       "setting": "Sam's bedroom at night, lantern-light",
       "sam": true,
       "pov": true,
@@ -245,8 +315,10 @@
       "title": "Whole again",
       "image": {
         "key": "stay",
-        "comp": "a radiant goddess fully glowing again, gold markings blazing, a bright ember-flame circling her shoulder, holding a man's hand on a rooftop at night, lanterns rising into the sky",
-        "setting": "a rooftop at night, hundreds of paper lanterns floating up"
+        "comp": "standing radiant and luminous on a night rooftop, markings blazing bright, holding the viewer's hand with a warm devoted smile as lanterns rise into the sky",
+        "setting": "a rooftop at night, hundreds of paper lanterns floating up",
+        "sam": true,
+        "pov": true
       },
       "text": "It happens on an ordinary night. The light comes back all at once: the glow under her skin, the gold markings, the ember-flame, the warmth from nowhere. {goddess} is a goddess again, entirely.\n\nThe lanterns are waiting. She can feel them pulling.\n\nShe takes your hand instead. \"I could go,\" she says. \"I could pick someone new and watch. That's what I'm for.\" Her fingers tighten. \"I don't want to watch anymore. I'm staying.\"",
       "button": "Stay",
@@ -256,8 +328,9 @@
       "title": "Whole again",
       "image": {
         "key": "leave",
-        "comp": "a radiant goddess fully glowing again, gold markings blazing, an ember-flame at her shoulder, rising into a night sky full of lanterns, looking back over her shoulder",
-        "setting": "a rooftop at night, hundreds of paper lanterns floating up"
+        "comp": "rising gently into a night sky full of glowing lanterns, markings blazing bright, looking back over her shoulder with a wistful smile",
+        "setting": "a rooftop at night, hundreds of paper lanterns floating up",
+        "sam": false
       },
       "text": "It happens on an ordinary night. The light comes back all at once: the glow under her skin, the gold markings, the ember-flame, the warmth from nowhere. {goddess} is a goddess again.\n\nShe looks at you for a long moment. \"You gave it all back. Every bit of it.\" She touches your face. \"But you never really asked me to stay, did you.\"\n\nThe lanterns rise, and she goes with them.",
       "button": "Watch her go",
@@ -410,6 +483,10 @@
       "game": [
         "{alias} stays in character for exactly as long as it's fun, and then stops pretending she came here to talk.",
         "\"Rules are rules,\" she reminds you, sweetly, already reaching for you. \"You remember the important one.\""
+      ],
+      "true": [
+        "No disguise tonight, no borrowed name—just her, blazing warm and impossibly close, pushing you back with a look that says she's done pretending to behave.",
+        "\"Stop talking,\" she whispers against your mouth, markings flaring bright as she takes hold of you."
       ]
     },
     "acts": {
@@ -417,7 +494,7 @@
         "She kisses you like she's been thinking about it all day: unhurried, deep, her fingers in your hair, her body pressed close enough that you can feel her heartbeat. Every time you lean in for more she gives you a little less."
       ],
       "massage_give": [
-        "Her hands find the knots in your shoulders and undo them one by one, warm palms working lower and lower down your back, until you're melted into the sheets and every touch makes you hold your breath."
+        "Her hands find the knots in your shoulders and undo them one by one, warm palms working lower and lower down your back, until you're melted into her hands and every touch makes you hold your breath."
       ],
       "manual_give": [
         "Her oiled hand slides down and closes firmly around your cock, and she takes her time, watching your face the whole while as if it's the most interesting thing in this world. She learns exactly what makes you gasp, and then strokes you again, slower."
@@ -432,7 +509,7 @@
         "She pushes you down and climbs on top of you, sinking down onto your cock with a long, shaky sigh, as if it's been a long time coming for her too. Then she rides you, slow and deep, her hands braced on your chest, hair spilling gold-tipped around you both."
       ],
       "missionary": [
-        "She pulls you down on top of her and wraps her legs around your waist, guiding your shaft into her wet heat, and for a while there's nothing but her breath against your ear and the rhythm she sets with her heels at your back."
+        "She pulls you down over her and wraps her legs tight around your waist, guiding your cock all the way into her dripping heat, setting a slow, maddening rhythm with her heels at your back while her breath burns hot against your ear."
       ],
       "doggy": [
         "She turns over on her hands and knees and looks back at you over her shoulder, an invitation and a dare. You take her from behind, her hips in your hands, driving deep into her slick pussy as her laugh turns into something breathless and wordless."
@@ -448,7 +525,7 @@
         "\"Almost,\" she agrees, sweetly, when you gasp it. Then her touch is gone, she's gone, and you're left staring at the ceiling, painfully, ridiculously close and going absolutely nowhere."
       ],
       "3": [
-        "You're right on the edge of coming, and she knows it; she feels it. She leans down, kisses you once, and lifts away from you at the last possible second. \"No,\" she whispers, almost tender. \"Not yet. Not ever, if I'm careful.\" The lamp gutters. When it steadies, you're alone in a cold bed, left high and dry and shaking with it.",
+        "You're right on the edge of coming, and she knows it; she feels it. She leans down, kisses you once, and lifts away from you at the last possible second. \"No,\" she whispers, almost tender. \"Not yet. Not ever, if I'm careful.\" The lamp gutters. When it steadies, you're alone in the quiet, left aching, high and dry, and shaking with it.",
         "One more moment and you'd have come. She doesn't give you that moment. She slips out from under your hands like smoke, and the room is empty, and you lie there for a long, long time, every nerve still screaming for the rest."
       ]
     },

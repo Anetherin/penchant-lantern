@@ -69,7 +69,7 @@ const isoGamesOn = () => { const I = iso(); return !((S.ngppCycle||0) > 0) && I.
 /* ---------- the beats ---------- */
 function evIsoldeBeat(k){
   const B = ISO.beats[k], V = isoVars(), I = iso(), BB = ISB();
-  const ev = (choices, extra) => Object.assign({title:isoT(B.title, V), who:ISO_ID, scene:'portrait', text:isoBeatText(k, V), choices}, extra||{});
+  const ev = (choices, extra) => Object.assign({title:isoT(B.title, V), who:ISO_ID, scene:isoScene('beat_' + k, B.image, 'portrait'), text:isoBeatText(k, V), choices}, extra||{});
   if(k==='taunt') return ev([
     {label:B.banter.label, fx(){ isoAdvance(); if(S.sam.charm + rnd(0,50) > 40){ S.rep = clamp(S.rep+3); samStat('charm',2); isoDesire(3); return isoT(B.banter.win, V); } return isoT(B.banter.lose, V); }},
     {label:B.polite.label, fx(){ isoAdvance(); return isoT(B.polite.res, V); }}]);
@@ -91,19 +91,24 @@ function evIsoldeBeat(k){
     const glory = () => { S.rep = clamp(S.rep + (W.renown ?? 3)); lady.popularity = clamp((lady.popularity||0) + 5); moodAdd(lady, 8); };
     const ch = [];
     if(S.gold >= stake) ch.push({label:isoT(B.gold.label, VV), fx(){ isoAdvance(); if(won()){ S.gold += stake; glory(); return isoT(B.gold.win, VV); } S.gold -= stake; moodAdd(lady, -4); return isoT(B.gold.lose, VV); }});
-    ch.push({label:isoT(B.kiss.label, VV), fx(){ isoAdvance(); if(won()){ glory(); isoDesire(8); return isoT(B.kiss.win, VV); } isoDesire(10); return isoT(B.kiss.lose, VV); }});
+    ch.push({label:isoT(B.kiss.label, VV), fx(){
+      isoAdvance();
+      const w = won();
+      if(w){ glory(); isoDesire(8); } else isoDesire(10);
+      return {text: isoT(w ? B.kiss.win : B.kiss.lose, VV), img:{wid:ISO_ID, scene:'samact:kiss~~iso_wager', cloth:'dressed'}};
+    }});
     ch.push({label:B.decline.label, fx(){ isoAdvance(); return isoT(B.decline.res, VV); }});
     return ev(ch, {text:isoBeatText(k, VV)});
   }
   if(k==='truce') return ev([
     {label:B.kiss.label, fx(){ I.truce = true; isoAdvance(); return isoNightResult(ISO.nights.find(n=>n.id==='desk') || ISO.nights[0], isoT(B.kiss.res, V) + '\n\n' + isoT(B.first, V), {how:'truce'}); }},
-    {label:B.leave.label, fx(){ I.truce = true; I.wk = S.week; samLog(isoT(ISO.log.truce)); return isoT(B.leave.res, V); }}], {scene:'casual'});
+    {label:B.leave.label, fx(){ I.truce = true; I.wk = S.week; samLog(isoT(ISO.log.truce)); return isoT(B.leave.res, V); }}], {scene:isoScene('beat_truce', B.image, 'casual')});
   return null;
 }
 function evIsoldeLovers(){
   const B = ISO.beats.lovers, V = isoVars(), I = iso();
   const done = () => { I.lovers = true; I.doneCycle = S.cycle || 1; isoAdvance(); samLog(isoT(ISO.log.lovers)); };
-  return {title:isoT(B.title, V), who:ISO_ID, scene:'sam_date', text:isoBeatText('lovers', V), choices:[
+  return {title:isoT(B.title, V), who:ISO_ID, scene:isoScene('beat_lovers', B.image, 'portrait'), text:isoBeatText('lovers', V), choices:[
     {label:B.join.label, fx(){ done(); return isoT(B.join.res, V); }},
     {label:B.stay.label, fx(){ done(); return isoT(B.stay.res, V); }}]};
 }
@@ -131,7 +136,7 @@ function evIsoldeNight(how){
     {label:isoT(A.take.label, {p:pT}), fx(){ const won = Math.random()*100 < pT; return isoNightResult(n, isoT(won ? A.take.win : A.take.lose, V), {how, approach:'take', pose: won ? 'take' : 'yield', won, lost:!won}); }},
     {label:isoT(A.contest.label, {p:pC}), fx(){ const won = Math.random()*100 < pC; return isoNightResult(n, isoT(A.contest.start || '', V), {how, approach:'contest', won, lost:!won, after:isoT(won ? A.contest.win : A.contest.lose, V)}); }}];
   if(I.lovers) choices.push({label:isoT(ISO.joinLabel), fx(){ return isoNightResult(n, isoT(ISO.join, V) + '\n\n' + isoT(A.yield.res, V), {how, approach:'yield', won:false}); }});
-  return {title:isoT(n.title, V), who:ISO_ID, scene:'sam_date', text:lead + '\n\n' + isoT(n.text, V), choices};
+  return {title:isoT(n.title, V), who:ISO_ID, scene:isoScene('night_' + n.id, n.image, 'casual'), text:lead + '\n\n' + isoT(n.text, V), choices};
 }
 // one night's effects and result page: line (the approach or the truce kiss), then the night's finish, with her picture
 function isoNightResult(n, line, o){
@@ -150,8 +155,19 @@ function isoNightResult(n, line, o){
   const text = [line, fin ? isoT(fin, isoVars()) : '', o.after || ''].filter(Boolean).join('\n\n') + (cost ? `\n\n(Sam's energy −${cost})` : '');
   return {text, img:{wid:ISO_ID, scene:`samact:${act}~~iso_${n.id}`}};
 }
-// image backdrop for her nights (scenes.js samact: chain)
-const isoSetting = ctx => { const m = /^iso_(.+)$/.exec(ctx||''); if(!m) return null; const n = [...(ISO.nights||[]), ...(ISO.games||[])].find(x=>x.id===m[1]); return n ? n.setting : null; };
+// image backdrop for her nights & story scenes (scenes.js samact: chain)
+const isoScene = (key, img, fb) => (img && img.comp ? dynScene('iso_' + key, img) : null) || fb || 'portrait';
+const isoIsBath = ctx => {
+  const m = /^iso_(.+)$/.exec(ctx || ''); if(!m) return false;
+  const n = [...(ISO.nights || []), ...(ISO.games || [])].find(x => x.id === m[1]);
+  return !!(n && (n.bath || (n.image && n.image.bath)));
+};
+const isoSetting = ctx => {
+  const m = /^iso_(.+)$/.exec(ctx || ''); if(!m) return null;
+  if(m[1] === 'wager') return (ISO.beats && ISO.beats.wager && ISO.beats.wager.setting) || 'a crowded lantern-lit festival square at night, red paper lanterns overhead';
+  const n = [...(ISO.nights || []), ...(ISO.games || [])].find(x => x.id === m[1]);
+  return n ? n.setting : null;
+};
 
 /* ---------- her games (NG+ repeatables) ---------- */
 function evIsoldeGame(){
@@ -170,7 +186,7 @@ function evIsoldeGame(){
     return {text: isoT(won ? g.win : g.lose, V) + `\n\n(${won ? '+' : '−'}${fmt(gold)}g${won ? ', +renown' : ''}; Sam's energy −${cost})`,
       img:{wid:ISO_ID, scene:`samact:${won ? g.winAct : g.loseAct}~~iso_${g.id}`}};
   };
-  return {title:isoT(g.title, V), who:ISO_ID, scene:'casual', text:isoT(g.text, V), choices:[
+  return {title:isoT(g.title, V), who:ISO_ID, scene:isoScene('game_' + g.id, g.image, 'casual'), text:isoT(g.text, V), choices:[
     {label:isoT(g.bet, {p}), fx(){ return play(p, 1); }},
     {label:isoT(g.raise, {p:pr}), fx(){ return play(pr, 2); }},
     {label:isoT(ISO.gameDecline || 'Not tonight'), fx(){ isoDesire(-2); return isoT(ISO.gameDeclineRes || 'She pouts, and promises to ask again.'); }}]};

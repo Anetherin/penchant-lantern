@@ -81,7 +81,7 @@ function repAll(R){
     <div class="grid2"><div><h3 style="margin-top:10px">Ledger</h3><table>${ledger}</table></div>
       <div><h3 style="margin-top:10px">Houses</h3><table><tr><th>House</th><th>Clients</th><th>Income</th><th>Upkeep</th><th>Sat.</th><th>Pop.</th><th>Class</th></tr>${houseRows}</table></div></div>
     ${(R.houses||[]).map(h=>{ const x = repHouseExtra(h); return x ? `<div class="muted"><b>${esc(h.name)}</b>: ${x}</div>` : ''; }).join('')}
-    ${R.samActs&&R.samActs.length?`<h3 style="margin-top:10px">Sam's week</h3><div class="muted">${R.samActs.map(esc).join(' · ')}</div>`:''}
+    ${(R.samActs&&R.samActs.length) || (R.godClaim&&R.godClaim.length) ? `<h3 style="margin-top:10px">Sam's week</h3>${R.samActs&&R.samActs.length?`<div class="muted">${R.samActs.map(esc).join(' · ')}</div>`:''}${repGodClaim(R)}` : ''}
     ${R.lines.length?`<h3 style="margin-top:10px">Notes</h3>${R.lines.map(l=>`<div>${esc(l)}</div>`).join('')}`:''}
     <h3 style="margin-top:10px">Ladies</h3>${ladyRows ? `<table class="rep-ladies"><tr><th>Name</th><th>Job</th><th>Clients</th><th>Earned</th><th>Mood</th><th></th></tr>${ladyRows}</table>` : '<p class="muted">Nobody worked this week.</p>'}`;
 }
@@ -191,4 +191,11 @@ async function repShowSaved(R, wid){
     if(!REPV || REPV.view!=='w:'+wid || !box.isConnected) return;
     box.dataset.hide = '0'; showImg('hl'+i, wid, h.scene, null, 'manual');
   }
+}
+function repGodClaim(R){
+  return (R.godClaim||[]).map((c, i)=>{
+    const id = 'godcl'+i;
+    return `<div class="hl" style="margin-top:6px">✨ ${esc(c.text)}
+      <button class="sm" id="${id}_t" onclick="toggleImgBtn('${id}','${c.wid}','${c.scene}')">🖼 Show image</button><div id="${id}" class="hlimg" data-ext="1"></div></div>`;
+  }).join('');
 }

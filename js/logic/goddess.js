@@ -22,8 +22,8 @@ const godNpcId = r => 'npc_goddess_' + r;
 Object.entries(GOD_FORMS).forEach(([r, f], i)=>{
   const lk = GOD.look || {};
   const race = RACES[f.race || r] ? (f.race || r) : 'human';
-  NPCS[godNpcId(r)] = {id:godNpcId(r), name:GOD.name, race, sub:f.sub || '', age:999, outfit:'custom', customOutfit:f.outfit || lk.outfit || '', under:'plain', imgVar:{},
-    seed:7130417 + i*101, lewd:95, trust:100, traits:[], acts:{}, menu:[], counts:{}, body:Object.assign({}, BODY_DEF, f.body || {}),
+  NPCS[godNpcId(r)] = {id:godNpcId(r), name:GOD.name, race, sub:f.sub || '', age:999, outfit:'custom', customOutfit:f.outfit || lk.outfit || '', under:'sheer', favColor:'crimson', personality:'Playful trickster', imgVar:{},
+    seed:7130417 + i*101, lewd:95, trust:100, lust:75, traits:[], acts:{}, menu:[], counts:{}, body:Object.assign({}, BODY_DEF, f.body || {}),
     design:{build:f.build || '', hairStyle:f.hairStyle || lk.hairStyle || '', hairColor:f.hair || lk.hair || '', eyes:f.eyes || lk.eyes || '', skin:f.skin || lk.skin || '', features:[lk.signature, f.features].filter(Boolean).join(', ')}};
 });
 const GFOCUS = ['indulge','business','watch','tutelage','guild','whim'];
@@ -71,12 +71,12 @@ const goddessActions = () => 1 + Math.floor((G().divinity||0) / ((GB().divinity|
 
 /* ---------- scenes (modal with her picture) ---------- */
 let GINTRO = null;
-function gScene(title, text, img, btn, next){
+function gScene(title, text, img, btn, next, cloth){
   GNEXT = next || null;
   const sc = img ? (typeof img === 'string' ? img : dynScene('goddess_' + (img.key || title.replace(/\W+/g,'_').toLowerCase()), img)) : 'portrait';
   modal(`<h2>${esc(title)}</h2><div id="gImg"></div><p class="story">${esc(text)}</p><div class="row"><button class="primary" onclick="gNext()">${esc(btn || 'Continue')}</button></div>`, {lock:true});
   $('#modal').scrollTop = 0;
-  showImg('gImg', godId(), sc || 'portrait');
+  showImg('gImg', godId(), sc || 'portrait', cloth);
 }
 function gNext(){ const n = GNEXT; GNEXT = null; GINTRO = null; closeModal(); if(typeof n === 'function') n(); else render(); }
 function gIntroPick(i){
@@ -127,7 +127,7 @@ function goddessRebirth(info, next){
   const pn = info.partner && NAMED[info.partner] ? NAMED[info.partner].name.split(' ')[0] : '';
   const ctx = {house: info.house && HOUSES[info.house] ? HOUSES[info.house].name : '', partner: pn, n: (info.lovers||[]).length, names: (info.lovers||[]).join(', '),
     past: info.past && PASTS[info.past] ? PASTS[info.past].label.toLowerCase() : ''};
-  const text = gpara(gtxt(R.open, ctx), gtxt(R[pace], ctx), (info.lovers||[]).length ? gtxt(R.lovers, ctx) : gtxt(R.alone, ctx),
+  const text = gpara(gtxt(g.knows && R.knows ? R.knows : R.open, ctx), gtxt(R[pace], ctx), (info.lovers||[]).length ? gtxt(R.lovers, ctx) : gtxt(R.alone, ctx),
     info.past && info.past!=='none' ? gtxt(((PASTS[info.past]||{}).goddess||{}).again, ctx) : '',
     gtxt((R.jealous||{})[jTier()], ctx), gtxt(R.close, ctx));
   save();
@@ -141,7 +141,9 @@ function goddessBind(info, next){
   const ladies = rebornFull(fullAt() + 1).map(w=>(w.name||'someone').split(' ')[0]);
   const ctx = {names: ladies.join(', '), lady: ladies[0] || 'her', house: info && info.house && HOUSES[info.house] ? HOUSES[info.house].name : ''};
   save();
-  gScene(T.title || 'Bound', gpara(gtxt(T.text, ctx), gtxt(T.after, ctx)), T.image, T.button || 'Stay with her', ()=>{ TAB = 'goddess'; if(next) next(); else render(); });
+  const done = ()=>{ TAB = 'goddess'; if(next) next(); else render(); };
+  const after = ()=> gScene(T.title || 'Bound', gtxt(T.after, ctx), T.image, T.button || 'Hold her', done);
+  gScene(T.title || 'Bound', gtxt(T.text, ctx), 'samact:' + (T.act || 'missionary') + '~~gt_binding', T.climaxBtn || 'Finish inside her', after, 'nude');
 }
 // A house she has something to say about (bought mid-cycle): appended to the deed event from cycle 2 on.
 function goddessHouseNote(id){
@@ -151,7 +153,7 @@ function goddessHouseNote(id){
 
 /* ---------- weekly: before the houses run (her actions) and after (income, events, drift) ---------- */
 function goddessPlan(){
-  GW = {biz:{}, watch:{}, saved:0, lines:[], hl:[]};
+  GW = {biz:{}, watch:{}, saved:0, lines:[], hl:[], samClaim:[]};
   const g = G(); if(!goddessActive()) return;
   const A = GB().actions || {}, M = GB().mood || {}, p = goddessPower(), n = goddessActions();
   const lines = GW.lines, W = S.workers.filter(w=>w.job!=='rest' || (w.lust||0) > 0);
@@ -196,7 +198,9 @@ function goddessPlan(){
       const C = A.claim || {}, newest = S.workers.filter(w=>!w.isPartner).slice(-3);
       if(Math.random() < 0.5 || !newest.length){
         S.sam.energy = Math.max(0, S.sam.energy - (C.samEnergy ?? 15)); g.jealousy = clamp(g.jealousy - (C.cut ?? 10)); g.love = clamp(g.love + 1);
-        lines.push(gtxt((GOD.claim||{}).sam));
+        const ct = gtxt((GOD.claim||{}).sam);
+        lines.push(ct);
+        GW.samClaim.push({wid: godId(), text: ct, scene: 'samact:cowgirl'});
       } else {
         const w = pick(newest); g.claimWk = S.week; moodAdd(w, C.mood ?? -4); w.energy = clamp(w.energy - 10, 0, maxEnergy(w)); g.jealousy = clamp(g.jealousy - (C.cut ?? 10) / 2);
         lines.push(gtxt((GOD.claim||{}).lady, {lady:w.name.split(' ')[0]}));
@@ -213,6 +217,7 @@ function goddessAfter(R){
     let add = 0; (R.houses||[]).forEach(hr=>{ const b = GW.biz[hr.id]; if(b) add += Math.round(hr.income * b); });
     if(add){ R.income += add; S.gold += add; R.godBiz = add; }
     GW.lines.forEach(t=>R.lines.push(`✨ ${t}`)); GW.hl.forEach(e=>R.hl.push(e));   // her nights with the ladies, with a picture, on their pages
+    if(GW.samClaim && GW.samClaim.length) R.godClaim = GW.samClaim.slice();
     if(add) R.lines.push(`✨ ${GN()} brought in an extra ${fmt(add)}.`);
     if(GW.saved) R.lines.push(`✨ ${gtxt((GOD.focus||{}).watch && GOD.focus.watch.saved, {n:GW.saved})}`);
     g.last = GW.lines.slice(0, 8);
@@ -268,17 +273,19 @@ function evGoddess(){
   if(!T) return canRemark ? evGoddessRemark() : null;
   const fk = T.form==='true' ? GOD_TRUE : GOD_FORMS[T.form] ? T.form : gDisguise(), F = GOD_FORMS[fk] || {};
   const ctx = {house:curH().name, n:S.workers.length, alias:F.alias || GN(), form:F.desc || 'a woman', race:(F.label||'').toLowerCase(), times:(g.met2||0)};
-  const sc = T.image ? dynScene('goddess_' + T.id + (T.form==='disguise' ? '_' + fk : ''), T.image) : 'portrait';
+  const openSc = T.image ? dynScene('goddess_' + T.id + (T.form==='disguise' ? '_' + fk : ''), T.image) : 'portrait';
+  const sc = T.actScene ? 'samact:' + T.actScene + '~~gt_' + T.id : openSc;
   // expanded scenes: intro (her arrival) is its own page, then wonder (Sam's thoughts) with the choices; old ones keep text
-  const pre = T.intro ? [{text: gtxt(T.intro, ctx), btn: gtxt(T.introBtn || (GOD.distract||{}).introBtn || 'Continue', ctx)}] : null;
+  const pre = T.intro ? [{text: gtxt(T.intro, ctx), btn: gtxt(T.introBtn || (GOD.distract||{}).introBtn || 'Continue', ctx), scene: openSc, cloth: T.actScene ? ((T.image && T.image.cloth) || null) : undefined}] : null;
   const body = T.intro ? gtxt(T.wonder || '', ctx) || gtxt(T.text || '', ctx) : gtxt(T.text, ctx);
-  return {title: gtxt(T.title, ctx), who:godNpcId(fk), scene:sc, pre, text: body, choices:(T.choices||[{label:'…'}]).map(c=>({label:gtxt(c.label, ctx), fx(){
+  return {title: gtxt(T.title, ctx), who:godNpcId(fk), scene:sc, cloth: T.actCloth || undefined, pre, text: body, choices:(T.choices||[{label:'…'}]).map(c=>({label:gtxt(c.label, ctx), fx(){
     if(!T.repeat) g.teases = [...(g.teases||[]), T.id];
     g.met2 = (g.met2||0) + 1; if(T.reveal || c.reveal) g.knows = true;
     g.love = clamp((g.love||0) + (c.love||0)); g.jealousy = clamp((g.jealousy||0) + (c.jealousy||0));
     if(c.energy) samEnergyAdd(c.energy);
     const act = gDistractAct(T, c);
     if(act) EVQ.unshift(()=>evGoddessDistract(T, c, act, fk, ctx));
+    if(!act && c.resAct) return {text: gtxt(c.res, ctx), img: {wid: godNpcId(fk), scene: 'samact:' + c.resAct + '~~gt_' + T.id, cloth: c.resCloth}};
     return gtxt(act && c.resIn ? c.resIn : c.res, ctx);   // resIn: the moment before she distracts him (she hasn't gone yet)
   }}))};
 }
@@ -286,7 +293,7 @@ function evGoddess(){
    and leaves him high and dry (kisses: just wanting more). goddess.json → distract (lead by phase, acts by service, dry by tier);
    balance.json → goddess.tease (tier by cycle, services per tier, chance by phase). The picture is samact:<act> in her
    disguise, at the tease's own setting (scene ctx gt_<id>, gTeaseSetting). ---------- */
-const gPhase = T => T.phase || (T.id==='reveal' ? 'reveal' : /^su_/.test(T.id) ? 'suspicion' : /^gm_/.test(T.id) ? 'game' : /^tr_/.test(T.id) ? 'true' : 'stranger');
+const gPhase = T => T.phase || (T.id==='reveal' ? 'reveal' : /^su_/.test(T.id) ? 'suspicion' : /^gm_/.test(T.id) ? 'game' : (T.form==='true' || /^tr_/.test(T.id)) ? 'true' : 'stranger');
 const gTeaseTier = () => { const B = (GB().tease||{}).tierByCycle || [1,1,1,2,3,3]; return B[Math.min(B.length-1, S.cycle||1)] || 1; };
 function gDistractAct(T, c){
   const B = GB().tease || {};
@@ -295,23 +302,34 @@ function gDistractAct(T, c){
   const list = [].concat(c.act || T.act || ((B.acts||{})[gTeaseTier()]) || ['kiss']).filter(a=>actById(a));
   return list.length ? actKey(pick(list)) : null;
 }
-const gTeaseSetting = ctx => { const m = /^gt_(.+)$/.exec(ctx||''); if(!m) return null; const T = (GOD.teases||[]).find(t=>t.id===m[1]) || (typeof WALKS!=='undefined' && WALKS.goddess && (WALKS.goddess.disguise||[]).find(t=>t.id===m[1])); return T && T.image && T.image.setting || null; };
+function gTeaseByCtx(ctx){
+  const m = /^gt_(.+)$/.exec(ctx || ''); if(!m) return null;
+  if(m[1] === 'binding') return GOD.binding || null;
+  return (GOD.teases || []).find(t => t.id === m[1])
+    || (typeof WALKS !== 'undefined' && WALKS.goddess && (WALKS.goddess.disguise || []).find(t => t.id === m[1]))
+    || null;
+}
+const gTeaseSetting = ctx => { const T = gTeaseByCtx(ctx); return (T && (T.actSetting || (T.image && T.image.setting))) || null; };
+const gTeaseIsBath = ctx => { const T = gTeaseByCtx(ctx); return !!(T && T.image && (T.image.bath || T.image.towel)); };
 function evGoddessDistract(T, c, act, fk, ctx){
   const D = GOD.distract || {}, tier = actTier(act), ph = gPhase(T);
   const x = Object.assign({}, ctx, {act: actLabel(act).toLowerCase()});
   const lead = gtxt(c.lead || T.lead || (D.lead||{})[ph] || (D.lead||{}).stranger || '', x);
-  const line = gtxt((D.acts||{})[act] || actLine(act, {name:x.alias}), x);
+  const line = gtxt(c.line || T.line || (D.acts||{})[act] || actLine(act, {name:x.alias}), x);
   const dry = c.dry || T.dry || (D.dry||{})[tier] || (D.dry||{})[1] || '';
-  return {title: gtxt(T.title, ctx), who:godNpcId(fk), scene:'samact:' + act + '~~gt_' + T.id, text: gpara(lead, line),
-    choices:[{label: gtxt((D.button||{})[tier] || 'Almost…', x), fx(){ return gtxt(dry, x); }}]};
+  const btn = c.dryBtn || T.dryBtn || (D.button||{})[tier] || 'Almost…';
+  const cloth = c.actCloth || T.actCloth || undefined;
+  return {title: gtxt(T.title, ctx), who:godNpcId(fk), scene:'samact:' + act + '~~gt_' + T.id, cloth, text: gpara(lead, line),
+    choices:[{label: gtxt(btn, x), fx(){ return gtxt(dry, x); }}]};
 }
 function evGoddessRemark(){
   const g = G(); if(g.left) return null;
   const R = (GOD.remarks||{})[jTier()] || []; if(!R.length) return null;
-  const r = pick(R), newest = S.workers[S.workers.length-1];
+  const r = pick(R), ri = R.indexOf(r), newest = S.workers[S.workers.length-1];
   if(!g.bound && (S.cycle||1) < (GOD.remarksFrom ?? 3)) return null;
   const ctx = {lady: newest ? newest.name.split(' ')[0] : 'her', n: S.workers.length, house: curH().name};
-  return {title: `${GN()}`, who:godId(), scene:'portrait', text: gtxt(r.text || r, ctx), choices:(r.choices || GOD.remarkChoices || [{label:'…'}]).map(c=>({label:gtxt(c.label), fx(){
+  const sc = (r && r.scene) || (r && r.image ? dynScene('goddess_rem_' + jTier() + '_' + ri, r.image) : 'portrait');
+  return {title: `${GN()}`, who:godId(), scene: sc, cloth: r && r.cloth, text: gtxt(r.text || r, ctx), choices:(r.choices || GOD.remarkChoices || [{label:'…'}]).map(c=>({label:gtxt(c.label), fx(){
     g.love = clamp((g.love||0) + (c.love||0)); g.jealousy = clamp((g.jealousy||0) + (c.jealousy||0)); return gtxt(c.res, ctx); }}))};
 }
 // The end of her story: full divinity again. She stays if she loves him enough; otherwise she goes.

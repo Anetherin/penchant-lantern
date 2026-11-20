@@ -179,15 +179,38 @@ const CHECK = `async () => {
       else if (e.act && st !== 'jump' && actTier(e.act) !== +st) bad.push(at + ': act ' + e.act + ' is stage ' + actTier(e.act));
     }
   }
-  // 5c. goddess teases: check image/cloth consistency and text
+  // 5c. goddess scenes, teases & isolde scenes: check image/cloth consistency, act refs and text
+  const checkActRef = (where, val) => { if (!val) return; [].concat(val).forEach(id => { if (!actById(id)) bad.push(where + ': unknown act ' + id); }); };
+  if (GOD.intro) checkImg('goddess intro', GOD.intro.image, GOD.intro.open);
+  if (GOD.rebirth) checkImg('goddess rebirth', GOD.rebirth.image);
+  if (GOD.binding) { checkImg('goddess binding', GOD.binding.image, GOD.binding.after); checkActRef('goddess binding', GOD.binding.act); }
+  if (GOD.ending) ['stay', 'leave'].forEach(k => GOD.ending[k] && checkImg('goddess ending ' + k, GOD.ending[k].image, GOD.ending[k].text));
+  Object.entries(GOD.linger || {}).forEach(([k, v]) => { if (v && v.image) checkImg('goddess linger ' + k, v.image); });
+  Object.entries(GOD.remarks || {}).forEach(([tier, list]) => (list || []).forEach((r, i) => { if (r && typeof r === 'object' && r.image) checkImg('goddess remark ' + tier + ' ' + i, r.image, r.text); }));
   (GOD.teases || []).forEach((t, i) => {
-    const at = 'goddess tease ' + i;
-    checkImg(at, t.image, t.text);
+    const at = 'goddess tease ' + (t.id || i);
+    if (!t.image) bad.push(at + ': missing image');
+    else checkImg(at, t.image, t.intro || t.text);
+    checkActRef(at + ' act', t.act);
+    checkActRef(at + ' actScene', t.actScene);
     if (!t.text || !String(t.text).trim()) bad.push(at + ': empty text');
     (t.choices || []).forEach((ch, ci) => {
       if (!ch.label || !String(ch.label).trim()) bad.push(at + ' choice ' + ci + ': empty label');
+      checkActRef(at + ' choice ' + ci + ' act', ch.act);
+      checkActRef(at + ' choice ' + ci + ' resAct', ch.resAct);
     });
   });
+  ((WALKS.goddess || {}).disguise || []).forEach((t, i) => {
+    const at = 'walk goddess ' + (t.id || i);
+    if (t.image) checkImg(at, t.image, t.intro || t.text);
+    checkActRef(at + ' act', t.act);
+    (t.choices || []).forEach((ch, ci) => checkActRef(at + ' choice ' + ci + ' act', ch.act));
+  });
+  if (typeof ISO !== 'undefined' && ISO) {
+    Object.entries(ISO.beats || {}).forEach(([k, b]) => { if (b && b.image) checkImg('isolde beat ' + k, b.image, Array.isArray(b.text) ? b.text.join(' ') : b.text); });
+    (ISO.nights || []).forEach((n, i) => { if (n.image) checkImg('isolde night ' + (n.id || i), n.image, n.text); });
+    (ISO.games || []).forEach((g, i) => { if (g.image) checkImg('isolde game ' + (g.id || i), g.image, g.text); });
+  }
   // 6. walk meetings: every partner met on a walk (first meeting), each hire choice
   for (const k of PARTNERS) {
     fresh(starters[0], PARTNERS.find(x => x !== k)); S.gold = 1e6;

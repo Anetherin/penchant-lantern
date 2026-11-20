@@ -21,7 +21,8 @@ function showEvent(ev){
     <p class="muted" id="evAside" style="font-style:italic;margin-bottom:8px;${aside?'':'display:none'}">${esc(aside)}</p>
     <p class="story" id="evText">${esc(pg ? pg.text : ev.text)}</p><div id="evRes"></div>
     <div class="row" id="evChoices">${pg ? `<button class="primary" onclick="evPre()">${esc(pg.btn || 'Continue')}</button>` : evButtons(ev)}</div>`, {lock:true});
-  if(ev.who) showImg('evImg', (pg && pg.who) || ev.who, (pg && pg.scene) || ev.scene || 'portrait', ev.cloth);
+  const cl0 = pg && pg.cloth !== undefined ? pg.cloth : ev.cloth;
+  if(ev.who) showImg('evImg', (pg && pg.who) || ev.who, (pg && pg.scene) || ev.scene || 'portrait', cl0);
 }
 const evButtons = ev => ev.choices.map((c,i)=>`<button ${i===0?'class="primary"':''} onclick="evChoice(${i})">${esc(c.label)}</button>`).join('');
 // next pre-page, or the event's own text and choices (the picture changes only if the page names another scene)
@@ -32,8 +33,8 @@ function evPre(){
   const ae = $('#evAside'); if(ae){ ae.textContent = aside; ae.style.display = aside ? '' : 'none'; }
   $('#evText').textContent = pg ? pg.text : ev.text;
   $('#evChoices').innerHTML = pg ? `<button class="primary" onclick="evPre()">${esc(pg.btn || 'Continue')}</button>` : evButtons(ev);
-  const who = p => (p && p.who) || ev.who, sc = p => (p && p.scene) || ev.scene || 'portrait';
-  if(ev.who && (sc(pg) !== sc(was) || who(pg) !== who(was))) showImg('evImg', who(pg), sc(pg), ev.cloth);
+  const who = p => (p && p.who) || ev.who, sc = p => (p && p.scene) || ev.scene || 'portrait', cl = p => p && p.cloth !== undefined ? p.cloth : ev.cloth;
+  if(ev.who && (sc(pg) !== sc(was) || who(pg) !== who(was) || cl(pg) !== cl(was))) showImg('evImg', who(pg), sc(pg), cl(pg));
   $('#modal').scrollTop = 0;
 }
 function evContinue(){
