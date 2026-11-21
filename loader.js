@@ -56,6 +56,7 @@
     'js/events/walks.js',
     'js/ui/core.js',
     'js/ui/sheet.js',
+    'js/ui/gallery.js',
     'js/ui/report.js',
     'js/ui/settings.js',
     'js/main.js'

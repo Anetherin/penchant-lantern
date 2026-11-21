@@ -29,7 +29,7 @@ function openSheet(id){
   const scenes = sheetScenes(w), nav = ladyNav(w, 'openSheet');
   modal(`${nav}<div class="sheet"><div>
       <div class="row"><select id="sceneSel" onchange="fillCloth();sheetImg()">${scenes.map(s=>`<option value="${s}">${esc(sceneInfo(s,w).label)}</option>`).join('')}</select>
-      <select id="clothSel" onchange="sheetImg()"></select></div>
+      <select id="clothSel" onchange="sheetImg()"></select><button class="sm" onclick="openGallery('${w.id}')" title="Browse her saved images, see what's missing for an outfit or expression, and generate it">🖼 Gallery</button></div>
       <div id="sheetImg"></div></div>
     <div id="sheetInfo"></div></div>${nav}`, {wide:true});
   $('#modal').scrollTop = 0;
