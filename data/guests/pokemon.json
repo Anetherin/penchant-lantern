@@ -1542,11 +1542,11 @@
           "lovers": "cowgirl",
           "backstory": "The Rock-type Island Kahuna of Akala and a pillar of Alola's Elite Four, Olivia runs a bustling Konikoni City jewelry and stone shop when she isn't testing challengers. Warm, earthy, and unapologetically physical, she carries herself with the easy confidence of someone who knows her own strength—though she'll laughingly admit she came to Hollowmere hoping to finally meet someone who can keep up with her.",
           "design": {
-            "hairStyle": "thick, wavy hair swept over one shoulder with a pink hibiscus-and-feather clip",
+            "hairStyle": "short, wavy hair flowing to the left",
             "hairColor": "dark brown",
             "eyes": "warm hazel",
-            "skin": "tanned",
-            "accessories": "pink hibiscus hair clip, stone-set gold bangles and pink anklets",
+            "skin": "dark tan",
+            "accessories": "pink diamond earrings, ornate gold and jewel necklaces, multiple banglets and anklets",
             "accState": "always",
             "expression": "a radiant, teasing grin with warm, inviting eyes"
           },
@@ -1561,7 +1561,7 @@
             "sig_olivia": {
               "label": "Akala Kahuna attire",
               "style": "Revealing",
-              "prompt": "a sleeveless magenta-pink midriff-baring halter top, tight high-waisted black shorts with a diamond-shaped buckle, pink-and-gold bangles and heeled sandals",
+              "prompt": "a pale pink midriff-baring vest, tight pink spandex shorts and heeled sandals",
               "bonus": {"host":1.25,"security":1.2}
             },
             "sp_olivia": {
