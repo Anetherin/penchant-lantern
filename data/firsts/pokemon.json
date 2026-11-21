@@ -648,6 +648,922 @@
           "waitRes": "\"Caught me already, didn't you?\" she grins brightly, grabbing your hand to finish hanging the last lantern."
         }
       }
+    },
+    "serena": {
+      "events": {
+        "1": {
+          "title": "Rehearsal for Two",
+          "text": "After closing, Serena lingers by the parlor mirror adjusting her felt hat before catching your gaze in the glass. Turning with that poised, teasing smile, she closes the distance and straightens your collar with light fingertips. \"You've watched my rehearsals all week, Sam. Care to step in for the closing cue?\"",
+          "image": {
+            "comp": "turning from a mirror with one hand resting lightly on his collar, poised teasing smile, close to him",
+            "setting": "quiet dressing alcove off the parlor, tall mirror, warm lantern glow",
+            "sam": true
+          },
+          "go": "Take the cue",
+          "goRes": "You catch her waist and draw her in; her poise softens the instant your lips meet, melting into a slow, lingering kiss as her fingers curl into your coat.",
+          "wait": "\"Save the encore.\"",
+          "waitRes": "She tilts her head with a knowing smile. \"A good performer builds anticipation, Sam. Just don't keep me waiting long.\"",
+          "act": "kiss"
+        },
+        "2": {
+          "title": "Offstage Quiet",
+          "text": "Rain patters against the attic dormer as Serena sits beside you on the divan, sunglasses set aside and a ribbon box open between you. When you tie a pink silk ribbon around her wrist, she leans close, sliding her warm hand up your chest. \"Everyone downstairs sees the polished routine,\" she murmurs, fingers drifting toward your belt. \"With you, I want something nobody else sees.\"",
+          "image": {
+            "comp": "sitting close beside him on a divan, ribbon tied around her wrist, leaning in with warm inviting eyes and hand on his chest",
+            "setting": "attic sitting nook on a rainy evening, ribbon box on a low table, single lamp",
+            "sam": true
+          },
+          "go": "Pull her closer",
+          "goRes": "Her poised mask breaks into soft, breathless gasps as your hands slide under her skirt to rub her wet pussy while she unbuttons your trousers and strokes your cock with slow, attentive fingers.",
+          "wait": "\"Enjoy the rain first.\"",
+          "waitRes": "Serena exhales softly and rests her cheek against your shoulder, lacing her fingers with yours. \"Alright. Still, I liked where that was going.\"",
+          "act": "manual_give"
+        },
+        "3": {
+          "title": "Her Own Spotlight",
+          "text": "Serena opens her bedroom door in a soft blush-silk dressing gown tied loosely at the waist, her ponytail unbound and teasing confidence replaced by quiet sincerity. She draws you inside and turns the brass key. \"I've stood under a hundred spotlights across Kalos, Sam—tonight, I just want to stay right here with you.\"",
+          "image": {
+            "comp": "standing beside her bed in a loose blush-silk dressing gown, hair unbound, warm earnest smile, reaching out for his hand",
+            "setting": "her tidy bedroom, showcase ribbons neatly hung by the mirror, soft amber lamplight",
+            "sam": true,
+            "cloth": "partial",
+            "wear": "a loose blush-silk dressing gown tied at the waist"
+          },
+          "go": "Stay with her",
+          "goRes": "You untie the silk sash, part her thighs on the pillows, and push your cock deep into her wet pussy while she wraps her arms around your neck and gasps against your mouth.",
+          "wait": "\"Are you sure?\"",
+          "waitRes": "\"Completely sure,\" she whispers, brushing a kiss across your cheek. \"Take your time—I'm not going anywhere.\"",
+          "act": "missionary"
+        },
+        "jump": {
+          "title": "Behind the Curtain",
+          "text": "Applause fades behind the velvet drape as Serena catches your sleeve after her dance set, glowing from the stage. Before you can speak, she rises on tiptoe, pulls you into the wings, and kisses you with dizzying warmth. \"Forget the crowd tonight, Sam,\" she breathes against your mouth. \"I only came back here for you.\"",
+          "image": {
+            "comp": "pulling him behind a heavy velvet curtain after a show, flushed and breathless, rising on tiptoe to kiss him",
+            "setting": "shadowed backstage wings, velvet stage curtain, warm footlight glow spilling past the edge",
+            "sam": true
+          },
+          "go": "Keep her close",
+          "goRes": "Laughing softly against her lips, you ease her onto the cushioned settee behind the curtain, hiking up her skirt to slide your fingers between her thighs while her hand slips inside your trousers to grip your cock.",
+          "wait": "\"Catch your breath first.\"",
+          "waitRes": "She nods with a bright, flustered smile and smooths her collar. \"Right—deep breath. Meet me upstairs once the curtain drops.\""
+        }
+      }
+    },
+    "daisy_oak": {
+      "events": {
+        "1": {
+          "title": "Afternoon Jasmine",
+          "text": "You bring ledgers into the quiet parlor and find Daisy steeping jasmine tea in the afternoon sun. Seeing the tension in your shoulders, she steps behind your chair and kneads away the knots with warm, unhurried palms until her cheek brushes yours. \"You take care of everyone here, Sam,\" she murmurs softly. \"Let someone spoil you for once.\"",
+          "image": {
+            "comp": "standing behind his chair kneading his shoulders with gentle hands, leaning down beside his cheek with a warm affectionate smile",
+            "setting": "sunlit parlor table, porcelain teapot, jasmine blossoms and ledgers set aside",
+            "sam": true
+          },
+          "go": "Let her take over",
+          "goRes": "You lean back into her gentle hands and turn your face up; she pauses one heartbeat before bending down to press a slow, honey-warm kiss to your lips.",
+          "wait": "\"Just the tea for now.\"",
+          "waitRes": "\"Of course, sweetheart.\" She smiles fondly and pours your cup. \"My kettle is always on whenever you need a break.\"",
+          "act": "massage_give"
+        },
+        "2": {
+          "title": "Warm Oil and Patience",
+          "text": "Late at night in the bathhouse annex, Daisy rolls up her sleeves and warms cedar oil between her palms, calling you onto the bench beside her. As her slick hands glide around your ribs, she presses closer and lets her fingers drift lower across your waist. \"I'm used to keeping things proper, Sam,\" she whispers, cheeks rose-warm. \"Tonight I want to feel every breath you take.\"",
+          "image": {
+            "comp": "kneeling on a cushioned bench beside him, oiled hands resting tenderly on his waist and chest, soft rose blush and steady gaze",
+            "setting": "warm lantern-lit annex beside the bathhouse, cedar oil bottle and folded towels",
+            "sam": true
+          },
+          "go": "Guide her hands",
+          "goRes": "You draw her onto your lap and unfasten your trousers; her delighted gasp warms your neck as her oiled palms wrap around your cock and stroke you slowly until you cum.",
+          "wait": "\"You've worked hard today too.\"",
+          "waitRes": "Daisy dries her palms on a linen towel and leans her head on your shoulder. \"Always worrying about everyone else. Sit with me a bit, then.\"",
+          "act": "manual_give"
+        },
+        "3": {
+          "title": "When the Kettle Cools",
+          "text": "Daisy waits beside her bed in a thin ivory chemise slipping lightly off one shoulder, silky hair draped loose and candles ready on the nightstand. Seeing you in the doorway, she opens her arms with quiet warmth. \"I spent years watching others chase glory down the road, Sam,\" she murmurs. \"Stay tonight, and let's make this room feel like home.\"",
+          "image": {
+            "comp": "sitting on the edge of her bed in a thin ivory chemise, silky hair unbound, holding out both hands with a gentle loving smile",
+            "setting": "cozy cottage-style bedroom, quilt folded back, dried herbs and warm candlelight",
+            "sam": true,
+            "cloth": "partial",
+            "wear": "a thin ivory chemise slipping off one shoulder"
+          },
+          "go": "Stay the night",
+          "goRes": "You kiss her deeply as she eases back onto the quilt, slide the ivory chemise off her bare tits, and sink your cock slowly into her wet pussy while she arches beneath you with soft, unguarded moans.",
+          "wait": "\"Are you certain?\"",
+          "waitRes": "\"More certain than I've been in years,\" she answers gently, kissing your knuckles. \"Take your time—I'll keep the lamp turned low.\"",
+          "act": "missionary"
+        },
+        "jump": {
+          "title": "Spilled Tea",
+          "text": "Stepping into the pantry together, Daisy catches her heel on a crate and tumbles straight into your arms, the tea tray clattering aside. Instead of pulling back, she loops her arms around your neck and kisses you with sudden longing. \"Oh—I suppose I'm tired of pretending I only want to pour you tea, Sam.\"",
+          "image": {
+            "comp": "caught in his arms beside a tipped tea tray, arms looped warmly around his neck, leaning up into an earnest kiss",
+            "setting": "warm cedar-lined pantry, stacked linens and fallen teacup, soft lantern glow",
+            "sam": true
+          },
+          "go": "Hold her close",
+          "goRes": "You lift her onto the wide cedar counter, pushing up her pleated skirt to cup her bare ass and rub her clit while her warm hand slips into your trousers to stroke your cock.",
+          "wait": "\"Let's clear the cups first.\"",
+          "waitRes": "She laughs softly and steps back with pink cheeks. \"Practical as ever—alright, help me tidy up, then come find me.\""
+        }
+      }
+    },
+    "nessa": {
+      "events": {
+        "1": {
+          "title": "Poolside Off the Clock",
+          "text": "After the bathhouse shutters close, Nessa sits barefoot on the pool's stone edge with her high bun loosened, dangling her legs in the lantern-lit water. When you join her with a fresh towel, the camera-ready distance melts from her eyes. \"You never treat me like a poster on a wall, Sam,\" she says softly, leaning near. \"Are you only going to hand me that towel?\"",
+          "image": {
+            "comp": "sitting barefoot on the edge of a lantern-lit pool, leaning her shoulder near his with a captivating smile",
+            "setting": "quiet tiled bathhouse after closing, ripples reflecting warm lantern light",
+            "sam": true
+          },
+          "go": "Kiss her",
+          "goRes": "You cup her cheek and kiss her slowly; her composed runway smile breaks into a soft sigh as she leans warmly into your hands.",
+          "wait": "\"Dry off before you catch a chill.\"",
+          "waitRes": "Nessa laughs lightly, draping the towel across her shoulders. \"Always practical. Don't think I missed how long you lingered, though.\"",
+          "act": "kiss"
+        },
+        "2": {
+          "title": "Behind the Runway Mask",
+          "text": "In her dressing alcove after modeling and running the baths, Nessa kicks off her sandals and pulls you onto the chaise by the wrist. Her poised cool vanishes as she slides warm, graceful hands under your shirt and down toward your waist. \"Every day is disciplined smiles, Sam,\" she murmurs against your jaw. \"Tonight, let me lose a little control with you.\"",
+          "image": {
+            "comp": "leaning close beside him on a chaise with sandals kicked off, fingers sliding beneath his shirt, flushed captivating gaze",
+            "setting": "private bathhouse lounge alcove, draped turquoise cloth and brass floor lamp",
+            "sam": true
+          },
+          "go": "Let her take the lead",
+          "goRes": "Her breath catches as you peel down her crop top to suck her tits while her bold fingers unbuckle your belt, pull out your cock, and stroke you hard against her palm.",
+          "wait": "\"Let me rub your shoulders first.\"",
+          "waitRes": "She arches an eyebrow, then melts back against the cushions with a quiet smile. \"Hard bargain, Sam. Don't expect me to stay still long.\"",
+          "act": "manual_give"
+        },
+        "3": {
+          "title": "Deep Water",
+          "text": "Nessa awaits you in soft lantern light, her resort swimwear draped over a screen and a sheer teal silk wrap hanging open from her shoulders. Stepping close, she rests both palms against your chest with fierce warmth. \"I never step onto a stage or into a match halfway, Sam,\" she whispers. \"Stay in my bed tonight, and I'm giving you everything.\"",
+          "image": {
+            "comp": "standing beside her bed in a sheer half-open silk wrap, palms resting gently on his chest, intense earnest smile",
+            "setting": "her serene room, folded sarong over a screen, teal curtains and warm candlelight",
+            "sam": true,
+            "cloth": "partial",
+            "wear": "a sheer teal silk wrap hanging open from her shoulders"
+          },
+          "go": "Stay with her",
+          "goRes": "You slip the sheer wrap from her shoulders and draw her onto the mattress, where she climbs astride your hips and sinks slowly onto your cock, riding you with fierce, breathless gasps.",
+          "wait": "\"Are you sure?\"",
+          "waitRes": "\"When have you ever seen me hesitate?\" she answers softly, kissing your temple. \"Take a night if you want—I'll be waiting.\"",
+          "act": "cowgirl"
+        },
+        "jump": {
+          "title": "High Tide",
+          "text": "After settling a noisy group of bathers, Nessa steps into the misty hall flushed with competitive fire. Spotting you holding dry towels, she drops the stack onto a bench, catches your shirtfront, and pins you against the tiled pillar with a fierce kiss. \"I'm tired of keeping everything measured around you, Sam,\" she breathes against your lips.",
+          "image": {
+            "comp": "pressing him lightly against a tiled pillar in the mist, holding his shirt collar, flushed and fierce mid-kiss",
+            "setting": "steamy bathhouse corridor at night, brass sconces glowing through mist",
+            "sam": true
+          },
+          "go": "Meet her halfway",
+          "goRes": "You catch her thighs and lift her against the warm tile, slipping a hand inside her athletic shorts to rub her wet pussy while her fingers yank open your trousers and wrap around your cock.",
+          "wait": "\"Catch your breath first.\"",
+          "waitRes": "Nessa exhales a shaky laugh and rests her forehead to yours. \"Fair enough. Five minutes to cool down—then don't lock your door.\""
+        }
+      }
+    },
+    "marnie": {
+      "events": {
+        "1": {
+          "title": "Front Step After Last Call",
+          "text": "After sending the last tavern crowd down the lane, Marnie sits on the front stoop loosening her studded boots, shoulders dropping from guard duty. When you join her with warm cider, she studies you quietly before leaning in for a brief, surprisingly soft kiss at the corner of your mouth. \"...There. Now stop wondering if I can actually smile.\"",
+          "image": {
+            "comp": "sitting on the stone steps beside him, boots unlaced, leaning in quickly to kiss his cheek with a guarded blush",
+            "setting": "quiet stone stoop at night, street lantern glowing down an empty cobble lane",
+            "sam": true
+          },
+          "go": "Give her a real kiss",
+          "goRes": "Before she pulls back behind her cool mask, you catch her chin and kiss her properly; she freezes one second, then sighs and leans against your chest.",
+          "wait": "\"Goodnight, Marnie.\"",
+          "waitRes": "She blinks, then gives a small, pleased nod and lifts her mug. \"Yeah. Goodnight, Sam. Same time tomorrow, maybe.\"",
+          "act": "kiss"
+        },
+        "2": {
+          "title": "Without the Jacket",
+          "text": "Rain drums overhead as Marnie hangs her studded jacket on a chair and sits beside you on the hearth rug, fidgeting with her spiked choker. Without her Spikemuth armor, she meets your eyes with deadpan honesty and slides one warm hand purposefully under your shirt. \"I'm rubbish at fancy speeches, Sam,\" she mutters, ears pink. \"Let me show you instead.\"",
+          "image": {
+            "comp": "sitting close on a hearth rug without her leather jacket, touching his thigh with quiet determination and pink ears",
+            "setting": "attic room by a low hearth fire, studded leather jacket draped over a chair",
+            "sam": true
+          },
+          "go": "Let her show you",
+          "goRes": "Guarded everywhere else, up close she is astonishingly attentive—pulling your belt open to wrap both warm hands around your cock, stroking and licking the tip until you cum.",
+          "wait": "\"No need to rush.\"",
+          "waitRes": "Her shoulders relax a fraction as she tucks her knees against your side. \"...Right. Thanks. It's nice just sitting close like this anyway.\"",
+          "act": "manual_give"
+        },
+        "3": {
+          "title": "Lights Off in Spikemuth",
+          "text": "Marnie waits inside her dim bedroom beside one pale lantern, her spiked choker set neatly on the sill and an oversized black shirt slipping off one shoulder. Closing the door behind you, her guarded half-smile softens into quiet tenderness. \"Everyone back home expects me tough all the time,\" she whispers, taking your hand. \"Stay tonight, Sam—just with me.\"",
+          "image": {
+            "comp": "standing by her bed in an oversized shirt, choker set aside on the nightstand, quiet vulnerable half-smile, holding his hand",
+            "setting": "dim quiet bedroom, single pale lantern by the window, dark quilt turned back",
+            "sam": true,
+            "cloth": "partial",
+            "wear": "an oversized black band shirt slipping off one shoulder"
+          },
+          "go": "Stay with her",
+          "goRes": "You pull the oversized shirt over her head, spread her legs on the dark quilt, and sink your cock deep into her tight pussy as she bites her lip and pulls you tight against her chest.",
+          "wait": "\"You're sure?\"",
+          "waitRes": "\"Wouldn't have asked if I wasn't,\" she murmurs, resting her forehead briefly against your shoulder. \"Take your time—I'm not going anywhere.\"",
+          "act": "missionary"
+        },
+        "jump": {
+          "title": "Quiet Guard Duty",
+          "text": "After you back Marnie up against a loud merchant at the side gate, she watches him scurry off before turning on you—eyes bright, hands fisting your coat lapels to drag you down into a sudden, fierce kiss. \"Next time let me handle him,\" she mutters against your mouth, refusing to let go. \"...Though thanks. Seriously.\"",
+          "image": {
+            "comp": "fisting the lapels of his coat in a shadowed doorway, fierce blush, pulling him down into a sudden kiss",
+            "setting": "side courtyard gate at night, iron lantern overhead, empty cobblestone alley",
+            "sam": true
+          },
+          "go": "Kiss her back",
+          "goRes": "You back her into the empty guardroom inside the gate, pushing up her short dress to grab her bare ass and rub her clit while her hand slips inside your trousers to grip your cock.",
+          "wait": "\"Anytime, partner.\"",
+          "waitRes": "She lets go slowly, hiding flushed cheeks behind a cool shrug. \"Right. Partners. Come upstairs once I lock the gate.\""
+        }
+      }
+    },
+    "janine": {
+      "events": {
+        "1": {
+          "title": "Night Perimeter",
+          "text": "You find Janine perched on the back courtyard railing long after curfew, rolling out her sore shoulders beneath a single porch lantern while she watches the alley. When you set a warm mug beside her and tell her she doesn't have to stand guard alone every night, she drops her chin into her bright pink scarf to hide a sudden flush. \"A shinobi stays alert, Sam—though I suppose even a sentry can accept... close inspection.\"",
+          "image": {
+            "comp": "perched on a courtyard railing in dim lantern light, pulling her scarf up over a bashful flush while glancing toward him",
+            "setting": "quiet back courtyard at night, wooden eaves, one warm porch lantern",
+            "sam": true
+          },
+          "go": "Kiss her",
+          "goRes": "She pulls her scarf down an inch and meets you with crisp, earnest precision—before her guarded posture softens, her gloved fingers curling lightly into your collar as she lingers.",
+          "wait": "\"Finish your patrol first.\"",
+          "waitRes": "\"Understood! Discipline comes first.\" She snaps a brisk nod, though her ears stay bright pink as she hides behind her scarf.",
+          "act": "kiss"
+        },
+        "2": {
+          "title": "Sleight of Hand",
+          "text": "In the quiet watch room upstairs, Janine sits beside you sorting linen wraps and herbal salve jars after a long shift, her ninja scarf draped neatly across the chair. When you praise how steady her hands stay even in trouble, she turns toward you with a sharp yet unexpectedly shy grin, setting her warm palms flat on your chest. \"You have no idea how well-trained these fingers really are—let me show you.\"",
+          "image": {
+            "comp": "kneeling close beside him on a cushion with scarf set aside, resting both hands lightly on his chest with a teasing flush",
+            "setting": "tidy upstairs watch room, small salve jars on a table, soft violet lamplight",
+            "sam": true
+          },
+          "go": "Let her show you",
+          "goRes": "Her deft hands unfasten your belt and pull out your cock, stroking and sucking you with quick, unsteady breaths and earnest shinobi focus until you cum.",
+          "wait": "\"Save those hands for tomorrow.\"",
+          "waitRes": "\"As you wish.\" She tucks her hands neatly into her lap with a small, flustered smile. \"A kunoichi knows how to wait for the right signal.\""
+        },
+        "3": {
+          "title": "No More Shadows",
+          "text": "Janine waits inside her lantern-lit bedroom with her bracers unstrapped on the dresser and a short violet sleeping kimono loosely tied around bare shoulders. Usually she slips through every room without a sound, yet tonight she leaves her door wide open and reaches out for your hand. \"I spent my whole life trying to stand in someone else's shadow, Sam. Tonight I only want to be right here with you.\"",
+          "image": {
+            "comp": "standing beside her bed in a loosely tied sleeping kimono, bracers set aside, holding out one hand with warm earnest eyes",
+            "setting": "tidy bedroom with wooden screens, folded shinobi gear on a chair, soft lantern glow",
+            "sam": true,
+            "cloth": "partial",
+            "wear": "a loosely tied violet sleeping kimono off bare shoulders"
+          },
+          "go": "Stay with her",
+          "goRes": "She shuts the latch behind you, lets the violet kimono drop to the floorboards, and straddles your hips on the futon—sinking down onto your cock with breathless, wholehearted focus.",
+          "wait": "\"Are you sure, Janine?\"",
+          "waitRes": "\"Completely sure,\" she answers steadily, squeezing your fingers before stepping back with a gentle grin. \"Take your time—I won't disappear on you.\"",
+          "act": "cowgirl"
+        },
+        "jump": {
+          "title": "Caught in the Trap",
+          "text": "Rounding the dark cellar stairs too fast, you trigger a harmless trip-cord alarm—and before you can blink, Janine drops silently out of the shadows and pins you squarely against the wall. Recognizing your face an inch from hers, she freezes, turns scarlet above her scarf, and refuses to let go of your lapels. \"You startled me—and now my heart won't slow down. Don't move, Sam.\"",
+          "image": {
+            "comp": "pinning him playfully against a cellar wall, frozen inches from his face with wide flushed eyes and hands on his lapels",
+            "setting": "dim cellar landing with stone walls and a single hanging lantern",
+            "sam": true
+          },
+          "go": "Kiss her right there",
+          "goRes": "With a sharp, flustered gasp, she kisses you fiercely against the wall, sliding one eager hand into your trousers to grip your cock while yours cup her ass under the hem of her tunic.",
+          "wait": "\"Easy, sentry—stand down.\"",
+          "waitRes": "\"Hmph—fair enough!\" She steps back crisply, clearing her throat while adjusting her scarf. \"Good reflexes, though. Next time I won't warn you.\""
+        }
+      }
+    },
+    "erika": {
+      "events": {
+        "1": {
+          "title": "Blossom Tea",
+          "text": "After the last lounge lanterns are trimmed, you find Erika half-dozing over an arrangement of evening camellias with a warm porcelain pot still steaming beside her sleeve. When you sit softly across from her instead of waking her with chores, she opens drowsy, smiling eyes and leans forward across the low table. \"You bring such peaceful quiet with you, Sam... Won't you come a little closer?\"",
+          "image": {
+            "comp": "leaning drowsily over a low tea table beside a vase of camellias, serene affectionate smile, gesturing him closer",
+            "setting": "quiet tea parlor overlooking a moonlit garden, warm low lantern",
+            "sam": true
+          },
+          "go": "Kiss her",
+          "goRes": "She closes her eyes with a soft, fragrant sigh as your lips meet hers—warm as steeped tea, unhurried, and lingering far longer than her sleepy smile promised.",
+          "wait": "\"Let's enjoy the tea first.\"",
+          "waitRes": "\"How thoughtful of you,\" she murmurs, pouring two delicate cups without rushing. \"Good blossoms never mind waiting for dawn.\"",
+          "act": "kiss"
+        },
+        "2": {
+          "title": "Pressed Petals",
+          "text": "Erika invites you into her scent-blending nook to sample a fresh vial of jasmine and cedar oil, dabbing a drop along her own wrist before tilting her chin to watch your reaction. As you lean near, her slender fingers trace slowly up your sleeve and loosen your collar with tranquil deliberation. \"A fragrance only blooms when warmed against skin, Sam... Let me feel your hands.\"",
+          "image": {
+            "comp": "seated gracefully beside glass scent vials, lifting one wrist near his face while her other hand loosens his collar",
+            "setting": "quiet upstairs workroom filled with pressed flowers and amber glass perfume bottles",
+            "sam": true
+          },
+          "go": "Indulge her",
+          "goRes": "Her drowsy calm turns wonderfully warm as you part her kimono to suck her tits while her unhurried, oiled fingers slip inside your trousers and stroke your cock until you cum.",
+          "wait": "\"Just the scent tonight.\"",
+          "waitRes": "She smiles gently and sets the glass stopper back in place. \"Very well. Patience keeps every perfume sweet.\""
+        },
+        "3": {
+          "title": "Garden Slumber",
+          "text": "A faint trace of sakura incense drifts from Erika's bedroom, where she sits on the silk quilt in a loose emerald sleeping robe, her headband still resting neatly in place. Usually so reserved behind formal layers, she parts the covers beside her with quiet certainty. \"I sleep poorly when the house grows too loud, Sam... Stay beside me until morning.\"",
+          "image": {
+            "comp": "sitting gracefully on a silk quilt pulling back the covers beside her, serene tender eyes and soft blush",
+            "setting": "tranquil bedroom with painted flower screens, glowing bedside lantern, incense dish",
+            "sam": true,
+            "cloth": "partial",
+            "wear": "an emerald silk sleeping robe slipping off one shoulder"
+          },
+          "go": "Stay until morning",
+          "goRes": "She draws the quilt over you both and parts her thighs, her serene composure melting into soft, unguarded moans as you sink your cock deep into her wet pussy and fuck her slowly in the dark.",
+          "wait": "\"Are you sure, Erika?\"",
+          "waitRes": "\"Quite certain,\" she whispers with a tender smile, resting her cheek briefly on your hand. \"Yet I am never one to rush the season.\"",
+          "act": "missionary"
+        },
+        "jump": {
+          "title": "Afternoon Nap",
+          "text": "Stepping into the sunlit conservatory to fetch fresh vases, you find Erika stretched across the cushioned bench—only to realize she isn't asleep at all when she catches your wrist and pulls you softly down beside her. Before you can protest, she presses a warm, dizzyingly sweet kiss to your lips. \"I dreamed you found me here... Please don't wake me yet.\"",
+          "image": {
+            "comp": "reclining on a cushioned garden bench, catching his wrist to pull him down into a sudden warm kiss",
+            "setting": "sunlit glass conservatory filled with potted ferns and blooming flowers",
+            "sam": true
+          },
+          "go": "Stay right there",
+          "goRes": "Surrounding you both in floral warmth, she sighs happily against your mouth while your hand slides under her hakama and panties to finger her wet pussy among the blossoms.",
+          "wait": "\"Someone might walk in.\"",
+          "waitRes": "She blinks slowly, smiling with a delicate flush. \"Oh, dear—quite right. We shall keep that thought for behind closed doors.\""
+        }
+      }
+    },
+    "whitney": {
+      "events": {
+        "1": {
+          "title": "Milk Tarts",
+          "text": "Whitney corners you on the sunny front porch with a paper box of sweet cream tarts from the market, talking twice as fast as usual while her knee bounces against yours. Mid-sentence she catches your eye, stops dead, and puffs her cheeks out bright pink. \"Hey—quit smiling at me like that! If I'm sharing my favorite snacks, you owe me a kiss first, Sam!\"",
+          "image": {
+            "comp": "sitting beside him on porch steps holding an open pastry box, puffing her cheeks in a playful blush",
+            "setting": "sunny wooden front porch overlooking a cobblestone market street",
+            "sam": true
+          },
+          "go": "Pay the toll",
+          "goRes": "She giggles halfway through the kiss before bouncing closer, looping both arms around your neck and clinging on until her pastry box nearly slides off her lap.",
+          "wait": "\"Snacks first, troublemaker.\"",
+          "waitRes": "\"Aww, boo!\" Her lip wobbles dramatically for two seconds—then she bursts into a sunny grin and shoves a tart into your hand anyway. \"Fine! Next time, though!\"",
+          "act": "kiss"
+        },
+        "2": {
+          "title": "Tears and Teasing",
+          "text": "After losing a late-night dice wager to you in the empty lounge, Whitney flops dramatically across the sofa cushions with her arms over her face, muttering about unfair house odds. When you sit beside her to pat her shoulder, she peeks up with sparkling eyes, grabs your wrist, and tugs you down beside her. \"Okay, fine—winner's penalty! Don't hold back on me now, Sam.\"",
+          "image": {
+            "comp": "sprawled playfully across sofa cushions peeking up at him with bright teasing eyes and tugging his wrist down",
+            "setting": "warm empty lounge at night, low wooden table with dice, golden lamp",
+            "sam": true
+          },
+          "go": "Collect your prize",
+          "goRes": "Her loud bravado dissolves into breathless giggles the moment you push up her shirt to suck her tits and slip a hand into her denim shorts to rub her wet pussy.",
+          "wait": "\"Let's call it a draw.\"",
+          "waitRes": "\"What?! You can't just let me off easy!\" She huffs, flopping her head onto your knee with a secret little smile. \"...Even if it's kinda sweet.\""
+        },
+        "3": {
+          "title": "No Holding Back",
+          "text": "Whitney stands in your bedroom doorway bouncing slightly on bare heels, wearing only an oversized sleep shirt with her gym sweatband tossed onto the dresser. For once she isn't talking a mile a minute—just fidgeting with the hem and grinning nervously. \"Everyone thinks I'm all noise and sugar, Sam... Stay up with me tonight and let me show you I mean it.\"",
+          "image": {
+            "comp": "standing barefoot in a doorway fidgeting with the hem of an oversized shirt, bright nervous grin",
+            "setting": "his cozy bedroom at night, warm lamp, bed turned down",
+            "sam": true,
+            "cloth": "partial",
+            "wear": "an oversized white sleep shirt"
+          },
+          "go": "Invite her in",
+          "goRes": "With a bright, breathless laugh, she kicks the door shut behind her, pulls off the shirt, and straddles your lap—sinking eagerly onto your cock and riding you with joyful, unstoppable energy.",
+          "wait": "\"You're sure, Whitney?\"",
+          "waitRes": "\"Super duper sure!\" She blinks fast, beaming shyly as she hops onto the edge of the bed. \"Wait if you want—I'm not going anywhere!\"",
+          "act": "cowgirl"
+        },
+        "jump": {
+          "title": "Sudden Downpour",
+          "text": "Caught outside posting fliers when an evening cloudburst hits, Whitney drags you laughing into the covered doorway of the house, both of you drenched and breathless. Shaking water off her wristband, she suddenly steps straight onto her tiptoes and kisses you hard before you can catch your breath. \"Ugh, I couldn't wait another second—you looked way too cute in the rain!\"",
+          "image": {
+            "comp": "standing soaked under a covered doorway on tiptoe, laughing brightly while pulling him into an impulsive kiss",
+            "setting": "covered front doorway during an evening rainstorm, glowing street lantern",
+            "sam": true
+          },
+          "go": "Kiss her back",
+          "goRes": "Laughing against her mouth, you press her back against the dry oak doorframe and slip your hand inside her denim shorts to finger her clit while her eager fingers fumble open your belt.",
+          "wait": "\"Let's get out of the wet first!\"",
+          "waitRes": "\"Oh—right! Dry towels first!\" She grabs your hand anyway, tugging you down the hall with a radiant grin."
+        }
+      }
+    },
+    "jessie": {
+      "events": {
+        "1": {
+          "title": "Center Stage",
+          "text": "After the tavern empties, you catch Jessie alone by the stage mirror rehearsing a dramatic entrance line—and freezing mid-pose when she spots you applauding softly from the doorway. Her sharp chin snaps up to cover a startled flush as she clicks her heels over to you, resting one gloved hand against your chest. \"If you insist on sneaking into my audience, Sam, you had better pay the diva's tribute.\"",
+          "image": {
+            "comp": "caught mid-pose near a stage mirror, striding over with one gloved hand on his chest and a haughty flushed smirk",
+            "setting": "empty candlelit stage dressing corner with a tall gilt mirror and velvet curtains",
+            "sam": true
+          },
+          "go": "Pay the tribute",
+          "goRes": "She accepts your kiss like an ovation—chin tilted high at first, before her theatrical smirk gives way to a soft, genuine sigh as her gloved fingers curl around your neck.",
+          "wait": "\"Save the encore for tomorrow.\"",
+          "waitRes": "\"Hmph! Playing hard to impress?\" She tosses her shoulders with a smug grin, though her gaze lingers. \"Very well—prepare yourself for the second act.\"",
+          "act": "kiss"
+        },
+        "2": {
+          "title": "Diva's Dressing Room",
+          "text": "Jessie lounges back across the velvet chaise in her dressing room with her long boots propped on a cushion and her feather boa tossed loosely across her lap, watching you tally the night's receipts. When you compliment how effortlessly she held the room tonight, her sharp poise softens into something dangerously warm as she hooks a finger into your belt. \"Flattery won't cover all of it, Sam—come kneel here and earn a real review.\"",
+          "image": {
+            "comp": "lounging across a velvet chaise with boots kicked onto a cushion, hooking a gloved finger toward his belt with a smug warm smile",
+            "setting": "luxurious dressing room with perfume bottles, crimson velvet drapes, warm lamp",
+            "sam": true
+          },
+          "go": "Kneel beside her",
+          "goRes": "The haughty diva gasps when your hands glide up her silk stockings and pull her panties aside, lapping eagerly at her wet pussy until her sharp-tongued composure breaks into breathless moans.",
+          "wait": "\"Ledgers first, diva.\"",
+          "waitRes": "\"How outrageously disciplined of you,\" she purrs, resting her chin in her hand with amused approval. \"Don't think you're escaping my next curtain call, though.\""
+        },
+        "3": {
+          "title": "No Disguises",
+          "text": "Jessie stands beside her bedroom vanity with her dramatic makeup wiped clean and her heavy boots lined neatly by the door, draped only in a crimson silk dressing gown that leaves her shoulders bare. Without a stage crowd or a clever scheme to hide behind, her eyes look unexpectedly sincere. \"I'm sick of chasing grand illusions, Sam. Stay in my bed tonight—just as we are.\"",
+          "image": {
+            "comp": "standing bare-faced beside a vanity in a draped crimson robe, haughty smirk softened into sincere vulnerability",
+            "setting": "elegant bedroom, gold-framed mirror, glowing rose candle, silk sheets",
+            "sam": true,
+            "cloth": "partial",
+            "wear": "a crimson silk dressing gown draped loosely off bare shoulders"
+          },
+          "go": "Stay with her",
+          "goRes": "She lets the crimson silk fall behind her, draws you onto the bed, and climbs proudly astride your hips—sinking down onto your cock and riding you with breathless, unguarded gasps.",
+          "wait": "\"You're sure, Jessie?\"",
+          "waitRes": "\"Do I look like someone who rehearses second thoughts?\" Then, softer: \"...Wait if you want, Sam. I won't run off.\"",
+          "act": "cowgirl"
+        },
+        "jump": {
+          "title": "Backstage Ambush",
+          "text": "When a boastful merchant tries to brush past Jessie's pride downstairs, you step in smoothly and send him packing without raising your voice. The moment the parlor empties, Jessie stalks straight up, grabs your collar with both gloved hands, and steals your breath with a fierce, dazzling kiss. \"Nobody rescues me unless I decide they're worthy—congratulations, Sam.\"",
+          "image": {
+            "comp": "gripping his collar with both gloved hands, flushed and triumphant, pulling him straight into a bold kiss",
+            "setting": "shadowed velvet corridor off the main lounge, brass wall sconces",
+            "sam": true
+          },
+          "go": "Take your prize",
+          "goRes": "With a delighted laugh against your mouth, she backs you through the dressing-room curtain, pushing your hands under her miniskirt onto her bare ass while she unbuttons your trousers to grab your cock.",
+          "wait": "\"Easy—let's catch our breath.\"",
+          "waitRes": "She exhales sharply, smoothing her tunic with a wicked smirk. \"Fine. Catch it quickly—the diva doesn't wait forever.\""
+        }
+      }
+    },
+    "delia": {
+      "events": {
+        "1": {
+          "title": "Late Tea in the Parlor",
+          "text": "Everyone else has drifted upstairs when Delia sets two porcelain cups on the low parlor table and notices you rolling the stiffness out of your neck. Steaming kettle set aside, she steps around your chair and rests warm, gentle hands on your shoulders before leaning close enough to whisper with a teasing smile: \"You spend all week looking after this whole house, Sam. When was the last time you let someone look after you?\"",
+          "image": {
+            "comp": "leaning over the back of his armchair with hands resting warmly on his shoulders, tender teasing smile",
+            "setting": "quiet parlor at night, steaming tea cups on a low table, soft amber lamp",
+            "sam": true
+          },
+          "go": "Let her look after you",
+          "goRes": "She draws you gently to your feet and pulls your mouth down to hers, kissing you slow, warm, and unhurried until every knot in your shoulders melts away.",
+          "wait": "\"Maybe after we finish the tea.\"",
+          "waitRes": "Delia laughs softly and squeezes your shoulder before sitting beside you. \"Fair enough—drink it while it's hot, then.\"",
+          "act": "kiss"
+        },
+        "2": {
+          "title": "Behind the Apron Strings",
+          "text": "You find Delia wiping down the kitchen hearth long after midnight, her white half-apron still tied neatly over her blue skirt. When you wrap an arm around her waist from behind, she leans back with a soft sigh—then turns in your grip, pink rising along her cheeks as her warm fingers slide straight down over the front of your trousers. \"I haven't let myself want anyone like this in years, Sam,\" she murmurs, loosening your belt.",
+          "image": {
+            "comp": "turning in his embrace beside the kitchen hearth, flushed cheeks, warm hand resting near his belt",
+            "setting": "warm kitchen after midnight, dying embers in the hearth, copper kettle",
+            "sam": true
+          },
+          "go": "Let her take charge",
+          "goRes": "Kneeling smoothly on the hearth rug, she frees your cock and strokes it with slow, knowing palms before taking you deep between her warm lips until you cum.",
+          "wait": "\"Not in the kitchen, Delia.\"",
+          "waitRes": "She smiles warmly and pats your chest, tying her apron ribbon straight again. \"Good point—even I have standards about the pantry.\"",
+          "act": "oral_give"
+        },
+        "3": {
+          "title": "The Guest Who Stayed",
+          "text": "Delia's pearl earrings rest neatly on her bedside table, and she sits propped against stacked pillows wearing only a loose cream shawl draped open over bare breasts and soft hips. Holding out one warm hand as you close the bedroom door, she gives you a gentle, unguarded look: \"I came to Hollowmere thinking I'd watch quietly from the parlor, Sam. Now I only want you in my bed tonight.\"",
+          "image": {
+            "comp": "sitting against pillows in a loose shawl hanging open, one hand held out warmly, soft blush",
+            "setting": "cozy upstairs bedroom, turned-down quilt, warm bedside candle",
+            "sam": true,
+            "cloth": "partial",
+            "wear": "a loose cream shawl draped open over bare skin"
+          },
+          "go": "Join her in bed",
+          "goRes": "You push the cream shawl off her shoulders, spread her warm thighs, and push your cock deep into her wet pussy while she gasps softly and pulls you tight against her chest.",
+          "wait": "\"Are you sure, Delia?\"",
+          "waitRes": "\"Completely sure,\" she murmurs with a fond smile, patting the pillow beside her. \"Take your time—I'm not going anywhere.\"",
+          "act": "missionary"
+        },
+        "jump": {
+          "title": "Warm Sheets",
+          "text": "Rain rattles against the linen-closet window while you and Delia fold warm laundry side by side. Reaching past you for the top shelf, she stops inches from your chest, catches your eyes staring, and drops the folded towel onto the hamper with a low, amused laugh—before grabbing your collar and pulling you down into a sudden, startlingly hungry kiss.",
+          "image": {
+            "comp": "dropping folded laundry to pull him by the collar into a sudden hungry kiss, flushed and smiling",
+            "setting": "warm linen pantry on a rainy afternoon, stacked towels, window streaked with rain",
+            "sam": true
+          },
+          "go": "Kiss her back",
+          "goRes": "She backs you against the linen shelves, unlacing her white half-apron with one hand while sliding the other straight inside your trousers to grip your hard cock.",
+          "wait": "\"Whoa—careful with the towels!\"",
+          "waitRes": "Delia laughs breathlessly, cheeks rosy, and smooths down her skirt before handing you a warm stack. \"My fault—carry on, Sam.\""
+        }
+      }
+    },
+    "joy": {
+      "events": {
+        "1": {
+          "title": "Off Duty at Last",
+          "text": "Long past midnight, you catch Joy perched on a supply crate in the quiet parlor rubbing her sore ankles, her white nurse's cap resting in her lap. She tries to wave you off with her usual soothing bedside smile until you sit beside her and firmly knead the tension out of her shoulders. Soft color rushes to her cheeks as she whispers, \"Nobody ever checks on the nurse, Sam. May I... kiss you?\"",
+          "image": {
+            "comp": "sitting on a crate beside him with her cap in her lap, blushing softly as she tilts her face toward his",
+            "setting": "quiet back parlor at night, herbal jars on shelves, soft pink lamp",
+            "sam": true
+          },
+          "go": "Kiss her",
+          "goRes": "She melts into your hands with a quiet, trembling sigh, parting her soft lips under yours as if she has waited months just to be held.",
+          "wait": "\"Rest first, Nurse.\"",
+          "waitRes": "Joy smiles gratefully, resting her cheek against your shoulder for a quiet breath. \"Thank you, Sam. Just sitting close helps already.\"",
+          "act": "kiss"
+        },
+        "2": {
+          "title": "A Quiet Examination",
+          "text": "Joy knocks softly on your study door carrying a glass vial of warm cedar oil, insisting she only came to check that your bruised shoulder healed properly. Yet the moment you sit on the settee edge and pull her between your knees, her gentle nursing hands tremble against your chest—before drifting shamelessly down toward your belt. \"Let me take care of all of you tonight, Sam,\" she breathes, cheeks glowing pink.",
+          "image": {
+            "comp": "standing between his knees holding a small oil bottle, gentle smile turning shy and flushed",
+            "setting": "dim upstairs study, velvet settee, single oil lamp",
+            "sam": true
+          },
+          "go": "Let her take care of you",
+          "goRes": "She sets the oil vial on the rug, unbuttons your trousers with surprisingly nimble fingers, and sucks your cock with tender, breathless devotion until you cum across her tongue.",
+          "wait": "\"My shoulder's fine, Joy.\"",
+          "waitRes": "Blushing furiously, she caps the bottle and tucks a loose strand behind her ear. \"S-sorry! Let me know if anything aches later.\"",
+          "act": "oral_give"
+        },
+        "3": {
+          "title": "Care for the Healer",
+          "text": "With her white uniform hung neatly over a chair and her nurse's cap set aside, Joy waits at the edge of her bed in an unbuttoned pink cardigan slipped over bare shoulders and bare thighs. Looking up with bright, earnest eyes and a shy smile, she reaches for your hand: \"I'm always the one tending everyone else, Sam. Tonight, please—let me just be yours.\"",
+          "image": {
+            "comp": "sitting on the edge of her bed in an open pink cardigan, shoulders bare, shy hopeful smile",
+            "setting": "tidy upstairs bedroom, warm pink lamp, white dress hung over a chair",
+            "sam": true,
+            "cloth": "partial",
+            "wear": "an unbuttoned soft pink cardigan draped loosely over bare skin"
+          },
+          "go": "Stay with her",
+          "goRes": "You slide the cardigan off her shoulders, kiss her breathless onto the pillows, and sink your cock slowly into her tight, wet pussy as she gasps and wraps her arms around your neck.",
+          "wait": "\"Are you sure, Joy?\"",
+          "waitRes": "\"Yes—truly,\" she whispers warmly, pulling the quilt up for both of you. \"Though I don't mind holding you while we wait.\"",
+          "act": "missionary"
+        },
+        "jump": {
+          "title": "Closing Shift",
+          "text": "After a chaotic rush of drenched travelers leaves the infirmary upside down, you help Joy haul the last crate of clean linen into the pantry—only to get pinned back against the shelves as she catches your wrist, rises onto her toes, and kisses you with sudden, breathless urgency. \"I can't wait until morning to stop being polite, Sam!\"",
+          "image": {
+            "comp": "rising onto her toes against the pantry shelves, gripping his wrist mid-kiss, flushed and breathless",
+            "setting": "supply pantry after closing, neatly stacked jars and folded sheets, warm lantern",
+            "sam": true
+          },
+          "go": "Lift her onto the counter",
+          "goRes": "You lift her straight onto the wooden counter and slide your palms up under her crisp white dress, stripping down her pink lace panties while her eager hands undo your belt.",
+          "wait": "\"Breathe first, Nurse.\"",
+          "waitRes": "Joy lets out a flustered giggle, pressing both palms to her hot cheeks. \"Right—deep breaths. Give me five minutes.\""
+        }
+      }
+    },
+    "jenny": {
+      "events": {
+        "1": {
+          "title": "End of Patrol",
+          "text": "By the front gate lantern after closing, Jenny snaps her patrol ledger shut and tucks her pen behind her cap—only to catch you smiling at how seriously she checks every lock twice. Instead of snapping back, she steps straight into your space, sharp gaze softening with sudden warmth. \"If you're going to tease an officer off the clock, Sam, you ought to brace yourself for the penalty.\"",
+          "image": {
+            "comp": "stepping close into his space with her ledger tucked under one arm, dutiful expression softening into warmth",
+            "setting": "lantern-lit front gate at night, cobbles glistening after mist",
+            "sam": true
+          },
+          "go": "\"What's the penalty?\"",
+          "goRes": "She catches the front of your shirt with crisp precision and kisses you firmly, her rigid shoulders relaxing with a quiet, flushed sigh against your mouth.",
+          "wait": "\"Let's keep it by the book.\"",
+          "waitRes": "Jenny straightens her cap, clears her throat, and clicks her heels. \"Wise choice. Patrol logs stay spotless—for tonight.\"",
+          "act": "kiss"
+        },
+        "2": {
+          "title": "Off the Duty Belt",
+          "text": "Alone in the guardroom after lockup, Jenny unbuckles her heavy black utility belt with a relieved groan and leans back into your hands when you begin working the stiffness from her shoulders. Moments later she turns right around, peels off her white gloves onto the desk, and stares straight up at you with dark, flushed resolve. \"Enough small talk, Sam. Let me handle this directly.\"",
+          "image": {
+            "comp": "standing beside the guardroom desk with her gloves set aside, looking up at him with intense flushed focus",
+            "setting": "small guardroom at night, duty belt on the desk, warm lamp",
+            "sam": true
+          },
+          "go": "Let her handle it",
+          "goRes": "Dropping onto the rug before your chair, she unfastens your trousers and strokes your cock with firm, steady hands and hot drags of her tongue until you cum.",
+          "wait": "\"Get some sleep first, Officer.\"",
+          "waitRes": "She clicks her tongue and pulls her jacket straight, pink still staining her cheeks. \"Fine. Off-duty rest orders accepted.\"",
+          "act": "manual_give"
+        },
+        "3": {
+          "title": "Standing Down",
+          "text": "Her service cap hangs neatly on the bedpost and her riding boots stand squared beside the door. On the mattress, Jenny kneels bare save for her navy sports panties, glancing back over one toned shoulder with fierce, unguarded honesty: \"All day long I keep order and stay in control, Sam. Tonight, I want you in charge of me.\"",
+          "image": {
+            "comp": "kneeling on the bed looking back over her shoulder, composed smile softened into fierce longing",
+            "setting": "tidy upstairs room, service cap hanging on the bedpost, soft blue candlelight",
+            "sam": true,
+            "cloth": "under"
+          },
+          "go": "Take charge",
+          "goRes": "You peel down her navy panties, grip her athletic hips, and thrust your cock deep into her wet pussy from behind while she bites her lip through sharp, breathless gasps.",
+          "wait": "\"Are you sure, Jenny?\"",
+          "waitRes": "\"I don't give sloppy answers,\" she murmurs softly, sitting back beside you. \"Though I can wait until you're ready.\"",
+          "act": "doggy"
+        },
+        "jump": {
+          "title": "Adrenaline",
+          "text": "Moments after tossing a loud drunk out the side gate, Jenny spins around breathing hard—and instead of brushing off her sleeves, she slams one gloved palm against the alley doorframe beside your head and kisses you fierce and deep, pulse hammering against your chest. \"Still think I'm all regulations and no spark, Sam?\"",
+          "image": {
+            "comp": "pinning him against the doorframe with one hand beside his head, breathing hard mid-kiss",
+            "setting": "dim side entrance hall after closing, open alley door behind, flickering lantern",
+            "sam": true
+          },
+          "go": "Kiss her harder",
+          "goRes": "She hooks one strong leg over your hip and yanks your hands straight under her short pleated skirt while her gloved fingers scramble eagerly at your trousers.",
+          "wait": "\"Catch your breath first!\"",
+          "waitRes": "Jenny exhales sharply, adjusts her service cap, and mutters with flushed ears, \"Right. Cooling down. Ask me tomorrow when I'm calmer.\""
+        }
+      }
+    },
+    "ivy": {
+      "events": {
+        "1": {
+          "title": "Unfinished Charts",
+          "text": "Late afternoon sunlight angles across the empty study where Ivy sits slouched over coastal maps, her white lab coat unbuttoned over her pink top and her gold pendant catching the glow. When you tap the desk beside her elbow to wake her, she blinks up with that lazy, slightly sleepy half-smile and tugs your collar gently toward her. \"Too quiet in here, Sam. Wake me properly.\"",
+          "image": {
+            "comp": "slouched comfortably over coastal maps on a desk, tugging his collar down with a sleepy inviting smile",
+            "setting": "sunlit empty study, stacks of field notes and sea charts, warm afternoon window",
+            "sam": true
+          },
+          "go": "Wake her with a kiss",
+          "goRes": "She stretches lazily upward to meet your mouth in a slow, languid kiss, humming softly against your lips as if every chart on the desk ceased to exist.",
+          "wait": "\"Back to your notes, Professor.\"",
+          "waitRes": "Ivy lets out a low, amused chuckle and rests her chin on her palm. \"Cruel taskmaster. Five more minutes, then.\"",
+          "act": "kiss"
+        },
+        "2": {
+          "title": "Hands-On Fieldwork",
+          "text": "After hours in the quiet back parlor, Ivy kicks off her pink low heels onto the rug, hikes her dark navy skirt high over her thighs, and pats the sofa cushions beside her with drowsy, unmistakable intent. \"I spend all week explaining theory to scholars, Sam—and frankly, I'm curious how good your hands and tongue are in practice.\"",
+          "image": {
+            "comp": "lounging back on a velvet sofa with heels kicked off, skirt riding up her thighs, languid inviting smile",
+            "setting": "quiet candlelit parlor, books piled beside a sofa, warm golden lamp",
+            "sam": true,
+            "cloth": "partial",
+            "wear": "an unbuttoned white lab coat over a fitted pink top and hiked-up navy skirt"
+          },
+          "go": "Show her in practice",
+          "goRes": "You drop between her soft knees, pull her navy silk panties aside, and lap slowly at her slick, warm pussy until her sleepy half-smile dissolves into low, helpless gasps.",
+          "wait": "\"Maybe tomorrow, Professor.\"",
+          "waitRes": "She laughs softly and curls sideways along the cushions, pulling a throw over her lap. \"Lazy boy. Tomorrow works nicely.\"",
+          "act": "oral_get"
+        },
+        "3": {
+          "title": "Warm Night on the Coast",
+          "text": "Sea breeze drifts through Ivy's open bedroom shutters, brushing the papers on her dresser as she reclines across the quilt in nothing but an unbuttoned white linen cover-up shirt draped loosely open over bare curves. Her gold pendant glints against warm skin as she smiles lazily up at you: \"Far too warm for clothes tonight, Sam—come keep me company.\"",
+          "image": {
+            "comp": "reclining lazily across a bed in an open white linen shirt, soft inviting smile, pendant resting on bare skin",
+            "setting": "airy upstairs bedroom with open wooden shutters, coastal breeze, warm candlelight",
+            "sam": true,
+            "cloth": "partial",
+            "wear": "an unbuttoned white linen cover-up shirt hanging wide open"
+          },
+          "go": "Lie down with her",
+          "goRes": "You push the thin linen off her shoulders, settle between her warm thighs, and sink your cock deep into her wet pussy, moving in slow, unhurried strokes until she shudders beneath you.",
+          "wait": "\"Are you sure, Philena?\"",
+          "waitRes": "\"Mmm—never rushed, never doubtful,\" she purrs softly, tugging the blanket over her legs. \"Curl up with me anyway, then.\"",
+          "act": "missionary"
+        },
+        "jump": {
+          "title": "Summer Downpour",
+          "text": "Caught in a warm evening squall out by the courtyard veranda, Ivy steps into your study wearing only her damp white linen cover-up shirt clinging over her curves. Instead of reaching for a towel, she backs you straight onto the map table and kisses you with sudden, melting heat. \"Don't look so startled, Sam—I never waste good weather.\"",
+          "image": {
+            "comp": "pressing him back against a map table in a damp unbuttoned linen shirt, breathless mid-kiss",
+            "setting": "lantern-lit study during an evening rainstorm, rain on windowpanes, scattered charts",
+            "sam": true,
+            "cloth": "partial",
+            "wear": "a damp white linen cover-up shirt unbuttoned over bare thighs"
+          },
+          "go": "Pull her onto the table",
+          "goRes": "She parts her damp thighs atop the desk charts, drawing your fingers straight into her slick pussy while her free hand unfastens your trousers with lazy, wicked assurance.",
+          "wait": "\"Dry off first, Professor.\"",
+          "waitRes": "Ivy smiles lazily, buttons one cuff, and drapes a dry towel around her shoulders. \"Spoilsport—give me ten minutes.\""
+        }
+      }
+    },
+    "kris": {
+      "events": {
+        "1": {
+          "title": "Victory Lap",
+          "text": "Kris sprints through the courtyard gate at dusk after posting flyers down every harbor lane, hopping effortlessly up onto the wooden rail beside you with her visor tilted back. When you brush dust off her cropped blue jacket, her spirited grin softens, and she drops lightly onto her toes inches from your chest. \"You kept pace with me all week, Sam. Ready for a reward?\"",
+          "image": {
+            "comp": "hopping down off a courtyard rail right into his personal space, spirited grin softening, close to his face",
+            "setting": "dusk courtyard near the front gate, wooden rail, warm street lanterns",
+            "sam": true
+          },
+          "go": "Take your reward",
+          "goRes": "She hooks both hands into your collar and plants a bright, spirited kiss squarely on your mouth, laughing softly with flushed cheeks when you pull her flush against you.",
+          "wait": "\"Save your breath for tomorrow!\"",
+          "waitRes": "Kris flips her visor backward with an unbothered grin and taps your arm. \"Deal—next sprint ends right here, though.\"",
+          "act": "kiss"
+        },
+        "2": {
+          "title": "After the Sprint",
+          "text": "In the quiet attic loft after hours, Kris stretches out across a padded mat in her cropped jacket and yellow cycling shorts, groaning about tight calves until you kneel to knead her legs. As your thumbs work higher up her inner thighs, her breath catches—and she props herself up on her elbows with daring, bright eyes. \"Don't stop at warm-ups, Sam. Let me show you how quick my hands are.\"",
+          "image": {
+            "comp": "propped up on her elbows on a padded floor mat, flushed and daring, reaching toward his belt",
+            "setting": "quiet attic loft at night, training mat, travel pack against the wall, single warm lamp",
+            "sam": true
+          },
+          "go": "Let her show you",
+          "goRes": "Sitting up fast, she pulls your belt open and wraps both athletic hands around your cock, stroking hard and licking the tip with fierce focus until you cum over her fingers.",
+          "wait": "\"Stretch out and rest, Kris.\"",
+          "waitRes": "She flops back onto the mat laughing breathlessly, tossing an arm over her eyes. \"Okay, coach—tomorrow I'm not stopping early.\"",
+          "act": "manual_give"
+        },
+        "3": {
+          "title": "Past the Starting Line",
+          "text": "Her visor cap hangs on the bedpost and her travel pack sits neatly unpacked for once by the dresser. On the bed, Kris waits cross-legged in only her fitted red undershirt, grinning boldly even as crimson creeps up her neck. \"I never quit halfway through a climb, Sam—and I'm done waiting at the starting line. Stay tonight.\"",
+          "image": {
+            "comp": "sitting cross-legged on the bed in a fitted red undershirt, determined grin softening with a shy blush",
+            "setting": "upstairs bedroom at night, unpacked travel pack by the dresser, warm bedside lamp",
+            "sam": true,
+            "cloth": "partial",
+            "wear": "a fitted red undershirt with nothing below the waist"
+          },
+          "go": "Stay tonight",
+          "goRes": "She tugs the red shirt over her head, climbs eagerly astride your hips, and sinks onto your cock—riding you in smooth, breathless athletic rhythm until she gasps and cums tight around you.",
+          "wait": "\"Are you sure, Kris?\"",
+          "waitRes": "\"Dead sure,\" she grins warmly, rolling back against the pillows to pat the spot beside her. \"Take a breath if you want—I'm right here.\"",
+          "act": "cowgirl"
+        },
+        "jump": {
+          "title": "Caught in the Squall",
+          "text": "Dashing under the back awning to dodge a sudden harbor downpour, Kris skids straight into your chest laughing breathlessly—and instead of backing up, she wraps both arms around your neck and kisses you fierce and hard right under the dripping eaves. \"Best timing I've had all week—don't tell me to slow down now!\"",
+          "image": {
+            "comp": "clinging around his neck under a rain-drenched awning, breathless and laughing mid-kiss",
+            "setting": "back courtyard awning in heavy evening rain, glowing wall lantern",
+            "sam": true
+          },
+          "go": "Pull her inside",
+          "goRes": "Laughing against her mouth, you back her into the dry vestibule and slide your palms straight up beneath her yellow cycling shorts while her eager fingers fumble open your belt.",
+          "wait": "\"Towels first, sprinter!\"",
+          "waitRes": "Kris grins brightly, shakes rain off her visor, and bolts inside calling back over her shoulder: \"Last one upstairs loses!\""
+        }
+      }
+    },
+    "rosa": {
+      "events": {
+        "1": {
+          "title": "Off-Script Rehearsal",
+          "text": "Behind the parlor curtains beside stacked theater props, Rosa strikes an exaggerated swoon with one wrist pressed to her forehead to rehearse a romance scene—then breaks into a bright giggle the moment you step directly into her reach and call her bluff. Her theatrical grin wobbles into a real, rosy blush. \"Wait—I forgot the next line, Sam. Help a starlet out?\"",
+          "image": {
+            "comp": "caught mid-rehearsal beside painted props, theatrical pose melting into a rosy flustered smile",
+            "setting": "backstage parlor behind velvet curtains, painted theater flats, warm string lights",
+            "sam": true
+          },
+          "go": "Give her a cue",
+          "goRes": "You tilt her chin up and kiss her soundly; Rosa gasps happily against your lips before throwing her arms around your neck to kiss back with full dramatic flair.",
+          "wait": "\"Check the script first, star.\"",
+          "waitRes": "She snaps into a playful curtsy and winks brightly despite her pink cheeks. \"Ooh, playing hard to get—great directing!\"",
+          "act": "kiss"
+        },
+        "2": {
+          "title": "Deleted Scene",
+          "text": "After the evening crowd clears out, Rosa perches on her dressing-room vanity with her visor tossed aside and her yellow skirt and black leggings peeled off, leaving only her sky-blue top and pink lace panties. Swinging her bare heels playfully as you shut the door, she grins with bright mischief and real heat: \"Downstairs gets the performance, Sam. Up here, you get the private cut.\"",
+          "image": {
+            "comp": "perched on the edge of a vanity table in a short top and lace panties, leaning forward playfully toward him",
+            "setting": "backstage dressing room at night, bulb-lit mirror, folded stage costumes",
+            "sam": true,
+            "cloth": "partial",
+            "wear": "a sky-blue and white top over pink lace panties with leggings off"
+          },
+          "go": "Watch the private cut",
+          "goRes": "Sliding off the vanity onto her knees between your thighs, she pops open your trousers with a wicked wink and sucks your cock deep and eagerly until you cum over her tongue.",
+          "wait": "\"Curtain's down for tonight, Rosa.\"",
+          "waitRes": "She laughs softly and pulls a silk wrap over her knees, beaming warmly. \"Fine, director—save the best take for tomorrow.\"",
+          "act": "oral_give"
+        },
+        "3": {
+          "title": "No More Costumes",
+          "text": "Under a low pink bedside lamp, Rosa waits completely bare across the open quilt, her theatrical grin softened into warm, breathless sincerity as she holds out both hands toward you. \"Every night I pretend to be twenty different heroines, Sam. Tonight, I just want to be me in your arms—all night long.\"",
+          "image": {
+            "comp": "kneeling bare on an open quilt beneath soft lamplight, holding out both hands with a warm sincere smile",
+            "setting": "cozy upstairs bedroom at midnight, pink bedside lamp, starlet gown draped on a chair",
+            "sam": true,
+            "cloth": "nude"
+          },
+          "go": "Hold her close",
+          "goRes": "She pulls you back onto the mattress, straddles your waist, and eases eagerly onto your cock—riding you with bright, uninhibited gasps until you both cum together.",
+          "wait": "\"Are you sure, Rosa?\"",
+          "waitRes": "\"A hundred percent!\" she whispers softly, pulling the quilt over both of you. \"Though I'm happy just cuddling first too.\"",
+          "act": "cowgirl"
+        },
+        "jump": {
+          "title": "Midnight Tango",
+          "text": "You walk into the empty lounge past midnight to find Rosa practicing a sweeping solo dip—only for her heel to catch the rug edge as you dart forward and catch her flush against your chest. Looking up breathless from your arms, she skips straight past embarrassment and plants a hot, hungry kiss onto your mouth. \"Best save of the season, Sam!\"",
+          "image": {
+            "comp": "caught in a low dance dip against his chest, laughing breathlessly as she pulls him down to kiss",
+            "setting": "empty candlelit lounge after midnight, polished dance floor, velvet booths",
+            "sam": true
+          },
+          "go": "Hold the dip",
+          "goRes": "Giggling into your mouth, she lets you walk her backward onto the velvet booth and tug up her flared yellow skirt while her nimble fingers unbuckle your trousers.",
+          "wait": "\"Watch your ankles, starlet!\"",
+          "waitRes": "Rosa giggles brightly, hops upright, and blows a teasing kiss from the stage steps. \"Good catch—encore tomorrow!\""
+        }
+      }
+    },
+    "phoebe": {
+      "events": {
+        "1": {
+          "title": "Breeze on the Veranda",
+          "text": "Out on the lantern-lit back veranda past midnight, Phoebe sits barefoot on the wooden railing swinging her ankleted foot, humming softly to the night air. When you lean beside her, she tilts her head with that easygoing island smile and bumps her warm shoulder into yours. \"All the noisy spirits tucked in early tonight, Sam—leaving just us. Want to kiss me?\"",
+          "image": {
+            "comp": "sitting barefoot on a wooden veranda rail, leaning playfully against his shoulder with an easygoing smile",
+            "setting": "back veranda at midnight, hanging paper lanterns, warm summer breeze",
+            "sam": true
+          },
+          "go": "Kiss her",
+          "goRes": "She slips down off the rail straight into your arms, laughing softly before kissing you warm and slow like summer surf.",
+          "wait": "\"Let's enjoy the breeze first.\"",
+          "waitRes": "\"Sounds good to me!\" Phoebe grins comfortably and stays swinging her heels against the rail beside you.",
+          "act": "kiss"
+        },
+        "2": {
+          "title": "Shrine Cushion Secrets",
+          "text": "In the quiet, incense-scented parlor after a lively evening shift, Phoebe stretches out barefoot across the floor cushions, untying her azure sarong enough for it to drape loosely over her tanned thighs. Catching your wrist with warm, mischievous eyes, she pulls you down beside her: \"Even the house spirits cleared out for us, Sam. Let me spoil you a little.\"",
+          "image": {
+            "comp": "lounging barefoot on floor cushions with her sarong parted across her thighs, pulling him down playfully",
+            "setting": "incense-scented quiet parlor, low cushions, glowing paper lanterns",
+            "sam": true,
+            "cloth": "partial",
+            "wear": "an azure bandeau top and untied sarong skirt draped loosely across her thighs"
+          },
+          "go": "Let her spoil you",
+          "goRes": "Giggling warmly, she opens your trousers, strokes your cock smoothly in both oiled palms, and takes you deep into her hot mouth until you cum.",
+          "wait": "\"Take it easy tonight, Phoebe.\"",
+          "waitRes": "She grins easily, knots her sarong back at her hip, and rests her head lazily against your knee. \"Alright—tomorrow it is.\"",
+          "act": "oral_give"
+        },
+        "3": {
+          "title": "Hibiscus Glow",
+          "text": "Warm amber lanterns cast soft patterns across Phoebe's room, smelling faintly of hibiscus and sea salt, where she stretches out completely bare atop the linen sheets with a bright, relaxed smile. Reaching up for your hand as you step beside the bed, she murmurs softly: \"No crowds, no spirits watching—just you and me tonight, Sam.\"",
+          "image": {
+            "comp": "stretched out bare across linen sheets in soft lantern light, reaching warmly up for his hand",
+            "setting": "warm island-styled upstairs bedroom, hanging paper lanterns, hibiscus petals by the lamp",
+            "sam": true,
+            "cloth": "nude"
+          },
+          "go": "Climb into bed",
+          "goRes": "She opens her tanned thighs wide to welcome you, gasping warmly as you sink your cock deep into her wet pussy and move together until you both cum.",
+          "wait": "\"Are you sure, Phoebe?\"",
+          "waitRes": "\"Always sure when it's you,\" she smiles breezily, pulling the thin sheet up for both of you. \"No rush at all.\"",
+          "act": "missionary"
+        },
+        "jump": {
+          "title": "Courtyard Spin",
+          "text": "Catching a warm night breeze across the empty courtyard after lockup, Phoebe twirls barefoot across the flagstones, catches both your hands to pull you into a dizzy spin, and lands flush against your chest—immediately rising up to kiss you deep and breathless. \"Haha—couldn't help myself, Sam! You looked way too good standing in the lantern glow.\"",
+          "image": {
+            "comp": "caught flush against his chest mid-twirl under courtyard lanterns, grinning into a deep breathless kiss",
+            "setting": "lantern-lit stone courtyard at night, swaying wind chimes, warm breeze",
+            "sam": true
+          },
+          "go": "Keep holding her",
+          "goRes": "Laughing warmly against your mouth, she unknots the tie of her sarong at her hip and drags your hands onto her bare, tanned ass while her eager fingers work open your belt.",
+          "wait": "\"Easy, spinner—you'll make us dizzy!\"",
+          "waitRes": "Phoebe laughs cheerfully, ties her sarong back with one quick flick, and winks. \"Dizzy's half the fun—see you tomorrow!\""
+        }
+      }
     }
   }
 }
