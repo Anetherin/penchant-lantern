@@ -453,8 +453,8 @@
             "hairColor": "flaxen blonde",
             "eyes": "blue",
             "skin": "pale ivory",
-            "accessories": "a green hair ribbon, a black ribbon choker and a yellow-and-white frilled parasol with a dangling plushie mascot charm",
-            "accState": "dressed",
+            "accessories": "a green hair ribbon, a black ribbon choker",
+            "accState": "always",
             "expression": "a deadpan, unimpressed stare"
           },
           "under": "lace",
@@ -470,6 +470,8 @@
               "label": "Earth Seraph frilled dress",
               "style": "Cute",
               "prompt": "a short loose sleeveless white and yellow frilled dress, oversized dark gloves and sturdy brown boots",
+              "accessories": "a yellow-and-white frilled parasol with a dangling plushie mascot charm",
+              "accState": "dressed",
               "bonus": {"promoter":1.25,"security":1.2}
             }
           },
