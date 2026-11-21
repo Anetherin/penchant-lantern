@@ -1487,6 +1487,123 @@
             "desc": "Her easygoing warmth keeps waiting guests smiling and steadies spirits across both foyer and chapel.",
             "fx": {"jobBonus":{"host":1.15,"chapel":1.15},"moodLoss":0.85,"trustGain":1.1}
           }
+        },
+        "roxanne": {
+          "job": "teacher",
+          "title": "Leader",
+          "name": "Roxanne",
+          "race": "human",
+          "age": 24,
+          "personality": "Earnest and dutiful",
+          "traits": ["Studious","Organised"],
+          "style": "Cute",
+          "favColor": "red",
+          "fav": "kiss",
+          "dislike": "doggy",
+          "lovers": "missionary",
+          "backstory": "An honors graduate of the Rustboro Trainers' School and the Rock-type Gym Leader of Rustboro City, Roxanne believes every battle—and every ledger—rewards preparation and steady fundamentals. Polite, meticulous, and secretly thrilled by practical fieldwork, she arrived in Hollowmere with a satchel of annotated notebooks and fossil samples, determined to study how a well-run house operates from the inside out.",
+          "design": {
+            "hairStyle": "pulled into neat twin tails secured by large red ribbon scrunchies",
+            "hairColor": "chestnut brown",
+            "eyes": "warm brown",
+            "skin": "fair",
+            "accessories": "red ribbon hair scrunchies and a crisp red bow tie at her collar",
+            "accState": "always",
+            "expression": "an attentive, earnest smile with composed posture"
+          },
+          "under": "plain",
+          "underColor": "white",
+          "stats": {"beauty":68,"charm":62,"charisma":60,"refinement":74,"wits":78,"stamina":56,"strength":42,"agility":54},
+          "tech": {"service":36,"dance":22,"bar":24,"combat":46,"manage":62},
+          "actSkill": 18,
+          "popularity": 12,
+          "lewd": 20,
+          "trust": 24,
+          "outfits": {
+            "sig_roxanne": {
+              "label": "Rustboro academy uniform",
+              "style": "Cute",
+              "prompt": "a crisp white collared blouse with a red bow tie under a dark slate-navy pleated pinafore dress, white knee-high socks and brown loafers",
+              "bonus": {"teacher":1.25,"attendant":1.15}
+            },
+            "sp_roxanne": {
+              "label": "Scholar's salon dress",
+              "style": "Elegant",
+              "prompt": "a tailored burgundy-and-cream knee-length dress with brass buttons, sheer dark stockings and low-heeled leather shoes",
+              "bonus": {"promoter":1.2,"madame":1.15}
+            }
+          },
+          "bonds": {
+            "may": {"v":30,"kind":"comrades","note":"Former Rustboro challenger who still turns bright red remembering Roxanne's Nosepass."},
+            "flannery": {"v":25,"kind":"comrades","note":"Fellow Hoenn Gym Leader; Roxanne quietly organizes the training schedules Flannery misplaces."},
+            "phoebe": {"v":25,"kind":"comrades","note":"Admires Phoebe's calm under Elite Four pressure, even if her notes on Mt. Pyre make no sense."},
+            "juniper": {"v":30,"note":"Trades annotated fossil notes and teaching methods over late-night tea."}
+          },
+          "jobs": {"likes":["teacher","attendant","promoter"],"dislikes":["dancer","bartender"]},
+          "body": {"bust":"small","height":"short","figure":"petite"},
+          "unique": {
+            "name": "Honors Curriculum",
+            "desc": "Her structured lessons sharpen staff technique and raise the house's standing with scholarly patrons.",
+            "fx": {"teach":1.2,"jobBonus":{"teacher":1.2},"classBonus":{"scholar":1.15}}
+          }
+        },
+        "olivia": {
+          "job": "host",
+          "title": "Kahuna",
+          "name": "Olivia",
+          "race": "human",
+          "age": 29,
+          "personality": "Bold and flirtatious",
+          "traits": ["Warm-Hearted","Tough"],
+          "style": "Revealing",
+          "favColor": "pink",
+          "fav": "manual_get",
+          "dislike": "massage_give",
+          "lovers": "cowgirl",
+          "backstory": "The Rock-type Island Kahuna of Akala and a pillar of Alola's Elite Four, Olivia runs a bustling Konikoni City jewelry and stone shop when she isn't testing challengers. Warm, earthy, and unapologetically physical, she carries herself with the easy confidence of someone who knows her own strength—though she'll laughingly admit she came to Hollowmere hoping to finally meet someone who can keep up with her.",
+          "design": {
+            "hairStyle": "thick, wavy hair swept over one shoulder with a pink hibiscus-and-feather clip",
+            "hairColor": "dark brown",
+            "eyes": "warm hazel",
+            "skin": "tanned",
+            "accessories": "pink hibiscus hair clip, stone-set gold bangles and pink anklets",
+            "accState": "always",
+            "expression": "a radiant, teasing grin with warm, inviting eyes"
+          },
+          "under": "lace",
+          "underColor": "pink",
+          "stats": {"beauty":78,"charm":76,"charisma":78,"refinement":56,"wits":60,"stamina":76,"strength":68,"agility":64},
+          "tech": {"service":48,"dance":46,"bar":38,"combat":68,"manage":44},
+          "actSkill": 28,
+          "popularity": 18,
+          "lewd": 38,
+          "trust": 26,
+          "outfits": {
+            "sig_olivia": {
+              "label": "Akala Kahuna attire",
+              "style": "Revealing",
+              "prompt": "a sleeveless magenta-pink midriff-baring halter top, tight high-waisted black shorts with a diamond-shaped buckle, pink-and-gold bangles and heeled sandals",
+              "bonus": {"host":1.25,"security":1.2}
+            },
+            "sp_olivia": {
+              "label": "Konikoni jeweler's gown",
+              "style": "Exotic",
+              "prompt": "an off-shoulder plum-and-gold silk wrap dress slit high up one thigh, paired with gemstone drop earrings and strappy heels",
+              "bonus": {"courtesan":1.25,"dancer":1.15}
+            }
+          },
+          "bonds": {
+            "phoebe": {"v":35,"kind":"comrades","note":"Fellow island Elite Four who swap sea stories and tropical snacks."},
+            "cynthia": {"v":30,"note":"Mutual respect between two seasoned champions who love ancient stones and ruins."},
+            "flannery": {"v":25,"kind":"comrades","note":"Enjoys Flannery's fiery energy and loves teasing her about staying single."}
+          },
+          "jobs": {"likes":["host","security","courtesan"],"dislikes":["maid"]},
+          "body": {"bust":"large","height":"tall","figure":"curvy"},
+          "unique": {
+            "name": "Gemstone Magnetism",
+            "desc": "Her radiant warmth draws generous tips at the door while her Kahuna strength keeps rowdy guests in line.",
+            "fx": {"jobBonus":{"host":1.15,"security":1.15},"tips":1.15,"appeal":3}
+          }
         }
       }
     }
