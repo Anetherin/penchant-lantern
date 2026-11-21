@@ -162,7 +162,7 @@
               "label": "Gothic harp-lute",
               "style": "Exotic",
               "hairStyle": "thigh-length, thick and layered",
-              "prompt": "an elaborate black, plum and wine-red gothic combat dress with a lace-edged bodice, low curved neckline, exposed shoulders, detached sleeves, asymmetric short skirt panels, thigh-high stockings and strapped black gothic combat boots, carrying a one-handed bat-shaped harp-lute with glowing green strings",
+              "prompt": "an elaborate black, plum and wine-red gothic combat dress with a lace-edged bodice, low curved neckline, exposed shoulders, detached sleeves, asymmetric short skirt panels, thigh-high stockings and strapped black gothic combat boots",
               "bonus": {"dancer":1.25,"courtesan":1.15}
             }
           },
@@ -442,7 +442,7 @@
             "hibiki": {"v":35,"note":"Friends through shared dedication to deliberate presentation."}
           },
           "jobs": {"likes":["courtesan","madame","dancer"],"dislikes":["bartender","maid"]},
-          "body": {"bust":"medium","height":"tall","figure":"curvy"},
+          "body": {"bust":"medium","height":"average","figure":"curvy"},
           "unique": {
             "name": "Optimized Presentation",
             "desc": "She has calculated exactly what makes a good impression.",
