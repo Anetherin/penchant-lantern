@@ -199,3 +199,13 @@ Round 5 read: Onsen fixed (45 → 33 weeks, no failures), cycle-1 payoff 25–39
 - **Capacity steeper:** `prestige.capacity` x2 at class 0, x1 at 50, x0.6 at 100 (was 1.5 / 0.75).
 - **Tankard** starts at class 6 (was 18) so it plays rowdy.
 - **Amber** fee −5%, minus up to 15% more by house class (`classFee`, x class/100): about −8% at Tankard, −20% at Castle. Energy −15% / recovery +15% unchanged. Meant as the cheap houses' play.
+
+### Round 6 (2026-11-21, `balance/guest-slots`; measured with `ngpp-guests`, 16 seeds)
+- **Guests per candidate slot:** each weekly candidate slot (3, plus recruit boons and house bonuses) is a guest with `visits.chance` 0.5 (x `guestDrawMul`, at most `maxChance`), else a generic. Was one 30% roll a week plus pity. Pity is gone.
+- **Past-life guests:** `visits.reborn` 0.25: a guest who turns up (candidates or walks, `pickDrifter`) is one from `S.lives` who comes back with her Reincarnated stacks; old friends (`S.alumni`) still turn up on their own 50% roll on top.
+- **Bug:** guests passing through never had their stay, cooldown or "last guest" set (the line was swallowed by a comment), so each left after one week and pity climbed to the 80% cap: the real old rate was ~0.8 guests a week staying 1 week. Now ~1.5 a week staying 2 (~1.2 on staff in cycle 1, 29 weeks to win).
+- **NG++ loan:** `ngppDebt` 50k → 100k, `ngppStep` 50k → 100k.
+- Lab: `ngppPrep.partnerLives` / `guestLives` and `ng.guestLives` seed past lives; policy `hireReborn` / `hireGuests`; columns `guests` / `guestsReborn`; `patch.guestVisits`. `exp/ngpp-guests.json` models NG++ after five cycles: all 15 partners as past lovers (3 a cycle, stacks 5/4/3/2/1), n guests a cycle as old friends plus n as past lives, same stacks; bot hires reborn ladies first.
+- Read at the old 50k loan: NG++1 took **19 weeks** (cycle 1: 30) with 1-5 guests a cycle, 25 without carried guests, 22 when the bot ignores reborn candidates. The partners' stacks alone make it easy.
+- At 100k: NG++1 29 weeks (1 game over in 16), 1/cycle 31, 5/cycle 29, no carried guests 46 (3 game overs), bot ignoring reborn 30. NG++2 (154-199k) 24-29 weeks: Shrine upgrades carry, so it isn't harder than NG++1 even with a 100k step.
+- **Open:** NG++1 now matches cycle 1 rather than ramping past it; going further mostly punishes runs that didn't carry guests. A per-stack term (debt + x per Reincarnated stack in `S.lives`/`S.alumni`) would scale with what's actually carried, like NG+'s `loverDebt`.

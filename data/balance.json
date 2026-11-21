@@ -180,7 +180,7 @@
     "perLover": 0,
     "loverDebt": 2000,
     "ngppDebt": 100000,
-    "ngppStep": 50000,
+    "ngppStep": 100000,
     "ngppHouse": "shrine",
     "ngppRoomStart": 10,
     "ngppRoomStep": 5,

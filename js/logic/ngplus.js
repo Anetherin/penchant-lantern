@@ -241,7 +241,7 @@ function ngView(){
         <b>Prior lovers (${lovers.length}):</b> lover stories reset; they keep their Reincarnated stacks, final NG+ perks, and slowly awakening memories when met again (no signing bonus; ${esc(GN())} notices).<br>
         ${NGS.past&&NGS.past!=='none'?`<b>Another past life:</b> ${esc(PASTS[NGS.past].label)}.<br>`:''}
         <b>Challenge:</b> ${esc(ch.label||'Standard Cycle')}${ch.perk?` — reward: <b>${esc(ch.perk)}</b> (${esc(ch.perkDesc||'')})`:''}.<br>
-        <b>Debt:</b> ${fmt(N.debt)} ${N.impr ? `(${fmt(N.base)} Shrine loan + ${fmt(N.extra)} saved Shrine upgrades)` : `(NG++${N.ngppCycle} Shrine loan: ${fmt(BAL.ngplus.ngppDebt ?? 100000)} base + ${fmt(BAL.ngplus.ngppStep ?? 50000)} per NG++ cycle)`}, due over ${ngPlan(N.cycle).payments*BAL.debt.every} weeks. <b>Purse:</b> ${fmt(N.purse)}.</div>`;
+        <b>Debt:</b> ${fmt(N.debt)} ${N.impr ? `(${fmt(N.base)} Shrine loan + ${fmt(N.extra)} saved Shrine upgrades)` : `(NG++${N.ngppCycle} Shrine loan: ${fmt(BAL.ngplus.ngppDebt ?? 100000)} base + ${fmt(BAL.ngplus.ngppStep ?? 100000)} per NG++ cycle)`}, due over ${ngPlan(N.cycle).payments*BAL.debt.every} weeks. <b>Purse:</b> ${fmt(N.purse)}.</div>`;
     } else {
       const friends = ngFriends(), residents = ngResidents(), leaving = S.workers.filter(w=>!lovers.includes(w) && !friends.includes(w) && !residents.includes(w));
       const F = BAL.ngplus.friends || {}, maxGen = S.cycle || 1, genFriends = S.workers.filter(w=>!lovers.includes(w) && !w.isPartner && !w.key && w.trust >= (F.trust ?? 100));
