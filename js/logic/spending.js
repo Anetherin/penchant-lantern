@@ -247,14 +247,33 @@ function buyLuxury(k, hid){
 // the button only shows when the wait is all that's left). Price: cost x markup x (1 + perCycle x (cycle-1)), rounded to 100.
 // Each skip multiplies the markup by mul; every week that passes keeps weekDecay of the markup above 1 (0.5: halfway back to
 // the base price), and a rebirth resets it (S.rush {cycle, m, wk}). The chapter fires when the week ends.
-function rushMarkup(){
-  const R = BAL.luxury.rush, r = S.rush; if(!r || r.cycle !== (S.cycle||1)) return 1;
-  let m = r.m ?? Math.pow(R.mul ?? 1.5, r.n || 0);   // older saves stored a skip count
-  const weeks = Math.max(0, S.week - (r.wk ?? S.week));
-  for(let i = 0; i < weeks; i++) m = 1 + (m - 1) * (R.weekDecay ?? 0.5);
+function decayMarkup(cfg, rec){
+  if(!cfg || !rec || rec.cycle !== (S.cycle||1)) return 1;
+  let m = rec.m ?? Math.pow(cfg.mul ?? 1.5, rec.n || 0);   // older saves stored a skip count
+  const weeks = Math.max(0, S.week - (rec.wk ?? S.week));
+  for(let i = 0; i < weeks; i++) m = 1 + (m - 1) * (cfg.weekDecay ?? 0.5);
   return m;
 }
-function rushCost(){ const R = BAL.luxury.rush; return Math.round(R.cost * rushMarkup() * cycleMul(R.perCycle) / 100) * 100; }
+const decayCost = (cfg, rec) => Math.round(cfg.cost * decayMarkup(cfg, rec) * cycleMul(cfg.perCycle ?? (BAL.luxury||{}).perCycle) / 100) * 100;
+const rushMarkup = () => decayMarkup(BAL.luxury.rush, S.rush);
+const rushCost = () => decayCost(BAL.luxury.rush, S.rush);
+const actionLuxCost = () => decayCost(BAL.luxury.action, S.luxAction);
+function buyActionLuxury(){
+  const A = (BAL.luxury||{}).action;
+  if(!luxOpen() || !A) return toast('Luxuries open up once the debt is paid off.');
+  if((S.ap||0) >= apMax()) return toast('Rest-day actions are already full.');
+  const cost = actionLuxCost(); if(S.gold < cost) return toast('Not enough gold.');
+  S.gold -= cost;
+  S.luxAction = {cycle: S.cycle||1, m: decayMarkup(A, S.luxAction) * (A.mul ?? 1.5), wk: S.week};
+  S.ap = Math.min(apMax(), (S.ap||0) + 1);
+  addLog(`💎 ${A.label} (−${fmt(cost)})`);
+  save(); render(); toast(`Sam uncorks the draught. The afternoon stretches out, and he has time for one more thing. (+1 action) −${fmt(cost)}`);
+}
+function actionLuxBtn(){
+  const A = (BAL.luxury||{}).action; if(!A) return '';
+  const c = actionLuxCost(), full = (S.ap||0) >= apMax();
+  return `<button ${S.gold < c || full ? 'disabled' : ''} onclick="buyActionLuxury()" title="${full ? 'Rest-day actions are already full.' : 'Restores 1 rest-day action. Price rises with each purchase and cools down each week.'}">💎 ${esc(A.label)} · ${fmt(c)}</button>`;
+}
 function rushTarget(kind, id){
   if(kind==='house'){ const h = H(id); return h && h.story && STORIES[h.id] ? {h, gap: storyGap(h), name: h.name} : null; }
   const w = S.workers.find(x=>String(x.id)===String(id)); if(!w) return null;
@@ -286,7 +305,13 @@ function luxBtn(k, h){
 }
 function samLuxCard(){
   if(!luxOpen() || !BAL.luxury) return '';
-  return `<section class="card"><h2>Luxuries</h2><div class="row">${luxBtn('tonic')}</div><p class="muted">No action needed. ${luxSpanCycle('tonic') ? `Each tonic this cycle raises the next one's price x${BAL.luxury.tonic.mul ?? BAL.luxury.weekMul ?? 2} (it resets at rebirth).` : 'Each one bought this week doubles the next one\'s price.'}</p></section>`;
+  const tonicNote = luxSpanCycle('tonic')
+    ? `Each tonic this cycle raises the next one's price x${BAL.luxury.tonic.mul ?? BAL.luxury.weekMul ?? 2} (resets at rebirth).`
+    : 'Each tonic bought this week doubles the next one\'s price.';
+  const actionNote = BAL.luxury.action
+    ? ` ${BAL.luxury.action.label}: +1 rest-day action; price rises x${BAL.luxury.action.mul ?? 1.5} per purchase and cools down each week.`
+    : '';
+  return `<section class="card"><h2>Luxuries</h2><div class="row">${luxBtn('tonic')}${actionLuxBtn()}</div><p class="muted">No action needed. ${tonicNote}${actionNote}</p></section>`;
 }
 function houseLuxCard(h){
   if(!luxOpen() || !BAL.luxury) return '';
