@@ -104,7 +104,7 @@ LAB.POLICY = {
   fixedStaff: false,     // opt-in: cap maxStaff at home house staff count when measured phase starts (suppresses bedless capacity edge)
   hireFriends: false,    // opt-in: prioritize hiring returning reborn alumni/friends when affordable
   hireReborn: false,     // opt-in: prioritize any candidate with Reincarnated stacks (most stacks first; reborn guests from S.lives included) when affordable
-  hireGuests: false      // opt-in: prioritize guests (drifters) over generics when affordable
+  hireGuests: true       // prioritize guests (drifters) over generics when affordable (default since 2026-11-21: a player takes them)
 };
 // the fixed player the Pass 1/2 numbers in docs/BALANCE.md were measured with: spec "policy": {"preset": "legacy"}
 LAB.PRESETS = { legacy: { security: false, tidyFloor: 0, classUpkeep: false, maxStaff: 10, bedTier: false, guild: false, walkPartners: false, guildSpare: false, guildPartners: false }, noGuild: { guild: false } };
