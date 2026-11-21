@@ -348,7 +348,7 @@ function gDuo(w, C){
   const s = gScenePick(GSCN.duo, C); if(!s) return null;
   const f = t => gFill(t, {N:w.name, C:C.label}), act = gPickAct(w, s.close && s.close.acts, id=>canSam(w,id)), sc = gImg(s, s.id);
   const ch = [{label:f(s.tender.label), fx(){ gainTrust(w, 3); moodAdd(w, 5); return f(s.tender.res) + '\n\nTrust + · Mood +'; }}];
-  if(act) ch.unshift({label:f(s.close.label), fx(){ const text = privateCore(w, act, {lead:f(s.close.lead)}); return {text, img:{wid:w.id, scene:'samact:'+act}}; }});
+  if(act) ch.unshift({label:f(s.close.label), fx(){ const acts = [], text = privateCore(w, act, {lead:f(s.close.lead), acts}); const imgs = acts.map(a=>({wid:w.id, scene:'samact:'+a})); return {text, img:imgs[0], imgs:imgs.length>1?imgs:undefined}; }});
   return {title:f(s.title), who:w.id, scene:sc || 'casual', text:f(s.text), choices:ch};
 }
 function gTrio(a, b, C){

@@ -220,15 +220,18 @@ function samPrivate(id, act, free){
   if(!canSam(w,act)) return toast(`${w.name} isn't comfortable with that yet.`);
   const recv = (actById(act)||{}).kind==='receive';   // receiving services: Sam does the work, and tires less
   if(free){ const c = samPrivCost(recv ? 8 : 15, true); if(S.sam.energy<c) return toast('Sam is too tired.'); S.sam.energy -= c; } else if(!useAP(samPrivCost(recv ? 15 : 30, false))) return;
-  const l0 = w.lust, text = privateCore(w, act);
+  const acts = [];
+  const l0 = w.lust, text = privateCore(w, act, {acts});
   const again = wantsAgain(w, l0);   // still worked up, she may want another round (js/events/encounters.js)
   checkUnlocks(); save(); render(); closeModal();
-  showResult(`Private Time with ${w.name}`, text, w.id, 'samact:'+act, {kind:'private', act, scene:'samact:'+act, forSam:true},
+  const scenes = acts.map(a => 'samact:' + a);
+  showResult(`Private Time with ${w.name}`, text, w.id, scenes.length > 1 ? scenes : scenes[0], {kind:'private', act, scene:scenes[0], forSam:true},
     again ? {label:'Continue', onclick:`EVQ.unshift(()=>evAgain(findW('${w.id}')));runQueue()`} : undefined);
 }
 // Shared effects of private time with Sam (used by the action, encounters, firsts and reckless nights). Returns the story text.
 // o.lead: the moment's own opening (encounters, firsts); it replaces the generic lines, and a short line for the service follows.
 function privateCore(w, act, o={}){
+  if(o.acts) o.acts.push(act);
   const stretch = samStance(w,act)==='ask', A = actById(act) || {}, recv = A.kind==='receive';
   const over = Math.max(0, Math.round((A.th||0) - inclination(w, act)));
   const pushed = stretch || over > 0;
@@ -278,7 +281,7 @@ function privateCore(w, act, o={}){
     const ids = getActs().filter(a=>(a.lust ?? -1) < 0 && canSam(w, a.id)).map(a=>a.id);
     if(ids.length){ const id2 = ids.find(id=>isLovers(w,id)) || pickFav(w,ids) || pick(ids);
       const l1 = w.lust;
-      text += '\n\n— Round two —\n\n' + privateCore(w, id2, {lead:`${w.name} isn't done. She pulls you closer and tells you, quietly and very clearly, what she wants next.`, more:true});
+      text += '\n\n— Round two —\n\n' + privateCore(w, id2, {lead:`${w.name} isn't done. She pulls you closer and tells you, quietly and very clearly, what she wants next.`, more:true, acts:o.acts});
       text += `\n\n(${samActLabel(act)} got her worked up (lust +${-ld}); the second round, ${samActLabel(id2).toLowerCase()}, is what spent it (lust −${Math.round(l1 - w.lust)}).)`; }
   }
   return text;
