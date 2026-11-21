@@ -28,7 +28,6 @@
             "expression": "a sweet, serene royal smile"
           },
           "under": "lace",
-          "underColor": "pink",
           "stats": {"beauty":82,"charm":78,"charisma":76,"refinement":84,"wits":64,"stamina":52,"strength":30,"agility":55},
           "tech": {"service":55,"dance":45,"bar":35,"combat":25,"manage":60},
           "actSkill": 25,
@@ -89,7 +88,6 @@
             "expression": "a loud, confident grin"
           },
           "under": "sports",
-          "underColor": "yellow",
           "stats": {"beauty":76,"charm":74,"charisma":80,"refinement":50,"wits":58,"stamina":76,"strength":58,"agility":72},
           "tech": {"service":35,"dance":50,"bar":45,"combat":50,"manage":35},
           "actSkill": 25,
@@ -145,7 +143,6 @@
             "expression": "a sultry, show-stopping smile"
           },
           "under": "silk",
-          "underColor": "red",
           "stats": {"beauty":84,"charm":78,"charisma":86,"refinement":74,"wits":76,"stamina":58,"strength":32,"agility":60},
           "tech": {"service":45,"dance":75,"bar":35,"combat":20,"manage":72},
           "actSkill": 35,
@@ -199,7 +196,6 @@
             "expression": "a cheerful, rosy-cheeked beam"
           },
           "under": "plain",
-          "underColor": "pink",
           "stats": {"beauty":64,"charm":72,"charisma":66,"refinement":52,"wits":70,"stamina":72,"strength":48,"agility":64},
           "tech": {"service":55,"dance":30,"bar":35,"combat":25,"manage":62},
           "actSkill": 20,
@@ -255,7 +251,6 @@
             "expression": "a fierce, sharp-fanged smirk"
           },
           "under": "corset",
-          "underColor": "black",
           "stats": {"beauty":82,"charm":66,"charisma":78,"refinement":42,"wits":54,"stamina":88,"strength":90,"agility":58},
           "tech": {"service":35,"dance":30,"bar":45,"combat":90,"manage":50},
           "actSkill": 35,
@@ -317,7 +312,6 @@
             "expression": "a mischievous, sharp-toothed giggle that turns bashful when watched"
           },
           "under": "sheer",
-          "underColor": "white",
           "stats": {"beauty":80,"charm":76,"charisma":72,"refinement":60,"wits":64,"stamina":60,"strength":28,"agility":78},
           "tech": {"service":60,"dance":55,"bar":25,"combat":40,"manage":20},
           "actSkill": 45,

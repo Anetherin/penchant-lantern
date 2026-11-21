@@ -25,7 +25,6 @@
             "expression": "a calm, unblinking gaze and a faint smile that never quite reaches her eyes"
           },
           "under": "silk",
-          "underColor": "purple",
           "stats": {"beauty":70,"charm":50,"charisma":61,"refinement":65,"wits":69,"stamina":50,"strength":30,"agility":55},
           "tech": {"service":35,"dance":20,"bar":15,"combat":60,"manage":45},
           "actSkill": 20,
@@ -88,7 +87,6 @@
             "expression": "a confident, composed smile"
           },
           "under": "silk",
-          "underColor": "black",
           "stats": {"beauty":80,"charm":66,"charisma":71,"refinement":72,"wits":72,"stamina":55,"strength":40,"agility":55},
           "tech": {"service":35,"dance":25,"bar":15,"combat":60,"manage":55},
           "actSkill": 25,
@@ -146,7 +144,6 @@
             "expression": "a cheerful, curious smile"
           },
           "under": "plain",
-          "underColor": "white",
           "stats": {"beauty":66,"charm":62,"charisma":56,"refinement":60,"wits":75,"stamina":50,"strength":30,"agility":50},
           "tech": {"service":40,"dance":15,"bar":10,"combat":15,"manage":55},
           "actSkill": 20,
@@ -201,7 +198,6 @@
             "expression": "a sunny grin"
           },
           "under": "plain",
-          "underColor": "white",
           "stats": {"beauty":72,"charm":66,"charisma":68,"refinement":48,"wits":58,"stamina":68,"strength":38,"agility":66},
           "tech": {"service":35,"dance":25,"bar":20,"combat":45,"manage":25},
           "actSkill": 20,
@@ -244,7 +240,6 @@
           "backstory": "The fiery water gym leader of a small seaside town, Misty set out to prove she was more than her sisters' shadow, and then proved it over and over. She arrived in Hollowmere hunting the best bathhouse in town and took a job on the spot. She has a short temper, a fierce competitive streak, and a soft heart for anyone who earns her trust.",
           "design": {"hairStyle":"short side ponytail","hairColor":"orange","eyes":"teal","skin":"fair","expression":"a bright, quick-tempered grin"},
           "under": "sports",
-          "underColor": "cyan",
           "stats": {"beauty":76,"charm":62,"charisma":66,"refinement":48,"wits":56,"stamina":68,"strength":42,"agility":70},
           "tech": {"service":40,"dance":25,"bar":25,"combat":50,"manage":25},
           "actSkill": 20,
@@ -310,7 +305,6 @@
             "expression": "a proud, narrow-eyed gaze"
           },
           "under": "silk",
-          "underColor": "navy",
           "stats": {"beauty":78,"charm":56,"charisma":66,"refinement":70,"wits":60,"stamina":64,"strength":56,"agility":62},
           "tech": {"service":30,"dance":15,"bar":15,"combat":65,"manage":55},
           "actSkill": 20,
@@ -363,7 +357,6 @@
             "expression": "a hot-tempered, eager grin"
           },
           "under": "sports",
-          "underColor": "red",
           "stats": {"beauty":74,"charm":68,"charisma":70,"refinement":40,"wits":44,"stamina":72,"strength":48,"agility":66},
           "tech": {"service":30,"dance":35,"bar":50,"combat":45,"manage":30},
           "actSkill": 25,
@@ -408,7 +401,6 @@
             "expression": "a bright, expressive smile"
           },
           "under": "lace",
-          "underColor": "pink",
           "stats": {"beauty":78,"charm":72,"charisma":72,"refinement":50,"wits":48,"stamina":62,"strength":30,"agility":66},
           "tech": {"service":30,"dance":60,"bar":25,"combat":25,"manage":20},
           "actSkill": 25,
@@ -470,7 +462,6 @@
             "expression": "a confident grin"
           },
           "under": "plain",
-          "underColor": "pink",
           "stats": {"beauty":76,"charm":70,"charisma":74,"refinement":48,"wits":50,"stamina":64,"strength":38,"agility":64},
           "tech": {"service":35,"dance":25,"bar":30,"combat":45,"manage":35},
           "actSkill": 20,
@@ -519,7 +510,6 @@
             "expression": "a bright, confident smile"
           },
           "under": "lace",
-          "underColor": "pink",
           "stats": {"beauty":80,"charm":72,"charisma":74,"refinement":58,"wits":56,"stamina":60,"strength":30,"agility":66},
           "tech": {"service":35,"dance":62,"bar":25,"combat":30,"manage":30},
           "actSkill": 25,
@@ -583,7 +573,6 @@
             "expression": "a lively, affectionate grin"
           },
           "under": "lace",
-          "underColor": "magenta",
           "stats": {"beauty":74,"charm":74,"charisma":76,"refinement":48,"wits":54,"stamina":62,"strength":32,"agility":62},
           "tech": {"service":40,"dance":50,"bar":35,"combat":25,"manage":35},
           "actSkill": 25,
@@ -643,7 +632,6 @@
             "expression": "a poised, teasing smile"
           },
           "under": "lace",
-          "underColor": "pink",
           "stats": {"beauty":82,"charm":76,"charisma":74,"refinement":68,"wits":60,"stamina":60,"strength":30,"agility":68},
           "tech": {"service":38,"dance":66,"bar":24,"combat":25,"manage":36},
           "actSkill": 22,
@@ -693,7 +681,6 @@
           "backstory": "Granddaughter of Pallet Town's famed researcher and older sister to a relentlessly driven champion, Daisy left the heavy trophies to her family and became known instead for afternoon tea, gentle grooming, and an unhurried warmth that puts even rivals at ease. Seeking a quieter life beyond Kanto's league circuit, she drifted into Hollowmere with a tin of jasmine leaves and a soft smile—and quickly turned the parlor into the one room where Sam always slows down.",
           "design": {"hairStyle":"long, straight and silky","hairColor":"auburn","eyes":"blue","skin":"fair","expression":"a warm, affectionate smile"},
           "under": "plain",
-          "underColor": "emerald",
           "stats": {"beauty":76,"charm":80,"charisma":64,"refinement":72,"wits":64,"stamina":56,"strength":28,"agility":50},
           "tech": {"service":45,"dance":22,"bar":28,"combat":15,"manage":52},
           "actSkill": 24,
@@ -754,7 +741,6 @@
             "expression": "a composed, captivating runway smile"
           },
           "under": "sports",
-          "underColor": "teal",
           "stats": {"beauty":86,"charm":68,"charisma":78,"refinement":72,"wits":60,"stamina":70,"strength":44,"agility":72},
           "tech": {"service":38,"dance":54,"bar":20,"combat":48,"manage":42},
           "actSkill": 24,
@@ -814,7 +800,6 @@
             "expression": "a cool, slightly guarded half-smile"
           },
           "under": "lace",
-          "underColor": "black",
           "stats": {"beauty":78,"charm":62,"charisma":70,"refinement":50,"wits":64,"stamina":64,"strength":46,"agility":66},
           "tech": {"service":32,"dance":30,"bar":34,"combat":56,"manage":44},
           "actSkill": 20,
@@ -872,7 +857,6 @@
             "expression": "a sharp, dutiful grin"
           },
           "under": "wraps",
-          "underColor": "purple",
           "stats": {"beauty":72,"charm":56,"charisma":58,"refinement":54,"wits":64,"stamina":66,"strength":44,"agility":74},
           "tech": {"service":35,"dance":30,"bar":15,"combat":62,"manage":40},
           "actSkill": 20,
@@ -931,7 +915,6 @@
             "expression": "a serene, drowsy gentle smile"
           },
           "under": "camisole",
-          "underColor": "emerald",
           "stats": {"beauty":80,"charm":74,"charisma":64,"refinement":78,"wits":62,"stamina":48,"strength":28,"agility":46},
           "tech": {"service":45,"dance":35,"bar":20,"combat":20,"manage":45},
           "actSkill": 20,
@@ -990,7 +973,6 @@
             "expression": "an energetic, bubbly grin"
           },
           "under": "sports",
-          "underColor": "pink",
           "stats": {"beauty":74,"charm":72,"charisma":74,"refinement":44,"wits":46,"stamina":68,"strength":44,"agility":62},
           "tech": {"service":35,"dance":35,"bar":30,"combat":35,"manage":20},
           "actSkill": 20,
@@ -1051,7 +1033,6 @@
             "expression": "a theatrical, haughty smirk"
           },
           "under": "garter",
-          "underColor": "crimson",
           "stats": {"beauty":82,"charm":64,"charisma":78,"refinement":56,"wits":58,"stamina":56,"strength":36,"agility":58},
           "tech": {"service":40,"dance":48,"bar":25,"combat":35,"manage":38},
           "actSkill": 25,
@@ -1107,7 +1088,6 @@
             "expression": "a warm, reassuring motherly smile"
           },
           "under": "lace",
-          "underColor": "cream",
           "stats": {"beauty":76,"charm":78,"charisma":70,"refinement":68,"wits":64,"stamina":62,"strength":38,"agility":52},
           "tech": {"service":45,"dance":25,"bar":35,"combat":15,"manage":55},
           "actSkill": 25,
@@ -1168,7 +1148,6 @@
             "expression": "a gentle, comforting bedside smile"
           },
           "under": "lace",
-          "underColor": "pink",
           "stats": {"beauty":76,"charm":78,"charisma":66,"refinement":62,"wits":68,"stamina":68,"strength":34,"agility":54},
           "tech": {"service":45,"dance":20,"bar":25,"combat":10,"manage":50},
           "actSkill": 22,
@@ -1226,7 +1205,6 @@
             "expression": "a sharp, dutiful smile"
           },
           "under": "sports",
-          "underColor": "navy",
           "stats": {"beauty":74,"charm":60,"charisma":68,"refinement":62,"wits":64,"stamina":72,"strength":64,"agility":68},
           "tech": {"service":30,"dance":20,"bar":25,"combat":68,"manage":52},
           "actSkill": 20,
@@ -1284,7 +1262,6 @@
             "expression": "a relaxed, slightly sleepy half-smile"
           },
           "under": "silk",
-          "underColor": "navy",
           "stats": {"beauty":78,"charm":70,"charisma":62,"refinement":66,"wits":82,"stamina":52,"strength":30,"agility":48},
           "tech": {"service":40,"dance":20,"bar":25,"combat":10,"manage":55},
           "actSkill": 22,
@@ -1343,7 +1320,6 @@
             "expression": "a spirited, determined grin"
           },
           "under": "sports",
-          "underColor": "red",
           "stats": {"beauty":74,"charm":64,"charisma":70,"refinement":50,"wits":62,"stamina":76,"strength":48,"agility":78},
           "tech": {"service":32,"dance":42,"bar":20,"combat":52,"manage":34},
           "actSkill": 20,
@@ -1401,7 +1377,6 @@
             "expression": "a bright, expressive theatrical smile"
           },
           "under": "lace",
-          "underColor": "pink",
           "stats": {"beauty":80,"charm":76,"charisma":78,"refinement":58,"wits":56,"stamina":62,"strength":32,"agility":66},
           "tech": {"service":36,"dance":64,"bar":25,"combat":35,"manage":32},
           "actSkill": 24,
@@ -1459,7 +1434,6 @@
             "expression": "an easygoing, breezy island smile"
           },
           "under": "wraps",
-          "underColor": "blue",
           "stats": {"beauty":76,"charm":74,"charisma":76,"refinement":54,"wits":62,"stamina":68,"strength":40,"agility":66},
           "tech": {"service":42,"dance":48,"bar":32,"combat":50,"manage":34},
           "actSkill": 24,
@@ -1519,7 +1493,6 @@
             "expression": "an attentive, earnest smile with composed posture"
           },
           "under": "plain",
-          "underColor": "white",
           "stats": {"beauty":68,"charm":62,"charisma":60,"refinement":74,"wits":78,"stamina":56,"strength":42,"agility":54},
           "tech": {"service":36,"dance":22,"bar":24,"combat":46,"manage":62},
           "actSkill": 18,
@@ -1578,7 +1551,6 @@
             "expression": "a radiant, teasing grin with warm, inviting eyes"
           },
           "under": "lace",
-          "underColor": "pink",
           "stats": {"beauty":78,"charm":76,"charisma":78,"refinement":56,"wits":60,"stamina":76,"strength":68,"agility":64},
           "tech": {"service":48,"dance":46,"bar":38,"combat":68,"manage":44},
           "actSkill": 28,

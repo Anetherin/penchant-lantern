@@ -27,7 +27,6 @@
             "expression": "a cheerful, energetic smile"
           },
           "under": "sheer",
-          "underColor": "pink",
           "stats": {"beauty":82,"charm":78,"charisma":76,"refinement":45,"wits":55,"stamina":68,"strength":35,"agility":80},
           "tech": {"service":30,"dance":70,"bar":25,"combat":30,"manage":15},
           "actSkill": 25,
@@ -84,7 +83,6 @@
             "expression": "a wicked smirk"
           },
           "under": "corset",
-          "underColor": "purple",
           "stats": {"beauty":85,"charm":68,"charisma":76,"refinement":58,"wits":72,"stamina":58,"strength":48,"agility":62},
           "tech": {"service":30,"dance":40,"bar":35,"combat":60,"manage":65},
           "actSkill": 20,
@@ -126,7 +124,6 @@
             "expression": "a playful, gap-toothed grin"
           },
           "under": "plain",
-          "underColor": "pink",
           "stats": {"beauty":66,"charm":70,"charisma":70,"refinement":36,"wits":45,"stamina":80,"strength":40,"agility":60},
           "tech": {"service":35,"dance":25,"bar":30,"combat":25,"manage":15},
           "actSkill": 20,
