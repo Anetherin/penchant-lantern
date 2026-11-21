@@ -193,7 +193,7 @@ function walkRecruitEvent(key, isPartner){
 }
 
 const walkPartnerEvent = list => walkRecruitEvent(pick(list), true);
-const walkGuestEvent = list => walkRecruitEvent(pick(list), false);
+const walkGuestEvent = list => walkRecruitEvent(pickDrifter(list), false);   // visits.reborn of walk guests are past-life ones (state.js)
 
 function walkGoddessEvent(){
   const g = G(), GW = WALKS.goddess || {}, B = BAL.walk || {};

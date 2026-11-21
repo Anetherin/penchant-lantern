@@ -2,11 +2,11 @@
   "_readme": [
     "Visiting characters (guests): crossover ladies grouped into packs. They wander in among the candidates now and then, stay a couple of weeks, and leave if not hired. They can come back later.",
     "Same fields as data/characters.json (no role). Keys must be unique across this file and characters.json. Bonds can point at anyone in either file.",
-    "visits: chance = odds per week that a guest shows up, stayWeeks = how long she waits among the candidates, cooldownWeeks = how long before that same lady can turn up again, pity = added to the chance for every week since the last guest arrived (up to maxChance), so dry spells end sooner. paidMul = once the debt is paid, the chance (and maxChance, up to 0.95) is multiplied by this, cooldownWeeks divided by it, and guest walk encounters weighted by it; Sam's Wayfarer's Lantern (balance.json → samUps.wayfarer, fx.guestDraw) multiplies all three by 1 + guestDraw on top.",
+    "visits: chance = odds a week that one of the candidate slots is a guest instead of a generic lady (before NG++); in NG++ (ngppPerSlot) every weekly candidate slot (3 plus recruit boons and house bonuses) rolls it. These are fresh faces: guests who worked for Sam in a past life come back through the returner roll (balance.json → ngplus.friends). reborn = share of guests met on walks who are past-life ones (when any are free). stayWeeks = how long she waits among the candidates, cooldownWeeks = how long before that same lady can turn up again. maxChance caps the chance. paidMul = once the debt is paid, the chance (and maxChance, up to 0.95) is multiplied by this, cooldownWeeks divided by it, and guest walk encounters weighted by it; Sam's Wayfarer's Lantern (balance.json → samUps.wayfarer, fx.guestDraw) multiplies all three by 1 + guestDraw on top (50% → 75%); both also scale the returner roll.",
     "Packs can be switched off in Settings → Visiting characters.",
     "All guests are adults: aged-up / endgame versions.",
     "jobs: {likes, dislikes} job ids, same as characters.json.",
     "Guests also carry body and unique (see characters.json _readme)."
   ],
-  "visits": {"chance":0.3,"stayWeeks":2,"cooldownWeeks":8,"pity":0.1,"maxChance":0.8,"paidMul":1.75}
+  "visits": {"chance":0.5,"reborn":0.25,"ngppPerSlot":true,"stayWeeks":2,"cooldownWeeks":8,"maxChance":0.8,"paidMul":1.75}
 }

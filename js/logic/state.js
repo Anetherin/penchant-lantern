@@ -167,31 +167,61 @@ function refreshCandidates(extra=0, quality=1){
     return c.keep;
   });
   const bonus = S.houses.reduce((a,h)=>a+(HOUSES[h.id].recruit||0),0);
-  for(let i=0;i<3+extra+bonus;i++){ const c = genWorker({quality: quality*(0.85 + S.rep/200 + ((S.sam.lvl||1)-1)*0.02)}); c.signing = signingFor(c); S.candidates.push(c); }
+  // drifters / visiting guests (data/guests.json): before NG++ one roll a week at visits.chance turns one candidate slot into a guest;
+  // in NG++ every candidate slot rolls it (visits.ngppPerSlot). Both x guestDrawMul (walks.js: visits.paidMul once the debt is paid,
+  // the Wayfarer's Lantern's fx.guestDraw), at most maxChance. These are fresh faces; past-life guests come through inviteFriend.
+  const V = GUEST_VISITS;
+  let drift = openDrifters().filter(k=>!(S.lives && S.lives[k]));
+  const gch = guestChance(V.chance);
+  const perSlot = V.ngppPerSlot !== false && (S.ngppCycle||0) > 0;
+  let oneGuest = !perSlot && drift.length && Math.random()<gch;
+  const q = quality*(0.85 + S.rep/200 + ((S.sam.lvl||1)-1)*0.02);
+  for(let i=0;i<3+extra+bonus;i++){
+    if(drift.length && (perSlot ? Math.random()<gch : oneGuest)){ oneGuest = false; const k = pick(drift); drift = drift.filter(x=>x!==k); addGuestCand(k); continue; }
+    const c = genWorker({quality: q}); c.signing = signingFor(c); S.candidates.push(c);
+  }
   if(SET.libraryInPool && LIB.length && Math.random()<0.25){
     const src = pick(LIB);
     if(!allNames().includes(src.name)){ const c = ensureWorker(clone(src)); c.id=uid(); c.keep=false; c.signing=signingFor(c); S.candidates.push(c); }
   }
   inviteFriend(false);
   // Partners are now encountered on walks (js/events/walks.js) rather than appearing in Candidates automatically.
-  // drifters / visiting guests (data/guests.json) wander in now and then, stay a while, and can come back later
-  const seen = S.flags.guestSeen = S.flags.guestSeen || {}, V = GUEST_VISITS;
-  const drift = Object.keys(NAMED).filter(k=>NAMED[k].role==='drifter' && !isHired(k) && !(SET.packsOff||{})[NAMED[k].pack]
-    && S.week - (seen[k] ?? -999) >= V.stayWeeks + Math.round(V.cooldownWeeks / Math.max(1, guestDrawMul())));
-  // dry spells shorten: each week without a guest adds visits.pity to the chance (at most visits.maxChance)
-  // guestDrawMul (walks.js): higher once the debt is paid (visits.paidMul) and with the Wayfarer's Lantern (samUps fx.guestDraw)
-  const gm = guestDrawMul(), dry = Math.max(0, S.week - (S.flags.lastGuest ?? S.week)), gch = Math.min(Math.min(0.95, (V.maxChance ?? 0.8) * Math.max(1, gm)), (V.chance + (V.pity ?? 0) * dry) * gm);
-  if(S.flags.lastGuest === undefined) S.flags.lastGuest = S.week;
-  if(drift.length && Math.random()<gch){
-    const k = pick(drift), c = rebirthNamed(makeNamed(k));   // a guest from a past life comes back reborn (walks.js does the same) c.keep = false; c.stay = V.stayWeeks; seen[k] = S.week; S.flags.lastGuest = S.week;
-    c.signing = signingFor(c); S.candidates.push(c); addLog(`${c.name} is passing through Hollowmere and looking for work. (Candidates)`);
-  }
 }
-// NG+ old friends (S.alumni): one turns up among the candidates now and then, extra to the normal ones, and stays until hired.
+// Guest odds x guestDrawMul (walks.js: paidMul once the debt is paid, the Wayfarer's Lantern), at most maxChance (x the multiplier, up to 0.95).
+function guestChance(base){ const V = GUEST_VISITS, gm = guestDrawMul(); return Math.min(Math.min(0.95, (V.maxChance ?? 0.8) * Math.max(1, gm)), base * gm); }
+// Guests who could wander in now: not working for Sam, not already a candidate, pack on, past their cooldown.
+function openDrifters(){
+  const seen = S.flags.guestSeen || {}, V = GUEST_VISITS, gm = guestDrawMul();
+  return Object.keys(NAMED).filter(k=>NAMED[k].role==='drifter' && !isHired(k) && !inCandidates(k) && !(SET.packsOff||{})[NAMED[k].pack]
+    && S.week - (seen[k] ?? -999) >= V.stayWeeks + Math.round(V.cooldownWeeks / Math.max(1, gm)));
+}
+// Walks (walks.js): visits.reborn of the guests met on a walk are past-life ones (S.lives) when any are free.
+function pickDrifter(pool){
+  const old = pool.filter(k=>S.lives && S.lives[k]), fresh = pool.filter(k=>!(S.lives && S.lives[k]));
+  if(old.length && (!fresh.length || Math.random() < (GUEST_VISITS.reborn ?? 0.25))) return pick(old);
+  return pick(fresh.length ? fresh : pool);
+}
+function addGuestCand(k){
+  const V = GUEST_VISITS, c = rebirthNamed(makeNamed(k));   // a guest from a past life comes back reborn (walks.js does the same)
+  c.keep = false; c.stay = V.stayWeeks; (S.flags.guestSeen = S.flags.guestSeen || {})[k] = S.week; S.flags.lastGuest = S.week;
+  c.signing = signingFor(c); S.candidates.push(c);
+  addLog(c.reborn ? `${c.name} is passing through Hollowmere again and something about the place feels familiar. (Candidates)` : `${c.name} is passing through Hollowmere and looking for work. (Candidates)`);
+  return c;
+}
+// Returners, extra to the normal candidates: one roll a week at ngplus.friends.chance (x guestDrawMul: the Wayfarer's Lantern makes it 75%)
+// brings back either an old friend (S.alumni: max-trust guests and favorited generics, reborn, waits until hired; at most friends.max at once)
+// or a guest who worked for Sam in a past life (S.lives, back with her stacks; stays visits.stayWeeks like any guest).
+// force: the first NG+ week always shows one (old friends first).
 function inviteFriend(force){
   const F = BAL.ngplus.friends || {}, al = S.alumni = S.alumni || [];
-  if(!al.length || S.candidates.filter(c=>c.friend).length >= (F.max||2) || !force && Math.random() >= (F.chance ?? 0.5)) return;
-  const c = pick(al); S.alumni = al.filter(x=>x!==c);
+  if(!force && Math.random() >= guestChance(F.chance ?? 0.5)) return;
+  const friendOK = al.length && S.candidates.filter(c=>c.friend).length < (F.max||2);
+  const lives = openDrifters().filter(k=>S.lives && S.lives[k]);
+  const opts = [...(friendOK ? al.map(w=>({w})) : []), ...lives.map(k=>({k}))];
+  if(!opts.length) return;
+  const o = force && friendOK ? {w: pick(al)} : pick(opts);
+  if(o.k){ addGuestCand(o.k); return; }
+  const c = o.w; S.alumni = al.filter(x=>x!==c);
   c.keep = true; c.friend = true; c.signing = c.wasLover ? 0 : signingFor(c); S.candidates.push(c);
   addLog(`${c.name} ${c.wasLover ? 'still remembers what you shared' : 'remembers you from another life'} and is looking for work. (Candidates)`);
 }
