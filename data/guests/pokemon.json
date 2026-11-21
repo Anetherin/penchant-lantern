@@ -115,7 +115,8 @@
             "hilda": {"v":25,"note":"A spirited Unova challenger who earned a pointer or two."},
             "dawn": {"v":45,"kind":"comrades","note":"A bright Sinnoh coordinator who always asks about ruins."},
             "nessa": {"v":25,"kind":"comrades","note":"Appreciates Nessa's runway poise and unshakable presence under spotlight."},
-            "ivy": {"v":25,"note":"Shares dusty island folklore whenever she drops by Professor Ivy's study."}
+            "ivy": {"v":25,"note":"Shares dusty island folklore whenever she drops by Professor Ivy's study."},
+            "olivia": {"v":30,"note":"Mutual respect between two seasoned champions who love ancient stones and ruins."}
           },
           "jobs": {"likes":["promoter","madame"],"dislikes":["maid","bartender"]},
           "body": {"bust":"large","height":"tall","figure":"slim"},
@@ -166,7 +167,8 @@
             "daisy_oak": {"v":30,"kind":"comrades","note":"Knows the Oaks through research circles and asks after the old professor's tea blend."},
             "joy": {"v":25,"note":"Trades notes on herbal salves, tonics, and travelers who push themselves too hard."},
             "ivy": {"v":40,"kind":"comrades","note":"Fellow professors who trade coastal field samples and compare hopelessly cluttered desks."},
-            "rosa": {"v":25,"note":"Never forgets the bright Unova trainer whose journey began in her lab."}
+            "rosa": {"v":25,"note":"Never forgets the bright Unova trainer whose journey began in her lab."},
+            "roxanne": {"v":30,"note":"Trades annotated fossil notes and teaching methods over late-night tea."}
           },
           "jobs": {"likes":["teacher","attendant","bath"],"dislikes":["security"]},
           "body": {"bust":"large","height":"average","figure":"curvy"},
@@ -375,7 +377,9 @@
             "misty": {"v":25,"kind":"comrades","note":"Fellow gym leaders with a friendly rivalry."},
             "clair": {"v":25,"kind":"comrades","note":"Fellow gym leaders with a friendly rivalry."},
             "marnie": {"v":25,"kind":"comrades","note":"Fellow young Gym Leaders who took over proud towns and trade notes on unruly crowds."},
-            "phoebe": {"v":35,"kind":"comrades","note":"Fellow Hoenn travelers who trade festival snacks and warm stories of home."}
+            "phoebe": {"v":35,"kind":"comrades","note":"Fellow Hoenn travelers who trade festival snacks and warm stories of home."},
+            "roxanne": {"v":25,"kind":"comrades","note":"Fellow Hoenn Gym Leader; Roxanne quietly organizes the training schedules Flannery misplaces."},
+            "olivia": {"v":25,"kind":"comrades","note":"Loves swapping spicy island stories with Olivia and teasing her right back."}
           },
           "jobs": {"likes":["bartender","host"],"dislikes":["madame"]},
           "body": {"bust":"large","height":"average","figure":"athletic"},
@@ -435,7 +439,8 @@
             "serena": {"v":30,"kind":"comrades","note":"Swap contest choreography and sweet pastries after stage sets."},
             "whitney": {"v":30,"kind":"comrades","note":"Fast friends over sweet snacks, cute accessories, and lively chatter."},
             "jessie": {"v":20,"kind":"rivals","note":"Old contest stage rivals who still trade sharp remarks over backstage mirrors."},
-            "phoebe": {"v":30,"kind":"comrades","note":"Always brightens up when another friendly Hoenn face strolls into the foyer."}
+            "phoebe": {"v":30,"kind":"comrades","note":"Always brightens up when another friendly Hoenn face strolls into the foyer."},
+            "roxanne": {"v":30,"kind":"comrades","note":"Former Rustboro Gym Leader who still makes May grin—and blush—remembering her first badge."}
           },
           "jobs": {"likes":["dancer","host"],"dislikes":["security"]},
           "body": {"bust":"medium","height":"average","figure":"slim"},
@@ -1478,7 +1483,9 @@
           "bonds": {
             "flannery": {"v":35,"kind":"comrades","note":"Fellow Hoenn travelers who trade festival snacks and warm stories of home."},
             "may": {"v":30,"kind":"comrades","note":"Always brightens up when another friendly Hoenn face strolls into the foyer."},
-            "sabrina": {"v":25,"note":"One of the few people in the house who barely blinks when Phoebe chats with empty corners."}
+            "sabrina": {"v":25,"note":"One of the few people in the house who barely blinks when Phoebe chats with empty corners."},
+            "roxanne": {"v":25,"kind":"comrades","note":"Loves teasing studious Roxanne whenever her neat Hoenn field notes get hopelessly tangled."},
+            "olivia": {"v":35,"kind":"comrades","note":"Fellow island Elite Four who swap sea stories and tropical snacks."}
           },
           "jobs": {"likes":["host","chapel","bath"],"dislikes":["maid","security"]},
           "body": {"bust":"medium","height":"average","figure":"curvy"},
