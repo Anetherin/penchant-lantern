@@ -154,17 +154,27 @@ function applyBondChoice(c, a, b, d, chosenAct){
   if(c.sam) Object.entries(c.sam).forEach(([k,n])=>samStat(k, n));
   bondFx(a, c.a, b); bondFx(b, c.b, a);
   if(c.bond) addBond(a, b, c.bond);
-  let text = bondFill(c.res, a, b), img = null, ai = null;
+  let text = bondFill(c.res, a, b), img = null, imgs = null, ai = null;
   const dyn = chosenAct && d.dynamic;
   if(dyn){ const line = dynLine(dyn, chosenAct, a, b); if(line) text = line + '\n\n' + text; }
   if(c.private && c.private.length){
-    const notes = c.private.map(r=>{ const w = r==='a' ? a : b, act = chosenAct || bestSamAct(w); if(!act || !canSam(w,act)) return ''; const t = privateCore(w, act); return `${w.name.split(' ')[0]}: ${t.split('\n\n').pop()}`; }).filter(Boolean);
+    const acts = [];
+    const notes = c.private.map(r=>{ const w = r==='a' ? a : b, act = chosenAct || bestSamAct(w); if(!act || !canSam(w,act)) return ''; const wa = [], t = privateCore(w, act, {acts:wa}); wa.forEach(x=>acts.push({w, act:x})); return `${w.name.split(' ')[0]}: ${t.split('\n\n').pop()}`; }).filter(Boolean);
     if(dyn){ const extra = dynamicFx(dyn, chosenAct, a, b); if(extra) text += '\n\n' + extra; }
     if(notes.length) text += '\n\n' + notes.join('\n');
     samLog(`A night with ${a.name} and ${b.name}`);
     const act = chosenAct || bestSamAct(a);
-    if(act){ const sc = chosenAct ? `duo:${act}:${b.id}${dyn?':'+dyn:''}` : 'samact:'+act; img = {wid:a.id, scene:sc};
-      if(d.ai) ai = {kind:d.ai, wid:a.id, other:b.id, act, scene:sc, forSam:true, dynamic: dyn ? ((BONDS.dynamics[dyn]||{}).prompt||'') : ''}; }
+    if(act){
+      const sc = chosenAct ? `duo:${act}:${b.id}${dyn?':'+dyn:''}` : 'samact:'+act;
+      img = {wid:a.id, scene:sc};
+      if(chosenAct){
+        const extra = acts.filter(x=>x.act!==chosenAct).map(x=>({wid:x.w.id, scene:'samact:'+x.act}));
+        if(extra.length) imgs = [img, ...extra];
+      } else if(acts.length > 1){
+        imgs = acts.map(x=>({wid:x.w.id, scene:'samact:'+x.act}));
+      }
+      if(d.ai) ai = {kind:d.ai, wid:a.id, other:b.id, act, scene:sc, forSam:true, dynamic: dyn ? ((BONDS.dynamics[dyn]||{}).prompt||'') : ''};
+    }
   } else if(d.ai){ ai = {kind:d.ai, wid:a.id, other:b.id, scene:d.scene||'casual'}; }
-  return {text, img, ai};
+  return {text, img, imgs:imgs||undefined, ai};
 }

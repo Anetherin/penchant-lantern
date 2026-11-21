@@ -25,13 +25,14 @@ function canVisit(w, trustMin, lewdMin, lustMin){
 // own line (flavor.json → private_act) instead of the generic private-time text; the picture switches to the service.
 function encounterResult(w, act, intro, kind, situation, drain, ctx){
   if(drain) S.sam.energy = Math.max(0, S.sam.energy - drain);
-  const l0 = w.lust;
-  const text = privateCore(w, act, {lead:intro});   // privateCore spends her lust
+  const l0 = w.lust, acts = [];
+  const text = privateCore(w, act, {lead:intro, acts});   // privateCore spends her lust
   samLog(`${kind==='reckless'?'Swept off by':'A visit from'} ${w.name}`);
   const again = wantsAgain(w, l0);
   if(again){ const id = w.id; EVQ.unshift(()=>evAgain(findW(id), ctx)); }
-  const scene = 'samact:'+act + (ctx ? '~~'+ctx : '');
-  return {text, again, img:{wid:w.id, scene}, ai:{kind, wid:w.id, act, scene, forSam:true, situation: actSituation(w, act, situation)}};
+  const scenes = acts.map(a => 'samact:' + a + (ctx ? '~~' + ctx : ''));
+  const imgs = scenes.map(sc => ({wid:w.id, scene:sc}));
+  return {text, again, img:imgs[0], imgs:imgs.length > 1 ? imgs : undefined, ai:{kind, wid:w.id, act, scene:scenes[0], forSam:true, situation: actSituation(w, act, situation)}};
 }
 
 /* ---------- Sam rests ---------- */
@@ -52,7 +53,8 @@ function restAccept(id, act){
   const w = findW(id); if(!w) return;
   const out = encounterResult(w, act, `${w.name} curls up against you, hands already wandering. The nap does not happen. You do not mind.`, 'encounter', 'Sam was trying to take a nap; she slipped into his room uninvited.', 10);
   checkUnlocks(); save(); render();
-  showResult(`A Visit from ${w.name}`, out.text + '\n\n(Sam still got some rest: Energy +'+(samRecover(BAL.samHome.nap)-10)+' overall)', w.id, out.img.scene, out.ai,
+  const scenes = out.imgs ? out.imgs.map(x=>x.scene) : out.img.scene;
+  showResult(`A Visit from ${w.name}`, out.text + '\n\n(Sam still got some rest: Energy +'+(samRecover(BAL.samHome.nap)-10)+' overall)', w.id, scenes, out.ai,
     out.again ? {label:'Continue', onclick:'runQueue()'} : undefined);   // she isn't done: the next round follows right away
 }
 function restDecline(id){

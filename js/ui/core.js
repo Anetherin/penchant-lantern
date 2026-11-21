@@ -20,11 +20,14 @@ function closeModal2(){ $('#modal2').classList.add('hidden'); if(MODAL2_CLOSE){ 
 function toast(t){ const box=$('#toast'); while(box.children.length>=4) box.firstChild.remove(); const d=document.createElement('div'); d.textContent=t; box.appendChild(d); setTimeout(()=>d.remove(), 3400); }
 // next (optional): {label, onclick} replaces OK with a button that leads on (e.g. a date's invitation after its 🔥 scene).
 function showResult(title, text, wid, scene, ai, next){
-  const sw = wid && scene && findAny(wid), rolled = !(ai&&ai.cloth) && sw ? samSceneCloth(sw, scene) : null;   // one dress level for the picture and the AI text
+  const list = Array.isArray(scene) ? scene.filter(Boolean) : (wid && scene ? [scene] : []);
+  const sc0 = list[0] || null;
+  const sw = wid && sc0 && findAny(wid), rolled = !(ai&&ai.cloth) && sw ? samSceneCloth(sw, sc0) : null;   // one dress level for the picture and the AI text
   if(rolled && ai) ai = Object.assign({}, ai, {cloth:rolled});
-  modal(`<h2>${esc(title)}</h2>${wid&&scene?`<div id="resImg"></div>`:''}<p class="story">${esc(text)}</p>${ai&&SET.ai.on?`<div id="resAi"></div>`:''}<div class="row">${ai?aiBtn('resAi', ai.kind, wid, ai):''}${next?`<button class="primary" onclick="${next.onclick}">${esc(next.label)}</button>`:`<button class="primary" onclick="closeModal()">OK</button>`}</div>`, next ? {lock:true} : {});
+  const imgsHtml = wid && list.length ? list.map((_,i)=>`<div id="resImg${i||''}"></div>`).join('') : '';
+  modal(`<h2>${esc(title)}</h2>${imgsHtml}<p class="story">${esc(text)}</p>${ai&&SET.ai.on?`<div id="resAi"></div>`:''}<div class="row">${ai?aiBtn('resAi', ai.kind, wid, ai):''}${next?`<button class="primary" onclick="${next.onclick}">${esc(next.label)}</button>`:`<button class="primary" onclick="closeModal()">OK</button>`}</div>`, next ? {lock:true} : {});
   $('#modal').scrollTop = 0;
-  if(wid && scene) showImg('resImg', wid, scene, (ai&&ai.cloth)||rolled||null);
+  if(wid && list.length) list.forEach((sc,i)=>showImg('resImg'+(i||''), wid, sc, i===0 ? ((ai&&ai.cloth)||rolled||null) : null));
   if(ai && SET.ai.on && SET.ai.auto) aiWrite('resAi', ai.kind, wid, ai);
 }
 const HAIR_HEX = {black:'#3a3a44','dark brown':'#5a3d2b',chestnut:'#7b4a2c',auburn:'#8e3b23',red:'#b8342c',copper:'#c4672e',blonde:'#e3c56a','honey blonde':'#d9a94e','platinum blonde':'#efe6c8',silver:'#cfd3dc',white:'#f2f2f2','ash grey':'#9a9a9a',pink:'#f0a0c0',lavender:'#b9a2e0',teal:'#3fa9a0','deep blue':'#3a5bb0',crimson:'#a3203a'};

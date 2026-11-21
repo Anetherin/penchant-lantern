@@ -53,8 +53,9 @@ function evChoice(i){
   EV_AFTER = isObj && typeof out.after==='function' ? out.after : (typeof ev.after==='function' ? ev.after : null);
   if(EV_NOTES.length){ res = (res ? res + '\n\n' : '') + EV_NOTES.join('\n'); EV_NOTES = []; }
   checkUnlocks(); save(); render();
+  const imgs = isObj ? (out.imgs || (out.img ? [out.img] : [])) : [];
   $('#evChoices').innerHTML = `${out.ai?aiBtn('evAi', out.ai.kind, out.ai.wid, out.ai):''}<button class="primary" onclick="evContinue()">Continue</button>`;
-  $('#evRes').innerHTML = (res ? `<p class="story"><i>${esc(res)}</i></p>` : '') + (aside ? `<p class="muted" style="font-style:italic;margin-top:8px">${esc(aside)}</p>` : '') + (out.ai?'<div id="evAi"></div>':'') + (out.img?'<div id="evResImg"></div>':'');
-  if(out.img) showImg('evResImg', out.img.wid, out.img.scene, out.img.cloth);
+  $('#evRes').innerHTML = (res ? `<p class="story"><i>${esc(res)}</i></p>` : '') + (aside ? `<p class="muted" style="font-style:italic;margin-top:8px">${esc(aside)}</p>` : '') + (out.ai?'<div id="evAi"></div>':'') + imgs.map((_,idx)=>`<div id="evResImg${idx||''}"></div>`).join('');
+  imgs.forEach((im, idx)=>showImg('evResImg'+(idx||''), im.wid, im.scene, im.cloth));
   if(out.ai && SET.ai.on && SET.ai.auto) aiWrite('evAi', out.ai.kind, out.ai.wid, out.ai);
 }

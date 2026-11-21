@@ -311,22 +311,25 @@ function samOrgy(){
     addBond(a, b, O.femBondBonus ?? 3); moodAdd(a, 2); moodAdd(b, 2);
     femPairs.push({a, b, act, text: orgyFemText(act, a, b)});
   });
-  const beats = ws.map(w=>{ const act = orgyAct(w), line = privateCore(w, act, {lead:''});
+  const beats = ws.map(w=>{ const act = orgyAct(w), acts = [], line = privateCore(w, act, {lead:'', acts});
     lewdUp(w, O.lewd ?? 2, svcLewdCap(act,'sam') + (O.lewdCapPlus ?? 10)); moodAdd(w, O.mood ?? 4); countUp(w, 'orgies');
     spendLust(w, O.lustAfter ?? 20);   // the whole night spends her, whatever she did with Sam
-    return {w, act, text: line + (has(w,'Devoted') ? '\n\n' + flavor('orgy_lover', w) : '')}; });
+    return {w, act, acts: acts.length ? acts : [act], text: line + (has(w,'Devoted') ? '\n\n' + flavor('orgy_lover', w) : '')}; });
   for(let i=0;i<ws.length;i++) for(let j=i+1;j<ws.length;j++) addBond(ws[i], ws[j], O.bond ?? 6);
   const pairs = []; const P = ws.filter(w=>!usedFem.has(w.id)).sort(()=>Math.random()-0.5);
   for(let i=0;i+1<P.length && pairs.length + femPairs.length < 2; i+=2) pairs.push(flavor('orgy_pair', P[i], {a:P[i].name.split(' ')[0], b:P[i+1].name.split(' ')[0]}));
   samLog(`A night with ${list}`); checkUnlocks(); save(); render();
   const scene = 'orgy:' + ws.map(w=>w.id).join(',');
+  const ogId = (i, j) => j === 0 ? 'og' + i : `og${i}_${j}`;
   modal(`<h2>A Night with ${esc(list)}</h2><div id="resImg"></div>
     <p class="story">${esc(flavor('orgy_lead', first, C))}</p>
-    ${beats.map((b,i)=>`<h3 style="margin-top:10px">${esc(b.w.name)} <span class="muted">· ${esc(actLabel(b.act))}</span></h3><p class="story">${esc(b.text)}</p><button class="sm" id="og${i}_t" onclick="toggleImgBtn('og${i}','${b.w.id}','samact:${b.act}')">🖼 Show image</button><div id="og${i}" class="hlimg" data-ext="1"></div>`).join('')}
+    ${beats.map((b,i)=>`<h3 style="margin-top:10px">${esc(b.w.name)} <span class="muted">· ${esc(b.acts.map(actLabel).join(' → '))}</span></h3><p class="story">${esc(b.text)}</p>${b.acts.map((a,j)=>{ const id = ogId(i,j); return `<button class="sm" id="${id}_t" onclick="toggleImgBtn('${id}','${b.w.id}','samact:${a}')">🖼 Show image</button><div id="${id}" class="hlimg" data-ext="1"></div>`; }).join('')}`).join('')}
     ${femPairs.map((fp,i)=>`<h3 style="margin-top:10px">${esc(fp.a.name.split(' ')[0])} &amp; ${esc(fp.b.name.split(' ')[0])} <span class="muted">· ${esc(actLabel(fp.act))} (bond)</span></h3><p class="story">${esc(fp.text)}</p><button class="sm" id="ogf${i}_t" onclick="toggleImgBtn('ogf${i}','${fp.a.id}','pair:${fp.act}:fem:${fp.b.id}')">🖼 Show image</button><div id="ogf${i}" class="hlimg" data-ext="1"></div>`).join('')}
     ${pairs.length ? `<p class="story">${esc(pairs.join(' '))}</p>` : ''}
     <p class="story">${esc(flavor('orgy_end', first, C))}</p>
     <p class="muted">Everyone: lust spent, lewdness +, mood + · Bonds +${O.bond ?? 6} between every pair${femPairs.length?` (+${O.femBondBonus ?? 3} extra for bonded pairs)`:''} · ${orgyCost(ws.length)} of Sam's energy</p>
     ${SET.ai.on?'<div id="resAi"></div>':''}<div class="row">${aiBtn('resAi','private',first.id,{act:beats[0].act, scene, forSam:true, situation:`a night together: Sam with ${list} all at once`})}<button class="primary" onclick="closeModal()">OK</button></div>`);
   $('#modal').scrollTop = 0; showImg('resImg', first.id, scene);
+  beats.forEach((b,i)=>b.acts.forEach((a,j)=>showImg(ogId(i,j), b.w.id, 'samact:'+a)));
+  femPairs.forEach((fp,i)=>showImg('ogf'+i, fp.a.id, `pair:${fp.act}:fem:${fp.b.id}`));
 }
