@@ -46,6 +46,18 @@
       "fx": {"energyRec":1.06,"moodRest":2,"stats":{"wits":5}},
       "seed": true
     },
+    "nurse": {
+      "label": "Nurse",
+      "desc": "Gentle bedside care: +10% as attendant, recovers 6% more energy and +2 resting mood.",
+      "fx": {"jobBonus":{"attendant":1.1},"energyRec":1.06,"moodRest":2},
+      "seed": true
+    },
+    "officer": {
+      "label": "Officer",
+      "desc": "Keeps the street in line: +10% as security, +6 security, +4 Agility.",
+      "fx": {"jobBonus":{"security":1.1},"security":6,"stats":{"agility":4}},
+      "seed": true
+    },
     "princess": {
       "label": "Princess",
       "desc": "+3 appeal; nobles pay 10% more; +4 Beauty.",

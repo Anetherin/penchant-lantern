@@ -49,7 +49,11 @@
           },
           "bonds": {
             "cynthia": {"v":30,"note":"Champion and Gym Leader; mutual, wary respect."},
-            "misty": {"v":20,"note":"Fellow gym leaders who see each other at regional meetings."}
+            "misty": {"v":20,"note":"Fellow gym leaders who see each other at regional meetings."},
+            "marnie": {"v":20,"kind":"comrades","note":"Quiet understanding between two women who prefer saying little and watching the door."},
+            "janine": {"v":25,"kind":"comrades","note":"Fellow Kanto Gym Leader who appreciates silence, focus, and zero wasted words."},
+            "erika": {"v":25,"kind":"comrades","note":"Fellow Kanto Gym Leader who appreciates quiet parlors and wordless company."},
+            "phoebe": {"v":25,"note":"Rarely blinks when Phoebe starts chatting cheerfully with empty corners."}
           },
           "jobs": {"likes":["security","madame"],"dislikes":["dancer","bartender"]},
           "body": {"bust":"medium","height":"average","figure":"average"},
@@ -109,7 +113,9 @@
             "sabrina": {"v":30,"note":"Champion and Gym Leader; mutual, wary respect."},
             "juniper": {"v":35,"note":"Cynthia shares ruins and legends with the professor, who loves every story."},
             "hilda": {"v":25,"note":"A spirited Unova challenger who earned a pointer or two."},
-            "dawn": {"v":45,"kind":"comrades","note":"A bright Sinnoh coordinator who always asks about ruins."}
+            "dawn": {"v":45,"kind":"comrades","note":"A bright Sinnoh coordinator who always asks about ruins."},
+            "nessa": {"v":25,"kind":"comrades","note":"Appreciates Nessa's runway poise and unshakable presence under spotlight."},
+            "ivy": {"v":25,"note":"Shares dusty island folklore whenever she drops by Professor Ivy's study."}
           },
           "jobs": {"likes":["promoter","madame"],"dislikes":["maid","bartender"]},
           "body": {"bust":"large","height":"tall","figure":"slim"},
@@ -156,7 +162,11 @@
           },
           "bonds": {
             "cynthia": {"v":35,"note":"Cynthia shares ruins and legends with the professor, who loves every story."},
-            "hilda": {"v":40,"kind":"mentor","note":"Professor Juniper gave her first partner and her first sendoff."}
+            "hilda": {"v":40,"kind":"mentor","note":"Professor Juniper gave her first partner and her first sendoff."},
+            "daisy_oak": {"v":30,"kind":"comrades","note":"Knows the Oaks through research circles and asks after the old professor's tea blend."},
+            "joy": {"v":25,"note":"Trades notes on herbal salves, tonics, and travelers who push themselves too hard."},
+            "ivy": {"v":40,"kind":"comrades","note":"Fellow professors who trade coastal field samples and compare hopelessly cluttered desks."},
+            "rosa": {"v":25,"note":"Never forgets the bright Unova trainer whose journey began in her lab."}
           },
           "jobs": {"likes":["teacher","attendant","bath"],"dislikes":["security"]},
           "body": {"bust":"large","height":"average","figure":"curvy"},
@@ -206,7 +216,10 @@
           },
           "bonds": {
             "misty": {"v":35,"kind":"comrades","note":"Fellow travelers from the same region."},
-            "may": {"v":30,"kind":"comrades","note":"Old friends who swap trail stories."}
+            "may": {"v":30,"kind":"comrades","note":"Old friends who swap trail stories."},
+            "daisy_oak": {"v":45,"kind":"comrades","note":"Old Pallet Town neighbor who still fusses over her tea and hair whenever she stops moving."},
+            "delia": {"v":40,"kind":"home","note":"Warm Pallet Town neighbor who always checks that she has eaten properly and packed dry socks."},
+            "kris": {"v":35,"kind":"comrades","note":"Fellow long-road travelers who compare worn soles and regional trail maps."}
           },
           "jobs": {"likes":["attendant","promoter"],"dislikes":["madame"]},
           "body": {"bust":"small","height":"average","figure":"athletic"},
@@ -255,7 +268,13 @@
             "leaf": {"v":35,"kind":"comrades","note":"Fellow travelers from the same region."},
             "flannery": {"v":25,"kind":"comrades","note":"Fellow gym leaders with a friendly rivalry."},
             "clair": {"v":25,"kind":"comrades","note":"Fellow gym leaders with a friendly rivalry."},
-            "sabrina": {"v":20,"note":"Fellow gym leaders who see each other at regional meetings."}
+            "sabrina": {"v":20,"note":"Fellow gym leaders who see each other at regional meetings."},
+            "daisy_oak": {"v":25,"kind":"comrades","note":"Both know the weight of a famous family name and swap quiet encouragement."},
+            "nessa": {"v":30,"kind":"rivals","note":"Water-type Gym Leaders who admire each other's swim times and trade fierce, friendly challenges."},
+            "janine": {"v":25,"kind":"comrades","note":"Fellow Kanto Gym Leader; they trade training drills and tease each other over badges."},
+            "erika": {"v":25,"kind":"comrades","note":"Fellow Kanto Gym Leader who indulges Misty's impatience with a serene smile."},
+            "whitney": {"v":30,"kind":"comrades","note":"Loud, competitive Gym Leaders who swap fashion tips after heated matches."},
+            "jessie": {"v":-20,"note":"Years of bickering across towns have mellowed into a wary, sharp-tongued truce."}
           },
           "jobs": {"likes":["bath","security"],"dislikes":["madame"]},
           "body": {"bust":"small","height":"average","figure":"athletic"},
@@ -306,7 +325,10 @@
           },
           "bonds": {
             "misty": {"v":25,"kind":"comrades","note":"Fellow gym leaders with a friendly rivalry."},
-            "flannery": {"v":25,"kind":"comrades","note":"Fellow gym leaders with a friendly rivalry."}
+            "flannery": {"v":25,"kind":"comrades","note":"Fellow gym leaders with a friendly rivalry."},
+            "whitney": {"v":20,"kind":"comrades","note":"Fellow Johto Gym Leaders; Clair acts stern whenever Whitney teases her, though she respects her."},
+            "jenny": {"v":25,"kind":"comrades","note":"Respects anyone who can clear a rowdy doorway without breaking a sweat."},
+            "kris": {"v":25,"kind":"rivals","note":"Remembers the stubborn trainer who refused to leave Blackthorn without her eighth badge."}
           },
           "jobs": {"likes":["security","madame"],"dislikes":["dancer"]},
           "body": {"bust":"medium","height":"tall","figure":"slim"},
@@ -351,7 +373,9 @@
           },
           "bonds": {
             "misty": {"v":25,"kind":"comrades","note":"Fellow gym leaders with a friendly rivalry."},
-            "clair": {"v":25,"kind":"comrades","note":"Fellow gym leaders with a friendly rivalry."}
+            "clair": {"v":25,"kind":"comrades","note":"Fellow gym leaders with a friendly rivalry."},
+            "marnie": {"v":25,"kind":"comrades","note":"Fellow young Gym Leaders who took over proud towns and trade notes on unruly crowds."},
+            "phoebe": {"v":35,"kind":"comrades","note":"Fellow Hoenn travelers who trade festival snacks and warm stories of home."}
           },
           "jobs": {"likes":["bartender","host"],"dislikes":["madame"]},
           "body": {"bust":"large","height":"average","figure":"athletic"},
@@ -407,7 +431,11 @@
             "misty": {"v":35,"kind":"comrades","note":"Fellow water-lovers who swap swimming tips."},
             "leaf": {"v":30,"kind":"comrades","note":"Old friends who swap trail stories."},
             "dawn": {"v":40,"kind":"comrades","note":"Fellow coordinator and close friend who swaps ribbon ideas and stage tricks."},
-            "shauna": {"v":35,"kind":"comrades","note":"Swap stage choreography and festival snacks after shifts."}
+            "shauna": {"v":35,"kind":"comrades","note":"Swap stage choreography and festival snacks after shifts."},
+            "serena": {"v":30,"kind":"comrades","note":"Swap contest choreography and sweet pastries after stage sets."},
+            "whitney": {"v":30,"kind":"comrades","note":"Fast friends over sweet snacks, cute accessories, and lively chatter."},
+            "jessie": {"v":20,"kind":"rivals","note":"Old contest stage rivals who still trade sharp remarks over backstage mirrors."},
+            "phoebe": {"v":30,"kind":"comrades","note":"Always brightens up when another friendly Hoenn face strolls into the foyer."}
           },
           "jobs": {"likes":["dancer","host"],"dislikes":["security"]},
           "body": {"bust":"medium","height":"average","figure":"slim"},
@@ -452,7 +480,11 @@
               "bonus": {"promoter":1.25,"adventurer":1.15}
             }
           },
-          "bonds": {"cynthia":{"v":25,"note":"The champion gave her a pointer or two on how to win."}},
+          "bonds": {
+            "cynthia": {"v":25,"note":"The champion gave her a pointer or two on how to win."},
+            "juniper": {"v":40,"kind":"mentor","note":"Professor Juniper gave her first partner and her first sendoff."},
+            "rosa": {"v":40,"kind":"comrades","note":"Fellow Unova trainers who trade loud battle stories and studio gossip after shifts."}
+          },
           "jobs": {"likes":["promoter","host"],"dislikes":["madame"]},
           "body": {"bust":"medium","height":"average","figure":"athletic"},
           "unique": {"name":"Trainer's Spirit","desc":"She learns fast and talks faster.","fx":{"skillGain":1.2,"promote":1.1}},
@@ -508,7 +540,11 @@
           "bonds": {
             "cynthia": {"v":45,"kind":"comrades","note":"Looks up deeply to Sinnoh's Champion and always asks about ruins."},
             "may": {"v":40,"kind":"comrades","note":"Fellow coordinator and close friend who swaps ribbon ideas and stage tricks."},
-            "shauna": {"v":35,"kind":"comrades","note":"Loves trading festival routines and showcase tips with Shauna."}
+            "shauna": {"v":35,"kind":"comrades","note":"Loves trading festival routines and showcase tips with Shauna."},
+            "serena": {"v":30,"kind":"comrades","note":"Fellow stage performer; they swap ribbon ideas and showcase poise."},
+            "nessa": {"v":25,"kind":"comrades","note":"Swaps runway pacing and backstage beauty tips between shifts."},
+            "jessie": {"v":25,"kind":"rivals","note":"Former contest rivals who secretly respect each other's flair for grand finales."},
+            "rosa": {"v":30,"kind":"comrades","note":"Swaps stage lighting tricks and dramatic entrance cues backstage."}
           },
           "jobs": {"likes":["dancer","promoter","host"],"dislikes":["security"]},
           "body": {"bust":"small","height":"average","figure":"slim"},
@@ -567,7 +603,8 @@
           },
           "bonds": {
             "dawn": {"v":35,"kind":"comrades","note":"Admires Dawn's contest polish and cheers loudest for her onstage."},
-            "may": {"v":35,"kind":"comrades","note":"Swap stage choreography and festival snacks after shifts."}
+            "may": {"v":35,"kind":"comrades","note":"Swap stage choreography and festival snacks after shifts."},
+            "serena": {"v":45,"kind":"comrades","note":"Best friends from Kalos who traded travel stories, macarons, and showcase routines."}
           },
           "jobs": {"likes":["host","dancer","promoter"],"dislikes":["madame"]},
           "body": {"bust":"small","height":"average","figure":"curvy"},
@@ -575,6 +612,880 @@
             "name": "Memory Maker",
             "desc": "She treats every evening like a festival with friends, winning regulars and cheering the whole floor.",
             "fx": {"jobBonus":{"host":1.2},"regular":1.25}
+          }
+        },
+        "serena": {
+          "job": "dancer",
+          "name": "Serena",
+          "title": "Trainer",
+          "race": "human",
+          "age": 23,
+          "personality": "Poised and artistic",
+          "traits": ["Graceful","Romantic"],
+          "style": "Cute",
+          "favColor": "pink",
+          "fav": "kiss",
+          "dislike": "doggy",
+          "lovers": "missionary",
+          "backstory": "Once a reluctant rider from Vaniville who found her own path on the Kalos Showcase stage, Serena learned how to command a spotlight with grace, poise, and a sharp eye for style. After winning crowds across the region, she traveled onward looking for a place where music, fashion, and honest company still had room to surprise her. Hollowmere's lantern-lit stage caught her eye on her first night in town—and she soon realized she enjoys teasing Sam offstage almost as much as winning an encore.",
+          "design": {
+            "hairStyle": "long loose ponytail with center-parted bangs",
+            "hairColor": "honey blonde",
+            "eyes": "grey",
+            "skin": "fair",
+            "accessories": "a pink-red felt hat with a black ribbon, white cat-eye sunglasses resting on the brim, and a pink quilted shoulder bag",
+            "accState": "dressed",
+            "expression": "a poised, teasing smile"
+          },
+          "under": "lace",
+          "underColor": "pink",
+          "stats": {"beauty":82,"charm":76,"charisma":74,"refinement":68,"wits":60,"stamina":60,"strength":30,"agility":68},
+          "tech": {"service":38,"dance":66,"bar":24,"combat":25,"manage":36},
+          "actSkill": 22,
+          "popularity": 18,
+          "lewd": 32,
+          "trust": 26,
+          "outfits": {
+            "sig_serena": {
+              "label": "Kalos trainer outfit",
+              "style": "Cute",
+              "prompt": "a dark grey sleeveless blouse with a black Peter Pan collar, a red pleated high-waisted skirt, black thigh-high socks and black sneakers with pink accents",
+              "bonus": {"dancer":1.25,"host":1.15}
+            },
+            "sp_serena": {
+              "label": "Showcase performer dress",
+              "style": "Cute",
+              "hairStyle": "chin-length layered bob with bangs",
+              "prompt": "a bright pink ruffled performance dress with a blue chest ribbon, a red vest overlay and white boots",
+              "bonus": {"dancer":1.3,"noble":1.15}
+            }
+          },
+          "bonds": {
+            "shauna": {"v":45,"kind":"comrades","note":"Best friends from Kalos who traded travel stories, macarons, and showcase routines."},
+            "dawn": {"v":30,"kind":"comrades","note":"Fellow stage performer; they compare ribbon choreography and wardrobe pins."},
+            "may": {"v":30,"kind":"comrades","note":"Swap contest tips and sweet pastries after late stage sets."}
+          },
+          "jobs": {"likes":["dancer","host","promoter"],"dislikes":["security","maid"]},
+          "body": {"bust":"medium","height":"average","figure":"slim"},
+          "unique": {
+            "name": "Kalos Queen's Poise",
+            "desc": "Her stagecraft and fashion sense turn heads across the floor, boosting her dancing and tips.",
+            "fx": {"jobBonus":{"dancer":1.2},"tips":1.15,"appeal":2}
+          }
+        },
+        "daisy_oak": {
+          "job": "attendant",
+          "name": "Daisy Oak",
+          "race": "human",
+          "age": 26,
+          "personality": "Warm and motherly",
+          "traits": ["Warm Hospitality","Sisterly"],
+          "style": "Cute",
+          "favColor": "emerald",
+          "fav": "massage_give",
+          "dislike": "doggy",
+          "lovers": "missionary",
+          "backstory": "Granddaughter of Pallet Town's famed researcher and older sister to a relentlessly driven champion, Daisy left the heavy trophies to her family and became known instead for afternoon tea, gentle grooming, and an unhurried warmth that puts even rivals at ease. Seeking a quieter life beyond Kanto's league circuit, she drifted into Hollowmere with a tin of jasmine leaves and a soft smile—and quickly turned the parlor into the one room where Sam always slows down.",
+          "design": {"hairStyle":"long, straight and silky","hairColor":"auburn","eyes":"blue","skin":"fair","expression":"a warm, affectionate smile"},
+          "under": "plain",
+          "underColor": "emerald",
+          "stats": {"beauty":76,"charm":80,"charisma":64,"refinement":72,"wits":64,"stamina":56,"strength":28,"agility":50},
+          "tech": {"service":45,"dance":22,"bar":28,"combat":15,"manage":52},
+          "actSkill": 24,
+          "popularity": 14,
+          "lewd": 26,
+          "trust": 30,
+          "outfits": {
+            "sig_daisy_oak": {
+              "label": "Pallet cottage attire",
+              "style": "Cute",
+              "prompt": "a cozy cream buttoned knit blouse over a forest-green pleated skirt and simple brown flats",
+              "bonus": {"attendant":1.25,"commoner":1.15}
+            },
+            "sp_daisy_oak": {
+              "label": "Pallet tea dress",
+              "style": "Elegant",
+              "prompt": "a flowing sage-green summer tea dress with a white ribbon waist sash and white heels",
+              "bonus": {"host":1.25,"noble":1.2}
+            }
+          },
+          "bonds": {
+            "leaf": {"v":45,"kind":"comrades","note":"Old Pallet Town neighbors; Daisy still pours tea and fusses over Leaf's hair whenever she stops moving."},
+            "delia": {"v":45,"kind":"comrades","note":"Close Pallet Town friend who shares recipes, garden gossip, and quiet afternoons."},
+            "juniper": {"v":30,"kind":"comrades","note":"Familiar with the Oaks' research circle; always asks Daisy how her grandfather's tea blend is faring."},
+            "misty": {"v":25,"kind":"comrades","note":"Both know the weight of a famous family name and swap quiet encouragement."},
+            "erika": {"v":35,"kind":"comrades","note":"Both Kanto ladies share an appreciation for floral teas, grooming, and unhurried afternoons."}
+          },
+          "jobs": {"likes":["attendant","bath","host"],"dislikes":["security","promoter"]},
+          "body": {"bust":"large","height":"average","figure":"curvy"},
+          "unique": {
+            "name": "Pallet Groomer's Touch",
+            "desc": "Her gentle hands and soothing tea melt away a long day's tension, elevating massages and bathhouse care.",
+            "fx": {"actQuality":{"massage_give":1.2},"jobBonus":{"attendant":1.15,"bath":1.15},"moodRest":2}
+          }
+        },
+        "nessa": {
+          "job": "bath",
+          "name": "Nessa",
+          "title": "Leader",
+          "race": "human",
+          "age": 25,
+          "personality": "Graceful and athletic",
+          "traits": ["Striking","Warm Springs"],
+          "style": "Sporty",
+          "favColor": "teal",
+          "fav": "massage_get",
+          "dislike": "doggy",
+          "lovers": "cowgirl",
+          "backstory": "Hulbury's Water-type Gym Leader and one of Galar's top runway models, Nessa spent years balancing magazine shoots with ruthless tidal training. Though her camera-ready smile makes everything look effortless, she worked twice as hard behind closed doors to prove she belonged in both worlds. Drawn to Hollowmere on an off-season tour, she quickly claimed the bathhouse and stage as her own—though she keeps finding excuses to drop her cool runway mask around Sam.",
+          "design": {
+            "hairStyle": "very long hair with loose framing strands, swept up in a high bun-ponytail",
+            "hairColor": "black with bright blue tips",
+            "eyes": "blue",
+            "skin": "dark brown",
+            "features": "a small blue league emblem tattoo on her upper right arm",
+            "accessories": "gold hoop earrings and white nail polish",
+            "accState": "always",
+            "expression": "a composed, captivating runway smile"
+          },
+          "under": "sports",
+          "underColor": "teal",
+          "stats": {"beauty":86,"charm":68,"charisma":78,"refinement":72,"wits":60,"stamina":70,"strength":44,"agility":72},
+          "tech": {"service":38,"dance":54,"bar":20,"combat":48,"manage":42},
+          "actSkill": 24,
+          "popularity": 24,
+          "lewd": 34,
+          "trust": 22,
+          "outfits": {
+            "sig_nessa": {
+              "label": "Hulbury Gym uniform",
+              "style": "Sporty",
+              "prompt": "a white and blue athletic crop top with orange accents and a water-droplet crest, matching fitted blue-and-white athletic shorts, a single blue glove on her right hand, a belly chain, and white-and-blue strapped sandals with miniature orange life-ring ankle cuffs",
+              "bonus": {"bath":1.25,"dancer":1.2}
+            },
+            "sp_nessa": {
+              "label": "Runway resort swimwear",
+              "style": "Revealing",
+              "bath": true,
+              "prompt": "a sleek cobalt-blue and white cutout bikini with a sheer turquoise sarong tied at her hip",
+              "bonus": {"bath":1.3,"courtesan":1.15}
+            }
+          },
+          "bonds": {
+            "marnie": {"v":35,"kind":"comrades","note":"Fellow Galar Gym Leaders who grew up sharing league stages and quiet words behind the scenes."},
+            "misty": {"v":30,"kind":"rivals","note":"Water-type Gym Leaders who admire each other's swim times and trade fierce, friendly challenges."},
+            "cynthia": {"v":25,"kind":"comrades","note":"Appreciates Cynthia's unshakable stage presence and poise."},
+            "dawn": {"v":25,"kind":"comrades","note":"Swaps runway pacing and backstage beauty tips."}
+          },
+          "jobs": {"likes":["bath","dancer","promoter"],"dislikes":["maid","chapel"]},
+          "body": {"bust":"medium","height":"tall","figure":"athletic"},
+          "unique": {
+            "name": "Runway & Tide",
+            "desc": "She carries Galar's spotlight straight from the catwalk into the baths, drawing affluent patrons and lifting house prestige.",
+            "fx": {"jobBonus":{"bath":1.2,"dancer":1.1},"rep":1.1,"classBonus":{"noble":1.15}}
+          }
+        },
+        "marnie": {
+          "job": "security",
+          "name": "Marnie",
+          "title": "Leader",
+          "race": "human",
+          "age": 22,
+          "personality": "Stoic and blunt",
+          "traits": ["Guarded","Loyal"],
+          "style": "Exotic",
+          "favColor": "black",
+          "fav": "manual_give",
+          "dislike": "breast_give",
+          "lovers": "missionary",
+          "backstory": "Hailing from gritty, neon-lit Spikemuth, Marnie took up her brother's mantle as Dark-type Gym Leader with quiet resolve and a small army of cheering townsfolk trailing behind her. Beneath the spiked choker and guarded half-smile, she practices smiling in the mirror so the people counting on her don't worry. Seeking work outside Galar to help keep her hometown's lights on, she arrived in Hollowmere ready to guard the door—and found she doesn't have to practice smiling around Sam.",
+          "design": {
+            "hairStyle": "medium-length hair in high stubby twin pigtails with red hair ties and sharp jagged bangs",
+            "hairColor": "black",
+            "eyes": "cyan-teal",
+            "skin": "pale",
+            "accessories": "a silver choker with a spiked pendant",
+            "accState": "always",
+            "expression": "a cool, slightly guarded half-smile"
+          },
+          "under": "lace",
+          "underColor": "black",
+          "stats": {"beauty":78,"charm":62,"charisma":70,"refinement":50,"wits":64,"stamina":64,"strength":46,"agility":66},
+          "tech": {"service":32,"dance":30,"bar":34,"combat":56,"manage":44},
+          "actSkill": 20,
+          "popularity": 20,
+          "lewd": 28,
+          "trust": 20,
+          "outfits": {
+            "sig_marnie": {
+              "label": "Spikemuth punk outfit",
+              "style": "Exotic",
+              "prompt": "a pale pink sleeveless mini-dress with a scalloped triangular-cut hem worn under an asymmetrical black studded leather biker jacket, and chunky black studded boots with thick pink soles",
+              "bonus": {"security":1.25,"promoter":1.15}
+            },
+            "sp_marnie": {
+              "label": "Spikemuth Gym uniform",
+              "style": "Sporty",
+              "prompt": "a black-and-pink Dark-type athletic jersey top with matching shorts, studded wristbands and black sneakers",
+              "bonus": {"security":1.3,"adventurer":1.15}
+            }
+          },
+          "bonds": {
+            "nessa": {"v":35,"kind":"comrades","note":"Fellow Galar Gym Leaders who respect how hard the other fought to carry her town's name."},
+            "sabrina": {"v":20,"kind":"comrades","note":"Quiet understanding between two women who prefer saying little and watching the door."},
+            "flannery": {"v":25,"kind":"comrades","note":"Fellow young Gym Leaders who took over proud towns and still swap notes on unruly crowds."}
+          },
+          "jobs": {"likes":["security","bartender","promoter"],"dislikes":["dancer","maid"]},
+          "body": {"bust":"small","height":"short","figure":"slim"},
+          "unique": {
+            "name": "Spikemuth Grit",
+            "desc": "Her steady cool under pressure and loyal following keep rowdy patrons in line and pull curious regulars through the door.",
+            "fx": {"security":10,"moodLoss":0.85,"regular":1.15}
+          }
+        },
+        "janine": {
+          "job": "security",
+          "name": "Janine",
+          "title": "Leader",
+          "race": "human",
+          "age": 24,
+          "personality": "Earnest and dutiful",
+          "traits": ["Nimble Fingers","Brave"],
+          "style": "Exotic",
+          "favColor": "purple",
+          "fav": "manual_give",
+          "dislike": "oral_get",
+          "lovers": "cowgirl",
+          "backstory": "Daughter of a legendary poison master, Janine inherited the Fuchsia Gym young and spent every dawn proving she earned the post by skill, not blood. She drills in stealth, sleight of hand, and herbal poultices until her knuckles ache—then flusters the instant anyone praises her off duty. She came to Hollowmere to test her vigilance in a bustling port town far from her father's shadow, keeping watch over the doors by night while learning that discipline does not forbid warmth.",
+          "design": {
+            "hairStyle": "long hair tied in a high ponytail with a yellow hair band",
+            "hairColor": "purple-magenta",
+            "eyes": "purple",
+            "skin": "fair",
+            "accessories": "a bright pink ninja scarf wrapped around her neck",
+            "accState": "dressed",
+            "expression": "a sharp, dutiful grin"
+          },
+          "under": "wraps",
+          "underColor": "purple",
+          "stats": {"beauty":72,"charm":56,"charisma":58,"refinement":54,"wits":64,"stamina":66,"strength":44,"agility":74},
+          "tech": {"service":35,"dance":30,"bar":15,"combat":62,"manage":40},
+          "actSkill": 20,
+          "popularity": 12,
+          "lewd": 24,
+          "trust": 20,
+          "outfits": {
+            "sig_janine": {
+              "label": "Fuchsia ninja uniform",
+              "style": "Exotic",
+              "prompt": "a form-fitting black shinobi tunic and leggings with a bright pink waist sash, purple forearm and shin bracers edged in pink, and white ninja wraps",
+              "bonus": {"security":1.25,"watchman":1.15}
+            },
+            "sp_janine": {
+              "label": "Kunoichi evening kimono",
+              "style": "Exotic",
+              "prompt": "a short dark-violet kimono wrap tied high with a magenta obi and fishnet arm sleeves",
+              "bonus": {"courtesan":1.2,"dancer":1.2}
+            }
+          },
+          "bonds": {
+            "erika": {"v":30,"kind":"comrades","note":"Fellow Kanto Gym Leader; Janine respects Erika's quiet poise even when their styles clash."},
+            "sabrina": {"v":25,"kind":"comrades","note":"Fellow Kanto Gym Leader who appreciates silence, focus, and zero wasted words."},
+            "misty": {"v":25,"kind":"comrades","note":"Fellow Kanto Gym Leader; they trade training drills and tease each other over badges."},
+            "whitney": {"v":25,"kind":"comrades","note":"Kanto and Johto Gym Leaders who cross paths between league inspections."}
+          },
+          "jobs": {"likes":["security","attendant"],"dislikes":["bartender","dancer"]},
+          "body": {"bust":"small","height":"average","figure":"athletic"},
+          "unique": {
+            "name": "Shadow Arts",
+            "desc": "Her shinobi vigilance strengthens house security, and nimble hands sharpen both watchman rapport and manual finesse.",
+            "fx": {"security":12,"actQuality":{"manual_give":1.1},"classBonus":{"watchman":1.1}}
+          }
+        },
+        "erika": {
+          "job": "host",
+          "name": "Erika",
+          "title": "Leader",
+          "race": "human",
+          "age": 27,
+          "personality": "Poised and artistic",
+          "traits": ["Elegant","Soothing Voice"],
+          "style": "Elegant",
+          "favColor": "emerald",
+          "fav": "massage_get",
+          "dislike": "doggy",
+          "lovers": "missionary",
+          "backstory": "Known across Celadon City as the Nature-Loving Princess, Erika led her Grass Gym between flower-arranging lessons, bespoke perfumes, and frequent afternoon naps. Behind her sleepy eyelids and flawless kimono manners lies a sharp eye for beauty and an unshakable calm that no loud rival has ever rattled. She drifted to Hollowmere seeking rare botanicals for her fragrances and stayed for the quiet parlor by the garden, greeting guests with steeped blossom tea and unhurried grace.",
+          "design": {
+            "hairStyle": "chin-to-shoulder-length straight bob with blunt bangs",
+            "hairColor": "jet-black",
+            "eyes": "warm brown",
+            "skin": "fair",
+            "accessories": "a red headband",
+            "accState": "always",
+            "expression": "a serene, drowsy gentle smile"
+          },
+          "under": "camisole",
+          "underColor": "emerald",
+          "stats": {"beauty":80,"charm":74,"charisma":64,"refinement":78,"wits":62,"stamina":48,"strength":28,"agility":46},
+          "tech": {"service":45,"dance":35,"bar":20,"combat":20,"manage":45},
+          "actSkill": 20,
+          "popularity": 18,
+          "lewd": 24,
+          "trust": 22,
+          "outfits": {
+            "sig_erika": {
+              "label": "Celadon kimono",
+              "style": "Elegant",
+              "prompt": "a traditional yellow kimono patterned with small blue squares and white motifs over a flowing crimson pleated hakama skirt, white tabi socks and black sandals",
+              "bonus": {"host":1.25,"noble":1.15}
+            },
+            "sp_erika": {
+              "label": "Spring garden kimono",
+              "style": "Elegant",
+              "prompt": "a soft sakura-pink and moss-green floral kimono tied with a broad gold-trimmed obi",
+              "bonus": {"attendant":1.2,"noble":1.2}
+            }
+          },
+          "bonds": {
+            "janine": {"v":30,"kind":"comrades","note":"Fellow Kanto Gym Leader; Erika finds Janine's earnest discipline endearing over afternoon tea."},
+            "sabrina": {"v":25,"kind":"comrades","note":"Fellow Kanto Gym Leader who appreciates quiet parlors and wordless company."},
+            "misty": {"v":25,"kind":"comrades","note":"Fellow Kanto Gym Leader; Erika indulges Misty's impatience with a serene smile."},
+            "daisy_oak": {"v":35,"kind":"comrades","note":"Both Kanto ladies share an appreciation for floral teas, grooming, and unhurried afternoons."}
+          },
+          "jobs": {"likes":["host","attendant","teacher"],"dislikes":["security","bartender"]},
+          "body": {"bust":"medium","height":"average","figure":"slim"},
+          "unique": {
+            "name": "Celadon Fragrance",
+            "desc": "Her floral perfumes and serene etiquette calm the lounge, lifting hosting and attendant work while charming nobles and scholars.",
+            "fx": {"jobBonus":{"host":1.2,"attendant":1.1},"classBonus":{"noble":1.1,"scholar":1.1}}
+          }
+        },
+        "whitney": {
+          "job": "promoter",
+          "name": "Whitney",
+          "title": "Leader",
+          "race": "human",
+          "age": 23,
+          "personality": "Cheerful and teasing",
+          "traits": ["Sunny Disposition","Sensitive"],
+          "style": "Sporty",
+          "favColor": "pink",
+          "fav": "kiss",
+          "dislike": "oral_give",
+          "lovers": "cowgirl",
+          "backstory": "Goldenrod City's unstoppable Gym Leader, Whitney is a whirlwind of bright pink pigtails, loud laughter, and fierce hometown pride. Known for bowling over careless challengers and throwing dramatic tears whenever a match slips away—only to grin cheerfully five minutes later—she treats life like a bustling city festival. She followed word of Hollowmere's thriving markets straight off the road and talked herself onto the roster by noon, bringing fresh milk tarts, lively chatter, and boundless energy to the front steps.",
+          "design": {
+            "hairStyle": "short hair in neat compact side-pigtails",
+            "hairColor": "bright pink",
+            "eyes": "pink",
+            "skin": "fair",
+            "accessories": "a yellow triangular hair clip on her bangs",
+            "accState": "always",
+            "expression": "an energetic, bubbly grin"
+          },
+          "under": "sports",
+          "underColor": "pink",
+          "stats": {"beauty":74,"charm":72,"charisma":74,"refinement":44,"wits":46,"stamina":68,"strength":44,"agility":62},
+          "tech": {"service":35,"dance":35,"bar":30,"combat":35,"manage":20},
+          "actSkill": 20,
+          "popularity": 16,
+          "lewd": 32,
+          "trust": 26,
+          "outfits": {
+            "sig_whitney": {
+              "label": "Goldenrod Gym uniform",
+              "style": "Sporty",
+              "accessories": "a yellow triangular hair clip and a red right-wrist sweatband",
+              "accState": "dressed",
+              "prompt": "a white baseball-style short-sleeved shirt with red piping and gold buttons, blue denim cutoff shorts, tall black-and-blue striped athletic socks and white-and-red sneakers",
+              "bonus": {"promoter":1.25,"commoner":1.15}
+            },
+            "sp_whitney": {
+              "label": "Goldenrod café sundress",
+              "style": "Cute",
+              "prompt": "a pastel pink gingham sundress with white lace trim and red ribbon flats",
+              "bonus": {"host":1.2,"promoter":1.2}
+            }
+          },
+          "bonds": {
+            "janine": {"v":25,"kind":"comrades","note":"Kanto and Johto Gym Leaders who cross paths between league inspections."},
+            "clair": {"v":20,"kind":"comrades","note":"Fellow Johto Gym Leaders—Whitney thinks Clair is way too stiff, though she secretly admires her."},
+            "misty": {"v":30,"kind":"comrades","note":"Both loud, competitive Gym Leaders who swap fashion tips after heated matches."},
+            "may": {"v":30,"kind":"comrades","note":"Fast friends over sweet snacks, cute accessories, and lively chatter."},
+            "kris": {"v":30,"kind":"comrades","note":"Cheered loudly on the sidelines when Kris challenged Goldenrod early in her journey."}
+          },
+          "jobs": {"likes":["promoter","bartender","host"],"dislikes":["madame","teacher"]},
+          "body": {"bust":"medium","height":"short","figure":"curvy"},
+          "unique": {
+            "name": "Goldenrod Dynamo",
+            "desc": "Her upbeat charm draws crowds straight off the avenue, boosting promotion, regulars, and commoner or farmhand tips.",
+            "fx": {"promote":1.2,"regular":1.15,"classBonus":{"commoner":1.1,"farmhand":1.1}}
+          }
+        },
+        "jessie": {
+          "job": "courtesan",
+          "name": "Jessie",
+          "race": "human",
+          "age": 26,
+          "personality": "Scheming and charming",
+          "traits": ["Showy","High Maintenance"],
+          "style": "Revealing",
+          "favColor": "crimson",
+          "fav": "oral_get",
+          "dislike": "manual_give",
+          "lovers": "cowgirl",
+          "backstory": "Once a proud operative in a flashy uniform chasing grand schemes—and a glamorous secret stage diva under another name—Jessie arrived in Hollowmere after one spectacular caper went sideways and left her stranded without coin. Beneath her dramatic entrances, sharp tongue, and expensive tastes, she works relentlessly for every scrap of applause she earns. She refuses to fade into the background, turning every room into her stage and waiting for someone bold enough to match her pride.",
+          "design": {
+            "hairStyle": "very long, voluminous hair sweeping dramatically out in a sharp upward curve behind her",
+            "hairColor": "magenta-red",
+            "eyes": "bright blue",
+            "skin": "fair",
+            "accessories": "round green drop earrings and bold red lipstick",
+            "accState": "always",
+            "expression": "a theatrical, haughty smirk"
+          },
+          "under": "garter",
+          "underColor": "crimson",
+          "stats": {"beauty":82,"charm":64,"charisma":78,"refinement":56,"wits":58,"stamina":56,"strength":36,"agility":58},
+          "tech": {"service":40,"dance":48,"bar":25,"combat":35,"manage":38},
+          "actSkill": 25,
+          "popularity": 16,
+          "lewd": 44,
+          "trust": 18,
+          "outfits": {
+            "sig_jessie": {
+              "label": "Team Rocket uniform",
+              "style": "Revealing",
+              "prompt": "a fitted cropped white short-sleeved uniform tunic with a bold red R on the chest over a black turtleneck midriff lining, a very short white miniskirt, long black gloves and tall black-and-white heeled boots",
+              "bonus": {"courtesan":1.25,"promoter":1.15}
+            },
+            "sp_jessie": {
+              "label": "Contest diva gown",
+              "style": "Elegant",
+              "prompt": "a shimmering crimson evening dress with a thigh-high slit, black opera gloves and a dramatic feather boa",
+              "bonus": {"dancer":1.25,"noble":1.2}
+            }
+          },
+          "bonds": {
+            "dawn": {"v":25,"kind":"rivals","note":"Former Pokémon Contest rivals who secretly respect each other's flair for grand finales."},
+            "may": {"v":20,"kind":"rivals","note":"Old contest stage rivals who still trade sharp remarks over backstage mirrors."},
+            "misty": {"v":-20,"note":"Years of bickering across towns have mellowed into a wary, sharp-tongued truce."},
+            "jenny": {"v":-15,"note":"Old habits die hard—she instinctively hides her purse whenever Jenny walks into the parlor.","kind":"rivals"}
+          },
+          "jobs": {"likes":["courtesan","dancer","promoter"],"dislikes":["maid","attendant"]},
+          "body": {"bust":"medium","height":"tall","figure":"slim"},
+          "unique": {
+            "name": "Prepare for Trouble",
+            "desc": "She treats every room like opening night, boosting appeal, stage and bar tips, and earnings from merchants.",
+            "fx": {"appeal":4,"tips":1.15,"classBonus":{"merchant":1.1}}
+          }
+        },
+        "delia": {
+          "job": "maid",
+          "name": "Delia Ketchum",
+          "race": "human",
+          "age": 36,
+          "personality": "Warm and motherly",
+          "traits": ["Warm Hospitality","Crisp Apron"],
+          "style": "Cute",
+          "favColor": "magenta",
+          "fav": "massage_give",
+          "dislike": "doggy",
+          "lovers": "missionary",
+          "backstory": "In sleepy Pallet Town, Delia Ketchum kept the hearth lit and the tea steaming long after her wanderlust-bitten son set out across the regions—though travelers still remember the quick-witted woman who once had a certain professor's whole laboratory eating out of her hand. When an empty house left too many quiet evenings, she packed a neat valise and crossed the water to see Hollowmere for herself. Warm, observant, and impossible to fluster for long, she mothers the staff until they drop their guard—and makes grown men melt with one knowing smile.",
+          "design": {
+            "hairStyle": "medium-length hair tied neatly back with a soft framing fringe",
+            "hairColor": "mahogany-auburn",
+            "eyes": "amber-brown",
+            "skin": "fair",
+            "expression": "a warm, reassuring motherly smile"
+          },
+          "under": "lace",
+          "underColor": "cream",
+          "stats": {"beauty":76,"charm":78,"charisma":70,"refinement":68,"wits":64,"stamina":62,"strength":38,"agility":52},
+          "tech": {"service":45,"dance":25,"bar":35,"combat":15,"manage":55},
+          "actSkill": 25,
+          "popularity": 14,
+          "lewd": 28,
+          "trust": 26,
+          "outfits": {
+            "sig_delia": {
+              "label": "Pallet Town home wear",
+              "style": "Cute",
+              "prompt": "a soft magenta short-sleeved fitted top, a knee-length cornflower-blue skirt, a crisp white half-apron tied at the waist and simple slip-on flats",
+              "bonus": {"maid":1.3,"commoner":1.15}
+            },
+            "sp_delia": {
+              "label": "Evening parlor dress",
+              "style": "Elegant",
+              "prompt": "a warm rose-burgundy wrap dress with a cream shawl",
+              "accessories": "pearl stud earrings",
+              "accState": "dressed",
+              "bonus": {"host":1.25,"merchant":1.15}
+            }
+          },
+          "bonds": {
+            "leaf": {"v":40,"kind":"home","note":"Always checks that the young Pallet Town traveler has eaten properly and packed dry socks."},
+            "daisy_oak": {"v":45,"kind":"home","note":"Old Pallet Town neighbors who trade tea, neighborhood gossip, and quiet looks."},
+            "joy": {"v":30,"kind":"comrades","note":"Two warm caretakers who conspire to feed everyone who misses supper."},
+            "ivy": {"v":25,"note":"Happily clears the professor's forgotten teacups without lecturing her."}
+          },
+          "jobs": {"likes":["maid","attendant","host"],"dislikes":["security","promoter"]},
+          "body": {"bust":"large","height":"average","figure":"curvy"},
+          "unique": {
+            "name": "Hearthkeeper's Grace",
+            "desc": "She keeps every room spotless and settles nerves around the house, boosting maid work and resting mood.",
+            "fx": {"jobBonus":{"maid":1.2},"tidy":1.15,"moodRest":2}
+          }
+        },
+        "joy": {
+          "job": "attendant",
+          "title": "Nurse",
+          "name": "Joy",
+          "race": "human",
+          "age": 28,
+          "personality": "Gentle and dreamy",
+          "traits": ["Soothing Voice","Sisterly"],
+          "style": "Cute",
+          "favColor": "pink",
+          "fav": "massage_give",
+          "dislike": "doggy",
+          "lovers": "missionary",
+          "backstory": "Raised in a vast family of healers where every cousin shares the same rose-pink hair and comforting voice, Joy spent years tending exhausted travelers and battered partners through sleepless night shifts. When a passing merchant spoke of a lantern-lit house in Hollowmere where even healers were looked after in turn, she traded clinic charts for a long sea voyage. Gentle, devoted, and chronically reluctant to put herself first, she turns the parlor into a haven—and blushes bright pink whenever anyone turns that tender care back onto her.",
+          "design": {
+            "hairStyle": "bright pink hair styled in two large looped side-rolls",
+            "hairColor": "pink",
+            "eyes": "blue",
+            "skin": "fair",
+            "accessories": "a crisp white nurse's cap with a pink cross emblem",
+            "accState": "dressed",
+            "expression": "a gentle, comforting bedside smile"
+          },
+          "under": "lace",
+          "underColor": "pink",
+          "stats": {"beauty":76,"charm":78,"charisma":66,"refinement":62,"wits":68,"stamina":68,"strength":34,"agility":54},
+          "tech": {"service":45,"dance":20,"bar":25,"combat":10,"manage":50},
+          "actSkill": 22,
+          "popularity": 16,
+          "lewd": 24,
+          "trust": 28,
+          "outfits": {
+            "sig_joy": {
+              "label": "Pokémon Center uniform",
+              "style": "Cute",
+              "prompt": "a crisp knee-length white nurse's dress with a short pink-and-white shoulder capelet, front pockets and sensible white nursing shoes",
+              "bonus": {"attendant":1.3,"pilgrim":1.15}
+            },
+            "sp_joy": {
+              "label": "Off-duty sundress",
+              "style": "Cute",
+              "prompt": "a soft blush-pink wrap sundress with a white cardigan draped over her shoulders",
+              "bonus": {"bath":1.2,"host":1.15}
+            }
+          },
+          "bonds": {
+            "jenny": {"v":45,"kind":"comrades","note":"Longtime town partners from opposite sides of the square, sharing late tea after hectic shifts."},
+            "delia": {"v":30,"kind":"comrades","note":"Two gentle caretakers who always fuss over whether everyone else has eaten."},
+            "juniper": {"v":25,"note":"Trades notes on herbal salves, tonics, and travelers who push themselves too hard."}
+          },
+          "jobs": {"likes":["attendant","bath","chapel"],"dislikes":["security","bartender"]},
+          "body": {"bust":"medium","height":"average","figure":"curvy"},
+          "unique": {
+            "name": "Gentle Bedside Manner",
+            "desc": "Her calm voice and healing hands ease exhaustion and settle everyone's mood between shifts.",
+            "fx": {"jobBonus":{"attendant":1.2},"energyRec":1.1,"moodRest":2}
+          }
+        },
+        "jenny": {
+          "job": "security",
+          "title": "Officer",
+          "name": "Jenny",
+          "race": "human",
+          "age": 28,
+          "personality": "Earnest and dutiful",
+          "traits": ["Level-Headed","Steady Nerves"],
+          "style": "Sporty",
+          "favColor": "blue",
+          "fav": "manual_give",
+          "dislike": "breast_give",
+          "lovers": "doggy",
+          "backstory": "From a sprawling clan of blue-uniformed officers who look alike down to the last polished badge, Jenny patrolled highways and busy precincts for years with crisp discipline and zero patience for smugglers. When a trail of stolen wares drew her straight into Hollowmere's lantern-lit alleys, she stayed on to keep the harbor crowds honest—and soon found the house's manager far harder to stay strict around than any suspect. Dutiful on shift and disarmingly eager once her utility belt comes off, she keeps trouble outside the door.",
+          "design": {
+            "hairStyle": "hair swept into a spiky high ponytail with wavy side bangs",
+            "hairColor": "dark teal-blue",
+            "eyes": "blue",
+            "skin": "fair",
+            "accessories": "a blue-violet police service cap with a red band and gold badge, and white gloves",
+            "accState": "dressed",
+            "expression": "a sharp, dutiful smile"
+          },
+          "under": "sports",
+          "underColor": "navy",
+          "stats": {"beauty":74,"charm":60,"charisma":68,"refinement":62,"wits":64,"stamina":72,"strength":64,"agility":68},
+          "tech": {"service":30,"dance":20,"bar":25,"combat":68,"manage":52},
+          "actSkill": 20,
+          "popularity": 15,
+          "lewd": 28,
+          "trust": 22,
+          "outfits": {
+            "sig_jenny": {
+              "label": "Kanto police uniform",
+              "style": "Sporty",
+              "prompt": "a crisp blue-violet short-sleeved police jacket with a light-blue V-panel, red collar and sleeve cuffs, matching short pleated skirt, black utility belt with gold buckle and low-heel navy pumps",
+              "bonus": {"security":1.3,"watchman":1.2}
+            },
+            "sp_jenny": {
+              "label": "Highway patrol leathers",
+              "style": "Exotic",
+              "prompt": "a fitted navy leather moto jacket over a white tank top, dark jeans and black riding boots",
+              "bonus": {"security":1.2,"promoter":1.15}
+            }
+          },
+          "bonds": {
+            "joy": {"v":45,"kind":"comrades","note":"Longtime town partners from opposite sides of the square, sharing late tea after hectic shifts."},
+            "jessie": {"v":-15,"kind":"rivals","note":"Still keeps one suspicious eye on the flamboyant rogue whenever she strolls through the lobby."},
+            "clair": {"v":25,"kind":"comrades","note":"Respects anyone who can clear a rowdy doorway without breaking a sweat."}
+          },
+          "jobs": {"likes":["security","madame","promoter"],"dislikes":["dancer","maid"]},
+          "body": {"bust":"medium","height":"tall","figure":"athletic"},
+          "unique": {
+            "name": "Kanto Beat",
+            "desc": "Her sharp patrols keep rowdy patrons in line, boosting security and keeping watchmen generous.",
+            "fx": {"security":14,"jobBonus":{"security":1.2},"classBonus":{"watchman":1.15}}
+          }
+        },
+        "ivy": {
+          "job": "teacher",
+          "title": "Professor",
+          "name": "Philena Ivy",
+          "race": "human",
+          "age": 31,
+          "personality": "Laid-back and lazy",
+          "traits": ["Academic Flair","Sensualist"],
+          "style": "Elegant",
+          "favColor": "purple",
+          "fav": "massage_get",
+          "dislike": "doggy",
+          "lovers": "missionary",
+          "backstory": "From a sun-drenched research station on Valencia Island, Professor Philena Ivy made her name studying rare regional anomalies—while quietly letting empty teacups and coastal field charts pile around her desk. Unhurried, sharp-minded, and immune to panic, she followed rumors of strange mana and sea-weary wanderers straight to Hollowmere. Between lazy afternoons soaking in the steam and sharp evening lectures that leave scholars hanging on every word, she prefers comfort over stiff ceremony—and treats curiosity with deliciously hands-on patience.",
+          "design": {
+            "hairStyle": "long, wavy hair falling past her shoulders",
+            "hairColor": "dark plum-purple",
+            "eyes": "warm brown",
+            "skin": "fair",
+            "accessories": "a thin gold pendant necklace",
+            "accState": "always",
+            "expression": "a relaxed, slightly sleepy half-smile"
+          },
+          "under": "silk",
+          "underColor": "navy",
+          "stats": {"beauty":78,"charm":70,"charisma":62,"refinement":66,"wits":82,"stamina":52,"strength":30,"agility":48},
+          "tech": {"service":40,"dance":20,"bar":25,"combat":10,"manage":55},
+          "actSkill": 22,
+          "popularity": 15,
+          "lewd": 34,
+          "trust": 22,
+          "outfits": {
+            "sig_ivy": {
+              "label": "Valencia lab attire",
+              "style": "Elegant",
+              "prompt": "a crisp white knee-length lab coat worn open over a fitted salmon-pink short-sleeved top, dark navy skirt and pink low heels",
+              "bonus": {"teacher":1.25,"scholar":1.2}
+            },
+            "sp_ivy": {
+              "label": "Valencia beach swimsuit",
+              "style": "Revealing",
+              "bath": true,
+              "prompt": "a sleek navy-blue one-piece swimsuit with a breezy white linen cover-up shirt draped open over her shoulders",
+              "bonus": {"bath":1.3,"courtesan":1.15}
+            }
+          },
+          "bonds": {
+            "juniper": {"v":40,"kind":"comrades","note":"Fellow professors who trade coastal field samples and compare hopelessly cluttered desks."},
+            "delia": {"v":25,"note":"Quietly grateful to the one person who clears her forgotten teacups without lecturing her."},
+            "cynthia": {"v":25,"note":"Shares dusty island folklore whenever the Champion drops by the study."}
+          },
+          "jobs": {"likes":["teacher","bath","attendant"],"dislikes":["security","promoter"]},
+          "body": {"bust":"large","height":"average","figure":"curvy"},
+          "unique": {
+            "name": "Island Research",
+            "desc": "Her unhurried lectures make lessons stick better and entice scholars to spend freely.",
+            "fx": {"teach":1.2,"jobBonus":{"teacher":1.15},"classBonus":{"scholar":1.15}}
+          }
+        },
+        "kris": {
+          "job": "promoter",
+          "title": "Trainer",
+          "name": "Kris",
+          "race": "human",
+          "age": 23,
+          "personality": "Graceful and athletic",
+          "traits": ["Former Adventurer","Fleet-Footed"],
+          "style": "Sporty",
+          "favColor": "cyan",
+          "fav": "kiss",
+          "dislike": "oral_give",
+          "lovers": "cowgirl",
+          "backstory": "Born in quiet New Bark Town, Kris crossed Johto from the Whirl Islands to the frosty summit of Mt. Silver with a travel pack over her shoulders and a notebook packed with field sketches. Too restless to sit indoors for long, she followed word of an uncharted port road straight into Hollowmere and talked her way onto the roster before unpacking her sneakers. Quick on her feet, endlessly curious, and fiercely loyal to anyone who matches her pace, she treats every evening like a sprint for the finish.",
+          "design": {
+            "hairStyle": "thick curved low pigtails with sporty bangs",
+            "hairColor": "teal-blue",
+            "eyes": "bright blue",
+            "skin": "fair",
+            "accessories": "a yellow-and-white visor cap and a pink travel backpack",
+            "accState": "dressed",
+            "expression": "a spirited, determined grin"
+          },
+          "under": "sports",
+          "underColor": "red",
+          "stats": {"beauty":74,"charm":64,"charisma":70,"refinement":50,"wits":62,"stamina":76,"strength":48,"agility":78},
+          "tech": {"service":32,"dance":42,"bar":20,"combat":52,"manage":34},
+          "actSkill": 20,
+          "popularity": 14,
+          "lewd": 32,
+          "trust": 26,
+          "outfits": {
+            "sig_kris": {
+              "label": "Johto Crystal outfit",
+              "style": "Sporty",
+              "prompt": "a short-sleeved cropped light-and-dark blue jacket over a fitted red undershirt, yellow cycling shorts with black side stripes, white ankle socks and red-and-white sneakers",
+              "bonus": {"promoter":1.25,"adventurer":1.2}
+            },
+            "sp_kris": {
+              "label": "Marine gala suit",
+              "style": "Elegant",
+              "prompt": "a tailored cobalt-and-white sleeveless dress with gold piping and knee-high white boots",
+              "bonus": {"host":1.25,"noble":1.15}
+            }
+          },
+          "bonds": {
+            "whitney": {"v":30,"kind":"comrades","note":"Never forgot Goldenrod's spirited gym leader from her earliest Johto badges."},
+            "clair": {"v":25,"kind":"rivals","note":"Still grins remembering the hard-won eighth badge she refused to leave Blackthorn without."},
+            "leaf": {"v":35,"kind":"comrades","note":"Fellow long-road travelers who compare worn soles and regional trail maps."}
+          },
+          "jobs": {"likes":["promoter","security","dancer"],"dislikes":["madame","maid"]},
+          "body": {"bust":"small","height":"average","figure":"athletic"},
+          "unique": {
+            "name": "Crystal Stride",
+            "desc": "Tireless on the street and quick on her feet, bringing more travelers to the door with energy to spare.",
+            "fx": {"promote":1.2,"maxEnergy":8,"stats":{"agility":4}}
+          }
+        },
+        "rosa": {
+          "job": "dancer",
+          "title": "Trainer",
+          "name": "Rosa",
+          "race": "human",
+          "age": 23,
+          "personality": "Cheerful and teasing",
+          "traits": ["Showy","Charming"],
+          "style": "Cute",
+          "favColor": "pink",
+          "fav": "kiss",
+          "dislike": "doggy",
+          "lovers": "cowgirl",
+          "backstory": "Raised in sunny Aspertia City before lighting up Pokéstar Studios' biggest soundstages, Rosa learned early how to hold every gaze in a crowded hall with one wink and a dramatic flourish. Between Unova journeys and late-night curtain calls, she boarded a ship for Hollowmere hunting new scripts, lively crowds, and a stage that stays bright past midnight. Expressive, bubbly, and shamelessly theatrical when teasing the people she likes, she plays the fearless starlet until you catch her alone offstage—where praise turns her ears bright red.",
+          "design": {
+            "hairStyle": "two large spherical side-buns with long twin tails hanging to her waist and yellow hair ties",
+            "hairColor": "chestnut brown",
+            "eyes": "brown",
+            "skin": "fair",
+            "accessories": "a pink-and-white sporty tennis visor",
+            "accState": "dressed",
+            "expression": "a bright, expressive theatrical smile"
+          },
+          "under": "lace",
+          "underColor": "pink",
+          "stats": {"beauty":80,"charm":76,"charisma":78,"refinement":58,"wits":56,"stamina":62,"strength":32,"agility":66},
+          "tech": {"service":36,"dance":64,"bar":25,"combat":35,"manage":32},
+          "actSkill": 24,
+          "popularity": 18,
+          "lewd": 36,
+          "trust": 26,
+          "outfits": {
+            "sig_rosa": {
+              "label": "Unova trainer outfit",
+              "style": "Cute",
+              "prompt": "a white-and-sky-blue three-quarter-sleeve top layered over a pink halter neckline, a short flared yellow mini-skirt over opaque black leggings, and blue-and-pink sneakers",
+              "bonus": {"dancer":1.25,"promoter":1.15}
+            },
+            "sp_rosa": {
+              "label": "Pokéstar studio gown",
+              "style": "Elegant",
+              "prompt": "a starry midnight-blue and gold starlet gown with satin gloves and ribbon heels",
+              "bonus": {"dancer":1.3,"noble":1.2}
+            }
+          },
+          "bonds": {
+            "hilda": {"v":40,"kind":"comrades","note":"Fellow Unova trainers who trade loud battle stories and studio gossip after shifts."},
+            "dawn": {"v":30,"kind":"comrades","note":"Swaps stage lighting tricks and dramatic entrance cues backstage."},
+            "juniper": {"v":25,"note":"Never forgets the cheerful Unova professor who cheered on her earliest steps."}
+          },
+          "jobs": {"likes":["dancer","host","promoter"],"dislikes":["security","maid"]},
+          "body": {"bust":"medium","height":"average","figure":"curvy"},
+          "unique": {
+            "name": "Pokéstar Spotlight",
+            "desc": "Her theatrical charm turns every stage number into a showstopper, lifting dancing, appeal, and stage tips.",
+            "fx": {"jobBonus":{"dancer":1.2},"appeal":3,"tips":1.2}
+          }
+        },
+        "phoebe": {
+          "job": "host",
+          "title": "Trainer",
+          "name": "Phoebe",
+          "race": "human",
+          "age": 26,
+          "personality": "Free-spirited wanderer",
+          "traits": ["Sunny Disposition","Sacred Touch"],
+          "style": "Exotic",
+          "favColor": "blue",
+          "fav": "massage_get",
+          "dislike": "manual_give",
+          "lovers": "missionary",
+          "backstory": "Raised near the misty shrines and ocean breezes of Mt. Pyre in Hoenn, Phoebe grew up barefoot among carved stone lanterns, laughing just as easily with passing travelers as with the wandering spirits only she seemed able to hear. Between Elite Four duties and twilight island festivals, she followed a warm breeze across the sea straight to Hollowmere. Effortlessly friendly, fearless around the uncanny, and impossible to keep gloomy, she greets nervous newcomers in the foyer like old friends—and chases away every shadow in the hall.",
+          "design": {
+            "hairStyle": "short, spiky hair adorned with two large magenta-red hibiscus flowers tucked at the sides",
+            "hairColor": "dark brown",
+            "eyes": "bright blue",
+            "skin": "tanned",
+            "accessories": "two large magenta-red hibiscus flowers in her hair and a red-magenta left anklet",
+            "accState": "always",
+            "expression": "an easygoing, breezy island smile"
+          },
+          "under": "wraps",
+          "underColor": "blue",
+          "stats": {"beauty":76,"charm":74,"charisma":76,"refinement":54,"wits":62,"stamina":68,"strength":40,"agility":66},
+          "tech": {"service":42,"dance":48,"bar":32,"combat":50,"manage":34},
+          "actSkill": 24,
+          "popularity": 16,
+          "lewd": 36,
+          "trust": 28,
+          "outfits": {
+            "sig_phoebe": {
+              "label": "Mt. Pyre island attire",
+              "style": "Exotic",
+              "prompt": "a strapless azure-blue bandeau top and matching flowing azure sarong skirt patterned with white floral circles, worn barefoot",
+              "bonus": {"host":1.25,"chapel":1.2}
+            },
+            "sp_phoebe": {
+              "label": "Festival twilight wrap",
+              "style": "Revealing",
+              "prompt": "a crimson-and-violet silk island halter top with a high-slit flowing skirt and gold bangles, worn barefoot",
+              "bonus": {"dancer":1.25,"sailor":1.2}
+            }
+          },
+          "bonds": {
+            "flannery": {"v":35,"kind":"comrades","note":"Fellow Hoenn travelers who trade festival snacks and warm stories of home."},
+            "may": {"v":30,"kind":"comrades","note":"Always brightens up when another friendly Hoenn face strolls into the foyer."},
+            "sabrina": {"v":25,"note":"One of the few people in the house who barely blinks when Phoebe chats with empty corners."}
+          },
+          "jobs": {"likes":["host","chapel","bath"],"dislikes":["maid","security"]},
+          "body": {"bust":"medium","height":"average","figure":"curvy"},
+          "unique": {
+            "name": "Island Medium",
+            "desc": "Her easygoing warmth keeps waiting guests smiling and steadies spirits across both foyer and chapel.",
+            "fx": {"jobBonus":{"host":1.15,"chapel":1.15},"moodLoss":0.85,"trustGain":1.1}
           }
         }
       }
