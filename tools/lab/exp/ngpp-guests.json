@@ -1,0 +1,764 @@
+{
+  "desc": "NG++ after five cycles where every partner was recruited (3 per cycle, oldest with 5 Reincarnated stacks) and n guests per cycle came over as old friends (S.alumni) plus n more as past lives (S.lives, they turn up reborn among the candidates/walks at visits.reborn odds), batches stacked 5/4/3/2/1. Guests now roll per candidate slot (visits.chance 0.5). Two NG++ cycles. NG++ loan ngppDebt 100k (was 50k) + ngppStep per NG++ cycle.",
+  "scenario": "ngplus",
+  "cycles": 2,
+  "runs": 16,
+  "baseline": false,
+  "start": {
+    "house": "lantern"
+  },
+  "patch": {
+    "balance": {
+      "townEvents": {
+        "off": true
+      }
+    }
+  },
+  "ng": {
+    "bindGoddess": true,
+    "past": "none",
+    "boon": "memory"
+  },
+  "variants": [
+    {
+      "name": "base: 3/cycle",
+      "ng": {
+        "ngppPrep": {
+          "cycle": 6,
+          "boons": [
+            "ap",
+            "recruit",
+            "loyal",
+            "grace"
+          ],
+          "pasts": [
+            "bartender",
+            "gym"
+          ],
+          "divinity": 40,
+          "love": 80,
+          "partnerLives": [
+            {
+              "count": 3,
+              "stacks": 5
+            },
+            {
+              "count": 3,
+              "stacks": 4
+            },
+            {
+              "count": 3,
+              "stacks": 3
+            },
+            {
+              "count": 3,
+              "stacks": 2
+            },
+            {
+              "count": 3,
+              "stacks": 1
+            }
+          ],
+          "guestAlumni": [
+            {
+              "count": 3,
+              "stacks": 5
+            },
+            {
+              "count": 3,
+              "stacks": 4
+            },
+            {
+              "count": 3,
+              "stacks": 3
+            },
+            {
+              "count": 3,
+              "stacks": 2
+            },
+            {
+              "count": 3,
+              "stacks": 1
+            }
+          ],
+          "guestLives": [
+            {
+              "count": 3,
+              "stacks": 5
+            },
+            {
+              "count": 3,
+              "stacks": 4
+            },
+            {
+              "count": 3,
+              "stacks": 3
+            },
+            {
+              "count": 3,
+              "stacks": 2
+            },
+            {
+              "count": 3,
+              "stacks": 1
+            }
+          ]
+        }
+      },
+      "phasePolicy": {
+        "hireFriends": true,
+        "hireReborn": true
+      }
+    },
+    {
+      "name": "no guests carried",
+      "ng": {
+        "ngppPrep": {
+          "cycle": 6,
+          "boons": [
+            "ap",
+            "recruit",
+            "loyal",
+            "grace"
+          ],
+          "pasts": [
+            "bartender",
+            "gym"
+          ],
+          "divinity": 40,
+          "love": 80,
+          "partnerLives": [
+            {
+              "count": 3,
+              "stacks": 5
+            },
+            {
+              "count": 3,
+              "stacks": 4
+            },
+            {
+              "count": 3,
+              "stacks": 3
+            },
+            {
+              "count": 3,
+              "stacks": 2
+            },
+            {
+              "count": 3,
+              "stacks": 1
+            }
+          ]
+        }
+      },
+      "phasePolicy": {
+        "hireFriends": true,
+        "hireReborn": true
+      }
+    },
+    {
+      "name": "1/cycle",
+      "ng": {
+        "ngppPrep": {
+          "cycle": 6,
+          "boons": [
+            "ap",
+            "recruit",
+            "loyal",
+            "grace"
+          ],
+          "pasts": [
+            "bartender",
+            "gym"
+          ],
+          "divinity": 40,
+          "love": 80,
+          "partnerLives": [
+            {
+              "count": 3,
+              "stacks": 5
+            },
+            {
+              "count": 3,
+              "stacks": 4
+            },
+            {
+              "count": 3,
+              "stacks": 3
+            },
+            {
+              "count": 3,
+              "stacks": 2
+            },
+            {
+              "count": 3,
+              "stacks": 1
+            }
+          ],
+          "guestAlumni": [
+            {
+              "count": 1,
+              "stacks": 5
+            },
+            {
+              "count": 1,
+              "stacks": 4
+            },
+            {
+              "count": 1,
+              "stacks": 3
+            },
+            {
+              "count": 1,
+              "stacks": 2
+            },
+            {
+              "count": 1,
+              "stacks": 1
+            }
+          ],
+          "guestLives": [
+            {
+              "count": 1,
+              "stacks": 5
+            },
+            {
+              "count": 1,
+              "stacks": 4
+            },
+            {
+              "count": 1,
+              "stacks": 3
+            },
+            {
+              "count": 1,
+              "stacks": 2
+            },
+            {
+              "count": 1,
+              "stacks": 1
+            }
+          ]
+        }
+      },
+      "phasePolicy": {
+        "hireFriends": true,
+        "hireReborn": true
+      }
+    },
+    {
+      "name": "5/cycle",
+      "ng": {
+        "ngppPrep": {
+          "cycle": 6,
+          "boons": [
+            "ap",
+            "recruit",
+            "loyal",
+            "grace"
+          ],
+          "pasts": [
+            "bartender",
+            "gym"
+          ],
+          "divinity": 40,
+          "love": 80,
+          "partnerLives": [
+            {
+              "count": 3,
+              "stacks": 5
+            },
+            {
+              "count": 3,
+              "stacks": 4
+            },
+            {
+              "count": 3,
+              "stacks": 3
+            },
+            {
+              "count": 3,
+              "stacks": 2
+            },
+            {
+              "count": 3,
+              "stacks": 1
+            }
+          ],
+          "guestAlumni": [
+            {
+              "count": 5,
+              "stacks": 5
+            },
+            {
+              "count": 5,
+              "stacks": 4
+            },
+            {
+              "count": 5,
+              "stacks": 3
+            },
+            {
+              "count": 5,
+              "stacks": 2
+            },
+            {
+              "count": 5,
+              "stacks": 1
+            }
+          ],
+          "guestLives": [
+            {
+              "count": 5,
+              "stacks": 5
+            },
+            {
+              "count": 5,
+              "stacks": 4
+            },
+            {
+              "count": 5,
+              "stacks": 3
+            },
+            {
+              "count": 5,
+              "stacks": 2
+            },
+            {
+              "count": 5,
+              "stacks": 1
+            }
+          ]
+        }
+      },
+      "phasePolicy": {
+        "hireFriends": true,
+        "hireReborn": true
+      }
+    },
+    {
+      "name": "3/cycle, old odds (0.15/slot)",
+      "ng": {
+        "ngppPrep": {
+          "cycle": 6,
+          "boons": [
+            "ap",
+            "recruit",
+            "loyal",
+            "grace"
+          ],
+          "pasts": [
+            "bartender",
+            "gym"
+          ],
+          "divinity": 40,
+          "love": 80,
+          "partnerLives": [
+            {
+              "count": 3,
+              "stacks": 5
+            },
+            {
+              "count": 3,
+              "stacks": 4
+            },
+            {
+              "count": 3,
+              "stacks": 3
+            },
+            {
+              "count": 3,
+              "stacks": 2
+            },
+            {
+              "count": 3,
+              "stacks": 1
+            }
+          ],
+          "guestAlumni": [
+            {
+              "count": 3,
+              "stacks": 5
+            },
+            {
+              "count": 3,
+              "stacks": 4
+            },
+            {
+              "count": 3,
+              "stacks": 3
+            },
+            {
+              "count": 3,
+              "stacks": 2
+            },
+            {
+              "count": 3,
+              "stacks": 1
+            }
+          ],
+          "guestLives": [
+            {
+              "count": 3,
+              "stacks": 5
+            },
+            {
+              "count": 3,
+              "stacks": 4
+            },
+            {
+              "count": 3,
+              "stacks": 3
+            },
+            {
+              "count": 3,
+              "stacks": 2
+            },
+            {
+              "count": 3,
+              "stacks": 1
+            }
+          ]
+        }
+      },
+      "phasePolicy": {
+        "hireFriends": true,
+        "hireReborn": true
+      },
+      "patch": {
+        "guestVisits": {
+          "chance": 0.15
+        },
+        "balance": {
+          "townEvents": {
+            "off": true
+          }
+        }
+      }
+    },
+    {
+      "name": "3/cycle, bot ignores reborn",
+      "ng": {
+        "ngppPrep": {
+          "cycle": 6,
+          "boons": [
+            "ap",
+            "recruit",
+            "loyal",
+            "grace"
+          ],
+          "pasts": [
+            "bartender",
+            "gym"
+          ],
+          "divinity": 40,
+          "love": 80,
+          "partnerLives": [
+            {
+              "count": 3,
+              "stacks": 5
+            },
+            {
+              "count": 3,
+              "stacks": 4
+            },
+            {
+              "count": 3,
+              "stacks": 3
+            },
+            {
+              "count": 3,
+              "stacks": 2
+            },
+            {
+              "count": 3,
+              "stacks": 1
+            }
+          ],
+          "guestAlumni": [
+            {
+              "count": 3,
+              "stacks": 5
+            },
+            {
+              "count": 3,
+              "stacks": 4
+            },
+            {
+              "count": 3,
+              "stacks": 3
+            },
+            {
+              "count": 3,
+              "stacks": 2
+            },
+            {
+              "count": 3,
+              "stacks": 1
+            }
+          ],
+          "guestLives": [
+            {
+              "count": 3,
+              "stacks": 5
+            },
+            {
+              "count": 3,
+              "stacks": 4
+            },
+            {
+              "count": 3,
+              "stacks": 3
+            },
+            {
+              "count": 3,
+              "stacks": 2
+            },
+            {
+              "count": 3,
+              "stacks": 1
+            }
+          ]
+        }
+      },
+      "phasePolicy": {
+        "hireFriends": false,
+        "hireReborn": false
+      }
+    },
+    {
+      "name": "3/cycle, step 75k",
+      "ng": {
+        "ngppPrep": {
+          "cycle": 6,
+          "boons": [
+            "ap",
+            "recruit",
+            "loyal",
+            "grace"
+          ],
+          "pasts": [
+            "bartender",
+            "gym"
+          ],
+          "divinity": 40,
+          "love": 80,
+          "partnerLives": [
+            {
+              "count": 3,
+              "stacks": 5
+            },
+            {
+              "count": 3,
+              "stacks": 4
+            },
+            {
+              "count": 3,
+              "stacks": 3
+            },
+            {
+              "count": 3,
+              "stacks": 2
+            },
+            {
+              "count": 3,
+              "stacks": 1
+            }
+          ],
+          "guestAlumni": [
+            {
+              "count": 3,
+              "stacks": 5
+            },
+            {
+              "count": 3,
+              "stacks": 4
+            },
+            {
+              "count": 3,
+              "stacks": 3
+            },
+            {
+              "count": 3,
+              "stacks": 2
+            },
+            {
+              "count": 3,
+              "stacks": 1
+            }
+          ],
+          "guestLives": [
+            {
+              "count": 3,
+              "stacks": 5
+            },
+            {
+              "count": 3,
+              "stacks": 4
+            },
+            {
+              "count": 3,
+              "stacks": 3
+            },
+            {
+              "count": 3,
+              "stacks": 2
+            },
+            {
+              "count": 3,
+              "stacks": 1
+            }
+          ]
+        }
+      },
+      "phasePolicy": {
+        "hireFriends": true,
+        "hireReborn": true
+      },
+      "patch": {
+        "balance": {
+          "townEvents": {
+            "off": true
+          },
+          "ngplus": {
+            "ngppStep": 75000
+          }
+        }
+      }
+    },
+    {
+      "name": "3/cycle, step 100k",
+      "ng": {
+        "ngppPrep": {
+          "cycle": 6,
+          "boons": [
+            "ap",
+            "recruit",
+            "loyal",
+            "grace"
+          ],
+          "pasts": [
+            "bartender",
+            "gym"
+          ],
+          "divinity": 40,
+          "love": 80,
+          "partnerLives": [
+            {
+              "count": 3,
+              "stacks": 5
+            },
+            {
+              "count": 3,
+              "stacks": 4
+            },
+            {
+              "count": 3,
+              "stacks": 3
+            },
+            {
+              "count": 3,
+              "stacks": 2
+            },
+            {
+              "count": 3,
+              "stacks": 1
+            }
+          ],
+          "guestAlumni": [
+            {
+              "count": 3,
+              "stacks": 5
+            },
+            {
+              "count": 3,
+              "stacks": 4
+            },
+            {
+              "count": 3,
+              "stacks": 3
+            },
+            {
+              "count": 3,
+              "stacks": 2
+            },
+            {
+              "count": 3,
+              "stacks": 1
+            }
+          ],
+          "guestLives": [
+            {
+              "count": 3,
+              "stacks": 5
+            },
+            {
+              "count": 3,
+              "stacks": 4
+            },
+            {
+              "count": 3,
+              "stacks": 3
+            },
+            {
+              "count": 3,
+              "stacks": 2
+            },
+            {
+              "count": 3,
+              "stacks": 1
+            }
+          ]
+        }
+      },
+      "phasePolicy": {
+        "hireFriends": true,
+        "hireReborn": true
+      },
+      "patch": {
+        "balance": {
+          "townEvents": {
+            "off": true
+          },
+          "ngplus": {
+            "ngppStep": 100000
+          }
+        }
+      }
+    }
+  ],
+  "columns": [
+    "c1won",
+    "r1weeks",
+    "r2weeks",
+    "r1over",
+    "r2over",
+    "r1debt",
+    "r2debt",
+    "r1staff",
+    "r1guests",
+    "r1guestsReborn",
+    "r2guests",
+    "r2guestsReborn",
+    "r1rebornAvg",
+    "r2rebornAvg",
+    "r1cfHE",
+    "r1cfHM",
+    "r1cfHL",
+    "r1hNet",
+    "r2hNet",
+    "r1guild"
+  ],
+  "delta": [
+    "r1weeks",
+    "r2weeks",
+    "r1over",
+    "r1guests",
+    "r1guestsReborn",
+    "r1rebornAvg",
+    "r1cfHE",
+    "r1hNet",
+    "r2hNet"
+  ],
+  "breakdown": []
+}

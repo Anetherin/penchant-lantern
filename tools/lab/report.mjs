@@ -14,7 +14,7 @@ export function metrics(r){
     restPct: avg('restPct'), statEnd: last.statAvg, skillEnd: last.skillAvg,
     statGain: Number.isFinite(last.statAvg) && Number.isFinite(first.statAvg) ? last.statAvg - first.statAvg : NaN,
     skillGain: Number.isFinite(last.skillAvg) && Number.isFinite(first.skillAvg) ? last.skillAvg - first.skillAvg : NaN,
-    rebornSum: avg('rebornSum'),
+    rebornSum: avg('rebornSum'), guests: avg('guestN'), guestsReborn: avg('guestReborn'),
     sam: avg('sam'), served: avg('served'), turned: avg('turned'), sat: avg('sat'),
     guild: avg('guild'), gaway: avg('gaway'), mood: avg('mood'), trust: last.trust, gold: last.gold, debt: last.debt, rep: last.rep, repGain: last.rep - (first.rep - 0),
     prestige: last.prestige, prestigeAvg: avg('prestige'), staff: last.staff,
@@ -59,7 +59,7 @@ export function metrics(r){
       const put = p => {
         m[p + 'len'] = c.len ?? NaN; m[p + 'weeks'] = c.len ?? cap; m[p + 'debt'] = c.debtTotal; m[p + 'staff'] = c.staff;
         m[p + 'over'] = c.over ? 1 : 0; m[p + 'lovers'] = c.lovers; m[p + 'loversIn'] = c.loversIn; m[p + 'winRate'] = c.won ? 1 : 0;
-        m[p + 'houses'] = c.houses; m[p + 'reborn'] = c.reborn0; m[p + 'rebornAvg'] = c.rebornAvg;
+        m[p + 'houses'] = c.houses; m[p + 'reborn'] = c.reborn0; m[p + 'rebornAvg'] = c.rebornAvg; m[p + 'guests'] = c.guestAvg; m[p + 'guestsReborn'] = c.guestRebornAvg;
         m[p + 'cfE'] = c.cfE; m[p + 'cfM'] = c.cfM; m[p + 'cfL'] = c.cfL;
         m[p + 'cfHE'] = c.cfHE; m[p + 'cfHM'] = c.cfHM; m[p + 'cfHL'] = c.cfHL; m[p + 'hNet'] = c.chNet;
         m[p + 'net'] = c.cNet; m[p + 'income'] = c.cIncome; m[p + 'wages'] = c.cWages; m[p + 'upkeep'] = c.cUpkeep;
