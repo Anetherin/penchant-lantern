@@ -82,6 +82,11 @@ A run that never reaches its phase is counted as "unreached" (warm-up cap `maxWa
 - `holdTidy: 70`: every house's tidiness is reset to this before each measured week (tests the tidiness bands in isolation).
 - `jobWho: "generics"` locks every generic lady (used to slice to none).
 - NG+ only (`ng`): `lovers: n` = exactly n Devoted going in (partner first, then by trust; set to max trust, but their training is only what they really got); `friends: n` = n generics at max trust.
+- NG+ / NG++ past lives (`ng`): `guestAlumni: {count, stacks}` (or a list of batches) = reborn guests waiting in `S.alumni` (old friends: one turns up as an extra candidate at `ngplus.friends.chance`);
+  `guestLives` (NG+ `ng` or `ngppPrep`) = guests remembered in `S.lives`: they turn up reborn among the candidates and on walks at `visits.reborn` odds of each guest appearance;
+  `ngppPrep.partnerLives` = partners remembered as past lovers (`count: "all"` takes every one). A list of batches models earlier cycles, e.g. `[{count:3,stacks:5},{count:3,stacks:4},...]`.
+  See `exp/ngpp-guests.json`.
+- `patch.guestVisits` patches `data/guests → visits` (`chance` per candidate slot, `reborn`, `stayWeeks`, ...).
 
 ## The policy (the bot "player")
 
@@ -94,7 +99,7 @@ and once the debt is cleared buys drinks tiers when flush (`classUpkeep: 'afterD
 fills support roles with the best-suited, lowest-earning lady (partners last);
 upgrades staff bed quality when flush (`bedTier: 'auto'`: up to Feather beds during the debt, Luxury after); in NG++ walks for staff until a house has `ngppWalkUntil` (10) ladies;
 leaves demons' Feeding only / auto-stud off unless `demonFeedOnly` / `demonAutoStud` are set; keeps a reserve for costs and the next payment; pays the debt off
-early when it can. Optional policy knobs cover `drinks`, `incense`, `price`, `cut`, `tutor`/`tutorTier`, and `teachSkill`.
+early when it can. Optional policy knobs cover `drinks`, `incense`, `price`, `cut`, `tutor`/`tutorTier`, `teachSkill`, and hiring priority: `hireFriends` (old friends first), `hireReborn` (anyone with Reincarnated stacks, most first), `hireGuests` (guests over generics). Rows carry `guests` / `guestsReborn` (guests on staff, and those with stacks; per cycle `rNguests`).
 Sam handles goddess nights when needed, makes the rounds when anyone is under 35 trust, dates his partner once a week, walks in NG++ when short on staff, and
 does `samDefault` otherwise (`bartend | security | books | scout | rounds | lesson | statclass | trainStat | trainSkill | trainService | demo | walk | orgy | date | rest`), scouting
 instead while a house has under `scoutWhenShort` ladies and few affordable candidates.

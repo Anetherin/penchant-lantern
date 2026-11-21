@@ -14,7 +14,7 @@ LAB.reseed = s => window.__labSeed(s >>> 0);
 function deepMerge(t, p){ for (const k of Object.keys(p)) { if (p[k] && typeof p[k] === 'object' && !Array.isArray(p[k]) && t[k] && typeof t[k] === 'object') deepMerge(t[k], p[k]); else t[k] = p[k]; } }
 // patch keys: balance (BAL), economy (ECON: houses, jobs, upgrades, classes, pasts...), races, traits, characters (NAMED)
 LAB.applyPatch = P => { if (!P) return;
-  const T = { balance: BAL, economy: ECON, races: RACES, traits: TRAITS, characters: NAMED, houses: HOUSES };
+  const T = { balance: BAL, economy: ECON, races: RACES, traits: TRAITS, characters: NAMED, houses: HOUSES, guestVisits: GUEST_VISITS };   // guestVisits = data/guests visits (chance, reborn, ...)
   for (const [k, v] of Object.entries(P)) { if (!T[k]) throw new Error('unknown patch key ' + k); deepMerge(T[k], v); } };
 
 // ---------- helpers ----------
@@ -102,7 +102,9 @@ LAB.POLICY = {
   samples: false,        // opt-in: non-Modest promoters hand out free samples
   syncMenu: false,       // opt-in: keep MENU_JOBS workers' w.menu synced with acts where clientStance === 'yes'
   fixedStaff: false,     // opt-in: cap maxStaff at home house staff count when measured phase starts (suppresses bedless capacity edge)
-  hireFriends: false     // opt-in: prioritize hiring returning reborn alumni/friends when affordable
+  hireFriends: false,    // opt-in: prioritize hiring returning reborn alumni/friends when affordable
+  hireReborn: false,     // opt-in: prioritize any candidate with Reincarnated stacks (most stacks first; reborn guests from S.lives included) when affordable
+  hireGuests: false      // opt-in: prioritize guests (drifters) over generics when affordable
 };
 // the fixed player the Pass 1/2 numbers in docs/BALANCE.md were measured with: spec "policy": {"preset": "legacy"}
 LAB.PRESETS = { legacy: { security: false, tidyFloor: 0, classUpkeep: false, maxStaff: 10, bedTier: false, guild: false, walkPartners: false, guildSpare: false, guildPartners: false }, noGuild: { guild: false } };
@@ -172,7 +174,7 @@ function manageJobs(h){
     mine.forEach(w => { if (MENU_JOBS.includes(w.job)) getActs().forEach(a => { if (clientStance(w, a.id) === 'yes' && !w.menu.includes(a.id)) w.menu.push(a.id); }); });
   }
 }
-function hireScore(c){ return (P.hireFriends && c.friend ? 10000 : 0) + (P.hire === 'best' ? STAT_KEYS.reduce((a, k) => a + s100(c.stats[k]), 0) / Math.max(50, c.signing) : -c.signing); }
+function hireScore(c){ return (P.hireFriends && c.friend ? 10000 : 0) + (P.hireReborn && (c.reborn || 0) > 0 ? 5000 + 100 * c.reborn : 0) + (P.hireGuests && isGuest(c) ? 2000 : 0) + (P.hire === 'best' ? STAT_KEYS.reduce((a, k) => a + s100(c.stats[k]), 0) / Math.max(50, c.signing) : -c.signing); }
 function manageHouse(h){
   S.cur = h.id; const LR = S.lastReport, hr0 = LR && LR.houses.find(x => x.id === h.id);
   if (P.price != null && h.price !== P.price) h.price = P.price;
@@ -341,9 +343,10 @@ function playWeek(){
   const statAvg = Math.round(10 * avg(w => STAT_KEYS.reduce((s, k) => s + s100(statOf(w, k)), 0) / STAT_KEYS.length)) / 10;
   const skillAvg = Math.round(10 * avg(w => TECH_KEYS.reduce((s, k) => s + s100((w.tech || {})[k] || 0), 0) / TECH_KEYS.length)) / 10;
   const rebornSum = W.filter(w => w.job !== 'rest').reduce((a, w) => a + (w.reborn || 0), 0);
+  const guestN = W.filter(w => isGuest(w)).length, guestReborn = W.filter(w => isGuest(w) && (w.reborn || 0) > 0).length;
   return { wk, cycle: S.cycle || 1, gold: Math.round(S.gold), debt: Math.round(S.debt.remaining), net: Math.round(R.income - R.wages - R.upkeep - (R.recharge || 0) - (R.cuts || 0) - (R.tutor || 0)),
     income: Math.round(R.income), wages: Math.round(R.wages), upkeep: Math.round(R.upkeep), cuts: Math.round(R.cuts || 0), recharge: Math.round(R.recharge || 0),
-    restPct, statAvg, skillAvg, rebornSum,
+    restPct, statAvg, skillAvg, rebornSum, guestN, guestReborn,
     sam: Math.round(R.led.sam || 0), guild: Math.round(R.led.guild || 0), partners: (S.flags && S.flags.walkPartners) || 0, grank: (S.guild && S.guild.rank) || 0, gaway: Object.values(R.per).filter(p => p.job === 'guild').length, rep: Math.round(homeH().rep * 10) / 10, prestige: Math.round(housePrestige(homeH()) * 10) / 10,
     staff: W.length, served: R.served, turned: R.turned, sat: hs.length ? hs[0].sat : 0, missed: S.debt.strikes > strikes0 ? 1 : 0, strikes: S.debt.strikes,
     mood: Math.round(avg(w => w.mood)), trust: Math.round(avg(w => w.trust)), left, houses: hs, per, over: !!S.over, won: !!S.won };
@@ -501,6 +504,31 @@ function addGuestAlumni(spec){
   }
   if (!S.candidates.some(c => c.friend)) inviteFriend(true);
 }
+// Past lives (S.lives) for the lab: named ladies who worked for Sam before and come back reborn when they turn up again
+// (guests among the candidates or on walks via pickDrifter, partners on walks). spec: {count, stacks} or a list of them
+// (batches: e.g. one per earlier cycle, the oldest with the most stacks). She comes back with `stacks` stacks and about
+// the stats addGuestAlumni gives the same stacks (L.stats is set so ngReset's carry lands there).
+// role: 'drifter' | 'partner'; count 'all' takes every one left. wasLover: partners come back as past lovers.
+function seedLives(spec, role, wasLover){
+  if (!spec) return;
+  const list = Array.isArray(spec) ? spec : [spec], B = BAL.ngplus || {};
+  S.lives = S.lives || {};
+  for (const item of list) {
+    const stacks = Math.max(1, item.stacks || 1), sh = Math.max(B.carry || 0.1, Math.min(B.carryMax ?? 0.5, (B.carryPer ?? 0.1) * stacks));
+    const pool = Object.keys(NAMED).filter(k => NAMED[k].role === role && !isHired(k) && !S.lives[k] && !(SET.packsOff || {})[NAMED[k].pack]);
+    const cnt = item.count === 'all' ? pool.length : (item.count || 0);
+    for (let i = 0; i < cnt && pool.length; i++) {
+      const k = pool.splice(Math.floor(Math.random() * pool.length), 1)[0], f = makeNamed(k);
+      const tmp = { reborn: stacks - 1 }, keep = carryShare(tmp);   // the share ngReset carries when she comes back
+      const back = (v, add) => Math.round(v + add / Math.max(0.05, keep));
+      const w = Object.assign({}, f, { reborn: stacks - 1, wasLover: !!wasLover,
+        stats: Object.fromEntries(STAT_KEYS.map(sk => [sk, back(f.stats[sk], sh * 180 * stacks)])),
+        tech: Object.fromEntries(TECH_KEYS.map(tk => [tk, back(f.tech[tk], sh * 180 * stacks)])),
+        acts: Object.fromEntries(Object.entries(f.acts || {}).map(([id, a]) => [id, Object.assign({}, a, { skill: back(a.skill || 0, sh * 120 * stacks) })])) });
+      rememberLife(w, false, S, { reborn: stacks - 1, wasLover: !!wasLover, romance: null });
+    }
+  }
+}
 function applyNgppPrep(prep){
   S.cycle = Math.max(1, (prep.cycle || 5) - 1);
   if (prep.boons) S.boons = Array.from(new Set([...(S.boons || []), ...prep.boons]));
@@ -511,6 +539,8 @@ function applyNgppPrep(prep){
     const stacksBefore = Math.max(0, (prep.loverStacks || 3) - 1), perks = NG_PERKS();
     carriedLovers().forEach(w => { w.reborn = Math.max(w.reborn || 0, stacksBefore); w.ngPerks = perks.slice(0, Math.min(perks.length, stacksBefore)); });
   }
+  if (prep.partnerLives) seedLives(prep.partnerLives, 'partner', true);
+  if (prep.guestLives) seedLives(prep.guestLives, 'drifter', false);
 }
 function enterNG(ng, isFirst){
   ng = ng || {};
@@ -549,6 +579,7 @@ function enterNG(ng, isFirst){
   if (isFirst) {
     const ga = ng.guestAlumni || (ng.ngppPrep && ng.ngppPrep.guestAlumni);
     if (ga) addGuestAlumni(ga);
+    if (ng.guestLives) seedLives(ng.guestLives, 'drifter', false);
   }
   info.houses = S.houses.map(h => h.id); info.staff = S.workers.length; info.debtTotal = Math.round(S.debt.total);
   return info;
@@ -606,7 +637,7 @@ LAB.run = async (J) => {
       Object.assign(out.info.cyc.at(-1), {
         len: S.won ? S.week - w0 : null, won: !!S.won, over: !!S.over, staffEnd: S.workers.length,
         lovers: S.workers.filter(w => has(w, 'Devoted')).length, friendsEnd: S.workers.filter(w => !w.key && w.trust >= 100).length,
-        houses: startHouses, reborn0: startReborn, rebornAvg: segMean(cw, 'rebornSum'),
+        houses: startHouses, reborn0: startReborn, rebornAvg: segMean(cw, 'rebornSum'), guestAvg: segMean(cw, 'guestN'), guestRebornAvg: segMean(cw, 'guestReborn'),
         cfE: segMean(cw.slice(0, 8), 'net'), cfM: segMean(cw.slice(8, 20), 'net'), cfL: segMean(cw.slice(20), 'net'),
         cfHE: hMean(cw.slice(0, 8)), cfHM: hMean(cw.slice(8, 20)), cfHL: hMean(cw.slice(20)), chNet: hMean(cw),
         cNet: segMean(cw, 'net'), cIncome: segMean(cw, 'income'), cWages: segMean(cw, 'wages'), cUpkeep: segMean(cw, 'upkeep'),
