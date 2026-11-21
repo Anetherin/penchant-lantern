@@ -167,23 +167,26 @@ function refreshCandidates(extra=0, quality=1){
     return c.keep;
   });
   const bonus = S.houses.reduce((a,h)=>a+(HOUSES[h.id].recruit||0),0);
-  // drifters / visiting guests (data/guests.json): each candidate slot is a guest with visits.chance (x guestDrawMul, at most maxChance), else a generic.
-  // guestDrawMul (walks.js): higher once the debt is paid (visits.paidMul) and with the Wayfarer's Lantern (samUps fx.guestDraw)
+  // drifters / visiting guests (data/guests.json): before NG++ one roll a week at visits.chance adds a guest to the candidates;
+  // in NG++ every candidate slot rolls it (visits.ngppPerSlot) and a guest takes that slot instead of a generic.
+  // Both x guestDrawMul (walks.js: visits.paidMul once the debt is paid, the Wayfarer's Lantern's fx.guestDraw), at most maxChance.
   const seen = S.flags.guestSeen = S.flags.guestSeen || {}, V = GUEST_VISITS, gm = guestDrawMul();
   let drift = Object.keys(NAMED).filter(k=>NAMED[k].role==='drifter' && !isHired(k) && !inCandidates(k) && !(SET.packsOff||{})[NAMED[k].pack]
     && S.week - (seen[k] ?? -999) >= V.stayWeeks + Math.round(V.cooldownWeeks / Math.max(1, gm)));
   const gch = Math.min(Math.min(0.95, (V.maxChance ?? 0.8) * Math.max(1, gm)), V.chance * gm);
+  const addGuest = () => {
+    const k = pickDrifter(drift), c = rebirthNamed(makeNamed(k));   // a guest from a past life comes back reborn (walks.js does the same)
+    drift = drift.filter(x=>x!==k);
+    c.keep = false; c.stay = V.stayWeeks; seen[k] = S.week; S.flags.lastGuest = S.week;
+    c.signing = signingFor(c); S.candidates.push(c); addLog(`${c.name} is passing through Hollowmere and looking for work. (Candidates)`);
+  };
+  const perSlot = V.ngppPerSlot !== false && (S.ngppCycle||0) > 0;
   const q = quality*(0.85 + S.rep/200 + ((S.sam.lvl||1)-1)*0.02);
   for(let i=0;i<3+extra+bonus;i++){
-    if(drift.length && Math.random()<gch){
-      const k = pickDrifter(drift), c = rebirthNamed(makeNamed(k));   // a guest from a past life comes back reborn (walks.js does the same)
-      drift = drift.filter(x=>x!==k);
-      c.keep = false; c.stay = V.stayWeeks; seen[k] = S.week; S.flags.lastGuest = S.week;
-      c.signing = signingFor(c); S.candidates.push(c); addLog(`${c.name} is passing through Hollowmere and looking for work. (Candidates)`);
-      continue;
-    }
+    if(perSlot && drift.length && Math.random()<gch){ addGuest(); continue; }
     const c = genWorker({quality: q}); c.signing = signingFor(c); S.candidates.push(c);
   }
+  if(!perSlot && drift.length && Math.random()<gch) addGuest();
   if(SET.libraryInPool && LIB.length && Math.random()<0.25){
     const src = pick(LIB);
     if(!allNames().includes(src.name)){ const c = ensureWorker(clone(src)); c.id=uid(); c.keep=false; c.signing=signingFor(c); S.candidates.push(c); }
