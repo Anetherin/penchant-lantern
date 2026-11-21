@@ -518,7 +518,7 @@
             "sig_yori": {
               "label": "Rain cloak",
               "style": "Elegant",
-              "prompt": "a heavy ankle-length charcoal-blue rain cloak with the hood up, a very high collar and a plain cloth mask over her nose and mouth",
+              "prompt": "a heavy ankle-length charcoal-blue rain cloak with the hood up, a very high collar and a matching cloth mask over her nose and mouth",
               "bonus": {"maid":1.25,"adventurer":1.15}
             },
             "sp_yori": {
@@ -975,7 +975,7 @@
           },
           "bonds": {"juju":{"v":35,"note":"Old friends, though one was always training while the other was working."}},
           "jobs": {"likes":["bartender","host","courtesan"],"dislikes":["maid"]},
-          "body": {"bust":"large","height":"short","figure":"soft"},
+          "body": {"bust":"medium","height":"short","figure":"soft"},
           "unique": {"name":"Order Memory","desc":"She remembers every client's order and gossip.","fx":{"jobBonus":{"bartender":1.2},"clientFee":1.05}}
         },
         "kamiko": {
