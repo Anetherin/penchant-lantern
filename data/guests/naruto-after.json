@@ -22,8 +22,7 @@
             "eyes": "clear green-grey",
             "skin": "light warm",
             "features": "dark smoky eye makeup and deep wine lips",
-            "accessories": "a thin black choker with a small sand-symbol plate",
-            "accState": "always"
+            "expression": "a confident, knowing half-smile"
           },
           "under": "lace",
           "underColor": "wine",
@@ -38,13 +37,30 @@
               "label": "Star's coat",
               "style": "Revealing",
               "prompt": "a long cream coat with deep-teal lining hanging open over a wine-colored lace-trimmed silk babydoll dress, sheer dark thigh-high stockings and black heeled boots",
+              "accessories": "a thin black choker with a small sand-symbol plate",
+              "accState": "always",
               "bonus": {"courtesan":1.25,"noble":1.15}
             },
             "sp_mio_tanabe": {
-              "label": "Suna medic whites",
-              "style": "Elegant",
-              "prompt": "a cream and sand-colored medic tunic with a deep-teal sash",
+              "label": "Suna medic",
+              "style": "Sporty",
+              "hairStyle": "long low ponytail with loose face-framing strands",
+              "features": "",
+              "replaceFeatures": true,
+              "expression": "a calm, steady smile",
+              "prompt": "practical sand, cream and muted-teal desert shinobi clothing with soft layered fabric, fitted dark underlayers, forearm protection, shinobi sandals, utility pouches and compact medical supplies",
               "bonus": {"promoter":1.15,"commoner":1.2}
+            },
+            "sp_mio_tanabe_p2": {
+              "label": "Overworked medic",
+              "style": "Sporty",
+              "hairStyle": "short uneven jaw-length cut, messy with loose strands falling into her face",
+              "eyes": "bloodshot, sunken green-grey",
+              "features": "dark under-eye shadows",
+              "replaceFeatures": true,
+              "expression": "an exhausted, stubbornly focused gaze",
+              "prompt": "heavily worn sand, cream, brown and muted-teal medical field clothes over dark fitted layers, visibly wrinkled, with forearm protection, shinobi sandals, crowded utility belts and an overstuffed medical backpack",
+              "bonus": {"promoter":1.2,"adventurer":1.15}
             }
           },
           "bonds": {
@@ -53,7 +69,7 @@
             "saki": {"v":45,"kind":"comrades","note":"Close Suna friends who survived the worst of the Exam together."}
           },
           "jobs": {"likes":["courtesan","dancer"],"dislikes":["maid"]},
-          "body": {"bust":"medium","height":"average","figure":"average"},
+          "body": {"bust":"medium","height":"average","figure":"curvy"},
           "unique": {
             "name": "Star's Coat",
             "desc": "A field medic's hands and an entrance nobody can ignore.",
@@ -94,8 +110,7 @@
               "style": "Sporty",
               "prompt": "a fitted charcoal short field jacket, muted blue-gray scarf, dark shorts over leggings, utility belt and gloves",
               "bonus": {"security":1.3,"adventurer":1.15}
-            },
-            "sp_emi": {"label":"Off-duty wrap dress","style":"Cute","prompt":"a soft blue-gray knit wrap dress","bonus":{"courtesan":1.15,"commoner":1.15}}
+            }
           },
           "bonds": {
             "hibiki": {"v":60,"kind":"comrades","note":"Squadmates since the Exam."},
@@ -144,10 +159,11 @@
               "bonus": {"dancer":1.3,"commoner":1.15}
             },
             "sp_hibiki": {
-              "label": "Encore gown",
-              "style": "Elegant",
-              "prompt": "a backless black and plum gown with a bat-wing cape and red gemstone jewelry",
-              "bonus": {"noble":1.2,"courtesan":1.15}
+              "label": "Gothic harp-lute",
+              "style": "Exotic",
+              "hairStyle": "thigh-length, thick and layered",
+              "prompt": "an elaborate black, plum and wine-red gothic combat dress with a lace-edged bodice, low curved neckline, exposed shoulders, detached sleeves, asymmetric short skirt panels, thigh-high stockings and strapped black gothic combat boots",
+              "bonus": {"dancer":1.25,"courtesan":1.15}
             }
           },
           "bonds": {
@@ -195,12 +211,6 @@
               "style": "Sporty",
               "prompt": "an open cropped charcoal-and-rust field jacket over a low-neck rust-red crop top, high-waisted dark shorts, gloves and boots",
               "bonus": {"bartender":1.25,"adventurer":1.2}
-            },
-            "sp_choko": {
-              "label": "Stone festival qipao",
-              "style": "Exotic",
-              "prompt": "a rust-red qipao with black seal-script embroidery",
-              "bonus": {"courtesan":1.15,"merchant":1.2}
             }
           },
           "bonds": {"maki":{"v":55,"note":"Close friends since the Exam."},"saya":{"v":45,"kind":"comrades","note":"Old squadmates."}},
@@ -232,8 +242,6 @@
             "eyes": "dark",
             "skin": "fair",
             "features": "an exceptionally beautiful, composed face",
-            "accessories": "a sleek smoky purple-grey visor over her eyes",
-            "accState": "dressed",
             "expression": "a cool, composed expression"
           },
           "under": "silk",
@@ -249,14 +257,16 @@
               "label": "Information commander",
               "style": "Elegant",
               "prompt": "a long fitted white field jacket worn open over a charcoal-black top with abstract web-like seams and mesh panels, fitted dark trousers",
+              "accessories": "a sleek smoky purple-grey visor over her eyes",
+              "accState": "dressed",
               "bonus": {"promoter":1.3,"merchant":1.15}
             },
             "sp_saya": {
-              "label": "Off-duty knit",
+              "label": "High-collared fieldwear",
               "style": "Elegant",
-              "prompt": "a long white off-duty knit dress",
-              "bonus": {"courtesan":1.15,"noble":1.15},
-              "accessories": "her smoky visor pushed up into her hair",
+              "prompt": "a long fitted white-to-pale-grey high-collared field jacket worn closed over dark underlayers, fitted dark trousers, gloves and shinobi boots",
+              "bonus": {"promoter":1.2,"merchant":1.15},
+              "accessories": "lightly tinted rectangular glasses",
               "accState": "always"
             }
           },
@@ -305,10 +315,13 @@
               "bonus": {"bath":1.25,"merchant":1.15}
             },
             "sp_juju": {
-              "label": "Workshop cheongsam",
-              "style": "Exotic",
-              "prompt": "a cream and dark-red cheongsam with gold buttons and a tool belt",
-              "bonus": {"courtesan":1.15,"commoner":1.15}
+              "label": "Inherited kung-fu gear",
+              "style": "Sporty",
+              "hairStyle": "long hair falling freely down her back beneath two small round buns high on the sides of her head",
+              "features": "",
+              "replaceFeatures": true,
+              "prompt": "a fitted sleeveless cream-white high-collar martial-arts top with dark-red piping and frog closures, fitted black cropped pants, dark forearm guards, gloves and a neat modular tool belt with pouches, scroll containers and small metal weapons",
+              "bonus": {"bath":1.2,"commoner":1.15}
             }
           },
           "bonds": {
@@ -357,13 +370,17 @@
               "bonus": {"courtesan":1.25,"adventurer":1.1}
             },
             "sp_nami": {
-              "label": "Gold silk wrap",
-              "style": "Elegant",
-              "prompt": "a flowing pale gold silk wrap dress that moves with every breeze",
-              "bonus": {"noble":1.2,"courtesan":1.15}
+              "label": "Desert genin layers",
+              "style": "Sporty",
+              "hairStyle": "medium-long, partly gathered with loose strands framing her face",
+              "prompt": "a practical desert shinobi outfit with fitted dark base pieces, short lightweight sand-colored split panels, yellow-ochre and muted-green sash details, arm guards and open-toed shinobi footwear",
+              "bonus": {"courtesan":1.15,"adventurer":1.2}
             }
           },
-          "bonds": {"juju":{"v":35,"kind":"comrades","note":"Old squadmates."}},
+          "bonds": {
+            "juju": {"v":35,"kind":"comrades","note":"Old squadmates."},
+            "saki": {"v":30,"note":"Suna friends who get along easily."}
+          },
           "jobs": {"likes":["courtesan","bath"],"dislikes":["maid","security"]},
           "body": {"bust":"large","height":"tall","figure":"athletic"},
           "unique": {"name":"Gentle Breeze","desc":"Her relaxed company eases tired bodies and tired moods.","fx":{"energyRec":1.15,"moodRest":3}}
@@ -407,10 +424,13 @@
               "bonus": {"courtesan":1.25,"noble":1.2}
             },
             "sp_maki": {
-              "label": "Black satin cocktail dress",
-              "style": "Elegant",
-              "prompt": "a fitted black satin cocktail dress with silver jewelry",
-              "bonus": {"courtesan":1.15,"merchant":1.2}
+              "label": "Kiri fieldwear",
+              "style": "Revealing",
+              "hairStyle": "long, tied in an immaculate high ponytail with controlled face-framing strands",
+              "features": "strong eyeliner, shaped brows and coordinated eyeshadow",
+              "replaceFeatures": true,
+              "prompt": "tailored cool navy, blue-grey and black shinobi fieldwear with a fitted sleeveless low-neck top showing her midriff, short fitted bottoms under a high-cut overskirt, practical boots and pouches",
+              "bonus": {"courtesan":1.2,"adventurer":1.15}
             }
           },
           "bonds": {
@@ -466,10 +486,11 @@
               "bonus": {"dancer":1.25,"commoner":1.15}
             },
             "sp_saki": {
-              "label": "Puppet-theater coat",
-              "style": "Exotic",
-              "prompt": "a purple and pink stage coat with marionette strings looped at the cuffs",
-              "bonus": {"merchant":1.15,"noble":1.15}
+              "label": "Workshop genin",
+              "style": "Sporty",
+              "hairStyle": "short messy tomboy cut",
+              "prompt": "a charcoal and dusty-brown sleeveless mechanic utility vest with purple and pink accents, loose durable cropped trousers, tool belts, black fingerless gloves and two small articulated puppets on her belt, with light workshop grease smudges",
+              "bonus": {"dancer":1.2,"commoner":1.15}
             }
           },
           "bonds": {
@@ -571,7 +592,12 @@
               "prompt": "a cream blouse and muted-green layered skirt with light practical gear",
               "bonus": {"courtesan":1.25,"commoner":1.2}
             },
-            "sp_nozomi": {"label":"Sundress","style":"Cute","prompt":"a pale green sundress with a cream cardigan","bonus":{"merchant":1.15,"noble":1.1}}
+            "sp_nozomi": {
+              "label": "Sleeper genin",
+              "style": "Sporty",
+              "prompt": "practical white and light-grey shinobi layers over fitted charcoal underclothes, dark loose shinobi trousers, brown utility straps and a soft muted-green scarf around her neck",
+              "bonus": {"attendant":1.2,"commoner":1.15}
+            }
           },
           "bonds": {"yukine":{"v":30,"note":"Trust earned slowly, one mission at a time."},"saya":{"v":-20,"note":"Saya turned her away once."}},
           "jobs": {"likes":["attendant","maid"],"dislikes":["courtesan"]},
@@ -597,8 +623,6 @@
             "hairColor": "near-black",
             "eyes": "pale blue-grey",
             "skin": "pale cool",
-            "accessories": "a dusty-pink hair ribbon",
-            "accState": "always",
             "expression": "a cool, delicate expression"
           },
           "under": "silk",
@@ -614,13 +638,17 @@
               "label": "Ice Princess",
               "style": "Elegant",
               "prompt": "a fitted sleeveless white, silver and ice-blue kimono-inspired tunic with a high collar, detached sleeves, short front over fitted shorts, tall white-and-black boots and floor-length split rear skirt panels with sakura blossoms at the hems",
+              "accessories": "a dusty-pink hair ribbon",
+              "accState": "always",
               "bonus": {"madame":1.3,"noble":1.15}
             },
             "sp_yukine": {
-              "label": "Snow kimono",
-              "style": "Elegant",
-              "prompt": "a white silk kimono with snowflake and sakura patterns and a dusty-pink obi",
-              "bonus": {"noble":1.25,"courtesan":1.15}
+              "label": "Konoha rebel",
+              "style": "Revealing",
+              "favColor": "rose",
+              "hairStyle": "shoulder-length with rough uneven ends and a tiny low ponytail",
+              "prompt": "a contemporary ninja outfit in dusty rose, muted rust and charcoal with a sleeveless fitted cropped top, dark open-weave mesh over the midriff, short fitted combat shorts, lightweight guards, boots and compact tool canisters",
+              "bonus": {"courtesan":1.2,"adventurer":1.15}
             }
           },
           "bonds": {
@@ -652,8 +680,6 @@
             "eyes": "amber-brown",
             "skin": "warm brown",
             "features": "spotted cheetah ears and a long spotted cheetah tail",
-            "accessories": "a red hair ribbon",
-            "accState": "always",
             "expression": "a confident, energetic grin"
           },
           "under": "sports",
@@ -669,9 +695,18 @@
               "label": "Lightning gear",
               "style": "Sporty",
               "prompt": "a streamlined charcoal-black sleeveless combat top, close short combat bottoms, a deep-red sash, slim gloves and low ninja shoes",
+              "accessories": "a red hair ribbon",
+              "accState": "always",
               "bonus": {"security":1.3,"adventurer":1.2}
             },
-            "sp_hana": {"label":"Red qipao","style":"Exotic","prompt":"a deep-red sleeveless qipao with a high slit","bonus":{"courtesan":1.15,"merchant":1.15}}
+            "sp_hana": {
+              "label": "Lightning cape",
+              "style": "Sporty",
+              "hairStyle": "severe choppy jaw-to-neck-length cut",
+              "expression": "an intense, focused gaze",
+              "prompt": "a fitted charcoal-black sleeveless combat top, fitted dark full-length ninja pants, a narrow patterned deep-red waist sash, forearm guards with a red ribbon knotted around the right one, electric-blue conductive sensor modules, and a heavy calf-length split charcoal-black cape with deep-red swirling lining and silver zigzag trim",
+              "bonus": {"security":1.3,"adventurer":1.2}
+            }
           },
           "bonds": {
             "juju": {"v":65,"note":"An intense friendship that started the moment they met."},
@@ -697,11 +732,11 @@
           "backstory": "Once the lead exam proctor for the Alliance villages across the eastern sea and a meticulous contingency planner, Shiori lost her husband to a delayed mission and her closest friend to a twenty-year betrayal. She took the job because she needed something to do with her hands. The first signs of her picking herself back up are starting to show.",
           "design": {
             "build": "mature",
-            "hairStyle": "high spiky side ponytail",
+            "hairStyle": "long and messy, with heavy bangs over her left eye",
             "hairColor": "silver-white",
             "eyes": "blue-grey",
             "skin": "pale",
-            "expression": "a stern, cool expression"
+            "expression": "a weary, guarded expression"
           },
           "under": "plain",
           "underColor": "black",
@@ -713,17 +748,18 @@
           "trust": 16,
           "outfits": {
             "sig_shiori": {
-              "label": "Proctor's uniform",
-              "style": "Elegant",
-              "prompt": "a dark high-collared tactical ninja uniform with a harness of colored cartridges",
-              "bonus": {"promoter":1.3,"security":1.15}
-            },
-            "sp_shiori": {
               "label": "Unkempt",
               "style": "Elegant",
               "prompt": "a loose dark sweater over worn dark trousers",
-              "bonus": {"promoter":1.2,"commoner":1.15},
-              "hairStyle": "long and messy, with heavy bangs over her left eye"
+              "bonus": {"promoter":1.2,"commoner":1.15}
+            },
+            "sp_shiori": {
+              "label": "Proctor's uniform",
+              "style": "Elegant",
+              "hairStyle": "high spiky side ponytail",
+              "expression": "a stern, cool expression",
+              "prompt": "a dark high-collared tactical ninja uniform with a harness of colored cartridges",
+              "bonus": {"promoter":1.3,"security":1.15}
             }
           },
           "bonds": {
@@ -773,8 +809,7 @@
               "bonus": {"bath":1.2,"merchant":1.15},
               "accessories": "a clipboard tucked under her arm",
               "accState": "dressed"
-            },
-            "sp_tsubasa": {"label":"Lab coat","style":"Elegant","prompt":"a crisp white lab coat over a fitted dark dress","bonus":{"bath":1.25,"noble":1.1}}
+            }
           },
           "bonds": {"saya":{"v":-10,"note":"Her demonstration once cost Saya five places in the rankings. Saya hasn't forgotten."}},
           "jobs": {"likes":["bath","security"],"dislikes":["dancer"]},
@@ -801,7 +836,8 @@
             "eyes": "hidden behind a blindfold",
             "skin": "warm tan",
             "accessories": "a dark cloth blindfold with a metal quarter-note plate across her eyes",
-            "accState": "always"
+            "accState": "always",
+            "expression": "a calm, self-assured expression"
           },
           "under": "plain",
           "underColor": "plum",
@@ -817,8 +853,7 @@
               "style": "Elegant",
               "prompt": "a fitted sleeveless high-neck deep-plum tunic, loose charcoal-olive pants, a pale cloth sash and dark forearm wraps",
               "bonus": {"madame":1.25,"adventurer":1.15}
-            },
-            "sp_kotone": {"label":"Plum silk qipao","style":"Elegant","prompt":"a deep plum silk qipao with silver thread","bonus":{"noble":1.25,"courtesan":1.15}}
+            }
           },
           "bonds": {"hibiki":{"v":50,"kind":"comrades","note":"Close childhood friends from the Sound village."}},
           "jobs": {"likes":["madame","maid"],"dislikes":["courtesan"]},
@@ -834,7 +869,7 @@
           "name": "Tobari Senju",
           "race": "human",
           "age": 25,
-          "personality": "Hot-blooded and competitive",
+          "personality": "Earnest and dutiful",
           "traits": ["Tough","Shy"],
           "style": "Sporty",
           "favColor": "navy",
@@ -848,7 +883,8 @@
             "eyes": "red",
             "skin": "pale",
             "accessories": "a small white fur collar",
-            "accState": "dressed"
+            "accState": "dressed",
+            "expression": "a cool, confident expression"
           },
           "under": "sports",
           "underColor": "navy",
@@ -864,12 +900,6 @@
               "style": "Sporty",
               "prompt": "dark navy shinobi mesh and mail with fitted blue-black panels, a white fur collar trim, a belt of compact tool cartridges and dark trousers",
               "bonus": {"security":1.3,"adventurer":1.15}
-            },
-            "sp_tobari": {
-              "label": "Fur-trimmed haori",
-              "style": "Elegant",
-              "prompt": "a blue haori trimmed with white fur over a fitted dark dress",
-              "bonus": {"noble":1.2,"courtesan":1.15}
             }
           },
           "bonds": {
@@ -901,7 +931,8 @@
             "skin": "fair",
             "features": "long pointed elf ears",
             "accessories": "a sewing pouch at her hip",
-            "accState": "dressed"
+            "accState": "dressed",
+            "expression": "a calm, pleasant smile"
           },
           "under": "lace",
           "underColor": "cream",
@@ -917,12 +948,6 @@
               "style": "Cute",
               "prompt": "a fitted navy and blue-grey top with cream frilled edging and stitch details, a pleated skirt over fitted shorts, a long needle-like sword with trailing wire",
               "bonus": {"maid":1.3,"merchant":1.1}
-            },
-            "sp_marina": {
-              "label": "Handmade frills",
-              "style": "Cute",
-              "prompt": "a cream and navy frilled dress she sewed herself",
-              "bonus": {"courtesan":1.15,"noble":1.15}
             }
           },
           "bonds": {"maki":{"v":45,"note":"Friends through clothes. Marina will alter anything for Maki, then ask her who it's for."}},
@@ -965,12 +990,6 @@
               "style": "Cute",
               "prompt": "a white sleeveless ramen-shop wrap tunic with red trim and a red waist sash, dark shorts and forearm wraps",
               "bonus": {"bartender":1.3,"commoner":1.2}
-            },
-            "sp_ayano": {
-              "label": "Festival yukata",
-              "style": "Cute",
-              "prompt": "a red festival yukata patterned with tiny white ramen bowls",
-              "bonus": {"courtesan":1.15,"merchant":1.15}
             }
           },
           "bonds": {"juju":{"v":35,"note":"Old friends, though one was always training while the other was working."}},
@@ -992,6 +1011,7 @@
           "lovers": "doggy",
           "backstory": "A wandering spirit from the Grass village of the Alliance villages across the eastern sea who fights with strands cut from her own hair. Levelheaded and polished, she has endless patience right up until she doesn't.",
           "design": {
+            "build": "lean, athletic",
             "hairStyle": "very long and straight with a visibly uneven, asymmetrical lower edge",
             "hairColor": "black",
             "eyes": "dark",
@@ -1016,13 +1036,6 @@
               "bonus": {"courtesan":1.2,"adventurer":1.2},
               "accessories": "a broad conical straw traveling hat",
               "accState": "dressed"
-            },
-            "sp_kamiko": {
-              "label": "Black silk kimono",
-              "style": "Elegant",
-              "prompt": "a black silk kimono with a grass-green obi",
-              "bonus": {"noble":1.25,"courtesan":1.1},
-              "hairStyle": "very long, loose and unevenly cut"
             }
           },
           "jobs": {"likes":["courtesan","security"],"dislikes":["maid"]},
@@ -1064,12 +1077,6 @@
               "style": "Elegant",
               "prompt": "a loose black cross-front robe with wide sleeves sitting open over a fitted dark mesh underlayer, a dark sash with deep-red ties and flowing black hakama-like pants",
               "bonus": {"courtesan":1.25,"noble":1.1}
-            },
-            "sp_nai": {
-              "label": "Black silk kimono dress",
-              "style": "Elegant",
-              "prompt": "a black silk kimono dress with a deep-red obi",
-              "bonus": {"noble":1.2,"courtesan":1.15}
             }
           },
           "bonds": {"ebina":{"v":45,"kind":"comrades","note":"Old squadmates."}},
@@ -1091,6 +1098,7 @@
           "lovers": "doggy",
           "backstory": "A Leaf fundamentals specialist from the Alliance villages across the eastern sea who turns free time into an itinerary. Ebina shows plenty of skin without a second thought but almost never lets anyone see her eyes. She also reads a frankly alarming amount of romance fiction about men.",
           "design": {
+            "build": "lean, athletic",
             "hairStyle": "loosely tied back",
             "hairColor": "dark brown",
             "eyes": "dark",
@@ -1115,8 +1123,7 @@
               "accessories": "a dark bandanna over her hairline",
               "accState": "under",
               "bonus": {"dancer":1.25,"adventurer":1.15}
-            },
-            "sp_ebina": {"label":"Beach day","style":"Revealing","prompt":"a black bikini top with a sheer black sarong","bonus":{"dancer":1.15,"commoner":1.2}}
+            }
           },
           "bonds": {
             "nai": {"v":45,"kind":"comrades","note":"Old squadmates."},
@@ -1145,12 +1152,9 @@
             "build": "lean, mature",
             "hairStyle": "long braided ponytail with braided temples",
             "hairColor": "pale rose-blush",
-            "eyes": "warm amber-brown",
-            "skin": "light warm synthetic",
-            "features": "three tiny black metallic piercing studs in a triangle below her left collarbone",
-            "accessories": "simple dark-metal earrings",
-            "accState": "always",
-            "expression": "a warm, approachable smile"
+            "eyes": "bright emerald",
+            "skin": "light warm",
+            "expression": "a composed, approachable smile"
           },
           "under": "silk",
           "underColor": "emerald",
@@ -1165,7 +1169,6 @@
               "label": "Third Seal: Envy",
               "style": "Exotic",
               "prompt": "dark charcoal and brown wrap-style shinobi clothing with sleek segmented armor, belts, integrated gear and jade-emerald accents",
-              "eyes": "bright emerald",
               "bonus": {"madame":1.25,"courtesan":1.2}
             },
             "sp_tomoe_pride": {
@@ -1176,10 +1179,6 @@
               "favColor": "gold",
               "hairStyle": "elaborate braided crown gathered into a neat bun",
               "eyes": "vivid royal-purple",
-              "features": "a single black metallic piercing stud at the base of her throat and faint geometric seal lines along her arms",
-              "replaceFeatures": true,
-              "accessories": "a thin gold circlet",
-              "accState": "always",
               "expression": "an imperious, serene gaze"
             },
             "sp_tomoe_greed": {
@@ -1190,9 +1189,8 @@
               "favColor": "gold",
               "hairStyle": "many small braids decorated with tiny gold rings and ornaments",
               "eyes": "gold",
-              "features": "two black metallic piercing studs along her left jawline, heavy glamorous makeup and dark seal tattoos on the backs of her hands",
-              "replaceFeatures": true,
-              "accessories": "layered gold necklaces, stacked bracelets and many rings",
+              "features": "heavy glamorous makeup",
+              "accessories": "large earrings, layered gold necklaces, stacked bracelets and many rings",
               "accState": "always",
               "expression": "a self-satisfied, appraising smirk"
             },
@@ -1204,10 +1202,7 @@
               "favColor": "crimson",
               "hairStyle": "high, tightly controlled braided ponytail",
               "eyes": "scarlet",
-              "features": "four black metallic piercing studs across the bridge of her nose and mechanical seam lines at her shoulders and elbows",
-              "replaceFeatures": true,
-              "accessories": "",
-              "expression": "a calm, disciplined scowl"
+              "expression": "a calm, disciplined expression"
             },
             "sp_tomoe_sloth": {
               "label": "Fifth Seal: Sloth",
@@ -1217,22 +1212,16 @@
               "favColor": "lavender",
               "hairStyle": "long, completely loose and messy",
               "eyes": "muted blue",
-              "features": "five tiny black metallic piercing studs in an arc along the back of her neck",
-              "replaceFeatures": true,
-              "accessories": "",
               "expression": "a sleepy, unbothered half-smile"
             },
             "sp_tomoe_gluttony": {
               "label": "Sixth Seal: Gluttony",
-              "style": "Revealing",
+              "style": "Sporty",
               "prompt": "heavy overlapping copper and dark-brown armor plates over thick layered burnt-orange shinobi gear, hung with belts, pouches and field supplies",
               "bonus": {"bartender":1.25,"courtesan":1.2},
               "favColor": "orange",
               "hairStyle": "two substantial braided buns",
               "eyes": "vivid orange",
-              "features": "six black metallic piercing studs framing her navel and glowing seal-script along her ribs",
-              "replaceFeatures": true,
-              "accessories": "",
               "expression": "a contented, hungry half-smile"
             },
             "sp_tomoe_lust": {
@@ -1243,26 +1232,9 @@
               "favColor": "pink",
               "hairStyle": "long, sleek and loose with a small delicate temple braid",
               "eyes": "vivid fuchsia-pink",
-              "features": "seven tiny black metallic piercing studs arranged in a vertical line down her sternum and a beauty mark below her left eye",
-              "replaceFeatures": true,
               "accessories": "delicate silver chain jewelry",
               "accState": "always",
               "expression": "a sultry, inviting smile"
-            },
-            "sp_tomoe_original": {
-              "label": "True Body: Mitama",
-              "style": "Elegant",
-              "prompt": "dark charcoal and brown segmented shinobi armor over wrap-style clothing with sleek integrated tech",
-              "bonus": {"madame":1.3,"merchant":1.2},
-              "unlock": 80,
-              "favColor": "charcoal",
-              "skin": "light warm",
-              "hairStyle": "long braided ponytail with braided temples",
-              "eyes": "warm amber-brown",
-              "features": "",
-              "replaceFeatures": true,
-              "accessories": "",
-              "expression": "an open, quietly formidable smile"
             }
           },
           "bonds": {
