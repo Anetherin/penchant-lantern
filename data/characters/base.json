@@ -6,7 +6,7 @@
     "personality must match a key in personalities.json. traits from the trait list (Shy, Eager, Ambitious, Party Animal, Former Adventurer, Elegant, Lazy, Tough, Romantic, Greedy, Loyal, Exhibitionist, Night Owl, Modest).",
     "fav / dislike / lovers: service ids from services.json (lovers = what she enjoys only with Sam once she is his lover), or null.",
     "partnerTrust / partnerLewd / partnerStory: only for partners. backstory is shown on her sheet.",
-    "design: appearance used for image prompts. under/underColor: undergarments id (plain, lace, silk, sports, corset, sheer, none) and color.",
+    "design: appearance used for image prompts. under: undergarments id (plain, lace, silk, sports, corset, sheer, none).",
     "outfits: sig_<key> is her starting outfit; sp_<key> (and any additional sp_<key>_<id> outfits) unlocks at trust 60 or as a lover (or at outfits.<id>.unlock if set). Characters can have 0, 1, or multiple sp_* outfits. Any outfit can specify hairStyle, features, accessories, and accState; sp_* outfits can also override hairColor, eyes, skin, favColor, build, body, expression, pubic, or raceLook.",
     "Partners (and guild ladies) get a romance arc from data/arcs/<key>.json; without one they still work, just without the arc.",
     "bonds: optional starting bonds with other characters, keyed by their id: {score (-100..100, default 45), type (friend|best_friend|sister|mother|daughter|mentor|student|rival|bitter_rival|crush|lover|ex_lover), dynamic (key in bonds.json → dynamics, for scenes together), note (shown on her sheet), unlocked (true if they can already work as a pair)}. One side is enough; the other is filled in automatically (mother ↔ daughter, mentor ↔ student).",

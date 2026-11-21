@@ -48,7 +48,7 @@ Whatever her role, a named lady needs:
 
 1. **Her character entry**: role-specific file below. Core fields: `name` (no honorific), optional `title`, `race` (+ `sub`),
    `age`, `personality` (a key in `personalities.json`), `traits`, `style`, `favColor`, `fav` / `dislike` / `lovers`
-   (service ids), `backstory`, `design` (appearance for image prompts), `under` / `underColor`, `stats`, `tech`,
+   (service ids), `backstory`, `design` (appearance for image prompts), `under`, `stats`, `tech`,
    `actSkill`, `popularity`, `lewd`, `trust`, `outfits` (`sig_<key>` start outfit, optional `sp_<key>` special), `jobs`
    (`likes` / `dislikes`), `body` (`bust`, `height`, `figure`), `unique` (`{name, desc, fx}`, effect keys from
    `traits/base.json`). Optional: `bonds`, `keepOn`.

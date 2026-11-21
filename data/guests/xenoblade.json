@@ -26,7 +26,6 @@
             "expression": "a regal, composed smile"
           },
           "under": "silk",
-          "underColor": "lavender",
           "stats": {"beauty":80,"charm":68,"charisma":70,"refinement":82,"wits":78,"stamina":48,"strength":28,"agility":54},
           "tech": {"service":40,"dance":30,"bar":15,"combat":65,"manage":60},
           "actSkill": 25,
@@ -87,7 +86,6 @@
             "expression": "a warm, caring smile"
           },
           "under": "sports",
-          "underColor": "white",
           "stats": {"beauty":76,"charm":74,"charisma":68,"refinement":52,"wits":62,"stamina":72,"strength":56,"agility":60},
           "tech": {"service":50,"dance":25,"bar":30,"combat":72,"manage":45},
           "actSkill": 25,
@@ -142,7 +140,6 @@
             "expression": "a serene, compassionate gaze"
           },
           "under": "silk",
-          "underColor": "gold",
           "stats": {"beauty":78,"charm":68,"charisma":64,"refinement":80,"wits":86,"stamina":68,"strength":48,"agility":56},
           "tech": {"service":45,"dance":20,"bar":25,"combat":55,"manage":72},
           "actSkill": 25,
@@ -190,7 +187,6 @@
             "expression": "a warm, bashful smile"
           },
           "under": "lace",
-          "underColor": "crimson",
           "stats": {"beauty":86,"charm":80,"charisma":76,"refinement":68,"wits":66,"stamina":74,"strength":64,"agility":68},
           "tech": {"service":55,"dance":35,"bar":45,"combat":78,"manage":55},
           "actSkill": 30,
@@ -248,7 +244,6 @@
             "expression": "a proud, confident smirk"
           },
           "under": "silk",
-          "underColor": "white",
           "stats": {"beauty":88,"charm":62,"charisma":78,"refinement":70,"wits":72,"stamina":76,"strength":70,"agility":74},
           "tech": {"service":45,"dance":40,"bar":25,"combat":92,"manage":45},
           "actSkill": 25,
@@ -306,7 +301,6 @@
             "expression": "a serene, luminous smile"
           },
           "under": "silk",
-          "underColor": "emerald",
           "stats": {"beauty":90,"charm":76,"charisma":80,"refinement":78,"wits":78,"stamina":76,"strength":70,"agility":76},
           "tech": {"service":60,"dance":55,"bar":35,"combat":94,"manage":65},
           "actSkill": 35,
@@ -356,7 +350,6 @@
             "expression": "a cold, predatory smirk"
           },
           "under": "sheer",
-          "underColor": "black",
           "stats": {"beauty":84,"charm":50,"charisma":66,"refinement":56,"wits":74,"stamina":86,"strength":88,"agility":86},
           "tech": {"service":35,"dance":40,"bar":25,"combat":96,"manage":45},
           "actSkill": 30,
@@ -412,7 +405,6 @@
             "expression": "an irritable, sharp-eyed scowl"
           },
           "under": "plain",
-          "underColor": "black",
           "stats": {"beauty":74,"charm":52,"charisma":64,"refinement":48,"wits":60,"stamina":74,"strength":72,"agility":72},
           "tech": {"service":30,"dance":25,"bar":25,"combat":86,"manage":35},
           "actSkill": 20,
@@ -461,7 +453,6 @@
             "expression": "a sassy, snaggle-toothed grin"
           },
           "under": "sports",
-          "underColor": "white",
           "stats": {"beauty":74,"charm":66,"charisma":70,"refinement":44,"wits":62,"stamina":74,"strength":50,"agility":78},
           "tech": {"service":45,"dance":30,"bar":30,"combat":74,"manage":35},
           "actSkill": 25,

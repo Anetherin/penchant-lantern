@@ -23,7 +23,6 @@
       "expression": "a poised, aristocratic smile"
     },
     "under": "silk",
-    "underColor": "ivory",
     "stats": {"beauty":78,"charm":60,"charisma":64,"refinement":88,"wits":95,"stamina":40,"strength":15,"agility":40},
     "tech": {"service":55,"dance":50,"bar":10,"combat":10,"manage":60},
     "actSkill": 10,
@@ -74,7 +73,6 @@
       "expression": "a serene smile that misses nothing"
     },
     "under": "silk",
-    "underColor": "silver",
     "stats": {"beauty":82,"charm":62,"charisma":62,"refinement":90,"wits":95,"stamina":40,"strength":15,"agility":50},
     "tech": {"service":60,"dance":60,"bar":20,"combat":10,"manage":70},
     "actSkill": 35,
@@ -125,7 +123,6 @@
       "expression": "a wry, watchful half-smile"
     },
     "under": "sports",
-    "underColor": "black",
     "stats": {"beauty":62,"charm":45,"charisma":51,"refinement":40,"wits":40,"stamina":70,"strength":65,"agility":65},
     "tech": {"service":20,"dance":10,"bar":20,"combat":70,"manage":30},
     "actSkill": 15,
@@ -176,7 +173,6 @@
       "expression": "a sharp, calculating smirk"
     },
     "under": "corset",
-    "underColor": "emerald",
     "stats": {"beauty":76,"charm":66,"charisma":76,"refinement":50,"wits":50,"stamina":65,"strength":45,"agility":50},
     "tech": {"service":45,"dance":40,"bar":30,"combat":40,"manage":60},
     "actSkill": 65,

@@ -26,7 +26,6 @@
             "expression": "a bright, confident smile"
           },
           "under": "lace",
-          "underColor": "pink",
           "stats": {"beauty":84,"charm":74,"charisma":78,"refinement":62,"wits":90,"stamina":45,"strength":25,"agility":48},
           "tech": {"service":40,"dance":20,"bar":40,"combat":10,"manage":60},
           "actSkill": 30,
@@ -77,7 +76,6 @@
           "backstory": "A princess-turned-martial-artist-turned-homemaker, Chi-Chi can cook for twenty, scold for thirty and still win a duel before supper. She followed her wayward family to Hollowmere and ended up taking over the household chores out of pure principle. Cross her rules and she will remind you where the door is.",
           "design": {"hairStyle":"hime cut low ponytail","hairColor":"black","eyes":"black","skin":"fair","expression":"a stern but caring expression"},
           "under": "plain",
-          "underColor": "white",
           "stats": {"beauty":72,"charm":62,"charisma":64,"refinement":66,"wits":62,"stamina":64,"strength":55,"agility":58},
           "tech": {"service":55,"dance":15,"bar":30,"combat":60,"manage":50},
           "actSkill": 25,
@@ -131,7 +129,6 @@
             "expression": "a bright, hungry smile"
           },
           "under": "silk",
-          "underColor": "black",
           "stats": {"beauty":80,"charm":60,"charisma":62,"refinement":70,"wits":88,"stamina":70,"strength":50,"agility":55},
           "tech": {"service":40,"dance":20,"bar":50,"combat":45,"manage":50},
           "actSkill": 25,
@@ -199,7 +196,6 @@
             "expression": "a cool, unimpressed half-smirk"
           },
           "under": "sports",
-          "underColor": "black",
           "stats": {"beauty":82,"charm":58,"charisma":64,"refinement":48,"wits":64,"stamina":95,"strength":90,"agility":82},
           "tech": {"service":30,"dance":20,"bar":35,"combat":92,"manage":40},
           "actSkill": 25,

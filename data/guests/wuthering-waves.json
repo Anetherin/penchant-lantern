@@ -29,7 +29,6 @@
             "expression": "a serene, dignified expression"
           },
           "under": "silk",
-          "underColor": "white",
           "stats": {"beauty":76,"charm":64,"charisma":64,"refinement":72,"wits":72,"stamina":50,"strength":35,"agility":45},
           "tech": {"service":40,"dance":35,"bar":15,"combat":50,"manage":62},
           "actSkill": 30,
@@ -86,7 +85,6 @@
             "expression": "a poised, aristocratic smile"
           },
           "under": "lace",
-          "underColor": "black",
           "stats": {"beauty":74,"charm":62,"charisma":66,"refinement":74,"wits":82,"stamina":45,"strength":30,"agility":55},
           "tech": {"service":45,"dance":30,"bar":20,"combat":60,"manage":50},
           "actSkill": 30,
@@ -133,7 +131,6 @@
             "features": "white fox ears, a fluffy white fox tail, heavy red eyeshadow and ornate red tattoos on her hands and thighs"
           },
           "under": "silk",
-          "underColor": "black",
           "stats": {"beauty":76,"charm":60,"charisma":71,"refinement":66,"wits":70,"stamina":55,"strength":30,"agility":70},
           "tech": {"service":30,"dance":70,"bar":10,"combat":50,"manage":30},
           "actSkill": 35,
@@ -183,7 +180,6 @@
             "expression": "a gentle, ethereal smile"
           },
           "under": "silk",
-          "underColor": "white",
           "stats": {"beauty":74,"charm":55,"charisma":60,"refinement":66,"wits":66,"stamina":45,"strength":30,"agility":58},
           "tech": {"service":35,"dance":55,"bar":10,"combat":45,"manage":35},
           "actSkill": 20,
@@ -232,7 +228,6 @@
             "expression": "a solemn, imperious gaze"
           },
           "under": "lace",
-          "underColor": "black",
           "stats": {"beauty":78,"charm":52,"charisma":61,"refinement":58,"wits":66,"stamina":70,"strength":62,"agility":60},
           "tech": {"service":30,"dance":30,"bar":25,"combat":70,"manage":40},
           "actSkill": 30,
@@ -282,7 +277,6 @@
             "expression": "a mischievous, knowing grin"
           },
           "under": "lace",
-          "underColor": "white",
           "stats": {"beauty":68,"charm":72,"charisma":80,"refinement":45,"wits":54,"stamina":50,"strength":25,"agility":65},
           "tech": {"service":45,"dance":30,"bar":25,"combat":20,"manage":30},
           "actSkill": 25,
@@ -331,7 +325,6 @@
             "accState": "always"
           },
           "under": "silk",
-          "underColor": "black",
           "stats": {"beauty":70,"charm":42,"charisma":42,"refinement":75,"wits":82,"stamina":55,"strength":40,"agility":55},
           "tech": {"service":30,"dance":15,"bar":10,"combat":70,"manage":75},
           "actSkill": 30,
@@ -380,7 +373,6 @@
             "expression": "a haughty, teasing smile"
           },
           "under": "silk",
-          "underColor": "white",
           "stats": {"beauty":78,"charm":66,"charisma":68,"refinement":74,"wits":78,"stamina":48,"strength":30,"agility":62},
           "tech": {"service":45,"dance":55,"bar":15,"combat":55,"manage":50},
           "actSkill": 30,
@@ -431,7 +423,6 @@
             "expression": "a fearless, commanding grin"
           },
           "under": "silk",
-          "underColor": "red",
           "stats": {"beauty":78,"charm":62,"charisma":78,"refinement":58,"wits":68,"stamina":85,"strength":85,"agility":70},
           "tech": {"service":30,"dance":25,"bar":35,"combat":88,"manage":65},
           "actSkill": 30,
@@ -478,7 +469,6 @@
             "expression": "a bright, starry-eyed smile"
           },
           "under": "lace",
-          "underColor": "pink",
           "stats": {"beauty":74,"charm":72,"charisma":70,"refinement":54,"wits":60,"stamina":55,"strength":30,"agility":75},
           "tech": {"service":45,"dance":72,"bar":20,"combat":45,"manage":20},
           "actSkill": 25,
@@ -525,7 +515,6 @@
             "expression": "a dangerously playful, half-lidded smile"
           },
           "under": "sheer",
-          "underColor": "red",
           "stats": {"beauty":78,"charm":70,"charisma":68,"refinement":48,"wits":62,"stamina":68,"strength":52,"agility":78},
           "tech": {"service":55,"dance":65,"bar":20,"combat":75,"manage":15},
           "actSkill": 45,
@@ -578,7 +567,6 @@
             "expression": "a calm, attentive half-smile"
           },
           "under": "silk",
-          "underColor": "black",
           "stats": {"beauty":78,"charm":72,"charisma":78,"refinement":60,"wits":74,"stamina":80,"strength":75,"agility":80},
           "tech": {"service":45,"dance":40,"bar":35,"combat":85,"manage":55},
           "actSkill": 30,

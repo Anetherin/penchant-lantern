@@ -25,7 +25,6 @@
             "expression": "a calm, encouraging smile"
           },
           "under": "sports",
-          "underColor": "white",
           "stats": {"beauty":72,"charm":64,"charisma":66,"refinement":54,"wits":60,"stamina":92,"strength":68,"agility":88},
           "tech": {"service":55,"dance":60,"bar":20,"combat":55,"manage":35},
           "actSkill": 30,
@@ -72,7 +71,6 @@
             "expression": "a cool, focused gaze"
           },
           "under": "sports",
-          "underColor": "blue",
           "stats": {"beauty":86,"charm":60,"charisma":72,"refinement":55,"wits":76,"stamina":94,"strength":92,"agility":90},
           "tech": {"service":30,"dance":30,"bar":35,"combat":98,"manage":50},
           "actSkill": 25,
