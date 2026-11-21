@@ -1564,6 +1564,130 @@
           "waitRes": "Phoebe laughs cheerfully, ties her sarong back with one quick flick, and winks. \"Dizzy's half the fun—see you tomorrow!\""
         }
       }
+    },
+    "roxanne": {
+      "pace": "slow",
+      "path": [1,2,3],
+      "init": false,
+      "events": {
+        "1": {
+          "title": "Extra Credit",
+          "text": "Late at night in the study, Roxanne is still organizing training notes beside a neat row of mineral specimens. When you lean over to check her ledger, she snaps her notebook shut—her face going bright pink as she adjusts her collar. \"I—I've finished all the theoretical coursework, Sam,\" she says softly, looking up at you. \"If you have a moment, I'd like to practice something less academic.\"",
+          "image": {
+            "comp": "standing beside a study desk with a closed notebook clutched to her chest, blushing earnestly as she looks up at him",
+            "setting": "quiet study at night, oil lamp, mineral specimens and neat ledgers",
+            "sam": true
+          },
+          "go": "Kiss her",
+          "goRes": "You tilt her chin up and press your lips to hers. Roxanne gasps softly against your mouth before melting into the kiss, her fingers gripping your shirt as her careful composure slips.",
+          "wait": "\"Get some rest first, scholar.\"",
+          "waitRes": "She exhales slowly, smoothing her skirt with prim dignity. \"Yes—of course. Proper rest is essential for retention. Goodnight, Sam.\""
+        },
+        "2": {
+          "title": "Practical Application",
+          "text": "You find Roxanne alone in the empty parlor after hours, sitting straight-backed on the settee with her knees pressed together and her ribbon untied in her lap. \"I've been thinking about our last lesson,\" she murmurs, reaching out to tug you down beside her and sliding a shy, determined hand over your lap. \"I learn fastest through hands-on demonstration.\"",
+          "image": {
+            "comp": "sitting close on a settee, ribbon untied in her lap, looking at him with shy determination as her hand rests on his thigh",
+            "setting": "empty parlor after hours, warm lamplight, drawn curtains",
+            "sam": true
+          },
+          "go": "Let her demonstrate",
+          "goRes": "She unbuttons your trousers with neat, trembling fingers and wraps both hands around your cock, leaning in to lick and suck the tip earnestly as her breathing quickens.",
+          "wait": "\"Slow down, Roxanne.\"",
+          "waitRes": "She pulls her hand back, flushing to her ears. \"Apologies—I rushed ahead of the syllabus. We can review this another night.\""
+        },
+        "3": {
+          "title": "Full Marks",
+          "text": "Roxanne meets you at her bedroom door in a crisp white slip that stops mid-thigh, her hair down around her shoulders and her hands clasped tightly together. \"I locked the latch and cleared tomorrow's morning schedule,\" she whispers, stepping closer until her chest brushes yours. \"No more textbooks tonight, Sam. Teach me everything.\"",
+          "image": {
+            "comp": "standing in her bedroom doorway in a white slip, hair down, blushing deeply and looking up at him",
+            "setting": "neat bedroom, stacked books by the bed, warm bedside candle",
+            "sam": true,
+            "cloth": "partial",
+            "wear": "a crisp white slip stopping mid-thigh"
+          },
+          "go": "Take her to bed",
+          "goRes": "You lift her onto the mattress and part her thighs, sliding your cock slowly into her tight, wet pussy while she clings to your shoulders and gasps your name.",
+          "wait": "\"Are you certain?\"",
+          "waitRes": "\"I—I prepared thoroughly,\" she admits softly, though she nods when you step back. \"Whenever you're ready, Sam.\"",
+          "act": "missionary"
+        },
+        "jump": {
+          "title": "Broken Focus",
+          "text": "Halfway through tallying the weekly receipts in the office, Roxanne drops her quill, stands up abruptly, and backs you right against the bookshelf. \"I can't concentrate on a single column with you standing right there!\" she blurts out, grabbing your collar and pulling you down into a breathless, urgent kiss.",
+          "image": {
+            "comp": "pressing him back against an office bookshelf, clutching his collar for a sudden urgent kiss, flushed",
+            "setting": "house office at dusk, bookshelves and ledger papers scattered on the desk",
+            "sam": true
+          },
+          "go": "Pull her closer",
+          "goRes": "She whimpers into your mouth as you hike up her pleated skirt and slip your fingers under her white cotton panties, rubbing her wet pussy while she fumbles at your belt.",
+          "wait": "\"Whoa—catch your breath first.\"",
+          "waitRes": "Roxanne freezes, realizes what she just did, and steps back with a mortified squeak. \"I—excuse me! That was entirely unscheduled!\""
+        }
+      }
+    },
+    "olivia": {
+      "pace": "fast",
+      "path": [1,2,3],
+      "init": true,
+      "events": {
+        "1": {
+          "title": "Rough Diamond",
+          "text": "Olivia catches you in the hallway after closing, leaning one hip against the doorframe with a warm, teasing grin as she holds up a polished pink stone. \"Found something pretty in my shop crate, handsome—thought of you,\" she purrs, stepping right into your space until you can smell island flowers and warm skin. \"Tell me I'm not reading the room wrong.\"",
+          "image": {
+            "comp": "leaning in close in a hallway, holding a polished stone between her fingers with a warm teasing grin",
+            "setting": "lantern-lit upstairs hallway, wooden doorframe, late evening",
+            "sam": true
+          },
+          "go": "Kiss her",
+          "goRes": "She laughs low in her throat and meets you halfway, kissing you deep and unapologetically, her strong hands sliding straight down to grip your waist and pull you flush against her curves.",
+          "wait": "\"You're trouble, Kahuna.\"",
+          "waitRes": "Olivia chuckles, winking as she pockets the stone. \"Only the good kind, sweetheart. You know where my door is.\""
+        },
+        "2": {
+          "title": "Jeweler's Hands",
+          "text": "Olivia pulls you onto the velvet lounge sofa after the guests have cleared out, straddling your lap just enough to pin your knees and grin down at you. \"You work way too hard keeping this place running, Sam,\" she murmurs, her warm palms sliding down your chest toward your belt. \"Let a Kahuna take care of that tension.\"",
+          "image": {
+            "comp": "straddling his lap on a velvet sofa, leaning down with a playful grin and her hands on his chest",
+            "setting": "dim velvet lounge after hours, amber wall sconces",
+            "sam": true
+          },
+          "go": "Let her take care of it",
+          "goRes": "She frees your cock with an appreciative hum, stroking you firmly in her warm palms before dipping down to take you deep in her wet mouth, working you with confident, unhurried rhythm.",
+          "wait": "\"Save some energy for tomorrow.\"",
+          "waitRes": "She groans playfully and rolls off your lap, stretching her arms overhead. \"Fine, fine—don't say I didn't offer!\""
+        },
+        "3": {
+          "title": "Kahuna's Claim",
+          "text": "Olivia's bedroom is lit by a single warm lamp, and she's waiting on the edge of the bed wearing nothing but pink lace panties and her gold bangles. \"I've spent years waiting to find someone who doesn't flinch when I come at them full strength,\" she says softly, her usual teasing grin turning genuine and heated. \"Get over here, Sam.\"",
+          "image": {
+            "comp": "sitting on the edge of her bed in pink lace panties and gold bangles, leaning forward with an inviting heated smile",
+            "setting": "warmly lit bedroom, silk sheets, stone trinkets on the nightstand",
+            "sam": true,
+            "cloth": "partial",
+            "wear": "pink lace panties and gold bangles"
+          },
+          "go": "Join her on the bed",
+          "goRes": "She pulls you back onto the mattress and climbs straight over your hips, sinking down onto your cock with a deep, satisfied groan as she rides you hard and steady.",
+          "wait": "\"Give me a minute to catch up.\"",
+          "waitRes": "Olivia smiles warmly, patting the spot beside her. \"Take all the time you want, handsome. I'm not going anywhere.\"",
+          "act": "cowgirl"
+        },
+        "jump": {
+          "title": "No Holding Back",
+          "text": "After helping you haul a heavy wine crate into the cellar, Olivia wipes her brow, eyes you up and down, and suddenly crowds you straight against the stone wall. \"I can't wait around all week being polite, Sam,\" she breathes, pressing her full breasts against your chest and kissing you hard.",
+          "image": {
+            "comp": "crowding him against a stone cellar wall, pressing close for a passionate kiss with a heated grin",
+            "setting": "stone wine cellar, wooden crates, warm lantern light",
+            "sam": true
+          },
+          "go": "Don't hold back",
+          "goRes": "She groans into your mouth, hikes one strong thigh up around your hip, and reaches straight between you to unbuckle your belt and wrap her warm hand around your cock.",
+          "wait": "\"Careful, you'll knock the bottles over.\"",
+          "waitRes": "Olivia laughs breathlessly, stepping back a pace with her hands raised. \"Alright, alright—good point. Rain check on the cellar.\""
+        }
+      }
     }
   }
 }
