@@ -29,7 +29,7 @@
     "wait": "\"Let's not rush this.\"",
     "waitRes": "{name} nods. She doesn't seem upset—if anything, she looks like she's already planning how to wear you down next time."
   },
-  "relaxedAt": 2,
+  "relaxedAt": 3,
   "relaxed": {
     "shower": {
       "text": [
@@ -587,7 +587,7 @@
           "sam": true
         },
         "go": "Go with her",
-        "goRes": "The linens stay scattered in the hall until morning while she drags you into bed and you get your hands and mouth all over her.",
+        "goRes": "The linens stay scattered across the hallway floor while she drags you onto her bed and lets you get your hands and mouth all over her until she's gasping and trembling.",
         "wait": "\"The linens...\"",
         "waitRes": "\"Forget the linens.\" She lets you go with a breathless laugh. \"Next time, drop them faster.\""
       },

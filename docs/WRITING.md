@@ -16,9 +16,8 @@ Every character is an adult and everything is consensual.
 
 ## Language
 
-- **Say what happens.** Use plain, direct words for bodies and acts (cock, pussy, tits, ass, cum, fuck, suck, ride...) instead
-  of euphemisms ("bury yourself inside her", "his length", "her core", "release", "make love", "until dawn" as a fade-out).
-- **Keep her voice.** The wording should sound like the character: a shy lady can still be explicit in her own way.
+- **Say what happens.** Use vivid, direct explicit detail and natural anatomical variety (`cock`, `shaft`, `pussy`, `cunt`, `wet folds`, `clit`, `tits`, `ass`, `hilt-deep`, etc.). Avoid vague fade-to-black euphemisms that gloss over or skip the act ("make love", "takes care of you", "the rest of the night blurs", or ending scenes with "until dawn" instead of describing what happens). Prefer concrete physical detail over sparse shorthand—e.g. `"rides up and down your shaft"` rather than just `"rides you"`.
+- **Keep her voice.** The wording should sound like the character: a shy lady can still be explicit in her own way, and auditing or tightening a scene must preserve spoken dialogue and character beats rather than stripping them out.
 - **Don't add sex to lines that aren't about it**: plot, business, refusals (`wait`/`waitRes`), banter.
 
 ## Match what the game plays
@@ -26,8 +25,7 @@ Every character is an adult and everything is consensual.
 The text has to agree with the service the game actually runs next.
 
 - **Firsts** (`data/firsts/`): stage `1` is kissing and touching only, `2` is hands and mouth (no intercourse), `3` is
-  anything. `jump` / `pent_jump` can lead into stage 2 *or* 3, so their `goRes` must not describe intercourse. After `goRes`
-  the service's own line plays, so `goRes` is the lead-in.
+  anything. `jump` / `pent_jump` can lead into stage 2 *or* 3, so their `goRes` must not describe intercourse. Start-to-finish `goRes` scenes (finishing, filling her up, and her immediate aftermath reaction) are great—just avoid locking the scene to "until morning" since other scenes can follow in the same night.
 - **Generic notes** that can follow any service (the `enc_*` visit notes in `flavor/encounters.json`, shared-scene `res`
   lines with `{act}` / `acts: true` in `bonds.json`, spicy date leads that open private time) must not name a specific act.
   Being explicit about bodies, arousal, enjoyment or distaste is fine.

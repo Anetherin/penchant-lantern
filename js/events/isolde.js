@@ -16,7 +16,7 @@ function iso(){
   if(!S.isolde) S.isolde = isoFresh();
   return S.isolde;
 }
-const isoFresh = () => ({stage:0, wk:0, desire:0, nights:0, wins:0, truce:false, lovers:false, doneCycle:0, lastNight:0, visitWk:-99, lastId:null, gameWk:0, lastGame:null});
+const isoFresh = () => ({stage:0, wk:0, desire:0, nights:0, wins:0, truce:false, lovers:false, doneCycle:0, lastNight:0, visitWk:-99, lastId:null, gameWk:0, lastGame:null, rivalWk:0, rivalSeen:[]});
 function isoT(v, V){ if(Array.isArray(v)) v = pick(v); return String(v ?? '').replace(/\{(\w+)\}/g, (m,k)=>V && V[k]!==undefined ? String(V[k]) : m); }
 const isoVars = extra => Object.assign({house: ((S.houses||[]).find(h=>h.id===S.home) || S.houses[0] || {}).name || 'your house'}, extra || {});
 // NG++ cycle 1: a vague déjà vu, 2: an attraction she resents, 3+: she knows exactly what she wants (beats' ngpp texts)
@@ -42,16 +42,38 @@ const isoShow = w => s100(statOf(w,'charisma'))*0.4 + s100(statOf(w,'beauty'))*0
 const isoWagerLady = () => S.workers.filter(w=>w.job!=='rest' && w.job!=='guild').sort((a,b)=>isoShow(b)-isoShow(a))[0] || null;
 
 /* ---------- weekly (endWeek, after the town events) ---------- */
+function isoStanding(){
+  const bestP = Math.max(0, ...(S.houses||[]).map(h=>h.prestige||0)), bestR = Math.max(0, ...(S.houses||[]).map(h=>h.rep||0));
+  const score = bestP * 0.65 + bestR * 0.35, bench = 45 + ((S.cycle||1) - 1) * 8;
+  return score >= bench + 8 ? 'ahead' : score <= bench - 8 ? 'behind' : 'neck';
+}
+function evIsoldeRival(){
+  const I = iso(), st = isoStanding(), all = (ISO.rivalEvents||[]).filter(e=>e.standing===st);
+  if(!all.length) return null;
+  I.rivalSeen = I.rivalSeen || [];
+  const fresh = all.filter(e=>!I.rivalSeen.includes(e.id)), r = pick(fresh.length ? fresh : all);
+  if(!I.rivalSeen.includes(r.id)) I.rivalSeen.push(r.id);
+  const V = isoVars();
+  return {title:isoT(r.title, V), who:ISO_ID, scene:isoScene('rival_' + r.id, r.image, 'casual'), text:isoT(r.text, V), choices:(r.choices||[]).map(c=>({label:isoT(c.label, V), fx(){
+    const h = curH();
+    if(c.gold) S.gold = Math.max(0, S.gold + c.gold);
+    if(c.rep && h) repAdd(h, c.rep);
+    if(c.prestige && h) h.prestige = clamp((h.prestige||0) + c.prestige, 0, 100);
+    if(c.samRep) S.rep = clamp(S.rep + c.samRep);
+    if(c.desire) isoDesire(c.desire);
+    if(c.samEnergy) samEnergyAdd(c.samEnergy);
+    return isoT(c.res, V);
+  }}))};
+}
 function isoldeWeek(R){
-  const I = iso(), B = ISB();
+  const I = iso(), B = ISB(), C = B.comes || {}, Rb = B.rival || {};
+  const since = S.week - Math.max(I.lastNight||0, I.visitWk||0, I.wk||0);
   const k = isoBeatReady();
   if(k){ EVQ.push(()=>isoBeatReady()===k ? evIsoldeBeat(k) : null); }
   else if(isoLoversReady()) EVQ.push(()=>isoLoversReady() ? evIsoldeLovers() : null);
   else if(isoGamesOn() && S.week - (I.gameWk||0) >= ((B.games||{}).gap ?? 4) && Math.random() < ((B.games||{}).chance ?? 0.5)){ I.gameWk = S.week; EVQ.push(()=>evIsoldeGame()); }
-  else if(I.stage >= 5){
-    const C = B.comes || {}, since = S.week - Math.max(I.lastNight||0, I.visitWk||0, I.wk||0);
-    if(since >= (C.after ?? 4) && Math.random() < (C.chance ?? 0.3)) EVQ.push(()=>evIsoldeNight('comes'));
-  }
+  else if(I.stage >= 5 && since >= (C.after ?? 4) && Math.random() < (C.chance ?? 0.3)){ EVQ.push(()=>evIsoldeNight('comes')); }
+  else if(I.stage >= (Rb.minStage ?? 1) && S.week - (I.rivalWk||0) >= (Rb.gap ?? 3) && Math.random() < (Rb.chance ?? 0.45)){ I.rivalWk = S.week; EVQ.push(()=>evIsoldeRival()); }
   if(I.lovers){
     const F = B.referral || {};
     if(Math.random() < (F.chance ?? 0.25)){ const g = Math.round((F.base ?? 80) * (1 + (F.perCycle ?? 0.25) * ((S.cycle||1) - 1))); S.gold += g; R.lines.push(isoT(ISO.referral, isoVars({gold:fmt(g)}))); }
@@ -61,7 +83,7 @@ function isoldeWeek(R){
 function isoNewCycle(){
   const I = iso();
   if((S.ngppCycle||0) > 0){ S.isolde = Object.assign(isoFresh(), {wins:I.wins||0}); return; }
-  I.wk = Math.min(I.wk||0, S.week); I.gameWk = 0;
+  I.wk = Math.min(I.wk||0, S.week); I.gameWk = 0; I.rivalWk = 0; I.visitWk = -99;
 }
 // her games: NG+ only, from the cycle after her story finished
 const isoGamesOn = () => { const I = iso(); return !((S.ngppCycle||0) > 0) && I.lovers && I.doneCycle && (S.cycle||1) > I.doneCycle; };
@@ -90,10 +112,11 @@ function evIsoldeBeat(k){
     const won = () => isoShow(lady) > (W.base ?? 50) + (W.perCycle ?? 6) * ((S.cycle||1) - 1) + rnd(-(W.spread ?? 30), W.spread ?? 30);
     const glory = () => { S.rep = clamp(S.rep + (W.renown ?? 3)); lady.popularity = clamp((lady.popularity||0) + 5); moodAdd(lady, 8); };
     const ch = [];
-    if(S.gold >= stake) ch.push({label:isoT(B.gold.label, VV), fx(){ isoAdvance(); if(won()){ S.gold += stake; glory(); return isoT(B.gold.win, VV); } S.gold -= stake; moodAdd(lady, -4); return isoT(B.gold.lose, VV); }});
+    if(S.gold >= stake) ch.push({label:isoT(B.gold.label, VV), fx(){ isoAdvance(); const wonB = won(); startTownEvent(wonB ? 'wager_won' : 'wager_lost', 2); if(wonB){ S.gold += stake; glory(); return isoT(B.gold.win, VV); } S.gold -= stake; moodAdd(lady, -4); return isoT(B.gold.lose, VV); }});
     ch.push({label:isoT(B.kiss.label, VV), fx(){
       isoAdvance();
       const w = won();
+      startTownEvent(w ? 'wager_won' : 'wager_lost', 2);
       if(w){ glory(); isoDesire(8); } else isoDesire(10);
       return {text: isoT(w ? B.kiss.win : B.kiss.lose, VV), img:{wid:ISO_ID, scene:'samact:kiss~~iso_wager', cloth:'dressed'}};
     }});
@@ -107,7 +130,7 @@ function evIsoldeBeat(k){
 }
 function evIsoldeLovers(){
   const B = ISO.beats.lovers, V = isoVars(), I = iso();
-  const done = () => { I.lovers = true; I.doneCycle = S.cycle || 1; isoAdvance(); samLog(isoT(ISO.log.lovers)); };
+  const done = () => { I.lovers = true; I.doneCycle = S.cycle || 1; isoAdvance(); samLog(isoT(ISO.log.lovers)); if(typeof goddessIsoldeCheck==='function') goddessIsoldeCheck('lovers'); };
   return {title:isoT(B.title, V), who:ISO_ID, scene:isoScene('beat_lovers', B.image, 'portrait'), text:isoBeatText('lovers', V), choices:[
     {label:B.join.label, fx(){ done(); return isoT(B.join.res, V); }},
     {label:B.stay.label, fx(){ done(); return isoT(B.stay.res, V); }}]};
@@ -148,6 +171,7 @@ function isoNightResult(n, line, o){
   if(o.won){ I.wins = (I.wins||0) + 1; if(o.approach==='take') S.rep = clamp(S.rep + (N.renown ?? 1)); }
   I.nights = (I.nights||0) + 1; I.lastNight = S.week; I.lastId = n.id;
   samLog(isoT(ISO.log.night));
+  if(typeof goddessIsoldeCheck==='function') goddessIsoldeCheck('night');
   // the position: the approach's act (a lost take ends up as yield) with that approach's finish; the truce and old string finishes use n.act
   const pose = o.pose || o.approach, F = n.finish, keyed = pose && F && typeof F==='object' && !Array.isArray(F);
   const fin = o.how==='truce' ? '' : keyed ? (F[pose] || F.yield) : F;
@@ -183,6 +207,7 @@ function evIsoldeGame(){
     S.sam.energy = Math.max(0, S.sam.energy - cost); samStat(g.stat, 1); samStat('technique', 1);
     if(won){ S.gold += gold; S.rep = clamp(S.rep + (G.renown ?? 2) * mult); I.wins = (I.wins||0) + 1; } else S.gold = Math.max(0, S.gold - gold);
     isoDesire(6); I.nights = (I.nights||0) + 1; I.lastNight = S.week; samLog(isoT(ISO.log.night));
+    if(typeof goddessIsoldeCheck==='function') goddessIsoldeCheck('night');
     return {text: isoT(won ? g.win : g.lose, V) + `\n\n(${won ? '+' : '−'}${fmt(gold)}g${won ? ', +renown' : ''}; Sam's energy −${cost})`,
       img:{wid:ISO_ID, scene:`samact:${won ? g.winAct : g.loseAct}~~iso_${g.id}`}};
   };

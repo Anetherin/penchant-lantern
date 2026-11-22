@@ -207,9 +207,45 @@ const CHECK = `async () => {
     (t.choices || []).forEach((ch, ci) => checkActRef(at + ' choice ' + ci + ' act', ch.act));
   });
   if (typeof ISO !== 'undefined' && ISO) {
-    Object.entries(ISO.beats || {}).forEach(([k, b]) => { if (b && b.image) checkImg('isolde beat ' + k, b.image, Array.isArray(b.text) ? b.text.join(' ') : b.text); });
-    (ISO.nights || []).forEach((n, i) => { if (n.image) checkImg('isolde night ' + (n.id || i), n.image, n.text); });
-    (ISO.games || []).forEach((g, i) => { if (g.image) checkImg('isolde game ' + (g.id || i), g.image, g.text); });
+    const iv = isoVars();
+    Object.entries(ISO.beats || {}).forEach(([k, b]) => { if (b && b.image) checkImg('isolde beat ' + k, b.image, isoT(b.text, iv)); });
+    (ISO.nights || []).forEach((n, i) => { look('isolde night ' + (n.id || i), isoT(n.text, iv), true); if (n.image) checkImg('isolde night ' + (n.id || i), n.image, isoT(n.text, iv)); });
+    (ISO.games || []).forEach((g, i) => { look('isolde game ' + (g.id || i), isoT(g.text, iv), true); if (g.image) checkImg('isolde game ' + (g.id || i), g.image, isoT(g.text, iv)); });
+    (ISO.rivalEvents || []).forEach((r, i) => {
+      look('isolde rival ' + (r.id || i), isoT(r.text, iv), true);
+      if (r.image) checkImg('isolde rival ' + (r.id || i), r.image, isoT(r.text, iv));
+      (r.choices || []).forEach((c, ci) => { look('isolde rival ' + (r.id || i) + ' c' + ci + ' label', isoT(c.label, iv), true); look('isolde rival ' + (r.id || i) + ' c' + ci + ' res', isoT(c.res, iv), true); });
+    });
+  }
+  if (!AFTER_STORIES.vesna || !AFTER_STORIES.brunhild) bad.push('afterstories: missing vesna or brunhild in guild.json');
+  if (GOD.isolde) {
+    const gv = {house:curH().name, n:S.workers.length, alias:'Lysa', goddess:GN()};
+    [GOD.isolde.pre, GOD.isolde.first, ...(GOD.isolde.repeat || [])].filter(Boolean).forEach((sc, i) => {
+      const at = 'goddess isolde ' + (sc.id || i);
+      look(at + ' title', gtxt(sc.title, gv), true); look(at + ' text', gtxt(sc.text, gv), true);
+      if (sc.image) checkImg(at, sc.image, gtxt(sc.text, gv));
+      checkActRef(at + ' act', sc.act);
+      (sc.choices || []).forEach((ch, ci) => {
+        look(at + ' c' + ci + ' label', gtxt(ch.label, gv), true);
+        if (ch.resIn) look(at + ' c' + ci + ' resIn', gtxt(ch.resIn, gv), true); else look(at + ' c' + ci + ' res', gtxt(ch.res, gv), true);
+        checkActRef(at + ' c' + ci + ' act', ch.act);
+      });
+    });
+  }
+  for (const tid of Object.keys(townEventList())) {
+    fresh(starters[0], PARTNERS[0]); S.gold = 1e6;
+    const def = townEventList()[tid], hid = def.singleHouse ? starters[0] : null;
+    startTownEvent(tid, 2, null, hid);
+    const ev = evTownEvent(tid, 2, hid);
+    look('townEvent ' + tid + ' title', ev.title, true);
+    look('townEvent ' + tid + ' text', ev.text, true);
+    (ev.choices || []).forEach((ch, ci) => {
+      fresh(starters[0], PARTNERS[0]); S.gold = 1e6; startTownEvent(tid, 2, null, hid);
+      const e2 = evTownEvent(tid, 2, hid);
+      look('townEvent ' + tid + ' c' + ci + ' label', e2.choices[ci].label, true);
+      look('townEvent ' + tid + ' c' + ci + ' res', outText(e2.choices[ci].fx()), false);
+      if (S.townEv) look('townEvent ' + tid + ' c' + ci + ' chip', townEvChip(), true);
+    });
   }
   // 6. walk meetings: every partner met on a walk (first meeting), each hire choice
   for (const k of PARTNERS) {

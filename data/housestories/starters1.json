@@ -285,13 +285,21 @@
     {
       "pages": [
         {
-          "text": "The cold comes down off the peaks early this year. The adventurers on the dungeon road arrive with frost in their beards and stay twice as long, and the Onsen has been full every night for three weeks. Nobody on the staff has had a whole day off since the festival.\n\n{first} has taken to standing in the yard at dusk with her face turned up and her eyes shut. She says she's smelling the weather. You thought that was a joke until this evening, when she opens her eyes, nods once, and starts turning the sign on the gate around to CLOSED.",
+          "text": "Early frost bites down off the northern peaks two weeks ahead of schedule, coating the cobblestones in white rime before dawn and sending every guild party back along the dungeon road shivering through your doors with mud to their knees and ice in their cloaks. The Onsen runs past capacity for twenty-one straight nights: every cedar tub stays billowing hot till two in the morning, towels dry right over the boiler bricks, and not a single lady under the roof has seen a full rest day since the autumn festival ended.\n\nBy the third Friday, shoulders across the house are worn stiff and tempers fray over missing ladles and lukewarm tea. Only {first} seems calm—yet you keep catching her stepping barefoot onto the icy kitchen stones at dusk with her chin tipped toward the peak ridge, eyes half closed as she breathes in the razor-sharp air blowing south off the glacier."
+        },
+        {
+          "text": "You assume she is merely catching air between shifts until tonight, when she lowers her head, nods firmly once, and marches straight through the arched gate to flip the lacquered cedar plaque outward to CLOSED with a decisive clack. Behind her, three steam-flushed bath attendants freeze mid-step holding fresh buckets, and a pair of waiting tavern regulars blink through the porch lanterns before bursting out laughing and waving them inside.\n\n\"Not one more copper tonight,\" {first} declares firmly, brushing snow-cool dust off her cuffs while looking you squarely in the eye from the threshold. \"The boiler is roaring clean, the mineral pools are empty for once, and if nobody drags this crew off their feet before frostbite sets into their knees, next week's ledger won't be worth wrapping turnips in.\" Inside, the girls stare—then erupt into cheers as robes fly off toward the hot cedar steps.",
           "scene": "casual"
         }
       ],
       "hint": "The first snow is coming.",
-      "text": "First snow on the mountain. {resident} insists everyone take the night off to watch it fall from the hot spring.",
-      "choices": {"close":{"label":"Close for the night","res":"Everyone rests. Grateful regulars chip in for new futons (staff beds upgraded to {bed})."}}
+      "text": "First wet snowflakes drift straight into the steaming mineral pools while {resident} bars the courtyard gate and pulls the whole exhausted house—and you—down into the scalding cedar water under the open winter sky.",
+      "choices": {
+        "close": {
+          "label": "Close for the night",
+          "res": "Nobody touches a broom, towel hamper, or silver tally until morning. All of you soak neck-deep in steaming cedar while fat white snowflakes hiss and vanish against bare warm shoulders—until even the most stubborn regulars pool a crisp purse of coin by the gate so the house wakes to thick new sleep futons upstairs (staff beds upgraded to {bed})."
+        }
+      }
     }
   ],
   "hollow": [

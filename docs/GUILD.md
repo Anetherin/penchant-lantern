@@ -27,6 +27,8 @@ Code: `js/logic/guild.js`. Data: `data/guild/` (`base` numbers, `text` contract 
   shop outfit the house doesn't own yet. Bronze rank brings the Guild colors tabard.
 - **Ranks.** Copper, Iron, Bronze, Silver, Gold, Mithril. Each rank-up is a story beat at the desk (`ranks.json`): Iron points
   Rhoswen to Sam, Bronze brings Hanna, Silver brings Vesna (rescued from the Barrow), Gold brings Brunhild (impressed in the pit).
+  Vesna and Brunhild also have 2-beat post-arc epilogues in `data/afterstories/guild.json` (gated on `afterArcDone(w)`).
+- **Contracts (`base.json → contracts`, 13 total):** caravan, porter, herbs, arena, ball, ruin_salvage, courier, hunt, bloom_harvest, delve, gala, leviathan, wyvern, with `scenes.json` party scenes across every tag (`camp`, `road`, `delve`, `fight`, `ball`, `bloom`).
 - **Sam's perks.** Doing contracts himself earns Sam guild perks (`base.json → perks`), kept for good across cycles.
 - **Higher contracts.** Each contract has a `minPower`: members under it add much less, so high-rank contracts clear slowly without strong
   members, but pay more, have more slots, and day rates grow with Sam's rank (`pay.rankRate`). The board leans toward his own rank.

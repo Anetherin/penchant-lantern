@@ -14,13 +14,13 @@
           "label": "\"Thank you for writing first.\"",
           "t": 5,
           "m": 8,
-          "res": "Her satchel strap slips from her fingers and clinks against the cobbles, loud in the quiet alley. She covers her face with the letter, ears trembling, and does not seem to mind that you can see."
+          "res": "Her worn leather satchel strap slips cleanly off her shoulder and drops onto the flagstones with a dull brass clink loudly echoing across the narrow alleyway. Lirael presses your creased old envelope straight over her burning face while both pointed tips of her ears tremble violently—yet for once she doesn't bolt back toward the sorting office or try hiding how glad she looks."
         },
         {
           "label": "Take the letter and read your own reply",
           "t": 4,
           "m": 6,
-          "res": "You read it aloud from memory, and she mouths the words along with you; she has known them by heart for years. When you stumble over a line she supplies it, softly, without looking."
+          "res": "You unfold the dog-eared sheet slowly and begin reading your own terrible postscript aloud from memory—and half a sentence in, Lirael drops her gaze to the cobbles and softly mouths every single phrase cleanly in unison with your voice. She has known that paragraph by heart for three years. Whenever you stumble gently over an old turn of phrase, she supplies the line smoothly without looking up."
         }
       ],
       "image": {
@@ -74,7 +74,7 @@
               "l": 4,
               "private": true,
               "acts": ["missionary","oral_give","kiss"],
-              "res": "Lirael gasps softly into your mouth as warm water swells around your hips, slim thighs trembling happily around your waist as you move deep inside her beneath the lanterns."
+              "res": "You latch the wooden washroom bolt cleanly behind you, pull your soaked shirt over your head, and step straight into the steaming cedar tub—Lirael gasping softly as warm water swells around her bare hips and her wet thighs wrap straight around your waist beneath the swirling lantern mist."
             },
             {
               "label": "Wash her slowly and spend all your time on her breathless mouth",
@@ -83,7 +83,7 @@
               "l": 3,
               "private": true,
               "acts": ["oral_give","kiss","massage_give"],
-              "res": "Ink-stained fingers clutch your damp shoulders tight while soft elven gasps ring clear through the warm steam."
+              "res": "You kneel beside the broad wooden rim with a soapy linen cloth, tracing slow, thorough warmth from her bare shoulders down to the curve of her thighs while Lirael tangles ink-stained fingers cleanly through your hair and pulls you down close against her breathing through the hot mist."
             }
           ],
           "image": {
@@ -100,21 +100,21 @@
           "label": "Apologize and back out",
           "t": 2,
           "m": 3,
-          "res": "\"It's fine!\" she squeaks. That evening a note appears under your door, three neat lines in her sorter's hand, signed with a tiny drawn quill that has blotted a little at the tip."
+          "res": "\"It's perfectly fine! Truly!\" Lirael squeaks before snapping the wooden latch shut with three separate turns. Two hours later, though, a folded slip slides noiselessly underneath your door—three tidy lines written in immaculate postmaster script confirming the towels survived, signed at the bottom with a tiny quill sketch whose ink nib happens to wear a nervous little blot."
         },
         {
           "label": "\"Which one are you on?\"",
           "t": 3,
           "m": 7,
           "l": 1,
-          "res": "She holds up the letter. You read it from the doorway, politely addressing the ceiling. She laughs so hard the water sloshes, and the ink on the rim runs in a pretty blue stream."
+          "res": "She lifts the damp parchment carefully above the soapsuds so you can read the postmark cleanly from the doorway while dutifully keeping both eyes fixed tightly on a cedar roof beam overhead. Lirael bursts out laughing so hard warm bathwater slops cleanly over the wooden rim, sending a pale ribbon of cobalt ink streaking merrily straight down into the steam."
         },
         {
           "label": "Stand there, flustered",
           "t": 1,
           "m": 3,
           "l": 2,
-          "res": "The tips of her ears go pink. \"Please say something,\" she whispers. You try, fail, and she giggles into her hands, a rare, bubbling sound that echoes off the wooden walls."
+          "res": "Warm pink spreads smoothly up from her neck clear to the trembling tips of her pointed ears as the silence stretches cleanly past ten seconds. \"Please say literally anything,\" she whispers desperately behind one damp arm hiding her collarbone. You blurt out a hopeless remark about soap supplies, breaking the tension at once—she dissolves into clear, bubbling laughter that rings off every tile."
         }
       ],
       "image": {
@@ -137,19 +137,19 @@
           "l": 3,
           "private": true,
           "acts": ["missionary","oral_give","kiss"],
-          "res": "You read the tiny postscript once, fold the scrap neatly into your pocket, and cross the sofa cushions in one stride—leaving Lirael flushed scarlet and breathless beneath you by the dying hearth embers."
+          "res": "You read the tiny blotted postscript through once in silence, fold the ink-warm scrap carefully into your breast pocket, and cross the hearth rug to her end of the sofa in a single stride. Lirael drops her wooden pencil onto the cushion with a sharp gasp as your hand cups her jaw, flushed scarlet and utterly breathless as the dying embers crackle softly beside you."
         },
         {
           "label": "Stay with her",
           "t": 5,
           "m": 8,
-          "res": "You read the P.S. aloud, and she buries her face in a cushion, ears trembling, then scribbles a reply and kicks it across the sofa before she can think better of it."
+          "res": "You clear your throat softly and read her cramped postscript aloud word for word to the quiet firelight. Lirael squeaks and buries her entire burning face deep into a velvet pillow while her pointed ears go bright crimson—then blind-reaches for a stubby pencil, scribbles an even shorter line across a corner scrap, and kicks it clumsily across the cushions before losing her nerve."
         },
         {
           "label": "Write one back about how you feel",
           "t": 4,
           "m": 6,
-          "res": "She reads it three times, mouthing the words, then folds it into precise thirds and tucks it into her satchel, beside the others, where you can see how many there are."
+          "res": "She unfolds the plain card you pass across the sofa and reads those three honest sentences straight through three separate times, silently mouthing every syllable so nothing slips past her. Without a word she creases the sheet cleanly into precise post-office thirds and slides it deep inside her locked satchel—right beside the worn old letters you didn't realize she kept."
         }
       ],
       "image": {
@@ -172,19 +172,19 @@
           "label": "\"I'm not going anywhere.\"",
           "t": 5,
           "m": 6,
-          "res": "She nods, and holds your sleeve for a long time anyway, thumb worrying the cuff, as though it were a letter she might lose in the post."
+          "res": "Lirael lets out a long, thin breath she seems to have held since breakfast and gives a small, steady nod—yet her cool fingers remain wrapped tightly around your cuff for five full minutes afterward anyway. Her thumb keeps tracing the stitching of your jacket sleeve back and forth, calmly and carefully, as if you were an unsealed parcel she refused to trust back into the sack."
         },
         {
           "label": "Write a reply together",
           "t": 6,
           "m": 5,
-          "res": "You write two words together and post them: Not lonely. The old box hums under her palm, a low warm note. She is still smiling when it falls silent."
+          "res": "You pull one clean index sheet across the counter, dip her silver nib once in black ink, and together write exactly two quiet words across the center line before dropping the card inside the brass slot: *Not lonely.* Underneath her resting palm the battered old postbox gives one low, satisfied wooden hum that warms the air around your wrists before drifting quietly back to silence."
         },
         {
           "label": "Burn the letter",
           "t": -3,
           "m": -6,
-          "res": "\"You can't burn what's already happened,\" she says. She spends the night sweeping the postbox in silence, one slow stroke after another, ears low."
+          "res": "\"You cannot burn words someone already lived through,\" Lirael says softly, pulling the matchbox smoothly out of your fingers before the flint sparks. She does not argue further or ask you to stay; instead she fetches the stiff willow broom from the landing and sweeps every gray speck around the postbox foot in slow, steady strokes until dawn streaks pale across the alley."
         }
       ],
       "image": {"comp":"reading a letter over his shoulder, ears drooped, fear in her eyes","setting":"lamp-lit lounge corner at night","sam":true}
@@ -198,13 +198,13 @@
           "label": "Hum along",
           "t": 4,
           "m": 8,
-          "res": "She stops sorting and just listens, ears tilted toward you, and then joins the harmony in a thin sweet voice. The letters lie forgotten in her lap."
+          "res": "Her sorting hands pause abruptly midway over the canvas postbag, brass buckles knocking lightly together while she tilts both pointed ears cleanly toward your corner of the porch. After two slow bars she quietly lets the bundle rest across her lap and joins the soft harmony in a clear, fragile alto—all her unread envelopes forgotten until the last lantern dims down the street."
         },
         {
           "label": "Help her sort the last bag",
           "t": 3,
           "m": 5,
-          "res": "You put every letter in the wrong slot. She re-sorts every one, grinning, and says it's the best mistake she's ever seen, and keeps the worst-sorted one to herself."
+          "res": "You enthusiastically drop nearly every coastal route slip straight into the mountain sorting cubby and vice versa while holding up empty bundles with theatrical solemnity. Lirael bursts out laughing, tips you cleanly off the wooden stool, and cheerfully re-sorts the entire canvas sack from scratch beside your knee—yet quietly slips the single most hopelessly misfiled envelope into her pocket for keeps."
         }
       ],
       "image": {
@@ -230,7 +230,7 @@
           "t": 1,
           "m": -3,
           "hold": true,
-          "res": "Lirael nods and straightens her satchel strap, gracious as a clerk with a delayed parcel. \"I can wait,\" she says. \"I've waited longer for less. Just do write back.\""
+          "res": "Lirael inclines her head smoothly and lifts her hand to adjust the worn brass clasp across her courier satchel, courteous and measured as a post clerk logging a delayed coach. \"I can wait,\" she assures you softly, offering a warm, steady smile that softens every corner of her eyes. \"I waited years on far less certainty than this. Just be sure to write back soon.\""
         }
       ]
     }

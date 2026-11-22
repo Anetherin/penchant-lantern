@@ -261,6 +261,24 @@
       "label": "Guild work",
       "desc": "She joins whichever guild contract has the most left to do and does a frightening share of it herself. With no contract running she works a house instead.",
       "report": "{goddess} went out with the party on the {contract}. The monsters did not enjoy it, and the clerk is still filling in the paperwork."
+    },
+    "clients": {
+      "label": "Work the house",
+      "desc": "She takes the floor herself in her chosen form for select high-paying patrons—unhurried, expensive, and entirely on her terms.",
+      "report": "{goddess} took select patrons at {house} in her {shape} form."
+    },
+    "focus": {
+      "label": "Back Sam up",
+      "desc": "She shadows whatever weekly focus you chose—checking ledgers, pouring behind the bar, walking the watch, sharpening classes, or restoring you on an off-duty week.",
+      "report": "{goddess} backed up Sam's work at {house}.",
+      "byFocus": {
+        "office": "{goddess} leaned over Sam's ledger at {house} and made sure the suppliers remembered how to add.",
+        "floor": "{goddess} worked the lounge behind Sam—glasses stayed full, smiles lingered, and tips ran heavy.",
+        "watch": "{goddess} walked the corridors beside Sam's watch; nobody felt brave enough to test a door.",
+        "guild": "{goddess} shadowed Sam out on his guild contract and thinned the trouble ahead of his blade.",
+        "classes": "{goddess} stood at Sam's shoulder through afternoon classes and turned a good lesson razor-sharp.",
+        "rest": "{goddess} took the ledger out of Sam's hands and spent the quiet week putting strength back into him."
+      }
     }
   },
   "claim": {
@@ -295,7 +313,7 @@
       ]
     },
     "inside": [
-      "When you finish inside her, light floods back into her skin, the gold markings flaring and the ember-flame spinning with delight. \"There,\" she breathes, laughing. \"That. More of that.\" A little of the warmth you lost all day comes back into you too.",
+      "When you finish inside her, light floods back into her skin, the gold markings flaring and the ember-flame spinning with delight. \"There,\" she breathes, laughing. \"That. More of that.\" A little of the warmth you lost all week comes back into you too.",
       "Afterwards she lies with her ear against your chest, glowing, listening to the heartbeat she chose, and tells you exactly how pleased she is with your {act}. Smug, and radiant.",
       "You finish inside her and the room goes gold. {goddess} drags you closer by the hair and kisses you through it. \"Good {sam},\" she murmurs. \"Good, good {sam}.\""
     ],
@@ -500,10 +518,10 @@
         "Her oiled hand slides down and closes firmly around your cock, and she takes her time, watching your face the whole while as if it's the most interesting thing in this world. She learns exactly what makes you gasp, and then strokes you again, slower."
       ],
       "oral_give": [
-        "She sinks down between your knees with a look that says she's been planning this, and then her warm, wet mouth is around your shaft, patient and merciless, tongue swirling beneath the crown. She knows exactly when you're close. She seems to enjoy knowing it."
+        "She sinks down between your knees with a look that says she's been planning this, and then her warm, wet mouth is around your cock, patient and merciless, tongue swirling beneath the crown. She knows exactly when you're close. She seems to enjoy knowing it."
       ],
       "breast_give": [
-        "She sheds her top with a little shrug and presses her bare breasts tightly around your shaft, rocking slow and teasing the head with her tongue, watching you over them with lamp-gold eyes and an entirely unfair smile."
+        "She sheds her top with a little shrug and presses her bare breasts tightly around your cock, rocking slow and teasing the head with her tongue, watching you over them with lamp-gold eyes and an entirely unfair smile."
       ],
       "cowgirl": [
         "She pushes you down and climbs on top of you, sinking down onto your cock with a long, shaky sigh, as if it's been a long time coming for her too. Then she rides you, slow and deep, her hands braced on your chest, hair spilling gold-tipped around you both."
@@ -540,6 +558,185 @@
       "1": "{name}'s quiet stare blinks into focus afterwards—still hollow, yet something in her stirred.{traitNote} Her mood and first inclinations have begun to form.",
       "2": "{name} shivers as warmth lingers inside her long after you pull back—appetite waking where stillness used to live. Her desire and full job preferences have begun to form.",
       "3": "{name} catches her breath and meets your eyes—not blank anymore, not borrowed, wholly herself ({pers}{traitNote}). The empty vessel has awakened."
+    }
+  },
+  "isolde": {
+    "first": {
+      "id": "isolde_first",
+      "form": "demon",
+      "title": "A Rival Scent",
+      "actSetting": "a candlelit bedroom in Sam's house at night, unmade bed, amber shrine glow mixing with red candlelight",
+      "image": {
+        "comp": "standing furiously in a dimly lit bedroom threshold in demon form, horns and glowing markings flared bright, pinning the door shut with a fierce possessive glare",
+        "setting": "a candlelit bedroom in Sam's house at night, unmade bed, amber shrine glow mixing with red candlelight",
+        "sam": true,
+        "pov": true,
+        "cloth": "partial"
+      },
+      "text": "The bedroom door clicks locked behind you before your hand even leaves the brass handle. Across the rug, {goddess} isn't waiting in her usual sheer silk—she stands bare-hipped and towering in a horned demon form, a sleek tail flicking lazily behind smooth dark thighs, crimson-amber shrine light rolling down her collarbones as she tilts her chin and sniffs softly at the smoky velvet perfume lingering on your collar.\n\nHer mouth curves into an impossibly dangerous smile. \"Well, well. All the women in Hollowmere, and you wandered straight across the street to sample the Thorn's proud antique? Two hundred and sixty years of velvet parlor tricks, silk ribbons, and big speeches—and here I can still smell how pleased she thinks she made you.\" She stalks across the boards until her bare breasts brush hot against your sternum and her fingertips hook playfully into your belt. \"Adorable, honestly. If horns and a little mortal swagger turned your head, {sam}, you're very much overdue for a demonstration. Strip—let's see how fast an actual goddess ruins the Velvet Thorn for you.\"",
+      "choices": [
+        {
+          "label": "Let her prove she beats Isolde right now",
+          "act": "cowgirl",
+          "cloth": "nude",
+          "love": 6,
+          "mood": 10,
+          "jealousyCut": 12,
+          "res": "\"That's smart of you—staying quiet while your betters work.\" {goddess} pushes you straight back across the unmade sheets with a low, amused laugh, peels your shirt clean over your head, and swings one bare leg over your hips. Her demon tail coils slyly around your wrist to hold you steady as she guides your hard shaft to her glistening, scorching entrance and sinks straight down to the hilt in one devastatingly slow glide. \"Mm—there we are,\" she purrs, rolling her hips in slick, tight circles until her wet folds grip every swollen inch. \"Tell me honestly now, {sam}—when that little parlor queen across the street plays all proud and dangerous, does she clench around you half as tight as this?\" She leans down to graze your jaw with warm lips, then starts bouncing faster, riding up and down your shaft with wicked, unhurried confidence until her glow flares blinding gold around her horns. \"Look at your face,\" she whispers smugly, clenching fiercely as she peaks and milks your cum deep into her pussy. \"Never confuse a century-old mortal boast with a goddess again—say it.\""
+        },
+        {
+          "label": "Tease her about Isolde and flip her beneath you",
+          "act": "doggy",
+          "cloth": "nude",
+          "love": 7,
+          "mood": 11,
+          "jealousyCut": 14,
+          "res": "\"She does put up a pretty good fight,\" you murmur right against her collarbone—and {goddess}'s gold-lit eyes narrow dangerously before she lets out a surprised laugh as you spin her neatly onto hands and knees in the middle of the bed. \"Oh, bold tonight, are we? Let's see if she taught you stamina too!\" You grip the base of her curved horns, line yourself up with her dripping pussy, and sink hilt-deep from behind in one slow, heavy thrust. Her smug grin melts straight into a sharp, delicious gasp as her tail lashes around your forearm to drag you back against her bare ass. \"Ah—trying to show off with her tricks in *my* bed?!\" she breathes hotly back over her shoulder, rolling her hips eagerly to take every inch of your cock deeper. \"Wait until you feel how hard a jealous goddess actually squeezes, {sam}... Go on, hammer away—let's hear you try holding out when I stop playing fair!\" She tightens mercilessly around your pulsing shaft until your rhythm breaks, shuddering loudly into the pillows as you finish deep inside her. \"Mm... much better. Leave the pride across the street next time.\""
+        },
+        {
+          "label": "Pull her close and swear nobody comes near her",
+          "act": "missionary",
+          "cloth": "nude",
+          "love": 8,
+          "mood": 12,
+          "jealousyCut": 15,
+          "res": "You catch her chin softly, silence that sharp, jealous smirk with a slow, lingering kiss, and ease her down onto the pillows with horns grazing the headboard. {goddess}'s tense shoulders drop—yet her smile stays slyly triumphant as she parts her bare thighs, locks both ankles snugly behind your lower back, and pulls your cock all the way into her hot, wet folds face to face. \"Sweet talk doesn't earn you a pass tonight, {sam},\" she murmurs against your ear, lifting her hips in slow, hypnotic circles that pull a ragged groan straight from your throat. \"Two hundred and sixty years she has lived, and she still hasn't had me—while you get to feel how blindingly hot my pussy grips you anytime you step through that door. Swear what you like with your mouth; I want every drop of your body remembering who owns the real crown.\" She clings fiercely through a long, glowing orgasm, milking every pulse out of your shaft before sighing happily into your neck. \"Good. Keep remembering that when she struts past your window.\""
+        }
+      ]
+    },
+    "repeat": [
+      {
+        "id": "isolde_demon",
+        "form": "demon",
+        "title": "Devil for Devil",
+        "actSetting": "a shadowy upstairs parlor at Sam's house at night, red velvet armchair, spilled lantern glow",
+        "image": {
+          "comp": "lounging naked in demon form across a red velvet armchair with her tail curling over the armrest, sharp jealous smirk",
+          "setting": "a shadowy upstairs parlor at Sam's house at night, red velvet armchair, spilled lantern glow",
+          "sam": true,
+          "pov": true,
+          "cloth": "nude"
+        },
+        "text": "{goddess} lounges bare and horned across your red velvet armchair the moment you slip back inside {house}, dark thigh draped brazenly over one carved armrest while shrine light shimmers gold along her ribs. \"Back from the Velvet Thorn already? Let me guess—velvet curtains, old wine, and her pretending nobody has ever matched her little repertoire?\" She crooks one slow fingertip at your belt with an amused, proprietary gleam. \"Come here, {sam}. Any parlor trick she puts on with those horns, I wear twenty times hotter—and unlike her, I already know every nerve you keep hidden.\"",
+        "choices": [
+          {
+            "label": "Take her hard right over the armchair",
+            "act": "doggy",
+            "cloth": "nude",
+            "love": 4,
+            "mood": 6,
+            "jealousyCut": 10,
+            "res": "\"Think twenty times isn't quite bragging enough?\" you tease, hauling her bare knees cleanly across the red cushion and bracing one hand against the small of her back as you press your hard cock straight into her dripping pussy from behind. \"Oh—smart mouth tonight,\" {goddess} laughs softly, arching her back proudly as your hips meet her bare ass with a sharp, wet slap. Her tail wraps snugly around your wrist to pull your strokes deeper inside her scorching wet folds. \"Let's hear how sharp your tongue stays when I milk you dry right across your own velvet, darling... Come on—tell me her expensive little bedroom across the street ever squeezed your shaft half this relentlessly!\" Every deep thrust shakes the chair legs until she clenches violently around your cock with a wicked, triumphant cry, catching her breath with a smug glance over one shoulder. \"There. Now you don't even remember her perfume.\""
+          },
+          {
+            "label": "Pull her onto your lap on the seat",
+            "act": "cowgirl",
+            "cloth": "nude",
+            "love": 5,
+            "mood": 7,
+            "jealousyCut": 10,
+            "res": "You sink into the wide velvet chair yourself and haul her straddling cleanly across your thighs. \"Oh, eager for the comparison, are we?\" {goddess} purrs against your mouth, sliding down slowly onto your hard shaft until her bare hips sit flush over your pelvis and glowing gold markings flare bright across her breasts. \"Let's make it an easy contest, {sam}. She talks a lovely game about breaking rivals—whereas I simply sit here, clench around your cock like this, and watch your self-control evaporate in thirty seconds.\" True to her boast, she bounces smoothly up and down your shaft while humming against your neck until you groan and burst deep inside her pussy, locking both arms tight around you with a satisfied laugh. \"Mmm. Every drop right where it belongs—on my side of the street.\""
+          }
+        ]
+      },
+      {
+        "id": "isolde_bath",
+        "title": "Wash Her Off You",
+        "actSetting": "the steaming private bathhouse at Sam's house at night, warm cedar water, lantern steam",
+        "image": {
+          "comp": "rising naked out of steaming bathwater with wet skin glistening, catching the viewer by the collar with fierce possessive eyes",
+          "setting": "the steaming private bathhouse at Sam's house at night, warm cedar water, lantern steam",
+          "sam": true,
+          "pov": true,
+          "bath": true,
+          "cloth": "nude"
+        },
+        "text": "Before you even reach your stairwell, {goddess} hooks two fingers inside your cuff and steers you effortlessly into the steaming cedar bathhouse, nudging you back onto the wet bench before turning stark naked out of the lantern mist. She steps smoothly between your parted knees, leans down to inhale right above your damp collarbone, and rolls her gold eyes.\n\n\"Goodness, {sam}—expensive bath oil, heavy crimson perfume... she stamps you like a shipping crate every time you visit, doesn't she?\" Her slow smirk turns sharply mischievous as she reaches for your belt buckle. \"How utterly insecure. Hold still a minute—let's scrub every drop of the Velvet Thorn right back off you before you drip it onto your own sheets.\"",
+        "choices": [
+          {
+            "label": "Let her mouth work you dry in the steam",
+            "act": "oral_give",
+            "cloth": "nude",
+            "love": 4,
+            "mood": 6,
+            "jealousyCut": 9,
+            "res": "\"Sit right there and let's test whether her velvet parlor leaves anything left worth claiming,\" {goddess} murmurs wickedly, sliding cleanly onto wet flagstones between your thighs. She frees your hard shaft with unhurried, gleaming fingers, flicking her tongue slowly beneath the crown while peeking up through damp black lashes with open amusement. \"Hmm—plenty of fight still in you, it seems. She clearly didn't try very hard.\" Before you can shoot back a word, she swallows every warm inch down her throat and hums low around your shaft—working her tongue effortlessly beneath the ridge while stroking your base until your knees shake against the wood. \"Don't look so stunned, mortal,\" she whispers between wet, maddening pulls right as you spill hot down her throat. She swallows every drop cleanly, rising to brush one thumb playfully over your swollen lower lip. \"There. Better than soap and water, isn't it?\""
+          },
+          {
+            "label": "Pull her into the hot water and fuck her against the cedar rim",
+            "act": "missionary",
+            "cloth": "nude",
+            "love": 5,
+            "mood": 7,
+            "jealousyCut": 10,
+            "res": "\"Talk less and get in the water then,\" you laugh, hauling her wet, slippery waist straight off the step until she splashes neatly into your arms inside the steaming cedar pool. She clings instantly around your shoulders, parting slick bare thighs over your hips while you brace her against the smooth timber rim and push hilt-deep into her hot, wet folds. \"Ah—clever hands tonight!\" {goddess} gasps, water slopping cleanly over the stone lip with every deep, slick stroke inside her. \"Think splashing water around will distract me from reminding you whose body beats hers?!\" She lifts her chin smugly against the warm mist even as your rhythm catches her breath—then locks her ankles tight around your ribs as she shudders through a sharp climax, holding you buried deep until your cum empties inside her. \"Hm... alright. Clean enough for bed now, {sam}.\""
+          }
+        ]
+      },
+      {
+        "id": "isolde_desk",
+        "title": "A Card on the Ledger",
+        "actSetting": "Sam's cramped wooden office at night, scattered ledgers, single warm desk lamp",
+        "image": {
+          "comp": "sitting sideways on a cluttered wooden office desk with one red calling card pinned beneath her heel, bare thighs parted in warm lamplight",
+          "setting": "Sam's cramped wooden office at night, scattered ledgers, single warm desk lamp",
+          "sam": true,
+          "pov": true,
+          "cloth": "partial"
+        },
+        "text": "{goddess} sits casually sideways across your open account books in warm lamplight, trapping Isolde's embossed crimson calling card neatly under one bare heel while hiking her sheer hem slowly up over gleaming dark thighs.\n\n\"Really, {sam}? Leaving her little parlor invitation right next to your inkwell?\" She taps her painted toes lazily over the Velvet Thorn crest, wearing an outrageously smug smile. \"All that heavy gold lettering just to ask you across the street—mortals work terribly hard for attention, don't they? Kick the chair out and settle between my thighs, darling. Let's make sure the only thing you see when you sit at this desk tomorrow is me.\"",
+        "choices": [
+          {
+            "label": "Pin her back across the scattered books",
+            "act": "missionary",
+            "cloth": "nude",
+            "love": 4,
+            "mood": 6,
+            "jealousyCut": 9,
+            "res": "\"Here—let's clear both our accounts properly,\" you answer, flicking the crimson calling card clean off the desk before gripping her bare hips and sliding straight between her parted legs across the parchment. \"Oh, dramatic—careful you don't spill your ink,\" {goddess} teases softly, though her eyes go half-lidded the instant your hard cock parts her slick wet folds and sinks all the way home. \"Wait... mm—nobody across the street keeps up this rhythm across a crooked desk, do they?\" She hooks bare heels high behind your knees, rolling her hips up smoothly to meet every heavy thrust while invoices scatter cleanly onto the rug, clenching fiercely around your shaft right as you pour every drop deep inside her. \"Definitely cleared the ledger,\" she sighs happily, winking up from the blotter."
+          },
+          {
+            "label": "Sit back in your chair and let her ride you over her card",
+            "act": "cowgirl",
+            "cloth": "nude",
+            "love": 5,
+            "mood": 7,
+            "jealousyCut": 10,
+            "res": "You drop into your chair, flick the Thorn calling card cleanly onto the floorboards, and pull her straddling down onto your lap—letting her plant one bare heel straight over Isolde's embossed crest as she eases herself down onto your hard shaft. \"Now *there* is a proper footrest,\" {goddess} purrs delightedly, grinding forward until you bury hilt-deep inside her scorching pussy while her fingertips toy with your collar. \"Take good notes, {sam}: notice how nobody across the avenue feels half this scorching wet when she bounces up and down your shaft like she owns the deed?\" She rides you fast and mercilessly until the chair creaks loud enough for the stairs to hear, clenching tight through a radiant climax until you burst inside her—then kisses your jaw lazily. \"Keep working late whenever you like if this is how we file the paperwork.\""
+          }
+        ]
+      }
+    ],
+    "pre": {
+      "id": "isolde_pre",
+      "form": "disguise",
+      "phase": "suspicion",
+      "title": "Smoke on Your Sleeves",
+      "act": "oral_give",
+      "actSetting": "a quiet shadowed stone archway between lanterns late at night, brick walls, warm amber mist",
+      "image": {
+        "comp": "leaning casually in a shadowed brick archway at night, catching the viewer by the lapel with a sharp amused smirk",
+        "setting": "a quiet shadowed stone archway between lanterns late at night, brick walls, warm amber mist",
+        "cloth": "dressed"
+      },
+      "text": "Two corners shy of {house}'s back steps, {alias} drifts cleanly out of the stone archway right in front of you—catching your coat lapel between two warm fingers and leaning close enough to inspect the faint trace of crimson parlor smoke clinging to your collar.\n\n\"My, my,\" she murmurs, gold-lit eyes glimmering with pure sly amusement beneath her friendly grin before her gaze flicks straight down to your belt. \"Slipped out of the Velvet Thorn looking all pleased with yourself, did we? Tell me honestly—does that horned antique across the street actually think she leaves a mark no one else can top? Hold still a heartbeat, {sam}. Let's check whether she wore you out properly—or left plenty of room for real talent.\"",
+      "choices": [
+        {
+          "label": "\"That depends—curious?\"",
+          "distract": true,
+          "act": "oral_give",
+          "jealousy": 3,
+          "resIn": "\"Oh, dreadfully curious,\" {alias} purrs, crowding you neatly back against the warm brick before you can catch another breath. \"Everyone in this Quarter whispers about the Thorn—yet somehow I doubt she knows half the wicked little tricks I'm about to try on your shaft.\""
+        },
+        {
+          "label": "Grin and ask if she wants to beat her",
+          "distract": true,
+          "act": "manual_give",
+          "jealousy": 4,
+          "love": 1,
+          "resIn": "Her laugh drops low, velvet-smooth, and delightfully dangerous in the lantern shadow. \"Beat her? Sweet mortal, please—watch how fast I ruin every smug memory she gave you tonight.\" Cool, slick fingers find your belt before your grin even fades."
+        }
+      ]
     }
   }
 }

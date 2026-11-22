@@ -125,9 +125,22 @@ function vesselLabel(w){
 
 const CYCLE_CHALLENGES = (BAL.ngplus && BAL.ngplus.cycleChallenges) || {};
 // Town events (balance.json → townEvents, wording events.json → townEvents; scheduled by townEventWeek in random.js):
-// S.townEv = {id, start, end} runs for weeks start..end-1 and sets the multipliers in its list entry.
+// S.townEv = {id, start, end, house, overrides} runs for weeks start..end-1 and sets the multipliers in its list entry (or overrides).
 const townEventList = () => (BAL.townEvents && BAL.townEvents.list) || {};
-const activeTownEv = () => { const e = typeof S!=='undefined' && S && S.townEv; return e && S.week >= e.start && S.week < e.end ? townEventList()[e.id] || null : null; };
+function townEvDef(){
+  const e = typeof S!=='undefined' && S && S.townEv;
+  if(!e || S.week < e.start || S.week >= e.end) return null;
+  const base = townEventList()[e.id]; if(!base) return null;
+  return e.overrides ? Object.assign({}, base, e.overrides) : base;
+}
+const activeTownEv = () => townEvDef();
+function townEvFor(h){
+  const d = townEvDef(); if(!d) return null;
+  const hid = S.townEv && S.townEv.house;
+  if(!hid) return d;
+  const target = typeof h === 'string' ? h : (h && h.id);
+  return target && target === hid ? d : null;
+}
 // Cycle challenges (balance.json → ngplus.cycleChallenges) use the same keys: the active one's mods / adds apply all cycle,
 // and every earned perk's perkMods / perkAdds apply for good. So townMul/townAdd = town event x challenge x perks.
 function chMods(field){
@@ -137,8 +150,8 @@ function chMods(field){
   (S.challengePerks||[]).forEach(k=>{ const c = CYCLE_CHALLENGES[k]; if(c && c[pf]) out.push(c[pf]); });
   return out;
 }
-const townMul = (k, def=1) => { const v = activeTownEv(); let m = v && v[k]!==undefined ? v[k] : def; chMods('mods').forEach(M=>{ if(M[k]!==undefined) m *= M[k]; }); return m; };
-const townAdd = (k, def=0) => { const v = activeTownEv(); let a = v && v[k]!==undefined ? v[k] : def; chMods('adds').forEach(M=>{ if(M[k]!==undefined) a += M[k]; }); return a; };
+const townMul = (k, def=1, h=null) => { const v = townEvFor(h); let m = v && v[k]!==undefined ? v[k] : def; chMods('mods').forEach(M=>{ if(M[k]!==undefined) m *= M[k]; }); return m; };
+const townAdd = (k, def=0, h=null) => { const v = townEvFor(h); let a = v && v[k]!==undefined ? v[k] : def; chMods('adds').forEach(M=>{ if(M[k]!==undefined) a += M[k]; }); return a; };
 const hasChallengePerk = id => !!(typeof S!=='undefined' && S && S.challengePerks && S.challengePerks.includes(id));
 
 function shrineRebornSum(h){
@@ -221,7 +234,7 @@ function raceBlock(w, h){
 function statXP(w, key, n){
   if(!w.stats || w.stats[key]===undefined) return;
   const v = w.stats[key];
-  w.stats[key] = clampK(v + n * fxMul(w, 'statGain') * incenseMul(w, 'statGain') * rebornHouseGrowth(w) * townMul('learn', 1) * Math.max(0.05, 1 - v/growDen()));
+  w.stats[key] = clampK(v + n * fxMul(w, 'statGain') * incenseMul(w, 'statGain') * rebornHouseGrowth(w) * townMul('learn', 1, typeof S!=='undefined'&&S?houseOf(w):null) * Math.max(0.05, 1 - v/growDen()));
 }
 
 /* ---------- counters (w.counts) and developable traits ---------- */

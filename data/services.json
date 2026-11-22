@@ -137,10 +137,10 @@
       "th": 20,
       "price": 16,
       "energy": 3,
-      "lust": 3,
+      "lust": 0,
       "finish": false,
       "want": 0.04,
-      "kind": "receive",
+      "kind": "massage",
       "energyBack": 4,
       "mood": 2,
       "desc": "lying back while he rubs warm oil into her shoulders, back and thighs",
@@ -198,7 +198,7 @@
       "kind": "give",
       "stats": {"agility":1},
       "desc": "stroking him off with skilled, unhurried hands",
-      "dress": {"min":"partial","fullAt":75},
+      "dress": {"min":"partial","fullAt":70},
       "ask": {
         "client": "for a handjob",
         "lady": "offered to use her hands on him",
@@ -257,7 +257,7 @@
       "kind": "give",
       "stats": {"stamina":1},
       "desc": "pressing her bare breasts together around him until he finishes",
-      "dress": {"min":"partial","fullAt":70},
+      "dress": {"min":"partial","fullAt":65},
       "ask": {"client":"for titjob","lady":"offered to use her breasts","clientFem":"for her breasts","ladyFem":"offered her breasts"},
       "image": {
         "client": [
@@ -305,7 +305,7 @@
       "id": "manual_get",
       "label": "Manual (receiving)",
       "tier": 2,
-      "th": 28,
+      "th": 36,
       "price": 24,
       "energy": 5,
       "lust": -10,
@@ -314,7 +314,7 @@
       "kind": "receive",
       "desc": "being pleasured by hand",
       "ask": {"client":"to touch her","lady":"asked him to touch her","clientFem":"to touch her","ladyFem":"asked her client to touch her"},
-      "dress": {"min":"partial","fullAt":55},
+      "dress": {"min":"partial","fullAt":60},
       "image": {
         "client": ["lying back on a bed, a man's hand between her thighs"],
         "sam": [
@@ -359,7 +359,7 @@
       "id": "breast_get",
       "label": "Breast play (receiving)",
       "tier": 2,
-      "th": 36,
+      "th": 28,
       "price": 26,
       "energy": 5,
       "lust": -8,
@@ -373,7 +373,7 @@
         "clientFem": "to play with her breasts",
         "ladyFem": "let her play with her breasts"
       },
-      "dress": {"min":"partial","fullAt":55},
+      "dress": {"min":"partial","fullAt":65},
       "image": {
         "client": ["a man embracing her from behind, his hands on her breasts"],
         "sam": [
@@ -490,7 +490,7 @@
       "kind": "give",
       "desc": "using her mouth",
       "ask": {"client":"for oral","lady":"offered to go down on him","clientFem":"to be eaten out","ladyFem":"offered to go down on her"},
-      "dress": {"min":"partial","fullAt":55},
+      "dress": {"min":"partial","fullAt":60},
       "image": {
         "client": ["her mouth sucking a man's penis, blowjob"],
         "sam": [

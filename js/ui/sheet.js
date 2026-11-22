@@ -123,7 +123,7 @@ function samPerksHTML(){
     ...P.map(k=>tag('✧ '+esc(PASTS[k].label), PASTS[k].desc)),
     ...B.map(k=>tag('✦ '+esc(NG_BOONS[k].label), NG_BOONS[k].desc)),
     ...CP.map(k=>tag('🏆 '+esc(CYCLE_CHALLENGES[k].perk), CYCLE_CHALLENGES[k].perkDesc, 'tag good')),
-    ...(CV ? [tag('🏮 '+esc(CV.label), CV.desc || '', 'tag house')] : []),
+    ...(CV ? [tag('🏮 '+esc(CV.label) + (S.townEv&&S.townEv.house&&H(S.townEv.house)?` (${H(S.townEv.house).name})`:''), CV.desc || '', 'tag house')] : []),
     ...(CH ? [tag('🎯 '+esc(CH.label), CH.desc, 'tag warn')] : [])
   ];
   if(!tags.length) return '';
@@ -131,7 +131,7 @@ function samPerksHTML(){
     + P.map(k=>`<div class="muted">Past life (${esc(PASTS[k].label)}): ${esc(PASTS[k].desc)}</div>`).join('')
     + B.map(k=>`<div class="muted">${esc(NG_BOONS[k].label)}: ${esc(NG_BOONS[k].desc)}</div>`).join('')
     + CP.map(k=>`<div class="good">Challenge Perk (${esc(CYCLE_CHALLENGES[k].perk)}): ${esc(CYCLE_CHALLENGES[k].perkDesc)}</div>`).join('')
-    + (CV ? `<div class="muted">Town event (${esc(CV.label)}): ${esc(CV.desc || '')}</div>` : '')
+    + (CV ? `<div class="muted">Town event (${esc(CV.label)}${S.townEv&&S.townEv.house&&H(S.townEv.house)?` · ${esc(H(S.townEv.house).name)}`:''}): ${esc(CV.desc || '')}</div>` : '')
     + (CH ? `<div class="muted">Active Challenge (${esc(CH.label)}): ${esc(CH.desc)}${challengeProgress()}</div>` : '');
 }
 // where the active challenge stands (S.chTrack, random.js → challengeTrack)
@@ -244,6 +244,7 @@ function afterReqs(w){
   const beats = AFTER_STORIES && AFTER_STORIES[w.key]; if(!beats || (w.after||0) >= beats.length || !S.workers.includes(w)) return '';
   const i = w.after||0, need = AFTER_NEEDS[Math.min(i, AFTER_NEEDS.length-1)], gap = paidGap(AFTER_GAPS[Math.min(i, AFTER_GAPS.length-1)]), out = [];
   if(!afterHomeDone(w) || houseGate(w)) out.push([false, 'her house story has to finish first']);
+  if(typeof afterArcDone==='function' && !afterArcDone(w)) out.push([false, 'her story arc has to finish first']);
   out.push([w.trust >= need, `trust ${tShow(need)}${w.trust < need ? ` (now ${tShow(w.trust)})` : ''}`]);
   out.push(waitItem(w.afterWk||0, gap, ['after', w.id], out.every(x=>x[0])));
   return reqLine('Next epilogue chapter needs', out);
@@ -251,6 +252,10 @@ function afterReqs(w){
 // The least lewdness at which she'd go to her next stage with Sam (at her current trust), or null if lewdness alone won't do it.
 function firstLewdNeed(w, s){
   const was = w.lewd; let at = null;
-  for(let L = Math.ceil(was); L <= 100; L++){ w.lewd = L; if(tierActs(w, s).length){ at = L; break; } }
+  for(let L = Math.ceil(was); L <= 100; L++){
+    w.lewd = L;
+    const acts = tierActs(w, s);
+    if(s===1 ? acts.some(a=>a.id==='kiss') : acts.length){ at = L; break; }
+  }
   w.lewd = was; return at;
 }

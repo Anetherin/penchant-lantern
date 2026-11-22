@@ -216,6 +216,94 @@
           "setting": "a sunlit glade of knee-high plum-coloured flowers with drifting gold pollen, a stream nearby",
           "sam": true
         }
+      },
+      {
+        "id": "duo_road_inn",
+        "tags": ["road"],
+        "title": "Last Room at the Waystation",
+        "text": "A broken axle leaves the two of you stranded on {C} with one narrow attic room above a noisy coastal taproom and a single creaking straw mattress. {N} bolts the latch, kicks off her dusty travel boots, and peels off her road-stained cloak while watching you unpack the saddlebags.\n\n\"We're not splitting the floorboards,\" she says flatly, sitting on the bed's edge to unbutton her shirt until the collar falls loose across her bare shoulders. \"Come sit down, Sam. Nobody on this road knows who we are tonight.\"",
+        "tender": {
+          "label": "Share a quiet bottle and trade road stories",
+          "res": "You uncork the rough local cider and sit shoulder to shoulder on the narrow mattress while wagons rumble below. {N} leans her weight easily against your ribs, trading dry jokes about the innkeeper until she yawns into your shoulder and sleeps curled warm at your side."
+        },
+        "close": {
+          "label": "Pull her back onto the mattress",
+          "lead": "You drop the satchel and catch her waist before she finishes unlacing her boots. {N} laughs breathlessly as she tumbles back into the quilted bedding, hooking both legs around your hips and pulling your mouth straight down to hers while her hands work your belt loose. \"Better than staring at rafters,\" she murmurs against your lips.",
+          "acts": ["kiss","manual_give","oral_give","missionary","cowgirl"]
+        },
+        "image": {
+          "comp": "{N} sitting on the edge of a narrow wooden inn bed unbuttoning her travel shirt, boots kicked aside, warm inviting gaze",
+          "setting": "a small timber attic room in a wayside tavern at night, single candle, creaking bed",
+          "sam": true,
+          "cloth": "partial",
+          "wear": "an unbuttoned travel shirt"
+        }
+      },
+      {
+        "id": "duo_ball_alcove",
+        "tags": ["ball"],
+        "title": "Behind the Velvet Curtain",
+        "text": "Halfway through {C}, while strings sweep through the ballroom, {N} catches your sleeve and tugs you behind a deep crimson drapery alcove overlooking the moonlit terrace. Her borrowed gown is cut daringly low, chest rising quickly from hours on alert, eyes bright with champagne and adrenaline.\n\n\"The viscountess is safely dancing with two dukes,\" {N} murmurs, stepping flush inside your arms and smoothing her palms down your lapels. \"We have ten minutes before anyone checks the terrace, Sam. Are you going to waste them standing at attention?\"",
+        "tender": {
+          "label": "Steal a quiet dance behind the curtain",
+          "res": "You put one hand neatly at the small of her back and sway slowly with her in the shadowed alcove while the orchestra plays twenty feet away. {N} rests her forehead against your cheek, smiling softly as the tension melts out of her shoulders."
+        },
+        "close": {
+          "label": "Hike her gown up against the stone column",
+          "lead": "You press her gently back against the cool marble column hidden by the heavy drapes, kissing down her flushed throat as she hitches her silk skirts high around her hips with a quiet, wicked gasp. Her fingers find your belt buckle fast beneath the music. \"Quiet,\" she whispers hotly into your collar—though her breath catches immediately.",
+          "acts": ["kiss","manual_give","breast_give","oral_give","doggy"]
+        },
+        "image": {
+          "comp": "{N} pressed back behind heavy velvet ballroom drapes in a low-cut evening gown, lifting her hem slightly with a flushed wicked smile",
+          "setting": "a shadowed marble alcove behind tall red curtains overlooking a moonlit ballroom terrace",
+          "sam": true,
+          "cloth": "partial",
+          "wear": "a low-cut evening gown hiked at the hip"
+        }
+      },
+      {
+        "id": "duo_bloom_spring",
+        "tags": ["bloom"],
+        "title": "Pollen in the Warm Brook",
+        "text": "By the second afternoon of {C}, gold lustbloom pollen dusts every cuff and collarbone. {N} strips off her soaked outer tunic beside a clear woodland stream out of sight of camp, splashing cool water over her flushed breasts and glancing back at you with dark, unfocused eyes.\n\n\"Water's not cooling it down,\" she admits softly, catching her lower lip between her teeth as you hand her a towel. Her hand closes straight over your wrist instead, tugging you down onto the mossy bank beside her. \"Don't pretend you haven't been breathing it all day too, Sam.\"",
+        "tender": {
+          "label": "Help her rinse the pollen off cleanly",
+          "res": "You kneel on the moss and patiently wash the clinging gold dust off her neck, shoulders, and collarbones with cool stream water until her breathing steadies. {N} leans her cheek into your damp palm, grateful and smiling faintly before buttoning a clean dry shirt."
+        },
+        "close": {
+          "label": "Pull her down onto the mossy bank",
+          "lead": "You drop the towel straight onto the clover and ease her back against the soft moss, mouth catching hers warm and sweet with lingering pollen. {N} shudders instantly beneath your hands, arching her bare chest up against your shirt while her hips grind desperately against your thigh. \"Finally,\" she gasps against your mouth.",
+          "acts": ["kiss","breast_get","oral_get","missionary","cowgirl"]
+        },
+        "image": {
+          "comp": "{N} kneeling beside a sunlit woodland brook wiping wet glistening shoulders, shirt slipped off, flushed and pulling him down onto mossy grass",
+          "setting": "a secluded mossy stream bank in a sunlit forest glade with drifting gold pollen",
+          "sam": true,
+          "cloth": "partial",
+          "wear": "a damp tunic slipped down around her waist"
+        }
+      },
+      {
+        "id": "duo_delve_vault",
+        "tags": ["delve"],
+        "title": "Dry Stone Between Shifts",
+        "text": "Deep inside the tunnels on {C}, you and {N} catch an hour's rest on a dry carved ledge while the rest of the crew scouts the upper corridor. The lantern casts warm amber light across her dusty knees as she peels off her damp leather vest and stretches with a low groan.\n\n\"Nothing down here but old stone and echoes,\" she says softly, bumping her bare shoulder against yours until she's wedged snug at your side. \"And my heart's still hammering from that trap back there. Help me take my mind off it, boss.\"",
+        "tender": {
+          "label": "Work the knots out of her sore shoulders",
+          "res": "She turns her back to you gladly while your thumbs work the tight knots along her shoulders and spine. Her head drops forward with a contented sigh, and by the time footsteps return down the passage she looks twice as steady."
+        },
+        "close": {
+          "label": "Let the adrenaline burn off right there",
+          "lead": "She catches your chin before you can answer and kisses you hard—hungry and breathless from surviving the vault together. You ease her back across your folded bedroll beside the lantern while her hands push under your tunic and yank your trousers loose. \"Quick—before they finish mapping,\" she pants eagerly.",
+          "acts": ["kiss","manual_give","oral_give","doggy","cowgirl"]
+        },
+        "image": {
+          "comp": "{N} leaning close on a folded cloak atop a dry stone ruin ledge, leather vest unlaced over bare shoulders, flushed breathy grin",
+          "setting": "a dry carved stone chamber underground lit by a single warm brass lantern",
+          "sam": true,
+          "cloth": "partial",
+          "wear": "an unlaced leather vest over a thin chemise"
+        }
       }
     ],
     "trio": [
@@ -323,6 +411,72 @@
         "image": {
           "comp": "two flushed women covered in gold pollen lying in flowers with him, one kissing him while the other kisses her shoulder, clothes half off",
           "setting": "a sunlit glade of plum-coloured lustbloom flowers with drifting gold pollen",
+          "sam": true,
+          "cloth": "partial"
+        }
+      },
+      {
+        "id": "trio_road_wagon",
+        "tags": ["road"],
+        "title": "Under the Tarpaulin",
+        "text": "An evening squall on {C} drives you, {a}, and {b} under the arched canvas tarp of the supply wagon while rain batters the roof. With three sacks of oats and two wool blankets between the three of you, knees and hips overlap immediately in the close amber lantern glow.\n\n\"{a}'s hogging the dry side,\" {b} grumbles—sliding her hand shamelessly over your thigh instead of moving away. {a} raises one brow across the dim space, leans into your other shoulder, and murmurs, \"Well, he's warm enough for both of us.\"",
+        "tender": {
+          "label": "Huddle under both wool blankets till the squall passes",
+          "res": "You tuck a blanket around each of them and let them lean heavy on both shoulders while rain hammers the canvas overhead. Half an hour of whispered complaints turns into quiet laughter and steady breathing until the storm breaks."
+        },
+        "close": {
+          "label": "Turn the wagon bed into something much warmer",
+          "lead": "{a} doesn't wait for the rain to stop—she slides neatly onto your lap beneath the canvas arch, stripping off her damp tunic and kissing you deep while rolling her hips firmly over your hardening cock. \"Nobody's looking in here,\" she breathes against your mouth.",
+          "lead2": "{b} grins wickedly from the oat sacks, peels her shirt clear over her head, and presses her warm bare chest flush along your free side—guiding your hand straight onto her bare thigh while kissing along {a}'s neck. \"Share cleanly,\" she whispers.",
+          "acts": ["kiss","manual_give","breast_give","oral_give","cowgirl","missionary"]
+        },
+        "image": {
+          "comp": "two women huddled close beside him inside a canvas-covered supply wagon, shirts half off, both leaning in smiling warmly in lantern light",
+          "setting": "inside a covered wooden supply wagon during a night rainstorm, wool blankets and soft lantern glow",
+          "sam": true,
+          "cloth": "partial"
+        }
+      },
+      {
+        "id": "trio_ball_suite",
+        "tags": ["ball"],
+        "title": "After the Last Waltz",
+        "text": "When the noble gala on {C} winds down at two in the morning, the host puts you, {a}, and {b} up in a single velvet-draped guest suite meant for visiting retainers. The instant the heavy oak door clicks shut, both women kick off their pinching dancing slippers and groan in stereo.\n\n\"Unlace me before I suffocate,\" {a} orders, turning her silk-corseted back toward you. {b} already has half her own laces undone, sprawling across the huge featherbed watching with gleaming eyes. \"Leave mine off entirely, Sam—we earned a reward tonight.\"",
+        "tender": {
+          "label": "Unlace both gowns and share the leftover champagne",
+          "res": "You loosen both corsets carefully and uncork the chilled bottle left on the nightstand. All three of you pile sideways across the featherbed trading sharp impressions of the pomposity downstairs until the candles gutter low."
+        },
+        "close": {
+          "label": "Help them both out of their silks and into bed",
+          "lead": "As {a}'s silk bodice drops past her waist she spins cleanly around, pressing her bare breasts right against your chest and pulling your trousers undone while pushing you back toward the pillows. \"My turn to relax,\" she purrs.",
+          "lead2": "{b} shimmies free of her evening skirt on the featherbed, kneeling naked beside your hip with a bright, wicked laugh as she reaches straight for your cock and kisses {a}'s flushed cheek. \"Don't leave me waiting,\" she murmurs.",
+          "acts": ["kiss","manual_give","breast_give","oral_give","missionary","cowgirl"]
+        },
+        "image": {
+          "comp": "two women on a plush velvet-draped featherbed stepping out of unlaced evening gowns, both leaning toward him with flushed amused smiles",
+          "setting": "a lavish candlelit noble guest suite at night, wide featherbed, scattered silk gowns and champagne glasses",
+          "sam": true,
+          "cloth": "partial"
+        }
+      },
+      {
+        "id": "trio_fight_victory",
+        "tags": ["fight"],
+        "title": "Hot Blood After the Bout",
+        "text": "The scrap on {C} ended fast, clean, and loud—and back in the private camp tent afterward, neither {a} nor {b} can sit still for two seconds. Adrenaline still runs hot in their veins as they peel off bruised leather straps and splash cold basin water over flushed skin.\n\n\"Hands are still shaking,\" {a} laughs, catching your collar with bright, wild eyes. {b} steps directly behind you, wrapping warm bare arms around your ribs and pressing her flushed cheek to your shoulder. \"Good thing we didn't bring anyone fragile out here, boss.\"",
+        "tender": {
+          "label": "Patch their scrapes and let the adrenaline settle",
+          "res": "You fetch salve and clean linen strips, dabbing every scraped knuckle and shoulder bruise while the two of them replay every dodged blow with wild pride. By the time the fire burns down, both are grinning and steady."
+        },
+        "close": {
+          "label": "Let both of them burn off the rush on you",
+          "lead": "{a} shoves her leather tunic onto the gear pile and pulls you cleanly onto the wide camp furs, straddling your thighs with hot, reckless urgency while kissing you breathless. \"Still got too much fire left,\" she pants.",
+          "lead2": "{b} drops her straps right beside the lantern and crawls straight into the tangle of limbs, pressing her warm bare skin along your side and kissing {a}'s shoulder before reaching firmly between your legs. \"Room for two winners here,\" she grins.",
+          "acts": ["kiss","manual_give","oral_give","cowgirl","doggy","missionary"]
+        },
+        "image": {
+          "comp": "two women shedding leather armor straps inside a dimly lit camp tent, flushed with post-battle adrenaline and pulling him onto camp furs",
+          "setting": "a warm canvas camp tent at night after battle, scattered gear and lantern glow over furs",
           "sam": true,
           "cloth": "partial"
         }
@@ -448,6 +602,66 @@
             "mood": 3
           }
         ]
+      },
+      {
+        "id": "pair_bloom_wreath",
+        "tags": ["bloom"],
+        "title": "Gold on Their Wrists",
+        "text": "During a midday pause on {C}, {a} catches {b} wiping yellow lustbloom dust off her cheek—only to smear a brighter streak across her own jaw. They both freeze, glance at each other's flushed ears, and break into quiet, helpless laughter.\n\n\"Sit still before you rub it into your eyes,\" {a} says, pulling a clean damp kerchief from her pack and stepping close to dab carefully along {b}'s collarbone. {b} doesn't pull back a millimeter.",
+        "choices": [
+          {
+            "label": "Let them clean each other up at their own pace",
+            "res": "{a} takes her time dabbing every bright speck off {b}'s neck and wrists, and {b} returns the favor just as slowly—lingering over bruised knuckles with soft jokes until the flush fades into easy warmth.",
+            "bond": 5,
+            "mood": 4
+          },
+          {
+            "label": "Share a teasing joke to break the pollen haze",
+            "res": "They trade increasingly outrageous guesses about what the apothecaries actually brew out of the stuff, laughing loud enough to startle two marsh-hens before strapping their hampers back on side by side.",
+            "bond": 3,
+            "mood": 3
+          }
+        ]
+      },
+      {
+        "id": "pair_road_wheel",
+        "tags": ["road"],
+        "title": "Shoulder to the Wheel",
+        "text": "Mud sucks the left cartwheel axle-deep halfway along {C}, and {a} and {b} spend twenty soaked minutes wedging planks under the rim while trading dry curses in steady rhythm. When the wheel finally lurches onto solid gravel, both end up splattered head to boot and leaning breathless against the wagon side.\n\n\"Not bad for city parlor girls,\" {a} puffs, wiping a streak of mud off her brow. {b} grins back, holding up her own filthy palms. \"Speak for yourself—wait till we split the tavern bath tonight.\"",
+        "choices": [
+          {
+            "label": "Split the dry cloak and walk the last mile together",
+            "res": "They share the one dry wool cloak between their shoulders and finish the uphill grade in easy, companionable banter, arriving at the inn tired, soaked, and closer than they left.",
+            "bond": 5,
+            "mood": 3
+          },
+          {
+            "label": "Bet who cleans up faster at the inn",
+            "res": "The wager turns the muddy trudge into a brisk race for the hot water trough, ending in laughter and shared cider beside the hearth.",
+            "bond": 3,
+            "mood": 4
+          }
+        ]
+      },
+      {
+        "id": "pair_delve_echo",
+        "tags": ["delve"],
+        "title": "Half a Ration Underground",
+        "text": "Halfway down the damp stonework on {C}, a narrow trickle cuts across the passage and forces {a} and {b} to wait twenty minutes while the lead rope is reset. {a} breaks her last dried honey-cake cleanly in half and holds the bigger piece out without looking away from the lantern flame.\n\n\"{b}, eat,\" she mutters. \"Your stomach echoed off three walls.\" {b} laughs softly, taking the cake and bumping her boot deliberately against {a}'s heel in the dark.",
+        "choices": [
+          {
+            "label": "Sit back to back and share the quiet",
+            "res": "They lean their shoulders together against the dry stone pillar, eating slowly and trading quiet thoughts nobody speaks aloud upstairs until the rope tug signals the way clear.",
+            "bond": 5,
+            "mood": 3
+          },
+          {
+            "label": "Test the chamber echoes with terrible singing",
+            "res": "{b} hums one off-key tavern chorus just to hear the vault throw it back three times louder; {a} claps a hand over her mouth laughing so hard the lantern swings wild.",
+            "bond": 4,
+            "mood": 4
+          }
+        ]
       }
     ],
     "yuri": [
@@ -497,7 +711,7 @@
         "text": "The cloths are supposed to keep the pollen out. {a} tore hers climbing over a root, and {b} has been giving her half of hers, which means they've both breathed in plenty, and now they're nose to nose in a patch of flowers, sharing a single mask, which feels increasingly like a bad excuse.\n\n\"This isn't working,\" {a} says. Her pupils are huge. \"No,\" {b} agrees, and doesn't move. Her heartbeat is visible in her throat. She has wanted to kiss {a} for as long as she can remember and has never found the right moment, and the pollen has not made this up. It has only made the moment arrive. {a} lowers the cloth, slowly, and holds {b}'s gaze, asking. {b} answers by pulling the cloth away altogether.",
         "close": {
           "label": "Let the mask fall",
-          "res": "The mask falls and their mouths meet, hungry and sweet. {b} lays {a} back in the flowers and kisses her throat, then her collarbone, then pushes her shirt up and takes her breast in her mouth while {a} gasps and tangles a hand in her hair. They fumble each other's trousers open, laughing at the buttons, and then there are fingers sliding in wet heat, and {a} moans, loud and unashamed. {b} slips down between her legs and licks, slow and thorough, till {a} is shaking, then crawls up to share the taste in a kiss. {a} rolls her over and returns every favour. When they're done they are both pollen-gilded and utterly limp, and {a} says into {b}'s shoulder, \"We should have done this ages ago.\"",
+          "res": "The mask falls and their mouths meet, hungry and sweet. {b} lays {a} back in the flowers and kisses her throat, then her collarbone, then pushes her shirt up and takes her breast in her mouth while {a} gasps and tangles a hand in her hair. They fumble each other's trousers open, laughing at the buttons, and then there are fingers sliding deep into her soaking pussy, and {a} moans, loud and unashamed. {b} slips down between her legs and licks, slow and thorough, till {a} is shaking, then crawls up to share the taste in a kiss. {a} rolls her over and returns every favour. When they're done they are both pollen-gilded and utterly limp, and {a} says into {b}'s shoulder, \"We should have done this ages ago.\"",
           "acts": ["kiss","manual_give","breast_give","oral_give"]
         },
         "decline": {
@@ -527,6 +741,63 @@
         "image": {
           "comp": "two women standing hip-deep in a stream in soaked clinging shirts, one kissing the other and sliding a hand under the wet cloth, flushed",
           "setting": "a forest stream at the edge of a sunlit lustbloom glade, drifting gold pollen, mossy bank"
+        }
+      },
+      {
+        "id": "yuri_camp_bedroll",
+        "tags": ["camp"],
+        "title": "Warmth Under One Blanket",
+        "text": "Frost settles across the camp grass halfway through {C}, and {a} and {b} push their bedrolls together beside the dying embers to stay warm. Under the shared wool blanket, bare knees brush and stay pressed flush while the rest of the camp snores across the clearing.\n\n\"Your hands are freezing,\" {a} whispers, tucking {b}'s fingers under her own thin tunic right over her warm stomach. {b} lets out a quiet shiver that has nothing to do with the cold, sliding her palm higher up {a}'s bare ribs as she leans close in the dark.",
+        "close": {
+          "label": "Pull the blanket up over both of them",
+          "res": "{a} catches {b}'s mouth in a slow, muffled kiss under the wool, shifting closer until their bare breasts press warm together. {b}'s fingers slip down past {a}'s waistband to stroke straight between her slick thighs while {a} swallows a breathless gasp against her shoulder, trading hips and wet mouths in the dark until both shudder apart quiet and flushed under the frost-rimmed canvas.",
+          "acts": ["kiss","manual_give","breast_give","oral_give"]
+        },
+        "decline": {
+          "label": "Tuck close and just sleep warm",
+          "res": "{b} smiles in the dark and settles her cheek against {a}'s collarbone without pushing further. They sleep tangled comfortably beneath the shared wool until dawn breaks clean over the trees."
+        },
+        "image": {
+          "comp": "two women huddled close beneath a thick wool blanket in a dimly lit camp tent, kissing softly with shirts pulled loose",
+          "setting": "a quiet camp tent at night with frost outside and faint ember light glowing through canvas"
+        }
+      },
+      {
+        "id": "yuri_ball_dressing",
+        "tags": ["ball"],
+        "title": "Lacing Each Other Out",
+        "text": "After the last carriage rolls away on {C}, {a} and {b} retreat to the empty dressing room behind the ballroom to escape their stiff corsets. {a} stands behind {b} pulling the satin ribbon free inch by inch—and when the bodice finally parts down her spine, {a}'s warm fingers don't leave her bare waist.\n\n\"You kept looking at me across the dance floor all night,\" {b} murmurs into the silvered mirror, leaning her bare back deliberately into {a}'s chest as her gaze catches {a}'s eyes in the glass.",
+        "close": {
+          "label": "Lock the dressing room door",
+          "res": "{a} turns the brass key without breaking eye contact in the mirror, sliding both palms over {b}'s bare breasts as her mouth finds the warm hollow of {b}'s neck. {b} turns around laughing breathlessly, shoves {a}'s gown down off her shoulders, and backs her onto the velvet settee—hands and tongues working eagerly over bare curves until both gasp through sharp, muffled orgasms in the candlelight.",
+          "acts": ["kiss","breast_give","manual_give","oral_give","missionary"]
+        },
+        "decline": {
+          "label": "Laugh softly and finish changing",
+          "res": "\"Pure professional lookout,\" {a} teases, squeezing {b}'s shoulders once with a warm grin before handing her a dry shawl. They stroll back to their quarters arm in arm, cheeks still lightly pink."
+        },
+        "image": {
+          "comp": "two women in a candlelit dressing room unlacing each other out of evening gowns before a tall mirror, flushed and leaning close",
+          "setting": "a plush private dressing room behind a ballroom at night, tall mirror, velvet settee and scattered silks"
+        }
+      },
+      {
+        "id": "yuri_delve_hotpool",
+        "tags": ["delve"],
+        "title": "Warm Spring in the Lower Vault",
+        "text": "Tucked past a collapsed archway on {C}, {a} and {b} stumble across a clear geothermal basin steaming quietly inside the stone vault—clean, warm, and hidden from the rest of the route. Within two minutes both have shed dusty leathers onto dry stone and slipped waist-deep into the hot water.\n\n\"Best find of the whole delve,\" {b} sighs, floating lazily closer until her wet thigh brushes {a}'s hip in the drifting mist. {a} catches her waist beneath the water instead of stepping away, smiling slow as steam curls between their lips.",
+        "close": {
+          "label": "Pull her close in the steaming water",
+          "res": "{b} wraps her slick legs smoothly around {a}'s waist against the warm stone ledge, kissing her deep while hot water laps over their bare chests. {a}'s fingers slide cleanly between {b}'s parted thighs beneath the surface, curling fast until {b} arches back with a muffled cry echoing softly off the cavern ceiling before pulling {a} down to return the favor breathless and thorough.",
+          "acts": ["kiss","manual_give","breast_give","oral_give","cowgirl"]
+        },
+        "decline": {
+          "label": "Soak quietly until the ache fades",
+          "res": "{a} laughs lightly and splashes a warm ripple across {b}'s shoulders. They soak side by side against the smooth limestone for twenty peaceful minutes before toweling off and heading back to the lantern line."
+        },
+        "image": {
+          "comp": "two women soaking naked together in a steaming subterranean stone spring, leaning close with wet glistening skin and warm smiles",
+          "setting": "a hidden geothermal stone pool inside an ancient underground vault lit by a single brass lantern"
         }
       }
     ]

@@ -259,6 +259,26 @@
       "desc": "Half of Hollowmere remembers her from somewhere: 50% more likely to win a regular, +20% tips.",
       "ngPerk": true,
       "fx": {"regular":1.5,"tips":1.2}
+    },
+    "Trailblazer": {
+      "desc": "Old roads never close to her: +25% guild contract progress, 25% fewer injuries; +5 Strength, +5 Agility.",
+      "ngPerk": true,
+      "gen": false,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "excl": [],
+      "fx": {"guild":1.25,"guildSafe":0.75,"stats":{"strength":5,"agility":5}}
+    },
+    "Guild Legend": {
+      "desc": "Taverns toast her contracts across lives: +20% guild contract progress, services earn 6% more, adventurers and mercenaries pay 20% more.",
+      "ngPerk": true,
+      "gen": false,
+      "hidden": false,
+      "earn": null,
+      "ngOnly": false,
+      "excl": [],
+      "fx": {"guild":1.2,"clientFee":1.06,"classBonus":{"adventurer":1.2,"mercenary":1.2}}
     }
   }
 }

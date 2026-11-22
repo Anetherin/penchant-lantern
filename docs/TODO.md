@@ -24,7 +24,6 @@ This file is for big ideas when I have a fresh batch of Claude usage.
 
 ## Story
 - All non guest characters should have fully fleshed out stories.
-- Check the tone and length of various stories, arcs, and bonds.
 
 
 ## Night engine
@@ -33,8 +32,4 @@ This file is for big ideas when I have a fresh batch of Claude usage.
 
 ## Follow-ups from finished passes
 Finished designs are documented in CLAUDE.md, docs/GUILD.md and docs/BALANCE.md; only what's still open is kept here.
-- **Week structure:** internal keys that say "night" for something weekly (`goodNight`/`badNight`), and a pass over flavor text that calls the whole turn a day.
-- **Sam's focus / goddess:** post-binding, she could grant extra focus-like help or take clients herself. Low priority: a few female clients interested in women.
-- **Adventurers' Guild:** more contract types and party scenes per tag; Vesna/Brunhild after-stories.
-- **Isolde:** more nights (especially as lovers), rival events tied to her house's standing against Sam's, a goddess reaction to her.
-- **Town events:** more events (the Isolde price war and festival wager could be town events), choices on the announcement page, events tied to one house instead of the whole town.
+- **Clients:** Low priority — a few more female clients interested in women beyond `clients.women`.

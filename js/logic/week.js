@@ -177,7 +177,8 @@ function simHouse(h, R){
     : (samSec > 0 ? clamp((S.sam.charm||0)/100, 0, 1) : 0);
   const secGrace = clamp(secGraceRaw + (secs.length && h.up.guard ? 0.1 : 0), 0, 1);
   const barN = h.up.bar ? byJob('bartender').length : 0, attendants = byJob('attendant');
-  const floorE = focusOn('floor', h), floorSat = floorE * (((BAL.focus||{}).floor||{}).sat ?? 4);   // Sam working the floor: happier clients, calmer waits
+  const godFloorSat = (typeof GW!=='undefined' && GW.focus && GW.focus.kind==='floor' && samAtHouse(h)) ? ((((GB().actions||{}).focus||{}).floorSat ?? 5) * (GW.focus.mul || 1)) : 0;
+  const floorE = focusOn('floor', h), floorSat = floorE * (((BAL.focus||{}).floor||{}).sat ?? 4) + godFloorSat;   // Sam working the floor (plus Seliora backing him up): happier clients, calmer waits
   // attendants (balance.json → jobs.attendant*): her quality = Hospitality / Charm / Wits x outfit/job bonus x output. With a madame, bonded pairs match first.
   const ap = attendantPairs(h, R), ownAttMap = ap.byCourt, attSorted = ap.attSorted;
   const attAvg = attSorted.length ? attSorted.reduce((a,x)=>a+attQFor(x, R.per[x.id]),0)/attSorted.length : 0;
@@ -196,7 +197,7 @@ function simHouse(h, R){
   if(HD.haunted) dBase *= 0.45 + Math.min(1, h.rep/(HD.hauntRep||40))*0.8;
   dBase *= (h.bonus&&h.bonus.demand) || 1;
   dBase *= 1 + lowF * (PR.lowDemandBonus ?? 0.25);
-  dBase *= ((hr.tidyFx && hr.tidyFx.demand) || 1) * townMul('demand', 1);   // word gets around about a shabby house (balance.json → tidy.fx.*.demand)
+  dBase *= ((hr.tidyFx && hr.tidyFx.demand) || 1) * townMul('demand', 1, h);   // word gets around about a shabby house (balance.json → tidy.fx.*.demand)
   const v0 = W.length ? Math.max(1, Math.round(dBase)) + danceDraw*2 : 0;   // expected visitors, for proposition rates
   const escorts = W.filter(w=>JOBS[w.job].cat==='escort');
   // Nights (balance.json → nights): the week is six work nights. Each night every escort takes up to her nightly cap (nightCapOf, Stamina-based),
@@ -213,14 +214,14 @@ function simHouse(h, R){
     R.hl.push({wid:w.id, text:flavor('solo', w), act:null, scene:'solo', noAi:true});
   });
   const roomM = ROOM_MULT[h.tier];
-  const propInc = (w, id, cls, c) => { const q = qualityOf(w,id); return Math.round(actById(id).price * P.mult * BP.propFee * feeQualMult(q) * cls.mult * townMul('fee', 1) * fxMul(w,'clientFee') * incenseMul(w,'clientFee') * BAL.income.escort * cMul(c,'fee',X,w) * cQual(c,q) * townMul('prop', 1) * (cls.tier==='rich' ? townMul('richFee', 1) : 1) * shrineMult(h, 'perFee')); };
+  const propInc = (w, id, cls, c) => { const q = qualityOf(w,id); return Math.round(actById(id).price * P.mult * BP.propFee * feeQualMult(q) * cls.mult * fxSubC(w,'classBonus',cls) * townMul('fee', 1, h) * fxMul(w,'clientFee') * incenseMul(w,'clientFee') * BAL.income.escort * cMul(c,'fee',X,w) * cQual(c,q) * ((cls.tier==='merchant' || cls.tier==='noble') ? townMul('richFee', 1, h) : 1) * shrineMult(h, 'perFee')); };
 
   // --- propositions to staff (courtesans are asked through the main flow below)
   const propN = {};   // weekly offers per lady, spread over the nights
   W.forEach(w=>{
     const j = w.job, rate = PROP_RATE[j]; if(!rate || chapelIdle(w)) return;
     const pr = R.per[w.id], must = !!JOBS[j].must;
-    propN[w.id] = Math.round(v0 * rate * barBoost * housePerkVal(h, 'propMult', 1) * (1 + lowF * (PR.lowPropRate ?? 0.45)) * fxMul(w,'propRate') * incenseMul(w,'prop') * (0.4 + appeal(w)/100) * ob(w,'propose') * rnd(0.6,1.4));
+    propN[w.id] = Math.round(v0 * rate * barBoost * housePerkVal(h, 'propMult', 1) * (1 + lowF * (PR.lowPropRate ?? 0.45)) * fxMul(w,'propRate') * incenseMul(w,'prop') * townMul('prop', 1, h) * (0.4 + appeal(w)/100) * ob(w,'propose') * rnd(0.6,1.4));
   });
   const staffProps = (w, n) => {
     const j = w.job, pr = R.per[w.id], must = !!JOBS[j].must;
@@ -232,7 +233,7 @@ function simHouse(h, R){
         if(dec.why==='nomood'){ pr.notMood = (pr.notMood||0)+1; e.note = 'nomood'; }
         if(expects){ X.expectMiss++; pr.expectMiss = (pr.expectMiss||0)+1; e.note = 'expect'; }
         const pu = pushyCheck(X, w, cls, pr, client); if(pu) e.note = 'pushy_'+pu;
-        thirstyMiss(client, true);
+        thirstyMiss(client, false);
         if(pr.nightOver) break;   // her night ended: tonight's other offers never reach her
       } else if(!X.roomOK(w)){ hr.turned++; hr.short++; pr.noRoom = (pr.noRoom||0)+1; e.note = 'noroom'; thirstyMiss(client); }
       else if(j==='chapel'){
@@ -247,7 +248,7 @@ function simHouse(h, R){
         }
         const A = actById(dec.act), reluct = clientStance(w,dec.act)==='ask', rm = w.race==='angel' ? 1 : (C.nonAngelMult ?? 0.5), cm = housePerkVal(h, 'chapelMult', 1);
         const coin = Math.round((HD.chapelPropCoin || 0) * rm * cm);
-        pr.acc++; hr.accProps++; pr.chapelProps = (pr.chapelProps||0)+1; repAdd(h, (C.propRep ?? 0.45) * rm * cm);
+        pr.acc++; hr.accProps++; pr.chapelProps = (pr.chapelProps||0)+1; repAdd(h, (C.propRep ?? 0.45) * rm * cm * fxMul(w,'rep'));
         if(coin){ hr.income += coin; R.led.chapel += coin; pr.earned += coin; hr.chapel = (hr.chapel||0) + coin; }
         const rs = runService(X, w, A, {tech:clientTech(cls,null,client), reluct, inc:coin, ecost:actCost(w,dec.act), led:'chapel', client, cls, q:qualityOf(w,dec.act)*(reluct?0.85:1)});
         if(!reluct && w.lust < LUST_EAGER && !restless(w)){ moodAdd(w, -BP.reluctantMood); pr.grudging = (pr.grudging||0)+1; }
@@ -324,7 +325,7 @@ function simHouse(h, R){
       if(Math.abs(sp) >= 0.15) (pr.notes = pr.notes||[]).push(flavor(sp > 0 ? 'job_samples_rep_good' : 'job_samples_rep_bad', w));
     }
     pr.draw = d; promoDraw += d * priceDem; countUp(w,'promo', Math.max(1, Math.round(d * priceDem)));
-    if(J.promoterRep) repAdd(h, d * priceDem * J.promoterRep);
+    if(J.promoterRep) repAdd(h, d * priceDem * J.promoterRep * fxMul(w,'rep'));
   });
   // promoters read last week (h.lastFlow): clients turned away mean she pulls back. How well she reads it: promoterReadBase + Wits/promoterReadWits,
   // + promoterReadBond if she's on good terms (bond >= promoterBondAt) with the house's security, who tells her how the door went. Best reader leads.
@@ -453,7 +454,7 @@ function simHouse(h, R){
     const menuOf = x => helper ? offeredMenu(x) : x.menu;
     const fits = (x, id) => menuOf(x).includes(id) && canClient(x,id) && !nim(x,id) && !tooTiredFor(x,id) && energyOK(x, id, 0.15) && lightOK(x, id);
     const thirsty = cHas(client,'thirsty');
-    const wantsIt = thirsty || Math.random() < Math.min(1, (helper ? J.propWant.other : J.propWant.courtesan) * barBoost * cMul(client,'prop',X) * (1 + lowF * (PR.lowPropWant ?? 0.35)));
+    const wantsIt = thirsty || Math.random() < Math.min(1, (helper ? J.propWant.other : J.propWant.courtesan) * barBoost * townMul('prop', 1, h) * cMul(client,'prop',X) * (1 + lowF * (PR.lowPropWant ?? 0.35)));
     // With a madame the client is matched: she scores the free ladies for him (willingness, skill at his want, his likes/draw, balanced load) and picks the best.
     // Without one he takes whoever is free: appeal and draw count only to the power clients.nativeMatch.
     const matchMode = mgmt && !helper && !fw, nm = BAL.clients.nativeMatch ?? 1;
@@ -542,7 +543,7 @@ function simHouse(h, R){
     const base = act ? actById(act).price * roomM * ob(w,'courtesan') : 20 * ob(w,'courtesan');
     const below = Math.max(0, (HD.minPop||0) - w.popularity);
     const spPoss = act ? spiritPossess(X, w, client, pr) : null, adShift = androidAdapt(w, client, pr);
-    const houseFeeMult = (HD.feeMult || 1) * ((HD.classFee && (HD.classFee[cls.id] ?? HD.classFee[cls.tier])) || 1) * shrineMult(h, 'perFee') * (cls.tier==='rich' ? townMul('richFee', 1) : 1) * townMul('fee', 1);
+    const houseFeeMult = (HD.feeMult || 1) * ((HD.classFee && (HD.classFee[cls.id] ?? HD.classFee[cls.tier])) || 1) * shrineMult(h, 'perFee') * ((cls.tier==='merchant' || cls.tier==='noble') ? townMul('richFee', 1, h) : 1) * townMul('fee', 1, h);
     const rich = cls.tier==='merchant' || cls.tier==='noble', qualMet = q >= expQ, amenMet = amenScore >= expAmen;
     const prestigeFeeMult = ((highF > 0 && rich && qualMet && amenMet) ? 1 + highF * (PR.richFeeBonus ?? 0.18) : 1) * (!act && highF > 0 ? 1 + highF * (PR.highCompFee ?? 0.45) : 1);
     const inc = Math.round(base * P.mult * feeQualMult(q) * cm * (1+madF*0.15) * fxMul(w,'clientFee') * incenseMul(w,'clientFee') * jb(w,w.job) * (react==='like' ? SVC.raceLikeFee : 1) * (below?0.75:1) * (reg ? (regQuirk(reg).tip||1) : 1) * cMul(client,'fee',X,w) * (act ? cQual(client,q) : cMul(client,'compFee',X)) * (spPoss ? spPoss.feeMult : 1) * (adShift ? adShift.feeMult : 1) * houseFeeMult * prestigeFeeMult * refMul(w, h, 'fee') * BAL.income.escort);
@@ -609,7 +610,7 @@ function simHouse(h, R){
       const dm = housePerkVal(h, 'danceMult', 1);
       const tips = Math.round(visitors * J.tipsBase * (0.5 + w.popularity/100) * (0.5 + s100(statOf(w,'charisma'))/100) * Math.sqrt(P.mult) * ob(w,'dancer') * dm * fxMul(w,'tips'));
       const inc = Math.round((12+w.popularity*0.8) * (0.5+s100(w.tech.dance)/100) * (0.8 + s100(statOf(w,'agility'))/250) * Math.sqrt(P.mult) * jb(w,'dancer') * ob(w,'dancer') * dm) + tips;
-      hr.income+=inc; R.led.dance+=inc; pr.earned+=inc; w.popularity=clamp(w.popularity+(2+(s100(statOf(w,'agility'))>=60?1:0))*housePerkVal(h,'popGain',1)); repAdd(h, J.danceRep * (0.5 + w.popularity/100)); lewdUp(w, 0.5*(has(w,'Exhibitionist')?3:1), has(w,'Exhibitionist') ? BAL.lewd.danceExhib : BAL.lewd.dance); grow(w,'dance',2); statXP(w,'agility',1); statXP(w,'charisma',0.5); statXP(w,'beauty',1); countUp(w,'dance',Math.max(1,Math.round(visitors/8))); }
+      hr.income+=inc; R.led.dance+=inc; pr.earned+=inc; w.popularity=clamp(w.popularity+(2+(s100(statOf(w,'agility'))>=60?1:0))*housePerkVal(h,'popGain',1)); repAdd(h, J.danceRep * (0.5 + w.popularity/100) * fxMul(w,'rep')); lewdUp(w, 0.5*(has(w,'Exhibitionist')?3:1), has(w,'Exhibitionist') ? BAL.lewd.danceExhib : BAL.lewd.dance); grow(w,'dance',2); statXP(w,'agility',1); statXP(w,'charisma',0.5); statXP(w,'beauty',1); countUp(w,'dance',Math.max(1,Math.round(visitors/8))); }
     if(j==='bath'){
       const bm = housePerkVal(h, 'bathMult', 1);
       const inc = Math.round((8+visitors*1.2) * (0.5+(s100(w.tech.service)+s100(statOf(w,'beauty')))/200) * jb(w,'bath') * ob(w,'bath') * bm); hr.income+=inc; R.led.bath+=inc; pr.earned+=inc; grow(w,'service',1.5); lewdUp(w, 0.5, BAL.lewd.bath); statXP(w,'stamina',1); statXP(w,'charm',1);
@@ -625,7 +626,7 @@ function simHouse(h, R){
         const s0 = encSnap(w, pr);
         let didMassage = false, feeM = 0, serM = null, act2 = null, want2 = null, ser2 = null;
         if(!reg && M && !actBanned(w, M.id) && w.energy - actCost(w, M.id) >= maxEnergy(w)*0.15){
-          feeM = Math.round(M.price * P.mult * feeQualMult(qualityOf(w, M.id)) * cls.mult * fxMul(w,'clientFee') * incenseMul(w,'clientFee') * BAL.income.escort * (joins ? J.bathJoinFee : 1) * bm);
+          feeM = Math.round(M.price * P.mult * feeQualMult(qualityOf(w, M.id)) * cls.mult * fxSubC(w,'classBonus',cls) * fxMul(w,'clientFee') * incenseMul(w,'clientFee') * BAL.income.escort * (joins ? J.bathJoinFee : 1) * bm);
           hr.income += feeM; R.led.bath += feeM; pr.earned += feeM; w.energy -= actCost(w, M.id); pr.acts[M.id] = (pr.acts[M.id]||0)+1; growAct(w, M.id, 0.4);
           serM = serveAct(w, M, {tech, reluct:false, pr, h});
           if(joins) pr.bathJoin = (pr.bathJoin||0)+1;
@@ -638,7 +639,7 @@ function simHouse(h, R){
           if(!act2 && want2){ const alt = negotiateAlt(w, want2, canDo, BP.alt, client); if(alt) act2 = alt.act; }
           if(act2){
             const A2 = actById(act2), reluct = clientStance(w,act2)==='ask';
-            const fee2 = Math.round(A2.price * P.mult * feeQualMult(qualityOf(w,act2)) * cls.mult * fxMul(w,'clientFee') * incenseMul(w,'clientFee') * BAL.income.escort * (joins ? J.bathJoinFee : 1) * bm);
+            const fee2 = Math.round(A2.price * P.mult * feeQualMult(qualityOf(w,act2)) * cls.mult * fxSubC(w,'classBonus',cls) * fxMul(w,'clientFee') * incenseMul(w,'clientFee') * BAL.income.escort * (joins ? J.bathJoinFee : 1) * bm);
             hr.income += fee2; R.led.bath += fee2; pr.earned += fee2; w.energy -= actCost(w, act2);
             pr.acts[act2] = (pr.acts[act2]||0)+1; growAct(w, act2, 0.5); lewdUp(w, reluct?0.5:0.25, svcLewdCap(act2,'client'));
             ser2 = serveAct(w, A2, {tech, reluct, pr, h});
@@ -658,7 +659,7 @@ function simHouse(h, R){
     else if(j==='chapel'){   // tends visitors; what she offers earns extra reputation and chapel donations instead of service fees (balance.json → amenities.chapel)
       const C = BAL.amenities.chapel, cm = housePerkVal(h, 'chapelMult', 1), rm = w.race==='angel' ? 1 : (C.nonAngelMult ?? 0.5), propBoost = 1 + Math.min(C.propDonMax ?? 1, (pr.chapelProps||0) * (C.propDonBonus ?? 0.25)), cb = jb(w,'chapel') * ob(w,'chapel') * rm, don = Math.round(visitors * chapelClassMul(X, C) * C.donation * (0.5 + s100(statOf(w,'charm'))/100) * refMul(w, h, 'chapel') * cb * propBoost * cm * om);
       hr.income += don; R.led.chapel += don; pr.earned += don; pr.tended = Math.round(visitors * chapelClassMul(X, C)); hr.chapel = (hr.chapel||0) + don;
-      repAdd(h, C.rep * cb * cm); w.popularity = clamp(w.popularity + C.pop * rm * housePerkVal(h, 'popGain', 1)); moodAdd(w, C.mood); gainTrust(w, C.trust); grow(w,'service',1); statXP(w,'charm',1); statXP(w,'refinement',0.5 + 0.5*refK(h)); pr.why.push({t:'tended the chapel', good:true});
+      repAdd(h, C.rep * cb * cm * fxMul(w,'rep')); w.popularity = clamp(w.popularity + C.pop * rm * housePerkVal(h, 'popGain', 1)); moodAdd(w, C.mood); gainTrust(w, C.trust); grow(w,'service',1); statXP(w,'charm',1); statXP(w,'refinement',0.5 + 0.5*refK(h)); pr.why.push({t:'tended the chapel', good:true});
       if(pr.chapelProps) pr.why.push({t:`accepted ${pr.chapelProps} chapel offering${pr.chapelProps>1?'s':''}`, good:true});
     }
     if(j==='teacher'){ classroomTeach(h, W, w, pr, R, hr); statXP(w,'wits',1.5); }
@@ -685,7 +686,7 @@ function simHouse(h, R){
     if(JOBS[j].cat!=='escort' || !pr.served){ const t = flavor(j==='promoter' && pr.samples ? 'job_promoter_samples' : j==='bath' && pr.bathJoin ? (pr.moreN ? 'job_bath_more' : 'job_bath_joined') : j==='rest' && w.race==='demon' ? 'job_rest_demon' : 'job_'+j, w); if(t) R.hl.push({wid:w.id, text:t, act:null, scene:'job_'+j, noAi:true, job:true}); }
   });
   if(h.up.chapel && byJob('chapel').length && !W.some(x=>x.race==='angel' && ['chapel','host','security','maid'].includes(x.job))){
-    const C = BAL.amenities.chapel; X.unsat += Math.abs(C.noAngelSat ?? -8); repAdd(h, C.noAngelRep ?? -0.5);
+    const C = BAL.amenities.chapel; X.unsat += (C.noAngelSat ?? -8); repAdd(h, C.noAngelRep ?? -0.5);
     R.lines.push(`🕯️ Visitors to ${h.name}'s chapel were disappointed not to see an angel in the chapel or on the floor.`);
   }
   if(h.up.chapel && byJob('chapel').some(x=>x.race==='angel')) hr.chapelMood = BAL.amenities.chapel.angelHouseMood ?? 0;
@@ -702,7 +703,7 @@ function simHouse(h, R){
   nightIncidents(h, hr, X, W, R, {secPow, visitors, NIGHTS, rowdyF, barN, secs});
   let up = HD.upkeep + (HD.ngppOnly ? 15 * Math.max(0, (h.ngppLevel||1) - 1) : 0) + 12*h.rooms + 6*(h.quarters||0) + h.tier*20 + (h.beds||0)*4*bedsFor(h) + (h.extraBeds||0)*3 + (h.annex?30:0) + (h.up.bar ? (BAL.amenities.drinks.upkeep[h.drinks||0]||0) : 0) + Object.keys(h.up).filter(k=>h.up[k] && !HD.up[k]).reduce((a,k)=>a+(UPGRADES[k].upkeep||0), 0);
   if(atSam && S.samWeek.books) up = Math.round(up * (1 - booksCut() * (S.samWeek.booksEff ?? 1)));
-  up = Math.round(up * (BAL.houses.upkeepMult ?? 1) * ((h.bonus&&h.bonus.upkeep)||1) * (1 + h.rep/150) * townMul('upkeep', 1) * (hasChallengePerk('ahead_of_time') ? 0.9 : 1));
+  up = Math.round(up * (BAL.houses.upkeepMult ?? 1) * ((h.bonus&&h.bonus.upkeep)||1) * (1 + h.rep/150) * townMul('upkeep', 1, h) * (hasChallengePerk('ahead_of_time') ? 0.9 : 1));
   up += hr.damage || 0;   // nightIncidents: unhandled brawls, thefts and vandals
   hr.upkeep = up;
   if(h.bonus && h.bonus.charter){ hr.income += h.bonus.charter; R.led.bar += h.bonus.charter; }
@@ -712,7 +713,7 @@ function simHouse(h, R){
   // reputation: each lady's clients move it by (sat-50)/12 per client share, scaled by her rep fx. Gains are slower in a famous house.
   if(W.length){
     const tot = Math.max(1, hr.served);
-    const part = W.reduce((a,w)=>{ const pr = R.per[w.id]; return a + (pr.served ? (pr.satSum - 50*pr.served)/tot/12 * fxMul(w,'rep') : 0); }, 0);
+    const part = W.reduce((a,w)=>{ const pr = R.per[w.id], d = pr.satSum - 50*pr.served; return a + (pr.served ? d/tot/12 * (d > 0 ? fxMul(w,'rep') : 1) : 0); }, 0);
     repAdd(h, part + (X.unsat + X.repSat)/tot/12 + X.gossipRep);
     if(hr.left && WT.leaveRep) h.rep = clamp(h.rep - hr.left * WT.leaveRep);
     if(hr.crowdOver > 0) h.rep = clamp(h.rep - (hr.crowdOver * (CR.repPer ?? 0.18) + hr.crowdOver * hr.crowdOver * (CR.repQuad ?? 0.008)));
@@ -741,7 +742,7 @@ function simHouse(h, R){
 // the lewdness for it (yuri.lewd, plus orientGap for a woman unless Sapphic/Bisexual); a good bond and a housemate's own lust
 // make her the one picked. They share one night: lust spent, a little lewdness, mood and bond (less than a spirit's
 // reverse-possession tryst). Pictured as pair:<act>:fem:<other> on her page and from the other side on the housemate's.
-const YURI_ACTS = ['kiss','manual_give','manual_get','oral_get','oral_give','breast_get','missionary','cowgirl','doggy'];
+const YURI_ACTS = ['kiss','manual_give','manual_get','breast_get','breast_give','oral_get','oral_give','missionary','cowgirl','doggy'];
 function yuriNight(w, W, R, NIGHTS){
   const Y = BAL.yuri; if(!Y || Y.off) return false;
   const need = x => (Y.lewd ?? 40) + orientGap(x, 'f');
@@ -752,8 +753,8 @@ function yuriNight(w, W, R, NIGHTS){
     && (o.lewd||0) >= need(o) && (o.lust||0) >= (Y.otherLust ?? 30) && o.energy >= maxEnergy(o) * 0.2);
   if(!pool.length) return false;
   const o = weighted(pool, x=>1 + Math.max(0, bondV(w, x)) / (Y.bondWeight ?? 20) + (x.lust||0) / 100 + (has(x,'Sapphic') ? 1 : has(x,'Bisexual') ? 0.4 : 0));
-  const top = Math.min(w.lewd, o.lewd) - Math.max(orientGap(w,'f'), orientGap(o,'f'));
-  const acts = YURI_ACTS.filter(id=>{ const A = actById(id); return A && A.pair && (A.pair.fem||[]).length && (A.th||0) <= top && !actBanned(w,id) && !actBanned(o,id); });
+  const top = Math.min(w.lewd - orientGap(w,'f'), o.lewd - orientGap(o,'f'));
+  const acts = YURI_ACTS.filter(id=>{ const A = actById(id), f = id.replace(/_(give|get)$/, (m,k)=>k==='give'?'_get':'_give'), oAct = actById(f) ? f : id; return A && A.pair && (A.pair.fem||[]).length && (A.th||0) <= top && !actBanned(w,id) && !actBanned(o,oAct); });
   const act = acts.length ? weighted(acts, id=>1 + (actById(id).th||0)/20) : 'kiss', A = actById(act);
   const night = ri(0, NIGHTS-1), pw = R.per[w.id], po = R.per[o.id];
   pw.soloNight = night; po.soloNight = night; pw.yuri = o.id; po.yuri = w.id;

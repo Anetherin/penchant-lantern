@@ -11,7 +11,7 @@ function endWeek(){
   const attLines = syncAttendants();   // spare attendants stand in for absent courtesans or rest, and go back to attending when they return
   const focusLine = samFocusRun();   // Sam's weekly focus (focus.js): pays its energy, sets what simHouse reads
   const R = {v3:true, v5:true, v6:true, week:S.week, lines:[], per:{}, hl:[], houses:[], income:0, wages:0, upkeep:0, recharge:0, cuts:0, served:0, turned:0, left:0, stopped:0, selfProps:0,
-    led:{escort:0, offduty:0, bar:0, dance:0, bath:0, chapel:0, host:0, guild:0, office:0, sam:S.samWeek.income}, samActs:S.samWeek.acts.slice()};
+    led:{escort:0, offduty:0, bar:0, dance:0, bath:0, chapel:0, host:0, guild:0, office:0, goddess:0, sam:S.samWeek.income}, samActs:S.samWeek.acts.slice()};
   S.workers.forEach(w=>R.per[w.id]={id:w.id, name:w.name, job:w.job, prevJob:w.job==='rest' ? w.prevJob : undefined, standIn:w.standIn || undefined, house:w.house, served:0, comp:0, acts:{}, props:0, acc:0, earned:0, e0:Math.round(w.energy), m0:Math.round(w.mood), l0:Math.round(w.lust||0), enc:[], why:[], notes:[],
     t0:w.trust||0, lw0:w.lewd||0, p0:w.popularity||0, st0:Object.assign({}, w.stats), tk0:Object.assign({}, w.tech), ak0:Object.fromEntries(Object.entries(w.acts||{}).map(([k,a])=>[k, a.skill||0]))});
   const log = t => R.lines.push(t);
@@ -68,7 +68,7 @@ function endWeek(){
     if(w._bed===FLOOR_REST && !['spirit','android'].includes(w.race)){ moodAdd(w, -3); why('slept on the floor', false); }
     else if(housingShort(h) && !['spirit','android','demon'].includes(w.race)){ moodAdd(w, -BAL.quarters.moodPer*housingShort(h)); why('expects better quarters in a house of this prestige', false); }
     if(!(isVessel(w) && vesselStage(w) < 1)) w.mood += (BAL.mood.restingPoint + fxAdd(w,'moodRest') + (has(w,'Loyal')?5:0) + (has(w,'Devoted')?10:0) - w.mood) * BAL.mood.drift * fxMul(w,'moodDrift');
-    if(townAdd('mood', 0)) moodAdd(w, townAdd('mood', 0));
+    const tm = townAdd('mood', 0, h); if(tm) moodAdd(w, tm);
     const extraAcc = Math.max(0, pr.acc - Math.max(0, pr.served - pr.comp));
     const work = pr.served + extraAcc - pr.comp*0.4, tol = pr._overTol ?? BAL.mood.overworkAt, shield = pr._overShield ?? 0;
     const over = Math.max(0, work - tol) * (1 - shield);
@@ -193,12 +193,12 @@ function endWeek(){
       if(w.job!=='rest' && (w.energy < maxEnergy(w)*0.35 || wornDown(w))){ log(`😴 ${w.name} is ${w.energy < maxEnergy(w)*0.35 ? 'worn out' : 'worn down after weeks without a break'} and will rest next week.`); w.prevJob = w.standIn ? 'attendant' : w.job; delete w.standIn; w.job = 'rest'; }
       else if(w.job==='rest' && w.prevJob && !w.idleRest && w.energy >= maxEnergy(w)*0.85){ const pj = w.prevJob; delete w.prevJob; const no = canDo(w,pj); if(!no){ w.job = pj; log(`💪 ${w.name} is rested and back to work as ${JOBS[pj].label}.`); } else log(`${w.name} is rested but can't go back to ${JOBS[pj].label} (${no}) Give her a job.`); }
     }
-    // how she took the week's clients, by personality (data/personalities.json goodNight/badNight, flavor good_night/bad_night)
+    // how she took the week's clients, by personality (data/personalities.json goodWeek/badWeek, flavor good_week/bad_week)
     if(pr.served >= 2){
       const avg = pr.satSum/pr.served, P = PERS[w.personality]||{};
       const kind = avg>=72 && !pr.low ? 'good' : (pr.low>=2 || avg<38) ? 'bad' : null;
-      if(kind){ moodAdd(w, kind==='good' ? (P.goodNight??3) : (P.badNight??-3)); pr.night = kind; why(kind==='good' ? 'her clients loved her' : 'difficult clients', kind==='good');
-        if(Math.random()<0.6) R.hl.push({wid:w.id, text:flavor(kind+'_night', w), act:null, scene:'casual'}); }
+      if(kind){ moodAdd(w, kind==='good' ? (P.goodWeek ?? P.goodNight ?? 3) : (P.badWeek ?? P.badNight ?? -3)); pr.weekKind = kind; why(kind==='good' ? 'her clients loved her' : 'difficult clients', kind==='good');
+        if(Math.random()<0.6) R.hl.push({wid:w.id, text:flavor(kind+'_week', w), act:null, scene:'casual'}); }
     }
     // lust builds up, and is spent by services and time with Sam
     // (services and Sam's time already spent it as they happened; see spendLust)

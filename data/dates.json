@@ -712,7 +712,7 @@
         "gain": 2,
         "risk": 0,
         "lead": [
-          "It is {name}'s turn at last, and she sprawls on the towels with a groan that sounds like surrender. You warm the oil in your palms and she shivers before he has touched her.",
+          "It is {name}'s turn at last, and she sprawls on the towels with a groan that sounds like surrender. You warm the oil in your palms and she shivers before you have touched her.",
           "{name} hums through every knot you find, softer and lower with each pass of your thumbs. Somewhere along her spine the humming turns into something else.",
           "\"Lower,\" says {name} into the folded towel, then \"Slower.\" You, a man of notes and diligence, take this direction very seriously."
         ],
@@ -738,10 +738,10 @@
       "The innkeeper brings a second bottle you didn't order, claiming it's a gift from the next table. {name} raises her glass in thanks to a startled stranger, and you laugh into your cup."
     ],
     "past": {
-      "cook": {
+      "planner": {
         "cost": 0,
         "trustMult": 1.25,
-        "intro": "You cook for {name} in the kitchen after closing.",
+        "intro": "You cook for {name} in the kitchen on the quiet rest day.",
         "lines": ["She has thirds.","She tries to get the recipe out of you and fails.","She says it's the best thing she's eaten in this world."]
       }
     },
@@ -1095,7 +1095,7 @@
     "like": "private",
     "lewd": 2,
     "needsUp": "bath",
-    "intro": "The last client has gone, the lanterns burn low, and the bathhouse is yours and {name}'s alone. Steam gathers in the rafters, the tiles are warm underfoot, and the water laps quietly at the edge of a long, tiring day.",
+    "intro": "After six busy nights the lanterns burn low, and the bathhouse is yours and {name}'s alone. Steam gathers in the rafters, the tiles are warm underfoot, and the water laps quietly at the edge of a long, tiring week.",
     "lines": [
       "She sinks into the water with a long sigh and drifts closer without a word.",
       "You scrub her back. She returns the favor, and takes her time.",
@@ -1179,7 +1179,7 @@
         "risk": 0,
         "lead": [
           "\"A real study needs less drapery,\" says {name}, and lets it fall. Your pencil stops moving.",
-          "\"Let me see your line,\" murmurs {name}, and the drapery pools at her feet. Your charcoal hangs forgotten over the page, and the sunlight on her shoulders is not a subject he can capture.",
+          "\"Let me see your line,\" murmurs {name}, and the drapery pools at her feet. Your charcoal hangs forgotten over the page, and the sunlight on her shoulders is not a subject you can capture.",
           "{name} lets the cloth slide, one fold at a time, until nothing is left but window light. \"Is this pose all right?\" she asks innocently, watching you forget your own name."
         ],
         "image": {"comp":"reclining nude on draped fabric in a classical figure-study pose while Sam sketches her, the sketchbook in his hands"}
@@ -1225,12 +1225,12 @@
     "needsIntim": 1,
     "lust": 3,
     "special": "nightin",
-    "intro": "There is a fire in {name}'s room, a jug of mulled wine and a blanket big enough for two. The day is finished, the house creaks quietly around you, and for once nobody has anywhere else to be.",
+    "intro": "There is a fire in {name}'s room, a jug of mulled wine and a blanket big enough for two. The week is finished, the house creaks quietly around you, and for once nobody has anywhere else to be.",
     "lines": [
       "She tucks her feet under herself and steals the whole blanket.",
       "You talk about nothing until the fire burns low.",
       "She falls quiet, then leans her head on your shoulder and stays there.",
-      "The fire pops and settles, and the shadows on the ceiling lean and stretch. {name} pours the wine with a practiced tilt and hands you the first cup, curling up beside him with a contented sigh.",
+      "The fire pops and settles, and the shadows on the ceiling lean and stretch. {name} pours the wine with a practiced tilt and hands you the first cup, curling up beside you with a contented sigh.",
       "Outside, the wind rattles the shutters, and inside, a blanket is shared between two people who were definitely not going to share it. {name} tucks her cold toes against your calf and doesn't apologize.",
       "You read to each other from a battered book of tales, taking turns doing the voices. {name}'s dragon is excellent, and yours is lamentable, and you are both asleep with a smile before the final chapter."
     ],

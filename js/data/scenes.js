@@ -16,7 +16,7 @@ Object.entries(DATES).forEach(([k,d])=>(d.spicy||[]).forEach((sp,i)=>{ if(!sp.nu
 // house, towel). Registered under a stable key so the picture is saved per moment; they don't show in the sheet's picker.
 function dynScene(key, img){ if(!img || !img.comp) return null; SCENES[key] = Object.assign({label:'Story: '+(img.label||key)}, img); return key; }
 // One list, sorted by tier then th; custom services merge in by their tier. (Cached; rebuilt when customActs changes.)
-function actTierOf(a){ return a.tier || (a.th < 30 ? 1 : a.th < 50 ? 2 : 3); }
+function actTierOf(a){ return a.tier || (a.th < 25 ? 1 : a.th < 50 ? 2 : 3); }
 function getActs(){
   const ca = SET.customActs || [];
   if(getActs.ref !== ca || getActs.n !== ca.length){

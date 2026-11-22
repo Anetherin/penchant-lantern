@@ -660,7 +660,7 @@
           "res": "You hold the bandages and say nothing about fault. It's the quietest, most useful conversation the three of you have ever had."
         },
         {
-          "label": "Give them both the day off (lose a day of door cover)",
+          "label": "Give them both the night off (lose a night of door cover)",
           "rep": -1,
           "a": {"energy":20,"mood":5},
           "b": {"energy":20,"mood":5},
@@ -1360,6 +1360,248 @@
           "res": "You tell them the funniest thing that happened in your own first week here. They are both appalled and then both laughing, and {a} burns page thirty herself."
         }
       ]
+    },
+    {
+      "id": "p_hanna_rhoswen",
+      "pair": ["hanna","rhoswen"],
+      "kind": "friends",
+      "bondMin": 20,
+      "weight": 3,
+      "a": {},
+      "b": {},
+      "title": "Ink on Velvet",
+      "scene": "casual",
+      "text": [
+        "You walk into the lounge and find {b} peering earnestly over {a}'s open ledger, silver pen poised over her leather notebook while {a} explains which three regular patrons tip double after midnight. Neither notices you until {b} underlines a phrase twice with a sharp gasp of scholarly delight."
+      ],
+      "choices": [
+        {
+          "label": "Sit in and trade guild rumors over tea",
+          "a": {"mood":5,"trust":2},
+          "b": {"mood":5,"trust":2},
+          "bond": 6,
+          "res": "Between {a}'s sharp street sense and {b}'s dry courtly footnotes, you spend half an hour crying laughing over Hollowmere's finest merchants. Both look thoroughly pleased when tea runs dry."
+        },
+        {
+          "label": "Tell {b} not to believe every rumor {a} prints",
+          "a": {"mood":3},
+          "b": {"mood":4,"trust":2},
+          "bond": 4,
+          "res": "{a} puts a hand indignantly over her heart while {b} coolly taps her pencil against her chin—and makes two fresh margin notes anyway while giggling."
+        }
+      ]
+    },
+    {
+      "id": "p_cecile_seraphine",
+      "pair": ["cecile","seraphine"],
+      "kind": "house",
+      "bondMin": 35,
+      "weight": 3,
+      "a": {},
+      "b": {},
+      "title": "The Tea Service Rule",
+      "scene": "casual",
+      "text": [
+        "In the quiet pantry off the main stair, {a} intercepts {b} carrying a silver tray stacked three dishes too high and quietly lifts the top teapot right off before it tilts. For two seconds old castle protocol hovers between them—until {b} sighs, shoulders dropping, and hands {a} the sugar bowl as well."
+      ],
+      "choices": [
+        {
+          "label": "Steal two pastries and leave them the quiet minute",
+          "a": {"mood":5},
+          "b": {"mood":5,"trust":2},
+          "bond": 7,
+          "res": "You pluck a tart straight off the tray with a wink; by the time you reach the stairs you hear {b}'s sharp rare laugh softening {a}'s dry scolding."
+        },
+        {
+          "label": "Pour tea for all three of you right in the pantry",
+          "sam": {"charm":1},
+          "a": {"mood":4,"trust":3},
+          "b": {"mood":6,"trust":3},
+          "bond": 6,
+          "res": "{a} folds her apron slowly and sits beside her lady without fuss for the first time all week. Neither rushes back upstairs."
+        }
+      ]
+    },
+    {
+      "id": "p_adelheid_anael",
+      "pair": ["adelheid","anael"],
+      "kind": "comrades",
+      "bondMin": 15,
+      "weight": 3,
+      "a": {},
+      "b": {},
+      "title": "Watch Before Dawn",
+      "scene": "casual",
+      "text": [
+        "When the last lantern shutters click shut along the street, {a} sits on the front stoop sharpening an edge she already honed yesterday while {b} trims the gate oil-lamp beside her. Neither speaks of vows or protocols; when a cold breeze lifts {a}'s cloak, {b}'s wing shifts half an inch to block the draft."
+      ],
+      "choices": [
+        {
+          "label": "Bring two mugs of spiced cider out to the stoop",
+          "a": {"mood":5,"trust":3},
+          "b": {"mood":5,"trust":3},
+          "bond": 7,
+          "res": "Both women salute silently with warm stoneware mugs, sitting closer on the step while {a} relaxes her grip on the whetstone for good."
+        },
+        {
+          "label": "Let the two wardens hold the quiet watch undisturbed",
+          "a": {"mood":3},
+          "b": {"mood":3},
+          "bond": 5,
+          "res": "You leave the latch softly clicked and hear them speaking low, earnest sentences over the lamp flame long after midnight."
+        }
+      ]
+    },
+    {
+      "id": "p_akari_natsuki",
+      "pair": ["akari","natsuki"],
+      "kind": "home",
+      "bondMin": 25,
+      "weight": 3,
+      "a": {},
+      "b": {},
+      "title": "Back-Alley Rematch",
+      "scene": "casual",
+      "text": [
+        "Outside in the stone yard after chores, {b} challenges {a} to balance three linen baskets across the cobbles without dropping a towel—loser buys steamed buns from the market cart. Halfway across the gravel both dissolve into fierce, laughing sabotage until {a} hip-checks {b} squarely into a rain barrel."
+      ],
+      "choices": [
+        {
+          "label": "Declare a tie and buy buns for both of them",
+          "a": {"mood":6,"trust":2},
+          "b": {"mood":6,"trust":2},
+          "bond": 6,
+          "res": "Wet hems and crooked ribbons forgotten, they argue passionately all the way to the street cart about who actually crossed the chalk line first."
+        },
+        {
+          "label": "Referee cleanly and award the win to {a}",
+          "a": {"mood":7,"trust":3},
+          "b": {"mood":2},
+          "bond": 5,
+          "res": "{b} squawks outrage right up until {a} breaks her own bun in half and tosses the bigger piece straight back into her lap."
+        }
+      ]
+    },
+    {
+      "id": "p_bettina_mira",
+      "pair": ["bettina","mira"],
+      "kind": "comrades",
+      "bondMin": 20,
+      "weight": 3,
+      "a": {},
+      "b": {},
+      "title": "Notes Across the Desk",
+      "scene": "casual",
+      "text": [
+        "You catch {a} and {b} bent shoulder to shoulder behind the parlor counter comparing crisp cipher marks in the margin of a blacklist—sharing every deadbeat merchant, bad tipper, and sharp-fingered noble between both houses without raising their voices once."
+      ],
+      "choices": [
+        {
+          "label": "Ask how many counts made the black list this month",
+          "sam": {"wits":1},
+          "a": {"mood":4,"trust":2},
+          "b": {"mood":4,"trust":2},
+          "bond": 6,
+          "res": "{a} taps three lines calmly while {b} supplies two outrageous aliases beside each name. Their house desk never misses a copper twice."
+        },
+        {
+          "label": "Fetch fresh ink and stay out of their ledgers",
+          "a": {"mood":4},
+          "b": {"mood":4},
+          "bond": 4,
+          "res": "Both give you brisk, approving nods without looking up from the numbers—two professionals who speak the same exact language."
+        }
+      ]
+    },
+    {
+      "id": "p_brynna_hilde",
+      "pair": ["brynna","hilde"],
+      "kind": "comrades",
+      "bondMin": 20,
+      "weight": 3,
+      "a": {},
+      "b": {},
+      "title": "The Stout Barrels",
+      "scene": "casual",
+      "text": [
+        "Down by the cellar bulkhead, {a} is thumping an oak beam with a mallet to test its ring while {b} pours two wooden tankards of black stout straight from the tap—arguing joyfully over whether pine joists or seasoned barrel staves make the sweeter sound."
+      ],
+      "choices": [
+        {
+          "label": "Pull up a keg and drink a tankard with them",
+          "a": {"mood":6,"trust":3},
+          "b": {"mood":6,"trust":3},
+          "bond": 7,
+          "res": "Half an hour of dwarven timber stories and strong dark beer leaves your ears ringing and both women grinning wide across the barrels."
+        },
+        {
+          "label": "Ask them to check the main bar rail too",
+          "a": {"mood":4},
+          "b": {"mood":4},
+          "bond": 5,
+          "res": "{a} marches right upstairs mallet in hand while {b} trots behind with fresh beer—turning maintenance into an inspection party."
+        }
+      ]
+    },
+    {
+      "id": "p_elowen_maren",
+      "pair": ["elowen","maren"],
+      "kind": "friends",
+      "bondMin": 20,
+      "weight": 3,
+      "a": {},
+      "b": {},
+      "title": "Smoke in the Mortar",
+      "scene": "casual",
+      "text": [
+        "A sweet, sharp curl of pine and night-bloom resin drifts out of the dispensary, where {a} holds a porcelain mortar steady while {b} measures drops of dark tincture with the tip of a brass needle. When {b} tries adding a fourth drop for spice, {a} gently catches her wrist without saying a word."
+      ],
+      "choices": [
+        {
+          "label": "Taste the calming tea version first",
+          "a": {"mood":5,"trust":3},
+          "b": {"mood":4,"trust":2},
+          "bond": 6,
+          "res": "{a}'s neat dosage wins this batch, though she quietly keeps {b}'s bolder resin vial for Saturday night—earning a wicked grin across the workbench."
+        },
+        {
+          "label": "Let {b} try her extra drop in a test censer",
+          "a": {"mood":3},
+          "b": {"mood":6,"trust":3},
+          "bond": 5,
+          "res": "Ten seconds of dense lavender-amber smoke sends all three of you coughing and laughing out onto the porch with gleaming eyes."
+        }
+      ]
+    },
+    {
+      "id": "p_emily_kaede",
+      "pair": ["emily","kaede"],
+      "kind": "friends",
+      "bondMin": 15,
+      "weight": 3,
+      "a": {},
+      "b": {},
+      "title": "Brush and Banter",
+      "scene": "casual",
+      "text": [
+        "You find {b} sitting cross-legged on the parlor rug flicking a wooden comb through {a}'s bristling wolf tail while teasing her mercilessly about standing like an off-duty sentry. {a} keeps scribbling feverishly in her leather notebook to cover how badly her ears are twitching."
+      ],
+      "choices": [
+        {
+          "label": "Hand {b} a better cedar brush and tease {a} too",
+          "a": {"mood":5,"trust":2},
+          "b": {"mood":6,"trust":3},
+          "bond": 6,
+          "res": "{a} tries maintaining stoic dignity while {b} puffs her fur twice its normal width laughing helplessly against your shin."
+        },
+        {
+          "label": "Ask {a} what trait she just wrote down for {b}",
+          "a": {"mood":6,"trust":3},
+          "b": {"mood":5,"trust":2},
+          "bond": 6,
+          "res": "{b} tries snatching the notebook straight out of {a}'s lap—sending both girls tumbling sideways in a laughing tangle of fox and wolf tails."
+        }
+      ]
     }
   ],
   "shared": [
@@ -1383,7 +1625,7 @@
           "a": {"lust":-30,"mood":5},
           "b": {"lust":-30,"mood":5},
           "bond": 8,
-          "res": "By dawn the sheets are damp with sweat and neither of you has gotten a wink of sleep. (Your energy −30)",
+          "res": "The sheets end up damp with sweat and cum, both women curled slick and breathless along your sides without either asking who went first. (Your energy −30)",
           "acts": true
         },
         {
@@ -1530,7 +1772,7 @@
           "a": {"lust":-25,"mood":6},
           "b": {"lust":-25,"mood":6},
           "bond": 7,
-          "res": "The parlor lamps burn low while both of them take their sweet time unwinding over you until midnight. (Your energy −25)",
+          "res": "The parlor lamps burn low while both of them take their sweet time trading mouths and flushed thighs across the velvet cushions until none of you can catch your breath. (Your energy −25)",
           "acts": true
         },
         {

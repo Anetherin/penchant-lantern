@@ -366,8 +366,8 @@ function gPair(a, b, C){
 }
 function gYuri(a, b, C){
   const s = gScenePick(GSCN.yuri, C); if(!s) return null;
-  const f = t => gFill(t, {a:a.name, b:b.name, C:C.label}), lim = Math.min(a.lewd||0, b.lewd||0) + 10;
-  const act = gPickAct(a, s.close && s.close.acts, id=>((actById(id)||{}).th||0) <= lim), sc = gImg(s, s.id);
+  const f = t => gFill(t, {a:a.name, b:b.name, C:C.label}), lim = Math.min((a.lewd||0) - orientGap(a,'f'), (b.lewd||0) - orientGap(b,'f')) + 15;
+  const act = gPickAct(a, s.close && s.close.acts, id=>((actById(id)||{}).th||0) <= lim && !actBanned(a, id) && !actBanned(b, id)), sc = gImg(s, s.id);
   const ch = [{label:f(s.decline.label), fx(){ addBond(a, b, 3); moodAdd(a, 2); moodAdd(b, 2); return f(s.decline.res) + `\n\n${a.name.split(' ')[0]} & ${b.name.split(' ')[0]} closer`; }}];
   if(act) ch.unshift({label:f(s.close.label), fx(){ addBond(a, b, 8); [a,b].forEach(w=>{ moodAdd(w, 6); lewdUp(w, 2, svcLewdCap(act,'client')); spendLust(w, 30); countUp(w, 'yuri'); });
     return {text:f(s.close.res) + `\n\n${a.name.split(' ')[0]} & ${b.name.split(' ')[0]} much closer · Lewdness + · Lust −`, img:{wid:a.id, scene:`pair:${act}:fem:${b.id}`}}; }});
@@ -378,11 +378,15 @@ function gYuri(a, b, C){
 // NG+ keeps Sam's rank and merit (the guild remembers him); contracts, board and parties are cleared, fame fades, and the people his rank
 // brought in are offered again. The first NG++ resets the guild once (S.guildReset). Called from ngplus.js after the new cycle is set up.
 function guildNewCycle(ngpp){
+  if(S.samFocus && S.samFocus.kind==='guild') S.samFocus = {kind:'office', topic:'auto'};
   if(!S.guild) return;
-  if(ngpp && !S.guildReset){ S.guild = null; S.guildReset = true; return; }
+  if(ngpp && !S.guildReset){
+    S.guild = null; S.guildReset = true;
+    if(typeof goddessActive==='function' && goddessActive() && G().focus==='guild') G().focus = 'indulge';
+    return;
+  }
   const g = S.guild; g.active = []; g.board = []; g.boardWk = 0; g.fame = Math.round((g.fame||0) * ((GDB.carry||{}).fameKeep ?? 0.5));
   S.workers.forEach(w=>{ if(w.job==='guild'){ delete w.gc; delete w.gPrev; w.job = 'rest'; } });
-  if(S.samFocus && S.samFocus.kind==='guild') S.samFocus = {kind:'office', topic:'auto'};
   if(g.joined) for(let r=1; r<=g.rank; r++){ const U = GUILD_UNLOCKS[r] || {}; if(U.recruit) guildRecruit(U.recruit); if(U.outfit && WARDROBE[U.outfit] && !S.houseWardrobe.includes(U.outfit)) S.houseWardrobe.push(U.outfit); if(U.item && BAL.samUps[U.item] && !hasSamUp(U.item)){ S.samUps = S.samUps || {}; S.samUps[U.item] = true; } }
   if(g.joined) guildRefreshBoard();
 }
