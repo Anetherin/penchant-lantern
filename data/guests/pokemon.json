@@ -679,7 +679,7 @@
           "dislike": "doggy",
           "lovers": "missionary",
           "backstory": "Granddaughter of Pallet Town's famed researcher and older sister to a relentlessly driven champion, Daisy left the heavy trophies to her family and became known instead for afternoon tea, gentle grooming, and an unhurried warmth that puts even rivals at ease. Seeking a quieter life beyond Kanto's league circuit, she drifted into Hollowmere with a tin of jasmine leaves and a soft smile—and quickly turned the parlor into the one room where Sam always slows down.",
-          "design": {"hairStyle":"long, straight and silky","hairColor":"auburn","eyes":"blue","skin":"fair","expression":"a warm, affectionate smile"},
+          "design": {"hairStyle":"long, straight and silky with a green hairband","hairColor":"auburn","eyes":"brown","skin":"fair","expression":"a warm, affectionate smile"},
           "under": "plain",
           "stats": {"beauty":76,"charm":80,"charisma":64,"refinement":72,"wits":64,"stamina":56,"strength":28,"agility":50},
           "tech": {"service":45,"dance":22,"bar":28,"combat":15,"manage":52},
@@ -689,15 +689,15 @@
           "trust": 30,
           "outfits": {
             "sig_daisy_oak": {
-              "label": "Pallet cottage attire",
+              "label": "Pallet lab attire",
               "style": "Cute",
-              "prompt": "a cozy cream buttoned knit blouse over a forest-green pleated skirt and simple brown flats",
+              "prompt": "a white lab coat with white socks and sage-green shoes",
               "bonus": {"attendant":1.25,"commoner":1.15}
             },
             "sp_daisy_oak": {
               "label": "Pallet tea dress",
               "style": "Elegant",
-              "prompt": "a flowing sage-green summer tea dress with a white ribbon waist sash and white heels",
+              "prompt": "a flowing sage-green summer tea dress over a white shirt, white socks and green shoes",
               "bonus": {"host":1.25,"noble":1.2}
             }
           },
