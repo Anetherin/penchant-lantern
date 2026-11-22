@@ -149,7 +149,7 @@ function startNGPlus(){
   const ngpp = isNGPPNext(), unb = unboundVesselForms(), forms = Object.keys(GOD_FORMS);
   const offers = ngpp ? [] : shuffle(Object.keys(HOUSES).filter(k=>!H(k) && !HOUSES[k].premium && !HOUSES[k].ngppOnly && (!isNGHouse(k) || (S.cycle||1)+1 >= 2))).slice(0, BAL.ngplus.houseOffers||4);
   NGS = {step:0, ngpp, partner:ngpp?'none':null, vesselForm: ngpp ? (unb[0] || forms[0]) : null,
-    keep:Object.fromEntries(optionalHouses().map(h=>[h.id,true])), boon:null, perks:{}, romance:{}, house:null, past:null, challenge:'none', offers};
+    keep:Object.fromEntries(optionalHouses().map(h=>[h.id,true])), boon:null, perks:{}, romance:{}, lantern:{}, house:null, past:null, challenge:'none', offers};
   ngView();
 }
 function ngKeep(id){ if(!NGS || !NGS.keep || !optionalHouses().some(h=>h.id===id)) return; NGS.keep[id] = NGS.keep[id]===false; ngView(); }
@@ -158,10 +158,19 @@ function ngPerkPick(wid, v){ if(v) NGS.perks[wid] = v; else delete NGS.perks[wid
 // per lover: 'keep' (default) = still his lover (Devoted, her story and firsts kept), 'reset' = the romance starts over (ngRomanceReset). Trust resets either way.
 const ngRomance = (C, w) => ((C && C.romance) || {})[w.id] === 'reset' ? 'reset' : 'keep';
 function ngRomancePick(wid, v){ (NGS.romance = NGS.romance || {})[wid] = v === 'reset' ? 'reset' : 'keep'; ngView(); }
+const ngLanternChoice = (C, key) => ((C && C.lantern) || {})[key] === 'reset' ? 'reset' : 'keep';
+function ngLanternPick(key, v){ (NGS.lantern = NGS.lantern || {})[key] = v === 'reset' ? 'reset' : 'keep'; ngView(); }
+function lanternCarryCandidates(){
+  if(!S) return [];
+  const w = (S.workers||[]).find(x=>x.key==='anael' && isLanternAngel(x));
+  const l = S.lives && S.lives.anael && (S.lives.anael.lantern || S.lives.anael.sub==='lantern');
+  if(!w && !l) return [];
+  return [{key:'anael', id: w ? w.id : 'n_anael', name: (w && w.name) || (NAMED.anael && NAMED.anael.name) || 'Anael', worker: w || null}];
+}
 const pastsLeft = () => Object.keys(PASTS).filter(k=>!hasPast(k));
 const ngSteps = () => NGS && NGS.ngpp
-  ? ['Bound vessel', 'Sam\'s perk', ...(pastsLeft().length ? ['Another past life'] : []), ...(carriedLovers().length ? ['Lovers\' perks'] : []), 'Challenge', 'Begin']
-  : ['New partner', ...(optionalHouses().length ? ['Houses'] : []), ...(NGS && NGS.offers.length ? ['New house'] : []), 'Sam\'s perk', ...(pastsLeft().length ? ['Another past life'] : []), ...(carriedLovers().length ? ['Lovers\' perks'] : []), 'Challenge', 'Begin'];
+  ? ['Bound vessel', 'Sam\'s perk', ...(pastsLeft().length ? ['Another past life'] : []), ...(carriedLovers().length || lanternCarryCandidates().length ? ['Lovers\' perks'] : []), 'Challenge', 'Begin']
+  : ['New partner', ...(optionalHouses().length ? ['Houses'] : []), ...(NGS && NGS.offers.length ? ['New house'] : []), 'Sam\'s perk', ...(pastsLeft().length ? ['Another past life'] : []), ...(carriedLovers().length || lanternCarryCandidates().length ? ['Lovers\' perks'] : []), 'Challenge', 'Begin'];
 function ngNav(d){ NGS.step = Math.max(0, Math.min(ngSteps().length-1, NGS.step + d)); ngView(); }
 function ngView(){
   const st = NGS.step, og = homeHouse(), steps = ngSteps(), cur = steps[st], lovers = carriedLovers();
@@ -211,12 +220,17 @@ function ngView(){
       <div class="grid">${Object.entries(NG_BOONS).map(([k,b])=>{ const got = taken.includes(k); return `<div class="pick ${NGS.boon===k?'sel':''}" ${got?'style="opacity:.5"':`onclick="ngPick('boon','${k}')"`}><b>${b.label}</b>${got?' <span class="tag">taken</span>':''}<div class="muted">${b.desc}</div></div>`; }).join('')}</div>`;
     ok = !!NGS.boon || Object.keys(NG_BOONS).every(k=>taken.includes(k));
   } else if(cur==='Lovers\' perks'){
+    const lCands = lanternCarryCandidates().filter(x => !lovers.some(w => w.key === x.key));
     body = `<h2>What stays with them</h2><p class="muted">${NGS.ngpp ? 'In NG++, prior lovers walk back into the world on their own—they keep their Reincarnated stacks, gain one final perk here, and ask no signing bonus if Sam meets them again.' : 'Each lover carries one perk into the new chapter. A perk can be taken once per lady and stacks across cycles. Her trust starts over either way; choose whether she stays Sam\'s lover (her story and firsts with him kept) or their romance begins again from the first chapter.'}</p>
-      ${lovers.map(w=>{ const left = NG_PERKS().filter(t=>!(w.ngPerks||[]).includes(t)), cp = NGS.perks[w.id];
-        return `<div class="card"><b>${esc(w.name)}</b> <span class="muted">${esc(w.personality)} · trust ${tShow(w.trust)}${(w.ngPerks||[]).length?' · has: '+w.ngPerks.join(', '):''}</span>
+      ${lovers.map(w=>{ const left = NG_PERKS().filter(t=>!(w.ngPerks||[]).includes(t)), cp = NGS.perks[w.id], isLAnael = w.key==='anael' && isLanternAngel(w);
+        return `<div class="card"><b>${esc(w.name)}</b> <span class="muted">${esc(w.personality)} · trust ${tShow(w.trust)}${(w.ngPerks||[]).length?' · has: '+w.ngPerks.join(', '):''}${isLAnael?' · 🕯️ Lantern Angel':''}</span>
           <div class="row">${NGS.ngpp ? '' : `<select onchange="ngRomancePick('${w.id}',this.value)"><option value="keep" ${ngRomance(NGS,w)==='keep'?'selected':''}>♥ Stay lovers</option><option value="reset" ${ngRomance(NGS,w)==='reset'?'selected':''}>↺ Start the romance over</option></select>`}
+            ${isLAnael ? `<select onchange="ngLanternPick('anael',this.value)"><option value="keep" ${ngLanternChoice(NGS,'anael')==='keep'?'selected':''}>🕯️ Carry Lantern Angel form</option><option value="reset" ${ngLanternChoice(NGS,'anael')==='reset'?'selected':''}>🕊️ Reset to mortal-vowed angel</option></select>` : ''}
             <select onchange="ngPerkPick('${w.id}',this.value)"><option value="">Choose a perk…</option>${left.map(t=>`<option value="${esc(t)}" ${cp===t?'selected':''}>${esc(t)}</option>`).join('')}</select></div>
-          <div class="muted">${cp ? esc(TRAITS[cp].desc||'') : (left.length ? '' : 'She has every perk already.')}</div></div>`; }).join('')}`;
+          <div class="muted">${cp ? esc(TRAITS[cp].desc||'') : (left.length ? '' : 'She has every perk already.')}</div></div>`; }).join('')}
+      ${lCands.map(x=>`<div class="card"><b>${esc(x.name)}</b> <span class="muted">🕯️ Lantern Angel${NGS.ngpp ? ' (walks back into the world next cycle)' : ''}</span>
+        <div class="row"><select onchange="ngLanternPick('${x.key}',this.value)"><option value="keep" ${ngLanternChoice(NGS,x.key)==='keep'?'selected':''}>🕯️ Carry Lantern Angel form</option><option value="reset" ${ngLanternChoice(NGS,x.key)==='reset'?'selected':''}>🕊️ Reset to mortal-vowed angel</option></select></div>
+        <div class="muted">${ngLanternChoice(NGS,x.key)==='keep' ? 'She keeps her Lantern wings, shameless poise, and Lantern storyline if met again.' : 'She starts over with her original Quiet Lamp vows and story. Any old Lantern pictures stay in your gallery.'}</div></div>`).join('')}`;
     ok = lovers.every(w=>NGS.perks[w.id] || !NG_PERKS().some(t=>!(w.ngPerks||[]).includes(t)));
   } else if(cur==='Challenge'){
     body = `<h2>This cycle's challenge</h2>
@@ -239,6 +253,7 @@ function ngView(){
         <b>Soft Reset:</b> starts fresh at <b>${esc(HOUSES[hk].name)}</b> (room cap <b>${cap}</b>; scales income, growth &amp; renown from total Reincarnations working there). Sam returns to Lv 1 (stats reset to base + past lives), keeping his boons, past lives, Challenge Perks, energy (${samMaxEnergy()}), and raised ceiling (${BAL.ngplus.cap.base + BAL.ngplus.cap.perCycle*(N.cycle-1)}). ${N.ngppCycle===1 ? 'All prior house upgrades, house stories, lovers, regulars, and savings reset once here.' : 'Shrine keeps its upgrades &amp; story; other houses keep their NG++ upgrades &amp; stories to unlock when bought (paid without cycle scaling).'}<br>
         <b>Bound Vessel:</b> ${esc(vf.label||NGS.vesselForm)} arrives at ${esc(HOUSES[hk].name)} as an empty vessel—quiet and blank until Sam fills her up.<br>
         <b>Prior lovers (${lovers.length}):</b> lover stories reset; they keep their Reincarnated stacks, final NG+ perks, and slowly awakening memories when met again (no signing bonus; ${esc(GN())} notices).<br>
+        ${lanternCarryCandidates().length ? `<b>Anael (Lantern Angel):</b> ${ngLanternChoice(NGS,'anael')==='reset' ? '↺ starts fresh with her Quiet Lamp vows restored (Lantern pictures stay saved).' : '🕯️ carries her Lantern Angel form into the next life.'}<br>` : ''}
         ${NGS.past&&NGS.past!=='none'?`<b>Another past life:</b> ${esc(PASTS[NGS.past].label)}.<br>`:''}
         <b>Challenge:</b> ${esc(ch.label||'Standard Cycle')}${ch.perk?` — reward: <b>${esc(ch.perk)}</b> (${esc(ch.perkDesc||'')})`:''}.<br>
         <b>Debt:</b> ${fmt(N.debt)} ${N.impr ? `(${fmt(N.base)} Shrine loan + ${fmt(N.extra)} saved Shrine upgrades)` : `(NG++${N.ngppCycle} Shrine loan: ${fmt(BAL.ngplus.ngppDebt ?? 100000)} base + ${fmt(BAL.ngplus.ngppStep ?? 100000)} per NG++ cycle)`}, due over ${ngPlan(N.cycle).payments*BAL.debt.every} weeks. <b>Purse:</b> ${fmt(N.purse)}.</div>`;
@@ -251,6 +266,7 @@ function ngView(){
         <b>Lovers who stay:</b> ${lovers.length ? lovers.map(w=>`${esc(w.name)}${NGS.perks[w.id]?` (${esc(NGS.perks[w.id])})`:''}${ngRomance(NGS,w)==='reset'?' ↺ starting over':' ♥ still his lover'}`).join(', ') + '. They draw wages again (' + Math.round((BAL.ngplus.rebornWage||0)*100) + '% more for each life carried over); their skills, popularity, trust and lewdness start over, keeping ' + carryTxt() + ' of the skills and stats they\'d built (Reincarnated makes the climb back faster). A lover starting over begins her story with Sam again at the first chapter, firsts included.' : 'none. Only Devoted lovers come along.'}<br>
         ${residents.length?`<b>Back with their houses:</b> ${residents.map(w=>esc(w.name)).join(', ')}. They start over like the lovers (no perk), with a Reincarnated stack and the same wage rise.<br>`:''}
         ${friends.length?`<b>Old friends:</b> ${friends.map(w=>esc(w.name)).join(', ')}. They'll look Sam up again (Recruit), with a Reincarnated stack, keeping ${carryTxt()} of what they'd built and asking ${Math.round((BAL.ngplus.rebornWage||0)*100)}% more pay per life.<br>`:''}
+        ${lanternCarryCandidates().length ? `<b>Anael (Lantern Angel):</b> ${ngLanternChoice(NGS,'anael')==='reset' ? '↺ starts fresh with her Quiet Lamp vows restored (Lantern pictures stay saved).' : '🕯️ carries her Lantern Angel form into the next cycle.'}<br>` : ''}
         ${genFriends.length?`<b>Favorite old friends (up to ${maxGen}):</b> ${genFriends.map(w=>`<button class="sm" onclick="toggleFavorite('${w.id}')">${w.favorite?'★':'☆'} ${esc(w.name)}</button>`).join(' ')} <span class="muted">(favorited generic ladies at max trust reincarnate into Recruit, max ${maxGen} after cycle ${maxGen})</span><br>`:''}
         <b>Leaving:</b> ${leaving.length ? `${leaving.length} ladies (${leaving.slice(0,8).map(w=>esc(w.name)).join(', ')}${leaving.length>8?', …':''}). Named ones can be met again, fresh.` : 'no one.'}<br>
         ${NGS.house?`<b>New house:</b> ${esc(HOUSES[NGS.house].name)} with ${esc((NAMED[HOUSES[NGS.house].npc]||{}).name||'its resident')}.<br>`:''}
@@ -296,6 +312,12 @@ function ngReset(w){
     Object.values(w.acts||{}).forEach(a=>{ a.skill = ngC(a.skill, half(a.skill)); });
     const b = w.base0 || {}; w.trust = b.trust ?? (B.baseTrust ?? 15); w.lewd = Math.min(w.lewd, b.lewd ?? (B.baseLewd ?? 25));
   }
+  if(isLanternAngel(w)){
+    w.lewd = Math.max(w.lewd, ((BAL.svc && BAL.svc.angel && BAL.svc.angel.lanternLewd) ?? 60));
+    if(w.key==='anael') applyLanternAnael(w);
+  } else if(w.race==='angel'){
+    delete w.lanternDecided; delete w.lanternHeld;
+  }
   w.lust = Math.min(w.lust||0, LUST_EAGER);
   w.popularity = 0; w.arcWk = 0; w.afterWk = 0;   // epilogue progress (w.after) stays across lives
   w.earnedLast = 0; w.purse = 0; w.energy = maxEnergy(w);
@@ -318,6 +340,7 @@ function ngReset(w){
 // rebirthNamed(n, newLife): newLife forces a new life even for a same-life entry (a kept house's resident recreated at NG+).
 const lifeOf = (w, same, opts={}) => ({name:w.name, reborn: opts.reborn!==undefined ? opts.reborn : (w.reborn||0), same: !!same, needsReset: !!opts.needsReset,
   wasLover: !!(w.wasLover || opts.wasLover), after: w.after || 0, reMet: opts.reMet!==undefined ? opts.reMet : (w.reMet||0), ngPerks: (w.ngPerks||[]).slice(),
+  sub: opts.sub !== undefined ? opts.sub : (w.sub || ''), lantern: opts.lantern !== undefined ? !!opts.lantern : !!w.lantern,
   stats: Object.assign({}, w.stats), tech: Object.assign({}, w.tech),
   acts: Object.fromEntries(Object.entries(w.acts||{}).map(([k,a])=>[k, a.skill||0])), titles: (w.titles||[]).slice(), titleId: w.titleId || null,
   romance: opts.romance !== undefined ? opts.romance : romanceOf(w)});
@@ -352,7 +375,12 @@ function rebirthNamed(n, newLife){
   Object.entries(L.acts||{}).forEach(([k,v])=>{ if(n.acts && n.acts[k]) n.acts[k].skill = v; });
   n.reborn = L.reborn;
   if(L.reMet!==undefined) n.reMet = L.reMet;
+  if(L.sub==='lantern' || L.lantern){ n.sub = 'lantern'; n.lantern = true; n.lanternDecided = true; }
   if(!L.same || newLife){ ngReset(n); n.reborn = L.needsReset ? L.reborn : L.reborn + 1; }
+  if(isLanternAngel(n)){
+    n.lewd = Math.max(n.lewd, ((BAL.svc && BAL.svc.angel && BAL.svc.angel.lanternLewd) ?? 60));
+    if(n.key==='anael') applyLanternAnael(n);
+  }
   if(L.ngPerks && L.ngPerks.length) n.ngPerks = Array.from(new Set([...(n.ngPerks||[]), ...L.ngPerks]));
   if(L.wasLover) n.wasLover = true;
   if(L.after) n.after = Math.max(n.after || 0, L.after);
@@ -404,6 +432,10 @@ function ngBegin(){
   S.flags = S.flags || {}; S.flags.boughtHouse = false;
   { const T = CYCLE_CHALLENGES.small_troupe || {};   // cycle-long challenge tracking (challengeTrack in random.js); Tight Troupe's cap scales with what carried in
     S.chTrack = {weeks:0, tidy:0, maxStaff:0, cap:(T.base ?? 6) + (T.perLover ?? 1) * (N.loverCount||0) + (T.perHouse ?? 2) * (N.keptCount||0)}; }
+  if(ngLanternChoice(C, 'anael')==='reset'){
+    S.workers.filter(w=>w.key==='anael' && isLanternAngel(w)).forEach(w=>{ w.sub = ''; w.lantern = false; w.lanternDecided = false; w.lanternHeld = false; w.after = 0; resetLanternAnael(w); });
+    if(S.lives && S.lives.anael){ S.lives.anael.sub = ''; S.lives.anael.lantern = false; delete S.lives.anael.after; }
+  }
 
   if(N.ngpp){
     const hk = N.houseKey || 'shrine', HDn = HOUSES[hk];

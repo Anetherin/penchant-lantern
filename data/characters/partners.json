@@ -1194,6 +1194,7 @@
     "partnerTrust": 60,
     "partnerLewd": 20,
     "backstory": "Anael is a Warden of the Quiet Lamp, an angelic order that tends the lanterns lit for souls who arrive in this world unsent. Hollowmere's old Lantern Stone, a lamp at the crossroads that had not burned in four centuries, lit itself on the night Sam fell out of the sky. The Order sent her to find out who lit it and why. She expected a saint, a hero or a threat. She found a tired man in a hoodie who apologized to the lamppost, and her reports have been getting longer, warmer and further from the point ever since.",
+    "lanternBackstory": "Having traded the Order's frost for Hollowmere's lantern flame, Anael still keeps her fountain pen sharp and her margins spotless—only now her meticulous ledgers catalogue every bed, position, and lingering shudder she shares with Sam and the house's patrons. Her former composure didn't vanish when her wings caught crimson-and-gold; it simply dropped every ounce of heavenly apology and learned to smile shamelessly while begging for more.",
     "partnerStory": "No rule of the Order allows for a soul that arrives unsent and then lights a lantern by accident. Anael has been dispatched to observe him until she understands the mechanism. Observation, she explains, requires proximity, patience and, apparently, a great many cups of tea. The Order's records show her reports growing steadily more personal. Anael has told no one that she has stopped wanting to complete the assignment.",
     "design": {
       "build": "graceful",
@@ -1265,7 +1266,8 @@
       }
     ],
     "goddess": {
-      "comment": "\"An angel, writing reports.\" {goddess} laughs. \"About me, in a roundabout way. Her handwriting's gotten warmer. I'm not jealous, I'm a professional.\""
+      "comment": "\"An angel, writing reports.\" {goddess} laughs. \"About me, in a roundabout way. Her handwriting's gotten warmer. I'm not jealous, I'm a professional.\"",
+      "lanternComment": "\"Oh, look—the scholarly Warden decided footnotes look better written across bare thighs,\" {goddess} purrs happily. \"See what my flame brings out in an angel when she finally quits pretending she prefers marble?\""
     },
     "partnerBlurb": "An angel of the Order dispatched to watch the unsent soul who lit a lantern by accident."
   }

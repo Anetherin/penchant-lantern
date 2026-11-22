@@ -171,11 +171,11 @@
         "lantern": {
           "label": "Lantern Angel",
           "mods": {"charm":5,"charisma":5},
-          "fx": {"lustMax":55,"lustBuild":1.2,"allowReckless":true,"appeal":3},
+          "fx": {"lustMax":55,"lustBuild":1.2,"allowReckless":true,"appeal":3,"moodLoss":0.5},
           "client": {"like":0.3,"dislike":0.15,"classLike":{"noble":0.25,"adventurer":0.3}},
           "perk": {
             "label": "Lantern Angel",
-            "desc": "Touched by the Lamplighter's whisper—or so other angels claim. Lust ceiling rises to 125, can grow restless, builds lust 20% faster, +3 appeal."
+            "desc": "Touched by the Lamplighter's flame. Lust ceiling rises to 125, builds lust 20% faster, +3 appeal, mood penalties halved, and reckless nights earn full client fees without costing house class. Keeping a Quiet Chapel turns it into a Lantern Chapel (shielding the whole house from reckless class loss, unlocking full vestry services, and amplifying Seliora)."
           }
         }
       },

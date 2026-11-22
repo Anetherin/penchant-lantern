@@ -226,11 +226,225 @@
     "after": "You bury yourself to the hilt and spill hot and deep inside her—and the light goes out of her like a breath let go: the glow under her skin, the gold markings along her collarbones and hips, the little ember-flame, the unearthly warmth that never came from anywhere. Every paper lantern in the dark goes out at once.\n\nWhat's left in your arms is a breathless mortal-warm woman with bright eyes, shaking, laughing, holding on to you with your cum still warm inside her.\n\n\"Oh,\" she says. \"Oh, that's cold. Is it always this cold?\" She burrows straight against your chest. \"I'm yours now. All of me, the little that's left. I wanted you since before the truck, and I'd never have said so with the light still on. You'll have to build me back up, {sam}.\"\n\nShe has a tab of her own now. She'll do what she likes each week. You can tell her what you'd like; she might even listen.",
     "button": "Hold her"
   },
+  "lanternAwaken": {
+    "anael": {
+      "pre": {
+        "id": "la_anael_pre",
+        "title": "Someone's Ink",
+        "image": {
+          "comp": "leaning lazily against an evening doorframe in mortal guise, amused warm smile, lantern glow spilling across the floorboards",
+          "setting": "quiet pleasure-house corridor at night, warm crimson-amber lantern light",
+          "sam": true,
+          "cloth": "dressed"
+        },
+        "text": "You pass the parlor stairwell after midnight and find {alias}, wearing the modest lines of {form}, tapping one manicured finger softly against a closed ledger while faint lantern light pulses down the hall from Anael's room.\n\n\"That prim little scribe finally stopped apologizing to lampposts and opened her wings to the flame,\" she murmurs, eyes crinkling with unapologetic delight as she catches your sleeve. \"Did you see the blush running down her throat? Half a century of ink and starch, melted in one night because she decided your bed—and your lanterns—beat paradise.\"",
+        "choices": [
+          {
+            "label": "\"She's happier without the starch.\"",
+            "love": 2,
+            "mood": 4,
+            "jealousy": 1,
+            "res": "\"Happier and far louder, judging by how her halo flared,\" {alias} laughs softly against your ear, grazing her hip against yours before slipping into the dark. \"Don't get lost between those crimson-tipped feathers, {sam}. Save a little attention for me.\""
+          },
+          {
+            "label": "\"Was that your doing?\"",
+            "love": 1,
+            "mood": 2,
+            "res": "\"Mine? Heavens, no—I merely lit the wick.\" Her smile turns sly and golden at the corners. \"Every good angel already wants to spread her wings for something warmer than parchment. She only needed someone worth spreading them for.\""
+          }
+        ]
+      },
+      "bound": {
+        "id": "la_anael_bound",
+        "title": "A Brighter Footnote",
+        "image": {
+          "comp": "lounging across the shrine cushion threshold, warm possessive smirk, shrine lanterns glowing brightly behind her",
+          "setting": "dimly lit Lantern Shrine parlor, amber and crimson light across timber floorboards",
+          "sam": true,
+          "cloth": "partial"
+        },
+        "text": "Before Anael's feathers even finish catching the crimson-and-gold glow of your pact, {goddess} materializes silently beside your shoulder, resting her chin there while watching the former Warden roll her shoulders and grin shamelessly down at her bare thighs.\n\n\"Oh, *delicious*,\" {goddess} purrs right into your neck, lacing her fingers loosely through yours. \"She used to write three-page footnotes on restraint, {sam}. Look at that smug little half-lidded look now—every bit of my lantern flame settled straight between her legs and turned all that scholarly discipline into pure appetite. Try keeping up with *her* notebook tonight.\"",
+        "choices": [
+          {
+            "label": "Pull {goddess} against your chest",
+            "love": 3,
+            "mood": 5,
+            "jealousy": -2,
+            "ladyMood": 4,
+            "res": "\"Mm, smart answer.\" {goddess} leans back lazily against your sternum and brushes a pleased thumb over your jaw. \"Share her well—she wears our flame better than any saint.\""
+          },
+          {
+            "label": "Ask if she's jealous of sharing the flame",
+            "love": 2,
+            "mood": 3,
+            "jealousy": 2,
+            "trust": 2,
+            "res": "\"Jealous of my own handiwork?\" {goddess} chuckles low, though her fingers tighten possessively at your waist. \"Let's just say when a scholar decides she wants every cock in {house} and yours first, she sets a pace I intend to match.\""
+          }
+        ]
+      }
+    },
+    "generic": {
+      "pre": {
+        "id": "la_gen_pre",
+        "title": "Caught in the Flame",
+        "image": {
+          "comp": "pausing beside an arched parlor window at dusk, head tilted with a fond knowing grin as soft lantern light gilds her silhouette",
+          "setting": "pleasure house hallway beside tall paned windows, glowing lanterns",
+          "sam": true,
+          "cloth": "dressed"
+        },
+        "text": "Somewhere along the landing, {alias} lingers in the guise of {form}, watching the crimson-amber spill of {lady}'s newly awakened halo shimmer under the lintel down the hall.\n\n\"Another set of wings trading cold marble for warm sheets,\" {alias} remarks softly, a honeyed smirk tugging at her mouth. \"Tell me honestly, {sam}—when {lady} dropped her vows and let that crimson-and-gold glow down into her chest, did it feel like stealing from heaven, or giving an angel what she actually came down here for?\"",
+        "choices": [
+          {
+            "label": "\"Giving her what she wanted.\"",
+            "love": 2,
+            "mood": 3,
+            "res": "\"Spoken like a true proprietor of {house},\" {alias} hums warmly, brushing her knuckles down your forearm. \"Keep tending that glow carefully. It suits you both.\""
+          },
+          {
+            "label": "\"Both, honestly.\"",
+            "love": 2,
+            "mood": 4,
+            "jealousy": 1,
+            "res": "{alias} laughs quietly under her breath, gold glinting deep in her gaze. \"Honest man. Just remember whose flame turned her halo so bright.\""
+          }
+        ]
+      },
+      "bound": {
+        "id": "la_gen_bound",
+        "title": "Another Warm Wick",
+        "image": {
+          "comp": "resting one hip casually against a lantern-lit banister, playful satisfied smile, warm light spilling over bare shoulders",
+          "setting": "lantern-lit pleasure house landing at night",
+          "sam": true,
+          "cloth": "partial"
+        },
+        "text": "{goddess} catches your elbow outside {lady}'s door, gazing happily down the hall where laughter and warm feathered rustling drift from behind the panels.\n\n\"Listen to her,\" {goddess} sighs with pure, wicked satisfaction, resting her cheek briefly against your shoulder. \"Not a drop of guilt left, just crimson-and-gold feather tips and a halo burning hot enough to light {house} from cellar to attic. My flame agrees with {lady}, {sam}—you keep bringing angels to my doorstep, and I'll keep teaching them how good surrender feels.\"",
+        "choices": [
+          {
+            "label": "\"Our flame.\"",
+            "love": 3,
+            "mood": 5,
+            "jealousy": -2,
+            "trust": 2,
+            "res": "{goddess}'s smile softens into genuine radiance as she steals a slow kiss from the corner of your mouth. \"Ours, then. Keep feeding us both.\""
+          },
+          {
+            "label": "Tease her about expanding the choir",
+            "love": 2,
+            "mood": 4,
+            "ladyMood": 3,
+            "res": "\"Laugh all you like,\" {goddess} purrs, trailing warm nails down your chest. \"A choir that finishes twice a night keeps far better harmony than anything upstairs.\""
+          }
+        ]
+      }
+    }
+  },
+  "lanternEvents": {
+    "anael": {
+      "id": "lantern_anael",
+      "title": "Two Lanterns, One Desk",
+      "actSetting": "a lantern-lit private vestry in Sam's house, stacked notebooks swept aside on a wide oak table, glowing crimson-amber candlelight",
+      "image": {
+        "comp": "leaning over a broad wooden desk beside an open ink-stained ledger while exchanging a wicked sidelong glance in warm lantern light",
+        "setting": "a lantern-lit private vestry in Sam's house, stacked notebooks and warm crimson-amber candlelight",
+        "sam": true,
+        "cloth": "partial"
+      },
+      "text": "You push open the vestry door at {house} expecting Anael alone over her ledgers—only to stop short. Anael's crimson-and-gold tipped wings are spread wide across the hearthrug, bare shoulders flushed warm pink, while {goddess} sits perched on the edge of the oak desk with one knee hooked lazily under Anael's chin, tipping her face up with a finger.\n\n\"Look who stepped right into our citation check,\" {goddess} murmurs, glancing lazily toward you while Anael licks her bottom lip without an ounce of shame. \"Your former Warden was just telling me how thorough her field notes on lantern heat have become, {sam}. Apparently my flame makes her pussy ache whenever she hears your boots in the corridor.\"\n\n\"Empirical accuracy requires repeated testing, {goddess},\" Anael replies smoothly, though her breathing hitches as she unfastens the last ribbon holding her silk chemise closed and lets it puddle around her hips. \"Come here, {sam}. Tell us whether two lanterns burn twice as bright as one.\"",
+      "choices": [
+        {
+          "label": "Pull them both onto the rug and take turns with them",
+          "act": "cowgirl",
+          "duo": true,
+          "cloth": "nude",
+          "energy": 18,
+          "love": 5,
+          "mood": 7,
+          "jealousy": -6,
+          "trust": 5,
+          "ladyMood": 8,
+          "res": "You kick the door shut and strip fast while {goddess} and Anael tumble naked together onto the thick rug between your knees, wings feathering warm crimson-amber shadow across both gleaming backs. Anael sinks onto your cock first, sighing shamelessly as her tight, dripping folds swallow you to the hilt and {goddess} straddles your chest so you can bury your tongue inside her soaked pussy while Anael bounces in slow, grinding circles.\n\nHalfway through, they trade places with breathless laughter—{goddess} clamping her hot, clinging walls around your shaft and riding hard while Anael kneels beside your shoulder, teasing your balls with nimble fingers and licking every bead of sweat down {goddess}'s throat until both women shudder into ragged, glowing climaxes inches apart, milking a thick flood of cum deep into {goddess}'s womb while Anael groans into her shoulder."
+        },
+        {
+          "label": "Let Anael fetch tea while you take {goddess} on the desk",
+          "act": "missionary",
+          "cloth": "nude",
+          "energy": 14,
+          "love": 6,
+          "mood": 6,
+          "jealousy": -8,
+          "ladyMood": 3,
+          "res": "\"I believe I left my inkpot in the parlor,\" Anael murmurs with a wickedly transparent wink, kissing your cheekbone before slipping past the door with soft-rustling wings. The latch barely clicks before {goddess} hooks both calves behind your waist, sweeps her open ledgers straight off the oak edge, and tugs your hips between her parted thighs.\n\n\"Mm—right there,\" she breathes hotly against your mouth as you push your swollen shaft straight into her slick, clutching heat face to face. She lifts her hips to meet every heavy thrust with a low, smug purr, biting gently at your collarbone until shrine-light flares blazing gold along her throat and she clenches fiercely around every last throb as you fill her deep across the desktop."
+        },
+        {
+          "label": "Pour wine and enjoy watching the two of them trade notes",
+          "love": 3,
+          "mood": 5,
+          "jealousy": -3,
+          "trust": 4,
+          "ladyMood": 6,
+          "res": "You pull up a third chair, uncork a bottle from the vestry shelf, and spend a slow, laughing hour listening to Anael defend the precise metrics of pleasure while {goddess} cheerfully dismantles every shred of heavenly poise left in her notebook."
+        }
+      ]
+    },
+    "caelia": {
+      "id": "lantern_caelia",
+      "title": "Candlelight and Confession",
+      "actSetting": "behind a drawn crimson velvet curtain inside a warm wooden chapel vestry, tall beeswax candles glowing softly",
+      "image": {
+        "comp": "standing beside an altar screen with warm amused poise as crimson candlelight spills across carved wood and parted curtains",
+        "setting": "behind a drawn velvet curtain inside a warm wooden chapel vestry, tall beeswax candles glowing softly",
+        "sam": true,
+        "cloth": "partial"
+      },
+      "text": "When you slip behind the chapel screen at {house} after closing, you find Caelia beaming softly over freshly trimmed wicks—and {goddess} leaning shoulder-to-shoulder beside her, looking almost absurdly pleased.\n\n\"Caelia was already lighting candles under my name before most mortals learned to spell it,\" {goddess} says lightly, brushing one gentle hand across the older keeper's glowing feathers before gliding smoothly toward you. Caelia offers a serene, knowing bow—\"May the warm flame bless you both tonight, master\"—and slips politely through the vestry arch to lock the front doors.\n\nThe instant the latch clicks, {goddess}'s solemn smile dissolves into slow heat as she catches the hem of your shirt. \"Every week Caelia tends that altar, {house}'s whole roof answers my pulse a little louder,\" she whispers against your lips, stripping cleanly down to bare warm skin in the candlelight. \"Think you owe your goddess a proper offering behind her screen, {sam}?\"",
+      "choices": [
+        {
+          "label": "Drop to your knees between her thighs behind the screen",
+          "act": "oral_give",
+          "cloth": "nude",
+          "energy": 10,
+          "love": 5,
+          "mood": 6,
+          "jealousy": -5,
+          "trust": 2,
+          "ladyMood": 4,
+          "res": "You sink to the padded prayer cushion and part {goddess}'s soft thighs right where the beeswax glow pools warm gold across her stomach. She gasps softly, tangling both hands through your hair as you flatten your tongue up through her slick, swelling folds and draw her stiff clit between your lips.\n\nShe trembles against the carved wooden rail above you, murmuring hot, shameless praise until her hips buck into your mouth and she rides out a shuddering orgasm across your tongue—leaning down afterward to kiss her own taste off your chin with half-lidded radiance."
+        },
+        {
+          "label": "Pull her onto the vestry bench and let her ride you slow",
+          "act": "cowgirl",
+          "cloth": "nude",
+          "energy": 14,
+          "love": 6,
+          "mood": 6,
+          "jealousy": -6,
+          "ladyMood": 4,
+          "res": "You take the cushioned bench along the vestry wall, tug {goddess} astride your lap, and sigh cleanly as she guides your hard shaft straight into her wet, scorching pussy and sinks down inch by slick inch. She braces her palms on your shoulders and rolls her hips in unhurried, worshipful circles, moaning softly right by your throat so not even the echoes carry past the nave—until her walls clamp down like silk fire and pull a thick, warm finish deep inside her."
+        },
+        {
+          "label": "Share a quiet glass of sacramental wine before turning in",
+          "love": 3,
+          "mood": 4,
+          "jealousy": -2,
+          "trust": 3,
+          "ladyMood": 5,
+          "res": "You pour three small glasses, summon Caelia back in with a smile, and spend a quiet, radiant half-hour by the embers—watching an ancient chapel keeper and a newborn goddess toast the strange, warm sanctuary you built together."
+        }
+      ]
+    }
+  },
   "focus": {
     "indulge": {
       "label": "Indulge them",
       "desc": "She seeks out the ladies who are most worked up or worn down and takes care of them herself: lust spent, mood and energy back.",
       "report": "{goddess} spent part of the week with {lady}. {lady} came back glowing.",
+      "lanternReport": [
+        "{goddess} slipped beneath {lady}'s crimson-tipped wings in the vestry and coaxed one long, glowing orgasm after another out of her until both came back radiant.",
+        "{goddess} answered the warm hum in {lady}'s lantern halo herself, kissing her breathless and sharing an unhurried hour of languid, glowing pleasure."
+      ],
       "feminine": [
         "{goddess} found {lady} restless and took her to bed. {lady} came back glowing and slept like a stone.",
         "{goddess} drew {lady} a bath, got in with her, and didn't get out for hours."
@@ -243,12 +457,14 @@
     "business": {
       "label": "Business",
       "desc": "She works the floor of one house: patrons spend more, the house's name grows.",
-      "report": "{goddess} worked the room at {house}. Patrons found themselves in a generous mood."
+      "report": "{goddess} worked the room at {house}. Patrons found themselves in a generous mood.",
+      "chapelReport": "{goddess} draped herself across the chapel steps at {house} in full lantern radiance; half the patrons emptied their purses before they even reached the parlor."
     },
     "watch": {
       "label": "Watch over them",
       "desc": "She keeps an eye on the house with the most trouble and stops pushy clients before anyone else has to.",
       "report": "{goddess} kept watch over {house}.",
+      "chapelReport": "{goddess} watched from the lantern-lit loft above {house}'s chapel, smiling warmly at her keepers while troublemakers suddenly forgot their boldness.",
       "saved": "{goddess} stopped {n} pushy client(s) before anyone else had to. They left very politely and won't remember why."
     },
     "tutelage": {
@@ -265,7 +481,8 @@
     "clients": {
       "label": "Work the house",
       "desc": "She takes the floor herself in her chosen form for select high-paying patrons—unhurried, expensive, and entirely on her terms.",
-      "report": "{goddess} took select patrons at {house} in her {shape} form."
+      "report": "{goddess} took select patrons at {house} in her {shape} form.",
+      "chapelReport": "{goddess} held private court behind the candle-warm curtains of {house}'s Lantern Chapel in her {shape} form, leaving select patrons dazed and wildly generous."
     },
     "focus": {
       "label": "Back Sam up",
@@ -289,6 +506,14 @@
     "lady": [
       "{goddess} took the new girl, {lady}, aside for a long, pointed conversation about who was here first. {lady} looks shaken, and oddly flattered.",
       "{goddess} monopolized {lady} all week, half curious and half making a point. {lady} is exhausted."
+    ],
+    "lantern": [
+      "{goddess} caught {lady} alone in the hallway by the glow of her own feathers and claimed every shiver with slow, teasing kisses. {lady} came back flushed and grinning.",
+      "{goddess} wrapped an arm around {lady}'s waist and murmured, \"Come show me how warm that halo burns tonight, little flame.\" {lady} returned languid and utterly satisfied."
+    ],
+    "anael": [
+      "{goddess} backed {lady} against her own writing desk and whispered wicked suggestions until the former Warden dropped her pen and spread her crimson-tipped wings in shameless delight.",
+      "{goddess} spent the evening trading sly theological footnotes with {lady} while fingering her to three lingering peaks on the vestry cushions. Both looked smugly pleased with their research."
     ]
   },
   "night": {
@@ -459,12 +684,13 @@
       "body": {"bust":"flat","height":"average","figure":"slim"}
     },
     "angel": {
-      "label": "Angel",
+      "label": "Lantern Angel",
       "race": "angel",
+      "sub": "lantern",
       "alias": "Celeste",
-      "desc": "a winged angel",
+      "desc": "a lantern-winged angel",
       "build": "tall and athletic",
-      "features": "large white feathered wings and a faint golden halo",
+      "features": "large white feathered wings tipped in glowing crimson-and-gold and a glowing crimson-amber lantern halo",
       "body": {"bust":"medium","height":"tall","figure":"athletic"}
     },
     "android": {

@@ -28,7 +28,12 @@ const fillF = (t, w) => String(t||'').replace(/\{name\}/g, w.name).replace(/\{N\
 // Generic ladies: rolled at random (firsts.json → roll).
 function firstsProfile(w){
   const C = w.key && FIRST_CHARS[w.key];
-  if(C && C.path) return {pace:C.pace||'normal', path:C.path.slice(), init:!!C.init};
+  if(C && C.path){
+    if(typeof isLanternAngel==='function' && isLanternAngel(w) && (C.lanternPace || C.lanternPath || C.lanternInit!==undefined)){
+      return {pace:C.lanternPace||C.pace||'normal', path:(C.lanternPath||C.path).slice(), init:C.lanternInit!==undefined?!!C.lanternInit:!!C.init};
+    }
+    return {pace:C.pace||'normal', path:C.path.slice(), init:!!C.init};
+  }
   const R = w.key ? seededRng(hashStr(w.key+':firsts')) : Math.random, P = FIRSTS.roll;
   const wpick = o => { const e = Object.entries(o).filter(([,v])=>v>0); let t = e.reduce((a,[,v])=>a+v,0)*R(); for(const [k,v] of e){ t -= v; if(t<=0) return k; } return e[0][0]; };
   const pace = Object.assign({}, P.pace), path = Object.assign({}, P.path);
@@ -45,7 +50,9 @@ const tierActs = (w, s) => getActs().filter(a=>actTier(a.id)===s && samStance(w,
 // Why she isn't ready for her next first (null = she is). pent: she's restless enough to push past her own pace.
 function firstBlock(w, pent){
   const s = firstNext(w); if(!s) return 'done';
-  const gate = ((w.key && FIRST_CHARS[w.key] && FIRST_CHARS[w.key].gate) || {})[s];
+  const C = w.key && FIRST_CHARS[w.key];
+  const gates = (typeof isLanternAngel==='function' && isLanternAngel(w) && C && C.lanternGate!==undefined) ? C.lanternGate : (C && C.gate);
+  const gate = (gates || {})[s];
   if(gate && gate.arc && (w.arc||0) < gate.arc) return 'story';
   if(!tierActs(w,s).length) return 'comfort';
   const need = firstNeed(w, s, pent);
@@ -61,6 +68,12 @@ const firstReadyAny = w => firstReady(w) || (pentUp(w) && firstReady(w, true));
 // uses the "jump" templates; "pent_" templates are for when she can't wait any longer.
 function firstData(w, s, pent){
   const C = w.key && FIRST_CHARS[w.key];
+  if(C && typeof isLanternAngel==='function' && isLanternAngel(w) && C.lanternEvents){
+    const LE = C.lanternEvents, LP = C.lanternPent;
+    if(pent && LP && LP[s]) return {d:LP[s], key:`first_${w.key}_lantern_${s}_p`};
+    if((w.intim||0)===0 && s>1 && LE.jump && !(pent && LP && LP[s])) return {d:LE.jump, key:`first_${w.key}_lantern_jump`};
+    if(LE[s]) return {d:LE[s], key:`first_${w.key}_lantern_${s}`};
+  }
   if(C && C.events){
     if(pent && C.pent && C.pent[s]) return {d:C.pent[s], key:`first_${w.key}_${s}_p`};
     // her own jump scene (nothing yet, straight past a first kiss) beats her stage scene, which assumes the earlier firsts

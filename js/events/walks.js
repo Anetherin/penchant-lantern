@@ -142,15 +142,16 @@ function walkRecruitEvent(key, isPartner){
 
   const h = curH(), ngpp = (S.ngppCycle || 0) > 0, tier = ngpp ? Math.min(2, c.reMet || 0) : 0;
   const isReturning = (S.cycle || 1) >= 2 && (c.wasLover || (c.reborn || 0) > 0);
-  const custom = (WALKS.partnerMemoryLines || {})[key];
+  const isLA = typeof isLanternAngel==='function' && isLanternAngel(c);
+  const custom = (isLA && WALKS.partnerMemoryLinesLantern && WALKS.partnerMemoryLinesLantern[key]) || (WALKS.partnerMemoryLines || {})[key];
   const memOpener = isReturning
     ? (Array.isArray(custom) && custom[tier] ? custom[tier]
       : (N.ngplus && WALKS.isekaiMemoryTiers && WALKS.isekaiMemoryTiers[tier]) ? WALKS.isekaiMemoryTiers[tier]
       : (WALKS.exLoverMemoryTiers && WALKS.exLoverMemoryTiers[tier]) ? WALKS.exLoverMemoryTiers[tier] : null)
     : null;
-  const PI = (WALKS.partnerIntros || {})[key] || {};
+  const PI = (isLA && WALKS.partnerIntrosLantern && WALKS.partnerIntrosLantern[key]) || (WALKS.partnerIntros || {})[key] || {};
   const GP = typeof GOD !== 'undefined' && GOD && GOD.partnerIntros ? GOD.partnerIntros[key] : null;
-  const fVars = {name:c.name, first:c.name.split(' ')[0], house:h.name, loc:h.loc||'', goddess:GN(), sam:'Sam', backstory:N.backstory || ''};
+  const fVars = {name:c.name, first:c.name.split(' ')[0], house:h.name, loc:h.loc||'', goddess:GN(), sam:'Sam', backstory:(isLA && N.lanternBackstory) || N.backstory || ''};
   const opener = memOpener ? walkFill(memOpener, fVars)
     : c.wasLover && WALKS.exLoverOpeners && WALKS.exLoverOpeners.length
       ? walkFill(pick(WALKS.exLoverOpeners), fVars)
@@ -159,7 +160,7 @@ function walkRecruitEvent(key, isPartner){
         : walkFill(WALKS.guestIntro || 'You run into {name}. {backstory}', fVars);
   const countPartner = () => { if(isPartner) S.flags.walkPartners = (S.flags.walkPartners || 0) + 1; };
   const markGuest = () => { countPartner(); if(!isPartner){ (S.flags.guestSeen = S.flags.guestSeen || {})[key] = S.week; S.flags.lastGuest = S.week; } };
-  const customHire = (WALKS.partnerMemoryHire || {})[key];
+  const customHire = (isLA && WALKS.partnerMemoryHireLantern && WALKS.partnerMemoryHireLantern[key]) || (WALKS.partnerMemoryHire || {})[key];
   const memHire = isReturning
     ? (Array.isArray(customHire) && customHire[tier] ? customHire[tier]
       : (N.ngplus && WALKS.isekaiMemoryHire && WALKS.isekaiMemoryHire[tier]) ? WALKS.isekaiMemoryHire[tier]
@@ -170,8 +171,9 @@ function walkRecruitEvent(key, isPartner){
       ? walkFill(pick(WALKS.exLoverHireRes), fVars)
       : PI.hire ? walkFill(PI.hire, fVars) : null;
   const imgSpec = PI.image || (GP && GP.image) || null;
-  const sc = imgSpec ? (dynScene('walk_' + key, imgSpec) || 'portrait') : 'portrait';
-  const gAside = (isPartner || isReturning) && !G().left && (N.goddess && N.goddess.comment) ? gtxt(N.goddess.comment, {partner: fVars.first, house: h.name, goddess: GN()}) : '';
+  const sc = imgSpec ? (dynScene('walk_' + key + (isLA ? '_lantern' : ''), imgSpec) || 'portrait') : 'portrait';
+  const gComment = (isLA && N.goddess && N.goddess.lanternComment) || (N.goddess && N.goddess.comment);
+  const gAside = (isPartner || isReturning) && !G().left && gComment ? gtxt(gComment, {partner: fVars.first, house: h.name, goddess: GN()}) : '';
   const preOpen = PI.open ? walkFill(PI.open, fVars) : (GP && GP.arrival ? walkFill(GP.arrival, fVars) : '');
   const pre = preOpen ? [{text: preOpen, btn: `Step closer to ${fVars.first}`, scene: sc}] : undefined;
 

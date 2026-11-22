@@ -151,11 +151,31 @@ const CHECK = `async () => {
       for (const [ik, iv] of Object.entries(b.byIntim || {})) checkImg('arc ' + key + ' beat ' + (i + 1) + ' byIntim.' + ik, iv.image, iv.text || b.text);
     });
     if (!has(w, 'Devoted')) bad.push('arc ' + key + ': the last beat did not make her a lover');
+    if (key === 'anael') {
+      fresh(starters[0], 'anael');
+      const la = S.workers.find(x => x.key === 'anael');
+      la.sub = 'lantern'; la.lantern = true; la.lanternDecided = true; applyLanternAnael(la);
+      runBeats('arc-lantern', key, la, ARCS[key], evArc, 'arc');
+      ARCS[key].forEach((b, i) => {
+        if (!b.lantern) return;
+        const img0 = b.lantern.image ? Object.assign({}, b.image || {}, b.lantern.image) : b.image;
+        checkImg('arc-lantern ' + key + ' beat ' + (i + 1), img0, b.lantern.text);
+        for (const [ik, iv] of Object.entries(b.lantern.byIntim || {})) checkImg('arc-lantern ' + key + ' beat ' + (i + 1) + ' byIntim.' + ik, iv.image ? Object.assign({}, img0 || {}, iv.image) : null, iv.text || b.lantern.text);
+        (b.lantern.ngpp || []).forEach((t, ti) => look('arc-lantern ' + key + ' beat ' + (i + 1) + ' ngpp ' + ti, t, true));
+      });
+      if (!has(la, 'Devoted')) bad.push('arc-lantern ' + key + ': the last beat did not make her a lover');
+    }
     words[key] = Object.assign(words[key] || {}, {arcBeats: ARCS[key].length, arcWords: n});
   }
   for (const key of Object.keys(AFTER_STORIES)) {
     fresh(starters[0], PARTNERS[0]);
     let w = S.workers.find(x => x.key === key); if (!w) { w = makeNamed(key, false); w.house = S.houses[0].id; S.workers.push(w); }
+    const needLA = !!(AFTER_STORIES[key][0] && AFTER_STORIES[key][0].needLantern);
+    if (needLA) {
+      w.arc = (ARCS[key] || []).length; w.trust = 100;
+      if (afterReady(w) !== -1) bad.push('after ' + key + ': needLantern beat unlocked before becoming a Lantern Angel');
+      w.sub = 'lantern'; w.lantern = true; if (key === 'anael') applyLanternAnael(w);
+    }
     runBeats('after', key, w, AFTER_STORIES[key], evAfterStory, 'after');
     AFTER_STORIES[key].forEach((b, i) => {
       checkImg('after ' + key + ' beat ' + (i + 1), b.image, b.text);
@@ -171,7 +191,7 @@ const CHECK = `async () => {
   // 5b. firsts: every scene has its four lines, valid image, matching path stages, and a named service exists at that scene's stage (firstAct ignores it otherwise)
   for (const [k, c] of Object.entries(FIRST_CHARS)) {
     for (const st of (c.path || [])) if (!(c.events || {})[String(st)]) bad.push('first ' + k + ': path has stage ' + st + ' without events.' + st);
-    for (const [grp, evs] of [['', c.events || {}], ['pent ', c.pent || {}]]) for (const [st, e] of Object.entries(evs)) {
+    for (const [grp, evs] of [['', c.events || {}], ['pent ', c.pent || {}], ['lantern ', c.lanternEvents || {}], ['lantern pent ', c.lanternPent || {}]]) for (const [st, e] of Object.entries(evs)) {
       const at = 'first ' + k + ' ' + grp + st; look(at + ' text', e.text, true); look(at + ' goRes', e.goRes, true); look(at + ' waitRes', e.waitRes, true);
       if (!e.image) bad.push(at + ': missing image');
       else checkImg(at, e.image, e.text);
@@ -218,6 +238,36 @@ const CHECK = `async () => {
     });
   }
   if (!AFTER_STORIES.vesna || !AFTER_STORIES.brunhild) bad.push('afterstories: missing vesna or brunhild in guild.json');
+  if (GOD.lanternAwaken) {
+    const av = {lady:'Anael', name:'Anael', house:curH().name, alias:'Celeste', form:'a woman', goddess:GN(), sam:'Sam'};
+    for (const grp of ['anael', 'generic']) for (const phase of ['pre', 'bound']) {
+      const sc = GOD.lanternAwaken[grp] && GOD.lanternAwaken[grp][phase];
+      if (!sc) { bad.push('goddess lanternAwaken.' + grp + '.' + phase + ': missing'); continue; }
+      const at = 'goddess lanternAwaken ' + grp + '.' + phase;
+      look(at + ' title', gtxt(sc.title, av), true); look(at + ' text', gtxt(sc.text, av), true);
+      if (sc.image) checkImg(at, sc.image, gtxt(sc.text, av));
+      (sc.choices || []).forEach((ch, ci) => { look(at + ' c' + ci + ' label', gtxt(ch.label, av), true); look(at + ' c' + ci + ' res', gtxt(ch.res, av), true); });
+    }
+  }
+  if (GOD.lanternEvents) {
+    const lv = {house:curH().name, lady:'Anael', goddess:GN(), sam:'Sam'};
+    ['anael', 'caelia'].forEach(k => {
+      const sc = GOD.lanternEvents[k]; if (!sc) { bad.push('goddess lanternEvents.' + k + ': missing'); return; }
+      const at = 'goddess lanternEvents.' + k;
+      look(at + ' title', gtxt(sc.title, lv), true); look(at + ' text', gtxt(sc.text, lv), true);
+      if (sc.image) checkImg(at, sc.image, gtxt(sc.text, lv));
+      checkActRef(at + ' act', sc.act);
+      (sc.choices || []).forEach((ch, ci) => { look(at + ' c' + ci + ' label', gtxt(ch.label, lv), true); look(at + ' c' + ci + ' res', gtxt(ch.res, lv), true); checkActRef(at + ' c' + ci + ' act', ch.act); });
+    });
+    fresh(starters[0], 'anael'); G().bound = true; G().knows = true;
+    const la = S.workers.find(x => x.key === 'anael'); la.sub = 'lantern'; la.lantern = true; applyLanternAnael(la);
+    const ca = makeNamed('caelia', false); ca.house = S.houses[0].id; S.workers.push(ca);
+    for (const [k, fn] of [['anael', evGoddessAnaelLantern], ['caelia', evGoddessCaelia]]) {
+      const ev = fn(); if (!ev || !ev.choices.length) { bad.push('goddess lanternEvents runtime ' + k + ': empty event'); continue; }
+      look('goddess lanternEvents runtime ' + k + ' text', ev.text, true);
+      ev.choices.forEach((_, ci) => { const e2 = fn(); look('goddess lanternEvents runtime ' + k + ' c' + ci, outText(e2.choices[ci].fx()), true); });
+    }
+  }
   if (GOD.isolde) {
     const gv = {house:curH().name, n:S.workers.length, alias:'Lysa', goddess:GN()};
     [GOD.isolde.pre, GOD.isolde.first, ...(GOD.isolde.repeat || [])].filter(Boolean).forEach((sc, i) => {
@@ -257,6 +307,18 @@ const CHECK = `async () => {
     ev0.choices.forEach((c0, i) => { const ev = walkRecruitEvent(k, true); look('walk ' + k + ' choice ' + i, outText(ev.choices[i].fx()), true); S.workers = S.workers.filter(w => w.key !== k); S.candidates = (S.candidates || []).filter(w => w.key !== k); });
     if (WI.image && /\b(hair|haired|blonde|brunette|ponytail|braid|halo|horns|(red|grey|gray|blue|green|violet|amber|gold|golden|dark|silver|white|black|brown|copper)[- ](eyes|eyed|ears|tail|wings))\b/i.test(WI.image.comp)) bad.push('walk ' + k + ': image.comp describes her look: ' + WI.image.comp);
   }
+  {
+    const WLA = (WALKS.partnerIntrosLantern || {}).anael;
+    if (!WLA) bad.push('walk anael lantern: missing partnerIntrosLantern.anael');
+    else if (WLA.image && /\b(hair|haired|blonde|brunette|ponytail|braid|halo|horns|(red|grey|gray|blue|green|violet|amber|gold|golden|dark|silver|white|black|brown|copper)[- ](eyes|eyed|ears|tail|wings))\b/i.test(WLA.image.comp)) bad.push('walk anael lantern: image.comp describes her look: ' + WLA.image.comp);
+    const seedLA = () => { fresh(starters[0], PARTNERS.find(x => x !== 'anael')); S.gold = 1e6; S.ngppCycle = 1;
+      S.lives = {anael:{name:'Anael',reborn:2,same:false,needsReset:true,wasLover:true,after:0,reMet:1,ngPerks:[],sub:'lantern',lantern:true,stats:{charm:50,charisma:50,wits:50,agility:50,stamina:50,strength:20,refinement:50},tech:{service:40,manage:20,combat:20},acts:{},titles:[],titleId:null,romance:null}}; };
+    seedLA();
+    const evL = walkRecruitEvent('anael', true);
+    if (!evL || !(evL.pre||[]).length) bad.push('walk anael lantern: missing opening page');
+    else { (evL.pre||[]).forEach(pg => look('walk anael lantern open', pg.text, true)); look('walk anael lantern story', evL.text, true); look('walk anael lantern aside', evL.aside, false);
+      evL.choices.forEach((_, i) => { seedLA(); const e2 = walkRecruitEvent('anael', true); look('walk anael lantern choice ' + i, outText(e2.choices[i].fx()), true); }); }
+  }
   // 7. Lantern Angels: trusted -> she asks; untrusted + easygoing -> takes it herself; untrusted + reserved -> holds, then asks once she trusts Sam
   const angel = (pers, trust, lewd) => { fresh(starters[0], PARTNERS[0]); let w, t = 0; do { w = genWorker({race:'angel'}); } while (w.sub && ++t < 300);
     w.sub = ''; w.lantern = false; w.lanternDecided = false; w.personality = pers; w.traits = w.traits.filter(x => x !== 'Modest'); w.trust = trust; w.lewd = lewd; w.house = S.houses[0].id; w.job = 'rest'; w.contract = 50; S.workers.push(w);
@@ -271,6 +333,25 @@ const CHECK = `async () => {
   a = angel(shy, LT - 30, LL + 2); if (a.sub === 'lantern' || a.lanternDecided) bad.push('lantern: a reserved angel with low trust should hold to her vows and stay undecided');
   EVQ = []; CUR_EV = null; a.trust = LT + 20; a.lewd = Math.max(a.lewd, LL + 2); endWeek(); closeModal(); if (!a.lanternDecided || a.sub === 'lantern') bad.push('lantern: a reserved angel should ask once she trusts Sam');
   a = angel(shy, LT - 30, LL + (SVC.angel.lanternOwn ?? 15) + 2); if (a.sub !== 'lantern') bad.push('lantern: a reserved angel far past the threshold should give in on her own');
+  for (const voice of ['pre', 'known', 'bound', 'gone']) {
+    fresh(starters[0], 'anael'); S.gold = 1e6; G().knows = voice !== 'pre'; G().bound = voice === 'bound'; G().left = voice === 'gone';
+    const an = S.workers.find(w => w.key === 'anael'); an.sub = ''; an.lantern = false; an.lanternDecided = false; an.trust = LT + 20; an.lewd = LL + 2;
+    const evAsk = evLanternAsk(an); look('lantern anael ask ' + voice, evAsk.text, true);
+    look('lantern anael accept ' + voice, outText(evAsk.choices[0].fx()), true);
+    if (!isLanternAngel(an) || an.personality !== 'Sultry and indulgent' || an.dislike !== null) bad.push('lantern anael accept (' + voice + '): did not transform her personality/dislike');
+    if (!imgKey(an, 'portrait', 'dressed').includes('+lantern') || thumbId(an) !== an.id + ':lantern') bad.push('lantern anael: missing +lantern/:lantern key separation');
+    if (voice !== 'gone') { const ga = evGoddessLanternAwaken(an); if (!ga || !ga.choices.length) bad.push('lantern anael goddess awaken (' + voice + '): missing'); else look('lantern anael goddess awaken ' + voice, outText(ga.choices[0].fx()), true); }
+    const evS = evLanternSelf(an); look('lantern anael self ' + voice, evS.text, true);
+  }
+  const caelia = makeNamed('caelia', false); caelia.house = S.houses[0].id;
+  if (imgKey(caelia, 'portrait', 'dressed').includes('+lantern') || thumbId(caelia) !== caelia.id) bad.push('lantern caelia: base lantern angel should not get +lantern/:lantern separation');
+  const guestAngel = Object.keys(NAMED).find(k => NAMED[k].race === 'angel' && NAMED[k].role === 'drifter' && !NAMED[k].sub);
+  if (guestAngel) {
+    fresh(starters[0], PARTNERS[0]);
+    const gw = makeNamed(guestAngel, false); gw.house = S.houses[0].id; gw.job = 'rest'; gw.lewd = 90; gw.trust = 100; S.workers.push(gw);
+    applyMods(gw); if (isLanternAngel(gw)) bad.push('lantern guest: applyMods transformed guest ' + guestAngel);
+    EVQ = []; endWeek(); closeModal(); if (isLanternAngel(gw) || gw.lanternDecided) bad.push('lantern guest: endWeek awakened guest ' + guestAngel);
+  }
   store.del(KEY_SAVE);
   return {bad, words, houseWords, partners: PARTNERS.length, arcs: Object.keys(ARCS).length, afters: Object.keys(AFTER_STORIES).length};
 }`;

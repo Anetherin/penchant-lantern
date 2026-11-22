@@ -34,7 +34,8 @@ function ensureGoddess(){
   const B = GB(), J = B.mood || {};
   const d = {met:false, bound:false, boundCycle:0, love:0, jealousy:0, mood:J.base ?? 55, divinity:100, focus:'indulge', form:'auto',
     shape:'auto', autoShape:GOD_TRUE, teases:[], evWk:0, roster:0, ending:null, left:false, nights:0, finishes:0, last:[], lastNight:0, claimWk:0,
-    isoldeSeen:0, isoldeLastWk:0, isoldePreSeen:false, isoldePending:false, isoldeLastId:null};
+    isoldeSeen:0, isoldeLastWk:0, isoldePreSeen:false, isoldePending:false, isoldeLastId:null,
+    lanternAnaelSeen:false, lanternCaeliaSeen:false};
   const g = S.goddess = S.goddess || {};
   Object.keys(d).forEach(k=>{ if(g[k] === undefined) g[k] = d[k]; });   // in place: callers keep their reference
   if(g.form === 'feminine') g.form = 'fem';
@@ -62,11 +63,16 @@ function rebornFull(min = fullAt()){
   Object.entries(S.lives || {}).forEach(([k, L])=>{ if(!seen.has(k) && L && (L.reborn||0) >= min){ out.push(Object.assign({name:(NAMED[k]||{}).name||k}, L)); seen.add(k); } });
   return out;
 }
-// Her power: base + divinity, times a bonus for every fully reincarnated lady (more for each life past full).
+const activeLanternAngels = () => (typeof S!=='undefined' && S && S.workers || []).filter(w => w.job !== 'rest' && isLanternAngel(w));
+const lanternChapelHouses = () => (typeof S!=='undefined' && S && S.houses || []).filter(houseHasLanternChapel);
+// Her power: base + divinity, times a bonus for every fully reincarnated lady (more for each life past full) and Lantern Angel conduits.
 function goddessPower(){
-  const P = GB().power || {}, g = G();
+  const P = GB().power || {}, L = GB().lantern || {}, g = G();
   const reb = rebornFull().reduce((a,w)=>a + 1 + ((w.reborn||0) - fullAt()), 0);
-  return ((P.base ?? 0.5) + (P.perDiv ?? 0.01) * (g.divinity||0)) * (1 + (P.perReborn ?? 0.1) * reb) * (hasChallengePerk('faithful_flame') ? 1.2 : 1);
+  const laN = Math.min(L.maxAngels ?? 4, activeLanternAngels().length);
+  const lcN = Math.min(L.maxChapels ?? 2, lanternChapelHouses().length);
+  const lanternMul = 1 + laN * (L.perAngel ?? 0.08) + lcN * (L.perChapel ?? 0.1);
+  return ((P.base ?? 0.5) + (P.perDiv ?? 0.01) * (g.divinity||0)) * (1 + (P.perReborn ?? 0.1) * reb) * lanternMul * (hasChallengePerk('faithful_flame') ? 1.2 : 1);
 }
 const goddessActions = () => 1 + Math.floor((G().divinity||0) / ((GB().divinity||{}).perAction || 25));
 
@@ -157,8 +163,8 @@ function goddessHouseNote(id){
 function goddessPlan(){
   GW = {biz:{}, watch:{}, clients:[], focus:null, saved:0, lines:[], hl:[], samClaim:[]};
   const g = G(); if(!goddessActive()) return;
-  const A = GB().actions || {}, M = GB().mood || {}, p = goddessPower(), n = goddessActions();
-  const lines = GW.lines, W = S.workers.filter(w=>w.job!=='rest' || (w.lust||0) > 0);
+  const A = GB().actions || {}, M = GB().mood || {}, L = GB().lantern || {}, p = goddessPower(), n = goddessActions();
+  const lines = GW.lines, W = S.workers.filter(w=>w.job!=='rest' || (w.lust||0) > 0), lcHouses = lanternChapelHouses();
   const F = GOD.focus || {}, form = () => g.form==='auto' ? pick(['fem','futa']) : g.form;
   if(g.shape==='auto') g.autoShape = pick(Object.keys(GOD_FORMS));   // a new form each week
   for(let i=0; i<n; i++){
@@ -172,20 +178,26 @@ function goddessPlan(){
     const q = p * mul;
     if(kind==='indulge'){
       const I = A.indulge || {}, ladies = W.slice().sort((a,b)=>((b.lust||0) - b.mood/2) - ((a.lust||0) - a.mood/2)).slice(0, I.ladies ?? 2);
-      ladies.forEach(w=>{ w.lust = Math.max(0, (w.lust||0) - (I.lust ?? 30) * q); fitLust(w); moodAdd(w, (I.mood ?? 8) * q);
-        w.energy = clamp(w.energy + (I.energy ?? 15) * q, 0, maxEnergy(w)); lewdUp(w, (I.lewd ?? 1) * q); countUp(w, 'goddess');
+      ladies.forEach(w=>{ const isLA = isLanternAngel(w);
+        w.lust = Math.max(0, (w.lust||0) - (I.lust ?? 30) * q); fitLust(w);
+        moodAdd(w, ((I.mood ?? 8) + (isLA ? (L.indulgeMood ?? 4) : 0)) * q);
+        w.energy = clamp(w.energy + ((I.energy ?? 15) + (isLA ? (L.indulgeEnergy ?? 8) : 0)) * q, 0, maxEnergy(w));
+        lewdUp(w, (I.lewd ?? 1) * q * (w.race==='angel' && !isLA && !isGuest(w) && !w.lanternDecided ? 2 : 1));
+        countUp(w, 'goddess');
+        if(isLA){ g.mood = clamp((g.mood||0) + (L.indulgeGodMood ?? 1)); g.jealousy = clamp((g.jealousy||0) - (L.indulgeGodJeal ?? 2)); }
         const f = form(), act = goddessActFor(w, f); if(act) growAct(w, act, (I.practice ?? 2) * q);
-        const t = gSvcLine(act, f, w.name.split(' ')[0]) || gtxt(((F.indulge||{})[f]) || (F.indulge||{}).report, {lady:w.name.split(' ')[0]});
+        const t = gSvcLine(act, f, w.name.split(' ')[0]) || gtxt((isLA && (F.indulge||{}).lanternReport) || ((F.indulge||{})[f]) || (F.indulge||{}).report, {lady:w.name.split(' ')[0]});
         lines.push(t); if(act) GW.hl.push({wid:w.id, text:t, act, scene:`pair:${act}:${f}:${godId()}`, noAi:true}); });
     } else if(kind==='business'){
-      const B = A.business || {}, h = pick(S.houses);
-      GW.biz[h.id] = (GW.biz[h.id]||0) + (B.income ?? 0.06) * q; repAdd(h, (B.rep ?? 1) * q);
-      lines.push(gtxt((F.business||{}).report, {house:h.name}));
+      const B = A.business || {}, h = lcHouses.length ? pick(lcHouses) : pick(S.houses), hasLC = houseHasLanternChapel(h), bm = hasLC ? (L.bizMult ?? 1.35) : 1;
+      GW.biz[h.id] = (GW.biz[h.id]||0) + (B.income ?? 0.06) * q * bm; repAdd(h, (B.rep ?? 1) * q * bm);
+      lines.push(gtxt((hasLC && (F.business||{}).chapelReport) || (F.business||{}).report, {house:h.name}));
     } else if(kind==='watch'){
-      const Wt = A.watch || {}, L = S.lastReport, worst = L && L.houses ? L.houses.slice().sort((a,b)=>((b.pushy||{}).total||0) - ((a.pushy||{}).total||0))[0] : null;
-      const h = (worst && H(worst.id)) || pick(S.houses);
-      GW.watch[h.id] = Math.min(Wt.max ?? 0.9, (GW.watch[h.id]||0) + (Wt.chance ?? 0.5) * q);
-      lines.push(gtxt((F.watch||{}).report, {house:h.name}));
+      const Wt = A.watch || {}, Rl = S.lastReport, worst = Rl && Rl.houses ? Rl.houses.slice().sort((a,b)=>((b.pushy||{}).total||0) - ((a.pushy||{}).total||0))[0] : null;
+      const h = (worst && H(worst.id)) || (lcHouses.length ? pick(lcHouses) : pick(S.houses)), hasLC = houseHasLanternChapel(h);
+      GW.watch[h.id] = Math.min(Wt.max ?? 0.9, (GW.watch[h.id]||0) + (Wt.chance ?? 0.5) * q + (hasLC ? (L.watchBonus ?? 0.15) : 0));
+      if(hasLC) S.workers.filter(w=>w.house===h.id && isLanternAngel(w)).forEach(w=>moodAdd(w, L.watchMood ?? 2));
+      lines.push(gtxt((hasLC && (F.watch||{}).chapelReport) || (F.watch||{}).report, {house:h.name}));
     } else if(kind==='guild'){
       // she goes out with a party: progress on the contract with the most work left (balance.json → goddess.actions.guild.progress x her power)
       const Gd = A.guild || {}, c = GLD().active.slice().sort((a,b)=>(GCON[b.type].work - (b.prog||0)) - (GCON[a.type].work - (a.prog||0)))[0];
@@ -194,12 +206,13 @@ function goddessPlan(){
     } else if(kind==='tutelage'){
       const T = A.tutelage || {}, pool = S.workers.filter(w=>w.job!=='rest'); if(!pool.length) continue;
       const w = pool.slice().sort((a,b)=>(a.tech[trainSkillOf(a)]||0) - (b.tech[trainSkillOf(b)]||0))[0];
-      grow(w, trainSkillOf(w), (T.skill ?? 3) * q); const st = trainStatsOf(w); if(st.length) statXP(w, pick(st)[0], (T.stat ?? 25) * q);
+      const tm = (isLanternAngel(w) || houseHasLanternChapel(houseOf(w))) ? (L.tutelageMult ?? 1.25) : 1;
+      grow(w, trainSkillOf(w), (T.skill ?? 3) * q * tm); const st = trainStatsOf(w); if(st.length) statXP(w, pick(st)[0], (T.stat ?? 25) * q * tm);
       lines.push(gtxt((F.tutelage||{}).report, {lady:w.name.split(' ')[0], skill:(TECH_LABEL[trainSkillOf(w)]||'her craft').toLowerCase()}));
     } else if(kind==='clients'){
-      const h = pick(S.houses), shape = (GOD_FORMS[godForm()]||{}).label || godForm();
-      GW.clients.push({hid:h.id, house:h.name, mul:q, shape});
-      lines.push(gtxt((F.clients||{}).report, {house:h.name, shape}));
+      const h = lcHouses.length ? pick(lcHouses) : pick(S.houses), shape = (GOD_FORMS[godForm()]||{}).label || godForm(), hasLC = houseHasLanternChapel(h);
+      GW.clients.push({hid:h.id, house:h.name, mul:q, shape, chapel:hasLC});
+      lines.push(gtxt((hasLC && (F.clients||{}).chapelReport) || (F.clients||{}).report, {house:h.name, shape}));
     } else if(kind==='focus'){
       const Fc = A.focus || {}, houses = S.houses.filter(samAtHouse);
       let fk = samFocus().kind;
@@ -217,8 +230,15 @@ function goddessPlan(){
         lines.push(ct);
         GW.samClaim.push({wid: godId(), text: ct, scene: 'samact:cowgirl'});
       } else {
-        const w = pick(newest); g.claimWk = S.week; moodAdd(w, C.mood ?? -4); w.energy = clamp(w.energy - 10, 0, maxEnergy(w)); g.jealousy = clamp(g.jealousy - (C.cut ?? 10) / 2);
-        lines.push(gtxt((GOD.claim||{}).lady, {lady:w.name.split(' ')[0]}));
+        const w = pick(newest); g.claimWk = S.week;
+        if(isLanternAngel(w)){
+          moodAdd(w, 1); w.lust = Math.min(lustProfile(w).max, (w.lust||0) + 8); g.jealousy = clamp(g.jealousy - (C.cut ?? 10) / 2);
+          const cl = w.key==='anael' ? (GOD.claim||{}).anael : (GOD.claim||{}).lantern;
+          lines.push(gtxt(cl || (GOD.claim||{}).lady, {lady:w.name.split(' ')[0]}));
+        } else {
+          moodAdd(w, C.mood ?? -4); w.energy = clamp(w.energy - 10, 0, maxEnergy(w)); g.jealousy = clamp(g.jealousy - (C.cut ?? 10) / 2);
+          lines.push(gtxt((GOD.claim||{}).lady, {lady:w.name.split(' ')[0]}));
+        }
       }
     }
   }
@@ -226,7 +246,7 @@ function goddessPlan(){
 // pushyCheck: she was watching this house and steps in before anyone else has to
 function goddessGuard(h){ const c = GW.watch && GW.watch[h.id]; if(c && Math.random() < c){ GW.saved++; return true; } return false; }
 function goddessAfter(R){
-  const g = G(), J = GB().jealousy || {}, M = GB().mood || {};
+  const g = G(), J = GB().jealousy || {}, M = GB().mood || {}, L = GB().lantern || {}, lcHouses = lanternChapelHouses();
   // her share of the takings (business / office focus) and her own clients / focus backup
   if(goddessActive()){
     const A = GB().actions || {};
@@ -236,10 +256,11 @@ function goddessAfter(R){
       const Cl = A.clients || {};
       let totN = 0, totGold = 0, lastHouse = '', lastShape = '';
       GW.clients.forEach(c=>{
+        const cm = c.chapel ? (L.clientMult ?? 1.2) : 1;
         const n = Math.max(2, Math.round((Cl.n ?? 4) * c.mul)), h = H(c.hid) || S.houses[0];
-        const gold = Math.round(n * (Cl.baseFee ?? 110) * (1 + Math.max(0, (S.cycle||1) - 1) * (Cl.perCycle ?? 0.15)) * (0.85 + Math.random()*0.3) * (1 + ((h&&h.rep)||0)/150));
+        const gold = Math.round(n * (Cl.baseFee ?? 110) * cm * (1 + Math.max(0, (S.cycle||1) - 1) * (Cl.perCycle ?? 0.15)) * (0.85 + Math.random()*0.3) * (1 + ((h&&h.rep)||0)/150));
         totN += n; totGold += gold; lastHouse = (h&&h.name) || c.house; lastShape = c.shape;
-        if(h) repAdd(h, (Cl.rep ?? 1.2) * c.mul);
+        if(h) repAdd(h, (Cl.rep ?? 1.2) * c.mul * cm);
       });
       if(totGold){ S.gold += totGold; R.income += totGold; R.led.goddess = (R.led.goddess||0) + totGold; }
       g.love = clamp((g.love||0) + (Cl.love ?? 1)); g.mood = clamp((g.mood||0) + (Cl.mood ?? 4));
@@ -260,10 +281,11 @@ function goddessAfter(R){
     g.last = GW.lines.slice(0, 8);
   }
   if(g.left) return;
-  // jealousy: new faces, private time with others, a crowded roster; time fades it a little
+  // jealousy: new faces, private time with others, a crowded roster; time (and tended Lantern Chapels) fades it a little
   const hires = Math.max(0, S.workers.length - (g.roster||0)); g.roster = S.workers.length;
   const priv = (S.samWeek.acts||[]).filter(a=>/^(Private time|A night with|Swept off|A visit from|Demonstration|Took the next step)/.test(a)).length;
-  g.jealousy = clamp((g.jealousy||0) + hires * (J.perHire ?? 3) + priv * (J.perPrivate ?? 1) + Math.max(0, S.workers.length - (J.rosterRef ?? 6)) * (J.perLady ?? 0.15) - (J.decay ?? 2));
+  const jDecay = (J.decay ?? 2) + (lcHouses.length ? (L.chapelJealDecay ?? 1) : 0);
+  g.jealousy = clamp((g.jealousy||0) + hires * (J.perHire ?? 3) + priv * (J.perPrivate ?? 1) + Math.max(0, S.workers.length - (J.rosterRef ?? 6)) * (J.perLady ?? 0.15) - jDecay);
   const target = (M.base ?? 55) + (g.love||0) * (M.perLove ?? 0.25) - (g.jealousy||0) * (M.perJealous ?? 0.3);
   g.mood = clamp((g.mood||0) + (target - (g.mood||0)) * (M.drift ?? 0.3));
   // neglect (after the binding): too long without a night costs love and mood; a jealous claim left unanswered costs more
@@ -284,6 +306,8 @@ function goddessAfter(R){
     if(S.week - (g.evWk||0) >= (late ? (C.gap ?? 1) : (E.gap ?? 2)) && Math.random() < ch){ g.evWk = S.week; EVQ.push(evGoddess); }
   } else if(!g.ending && (g.divinity||0) >= ((GB().divinity||{}).max ?? 100)){ EVQ.push(evGoddessEnd); }
   else if(goddessActive() && g.isoldePending && (S.week - (g.isoldeLastWk||0)) >= ((GB().isolde||{}).cooldown ?? 3)){ g.isoldePending = false; g.isoldeLastWk = S.week; EVQ.push(()=>evGoddessIsolde(g.isoldeSeen ? 'repeat' : 'first')); }
+  else if(goddessActive() && !g.lanternAnaelSeen && S.workers.some(w=>w.key==='anael' && isLanternAngel(w))){ g.lanternAnaelSeen = true; EVQ.push(evGoddessAnaelLantern); }
+  else if(goddessActive() && !g.lanternCaeliaSeen && S.workers.some(w=>w.key==='caelia')){ g.lanternCaeliaSeen = true; EVQ.push(evGoddessCaelia); }
   else if(goddessActive() && S.week - (g.evWk||0) >= (E.gap ?? 2) && Math.random() < (E.bound ?? 0.15) * (0.5 + g.jealousy/100)){ g.evWk = S.week; EVQ.push(evGoddessRemark); }
 }
 
@@ -343,8 +367,8 @@ function gDistractAct(T, c){
 function gTeaseByCtx(ctx){
   const m = /^gt_(.+)$/.exec(ctx || ''); if(!m) return null;
   if(m[1] === 'binding') return GOD.binding || null;
-  const Gi = GOD.isolde || {};
-  const isoHit = [Gi.first, Gi.pre, ...(Gi.repeat || [])].find(x => x && x.id === m[1]);
+  const Gi = GOD.isolde || {}, Gl = GOD.lanternEvents || {};
+  const isoHit = [Gi.first, Gi.pre, ...(Gi.repeat || []), ...Object.values(Gl)].find(x => x && x.id === m[1]);
   if(isoHit) return isoHit;
   return (GOD.teases || []).find(t => t.id === m[1])
     || (typeof WALKS !== 'undefined' && WALKS.goddess && (WALKS.goddess.disguise || []).find(t => t.id === m[1]))
@@ -430,6 +454,64 @@ function evGoddessRemark(){
   return {title: `${GN()}`, who:godId(), scene: sc, cloth: r && r.cloth, text: gtxt(r.text || r, ctx), choices:(r.choices || GOD.remarkChoices || [{label:'…'}]).map(c=>({label:gtxt(c.label), fx(){
     g.love = clamp((g.love||0) + (c.love||0)); g.jealousy = clamp((g.jealousy||0) + (c.jealousy||0)); return gtxt(c.res, ctx); }}))};
 }
+function evGoddessLanternAwaken(w){
+  const g = G(); if(!w || g.left) return null;
+  const A = GOD.lanternAwaken || {}, grp = w.key==='anael' ? A.anael : A.generic;
+  if(!grp) return null;
+  const sc = g.bound ? grp.bound : grp.pre; if(!sc) return null;
+  const fk = g.bound ? godForm() : (g.knows ? GOD_TRUE : gDisguise()), F = GOD_FORMS[fk] || {}, wid = godNpcId(fk);
+  const ctx = {lady:w.name.split(' ')[0], name:w.name, house:houseOf(w)?houseOf(w).name:curH().name, alias:F.alias || GN(), form:F.desc || 'a woman'};
+  const img = sc.image ? dynScene('goddess_' + (sc.id || ('la_' + (w.key==='anael'?'anael':'gen') + '_' + (g.bound?'bound':'pre'))) + '_' + fk, sc.image) : 'portrait';
+  return {title: gtxt(sc.title, ctx), who: wid, scene: img, cloth: sc.cloth, text: gtxt(sc.text, ctx),
+    choices: (sc.choices || [{label:'…'}]).map(c=>({label:gtxt(c.label, ctx), fx(){
+      g.love = clamp((g.love||0) + (c.love||0)); g.jealousy = clamp((g.jealousy||0) + (c.jealousy||0));
+      g.mood = clamp((g.mood||0) + (c.mood||0));
+      if(c.trust) gainTrust(w, c.trust);
+      if(c.ladyMood) moodAdd(w, c.ladyMood);
+      return gtxt(c.res, ctx);
+    }}))};
+}
+function evGoddessAnaelLantern(){
+  const g = G(); if(!goddessActive()) return null;
+  const sc = (GOD.lanternEvents || {}).anael; if(!sc) return null;
+  const anael = S.workers.find(w => w.key==='anael' && isLanternAngel(w));
+  const wid = godId(), ctx = {house: anael && houseOf(anael) ? houseOf(anael).name : curH().name, lady: anael ? anael.name.split(' ')[0] : 'Anael'};
+  const openSc = sc.image ? dynScene('goddess_' + sc.id, sc.image) : 'portrait';
+  return {title: gtxt(sc.title, ctx), who: wid, scene: openSc, cloth: sc.cloth, text: gtxt(sc.text, ctx),
+    choices: (sc.choices||[]).map(c=>({label:gtxt(c.label, ctx), fx(){
+      g.love = clamp((g.love||0) + (c.love||0)); g.jealousy = clamp((g.jealousy||0) + (c.jealousy||0));
+      g.mood = clamp((g.mood||0) + (c.mood||0));
+      if(anael){ if(c.trust) gainTrust(anael, c.trust); if(c.ladyMood) moodAdd(anael, c.ladyMood); }
+      if(c.energy) S.sam.energy = Math.max(0, S.sam.energy - c.energy);
+      const res = gtxt(c.res, ctx);
+      if(c.act){
+        g.lastNight = S.week; samStat('technique', 2); samLog(`With ${GN()} and ${ctx.lady}`);
+        if(anael && c.duo) return {text: res, img: {wid, scene: 'duo:' + c.act + ':' + anael.id, cloth: c.cloth || 'nude'}};
+        return {text: res, img: {wid, scene: 'samact:' + c.act + '~~gt_' + sc.id, cloth: c.cloth || 'nude'}};
+      }
+      return res;
+    }}))};
+}
+function evGoddessCaelia(){
+  const g = G(); if(!goddessActive()) return null;
+  const sc = (GOD.lanternEvents || {}).caelia; if(!sc) return null;
+  const caelia = S.workers.find(w => w.key==='caelia');
+  const wid = godId(), ctx = {house: caelia && houseOf(caelia) ? houseOf(caelia).name : curH().name, lady: caelia ? caelia.name.split(' ')[0] : 'Caelia'};
+  const openSc = sc.image ? dynScene('goddess_' + sc.id, sc.image) : 'portrait';
+  return {title: gtxt(sc.title, ctx), who: wid, scene: openSc, cloth: sc.cloth, text: gtxt(sc.text, ctx),
+    choices: (sc.choices||[]).map(c=>({label:gtxt(c.label, ctx), fx(){
+      g.love = clamp((g.love||0) + (c.love||0)); g.jealousy = clamp((g.jealousy||0) + (c.jealousy||0));
+      g.mood = clamp((g.mood||0) + (c.mood||0));
+      if(caelia){ if(c.trust) gainTrust(caelia, c.trust); if(c.ladyMood) moodAdd(caelia, c.ladyMood); }
+      if(c.energy) S.sam.energy = Math.max(0, S.sam.energy - c.energy);
+      const res = gtxt(c.res, ctx);
+      if(c.act){
+        g.lastNight = S.week; samStat('technique', 1); samLog(`With ${GN()} in ${ctx.lady}'s confessional`);
+        return {text: res, img: {wid, scene: 'samact:' + c.act + '~~gt_' + sc.id, cloth: c.cloth || 'nude'}};
+      }
+      return res;
+    }}))};
+}
 // The end of her story: full divinity again. She stays if she loves him enough; otherwise she goes.
 function evGoddessEnd(){
   const g = G(); if(g.ending || !g.bound) return null;
@@ -491,14 +573,17 @@ function goddessNight(act){
   if(g.divinity >= (D.max ?? 100) && !g.ending){ EVQ.push(evGoddessEnd); }
 }
 function viewGoddess(){
-  const g = G(), F = GOD.focus || {}, B = GB(), next = (B.divinity||{}).perAction || 25;
+  const g = G(), F = GOD.focus || {}, B = GB(), L = B.lantern || {}, next = (B.divinity||{}).perAction || 25;
+  const la = activeLanternAngels().length, lc = lanternChapelHouses().length;
+  const lPct = Math.round((Math.min(L.maxAngels ?? 4, la) * (L.perAngel ?? 0.08) + Math.min(L.maxChapels ?? 2, lc) * (L.perChapel ?? 0.1)) * 100);
+  const lTxt = (la || lc) ? `${la} angel${la===1?'':'s'} · ${lc} chapel${lc===1?'':'s'} (+${lPct}%)` : 'None active';
   const cell = (l, v) => `<div><span>${l}</span><b>${v}</b></div>`;
   return `<section class="card"><h2>✨ ${esc(GN())} <span class="muted">${esc(GOD.title||'')}</span></h2>
       <div class="row"><div id="gPort" style="max-width:260px"></div><div style="flex:1">
       <p class="muted">${esc(gtxt(GOD.tabBlurb || ''))}</p>
       ${bar('Divinity', g.divinity||0, (B.divinity||{}).max ?? 100, 't')}${bar('Love', g.love||0, 100, 'p')}${bar('Jealousy', g.jealousy||0, 100, 'h')}${bar('Mood', g.mood||0, 100, 'm')}
-      <div class="sgrid">${cell('ACTIONS / WEEK', goddessActions())}${cell('POWER', '×'+goddessPower().toFixed(2))}${cell('FULLY REBORN', rebornFull().length)}${cell('NIGHTS', g.nights||0)}</div>
-      <p class="muted">${goddessActions() < 5 ? `Next action at divinity ${Math.ceil(((g.divinity||0)+1)/next)*next}. ` : ''}Every fully reincarnated lady (and every life past that) makes her stronger. With the ladies she takes over their services herself. A jealous ${esc(GN())} sometimes goes her own way; an unhappy one ignores your guidance.</p>
+      <div class="sgrid">${cell('ACTIONS / WEEK', goddessActions())}${cell('POWER', '×'+goddessPower().toFixed(2))}${cell('FULLY REBORN', rebornFull().length)}${cell('LANTERN CONDUITS', lTxt)}${cell('NIGHTS', g.nights||0)}</div>
+      <p class="muted">${goddessActions() < 5 ? `Next action at divinity ${Math.ceil(((g.divinity||0)+1)/next)*next}. ` : ''}Every fully reincarnated lady (and every life past that), working Lantern Angel, and active Lantern Chapel makes her stronger. With the ladies she takes over their services herself. A jealous ${esc(GN())} sometimes goes her own way; an unhappy one ignores your guidance.</p>
       <button class="sm" onclick="showImg('gPort','${godId()}','portrait')">🎨 Portrait</button></div></div></section>
     <section class="card"><h2>Guidance</h2><p class="muted">You can't tell a goddess what to do. You can tell her what you'd like. She picks what she actually does each week.</p>
       <div class="grid">${GFOCUS.map(k=>{ const f = F[k]||{}; return `<div class="pick ${g.focus===k?'sel':''}" onclick="setGFocus('${k}')"><b>${esc(f.label||k)}</b><div class="muted">${esc(f.desc||'')}</div></div>`; }).join('')}</div>

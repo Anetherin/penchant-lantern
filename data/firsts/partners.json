@@ -564,6 +564,9 @@
       "path": [1,3],
       "init": false,
       "gate": {"3":{"arc":4}},
+      "lanternPace": "fast",
+      "lanternInit": true,
+      "lanternGate": {},
       "events": {
         "1": {
           "title": "A Matter of Plumage",
@@ -593,6 +596,37 @@
           "wait": "\"Keep the lamp lit tonight.\"",
           "waitRes": "\"As you wish.\" She relights the wick with a touch and folds her wings serenely. \"I shall wait.\"",
           "act": "missionary"
+        }
+      },
+      "lanternEvents": {
+        "1": {
+          "title": "Thesis on Kisses",
+          "text": "Anael catches your wrist beside the garden lantern at dusk, sweeps one crimson-tipped wing playfully behind your knees so you can't step back, and slides her palm brazenly over your chest. \"In my former Order, enveloping someone in feathers was polite restraint,\" she purrs with a half-lidded smirk, crowding her warm breasts flat against your ribs. \"Beneath your lanterns, it means I intend to kiss you dizzy until you tell me what tastes better.\"",
+          "image": {
+            "comp": "enfolding him playfully in one raised wing under a glowing courtyard lantern, leaning up to kiss him with a shameless half-lidded smile",
+            "setting": "lantern-lit courtyard at dusk",
+            "sam": true
+          },
+          "go": "\"Show me your methodology.\"",
+          "goRes": "You catch the back of her waist and kiss her deep and wet beneath the warm shelter of her feathers while every courtyard sconce erupts crimson-amber around you both.",
+          "wait": "\"Later tonight, Warden.\"",
+          "waitRes": "Anael clicks her tongue cheerfully and nips your collarbone before stepping back with swirling crimson-tipped wings. \"Postponed for thirty minutes, Sam—not canceled.\""
+        },
+        "3": {
+          "title": "Lamp Lit",
+          "text": "Anael doesn't wait beneath the quilt—she straddles the chair by your unlit desk lamp in nothing but an unfastened crimson silk housecoat, parting her bare thighs wide as her halo bathes both of you in molten amber glow. \"Forget cold lamps blown out in silence,\" she murmurs shamelessly, guiding your fingers straight over her slick, aching folds while grinning like a scholar who finally solved paradise. \"Come lie down, Sam. I am taking your cock right where every lantern on this floor can watch.\"",
+          "image": {
+            "comp": "perched brazenly across a bedroom chair beside an evening lamp in an open crimson housecoat, holding out a hand with a wicked sultry smile",
+            "setting": "his bedroom at night, glowing crimson-amber lantern light",
+            "sam": true,
+            "cloth": "partial",
+            "wear": "an open crimson silk housecoat"
+          },
+          "go": "Pull her astride you",
+          "goRes": "You drop back onto the pillows as Anael shucks the crimson robe off her shoulders and sinks straight down onto your hard cock with a shameless gasp, bouncing with fierce scholarly focus until crimson-gold feathers rain across the sheets around you both.",
+          "wait": "\"Give me five minutes to breathe.\"",
+          "waitRes": "Anael laughs low and trails warm fingernails across your ribs before stretching languidly across your pillows. \"Take ten if you insist, Sam—though I am not putting my clothes back on.\"",
+          "act": "cowgirl"
         }
       }
     }

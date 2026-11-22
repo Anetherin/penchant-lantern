@@ -230,16 +230,16 @@ function endWeek(){
     // (personality lewd multiplier >= 1, not Modest) takes it on her own; a reserved one holds to her vows until
     // she trusts Sam enough to ask, or her lewdness climbs lanternOwn past the threshold and she stops resisting.
     const AN = SVC.angel || {}, LL = AN.lanternLewd ?? 60;
-    if(w.race==='angel' && w.sub!=='lantern' && !w.lanternDecided && w.lewd >= LL){
+    if(w.race==='angel' && w.sub!=='lantern' && !w.lanternDecided && !isGuest(w) && w.lewd >= LL){
       const wid = w.id;
       if(w.trust >= (AN.lanternTrust ?? 50)){ w.lanternDecided = true; EVQ.push(()=>evLanternAsk(findW(wid))); }
       else if((((PERS[w.personality]||{}).lewd ?? 1) >= 1 && !has(w,'Modest')) || w.lewd >= LL + (AN.lanternOwn ?? 15)){
-        w.lanternDecided = true; w.sub = 'lantern'; w.lantern = true; fitLust(w); moodAdd(w, AN.lanternAutoMood ?? 6);
-        log(`🕯️ ${w.name} took the Pleasure Lantern's sanction on her own and became a Lantern Angel.`);
+        w.lanternDecided = true; w.sub = 'lantern'; w.lantern = true; if(w.key==='anael') applyLanternAnael(w); fitLust(w); moodAdd(w, AN.lanternAutoMood ?? 6);
+        log(`🕯️ ${w.name} took the Lamplighter's flame on her own and became a Lantern Angel.`);
         EVQ.push(()=>evLanternSelf(findW(wid)));
       } else if(!w.lanternHeld){
         w.lanternHeld = true;
-        log(`🕯️ ${w.name} feels the Pleasure Lantern's pull and is holding to her vows for now. She may ask Sam about it once she trusts him more (trust ${tShow(AN.lanternTrust ?? 50)}).`);
+        log(`🕯️ ${w.name} feels the Lamplighter's pull and is holding to her vows for now. She may ask Sam about it once she trusts him more (trust ${tShow(AN.lanternTrust ?? 50)}).`);
       }
     }
     // romance arcs

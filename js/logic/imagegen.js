@@ -18,6 +18,10 @@ function findAny(id){
   if(!S) return null;
   return S.workers.find(w=>w.id===id) || S.candidates.find(w=>w.id===id) || NPCS[id] || LIB.find(w=>w.id===id) || null;
 }
+// Transformed Lantern Angels (like Anael or awakened generics; not Caelia whose base data is already lantern, and not npc_ goddess forms)
+// keep separate saved images and avatars from their plain angel form.
+const isLanternVariant = w => !!(w && typeof isLanternAngel==='function' && isLanternAngel(w) && !String(w.id||'').startsWith('npc_') && !(w.key && NAMED[w.key] && NAMED[w.key].sub === 'lantern'));
+const thumbId = w => isLanternVariant(w) ? w.id + ':lantern' : (w ? w.id : '');
 // Images are saved per scene + clothing state + what she's wearing, so each outfit gets its own pictures.
 function lookKey(w, cloth, scene){
   if(w.male || !w.outfit) return '';
@@ -30,6 +34,7 @@ function lookKey(w, cloth, scene){
     const curA = accessoryText(w, cloth, scene), defA = accessoryText(Object.assign({}, w, {accState:'auto'}), cloth, scene);
     if(curA !== defA) base += (curA ? '+acc' : '-acc');
   }
+  if(isLanternVariant(w)) base += '+lantern';
   return base;
 }
 const imgKey = (w,scene,cloth) => { const l = lookKey(w,cloth,scene); return `${w.id}|${scene}|${cloth}` + (l?'|'+l:''); };
@@ -42,7 +47,8 @@ async function saveImage(key, url, w, scene){
   if(typeof sha256DataUrl === 'function'){
     try{ const info = await sha256DataUrl(small); await imgMetaPut(key, {hash:info.hash, bytes:info.bytes, updatedAt:Date.now()}); }catch(e){}
   }
-  if(w && w.id!=='draft' && (scene==='portrait' || !THUMBS[w.id])) await setThumb(w.id, small);
+  const tid = w ? thumbId(w) : '';
+  if(w && w.id!=='draft' && (scene==='portrait' || !THUMBS[tid])) await setThumb(tid, small);
   return true;
 }
 // mode: 'new' = regenerate now; 'auto' = generate if nothing's saved; 'manual' = only on request; 'local_only' = skip remote pull & auto-gen.
@@ -78,7 +84,7 @@ async function showImg(boxId, id, scene, cloth, mode){
   box.dataset.key = key; syncImgBtn(boxId);
   const prompt = buildPrompt(w, scene, cloth);
   let saved = mode==='new' ? null : await imgGet(key), legacy = false;
-  if(!saved && mode!=='new' && key!==legacyKey(w,scene,cloth)){ saved = await imgGet(legacyKey(w,scene,cloth)); if(saved){ legacy = true; } }
+  if(!saved && mode!=='new' && !isLanternVariant(w) && key!==legacyKey(w,scene,cloth)){ saved = await imgGet(legacyKey(w,scene,cloth)); if(saved){ legacy = true; } }
   const cloudPerm = typeof cloudReady==='function' && cloudReady() && isPermImgId(id);
   if(!saved && mode!=='new' && !skipRemote && cloudPerm && (CLOUD_STATE.manifest.imgs||{})[key]){
     box.innerHTML = `<div class="imgbox"><div class="imgph">Loading from cloud…</div></div>`;
@@ -137,7 +143,7 @@ function uploadImg(boxId, id, scene, cloth){
   inp.click();
 }
 async function downloadImg(key, name){ const d = await imgGet(key); if(!d) return; const a=document.createElement('a'); a.href=d; a.download=`${name||'image'}-${key.split('|').slice(1).join('-').replace(/[^a-z0-9-]/gi,'_')}.jpg`; document.body.appendChild(a); a.click(); a.remove(); }
-async function useAvatar(key, id){ const d = await imgGet(key); if(d){ await setThumb(id, d); toast('Avatar updated.'); } }
+async function useAvatar(key, id){ const d = await imgGet(key); if(!d) return; const w = findAny(id); const tid = /\+lantern\b/.test(key) ? id + ':lantern' : (w ? thumbId(w) : id); await setThumb(tid, d); toast('Avatar updated.'); }
 async function deleteImg(key, boxId, id, scene, cloth){ if(!confirm('Clear this image from local browser cache?')) return; await imgDel(key); showImg(boxId,id,scene,cloth,'local_only'); }
 async function deleteImgBoth(key, boxId, id, scene, cloth){
   if(!confirm('Delete this image from BOTH this device and Cloudflare R2? It won\'t regenerate automatically.')) return;
@@ -157,4 +163,4 @@ function setRepHide(box, id, scene, hide){
 }
 function toggleImgBtn(boxId, id, scene){ const box = $('#'+boxId); if(!box) return; const shown = !!box.dataset.key; box.dataset.hide = shown ? '1' : '0'; setRepHide(box, id, scene, shown); showImg(boxId, id, scene, null, shown ? 'manual' : 'auto'); }
 function toggleImg(boxId, id, scene, cloth, hide){ const box = $('#'+boxId); if(!box) return; box.dataset.hide = hide ? '1' : '0'; setRepHide(box, id, scene, !!hide); showImg(boxId, id, scene, cloth, hide ? 'manual' : undefined); }
-function avatarHTML(w){ return THUMBS[w.id] ? `<div class="avatar"><img src="${THUMBS[w.id]}" alt=""></div>` : `<div class="avatar" style="background:${hairHex(w)}">${esc(initials(w.name))}</div>`; }
+function avatarHTML(w){ const t = THUMBS[thumbId(w)]; return t ? `<div class="avatar"><img src="${t}" alt=""></div>` : `<div class="avatar" style="background:${hairHex(w)}">${esc(initials(w.name))}</div>`; }
