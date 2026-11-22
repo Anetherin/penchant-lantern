@@ -31,7 +31,18 @@ const BOT = `async (weeks) => {
   };
   play(weeks);
   const evC1 = out.length;
-  for (let c = 2; c <= 5; c++) { ng(); play(weeks); }
+  const w0 = S.workers[0], w0id = w0.id;
+  w0.neglect = 5; w0.unhappy = 1; w0.health = 45; w0.mood = 25; w0._stud = S.week; w0._giftWk = S.week; w0._giftN = 2; w0._again = S.week; w0._samTime = 1; w0.firstHold = S.week + 3; w0.intimWk = S.week; w0.rekindleWk = S.week;
+  S.houses[0].tidy = 20; S.houses[0].feastWk = S.week; S.houses[0].lastFlow = {promo:5,turned:3,served:2};
+  S.samWeek.acts = ['Private time']; S.flags.samMovedWk = S.week; S.flags.sleepInWk = S.week; S.luxWk = {wk:S.week, n:{a:1}};
+  iso().rivalWk = S.week; iso().visitWk = S.week;
+  ng();
+  const w0r = findW(w0id);
+  if (!w0r || w0r.neglect !== 0 || w0r.unhappy !== 0 || w0r.health !== 100 || w0r.mood < 70 || w0r._stud !== undefined || w0r._giftWk !== undefined || w0r._again !== undefined || w0r._samTime !== 0 || w0r.firstHold !== 0 || w0r.intimWk !== undefined || w0r.rekindleWk !== undefined) throw new Error('ngReset did not clear worker neglect/cycle state');
+  if (S.houses[0].tidy !== BAL.tidy.start || S.houses[0].feastWk !== undefined || S.houses[0].lastFlow !== undefined) throw new Error('ngBegin did not reset house cycle state');
+  if (S.samWeek.acts.length || S.flags.samMovedWk !== undefined || S.flags.sleepInWk !== undefined || S.luxWk !== undefined || iso().rivalWk !== 0 || iso().visitWk !== -99) throw new Error('ngCycleReset did not clear cycle state');
+  play(weeks);
+  for (let c = 3; c <= 5; c++) { ng(); play(weeks); }
   const preIso = evGoddessIsolde('pre');
   if (!preIso || !preIso.choices || !preIso.choices.length) throw new Error('evGoddessIsolde(pre) failed before binding');
   preIso.choices[0].fx(); drain();
@@ -67,7 +78,11 @@ const BOT = `async (weeks) => {
   let n = 0; while (!S.goddess.ending && n < 60) { S.ap = 3; S.sam.energy = 100; goddessNight(pick(['cowgirl','missionary','doggy'])); closeModal(); drain(); n++; if (n % 2 === 0) play(1); }
   out.push('after bind: div=' + Math.round(S.goddess.divinity) + ' ending=' + S.goddess.ending + ' love=' + Math.round(S.goddess.love) + ' nights=' + S.goddess.nights + ' power=' + goddessPower().toFixed(2));
   out.push('lastReport goddess lines: ' + (S.lastReport.lines||[]).filter(l=>l.startsWith('✨')).length);
-  ng(); play(2);
+  S.goddess.lastNight = S.week - 6; S.goddess.claimWk = S.week - 1; S.goddess.isoldePending = true; S.goddess.last = ['old']; S.samFocus = {kind:'guild', topic:'x'};
+  ng();
+  if (S.goddess.lastNight !== S.week || S.goddess.claimWk !== 0 || S.goddess.isoldePending !== false || S.goddess.last.length || S.samFocus.kind === 'guild') throw new Error('bound goddess/focus did not reset across NG+');
+  out.push('ng+ reset ok');
+  play(2);
   out.push('cycle1 goddess events: ' + evC1);
   return { week: S.week, workers: S.workers.length, gold: Math.round(S.gold), out };
 }`;

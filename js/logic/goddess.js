@@ -121,6 +121,7 @@ function goddessRebirth(info, next){
   g.roster = S.workers.length;
   if(bindReady()) return goddessBind(info, next);
   if(g.bound && !g.left){   // after the binding: a short word, then on with it
+    g.lastNight = S.week; g.claimWk = 0; g.isoldePending = false; g.last = [];
     save(); return gScene(R.boundTitle || `${GN()}`, gtxt(R.bound && R.bound[dTier()], info), R.image, 'Continue', next);
   }
   if(g.left){ if(next) next(); return; }
@@ -136,7 +137,7 @@ function goddessRebirth(info, next){
 }
 function goddessBind(info, next){
   const g = G(), B = GB(), T = GOD.binding || {};
-  g.bound = true; g.knows = true; g.boundCycle = S.cycle; g.lastNight = S.week; g.divinity = (B.divinity||{}).bindTo ?? 5;
+  g.bound = true; g.knows = true; g.boundCycle = S.cycle; g.lastNight = S.week; g.claimWk = 0; g.isoldePending = false; g.divinity = (B.divinity||{}).bindTo ?? 5;
   g.love = clamp((g.love||0) + ((B.love||{}).bind ?? 10)); g.jealousy = Math.round((g.jealousy||0) * 0.4); g.finishes = (g.finishes||0) + 1;
   addLog(`${GN()} is bound to Sam. Her divinity is gone, for now.`);
   const ladies = rebornFull(fullAt() + 1).map(w=>(w.name||'someone').split(' ')[0]);

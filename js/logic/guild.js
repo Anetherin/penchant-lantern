@@ -378,11 +378,15 @@ function gYuri(a, b, C){
 // NG+ keeps Sam's rank and merit (the guild remembers him); contracts, board and parties are cleared, fame fades, and the people his rank
 // brought in are offered again. The first NG++ resets the guild once (S.guildReset). Called from ngplus.js after the new cycle is set up.
 function guildNewCycle(ngpp){
+  if(S.samFocus && S.samFocus.kind==='guild') S.samFocus = {kind:'office', topic:'auto'};
   if(!S.guild) return;
-  if(ngpp && !S.guildReset){ S.guild = null; S.guildReset = true; return; }
+  if(ngpp && !S.guildReset){
+    S.guild = null; S.guildReset = true;
+    if(typeof goddessActive==='function' && goddessActive() && G().focus==='guild') G().focus = 'indulge';
+    return;
+  }
   const g = S.guild; g.active = []; g.board = []; g.boardWk = 0; g.fame = Math.round((g.fame||0) * ((GDB.carry||{}).fameKeep ?? 0.5));
   S.workers.forEach(w=>{ if(w.job==='guild'){ delete w.gc; delete w.gPrev; w.job = 'rest'; } });
-  if(S.samFocus && S.samFocus.kind==='guild') S.samFocus = {kind:'office', topic:'auto'};
   if(g.joined) for(let r=1; r<=g.rank; r++){ const U = GUILD_UNLOCKS[r] || {}; if(U.recruit) guildRecruit(U.recruit); if(U.outfit && WARDROBE[U.outfit] && !S.houseWardrobe.includes(U.outfit)) S.houseWardrobe.push(U.outfit); if(U.item && BAL.samUps[U.item] && !hasSamUp(U.item)){ S.samUps = S.samUps || {}; S.samUps[U.item] = true; } }
   if(g.joined) guildRefreshBoard();
 }

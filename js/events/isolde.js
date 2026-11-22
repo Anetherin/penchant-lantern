@@ -83,7 +83,7 @@ function isoldeWeek(R){
 function isoNewCycle(){
   const I = iso();
   if((S.ngppCycle||0) > 0){ S.isolde = Object.assign(isoFresh(), {wins:I.wins||0}); return; }
-  I.wk = Math.min(I.wk||0, S.week); I.gameWk = 0;
+  I.wk = Math.min(I.wk||0, S.week); I.gameWk = 0; I.rivalWk = 0; I.visitWk = -99;
 }
 // her games: NG+ only, from the cycle after her story finished
 const isoGamesOn = () => { const I = iso(); return !((S.ngppCycle||0) > 0) && I.lovers && I.doneCycle && (S.cycle||1) > I.doneCycle; };

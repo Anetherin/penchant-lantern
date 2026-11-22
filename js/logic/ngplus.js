@@ -299,6 +299,14 @@ function ngReset(w){
   w.lust = Math.min(w.lust||0, LUST_EAGER);
   w.popularity = 0; w.arcWk = 0; w.afterWk = 0;   // epilogue progress (w.after) stays across lives
   w.earnedLast = 0; w.purse = 0; w.energy = maxEnergy(w);
+  w.health = 100; w.mood = Math.max(w.mood || 0, 70);
+  w.neglect = 0; w._samTime = 0; w.unhappy = 0; w.firstHold = 0;
+  delete w.intimWk; delete w.rekindleWk; delete w.exLover;
+  delete w._again; delete w._stud; delete w._giftWk; delete w._giftN; delete w._bed;
+  if(w.job === 'guild') w.job = (w.gPrev && w.gPrev !== 'guild') ? w.gPrev : 'rest';
+  if(w.job === 'rest' && w.prevJob) w.job = w.prevJob;
+  delete w.prevJob; delete w.idleRest; delete w.standIn; delete w.gc; delete w.gPrev;
+  if(Array.isArray(w.menu)) w.menu = w.menu.filter(a=>canClient(w,a));
   w.tutor = null; delete w.tutorTier;
 }
 // Past lives of named ladies (S.lives[key]): what she'd built and how many Reincarnated stacks she has.
@@ -367,8 +375,19 @@ function ngRomanceReset(w){
   if(D && (D.traits||[]).includes('Oblivious') && !has(w,'Oblivious')) w.traits.push('Oblivious');
   if(S.sleepIn === w.id) S.sleepIn = null;
 }
+function ngCycleReset(){
+  S.samWeek = {security:0, books:false, income:0, acts:[], focus:null, focusEff:0};
+  S.won = false; S.over = false; S.lastReport = null; EVQ = []; delete S.ngSeed; delete S.wonWk;
+  S.lingerSeen = []; delete S.lingerRecallWk;
+  S.flags = S.flags || {};
+  S.flags.walkPartners = 0; S.flags.poachCD = 0; S.flags.guestSeen = {};
+  delete S.flags.samMovedWk; delete S.flags.sleepInWk; delete S.flags.titleCD; delete S.flags.dejaCD; delete S.flags.familiarCD;
+  delete S.luxWk;
+  townEvReset(); isoNewCycle(); S.ap = apMax(); S.sam.energy = samMaxEnergy();
+}
 function ngBegin(){
   const C = NGS; if(!C || !C.boon && !Object.keys(NG_BOONS).every(k=>(S.boons||[]).includes(k))) return;
+  lingerWake();   // ensure lovers sleeping in the lantern are restored even if ngBegin runs directly
   const B = BAL.ngplus, og = homeHouse(), HDo = HOUSES[og], N = ngNumbers(C.boon, C.house, {ngpp:C.ngpp, challenge:C.challenge}), lovers = carriedLovers(), friends = ngFriends();
   if(lovers.some(w=>!C.perks[w.id] && NG_PERKS().some(t=>!(w.ngPerks||[]).includes(t)))) return;
   // refresh the cycle's NG+ snapshot (first taken at payoff) with everything done since, before the rebirth changes S;
@@ -432,8 +451,7 @@ function ngBegin(){
     if(hasBoon('renown')){ H(hk).rep = clamp(H(hk).rep + 10); S.rep = clamp(S.rep + 15); } else S.rep = HDn.rep;
     S.gold = N.purse;
     S.debt = Object.assign({total:N.debt, remaining:N.debt, carry:0, strikes:0, start:S.week-1}, ngPlan(N.cycle));
-    S.won = false; S.over = false; S.lastReport = null; EVQ = []; delete S.ngSeed; delete S.wonWk;
-    S.flags.walkPartners = 0; townEvReset(); isoNewCycle(); S.ap = apMax(); S.sam.energy = samMaxEnergy();
+    ngCycleReset();
     refreshCandidates(hasBoon('recruit') ? 3 : 0, hasBoon('recruit') ? 1.15 : 1);
     inviteFriend(true); checkUnlocks(true);
     guildNewCycle(true);   // guild.js: the first NG++ resets the guild once
@@ -452,6 +470,7 @@ function ngBegin(){
     w.isPartner = false; w.free = false; w.contract = 12; if(!keptIds.has(w.house)) w.house = og; if(w.locked && w.locked!==w.house) w.locked = null;
     ngReset(w); if(ngRomance(C, w)==='reset') ngRomanceReset(w); w.reborn = (w.reborn||0) + 1;
     w.wage = wageFor(w); if(w.job!=='rest') w.job = safeJob(w, w.job);
+    if(Array.isArray(w.menu)){ w.menu = w.menu.filter(a=>canClient(w,a)); if(MENU_JOBS.includes(w.job) && !w.menu.length) w.menu = getActs().filter(a=>clientStance(w,a.id)==='yes').map(a=>a.id); }
   });
   // residents of kept houses: back with their house, reincarnated (no perk); one freed by her house story stays wage-free
   const residents = ngResidents();
@@ -459,6 +478,7 @@ function ngBegin(){
     const hid = residentHouse(w, keptHouse).id;
     ngReset(w); w.reborn = (w.reborn||0) + 1; w.isPartner = false; w.house = hid; w.locked = hid; w.contract = 999;
     w.wage = w.free ? 0 : wageFor(w); if(w.job!=='rest') w.job = safeJob(w, w.job);
+    if(Array.isArray(w.menu)){ w.menu = w.menu.filter(a=>canClient(w,a)); if(MENU_JOBS.includes(w.job) && !w.menu.length) w.menu = getActs().filter(a=>clientStance(w,a.id)==='yes').map(a=>a.id); }
   });
   // everyone else leaves; named ladies go back to their pools, fresh (isHired is false for them again)
   const ids = new Set([...lovers, ...residents].map(w=>w.id));
@@ -468,6 +488,7 @@ function ngBegin(){
   S.alumni = [...(S.alumni||[]), ...friends];
   S.workers.filter(w=>!ids.has(w.id) && !friends.includes(w)).forEach(w=>{ stashCloset(w); rememberLife(w); });   // the ones walking away keep their clothes for next time
   S.workers = [...lovers, ...residents]; S.candidates = [];
+  if(S.sleepIn && !S.workers.some(w=>w.id===S.sleepIn)) S.sleepIn = null;
   // bonds between two ladies who both reincarnate (lovers, old friends, alumni still waiting) carry over, faded to
   // ngplus.bonds.keep of their value (kind kept); everything else is dropped. b.past counts the lives it has survived.
   const BK = B.bonds || {}, reborn = new Set([...ids, ...(S.alumni||[]).map(w=>w.id), ...friends.map(w=>w.id)]);
@@ -479,7 +500,7 @@ function ngBegin(){
   S.regulars = (S.regulars||[]).filter(r=>keptIds.has(r.house));
   S.houses = S.houses.filter(h=>keptIds.has(h.id));
   // kept houses keep rooms, upgrades and story; their popularity goes back to the house's starting value plus ngplus.carry of what it had gained; auto-feasts and auto-tutors reset
-  S.houses.forEach(h=>{ const D = HOUSES[h.id]; if(D){ h.rep = Math.round(D.rep + (B.carry||0) * Math.max(0, (h.rep||0) - D.rep)); const dp = D.prestige ?? 50; h.prestige = clamp(Math.round(dp + (B.carry||0) * ((h.prestige ?? dp) - dp))); } delete h.autoFeast; });
+  S.houses.forEach(h=>{ const D = HOUSES[h.id]; if(D){ h.rep = Math.round(D.rep + (B.carry||0) * Math.max(0, (h.rep||0) - D.rep)); const dp = D.prestige ?? 50; h.prestige = clamp(Math.round(dp + (B.carry||0) * ((h.prestige ?? dp) - dp))); } h.tidy = BAL.tidy.start; delete h.autoFeast; delete h.feastWk; delete h.lastFlow; });
   delete S.autoTutor;
   // each kept house's resident comes with the house: if she wasn't working for Sam she's back, fresh
   S.houses.forEach(h=>{ const D = HOUSES[h.id]; if(D && D.npc && !isHired(D.npc)){ const npc = rebirthNamed(makeNamed(D.npc), true); npc.house = h.id; npc.locked = h.id; npc.contract = 999; assignStart(npc, NAMED[D.npc].job); S.workers.push(npc); } restoreStoryJoin(h, true); });
@@ -512,8 +533,7 @@ function ngBegin(){
   if(hasBoon('renown')) S.rep = clamp(S.rep + 15);
   S.gold = N.purse;
   S.debt = Object.assign({total:N.debt, remaining:N.debt, carry:0, strikes:0, start:S.week-1}, ngPlan(N.cycle));
-  S.won = false; S.over = false; S.lastReport = null; EVQ = []; delete S.ngSeed; delete S.wonWk;
-  S.flags.walkPartners = 0; townEvReset(); isoNewCycle(); S.ap = apMax(); S.sam.energy = samMaxEnergy();
+  ngCycleReset();
   refreshCandidates(hasBoon('recruit') ? 3 : 0, hasBoon('recruit') ? 1.15 : 1);
   inviteFriend(true);   // the first week already shows an old friend
   checkUnlocks(true);
