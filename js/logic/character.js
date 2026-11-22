@@ -399,7 +399,6 @@ function ensureWorker(w){
   getActs().forEach(a=>{ if(!w.acts[a.id]) w.acts[a.id] = {skill: clampK(Math.round(base*0.8 + (base<10 ? ri(0,10) : ri(8,22)))*SKL + ri(0,SKL-1)), comfort: ri(-10,10)}; });
   const normPref = v => { const a = Array.from(new Set(actArr(v))); return !a.length ? null : a.length===1 ? a[0] : a; };
   ['fav','dislike','lovers'].forEach(k=>{ if(w[k]!==undefined) w[k] = normPref(w[k]); });
-  if(w.menu) w.menu = Array.from(new Set(w.menu.map(actKey)));
   const ids = getActs().map(a=>a.id).filter(id=>id!=='kiss');
   if(!isVessel(w) || vesselStage(w) >= 1){
     if(w.fav===undefined){
@@ -423,7 +422,7 @@ function ensureWorker(w){
     }
     if(!w.jobLikes) rollJobPrefs(w);
   }
-  if(!w.menu) w.menu = [];
+  delete w.menu;   // retired: she offers whatever she's willing to (offeredMenu)
   // firsts with Sam (js/events/firsts.js): her pace and path, and how far they've gone. Older saves where they'd
   // already been together count as having crossed every line.
   if(!w.firsts || !Array.isArray(w.firsts.path)) w.firsts = firstsProfile(w);
@@ -557,7 +556,7 @@ function makeNamed(key, asPartner){
   const D = NAMED[key];
   const w = genWorker({race:D.race});
   const d = clone(D);
-  Object.assign(w, d); w.acts = {}; w.menu = []; w.counts = {};
+  Object.assign(w, d); w.acts = {}; w.counts = {};
   delete w.goddess;   // her remarks about this lady stay in the data (goddess.js)
   // character data is on the familiar 0-100 scale; stats and skills run 0-1000
   const K = v => Math.round(v)*SKL + ri(0,SKL-1);

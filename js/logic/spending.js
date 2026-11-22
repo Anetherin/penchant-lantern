@@ -19,7 +19,7 @@ function tutorPlan(w, focus){
   }
   const main = trainSkillOf(w), oth = broadJob(w) ? (BAL.train.broad.skillOthers ?? 0.6) : T.others;
   return {stats:trainStatsOf(w), skills:TECH_KEYS.map(k=>[k, k===main ? 1 : oth]),
-    svcs: MENU_JOBS.includes(w.job) ? (w.menu||[]).filter(id=>w.acts[actKey(id)]) : []};
+    svcs: MENU_JOBS.includes(w.job) ? offeredMenu(w).filter(id=>w.acts[actKey(id)]) : []};
 }
 const tutorSummary = w => { const p = tutorPlan(w);
   return [p.stats.map(([k])=>cap(k)).join(', '), p.skills.filter(([,m])=>m>=1).map(([k])=>TECH_LABEL[k]).join(', '), p.svcs.length ? p.svcs.map(actLabel).join(', ') : ''].filter(Boolean).join(' · '); };

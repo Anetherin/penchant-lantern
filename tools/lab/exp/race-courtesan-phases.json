@@ -8,8 +8,8 @@
     "start.house": ["tankard", "lantern", "castle"],
     "scenario": ["early4", "mid", "late"]
   },
-  "phasePolicy": { "fixedStaff": true, "syncMenu": true, "guild": false },
-  "mutate": { "otherRace": "human", "raceWho": 2, "job": "courtesan", "jobWho": 2, "force": true, "minTrust": 45, "keepNonLantern": true, "syncMenu": true },
+  "phasePolicy": { "fixedStaff": true, "guild": false },
+  "mutate": { "otherRace": "human", "raceWho": 2, "job": "courtesan", "jobWho": 2, "force": true, "minTrust": 45, "keepNonLantern": true },
   "variants": [
     { "name": "base", "mutate": { "race": "human" } },
     { "name": "elf", "mutate": { "race": "elf" } },

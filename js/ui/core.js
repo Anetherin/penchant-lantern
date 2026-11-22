@@ -234,7 +234,7 @@ function workerCard(w, showHouse){
   const wl = knows(w,true) ? lShow(w.lewd) : '?', ap = attendantPairs(houseOf(w));
   const attTag = w.job==='courtesan' ? (ap.byCourt.has(w.id) ? ` <span class="tag good" title="Attended by ${esc(ap.byCourt.get(w.id).name)}">🎀 ${esc(ap.byCourt.get(w.id).name.split(' ')[0])}</span>` : ` <span class="tag muted" title="No dedicated attendant">unattended</span>`)
     : w.job==='attendant' && ap.byAtt.has(w.id) ? ` <span class="tag" title="Attending ${esc(ap.byAtt.get(w.id).name)}">🎀 → ${esc(ap.byAtt.get(w.id).name.split(' ')[0])}</span>` : '';
-  const menu = w.job!=='rest' ? (w.menu.length ? w.menu.map(a=>`<span class="tag act">${esc(actLabel(a))}</span>`).join('') : '<span class="muted">No services on menu</span>') : '';
+  const menu = w.job!=='rest' ? (()=>{ const m = offeredMenu(w); return m.length ? m.map(a=>`<span class="tag act">${esc(actLabel(a))}</span>`).join('') : '<span class="muted">No services yet</span>'; })() : '';
   const vSt = vesselStage(w), vTh = (BAL.ngplus.vessel && BAL.ngplus.vessel.fills) || [2,5,9];
   const subTxt = isVessel(w) && !w.personality ? vesselLabel(w) : esc(w.personality || vesselLabel(w));
   const dormantTxt = (typeof GOD!=='undefined' && GOD && GOD.vessel && GOD.vessel.dormantMood) || 'Mood: dormant (fill the vessel to stir her)';

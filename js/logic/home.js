@@ -15,8 +15,11 @@ const samVisits = h => samVisitReach() || !!(h && h.id === samHouse().id);
 const nearSam = w => samAtHouse(w && H(w.house));
 const nearSamV = w => samVisits(w && H(w.house));
 const hasSuite = h => !!(h && h.up && h.up.suite);
-const samBedTier = () => Math.min(3, (samHouse().beds||0) + (hasSuite(samHouse()) ? 1 : 0) + (samUpFx('bedTier')||0));
-const samBedRest = () => BEDS[samBedTier()].rest;
+const samBedRaw = () => (samHouse().beds||0) + (hasSuite(samHouse()) ? 1 : 0) + (samUpFx('bedTier')||0);
+const samBedTier = () => Math.min(BEDS.length - 1, samBedRaw());
+// past the best bed (the Owner's Suite on top of luxury staff beds) each extra tier still adds samHome.overTier rest
+const samBedOver = () => Math.max(0, samBedRaw() - (BEDS.length - 1));
+const samBedRest = () => BEDS[samBedTier()].rest + samBedOver() * (BAL.samHome.overTier ?? 15);
 const samRecover = base => Math.round(base * samBedRest() / BAL.samHome.ref);
 function moveSam(id){
   const h = H(id); if(!h) return;

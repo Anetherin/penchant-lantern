@@ -216,8 +216,9 @@ const demonHunger = w => w.race==='demon' ? clamp(1 - w.energy / maxEnergy(w), 0
 const propDrive = w => (w.lust||0) + demonHunger(w);
 // Energy floor for a service: a demon can always afford one that feeds her (it pays her back).
 const energyOK = (w, id, floor) => w.race==='demon' && demonFeeds(id) ? w.energy >= actCost(w, id) : w.energy - actCost(w, id) > maxEnergy(w) * floor;
-// Menu used for must-offer staff: her menu, or what she's comfortable with if she never set one.
-const offeredMenu = w => w.menu.length ? w.menu : getActs().filter(a=>clientStance(w,a.id)==='yes').map(a=>a.id);
+// What she offers clients (there is no per-lady menu): every service she enjoys now, and the ones she has enjoyed before
+// (w.seen y_<id>, marked here and in checkUnlocks) while she's still willing at all; a service drops off only once it's a line she won't cross.
+const offeredMenu = w => getActs().filter(a=>{ const st = clientStance(w,a.id); if(st==='yes'){ if(w.seen) w.seen['y_'+a.id] = true; return true; } return st==='ask' && !!(w.seen && w.seen['y_'+a.id]); }).map(a=>a.id);
 // Would she take this proposition? Returns {kind:'yes'|'alt'|'no', act, why}.
 // Propositions are always active and decided by her willingness (lust, mood, traits, and her job's proposition expectations).
 // Shared negotiation: pick a fallback service on or below the client's desired price, preferring same-tier sidegrades over steep downgrades.
@@ -245,10 +246,10 @@ function propDecide(w, want, X){
   else {
     const dr = propDrive(w), jb = (BP.jobBonus||{})[w.job] ?? 0, minMood = (BP.jobMood||{})[w.job] ?? 45;
     if(!reck && dr < LUST_EAGER && w.mood < minMood) return {kind:'no', why:'nomood'};
-    chance = clamp(BP.acceptBase + jb + (dr - BP.acceptLustMid)/100 + (w.mood - 50)*0.004 + fxAdd(w,'willing')/100 + (dr >= LUST_EAGER ? BP.acceptEager : 0) + (reck ? BP.acceptReckless : 0), 0.02, 0.95);
+    chance = clamp(BP.acceptBase + jb + (dr - BP.acceptLustMid)/100 + (w.mood - 50)*0.004 + fxAdd(w,'willing')/100 + (dr >= LUST_EAGER ? BP.acceptEager : 0) + (reck ? BP.acceptReckless : 0) + (w.job==='chapel' && X && X.h && X.h.lanternChapel ? (BAL.amenities.chapel.lanternWilling ?? 0.25) : 0), 0.02, 0.95);
   }
   if(Math.random() >= chance) return {kind:'no', why:'declined'};
-  const menu = must ? offeredMenu(w) : w.menu, ok = id => menu.includes(id) && canClient(w,id) && !nim(w,id) && !tooTiredFor(w,id) && energyOK(w, id, 0.2);
+  const menu = offeredMenu(w), ok = id => menu.includes(id) && canClient(w,id) && !nim(w,id) && !tooTiredFor(w,id) && energyOK(w, id, 0.2);
   if(want && ok(want)) return {kind:'yes', act:want};
   if(want && menu.includes(want) && nim(w,want)) return {kind:'no', why:'nomood'};
   const alt = negotiateAlt(w, want, ok, BP.alt);

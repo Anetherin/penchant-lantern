@@ -458,8 +458,7 @@ function simHouse(h, R){
     noteClient(X, client); (X.clsN = X.clsN || {})[cls.id] = (X.clsN[cls.id]||0) + 1; X.clsTot = (X.clsTot||0) + 1;
     X.rowdySum += (cls.rowdy||0) + cAdd(client,'rowdy',X); X.rowdyN++;
     const lightOK = (x, id) => !helper || x.job==='attendant' || actTierOf(actById(id)) <= 1;
-    const menuOf = x => helper ? offeredMenu(x) : x.menu;
-    const fits = (x, id) => menuOf(x).includes(id) && canClient(x,id) && !nim(x,id) && !tooTiredFor(x,id) && energyOK(x, id, 0.15) && lightOK(x, id);
+    const fits = (x, id) => offeredMenu(x).includes(id) && canClient(x,id) && !nim(x,id) && !tooTiredFor(x,id) && energyOK(x, id, 0.15) && lightOK(x, id);
     const thirsty = cHas(client,'thirsty');
     const wantsIt = thirsty || Math.random() < Math.min(1, (helper ? J.propWant.other : J.propWant.courtesan) * barBoost * townMul('prop', 1, h) * cMul(client,'prop',X) * (1 + lowF * (PR.lowPropWant ?? 0.35)));
     // With a madame the client is matched: she scores the free ladies for him (willingness, skill at his want, his likes/draw, balanced load) and picks the best.

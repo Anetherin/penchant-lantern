@@ -12,7 +12,6 @@
     ]
   },
   "phasePolicy": {
-    "syncMenu": true,
     "guild": false
   },
   "variants": [
@@ -29,8 +28,7 @@
         "upgrades": [
           "bar"
         ],
-        "drinks": 2,
-        "syncMenu": true
+        "drinks": 2
       }
     },
     {
@@ -38,8 +36,7 @@
       "mutate": {
         "addTrait": "Exhibitionist",
         "traitWho": 2,
-        "minLewd": 50,
-        "syncMenu": true
+        "minLewd": 50
       }
     },
     {
@@ -56,8 +53,7 @@
           "bar"
         ],
         "drinks": 2,
-        "incense": "aphro",
-        "syncMenu": true
+        "incense": "aphro"
       }
     },
     {
@@ -71,8 +67,7 @@
           "garden"
         ],
         "drinks": 2,
-        "incense": "velvet",
-        "syncMenu": true
+        "incense": "velvet"
       }
     }
   ],
