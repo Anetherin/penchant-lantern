@@ -297,7 +297,8 @@ function ngReset(w){
     const b = w.base0 || {}; w.trust = b.trust ?? (B.baseTrust ?? 15); w.lewd = Math.min(w.lewd, b.lewd ?? (B.baseLewd ?? 25));
   }
   w.lust = Math.min(w.lust||0, LUST_EAGER);
-  w.popularity = 0; w.arcWk = 0; w.afterWk = 0;   // epilogue progress (w.after) stays across lives w.earnedLast = 0; w.purse = 0; w.energy = maxEnergy(w);
+  w.popularity = 0; w.arcWk = 0; w.afterWk = 0;   // epilogue progress (w.after) stays across lives
+  w.earnedLast = 0; w.purse = 0; w.energy = maxEnergy(w);
   w.tutor = null; delete w.tutorTier;
 }
 // Past lives of named ladies (S.lives[key]): what she'd built and how many Reincarnated stacks she has.

@@ -315,42 +315,322 @@
         "Paper lanterns go up along every street in Hollowmere overnight, strung roof to roof until the whole city glows orange after dark. Stalls crowd the squares, the taverns stop closing, and the roads in are thick with visitors who came for the lights and stay for the nights.\n\nA crier on the corner shouts the festival schedule twice an hour. Busiest weeks of the year, everyone tells you. Also the rowdiest.",
         "You wake to drums. The Lantern Festival has started a day early, and by noon there are so many strangers in the streets that you can barely cross to the market. Every one of them has coin and nowhere to spend the night.\n\nIt's good for business. It's also a lot of drunk men far from home."
       ],
-      "ok": "Light the lanterns"
+      "ok": "Light the lanterns",
+      "choices": [
+        {
+          "label": "Light extra lanterns and welcome the crowd",
+          "res": "You hang extra bulbs along every rail and throw the doors open wide to the festival surge."
+        },
+        {
+          "label": "Hire extra door watch (-120g, lower pushy risk)",
+          "cost": 120,
+          "broke": "Your purse won't stretch for extra bouncers, so you work with the crowd as it comes.",
+          "overrides": {
+            "demand": 1.25,
+            "prop": 1.2,
+            "pushy": 0.9,
+            "desc": "Clients flock to Hollowmere (+25% demand, +20% propositions) while hired bouncers keep pushy risk down (-10%)."
+          },
+          "res": "Two off-duty pit guards lean silently beside your door—plenty of festival coin, far fewer headaches."
+        },
+        {
+          "label": "Run high-end festival bottles (-80g, lift class & fees)",
+          "cost": 80,
+          "broke": "Not enough gold for vintage cases, so you stick to house pours.",
+          "prestige": 1,
+          "overrides": {
+            "demand": 1.2,
+            "richFee": 1.15,
+            "pushy": 1.15,
+            "desc": "Festival demand rises (+20%), wealthy guests spend more (+15%), pushy incidents rise 15%."
+          },
+          "res": "You stock the bar with festival vintages and turn a noisy street fair into heavy spending."
+        }
+      ]
     },
     "austerity": {
       "title": "A Credit Audit",
       "text": [
         "A clerk from the Vane Credit House arrives with a ledger under one arm and a list of every business in the district. The Credit House is auditing its borrowers, and for the next few weeks every supplier in town wants payment up front and a little extra for the trouble.\n\nThe merchants and nobles who still come through your door, though, are in a generous mood. Nothing makes a rich man spend like watching his rivals count coppers."
       ],
-      "ok": "Tighten the purse strings"
+      "ok": "Tighten the purse strings",
+      "choices": [
+        {"label":"Tighten the books cleanly","res":"You mark every ledger twice and lean on high-spending regulars to carry the audit weeks."},
+        {
+          "label": "Prepay suppliers in bulk (-180g, soften upkeep)",
+          "cost": 180,
+          "broke": "You don't have the reserve coin to lock rates early, so upkeep stings as normal.",
+          "overrides": {"upkeep":1.05,"richFee":1.2,"desc":"Bulk prepay keeps upkeep near normal (+5%) while merchants and nobles pay 20% more."},
+          "res": "Two early wagons settle the cellar and laundry contracts cleanly before rates spike across town."
+        },
+        {
+          "label": "Offer quiet rebates to repeat nobles (+house renown)",
+          "rep": 1.5,
+          "overrides": {"upkeep":1.2,"richFee":1.15,"demand":1.1,"desc":"Upkeep +20%, +10% demand and +15% rich patron fees while noble regulars pack the suites."},
+          "res": "Your private regulars spread word through every manor dining room that your parlor runs undisturbed."
+        }
+      ]
     },
     "warm_winds": {
       "title": "Warm Winds",
       "text": [
         "A hot wind comes up from the south and doesn't leave. The nights stay sticky, nobody sleeps well, and the ladies drift around the house in as little as they can get away with. Tempers run short. Everything else runs high.\n\nYou catch yourself staring more than once. So do they."
       ],
-      "ok": "Open the windows"
+      "ok": "Open the windows",
+      "choices": [
+        {"label":"Throw the shutters open","res":"You prop every casement wide and keep cold mint water in the pitcher."},
+        {
+          "label": "Set out iced linens and citrus tea (-90g, ease mood)",
+          "cost": 90,
+          "broke": "No spare coin for ice blocks this week—everyone fans themselves through the heat.",
+          "mood": 3,
+          "overrides": {"lustBuild":1.35,"lewd":1.25,"mood":0,"desc":"Staff lust builds 35% faster and lewdness grows 25% quicker, without mood dragging."},
+          "res": "Ice pitchers and thin linen keep everyone comfortable while the heat settles straight into everyone's pulse."
+        }
+      ]
     },
     "iron_watch": {
       "title": "City Watch Crackdown",
       "text": [
         "The City Watch doubles its patrols after a brawl in the Underdistrict ends in a fire. Armored pairs walk past your door every hour, and the clients who like to push their luck have suddenly found their manners.\n\nThe flip side: every lady looking for work knows the Watch is checking papers, and the ones willing to sign anywhere want more for the risk."
       ],
-      "ok": "Behave for a while"
+      "ok": "Behave for a while",
+      "choices": [
+        {"label":"Keep heads down while patrols pass","res":"Nobody tests your doors with armored pairs marching past every hour."},
+        {
+          "label": "Invite the watch sergeant for house tea (-60g, softer hiring)",
+          "cost": 60,
+          "broke": "No coin for an impression gift, so your ladies keep papers handy the normal way.",
+          "overrides": {"pushy":0.55,"signing":1.05,"desc":"Pushy risk drops 45%, while signing fees barely budge (+5%)."},
+          "res": "A polite cup of tea and clean paperwork keep patrols waving fondly at your entrance instead of staring at new arrivals."
+        }
+      ]
     },
     "scholars": {
       "title": "Academy Exams",
       "text": [
         "Exam season at the city's academies. The city fills with tutors, crib sheets and nervous students, and every bookshop runs late. For a few weeks, anyone who wants to learn something can find someone to teach it, cheap.\n\nThe downside is the clientele: the students are broke and too busy to visit, and the town is talking about grades instead of your houses."
       ],
-      "ok": "Hit the books"
+      "ok": "Hit the books",
+      "choices": [
+        {"label":"Clear an afternoon table for study notes","res":"Quills scratch through the afternoon lull while everyone sharpens their craft."},
+        {
+          "label": "Hire a visiting rhetoric tutor (-100g, boost lessons)",
+          "cost": 100,
+          "broke": "You pass on the tutor's fee and let everyone read what they have.",
+          "overrides": {"learn":1.55,"rep":0.9,"desc":"Training and classes jump +55%; town renown rises only slightly slower (-10%)."},
+          "res": "An academy fellow happily trades crisp coaching for gold—turning a slow street into the sharpest week of the month."
+        }
+      ]
     },
     "crimson_nights": {
       "title": "Crimson Nights",
       "text": [
         "The moon rises red three nights running. The old women in the market say it's a lucky omen for lovers; the priests say it's just dust from the south. Either way, you feel wide awake, and the ladies are softer with you than usual, lingering when they pass you in the hall.\n\nYou don't question it."
       ],
-      "ok": "Enjoy it"
+      "ok": "Enjoy it",
+      "choices": [
+        {"label":"Stay up late with them","res":"You walk every floor after midnight and find smiles lingering at every landing."},
+        {
+          "label": "Host a quiet wine night in the lounge (+mood)",
+          "mood": 4,
+          "samEnergy": 10,
+          "overrides": {"samEnergy":20,"trust":1.35,"desc":"Sam gets +20 max energy and everyone builds trust 35% faster under the red moon."},
+          "res": "One shared decanter under the red moonlight melts half the week's guarded edges right away."
+        }
+      ]
+    },
+    "merchant_fleet": {
+      "title": "Merchant Fleet in Port",
+      "text": [
+        "Three tall spice galleons drop anchor before dawn, and before noon every factor, shipmaster, and well-heeled passenger is walking up the hill toward the Lantern Quarter with fresh salt on his boots and heavy silver purses in his coat."
+      ],
+      "choices": [
+        {
+          "label": "Welcome the captains and factors as they land",
+          "res": "Your hosts clear the best parlor tables before the fleet's bell even finishes ringing."
+        },
+        {
+          "label": "Reserve suites for shipmasters (-120g, boost prestige & rich fees)",
+          "cost": 120,
+          "broke": "No reserve gold to deck out suites early; the fleet still crowds your bar.",
+          "prestige": 2,
+          "overrides": {"demand":1.15,"richFee":1.35,"desc":"Fleet traffic lifts demand +15%, while merchant and noble shipmasters spend 35% more."},
+          "res": "Silver trays and private carriage escort pull the richest captains straight through your front doors."
+        },
+        {
+          "label": "Run dockside leaflets for the crew (more demand)",
+          "rep": 1,
+          "overrides": {"demand":1.3,"richFee":1.15,"pushy":1.1,"desc":"Sailors and merchants pack the door (+30% demand, +15% rich fees, +10% pushy risk)."},
+          "res": "Half the docks know your corner by dusk, keeping every room hopping past midnight."
+        }
+      ]
+    },
+    "harvest_fair": {
+      "title": "The Harvest Fair",
+      "text": [
+        "Wagons of pressed cider, autumn pears, and roasted chestnuts ring the market plaza for the Harvest Fair. Farmers come in flush from the crop sales, musicians camp beside every fountain, and the whole district stays warm and flush until midnight."
+      ],
+      "choices": [
+        {"label":"Put spiced cider and warm pies out for the house","res":"The whole parlor smells of cloves and roasted orchard fruit for weeks."},
+        {
+          "label": "Send your ladies out early for fair samples (+house renown)",
+          "rep": 2,
+          "overrides": {"demand":1.25,"mood":3,"upkeep":1.1,"desc":"Fair traffic lifts demand +25% and mood +3 a week (+10% upkeep for fair stock)."},
+          "res": "Smiles and fair tokens bring back a cheerful flood of guests with coin still jingling in their pockets."
+        },
+        {
+          "label": "Keep kitchens modest to save coin",
+          "overrides": {"demand":1.15,"mood":1,"upkeep":1,"desc":"Fair visitors lift demand +15% and mood +1 without inflating house upkeep."},
+          "res": "You skip the expensive spice barrels and let the fair crowds do the work."
+        }
+      ]
+    },
+    "rainy_spell": {
+      "title": "Monsoon Week",
+      "text": [
+        "Low grey clouds park directly over Hollowmere and open into a warm, drumming downpour that turns every cobble black and slick. Casual strollers vanish indoors—leaving quiet afternoons perfect for drills, lessons, and close quarters under a dry roof."
+      ],
+      "choices": [
+        {
+          "label": "Use the quiet afternoons for study and practice",
+          "res": "Rain beats against the shutters while everyone drills patiently beside the hearth."
+        },
+        {
+          "label": "Light extra braziers to keep the lounge inviting (-80g, soften traffic drop)",
+          "cost": 80,
+          "broke": "Not enough coin for extra charcoal hampers; you let the rain keep the street quiet.",
+          "mood": 2,
+          "overrides": {"demand":0.95,"learn":1.2,"lustBuild":1.2,"desc":"Warm lounges limit the rain dip (-5% demand) while training +20% and lust +20%."},
+          "res": "Warm cedar smoke pouring out under the awning tempts cold pedestrians straight inside out of the wet."
+        }
+      ]
+    },
+    "masquerade": {
+      "title": "Quarter Masquerade",
+      "text": [
+        "Every parlor on Lantern Row hangs silk banners for the autumn masquerade—half the patrons arrive in feathered masks, half the staff wears domino lace, and bold offers fly twice as fast once names stop mattering behind velvet."
+      ],
+      "choices": [
+        {"label":"Hand out silk dominoes at the door","res":"Anonymity loosens every tongue and makes even quiet guests surprisingly daring."},
+        {
+          "label": "Set clear house rules at the velvet ropes (+mood, steady security)",
+          "mood": 2,
+          "overrides": {
+            "prop": 1.2,
+            "lewd": 1.15,
+            "pushy": 0.95,
+            "desc": "Propositions rise 20% and lewdness +15%, while clear boundaries keep pushy trouble down (-5%)."
+          },
+          "res": "Everyone keeps the masks playful instead of grabbing hands, keeping propositions bold without chaos."
+        },
+        {
+          "label": "Join the revelry without boundaries (+200g upfront bar tips)",
+          "gold": 200,
+          "overrides": {"prop":1.35,"lewd":1.25,"pushy":1.25,"desc":"Wild masquerade nights (+35% propositions, +25% lewdness growth, +25% pushy risk)."},
+          "res": "Corks pop before dark and masks fly off upstairs while gold pours over the bar."
+        }
+      ]
+    },
+    "alley_rumor": {
+      "title": "Alleyway Gossip at {house}",
+      "text": [
+        "Someone started a petty street rumor claiming {house} watered down its parlor wine and turned away regulars last Tuesday. It's nonsense, yet half the market taverns are repeating it before dusk."
+      ],
+      "choices": [
+        {
+          "label": "Let the work speak for itself and ignore it",
+          "res": "You shrug at the barkeep's gossip and keep your rooms spotless until the talk dies down."
+        },
+        {
+          "label": "Pour free tastings on the corner to squash it (-110g, clear the rumor early)",
+          "cost": 110,
+          "broke": "You don't have the coin for free cellar pours right now—everyone has to ride out the talk.",
+          "cancel": true,
+          "rep": 1.5,
+          "res": "Two open casks and honest laughter on the corner shut the rumor down flat before sunset."
+        },
+        {
+          "label": "Turn the talk into intrigue (+mood, smaller demand hit)",
+          "mood": 2,
+          "overrides": {"demand":0.95,"rep":1,"desc":"Curiosity limits gossip at {house} (-5% demand only, reputation unaffected)."},
+          "res": "You send your sharpest promoter out smiling; curious newcomers wander past {house} just to see for themselves."
+        }
+      ]
+    },
+    "noble_patronage": {
+      "title": "A Noble's Favor at {house}",
+      "text": [
+        "A notoriously picky count leaves {house} with a wide smile and immediately brags about the service at three private club dinners. Overnight, titled gentlemen and guild factors are asking specifically which carriages stop at {house}."
+      ],
+      "choices": [
+        {
+          "label": "Roll out the good crystal for his circle",
+          "res": "Word among the manors spreads fast—and {house}'s parlor fees climb right behind it."
+        },
+        {
+          "label": "Keep a discreet private door for his guests (+prestige & renown)",
+          "prestige": 2,
+          "rep": 1.5,
+          "overrides": {"richFee":1.35,"rep":1.2,"desc":"Discreet noble hospitality boosts {house} rich fees +35% and reputation +20%."},
+          "res": "Quiet side-door arrivals bring dukes who tip double simply to know nobody saw their crest."
+        }
+      ]
+    },
+    "pipe_trouble": {
+      "title": "Boiler Trouble at {house}",
+      "text": [
+        "A copper main beneath {house} splits clean down the seam right after dawn, filling the laundry cellar with steam and leaving the upstairs tubs lukewarm until plumbers can patch the brass valves."
+      ],
+      "choices": [
+        {
+          "label": "Patch it weekly and endure the plumber's bill",
+          "res": "Rags, buckets, and cursing engineers trail through {house}'s cellar while repairs limp along."
+        },
+        {
+          "label": "Pay overtime for immediate full copper replacement (-160g, fix it now)",
+          "cost": 160,
+          "broke": "Too steep this week—you'll have to let the slow patch crews work through it.",
+          "cancel": true,
+          "mood": 2,
+          "res": "Three dwarven smiths tear out the cracked joint before supper and restore scalding hot water across {house}."
+        }
+      ]
+    },
+    "street_musicians": {
+      "title": "Buskers Outside {house}",
+      "text": [
+        "A trio of lute-players and a silver-voiced street singer set up beneath the corner lamp directly outside {house}. Passersby slow down to listen, tap their boots, and notice how warm {house}'s open windows look."
+      ],
+      "choices": [
+        {
+          "label": "Toss them a copper bowl and let them play",
+          "res": "Warm strings carry straight through {house}'s lounge and lure curious strollers inside."
+        },
+        {
+          "label": "Put them on the house tab (-70g, +mood & stronger crowd)",
+          "cost": 70,
+          "broke": "They still play cheerfully for street coin without needing a house retainer.",
+          "mood": 3,
+          "rep": 1,
+          "overrides": {"demand":1.25,"prop":1.2,"desc":"Paid musicians outside {house} lift demand +25% and propositions +20%."},
+          "res": "Hot cider and silver keep them playing your best hours right outside the awning."
+        }
+      ]
+    },
+    "wager_won": {
+      "title": "The Quarter Talks",
+      "text": [
+        "Everyone from the spice stalls to the Velvet Thorn's own carriage step is repeating how {house} beat Isolde Thorne on the festival platform—and patrons are crowding your doorway to see the winner."
+      ],
+      "ok": "Let them talk"
+    },
+    "wager_lost": {
+      "title": "The Thorn Crows",
+      "text": [
+        "Isolde wastes zero time letting every wine merchant and coachman know the Velvet Thorn carried the festival wager—pulling a few fair-weather regulars across the street for a couple of weeks."
+      ],
+      "ok": "Remember this next time"
     }
   },
   "title_patron": {

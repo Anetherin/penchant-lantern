@@ -1,0 +1,110 @@
+{
+  "vesna": [
+    {
+      "title": "The Old Spur",
+      "scene": "casual",
+      "image": {
+        "comp": "standing steady beside a wooden tavern rail looking across the taproom with calm fierce poise, one hand resting near her belt",
+        "setting": "a lantern-lit market tavern porch at dusk, rain damp on the cobbles",
+        "sam": true
+      },
+      "text": "Two weeks after you settled things together, you walk into the guild taproom with Vesna at your elbow and catch her whole frame go still half a step past the doorway. Across the room sit two men wearing tarnished silver-spur clasps—survivors of the Gilded Spur, the party that sealed the Barrow collapse behind her and never dug back.\n\nOne of them sees her, drains white past his collar, and sets his mug down hard. Vesna's ears don't pin flat the way they used to. She takes one slow breath through her nose, glances down at your sleeve touching hers, and murmurs, \"They smell of sour beer and cheap excuses. Not even worth my teeth anymore.\"",
+      "choices": [
+        {
+          "label": "Walk right up to their table beside her",
+          "t": 5,
+          "m": 8,
+          "res": "You don't raise your voice or draw a blade; you simply stand half a pace off Vesna's shoulder while she steps straight up to their table and drops the rusted spur clasp she carried out of the tunnels right between their plates. Neither man manages to meet her eyes. When you step back into the cool dusk air outside, Vesna lets out a long, clean laugh and slips her warm hand directly into yours. \"Done,\" she says quietly. \"Left them in the dark where they belong.\""
+        },
+        {
+          "label": "Buy the best roast in the house and ignore them",
+          "t": 5,
+          "m": 8,
+          "res": "You claim the bright hearth table in plain view of the whole room, order seared venison and spiced cider for two, and watch Vesna eat with unhurried, quiet dignity while her old crew mutters themselves out the side door ten minutes later. Across the table, her tail thumps once steadily against the bench. \"Better company here,\" she says, nudging her boot warmly against yours."
+        }
+      ]
+    },
+    {
+      "title": "Back to the Door",
+      "scene": "casual",
+      "image": {
+        "comp": "sprawled warmly across linen pillows in a dim lamp-lit bedroom, glancing back over her shoulder with heavy-lidded affectionate eyes",
+        "setting": "a warm private bedroom at Sam's house at night, soft lamp glow, wool blanket thrown aside",
+        "sam": true,
+        "cloth": "partial"
+      },
+      "text": "You come upstairs past midnight expecting to find Vesna propped wide awake against the headboard facing the latch—the old habit she swore she'd never break. Instead, she is curled deep inside the blankets facing the window, back turned cleanly toward the door.\n\nThe moment the hinges whisper she rolls smoothly onto one elbow, eyes blinking warm and unguarded in the amber lamp glow. \"Didn't even reach for the dagger,\" she murmurs, sounding faintly surprised at herself as she lifts the warm sheet edge toward you. \"Smelled you on the stairs two landings down. Shut the door, Sam—come get in before the blanket cools.\"",
+      "choices": [
+        {
+          "label": "Climb under the sheet and take her slow",
+          "t": 6,
+          "m": 10,
+          "private": true,
+          "acts": ["missionary","doggy","cowgirl","oral_get","kiss"],
+          "res": "You kick off your boots, slip under the warm linen, and pull her straight against your chest—nosing behind her twitching wolf ear until a low, pleased rumble vibrates straight through her throat. Her hands catch your hips fast, pulling you flush against her bare thighs with zero hesitation left.",
+          "fallbackRes": "You kick off your boots and climb straight under the warm linen, gathering her close against your chest while her breathing settles slow and steady. Vesna presses her face warmly into your collar, tail curling neatly over your calf, sleeping deeper than she has in years."
+        },
+        {
+          "label": "Hold her through the quiet night",
+          "t": 6,
+          "m": 9,
+          "res": "You slide gently behind her beneath the blankets, wrapping one arm snug around her ribs while she pulls your palm squarely over her heartbeat. \"Pack,\" she breathes softly into the dark, already half smiling as she drifts straight back to sleep with her back completely unguarded against you."
+        }
+      ]
+    }
+  ],
+  "brunhild": [
+    {
+      "title": "The Battered Paperback",
+      "scene": "casual",
+      "image": {
+        "comp": "caught sitting on a wooden courtyard bench clutching a dog-eared cloth-wrapped book behind her back, cheeks bright red and scowling defensively",
+        "setting": "a quiet sunlit garden courtyard at afternoon, stone wall and warm wooden bench",
+        "sam": true
+      },
+      "text": "On a quiet afternoon in the courtyard you round the jasmine trellis and catch Brunhild—undefeated terror of the Hollowmere pit—hunched over a thumbed, ribbon-bound book wrapped clumsily inside a spare tunic. The instant your boot scrapes the gravel, she snaps the cover shut so hard the spine pops and goes crimson clear up to her ears.\n\n\"Not a word, Sam!\" she barks, shoving the little romance behind one broad dwarven hip like stolen contraband. \"Someone left it in the laundry basket! I was checking whether the sword-work in chapter six made any damn sense!\"",
+      "choices": [
+        {
+          "label": "Ask her earnestly how chapter six holds up",
+          "t": 5,
+          "m": 8,
+          "res": "Keeping your face completely straight works wonders. Brunhild eyes you suspiciously for three seconds, then pulls the worn volume back out and launches into a passionate ten-minute critique of the duke's terrible footwork—and, much quieter, admits she liked the scene where the knight actually called the shield-maiden lovely before the tournament. When you tell her she looks pretty herself in the sun, she nearly drops the book in the dirt."
+        },
+        {
+          "label": "Promise to bring her the sequel from the bookshop",
+          "t": 6,
+          "m": 9,
+          "res": "She opens her mouth to deny wanting any sequel, freezes mid-breath, and narrows her eyes suspiciously. \"...There's a second one?\" Two minutes later she's grumbling fiercely while making you swear on the house ledger not to tell anyone at the bar—and smiling so wide behind her mug that she fails to hide a bit of it."
+        }
+      ]
+    },
+    {
+      "title": "Champion's Wager",
+      "scene": "casual",
+      "image": {
+        "comp": "leaning across a candlelit oak table in her bare-shouldered evening chemise, forearm planted ready to arm-wrestle with a bold teasing grin",
+        "setting": "Sam's warm private quarters at night, oak table, low hearth fire and unmade bed nearby",
+        "sam": true,
+        "cloth": "partial"
+      },
+      "text": "After lights-out Brunhild marches straight into your room wearing nothing but an unlaced linen shift, plants one solid bare elbow square in the center of your bedside table, and slaps her open hand onto the oak.\n\n\"One bout, boss,\" she challenges, firelight glowing warm across her strong shoulders and wide grin. \"Best of one. If I pin you, I pick the tavern tomorrow. If you somehow pin the Anvil...\" Her grin softens into something brazen and unmistakably hot as her eyes flick to your pillows. \"...then you collect whatever prize a champion owes her man.\"",
+      "choices": [
+        {
+          "label": "Lock hands—and catch her throwing the match",
+          "t": 6,
+          "m": 10,
+          "private": true,
+          "acts": ["cowgirl","missionary","doggy","oral_give","kiss"],
+          "res": "You clasp her calloused palm and brace every ounce of strength you have—and halfway through the strain you feel the sudden, unmistakable slack where the undefeated pit champion deliberately lets your hand push hers cleanly down to the tabletop. \"Oh no,\" Brunhild rumbles darkly, catching your collar with her free hand and hauling you straight across the mattress with a roaring laugh. \"Guess you beat me fair and square, Sam. Better claim your prize properly.\"",
+          "fallbackRes": "You clasp her palm and push hard—until you feel her grin widen and let her wrist drop neatly onto the oak. \"Guess you win,\" she rumbles warmly, catching your shirt to pull you down beside her on the bed for a fierce, laughing kiss that leaves both of you breathless."
+        },
+        {
+          "label": "Skip the table and kiss her right across the oak",
+          "t": 6,
+          "m": 9,
+          "res": "Instead of locking fingers you lean straight across the table, cup her startled, blushing cheek, and kiss her unhurriedly until her broad shoulders relax and her laugh melts soft against your mouth. \"Cheater,\" Brunhild mutters fondly, knocking the chairs back to haul you cleanly into her lap."
+        }
+      ]
+    }
+  ]
+}

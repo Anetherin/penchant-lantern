@@ -256,7 +256,7 @@
       "cost": 800,
       "upkeep": 16,
       "race": "angel",
-      "desc": "Angel mood +4 (+3 weekly mood for the whole house while an angel keeps the chapel). Unlocks the Chapel Keeper job (angels only, 2 positions): a keeper adds house and personal popularity each week, and visitors leave donations.",
+      "desc": "Angel mood +4 (+3 weekly mood for the whole house while an angel keeps the chapel). Unlocks the Chapel Keeper job (2 positions: any lady may serve, angels at full strength and half for others; demons only while a Lantern Angel serves alongside). Keeps add popularity and earn donations.",
       "mood": 4
     },
     "sigil": {
@@ -322,7 +322,7 @@
       "reckless": 0.05,
       "pushy": 0.08,
       "stamina": 1.1,
-      "traits": {"drinker":1.5,"cheapskate":1.5,"rowdy":1.2},
+      "traits": {"drinker":1.5,"cheapskate":1.5,"rowdy":1.2,"tavernRegular":1.6,"brawnFan":1.4},
       "stats": {"beauty":0.5,"stamina":0.5}
     },
     {
@@ -338,7 +338,7 @@
       "reckless": 0.04,
       "pushy": 0.06,
       "stamina": 1.25,
-      "traits": {"shy":2,"firstTimer":2.5,"vanilla":1.5},
+      "traits": {"shy":2,"firstTimer":2.5,"vanilla":1.5,"pleaser":1.4,"staminaTester":1.4},
       "stats": {"charm":0.5,"stamina":0.5}
     },
     {
@@ -354,7 +354,7 @@
       "reckless": 0.08,
       "pushy": 0.1,
       "stamina": 1.2,
-      "traits": {"thirsty":3,"drinker":2,"wild":1.5},
+      "traits": {"thirsty":3,"drinker":2,"wild":1.5,"tavernRegular":2,"thrillSeeker":1.6,"brawnFan":1.3},
       "stats": {"stamina":0.5,"charisma":0.5}
     },
     {
@@ -370,7 +370,7 @@
       "reckless": 0.12,
       "pushy": 0.14,
       "stamina": 1.25,
-      "traits": {"rowdy":2,"thirsty":1.5,"exotic":1.3},
+      "traits": {"rowdy":2,"thirsty":1.5,"exotic":1.3,"adventurous":2,"thrillSeeker":1.8,"staminaTester":1.5,"brawnFan":1.5},
       "stats": {"agility":0.5,"strength":0.5}
     },
     {
@@ -386,7 +386,7 @@
       "reckless": 0.16,
       "pushy": 0.18,
       "stamina": 1.25,
-      "traits": {"rowdy":3,"impatient":2,"drinker":1.5,"wild":1.5},
+      "traits": {"rowdy":3,"impatient":2,"drinker":1.5,"wild":1.5,"adventurous":1.6,"staminaTester":1.8,"brawnFan":1.6,"tavernRegular":1.4},
       "stats": {"strength":0.7,"stamina":0.3}
     },
     {
@@ -395,14 +395,14 @@
       "tier": "merchant",
       "share": 1,
       "mult": 1.2,
-      "wants": {"oral_give":1.2,"breast_give":1.2},
+      "wants": {"oral_give":1.2,"breast_give":1.2,"massage_get":1.1},
       "tech": 0.85,
       "prop": 0.7,
       "rowdy": 0.04,
       "reckless": 0.04,
       "pushy": 0.05,
       "stamina": 0.85,
-      "traits": {"generous":1.5,"bigSpender":1.3,"gossip":1.5,"older":1.8},
+      "traits": {"generous":1.5,"bigSpender":1.3,"gossip":1.5,"older":1.8,"bather":1.6,"customizer":1.4,"neatFreak":1.4,"devotedGuest":1.4},
       "stats": {"charisma":0.5,"wits":0.5}
     },
     {
@@ -411,14 +411,14 @@
       "tier": "merchant",
       "share": 0.8,
       "mult": 1,
-      "wants": {"cowgirl":1.2,"manual_get":1.2,"breast_get":1.1},
+      "wants": {"cowgirl":1.2,"manual_get":1.2,"breast_get":1.1,"massage_give":1.15},
       "tech": 0.9,
       "prop": 0.75,
       "rowdy": 0.04,
       "reckless": 0.03,
       "pushy": 0.04,
       "stamina": 1,
-      "traits": {"patient":1.5,"loyal":2,"connoisseur":1.3},
+      "traits": {"patient":1.5,"loyal":2,"connoisseur":1.3,"pleaser":1.5,"neatFreak":1.5,"devotedGuest":1.6},
       "stats": {"wits":0.5,"beauty":0.5}
     },
     {
@@ -427,14 +427,14 @@
       "tier": "merchant",
       "share": 0.5,
       "mult": 1.05,
-      "wants": {"oral_get":1.2,"kiss":1.1,"breast_get":1.1},
+      "wants": {"oral_get":1.2,"kiss":1.1,"breast_get":1.1,"massage_get":1.15},
       "tech": 0.75,
       "prop": 0.55,
       "rowdy": 0.02,
       "reckless": 0.02,
       "pushy": 0.03,
       "stamina": 0.8,
-      "traits": {"shy":2.5,"chatty":2,"connoisseur":1.5,"firstTimer":1.5,"older":1.6},
+      "traits": {"shy":2.5,"chatty":2,"connoisseur":1.5,"firstTimer":1.5,"older":1.6,"graceSeeker":1.6,"customizer":1.4,"bather":1.3},
       "stats": {"wits":1}
     },
     {
@@ -443,14 +443,14 @@
       "tier": "noble",
       "share": 1,
       "mult": 2,
-      "wants": {"missionary":1.2,"cowgirl":1.15,"oral_get":1.1},
+      "wants": {"missionary":1.2,"cowgirl":1.15,"oral_get":1.1,"massage_get":1.15},
       "tech": 1,
       "prop": 0.5,
       "rowdy": 0.02,
       "reckless": 0.03,
       "pushy": 0.04,
       "stamina": 0.85,
-      "traits": {"connoisseur":2,"bigSpender":1.5,"exotic":1.5,"gossip":1.5,"older":1.8},
+      "traits": {"connoisseur":2,"bigSpender":1.5,"exotic":1.5,"gossip":1.5,"older":1.8,"graceSeeker":2,"neatFreak":1.8,"customizer":1.8,"bather":1.5},
       "stats": {"refinement":1.5}
     },
     {
@@ -466,7 +466,7 @@
       "reckless": 0.03,
       "pushy": 0.05,
       "stamina": 0.75,
-      "traits": {"lonely":2,"discreet":3,"impatient":1.5,"prude":1.3,"older":2.2},
+      "traits": {"lonely":2,"discreet":3,"impatient":1.5,"prude":1.3,"older":2.2,"neatFreak":1.8,"graceSeeker":1.5,"devotedGuest":1.4},
       "stats": {"refinement":0.5,"wits":0.5}
     },
     {
@@ -482,7 +482,7 @@
       "reckless": 0.04,
       "pushy": 0.04,
       "stamina": 1.05,
-      "traits": {"dancerFan":2,"chatty":2,"gossip":2,"generous":1.5,"curious":1.5},
+      "traits": {"dancerFan":2,"chatty":2,"gossip":2,"generous":1.5,"curious":1.5,"thrillSeeker":1.6,"adventurous":1.5,"pleaser":1.4},
       "stats": {"charisma":0.6,"wits":0.4}
     },
     {
@@ -498,7 +498,7 @@
       "reckless": 0.03,
       "pushy": 0.03,
       "stamina": 0.9,
-      "traits": {"lonely":2,"shy":1.5,"troubled":1.5,"prude":1.5},
+      "traits": {"lonely":2,"shy":1.5,"troubled":1.5,"prude":1.5,"devotedGuest":1.5,"bather":1.4},
       "stats": {"charm":1}
     },
     {
@@ -507,14 +507,14 @@
       "tier": "merchant",
       "share": 0.35,
       "mult": 1.1,
-      "wants": {"missionary":1.25,"oral_get":1.15},
+      "wants": {"missionary":1.25,"oral_get":1.15,"massage_give":1.15},
       "tech": 0.8,
       "prop": 0.55,
       "rowdy": 0.02,
       "reckless": 0.02,
       "pushy": 0.03,
       "stamina": 0.85,
-      "traits": {"discreet":3,"troubled":2,"prude":1.5,"romantic":1.2,"older":1.4},
+      "traits": {"discreet":3,"troubled":2,"prude":1.5,"romantic":1.2,"older":1.4,"graceSeeker":1.6,"neatFreak":1.6,"pleaser":1.3},
       "stats": {"charm":0.5,"refinement":0.5}
     },
     {
@@ -530,7 +530,7 @@
       "reckless": 0.06,
       "pushy": 0.1,
       "stamina": 1.15,
-      "traits": {"rowdy":1.5,"drinker":1.5,"loyal":1.5},
+      "traits": {"rowdy":1.5,"drinker":1.5,"loyal":1.5,"tavernRegular":1.5,"brawnFan":1.5,"staminaTester":1.4},
       "stats": {"strength":0.5,"agility":0.5}
     }
   ],

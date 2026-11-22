@@ -112,7 +112,7 @@ function samDate(id, k){
   if(S.gold<cost) return toast('Not enough gold.');
   if(!dateListed(w, d)) return toast(d.needsUp ? `${houseOf(w).name} needs a ${(UPGRADES[d.needsUp]||{label:d.needsUp}).label}.` : `${w.name} and Sam aren't there yet.`);
   if(!useAP(samDateCost(d.energy))) return; S.gold -= cost;
-  const m = pmAny(w,d.like), tg = gainTrust(w, d.trust * (hasPast('support') ? 1.2 : 1) * (has(w,'Romantic')?1.4:1) * (d.trustMult||1) * m);
+  const m = pmAny(w,d.like), tg = gainTrust(w, d.trust * (hasPast('support') ? 1.2 : 1) * (has(w,'Romantic')?1.4:1) * (has(w,'Shy')?1.2:1) * (d.trustMult||1) * m);
   moodAdd(w, d.mood*m - (m<1?3:0)); w.dates++; w._samTime = (w._samTime||0) + 1;   // a date counts as time with Sam (lovers' neglect)
   const lg = d.lewd ? lewdUp(w, d.lewd * (m>1 ? 1.25 : m<1 ? 0.6 : 1), d.lewdCap) : 0;
   if(d.lust){ w.lust += d.lust * fxMul(w,'lustBuild'); fitLust(w); }
@@ -130,7 +130,7 @@ function samDate(id, k){
   const anyAct = getActs().some(a=>canSam(w,a.id));
   const first = m>=1 && w.mood>=60 && firstReadyAny(w) && Math.random() < 0.5 + Math.max(0, w.lust-50)/100;
   const nightIn = !first && d.special==='nightin' && anyAct;
-  const spicy = !first && !nightIn && m>=1 && w.mood>=55 ? (d.spicy||[]).map((sp,i)=>[sp,i]).filter(([sp])=>spicyOK(w,sp)).slice(0,2) : [];
+  const spicy = !first && !nightIn && m>=1 && w.mood>=55 ? (d.spicy||[]).map((sp,i)=>[sp,i]).filter(([sp])=>spicyOK(w,sp)) : [];
   // with 🔥 options the evening goes in two steps: the daring variant or calling it there, then (if it sparks) the invitation
   const twoStep = spicy.length > 0;
   DATE_AFTER = twoStep ? {id, k, m} : null;
@@ -182,12 +182,13 @@ function dateAfterSpicy(id){
 function samSpicy(id, k, i){
   const w = findW(id), d = DATES[k], sp = d && (d.spicy||[])[i]; if(!w || !sp) return;
   if(!spicyOK(w, sp)) return toast(`${w.name} isn't up for that.`);
-  if(S.sam.energy < 12) return toast('Sam is too tired.');
-  S.sam.energy -= 12;
+  const sc = samPrivCost(12, true);
+  if(S.sam.energy < sc) return toast('Sam is too tired.');
+  S.sam.energy -= sc;
   const lead = String(Array.isArray(sp.lead) ? pick(sp.lead) : sp.lead).replace(/\{name\}/g, w.name), act = sp.nude ? null : spicyAct(w, sp), label = sp.label.toLowerCase() + ' on a date (' + d.label.toLowerCase() + ')';
   let text, scene, ai;
   if(act){
-    text = privateCore(w, act, {lead, turn: (sp.acts||[]).length > 1, cap: sp.cap}); lewdUp(w, sp.gain, sp.cap); scene = 'samact:'+act+'~~date_'+k+(sp.image ? '.'+i : '');
+    text = privateCore(w, act, {lead, turn: (sp.acts||[]).length > 1, cap: sp.cap}); scene = 'samact:'+act+'~~date_'+k+(sp.image ? '.'+i : '');
     ai = {kind:'private', act, scene, forSam:true, situation:label};
   } else {
     lewdUp(w, sp.gain, sp.cap); moodAdd(w, 4); w.lust += 6; fitLust(w); minorTrust(w); text = lead; scene = 'date_'+k;
@@ -271,14 +272,15 @@ function orgyDraw(){
 }
 // Fem/fem act for two bonded ladies in an orgy: uses services with pair.fem + image.fem.
 function orgyFemAct(a, b){
-  const pref = ['oral_give','oral_get','manual_give','manual_get','breast_give','breast_get','kiss'];
+  const pref = ['missionary','cowgirl','doggy','oral_give','oral_get','manual_give','manual_get','breast_give','breast_get','kiss'];
+  const flipAct = id => { const f = id.replace(/_(give|get)$/, (m,k)=>k==='give'?'_get':'_give'); return actById(f) ? f : id; };
   const ok = id => {
     const A = actById(id);
-    return A && A.pair && A.pair.fem && A.pair.fem.length && A.image && A.image.fem && A.image.fem.length && !actBanned(a, id) && !actBanned(b, id);
+    return A && A.pair && A.pair.fem && A.pair.fem.length && A.image && A.image.fem && A.image.fem.length && !actBanned(a, id) && !actBanned(b, flipAct(id));
   };
-  const comfy = pref.filter(id => ok(id) && canSam(a, id) && canSam(b, id));
+  const comfy = pref.filter(id => ok(id) && canSam(a, id) && canSam(b, flipAct(id)));
   if(comfy.length) return pick(comfy);
-  const open = pref.filter(id => ok(id) && Math.min(inclination(a, id), inclination(b, id)) >= ((actById(id)||{}).th||0) - 10);
+  const open = pref.filter(id => ok(id) && Math.min(inclination(a, id) - orientGap(a,'f'), inclination(b, flipAct(id)) - orientGap(b,'f')) >= ((actById(id)||{}).th||0) - 10);
   if(open.length) return pick(open);
   return ok('kiss') ? 'kiss' : null;
 }

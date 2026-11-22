@@ -27,15 +27,30 @@ const BOT = `async (weeks) => {
     S.won = true; S.workers.forEach(w => { if (!w.traits.includes('Devoted')) w.traits.push('Devoted'); });
     startNGPlus(); NGS.partner = 'none'; NGS.boon = Object.keys(NG_BOONS).find(k => !(S.boons||[]).includes(k)) || null; NGS.house = NGS.offers[0] || null; NGS.past = 'none';
     carriedLovers().forEach(w => { const p = NG_PERKS().find(t => !(w.ngPerks||[]).includes(t)); if (p) NGS.perks[w.id] = p; });
-    ngBegin(); let k = 0; while (GNEXT && k < 5) { gNext(); k++; } closeModal();
+    ngBegin(); let k = 0; while (GNEXT && k < 5) { gNext(); k++; } closeModal(); drain();
   };
   play(weeks);
   const evC1 = out.length;
   for (let c = 2; c <= 5; c++) { ng(); play(weeks); }
+  const preIso = evGoddessIsolde('pre');
+  if (!preIso || !preIso.choices || !preIso.choices.length) throw new Error('evGoddessIsolde(pre) failed before binding');
+  preIso.choices[0].fx(); drain();
   out.push('cycle ' + S.cycle + ' bound=' + S.goddess.bound + ' jealousy=' + Math.round(S.goddess.jealousy) + ' love=' + Math.round(S.goddess.love) + ' teases=' + S.goddess.teases.length + ' knows=' + !!S.goddess.knows + ' maxReborn=' + Math.max(...S.workers.map(w=>w.reborn||0)));
   ng();   // cycle 6: binding
   if (!S.goddess.bound) throw new Error('not bound at cycle ' + S.cycle);
   TAB = 'goddess'; render(); if (!document.querySelector('#view').innerHTML.includes('Guidance')) throw new Error('no goddess tab');
+  const j0 = S.goddess.jealousy, m0 = S.goddess.mood; S.goddess.jealousy = 0; S.goddess.mood = 80;
+  setGFocus('clients'); play(1);
+  if (!S.lastReport || !S.lastReport.godClients) throw new Error('bound goddess clients focus produced no godClients report');
+  setGFocus('focus'); setFocus('office'); play(1); setFocus('classes'); play(1);
+  S.goddess.jealousy = j0; S.goddess.mood = m0;
+  const bFirst = evGoddessIsolde('first');
+  if (!bFirst || !bFirst.choices || !bFirst.choices.length) throw new Error('evGoddessIsolde(first) failed');
+  bFirst.choices[0].fx();
+  const bRepeat = evGoddessIsolde('repeat');
+  if (!bRepeat || !bRepeat.choices || !bRepeat.choices.length) throw new Error('evGoddessIsolde(repeat) failed');
+  bRepeat.choices[0].fx();
+  out.push('goddess isolde ok: seen=' + S.goddess.isoldeSeen);
   for (const f of GFOCUS) { setGFocus(f); play(3); }
   setGShape('demon'); TAB = 'goddess'; render(); out.push('form ' + godId());
   setGForm('futa'); play(2);

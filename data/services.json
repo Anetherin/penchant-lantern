@@ -137,10 +137,10 @@
       "th": 20,
       "price": 16,
       "energy": 3,
-      "lust": 3,
+      "lust": 0,
       "finish": false,
       "want": 0.04,
-      "kind": "receive",
+      "kind": "massage",
       "energyBack": 4,
       "mood": 2,
       "desc": "lying back while he rubs warm oil into her shoulders, back and thighs",
@@ -198,7 +198,7 @@
       "kind": "give",
       "stats": {"agility":1},
       "desc": "stroking him off with skilled, unhurried hands",
-      "dress": {"min":"partial","fullAt":75},
+      "dress": {"min":"partial","fullAt":70},
       "ask": {
         "client": "for a handjob",
         "lady": "offered to use her hands on him",
@@ -234,10 +234,10 @@
       "pair": {
         "fem": [
           "{name} settles between {partner}'s parted thighs and slides two slick fingers deep inside her, curling them slowly against her front wall while her thumb circles {partner}'s clit until {partner}'s hips lift off the sheets.",
-          "{name} strokes {partner}'s wet folds with unhurried fingers before slipping inside her at a steady, knowing rhythm, watching {partner}'s breath catch and break."
+          "{name} strokes {partner}'s slick pussy with unhurried fingers before slipping inside her at a steady, knowing rhythm, watching {partner}'s breath catch and break."
         ],
         "futa": [
-          "{name} kneels between {partner}'s legs and wraps both oiled hands around her shaft, twisting her wrists smoothly from base to tip until {partner}'s fingers tangle hard in her hair."
+          "{name} kneels between {partner}'s legs and wraps both oiled hands around her cock, twisting her wrists smoothly from base to tip until {partner}'s fingers tangle hard in her hair."
         ]
       },
       "samLabel": "She uses her hands on you",
@@ -257,7 +257,7 @@
       "kind": "give",
       "stats": {"stamina":1},
       "desc": "pressing her bare breasts together around him until he finishes",
-      "dress": {"min":"partial","fullAt":70},
+      "dress": {"min":"partial","fullAt":65},
       "ask": {"client":"for titjob","lady":"offered to use her breasts","clientFem":"for her breasts","ladyFem":"offered her breasts"},
       "image": {
         "client": [
@@ -305,7 +305,7 @@
       "id": "manual_get",
       "label": "Manual (receiving)",
       "tier": 2,
-      "th": 28,
+      "th": 36,
       "price": 24,
       "energy": 5,
       "lust": -10,
@@ -314,7 +314,7 @@
       "kind": "receive",
       "desc": "being pleasured by hand",
       "ask": {"client":"to touch her","lady":"asked him to touch her","clientFem":"to touch her","ladyFem":"asked her client to touch her"},
-      "dress": {"min":"partial","fullAt":55},
+      "dress": {"min":"partial","fullAt":60},
       "image": {
         "client": ["lying back on a bed, a man's hand between her thighs"],
         "sam": [
@@ -359,7 +359,7 @@
       "id": "breast_get",
       "label": "Breast play (receiving)",
       "tier": 2,
-      "th": 36,
+      "th": 28,
       "price": 26,
       "energy": 5,
       "lust": -8,
@@ -373,7 +373,7 @@
         "clientFem": "to play with her breasts",
         "ladyFem": "let her play with her breasts"
       },
-      "dress": {"min":"partial","fullAt":55},
+      "dress": {"min":"partial","fullAt":65},
       "image": {
         "client": ["a man embracing her from behind, his hands on her breasts"],
         "sam": [
@@ -490,7 +490,7 @@
       "kind": "give",
       "desc": "using her mouth",
       "ask": {"client":"for oral","lady":"offered to go down on him","clientFem":"to be eaten out","ladyFem":"offered to go down on her"},
-      "dress": {"min":"partial","fullAt":55},
+      "dress": {"min":"partial","fullAt":60},
       "image": {
         "client": ["her mouth sucking a man's penis, blowjob"],
         "sam": [
@@ -507,9 +507,9 @@
         "futa": ["the woman's mouth on the futanari's penis, fellatio","the woman kneeling in front of the futanari, blowjob"]
       },
       "report": [
-        "Dropped straight to her knees, took his cock all the way down her throat, and hummed around the shaft until his thighs shook and he spilled straight down her gullet.",
+        "Dropped straight to her knees, took his cock all the way down her throat, and hummed around his cock until his thighs shook and he spilled straight down her gullet.",
         "Wrapped slick, hot lips around his cock and worked the head with her tongue while one hand stroked his base, sucking hard until he groaned and painted her tongue.",
-        "Took her time bobbing up and down his shaft, looking up through her lashes until he came in her mouth—then swallowed every drop with a wicked smile.",
+        "Took her time bobbing up and down his cock, looking up through her lashes until he came in her mouth—then swallowed every drop with a wicked smile.",
         "Licked slowly from his balls to his crown before taking him deep and fast, milking a ragged groan and a thick load out of him before he could even catch his breath.",
         "Used wet suction and a swirling tongue right beneath the ridge until his hips bucked, swallowing every drop and leaving him too weak-kneed to stand straight.",
         "Kept one hand wrapped around his root while her mouth worked the rest, teasing him right to the brink twice before letting him cum down her throat."
@@ -629,7 +629,7 @@
       },
       "report": [
         "Straddled his hips, sank all the way down onto his cock, and rode him at her own greedy pace until he groaned and came deep inside her.",
-        "Pinned his wrists down and bounced hard on his shaft, grinding her clit against him until she shuddered through her own orgasm and drained him dry.",
+        "Pinned his wrists down and bounced hard on his cock, grinding her clit against him until she shuddered through her own orgasm and drained him dry.",
         "Took charge from the first stroke, rolling her hips in slick, tight circles over his cock until he gave up trying to hold back.",
         "Rode him fast with her bare tits bouncing in his face, gripping his shoulders as she came hard around his cock and milked a thick load out of him.",
         "Lowered herself inch by inch onto his cock with a wicked smirk, then set a relentless rhythm that left him panting and helpless beneath her.",
@@ -694,7 +694,7 @@
         "Got down on her hands and knees and pushed her ass straight back onto his cock, moaning shamelessly while he pounded her from behind.",
         "Glanced back over her shoulder with a wicked grin while he fucked her hard from behind, rubbing her clit until she came around his shaft.",
         "Took it deep and rough on all fours, gripping whatever she could reach while his hips slapped steadily against her bare ass.",
-        "Dropped onto her elbows with her ass lifted high, letting him drive his cock to the hilt until both of them were breathless and slick with sweat.",
+        "Dropped onto her elbows with her ass lifted high, letting him drive his cock all the way deep until both of them were breathless and slick with sweat.",
         "Pushed back against every thrust until her legs trembled, taking him balls-deep from behind until he spilled inside her with a ragged groan."
       ],
       "pair": {

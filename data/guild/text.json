@@ -248,6 +248,98 @@
         "{name} fell from a ledge on the Greyspine and landed badly.",
         "{name} was thrown against the crags by a wing-buffet."
       ]
+    },
+    "ruin_salvage": {
+      "week": [
+        "{party} wade knee-deep along the flooded aqueduct arches, roping bronze reliefs up to dry stone.",
+        "{party} pry loose three intact masonry seals while keeping watch for rival scavengers along the ridge.",
+        "The torches hiss over black water as {party} cart another crate of salvaged stonework back to the wagon."
+      ],
+      "done": [
+        "{party} haul two wagons of bronze friezes and intact stone seals through the guild gate, muddy to the elbows and grinning. The antiquarian checks every mark twice before paying out the full purse on the spot.",
+        "{party} beat two rival crews into the lower vault, roped every intact seal clear before the spring thaw rose, and came home with dry boots and heavier coin belts."
+      ],
+      "doneSam": [
+        "You spent the week ankle-deep in cold aqueduct runoff holding lanterns while {party} rigged pulleys across cracked marble. Nobody dropped a crate, the rival crew turned back at the first watchfire, and the guild antiquarian pays the full bounty without a single quibble.",
+        "Between hauling ropes, sketching cracks, and sharing warm camp soup with {party} along the ruined arches, you bring every bronze plaque back intact. The clerk signs off with genuine respect."
+      ],
+      "fail": [
+        "Rising spring runoff flooded the lower vault before {party} could winch the main plaques clear. They came back soaked and empty-handed; the guild logged a failed salvage.",
+        "A rival scavenger gang cleared the dry chambers half a day ahead of {party}. Only scrap remained when the deadline ran out."
+      ],
+      "hurt": [
+        "{name} slipped on moss-slick aqueduct flagstones and bruised her ribs badly.",
+        "A rotten timber scaffold gave way over {name} as the hoist swung loose."
+      ]
+    },
+    "bloom_harvest": {
+      "week": [
+        "{party} pick unopened crimson buds through thick drifts of gold pollen, masks damp and cheeks flushed.",
+        "Night camp in the Fenwood smells sweet and heavy; {party} seal another basket of lustbloom before the petals part.",
+        "Thick golden dust clings to every cloak as {party} trace the rare deep-mire patches by lantern."
+      ],
+      "done": [
+        "{party} return from the Fenwood smelling unmistakably of sweet gold pollen, carrying six tightly sealed wax hampers of pristine buds. The apothecary guild pays top coin immediately—and everyone heads straight for the baths.",
+        "Six full hampers of unopened lustbloom make it cleanly back to the guild counter. {party} are flushed, laughing too easily, and very proud of the heavy purse."
+      ],
+      "doneSam": [
+        "Three days in pollen-thick hollows with {party} tested every ounce of discipline you had, yet every single wax hamper came back tightly sealed. The apothecaries count the unopened buds in delighted silence and pour out the full reward.",
+        "You kept the lanterns lit, tied off the waxed sacks, and kept everyone on the trail out of the mire despite the sweet haze hanging over camp. {party} bring the full harvest home and collapse gladly into clean linen."
+      ],
+      "fail": [
+        "A warm rain burst the flowers open overnight before {party} could seal the hampers, ruining the potency. They trudged back flushed and empty-handed.",
+        "The thick pollen haze threw {party} off the bog trail for two days until the harvest window closed."
+      ],
+      "hurt": [
+        "{name} inhaled a thick lungful of raw pollen and spent a miserable night shaking with fever.",
+        "{name} twisted her ankle stepping through a hidden root hollow in the mire."
+      ]
+    },
+    "gala": {
+      "week": [
+        "{party} glide between velvet-masked counts and whispering envoys, wine glasses steady and hidden steel closer.",
+        "Three estates, three candlelit ballrooms, and {party} have memorized every side stair and balcony latch.",
+        "{party} steer a tipsy viscount away from a poisoned goblet without spilling a drop or breaking conversation."
+      ],
+      "done": [
+        "{party} escort the viscountess cleanly back to her townhouse without a single scandal reaching the gazettes. Two scheming courtiers left early with quiet bruises, and the lady doubled her tip in sealed gold.",
+        "Silk hems dusty, feet sore, and grins razor-bright: {party} saw the entire coastal masquerade through without a blade ever needing to be drawn in sight of the orchestra."
+      ],
+      "doneSam": [
+        "You wore a rented domino mask for three nights straight, spotted a bribed footman behind the terrace curtains, and let {party} handle the quiet intercept behind the hedges. The viscountess presses a heavy purse into your palm and promises to remember your house.",
+        "Between waltzing cover, watching exits, and sharing whispered laughs behind silk screens with {party}, you keep every intrigue harmless. The guild clerk whistles at the noble seal on the completion voucher."
+      ],
+      "fail": [
+        "A blackmailer slipped past the terrace cordon during the second masquerade and spoiled the viscountess's evening. She cancelled the final leg and withheld the purse.",
+        "A loud scuffle broke out beside the punch fountain before {party} could steer the drunks away, ending the escort contract in quiet disgrace."
+      ],
+      "hurt": [
+        "{name} caught a concealed stiletto across her forearm blocking a hallway ambush.",
+        "{name} took a hard fall down marble garden steps chasing an eavesdropper in heels."
+      ]
+    },
+    "leviathan": {
+      "week": [
+        "{party} stake out the dripping sea-caves at low tide, chaining iron harpoons across the narrow mouth.",
+        "Salt spray and echoing roars shake the breakwater tunnels as {party} drive the beast deeper toward the dry shelf.",
+        "{party} dry damp powder and sharpen spears beside a driftwood fire while watching the tide tables."
+      ],
+      "done": [
+        "{party} march up from the harbor soaked in brine and seawater, hauling a six-foot tusk trophy behind a cheering crowd of dockworkers. The harbormaster pays out the crown bounty on the quay while taverns pour drinks on the house.",
+        "Low tide trapped the serpent squarely on the shingle shelf, and {party} ended it cleanly before the surge returned. Hollowmere's merchant captains greet them like conquering heroes."
+      ],
+      "doneSam": [
+        "You timed the tide bells, held the torch-line steady when the cavern echoed with its lunge, and watched {party} bring the monster crashing down across the wet stone shelf. Salt-crusted and aching to the bone, you collect the crown bounty while half the dockside cheers.",
+        "Four gritty weeks in sea-caves and spray-soaked camps end with one thunderous crack of iron harpoons and a quiet harbor again. {party} haul the trophy tusk straight through the guild doors behind you."
+      ],
+      "fail": [
+        "A sudden storm tide flooded the breakwater caves early, forcing {party} to abandon their ropes and scramble for high stone while the serpent slipped back to deep water.",
+        "The beast snapped two anchor chains on the final night and fled out past the reef before {party} could pin it."
+      ],
+      "hurt": [
+        "A sweeping tail slammed {name} hard against wet cavern limestone.",
+        "{name} was dragged across jagged barnacles before the line could be cut."
+      ]
     }
   },
   "generic": {

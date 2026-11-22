@@ -366,8 +366,8 @@ function gPair(a, b, C){
 }
 function gYuri(a, b, C){
   const s = gScenePick(GSCN.yuri, C); if(!s) return null;
-  const f = t => gFill(t, {a:a.name, b:b.name, C:C.label}), lim = Math.min(a.lewd||0, b.lewd||0) + 10;
-  const act = gPickAct(a, s.close && s.close.acts, id=>((actById(id)||{}).th||0) <= lim), sc = gImg(s, s.id);
+  const f = t => gFill(t, {a:a.name, b:b.name, C:C.label}), lim = Math.min((a.lewd||0) - orientGap(a,'f'), (b.lewd||0) - orientGap(b,'f')) + 15;
+  const act = gPickAct(a, s.close && s.close.acts, id=>((actById(id)||{}).th||0) <= lim && !actBanned(a, id) && !actBanned(b, id)), sc = gImg(s, s.id);
   const ch = [{label:f(s.decline.label), fx(){ addBond(a, b, 3); moodAdd(a, 2); moodAdd(b, 2); return f(s.decline.res) + `\n\n${a.name.split(' ')[0]} & ${b.name.split(' ')[0]} closer`; }}];
   if(act) ch.unshift({label:f(s.close.label), fx(){ addBond(a, b, 8); [a,b].forEach(w=>{ moodAdd(w, 6); lewdUp(w, 2, svcLewdCap(act,'client')); spendLust(w, 30); countUp(w, 'yuri'); });
     return {text:f(s.close.res) + `\n\n${a.name.split(' ')[0]} & ${b.name.split(' ')[0]} much closer · Lewdness + · Lust −`, img:{wid:a.id, scene:`pair:${act}:fem:${b.id}`}}; }});

@@ -29,7 +29,7 @@
     "wait": "\"Let's not rush this.\"",
     "waitRes": "{name} nods. She doesn't seem upset—if anything, she looks like she's already planning how to wear you down next time."
   },
-  "relaxedAt": 2,
+  "relaxedAt": 3,
   "relaxed": {
     "shower": {
       "text": [
@@ -458,7 +458,7 @@
           "cloth": "partial"
         },
         "go": "\"Gently.\"",
-        "goRes": "You take your time easing your cock into her pussy an inch at a time, and afterward she clings to your chest with a radiant, breathless smile.",
+        "goRes": "You take your time easing your cock into her tight, wet pussy an inch at a time while she clings to your shoulders with soft, breathless gasps.",
         "wait": "\"We have all the time in the world.\"",
         "waitRes": "She lets out a long, shaky breath and laughs softly. \"Okay. Thank you.\"",
         "pers": ["Shy but earnest","Warm and motherly","Bookish and curious"]
@@ -490,7 +490,7 @@
           "cloth": "partial"
         },
         "go": "Go to her",
-        "goRes": "None of the positions are new to her, yet every thrust of your cock feels brand new—and she tells you so breathlessly afterward.",
+        "goRes": "None of the positions are new to her, yet the moment your cock slides inside her pussy she catches her breath cleanly as though feeling it for the first time.",
         "wait": "Hold her instead",
         "waitRes": "You simply lie together in the dark. {name} whispers that it's the most intimate night she's had in years."
       },
@@ -587,7 +587,7 @@
           "sam": true
         },
         "go": "Go with her",
-        "goRes": "The linens stay scattered in the hall until morning while she drags you into bed and you get your hands and mouth all over her.",
+        "goRes": "The linens stay scattered across the hallway floor as she drags you through her door onto the mattress and your hands and mouth immediately find her bare skin.",
         "wait": "\"The linens...\"",
         "waitRes": "\"Forget the linens.\" She lets you go with a breathless laugh. \"Next time, drop them faster.\""
       },
@@ -803,7 +803,7 @@
           "setting": "house hallway in the evening, lantern light",
           "sam": true
         },
-        "go": "\"This one's good\"",
+        "go": "\"Wait no longer\"",
         "goRes": "Within moments you're both bare on the sheets, hands and mouths making up for lost time, her pussy grinding against your thigh.",
         "wait": "\"Slow down, please\"",
         "waitRes": "\"Slower,\" she repeats, trying and failing as she kisses you breathless."

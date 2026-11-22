@@ -338,9 +338,9 @@
           }
         },
         {
-          "label": "Point him toward your house for a drink tonight",
+          "label": "Point him toward your house for a drink this week",
           "rep": 2,
-          "res": "He gratefully pockets a card for {house} and promises to stop by with his caravan mates tonight."
+          "res": "He gratefully pockets a card for {house} and promises to stop by with his caravan mates when the doors open."
         }
       ]
     },
@@ -429,7 +429,7 @@
         {
           "label": "Work the edge of the crowd",
           "check": {"stat":"charm","need":40},
-          "win": {"rep":2,"sam":{"charm":1},"res":"Easy banter leaves four well-dressed merchants asking what time your doors open tonight."},
+          "win": {"rep":2,"sam":{"charm":1},"res":"Easy banter leaves four well-dressed merchants asking what time your doors open this week."},
           "lose": {"sam":{"charm":1},"res":"You hand out a couple of polite words before the song wraps up and the crowd scatters."}
         }
       ]
@@ -504,10 +504,10 @@
           "res": "He relaxes over coffee, clearly relieved you didn't announce his favorite house to the street. \"See you Friday, Takahashi.\""
         },
         {
-          "label": "Mention tonight's lineup with a grin",
+          "label": "Mention this week's lineup with a grin",
           "regularLoyalty": 3,
           "rep": 1,
-          "res": "His eyes light up at once; by the time you part ways, he's already rearranging his evening plans."
+          "res": "His eyes light up at once; by the time you part ways, he's already rearranging his week's plans."
         }
       ]
     },

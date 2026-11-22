@@ -4,7 +4,7 @@ const hasSamUp = k => !!(S.samUps && S.samUps[k]);
 function samUpFx(key){
   let n = 0, any = false;
   Object.keys(BAL.samUps||{}).forEach(k=>{ if(!hasSamUp(k)) return; const v = (BAL.samUps[k].fx||{})[key]; if(typeof v==='number') n += v; else if(v) any = true; });
-  return key==='reach' ? any : n;
+  return (key==='reach' || key==='link') ? any : n;
 }
 // Two kinds of reach: work (Speaking Stones or the Shadow Clone boon: his focus and passive bonuses run at every house) and visits
 // (Teleport Circle: late-night encounters, rounds, demonstrations and group nights reach every house).
@@ -60,7 +60,7 @@ function autoFeasts(R){
     const t = h.autoFeast && BAL.feast.tiers.find(x=>x.id===h.autoFeast); if(!t || h.feastWk === S.week) return;
     const r = feastAt(h, t);
     if(typeof r === 'string'){ if(r==='Not enough gold.') R.lines.push(`🍽️ Auto-feast at ${h.name} skipped: not enough gold for a ${t.label.toLowerCase()} (${fmt(feastCost(t)*S.workers.filter(w=>w.house===h.id).length)}).`); return; }
-    R.lines.push(`🍽️ Auto-feast: ${t.label} at ${h.name} (${r.n} ladies, trust ${tDelta(r.tr/r.n)} and mood +${t.mood} each, −${fmt(r.total)}).`);
+    R.lines.push(`🍽️ Auto-feast: ${t.label} at ${h.name} (${r.n} ladies, trust ${tDelta(r.tr/r.n)} and mood +${Math.round(t.mood * feastPast())} each, −${fmt(r.total)}).`);
   });
 }
 

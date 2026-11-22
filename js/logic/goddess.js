@@ -26,14 +26,15 @@ Object.entries(GOD_FORMS).forEach(([r, f], i)=>{
     seed:7130417 + i*101, lewd:95, trust:100, lust:75, traits:[], acts:{}, menu:[], counts:{}, body:Object.assign({}, BODY_DEF, f.body || {}),
     design:{build:f.build || '', hairStyle:f.hairStyle || lk.hairStyle || '', hairColor:f.hair || lk.hair || '', eyes:f.eyes || lk.eyes || '', skin:f.skin || lk.skin || '', features:[lk.signature, f.features].filter(Boolean).join(', ')}};
 });
-const GFOCUS = ['indulge','business','watch','tutelage','guild','whim'];
-let GNEXT = null, GW = {biz:{}, watch:{}, saved:0};   // GW: this week's effects, rebuilt by goddessPlan()
+const GFOCUS = ['indulge','business','watch','tutelage','guild','clients','focus','whim'];
+let GNEXT = null, GW = {biz:{}, watch:{}, clients:[], focus:null, saved:0};   // GW: this week's effects, rebuilt by goddessPlan()
 
 function ensureGoddess(){
   if(!S) return null;
   const B = GB(), J = B.mood || {};
   const d = {met:false, bound:false, boundCycle:0, love:0, jealousy:0, mood:J.base ?? 55, divinity:100, focus:'indulge', form:'auto',
-    shape:'auto', autoShape:GOD_TRUE, teases:[], evWk:0, roster:0, ending:null, left:false, nights:0, finishes:0, last:[], lastNight:0, claimWk:0};
+    shape:'auto', autoShape:GOD_TRUE, teases:[], evWk:0, roster:0, ending:null, left:false, nights:0, finishes:0, last:[], lastNight:0, claimWk:0,
+    isoldeSeen:0, isoldeLastWk:0, isoldePreSeen:false, isoldePending:false, isoldeLastId:null};
   const g = S.goddess = S.goddess || {};
   Object.keys(d).forEach(k=>{ if(g[k] === undefined) g[k] = d[k]; });   // in place: callers keep their reference
   if(g.form === 'feminine') g.form = 'fem';
@@ -153,7 +154,7 @@ function goddessHouseNote(id){
 
 /* ---------- weekly: before the houses run (her actions) and after (income, events, drift) ---------- */
 function goddessPlan(){
-  GW = {biz:{}, watch:{}, saved:0, lines:[], hl:[], samClaim:[]};
+  GW = {biz:{}, watch:{}, clients:[], focus:null, saved:0, lines:[], hl:[], samClaim:[]};
   const g = G(); if(!goddessActive()) return;
   const A = GB().actions || {}, M = GB().mood || {}, p = goddessPower(), n = goddessActions();
   const lines = GW.lines, W = S.workers.filter(w=>w.job!=='rest' || (w.lust||0) > 0);
@@ -166,7 +167,7 @@ function goddessPlan(){
     else if((g.mood||0) < (M.ignoreBelow ?? 35) && Math.random() < 0.5) kind = 'whim';
     if(kind==='guild' && !(typeof guildOn==='function' && guildOn() && GLD().active.length)) kind = 'business';   // no contract running: she works a house instead
     let mul = 1;
-    if(kind==='whim'){ kind = pick(['indulge','business','watch','tutelage']); mul = (A.whim||{}).mult ?? 1.25; }
+    if(kind==='whim'){ kind = pick(['indulge','business','watch','tutelage','clients','focus']); mul = (A.whim||{}).mult ?? 1.25; }
     const q = p * mul;
     if(kind==='indulge'){
       const I = A.indulge || {}, ladies = W.slice().sort((a,b)=>((b.lust||0) - b.mood/2) - ((a.lust||0) - a.mood/2)).slice(0, I.ladies ?? 2);
@@ -194,6 +195,19 @@ function goddessPlan(){
       const w = pool.slice().sort((a,b)=>(a.tech[trainSkillOf(a)]||0) - (b.tech[trainSkillOf(b)]||0))[0];
       grow(w, trainSkillOf(w), (T.skill ?? 3) * q); const st = trainStatsOf(w); if(st.length) statXP(w, pick(st)[0], (T.stat ?? 25) * q);
       lines.push(gtxt((F.tutelage||{}).report, {lady:w.name.split(' ')[0], skill:(TECH_LABEL[trainSkillOf(w)]||'her craft').toLowerCase()}));
+    } else if(kind==='clients'){
+      const h = pick(S.houses), shape = (GOD_FORMS[godForm()]||{}).label || godForm();
+      GW.clients.push({hid:h.id, house:h.name, mul:q, shape});
+      lines.push(gtxt((F.clients||{}).report, {house:h.name, shape}));
+    } else if(kind==='focus'){
+      const Fc = A.focus || {}, houses = S.houses.filter(samAtHouse);
+      let fk = samFocus().kind;
+      if(fk==='guild' && !(typeof guildOn==='function' && guildOn() && GLD().active.length)) fk = 'office';
+      GW.focus = {kind: fk, mul: (GW.focus && GW.focus.kind===fk ? GW.focus.mul : 0) + q};
+      if(fk==='office') houses.forEach(h=>{ GW.biz[h.id] = (GW.biz[h.id]||0) + (Fc.office ?? 0.08) * q; });
+      else if(fk==='watch'){ const Wt = A.watch||{}; houses.forEach(h=>{ GW.watch[h.id] = Math.min(Wt.max ?? 0.9, (GW.watch[h.id]||0) + (Fc.watchChance ?? 0.45) * q); }); }
+      else if(fk==='guild'){ const c = guildContract(samFocus().topic) || GLD().active[0]; if(c) c.prog = (c.prog||0) + ((A.guild||{}).progress ?? 30) * 0.6 * q; }
+      lines.push(gtxt(((F.focus||{}).byFocus||{})[fk] || (F.focus||{}).report, {house:samHouse().name}));
     } else if(kind==='claim'){
       const C = A.claim || {}, newest = S.workers.filter(w=>!w.isPartner).slice(-3);
       if(Math.random() < 0.5 || !newest.length){
@@ -212,13 +226,35 @@ function goddessPlan(){
 function goddessGuard(h){ const c = GW.watch && GW.watch[h.id]; if(c && Math.random() < c){ GW.saved++; return true; } return false; }
 function goddessAfter(R){
   const g = G(), J = GB().jealousy || {}, M = GB().mood || {};
-  // her share of the takings (business focus)
+  // her share of the takings (business / office focus) and her own clients / focus backup
   if(goddessActive()){
+    const A = GB().actions || {};
     let add = 0; (R.houses||[]).forEach(hr=>{ const b = GW.biz[hr.id]; if(b) add += Math.round(hr.income * b); });
-    if(add){ R.income += add; S.gold += add; R.godBiz = add; }
+    if(add){ R.income += add; S.gold += add; R.godBiz = add; R.led.goddess = (R.led.goddess||0) + add; }
+    if(GW.clients && GW.clients.length){
+      const Cl = A.clients || {};
+      let totN = 0, totGold = 0, lastHouse = '', lastShape = '';
+      GW.clients.forEach(c=>{
+        const n = Math.max(2, Math.round((Cl.n ?? 4) * c.mul)), h = H(c.hid) || S.houses[0];
+        const gold = Math.round(n * (Cl.baseFee ?? 110) * (1 + Math.max(0, (S.cycle||1) - 1) * (Cl.perCycle ?? 0.15)) * (0.85 + Math.random()*0.3) * (1 + ((h&&h.rep)||0)/150));
+        totN += n; totGold += gold; lastHouse = (h&&h.name) || c.house; lastShape = c.shape;
+        if(h) repAdd(h, (Cl.rep ?? 1.2) * c.mul);
+      });
+      if(totGold){ S.gold += totGold; R.income += totGold; R.led.goddess = (R.led.goddess||0) + totGold; }
+      g.love = clamp((g.love||0) + (Cl.love ?? 1)); g.mood = clamp((g.mood||0) + (Cl.mood ?? 4));
+      R.godClients = {n:totN, gold:totGold, house:lastHouse, form:lastShape};
+    }
+    if(GW.focus){
+      const fk = GW.focus.kind, mul = GW.focus.mul, Fc = A.focus || {}, near = S.workers.filter(nearSam);
+      if(fk==='floor') near.forEach(w=>moodAdd(w, (Fc.floorMood ?? 2) * mul));
+      else if(fk==='watch') near.forEach(w=>gainTrust(w, (Fc.watchTrust ?? 1) * mul));
+      else if(fk==='classes') near.filter(w=>w.job!=='rest').forEach(w=>{ grow(w, trainSkillOf(w), (Fc.classSkill ?? 2.5) * mul); const st = trainStatsOf(w); if(st.length) statXP(w, pick(st)[0], (Fc.classStat ?? 18) * mul); });
+      else if(fk==='rest'){ samEnergyAdd(Math.round((Fc.restSamEnergy ?? 20) * mul)); near.forEach(w=>moodAdd(w, (Fc.restMood ?? 2) * mul)); }
+    }
     GW.lines.forEach(t=>R.lines.push(`✨ ${t}`)); GW.hl.forEach(e=>R.hl.push(e));   // her nights with the ladies, with a picture, on their pages
     if(GW.samClaim && GW.samClaim.length) R.godClaim = GW.samClaim.slice();
     if(add) R.lines.push(`✨ ${GN()} brought in an extra ${fmt(add)}.`);
+    if(R.godClients) R.lines.push(`✨ ${GN()} took ${R.godClients.n} select client${R.godClients.n>1?'s':''} at ${R.godClients.house} in her ${R.godClients.form} form (+${fmt(R.godClients.gold)}).`);
     if(GW.saved) R.lines.push(`✨ ${gtxt((GOD.focus||{}).watch && GOD.focus.watch.saved, {n:GW.saved})}`);
     g.last = GW.lines.slice(0, 8);
   }
@@ -246,6 +282,7 @@ function goddessAfter(R){
     const ch = Math.min((E.max ?? 0.35) + (late ? (C.max ?? 0.15) : 0), (E.base ?? 0) + (E.perCycle ?? 0.07) * ((S.cycle||1) - 1) + Math.min(C.cap ?? 0.3, late * (C.per ?? 0.05)));
     if(S.week - (g.evWk||0) >= (late ? (C.gap ?? 1) : (E.gap ?? 2)) && Math.random() < ch){ g.evWk = S.week; EVQ.push(evGoddess); }
   } else if(!g.ending && (g.divinity||0) >= ((GB().divinity||{}).max ?? 100)){ EVQ.push(evGoddessEnd); }
+  else if(goddessActive() && g.isoldePending && (S.week - (g.isoldeLastWk||0)) >= ((GB().isolde||{}).cooldown ?? 3)){ g.isoldePending = false; g.isoldeLastWk = S.week; EVQ.push(()=>evGoddessIsolde(g.isoldeSeen ? 'repeat' : 'first')); }
   else if(goddessActive() && S.week - (g.evWk||0) >= (E.gap ?? 2) && Math.random() < (E.bound ?? 0.15) * (0.5 + g.jealousy/100)){ g.evWk = S.week; EVQ.push(evGoddessRemark); }
 }
 
@@ -305,12 +342,72 @@ function gDistractAct(T, c){
 function gTeaseByCtx(ctx){
   const m = /^gt_(.+)$/.exec(ctx || ''); if(!m) return null;
   if(m[1] === 'binding') return GOD.binding || null;
+  const Gi = GOD.isolde || {};
+  const isoHit = [Gi.first, Gi.pre, ...(Gi.repeat || [])].find(x => x && x.id === m[1]);
+  if(isoHit) return isoHit;
   return (GOD.teases || []).find(t => t.id === m[1])
     || (typeof WALKS !== 'undefined' && WALKS.goddess && (WALKS.goddess.disguise || []).find(t => t.id === m[1]))
     || null;
 }
 const gTeaseSetting = ctx => { const T = gTeaseByCtx(ctx); return (T && (T.actSetting || (T.image && T.image.setting))) || null; };
 const gTeaseIsBath = ctx => { const T = gTeaseByCtx(ctx); return !!(T && T.image && (T.image.bath || T.image.towel)); };
+function goddessIsoldeCheck(src){
+  const g = G(), BI = GB().isolde || {}, GI = GOD.isolde || {};
+  if(!g || g.left) return;
+  if(!g.bound){
+    if(g.met && !g.isoldePreSeen && GI.pre){ g.isoldePreSeen = true; EVQ.unshift(()=>evGoddessIsolde('pre')); }
+    return;
+  }
+  const cd = BI.cooldown ?? 3;
+  if(!g.isoldeSeen || src==='lovers' || (S.week - (g.isoldeLastWk||0)) >= cd){
+    const kind = !g.isoldeSeen ? 'first' : 'repeat';
+    g.isoldeLastWk = S.week; g.isoldePending = false;
+    EVQ.unshift(()=>evGoddessIsolde(kind));
+  } else {
+    g.isoldePending = true;
+  }
+}
+function evGoddessIsolde(kind){
+  const g = G(), GI = GOD.isolde || {}, BI = GB().isolde || {};
+  if(!g || g.left) return null;
+  if(kind === 'pre'){
+    if(!g.met || g.bound || !GI.pre) return null;
+    const sc = GI.pre, fk = g.knows ? GOD_TRUE : gDisguise(), F = GOD_FORMS[fk] || {};
+    const ctx = {house:curH().name, n:S.workers.length, alias:F.alias || GN(), form:F.desc || 'a woman', race:(F.label||'').toLowerCase(), times:(g.met2||0)};
+    const openSc = sc.image ? dynScene('goddess_' + sc.id + '_' + fk, sc.image) : 'portrait';
+    return {title: gtxt(sc.title, ctx), who:godNpcId(fk), scene:openSc, text:gtxt(sc.text, ctx), choices:(sc.choices||[]).map(c=>({label:gtxt(c.label, ctx), fx(){
+      g.love = clamp((g.love||0) + (c.love||0)); g.jealousy = clamp((g.jealousy||0) + (c.jealousy||0));
+      const act = gDistractAct(sc, c) || 'oral_give';
+      EVQ.unshift(()=>evGoddessDistract(sc, c, act, fk, ctx));
+      return gtxt(c.resIn || c.res, ctx);
+    }}))};
+  }
+  if(!goddessActive()) return null;
+  let sc = null;
+  if(kind === 'first') sc = GI.first;
+  else {
+    const rep = GI.repeat || [], pool = rep.filter(x => x.id !== g.isoldeLastId);
+    sc = pick(pool.length ? pool : rep);
+    if(sc) g.isoldeLastId = sc.id;
+  }
+  if(!sc) return null;
+  const fk = sc.form==='true' ? GOD_TRUE : GOD_FORMS[sc.form] ? sc.form : godForm(), wid = godNpcId(fk);
+  const ctx = {house:curH().name, n:S.workers.length};
+  const openSc = sc.image ? dynScene('goddess_' + sc.id + '_' + fk, sc.image) : 'portrait';
+  return {title: gtxt(sc.title, ctx), who:wid, scene:openSc, text:gtxt(sc.text, ctx), choices:(sc.choices||[]).map(c=>({label:gtxt(c.label, ctx), fx(){
+    g.isoldeSeen = (g.isoldeSeen||0) + 1;
+    g.lastNight = S.week;
+    g.jealousy = clamp((g.jealousy||0) - (c.jealousyCut ?? (kind==='first' ? 12 : 8)));
+    g.love = clamp((g.love||0) + (c.love ?? (kind==='first' ? (BI.loveFirst ?? 6) : (BI.loveRepeat ?? 4))));
+    g.mood = clamp((g.mood||0) + (c.mood ?? (kind==='first' ? (BI.moodFirst ?? 10) : (BI.moodRepeat ?? 6))));
+    const ec = c.energy ?? (BI.samEnergy ?? 10);
+    if(ec) S.sam.energy = Math.max(0, S.sam.energy - ec);
+    samStat('technique', 2);
+    samLog(`With ${GN()} after seeing Isolde`);
+    const res = gtxt(c.res, ctx);
+    return c.act ? {text:res, img:{wid, scene:'samact:' + c.act + '~~gt_' + sc.id, cloth:c.cloth || 'nude'}} : res;
+  }}))};
+}
 function evGoddessDistract(T, c, act, fk, ctx){
   const D = GOD.distract || {}, tier = actTier(act), ph = gPhase(T);
   const x = Object.assign({}, ctx, {act: actLabel(act).toLowerCase()});
@@ -351,9 +448,9 @@ function gSvcLine(act, ctx, lady){
   const P = ((actById(act)||{}).pair||{})[ctx]; if(!P || !P.length) return '';
   return pick(P).replace(/\{name\}/g, lady).replace(/\{partner\}/g, GN());
 }
-// Which service she shares with a lady: in her female form only tier 1-2; the lady's favorite if it fits, else the furthest the lady is comfortable with.
+// Which service she shares with a lady: tier 1-3 where she has a pair text; the lady's favorite if it fits, else the furthest the lady is comfortable with.
 function goddessActFor(w, form){
-  const top = form==='futa' ? 3 : 2, ok = getActs().filter(a=>actTier(a.id) <= top && (a.th||0) <= (w.lewd||0) + 15);
+  const ok = getActs().filter(a=>actTier(a.id) <= 3 && (form==='futa' ? (a.pair&&a.pair.futa&&a.pair.futa.length) : (a.pair&&a.pair.fem&&a.pair.fem.length)) && !actBanned(w, a.id) && (a.th||0) <= (w.lewd||0) + 15);
   if(!ok.length) return null;
   const fav = pickFav(w, ok.map(a=>a.id)); if(fav) return fav;
   return ok.sort((a,b)=>(b.th||0)-(a.th||0))[0].id;
@@ -431,9 +528,16 @@ function createBoundVessel(formKey, houseId){
   return w;
 }
 function addVesselTrait(w){
+  const neg = new Set(['Shy','Lazy','Greedy','Brooding','Light Sleeper','Delicate','Slovenly','Sensitive','Guarded','Scandalous','Loner','High Maintenance','Gossip']);
   const clash = t => ((TRAITS[t]||{}).excl||[]).some(x=>has(w,x)) || (w.traits||[]).some(x=>((TRAITS[x]||{}).excl||[]).includes(t));
-  const pool = Object.keys(TRAITS).filter(k=>TRAITS[k].gen && !TRAITS[k].hidden && !TRAITS[k].story && !TRAITS[k].personal && !TRAITS[k].negative && !(w.traits||[]).includes(k) && !clash(k));
-  if(pool.length){ const t = pick(pool); w.traits.push(t); applyMods(w, (TRAITS[t]||{}).mods); return t; }
+  const pool = Object.keys(TRAITS).filter(k=>TRAITS[k].gen && !TRAITS[k].hidden && !TRAITS[k].story && !TRAITS[k].personal && !neg.has(k) && !(w.traits||[]).includes(k) && !clash(k));
+  if(pool.length){
+    const t = pick(pool); w.traits.push(t);
+    if(t==='Former Adventurer') w.tech.combat = clampK((w.tech.combat||0) + 250);
+    if(t==='Party Animal'){ w.tech.bar = clampK((w.tech.bar||0) + 100); w.tech.dance = clampK((w.tech.dance||0) + 100); }
+    STAT_KEYS.forEach(k=>{ if(w.stats[k]!==undefined) w.stats[k] = clampK(Math.round(w.stats[k])); });
+    return t;
+  }
   return null;
 }
 function awakenVesselStage(w, st){
@@ -458,8 +562,8 @@ function awakenVesselStage(w, st){
   if(st === 3){
     const p = pick(PERSONALITIES);
     w.personality = p;
-    applyMods(w, (PERS[p]||{}).stats);
     persLean(w);
+    STAT_KEYS.forEach(k=>{ if(w.stats[k]!==undefined) w.stats[k] = clampK(Math.round(w.stats[k])); });
     w.trust = clamp(w.trust + (V.awakenedTrust ?? 10));
     w.title = VT.awakenedTitle || 'Awakened Vessel';
     const t = addVesselTrait(w);

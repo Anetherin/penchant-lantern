@@ -191,7 +191,7 @@ const ENC_NOTE = k => k ? flavor('enc_'+k) : '';
 
 /* ---------- jobs, propositions & rough clients (docs/OVERHAUL.md §5-6) ---------- */
 // Reputation gains get harder as the house grows: max(gainMin, gainBase - rep/gainDiv). Losses are unchanged.
-const repGain = (h, n) => n > 0 ? n * housePerkVal(h, 'repGain', 1) * shrineMult(h, 'perRep') * townMul('rep', 1) * Math.max(BAL.rep.gainMin, BAL.rep.gainBase - h.rep/BAL.rep.gainDiv) : n;
+const repGain = (h, n) => n > 0 ? n * housePerkVal(h, 'repGain', 1) * shrineMult(h, 'perRep') * townMul('rep', 1, h) * Math.max(BAL.rep.gainMin, BAL.rep.gainBase - h.rep/BAL.rep.gainDiv) : n;
 function repAdd(h, n){ h.rep = clamp(h.rep + repGain(h, n)); }
 // Each accepted proposition costs a non-must lady 8% of her main job's output that week (max 50%); chapel keepers aren't penalized.
 // A night ended by an unhandled pushy client costs her 1/nights of the week's output (balance.json → props.nights).
@@ -359,15 +359,15 @@ function spiritPossess(X, w, client, pr){
 // The housemate for a woman client's reverse possession: an ordinary yuri tryst, asked and paid like a yuri night
 // (balance.json → yuri: lewd + clients.women.gap unless Sapphic/Bisexual, lewdGain, bond), at a fraction of its energy and lust
 // since it's one client's hour, not a night (svc.spirit.mateShare). Returns {mate, mateAct} or null.
-const POSS_MATE_ACTS = ['kiss','manual_give','manual_get','oral_get','oral_give','breast_get','missionary','cowgirl'];
+const POSS_MATE_ACTS = ['kiss','manual_give','manual_get','breast_get','breast_give','oral_get','oral_give','missionary','cowgirl','doggy'];
 function possessMate(X, w){
   const Y = BAL.yuri || {}, S0 = SVC.spirit || {}, k = S0.mateShare ?? 0.5, need = o => (Y.lewd ?? 40) + orientGap(o, 'f');
   if((w.lewd||0) < need(w)) return null;
   const pool = ((X && X.W) || []).filter(o=>o!==w && !has(o,'Devoted') && !has(o,'Modest') && (o.lewd||0) >= need(o) && o.energy >= maxEnergy(o) * 0.2);
   if(!pool.length) return null;
   const o = weighted(pool, x=>1 + Math.max(0, bondV(w, x)) / (Y.bondWeight ?? 20) + (x.lust||0) / 100);
-  const top = Math.min(w.lewd, o.lewd) - Math.max(orientGap(w,'f'), orientGap(o,'f'));
-  const acts = POSS_MATE_ACTS.filter(id=>{ const A = actById(id); return A && A.pair && (A.pair.fem||[]).length && (A.th||0) <= top && !actBanned(w,id) && !actBanned(o,id); });
+  const top = Math.min(w.lewd - orientGap(w,'f'), o.lewd - orientGap(o,'f'));
+  const acts = POSS_MATE_ACTS.filter(id=>{ const A = actById(id), f = id.replace(/_(give|get)$/, (m,k)=>k==='give'?'_get':'_give'), oAct = actById(f) ? f : id; return A && A.pair && (A.pair.fem||[]).length && (A.th||0) <= top && !actBanned(w,id) && !actBanned(o,oAct); });
   const act = acts.length ? weighted(acts, id=>1 + (actById(id).th||0)/20) : 'kiss';
   o.energy = Math.max(0, o.energy - (Y.energy ?? 12) * k); spendLust(o, (Y.lust ?? 40) * k); moodAdd(o, Y.mood ?? 3);
   lewdUp(o, Y.lewdGain ?? 0.5, Y.lewdCap ?? 90); addBond(w, o, (Y.bond ?? 6) * k);
@@ -389,7 +389,7 @@ function androidAdapt(w, client, pr){
 // pairLewdGain; + pairFutaExtra and pairFutaLewdGain unless she's a Futa Lover; women also need clients.women.gap unless
 // Sapphic/Bisexual). A woman client's possession already had its housemate (possessMate).
 function spiritPairShift(h, W, R){
-  const S0 = SVC.spirit || {}, acts = ['missionary','cowgirl','doggy','oral_give'];
+  const S0 = SVC.spirit || {}, acts = ['missionary','cowgirl','doggy','oral_give','oral_get','manual_give','manual_get','breast_give','breast_get'];
   W.forEach(w=>{
     const pr = R.per[w.id];
     if(w.race!=='spirit' || pr.solo || pr.yuri || w.job==='rest' || has(w,'Devoted') || has(w,'Modest')) return;
@@ -399,7 +399,8 @@ function spiritPairShift(h, W, R){
     const pool = W.filter(o=>o!==w && !R.per[o.id].solo && !R.per[o.id].yuri && !has(o,'Modest') && !has(o,'Devoted') && (o.lewd||0) >= need(o));
     if(!pool.length) return;
     const o = weighted(pool, x=>1 + Math.max(0, bondV(w, x))/25 + (has(x,'Futa Lover') ? 1 : 0));
-    const choices = acts.filter(id=>actById(id) && actById(id).pair && actById(id).pair.futa && !actBanned(w,id) && !actBanned(o,id));
+    const lim = Math.min(w.lewd||0, o.lewd||0) + 15;
+    const choices = acts.filter(id=>{ const A = actById(id); return A && A.pair && A.pair.futa && (A.th||0) <= lim && !actBanned(w,id) && !actBanned(o,id); });
     const act = pick(choices.length ? choices : ['missionary']), A = actById(act);
     w.energy = clamp(w.energy - (S0.pairEnergy ?? 14)*0.5, 0, maxEnergy(w)); o.energy = clamp(o.energy - (S0.pairEnergy ?? 14)*0.5, 0, maxEnergy(o));
     spendLust(w, S0.pairLust ?? 30); spendLust(o, (S0.pairLust ?? 30)*0.7);
@@ -429,7 +430,7 @@ function askMore(X, w, A, o, ser){
 // After she says no, a pushy client may try to force the issue (non-graphic). Security power (house) vs a roll; else Sam, if he is
 // around; else nobody. She may first talk him down (wits .6 + charm .4, props.talkDown). Returns 'talked' | 'security' | 'sam' | 'samfail' | 'none' | null (he took no for an answer).
 function pushyCheck(X, w, cls, pr, client){
-  const BP = BAL.props, chance = clamp(((cls.pushy||0) + (cls.reckless||0)*0.5 + X.barN*BAL.jobs.barReckless + cAdd(client,'pushy',X)) * cMul(client,'pushyMult',X) * incenseMul(w,'pushy') * townMul('pushy', 1), 0, BP.maxPushy);
+  const BP = BAL.props, chance = clamp(((cls.pushy||0) + (cls.reckless||0)*0.5 + X.barN*BAL.jobs.barReckless + cAdd(client,'pushy',X)) * cMul(client,'pushyMult',X) * incenseMul(w,'pushy') * townMul('pushy', 1, X.h), 0, BP.maxPushy);
   if(Math.random() >= chance) return null;
   const h = X.h, hr = X.hr; let res;
   countUp(w,'rowdy'); pr.pushy = (pr.pushy||0)+1; hr.pushy.total++;

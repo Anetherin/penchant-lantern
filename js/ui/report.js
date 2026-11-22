@@ -66,22 +66,23 @@ function repHouseExtra(h){
 }
 function repAll(R){
   const net = R.income - R.wages - R.upkeep - (R.cuts||0) - (R.recharge||0) - (R.tutor||0), L = R.led;
-  const ledger = [['Escort fees',L.escort],['Propositions',L.offduty],['Bar',L.bar],['Stage',L.dance],['Bathhouse',L.bath],['Chapel donations',L.chapel],['Hosting',L.host],['Guild contracts',L.guild],['Office (the books)',L.office]].filter(x=>x[1]).map(([k,v])=>`<tr><td>${k}</td><td class="good">+${fmt(v)}</td></tr>`).join('')
+  const gLabel = typeof GN==='function' ? GN() : 'Goddess';
+  const ledger = [['Escort fees',L.escort],['Propositions',L.offduty],['Bar',L.bar],['Stage',L.dance],['Bathhouse',L.bath],['Chapel donations',L.chapel],['Hosting',L.host],['Guild contracts',L.guild],['Office (the books)',L.office],[gLabel,L.goddess]].filter(x=>x[1]).map(([k,v])=>`<tr><td>${esc(k)}</td><td class="good">+${fmt(v)}</td></tr>`).join('')
     + `<tr><td>Wages</td><td class="warn">−${fmt(R.wages)}</td></tr><tr><td>Upkeep</td><td class="warn">−${fmt(R.upkeep)}</td></tr>` + (R.cuts ? `<tr><td>Profit cuts</td><td class="warn">−${fmt(R.cuts)}</td></tr>` : '') + (R.recharge ? `<tr><td>Recharging</td><td class="warn">−${fmt(R.recharge)}</td></tr>` : '') + (R.tutor ? `<tr><td>Tutors</td><td class="warn">−${fmt(R.tutor)}</td></tr>` : '')
     + (L.sam?`<tr><td class="muted">Sam's bar shifts (already in your purse)</td><td class="good">+${fmt(L.sam)}</td></tr>`:'')
     + `<tr><th>Net</th><th class="${net>=0?'good':'warn'}">${fmt(net)}</th></tr>`;
   const houseRows = (R.houses||[]).map(h=>{ const wt = repWaitTxt(h, false); return `<tr><td>${repLink('h:'+h.id, esc(h.name))}</td><td>${h.served}${wt?` <span class="${h.left?'warn':'muted'}">(${wt})</span>`:''}</td><td>${fmt(h.income)}</td><td>${fmt(h.upkeep)}</td><td>${Math.round(h.avgSat)}</td><td>${Math.round(h.rep)}</td><td>${h.prestige!==undefined?`${Math.round(h.prestige)} <span class="muted">(${prestigeTier(h.prestige).label})</span>`:'—'}</td></tr>`; }).join('');
   const per = repPer(R);
   const ladyRows = (R.houses||[]).map(h=>{ const ps = per.filter(p=>p.house===h.id); if(!ps.length) return '';
-    return `<tr><th colspan="6" style="text-align:left">${repLink('h:'+h.id, esc(h.name))}</th></tr>` + ps.map(p=>{ const n = R.hl.filter(x=>x.wid===p.id).length;
-      return `<tr><td>${repLink('w:'+p.id, esc(p.name))}</td><td>${esc(jobLabelOf(p))}</td><td>${p.served||0}</td><td>${p.earned?fmt(p.earned):'—'}</td><td>${p.m0}→<span class="${p.m1>=p.m0?'good':'warn'}">${p.m1}</span></td><td>${n?`${n} 📜`:''}${p.night==='good'?' <span class="good">★</span>':p.night==='bad'?' <span class="warn">!</span>':''}</td></tr>`; }).join(''); }).join('');
+    return `<tr><th colspan="6" style="text-align:left">${repLink('h:'+h.id, esc(h.name))}</th></tr>` + ps.map(p=>{ const n = R.hl.filter(x=>x.wid===p.id).length, wk = p.weekKind || p.night;
+      return `<tr><td>${repLink('w:'+p.id, esc(p.name))}</td><td>${esc(jobLabelOf(p))}</td><td>${p.served||0}</td><td>${p.earned?fmt(p.earned):'—'}</td><td>${p.m0}→<span class="${p.m1>=p.m0?'good':'warn'}">${p.m1}</span></td><td>${n?`${n} 📜`:''}${wk==='good'?' <span class="good">★</span>':wk==='bad'?' <span class="warn">!</span>':''}</td></tr>`; }).join(''); }).join('');
   const allWt = repWaitTxt(R, true);
   return `<div class="grid2"><div>Clients served: <b>${R.served}</b>${allWt?` <span class="${R.left||(!R.stopped&&R.turned)?'warn':'muted'}">(${allWt}; more staff or rooms needed)</span>`:''}</div>
       <div>Avg. satisfaction: <b>${Math.round(R.avgSat)}</b> · Renown: <b>${Math.round(R.rep)}</b></div></div>
     <div class="grid2"><div><h3 style="margin-top:10px">Ledger</h3><table>${ledger}</table></div>
       <div><h3 style="margin-top:10px">Houses</h3><table><tr><th>House</th><th>Clients</th><th>Income</th><th>Upkeep</th><th>Sat.</th><th>Pop.</th><th>Class</th></tr>${houseRows}</table></div></div>
     ${(R.houses||[]).map(h=>{ const x = repHouseExtra(h); return x ? `<div class="muted"><b>${esc(h.name)}</b>: ${x}</div>` : ''; }).join('')}
-    ${(R.samActs&&R.samActs.length) || (R.godClaim&&R.godClaim.length) ? `<h3 style="margin-top:10px">Sam's week</h3>${R.samActs&&R.samActs.length?`<div class="muted">${R.samActs.map(esc).join(' · ')}</div>`:''}${repGodClaim(R)}` : ''}
+    ${(R.samActs&&R.samActs.length) || (R.godClaim&&R.godClaim.length) || R.godClients ? `<h3 style="margin-top:10px">Sam's week</h3>${R.samActs&&R.samActs.length?`<div class="muted">${R.samActs.map(esc).join(' · ')}</div>`:''}${repGodClients(R)}${repGodClaim(R)}` : ''}
     ${R.lines.length?`<h3 style="margin-top:10px">Notes</h3>${R.lines.map(l=>`<div>${esc(l)}</div>`).join('')}`:''}
     <h3 style="margin-top:10px">Ladies</h3>${ladyRows ? `<table class="rep-ladies"><tr><th>Name</th><th>Job</th><th>Clients</th><th>Earned</th><th>Mood</th><th></th></tr>${ladyRows}</table>` : '<p class="muted">Nobody worked this week.</p>'}`;
 }
@@ -89,8 +90,9 @@ function repAll(R){
 function repHead(p){
   const w = findAny(p.id) || {id:p.id, name:p.name};
   const svc = Object.entries(p.acts||{}).map(([id,n])=>`<span class="tag act">${esc(actLabel(id))} ×${n}</span>`).join('') + (p.comp?`<span class="tag">Company ×${p.comp}</span>`:'') + (p.draw?`<span class="tag">Draw +${Math.round(p.draw)} clients${p.samples?' (samples)':''}</span>`:'') + Object.entries(p.samp||{}).map(([id,n])=>`<span class="tag act">Free sample: ${esc(actLabel(id))} ×${n}</span>`).join('') + (p.tidied?`<span class="tag">Tidied +${Math.round(p.tidied)}</span>`:'') + (p.tended?`<span class="tag">Tended ~${p.tended} visitors</span>`:'') + (p.taught!==undefined?`<span class="tag">Taught ${p.taught}</span>`:'') + (p.learned?`<span class="tag">Learned +${p.learned}</span>`:'') + (p.stepIn?`<span class="tag">Stepped in ×${p.stepIn}</span>`:'') + (p.pushy?`<span class="tag">Pushy clients ×${p.pushy}</span>`:'');
+  const wk = p.weekKind || p.night;
   return `<div class="head">${w.design?avatarHTML(w):''}<div><b>${esc(p.name)}</b> · ${esc(jobLabelOf(p))}${p.earned?` · earned <b>${fmt(p.earned)}</b>`:''}
-    <div class="muted">${p.served?`${p.served} client${p.served>1?'s':''} · `:''}${p.props?`propositioned ${p.props}× · accepted ${p.acc} · `:''}${p.reluct?`<span class="pink">${p.reluct} as a favor</span> · `:''}${p.notMood?`<span class="warn">not in the mood ×${p.notMood}</span> · `:''}${p.noRoom?`<span class="warn">no room ×${p.noRoom}</span> · `:''}${p.eWork===undefined?`Energy ${p.e0}→${p.e1} · Mood ${p.m0}→${p.m1}${p.why&&p.why.length?` <span class="muted">(${p.why.map(x=>`<span class="${x.good?'good':'warn'}">${esc(x.t)}</span>`).join(', ')})</span>`:''}${p.slept?` · slept: ${p.slept}`:''}`:''}${p.solo?' · <span class="pink">a night to herself</span>':''}${p.missed?' · <span class="warn">missed Sam</span>':''}${p.night==='good'?' · <span class="good">great week</span>':p.night==='bad'?' · <span class="warn">rough week</span>':''}${p.lust!==undefined?` · lust ${p.l0!==undefined?p.l0+'→':''}${p.lust}`:''}</div>
+    <div class="muted">${p.served?`${p.served} client${p.served>1?'s':''} · `:''}${p.props?`propositioned ${p.props}× · accepted ${p.acc} · `:''}${p.reluct?`<span class="pink">${p.reluct} as a favor</span> · `:''}${p.notMood?`<span class="warn">not in the mood ×${p.notMood}</span> · `:''}${p.noRoom?`<span class="warn">no room ×${p.noRoom}</span> · `:''}${p.eWork===undefined?`Energy ${p.e0}→${p.e1} · Mood ${p.m0}→${p.m1}${p.why&&p.why.length?` <span class="muted">(${p.why.map(x=>`<span class="${x.good?'good':'warn'}">${esc(x.t)}</span>`).join(', ')})</span>`:''}${p.slept?` · slept: ${p.slept}`:''}`:''}${p.solo?' · <span class="pink">a night to herself</span>':''}${p.missed?' · <span class="warn">missed Sam</span>':''}${wk==='good'?' · <span class="good">great week</span>':wk==='bad'?' · <span class="warn">rough week</span>':''}${p.lust!==undefined?` · lust ${p.l0!==undefined?p.l0+'→':''}${p.lust}`:''}</div>
     <div>${svc}</div>${(p.notes||[]).map(n=>`<div class="muted">${esc(n)}</div>`).join('')}</div></div>`;
 }
 // What changed for her this week and why (house and lady pages): mood reasons, energy spent vs slept off, what capped her
@@ -191,6 +193,10 @@ async function repShowSaved(R, wid){
     if(!REPV || REPV.view!=='w:'+wid || !box.isConnected) return;
     box.dataset.hide = '0'; showImg('hl'+i, wid, h.scene, null, 'manual');
   }
+}
+function repGodClients(R){
+  const gc = R.godClients; if(!gc) return '';
+  return `<div class="muted" style="margin-top:4px">✨ ${esc(typeof GN==='function'?GN():'Seliora')} took ${gc.n} select client${gc.n===1?'':'s'} at ${esc(gc.house)} in her ${esc(gc.form)} form (+${fmt(gc.gold)}).</div>`;
 }
 function repGodClaim(R){
   return (R.godClaim||[]).map((c, i)=>{

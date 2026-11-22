@@ -474,6 +474,106 @@
       "ngOnly": false,
       "ngPerk": false,
       "excl": []
+    },
+    "Radiant": {
+      "desc": "Heads turn before she speaks a word: +8 Beauty, +2 appeal, services earn 4% more.",
+      "earn": {"stat":"beauty","at":80},
+      "fx": {"stats":{"beauty":8},"appeal":2,"clientFee":1.04},
+      "gen": false,
+      "hidden": false,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Disarming": {
+      "desc": "Her warmth melts guarded moods cleanly: +8 Charm, trust grows 10% faster, +1 resting mood.",
+      "earn": {"stat":"charm","at":80},
+      "fx": {"stats":{"charm":8},"trustGain":1.1,"moodRest":1},
+      "gen": false,
+      "hidden": false,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Commanding Presence": {
+      "desc": "Draws the whole room toward her: +8 Charisma, +20% tips on stage and behind the bar, hosting +10%.",
+      "earn": {"stat":"charisma","at":80},
+      "fx": {"stats":{"charisma":8},"tips":1.2,"jobBonus":{"host":1.1}},
+      "gen": false,
+      "hidden": false,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Quick-Witted": {
+      "desc": "Spots every angle first: +8 Wits, teaches 10% more, learners absorb 10% faster.",
+      "earn": {"stat":"wits","at":80},
+      "fx": {"stats":{"wits":8},"teach":1.1,"learn":1.1},
+      "gen": false,
+      "hidden": false,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Endless Reserve": {
+      "desc": "Still standing when the last lantern goes out: +8 Stamina, +15 max energy, work wears her down 10% slower.",
+      "earn": {"stat":"stamina","at":80},
+      "fx": {"stats":{"stamina":8},"maxEnergy":15,"fatigue":0.9},
+      "gen": false,
+      "hidden": false,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Iron Grip": {
+      "desc": "Built from weeks of holding the line: +8 Strength, +12 security, +10% guild contract progress.",
+      "earn": {"stat":"strength","at":80},
+      "fx": {"stats":{"strength":8},"security":12,"guild":1.1},
+      "gen": false,
+      "hidden": false,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Spoiled": {
+      "desc": "Knows she is treasured and dresses to match: gifts and clothes leave her beaming (+3 resting mood, +2 appeal).",
+      "earn": {"count":"gifts","at":12},
+      "fx": {"moodRest":3,"appeal":2},
+      "gen": false,
+      "hidden": false,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Shared Warmth": {
+      "desc": "Unbothered by crowding in close quarters: her bonds grow 25% faster and lust builds 10% quicker.",
+      "earn": {"count":"orgies","at":3},
+      "fx": {"bondGain":1.25,"lustBuild":1.1},
+      "gen": false,
+      "hidden": false,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Guild Pathfinder": {
+      "desc": "A fixture on hard guild contracts: +20% contract progress, 25% fewer injuries, +5 Agility.",
+      "earn": {"count":"guildDone","at":10},
+      "fx": {"guild":1.2,"guildSafe":0.75,"stats":{"agility":5}},
+      "gen": false,
+      "hidden": false,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
+    },
+    "Mistress of Steam": {
+      "desc": "Twenty-five weeks in the bathhouse steam: bath work +18%, clients pay 10% more in receiving massage quality, +5 Beauty.",
+      "earn": {"job":"bath","weeks":25},
+      "fx": {"jobBonus":{"bath":1.18},"actQuality":{"massage_get":1.1},"stats":{"beauty":5}},
+      "gen": false,
+      "hidden": false,
+      "ngOnly": false,
+      "ngPerk": false,
+      "excl": []
     }
   }
 }

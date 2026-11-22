@@ -120,8 +120,8 @@ function townEventWeek(R){
   const T = BAL.townEvents || {}, L = townEventList(), e = S.townEv;
   const span = a => Array.isArray(a) ? ri(a[0], a[1]) : (a || 4);
   if(e && S.week >= e.end){
-    const d = L[e.id] || {};
-    R.lines.push(`🏮 ${d.label || e.id} is over.`); addLog(`${d.label || e.id} is over.`);
+    const d = L[e.id] || {}, hn = e.house && H(e.house) ? ` (${H(e.house).name})` : '';
+    R.lines.push(`🏮 ${d.label || e.id}${hn} is over.`); addLog(`${d.label || e.id}${hn} is over.`);
     S.townEvLast = e.id; S.townEv = null; S.townEvNext = S.week + span(T.gap);
     return;
   }
@@ -131,30 +131,48 @@ function townEventWeek(R){
   let ids = Object.keys(L).filter(k=>T.only ? k===T.only : L[k].random !== false);
   if(ids.length > 1) ids = ids.filter(k=>k!==S.townEvLast);
   if(!ids.length) return;
-  const id = pick(ids), weeks = span(T.weeks);
-  startTownEvent(id, weeks, R);
-  EVQ.push(()=>evTownEvent(id, weeks));
+  const id = pick(ids), weeks = span(T.weeks), def = L[id] || {}, houseId = def.singleHouse && S.houses.length ? pick(S.houses).id : null;
+  startTownEvent(id, weeks, R, houseId);
+  EVQ.push(()=>evTownEvent(id, weeks, houseId));
 }
-// Starts a town event now (story beats use this too, e.g. Isolde's price war: list entries with random:false never roll on their own).
-// Takes over from whatever runs; R (optional) = this week's report.
-function startTownEvent(id, weeks, R){
+// Starts a town event now (story beats use this too, e.g. Isolde's price war / wager: list entries with random:false never roll on their own).
+// Takes over from whatever runs; R (optional) = this week's report; houseId (optional) = limits multipliers/adds to that house.
+function startTownEvent(id, weeks, R, houseId){
   const d = townEventList()[id]; if(!d) return;
-  S.townEv = {id, start:S.week, end:S.week + weeks};
-  if(R) R.lines.push(`🏮 ${d.label}, for the next ${weeks} weeks: ${d.desc}`);
-  addLog(`${d.label} begins (${weeks} weeks): ${d.desc}`);
+  S.townEv = {id, start:S.week, end:S.week + weeks, house:houseId || null, overrides:null};
+  const hn = houseId && H(houseId) ? ` (${H(houseId).name})` : '';
+  if(R) R.lines.push(`🏮 ${d.label}${hn}, for the next ${weeks} weeks: ${d.desc}`);
+  addLog(`${d.label}${hn} begins (${weeks} weeks): ${d.desc}`);
 }
-function evTownEvent(id, weeks){
-  const d = townEventList()[id] || {}, V = {weeks};
-  return {title:ET('townEvents', id, 'title', V) || d.label, text:ET('townEvents', id, 'text', V) + `\n\n${d.desc || ''} (${weeks} weeks)`,
-    choices:[{label:ET('townEvents', id, 'ok', V) || 'Noted', fx(){ return ''; }}]};
+function evTownEvent(id, weeks, houseId){
+  const d = townEventList()[id] || {}, h = houseId ? H(houseId) : null;
+  const V = {weeks, house: h ? h.name : (curH() ? curH().name : 'your house')};
+  const ev = (EVT.townEvents || {})[id] || {};
+  const fill = t => String(Array.isArray(t) ? pick(t) : (t ?? '')).replace(/\{(\w+)\}/g, (m,k)=> V[k]!==undefined ? String(V[k]) : m);
+  const choices = Array.isArray(ev.choices) && ev.choices.length ? ev.choices.map(c=>({
+    label: fill(c.label),
+    fx(){
+      if(c.cost && S.gold < c.cost) return fill(c.broke || 'Not enough gold.');
+      if(c.cost) S.gold -= c.cost;
+      if(c.gold) S.gold = Math.max(0, S.gold + c.gold);
+      if(c.rep){ if(h) repAdd(h, c.rep); else S.houses.forEach(x=>repAdd(x, c.rep)); }
+      if(c.prestige){ if(h) h.prestige = clamp((h.prestige||0) + c.prestige, 0, 100); else S.houses.forEach(x=>{ x.prestige = clamp((x.prestige||0) + c.prestige, 0, 100); }); }
+      if(c.mood){ const ws = h ? S.workers.filter(w=>w.house===h.id) : S.workers; ws.forEach(w=>moodAdd(w, c.mood)); }
+      if(c.samEnergy) samEnergyAdd(c.samEnergy);
+      if(c.overrides && S.townEv && S.townEv.id===id){ const ov = Object.assign({}, c.overrides); if(ov.desc) ov.desc = fill(ov.desc); S.townEv.overrides = ov; }
+      if(c.cancel && S.townEv && S.townEv.id===id){ S.townEvLast = id; S.townEv = null; S.townEvNext = S.week + 3; }
+      return fill(c.res || '');
+    }
+  })) : [{label: fill(ev.ok || 'Noted'), fx(){ return ''; }}];
+  return {title: fill(ev.title || d.label), text: fill(ev.text) + `\n\n${fill(d.desc || '')} (${weeks} weeks)`, choices};
 }
 // A new cycle starts without one, and the first comes after firstWeek weeks (NG+ / NG++ in ngplus.js).
 function townEvReset(){ S.townEv = null; S.townEvNext = S.week + ((BAL.townEvents||{}).firstWeek ?? 4); }
 // the header chip while one runs
 function townEvChip(){
   const v = activeTownEv(); if(!v) return '';
-  const left = S.townEv.end - S.week;
-  return `<span class="tag act" title="${esc(v.desc || '')} (${left} more week${left===1?'':'s'})">🏮 ${esc(v.label)}</span>`;
+  const left = S.townEv.end - S.week, hn = S.townEv.house && H(S.townEv.house) ? ` (${H(S.townEv.house).name})` : '';
+  return `<span class="tag act" title="${esc(v.desc || '')} (${left} more week${left===1?'':'s'})">🏮 ${esc(v.label)}${esc(hn)}</span>`;
 }
 const RANDOM_EVENTS = [
   {w:3, ok:()=>anyW(w=>w.mood<55 && w.job!=='rest').length>0, make(){

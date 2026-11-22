@@ -14,13 +14,13 @@
           "label": "Sit with her until the cups go cold",
           "t": 5,
           "m": 8,
-          "res": "You stay there together until the cups are cold and the lanterns are lit, shoulders touching, saying the names of train stations like prayers. She files the evening under \"keep.\""
+          "res": "Neither of you moves off the damp concrete steps until the lukewarm tea turns stone cold between your palms and street lanterns blink orange down the entire avenue. With your shoulders bumping lightly every time a trolley rumbles past, {N} softly names old commuter stops one by one like quiet evening prayers—and neatly tucks this unexpected night into the locked drawer marked *keep*."
         },
         {
           "label": "Pass her a napkin and a joke",
           "t": 1,
           "m": 2,
-          "res": "You offer a napkin and a terrible vending machine joke. {N} laughs wetly, pushes up her glasses, and leans just a little against the step rail closer to you."
+          "res": "You hand across your last wrinkled paper napkin along with an unforgivably terrible joke about humming midnight vending machines back home. {N} tries holding her composed auditor frown for half a heartbeat before breaking into wet, helpless laughter—shoving crooked spectacles cleanly back up her nose while sliding an unmistakable three inches closer along the cool step rail beside you."
         }
       ],
       "image": {
@@ -104,19 +104,19 @@
           "label": "\"Could you pass me a towel?\"",
           "t": 2,
           "m": 3,
-          "res": "She throws it directly at your face and flees, the account book forgotten on the stool. You find a neat sticky note inside: \"Variance: 1 towel.\""
+          "res": "Yui snatches the driest linen off the rack and flings it directly over your face with terrifying corporate accuracy, pivoting straight through the door before you pull the cloth clear. When you check the hall stool afterward, the leather ledger lies abandoned—with a crisp square sticky note centered inside reading in tidy ink: *Inventory Variance: One (1) Bath Towel, Unjustified.*"
         },
         {
           "label": "Act completely casual",
           "m": 5,
           "l": 2,
-          "res": "She stammers through the entire weekly budget review, right there, without once looking down, glasses fogged, voice cracking on \"depreciation.\" It's honestly impressive. You approve every line item."
+          "res": "Maintaining flawless eye contact with a neutral knot in the pine ceiling, she stammers relentlessly through the entire weekly kitchen budget completely naked in the steam, spectacles fogged wholly opaque, her tidy voice cracking sharply right across the phrase *capital asset depreciation.* Honestly, the sheer stubborn discipline leaves you impressed enough to sign every single line item immediately on the stool."
         },
         {
           "label": "Yell",
           "t": -2,
           "m": -3,
-          "res": "She flees, mortified, glasses clattering on the tiles, and avoids you for three days, sliding reports under your door instead of speaking."
+          "res": "She bolts squarely out through the doorway clutching the closed ledger against her ribs, utterly mortified while both tortoise-shell temple frames rattle furiously against the hallway wall behind her. For three entire working days afterward, Yui communicates solely via crisp, folded margin summaries slid swiftly beneath your office door before your boots even hit the stairs."
         }
       ],
       "image": {
@@ -138,19 +138,19 @@
           "l": 3,
           "private": true,
           "acts": ["oral_give","manual_give","kiss"],
-          "res": "You push the terrible bowls aside and cup her burning cheeks in both hands; Yui drops her chopsticks at once and pulls you close, glasses bumping your nose as six years of quiet office yearning finally spills loose."
+          "res": "You shove both catastrophically salty bowls cleanly aside across the oilcloth and cup her hot, startled cheeks warmly in both hands. Yui drops her wooden chopsticks straight onto the floorboards with a sharp clatter and pulls your hoodie close—crooked spectacles bumping clumsily right against the bridge of your nose as six quiet years of patient office yearning spill loose between you."
         },
         {
           "label": "Tell her you liked her too, then finish the bowl",
           "t": 5,
           "m": 8,
-          "res": "You tell her, a little clumsily, and she covers her face with the cup. You scrape the bowl clean together. She says it's the best ramen she's ever made, and for once she is not lying about it."
+          "res": "You tell her quietly, a little clumsily around your own sudden heartbeat, that you noticed her waiting across every overtime night too—and watch her cover her burning crimson face behind the stoneware teacup. Then you quietly finish every drop in both terrible bowls together anyway, while she swears softly it's the finest ramen she's ever cooked and means every syllable."
         },
         {
           "label": "Declare it a triumph of accounting",
           "t": 1,
           "m": 2,
-          "res": "\"Best ramen in the realm,\" you say, which is technically true. {N} laughs, tucks her hair behind her ear, and doesn't take back what she said."
+          "res": "\"Objectively speaking, best ramen served in this entire kingdom,\" you pronounce with complete solemnity, scraping the porcelain spotless. {N} blinks behind fogged lenses, dissolves into bright, helpless laughter, tucks one damp lock cleanly behind her ear, and pointedly refuses to retract a single word of the shy confession still hanging warm across the kitchen table between you."
         }
       ],
       "image": {
@@ -173,19 +173,19 @@
           "label": "\"I'd stay. This is home now.\"",
           "t": 5,
           "m": 5,
-          "res": "She lets out a breath she's been holding for a week, shoulders dropping an inch, and straightens the flyer into a neat square before putting it away."
+          "res": "Yui lets out a long, trembling breath she seems to have carried inside her chest since Monday morning, both tired shoulders dropping smoothly down a full inch away from her ears. Without adding another question she folds the frayed portal broadside along neat crisp corners into an immaculate square and tucks it peacefully away where the ledger ink stays dry."
         },
         {
           "label": "\"I don't know.\"",
           "t": -3,
           "m": -8,
-          "res": "Honest. It still hurts. She nods, pushes her glasses up, and files the flyer in a drawer. She doesn't bring it up again."
+          "res": "It is painfully honest, and the quiet stillness afterward stings for both of you—yet Yui only gives a brisk, careful nod, pushes her slipping spectacles firmly up the bridge of her nose, and files the crumpled mage flyer cleanly inside her lowest cabinet drawer. She doesn't bring the subject up again, quietly pouring herself straight back into tomorrow's books."
         },
         {
           "label": "\"Only if you came with me.\"",
           "t": 7,
           "m": 8,
-          "res": "She laughs and wipes her eyes under her glasses. (The mage turns out to be a fraud. Neither of you is disappointed.)"
+          "res": "Yui blinks twice cleanly behind damp glass, lets out a bright, astonished laugh that cracks neatly in the middle, and swipes quickly underneath her spectacles with one sleeve cuff before looking back across the tall counter. (Three days later the traveling hedge-mage gets arrested by Watchmen as a two-copper fraud—and neither of you feels the slightest ounce of disappointment.)"
         }
       ],
       "image": {"comp":"holding a crumpled flyer with shaking hands, looking up at him with teary eyes","setting":"quiet office at dusk","sam":true}
@@ -208,13 +208,13 @@
           "label": "Wear it like a hat, proudly",
           "m": 9,
           "t": 2,
-          "res": "Yui laughs so hard she has to sit down on an ale keg while strangers cheer your awful posture and crooked spectacles gleam beneath paper lanterns."
+          "res": "You settle the crooked crimson wyvern solemnly atop your head like a dusty velvet tricorne and bow politely to two startled chestnut merchants walking past the booth. Yui laughs so wildly she has to drop straight onto an empty ale cask to catch her breath—round spectacles shining happily underneath swaying paper lanterns while strangers applaud your atrocious knightly posture."
         },
         {
           "label": "Win her one back",
           "t": 3,
           "m": 6,
-          "res": "It takes eleven tries, half a silver pouch, and clear pity from the stallkeeper—yet her slightly-less-ugly griffin keeps guard right beside her stapler forever."
+          "res": "Determined to clear the score properly, you burn through eleven stubborn tries, nearly half a pocket of festival silver, and the mounting quiet pity of a weary ring-toss carnie before finally hooking the brass ring cleanly onto the back corner peg. Yet her slightly less crooked stuffed griffin claims a permanent post guarding her brass stapler for life."
         },
         {
           "label": "Slip home early before the lantern parade ends",
@@ -224,7 +224,7 @@
           "l": 3,
           "private": true,
           "acts": ["missionary","oral_give","kiss"],
-          "res": "Yui tucks the stuffed wyvern neatly onto the entryway shelf, latches your bedroom door, and pushes her glasses straight onto the table before kissing you breathlessly."
+          "res": "Instead of chasing trumpets down the main plaza, you follow her swiftly down the lantern-shadowed side alley back into a wonderfully empty house. Yui sets the crooked stuffed wyvern thoughtfully onto the entryway coat bench, clicks your bedroom bolt cleanly home behind her shoulder, and drops her neatly folded spectacles directly onto the side table before kissing you completely breathless."
         }
       ],
       "image": {
@@ -250,7 +250,7 @@
           "t": 1,
           "m": -3,
           "hold": true,
-          "res": "{N} nods and squeezes your hand once. \"I can wait. Don't make it too long.\" She pushes up her glasses and goes back to her columns, smiling."
+          "res": "{N} gives a calm, steady nod and squeezes the back of your wrist warmly once before drawing back to stack her open ink folders squarely beside the brass scale. \"I can wait,\" she says gently, spectacles catching the warm desk lamp as an unmistakable smile reaches her eyes. \"Don't keep the final entry open too long, though.\""
         }
       ]
     }

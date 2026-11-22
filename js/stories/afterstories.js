@@ -23,9 +23,13 @@ function afterHomeDone(w){
   const h = H(hid); if(!h || !STORIES[hid]) return true;
   return houseStoryDone(h);
 }
+function afterArcDone(w){
+  if(!w || !w.key || typeof ARCS==='undefined' || !ARCS[w.key]) return true;
+  return (w.arc || 0) >= ARCS[w.key].length;
+}
 function afterReady(w){
   const beats = w && AFTER_STORIES[w.key]; if(!beats || !S.workers.includes(w)) return -1;
-  const i = w.after || 0; if(i >= beats.length || !afterHomeDone(w) || houseGate(w)) return -1;
+  const i = w.after || 0; if(i >= beats.length || !afterHomeDone(w) || !afterArcDone(w) || houseGate(w)) return -1;
   const need = AFTER_NEEDS[Math.min(i, AFTER_NEEDS.length - 1)], gap = paidGap(AFTER_GAPS[Math.min(i, AFTER_GAPS.length - 1)]);
   return (w.trust >= need && S.week - (w.afterWk || 0) >= gap) ? i : -1;
 }

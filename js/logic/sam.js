@@ -46,7 +46,7 @@ function samXP(n){
   if(lv > S.sam.appraisal){ S.sam.appraisal = lv; note(`[Appraisal] leveled up to Lv ${lv}! ${lv===2?'Exact stats and lewdness are now visible.':'Hidden traits and everyone\'s preferences are now visible.'}`); }
 }
 function samStat(k,n){ S.sam[k] = clamp((S.sam[k]||0)+n, 0, samCap()); }
-const lessonMul = () => (hasPast('massage') ? 1.15 : 1) * (hasPast('tutor') ? 1.2 : 1) * (1 + samUpFx('lesson')) * townMul('learn', 1);
+const lessonMul = () => (hasPast('massage') ? 1.15 : 1) * (hasPast('tutor') ? 1.2 : 1) * (1 + samUpFx('lesson'));
 const samWorkCost = (base=25) => Math.max(5, base - samUpFx('workEnergy'));
 const samTrainCost = (base=20) => Math.max(5, base - samUpFx('trainEnergy'));
 const samDateCost = (base=15) => Math.max(4, base - samUpFx('dateEnergy'));
@@ -148,7 +148,7 @@ function samTrain(id, mode='skill'){
 function privateMenu(id, free){
   const w = findW(id); if(!w) return;
   const opts = getActs().filter(a=>canSam(w,a.id));
-  const canPossess = w.race==='spirit' && (w.intim||0)>=1 && ((w.lewd||0) >= ((SVC.spirit||{}).possessLewd ?? 35) || (w.intim||0)>=2);
+  const canPossess = w.race==='spirit' && (w.intim||0)>=1 && (w.lewd||0) >= ((SVC.spirit||{}).possessLewd ?? 35);
   if(!opts.length && !canPossess) return toast((w.intim||0)===0 ? `${w.name} and Sam haven't crossed that line yet.` : `${w.name} isn't comfortable with that yet.`);
   const kp = knowsPrefs(w), vAw = isVessel(w) && vesselStage(w) < 3;
   modal(`<h2>Private time with ${esc(w.name)}</h2><p class="muted">What she's comfortable with, with you, as far as you two have gone (${esc(stageName(w.intim)||'nothing yet')}). ${kp?'★ = her favorite.':''}${vAw ? ` 💧 = fills ${w.name} faster (${vesselLabel(w)}).` : ''}</p>
@@ -157,12 +157,16 @@ function privateMenu(id, free){
     <div class="row"><button onclick="${free?'closeModal()':`openSheet('${id}')`}">Back</button></div>`);
 }
 function spiritSamPool(w){
-  const minL = (SVC.spirit||{}).pairLewd ?? 45;
-  return S.workers.filter(o=>o.id!==w.id && (samVisitReach() || o.house===w.house) && !has(o,'Modest') && (o.lewd||0)>=minL);
+  const minL = (SVC.spirit||{}).pairLewd ?? 45, extra = (SVC.spirit||{}).pairFutaExtra ?? 10;
+  return S.workers.filter(o=>o.id!==w.id && (samVisitReach() || o.house===w.house) && !has(o,'Modest') && (o.lewd||0) >= minL + orientGap(o,'f') + (has(o,'Futa Lover') ? 0 : extra));
 }
 function spiritSamActs(w, o){
-  const acts = ['missionary','cowgirl','doggy','oral_give'].filter(a=>actById(a) && actById(a).pair && actById(a).pair.futa && !actBanned(w,a) && (!o || !actBanned(o,a)));
-  return acts.length ? acts : ['missionary'];
+  const lim = o ? Math.min(w.lewd||0, o.lewd||0) + 15 : (w.lewd||0) + 20;
+  const acts = ['missionary','cowgirl','doggy','oral_give','oral_get','manual_give','manual_get','breast_give','breast_get'].filter(a=>{
+    const A = actById(a);
+    return A && A.pair && A.pair.futa && (A.th||0) <= lim && !actBanned(w,a) && (!o || !actBanned(o,a));
+  });
+  return acts.length ? acts : ['manual_give'];
 }
 function spiritSamMenu(id, free){
   const w = findW(id); if(!w) return;
@@ -218,7 +222,7 @@ function spiritSamPair(id, oid, act, free){
 function samPrivate(id, act, free){
   const w = findW(id); if(!w) return;
   if(!canSam(w,act)) return toast(`${w.name} isn't comfortable with that yet.`);
-  const recv = (actById(act)||{}).kind==='receive';   // receiving services: Sam does the work, and tires less
+  const A = actById(act)||{}, recv = A.kind==='receive' || (A.kind==='massage' && !!A.energyBack);   // receiving services: Sam does the work, and tires less
   if(free){ const c = samPrivCost(recv ? 8 : 15, true); if(S.sam.energy<c) return toast('Sam is too tired.'); S.sam.energy -= c; } else if(!useAP(samPrivCost(recv ? 15 : 30, false))) return;
   const acts = [];
   const l0 = w.lust, text = privateCore(w, act, {acts});
@@ -232,22 +236,23 @@ function samPrivate(id, act, free){
 // o.lead: the moment's own opening (encounters, firsts); it replaces the generic lines, and a short line for the service follows.
 function privateCore(w, act, o={}){
   if(o.acts) o.acts.push(act);
-  const stretch = samStance(w,act)==='ask', A = actById(act) || {}, recv = A.kind==='receive';
+  const stretch = samStance(w,act)==='ask', A = actById(act) || {}, recv = A.kind==='receive' || (A.kind==='massage' && !!A.energyBack);
   const over = Math.max(0, Math.round((A.th||0) - inclination(w, act)));
   const pushed = stretch || over > 0;
   const fromLewd = !pushed && w.lewd >= w.trust;
-  const builds = (A.lust ?? -1) >= 0;   // giving, kissing, massages: she isn't the one being pleased, so her lust rises (more the lewder she is)
+  const builds = (A.lust ?? 0) > 0, spends = (A.lust ?? 0) < 0;   // positive lust builds desire; negative spends it; 0 (massages) is neutral
   const hot = lustBonus(w);
-  let ld;
+  let ld = 0;
   if(builds){ const l0 = w.lust; w.lust += Math.max(2, A.lust*3) * (0.4 + w.lewd/100) * fxMul(w,'lustBuild'); fitLust(w); ld = -Math.round(w.lust - l0); }
-  else ld = spendLust(w, BAL.lust.drop.private * (recv ? 1.8 : 1) * samRelease());   // receiving: a big drop in her lust; Sam's technique decides how much
+  else if(spends) ld = spendLust(w, BAL.lust.drop.private * (recv ? 1.8 : 1) * samRelease());   // receiving: a big drop in her lust; Sam's technique decides how much
   growAct(w, act, (4 + S.sam.technique/20) * (hasPast('massage')?1.3:1)); statXP(w, 'stamina', 0.8); countUp(w, 'privateSam');
   const cap = o.cap != null ? Math.min(svcLewdCap(act,'sam') + (pushed ? BAL.lewd.stretchCap : 0), o.cap) : svcLewdCap(act,'sam') + (pushed ? BAL.lewd.stretchCap : 0);
   const tier = actTier(act);
   let lg = 0;
   if(pushed){ lg = lewdUp(w, (stretch?4:3) + Math.min(4, Math.floor(over/8)), cap); stretch ? minorTrust(w) : minorTrust(w, 2); }
   else { lg = lewdUp(w, tier >= 3 ? 3.5 : tier === 2 ? 2.5 : 1.5, cap); if(fromLewd) minorTrust(w, 2); else gainTrust(w, 2); }
-  moodAdd(w, (stretch?1:6)*pm(w,'private') + (isFav(w,act)?6:0) - (isDislike(w,act)?6:0)); w.energy = clamp(w.energy-(recv ? 6 : 15), 0, maxEnergy(w));
+  moodAdd(w, (stretch?1:6)*pm(w,'private') + (isFav(w,act)?6:0) - (isDislike(w,act)?6:0));
+  w.energy = clamp(w.energy - (recv ? 6 : 15) + (A.energyBack && w.race!=='demon' ? A.energyBack : 0), 0, maxEnergy(w));
   let fed = '';
   if(w.race==='demon' && A.finish){ w.energy = clamp(w.energy + SVC.demon.samGain, 0, maxEnergy(w)); S.sam.energy = Math.max(0, S.sam.energy - Math.round(SVC.demon.samExtra * sigilDrain(w))); fed = `\n\n(${w.name} fed on him. Sam is much more tired than usual. Energy +${SVC.demon.samGain} for her.)`; }
   if(w.race==='demon' && A.kind==='kiss'){   // a kiss is a small sip; an eager demon draws harder
@@ -275,7 +280,7 @@ function privateCore(w, act, o={}){
   if(hot) text += `\n\n${hot}`;
   text += fed;
   text += fillVessel(w, act);
-  text += `\n\n[${actLabel(act)}] skill + · ${lg >= 0.3 ? 'Lewdness + · ' : ''}Trust + · Lust ${ld < 0 ? '+'+(-ld) : '−'+ld} · Sam's Technique +3`;
+  text += `\n\n[${actLabel(act)}] skill + · ${lg >= 0.3 ? 'Lewdness + · ' : ''}Trust + · Lust ${ld < 0 ? '+'+(-ld) : ld > 0 ? '−'+ld : '—'} · Sam's Technique +3`;
   // worked up by it, she may want more: something that actually spends it, if they've crossed that far
   if(builds && !o.more && w.lust >= LUST_EAGER && w.lewd >= SVC.askMore.lewd){
     const ids = getActs().filter(a=>(a.lust ?? -1) < 0 && canSam(w, a.id)).map(a=>a.id);

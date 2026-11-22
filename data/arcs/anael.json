@@ -14,13 +14,13 @@
           "label": "\"I'm glad it was me.\"",
           "t": 5,
           "m": 8,
-          "res": "Her wings relax a full inch, feathers rustling. \"So am I,\" she says. \"I find I am not objective about it.\" The next lantern lights before she touches it."
+          "res": "Her wings relax a full inch, pale primary feathers settling with a soft whisper against the stone wall. \"So am I,\" Anael admits quietly, meeting your eyes without blinking once. \"I find I am no longer at all objective about what happens under this roof.\" The next lantern wick lights on its own a fraction of a second before her fingertip even reaches the oil."
         },
         {
           "label": "Ask what happens when she finds out",
           "t": 3,
           "m": 3,
-          "res": "\"I report,\" she says, fingers hovering over the next wick. A pause. \"Or I do not. That part of the protocol has become unclear.\" The flame catches, wavering."
+          "res": "\"I write a report,\" Anael says, her pale fingers hovering steadily above the cold wick of the next wall sconce while she weighs her own honesty. After a long pause, the corner of her mouth softens slightly. \"Or perhaps I do not file it tonight. That particular paragraph of the Order's protocol has grown remarkably vague.\" The flint strikes cleanly, though the flame trembles like a held breath."
         }
       ],
       "image": {
@@ -92,7 +92,7 @@
           "label": "Apologize and back out",
           "t": 2,
           "m": 3,
-          "res": "\"Thank you,\" she says. \"For the courtesy. It is noted.\" The note, as it turns out, is a very warm one, and arrives later that evening with a feather pressed between the pages."
+          "res": "\"Thank you,\" Anael murmurs, lifting one wing swiftly to shield her shoulder while her halo brightens in sharp embarrassment. \"For extending that courtesy. It is duly noted.\" That note, as it turns out, arrives beneath your office door later that same evening, written in calm, formal calligraphy—and carrying a single soft white feather pressed carefully between the pages."
         },
         {
           "label": "\"Can I help dry them?\"",
@@ -100,7 +100,7 @@
           "t": 4,
           "m": 7,
           "l": 1,
-          "res": "She holds very still while you blot the feathers with a towel, her breathing slow and careful. At the end her halo is brighter than the lamps.",
+          "res": "She stands remarkably still beneath your hands while you blot the warm dampness patiently down the curve of her feathers, letting out each breath carefully so she won't startle you. Every pass of warm linen across the base of her wing sends a small, unmistakable shiver straight down her spine—and when you finish, her halo burns brighter than all the brass lamps combined.",
           "else": {
             "t": -2,
             "m": -4,
@@ -111,7 +111,7 @@
           "label": "Offer her the soap",
           "t": 2,
           "m": 5,
-          "res": "She examines it, perplexed, turning it in her long fingers. \"I have never required it,\" she admits. She keeps it anyway, and you find it later on her windowsill."
+          "res": "Anael takes the carved soap cake with both palms and turns it thoughtfully between long fingers, faintly perplexed by the scent of pressed mountain cedar. \"We have never required earthly washing,\" she confesses softly, color warming the tips of her ears as she hides the bar inside her clean towel. Yet she keeps it anyway, and three days later you spot it resting proudly on her bedside sill."
         }
       ],
       "image": {
@@ -130,7 +130,7 @@
           "label": "Stay with her",
           "t": 5,
           "m": 8,
-          "res": "You share the pie. She feeds you a bite, solemnly, as though it were a sacrament, and purple juice stains her lip, and something warm settles over you both."
+          "res": "You settle onto the wooden bench beside her and pull the plate between you. Anael cuts a neat wedge and holds the bite up to your lips as solemnly as though she were administering a quiet sacrament, her halo humming faintly above both your heads. Dark berry juice stains the corner of her lower lip when she tastes her share, and for once she leaves the smudge undisturbed."
         },
         {
           "label": "Thumb the berry stain off her lip and take her upstairs",
@@ -140,13 +140,13 @@
           "l": 2,
           "private": true,
           "acts": ["kiss","oral_give","missionary"],
-          "res": "Her halo flares warm amber the second your thumb brushes her berry-sweet lower lip."
+          "res": "Her golden halo flares bright amber the very second your thumb glides across her berry-sweet lower lip. Anael catches her breath cleanly, leans into the warm brush of your knuckles without lowering her gaze, and murmurs that the dessert can finish upstairs before hooking her slender fingers squarely into the collar of your jacket."
         },
         {
           "label": "Order a second slice",
           "t": 3,
           "m": 6,
-          "res": "She accepts with great composure and a gracious nod. She finishes it with considerably less, and eyes the plate afterward as though it had betrayed her."
+          "res": "She accepts the fresh pastry with immaculate celestial dignity and an incline of her head worthy of an archivist receiving holy scripture. Five minutes later she clears that plate far faster than the first—licking sugar gently from her thumb before she catches you watching, and eyes the empty rim afterward as cleanly as though the porcelain had conspired to betray her."
         }
       ],
       "image": {
@@ -169,19 +169,19 @@
           "label": "\"Go, if it's your duty.\"",
           "t": 3,
           "m": -3,
-          "res": "\"Duty,\" she repeats, and for the first time she sounds uncertain of the word. She does not leave, but she does not answer the scroll, either, and the halo flickers out in the hall."
+          "res": "\"Duty,\" Anael repeats softly to the quiet corridor, turning the heavy parchment word over like an unfamiliar coin. For the first time since she arrived beneath your roof, she sounds genuinely uncertain of what the word weighs. She does not pack her satchel, yet she leaves the Order's sealed dispatch unanswered on the mantel while her halo flickers thoughtfully in the dark."
         },
         {
           "label": "\"Stay. Please.\"",
           "t": 6,
           "m": 6,
-          "res": "She reads her reply to the Order aloud. It is one line long. The messenger, a little scandalized, flies off before she can finish blushing."
+          "res": "Anael unrolls a blank sheet against the stair rail, writes exactly one blunt line in crisp black ink, and reads her blunt refusal directly to the Order cleanly aloud without a trace of hesitation. The young winged messenger blinks rapidly, half scandalized and wholly unsure whether to salute or flee, beating his wings off the veranda before she even finishes turning scarlet from brow to collar."
         },
         {
           "label": "Say nothing",
           "t": -5,
           "m": -8,
-          "res": "She waits, and then folds the scroll and bows, formal and distant. Her halo is dim for days, and the lanterns on the street burn low."
+          "res": "She stands motionless in the hall for five long heartbeats waiting for a hand on her sleeve that never moves, then folds the untouched dispatch slowly into neat thirds and inclines her head with flawless, distant courtesy. Her golden halo drops to a pale amber ember for days afterward, and every wall lantern along the front steps seems to burn a fraction lower."
         }
       ],
       "image": {
@@ -199,13 +199,13 @@
           "label": "Keep humming",
           "t": 5,
           "m": 8,
-          "res": "You finish the evensong together, one voice shining and one decidedly flat. It is the best she has ever heard it, and she says so, tears on her cheeks."
+          "res": "You stay right where you sit and keep humming quietly underneath her clear, silver phrasing until the old choir hymn carries all the way through its final verse—one voice luminous as cathedral glass and the other unapologetically flat against the floorboards. When the note fades out, Anael wipes real tears softly off her cheek and whispers that nobody has ever sung beside her like that before."
         },
         {
           "label": "Listen in silence",
           "t": 4,
           "m": 5,
-          "res": "She sings the whole of it for you alone, golden eyes closed, and the room is warm for hours afterward, as though the walls remembered."
+          "res": "You keep complete silence on the window bench while Anael tilts her head back, golden eyes shut gently in the dusk light, singing the entire forgotten hymn for an audience of one. Every clear phrase fills the small sitting room until the air feels warm against your palms—and for hours after her voice goes quiet, the timbers around you hold that gentle glow."
         }
       ],
       "image": {
@@ -231,7 +231,7 @@
           "t": 1,
           "m": -3,
           "hold": true,
-          "res": "Anael inclines her head, and her halo brightens, patient. \"I can wait,\" she says. \"The Order measures in centuries. Please do not make it quite so long.\""
+          "res": "Anael inclines her bright head smoothly, not a hint of disappointment dimming the steady golden band circling her crown. \"I can wait,\" she murmurs softly, resting warm fingers across the back of your wrist before drawing away. \"The Order measures devotion in whole centuries, Sam. Only do not keep me waiting quite as long as that—I have grown fond of earthly impatience.\""
         }
       ]
     }

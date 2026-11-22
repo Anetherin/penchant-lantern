@@ -17,10 +17,13 @@ Test: `node tools/goddess-smoke.mjs [weeks per cycle]` (plays to the binding, ev
   - Jealous remarks start at `remarksFrom` (cycle 3). Love comes from your answers. Jealousy grows with new hires, ex-lovers met on walks, private time with others, roster size and lovers carried.
 - **The binding:** at the first rebirth after any lady has lived a fully reincarnated life (`w.reborn > fullReborn`, default 4, so the start of cycle 6 at the earliest). She lets him finish, loses her divinity (`divinity.bindTo`) and is bound to him.
 - **After the binding:** she gets her own tab.
-  - You set a focus (Indulge / Business / Watch / Tutelage / Whim), form (`shape`: herself / another race's form / as she pleases) and body option (`form`: fem / futa / as she pleases). She takes 1 action per week, plus 1 per 25 divinity.
+  - You set a focus (Indulge / Business / Watch / Tutelage / Guild / Work the house (`clients`) / Back Sam up (`focus`) / Her whim), form (`shape`: herself / another race's form / as she pleases) and body option (`form`: fem / futa / as she pleases). She takes 1 action per week, plus 1 per 25 divinity.
   - When jealous she sometimes "claims" Sam or a new lady instead. When unhappy she ignores your guidance.
+  - **Work the house (`clients`):** she takes select high-paying clients herself on a house floor in her chosen form, earning gold directly into the ledger (`R.led.goddess` / `R.godClients`) and house reputation.
+  - **Back Sam up (`focus`):** she mirrors Sam's weekly focus (`office`, `floor`, `watch`, `guild`, `classes`, `rest`), stacking business/watch/floor satisfaction/trust/skill/energy recovery onto his week.
+  - **Isolde jealousy (`goddessIsoldeCheck` / `evGoddessIsolde`):** sleeping with Isolde (`isoNightResult` / `evIsoldeGame` / `evIsoldeLovers`) triggers a pre-binding intercept (`isolde_pre` once `g.met`) or a bound jealous confrontation (`first` in her demon form, then rotating `repeat` scenes `isolde_demon`, `isolde_bath`, `isolde_desk` on cooldown) where she reclaims Sam directly.
   - Her power scales with divinity and with fully reincarnated ladies (and their extra lives).
-  - With the ladies (Indulge) she takes over a service herself: her female form does tier 1-2 services, her futa form any. Each has its own line (`services.json → pair.fem/futa`), and the lady practices that service.
+  - With the ladies (`indulge`) she takes over any tier 1–3 service where she has a pair text (`services.json → pair.fem/futa`), and the lady practices that service.
   - Nights with Sam: pick a service; she does it as herself (the usual private-time lines with her name, image `samact:<act>` with her as the woman).
     - Finishing inside her (a finishing tier-3 service) restores Sam's energy and raises divinity, love and mood, and cuts jealousy.
     - Finishing outside her gives half the energy and a little love, but she sulks.
