@@ -113,7 +113,6 @@ function syncAttendants(){
     const subs = atts.filter(canStandIn).sort((a,b)=>standInScore(b) - standInScore(a)).slice(0, Math.min(absent, spare));
     subs.forEach(a=>{
       a.job = 'courtesan'; a.standIn = true; spare--;
-      if(!a.menu.length) a.menu = getActs().filter(x=>clientStance(a,x.id)==='yes').map(x=>x.id);
       if(was.get(a.id)!=='standIn') lines.push(`🎀 ${a.name} stands in as a courtesan at ${h.name} while a courtesan is away.`);
     });
     if(spare <= 0) return;

@@ -328,7 +328,6 @@ function ngReset(w){
   if(w.job === 'guild') w.job = (w.gPrev && w.gPrev !== 'guild') ? w.gPrev : 'rest';
   if(w.job === 'rest' && w.prevJob) w.job = w.prevJob;
   delete w.prevJob; delete w.idleRest; delete w.standIn; delete w.gc; delete w.gPrev;
-  if(Array.isArray(w.menu)) w.menu = w.menu.filter(a=>canClient(w,a));
   w.tutor = null; delete w.tutorTier;
 }
 // Past lives of named ladies (S.lives[key]): what she'd built and how many Reincarnated stacks she has.
@@ -505,7 +504,6 @@ function ngBegin(){
     w.isPartner = false; w.free = false; w.contract = 12; if(!keptIds.has(w.house)) w.house = og; if(w.locked && w.locked!==w.house) w.locked = null;
     ngReset(w); if(ngRomance(C, w)==='reset') ngRomanceReset(w); w.reborn = (w.reborn||0) + 1;
     w.wage = wageFor(w); if(w.job!=='rest') w.job = safeJob(w, w.job);
-    if(Array.isArray(w.menu)){ w.menu = w.menu.filter(a=>canClient(w,a)); if(MENU_JOBS.includes(w.job) && !w.menu.length) w.menu = getActs().filter(a=>clientStance(w,a.id)==='yes').map(a=>a.id); }
   });
   // residents of kept houses: back with their house, reincarnated (no perk); one freed by her house story stays wage-free
   const residents = ngResidents();
@@ -513,7 +511,6 @@ function ngBegin(){
     const hid = residentHouse(w, keptHouse).id;
     ngReset(w); w.reborn = (w.reborn||0) + 1; w.isPartner = false; w.house = hid; w.locked = hid; w.contract = 999;
     w.wage = w.free ? 0 : wageFor(w); if(w.job!=='rest') w.job = safeJob(w, w.job);
-    if(Array.isArray(w.menu)){ w.menu = w.menu.filter(a=>canClient(w,a)); if(MENU_JOBS.includes(w.job) && !w.menu.length) w.menu = getActs().filter(a=>clientStance(w,a.id)==='yes').map(a=>a.id); }
   });
   // everyone else leaves; named ladies go back to their pools, fresh (isHired is false for them again)
   const ids = new Set([...lovers, ...residents].map(w=>w.id));

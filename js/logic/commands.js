@@ -17,7 +17,7 @@ function canDo(w, job){
   return null;
 }
 function toggleFavorite(id){ const w = findW(id); if(!w || w.key) return; w.favorite = !w.favorite; save(); render(); refreshSheetInfo(); if(typeof NGS!=='undefined' && NGS) ngView(); }
-// Jobs that offer a service menu (courtesans, and the must-offer staff roles).
+// Jobs whose whole work is serving clients (courtesans and the must-offer staff roles): classroom service lessons, tutoring.
 const MENU_JOBS = ['courtesan','dancer','bath','host'];
 // First job she can actually take: her preference, then the open-ended ones.
 function safeJob(w, pref){ for(const j of [pref,'courtesan','promoter','attendant','maid']) if(j && JOBS[j] && !canDo(w,j)) return j; return 'rest'; }
@@ -28,7 +28,6 @@ function setJob(id, job){
   if(msg) toast(msg); else {
     if(w.job==='guild' && job!=='guild'){ delete w.gc; delete w.gPrev; }
     w.job = job; delete w.prevJob; delete w.idleRest; delete w.standIn;
-    if(MENU_JOBS.includes(job) && !w.menu.length){ w.menu = getActs().filter(a=>clientStance(w,a.id)==='yes').map(a=>a.id); if(w.menu.length) toast(`${w.name}'s menu: ${w.menu.map(actLabel).join(', ')}. Add "~" favors on her sheet.`); }
     save();
   }
   render(); refreshSheetInfo();
@@ -39,12 +38,6 @@ function setHouse(id, hid){
   const rb = raceBlock(w, H(hid)); if(rb) return toast(rb);
   w.house = hid; if(canDo(w, w.job)) w.job = 'rest';
   note(`${w.name} moves to ${H(hid).name}.`); save(); render(); refreshSheetInfo();
-}
-function toggleMenu(id, act, on){
-  const w = findW(id); if(!w) return;
-  if(on && !canClient(w,act)) return toast(`${w.name} won't do that with clients.`);
-  w.menu = w.menu.filter(x=>x!==act); if(on) w.menu.push(act);
-  save(); refreshSheetInfo();
 }
 // Service outfit, dress level, and accessory state (sheet / wardrobe): how she looks in images. Visual only.
 function setSvcOutfit(id, k){ const w=findW(id); if(!w) return; w.svcOutfit = k || ''; save(); refreshSheetInfo(); sheetImg(); }
@@ -187,7 +180,7 @@ function buyHouse(id){
   S.flags = S.flags || {}; S.flags.boughtHouse = true;
   note(`You now own ${D.name}!`);
   if(!isHired(D.npc)){
-    const n = rebirthNamed(makeNamed(D.npc)); n.house = id; n.locked = id; n.contract = 999; n.job = safeJob(n, NAMED[D.npc].job); if(MENU_JOBS.includes(n.job)) n.menu = getActs().filter(a=>clientStance(n,a.id)==='yes').map(a=>a.id);
+    const n = rebirthNamed(makeNamed(D.npc)); n.house = id; n.locked = id; n.contract = 999; n.job = safeJob(n, NAMED[D.npc].job);
     if((S.ngppCycle||0) > 0 && (n.wasLover || (n.reborn||0) > 0)) n.reMet = (n.reMet||0) + 1;
     S.workers.push(n); if(typeof applyAutoTutor==='function') applyAutoTutor(n); if(typeof applyAutoWardrobe==='function') applyAutoWardrobe(n);
     if(typeof restoreStoryJoin==='function') restoreStoryJoin(nh, true);

@@ -9,8 +9,8 @@
     "scenario": ["early4", "mid", "late"],
     "mutate.job": ["maid", "promoter", "security", "bartender", "host", "attendant", "madame", "chapel"]
   },
-  "phasePolicy": { "fixedStaff": true, "syncMenu": true, "guild": false },
-  "mutate": { "otherRace": "human", "raceWho": 1, "jobWho": 1, "force": true, "minTrust": 45, "keepNonLantern": true, "clearJob": true, "syncMenu": true },
+  "phasePolicy": { "fixedStaff": true, "guild": false },
+  "mutate": { "otherRace": "human", "raceWho": 1, "jobWho": 1, "force": true, "minTrust": 45, "keepNonLantern": true, "clearJob": true },
   "variants": [
     { "name": "base", "mutate": { "race": "human" } },
     { "name": "elf", "mutate": { "race": "elf" } },

@@ -65,7 +65,6 @@ function assignStart(w, job){
   w.job = 'rest';
   job = safeJob(w, job);
   w.job = job;
-  if(MENU_JOBS.includes(job)) w.menu = getActs().filter(a=>clientStance(w,a.id)==='yes').map(a=>a.id);
 }
 // Older saves: stats, skills and service skills were 0-100 and are now 0-1000; caress became kiss, manual/oral/paizuri became
 // manual_give/oral_give/breast_give; dragonkin became beastkin (dragon).
@@ -88,7 +87,6 @@ function migrateWorker(w){
     if(w.seen) ['c_','s_'].forEach(p=>{ if(w.seen[p+o]!==undefined){ w.seen[p+n] = w.seen[p+n] ?? w.seen[p+o]; delete w.seen[p+o]; } });
   });
   ['fav','dislike','lovers'].forEach(k=>{ if(w[k]) w[k] = actKey(w[k]); });
-  if(w.menu) w.menu = Array.from(new Set(w.menu.map(actKey)));
   // titles used to be baked into names ('Professor Juniper'): split them off, and take the data name when it changed
   const ND = w.key && NAMED[w.key];
   if(ND && ND.title && !w.title && typeof w.name==='string' && w.name.startsWith(ND.title+' ')){ w.title = ND.title; w.name = ND.name; }
@@ -234,6 +232,7 @@ function checkUnlocks(silent, sink){
   S.workers.forEach(w=>{
     ensureWorker(w);
     getActs().forEach(a=>{
+      if(clientStance(w,a.id)==='yes') w.seen['y_'+a.id] = true;   // offeredMenu keeps it on offer while she's still willing
       if(canClient(w,a.id) && !w.seen['c_'+a.id]){ w.seen['c_'+a.id]=true; if(!silent) msgs.push(`${w.name} is now open to ${a.label} with clients.`); }
       if(canSam(w,a.id) && !w.seen['s_'+a.id]){ w.seen['s_'+a.id]=true; if(!silent) msgs.push(`${w.name} is now open to ${a.label} with Sam.`); }
     });

@@ -100,7 +100,6 @@ LAB.POLICY = {
                          // Default waits for the debt to be cleared: in cycle 1 it cost ~3.4 weeks of payoff for +300/wk late net (2026-11-16).
   flushMul: 3,
   samples: false,        // opt-in: non-Modest promoters hand out free samples
-  syncMenu: false,       // opt-in: keep MENU_JOBS workers' w.menu synced with acts where clientStance === 'yes'
   fixedStaff: false,     // opt-in: cap maxStaff at home house staff count when measured phase starts (suppresses bedless capacity edge)
   hireFriends: false,    // opt-in: prioritize hiring returning reborn alumni/friends when affordable
   hireReborn: false,     // opt-in: prioritize any candidate with Reincarnated stacks (most stacks first; reborn guests from S.lives included) when affordable
@@ -170,9 +169,6 @@ function manageJobs(h){
   if (P.resort) { const T = targetsFor(h);
     mine.forEach(w => { if (!free(w) || !['promoter', 'maid', 'attendant', 'security'].includes(w.job) || cnt(w.job) <= (T[w.job] || 0)) return;
       const was = w.job; w.job = 'rest'; if (!tryJob(w, 'courtesan')) w.job = was; }); }
-  if (P.syncMenu) {
-    mine.forEach(w => { if (MENU_JOBS.includes(w.job)) getActs().forEach(a => { if (clientStance(w, a.id) === 'yes' && !w.menu.includes(a.id)) w.menu.push(a.id); }); });
-  }
 }
 function hireScore(c){ return (P.hireFriends && c.friend ? 10000 : 0) + (P.hireReborn && (c.reborn || 0) > 0 ? 5000 + 100 * c.reborn : 0) + (P.hireGuests && isGuest(c) ? 2000 : 0) + (P.hire === 'best' ? STAT_KEYS.reduce((a, k) => a + s100(c.stats[k]), 0) / Math.max(50, c.signing) : -c.signing); }
 function manageHouse(h){
@@ -379,10 +375,6 @@ function setRace(w, race, sub, opts){
   fitLust(w);
   w.wage = wageFor(w);
 }
-function syncWorkerMenu(w, job){
-  if (!MENU_JOBS.includes(job || w.job)) return;
-  getActs().forEach(a => { if (clientStance(w, a.id, job) === 'yes' && !w.menu.includes(a.id)) w.menu.push(a.id); });
-}
 LAB.mutate = M => { if (!M) return {};
   const info = {};
   if (M.trust != null) S.workers.forEach(w => w.trust = clamp(w.trust + M.trust));
@@ -419,12 +411,12 @@ LAB.mutate = M => { if (!M) return {};
     // jobFill: too few generics (e.g. an early house: resident + partner only) -> fill up with other non-partner ladies (the house resident first)
     if (M.jobFill && typeof M.jobWho === 'number' && who.length < M.jobWho) who = who.concat(staffIn(h).filter(w => !w.isPartner && !who.includes(w))).slice(0, M.jobWho);
     if (M.job === 'madame') {
-      staffIn(h).filter(w => w.job === 'madame' && !who.includes(w)).forEach(w => { w.job = safeJob(w, 'courtesan'); syncWorkerMenu(w); });
+      staffIn(h).filter(w => w.job === 'madame' && !who.includes(w)).forEach(w => { w.job = safeJob(w, 'courtesan'); });
     }
     if (M.job === 'chapel' && (M.clearJob || staffIn(h).filter(w => w.job === 'chapel' && !who.includes(w)).length + who.length > slotsFor(h, 'chapel'))) {
-      staffIn(h).filter(w => w.job === 'chapel' && !who.includes(w)).forEach(w => { w.job = safeJob(w, 'courtesan'); syncWorkerMenu(w); });
+      staffIn(h).filter(w => w.job === 'chapel' && !who.includes(w)).forEach(w => { w.job = safeJob(w, 'courtesan'); });
     }
-    who.forEach(w => { w._labTested = true; w._lock = M.job; w._force = !!M.force; if (!canDo(w, M.job) || M.force) w.job = M.job; if (M.syncMenu || (MENU_JOBS.includes(M.job) && !w.menu.length)) syncWorkerMenu(w, M.job); }); info.locked = who.length; }
+    who.forEach(w => { w._labTested = true; w._lock = M.job; w._force = !!M.force; if (!canDo(w, M.job) || M.force) w.job = M.job; }); info.locked = who.length; }
   if (M.statAll) S.workers.forEach(w => STAT_KEYS.forEach(k => { w.stats[k] = clampK(w.stats[k] + M.statAll * SKL); }));   // +N (0-100 scale) to every stat
   if (M.stat) S.workers.forEach(w => Object.entries(M.stat).forEach(([k, n]) => { w.stats[k] = clampK(w.stats[k] + n * SKL); }));
   if (M.skillAll) S.workers.forEach(w => { TECH_KEYS.forEach(k => { w.tech[k] = clampK((w.tech[k] || 0) + M.skillAll * SKL); }); Object.values(w.acts || {}).forEach(a => { a.skill = clampK((a.skill || 0) + M.skillAll * SKL); }); });
@@ -439,7 +431,6 @@ LAB.mutate = M => { if (!M) return {};
   if (M.bedTier != null) homeH().beds = M.bedTier;
   if (M.bindGoddess) { const g = G(); g.bound = true; g.left = false; g.divinity = M.divinity ?? 5; g.love = M.love ?? 70; }
   if (M.holdTidy != null) { S._lab = S._lab || {}; (S._lab.hold = S._lab.hold || {}).tidy = M.holdTidy; info.holdTidy = M.holdTidy; }   // every house's tidiness is reset to this before each measured week
-  if (M.syncMenu) staffIn(homeH()).forEach(w => syncWorkerMenu(w));
   return info;
 };
 
