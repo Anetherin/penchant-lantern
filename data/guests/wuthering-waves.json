@@ -272,7 +272,7 @@
             "hairColor": "very pale blue",
             "eyes": "bright yellow-gold",
             "skin": "pale",
-            "accessories": "round dark sunglasses and large black headphones with gold trim",
+            "accessories": "large black headphones with gold trim",
             "accState": "always",
             "expression": "a mischievous, knowing grin"
           },
@@ -288,6 +288,8 @@
               "label": "Spiritchaser's dress",
               "style": "Cute",
               "prompt": "a very short white dress with an open ornate black vest and detached sleeves",
+              "accessories": "small round dark sunglasses",
+              "accState": "dressed"
               "bonus": {"attendant":1.2,"promoter":1.15}
             }
           },
