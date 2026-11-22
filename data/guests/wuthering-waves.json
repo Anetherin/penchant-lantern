@@ -289,7 +289,7 @@
               "style": "Cute",
               "prompt": "a very short white dress with an open ornate black vest and detached sleeves",
               "accessories": "small round dark sunglasses",
-              "accState": "dressed"
+              "accState": "dressed",
               "bonus": {"attendant":1.2,"promoter":1.15}
             }
           },
