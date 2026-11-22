@@ -9,7 +9,8 @@
     { "name": "base" },
     { "name": "courtesan", "mutate": { "job": "courtesan", "jobWho": 1, "minTrust": 45 } },
     { "name": "chapel (non-angel)", "mutate": { "job": "chapel", "jobWho": 1, "minTrust": 45, "force": true } },
-    { "name": "chapel (angel)", "mutate": { "race": "angel", "raceWho": 1, "job": "chapel", "jobWho": 1, "minTrust": 45, "force": true } }
+    { "name": "chapel (angel)", "mutate": { "race": "angel", "raceWho": 1, "keepNonLantern": true, "job": "chapel", "jobWho": 1, "minTrust": 45, "force": true } },
+    { "name": "chapel (lantern angel)", "mutate": { "race": "angel/lantern", "raceWho": 1, "job": "chapel", "jobWho": 1, "minTrust": 45, "force": true } }
   ],
   "breakdown": []
 }

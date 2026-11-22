@@ -5,7 +5,7 @@
   "runs": 16,
   "by": { "scenario": ["mid", "late"] },
   "mutate": { "raceWho": 2 },
-  "each": { "mutate.race": ["human", "demon", "spirit", "android", "angel", "dwarf"] },
+  "each": { "mutate.race": ["human", "demon", "spirit", "android", "angel", "angel/lantern", "dwarf"] },
   "columns": ["total", "net", "perLady", "staff", "served", "sat", "repGain", "left"],
   "delta": ["total", "net", "sat"],
   "breakdown": ["race"]

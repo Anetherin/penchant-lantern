@@ -16,7 +16,8 @@
     { "name": "bath", "mutate": { "minTrust": 45, "job": "bath", "jobWho": 1 } },
     { "name": "host", "mutate": { "minTrust": 45, "job": "host", "jobWho": 1 } },
     { "name": "chapel", "mutate": { "minTrust": 45, "job": "chapel", "jobWho": 1 } },
-    { "name": "chapel (angel)", "mutate": { "minTrust": 45, "race": "angel", "raceWho": 1, "job": "chapel", "jobWho": 1 } },
+    { "name": "chapel (angel)", "mutate": { "minTrust": 45, "race": "angel", "raceWho": 1, "keepNonLantern": true, "job": "chapel", "jobWho": 1 } },
+    { "name": "chapel (lantern angel)", "mutate": { "minTrust": 45, "race": "angel/lantern", "raceWho": 1, "job": "chapel", "jobWho": 1 } },
     { "name": "teacher", "mutate": { "minTrust": 45, "job": "teacher", "jobWho": 1 } },
     { "name": "madame", "mutate": { "minTrust": 45, "job": "madame", "jobWho": 1 } }
   ],

@@ -103,7 +103,8 @@ LAB.POLICY = {
   fixedStaff: false,     // opt-in: cap maxStaff at home house staff count when measured phase starts (suppresses bedless capacity edge)
   hireFriends: false,    // opt-in: prioritize hiring returning reborn alumni/friends when affordable
   hireReborn: false,     // opt-in: prioritize any candidate with Reincarnated stacks (most stacks first; reborn guests from S.lives included) when affordable
-  hireGuests: true       // prioritize guests (drifters) over generics when affordable (default since 2026-11-21: a player takes them)
+  hireGuests: true,      // prioritize guests (drifters) over generics when affordable (default since 2026-11-21: a player takes them)
+  goddessFocus: null     // opt-in: if set and goddessActive(), keep Seliora's focus on this (unless guild overrides)
 };
 // the fixed player the Pass 1/2 numbers in docs/BALANCE.md were measured with: spec "policy": {"preset": "legacy"}
 LAB.PRESETS = { legacy: { security: false, tidyFloor: 0, classUpkeep: false, maxStaff: 10, bedTier: false, guild: false, walkPartners: false, guildSpare: false, guildPartners: false }, noGuild: { guild: false } };
@@ -131,7 +132,8 @@ function targetsFor(h){
 const st = (w, k) => s100(statOf(w, k)), tk = (w, k) => s100((w.tech || {})[k] || 0);
 const FIT = { promoter: w => st(w, 'charisma') + st(w, 'charm') * 0.5, maid: w => st(w, 'agility') + st(w, 'stamina') * 0.5,
   security: w => tk(w, 'combat') + st(w, 'strength') * 0.3 + st(w, 'agility') * 0.25 + st(w, 'wits') * 0.3, host: w => st(w, 'charm') + st(w, 'refinement'),
-  attendant: w => st(w, 'refinement') + st(w, 'charm'), madame: w => tk(w, 'manage') + st(w, 'wits'), teacher: w => st(w, 'wits') + st(w, 'charisma') };
+  attendant: w => st(w, 'refinement') + st(w, 'charm'), madame: w => tk(w, 'manage') + st(w, 'wits'), teacher: w => st(w, 'wits') + st(w, 'charisma'),
+  chapel: w => (typeof isLanternAngel === 'function' && isLanternAngel(w) ? 200 : w.race === 'angel' ? 100 : 0) + st(w, 'charm') + st(w, 'refinement') };
 function supportScore(w, j){ const per = ((S.lastReport || {}).per || {})[w.id], earned = per ? per.earned || 0 : 0;
   return (FIT[j] ? FIT[j](w) : 50) / (1 + earned / 300) - (w.isPartner ? 1000 : 0); }
 function jobOrder(h, cnt){
@@ -195,7 +197,10 @@ function manageHouse(h){
   if (P.tutor) staffIn(h).forEach(w => { w.tutor = P.tutor; w.tutorTier = P.tutorTier || 'tutor'; });
   if (P.hireRace) { const R = P.hireRace.split('/'), need = (RACES[R[0]] || {}).needs;
     if (need && !h.up[need] && S.gold >= upgradeCost(h, need) + P.reserve) { buyUpgrade(need); quiet(); } S.candidates = S.candidates.filter(c => c.race === R[0] && (!R[1] || c.sub === R[1]));
-    while (S.candidates.length < 3) { let c, t = 0; do { c = genWorker({ race: R[0] }); } while (R[1] && c.sub !== R[1] && ++t < 200); c.signing = signingFor(c); S.candidates.push(c); } }
+    while (S.candidates.length < 3) { let c, t = 0;
+      if (R[0] === 'angel' && R[1] === 'lantern') { c = genWorker({ race: 'angel' }); setRace(c, 'angel', 'lantern'); }
+      else { do { c = genWorker({ race: R[0] }); } while (R[1] && c.sub !== R[1] && ++t < 200); if (R[1] && c.sub !== R[1]) setRace(c, R[0], R[1]); }
+      c.signing = signingFor(c); S.candidates.push(c); } }
   for (let g = 0; g < 6; g++) {
     if (staffIn(h).length >= cap()) break;
     if (sleepers(h).length >= bedsFor(h)) { if (!P.beds) break;
@@ -315,6 +320,7 @@ function playWeek(){
   for (const h of S.houses.slice().sort((a, b) => staffIn(a).length - staffIn(b).length)) manageHouse(h);
   S.cur = S.houses[0].id; manageGuild();
   if (P.goddessGuild !== false && typeof goddessActive === 'function' && goddessActive() && GFOCUS.includes('guild')) { const g = G(); if (guildOn() && GLD().active.length) { if (g.focus !== 'guild') { g._labPrev = g.focus; g.focus = 'guild'; } } else if (g.focus === 'guild') g.focus = g._labPrev || 'indulge'; }   // bound Seliora works guild contracts while one runs
+  if (P.goddessFocus && typeof goddessActive === 'function' && goddessActive() && GFOCUS.includes(P.goddessFocus)) { const g = G(); if (g.focus !== P.goddessFocus && g.focus !== 'guild') g.focus = P.goddessFocus; }
   samTurn(); pickFocus(); quiet(); resolveEvents();
   if (P.payOff && !S.won && S.debt.remaining > 0 && S.gold >= S.debt.remaining + reserveGold()) { try { payOffDebt(); } catch (e) {} quiet(); resolveEvents(); }
   const HOLD = (S._lab || {}).hold || {}; if (HOLD.tidy != null) S.houses.forEach(h => { h.tidy = HOLD.tidy; });
@@ -369,7 +375,7 @@ function setRace(w, race, sub, opts){
   if (race === 'beastkin' && !sub) sub = Object.keys(RACES.beastkin.subs || {})[0];
   w.lewd = clamp(w.lewd - raceLewd(w.race, w.sub) + raceLewd(race, sub)); w.race = race; w.sub = sub || undefined;
   w.lantern = (race === 'angel' && sub === 'lantern');
-  if (opts && opts.keepNonLantern && race === 'angel' && !sub) w.lanternDecided = true;
+  if (race === 'angel' && (sub === 'lantern' || (opts && opts.keepNonLantern && !sub))) w.lanternDecided = true;
   try { raceFit(w); } catch (e) {}
   w.energy = Math.min(w.energy, maxEnergy(w));
   fitLust(w);
@@ -429,7 +435,8 @@ LAB.mutate = M => { if (!M) return {};
   if (M.incense) { homeH().up.incense = true; homeH().incense = M.incense; }
   if (M.drinks != null) { if (M.drinks > 0) homeH().up.bar = true; homeH().drinks = M.drinks; }
   if (M.bedTier != null) homeH().beds = M.bedTier;
-  if (M.bindGoddess) { const g = G(); g.bound = true; g.left = false; g.divinity = M.divinity ?? 5; g.love = M.love ?? 70; }
+  if (M.bindGoddess) { const g = G(); g.bound = true; g.left = false; g.divinity = M.divinity ?? 5; g.love = M.love ?? 70; if (M.goddessFocus) g.focus = M.goddessFocus; }
+  else if (M.goddessFocus && typeof goddessActive === 'function' && goddessActive()) { G().focus = M.goddessFocus; }
   if (M.holdTidy != null) { S._lab = S._lab || {}; (S._lab.hold = S._lab.hold || {}).tidy = M.holdTidy; info.holdTidy = M.holdTidy; }   // every house's tidiness is reset to this before each measured week
   return info;
 };

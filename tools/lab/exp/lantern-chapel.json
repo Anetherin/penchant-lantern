@@ -1,0 +1,38 @@
+{
+  "desc": "Lantern Angel and Lantern Chapel effects: Quiet Chapel vs Lantern Chapel (vestry tier-3 offerings, house lust build, reckless class-loss shield) and Seliora interplay.",
+  "scenario": "mid",
+  "weeks": 12,
+  "runs": 16,
+  "by": { "scenario": ["mid", "late"] },
+  "variants": [
+    {
+      "name": "base",
+      "mutate": { "upgrades": ["chapel"], "race": "angel", "raceWho": 1, "keepNonLantern": true, "job": "chapel", "jobWho": 1, "minTrust": 45, "force": true }
+    },
+    {
+      "name": "lantern chapel",
+      "mutate": { "upgrades": ["chapel"], "race": "angel/lantern", "raceWho": 1, "job": "chapel", "jobWho": 1, "minTrust": 45, "force": true }
+    },
+    {
+      "name": "quiet chapel + reckless floor",
+      "mutate": { "upgrades": ["chapel"], "race": "angel", "raceWho": 1, "keepNonLantern": true, "job": "chapel", "jobWho": 1, "minTrust": 45, "force": true, "addTrait": "Exhibitionist", "traitWho": "courtesans", "minLewd": 80 }
+    },
+    {
+      "name": "lantern chapel + reckless floor",
+      "mutate": { "upgrades": ["chapel"], "race": "angel/lantern", "raceWho": 1, "job": "chapel", "jobWho": 1, "minTrust": 45, "force": true, "addTrait": "Exhibitionist", "traitWho": "courtesans", "minLewd": 80 }
+    },
+    {
+      "name": "seliora watch (quiet chapel)",
+      "mutate": { "upgrades": ["chapel"], "race": "angel", "raceWho": 1, "keepNonLantern": true, "job": "chapel", "jobWho": 1, "minTrust": 45, "force": true, "bindGoddess": true, "goddessFocus": "watch" },
+      "phasePolicy": { "goddessFocus": "watch" }
+    },
+    {
+      "name": "seliora watch (lantern chapel)",
+      "mutate": { "upgrades": ["chapel"], "race": "angel/lantern", "raceWho": 1, "job": "chapel", "jobWho": 1, "minTrust": 45, "force": true, "bindGoddess": true, "goddessFocus": "watch" },
+      "phasePolicy": { "goddessFocus": "watch" }
+    }
+  ],
+  "columns": ["total", "net", "perLady", "served", "sat", "repGain", "prestige", "mood"],
+  "delta": ["total", "net", "sat", "repGain", "prestige"],
+  "breakdown": []
+}

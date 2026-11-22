@@ -13,7 +13,8 @@
     { "name": "+ security", "phasePolicy": { "fillTargets": true, "targets": { "maid": 1, "promoter": 1, "security": 1 } } },
     { "name": "+ teacher", "mutate": { "upgrades": ["classroom"] }, "phasePolicy": { "fillTargets": true, "targets": { "maid": 1, "promoter": 1, "teacher": 1 } } },
     { "name": "+ chapel (non-angel)", "mutate": { "upgrades": ["chapel"] }, "phasePolicy": { "fillTargets": true, "targets": { "maid": 1, "promoter": 1, "chapel": 1 } } },
-    { "name": "+ chapel (angel)", "mutate": { "upgrades": ["chapel"], "race": "angel", "raceWho": 1 }, "phasePolicy": { "fillTargets": true, "targets": { "maid": 1, "promoter": 1, "chapel": 1 } } },
+    { "name": "+ chapel (angel)", "mutate": { "upgrades": ["chapel"], "race": "angel", "raceWho": 1, "keepNonLantern": true }, "phasePolicy": { "fillTargets": true, "targets": { "maid": 1, "promoter": 1, "chapel": 1 } } },
+    { "name": "+ chapel (lantern angel)", "mutate": { "upgrades": ["chapel"], "race": "angel/lantern", "raceWho": 1 }, "phasePolicy": { "fillTargets": true, "targets": { "maid": 1, "promoter": 1, "chapel": 1 } } },
     { "name": "madame + host + att", "mutate": { "minTrust": 45 }, "phasePolicy": { "fillTargets": true, "targets": { "maid": 1, "promoter": 1, "madame": 1, "host": 1, "attendant": 1 } } }
   ],
   "breakdown": []
