@@ -63,8 +63,8 @@ function samWork(kind){
     title='Making the Rounds'; text=`You walk through ${samVisitReach()?'every house':samHouse().name} with a notebook, asking everyone how they're doing and actually writing down the answers. A leaky window gets fixed, someone's favorite tea gets restocked, and the whole staff notices that you noticed.\n\n${n} ladies: trust ${tDelta(rt)}, mood +${Math.round(rmood*10)/10} · Sam's Charm +1`;
     samLog('Made the rounds');
   } else if(kind==='scout'){
-    const nc = 2 + Math.round(samUpFx('scout')); addCandidates(nc, 1.1 + S.sam.business/400); samXP(10); samStat('charm',1); samStat('wits',1);
-    title='Scouting'; text=`You walk the market and the guild hall, quietly using [Appraisal] on anyone who looks like they might want a job.\n\n+${nc} candidates · Appraisal XP +${Math.round(10*samBonus('wits'))} · Sam's Wits +1`;
+    const nc = 2 + Math.round(samUpFx('scout')), ng = addCandidates(nc, 1.1 + S.sam.business/400); samXP(10); samStat('charm',1); samStat('wits',1);   // guests can turn up like in the weekly refresh (candBatch)
+    title='Scouting'; text=`You walk the market and the guild hall, quietly using [Appraisal] on anyone who looks like they might want a job.${ng?` One of them isn't from around here.`:''}\n\n+${nc} candidates${ng?` (${ng} guest${ng>1?'s':''})`:''} · Appraisal XP +${Math.round(10*samBonus('wits'))} · Sam's Wits +1`;
     samLog('Scouted for recruits');
   }
   save(); render(); showResult(title, text);

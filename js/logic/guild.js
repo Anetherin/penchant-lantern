@@ -399,12 +399,22 @@ function samGuild(){
   samXP(4); samLog('Registered at the Adventurers\' Guild'); save(); render();
   EVQ.push(()=>guildBeatEvent(0)); runQueue();
 }
-// one-off chat at the desk once joined: a candidate and the gossip (kept from the old guild visits)
+// Chat at the desk once joined: the gossip and guests who came through the hall (guild base.json → chat): guests[rank] of them,
+// each a returner (old friend or past-life guest, inviteFriend) at chat.returner when one is free, else a fresh guest.
 function guildChat(){
   if(!useAP(samWorkCost(20))) return;
-  addCandidates(1, 1.1 + GLD().rank * 0.05); samXP(6); samLog('Chatted at the guild desk'); save(); render();
-  showResult('The Guild Desk', pick([`Hanna gives you the week's gossip, two rumors about the Barrow and one about the guildmaster's bad knee, then taps a name on the noticeboard. "That one's looking for steadier work. Tell her I sent you."`,
-    `The hall is loud with a party just back from the Fenwood. You buy a round, listen, and come away with a name and a lot of opinions about moonmoss.`]) + '\n\n+1 candidate', guildNpc(), 'portrait');
+  const C = GDB.chat || {}, g = GLD(), ns = C.guests || [1], n = ns[Math.min(ns.length - 1, g.rank || 0)] || 1, before = new Set(S.candidates.map(c=>c.id));
+  for(let i=0;i<n;i++){
+    if(Math.random() < (C.returner ?? 0.5) && inviteFriend(true)) continue;
+    const fresh = openDrifters().filter(k=>!(S.lives && S.lives[k])), any = openDrifters();
+    if(fresh.length || any.length) addGuestCand(pick(fresh.length ? fresh : any));
+    else if(inviteFriend(true)) continue;
+    else addCandidates(1, 1.1 + (g.rank||0) * 0.05);
+  }
+  const met = S.candidates.filter(c=>!before.has(c.id)), who = met.map(c=>`${c.name}${c.friend || (c.key && S.lives && S.lives[c.key]) ? ' (returner)' : NAMED[c.key] ? ' (guest)' : ''}`);
+  samXP(6); samLog('Chatted at the guild desk'); save(); render();
+  showResult('The Guild Desk', pick([`Hanna gives you the week's gossip, two rumors about the Barrow and one about the guildmaster's bad knee, then nods toward the benches. "Travelers. They asked if anyone in town was hiring. Tell them I sent you."`,
+    `The hall is loud with a party just back from the Fenwood. You buy a round, listen, and come away with a lot of opinions about moonmoss and a few faces that aren't from around here.`]) + `\n\n+${met.length} candidate${met.length===1?'':'s'}: ${who.join(', ')}`, guildNpc(), 'portrait');
 }
 
 /* ---------- UI: the Guild tab ---------- */
@@ -432,7 +442,7 @@ function guildTabHTML(){
       ${nx ? bar('Next rank', pct, 100, 't') : ''}
       <div style="margin-top:6px">Sam's guild perks: ${perks || '<span class="muted">none yet</span>'} ${lockedPerks}</div>
       <p class="muted">Ladies on a contract work it instead of their job for the week (from any house). Sam goes with his Guild focus. Contracts can take several weeks: the party's power fills the bar each week. Injuries cost Health.</p>
-      <div class="row"><button onclick="guildChat()" title="A rest-day action: gossip with Hanna and a promising candidate.">🗣️ Chat at the desk</button></div></section>
+      <div class="row"><button onclick="guildChat()" title="A rest-day action: gossip with Hanna and meet guests passing through the hall (more at higher ranks; some may be returners from another life).">🗣️ Chat at the desk</button></div></section>
     <section class="card"><h2>Active Contracts <span class="muted">(${g.active.length}/${guildActiveMax()})</span></h2>${g.active.length ? g.active.map(actCard).join('') : '<p class="muted">None. Take one from the board.</p>'}</section>
     <section class="card"><h2>The Board <span class="muted">(new offers every week)</span></h2>${g.board.length ? g.board.map(offer).join('') : '<p class="muted">Nothing posted this week.</p>'}</section>`;
 }

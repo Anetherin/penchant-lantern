@@ -245,10 +245,11 @@ function propDecide(w, want, X){
   else {
     const dr = propDrive(w), jb = (BP.jobBonus||{})[w.job] ?? 0, minMood = (BP.jobMood||{})[w.job] ?? 45;
     if(!reck && dr < LUST_EAGER && w.mood < minMood) return {kind:'no', why:'nomood'};
-    chance = clamp(BP.acceptBase + jb + (dr - BP.acceptLustMid)/100 + (w.mood - 50)*0.004 + fxAdd(w,'willing')/100 + (dr >= LUST_EAGER ? BP.acceptEager : 0) + (reck ? BP.acceptReckless : 0), 0.02, 0.95);
+    chance = clamp(BP.acceptBase + jb + (dr - BP.acceptLustMid)/100 + (w.mood - 50)*0.004 + fxAdd(w,'willing')/100 + (dr >= LUST_EAGER ? BP.acceptEager : 0) + (reck ? BP.acceptReckless : 0) + (w.job==='chapel' && X && X.h && X.h.lanternChapel ? (BAL.amenities.chapel.lanternWilling ?? 0.25) : 0), 0.02, 0.95);
   }
   if(Math.random() >= chance) return {kind:'no', why:'declined'};
-  const menu = must ? offeredMenu(w) : w.menu, ok = id => menu.includes(id) && canClient(w,id) && !nim(w,id) && !tooTiredFor(w,id) && energyOK(w, id, 0.2);
+  // her menu if one is set, otherwise whatever she's willing to do (staff propositions default to "when she's willing")
+  const menu = offeredMenu(w), ok = id => menu.includes(id) && canClient(w,id) && !nim(w,id) && !tooTiredFor(w,id) && energyOK(w, id, 0.2);
   if(want && ok(want)) return {kind:'yes', act:want};
   if(want && menu.includes(want) && nim(w,want)) return {kind:'no', why:'nomood'};
   const alt = negotiateAlt(w, want, ok, BP.alt);

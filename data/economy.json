@@ -295,7 +295,7 @@
       "label": "Owner's Suite",
       "cost": 600,
       "upkeep": 8,
-      "desc": "Sam's own room in this house. When he sleeps here, his bed is one tier better than the staff's."
+      "desc": "Sam's own room in this house. When he sleeps here, his bed is one tier better than the staff's (and still better than luxury beds)."
     }
   },
   "roomMult": [1,1.25,1.6,2.1],

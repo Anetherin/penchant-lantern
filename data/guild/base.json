@@ -13,6 +13,7 @@
     "fits: {traits, titles, sam (Sam's guild perks)} that suit the contract. bonus: each lady with a fitting trait or active title adds fitEach (and Sam with a fitting perk), up to fitMax; finishing early adds earlyPerWeek per spare week (up to earlyMax); overshooting the work adds overPer x the overshoot share (up to overMax). A total bonus of at least `excellent` is an excellent job: merit x excellentMerit.",
     "Ladies' share of the pay (their day rates plus their share of purse and bonus) counts as their earnings (report, profit cut); Sam's share goes straight to the purse.",
     "minPower: the stat threshold of a higher contract: a member whose power is under it only adds power x power.under x (power / minPower), so high contracts clear slowly without strong members. pay.rankRate: day rates x (1 + rankRate x guild rank). board.lowerRank: offers of contracts below Sam's rank are weighted x lowerRank per rank of difference (the board leans toward his own rank). pay.samShare: Sam's own day rate and purse share x this (0.5: a contract Sam works pays him half what a lady gets, so the Guild focus doesn't beat Office/Watch at home).",
+    "chat: Chat at the desk (rest-day action) always brings guests (visiting drifters from data/guests): guests[rank] of them, each a returner (an old friend from S.alumni or a past-life guest from S.lives) at returner when one is free, otherwise a fresh guest (a generic candidate only if no guest is free).",
     "carry: in New Game+ the guild keeps Sam's rank and merit (fame x fameKeep; contracts, board and parties are cleared, and the rank's people are offered again as candidates). The first NG++ resets the guild once (S.guildReset)."
   ],
   "levels": [
@@ -23,6 +24,7 @@
     {"id":"gold","label":"Gold","merit":280},
     {"id":"mithril","label":"Mithril","merit":450}
   ],
+  "chat": {"guests":[1,1,2,2,3,3],"returner":0.5},
   "board": {"size":3,"perRank":0.5,"active":1,"activePerRank":0.5,"join":20,"lowerRank":0.5},
   "gold": {"perCycle":0.25},
   "power": {"energyFloor":0.4,"samMult":1,"under":0.5},

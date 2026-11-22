@@ -167,19 +167,8 @@ function refreshCandidates(extra=0, quality=1){
     return c.keep;
   });
   const bonus = S.houses.reduce((a,h)=>a+(HOUSES[h.id].recruit||0),0);
-  // drifters / visiting guests (data/guests.json): before NG++ one roll a week at visits.chance turns one candidate slot into a guest;
-  // in NG++ every candidate slot rolls it (visits.ngppPerSlot). Both x guestDrawMul (walks.js: visits.paidMul once the debt is paid,
-  // the Wayfarer's Lantern's fx.guestDraw), at most maxChance. These are fresh faces; past-life guests come through inviteFriend.
-  const V = GUEST_VISITS;
-  let drift = openDrifters().filter(k=>!(S.lives && S.lives[k]));
-  const gch = guestChance(V.chance);
-  const perSlot = V.ngppPerSlot !== false && (S.ngppCycle||0) > 0;
-  let oneGuest = !perSlot && drift.length && Math.random()<gch;
   const q = quality*(0.85 + S.rep/200 + ((S.sam.lvl||1)-1)*0.02);
-  for(let i=0;i<3+extra+bonus;i++){
-    if(drift.length && (perSlot ? Math.random()<gch : oneGuest)){ oneGuest = false; const k = pick(drift); drift = drift.filter(x=>x!==k); addGuestCand(k); continue; }
-    const c = genWorker({quality: q}); c.signing = signingFor(c); S.candidates.push(c);
-  }
+  candBatch(3+extra+bonus, q);
   if(SET.libraryInPool && LIB.length && Math.random()<0.25){
     const src = pick(LIB);
     if(!allNames().includes(src.name)){ const c = ensureWorker(clone(src)); c.id=uid(); c.keep=false; c.signing=signingFor(c); S.candidates.push(c); }
@@ -214,18 +203,32 @@ function addGuestCand(k){
 // force: the first NG+ week always shows one (old friends first).
 function inviteFriend(force){
   const F = BAL.ngplus.friends || {}, al = S.alumni = S.alumni || [];
-  if(!force && Math.random() >= guestChance(F.chance ?? 0.5)) return;
+  if(!force && Math.random() >= guestChance(F.chance ?? 0.5)) return false;
   const friendOK = al.length && S.candidates.filter(c=>c.friend).length < (F.max||2);
   const lives = openDrifters().filter(k=>S.lives && S.lives[k]);
   const opts = [...(friendOK ? al.map(w=>({w})) : []), ...lives.map(k=>({k}))];
-  if(!opts.length) return;
+  if(!opts.length) return false;
   const o = force && friendOK ? {w: pick(al)} : pick(opts);
-  if(o.k){ addGuestCand(o.k); return; }
+  if(o.k){ addGuestCand(o.k); return true; }
   const c = o.w; S.alumni = al.filter(x=>x!==c);
   c.keep = true; c.friend = true; c.signing = c.wasLover ? 0 : signingFor(c); S.candidates.push(c);
   addLog(`${c.name} ${c.wasLover ? 'still remembers what you shared' : 'remembers you from another life'} and is looking for work. (Candidates)`);
+  return true;
 }
-function addCandidates(n, quality=1){ for(let i=0;i<n;i++){ const c=genWorker({quality}); c.signing=signingFor(c); S.candidates.push(c); } }
+// A batch of n new candidates (the weekly refresh and Sam's scouting): drifters / visiting guests (data/guests.json) can take slots.
+// Before NG++ one roll per batch at visits.chance turns one slot into a guest; in NG++ every slot rolls it (visits.ngppPerSlot).
+// Both x guestDrawMul (walks.js: visits.paidMul once the debt is paid, the Wayfarer's Lantern's fx.guestDraw), at most maxChance.
+// These are fresh faces; past-life guests come through inviteFriend.
+function candBatch(n, quality=1){
+  const V = GUEST_VISITS, gch = guestChance(V.chance), perSlot = V.ngppPerSlot !== false && (S.ngppCycle||0) > 0;
+  let drift = openDrifters().filter(k=>!(S.lives && S.lives[k])), oneGuest = !perSlot && drift.length && Math.random()<gch, guests = 0;
+  for(let i=0;i<n;i++){
+    if(drift.length && (perSlot ? Math.random()<gch : oneGuest)){ oneGuest = false; const k = pick(drift); drift = drift.filter(x=>x!==k); addGuestCand(k); guests++; continue; }
+    const c = genWorker({quality}); c.signing = signingFor(c); S.candidates.push(c);
+  }
+  return guests;
+}
+function addCandidates(n, quality=1){ return candBatch(n, quality); }
 function checkUnlocks(silent, sink){
   const msgs = [];
   S.workers.forEach(w=>{

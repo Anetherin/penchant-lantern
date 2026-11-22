@@ -178,7 +178,7 @@ function samHomeCard(){
   const suite = hasSuite(sh);
   return `<section class="card"><h2>Home</h2>
     <div>Sam sleeps at <b>${esc(sh.name)}</b>${S.houses.length>1?` <select onchange="moveSam(this.value)">${S.houses.map(h=>`<option value="${h.id}" ${h.id===sh.id?'selected':''}>${esc(h.name)}</option>`).join('')}</select>`:''}</div>
-    <div>Bed: <b>${BEDS[tier].label}</b>${suite?' (+1 from the Owner\'s Suite)':''} · Weekly recovery: <b>+${samRecover(BAL.samHome.weekly) + (samUpFx('weekly')||0)}</b> energy</div>
+    <div>Bed: <b>${BEDS[tier].label}</b>${suite?(samBedOver()?' + the Owner\'s Suite\'s private quarters':' (+1 from the Owner\'s Suite)'):''} · Weekly recovery: <b>+${samRecover(BAL.samHome.weekly) + (samUpFx('weekly')||0)}</b> energy</div>
     <p class="muted">His weekly focus and always-on bonuses work only at this house${samReach()?` (not now: ${hasBoon('clone')?'the Shadow Clone':'the Speaking Stones'} reach every house)`:' unless he has the Speaking Stones'}. Late-night visits, rounds, demonstrations and group nights stay here too${samVisitReach()?' (not now: the Teleport Circle reaches every house)':' unless he has the Teleport Circle'}. Moving is free, once a week.</p>${suite?'':`<p class="muted">Tip: build an Owner's Suite in ${esc(sh.name)} (House tab → Upgrades) for a better bed.</p>`}${suite?sleepInRow(sh):''}${ups}${tools?`<h3 style="margin:10px 0 4px">Tools of the trade (earned at the guild)</h3>${tools}`:''}</section>`;
 }
 function teachSelect(h, t){
