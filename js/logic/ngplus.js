@@ -358,6 +358,7 @@ function rebirthNamed(n, newLife){
   if(L.after) n.after = Math.max(n.after || 0, L.after);
   restoreRomance(n, L.romance);
   if(L.titles && L.titles.length){ n.titles = [...new Set([...(n.titles||[]), ...L.titles])]; if(L.titleId) n.titleId = L.titleId; syncTitles(n); }
+  n.energy = maxEnergy(n);
   if(!n.free) n.wage = wageFor(n);
   if(n.wasLover) n.signing = 0;
   delete S.lives[n.key];
@@ -384,6 +385,8 @@ function ngCycleReset(){
   delete S.flags.samMovedWk; delete S.flags.sleepInWk; delete S.flags.titleCD; delete S.flags.dejaCD; delete S.flags.familiarCD;
   delete S.luxWk;
   townEvReset(); isoNewCycle(); S.ap = apMax(); S.sam.energy = samMaxEnergy();
+  (S.workers||[]).forEach(w=>{ w.energy = maxEnergy(w); });
+  (S.alumni||[]).forEach(w=>{ w.energy = maxEnergy(w); });
 }
 function ngBegin(){
   const C = NGS; if(!C || !C.boon && !Object.keys(NG_BOONS).every(k=>(S.boons||[]).includes(k))) return;

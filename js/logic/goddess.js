@@ -526,6 +526,7 @@ function createBoundVessel(formKey, houseId){
     backstory: ((GOD.vessel||{}).backstory || 'Shaped like {form} when this cycle turned—quiet-eyed, pliable, and waiting like an empty vessel for you to fill her with a soul of her own.').replace(/\{form\}/g, f.label || raceLabel({race, sub}))
   });
   ensureWorker(w);
+  w.energy = maxEnergy(w);
   return w;
 }
 function addVesselTrait(w){
