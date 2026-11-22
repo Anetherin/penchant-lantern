@@ -25,8 +25,7 @@ Every character is an adult and everything is consensual.
 The text has to agree with the service the game actually runs next.
 
 - **Firsts** (`data/firsts/`): stage `1` is kissing and touching only, `2` is hands and mouth (no intercourse), `3` is
-  anything. `jump` / `pent_jump` can lead into stage 2 *or* 3, so their `goRes` must not describe intercourse. After `goRes`
-  the service's own line plays, so keep `goRes` as a vivid, explicit lead-in right into the act starting (preserving dialogue and character reaction rather than skipping ahead to "afterward", "until morning", or "until you cum").
+  anything. `jump` / `pent_jump` can lead into stage 2 *or* 3, so their `goRes` must not describe intercourse. Start-to-finish `goRes` scenes (finishing, filling her up, and her immediate aftermath reaction) are great—just avoid locking the scene to "until morning" since other scenes can follow in the same night.
 - **Generic notes** that can follow any service (the `enc_*` visit notes in `flavor/encounters.json`, shared-scene `res`
   lines with `{act}` / `acts: true` in `bonds.json`, spicy date leads that open private time) must not name a specific act.
   Being explicit about bodies, arousal, enjoyment or distaste is fine.

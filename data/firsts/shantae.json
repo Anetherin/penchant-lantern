@@ -11,7 +11,7 @@
             "sam": true
           },
           "go": "Kiss her",
-          "goRes": "She giggles brightly against your lips before parting them to kiss you back, dancing on her tiptoes with a joyful breath against your mouth. \"Best encore ever!\"",
+          "goRes": "She giggles brightly against your lips before parting them to kiss you back, whooping softly and spinning into a dizzy pirouette afterward. \"Best encore ever!\"",
           "wait": "\"Not just yet.\"",
           "waitRes": "\"Aw, no fair!\" She pokes your chest, bouncing on her bare toes. \"Okay—though I'm definitely going to keep dancing in your direction.\"",
           "act": "kiss"
