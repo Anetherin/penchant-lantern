@@ -2,6 +2,34 @@
   "anael": [
     {
       "title": "Lamplighter",
+      "lantern": {
+        "title": "Revision Notes",
+        "text": "At dusk, Anael strolls the cobblestone hill beside you without bothering to touch a single lamp sconce. Instead, every wrought-iron lantern ignites itself a step ahead of your boots in warm crimson-amber glow as she paces unhurriedly against your shoulder, burgundy notebook tucked smoothly under her arm and silk tunic unlaced just far enough to catch the breeze.\n\n\"Four hundred years of unburnt oil on the Lantern Stone,\" Anael says crisply, sliding one warm palm playfully along the curve of your hip while passersby glance twice at the luminous crimson-and-gold tips brushing your coat. \"I ran three control tests on the flint, cross-examined the baker—twice—and ruled out every magistrate and traveler in town.\"\n\nShe stops beneath the last archway, tilts her face up with a wicked, half-lidded smirk, and drags your fingers casually across the swell of her breast beneath the loose silk. \"Conclusion: it lit for you. Frankly, Sam, once I accepted the Order's frost was optional, burning alongside you turned out to be magnificent for my fieldwork.\"",
+        "image": {
+          "comp": "walking close beside him down a cobble lane at dusk as streetlamps bloom warm crimson-amber ahead of their boots, leaning into his shoulder with a brazen smirk",
+          "setting": "lantern-lit cobbled street at dusk",
+          "sam": true
+        },
+        "ngpp": [
+          "The iron lamp bursts crimson-amber before she lifts a hand, making Anael raise one delighted brow and trace two warm fingers along your jaw. \"Odd—even my pulse seems to remember your stride already.\"",
+          "\"Do not laugh,\" Anael purrs shamelessly as two lamps flare together above your collar, leaning hard enough against your arm that you feel her bare nipple through the silk. \"My ledger insists we just met, yet my body acts like you own the key to my room.\"",
+          "\"No parchment amnesia stands a chance against these feathers,\" Anael whispers fiercely against your throat as crimson-amber fire blooms down the block. \"We have done this walk before, Sam—and I intend to make up for every slow night immediately.\""
+        ],
+        "choices": [
+          {
+            "label": "\"The flame looks good on you, Warden.\"",
+            "t": 6,
+            "m": 9,
+            "res": "\"Former Warden,\" Anael corrects smoothly, kissing the corner of your mouth slow and wet right beneath the brightest wall sconce on the hill. \"Though feel free to keep calling me that in bed—I find breaking protocol immensely gratifying.\""
+          },
+          {
+            "label": "Ask what goes in tonight's report",
+            "t": 4,
+            "m": 5,
+            "res": "\"Exhaustive empirical detail,\" Anael purrs shamelessly, dragging her knuckles boldly down the front of your belt before spinning on her heel toward the door. \"Including precisely how hard I plan to ride the subject once my shift ends.\""
+          }
+        ]
+      },
       "scene": "sam_date",
       "text": "At dusk, Anael walks the street with you and lights the lanterns. She does it by touching them. Each one blooms as her fingers leave it, and the row of flames follows the two of you down the hill. Her wings are folded neatly behind her.\n\nShe has been observing you for some weeks now. She tells you so, plainly, and she gives you her findings.\n\nThe Lantern Stone burned on the night you arrived, for the first time in four hundred years. Nobody lit it. She has examined the stone, the oil and the wick. She has interviewed the baker twice. She has gone through every other soul who came into Hollowmere that night and ruled each of them out.\n\n\"I have concluded that it was you,\" she says.\n\nYou tell her that's absurd. You run a pleasure house, and you apologize to chairs.\n\n\"I know.\" She gives you a small, helpless smile. \"I have checked my reasoning several times, and I've run out of other explanations. I find I am not sorry.\"",
       "ngpp": [
@@ -31,6 +59,104 @@
     },
     {
       "title": "Not the Wings",
+      "lantern": {
+        "title": "Maintenance & Mischief",
+        "scene": "shower",
+        "cloth": "nude",
+        "text": "You push open the washroom door and stop dead in the steam. Anael sits perched shamelessly on the wide oak rim of the soaking tub—wearing not even a towel—with water beading cleanly down bare creamy breasts, flushed inner thighs, and damp crimson-and-gold primary feathers resting across the floorboards.\n\nInstead of shielding herself, she combs one heavy, glimmering wing lazily forward, glances up through half-lidded eyes with a slow, wicked smile, and parts her knees a deliberate inch.\n\n\"My former Order claimed grooming an angel's plumage was sacredly intimate,\" Anael purrs evenly, holding a warm sponge out toward your chest while her crimson-amber halo pulses brightly in the haze. \"So by all means—put both hands wherever you like, Sam. Tell me if the crimson tips feel softer wet or warm against your belly.\"",
+        "image": {
+          "comp": "sitting naked on the wide wooden rim of a steaming tub with wet parted wings framing her gleaming shoulders and a brazen, inviting smile",
+          "setting": "steamy wooden washroom",
+          "sam": true,
+          "bath": true,
+          "towel": false,
+          "cloth": "nude"
+        },
+        "byIntim": {
+          "1": {
+            "text": "You step through the washroom steam to find Anael kneeling bare-hipped on the bath mat, twisting her damp crimson-and-gold wings lazily so warm droplets glide over proud rosy peaks down toward her glistening slit.\n\n\"Back so soon?\" she murmurs without an ounce of haste, snagging your wrist and tugging your palms straight onto her slick, wet ribcage—and letting them linger just under the warm underside of her breasts as she lifts her throat. \"I saved the base of the wing-joints for your thumbs, Sam. Among angels it counts as an invitation to take more—just so my methodology stays accurate.\"",
+            "choices": [
+              {
+                "label": "Wash down her shoulders, breasts, and wings slowly",
+                "t": 5,
+                "m": 9,
+                "l": 2,
+                "private": true,
+                "acts": ["massage_give","kiss"],
+                "res": "Anael arches shamelessly back into your chest as your lathered palms glide from her wing-joints over wet hips and swollen nipples."
+              },
+              {
+                "label": "Kiss straight down her wet collarbone instead",
+                "t": 4,
+                "m": 7,
+                "l": 1,
+                "res": "Anael laughs low and breathlessly against your ear, pulling your mouth down to trace every warm hollow along her throat while crimson-amber steam curls above your heads. \"Deliciously unhygienic,\" she whispers fondly. \"Write that down.\""
+              }
+            ],
+            "image": {
+              "comp": "kneeling bare-skinned on the bath mat in dense lantern steam, lifting her chin with an unabashed sultry grin while wet wings open wide",
+              "cloth": "nude",
+              "towel": false,
+              "bath": true
+            }
+          },
+          "3": {
+            "text": "Anael isn't waiting at the edge—she stands ankle-deep inside the steaming cedar tub, completely bare from wet crown to slender ankles, parting lush crimson-tipped wings wide around the water while touching two lazy fingers straight along her swollen, dripping folds.\n\n\"I ran a baseline test while you were downstairs,\" Anael whispers shamelessly, smiling wickedly down at the slick shine on her own knuckles as you strip out of your shirt at the threshold. \"Warm bathwater elevates my sensitivity by roughly forty percent. Come get inside and ruin my posture properly.\"",
+            "choices": [
+              {
+                "label": "Step into the tub and take her wet against the cedar rim",
+                "t": 6,
+                "m": 11,
+                "l": 4,
+                "private": true,
+                "acts": ["cowgirl","oral_give","kiss"],
+                "res": "Glowing crimson-tipped wings splash warm water across the tiles as Anael drapes naked legs over your thighs and rides you straight in the tub."
+              },
+              {
+                "label": "Kneel beside the rim and taste her breathless first",
+                "t": 5,
+                "m": 8,
+                "l": 2,
+                "res": "She braces both palms firmly on the back of your skull while you press your mouth straight between her parted thighs, crying out shamelessly against the tiles until crimson-amber ripples burst across the bathwater. \"A+,\" she gasps, trembling sweetly as she hauls you up by your collar."
+              }
+            ],
+            "image": {
+              "comp": "standing naked ankle-deep in a steaming cedar bath, parted wings framing her curves, grinning down with shameless desire",
+              "cloth": "nude",
+              "towel": false,
+              "bath": true
+            }
+          }
+        },
+        "choices": [
+          {
+            "label": "Take the sponge and wash every inch of her wings and back",
+            "if": {"trust":40},
+            "t": 5,
+            "m": 9,
+            "l": 2,
+            "res": "Anael leans deliberately forward over the tub rim, arching her spine so every slow sweep of the warm sponge brushes close beneath the swells of her bare breasts before gliding down her gleaming feathers. She hums contentedly through parted lips and turns at the end to kiss your soaked chest. \"You clean an angel far more thoroughly than paradise ever taught.\"",
+            "else": {
+              "t": 3,
+              "m": 5,
+              "res": "\"Impatient, aren't you?\" Anael laughs softly, dipping the sponge herself and trailing teasing droplets over her own collarbones just to watch you stare. \"Earn a little more trust first, Sam—then you can hold whatever you want.\""
+            }
+          },
+          {
+            "label": "Wash her shoulders, tease her breasts, and make her laugh",
+            "t": 4,
+            "m": 8,
+            "l": 1,
+            "res": "She tilts right back into your hands without a flicker of shame, gasping playfully when your warm, soapy thumbs circle her hard nipples while she inspects your technique with mock academic solemnity. \"Firm pressure, admirable stamina—I expect follow-up baths.\""
+          },
+          {
+            "label": "Toss her a dry sheet and sit beside her to talk",
+            "t": 3,
+            "m": 6,
+            "res": "Anael catches the linen lazily over one bare thigh without covering much of anything, crossing smooth ankles on the bench while spinning the damp sponge around her wrist. \"Chivalrous restraint, Sam? Careful—I am developing a distinct taste for being stared at.\""
+          }
+        ]
+      },
       "scene": "shower",
       "text": "You open the washroom door, and Anael is sitting on the edge of the tub.\n\nHer wings are soaked. They hang heavy on either side of her and drip steadily onto the tiles. She's wrapped in a towel, and she's blushing from her hairline to somewhere below the top of it. In the steam, her halo has dimmed to the glow of a single candle.\n\nShe has a comb in her hand and a look of defeat.\n\n\"The Order does not prepare one,\" she says, with enormous dignity, \"for the maintenance of plumage. In the Quiet Lamp there are attendants who see to it.\" She draws one wing across in front of herself, like a shield. A good deal of water comes with it. \"Do not touch the wings. It is impolite. It's considered rather intimate, among my kind.\"\n\nShe looks at the comb, and at the six feet of wet feathers she can't reach.",
       "byIntim": {
@@ -123,6 +249,43 @@
     },
     {
       "title": "Field Research: Pie",
+      "lantern": {
+        "title": "Field Research: Appetite",
+        "scene": "casual",
+        "text": "Anael is conducting oral-sensory fieldwork in the corner booth—meaning she ordered an extra-thick slice of wild berry pie, unlaced the bodice of her tavern blouse down to her ribs, and slid one bare foot calmly up under the hem of your trousers beneath the table.\n\n\"In the Quiet Lamp, three centuries passed without sugar or heat,\" she informs you earnestly, carving a tiny forkful with surgical precision while her toes hook boldly inside your underwear waist. \"Once the lantern flame settled in my chest, hunger became remarkably indiscriminate.\"\n\nShe licks sticky crimson berry glaze slowly off her knuckle with half-lidded eyes—holding your gaze while squeezing softly with her arches between your thighs. \"Dessert is astonishingly good, Sam. Though I find I am infinitely hungrier for whatever you're hiding under that tablecloth.\"",
+        "image": {
+          "comp": "seated in an inn booth licking berry glaze off her knuckle with a brazen sultry smirk while leaning carelessly across the table",
+          "setting": "cozy inn lounge, afternoon light",
+          "sam": true,
+          "cloth": "partial"
+        },
+        "choices": [
+          {
+            "label": "Feed her berries while sliding your hand under the table",
+            "t": 6,
+            "m": 9,
+            "l": 2,
+            "res": "Anael parts her plush lips smoothly around your berry-stained fingers, sucking softly at your thumb while spreading her knees effortlessly under the oak bench so you can trace right up the wet seam of her thighs. Her crimson-amber halo flares fiercely over the pastry plate before she shudders out a muffled, shameless groan straight into your palm."
+          },
+          {
+            "label": "Thumb the glaze off her bottom lip and haul her upstairs",
+            "if": {"canAct": ["kiss", "oral_give", "missionary"]},
+            "t": 6,
+            "m": 10,
+            "l": 3,
+            "private": true,
+            "acts": ["kiss", "oral_give", "cowgirl"],
+            "res": "\"Now that is proper empirical urgency,\" Anael laughs softly against your tongue as she drops her fork straight into the pie crust and drags you backward toward the stairwell without bothering to tie her blouse."
+          },
+          {
+            "label": "Order whipped cream and let her experiment",
+            "t": 4,
+            "m": 7,
+            "l": 1,
+            "res": "\"Whipped cream,\" Anael whispers with profound scholarly awe before promptly scooping a cold spoonful straight into her cleavage and inviting your tongue to collect the research notes before dinner rush begins."
+          }
+        ]
+      },
       "scene": "casual",
       "text": "Anael has decided to try human food. She says it's research. Three hundred and eighty-nine years of tending lamps did not involve eating, and she feels that her notes on mortal life are incomplete.\n\nThe cook gives her a slice of berry pie.\n\nShe approaches it as if it might be a trap. She holds the fork like a surgical instrument. The afternoon light slants across her wings and across the plate, and she studies the pie from two angles before she commits.\n\nAfter the first bite she goes completely still.\n\nAfter the second, her halo flickers.\n\nAfter the third she puts the fork down and looks you directly in the eye.\n\n\"This changes my understanding of mortality,\" she says gravely. \"You have very little time, and you spend some of it on this. I think that's wise of you.\" There's a berry stain at the corner of her mouth. \"Please do not tell the Order how much I enjoyed it.\"",
       "choices": [
@@ -157,6 +320,42 @@
     },
     {
       "title": "Recall",
+      "lantern": {
+        "title": "Unanswered Seal",
+        "scene": "portrait",
+        "text": "A second angel drops into the courtyard at noon in spotless silver mail, bearing the Quiet Lamp's crimson wax recall—and nearly stumbles mid-step the instant she smells hot rosewater, berry wine, and Anael's unmistakable crimson-amber radiance glowing from the parlor window.\n\nAnael steps onto the veranda unhurriedly in a loose open silk housecoat, shameless kiss-bruises peeking brazenly above her collar and glowing crimson-gold feather tips fanning lazy circles behind her shoulders. She accepts the sealed scroll with calm, immaculate poise, sets a warm wineglass over it to hold the corners flat, and dismisses her gaping courier with a polite smile.\n\nThat midnight, you open your bedroom door to find Anael straddling the threshold chair backwards with the unopened recall hanging casually from two fingers—wearing nothing beneath the unpinned robe. \"They think my reports wandered off-topic,\" she purrs softly, spreading her knees wide for the lamplight. \"Wait till they read the appendix.\"",
+        "image": {
+          "comp": "straddling a wooden bedroom chair backwards in a parted silk housecoat holding an unsealed scroll with a wicked half-lidded smile",
+          "setting": "dim inn corridor at night outside an open bedroom door, warm lantern glow",
+          "sam": true,
+          "cloth": "partial"
+        },
+        "ngpp": [
+          "As she twirls the wax seal between two fingers, Anael smiles suddenly—like a line she already memorized across worlds is rising to her tongue.",
+          "\"Honestly,\" she murmurs shamelessly, rubbing her bare calves across your shins in the hallway, \"even without my notebooks, I seem to remember telling heaven to go whistle right at this exact doorway.\"",
+          "\"Same sealed paper, same cold Order,\" Anael purrs, tossing the unopened scroll over her shoulder straight down the stairs before kissing your neck hot and slow. \"Some verdicts do not change in any lifetime, Sam.\""
+        ],
+        "choices": [
+          {
+            "label": "\"Think heaven can handle the appendix?\"",
+            "t": 5,
+            "m": 7,
+            "res": "\"Doubtful,\" Anael chuckles warmly, folding the wax seal into a tiny paper crane and tossing it straight into the wall brazier. \"They wanted a sober census on an unsent soul. Let them make sense of fifty pages detailing how thoroughly you bend me over a desk.\""
+          },
+          {
+            "label": "\"Burn the recall and come inside.\"",
+            "t": 7,
+            "m": 10,
+            "res": "Anael steps cleanly barefoot onto your toes, lets the silk robe slip right off her warm shoulders into the corridor, and touches one burning finger directly to the parchment edge until it curls into crimson-gold ash. \"My resignation has been submitted,\" she whispers shamelessly against your lips, dragging you backward onto the mattress."
+          },
+          {
+            "label": "Ask if she misses anything upstairs",
+            "t": 3,
+            "m": 4,
+            "res": "\"Not the drafts through marble halls,\" Anael replies lightly, sliding her leg smoothly over your thigh as the door latches shut behind you both. \"Wait—perhaps one thing: down here nobody yells if I cum loud enough to rattle every lantern in the rafters.\""
+          }
+        ]
+      },
       "scene": "portrait",
       "text": "A second angel appears in the courtyard at noon. She's tall and stern, and the lamps flare white when she lands. She carries a scroll with the seal of the Quiet Lamp.\n\nThe Order has completed its review. Anael's reports have grown long and they have wandered from the point. Her superiors have noticed. She is recalled, and she's to present herself at the next new moon. Another Warden will be assigned to the case.\n\nAnael takes the scroll with perfect composure. She thanks her sister, tucks it into her sleeve, and asks after the weather at home. The stern angel leaves in a rush of feathers.\n\nAnael goes back to the bar and finishes polishing the glasses. She doesn't mention it at dinner.\n\nThat night you hear something in the corridor and open your door. She's standing outside it with her wings drooping and one hand raised to knock. From the look of her, she has been there a long while.\n\nShe hasn't knocked.",
       "ngpp": [
@@ -192,6 +391,32 @@
     },
     {
       "title": "Evensong",
+      "lantern": {
+        "title": "Liturgical Duet",
+        "scene": "sam_date",
+        "text": "You find Anael barefoot in the candlelit back vestry past midnight—wings unfurled wide in luminous crimson-and-gold around the padded altar rail as she sings the ancient evensong of the Quiet Lamp.\n\nOnly the hymn has changed. Her silk gown hangs unlaced down past the swell of her bare breasts, flushed pink in the tallow-glow, and her voice drops an octave into warm, honeyed purrs on every line about lamps waiting in dark bedrooms for travelers who stay through dawn.\n\nWhen you step beside the bench and hum that flat, clumsy bass note underneath her phrasing, every brass sconce flares blazing crimson-gold—and Anael bursts into helpless, breathless laughter right across your chest. \"Hear that?\" she whispers shamelessly, hitching one bare leg cleanly up around your hip right over the altar cushion. \"The lanterns prefer your off-key harmony to three centuries of chaste choirs.\"",
+        "image": {
+          "comp": "leaning back against a candlelit altar rail with unlaced bodice and wings fanned behind her, laughing softly with deep sensual warmth",
+          "setting": "small candlelit chapel nook of an inn at night",
+          "sam": true,
+          "cloth": "partial"
+        },
+        "choices": [
+          {
+            "label": "Keep humming against her bare throat while she shivers",
+            "t": 6,
+            "m": 10,
+            "res": "You bury your mouth right against the fluttering pulse beneath her ear and rumble that flat, stubborn note straight across her collarbone while cupping both bare breasts in your palms. Every vibration sends helpless gasps straight through her lungs until Anael clings tightly around your neck and shudders happily against your hip beneath roaring golden flame."
+          },
+          {
+            "label": "Kneel at the altar rail and make her finish the hymn",
+            "t": 5,
+            "m": 8,
+            "l": 2,
+            "res": "Anael tries—truly tries—to hold the high cathedral cadence steady even after you peel down her silk ribbon and drag warm palms up the soft curve of her bare thighs. By the third stanza her scholarly diction snaps straight into shameless, ecstatic moans that leave every candle wick along the aisle flaring molten crimson."
+          }
+        ]
+      },
       "scene": "sam_date",
       "text": "There's a chapel nook at the back of the house, with a bench and a few candles. Nobody uses it much. Anael asks if you'd like to hear the evensong of her Order, and you say yes.\n\nShe sings it standing, with her hands folded. It's slow and very old. It's about lanterns set in windows, and the people who come home to them.\n\nThe candlelight shivers on her wings. Every flame in the room rises and falls with her voice.\n\nYou can't sing, and you never could. But there's a low line underneath the melody, and without deciding to, you start to hum it.\n\nThe lanterns brighten.\n\nAnael stops in the middle of a verse and stares at you. Then she starts to laugh. It's bright and helpless, and her halo flares with it.\n\n\"They're answering you,\" she says. \"They have only ever answered Wardens. What are you?\" She's still laughing. \"No. Don't stop. Do it again.\"",
       "choices": [
@@ -217,6 +442,27 @@
     {
       "title": "Report Withheld",
       "scene": "final",
+      "lantern": {
+        "scene": "final",
+        "title": "Final Draft: Unrepentant",
+        "text": "Anael waits on the wide slate roof under a bruised midnight sky—not in modest linen, but draped carelessly across warm quilts in a sheer crimson wrap she doesn't even pretend to knot shut. Crimson-and-gold feather tips gleam lazily across the shingles beside your boots while every lantern in Hollowmere burns steady, unashamed warmth down every lane.\n\nShe hands you her thick, leather-bound ledger open to the very last page. Beneath months of tidy citations and shameless postscripts, she has written two lines in gleaming gold ink:\n\n\"Subject Sam Takahashi remains an unmitigated hazard to heavenly restraint, celestial composure, and dry knickers. Recommending permanent, uninterrupted physical attachment, nightly servicing, and zero intent to depart.\"\n\nAnael closes the ledger, drops it smoothly over her shoulder into the grass below, and locks warm naked thighs straight around your waist as she pulls you down onto the quilt. \"I burned my return pass with the rest of my starch, Sam. Tell me you want your shameless Lantern Warden staying in your bed forever.\"",
+        "ngpp": [
+          "Her crimson-and-gold feathers wrap snugly around your neck with sudden, dizzying familiarity—as though the rooftop slate already knows the curve of both your spines.",
+          "\"Strange thing,\" Anael breathes hotly against your lower lip, grinding bare hips lazily down against your belt. \"Every lantern across town just flared bright scarlet like this exact confession already happened in another life.\"",
+          "\"Cycles and memories aside, Sam,\" Anael purrs shamelessly as her naked thighs tighten around your ribs, \"I never actually quit belonging to you—or this flame. Sign me back into your ledger permanently tonight.\""
+        ],
+        "goLead": "Anael laughs low and triumphant against your mouth, kicks open your bedroom door with one bare heel, and sweeps you straight onto the sheets beneath a blazing canopy of crimson-and-gold tipped feathers.",
+        "choices": [
+          {"label":"Sign her straight into your bed","t":6,"m":12,"res":""},
+          {
+            "label": "Tease her and say you need one more test first",
+            "t": 1,
+            "m": -3,
+            "hold": true,
+            "res": "Anael narrows half-lidded eyes with delighted, wicked amusement and trails two warm fingertips straight down your sternum. \"Empirical rigor? Oh, I approve heartily, Sam. Come find me whenever you're brave enough for the final exam.\""
+          }
+        ]
+      },
       "text": "Anael finds you on the roof, late. The whole sleeping town is laid out below you in lantern light, and she has just been around it lighting the last of them.\n\nShe sits down beside you. Then she opens her wings and folds them around you both. The feathers are warm, and softer than you'd have thought possible.\n\n\"The new moon is in three days,\" she says. \"I've written my final report. I was asked to determine whether this soul is a danger to the world.\"\n\nShe takes the scroll out of her sleeve and shows you. It's one line long.\n\n\"I find that he's a danger only to my composure. I have recommended no further action.\" She meets your eyes, golden and brave. \"I'm not sending it, and I'm not going back. I have tended other people's lamps for a very long time. I would like to stay, Sam. Not as a Warden. As yours.\"\n\nDownstairs, your door closes behind you both.",
       "ngpp": [
         "As her wings gather warmth around your shoulders, a sudden stillness crosses her face, as though this starlit sanctuary already knew your names.",

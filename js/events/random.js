@@ -309,27 +309,36 @@ function evStrike(){
     text: s>=(BAL.debt.strikes||3) ? `Marguerite Vane adjusts her monocle. "Three strikes, Mr. Takahashi. Your properties now belong to the Credit House."` : `Marguerite Vane adjusts her monocle. "You've missed a payment, Mr. Takahashi. Strike ${s} of three. The shortfall carries over, with interest. I'd hate to see you on the street. Truly."`,
     choices:[{label: s>=(BAL.debt.strikes||3)?'...':'Understood', fx(){ return ''; }}]};
 }
+const lanternVoice = () => { const g = typeof G==='function' ? G() : {}; return g.left ? 'gone' : g.bound ? 'bound' : g.knows ? 'known' : 'pre'; };
+function evLanternLine(ek, field, v, V){
+  const o = field.split('.').reduce((a,k)=>a && a[k], EVT[ek] || {});
+  let t = (o && typeof o==='object' && !Array.isArray(o)) ? (o[v] || o.pre || Object.values(o)[0]) : o;
+  if(Array.isArray(t)) t = pick(t);
+  return String(t ?? '').replace(/\{(\w+)\}/g, (m,k)=> V[k]!==undefined ? String(V[k]) : m);
+}
 function evLanternAsk(w){
   if(!w) return null;
-  const V = {name:w.name};
-  return {title:ET('lantern_ask','title',V), who:w.id, scene:evImg('lantern_ask','portrait'), text:ET('lantern_ask','text',V), choices:[
-    {label:ET('lantern_ask','accept.label',V), fx(){
+  const ek = w.key==='anael' && EVT.lantern_ask_anael ? 'lantern_ask_anael' : 'lantern_ask';
+  const v = lanternVoice(), V = {name:w.name, first:w.name.split(' ')[0], sam:'Sam', goddess: typeof GN==='function' ? GN() : 'Seliora', house: houseOf(w) ? houseOf(w).name : curH().name};
+  return {title:evLanternLine(ek,'title',v,V), who:w.id, scene:evImg(ek,'portrait'), cloth:(EVT[ek]||{}).image && EVT[ek].image.cloth, text:evLanternLine(ek,'text',v,V), choices:[
+    {label:evLanternLine(ek,'accept.label',v,V), fx(){
       const AN = SVC.angel || {};
-      w.sub = 'lantern'; w.lantern = true; w.lanternDecided = true; fitLust(w); gainTrust(w, AN.lanternAcceptTrust ?? 4); moodAdd(w, AN.lanternAcceptMood ?? 8);
-      return ET('lantern_ask','accept.res',V);
+      w.sub = 'lantern'; w.lantern = true; w.lanternDecided = true; if(w.key==='anael') applyLanternAnael(w); fitLust(w); gainTrust(w, AN.lanternAcceptTrust ?? 4); moodAdd(w, AN.lanternAcceptMood ?? 8);
+      return {text: evLanternLine(ek,'accept.res',v,V), after(){ const ge = typeof evGoddessLanternAwaken==='function' ? evGoddessLanternAwaken(w) : null; if(ge) showEvent(ge); else runQueue(); }};
     }},
-    {label:ET('lantern_ask','refuse.label',V), fx(){
+    {label:evLanternLine(ek,'refuse.label',v,V), fx(){
       w.lanternDecided = true; moodAdd(w, (SVC.angel || {}).lanternRefuseMood ?? -4);
-      return ET('lantern_ask','refuse.res',V);
+      return evLanternLine(ek,'refuse.res',v,V);
     }}
   ]};
 }
 function evLanternSelf(w){
   if(!w) return null;
-  const V = {name:w.name};
-  return {title:ET('lantern_self','title',V), who:w.id, scene:evImg('lantern_self','portrait'), text:ET('lantern_self','text',V), choices:[
-    {label:ET('lantern_self','ok.label',V), fx(){ return ''; }}
-  ]};
+  const ek = w.key==='anael' && EVT.lantern_self_anael ? 'lantern_self_anael' : 'lantern_self';
+  const v = lanternVoice(), V = {name:w.name, first:w.name.split(' ')[0], sam:'Sam', goddess: typeof GN==='function' ? GN() : 'Seliora', house: houseOf(w) ? houseOf(w).name : curH().name};
+  return {title:evLanternLine(ek,'title',v,V), who:w.id, scene:evImg(ek,'portrait'), cloth:(EVT[ek]||{}).image && EVT[ek].image.cloth, text:evLanternLine(ek,'text',v,V),
+    after(){ const ge = typeof evGoddessLanternAwaken==='function' ? evGoddessLanternAwaken(w) : null; if(ge) showEvent(ge); else runQueue(); },
+    choices:[{label:evLanternLine(ek,'ok.label',v,V), fx(){ return ''; }}]};
 }
 // Goals are judged over the whole cycle where it matters: S.chTrack (challengeTrack, end of every week) keeps the
 // average tidiness and the largest staff count; within = share of the scheduled payment weeks the payoff must beat.

@@ -1,0 +1,87 @@
+{
+  "anael": [
+    {
+      "needLantern": true,
+      "title": "Empirical Devotion",
+      "scene": "sam_date",
+      "image": {
+        "comp": "leaning over a candlelit vestry lectern in a loose silk wrap with crimson-tinted light catching her smiling face, open ledger spread beside tallow candles",
+        "setting": "quiet pleasure-house chapel vestry at night, tall beeswax tapers",
+        "sam": true,
+        "cloth": "partial"
+      },
+      "text": "The chapel sanctuary at midnight has never smelled so strongly of cedarwax, spiced wine, and warm feathers. Anael is perched squarely across the velvet vestry cushions with an open crimson-bound ledger balanced over one bare knee, fountain pen poised between two slender fingers while her silk wrap lies parted completely to the waist.\n\n\"Four hundred years of Quiet Lamp dogma insisted carnal longing dulled an angel's focus,\" she remarks lightly, flashing a shameless half-lidded smile as you latch the sacristy door behind you. Luminous crimson-and-gold tips ripple across her relaxed wings, throwing warm ember stripes across the carved wooden screen. \"Look at my last three chapters of footnotes, Sam. My handwriting got neater, the house's chapel lanterns glow three shades hotter—and my pussy gets dripping wet the instant your boots hit the threshold.\"\n\nShe caps her pen, drops it squarely onto the cushions, and spreads both bare thighs cleanly toward the aisle edge. \"Your goddess lit quite a match beneath Hollowmere's eaves, lover. Care to conduct a hands-on liturgy check with your Warden tonight?\"",
+      "choices": [
+        {
+          "label": "Drop to your knees between her thighs beside the lectern",
+          "if": {
+            "intim": 2,
+            "canAct": ["oral_give", "cowgirl", "missionary"]
+          },
+          "private": true,
+          "acts": ["oral_give", "cowgirl", "missionary"],
+          "t": 6,
+          "m": 9,
+          "l": 3,
+          "res": "Anael laughs low and breathless as you drop cleanly between her parted knees, tangling warm fingers straight through your hair while golden-crimson wings sweep wide around both your shoulders.",
+          "else": {
+            "t": 6,
+            "m": 8,
+            "l": 1,
+            "res": "You kneel right between her warm thighs anyway, pressing slow, unhurried kisses up the sensitive inside of each knee until Anael shivers helplessly against the lectern rail and tangles her crimson-tipped feathers softly around your back."
+          }
+        },
+        {
+          "label": "Let her annotate your chest between slow, dizzying kisses",
+          "t": 5,
+          "m": 8,
+          "l": 1,
+          "sam": {"charm": 1},
+          "res": "Anael dips her clean fingertip into chilled altar wine, traces brazen tally marks across your sternum for every groan she coaxes out of your throat, and licks each glistening line away with shameless, unhurried satisfaction until every candle in the sanctuary flares crimson-amber."
+        }
+      ]
+    },
+    {
+      "needLantern": true,
+      "title": "The Unfiled Appendix",
+      "scene": "portrait",
+      "image": {
+        "comp": "seated cross-legged across rumpled crimson sheets in the morning glow, sealing an unaddressed letter with a bright brazen grin",
+        "setting": "sunlit pleasure-house bedroom, tousled sheets and morning lantern warmth",
+        "sam": true,
+        "cloth": "partial"
+      },
+      "text": "Dawn creeps golden-red through your bedroom shutters while Anael sits cross-legged beside your pillow in nothing save your unbuttoned linen shirt, pressing a warm wax seal straight onto the back of a thick parchment packet. Her crimson-amber halo idles contentedly above rumpled hair, casting rich rose warmth down across every feather edge.\n\n\"My final formal dispatch to the High Registry,\" she announces brightly, tapping the glossy wax with one nail before setting the packet cleanly down on the nightstand—not beside the window for dispatch, but right inside the bottom drawer under spare silk stockings. \"In plain prose: I informed the Order that Hollowmere's Lamplighter turns stiff-backed angels into radiant, deeply satisfied harlots; that I intend to ride her mortal anchor senseless every week until eternity loses track; and that anybody upstairs wishing to dispute my conclusions is welcome to try staying chaste under our lanterns for five minutes.\"\n\nShe drops flat across your chest, sliding bare warm hips snugly against your morning stiffness with a wicked, shameless grin. \"Never sending it, of course. Keeping the proof right here in bed feels vastly more thorough.\"",
+      "choices": [
+        {
+          "label": "Pull the shirt off her shoulders and test her conclusions right now",
+          "if": {
+            "intim": 3,
+            "canAct": ["cowgirl", "missionary", "doggy"]
+          },
+          "private": true,
+          "acts": ["cowgirl", "missionary", "doggy"],
+          "t": 8,
+          "m": 12,
+          "l": 4,
+          "res": "Anael gasps in pure, brazen triumph as you haul your damp linen clear of her ribs and settle her right above your hips—every feather tipped in crimson-and-gold brushing warm light across the sheets.",
+          "else": {
+            "t": 7,
+            "m": 10,
+            "energy": "full",
+            "res": "You slip the oversized linen straight down off her bare shoulders, pin her warmly into the pillows beneath heavy crimson-and-gold wings, and lose half the morning trading slow, lazy kisses and whispered laughter until you both feel restored to the bone."
+          }
+        },
+        {
+          "label": "Pour morning tea and co-sign the appendix together",
+          "t": 6,
+          "m": 9,
+          "l": 1,
+          "grow": {"service": 4},
+          "sam": {"wits": 1},
+          "res": "You reach for the inkwell, sign your name squarely beneath Anael's flowing flourish on the unfiled margin, and spend an easy, laughing hour curled underneath warm feathered shelter—two shameless conspirators who never intend to go back to cold marble."
+        }
+      ]
+    }
+  ]
+}

@@ -57,8 +57,10 @@ function refreshSheetInfo(){
   const cl = comfortCloth(w,false,true), cs = comfortCloth(w,true,true);
   const o = getOutfit(w), u = getUnder(w);
   const anySam = getActs().some(a=>canSam(w,a.id));
-  const arcTxt = ARCS[w.key] ? `<div class="pink">♥ Story: ${(w.arc||0)>=ARCS[w.key].length ? 'Lovers' : `chapter ${w.arc||0}/${ARCS[w.key].length}${(w.arc||0)<ARCS[w.key].length?` <span class="muted">(next: ${ARCS[w.key][w.arc||0].title})</span>`:''}`}</div>` : '';
-  const afterTxt = AFTER_STORIES && AFTER_STORIES[w.key] ? `<div class="muted">📖 Epilogue: ${(w.after||0)>=AFTER_STORIES[w.key].length ? 'Complete' : `chapter ${w.after||0}/${AFTER_STORIES[w.key].length}${afterHomeDone(w) ? ` (next: ${esc(AFTER_STORIES[w.key][w.after||0].title)})` : ' (continues after her house story)'}`}</div>` : '';
+  const arcBeats = ARCS[w.key], arcIdx = w.arc||0, arcCur = arcBeats && arcBeats[arcIdx], arcTitle = arcCur && ((typeof isLanternAngel==='function' && isLanternAngel(w) && arcCur.lantern && arcCur.lantern.title) || arcCur.title);
+  const arcTxt = arcBeats ? `<div class="pink">♥ Story: ${arcIdx>=arcBeats.length ? 'Lovers' : `chapter ${arcIdx}/${arcBeats.length} <span class="muted">(next: ${esc(arcTitle)})</span>`}</div>` : '';
+  const afterBeats = AFTER_STORIES && AFTER_STORIES[w.key], afterCur = afterBeats && (afterBeats[w.after||0] || afterBeats[0]);
+  const afterTxt = afterBeats && (!(afterCur && afterCur.needLantern) || (typeof isLanternAngel==='function' && isLanternAngel(w))) ? `<div class="muted">📖 Epilogue: ${(w.after||0)>=afterBeats.length ? 'Complete' : `chapter ${w.after||0}/${afterBeats.length}${afterHomeDone(w) ? ` (next: ${esc(afterBeats[w.after||0].title)})` : ' (continues after her house story)'}`}</div>` : '';
   const vSt = vesselStage(w), vTh = (BAL.ngplus.vessel && BAL.ngplus.vessel.fills) || [2,5,9];
   const persBadge = isVessel(w) && !w.personality ? vesselLabel(w) : esc(w.personality || vesselLabel(w));
   box.innerHTML = `<div class="status"><div class="row"><h3>[ STATUS ] ${esc(titled(w))}</h3>${!w.key && S.workers.includes(w) ? `<button class="sm ${w.favorite?'primary':''}" onclick="toggleFavorite('${w.id}')" title="Favorited generic ladies who reach max trust (1000) reincarnate as 'old friends' in New Game+ (up to 1 per completed cycle).">${w.favorite?'★ Favorited':'☆ Favorite'}</button>` : ''}</div>
@@ -241,7 +243,7 @@ function arcReqs(w){
   return reqLine('Next chapter needs', out);
 }
 function afterReqs(w){
-  const beats = AFTER_STORIES && AFTER_STORIES[w.key]; if(!beats || (w.after||0) >= beats.length || !S.workers.includes(w)) return '';
+  const beats = AFTER_STORIES && AFTER_STORIES[w.key]; if(!beats || ((beats[w.after||0]||beats[0]||{}).needLantern && !(typeof isLanternAngel==='function' && isLanternAngel(w))) || (w.after||0) >= beats.length || !S.workers.includes(w)) return '';
   const i = w.after||0, need = AFTER_NEEDS[Math.min(i, AFTER_NEEDS.length-1)], gap = paidGap(AFTER_GAPS[Math.min(i, AFTER_GAPS.length-1)]), out = [];
   if(!afterHomeDone(w) || houseGate(w)) out.push([false, 'her house story has to finish first']);
   if(typeof afterArcDone==='function' && !afterArcDone(w)) out.push([false, 'her story arc has to finish first']);

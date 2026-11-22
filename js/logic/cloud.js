@@ -238,8 +238,8 @@ async function cloudResolveDiff(action){
       const meta = { hash: cmp.remote.hash, bytes: cmp.remote.bytes, updatedAt: cmp.remote.updatedAt };
       await imgMetaPut(cmp.key, meta);
       CLOUD_STATE.manifest.imgs[cmp.key] = meta;
-      const w = findAny(cmp.id);
-      if(w && cmp.id !== 'draft' && (cmp.scene === 'portrait' || !THUMBS[cmp.id])) await setThumb(cmp.id, cmp.remoteDataUrl);
+      const w = findAny(cmp.id), tid = w ? thumbId(w) : cmp.id;
+      if(w && cmp.id !== 'draft' && (cmp.scene === 'portrait' || !THUMBS[tid])) await setThumb(tid, cmp.remoteDataUrl);
       toast('Local image replaced with cloud copy.');
     }
     closeModal2();

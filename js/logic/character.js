@@ -133,14 +133,20 @@ function outfitKey(w, scene){
 function getOutfit(w, scene){ const wr = sceneWear(scene); if(wr) return {label:'As described', style:w.style, prompt:wr, bonus:{}, custom:true}; const ok = (scene && (SCENES[sceneBase(scene)]||{}).outfit) || outfitKey(w, scene); if(ok==='custom') return {label:'Her own outfit', style:w.style, prompt:w.customOutfit||'an elegant dress', bonus:{}, custom:true}; return WARDROBE[ok] || BASE_OUTFITS.b_corset; }
 function getUnder(w){ if(w.under==='custom') return {label:'Custom', prompt:w.customUnder||'simple lace underwear', bonus:{}, style:w.style}; return UNDER[w.under] || UNDER.plain; }
 const usesColor = o => /\{color\}/.test(o.prompt||'');
-// Lantern Angels deepen their wings to black-and-amber and shift their halo glow to pleasure-lantern amber.
+// Lantern Angels glow with Seliora's palette: crimson-and-gold tipped wings and a crimson-amber lantern halo.
 function lanternFeatures(f){
   let s = String(f||'');
-  if(!s) return 'black-and-amber feathered wings and a glowing amber lantern halo';
-  s = s.replace(/\b(?:snow-white|white-and-gold|white|ivory|silver)(?=[\s-]*(?:feathered )?wings)/gi, 'black-and-amber')
-       .replace(/\b(?:faint|warm|bright|pale)?\s*(?:golden|white|blue laurel)\s*halo\b|\bglowing halo\b/gi, 'glowing amber lantern halo')
-       .replace(/faint warm glow like lantern light behind her head/gi, 'warm crimson-amber lantern halo glowing behind her head');
-  if(!/amber lantern|crimson-amber/i.test(s)) s += ', amber lantern halo';
+  if(!s) return 'white feathered wings tipped in glowing crimson-and-gold and a glowing crimson-amber lantern halo';
+  if(!/crimson-and-gold|crimson-amber/i.test(s)){
+    if(/gold-tipped feathers/i.test(s)){
+      s = s.replace(/gold-tipped feathers/i, 'glowing crimson-and-gold tipped feathers');
+    } else {
+      s = s.replace(/\b(?:snow-white|white-and-gold|white|ivory|silver)([\s-]*(?:feathered )?wings)\b/gi, 'white$1 tipped in glowing crimson-and-gold');
+    }
+    s = s.replace(/\b(?:faint|warm|bright|pale)?\s*(?:golden|white|lantern-gold|blue laurel)\s*halo\b|\bglowing halo\b/gi, 'glowing crimson-amber lantern halo')
+         .replace(/faint warm glow like lantern light behind her head/gi, 'glowing crimson-amber lantern halo behind her head');
+    if(!/lantern halo/i.test(s)) s += ', glowing crimson-amber lantern halo';
+  }
   return s;
 }
 // Effective appearance in a scene: outfits can override hairStyle and add/replace features; special outfits can also override hairColor, eyes, skin, favColor, build, body, expression, pubic, raceLook.
@@ -153,6 +159,7 @@ function effDesign(w, scene){
   if(w && w.race==='angel' && w.sub==='lantern'){
     if(!o.replaceFeatures) out.features = lanternFeatures(out.features);
     if(scene && isIntimateScene(scene) && !o.eyes) out.eyes = 'glowing lamp-flame gold';
+    if(w.key==='anael' && !o.expression) out.expression = 'a warm, brazenly teasing smile, half-lidded eyes';
   }
   return out;
 }
@@ -426,6 +433,7 @@ function ensureWorker(w){
   if(w.samples===undefined) w.samples = false;
   delete w.madameFocus;   // the madame has no focus options any more (she matches clients)
   if(!w.body) w.body = rollBody(w.race);
+  if(w.vessel && w.vesselForm==='angel' && !w.sub){ w.sub = 'lantern'; w.lantern = true; }
   if(w.race==='angel' && w.sub==='lantern') w.lantern = true;
   w.counts = w.counts || {};
   if(!w.style) w.style = pick(STYLES);
@@ -476,6 +484,7 @@ function ensureWorker(w){
   if(w.race==='demon' && w.feedOnly===undefined) w.feedOnly = 25;   // feed-only below 25% energy by default (null = turned off)
   if(w.lust===undefined) w.lust = clamp(Math.round(30 + w.lewd*0.4 + ri(-10,10)));
   if(JOBS[w.job]===undefined) w.job = (w.job==='intimate'||w.job==='specialty') ? 'courtesan' : 'rest';
+  if(w.key==='anael' && isLanternAngel(w) && w.personality==='Calm and elegant') applyLanternAnael(w);
   if(typeof syncTitles==='function') syncTitles(w);   // titles (data/titles.json): her data seed, old saves' w.title
   return w;
 }
@@ -488,7 +497,7 @@ function applyMods(w){
   STAT_KEYS.forEach(k=>w.stats[k]=clampK(Math.round(w.stats[k])));
   TECH_KEYS.forEach(k=>w.tech[k]=clampK(Math.round(w.tech[k])));
   w.lewd = clamp(w.lewd);
-  if(w.race==='angel' && !w.sub && w.lewd >= ((BAL.svc.angel||{}).lanternLewd ?? 60)){ w.sub = 'lantern'; w.lantern = true; w.lanternDecided = true; }
+  if(w.race==='angel' && !w.sub && !isGuest(w) && w.lewd >= ((BAL.svc.angel||{}).lanternLewd ?? 60)){ w.sub = 'lantern'; w.lantern = true; w.lanternDecided = true; }
 }
 // personality stat leans (personalities.json `stats`, 0-100 scale), baked into a new generic lady's trained stats
 function persLean(w, only){
@@ -611,11 +620,30 @@ function soloChance(w){ const P = PERS[w.personality]||{}; return Math.max(0.05,
 function lustLabel(w){ return restless(w) ? 'restless' : w.lust>=LUST_EAGER ? 'eager' : w.lust<LUST_LOW ? 'not in the mood' : 'content'; }
 const LUST_EAGER = BAL.lust.eager || 60;
 const isLanternAngel = w => !!(w && w.race==='angel' && w.sub==='lantern');
+const houseHasLanternChapel = h => !!(h && h.up && h.up.chapel && typeof S!=='undefined' && S && (S.workers||[]).some(w=>w.house===h.id && w.job==='chapel' && isLanternAngel(w)));
+function applyLanternAnael(w){
+  if(!w || w.key!=='anael') return w;
+  const D = (typeof NAMED!=='undefined' && NAMED.anael) || {};
+  w.personality = 'Sultry and indulgent';
+  w.dislike = null;
+  if(D.lanternBackstory) w.backstory = D.lanternBackstory;
+  if(typeof firstsProfile==='function') w.firsts = firstsProfile(w);
+  return w;
+}
+function resetLanternAnael(w){
+  if(!w || w.key!=='anael') return w;
+  const D = (typeof NAMED!=='undefined' && NAMED.anael) || {};
+  if(D.personality) w.personality = D.personality;
+  w.dislike = D.dislike !== undefined ? actKey(D.dislike) : null;
+  if(D.backstory) w.backstory = w.isPartner && D.partnerStory ? D.partnerStory + '\n\n' + D.backstory : D.backstory;
+  if(typeof firstsProfile==='function') w.firsts = firstsProfile(w);
+  return w;
+}
 // Her lust profile (data/balance.json → lust): weekly build, how much each act spends, floor and ceiling.
 function lustProfile(w){
   if(isVessel(w) && vesselStage(w) < 2) return {build:0, drop:1, floor:0, max:0};
   const L = BAL.lust, B = L.build, Pf = L.profile, P = PERS[w.personality]||{};
-  const build = (B.base + w.lewd*B.perLewd + ((has(w,'Eager')||has(w,'Exhibitionist'))?B.eagerTrait:0) + (w.job==='rest'?B.resting:0)) * (P.lustBuild||1) * fxMul(w,'lustBuild') * incenseMul(w,'lust') * townMul('lustBuild', 1, typeof S!=='undefined'&&S?houseOf(w):null) * (S && w.house && (houseOf(w)||{}).lanternChapel ? (BAL.amenities.chapel.lanternLust ?? 1.25) : 1);   // a Lantern Angel keeping the chapel
+  const build = (B.base + w.lewd*B.perLewd + ((has(w,'Eager')||has(w,'Exhibitionist'))?B.eagerTrait:0) + (w.job==='rest'?B.resting:0)) * (P.lustBuild||1) * fxMul(w,'lustBuild') * incenseMul(w,'lust') * townMul('lustBuild', 1, typeof S!=='undefined'&&S?houseOf(w):null) * (w.house && houseHasLanternChapel(houseOf(w)) ? (BAL.amenities.chapel.lanternLust ?? 1.25) : 1);   // a Lantern Angel keeping the chapel
   const drop = (Pf.dropAtLewd0 + (Pf.dropAtLewd100 - Pf.dropAtLewd0) * w.lewd/100) * fxMul(w,'lustDrop');
   const max = 100 + fxAdd(w,'lustMax');
   const floor = Math.min(60, max, w.lewd*Pf.floorPerLewd + fxAdd(w,'lustFloor'));

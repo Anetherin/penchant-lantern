@@ -157,7 +157,9 @@ const hasChallengePerk = id => !!(typeof S!=='undefined' && S && S.challengePerk
 function shrineRebornSum(h){
   if(!h || typeof S==='undefined' || !S) return 0;
   const P = (HOUSES[h.id]||{}).rebornPool; if(!P) return 0;
-  const raw = (S.workers||[]).filter(w=>w.house===h.id && w.job!=='rest').reduce((a,w)=>a+(w.reborn||0), 0);
+  const working = (S.workers||[]).filter(w=>w.house===h.id && w.job!=='rest');
+  const lanternEcho = working.filter(isLanternAngel).length * (((BAL.goddess||{}).lantern||{}).shrineEcho ?? 2);
+  const raw = working.reduce((a,w)=>a+(w.reborn||0), 0) + lanternEcho;
   return P.cap ? Math.min(P.cap, raw) : raw;
 }
 function shrineMult(h, key){

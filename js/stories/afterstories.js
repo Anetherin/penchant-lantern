@@ -30,6 +30,7 @@ function afterArcDone(w){
 function afterReady(w){
   const beats = w && AFTER_STORIES[w.key]; if(!beats || !S.workers.includes(w)) return -1;
   const i = w.after || 0; if(i >= beats.length || !afterHomeDone(w) || !afterArcDone(w) || houseGate(w)) return -1;
+  const b = beats[i]; if(b && b.needLantern && !(typeof isLanternAngel==='function' && isLanternAngel(w))) return -1;
   const need = AFTER_NEEDS[Math.min(i, AFTER_NEEDS.length - 1)], gap = paidGap(AFTER_GAPS[Math.min(i, AFTER_GAPS.length - 1)]);
   return (w.trust >= need && S.week - (w.afterWk || 0) >= gap) ? i : -1;
 }
@@ -37,18 +38,18 @@ function evAfterStory(w){
   const beats = w && AFTER_STORIES[w.key]; if(!beats || !S.workers.includes(w)) return null;
   const i = w.after || 0; if(i >= beats.length) return null;
   const last = i === beats.length - 1;
-  const b = resolveArcBeat(w, beats[i]);
+  const b = resolveArcBeat(w, beats[i]), gName = typeof GN==='function' ? GN() : 'Seliora';
   let scene = b.scene || 'casual';
   if(b.image) scene = dynScene(`after_${w.key}_${i}_${w.intim||0}`, b.image) || scene;
   return {
-    title: `${w.name}: ${b.title} (${i+1}/${beats.length})`,
-    who: w.id, scene, cloth: b.cloth, text: b.text,
+    title: `${w.name}: ${String(b.title||'').replace(/\{goddess\}/g, gName)} (${i+1}/${beats.length})`,
+    who: w.id, scene, cloth: b.cloth, text: String(b.text||'').replace(/\{goddess\}/g, gName),
     choices: b.choices.map(c=>({
       label: fillF(c.label, w),
       fx(){
         const e = resolveEff(w, c);
         applyEff(w, e);
-        let res = String(e.res || '').replace(/\{N\}/g, w.name);
+        let res = String(e.res || '').replace(/\{N\}/g, w.name).replace(/\{goddess\}/g, gName);
         w.afterWk = S.week;
         if(e.hold) return res;
         w.after = i + 1;
@@ -64,7 +65,7 @@ function evAfterStory(w){
             outAi = {kind: 'arc', wid: w.id, act: pAct, scene: outImg.scene, forSam: true, situation: actSituation(w, pAct, e.situation || b.title)};
             ranPrivate = true;
           } else if(e.fallbackRes){
-            res = String(e.fallbackRes).replace(/\{N\}/g, w.name);
+            res = String(e.fallbackRes).replace(/\{N\}/g, w.name).replace(/\{goddess\}/g, gName);
           }
         }
         if(ranPrivate || outImg) return {text: res, img: outImg, ai: outAi};

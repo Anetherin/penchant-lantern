@@ -750,36 +750,107 @@
     }
   },
   "lantern_ask": {
-    "title": "Touched by the Lamplighter",
-    "text": [
-      "{name} corners you after closing, dark amber sparks snapping along her halo while her wings tremble behind her. \"Everyone back home whispers about the Lamplighter stealing angels,\" she breathes, grabbing your hand and pressing it straight between her wet thighs. \"Some goddess nobody can even name, making us lose our heads over cock. Tell me to take it, Sam. Tell me to quit pretending I want anything less than getting fucked raw whenever I itch for it.\"",
-      "{name} lingers by the parlor hearth with warm amber creeping through her white feathers, smiling crookedly at you. \"The Order warned us about this town's goddess—some unnamed Lamplighter who turns good angels into shameless sluts,\" she purrs, sliding her palm over the front of your trousers. \"Half the whispers are lies, except the part where my pussy hasn't stopped aching since I walked under these lanterns. Say yes, and watch me drop every vow right here.\""
-    ],
+    "title": "Kindled by the Lantern",
+    "text": {
+      "pre": [
+        "{name} corners you after closing, warm crimson-and-gold light rippling softly through the tips of her feathers while her halo hums above her hair. \"Everyone back home whispers about Hollowmere's unnamed Lamplighter stealing good angels,\" she breathes, guiding your hand straight between her wet, aching thighs. \"Only it doesn't feel like theft at all—every lantern in {house} feels like an invitation. Tell me to take it, Sam. Tell me to stop rationing my own heat and enjoy every cock I want.\"",
+        "{name} lingers by the parlor hearth with crimson-amber radiance warming the edges of her wings, smiling shamelessly down at you. \"The Order warned us about the town goddess turning angels wanton,\" she purrs, sliding her palm over the front of your trousers. \"Turned out paradise just never told us how good surrender feels. Say yes, Sam—let me answer the flame properly.\""
+      ],
+      "known": [
+        "{name} catches your sleeve beside the staircase, feather tips glowing crimson-and-gold as her chest rises in slow, deliberate warmth. \"Seliora told me I wouldn't regret listening to my own body,\" she whispers with a wicked, honeyed grin, pressing her hips snugly against yours. \"Her lantern flame has been humming under my skin all week. Give me your blessing, Sam, and let me quit pretending I want to hold back.\""
+      ],
+      "bound": [
+        "{name} waits inside your parlor with a blissful, half-lidded smile, crimson-amber sparks wreathing her halo every time she breathes. \"I felt {goddess}'s flame brush straight across my wings tonight,\" she murmurs shamelessly, lifting your knuckles to her parted lips before dragging them lower to her soaked silk. \"She practically invited me to join her side of {house}—all heat, zero guilt, and wide open for whatever cock I fancy. Say the word, Sam.\""
+      ],
+      "gone": [
+        "{name} lingers beneath the quiet hall lantern after closing, warm crimson-gold edges catching along her feathers like an echo left behind in the rafters. \"Even with the goddess gone, the flame she left in Hollowmere still hums in my pulse,\" she breathes, catching your fingers and pressing them between her hot thighs. \"I'm tired of keeping stone vows in a warm bed. Tell me to claim this glow and let myself want what I want.\""
+      ]
+    },
     "accept": {
       "label": "Give her your blessing",
-      "res": "{name} shudders and grins as lamp-flame light washes down her halo and turns her feathers black-and-amber. \"Finally,\" she laughs softly, licking her lips while her eyes flare gold. \"Now come over here—this angel is done waiting politely for cock.\""
+      "res": {
+        "pre": "{name} shudders in pure, sunlit relief as crimson-amber warmth spills down her halo and tips her feathers in glowing crimson-and-gold. \"Mmm... finally,\" she laughs softly, licking her bottom lip with a brazen gleam in her eyes. \"Now come here, Sam—this angel is finished apologizing for how wet she gets.\"",
+        "known": "{name} arches happily into your touch as Seliora's crimson-and-gold fire seals along every feather tip. \"Delicious,\" she purrs, tangling her fingers behind your neck. \"Let's go see what all that warmth feels like pressed flat against a mattress.\"",
+        "bound": "{name} exhales a soft, rapturous sigh as {goddess}'s crimson-amber flame answers inside her halo, blazing warm gold around her temples. \"Yours and hers, then,\" she grins shamelessly, crowding you back toward the stairs. \"Now point me at a warm bed—starting with yours.\"",
+        "gone": "{name} shivers softly as warm crimson-and-gold light blooms along the edges of her wings, bright and steady in the quiet hallway. \"Thank you, Sam,\" she whispers with a hungry, unhurried smile. \"No more stone vows—only warm sheets from here on.\""
+      }
     },
     "refuse": {
-      "label": "Keep her old wings",
-      "res": "{name} sucks in a sharp breath as the amber sparks die back to pale gold, glaring half-annoyed down at her lap. \"Fine. You win, Sam. Back to pretending I'm not wet all week.\""
+      "label": "Ask her to keep her old vows",
+      "res": "{name} exhales slowly as the crimson-amber heat ebbs back to pale marble gold, giving you a wry, lingering glance. \"If you insist, Sam. Though good luck pretending you didn't feel how wet I already am.\""
     },
     "image": {
-      "comp": "standing in warm lantern light with wings half spread, subtle amber glow along her halo and feather tips",
+      "comp": "standing in warm lantern light with wings half spread, crimson-amber glow along her halo and feather tips",
       "setting": "quiet pleasure-house parlor at night, glowing amber lanterns",
       "house": true
     }
   },
   "lantern_self": {
-    "title": "A Darker Halo",
-    "text": [
-      "{name} strolls into the breakfast room with black-and-amber wings spread lazily behind her and a halo burning hot lantern-gold. She didn't ask permission. \"Stop gaping,\" she says, grinning around a bite of toast. \"Whether it's the Lamplighter's whisper or my own filthy head, I threw out the Order's vows last night. Now point me at a client before I drag someone under the stairs.\"",
-      "You catch {name} in the hallway and stop mid-step—her halo glows rich lamp-amber, and dusky black feathers edge her wings. \"No point hiding it,\" she purrs, running a slow tongue across her bottom lip. \"Whoever the goddess behind these lanterns is, I'm hers now. My pussy aches all day, I'm not turning anyone away, and I want cock every night I can get it.\""
-    ],
-    "ok": {"label":"Noted"},
+    "title": "The Warm Flame",
+    "text": {
+      "pre": [
+        "{name} strolls into the breakfast room with feathers newly tipped in glowing crimson-and-gold and a warm crimson-amber halo idling shamelessly above her crown. \"Don't bother lecturing,\" she grins around a slice of toast, crossing one bare thigh casually over the other. \"Whoever Hollowmere's Lamplighter is, she speaks far better sense than my old Order. I let the flame in last night—and tonight I'm tasting every bed in {house} on my own terms.\"",
+        "You meet {name} on the landing and pause—warm crimson-amber light shimmers across the edge of every flight feather, and her posture carries lazy, unapologetic heat. \"No regrets,\" she purrs, trailing two fingertips down your sternum. \"Your lanterns warmed up what paradise tried to freeze shut. I'm keeping these tips, Sam, and every itch that came with them.\""
+      ],
+      "known": [
+        "{name} sweeps into the parlor humming happily under a crimson-amber halo, glowing crimson-and-gold feather tips brushing the doorframe. \"Seliora didn't even have to twist my arm,\" she chuckles shamelessly, winking across the table. \"One honest conversation with your goddess and I burned my old rules in the grate. Point me toward {house}'s liveliest bed, Sam.\""
+      ],
+      "bound": [
+        "{name} floats lazily down the main stair with {goddess}'s unmistakable crimson-and-gold shimmer painting every feather edge, smiling like a cat in sunny cream. \"Hope you don't mind another convert under your roof,\" she teases softly, kissing the corner of your jaw in passing. \"When the goddess of {house} offers an angel pure warmth instead of marble lectures, only a fool stays cold.\""
+      ],
+      "gone": [
+        "{name} steps onto the landing bathed in warm crimson-and-gold feather light, her halo burning steady crimson-amber in the quiet morning. \"The lamp at the crossroads still remembers even when its keeper slips away,\" she murmurs with a serene, brazen smile. \"I took the flame myself, Sam—and I intend to put every warm drop of it to good use in {house}.\""
+      ]
+    },
+    "ok": {"label":"She wears it well"},
     "image": {
-      "comp": "standing composed with black-and-amber feathered wings spread lazily and glowing amber halo",
+      "comp": "standing composed with wings spread lazily, glowing feather tips and warm crimson-amber halo",
       "setting": "pleasure house breakfast room, warm morning light",
       "house": true
+    }
+  },
+  "lantern_ask_anael": {
+    "title": "Unwritten Citations",
+    "text": {
+      "pre": "Anael waits beside your desk past midnight with her ink-stained notebook closed beneath both elbows—and crimson-and-gold sparks dancing boldly along the tips of her feathers. She lets her silk chemise slip clear off one shoulder as she steps into your lap, wrapping warm legs around your waist. \"Four months of meticulous field notes on Hollowmere's strange lantern flame, {sam},\" she whispers shamelessly, grinding her soaked heat squarely over the front of your trousers while her crimson-amber halo blooms bright. \"My clinical conclusion is embarrassingly simple: I want my thighs wide open for you and half this house, guilt-free. Say yes, and watch the Warden throw away the rest of her ink.\"",
+      "known": "Anael props one hip squarely on the edge of your ledger table with her gown unbuttoned to the navel, wings flexing in lazy crimson-and-gold splendor behind her shoulders. \"I spoke with Seliora between shifts,\" she murmurs—her calm scholarly cadence soaked through with wicked, unhurried amusement as she draws your hand against her wet bare pussy. \"She pointed out how thoroughly my Order lied about pleasure dulling an angel's mind. Everything shines brighter when I'm aching for cock, {sam}. Give me your blessing to make my new thesis official.\"",
+      "bound": "Anael doesn't bother closing the parlor door—she backs you straight against the bookshelf with a molten crimson-amber halo framing her face and crimson-and-gold luminescence licking down her wings. \"{goddess}'s lantern flame sits right under my skin like sweet wine, {sam},\" she breathes softly, kissing along your jawline while one hand strokes boldly between your thighs. \"She told me an angel bound to pleasure owes nobody restraint anymore. Tell me to take the crimson feather tips completely—and let me spend {house}'s nights showing you how shameless precision looks.\"",
+      "gone": "Even in the quiet hush after the shrine fell still, Anael sits astride the arm of your reading chair in a loose crimson robe, feather tips flaring crimson-and-gold as she tips your chin up. \"She left an ember burning inside every lamp in hollowmere, {sam},\" Anael murmurs, all prim scholar's poise melted into brazen silk as she presses your palm flush to her bare, dripping chest-height warmth. \"My notes are finished. Let me burn the last of those cold Quiet Lamp vows and wear this flame cleanly for you.\""
+    },
+    "accept": {
+      "label": "\"Throw away the Order's ink, Anael.\"",
+      "res": {
+        "pre": "Anael lets out a long, shameless laugh against your mouth as blazing crimson-and-gold seals across every flight feather and turns her crimson-amber halo radiant. \"Gladly,\" she purrs, nibbling your lower lip before sliding back on your lap to unbutton your belt. \"Fieldwork begins immediately.\"",
+        "known": "\"At last—a patron with proper scientific curiosity,\" Anael murmurs warmly, crimson-and-gold fire blooming across her tips as she bends to kiss you slow and deep. \"Seliora was right about everything—especially how little clothing this research needs.\"",
+        "bound": "Anael arcs gracefully back against your chest as {goddess}'s crimson-amber fire settles home across her halo and crimson-gold wings. \"Officially shameless, signed in triplicate,\" she whispers with a glittering half-lidded smile. \"Shall we let {goddess} inspect my new plumage, or test it on the rug first?\"",
+        "gone": "\"Then let's finish burning what's left of my starch,\" Anael whispers fiercely, crimson-and-gold light rippling over every feather as she pulls your mouth down to hers. \"From tonight on, {house} gets every shameless page of me.\""
+      }
+    },
+    "refuse": {
+      "label": "\"Keep your quiet lamp vows a little longer.\"",
+      "res": "Anael draws back cleanly, though a wicked, unhurried smile lingers at the corner of her mouth as the crimson embers along her feathers bank down to pale ivory. \"Noted in the margin, {sam},\" she replies smoothly. \"We'll see how long restraint survives the next time you touch me like that.\""
+    },
+    "image": {
+      "comp": "perched brazenly on the edge of a wooden desk with loosened silk robe and glowing crimson-amber halo around her head",
+      "setting": "lantern-lit private study at night, open ledgers beside a warm candle",
+      "sam": true,
+      "cloth": "partial"
+    }
+  },
+  "lantern_self_anael": {
+    "title": "Amended Thesis",
+    "text": {
+      "pre": "Anael strolls unhurriedly down {house}'s main stair with both feathered wings flared in vivid crimson-and-gold and a warm crimson-amber halo crowning her neat hair—not a scrap of apology in her stride. She drops a thick bundle of Quiet Lamp parchment neatly onto the hallway fireplace grate, watches it curl to ash, and kisses your cheek with lingering heat. \"My report has been revised, {sam},\" she purrs shamelessly right beside your ear. \"Requiring permission to indulge every filthy craving my body discovers seemed procedurally redundant. I belong to the warm lantern flame now—and my schedule tonight is entirely open.\"",
+      "known": "You find Anael leaning lazily against the breakfast counter in sheer silk, crimson-and-gold feather tips catching the morning sun while she jots calm notes into a brand-new burgundy ledger. \"After another late-night talk with Seliora, keeping half my desires locked in a drawer started feeling foolish,\" she says crisply—then shuts the ledger and presses your knuckles flat against her bare, slick hip beneath the robe. \"I claimed her lantern flame myself, {sam}. Tell your clients and your bedsheets I've stopped pretending modesty suits me.\"",
+      "bound": "Anael steps out from the Shrine threshold dressed in nothing save an open silk wrap and fresh crimson-and-gold luminescence tipping every primary feather, smiling with serene, shameless radiance. \"{goddess} brushed past my shoulder at dawn and left the rest of her warmth sitting right in my chest,\" she murmurs, hooking two fingers lightly through your belt loop to tug you close. \"Why ask mortals to sign a pact the goddess herself already wrote across my pulse? I'm {house}'s Lantern Anael now, {sam}—and I intend to make thorough work of every night we share.\"",
+      "gone": "Anael steps into the parlor carrying two cups of tea, glowing crimson-and-gold along every feather edge and crowned in steady crimson-amber light. \"Even an absent goddess leaves bright embers in a sharp scholar's bed,\" she remarks evenly—before setting the cups down and kissing your neck slow and wet. \"I rewrote my own commission, {sam}. Cold vows are boring; burning wide open beneath these lanterns suits me far better.\""
+    },
+    "ok": {"label":"\"Write it in ink, Warden.\""},
+    "image": {
+      "comp": "walking casually past a staircase with parted robe, confident sultry smile, crimson-amber halo glowing above her",
+      "setting": "pleasure house hallway in warm golden morning light",
+      "house": true,
+      "cloth": "partial"
     }
   },
   "nightIncidents": {

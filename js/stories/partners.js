@@ -38,13 +38,21 @@ function pickArcAct(w, pool, pref){
   return chosen ? chosen.id : null;
 }
 function resolveArcBeat(w, base){
-  let b = Object.assign({}, base), hasIntimOverride = false;
-  if(base.byIntim){
-    const ks = Object.keys(base.byIntim).map(Number).filter(n=>!Number.isNaN(n) && n <= (w.intim||0)).sort((a,b)=>b-a);
+  let src = base;
+  if(typeof isLanternAngel==='function' && isLanternAngel(w) && base.lantern){
+    const L = base.lantern;
+    src = Object.assign({}, base, L);
+    if(L.image) src.image = Object.assign({}, base.image || {}, L.image);
+    if(!('byIntim' in L)) delete src.byIntim;
+    if(!('ngpp' in L)) delete src.ngpp;
+  }
+  let b = Object.assign({}, src), hasIntimOverride = false;
+  if(src.byIntim){
+    const ks = Object.keys(src.byIntim).map(Number).filter(n=>!Number.isNaN(n) && n <= (w.intim||0)).sort((a,b)=>b-a);
     for(const k of ks){
       if(k > 0 && !getActs().some(a=>actTier(a.id)<=k && canSam(w, a.id))) continue;
       // a variant's image is laid over the beat's (so it can give just a new comp / cloth / wear); without one, no story picture
-      const v = base.byIntim[String(k)], img = v.image ? Object.assign({}, base.image || {}, v.image) : null;
+      const v = src.byIntim[String(k)], img = v.image ? Object.assign({}, src.image || {}, v.image) : null;
       Object.assign(b, v);
       if(img) b.image = img; else delete b.image;
       hasIntimOverride = true;
@@ -73,7 +81,8 @@ function evArc(w){
   const last = i===beats.length-1;
   const b = resolveArcBeat(w, beats[i]);
   let scene = b.scene, cloth = b.cloth;
-  if(b.image && scene!=='final') scene = dynScene(`arc_${w.key}_${i}_${w.intim||0}`, b.image) || scene;
+  const la = typeof isLanternAngel==='function' && isLanternAngel(w) && beats[i].lantern ? '_lantern' : '';
+  if(b.image && scene!=='final') scene = dynScene(`arc_${w.key}_${i}_${w.intim||0}${la}`, b.image) || scene;
   // the last beat crosses her next line with Sam if she's comfortable with it; the picture shows the furthest she'd go
   const nx = last ? firstNext(w) : null, nxOk = nx && tierActs(w, nx).length;
   if(scene==='final'){ const top = nxOk ? nx : (w.intim||0), pool = getActs().filter(a=>actTier(a.id)<=top && samStance(w,a.id)!=='no');

@@ -189,7 +189,7 @@ async function repShowSaved(R, wid){
     if(sm==='hide' || sm==='fold' || (!sm && SET.repImg === false)) continue;
     if(sm==='gen'){ box.dataset.hide = '0'; await showImg('hl'+i, wid, h.scene, null, 'auto'); if(!REPV || REPV.view!=='w:'+wid) return; continue; }
     const cloth = defaultCloth(w, h.scene);
-    if(!(await imgGet(imgKey(w, h.scene, cloth))) && !(await imgGet(legacyKey(w, h.scene, cloth)))) continue;
+    if(!(await imgGet(imgKey(w, h.scene, cloth))) && (isLanternVariant(w) || !(await imgGet(legacyKey(w, h.scene, cloth))))) continue;
     if(!REPV || REPV.view!=='w:'+wid || !box.isConnected) return;
     box.dataset.hide = '0'; showImg('hl'+i, wid, h.scene, null, 'manual');
   }

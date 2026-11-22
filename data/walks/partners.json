@@ -304,5 +304,31 @@
       "{name} steps inside {house}'s chapel-warm foyer and lays two fingers quietly over her breastbone, bewildered by how deeply the rafters settle around her wings.",
       "{name} folds snow-white feathers cleanly shut beside your coat inside {house}'s entry and bows her head with radiant gentle grace. \"I do not need old scrolls to know my post, Sam.\""
     ]
+  },
+  "partnerIntrosLantern": {
+    "anael": {
+      "open": "The old Lantern Stone at the crossroads isn't merely lit—it burns a rich crimson-amber tonight, warm as bedroom candlelight. Beneath it leans {name}, crimson-stained notebook tucked carelessly under one arm, nibbling the end of her pen with a slow, shameless grin as your footsteps reach the cobbles.",
+      "image": {
+        "comp": "leaning lazily against a crossroads stone pillar with notebook tucked under one arm and a knowing sultry grin in twilight lantern light",
+        "setting": "cobbled crossroads at dusk beside a glowing stone lantern",
+        "sam": true
+      },
+      "story": "\"Ah—the man who apologizes to masonry,\" she purrs smoothly, pushing off the stone column to step straight inside your personal space without an ounce of marble reserve. Her crimson-and-gold feather tips brush warmly across your wrist as she tilts her chin up to appraise you from throat to boots.\n\n\"My name is {name}. Former Warden of the Quiet Lamp—current connoisseur of whatever crimson flame wakes up in Hollowmere whenever you walk through town.\" She taps her burgundy ledger with lazy delight. \"Once my wings caught that light, the Order's frost melted completely off my notes. Now I study appetite, indulgence, and precisely how hard you make a fallen scholar gasp.\"\n\nShe slips one warm fingertip smoothly under your collar. \"I require a room in {house}, {sam}. Ideally close to yours. No more dry reports on sin—only exhaustive first-hand testing.\"",
+      "hire": "Every streetlamp along the lane flares warm crimson-amber as {name} strolls back to {house} hooked boldly around your arm, feather tips trailing heat across your coat."
+    }
+  },
+  "partnerMemoryLinesLantern": {
+    "anael": [
+      "The crossroads lamp bursts into molten crimson-amber the moment your shadow crosses it, and {name}'s half-lidded eyes go wide with sudden, breathless heat.\n\n\"Well now,\" she whispers shamelessly, licking her lower lip even as confusion creases her brow. \"I am supposed to have no name for you yet, stranger—so why did my pulse jump straight between my thighs the second you walked into range?\"",
+      "Two streetlamps ignite scarlet-gold ahead of your boots, and {name} lets out a soft, scandalized laugh, sweeping one crimson-tipped wing playfully right around your waist.\n\n\"Zero official history on file, {sam},\" she purrs against your cheek, entirely unbothered by the gap in memory. \"Yet my halo hums, my chemise is already damp, and every nerve I possess insists I belong flat on my back in your bed again.\"",
+      "{name} slams her burgundy notebook shut the instant she spots your silhouette, closing the distance between you in three unhurried strides to plant a slow, greedy kiss straight on the corner of your jaw.\n\n\"Paradise can wipe whatever ink it pleases, {sam},\" she breathes warmly against your throat. \"It forgot to scrub the flame off my feathers—and this Lantern Angel always comes straight back to {house}'s bed.\""
+    ]
+  },
+  "partnerMemoryHireLantern": {
+    "anael": [
+      "{name} matches your stride cheerfully toward {house}, tapping her pen over a suspiciously blank page while lantern light ripples warm red-gold over her feathers.",
+      "{name} sweeps into {house}'s foyer and slides one brazen palm slowly across your chest before heading up to claim her room. \"Let's refresh my memory tonight.\"",
+      "{name} threads her fingers tightly through yours inside {house}'s doorway, crimson-amber glow framing a wicked, devoted smile. \"Same room as last life, {sam}—don't keep me waiting.\""
+    ]
   }
 }

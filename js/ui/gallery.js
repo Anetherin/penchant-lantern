@@ -19,10 +19,13 @@ function galOutfits(w){
 }
 const galOutfitLabel = k => k==='custom' ? 'Her own outfit' : (WARDROBE[k] ? WARDROBE[k].label : k);
 // A stand-in for her wearing outfit k everywhere (work, service, off duty), so imgKey / buildPrompt picture that outfit.
-function galLady(w, k){
-  if(!k) return w;
+function galLady(w, k, lantern){
+  if(!k && lantern === undefined) return w;
+  const canLantern = lantern !== undefined && w.race==='angel' && !(w.key && NAMED[w.key] && NAMED[w.key].sub==='lantern');
+  const patch = canLantern ? {sub: lantern ? 'lantern' : '', lantern: !!lantern} : {};
+  if(!k) return Object.assign({}, w, patch);
   const jo = Object.assign({}, w.jobOutfit || {}); if(w.job) jo[w.job] = k==='custom' ? '' : k;
-  return Object.assign({}, w, {outfit:k, svcOutfit:k, jobOutfit:jo});
+  return Object.assign({}, w, patch, {outfit:k, svcOutfit:k, jobOutfit:jo});
 }
 const galCloud = id => typeof cloudReady==='function' && cloudReady() && typeof isPermImgId==='function' && isPermImgId(id);
 const galHas = (key, id) => IMGKEYS.has(key) || (galCloud(id) && !!(CLOUD_STATE.manifest.imgs||{})[key]);
@@ -53,7 +56,7 @@ function galSavedKeys(w){
 function galParse(key){
   const [id, scene, cloth, ...rest] = key.split('|'), look = rest.join('|');
   const m = /^o:([^:+]+)/.exec(look);
-  return {id, scene, cloth, outfit: m ? m[1] : (look ? '-' : '')};
+  return {id, scene, cloth, outfit: m ? m[1] : (look ? '-' : ''), lantern: /\+lantern\b/.test(look)};
 }
 const galSavedOutfitLabel = o => o==='' ? 'Not tracked (older images)' : o==='-' ? 'No outfit (underwear / undressed)' : galOutfitLabel(o);
 function galSceneLabel(scene, w){ try{ return sceneInfo(scene, w).label || scene; }catch(e){ return scene; } }
@@ -95,7 +98,7 @@ function renderGallery(){
     const outs = [...new Set(all.map(x=>x.outfit))];
     const shown = GAL.savedOutfit==='*' ? all : all.filter(x=>x.outfit===GAL.savedOutfit);
     body = `<div class="row">👗 ${sel('savedOutfit', [['*', `Any outfit (${all.length})`], ...outs.map(o=>[o, `${galSavedOutfitLabel(o)} (${all.filter(x=>x.outfit===o).length})`])], GAL.savedOutfit)}</div>
-      <div class="galgrid">${shown.map(x => galTile(w, x.key, galSceneLabel(x.scene, w) + (galExprOf(x.scene)?' · '+galExprOf(x.scene):''), true, {sub:`${(CLOTH.find(c=>c.id===x.cloth)||{label:x.cloth}).label} · ${galSavedOutfitLabel(x.outfit)}`})).join('') || '<p class="muted">No saved images for her yet.</p>'}</div>`;
+      <div class="galgrid">${shown.map(x => galTile(w, x.key, galSceneLabel(x.scene, w) + (galExprOf(x.scene)?' · '+galExprOf(x.scene):''), true, {sub:`${(CLOTH.find(c=>c.id===x.cloth)||{label:x.cloth}).label} · ${galSavedOutfitLabel(x.outfit)}${x.lantern?' · 🕯️ Lantern':''}`})).join('') || '<p class="muted">No saved images for her yet.</p>'}</div>`;
   }
   modal(head + body, {wide:true});
   SHEET = null;
@@ -154,7 +157,8 @@ function galJob(i, reroll){
   const w = findW(g.wid); if(!w) return null;
   // All saved view: regenerate the same scene/dress level in the outfit that key was saved for (if she still has it)
   if(!g.scene){ const P = galParse(g.key); const o = P.outfit && P.outfit!=='-' && galOutfits(w).some(x=>x[0]===P.outfit) ? P.outfit : '';
-    return {wid:w.id, scene:P.scene, cloth:P.cloth, outfit:o, key:g.key, reroll:true}; }
+    const canLantern = w.race==='angel' && !(w.key && NAMED[w.key] && NAMED[w.key].sub==='lantern');
+    return Object.assign({wid:w.id, scene:P.scene, cloth:P.cloth, outfit:o, key:g.key, reroll:true}, canLantern ? {lantern:P.lantern} : {}); }
   return {wid:w.id, scene:g.scene, cloth:g.cloth, outfit:g.outfit||'', key:g.key, reroll:!!reroll};
 }
 function galGenOne(i, reroll){
@@ -199,7 +203,7 @@ function galNext(){
   const w0 = findW(j.wid), plug = getPlugin();
   if(!w0 || !plug){ GAL_GEN.done++; return galNext(); }
   ensureWorker(w0);
-  const w = galLady(w0, j.outfit), key = imgKey(w, j.scene, j.cloth), prompt = buildPrompt(w, j.scene, j.cloth);
+  const w = galLady(w0, j.outfit, j.lantern), key = imgKey(w, j.scene, j.cloth), prompt = buildPrompt(w, j.scene, j.cloth);
   if(!j.reroll && IMGKEYS.has(key)){ GAL_GEN.done++; return galNext(); }   // saved meanwhile
   w0.imgVar = w0.imgVar || {};
   if(j.reroll) w0.imgVar[key] = (w0.imgVar[key]||0) + 1;

@@ -200,7 +200,7 @@
     },
     "angel": {
       "label": "Serene",
-      "desc": "Lower lust ceiling (-30), never reckless, resting mood +5. Can keep a Quiet Chapel (Chapel Keeper, where willing propositions earn house popularity and donations). High lewdness can awaken her as a Lantern Angel. Nobles are especially fond of her."
+      "desc": "Lower lust ceiling (-30), never reckless, resting mood +5. Can keep a Quiet Chapel (Chapel Keeper, where willing offerings earn house popularity and donations). High lewdness can awaken non-guest angels as Lantern Angels: halving mood losses, earning full fees on reckless nights without hurting house class, and turning any chapel they keep into a Lantern Chapel that shields the house and amplifies Seliora. Nobles are especially fond of her."
     },
     "android": {
       "label": "Rechargeable",
@@ -256,7 +256,7 @@
       "cost": 800,
       "upkeep": 16,
       "race": "angel",
-      "desc": "Angel mood +4 (+3 weekly mood for the whole house while an angel keeps the chapel). Unlocks the Chapel Keeper job (2 positions: any lady may serve, angels at full strength and half for others; demons only while a Lantern Angel serves alongside). Keeps add popularity and earn donations.",
+      "desc": "Angel mood +4 (+3 weekly mood for the whole house while an angel keeps the chapel). Unlocks the Chapel Keeper job (2 positions: any lady may serve, angels at full strength and half for others; demons only while a Lantern Angel serves alongside, at 85% strength). Only while a Lantern Angel keeps it does it become a Lantern Chapel: unlocking room-free full vestry offerings with higher rewards, +25% house lust build, shielding the house's reckless nights from class loss, and amplifying Seliora.",
       "mood": 4
     },
     "sigil": {
@@ -962,7 +962,7 @@
       "rebornPool": {"perFee":0.015,"perGrowth":0.02,"perRep":0.01,"cap":50},
       "perk": {
         "label": "Lantern of Echoes",
-        "desc": "Bound to Seliora's embers. Room cap starts at 10 and grows +5 each NG++ cycle. Gains a house-wide bonus from total Reincarnations of everyone actively working here (+1.5% client fees, +2% trust & skill growth, +1% house popularity gain per reincarnation stack, up to 50)."
+        "desc": "Bound to Seliora's embers. Room cap starts at 10 and grows +5 each NG++ cycle. Gains a house-wide bonus from total Reincarnations of everyone actively working here (+1.5% client fees, +2% trust & skill growth, +1% house popularity gain per reincarnation stack, up to 50; active Lantern Angels add +2 echo stacks each)."
       },
       "desc": "A quiet wooden shrine-house built around a bronze lantern that remembers every face you've loved. Compact at first, another wing opens whenever Sam crosses back through the dark.",
       "setting": "lantern-lit wooden shrine parlor with sliding lattice screens, warm cedar beams, and quiet alcove rooms",
