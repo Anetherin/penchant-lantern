@@ -1193,6 +1193,10 @@
       "propDonMax": 1,
       "tierMult": [1,1,1.25,1.6],
       "lanternTier3Coin": 25,
+      "giftClassExp": 1,
+      "lanternFee": 1.8,
+      "offerClients": {"pilgrim":4,"cleric":3,"commoner":1.5,"merchant":1,"artisan":0.5,"noble":0.5},
+      "lanternClients": {"cleric":5,"noble":2.5,"official":2,"merchant":1,"pilgrim":1},
       "visitorClass": {"pilgrim":1.5,"cleric":1.3},
       "lanternLust": 1.25,
       "lanternWilling": 0.25

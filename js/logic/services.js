@@ -18,6 +18,13 @@ const SVC = BAL.svc;
 // How the report phrases a service (services.json → ask): what HE asks for ("asked for oral") vs what SHE does when she's the one offering ("she offered to go down on him").
 const askClient = id => { const a = actById(id); return (a && a.ask && a.ask.client) || 'for ' + actLabel(id).toLowerCase(); };
 const askLady = id => { const a = actById(id); return (a && a.ask && a.ask.lady) || 'offered ' + actLabel(id).toLowerCase(); };
+// Who comes to the chapel to leave an offering: its own visitor mix (balance.json → amenities.chapel.offerClients), not the house's
+// clientele. A Lantern Chapel draws the clergy and gentry who know what the vestry offers (lanternClients). Falls back to pickClass.
+function chapelClass(h){
+  const C = BAL.amenities.chapel || {}, mix = (h && h.lanternChapel && C.lanternClients) || C.offerClients;
+  const cs = mix ? CLASSES.filter(c=>mix[c.id]) : [];
+  return cs.length ? weighted(cs, c=>mix[c.id]) : pickClass(h);
+}
 // Pilgrims and clerics fill the chapel: visitors x (1 + sum of (their share of this week's courtesan clients) x (visitorClass - 1)).
 function chapelClassMul(X, C){
   const vc = C.visitorClass; if(!vc || !X.clsTot) return 1;
