@@ -226,7 +226,7 @@ function simHouse(h, R){
   const staffProps = (w, n) => {
     const j = w.job, pr = R.per[w.id], must = !!JOBS[j].must;
     for(let i=0;i<n && !pr.nightOver;i++){
-      const cls = pickClass(h), client = makeClient(h, cls); SIM_SEX = clientSex(client); if(Math.random() > clamp((cls.prop ?? 1) * cMul(client,'prop',X) * cJob(client,j), 0, 1)) continue; noteClient(X, client);
+      const cls = j==='chapel' ? chapelClass(h) : pickClass(h), client = makeClient(h, cls); SIM_SEX = clientSex(client); if(Math.random() > clamp((cls.prop ?? 1) * cMul(client,'prop',X) * cJob(client,j), 0, 1)) continue; noteClient(X, client);
       const s0 = encSnap(w, pr), want = pickWant(cls, w, client), expects = j==='attendant' && Math.random() < BP.attendantExpect; pr.props++;
       const dec = propDecide(w, want, X), e = {cls:cls.id, want, act:null, outcome:'no', where:j, note:null, expr:null, ctx:'prop', csex: SIM_SEX==='m' ? undefined : SIM_SEX};
       if(dec.kind === 'no'){
@@ -249,7 +249,10 @@ function simHouse(h, R){
         const A = actById(dec.act), reluct = clientStance(w,dec.act)==='ask', tier = actTierOf(A) || 1;
         const tm = (C.tierMult || [1,1,1.25,1.6])[tier] ?? 1;
         const rm = w.race==='angel' ? 1 : (w.race==='demon' && full) ? (C.demonLanternMult ?? 0.85) : (C.nonAngelMult ?? 0.5), cm = housePerkVal(h, 'chapelMult', 1);
-        const coin = Math.round(((HD.chapelPropCoin || 0) + (full && tier >= 3 ? (C.lanternTier3Coin ?? 25) : 0)) * rm * cm * tm);
+        // A plain offering is a gift scaled by how deep the visitor's purse is; in a Lantern Chapel the vestry is a full service
+        // and a well-off visitor (clergy, nobles) pays a client's fee for it (balance.json → amenities.chapel.lanternFee).
+        const gift = ((HD.chapelPropCoin || 0) + (full && tier >= 3 ? (C.lanternTier3Coin ?? 25) : 0)) * (cls.mult ?? 1) ** (C.giftClassExp ?? 1) * tm;
+        const coin = Math.round(Math.max(gift, full ? propInc(w, dec.act, cls, client) * (C.lanternFee ?? 0) : 0) * rm * cm);
         pr.acc++; hr.accProps++; pr.chapelProps = (pr.chapelProps||0)+1; pr.chapelPropWeight = (pr.chapelPropWeight||0) + tm; repAdd(h, (C.propRep ?? 0.45) * rm * cm * tm * fxMul(w,'rep'));
         if(coin){ hr.income += coin; R.led.chapel += coin; pr.earned += coin; hr.chapel = (hr.chapel||0) + coin; }
         const rs = runService(X, w, A, {tech:clientTech(cls,null,client), reluct, inc:coin, ecost:actCost(w,dec.act), led:'chapel', client, cls, q:qualityOf(w,dec.act)*(reluct?0.85:1), noRoom: !!full});
