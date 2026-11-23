@@ -56,7 +56,7 @@ const FLAVOR = noMeta(needData('flavor'));
 const DEFAULT_SETTINGS = {
   style: "4k anime style, masterpiece, high detailed quality",
   negative: "child, minor, loli, young-looking, lowres, bad anatomy, extra fingers, watermark, text, signature",
-  resolution: "512x768", autoPortrait: true, autoImg: true, imgHidden: false, repImg: true, svcImg: {}, svcImgAll: false, libraryInPool: true, packsOff: {},
+  resolution: "512x768", autoPortrait: true, autoImg: true, imgHidden: false, repImg: true, svcImg: {}, svcImgAll: false, libraryInPool: true, packsOff: {}, silly: false,
   snippets: {}, clothText: {}, customActs: [],
   ai: {on:true, auto:false, autoBackstory:true, guidance:'', tpl:{}, v:2}
 };

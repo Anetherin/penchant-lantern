@@ -632,6 +632,7 @@ async function cloudPullExtra(kind){
       SET.ai = Object.assign({}, DEFAULT_SETTINGS.ai, d.ai || {});
       SET.ai.tpl = Object.assign({}, (d.ai && d.ai.tpl) || {});
       saveSettings();
+      if(typeof sillySync === 'function') sillySync();
     } else if(Array.isArray(pkg.data)){
       LIB = pkg.data;
       LIB.forEach(w => { if(w.stats && Math.max(...Object.values(w.stats)) <= 100) scaleWorker(w); migrateWorker(w); });
