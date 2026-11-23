@@ -59,11 +59,12 @@
     'js/ui/gallery.js',
     'js/ui/report.js',
     'js/ui/settings.js',
+    'js/ui/silly.js',
     'js/main.js'
   ];
   window.HOLLOWMERE_FILES = FILES;
   // Editable data, loaded before any script runs. Each becomes window.PL_DATA['<name>'].
-  var DATA_FILES = ['balance', 'economy', 'services', 'personalities', 'people', 'races', 'traits', 'titles', 'body', 'wardrobe', 'characters', 'guests', 'arcs', 'afterstories', 'housestories', 'regulars', 'bonds', 'scenes', 'dates', 'events', 'walks', 'snippets', 'ai-prompts', 'flavor', 'firsts', 'goddess', 'guild', 'isolde'];
+  var DATA_FILES = ['balance', 'economy', 'services', 'personalities', 'people', 'races', 'traits', 'titles', 'body', 'wardrobe', 'characters', 'guests', 'arcs', 'afterstories', 'housestories', 'regulars', 'bonds', 'scenes', 'dates', 'events', 'walks', 'snippets', 'ai-prompts', 'flavor', 'firsts', 'goddess', 'guild', 'isolde', 'silly'];
   // Data sets kept as a folder of parts (data/<name>/index.json + parts) instead of one file.
   var DATA_DIRS = ['characters', 'guests', 'walks', 'arcs', 'afterstories', 'housestories', 'flavor', 'firsts', 'goddess', 'traits', 'guild'];
   window.HOLLOWMERE_DATA = DATA_FILES;

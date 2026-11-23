@@ -14,6 +14,7 @@ function viewSettings(){
       <label class="chk"><input type="checkbox" id="s_autoRenew" ${SET.autoRenew!==false?'checked':''}> Auto-renew contracts at the going rate when a lady is sure to sign (unsure ones, or bonuses you can't afford, still ask)</label></div>
     <div class="row"><button class="primary" onclick="saveSettingsUI()">Save settings</button><span class="muted">Image plugin: ${getPlugin()?'<span class="good">connected</span>':'<span class="warn">not connected</span>'} · Image storage: ${DB?'<span class="good">ready</span>':'<span class="warn">unavailable</span>'}</span></div></section>
   ${svcImgCard()}
+  ${typeof sillyCard === 'function' ? sillyCard() : ''}
   ${Object.keys(GUEST_PACKS).length ? `<section class="card"><h2>Visiting characters</h2><p class="muted">Crossover guests from <code>data/guests/</code> (one file per pack) pass through as candidates now and then. Switch off any packs you don't want.</p>
     <div class="row">${Object.entries(GUEST_PACKS).map(([k,P])=>`<label class="chk"><input type="checkbox" class="s_pack" data-pack="${esc(k)}" ${(SET.packsOff||{})[k]?'':'checked'}> ${esc(P.label||k)} <span class="muted">(${Object.keys(noMeta(P.characters)).length})</span></label>`).join('')}</div>
     <div class="row"><button class="primary" onclick="savePacksUI()">Save</button></div></section>` : ''}
